@@ -7,11 +7,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-14 17:59+0100\n"
+"POT-Creation-Date: 2012-09-28 16:57+0100\n"
 "PO-Revision-Date: 2012-09-14 19:10-0000\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: HDTV ROMANIA(superonic,costel_mbc,neutrin,otheitis,cipy_1982,"
 "neutrin,runcanion)\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -104,11 +105,6 @@ msgstr ""
 "\n"
 "Alege pe backup device. \n"
 "Curent device: "
-
-msgid ""
-"\n"
-"System will restart after the restore!"
-msgstr ""
 
 msgid ""
 "\n"
@@ -234,6 +230,17 @@ msgstr ""
 msgid "%s (%s)\n"
 msgstr ""
 
+#. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
+#, python-format
+msgid "%s is no longer used. Should it be deleted?"
+msgstr ""
+
+#, python-format
+msgid "%s updated package available"
+msgid_plural "%s updated packages available"
+msgstr[0] ""
+msgstr[1] ""
+
 #, python-format
 msgid "%s/%s: %s"
 msgstr ""
@@ -266,12 +273,6 @@ msgstr ""
 msgid "* Only available if more than one interface is active."
 msgstr ""
 "* Disponibil doar in cazul in care mai mult de o interfata este activa."
-
-msgid "/usr/share/enigma2 directory"
-msgstr "/usr/share/enigma2 director"
-
-msgid "/var directory"
-msgstr "/var director"
 
 msgid "0"
 msgstr ""
@@ -406,6 +407,12 @@ msgstr ""
 
 #, python-format
 msgid ""
+"A configuration file (%s) has been modified since it was installed.\n"
+"Do you want to keep your modifications?"
+msgstr ""
+
+#, python-format
+msgid ""
 "A configuration file (%s) was modified since Installation.\n"
 "Do you want to keep your version?"
 msgstr ""
@@ -502,6 +509,9 @@ msgstr ""
 msgid "A/V Settings"
 msgstr "Setarile A/V"
 
+msgid "A/V settings"
+msgstr ""
+
 msgid "AA"
 msgstr ""
 
@@ -515,9 +525,6 @@ msgid "AFP Setup"
 msgstr ""
 
 msgid "AFP setup"
-msgstr ""
-
-msgid "AIT data will be included in http streams"
 msgstr ""
 
 #, python-format
@@ -554,9 +561,6 @@ msgstr "Activeaza PIP"
 msgid "Activate network settings"
 msgstr "Activeaza setari retea"
 
-msgid "Activate rewrapping of the teletext subtitles"
-msgstr ""
-
 msgid "Activate the chosen network settings."
 msgstr ""
 
@@ -581,9 +585,6 @@ msgstr "Adauga Bookmark"
 msgid "Add Timer"
 msgstr ""
 
-msgid "Add WLAN configuration?"
-msgstr ""
-
 msgid "Add a auto timer for current event"
 msgstr ""
 
@@ -603,9 +604,6 @@ msgid "Add a record timer for current event"
 msgstr ""
 
 msgid "Add a zap timer for current event"
-msgstr ""
-
-msgid "Add network configuration?"
 msgstr ""
 
 msgid "Add timer"
@@ -630,16 +628,6 @@ msgid "Additional Info"
 msgstr ""
 
 msgid "Address"
-msgstr ""
-
-msgid ""
-"Adds enigma2 settings and STB_BOX informations like SN, rev... if enabled."
-msgstr ""
-
-msgid "Adds network configuration if enabled."
-msgstr ""
-
-msgid "Adds wlan configuration if enabled."
 msgstr ""
 
 msgid "Adjust 3D settings"
@@ -668,21 +656,14 @@ msgstr ""
 msgid "Advanced Video Enhancement Setup"
 msgstr ""
 
-msgid "Advanced Video Setup"
-msgstr "Setarile video avansate"
-
 msgid "Advanced restore"
 msgstr "Restaurare avansata"
 
+msgid "Advanced video setup"
+msgstr ""
+
 msgid "After event"
 msgstr "Dupa eventul"
-
-msgid ""
-"After the start wizard is completed, you need to protect single services. "
-"Refer to your STB_BOX's manual on how to do that."
-msgstr ""
-"Dupa completare start wizard,trebuie sa ptotejezi serviciile unice. Cisteste "
-"pe manual lui Ipbox cum sa faci asta."
 
 msgid "Album"
 msgstr "Album"
@@ -693,10 +674,10 @@ msgstr ""
 msgid "All"
 msgstr "Toate"
 
-msgid "All Satellites"
-msgstr "Toti Sateliti"
-
 msgid "All ages"
+msgstr ""
+
+msgid "All satellites"
 msgstr ""
 
 msgid "Allow Subtitle equals Audio mask"
@@ -757,7 +738,7 @@ msgstr ""
 msgid "Altern"
 msgstr ""
 
-msgid "Alternative numbering Mode"
+msgid "Alternative numbering mode"
 msgstr ""
 
 msgid "Alternative radio mode"
@@ -769,20 +750,17 @@ msgstr "Prioritate tuner servicii alternative"
 msgid "Always ask"
 msgstr ""
 
-msgid "Always ask before sending"
-msgstr ""
-
 msgid "Always show bouquets"
 msgstr ""
 
 msgid "An empty filename is illegal."
 msgstr "Este illegal un gol filename."
 
+msgid "An error occurred while downloading the packetlist. Please try again."
+msgstr ""
+
 msgid "An unknown error occured!"
 msgstr "S-a produs o eroare necunoscuta!"
-
-msgid "Anonymize crashlog?"
-msgstr ""
 
 msgid "Any activity"
 msgstr ""
@@ -799,10 +777,8 @@ msgstr ""
 
 msgid ""
 "Are you sure you want to delete\n"
-"following backup:\n"
+"the following backup:\n"
 msgstr ""
-"Esti sigur ca vrei sa stergi\n"
-"urmarire backup:\n"
 
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr ""
@@ -823,19 +799,18 @@ msgstr ""
 "Esti sigur vrei sa restartezi interfata retelei?\n"
 "\n"
 
+#, python-format
 msgid ""
 "Are you sure you want to restore\n"
-"following backup:\n"
+"the following backup:\n"
+"%s\n"
+"Your receiver will restart after the backup has been restored!"
 msgstr ""
-"Esti sigur ca vrei sa restaurezi\n"
-"Urmareste backup-ul:\n"
 
 msgid ""
-"Are you sure you want to restore your Enigma2 backup?\n"
-"Enigma2 will restart after the restore"
+"Are you sure you want to restore the backup?\n"
+"Your receiver will restart after the backup has been restored!"
 msgstr ""
-"Esti sigur ca vrei sa restaurezi backup-ul Enigma2?\n"
-"Enigma2 va reporni dupa restaurare"
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr ""
@@ -860,6 +835,9 @@ msgstr "Intreaba pe user"
 
 msgid "Aspect Ratio"
 msgstr "Aspect Ratio"
+
+msgid "Aspect ratio"
+msgstr ""
 
 msgid "Attach a file"
 msgstr ""
@@ -912,6 +890,9 @@ msgstr "Automat"
 
 msgid "Automatic Scan"
 msgstr "Scanare automata"
+
+msgid "Automatic configuration is finished"
+msgstr ""
 
 msgid "Automatic image backup"
 msgstr ""
@@ -973,17 +954,8 @@ msgstr ""
 msgid "Background delete speed"
 msgstr ""
 
-msgid "Backup"
-msgstr "Backup"
-
-msgid "Backup Location"
-msgstr "Locatia Backup"
-
-msgid "Backup Mode"
-msgstr "Backup Mode"
-
-msgid "Backup done."
-msgstr "Backup terminat."
+msgid "Backup completed."
+msgstr ""
 
 msgid "Backup failed."
 msgstr "Backup esuat."
@@ -1096,11 +1068,6 @@ msgstr ""
 msgid "By Team ViX"
 msgstr ""
 
-msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
-msgstr "Apasand pe butonul OK de pe telecomanda, bara de informatiise afiseaza"
-
 msgid "C"
 msgstr "C"
 
@@ -1154,9 +1121,6 @@ msgstr ""
 msgid "CCcam info"
 msgstr ""
 
-msgid "CF Drive"
-msgstr "Compact Flash"
-
 msgid "CI assignment"
 msgstr "Asignarea CI"
 
@@ -1205,10 +1169,7 @@ msgstr ""
 msgid "Cardserial"
 msgstr ""
 
-msgid "Center the position of the DVB subtitles."
-msgstr ""
-
-msgid "Centered DVB subtitles"
+msgid "Center DVB subtitles"
 msgstr ""
 
 msgid "Change bouquets in quickzap"
@@ -1261,6 +1222,9 @@ msgstr "Selectie canal"
 msgid "Channel Selection Configuration"
 msgstr ""
 
+msgid "Channel list context menu"
+msgstr ""
+
 msgid "Channel list on mode change"
 msgstr ""
 
@@ -1268,6 +1232,9 @@ msgid "Channel list preview"
 msgstr ""
 
 msgid "Channel list service mode*"
+msgstr ""
+
+msgid "Channel list type"
 msgstr ""
 
 msgid "Channel not in services list"
@@ -1297,6 +1264,12 @@ msgstr "Verifica"
 msgid "Check every (hours)"
 msgstr ""
 
+msgid "Check the internet connection"
+msgstr ""
+
+msgid "Check the internet connection again"
+msgstr ""
+
 msgid "Checking Feeds"
 msgstr ""
 
@@ -1307,6 +1280,15 @@ msgid "Checking Logs..."
 msgstr ""
 
 msgid "Checking for Updates..."
+msgstr ""
+
+msgid "Checking the internet connection"
+msgstr ""
+
+#, python-format
+msgid ""
+"Checking tuner %d\n"
+"DiSEqC port %s for %s"
 msgstr ""
 
 msgid "Children/Youth"
@@ -1346,18 +1328,13 @@ msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
 msgid ""
-"Choose the location where the EPG data will be stored when the STB_BOX is "
-"shut down. The location must be available at boot time."
+"Choose the location where the EPG data will be stored when the GigaBlue HD "
+"800 Solo is shut down. The location must be available at boot time."
 msgstr ""
 
 msgid ""
-"Choose the name of the file that holds the EPG data when the STB_BOX is shut "
-"down. This can be handy to differentiate between several boxes."
-msgstr ""
-
-msgid ""
-"Choose the order in which the tuner types will be used (for watching and "
-"recording)."
+"Choose the name of the file that holds the EPG data when the GigaBlue HD 800 "
+"Solo is shut down. This can be handy to differentiate between several boxes."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -1370,6 +1347,10 @@ msgid "Choose upgrade source"
 msgstr "Alege sursa de actualizare"
 
 msgid "Choose what you want the button '0' to do when PIP is active."
+msgstr ""
+
+msgid ""
+"Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr ""
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
@@ -1390,11 +1371,6 @@ msgstr ""
 msgid "Choose which tuner to configure."
 msgstr ""
 
-msgid ""
-"Choose which tuner will be used first. If set to 'auto' the system will give "
-"priority to the tuner having the lowest number of channels/satellites."
-msgstr ""
-
 msgid "Choose your Skin"
 msgstr "Alege decoratiunea dorita"
 
@@ -1409,15 +1385,6 @@ msgstr ""
 
 msgid "Cleanup"
 msgstr "Curatenie"
-
-msgid "Cleanup Wizard"
-msgstr ""
-
-msgid "Cleanup Wizard settings"
-msgstr ""
-
-msgid "CleanupWizard"
-msgstr ""
 
 msgid "Clear before scan"
 msgstr "Goleste lista inainte de scanare"
@@ -1457,6 +1424,9 @@ msgstr "Setari colectie"
 
 msgid "Color Format"
 msgstr "Format color"
+
+msgid "Color format"
+msgstr ""
 
 msgid "Command execution..."
 msgstr "Executia comenzii..."
@@ -1498,6 +1468,9 @@ msgstr ""
 msgid "Configuration Mode"
 msgstr "Mod configurare"
 
+msgid "Configuration mode"
+msgstr ""
+
 msgid "Configure interface"
 msgstr ""
 
@@ -1527,6 +1500,20 @@ msgid "Configure the behaviour when a movie reaches the end"
 msgstr ""
 
 msgid ""
+"Configure the border width of the subtitles. The dark border makes the "
+"subtitles easier to read on a light background."
+msgstr ""
+
+msgid "Configure the color of the teletext subtitles."
+msgstr ""
+
+msgid "Configure the font size of the subtitles."
+msgstr ""
+
+msgid "Configure the horizontal alignment of the subtitles."
+msgstr ""
+
+msgid ""
 "Configure the number of days old timers are kept and then auto deleted from "
 "the timers list"
 msgstr ""
@@ -1551,6 +1538,9 @@ msgstr ""
 msgid "Configure the speed of the background delete feature"
 msgstr ""
 
+msgid "Configure the subtitle delay when timing information is not available."
+msgstr ""
+
 msgid "Configure the time of the stepskip on the '1'/'3'-keys"
 msgstr ""
 
@@ -1560,10 +1550,31 @@ msgstr ""
 msgid "Configure the time of the stepskip on the '7'/'9'-keys"
 msgstr ""
 
+msgid ""
+"Configure the transparency of the black background of graphical DVB "
+"subtitles."
+msgstr ""
+
 msgid "Configure the type of status indication icons shown in the movielist"
 msgstr ""
 
+msgid ""
+"Configure the vertical position of the subtitles, measured from the bottom "
+"of the screen."
+msgstr ""
+
 msgid "Configure the way recording filenames are composed"
+msgstr ""
+
+msgid ""
+"Configure which tuner type will be preferred, when the same service is "
+"available on different types of tuners."
+msgstr ""
+
+msgid ""
+"Configure which tuner will be preferred, when more than one tuner is "
+"available. If set to 'auto' the system will give priority to the tuner "
+"having the lowest number of channels/satellites."
 msgstr ""
 
 msgid "Configure your internal LAN"
@@ -1647,6 +1658,9 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
+msgid "Correct"
+msgstr ""
+
 msgid ""
 "Could not activate Permanent-Timeshift!\n"
 "Timeshift-Path does not exist"
@@ -1654,6 +1668,9 @@ msgstr ""
 
 msgid "Could not connect to STB_BOX .NFI Image Feed Server:"
 msgstr "Conexiunea la STB_BOX a esuat .NFI server de imagini:"
+
+msgid "Could not find installed channel list."
+msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nu s-a putut incarca! E vreun disc introdus?"
@@ -1679,23 +1696,6 @@ msgid "Couldn't record due to invalid service %s"
 msgstr ""
 
 msgid "Crash Logs"
-msgstr ""
-
-msgid "Crashlog settings"
-msgstr ""
-
-msgid "CrashlogAutoSubmit"
-msgstr ""
-
-msgid "CrashlogAutoSubmit settings"
-msgstr ""
-
-msgid "CrashlogAutoSubmit settings..."
-msgstr ""
-
-msgid ""
-"Crashlogs found!\n"
-"Send them to Dream Multimedia?"
 msgstr ""
 
 msgid "Create DVD-ISO"
@@ -1768,17 +1768,14 @@ msgstr "Butoanele '4'/'6' produc saltul cu"
 msgid "Custom skip time for '7'/'9'-keys"
 msgstr "Butoanele '7'/'9' produc saltul cu"
 
-msgid "Custom text alignment"
-msgstr ""
-
-msgid "Custom text position"
-msgstr ""
-
 msgid "Customize"
 msgstr "Personalizare"
 
 msgid "Cut"
 msgstr "Taie"
+
+msgid "Cutlist editor"
+msgstr ""
 
 msgid "Cutlist editor..."
 msgstr "Editor montaj..."
@@ -1849,15 +1846,6 @@ msgstr "Data"
 msgid "Debug Logs"
 msgstr ""
 
-msgid "Decide if you want to enable or disable the Cleanup Wizard."
-msgstr ""
-
-msgid "Decide what should be done when crashlogs are found."
-msgstr ""
-
-msgid "Decide what should happen to the crashlogs after submission."
-msgstr ""
-
 msgid "Deep Standby"
 msgstr "Oprire completa"
 
@@ -1894,22 +1882,11 @@ msgstr ""
 msgid "Delete Confirmation"
 msgstr ""
 
-msgid "Delete crashlogs"
-msgstr ""
-
 msgid "Delete entry"
 msgstr "Sterge articol"
 
 msgid "Delete failed!"
 msgstr "Stergere esuata!"
-
-#, python-format
-msgid ""
-"Delete no more configured satellite\n"
-"%s?"
-msgstr ""
-"Doriti stergerea satelitului\n"
-"%s?"
 
 msgid "Delete old timers after how many days"
 msgstr ""
@@ -1972,6 +1949,10 @@ msgstr "DiSEqC A/B/C/D"
 msgid "DiSEqC mode"
 msgstr "Mod DiSEqC"
 
+#, python-format
+msgid "DiSEqC port %s: %s"
+msgstr ""
+
 msgid "DiSEqC repeats"
 msgstr "DiSEqC in cascada"
 
@@ -2007,9 +1988,6 @@ msgid "Disable Picture in Picture"
 msgstr "Dezactiveaza PiP (Imagine in Imagine)"
 
 msgid "Disable background scanning"
-msgstr ""
-
-msgid "Disable crashlog reporting"
 msgstr ""
 
 msgid "Disabled"
@@ -2106,16 +2084,14 @@ msgid "Do you want to add any additional information ?"
 msgstr ""
 
 msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
+"Do you want to also install samba client ?\n"
+"This allows you to mount your windows shares on this device."
 msgstr ""
 
 msgid ""
-"Do you want to backup now?\n"
-"After pressing OK, please wait!"
+"Do you want to attach a text file to explain the log ?\n"
+"(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
-"Doriti crearea copiei de siguranta acum?\n"
-"Dupa apasarea butonului OK sunteti rugat sa asteptati!"
 
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Doriti scrierea acestei colectii pe discul DVD?"
@@ -2135,8 +2111,8 @@ msgstr "Doriti efectuarea unei alte operatiuni de scanare manuala?"
 msgid "Do you want to download the image to %s ?"
 msgstr ""
 
-msgid "Do you want to enable the parental control feature on your STB_BOX?"
-msgstr "Doriti activarea controlului parental?"
+msgid "Do you want to install a channel list?"
+msgstr ""
 
 msgid "Do you want to install the package:\n"
 msgstr "Doriti sa instalati pachetul:\n"
@@ -2149,6 +2125,9 @@ msgstr "Doriti sa previzualizati acest DVD inainte de a fi scris?"
 
 msgid "Do you want to reboot your STB_BOX?"
 msgstr "Doriti sa reporniti Dreamboxul dvs?"
+
+msgid "Do you want to reboot your receiver?"
+msgstr ""
 
 msgid "Do you want to remove the package:\n"
 msgstr "Doriti sa stergeti pachetul:\n"
@@ -2164,32 +2143,11 @@ msgid ""
 "(choose 'No' to only send the currently selected file.)"
 msgstr ""
 
-msgid ""
-"Do you want to submit your email address and name so that we can contact you "
-"if needed?"
-msgstr ""
-
 msgid "Do you want to update your STB_BOX?"
 msgstr "Doriti sa actualizati Dreamboxul dvs?"
 
-msgid ""
-"Do you want to update your STB_BOX?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"Doriti sa actualizati IPBOX dvs?\n"
-"Va rog sa asteptati dupa ce apasati OK!"
-
 msgid "Do you want to upgrade the package:\n"
 msgstr "Doriti actualizarea pachetului:\n"
-
-msgid "Do you want to upgrade?"
-msgstr ""
-
-msgid "Do you want to view a tutorial?"
-msgstr "Doriti sa urmariti un tutorial?"
-
-msgid "Don't ask, just send"
-msgstr ""
 
 msgid "Don't save"
 msgstr ""
@@ -2199,10 +2157,6 @@ msgstr ""
 
 msgid "Don't stop current event but disable coming events"
 msgstr "Nu opri evenimentul curent dar anuleaza evenimentele urmatoare"
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "S-a finalizat instalarea sau actualizarea a %d pachete"
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d packages with %d errors"
@@ -2234,9 +2188,6 @@ msgstr "Se descarca"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Se descarca informatiile Pluginului. Va rog sa asteptati..."
 
-msgid "Downmix the Dolby Digital sound tracks to PCM."
-msgstr ""
-
 msgid "Drivers:"
 msgstr ""
 
@@ -2267,9 +2218,6 @@ msgid "ECM last"
 msgstr ""
 
 msgid "ECM-Time"
-msgstr ""
-
-msgid "EIT data will be included in http streams."
 msgstr ""
 
 msgid "EPG"
@@ -2305,9 +2253,6 @@ msgstr ""
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "EROARE - scanare esuata (%s)!"
-
-msgid "ET9x00/6500"
-msgstr ""
 
 msgid "East"
 msgstr "Est"
@@ -2365,9 +2310,6 @@ msgstr "Activeaza"
 
 msgid "Enable 5V for active antenna"
 msgstr "Activeaza 5V pentru antena activa"
-
-msgid "Enable Cleanup Wizard?"
-msgstr ""
 
 msgid "Enable Debug log"
 msgstr ""
@@ -2430,9 +2372,6 @@ msgid ""
 "is included in the stream and a valid card is available)."
 msgstr ""
 
-msgid "Enables channel numbers in the channel selection screen"
-msgstr ""
-
 msgid "Enables the trashcan feature"
 msgstr ""
 
@@ -2481,9 +2420,6 @@ msgstr ""
 msgid "Enter the service pin"
 msgstr "Introduceti pinul serviciului"
 
-msgid "Enter your email address so that we can contact you if needed."
-msgstr ""
-
 msgid "Enter your email address to send a copy of the log to."
 msgstr ""
 
@@ -2520,9 +2456,6 @@ msgstr ""
 "Mai incerc o data?"
 
 msgid "Estonian"
-msgstr ""
-
-msgid "Et5000/6000"
 msgstr ""
 
 msgid "Ethernet network interface"
@@ -2574,9 +2507,6 @@ msgid "Exit input device selection."
 msgstr ""
 
 msgid "Exit network wizard"
-msgstr ""
-
-msgid "Exit the cleanup wizard"
 msgstr ""
 
 msgid "Exit the wizard"
@@ -2713,6 +2643,10 @@ msgstr "Formatare"
 msgid "Forward volume keys"
 msgstr ""
 
+#, python-format
+msgid "Found %d position(s) of %d total"
+msgstr ""
+
 msgid "Frame size in full view"
 msgstr "Dimensiunea cadrului la vizualizarea completa"
 
@@ -2778,14 +2712,14 @@ msgstr "Gateway"
 msgid "General"
 msgstr ""
 
-msgid "General AC3 Delay"
-msgstr "Intarziere AC3 generala"
+msgid "General AC3 delay"
+msgstr ""
 
 msgid "General AC3 delay (ms)"
 msgstr ""
 
-msgid "General PCM Delay"
-msgstr "Intarziere PCM generala"
+msgid "General PCM delay"
+msgstr ""
 
 msgid "General PCM delay (ms)"
 msgstr ""
@@ -2807,6 +2741,27 @@ msgstr ""
 
 msgid "Getting plugin information. Please wait..."
 msgstr "Se descarca informatiile despre plugin. Va rog sa asteptati..."
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr ""
+
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "DVD format STB_BOX (compatibil HDTV)"
+
+msgid "STB_BOX front panel"
+msgstr ""
+
+msgid "STB_BOX ir keyboard"
+msgstr ""
+
+msgid "STB_BOX ir mouse"
+msgstr ""
+
+msgid "STB_BOX remote control (native)"
+msgstr ""
+
+msgid "STB_BOX software because updates are available."
+msgstr ""
 
 msgid "Go down the list"
 msgstr ""
@@ -2939,10 +2894,10 @@ msgstr ""
 msgid "Hide CI messages"
 msgstr ""
 
-msgid "Hide any Common Interface card error messages."
+msgid "Hide any zap error messages."
 msgstr ""
 
-msgid "Hide any zap error messages."
+msgid "Hide error messages from the Common Interface module."
 msgstr ""
 
 msgid "Hide zap errors"
@@ -2993,9 +2948,6 @@ msgstr ""
 msgid "How many minutes do you want to record?"
 msgstr "Pentru cate minute doriti sa inregistrati?"
 
-msgid "How to handle found crashlogs?"
-msgstr ""
-
 msgid "Hue"
 msgstr ""
 
@@ -3027,9 +2979,6 @@ msgid "Icons"
 msgstr ""
 
 msgid "Idle Time: "
-msgstr ""
-
-msgid "If Teletext caching is enabled, displaying pages will be much faster."
 msgstr ""
 
 msgid ""
@@ -3159,9 +3108,6 @@ msgstr ""
 msgid "Include EIT in http streams"
 msgstr ""
 
-msgid "Include your email and name (optional) in the mail?"
-msgstr ""
-
 msgid "Increase time scale"
 msgstr ""
 
@@ -3216,6 +3162,9 @@ msgstr "Intrare"
 msgid "Input device setup"
 msgstr ""
 
+msgid "Input devices"
+msgstr ""
+
 msgid "Install"
 msgstr "Instalare"
 
@@ -3224,6 +3173,9 @@ msgstr "Instalare imagine noua cu un stick USB"
 
 msgid "Install a new image with your web browser"
 msgstr "Instalare imagine noua cu browser-ul web"
+
+msgid "Install channel list"
+msgstr ""
 
 msgid "Install extensions."
 msgstr ""
@@ -3243,9 +3195,6 @@ msgstr ""
 msgid "Install plugins"
 msgstr ""
 
-msgid "Install settings, skins, software..."
-msgstr "Instalare setari, skin-uri, software..."
-
 msgid "Installation finished."
 msgstr "Instalare terminata"
 
@@ -3257,15 +3206,6 @@ msgstr ""
 
 msgid "Installing Software..."
 msgstr "Instaleaza software"
-
-msgid "Installing default sat lists... Please wait..."
-msgstr "Instaleaza listele implicite cu sateliti...Va rugam asteptati..."
-
-msgid "Installing defaults... Please wait..."
-msgstr "Instaleaza setarile implicite...Va rugam asteptati..."
-
-msgid "Installing package content... Please wait..."
-msgstr "Instaleaza continutul pachetului...Va rugam asteptati..."
 
 msgid "Instant Record..."
 msgstr "Inregistrare instant"
@@ -3313,7 +3253,7 @@ msgstr "Ipkg"
 msgid "Is this setting ok?"
 msgstr ""
 
-msgid "Is this videomode ok?"
+msgid "Is this video mode ok?"
 msgstr ""
 
 msgid "Italian"
@@ -3407,15 +3347,6 @@ msgstr ""
 
 msgid "LNB"
 msgstr "LNB"
-
-msgid "LOF"
-msgstr "LOF"
-
-msgid "LOF/H"
-msgstr "LOF/H"
-
-msgid "LOF/L"
-msgstr "LOF/L"
 
 msgid "Label"
 msgstr ""
@@ -3720,8 +3651,13 @@ msgstr ""
 msgid "Missing "
 msgstr ""
 
+msgctxt "Satellite configuration mode"
 msgid "Mode"
-msgstr "Mod"
+msgstr ""
+
+msgctxt "Video output mode"
+msgid "Mode"
+msgstr ""
 
 msgid "Model: "
 msgstr "Model:"
@@ -4026,12 +3962,6 @@ msgstr ""
 msgid "No of items switch (increase or reduced)"
 msgstr ""
 
-msgid ""
-"No packages were upgraded yet. So you can check your network and try again."
-msgstr ""
-"Niciun pachet nu a fost actualizat inca. Verificati reteaua si incercati din "
-"nou."
-
 msgid "No positioner capable frontend found."
 msgstr "Nu a fost gasit niciun pozitioner"
 
@@ -4057,6 +3987,9 @@ msgid ""
 msgstr ""
 "Niciun tuner nu este activat!\n"
 "Va rugam configurati setarile tuner-ului inainte de a incepe o scanare noua."
+
+msgid "No updates available. Please try again later."
+msgstr ""
 
 msgid ""
 "No valid service PIN found!\n"
@@ -4118,14 +4051,8 @@ msgstr "Nu, doar porneste STB_BOX"
 msgid "No, never"
 msgstr ""
 
-msgid "No, not now"
-msgstr ""
-
 msgid "No, scan later manually"
 msgstr "Nu, scaneaza manual mai tarziu"
-
-msgid "No, send them never"
-msgstr ""
 
 msgid "NodeID"
 msgstr ""
@@ -4220,12 +4147,6 @@ msgstr ""
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, ghideaza-ma prin procesul de actualizare"
 
-msgid "OK, remove another extensions"
-msgstr ""
-
-msgid "OK, remove some extensions"
-msgstr ""
-
 msgid "ONID"
 msgstr ""
 
@@ -4314,9 +4235,6 @@ msgstr ""
 msgid "OpenVpn Setup"
 msgstr ""
 
-msgid "Optionally enter your name if you want to."
-msgstr ""
-
 msgid "Orbital Position"
 msgstr "Pozitie orbitala"
 
@@ -4338,10 +4256,10 @@ msgstr ""
 msgid "Output"
 msgstr ""
 
-msgid "Overwrite configuration files ?"
+msgid "Overwrite configuration files during software upgrade?"
 msgstr ""
 
-msgid "Overwrite configuration files during software upgrade?"
+msgid "Overwrite configuration files?"
 msgstr ""
 
 msgid "PAL"
@@ -4362,12 +4280,6 @@ msgstr ""
 
 msgid "Package list update"
 msgstr "Actualizare lista pachet"
-
-msgid "Package removal failed.\n"
-msgstr ""
-
-msgid "Package removed successfully.\n"
-msgstr ""
 
 msgid "Packages"
 msgstr ""
@@ -4396,6 +4308,9 @@ msgstr "Directorul sursa"
 
 msgid "Parental control"
 msgstr "Control parental"
+
+msgid "Parental control editor"
+msgstr ""
 
 msgid "Parental control services Editor"
 msgstr "Editor servicii control parental"
@@ -4538,11 +4453,6 @@ msgstr "Va rugam selectati mediul de scanat"
 msgid "Please add titles to the compilation."
 msgstr ""
 
-msgid ""
-"Please be aware, that anyone can disable the parental control, if you have "
-"not set a PIN."
-msgstr ""
-
 msgid "Please change recording endtime"
 msgstr "Va rugam schimbati timpul final pentru inregistrare"
 
@@ -4555,15 +4465,8 @@ msgstr ""
 msgid "Please choose an extension..."
 msgstr "Va rugam alegeti o extensie..."
 
-msgid "Please choose he package..."
-msgstr "Va rugam alegeti pachetul..."
-
 msgid "Please choose reader"
 msgstr ""
-
-msgid "Please choose the default services lists you want to install."
-msgstr ""
-"Va rugam alegeti listele de servicii implicite pe care doriti sa le instalati"
 
 msgid ""
 "Please configure or verify your Nameservers by filling out the required "
@@ -4575,6 +4478,9 @@ msgid ""
 "Please configure your internet connection by filling out the required "
 "values.\n"
 "When you are ready press OK to continue."
+msgstr ""
+
+msgid "Please connect your receiver to the internet"
 msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -4603,12 +4509,6 @@ msgstr "Va rugam introduceti codul pin corect"
 msgid "Please enter the old PIN code"
 msgstr ""
 
-msgid "Please enter your email address here:"
-msgstr ""
-
-msgid "Please enter your name here (optional):"
-msgstr ""
-
 msgid "Please follow the instructions on the TV"
 msgstr "Va rugam sa urmati instructiunile de pe ecranul TV-ului"
 
@@ -4621,9 +4521,6 @@ msgstr ""
 
 msgid "Please press OK to continue."
 msgstr "Va rugam apasati OK pentru a continua"
-
-msgid "Please press OK!"
-msgstr "Va rugam apasati OK!"
 
 msgid "Please select a default EPG type..."
 msgstr ""
@@ -4641,12 +4538,6 @@ msgid "Please select a subservice..."
 msgstr "Va rugam selectati un subserviciu..."
 
 msgid "Please select an NFI file and press green key to flash!"
-msgstr ""
-
-msgid "Please select an extension to remove."
-msgstr ""
-
-msgid "Please select an option below."
 msgstr ""
 
 msgid "Please select medium to use as backup location"
@@ -4670,6 +4561,9 @@ msgid ""
 "Please select the wireless network that you want to connect to.\n"
 "\n"
 "Please press OK to continue."
+msgstr ""
+
+msgid "Please set up tuner A"
 msgstr ""
 
 msgid "Please set up tuner B"
@@ -4697,17 +4591,17 @@ msgstr ""
 "Va rugam folositi tastele SUS si JOS pentru a selecta limba. Dupa aceea "
 "apasatitasta OK."
 
+msgid "Please wait (downloading channel list)"
+msgstr ""
+
+msgid "Please wait (updating packages)"
+msgstr ""
+
 msgid "Please wait for activation of your network configuration..."
 msgstr "Va rugam asteptati activarea configurarilor de retea..."
 
-msgid "Please wait while removing selected package..."
-msgstr ""
-
 msgid "Please wait while scanning is in progress..."
 msgstr "Va rugam asteptati cat are loc scanarea..."
-
-msgid "Please wait while searching for removable packages..."
-msgstr ""
 
 msgid "Please wait while we configure your network..."
 msgstr "Va rugam asteptati pana cand se configureaza reteaua..."
@@ -4735,6 +4629,9 @@ msgstr ""
 
 msgid "Plugin browser"
 msgstr "Browser-ul plugin"
+
+msgid "Plugin details"
+msgstr ""
 
 msgid "Plugin manager activity information"
 msgstr ""
@@ -5086,10 +4983,10 @@ msgstr ""
 msgid "Reenter new PIN"
 msgstr ""
 
-msgid "Refresh Rate"
-msgstr "Rata de reimprospatare"
-
 msgid "Refresh every (in hours)"
+msgstr ""
+
+msgid "Refresh rate"
 msgstr ""
 
 msgid "Refresh rate selection."
@@ -5128,7 +5025,7 @@ msgstr ""
 msgid "Remote box"
 msgstr ""
 
-msgid "Remote type"
+msgid "Remote control type"
 msgstr ""
 
 msgid "Remove"
@@ -5149,9 +5046,6 @@ msgstr "Eliminare semn"
 msgid "Remove currently selected title"
 msgstr "Eliminare titlu curent selectat"
 
-msgid "Remove failed."
-msgstr ""
-
 msgid "Remove finished."
 msgstr "Eliminare fisiere terminate"
 
@@ -5167,9 +5061,6 @@ msgstr "Eliminare timer"
 msgid "Remove title"
 msgstr "Stergere titlu"
 
-msgid "Removed successfully."
-msgstr ""
-
 msgid "Removing"
 msgstr "Stergere"
 
@@ -5182,9 +5073,6 @@ msgstr "Stergere drector %s esuata. (Probabil nu este gol.)"
 
 msgid "Rename"
 msgstr "Redenumire"
-
-msgid "Rename crashlogs"
-msgstr ""
 
 msgid "Rename failed!"
 msgstr ""
@@ -5265,11 +5153,11 @@ msgstr ""
 msgid "Restore is running..."
 msgstr ""
 
-msgid "Restore running"
-msgstr "Restabilire setari in curs"
-
 msgid "Restore system settings"
 msgstr "Revenire la setarile sistemului"
+
+msgid "Restoring..."
+msgstr ""
 
 msgid "Resume from last position"
 msgstr "Reluare de la ultima pozitie"
@@ -5435,71 +5323,24 @@ msgstr ""
 msgid "Scan "
 msgstr "Scanare"
 
+#. TRANSLATORS: option name, indicating which type of (DVB-C) modulation should be scanned. The modulation type is printed in '%s'. E.g.: 'Scan QAM16'
+#, python-format
+msgid "Scan %s"
+msgstr ""
+
+#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#, python-format
+msgid "Scan %s band"
+msgstr ""
+
 msgid "Scan Files..."
 msgstr "Scanare fisiere..."
-
-msgid "Scan QAM128"
-msgstr "Scanare QAM128"
-
-msgid "Scan QAM16"
-msgstr "Scanare QAM16"
-
-msgid "Scan QAM256"
-msgstr "scanare QAM256"
-
-msgid "Scan QAM32"
-msgstr "Scanare QAM32"
-
-msgid "Scan QAM64"
-msgstr "Scanare QAM64"
-
-msgid "Scan SR6875"
-msgstr "Scanare SR6875"
-
-msgid "Scan SR6900"
-msgstr "sCANARE SR6900"
 
 msgid "Scan Wireless Networks"
 msgstr "Scanare retele wireless"
 
 msgid "Scan additional SR"
 msgstr "Scanare SR aditional"
-
-msgid "Scan band EU HYPER"
-msgstr "Scanare banda EU HYPER"
-
-msgid "Scan band EU MID"
-msgstr "Scanare banda EU MID"
-
-msgid "Scan band EU SUPER"
-msgstr "Scanare banda EU SUPER"
-
-msgid "Scan band EU UHF IV"
-msgstr "Scanare banda EU UHF IV"
-
-msgid "Scan band EU UHF V"
-msgstr "Scanare banda EU UHF V"
-
-msgid "Scan band EU VHF I"
-msgstr "Scanare banda EU VHF I"
-
-msgid "Scan band EU VHF III"
-msgstr "Scanare banda EU VHF III"
-
-msgid "Scan band US HIGH"
-msgstr "Scanare banda US HIGH"
-
-msgid "Scan band US HYPER"
-msgstr "Scanare banda US HYPER"
-
-msgid "Scan band US LOW"
-msgstr "Scanare banda US LOW"
-
-msgid "Scan band US MID"
-msgstr "Scanare anda US MID"
-
-msgid "Scan band US SUPER"
-msgstr "Scanare banda US SUPER"
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -5631,9 +5472,6 @@ msgid "Select input device."
 msgstr ""
 
 msgid "Select interface"
-msgstr ""
-
-msgid "Select package"
 msgstr ""
 
 msgid "Select provider to add..."
@@ -5786,25 +5624,19 @@ msgid "Services"
 msgstr "Servicii"
 
 msgid ""
-"Services may be grouped in bouquets. If this option is enabled you can zap "
-"to a channel in another bouquet then you are in at present."
+"Services may be grouped in bouquets. When enabled you can zap to a channel "
+"in another bouquet then you are in at present."
 msgstr ""
 
 msgid ""
-"Services may be grouped in bouquets. If this option is enabled, you can use "
-"more then one bouquet."
+"Services may be grouped in bouquets. When enabled, you can use more then one "
+"bouquet."
 msgstr ""
 
 msgid "Set End Time"
 msgstr ""
 
 msgid "Set System"
-msgstr ""
-
-msgid "Set Voltage and 22KHz"
-msgstr "Setare Voltaj si 22KHz"
-
-msgid "Set available internal memory threshold for the warning."
 msgstr ""
 
 msgid "Set fixed"
@@ -5822,12 +5654,6 @@ msgstr ""
 msgid "Set the EPG language selection 2"
 msgstr ""
 
-msgid "Set the Teletext subtitle delay when timing lacks."
-msgstr ""
-
-msgid "Set the alignment of the Teletext subtitles."
-msgstr ""
-
 msgid "Set the audio language 1 (highest priority)"
 msgstr ""
 
@@ -5840,18 +5666,10 @@ msgstr ""
 msgid "Set the audio language 4 (lowest priority)"
 msgstr ""
 
-msgid ""
-"Set the border width of the Teletext subtitles. This makes the titles more "
-"easy to read on a light background."
-msgstr ""
-
 msgid "Set the brightness level for normal operation."
 msgstr ""
 
 msgid "Set the brightness level for standby."
-msgstr ""
-
-msgid "Set the colour of the Teletext subtitles."
 msgstr ""
 
 msgid "Set the contrast level."
@@ -5883,9 +5701,6 @@ msgstr ""
 msgid "Set the desired configuration mode."
 msgstr ""
 
-msgid "Set the font size of the Teletext subtitles."
-msgstr ""
-
 msgid "Set the initial fast forward speed"
 msgstr ""
 
@@ -5902,12 +5717,6 @@ msgid "Set the maximum number of events (programs) that timeshift may handle."
 msgstr ""
 
 msgid "Set the number of days you want old timers to be kept."
-msgstr ""
-
-msgid "Set the position of the DVB subtitles."
-msgstr ""
-
-msgid "Set the position of the Teletext subtitles."
 msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
@@ -5948,10 +5757,8 @@ msgstr ""
 msgid "Set the time you want recordings to stop after the event stop-time."
 msgstr ""
 
-msgid "Set the transparency of the DVB subtitles."
-msgstr ""
-
-msgid "Set the type of the progress indication in the channel selection screen"
+msgid ""
+"Set the type of the progress indication in the channel selection screen."
 msgstr ""
 
 msgid "Set the value for the initial fast-backward speed."
@@ -5997,6 +5804,9 @@ msgid "Set to the desired primetime (minutes."
 msgstr ""
 
 msgid "Set to what you want the button to do."
+msgstr ""
+
+msgid "Set voltage and 22KHz"
 msgstr ""
 
 msgid ""
@@ -6170,7 +5980,7 @@ msgstr ""
 msgid "Show detailed event info"
 msgstr ""
 
-msgid "Show encryption info in the infobar (if the skin allows that)."
+msgid "Show encryption info in the infobar (when supported by the skin)."
 msgstr ""
 
 msgid "Show epg"
@@ -6316,6 +6126,10 @@ msgstr "Skinuri"
 msgid "Skip Empty Services"
 msgstr ""
 
+msgid ""
+"Skip internet connection check (disables automatic package installation)"
+msgstr ""
+
 msgid "Sleep Timer"
 msgstr "Sleep timer"
 
@@ -6380,9 +6194,6 @@ msgstr "Anumite plugin-uri nu sunt disponibile:\n"
 msgid "Sorry Inadyn Config is Missing"
 msgstr ""
 
-msgid "Sorry MediaScanner is not installed!"
-msgstr "MediaScanner nu este instalat!"
-
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
 
@@ -6397,39 +6208,23 @@ msgid ""
 "enable 'Allow unstable updates' in online update setup."
 msgstr ""
 
-msgid "Sorry no backups found!"
-msgstr "Nu au fost gasite fisiere backup!"
-
 msgid "Sorry uShare Config is Missing"
 msgstr ""
 
-msgid ""
-"Sorry your Backup destination does not exist\n"
-"\n"
-"Please choose an other one."
+#, python-format
+msgid "Sorry, %s has not been installed!"
 msgstr ""
-"Destinatia aleasa pentru fisierele backup nu exista\n"
-"\n"
-"Va rugam alegeti alta destinatie."
 
-msgid ""
-"Sorry your backup destination is not writeable.\n"
-"Please choose an other one."
+msgid "Sorry, no backups found!"
 msgstr ""
-"Destinatia aleasa pentru fisierele backup nu poate fi creata.\n"
-"Va rugam alegeti alta destinatie."
 
-msgid "Sorry, no Details available!"
-msgstr "Detaliile nu sunt disponibile!"
+msgid "Sorry, no details available!"
+msgstr ""
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
-"\n"
-"Please choose another one."
+"Please select a different one."
 msgstr ""
-"Destinatia aleasa pentru fisierele backup nu poate fi creata.\n"
-"\n"
-"Va rugam alegeti alta destinatie."
 
 msgid "Sort"
 msgstr ""
@@ -6577,7 +6372,16 @@ msgstr ""
 msgid "Subservices"
 msgstr "Subservicii"
 
+msgid "Subtitle alignment"
+msgstr ""
+
+msgid "Subtitle border width"
+msgstr ""
+
 msgid "Subtitle delay when timing lacks"
+msgstr ""
+
+msgid "Subtitle font size"
 msgstr ""
 
 msgid "Subtitle language selection 1"
@@ -6590,6 +6394,9 @@ msgid "Subtitle language selection 3"
 msgstr ""
 
 msgid "Subtitle language selection 4"
+msgstr ""
+
+msgid "Subtitle position"
 msgstr ""
 
 msgid "Subtitle selection"
@@ -6731,12 +6538,6 @@ msgstr "Test-Messagebox?"
 msgid "Text"
 msgstr ""
 
-msgid "Text border width"
-msgstr ""
-
-msgid "Text font size"
-msgstr ""
-
 msgid "Thai"
 msgstr ""
 
@@ -6746,8 +6547,9 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
-"Please press OK to start using your STB_BOX."
+"Thank you for using the wizard. Your STB_BOX is now ready for "
+"use.\n"
+"Press OK to start using your receiver."
 msgstr ""
 
 msgid ""
@@ -6762,8 +6564,8 @@ msgstr ""
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a STB_BOX format data DVD (which will not play in stand-alone DVD "
-"players) instead?"
+"create a STB_BOX format data DVD (which will not play in stand-"
+"alone DVD players) instead?"
 msgstr ""
 "Standardul DVD nu suporta formatul video H.264 (HDTV). Doriti sacreati un "
 "DVD in format IPBOX (Care nu va putea fi vizionat intr-un DVD player "
@@ -6777,6 +6579,12 @@ msgstr ""
 msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
+msgstr ""
+
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr ""
+
+msgid "The STB_BOX stores the EPG data every (hours)."
 msgstr ""
 
 msgid ""
@@ -6823,12 +6631,6 @@ msgid ""
 "due to an error in mytest.py"
 msgstr ""
 
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr ""
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr ""
-
 msgid "The backup failed. Please choose a different backup location."
 msgstr ""
 "Operatiunea backup nu a reusit. Va rugam alegeti o alta locatie pentru "
@@ -6866,23 +6668,7 @@ msgstr ""
 msgid "The following files were found..."
 msgstr "Urmatoarele fisiere nu au fost gasite..."
 
-msgid "The installation of the default services lists is finished."
-msgstr "Instalarea serviciilor implicite este incheiata."
-
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your STB_BOX by pressing the OK button on the remote control."
-msgstr ""
-"Instalarea setarilor implicite este incheiata. Acum puteti continuasa "
-"configurati STB_BOX apasand tasta OK de pe telecomanda."
-
 msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr ""
-
-msgid "The package doesn't contain anything."
-msgstr "Pachetul nu contine nimic."
-
-msgid "The package:"
 msgstr ""
 
 #, python-format
@@ -6935,19 +6721,14 @@ msgstr "Aplicatia s-a incheiat."
 msgid "There are at least "
 msgstr ""
 
+#, python-format
+msgid "There are at least %s updates available."
+msgstr ""
+
 msgid "There are currently no outstanding actions."
 msgstr ""
 
-msgid "There are no default services lists in your image."
-msgstr "Nu exista liste cu servicii implicite in imaginea dumneavoastra"
-
-msgid "There are no default settings in your image."
-msgstr "Nu exista setari implicite in imaginea dumneavoastra."
-
 msgid "There are no updates available."
-msgstr ""
-
-msgid "There are now "
 msgstr ""
 
 msgid "There is no [webif] section in oscam.conf"
@@ -6959,14 +6740,6 @@ msgid ""
 msgstr ""
 "S-ar putea sa nu existe spatiu suficient pe partitia selectata.\n"
 "Doriti sa continuati?"
-
-msgid "There was an error downloading the packetlist. Please try again."
-msgstr ""
-"A intervenit o eroare in timpul descarcarii listei. Va rugam incercati din "
-"nou."
-
-msgid "There was an error. The package:"
-msgstr ""
 
 msgid ""
 "This DVD RW medium is already formatted - reformatting will erase all "
@@ -6986,9 +6759,6 @@ msgstr ""
 
 msgid "This allows you change the number of rows shown."
 msgstr ""
-
-msgid "This is step number 2."
-msgstr "Acesta este pasul numarul 2"
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -7062,6 +6832,28 @@ msgstr ""
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
+msgid ""
+"This option configures the general audio delay of Dolby Digital sound tracks."
+msgstr ""
+
+msgid "This option configures the general audio delay of stereo sound tracks."
+msgstr ""
+
+msgid "This option configures the screen aspect ratio."
+msgstr ""
+
+msgid "This option configures the screen refresh rate."
+msgstr ""
+
+msgid "This option configures the screen resolution in PC output mode."
+msgstr ""
+
+msgid "This option configures the video output mode (or resolution)."
+msgstr ""
+
+msgid "This option configures which video output connector will be used."
+msgstr ""
+
 msgid "This option lets you adjust the 3D depth"
 msgstr ""
 
@@ -7110,36 +6902,15 @@ msgid ""
 "result of a limited number of discrete values."
 msgstr ""
 
-msgid "This option sets up the connection method."
-msgstr ""
-
-msgid "This option sets up the general audio delay of Analog sound tracks."
-msgstr ""
-
-msgid ""
-"This option sets up the general audio delay of Dolby Digital sound tracks."
-msgstr ""
-
 msgid ""
 "This option sets up the picture sharpness, used when the picture is being "
 "upscaled."
 msgstr ""
 
-msgid "This option sets up the screen aspect ratio."
-msgstr ""
-
-msgid "This option sets up the screen refresh-rate."
-msgstr ""
-
-msgid "This option sets up the screen resolution, when in PC mode."
-msgstr ""
-
-msgid "This option sets up the screen resolution."
-msgstr ""
-
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your STB_BOX without the need for a network or WLAN connection.\n"
+"your STB_BOX without the need for a network or WLAN "
+"connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
@@ -7356,7 +7127,7 @@ msgstr ""
 msgid "Toggle aspect ratio..."
 msgstr ""
 
-msgid "Tone Amplitude"
+msgid "Tone amplitude"
 msgstr ""
 
 msgid "Tone mode"
@@ -7451,9 +7222,6 @@ msgstr "Acordare esuata!"
 msgid "Tuner"
 msgstr "Tuner"
 
-msgid "Tuner "
-msgstr "Tuner"
-
 msgid "Tuner Slot"
 msgstr "Slot tuner"
 
@@ -7465,6 +7233,10 @@ msgstr ""
 
 msgid "Tuner status"
 msgstr "Stare tuner"
+
+#, python-format
+msgid "Tuner status %s"
+msgstr ""
 
 msgid "Tuner type"
 msgstr ""
@@ -7492,9 +7264,6 @@ msgstr ""
 
 msgid "USALS"
 msgstr "USALS"
-
-msgid "USB Stick"
-msgstr "USB Stick"
 
 msgid "USB stick wizard"
 msgstr "Expert USB stick"
@@ -7553,23 +7322,23 @@ msgstr ""
 msgid "Update"
 msgstr "Updateza"
 
+msgid "Update channel list only"
+msgstr ""
+
+#, python-format
+msgid "Update completed, %d package was installed."
+msgid_plural "Update completed, %d packages were installed."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Update interval (in seconds)"
 msgstr ""
 
 msgid "Updatefeed not available."
 msgstr ""
 
-msgid "Updates your STB_BOX's software"
-msgstr "Updateaza softul receiverului"
-
-msgid "Updating finished. Here is the result:"
-msgstr "Updatare terminata. Uite aici rezultatul:"
-
 msgid "Updating software catalog"
 msgstr ""
-
-msgid "Updating... Please wait... This can take some minutes..."
-msgstr "Updatare....Te rugam asteapta.... Poate dura cateva minute"
 
 msgid "Upgrade and reboot system"
 msgstr ""
@@ -7577,14 +7346,8 @@ msgstr ""
 msgid "Upgrade finished."
 msgstr "Upgrate terminat."
 
-msgid "Upgrade finished. Do you want to reboot your STB_BOX?"
-msgstr "Upgrade terminat. Vrei sa restartezu Dreamboxul tau?"
-
 msgid "Upgrading"
 msgstr "Upgradare"
-
-msgid "Upgrading STB_BOX... Please wait"
-msgstr "pgradare STB_BOX... Te rugam asteapta"
 
 msgid "Uphops +"
 msgstr ""
@@ -7604,9 +7367,6 @@ msgstr "Foloseste"
 msgid "Use DHCP"
 msgstr "Foloseste DHCP"
 
-msgid "Use DVB subtitles position"
-msgstr ""
-
 msgid "Use Interface"
 msgstr "Foloseste Interfata"
 
@@ -7616,16 +7376,13 @@ msgstr ""
 msgid "Use PTS seekbar while timeshifting? *"
 msgstr ""
 
-msgid "Use Power Measurement"
-msgstr "Foloseste Masurarea Energiei"
-
 msgid "Use TV remote control"
 msgstr ""
 
-msgid "Use ViX coloured Buttons *"
+msgid "Use USALS for this sat"
 msgstr ""
 
-msgid "Use Yellow pango DVB subtitles"
+msgid "Use ViX coloured Buttons *"
 msgstr ""
 
 msgid "Use a gateway"
@@ -7640,6 +7397,9 @@ msgstr ""
 msgid "Use official channel numbering"
 msgstr ""
 
+msgid "Use original DVB subtitle position"
+msgstr ""
+
 msgid "Use original teletext position"
 msgstr ""
 
@@ -7647,8 +7407,8 @@ msgid "Use power measurement"
 msgstr "Foloseste Masurarea Energiei"
 
 msgid ""
-"Use power measurement to detect when the rotor stops turning (if your Vu+ "
-"Duo supports that)"
+"Use power measurement to detect when the rotor stops turning (if your "
+"STB_BOX supports that)"
 msgstr ""
 
 msgid "Use slim screen"
@@ -7693,27 +7453,15 @@ msgid "Use the alternative screen"
 msgstr ""
 
 msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-"Foloseste butoanele dreapta-stanga pentru a schimba optiunile.\n"
-"\n"
-"Please set up tuner A"
-
-msgid "Use the original position of the Teletext subtitles."
-msgstr ""
-
-msgid ""
 "Use the up/down keys on your remote control to select an option. After that, "
 "press OK."
 msgstr ""
 "Foloseste tastele sus/jos pentru a selecta optiunile. Dopa asta,  apasa OK."
 
-msgid "Use this input device settings?"
+msgid "Use these input device settings?"
 msgstr ""
 
-msgid "Use this settings?"
+msgid "Use these settings?"
 msgstr ""
 
 msgid "Use this video enhancement settings?"
@@ -7725,14 +7473,8 @@ msgstr ""
 msgid "Use trashcan in movielist"
 msgstr ""
 
-msgid "Use usals for this sat"
-msgstr "Foloseste usals pentru acest satelit"
-
 msgid "Use wizard to set up basic features"
 msgstr "Foloseste expertul pentru setarile de baza"
-
-msgid "Use yellow DVB subtitles."
-msgstr ""
 
 msgid "Used service scan type"
 msgstr "Tipul serviciului folosit pentru scanare"
@@ -7779,9 +7521,6 @@ msgstr "VCR scart"
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
 
-msgid "VU+"
-msgstr ""
-
 msgid "Version:"
 msgstr ""
 
@@ -7803,20 +7542,8 @@ msgstr ""
 msgid "Video Fine-Tuning"
 msgstr "Acord fin video"
 
-msgid "Video Fine-Tuning Wizard"
-msgstr "Expert acord fin video"
-
-msgid "Video Output"
-msgstr "Iesire video"
-
 msgid "Video PID"
 msgstr ""
-
-msgid "Video Setup"
-msgstr "Video Setup"
-
-msgid "Video Wizard"
-msgstr "Expert Video"
 
 msgid "Video enhancement preview"
 msgstr ""
@@ -7841,6 +7568,15 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "Selectare MOD VIDEO"
+
+msgid "Video output"
+msgstr ""
+
+msgid "Video setup"
+msgstr ""
+
+msgid "Video wizard"
+msgstr ""
 
 msgid "Videocodec"
 msgstr ""
@@ -7932,27 +7668,6 @@ msgstr "Mod Voltaj"
 msgid "Volume"
 msgstr "Volum"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr ""
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "DVD format STB_BOX (compatibil HDTV)"
-
-msgid "STB_BOX front panel"
-msgstr ""
-
-msgid "STB_BOX ir keyboard"
-msgstr ""
-
-msgid "STB_BOX ir mouse"
-msgstr ""
-
-msgid "STB_BOX remote control (native)"
-msgstr ""
-
-msgid "STB_BOX software because updates are available."
-msgstr ""
-
 msgid "W"
 msgstr "W"
 
@@ -8004,9 +7719,6 @@ msgstr ""
 msgid "Wakeup your STB_BOX from standby"
 msgstr ""
 
-msgid "Warn if free space drops below (kB):"
-msgstr ""
-
 msgid "Web Interface"
 msgstr ""
 
@@ -8035,27 +7747,20 @@ msgstr ""
 
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your STB_BOX by providing a backup facility for your current "
-"settings and a short explanation of how to upgrade your firmware."
+"the firmware of your STB_BOX by providing a backup facility for "
+"your current settings and a short explanation of how to upgrade your "
+"firmware."
 msgstr ""
 "Bine ai venit la expertul de upgradare Imagine. Expertul va asista la "
 "upgradarea firmware-lui Boxului tau prin promovarea facilitatii de a salva "
 "setarile curente si o scurta explicatie cum sa faci upgrade la box."
 
 msgid ""
-"Welcome to the cleanup wizard.\n"
-"\n"
-"We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your STB_BOX, the internal memory should be "
-"cleaned up.\n"
-"You can use this wizard to remove some extensions.\n"
-msgstr ""
-
-msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will guide "
-"you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your STB_BOX to the Internet, this "
+"wizard will guide you through the basic network setup of your GigaBlue HD "
+"800 Solo.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -8063,7 +7768,8 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your GigaBlue HD "
+"800 Solo.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 
@@ -8076,12 +7782,65 @@ msgstr "Vest"
 msgid "What do you want to scan?"
 msgstr "Ce vrei sa scanezi"
 
-msgid "What to do with submitted crashlogs?"
-msgstr ""
-
 msgid ""
 "When a recording needs to be started it is allowed to interrupt the watched "
 "service"
+msgstr ""
+
+msgid ""
+"When enabled the online checker will also check for experimental versions"
+msgstr ""
+
+msgid ""
+"When enabled, AIT data will be included in http streams. This allows a "
+"client receiver to use HbbTV."
+msgstr ""
+
+msgid ""
+"When enabled, EIT data will be included in http streams. This allows a "
+"client receiver to show EPG."
+msgstr ""
+
+msgid "When enabled, channel numbering will start at '1' for each bouquet."
+msgstr ""
+
+msgid ""
+"When enabled, external subtitles (in media files) will be displayed in "
+"yellow, instead of the original color."
+msgstr ""
+
+msgid "When enabled, graphical DVB subtitles will be centered horizontally."
+msgstr ""
+
+msgid ""
+"When enabled, graphical DVB subtitles will be displayed at their original "
+"position."
+msgstr ""
+
+msgid ""
+"When enabled, graphical DVB subtitles will be displayed in yellow, instead "
+"of the original color."
+msgstr ""
+
+msgid ""
+"When enabled, pressing '0' will zap you to the first channel in your first "
+"bouquet and delete your zap-history."
+msgstr ""
+
+msgid "When enabled, show channel numbers in the channel selection screen."
+msgstr ""
+
+msgid "When enabled, teletext pages will be cached, allowing faster access."
+msgstr ""
+
+msgid ""
+"When enabled, teletext subtitles will be displayed at their original "
+"position."
+msgstr ""
+
+msgid ""
+"When enabled, the original line breaks will be removed from the teletext "
+"subtitles."
 msgstr ""
 
 msgid ""
@@ -8093,17 +7852,17 @@ msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr ""
 
 msgid ""
-"When the event has a aspect ratio of 16:9, choose whether to scale/stretch "
+"When the content has an aspect ratio of 16:9, choose whether to scale/"
+"stretch the picture."
+msgstr ""
+
+msgid ""
+"When the content has an aspect ratio of 4:3, choose whether to scale/stretch "
 "the picture."
 msgstr ""
 
 msgid ""
-"When the event has a aspect ratio of 4:3, choose whether to scale/stretch "
-"the picture."
-msgstr ""
-
-msgid ""
-"When the event has a aspect ratio of 4:3, choose whether to stretch the "
+"When the content has an aspect ratio of 4:3, choose whether to stretch the "
 "picture to fill the screen."
 msgstr ""
 
@@ -8119,7 +7878,8 @@ msgstr ""
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your STB_BOX will restart automatically!\n"
+"After completion of factory reset, your STB_BOX will restart "
+"automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
@@ -8160,21 +7920,6 @@ msgid "Wireless network state"
 msgstr ""
 
 msgid ""
-"With this option enabled the online checker will also check for experimental "
-"versions"
-msgstr ""
-
-msgid ""
-"With this option enabled, Channel numbers will start with '1' in each "
-"bouquet."
-msgstr ""
-
-msgid ""
-"With this option enabled, pressing '0' will zap you to the first channel in "
-"your first bouquet and delete your zap-history."
-msgstr ""
-
-msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
 "bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr ""
@@ -8196,6 +7941,9 @@ msgstr ""
 msgid "Write failed!"
 msgstr "Scriere esuata"
 
+msgid "Wrong"
+msgstr ""
+
 msgid "XBox 360 support"
 msgstr ""
 
@@ -8208,7 +7956,7 @@ msgstr "An"
 msgid "Yellow DVB subtitles"
 msgstr ""
 
-msgid "Yellow pango subtitles"
+msgid "Yellow external subtitles"
 msgstr ""
 
 msgid "Yes"
@@ -8222,9 +7970,6 @@ msgstr ""
 
 msgid "Yes, and delete this movie"
 msgstr "Da si sterge acest film"
-
-msgid "Yes, and don't ask again"
-msgstr ""
 
 msgid "Yes, backup my settings!"
 msgstr "Da, salveaza-mi setarile"
@@ -8246,9 +7991,6 @@ msgstr "Da, restaureaza setari acum"
 
 msgid "Yes, returning to movie list"
 msgstr "Da, rintoarcere la lista filme"
-
-msgid "Yes, view the tutorial"
-msgstr "Da, vezi tutorial"
 
 msgid "Yesterday"
 msgstr ""
@@ -8272,16 +8014,6 @@ msgstr ""
 
 msgid "You can cancel the removal."
 msgstr ""
-
-msgid ""
-"You can choose some default settings now. Please select the settings you "
-"want to be installed."
-msgstr ""
-"Poti alege niste setari default acum.Te rog alege setraile pe carele vrei "
-"instalate."
-
-msgid "You can choose, what you want to install..."
-msgstr "Poti alege, ce vrei sa instalezi..."
 
 msgid "You can continue watching TV etc. while this is running."
 msgstr ""
@@ -8315,22 +8047,6 @@ msgstr ""
 
 msgid "You cannot delete this!"
 msgstr "Nu poti sterge asta!"
-
-msgid "You chose not to install any default services lists."
-msgstr "Ai ales sa nu instalezi liste de servicii default."
-
-msgid ""
-"You chose not to install any default settings. You can however install the "
-"default settings later in the settings menu."
-msgstr ""
-"Ai ales sa nu instalezi setari default. Poti totusi sa instalezi setari "
-"default ulterior in meniul setari."
-
-msgid ""
-"You chose not to install anything. Please press OK finish the install wizard."
-msgstr ""
-"Ai ales sa nu instalezi nimic. Te rog apasa OK pentru inchiderea expertului "
-"de instalare."
 
 msgid "You didn't select a channel to record from."
 msgstr ""
@@ -8375,32 +8091,23 @@ msgid "You have to wait %s!"
 msgstr "Ai de asteptat %s!"
 
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
+"You need a PC connected to your STB_BOX. If you need further "
+"instructions, please visit the website http://www.dm7025.de.\n"
+"Your STB_BOX will now be halted. After you have performed the "
+"update instructions from the website, your new firmware will ask you to "
+"restore your settings."
 msgstr ""
 "Trebuie sa ai un PC conectat la Ipbox. Daca ai nevoie de instructiuni "
 "suplimentare,acceseaza site-ul http://www.dm7025.de.\n"
 "IPBOXul va fi oprit. Dupa ce ai facut updatedupa instructiunile de pe "
 "website, noul firmware va cere un restorela setari."
 
-msgid ""
-"You need to set a PIN code and hide it from your children.\n"
-"\n"
-"Do you want to set the pin now?"
-msgstr ""
-
 msgid "You system does not support ext4"
 msgstr ""
 
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr ""
-
 msgid ""
-"Your STB_BOX is not connected to the internet, please check your network "
-"settings and try again."
+"Your STB_BOX is not connected to the internet, please check "
+"your network settings and try again."
 msgstr ""
 
 msgid ""
@@ -8428,23 +8135,25 @@ msgid "Your STB_BOX is shutting down. Please stand by..."
 msgstr "Dreamboxul este in curs de stingere. Asteapta..."
 
 msgid ""
-"Your STB_BOX isn't connected to the internet properly. Please check it and "
-"try again."
+"Your STB_BOX isn't connected to the internet properly. Please "
+"check it and try again."
 msgstr "Dreamboxul nu este conectat la internet. Verifica si incearca din nou."
 
 msgid ""
-"Your STB_BOX might be unusable now. Please consult the manual for further "
-"assistance before rebooting your STB_BOX."
+"Your STB_BOX might be unusable now. Please consult the manual "
+"for further assistance before rebooting your STB_BOX."
 msgstr ""
 
 #, python-format
 msgid ""
-"Your STB_BOX will be restarted after the installation of service\n"
+"Your STB_BOX will be restarted after the installation of "
+"service\n"
 "Ready to install \"%s\" ?"
 msgstr ""
 
 msgid ""
-"Your STB_BOX will be restarted after the installation of service.\n"
+"Your STB_BOX will be restarted after the installation of "
+"service.\n"
 "\n"
 "Do you want to install now ?"
 msgstr ""
@@ -8452,6 +8161,9 @@ msgstr ""
 msgid ""
 "Your STB_BOX will be restarted after the removal of service\n"
 "Do you want to remove now ?"
+msgstr ""
+
+msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
 
 msgid ""
@@ -8476,9 +8188,6 @@ msgstr ""
 msgid "Your current collection will get lost!"
 msgstr ""
 
-msgid "Your email address:"
-msgstr ""
-
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
@@ -8497,11 +8206,18 @@ msgid ""
 "Please choose what you want to do next."
 msgstr ""
 
-msgid "Your name (optional):"
+#, python-format
+msgid "Your internet connection is working (ip: %s)"
 msgstr ""
 
 msgid "Your network configuration has been activated."
 msgstr "Configurarea retelei a fost activata."
+
+msgid "Your receiver does not have an internet connection"
+msgstr ""
+
+msgid "Your receiver is not connected to the internet"
+msgstr ""
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -8665,18 +8381,11 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
+msgid "alphabetic"
+msgstr ""
+
 msgid "alphabetic reverse"
 msgstr ""
-
-msgid "alphabetic sort"
-msgstr "sortare alfabetica"
-
-msgid ""
-"are you sure you want to restore\n"
-"following backup:\n"
-msgstr ""
-"esti sigur ca vrei restore\n"
-"dupa backup:\n"
 
 msgid "arts/culture (without music, general)"
 msgstr ""
@@ -8716,7 +8425,7 @@ msgstr "track-uri audio"
 msgid "auto"
 msgstr "auto"
 
-msgid "available"
+msgid "automatic"
 msgstr ""
 
 msgid "back"
@@ -8756,6 +8465,9 @@ msgstr ""
 #, python-format
 msgid "burn audio track (%s)"
 msgstr "burn track audio (%s)"
+
+msgid "by date"
+msgstr ""
 
 msgid "caid:"
 msgstr ""
@@ -8822,9 +8534,6 @@ msgstr ""
 
 msgid "copy to bouquets"
 msgstr "copiaza in bouquete"
-
-msgid "could not be removed"
-msgstr ""
 
 msgid "create directory"
 msgstr "creaza director"
@@ -8947,9 +8656,6 @@ msgstr "sfarsit decupare aici"
 msgid "end favourites edit"
 msgstr "sfarsit editare favorite"
 
-msgid "enigma2 and network"
-msgstr "enigma2 si retea"
-
 msgid "entertainment (10-16 year old)"
 msgstr ""
 
@@ -9023,6 +8729,12 @@ msgid "fitness & health"
 msgstr ""
 
 msgid "fixed"
+msgstr ""
+
+msgid "flat alphabetic"
+msgstr ""
+
+msgid "flat alphabetic reverse"
 msgstr ""
 
 msgid "folk/traditional music"
@@ -9691,9 +9403,6 @@ msgstr ""
 msgid "social/spiritual science"
 msgstr ""
 
-msgid "sort by date"
-msgstr "sorteaza dupa data"
-
 msgid "sorting of playlists"
 msgstr ""
 
@@ -9868,9 +9577,6 @@ msgstr "asteapta mmi..."
 msgid "waiting"
 msgstr "in asteptare"
 
-msgid "was removed successfully"
-msgstr ""
-
 msgid "water sport"
 msgstr ""
 
@@ -9925,15 +9631,378 @@ msgstr "da"
 msgid "yes (keep feeds)"
 msgstr "da (pastreaza feed-uri)"
 
-msgid ""
-"your STB_BOX might be unusable now. Please consult the manual for further "
-"assistance before rebooting your STB_BOX."
-msgstr ""
-"dreamboxul poate fi inutilizabil acum. Te rog sa consulti manualul pentru "
-"asistenta inainte de reboot la STB_BOX."
-
 msgid "zap"
 msgstr "zap"
 
 msgid "zapped"
 msgstr "zapped"
+
+#~ msgid "/usr/share/enigma2 directory"
+#~ msgstr "/usr/share/enigma2 director"
+
+#~ msgid "/var directory"
+#~ msgstr "/var director"
+
+#~ msgid "Advanced Video Setup"
+#~ msgstr "Setarile video avansate"
+
+#~ msgid ""
+#~ "After the start wizard is completed, you need to protect single services. "
+#~ "Refer to your STB_BOX's manual on how to do that."
+#~ msgstr ""
+#~ "Dupa completare start wizard,trebuie sa ptotejezi serviciile unice. "
+#~ "Cisteste pe manual lui Ipbox cum sa faci asta."
+
+#~ msgid "All Satellites"
+#~ msgstr "Toti Sateliti"
+
+#~ msgid ""
+#~ "Are you sure you want to delete\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "Esti sigur ca vrei sa stergi\n"
+#~ "urmarire backup:\n"
+
+#~ msgid ""
+#~ "Are you sure you want to restore\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "Esti sigur ca vrei sa restaurezi\n"
+#~ "Urmareste backup-ul:\n"
+
+#~ msgid ""
+#~ "Are you sure you want to restore your Enigma2 backup?\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "Esti sigur ca vrei sa restaurezi backup-ul Enigma2?\n"
+#~ "Enigma2 va reporni dupa restaurare"
+
+#~ msgid "Backup"
+#~ msgstr "Backup"
+
+#~ msgid "Backup Location"
+#~ msgstr "Locatia Backup"
+
+#~ msgid "Backup Mode"
+#~ msgstr "Backup Mode"
+
+#~ msgid "Backup done."
+#~ msgstr "Backup terminat."
+
+#~ msgid ""
+#~ "By pressing the OK Button on your remote control, the info bar is being "
+#~ "displayed."
+#~ msgstr ""
+#~ "Apasand pe butonul OK de pe telecomanda, bara de informatiise afiseaza"
+
+#~ msgid "CF Drive"
+#~ msgstr "Compact Flash"
+
+#~ msgid ""
+#~ "Delete no more configured satellite\n"
+#~ "%s?"
+#~ msgstr ""
+#~ "Doriti stergerea satelitului\n"
+#~ "%s?"
+
+#~ msgid ""
+#~ "Do you want to backup now?\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "Doriti crearea copiei de siguranta acum?\n"
+#~ "Dupa apasarea butonului OK sunteti rugat sa asteptati!"
+
+#~ msgid ""
+#~ "Do you want to enable the parental control feature on your GigaBlue HD "
+#~ "800 Solo?"
+#~ msgstr "Doriti activarea controlului parental?"
+
+#~ msgid ""
+#~ "Do you want to update your STB_BOX?\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "Doriti sa actualizati IPBOX dvs?\n"
+#~ "Va rog sa asteptati dupa ce apasati OK!"
+
+#~ msgid "Do you want to view a tutorial?"
+#~ msgstr "Doriti sa urmariti un tutorial?"
+
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "S-a finalizat instalarea sau actualizarea a %d pachete"
+
+#~ msgid "General AC3 Delay"
+#~ msgstr "Intarziere AC3 generala"
+
+#~ msgid "General PCM Delay"
+#~ msgstr "Intarziere PCM generala"
+
+#~ msgid "Install settings, skins, software..."
+#~ msgstr "Instalare setari, skin-uri, software..."
+
+#~ msgid "Installing default sat lists... Please wait..."
+#~ msgstr "Instaleaza listele implicite cu sateliti...Va rugam asteptati..."
+
+#~ msgid "Installing defaults... Please wait..."
+#~ msgstr "Instaleaza setarile implicite...Va rugam asteptati..."
+
+#~ msgid "Installing package content... Please wait..."
+#~ msgstr "Instaleaza continutul pachetului...Va rugam asteptati..."
+
+#~ msgid "LOF"
+#~ msgstr "LOF"
+
+#~ msgid "LOF/H"
+#~ msgstr "LOF/H"
+
+#~ msgid "LOF/L"
+#~ msgstr "LOF/L"
+
+#~ msgid "Mode"
+#~ msgstr "Mod"
+
+#~ msgid ""
+#~ "No packages were upgraded yet. So you can check your network and try "
+#~ "again."
+#~ msgstr ""
+#~ "Niciun pachet nu a fost actualizat inca. Verificati reteaua si incercati "
+#~ "din nou."
+
+#~ msgid "Please choose he package..."
+#~ msgstr "Va rugam alegeti pachetul..."
+
+#~ msgid "Please choose the default services lists you want to install."
+#~ msgstr ""
+#~ "Va rugam alegeti listele de servicii implicite pe care doriti sa le "
+#~ "instalati"
+
+#~ msgid "Please press OK!"
+#~ msgstr "Va rugam apasati OK!"
+
+#~ msgid "Refresh Rate"
+#~ msgstr "Rata de reimprospatare"
+
+#~ msgid "Restore running"
+#~ msgstr "Restabilire setari in curs"
+
+#~ msgid "Scan QAM128"
+#~ msgstr "Scanare QAM128"
+
+#~ msgid "Scan QAM16"
+#~ msgstr "Scanare QAM16"
+
+#~ msgid "Scan QAM256"
+#~ msgstr "scanare QAM256"
+
+#~ msgid "Scan QAM32"
+#~ msgstr "Scanare QAM32"
+
+#~ msgid "Scan QAM64"
+#~ msgstr "Scanare QAM64"
+
+#~ msgid "Scan SR6875"
+#~ msgstr "Scanare SR6875"
+
+#~ msgid "Scan SR6900"
+#~ msgstr "sCANARE SR6900"
+
+#~ msgid "Scan band EU HYPER"
+#~ msgstr "Scanare banda EU HYPER"
+
+#~ msgid "Scan band EU MID"
+#~ msgstr "Scanare banda EU MID"
+
+#~ msgid "Scan band EU SUPER"
+#~ msgstr "Scanare banda EU SUPER"
+
+#~ msgid "Scan band EU UHF IV"
+#~ msgstr "Scanare banda EU UHF IV"
+
+#~ msgid "Scan band EU UHF V"
+#~ msgstr "Scanare banda EU UHF V"
+
+#~ msgid "Scan band EU VHF I"
+#~ msgstr "Scanare banda EU VHF I"
+
+#~ msgid "Scan band EU VHF III"
+#~ msgstr "Scanare banda EU VHF III"
+
+#~ msgid "Scan band US HIGH"
+#~ msgstr "Scanare banda US HIGH"
+
+#~ msgid "Scan band US HYPER"
+#~ msgstr "Scanare banda US HYPER"
+
+#~ msgid "Scan band US LOW"
+#~ msgstr "Scanare banda US LOW"
+
+#~ msgid "Scan band US MID"
+#~ msgstr "Scanare anda US MID"
+
+#~ msgid "Scan band US SUPER"
+#~ msgstr "Scanare banda US SUPER"
+
+#~ msgid "Set Voltage and 22KHz"
+#~ msgstr "Setare Voltaj si 22KHz"
+
+#~ msgid "Sorry MediaScanner is not installed!"
+#~ msgstr "MediaScanner nu este instalat!"
+
+#~ msgid "Sorry no backups found!"
+#~ msgstr "Nu au fost gasite fisiere backup!"
+
+#~ msgid ""
+#~ "Sorry your Backup destination does not exist\n"
+#~ "\n"
+#~ "Please choose an other one."
+#~ msgstr ""
+#~ "Destinatia aleasa pentru fisierele backup nu exista\n"
+#~ "\n"
+#~ "Va rugam alegeti alta destinatie."
+
+#~ msgid ""
+#~ "Sorry your backup destination is not writeable.\n"
+#~ "Please choose an other one."
+#~ msgstr ""
+#~ "Destinatia aleasa pentru fisierele backup nu poate fi creata.\n"
+#~ "Va rugam alegeti alta destinatie."
+
+#~ msgid "Sorry, no Details available!"
+#~ msgstr "Detaliile nu sunt disponibile!"
+
+#~ msgid ""
+#~ "Sorry, your backup destination is not writeable.\n"
+#~ "\n"
+#~ "Please choose another one."
+#~ msgstr ""
+#~ "Destinatia aleasa pentru fisierele backup nu poate fi creata.\n"
+#~ "\n"
+#~ "Va rugam alegeti alta destinatie."
+
+#~ msgid "The installation of the default services lists is finished."
+#~ msgstr "Instalarea serviciilor implicite este incheiata."
+
+#~ msgid ""
+#~ "The installation of the default settings is finished. You can now "
+#~ "continue configuring your STB_BOX by pressing the OK button "
+#~ "on the remote control."
+#~ msgstr ""
+#~ "Instalarea setarilor implicite este incheiata. Acum puteti continuasa "
+#~ "configurati STB_BOX apasand tasta OK de pe telecomanda."
+
+#~ msgid "The package doesn't contain anything."
+#~ msgstr "Pachetul nu contine nimic."
+
+#~ msgid "There are no default services lists in your image."
+#~ msgstr "Nu exista liste cu servicii implicite in imaginea dumneavoastra"
+
+#~ msgid "There are no default settings in your image."
+#~ msgstr "Nu exista setari implicite in imaginea dumneavoastra."
+
+#~ msgid "There was an error downloading the packetlist. Please try again."
+#~ msgstr ""
+#~ "A intervenit o eroare in timpul descarcarii listei. Va rugam incercati "
+#~ "din nou."
+
+#~ msgid "This is step number 2."
+#~ msgstr "Acesta este pasul numarul 2"
+
+#~ msgid "Tuner "
+#~ msgstr "Tuner"
+
+#~ msgid "USB Stick"
+#~ msgstr "USB Stick"
+
+#~ msgid "Updates your STB_BOX's software"
+#~ msgstr "Updateaza softul receiverului"
+
+#~ msgid "Updating finished. Here is the result:"
+#~ msgstr "Updatare terminata. Uite aici rezultatul:"
+
+#~ msgid "Updating... Please wait... This can take some minutes..."
+#~ msgstr "Updatare....Te rugam asteapta.... Poate dura cateva minute"
+
+#~ msgid "Upgrade finished. Do you want to reboot your STB_BOX?"
+#~ msgstr "Upgrade terminat. Vrei sa restartezu Dreamboxul tau?"
+
+#~ msgid "Upgrading STB_BOX... Please wait"
+#~ msgstr "pgradare STB_BOX... Te rugam asteapta"
+
+#~ msgid "Use Power Measurement"
+#~ msgstr "Foloseste Masurarea Energiei"
+
+#~ msgid ""
+#~ "Use the left and right buttons to change an option.\n"
+#~ "\n"
+#~ "Please set up tuner A"
+#~ msgstr ""
+#~ "Foloseste butoanele dreapta-stanga pentru a schimba optiunile.\n"
+#~ "\n"
+#~ "Please set up tuner A"
+
+#~ msgid "Use usals for this sat"
+#~ msgstr "Foloseste usals pentru acest satelit"
+
+#~ msgid "Video Fine-Tuning Wizard"
+#~ msgstr "Expert acord fin video"
+
+#~ msgid "Video Output"
+#~ msgstr "Iesire video"
+
+#~ msgid "Video Setup"
+#~ msgstr "Video Setup"
+
+#~ msgid "Video Wizard"
+#~ msgstr "Expert Video"
+
+#~ msgid "Yes, view the tutorial"
+#~ msgstr "Da, vezi tutorial"
+
+#~ msgid ""
+#~ "You can choose some default settings now. Please select the settings you "
+#~ "want to be installed."
+#~ msgstr ""
+#~ "Poti alege niste setari default acum.Te rog alege setraile pe carele vrei "
+#~ "instalate."
+
+#~ msgid "You can choose, what you want to install..."
+#~ msgstr "Poti alege, ce vrei sa instalezi..."
+
+#~ msgid "You chose not to install any default services lists."
+#~ msgstr "Ai ales sa nu instalezi liste de servicii default."
+
+#~ msgid ""
+#~ "You chose not to install any default settings. You can however install "
+#~ "the default settings later in the settings menu."
+#~ msgstr ""
+#~ "Ai ales sa nu instalezi setari default. Poti totusi sa instalezi setari "
+#~ "default ulterior in meniul setari."
+
+#~ msgid ""
+#~ "You chose not to install anything. Please press OK finish the install "
+#~ "wizard."
+#~ msgstr ""
+#~ "Ai ales sa nu instalezi nimic. Te rog apasa OK pentru inchiderea "
+#~ "expertului de instalare."
+
+#~ msgid "alphabetic sort"
+#~ msgstr "sortare alfabetica"
+
+#~ msgid ""
+#~ "are you sure you want to restore\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "esti sigur ca vrei restore\n"
+#~ "dupa backup:\n"
+
+#~ msgid "enigma2 and network"
+#~ msgstr "enigma2 si retea"
+
+#~ msgid "sort by date"
+#~ msgstr "sorteaza dupa data"
+
+#~ msgid ""
+#~ "your STB_BOX might be unusable now. Please consult the "
+#~ "manual for further assistance before rebooting your STB_BOX."
+#~ msgstr ""
+#~ "dreamboxul poate fi inutilizabil acum. Te rog sa consulti manualul pentru "
+#~ "asistenta inainte de reboot la STB_BOX."

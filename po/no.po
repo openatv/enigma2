@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-14 17:59+0100\n"
+"POT-Creation-Date: 2012-09-28 16:57+0100\n"
 "PO-Revision-Date: 2012-07-11 17:32+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: none\n"
@@ -94,12 +94,6 @@ msgid ""
 "\n"
 "Select your backup device.\n"
 "Current device: "
-msgstr ""
-
-#
-msgid ""
-"\n"
-"System will restart after the restore!"
 msgstr ""
 
 #
@@ -231,6 +225,17 @@ msgstr ""
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
+#. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
+#, python-format
+msgid "%s is no longer used. Should it be deleted?"
+msgstr ""
+
+#, python-format
+msgid "%s updated package available"
+msgid_plural "%s updated packages available"
+msgstr[0] ""
+msgstr[1] ""
+
 #, python-format
 msgid "%s/%s: %s"
 msgstr ""
@@ -266,14 +271,6 @@ msgstr ""
 #
 msgid "* Only available if more than one interface is active."
 msgstr ""
-
-#
-msgid "/usr/share/enigma2 directory"
-msgstr "/usr/share/enigma2 folder"
-
-#
-msgid "/var directory"
-msgstr "/var folder"
 
 #
 msgid "0"
@@ -438,6 +435,12 @@ msgid ""
 "again."
 msgstr ""
 
+#, python-format
+msgid ""
+"A configuration file (%s) has been modified since it was installed.\n"
+"Do you want to keep your modifications?"
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -553,6 +556,9 @@ msgstr ""
 msgid "A/V Settings"
 msgstr "A/V-Instillinger"
 
+msgid "A/V settings"
+msgstr ""
+
 #
 msgid "AA"
 msgstr "AA"
@@ -568,9 +574,6 @@ msgid "AFP Setup"
 msgstr ""
 
 msgid "AFP setup"
-msgstr ""
-
-msgid "AIT data will be included in http streams"
 msgstr ""
 
 #, python-format
@@ -613,9 +616,6 @@ msgstr "Aktiver Bilde i Bilde"
 msgid "Activate network settings"
 msgstr "Aktivere nettverkinstillinger"
 
-msgid "Activate rewrapping of the teletext subtitles"
-msgstr ""
-
 msgid "Activate the chosen network settings."
 msgstr ""
 
@@ -643,10 +643,6 @@ msgstr ""
 msgid "Add Timer"
 msgstr ""
 
-#
-msgid "Add WLAN configuration?"
-msgstr ""
-
 msgid "Add a auto timer for current event"
 msgstr ""
 
@@ -668,10 +664,6 @@ msgid "Add a record timer for current event"
 msgstr ""
 
 msgid "Add a zap timer for current event"
-msgstr ""
-
-#
-msgid "Add network configuration?"
 msgstr ""
 
 #
@@ -700,18 +692,6 @@ msgid "Additional Info"
 msgstr ""
 
 msgid "Address"
-msgstr ""
-
-msgid ""
-"Adds enigma2 settings and STB_BOX informations like SN, rev... if enabled."
-msgstr ""
-
-#
-msgid "Adds network configuration if enabled."
-msgstr ""
-
-#
-msgid "Adds wlan configuration if enabled."
 msgstr ""
 
 msgid "Adjust 3D settings"
@@ -746,24 +726,15 @@ msgid "Advanced Video Enhancement Setup"
 msgstr ""
 
 #
-msgid "Advanced Video Setup"
-msgstr "Avansert Video Oppsett"
-
-#
 msgid "Advanced restore"
+msgstr ""
+
+msgid "Advanced video setup"
 msgstr ""
 
 #
 msgid "After event"
 msgstr "Etter program"
-
-#
-msgid ""
-"After the start wizard is completed, you need to protect single services. "
-"Refer to your STB_BOX's manual on how to do that."
-msgstr ""
-"Etter oppstartsguiden er ferdig, trenger du beskytte enkelte kanaler. Les i "
-"manualen for din STB_BOX hvordan det gjøres."
 
 #
 msgid "Album"
@@ -776,11 +747,10 @@ msgstr ""
 msgid "All"
 msgstr "Alle"
 
-#
-msgid "All Satellites"
+msgid "All ages"
 msgstr ""
 
-msgid "All ages"
+msgid "All satellites"
 msgstr ""
 
 msgid "Allow Subtitle equals Audio mask"
@@ -842,7 +812,7 @@ msgstr ""
 msgid "Altern"
 msgstr ""
 
-msgid "Alternative numbering Mode"
+msgid "Alternative numbering mode"
 msgstr ""
 
 msgid "Alternative radio mode"
@@ -855,10 +825,6 @@ msgstr "Alternativ tuner prioritet for kanaler"
 msgid "Always ask"
 msgstr ""
 
-#
-msgid "Always ask before sending"
-msgstr ""
-
 msgid "Always show bouquets"
 msgstr ""
 
@@ -866,12 +832,11 @@ msgstr ""
 msgid "An empty filename is illegal."
 msgstr "Et tomt filnavn er ikke tillatt"
 
-#
-msgid "An unknown error occured!"
+msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr ""
 
 #
-msgid "Anonymize crashlog?"
+msgid "An unknown error occured!"
 msgstr ""
 
 msgid "Any activity"
@@ -887,10 +852,9 @@ msgid ""
 "\n"
 msgstr ""
 
-#
 msgid ""
 "Are you sure you want to delete\n"
-"following backup:\n"
+"the following backup:\n"
 msgstr ""
 
 msgid "Are you sure you want to delete all selected logs:\n"
@@ -912,16 +876,17 @@ msgid ""
 "\n"
 msgstr "Er du sikker på at du vil restarte ditt nettverkskort?\n"
 
-#
+#, python-format
 msgid ""
 "Are you sure you want to restore\n"
-"following backup:\n"
+"the following backup:\n"
+"%s\n"
+"Your receiver will restart after the backup has been restored!"
 msgstr ""
 
-#
 msgid ""
-"Are you sure you want to restore your Enigma2 backup?\n"
-"Enigma2 will restart after the restore"
+"Are you sure you want to restore the backup?\n"
+"Your receiver will restart after the backup has been restored!"
 msgstr ""
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
@@ -950,6 +915,9 @@ msgstr "Spør bruker"
 #
 msgid "Aspect Ratio"
 msgstr "Breddeforhold"
+
+msgid "Aspect ratio"
+msgstr ""
 
 msgid "Attach a file"
 msgstr ""
@@ -1012,6 +980,9 @@ msgstr "Automatisk"
 #
 msgid "Automatic Scan"
 msgstr "Automatisk Søk"
+
+msgid "Automatic configuration is finished"
+msgstr ""
 
 msgid "Automatic image backup"
 msgstr ""
@@ -1081,20 +1052,7 @@ msgstr ""
 msgid "Background delete speed"
 msgstr ""
 
-#
-msgid "Backup"
-msgstr "Backup"
-
-#
-msgid "Backup Location"
-msgstr "Backup Lokasjon"
-
-#
-msgid "Backup Mode"
-msgstr "Backup Modus"
-
-#
-msgid "Backup done."
+msgid "Backup completed."
 msgstr ""
 
 #
@@ -1228,12 +1186,6 @@ msgid "By Team ViX"
 msgstr ""
 
 #
-msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
-msgstr "Ved å trykke OK på din fjernkontroll, vises infobaren."
-
-#
 msgid "C"
 msgstr ""
 
@@ -1289,10 +1241,6 @@ msgid "CCcam info"
 msgstr ""
 
 #
-msgid "CF Drive"
-msgstr "CF Disk"
-
-#
 msgid "CI assignment"
 msgstr ""
 
@@ -1346,10 +1294,7 @@ msgstr ""
 msgid "Cardserial"
 msgstr ""
 
-msgid "Center the position of the DVB subtitles."
-msgstr ""
-
-msgid "Centered DVB subtitles"
+msgid "Center DVB subtitles"
 msgstr ""
 
 #
@@ -1407,6 +1352,9 @@ msgstr "Kanalliste"
 msgid "Channel Selection Configuration"
 msgstr ""
 
+msgid "Channel list context menu"
+msgstr ""
+
 msgid "Channel list on mode change"
 msgstr ""
 
@@ -1414,6 +1362,9 @@ msgid "Channel list preview"
 msgstr ""
 
 msgid "Channel list service mode*"
+msgstr ""
+
+msgid "Channel list type"
 msgstr ""
 
 #
@@ -1450,6 +1401,12 @@ msgstr "Undersøk"
 msgid "Check every (hours)"
 msgstr ""
 
+msgid "Check the internet connection"
+msgstr ""
+
+msgid "Check the internet connection again"
+msgstr ""
+
 msgid "Checking Feeds"
 msgstr ""
 
@@ -1461,6 +1418,15 @@ msgid "Checking Logs..."
 msgstr ""
 
 msgid "Checking for Updates..."
+msgstr ""
+
+msgid "Checking the internet connection"
+msgstr ""
+
+#, python-format
+msgid ""
+"Checking tuner %d\n"
+"DiSEqC port %s for %s"
 msgstr ""
 
 msgid "Children/Youth"
@@ -1506,18 +1472,13 @@ msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
 msgid ""
-"Choose the location where the EPG data will be stored when the STB_BOX is "
-"shut down. The location must be available at boot time."
+"Choose the location where the EPG data will be stored when the GigaBlue HD "
+"800 Solo is shut down. The location must be available at boot time."
 msgstr ""
 
 msgid ""
-"Choose the name of the file that holds the EPG data when the STB_BOX is shut "
-"down. This can be handy to differentiate between several boxes."
-msgstr ""
-
-msgid ""
-"Choose the order in which the tuner types will be used (for watching and "
-"recording)."
+"Choose the name of the file that holds the EPG data when the GigaBlue HD 800 "
+"Solo is shut down. This can be handy to differentiate between several boxes."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -1531,6 +1492,10 @@ msgid "Choose upgrade source"
 msgstr ""
 
 msgid "Choose what you want the button '0' to do when PIP is active."
+msgstr ""
+
+msgid ""
+"Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr ""
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
@@ -1551,11 +1516,6 @@ msgstr ""
 msgid "Choose which tuner to configure."
 msgstr ""
 
-msgid ""
-"Choose which tuner will be used first. If set to 'auto' the system will give "
-"priority to the tuner having the lowest number of channels/satellites."
-msgstr ""
-
 #
 msgid "Choose your Skin"
 msgstr "Velg ditt Skin"
@@ -1574,18 +1534,6 @@ msgstr ""
 #
 msgid "Cleanup"
 msgstr "Opprydning"
-
-#
-msgid "Cleanup Wizard"
-msgstr ""
-
-#
-msgid "Cleanup Wizard settings"
-msgstr ""
-
-#
-msgid "CleanupWizard"
-msgstr ""
 
 #
 msgid "Clear before scan"
@@ -1634,6 +1582,9 @@ msgstr ""
 #
 msgid "Color Format"
 msgstr "Fargeformat"
+
+msgid "Color format"
+msgstr ""
 
 #
 msgid "Command execution..."
@@ -1685,6 +1636,9 @@ msgstr ""
 msgid "Configuration Mode"
 msgstr "Konfigurasjonsmodus"
 
+msgid "Configuration mode"
+msgstr ""
+
 #
 msgid "Configure interface"
 msgstr ""
@@ -1716,6 +1670,20 @@ msgid "Configure the behaviour when a movie reaches the end"
 msgstr ""
 
 msgid ""
+"Configure the border width of the subtitles. The dark border makes the "
+"subtitles easier to read on a light background."
+msgstr ""
+
+msgid "Configure the color of the teletext subtitles."
+msgstr ""
+
+msgid "Configure the font size of the subtitles."
+msgstr ""
+
+msgid "Configure the horizontal alignment of the subtitles."
+msgstr ""
+
+msgid ""
 "Configure the number of days old timers are kept and then auto deleted from "
 "the timers list"
 msgstr ""
@@ -1740,6 +1708,9 @@ msgstr ""
 msgid "Configure the speed of the background delete feature"
 msgstr ""
 
+msgid "Configure the subtitle delay when timing information is not available."
+msgstr ""
+
 msgid "Configure the time of the stepskip on the '1'/'3'-keys"
 msgstr ""
 
@@ -1749,10 +1720,31 @@ msgstr ""
 msgid "Configure the time of the stepskip on the '7'/'9'-keys"
 msgstr ""
 
+msgid ""
+"Configure the transparency of the black background of graphical DVB "
+"subtitles."
+msgstr ""
+
 msgid "Configure the type of status indication icons shown in the movielist"
 msgstr ""
 
+msgid ""
+"Configure the vertical position of the subtitles, measured from the bottom "
+"of the screen."
+msgstr ""
+
 msgid "Configure the way recording filenames are composed"
+msgstr ""
+
+msgid ""
+"Configure which tuner type will be preferred, when the same service is "
+"available on different types of tuners."
+msgstr ""
+
+msgid ""
+"Configure which tuner will be preferred, when more than one tuner is "
+"available. If set to 'auto' the system will give priority to the tuner "
+"having the lowest number of channels/satellites."
 msgstr ""
 
 #
@@ -1850,6 +1842,9 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
+msgid "Correct"
+msgstr ""
+
 msgid ""
 "Could not activate Permanent-Timeshift!\n"
 "Timeshift-Path does not exist"
@@ -1857,6 +1852,9 @@ msgstr ""
 
 #
 msgid "Could not connect to STB_BOX .NFI Image Feed Server:"
+msgstr ""
+
+msgid "Could not find installed channel list."
 msgstr ""
 
 #
@@ -1885,28 +1883,6 @@ msgid "Couldn't record due to invalid service %s"
 msgstr ""
 
 msgid "Crash Logs"
-msgstr ""
-
-#
-msgid "Crashlog settings"
-msgstr ""
-
-#
-msgid "CrashlogAutoSubmit"
-msgstr ""
-
-#
-msgid "CrashlogAutoSubmit settings"
-msgstr ""
-
-#
-msgid "CrashlogAutoSubmit settings..."
-msgstr ""
-
-#
-msgid ""
-"Crashlogs found!\n"
-"Send them to Dream Multimedia?"
 msgstr ""
 
 #
@@ -1989,12 +1965,6 @@ msgstr "Bruker skip tid for '4'/'6'-tastene"
 msgid "Custom skip time for '7'/'9'-keys"
 msgstr "Bruker skip tid for '7'/96'-tastene"
 
-msgid "Custom text alignment"
-msgstr ""
-
-msgid "Custom text position"
-msgstr ""
-
 #
 msgid "Customize"
 msgstr "Tilpass"
@@ -2002,6 +1972,9 @@ msgstr "Tilpass"
 #
 msgid "Cut"
 msgstr "Klipp ut"
+
+msgid "Cutlist editor"
+msgstr ""
 
 #
 msgid "Cutlist editor..."
@@ -2085,18 +2058,6 @@ msgid "Debug Logs"
 msgstr ""
 
 #
-msgid "Decide if you want to enable or disable the Cleanup Wizard."
-msgstr ""
-
-#
-msgid "Decide what should be done when crashlogs are found."
-msgstr ""
-
-#
-msgid "Decide what should happen to the crashlogs after submission."
-msgstr ""
-
-#
 msgid "Deep Standby"
 msgstr "Dyp Standby"
 
@@ -2138,23 +2099,12 @@ msgid "Delete Confirmation"
 msgstr ""
 
 #
-msgid "Delete crashlogs"
-msgstr ""
-
-#
 msgid "Delete entry"
 msgstr "Slett timer"
 
 #
 msgid "Delete failed!"
 msgstr "Sletting feilet."
-
-#
-#, python-format
-msgid ""
-"Delete no more configured satellite\n"
-"%s?"
-msgstr "Slette satellit %s, som ikke er i bruk lenger?"
 
 msgid "Delete old timers after how many days"
 msgstr ""
@@ -2224,6 +2174,10 @@ msgstr "DiSEqC A/B/C/D"
 msgid "DiSEqC mode"
 msgstr "DiSEqC-Modus"
 
+#, python-format
+msgid "DiSEqC port %s: %s"
+msgstr ""
+
 #
 msgid "DiSEqC repeats"
 msgstr "DiSEqC gjentakelser"
@@ -2268,10 +2222,6 @@ msgid "Disable Picture in Picture"
 msgstr "Slå av Bilde i Bilde"
 
 msgid "Disable background scanning"
-msgstr ""
-
-#
-msgid "Disable crashlog reporting"
 msgstr ""
 
 #
@@ -2382,17 +2332,14 @@ msgid "Do you want to add any additional information ?"
 msgstr ""
 
 msgid ""
+"Do you want to also install samba client ?\n"
+"This allows you to mount your windows shares on this device."
+msgstr ""
+
+msgid ""
 "Do you want to attach a text file to explain the log ?\n"
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
-
-#
-msgid ""
-"Do you want to backup now?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"Vil du ta backup nå?\n"
-"Trykk OK og vennligst vent!"
 
 #
 msgid "Do you want to burn this collection to DVD medium?"
@@ -2415,9 +2362,8 @@ msgstr "Vil du gjøre enda et manuelt kanalsøk?"
 msgid "Do you want to download the image to %s ?"
 msgstr ""
 
-#
-msgid "Do you want to enable the parental control feature on your STB_BOX?"
-msgstr "Vil du aktivere foreldrekontroll på STB_BOXen din?"
+msgid "Do you want to install a channel list?"
+msgstr ""
 
 #
 msgid "Do you want to install the package:\n"
@@ -2433,6 +2379,9 @@ msgstr ""
 
 #
 msgid "Do you want to reboot your STB_BOX?"
+msgstr ""
+
+msgid "Do you want to reboot your receiver?"
 msgstr ""
 
 #
@@ -2453,36 +2402,11 @@ msgid ""
 msgstr ""
 
 #
-msgid ""
-"Do you want to submit your email address and name so that we can contact you "
-"if needed?"
-msgstr ""
-
-#
 msgid "Do you want to update your STB_BOX?"
 msgstr ""
 
 #
-msgid ""
-"Do you want to update your STB_BOX?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"Vil du oppdatere din STB_BOX?\n"
-"Etter å ha trykt OK, vennligst vent!"
-
-#
 msgid "Do you want to upgrade the package:\n"
-msgstr ""
-
-msgid "Do you want to upgrade?"
-msgstr ""
-
-#
-msgid "Do you want to view a tutorial?"
-msgstr "Vil du se en veiledning?"
-
-#
-msgid "Don't ask, just send"
 msgstr ""
 
 msgid "Don't save"
@@ -2494,11 +2418,6 @@ msgstr ""
 #
 msgid "Don't stop current event but disable coming events"
 msgstr "Ikke stopp nåværende event men slå av kommende events"
-
-#
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "Ferdig - Installerte eller oppgraderte %d pakker"
 
 #
 #, python-format
@@ -2536,9 +2455,6 @@ msgstr "Laster ned"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Laster ned plugin informasjon. Vennligst vent..."
 
-msgid "Downmix the Dolby Digital sound tracks to PCM."
-msgstr ""
-
 msgid "Drivers:"
 msgstr ""
 
@@ -2572,9 +2488,6 @@ msgid "ECM last"
 msgstr ""
 
 msgid "ECM-Time"
-msgstr ""
-
-msgid "EIT data will be included in http streams."
 msgstr ""
 
 msgid "EPG"
@@ -2612,9 +2525,6 @@ msgstr ""
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "FEIL - kunne ikke søke (%s)!"
-
-msgid "ET9x00/6500"
-msgstr ""
 
 #
 msgid "East"
@@ -2688,10 +2598,6 @@ msgstr "Aktiver"
 msgid "Enable 5V for active antenna"
 msgstr "Aktiver 5V for aktiv antenne"
 
-#
-msgid "Enable Cleanup Wizard?"
-msgstr ""
-
 msgid "Enable Debug log"
 msgstr ""
 
@@ -2757,9 +2663,6 @@ msgid ""
 "is included in the stream and a valid card is available)."
 msgstr ""
 
-msgid "Enables channel numbers in the channel selection screen"
-msgstr ""
-
 msgid "Enables the trashcan feature"
 msgstr ""
 
@@ -2820,10 +2723,6 @@ msgstr ""
 msgid "Enter the service pin"
 msgstr "Skriv inn service pin"
 
-#
-msgid "Enter your email address so that we can contact you if needed."
-msgstr ""
-
 msgid "Enter your email address to send a copy of the log to."
 msgstr ""
 
@@ -2862,9 +2761,6 @@ msgstr ""
 
 #
 msgid "Estonian"
-msgstr ""
-
-msgid "Et5000/6000"
 msgstr ""
 
 msgid "Ethernet network interface"
@@ -2924,10 +2820,6 @@ msgstr ""
 
 #
 msgid "Exit network wizard"
-msgstr ""
-
-#
-msgid "Exit the cleanup wizard"
 msgstr ""
 
 #
@@ -3094,6 +2986,10 @@ msgstr ""
 msgid "Forward volume keys"
 msgstr ""
 
+#, python-format
+msgid "Found %d position(s) of %d total"
+msgstr ""
+
 #
 msgid "Frame size in full view"
 msgstr ""
@@ -3170,15 +3066,13 @@ msgstr "Gateway"
 msgid "General"
 msgstr ""
 
-#
-msgid "General AC3 Delay"
+msgid "General AC3 delay"
 msgstr ""
 
 msgid "General AC3 delay (ms)"
 msgstr ""
 
-#
-msgid "General PCM Delay"
+msgid "General PCM delay"
 msgstr ""
 
 msgid "General PCM delay (ms)"
@@ -3204,6 +3098,29 @@ msgstr ""
 #
 msgid "Getting plugin information. Please wait..."
 msgstr "Henter Plugin-Informasjon. Vennligst vent..."
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr ""
+
+#
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr ""
+
+msgid "STB_BOX front panel"
+msgstr ""
+
+msgid "STB_BOX ir keyboard"
+msgstr ""
+
+msgid "STB_BOX ir mouse"
+msgstr ""
+
+msgid "STB_BOX remote control (native)"
+msgstr ""
+
+#
+msgid "STB_BOX software because updates are available."
+msgstr ""
 
 msgid "Go down the list"
 msgstr ""
@@ -3344,10 +3261,10 @@ msgstr ""
 msgid "Hide CI messages"
 msgstr ""
 
-msgid "Hide any Common Interface card error messages."
+msgid "Hide any zap error messages."
 msgstr ""
 
-msgid "Hide any zap error messages."
+msgid "Hide error messages from the Common Interface module."
 msgstr ""
 
 msgid "Hide zap errors"
@@ -3403,10 +3320,6 @@ msgid "How many minutes do you want to record?"
 msgstr "Hvor mange minutter vil du ta opp?"
 
 #
-msgid "How to handle found crashlogs?"
-msgstr ""
-
-#
 msgid "Hue"
 msgstr ""
 
@@ -3442,9 +3355,6 @@ msgid "Icons"
 msgstr ""
 
 msgid "Idle Time: "
-msgstr ""
-
-msgid "If Teletext caching is enabled, displaying pages will be much faster."
 msgstr ""
 
 msgid ""
@@ -3586,10 +3496,6 @@ msgstr ""
 msgid "Include EIT in http streams"
 msgstr ""
 
-#
-msgid "Include your email and name (optional) in the mail?"
-msgstr ""
-
 msgid "Increase time scale"
 msgstr ""
 
@@ -3653,6 +3559,9 @@ msgstr "Input"
 msgid "Input device setup"
 msgstr ""
 
+msgid "Input devices"
+msgstr ""
+
 #
 msgid "Install"
 msgstr ""
@@ -3663,6 +3572,9 @@ msgstr ""
 
 #
 msgid "Install a new image with your web browser"
+msgstr ""
+
+msgid "Install channel list"
 msgstr ""
 
 #
@@ -3687,10 +3599,6 @@ msgid "Install plugins"
 msgstr ""
 
 #
-msgid "Install settings, skins, software..."
-msgstr ""
-
-#
 msgid "Installation finished."
 msgstr ""
 
@@ -3704,18 +3612,6 @@ msgstr ""
 #
 msgid "Installing Software..."
 msgstr "Installerer Software"
-
-#
-msgid "Installing default sat lists... Please wait..."
-msgstr "Installerer standard sat liste... Vennligst vent..."
-
-#
-msgid "Installing defaults... Please wait..."
-msgstr "Installerer standarder... Vennligst vent..."
-
-#
-msgid "Installing package content... Please wait..."
-msgstr "Installerer pakke innhold... Vennligst vent..."
 
 #
 msgid "Instant Record..."
@@ -3773,8 +3669,7 @@ msgstr ""
 msgid "Is this setting ok?"
 msgstr ""
 
-#
-msgid "Is this videomode ok?"
+msgid "Is this video mode ok?"
 msgstr ""
 
 #
@@ -3875,18 +3770,6 @@ msgstr ""
 #
 msgid "LNB"
 msgstr "LNB"
-
-#
-msgid "LOF"
-msgstr "LOF"
-
-#
-msgid "LOF/H"
-msgstr "LOF/H"
-
-#
-msgid "LOF/L"
-msgstr "LOF/L"
 
 msgid "Label"
 msgstr ""
@@ -4239,9 +4122,13 @@ msgstr ""
 msgid "Missing "
 msgstr ""
 
-#
+msgctxt "Satellite configuration mode"
 msgid "Mode"
-msgstr "Modus"
+msgstr ""
+
+msgctxt "Video output mode"
+msgid "Mode"
+msgstr ""
 
 #
 msgid "Model: "
@@ -4603,12 +4490,6 @@ msgid "No of items switch (increase or reduced)"
 msgstr ""
 
 #
-msgid ""
-"No packages were upgraded yet. So you can check your network and try again."
-msgstr ""
-"Ingen pakker opgraderet endda. Sjekk vennligst ditt nettverk og prøv igjen."
-
-#
 msgid "No positioner capable frontend found."
 msgstr "Ingen brukbar Motor frontend funnet."
 
@@ -4638,6 +4519,9 @@ msgid ""
 msgstr ""
 "Ingen Tuner er aktivert!\n"
 "Vennligst utfør Tuner instilling før du starter en kanal søking."
+
+msgid "No updates available. Please try again later."
+msgstr ""
 
 #
 msgid ""
@@ -4699,16 +4583,8 @@ msgid "No, never"
 msgstr ""
 
 #
-msgid "No, not now"
-msgstr ""
-
-#
 msgid "No, scan later manually"
 msgstr "Nei, søk manuelt senere."
-
-#
-msgid "No, send them never"
-msgstr ""
 
 msgid "NodeID"
 msgstr ""
@@ -4810,14 +4686,6 @@ msgstr ""
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, guide meg gjennom oppgraderingsprosessen"
 
-#
-msgid "OK, remove another extensions"
-msgstr ""
-
-#
-msgid "OK, remove some extensions"
-msgstr ""
-
 msgid "ONID"
 msgstr ""
 
@@ -4914,10 +4782,6 @@ msgid "OpenVpn Setup"
 msgstr ""
 
 #
-msgid "Optionally enter your name if you want to."
-msgstr ""
-
-#
 msgid "Orbital Position"
 msgstr "Orbital Posisjon"
 
@@ -4939,10 +4803,10 @@ msgstr ""
 msgid "Output"
 msgstr ""
 
-msgid "Overwrite configuration files ?"
+msgid "Overwrite configuration files during software upgrade?"
 msgstr ""
 
-msgid "Overwrite configuration files during software upgrade?"
+msgid "Overwrite configuration files?"
 msgstr ""
 
 #
@@ -4966,14 +4830,6 @@ msgstr ""
 #
 msgid "Package list update"
 msgstr "Pakkeliste oppdatering"
-
-#
-msgid "Package removal failed.\n"
-msgstr ""
-
-#
-msgid "Package removed successfully.\n"
-msgstr ""
 
 msgid "Packages"
 msgstr ""
@@ -5007,6 +4863,9 @@ msgstr ""
 #
 msgid "Parental control"
 msgstr "Foreldrekontroll"
+
+msgid "Parental control editor"
+msgstr ""
 
 #
 msgid "Parental control services Editor"
@@ -5167,11 +5026,6 @@ msgstr "Vennligst velg medie for søkingen"
 msgid "Please add titles to the compilation."
 msgstr ""
 
-msgid ""
-"Please be aware, that anyone can disable the parental control, if you have "
-"not set a PIN."
-msgstr ""
-
 #
 msgid "Please change recording endtime"
 msgstr "Vennligst endre sluttid for innspilling"
@@ -5187,16 +5041,8 @@ msgstr ""
 msgid "Please choose an extension..."
 msgstr "Vennligst velg en utvidelse"
 
-#
-msgid "Please choose he package..."
-msgstr "Vennligst velg pakke.."
-
 msgid "Please choose reader"
 msgstr ""
-
-#
-msgid "Please choose the default services lists you want to install."
-msgstr "Vennligst velg standard tjeneste liste du vil installere."
 
 #
 msgid ""
@@ -5210,6 +5056,9 @@ msgid ""
 "Please configure your internet connection by filling out the required "
 "values.\n"
 "When you are ready press OK to continue."
+msgstr ""
+
+msgid "Please connect your receiver to the internet"
 msgstr ""
 
 #
@@ -5244,14 +5093,6 @@ msgid "Please enter the old PIN code"
 msgstr ""
 
 #
-msgid "Please enter your email address here:"
-msgstr ""
-
-#
-msgid "Please enter your name here (optional):"
-msgstr ""
-
-#
 msgid "Please follow the instructions on the TV"
 msgstr "Vennligst følg instruksjonene på TV"
 
@@ -5264,10 +5105,6 @@ msgstr ""
 #
 msgid "Please press OK to continue."
 msgstr ""
-
-#
-msgid "Please press OK!"
-msgstr "Vennligst trykk OK!"
 
 msgid "Please select a default EPG type..."
 msgstr ""
@@ -5289,14 +5126,6 @@ msgid "Please select a subservice..."
 msgstr "Vennligst velg en underkanal"
 
 msgid "Please select an NFI file and press green key to flash!"
-msgstr ""
-
-#
-msgid "Please select an extension to remove."
-msgstr ""
-
-#
-msgid "Please select an option below."
 msgstr ""
 
 #
@@ -5324,6 +5153,9 @@ msgid ""
 "Please select the wireless network that you want to connect to.\n"
 "\n"
 "Please press OK to continue."
+msgstr ""
+
+msgid "Please set up tuner A"
 msgstr ""
 
 #
@@ -5354,20 +5186,18 @@ msgid ""
 "the OK button."
 msgstr ""
 
+msgid "Please wait (downloading channel list)"
+msgstr ""
+
+msgid "Please wait (updating packages)"
+msgstr ""
+
 #
 msgid "Please wait for activation of your network configuration..."
 msgstr ""
 
 #
-msgid "Please wait while removing selected package..."
-msgstr ""
-
-#
 msgid "Please wait while scanning is in progress..."
-msgstr ""
-
-#
-msgid "Please wait while searching for removable packages..."
 msgstr ""
 
 #
@@ -5403,6 +5233,9 @@ msgstr ""
 #
 msgid "Plugin browser"
 msgstr "Plugin Meny"
+
+msgid "Plugin details"
+msgstr ""
 
 #
 msgid "Plugin manager activity information"
@@ -5812,11 +5645,10 @@ msgstr ""
 msgid "Reenter new PIN"
 msgstr ""
 
-#
-msgid "Refresh Rate"
-msgstr "Gjennoppfrisknings Rate"
-
 msgid "Refresh every (in hours)"
+msgstr ""
+
+msgid "Refresh rate"
 msgstr ""
 
 #
@@ -5858,7 +5690,7 @@ msgstr ""
 msgid "Remote box"
 msgstr ""
 
-msgid "Remote type"
+msgid "Remote control type"
 msgstr ""
 
 #
@@ -5885,10 +5717,6 @@ msgid "Remove currently selected title"
 msgstr ""
 
 #
-msgid "Remove failed."
-msgstr ""
-
-#
 msgid "Remove finished."
 msgstr ""
 
@@ -5908,10 +5736,6 @@ msgid "Remove title"
 msgstr ""
 
 #
-msgid "Removed successfully."
-msgstr ""
-
-#
 msgid "Removing"
 msgstr ""
 
@@ -5926,10 +5750,6 @@ msgstr ""
 #
 msgid "Rename"
 msgstr "Gi nytt navn"
-
-#
-msgid "Rename crashlogs"
-msgstr ""
 
 msgid "Rename failed!"
 msgstr ""
@@ -6028,11 +5848,10 @@ msgid "Restore is running..."
 msgstr ""
 
 #
-msgid "Restore running"
+msgid "Restore system settings"
 msgstr ""
 
-#
-msgid "Restore system settings"
+msgid "Restoring..."
 msgstr ""
 
 #
@@ -6228,37 +6047,19 @@ msgstr ""
 msgid "Scan "
 msgstr "Søking "
 
-#
-msgid "Scan Files..."
+#. TRANSLATORS: option name, indicating which type of (DVB-C) modulation should be scanned. The modulation type is printed in '%s'. E.g.: 'Scan QAM16'
+#, python-format
+msgid "Scan %s"
+msgstr ""
+
+#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#, python-format
+msgid "Scan %s band"
 msgstr ""
 
 #
-msgid "Scan QAM128"
-msgstr "Søke QAM128"
-
-#
-msgid "Scan QAM16"
-msgstr "Søke QAM16"
-
-#
-msgid "Scan QAM256"
-msgstr "Søke QAM256"
-
-#
-msgid "Scan QAM32"
-msgstr "Søke QAM32"
-
-#
-msgid "Scan QAM64"
-msgstr "Søke QAM64"
-
-#
-msgid "Scan SR6875"
-msgstr "Søke SR6875"
-
-#
-msgid "Scan SR6900"
-msgstr "Søke SR6900"
+msgid "Scan Files..."
+msgstr ""
 
 #
 msgid "Scan Wireless Networks"
@@ -6267,54 +6068,6 @@ msgstr "Søk etter trådløse nettverk"
 #
 msgid "Scan additional SR"
 msgstr "Søke ytterlige SR"
-
-#
-msgid "Scan band EU HYPER"
-msgstr "Søke bånd EU HYPER"
-
-#
-msgid "Scan band EU MID"
-msgstr "Søke bånd EU MID"
-
-#
-msgid "Scan band EU SUPER"
-msgstr "Søke bånd EU SUPER"
-
-#
-msgid "Scan band EU UHF IV"
-msgstr "Søke bånd EU UHF IV"
-
-#
-msgid "Scan band EU UHF V"
-msgstr "Søke bånd EU UHF V"
-
-#
-msgid "Scan band EU VHF I"
-msgstr "Søke bånd EU VHF I"
-
-#
-msgid "Scan band EU VHF III"
-msgstr "Søke bånd EU VHF III"
-
-#
-msgid "Scan band US HIGH"
-msgstr "Søke bånd US HIGH"
-
-#
-msgid "Scan band US HYPER"
-msgstr "Søke bånd US HYPER"
-
-#
-msgid "Scan band US LOW"
-msgstr "Søke bånd US LOW"
-
-#
-msgid "Scan band US MID"
-msgstr "Søke bånd US MID"
-
-#
-msgid "Scan band US SUPER"
-msgstr "Søke bånd US SUPER"
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -6462,10 +6215,6 @@ msgstr ""
 
 #
 msgid "Select interface"
-msgstr ""
-
-#
-msgid "Select package"
 msgstr ""
 
 #
@@ -6640,13 +6389,13 @@ msgid "Services"
 msgstr "Kanaler"
 
 msgid ""
-"Services may be grouped in bouquets. If this option is enabled you can zap "
-"to a channel in another bouquet then you are in at present."
+"Services may be grouped in bouquets. When enabled you can zap to a channel "
+"in another bouquet then you are in at present."
 msgstr ""
 
 msgid ""
-"Services may be grouped in bouquets. If this option is enabled, you can use "
-"more then one bouquet."
+"Services may be grouped in bouquets. When enabled, you can use more then one "
+"bouquet."
 msgstr ""
 
 #
@@ -6654,14 +6403,6 @@ msgid "Set End Time"
 msgstr ""
 
 msgid "Set System"
-msgstr ""
-
-#
-msgid "Set Voltage and 22KHz"
-msgstr ""
-
-#
-msgid "Set available internal memory threshold for the warning."
 msgstr ""
 
 msgid "Set fixed"
@@ -6680,12 +6421,6 @@ msgstr ""
 msgid "Set the EPG language selection 2"
 msgstr ""
 
-msgid "Set the Teletext subtitle delay when timing lacks."
-msgstr ""
-
-msgid "Set the alignment of the Teletext subtitles."
-msgstr ""
-
 msgid "Set the audio language 1 (highest priority)"
 msgstr ""
 
@@ -6698,18 +6433,10 @@ msgstr ""
 msgid "Set the audio language 4 (lowest priority)"
 msgstr ""
 
-msgid ""
-"Set the border width of the Teletext subtitles. This makes the titles more "
-"easy to read on a light background."
-msgstr ""
-
 msgid "Set the brightness level for normal operation."
 msgstr ""
 
 msgid "Set the brightness level for standby."
-msgstr ""
-
-msgid "Set the colour of the Teletext subtitles."
 msgstr ""
 
 msgid "Set the contrast level."
@@ -6741,9 +6468,6 @@ msgstr ""
 msgid "Set the desired configuration mode."
 msgstr ""
 
-msgid "Set the font size of the Teletext subtitles."
-msgstr ""
-
 msgid "Set the initial fast forward speed"
 msgstr ""
 
@@ -6760,12 +6484,6 @@ msgid "Set the maximum number of events (programs) that timeshift may handle."
 msgstr ""
 
 msgid "Set the number of days you want old timers to be kept."
-msgstr ""
-
-msgid "Set the position of the DVB subtitles."
-msgstr ""
-
-msgid "Set the position of the Teletext subtitles."
 msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
@@ -6806,10 +6524,8 @@ msgstr ""
 msgid "Set the time you want recordings to stop after the event stop-time."
 msgstr ""
 
-msgid "Set the transparency of the DVB subtitles."
-msgstr ""
-
-msgid "Set the type of the progress indication in the channel selection screen"
+msgid ""
+"Set the type of the progress indication in the channel selection screen."
 msgstr ""
 
 msgid "Set the value for the initial fast-backward speed."
@@ -6855,6 +6571,9 @@ msgid "Set to the desired primetime (minutes."
 msgstr ""
 
 msgid "Set to what you want the button to do."
+msgstr ""
+
+msgid "Set voltage and 22KHz"
 msgstr ""
 
 msgid ""
@@ -7036,7 +6755,7 @@ msgstr ""
 msgid "Show detailed event info"
 msgstr ""
 
-msgid "Show encryption info in the infobar (if the skin allows that)."
+msgid "Show encryption info in the infobar (when supported by the skin)."
 msgstr ""
 
 msgid "Show epg"
@@ -7204,6 +6923,10 @@ msgstr ""
 msgid "Skip Empty Services"
 msgstr ""
 
+msgid ""
+"Skip internet connection check (disables automatic package installation)"
+msgstr ""
+
 #
 msgid "Sleep Timer"
 msgstr "Sleep Timer"
@@ -7279,10 +7002,6 @@ msgstr "Noen plugins er ikke tilgjengelige:\n"
 msgid "Sorry Inadyn Config is Missing"
 msgstr ""
 
-#
-msgid "Sorry MediaScanner is not installed!"
-msgstr ""
-
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
 
@@ -7297,38 +7016,22 @@ msgid ""
 "enable 'Allow unstable updates' in online update setup."
 msgstr ""
 
-#
-msgid "Sorry no backups found!"
-msgstr ""
-
 msgid "Sorry uShare Config is Missing"
 msgstr ""
 
-#
-msgid ""
-"Sorry your Backup destination does not exist\n"
-"\n"
-"Please choose an other one."
-msgstr ""
-"Desverre, din backup destination eksisterer ikke\n"
-"\n"
-"Venligst velg en annen."
-
-#
-msgid ""
-"Sorry your backup destination is not writeable.\n"
-"Please choose an other one."
+#, python-format
+msgid "Sorry, %s has not been installed!"
 msgstr ""
 
-#
-msgid "Sorry, no Details available!"
+msgid "Sorry, no backups found!"
 msgstr ""
 
-#
+msgid "Sorry, no details available!"
+msgstr ""
+
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
-"\n"
-"Please choose another one."
+"Please select a different one."
 msgstr ""
 
 msgid "Sort"
@@ -7504,7 +7207,16 @@ msgstr ""
 msgid "Subservices"
 msgstr "Underkanaler"
 
+msgid "Subtitle alignment"
+msgstr ""
+
+msgid "Subtitle border width"
+msgstr ""
+
 msgid "Subtitle delay when timing lacks"
+msgstr ""
+
+msgid "Subtitle font size"
 msgstr ""
 
 msgid "Subtitle language selection 1"
@@ -7517,6 +7229,9 @@ msgid "Subtitle language selection 3"
 msgstr ""
 
 msgid "Subtitle language selection 4"
+msgstr ""
+
+msgid "Subtitle position"
 msgstr ""
 
 #
@@ -7686,12 +7401,6 @@ msgstr "Test-Meldingsboks"
 msgid "Text"
 msgstr ""
 
-msgid "Text border width"
-msgstr ""
-
-msgid "Text font size"
-msgstr ""
-
 msgid "Thai"
 msgstr ""
 
@@ -7701,13 +7410,11 @@ msgid ""
 "Please press OK to continue."
 msgstr ""
 
-#
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
-"Please press OK to start using your STB_BOX."
+"Thank you for using the wizard. Your STB_BOX is now ready for "
+"use.\n"
+"Press OK to start using your receiver."
 msgstr ""
-"Takk for at du brukte guiden. Din STB_BOX er nå klar til bruk .\n"
-"Vennligst trykk OK å begynne å bruke den."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -7722,8 +7429,8 @@ msgstr ""
 #
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a STB_BOX format data DVD (which will not play in stand-alone DVD "
-"players) instead?"
+"create a STB_BOX format data DVD (which will not play in stand-"
+"alone DVD players) instead?"
 msgstr ""
 
 msgid ""
@@ -7734,6 +7441,12 @@ msgstr ""
 msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
+msgstr ""
+
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr ""
+
+msgid "The STB_BOX stores the EPG data every (hours)."
 msgstr ""
 
 msgid ""
@@ -7782,12 +7495,6 @@ msgid ""
 "due to an error in mytest.py"
 msgstr ""
 
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr ""
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr ""
-
 #
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Backupen feilet. Vennligst velg en annen backuplokasjon."
@@ -7822,27 +7529,7 @@ msgstr ""
 msgid "The following files were found..."
 msgstr ""
 
-#
-msgid "The installation of the default services lists is finished."
-msgstr "Installasjonen av standard tjenesteliste er ferdig."
-
-#
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your STB_BOX by pressing the OK button on the remote control."
-msgstr ""
-"Installasjonen av standard innstillinger er ferdig. Du kan nå fortsette å "
-"konfigurere din STB_BOX, ved å trykke OK knappen."
-
 msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr ""
-
-#
-msgid "The package doesn't contain anything."
-msgstr "Pakken inneholder ingenting."
-
-#
-msgid "The package:"
 msgstr ""
 
 #
@@ -7903,24 +7590,16 @@ msgstr "Guiden er ferdig nå."
 msgid "There are at least "
 msgstr ""
 
+#, python-format
+msgid "There are at least %s updates available."
+msgstr ""
+
 #
 msgid "There are currently no outstanding actions."
 msgstr ""
 
 #
-msgid "There are no default services lists in your image."
-msgstr "Det finnes ingen standard tjenesteliste i ditt image."
-
-#
-msgid "There are no default settings in your image."
-msgstr "Det finnes ingen standard innstillinger i ditt image."
-
-#
 msgid "There are no updates available."
-msgstr ""
-
-#
-msgid "There are now "
 msgstr ""
 
 msgid "There is no [webif] section in oscam.conf"
@@ -7933,14 +7612,6 @@ msgid ""
 msgstr ""
 "Det er muligens ikke nok plass på den valgt partisjonen.\n"
 "Vil du virkelig fortsette?"
-
-#
-msgid "There was an error downloading the packetlist. Please try again."
-msgstr ""
-
-#
-msgid "There was an error. The package:"
-msgstr ""
 
 #
 msgid ""
@@ -7960,10 +7631,6 @@ msgstr ""
 
 msgid "This allows you change the number of rows shown."
 msgstr ""
-
-#
-msgid "This is step number 2."
-msgstr "Dette er steg nr.2"
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -8037,6 +7704,28 @@ msgstr ""
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
+msgid ""
+"This option configures the general audio delay of Dolby Digital sound tracks."
+msgstr ""
+
+msgid "This option configures the general audio delay of stereo sound tracks."
+msgstr ""
+
+msgid "This option configures the screen aspect ratio."
+msgstr ""
+
+msgid "This option configures the screen refresh rate."
+msgstr ""
+
+msgid "This option configures the screen resolution in PC output mode."
+msgstr ""
+
+msgid "This option configures the video output mode (or resolution)."
+msgstr ""
+
+msgid "This option configures which video output connector will be used."
+msgstr ""
+
 msgid "This option lets you adjust the 3D depth"
 msgstr ""
 
@@ -8085,36 +7774,15 @@ msgid ""
 "result of a limited number of discrete values."
 msgstr ""
 
-msgid "This option sets up the connection method."
-msgstr ""
-
-msgid "This option sets up the general audio delay of Analog sound tracks."
-msgstr ""
-
-msgid ""
-"This option sets up the general audio delay of Dolby Digital sound tracks."
-msgstr ""
-
 msgid ""
 "This option sets up the picture sharpness, used when the picture is being "
 "upscaled."
 msgstr ""
 
-msgid "This option sets up the screen aspect ratio."
-msgstr ""
-
-msgid "This option sets up the screen refresh-rate."
-msgstr ""
-
-msgid "This option sets up the screen resolution, when in PC mode."
-msgstr ""
-
-msgid "This option sets up the screen resolution."
-msgstr ""
-
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your STB_BOX without the need for a network or WLAN connection.\n"
+"your STB_BOX without the need for a network or WLAN "
+"connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
@@ -8361,8 +8029,7 @@ msgstr ""
 msgid "Toggle aspect ratio..."
 msgstr ""
 
-#
-msgid "Tone Amplitude"
+msgid "Tone amplitude"
 msgstr ""
 
 #
@@ -8475,10 +8142,6 @@ msgid "Tuner"
 msgstr "Tuner"
 
 #
-msgid "Tuner "
-msgstr "Tuner "
-
-#
 msgid "Tuner Slot"
 msgstr "Tuner Slot"
 
@@ -8492,6 +8155,10 @@ msgstr ""
 #
 msgid "Tuner status"
 msgstr "Tuner status"
+
+#, python-format
+msgid "Tuner status %s"
+msgstr ""
 
 #
 msgid "Tuner type"
@@ -8525,10 +8192,6 @@ msgstr ""
 #
 msgid "USALS"
 msgstr "USALS"
-
-#
-msgid "USB Stick"
-msgstr "USB Stick"
 
 #
 msgid "USB stick wizard"
@@ -8598,6 +8261,15 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
+msgid "Update channel list only"
+msgstr ""
+
+#, python-format
+msgid "Update completed, %d package was installed."
+msgid_plural "Update completed, %d packages were installed."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Update interval (in seconds)"
 msgstr ""
 
@@ -8606,20 +8278,8 @@ msgid "Updatefeed not available."
 msgstr ""
 
 #
-msgid "Updates your STB_BOX's software"
-msgstr "Oppdaterer software på din mottager"
-
-#
-msgid "Updating finished. Here is the result:"
-msgstr "Oppdatering avsluttet. Her er resultatet:"
-
-#
 msgid "Updating software catalog"
 msgstr ""
-
-#
-msgid "Updating... Please wait... This can take some minutes..."
-msgstr "Oppdaterer...Vennligst vent..Dette kan ta noen minutter "
 
 msgid "Upgrade and reboot system"
 msgstr ""
@@ -8629,16 +8289,8 @@ msgid "Upgrade finished."
 msgstr ""
 
 #
-msgid "Upgrade finished. Do you want to reboot your STB_BOX?"
-msgstr "Oppgradering er ferdig. Vil du restarte din STB_BOX?"
-
-#
 msgid "Upgrading"
 msgstr "Oppgraderer"
-
-#
-msgid "Upgrading STB_BOX... Please wait"
-msgstr "Oppgraderer STB_BOX... Vennligst vent"
 
 msgid "Uphops +"
 msgstr ""
@@ -8660,9 +8312,6 @@ msgstr ""
 msgid "Use DHCP"
 msgstr "Motta IP-adresse (DHCP)"
 
-msgid "Use DVB subtitles position"
-msgstr ""
-
 #
 msgid "Use Interface"
 msgstr ""
@@ -8673,17 +8322,13 @@ msgstr ""
 msgid "Use PTS seekbar while timeshifting? *"
 msgstr ""
 
-#
-msgid "Use Power Measurement"
-msgstr "Bruk Strøm Måling"
-
 msgid "Use TV remote control"
 msgstr ""
 
-msgid "Use ViX coloured Buttons *"
+msgid "Use USALS for this sat"
 msgstr ""
 
-msgid "Use Yellow pango DVB subtitles"
+msgid "Use ViX coloured Buttons *"
 msgstr ""
 
 #
@@ -8699,6 +8344,9 @@ msgstr ""
 msgid "Use official channel numbering"
 msgstr ""
 
+msgid "Use original DVB subtitle position"
+msgstr ""
+
 msgid "Use original teletext position"
 msgstr ""
 
@@ -8707,8 +8355,8 @@ msgid "Use power measurement"
 msgstr "Bruk strøm måling"
 
 msgid ""
-"Use power measurement to detect when the rotor stops turning (if your Vu+ "
-"Duo supports that)"
+"Use power measurement to detect when the rotor stops turning (if your "
+"STB_BOX supports that)"
 msgstr ""
 
 msgid "Use slim screen"
@@ -8756,27 +8404,14 @@ msgstr ""
 
 #
 msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-"Bruk venstre og høyre knappene for å endre valg.\n"
-"\n"
-"Vennligst sett opp tuner A"
-
-msgid "Use the original position of the Teletext subtitles."
-msgstr ""
-
-#
-msgid ""
 "Use the up/down keys on your remote control to select an option. After that, "
 "press OK."
 msgstr "Bruk pil opp/ned på din fjernkontroll for å velge. Trykk deretter OK."
 
-msgid "Use this input device settings?"
+msgid "Use these input device settings?"
 msgstr ""
 
-msgid "Use this settings?"
+msgid "Use these settings?"
 msgstr ""
 
 #
@@ -8791,15 +8426,8 @@ msgid "Use trashcan in movielist"
 msgstr ""
 
 #
-msgid "Use usals for this sat"
-msgstr "Bruk USALS for denne Sat"
-
-#
 msgid "Use wizard to set up basic features"
 msgstr "Bruk guiden til å sette basisinnstillinger"
-
-msgid "Use yellow DVB subtitles."
-msgstr ""
 
 #
 msgid "Used service scan type"
@@ -8851,9 +8479,6 @@ msgstr "VCR scart"
 msgid "VMGM (intro trailer)"
 msgstr ""
 
-msgid "VU+"
-msgstr ""
-
 msgid "Version:"
 msgstr ""
 
@@ -8877,24 +8502,8 @@ msgstr ""
 msgid "Video Fine-Tuning"
 msgstr "Video Fininnstilling"
 
-#
-msgid "Video Fine-Tuning Wizard"
-msgstr "Video Fininnstilling Guide"
-
-#
-msgid "Video Output"
-msgstr "Video Utgang"
-
 msgid "Video PID"
 msgstr ""
-
-#
-msgid "Video Setup"
-msgstr "Video Oppsett"
-
-#
-msgid "Video Wizard"
-msgstr "Video Guide"
 
 #
 msgid "Video enhancement preview"
@@ -8923,6 +8532,15 @@ msgstr ""
 #
 msgid "Video mode selection."
 msgstr "Valg av videotype."
+
+msgid "Video output"
+msgstr ""
+
+msgid "Video setup"
+msgstr ""
+
+msgid "Video wizard"
+msgstr ""
 
 msgid "Videocodec"
 msgstr ""
@@ -9037,29 +8655,6 @@ msgstr "Spenningsmodus"
 msgid "Volume"
 msgstr "Volum"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr ""
-
-#
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr ""
-
-msgid "STB_BOX front panel"
-msgstr ""
-
-msgid "STB_BOX ir keyboard"
-msgstr ""
-
-msgid "STB_BOX ir mouse"
-msgstr ""
-
-msgid "STB_BOX remote control (native)"
-msgstr ""
-
-#
-msgid "STB_BOX software because updates are available."
-msgstr ""
-
 #
 msgid "W"
 msgstr "W"
@@ -9118,10 +8713,6 @@ msgstr ""
 msgid "Wakeup your STB_BOX from standby"
 msgstr ""
 
-#
-msgid "Warn if free space drops below (kB):"
-msgstr ""
-
 msgid "Web Interface"
 msgstr ""
 
@@ -9150,8 +8741,9 @@ msgstr ""
 #
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your STB_BOX by providing a backup facility for your current "
-"settings and a short explanation of how to upgrade your firmware."
+"the firmware of your STB_BOX by providing a backup facility for "
+"your current settings and a short explanation of how to upgrade your "
+"firmware."
 msgstr ""
 "Velkommen til Image-Oppgraderings-Guiden. Guiden vil assistere deg i "
 "oppgradering av firmware ved å gi deg en backupmulighet. Du kan med denne "
@@ -9160,20 +8752,11 @@ msgstr ""
 
 #
 msgid ""
-"Welcome to the cleanup wizard.\n"
-"\n"
-"We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your STB_BOX, the internal memory should be "
-"cleaned up.\n"
-"You can use this wizard to remove some extensions.\n"
-msgstr ""
-
-#
-msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will guide "
-"you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your STB_BOX to the Internet, this "
+"wizard will guide you through the basic network setup of your GigaBlue HD "
+"800 Solo.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -9181,7 +8764,8 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your GigaBlue HD "
+"800 Solo.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 
@@ -9197,13 +8781,65 @@ msgstr "Vest"
 msgid "What do you want to scan?"
 msgstr "Hva vil du søke etter?"
 
-#
-msgid "What to do with submitted crashlogs?"
-msgstr ""
-
 msgid ""
 "When a recording needs to be started it is allowed to interrupt the watched "
 "service"
+msgstr ""
+
+msgid ""
+"When enabled the online checker will also check for experimental versions"
+msgstr ""
+
+msgid ""
+"When enabled, AIT data will be included in http streams. This allows a "
+"client receiver to use HbbTV."
+msgstr ""
+
+msgid ""
+"When enabled, EIT data will be included in http streams. This allows a "
+"client receiver to show EPG."
+msgstr ""
+
+msgid "When enabled, channel numbering will start at '1' for each bouquet."
+msgstr ""
+
+msgid ""
+"When enabled, external subtitles (in media files) will be displayed in "
+"yellow, instead of the original color."
+msgstr ""
+
+msgid "When enabled, graphical DVB subtitles will be centered horizontally."
+msgstr ""
+
+msgid ""
+"When enabled, graphical DVB subtitles will be displayed at their original "
+"position."
+msgstr ""
+
+msgid ""
+"When enabled, graphical DVB subtitles will be displayed in yellow, instead "
+"of the original color."
+msgstr ""
+
+msgid ""
+"When enabled, pressing '0' will zap you to the first channel in your first "
+"bouquet and delete your zap-history."
+msgstr ""
+
+msgid "When enabled, show channel numbers in the channel selection screen."
+msgstr ""
+
+msgid "When enabled, teletext pages will be cached, allowing faster access."
+msgstr ""
+
+msgid ""
+"When enabled, teletext subtitles will be displayed at their original "
+"position."
+msgstr ""
+
+msgid ""
+"When enabled, the original line breaks will be removed from the teletext "
+"subtitles."
 msgstr ""
 
 msgid ""
@@ -9215,17 +8851,17 @@ msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr ""
 
 msgid ""
-"When the event has a aspect ratio of 16:9, choose whether to scale/stretch "
+"When the content has an aspect ratio of 16:9, choose whether to scale/"
+"stretch the picture."
+msgstr ""
+
+msgid ""
+"When the content has an aspect ratio of 4:3, choose whether to scale/stretch "
 "the picture."
 msgstr ""
 
 msgid ""
-"When the event has a aspect ratio of 4:3, choose whether to scale/stretch "
-"the picture."
-msgstr ""
-
-msgid ""
-"When the event has a aspect ratio of 4:3, choose whether to stretch the "
+"When the content has an aspect ratio of 4:3, choose whether to stretch the "
 "picture to fill the screen."
 msgstr ""
 
@@ -9242,7 +8878,8 @@ msgstr ""
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your STB_BOX will restart automatically!\n"
+"After completion of factory reset, your STB_BOX will restart "
+"automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
@@ -9282,21 +8919,6 @@ msgid "Wireless network state"
 msgstr ""
 
 msgid ""
-"With this option enabled the online checker will also check for experimental "
-"versions"
-msgstr ""
-
-msgid ""
-"With this option enabled, Channel numbers will start with '1' in each "
-"bouquet."
-msgstr ""
-
-msgid ""
-"With this option enabled, pressing '0' will zap you to the first channel in "
-"your first bouquet and delete your zap-history."
-msgstr ""
-
-msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
 "bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr ""
@@ -9320,6 +8942,9 @@ msgstr ""
 msgid "Write failed!"
 msgstr ""
 
+msgid "Wrong"
+msgstr ""
+
 msgid "XBox 360 support"
 msgstr ""
 
@@ -9334,7 +8959,7 @@ msgstr "År"
 msgid "Yellow DVB subtitles"
 msgstr ""
 
-msgid "Yellow pango subtitles"
+msgid "Yellow external subtitles"
 msgstr ""
 
 #
@@ -9350,10 +8975,6 @@ msgstr ""
 
 #
 msgid "Yes, and delete this movie"
-msgstr ""
-
-#
-msgid "Yes, and don't ask again"
 msgstr ""
 
 #
@@ -9384,10 +9005,6 @@ msgstr "Ja, legg tilbake innstillingene nå"
 msgid "Yes, returning to movie list"
 msgstr "Ja, returner til filmlisten"
 
-#
-msgid "Yes, view the tutorial"
-msgstr "Ja, vis guiden"
-
 msgid "Yesterday"
 msgstr ""
 
@@ -9412,17 +9029,6 @@ msgstr ""
 #
 msgid "You can cancel the removal."
 msgstr ""
-
-#
-msgid ""
-"You can choose some default settings now. Please select the settings you "
-"want to be installed."
-msgstr ""
-"Du kan velge standard innstillinger nå. Vennligst velg de du vil bruke."
-
-#
-msgid "You can choose, what you want to install..."
-msgstr "Du kan velge det du vil ha installert..."
 
 msgid "You can continue watching TV etc. while this is running."
 msgstr ""
@@ -9460,25 +9066,6 @@ msgstr ""
 #
 msgid "You cannot delete this!"
 msgstr "Du kan ikke slette denne!."
-
-#
-msgid "You chose not to install any default services lists."
-msgstr "Du valgte ikke å installere noen standard tjenesteliste."
-
-#
-msgid ""
-"You chose not to install any default settings. You can however install the "
-"default settings later in the settings menu."
-msgstr ""
-"Du valgte å ikke installere standard innstillinger. Men du kan legge dem inn "
-"senere fra innstillinger menyen."
-
-#
-msgid ""
-"You chose not to install anything. Please press OK finish the install wizard."
-msgstr ""
-"Du valgte å ikke installere noe. Vennligst trykk OK for å avslutte "
-"installasjonsguiden."
 
 msgid "You didn't select a channel to record from."
 msgstr ""
@@ -9523,33 +9110,24 @@ msgstr "Du må vente %s!"
 
 #
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
+"You need a PC connected to your STB_BOX. If you need further "
+"instructions, please visit the website http://www.dm7025.de.\n"
+"Your STB_BOX will now be halted. After you have performed the "
+"update instructions from the website, your new firmware will ask you to "
+"restore your settings."
 msgstr ""
 "Du trenger en PC koblet til din DB. Trenger du videre informasjonvennligst "
 "gå til Websiden http://www.dm7025.de.\n"
-"Din STB_BOX vil nå bli stoppet. Etter du har gjennomførtoppdaterings- "
-"instruksjonene fra websiden, vil din nye firmware spørre deg om å legg inn "
-"igjen innstillingene."
-
-msgid ""
-"You need to set a PIN code and hide it from your children.\n"
-"\n"
-"Do you want to set the pin now?"
-msgstr ""
+"Din STB_BOX vil nå bli stoppet. Etter du har "
+"gjennomførtoppdaterings- instruksjonene fra websiden, vil din nye firmware "
+"spørre deg om å legg inn igjen innstillingene."
 
 msgid "You system does not support ext4"
 msgstr ""
 
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr ""
-
 msgid ""
-"Your STB_BOX is not connected to the internet, please check your network "
-"settings and try again."
+"Your STB_BOX is not connected to the internet, please check "
+"your network settings and try again."
 msgstr ""
 
 #
@@ -9581,25 +9159,27 @@ msgstr "Din STB_BOX slår seg av. Vennligst vent..."
 
 #
 msgid ""
-"Your STB_BOX isn't connected to the internet properly. Please check it and "
-"try again."
+"Your STB_BOX isn't connected to the internet properly. Please "
+"check it and try again."
 msgstr ""
-"Din STB_BOX er ikke koblet til internet skikkelig. Vennligst sjekk dette og "
-"prøv igjen"
+"Din STB_BOX er ikke koblet til internet skikkelig. Vennligst "
+"sjekk dette og prøv igjen"
 
 msgid ""
-"Your STB_BOX might be unusable now. Please consult the manual for further "
-"assistance before rebooting your STB_BOX."
+"Your STB_BOX might be unusable now. Please consult the manual "
+"for further assistance before rebooting your STB_BOX."
 msgstr ""
 
 #, python-format
 msgid ""
-"Your STB_BOX will be restarted after the installation of service\n"
+"Your STB_BOX will be restarted after the installation of "
+"service\n"
 "Ready to install \"%s\" ?"
 msgstr ""
 
 msgid ""
-"Your STB_BOX will be restarted after the installation of service.\n"
+"Your STB_BOX will be restarted after the installation of "
+"service.\n"
 "\n"
 "Do you want to install now ?"
 msgstr ""
@@ -9609,13 +9189,16 @@ msgid ""
 "Do you want to remove now ?"
 msgstr ""
 
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr ""
+
 #
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr ""
-"Din backup var OK. STB_BOXen vil nå fortelle deg den videre gangen i "
-"oppdaterings-prosessen."
+"Din backup var OK. STB_BOXen vil nå fortelle deg den videre "
+"gangen i oppdaterings-prosessen."
 
 #
 msgid ""
@@ -9631,10 +9214,6 @@ msgstr ""
 
 #
 msgid "Your current collection will get lost!"
-msgstr ""
-
-#
-msgid "Your email address:"
 msgstr ""
 
 #
@@ -9657,12 +9236,18 @@ msgid ""
 "Please choose what you want to do next."
 msgstr ""
 
-#
-msgid "Your name (optional):"
+#, python-format
+msgid "Your internet connection is working (ip: %s)"
 msgstr ""
 
 #
 msgid "Your network configuration has been activated."
+msgstr ""
+
+msgid "Your receiver does not have an internet connection"
+msgstr ""
+
+msgid "Your receiver is not connected to the internet"
 msgstr ""
 
 #
@@ -9860,20 +9445,11 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
+msgid "alphabetic"
+msgstr ""
+
 msgid "alphabetic reverse"
 msgstr ""
-
-#
-msgid "alphabetic sort"
-msgstr "sorter alfabetisk"
-
-#
-msgid ""
-"are you sure you want to restore\n"
-"following backup:\n"
-msgstr ""
-"Er du sikker på at du vil gjenopprette\n"
-"følgende backup:\n"
 
 msgid "arts/culture (without music, general)"
 msgstr ""
@@ -9919,8 +9495,7 @@ msgstr ""
 msgid "auto"
 msgstr ""
 
-#
-msgid "available"
+msgid "automatic"
 msgstr ""
 
 #
@@ -9967,6 +9542,9 @@ msgstr ""
 #
 #, python-format
 msgid "burn audio track (%s)"
+msgstr ""
+
+msgid "by date"
 msgstr ""
 
 msgid "caid:"
@@ -10046,10 +9624,6 @@ msgstr ""
 #
 msgid "copy to bouquets"
 msgstr "kopier til bouquets"
-
-#
-msgid "could not be removed"
-msgstr ""
 
 #
 msgid "create directory"
@@ -10199,9 +9773,6 @@ msgstr "avslutt klipp her"
 msgid "end favourites edit"
 msgstr "avslutt favorittt editering"
 
-msgid "enigma2 and network"
-msgstr ""
-
 msgid "entertainment (10-16 year old)"
 msgstr ""
 
@@ -10286,6 +9857,12 @@ msgid "fitness & health"
 msgstr ""
 
 msgid "fixed"
+msgstr ""
+
+msgid "flat alphabetic"
+msgstr ""
+
+msgid "flat alphabetic reverse"
 msgstr ""
 
 msgid "folk/traditional music"
@@ -11078,10 +10655,6 @@ msgstr ""
 msgid "social/spiritual science"
 msgstr ""
 
-#
-msgid "sort by date"
-msgstr "sorter på dato"
-
 msgid "sorting of playlists"
 msgstr ""
 
@@ -11290,10 +10863,6 @@ msgstr "venter på mmi..."
 msgid "waiting"
 msgstr "venter"
 
-#
-msgid "was removed successfully"
-msgstr ""
-
 msgid "water sport"
 msgstr ""
 
@@ -11355,14 +10924,6 @@ msgid "yes (keep feeds)"
 msgstr "ja (behold feeds)"
 
 #
-msgid ""
-"your STB_BOX might be unusable now. Please consult the manual for further "
-"assistance before rebooting your STB_BOX."
-msgstr ""
-"din STB_BOX fungerer kanskje ikke nå. Vennligst les manualen for hvordan du "
-"får hjelp før du starter om din STB_BOX."
-
-#
 msgid "zap"
 msgstr "zap"
 
@@ -11371,20 +10932,226 @@ msgid "zapped"
 msgstr "zapped"
 
 #
+#~ msgid "/usr/share/enigma2 directory"
+#~ msgstr "/usr/share/enigma2 folder"
+
+#
+#~ msgid "/var directory"
+#~ msgstr "/var folder"
+
+#
+#~ msgid "Advanced Video Setup"
+#~ msgstr "Avansert Video Oppsett"
+
+#
+#~ msgid ""
+#~ "After the start wizard is completed, you need to protect single services. "
+#~ "Refer to your STB_BOX's manual on how to do that."
+#~ msgstr ""
+#~ "Etter oppstartsguiden er ferdig, trenger du beskytte enkelte kanaler. Les "
+#~ "i manualen for din STB_BOX hvordan det gjøres."
+
+#
 #~ msgid "Ask before shutdown:"
 #~ msgstr "Spør før avstegning"
+
+#
+#~ msgid "Backup"
+#~ msgstr "Backup"
+
+#
+#~ msgid "Backup Location"
+#~ msgstr "Backup Lokasjon"
+
+#
+#~ msgid "Backup Mode"
+#~ msgstr "Backup Modus"
+
+#
+#~ msgid ""
+#~ "By pressing the OK Button on your remote control, the info bar is being "
+#~ "displayed."
+#~ msgstr "Ved å trykke OK på din fjernkontroll, vises infobaren."
+
+#
+#~ msgid "CF Drive"
+#~ msgstr "CF Disk"
+
+#
+#~ msgid ""
+#~ "Delete no more configured satellite\n"
+#~ "%s?"
+#~ msgstr "Slette satellit %s, som ikke er i bruk lenger?"
 
 #
 #~ msgid "Display Setup"
 #~ msgstr "Display Oppsett"
 
 #
+#~ msgid ""
+#~ "Do you want to backup now?\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "Vil du ta backup nå?\n"
+#~ "Trykk OK og vennligst vent!"
+
+#
+#~ msgid ""
+#~ "Do you want to enable the parental control feature on your GigaBlue HD "
+#~ "800 Solo?"
+#~ msgstr "Vil du aktivere foreldrekontroll på STB_BOXen din?"
+
+#
+#~ msgid ""
+#~ "Do you want to update your STB_BOX?\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "Vil du oppdatere din STB_BOX?\n"
+#~ "Etter å ha trykt OK, vennligst vent!"
+
+#
+#~ msgid "Do you want to view a tutorial?"
+#~ msgstr "Vil du se en veiledning?"
+
+#
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "Ferdig - Installerte eller oppgraderte %d pakker"
+
+#
+#~ msgid "Installing default sat lists... Please wait..."
+#~ msgstr "Installerer standard sat liste... Vennligst vent..."
+
+#
+#~ msgid "Installing defaults... Please wait..."
+#~ msgstr "Installerer standarder... Vennligst vent..."
+
+#
+#~ msgid "Installing package content... Please wait..."
+#~ msgstr "Installerer pakke innhold... Vennligst vent..."
+
+#
 #~ msgid "Keyboard Setup"
 #~ msgstr "Tastaturinstillinger"
 
 #
+#~ msgid "LOF"
+#~ msgstr "LOF"
+
+#
+#~ msgid "LOF/H"
+#~ msgstr "LOF/H"
+
+#
+#~ msgid "LOF/L"
+#~ msgstr "LOF/L"
+
+#
+#~ msgid "Mode"
+#~ msgstr "Modus"
+
+#
+#~ msgid ""
+#~ "No packages were upgraded yet. So you can check your network and try "
+#~ "again."
+#~ msgstr ""
+#~ "Ingen pakker opgraderet endda. Sjekk vennligst ditt nettverk og prøv "
+#~ "igjen."
+
+#
+#~ msgid "Please choose he package..."
+#~ msgstr "Vennligst velg pakke.."
+
+#
+#~ msgid "Please choose the default services lists you want to install."
+#~ msgstr "Vennligst velg standard tjeneste liste du vil installere."
+
+#
+#~ msgid "Please press OK!"
+#~ msgstr "Vennligst trykk OK!"
+
+#
+#~ msgid "Refresh Rate"
+#~ msgstr "Gjennoppfrisknings Rate"
+
+#
 #~ msgid "Sat / Dish Setup"
 #~ msgstr "Sat-/Parabolinstillinger"
+
+#
+#~ msgid "Scan QAM128"
+#~ msgstr "Søke QAM128"
+
+#
+#~ msgid "Scan QAM16"
+#~ msgstr "Søke QAM16"
+
+#
+#~ msgid "Scan QAM256"
+#~ msgstr "Søke QAM256"
+
+#
+#~ msgid "Scan QAM32"
+#~ msgstr "Søke QAM32"
+
+#
+#~ msgid "Scan QAM64"
+#~ msgstr "Søke QAM64"
+
+#
+#~ msgid "Scan SR6875"
+#~ msgstr "Søke SR6875"
+
+#
+#~ msgid "Scan SR6900"
+#~ msgstr "Søke SR6900"
+
+#
+#~ msgid "Scan band EU HYPER"
+#~ msgstr "Søke bånd EU HYPER"
+
+#
+#~ msgid "Scan band EU MID"
+#~ msgstr "Søke bånd EU MID"
+
+#
+#~ msgid "Scan band EU SUPER"
+#~ msgstr "Søke bånd EU SUPER"
+
+#
+#~ msgid "Scan band EU UHF IV"
+#~ msgstr "Søke bånd EU UHF IV"
+
+#
+#~ msgid "Scan band EU UHF V"
+#~ msgstr "Søke bånd EU UHF V"
+
+#
+#~ msgid "Scan band EU VHF I"
+#~ msgstr "Søke bånd EU VHF I"
+
+#
+#~ msgid "Scan band EU VHF III"
+#~ msgstr "Søke bånd EU VHF III"
+
+#
+#~ msgid "Scan band US HIGH"
+#~ msgstr "Søke bånd US HIGH"
+
+#
+#~ msgid "Scan band US HYPER"
+#~ msgstr "Søke bånd US HYPER"
+
+#
+#~ msgid "Scan band US LOW"
+#~ msgstr "Søke bånd US LOW"
+
+#
+#~ msgid "Scan band US MID"
+#~ msgstr "Søke bånd US MID"
+
+#
+#~ msgid "Scan band US SUPER"
+#~ msgstr "Søke bånd US SUPER"
 
 #
 #~ msgid "Service Searching"
@@ -11397,6 +11164,55 @@ msgstr "zapped"
 #
 #~ msgid "Sleep timer action:"
 #~ msgstr "Sleep timer aksjon"
+
+#
+#~ msgid ""
+#~ "Sorry your Backup destination does not exist\n"
+#~ "\n"
+#~ "Please choose an other one."
+#~ msgstr ""
+#~ "Desverre, din backup destination eksisterer ikke\n"
+#~ "\n"
+#~ "Venligst velg en annen."
+
+#
+#~ msgid ""
+#~ "Thank you for using the wizard. Your STB_BOX is now ready to "
+#~ "use.\n"
+#~ "Please press OK to start using your STB_BOX."
+#~ msgstr ""
+#~ "Takk for at du brukte guiden. Din STB_BOX er nå klar til "
+#~ "bruk .\n"
+#~ "Vennligst trykk OK å begynne å bruke den."
+
+#
+#~ msgid "The installation of the default services lists is finished."
+#~ msgstr "Installasjonen av standard tjenesteliste er ferdig."
+
+#
+#~ msgid ""
+#~ "The installation of the default settings is finished. You can now "
+#~ "continue configuring your STB_BOX by pressing the OK button "
+#~ "on the remote control."
+#~ msgstr ""
+#~ "Installasjonen av standard innstillinger er ferdig. Du kan nå fortsette å "
+#~ "konfigurere din STB_BOX, ved å trykke OK knappen."
+
+#
+#~ msgid "The package doesn't contain anything."
+#~ msgstr "Pakken inneholder ingenting."
+
+#
+#~ msgid "There are no default services lists in your image."
+#~ msgstr "Det finnes ingen standard tjenesteliste i ditt image."
+
+#
+#~ msgid "There are no default settings in your image."
+#~ msgstr "Det finnes ingen standard innstillinger i ditt image."
+
+#
+#~ msgid "This is step number 2."
+#~ msgstr "Dette er steg nr.2"
 
 #
 #~ msgid ""
@@ -11421,6 +11237,68 @@ msgstr "zapped"
 #~ "nettverket ditt."
 
 #
+#~ msgid "Tuner "
+#~ msgstr "Tuner "
+
+#
+#~ msgid "USB Stick"
+#~ msgstr "USB Stick"
+
+#
+#~ msgid "Updates your STB_BOX's software"
+#~ msgstr "Oppdaterer software på din mottager"
+
+#
+#~ msgid "Updating finished. Here is the result:"
+#~ msgstr "Oppdatering avsluttet. Her er resultatet:"
+
+#
+#~ msgid "Updating... Please wait... This can take some minutes..."
+#~ msgstr "Oppdaterer...Vennligst vent..Dette kan ta noen minutter "
+
+#
+#~ msgid "Upgrade finished. Do you want to reboot your STB_BOX?"
+#~ msgstr "Oppgradering er ferdig. Vil du restarte din STB_BOX?"
+
+#
+#~ msgid "Upgrading STB_BOX... Please wait"
+#~ msgstr "Oppgraderer STB_BOX... Vennligst vent"
+
+#
+#~ msgid "Use Power Measurement"
+#~ msgstr "Bruk Strøm Måling"
+
+#
+#~ msgid ""
+#~ "Use the left and right buttons to change an option.\n"
+#~ "\n"
+#~ "Please set up tuner A"
+#~ msgstr ""
+#~ "Bruk venstre og høyre knappene for å endre valg.\n"
+#~ "\n"
+#~ "Vennligst sett opp tuner A"
+
+#
+#~ msgid "Use usals for this sat"
+#~ msgstr "Bruk USALS for denne Sat"
+
+#
+#~ msgid "Video Fine-Tuning Wizard"
+#~ msgstr "Video Fininnstilling Guide"
+
+#
+#~ msgid "Video Output"
+#~ msgstr "Video Utgang"
+
+#
+#~ msgid "Video Setup"
+#~ msgstr "Video Oppsett"
+
+#
+#~ msgid "Video Wizard"
+#~ msgstr "Video Guide"
+
+#
 #~ msgid ""
 #~ "Welcome.\n"
 #~ "\n"
@@ -11430,13 +11308,73 @@ msgstr "zapped"
 #~ msgstr ""
 #~ "Velkommen.\n"
 #~ "\n"
-#~ "Denne Guiden vil hjelpe deg gjennom basis setup av din STB_BOX.\n"
+#~ "Denne Guiden vil hjelpe deg gjennom basis setup av din GigaBlue HD 800 "
+#~ "Solo.\n"
 #~ "Vennligst trykk OK på din fjernkontroll for å gå til neste steg."
+
+#
+#~ msgid "Yes, view the tutorial"
+#~ msgstr "Ja, vis guiden"
+
+#
+#~ msgid ""
+#~ "You can choose some default settings now. Please select the settings you "
+#~ "want to be installed."
+#~ msgstr ""
+#~ "Du kan velge standard innstillinger nå. Vennligst velg de du vil bruke."
+
+#
+#~ msgid "You can choose, what you want to install..."
+#~ msgstr "Du kan velge det du vil ha installert..."
+
+#
+#~ msgid "You chose not to install any default services lists."
+#~ msgstr "Du valgte ikke å installere noen standard tjenesteliste."
+
+#
+#~ msgid ""
+#~ "You chose not to install any default settings. You can however install "
+#~ "the default settings later in the settings menu."
+#~ msgstr ""
+#~ "Du valgte å ikke installere standard innstillinger. Men du kan legge dem "
+#~ "inn senere fra innstillinger menyen."
+
+#
+#~ msgid ""
+#~ "You chose not to install anything. Please press OK finish the install "
+#~ "wizard."
+#~ msgstr ""
+#~ "Du valgte å ikke installere noe. Vennligst trykk OK for å avslutte "
+#~ "installasjonsguiden."
+
+#
+#~ msgid "alphabetic sort"
+#~ msgstr "sorter alfabetisk"
+
+#
+#~ msgid ""
+#~ "are you sure you want to restore\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "Er du sikker på at du vil gjenopprette\n"
+#~ "følgende backup:\n"
 
 #
 #~ msgid "shutdown"
 #~ msgstr "slå av"
 
 #
+#~ msgid "sort by date"
+#~ msgstr "sorter på dato"
+
+#
 #~ msgid "standby"
 #~ msgstr "standby"
+
+#
+#~ msgid ""
+#~ "your STB_BOX might be unusable now. Please consult the "
+#~ "manual for further assistance before rebooting your STB_BOX."
+#~ msgstr ""
+#~ "din STB_BOX fungerer kanskje ikke nå. Vennligst les manualen "
+#~ "for hvordan du får hjelp før du starter om din STB_BOX."

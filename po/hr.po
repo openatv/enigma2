@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-14 17:59+0100\n"
+"POT-Creation-Date: 2012-09-28 16:57+0100\n"
 "PO-Revision-Date: 2012-09-14 19:17-0000\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team:  <jurica@dream-multimedia.eu>\n"
@@ -91,12 +91,6 @@ msgid ""
 "\n"
 "Select your backup device.\n"
 "Current device: "
-msgstr ""
-
-#
-msgid ""
-"\n"
-"System will restart after the restore!"
 msgstr ""
 
 #
@@ -228,6 +222,17 @@ msgstr ""
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
+#. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
+#, python-format
+msgid "%s is no longer used. Should it be deleted?"
+msgstr ""
+
+#, python-format
+msgid "%s updated package available"
+msgid_plural "%s updated packages available"
+msgstr[0] ""
+msgstr[1] ""
+
 #, python-format
 msgid "%s/%s: %s"
 msgstr ""
@@ -263,14 +268,6 @@ msgstr ""
 #
 msgid "* Only available if more than one interface is active."
 msgstr ""
-
-#
-msgid "/usr/share/enigma2 directory"
-msgstr "/usr/share/enigma2 direktorij"
-
-#
-msgid "/var directory"
-msgstr "/var direktorij"
 
 #
 msgid "0"
@@ -435,6 +432,12 @@ msgid ""
 "again."
 msgstr ""
 
+#, python-format
+msgid ""
+"A configuration file (%s) has been modified since it was installed.\n"
+"Do you want to keep your modifications?"
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -550,6 +553,9 @@ msgstr ""
 msgid "A/V Settings"
 msgstr "Postavke TV-a"
 
+msgid "A/V settings"
+msgstr ""
+
 #
 msgid "AA"
 msgstr "AA"
@@ -565,9 +571,6 @@ msgid "AFP Setup"
 msgstr ""
 
 msgid "AFP setup"
-msgstr ""
-
-msgid "AIT data will be included in http streams"
 msgstr ""
 
 #, python-format
@@ -610,9 +613,6 @@ msgstr "Aktiviraj Sliku u Slici"
 msgid "Activate network settings"
 msgstr "Aktiviraj mrežne postavke"
 
-msgid "Activate rewrapping of the teletext subtitles"
-msgstr ""
-
 msgid "Activate the chosen network settings."
 msgstr ""
 
@@ -640,10 +640,6 @@ msgstr ""
 msgid "Add Timer"
 msgstr ""
 
-#
-msgid "Add WLAN configuration?"
-msgstr ""
-
 msgid "Add a auto timer for current event"
 msgstr ""
 
@@ -665,10 +661,6 @@ msgid "Add a record timer for current event"
 msgstr ""
 
 msgid "Add a zap timer for current event"
-msgstr ""
-
-#
-msgid "Add network configuration?"
 msgstr ""
 
 #
@@ -699,18 +691,6 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-msgid ""
-"Adds enigma2 settings and STB_BOX informations like SN, rev... if enabled."
-msgstr ""
-
-#
-msgid "Adds network configuration if enabled."
-msgstr ""
-
-#
-msgid "Adds wlan configuration if enabled."
-msgstr ""
-
 msgid "Adjust 3D settings"
 msgstr ""
 
@@ -739,24 +719,15 @@ msgid "Advanced Video Enhancement Setup"
 msgstr ""
 
 #
-msgid "Advanced Video Setup"
-msgstr "Napredne video postavke"
-
-#
 msgid "Advanced restore"
+msgstr ""
+
+msgid "Advanced video setup"
 msgstr ""
 
 #
 msgid "After event"
 msgstr "Nakon događaja"
-
-#
-msgid ""
-"After the start wizard is completed, you need to protect single services. "
-"Refer to your STB_BOX's manual on how to do that."
-msgstr ""
-"Nakon što Čarobnjak završi, vi trebate zaštititi pojedine usluge. Pogledajte "
-"u korisničke upute kako to učiniti."
 
 #
 msgid "Album"
@@ -769,11 +740,10 @@ msgstr ""
 msgid "All"
 msgstr "Svi"
 
-#
-msgid "All Satellites"
+msgid "All ages"
 msgstr ""
 
-msgid "All ages"
+msgid "All satellites"
 msgstr ""
 
 msgid "Allow Subtitle equals Audio mask"
@@ -835,7 +805,7 @@ msgstr ""
 msgid "Altern"
 msgstr ""
 
-msgid "Alternative numbering Mode"
+msgid "Alternative numbering mode"
 msgstr ""
 
 msgid "Alternative radio mode"
@@ -848,10 +818,6 @@ msgstr "Prioritet alternativnih usluga tunera"
 msgid "Always ask"
 msgstr ""
 
-#
-msgid "Always ask before sending"
-msgstr ""
-
 msgid "Always show bouquets"
 msgstr ""
 
@@ -859,12 +825,11 @@ msgstr ""
 msgid "An empty filename is illegal."
 msgstr ""
 
-#
-msgid "An unknown error occured!"
+msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr ""
 
 #
-msgid "Anonymize crashlog?"
+msgid "An unknown error occured!"
 msgstr ""
 
 msgid "Any activity"
@@ -880,10 +845,9 @@ msgid ""
 "\n"
 msgstr ""
 
-#
 msgid ""
 "Are you sure you want to delete\n"
-"following backup:\n"
+"the following backup:\n"
 msgstr ""
 
 msgid "Are you sure you want to delete all selected logs:\n"
@@ -905,16 +869,17 @@ msgid ""
 "\n"
 msgstr ""
 
-#
+#, python-format
 msgid ""
 "Are you sure you want to restore\n"
-"following backup:\n"
+"the following backup:\n"
+"%s\n"
+"Your receiver will restart after the backup has been restored!"
 msgstr ""
 
-#
 msgid ""
-"Are you sure you want to restore your Enigma2 backup?\n"
-"Enigma2 will restart after the restore"
+"Are you sure you want to restore the backup?\n"
+"Your receiver will restart after the backup has been restored!"
 msgstr ""
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
@@ -943,6 +908,9 @@ msgstr ""
 #
 msgid "Aspect Ratio"
 msgstr "Omjer slike"
+
+msgid "Aspect ratio"
+msgstr ""
 
 msgid "Attach a file"
 msgstr ""
@@ -1005,6 +973,9 @@ msgstr ""
 #
 msgid "Automatic Scan"
 msgstr "Automatsko skeniranje "
+
+msgid "Automatic configuration is finished"
+msgstr ""
 
 msgid "Automatic image backup"
 msgstr ""
@@ -1074,20 +1045,7 @@ msgstr ""
 msgid "Background delete speed"
 msgstr ""
 
-#
-msgid "Backup"
-msgstr "Sigurnosna kopija"
-
-#
-msgid "Backup Location"
-msgstr "Lokacija sigurnosne kopije"
-
-#
-msgid "Backup Mode"
-msgstr "Mod sigurnosne kopije"
-
-#
-msgid "Backup done."
+msgid "Backup completed."
 msgstr ""
 
 #
@@ -1222,13 +1180,6 @@ msgid "By Team ViX"
 msgstr ""
 
 #
-msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
-msgstr ""
-"Pritiskom na tipku OK bežičnog upravljača, info traka bit će prikazana."
-
-#
 msgid "C"
 msgstr ""
 
@@ -1284,10 +1235,6 @@ msgid "CCcam info"
 msgstr ""
 
 #
-msgid "CF Drive"
-msgstr "CF Disk"
-
-#
 msgid "CI assignment"
 msgstr ""
 
@@ -1341,10 +1288,7 @@ msgstr ""
 msgid "Cardserial"
 msgstr ""
 
-msgid "Center the position of the DVB subtitles."
-msgstr ""
-
-msgid "Centered DVB subtitles"
+msgid "Center DVB subtitles"
 msgstr ""
 
 #
@@ -1402,6 +1346,9 @@ msgstr "Sekcija kanala"
 msgid "Channel Selection Configuration"
 msgstr ""
 
+msgid "Channel list context menu"
+msgstr ""
+
 msgid "Channel list on mode change"
 msgstr ""
 
@@ -1409,6 +1356,9 @@ msgid "Channel list preview"
 msgstr ""
 
 msgid "Channel list service mode*"
+msgstr ""
+
+msgid "Channel list type"
 msgstr ""
 
 #
@@ -1445,6 +1395,12 @@ msgstr ""
 msgid "Check every (hours)"
 msgstr ""
 
+msgid "Check the internet connection"
+msgstr ""
+
+msgid "Check the internet connection again"
+msgstr ""
+
 msgid "Checking Feeds"
 msgstr ""
 
@@ -1456,6 +1412,15 @@ msgid "Checking Logs..."
 msgstr ""
 
 msgid "Checking for Updates..."
+msgstr ""
+
+msgid "Checking the internet connection"
+msgstr ""
+
+#, python-format
+msgid ""
+"Checking tuner %d\n"
+"DiSEqC port %s for %s"
 msgstr ""
 
 msgid "Children/Youth"
@@ -1501,18 +1466,13 @@ msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
 msgid ""
-"Choose the location where the EPG data will be stored when the STB_BOX is "
-"shut down. The location must be available at boot time."
+"Choose the location where the EPG data will be stored when the GigaBlue HD "
+"800 Solo is shut down. The location must be available at boot time."
 msgstr ""
 
 msgid ""
-"Choose the name of the file that holds the EPG data when the STB_BOX is shut "
-"down. This can be handy to differentiate between several boxes."
-msgstr ""
-
-msgid ""
-"Choose the order in which the tuner types will be used (for watching and "
-"recording)."
+"Choose the name of the file that holds the EPG data when the GigaBlue HD 800 "
+"Solo is shut down. This can be handy to differentiate between several boxes."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -1526,6 +1486,10 @@ msgid "Choose upgrade source"
 msgstr ""
 
 msgid "Choose what you want the button '0' to do when PIP is active."
+msgstr ""
+
+msgid ""
+"Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr ""
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
@@ -1546,11 +1510,6 @@ msgstr ""
 msgid "Choose which tuner to configure."
 msgstr ""
 
-msgid ""
-"Choose which tuner will be used first. If set to 'auto' the system will give "
-"priority to the tuner having the lowest number of channels/satellites."
-msgstr ""
-
 #
 msgid "Choose your Skin"
 msgstr "Odaberite vaše sučelje"
@@ -1569,18 +1528,6 @@ msgstr ""
 #
 msgid "Cleanup"
 msgstr "Čišćenje"
-
-#
-msgid "Cleanup Wizard"
-msgstr ""
-
-#
-msgid "Cleanup Wizard settings"
-msgstr ""
-
-#
-msgid "CleanupWizard"
-msgstr ""
 
 #
 msgid "Clear before scan"
@@ -1629,6 +1576,9 @@ msgstr ""
 #
 msgid "Color Format"
 msgstr "Kolor format"
+
+msgid "Color format"
+msgstr ""
 
 #
 msgid "Command execution..."
@@ -1680,6 +1630,9 @@ msgstr ""
 msgid "Configuration Mode"
 msgstr "Mod Konfiguracije"
 
+msgid "Configuration mode"
+msgstr ""
+
 #
 msgid "Configure interface"
 msgstr ""
@@ -1711,6 +1664,20 @@ msgid "Configure the behaviour when a movie reaches the end"
 msgstr ""
 
 msgid ""
+"Configure the border width of the subtitles. The dark border makes the "
+"subtitles easier to read on a light background."
+msgstr ""
+
+msgid "Configure the color of the teletext subtitles."
+msgstr ""
+
+msgid "Configure the font size of the subtitles."
+msgstr ""
+
+msgid "Configure the horizontal alignment of the subtitles."
+msgstr ""
+
+msgid ""
 "Configure the number of days old timers are kept and then auto deleted from "
 "the timers list"
 msgstr ""
@@ -1735,6 +1702,9 @@ msgstr ""
 msgid "Configure the speed of the background delete feature"
 msgstr ""
 
+msgid "Configure the subtitle delay when timing information is not available."
+msgstr ""
+
 msgid "Configure the time of the stepskip on the '1'/'3'-keys"
 msgstr ""
 
@@ -1744,10 +1714,31 @@ msgstr ""
 msgid "Configure the time of the stepskip on the '7'/'9'-keys"
 msgstr ""
 
+msgid ""
+"Configure the transparency of the black background of graphical DVB "
+"subtitles."
+msgstr ""
+
 msgid "Configure the type of status indication icons shown in the movielist"
 msgstr ""
 
+msgid ""
+"Configure the vertical position of the subtitles, measured from the bottom "
+"of the screen."
+msgstr ""
+
 msgid "Configure the way recording filenames are composed"
+msgstr ""
+
+msgid ""
+"Configure which tuner type will be preferred, when the same service is "
+"available on different types of tuners."
+msgstr ""
+
+msgid ""
+"Configure which tuner will be preferred, when more than one tuner is "
+"available. If set to 'auto' the system will give priority to the tuner "
+"having the lowest number of channels/satellites."
 msgstr ""
 
 #
@@ -1845,6 +1836,9 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
+msgid "Correct"
+msgstr ""
+
 msgid ""
 "Could not activate Permanent-Timeshift!\n"
 "Timeshift-Path does not exist"
@@ -1852,6 +1846,9 @@ msgstr ""
 
 #
 msgid "Could not connect to STB_BOX .NFI Image Feed Server:"
+msgstr ""
+
+msgid "Could not find installed channel list."
 msgstr ""
 
 #
@@ -1880,28 +1877,6 @@ msgid "Couldn't record due to invalid service %s"
 msgstr ""
 
 msgid "Crash Logs"
-msgstr ""
-
-#
-msgid "Crashlog settings"
-msgstr ""
-
-#
-msgid "CrashlogAutoSubmit"
-msgstr ""
-
-#
-msgid "CrashlogAutoSubmit settings"
-msgstr ""
-
-#
-msgid "CrashlogAutoSubmit settings..."
-msgstr ""
-
-#
-msgid ""
-"Crashlogs found!\n"
-"Send them to Dream Multimedia?"
 msgstr ""
 
 #
@@ -1984,12 +1959,6 @@ msgstr ""
 msgid "Custom skip time for '7'/'9'-keys"
 msgstr ""
 
-msgid "Custom text alignment"
-msgstr ""
-
-msgid "Custom text position"
-msgstr ""
-
 #
 msgid "Customize"
 msgstr "Prilagodi"
@@ -1997,6 +1966,9 @@ msgstr "Prilagodi"
 #
 msgid "Cut"
 msgstr "Odreži"
+
+msgid "Cutlist editor"
+msgstr ""
 
 #
 msgid "Cutlist editor..."
@@ -2080,18 +2052,6 @@ msgid "Debug Logs"
 msgstr ""
 
 #
-msgid "Decide if you want to enable or disable the Cleanup Wizard."
-msgstr ""
-
-#
-msgid "Decide what should be done when crashlogs are found."
-msgstr ""
-
-#
-msgid "Decide what should happen to the crashlogs after submission."
-msgstr ""
-
-#
 msgid "Deep Standby"
 msgstr "Isključi STB_BOX"
 
@@ -2133,23 +2093,12 @@ msgid "Delete Confirmation"
 msgstr ""
 
 #
-msgid "Delete crashlogs"
-msgstr ""
-
-#
 msgid "Delete entry"
 msgstr "Obriši unos"
 
 #
 msgid "Delete failed!"
 msgstr "Brisanje neuspješno!"
-
-#
-#, python-format
-msgid ""
-"Delete no more configured satellite\n"
-"%s?"
-msgstr ""
 
 msgid "Delete old timers after how many days"
 msgstr ""
@@ -2219,6 +2168,10 @@ msgstr "DiSEqC A/B/C/D"
 msgid "DiSEqC mode"
 msgstr "DiSEqC mod"
 
+#, python-format
+msgid "DiSEqC port %s: %s"
+msgstr ""
+
 #
 msgid "DiSEqC repeats"
 msgstr "DiSEqC ponavljanja"
@@ -2263,10 +2216,6 @@ msgid "Disable Picture in Picture"
 msgstr "Isključi Sliku u Slici"
 
 msgid "Disable background scanning"
-msgstr ""
-
-#
-msgid "Disable crashlog reporting"
 msgstr ""
 
 #
@@ -2375,17 +2324,14 @@ msgid "Do you want to add any additional information ?"
 msgstr ""
 
 msgid ""
+"Do you want to also install samba client ?\n"
+"This allows you to mount your windows shares on this device."
+msgstr ""
+
+msgid ""
 "Do you want to attach a text file to explain the log ?\n"
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
-
-#
-msgid ""
-"Do you want to backup now?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"Želite li napraviti sigurnosnu kopiju sada?\n"
-"Nakon pritiska tipke OK, molim pričekajte!"
 
 #
 msgid "Do you want to burn this collection to DVD medium?"
@@ -2408,9 +2354,8 @@ msgstr "Želite li započeti drugu ručnu pretragu usluga sada?"
 msgid "Do you want to download the image to %s ?"
 msgstr ""
 
-#
-msgid "Do you want to enable the parental control feature on your STB_BOX?"
-msgstr "Želite li uključiti roditeljsku kontrolu na vašem STB_BOX-u?"
+msgid "Do you want to install a channel list?"
+msgstr ""
 
 #
 msgid "Do you want to install the package:\n"
@@ -2426,6 +2371,9 @@ msgstr ""
 
 #
 msgid "Do you want to reboot your STB_BOX?"
+msgstr ""
+
+msgid "Do you want to reboot your receiver?"
 msgstr ""
 
 #
@@ -2446,36 +2394,11 @@ msgid ""
 msgstr ""
 
 #
-msgid ""
-"Do you want to submit your email address and name so that we can contact you "
-"if needed?"
-msgstr ""
-
-#
 msgid "Do you want to update your STB_BOX?"
 msgstr ""
 
 #
-msgid ""
-"Do you want to update your STB_BOX?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"Želite li nadograditi vaš STB_BOX?\n"
-"Nakon pritiska tipke OK, molim pričekajte!"
-
-#
 msgid "Do you want to upgrade the package:\n"
-msgstr ""
-
-msgid "Do you want to upgrade?"
-msgstr ""
-
-#
-msgid "Do you want to view a tutorial?"
-msgstr "Želite li pogledati vodič?"
-
-#
-msgid "Don't ask, just send"
 msgstr ""
 
 msgid "Don't save"
@@ -2487,11 +2410,6 @@ msgstr ""
 #
 msgid "Don't stop current event but disable coming events"
 msgstr "Ne zaustavljaj trenutni događaj ali onemogući nadolazeće događaje"
-
-#
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "Učinjeno - Instalirano i nadograđeno %d paketa"
 
 #
 #, python-format
@@ -2529,9 +2447,6 @@ msgstr "Skidam"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Skidam informacije o dodacima. Molim pričekajte..."
 
-msgid "Downmix the Dolby Digital sound tracks to PCM."
-msgstr ""
-
 msgid "Drivers:"
 msgstr ""
 
@@ -2565,9 +2480,6 @@ msgid "ECM last"
 msgstr ""
 
 msgid "ECM-Time"
-msgstr ""
-
-msgid "EIT data will be included in http streams."
 msgstr ""
 
 msgid "EPG"
@@ -2605,9 +2517,6 @@ msgstr ""
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "GREAŠKA - neuspjelo skeniranje (%s)!"
-
-msgid "ET9x00/6500"
-msgstr ""
 
 #
 msgid "East"
@@ -2681,10 +2590,6 @@ msgstr "Omogući"
 msgid "Enable 5V for active antenna"
 msgstr "Uključi 5V za aktivnu antenu"
 
-#
-msgid "Enable Cleanup Wizard?"
-msgstr ""
-
 msgid "Enable Debug log"
 msgstr ""
 
@@ -2750,9 +2655,6 @@ msgid ""
 "is included in the stream and a valid card is available)."
 msgstr ""
 
-msgid "Enables channel numbers in the channel selection screen"
-msgstr ""
-
 msgid "Enables the trashcan feature"
 msgstr ""
 
@@ -2813,10 +2715,6 @@ msgstr ""
 msgid "Enter the service pin"
 msgstr "Unesite pin za Usluge"
 
-#
-msgid "Enter your email address so that we can contact you if needed."
-msgstr ""
-
 msgid "Enter your email address to send a copy of the log to."
 msgstr ""
 
@@ -2855,9 +2753,6 @@ msgstr ""
 
 #
 msgid "Estonian"
-msgstr ""
-
-msgid "Et5000/6000"
 msgstr ""
 
 msgid "Ethernet network interface"
@@ -2917,10 +2812,6 @@ msgstr ""
 
 #
 msgid "Exit network wizard"
-msgstr ""
-
-#
-msgid "Exit the cleanup wizard"
 msgstr ""
 
 #
@@ -3087,6 +2978,10 @@ msgstr ""
 msgid "Forward volume keys"
 msgstr ""
 
+#, python-format
+msgid "Found %d position(s) of %d total"
+msgstr ""
+
 #
 msgid "Frame size in full view"
 msgstr ""
@@ -3163,15 +3058,13 @@ msgstr "Gateway"
 msgid "General"
 msgstr ""
 
-#
-msgid "General AC3 Delay"
+msgid "General AC3 delay"
 msgstr ""
 
 msgid "General AC3 delay (ms)"
 msgstr ""
 
-#
-msgid "General PCM Delay"
+msgid "General PCM delay"
 msgstr ""
 
 msgid "General PCM delay (ms)"
@@ -3197,6 +3090,29 @@ msgstr ""
 #
 msgid "Getting plugin information. Please wait..."
 msgstr "Skidam informacije o dodatku. Molim pričekajte..."
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr ""
+
+#
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr ""
+
+msgid "STB_BOX front panel"
+msgstr ""
+
+msgid "STB_BOX ir keyboard"
+msgstr ""
+
+msgid "STB_BOX ir mouse"
+msgstr ""
+
+msgid "STB_BOX remote control (native)"
+msgstr ""
+
+#
+msgid "STB_BOX software because updates are available."
+msgstr ""
 
 msgid "Go down the list"
 msgstr ""
@@ -3337,10 +3253,10 @@ msgstr ""
 msgid "Hide CI messages"
 msgstr ""
 
-msgid "Hide any Common Interface card error messages."
+msgid "Hide any zap error messages."
 msgstr ""
 
-msgid "Hide any zap error messages."
+msgid "Hide error messages from the Common Interface module."
 msgstr ""
 
 msgid "Hide zap errors"
@@ -3396,10 +3312,6 @@ msgid "How many minutes do you want to record?"
 msgstr "Koliko minuta želite snimati ?"
 
 #
-msgid "How to handle found crashlogs?"
-msgstr ""
-
-#
 msgid "Hue"
 msgstr ""
 
@@ -3435,9 +3347,6 @@ msgid "Icons"
 msgstr ""
 
 msgid "Idle Time: "
-msgstr ""
-
-msgid "If Teletext caching is enabled, displaying pages will be much faster."
 msgstr ""
 
 msgid ""
@@ -3571,10 +3480,6 @@ msgstr ""
 msgid "Include EIT in http streams"
 msgstr ""
 
-#
-msgid "Include your email and name (optional) in the mail?"
-msgstr ""
-
 msgid "Increase time scale"
 msgstr ""
 
@@ -3638,6 +3543,9 @@ msgstr "Ulaz "
 msgid "Input device setup"
 msgstr ""
 
+msgid "Input devices"
+msgstr ""
+
 #
 msgid "Install"
 msgstr ""
@@ -3648,6 +3556,9 @@ msgstr ""
 
 #
 msgid "Install a new image with your web browser"
+msgstr ""
+
+msgid "Install channel list"
 msgstr ""
 
 #
@@ -3672,10 +3583,6 @@ msgid "Install plugins"
 msgstr ""
 
 #
-msgid "Install settings, skins, software..."
-msgstr ""
-
-#
 msgid "Installation finished."
 msgstr ""
 
@@ -3689,18 +3596,6 @@ msgstr ""
 #
 msgid "Installing Software..."
 msgstr "Instaliram Softver..."
-
-#
-msgid "Installing default sat lists... Please wait..."
-msgstr ""
-
-#
-msgid "Installing defaults... Please wait..."
-msgstr ""
-
-#
-msgid "Installing package content... Please wait..."
-msgstr ""
 
 #
 msgid "Instant Record..."
@@ -3758,8 +3653,7 @@ msgstr ""
 msgid "Is this setting ok?"
 msgstr ""
 
-#
-msgid "Is this videomode ok?"
+msgid "Is this video mode ok?"
 msgstr ""
 
 #
@@ -3860,18 +3754,6 @@ msgstr ""
 #
 msgid "LNB"
 msgstr "LNB"
-
-#
-msgid "LOF"
-msgstr "LOF"
-
-#
-msgid "LOF/H"
-msgstr "LOFH"
-
-#
-msgid "LOF/L"
-msgstr "LOF/L"
 
 msgid "Label"
 msgstr ""
@@ -4224,9 +4106,13 @@ msgstr ""
 msgid "Missing "
 msgstr ""
 
-#
+msgctxt "Satellite configuration mode"
 msgid "Mode"
-msgstr "Mod"
+msgstr ""
+
+msgctxt "Video output mode"
+msgid "Mode"
+msgstr ""
 
 #
 msgid "Model: "
@@ -4586,13 +4472,6 @@ msgid "No of items switch (increase or reduced)"
 msgstr ""
 
 #
-msgid ""
-"No packages were upgraded yet. So you can check your network and try again."
-msgstr ""
-"Niti jedan paket nije nadograđen još.Tako da možete provjeriti postavke "
-"mreže i pokušajte ponovno."
-
-#
 msgid "No positioner capable frontend found."
 msgstr "Niti jedan kompatibilan motor nije pronađen."
 
@@ -4622,6 +4501,9 @@ msgid ""
 msgstr ""
 "Niti jedan Tuner nije uključen!\n"
 "Molim podesite postavke tunera prije nego počnete pretragu usluga."
+
+msgid "No updates available. Please try again later."
+msgstr ""
 
 #
 msgid ""
@@ -4683,16 +4565,8 @@ msgid "No, never"
 msgstr ""
 
 #
-msgid "No, not now"
-msgstr ""
-
-#
 msgid "No, scan later manually"
 msgstr "Ne, skeniraj ručno kasnije"
-
-#
-msgid "No, send them never"
-msgstr ""
 
 msgid "NodeID"
 msgstr ""
@@ -4791,14 +4665,6 @@ msgstr ""
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, vodi me kroz postupak nadogradnje"
 
-#
-msgid "OK, remove another extensions"
-msgstr ""
-
-#
-msgid "OK, remove some extensions"
-msgstr ""
-
 msgid "ONID"
 msgstr ""
 
@@ -4895,10 +4761,6 @@ msgid "OpenVpn Setup"
 msgstr ""
 
 #
-msgid "Optionally enter your name if you want to."
-msgstr ""
-
-#
 msgid "Orbital Position"
 msgstr "Orbitalna Pozicija"
 
@@ -4920,10 +4782,10 @@ msgstr ""
 msgid "Output"
 msgstr ""
 
-msgid "Overwrite configuration files ?"
+msgid "Overwrite configuration files during software upgrade?"
 msgstr ""
 
-msgid "Overwrite configuration files during software upgrade?"
+msgid "Overwrite configuration files?"
 msgstr ""
 
 #
@@ -4947,14 +4809,6 @@ msgstr ""
 #
 msgid "Package list update"
 msgstr "Nadogradnja liste paketa"
-
-#
-msgid "Package removal failed.\n"
-msgstr ""
-
-#
-msgid "Package removed successfully.\n"
-msgstr ""
 
 msgid "Packages"
 msgstr ""
@@ -4988,6 +4842,9 @@ msgstr ""
 #
 msgid "Parental control"
 msgstr "Roditeljska zaštita"
+
+msgid "Parental control editor"
+msgstr ""
 
 #
 msgid "Parental control services Editor"
@@ -5148,11 +5005,6 @@ msgstr ""
 msgid "Please add titles to the compilation."
 msgstr ""
 
-msgid ""
-"Please be aware, that anyone can disable the parental control, if you have "
-"not set a PIN."
-msgstr ""
-
 #
 msgid "Please change recording endtime"
 msgstr "Molim promjenite završno vijeme snimanja"
@@ -5168,15 +5020,7 @@ msgstr ""
 msgid "Please choose an extension..."
 msgstr "Molim odaberite ekstenziju..."
 
-#
-msgid "Please choose he package..."
-msgstr ""
-
 msgid "Please choose reader"
-msgstr ""
-
-#
-msgid "Please choose the default services lists you want to install."
 msgstr ""
 
 #
@@ -5191,6 +5035,9 @@ msgid ""
 "Please configure your internet connection by filling out the required "
 "values.\n"
 "When you are ready press OK to continue."
+msgstr ""
+
+msgid "Please connect your receiver to the internet"
 msgstr ""
 
 #
@@ -5225,14 +5072,6 @@ msgid "Please enter the old PIN code"
 msgstr ""
 
 #
-msgid "Please enter your email address here:"
-msgstr ""
-
-#
-msgid "Please enter your name here (optional):"
-msgstr ""
-
-#
 msgid "Please follow the instructions on the TV"
 msgstr ""
 
@@ -5245,10 +5084,6 @@ msgstr ""
 #
 msgid "Please press OK to continue."
 msgstr ""
-
-#
-msgid "Please press OK!"
-msgstr "Molim pritisnite OK!"
 
 msgid "Please select a default EPG type..."
 msgstr ""
@@ -5270,14 +5105,6 @@ msgid "Please select a subservice..."
 msgstr "Molim odaberite poduslugu..."
 
 msgid "Please select an NFI file and press green key to flash!"
-msgstr ""
-
-#
-msgid "Please select an extension to remove."
-msgstr ""
-
-#
-msgid "Please select an option below."
 msgstr ""
 
 #
@@ -5305,6 +5132,9 @@ msgid ""
 "Please select the wireless network that you want to connect to.\n"
 "\n"
 "Please press OK to continue."
+msgstr ""
+
+msgid "Please set up tuner A"
 msgstr ""
 
 #
@@ -5335,20 +5165,18 @@ msgid ""
 "the OK button."
 msgstr ""
 
+msgid "Please wait (downloading channel list)"
+msgstr ""
+
+msgid "Please wait (updating packages)"
+msgstr ""
+
 #
 msgid "Please wait for activation of your network configuration..."
 msgstr ""
 
 #
-msgid "Please wait while removing selected package..."
-msgstr ""
-
-#
 msgid "Please wait while scanning is in progress..."
-msgstr ""
-
-#
-msgid "Please wait while searching for removable packages..."
 msgstr ""
 
 #
@@ -5384,6 +5212,9 @@ msgstr ""
 #
 msgid "Plugin browser"
 msgstr "Preglednik dodataka"
+
+msgid "Plugin details"
+msgstr ""
 
 #
 msgid "Plugin manager activity information"
@@ -5793,11 +5624,10 @@ msgstr ""
 msgid "Reenter new PIN"
 msgstr ""
 
-#
-msgid "Refresh Rate"
-msgstr "Brzina osvježavanja"
-
 msgid "Refresh every (in hours)"
+msgstr ""
+
+msgid "Refresh rate"
 msgstr ""
 
 #
@@ -5839,7 +5669,7 @@ msgstr ""
 msgid "Remote box"
 msgstr ""
 
-msgid "Remote type"
+msgid "Remote control type"
 msgstr ""
 
 #
@@ -5866,10 +5696,6 @@ msgid "Remove currently selected title"
 msgstr "Ukloni trenutno odabrani titl"
 
 #
-msgid "Remove failed."
-msgstr ""
-
-#
 msgid "Remove finished."
 msgstr ""
 
@@ -5889,10 +5715,6 @@ msgid "Remove title"
 msgstr "Ukloni titl"
 
 #
-msgid "Removed successfully."
-msgstr ""
-
-#
 msgid "Removing"
 msgstr ""
 
@@ -5906,10 +5728,6 @@ msgstr ""
 
 #
 msgid "Rename"
-msgstr ""
-
-#
-msgid "Rename crashlogs"
 msgstr ""
 
 msgid "Rename failed!"
@@ -6009,11 +5827,10 @@ msgid "Restore is running..."
 msgstr ""
 
 #
-msgid "Restore running"
+msgid "Restore system settings"
 msgstr ""
 
-#
-msgid "Restore system settings"
+msgid "Restoring..."
 msgstr ""
 
 #
@@ -6209,37 +6026,19 @@ msgstr ""
 msgid "Scan "
 msgstr "Skeniraj"
 
-#
-msgid "Scan Files..."
+#. TRANSLATORS: option name, indicating which type of (DVB-C) modulation should be scanned. The modulation type is printed in '%s'. E.g.: 'Scan QAM16'
+#, python-format
+msgid "Scan %s"
+msgstr ""
+
+#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#, python-format
+msgid "Scan %s band"
 msgstr ""
 
 #
-msgid "Scan QAM128"
-msgstr "Skeniraj QAM128"
-
-#
-msgid "Scan QAM16"
-msgstr "Skeniraj QAM16"
-
-#
-msgid "Scan QAM256"
-msgstr "Skeniraj QAM256"
-
-#
-msgid "Scan QAM32"
-msgstr "Skeniraj QAM32"
-
-#
-msgid "Scan QAM64"
-msgstr "Skeniraj QAM64"
-
-#
-msgid "Scan SR6875"
-msgstr "Skeniraj SR6875"
-
-#
-msgid "Scan SR6900"
-msgstr "Skeniraj SR6900"
+msgid "Scan Files..."
+msgstr ""
 
 #
 msgid "Scan Wireless Networks"
@@ -6248,54 +6047,6 @@ msgstr ""
 #
 msgid "Scan additional SR"
 msgstr "Skeniraj dodatne SR"
-
-#
-msgid "Scan band EU HYPER"
-msgstr "Skeniraj band EU HYPER"
-
-#
-msgid "Scan band EU MID"
-msgstr "Skeniraj band EU MID"
-
-#
-msgid "Scan band EU SUPER"
-msgstr "Skeniraj band EU SUPER"
-
-#
-msgid "Scan band EU UHF IV"
-msgstr "Skeniraj band EU UHF IV"
-
-#
-msgid "Scan band EU UHF V"
-msgstr "Skeniraj band EU UHF V"
-
-#
-msgid "Scan band EU VHF I"
-msgstr "Skeniraj band EU VHF I"
-
-#
-msgid "Scan band EU VHF III"
-msgstr "Skeniraj band EU VHF III"
-
-#
-msgid "Scan band US HIGH"
-msgstr "Skeniraj band US HIGH"
-
-#
-msgid "Scan band US HYPER"
-msgstr "Skeniraj band US HYPER"
-
-#
-msgid "Scan band US LOW"
-msgstr "Skeniraj band US LOW"
-
-#
-msgid "Scan band US MID"
-msgstr "Skeniraj band US MID"
-
-#
-msgid "Scan band US SUPER"
-msgstr "Skeniraj band US SUPER"
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -6443,10 +6194,6 @@ msgstr ""
 
 #
 msgid "Select interface"
-msgstr ""
-
-#
-msgid "Select package"
 msgstr ""
 
 #
@@ -6621,13 +6368,13 @@ msgid "Services"
 msgstr "Usluge"
 
 msgid ""
-"Services may be grouped in bouquets. If this option is enabled you can zap "
-"to a channel in another bouquet then you are in at present."
+"Services may be grouped in bouquets. When enabled you can zap to a channel "
+"in another bouquet then you are in at present."
 msgstr ""
 
 msgid ""
-"Services may be grouped in bouquets. If this option is enabled, you can use "
-"more then one bouquet."
+"Services may be grouped in bouquets. When enabled, you can use more then one "
+"bouquet."
 msgstr ""
 
 #
@@ -6635,14 +6382,6 @@ msgid "Set End Time"
 msgstr ""
 
 msgid "Set System"
-msgstr ""
-
-#
-msgid "Set Voltage and 22KHz"
-msgstr ""
-
-#
-msgid "Set available internal memory threshold for the warning."
 msgstr ""
 
 msgid "Set fixed"
@@ -6661,12 +6400,6 @@ msgstr ""
 msgid "Set the EPG language selection 2"
 msgstr ""
 
-msgid "Set the Teletext subtitle delay when timing lacks."
-msgstr ""
-
-msgid "Set the alignment of the Teletext subtitles."
-msgstr ""
-
 msgid "Set the audio language 1 (highest priority)"
 msgstr ""
 
@@ -6679,18 +6412,10 @@ msgstr ""
 msgid "Set the audio language 4 (lowest priority)"
 msgstr ""
 
-msgid ""
-"Set the border width of the Teletext subtitles. This makes the titles more "
-"easy to read on a light background."
-msgstr ""
-
 msgid "Set the brightness level for normal operation."
 msgstr ""
 
 msgid "Set the brightness level for standby."
-msgstr ""
-
-msgid "Set the colour of the Teletext subtitles."
 msgstr ""
 
 msgid "Set the contrast level."
@@ -6722,9 +6447,6 @@ msgstr ""
 msgid "Set the desired configuration mode."
 msgstr ""
 
-msgid "Set the font size of the Teletext subtitles."
-msgstr ""
-
 msgid "Set the initial fast forward speed"
 msgstr ""
 
@@ -6741,12 +6463,6 @@ msgid "Set the maximum number of events (programs) that timeshift may handle."
 msgstr ""
 
 msgid "Set the number of days you want old timers to be kept."
-msgstr ""
-
-msgid "Set the position of the DVB subtitles."
-msgstr ""
-
-msgid "Set the position of the Teletext subtitles."
 msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
@@ -6787,10 +6503,8 @@ msgstr ""
 msgid "Set the time you want recordings to stop after the event stop-time."
 msgstr ""
 
-msgid "Set the transparency of the DVB subtitles."
-msgstr ""
-
-msgid "Set the type of the progress indication in the channel selection screen"
+msgid ""
+"Set the type of the progress indication in the channel selection screen."
 msgstr ""
 
 msgid "Set the value for the initial fast-backward speed."
@@ -6836,6 +6550,9 @@ msgid "Set to the desired primetime (minutes."
 msgstr ""
 
 msgid "Set to what you want the button to do."
+msgstr ""
+
+msgid "Set voltage and 22KHz"
 msgstr ""
 
 msgid ""
@@ -7017,7 +6734,7 @@ msgstr ""
 msgid "Show detailed event info"
 msgstr ""
 
-msgid "Show encryption info in the infobar (if the skin allows that)."
+msgid "Show encryption info in the infobar (when supported by the skin)."
 msgstr ""
 
 msgid "Show epg"
@@ -7185,6 +6902,10 @@ msgstr ""
 msgid "Skip Empty Services"
 msgstr ""
 
+msgid ""
+"Skip internet connection check (disables automatic package installation)"
+msgstr ""
+
 #
 msgid "Sleep Timer"
 msgstr "Tajmer spavanja"
@@ -7260,10 +6981,6 @@ msgstr "Neki dodaci nisu dostupni:\n"
 msgid "Sorry Inadyn Config is Missing"
 msgstr ""
 
-#
-msgid "Sorry MediaScanner is not installed!"
-msgstr ""
-
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
 
@@ -7278,38 +6995,22 @@ msgid ""
 "enable 'Allow unstable updates' in online update setup."
 msgstr ""
 
-#
-msgid "Sorry no backups found!"
-msgstr ""
-
 msgid "Sorry uShare Config is Missing"
 msgstr ""
 
-#
-msgid ""
-"Sorry your Backup destination does not exist\n"
-"\n"
-"Please choose an other one."
-msgstr ""
-"Oprostite, vaša destinacija za sigurnosnu kopiju ne postoji\n"
-"\n"
-"Molim odaberite drugu lokaciju."
-
-#
-msgid ""
-"Sorry your backup destination is not writeable.\n"
-"Please choose an other one."
+#, python-format
+msgid "Sorry, %s has not been installed!"
 msgstr ""
 
-#
-msgid "Sorry, no Details available!"
+msgid "Sorry, no backups found!"
 msgstr ""
 
-#
+msgid "Sorry, no details available!"
+msgstr ""
+
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
-"\n"
-"Please choose another one."
+"Please select a different one."
 msgstr ""
 
 msgid "Sort"
@@ -7485,7 +7186,16 @@ msgstr ""
 msgid "Subservices"
 msgstr "Podusluge "
 
+msgid "Subtitle alignment"
+msgstr ""
+
+msgid "Subtitle border width"
+msgstr ""
+
 msgid "Subtitle delay when timing lacks"
+msgstr ""
+
+msgid "Subtitle font size"
 msgstr ""
 
 msgid "Subtitle language selection 1"
@@ -7498,6 +7208,9 @@ msgid "Subtitle language selection 3"
 msgstr ""
 
 msgid "Subtitle language selection 4"
+msgstr ""
+
+msgid "Subtitle position"
 msgstr ""
 
 #
@@ -7663,12 +7376,6 @@ msgstr "Test-Poruka?"
 msgid "Text"
 msgstr ""
 
-msgid "Text border width"
-msgstr ""
-
-msgid "Text font size"
-msgstr ""
-
 msgid "Thai"
 msgstr ""
 
@@ -7678,14 +7385,11 @@ msgid ""
 "Please press OK to continue."
 msgstr ""
 
-#
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
-"Please press OK to start using your STB_BOX."
+"Thank you for using the wizard. Your STB_BOX is now ready for "
+"use.\n"
+"Press OK to start using your receiver."
 msgstr ""
-"Hvala vam na korištenju čarobnjaka. Vaš prijemnik je sada spreman za "
-"korištenje.\n"
-"Molim pritisnite tipku OK za start vašeg STB_BOX-a."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -7700,8 +7404,8 @@ msgstr ""
 #
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a STB_BOX format data DVD (which will not play in stand-alone DVD "
-"players) instead?"
+"create a STB_BOX format data DVD (which will not play in stand-"
+"alone DVD players) instead?"
 msgstr ""
 
 msgid ""
@@ -7712,6 +7416,12 @@ msgstr ""
 msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
+msgstr ""
+
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr ""
+
+msgid "The STB_BOX stores the EPG data every (hours)."
 msgstr ""
 
 msgid ""
@@ -7760,12 +7470,6 @@ msgid ""
 "due to an error in mytest.py"
 msgstr ""
 
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr ""
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr ""
-
 #
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Neuspjela izrada sigurnosne kopije. Molim odaberite drugu lokaciju."
@@ -7800,25 +7504,7 @@ msgstr ""
 msgid "The following files were found..."
 msgstr ""
 
-#
-msgid "The installation of the default services lists is finished."
-msgstr ""
-
-#
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your STB_BOX by pressing the OK button on the remote control."
-msgstr ""
-
 msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr ""
-
-#
-msgid "The package doesn't contain anything."
-msgstr ""
-
-#
-msgid "The package:"
 msgstr ""
 
 #
@@ -7880,24 +7566,16 @@ msgstr "Čarobnjak je gotov."
 msgid "There are at least "
 msgstr ""
 
+#, python-format
+msgid "There are at least %s updates available."
+msgstr ""
+
 #
 msgid "There are currently no outstanding actions."
 msgstr ""
 
 #
-msgid "There are no default services lists in your image."
-msgstr ""
-
-#
-msgid "There are no default settings in your image."
-msgstr ""
-
-#
 msgid "There are no updates available."
-msgstr ""
-
-#
-msgid "There are now "
 msgstr ""
 
 msgid "There is no [webif] section in oscam.conf"
@@ -7907,14 +7585,6 @@ msgstr ""
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
-msgstr ""
-
-#
-msgid "There was an error downloading the packetlist. Please try again."
-msgstr ""
-
-#
-msgid "There was an error. The package:"
 msgstr ""
 
 #
@@ -7935,10 +7605,6 @@ msgstr ""
 
 msgid "This allows you change the number of rows shown."
 msgstr ""
-
-#
-msgid "This is step number 2."
-msgstr "Ovo je korak broj 2."
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -8012,6 +7678,28 @@ msgstr ""
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
+msgid ""
+"This option configures the general audio delay of Dolby Digital sound tracks."
+msgstr ""
+
+msgid "This option configures the general audio delay of stereo sound tracks."
+msgstr ""
+
+msgid "This option configures the screen aspect ratio."
+msgstr ""
+
+msgid "This option configures the screen refresh rate."
+msgstr ""
+
+msgid "This option configures the screen resolution in PC output mode."
+msgstr ""
+
+msgid "This option configures the video output mode (or resolution)."
+msgstr ""
+
+msgid "This option configures which video output connector will be used."
+msgstr ""
+
 msgid "This option lets you adjust the 3D depth"
 msgstr ""
 
@@ -8060,36 +7748,15 @@ msgid ""
 "result of a limited number of discrete values."
 msgstr ""
 
-msgid "This option sets up the connection method."
-msgstr ""
-
-msgid "This option sets up the general audio delay of Analog sound tracks."
-msgstr ""
-
-msgid ""
-"This option sets up the general audio delay of Dolby Digital sound tracks."
-msgstr ""
-
 msgid ""
 "This option sets up the picture sharpness, used when the picture is being "
 "upscaled."
 msgstr ""
 
-msgid "This option sets up the screen aspect ratio."
-msgstr ""
-
-msgid "This option sets up the screen refresh-rate."
-msgstr ""
-
-msgid "This option sets up the screen resolution, when in PC mode."
-msgstr ""
-
-msgid "This option sets up the screen resolution."
-msgstr ""
-
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your STB_BOX without the need for a network or WLAN connection.\n"
+"your STB_BOX without the need for a network or WLAN "
+"connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
@@ -8323,8 +7990,7 @@ msgstr ""
 msgid "Toggle aspect ratio..."
 msgstr ""
 
-#
-msgid "Tone Amplitude"
+msgid "Tone amplitude"
 msgstr ""
 
 #
@@ -8441,10 +8107,6 @@ msgid "Tuner"
 msgstr "Tuner"
 
 #
-msgid "Tuner "
-msgstr "Tuner"
-
-#
 msgid "Tuner Slot"
 msgstr "Utor Tunera"
 
@@ -8458,6 +8120,10 @@ msgstr ""
 #
 msgid "Tuner status"
 msgstr "Status tunera"
+
+#, python-format
+msgid "Tuner status %s"
+msgstr ""
 
 #
 msgid "Tuner type"
@@ -8490,10 +8156,6 @@ msgstr ""
 #
 msgid "USALS"
 msgstr "USALS"
-
-#
-msgid "USB Stick"
-msgstr "USB Disk"
 
 #
 msgid "USB stick wizard"
@@ -8563,6 +8225,15 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
+msgid "Update channel list only"
+msgstr ""
+
+#, python-format
+msgid "Update completed, %d package was installed."
+msgid_plural "Update completed, %d packages were installed."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Update interval (in seconds)"
 msgstr ""
 
@@ -8571,21 +8242,8 @@ msgid "Updatefeed not available."
 msgstr ""
 
 #
-msgid "Updates your STB_BOX's software"
-msgstr "Nadograđuje softver vašeg prijemnika"
-
-#
-msgid "Updating finished. Here is the result:"
-msgstr "Nadogradnja uspješna. Ovo su rezultati:"
-
-#
 msgid "Updating software catalog"
 msgstr ""
-
-#
-msgid "Updating... Please wait... This can take some minutes..."
-msgstr ""
-"Nadograđujem... Molim pričekajte... To može potrajati nekoliko minuta..."
 
 msgid "Upgrade and reboot system"
 msgstr ""
@@ -8595,16 +8253,8 @@ msgid "Upgrade finished."
 msgstr ""
 
 #
-msgid "Upgrade finished. Do you want to reboot your STB_BOX?"
-msgstr "Nadogradnja uspješna. Želite li sada restartati STB_BOX?"
-
-#
 msgid "Upgrading"
 msgstr "Nadograđujem"
-
-#
-msgid "Upgrading STB_BOX... Please wait"
-msgstr "Nadograđujem STB_BOX... Molim pričekajte"
 
 msgid "Uphops +"
 msgstr ""
@@ -8626,9 +8276,6 @@ msgstr ""
 msgid "Use DHCP"
 msgstr "Koristi DHCP"
 
-msgid "Use DVB subtitles position"
-msgstr ""
-
 #
 msgid "Use Interface"
 msgstr ""
@@ -8639,17 +8286,13 @@ msgstr ""
 msgid "Use PTS seekbar while timeshifting? *"
 msgstr ""
 
-#
-msgid "Use Power Measurement"
-msgstr "Koristi Mjerenje Snage"
-
 msgid "Use TV remote control"
 msgstr ""
 
-msgid "Use ViX coloured Buttons *"
+msgid "Use USALS for this sat"
 msgstr ""
 
-msgid "Use Yellow pango DVB subtitles"
+msgid "Use ViX coloured Buttons *"
 msgstr ""
 
 #
@@ -8665,6 +8308,9 @@ msgstr ""
 msgid "Use official channel numbering"
 msgstr ""
 
+msgid "Use original DVB subtitle position"
+msgstr ""
+
 msgid "Use original teletext position"
 msgstr ""
 
@@ -8673,8 +8319,8 @@ msgid "Use power measurement"
 msgstr "Koristi mjerenje snage"
 
 msgid ""
-"Use power measurement to detect when the rotor stops turning (if your Vu+ "
-"Duo supports that)"
+"Use power measurement to detect when the rotor stops turning (if your "
+"STB_BOX supports that)"
 msgstr ""
 
 msgid "Use slim screen"
@@ -8722,29 +8368,16 @@ msgstr ""
 
 #
 msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-"Koristite lijeve i desne tipke za promjenu opcija.\n"
-"\n"
-"Molim podesite tuner A"
-
-msgid "Use the original position of the Teletext subtitles."
-msgstr ""
-
-#
-msgid ""
 "Use the up/down keys on your remote control to select an option. After that, "
 "press OK."
 msgstr ""
 "Koristite gore/dolje tipke na vašem bežičnom upravljaču za odabir opcije. "
 "Nakon toga, pritisnite OK."
 
-msgid "Use this input device settings?"
+msgid "Use these input device settings?"
 msgstr ""
 
-msgid "Use this settings?"
+msgid "Use these settings?"
 msgstr ""
 
 #
@@ -8759,15 +8392,8 @@ msgid "Use trashcan in movielist"
 msgstr ""
 
 #
-msgid "Use usals for this sat"
-msgstr "Koristi USALS za ovaj satelit"
-
-#
 msgid "Use wizard to set up basic features"
 msgstr "Čarobnjaka za postavljanje osnovnih postavki"
-
-msgid "Use yellow DVB subtitles."
-msgstr ""
 
 #
 msgid "Used service scan type"
@@ -8819,9 +8445,6 @@ msgstr "VCR skart"
 msgid "VMGM (intro trailer)"
 msgstr ""
 
-msgid "VU+"
-msgstr ""
-
 msgid "Version:"
 msgstr ""
 
@@ -8845,24 +8468,8 @@ msgstr ""
 msgid "Video Fine-Tuning"
 msgstr ""
 
-#
-msgid "Video Fine-Tuning Wizard"
-msgstr ""
-
-#
-msgid "Video Output"
-msgstr "Video izlaz"
-
 msgid "Video PID"
 msgstr ""
-
-#
-msgid "Video Setup"
-msgstr "Video postavke"
-
-#
-msgid "Video Wizard"
-msgstr "Video čarobnjak"
 
 #
 msgid "Video enhancement preview"
@@ -8884,6 +8491,15 @@ msgstr ""
 
 #
 msgid "Video mode selection."
+msgstr ""
+
+msgid "Video output"
+msgstr ""
+
+msgid "Video setup"
+msgstr ""
+
+msgid "Video wizard"
 msgstr ""
 
 msgid "Videocodec"
@@ -8999,29 +8615,6 @@ msgstr "Mod Napona"
 msgid "Volume"
 msgstr "Volumen"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr ""
-
-#
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr ""
-
-msgid "STB_BOX front panel"
-msgstr ""
-
-msgid "STB_BOX ir keyboard"
-msgstr ""
-
-msgid "STB_BOX ir mouse"
-msgstr ""
-
-msgid "STB_BOX remote control (native)"
-msgstr ""
-
-#
-msgid "STB_BOX software because updates are available."
-msgstr ""
-
 #
 msgid "W"
 msgstr "W"
@@ -9080,10 +8673,6 @@ msgstr ""
 msgid "Wakeup your STB_BOX from standby"
 msgstr ""
 
-#
-msgid "Warn if free space drops below (kB):"
-msgstr ""
-
 msgid "Web Interface"
 msgstr ""
 
@@ -9112,30 +8701,22 @@ msgstr ""
 #
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your STB_BOX by providing a backup facility for your current "
-"settings and a short explanation of how to upgrade your firmware."
+"the firmware of your STB_BOX by providing a backup facility for "
+"your current settings and a short explanation of how to upgrade your "
+"firmware."
 msgstr ""
 "Dobro došli u čarobnjaka za nadogradnju softvera. Čarobnjak će vam pomoći "
-"tokom nadogradnje Softvera na vašem STB_BOX-u s pružanjem sigurnosne kopije "
-"vaših trenutnih postavki te kratkim objašnjenjem kako nadograditi vaš "
-"Softver."
-
-#
-msgid ""
-"Welcome to the cleanup wizard.\n"
-"\n"
-"We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your STB_BOX, the internal memory should be "
-"cleaned up.\n"
-"You can use this wizard to remove some extensions.\n"
-msgstr ""
+"tokom nadogradnje Softvera na vašem STB_BOX-u s pružanjem "
+"sigurnosne kopije vaših trenutnih postavki te kratkim objašnjenjem kako "
+"nadograditi vaš Softver."
 
 #
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will guide "
-"you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your STB_BOX to the Internet, this "
+"wizard will guide you through the basic network setup of your GigaBlue HD "
+"800 Solo.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -9143,7 +8724,8 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your GigaBlue HD "
+"800 Solo.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 
@@ -9159,13 +8741,65 @@ msgstr "Zapad"
 msgid "What do you want to scan?"
 msgstr "Što želite skenirati?"
 
-#
-msgid "What to do with submitted crashlogs?"
-msgstr ""
-
 msgid ""
 "When a recording needs to be started it is allowed to interrupt the watched "
 "service"
+msgstr ""
+
+msgid ""
+"When enabled the online checker will also check for experimental versions"
+msgstr ""
+
+msgid ""
+"When enabled, AIT data will be included in http streams. This allows a "
+"client receiver to use HbbTV."
+msgstr ""
+
+msgid ""
+"When enabled, EIT data will be included in http streams. This allows a "
+"client receiver to show EPG."
+msgstr ""
+
+msgid "When enabled, channel numbering will start at '1' for each bouquet."
+msgstr ""
+
+msgid ""
+"When enabled, external subtitles (in media files) will be displayed in "
+"yellow, instead of the original color."
+msgstr ""
+
+msgid "When enabled, graphical DVB subtitles will be centered horizontally."
+msgstr ""
+
+msgid ""
+"When enabled, graphical DVB subtitles will be displayed at their original "
+"position."
+msgstr ""
+
+msgid ""
+"When enabled, graphical DVB subtitles will be displayed in yellow, instead "
+"of the original color."
+msgstr ""
+
+msgid ""
+"When enabled, pressing '0' will zap you to the first channel in your first "
+"bouquet and delete your zap-history."
+msgstr ""
+
+msgid "When enabled, show channel numbers in the channel selection screen."
+msgstr ""
+
+msgid "When enabled, teletext pages will be cached, allowing faster access."
+msgstr ""
+
+msgid ""
+"When enabled, teletext subtitles will be displayed at their original "
+"position."
+msgstr ""
+
+msgid ""
+"When enabled, the original line breaks will be removed from the teletext "
+"subtitles."
 msgstr ""
 
 msgid ""
@@ -9177,17 +8811,17 @@ msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr ""
 
 msgid ""
-"When the event has a aspect ratio of 16:9, choose whether to scale/stretch "
+"When the content has an aspect ratio of 16:9, choose whether to scale/"
+"stretch the picture."
+msgstr ""
+
+msgid ""
+"When the content has an aspect ratio of 4:3, choose whether to scale/stretch "
 "the picture."
 msgstr ""
 
 msgid ""
-"When the event has a aspect ratio of 4:3, choose whether to scale/stretch "
-"the picture."
-msgstr ""
-
-msgid ""
-"When the event has a aspect ratio of 4:3, choose whether to stretch the "
+"When the content has an aspect ratio of 4:3, choose whether to stretch the "
 "picture to fill the screen."
 msgstr ""
 
@@ -9204,7 +8838,8 @@ msgstr ""
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your STB_BOX will restart automatically!\n"
+"After completion of factory reset, your STB_BOX will restart "
+"automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
@@ -9244,21 +8879,6 @@ msgid "Wireless network state"
 msgstr ""
 
 msgid ""
-"With this option enabled the online checker will also check for experimental "
-"versions"
-msgstr ""
-
-msgid ""
-"With this option enabled, Channel numbers will start with '1' in each "
-"bouquet."
-msgstr ""
-
-msgid ""
-"With this option enabled, pressing '0' will zap you to the first channel in "
-"your first bouquet and delete your zap-history."
-msgstr ""
-
-msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
 "bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr ""
@@ -9282,6 +8902,9 @@ msgstr ""
 msgid "Write failed!"
 msgstr ""
 
+msgid "Wrong"
+msgstr ""
+
 msgid "XBox 360 support"
 msgstr ""
 
@@ -9296,7 +8919,7 @@ msgstr "Godina"
 msgid "Yellow DVB subtitles"
 msgstr ""
 
-msgid "Yellow pango subtitles"
+msgid "Yellow external subtitles"
 msgstr ""
 
 #
@@ -9312,10 +8935,6 @@ msgstr ""
 
 #
 msgid "Yes, and delete this movie"
-msgstr ""
-
-#
-msgid "Yes, and don't ask again"
 msgstr ""
 
 #
@@ -9346,10 +8965,6 @@ msgstr "Da, vratite pohranjene postavke sada"
 msgid "Yes, returning to movie list"
 msgstr ""
 
-#
-msgid "Yes, view the tutorial"
-msgstr "Da, prikaži vodič"
-
 msgid "Yesterday"
 msgstr ""
 
@@ -9373,16 +8988,6 @@ msgstr ""
 
 #
 msgid "You can cancel the removal."
-msgstr ""
-
-#
-msgid ""
-"You can choose some default settings now. Please select the settings you "
-"want to be installed."
-msgstr ""
-
-#
-msgid "You can choose, what you want to install..."
 msgstr ""
 
 msgid "You can continue watching TV etc. while this is running."
@@ -9421,21 +9026,6 @@ msgstr ""
 #
 msgid "You cannot delete this!"
 msgstr "Ne možete obrisati ovo!"
-
-#
-msgid "You chose not to install any default services lists."
-msgstr ""
-
-#
-msgid ""
-"You chose not to install any default settings. You can however install the "
-"default settings later in the settings menu."
-msgstr ""
-
-#
-msgid ""
-"You chose not to install anything. Please press OK finish the install wizard."
-msgstr ""
 
 msgid "You didn't select a channel to record from."
 msgstr ""
@@ -9480,33 +9070,24 @@ msgstr "Morate pričekati %s!"
 
 #
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
+"You need a PC connected to your STB_BOX. If you need further "
+"instructions, please visit the website http://www.dm7025.de.\n"
+"Your STB_BOX will now be halted. After you have performed the "
+"update instructions from the website, your new firmware will ask you to "
+"restore your settings."
 msgstr ""
-"Vi trebate PC spojen s vašim STB_BOXom. Ukoliko trebate dodatne instrukcije, "
-"molim posjetite ovu stranicu http://www.dm7025.de.\n"
-"Vaš STB_BOX će sada stati. Nakon što ste izvršili proceduru nadogradnje "
-"prema uputama s Web stranice, vaš novi softver će vas pitati želite li "
-"vratiti sigurnosnu kopiju vaših postavki."
-
-msgid ""
-"You need to set a PIN code and hide it from your children.\n"
-"\n"
-"Do you want to set the pin now?"
-msgstr ""
+"Vi trebate PC spojen s vašim STB_BOXom. Ukoliko trebate dodatne "
+"instrukcije, molim posjetite ovu stranicu http://www.dm7025.de.\n"
+"Vaš STB_BOX će sada stati. Nakon što ste izvršili proceduru "
+"nadogradnje prema uputama s Web stranice, vaš novi softver će vas pitati "
+"želite li vratiti sigurnosnu kopiju vaših postavki."
 
 msgid "You system does not support ext4"
 msgstr ""
 
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr ""
-
 msgid ""
-"Your STB_BOX is not connected to the internet, please check your network "
-"settings and try again."
+"Your STB_BOX is not connected to the internet, please check "
+"your network settings and try again."
 msgstr ""
 
 #
@@ -9538,25 +9119,27 @@ msgstr "Vaš STB_BOX se gasi sada."
 
 #
 msgid ""
-"Your STB_BOX isn't connected to the internet properly. Please check it and "
-"try again."
+"Your STB_BOX isn't connected to the internet properly. Please "
+"check it and try again."
 msgstr ""
-"Vaš STB_BOX nije ispravno spojen na internet. Molim provjerite postavke i "
-"pokušajte ponovno."
+"Vaš STB_BOX nije ispravno spojen na internet. Molim provjerite "
+"postavke i pokušajte ponovno."
 
 msgid ""
-"Your STB_BOX might be unusable now. Please consult the manual for further "
-"assistance before rebooting your STB_BOX."
+"Your STB_BOX might be unusable now. Please consult the manual "
+"for further assistance before rebooting your STB_BOX."
 msgstr ""
 
 #, python-format
 msgid ""
-"Your STB_BOX will be restarted after the installation of service\n"
+"Your STB_BOX will be restarted after the installation of "
+"service\n"
 "Ready to install \"%s\" ?"
 msgstr ""
 
 msgid ""
-"Your STB_BOX will be restarted after the installation of service.\n"
+"Your STB_BOX will be restarted after the installation of "
+"service.\n"
 "\n"
 "Do you want to install now ?"
 msgstr ""
@@ -9564,6 +9147,9 @@ msgstr ""
 msgid ""
 "Your STB_BOX will be restarted after the removal of service\n"
 "Do you want to remove now ?"
+msgstr ""
+
+msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
 
 #
@@ -9591,10 +9177,6 @@ msgid "Your current collection will get lost!"
 msgstr ""
 
 #
-msgid "Your email address:"
-msgstr ""
-
-#
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
@@ -9614,12 +9196,18 @@ msgid ""
 "Please choose what you want to do next."
 msgstr ""
 
-#
-msgid "Your name (optional):"
+#, python-format
+msgid "Your internet connection is working (ip: %s)"
 msgstr ""
 
 #
 msgid "Your network configuration has been activated."
+msgstr ""
+
+msgid "Your receiver does not have an internet connection"
+msgstr ""
+
+msgid "Your receiver is not connected to the internet"
 msgstr ""
 
 #
@@ -9817,20 +9405,11 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
+msgid "alphabetic"
+msgstr ""
+
 msgid "alphabetic reverse"
 msgstr ""
-
-#
-msgid "alphabetic sort"
-msgstr "sortiraj abecedno"
-
-#
-msgid ""
-"are you sure you want to restore\n"
-"following backup:\n"
-msgstr ""
-"Želite li stvarno vratiti sljedeću\n"
-"sigurnosnu kopiju:\n"
 
 msgid "arts/culture (without music, general)"
 msgstr ""
@@ -9876,8 +9455,7 @@ msgstr ""
 msgid "auto"
 msgstr ""
 
-#
-msgid "available"
+msgid "automatic"
 msgstr ""
 
 #
@@ -9924,6 +9502,9 @@ msgstr ""
 #
 #, python-format
 msgid "burn audio track (%s)"
+msgstr ""
+
+msgid "by date"
 msgstr ""
 
 msgid "caid:"
@@ -10003,10 +9584,6 @@ msgstr ""
 #
 msgid "copy to bouquets"
 msgstr "kopiraj u pakete"
-
-#
-msgid "could not be removed"
-msgstr ""
 
 #
 msgid "create directory"
@@ -10156,9 +9733,6 @@ msgstr "završi rez ovdje"
 msgid "end favourites edit"
 msgstr "završi editiranje favorita"
 
-msgid "enigma2 and network"
-msgstr ""
-
 msgid "entertainment (10-16 year old)"
 msgstr ""
 
@@ -10243,6 +9817,12 @@ msgid "fitness & health"
 msgstr ""
 
 msgid "fixed"
+msgstr ""
+
+msgid "flat alphabetic"
+msgstr ""
+
+msgid "flat alphabetic reverse"
 msgstr ""
 
 msgid "folk/traditional music"
@@ -11035,10 +10615,6 @@ msgstr ""
 msgid "social/spiritual science"
 msgstr ""
 
-#
-msgid "sort by date"
-msgstr "sortiraj po datumu"
-
 msgid "sorting of playlists"
 msgstr ""
 
@@ -11246,10 +10822,6 @@ msgstr "čekam mmi..."
 msgid "waiting"
 msgstr "čekam"
 
-#
-msgid "was removed successfully"
-msgstr ""
-
 msgid "water sport"
 msgstr ""
 
@@ -11311,17 +10883,304 @@ msgid "yes (keep feeds)"
 msgstr "Da ( zadrži feedove)"
 
 #
-msgid ""
-"your STB_BOX might be unusable now. Please consult the manual for further "
-"assistance before rebooting your STB_BOX."
-msgstr ""
-"vaš STB_BOX može biti sada nemoguće za koristiti. Molim konzultirajte se s "
-"korisničkim uputama za daljnju pomoć prije rebootanja vašeg STB_BOX-a."
-
-#
 msgid "zap"
 msgstr "zap"
 
 #
 msgid "zapped"
 msgstr "prebačen"
+
+#
+#~ msgid "/usr/share/enigma2 directory"
+#~ msgstr "/usr/share/enigma2 direktorij"
+
+#
+#~ msgid "/var directory"
+#~ msgstr "/var direktorij"
+
+#
+#~ msgid "Advanced Video Setup"
+#~ msgstr "Napredne video postavke"
+
+#
+#~ msgid ""
+#~ "After the start wizard is completed, you need to protect single services. "
+#~ "Refer to your STB_BOX's manual on how to do that."
+#~ msgstr ""
+#~ "Nakon što Čarobnjak završi, vi trebate zaštititi pojedine usluge. "
+#~ "Pogledajte u korisničke upute kako to učiniti."
+
+#
+#~ msgid "Backup"
+#~ msgstr "Sigurnosna kopija"
+
+#
+#~ msgid "Backup Location"
+#~ msgstr "Lokacija sigurnosne kopije"
+
+#
+#~ msgid "Backup Mode"
+#~ msgstr "Mod sigurnosne kopije"
+
+#
+#~ msgid ""
+#~ "By pressing the OK Button on your remote control, the info bar is being "
+#~ "displayed."
+#~ msgstr ""
+#~ "Pritiskom na tipku OK bežičnog upravljača, info traka bit će prikazana."
+
+#
+#~ msgid "CF Drive"
+#~ msgstr "CF Disk"
+
+#
+#~ msgid ""
+#~ "Do you want to backup now?\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "Želite li napraviti sigurnosnu kopiju sada?\n"
+#~ "Nakon pritiska tipke OK, molim pričekajte!"
+
+#
+#~ msgid ""
+#~ "Do you want to enable the parental control feature on your GigaBlue HD "
+#~ "800 Solo?"
+#~ msgstr ""
+#~ "Želite li uključiti roditeljsku kontrolu na vašem STB_BOX-u?"
+
+#
+#~ msgid ""
+#~ "Do you want to update your STB_BOX?\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "Želite li nadograditi vaš STB_BOX?\n"
+#~ "Nakon pritiska tipke OK, molim pričekajte!"
+
+#
+#~ msgid "Do you want to view a tutorial?"
+#~ msgstr "Želite li pogledati vodič?"
+
+#
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "Učinjeno - Instalirano i nadograđeno %d paketa"
+
+#
+#~ msgid "LOF"
+#~ msgstr "LOF"
+
+#
+#~ msgid "LOF/H"
+#~ msgstr "LOFH"
+
+#
+#~ msgid "LOF/L"
+#~ msgstr "LOF/L"
+
+#
+#~ msgid "Mode"
+#~ msgstr "Mod"
+
+#
+#~ msgid ""
+#~ "No packages were upgraded yet. So you can check your network and try "
+#~ "again."
+#~ msgstr ""
+#~ "Niti jedan paket nije nadograđen još.Tako da možete provjeriti postavke "
+#~ "mreže i pokušajte ponovno."
+
+#
+#~ msgid "Please press OK!"
+#~ msgstr "Molim pritisnite OK!"
+
+#
+#~ msgid "Refresh Rate"
+#~ msgstr "Brzina osvježavanja"
+
+#
+#~ msgid "Scan QAM128"
+#~ msgstr "Skeniraj QAM128"
+
+#
+#~ msgid "Scan QAM16"
+#~ msgstr "Skeniraj QAM16"
+
+#
+#~ msgid "Scan QAM256"
+#~ msgstr "Skeniraj QAM256"
+
+#
+#~ msgid "Scan QAM32"
+#~ msgstr "Skeniraj QAM32"
+
+#
+#~ msgid "Scan QAM64"
+#~ msgstr "Skeniraj QAM64"
+
+#
+#~ msgid "Scan SR6875"
+#~ msgstr "Skeniraj SR6875"
+
+#
+#~ msgid "Scan SR6900"
+#~ msgstr "Skeniraj SR6900"
+
+#
+#~ msgid "Scan band EU HYPER"
+#~ msgstr "Skeniraj band EU HYPER"
+
+#
+#~ msgid "Scan band EU MID"
+#~ msgstr "Skeniraj band EU MID"
+
+#
+#~ msgid "Scan band EU SUPER"
+#~ msgstr "Skeniraj band EU SUPER"
+
+#
+#~ msgid "Scan band EU UHF IV"
+#~ msgstr "Skeniraj band EU UHF IV"
+
+#
+#~ msgid "Scan band EU UHF V"
+#~ msgstr "Skeniraj band EU UHF V"
+
+#
+#~ msgid "Scan band EU VHF I"
+#~ msgstr "Skeniraj band EU VHF I"
+
+#
+#~ msgid "Scan band EU VHF III"
+#~ msgstr "Skeniraj band EU VHF III"
+
+#
+#~ msgid "Scan band US HIGH"
+#~ msgstr "Skeniraj band US HIGH"
+
+#
+#~ msgid "Scan band US HYPER"
+#~ msgstr "Skeniraj band US HYPER"
+
+#
+#~ msgid "Scan band US LOW"
+#~ msgstr "Skeniraj band US LOW"
+
+#
+#~ msgid "Scan band US MID"
+#~ msgstr "Skeniraj band US MID"
+
+#
+#~ msgid "Scan band US SUPER"
+#~ msgstr "Skeniraj band US SUPER"
+
+#
+#~ msgid ""
+#~ "Sorry your Backup destination does not exist\n"
+#~ "\n"
+#~ "Please choose an other one."
+#~ msgstr ""
+#~ "Oprostite, vaša destinacija za sigurnosnu kopiju ne postoji\n"
+#~ "\n"
+#~ "Molim odaberite drugu lokaciju."
+
+#
+#~ msgid ""
+#~ "Thank you for using the wizard. Your STB_BOX is now ready to "
+#~ "use.\n"
+#~ "Please press OK to start using your STB_BOX."
+#~ msgstr ""
+#~ "Hvala vam na korištenju čarobnjaka. Vaš prijemnik je sada spreman za "
+#~ "korištenje.\n"
+#~ "Molim pritisnite tipku OK za start vašeg STB_BOX-a."
+
+#
+#~ msgid "This is step number 2."
+#~ msgstr "Ovo je korak broj 2."
+
+#
+#~ msgid "Tuner "
+#~ msgstr "Tuner"
+
+#
+#~ msgid "USB Stick"
+#~ msgstr "USB Disk"
+
+#
+#~ msgid "Updates your STB_BOX's software"
+#~ msgstr "Nadograđuje softver vašeg prijemnika"
+
+#
+#~ msgid "Updating finished. Here is the result:"
+#~ msgstr "Nadogradnja uspješna. Ovo su rezultati:"
+
+#
+#~ msgid "Updating... Please wait... This can take some minutes..."
+#~ msgstr ""
+#~ "Nadograđujem... Molim pričekajte... To može potrajati nekoliko minuta..."
+
+#
+#~ msgid "Upgrade finished. Do you want to reboot your STB_BOX?"
+#~ msgstr ""
+#~ "Nadogradnja uspješna. Želite li sada restartati STB_BOX?"
+
+#
+#~ msgid "Upgrading STB_BOX... Please wait"
+#~ msgstr "Nadograđujem STB_BOX... Molim pričekajte"
+
+#
+#~ msgid "Use Power Measurement"
+#~ msgstr "Koristi Mjerenje Snage"
+
+#
+#~ msgid ""
+#~ "Use the left and right buttons to change an option.\n"
+#~ "\n"
+#~ "Please set up tuner A"
+#~ msgstr ""
+#~ "Koristite lijeve i desne tipke za promjenu opcija.\n"
+#~ "\n"
+#~ "Molim podesite tuner A"
+
+#
+#~ msgid "Use usals for this sat"
+#~ msgstr "Koristi USALS za ovaj satelit"
+
+#
+#~ msgid "Video Output"
+#~ msgstr "Video izlaz"
+
+#
+#~ msgid "Video Setup"
+#~ msgstr "Video postavke"
+
+#
+#~ msgid "Video Wizard"
+#~ msgstr "Video čarobnjak"
+
+#
+#~ msgid "Yes, view the tutorial"
+#~ msgstr "Da, prikaži vodič"
+
+#
+#~ msgid "alphabetic sort"
+#~ msgstr "sortiraj abecedno"
+
+#
+#~ msgid ""
+#~ "are you sure you want to restore\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "Želite li stvarno vratiti sljedeću\n"
+#~ "sigurnosnu kopiju:\n"
+
+#
+#~ msgid "sort by date"
+#~ msgstr "sortiraj po datumu"
+
+#
+#~ msgid ""
+#~ "your STB_BOX might be unusable now. Please consult the "
+#~ "manual for further assistance before rebooting your STB_BOX."
+#~ msgstr ""
+#~ "vaš STB_BOX može biti sada nemoguće za koristiti. Molim "
+#~ "konzultirajte se s korisničkim uputama za daljnju pomoć prije rebootanja "
+#~ "vašeg STB_BOX-a."

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2_v2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-14 17:59+0100\n"
+"POT-Creation-Date: 2012-09-28 16:57+0100\n"
 "PO-Revision-Date: 2012-09-14 19:17-0000\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
@@ -123,15 +123,6 @@ msgstr ""
 "\n"
 "Επιλογή συσκευής backup.\n"
 "Τρέχουσα συσκευή:"
-
-#
-#
-msgid ""
-"\n"
-"System will restart after the restore!"
-msgstr ""
-"\n"
-"Το σύστημα θα επανεκκινήσει μετά την αποκατάσταση!"
 
 #
 #
@@ -271,6 +262,17 @@ msgstr ""
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
+#. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
+#, python-format
+msgid "%s is no longer used. Should it be deleted?"
+msgstr ""
+
+#, python-format
+msgid "%s updated package available"
+msgid_plural "%s updated packages available"
+msgstr[0] ""
+msgstr[1] ""
+
 #, python-format
 msgid "%s/%s: %s"
 msgstr ""
@@ -310,13 +312,6 @@ msgstr ""
 #
 msgid "* Only available if more than one interface is active."
 msgstr "* Διαθέσιμο μόνο εάν είναι ενεργές περισσότερες από μία διεπαφές."
-
-msgid "/usr/share/enigma2 directory"
-msgstr "/usr/share/enigma2 φάκελος"
-
-#
-msgid "/var directory"
-msgstr "φάκελος /var"
 
 #
 #
@@ -510,6 +505,12 @@ msgid ""
 "again."
 msgstr ""
 
+#, python-format
+msgid ""
+"A configuration file (%s) has been modified since it was installed.\n"
+"Do you want to keep your modifications?"
+msgstr ""
+
 #
 # , python-format
 #, python-format
@@ -641,6 +642,9 @@ msgstr ""
 msgid "A/V Settings"
 msgstr "Ρυθμίσεις εικόνας/ήχου"
 
+msgid "A/V settings"
+msgstr ""
+
 #
 #
 msgid "AA"
@@ -658,9 +662,6 @@ msgid "AFP Setup"
 msgstr ""
 
 msgid "AFP setup"
-msgstr ""
-
-msgid "AIT data will be included in http streams"
 msgstr ""
 
 #, python-format
@@ -709,9 +710,6 @@ msgstr "Να ενεργοποιηθεί το PiP"
 msgid "Activate network settings"
 msgstr "Ενεργοποίηση ρυθμίσεων δικτύου"
 
-msgid "Activate rewrapping of the teletext subtitles"
-msgstr ""
-
 msgid "Activate the chosen network settings."
 msgstr ""
 
@@ -743,11 +741,6 @@ msgstr "Προσθήκη σελιδοδείκτη"
 msgid "Add Timer"
 msgstr ""
 
-#
-#
-msgid "Add WLAN configuration?"
-msgstr "Προσθήκη ρύθμισης WLAN;"
-
 msgid "Add a auto timer for current event"
 msgstr ""
 
@@ -772,11 +765,6 @@ msgstr ""
 
 msgid "Add a zap timer for current event"
 msgstr ""
-
-#
-#
-msgid "Add network configuration?"
-msgstr "Προσθήκη ρύθμισης δικτύου;"
 
 #
 #
@@ -809,20 +797,6 @@ msgstr ""
 
 msgid "Address"
 msgstr ""
-
-msgid ""
-"Adds enigma2 settings and STB_BOX informations like SN, rev... if enabled."
-msgstr ""
-
-#
-#
-msgid "Adds network configuration if enabled."
-msgstr "Προσθέτει τις ρυθμίσεις δικτύου αν ενεργοποιηθεί."
-
-#
-#
-msgid "Adds wlan configuration if enabled."
-msgstr "Προσθέτει τις ρυθμίσεις WLAN αν ενεργοποιηθεί."
 
 #
 msgid "Adjust 3D settings"
@@ -862,27 +836,16 @@ msgstr "Προχωρημένη εγκατάσταση βελτίωσης εικ�
 
 #
 #
-msgid "Advanced Video Setup"
-msgstr "Προχωρημένες ρυθμίσεις εικόνας"
-
-#
-#
 msgid "Advanced restore"
 msgstr "Προχωρημένη αποκατάσταση"
+
+msgid "Advanced video setup"
+msgstr ""
 
 #
 #
 msgid "After event"
 msgstr "Μετά το πρόγραμμα"
-
-#
-#
-msgid ""
-"After the start wizard is completed, you need to protect single services. "
-"Refer to your STB_BOX's manual on how to do that."
-msgstr ""
-"Μετά το τέλος του Οδηγού πρέπει να προστατευτούν τα «single services». "
-"Διάβαστε στο user manual του δέκτη για το πώς γίνεται."
 
 #
 #
@@ -897,12 +860,10 @@ msgstr ""
 msgid "All"
 msgstr "Όλα"
 
-#
-#
-msgid "All Satellites"
-msgstr "Όλοι οι δορυφόροι"
-
 msgid "All ages"
+msgstr ""
+
+msgid "All satellites"
 msgstr ""
 
 #
@@ -969,7 +930,7 @@ msgstr ""
 msgid "Altern"
 msgstr ""
 
-msgid "Alternative numbering Mode"
+msgid "Alternative numbering mode"
 msgstr ""
 
 msgid "Alternative radio mode"
@@ -984,11 +945,6 @@ msgstr "Εναλλακτική προτεραιότητα tuner "
 msgid "Always ask"
 msgstr "Πάντα ερώτηση"
 
-#
-#
-msgid "Always ask before sending"
-msgstr "Πάντα ερώτηση πριν την αποστολή"
-
 msgid "Always show bouquets"
 msgstr ""
 
@@ -997,15 +953,13 @@ msgstr ""
 msgid "An empty filename is illegal."
 msgstr "Κενή ονομασία είναι άκυρη."
 
+msgid "An error occurred while downloading the packetlist. Please try again."
+msgstr ""
+
 #
 #
 msgid "An unknown error occured!"
 msgstr "Συνέβη άγνωστο σφάλμα!"
-
-#
-#
-msgid "Anonymize crashlog?"
-msgstr "Ανώνυμη καταγραφή;"
 
 #
 msgid "Any activity"
@@ -1022,14 +976,10 @@ msgid ""
 "\n"
 msgstr "Σίγουρα θέλετε να ενεργοποιήσετε αυτό το δίκτυο;\n"
 
-#
-#
 msgid ""
 "Are you sure you want to delete\n"
-"following backup:\n"
+"the following backup:\n"
 msgstr ""
-"Σίγουρα θέλετε να διαγράψετε\n"
-"το παρακάτω αντίγραφο ασφαλείας:\n"
 
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr ""
@@ -1054,23 +1004,18 @@ msgstr ""
 "Είστε σίγουρος ότι θέλετε να επανεκκινήσετε τις διεπαφές δικτύου;\n"
 "\n"
 
-#
-#
+#, python-format
 msgid ""
 "Are you sure you want to restore\n"
-"following backup:\n"
+"the following backup:\n"
+"%s\n"
+"Your receiver will restart after the backup has been restored!"
 msgstr ""
-"Σίγουρα θέλετε να επαναφέρετε \n"
-"το παρακάτω αντίγραφο ασφαλείας:\n"
 
-#
-#
 msgid ""
-"Are you sure you want to restore your Enigma2 backup?\n"
-"Enigma2 will restart after the restore"
+"Are you sure you want to restore the backup?\n"
+"Your receiver will restart after the backup has been restored!"
 msgstr ""
-"Σίγουρα θέλετε να επαναφέρετε το αντίγραφο ασφαλείας του Enigma2?\n"
-"Το Enigma2 θα επανεκκινήσει μετά την επαναφορά"
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr ""
@@ -1101,6 +1046,9 @@ msgstr "Ερώτηση χρήστη"
 #
 msgid "Aspect Ratio"
 msgstr "Aspect Ratio"
+
+msgid "Aspect ratio"
+msgstr ""
 
 msgid "Attach a file"
 msgstr ""
@@ -1183,6 +1131,9 @@ msgstr "Αυτόματο"
 msgid "Automatic Scan"
 msgstr "Αυτόματη σάρωση"
 
+msgid "Automatic configuration is finished"
+msgstr ""
+
 msgid "Automatic image backup"
 msgstr ""
 
@@ -1263,22 +1214,8 @@ msgstr "Επιλογή διαγραφής στο παρασκήνιο"
 msgid "Background delete speed"
 msgstr "Ταχύτητα διαγραφής στο παρασκήνιο"
 
-#
-msgid "Backup"
-msgstr "Αντίγραφο ασφαλείας"
-
-#
-msgid "Backup Location"
-msgstr "Θέση αντιγράφου ασφαλείας"
-
-#
-msgid "Backup Mode"
-msgstr "Κατάσταση αντιγράφου ασφαλείας"
-
-#
-#
-msgid "Backup done."
-msgstr "Αντίγραφο ασφαλείας ολοκληρώθηκε."
+msgid "Backup completed."
+msgstr ""
 
 #
 #
@@ -1435,13 +1372,6 @@ msgstr ""
 
 #
 #
-msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
-msgstr "Πιέζοντας ΟΚ εμφανίζεται η μπάρα πληροφοριών."
-
-#
-#
 msgid "C"
 msgstr "C"
 
@@ -1496,10 +1426,6 @@ msgstr ""
 
 msgid "CCcam info"
 msgstr ""
-
-#
-msgid "CF Drive"
-msgstr "Οδηγός CF"
 
 #
 #
@@ -1562,13 +1488,8 @@ msgstr ""
 msgid "Cardserial"
 msgstr ""
 
-msgid "Center the position of the DVB subtitles."
+msgid "Center DVB subtitles"
 msgstr ""
-
-#
-#
-msgid "Centered DVB subtitles"
-msgstr "Υπότιτλοι DVB με στοίχιση στο κέντρο"
 
 #
 #
@@ -1633,6 +1554,9 @@ msgstr "Επιλογή Καναλιού"
 msgid "Channel Selection Configuration"
 msgstr ""
 
+msgid "Channel list context menu"
+msgstr ""
+
 msgid "Channel list on mode change"
 msgstr ""
 
@@ -1640,6 +1564,9 @@ msgid "Channel list preview"
 msgstr ""
 
 msgid "Channel list service mode*"
+msgstr ""
+
+msgid "Channel list type"
 msgstr ""
 
 #
@@ -1683,6 +1610,12 @@ msgstr "Έλεγχος"
 msgid "Check every (hours)"
 msgstr ""
 
+msgid "Check the internet connection"
+msgstr ""
+
+msgid "Check the internet connection again"
+msgstr ""
+
 msgid "Checking Feeds"
 msgstr ""
 
@@ -1695,6 +1628,15 @@ msgid "Checking Logs..."
 msgstr ""
 
 msgid "Checking for Updates..."
+msgstr ""
+
+msgid "Checking the internet connection"
+msgstr ""
+
+#, python-format
+msgid ""
+"Checking tuner %d\n"
+"DiSEqC port %s for %s"
 msgstr ""
 
 msgid "Children/Youth"
@@ -1747,18 +1689,13 @@ msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
 msgid ""
-"Choose the location where the EPG data will be stored when the STB_BOX is "
-"shut down. The location must be available at boot time."
+"Choose the location where the EPG data will be stored when the GigaBlue HD "
+"800 Solo is shut down. The location must be available at boot time."
 msgstr ""
 
 msgid ""
-"Choose the name of the file that holds the EPG data when the STB_BOX is shut "
-"down. This can be handy to differentiate between several boxes."
-msgstr ""
-
-msgid ""
-"Choose the order in which the tuner types will be used (for watching and "
-"recording)."
+"Choose the name of the file that holds the EPG data when the GigaBlue HD 800 "
+"Solo is shut down. This can be handy to differentiate between several boxes."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -1773,6 +1710,10 @@ msgid "Choose upgrade source"
 msgstr "Επιλογή πηγής αναβάθμισης"
 
 msgid "Choose what you want the button '0' to do when PIP is active."
+msgstr ""
+
+msgid ""
+"Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr ""
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
@@ -1791,11 +1732,6 @@ msgid ""
 msgstr ""
 
 msgid "Choose which tuner to configure."
-msgstr ""
-
-msgid ""
-"Choose which tuner will be used first. If set to 'auto' the system will give "
-"priority to the tuner having the lowest number of channels/satellites."
 msgstr ""
 
 #
@@ -1820,21 +1756,6 @@ msgstr ""
 #
 msgid "Cleanup"
 msgstr "Εκκαθάριση"
-
-#
-#
-msgid "Cleanup Wizard"
-msgstr "Οδηγός εκκαθάρισης"
-
-#
-#
-msgid "Cleanup Wizard settings"
-msgstr "Ρυθμίσεις οδηγού εκκαθάρισης"
-
-#
-#
-msgid "CleanupWizard"
-msgstr "Οδηγός Εκκαθάρισης"
 
 #
 #
@@ -1891,6 +1812,9 @@ msgstr "Επιλογές συλλογής"
 #
 msgid "Color Format"
 msgstr "Format χρώματος"
+
+msgid "Color format"
+msgstr ""
 
 #
 #
@@ -1953,6 +1877,9 @@ msgstr ""
 msgid "Configuration Mode"
 msgstr "Τύπος παραμετροποίησης"
 
+msgid "Configuration mode"
+msgstr ""
+
 #
 #
 msgid "Configure interface"
@@ -1986,6 +1913,20 @@ msgid "Configure the behaviour when a movie reaches the end"
 msgstr ""
 
 msgid ""
+"Configure the border width of the subtitles. The dark border makes the "
+"subtitles easier to read on a light background."
+msgstr ""
+
+msgid "Configure the color of the teletext subtitles."
+msgstr ""
+
+msgid "Configure the font size of the subtitles."
+msgstr ""
+
+msgid "Configure the horizontal alignment of the subtitles."
+msgstr ""
+
+msgid ""
 "Configure the number of days old timers are kept and then auto deleted from "
 "the timers list"
 msgstr ""
@@ -2010,6 +1951,9 @@ msgstr ""
 msgid "Configure the speed of the background delete feature"
 msgstr ""
 
+msgid "Configure the subtitle delay when timing information is not available."
+msgstr ""
+
 msgid "Configure the time of the stepskip on the '1'/'3'-keys"
 msgstr ""
 
@@ -2019,10 +1963,31 @@ msgstr ""
 msgid "Configure the time of the stepskip on the '7'/'9'-keys"
 msgstr ""
 
+msgid ""
+"Configure the transparency of the black background of graphical DVB "
+"subtitles."
+msgstr ""
+
 msgid "Configure the type of status indication icons shown in the movielist"
 msgstr ""
 
+msgid ""
+"Configure the vertical position of the subtitles, measured from the bottom "
+"of the screen."
+msgstr ""
+
 msgid "Configure the way recording filenames are composed"
+msgstr ""
+
+msgid ""
+"Configure which tuner type will be preferred, when the same service is "
+"available on different types of tuners."
+msgstr ""
+
+msgid ""
+"Configure which tuner will be preferred, when more than one tuner is "
+"available. If set to 'auto' the system will give priority to the tuner "
+"having the lowest number of channels/satellites."
 msgstr ""
 
 #
@@ -2139,6 +2104,9 @@ msgstr ""
 msgid "Copy"
 msgstr "Αντιγραφή"
 
+msgid "Correct"
+msgstr ""
+
 msgid ""
 "Could not activate Permanent-Timeshift!\n"
 "Timeshift-Path does not exist"
@@ -2148,6 +2116,9 @@ msgstr ""
 #
 msgid "Could not connect to STB_BOX .NFI Image Feed Server:"
 msgstr "Αδύνατη σύνδεση στο  δέκτη. Διακομιστής λογισμικού NFI:"
+
+msgid "Could not find installed channel list."
+msgstr ""
 
 #
 #
@@ -2180,34 +2151,6 @@ msgstr "Αδυναμία εγγραφής λόγω άκυρης υπηρεσία
 
 msgid "Crash Logs"
 msgstr ""
-
-#
-#
-msgid "Crashlog settings"
-msgstr "Ρυθμίσεις καταγραφής σφαλμάτων"
-
-#
-#
-msgid "CrashlogAutoSubmit"
-msgstr "Αυτόματη υποβολή καταγραφών σφαλμάτων"
-
-#
-#
-msgid "CrashlogAutoSubmit settings"
-msgstr "Ρυθμίσης αυτόματης υποβολής σφαλμάτων"
-
-#
-#
-msgid "CrashlogAutoSubmit settings..."
-msgstr "Ρυθμίσης αυτόματης υποβολής σφαλμάτων..."
-
-#
-msgid ""
-"Crashlogs found!\n"
-"Send them to Dream Multimedia?"
-msgstr ""
-"Βρέθηκαν καταγραφές σφαλμάτων!\n"
-"Να αποσταλούν;"
 
 #
 #
@@ -2307,16 +2250,6 @@ msgstr "Χρόνος μετάβασης για τα πλήκτρα '7'/'9'"
 
 #
 #
-msgid "Custom text alignment"
-msgstr "Επιθυμητή στοίχιση κειμένου"
-
-#
-#
-msgid "Custom text position"
-msgstr "Επιθυμητή θέση κειμένου"
-
-#
-#
 msgid "Customize"
 msgstr "Παραμετροποίηση"
 
@@ -2324,6 +2257,9 @@ msgstr "Παραμετροποίηση"
 #
 msgid "Cut"
 msgstr "Αποκοπή"
+
+msgid "Cutlist editor"
+msgstr ""
 
 #
 #
@@ -2420,22 +2356,6 @@ msgstr ""
 
 #
 #
-msgid "Decide if you want to enable or disable the Cleanup Wizard."
-msgstr "Αποφασίστε αν θα ενεργοποιήσετε ή όχι τον Οδηγό Εκκαθάρισης."
-
-#
-#
-msgid "Decide what should be done when crashlogs are found."
-msgstr "Αποφασίστε τι θα γίνει όταν βρεθούν καταγραφές σφαλμάτων."
-
-#
-#
-msgid "Decide what should happen to the crashlogs after submission."
-msgstr ""
-"Αποφασίστε τι θα γίνει με τις καταγραφές σφαλμάτων μετά την αποστολή τους."
-
-#
-#
 msgid "Deep Standby"
 msgstr "Τερματισμός"
 
@@ -2481,11 +2401,6 @@ msgstr ""
 
 #
 #
-msgid "Delete crashlogs"
-msgstr "Διαγραφή αρχείων καταγραφής σφάλματος"
-
-#
-#
 msgid "Delete entry"
 msgstr "Διαγραφή εγγραφής"
 
@@ -2493,16 +2408,6 @@ msgstr "Διαγραφή εγγραφής"
 #
 msgid "Delete failed!"
 msgstr "Διαγραφή απέτυχε!"
-
-#
-# , python-format
-#, python-format
-msgid ""
-"Delete no more configured satellite\n"
-"%s?"
-msgstr ""
-"Διαγραφή του μη ρυθμισμένου δορυφόρου\n"
-"%s;"
 
 msgid "Delete old timers after how many days"
 msgstr ""
@@ -2582,6 +2487,10 @@ msgstr "DiSEqC A/B/C/D"
 msgid "DiSEqC mode"
 msgstr "DiSEqC mode"
 
+#, python-format
+msgid "DiSEqC port %s: %s"
+msgstr ""
+
 #
 #
 msgid "DiSEqC repeats"
@@ -2639,11 +2548,6 @@ msgstr "Απενεργοποίηση Picture in Picture"
 #
 msgid "Disable background scanning"
 msgstr "Απενεργοποίηση αναζήτησης στο παρασκήνιο"
-
-#
-#
-msgid "Disable crashlog reporting"
-msgstr "Απενεργοποίηση αναφορών crashlogs"
 
 #
 #
@@ -2770,17 +2674,14 @@ msgid "Do you want to add any additional information ?"
 msgstr ""
 
 msgid ""
+"Do you want to also install samba client ?\n"
+"This allows you to mount your windows shares on this device."
+msgstr ""
+
+msgid ""
 "Do you want to attach a text file to explain the log ?\n"
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
-
-#
-msgid ""
-"Do you want to backup now?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"Θέλετε να κρατήσετε αντίγραφο τώρα;\n"
-"Μετά το ΟΚ, παρακαλώ περίμενετε!"
 
 #
 #
@@ -2807,10 +2708,8 @@ msgstr "Θέλετε να πραγματοποιηθεί μία ακόμα χε�
 msgid "Do you want to download the image to %s ?"
 msgstr "Είστε σίγουρος για λήψη λογισμικού;"
 
-#
-#
-msgid "Do you want to enable the parental control feature on your STB_BOX?"
-msgstr "Θέλετε να ενεργοποιηθεί η γονική προστασία στο δέκτη σας;"
+msgid "Do you want to install a channel list?"
+msgstr ""
 
 #
 #
@@ -2831,6 +2730,9 @@ msgstr "Θέλετε να γίνει προεπισκόπιση αυτού το�
 #
 msgid "Do you want to reboot your STB_BOX?"
 msgstr "Θέλετε να γίνει επανεκκίνηση του δέκτη;"
+
+msgid "Do you want to reboot your receiver?"
+msgstr ""
 
 #
 #
@@ -2854,45 +2756,13 @@ msgstr ""
 
 #
 #
-msgid ""
-"Do you want to submit your email address and name so that we can contact you "
-"if needed?"
-msgstr ""
-"Θέλετε να εισάγετε το email και το όνομά σας για να επικοινωνήσουμε αν "
-"χρειαστεί;"
-
-#
-#
 msgid "Do you want to update your STB_BOX?"
 msgstr "Θέλετε να γίνει αναβάθμιση του δέκτη;"
 
 #
 #
-msgid ""
-"Do you want to update your STB_BOX?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"Θέλετε να αναβαθμίσετε το δέκτη σας;\n"
-"Μετά το ΟΚ, παρακαλώ περίμενετε!"
-
-#
-#
 msgid "Do you want to upgrade the package:\n"
 msgstr "Θέλετε να αναβαθμίσετε το πακέτο:\n"
-
-#
-msgid "Do you want to upgrade?"
-msgstr "Θέλετε να αναβαθμίσετε;"
-
-#
-#
-msgid "Do you want to view a tutorial?"
-msgstr "Θέλετε να δείτε έναν \"Οδηγό\";"
-
-#
-#
-msgid "Don't ask, just send"
-msgstr "Αποστολή χωρίς ερώτηση"
 
 msgid "Don't save"
 msgstr ""
@@ -2904,12 +2774,6 @@ msgstr ""
 #
 msgid "Don't stop current event but disable coming events"
 msgstr "Χωρίς παύση τρέχοντος προγράμματος, αλλά με απενεργοποίση επερχόμενων"
-
-#
-# , python-format
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "Τέλος - Εγκαταστάθηκαν ή αναβαθμίστηκαν %d πακέτα"
 
 #
 # , python-format
@@ -2956,9 +2820,6 @@ msgstr "Λήψη"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Λήψη πληροφοριών προσθέτων. Παρακαλώ περιμένετε ..."
 
-msgid "Downmix the Dolby Digital sound tracks to PCM."
-msgstr ""
-
 msgid "Drivers:"
 msgstr ""
 
@@ -2994,9 +2855,6 @@ msgid "ECM last"
 msgstr ""
 
 msgid "ECM-Time"
-msgstr ""
-
-msgid "EIT data will be included in http streams."
 msgstr ""
 
 msgid "EPG"
@@ -3040,9 +2898,6 @@ msgstr ""
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "ΣΦΑΛΜΑ - Αποτυχία στη σάρωση  (%s)!"
-
-msgid "ET9x00/6500"
-msgstr ""
 
 #
 #
@@ -3131,11 +2986,6 @@ msgstr "Ενεργοποίηση"
 msgid "Enable 5V for active antenna"
 msgstr "Ενεργοποίηση των 5 V για την ενεργή κεραία"
 
-#
-#
-msgid "Enable Cleanup Wizard?"
-msgstr "Ενεργοποίηση Οδηγού Εκκαθάρισης"
-
 msgid "Enable Debug log"
 msgstr ""
 
@@ -3217,9 +3067,6 @@ msgid ""
 "is included in the stream and a valid card is available)."
 msgstr ""
 
-msgid "Enables channel numbers in the channel selection screen"
-msgstr ""
-
 msgid "Enables the trashcan feature"
 msgstr ""
 
@@ -3296,11 +3143,6 @@ msgstr "Εισαγωγή κωδικού pin"
 msgid "Enter the service pin"
 msgstr "Βάλτε το pin υπηρεσίας"
 
-#
-#
-msgid "Enter your email address so that we can contact you if needed."
-msgstr "Εισάγετε το email σας για να επικοινωνήσουμε αν χρειαστεί"
-
 msgid "Enter your email address to send a copy of the log to."
 msgstr ""
 
@@ -3346,9 +3188,6 @@ msgstr ""
 #
 msgid "Estonian"
 msgstr "Εσθονικά"
-
-msgid "Et5000/6000"
-msgstr ""
 
 #
 msgid "Ethernet network interface"
@@ -3420,11 +3259,6 @@ msgstr "Έξοδος από επιλογή συσκευής εισαγωγής."
 #
 msgid "Exit network wizard"
 msgstr "Έξοδος από τον Οδηγό δικτύου"
-
-#
-#
-msgid "Exit the cleanup wizard"
-msgstr "Έξοδος από τον οδηγό εκκαθάρισης"
 
 #
 #
@@ -3621,6 +3455,10 @@ msgstr "Format"
 msgid "Forward volume keys"
 msgstr "Forward volume keys"
 
+#, python-format
+msgid "Found %d position(s) of %d total"
+msgstr ""
+
 #
 #
 msgid "Frame size in full view"
@@ -3707,18 +3545,14 @@ msgstr "Gateway"
 msgid "General"
 msgstr ""
 
-#
-#
-msgid "General AC3 Delay"
-msgstr "Γενική υστέρηση AC3"
+msgid "General AC3 delay"
+msgstr ""
 
 msgid "General AC3 delay (ms)"
 msgstr ""
 
-#
-#
-msgid "General PCM Delay"
-msgstr "Γενική υστέρηση PCM"
+msgid "General PCM delay"
+msgstr ""
 
 msgid "General PCM delay (ms)"
 msgstr ""
@@ -3745,6 +3579,31 @@ msgstr ""
 #
 msgid "Getting plugin information. Please wait..."
 msgstr "Λήψη πληροφοριών προσθέτου. Παρακαλώ περιμένετε..."
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr ""
+
+#
+#
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "STB_BOX format data DVD (HDTV compatible)"
+
+msgid "STB_BOX front panel"
+msgstr ""
+
+msgid "STB_BOX ir keyboard"
+msgstr ""
+
+msgid "STB_BOX ir mouse"
+msgstr ""
+
+msgid "STB_BOX remote control (native)"
+msgstr ""
+
+#
+#
+msgid "STB_BOX software because updates are available."
+msgstr "λογισμικό δέκτη γιατί διατίθενται ενημερώσεις."
 
 msgid "Go down the list"
 msgstr ""
@@ -3897,10 +3756,10 @@ msgstr "Κρυφό δίκτυο"
 msgid "Hide CI messages"
 msgstr "Απόκρυψη μηνυμάτων CI"
 
-msgid "Hide any Common Interface card error messages."
+msgid "Hide any zap error messages."
 msgstr ""
 
-msgid "Hide any zap error messages."
+msgid "Hide error messages from the Common Interface module."
 msgstr ""
 
 #
@@ -3966,11 +3825,6 @@ msgstr "Ποσά λεπτά θέλετε να εγγραφούν;"
 
 #
 #
-msgid "How to handle found crashlogs?"
-msgstr "Τι να γίνει με τα αρχεία καταγραφής σφάλματος;"
-
-#
-#
 msgid "Hue"
 msgstr "Hue"
 
@@ -4009,9 +3863,6 @@ msgid "Icons"
 msgstr "Εικονίδια"
 
 msgid "Idle Time: "
-msgstr ""
-
-msgid "If Teletext caching is enabled, displaying pages will be much faster."
 msgstr ""
 
 msgid ""
@@ -4156,11 +4007,6 @@ msgstr "Να περιέχεται ECM στα http streams"
 msgid "Include EIT in http streams"
 msgstr "Να περιέχεται EIT στα http streams"
 
-#
-#
-msgid "Include your email and name (optional) in the mail?"
-msgstr "Να συμπεριληφθεί το email σας και το όνομα (προαιρετικά) στο email;"
-
 msgid "Increase time scale"
 msgstr ""
 
@@ -4237,6 +4083,9 @@ msgstr "Είσοδος"
 msgid "Input device setup"
 msgstr "Ρύθμιση συσκευής εισαγωγής χαρακτήρων"
 
+msgid "Input devices"
+msgstr ""
+
 #
 #
 msgid "Install"
@@ -4251,6 +4100,9 @@ msgstr "Εγκατάσταση νέου λογισμικού με usb stick"
 #
 msgid "Install a new image with your web browser"
 msgstr "Εγκατάσταση νέου λογισμικού με web browser"
+
+msgid "Install channel list"
+msgstr ""
 
 #
 #
@@ -4279,11 +4131,6 @@ msgstr ""
 
 #
 #
-msgid "Install settings, skins, software..."
-msgstr "Εγκατάσταση ρυθμίσεων, θεμάτων, λογισμικού..."
-
-#
-#
 msgid "Installation finished."
 msgstr "Η εγκατάσταση τελείωσε."
 
@@ -4299,22 +4146,6 @@ msgstr ""
 #
 msgid "Installing Software..."
 msgstr "Εγκατάσταση λογισμικού..."
-
-#
-#
-msgid "Installing default sat lists... Please wait..."
-msgstr ""
-"Εγκατάσταση αρχικής λίστας υπηρεσιών δορυφόρου... Παρακαλώ περιμένετε..."
-
-#
-#
-msgid "Installing defaults... Please wait..."
-msgstr "Εγκατάσταση αρχικών ρυθμίσεων... Παρακαλώ περιμένετε..."
-
-#
-#
-msgid "Installing package content... Please wait..."
-msgstr "Εγκατάσταση περιεχομένου πακέτου... Παρακαλώ περιμένετε..."
 
 #
 #
@@ -4381,10 +4212,8 @@ msgstr "Ipkg"
 msgid "Is this setting ok?"
 msgstr ""
 
-#
-#
-msgid "Is this videomode ok?"
-msgstr "Είναι εντάξει αυτή η κατάσταση εικόνας;"
+msgid "Is this video mode ok?"
+msgstr ""
 
 #
 msgid "Italian"
@@ -4493,21 +4322,6 @@ msgstr ""
 #
 msgid "LNB"
 msgstr "LNB"
-
-#
-#
-msgid "LOF"
-msgstr "LOF"
-
-#
-#
-msgid "LOF/H"
-msgstr "LOF/H"
-
-#
-#
-msgid "LOF/L"
-msgstr "LOF/L"
 
 msgid "Label"
 msgstr ""
@@ -4907,10 +4721,13 @@ msgstr ""
 msgid "Missing "
 msgstr "Λείπει"
 
-#
-#
+msgctxt "Satellite configuration mode"
 msgid "Mode"
-msgstr "Κατάσταση"
+msgstr ""
+
+msgctxt "Video output mode"
+msgid "Mode"
+msgstr ""
 
 #
 #
@@ -5339,14 +5156,6 @@ msgstr ""
 
 #
 #
-msgid ""
-"No packages were upgraded yet. So you can check your network and try again."
-msgstr ""
-"Κανένα πακέτο δεν έχει αναβαθμιστεί ακόμα. Ελέγξτε το δίκτυο και δοκιμάστε "
-"ξανά."
-
-#
-#
 msgid "No positioner capable frontend found."
 msgstr "Δεν βρέθηκε διεπαφή χρήστη για το positioner."
 
@@ -5382,6 +5191,9 @@ msgid ""
 msgstr ""
 "Δεν ενεργοποιήθηκε tuner!\n"
 "Παραμετροποιήστε το tuner προτού κάνετε ανεύρεση υπηρεσιών."
+
+msgid "No updates available. Please try again later."
+msgstr ""
 
 #
 #
@@ -5464,18 +5276,8 @@ msgstr "Όχι, ποτέ"
 
 #
 #
-msgid "No, not now"
-msgstr "Όχι τώρα"
-
-#
-#
 msgid "No, scan later manually"
 msgstr "Όχι, θα γίνει σάρωση αργότερα"
-
-#
-#
-msgid "No, send them never"
-msgstr "Να μην αποσταλούν ποτέ"
 
 msgid "NodeID"
 msgstr ""
@@ -5590,16 +5392,6 @@ msgstr ""
 msgid "OK, guide me through the upgrade process"
 msgstr "ΟΚ, οδήγησε με στην διαδικασία αναβάθμισης"
 
-#
-#
-msgid "OK, remove another extensions"
-msgstr "ΟΚ, διαγραφή κι άλλης επέκτασης"
-
-#
-#
-msgid "OK, remove some extensions"
-msgstr "ΟΚ, διαγραφή κάποιων επεκτάσεων"
-
 msgid "ONID"
 msgstr "ONID"
 
@@ -5704,11 +5496,6 @@ msgid "OpenVpn Setup"
 msgstr ""
 
 #
-#
-msgid "Optionally enter your name if you want to."
-msgstr "Προαιρετική εισαγωγή ονόματος."
-
-#
 msgid "Orbital Position"
 msgstr "Τροχιακή θέση"
 
@@ -5732,12 +5519,11 @@ msgstr "Άλλο"
 msgid "Output"
 msgstr "Έξοδος"
 
-#
-msgid "Overwrite configuration files ?"
-msgstr "Αντικατάσταση αρχείων ρυθμίσεων;"
-
 msgid "Overwrite configuration files during software upgrade?"
 msgstr "Να αντικατασταθούν τα αρχεία ρυθμίσεων κατά την αναβάθμιση λογισμικού;"
+
+msgid "Overwrite configuration files?"
+msgstr ""
 
 #
 #
@@ -5763,16 +5549,6 @@ msgstr ""
 #
 msgid "Package list update"
 msgstr "Ενημέρωση λίστας πακέτων"
-
-#
-#
-msgid "Package removal failed.\n"
-msgstr "Η διαγραφή πακέτου απέτυχε.\n"
-
-#
-#
-msgid "Package removed successfully.\n"
-msgstr "Η διαγραφή πακέτου πέτυχε.\n"
 
 #
 msgid "Packages"
@@ -5812,6 +5588,9 @@ msgstr "Γονικός φάκελος"
 #
 msgid "Parental control"
 msgstr "Γονικός έλεγχος"
+
+msgid "Parental control editor"
+msgstr ""
 
 #
 #
@@ -5991,13 +5770,6 @@ msgstr "Παρακαλώ επιλέξετε μέσο για σάρωση"
 msgid "Please add titles to the compilation."
 msgstr "Παρακαλώ προσθέστε τίτλους στη συλλογή."
 
-msgid ""
-"Please be aware, that anyone can disable the parental control, if you have "
-"not set a PIN."
-msgstr ""
-"Λάβετε υπόψιν ότι οποιοσδήποτε μπορεί να απενεργοποιήσει τη γονική "
-"προστασία, εάν δεν θέσετε PIN."
-
 #
 #
 msgid "Please change recording endtime"
@@ -6016,18 +5788,8 @@ msgstr ""
 msgid "Please choose an extension..."
 msgstr "Παρακαλώ επιλέξτε μία επέκταση..."
 
-#
-#
-msgid "Please choose he package..."
-msgstr "Παρακαλώ επιλέξτε το πακέτο..."
-
 msgid "Please choose reader"
 msgstr ""
-
-#
-#
-msgid "Please choose the default services lists you want to install."
-msgstr "Παρακαλώ επιλέξτε την προρυθμισμένη λίστα υπηρεσιών για εγκατάσταση."
 
 #
 #
@@ -6050,6 +5812,9 @@ msgstr ""
 "Παρακαλώ ρυθμίστε τη σύνδεση διαδικτύου συμπληρώνοντας τα απαιτούμενα "
 "πεδία.\n"
 "Όταν είστε έτοιμος, πιέστε ΟΚ για συνέχεια."
+
+msgid "Please connect your receiver to the internet"
+msgstr ""
 
 #
 #
@@ -6092,16 +5857,6 @@ msgstr "Βάλε το παλιό PIN"
 
 #
 #
-msgid "Please enter your email address here:"
-msgstr "Παρακαλώ εισάγετε το email σας εδώ:"
-
-#
-#
-msgid "Please enter your name here (optional):"
-msgstr "Παρακαλώ εισάγετε το όνομά σας εδώ (προαιρετικά):"
-
-#
-#
 msgid "Please follow the instructions on the TV"
 msgstr "Παρακαλώ ακολουθήστε τις οδηγίες στην οθόνη"
 
@@ -6118,11 +5873,6 @@ msgstr ""
 #
 msgid "Please press OK to continue."
 msgstr "Παρακαλώ πιέστε ΟΚ για συνέχεια."
-
-#
-#
-msgid "Please press OK!"
-msgstr "Παρακαλώ πιέστε ΟΚ!"
 
 msgid "Please select a default EPG type..."
 msgstr ""
@@ -6150,16 +5900,6 @@ msgstr "Επιλέξτε μια υπό-υπηρεσία"
 msgid "Please select an NFI file and press green key to flash!"
 msgstr ""
 "Παρακαλώ επιλέξτε αρχείο NFI και πιέστε το πράσινο κουμπί για εγκατάσταση!"
-
-#
-#
-msgid "Please select an extension to remove."
-msgstr "Παρακαλώ επιλέξτε επέκταση για διαγραφή."
-
-#
-#
-msgid "Please select an option below."
-msgstr "Παρακαλώ επιλέξτε μία επιλογή από τις κάτωθι."
 
 #
 #
@@ -6202,6 +5942,9 @@ msgstr ""
 "\n"
 "Πιέστε ΟΚ για συνέχεια."
 
+msgid "Please set up tuner A"
+msgstr ""
+
 #
 #
 msgid "Please set up tuner B"
@@ -6237,6 +5980,12 @@ msgstr ""
 "Χρησιμοποιήστε τα πλήκτρα ΠΑΝΩ και ΚΑΤΩ για επιλογή γλώσσας. Μετά πιέστε το "
 "ΟΚ."
 
+msgid "Please wait (downloading channel list)"
+msgstr ""
+
+msgid "Please wait (updating packages)"
+msgstr ""
+
 #
 #
 msgid "Please wait for activation of your network configuration..."
@@ -6244,18 +5993,8 @@ msgstr "Παρακαλώ περιμένετε. Ενεργοποίηση ρύθμ
 
 #
 #
-msgid "Please wait while removing selected package..."
-msgstr "Παρακαλώ περιμένετε. Διαγραφή επιλεγμένου πακέτου..."
-
-#
-#
 msgid "Please wait while scanning is in progress..."
 msgstr "Παρακαλώ περιμένετε. Σάρωση σε εξέλιξη..."
-
-#
-#
-msgid "Please wait while searching for removable packages..."
-msgstr "Παρακαλώ περιμένετε. Αναζήτηση για πακέτα προς διαγραφή..."
 
 #
 msgid "Please wait while we configure your network..."
@@ -6296,6 +6035,9 @@ msgstr ""
 #
 msgid "Plugin browser"
 msgstr "Διαφυλλιστής προσθέτων"
+
+msgid "Plugin details"
+msgstr ""
 
 #
 #
@@ -6786,12 +6528,10 @@ msgstr ""
 msgid "Reenter new PIN"
 msgstr "Εισαγωγή PIN ξανά:"
 
-#
-#
-msgid "Refresh Rate"
-msgstr "Συχνότητα ανανέωσης"
-
 msgid "Refresh every (in hours)"
+msgstr ""
+
+msgid "Refresh rate"
 msgstr ""
 
 #
@@ -6838,7 +6578,7 @@ msgstr "Αποθήκευση αυτών των ρυθμίσεων για κάθ�
 msgid "Remote box"
 msgstr ""
 
-msgid "Remote type"
+msgid "Remote control type"
 msgstr ""
 
 #
@@ -6871,11 +6611,6 @@ msgstr "Διαγραφή επιλεγμένου τίτλου"
 
 #
 #
-msgid "Remove failed."
-msgstr "Η διαγραφή απέτυχε."
-
-#
-#
 msgid "Remove finished."
 msgstr "Η διαγραφή τελείωσε."
 
@@ -6901,11 +6636,6 @@ msgstr "Διαγραφή τίτλου"
 
 #
 #
-msgid "Removed successfully."
-msgstr "Διεγράφη επιτυχώς."
-
-#
-#
 msgid "Removing"
 msgstr "Διαγραφή"
 
@@ -6922,11 +6652,6 @@ msgstr "Η διαγραφή του φακέλου %s απέτυχε. (Ίσως �
 #
 msgid "Rename"
 msgstr "Μετονομασία"
-
-#
-#
-msgid "Rename crashlogs"
-msgstr "Μετονομασία αρχείων καταγραφής σφαλμάτων"
 
 msgid "Rename failed!"
 msgstr ""
@@ -7047,13 +6772,11 @@ msgstr "Αποκατάσταση εκτελείται..."
 
 #
 #
-msgid "Restore running"
-msgstr "Αποκατάσταση εκτελείται"
-
-#
-#
 msgid "Restore system settings"
 msgstr "Αποκατάσταση ρυθμίσεων συστήματος"
+
+msgid "Restoring..."
+msgstr ""
 
 #
 #
@@ -7278,45 +7001,20 @@ msgstr ""
 msgid "Scan "
 msgstr "Σάρωση "
 
+#. TRANSLATORS: option name, indicating which type of (DVB-C) modulation should be scanned. The modulation type is printed in '%s'. E.g.: 'Scan QAM16'
+#, python-format
+msgid "Scan %s"
+msgstr ""
+
+#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#, python-format
+msgid "Scan %s band"
+msgstr ""
+
 #
 #
 msgid "Scan Files..."
 msgstr "Αναζήτηση αρχείων"
-
-#
-#
-msgid "Scan QAM128"
-msgstr "Ανεύρεση QAM128"
-
-#
-#
-msgid "Scan QAM16"
-msgstr "Ανεύρεση QAM16"
-
-#
-#
-msgid "Scan QAM256"
-msgstr "Ανεύρεση QAM256"
-
-#
-#
-msgid "Scan QAM32"
-msgstr "Ανεύρεση  QAM32"
-
-#
-#
-msgid "Scan QAM64"
-msgstr "Ανεύρεση QAM64"
-
-#
-#
-msgid "Scan SR6875"
-msgstr "Ανεύρεση SR6875"
-
-#
-#
-msgid "Scan SR6900"
-msgstr "Ανεύρεση SR6900"
 
 #
 #
@@ -7327,66 +7025,6 @@ msgstr "Σάρωση ασύρματων δικτύων"
 #
 msgid "Scan additional SR"
 msgstr "Σάρωση πρόσθετης SR"
-
-#
-#
-msgid "Scan band EU HYPER"
-msgstr "Σάρωση μπάντας EU HYPER"
-
-#
-#
-msgid "Scan band EU MID"
-msgstr "Σάρωση μπάντας EU MID"
-
-#
-#
-msgid "Scan band EU SUPER"
-msgstr "Σάρωση μπάντας EU SUPER"
-
-#
-#
-msgid "Scan band EU UHF IV"
-msgstr "Σάρωση μπάντας EU UHF IV"
-
-#
-#
-msgid "Scan band EU UHF V"
-msgstr "Σάρωση μπάντας EU UHF V"
-
-#
-#
-msgid "Scan band EU VHF I"
-msgstr "Σάρωση μπάντας EU VHF I"
-
-#
-#
-msgid "Scan band EU VHF III"
-msgstr "Σάρωση μπάντας EU VHF III"
-
-#
-#
-msgid "Scan band US HIGH"
-msgstr "Σάρωση μπάντας US HIGH"
-
-#
-#
-msgid "Scan band US HYPER"
-msgstr "Σάρωση μπάντας US HYPER"
-
-#
-#
-msgid "Scan band US LOW"
-msgstr "Σάρωση μπάντας US LOW"
-
-#
-#
-msgid "Scan band US MID"
-msgstr "Σάρωση μπάντας US MID"
-
-#
-#
-msgid "Scan band US SUPER"
-msgstr "Σάρωση μπάντας US SUPER"
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -7564,11 +7202,6 @@ msgstr "Επιλέξτε συσκευή εισαγωγής χαρακτήρων.
 #
 msgid "Select interface"
 msgstr "Επιλέξτε διεπαφή"
-
-#
-#
-msgid "Select package"
-msgstr "Επιλέξτε πακέτο"
 
 #
 #
@@ -7764,13 +7397,13 @@ msgid "Services"
 msgstr "Υπηρεσίες"
 
 msgid ""
-"Services may be grouped in bouquets. If this option is enabled you can zap "
-"to a channel in another bouquet then you are in at present."
+"Services may be grouped in bouquets. When enabled you can zap to a channel "
+"in another bouquet then you are in at present."
 msgstr ""
 
 msgid ""
-"Services may be grouped in bouquets. If this option is enabled, you can use "
-"more then one bouquet."
+"Services may be grouped in bouquets. When enabled, you can use more then one "
+"bouquet."
 msgstr ""
 
 #
@@ -7780,16 +7413,6 @@ msgstr "Ρύθμιση χρόνου τερματισμού"
 
 msgid "Set System"
 msgstr ""
-
-#
-#
-msgid "Set Voltage and 22KHz"
-msgstr "Ρύθμιση τάσης και 22KHz"
-
-#
-#
-msgid "Set available internal memory threshold for the warning."
-msgstr "Ορισμός ορίου διαθέσιμης εσωτερικής μνήμης για ειδοποίηση."
 
 #
 msgid "Set fixed"
@@ -7811,12 +7434,6 @@ msgstr ""
 msgid "Set the EPG language selection 2"
 msgstr ""
 
-msgid "Set the Teletext subtitle delay when timing lacks."
-msgstr ""
-
-msgid "Set the alignment of the Teletext subtitles."
-msgstr ""
-
 msgid "Set the audio language 1 (highest priority)"
 msgstr ""
 
@@ -7829,18 +7446,10 @@ msgstr ""
 msgid "Set the audio language 4 (lowest priority)"
 msgstr ""
 
-msgid ""
-"Set the border width of the Teletext subtitles. This makes the titles more "
-"easy to read on a light background."
-msgstr ""
-
 msgid "Set the brightness level for normal operation."
 msgstr ""
 
 msgid "Set the brightness level for standby."
-msgstr ""
-
-msgid "Set the colour of the Teletext subtitles."
 msgstr ""
 
 msgid "Set the contrast level."
@@ -7872,9 +7481,6 @@ msgstr ""
 msgid "Set the desired configuration mode."
 msgstr ""
 
-msgid "Set the font size of the Teletext subtitles."
-msgstr ""
-
 msgid "Set the initial fast forward speed"
 msgstr ""
 
@@ -7891,12 +7497,6 @@ msgid "Set the maximum number of events (programs) that timeshift may handle."
 msgstr ""
 
 msgid "Set the number of days you want old timers to be kept."
-msgstr ""
-
-msgid "Set the position of the DVB subtitles."
-msgstr ""
-
-msgid "Set the position of the Teletext subtitles."
 msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
@@ -7937,10 +7537,8 @@ msgstr ""
 msgid "Set the time you want recordings to stop after the event stop-time."
 msgstr ""
 
-msgid "Set the transparency of the DVB subtitles."
-msgstr ""
-
-msgid "Set the type of the progress indication in the channel selection screen"
+msgid ""
+"Set the type of the progress indication in the channel selection screen."
 msgstr ""
 
 msgid "Set the value for the initial fast-backward speed."
@@ -7986,6 +7584,9 @@ msgid "Set to the desired primetime (minutes."
 msgstr ""
 
 msgid "Set to what you want the button to do."
+msgstr ""
+
+msgid "Set voltage and 22KHz"
 msgstr ""
 
 msgid ""
@@ -8183,7 +7784,7 @@ msgstr "Εμφάνιση πληροφοριών crypto στη μπάρα πλη�
 msgid "Show detailed event info"
 msgstr ""
 
-msgid "Show encryption info in the infobar (if the skin allows that)."
+msgid "Show encryption info in the infobar (when supported by the skin)."
 msgstr ""
 
 msgid "Show epg"
@@ -8376,6 +7977,10 @@ msgstr "Θέματα"
 msgid "Skip Empty Services"
 msgstr ""
 
+msgid ""
+"Skip internet connection check (disables automatic package installation)"
+msgstr ""
+
 #
 #
 msgid "Sleep Timer"
@@ -8464,11 +8069,6 @@ msgstr "Μερικά πρόσθετα δεν είναι διαθέσιμα:\n"
 msgid "Sorry Inadyn Config is Missing"
 msgstr ""
 
-#
-#
-msgid "Sorry MediaScanner is not installed!"
-msgstr "Δεν έχει εγκατασταθεί η αναζήτηση μέσων!"
-
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
 
@@ -8483,48 +8083,23 @@ msgid ""
 "enable 'Allow unstable updates' in online update setup."
 msgstr ""
 
-#
-#
-msgid "Sorry no backups found!"
-msgstr "Λυπάμαι, δεν βρέθηκαν αντίγραφα ασφαλείας!"
-
 msgid "Sorry uShare Config is Missing"
 msgstr ""
 
-#
-msgid ""
-"Sorry your Backup destination does not exist\n"
-"\n"
-"Please choose an other one."
+#, python-format
+msgid "Sorry, %s has not been installed!"
 msgstr ""
-"Λυπάμαι, ο προορισμός αντιγράφων ασφαλείας δεν υπάρχει. \n"
-"\n"
-"Παρακαλώ επιλέξτε έναν άλλο."
 
-#
-#
-msgid ""
-"Sorry your backup destination is not writeable.\n"
-"Please choose an other one."
+msgid "Sorry, no backups found!"
 msgstr ""
-"Λυπάμαι, ο προορισμός αντιγράφων ασφαλείας δεν είναι εγγράψιμος. \n"
-"Παρακαλώ επιλέξτε έναν άλλο."
 
-#
-#
-msgid "Sorry, no Details available!"
-msgstr "Λυπάμαι, δεν υπάρχουν διαθέσιμες λεπτομέρειες!"
+msgid "Sorry, no details available!"
+msgstr ""
 
-#
-#
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
-"\n"
-"Please choose another one."
+"Please select a different one."
 msgstr ""
-"Λυπάμαι, ο προορισμός του αρχείου ασφαλείας δεν είναι εγγράψιμος .\n"
-"\n"
-"Παρακαλώ επιλέξτε ένα άλλο."
 
 #
 msgid "Sort"
@@ -8729,10 +8304,19 @@ msgstr ""
 msgid "Subservices"
 msgstr "Υπό-υπηρεσίες"
 
+msgid "Subtitle alignment"
+msgstr ""
+
+msgid "Subtitle border width"
+msgstr ""
+
 #
 #
 msgid "Subtitle delay when timing lacks"
 msgstr "Καθυστέρηση κειμένου όταν δεν υπάρχει χρονισμός"
+
+msgid "Subtitle font size"
+msgstr ""
 
 #
 #
@@ -8753,6 +8337,9 @@ msgstr "Επιλογή γλώσσας υποτίτλων 3"
 #
 msgid "Subtitle language selection 4"
 msgstr "Επιλογή γλώσσας υποτίτλων 4"
+
+msgid "Subtitle position"
+msgstr ""
 
 #
 #
@@ -8941,16 +8528,6 @@ msgstr "Test-Messagebox?"
 msgid "Text"
 msgstr ""
 
-#
-#
-msgid "Text border width"
-msgstr "Πλάτος περιθωρίου κειμένου"
-
-#
-#
-msgid "Text font size"
-msgstr "Μέγεθος γραμματοσειράς"
-
 msgid "Thai"
 msgstr ""
 
@@ -8963,15 +8540,11 @@ msgstr ""
 "Σας ευχαριστούμε που χρησιμοποιήσατε τον Οδηγό.\n"
 "Παρακαλώ πιέστε ΟΚ για συνέχεια."
 
-#
-#
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
-"Please press OK to start using your STB_BOX."
+"Thank you for using the wizard. Your STB_BOX is now ready for "
+"use.\n"
+"Press OK to start using your receiver."
 msgstr ""
-"Σας ευχαριστούμε που χρησιμοποιήσατε τον Οδηγό. Ο δέκτης σας είναι έτοιμος "
-"για χρήση.\n"
-"Πιέστε ΟΚ για να ξεκινήσετε τη χρήση του δέκτη."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -8987,12 +8560,12 @@ msgstr ""
 #
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a STB_BOX format data DVD (which will not play in stand-alone DVD "
-"players) instead?"
+"create a STB_BOX format data DVD (which will not play in stand-"
+"alone DVD players) instead?"
 msgstr ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a STB_BOX format data DVD (which will not play in stand-alone DVD "
-"players) instead?"
+"create a STB_BOX format data DVD (which will not play in stand-"
+"alone DVD players) instead?"
 
 msgid ""
 "The EPGSearch plugin is not installed!\n"
@@ -9002,6 +8575,12 @@ msgstr ""
 msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
+msgstr ""
+
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr ""
+
+msgid "The STB_BOX stores the EPG data every (hours)."
 msgstr ""
 
 msgid ""
@@ -9058,12 +8637,6 @@ msgid ""
 "due to an error in mytest.py"
 msgstr ""
 
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr ""
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr ""
-
 #
 #
 msgid "The backup failed. Please choose a different backup location."
@@ -9109,33 +8682,9 @@ msgstr ""
 msgid "The following files were found..."
 msgstr "Βρέθηκαν τα παρακάτω αρχεία..."
 
-#
-#
-msgid "The installation of the default services lists is finished."
-msgstr "Η εγκατάσταση προρυθμισμένων υπηρεσιών ολοκληρώθηε."
-
-#
-#
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your STB_BOX by pressing the OK button on the remote control."
-msgstr ""
-"Η εγκατάσταση προρυθμισμένων ρυθμίσεων ολοκληρώθηκε. Μπορείτε να συνεχίσετε "
-"την παραμετροποίηση του δέκτη πιέζοντας ΟΚ στο τηλεχειριστήριο."
-
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
 "Η επιβεβαίωση md5sum απέτυχε, το αρχείο ενδέχεται να είναι κατεστραμμένο!"
-
-#
-#
-msgid "The package doesn't contain anything."
-msgstr "Το πακέτο δεν περιέχει τίποτε."
-
-#
-#
-msgid "The package:"
-msgstr "Το πακέτο:"
 
 #
 # , python-format
@@ -9213,6 +8762,10 @@ msgstr "Ο Οδηγός ολοκληρώθηκε."
 msgid "There are at least "
 msgstr "Υπάρχουν τουλάχιστον"
 
+#, python-format
+msgid "There are at least %s updates available."
+msgstr ""
+
 #
 #
 msgid "There are currently no outstanding actions."
@@ -9220,23 +8773,8 @@ msgstr "There are currently no outstanding actions."
 
 #
 #
-msgid "There are no default services lists in your image."
-msgstr "Δεν υπάρχουν προρυθμισμένες λίστες καναλιών στο λογισμικό δέκτη."
-
-#
-#
-msgid "There are no default settings in your image."
-msgstr "Δεν υπάρχουν προρυθμισμένες ρυθμίσεις στο λογισμικό δέκτη."
-
-#
-#
 msgid "There are no updates available."
 msgstr "Δεν υπάρχουν διαθέσιμες ενημερώσεις."
-
-#
-#
-msgid "There are now "
-msgstr "Υπάρχουν τώρα"
 
 msgid "There is no [webif] section in oscam.conf"
 msgstr ""
@@ -9249,17 +8787,6 @@ msgid ""
 msgstr ""
 "Ενδεχομένως να μην υπάρχει αρκετός χώρος στην επιλεγμένη κατάτμηση.\n"
 "Θέλετε να συνεχίσετε;"
-
-#
-#
-msgid "There was an error downloading the packetlist. Please try again."
-msgstr ""
-"Υπήρξε ένα σφάλμα κατά τη λήψη της λίστας πακέτων. Παρακαλώ δοκιμάστε ξανά."
-
-#
-#
-msgid "There was an error. The package:"
-msgstr "Υπήρξε σφάλμα. Το πακέτο:"
 
 #
 #
@@ -9283,11 +8810,6 @@ msgstr ""
 
 msgid "This allows you change the number of rows shown."
 msgstr ""
-
-#
-#
-msgid "This is step number 2."
-msgstr "Αυτό είναι το βήμα 2"
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -9361,6 +8883,28 @@ msgstr ""
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
+msgid ""
+"This option configures the general audio delay of Dolby Digital sound tracks."
+msgstr ""
+
+msgid "This option configures the general audio delay of stereo sound tracks."
+msgstr ""
+
+msgid "This option configures the screen aspect ratio."
+msgstr ""
+
+msgid "This option configures the screen refresh rate."
+msgstr ""
+
+msgid "This option configures the screen resolution in PC output mode."
+msgstr ""
+
+msgid "This option configures the video output mode (or resolution)."
+msgstr ""
+
+msgid "This option configures which video output connector will be used."
+msgstr ""
+
 msgid "This option lets you adjust the 3D depth"
 msgstr ""
 
@@ -9409,36 +8953,15 @@ msgid ""
 "result of a limited number of discrete values."
 msgstr ""
 
-msgid "This option sets up the connection method."
-msgstr ""
-
-msgid "This option sets up the general audio delay of Analog sound tracks."
-msgstr ""
-
-msgid ""
-"This option sets up the general audio delay of Dolby Digital sound tracks."
-msgstr ""
-
 msgid ""
 "This option sets up the picture sharpness, used when the picture is being "
 "upscaled."
 msgstr ""
 
-msgid "This option sets up the screen aspect ratio."
-msgstr ""
-
-msgid "This option sets up the screen refresh-rate."
-msgstr ""
-
-msgid "This option sets up the screen resolution, when in PC mode."
-msgstr ""
-
-msgid "This option sets up the screen resolution."
-msgstr ""
-
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your STB_BOX without the need for a network or WLAN connection.\n"
+"your STB_BOX without the need for a network or WLAN "
+"connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
@@ -9730,10 +9253,8 @@ msgstr ""
 msgid "Toggle aspect ratio..."
 msgstr ""
 
-#
-#
-msgid "Tone Amplitude"
-msgstr "Πλάτος τόνου"
+msgid "Tone amplitude"
+msgstr ""
 
 #
 #
@@ -9869,11 +9390,6 @@ msgstr "Tuner"
 
 #
 #
-msgid "Tuner "
-msgstr "Tuner "
-
-#
-#
 msgid "Tuner Slot"
 msgstr "Υποδοχή tuner"
 
@@ -9889,6 +9405,10 @@ msgstr ""
 #
 msgid "Tuner status"
 msgstr "Κατάσταση tuner"
+
+#, python-format
+msgid "Tuner status %s"
+msgstr ""
 
 #
 #
@@ -9927,11 +9447,6 @@ msgstr ""
 #
 msgid "USALS"
 msgstr "USALS"
-
-#
-#
-msgid "USB Stick"
-msgstr "USB Stick"
 
 #
 msgid "USB stick wizard"
@@ -10016,6 +9531,15 @@ msgstr "Δεν υποστηρίζεται"
 msgid "Update"
 msgstr "Ενημέρωση"
 
+msgid "Update channel list only"
+msgstr ""
+
+#, python-format
+msgid "Update completed, %d package was installed."
+msgid_plural "Update completed, %d packages were installed."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Update interval (in seconds)"
 msgstr ""
 
@@ -10025,23 +9549,9 @@ msgid "Updatefeed not available."
 msgstr "Το feed ναβάθμισης δεν είναι διαθέσιμο"
 
 #
-msgid "Updates your STB_BOX's software"
-msgstr "Ενημερώνει το λογισμικό δέκτη"
-
-#
-#
-msgid "Updating finished. Here is the result:"
-msgstr "Η αναβάθμιση τελείωσε. Το αποτέλεσμα είναι:"
-
-#
 #
 msgid "Updating software catalog"
 msgstr "Ενημέρωση καταλόγου λογισμικού"
-
-#
-#
-msgid "Updating... Please wait... This can take some minutes..."
-msgstr "Γίνεται αναβάθμιση... παρακαλώ περίμενε μερικά λεπτά..."
 
 msgid "Upgrade and reboot system"
 msgstr ""
@@ -10051,18 +9561,10 @@ msgstr ""
 msgid "Upgrade finished."
 msgstr "Η αναβάθμιση τελείωσε."
 
-msgid "Upgrade finished. Do you want to reboot your STB_BOX?"
-msgstr "Η αναβάθμιση ολοκληρώθηκε. Θέλετε να επανεκκινήσετε το δέκτη;"
-
 #
 #
 msgid "Upgrading"
 msgstr "Εκτελείται αναβάθμιση"
-
-#
-#
-msgid "Upgrading STB_BOX... Please wait"
-msgstr "Εκτελείται αναβάθμιση δέκτη... Παρακαλώ περιμένετε"
 
 msgid "Uphops +"
 msgstr ""
@@ -10087,10 +9589,6 @@ msgid "Use DHCP"
 msgstr "Χρήση DHCP"
 
 #
-msgid "Use DVB subtitles position"
-msgstr "Χρήση θέσης υποτίτλων από DVB"
-
-#
 #
 msgid "Use Interface"
 msgstr "Χρήση διεπαφής χρήστη"
@@ -10101,18 +9599,13 @@ msgstr ""
 msgid "Use PTS seekbar while timeshifting? *"
 msgstr ""
 
-#
-#
-msgid "Use Power Measurement"
-msgstr "Χρήση Power Measurement"
-
 msgid "Use TV remote control"
 msgstr "Χρήση τηλεχειριστηρίου TV"
 
-msgid "Use ViX coloured Buttons *"
+msgid "Use USALS for this sat"
 msgstr ""
 
-msgid "Use Yellow pango DVB subtitles"
+msgid "Use ViX coloured Buttons *"
 msgstr ""
 
 #
@@ -10129,6 +9622,9 @@ msgstr "Use fastscan channel numbering"
 msgid "Use official channel numbering"
 msgstr "Use official channel numbering"
 
+msgid "Use original DVB subtitle position"
+msgstr ""
+
 #
 msgid "Use original teletext position"
 msgstr "Χρήση αρχικής θέσης teletext"
@@ -10139,8 +9635,8 @@ msgid "Use power measurement"
 msgstr "Χρήση power measurement"
 
 msgid ""
-"Use power measurement to detect when the rotor stops turning (if your Vu+ "
-"Duo supports that)"
+"Use power measurement to detect when the rotor stops turning (if your "
+"STB_BOX supports that)"
 msgstr ""
 
 msgid "Use slim screen"
@@ -10192,33 +9688,17 @@ msgstr ""
 #
 #
 msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-"Πιέστε τα πλήκτρα Αριστερά και Δεξιά για αλλαγή επιλογών.\n"
-"\n"
-"Παρακαλώ ρυθμίστε το tuner A"
-
-msgid "Use the original position of the Teletext subtitles."
-msgstr ""
-
-#
-#
-msgid ""
 "Use the up/down keys on your remote control to select an option. After that, "
 "press OK."
 msgstr ""
 "Πιέστε τα πλήκτρα Πάνω/Κάτω του τηλεχειριστηρίου για επιλογή. Μετά, πιέστε "
 "ΟΚ."
 
-#
-msgid "Use this input device settings?"
-msgstr "Χρήση αυτών των ρυθμίσεων συσκευής εισαγωγής;"
+msgid "Use these input device settings?"
+msgstr ""
 
-#
-msgid "Use this settings?"
-msgstr "Χρήση αυτών των ρυθμίσεων;"
+msgid "Use these settings?"
+msgstr ""
 
 #
 #
@@ -10237,16 +9717,8 @@ msgstr "Χρήση κάλαθου αχρήστων στη λίστα ταινι�
 
 #
 #
-msgid "Use usals for this sat"
-msgstr "Χρήση usals για αυτόν τον δορυφόρο"
-
-#
-#
 msgid "Use wizard to set up basic features"
 msgstr "Χρήση Οδηγού για απλές ρυθμίσεις"
-
-msgid "Use yellow DVB subtitles."
-msgstr ""
 
 #
 #
@@ -10304,9 +9776,6 @@ msgstr "VCR scart"
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
 
-msgid "VU+"
-msgstr ""
-
 msgid "Version:"
 msgstr ""
 
@@ -10333,28 +9802,8 @@ msgid "Video Fine-Tuning"
 msgstr "Μικρορύθμιση οθόνης"
 
 #
-#
-msgid "Video Fine-Tuning Wizard"
-msgstr "Οδηγός μικρορύθμισης οθόνης"
-
-#
-#
-msgid "Video Output"
-msgstr "Έξοδος εικόνας"
-
-#
 msgid "Video PID"
 msgstr "PID εικόνας"
-
-#
-#
-msgid "Video Setup"
-msgstr "Παραμετροποίηση εικόνας"
-
-#
-#
-msgid "Video Wizard"
-msgstr "Οδηγός εικόνας"
 
 #
 #
@@ -10387,6 +9836,15 @@ msgstr ""
 #
 msgid "Video mode selection."
 msgstr "Επιλογή Video mode"
+
+msgid "Video output"
+msgstr ""
+
+msgid "Video setup"
+msgstr ""
+
+msgid "Video wizard"
+msgstr ""
 
 msgid "Videocodec"
 msgstr "Videocodec"
@@ -10524,31 +9982,6 @@ msgstr "Voltage mode"
 msgid "Volume"
 msgstr "Ένταση"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr ""
-
-#
-#
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX format data DVD (HDTV compatible)"
-
-msgid "STB_BOX front panel"
-msgstr ""
-
-msgid "STB_BOX ir keyboard"
-msgstr ""
-
-msgid "STB_BOX ir mouse"
-msgstr ""
-
-msgid "STB_BOX remote control (native)"
-msgstr ""
-
-#
-#
-msgid "STB_BOX software because updates are available."
-msgstr "λογισμικό δέκτη γιατί διατίθενται ενημερώσεις."
-
 #
 #
 msgid "W"
@@ -10617,11 +10050,6 @@ msgstr "Σήμα εκκίνησης από TV"
 msgid "Wakeup your STB_BOX from standby"
 msgstr "Εκκίνηση δέκτη από αναμονή"
 
-#
-#
-msgid "Warn if free space drops below (kB):"
-msgstr "Ενημέρωση για ελεύθερο χώρο κάτω από (kB):"
-
 msgid "Web Interface"
 msgstr ""
 
@@ -10662,8 +10090,9 @@ msgstr ""
 #
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your STB_BOX by providing a backup facility for your current "
-"settings and a short explanation of how to upgrade your firmware."
+"the firmware of your STB_BOX by providing a backup facility for "
+"your current settings and a short explanation of how to upgrade your "
+"firmware."
 msgstr ""
 "Καλώς ορίσατε στον Οδηγό αναβάθμισης λογισμικού. Ο Οδηγός θα σας βοηθήσει "
 "στην αναβάθμιση του λογισμικού του δέκτη παρέχοντας δυνατότητα αντιγράφου "
@@ -10672,27 +10101,11 @@ msgstr ""
 #
 #
 msgid ""
-"Welcome to the cleanup wizard.\n"
-"\n"
-"We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your STB_BOX, the internal memory should be "
-"cleaned up.\n"
-"You can use this wizard to remove some extensions.\n"
-msgstr ""
-"Καλώς ορίσατε στον Οδηγό εκκαθάρισης.\n"
-"\n"
-"Η διαθέσιμη εσωτερική μνήμη του δέκτη είναι κάτω από 2MB.\n"
-"Για να διασφαλιστεί η σταθερή διαδικασία του δέκτη, η μνήμη πρέπει να "
-"εκκαθαριστεί.\n"
-"Με τη χρήση αυτού του Οδηγού μπορείτε να αφαιρέσετε μερικές επεκτάσεις.\n"
-
-#
-#
-msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will guide "
-"you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your STB_BOX to the Internet, this "
+"wizard will guide you through the basic network setup of your GigaBlue HD "
+"800 Solo.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -10706,7 +10119,8 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your GigaBlue HD "
+"800 Solo.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 
@@ -10725,14 +10139,65 @@ msgstr "Δυτικά"
 msgid "What do you want to scan?"
 msgstr "Τι θέλετε να σαρώσετε;"
 
-#
-#
-msgid "What to do with submitted crashlogs?"
-msgstr "Τι να γίνει με τις καταγραφές που έχουν υποβληθεί;"
-
 msgid ""
 "When a recording needs to be started it is allowed to interrupt the watched "
 "service"
+msgstr ""
+
+msgid ""
+"When enabled the online checker will also check for experimental versions"
+msgstr ""
+
+msgid ""
+"When enabled, AIT data will be included in http streams. This allows a "
+"client receiver to use HbbTV."
+msgstr ""
+
+msgid ""
+"When enabled, EIT data will be included in http streams. This allows a "
+"client receiver to show EPG."
+msgstr ""
+
+msgid "When enabled, channel numbering will start at '1' for each bouquet."
+msgstr ""
+
+msgid ""
+"When enabled, external subtitles (in media files) will be displayed in "
+"yellow, instead of the original color."
+msgstr ""
+
+msgid "When enabled, graphical DVB subtitles will be centered horizontally."
+msgstr ""
+
+msgid ""
+"When enabled, graphical DVB subtitles will be displayed at their original "
+"position."
+msgstr ""
+
+msgid ""
+"When enabled, graphical DVB subtitles will be displayed in yellow, instead "
+"of the original color."
+msgstr ""
+
+msgid ""
+"When enabled, pressing '0' will zap you to the first channel in your first "
+"bouquet and delete your zap-history."
+msgstr ""
+
+msgid "When enabled, show channel numbers in the channel selection screen."
+msgstr ""
+
+msgid "When enabled, teletext pages will be cached, allowing faster access."
+msgstr ""
+
+msgid ""
+"When enabled, teletext subtitles will be displayed at their original "
+"position."
+msgstr ""
+
+msgid ""
+"When enabled, the original line breaks will be removed from the teletext "
+"subtitles."
 msgstr ""
 
 msgid ""
@@ -10744,17 +10209,17 @@ msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr ""
 
 msgid ""
-"When the event has a aspect ratio of 16:9, choose whether to scale/stretch "
+"When the content has an aspect ratio of 16:9, choose whether to scale/"
+"stretch the picture."
+msgstr ""
+
+msgid ""
+"When the content has an aspect ratio of 4:3, choose whether to scale/stretch "
 "the picture."
 msgstr ""
 
 msgid ""
-"When the event has a aspect ratio of 4:3, choose whether to scale/stretch "
-"the picture."
-msgstr ""
-
-msgid ""
-"When the event has a aspect ratio of 4:3, choose whether to stretch the "
+"When the content has an aspect ratio of 4:3, choose whether to stretch the "
 "picture to fill the screen."
 msgstr ""
 
@@ -10772,7 +10237,8 @@ msgstr ""
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your STB_BOX will restart automatically!\n"
+"After completion of factory reset, your STB_BOX will restart "
+"automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
@@ -10824,21 +10290,6 @@ msgid "Wireless network state"
 msgstr "Κατάσταση ασύρματου δικτύου"
 
 msgid ""
-"With this option enabled the online checker will also check for experimental "
-"versions"
-msgstr ""
-
-msgid ""
-"With this option enabled, Channel numbers will start with '1' in each "
-"bouquet."
-msgstr ""
-
-msgid ""
-"With this option enabled, pressing '0' will zap you to the first channel in "
-"your first bouquet and delete your zap-history."
-msgstr ""
-
-msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
 "bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr ""
@@ -10864,6 +10315,9 @@ msgstr ""
 msgid "Write failed!"
 msgstr "Η εγγραφή απέτυχε!"
 
+msgid "Wrong"
+msgstr ""
+
 msgid "XBox 360 support"
 msgstr ""
 
@@ -10882,10 +10336,8 @@ msgstr "Έτος"
 msgid "Yellow DVB subtitles"
 msgstr "Κίτρινοι υπότιτλοι"
 
-#
-#
-msgid "Yellow pango subtitles"
-msgstr "Κίτρινοι υπότιτλοι pango"
+msgid "Yellow external subtitles"
+msgstr ""
 
 #
 #
@@ -10905,11 +10357,6 @@ msgstr "Ναι, πάντα"
 #
 msgid "Yes, and delete this movie"
 msgstr "Ναι,και διαγραφή αυτής της ταινίας"
-
-#
-#
-msgid "Yes, and don't ask again"
-msgstr "Ναι, χωρίς ερώτηση ξανά"
 
 #
 #
@@ -10946,11 +10393,6 @@ msgstr "Ναι, αποκατάσταση ρυθμίσεων τώρα"
 msgid "Yes, returning to movie list"
 msgstr "Ναι, επιστροφή στη λίστα ταινιών"
 
-#
-#
-msgid "Yes, view the tutorial"
-msgstr "Ναι, εμφάνιση εκμάθησης"
-
 msgid "Yesterday"
 msgstr "Χθες"
 
@@ -10980,20 +10422,6 @@ msgstr "Μπορείτε να ακυρώσετε την εγκατάσταση."
 #
 msgid "You can cancel the removal."
 msgstr "Μπορείτε να ακυρώσετε τη διαγραφή."
-
-#
-#
-msgid ""
-"You can choose some default settings now. Please select the settings you "
-"want to be installed."
-msgstr ""
-"Μπορείτε να επιλέξετε μερικές προρυθμισμένες ρυθμίσεις. Παρακαλώ επιλέξτε "
-"τις ρυθμίσεις που θέλετε να εγκατασταθούν."
-
-#
-#
-msgid "You can choose, what you want to install..."
-msgstr "Μπορείτε να επιλέξετε τι θέλετε να εγκατασταθεί..."
 
 msgid "You can continue watching TV etc. while this is running."
 msgstr "Μπορείτε να συνεχίσετε να βλέπετε TV κλπ όσο αυτό εκτελείται."
@@ -11035,27 +10463,6 @@ msgstr ""
 #
 msgid "You cannot delete this!"
 msgstr "Δεν μπορετε να διαγράψτε αυτό!"
-
-#
-#
-msgid "You chose not to install any default services lists."
-msgstr "Επιλέξατε να μην εγκατασταθούν προρυθμισμένες  λίστες υπηρεσιών."
-
-#
-#
-msgid ""
-"You chose not to install any default settings. You can however install the "
-"default settings later in the settings menu."
-msgstr ""
-"Επιλέξατε να μην εγκατασταθούν προρυθμισμένες ρυθμίσεις. Μπορείτε ωστόσο να "
-"εγκαταστήσετε αυτές τις ρυθμίσεις αργότερα από το μενού."
-
-#
-#
-msgid ""
-"You chose not to install anything. Please press OK finish the install wizard."
-msgstr ""
-"Επιλέξατε να μην εγκατασταθεί τίποτα. Πιέστε ΟΚ να ολοκληρωθεί ο Οδηγός."
 
 msgid "You didn't select a channel to record from."
 msgstr "Δεν επιλέξατε κανάλι για εγγραφή."
@@ -11110,36 +10517,24 @@ msgstr "Περιμένετε για %s!"
 #
 #
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
+"You need a PC connected to your STB_BOX. If you need further "
+"instructions, please visit the website http://www.dm7025.de.\n"
+"Your STB_BOX will now be halted. After you have performed the "
+"update instructions from the website, your new firmware will ask you to "
+"restore your settings."
 msgstr ""
-"You need a PC connected to your STB_BOX. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
-
-msgid ""
-"You need to set a PIN code and hide it from your children.\n"
-"\n"
-"Do you want to set the pin now?"
-msgstr ""
-"Πρέπει να θέσετε κωδικό PIN και να τον κρύψετε από παιδιά.\n"
-"\n"
-"Θέλετε να θέσετε το PIN τώρα;"
+"You need a PC connected to your STB_BOX. If you need further "
+"instructions, please visit the website http://www.dm7025.de.\n"
+"Your STB_BOX will now be halted. After you have performed the "
+"update instructions from the website, your new firmware will ask you to "
+"restore your settings."
 
 msgid "You system does not support ext4"
 msgstr "Το σύστημά σας δεν υποστηρίζει ext4"
 
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr ""
-
 msgid ""
-"Your STB_BOX is not connected to the internet, please check your network "
-"settings and try again."
+"Your STB_BOX is not connected to the internet, please check "
+"your network settings and try again."
 msgstr ""
 
 #
@@ -11184,25 +10579,27 @@ msgstr "Ο δέκτης τερματίζεται. Παρακαλώ περιμέ�
 #
 #
 msgid ""
-"Your STB_BOX isn't connected to the internet properly. Please check it and "
-"try again."
+"Your STB_BOX isn't connected to the internet properly. Please "
+"check it and try again."
 msgstr ""
 "Ο δέκτης σας δεν είναι συνδεδεμένος στο διαδίκτυο σωστά. Παρακαλώ ελέγξτε "
 "και ξαναπροσπαθήστε."
 
 msgid ""
-"Your STB_BOX might be unusable now. Please consult the manual for further "
-"assistance before rebooting your STB_BOX."
+"Your STB_BOX might be unusable now. Please consult the manual "
+"for further assistance before rebooting your STB_BOX."
 msgstr ""
 
 #, python-format
 msgid ""
-"Your STB_BOX will be restarted after the installation of service\n"
+"Your STB_BOX will be restarted after the installation of "
+"service\n"
 "Ready to install \"%s\" ?"
 msgstr ""
 
 msgid ""
-"Your STB_BOX will be restarted after the installation of service.\n"
+"Your STB_BOX will be restarted after the installation of "
+"service.\n"
 "\n"
 "Do you want to install now ?"
 msgstr ""
@@ -11210,6 +10607,9 @@ msgstr ""
 msgid ""
 "Your STB_BOX will be restarted after the removal of service\n"
 "Do you want to remove now ?"
+msgstr ""
+
+msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
 
 #
@@ -11243,11 +10643,6 @@ msgstr "Η τρέχουσα συλλογή σας θα χαθεί!"
 
 #
 #
-msgid "Your email address:"
-msgstr "Η διεύθυνση email σας:"
-
-#
-#
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
@@ -11269,15 +10664,20 @@ msgid ""
 msgstr ""
 "Η σύνδεση προς το διαδίκτυο δεν δουλεύει!Επιλέξτε τι θέλετε να ακολουθήσει."
 
-#
-#
-msgid "Your name (optional):"
-msgstr "Το όνομά σας (προαιρετικά):"
+#, python-format
+msgid "Your internet connection is working (ip: %s)"
+msgstr ""
 
 #
 #
 msgid "Your network configuration has been activated."
 msgstr "Η ρύθμιση δικτύου ενεργοποιήθηκε."
+
+msgid "Your receiver does not have an internet connection"
+msgstr ""
+
+msgid "Your receiver is not connected to the internet"
+msgstr ""
 
 #
 msgid ""
@@ -11516,22 +10916,12 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
+msgid "alphabetic"
+msgstr ""
+
 #
 msgid "alphabetic reverse"
 msgstr "αλφαβητική αντιστροφή"
-
-#
-#
-msgid "alphabetic sort"
-msgstr "αλφαβητική ταξινόμηση"
-
-#
-msgid ""
-"are you sure you want to restore\n"
-"following backup:\n"
-msgstr ""
-"σίγουρα θέλετε να επαναφέρετε \n"
-"το παρακάτω αντίγραφο ασφαλείας:\n"
 
 msgid "arts/culture (without music, general)"
 msgstr ""
@@ -11585,10 +10975,8 @@ msgstr "audio tracks"
 msgid "auto"
 msgstr "αυτόματο"
 
-#
-#
-msgid "available"
-msgstr "διαθέσιμο"
+msgid "automatic"
+msgstr ""
 
 #
 #
@@ -11643,6 +11031,9 @@ msgstr ""
 #, python-format
 msgid "burn audio track (%s)"
 msgstr "εγγραφή audio track (%s)"
+
+msgid "by date"
+msgstr ""
 
 msgid "caid:"
 msgstr ""
@@ -11733,11 +11124,6 @@ msgstr ""
 #
 msgid "copy to bouquets"
 msgstr "αντιγραφή στα μπουκέτα"
-
-#
-#
-msgid "could not be removed"
-msgstr "δε μπορεί να διαγραφεί"
 
 #
 #
@@ -11911,10 +11297,6 @@ msgstr "σημείωσε το τέλος αποκοπής"
 msgid "end favourites edit"
 msgstr "τέλος επεξεργασίας αγαπημένων "
 
-#
-msgid "enigma2 and network"
-msgstr "enigma2 και δίκτυο"
-
 msgid "entertainment (10-16 year old)"
 msgstr ""
 
@@ -12012,6 +11394,12 @@ msgstr ""
 #
 msgid "fixed"
 msgstr "σταθερό"
+
+msgid "flat alphabetic"
+msgstr ""
+
+msgid "flat alphabetic reverse"
+msgstr ""
 
 msgid "folk/traditional music"
 msgstr ""
@@ -12941,11 +12329,6 @@ msgstr ""
 msgid "social/spiritual science"
 msgstr ""
 
-#
-#
-msgid "sort by date"
-msgstr "ταξινόμιση κατά ημερομηνία"
-
 msgid "sorting of playlists"
 msgstr "ταξινόμηση λιστών αναπαραγωγής"
 
@@ -13184,10 +12567,6 @@ msgstr "αναμονή για mmi..."
 msgid "waiting"
 msgstr "αναμονή "
 
-#
-msgid "was removed successfully"
-msgstr "διεγράφη επιτυχώς"
-
 msgid "water sport"
 msgstr ""
 
@@ -13249,14 +12628,6 @@ msgid "yes (keep feeds)"
 msgstr "ναι (σώσε feeds)"
 
 #
-msgid ""
-"your STB_BOX might be unusable now. Please consult the manual for further "
-"assistance before rebooting your STB_BOX."
-msgstr ""
-"ο δέκτης σας ενδέχεται να μη μπορεί να χρησιμοποιηθεί τώρα. Παρακαλώ "
-"συμβουλευθείτε το manual πριν την επανεκκίνηση."
-
-#
 #
 msgid "zap"
 msgstr "zap"
@@ -13265,3 +12636,940 @@ msgstr "zap"
 #
 msgid "zapped"
 msgstr "zapped"
+
+#
+#
+#~ msgid ""
+#~ "\n"
+#~ "System will restart after the restore!"
+#~ msgstr ""
+#~ "\n"
+#~ "Το σύστημα θα επανεκκινήσει μετά την αποκατάσταση!"
+
+#~ msgid "/usr/share/enigma2 directory"
+#~ msgstr "/usr/share/enigma2 φάκελος"
+
+#
+#~ msgid "/var directory"
+#~ msgstr "φάκελος /var"
+
+#
+#
+#~ msgid "Add WLAN configuration?"
+#~ msgstr "Προσθήκη ρύθμισης WLAN;"
+
+#
+#
+#~ msgid "Add network configuration?"
+#~ msgstr "Προσθήκη ρύθμισης δικτύου;"
+
+#
+#
+#~ msgid "Adds network configuration if enabled."
+#~ msgstr "Προσθέτει τις ρυθμίσεις δικτύου αν ενεργοποιηθεί."
+
+#
+#
+#~ msgid "Adds wlan configuration if enabled."
+#~ msgstr "Προσθέτει τις ρυθμίσεις WLAN αν ενεργοποιηθεί."
+
+#
+#
+#~ msgid "Advanced Video Setup"
+#~ msgstr "Προχωρημένες ρυθμίσεις εικόνας"
+
+#
+#
+#~ msgid ""
+#~ "After the start wizard is completed, you need to protect single services. "
+#~ "Refer to your STB_BOX's manual on how to do that."
+#~ msgstr ""
+#~ "Μετά το τέλος του Οδηγού πρέπει να προστατευτούν τα «single services». "
+#~ "Διάβαστε στο user manual του δέκτη για το πώς γίνεται."
+
+#
+#
+#~ msgid "All Satellites"
+#~ msgstr "Όλοι οι δορυφόροι"
+
+#
+#
+#~ msgid "Always ask before sending"
+#~ msgstr "Πάντα ερώτηση πριν την αποστολή"
+
+#
+#
+#~ msgid "Anonymize crashlog?"
+#~ msgstr "Ανώνυμη καταγραφή;"
+
+#
+#
+#~ msgid ""
+#~ "Are you sure you want to delete\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "Σίγουρα θέλετε να διαγράψετε\n"
+#~ "το παρακάτω αντίγραφο ασφαλείας:\n"
+
+#
+#
+#~ msgid ""
+#~ "Are you sure you want to restore\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "Σίγουρα θέλετε να επαναφέρετε \n"
+#~ "το παρακάτω αντίγραφο ασφαλείας:\n"
+
+#
+#
+#~ msgid ""
+#~ "Are you sure you want to restore your Enigma2 backup?\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "Σίγουρα θέλετε να επαναφέρετε το αντίγραφο ασφαλείας του Enigma2?\n"
+#~ "Το Enigma2 θα επανεκκινήσει μετά την επαναφορά"
+
+#
+#~ msgid "Backup"
+#~ msgstr "Αντίγραφο ασφαλείας"
+
+#
+#~ msgid "Backup Location"
+#~ msgstr "Θέση αντιγράφου ασφαλείας"
+
+#
+#~ msgid "Backup Mode"
+#~ msgstr "Κατάσταση αντιγράφου ασφαλείας"
+
+#
+#
+#~ msgid "Backup done."
+#~ msgstr "Αντίγραφο ασφαλείας ολοκληρώθηκε."
+
+#
+#
+#~ msgid ""
+#~ "By pressing the OK Button on your remote control, the info bar is being "
+#~ "displayed."
+#~ msgstr "Πιέζοντας ΟΚ εμφανίζεται η μπάρα πληροφοριών."
+
+#
+#~ msgid "CF Drive"
+#~ msgstr "Οδηγός CF"
+
+#
+#
+#~ msgid "Centered DVB subtitles"
+#~ msgstr "Υπότιτλοι DVB με στοίχιση στο κέντρο"
+
+#
+#
+#~ msgid "Cleanup Wizard"
+#~ msgstr "Οδηγός εκκαθάρισης"
+
+#
+#
+#~ msgid "Cleanup Wizard settings"
+#~ msgstr "Ρυθμίσεις οδηγού εκκαθάρισης"
+
+#
+#
+#~ msgid "CleanupWizard"
+#~ msgstr "Οδηγός Εκκαθάρισης"
+
+#
+#
+#~ msgid "Crashlog settings"
+#~ msgstr "Ρυθμίσεις καταγραφής σφαλμάτων"
+
+#
+#
+#~ msgid "CrashlogAutoSubmit"
+#~ msgstr "Αυτόματη υποβολή καταγραφών σφαλμάτων"
+
+#
+#
+#~ msgid "CrashlogAutoSubmit settings"
+#~ msgstr "Ρυθμίσης αυτόματης υποβολής σφαλμάτων"
+
+#
+#
+#~ msgid "CrashlogAutoSubmit settings..."
+#~ msgstr "Ρυθμίσης αυτόματης υποβολής σφαλμάτων..."
+
+#
+#~ msgid ""
+#~ "Crashlogs found!\n"
+#~ "Send them to Dream Multimedia?"
+#~ msgstr ""
+#~ "Βρέθηκαν καταγραφές σφαλμάτων!\n"
+#~ "Να αποσταλούν;"
+
+#
+#
+#~ msgid "Custom text alignment"
+#~ msgstr "Επιθυμητή στοίχιση κειμένου"
+
+#
+#
+#~ msgid "Custom text position"
+#~ msgstr "Επιθυμητή θέση κειμένου"
+
+#
+#
+#~ msgid "Decide if you want to enable or disable the Cleanup Wizard."
+#~ msgstr "Αποφασίστε αν θα ενεργοποιήσετε ή όχι τον Οδηγό Εκκαθάρισης."
+
+#
+#
+#~ msgid "Decide what should be done when crashlogs are found."
+#~ msgstr "Αποφασίστε τι θα γίνει όταν βρεθούν καταγραφές σφαλμάτων."
+
+#
+#
+#~ msgid "Decide what should happen to the crashlogs after submission."
+#~ msgstr ""
+#~ "Αποφασίστε τι θα γίνει με τις καταγραφές σφαλμάτων μετά την αποστολή τους."
+
+#
+#
+#~ msgid "Delete crashlogs"
+#~ msgstr "Διαγραφή αρχείων καταγραφής σφάλματος"
+
+#
+# , python-format
+#~ msgid ""
+#~ "Delete no more configured satellite\n"
+#~ "%s?"
+#~ msgstr ""
+#~ "Διαγραφή του μη ρυθμισμένου δορυφόρου\n"
+#~ "%s;"
+
+#
+#
+#~ msgid "Disable crashlog reporting"
+#~ msgstr "Απενεργοποίηση αναφορών crashlogs"
+
+#
+#~ msgid ""
+#~ "Do you want to backup now?\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "Θέλετε να κρατήσετε αντίγραφο τώρα;\n"
+#~ "Μετά το ΟΚ, παρακαλώ περίμενετε!"
+
+#
+#
+#~ msgid ""
+#~ "Do you want to enable the parental control feature on your GigaBlue HD "
+#~ "800 Solo?"
+#~ msgstr "Θέλετε να ενεργοποιηθεί η γονική προστασία στο δέκτη σας;"
+
+#
+#
+#~ msgid ""
+#~ "Do you want to submit your email address and name so that we can contact "
+#~ "you if needed?"
+#~ msgstr ""
+#~ "Θέλετε να εισάγετε το email και το όνομά σας για να επικοινωνήσουμε αν "
+#~ "χρειαστεί;"
+
+#
+#
+#~ msgid ""
+#~ "Do you want to update your STB_BOX?\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "Θέλετε να αναβαθμίσετε το δέκτη σας;\n"
+#~ "Μετά το ΟΚ, παρακαλώ περίμενετε!"
+
+#
+#~ msgid "Do you want to upgrade?"
+#~ msgstr "Θέλετε να αναβαθμίσετε;"
+
+#
+#
+#~ msgid "Do you want to view a tutorial?"
+#~ msgstr "Θέλετε να δείτε έναν \"Οδηγό\";"
+
+#
+#
+#~ msgid "Don't ask, just send"
+#~ msgstr "Αποστολή χωρίς ερώτηση"
+
+#
+# , python-format
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "Τέλος - Εγκαταστάθηκαν ή αναβαθμίστηκαν %d πακέτα"
+
+#
+#
+#~ msgid "Enable Cleanup Wizard?"
+#~ msgstr "Ενεργοποίηση Οδηγού Εκκαθάρισης"
+
+#
+#
+#~ msgid "Enter your email address so that we can contact you if needed."
+#~ msgstr "Εισάγετε το email σας για να επικοινωνήσουμε αν χρειαστεί"
+
+#
+#
+#~ msgid "Exit the cleanup wizard"
+#~ msgstr "Έξοδος από τον οδηγό εκκαθάρισης"
+
+#
+#
+#~ msgid "General AC3 Delay"
+#~ msgstr "Γενική υστέρηση AC3"
+
+#
+#
+#~ msgid "General PCM Delay"
+#~ msgstr "Γενική υστέρηση PCM"
+
+#
+#
+#~ msgid "How to handle found crashlogs?"
+#~ msgstr "Τι να γίνει με τα αρχεία καταγραφής σφάλματος;"
+
+#
+#
+#~ msgid "Include your email and name (optional) in the mail?"
+#~ msgstr "Να συμπεριληφθεί το email σας και το όνομα (προαιρετικά) στο email;"
+
+#
+#
+#~ msgid "Install settings, skins, software..."
+#~ msgstr "Εγκατάσταση ρυθμίσεων, θεμάτων, λογισμικού..."
+
+#
+#
+#~ msgid "Installing default sat lists... Please wait..."
+#~ msgstr ""
+#~ "Εγκατάσταση αρχικής λίστας υπηρεσιών δορυφόρου... Παρακαλώ περιμένετε..."
+
+#
+#
+#~ msgid "Installing defaults... Please wait..."
+#~ msgstr "Εγκατάσταση αρχικών ρυθμίσεων... Παρακαλώ περιμένετε..."
+
+#
+#
+#~ msgid "Installing package content... Please wait..."
+#~ msgstr "Εγκατάσταση περιεχομένου πακέτου... Παρακαλώ περιμένετε..."
+
+#
+#
+#~ msgid "Is this videomode ok?"
+#~ msgstr "Είναι εντάξει αυτή η κατάσταση εικόνας;"
+
+#
+#
+#~ msgid "LOF"
+#~ msgstr "LOF"
+
+#
+#
+#~ msgid "LOF/H"
+#~ msgstr "LOF/H"
+
+#
+#
+#~ msgid "LOF/L"
+#~ msgstr "LOF/L"
+
+#
+#
+#~ msgid "Mode"
+#~ msgstr "Κατάσταση"
+
+#
+#
+#~ msgid ""
+#~ "No packages were upgraded yet. So you can check your network and try "
+#~ "again."
+#~ msgstr ""
+#~ "Κανένα πακέτο δεν έχει αναβαθμιστεί ακόμα. Ελέγξτε το δίκτυο και "
+#~ "δοκιμάστε ξανά."
+
+#
+#
+#~ msgid "No, not now"
+#~ msgstr "Όχι τώρα"
+
+#
+#
+#~ msgid "No, send them never"
+#~ msgstr "Να μην αποσταλούν ποτέ"
+
+#
+#
+#~ msgid "OK, remove another extensions"
+#~ msgstr "ΟΚ, διαγραφή κι άλλης επέκτασης"
+
+#
+#
+#~ msgid "OK, remove some extensions"
+#~ msgstr "ΟΚ, διαγραφή κάποιων επεκτάσεων"
+
+#
+#
+#~ msgid "Optionally enter your name if you want to."
+#~ msgstr "Προαιρετική εισαγωγή ονόματος."
+
+#
+#~ msgid "Overwrite configuration files ?"
+#~ msgstr "Αντικατάσταση αρχείων ρυθμίσεων;"
+
+#
+#
+#~ msgid "Package removal failed.\n"
+#~ msgstr "Η διαγραφή πακέτου απέτυχε.\n"
+
+#
+#
+#~ msgid "Package removed successfully.\n"
+#~ msgstr "Η διαγραφή πακέτου πέτυχε.\n"
+
+#~ msgid ""
+#~ "Please be aware, that anyone can disable the parental control, if you "
+#~ "have not set a PIN."
+#~ msgstr ""
+#~ "Λάβετε υπόψιν ότι οποιοσδήποτε μπορεί να απενεργοποιήσει τη γονική "
+#~ "προστασία, εάν δεν θέσετε PIN."
+
+#
+#
+#~ msgid "Please choose he package..."
+#~ msgstr "Παρακαλώ επιλέξτε το πακέτο..."
+
+#
+#
+#~ msgid "Please choose the default services lists you want to install."
+#~ msgstr ""
+#~ "Παρακαλώ επιλέξτε την προρυθμισμένη λίστα υπηρεσιών για εγκατάσταση."
+
+#
+#
+#~ msgid "Please enter your email address here:"
+#~ msgstr "Παρακαλώ εισάγετε το email σας εδώ:"
+
+#
+#
+#~ msgid "Please enter your name here (optional):"
+#~ msgstr "Παρακαλώ εισάγετε το όνομά σας εδώ (προαιρετικά):"
+
+#
+#
+#~ msgid "Please press OK!"
+#~ msgstr "Παρακαλώ πιέστε ΟΚ!"
+
+#
+#
+#~ msgid "Please select an extension to remove."
+#~ msgstr "Παρακαλώ επιλέξτε επέκταση για διαγραφή."
+
+#
+#
+#~ msgid "Please select an option below."
+#~ msgstr "Παρακαλώ επιλέξτε μία επιλογή από τις κάτωθι."
+
+#
+#
+#~ msgid "Please wait while removing selected package..."
+#~ msgstr "Παρακαλώ περιμένετε. Διαγραφή επιλεγμένου πακέτου..."
+
+#
+#
+#~ msgid "Please wait while searching for removable packages..."
+#~ msgstr "Παρακαλώ περιμένετε. Αναζήτηση για πακέτα προς διαγραφή..."
+
+#
+#
+#~ msgid "Refresh Rate"
+#~ msgstr "Συχνότητα ανανέωσης"
+
+#
+#
+#~ msgid "Remove failed."
+#~ msgstr "Η διαγραφή απέτυχε."
+
+#
+#
+#~ msgid "Removed successfully."
+#~ msgstr "Διεγράφη επιτυχώς."
+
+#
+#
+#~ msgid "Rename crashlogs"
+#~ msgstr "Μετονομασία αρχείων καταγραφής σφαλμάτων"
+
+#
+#
+#~ msgid "Restore running"
+#~ msgstr "Αποκατάσταση εκτελείται"
+
+#
+#
+#~ msgid "Scan QAM128"
+#~ msgstr "Ανεύρεση QAM128"
+
+#
+#
+#~ msgid "Scan QAM16"
+#~ msgstr "Ανεύρεση QAM16"
+
+#
+#
+#~ msgid "Scan QAM256"
+#~ msgstr "Ανεύρεση QAM256"
+
+#
+#
+#~ msgid "Scan QAM32"
+#~ msgstr "Ανεύρεση  QAM32"
+
+#
+#
+#~ msgid "Scan QAM64"
+#~ msgstr "Ανεύρεση QAM64"
+
+#
+#
+#~ msgid "Scan SR6875"
+#~ msgstr "Ανεύρεση SR6875"
+
+#
+#
+#~ msgid "Scan SR6900"
+#~ msgstr "Ανεύρεση SR6900"
+
+#
+#
+#~ msgid "Scan band EU HYPER"
+#~ msgstr "Σάρωση μπάντας EU HYPER"
+
+#
+#
+#~ msgid "Scan band EU MID"
+#~ msgstr "Σάρωση μπάντας EU MID"
+
+#
+#
+#~ msgid "Scan band EU SUPER"
+#~ msgstr "Σάρωση μπάντας EU SUPER"
+
+#
+#
+#~ msgid "Scan band EU UHF IV"
+#~ msgstr "Σάρωση μπάντας EU UHF IV"
+
+#
+#
+#~ msgid "Scan band EU UHF V"
+#~ msgstr "Σάρωση μπάντας EU UHF V"
+
+#
+#
+#~ msgid "Scan band EU VHF I"
+#~ msgstr "Σάρωση μπάντας EU VHF I"
+
+#
+#
+#~ msgid "Scan band EU VHF III"
+#~ msgstr "Σάρωση μπάντας EU VHF III"
+
+#
+#
+#~ msgid "Scan band US HIGH"
+#~ msgstr "Σάρωση μπάντας US HIGH"
+
+#
+#
+#~ msgid "Scan band US HYPER"
+#~ msgstr "Σάρωση μπάντας US HYPER"
+
+#
+#
+#~ msgid "Scan band US LOW"
+#~ msgstr "Σάρωση μπάντας US LOW"
+
+#
+#
+#~ msgid "Scan band US MID"
+#~ msgstr "Σάρωση μπάντας US MID"
+
+#
+#
+#~ msgid "Scan band US SUPER"
+#~ msgstr "Σάρωση μπάντας US SUPER"
+
+#
+#
+#~ msgid "Select package"
+#~ msgstr "Επιλέξτε πακέτο"
+
+#
+#
+#~ msgid "Set Voltage and 22KHz"
+#~ msgstr "Ρύθμιση τάσης και 22KHz"
+
+#
+#
+#~ msgid "Set available internal memory threshold for the warning."
+#~ msgstr "Ορισμός ορίου διαθέσιμης εσωτερικής μνήμης για ειδοποίηση."
+
+#
+#
+#~ msgid "Sorry MediaScanner is not installed!"
+#~ msgstr "Δεν έχει εγκατασταθεί η αναζήτηση μέσων!"
+
+#
+#
+#~ msgid "Sorry no backups found!"
+#~ msgstr "Λυπάμαι, δεν βρέθηκαν αντίγραφα ασφαλείας!"
+
+#
+#~ msgid ""
+#~ "Sorry your Backup destination does not exist\n"
+#~ "\n"
+#~ "Please choose an other one."
+#~ msgstr ""
+#~ "Λυπάμαι, ο προορισμός αντιγράφων ασφαλείας δεν υπάρχει. \n"
+#~ "\n"
+#~ "Παρακαλώ επιλέξτε έναν άλλο."
+
+#
+#
+#~ msgid ""
+#~ "Sorry your backup destination is not writeable.\n"
+#~ "Please choose an other one."
+#~ msgstr ""
+#~ "Λυπάμαι, ο προορισμός αντιγράφων ασφαλείας δεν είναι εγγράψιμος. \n"
+#~ "Παρακαλώ επιλέξτε έναν άλλο."
+
+#
+#
+#~ msgid "Sorry, no Details available!"
+#~ msgstr "Λυπάμαι, δεν υπάρχουν διαθέσιμες λεπτομέρειες!"
+
+#
+#
+#~ msgid ""
+#~ "Sorry, your backup destination is not writeable.\n"
+#~ "\n"
+#~ "Please choose another one."
+#~ msgstr ""
+#~ "Λυπάμαι, ο προορισμός του αρχείου ασφαλείας δεν είναι εγγράψιμος .\n"
+#~ "\n"
+#~ "Παρακαλώ επιλέξτε ένα άλλο."
+
+#
+#
+#~ msgid "Text border width"
+#~ msgstr "Πλάτος περιθωρίου κειμένου"
+
+#
+#
+#~ msgid "Text font size"
+#~ msgstr "Μέγεθος γραμματοσειράς"
+
+#
+#
+#~ msgid ""
+#~ "Thank you for using the wizard. Your STB_BOX is now ready to "
+#~ "use.\n"
+#~ "Please press OK to start using your STB_BOX."
+#~ msgstr ""
+#~ "Σας ευχαριστούμε που χρησιμοποιήσατε τον Οδηγό. Ο δέκτης σας είναι "
+#~ "έτοιμος για χρήση.\n"
+#~ "Πιέστε ΟΚ για να ξεκινήσετε τη χρήση του δέκτη."
+
+#
+#
+#~ msgid "The installation of the default services lists is finished."
+#~ msgstr "Η εγκατάσταση προρυθμισμένων υπηρεσιών ολοκληρώθηε."
+
+#
+#
+#~ msgid ""
+#~ "The installation of the default settings is finished. You can now "
+#~ "continue configuring your STB_BOX by pressing the OK button "
+#~ "on the remote control."
+#~ msgstr ""
+#~ "Η εγκατάσταση προρυθμισμένων ρυθμίσεων ολοκληρώθηκε. Μπορείτε να "
+#~ "συνεχίσετε την παραμετροποίηση του δέκτη πιέζοντας ΟΚ στο τηλεχειριστήριο."
+
+#
+#
+#~ msgid "The package doesn't contain anything."
+#~ msgstr "Το πακέτο δεν περιέχει τίποτε."
+
+#
+#
+#~ msgid "The package:"
+#~ msgstr "Το πακέτο:"
+
+#
+#
+#~ msgid "There are no default services lists in your image."
+#~ msgstr "Δεν υπάρχουν προρυθμισμένες λίστες καναλιών στο λογισμικό δέκτη."
+
+#
+#
+#~ msgid "There are no default settings in your image."
+#~ msgstr "Δεν υπάρχουν προρυθμισμένες ρυθμίσεις στο λογισμικό δέκτη."
+
+#
+#
+#~ msgid "There are now "
+#~ msgstr "Υπάρχουν τώρα"
+
+#
+#
+#~ msgid "There was an error downloading the packetlist. Please try again."
+#~ msgstr ""
+#~ "Υπήρξε ένα σφάλμα κατά τη λήψη της λίστας πακέτων. Παρακαλώ δοκιμάστε "
+#~ "ξανά."
+
+#
+#
+#~ msgid "There was an error. The package:"
+#~ msgstr "Υπήρξε σφάλμα. Το πακέτο:"
+
+#
+#
+#~ msgid "This is step number 2."
+#~ msgstr "Αυτό είναι το βήμα 2"
+
+#
+#
+#~ msgid "Tone Amplitude"
+#~ msgstr "Πλάτος τόνου"
+
+#
+#
+#~ msgid "Tuner "
+#~ msgstr "Tuner "
+
+#
+#
+#~ msgid "USB Stick"
+#~ msgstr "USB Stick"
+
+#
+#~ msgid "Updates your STB_BOX's software"
+#~ msgstr "Ενημερώνει το λογισμικό δέκτη"
+
+#
+#
+#~ msgid "Updating finished. Here is the result:"
+#~ msgstr "Η αναβάθμιση τελείωσε. Το αποτέλεσμα είναι:"
+
+#
+#
+#~ msgid "Updating... Please wait... This can take some minutes..."
+#~ msgstr "Γίνεται αναβάθμιση... παρακαλώ περίμενε μερικά λεπτά..."
+
+#~ msgid "Upgrade finished. Do you want to reboot your STB_BOX?"
+#~ msgstr "Η αναβάθμιση ολοκληρώθηκε. Θέλετε να επανεκκινήσετε το δέκτη;"
+
+#
+#
+#~ msgid "Upgrading STB_BOX... Please wait"
+#~ msgstr "Εκτελείται αναβάθμιση δέκτη... Παρακαλώ περιμένετε"
+
+#
+#~ msgid "Use DVB subtitles position"
+#~ msgstr "Χρήση θέσης υποτίτλων από DVB"
+
+#
+#
+#~ msgid "Use Power Measurement"
+#~ msgstr "Χρήση Power Measurement"
+
+#
+#
+#~ msgid ""
+#~ "Use the left and right buttons to change an option.\n"
+#~ "\n"
+#~ "Please set up tuner A"
+#~ msgstr ""
+#~ "Πιέστε τα πλήκτρα Αριστερά και Δεξιά για αλλαγή επιλογών.\n"
+#~ "\n"
+#~ "Παρακαλώ ρυθμίστε το tuner A"
+
+#
+#~ msgid "Use this input device settings?"
+#~ msgstr "Χρήση αυτών των ρυθμίσεων συσκευής εισαγωγής;"
+
+#
+#~ msgid "Use this settings?"
+#~ msgstr "Χρήση αυτών των ρυθμίσεων;"
+
+#
+#
+#~ msgid "Use usals for this sat"
+#~ msgstr "Χρήση usals για αυτόν τον δορυφόρο"
+
+#
+#
+#~ msgid "Video Fine-Tuning Wizard"
+#~ msgstr "Οδηγός μικρορύθμισης οθόνης"
+
+#
+#
+#~ msgid "Video Output"
+#~ msgstr "Έξοδος εικόνας"
+
+#
+#
+#~ msgid "Video Setup"
+#~ msgstr "Παραμετροποίηση εικόνας"
+
+#
+#
+#~ msgid "Video Wizard"
+#~ msgstr "Οδηγός εικόνας"
+
+#
+#
+#~ msgid "Warn if free space drops below (kB):"
+#~ msgstr "Ενημέρωση για ελεύθερο χώρο κάτω από (kB):"
+
+#
+#
+#~ msgid ""
+#~ "Welcome to the cleanup wizard.\n"
+#~ "\n"
+#~ "We have detected that your available internal memory has dropped below "
+#~ "2MB.\n"
+#~ "To ensure stable operation of your STB_BOX, the internal "
+#~ "memory should be cleaned up.\n"
+#~ "You can use this wizard to remove some extensions.\n"
+#~ msgstr ""
+#~ "Καλώς ορίσατε στον Οδηγό εκκαθάρισης.\n"
+#~ "\n"
+#~ "Η διαθέσιμη εσωτερική μνήμη του δέκτη είναι κάτω από 2MB.\n"
+#~ "Για να διασφαλιστεί η σταθερή διαδικασία του δέκτη, η μνήμη πρέπει να "
+#~ "εκκαθαριστεί.\n"
+#~ "Με τη χρήση αυτού του Οδηγού μπορείτε να αφαιρέσετε μερικές επεκτάσεις.\n"
+
+#
+#
+#~ msgid "What to do with submitted crashlogs?"
+#~ msgstr "Τι να γίνει με τις καταγραφές που έχουν υποβληθεί;"
+
+#
+#
+#~ msgid "Yellow pango subtitles"
+#~ msgstr "Κίτρινοι υπότιτλοι pango"
+
+#
+#
+#~ msgid "Yes, and don't ask again"
+#~ msgstr "Ναι, χωρίς ερώτηση ξανά"
+
+#
+#
+#~ msgid "Yes, view the tutorial"
+#~ msgstr "Ναι, εμφάνιση εκμάθησης"
+
+#
+#
+#~ msgid ""
+#~ "You can choose some default settings now. Please select the settings you "
+#~ "want to be installed."
+#~ msgstr ""
+#~ "Μπορείτε να επιλέξετε μερικές προρυθμισμένες ρυθμίσεις. Παρακαλώ επιλέξτε "
+#~ "τις ρυθμίσεις που θέλετε να εγκατασταθούν."
+
+#
+#
+#~ msgid "You can choose, what you want to install..."
+#~ msgstr "Μπορείτε να επιλέξετε τι θέλετε να εγκατασταθεί..."
+
+#
+#
+#~ msgid "You chose not to install any default services lists."
+#~ msgstr "Επιλέξατε να μην εγκατασταθούν προρυθμισμένες  λίστες υπηρεσιών."
+
+#
+#
+#~ msgid ""
+#~ "You chose not to install any default settings. You can however install "
+#~ "the default settings later in the settings menu."
+#~ msgstr ""
+#~ "Επιλέξατε να μην εγκατασταθούν προρυθμισμένες ρυθμίσεις. Μπορείτε ωστόσο "
+#~ "να εγκαταστήσετε αυτές τις ρυθμίσεις αργότερα από το μενού."
+
+#
+#
+#~ msgid ""
+#~ "You chose not to install anything. Please press OK finish the install "
+#~ "wizard."
+#~ msgstr ""
+#~ "Επιλέξατε να μην εγκατασταθεί τίποτα. Πιέστε ΟΚ να ολοκληρωθεί ο Οδηγός."
+
+#~ msgid ""
+#~ "You need to set a PIN code and hide it from your children.\n"
+#~ "\n"
+#~ "Do you want to set the pin now?"
+#~ msgstr ""
+#~ "Πρέπει να θέσετε κωδικό PIN και να τον κρύψετε από παιδιά.\n"
+#~ "\n"
+#~ "Θέλετε να θέσετε το PIN τώρα;"
+
+#
+#
+#~ msgid "Your email address:"
+#~ msgstr "Η διεύθυνση email σας:"
+
+#
+#
+#~ msgid "Your name (optional):"
+#~ msgstr "Το όνομά σας (προαιρετικά):"
+
+#
+#
+#~ msgid "alphabetic sort"
+#~ msgstr "αλφαβητική ταξινόμηση"
+
+#
+#~ msgid ""
+#~ "are you sure you want to restore\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "σίγουρα θέλετε να επαναφέρετε \n"
+#~ "το παρακάτω αντίγραφο ασφαλείας:\n"
+
+#
+#
+#~ msgid "available"
+#~ msgstr "διαθέσιμο"
+
+#
+#
+#~ msgid "could not be removed"
+#~ msgstr "δε μπορεί να διαγραφεί"
+
+#
+#~ msgid "enigma2 and network"
+#~ msgstr "enigma2 και δίκτυο"
+
+#
+#
+#~ msgid "sort by date"
+#~ msgstr "ταξινόμιση κατά ημερομηνία"
+
+#
+#~ msgid "was removed successfully"
+#~ msgstr "διεγράφη επιτυχώς"
+
+#
+#~ msgid ""
+#~ "your STB_BOX might be unusable now. Please consult the "
+#~ "manual for further assistance before rebooting your STB_BOX."
+#~ msgstr ""
+#~ "ο δέκτης σας ενδέχεται να μη μπορεί να χρησιμοποιηθεί τώρα. Παρακαλώ "
+#~ "συμβουλευθείτε το manual πριν την επανεκκίνηση."
