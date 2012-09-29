@@ -66,6 +66,7 @@ class VideoWizard(WizardLanguage, Rc):
 		return VideoWizardSummary
 		
 	def markDone(self):
+		self.hw.saveMode(self.port, self.mode, self.rate)
 		config.misc.videowizardenabled.value = 0
 		config.misc.videowizardenabled.save()
 		configfile.save()
@@ -132,7 +133,7 @@ class VideoWizard(WizardLanguage, Rc):
 	def modeSelect(self, mode):
 		ratesList = self.listRates(mode)
 		print "ratesList:", ratesList
-		if self.port == "DVI" and mode in ("720p", "1080i"):
+		if self.port == "DVI" and mode in ("720p", "1080i", "1080p"):
 			self.rate = "multi"
 			self.hw.setMode(port = self.port, mode = mode, rate = "multi")
 		else:
