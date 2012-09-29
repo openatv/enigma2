@@ -8,9 +8,6 @@ from Components.config import config, ConfigBoolean, configfile, ConfigSubsectio
 from LanguageSelection import LanguageWizard
 
 config.misc.firstrun = ConfigBoolean(default = True)
-config.misc.startwizard = ConfigSubsection()
-config.misc.startwizard.shownimconfig = ConfigBoolean(default = True)
-config.misc.startwizard.doservicescan = ConfigBoolean(default = True)
 config.misc.languageselected = ConfigBoolean(default = True)
 
 class StartWizard(WizardLanguage, Rc):
