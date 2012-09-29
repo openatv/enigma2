@@ -9,8 +9,8 @@ self.selectKey("OK")
 		<step id="introduction" >
 			<text value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<list>
-				<listentry caption="Use wizard to set up basic features" step="network" />
-				<listentry caption="Exit wizard" step="end" />
+				<listentry caption="Use the wizard to set up basic features" step="network" />
+				<listentry caption="Exit the wizard" step="end" />
 			</list>
 			<code>
 self.clearSelectedKeys()
