@@ -66,6 +66,7 @@ class VideoWizard(WizardLanguage, Rc):
 		return VideoWizardSummary
 		
 	def markDone(self):
+		self.hw.saveMode(self.port, self.mode, self.rate)
 		config.misc.videowizardenabled.value = 0
 		config.misc.videowizardenabled.save()
 		configfile.save()
