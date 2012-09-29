@@ -130,10 +130,10 @@ self.hideRc()
 			<list>
 				<listentry caption="Yes, do an automatic scan now" step="scan" />
 				<listentry caption="Yes, do a manual scan now" step="manualscan" />
-				<listentry caption="No, scan later manually" step="end" />
+				<listentry caption="No, scan later manually" step="finisheddefaultsatlists" />
 			</list>
 		</step>
-		<step id="scan" nextstep="end">
+		<step id="scan" nextstep="finisheddefaultsatlists">
 			<condition>
 from Components.NimManager import nimmanager
 self.condition = config.misc.startwizard.doservicescan.value and nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
@@ -157,11 +157,57 @@ self.condition = config.misc.startwizard.doservicescan.value and nimmanager.some
 			<text value="Do you want to do another manual service scan?" />
 			<list>
 				<listentry caption="Yes, do another manual scan now" step="manualscan" />
-				<listentry caption="No, scan later manually" step="end" />
+				<listentry caption="No, scan later manually" step="finisheddefaultsatlists" />
 			</list>
 		</step>
+		<step id="finisheddefaultsatlists">
+			<text value="Do you want to enable the parental control feature on your STB_BOX?" />
+			<list>
+				<listentry caption="No" step="end" />
+				<listentry caption="Yes" step="parentalsetup" />
+			</list>
+			<code pos="after">
+if self["list"].index == 0:
+	config.ParentalControl.configured.value = True
+else:
+	config.ParentalControl.configured.value = False
+config.ParentalControl.configured.save()
+			</code>
+		</step>
+		<step id="parentalsetup">
+			<text value="You need to set a PIN code and hide it from your children.\n\nDo you want to set the pin now?" />
+			<list>
+				<listentry caption="Yes" step="finishparentalsetup" />
+				<listentry caption="No" step="warnpin" />
+			</list>
+			<code pos="after">
+from ParentalControlSetup import ParentalControlChangePin
+if self["list"].index == 0:
+	self.session.open(ParentalControlChangePin, config.ParentalControl.servicepin[0], _("parental control pin"))
+			</code>
+		</step>
+		<step id="warnpin">
+			<text value="Please be aware, that anyone can disable the parental control, if you have not set a PIN." />
+		</step>
+		<step id="finishparentalsetup">
+			<code>
+if config.ParentalControl.setuppin.value == "aaaa":
+	config.ParentalControl.setuppinactive.value = False
+else:
+	config.ParentalControl.setuppinactive.value = True
+config.ParentalControl.setuppinactive.save()
+config.ParentalControl.servicepinactive.value = True
+config.ParentalControl.servicepinactive.save()
+config.ParentalControl.setuppin.value = config.ParentalControl.servicepin[0].value
+config.ParentalControl.setuppin.save()
+			</code>
+			<text value="After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that." />
+		</step>
 		<step id="end" laststep="true">
-			<text value="Thank you for using the wizard. Your STB_BOX is now ready for use.\nPress OK to start using your receiver." />
+			<condition>
+self.condition = self.isLastWizard
+			</condition>
+			<text value="Thank you for using the wizard. Your STB_BOX is now ready to use.\nPlease press OK to start using your STB_BOX." />
 			<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
