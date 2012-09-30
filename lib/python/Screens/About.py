@@ -140,7 +140,6 @@ class Devices(Screen):
 		self["nims"] = StaticText()
 		self["hdd"] = StaticText()
 		self["mounts"] = StaticText()
-		self.mountinfo = ""
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.populate2)
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
@@ -148,15 +147,16 @@ class Devices(Screen):
 				"cancel": self.close,
 				"ok": self.close,
 			})
-		self.populate()
+		self.onLayoutFinish.append(self.populate)
 
 	def populate(self):
+		self.mountinfo = None
 		self["actions"].setEnabled(False)
 		scanning = _("Wait please while scanning for devices...")
 		self["nims"].setText(scanning)
 		self["hdd"].setText(scanning)
 		self['mounts'].setText(scanning)
-		self.activityTimer.start(10)
+		self.activityTimer.start(1)
 
 	def populate2(self):
 		self.activityTimer.stop()
