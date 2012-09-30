@@ -46,6 +46,7 @@ class VideoSetup(Screen, ConfigListScreen):
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
+		self["description"] = Label("")
 
 		if not self.SelectionChanged in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.SelectionChanged)
