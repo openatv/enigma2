@@ -67,8 +67,17 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 			eDebug("ok ... now we start!!");
 			m_have_cached_program = false;
 
-			if ( m_service && !m_service->cacheEmpty() )
+			if (m_service && !m_service->cacheEmpty())
+			{
 				serviceEvent(eventNewProgramInfo);
+				if (doDescramble)
+				{
+					if (!m_ca_servicePtr)
+					{
+						registerCAService();
+					}
+				}
+			}
 
 			if (!m_service || m_service->usePMT())
 			{
@@ -109,6 +118,21 @@ void eDVBServicePMTHandler::channelEvent(iDVBChannel *channel, int event)
 	}
 }
 
+void eDVBServicePMTHandler::registerCAService()
+{
+	int demuxes[2] = {0, 0};
+	uint8_t demuxid;
+	uint8_t adapterid;
+	m_demux->getCADemuxID(demuxid);
+	m_demux->getCAAdapterID(adapterid);
+	demuxes[0] = demuxid;
+	if (m_decode_demux_num != 0xFF)
+		demuxes[1] = m_decode_demux_num;
+	else
+		demuxes[1] = demuxes[0];
+	eDVBCAHandler::getInstance()->registerService(m_reference, adapterid, demuxes, (int)m_service_type, m_ca_servicePtr);
+}
+
 void eDVBServicePMTHandler::PMTready(int error)
 {
 	if (error)
@@ -137,19 +161,9 @@ void eDVBServicePMTHandler::PMTready(int error)
 		{
 			if (!m_ca_servicePtr)
 			{
-				int demuxes[2] = {0,0};
-				uint8_t demuxid;
-				uint8_t adapterid;
-				m_demux->getCADemuxID(demuxid);
-				m_demux->getCAAdapterID(adapterid);
-				demuxes[0]=demuxid;
-				if (m_decode_demux_num != 0xFF)
-					demuxes[1]=m_decode_demux_num;
-				else
-					demuxes[1]=demuxes[0];
-				eDVBCAHandler::getInstance()->registerService(m_reference, adapterid, demuxes, (int)m_service_type, m_ca_servicePtr);
-				eDVBCIInterfaces::getInstance()->recheckPMTHandlers();
+				registerCAService();
 			}
+			eDVBCIInterfaces::getInstance()->recheckPMTHandlers();
 			eDVBCIInterfaces::getInstance()->gotPMT(this);
 		}
 		if (m_ca_servicePtr)

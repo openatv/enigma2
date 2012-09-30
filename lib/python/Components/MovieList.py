@@ -125,6 +125,8 @@ class MovieList(GUIComponent):
 	SHUFFLE = 3
 	SORT_ALPHANUMERIC_REVERSE = 4
 	SORT_RECORDED_REVERSE = 5
+	SORT_ALPHANUMERIC_FLAT = 6
+	SORT_ALPHANUMERIC_FLAT_REVERSE = 7
 
 	HIDE_DESCRIPTION = 1
 	SHOW_DESCRIPTION = 2
@@ -249,6 +251,7 @@ class MovieList(GUIComponent):
 		self.invalidateItem(self.getCurrentIndex())
 
 	def buildMovieListEntry(self, serviceref, info, begin, data):
+		switch = config.usage.show_icons_in_movielist.value
 		width = self.l.getItemSize().width()
 		pathName = serviceref.getPath()
 		res = [ None ]
@@ -284,14 +287,13 @@ class MovieList(GUIComponent):
 			data.txt = info.getName(serviceref)
 			data.icon = None
 			data.part = None
-			switch = config.usage.show_icons_in_movielist.value
 			if os.path.split(pathName)[1] in self.runningTimers:
 				if switch == 'i':
 					if self.playInBackground and serviceref == self.playInBackground:
 						data.icon = self.iconMoviePlayRec
 					else:
 						data.icon = self.iconMovieRec
-				elif switch == 'p':
+				elif switch == 'p' or switch == 's':
 					data.part = 0
 					if self.playInBackground and serviceref == self.playInBackground:
 						data.partcol = 0xffc71d
@@ -314,29 +316,28 @@ class MovieList(GUIComponent):
 						if config.usage.movielist_unseen.value:
 							data.part = 100
 							data.partcol = 0x206333
-
 		len = data.len
 		if len > 0:
 			len = "%d:%02d" % (len / 60, len % 60)
 		else:
 			len = ""
 
-		if data.icon is not None:
+		iconSize = 0
+		if switch == 'i':
 			iconSize = 22
-			pos = (0,1)
-			res.append(MultiContentEntryPixmapAlphaTest(pos=pos, size=(iconSize,20), png=data.icon))
-		switch = config.usage.show_icons_in_movielist.value
-		if switch == 'p' or switch == 's':
-			if switch == 'p':
-				iconSize = 48
-			else:
-				iconSize = 22
-			if data.part is not None:
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
+		elif switch == 'p':
+			iconSize = 48
+			if data.part is not None and data.part > 0:
 				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
-		elif switch == 'i':
+			else:
+				res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
+		elif switch == 's':
 			iconSize = 22
-		else:
-			iconSize = 0
+			if data.part is not None and data.part > 0:
+				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+			else:
+				res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
 
 		begin_string = ""
 		if begin > 0:
@@ -420,11 +421,16 @@ class MovieList(GUIComponent):
 	def __len__(self):
 		return len(self.list)
 
+	def __getitem__(self, index):
+		return self.list[index]
+
+	def __iter__(self):
+		return self.list.__iter__()
+
 	def load(self, root, filter_tags):
 		# this lists our root service, then building a
 		# nice list
-
-		self.list = [ ]
+		del self.list[:]
 		serviceHandler = eServiceCenter.getInstance()
 		numberOfDirs = 0
 
@@ -467,22 +473,25 @@ class MovieList(GUIComponent):
 			name = info.getName(serviceref)
 			if this_tags == ['']:
 				# No tags? Auto tag!
-				this_tags = [x for x in name.replace(',',' ').replace('.',' ').split() if len(x)>1]
+				this_tags = name.replace(',',' ').replace('.',' ').replace('_',' ').replace(':',' ').split()
 			else:
 				realtags.update(this_tags)
 			for tag in this_tags:
-				if tags.has_key(tag):
-					tags[tag].append(name)
-				else:
-					tags[tag] = [name]
-			this_tags = set(this_tags)
-
+				if len(tag) >= 4:
+					if tags.has_key(tag):
+						tags[tag].append(name)
+					else:
+						tags[tag] = [name]
 			# filter_tags is either None (which means no filter at all), or
 			# a set. In this case, all elements of filter_tags must be present,
 			# otherwise the entry will be dropped.
-			if filter_tags is not None and not this_tags.issuperset(filter_tags):
-				print "Skipping", name, "tags=", this_tags, " filter=", filter_tags
-				continue
+			if filter_tags is not None:
+				this_tags_fullname = [" ".join(this_tags)]
+				this_tags_fullname = set(this_tags_fullname)
+				this_tags = set(this_tags)
+				if not this_tags.issuperset(filter_tags) and not this_tags_fullname.issuperset(filter_tags):
+# 					print "Skipping", name, "tags=", this_tags, " filter=", filter_tags
+					continue
 
 			self.list.append((serviceref, info, begin, -1))
 
@@ -490,6 +499,10 @@ class MovieList(GUIComponent):
 		self.parentDirectory = 0
 		if self.sort_type == MovieList.SORT_ALPHANUMERIC:
 			self.list.sort(key=self.buildAlphaNumericSortKey)
+		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_FLAT:
+			self.list.sort(key=self.buildAlphaNumericFlatSortKey)
+		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE:
+			self.list.sort(key=self.buildAlphaNumericFlatSortKey, reverse = True)
 		else:
 			#always sort first this way to avoid shuffle and reverse-sort directories
 			self.list.sort(key=self.buildBeginTimeSortKey)
@@ -508,14 +521,16 @@ class MovieList(GUIComponent):
 			if not rootPath.endswith('/'):
 				rootPath += '/'
 			if rootPath != parent:
-				dirlist = self.list[:numberOfDirs]
-				for index, item in enumerate(dirlist):
-					itempath = os.path.normpath(item[0].getPath())
-					if not itempath.endswith('/'):
-						itempath += '/'
-					if itempath == rootPath:
-						self.parentDirectory = index
-						break
+				# with new sort types directories may be in between files, so scan whole
+				# list for parentDirectory index. Usually it is the first one anyway
+				for index, item in enumerate(self.list):
+					if item[0].flags & eServiceReference.mustDescent:
+						itempath = os.path.normpath(item[0].getPath())
+						if not itempath.endswith('/'):
+							itempath += '/'
+						if itempath == rootPath:
+							self.parentDirectory = index
+							break
 		self.root = root
 		# finally, store a list of all tags which were found. these can be presented
 		# to the user to filter the list
@@ -530,12 +545,34 @@ class MovieList(GUIComponent):
 				item = rtags.get(movies, [])
 				if not item: rtags[movies] = item
 				item.append(tag)
-		# format the tag lists so that they are in 'original' order
 		self.tags = {}
 		for movies, tags in rtags.items():
 			movie = movies[0]
+			# format the tag lists so that they are in 'original' order
 			tags.sort(key = movie.find)
-			self.tags[' '.join(tags)] = set(tags)
+			first = movie.find(tags[0])
+			last = movie.find(tags[-1]) + len(tags[-1])
+			match = movie
+			start = 0
+			end = len(movie)
+			# Check if the set has a complete sentence in common, and how far
+			for m in movies[1:]:
+				if m[start:end] != match:
+					if not m.startswith(movie[:last]):
+						start = first
+					if not m.endswith(movie[first:]):
+						end = last
+					match = movie[start:end]
+					if m[start:end] != match:
+						match = ''
+						break
+			if match:
+				self.tags[match] = set(tags)
+				continue
+			else:
+				match = ' '.join(tags)
+				if len(match) > 2: #Omit small words
+					self.tags[match] = set(tags)
 
 	def buildAlphaNumericSortKey(self, x):
 		# x = ref,info,begin,...
@@ -543,6 +580,21 @@ class MovieList(GUIComponent):
 		name = x[1] and x[1].getName(ref)
 		if ref.flags & eServiceReference.mustDescent:
 			return (0, name and name.lower() or "", -x[2])
+		return (1, name and name.lower() or "", -x[2])
+
+	def buildAlphaNumericFlatSortKey(self, x):
+		# x = ref,info,begin,...
+		ref = x[0]
+		name = x[1] and x[1].getName(ref)
+		if name and ref.flags & eServiceReference.mustDescent:
+			# only use directory basename for sorting
+			p = os.path.split(name)
+			if not p[1]:
+				# if path ends in '/', p is blank.
+				p = os.path.split(p[0])
+			name = p[1]
+		# print "Sorting for -%s-" % name
+
 		return (1, name and name.lower() or "", -x[2])
 
 	def buildBeginTimeSortKey(self, x):

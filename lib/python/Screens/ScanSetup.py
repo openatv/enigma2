@@ -1,5 +1,4 @@
 from Screen import Screen
-from Screens.DefaultWizard import DefaultWizard
 from ServiceScan import ServiceScan
 from Components.config import config, ConfigSubsection, ConfigSelection, \
 	ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigSlider, ConfigEnableDisable
@@ -7,14 +6,14 @@ from Components.ActionMap import NumberActionMap, ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.NimManager import nimmanager, getConfigSatlist
 from Components.Label import Label
-from Tools.Directories import resolveFilename, SCOPE_DEFAULTPARTITIONMOUNTDIR, SCOPE_DEFAULTDIR, SCOPE_DEFAULTPARTITION
+from Components.Sources.StaticText import StaticText
 from Tools.HardwareInfo import HardwareInfo
 from Screens.MessageBox import MessageBox
 from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, \
 	eDVBSatelliteEquipmentControl, eDVBFrontendParametersTerrestrial, \
 	eDVBFrontendParametersCable, eConsoleAppContainer, eDVBResourceManager
 
-def buildTerTransponder(frequency, 
+def buildTerTransponder(frequency,
 		inversion=2, bandwidth = 7000000, fechigh = 6, feclow = 6,
 		modulation = 2, transmission = 2, guard = 4,
 		hierarchy = 4, system = 0):
@@ -279,27 +278,6 @@ class CableTransponderSearchSupport:
 		tmpstr += "\n\n..."
 		self.cable_search_session = self.session.openWithCallback(self.cableTransponderSearchSessionClosed, MessageBox, tmpstr, MessageBox.TYPE_INFO)
 
-class DefaultSatLists(DefaultWizard):
-	def __init__(self, session, silent = True, showSteps = False):
-		self.xmlfile = "defaultsatlists.xml"
-		DefaultWizard.__init__(self, session, silent, showSteps, neededTag = "services")
-		print "configuredSats:", nimmanager.getConfiguredSats()
-
-	def setDirectory(self):
-		self.directory = []
-		self.directory.append(resolveFilename(SCOPE_DEFAULTDIR))
-		import os
-		os.system("mount %s %s" % (resolveFilename(SCOPE_DEFAULTPARTITION), resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR)))
-		self.directory.append(resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR))
-
-	def statusCallback(self, status, progress):
-		print "statusCallback:", status, progress
-		from Components.DreamInfoHandler import DreamInfoHandler
-		if status == DreamInfoHandler.STATUS_DONE:
-			self["text"].setText(_("The installation of the default services lists is finished.") + "\n\n" + _("Please press OK to continue."))
-			self.markDone()
-			self.disableKeys = False
-
 class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -322,10 +300,15 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		self.session.postScanService = session.nav.getCurrentlyPlayingServiceReference()
 
-		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("Scan"))
+
+		self["actions"] = NumberActionMap(["SetupActions", "MenuActions", "ColorActions"],
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
+			"red": self.keyCancel,
+			"green": self.keyGo,
 			"menu": self.doCloseRecursive,
 		}, -2)
 
@@ -335,6 +318,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
+		self["header"] = Label(_("Manual Scan"))
 		if not self.scan_nims.value == "":
 			self.createSetup()
 			self["introduction"] = Label(_("Press OK to start the scan"))
@@ -933,11 +917,16 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Automatic Scan"))
 
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("Scan"))
+
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
 			"menu": self.doCloseRecursive,
+			"red": self.keyCancel,
+			"green": self.keyGo,
 		}, -2)
 
 		self.session.postScanService = session.nav.getCurrentlyPlayingServiceReference()

@@ -4,24 +4,31 @@ import math
 
 from Tools import Notifications
 
-from Components.config import config, ConfigYesNo, ConfigSelection, ConfigSubsection
+from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigInteger
+from Components.SystemInfo import SystemInfo
 
 from Screens.MessageBox import MessageBox
 import Screens.Standby
 
 config.SleepTimer = ConfigSubsection()
+config.SleepTimer.enabled = ConfigYesNo(default = False)
 config.SleepTimer.ask = ConfigYesNo(default = True)
-config.SleepTimer.action = ConfigSelection(default = "shutdown", choices = [("shutdown", _("shutdown")), ("standby", _("standby"))])
+config.SleepTimer.defaulttime = ConfigInteger(default=30, limits=(1, 1439))
+config.SleepTimer.servicetime = ConfigYesNo(default = False)
+if SystemInfo["DeepstandbySupport"]:
+	config.SleepTimer.action = ConfigSelection(default = "shutdown", choices = [("shutdown", _("Deep Standby")), ("standby", _("Standby"))])
+else:
+	config.SleepTimer.action = ConfigSelection(default = "standby", choices = [("standby", _("Standby"))])
 
 class SleepTimerEntry(timer.TimerEntry):
 	def __init__(self, begin):
 		timer.TimerEntry.__init__(self, int(begin), int(begin))
-		
+
 		self.prepare_time = 0
-		
+
 	def getNextActivation(self):
 		return self.begin
-		
+
 	def activate(self):
 		if self.state == self.StateRunning:
 			if config.SleepTimer.action.value == "shutdown":
@@ -36,10 +43,10 @@ class SleepTimerEntry(timer.TimerEntry):
 					self.standby(True)
 
 		return True
-		
+
 	def shouldSkip(self):
 		return False
-	
+
 	def shutdown(self, answer):
 		if answer is not None:
 			if answer and not Screens.Standby.inTryQuitMainloop:

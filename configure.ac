@@ -219,10 +219,6 @@ Makefile
 data/Makefile
 data/fonts/Makefile
 data/countries/Makefile
-data/defaults/Makefile
-data/defaults/Dream/Makefile
-data/defaults/Dream/hdbouquets/Makefile
-data/defaults/Dream/sdbouquets/Makefile
 data/extensions/Makefile
 data/keymaps/Makefile
 data/lcd/Makefile
@@ -306,8 +302,7 @@ lib/python/Plugins/Extensions/GraphMultiEPG/Makefile
 lib/python/Plugins/Extensions/GraphMultiEPG/meta/Makefile
 lib/python/Plugins/Extensions/Volume_adjust/Makefile
 lib/python/Plugins/Extensions/Volume_adjust/nl/Makefile
-lib/python/Plugins/SystemPlugins/CleanupWizard/Makefile
-lib/python/Plugins/SystemPlugins/CleanupWizard/meta/Makefile
+
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/meta/Makefile
 lib/python/Plugins/SystemPlugins/DefaultServicesScanner/Makefile

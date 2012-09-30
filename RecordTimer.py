@@ -1,6 +1,6 @@
 import os
 from enigma import eEPGCache, getBestPlayableServiceReference, \
-	eServiceReference, iRecordableService, quitMainloop
+	eServiceReference, eServiceCenter, iRecordableService, quitMainloop
 
 from Components.config import config
 from Components.UsageConfig import defaultMoviePath
@@ -344,12 +344,32 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					from Screens.ChannelSelection import ChannelSelection
 					ChannelSelectionInstance = ChannelSelection.instance
 					if ChannelSelectionInstance:
-						ChannelSelectionInstance.clearPath()
-						ChannelSelectionInstance.recallBouquetMode()
-						if ChannelSelectionInstance.bouquet_root:
-							ChannelSelectionInstance.enterPath(ChannelSelectionInstance.bouquet_root)
-						ChannelSelectionInstance.enterPath(self.service_ref.ref)
-						ChannelSelectionInstance.saveRoot()
+						if config.usage.multibouquet.value:
+							bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
+						else:
+							bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types)
+						rootstr = ''
+						serviceHandler = eServiceCenter.getInstance()
+						rootbouquet = eServiceReference(bqrootstr)
+						bouquet = eServiceReference(bqrootstr)
+						bouquetlist = serviceHandler.list(bouquet)
+						if not bouquetlist is None:
+							while True:
+								bouquet = bouquetlist.getNext()
+								if bouquet.flags & eServiceReference.isDirectory:
+									ChannelSelectionInstance.clearPath()
+									ChannelSelectionInstance.setRoot(bouquet)
+									servicelist = serviceHandler.list(bouquet)
+									if not servicelist is None:
+										serviceIterator = servicelist.getNext()
+										while serviceIterator.valid():
+											if self.service_ref.ref == serviceIterator: break
+											serviceIterator = servicelist.getNext()
+										if self.service_ref.ref == serviceIterator: break
+							ChannelSelectionInstance.enterPath(rootbouquet)
+							ChannelSelectionInstance.enterPath(bouquet)
+							ChannelSelectionInstance.saveRoot()
+							ChannelSelectionInstance.saveChannel(self.service_ref.ref)
 						ChannelSelectionInstance.addToHistory(self.service_ref.ref)
 					NavigationInstance.instance.playService(self.service_ref.ref)
 				return True

@@ -292,7 +292,15 @@ int eDVBCAHandler::registerService(const eServiceReferenceDVB &ref, int adapter,
 	/*
 	 * our servicelist has changed, but we have to wait till we receive PMT data
 	 * for this service, before we distribute a new list of CAPMT objects to our clients.
+	 *
+	 * Unless we have a pmt section in our cache, for this service.
 	 */
+
+	std::map<eServiceReferenceDVB, ePtr<eTable<ProgramMapSection> > >::const_iterator cacheit = pmtCache.find(ref);
+	if (cacheit != pmtCache.end() && cacheit->second)
+	{
+		processPMTForService(caservice, cacheit->second);
+	}
 	return 0;
 }
 
@@ -377,6 +385,10 @@ void eDVBCAHandler::serviceGone()
 			delete *it;
 			it = clients.erase(it);
 		}
+		if (pmtCache.size() > 500)
+		{
+			pmtCache.clear();
+		}
 	}
 }
 
@@ -404,23 +416,15 @@ void eDVBCAHandler::distributeCAPMT()
 	}
 }
 
-void eDVBCAHandler::handlePMT(const eServiceReferenceDVB &ref, eTable<ProgramMapSection> *ptr)
+void eDVBCAHandler::processPMTForService(eDVBCAService *service, eTable<ProgramMapSection> *ptr)
 {
-	bool isUpdate;
-	CAServiceMap::iterator it = services.find(ref);
-	if (it == services.end())
-	{
-		/* not one of our services */
-		return;
-	}
-
-	isUpdate = (it->second->getCAPMTVersion() >= 0);
+	bool isUpdate = (service->getCAPMTVersion() >= 0);
 
 	/* prepare the data */
-	if (it->second->buildCAPMT(ptr) < 0) return; /* probably equal version, ignore */
+	if (service->buildCAPMT(ptr) < 0) return; /* probably equal version, ignore */
 
 	/* send the data to the listening client */
-	it->second->sendCAPMT();
+	service->sendCAPMT();
 
 	if (isUpdate)
 	{
@@ -429,7 +433,7 @@ void eDVBCAHandler::handlePMT(const eServiceReferenceDVB &ref, eTable<ProgramMap
 		{
 			if (client_it->state() == eSocket::Connection)
 			{
-				it->second->writeCAPMTObject(*client_it, LIST_UPDATE);
+				service->writeCAPMTObject(*client_it, LIST_UPDATE);
 			}
 		}
 	}
@@ -443,8 +447,22 @@ void eDVBCAHandler::handlePMT(const eServiceReferenceDVB &ref, eTable<ProgramMap
 	}
 }
 
+void eDVBCAHandler::handlePMT(const eServiceReferenceDVB &ref, ePtr<eTable<ProgramMapSection> > &ptr)
+{
+	CAServiceMap::iterator it = services.find(ref);
+	if (it == services.end())
+	{
+		/* not one of our services */
+		return;
+	}
+
+	processPMTForService(it->second, ptr);
+
+	pmtCache[ref] = ptr;
+}
+
 eDVBCAService::eDVBCAService(const eServiceReferenceDVB &service)
-	: eUnixDomainSocket(eApp), m_service(service), m_adapter(0), m_service_type_mask(0), m_prev_build_hash(0), m_version(-1), m_retryTimer(eTimer::create(eApp))
+	: eUnixDomainSocket(eApp), m_service(service), m_adapter(0), m_service_type_mask(0), m_prev_build_hash(0), m_crc32(0), m_version(-1), m_retryTimer(eTimer::create(eApp))
 {
 	memset(m_used_demux, 0xFF, sizeof(m_used_demux));
 	CONNECT(connectionClosed_, eDVBCAService::connectionLost);
@@ -517,6 +535,7 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 
 	uint8_t demux_mask = 0;
 	int data_demux = -1;
+	uint32_t crc = 0;
 
 	int iter = 0, max_demux_slots = getNumberOfDemuxes();
 	while ( iter < max_demux_slots )
@@ -538,8 +557,6 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 		return -1;
 	}
 
-	eDebug("demux %d mask %02x prevhash %llx", data_demux, demux_mask, m_prev_build_hash);
-
 	uint64_t build_hash = m_adapter;
 	build_hash <<= 8;
 	build_hash |= data_demux;
@@ -552,15 +569,15 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 	build_hash <<= 16;
 	build_hash |= (m_service_type_mask & 0xffff);
 
-	if ( build_hash == m_prev_build_hash )
-	{
-		eDebug("[eDVBCAService] don't build/send the same CA PMT twice");
-		return -1;
-	}
-
-	std::vector<ProgramMapSection*>::const_iterator i=ptr->getSections().begin();
+	std::vector<ProgramMapSection*>::const_iterator i = ptr->getSections().begin();
 	if ( i != ptr->getSections().end() )
 	{
+		crc = (*i)->getCrc32();
+		if (build_hash == m_prev_build_hash && crc == m_crc32)
+		{
+			eDebug("[eDVBCAService] don't build/send the same CA PMT twice");
+			return -1;
+		}
 		CaProgramMapSection capmt(*i++, m_prev_build_hash ? LIST_UPDATE : LIST_ONLY, CMD_OK_DESCRAMBLING);
 
 		while( i != ptr->getSections().end() )
@@ -617,6 +634,7 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 
 	m_prev_build_hash = build_hash;
 	m_version = pmt_version;
+	m_crc32 = crc;
 	return 0;
 }
 

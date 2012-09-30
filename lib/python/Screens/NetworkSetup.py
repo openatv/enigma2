@@ -24,7 +24,7 @@ from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer, ePoint, eSize, RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
-from os import path as os_path, remove, symlink, unlink, rename, chmod
+from os import path as os_path, remove, symlink, unlink, rename, chmod, access, X_OK
 from shutil import move
 from re import compile as re_compile, search as re_search
 import time
@@ -246,8 +246,9 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 		print "backup-list:", self.backupNameserverList
 
 		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("Add"))
-		self["key_yellow"] = StaticText(_("Delete"))
+		self["key_green"] = StaticText(_("Save"))
+		self["key_yellow"] = StaticText(_("Add"))
+		self["key_blue"] = StaticText(_("Delete"))
 
 		self["introduction"] = StaticText(_("Press OK to activate the settings."))
 		self.createConfig()
@@ -261,8 +262,9 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
 			"red": (self.cancel, _("exit nameserver configuration")),
-			"green": (self.add, _("add a nameserver entry")),
-			"yellow": (self.remove, _("remove a nameserver entry")),
+			"green": (self.ok, _("activate current configuration")),
+			"yellow": (self.add, _("add a nameserver entry")),
+			"blue": (self.remove, _("remove a nameserver entry")),
 			})
 
 		self["actions"] = NumberActionMap(["SetupActions"],
@@ -350,6 +352,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
 			"red": (self.keyCancel, _("exit network adapter configuration")),
+			"green": (self.keySave, _("activate network adapter configuration")),
 			"blue": (self.KeyBlue, _("open nameserver configuration")),
 			})
 
@@ -382,6 +385,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self["Adapter"] = StaticText()
 		self["introduction2"] = StaticText(_("Press OK to activate the settings."))
 		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Save"))
 		self["key_blue"] = StaticText(_("Edit DNS"))
 
 		self["VKeyIcon"] = Boolean(False)
@@ -1251,7 +1255,7 @@ class NetworkAdapterTest(Screen):
 			self["InfoText"].show()
 			self["key_red"].setText(_("Back"))
 		if self.activebutton == 3: #DHCP Check
-			self["InfoText"].setText(_("This test checks whether your LAN Adapter is set up for automatic IP Address configuration with DHCP.\nIf you get a \"disabled\" message:\n - then your LAN Adapter is configured for manual IP Setup\n- verify thay you have entered correct IP informations in the AdapterSetup dialog.\nIf you get an \"enabeld\" message:\n-verify that you have a configured and working DHCP Server in your network."))
+			self["InfoText"].setText(_("This test checks whether your LAN Adapter is set up for automatic IP Address configuration with DHCP.\nIf you get a \"disabled\" message:\n - then your LAN Adapter is configured for manual IP Setup\n- verify thay you have entered correct IP informations in the AdapterSetup dialog.\nIf you get an \"enabled\" message:\n-verify that you have a configured and working DHCP Server in your network."))
 			self["InfoTextBorder"].show()
 			self["InfoText"].show()
 			self["key_red"].setText(_("Back"))
@@ -1660,21 +1664,19 @@ class NetworkAfp(Screen):
 
 	def AfpStartStop(self):
 		if self.my_afp_run == False:
-			self.Console.ePopen('/etc/init.d/atalk start')
-			time.sleep(3)
-			self.updateService()
+			self.Console.ePopen('/etc/init.d/atalk start', self.StartStopCallback)
 		elif self.my_afp_run == True:
-			self.Console.ePopen('/etc/init.d/atalk stop')
-			time.sleep(3)
-			self.updateService()
+			self.Console.ePopen('/etc/init.d/atalk stop', self.StartStopCallback)
+
+	def StartStopCallback(self, result = None, retval = None, extra_args = None):
+		time.sleep(3)
+		self.updateService()
 
 	def activateAfp(self):
 		if fileExists('/etc/rc2.d/S20atalk'):
-			self.Console.ePopen('update-rc.d -f atalk remove')
+			self.Console.ePopen('update-rc.d -f atalk remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f atalk defaults')
-		time.sleep(3)
-		self.updateService()
+			self.Console.ePopen('update-rc.d -f atalk defaults', self.StartStopCallback)
 
 	def updateService(self,result = None, retval = None, extra_args = None):
 		import process
@@ -2080,21 +2082,19 @@ class NetworkNfs(Screen):
 
 	def NfsStartStop(self):
 		if self.my_nfs_run == False:
-			self.Console.ePopen('/etc/init.d/nfsserver start')
-			time.sleep(3)
-			self.updateService()
+			self.Console.ePopen('/etc/init.d/nfsserver start', self.StartStopCallback)
 		elif self.my_nfs_run == True:
-			self.Console.ePopen('/etc/init.d/nfsserver stop')
-			time.sleep(3)
-			self.updateService()
+			self.Console.ePopen('/etc/init.d/nfsserver stop', self.StartStopCallback)
+
+	def StartStopCallback(self, result = None, retval = None, extra_args = None):
+		time.sleep(3)
+		self.updateService()
 
 	def Nfsset(self):
 		if fileExists('/etc/rc2.d/S20nfsserver'):
-			self.Console.ePopen('update-rc.d -f nfsserver remove')
+			self.Console.ePopen('update-rc.d -f nfsserver remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f nfsserver defaults')
-		time.sleep(3)
-		self.updateService()
+			self.Console.ePopen('update-rc.d -f nfsserver defaults', self.StartStopCallback)
 
 	def updateService(self):
 		import process
@@ -2229,7 +2229,7 @@ class NetworkOpenvpn(Screen):
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
 		self.message.close()
-		self.updateService()
+		self.close()
 
 	def createSummary(self):
 		return NetworkServicesSummary
@@ -2239,21 +2239,19 @@ class NetworkOpenvpn(Screen):
 
 	def VpnStartStop(self):
 		if self.my_vpn_run == False:
-			self.Console.ePopen('/etc/init.d/openvpn start')
-			time.sleep(3)
-			self.updateService()
+			self.Console.ePopen('/etc/init.d/openvpn start', self.StartStopCallback)
 		elif self.my_vpn_run == True:
-			self.Console.ePopen('/etc/init.d/openvpn stop')
-			time.sleep(3)
-			self.updatemy_Vpn()
+			self.Console.ePopen('/etc/init.d/openvpn stop', self.StartStopCallback)
+
+	def StartStopCallback(self, result = None, retval = None, extra_args = None):
+		time.sleep(3)
+		self.updateService()
 
 	def activateVpn(self):
 		if fileExists('/etc/rc2.d/S20openvpn'):
-			self.Console.ePopen('update-rc.d -f openvpn remove')
+			self.Console.ePopen('update-rc.d -f openvpn remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f openvpn defaults')
-		time.sleep(3)
-		self.updateService()
+			self.Console.ePopen('update-rc.d -f openvpn defaults', self.StartStopCallback)
 
 	def updateService(self):
 		import process
@@ -2368,14 +2366,19 @@ class NetworkSamba(Screen):
 		elif result.find('bad address') != -1:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your STB_BOX is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install %s ?') % self.service_name, MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.QuestionCallback, MessageBox, _('Ready to install %s ?') % self.service_name, MessageBox.TYPE_YESNO)
 
-	def InstallPackage(self, val):
+	def QuestionCallback(self, val):
 		if val:
-			self.doInstall(self.installComplete, self.service_name)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Do you want to also install samba client ?\nThis allows you to mount your windows shares on this device.'), MessageBox.TYPE_YESNO)
 		else:
 			self.feedscheck.close()
 			self.close()
+
+	def InstallPackage(self, val):
+		if val:
+			self.service_name = self.service_name + ' task-base-smbfs-client'
+		self.doInstall(self.installComplete, self.service_name)
 
 	def InstallPackageFailed(self, val):
 		self.feedscheck.close()
@@ -2389,7 +2392,7 @@ class NetworkSamba(Screen):
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		self.message.close()
 		self.feedscheck.close()
-		self.updateService()
+		self.SambaStartStop()
 
 	def UninstallCheck(self):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
@@ -2411,7 +2414,7 @@ class NetworkSamba(Screen):
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
 		self.message.close()
-		self.updateService()
+		self.close()
 
 	def createSummary(self):
 		return NetworkServicesSummary
@@ -2420,22 +2423,31 @@ class NetworkSamba(Screen):
 		self.session.open(NetworkSambaLog)
 
 	def SambaStartStop(self):
+		commands = []
 		if self.my_Samba_run == False:
-			self.Console.ePopen('/etc/init.d/samba start')
-			time.sleep(3)
-			self.updateService()
-		elif self.my_Samba_run == True:
-			self.Console.ePopen('/etc/init.d/samba stop')
-			time.sleep(3)
-			self.updateService()
+			commands.append('/etc/init.d/samba start')
+			commands.append('nmbd -D')
+			commands.append('smbd -D')
 
-	def activateSamba(self):
-		if fileExists('/etc/rc2.d/S20samba'):
-			self.Console.ePopen('update-rc.d -f samba remove')
-		else:
-			self.Console.ePopen('update-rc.d -f samba defaults')
+		elif self.my_Samba_run == True:
+			commands.append('/etc/init.d/samba stop')
+			commands.append('killall nmbd')
+			commands.append('killall smbd')
+		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
+
+	def StartStopCallback(self, result = None, retval = None, extra_args = None):
 		time.sleep(3)
 		self.updateService()
+
+	def activateSamba(self):
+		if access('/etc/network/if-up.d/01samba-start', X_OK):
+			chmod('/etc/network/if-up.d/01samba-start', 0644)
+		elif not access('/etc/network/if-up.d/01samba-start', X_OK):
+			chmod('/etc/network/if-up.d/01samba-start', 0755)
+		if fileExists('/etc/rc2.d/S20samba'):
+			self.Console.ePopen('update-rc.d -f samba remove', self.StartStopCallback)
+		else:
+			self.Console.ePopen('update-rc.d -f samba defaults', self.StartStopCallback)
 
 	def updateService(self):
 		import process
@@ -2450,6 +2462,12 @@ class NetworkSamba(Screen):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_Samba_active = True
+
+		if access('/etc/network/if-up.d/01samba-start', X_OK):
+			self['labactive'].setText(_("Enabled"))
+			self['labactive'].show()
+			self.my_Samba_active = True
+
 		if samba_process:
 			self.my_Samba_run = True
 		if self.my_Samba_run == True:
@@ -2706,28 +2724,27 @@ class NetworkInadyn(Screen):
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
 		self.message.close()
-		self.updateService()
+		self.close()
 
 	def createSummary(self):
 		return NetworkServicesSummary
 
 	def InadynStartStop(self):
 		if self.my_inadyn_run == False:
-			self.Console.ePopen('/etc/init.d/inadyn-mt start')
-			time.sleep(3)
-			self.updateService()
+			self.Console.ePopen('/etc/init.d/inadyn-mt start', self.StartStopCallback)
+
 		elif self.my_inadyn_run == True:
-			self.Console.ePopen('/etc/init.d/inadyn-mt stop')
-			time.sleep(3)
-			self.updateService()
+			self.Console.ePopen('/etc/init.d/inadyn-mt stop', self.StartStopCallback)
+
+	def StartStopCallback(self, result = None, retval = None, extra_args = None):
+		time.sleep(3)
+		self.updateService()
 
 	def autostart(self):
 		if fileExists('/etc/rc2.d/S20inadyn-mt'):
-			self.Console.ePopen('update-rc.d -f inadyn-mt remove')
+			self.Console.ePopen('update-rc.d -f inadyn-mt remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f inadyn-mt defaults')
-		time.sleep(3)
-		self.updateService()
+			self.Console.ePopen('update-rc.d -f inadyn-mt defaults', self.StartStopCallback)
 
 	def updateService(self):
 		import process
@@ -3109,28 +3126,27 @@ class NetworkuShare(Screen):
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
 		self.message.close()
-		self.updateService()
+		self.close()
 
 	def createSummary(self):
 		return NetworkServicesSummary
 
 	def uShareStartStop(self):
 		if self.my_ushare_run == False:
-			self.Console.ePopen('/etc/init.d/ushare start >> /tmp/uShare.log')
-			time.sleep(3)
-			self.updateService()
+			self.Console.ePopen('/etc/init.d/ushare start >> /tmp/uShare.log', self.StartStopCallback)
+
 		elif self.my_ushare_run == True:
-			self.Console.ePopen('/etc/init.d/ushare stop >> /tmp/uShare.log')
-			time.sleep(3)
-			self.updateService()
+			self.Console.ePopen('/etc/init.d/ushare stop >> /tmp/uShare.log', self.StartStopCallback)
+
+	def StartStopCallback(self, result = None, retval = None, extra_args = None):
+		time.sleep(3)
+		self.updateService()
 
 	def autostart(self):
 		if fileExists('/etc/rc2.d/S20ushare'):
-			self.Console.ePopen('update-rc.d -f ushare remove')
+			self.Console.ePopen('update-rc.d -f ushare remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f ushare defaults')
-		time.sleep(3)
-		self.updateService()
+			self.Console.ePopen('update-rc.d -f ushare defaults', self.StartStopCallback)
 
 	def updateService(self):
 		import process
@@ -3659,28 +3675,27 @@ class NetworkMiniDLNA(Screen):
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
 		self.message.close()
-		self.updateService()
+		self.close()
 
 	def createSummary(self):
 		return NetworkServicesSummary
 
 	def MiniDLNAStartStop(self):
 		if self.my_minidlna_run == False:
-			self.Console.ePopen('/etc/init.d/minidlna start')
-			time.sleep(3)
-			self.updateService()
+			self.Console.ePopen('/etc/init.d/minidlna start', self.StartStopCallback)
+
 		elif self.my_minidlna_run == True:
-			self.Console.ePopen('/etc/init.d/minidlna stop')
-			time.sleep(3)
-			self.updateService()
+			self.Console.ePopen('/etc/init.d/minidlna stop', self.StartStopCallback)
+
+	def StartStopCallback(self, result = None, retval = None, extra_args = None):
+		time.sleep(3)
+		self.updateService()
 
 	def autostart(self):
 		if fileExists('/etc/rc2.d/S20minidlna'):
-			self.Console.ePopen('update-rc.d -f minidlna remove')
+			self.Console.ePopen('update-rc.d -f minidlna remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f minidlna defaults')
-		time.sleep(3)
-		self.updateService()
+			self.Console.ePopen('update-rc.d -f minidlna defaults', self.StartStopCallback)
 
 	def updateService(self):
 		import process

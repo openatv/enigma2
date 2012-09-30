@@ -1,9 +1,8 @@
-# coding: utf-8
-from config import config, configfile, ConfigSlider, ConfigSubsection, ConfigYesNo, ConfigText
-
-import struct, sys, time, errno
+from config import config, ConfigSlider, ConfigSubsection, ConfigYesNo, ConfigText, ConfigInteger
+from os import listdir, open as os_open, close as os_close, write as os_write, O_RDWR, O_NONBLOCK
+from Tools.Directories import pathExists
 from fcntl import ioctl
-from os import path as os_path, listdir, open as os_open, close as os_close, write as os_write, read as os_read, O_RDWR, O_NONBLOCK
+import struct
 
 # asm-generic/ioctl.h
 IOC_NRBITS = 8L
@@ -192,3 +191,34 @@ class InitInputDevices:
 
 
 iInputDevices = inputDevices()
+
+
+config.plugins.remotecontroltype = ConfigSubsection()
+config.plugins.remotecontroltype.rctype = ConfigInteger(default = 0)
+
+class RcTypeControl():
+	def __init__(self):
+		if pathExists('/proc/stb/ir/rc/type') and pathExists('/proc/stb/info/boxtype'):
+			self.isSupported = True
+
+			fd = open('/proc/stb/info/boxtype', 'r')
+			self.boxType = fd.read()
+			fd.close()
+
+			if config.plugins.remotecontroltype.rctype.value != 0:
+				self.writeRcType(config.plugins.remotecontroltype.rctype.value)
+		else:
+			self.isSupported = False
+
+	def multipleRcSupported(self):
+		return self.isSupported
+
+	def getBoxType(self):
+		return self.boxType
+
+	def writeRcType(self, rctype):
+		fd = open('/proc/stb/ir/rc/type', 'w')
+		fd.write('%d' % (rctype))
+		fd.close()
+
+iRcTypeControl = RcTypeControl()

@@ -581,8 +581,24 @@ void eFastScan::parseResult()
 			service->m_service_name = convertDVBUTF8((*it)->getServiceName());
 			service->genSortName();
 			service->m_provider_name = convertDVBUTF8((*it)->getServiceProviderName());
+			/*
+			 * NOTE: it makes no sense to store the default video pid, without knowing the video stream type.
+			 * However, assuming there is only one video stream, the cache information will be fixed
+			 * (and the missing video stream type added) as soon as the channel is selected for the first time.
+			 */
 			service->setCacheEntry(eDVBService::cVPID, (*it)->getDefaultVideoPid());
+			/*
+			 * NOTE: it makes no sense to store the default audio pid, we do not have any information about
+			 * the stream type (so we risk storing the wrong information in the cache).
+			 * When we have only one audio stream, the information will be fixed as soon as the channel
+			 * is selected for the first time.
+			 * However, when the channel has more than one audio stream, the information will not be fixed
+			 * untill the user selects a different audio track.
+			 * So we will not store the default audio pid in the cache.
+			 */
+#if 0 
 			service->setCacheEntry(eDVBService::cAPID, (*it)->getDefaultAudioPid());
+#endif
 			service->setCacheEntry(eDVBService::cPCRPID, (*it)->getDefaultPcrPid());
 			if (useFixedServiceInfo)
 			{

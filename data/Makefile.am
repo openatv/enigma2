@@ -1,9 +1,6 @@
-SUBDIRS = countries fonts defaults extensions keymaps skin_default rc_models
+SUBDIRS = countries fonts extensions keymaps skin_default rc_models
 
 dist_pkgdata_DATA = \
-	defaultsatlists.xml \
-	defaultwizard.xml \
-	dreampackagewizard.xml \
 	encoding.conf \
 	keymap.xml \
 	keymap.ntr \
@@ -17,7 +14,6 @@ dist_pkgdata_DATA = \
 	skin_subtitles.xml \
 	skin.xml \
 	startwizard.xml \
-	tutorialwizard.xml \
 	freesat.t1 \
 	freesat.t2 \
 	unicable.xml

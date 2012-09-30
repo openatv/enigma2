@@ -1,7 +1,7 @@
 from Components.Console import Console
 from config import config
 from enigma import eTimer, eDVBLocalTimeHandler
-from Tools.DreamboxHardware import setRTCtime
+from Tools.StbHardware import setRTCtime
 from time import time
 
 # _session = None

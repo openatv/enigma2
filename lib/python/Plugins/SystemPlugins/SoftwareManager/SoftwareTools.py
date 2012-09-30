@@ -2,7 +2,7 @@
 from enigma import eConsoleAppContainer
 from Components.Console import Console
 from Components.About import about
-from Components.DreamInfoHandler import DreamInfoHandler
+from Components.PackageInfo import PackageInfoHandler
 from Components.Language import language
 from Components.Sources.List import List
 from Components.Ipkg import IpkgComponent
@@ -12,7 +12,7 @@ from Tools.HardwareInfo import HardwareInfo
 from time import time
 
 
-class SoftwareTools(DreamInfoHandler):
+class SoftwareTools(PackageInfoHandler):
 	lastDownloadDate = None
 	NetworkConnectionAvailable = None
 	list_updating = False
@@ -29,7 +29,7 @@ class SoftwareTools(DreamInfoHandler):
 		else:
 			self.ImageVersion = 'Stable'
 		self.language = language.getLanguage()[:2] # getLanguage returns e.g. "fi_FI" for "language_country"
-		DreamInfoHandler.__init__(self, self.statusCallback, blocking = False, neededTag = 'ALL_TAGS', neededFlag = self.ImageVersion)
+		PackageInfoHandler.__init__(self, self.statusCallback, blocking = False, neededTag = 'ALL_TAGS', neededFlag = self.ImageVersion)
 		self.directory = resolveFilename(SCOPE_METADIR)
 		self.hardware_info = HardwareInfo()
 		self.list = List([])
@@ -108,7 +108,6 @@ class SoftwareTools(DreamInfoHandler):
 		elif event == IpkgComponent.EVENT_DONE:
 			if self.list_updating:
 				self.startIpkgListAvailable()
-		#print event, "-", param
 		pass
 
 	def startIpkgListAvailable(self, callback = None):

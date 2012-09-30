@@ -27,6 +27,9 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.entryDate = None
 		self.entryService = None
 
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+
 		self["oktext"] = Label(_("OK"))
 		self["canceltext"] = Label(_("Cancel"))
 		self["ok"] = Pixmap()

@@ -12,7 +12,7 @@ from Screen import Screen
 from Screens.MessageBox import MessageBox
 
 profile("LOAD:enigma")
-from enigma import iServiceInformation, iPlayableService
+import enigma
 
 profile("LOAD:InfoBarGenerics")
 from Screens.InfoBarGenerics import InfoBarShowHide, \
@@ -88,7 +88,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
-				iPlayableService.evUpdatedEventInfo: self.__eventInfoChanged
+				enigma.iPlayableService.evUpdatedEventInfo: self.__eventInfoChanged
 			})
 
 		self.current_begin_time=0
@@ -198,8 +198,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		service = self.session.nav.getCurrentService()
 		if service is not None: # workaround to avoid an error when service is None
 			info = service.info()
-			AudioPID = info.getInfo(iServiceInformation.sAudioPID)
-			VideoPID = info.getInfo(iServiceInformation.sVideoPID)
+			AudioPID = info.getInfo(enigma.iServiceInformation.sAudioPID)
+			VideoPID = info.getInfo(enigma.iServiceInformation.sVideoPID)
 		else:
 			AudioPID = 1
 			VideoPID = 1
@@ -321,11 +321,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		self.servicelist = slist
 		self.lastservice = lastservice or session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)
-		from Screens.MovieSelection import Playlist
-		self.playlist = Playlist.getPlayList()
 		self.cur_service = service
 		self.returning = False
-		self.playingservice = None
 		self.onClose.append(self.__onClose)
 		self.onShow.append(self.doButtonsCheck)
 
@@ -340,8 +337,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 	def __onClose(self):
 		MoviePlayer.instance = None
-		from Screens.MovieSelection import Playlist
-		Playlist.clearPlayList()
+		from Screens.MovieSelection import playlist
+		del playlist[:]
 		self.session.nav.playService(self.lastservice)
 
 	def handleLeave(self, how):
@@ -388,8 +385,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 		if answer in ("quitanddelete", "quitanddeleteconfirmed"):
 			ref = self.session.nav.getCurrentlyPlayingServiceReference()
-			from enigma import eServiceCenter
-			serviceHandler = eServiceCenter.getInstance()
+			serviceHandler = enigma.eServiceCenter.getInstance()
 			if answer == "quitanddelete":
 				msg = ''
 				if config.usage.movielist_trashcan.value:
@@ -426,16 +422,16 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			self.doSeek(0)
 			self.setSeekState(self.SEEK_STATE_PLAY)
 		elif answer in ("playlist","playlistquit","loop"):
-			( next_service, item , lenght ) = self.nextPlaylistService(self.cur_service)
+			( next_service, item , length ) = self.nextPlaylistService(self.cur_service)
 			if next_service is not None:
 				if config.usage.next_movie_msg.value:
-					self.displayPlayedName(next_service, item, lenght)
+					self.displayPlayedName(next_service, item, length)
 				self.session.nav.playService(next_service)
 				self.cur_service = next_service
 			else:
 				if answer == "playlist":
 					self.leavePlayerConfirmed([True,"movielist"])
-				elif answer == "loop" and lenght > 0:
+				elif answer == "loop" and length > 0:
 					self.leavePlayerConfirmed([True,"loop"])
 				else:
 					self.leavePlayerConfirmed([True,"quit"])
@@ -553,13 +549,14 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				pass		
 
 	def nextPlaylistService(self, service):
-		n = len(self.playlist)
-		for item, i in zip(self.playlist,range(1,n+1)):
+		from MovieSelection import playlist
+		for i, item in enumerate(playlist):
 			if item == service:
-				if i < n:
-					return (self.playlist[i], i+1, n)
-				elif config.usage.on_movie_eof.value == "loop" and n > 0:
-					return (self.playlist[0], 1, n)
+				i += 1
+				if i < len(playlist):
+					return (playlist[i], i+1, len(playlist))
+				elif config.usage.on_movie_eof.value == "loop":
+					return (playlist[0], 1, len(playlist))
 		return ( None, 0, 0 )
 
 	def displayPlayedName(self, ref, index, n):
@@ -567,5 +564,4 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		Notifications.AddPopup(text = _("%s/%s: %s") % (index, n, self.ref2HumanName(ref)), type = MessageBox.TYPE_INFO, timeout = 5)
 
 	def ref2HumanName(self, ref):
-		from enigma import eServiceCenter
-		return eServiceCenter.getInstance().info(ref).getName(ref)
+		return enigma.eServiceCenter.getInstance().info(ref).getName(ref)

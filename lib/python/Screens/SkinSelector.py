@@ -22,13 +22,14 @@ class SkinSelector(Screen):
 
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Skin Setup"))
+		Screen.setTitle(self, _("Skin setup"))
 
 		self.skinlist = []
 		self.previewPath = ""
 		path.walk(self.root, self.find, "")
 
 		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("Save"))
 		self["introduction"] = StaticText(_("Press OK to activate the selected skin."))
 		self["SkinList"] = MenuList(self.skinlist)
 		self["Preview"] = Pixmap()
@@ -39,6 +40,7 @@ class SkinSelector(Screen):
 			"ok": self.ok,
 			"back": self.close,
 			"red": self.close,
+			"green": self.ok,
 			"up": self.up,
 			"down": self.down,
 			"left": self.left,

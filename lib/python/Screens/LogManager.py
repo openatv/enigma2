@@ -320,7 +320,8 @@ class LogManager(Screen):
 		if answer is True:
 			self.sel = self["list"].getCurrent()[0]
 			self["list"].instance.moveSelectionTo(0)
-			remove(self.defaultDir + self.sel[0])
+			if path.exists(self.defaultDir + self.sel[0]):
+				remove(self.defaultDir + self.sel[0])
 			self["list"].changeDir(self.defaultDir)
 			self["LogsSize"].update(config.crash.debug_path.value)
 

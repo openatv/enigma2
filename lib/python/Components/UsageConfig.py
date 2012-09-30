@@ -1,6 +1,6 @@
 from Components.Harddisk import harddiskmanager
 from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
-from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT
+from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv
 from Components.NimManager import nimmanager
 from SystemInfo import SystemInfo
@@ -9,20 +9,6 @@ import enigma
 from time import time
 
 def InitUsageConfig():
-	try:
-		file = open('/etc/image-version', 'r')
-		lines = file.readlines()
-		file.close()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "box_type":
-				folderprefix = splitted[1].replace('\n','') # 0 = release, 1 = experimental
-				boxtype = splitted[1].replace('\n','') # 0 = release, 1 = experimental
-	except:
-		folderprefix=""
-		boxtype="not detected"
-
-	config.misc.boxtype = ConfigText(default = boxtype)
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default = False)
 
@@ -62,7 +48,7 @@ def InitUsageConfig():
 	config.usage.sort_menus = ConfigYesNo(default = False)
 	config.usage.sort_pluginlist = ConfigYesNo(default = True)
 	config.usage.sort_extensionslist = ConfigYesNo(default = False)
-	config.usage.movieplayer_pvrstate = ConfigYesNo(default = False) 
+	config.usage.movieplayer_pvrstate = ConfigYesNo(default = False)
 
 	choicelist = []
 	for i in (10, 30):
@@ -193,7 +179,6 @@ def InitUsageConfig():
 					("alpha", _("Alpha")),
 					("number", _("Number"))])
 
-	
 	config.usage.show_event_progress_in_servicelist.addNotifier(refreshServiceList)
 	config.usage.show_channel_numbers_in_servicelist.addNotifier(refreshServiceList)
 
@@ -241,31 +226,6 @@ def InitUsageConfig():
 	config.usage.show_cryptoinfo = ConfigSelection([("0", _("Off")),("1", _("One line")),("2", _("Two lines"))], "2")
 	config.usage.show_eit_nownext = ConfigYesNo(default = True)
 
-	config.osd.dst_left = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 720, wraparound = False)
-	config.osd.dst_width = ConfigSelectionNumber(default = 720, stepwidth = 1, min = 0, max = 720, wraparound = False)
-	config.osd.dst_top = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 576, wraparound = False)
-	config.osd.dst_height = ConfigSelectionNumber(default = 576, stepwidth = 1, min = 0, max = 576, wraparound = False)
-	config.osd.alpha = ConfigSelectionNumber(default = 255, stepwidth = 1, min = 0, max = 255, wraparound = False)
-	if config.misc.boxtype.value.startswith('vu'):
-		choiceoptions = [("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))]
-		config.osd.threeDmode = ConfigSelection(default = 'auto', choices = choiceoptions )
-	elif config.misc.boxtype.value.startswith('et'):
-		choiceoptions = [("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))]
-		config.osd.threeDmode = ConfigSelection(default = 'auto', choices = choiceoptions )
-	elif config.misc.boxtype.value.startswith('od'):
-		choiceoptions = [("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))]
-		config.osd.threeDmode = ConfigSelection(default = 'auto', choices = choiceoptions )	
-	elif config.misc.boxtype.value.startswith('gb'):
-		choiceoptions = [("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))]
-		config.osd.threeDmode = ConfigSelection(default = 'auto', choices = choiceoptions )
-	else:
-		choiceoptions = [("off", _("Off"))]
-		config.osd.threeDmode = ConfigSelection(default = 'off', choices = choiceoptions )
-	config.osd.threeDznorm = ConfigSlider(default = 50, increment = 1, limits = (0, 100))
-	config.osd.show3dextensions = ConfigYesNo(default = False)
-	choiceoptions = [("mode1", _("Mode 1")), ("mode2", _("Mode 2"))]
-	config.osd.threeDsetmode = ConfigSelection(default = 'mode1' , choices = choiceoptions )
-	
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
 	config.epg.mhw = ConfigYesNo(default = False)
@@ -313,6 +273,15 @@ def InitUsageConfig():
 	config.epg.cacheloadtimer = ConfigSelectionNumber(default = 24, stepwidth = 1, min = 1, max = 24, wraparound = True)
 	config.epg.cachesavetimer = ConfigSelectionNumber(default = 24, stepwidth = 1, min = 1, max = 24, wraparound = True)
 
+	config.osd.dst_left = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 720, wraparound = False)
+	config.osd.dst_width = ConfigSelectionNumber(default = 720, stepwidth = 1, min = 0, max = 720, wraparound = False)
+	config.osd.dst_top = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 576, wraparound = False)
+	config.osd.dst_height = ConfigSelectionNumber(default = 576, stepwidth = 1, min = 0, max = 576, wraparound = False)
+	config.osd.alpha = ConfigSelectionNumber(default = 255, stepwidth = 1, min = 0, max = 255, wraparound = False)
+	config.osd.threeDmode = ConfigSelection([("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))], "auto")
+	config.osd.threeDznorm = ConfigSlider(default = 50, increment = 1, limits = (0, 100))
+	config.osd.show3dextensions = ConfigYesNo(default = False)
+
 	hddchoises = [('/etc/enigma2/', 'Internal Flash')]
 	for p in harddiskmanager.getMountedPartitions():
 		d = os.path.normpath(p.mountpoint)
@@ -331,7 +300,9 @@ def InitUsageConfig():
 		epgcache.save()
 	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback = False)
 	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback = False)
+
 	config.misc.showradiopic = ConfigYesNo(default = True)
+
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
 			hdd[1].setIdleTime(int(configElement.value),config.usage.hdd_timer.value)
@@ -350,7 +321,7 @@ def InitUsageConfig():
 
 	config.network = ConfigSubsection()
 	config.network.AFP_autostart = ConfigYesNo(default = False)
-	config.network.NFS_autostart = ConfigYesNo(default = False)
+	config.network.NFS_autostart = ConfigYesNo(default = True)
 	config.network.OpenVPN_autostart = ConfigYesNo(default = False)
 	config.network.Samba_autostart = ConfigYesNo(default = True)
 	config.network.Inadyn_autostart = ConfigYesNo(default = False)
@@ -449,7 +420,6 @@ def InitUsageConfig():
 	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback = False)
 
 	SystemInfo["ZapMode"] = os.path.exists("/proc/stb/video/zapmode") or os.path.exists("/proc/stb/video/zapping_mode")
-	if SystemInfo["ZapMode"]:
 		try:
 			if os.path.exists("/proc/stb/video/zapping_mode"):
 				zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen"))]
@@ -468,7 +438,6 @@ def InitUsageConfig():
 				file.close()
 			except:
 				pass
-
 		config.misc.zapmode = ConfigSelection(default = "mute", choices = zapoptions )
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)
 
@@ -487,6 +456,7 @@ def InitUsageConfig():
 	for i in range(45000, 945000, 45000):
 		choicelist.append(("%d" % i, "%2.1f sec" % (i / 90000.)))
 	config.subtitles.subtitle_noPTSrecordingdelay = ConfigSelection(default = "315000", choices = [("0", _("No Delay"))] + choicelist)
+
 	config.subtitles.dvb_subtitles_yellow = ConfigYesNo(default = False)
 	config.subtitles.dvb_subtitles_original_position = ConfigSelection(default = "0", choices = [("0", _("original")), ("1", _("fixed")), ("2", _("relative"))])
 	config.subtitles.dvb_subtitles_centered = ConfigYesNo(default = False)
@@ -615,11 +585,11 @@ def InitUsageConfig():
 	config.epgselection.graphics_mode = ConfigSelection(choices = [("graphics",_("Graphics")), ("text", _("Text"))], default = "graphics")
 	config.epgselection.OK = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
 	config.epgselection.OKLong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
-	config.epgselection.OK_pliepg = ConfigSelection(choices = [("EventView",_("EventView")), ("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.epgselection.OK_pliepg = ConfigSelection(choices = [("EventView",_("EventView")),("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "EventView")
 	config.epgselection.OKLong_pliepg = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
-	config.epgselection.OK_enhanced = ConfigSelection(choices = [("EventView",_("EventView")), ("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.epgselection.OK_enhanced = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
 	config.epgselection.OKLong_enhanced = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
-	config.epgselection.OK_infobar = ConfigSelection(choices = [("EventView",_("EventView")), ("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.epgselection.OK_infobar = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
 	config.epgselection.OKLong_infobar = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
 	config.epgselection.Info = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Channel Info")
 	config.epgselection.InfoLong = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Single EPG")

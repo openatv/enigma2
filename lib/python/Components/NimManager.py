@@ -36,7 +36,7 @@ class SecConfigure:
 		self.configuredSatellites.add(orbpos)
 
 	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = diseqcParam.NO, diseqcpos = diseqcParam.SENDNO, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0, turningSpeed = rotorParam.FAST, useInputPower=True, inputPowerDelta=50, fastDiSEqC = False, setVoltageTone = True, diseqc13V = False):
-		if orbpos is None or orbpos == 3601:
+		if orbpos is None or orbpos == 3600 or orbpos == 3601:
 			return
 		#simple defaults
 		sec.addLNB()
@@ -525,7 +525,7 @@ class NIM(object):
 		# get a friendly description for a slot name.
 		# we name them "Tuner A/B/C/...", because that's what's usually written on the back
 		# of the device.
-		return _("Tuner ") + chr(ord('A') + self.slot)
+		return _("Tuner") + " " + chr(ord('A') + self.slot)
 
 	slot_name = property(getSlotName)
 
@@ -933,16 +933,16 @@ class NimManager:
 			if configMode == "simple":
 				dm = nim.diseqcMode.value
 				if dm in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
-					if nim.diseqcA.orbital_position != 3601:
-						list.append(self.satList[nim.diseqcA.index-1])
+					if nim.diseqcA.orbital_position < 3600:
+						list.append(self.satList[nim.diseqcA.index - 2])
 				if dm in ("toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
-					if nim.diseqcB.orbital_position != 3601:
-						list.append(self.satList[nim.diseqcB.index-1])
+					if nim.diseqcB.orbital_position < 3600:
+						list.append(self.satList[nim.diseqcB.index - 2])
 				if dm == "diseqc_a_b_c_d":
-					if nim.diseqcC.orbital_position != 3601:
-						list.append(self.satList[nim.diseqcC.index-1])
-					if nim.diseqcD.orbital_position != 3601:
-						list.append(self.satList[nim.diseqcD.index-1])
+					if nim.diseqcC.orbital_position < 3600:
+						list.append(self.satList[nim.diseqcC.index - 2])
+					if nim.diseqcD.orbital_position < 3600:
+						list.append(self.satList[nim.diseqcD.index - 2])
 				if dm == "positioner":
 					for x in self.satList:
 						list.append(x)
@@ -1159,20 +1159,20 @@ def InitNimManager(nimmgr):
 
 	diseqc_mode_choices = [
 		("single", _("Single")), ("toneburst_a_b", _("Toneburst A/B")),
-		("diseqc_a_b", _("DiSEqC A/B")), ("diseqc_a_b_c_d", _("DiSEqC A/B/C/D")),
+		("diseqc_a_b", "DiSEqC A/B"), ("diseqc_a_b_c_d", "DiSEqC A/B/C/D"),
 		("positioner", _("Positioner"))]
 
 	positioner_mode_choices = [("usals", _("USALS")), ("manual", _("manual"))]
 
-	diseqc_satlist_choices = [(3601, _('nothing connected'), 1)] + nimmgr.satList
+	diseqc_satlist_choices = [(3600, _('automatic'), 1), (3601, _('nothing connected'), 1)] + nimmgr.satList
 
 	longitude_orientation_choices = [("east", _("East")), ("west", _("West"))]
 	latitude_orientation_choices = [("north", _("North")), ("south", _("South"))]
 	turning_speed_choices = [("fast", _("Fast")), ("slow", _("Slow")), ("fast epoch", _("Fast epoch"))]
 
 	advanced_satlist_choices = nimmgr.satList + [
-		(3601, _('All Satellites')+' 1', 1), (3602, _('All Satellites')+' 2', 1),
-		(3603, _('All Satellites')+' 3', 1), (3604, _('All Satellites')+' 4', 1)]
+		(3601, _('All satellites')+' 1', 1), (3602, _('All satellites')+' 2', 1),
+		(3603, _('All satellites')+' 3', 1), (3604, _('All satellites')+' 4', 1)]
 	advanced_lnb_choices = [("0", "not available")] + [(str(y), "LNB " + str(y)) for y in range(1, 33)]
 	advanced_voltage_choices = [("polarization", _("Polarization")), ("13V", _("13 V")), ("18V", _("18 V"))]
 	advanced_tonemode_choices = [("band", _("Band")), ("on", _("On")), ("off", _("Off"))]
@@ -1430,8 +1430,8 @@ def InitNimManager(nimmgr):
 			nim.simpleSingleSendDiSEqC = ConfigYesNo(False)
 			nim.simpleDiSEqCSetVoltageTone = ConfigYesNo(True)
 			nim.simpleDiSEqCOnlyOnSatChange = ConfigYesNo(False)
-			nim.diseqcA = getConfigSatlist(192, diseqc_satlist_choices)
-			nim.diseqcB = getConfigSatlist(130, diseqc_satlist_choices)
+			nim.diseqcA = ConfigSatlist(list = diseqc_satlist_choices)
+			nim.diseqcB = ConfigSatlist(list = diseqc_satlist_choices)
 			nim.diseqcC = ConfigSatlist(list = diseqc_satlist_choices)
 			nim.diseqcD = ConfigSatlist(list = diseqc_satlist_choices)
 			nim.positionerMode = ConfigSelection(positioner_mode_choices, "usals")
@@ -1449,7 +1449,7 @@ def InitNimManager(nimmgr):
 			nim.fastTurningBegin = ConfigDateTime(default = mktime(btime.timetuple()), formatstring = _("%H:%M"), increment = 900)
 			etime = datetime(1970, 1, 1, 19, 0);
 			nim.fastTurningEnd = ConfigDateTime(default = mktime(etime.timetuple()), formatstring = _("%H:%M"), increment = 900)
-			config_mode_choices = [ ("nothing", _("nothing connected")),
+			config_mode_choices = [("nothing", _("nothing connected")),
 				("simple", _("simple")), ("advanced", _("advanced"))]
 			if len(nimmgr.getNimListOfType(slot.type, exception = x)) > 0:
 				config_mode_choices.append(("equal", _("equal to")))
@@ -1457,7 +1457,7 @@ def InitNimManager(nimmgr):
 			if len(nimmgr.canConnectTo(x)) > 0:
 				config_mode_choices.append(("loopthrough", _("loopthrough to")))
 			nim.advanced = ConfigNothing()
-			tmp = ConfigSelection(config_mode_choices, "nothing")
+			tmp = ConfigSelection(config_mode_choices, "simple")
 			tmp.slot_id = x
 			tmp.addNotifier(configModeChanged, initial_call = False)
 			nim.configMode = tmp

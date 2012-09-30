@@ -15,8 +15,14 @@ def readFile(filename):
 
 def getProcMounts():
 	try:
-		mounts = open("/proc/mounts")
-		return [line.strip().split(' ') for line in mounts]
+		mounts = open("/proc/mounts", 'r')
+		result = []
+		tmp = [line.strip().split(' ') for line in mounts]
+		for item in tmp:
+			# Spaces are encoded as \040 in mounts
+			item[1] = item[1].replace('\\040', ' ')
+			result.append(item)
+		return result
 	except IOError, ex:
 		print "[Harddisk] Failed to open /proc/mounts", ex
 		return []
@@ -50,7 +56,7 @@ DEVTYPE_UDEV = 0
 DEVTYPE_DEVFS = 1
 
 class Harddisk:
-	def __init__(self, device, removable):
+	def __init__(self, device, removable = False):
 		self.device = device
 
 		if access("/dev/.udev", 0):

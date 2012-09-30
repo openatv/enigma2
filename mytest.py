@@ -39,6 +39,8 @@ from Components.config import config, configfile, ConfigText, ConfigYesNo, Confi
 InitFallbackFiles()
 
 profile("config.misc")
+from Tools.StbHardware import getBoxtype
+config.misc.boxtype = ConfigText(default = getBoxtype())
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
 config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
@@ -97,9 +99,7 @@ from Components.PluginComponent import plugins
 
 profile("LOAD:Wizard")
 from Screens.Wizard import wizardManager
-from Screens.DefaultWizard import *
 from Screens.StartWizard import *
-from Screens.TutorialWizard import *
 import Screens.Rc
 from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
@@ -518,7 +518,7 @@ def runScreenTest():
 
 	profile("wakeup")
 	from time import time, strftime, localtime
-	from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime, setRTCoffset
+	from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime, setRTCoffset
 	if config.misc.boxtype.value.startswith('gb'):
 		setRTCoffset()
 	#get currentTime
@@ -625,7 +625,7 @@ import Screens.OSD
 Screens.OSD.InitOsd()
 Screens.OSD.setConfiguredPosition()
 Screens.OSD.setConfiguredSettings()
-#Screens.OSD.setConfiguredAplha()
+Screens.OSD.setConfiguredAplha()
 
 profile("EpgCacheSched")
 import Components.EpgLoadSave

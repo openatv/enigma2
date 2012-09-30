@@ -184,6 +184,7 @@ SPECIAL_CHAR = 96
 class ParentalControlEditor(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Parental control editor"))
 		self.list = []
 		self.servicelist = ParentalControlList(self.list)
 		self["servicelist"] = self.servicelist;

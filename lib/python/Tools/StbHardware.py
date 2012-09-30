@@ -2,6 +2,14 @@ from fcntl import ioctl
 from struct import pack, unpack
 from Components.config import config
 
+def getBoxtype():
+	try:
+		lines = open('/etc/image-version', 'r').readlines()
+		boxtype = lines[0][:-1].split("=")[1]
+	except:
+		boxtype="not detected"
+	return boxtype
+
 def getFPVersion():
 	ret = None
 	try:

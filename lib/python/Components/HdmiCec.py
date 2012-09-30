@@ -2,7 +2,7 @@ import struct
 import os
 from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText
 from enigma import eHdmiCEC, eRCInput
-from Tools.DreamboxHardware import getFPWasTimerWakeup
+from Tools.StbHardware import getFPWasTimerWakeup
 from Tools.Directories import fileExists
 
 config.hdmicec = ConfigSubsection()
@@ -16,6 +16,7 @@ config.hdmicec.handle_tv_wakeup = ConfigYesNo(default = True)
 config.hdmicec.tv_wakeup_detection = ConfigSelection(
 	choices = {
 	"wakeup": _("Wakeup"),
+	"tvreportphysicaladdress": _("TV physical address report"),
 	"sourcerequest": _("Source request"),
 	"streamrequest": _("Stream request"),
 	"osdnamerequest": _("OSD name request"),
@@ -238,6 +239,9 @@ class HdmiCec:
 			if config.hdmicec.handle_tv_wakeup.value:
 				if cmd == 0x04 and config.hdmicec.tv_wakeup_detection.value == "wakeup":
 					self.wakeup()
+				elif cmd == 0x84 and config.hdmicec.tv_wakeup_detection.value == "tvreportphysicaladdress":
+					if (ord(data[0]) * 256 + ord(data[1])) == 0 and ord(data[2]) == 0:
+						self.wakeup()
 				elif cmd == 0x85 and config.hdmicec.tv_wakeup_detection.value == "sourcerequest":
 					self.wakeup()
 				elif cmd == 0x86 and config.hdmicec.tv_wakeup_detection.value == "streamrequest":
@@ -247,7 +251,7 @@ class HdmiCec:
 						self.wakeup()
 				elif cmd == 0x46 and config.hdmicec.tv_wakeup_detection.value == "osdnamerequest":
 					self.wakeup()
-				elif config.hdmicec.tv_wakeup_detection.value == "activity":
+				elif cmd != 0x36 and config.hdmicec.tv_wakeup_detection.value == "activity":
 					self.wakeup()
 
 	def configVolumeForwarding(self, configElement):
