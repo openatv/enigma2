@@ -56,7 +56,7 @@ DEVTYPE_UDEV = 0
 DEVTYPE_DEVFS = 1
 
 class Harddisk:
-	def __init__(self, device, removable):
+	def __init__(self, device, removable = False):
 		self.device = device
 
 		if access("/dev/.udev", 0):
