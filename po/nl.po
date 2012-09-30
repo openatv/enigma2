@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-23 20:41+0100\n"
-"PO-Revision-Date: 2012-09-25 18:15+0100\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2012-09-28 16:57+0100\n"
+"PO-Revision-Date: 2012-09-30 00:52-0000\n"
+"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
 "MIME-Version: 1.0\n"
@@ -721,8 +721,7 @@ msgstr "Geeft u de mogelijkheid in te stellen wat de functie van een toets is."
 
 msgid "Allows you to choose the Picons to be displayed on the frontpanel."
 msgstr ""
-"Geeft u de mogelijkheid on Picons weer te geven op het scherm van uw Xtrend "
-"ET9."
+"Geeft u de mogelijkheid on Picons weer te geven op het scherm van uw STB_BOX."
 
 msgid ""
 "Allows you to enable the debug log. They contain very detailed information "
@@ -733,8 +732,7 @@ msgstr ""
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr ""
-"Geeft u de mogelijkheid on iconen weer te geven op het scherm van uw Xtrend "
-"ET9."
+"Geeft u de mogelijkheid on iconen weer te geven op het scherm van uw STB_BOX."
 
 msgid "Allows you to send a copy of the log to yourself."
 msgstr "Maakt het mogelijk een kopie van de logs naar uzelf te sturen."
@@ -1257,6 +1255,9 @@ msgstr "Zenderkeuze"
 msgid "Channel Selection Configuration"
 msgstr "Kanaallijst instellingen"
 
+msgid "Channel list context menu"
+msgstr ""
+
 msgid "Channel list on mode change"
 msgstr ""
 
@@ -1362,16 +1363,16 @@ msgid "Choose the location for crash and debuglogs."
 msgstr "Kies waar u crash- en debuglogs wilt opslaan."
 
 msgid ""
-"Choose the location where the EPG data will be stored when the STB_BOX is "
-"shut down. The location must be available at boot time."
+"Choose the location where the EPG data will be stored when the GigaBlue HD "
+"800 Solo is shut down. The location must be available at boot time."
 msgstr ""
-"Hier kunt u instellen waar de EPG data bewaard wordt als uw STB_BOX volledig "
-"is uitgeschakeld. De gewenste locatie moet beschikbaar zijn op het moment "
-"dat uw STB_BOX opstart."
+"Hier kunt u instellen waar de EPG data bewaard wordt als uw GigaBlue HD 800 "
+"Solo volledig is uitgeschakeld. De gewenste locatie moet beschikbaar zijn op "
+"het moment dat uw STB_BOX opstart."
 
 msgid ""
-"Choose the name of the file that holds the EPG data when the STB_BOX is shut "
-"down. This can be handy to differentiate between several boxes."
+"Choose the name of the file that holds the EPG data when the GigaBlue HD 800 "
+"Solo is shut down. This can be handy to differentiate between several boxes."
 msgstr ""
 "Kies de naam van het bestand dat de opgeslagen EPG data bevat. Als u "
 "meerdere ontvangers heeft, kan het handig zijn verschillende namen te "
@@ -1824,6 +1825,9 @@ msgstr "Aanpassen"
 
 msgid "Cut"
 msgstr "Knip"
+
+msgid "Cutlist editor"
+msgstr ""
 
 msgid "Cutlist editor..."
 msgstr "Cutlist editor..."
@@ -2826,6 +2830,27 @@ msgstr "Geen Event Info gevonden!"
 
 msgid "Getting plugin information. Please wait..."
 msgstr "Gegevens worden opgehaald. Een ogenblikje geduld a.u.b..."
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr "STB_BOX geavanceerde AB"
+
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "STB_BOX format data DVD (HDTV compatible)"
+
+msgid "STB_BOX front panel"
+msgstr "STB_BOX voorpaneel"
+
+msgid "STB_BOX ir keyboard"
+msgstr "STB_BOX IR-toetsenbord"
+
+msgid "STB_BOX ir mouse"
+msgstr "STB_BOX IR-muis"
+
+msgid "STB_BOX remote control (native)"
+msgstr "STB_BOX AB"
+
+msgid "STB_BOX software because updates are available."
+msgstr "STB_BOX software want er zijn updates beschikbaar."
 
 msgid "Go down the list"
 msgstr "Ga naar beneden in de lijst"
@@ -4435,6 +4460,9 @@ msgstr "Bovengelegen map"
 msgid "Parental control"
 msgstr "Kinderslot"
 
+msgid "Parental control editor"
+msgstr ""
+
 msgid "Parental control services Editor"
 msgstr "Kinderslot zender-editor"
 
@@ -4765,6 +4793,9 @@ msgstr "Pluginbrowser"
 
 msgid "Plugin browser"
 msgstr "Applicatiebrowser"
+
+msgid "Plugin details"
+msgstr ""
 
 msgid "Plugin manager activity information"
 msgstr "Pluginmanager activiteitinformatie"
@@ -6772,8 +6803,8 @@ msgid ""
 "create a STB_BOX format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
-"De DVD standaard ondersteunt geen H.264 (HDTV) video. Wil je een STB_BOX "
-"formaat data DVD maken (deze speelt niet af in een DVD speler) ?"
+"De DVD standaard ondersteunt geen H.264 (HDTV) video. Wil je een GigaBlue HD "
+"800 Solo formaat data DVD maken (deze speelt niet af in een DVD speler) ?"
 
 msgid ""
 "The EPGSearch plugin is not installed!\n"
@@ -6788,6 +6819,12 @@ msgid ""
 msgstr ""
 "Het bestandssyteem van uw Timeshift-Device ondersteunt geen hardlinks.\n"
 "Formatteer die in EXT2 or EXT3!"
+
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr "Uw STB_BOX leest de opgelsagen EPG-data elke (uur)."
+
+msgid "The STB_BOX stores the EPG data every (hours)."
+msgstr "Uw STB_BOX slaat de EPG-data elke (uur) op."
 
 msgid ""
 "The IMDb plugin is not installed!\n"
@@ -6846,12 +6883,6 @@ msgid ""
 msgstr ""
 "De gebruikersinterface van uw STB_BOX wordt herstart\n"
 "vanwege een fout in mytest.py"
-
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr "Uw STB_BOX leest de opgelsagen EPG-data elke (uur)."
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr "Uw STB_BOX slaat de EPG-data elke (uur) op."
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Back-up is mislukt. Kies een andere back-up locatie a.u.b."
@@ -7703,11 +7734,9 @@ msgid "Use power measurement"
 msgstr "Meet stroomopname"
 
 msgid ""
-"Use power measurement to detect when the rotor stops turning (if your Vu+ "
-"Uno supports that)"
+"Use power measurement to detect when the rotor stops turning (if your "
+"STB_BOX supports that)"
 msgstr ""
-"Gebruik stroommeting om te detecteren of uw motor gestopt is (als uw STB_BOX "
-"dat ondersteunt)"
 
 msgid "Use slim screen"
 msgstr "Gebruik slim screen"
@@ -7975,27 +8004,6 @@ msgstr "Spanningsmodus"
 msgid "Volume"
 msgstr "Volume"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX geavanceerde AB"
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX format data DVD (HDTV compatible)"
-
-msgid "STB_BOX front panel"
-msgstr "STB_BOX voorpaneel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX IR-toetsenbord"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX IR-muis"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX AB"
-
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX software want er zijn updates beschikbaar."
-
 msgid "W"
 msgstr "W"
 
@@ -8087,7 +8095,7 @@ msgid ""
 "Welcome.\n"
 "\n"
 "If you want to connect your STB_BOX to the Internet, this wizard will guide "
-"you through the basic network setup of your STB_BOX.\n"
+"you through the basic network setup of your GigaBlue HD 800 Solo.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -8101,12 +8109,14 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your GigaBlue HD "
+"800 Solo.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Welkom.\n"
 "\n"
-"Deze start-wizard zal u door de basis instellingen van uw STB_BOX leiden.\n"
+"Deze start-wizard zal u door de basis instellingen van uw GigaBlue HD 800 "
+"Solo leiden.\n"
 "Druk op 'OK' op uw afstandsbediening om naar de volgende stap te gaan."
 
 msgid "Welcome..."
@@ -8465,9 +8475,6 @@ msgstr ""
 msgid "You system does not support ext4"
 msgstr "Uw systeem ondersteunt geen ext4"
 
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Als u op OK drukt zal uw STB_BOX opnieuw opstarten."
-
 msgid ""
 "Your STB_BOX is not connected to the internet, please check your network "
 "settings and try again."
@@ -8545,6 +8552,9 @@ msgid ""
 msgstr ""
 "Uw STB_BOX zal na het verwijderen van de service opnieuw worden gestart\n"
 "Wilt u nu verwijderen?"
+
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr "Als u op OK drukt zal uw STB_BOX opnieuw opstarten."
 
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
@@ -10034,597 +10044,3 @@ msgstr "zap"
 
 msgid "zapped"
 msgstr "zapte"
-
-#~ msgid ""
-#~ "\n"
-#~ "System will restart after the restore!"
-#~ msgstr ""
-#~ "\n"
-#~ "Systeem start opnieuw na het terugplaatsen!"
-
-#~ msgid "/usr/share/enigma2 directory"
-#~ msgstr "/usr/share/enigma2 map"
-
-#~ msgid "/var directory"
-#~ msgstr "/var map"
-
-#~ msgid "AIT data will be included in http streams"
-#~ msgstr "AIT data zal worden opgenomen in http streams"
-
-#~ msgid "Activate rewrapping of the teletext subtitles"
-#~ msgstr "TT-ondertitels opnieuw indelen?"
-
-#~ msgid "Add WLAN configuration?"
-#~ msgstr "WLAN-configuratie toevoegen?"
-
-#~ msgid "Add network configuration?"
-#~ msgstr "Netwerkconfiguratie toevoegen?"
-
-#~ msgid ""
-#~ "Adds enigma2 settings and STB_BOX informations like SN, rev... if enabled."
-#~ msgstr ""
-#~ "Indien ingeschakeld worden Enigma2 instellingen en STB_BOX "
-#~ "modelinformatie toegevoegd (zoals SN, rev...)."
-
-#~ msgid "Adds network configuration if enabled."
-#~ msgstr "Netwerkconfiguratie toevoegen indien ingeschakeld."
-
-#~ msgid "Adds wlan configuration if enabled."
-#~ msgstr "Wlan configuratie toevoegen indien ingeschakeld."
-
-#~ msgid "Advanced Video Setup"
-#~ msgstr "Geavanceerde video-instellingen"
-
-#~ msgid ""
-#~ "After the start wizard is completed, you need to protect single services. "
-#~ "Refer to your STB_BOX's manual on how to do that."
-#~ msgstr ""
-#~ "Nadat de wizard is uitgevoerd, moet u enkele services beveiligen. Kijk in "
-#~ "de handleiding van uw STB_BOX hoe dat te doen."
-
-#~ msgid "All Satellites"
-#~ msgstr "Alle satellieten"
-
-#~ msgid "Alternative numbering Mode"
-#~ msgstr "Alternatieve nummering"
-
-#~ msgid "Always ask before sending"
-#~ msgstr "Altijd vragen voor verzenden"
-
-#~ msgid "Anonymize crashlog?"
-#~ msgstr "Crashlog anoniem maken?"
-
-#~ msgid ""
-#~ "Are you sure you want to delete\n"
-#~ "following backup:\n"
-#~ msgstr ""
-#~ "Weet u zeker dat u deze back-up\n"
-#~ "wilt verwijderen:\n"
-
-#~ msgid ""
-#~ "Are you sure you want to restore\n"
-#~ "following backup:\n"
-#~ msgstr ""
-#~ "Wilt u deze back-up\n"
-#~ "nu terugplaatsen:\n"
-
-#~ msgid ""
-#~ "Are you sure you want to restore your Enigma2 backup?\n"
-#~ "Enigma2 will restart after the restore"
-#~ msgstr ""
-#~ "Weet u zeker dat u de back-up wilt terugplaatsen?\n"
-#~ "Enigma2 zal herstarten na het terugzetten"
-
-#~ msgid "Backup"
-#~ msgstr "Back-up"
-
-#~ msgid "Backup Location"
-#~ msgstr "Back-up locatie"
-
-#~ msgid "Backup Mode"
-#~ msgstr "Back-up modus"
-
-#~ msgid "Backup done."
-#~ msgstr "Back-up voltooid."
-
-#~ msgid ""
-#~ "By pressing the OK Button on your remote control, the info bar is being "
-#~ "displayed."
-#~ msgstr "Door op OK te drukken, wordt de infobalk zichtbaar."
-
-#~ msgid "CF Drive"
-#~ msgstr "CF module"
-
-#~ msgid "Center the position of the DVB subtitles."
-#~ msgstr "Centreer de positie van DVB-ondertitels"
-
-#~ msgid "Centered DVB subtitles"
-#~ msgstr "Gecentreerde  DVB ondertitels"
-
-#~ msgid ""
-#~ "Choose the order in which the tuner types will be used (for watching and "
-#~ "recording)."
-#~ msgstr ""
-#~ "Kies de volgorde waarin de verschillende tuners worden gebruikt (voor "
-#~ "kijken en opnemen)."
-
-#~ msgid ""
-#~ "Choose which tuner will be used first. If set to 'auto' the system will "
-#~ "give priority to the tuner having the lowest number of channels/"
-#~ "satellites."
-#~ msgstr ""
-#~ "Kies welke tuner als eerste gebruikt zal worden. Indien ingesteld op "
-#~ "'auto' wordt de prioriteit gegeven aan de tuner met het geringste aantal "
-#~ "kanalen/satellieten."
-
-#~ msgid "Cleanup Wizard"
-#~ msgstr "Cleanup Wizard"
-
-#~ msgid "Cleanup Wizard settings"
-#~ msgstr "Cleanup wizard instellingen"
-
-#~ msgid "CleanupWizard"
-#~ msgstr "Cleanupwizard"
-
-#~ msgid "Crashlog settings"
-#~ msgstr "Crashlog instellingen"
-
-#~ msgid "CrashlogAutoSubmit"
-#~ msgstr "Crashlog mailer"
-
-#~ msgid "CrashlogAutoSubmit settings"
-#~ msgstr "Crashlog mailer instellingen"
-
-#~ msgid "CrashlogAutoSubmit settings..."
-#~ msgstr "Crashlog mailer instellingen..."
-
-#~ msgid ""
-#~ "Crashlogs found!\n"
-#~ "Send them to Dream Multimedia?"
-#~ msgstr ""
-#~ "Crashlogs gevonden!\n"
-#~ "Verstuur ze naar Dream Multimedia?"
-
-#~ msgid "Custom text alignment"
-#~ msgstr "Pas tekst uitlijning aan"
-
-#~ msgid "Custom text position"
-#~ msgstr "Pas tekst positie aan"
-
-#~ msgid "Decide if you want to enable or disable the Cleanup Wizard."
-#~ msgstr "Wilt u de cleanup wizard aan of uitschakelen."
-
-#~ msgid "Decide what should be done when crashlogs are found."
-#~ msgstr "Beslissen wat er moet gebeuren wanneer crashlogs zijn gevonden."
-
-#~ msgid "Decide what should happen to the crashlogs after submission."
-#~ msgstr "Beslissen wat er moet gebeuren met de crashlogs na indiening."
-
-#~ msgid "Delete crashlogs"
-#~ msgstr "Verwijder crashlogs"
-
-#~ msgid ""
-#~ "Delete no more configured satellite\n"
-#~ "%s?"
-#~ msgstr ""
-#~ "Niet geconfigureerde satellietpositie\n"
-#~ "%s verwijderen?"
-
-#~ msgid "Disable crashlog reporting"
-#~ msgstr "Crashlogs uitschakelen"
-
-#~ msgid ""
-#~ "Do you want to backup now?\n"
-#~ "After pressing OK, please wait!"
-#~ msgstr ""
-#~ "Wilt u nu een back-up maken?\n"
-#~ "Druk op OK en wacht!"
-
-#~ msgid "Do you want to enable the parental control feature on your STB_BOX?"
-#~ msgstr "Wilt u het kinderslot van uw STB_BOX inschakelen?"
-
-#~ msgid ""
-#~ "Do you want to submit your email address and name so that we can contact "
-#~ "you if needed?"
-#~ msgstr ""
-#~ "Wilt u uw e-mailadres en naam opgeven zodat wij contact met u kunnen "
-#~ "opnemen indien nodig?"
-
-#~ msgid ""
-#~ "Do you want to update your STB_BOX?\n"
-#~ "After pressing OK, please wait!"
-#~ msgstr ""
-#~ "Wilt u uw STB_BOX updaten?\n"
-#~ "Wacht nadat u op OK hebt gedrukt!"
-
-#~ msgid "Do you want to upgrade?"
-#~ msgstr "Wilt u upgraden?"
-
-#~ msgid "Do you want to view a tutorial?"
-#~ msgstr "Wilt u een voorbeeld zien?"
-
-#~ msgid "Don't ask, just send"
-#~ msgstr "Niet vragen, gewoon verzenden"
-
-#~ msgid "Done - Installed or upgraded %d packages"
-#~ msgstr "Klaar - %d pakket(ten) geïnstalleerd of vervangen"
-
-#~ msgid "Downmix the Dolby Digital sound tracks to PCM."
-#~ msgstr "Downmix Dolby Digital geluid naar PCM."
-
-#~ msgid "EIT data will be included in http streams."
-#~ msgstr "EIT data zal worden opgenomen in http-streams."
-
-#~ msgid "ET9x00/6500"
-#~ msgstr "ET9x00/6500"
-
-#~ msgid "Enable Cleanup Wizard?"
-#~ msgstr "Cleanup wizard inschakelen?"
-
-#~ msgid "Enables channel numbers in the channel selection screen"
-#~ msgstr "Toon kanaalnummers in de kanaallijst"
-
-#~ msgid "Enter your email address so that we can contact you if needed."
-#~ msgstr ""
-#~ "Vul uw e-mailadres in, zodat wij contact met u kunnen opnemen indien "
-#~ "nodig."
-
-#~ msgid "Et5000/6000"
-#~ msgstr "Et5000/6000"
-
-#~ msgid "Exit the cleanup wizard"
-#~ msgstr "Verlaat de cleanup wizard"
-
-#~ msgid "General AC3 Delay"
-#~ msgstr "Algemene AC3 vertraging"
-
-#~ msgid "General PCM Delay"
-#~ msgstr "Algemene PCM vertraging"
-
-#~ msgid "Hide any Common Interface card error messages."
-#~ msgstr "Verberg common interface fouten. "
-
-#~ msgid "How to handle found crashlogs?"
-#~ msgstr "Hoe om te gaan met gevonden crashlogs?"
-
-#~ msgid ""
-#~ "If Teletext caching is enabled, displaying pages will be much faster."
-#~ msgstr ""
-#~ "Als teletekst caching is ingeschakeld, zal het vertonen van pagina's veel "
-#~ "sneller plaats vinden."
-
-#~ msgid "Include your email and name (optional) in the mail?"
-#~ msgstr "Uw e-mailadres en naam (optioneel) in de mail?"
-
-#~ msgid "Install settings, skins, software..."
-#~ msgstr "Installatie instellingen, skins, software..."
-
-#~ msgid "Installing default sat lists... Please wait..."
-#~ msgstr ""
-#~ "De standaard satellietlijst wordt geïnstalleerd. Een ogenblik a.u.b..."
-
-#~ msgid "Installing defaults... Please wait..."
-#~ msgstr "Herstel standaardwaarden. Een ogenblik a.u.b..."
-
-#~ msgid "Installing package content... Please wait..."
-#~ msgstr "Pakket inhoud wordt geïnstalleerd. Een ogenblik a.u.b..."
-
-#~ msgid "Is this videomode ok?"
-#~ msgstr "Is deze videomode goed?"
-
-#~ msgid "LOF"
-#~ msgstr "LOF"
-
-#~ msgid "LOF/H"
-#~ msgstr "LOF/H"
-
-#~ msgid "LOF/L"
-#~ msgstr "LOF/L"
-
-#~ msgid "Mode"
-#~ msgstr "Modus"
-
-#~ msgid ""
-#~ "No packages were upgraded yet. So you can check your network and try "
-#~ "again."
-#~ msgstr ""
-#~ "Er zijn geen softwarepakketten gevonden. Controleer uw netwerk en probeer "
-#~ "het opnieuw."
-
-#~ msgid "No, not now"
-#~ msgstr "Nee, niet nu"
-
-#~ msgid "No, send them never"
-#~ msgstr "Nee, verstuur ze nooit"
-
-#~ msgid "OK, remove another extensions"
-#~ msgstr "OK, verwijder een andere extensie"
-
-#~ msgid "OK, remove some extensions"
-#~ msgstr "OK, verwijder een aantal extensies"
-
-#~ msgid "Optionally enter your name if you want to."
-#~ msgstr "Desgewenst geeft u uw naam op."
-
-#~ msgid "Overwrite configuration files ?"
-#~ msgstr "Overschrijven configuratiebestanden?"
-
-#~ msgid "Package removal failed.\n"
-#~ msgstr "Pakket verwijdering is mislukt.\n"
-
-#~ msgid "Package removed successfully.\n"
-#~ msgstr "Pakket met succes verwijderd.\n"
-
-#~ msgid ""
-#~ "Please be aware, that anyone can disable the parental control, if you "
-#~ "have not set a PIN."
-#~ msgstr ""
-#~ "Als er geen PIN is ingesteld, kan iedereen het kinderslot uitschakelen"
-
-#~ msgid "Please choose he package..."
-#~ msgstr "Kies het gewenste pakket a.u.b..."
-
-#~ msgid "Please choose the default services lists you want to install."
-#~ msgstr "Kies de te installeren standaard zenderlijst a.u.b."
-
-#~ msgid "Please enter your email address here:"
-#~ msgstr "Geef uw e-mail adres hier:"
-
-#~ msgid "Please enter your name here (optional):"
-#~ msgstr "Geef hier uw naam (optioneel):"
-
-#~ msgid "Please press OK!"
-#~ msgstr "Druk op OK a.u.b!"
-
-#~ msgid "Please select an extension to remove."
-#~ msgstr "Selecteer een extensie om te verwijderen."
-
-#~ msgid "Please select an option below."
-#~ msgstr "Selecteer een optie hieronder."
-
-#~ msgid "Please wait while removing selected package..."
-#~ msgstr "Even geduld tijdens het verwijderen van het geselecteerde pakket..."
-
-#~ msgid "Please wait while searching for removable packages..."
-#~ msgstr "Even geduld tijdens het zoeken naar verwijderbare pakketten..."
-
-#~ msgid "Refresh Rate"
-#~ msgstr "Ververs ratio"
-
-#~ msgid "Remote type"
-#~ msgstr "Type afstandsbediening"
-
-#~ msgid "Remove failed."
-#~ msgstr "Verwijderen mislukt."
-
-#~ msgid "Removed successfully."
-#~ msgstr "Succesvol verwijderd."
-
-#~ msgid "Rename crashlogs"
-#~ msgstr "Hernoem crashlogs"
-
-#~ msgid "Restore running"
-#~ msgstr "Bezig terug te zetten"
-
-#~ msgid "Scan QAM128"
-#~ msgstr "Zoek QAM128"
-
-#~ msgid "Scan QAM16"
-#~ msgstr "Zoek QAM16"
-
-#~ msgid "Scan QAM256"
-#~ msgstr "Zoek QAM256"
-
-#~ msgid "Scan QAM32"
-#~ msgstr "Zoek QAM32"
-
-#~ msgid "Scan QAM64"
-#~ msgstr "Zoek QAM64"
-
-#~ msgid "Scan SR6875"
-#~ msgstr "Zoek SR6875"
-
-#~ msgid "Scan SR6900"
-#~ msgstr "Zoek SR6900"
-
-#~ msgid "Scan band EU HYPER"
-#~ msgstr "Zoek band EU HYPER"
-
-#~ msgid "Scan band EU MID"
-#~ msgstr "Zoek band EU MID"
-
-#~ msgid "Scan band EU SUPER"
-#~ msgstr "Zoek band EU SUPER"
-
-#~ msgid "Scan band EU UHF IV"
-#~ msgstr "Zoek band EU UHF IV"
-
-#~ msgid "Scan band EU UHF V"
-#~ msgstr "Zoek band EU UHF V"
-
-#~ msgid "Scan band EU VHF I"
-#~ msgstr "Zoek band EU VHF I"
-
-#~ msgid "Scan band EU VHF III"
-#~ msgstr "Zoek band EU VHF III"
-
-#~ msgid "Scan band US HIGH"
-#~ msgstr "Zoek band US HIGH"
-
-#~ msgid "Scan band US HYPER"
-#~ msgstr "Zoek band US HYPER"
-
-#~ msgid "Scan band US LOW"
-#~ msgstr "Zoek band US LOW"
-
-#~ msgid "Scan band US MID"
-#~ msgstr "Zoek band US MID"
-
-#~ msgid "Scan band US SUPER"
-#~ msgstr "Zoek band US SUPER"
-
-#~ msgid "Select package"
-#~ msgstr "Selecteer pakket"
-
-#~ msgid ""
-#~ "Services may be grouped in bouquets. If this option is enabled you can "
-#~ "zap to a channel in another bouquet then you are in at present."
-#~ msgstr ""
-#~ "Kanalen kunnen zijn gegoepeerd in favorietenlijsten. Als deze optie is "
-#~ "geactiveerd, kunt u zappen naar een kanaal in een andere lijst dan die "
-#~ "waarin u momenteel zit."
-
-#~ msgid ""
-#~ "Services may be grouped in bouquets. If this option is enabled, you can "
-#~ "use more then one bouquet."
-#~ msgstr ""
-#~ "Kanalen kunnen zijn gegoepeerd in favorietenlijsten. Als deze optie is "
-#~ "geactiveerd, kunt u meer dan één favorietenlijst gebruiken."
-
-#~ msgid "Set Voltage and 22KHz"
-#~ msgstr "Gebruik voltage en 22KHz"
-
-#~ msgid "Set available internal memory threshold for the warning."
-#~ msgstr "Stel waarschuwing in voor hoeveelheid vrij intern geheugen."
-
-#~ msgid "Set the Teletext subtitle delay when timing lacks."
-#~ msgstr "Stel de TT-ondertitel vertraging in als timong ontbreekt"
-
-#~ msgid "Set the alignment of the Teletext subtitles."
-#~ msgstr "Stel de uitlijning van TT-ondertitels in."
-
-#~ msgid ""
-#~ "Set the border width of the Teletext subtitles. This makes the titles "
-#~ "more easy to read on a light background."
-#~ msgstr ""
-#~ "Stel de brredye van de rand rond TT-ondertitels in. Deze maken de tekst "
-#~ "beter leesbaar bij een lichte achtergrond."
-
-#~ msgid "Set the colour of the Teletext subtitles."
-#~ msgstr "Stel de kleur van de TT-ondertitels in."
-
-#~ msgid "Set the font size of the Teletext subtitles."
-#~ msgstr "Stel de lettergrootte van de TT-ondertitels in."
-
-#~ msgid "Set the position of the DVB subtitles."
-#~ msgstr "Stel de positie van de DVB-ondertitels in."
-
-#~ msgid "Set the position of the Teletext subtitles."
-#~ msgstr "Stel de positie van de TT-ondertitels in."
-
-#~ msgid "Set the transparency of the DVB subtitles."
-#~ msgstr "Stel de transparantie van DVB-ondertitels in."
-
-#~ msgid ""
-#~ "Set the type of the progress indication in the channel selection screen"
-#~ msgstr "Stel het type voortgangsindicator in voor de kanaallijst"
-
-#~ msgid "Show encryption info in the infobar (if the skin allows that)."
-#~ msgstr "Toon encryptie informatie in de informatiebalk (skin afhankelijk)."
-
-#~ msgid "Sorry MediaScanner is not installed!"
-#~ msgstr "Sorry MediaScanner is niet geïnstalleerd!"
-
-#~ msgid "Sorry no backups found!"
-#~ msgstr "Sorry geen back-ups gevonden!"
-
-#~ msgid ""
-#~ "Sorry your Backup destination does not exist\n"
-#~ "\n"
-#~ "Please choose an other one."
-#~ msgstr ""
-#~ "Sorry: uw back-up locatie is ongeldig\n"
-#~ "\n"
-#~ "Kies een andere locatie a.u.b..."
-
-#~ msgid ""
-#~ "Sorry your backup destination is not writeable.\n"
-#~ "Please choose an other one."
-#~ msgstr ""
-#~ "Sorry: uw back-up locatie is niet beschrijfbaar.\n"
-#~ "Kies een andere."
-
-#~ msgid "Sorry, no Details available!"
-#~ msgstr "Sorry, geen detail gegevens beschikbaar!"
-
-#~ msgid ""
-#~ "Sorry, your backup destination is not writeable.\n"
-#~ "\n"
-#~ "Please choose another one."
-#~ msgstr ""
-#~ "Sorry uw back-up locatie is niet beschrijfbaar.\n"
-#~ "\n"
-#~ "Kies een andere."
-
-#~ msgid "Text border width"
-#~ msgstr "Tekst randbreedte"
-
-#~ msgid "Text font size"
-#~ msgstr "Tekst lettergrootte"
-
-#~ msgid ""
-#~ "Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
-#~ "Please press OK to start using your STB_BOX."
-#~ msgstr ""
-#~ "Dank voor het gebruik van de wizard. Uw STB_BOX is nu gereed voor "
-#~ "gebruik.\n"
-#~ "Druk op OK om uw STB_BOX te gebruiken."
-
-#~ msgid "The installation of the default services lists is finished."
-#~ msgstr "De installatie van de standaard zenderlijst is voltooid."
-
-#~ msgid ""
-#~ "The installation of the default settings is finished. You can now "
-#~ "continue configuring your STB_BOX by pressing the OK button on the remote "
-#~ "control."
-#~ msgstr ""
-#~ "Het instellen van de standaard instellingen is gereed. U kunt nu doorgaan "
-#~ "met de configuratie door op OK te drukken."
-
-#~ msgid "The package doesn't contain anything."
-#~ msgstr "Dit pakket bevat geen data."
-
-#~ msgid "The package:"
-#~ msgstr "Het pakket:"
-
-#~ msgid "There are no default services lists in your image."
-#~ msgstr "Er is geen standaard zenderlijst in uw firmware gevonden."
-
-#~ msgid "There are no default settings in your image."
-#~ msgstr "Er zijn geen standaard instellingen in uw firmware gevonden."
-
-#~ msgid "There are now "
-#~ msgstr "Er zijn nu"
-
-#~ msgid "There was an error downloading the packetlist. Please try again."
-#~ msgstr ""
-#~ "Er is een fout opgetreden bij het downloaden van de pakketlijst. Probeer "
-#~ "het opnieuw."
-
-#~ msgid "There was an error. The package:"
-#~ msgstr "Er is een fout. Het pakket:"
-
-#~ msgid "This is step number 2."
-#~ msgstr "Dit is stap nummer 2."
-
-#~ msgid "This option sets up the connection method."
-#~ msgstr "Hier kiest u de gewenste verdindingsmethode."
-
-#~ msgid "This option sets up the general audio delay of Analog sound tracks."
-#~ msgstr "Hier stelt u de vertraging in die analoge audio moet krijgen."
-
-#~ msgid ""
-#~ "This option sets up the general audio delay of Dolby Digital sound tracks."
-#~ msgstr "Hier stelt u de vertraging in die Dolby Digital audio moet krijgen."
-
-#~ msgid "This option sets up the screen aspect ratio."
-#~ msgstr "Hier stelt u de gewenste beeldverhouding  in."
-
-#~ msgid "This option sets up the screen refresh-rate."
-#~ msgstr "Hier stelt u de gewenste beeldfrquentie in."
-
-#~ msgid "This option sets up the screen resolution, when in PC mode."
-#~ msgstr "Hier stelt u de schermresolutie in voor de PC-modus."
-
-#~ msgid "This option sets up the screen resolution."
-#~ msgstr "Hier stelt u de schermresolutie in."

@@ -2282,7 +2282,7 @@ class NetworkSamba(Screen):
 			chmod('/etc/network/if-up.d/01samba-start', 0755)
 
 		if fileExists('/etc/rc2.d/S20samba'):
-			self.Console.eBatch('update-rc.d -f samba remove', self.StartStopCallback)
+			self.Console.ePopen('update-rc.d -f samba remove', self.StartStopCallback)
 		else:
 			self.Console.ePopen('update-rc.d -f samba defaults', self.StartStopCallback)
 
