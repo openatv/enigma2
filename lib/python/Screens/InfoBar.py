@@ -53,6 +53,15 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"showRadio": (self.showRadio, _("Show the radio player...")),
 				"showTv": (self.showTv, _("Show the tv player...")),
 				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
+				"openTimerList": (self.openTimerList, _("Open Timer List...")),
+				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
+				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),
+				"showSetup": (self.showSetup, _("Show setup...")),
+				"showPiP": (self.showPiP, _("Open Pip...")),
+				"showWWW": (self.showWWW, _("Open WebBrowser...")),
+				"showLanSetup": (self.showLanSetup, _("Show LAN Setup...")),
+				"showFormat": (self.showFormat, _("Show Format Setup...")),
+
 			}, prio=2)
 
 		self["key_red"] = Label()
@@ -188,6 +197,69 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		else:
 			self.session.open(MoviePlayer, service, slist = self.servicelist, lastservice = ref)
 
+	def openTimerList(self):
+		from Screens.TimerEdit import TimerEditList
+		self.session.open(TimerEditList)
+
+	def showMediaPlayer(self):
+		try:
+			from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
+			self.session.open(MediaPlayer)
+			no_plugin = False
+		except Exception, e:
+			self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			
+	def showPluginBrowser(self):
+		from Screens.PluginBrowser import PluginBrowser
+		self.session.open(PluginBrowser)
+		
+	def showSetup(self):
+		from Screens.Menu import MainMenu, mdom
+		root = mdom.getroot()
+		for x in root.findall("menu"):
+			y = x.find("id")
+			if y is not None:
+				id = y.get("val")
+				if id and id == "setup":
+					self.session.infobar = self
+					self.session.open(MainMenu, x)
+					return
+
+	def showLanSetup(self):
+		from Screens.NetworkSetup import NetworkAdapterSelection
+		self.session.open(NetworkAdapterSelection)
+					
+	def showPiP(self):
+		slist = self.servicelist
+		if self.session.pipshown:
+			if slist and slist.dopipzap:
+				slist.togglePipzap()
+			del self.session.pip
+			self.session.pipshown = False
+		else:
+			from Screens.PictureInPicture import PictureInPicture
+			self.session.pip = self.session.instantiateDialog(PictureInPicture)
+			self.session.pip.show()
+			self.session.pipshown = True
+			self.session.pip.playService(slist.getCurrentSelection())
+			
+	def showWWW(self):
+		try:
+			from Plugins.Extensions.WebBrowser.plugin import BrowserLauncher
+			self.session.open(BrowserLauncher)
+			no_plugin = False
+		except Exception, e:
+			self.session.open(MessageBox, _("The WebBrowser plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showFormat(self):
+		try:
+			from Plugins.SystemPlugins.Videomode.plugin import VideoSetup
+			self.session.open(VideoSetup)
+			no_plugin = False
+		except Exception, e:
+			self.session.open(MessageBox, _("The VideoMode plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			
+			
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		InfoBarMenu, InfoBarEPG, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
