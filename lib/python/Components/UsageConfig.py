@@ -545,7 +545,7 @@ def InitUsageConfig():
 	config.logmanager.sentfiles = ConfigLocations(default='')
 
 	config.vixsettings = ConfigSubsection()
-	config.vixsettings.Subservice = ConfigYesNo(default = False)
+	config.vixsettings.Subservice = ConfigYesNo(default = True)
 	config.vixsettings.ColouredButtons = ConfigYesNo(default = True)
 	config.vixsettings.QuickEPG_mode = ConfigSelection(default="3", choices = [
 					("0", _("as plugin in extended bar")),
@@ -596,9 +596,9 @@ def InitUsageConfig():
 	config.epgselection.pictureingraphics = ConfigYesNo(default = True)
 	config.epgselection.heightswitch = NoSave(ConfigYesNo(default = False))
 
-	if not os.path.exists('/usr/softcams/'):
-		os.mkdir('/usr/softcams/',0755)
-	softcams = os.listdir('/usr/softcams/')
+	if not os.path.exists('/usr/emu_scripts/'):
+		os.mkdir('/usr/emu_scripts/',0755)
+	softcams = os.listdir('/usr/emu_scripts/')
 	config.oscaminfo = ConfigSubsection()
 	config.oscaminfo.showInExtensions = ConfigYesNo(default=False)
 	config.oscaminfo.userdatafromconf = ConfigYesNo(default = False)
@@ -631,7 +631,7 @@ def InitUsageConfig():
 		if softcam.lower().startswith('cccam'):
 			config.cccaminfo.showInExtensions = ConfigYesNo(default=True)
 			SystemInfo["CCcamInstalled"] = True
-		elif softcam.lower().startswith('oscam'):
+		elif softcam.lower().find('oscam'):
 			config.oscaminfo.showInExtensions = ConfigYesNo(default=True)
 			SystemInfo["OScamInstalled"] = True
 
