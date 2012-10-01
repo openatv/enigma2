@@ -1,4 +1,4 @@
-from enigma import eTimer
+from enigma import eTimer, getBoxType
 from Components.config import config, ConfigSelection, ConfigSubDict, ConfigYesNo
 
 from Tools.CList import CList
@@ -38,7 +38,7 @@ class VideoHardware:
 								"60Hz":		{ 60: "1080i" },
 								"multi":	{ 50: "1080i50", 60: "1080i" } }
 
-	if config.misc.boxtype.value == 'tmtwin':
+	if getBoxType() == 'tmtwin':
 		rates["1080p"] =		{ "24Hz":		{ 24: "1080p24" },
 									"30Hz":		{ 30: "1080p30" } }
 	else:
@@ -187,7 +187,7 @@ class VideoHardware:
 
 		try:
 			mode_etc = None
-			if mode == "1080p" and config.misc.boxtype.value == 'tmtwin':
+			if mode == "1080p" and getBoxType() == 'tmtwin':
 				mode_etc = modes.get(int(rate[:2]))
 				open("/proc/stb/video/videomode", "w").write(mode_etc)
 				# not support 50Hz, 60Hz for 1080p
@@ -202,7 +202,7 @@ class VideoHardware:
 				print "setting videomode failed."
 
 		try:
-			if mode == "1080p" and config.misc.boxtype.value == 'tmtwin':
+			if mode == "1080p" and getBoxType() == 'tmtwin':
 				open("/etc/videomode", "w").write(mode_etc)
 			else:
 				open("/etc/videomode", "w").write(mode_50) # use 50Hz mode (if available) for booting
