@@ -68,6 +68,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gui/ewidgetanimation.h>
 #include <lib/gui/eslider.h>
 #include <lib/gui/epositiongauge.h>
+#include <lib/gui/egauge.h>
 #include <lib/gui/evideo.h>
 #include <lib/gui/ecanvas.h>
 #include <lib/python/connections.h>
@@ -203,6 +204,7 @@ typedef long time_t;
 %include <lib/gui/ewindow.h>
 %include <lib/gui/eslider.h>
 %include <lib/gui/epositiongauge.h>
+%include <lib/gui/egauge.h>
 %include <lib/gui/ewidgetdesktop.h>
 %include <lib/gui/elistbox.h>
 %include <lib/gui/elistboxcontent.h>

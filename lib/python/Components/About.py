@@ -1,6 +1,7 @@
 from Tools.Directories import resolveFilename, SCOPE_SYSETC
 from Tools.HardwareInfo import HardwareInfo
 import sys
+import os
 
 def getVersionString():
 	return getImageVersionString()
@@ -84,6 +85,29 @@ def getDriversString():
 	except IOError:
 		return "unavailable"
 
+def getDriversVersionString():
+	try:
+		if (os.path.isfile("/proc/stb/info/boxtype") and os.path.isfile("/proc/stb/info/version")):
+			  if ((open("/proc/stb/info/chipset").read().strip()) == "bcm7405"):
+			    return open("/proc/stb/info/chipset").read().strip().replace("7405", "7413") + "-" + open("/proc/stb/info/version").read().strip()
+	except:
+		pass
+	return "Unavailable"  
+
+def getHardwareTypeString():                                                    
+	try:
+		if (os.path.isfile("/proc/stb/info/boxtype") and os.path.isfile("/proc/stb/info/version")): 
+			return open("/proc/stb/info/boxtype").read().strip().upper()
+		if os.path.isfile("/proc/stb/info/boxtype"):                            
+			return open("/proc/stb/info/boxtype").read().strip().upper() + " (" + open("/proc/stb/info/board_revision").read().strip() + "-" + open("/proc/stb/info/version").read().strip() + ")"
+		if os.path.isfile("/proc/stb/info/vumodel"):                            
+			return "VU+" + open("/proc/stb/info/vumodel").read().strip().upper() + "(" + open("/proc/stb/info/version").read().strip().upper() + ")" 
+		if os.path.isfile("/proc/stb/info/model"):                              
+			return open("/proc/stb/info/model").read().strip().upper()      
+	except:
+		pass
+	return "Unavailable" 
+	
 def getImageTypeString():
 	try:
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
