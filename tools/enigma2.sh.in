@@ -72,7 +72,7 @@ case $ret in
 		/sbin/reboot
 		;;
 	42)
-		python upgrade.pyo
+		python /usr/lib/enigma2/python/upgrade.pyo
 		;;
 	*)
 		;;
