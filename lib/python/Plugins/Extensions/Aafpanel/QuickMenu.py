@@ -11,7 +11,7 @@ from Components.NimManager import nimmanager
 
 from Screens.Screen import Screen
 from Screens.NetworkSetup import *
-from Screens.About import SystemInfo
+from Screens.About import About
 from Screens.PluginBrowser import PluginDownloadBrowser, PluginFilter, PluginBrowser
 from Screens.LanguageSelection import LanguageSelection
 from Screens.Satconfig import NimSelection
@@ -166,7 +166,7 @@ class QuickMenu(Screen):
 		self.close()
 
 	def keygreen(self):
-		self.session.open(SystemInfo)
+		self.session.open(About)
 
 	def keyyellow(self):
 		self.session.open(QuickMenuDevices)
