@@ -7,4 +7,5 @@ install_PYTHON = \
 	StaticMultiList.py ServiceTime.py MovieInfo.py MenuEntryCompare.py StringListSelection.py \
 	ServiceOrbitalPosition.py CryptoInfo.py TextCase.py \
 	ValueBitTest.py TunerInfo.py ConfigEntryTest.py TemplatedMultiContent.py ProgressToText.py \
+	EGAnalogic.py EGClockToText.py EGExtraInfo.py EGServiceName.py ExtendedServiceInfo.py ExtraTuner.py \
 	Combine.py SensorToText.py ValueToPixmap.py PliExtraInfo.py genre.py

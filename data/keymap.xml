@@ -91,17 +91,7 @@
 	</map>
 
 	<map context="InfobarExtensions">
-		<key id="KEY_RED" mapto="RedPressed" flags="b" />
-		<key id="KEY_GREEN" mapto="openTimerList" flags="b" />
-		<key id="KEY_GREEN" mapto="openAutoTimerList" flags="l" />
-		<key id="KEY_YELLOW" mapto="openEPGSearch" flags="b" />
-		<key id="KEY_YELLOW" mapto="openIMDB" flags="l" />
-		<key id="KEY_BLUE" mapto="showPluginBrowser" flags="l" />
 		<key id="KEY_BLUE" mapto="extensions" flags="b" />
-		<key id="KEY_PROGRAM" mapto="openTimerList" flags="b" />
-		<key id="KEY_PROGRAM" mapto="openAutoTimerList" flags="l" />
-		<key id="KEY_SEARCH" mapto="openEPGSearch" flags="b" />
-		<key id="KEY_SEARCH" mapto="openIMDB" flags="l" />
 	</map>
 
 	<map context="SatlistShortcutAction">
@@ -109,8 +99,10 @@
 	</map>
 
 	<map context="InfobarChannelSelection">
-		<key id="KEY_LEFT" mapto="LeftPressed" flags="mr" />
-		<key id="KEY_RIGHT" mapto="RightPressed" flags="mr" />
+		<!--<key id="KEY_LEFT" mapto="LeftPressed" flags="mr" />
+		<key id="KEY_RIGHT" mapto="RightPressed" flags="mr" />-->
+		<key id="KEY_LEFT" mapto="zapUp" flags="mr" />
+		<key id="KEY_RIGHT" mapto="zapDown" flags="mr" />
 		<key id="KEY_UP" mapto="switchChannelUp" flags="m" />
 		<key id="KEY_DOWN" mapto="switchChannelDown" flags="m" />
 		<key id="KEY_PREVIOUS" mapto="historyBack" flags="mr" />
@@ -191,26 +183,29 @@
 
 	<map context="InfobarShowHideActions">
 		<key id="KEY_OK" mapto="toggleShow" flags="m" />
-		<key id="KEY_OK" mapto="LongOKPressed" flags="l" />
 		<key id="KEY_ENTER" mapto="toggleShow" flags="m" />
 		<key id="KEY_EXIT" mapto="hide" flags="m" />
 		<key id="KEY_ESC" mapto="hide" flags="m" />
 	</map>
 
 	<map context="InfobarActions">
-		<key id="KEY_VIDEO" mapto="showMovies" flags="b" />
-		<key id="KEY_VIDEO" mapto="showMediaPlayer" flags="l" />
-		<key id="KEY_RADIO" mapto="showRadio" flags="b" />
-		<key id="KEY_RADIO" mapto="openBouquetList" flags="l" />
-		<key id="KEY_TV" mapto="showTv" flags="b" />
-		<key id="KEY_TV" mapto="openBouquetList" flags="l" />
-		<key id="KEY_FILE" mapto="showMovies" flags="m" />
-		<key id="KEY_MEDIA" mapto="showMovies" flags="m" />
-		<key id="KEY_LIST" mapto="showMovies" flags="b" />
+		<key id="KEY_FAVORITES" mapto="openBouquetList" flags="m" />
+		<key id="KEY_PVR" mapto="showMovies" flags="m" />
+		<key id="KEY_RADIO" mapto="showRadio" flags="m" />
+		<key id="KEY_TV" mapto="showTv" flags="m" />
 		<key id="KEY_TEXT" mapto="showText" flags="m" />
+		<key id="KEY_FILE" mapto="showMovies" flags="m" />
+		<key id="KEY_MEDIA" mapto="showMediaPlayer" flags="m" />
+		<key id="KEY_PROGRAM" mapto="openTimerList" flags="m" />
+		<key id="KEY_BOOKMARKS" mapto="showPluginBrowser" flags="mm" />
+		<key id="KEY_OPTION" mapto="showLanSetup" flags="m" />
+		<key id="KEY_VIDEO" mapto="showFormat" flags="m" />
+		<key id="KEY_SEARCH" mapto="showWWW" flags="m" />
+		<key id="KEY_SETUP" mapto="showSetup" flags="m" />
+		<key id="KEY_ZOOM" mapto="showPiP" flags="m" />	
 	</map>
 
-	<map context="2ndInfobarActions">
+	<!--<map context="2ndInfobarActions">
 		<key id="KEY_UP" mapto="prevPage" flags="mr" />
 		<key id="KEY_DOWN" mapto="nextPage" flags="mr" />
 		<key id="KEY_PREVIOUS" mapto="prevEvent" flags="m" />
@@ -219,7 +214,7 @@
 		<key id="KEY_FORWARD" mapto="nextEvent" flags="m" />
 		<key id="KEY_RED" mapto="openSimilarList" flags="m" />
 		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
-	</map>
+	      </map>-->
 
 	<map context="InfobarAudioSelectionActions">
 		<key id="KEY_AUDIO" mapto="audioSelection" flags="m" />

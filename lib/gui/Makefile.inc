@@ -4,6 +4,7 @@ gui_libenigma_gui_a_SOURCES = \
 	gui/ebutton.cpp \
 	gui/ecanvas.cpp \
 	gui/einput.cpp \
+	gui/egauge.cpp \
 	gui/einputnumber.cpp \
 	gui/einputstring.cpp \
 	gui/elabel.cpp \
@@ -26,6 +27,7 @@ guiinclude_HEADERS = \
 	gui/ebutton.h \
 	gui/ecanvas.h \
 	gui/einput.h \
+	gui/egauge.h \
 	gui/einputnumber.h \
 	gui/einputstring.h \
 	gui/elabel.h \
