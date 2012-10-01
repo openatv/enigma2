@@ -370,7 +370,7 @@ class InfoBarNumberZap:
 
 	def numberEntered(self, service = None, bouquet = None):
 		if service:
-			self.zapToService(service, bouquet)
+			self.selectAndStartService(service, bouquet)
 
 	def searchNumberHelper(self, serviceHandler, num, bouquet):
 		servicelist = serviceHandler.list(bouquet)
@@ -407,7 +407,7 @@ class InfoBarNumberZap:
 						bouquet = bouquetlist.getNext()
 		return service, bouquet
 
-	def zapToService(self, service, bouquet):
+	def selectAndStartService(self, service, bouquet):
 		if service:
 			if self.servicelist.getRoot() != bouquet: #already in correct bouquet?
 				self.servicelist.clearPath()
@@ -419,7 +419,7 @@ class InfoBarNumberZap:
 
 	def zapToNumber(self, number):
 		service, bouquet = self.searchNumber(number)
-		self.zapToService(service, bouquet)
+		self.selectAndStartService(service, bouquet)
 
 config.misc.initialchannelselection = ConfigBoolean(default = True)
 
@@ -666,7 +666,7 @@ class InfoBarEPG:
 			self.toggleShow()
 			return 1
 
-	def zapToService(self, service, preview = False, zapback = False):
+	def selectAndStartService(self, service, preview = False, zapback = False):
 		if self.servicelist.startServiceRef is None:
 			self.servicelist.startServiceRef = self.session.nav.getCurrentlyPlayingServiceReference()
 		if service is not None:
@@ -702,9 +702,9 @@ class InfoBarEPG:
 		if services:
 			self.epg_bouquet = bouquet
 			if withCallback:
-				self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, services, self.zapToService, None, self.changeBouquetCB))
+				self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, services, self.selectAndStartService, None, self.changeBouquetCB))
 			else:
-				self.session.open(EPGSelection, services, self.zapToService, None, self.changeBouquetCB)
+				self.session.open(EPGSelection, services, self.selectAndStartService, None, self.changeBouquetCB)
 
 	def changeBouquetCB(self, direction, epg):
 		if self.bouquetSel:
@@ -785,7 +785,7 @@ class InfoBarEPG:
 				self.serviceSel = SimpleServicelist(services)
 				if self.serviceSel.selectService(ref):
 					self.epg_bouquet = current_path
-					self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, self.zapToService, serviceChangeCB = self.changeServiceCB)
+					self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, self.selectAndStartService, serviceChangeCB = self.changeServiceCB)
 				else:
 					self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref)
 			else:
