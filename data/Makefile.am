@@ -4,6 +4,7 @@ dist_pkgdata_DATA = \
 	encoding.conf \
 	keymap.xml \
 	keymap.ntr \
+	keymap.u80 \
 	menu.xml \
 	radio.mvi \
 	prev.png \

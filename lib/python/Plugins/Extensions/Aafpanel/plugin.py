@@ -81,6 +81,8 @@ if config.usage.keymap.value != eEnv.resolve("${datadir}/enigma2/keymap.xml"):
 		setDefaultKeymap()
 	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.ntr")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.ntr"):
 		setDefaultKeymap()
+	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.u80")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.u80"):
+		setDefaultKeymap()
 		
 def setDefaultKeymap():
 	print "[Aaf-Panel] Set Keymap to Default"
@@ -275,12 +277,16 @@ class Aafpanel(Screen, InfoBarPiP):
 			self["Mlist"] = PanelList([], font0=24, font1=15, itemHeight=50)
 		self["Mlist"].l.setList(self.Mlist)
 		menu = 0
+		self["Mlist"].onSelectionChanged.append(self.selectionChanged)
 
 	def getCurrentEntry(self):
 		if self['Mlist'].l.getCurrentSelection():
 			selection = self['Mlist'].l.getCurrentSelection()[0]
 			if (selection[0] is not None):
 				return selection[0]
+
+	def selectionChanged(self):
+		item = self.getCurrentEntry()
 
 	def setWindowTitle(self):
 		self.setTitle(_("OpenAAF Panel"))
@@ -532,22 +538,30 @@ class KeymapSel(ConfigListScreen, Screen):
 		self.session = session
 		self.skinName = "SetupInfo"
 		Screen.setTitle(self, _("Keymap Selection") + "...")
+		self.setup_title =  _("Keymap Selection") + "..."
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["status"] = StaticText()
+		self['footnote'] = Label("")
+		self["description"] = Label("")
 		self["labelInfo"] = Label(_("Copy your keymap to\n/usr/share/enigma2/keymap.usr"))
 
 		usrkey = eEnv.resolve("${datadir}/enigma2/keymap.usr")
 		ntrkey = eEnv.resolve("${datadir}/enigma2/keymap.ntr")
+		u80key = eEnv.resolve("${datadir}/enigma2/keymap.u80")
 		self.actkeymap = self.getKeymap(config.usage.keymap.value)
 		keySel = [ ('keymap.xml',_("Default  (keymap.xml)"))]
 		if os.path.isfile(usrkey):
 			keySel.append(('keymap.usr',_("User  (keymap.usr)")))
 		if os.path.isfile(ntrkey):
 			keySel.append(('keymap.ntr',_("Neutrino  (keymap.ntr)")))
+		if os.path.isfile(u80key):
+			keySel.append(('keymap.u80',_("UP80  (keymap.u80)")))
 		if self.actkeymap == usrkey and not os.path.isfile(usrkey):
 			setDefaultKeymap()
 		if self.actkeymap == ntrkey and not os.path.isfile(ntrkey):
+			setDefaultKeymap()
+		if self.actkeymap == u80key and not os.path.isfile(u80key):
 			setDefaultKeymap()
 		self.keyshow = ConfigSelection(keySel)
 		self.keyshow.value = self.actkeymap
@@ -596,6 +610,13 @@ class KeymapSel(ConfigListScreen, Screen):
 	def getCurrentValue(self):
 		return str(self["config"].getCurrent()[1].getText())
 
+	def getCurrentDescription(self):
+		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
+
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
+
 	def saveAll(self):
 		config.usage.keymap.value = eEnv.resolve("${datadir}/enigma2/" + self.keyshow.value)
 		config.usage.keymap.save()
@@ -639,9 +660,12 @@ class RedPanel(ConfigListScreen, Screen):
 		self.session = session
 		self.skinName = "Setup"
 		Screen.setTitle(self, _("RedPanel") + "...")
+		self.setup_title =  _("RedPanel") + "..."
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["status"] = StaticText()
+		self['footnote'] = Label("")
+		self["description"] = Label(_(""))
 		self["labelExitsave"] = Label("[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save"))
 
 		self.onChangedEntry = [ ]
@@ -689,6 +713,13 @@ class RedPanel(ConfigListScreen, Screen):
 	def getCurrentValue(self):
 		return str(self["config"].getCurrent()[1].getText())
 
+	def getCurrentDescription(self):
+		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
+
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
+
 	def saveAll(self):
 		for x in self["config"].list:
 			x[1].save()
@@ -717,9 +748,12 @@ class YellowPanel(ConfigListScreen, Screen):
 		self.session = session
 		self.skinName = "Setup"
 		Screen.setTitle(self, _("Yellow Key Action") + "...")
+		self.setup_title = _("Yellow Key Action") + "..."
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["status"] = StaticText()
+		self['footnote'] = Label("")
+		self["description"] = Label("")
 		self["labelExitsave"] = Label("[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save"))
 
 		self.onChangedEntry = [ ]
@@ -766,6 +800,13 @@ class YellowPanel(ConfigListScreen, Screen):
 	def getCurrentValue(self):
 		return str(self["config"].getCurrent()[1].getText())
 
+	def getCurrentDescription(self):
+		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
+
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
+
 	def saveAll(self):
 		for x in self["config"].list:
 			x[1].save()
@@ -794,9 +835,12 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 		self.session = session
 		self.skinName = "Setup"
 		Screen.setTitle(self, _("Softcam-Panel Setup") + "...")
+		self.setup_title = _("Softcam-Panel Setup") + "..."
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["status"] = StaticText()
+		self['footnote'] = Label("")
+		self["description"] = Label("")
 		self["labelExitsave"] = Label("[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save"))
 
 		self.onChangedEntry = [ ]
@@ -851,6 +895,13 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 	def getCurrentValue(self):
 		return str(self["config"].getCurrent()[1].getText())
 
+	def getCurrentDescription(self):
+		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
+
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
+	
 	def saveAll(self):
 		if config.softcam.camstartMode.value == "0":
 			if os.path.exists("/etc/rc2.d/S20softcam"):
