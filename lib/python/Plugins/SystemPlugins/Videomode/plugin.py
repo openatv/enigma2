@@ -228,7 +228,7 @@ def videoSetupMain(session, **kwargs):
 	session.open(VideoSetup, video_hw)
 
 def startSetup(menuid):
-	if menuid != "system":
+	if menuid != "av":
 		return [ ]
 
 	return [(_("A/V settings"), videoSetupMain, "av_setup", 40)]
