@@ -67,7 +67,7 @@
 					<item level="2" text="Position setup" entryID="osdsetup" requires="OsdSetup"><screen module="OSD" screen="OSDSetup"/></item>
 					<item level="2" text="3D setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="OSD" screen="OSD3DSetupScreen"/></item>
 				</menu>
-				<item weight="13" level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
+				<!--<item weight="13" level="0" entryID="remote_setup"><setup id="remotesetup"/></item>-->
 				<item weight="14" level="0" entryID="usage_setup"><setup id="usage" /></item>
 				<item weight="15" entryID="lcd_setup" requires="Display"><setup level="1" id="lcd" /></item>
 				<item weight="16" level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
