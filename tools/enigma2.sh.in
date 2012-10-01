@@ -72,16 +72,7 @@ case $ret in
 		/sbin/reboot
 		;;
 	42)
-		if [ -f /media/hdd/var/lib/opkg/status -a -f /media/usb/var/lib/opkg/status ]; then
-			opkg --add-dest /:/ --add-dest /media/hdd:/media/hdd --add-dest /media/usb:/media/usb upgrade 2>&1 | tee /home/root/ipkgupgrade.log
-		elif [ -f /media/hdd/var/lib/opkg/status ]; then
-			opkg --add-dest /:/ --add-dest /media/hdd:/media/hdd upgrade 2>&1 | tee /home/root/ipkgupgrade.log
-		elif [ -f /media/usb/var/lib/opkg/status ]; then
-			opkg --add-dest /:/ --add-dest /media/usb:/media/usb upgrade 2>&1 | tee /home/root/ipkgupgrade.log
-		else
-			opkg upgrade 2>&1 | tee /home/root/ipkgupgrade.log
-		fi
-		/sbin/reboot
+		python upgrade.pyo
 		;;
 	*)
 		;;
