@@ -41,13 +41,13 @@ class EPGSelection(Screen, HelpableScreen):
 					<convert type="ServiceName">Name</convert>
 				</widget>
 				<widget name="list" position="340,80" size="640,54" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" itemHeight="27" zPosition="2"/>
-				<ePixmap pixmap="ViX_HD_Common/buttons/red.png" position="260,160" size="25,25" alphatest="blend" />
+				<ePixmap pixmap="skin_default/buttons/red.png" position="260,160" size="25,25" alphatest="blend" />
 				<widget name="key_red" position="300,164" zPosition="1" size="130,20" font="Regular; 20" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" />
-				<ePixmap pixmap="ViX_HD_Common/buttons/green.png" position="450,160" size="25,25" alphatest="blend" />
+				<ePixmap pixmap="skin_default/buttons/green.png" position="450,160" size="25,25" alphatest="blend" />
 				<widget name="key_green" position="490,164" zPosition="1" size="130,20" font="Regular; 20" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" />
-				<ePixmap pixmap="ViX_HD_Common/buttons/yellow.png" position="640,160" size="25,25" alphatest="blend" />
+				<ePixmap pixmap="skin_default/buttons/yellow.png" position="640,160" size="25,25" alphatest="blend" />
 				<widget name="key_yellow" position="680,164" zPosition="1" size="130,20" font="Regular; 20" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" />
-				<ePixmap pixmap="ViX_HD_Common/buttons/blue.png" position="830,160" size="25,25" alphatest="blend" />
+				<ePixmap pixmap="skin_default/buttons/blue.png" position="830,160" size="25,25" alphatest="blend" />
 				<widget name="key_blue" position="870,164" zPosition="1" size="150,20" font="Regular; 20" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" />
 			</screen>"""
 		GraphEPG = """
@@ -156,13 +156,13 @@ class EPGSelection(Screen, HelpableScreen):
 					<convert type="ServiceName">Name</convert>
 				</widget>
 				<widget name="list" position="160,160" size="500,45" backgroundColor="#41080808" foregroundColor="#cccccc" transparent="1" itemHeight="22" zPosition="4"/>
-				<ePixmap pixmap="ViX_HD_Common/buttons/red.png" position="80,210" size="25,25" alphatest="blend" zPosition="4" />
+				<ePixmap pixmap="skin_default/buttons/red.png" position="80,210" size="25,25" alphatest="blend" zPosition="4" />
 				<widget name="key_red" position="110,213" size="100,20" font="Regular; 17" halign="left" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" zPosition="4" />
-				<ePixmap pixmap="ViX_HD_Common/buttons/green.png" position="210,210" size="25,25" alphatest="blend" zPosition="4" />
+				<ePixmap pixmap="skin_default/buttons/green.png" position="210,210" size="25,25" alphatest="blend" zPosition="4" />
 				<widget name="key_green" position="240,213" size="100,20" font="Regular; 17" halign="left" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" zPosition="4" />
-				<ePixmap pixmap="ViX_HD_Common/buttons/yellow.png" position="340,210" size="25,25" alphatest="blend" zPosition="4" />
+				<ePixmap pixmap="skin_default/buttons/yellow.png" position="340,210" size="25,25" alphatest="blend" zPosition="4" />
 				<widget name="key_yellow" position="370,213" size="100,20" font="Regular; 17" halign="left" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" zPosition="4" />
-				<ePixmap pixmap="ViX_HD_Common/buttons/blue.png" position="470,210" size="25,25" alphatest="blend" zPosition="4" />
+				<ePixmap pixmap="skin_default/buttons/blue.png" position="470,210" size="25,25" alphatest="blend" zPosition="4" />
 				<widget name="key_blue" position="500,213" size="150,20" font="Regular; 17" halign="left" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" zPosition="4" />
 			</screen>"""
 		GraphEPG = """
