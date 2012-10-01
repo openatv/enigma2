@@ -18,7 +18,7 @@
 
 /************************************************/
 
-#define CRASH_EMAILADDR "vixlogs@world-of-satellite.com"
+#define CRASH_EMAILADDR "venton-crash@venton.de"
 #define INFOFILE "/maintainer.info"
 
 #define RINGBUFFER_SIZE 16384
@@ -174,7 +174,7 @@ void bsodFatal(const char *component)
 
 		XmlGenerator xml(f);
 
-		xml.open("openvix");
+        xml.open("ventonsupport");
 
 		xml.open("enigma2");
 		xml.string("crashdate", tm_str);
