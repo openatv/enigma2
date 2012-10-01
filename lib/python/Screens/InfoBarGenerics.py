@@ -43,7 +43,7 @@ from timer import TimerEntry
 
 from Tools import Directories, ASCIItranslit, Notifications
 
-from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
+from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, getBoxType
 
 from time import time, localtime, strftime
 from os import stat as os_stat, listdir as os_listdir, link as os_link, path as os_path, system as os_system, statvfs, remove as os_remove
@@ -2370,7 +2370,7 @@ class InfoBarTimeshift:
 		self.stopTimeshiftConfirmed(True, switchToLive)
 		ts = self.getTimeshift()
 		if ts and not ts.startTimeshift():
-			if (config.misc.boxtype.value == 'vuuno' or config.misc.boxtype.value == 'vuduo') and os_path.exists("/proc/stb/lcd/symbol_timeshift"):
+			if (getBoxType() == 'vuuno' or getBoxType() == 'vuduo') and os_path.exists("/proc/stb/lcd/symbol_timeshift"):
 				if self.session.nav.RecordTimer.isRecording():
 					open("/proc/stb/lcd/symbol_timeshift", "w").write("0")
 			self.pts_starttime = time()
@@ -3322,7 +3322,7 @@ class InfoBarTimeshift:
 			if seekable is not None:
 				seekable.seekTo(-90000) # seek approx. 1 sec before end
 		if back:
-			if config.misc.boxtype.value.startswith('et'):
+			if getBoxType().startswith('et'):
 					self.ts_rewind_timer.start(1000, 1)
 			else:
 					self.ts_rewind_timer.start(100, 1)

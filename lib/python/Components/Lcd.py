@@ -1,6 +1,6 @@
 from twisted.internet import threads
 from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
-from enigma import eDBoxLCD, eTimer
+from enigma import eDBoxLCD, eTimer, getBoxType
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
 import usb
@@ -72,7 +72,7 @@ class LCD:
 	LED_IOCTL_SET_DEFAULT = 0X13
 
 	def __init__(self):
-		if config.misc.boxtype.value == 'vuultimo':
+		if getBoxType() == 'vuultimo':
 			self.led_fd = open("/dev/dbox/oled0",'rw')
 
 	def __del__(self):
@@ -140,7 +140,7 @@ def standbyCounterChanged(configElement):
 	config.lcd.ledbrightnessdeepstandby.apply()
 
 def InitLcd():
-	if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
+	if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'gb800ue':
 		detected = False
 	else:
 		detected = eDBoxLCD.getInstance().detected()
@@ -215,7 +215,7 @@ def InitLcd():
 			config.lcd.repeat = ConfigNothing()
 			config.lcd.scrollspeed = ConfigNothing()
 
-		if config.misc.boxtype.value == 'vuultimo':
+		if getBoxType() == 'vuultimo':
 			config.lcd.ledblinkingtime = ConfigSlider(default = 5, increment = 1, limits = (0,15))
 			config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime);
 			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default = 1, increment = 1, limits = (0,15))
