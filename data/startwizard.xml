@@ -124,9 +124,6 @@ self.selectKey("RIGHT")
 from Components.NimManager import nimmanager
 self.condition = config.misc.startwizard.doservicescan.value and nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
 			</condition>
-			<code>
-self.hideRc()
-			</code>
 			<list>
 				<listentry caption="Yes, do an automatic scan now" step="scan" />
 				<listentry caption="Yes, do a manual scan now" step="manualscan" />
