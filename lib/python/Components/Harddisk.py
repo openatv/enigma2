@@ -138,11 +138,18 @@ class Harddisk:
 		return ret
 
 	def diskSize(self):
-		line = readFile(self.sysfsPath('size'))
+		cap = 0
 		try:
+			line = readFile(self.sysfsPath('size'))
 			cap = int(line)
 		except:
-			return 0;
+			dev = self.findMount()
+			if dev:
+				stat = statvfs(dev)
+				cap = int(stat.f_blocks * stat.f_bsize)
+				return cap / 1000 / 1000
+			else:
+				return cap
 		return cap / 1000 * 512 / 1000
 
 	def capacity(self):
@@ -171,7 +178,7 @@ class Harddisk:
 		dev = self.findMount()
 		if dev:
 			stat = statvfs(dev)
-			return (stat.f_bfree/1000) * (stat.f_bsize/1000)
+			return int((stat.f_bfree/1000) * (stat.f_bsize/1000))
 		return -1
 
 	def numPartitions(self):
