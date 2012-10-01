@@ -150,7 +150,7 @@ class Devices(Screen):
 		self.onLayoutFinish.append(self.populate)
 
 	def populate(self):
-		self.mountinfo = None
+		self.mountinfo = ''
 		self["actions"].setEnabled(False)
 		scanning = _("Wait please while scanning for devices...")
 		self["nims"].setText(scanning)
