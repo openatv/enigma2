@@ -2,7 +2,7 @@ from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Sources.StaticText import StaticText
-from Components.Harddisk import harddiskmanager
+from Components.Harddisk import harddiskmanager,Harddisk
 from Components.NimManager import nimmanager
 from Components.About import about
 from Components.config import config
@@ -16,6 +16,10 @@ from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
 
 from Tools.StbHardware import getFPVersion
+
+from os import statvfs, path, remove
+from time import sleep
+from re import search
 
 class About(Screen):
 	def __init__(self, session):
@@ -140,6 +144,7 @@ class Devices(Screen):
 		self["nims"] = StaticText()
 		self["hdd"] = StaticText()
 		self["mounts"] = StaticText()
+		self.list = []
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.populate2)
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
@@ -169,20 +174,57 @@ class Devices(Screen):
 			niminfo += nims[count]
 		self["nims"].setText(niminfo)
 
-		hddlist = harddiskmanager.HDDList()
-		hddinfo = ""
-		if hddlist:
-			for count in range(len(hddlist)):
-				if hddinfo:
-					hddinfo += "\n"
-				hdd = hddlist[count][1]
-				if int(hdd.free()) > 1024:
-					hddinfo += "%s (%s, %d GB %s)" % (hdd.model(), hdd.capacity(), hdd.free()/1024, _("free"))
+		self.list = []
+		list2 = []
+		f = open('/proc/partitions', 'r')
+		for line in f.readlines():
+			parts = line.strip().split()
+			if not parts:
+				continue
+			device = parts[3]
+ 			if not search('sd[a-z][1-9]',device):
+				continue
+			if device in list2:
+				continue
+
+			mount = '/dev/' + device
+			f = open('/proc/mounts', 'r')
+			for line in f.readlines():
+				if line.find(device) != -1:
+					parts = line.strip().split()
+					mount = str(parts[1])
+					break
+					continue
+			f.close()
+
+			if not mount.startswith('/dev/'):
+				size = Harddisk(device).diskSize()
+				free = Harddisk(device).free()
+
+				if ((float(size) / 1024) / 1024) >= 1:
+					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024),2)) + _("TB")
+				elif (size / 1024) >= 1:
+					sizeline = _("Size: ") + str(round((float(size) / 1024),2)) + _("GB")
+				elif size >= 1:
+					sizeline = _("Size: ") + str(size) + _("MB")
 				else:
-					hddinfo += "%s (%s, %d MB %s)" % (hdd.model(), hdd.capacity(), hdd.free(), _("free"))
-		else:
-			hddinfo = _("none")
-		self["hdd"].setText(hddinfo)
+					sizeline = _("Size: ") + _("unavailable")
+
+				if ((float(free) / 1024) / 1024) >= 1:
+					freeline = _("Fee: ") + str(round(((float(free) / 1024) / 1024),2)) + _("TB")
+				elif (free / 1024) >= 1:
+					freeline = _("Free: ") + str(round((float(free) / 1024),2)) + _("GB")
+				elif free >= 1:
+					freeline = _("Free: ") + free + _("MB")
+				else:
+					freeline = _("Free: ") + _("full")
+				self.list.append(mount +'\t'  + sizeline + ' \t' + freeline)
+			else:
+				self.list.append(mount +'\t'  + _('Not mounted'))
+
+			list2.append(device)
+		self.list = '\n'.join(self.list)
+		self["hdd"].setText(self.list)
 
 		f = open('/proc/mounts', 'r')
 		for line in f.readlines():
