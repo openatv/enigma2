@@ -7,6 +7,7 @@ def getVersionString():
 
 def getImageVersionString():
 	try:
+		version = 'n/a'
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		for x in lines:
@@ -31,6 +32,7 @@ def getKernelVersionString():
 
 def getBuildVersionString():
 	try:
+		version = 'n/a'
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		for x in lines:
@@ -44,6 +46,7 @@ def getBuildVersionString():
 
 def getLastUpdateString():
 	try:
+		lastupdated = 'n/a'
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		for x in lines:
@@ -67,6 +70,7 @@ def getLastUpdateString():
 
 def getDriversString():
 	try:
+		date = 'n/a'
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		for x in lines:
@@ -86,6 +90,7 @@ def getDriversString():
 
 def getImageTypeString():
 	try:
+		image_type = 'n/a'
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		for x in lines:
@@ -103,6 +108,7 @@ def getImageTypeString():
 
 def getImageDistroString():
 	try:
+		distro = 'n/a'
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		file.close()
