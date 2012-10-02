@@ -23,16 +23,9 @@ def mountpoint_choosen(option):
 	list = [ (r.description, r, res[r], session) for r in res ]
 
 	if not list:
-		if mountpoint != "/":
-			from Components.Harddisk import harddiskmanager
-			p = harddiskmanager.getPartitionbyMountpoint(mountpoint)
-			if p is not None and p.uuid is None: #ignore partitions with unknown or no filesystem uuid
-				print "ignore", mountpoint, "because we have no uuid"
-				return
-
 		from Screens.MessageBox import MessageBox
 		if access(mountpoint, F_OK|R_OK):
-			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_ERROR)
+			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_ERROR, simple = True, timeout = 5)
 		else:
 			print "ignore", mountpoint, "because its not accessible"
 		return
