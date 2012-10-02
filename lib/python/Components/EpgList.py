@@ -442,7 +442,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			else:
 				itemHeight = 32
 			if itemHeight < 25:
-				itemHeight = 25
+				itemHeight = 20
 			self.l.setItemHeight(int(itemHeight))
 
 	def setServiceFontsize(self):
