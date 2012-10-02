@@ -1,7 +1,6 @@
 from Plugins.Plugin import PluginDescriptor
 from Components.Scanner import scanDevice
-from Screens.InfoBar import InfoBar
-import os
+from os import access, F_OK, R_OK
 
 def execute(option):
 	print "execute", option
@@ -24,22 +23,36 @@ def mountpoint_choosen(option):
 	list = [ (r.description, r, res[r], session) for r in res ]
 
 	if not list:
+		if mountpoint != "/":
+			from Components.Harddisk import harddiskmanager
+			p = harddiskmanager.getPartitionbyMountpoint(mountpoint)
+			if p is not None and p.uuid is None: #ignore partitions with unknown or no filesystem uuid
+				print "ignore", mountpoint, "because we have no uuid"
+				return
+
 		from Screens.MessageBox import MessageBox
-		if os.access(mountpoint, os.F_OK|os.R_OK):
-			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_ERROR, simple = True, timeout = 5)
+		if access(mountpoint, F_OK|R_OK):
+			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_ERROR)
 		else:
 			print "ignore", mountpoint, "because its not accessible"
 		return
-
-	session.openWithCallback(execute, ChoiceBox,
+	
+	session.openWithCallback(execute, ChoiceBox, 
 		title = _("The following files were found..."),
 		list = list)
 
 def scan(session):
 	from Screens.ChoiceBox import ChoiceBox
-	parts = [ (r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False) if os.access(r.mountpoint, os.F_OK|os.R_OK) ]
+
+	from Components.Harddisk import harddiskmanager
+
+	parts = [ (r.description, r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
 	parts.append( (_("Memory") + "\t/tmp", "/tmp", session) )
-	session.openWithCallback(mountpoint_choosen, ChoiceBox, title = _("Please Select Medium to be Scanned"), list = parts)
+	if parts:
+		for x in parts:
+			if not access(x[1], F_OK|R_OK):
+				parts.remove(x)	
+		session.openWithCallback(mountpoint_choosen, ChoiceBox, title = _("Please Select Medium to be Scanned"), list = parts)
 
 def main(session, **kwargs):
 	scan(session)
@@ -50,14 +63,16 @@ def menuEntry(*args):
 from Components.Harddisk import harddiskmanager
 
 def menuHook(menuid):
-	if menuid != "mainmenu":
+	if menuid != "mainmenu": 
 		return [ ]
+
 	from Tools.BoundFunction import boundFunction
 	return [(("%s (files)") % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug_%s" % r.mountpoint, None) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
 
 global_session = None
 
 def partitionListChanged(action, device):
+	from Screens.InfoBar import InfoBar
 	if InfoBar.instance:
 		if InfoBar.instance.execing:
 			if action == 'add' and device.is_hotplug:
