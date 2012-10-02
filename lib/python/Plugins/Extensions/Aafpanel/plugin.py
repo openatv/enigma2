@@ -42,7 +42,8 @@ config.plugins.aafpanel_redpanel.enabledlong = ConfigYesNo(default=False)
 config.plugins.aafpanel_yellowkey = ConfigSubsection()
 config.plugins.aafpanel_yellowkey.list = ConfigSelection([('0',_("Audio Selection")),('1',_("Default (Timeshift)")), ('2',_("Toggle Pillarbox <> Pan&Scan"))])
 config.plugins.showaafpanelextensions = ConfigYesNo(default=False)
-
+config.plugins.aafpanel_frozencheck = ConfigSubsection()
+config.plugins.aafpanel_frozencheck.list = ConfigSelection([('0',_("Off")),('1',_("1 min.")), ('5',_("5 min.")),('10',_("10 min.")),('15',_("15 min.")),('30',_("30 min."))])
 	
 if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
 	try:
@@ -55,6 +56,7 @@ from Plugins.Extensions.Aafpanel.ScriptRunner import *
 from Plugins.Extensions.Aafpanel.MountManager import *
 from Plugins.Extensions.Aafpanel.SoftcamPanel import *
 from Plugins.Extensions.Aafpanel.CamStart import *
+from Plugins.Extensions.Aafpanel.CamCheck import *
 from Plugins.Extensions.Aafpanel.sundtek import *
 from Plugins.Extensions.Aafpanel.SwapManager import Swap, SwapAutostart
 from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin
@@ -139,6 +141,8 @@ def Apanel(menuid, **kwargs):
 		return []
 
 def camstart(reason, **kwargs):
+	if not config.plugins.aafpanel_frozencheck.list.value == '0':
+		CamCheck()
 	try:
 		open("/proc/stb/video/alpha", "w").write(str(config.osd.alpha.value))
 		if config.softcam.camstartMode.value == "0":
@@ -146,7 +150,6 @@ def camstart(reason, **kwargs):
 			if timerInstance is None:
 				timerInstance = CamStart(None)
 			timerInstance.startTimer()
-			#timerInstance.timerEvent()
 	except:
 		pass
 
@@ -842,6 +845,7 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 		self['footnote'] = Label("")
 		self["description"] = Label("")
 		self["labelExitsave"] = Label("[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save"))
+		CamCheckStop()
 
 		self.onChangedEntry = [ ]
 		self.list = []
@@ -874,6 +878,7 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 			self.list.append(getConfigListEntry(_("Stop check when cam is running"), config.softcam.restartRunning))
 		self.list.append(getConfigListEntry(_("Show CCcamInfo in Extensions Menu"), config.cccaminfo.showInExtensions))
 		self.list.append(getConfigListEntry(_("Show OscamInfo in Extensions Menu"), config.oscaminfo.showInExtensions))
+		self.list.append(getConfigListEntry(_("Frozen Cam Check"), config.plugins.aafpanel_frozencheck.list))
 		
 		self["config"].list = self.list
 		self["config"].setList(self.list)
@@ -918,20 +923,25 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 
 	def keySave(self):
 		self.saveAll()
-		self.close()
+		self.doClose()
 
 	def cancelConfirm(self, result):
 		if not result:
 			return
 		for x in self["config"].list:
 			x[1].cancel()
-		self.close()
+		self.doClose()
 
 	def keyCancel(self):
 		if self["config"].isChanged():
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
 		else:
-			self.close()
+			self.doClose()
+
+	def doClose(self):
+		if not config.plugins.aafpanel_frozencheck.list.value == '0':
+			CamCheck()
+		self.close()
 
 class Info(Screen):
 	def __init__(self, session, info):
