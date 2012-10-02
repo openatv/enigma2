@@ -131,6 +131,15 @@ def loadResumePoints():
 		print "[InfoBar] Failed to load resumepoints:", ex
 		return {}
 
+def ToggleVideo():
+	mode = open("/proc/stb/video/policy").read()[:-1]
+	if mode == "letterbox":
+		open("/proc/stb/video/policy", "w").write("panscan")
+	elif mode == "panscan":
+		open("/proc/stb/video/policy", "w").write("letterbox")
+	else:
+		open("/proc/stb/video/policy", "w").write("panscan") # if current policy is not panscan or letterbox, set to panscan
+
 resumePointCache = loadResumePoints()
 resumePointCacheLast = int(time())
 
@@ -1654,7 +1663,7 @@ class InfoBarSeek:
 		self["SeekActions"] = InfoBarSeekActionMap(self, actionmap,
 			{
 				"playpauseService": self.playpauseService,
-				"pauseService": (self.pauseService, _("pause")),
+				"pauseService": (self.pauseServiceYellow, _("pause")),
 				"unPauseService": (self.unPauseService, _("continue")),
 
 				"seekFwd": (self.seekFwd, _("skip forward")),
@@ -1669,7 +1678,7 @@ class InfoBarSeek:
 		self["SeekActionsPTS"] = InfoBarSeekActionMap(self, "InfobarSeekActionsPTS",
 			{
 				"playpauseService": self.playpauseService,
-				"pauseService": (self.pauseService, _("pause")),
+				"pauseService": (self.pauseServiceYellow, _("pause")),
 				"unPauseService": (self.unPauseService, _("continue")),
 
 				"seekFwd": (self.seekFwd, _("skip forward")),
@@ -1863,7 +1872,17 @@ class InfoBarSeek:
 	def pauseService(self):
 		if self.seekstate != self.SEEK_STATE_EOF:
 			self.lastseekstate = self.seekstate
-		self.setSeekState(self.SEEK_STATE_PAUSE);
+		self.setSeekState(self.SEEK_STATE_PAUSE)
+
+	def pauseServiceYellow(self):
+		if config.plugins.aafpanel_yellowkey.list.value == '0':
+			self.audioSelection()
+		elif config.plugins.aafpanel_yellowkey.list.value == '2':
+			ToggleVideo()
+		else:
+			if self.seekstate != self.SEEK_STATE_EOF:
+				self.lastseekstate = self.seekstate
+			self.setSeekState(self.SEEK_STATE_PAUSE)
 
 	def unPauseService(self):
 		if self.seekstate == self.SEEK_STATE_PLAY:
@@ -2534,12 +2553,16 @@ class InfoBarTimeshift:
 	def selectYellowkeyAction(self):
 		if config.plugins.aafpanel_yellowkey.list.value == '0':
 			self.audioSelection()
-		else:
+		elif config.plugins.aafpanel_yellowkey.list.value == '1':
 			self.startTimeshift()
+		else:
+			ToggleVideo()
 
 	def selectYellowkeyTimeshiftEndAndPause(self):
 		if config.plugins.aafpanel_yellowkey.list.value == '0':
 			self.audioSelection()
+		elif config.plugins.aafpanel_yellowkey.list.value == '2':
+			ToggleVideo()
 		else:
 			self.activateTimeshiftEndAndPause()
 
@@ -4327,13 +4350,7 @@ class InfoBarAudioSelection:
 			from Screens.AudioSelection import AudioSelection
 			self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 		elif config.plugins.aafpanel_yellowkey.list.value == '2':
-			mode = open("/proc/stb/video/policy").read()[:-1]
-			if mode == "letterbox":
-				open("/proc/stb/video/policy", "w").write("panscan")
-			elif mode == "panscan":
-				open("/proc/stb/video/policy", "w").write("letterbox")
-			else:
-				open("/proc/stb/video/policy", "w").write("panscan") # if current policy is not panscan or letterbox, set to panscan
+			ToggleVideo()
 		else:
 			try:
 				self.startTimeshift()
