@@ -214,7 +214,7 @@ class Devices(Screen):
 				elif (free / 1024) >= 1:
 					freeline = _("Free: ") + str(round((float(free) / 1024),2)) + _("GB")
 				elif free >= 1:
-					freeline = _("Free: ") + free + _("MB")
+					freeline = _("Free: ") + str(free) + _("MB")
 				else:
 					freeline = _("Free: ") + _("full")
 				self.list.append(mount +'\t'  + sizeline + ' \t' + freeline)
