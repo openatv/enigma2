@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 16:57+0100\n"
-"PO-Revision-Date: 2012-09-30 00:52-0000\n"
-"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
+"POT-Creation-Date: 2012-10-02 20:54+0100\n"
+"PO-Revision-Date: 2012-10-03 09:11+0100\n"
+"Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: Deutsch <> j-ot&Trial\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -680,6 +680,13 @@ msgstr "Erweiterte Bildeinstellungen"
 msgid "After event"
 msgstr "Nach dem Event"
 
+msgid ""
+"After the start wizard is completed, you need to protect single services. "
+"Refer to your STB_BOX's manual on how to do that."
+msgstr ""
+"Wenn der Assistent beendet wurde müssen einzelne Sender geschützt werden. "
+"Schau in das Handbuch der STB_BOX um zu erfahren wie es geht."
+
 msgid "Album"
 msgstr "Album"
 
@@ -1263,7 +1270,7 @@ msgid "Channel Selection Configuration"
 msgstr "Senderliste Einstellungen"
 
 msgid "Channel list context menu"
-msgstr ""
+msgstr "Senderliste Kontextmenü"
 
 msgid "Channel list on mode change"
 msgstr "Senderliste bei Moduswechsel"
@@ -1370,18 +1377,18 @@ msgid "Choose the location for crash and debuglogs."
 msgstr "Wähle den Speicherort für Crash- und Debug-Logs"
 
 msgid ""
-"Choose the location where the EPG data will be stored when the GigaBlue HD "
-"800 Solo is shut down. The location must be available at boot time."
+"Choose the location where the EPG data will be stored when the STB_BOX is "
+"shut down. The location must be available at boot time."
 msgstr ""
-"Wähle den Speicherort wo die EPG Daten gespeichert werden wenn die STB_BOX "
-"ausgeschaltet wird. Dieser Ort muss beim Booten verfügbar sein."
+"Wähle einen Ort wo die EPG Daten gespeichert werden wenn die STB_BOX "
+"ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein."
 
 msgid ""
-"Choose the name of the file that holds the EPG data when the GigaBlue HD 800 "
-"Solo is shut down. This can be handy to differentiate between several boxes."
+"Choose the name of the file that holds the EPG data when the STB_BOX is shut "
+"down. This can be handy to differentiate between several boxes."
 msgstr ""
-"Wähle den Dateinamen für die EPG Datei wenn die STB_BOX ausgeschaltet wird. "
-"Dies ist nützlich wenn mehrere Boxen den selben Speicherort benutzen."
+"Wähle den Dateinamen für die EPG-Daten wenn die STB_BOX ausgeschaltetet "
+"wird. Das kann nützlich sein wenn mehrere Boxen verwendet werden."
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Wähle das Zeitraster auf das die Grafiken gerundet werden."
@@ -1508,7 +1515,7 @@ msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "Komplex (erlaubt Mischen versch. Ton-u. Bildformate)"
 
 msgid "Composition of the recording filenames"
-msgstr "Zusammensetzung des Dateinamens von Aufnahme"
+msgstr "Zusammensetzung des Dateinamens von Aufnahmen"
 
 #, python-format
 msgid "Configfile %s saved."
@@ -1841,7 +1848,7 @@ msgid "Cut"
 msgstr "Schneiden"
 
 msgid "Cutlist editor"
-msgstr ""
+msgstr "Schnitteditor"
 
 msgid "Cutlist editor..."
 msgstr "Schnitteditor..."
@@ -2191,6 +2198,9 @@ msgstr "Eine weitere manuelle Suche durchführen?"
 msgid "Do you want to download the image to %s ?"
 msgstr "Das Image nach %s herunterladen?"
 
+msgid "Do you want to enable the parental control feature on your STB_BOX?"
+msgstr "Soll der Jugendschutz bei der STB_BOX aktiviert werden?"
+
 msgid "Do you want to install a channel list?"
 msgstr "Solle eine Senderliste installiert werden?"
 
@@ -2418,7 +2428,7 @@ msgstr ""
 "werden Zusatzinformationen angezeigt. Skin muss es unterstützen."
 
 msgid "Enable freesat EPG"
-msgstr "freesat EPG aktivieren"
+msgstr "Freesat EPG aktivieren"
 
 msgid "Enable hearing impaired subtitles"
 msgstr "Untertitel für Hörgeschädigte aktivieren"
@@ -2699,6 +2709,9 @@ msgstr "Schnell Zeitraum"
 msgid "Favourites"
 msgstr "Favoriten"
 
+msgid "Fee: "
+msgstr ""
+
 msgid "File appears to be busy.\n"
 msgstr "Die Datei ist gerade in Verwendung.\n"
 
@@ -2776,6 +2789,9 @@ msgstr "Freier Speicher:"
 msgid "Free:"
 msgstr "Frei:"
 
+msgid "Free: "
+msgstr ""
+
 msgid "French"
 msgstr "Französisch"
 
@@ -2806,6 +2822,9 @@ msgstr "Frontprozessor-Version: %d"
 
 msgid "Ftpd service type: Vsftpd server"
 msgstr "FTPD Service: VSFTP Server"
+
+msgid "GB"
+msgstr ""
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
@@ -2850,27 +2869,6 @@ msgstr "Holen der Programminformationen gescheitert!"
 
 msgid "Getting plugin information. Please wait..."
 msgstr "Lade Plugin-Informationen. Bitte warten..."
-
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX erweiterte Fernbedienung (native)"
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "Daten-DVD im STB_BOX Format (HDTV-kompatibel)"
-
-msgid "STB_BOX front panel"
-msgstr "STB_BOX Frontpaneel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX IR Tastatur"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX IR Maus"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX Fernbedienung (native)"
-
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX Software, da Aktualisierungen verfügbar sind."
 
 msgid "Go down the list"
 msgstr "In der Liste runter gehen"
@@ -3673,6 +3671,9 @@ msgstr "Längengrad"
 msgid "MAC:"
 msgstr ""
 
+msgid "MB"
+msgstr ""
+
 msgid "MORE"
 msgstr "MEHR"
 
@@ -4265,6 +4266,9 @@ msgstr ""
 "Freier Speicher: %s MB\n"
 "Pfad: %s"
 
+msgid "Not mounted"
+msgstr "Nicht verbunden"
+
 msgid "Not-Associated"
 msgstr "Nicht verbunden"
 
@@ -4484,7 +4488,7 @@ msgid "Parental control"
 msgstr "Jugendschutz"
 
 msgid "Parental control editor"
-msgstr ""
+msgstr "Jugendschutz Editor"
 
 msgid "Parental control services Editor"
 msgstr "Jugendschutz-Sendereditor"
@@ -4628,6 +4632,12 @@ msgstr "Bitte Medium zum Scannen auswählen"
 
 msgid "Please add titles to the compilation."
 msgstr "Bitte füge Titel zur Zusammenstellung hinzu."
+
+msgid ""
+"Please be aware, that anyone can disable the parental control, if you have "
+"not set a PIN."
+msgstr ""
+"Bitte beachten: Ohne PIN kann jeder den Jugendschutz wieder deaktivieren."
 
 msgid "Please change recording endtime"
 msgstr "Bitte Aufnahmeendzeit ändern"
@@ -5035,10 +5045,10 @@ msgid "Providers: "
 msgstr "Anbieter:"
 
 msgid "Put TV in standby"
-msgstr "Fernseher in den Bereitschaft versetzen"
+msgstr "Fernseher in Bereitschaft versetzen"
 
 msgid "Put your STB_BOX in standby"
-msgstr "A/V-Receiver in den Bereitschaft versetzen"
+msgstr "A/V-Receiver in Bereitschaft versetzen"
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend für /tmp/mmi.socket"
@@ -6253,7 +6263,7 @@ msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Zeige oder Verstecke erweiterte Beschreibung (skinabhängig)."
 
 msgid "Show picon background colour"
-msgstr "Hintergrundfarbe von PIcon zeigen"
+msgstr "Hintergrundfarbe von PIcon"
 
 msgid "Show positioner movement"
 msgstr "Zeige Rotorbewegung"
@@ -6349,6 +6359,9 @@ msgstr "Einzelnen Transponder"
 
 msgid "Singlestep (GOP)"
 msgstr "Einzelschritt (GOP)"
+
+msgid "Size: "
+msgstr "Größe:"
 
 msgid "Skin Setting"
 msgstr "Skinauswahl"
@@ -6711,6 +6724,9 @@ msgstr "System"
 msgid "System: "
 msgstr ""
 
+msgid "TB"
+msgstr ""
+
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr "ÜBERSETZER INFO"
@@ -6792,12 +6808,12 @@ msgstr ""
 "Drücke OK zum Fortfahren."
 
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready for use.\n"
-"Press OK to start using your receiver."
+"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
+"Please press OK to start using your STB_BOX."
 msgstr ""
-"Danke das Du den Assistenten beutzt hast. Deine STB_BOX ist jetzt "
+"Danke für die Benutzung des Assistenten. Die STB_BOX ist jetzt "
 "einsatzbereit.\n"
-"Drücke OK um die STB_BOX zu benutzen."
+"Drücke OK um die STB_BOX jetzt zu benutzen."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -6835,12 +6851,6 @@ msgid ""
 msgstr ""
 "Das Dateisystem vom Timeshift-Verzeichnis unterstützt keine Hardlinks.\n"
 "Stelle sicher das es mit EXT2/3/4 formatiert ist!"
-
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr "Die STB_BOX liest die EPG Daten alle x Stunden."
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr "Die STB_BOX speichert die EPG alle x Stunden."
 
 msgid ""
 "The IMDb plugin is not installed!\n"
@@ -6899,6 +6909,12 @@ msgid ""
 msgstr ""
 "Die Benutzeroberfläche der STB_BOX startet\n"
 "wegen eines Fehler in mytest.py neu"
+
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr "Die STB_BOX liest die EPG Daten alle x Stunden."
+
+msgid "The STB_BOX stores the EPG data every (hours)."
+msgstr "Die STB_BOX speichert die EPG alle x Stunden."
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr ""
@@ -7240,8 +7256,8 @@ msgid ""
 "If you already have a prepared bootable USB stick, please insert it now. "
 "Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
-"Dieses Plugin erzeugt einen USB-Stick, mit dessen Hilfe die Firmware der "
-"STB_BOX aktualisiert werden kann, ohne dass dafür eine Netzwerk- oder WLAN-"
+"Dieses Plugin erzeugt einen USB-Stick, mit dessen Hilfe die Firmware der Vu+ "
+"Ultimo aktualisiert werden kann, ohne dass dafür eine Netzwerk- oder WLAN-"
 "Verbindung notwendig ist. Zuerst muss ein USB-Stick vorbereitet und "
 "bootfähig gemacht werden. Im nächsten Schritt kann eine NFI-Imagedatei vom "
 "Update-Server heruntergeladen und auf diesem Stick gespeichert werden.Wenn "
@@ -7754,9 +7770,11 @@ msgid "Use power measurement"
 msgstr "Stromaufnahme messen"
 
 msgid ""
-"Use power measurement to detect when the rotor stops turning (if your "
-"STB_BOX supports that)"
+"Use power measurement to detect when the rotor stops turning (if your Vu+ "
+"Ultimo supports that)"
 msgstr ""
+"Benutze Strommessung um zu erkennen wenn der Rotor gestoppt ist (wenn es die "
+"STB_BOX unterstützt)"
 
 msgid "Use slim screen"
 msgstr "Benutze minimale Darstellung"
@@ -7789,7 +7807,8 @@ msgid "Use the Netmed EPG when tuned to a service."
 msgstr "Netmed EPG benutzen wenn es gesendet wird."
 
 msgid "Use the Networkwizard to configure selected network adapter"
-msgstr "Benutze den NetworkWizard um den gewählten Adapter zu konfigurieren"
+msgstr ""
+"Benutze den Netzwerkassistenten um den gewählten Adapter zu konfigurieren"
 
 msgid "Use the Networkwizard to configure your Network\n"
 msgstr "Benutze den Netzwerkassistenten um das Netzwerk zu konfigurieren\n"
@@ -8023,6 +8042,27 @@ msgstr "Spannungs-Modus"
 msgid "Volume"
 msgstr "Lautstärke"
 
+msgid "STB_BOX advanced remote control (native)"
+msgstr "STB_BOX erweiterte Fernbedienung (native)"
+
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "Daten-DVD im STB_BOX Format (HDTV-kompatibel)"
+
+msgid "STB_BOX front panel"
+msgstr "STB_BOX Frontpaneel"
+
+msgid "STB_BOX ir keyboard"
+msgstr "STB_BOX IR Tastatur"
+
+msgid "STB_BOX ir mouse"
+msgstr "STB_BOX IR Maus"
+
+msgid "STB_BOX remote control (native)"
+msgstr "STB_BOX Fernbedienung (native)"
+
+msgid "STB_BOX software because updates are available."
+msgstr "STB_BOX Software, da Aktualisierungen verfügbar sind."
+
 msgid "W"
 msgstr "W"
 
@@ -8116,24 +8156,28 @@ msgid ""
 "Welcome.\n"
 "\n"
 "If you want to connect your STB_BOX to the Internet, this wizard will guide "
-"you through the basic network setup of your GigaBlue HD 800 Solo.\n"
+"you through the basic network setup of your STB_BOX.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
 "Willkommen.\n"
 "\n"
-"Wenn Du die STB_BOX mit dem Internet verbinden möchtest, wird dieser "
-"Assistent durch die grundlegenden Netzwerkeinstellungen führen.\n"
+"Wenn die STB_BOX mit dem Internet verbunden werden soll so hilft dieser "
+"Assistent bei den Grundeinstellungen für das Netzwerk.\n"
 "\n"
-"Drücke OK um Ihr Netzwerk zu konfigurieren"
+"Drücke OK um die Netzwerk Einstellungen vorzunehmen."
 
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your GigaBlue HD "
-"800 Solo.\n"
+"This start wizard will guide you through the basic setup of your Vu+ "
+"Ultimo.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
+"Willkommen.\n"
+"\n"
+"Dieser Start-Assistent führt durch die Grundeinstellungen der STB_BOX.\n"
+"Drücke OK um zum nächsten Schritt zu gelangen."
 
 msgid "Welcome..."
 msgstr "Willkommen..."
@@ -8516,8 +8560,21 @@ msgstr ""
 "beschrieben durchgeführt wurde, wird die neue Firmware fragen, ob die "
 "Einstellungen wiederhergestellt werden sollen."
 
+msgid ""
+"You need to set a PIN code and hide it from your children.\n"
+"\n"
+"Do you want to set the pin now?"
+msgstr ""
+"Es muss ein PIN vergeben und vor den Kindern versteckt werden.\n"
+"\n"
+"Soll der PIN jetzt gesetzt werden?"
+
 msgid "You system does not support ext4"
 msgstr "Ihr System unterstützt nicht das ext4 Dateisystem"
+
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr ""
+"Deine STB_BOX wird neu Starten wenn Du OK auf der Fernbedienung drückst."
 
 msgid ""
 "Your STB_BOX is not connected to the internet, please check your network "
@@ -8596,10 +8653,6 @@ msgid ""
 msgstr ""
 "Deine STB_BOX wird nach entfernen des Services neu gestartet\n"
 "Service jetzt entfernen?"
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr ""
-"Deine STB_BOX wird neu Starten wenn Du OK auf der Fernbedienung drückst."
 
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
@@ -9203,6 +9256,9 @@ msgstr "frei"
 
 msgid "free diskspace"
 msgstr "freier Festplattenspeicher"
+
+msgid "full"
+msgstr "voll"
 
 msgid "full transparency"
 msgstr "volle Transparenz"
@@ -9982,6 +10038,9 @@ msgstr "uShare Einstellungen"
 
 msgid "uShare setup"
 msgstr "uShare Einstellungen"
+
+msgid "unavailable"
+msgstr "nicht verfügbar"
 
 msgid "unconfirmed"
 msgstr "Nicht bestätigt"
