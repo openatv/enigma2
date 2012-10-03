@@ -514,8 +514,6 @@ class InfoBarChannelSelection:
 			{
 				"switchChannelUp": (self.switchChannelUp, _("open servicelist(up)")),
 				"switchChannelDown": (self.switchChannelDown, _("open servicelist(down)")),
-				"LeftPressed": self.LeftPressed,
-				"RightPressed": self.RightPressed,
 				"ChannelPlusPressed": self.ChannelPlusPressed,
 				"ChannelMinusPressed": self.ChannelMinusPressed,
 				"zapUp": (self.zapUp, _("previous channel")),
@@ -526,23 +524,6 @@ class InfoBarChannelSelection:
 				"openSatellites": (self.openSatellites, _("open Satellites")),
 			})
 
-	def LeftPressed(self):
-		if config.vixsettings.QuickEPG_mode.value == "3":
-			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-				self.secondInfoBarScreen.hide()
-				self.secondInfoBarWasShown = False
-			self.openInfoBarEPG()
-		else:
-			self.zapUp()
-
-	def RightPressed(self):
-		if config.vixsettings.QuickEPG_mode.value == "3":
-			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-				self.secondInfoBarScreen.hide()
-				self.secondInfoBarWasShown = False
-			self.openInfoBarEPG()
-		else:
-			self.zapDown()
 
 	def ChannelPlusPressed(self):
 		if config.usage.channelbutton_mode.value == "0":
