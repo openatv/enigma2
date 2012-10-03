@@ -39,8 +39,7 @@ from Components.config import config, configfile, ConfigText, ConfigYesNo, Confi
 InitFallbackFiles()
 
 profile("config.misc")
-from Tools.StbHardware import getBoxtype
-config.misc.boxtype = ConfigText(default = getBoxtype())
+config.misc.boxtype = ConfigText(default = enigma.getBoxType())
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
 config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
@@ -487,7 +486,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 
-	if config.misc.boxtype.value == 'odinm9' or config.misc.boxtype.value == 'ventonhdx':
+	if getBoxType() == 'odinm9' or getBoxType() == 'ventonhdx':
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -502,7 +501,7 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 
-	if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo':
+	if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo':
 		from enigma import evfd, eConsoleAppContainer
 		try:
 			cmd = 'vfdctl "    openaaf starting e2"; vfdctl -a'
@@ -519,7 +518,7 @@ def runScreenTest():
 	profile("wakeup")
 	from time import time, strftime, localtime
 	from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime, setRTCoffset
-	if config.misc.boxtype.value.startswith('gb'):
+	if getBoxType().startswith('gb'):
 		setRTCoffset()
 	#get currentTime
 	nowTime = time()
@@ -612,7 +611,7 @@ import Components.Lcd
 Components.Lcd.InitLcd()
 Components.Lcd.IconCheck()
 # Disable internal clock vfd for Venton-HD1 until we can adjust it for standby
-if config.misc.boxtype.value == 'ventonhdx':
+if getBoxType() == 'ventonhdx':
 	try:
 		f = open("/proc/stb/fp/clock_enable", "r").readline()[:-1]
 		if f != '0':

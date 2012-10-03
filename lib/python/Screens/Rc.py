@@ -3,6 +3,7 @@ from Tools.Directories import resolveFilename, SCOPE_SKIN
 from xml.etree.ElementTree import ElementTree
 from Components.config import config, ConfigInteger
 from Components.RcModel import rc_model
+from enigma import getBoxType
 
 config.misc.rcused = ConfigInteger(default = 1)
 
@@ -29,7 +30,7 @@ class Rc:
 		self.onShown.append(self.initRc)
 
 	def initRc(self):
-		if config.misc.boxtype.value == 'ventonhdx':
+		if getBoxType() == 'ventonhdx':
 			self["rc"].setPixmapNum(config.misc.rcused.value)
 		else:
 			if self.isDefaultRc:

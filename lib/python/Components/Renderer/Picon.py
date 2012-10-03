@@ -1,6 +1,6 @@
 import os
 from Renderer import Renderer
-from enigma import ePixmap
+from enigma import ePixmap, getBoxType
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
@@ -137,7 +137,7 @@ class Picon(Renderer):
 				pngname = self.nopicon
 			if self.pngname != pngname:
 				if pngname:
-					if not config.misc.boxtype.value.startswith("venton"):
+					if not getBoxType().startswith("venton"):
 						self.instance.setScale(1)
 					self.instance.setPixmapFromFile(pngname)
 					self.instance.show()

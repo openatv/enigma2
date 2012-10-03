@@ -2,20 +2,23 @@ from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Sources.StaticText import StaticText
-from Components.Harddisk import harddiskmanager
+from Components.Harddisk import harddiskmanager,Harddisk
 from Components.NimManager import nimmanager
 from Components.About import about
-from Components.config import config
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
 from Screens.SoftwareUpdate import SoftwareUpdateChanges
-from enigma import eTimer
+from enigma import eTimer, getBoxType
 
 from Plugins.SystemPlugins.WirelessLan.Wlan import iWlan, iStatus, getWlanConfigName
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
 
 from Tools.StbHardware import getFPVersion
+
+from os import statvfs, path, remove
+from time import sleep
+from re import search
 
 class About(Screen):
 	skin = """
@@ -48,51 +51,51 @@ class About(Screen):
 		self["lab1"] = StaticText(_("openAAF"))
 		self["lab2"] = StaticText(_("By AAF Image Team"))
 		self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
-		if config.misc.boxtype.value == 'vuuno':
+		if getBoxType() == 'vuuno':
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
 			AboutText = _("Hardware:") + " Vu+ Uno\n"
-		elif config.misc.boxtype.value == 'vuultimo':
+		elif getBoxType() == 'vuultimo':
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Ultimo")
 			AboutText = _("Hardware:") + " Vu+ Ultimo\n"
-		elif config.misc.boxtype.value == 'vusolo':
+		elif getBoxType() == 'vusolo':
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo")
 			AboutText = _("Hardware:") + " Vu+ Solo\n"
-		elif config.misc.boxtype.value == 'vuduo':
+		elif getBoxType() == 'vuduo':
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo")
 			AboutText = _("Hardware:") + " Vu+ Duo\n"
-		elif config.misc.boxtype.value == 'et4x00':
+		elif getBoxType() == 'et4x00':
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET4x00 Series")
 			AboutText = _("Hardware:") + "  Xtrend ET4x00 Series\n"	
-		elif config.misc.boxtype.value == 'et5x00':
+		elif getBoxType() == 'et5x00':
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET5x00 Series")
 			AboutText = _("Hardware:") + "  Xtrend ET5x00 Series\n"
-		elif config.misc.boxtype.value == 'et6x00':
+		elif getBoxType() == 'et6x00':
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET6x00 Series")
 			AboutText = _("Hardware:") + "  Xtrend ET6x00 Series\n"
-		elif config.misc.boxtype.value == 'et9x00':
+		elif getBoxType() == 'et9x00':
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
 			AboutText = _("Hardware:") + " Xtrend ET9x00 Series\n"
-		elif config.misc.boxtype.value == 'odinm9':
+		elif getBoxType() == 'odinm9':
 			self["BoxType"] = StaticText(_("Hardware:") + " Odin M9")
 			AboutText = _("Hardware:") + " Odin M9\n"
-		elif config.misc.boxtype.value == 'gb800solo':
+		elif getBoxType() == 'gb800solo':
 			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD 800SOLO")
 			AboutText = _("Hardware:") + " GigaBlue HD 800SOLO\n"
-		elif config.misc.boxtype.value == 'gb800se':
+		elif getBoxType() == 'gb800se':
 			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD 800SE")
 			AboutText = _("Hardware:") + " GigaBlue HD 800SE\n"
-		elif config.misc.boxtype.value == 'gb800ue':
+		elif getBoxType() == 'gb800ue':
 			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD 800UE")
 			AboutText = _("Hardware:") + " GigaBlue HD 800UE\n"
-		elif config.misc.boxtype.value == 'gbquad':
+		elif getBoxType() == 'gbquad':
 			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD QUAD")
 			AboutText = _("Hardware:") + " GigaBlue HD Quad\n"
-		elif config.misc.boxtype.value == 'ventonhdx':
+		elif getBoxType() == 'ventonhdx':
 			self["BoxType"] = StaticText(_("Hardware:") + " Venton Unibox HDx")
 			AboutText = _("Hardware:") + " Venton Unibox HDx\n"
 		else:
-			self["BoxType"] = StaticText(_("Hardware:") + " " + config.misc.boxtype.value)
-			AboutText = _("Hardware:") + " " + config.misc.boxtype.value + "\n"
+			self["BoxType"] = StaticText(_("Hardware:") + " " + getBoxType())
+			AboutText = _("Hardware:") + " " + getBoxType() + "\n"
 
 		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
 		AboutText += _("Kernel:") + " " + about.getKernelVersionString() + "\n"
@@ -172,6 +175,7 @@ class Devices(Screen):
 		self["nims"] = StaticText()
 		self["hdd"] = StaticText()
 		self["mounts"] = StaticText()
+		self.list = []
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.populate2)
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
@@ -201,20 +205,57 @@ class Devices(Screen):
 			niminfo += nims[count]
 		self["nims"].setText(niminfo)
 
-		hddlist = harddiskmanager.HDDList()
-		hddinfo = ""
-		if hddlist:
-			for count in range(len(hddlist)):
-				if hddinfo:
-					hddinfo += "\n"
-				hdd = hddlist[count][1]
-				if int(hdd.free()) > 1024:
-					hddinfo += "%s (%s, %d GB %s)" % (hdd.model(), hdd.capacity(), hdd.free()/1024, _("free"))
+		self.list = []
+		list2 = []
+		f = open('/proc/partitions', 'r')
+		for line in f.readlines():
+			parts = line.strip().split()
+			if not parts:
+				continue
+			device = parts[3]
+ 			if not search('sd[a-z][1-9]',device):
+				continue
+			if device in list2:
+				continue
+
+			mount = '/dev/' + device
+			f = open('/proc/mounts', 'r')
+			for line in f.readlines():
+				if line.find(device) != -1:
+					parts = line.strip().split()
+					mount = str(parts[1])
+					break
+					continue
+			f.close()
+
+			if not mount.startswith('/dev/'):
+				size = Harddisk(device).diskSize()
+				free = Harddisk(device).free()
+
+				if ((float(size) / 1024) / 1024) >= 1:
+					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024),2)) + _("TB")
+				elif (size / 1024) >= 1:
+					sizeline = _("Size: ") + str(round((float(size) / 1024),2)) + _("GB")
+				elif size >= 1:
+					sizeline = _("Size: ") + str(size) + _("MB")
 				else:
-					hddinfo += "%s (%s, %d MB %s)" % (hdd.model(), hdd.capacity(), hdd.free(), _("free"))
-		else:
-			hddinfo = _("none")
-		self["hdd"].setText(hddinfo)
+					sizeline = _("Size: ") + _("unavailable")
+
+				if ((float(free) / 1024) / 1024) >= 1:
+					freeline = _("Fee: ") + str(round(((float(free) / 1024) / 1024),2)) + _("TB")
+				elif (free / 1024) >= 1:
+					freeline = _("Free: ") + str(round((float(free) / 1024),2)) + _("GB")
+				elif free >= 1:
+					freeline = _("Free: ") + str(free) + _("MB")
+				else:
+					freeline = _("Free: ") + _("full")
+				self.list.append(mount +'\t'  + sizeline + ' \t' + freeline)
+			else:
+				self.list.append(mount +'\t'  + _('Not mounted'))
+
+			list2.append(device)
+		self.list = '\n'.join(self.list)
+		self["hdd"].setText(self.list)
 
 		f = open('/proc/mounts', 'r')
 		for line in f.readlines():
@@ -537,36 +578,36 @@ class AboutSummary(Screen):
 			self["selected"] = StaticText("AAF:" + about.getImageVersionString() + ' (R)')
 		elif about.getImageTypeString() == 'Experimental':
 			self["selected"] = StaticText("AAF:" + about.getImageVersionString() + ' (B)')
-		if config.misc.boxtype.value == 'vuuno':
+		if getBoxType() == 'vuuno':
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
-		elif config.misc.boxtype.value == 'vuultimo':
+		elif getBoxType() == 'vuultimo':
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Ultimo")
-		elif config.misc.boxtype.value == 'vusolo':
+		elif getBoxType() == 'vusolo':
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo")
-		elif config.misc.boxtype.value == 'vuduo':
+		elif getBoxType() == 'vuduo':
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo")
-		elif config.misc.boxtype.value == 'et4x00':
+		elif getBoxType() == 'et4x00':
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET4x00 Series")	
-		elif config.misc.boxtype.value == 'et5x00':
+		elif getBoxType() == 'et5x00':
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET5x00 Series")
-		elif config.misc.boxtype.value == 'et6x00':
+		elif getBoxType() == 'et6x00':
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET6x00 Series")
-		elif config.misc.boxtype.value == 'et9x00':
+		elif getBoxType() == 'et9x00':
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
-		elif config.misc.boxtype.value == 'odinm9':
+		elif getBoxType() == 'odinm9':
 			self["BoxType"] = StaticText(_("Hardware:") + " Odin M9")
-		elif config.misc.boxtype.value == 'gb800solo':
+		elif getBoxType() == 'gb800solo':
 			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD 800SOLO")
-		elif config.misc.boxtype.value == 'gb800se':
+		elif getBoxType() == 'gb800se':
 			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD 800SE")
-		elif config.misc.boxtype.value == 'gb800ue':
+		elif getBoxType() == 'gb800ue':
 			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD 800UE")
-		elif config.misc.boxtype.value == 'gbquad':
+		elif getBoxType() == 'gbquad':
 			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD QUAD")
-		elif config.misc.boxtype.value == 'ventonhdx':
+		elif getBoxType() == 'ventonhdx':
 			self["BoxType"] = StaticText(_("Hardware:") + " Venton Unibox HDx")
 		else:
-			self["BoxType"] = StaticText(_("Hardware:") + " " + config.misc.boxtype.value)
+			self["BoxType"] = StaticText(_("Hardware:") + " " + getBoxType())
 		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
 		self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
 		self["ImageVersion"] = StaticText(_("Version:") + " " + about.getImageVersionString() + "   " + _("Build:") + " " + about.getBuildVersionString())

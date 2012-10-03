@@ -16,14 +16,14 @@ from Components.ConfigList import ConfigList,ConfigListScreen
 from Components.FileList import MultiFileSelectList
 from Components.Network import iNetwork
 from Plugins.Plugin import PluginDescriptor
-from enigma import eTimer, eEnv, eConsoleAppContainer
+from enigma import eTimer, eEnv, eConsoleAppContainer, getBoxType
 from Tools.Directories import *
 from os import system, popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
 from time import gmtime, strftime, localtime, sleep
 from datetime import date
 
 config.plugins.configurationbackup = ConfigSubsection()
-if config.misc.boxtype.value == "odinm9" :
+if getBoxType() == "odinm9" :
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
 else:	
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)

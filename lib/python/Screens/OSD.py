@@ -6,7 +6,7 @@ from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from os import path
-from enigma import getDesktop
+from enigma import getDesktop, getBoxType
 
 class OSDSetup(Screen, ConfigListScreen):
 	skin = """
@@ -194,7 +194,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.list.append(getConfigListEntry(_("3D Mode"), config.osd.threeDmode, _("This option lets you choose the 3D mode")))
 		self.list.append(getConfigListEntry(_("Depth"), config.osd.threeDznorm, _("This option lets you adjust the 3D depth")))
-		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
+		if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'gb800ue':
 			self.list.append(getConfigListEntry(_("Set Mode"), config.osd.threeDsetmode, _("This option lets you adjust the 3D mode")))
 		self.list.append(getConfigListEntry(_("Show in extensions list ?"), config.osd.show3dextensions, _("This option lets you show the option in the extension screen")))
 		self["config"].list = self.list
@@ -302,7 +302,7 @@ def setConfiguredAplha():
 
 def setConfiguredSettings():
 	if SystemInfo["CanChange3DOsd"]:
-		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
+		if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'gb800ue':
 			applySettings2(config.osd.threeDmode.value, int(config.osd.threeDznorm.value), config.osd.threeDsetmode.value)
 		else:
 			applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.value))

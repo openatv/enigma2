@@ -45,7 +45,7 @@ from timer import TimerEntry
 
 from Tools import Directories, ASCIItranslit, Notifications
 
-from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eServiceCenter, eEPGCache, eActionMap
+from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eServiceCenter, eEPGCache, eActionMap, getBoxType
 
 from time import time, localtime, strftime
 from os import stat as os_stat, listdir as os_listdir, link as os_link, path as os_path, system as os_system, statvfs, remove as os_remove
@@ -468,7 +468,6 @@ class InfoBarShowHide:
 			self.hide()
 			if self.pvrStateDialog:
 				self.pvrStateDialog.hide()
-
 
 	def connectShowHideNotifier(self, fnc):
 		if not fnc in self.onShowHideNotifiers:
@@ -1135,14 +1134,6 @@ class SimpleServicelist:
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
-		file = open('/etc/image-version', 'r')
-		lines = file.readlines()
-		file.close()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "box_type":
-				self.box_type = splitted[1].replace('\n','')
-
 		self.is_now_next = False
 		self.dlg_stack = [ ]
 		self.bouquetSel = None
@@ -1185,7 +1176,7 @@ class InfoBarEPG:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if self.box_type == 'vuduo' or self.box_type == 'vusolo' or self.box_type == 'vuuno':
+		if getBoxType() == 'vuduo' or getBoxType() == 'vusolo' or getBoxType() == 'vuuno':
 			self.EPGPressed()
 		elif config.plisettings.PLIINFO_mode.value == "eventview":
 			self.openEventView()
@@ -1416,12 +1407,15 @@ class InfoBarEPG:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
 
-		pluginlist = self.getEPGPluginList()
-		if pluginlist:
-			pluginlist.append((_("Select default EPG type..."), self.SelectDefaultInfoPlugin))
-			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = pluginlist, skin_name = "EPGExtensionsList")
+		if not isMoviePlayerInfoBar(self):
+			pluginlist = self.getEPGPluginList()
+			if pluginlist:
+				pluginlist.append((_("Select default EPG type..."), self.SelectDefaultInfoPlugin))
+				self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = pluginlist, skin_name = "EPGExtensionsList")
+			else:
+				self.openSingleServiceEPG()
 		else:
-			self.openSingleServiceEPG()
+			self.showEventInformation()
 
 	def runPlugin(self, plugin):
 		try:
@@ -1490,6 +1484,28 @@ class InfoBarEPG:
 			self.is_now_next = True
 		if epglist:
 			self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
+			self.dlg_stack.append(self.eventView)
+
+	def showEventInformation(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
+		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		self.getNowNext()
+		epglist = self.epglist
+		if not epglist:
+			self.is_now_next = False
+			epg = eEPGCache.getInstance()
+			ptr = ref and ref.valid() and epg.lookupEventTime(ref, -1)
+			if ptr:
+				epglist.append(ptr)
+				ptr = epg.lookupEventTime(ref, ptr.getBeginTime(), +1)
+				if ptr:
+					epglist.append(ptr)
+		else:
+			self.is_now_next = True
+		if epglist:
+			self.eventView = self.session.openWithCallback(self.closed, EventViewSimple, epglist[0], ServiceReference(ref))
 			self.dlg_stack.append(self.eventView)
 
 	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
@@ -2089,6 +2105,7 @@ class InfoBarPVRState:
 
 	def createSummary(self):
 		return InfoBarMoviePlayerSummary
+
 	def _mayShow(self):
 		if "MoviePlayer'>" in str(self) and not config.usage.movieplayer_pvrstate.value:
 			self["state"].setText("")
@@ -2536,7 +2553,7 @@ class InfoBarTimeshift:
 		self.stopTimeshiftConfirmed(True, switchToLive)
 		ts = self.getTimeshift()
 		if ts and not ts.startTimeshift():
-			if (config.misc.boxtype.value == 'vuuno' or config.misc.boxtype.value == 'vuduo') and os_path.exists("/proc/stb/lcd/symbol_timeshift"):
+			if (getBoxType() == 'vuuno' or getBoxType() == 'vuduo') and os_path.exists("/proc/stb/lcd/symbol_timeshift"):
 				if self.session.nav.RecordTimer.isRecording():
 					open("/proc/stb/lcd/symbol_timeshift", "w").write("0")
 			self.pts_starttime = time()
@@ -3537,7 +3554,7 @@ class InfoBarTimeshift:
 			if seekable is not None:
 				seekable.seekTo(-90000) # seek approx. 1 sec before end
 		if back:
-			if config.misc.boxtype.value.startswith('et'):
+			if getBoxType().startswith('et'):
 					self.ts_rewind_timer.start(1000, 1)
 			else:
 					self.ts_rewind_timer.start(100, 1)
@@ -3841,8 +3858,10 @@ class InfoBarExtensions:
 				name = name[0]
 				if name.endswith(' '):
 					name = name[:-1]
-		if name:
-			self.session.open(EPGSearch, name, False)
+			if name:
+				self.session.open(EPGSearch, name, False)
+			else:
+				self.session.open(EPGSearch)
 		else:
 			self.session.open(EPGSearch)
 
@@ -4345,7 +4364,7 @@ class InfoBarAudioSelection:
 	def audioSelection(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False	
+			self.secondInfoBarWasShown = False
 		if config.plugins.aafpanel_yellowkey.list.value == '0':
 			from Screens.AudioSelection import AudioSelection
 			self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)

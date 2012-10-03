@@ -9,14 +9,14 @@ from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from os import popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
-from enigma import eEnv
+from enigma import eEnv, getBoxType
 
 from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigText, ConfigLocations, ConfigBoolean
 from Components.Harddisk import harddiskmanager
 
 config.misc.firstrun = ConfigBoolean(default = True)
 config.plugins.configurationbackup = ConfigSubsection()
-if config.misc.boxtype.value == "odinm9" :
+if getBoxType() == "odinm9" :
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
 else:
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
@@ -27,7 +27,7 @@ backupfile = "enigma2settingsbackup.tar.gz"
 
 def checkConfigBackup():
 	parts = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
-	if config.misc.boxtype.value == "odinm9" :
+	if getBoxType() == "odinm9" :
 		parts.append(('mtd backup','/media/backup'))
 	for x in parts:
 		if x[1] == '/':

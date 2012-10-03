@@ -1,4 +1,4 @@
-from enigma import eTimer
+from enigma import eTimer, getBoxType
 from Components.config import config, ConfigSelection, ConfigSubDict, ConfigYesNo
 
 from Tools.CList import CList
@@ -131,9 +131,9 @@ class VideoHardware:
 		if self.modes.has_key("DVI-PC") and not self.getModeList("DVI-PC"):
 			print "remove DVI-PC because of not existing modes"
 			del self.modes["DVI-PC"]
-		if config.misc.boxtype.value == 'et4x00':
+		if getBoxType() == 'et4x00':
 			del self.modes["YPbPr"]
-		if config.misc.boxtype.value == 'gbquad' or config.misc.boxtype.value == 'et5x00':
+		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00':
 			del self.modes["Scart"]
 
 		self.createConfig()
@@ -368,13 +368,13 @@ class VideoHardware:
 			if path.exists("/proc/stb/video/policy_choices") and "auto" in open("/proc/stb/video/policy_choices").readline():
 				policy_choices.update({"auto": "auto"})
 			else:
-				policy_choices.update({"auto": "bestfit"})	
+				policy_choices.update({"auto": "bestfit"})
 			policy = policy_choices[config.av.policy_43.value]
 			policy2_choices = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit"}
 			if path.exists("/proc/stb/video/policy2_choices") and "auto" in open("/proc/stb/video/policy2_choices").readline():
 				policy2_choices.update({"auto": "auto"})
 			else:
-				policy2_choices.update({"auto": "bestfit"})	
+				policy2_choices.update({"auto": "bestfit"})
 			policy2 = policy2_choices[config.av.policy_169.value]
 		elif is_auto:
 			aspect = "any"
