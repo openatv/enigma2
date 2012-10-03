@@ -735,7 +735,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="number" position="145,15" size="80,25" halign="right" font="Regular;23" />
 	</screen>
 	<!-- Numerical help dialog -->
-	<screen name="NumericalTextInputHelpDialog" position="190,400" zPosition="2" size="394,124" backgroundColor="#202020" flags="wfNoBorder">
+	<screen name="NumericalTextInputHelpDialog" position="center,600" zPosition="2" size="604,125" backgroundColor="#202020" flags="wfNoBorder">
 		<eLabel position="0,0" size="392,122" backgroundColor="#c0c0c0" zPosition="-1" />
 		<widget name="key1" position="2,2" size="130,30" font="Regular;18" halign="center" valign="center" />
 		<widget name="key2" position="132,2" size="130,30" font="Regular;18" halign="center" valign="center" />
@@ -974,6 +974,17 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		<widget name="config" position="5,50" size="550,375" scrollbarMode="showOnDemand" />
+	</screen>
+	<!-- SetupInfo -->
+	<screen name="SetupInfo" position="center,center" size="560,430" title="Setup">
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="config" position="5,50" size="550,375" scrollbarMode="showOnDemand" />
+		<eLabel backgroundColor="#56C856" position="0,300" size="560,1" zPosition="0" />
+		<widget name="labelInfo" position="10,320" size="560,50" halign="center" font="Regular;20" transparent="1" foregroundColor="white" />
+		<eLabel backgroundColor="#56C856" position="0,380" size="560,1" zPosition="0" />
 	</screen>
 	<!-- Simple channelselection -->
 	<screen name="SimpleChannelSelection" position="center,center" size="560,430" title="Channel Selection">
