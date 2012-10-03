@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 16:57+0100\n"
-"PO-Revision-Date: 2012-09-30 00:52-0000\n"
+"POT-Creation-Date: 2012-10-03 15:43+0100\n"
+"PO-Revision-Date: 2012-10-03 16:01-0000\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: none\n"
 "Language: sk\n"
@@ -571,13 +571,16 @@ msgstr ""
 msgid "Activate"
 msgstr ""
 
+msgid "Activate PiP"
+msgstr ""
+
 msgid "Activate Picture in Picture"
 msgstr "Zapnúť obraz v obraze"
 
 msgid "Activate network settings"
 msgstr "Aktivovať nastavenia siete"
 
-msgid "Activate the chosen network settings."
+msgid "Activate the configured network settings."
 msgstr ""
 
 msgid "Active"
@@ -604,12 +607,6 @@ msgstr ""
 msgid "Add a auto timer for current event"
 msgstr ""
 
-msgid "Add a margin after the end time of programmed timers referred to EPG"
-msgstr ""
-
-msgid "Add a margin before the start time of programmed timers referred to EPG"
-msgstr ""
-
 msgid "Add a mark"
 msgstr "Pridať značku"
 
@@ -620,6 +617,18 @@ msgid "Add a record timer for current event"
 msgstr ""
 
 msgid "Add a zap timer for current event"
+msgstr ""
+
+msgid "Add recording (enter recording duration)"
+msgstr ""
+
+msgid "Add recording (enter recording endtime)"
+msgstr ""
+
+msgid "Add recording (indefinitely)"
+msgstr ""
+
+msgid "Add recording (stop after current event)"
 msgstr ""
 
 msgid "Add timer"
@@ -681,6 +690,11 @@ msgstr ""
 msgid "After event"
 msgstr "Po udalosti"
 
+msgid ""
+"After the start wizard is completed, you need to protect single services. "
+"Refer to your STB_BOX's manual on how to do that."
+msgstr ""
+
 msgid "Album"
 msgstr "Album"
 
@@ -696,10 +710,10 @@ msgstr ""
 msgid "All satellites"
 msgstr ""
 
-msgid "Allow Subtitle equals Audio mask"
+msgid "Allow subtitle language to equal audio language"
 msgstr ""
 
-msgid "Allow hearing impaired subtitles"
+msgid "Allow subtitles for hearing impaired"
 msgstr ""
 
 msgid "Allow unstable (untested) updates"
@@ -861,9 +875,6 @@ msgstr ""
 msgid "Audio"
 msgstr "Zvuk"
 
-msgid "Audio Options..."
-msgstr "Voľby zvuku ..."
-
 msgid "Audio PID"
 msgstr "Zvukový PID"
 
@@ -877,6 +888,9 @@ msgid "Audio language selection 3"
 msgstr ""
 
 msgid "Audio language selection 4"
+msgstr ""
+
+msgid "Audio options..."
 msgstr ""
 
 msgid "Author: "
@@ -1194,6 +1208,12 @@ msgstr "Zmeniť bukety pri rýchlom prepínaní"
 msgid "Change pin code"
 msgstr "Zmeniť kód PIN"
 
+msgid "Change recording (duration)"
+msgstr ""
+
+msgid "Change recording (endtime)"
+msgstr ""
+
 msgid "Change repeat and delay settings?"
 msgstr ""
 
@@ -1344,17 +1364,16 @@ msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
 msgid ""
-"Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time."
+"Choose the location where the EPG data will be stored when the STB_BOX is "
+"shut down. The location must be available at boot time."
 msgstr ""
 
 msgid ""
-"Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes."
+"Choose the name of the file that holds the EPG data when the STB_BOX is shut "
+"down. This can be handy to differentiate between several boxes."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
-msgstr ""
-
-msgid "Choose to enable or disable DHCP."
 msgstr ""
 
 msgid "Choose upgrade source"
@@ -1479,10 +1498,10 @@ msgstr "Zloženie názvov súborov nahrávok"
 msgid "Configfile %s saved."
 msgstr ""
 
-msgid "Configuration Mode"
-msgstr "Možnosti nastavenia"
-
 msgid "Configuration mode"
+msgstr ""
+
+msgid "Configure how recording filenames are constructed."
 msgstr ""
 
 msgid "Configure interface"
@@ -1491,26 +1510,29 @@ msgstr "Nakonfigurujte rozhranie"
 msgid "Configure nameservers"
 msgstr "Nastavte názvy serverov"
 
-msgid "Configure on which devices the background delete option should be used"
+msgid "Configure on which devices the background delete option should be used."
 msgstr ""
 
 msgid "Configure remote control type"
 msgstr ""
 
+msgid "Configure the IP address."
+msgstr ""
+
 msgid ""
-"Configure the Harddisk to go to standby after being idle for a specific time"
+"Configure the behavior of the 'pause' key when movie playback is already "
+"paused."
 msgstr ""
 
-msgid "Configure the behaviour of 'pause' when the movie is paused"
+msgid "Configure the behavior when movie playback is manually stopped."
 msgstr ""
 
-msgid "Configure the behaviour when a movie is manually stopped"
+msgid "Configure the behavior when movie playback is started."
 msgstr ""
 
-msgid "Configure the behaviour when a movie is started"
-msgstr ""
-
-msgid "Configure the behaviour when a movie reaches the end"
+msgid ""
+"Configure the behavior when reaching the end of a movie, during movie "
+"playback."
 msgstr ""
 
 msgid ""
@@ -1518,50 +1540,117 @@ msgid ""
 "subtitles easier to read on a light background."
 msgstr ""
 
+msgid ""
+"Configure the brightness level of the front panel displa for normal "
+"operation."
+msgstr ""
+
+msgid "Configure the brightness level of the front panel displa for standby."
+msgstr ""
+
 msgid "Configure the color of the teletext subtitles."
+msgstr ""
+
+msgid "Configure the contrast level of the front panel display."
+msgstr ""
+
+msgid "Configure the first audio language (highest priority)."
+msgstr ""
+
+msgid "Configure the first subtitle language (highest priority)."
 msgstr ""
 
 msgid "Configure the font size of the subtitles."
 msgstr ""
 
+msgid "Configure the fourth audio language."
+msgstr ""
+
+msgid "Configure the fourth subtitle language."
+msgstr ""
+
+msgid "Configure the gateway."
+msgstr ""
+
+msgid "Configure the harddisk to go to standby after a specified idle time."
+msgstr ""
+
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr ""
 
-msgid ""
-"Configure the number of days old timers are kept and then auto deleted from "
-"the timers list"
+msgid "Configure the latitude of your location."
+msgstr ""
+
+msgid "Configure the longitude of your location."
 msgstr ""
 
 msgid ""
-"Configure the number of days that items are automaticaly removed from the "
-"trashcan"
+"Configure the minimum amount of disk space to be available for recordings. "
+"When the amount of space drops below this value, deleted items will be "
+"removed from the trash can."
+msgstr ""
+
+msgid "Configure the nameserver (DNS)."
+msgstr ""
+
+msgid "Configure the netmask."
+msgstr ""
+
+msgid ""
+"Configure the number of days after which items are automaticaly removed from "
+"the trash can."
+msgstr ""
+
+msgid ""
+"Configure the number of days old timers are kept before they are "
+"automatically removed from the timers list."
 msgstr ""
 
 msgid "Configure the offline decode delay in ms"
 msgstr ""
 
-msgid "Configure the possible fast forward speeds"
+msgid "Configure the possible fast forward speeds."
 msgstr ""
 
-msgid "Configure the possible rewind speeds"
+msgid "Configure the possible rewind speeds."
 msgstr ""
 
-msgid "Configure the slow motion speeds"
+msgid "Configure the primary EPG language."
 msgstr ""
 
-msgid "Configure the speed of the background delete feature"
+msgid "Configure the second audio language."
+msgstr ""
+
+msgid "Configure the second subtitle language."
+msgstr ""
+
+msgid "Configure the secundary EPG language."
+msgstr ""
+
+msgid "Configure the skip time interval on the '1'/'3'-keys."
+msgstr ""
+
+msgid "Configure the skip time interval on the '4'/'6'-keys."
+msgstr ""
+
+msgid "Configure the skip time interval on the '7'/'9'-keys."
+msgstr ""
+
+msgid "Configure the slow motion speeds."
+msgstr ""
+
+msgid ""
+"Configure the speed of the background deletion process. A low speed will "
+"have less impact on harddisk performance."
 msgstr ""
 
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr ""
 
-msgid "Configure the time of the stepskip on the '1'/'3'-keys"
+msgid "Configure the third audio language."
 msgstr ""
 
-msgid "Configure the time of the stepskip on the '4'/'6'-keys"
-msgstr ""
-
-msgid "Configure the time of the stepskip on the '7'/'9'-keys"
+msgid "Configure the third subtitle language."
 msgstr ""
 
 msgid ""
@@ -1569,15 +1658,15 @@ msgid ""
 "subtitles."
 msgstr ""
 
-msgid "Configure the type of status indication icons shown in the movielist"
+msgid "Configure the tuner mode."
+msgstr ""
+
+msgid "Configure the type of status indication icons shown in the movielist."
 msgstr ""
 
 msgid ""
 "Configure the vertical position of the subtitles, measured from the bottom "
 "of the screen."
-msgstr ""
-
-msgid "Configure the way recording filenames are composed"
 msgstr ""
 
 msgid ""
@@ -1642,6 +1731,9 @@ msgstr "Pokračovať"
 msgid "Continue in background"
 msgstr "Pokračovať v pozadí"
 
+msgid "Continue playback"
+msgstr ""
+
 msgid "Continue playing"
 msgstr "Pokračovať v prehrávaní"
 
@@ -1697,16 +1789,16 @@ msgid "Could not open the file %s!"
 msgstr ""
 
 #, python-format
-msgid "Could not save configfile %s!"
+msgid "Could not record due to conflicting timer %s"
 msgstr ""
 
 #, python-format
-msgid "Couldn't record due to conflicting timer %s"
-msgstr "Nedalo sa nahrávať - prekrýva sa časovanie %s"
+msgid "Could not record due to invalid service %s"
+msgstr ""
 
 #, python-format
-msgid "Couldn't record due to invalid service %s"
-msgstr "Nedalo sa nahrať pre neplatnú stanicu %s"
+msgid "Could not save configfile %s!"
+msgstr ""
 
 msgid "Crash Logs"
 msgstr ""
@@ -1877,11 +1969,6 @@ msgstr "Predvolené umiestnenie filmov"
 msgid "Defaults"
 msgstr ""
 
-msgid ""
-"Define the number of GB to be made free by removing files from the trashcan "
-"before a recording starts"
-msgstr ""
-
 msgid "Delay before key repeat starts:"
 msgstr ""
 
@@ -1900,9 +1987,6 @@ msgstr "Vymazať zadanie"
 
 msgid "Delete failed!"
 msgstr "Vymazanie zlyhalo!"
-
-msgid "Delete old timers after how many days"
-msgstr ""
 
 msgid "Deleted"
 msgstr ""
@@ -2030,10 +2114,16 @@ msgstr "Displej a užívateľské rozhranie"
 msgid "Display message before next played movie"
 msgstr ""
 
+msgid "Display message before playing next movie"
+msgstr ""
+
 msgid "Display settings"
 msgstr ""
 
 msgid "Display the EIT now/next eventdata in infobar."
+msgstr ""
+
+msgid "Do nothing"
 msgstr ""
 
 msgid ""
@@ -2123,6 +2213,9 @@ msgstr "Chcete urobiť ďalšie ručné vyhľadávanie staníc?"
 #, python-format
 msgid "Do you want to download the image to %s ?"
 msgstr "Chcete stiahnuť image na %s?"
+
+msgid "Do you want to enable the parental control feature on your STB_BOX?"
+msgstr ""
 
 msgid "Do you want to install a channel list?"
 msgstr ""
@@ -2325,9 +2418,6 @@ msgstr "Zapnúť"
 msgid "Enable 5V for active antenna"
 msgstr "Zapnúť 5 V pre aktívnu anténu"
 
-msgid "Enable Debug log"
-msgstr ""
-
 msgid "Enable EIT EPG"
 msgstr ""
 
@@ -2345,10 +2435,10 @@ msgid ""
 "include more information on the current service."
 msgstr ""
 
-msgid "Enable freesat EPG"
+msgid "Enable debug log"
 msgstr ""
 
-msgid "Enable hearing impaired subtitles"
+msgid "Enable freesat EPG"
 msgstr ""
 
 msgid "Enable multiple bouquets"
@@ -2365,6 +2455,9 @@ msgstr ""
 
 msgid "Enable parental control"
 msgstr "Zapnúť rodičovskú zámku"
+
+msgid "Enable subtitles for the hearing impaired."
+msgstr ""
 
 msgid "Enable teletext caching"
 msgstr ""
@@ -2384,9 +2477,6 @@ msgstr ""
 msgid ""
 "Enables a feature so that the receiver can decrypt streams (if the ECM data "
 "is included in the stream and a valid card is available)."
-msgstr ""
-
-msgid "Enables the trashcan feature"
 msgstr ""
 
 msgid "Encrypted: "
@@ -2487,7 +2577,7 @@ msgstr ""
 msgid "Event Fontsize (relative to skin size)"
 msgstr ""
 
-msgid "Event Info..."
+msgid "Event Info"
 msgstr ""
 
 msgid "Eventview"
@@ -2530,9 +2620,6 @@ msgid "Exit network wizard"
 msgstr "Ukončiť sprievodcu sieťou"
 
 msgid "Exit the wizard"
-msgstr "Ukončiť sprievodcu"
-
-msgid "Exit wizard"
 msgstr "Ukončiť sprievodcu"
 
 msgid "Experimental"
@@ -2610,8 +2697,14 @@ msgstr ""
 msgid "Fast epoch"
 msgstr "rýchla doba"
 
+msgid "Fast forward speeds"
+msgstr ""
+
 msgid "Favourites"
 msgstr "Obľúbené"
+
+msgid "Fee: "
+msgstr ""
 
 msgid "File appears to be busy.\n"
 msgstr ""
@@ -2688,6 +2781,9 @@ msgstr ""
 msgid "Free:"
 msgstr ""
 
+msgid "Free: "
+msgstr ""
+
 msgid "French"
 msgstr "Francúzština"
 
@@ -2717,6 +2813,9 @@ msgid "Frontprocessor version: %d"
 msgstr "Verzia frontprocesora: %d"
 
 msgid "Ftpd service type: Vsftpd server"
+msgstr ""
+
+msgid "GB"
 msgstr ""
 
 msgid ""
@@ -2849,7 +2948,7 @@ msgstr ""
 msgid "GraphMultiEpg Settings"
 msgstr ""
 
-msgid "Graphical EPG..."
+msgid "Graphical EPG"
 msgstr ""
 
 msgid "Graphical Multi EPG"
@@ -3049,11 +3148,6 @@ msgid ""
 "earlier."
 msgstr ""
 
-msgid ""
-"If set to 'yes' the receiver will use the subtitles that has been used "
-"earlier."
-msgstr ""
-
 msgid "If set to 'yes' you can preview channels in the EPG list."
 msgstr ""
 
@@ -3157,7 +3251,7 @@ msgstr ""
 msgid "InfoBar"
 msgstr "Informačná lišta"
 
-msgid "Infobar EPG..."
+msgid "Infobar EPG"
 msgstr ""
 
 msgid "Information"
@@ -3171,6 +3265,12 @@ msgstr "Počiatočná rýchlosť prevíjania vpred"
 
 msgid "Initial Rewind speed"
 msgstr "Počiatočná rýchlosť prevíjania vzad"
+
+msgid "Initial fast forward speed"
+msgstr ""
+
+msgid "Initial rewind speed"
+msgstr ""
 
 msgid "Initialization"
 msgstr "Inicializácia"
@@ -3315,6 +3415,12 @@ msgstr ""
 msgid "Jump to current time"
 msgstr ""
 
+msgid "Jump to next marked position"
+msgstr ""
+
+msgid "Jump to previous marked position"
+msgstr ""
+
 msgid "Jump to prime time"
 msgstr ""
 
@@ -3429,16 +3535,19 @@ msgstr ""
 msgid "Light Grey"
 msgstr ""
 
-msgid "Limit Debug log size (MB)"
+msgid "Limit character set for recording filenames"
+msgstr ""
+
+msgid "Limit debug log size (MB)"
 msgstr ""
 
 msgid "Limit east"
 msgstr "Východný limit"
 
 msgid ""
-"Limit the characters that can be used in recording filenames - this allows "
-"the functionality on operating systems that do not allow all kinds of "
-"characters"
+"Limit the characters that can be used in recording filenames to (7 bit) "
+"ascii. This ensures compatibility with operating systems or file systems "
+"with limited character sets."
 msgstr ""
 
 msgid "Limit west"
@@ -3461,6 +3570,9 @@ msgstr "Spojenie:"
 
 msgid "Linked titles with a DVD menu"
 msgstr "Tituly prepojené s menu DVD"
+
+msgid "List EPG functions..."
+msgstr ""
 
 msgid "List available networks"
 msgstr "Zoznam dostupných sietí"
@@ -3486,9 +3598,6 @@ msgstr "Natiahnuť"
 
 msgid "Load EPG"
 msgstr ""
-
-msgid "Load Length of Movies in Movielist"
-msgstr "Prevziať dĺžku filmov do zoznamu filmov"
 
 msgid "Load/Save"
 msgstr ""
@@ -3547,6 +3656,9 @@ msgstr "Zem. dĺžka"
 msgid "MAC:"
 msgstr ""
 
+msgid "MB"
+msgstr ""
+
 msgid "MORE"
 msgstr "VIAC"
 
@@ -3594,6 +3706,9 @@ msgstr "Výrobca"
 
 msgid "Margin after record"
 msgstr "Rezerva po skončení programu"
+
+msgid "Margin after record (minutes)"
+msgstr ""
 
 msgid "Margin before record (minutes)"
 msgstr "Rezerva pred začiatkom programu (min)"
@@ -3764,9 +3879,6 @@ msgstr "Menu filmov"
 
 msgid "Multi EPG"
 msgstr "Multi EPG"
-
-msgid "Multi EPG..."
-msgstr ""
 
 msgid "Multimedia"
 msgstr "Multimédiá"
@@ -4124,6 +4236,9 @@ msgid ""
 "Path: %s"
 msgstr ""
 
+msgid "Not mounted"
+msgstr ""
+
 msgid "Not-Associated"
 msgstr ""
 
@@ -4252,6 +4367,21 @@ msgstr ""
 msgid "Only extensions."
 msgstr "Len rozšírenia."
 
+msgid "Open satellites list"
+msgstr ""
+
+msgid "Open service list"
+msgstr ""
+
+msgid "Open service list and select next channel"
+msgstr ""
+
+msgid "Open service list and select previous channel"
+msgstr ""
+
+msgid "Open the movie list"
+msgstr ""
+
 msgid "OpenVPN setup"
 msgstr ""
 
@@ -4359,6 +4489,9 @@ msgstr ""
 msgid "Pause movie at end"
 msgstr "Na konci filmu pozastaviť"
 
+msgid "Pause playback"
+msgstr ""
+
 msgid "Peak load (max queued requests per workerthread)"
 msgstr ""
 
@@ -4401,6 +4534,18 @@ msgid "Permanent Timeshift Max Length"
 msgstr ""
 
 msgid "Permanent Timeshift Start Delay"
+msgstr ""
+
+msgid "Permanent Timeshift enable"
+msgstr ""
+
+msgid "Permanent Timeshift max events"
+msgstr ""
+
+msgid "Permanent Timeshift max length"
+msgstr ""
+
+msgid "Permanent Timeshift start delay"
 msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
@@ -4478,6 +4623,11 @@ msgstr "Vyberte médium na prehľadanie"
 
 msgid "Please add titles to the compilation."
 msgstr "Pridajte titulky do kompilácie."
+
+msgid ""
+"Please be aware, that anyone can disable the parental control, if you have "
+"not set a PIN."
+msgstr ""
 
 msgid "Please change recording endtime"
 msgstr "Zmeňte koniec nahrávania"
@@ -4734,22 +4884,26 @@ msgstr "Preddefinovaný transpondér"
 msgid "Prefer AC3"
 msgstr ""
 
-msgid "Prefer DVB-grafical subtitles"
+msgid "Prefer DVB-graphical subtitles"
+msgstr ""
+
+msgid ""
+"Prefer DVB-graphical subtitles over teletext subtitles, when both types are "
+"available."
 msgstr ""
 
 msgid "Prefer audio stream stored by service"
 msgstr ""
 
-msgid "Prefer hearing impaired subtitles"
+msgid "Prefer subtitles for hearing impaired"
 msgstr ""
 
-msgid "Prefer hearing impaired subtitles over normal subtitles."
+msgid ""
+"Prefer subtitles for the hearing impaired over normal subtitles, when both "
+"types are available."
 msgstr ""
 
-msgid "Prefer subtitle stored by service"
-msgstr ""
-
-msgid "Prefer the DVB-graphical subtitles over Teletext subtitles."
+msgid "Prefer subtitles stored by service"
 msgstr ""
 
 msgid "Preferred tuner"
@@ -5075,6 +5229,9 @@ msgstr ""
 msgid "Remove a mark"
 msgstr "Odstrániť značku"
 
+msgid "Remove completed timers after (days)"
+msgstr ""
+
 msgid "Remove currently selected title"
 msgstr "Odstrániť aktuálne zvolený titul"
 
@@ -5082,6 +5239,9 @@ msgid "Remove finished."
 msgstr "Odstraňovanie skončené."
 
 msgid "Remove items from trash after (days)"
+msgstr ""
+
+msgid "Remove items from trash can after (days)"
 msgstr ""
 
 msgid "Remove plugins"
@@ -5283,7 +5443,7 @@ msgstr ""
 msgid "Sat"
 msgstr "So"
 
-msgid "Sat / Dish setup"
+msgid "Sat / Dish Setup"
 msgstr ""
 
 msgid "Satellite"
@@ -5406,10 +5566,16 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
+msgid "Search IMDb for information about current event."
+msgstr ""
+
 msgid "Search east"
 msgstr "Hľadať východne"
 
 msgid "Search for similar events"
+msgstr ""
+
+msgid "Search the epg for current event."
 msgstr ""
 
 msgid "Search west"
@@ -5426,6 +5592,18 @@ msgstr "Sekundárny DNS"
 
 msgid "Seek"
 msgstr "Hľadanie"
+
+msgid "Seek backward"
+msgstr ""
+
+msgid "Seek backward (enter time)"
+msgstr ""
+
+msgid "Seek forward"
+msgstr ""
+
+msgid "Seek forward (enter time)"
+msgstr ""
 
 msgid "Seekbar activation"
 msgstr ""
@@ -5683,33 +5861,6 @@ msgstr "Nastaviť rozhranie ako predvolené"
 msgid "Set limits"
 msgstr ""
 
-msgid "Set the EPG language selection 1"
-msgstr ""
-
-msgid "Set the EPG language selection 2"
-msgstr ""
-
-msgid "Set the audio language 1 (highest priority)"
-msgstr ""
-
-msgid "Set the audio language 2"
-msgstr ""
-
-msgid "Set the audio language 3"
-msgstr ""
-
-msgid "Set the audio language 4 (lowest priority)"
-msgstr ""
-
-msgid "Set the brightness level for normal operation."
-msgstr ""
-
-msgid "Set the brightness level for standby."
-msgstr ""
-
-msgid "Set the contrast level."
-msgstr ""
-
 msgid ""
 "Set the default location for your instant recordings. Press 'OK' to add new "
 "locations, select left/right to select an existing location."
@@ -5733,13 +5884,10 @@ msgstr ""
 msgid "Set the default sorting method."
 msgstr ""
 
-msgid "Set the desired configuration mode."
+msgid "Set the initial fast forward speed."
 msgstr ""
 
-msgid "Set the initial fast forward speed"
-msgstr ""
-
-msgid "Set the initial rewind speed"
+msgid "Set the initial rewind speed."
 msgstr ""
 
 msgid "Set the jump-size of the seekbar."
@@ -5764,18 +5912,6 @@ msgid "Set the skip-forward/backward time of the 4-6 number keys."
 msgstr ""
 
 msgid "Set the skip-forward/backward time of the 7-9 number keys."
-msgstr ""
-
-msgid "Set the subtitle language selection 1 (highest priority)"
-msgstr ""
-
-msgid "Set the subtitle language selection 2"
-msgstr ""
-
-msgid "Set the subtitle language selection 3"
-msgstr ""
-
-msgid "Set the subtitle language selection 4 (lowest priority)"
 msgstr ""
 
 msgid "Set the time to hide the infobar."
@@ -5849,12 +5985,6 @@ msgid ""
 "set as recording."
 msgstr ""
 
-msgid "Set your Latitude:"
-msgstr ""
-
-msgid "Set your Longitude:"
-msgstr ""
-
 msgid ""
 "Sets the root folder of movie list, to remove the '..' from benign shown in "
 "that folder."
@@ -5869,13 +5999,13 @@ msgstr ""
 msgid "Setup"
 msgstr "Nastavenia"
 
-msgid "Setup Mode"
-msgstr "Režim nastavení"
-
 msgid "Setup how to control the channel changing."
 msgstr ""
 
 msgid "Setup menu"
+msgstr ""
+
+msgid "Setup mode"
 msgstr ""
 
 msgid "Setup the interval to check for online updates. (in hours)"
@@ -5929,6 +6059,9 @@ msgid "Show E2 Log"
 msgstr ""
 
 msgid "Show EIT now/next in infobar"
+msgstr ""
+
+msgid "Show EPG for current channel..."
 msgstr ""
 
 msgid "Show Games show"
@@ -5987,10 +6120,10 @@ msgid ""
 "queue."
 msgstr ""
 
-msgid "Show a popup when a recording starts"
+msgid "Show a popup when a recording starts."
 msgstr ""
 
-msgid "Show a popup when one movie has finished and the next one will start"
+msgid "Show a popup when one movie has finished and the next one will start."
 msgstr ""
 
 msgid "Show animation while busy"
@@ -6026,6 +6159,9 @@ msgstr ""
 msgid "Show event-progress in channel selection"
 msgstr "Vo výbere staníc zobraziť priebeh programu"
 
+msgid "Show extensions..."
+msgstr ""
+
 msgid "Show icon for new/unseen items"
 msgstr ""
 
@@ -6045,6 +6181,12 @@ msgid "Show job tasks in extensions"
 msgstr ""
 
 msgid "Show live tv when movie stopped"
+msgstr ""
+
+msgid "Show message when recording starts"
+msgstr ""
+
+msgid "Show movie lengths in movielist"
 msgstr ""
 
 msgid "Show network mounts ..."
@@ -6068,12 +6210,21 @@ msgstr ""
 msgid "Show status icons in Movielist"
 msgstr ""
 
+msgid "Show status icons in movielist"
+msgstr ""
+
 msgid "Show the infomation on current event."
 msgstr ""
 
 msgid ""
-"Show the length of a recording in the movielist (this might cause some "
-"additional loading time)"
+"Show the lenght of a recording in the movielist (this might cause some "
+"additional loading time)."
+msgstr ""
+
+msgid "Show the list of AutoTimers."
+msgstr ""
+
+msgid "Show the list of timers."
 msgstr ""
 
 msgid "Show the media player..."
@@ -6139,9 +6290,6 @@ msgstr "Jeden"
 msgid "Single EPG"
 msgstr "Jeden EPG"
 
-msgid "Single EPG..."
-msgstr ""
-
 msgid "Single satellite"
 msgstr "jeden satelit"
 
@@ -6150,6 +6298,9 @@ msgstr "jeden transpondér"
 
 msgid "Singlestep (GOP)"
 msgstr "Jeden krok (GOP)"
+
+msgid "Size: "
+msgstr ""
 
 msgid "Skin Setting"
 msgstr ""
@@ -6191,6 +6342,9 @@ msgstr "pomaly"
 
 msgid "Slow Motion speeds"
 msgstr "Rýchlosti časovej lupy"
+
+msgid "Slow motion speeds"
+msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr ""
@@ -6331,11 +6485,11 @@ msgstr "Spustiť od začiatku"
 msgid "Start offline decode"
 msgstr ""
 
-msgid "Start recording?"
-msgstr "Spustiť nahrávanie?"
-
 msgid "Start test"
 msgstr "Spustiť test"
+
+msgid "Start timeshift"
+msgstr ""
 
 msgid "StartTime"
 msgstr "Začiatok"
@@ -6354,9 +6508,6 @@ msgstr "Krok západne"
 
 msgid "Stop"
 msgstr "Zastaviť"
-
-msgid "Stop Timeshift?"
-msgstr "Zastaviť časový posun?"
 
 msgid "Stop current event and disable coming events"
 msgstr "Zastaviť aktuálnu udalosť a zrušiť nasledujúce udalosti"
@@ -6382,7 +6533,13 @@ msgstr "Zastaviť testovanie po # zlyhaných transpondéroch"
 msgid "Stop testing plane after # successful transponders"
 msgstr "Zastaviť testovanie po # úspešných transpondéroch"
 
+msgid "Stop timeshift"
+msgstr ""
+
 msgid "Stop timeshift while recording?"
+msgstr ""
+
+msgid "Stop timeshift?"
 msgstr ""
 
 msgid "Stopped"
@@ -6460,10 +6617,10 @@ msgstr ""
 msgid "Swap SNR in db with SNR in percentage"
 msgstr ""
 
-msgid "Swap Services"
-msgstr "Vymeniť stanice"
-
 msgid "Swap from normal to list mode"
+msgstr ""
+
+msgid "Swap services"
 msgstr ""
 
 msgid "Swedish"
@@ -6475,8 +6632,20 @@ msgstr ""
 msgid "Switch config"
 msgstr ""
 
+msgid "Switch next channel"
+msgstr ""
+
+msgid "Switch to next channel in history"
+msgstr ""
+
 msgid "Switch to next subservice"
 msgstr "Prepnúť na nasledujúci podkanál"
+
+msgid "Switch to previous channel"
+msgstr ""
+
+msgid "Switch to previous channel in history"
+msgstr ""
 
 msgid "Switch to previous subservice"
 msgstr "Prepnúť na predchádzajúci podkanál"
@@ -6503,6 +6672,9 @@ msgid "System"
 msgstr "Systém"
 
 msgid "System: "
+msgstr ""
+
+msgid "TB"
 msgstr ""
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
@@ -6586,8 +6758,8 @@ msgstr ""
 "Pokračujte stlačením OK."
 
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready for use.\n"
-"Press OK to start using your receiver."
+"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
+"Please press OK to start using your STB_BOX."
 msgstr ""
 
 msgid ""
@@ -7140,6 +7312,9 @@ msgstr ""
 msgid "Timeshift-Save Action on zap"
 msgstr ""
 
+msgid "Timeshift-save action on zap"
+msgstr ""
+
 msgid "Timezone"
 msgstr "Časové pásmo"
 
@@ -7171,6 +7346,9 @@ msgid "Today"
 msgstr "Dnes"
 
 msgid "Toggle Picture In Graphics"
+msgstr ""
+
+msgid "Toggle a cut mark at the current position"
 msgstr ""
 
 msgid "Toggle aspect ratio..."
@@ -7269,13 +7447,13 @@ msgstr "Ladenie zlyhalo!"
 msgid "Tuner"
 msgstr "Tuner"
 
-msgid "Tuner Slot"
-msgstr "Otvor pre tuner"
-
 msgid "Tuner configuration"
 msgstr "Nastavenie tunera"
 
 msgid "Tuner settings"
+msgstr ""
+
+msgid "Tuner slot"
 msgstr ""
 
 msgid "Tuner status"
@@ -7415,8 +7593,20 @@ msgstr "Použiť"
 msgid "Use DHCP"
 msgstr "Použiť DHCP"
 
+msgid "Use EIT EPG information when it is available."
+msgstr ""
+
+msgid "Use FreeSat EPG information when it is available."
+msgstr ""
+
 msgid "Use Interface"
 msgstr "Použiť sieťový adaptér"
+
+msgid "Use MHW EPG information when it is available."
+msgstr ""
+
+msgid "Use Netmed EPG information when it is available."
+msgstr ""
 
 msgid "Use PTS seekbar while timeshifting?"
 msgstr ""
@@ -7431,6 +7621,9 @@ msgid "Use USALS for this sat"
 msgstr ""
 
 msgid "Use ViX coloured Buttons *"
+msgstr ""
+
+msgid "Use ViaSat EPG information when it is available."
 msgstr ""
 
 msgid "Use a gateway"
@@ -7454,18 +7647,7 @@ msgstr ""
 msgid "Use power measurement"
 msgstr "Použiť meranie spotreby"
 
-msgid ""
-"Use power measurement to detect when the rotor stops turning (if your "
-"STB_BOX supports that)"
-msgstr ""
-
 msgid "Use slim screen"
-msgstr ""
-
-msgid "Use the EIT EPG when tuned to a service."
-msgstr ""
-
-msgid "Use the FreeSat EPG when tuned to a service."
 msgstr ""
 
 msgid ""
@@ -7479,21 +7661,12 @@ msgstr ""
 msgid "Use the Left/Right buttons on your remote to move the OSD up/down"
 msgstr ""
 
-msgid "Use the MHW EPG when tuned to a service."
-msgstr ""
-
-msgid "Use the Netmed EPG when tuned to a service."
-msgstr ""
-
 msgid "Use the Networkwizard to configure selected network adapter"
 msgstr ""
 "Použiť Sprievodcu nastavením siete na nastavenie zvoleného sieťového adaptéra"
 
 msgid "Use the Networkwizard to configure your Network\n"
 msgstr "Na nastavenie siete použiť sprievodcu sieťou\n"
-
-msgid "Use the ViaSat EPG when tuned to a service."
-msgstr ""
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr ""
@@ -7508,6 +7681,9 @@ msgstr ""
 "Šípkami nahor alebo nadol na diaľkovom ovládači vyberte voľbu. Potom stlačte "
 "tlačidlo OK."
 
+msgid "Use the wizard to set up basic features"
+msgstr ""
+
 msgid "Use these input device settings?"
 msgstr ""
 
@@ -7520,11 +7696,11 @@ msgstr "Použiť toto rozšírené nastavenie obrazu?"
 msgid "Use time of currently running service"
 msgstr "Použiť čas práve bežiacej stanice"
 
-msgid "Use trashcan in movielist"
+msgid "Use trash can in movielist"
 msgstr ""
 
-msgid "Use wizard to set up basic features"
-msgstr "Použiť sprievodcu pre nastavenie základných funkcií"
+msgid "Use trashcan in movielist"
+msgstr ""
 
 msgid "Used service scan type"
 msgstr "Typ vyhľadávania staníc"
@@ -7535,13 +7711,13 @@ msgstr ""
 msgid "User - bouquets"
 msgstr ""
 
-msgid "User Name"
-msgstr ""
-
 msgid "User defined"
 msgstr "Užívateľsky definované"
 
 msgid "User interface"
+msgstr ""
+
+msgid "User name"
 msgstr ""
 
 msgid "Username"
@@ -7560,7 +7736,7 @@ msgid "Using old profile: "
 msgstr ""
 
 msgid ""
-"Usually when the subtitle language is the same as the audio language "
+"Usually when the subtitle language is the same as the audio language, "
 "subtitles are surpressed. This option allows showing subtitles when they are "
 "the same."
 msgstr ""
@@ -7607,14 +7783,8 @@ msgid ""
 "Please press OK if you can see this page on your TV (or select a different "
 "input port).\n"
 "\n"
-"The next input port will be automatically probed in 10 seconds."
+"The next input port will be automatically probed in 20 seconds."
 msgstr ""
-"Voľba obrazového vstupu\n"
-"\n"
-"Stlačte tlačidlo OK, ak na televízore vidíte túto stranu (alebo zvoľte iný "
-"vstup).\n"
-"\n"
-"Nasledujúci vstup sa automaticky vyskúša o 10 sekúnd."
 
 msgid "Video mode selection."
 msgstr "Voľba režimu obrazu."
@@ -7838,11 +8008,6 @@ msgid "What do you want to scan?"
 msgstr "Čo chcete vyhľadať?"
 
 msgid ""
-"When a recording needs to be started it is allowed to interrupt the watched "
-"service"
-msgstr ""
-
-msgid ""
 "When enabled the online checker will also check for experimental versions"
 msgstr ""
 
@@ -7856,7 +8021,17 @@ msgid ""
 "client receiver to show EPG."
 msgstr ""
 
+msgid ""
+"When enabled, a recording is allowed to interrupt live tv, when there are no "
+"free tuners."
+msgstr ""
+
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
+msgstr ""
+
+msgid ""
+"When enabled, deleted recordings are moved to the trash can, instead of "
+"being immediately deleted."
 msgstr ""
 
 msgid ""
@@ -7896,6 +8071,29 @@ msgstr ""
 msgid ""
 "When enabled, the original line breaks will be removed from the teletext "
 "subtitles."
+msgstr ""
+
+msgid ""
+"When enabled, the receiver will use the subtitles which have been selected "
+"earlier."
+msgstr ""
+
+msgid "When enabled, use DHCP for the IP configuration."
+msgstr ""
+
+msgid ""
+"When enabled, use power measurement to detect when the rotor stops turning "
+"(when supported by the tuner)."
+msgstr ""
+
+msgid ""
+"When nonzero, a recording will start earlier than the starting time as "
+"indicated by the EPG."
+msgstr ""
+
+msgid ""
+"When nonzero, a recording will stop later than the ending time as indicated "
+"by the EPG."
 msgstr ""
 
 msgid ""
@@ -8088,18 +8286,6 @@ msgstr "Napáliť môžete len nahrávky STB_BOXa."
 msgid "You can remove this plugin."
 msgstr "Tento modul môžete odstrániť!"
 
-msgid "You can set the Gateway."
-msgstr ""
-
-msgid "You can set the IP Address."
-msgstr ""
-
-msgid "You can set the Nameserver."
-msgstr ""
-
-msgid "You can set the Netmask."
-msgstr ""
-
 msgid "You cannot delete this!"
 msgstr "Toto nemôžete zmazať!"
 
@@ -8158,6 +8344,12 @@ msgstr ""
 "navštívte webovú stránku http://www.dm7025.de.\n"
 "STB_BOX sa teraz zastaví. Po splnení aktualizačných pokynov z webovej "
 "stránky vás nový firmvér požiada o obnovu nastavení."
+
+msgid ""
+"You need to set a PIN code and hide it from your children.\n"
+"\n"
+"Do you want to set the pin now?"
+msgstr ""
 
 msgid "You system does not support ext4"
 msgstr ""
@@ -8375,9 +8567,6 @@ msgstr "zrušiť úpravu obľúbených"
 msgid "about to start"
 msgstr "hneď začne"
 
-msgid "activate PiP"
-msgstr ""
-
 msgid "activate current configuration"
 msgstr "aktivovať aktuálne nastavenie"
 
@@ -8413,18 +8602,6 @@ msgstr "pridať súbory do zoznamu prehrávok"
 
 msgid "add marker"
 msgstr "pridať značku"
-
-msgid "add recording (enter recording duration)"
-msgstr "pridať nahrávanie (zadajte dobu záznamu)"
-
-msgid "add recording (enter recording endtime)"
-msgstr "pridať nahrávanie (zadajte čas ukončenia)"
-
-msgid "add recording (indefinitely)"
-msgstr "pridať nahrávanie (nekonečné)"
-
-msgid "add recording (stop after current event)"
-msgstr "pridať nahrávanie (zastaviť po aktuálnom programe)"
 
 msgid "add service to bouquet"
 msgstr "pridať stanicu do buketu"
@@ -8553,12 +8730,6 @@ msgstr ""
 msgid "center"
 msgstr ""
 
-msgid "change recording (duration)"
-msgstr "zmeniť nahrávanie (trvanie)"
-
-msgid "change recording (endtime)"
-msgstr "zmeniť nahrávanie (čas ukončenia)"
-
 msgid "chapters"
 msgstr "kapitoly"
 
@@ -8670,9 +8841,6 @@ msgstr ""
 
 msgid "don't descramble, record ecm"
 msgstr ""
-
-msgid "don't record"
-msgstr "nenahrávať"
 
 msgid "done!"
 msgstr "Hotovo!"
@@ -8824,6 +8992,9 @@ msgstr "voľných"
 msgid "free diskspace"
 msgstr "voľného miesta na disku"
 
+msgid "full"
+msgstr ""
+
 msgid "full transparency"
 msgstr ""
 
@@ -8919,12 +9090,6 @@ msgstr "skok na začiatok zoznamu"
 msgid "jump to listend"
 msgstr "skok na koniec zoznamu"
 
-msgid "jump to next marked position"
-msgstr "skok na nasledujúce označené miesto"
-
-msgid "jump to previous marked position"
-msgstr "skok na predchádzajúce označené miesto"
-
 msgid "languages"
 msgstr ""
 
@@ -8939,9 +9104,6 @@ msgstr ""
 
 msgid "length"
 msgstr "dĺžka"
-
-msgid "list of EPG views..."
-msgstr "Zoznam zobrazení EPG..."
 
 msgid "literature"
 msgstr ""
@@ -9009,9 +9171,6 @@ msgstr "nahor na prvú položku"
 msgid "move up to previous entry"
 msgstr "nahor na predchádzajúcu položku"
 
-msgid "movie list"
-msgstr "Zoznam filmov"
-
 msgid "movie/drama (general)"
 msgstr ""
 
@@ -9044,12 +9203,6 @@ msgstr ""
 
 msgid "news/weather report"
 msgstr ""
-
-msgid "next channel"
-msgstr "Nasledujúca stanica"
-
-msgid "next channel in history"
-msgstr "Nasledujúca stanica v histórii"
 
 msgid "no"
 msgstr "nie"
@@ -9123,23 +9276,11 @@ msgstr ""
 msgid "once"
 msgstr "raz"
 
-msgid "open Satellites"
-msgstr ""
-
 msgid "open bouquetlist"
 msgstr ""
 
 msgid "open nameserver configuration"
 msgstr "Otvoriť nastavenia DNS"
-
-msgid "open servicelist"
-msgstr "Otvoriť zoznam staníc"
-
-msgid "open servicelist(down)"
-msgstr "Zobraziť zoznam staníc (nadol)"
-
-msgid "open servicelist(up)"
-msgstr "Zobraziť zoznam staníc (nahor)"
 
 msgid "original"
 msgstr ""
@@ -9194,12 +9335,6 @@ msgstr ""
 
 msgid "pre-school children's program"
 msgstr ""
-
-msgid "previous channel"
-msgstr "Predchádzajúca stanica"
-
-msgid "previous channel in history"
-msgstr "Predchádzajúca stanica v histórii"
 
 msgid "provid:"
 msgstr ""
@@ -9496,9 +9631,6 @@ msgstr "začiatok strihu tu"
 msgid "start directory"
 msgstr "počiatočný adresár"
 
-msgid "start timeshift"
-msgstr "začať časový posun"
-
 msgid "stepsize"
 msgstr ""
 
@@ -9510,12 +9642,6 @@ msgstr "zastaviť PiP"
 
 msgid "stop entry"
 msgstr "zastaviť"
-
-msgid "stop recording"
-msgstr "zastaviť nahrávanie"
-
-msgid "stop timeshift"
-msgstr "zastaviť časový posun"
 
 msgid "stop using as startup service"
 msgstr ""
@@ -9568,9 +9694,6 @@ msgstr "táto nahrávka"
 msgid "this service is protected by a parental control pin"
 msgstr "táto stanica je chránená rodičovskou zámkou"
 
-msgid "toggle a cut mark at the current position"
-msgstr "prepnúť značku strihu na aktuálnom mieste"
-
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "prepnúť informácie o čase, kapitole, zvuku a podtitulkoch"
 
@@ -9599,6 +9722,9 @@ msgid "uShare Setup"
 msgstr ""
 
 msgid "uShare setup"
+msgstr ""
+
+msgid "unavailable"
 msgstr ""
 
 msgid "unconfirmed"
