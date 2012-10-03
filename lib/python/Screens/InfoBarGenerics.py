@@ -208,22 +208,27 @@ class InfoBarShowHide:
 
 		self.onShowHideNotifiers = []
 
+		self.standardInfoBar = False
 		self.secondInfoBarScreen = ""
 		if isStandardInfoBar(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
-			self.secondInfoBarScreen.show()
-		self.onLayoutFinish.append(self.__layoutFinished)
-
-	def __layoutFinished(self):
-		if self.secondInfoBarScreen:
 			self.secondInfoBarScreen.hide()
+			self.standardInfoBar = True
+		self.secondInfoBarWasShown = False
 
 	def keyHide(self):
-		if self.__state == self.STATE_SHOWN:
+		if self.__state == self.STATE_HIDDEN:
 			self.hide()
-		else:
+			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+				self.secondInfoBarScreen.hide()
+				self.secondInfoBarWasShown = False
 			if self.session.pipshown:
 				self.showPiP()
+		else:
+			self.hide()
+			if self.pvrStateDialog:
+				self.pvrStateDialog.hide()
+
 
 	def connectShowHideNotifier(self, fnc):
 		if not fnc in self.onShowHideNotifiers:
@@ -247,17 +252,17 @@ class InfoBarShowHide:
 	def startHideTimer(self):
 		if self.__state == self.STATE_SHOWN and not self.__locked:
 			self.hideTimer.stop()
-			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-				idx = config.usage.show_second_infobar.index - 1
-			else:
-				idx = config.usage.infobar_timeout.index
+			idx = config.usage.infobar_timeout.index
+			if idx:
+				self.hideTimer.start(idx*1000, True)
+		elif (self.secondInfoBarScreen and self.secondInfoBarScreen.shown) or (not config.usage.show_second_infobar.value):
+			self.hideTimer.stop()
+			idx = config.usage.second_infobar_timeout.index
 			if idx:
 				self.hideTimer.start(idx*1000, True)
 
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
-		if self.secondInfoBarScreen:
-			self.secondInfoBarScreen.hide()
 		for x in self.onShowHideNotifiers:
 			x(False)
 
@@ -269,20 +274,36 @@ class InfoBarShowHide:
 		self.hideTimer.stop()
 		if self.__state == self.STATE_SHOWN:
 			self.hide()
+			if self.pvrStateDialog:
+				self.pvrStateDialog.hide()
+		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
+		elif self.__state == self.STATE_HIDDEN:
+			try:
+				self.eventView.close()
+			except:
+				pass
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
-			self.show()
+			if not self.secondInfoBarWasShown:
+				self.show()
 			if self.secondInfoBarScreen:
 				self.secondInfoBarScreen.hide()
-		elif isStandardInfoBar(self) and config.usage.show_second_infobar.value == "EPG":
-			self.showDefaultEPG()
+			self.secondInfoBarWasShown = False
 		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown:
+			self.hide()
 			self.secondInfoBarScreen.show()
+			self.secondInfoBarWasShown = True
+			self.startHideTimer()
+		elif (not config.usage.show_second_infobar.value or isMoviePlayerInfoBar(self)):
+			self.hide()
 			self.startHideTimer()
 		else:
 			self.hide()
-			self.hideTimer.stop()
+			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+				self.secondInfoBarScreen.hide()
 
 	def lockShow(self):
 		self.__locked = self.__locked + 1
@@ -292,17 +313,11 @@ class InfoBarShowHide:
 
 	def unlockShow(self):
 		self.__locked = self.__locked - 1
+		if self.__locked  <0:
+			self.__locked = 0
 		if self.execing:
 			self.startHideTimer()
-
-#	def startShow(self):
-#		self.instance.m_animation.startMoveAnimation(ePoint(0, 600), ePoint(0, 380), 100)
-#		self.__state = self.STATE_SHOWN
-#
-#	def startHide(self):
-#		self.instance.m_animation.startMoveAnimation(ePoint(0, 380), ePoint(0, 600), 100)
-#		self.__state = self.STATE_HIDDEN
-
+			
 class NumberZap(Screen):
 	def quit(self):
 		self.Timer.stop()
