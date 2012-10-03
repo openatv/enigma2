@@ -1,6 +1,6 @@
 from Plugins.Plugin import PluginDescriptor
 from Components.Scanner import scanDevice
-from os import access, F_OK, R_OK
+from os import access, F_OK, R_OK, path
 
 def execute(option):
 	print "execute", option
@@ -103,11 +103,14 @@ def movielist_open(list, session, **kwargs):
 	else:
 		stype = 4097
 	if InfoBar.instance:
-		path = os.path.split(f.path)[0]
-		if not path.endswith('/'):
-			path += '/'
-		config.movielist.last_videodir.value = path
-		InfoBar.instance.showMovies(eServiceReference(stype, 0, f.path))
+		videopath = path.split(f.path)[0]
+		if not videopath.endswith('/'):
+			videopath += '/'
+		config.movielist.last_videodir.value = videopath
+		try:
+			InfoBar.instance.showMovies(eServiceReference(stype, 0, f.path))
+		except:
+			pass
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
