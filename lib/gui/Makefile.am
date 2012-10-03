@@ -12,6 +12,7 @@ libenigma_gui_a_SOURCES = \
 	einput.cpp \
 	einputnumber.cpp \
 	einputstring.cpp \
+	egauge.cpp \
 	elabel.cpp \
 	elistbox.cpp \
 	elistboxcontent.cpp \
@@ -34,6 +35,7 @@ guiinclude_HEADERS = \
 	einput.h \
 	einputnumber.h \
 	einputstring.h \
+	egauge.h \
 	elabel.h \
 	elistbox.h \
 	elistboxcontent.h \
