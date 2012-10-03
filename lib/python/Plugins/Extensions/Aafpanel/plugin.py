@@ -539,7 +539,7 @@ class KeymapSel(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		self.skinName = "SetupInfo"
+		self.skinName = ["SetupInfo", "Setup" ]
 		Screen.setTitle(self, _("Keymap Selection") + "...")
 		self.setup_title =  _("Keymap Selection") + "..."
 		self["HelpWindow"] = Pixmap()
