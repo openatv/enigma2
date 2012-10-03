@@ -33,7 +33,4 @@ for mount in mounts:
 		if os.path.exists(os.path.join(mount, opkgStatusPath)):
 			opkgAddDestination(mount)
 
-import subprocess as sp
-process = sp.Popen('opkg ' + opkgExtraDestinations() + ' upgrade 2>&1 /home/root/ipkgupgrade.log && reboot', shell = True, stdout = sp.PIPE, stderr = sp.PIPE)
-pid = process.pid
-output, error = process.communicate()
+os.system('opkg ' + opkgExtraDestinations() + ' upgrade 2>&1 | tee /home/root/ipkgupgrade.log && reboot')
