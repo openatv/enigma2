@@ -3948,69 +3948,34 @@ class InfoBarInstantRecord:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
 		pirr = preferredInstantRecordPath()
-		if not config.timeshift.enabled.value or not self.timeshift_enabled:
-			if not findSafeRecordPath(pirr) and not findSafeRecordPath(defaultMoviePath()):
-				if not pirr:
-					pirr = ""
-				self.session.open(MessageBox, _("Missing ") + "\n" + pirr +
-							 "\n" + _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
-				return
-
-			if self.isInstantRecordRunning():
-				self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, \
-					title=_("A recording is currently running.\nWhat do you want to do?"), \
-					list=((_("stop recording"), "stop"), \
-					(_("add recording (stop after current event)"), "event"), \
-					(_("add recording (indefinitely)"), "indefinitely"), \
-					(_("add recording (enter recording duration)"), "manualduration"), \
-					(_("add recording (enter recording endtime)"), "manualendtime"), \
-					(_("change recording (duration)"), "changeduration"), \
-					(_("change recording (endtime)"), "changeendtime"), \
-					(_("do nothing"), "no")))
-			else:
-				self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, \
-					title=_("Start recording?"), \
-					list=((_("add recording (stop after current event)"), "event"), \
-					(_("add recording (indefinitely)"), "indefinitely"), \
-					(_("add recording (enter recording duration)"), "manualduration"), \
-					(_("add recording (enter recording endtime)"), "manualendtime"), \
-					(_("don't record"), "no")))
+		if not findSafeRecordPath(pirr) and not findSafeRecordPath(defaultMoviePath()):
+			if not pirr:
+				pirr = ""
+			self.session.open(MessageBox, _("Missing ") + "\n" + pirr +
+						 "\n" + _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
 			return
-		else:
-			dir = preferredInstantRecordPath()
-			if not dir or not Directories.fileExists(dir, 'w'):
-				dir = defaultMoviePath()
-			try:
-				stat = os_stat(dir)
-			except:
-				# XXX: this message is a little odd as we might be recording to a remote device
-				self.session.open(MessageBox, _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
-				return
 
-			#if self.session.nav.RecordTimer.isRecording():
-			if self.isInstantRecordRunning():
-				self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, \
-					title=_("A recording is currently running.\nWhat do you want to do?"), \
-					list=((_("stop recording"), "stop"), \
-					(_("add recording (stop after current event)"), "event"), \
-					(_("add recording (indefinitely)"), "indefinitely"), \
-					(_("add recording (enter recording duration)"), "manualduration"), \
-					(_("add recording (enter recording endtime)"), "manualendtime"), \
-					(_("change recording (duration)"), "changeduration"), \
-					(_("change recording (endtime)"), "changeendtime"), \
-					(_("Timeshift")+" "+_("save recording (stop after current event)"), "savetimeshift"), \
-					(_("Timeshift")+" "+_("save recording (Select event)"), "savetimeshiftEvent"), \
-					(_("do nothing"), "no")))
-			else:
-				self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, \
-					title=_("Start recording?"), \
-					list=((_("add recording (stop after current event)"), "event"), \
-					(_("add recording (indefinitely)"), "indefinitely"), \
-					(_("add recording (enter recording duration)"), "manualduration"), \
-					(_("add recording (enter recording endtime)"), "manualendtime"), \
-					(_("Timeshift")+" "+_("save recording (stop after current event)"), "savetimeshift"), \
-					(_("Timeshift")+" "+_("save recording (Select event)"), "savetimeshiftEvent"), \
-					(_("don't record"), "no")))
+		if self.isInstantRecordRunning():
+			l = [(_("Stop recording"), "stop"), \
+			(_("Add recording (stop after current event)"), "event"), \
+			(_("Add recording (indefinitely)"), "indefinitely"), \
+			(_("Add recording (enter recording duration)"), "manualduration"), \
+			(_("Add recording (enter recording endtime)"), "manualendtime"), \
+			(_("Change recording (duration)"), "changeduration"), \
+			(_("Change recording (endtime)"), "changeendtime")]
+		else:
+			l = [(_("Add recording (stop after current event)"), "event"), \
+			(_("Add recording (indefinitely)"), "indefinitely"), \
+			(_("Add recording (enter recording duration)"), "manualduration"), \
+			(_("Add recording (enter recording endtime)"), "manualendtime")]
+		if config.timeshift.enabled.value or self.timeshift_enabled:
+			l.append((_("Timeshift")+" "+_("save recording (stop after current event)"), "savetimeshift"))
+			l.append((_("Timeshift")+" "+_("save recording (Select event)"), "savetimeshiftEvent"))
+		l.append((_("Do nothing"), "no"))
+		self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, \
+			title=_("A recording is currently running.\nWhat do you want to do?"), \
+			list=l)
+		return
 
 from Tools.ISO639 import LanguageCodes
 
