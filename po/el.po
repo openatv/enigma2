@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2_v2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 16:57+0100\n"
-"PO-Revision-Date: 2012-09-30 00:52-0000\n"
+"POT-Creation-Date: 2012-10-03 15:43+0100\n"
+"PO-Revision-Date: 2012-10-03 16:02-0000\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
 "Language: el\n"
@@ -700,6 +700,9 @@ msgstr ""
 msgid "Activate"
 msgstr ""
 
+msgid "Activate PiP"
+msgstr ""
+
 #
 #
 msgid "Activate Picture in Picture"
@@ -710,7 +713,7 @@ msgstr "Να ενεργοποιηθεί το PiP"
 msgid "Activate network settings"
 msgstr "Ενεργοποίηση ρυθμίσεων δικτύου"
 
-msgid "Activate the chosen network settings."
+msgid "Activate the configured network settings."
 msgstr ""
 
 #
@@ -744,12 +747,6 @@ msgstr ""
 msgid "Add a auto timer for current event"
 msgstr ""
 
-msgid "Add a margin after the end time of programmed timers referred to EPG"
-msgstr ""
-
-msgid "Add a margin before the start time of programmed timers referred to EPG"
-msgstr ""
-
 #
 #
 msgid "Add a mark"
@@ -764,6 +761,18 @@ msgid "Add a record timer for current event"
 msgstr ""
 
 msgid "Add a zap timer for current event"
+msgstr ""
+
+msgid "Add recording (enter recording duration)"
+msgstr ""
+
+msgid "Add recording (enter recording endtime)"
+msgstr ""
+
+msgid "Add recording (indefinitely)"
+msgstr ""
+
+msgid "Add recording (stop after current event)"
 msgstr ""
 
 #
@@ -847,6 +856,11 @@ msgstr ""
 msgid "After event"
 msgstr "Μετά το πρόγραμμα"
 
+msgid ""
+"After the start wizard is completed, you need to protect single services. "
+"Refer to your STB_BOX's manual on how to do that."
+msgstr ""
+
 #
 #
 msgid "Album"
@@ -866,15 +880,11 @@ msgstr ""
 msgid "All satellites"
 msgstr ""
 
-#
-#
-msgid "Allow Subtitle equals Audio mask"
-msgstr "Να επιτρέπεται εξίσωση υπότιτλων-μάσκας ήχου"
+msgid "Allow subtitle language to equal audio language"
+msgstr ""
 
-#
-#
-msgid "Allow hearing impaired subtitles"
-msgstr "Να επιτρέπονται υπότιτλοι για κωφούς"
+msgid "Allow subtitles for hearing impaired"
+msgstr ""
 
 msgid "Allow unstable (untested) updates"
 msgstr ""
@@ -1059,11 +1069,6 @@ msgid "Audio"
 msgstr "Ήχος"
 
 #
-#
-msgid "Audio Options..."
-msgstr "Παράμετροι ήχου..."
-
-#
 msgid "Audio PID"
 msgstr "PID ήχου"
 
@@ -1086,6 +1091,9 @@ msgstr "Επιλογή γλώσσας ήχου 3"
 #
 msgid "Audio language selection 4"
 msgstr "Επιλογή γλώσσας ήχου 4"
+
+msgid "Audio options..."
+msgstr ""
 
 #
 #
@@ -1501,6 +1509,12 @@ msgstr "Αλλαγή μπουκέτου στο γρήγορο zapping"
 msgid "Change pin code"
 msgstr "Αλλαγή pin:"
 
+msgid "Change recording (duration)"
+msgstr ""
+
+msgid "Change recording (endtime)"
+msgstr ""
+
 msgid "Change repeat and delay settings?"
 msgstr ""
 
@@ -1689,17 +1703,16 @@ msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
 msgid ""
-"Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time."
+"Choose the location where the EPG data will be stored when the STB_BOX is "
+"shut down. The location must be available at boot time."
 msgstr ""
 
 msgid ""
-"Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes."
+"Choose the name of the file that holds the EPG data when the STB_BOX is shut "
+"down. This can be handy to differentiate between several boxes."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
-msgstr ""
-
-msgid "Choose to enable or disable DHCP."
 msgstr ""
 
 #
@@ -1870,12 +1883,10 @@ msgstr "Σύνθεση ονομάτων εγγραφών"
 msgid "Configfile %s saved."
 msgstr ""
 
-#
-#
-msgid "Configuration Mode"
-msgstr "Τύπος παραμετροποίησης"
-
 msgid "Configuration mode"
+msgstr ""
+
+msgid "Configure how recording filenames are constructed."
 msgstr ""
 
 #
@@ -1888,26 +1899,29 @@ msgstr "Παραμετροποίηση διεπαφής"
 msgid "Configure nameservers"
 msgstr "Παραμετροποίηση nameservers"
 
-msgid "Configure on which devices the background delete option should be used"
+msgid "Configure on which devices the background delete option should be used."
 msgstr ""
 
 msgid "Configure remote control type"
 msgstr ""
 
+msgid "Configure the IP address."
+msgstr ""
+
 msgid ""
-"Configure the Harddisk to go to standby after being idle for a specific time"
+"Configure the behavior of the 'pause' key when movie playback is already "
+"paused."
 msgstr ""
 
-msgid "Configure the behaviour of 'pause' when the movie is paused"
+msgid "Configure the behavior when movie playback is manually stopped."
 msgstr ""
 
-msgid "Configure the behaviour when a movie is manually stopped"
+msgid "Configure the behavior when movie playback is started."
 msgstr ""
 
-msgid "Configure the behaviour when a movie is started"
-msgstr ""
-
-msgid "Configure the behaviour when a movie reaches the end"
+msgid ""
+"Configure the behavior when reaching the end of a movie, during movie "
+"playback."
 msgstr ""
 
 msgid ""
@@ -1915,50 +1929,117 @@ msgid ""
 "subtitles easier to read on a light background."
 msgstr ""
 
+msgid ""
+"Configure the brightness level of the front panel displa for normal "
+"operation."
+msgstr ""
+
+msgid "Configure the brightness level of the front panel displa for standby."
+msgstr ""
+
 msgid "Configure the color of the teletext subtitles."
+msgstr ""
+
+msgid "Configure the contrast level of the front panel display."
+msgstr ""
+
+msgid "Configure the first audio language (highest priority)."
+msgstr ""
+
+msgid "Configure the first subtitle language (highest priority)."
 msgstr ""
 
 msgid "Configure the font size of the subtitles."
 msgstr ""
 
+msgid "Configure the fourth audio language."
+msgstr ""
+
+msgid "Configure the fourth subtitle language."
+msgstr ""
+
+msgid "Configure the gateway."
+msgstr ""
+
+msgid "Configure the harddisk to go to standby after a specified idle time."
+msgstr ""
+
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr ""
 
-msgid ""
-"Configure the number of days old timers are kept and then auto deleted from "
-"the timers list"
+msgid "Configure the latitude of your location."
+msgstr ""
+
+msgid "Configure the longitude of your location."
 msgstr ""
 
 msgid ""
-"Configure the number of days that items are automaticaly removed from the "
-"trashcan"
+"Configure the minimum amount of disk space to be available for recordings. "
+"When the amount of space drops below this value, deleted items will be "
+"removed from the trash can."
+msgstr ""
+
+msgid "Configure the nameserver (DNS)."
+msgstr ""
+
+msgid "Configure the netmask."
+msgstr ""
+
+msgid ""
+"Configure the number of days after which items are automaticaly removed from "
+"the trash can."
+msgstr ""
+
+msgid ""
+"Configure the number of days old timers are kept before they are "
+"automatically removed from the timers list."
 msgstr ""
 
 msgid "Configure the offline decode delay in ms"
 msgstr ""
 
-msgid "Configure the possible fast forward speeds"
+msgid "Configure the possible fast forward speeds."
 msgstr ""
 
-msgid "Configure the possible rewind speeds"
+msgid "Configure the possible rewind speeds."
 msgstr ""
 
-msgid "Configure the slow motion speeds"
+msgid "Configure the primary EPG language."
 msgstr ""
 
-msgid "Configure the speed of the background delete feature"
+msgid "Configure the second audio language."
+msgstr ""
+
+msgid "Configure the second subtitle language."
+msgstr ""
+
+msgid "Configure the secundary EPG language."
+msgstr ""
+
+msgid "Configure the skip time interval on the '1'/'3'-keys."
+msgstr ""
+
+msgid "Configure the skip time interval on the '4'/'6'-keys."
+msgstr ""
+
+msgid "Configure the skip time interval on the '7'/'9'-keys."
+msgstr ""
+
+msgid "Configure the slow motion speeds."
+msgstr ""
+
+msgid ""
+"Configure the speed of the background deletion process. A low speed will "
+"have less impact on harddisk performance."
 msgstr ""
 
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr ""
 
-msgid "Configure the time of the stepskip on the '1'/'3'-keys"
+msgid "Configure the third audio language."
 msgstr ""
 
-msgid "Configure the time of the stepskip on the '4'/'6'-keys"
-msgstr ""
-
-msgid "Configure the time of the stepskip on the '7'/'9'-keys"
+msgid "Configure the third subtitle language."
 msgstr ""
 
 msgid ""
@@ -1966,15 +2047,15 @@ msgid ""
 "subtitles."
 msgstr ""
 
-msgid "Configure the type of status indication icons shown in the movielist"
+msgid "Configure the tuner mode."
+msgstr ""
+
+msgid "Configure the type of status indication icons shown in the movielist."
 msgstr ""
 
 msgid ""
 "Configure the vertical position of the subtitles, measured from the bottom "
 "of the screen."
-msgstr ""
-
-msgid "Configure the way recording filenames are composed"
 msgstr ""
 
 msgid ""
@@ -2064,6 +2145,9 @@ msgstr "Συνέχισε"
 msgid "Continue in background"
 msgstr "Συνέχεια στο παρασκήνιο"
 
+msgid "Continue playback"
+msgstr ""
+
 #
 #
 msgid "Continue playing"
@@ -2133,19 +2217,16 @@ msgid "Could not open the file %s!"
 msgstr ""
 
 #, python-format
-msgid "Could not save configfile %s!"
+msgid "Could not record due to conflicting timer %s"
 msgstr ""
 
-#
-# , python-format
 #, python-format
-msgid "Couldn't record due to conflicting timer %s"
-msgstr "Αδυναμία εγγραφής λόγω διένεξης του χρονοδιακόπτη %s"
+msgid "Could not record due to invalid service %s"
+msgstr ""
 
-# , python-format
 #, python-format
-msgid "Couldn't record due to invalid service %s"
-msgstr "Αδυναμία εγγραφής λόγω άκυρης υπηρεσίας %s"
+msgid "Could not save configfile %s!"
+msgstr ""
 
 msgid "Crash Logs"
 msgstr ""
@@ -2377,11 +2458,6 @@ msgstr "Αρχική"
 msgid "Defaults"
 msgstr ""
 
-msgid ""
-"Define the number of GB to be made free by removing files from the trashcan "
-"before a recording starts"
-msgstr ""
-
 msgid "Delay before key repeat starts:"
 msgstr ""
 
@@ -2406,9 +2482,6 @@ msgstr "Διαγραφή εγγραφής"
 #
 msgid "Delete failed!"
 msgstr "Διαγραφή απέτυχε!"
-
-msgid "Delete old timers after how many days"
-msgstr ""
 
 #
 msgid "Deleted"
@@ -2590,10 +2663,16 @@ msgstr "Απεικόνιση και Περιβάλλον Χρήστη"
 msgid "Display message before next played movie"
 msgstr ""
 
+msgid "Display message before playing next movie"
+msgstr ""
+
 msgid "Display settings"
 msgstr ""
 
 msgid "Display the EIT now/next eventdata in infobar."
+msgstr ""
+
+msgid "Do nothing"
 msgstr ""
 
 #
@@ -2705,6 +2784,9 @@ msgstr "Θέλετε να πραγματοποιηθεί μία ακόμα χε�
 #, fuzzy, python-format
 msgid "Do you want to download the image to %s ?"
 msgstr "Είστε σίγουρος για λήψη λογισμικού;"
+
+msgid "Do you want to enable the parental control feature on your STB_BOX?"
+msgstr ""
 
 msgid "Do you want to install a channel list?"
 msgstr ""
@@ -2984,9 +3066,6 @@ msgstr "Ενεργοποίηση"
 msgid "Enable 5V for active antenna"
 msgstr "Ενεργοποίηση των 5 V για την ενεργή κεραία"
 
-msgid "Enable Debug log"
-msgstr ""
-
 #
 #
 msgid "Enable EIT EPG"
@@ -3012,13 +3091,13 @@ msgid ""
 "include more information on the current service."
 msgstr ""
 
+msgid "Enable debug log"
+msgstr ""
+
 #
 #
 msgid "Enable freesat EPG"
 msgstr "Ενεργοποίηση freesat EPG"
-
-msgid "Enable hearing impaired subtitles"
-msgstr ""
 
 #
 #
@@ -3038,6 +3117,9 @@ msgstr ""
 #
 msgid "Enable parental control"
 msgstr "Ενεργοποίηση γονικού έλεγχου"
+
+msgid "Enable subtitles for the hearing impaired."
+msgstr ""
 
 #
 #
@@ -3063,9 +3145,6 @@ msgstr ""
 msgid ""
 "Enables a feature so that the receiver can decrypt streams (if the ECM data "
 "is included in the stream and a valid card is available)."
-msgstr ""
-
-msgid "Enables the trashcan feature"
 msgstr ""
 
 #
@@ -3198,7 +3277,7 @@ msgstr "Μέγεθος γραμματοσειράς προγράμματος"
 msgid "Event Fontsize (relative to skin size)"
 msgstr ""
 
-msgid "Event Info..."
+msgid "Event Info"
 msgstr ""
 
 #
@@ -3261,11 +3340,6 @@ msgstr "Έξοδος από τον Οδηγό δικτύου"
 #
 #
 msgid "Exit the wizard"
-msgstr "Έξοδος από το οδηγό"
-
-#
-#
-msgid "Exit wizard"
 msgstr "Έξοδος από το οδηγό"
 
 msgid "Experimental"
@@ -3378,10 +3452,16 @@ msgstr "Γρήγορη σάρωση"
 msgid "Fast epoch"
 msgstr "Fast epoch"
 
+msgid "Fast forward speeds"
+msgstr ""
+
 #
 #
 msgid "Favourites"
 msgstr "Αγαπημένα"
+
+msgid "Fee: "
+msgstr ""
 
 msgid "File appears to be busy.\n"
 msgstr "Το αρχείο χρησιμοποιείται.\n"
@@ -3480,6 +3560,9 @@ msgstr ""
 msgid "Free:"
 msgstr ""
 
+msgid "Free: "
+msgstr ""
+
 #
 msgid "French"
 msgstr "Γαλλικά"
@@ -3524,6 +3607,9 @@ msgid "Frontprocessor version: %d"
 msgstr "Έκδοση frontprocessor: %d"
 
 msgid "Ftpd service type: Vsftpd server"
+msgstr ""
+
+msgid "GB"
 msgstr ""
 
 #
@@ -3673,7 +3759,7 @@ msgstr ""
 msgid "GraphMultiEpg Settings"
 msgstr ""
 
-msgid "Graphical EPG..."
+msgid "Graphical EPG"
 msgstr ""
 
 #
@@ -3911,11 +3997,6 @@ msgid ""
 "earlier."
 msgstr ""
 
-msgid ""
-"If set to 'yes' the receiver will use the subtitles that has been used "
-"earlier."
-msgstr ""
-
 msgid "If set to 'yes' you can preview channels in the EPG list."
 msgstr ""
 
@@ -4034,7 +4115,7 @@ msgstr ""
 msgid "InfoBar"
 msgstr "Μπάρα πληροφοριών"
 
-msgid "Infobar EPG..."
+msgid "Infobar EPG"
 msgstr ""
 
 #
@@ -4054,6 +4135,12 @@ msgstr "Αρχική ταχύτητα γρήγορης κίνησης"
 #
 msgid "Initial Rewind speed"
 msgstr "Αρχική ταχύτητα κίνησης πίσω"
+
+msgid "Initial fast forward speed"
+msgstr ""
+
+msgid "Initial rewind speed"
+msgstr ""
 
 #
 #
@@ -4247,6 +4334,12 @@ msgstr ""
 msgid "Jump to current time"
 msgstr ""
 
+msgid "Jump to next marked position"
+msgstr ""
+
+msgid "Jump to previous marked position"
+msgstr ""
+
 msgid "Jump to prime time"
 msgstr ""
 
@@ -4389,7 +4482,10 @@ msgstr ""
 msgid "Light Grey"
 msgstr ""
 
-msgid "Limit Debug log size (MB)"
+msgid "Limit character set for recording filenames"
+msgstr ""
+
+msgid "Limit debug log size (MB)"
 msgstr ""
 
 #
@@ -4398,9 +4494,9 @@ msgid "Limit east"
 msgstr "Ανατολικό όριο"
 
 msgid ""
-"Limit the characters that can be used in recording filenames - this allows "
-"the functionality on operating systems that do not allow all kinds of "
-"characters"
+"Limit the characters that can be used in recording filenames to (7 bit) "
+"ascii. This ensures compatibility with operating systems or file systems "
+"with limited character sets."
 msgstr ""
 
 #
@@ -4438,6 +4534,9 @@ msgstr "Σύνδεση:"
 msgid "Linked titles with a DVD menu"
 msgstr "Τίτλοι συνδεδεμένοι με μενού DVD"
 
+msgid "List EPG functions..."
+msgstr ""
+
 #
 msgid "List available networks"
 msgstr "Λίστα διαθέσιμων δικτύων"
@@ -4468,11 +4567,6 @@ msgstr "Φόρτωση"
 
 msgid "Load EPG"
 msgstr ""
-
-#
-#
-msgid "Load Length of Movies in Movielist"
-msgstr "Φόρτωση μήκους ταινιών στη λίστα ταινιών"
 
 msgid "Load/Save"
 msgstr ""
@@ -4542,6 +4636,9 @@ msgid "Longitude"
 msgstr "Γεωγρ. μήκος"
 
 msgid "MAC:"
+msgstr ""
+
+msgid "MB"
 msgstr ""
 
 #
@@ -4616,6 +4713,9 @@ msgstr "Κατασκευαστής"
 #
 msgid "Margin after record"
 msgstr "Περιθώριο μετά την εγγραφή"
+
+msgid "Margin after record (minutes)"
+msgstr ""
 
 #
 #
@@ -4833,9 +4933,6 @@ msgstr "Μένου λίστας ταινιών"
 #
 msgid "Multi EPG"
 msgstr "Πολλαπλό EPG"
-
-msgid "Multi EPG..."
-msgstr ""
 
 #
 #
@@ -5328,6 +5425,9 @@ msgid ""
 "Path: %s"
 msgstr ""
 
+msgid "Not mounted"
+msgstr ""
+
 #
 msgid "Not-Associated"
 msgstr "Ασύνδετα"
@@ -5484,6 +5584,21 @@ msgstr ""
 msgid "Only extensions."
 msgstr "Μόνο επεκτάσεις."
 
+msgid "Open satellites list"
+msgstr ""
+
+msgid "Open service list"
+msgstr ""
+
+msgid "Open service list and select next channel"
+msgstr ""
+
+msgid "Open service list and select previous channel"
+msgstr ""
+
+msgid "Open the movie list"
+msgstr ""
+
 msgid "OpenVPN setup"
 msgstr ""
 
@@ -5621,6 +5736,9 @@ msgstr ""
 msgid "Pause movie at end"
 msgstr "Πάυση στο τέλος της ταινίας"
 
+msgid "Pause playback"
+msgstr ""
+
 msgid "Peak load (max queued requests per workerthread)"
 msgstr ""
 
@@ -5663,6 +5781,18 @@ msgid "Permanent Timeshift Max Length"
 msgstr ""
 
 msgid "Permanent Timeshift Start Delay"
+msgstr ""
+
+msgid "Permanent Timeshift enable"
+msgstr ""
+
+msgid "Permanent Timeshift max events"
+msgstr ""
+
+msgid "Permanent Timeshift max length"
+msgstr ""
+
+msgid "Permanent Timeshift start delay"
 msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
@@ -5767,6 +5897,11 @@ msgstr "Παρακαλώ επιλέξετε μέσο για σάρωση"
 #
 msgid "Please add titles to the compilation."
 msgstr "Παρακαλώ προσθέστε τίτλους στη συλλογή."
+
+msgid ""
+"Please be aware, that anyone can disable the parental control, if you have "
+"not set a PIN."
+msgstr ""
 
 #
 #
@@ -6141,7 +6276,12 @@ msgstr "Προεπιλεγμένος αναμεταδότης"
 msgid "Prefer AC3"
 msgstr "AC3 προτιμώμενο"
 
-msgid "Prefer DVB-grafical subtitles"
+msgid "Prefer DVB-graphical subtitles"
+msgstr ""
+
+msgid ""
+"Prefer DVB-graphical subtitles over teletext subtitles, when both types are "
+"available."
 msgstr ""
 
 #
@@ -6149,20 +6289,15 @@ msgstr ""
 msgid "Prefer audio stream stored by service"
 msgstr "Να προτιμάται ο ήχος που έχει αποθηκευτεί από την υπηρεσία"
 
-#
-#
-msgid "Prefer hearing impaired subtitles"
-msgstr "Να προτιμώνται υπότιτλοι για κωφούς"
-
-msgid "Prefer hearing impaired subtitles over normal subtitles."
+msgid "Prefer subtitles for hearing impaired"
 msgstr ""
 
-#
-#
-msgid "Prefer subtitle stored by service"
-msgstr "Να προτιμώνται υπότιτλοι αποθηκευμένοι από την υπηρεσία"
+msgid ""
+"Prefer subtitles for the hearing impaired over normal subtitles, when both "
+"types are available."
+msgstr ""
 
-msgid "Prefer the DVB-graphical subtitles over Teletext subtitles."
+msgid "Prefer subtitles stored by service"
 msgstr ""
 
 #
@@ -6602,6 +6737,9 @@ msgstr ""
 msgid "Remove a mark"
 msgstr "Διαγραφή σημειωτή"
 
+msgid "Remove completed timers after (days)"
+msgstr ""
+
 #
 #
 msgid "Remove currently selected title"
@@ -6616,6 +6754,9 @@ msgstr "Η διαγραφή τελείωσε."
 #
 msgid "Remove items from trash after (days)"
 msgstr "Διαγραφή αντικειμένων από το καλάθι αχρήστων σε (μέρες)"
+
+msgid "Remove items from trash can after (days)"
+msgstr ""
 
 #
 #
@@ -6902,7 +7043,7 @@ msgstr ""
 msgid "Sat"
 msgstr "Σαβ"
 
-msgid "Sat / Dish setup"
+msgid "Sat / Dish Setup"
 msgstr ""
 
 #
@@ -7062,12 +7203,18 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
+msgid "Search IMDb for information about current event."
+msgstr ""
+
 #
 #
 msgid "Search east"
 msgstr "Αναζήτηση ανατολικά"
 
 msgid "Search for similar events"
+msgstr ""
+
+msgid "Search the epg for current event."
 msgstr ""
 
 #
@@ -7095,6 +7242,18 @@ msgstr "Δευτερεύον DNS"
 #
 msgid "Seek"
 msgstr "Αναζήτηση"
+
+msgid "Seek backward"
+msgstr ""
+
+msgid "Seek backward (enter time)"
+msgstr ""
+
+msgid "Seek forward"
+msgstr ""
+
+msgid "Seek forward (enter time)"
+msgstr ""
 
 msgid "Seekbar activation"
 msgstr ""
@@ -7426,33 +7585,6 @@ msgstr "Ορισμός διεπαφής ως προεπιλεγμένης"
 msgid "Set limits"
 msgstr "Ορισμός ορίων"
 
-msgid "Set the EPG language selection 1"
-msgstr ""
-
-msgid "Set the EPG language selection 2"
-msgstr ""
-
-msgid "Set the audio language 1 (highest priority)"
-msgstr ""
-
-msgid "Set the audio language 2"
-msgstr ""
-
-msgid "Set the audio language 3"
-msgstr ""
-
-msgid "Set the audio language 4 (lowest priority)"
-msgstr ""
-
-msgid "Set the brightness level for normal operation."
-msgstr ""
-
-msgid "Set the brightness level for standby."
-msgstr ""
-
-msgid "Set the contrast level."
-msgstr ""
-
 msgid ""
 "Set the default location for your instant recordings. Press 'OK' to add new "
 "locations, select left/right to select an existing location."
@@ -7476,13 +7608,10 @@ msgstr ""
 msgid "Set the default sorting method."
 msgstr ""
 
-msgid "Set the desired configuration mode."
+msgid "Set the initial fast forward speed."
 msgstr ""
 
-msgid "Set the initial fast forward speed"
-msgstr ""
-
-msgid "Set the initial rewind speed"
+msgid "Set the initial rewind speed."
 msgstr ""
 
 msgid "Set the jump-size of the seekbar."
@@ -7507,18 +7636,6 @@ msgid "Set the skip-forward/backward time of the 4-6 number keys."
 msgstr ""
 
 msgid "Set the skip-forward/backward time of the 7-9 number keys."
-msgstr ""
-
-msgid "Set the subtitle language selection 1 (highest priority)"
-msgstr ""
-
-msgid "Set the subtitle language selection 2"
-msgstr ""
-
-msgid "Set the subtitle language selection 3"
-msgstr ""
-
-msgid "Set the subtitle language selection 4 (lowest priority)"
 msgstr ""
 
 msgid "Set the time to hide the infobar."
@@ -7592,12 +7709,6 @@ msgid ""
 "set as recording."
 msgstr ""
 
-msgid "Set your Latitude:"
-msgstr ""
-
-msgid "Set your Longitude:"
-msgstr ""
-
 msgid ""
 "Sets the root folder of movie list, to remove the '..' from benign shown in "
 "that folder."
@@ -7616,15 +7727,13 @@ msgstr ""
 msgid "Setup"
 msgstr "Παραμετροποίηση"
 
-#
-#
-msgid "Setup Mode"
-msgstr "Επίπεδο παραμετροποίησης"
-
 msgid "Setup how to control the channel changing."
 msgstr ""
 
 msgid "Setup menu"
+msgstr ""
+
+msgid "Setup mode"
 msgstr ""
 
 msgid "Setup the interval to check for online updates. (in hours)"
@@ -7683,6 +7792,9 @@ msgstr ""
 #
 msgid "Show EIT now/next in infobar"
 msgstr "Εμφάνιση ΕΙΤ τρέχων/απόμενο στη μπάρα πληροφοριών"
+
+msgid "Show EPG for current channel..."
+msgstr ""
 
 msgid "Show Games show"
 msgstr ""
@@ -7746,10 +7858,10 @@ msgid ""
 "queue."
 msgstr ""
 
-msgid "Show a popup when a recording starts"
+msgid "Show a popup when a recording starts."
 msgstr ""
 
-msgid "Show a popup when one movie has finished and the next one will start"
+msgid "Show a popup when one movie has finished and the next one will start."
 msgstr ""
 
 #
@@ -7793,6 +7905,9 @@ msgstr ""
 msgid "Show event-progress in channel selection"
 msgstr "Εμφάνιση χρονικού σημείου στην επιλογή καναλιού"
 
+msgid "Show extensions..."
+msgstr ""
+
 msgid "Show icon for new/unseen items"
 msgstr "Εμφάνιση εικονιδίου για νέα αντικείμενα"
 
@@ -7818,6 +7933,12 @@ msgid "Show job tasks in extensions"
 msgstr ""
 
 msgid "Show live tv when movie stopped"
+msgstr ""
+
+msgid "Show message when recording starts"
+msgstr ""
+
+msgid "Show movie lengths in movielist"
 msgstr ""
 
 msgid "Show network mounts ..."
@@ -7847,12 +7968,21 @@ msgstr ""
 msgid "Show status icons in Movielist"
 msgstr "Εμφάνιση εικονιδίων κατάστασης στη λίστα ταινιών"
 
+msgid "Show status icons in movielist"
+msgstr ""
+
 msgid "Show the infomation on current event."
 msgstr ""
 
 msgid ""
-"Show the length of a recording in the movielist (this might cause some "
-"additional loading time)"
+"Show the lenght of a recording in the movielist (this might cause some "
+"additional loading time)."
+msgstr ""
+
+msgid "Show the list of AutoTimers."
+msgstr ""
+
+msgid "Show the list of timers."
 msgstr ""
 
 msgid "Show the media player..."
@@ -7943,9 +8073,6 @@ msgstr "Μονό"
 msgid "Single EPG"
 msgstr "Μονό EPG"
 
-msgid "Single EPG..."
-msgstr ""
-
 #
 #
 msgid "Single satellite"
@@ -7960,6 +8087,9 @@ msgstr "Ένας αναμεταδότης"
 #
 msgid "Singlestep (GOP)"
 msgstr "Μονού βήματος (GOP)"
+
+msgid "Size: "
+msgstr ""
 
 msgid "Skin Setting"
 msgstr ""
@@ -8014,6 +8144,9 @@ msgstr "Αργά"
 #
 msgid "Slow Motion speeds"
 msgstr "Ταχύτητα αργής κίνησης"
+
+msgid "Slow motion speeds"
+msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr ""
@@ -8190,13 +8323,11 @@ msgstr ""
 
 #
 #
-msgid "Start recording?"
-msgstr "Έναρξη εγγράφης;"
-
-#
-#
 msgid "Start test"
 msgstr "Έναρξη ελέγχου"
+
+msgid "Start timeshift"
+msgstr ""
 
 #
 #
@@ -8225,11 +8356,6 @@ msgstr "Βήμα δυτικά"
 #
 msgid "Stop"
 msgstr "Τερματισμός"
-
-#
-#
-msgid "Stop Timeshift?"
-msgstr "Τερματισμός του Timeshift?"
 
 #
 #
@@ -8269,7 +8395,13 @@ msgstr "Stop testing plane after # failed transponders"
 msgid "Stop testing plane after # successful transponders"
 msgstr "Stop testing plane after # successful transponders"
 
+msgid "Stop timeshift"
+msgstr ""
+
 msgid "Stop timeshift while recording?"
+msgstr ""
+
+msgid "Stop timeshift?"
 msgstr ""
 
 msgid "Stopped"
@@ -8372,12 +8504,10 @@ msgstr ""
 msgid "Swap SNR in db with SNR in percentage"
 msgstr ""
 
-#
-#
-msgid "Swap Services"
-msgstr "Αντιμετάθεση υπηρεσιών"
-
 msgid "Swap from normal to list mode"
+msgstr ""
+
+msgid "Swap services"
 msgstr ""
 
 #
@@ -8390,10 +8520,22 @@ msgstr "Αλλαγή της TV στη σωστή είσοδο"
 msgid "Switch config"
 msgstr ""
 
+msgid "Switch next channel"
+msgstr ""
+
+msgid "Switch to next channel in history"
+msgstr ""
+
 #
 #
 msgid "Switch to next subservice"
 msgstr "Προώθηση στην επόμενη υπό-υπηρεσία"
+
+msgid "Switch to previous channel"
+msgstr ""
+
+msgid "Switch to previous channel in history"
+msgstr ""
 
 #
 #
@@ -8428,6 +8570,9 @@ msgid "System"
 msgstr "Σύστημα"
 
 msgid "System: "
+msgstr ""
+
+msgid "TB"
 msgstr ""
 
 #
@@ -8539,8 +8684,8 @@ msgstr ""
 "Παρακαλώ πιέστε ΟΚ για συνέχεια."
 
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready for use.\n"
-"Press OK to start using your receiver."
+"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
+"Please press OK to start using your STB_BOX."
 msgstr ""
 
 msgid ""
@@ -9201,6 +9346,9 @@ msgstr ""
 msgid "Timeshift-Save Action on zap"
 msgstr ""
 
+msgid "Timeshift-save action on zap"
+msgstr ""
+
 #
 #
 msgid "Timezone"
@@ -9244,6 +9392,9 @@ msgid "Today"
 msgstr "Σήμερα"
 
 msgid "Toggle Picture In Graphics"
+msgstr ""
+
+msgid "Toggle a cut mark at the current position"
 msgstr ""
 
 msgid "Toggle aspect ratio..."
@@ -9386,15 +9537,13 @@ msgstr "Tuner"
 
 #
 #
-msgid "Tuner Slot"
-msgstr "Υποδοχή tuner"
-
-#
-#
 msgid "Tuner configuration"
 msgstr "Εγκατάσταση tuner"
 
 msgid "Tuner settings"
+msgstr ""
+
+msgid "Tuner slot"
 msgstr ""
 
 #
@@ -9584,10 +9733,22 @@ msgstr "Χρήση"
 msgid "Use DHCP"
 msgstr "Χρήση DHCP"
 
+msgid "Use EIT EPG information when it is available."
+msgstr ""
+
+msgid "Use FreeSat EPG information when it is available."
+msgstr ""
+
 #
 #
 msgid "Use Interface"
 msgstr "Χρήση διεπαφής χρήστη"
+
+msgid "Use MHW EPG information when it is available."
+msgstr ""
+
+msgid "Use Netmed EPG information when it is available."
+msgstr ""
 
 msgid "Use PTS seekbar while timeshifting?"
 msgstr ""
@@ -9602,6 +9763,9 @@ msgid "Use USALS for this sat"
 msgstr ""
 
 msgid "Use ViX coloured Buttons *"
+msgstr ""
+
+msgid "Use ViaSat EPG information when it is available."
 msgstr ""
 
 #
@@ -9630,18 +9794,7 @@ msgstr "Χρήση αρχικής θέσης teletext"
 msgid "Use power measurement"
 msgstr "Χρήση power measurement"
 
-msgid ""
-"Use power measurement to detect when the rotor stops turning (if your "
-"STB_BOX supports that)"
-msgstr ""
-
 msgid "Use slim screen"
-msgstr ""
-
-msgid "Use the EIT EPG when tuned to a service."
-msgstr ""
-
-msgid "Use the FreeSat EPG when tuned to a service."
 msgstr ""
 
 msgid ""
@@ -9655,12 +9808,6 @@ msgstr ""
 msgid "Use the Left/Right buttons on your remote to move the OSD up/down"
 msgstr ""
 
-msgid "Use the MHW EPG when tuned to a service."
-msgstr ""
-
-msgid "Use the Netmed EPG when tuned to a service."
-msgstr ""
-
 #
 #
 msgid "Use the Networkwizard to configure selected network adapter"
@@ -9671,9 +9818,6 @@ msgstr ""
 #
 msgid "Use the Networkwizard to configure your Network\n"
 msgstr "Χρήση Οδηγού Δικτύου για παραμετροποίηση του δικτύου\n"
-
-msgid "Use the ViaSat EPG when tuned to a service."
-msgstr ""
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr ""
@@ -9689,6 +9833,9 @@ msgid ""
 msgstr ""
 "Πιέστε τα πλήκτρα Πάνω/Κάτω του τηλεχειριστηρίου για επιλογή. Μετά, πιέστε "
 "ΟΚ."
+
+msgid "Use the wizard to set up basic features"
+msgstr ""
 
 msgid "Use these input device settings?"
 msgstr ""
@@ -9706,15 +9853,13 @@ msgstr "Χρήση αυτών των ρυθμίσεων αναβάθμισης �
 msgid "Use time of currently running service"
 msgstr "Χρήση ώρας από τρέχουσα υπηρεσία"
 
+msgid "Use trash can in movielist"
+msgstr ""
+
 #
 #
 msgid "Use trashcan in movielist"
 msgstr "Χρήση κάλαθου αχρήστων στη λίστα ταινιών"
-
-#
-#
-msgid "Use wizard to set up basic features"
-msgstr "Χρήση Οδηγού για απλές ρυθμίσεις"
 
 #
 #
@@ -9727,15 +9872,15 @@ msgstr ""
 msgid "User - bouquets"
 msgstr ""
 
-msgid "User Name"
-msgstr ""
-
 #
 #
 msgid "User defined"
 msgstr "Ορισμός από το χρήστη"
 
 msgid "User interface"
+msgstr ""
+
+msgid "User name"
 msgstr ""
 
 #
@@ -9757,7 +9902,7 @@ msgid "Using old profile: "
 msgstr ""
 
 msgid ""
-"Usually when the subtitle language is the same as the audio language "
+"Usually when the subtitle language is the same as the audio language, "
 "subtitles are surpressed. This option allows showing subtitles when they are "
 "the same."
 msgstr ""
@@ -9811,22 +9956,14 @@ msgstr "Προεπισκόπηση αναβάθμισης εικόνας"
 msgid "Video enhancement setup"
 msgstr "Εγκατάσταση αναβάθμισης εικόνας"
 
-#
-#
 msgid ""
 "Video input selection\n"
 "\n"
 "Please press OK if you can see this page on your TV (or select a different "
 "input port).\n"
 "\n"
-"The next input port will be automatically probed in 10 seconds."
+"The next input port will be automatically probed in 20 seconds."
 msgstr ""
-"Επιλογή εισόδου εικόνας\n"
-"\n"
-"Παρακαλώ πιέστε ΟΚ εάν μπορείτε να δείτε αυτή τη σελίδα στην TV (ή επιλέξτε "
-"διαφορετική είσοδο).\n"
-"\n"
-"Η επόμενη είσοδος εικόνας θα εμφανιστεί αυτόματα σε 10 δευτερόλεπτα."
 
 #
 #
@@ -10133,11 +10270,6 @@ msgid "What do you want to scan?"
 msgstr "Τι θέλετε να σαρώσετε;"
 
 msgid ""
-"When a recording needs to be started it is allowed to interrupt the watched "
-"service"
-msgstr ""
-
-msgid ""
 "When enabled the online checker will also check for experimental versions"
 msgstr ""
 
@@ -10151,7 +10283,17 @@ msgid ""
 "client receiver to show EPG."
 msgstr ""
 
+msgid ""
+"When enabled, a recording is allowed to interrupt live tv, when there are no "
+"free tuners."
+msgstr ""
+
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
+msgstr ""
+
+msgid ""
+"When enabled, deleted recordings are moved to the trash can, instead of "
+"being immediately deleted."
 msgstr ""
 
 msgid ""
@@ -10191,6 +10333,29 @@ msgstr ""
 msgid ""
 "When enabled, the original line breaks will be removed from the teletext "
 "subtitles."
+msgstr ""
+
+msgid ""
+"When enabled, the receiver will use the subtitles which have been selected "
+"earlier."
+msgstr ""
+
+msgid "When enabled, use DHCP for the IP configuration."
+msgstr ""
+
+msgid ""
+"When enabled, use power measurement to detect when the rotor stops turning "
+"(when supported by the tuner)."
+msgstr ""
+
+msgid ""
+"When nonzero, a recording will start earlier than the starting time as "
+"indicated by the EPG."
+msgstr ""
+
+msgid ""
+"When nonzero, a recording will stop later than the ending time as indicated "
+"by the EPG."
 msgstr ""
 
 msgid ""
@@ -10439,18 +10604,6 @@ msgstr "Μπορείτε να εγγράψετε μόνο εγγραφές απ�
 msgid "You can remove this plugin."
 msgstr "Μπορείτε να διαγράψετε το πρόσθετο."
 
-msgid "You can set the Gateway."
-msgstr ""
-
-msgid "You can set the IP Address."
-msgstr ""
-
-msgid "You can set the Nameserver."
-msgstr ""
-
-msgid "You can set the Netmask."
-msgstr ""
-
 #
 #
 msgid "You cannot delete this!"
@@ -10520,6 +10673,12 @@ msgstr ""
 "Your STB_BOX will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
+
+msgid ""
+"You need to set a PIN code and hide it from your children.\n"
+"\n"
+"Do you want to set the pin now?"
+msgstr ""
 
 msgid "You system does not support ext4"
 msgstr "Το σύστημά σας δεν υποστηρίζει ext4"
@@ -10791,10 +10950,6 @@ msgid "about to start"
 msgstr "έτοιμο για εκκίνηση"
 
 #
-msgid "activate PiP"
-msgstr "ενεργοποίηση PiP"
-
-#
 #
 msgid "activate current configuration"
 msgstr "ενεργοποίηση τρέχουσας παραμετροποίησης"
@@ -10853,26 +11008,6 @@ msgstr "προσθήκη αρχείων στη λίστα αναπαραγωγή
 #
 msgid "add marker"
 msgstr "προσθήκη σημειωτή"
-
-#
-#
-msgid "add recording (enter recording duration)"
-msgstr "προσθήκη εγγραφής (επιλογή διάρκειας)"
-
-#
-#
-msgid "add recording (enter recording endtime)"
-msgstr "προσθήκη εγγραφής (ορίστε χρόνο τερματισμού εγγραφής)"
-
-#
-#
-msgid "add recording (indefinitely)"
-msgstr "προσθήκη εγγραφής (χωρίς όριο χρόνου)"
-
-#
-#
-msgid "add recording (stop after current event)"
-msgstr "προσθήκη εγγραφής (σταμάτημα στο τέλος του προγράμματος)"
 
 #
 #
@@ -11042,16 +11177,6 @@ msgstr ""
 
 #
 #
-msgid "change recording (duration)"
-msgstr "αλλαγή εγγραφής (διάρκεια)"
-
-#
-#
-msgid "change recording (endtime)"
-msgstr "αλλαγή εγγραφής (χρόνος τερματισμού)"
-
-#
-#
 msgid "chapters"
 msgstr "κεφάλαια"
 
@@ -11208,11 +11333,6 @@ msgstr ""
 
 msgid "don't descramble, record ecm"
 msgstr ""
-
-#
-#
-msgid "don't record"
-msgstr "χωρίς εγγραφή"
 
 #
 #
@@ -11415,6 +11535,9 @@ msgstr "ελεύθερα"
 msgid "free diskspace"
 msgstr "ελεύθερος χώρος δίσκου"
 
+msgid "full"
+msgstr ""
+
 #
 msgid "full transparency"
 msgstr "μέγιστη διαφάνεια"
@@ -11543,16 +11666,6 @@ msgstr "μετάβαση στην αρχή της λίστας"
 msgid "jump to listend"
 msgstr "μετάβαση στο τέλος της λίστας"
 
-#
-#
-msgid "jump to next marked position"
-msgstr "μετάβαση στην επόμενη σημειωμένη θέση"
-
-#
-#
-msgid "jump to previous marked position"
-msgstr "μετάβαση στην προηγούμενη σημειωμένη θέση"
-
 msgid "languages"
 msgstr ""
 
@@ -11573,11 +11686,6 @@ msgstr ""
 #
 msgid "length"
 msgstr "μήκος"
-
-#
-#
-msgid "list of EPG views..."
-msgstr "λίστα εμφανίσεων EPG..."
 
 msgid "literature"
 msgstr ""
@@ -11671,11 +11779,6 @@ msgstr "μετάβαση στην πρώτη εγγραφή"
 msgid "move up to previous entry"
 msgstr "μετάβαση στην προηγούμενη εγγραφή"
 
-#
-#
-msgid "movie list"
-msgstr "λίστα ταινιών"
-
 msgid "movie/drama (general)"
 msgstr ""
 
@@ -11712,16 +11815,6 @@ msgstr ""
 
 msgid "news/weather report"
 msgstr ""
-
-#
-#
-msgid "next channel"
-msgstr "επόμενο κανάλι"
-
-#
-#
-msgid "next channel in history"
-msgstr "επόμενο κανάλι στο ιστορικό"
 
 #
 #
@@ -11834,9 +11927,6 @@ msgstr ""
 msgid "once"
 msgstr "μια φορά"
 
-msgid "open Satellites"
-msgstr ""
-
 msgid "open bouquetlist"
 msgstr ""
 
@@ -11844,21 +11934,6 @@ msgstr ""
 #
 msgid "open nameserver configuration"
 msgstr "άνοιγμα ρύθμισης nameserver"
-
-#
-#
-msgid "open servicelist"
-msgstr "άνοιγμα λίστας υπηρεσιών"
-
-#
-#
-msgid "open servicelist(down)"
-msgstr "άνοιγμα λίστας υπηρεσιών (κάτω)"
-
-#
-#
-msgid "open servicelist(up)"
-msgstr "άνοιγμα λίστας υπηρεσιών (πάνω)"
 
 #
 msgid "original"
@@ -11930,16 +12005,6 @@ msgstr ""
 
 msgid "pre-school children's program"
 msgstr ""
-
-#
-#
-msgid "previous channel"
-msgstr "προηγούμενο κανάλι"
-
-#
-#
-msgid "previous channel in history"
-msgstr "προηγούμενο κανάλι στο ιστορικό"
 
 msgid "provid:"
 msgstr ""
@@ -12351,11 +12416,6 @@ msgstr "εκκίνηση αποκοπής εδώ"
 msgid "start directory"
 msgstr "εκκίνηση φακέλου"
 
-#
-#
-msgid "start timeshift"
-msgstr "εκκίνηση timeshift"
-
 msgid "stepsize"
 msgstr "μέγεθος βήματος"
 
@@ -12373,16 +12433,6 @@ msgstr "τερματισμός PiP"
 #
 msgid "stop entry"
 msgstr "τερματισμός εισαγωγής"
-
-#
-#
-msgid "stop recording"
-msgstr "τερματισμός εγγραφής"
-
-#
-#
-msgid "stop timeshift"
-msgstr "τερματισμός timeshift"
 
 msgid "stop using as startup service"
 msgstr "τέλος χρήσης ως υπηρεσία εκκίνησης"
@@ -12459,11 +12509,6 @@ msgstr "η εγγραφή είναι προστατευμένη από τον γ
 
 #
 #
-msgid "toggle a cut mark at the current position"
-msgstr "εναλλαγή σημειωτή αποκοπής στην τρέχουσα θέση"
-
-#
-#
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "εναλλαγή πληροφοριών χρόνου, κεφαλαίου, ήχου, υποτίτλων"
 
@@ -12494,6 +12539,9 @@ msgid "uShare Setup"
 msgstr ""
 
 msgid "uShare setup"
+msgstr ""
+
+msgid "unavailable"
 msgstr ""
 
 #
