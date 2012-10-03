@@ -446,7 +446,6 @@ class InfoBarShowHide:
 			if self.pvrStateDialog:
 				self.pvrStateDialog.hide()
 
-
 	def connectShowHideNotifier(self, fnc):
 		if not fnc in self.onShowHideNotifiers:
 			self.onShowHideNotifiers.append(fnc)
@@ -3582,8 +3581,10 @@ class InfoBarExtensions:
 				name = name[0]
 				if name.endswith(' '):
 					name = name[:-1]
-		if name:
-			self.session.open(EPGSearch, name, False)
+			if name:
+				self.session.open(EPGSearch, name, False)
+			else:
+				self.session.open(EPGSearch)
 		else:
 			self.session.open(EPGSearch)
 
