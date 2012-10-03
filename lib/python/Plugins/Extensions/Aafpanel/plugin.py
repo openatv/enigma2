@@ -1031,7 +1031,7 @@ class Info(Screen):
 
 		try:
 			self["label2"].setText(_("Default"))
-			now = datetime.datetime.now()
+			now = datetime.now()
 			info1 = 'Date = ' + now.strftime("%d-%B-%Y") + "\n"
 			info2 = 'Time = ' + now.strftime("%H:%M:%S") + "\n"
 			info3 = self.Do_cmd("uptime", None, None)
