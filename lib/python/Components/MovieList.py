@@ -430,7 +430,7 @@ class MovieList(GUIComponent):
 	def load(self, root, filter_tags):
 		# this lists our root service, then building a
 		# nice list
-		del self.list[:]
+		self.list = [ ]
 		serviceHandler = eServiceCenter.getInstance()
 		numberOfDirs = 0
 
