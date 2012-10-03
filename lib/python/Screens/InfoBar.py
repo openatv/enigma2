@@ -45,13 +45,13 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self["actions"] = HelpableActionMap(self, "InfobarActions",
 			{
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
-				"toogleTvRadio": (self.toogleTvRadio, _("toggels betwenn tv and radio...")),
-				#"showRadio": (self.showRadio, _("Show the radio player...")),
-				#"showTv": (self.showTv, _("Show the tv player...")),
+				"showRadio": (self.showRadio, _("Show the radio player...")),
+				"showTv": (self.showTv, _("Show the tv player...")),
+				"openTimerList": (self.openTimerList, _("Show the tv player...")),
+				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 			}, prio=2)
 		
 		self.allowPiP = True
-		self.radioTV = 0
 		
 		for x in HelpableScreen, \
 				InfoBarBase, InfoBarShowHide, \
@@ -115,24 +115,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.rds_display.hide() # in InfoBarRdsDecoder
 			from Screens.ChannelSelection import ChannelSelectionRadio
 			self.session.openWithCallback(self.ChannelSelectionRadioClosed, ChannelSelectionRadio, self)
-			
-	def toogleTvRadio(self): 
-		#service = self.session.nav.getCurrentService()
-		#if service is not None: # workaround to avoid an error when service is None
-		#	info = service.info()
-		#	AudioPID = info.getInfo(enigma.iServiceInformation.sAudioPID)
-		#	VideoPID = info.getInfo(enigma.iServiceInformation.sVideoPID)
-		#else:
-		#	AudioPID = 1
-		#	VideoPID = 1
-
-		#if VideoPID == -1: 
-		if self.radioTV == 1:
-			self.radioTV = 0
-			self.showTv() 
-		else: 
-			self.radioTV = 1
-			self.showRadio()	
 
 	def ChannelSelectionRadioClosed(self, *arg):
 		self.rds_display.show()  # in InfoBarRdsDecoder
@@ -149,7 +131,19 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				self.session.nav.playService(ref)
 		else:
 			self.session.open(MoviePlayer, service, slist = self.servicelist, lastservice = ref)
-
+			
+	def openTimerList(self):
+		from Screens.TimerEdit import TimerEditList
+		self.session.open(TimerEditList)
+		
+	def showMediaPlayer(self):
+		try:
+			from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
+			self.session.open(MediaPlayer)
+			no_plugin = False
+		except Exception, e:
+			self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		InfoBarMenu, \
 		InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,

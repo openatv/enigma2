@@ -442,8 +442,49 @@ class InfoBarChannelSelection:
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
 				"historyNext": (self.historyNext, _("Switch to next channel in history")),
 				"openServiceList": (self.openServiceList, _("Open service list")),
+				"openhistorybrowser": (self.openHistoryBrowser, _("open history browser")),
+				"opendevicemanager": (self.openDeviceManager, _("open device manager")),
+				"openaroraplugins": (self.openAroraPlugins, _("open Arora Browser")),
+				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
 			})
 
+	def openHistoryBrowser(self):
+
+		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/ZapHistoryBrowser/plugin.pyo"):
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Zap-History Browser"):
+					self.runPlugin(plugin)
+					break
+		else:
+			self.session.open(MessageBox, _("The Zap-History Browser plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+			
+	def openDeviceManager(self):
+
+		if fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/DeviceManager/plugin.pyo"):
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Device Manager - Fast Mounted Remove"):
+					self.runPlugin(plugin)
+					break
+		else:
+			self.session.open(MessageBox, _("The Device Manager plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			
+	def openAroraPlugins(self):
+
+		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WebBrowser/plugin.pyo"):
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Web Browser"):
+					self.runPlugin(plugin)
+					break
+		else:
+			self.session.open(MessageBox, _("The WebBrowser is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showPluginBrowser(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
+		from Screens.PluginBrowser import PluginBrowser
+		self.session.open(PluginBrowser)
 	def showTvChannelList(self, zap=False):
 		self.servicelist.setModeTv()
 		if zap:

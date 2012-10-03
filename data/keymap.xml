@@ -11,8 +11,7 @@
 		<key id="KEY_PAGEUP" mapto="pageUp" flags="mr" />
 		<key id="KEY_PAGEDOWN" mapto="pageDown" flags="mr" />
 		<key id="KEY_LEFT" mapto="pageUp" flags="mr" />
-		<key id="KEY_RIGHT" mapto="pageDown" flags="mr" />
-		
+		<key id="KEY_RIGHT" mapto="pageDown" flags="mr" />	
 		<key id="1" mapto="moveUp" flags="mr" />
 		<key id="2" mapto="moveDown" flags="mr" />
 	</map>
@@ -88,13 +87,13 @@
 	<map context="InfobarEPGActions">
 		<key id="KEY_INFO" mapto="showEventInfo" flags="b" />
 		<key id="KEY_INFO" mapto="showEventInfoPlugin" flags="l" />
-		<key id="KEY_EPG" mapto="showEventInfo" flags="b" />
+		<key id="KEY_EPG" mapto="openMultiServiceEPG" flags="b" />
 		<key id="KEY_EPG" mapto="showEventInfoPlugin" flags="l" />
 	</map>
 	
 	<map context="InfobarInstantRecord">
 		<key id="KEY_RECORD" mapto="instantRecord" flags="m" />
-		<device name="dreambox remote control (native)">
+		<device name="gigablue remote control">
 			<key id="KEY_RED" mapto="instantRecord" flags="b" />
 		</device>
 	</map>
@@ -116,10 +115,14 @@
 		<key id="KEY_NEXT" mapto="historyNext" flags="mr" />
 		<key id="KEY_BACK" mapto="historyBack" flags="mr" />
 		<key id="KEY_FORWARD" mapto="historyNext" flags="mr" />
-		<key id="KEY_CHANNELUP" mapto="openServiceList" flags="m" />
-		<key id="KEY_CHANNELDOWN" mapto="openServiceList" flags="m" />
+		<key id="KEY_CHANNELUP" mapto="zapDown" flags="m" />
+		<key id="KEY_CHANNELDOWN" mapto="zapUp" flags="m" />
 		<key id="BTN_0" mapto="zapUp" flags="mr" />
 		<key id="BTN_1" mapto="zapDown" flags="mr" />
+		<key id="KEY_ARCHIVE" mapto="openhistorybrowser" flags="mr" />
+		<key id="KEY_F1" mapto="opendevicemanager" flags="mr" />
+		<key id="KEY_F4" mapto="openaroraplugins" flags="mr" />
+		<key id="KEY_GREEN" mapto="showPluginBrowser" flags="mr" />
 	</map>
 	
 	<map context="MinuteInputActions">
@@ -198,8 +201,11 @@
 	</map>
 
 	<map context="InfobarActions">
+		<key id="KEY_PROGRAM" mapto="openTimerList" flags="b" />
 		<key id="KEY_VIDEO" mapto="showMovies" flags="b" />
 		<key id="KEY_VIDEO" mapto="showMediaPlayer" flags="l" />
+		<key id="KEY_MEDIA" mapto="showMovies" flags="b" />
+		<key id="KEY_LIST" mapto="showMediaPlayer" flags="b" />
 		<key id="KEY_PLAY" mapto="showMovies" flags="m" />
 		<key id="KEY_TV" mapto="toogleTvRadio" flags="b" />
 		<!--key id="KEY_RADIO" mapto="toogleTvRadio" flags="b" />
@@ -208,11 +214,9 @@
 		<key id="KEY_TV" mapto="showRadio" flags="l" /-->
 		<key id="KEY_FILE" mapto="showMovies" flags="m" />
 		<key id="KEY_LIST" mapto="showMediaPlayer" flags="b" />
-		<key id="KEY_PROGRAM" mapto="openTimerList" flags="b" />
 		<key id="KEY_F5" mapto="openTimerList" flags="b" />
-		<key id="KEY_PROGRAM" mapto="openAutoTimerList" flags="l" />
 		<key id="KEY_SEARCH" mapto="openEPGSearch" flags="b" />
-		<key id="KEY_SEARCH" mapto="openIMDB" flags="l" />
+
 	</map>
 
 	<map context="InfobarAudioSelectionActions">
@@ -223,11 +227,11 @@
 	</map>
 
 	<map context="InfobarSubtitleSelectionActions">
-		<key id="KEY_SUBTITLE" mapto="subtitleSelection" flags="m" />
+		<key id="KEY_F3" mapto="subtitleSelection" flags="m" />
 	</map>
 
 	<map context="InfobarSubserviceSelectionActions">
-		<key id="KEY_GREEN" mapto="subserviceSelection" flags="b" />
+		<key id="KEY_SUBTITLE" mapto="subserviceSelection" flags="b" />
 	</map>
 
 	<map context="InfobarRedButtonActions">
@@ -237,7 +241,7 @@
 	</map>
 
 	<map context="InfobarPiPActions">
-		<key id="KEY_SCREEN" mapto="activatePiP" flags="b" />
+		<key id="KEY_F2" mapto="activatePiP" flags="b" />
 	</map>
 
 	<map context="InfobarSubserviceQuickzapActions">
@@ -369,6 +373,7 @@
 			<key id="KEY_YELLOW" mapto="timeshiftStart" flags="m" />
 		</device>
 		<key id="KEY_PLAYPAUSE" mapto="timeshiftStart" flags="m" />
+		<key id="KEY_YELLOW" mapto="timeshiftStart" flags="m" />
 		<key id="KEY_PAUSE" mapto="timeshiftStart" flags="m" />
 		<!--key id="KEY_TV" mapto="timeshiftStop" flags="m" /-->
 		<key id="KEY_STOP" mapto="timeshiftStop" flags="m" />
@@ -476,6 +481,7 @@
 		<key id="KEY_GREEN" mapto="showSatellites" flags="m" />
 		<key id="KEY_YELLOW" mapto="showProviders" flags="m" />
 		<key id="KEY_BLUE" mapto="showFavourites" flags="m" />
+		<key id="KEY_FAVORITES" mapto="showFavourites" flags="m" />
 		<key id="KEY_CHANNELUP" mapto="nextBouquet" flags="m" />
 		<key id="KEY_CHANNELDOWN" mapto="prevBouquet" flags="m" />
 		<key id="KEY_PREVIOUS" mapto="prevMarker" flags="m" />
@@ -593,7 +599,6 @@
 		<key id="KEY_F2" mapto="yellow" flags="mr" />
 		<key id="KEY_F3" mapto="green" flags="mr" />
 		<key id="KEY_F4" mapto="blue" flags="mr" />
-
 		<key id="KEY_RED" mapto="red" flags="mr" />
 		<key id="KEY_YELLOW" mapto="yellow" flags="mr" />
 		<key id="KEY_GREEN" mapto="green" flags="mr" />
