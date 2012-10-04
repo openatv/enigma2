@@ -564,8 +564,8 @@ def InitUsageConfig():
 	config.epgselection.preview_mode_infobar = ConfigYesNo(default = True)
 	config.epgselection.preview_mode = ConfigYesNo(default = True)
 	config.epgselection.graphics_mode = ConfigSelection(choices = [("graphics",_("Graphics")), ("text", _("Text"))], default = "graphics")
-	config.epgselection.OK = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
-	config.epgselection.OKLong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
+	config.epgselection.OK_multi = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.epgselection.OKLong_multi= ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
 	config.epgselection.OK_vixepg = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
 	config.epgselection.OKLong_vixepg = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
 	config.epgselection.OK_enhanced = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
@@ -598,6 +598,8 @@ def InitUsageConfig():
 	config.epgselection.overjump = ConfigYesNo(default = False)
 	config.epgselection.pictureingraphics = ConfigYesNo(default = True)
 	config.epgselection.heightswitch = NoSave(ConfigYesNo(default = False))
+	config.epgselection.servicewidth = ConfigSelectionNumber(default = 250, stepwidth = 1, min = 70, max = 500, wraparound = True)
+	config.epgselection.piconwidth = ConfigSelectionNumber(default = 100, stepwidth = 1, min = 70, max = 500, wraparound = True)
 
 	if not os.path.exists('/usr/softcams/'):
 		os.mkdir('/usr/softcams/',0755)
