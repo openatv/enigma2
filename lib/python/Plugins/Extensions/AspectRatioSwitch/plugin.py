@@ -33,8 +33,8 @@ ASPECTMSG = {
 PACKAGE_PATH = os.path.dirname(str((globals())["__file__"]))
 KEYMAPPINGS = {'aspect': os.path.join(PACKAGE_PATH, 'keymap-aspect.xml')}
 
+config.plugins.AspectRatioSwitch.enabled = ConfigEnableDisable(default = True)
 config.plugins.AspectRatioSwitch = ConfigSubsection()
-config.plugins.AspectRatioSwitch.enabled = ConfigEnableDisable(default = False)
 config.plugins.AspectRatioSwitch.keymap = ConfigSelection({'aspect': _('ASPECT key')})
 config.plugins.AspectRatioSwitch.showmsg = ConfigEnableDisable(default = True)
 config.plugins.AspectRatioSwitch.modes = ConfigSubDict()
