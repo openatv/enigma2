@@ -92,6 +92,10 @@ LANG_TEXT = {
 	"T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
 	"T2": "Selecção do Idioma",
 },
+"pt_BR": {
+	"T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
+	"T2": "Selecção do Idioma",
+},
 "ru_RU": {
 	"T1": "Пожалуйста, используйте кнопки ВВЕРХ и ВНИЗ для выбора языка. Далее нажмите ОК.",
 	"T2": "Выбор языка",
