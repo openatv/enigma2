@@ -7,6 +7,7 @@
 #include <lib/service/event.h>
 #endif
 
+#include <fstream>
 #include <time.h>
 #include <unistd.h>  // for usleep
 #include <sys/vfs.h> // for statfs
@@ -345,6 +346,14 @@ eEPGCache::eEPGCache()
 	CONNECT(messages.recv_msg, eEPGCache::gotMessage);
 	CONNECT(eDVBLocalTimeHandler::getInstance()->m_timeUpdated, eEPGCache::timeUpdated);
 	CONNECT(cleanTimer->timeout, eEPGCache::cleanLoop);
+
+	std::ifstream onid_file;
+	onid_file.open("/etc/enigma2/blacklist.onid");
+	int tmp_onid;
+
+	while (onid_file >> std::hex >>tmp_onid)
+	         onid_blacklist.insert(onid_blacklist.end(),1,tmp_onid);
+	onid_file.close();
 
 	ePtr<eDVBResourceManager> res_mgr;
 	eDVBResourceManager::getInstance(res_mgr);
@@ -721,6 +730,10 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 			eit_event->start_time_4,
 			eit_event->start_time_5,
 			&event_hash);
+
+		std::vector<int>::iterator m_it=find(onid_blacklist.begin(),onid_blacklist.end(),onid);
+		if (m_it != onid_blacklist.end())
+			goto next;
 
 		if ( (TM != 3599) &&		// NVOD Service
 		     (now <= (TM+duration)) &&	// skip old events
