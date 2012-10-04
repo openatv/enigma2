@@ -3099,41 +3099,17 @@ class InfoBarExtensions:
 	def __init__(self):
 		self.list = []
 
-		if config.vixsettings.ColouredButtons.value:
-			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
-				{
-					"extensions": (self.showExtensionSelection, _("view extensions...")),
-					"RedPressed": (self.RedPressed, _("Show epg")),
-					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
-					"showEventInfo": (self.openEventView, _("Show the infomation on current event.")),
-					"openTimerList": (self.showTimerList, _("Show the tv player...")),
-					"openAutoTimerList": (self.showAutoTimerList, _("Show the tv player...")),
-					"openEPGSearch": (self.showEPGSearch, _("Show the tv player...")),
-					"openIMDB": (self.showIMDB, _("Show the tv player...")),
-					"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
-				}, 1) # lower priority
-		else:
-			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
-				{
-					"extensions": (self.showExtensionSelection, _("view extensions...")),
-					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
-					"showEventInfo": (self.openEventView, _("Show the infomation on current event.")),
-					"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
-				}, 1) # lower priority
+		self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
+			{
+				"extensions": (self.showExtensionSelection, _("view extensions...")),
+				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
+				"showEventInfo": (self.openEventView, _("Show the infomation on current event.")),
+				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
+			}, 1) # lower priority
 
-		self.addExtension(extension = self.getLogManager, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getOsd3DSetup, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getCCcamInfo, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getOScamInfo, type = InfoBarExtensions.EXTENSION_LIST)
-
-	def getLMname(self):
-		return _("Log Manager")
-
-	def getLogManager(self):
-		if config.logmanager.showinextensions.value:
-			return [((boundFunction(self.getLMname), boundFunction(self.openLogManager), lambda: True), None)]
-		else:
-			return []
 
 	def get3DSetupname(self):
 		return _("OSD 3D Setup")
@@ -3148,10 +3124,10 @@ class InfoBarExtensions:
 		return _("CCcam Info")
 
 	def getCCcamInfo(self):
-		if Directories.pathExists('/usr/softcams/'):
-			softcams = os_listdir('/usr/softcams/')
+		if Directories.pathExists('/usr/emu_scripts/'):
+			softcams = os_listdir('/usr/emu_scripts/')
 		for softcam in softcams:
-			if softcam.lower().startswith('cccam') and config.cccaminfo.showInExtensions.value:
+			if softcam.lower().find('cccam') and config.cccaminfo.showInExtensions.value:
 				return [((boundFunction(self.getCCname), boundFunction(self.openCCcamInfo), lambda: True), None)] or []
 		else:
 			return []
@@ -3160,22 +3136,13 @@ class InfoBarExtensions:
 		return _("OScam Info")
 
 	def getOScamInfo(self):
-		if Directories.pathExists('/usr/softcams/'):
-			softcams = os_listdir('/usr/softcams/')
+		if Directories.pathExists('/usr/emu_scripts/'):
+			softcams = os_listdir('/usr/emu_scripts/')
 		for softcam in softcams:
-			if softcam.lower().startswith('oscam') and config.oscaminfo.showInExtensions.value:
+			if softcam.lower().find('oscam') and config.oscaminfo.showInExtensions.value:
 				return [((boundFunction(self.getOSname), boundFunction(self.openOScamInfo), lambda: True), None)] or []
 		else:
 			return []
-
-	def RedPressed(self):
-		if isinstance(self, InfoBarEPG):
-			if config.usage.defaultEPGType.value == "Graphical EPG..." or config.usage.defaultEPGType.value == "None":
-				self.openSingleServiceEPG()
-			else:
-				self.openGraphEPG()
-		else:
-			self.openEventView()
 
 	def addExtension(self, extension, key = None, type = EXTENSION_SINGLE):
 		self.list.append((type, extension, key))
@@ -3250,49 +3217,9 @@ class InfoBarExtensions:
 		from Screens.OScamInfo import OscamInfoMenu
 		self.session.open(OscamInfoMenu)
 
-	def showTimerList(self):
-		self.session.open(TimerEditList)
-
-	def openLogManager(self):
-		from Screens.LogManager import LogManager
-		self.session.open(LogManager)
-
 	def openOSD3DSetup(self):
 		from Screens.OSD import OSD3DSetupScreen
 		self.session.open(OSD3DSetupScreen)
-
-	def showAutoTimerList(self):
-		if os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
-			from Plugins.Extensions.AutoTimer.plugin import main, autostart
-			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
-			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
-			autopoller = AutoPoller()
-			autotimer = AutoTimer()
-			global autotimer
-			global autopoller
-			try:
-				autotimer.readXml()
-			except SyntaxError as se:
-				self.session.open(
-					MessageBox,
-					_("Your config file is not well-formed:\n%s") % (str(se)),
-					type = MessageBox.TYPE_ERROR,
-					timeout = 10
-				)
-				return
-
-			# Do not run in background while editing, this might screw things up
-			if autopoller is not None:
-				autopoller.stop()
-
-			from Plugins.Extensions.AutoTimer.AutoTimerOverview import AutoTimerOverview
-			self.session.openWithCallback(
-				self.editCallback,
-				AutoTimerOverview,
-				autotimer
-			)
-		else:
-			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def editCallback(self, session):
 		global autotimer
@@ -3315,46 +3242,6 @@ class InfoBarExtensions:
 		else:
 			autopoller = None
 			autotimer = None
-
-	def showEPGSearch(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-		from Plugins.Extensions.EPGSearch.EPGSearch import EPGSearch
-		s = self.session.nav.getCurrentService()
-		if s:
-			info = s.info()
-			event = info.getEvent(0) # 0 = now, 1 = next
-			if event:
-				name = event and event.getEventName() or ''
-			else:
-				name = self.session.nav.getCurrentlyPlayingServiceReference().toString()
-				name = name.split('/')
-				name = name[-1]
-				name = name.replace('.',' ')
-				name = name.split('-')
-				name = name[0]
-				if name.endswith(' '):
-					name = name[:-1]
-		if name:
-			self.session.open(EPGSearch, name, False)
-		else:
-			self.session.open(EPGSearch)
-
-	def showIMDB(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-		if os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/IMDb/plugin.pyo"):
-			from Plugins.Extensions.IMDb.plugin import IMDB
-			s = self.session.nav.getCurrentService()
-			if s:
-				info = s.info()
-				event = info.getEvent(0) # 0 = now, 1 = next
-				name = event and event.getEventName() or ''
-				self.session.open(IMDB, name)
-		else:
-			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showMediaPlayer(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
