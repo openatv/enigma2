@@ -207,7 +207,7 @@ class SecondInfoBar(Screen):
 		self["epg_description"].pageDown()
 
 	def __Show(self):
-		if config.vixsettings.ColouredButtons.value:
+		if config.vixsettings.ColouredButtons.getValue():
 			self["key_yellow"].setText(_("Search"))
 		self["key_red"].setText(_("Similar"))
 		self["key_blue"].setText(_("Extensions"))
@@ -427,12 +427,12 @@ class InfoBarShowHide:
 
 	def LongOKPressed(self):
 		if isinstance(self, InfoBarEPG):
-			if config.vixsettings.QuickEPG_mode.value == "1":
+			if config.vixsettings.QuickEPG_mode.getValue() == "1":
 				self.openInfoBarEPG()
 
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN:
-			if config.vixsettings.QuickEPG_mode.value == "2":
+			if config.vixsettings.QuickEPG_mode.getValue() == "2":
 				self.openInfoBarEPG()
 			else:
 				self.hide()
@@ -456,7 +456,7 @@ class InfoBarShowHide:
 
 	def serviceStarted(self):
 		if self.execing:
-			if config.usage.show_infobar_on_zap.value:
+			if config.usage.show_infobar_on_zap.getValue():
 				self.doShow()
 
 	def __onShow(self):
@@ -471,7 +471,7 @@ class InfoBarShowHide:
 			idx = config.usage.infobar_timeout.index
 			if idx:
 				self.hideTimer.start(idx*1000, True)
-		elif (self.secondInfoBarScreen and self.secondInfoBarScreen.shown) or (not config.usage.show_second_infobar.value and self.EventViewIsShown):
+		elif (self.secondInfoBarScreen and self.secondInfoBarScreen.shown) or (not config.usage.show_second_infobar.getValue() and self.EventViewIsShown):
 			self.hideTimer.stop()
 			idx = config.usage.second_infobar_timeout.index
 			if idx:
@@ -510,12 +510,12 @@ class InfoBarShowHide:
 				self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
 			self.EventViewIsShown = False
-		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown:
+		elif self.secondInfoBarScreen and config.usage.show_second_infobar.getValue() and not self.secondInfoBarScreen.shown:
 			self.hide()
 			self.secondInfoBarScreen.show()
 			self.secondInfoBarWasShown = True
 			self.startHideTimer()
-		elif (not config.usage.show_second_infobar.value or isMoviePlayerInfoBar(self)) and not self.EventViewIsShown:
+		elif (not config.usage.show_second_infobar.getValue() or isMoviePlayerInfoBar(self)) and not self.EventViewIsShown:
 			self.hide()
 			self.openEventView()
 			self.EventViewIsShown = True
@@ -641,10 +641,10 @@ class InfoBarNumberZap:
 			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
 				self.pipDoHandle0Action()
 			else:
-				if config.usage.panicbutton.value:
+				if config.usage.panicbutton.getValue():
 					self.servicelist.history = [ ]
 					self.servicelist.history_pos = 0
-					if config.usage.multibouquet.value:
+					if config.usage.multibouquet.getValue():
 						bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
 					else:
 						bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types)
@@ -675,7 +675,7 @@ class InfoBarNumberZap:
 		else:
 			if self.has_key("TimeshiftActions") and not self.timeshift_enabled:
 				self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
-		if number and config.timeshift.enabled.value and self.timeshift_enabled and not self.isSeekable():
+		if number and config.timeshift.enabled.getValue() and self.timeshift_enabled and not self.isSeekable():
 			self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
 
 	def numberEntered(self, service = None, bouquet = None):
@@ -697,7 +697,7 @@ class InfoBarNumberZap:
 		service = None
 		serviceHandler = eServiceCenter.getInstance()
 		service = self.searchNumberHelper(serviceHandler, number, bouquet)
-		if config.usage.multibouquet.value:
+		if config.usage.multibouquet.getValue():
 			service = self.searchNumberHelper(serviceHandler, number, bouquet) #search the current bouqeut first
 			if not service:
 				bouquet = self.servicelist.bouquet_root
@@ -712,7 +712,7 @@ class InfoBarNumberZap:
 								if not playable:
 									service = None
 								break
-							if config.usage.alternative_number_mode.value:
+							if config.usage.alternative_number_mode.getValue():
 								break
 						bouquet = bouquetlist.getNext()
 		return service, bouquet
@@ -757,7 +757,7 @@ class InfoBarChannelSelection:
 			})
 
 	def LeftPressed(self):
-		if config.vixsettings.QuickEPG_mode.value == "3":
+		if config.vixsettings.QuickEPG_mode.getValue() == "3":
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
 				self.secondInfoBarWasShown = False
@@ -766,7 +766,7 @@ class InfoBarChannelSelection:
 			self.zapUp()
 
 	def RightPressed(self):
-		if config.vixsettings.QuickEPG_mode.value == "3":
+		if config.vixsettings.QuickEPG_mode.getValue() == "3":
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
 				self.secondInfoBarWasShown = False
@@ -775,14 +775,14 @@ class InfoBarChannelSelection:
 			self.zapDown()
 
 	def ChannelPlusPressed(self):
-		if config.usage.channelbutton_mode.value == "0":
+		if config.usage.channelbutton_mode.getValue() == "0":
 			self.zapDown()
-		elif config.usage.channelbutton_mode.value == "1":
+		elif config.usage.channelbutton_mode.getValue() == "1":
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
 				self.secondInfoBarWasShown = False
 			self.openServiceList()
-		elif config.usage.channelbutton_mode.value == "2":
+		elif config.usage.channelbutton_mode.getValue() == "2":
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
 				self.secondInfoBarWasShown = False
@@ -791,14 +791,14 @@ class InfoBarChannelSelection:
 			self.session.execDialog(self.servicelist)
 
 	def ChannelMinusPressed(self):
-		if config.usage.channelbutton_mode.value == "0":
+		if config.usage.channelbutton_mode.getValue() == "0":
 			self.zapUp()
-		elif config.usage.channelbutton_mode.value == "1":
+		elif config.usage.channelbutton_mode.getValue() == "1":
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
 				self.secondInfoBarWasShown = False
 			self.openServiceList()
-		elif config.usage.channelbutton_mode.value == "2":
+		elif config.usage.channelbutton_mode.getValue() == "2":
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
 				self.secondInfoBarWasShown = False
@@ -813,7 +813,7 @@ class InfoBarChannelSelection:
 		self.servicelist.setModeTv()
 		if zap:
 			self.servicelist.zap()
-		if config.usage.show_servicelist.value:
+		if config.usage.show_servicelist.getValue():
 			self.session.execDialog(self.servicelist)
 
 	def showRadioChannelList(self, zap=False):
@@ -826,7 +826,7 @@ class InfoBarChannelSelection:
 			self.servicelist.setModeRadio()
 			if zap:
 				self.servicelist.zap()
-			if config.usage.show_servicelist.value:
+			if config.usage.show_servicelist.getValue():
 				self.session.execDialog(self.servicelist)
 
 	def historyBack(self):
@@ -866,7 +866,7 @@ class InfoBarChannelSelection:
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelUp")
 		else:
-			if not config.usage.show_bouquetalways.value:
+			if not config.usage.show_bouquetalways.getValue():
  # 				self.servicelist.moveUp()
 				self.session.execDialog(self.servicelist)
 			else:
@@ -880,7 +880,7 @@ class InfoBarChannelSelection:
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelDown")
 		else:
-			if not config.usage.show_bouquetalways.value:
+			if not config.usage.show_bouquetalways.getValue():
 #  				self.servicelist.moveDown()
 				self.session.execDialog(self.servicelist)
 			else:
@@ -922,7 +922,7 @@ class InfoBarChannelSelection:
 				if prev:
 					prev = prev.toString()
 					while True:
-						if config.usage.quickzap_bouquet_change.value:
+						if config.usage.quickzap_bouquet_change.getValue():
 							if self.servicelist.atBegin():
 								self.servicelist.prevBouquet()
 						self.servicelist.moveUp()
@@ -945,7 +945,7 @@ class InfoBarChannelSelection:
 				if prev:
 					prev = prev.toString()
 					while True:
-						if config.usage.quickzap_bouquet_change.value and self.servicelist.atEnd():
+						if config.usage.quickzap_bouquet_change.getValue() and self.servicelist.atEnd():
 							self.servicelist.nextBouquet()
 						else:
 							self.servicelist.moveDown()
@@ -998,8 +998,8 @@ class InfoBarMenu:
 	def toggleAspectRatio(self):
 		ASPECT = [ "auto", "16_9", "4_3" ]
 		ASPECT_MSG = { "auto":"Auto", "16_9":"16:9", "4_3":"4:3" }
-		if config.av.aspect.value in ASPECT:
-			index = ASPECT.index(config.av.aspect.value)
+		if config.av.aspect.getValue() in ASPECT:
+			index = ASPECT.index(config.av.aspect.getValue())
 			config.av.aspect.value = ASPECT[(index+1)%3]
 		else:
 			config.av.aspect.value = "auto"
@@ -1062,7 +1062,7 @@ class InfoBarEPG:
 		pluginlist = self.getEPGPluginList()
 		config.usage.defaultEPGType=ConfigSelection(default = "None", choices = pluginlist)
 		for plugin in pluginlist:
-			if plugin[0] == config.usage.defaultEPGType.value:
+			if plugin[0] == config.usage.defaultEPGType.getValue():
 				return plugin[1]
 		return None
 
@@ -1153,7 +1153,7 @@ class InfoBarEPG:
 		self.EPGtype = "multi"
 		Servicelist = self.servicelist
 		self.StartBouquet = Servicelist
-		if config.epgselection.showbouquet_multi.value:
+		if config.epgselection.showbouquet_multi.getValue():
 			self.bouquets = self.servicelist.getBouquetList()
 			if self.bouquets is None:
 				cnt = 0
@@ -1200,7 +1200,7 @@ class InfoBarEPG:
 		self.EPGtype = "graph"
 		Servicelist = self.servicelist
 		self.StartBouquet = Servicelist
-		if config.epgselection.showbouquet_vixepg.value:
+		if config.epgselection.showbouquet_vixepg.getValue():
 			self.bouquets = self.servicelist.getBouquetList()
 			if self.bouquets is None:
 				cnt = 0
@@ -1464,12 +1464,12 @@ class Seekbar(Screen):
 			self.exit()
 
 	def keyLeft(self):
-		self.percent -= float(config.seek.sensibility.value) / 10.0
+		self.percent -= float(config.seek.sensibility.getValue()) / 10.0
 		if self.percent < 0.0:
 			self.percent = 0.0
 
 	def keyRight(self):
-		self.percent += float(config.seek.sensibility.value) / 10.0
+		self.percent += float(config.seek.sensibility.getValue()) / 10.0
 		if self.percent > 100.0:
 			self.percent = 100.0
 
@@ -1513,7 +1513,7 @@ class InfoBarSeek:
 					key = int(action[8:])
 					time = (-config.seek.selfdefined_13.value, False, config.seek.selfdefined_13.value,
 						-config.seek.selfdefined_46.value, False, config.seek.selfdefined_46.value,
-						-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value)[key-1]
+						-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.getValue())[key-1]
 					self.screen.doSeekRelative(time * 90000)
 					return 1
 				else:
@@ -1711,11 +1711,11 @@ class InfoBarSeek:
 			self.pauseService()
 		else:
 			if self.seekstate == self.SEEK_STATE_PAUSE:
-				if config.seek.on_pause.value == "play":
+				if config.seek.on_pause.getValue() == "play":
 					self.unPauseService()
-				elif config.seek.on_pause.value == "step":
+				elif config.seek.on_pause.getValue() == "step":
 					self.doSeekRelative(1)
-				elif config.seek.on_pause.value == "last":
+				elif config.seek.on_pause.getValue() == "last":
 					self.setSeekState(self.lastseekstate)
 					self.lastseekstate = self.SEEK_STATE_PLAY
 			else:
@@ -1749,7 +1749,7 @@ class InfoBarSeek:
 			else:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 		seekable.seekRelative(pts<0 and -1 or 1, abs(pts))
-		if abs(pts) > 100 and config.usage.show_infobar_on_skip.value:
+		if abs(pts) > 100 and config.usage.show_infobar_on_skip.getValue():
 			self.showAfterSeek()
 
 	def seekFwd(self):
@@ -1761,31 +1761,31 @@ class InfoBarSeek:
 				return
 			return 0 # trade as unhandled action
 		if self.seekstate == self.SEEK_STATE_PLAY:
-			self.setSeekState(self.makeStateForward(int(config.seek.enter_forward.value)))
+			self.setSeekState(self.makeStateForward(int(config.seek.enter_forward.getValue())))
 		elif self.seekstate == self.SEEK_STATE_PAUSE:
-			if len(config.seek.speeds_slowmotion.value):
+			if len(config.seek.speeds_slowmotion.getValue()):
 				self.setSeekState(self.makeStateSlowMotion(config.seek.speeds_slowmotion.value[-1]))
 			else:
-				self.setSeekState(self.makeStateForward(int(config.seek.enter_forward.value)))
+				self.setSeekState(self.makeStateForward(int(config.seek.enter_forward.getValue())))
 		elif self.seekstate == self.SEEK_STATE_EOF:
 			pass
 		elif self.isStateForward(self.seekstate):
 			speed = self.seekstate[1]
 			if self.seekstate[2]:
 				speed /= self.seekstate[2]
-			speed = self.getHigher(speed, config.seek.speeds_forward.value) or config.seek.speeds_forward.value[-1]
+			speed = self.getHigher(speed, config.seek.speeds_forward.getValue()) or config.seek.speeds_forward.value[-1]
 			self.setSeekState(self.makeStateForward(speed))
 		elif self.isStateBackward(self.seekstate):
 			speed = -self.seekstate[1]
 			if self.seekstate[2]:
 				speed /= self.seekstate[2]
-			speed = self.getLower(speed, config.seek.speeds_backward.value)
+			speed = self.getLower(speed, config.seek.speeds_backward.getValue())
 			if speed:
 				self.setSeekState(self.makeStateBackward(speed))
 			else:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 		elif self.isStateSlowMotion(self.seekstate):
-			speed = self.getLower(self.seekstate[2], config.seek.speeds_slowmotion.value) or config.seek.speeds_slowmotion.value[0]
+			speed = self.getLower(self.seekstate[2], config.seek.speeds_slowmotion.getValue()) or config.seek.speeds_slowmotion.value[0]
 			self.setSeekState(self.makeStateSlowMotion(speed))
 
 	def seekBack(self):
@@ -1798,9 +1798,9 @@ class InfoBarSeek:
 			return 0 # trade as unhandled action
 		seekstate = self.seekstate
 		if seekstate == self.SEEK_STATE_PLAY:
-			self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
+			self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.getValue())))
 		elif seekstate == self.SEEK_STATE_EOF:
-			self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
+			self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.getValue())))
 			self.doSeekRelative(-6)
 		elif seekstate == self.SEEK_STATE_PAUSE:
 			self.doSeekRelative(-1)
@@ -1808,7 +1808,7 @@ class InfoBarSeek:
 			speed = seekstate[1]
 			if seekstate[2]:
 				speed /= seekstate[2]
-			speed = self.getLower(speed, config.seek.speeds_forward.value)
+			speed = self.getLower(speed, config.seek.speeds_forward.getValue())
 			if speed:
 				self.setSeekState(self.makeStateForward(speed))
 			else:
@@ -1817,10 +1817,10 @@ class InfoBarSeek:
 			speed = -seekstate[1]
 			if seekstate[2]:
 				speed /= seekstate[2]
-			speed = self.getHigher(speed, config.seek.speeds_backward.value) or config.seek.speeds_backward.value[-1]
+			speed = self.getHigher(speed, config.seek.speeds_backward.getValue()) or config.seek.speeds_backward.value[-1]
 			self.setSeekState(self.makeStateBackward(speed))
 		elif self.isStateSlowMotion(seekstate):
-			speed = self.getHigher(seekstate[2], config.seek.speeds_slowmotion.value)
+			speed = self.getHigher(seekstate[2], config.seek.speeds_slowmotion.getValue())
 			if speed:
 				self.setSeekState(self.makeStateSlowMotion(speed))
 			else:
@@ -1828,19 +1828,19 @@ class InfoBarSeek:
 		self.pts_lastseekspeed = self.seekstate[1]
 
 	def seekFwdManual(self, fwd=True):
-		if config.seek.baractivation.value == "leftright":
+		if config.seek.baractivation.getValue() == "leftright":
 			self.session.open(Seekbar, fwd)
 		else:
 			self.session.openWithCallback(self.fwdSeekTo, MinuteInput)
 
 	def seekBackManual(self, fwd=False):
-		if config.seek.baractivation.value == "leftright":
+		if config.seek.baractivation.getValue() == "leftright":
 			self.session.open(Seekbar, fwd)
 		else:
 			self.session.openWithCallback(self.rwdSeekTo, MinuteInput)
 
 	def seekFwdSeekbar(self, fwd=True):
-		if not config.seek.baractivation.value == "leftright":
+		if not config.seek.baractivation.getValue() == "leftright":
 			self.session.open(Seekbar, fwd)
 		else:
 			self.session.openWithCallback(self.fwdSeekTo, MinuteInput)
@@ -1849,7 +1849,7 @@ class InfoBarSeek:
 		self.doSeekRelative(minutes * 60 * 90000)
 
 	def seekBackSeekbar(self, fwd=False):
-		if not config.seek.baractivation.value == "leftright":
+		if not config.seek.baractivation.getValue() == "leftright":
 			self.session.open(Seekbar, fwd)
 		else:
 			self.session.openWithCallback(self.rwdSeekTo, MinuteInput)
@@ -1864,7 +1864,7 @@ class InfoBarSeek:
  			self.unlockShow()
 		else:
 			wantlock = self.seekstate != self.SEEK_STATE_PLAY
-			if config.usage.show_infobar_on_skip.value:
+			if config.usage.show_infobar_on_skip.getValue():
 				if self.lockedBecauseOfSkipping and not wantlock:
 					self.unlockShow()
 					self.lockedBecauseOfSkipping = False
@@ -1933,11 +1933,11 @@ class InfoBarPVRState:
 		return InfoBarMoviePlayerSummary
 
 	def _mayShow(self):
-		if "MoviePlayer'>" in str(self) and not config.usage.movieplayer_pvrstate.value:
+		if "MoviePlayer'>" in str(self) and not config.usage.movieplayer_pvrstate.getValue():
 			self["state"].setText("")
 			self["statusicon"].setPixmapNum(6)
 			self["speed"].setText("")
-		if self.execing and self.seekstate != self.SEEK_STATE_EOF and not config.usage.movieplayer_pvrstate.value:
+		if self.execing and self.seekstate != self.SEEK_STATE_EOF and not config.usage.movieplayer_pvrstate.getValue():
 			self.pvrStateDialog.show()
 
 	def __playStateChanged(self, state):
@@ -1949,7 +1949,7 @@ class InfoBarPVRState:
 			self.pvrStateDialog["speed"].setText("")
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 0
-			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.value:
+			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.getValue():
  				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(0)
 				self["speed"].setText("")
@@ -1958,7 +1958,7 @@ class InfoBarPVRState:
 			self.pvrStateDialog["speed"].setText("")
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 1
-			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.value:
+			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.getValue():
  				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(1)
 				self["speed"].setText("")
@@ -1967,7 +1967,7 @@ class InfoBarPVRState:
 			self.pvrStateDialog["speed"].setText("")
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 2
-			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.value:
+			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.getValue():
  				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(2)
 				self["speed"].setText("")
@@ -1977,7 +1977,7 @@ class InfoBarPVRState:
 			self.pvrStateDialog["speed"].setText(speed[1])
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 3
-			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.value:
+			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.getValue():
  				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(3)
 				self["speed"].setText(speed[1])
@@ -1987,7 +1987,7 @@ class InfoBarPVRState:
 			self.pvrStateDialog["speed"].setText(speed[1])
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 4
-			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.value:
+			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.getValue():
  				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(4)
 				self["speed"].setText(speed[1])
@@ -1996,7 +1996,7 @@ class InfoBarPVRState:
 			self.pvrStateDialog["speed"].setText(playstateString)
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 5
-			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.value:
+			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.getValue():
  				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(5)
 				self["speed"].setText(playstateString)
@@ -2005,7 +2005,7 @@ class InfoBarPVRState:
 			cb(state_summary, speed_summary, statusicon_summary)
 
 		# if we return into "PLAY" state, ensure that the dialog gets hidden if there will be no infobar displayed
-		if not config.usage.show_infobar_on_skip.value and self.seekstate == self.SEEK_STATE_PLAY and not self.force_show:
+		if not config.usage.show_infobar_on_skip.getValue() and self.seekstate == self.SEEK_STATE_PLAY and not self.force_show:
 			self.pvrStateDialog.hide()
 		else:
 			self._mayShow()
@@ -2016,28 +2016,28 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		self.onHide.append(self.__hideTimeshiftState)
 
 	def _mayShow(self):
-		if config.timeshift.enabled.value:
+		if config.timeshift.enabled.getValue():
 			self["TimeshiftActivateActions"].setEnabled(True)
 			self["TimeshiftActions"].setEnabled(False)
 		else:
 			self["TimeshiftActivateActions"].setEnabled(False)
 			self["TimeshiftActions"].setEnabled(True)
 		if self.execing and self.timeshift_enabled and self.isSeekable():
-			if config.timeshift.enabled.value:
+			if config.timeshift.enabled.getValue():
 				self["TimeshiftActivateActions"].setEnabled(False)
 				self["TimeshiftActions"].setEnabled(True)
 				self["SeekActions"].setEnabled(True)
 				InfoBarTimeshift.ptsSeekPointerSetCurrentPos(self)
 				self["SeekActions"].setEnabled(False)
 				self["SeekActionsPTS"].setEnabled(True)
-				if config.timeshift.showinfobar.value:
+				if config.timeshift.showinfobar.getValue():
 					self["TimeshiftSeekPointerActions"].setEnabled(True)
 			else:
 				self["SeekActions"].setEnabled(True)
 			self.pvrStateDialog.show()
 
 		elif self.execing and self.timeshift_enabled and not self.isSeekable():
-			if config.timeshift.enabled.value:
+			if config.timeshift.enabled.getValue():
 				self["SeekActions"].setEnabled(False)
 				self["SeekActionsPTS"].setEnabled(False)
 				self["TimeshiftSeekPointerActions"].setEnabled(False)
@@ -2047,7 +2047,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 			self.pvrStateDialog.hide()
 
 	def __hideTimeshiftState(self):
-		if config.timeshift.enabled.value:
+		if config.timeshift.enabled.getValue():
 			self["TimeshiftActivateActions"].setEnabled(True)
 			self["TimeshiftActions"].setEnabled(False)
 			self["SeekActionsPTS"].setEnabled(False)
@@ -2226,12 +2226,12 @@ class InfoBarTimeshift:
 
 	def __evEnd(self):
 		self.service_changed = 0
-		if not config.timeshift.isRecording.value:
+		if not config.timeshift.isRecording.getValue():
 			self.timeshift_enabled = 0
 			self.__seekableStatusChanged()
 
 	def __evSOF(self):
-		if not config.timeshift.enabled.value or not self.timeshift_enabled:
+		if not config.timeshift.enabled.getValue() or not self.timeshift_enabled:
 			return
 
 		if self.pts_currplaying == 1:
@@ -2263,7 +2263,7 @@ class InfoBarTimeshift:
 			self.pts_cleanUp_timer.start(3000, True)
 
 	def __evEventInfoChanged(self):
-		if not config.timeshift.enabled.value:
+		if not config.timeshift.enabled.getValue():
 			return
 
 		# Get Current Event Info
@@ -2278,9 +2278,9 @@ class InfoBarTimeshift:
 
 			# Take care of Record Margin Time ...
 			if self.save_current_timeshift and self.timeshift_enabled:
-				if config.recording.margin_after.value > 0 and len(self.recording) == 0:
+				if config.recording.margin_after.getValue() > 0 and len(self.recording) == 0:
 					self.SaveTimeshift(mergelater=True)
-					recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()), time(), time()+(config.recording.margin_after.value*60), self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, dirname = config.usage.default_path.value)
+					recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()), time(), time()+(config.recording.margin_after.getValue() * 60), self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, dirname = config.usage.default_path.getValue())
 					recording.dontSave = True
 					self.session.nav.RecordTimer.record(recording)
 					self.recording.append(recording)
@@ -2289,7 +2289,7 @@ class InfoBarTimeshift:
 
 			# Restarting active timers after zap ...
 			if self.pts_delay_timer.isActive() and not self.timeshift_enabled:
-				self.pts_delay_timer.start(config.timeshift.startdelay.value*1000, True)
+				self.pts_delay_timer.start(config.timeshift.startdelay.getValue() * 1000, True)
 			if self.pts_cleanUp_timer.isActive() and not self.timeshift_enabled:
 				self.pts_cleanUp_timer.start(3000, True)
 
@@ -2298,14 +2298,14 @@ class InfoBarTimeshift:
 				if not self.timeshift_enabled or old_begin_time != self.pts_begintime or old_begin_time == 0:
 					if self.pts_service_changed:
 						self.pts_service_changed = False
-						self.pts_delay_timer.start(config.timeshift.startdelay.value*1000, True)
+						self.pts_delay_timer.start(config.timeshift.startdelay.getValue() * 1000, True)
 					else:
 						self.pts_delay_timer.start(1000, True)
 
 	def __seekableStatusChanged(self):
 		self["SeekActionsPTS"].setEnabled(False)
 		self["TimeshiftSeekPointerActions"].setEnabled(False)
-		if config.timeshift.enabled.value:
+		if config.timeshift.enabled.getValue():
 			self["TimeshiftActivateActions"].setEnabled(True)
 			self["TimeshiftActions"].setEnabled(False)
 			if self.timeshift_enabled and self.isSeekable():
@@ -2324,25 +2324,25 @@ class InfoBarTimeshift:
 				self["SeekActions"].setEnabled(False)
 
 		# Reset Seek Pointer And Eventname in InfoBar
-		if config.timeshift.enabled.value and self.timeshift_enabled and not self.isSeekable():
+		if config.timeshift.enabled.getValue() and self.timeshift_enabled and not self.isSeekable():
 			if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState":
 				self.pvrStateDialog["eventname"].setText("")
 			self.ptsSeekPointerReset()
 
 		# setNextPlaybackFile() when switching back to live tv
-		if config.timeshift.enabled.value and self.timeshift_enabled and not self.isSeekable():
+		if config.timeshift.enabled.getValue() and self.timeshift_enabled and not self.isSeekable():
 			if self.pts_starttime <= (time()-5):
 				self.pts_blockZap_timer.start(3000, True)
 			self.pts_currplaying = self.pts_eventcount
 			self.ptsSetNextPlaybackFile("pts_livebuffer.%s" % (self.pts_eventcount))
 
 	def eraseTimeshiftFile(self):
-		for filename in os_listdir(config.usage.timeshift_path.value):
+		for filename in os_listdir(config.usage.timeshift_path.getValue()):
 			if filename.startswith("timeshift.") and not filename.endswith(".del") and not filename.endswith(".copy"):
 				self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value,filename))
 
 	def activatePermanentTimeshift(self):
-		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True or self.ptsLiveTVStatus() is False or (config.timeshift.stopwhilerecording.value and self.pts_record_running):
+		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True or self.ptsLiveTVStatus() is False or (config.timeshift.stopwhilerecording.getValue() and self.pts_record_running):
 			return
 
 		# Replace PVR Timeshift State Icon
@@ -2357,7 +2357,7 @@ class InfoBarTimeshift:
 			pts_setnextfile = False
 
 		# Update internal Event Counter
-		if self.pts_eventcount >= config.timeshift.maxevents.value:
+		if self.pts_eventcount >= config.timeshift.maxevents.getValue():
 			self.pts_eventcount = 0
 
 		self.pts_eventcount += 1
@@ -2391,7 +2391,7 @@ class InfoBarTimeshift:
 			self.pts_eventcount = 0
 
 	def startTimeshift(self):
-		if config.timeshift.enabled.value:
+		if config.timeshift.enabled.getValue():
 			self.pts_delay_timer.stop()
 			self.activatePermanentTimeshift()
 			self.activateTimeshiftEndAndPause()
@@ -2427,7 +2427,7 @@ class InfoBarTimeshift:
 			return 0
 
 		# Jump Back to Live TV
-		if config.timeshift.enabled.value and self.timeshift_enabled:
+		if config.timeshift.enabled.getValue() and self.timeshift_enabled:
 			if self.isSeekable():
 				self.pts_switchtolive = True
 				self.ptsSetNextPlaybackFile("")
@@ -2500,7 +2500,7 @@ class InfoBarTimeshift:
 		entrylist = []
 		entrylist.append((_("Current Event:")+" %s" % (self.pts_curevent_name), "savetimeshift"))
 
-		filelist = os_listdir(config.usage.timeshift_path.value)
+		filelist = os_listdir(config.usage.timeshift_path.getValue())
 
 		if filelist is not None:
 			filelist.sort()
@@ -2527,18 +2527,18 @@ class InfoBarTimeshift:
 		self.save_timeshift_postaction = postaction
 
 		if action is None:
-			if config.timeshift.favoriteSaveAction.value == "askuser":
+			if config.timeshift.favoriteSaveAction.getValue() == "askuser":
 				self.saveTimeshiftPopup()
 				return
-			elif config.timeshift.favoriteSaveAction.value == "savetimeshift":
+			elif config.timeshift.favoriteSaveAction.getValue() == "savetimeshift":
 				self.SaveTimeshift()
-			elif config.timeshift.favoriteSaveAction.value == "savetimeshiftandrecord":
+			elif config.timeshift.favoriteSaveAction.getValue() == "savetimeshiftandrecord":
 				if self.pts_curevent_end > time():
 					self.SaveTimeshift(mergelater=True)
 					self.ptsRecordCurrentEvent()
 				else:
 					self.SaveTimeshift()
-			elif config.timeshift.favoriteSaveAction.value == "noSave":
+			elif config.timeshift.favoriteSaveAction.getValue() == "noSave":
 				config.timeshift.isRecording.value = False
 				self.save_current_timeshift = False
 		elif action == "savetimeshift":
@@ -2584,7 +2584,7 @@ class InfoBarTimeshift:
 			savefilename = timeshiftfile
 
 		if savefilename is None:
-			for filename in os_listdir(config.usage.timeshift_path.value):
+			for filename in os_listdir(config.usage.timeshift_path.getValue()):
 				if filename.startswith("timeshift.") and not filename.endswith(".del") and not filename.endswith(".copy"):
 					try:
 						statinfo = os_stat("%s%s" % (config.usage.timeshift_path.value,filename))
@@ -2616,17 +2616,17 @@ class InfoBarTimeshift:
 					ptsfilename = "%s - %s - %s" % (strftime("%Y%m%d %H%M",localtime(self.pts_starttime)),self.pts_curevent_station,self.pts_curevent_name)
 					try:
 						if config.usage.setup_level.index >= 2:
-							if config.recording.filename_composition.value == "long" and self.pts_curevent_name != pts_curevent_description:
+							if config.recording.filename_composition.getValue() == "long" and self.pts_curevent_name != pts_curevent_description:
 								ptsfilename = "%s - %s - %s - %s" % (strftime("%Y%m%d %H%M",localtime(self.pts_starttime)),self.pts_curevent_station,self.pts_curevent_name,self.pts_curevent_description)
-							elif config.recording.filename_composition.value == "short":
+							elif config.recording.filename_composition.getValue() == "short":
 								ptsfilename = "%s - %s" % (strftime("%Y%m%d",localtime(self.pts_starttime)),self.pts_curevent_name)
 					except Exception, errormsg:
 						print "[TimeShift] Using default filename"
 
-					if config.recording.ascii_filenames.value:
+					if config.recording.ascii_filenames.getValue():
 						ptsfilename = ASCIItranslit.legacyEncode(ptsfilename)
 
-					fullname = Directories.getRecordingFilename(ptsfilename,config.usage.default_path.value)
+					fullname = Directories.getRecordingFilename(ptsfilename,config.usage.default_path.getValue())
 					os_link("%s%s" % (config.usage.timeshift_path.value,savefilename), "%s.ts" % (fullname))
 					metafile = open("%s.ts.meta" % (fullname), "w")
 					metafile.write("%s\n%s\n%s\n%i\n%s" % (self.pts_curevent_servicerefname,self.pts_curevent_name.replace("\n", ""),self.pts_curevent_description.replace("\n", ""),int(self.pts_starttime),metamergestring))
@@ -2644,17 +2644,17 @@ class InfoBarTimeshift:
 					ptsfilename = "%s - %s - %s" % (strftime("%Y%m%d %H%M",localtime(int(begintime))),self.pts_curevent_station,eventname)
 					try:
 						if config.usage.setup_level.index >= 2:
-							if config.recording.filename_composition.value == "long" and eventname != description:
+							if config.recording.filename_composition.getValue() == "long" and eventname != description:
 								ptsfilename = "%s - %s - %s - %s" % (strftime("%Y%m%d %H%M",localtime(int(begintime))),self.pts_curevent_station,eventname,description)
-							elif config.recording.filename_composition.value == "short":
+							elif config.recording.filename_composition.getValue() == "short":
 								ptsfilename = "%s - %s" % (strftime("%Y%m%d",localtime(int(begintime))),eventname)
 					except Exception, errormsg:
 						print "[TimeShift] Using default filename"
 
-					if config.recording.ascii_filenames.value:
+					if config.recording.ascii_filenames.getValue():
 						ptsfilename = ASCIItranslit.legacyEncode(ptsfilename)
 
-					fullname=Directories.getRecordingFilename(ptsfilename,config.usage.default_path.value)
+					fullname=Directories.getRecordingFilename(ptsfilename,config.usage.default_path.getValue())
 					os_link("%s%s" % (config.usage.timeshift_path.value,timeshiftfile),"%s.ts" % (fullname))
 					os_link("%s%s.meta" % (config.usage.timeshift_path.value,timeshiftfile),"%s.ts.meta" % (fullname))
 					if os_path.exists("%s%s.eit" % (config.usage.timeshift_path.value,timeshiftfile)):
@@ -2678,7 +2678,7 @@ class InfoBarTimeshift:
 			# Let's try to copy the file in background now! This might take a while ...
 			if not timeshift_saved:
 				try:
-					stat = statvfs(config.usage.default_path.value)
+					stat = statvfs(config.usage.default_path.getValue())
 					freespace = stat.f_bfree / 1000 * stat.f_bsize / 1000
 					randomint = randint(1, 999)
 
@@ -2731,7 +2731,7 @@ class InfoBarTimeshift:
 					else:
 						timeshift_saved = False
 						timeshift_saveerror1 = ""
-						timeshift_saveerror2 = _("Not enough free Diskspace!\n\nFilesize: %sMB\nFree Space: %sMB\nPath: %s" % (filesize,freespace,config.usage.default_path.value))
+						timeshift_saveerror2 = _("Not enough free Diskspace!\n\nFilesize: %sMB\nFree Space: %sMB\nPath: %s" % (filesize,freespace,config.usage.default_path.getValue()))
 
 				except Exception, errormsg:
 					timeshift_saved = False
@@ -2744,11 +2744,11 @@ class InfoBarTimeshift:
 				Notifications.AddNotification(MessageBox, _("Timeshift save failed!")+"\n\n%s" % errormessage, MessageBox.TYPE_ERROR)
 
 	def ptsCleanTimeshiftFolder(self):
-		if not config.timeshift.enabled.value or self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True:
+		if not config.timeshift.enabled.getValue() or self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True:
 			return
 
 		try:
-			for filename in os_listdir(config.usage.timeshift_path.value):
+			for filename in os_listdir(config.usage.timeshift_path.getValue()):
 				if (filename.startswith("timeshift.") or filename.startswith("pts_livebuffer.")) and (filename.endswith(".del") is False and filename.endswith(".copy") is False and filename.endswith(".meta") is False and filename.endswith(".eit") is False):
 
 					statinfo = os_stat("%s%s" % (config.usage.timeshift_path.value,filename))
@@ -2812,7 +2812,7 @@ class InfoBarTimeshift:
 
 	def ptsCreateHardlink(self):
 		timeshiftlist = []
-		for filename in os_listdir(config.usage.timeshift_path.value):
+		for filename in os_listdir(config.usage.timeshift_path.getValue()):
 			if filename.startswith("timeshift.") and not filename.endswith(".del") and not filename.endswith(".copy"):
 				try:
 					statinfo = os_stat("%s%s" % (config.usage.timeshift_path.value,filename))
@@ -2843,9 +2843,9 @@ class InfoBarTimeshift:
 						self.ptsCreateEITFile("%spts_livebuffer.%s" % (config.usage.timeshift_path.value,self.pts_eventcount))
 
 						# Permanent Recording Hack
-						if config.timeshift.permanentrecording.value:
+						if config.timeshift.permanentrecording.getValue():
 							try:
-								fullname = Directories.getRecordingFilename("%s - %s - %s" % (strftime("%Y%m%d %H%M",localtime(self.pts_starttime)),self.pts_curevent_station,self.pts_curevent_name),config.usage.default_path.value)
+								fullname = Directories.getRecordingFilename("%s - %s - %s" % (strftime("%Y%m%d %H%M",localtime(self.pts_starttime)),self.pts_curevent_station,self.pts_curevent_name),config.usage.default_path.getValue())
 								os_link("%s%s" % (config.usage.timeshift_path.value,filename), "%s.ts" % (fullname))
 								# Create a Meta File
 								metafile = open("%s.ts.meta" % (fullname), "w")
@@ -2860,7 +2860,7 @@ class InfoBarTimeshift:
 					Notifications.AddNotification(MessageBox, _("Creating Hardlink to Timeshift file failed!")+"\n%s" % (errormsg), MessageBox.TYPE_ERROR)
 
 	def ptsRecordCurrentEvent(self):
-			recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()), time(), self.pts_curevent_end, self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, dirname = config.usage.default_path.value)
+			recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()), time(), self.pts_curevent_end, self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, dirname = config.usage.default_path.getValue())
 			recording.dontSave = True
 			self.session.nav.RecordTimer.record(recording)
 			self.recording.append(recording)
@@ -2876,7 +2876,7 @@ class InfoBarTimeshift:
 		ptsgetnextfile = False
 		ptsfilemerged = False
 
-		filelist = os_listdir(config.usage.default_path.value)
+		filelist = os_listdir(config.usage.default_path.getValue())
 
 		if filelist is not None:
 			filelist.sort()
@@ -3010,10 +3010,10 @@ class InfoBarTimeshift:
 		self.ptsFrontpanelActions("stop")
 		config.timeshift.isRecording.value = False
 
-		filelist = os_listdir(config.usage.default_path.value)
+		filelist = os_listdir(config.usage.default_path.getValue())
 		for filename in filelist:
 			if filename.endswith(".pts.del"):
-				srcfile = config.usage.default_path.value + "/" + filename[0:-8] + ".ts"
+				srcfile = config.usage.default_path.getValue() + "/" + filename[0:-8] + ".ts"
 				self.BgFileEraser.erase("%s" % (srcfile))
 				self.BgFileEraser.erase("%s.ap" % (srcfile))
 				self.BgFileEraser.erase("%s.sc" % (srcfile))
@@ -3140,7 +3140,7 @@ class InfoBarTimeshift:
 
 	def ptsTimeshiftFileChanged(self):
 		# Reset Seek Pointer
-		if config.timeshift.enabled.value:
+		if config.timeshift.enabled.getValue():
 			self.ptsSeekPointerReset()
 
 		if self.pts_switchtolive:
@@ -3153,7 +3153,7 @@ class InfoBarTimeshift:
 			else:
 				self.pts_currplaying -= 1
 		else:
-			if self.pts_currplaying == config.timeshift.maxevents.value:
+			if self.pts_currplaying == config.timeshift.maxevents.getValue():
 				self.pts_currplaying = 1
 			else:
 				self.pts_currplaying += 1
@@ -3162,7 +3162,7 @@ class InfoBarTimeshift:
 			self.pts_currplaying = self.pts_eventcount
 
 		# Set Eventname in PTS InfoBar
-		if config.timeshift.enabled.value and self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState":
+		if config.timeshift.enabled.getValue() and self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState":
 			try:
 				if self.pts_eventcount != self.pts_currplaying:
 					readmetafile = open("%spts_livebuffer.%s.meta" % (config.usage.timeshift_path.value,self.pts_currplaying), "r")
@@ -3176,7 +3176,7 @@ class InfoBarTimeshift:
 				self.pvrStateDialog["eventname"].setText("")
 
 		# Get next pts file ...
-		if self.pts_currplaying+1 > config.timeshift.maxevents.value:
+		if self.pts_currplaying+1 > config.timeshift.maxevents.getValue():
 			nextptsfile = 1
 		else:
 			nextptsfile = self.pts_currplaying+1
@@ -3207,7 +3207,7 @@ class InfoBarTimeshift:
 			print "[TimeShift] setNextPlaybackFile() not supported by OE. Enigma2 too old !?"
 
 	def ptsSeekBackHack(self):
-		if not config.timeshift.enabled.value or not self.timeshift_enabled:
+		if not config.timeshift.enabled.getValue() or not self.timeshift_enabled:
 			return
 
 		self.setSeekState(self.SEEK_STATE_PAUSE)
@@ -3216,7 +3216,7 @@ class InfoBarTimeshift:
 
 	def ptsSeekBackTimer(self):
 		if self.pts_lastseekspeed == 0:
-			self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
+			self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.getValue())))
 		else:
 			self.setSeekState(self.makeStateBackward(int(-self.pts_lastseekspeed)))
 
@@ -3236,7 +3236,7 @@ class InfoBarTimeshift:
 				return False
 
 	def ptsTimerEntryStateChange(self, timer):
-		if not config.timeshift.enabled.value or not config.timeshift.stopwhilerecording.value:
+		if not config.timeshift.enabled.getValue() or not config.timeshift.stopwhilerecording.getValue():
 			return
 
 		self.pts_record_running = self.session.nav.RecordTimer.isRecording()
@@ -3292,11 +3292,11 @@ class InfoBarTimeshift:
 			self.pts_LengthCheck_timer.stop()
 			return
 
-		if config.timeshift.stopwhilerecording.value and self.pts_record_running:
+		if config.timeshift.stopwhilerecording.getValue() and self.pts_record_running:
 			return
 
 		# Length Check
-		if config.timeshift.enabled.value and self.session.screen["Standby"].boolean is not True and self.timeshift_enabled and (time() - self.pts_starttime) >= (config.timeshift.maxlength.value * 60):
+		if config.timeshift.enabled.getValue() and self.session.screen["Standby"].boolean is not True and self.timeshift_enabled and (time() - self.pts_starttime) >= (config.timeshift.maxlength.getValue() * 60):
 			if self.save_current_timeshift:
 				self.saveTimeshiftActions("savetimeshift")
 				self.activatePermanentTimeshift()
@@ -3334,7 +3334,7 @@ class InfoBarTimeshift:
 					self.ts_rewind_timer.start(100, 1)
 
 	def rewindService(self):
-		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
+		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.getValue())))
 
 	# same as activateTimeshiftEnd, but pauses afterwards.
 	def activateTimeshiftEndAndPause(self):
@@ -3351,7 +3351,7 @@ class InfoBarExtensions:
 	def __init__(self):
 		self.list = []
 
-		if config.vixsettings.ColouredButtons.value:
+		if config.vixsettings.ColouredButtons.getValue():
 			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
 				{
 					"extensions": (self.showExtensionSelection, _("Show extensions...")),
@@ -3382,7 +3382,7 @@ class InfoBarExtensions:
 		return _("Log Manager")
 
 	def getLogManager(self):
-		if config.logmanager.showinextensions.value:
+		if config.logmanager.showinextensions.getValue():
 			return [((boundFunction(self.getLMname), boundFunction(self.openLogManager), lambda: True), None)]
 		else:
 			return []
@@ -3391,7 +3391,7 @@ class InfoBarExtensions:
 		return _("OSD 3D Setup")
 
 	def getOsd3DSetup(self):
-		if config.osd.show3dextensions .value:
+		if config.osd.show3dextensions .getValue():
 			return [((boundFunction(self.get3DSetupname), boundFunction(self.openOSD3DSetup), lambda: True), None)]
 		else:
 			return []
@@ -3403,7 +3403,7 @@ class InfoBarExtensions:
 		if Directories.pathExists('/usr/softcams/'):
 			softcams = os_listdir('/usr/softcams/')
 		for softcam in softcams:
-			if softcam.lower().startswith('cccam') and config.cccaminfo.showInExtensions.value:
+			if softcam.lower().startswith('cccam') and config.cccaminfo.showInExtensions.getValue():
 				return [((boundFunction(self.getCCname), boundFunction(self.openCCcamInfo), lambda: True), None)] or []
 		else:
 			return []
@@ -3415,14 +3415,14 @@ class InfoBarExtensions:
 		if Directories.pathExists('/usr/softcams/'):
 			softcams = os_listdir('/usr/softcams/')
 		for softcam in softcams:
-			if softcam.lower().startswith('oscam') and config.oscaminfo.showInExtensions.value:
+			if softcam.lower().startswith('oscam') and config.oscaminfo.showInExtensions.getValue():
 				return [((boundFunction(self.getOSname), boundFunction(self.openOScamInfo), lambda: True), None)] or []
 		else:
 			return []
 
 	def RedPressed(self):
 		if isinstance(self, InfoBarEPG):
-			if config.usage.defaultEPGType.value == "Graphical EPG..." or config.usage.defaultEPGType.value == "None":
+			if config.usage.defaultEPGType.getValue() == "Graphical EPG..." or config.usage.defaultEPGType.getValue() == "None":
 				self.openSingleServiceEPG()
 			else:
 				self.openGraphEPG()
@@ -3558,7 +3558,7 @@ class InfoBarExtensions:
 			autotimer.parseEPG()
 
 		# Start autopoller again if wanted
-		if config.plugins.autotimer.autopoll.value:
+		if config.plugins.autotimer.autopoll.getValue():
 			if autopoller is None:
 				from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
 				autopoller = AutoPoller()
@@ -3697,7 +3697,7 @@ class InfoBarPiP:
 		return self.session.pipshown
 
 	def pipHandles0Action(self):
-		return self.pipShown() and config.usage.pip_zero_button.value != "standard"
+		return self.pipShown() and config.usage.pip_zero_button.getValue() != "standard"
 
 	def getShowHideName(self):
 		if self.session.pipshown:
@@ -3890,7 +3890,7 @@ class InfoBarInstantRecord:
 				self.setEndtime(len(self.recording)-1)
 # 		print "after:\n", self.recording
 
-		if config.timeshift.enabled.value:
+		if config.timeshift.enabled.getValue():
 			if answer is not None and answer[1] == "savetimeshift":
 				if InfoBarSeek.isSeekable(self) and self.pts_eventcount != self.pts_currplaying:
 					InfoBarTimeshift.SaveTimeshift(self, timeshiftfile="pts_livebuffer.%s" % self.pts_currplaying)
@@ -3968,7 +3968,7 @@ class InfoBarInstantRecord:
 			(_("Add recording (indefinitely)"), "indefinitely"), \
 			(_("Add recording (enter recording duration)"), "manualduration"), \
 			(_("Add recording (enter recording endtime)"), "manualendtime")]
-		if config.timeshift.enabled.value or self.timeshift_enabled:
+		if config.timeshift.enabled.getValue() or self.timeshift_enabled:
 			l.append((_("Timeshift")+" "+_("save recording (stop after current event)"), "savetimeshift"))
 			l.append((_("Timeshift")+" "+_("save recording (Select event)"), "savetimeshiftEvent"))
 		l.append((_("Do nothing"), "no"))
@@ -4022,7 +4022,7 @@ class InfoBarSubserviceSelection:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if not config.vixsettings.Subservice.value:
+		if not config.vixsettings.Subservice.getValue():
 			self.openTimerList()
 		else:
 			self.subserviceSelection()
@@ -4086,7 +4086,7 @@ class InfoBarSubserviceSelection:
 
 			if self.bouquets and len(self.bouquets):
 				keys = ["red", "blue", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
-				if config.usage.multibouquet.value:
+				if config.usage.multibouquet.getValue():
 					tlist = [(_("Quickzap"), "quickzap", service.subServices()), (_("Add to bouquet"), "CALLFUNC", self.addSubserviceToBouquetCallback), ("--", "")] + tlist
 				else:
 					tlist = [(_("Quickzap"), "quickzap", service.subServices()), (_("Add to favourites"), "CALLFUNC", self.addSubserviceToBouquetCallback), ("--", "")] + tlist
@@ -4270,9 +4270,9 @@ class InfoBarCueSheetSupport:
 			if (last > 900000) and (not length[1]  or (last < length[1] - 900000)):
 				self.resume_point = last
 				l = last / 90000
-				if config.usage.on_movie_start.value == "ask" or not length[1]:
+				if config.usage.on_movie_start.getValue() == "ask" or not length[1]:
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l/3600, l%3600/60, l%60))), timeout=10)
-				elif config.usage.on_movie_start.value == "resume":
+				elif config.usage.on_movie_start.getValue() == "resume":
 # TRANSLATORS: The string "Resuming playback" flashes for a moment
 # TRANSLATORS: at the start of a movie, when the user has selected
 # TRANSLATORS: "Resume from last position" as start behavior.
@@ -4606,7 +4606,7 @@ class InfoBarServiceErrorPopupSupport:
 		Notifications.RemovePopup(id = "ZapError")
 
 	def __tuneFailed(self):
-		if not config.usage.hide_zap_errors.value:
+		if not config.usage.hide_zap_errors.getValue():
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
 			error = info and info.getInfo(iServiceInformation.sDVBState)
@@ -4689,7 +4689,7 @@ class AddCopyTimeshiftTask(Task):
 		Task.__init__(self, job, eventname)
 		self.toolbox = job.toolbox
 		self.setCmdline(cmdline)
-		self.srcfile = config.usage.timeshift_path.value + srcfile + ".copy"
+		self.srcfile = config.usage.timeshift_path.getValue() + srcfile + ".copy"
 		self.destfile = destfile + ".ts"
 
 		self.ProgressTimer = eTimer()
@@ -4730,8 +4730,8 @@ class AddMergeTimeshiftTask(Task):
 		Task.__init__(self, job, eventname)
 		self.toolbox = job.toolbox
 		self.setCmdline(cmdline)
-		self.srcfile = config.usage.default_path.value + srcfile
-		self.destfile = config.usage.default_path.value + destfile
+		self.srcfile = config.usage.default_path.getValue() + srcfile
+		self.destfile = config.usage.default_path.getValue() + destfile
 
 		self.ProgressTimer = eTimer()
 		self.ProgressTimer.callback.append(self.ProgressUpdate)

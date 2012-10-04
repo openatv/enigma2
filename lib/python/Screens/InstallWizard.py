@@ -73,17 +73,17 @@ class InstallWizard(Screen, ConfigListScreen):
 			return
 		self.list = []
 		if self.index == self.STATE_UPDATE:
-			if config.misc.installwizard.hasnetwork.value:
+			if config.misc.installwizard.hasnetwork.getValue():
 				self.list.append(getConfigListEntry(_("Your internet connection is working (ip: %s)") % (self.ipConfigEntry.getText()), self.enabled))
 			else:
 				self.list.append(getConfigListEntry(_("Your receiver does not have an internet connection"), self.enabled))
 		elif self.index == self.STATE_CHOISE_CHANNELLIST:
 			self.list.append(getConfigListEntry(_("Install channel list"), self.enabled))
-			if self.enabled.value:
+			if self.enabled.getValue():
 				self.list.append(getConfigListEntry(_("Channel list type"), self.channellist_type))
 # 		elif self.index == self.STATE_CHOISE_SOFTCAM:
 # 			self.list.append(getConfigListEntry(_("Install softcam"), self.enabled))
-# 			if self.enabled.value:
+# 			if self.enabled.getValue():
 # 				self.list.append(getConfigListEntry(_("Softcam type"), self.softcam_type))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -102,11 +102,11 @@ class InstallWizard(Screen, ConfigListScreen):
 
 	def run(self):
 		if self.index == self.STATE_UPDATE:
-			if config.misc.installwizard.hasnetwork.value:
+			if config.misc.installwizard.hasnetwork.getValue():
 				self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (updating packages)'), IpkgComponent.CMD_UPDATE)
-		elif self.index == self.STATE_CHOISE_CHANNELLIST and self.enabled.value:
+		elif self.index == self.STATE_CHOISE_CHANNELLIST and self.enabled.getValue():
 			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (downloading channel list)'), IpkgComponent.CMD_REMOVE, {'package': 'enigma2-plugin-settings-henksat-' + self.channellist_type.value})
-# 		elif self.index == self.STATE_CHOISE_SOFTCAM and self.enabled.value:
+# 		elif self.index == self.STATE_CHOISE_SOFTCAM and self.enabled.getValue():
 # 			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (downloading softcam)'), IpkgComponent.CMD_INSTALL, {'package': 'enigma2-plugin-softcams-' + self.softcam_type.value})
 		return
 

@@ -627,17 +627,17 @@ class EPGList(HTMLComponent, GUIComponent):
 			serviceForeColor = self.foreColorServiceNow
 			serviceBackColor = self.backColorServiceNow
 			bgpng = self.nowServPix
-			if bgpng is not None and config.epgselection.graphics_mode.value == "graphics":    # bacground for service rect
+			if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":    # bacground for service rect
 				serviceBackColor = None
 		else:
 			serviceForeColor = self.foreColorService
 			serviceBackColor = self.backColorService
 			bgpng = self.othEvPix
-			if bgpng is not None and config.epgselection.graphics_mode.value == "graphics":    # bacground for service rect
+			if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":    # bacground for service rect
 				serviceBackColor = None
 
 		res = [ None ]
-		if bgpng is not None and config.epgselection.graphics_mode.value == "graphics":    # bacground for service rect
+		if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":    # bacground for service rect
 			res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
 					size = (r1.w - 2 * self.serviceBorderWidth, r1.h - 2 * self.serviceBorderWidth),
@@ -726,7 +726,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						foreColorSel = self.foreColorNowSelected
 						backColorSel = self.backColorNowSelected
 						bgpng = self.nowSelEvPix
-						if bgpng is not None and config.epgselection.graphics_mode.value == "graphics":
+						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
 							backColor = None
 							backColorSel = None
 					else:
@@ -735,7 +735,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						foreColorSel = self.foreColorSelected
 						backColorSel = self.backColorSelected
 						bgpng = self.selEvPix
-						if bgpng is not None and config.epgselection.graphics_mode.value == "graphics":
+						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
 							backColor = None
 							backColorSel = None
 				elif stime <= now and now < (stime + duration):
@@ -744,7 +744,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					foreColorSel = self.foreColorNowSelected
 					backColorSel = self.backColorNowSelected
 					bgpng = self.nowEvPix
-					if bgpng is not None and config.epgselection.graphics_mode.value == "graphics":
+					if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
 						backColor = None
 						backColorSel = None
 				else:
@@ -753,7 +753,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					foreColorSel = self.foreColorSelected
 					backColorSel = self.backColorSelected
 					bgpng = self.othEvPix
-					if bgpng is not None and config.epgselection.graphics_mode.value == "graphics":
+					if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
 						backColor = None
 						backColorSel = None
 
@@ -764,7 +764,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						foreColorSel = self.foreColorRecordSelected
 						backColorSel = self.backColorRecordSelected
 						bgpng = self.recSelEvPix
-						if bgpng is not None and config.epgselection.graphics_mode.value == "graphics":
+						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
 							backColor = None
 							backColorSel = None
 					elif rectype == "justplay":
@@ -773,7 +773,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						foreColorSel = self.foreColorZapSelected
 						backColorSel = self.backColorZapSelected
 						bgpng = self.zapSelEvPix
-						if bgpng is not None and config.epgselection.graphics_mode.value == "graphics":
+						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
 							backColor = None
 							backColorSel = None
 				elif rec:
@@ -783,7 +783,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						foreColorSel = self.foreColorRecordSelected
 						backColorSel = self.backColorRecordSelected
 						bgpng = self.recEvPix
-						if bgpng is not None and config.epgselection.graphics_mode.value == "graphics":
+						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
 							backColor = None
 							backColorSel = None
 					elif rectype == "justplay":
@@ -792,12 +792,12 @@ class EPGList(HTMLComponent, GUIComponent):
 						foreColorSel = self.foreColorZapSelected
 						backColorSel = self.backColorZapSelected
 						bgpng = self.zapEvPix
-						if bgpng is not None and config.epgselection.graphics_mode.value == "graphics":
+						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
 							backColor = None
 							backColorSel = None
 
 				# event box background
-				if bgpng is not None and config.epgselection.graphics_mode.value == "graphics":
+				if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
 					res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (left + xpos + self.eventBorderWidth, top + self.eventBorderWidth),
 						size = (ewidth - 2 * self.eventBorderWidth, height - 2 * self.eventBorderWidth),
@@ -831,7 +831,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						backcolor_sel = backColorSel))
 		else:
 			# event box background
-			if self.othEvPix is not None and config.epgselection.graphics_mode.value == "graphics":
+			if self.othEvPix is not None and config.epgselection.graphics_mode.getValue() == "graphics":
 				res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
 					size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),

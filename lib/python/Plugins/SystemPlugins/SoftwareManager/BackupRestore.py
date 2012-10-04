@@ -69,7 +69,7 @@ class BackupScreen(Screen, ConfigListScreen):
 		try:
 			if (path.exists(self.backuppath) == False):
 				makedirs(self.backuppath)
-			self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
+			self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.getValue() )
 			if path.exists(self.fullbackupfilename):
 				dt = str(date.fromtimestamp(stat(self.fullbackupfilename).st_ctime))
 				self.newfilename = self.backuppath + "/" + dt + '-' + self.backupfile

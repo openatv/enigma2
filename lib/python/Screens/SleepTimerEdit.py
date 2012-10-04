@@ -70,7 +70,7 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 	def createSetup(self):
 		self.list = []
 		self.list.append(getConfigListEntry(_("Enable timer"), config.SleepTimer.enabled))
-		if config.SleepTimer.enabled.value:
+		if config.SleepTimer.enabled.getValue():
 			self.list.append(getConfigListEntry(_("Use time of currently running service"), config.SleepTimer.servicetime))
 			self.list.append(getConfigListEntry(_("Shutdown in (mins)"), config.SleepTimer.defaulttime))
 			self.list.append(getConfigListEntry(_("Action"), config.SleepTimer.action))

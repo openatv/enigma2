@@ -98,7 +98,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.saturationEntry = addToConfigList(_("Saturation"), config.pep.saturation, _("This option sets the picture saturation."))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
-		if config.usage.sort_settings.value:
+		if config.usage.sort_settings.getValue():
 			self["config"].list.sort()
 
 	def SelectionChanged(self):

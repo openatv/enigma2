@@ -62,7 +62,7 @@ config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandb
 ####################################################
 
 def useSyncUsingChanged(configElement):
-	if config.misc.SyncTimeUsing.value == "0":
+	if config.misc.SyncTimeUsing.getValue() == "0":
 		print "[Time By]: Transponder"
 		value = True
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
@@ -374,7 +374,7 @@ class PowerKey:
 	def powerlong(self):
 		if Screens.Standby.inTryQuitMainloop or (self.session.current_dialog and not self.session.current_dialog.ALLOW_SUSPEND):
 			return
-		self.doAction(action = config.usage.on_long_powerpress.value)
+		self.doAction(action = config.usage.on_long_powerpress.getValue())
 
 	def doAction(self, action):
 		self.standbyblocked = 1
@@ -400,7 +400,7 @@ class PowerKey:
 
 	def powerup(self):
 		if self.standbyblocked == 0:
-			self.doAction(action = config.usage.on_short_powerpress.value)
+			self.doAction(action = config.usage.on_short_powerpress.getValue())
 
 	def standby(self):
 		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:
@@ -413,7 +413,7 @@ class AutoScartControl:
 	def __init__(self, session):
 		self.force = False
 		self.current_vcr_sb = enigma.eAVSwitch.getInstance().getVCRSlowBlanking()
-		if self.current_vcr_sb and config.av.vcrswitch.value:
+		if self.current_vcr_sb and config.av.vcrswitch.getValue():
 			self.scartDialog = session.instantiateDialog(Scart, True)
 		else:
 			self.scartDialog = session.instantiateDialog(Scart, False)
@@ -426,7 +426,7 @@ class AutoScartControl:
 	def VCRSbChanged(self, value):
 		#print "vcr sb changed to", value
 		self.current_vcr_sb = value
-		if config.av.vcrswitch.value or value > 2:
+		if config.av.vcrswitch.getValue() or value > 2:
 			if value:
 				self.scartDialog.showMessageBox()
 			else:
@@ -446,7 +446,7 @@ def runScreenTest():
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 	profile("Init:Session")
-	nav = Navigation(config.misc.isNextRecordTimerAfterEventActionAuto.value)
+	nav = Navigation(config.misc.isNextRecordTimerAfterEventActionAuto.getValue())
 	session = Session(desktop = enigma.getDesktop(0), summary_desktop = enigma.getDesktop(1), navigation = nav)
 
 	CiHandler.setSession(session)
@@ -523,7 +523,7 @@ def runScreenTest():
 				wptime = startTime[0] - 120 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0] - 240
-		if not config.misc.SyncTimeUsing.value == "0":
+		if not config.misc.SyncTimeUsing.getValue() == "0":
 			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
@@ -582,7 +582,7 @@ Components.NetworkTime.AutoNTPSync()
 
 profile("keymapparser")
 import keymapparser
-keymapparser.readKeymap(config.usage.keymap.value)
+keymapparser.readKeymap(config.usage.keymap.getValue())
 
 profile("Network")
 import Components.Network

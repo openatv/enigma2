@@ -66,11 +66,11 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self.setPreviewSettings()
 
 	def setPreviewSettings(self):
-		applySettings(self.mode.value, int(self.znorm.value) - 50)
+		applySettings(self.mode.value, int(self.znorm.getValue()) - 50)
 
 	def keyGo(self):
 		config.plugins.OSD3DSetup.mode.value = self.mode.value
-		config.plugins.OSD3DSetup.znorm.value = int(self.znorm.value) - 50
+		config.plugins.OSD3DSetup.znorm.value = int(self.znorm.getValue()) - 50
 		config.plugins.OSD3DSetup.save()
 		self.close()
 
@@ -107,7 +107,7 @@ def applySettings(mode, znorm):
 		return
 
 def setConfiguredSettings():
-	applySettings(config.plugins.OSD3DSetup.mode.value, int(config.plugins.OSD3DSetup.znorm.value))
+	applySettings(config.plugins.OSD3DSetup.mode.value, int(config.plugins.OSD3DSetup.znorm.getValue()))
 
 def main(session, **kwargs):
 	session.open(OSD3DSetupScreen)

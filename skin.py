@@ -92,7 +92,7 @@ addSkin('skin_second_infobar.xml')
 # Only one of these is present, compliments of AM_CONDITIONAL
 config.skin.display_skin = ConfigYesNo(default = False)
 display_skin_id = 1
-if config.skin.display_skin.value:
+if config.skin.display_skin.getValue():
 	if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display_picon.xml')):
 		addSkin('skin_display_picon.xml', SCOPE_CONFIG)
 	else:
@@ -110,12 +110,12 @@ addSkin('skin_text.xml')
 addSkin('skin_subtitles.xml')
 
 try:
-	if not addSkin(config.skin.primary_skin.value):
+	if not addSkin(config.skin.primary_skin.getValue()):
 		raise SkinError, "primary skin not found"
 except Exception, err:
 	print "SKIN ERROR:", err
 	skin = DEFAULT_SKIN
-	if config.skin.primary_skin.value == skin:
+	if config.skin.primary_skin.getValue() == skin:
 		skin = 'skin.xml'
 	print "defaulting to standard skin...", skin
 	config.skin.primary_skin.value = skin

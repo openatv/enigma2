@@ -63,7 +63,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		self.setTitle(self.setup_title)
 
 	def isProtected(self):
-		return config.ParentalControl.setuppinactive.value and config.ParentalControl.configured.value
+		return config.ParentalControl.setuppinactive.getValue() and config.ParentalControl.configured.value
 
 	def createSetup(self):
 		self.editListEntry = None
@@ -75,19 +75,19 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		print "config.ParentalControl.configured.value", config.ParentalControl.configured.value
 		self.editBouquetListEntry = -1
 		self.reloadLists = -1
-		if config.ParentalControl.configured.value:
+		if config.ParentalControl.configured.getValue():
 			#self.list.append(getConfigListEntry(_("Configuration mode"), config.ParentalControl.mode))
 			self.list.append(getConfigListEntry(_("Protect setup"), config.ParentalControl.setuppinactive))
-			if config.ParentalControl.setuppinactive.value:
+			if config.ParentalControl.setuppinactive.getValue():
 				self.changeSetupPin = getConfigListEntry(_("Change setup PIN"), NoSave(ConfigNothing()))
 				self.list.append(self.changeSetupPin)
 			self.list.append(getConfigListEntry(_("Protect services"), config.ParentalControl.servicepinactive))
-			if config.ParentalControl.servicepinactive.value:
+			if config.ParentalControl.servicepinactive.getValue():
 				self.list.append(getConfigListEntry(_("Parental control type"), config.ParentalControl.type))
-				if config.ParentalControl.mode.value == "complex":
+				if config.ParentalControl.mode.getValue() == "complex":
 					self.changePin = getConfigListEntry(_("Change service PINs"), NoSave(ConfigNothing()))
 					self.list.append(self.changePin)
-				elif config.ParentalControl.mode.value == "simple":
+				elif config.ParentalControl.mode.getValue() == "simple":
 					self.changePin = getConfigListEntry(_("Change service PIN"), NoSave(ConfigNothing()))
 					self.list.append(self.changePin)
 				#Added Option to remember the service pin
@@ -111,7 +111,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		elif self["config"].l.getCurrentSelection() == self.editBouquetListEntry:
 			self.session.open(ParentalControlBouquetEditor)
 		elif self["config"].l.getCurrentSelection() == self.changePin:
-			if config.ParentalControl.mode.value == "complex":
+			if config.ParentalControl.mode.getValue() == "complex":
 				pass
 			else:
 				self.session.open(ParentalControlChangePin, config.ParentalControl.servicepin[0], _("service PIN"))
@@ -153,9 +153,9 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		self.keyCancel()
 
 	def keyCancel(self):
-		if config.ParentalControl.setuppinactive.value and config.ParentalControl.setuppin.value == 'aaaa':
+		if config.ParentalControl.setuppinactive.getValue() and config.ParentalControl.setuppin.getValue() == 'aaaa':
 			self.session.openWithCallback(self.SetupPinMessageCallback, MessageBox, _("No valid setup PIN found!\nDo you like to change the setup PIN now?\nWhen you say 'No' here the setup protection stay disabled!"), MessageBox.TYPE_YESNO)
-		elif config.ParentalControl.servicepinactive.value and config.ParentalControl.servicepin[0].value == 'aaaa':
+		elif config.ParentalControl.servicepinactive.getValue() and config.ParentalControl.servicepin[0].getValue() == 'aaaa':
 			self.session.openWithCallback(self.ServicePinMessageCallback, MessageBox, _("No valid service PIN found!\nDo you like to change the service PIN now?\nWhen you say 'No' here the service protection stay disabled!"), MessageBox.TYPE_YESNO)
 		else:
 			for x in self["config"].list:
@@ -325,7 +325,7 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		self.list.append(getConfigListEntry(_("Reenter new PIN"), NoSave(self.pin2)))
 		ConfigListScreen.__init__(self, self.list)
 #		print "old pin:", pin
-		#if pin.value != "aaaa":
+		#if pin.getValue() != "aaaa":
 			#self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.pinEntered, PinInput, pinList = [self.pin.value], title = _("please enter the old pin"), windowTitle = _("Change pin code")))
 		ProtectedScreen.__init__(self)
 
@@ -353,7 +353,7 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		return _("Please enter the old PIN code")
 
 	def isProtected(self):
-		return (self.pin.value != "aaaa")
+		return (self.pin.getValue() != "aaaa")
 
 	def protectedWithPin(self):
 		return self.pin.value
@@ -366,7 +366,7 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 			#self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
 
 	def keyOK(self):
-		if self.pin1.value == self.pin2.value:
+		if self.pin1.getValue() == self.pin2.getValue():
 			self.pin.value = self.pin1.value
 			self.pin.save()
 			self.session.openWithCallback(self.close, MessageBox, _("The PIN code has been changed successfully."), MessageBox.TYPE_INFO)

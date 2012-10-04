@@ -143,7 +143,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 			if n.config_mode == "nothing":
 				continue
 			if n.config_mode in ("loopthrough", "satposdepends"):
-				root_id = nimmanager.sec.getRoot(n.slot_id, int(n.config.connectedTo.value))
+				root_id = nimmanager.sec.getRoot(n.slot_id, int(n.config.connectedTo.getValue()))
 				if n.type == nimmanager.nim_slots[root_id].type: # check if connected from a DVB-S to DVB-S2 Nim or vice versa
 					continue
 			nim_list.append((str(n.slot), n.friendly_full_description))
@@ -190,11 +190,11 @@ class FastScanScreen(ConfigListScreen, Screen):
 		self.startScan()
 
 	def startScan(self):
-		pid = int(self.scan_provider.value)
-		if self.scan_hd.value and pid >=900 and pid < 930:
+		pid = int(self.scan_provider.getValue())
+		if self.scan_hd.getValue() and pid >=900 and pid < 930:
 			pid += 1
-		if self.scan_nims.value:
-			self.session.open(FastScanStatus, scanTuner = int(self.scan_nims.value), scanPid = pid, keepNumbers = self.scan_keepnumbering.value, keepSettings = self.scan_keepsettings.value, providerName = self.scan_provider.getText())
+		if self.scan_nims.getValue():
+			self.session.open(FastScanStatus, scanTuner = int(self.scan_nims.getValue()), scanPid = pid, keepNumbers = self.scan_keepnumbering.value, keepSettings = self.scan_keepsettings.value, providerName = self.scan_provider.getText())
 
 	def keyCancel(self):
 		self.close()

@@ -98,7 +98,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 	def updateAddress(self):
 		import Components.HdmiCec
 		self["current_address"].setText(_("Current CEC address") + ": " + Components.HdmiCec.hdmi_cec.getPhysicalAddress())
-		if config.hdmicec.fixed_physical_address.value == "0.0.0.0":
+		if config.hdmicec.fixed_physical_address.getValue() == "0.0.0.0":
 			fixedaddresslabel = ""
 		else:
 			fixedaddresslabel = _("Using fixed address") + ": " + config.hdmicec.fixed_physical_address.value

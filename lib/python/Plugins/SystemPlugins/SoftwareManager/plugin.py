@@ -127,7 +127,7 @@ class UpdatePluginMenu(Screen):
 		self.menutext = _("Press MENU on your remote control for additional options.")
 		self.infotext = _("Press INFO on your remote control for additional information.")
 		self.text = ""
-		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
+		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.getValue() )
 		if self.menu == 0:
 			print "building menu entries"
 			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your STB_BOX" ) + self.oktext, None))
@@ -153,7 +153,7 @@ class UpdatePluginMenu(Screen):
 				self.list.append(("advanced", _("Advanced Options"), _("\nAdvanced options and settings." ) + self.oktext, None))
 		elif self.menu == 1:
 			self.list.append(("advancedrestore", _("Advanced restore"), _("\nRestore your backups by date." ) + self.oktext, None))
-			self.list.append(("backuplocation", _("Choose backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
+			self.list.append(("backuplocation", _("Choose backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.getValue() + self.oktext, None))
 			self.list.append(("backupfiles", _("Choose backup files"),  _("Select files for backup.") + self.oktext + "\n\n" + self.infotext, None))
 			if config.usage.setup_level.index >= 2: # expert+
 				self.list.append(("ipkg-manager", _("Packet management"),  _("\nView, install and remove available or installed packages." ) + self.oktext, None))
@@ -303,7 +303,7 @@ class UpdatePluginMenu(Screen):
 					self.extended(self.session, None)
 
 	def backupfiles_choosen(self, ret):
-		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
+		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.getValue() )
 		config.plugins.configurationbackup.backupdirs.save()
 		config.plugins.configurationbackup.save()
 		config.save()
@@ -453,7 +453,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		return self["config"].getCurrent()[0]
 
 	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].value)
+		return str(self["config"].getCurrent()[1].getValue())
 
 	def createSummary(self):
 		from Screens.Setup import SetupSummary
@@ -1557,7 +1557,7 @@ class PacketManager(Screen, NumericalTextInput):
 		self.session = session
 		self.skin_path = plugin_path
 
-		if config.usage.show_channel_jump_in_servicelist.value == "alpha":
+		if config.usage.show_channel_jump_in_servicelist.getValue() == "alpha":
 			self.setUseableChars(u'abcdefghijklmnopqrstuvwxyz1234567890')
 		else:
 			self.setUseableChars(u'1234567890abcdefghijklmnopqrstuvwxyz')
@@ -1605,7 +1605,7 @@ class PacketManager(Screen, NumericalTextInput):
 		self.onLayoutFinish.append(self.rebuildList)
 
 		rcinput = eRCInput.getInstance()
-		if config.misc.remotecontrol_text_support.value:
+		if config.misc.remotecontrol_text_support.getValue():
 			rcinput.setKeyboardMode(rcinput.kmNone)
 		else:
 			rcinput.setKeyboardMode(rcinput.kmAscii)
@@ -1921,7 +1921,7 @@ def UpgradeMain(session, **kwargs):
 	session.open(UpdatePluginMenu)
 
 def startSetup(menuid):
-	if menuid == "setup" and config.plugins.softwaremanager.onSetupMenu.value:
+	if menuid == "setup" and config.plugins.softwaremanager.onSetupMenu.getValue():
 		return [(_("Software management"), UpgradeMain, "software_manager", 50)]
 	return [ ]
 
@@ -1932,8 +1932,8 @@ def Plugins(path, **kwargs):
 		PluginDescriptor(name=_("Software management"), description=_("Manage your STB_BOX's software"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup),
 		PluginDescriptor(name=_("Ipkg"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)
 	]
-	if not config.plugins.softwaremanager.onSetupMenu.value and not config.plugins.softwaremanager.onBlueButton.value:
+	if not config.plugins.softwaremanager.onSetupMenu.getValue() and not config.plugins.softwaremanager.onBlueButton.getValue():
 		list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your STB_BOX's software"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=UpgradeMain))
-	if config.plugins.softwaremanager.onBlueButton.value:
+	if config.plugins.softwaremanager.onBlueButton.getValue():
 		list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your STB_BOX's software"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc=UpgradeMain))
 	return list

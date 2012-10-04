@@ -32,9 +32,9 @@ class OnlineUpdateCheckPoller:
 		self.timer.stop()
 
 	def onlineupdate_check(self):
-		if config.softwareupdate.check.value:
+		if config.softwareupdate.check.getValue():
 			Components.Task.job_manager.AddJob(self.createCheckJob())
-		self.timer.startLongTimer(config.softwareupdate.checktimer.value * 3600)
+		self.timer.startLongTimer(config.softwareupdate.checktimer.getValue() * 3600)
 
 	def createCheckJob(self):
 		job = Components.Task.Job(_("OnlineVersionCheck"))
@@ -77,8 +77,8 @@ class VersionCheck:
 		pass
 
 	def getStableUpdateAvailable(self):
-		if config.softwareupdate.updatefound.value and config.softwareupdate.check.value:
-			if config.softwareupdate.updateisunstable.value == '0':
+		if config.softwareupdate.updatefound.getValue() and config.softwareupdate.check.getValue():
+			if config.softwareupdate.updateisunstable.getValue() == '0':
 # 				print '[OnlineVersionCheck] New Release updates found'
 				return True
 			else:
@@ -88,8 +88,8 @@ class VersionCheck:
 			return False
 
 	def getUnstableUpdateAvailable(self):
-		if config.softwareupdate.updatefound.value and config.softwareupdate.check.value:
-			if config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
+		if config.softwareupdate.updatefound.getValue() and config.softwareupdate.check.getValue():
+			if config.softwareupdate.updateisunstable.getValue() == '1' and config.softwareupdate.updatebeta.getValue():
 # 				print '[OnlineVersionCheck] New Experimental updates found'
 				return True
 			else:

@@ -117,6 +117,6 @@ class ImageWizard(WizardLanguage, Rc):
 		config.plugins.configurationbackup.save()
 
 	
-if config.misc.firstrun.value:
+if config.misc.firstrun.getValue():
 	wizardManager.registerWizard(ImageWizard, backupAvailable, priority = 10)
 

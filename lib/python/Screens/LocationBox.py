@@ -181,7 +181,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		self.onClose.append(self.disableTimer)
 
 	def switchToFileListOnStart(self):
-		if self.realBookmarks and self.realBookmarks.value:
+		if self.realBookmarks and self.realBookmarks.getValue():
 			self.currList = "booklist"
 			currDir = self["filelist"].current_directory
 			if currDir in self.bookmarks:
@@ -343,7 +343,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 					self.bookmarks.append(self.getPreferredFolder())
 					self.bookmarks.sort()
 
-				if self.bookmarks != self.realBookmarks.value:
+				if self.bookmarks != self.realBookmarks.getValue():
 					self.realBookmarks.value = self.bookmarks
 					self.realBookmarks.save()
 			self.close(ret)

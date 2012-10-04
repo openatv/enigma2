@@ -339,7 +339,7 @@ class CCcamInfoMain(Screen):
 		self.working = False
 		self.Console = Console()
 
-		if config.cccaminfo.profile.value == "":
+		if config.cccaminfo.profile.getValue() == "":
 			self.readConfig()
 		else:
 			self.url = config.cccaminfo.profile.value
@@ -1254,7 +1254,7 @@ class CCcamInfoConfigMenu(ConfigListScreen, Screen):
 		self["actions"] = ActionMap(["CCcamInfoActions"], {"ok": self.okClicked, "cancel": self.exit}, -2)
 
 	def okClicked(self):
-		self.close(CCcamInfoRemoteBox(config.cccaminfo.name.value, config.cccaminfo.ip.value, config.cccaminfo.username.value, config.cccaminfo.password.value, config.cccaminfo.port.value))
+		self.close(CCcamInfoRemoteBox(config.cccaminfo.name.value, config.cccaminfo.ip.value, config.cccaminfo.username.value, config.cccaminfo.password.value, config.cccaminfo.port.getValue()))
 
 	def exit(self):
 		self.close(None)

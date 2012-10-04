@@ -41,8 +41,8 @@ def parseEvent(ev, description = True):
 	begin = ev.getBeginTime()
 	end = begin + ev.getDuration()
 	eit = ev.getEventId()
-	begin -= config.recording.margin_before.value * 60
-	end += config.recording.margin_after.value * 60
+	begin -= config.recording.margin_before.getValue() * 60
+	end += config.recording.margin_after.getValue() * 60
 	return (begin, end, name, description, eit)
 
 class AFTEREVENT:
@@ -186,14 +186,14 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 		filename = begin_date + " - " + service_name
 		if self.name:
-			if config.recording.filename_composition.value == "short":
+			if config.recording.filename_composition.getValue() == "short":
 				filename = strftime("%Y%m%d", localtime(self.begin)) + " - " + self.name
-			elif config.recording.filename_composition.value == "long":
+			elif config.recording.filename_composition.getValue() == "long":
 				filename += " - " + self.name + " - " + self.description
 			else:
 				filename += " - " + self.name # standard
 
-		if config.recording.ascii_filenames.value:
+		if config.recording.ascii_filenames.getValue():
 			filename = ASCIItranslit.legacyEncode(filename)
 
 
@@ -310,7 +310,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.first_try_prepare = False
 				cur_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 				if cur_ref and not cur_ref.getPath():
-					if not config.recording.asktozap.value:
+					if not config.recording.asktozap.getValue():
 						self.log(8, "asking user to zap away")
 						Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nDisable TV and try again?\n"), timeout=20)
 					else: # zap without asking
@@ -344,7 +344,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					from Screens.ChannelSelection import ChannelSelection
 					ChannelSelectionInstance = ChannelSelection.instance
 					if ChannelSelectionInstance:
-						if config.usage.multibouquet.value:
+						if config.usage.multibouquet.getValue():
 							bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
 						else:
 							bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types)
@@ -477,7 +477,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# TODO: this has to be done.
 		elif event == iRecordableService.evStart:
 			text = _("A recording has been started:\n%s") % self.name
-			notify = config.usage.show_message_when_recording_starts.value and not Screens.Standby.inStandby
+			notify = config.usage.show_message_when_recording_starts.getValue() and not Screens.Standby.inStandby
 			if self.dirnameHadToFallback:
 				text = '\n'.join((text, _("Please note that the previously selected media could not be accessed and therefore the default directory is being used instead.")))
 				notify = True
@@ -586,7 +586,7 @@ class RecordTimer(timer.Timer):
 				self.addTimerEntry(w)
 			else:
 				# Remove old timers as set in config
-				self.cleanupDaily(config.recording.keep_timers.value)
+				self.cleanupDaily(config.recording.keep_timers.getValue())
 				insort(self.processed_timers, w)
 		self.stateChanged(w)
 
@@ -706,7 +706,7 @@ class RecordTimer(timer.Timer):
 			list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
 			list.append('>\n')
 
-			if config.recording.debug.value:
+			if config.recording.debug.getValue():
 				for time, code, msg in timer.log_entries:
 					list.append('<log')
 					list.append(' code="' + str(code) + '"')
@@ -750,7 +750,7 @@ class RecordTimer(timer.Timer):
 		nextrectime = self.getNextRecordingTimeOld()
 		faketime = time()+300
 
-		if config.timeshift.isRecording.value:
+		if config.timeshift.isRecording.getValue():
 			if nextrectime > 0 and nextrectime < faketime:
 				return nextrectime
 			else:

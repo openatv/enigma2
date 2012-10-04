@@ -59,7 +59,7 @@ class AVSwitch:
 		return val
 
 	def setAspectWSS(self, aspect=None):
-		if not config.av.wss.value:
+		if not config.av.wss.getValue():
 			value = 2 # auto(4:3_off)
 		else:
 			value = 1 # auto
@@ -71,7 +71,7 @@ def InitAVSwitch():
 	colorformat_choices = {"cvbs": _("CVBS"), "rgb": _("RGB"), "svideo": _("S-Video")}
 
 	# when YUV is not enabled, don't let the user select it
-	if config.av.yuvenabled.value:
+	if config.av.yuvenabled.getValue():
 		colorformat_choices["yuv"] = _("YPbPr")
 
 	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
@@ -160,7 +160,7 @@ def InitAVSwitch():
 
 	if os.path.exists("/proc/stb/vmpeg/0/pep_scaler_sharpness"):
 		def setScaler_sharpness(config):
-			myval = int(config.value)
+			myval = int(config.getValue())
 			try:
 				print "--> setting scaler_sharpness to: %0.8X" % myval
 				open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w").write("%0.8X" % myval)

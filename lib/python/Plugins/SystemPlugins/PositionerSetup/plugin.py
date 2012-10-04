@@ -301,8 +301,8 @@ class PositionerSetup(Screen):
 			print "stepping west"
 			self.diseqccommand("moveWest", 0xFF) # one step
 		elif entry == "storage":
-			print "store at position", int(self.positioner_storage.value)
-			self.diseqccommand("store", int(self.positioner_storage.value))
+			print "store at position", int(self.positioner_storage.getValue())
+			self.diseqccommand("store", int(self.positioner_storage.getValue()))
 
 		elif entry == "limits":
 			self.diseqccommand("limitWest")
@@ -323,8 +323,8 @@ class PositionerSetup(Screen):
 			print "stepping east"
 			self.diseqccommand("moveEast", 0xFF) # one step
 		elif entry == "storage":
-			print "move to position", int(self.positioner_storage.value)
-			self.diseqccommand("moveTo", int(self.positioner_storage.value))
+			print "move to position", int(self.positioner_storage.getValue())
+			self.diseqccommand("moveTo", int(self.positioner_storage.getValue()))
 		elif entry == "limits":
 			self.diseqccommand("limitEast")
 
@@ -433,7 +433,7 @@ class TunerScreen(ScanSetup):
 		nim = nimmanager.nim_slots[self.feid]
 		self.systemEntry = None
 
-		if tuning.type.value == "manual_transponder":
+		if tuning.type.getValue() == "manual_transponder":
 			if nim.isCompatible("DVB-S2"):
 				self.systemEntry = getConfigListEntry(_('System'), self.scan_sat.system)
 				self.list.append(self.systemEntry)
@@ -444,15 +444,15 @@ class TunerScreen(ScanSetup):
 			self.list.append(getConfigListEntry(_('Inversion'), self.scan_sat.inversion))
 			self.list.append(getConfigListEntry(_('Symbol rate'), self.scan_sat.symbolrate))
 			self.list.append(getConfigListEntry(_('Polarization'), self.scan_sat.polarization))
-			if self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S:
+			if self.scan_sat.system.getValue() == eDVBFrontendParametersSatellite.System_DVB_S:
 				self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec))
-			elif self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S2:
+			elif self.scan_sat.system.getValue() == eDVBFrontendParametersSatellite.System_DVB_S2:
 				self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec_s2))
 				self.modulationEntry = getConfigListEntry(_('Modulation'), self.scan_sat.modulation)
 				self.list.append(self.modulationEntry)
 				self.list.append(getConfigListEntry(_('Roll-off'), self.scan_sat.rolloff))
 				self.list.append(getConfigListEntry(_('Pilot'), self.scan_sat.pilot))
-		elif tuning.type.value == "predefined_transponder":
+		elif tuning.type.getValue() == "predefined_transponder":
 			self.list.append(getConfigListEntry(_("Transponder"), tuning.transponder))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -476,7 +476,7 @@ class TunerScreen(ScanSetup):
 		if orb_pos is not None:
 			for x in nimmanager.getRotorSatListForNim(self.feid):
 				opos = str(orb_pos)
-				if x[0] == orb_pos and tuning.sat.value != opos:
+				if x[0] == orb_pos and tuning.sat.getValue() != opos:
 					tuning.sat.value = opos
 			del self.fe_data["orbital_position"]
 		ScanSetup.createConfig(self, self.fe_data)
@@ -486,7 +486,7 @@ class TunerScreen(ScanSetup):
 
 	def updateTransponders(self):
 		if len(tuning.sat.choices):
-			transponderlist = nimmanager.getTransponders(int(tuning.sat.value))
+			transponderlist = nimmanager.getTransponders(int(tuning.sat.getValue()))
 			tps = []
 			cnt=0
 			for x in transponderlist:
@@ -529,9 +529,9 @@ class TunerScreen(ScanSetup):
 
 	def keyGo(self):
 		returnvalue = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-		satpos = int(tuning.sat.value)
-		if tuning.type.value == "manual_transponder":
-			if self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S2:
+		satpos = int(tuning.sat.getValue())
+		if tuning.type.getValue() == "manual_transponder":
+			if self.scan_sat.system.getValue() == eDVBFrontendParametersSatellite.System_DVB_S2:
 				fec = self.scan_sat.fec_s2.value
 			else:
 				fec = self.scan_sat.fec.value
@@ -545,8 +545,8 @@ class TunerScreen(ScanSetup):
 				self.scan_sat.system.value,
 				self.scan_sat.modulation.value,
 				self.scan_sat.rolloff.value,
-				self.scan_sat.pilot.value)
-		elif tuning.type.value == "predefined_transponder":
+				self.scan_sat.pilot.getValue())
+		elif tuning.type.getValue() == "predefined_transponder":
 			transponder = nimmanager.getTransponders(satpos)[tuning.transponder.index]
 			returnvalue = (transponder[1] / 1000, transponder[2] / 1000,
 				transponder[3], transponder[4], 2, satpos, transponder[5], transponder[6], transponder[8], transponder[9])

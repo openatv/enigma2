@@ -756,7 +756,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self["list"] = EPGList( selChangedCB = self.onSelectionChanged,
 					timer = self.session.nav.RecordTimer,
 					time_epoch = config.misc.graph_mepg.prev_time_period.value,
-					overjump_empty = config.misc.graph_mepg.overjump.value)
+					overjump_empty = config.misc.graph_mepg.overjump.getValue())
 
 		HelpableScreen.__init__(self)
 		self["okactions"] = HelpableActionMap(self, "OkCancelActions",
@@ -882,10 +882,10 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		l = self["list"]
 		l.setItemsPerPage()
 		l.setEventFontsize()
-		l.setEpoch(config.misc.graph_mepg.prev_time_period.value)
-		l.setOverjump_Empty(config.misc.graph_mepg.overjump.value)
-		l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.value)
-		self["timeline_text"].setDateFormat(config.misc.graph_mepg.servicetitle_mode.value)
+		l.setEpoch(config.misc.graph_mepg.prev_time_period.getValue())
+		l.setOverjump_Empty(config.misc.graph_mepg.overjump.getValue())
+		l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.getValue())
+		self["timeline_text"].setDateFormat(config.misc.graph_mepg.servicetitle_mode.getValue())
 		now = time() - config.epg.histminutes.getValue() * 60
 		self.ask_time = now - now % int(config.misc.graph_mepg.roundTo.getValue())
 		l.fillMultiEPG(None, self.ask_time)
@@ -929,11 +929,11 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def onCreate(self):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 		l = self["list"]
-		l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.value)
+		l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.getValue())
 		l.fillMultiEPG(self.services, self.ask_time)
 		l.moveToService(serviceref)
 		l.setCurrentlyPlaying(serviceref)
-		self["timeline_text"].setDateFormat(config.misc.graph_mepg.servicetitle_mode.value)
+		self["timeline_text"].setDateFormat(config.misc.graph_mepg.servicetitle_mode.getValue())
 		self.moveTimeLines()
 
 	def eventViewCallback(self, setEvent, setService, val):

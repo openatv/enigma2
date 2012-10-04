@@ -85,7 +85,7 @@ class InputDeviceSelection(Screen,HelpableScreen):
 		enabled = iInputDevices.getDeviceAttribute(device, 'enabled')
 
 		if type == 'remote':
-			if config.misc.rcused.value == 0:
+			if config.misc.rcused.getValue() == 0:
 				if enabled:
 					devicepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/input_rcnew-configured.png"))
 				else:
@@ -214,7 +214,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 
 		self.list.append(self.enableEntry)
 		if self.enableConfigEntry:
-			if self.enableConfigEntry.value is True:
+			if self.enableConfigEntry.getValue() is True:
 				self.list.append(self.repeatEntry)
 				self.list.append(self.delayEntry)
 			else:
@@ -287,7 +287,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		return self["config"].getCurrent()[0]
 
 	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].value)
+		return str(self["config"].getCurrent()[1].getValue())
 
 	def createSummary(self):
 		from Screens.Setup import SetupSummary
@@ -346,7 +346,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 		iRcTypeControl.writeRcType(self.defaultRcType)
 
 	def keySave(self):
-		if config.plugins.remotecontroltype.rctype.value == int(self.rctype.value):
+		if config.plugins.remotecontroltype.rctype.getValue() == int(self.rctype.getValue()):
 			self.close()
 		else:
 			self.setNewSetting()
@@ -356,21 +356,21 @@ class RemoteControlType(Screen, ConfigListScreen):
 		if answer is False:
 			self.restoreOldSetting()
 		else:
-			config.plugins.remotecontroltype.rctype.value = int(self.rctype.value)
+			config.plugins.remotecontroltype.rctype.value = int(self.rctype.getValue())
 			config.plugins.remotecontroltype.save()
 			self.close()
 
 	def restoreOldSetting(self):
-		if config.plugins.remotecontroltype.rctype.value == 0:
+		if config.plugins.remotecontroltype.rctype.getValue() == 0:
 			self.setDefaultRcType()
 		else:
-			iRcTypeControl.writeRcType(config.plugins.remotecontroltype.rctype.value)
+			iRcTypeControl.writeRcType(config.plugins.remotecontroltype.rctype.getValue())
 
 	def setNewSetting(self):
-		if int(self.rctype.value) == 0:
+		if int(self.rctype.getValue()) == 0:
 			self.setDefaultRcType()
 		else:
-			iRcTypeControl.writeRcType(int(self.rctype.value))
+			iRcTypeControl.writeRcType(int(self.rctype.getValue()))
 
 	def keyCancel(self):
 		self.restoreOldSetting()
