@@ -131,6 +131,8 @@ class UpdatePlugin(Screen):
 		self["package"] = self.package
 		self.oktext = _("Press OK on your remote control to continue.")
 
+		self.channellist_only = 0
+		self.channellist_name = ''
 		self.SettingsBackupDone = False
 		self.ImageBackupDone = False
 		self.autobackuprunning = False
