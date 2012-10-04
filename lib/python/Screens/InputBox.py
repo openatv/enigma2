@@ -161,7 +161,7 @@ class PinInput(InputBox):
 		self.closePinCancel()
 
 	def getTries(self):
-		return self.triesEntry.tries.value
+		return self.triesEntry.tries.getValue()
 
 	def decTries(self):
 		self.setTries(self.triesEntry.tries.getValue() - 1)

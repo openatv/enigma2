@@ -47,8 +47,8 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session)
 
-		mode = config.plugins.OSD3DSetup.mode.value
-		znorm = config.plugins.OSD3DSetup.znorm.value
+		mode = config.plugins.OSD3DSetup.mode.getValue()
+		znorm = config.plugins.OSD3DSetup.znorm.getValue()
 
 		self.mode = ConfigSelection(choices = modelist, default = mode)
 		self.znorm = ConfigSlider(default = znorm + 50, increment = 1, limits = (0, 100))
@@ -69,7 +69,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		applySettings(self.mode.value, int(self.znorm.getValue()) - 50)
 
 	def keyGo(self):
-		config.plugins.OSD3DSetup.mode.value = self.mode.value
+		config.plugins.OSD3DSetup.mode.value = self.mode.getValue()
 		config.plugins.OSD3DSetup.znorm.value = int(self.znorm.getValue()) - 50
 		config.plugins.OSD3DSetup.save()
 		self.close()

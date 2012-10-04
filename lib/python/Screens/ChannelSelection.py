@@ -177,7 +177,7 @@ class ChannelContextMenu(Screen):
 		current_sel_flags = current.flags
 		inBouquetRootList = current_root and current_root.getPath().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
 		inBouquet = csel.getMutableList() is not None
-		haveBouquets = config.usage.multibouquet.value
+		haveBouquets = config.usage.multibouquet.getValue()
 
 		menu.append(ChoiceEntryComponent(text = (_("Settings..."), boundFunction(self.openSetup, "channelselection"))))
 		if not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory|eServiceReference.isMarker)):
@@ -294,7 +294,7 @@ class ChannelContextMenu(Screen):
 			path += i.toString()
 			path += ';'
 		config.servicelist.startuproot.value = path
-		config.servicelist.startupmode.value = config.servicelist.lastmode.value
+		config.servicelist.startupmode.value = config.servicelist.lastmode.getValue()
 		config.servicelist.save()
 		configfile.save()
 		self.close()
@@ -1416,13 +1416,13 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.history_pos = 0
 
 		if config.servicelist.startupservice.getValue() and config.servicelist.startuproot.getValue():
-			config.servicelist.lastmode.value = config.servicelist.startupmode.value
+			config.servicelist.lastmode.value = config.servicelist.startupmode.getValue()
 			if config.servicelist.lastmode.getValue() == "tv":
-				config.tv.lastservice.value = config.servicelist.startupservice.value
-				config.tv.lastroot.value = config.servicelist.startuproot.value
+				config.tv.lastservice.value = config.servicelist.startupservice.getValue()
+				config.tv.lastroot.value = config.servicelist.startuproot.getValue()
 			elif config.servicelist.lastmode.getValue() == "radio":
-				config.radio.lastservice.value = config.servicelist.startupservice.value
-				config.radio.lastroot.value = config.servicelist.startuproot.value
+				config.radio.lastservice.value = config.servicelist.startupservice.getValue()
+				config.radio.lastroot.value = config.servicelist.startuproot.getValue()
 
 		self.lastservice = config.tv.lastservice
 		self.lastroot = config.tv.lastroot
@@ -1669,7 +1669,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def preEnterPath(self, refstr):
 		if self.servicePath and self.servicePath[0] != eServiceReference(refstr):
-			pathstr = self.lastroot.value
+			pathstr = self.lastroot.getValue()
 			if pathstr is not None and pathstr.find(refstr) == 0:
 				self.restoreRoot()
 				lastservice = eServiceReference(self.lastservice.getValue())
@@ -1854,7 +1854,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 
 	def preEnterPath(self, refstr):
 		if self.servicePathRadio and self.servicePathRadio[0] != eServiceReference(refstr):
-			pathstr = config.radio.lastroot.value
+			pathstr = config.radio.lastroot.getValue()
 			if pathstr is not None and pathstr.find(refstr) == 0:
 				self.restoreRoot()
 				lastservice = eServiceReference(config.radio.lastservice.getValue())

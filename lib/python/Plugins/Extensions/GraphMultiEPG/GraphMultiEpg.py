@@ -45,7 +45,7 @@ config.misc.graph_mepg.servicetitle_mode = ConfigSelection(default = "picon+serv
 	("picon+servicename", _("Picon and Service Name")) ])
 config.misc.graph_mepg.roundTo = ConfigSelection(default = 15, choices = [("900", _("%d minutes") % 15), ("1800", _("%d minutes") % 30), ("3600", _("%d minutes") % 60)])
 
-listscreen = config.misc.graph_mepg.default_mode.value
+listscreen = config.misc.graph_mepg.default_mode.getValue()
 
 class EPGList(HTMLComponent, GUIComponent):
 	def __init__(self, selChangedCB = None, timer = None, time_epoch = 120, overjump_empty = True):

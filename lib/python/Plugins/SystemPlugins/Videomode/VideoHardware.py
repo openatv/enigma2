@@ -70,11 +70,11 @@ class VideoHardware:
 
 	def getOutputAspect(self):
 		ret = (16,9)
-		port = config.av.videoport.value
+		port = config.av.videoport.getValue()
 		if port not in config.av.videomode:
 			print "current port not available in getOutputAspect!!! force 16:9"
 		else:
-			mode = config.av.videomode[port].value
+			mode = config.av.videomode[port].getValue()
 			force_widescreen = self.isWidescreenMode(port, mode)
 			is_widescreen = force_widescreen or config.av.aspect.getValue() in ("16_9", "16_10")
 			is_auto = config.av.aspect.getValue() == "auto"
@@ -283,18 +283,18 @@ class VideoHardware:
 # ]
 
 	def setConfiguredMode(self):
-		port = config.av.videoport.value
+		port = config.av.videoport.getValue()
 		if port not in config.av.videomode:
 			print "current port not available, not setting videomode"
 			return
 
-		mode = config.av.videomode[port].value
+		mode = config.av.videomode[port].getValue()
 
 		if mode not in config.av.videorate:
 			print "current mode not available, not setting videomode"
 			return
 
-		rate = config.av.videorate[mode].value
+		rate = config.av.videorate[mode].getValue()
 		self.setMode(port, mode, rate)
 
 	def updateAspect(self, cfgelement):
@@ -318,11 +318,11 @@ class VideoHardware:
 		#     nonlinear       use nonlinear
 		#     scale           use bestfit
 
-		port = config.av.videoport.value
+		port = config.av.videoport.getValue()
 		if port not in config.av.videomode:
 			print "current port not available, not setting videomode"
 			return
-		mode = config.av.videomode[port].value
+		mode = config.av.videomode[port].getValue()
 
 		force_widescreen = self.isWidescreenMode(port, mode)
 

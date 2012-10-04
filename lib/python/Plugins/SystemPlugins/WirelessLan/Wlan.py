@@ -133,11 +133,11 @@ class wpaSupplicant:
 		pass
 
 	def writeConfig(self, iface):
-		essid = config.plugins.wlan.essid.value
-		hiddenessid = config.plugins.wlan.hiddenessid.value
-		encryption = config.plugins.wlan.encryption.value
-		wepkeytype = config.plugins.wlan.wepkeytype.value
-		psk = config.plugins.wlan.psk.value
+		essid = config.plugins.wlan.essid.getValue()
+		hiddenessid = config.plugins.wlan.hiddenessid.getValue()
+		encryption = config.plugins.wlan.encryption.getValue()
+		wepkeytype = config.plugins.wlan.wepkeytype.getValue()
+		psk = config.plugins.wlan.psk.getValue()
 		fp = file(getWlanConfigName(iface), 'w')
 		fp.write('#WPA Supplicant Configuration by enigma2\n')
 		fp.write('ctrl_interface=/var/run/wpa_supplicant\n')

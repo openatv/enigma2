@@ -2235,7 +2235,7 @@ class InfoBarTimeshift:
 			return
 
 		if self.pts_currplaying == 1:
-			preptsfile = config.timeshift.maxevents.value
+			preptsfile = config.timeshift.maxevents.getValue()
 		else:
 			preptsfile = self.pts_currplaying-1
 
@@ -3149,7 +3149,7 @@ class InfoBarTimeshift:
 
 		if self.pts_seektoprevfile:
 			if self.pts_currplaying == 1:
-				self.pts_currplaying = config.timeshift.maxevents.value
+				self.pts_currplaying = config.timeshift.maxevents.getValue()
 			else:
 				self.pts_currplaying -= 1
 		else:
@@ -3760,7 +3760,7 @@ class InfoBarPiP:
 		self.session.open(PiPSetup, pip = self.session.pip)
 
 	def pipDoHandle0Action(self):
-		use = config.usage.pip_zero_button.value
+		use = config.usage.pip_zero_button.getValue()
 		if "swap" == use:
 			self.swapPiP()
 		elif "swapstop" == use:

@@ -52,12 +52,12 @@ class RecordingSettings(Screen,ConfigListScreen):
 			self["config"].onSelectionChanged.append(self.SelectionChanged)
 
 	def checkReadWriteDir(self, configele):
-		print "checkReadWrite: ", configele.value
+		print "checkReadWrite: ", configele.getValue()
 		if configele.getValue() in [x[0] for x in self.styles] or fileExists(configele.value, "w"):
-			configele.last_value = configele.value
+			configele.last_value = configele.getValue()
 			return True
 		else:
-			dir = configele.value
+			dir = configele.getValue()
 			configele.value = configele.last_value
 			self.session.open(
 				MessageBox,
@@ -69,22 +69,22 @@ class RecordingSettings(Screen,ConfigListScreen):
 	def createSetup(self):
 		self.styles = [ ("<default>", _("<Default movie location>")), ("<current>", _("<Current movielist location>")), ("<timer>", _("<Last timer location>")) ]
 		styles_keys = [x[0] for x in self.styles]
-		tmp = config.movielist.videodirs.value
-		default = config.usage.default_path.value
+		tmp = config.movielist.videodirs.getValue()
+		default = config.usage.default_path.getValue()
 		if default not in tmp:
 			tmp = tmp[:]
 			tmp.append(default)
 		print "DefaultPath: ", default, tmp
 		self.default_dirname = ConfigSelection(default = default, choices = tmp)
-		tmp = config.movielist.videodirs.value
-		default = config.usage.timer_path.value
+		tmp = config.movielist.videodirs.getValue()
+		default = config.usage.timer_path.getValue()
 		if default not in tmp and default not in styles_keys:
 			tmp = tmp[:]
 			tmp.append(default)
 		print "TimerPath: ", default, tmp
 		self.timer_dirname = ConfigSelection(default = default, choices = self.styles+tmp)
-		tmp = config.movielist.videodirs.value
-		default = config.usage.instantrec_path.value
+		tmp = config.movielist.videodirs.getValue()
+		default = config.usage.instantrec_path.getValue()
 		if default not in tmp and default not in styles_keys:
 			tmp = tmp[:]
 			tmp.append(default)
@@ -160,8 +160,8 @@ class RecordingSettings(Screen,ConfigListScreen):
 
 	def ok(self):
 		currentry = self["config"].getCurrent()
-		self.lastvideodirs = config.movielist.videodirs.value
-		self.lasttimeshiftdirs = config.usage.allowed_timeshift_paths.value
+		self.lastvideodirs = config.movielist.videodirs.getValue()
+		self.lasttimeshiftdirs = config.usage.allowed_timeshift_paths.getValue()
 		if config.usage.setup_level.index >= 2:
 			txt = _("Default movie location")
 		else:
@@ -196,20 +196,20 @@ class RecordingSettings(Screen,ConfigListScreen):
 			self.entrydirname.value = res
 			if config.movielist.videodirs.getValue() != self.lastvideodirs:
 				styles_keys = [x[0] for x in self.styles]
-				tmp = config.movielist.videodirs.value
-				default = self.default_dirname.value
+				tmp = config.movielist.videodirs.getValue()
+				default = self.default_dirname.getValue()
 				if default not in tmp:
 					tmp = tmp[:]
 					tmp.append(default)
 				self.default_dirname.setChoices(tmp, default=default)
-				tmp = config.movielist.videodirs.value
-				default = self.timer_dirname.value
+				tmp = config.movielist.videodirs.getValue()
+				default = self.timer_dirname.getValue()
 				if default not in tmp and default not in styles_keys:
 					tmp = tmp[:]
 					tmp.append(default)
 				self.timer_dirname.setChoices(self.styles+tmp, default=default)
-				tmp = config.movielist.videodirs.value
-				default = self.instantrec_dirname.value
+				tmp = config.movielist.videodirs.getValue()
+				default = self.instantrec_dirname.getValue()
 				if default not in tmp and default not in styles_keys:
 					tmp = tmp[:]
 					tmp.append(default)
@@ -220,9 +220,9 @@ class RecordingSettings(Screen,ConfigListScreen):
 
 	def saveAll(self):
 		currentry = self["config"].getCurrent()
-		config.usage.default_path.value = self.default_dirname.value
-		config.usage.timer_path.value = self.timer_dirname.value
-		config.usage.instantrec_path.value = self.instantrec_dirname.value
+		config.usage.default_path.value = self.default_dirname.getValue()
+		config.usage.timer_path.value = self.timer_dirname.getValue()
+		config.usage.instantrec_path.value = self.instantrec_dirname.getValue()
 		config.usage.default_path.save()
 		config.usage.timer_path.save()
 		config.usage.instantrec_path.save()
@@ -323,10 +323,10 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 				locations.append(validdevice[1])
 			if Components.Harddisk.findMountPoint(os.path.realpath(configele.getValue()))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(configele.getValue())) in locations:
 				if fileExists(configele.value, "w"):
-					configele.last_value = configele.value
+					configele.last_value = configele.getValue()
 					return True
 				else:
-					dir = configele.value
+					dir = configele.getValue()
 					configele.value = configele.last_value
 					self.session.open(
 						MessageBox,
@@ -335,7 +335,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 						)
 					return False
 			else:
-				dir = configele.value
+				dir = configele.getValue()
 				configele.value = configele.last_value
 				self.session.open(
 					MessageBox,
@@ -344,7 +344,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 					)
 				return False
 		else:
-			dir = configele.value
+			dir = configele.getValue()
 			configele.value = configele.last_value
 			self.session.open(
 				MessageBox,
@@ -354,8 +354,8 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			return False
 
 	def createSetup(self):
-		default = config.usage.timeshift_path.value
-		tmp = config.usage.allowed_timeshift_paths.value
+		default = config.usage.timeshift_path.getValue()
+		tmp = config.usage.allowed_timeshift_paths.getValue()
 		if default not in tmp:
 			tmp = tmp[:]
 			tmp.append(default)
@@ -382,11 +382,11 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 
 	def ok(self):
 		currentry = self["config"].getCurrent()
-		self.lastvideodirs = config.movielist.videodirs.value
-		self.lasttimeshiftdirs = config.usage.allowed_timeshift_paths.value
+		self.lastvideodirs = config.movielist.videodirs.getValue()
+		self.lasttimeshiftdirs = config.usage.allowed_timeshift_paths.getValue()
 		if currentry == self.timeshift_entry:
 			self.entrydirname = self.timeshift_dirname
-			config.usage.timeshift_path.value = self.timeshift_dirname.value
+			config.usage.timeshift_path.value = self.timeshift_dirname.getValue()
 			self.session.openWithCallback(
 				self.dirnameSelected,
 				TimeshiftLocationBox
@@ -409,8 +409,8 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 				if Components.Harddisk.findMountPoint(os.path.realpath(res))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(res)) in locations:
 					self.entrydirname.value = res
 					if config.usage.allowed_timeshift_paths.getValue() != self.lasttimeshiftdirs:
-						tmp = config.usage.allowed_timeshift_paths.value
-						default = self.timeshift_dirname.value
+						tmp = config.usage.allowed_timeshift_paths.getValue()
+						default = self.timeshift_dirname.getValue()
 						if default not in tmp:
 							tmp = tmp[:]
 							tmp.append(default)
@@ -450,7 +450,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			for validdevice in candidates:
 				locations.append(validdevice[1])
 			if Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.getValue()))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.getValue())) in locations:
-				config.usage.timeshift_path.value = self.timeshift_dirname.value
+				config.usage.timeshift_path.value = self.timeshift_dirname.getValue()
 				config.usage.timeshift_path.save()
 				self.saveAll()
 				self.close()

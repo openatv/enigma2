@@ -70,12 +70,12 @@ def InitUsageConfig():
 			pass
 	config.usage.default_path = ConfigText(default = resolveFilename(SCOPE_HDD))
 	if not config.usage.default_path.value.endswith('/'):
-		tmpvalue = config.usage.default_path.value
+		tmpvalue = config.usage.default_path.getValue()
 		config.usage.default_path.setValue(tmpvalue + '/')
 		config.usage.default_path.save()
 	def defaultpathChanged(configElement):
 		if not config.usage.default_path.value.endswith('/'):
-			tmpvalue = config.usage.default_path.value
+			tmpvalue = config.usage.default_path.getValue()
 			config.usage.default_path.setValue(tmpvalue + '/')
 			config.usage.default_path.save()
 	config.usage.default_path.addNotifier(defaultpathChanged, immediate_feedback = False)
@@ -90,12 +90,12 @@ def InitUsageConfig():
 			pass
 	config.usage.timeshift_path = ConfigText(default = resolveFilename(SCOPE_TIMESHIFT))
 	if not config.usage.default_path.value.endswith('/'):
-		tmpvalue = config.usage.timeshift_path.value
+		tmpvalue = config.usage.timeshift_path.getValue()
 		config.usage.timeshift_path.setValue(tmpvalue + '/')
 		config.usage.timeshift_path.save()
 	def timeshiftpathChanged(configElement):
 		if not config.usage.timeshift_path.value.endswith('/'):
-			tmpvalue = config.usage.timeshift_path.value
+			tmpvalue = config.usage.timeshift_path.getValue()
 			config.usage.timeshift_path.setValue(tmpvalue + '/')
 			config.usage.timeshift_path.save()
 	config.usage.timeshift_path.addNotifier(timeshiftpathChanged, immediate_feedback = False)
@@ -663,9 +663,9 @@ def preferredPath(path):
 	if config.usage.setup_level.index < 2 or path == "<default>":
 		return None  # config.usage.default_path.value, but delay lookup until usage
 	elif path == "<current>":
-		return config.movielist.last_videodir.value
+		return config.movielist.last_videodir.getValue()
 	elif path == "<timer>":
-		return config.movielist.last_timer_videodir.value
+		return config.movielist.last_timer_videodir.getValue()
 	else:
 		return path
 
@@ -676,7 +676,7 @@ def preferredInstantRecordPath():
 	return preferredPath(config.usage.instantrec_path.getValue())
 
 def defaultMoviePath():
-	return config.usage.default_path.value
+	return config.usage.default_path.getValue()
 
 def refreshServiceList(configElement = None):
 		from Screens.InfoBar import InfoBar

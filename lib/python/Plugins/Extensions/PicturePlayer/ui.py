@@ -63,7 +63,7 @@ class picshow(Screen):
 		self["label"] = StaticText("")
 		self["thn"] = Pixmap()
 
-		currDir = config.pic.lastDir.value
+		currDir = config.pic.lastDir.getValue()
 		if not pathExists(currDir):
 			currDir = "/"
 
@@ -257,8 +257,8 @@ T_FULL = 4
 class Pic_Thumb(Screen):
 	def __init__(self, session, piclist, lastindex, path):
 
-		self.textcolor = config.pic.textcolor.value
-		self.color = config.pic.bgcolor.value
+		self.textcolor = config.pic.textcolor.getValue()
+		self.color = config.pic.bgcolor.getValue()
 		textsize = 20
 		self.spaceX = 35
 		self.picX = 190
@@ -438,9 +438,9 @@ class Pic_Thumb(Screen):
 class Pic_Full_View(Screen):
 	def __init__(self, session, filelist, index, path):
 
-		self.textcolor = config.pic.textcolor.value
-		self.bgcolor = config.pic.bgcolor.value
-		space = config.pic.framesize.value
+		self.textcolor = config.pic.textcolor.getValue()
+		self.bgcolor = config.pic.bgcolor.getValue()
+		space = config.pic.framesize.getValue()
 		size_w = getDesktop(0).size().width()
 		size_h = getDesktop(0).size().height()
 

@@ -28,7 +28,7 @@ class ProtectedScreen:
 		return True
 
 	def protectedWithPin(self):
-		return config.ParentalControl.setuppin.value
+		return config.ParentalControl.setuppin.getValue()
 
 	def pinEntered(self, result):
 		if result is None:
@@ -63,7 +63,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		self.setTitle(self.setup_title)
 
 	def isProtected(self):
-		return config.ParentalControl.setuppinactive.getValue() and config.ParentalControl.configured.value
+		return config.ParentalControl.setuppinactive.getValue() and config.ParentalControl.configured.getValue()
 
 	def createSetup(self):
 		self.editListEntry = None
@@ -72,7 +72,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 
 		self.list = []
 		self.list.append(getConfigListEntry(_("Enable parental control"), config.ParentalControl.configured))
-		print "config.ParentalControl.configured.value", config.ParentalControl.configured.value
+		print "config.ParentalControl.configured.value", config.ParentalControl.configured.getValue()
 		self.editBouquetListEntry = -1
 		self.reloadLists = -1
 		if config.ParentalControl.configured.getValue():
@@ -356,18 +356,18 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		return (self.pin.getValue() != "aaaa")
 
 	def protectedWithPin(self):
-		return self.pin.value
+		return self.pin.getValue()
 
 #	def pinEntered(self, result):
 		#if result[0] is None:
 			#self.close()
 		#if not result[0]:
-			#print result, "-", self.pin.value
+			#print result, "-", self.pin.getValue()
 			#self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
 
 	def keyOK(self):
 		if self.pin1.getValue() == self.pin2.getValue():
-			self.pin.value = self.pin1.value
+			self.pin.value = self.pin1.getValue()
 			self.pin.save()
 			self.session.openWithCallback(self.close, MessageBox, _("The PIN code has been changed successfully."), MessageBox.TYPE_INFO)
 		else:

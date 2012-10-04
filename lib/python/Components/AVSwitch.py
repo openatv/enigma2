@@ -19,7 +19,7 @@ class AVSwitch:
 		eAVSwitch.getInstance().setVideomode(value)
 
 	def getOutputAspect(self):
-		valstr = config.av.aspectratio.value
+		valstr = config.av.aspectratio.getValue()
 		if valstr in ("4_3_letterbox", "4_3_panscan"): # 4:3
 			return (4,3)
 		elif valstr == "16_9": # auto ... 4:3 or 16:9
@@ -41,7 +41,7 @@ class AVSwitch:
 		return (aspect[0] * fb_size.height(), aspect[1] * fb_size.width())
 
 	def getAspectRatioSetting(self):
-		valstr = config.av.aspectratio.value
+		valstr = config.av.aspectratio.getValue()
 		if valstr == "4_3_letterbox":
 			val = 0
 		elif valstr == "4_3_panscan":

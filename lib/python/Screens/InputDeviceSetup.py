@@ -327,7 +327,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session)
 
-		rctype = config.plugins.remotecontroltype.rctype.value
+		rctype = config.plugins.remotecontroltype.rctype.getValue()
 		self.rctype = ConfigSelection(choices = self.rcList, default = str(rctype))
 		self.list.append(getConfigListEntry(_("Remote control type"), self.rctype))
 		self["config"].list = self.list

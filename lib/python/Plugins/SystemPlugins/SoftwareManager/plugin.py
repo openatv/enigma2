@@ -518,7 +518,7 @@ class SoftwareManagerInfo(Screen):
 	def showInfos(self):
 		if self.mode == "backupinfo":
 			self.list = []
-			backupfiles = config.plugins.configurationbackup.backupdirs.value
+			backupfiles = config.plugins.configurationbackup.backupdirs.getValue()
 			for entry in backupfiles:
 				self.list.append((entry,))
 			self['list'].setList(self.list)

@@ -41,10 +41,10 @@ class VideoClippingCoordinates(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session)
 
-		left = config.plugins.VideoClippingSetup.clip_left.value
-		width = config.plugins.VideoClippingSetup.clip_width.value
-		top = config.plugins.VideoClippingSetup.clip_top.value
-		height = config.plugins.VideoClippingSetup.clip_height.value
+		left = config.plugins.VideoClippingSetup.clip_left.getValue()
+		width = config.plugins.VideoClippingSetup.clip_width.getValue()
+		top = config.plugins.VideoClippingSetup.clip_top.getValue()
+		height = config.plugins.VideoClippingSetup.clip_height.getValue()
 
 		self.clip_step = ConfigSlider(default = 1, increment = 1, limits = (1, 20))
 		self.clip_left = ConfigSlider(default = left, increment = self.clip_step.value, limits = (0, 720))
@@ -60,10 +60,10 @@ class VideoClippingCoordinates(Screen, ConfigListScreen):
 		self["config"].l.setList(self.list)
 
 	def adjustStep(self):
-		self.clip_left.increment = self.clip_step.value
-		self.clip_width.increment = self.clip_step.value
-		self.clip_top.increment = self.clip_step.value
-		self.clip_height.increment = self.clip_step.value
+		self.clip_left.increment = self.clip_step.getValue()
+		self.clip_width.increment = self.clip_step.getValue()
+		self.clip_top.increment = self.clip_step.getValue()
+		self.clip_height.increment = self.clip_step.getValue()
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
@@ -79,10 +79,10 @@ class VideoClippingCoordinates(Screen, ConfigListScreen):
 		setPosition(int(self.clip_left.getValue()), int(self.clip_width.getValue()), int(self.clip_top.getValue()), int(self.clip_height.getValue()))
 
 	def keyGo(self):
-		config.plugins.VideoClippingSetup.clip_left.value = self.clip_left.value
-		config.plugins.VideoClippingSetup.clip_width.value = self.clip_width.value
-		config.plugins.VideoClippingSetup.clip_top.value = self.clip_top.value
-		config.plugins.VideoClippingSetup.clip_height.value = self.clip_height.value
+		config.plugins.VideoClippingSetup.clip_left.value = self.clip_left.getValue()
+		config.plugins.VideoClippingSetup.clip_width.value = self.clip_width.getValue()
+		config.plugins.VideoClippingSetup.clip_top.value = self.clip_top.getValue()
+		config.plugins.VideoClippingSetup.clip_height.value = self.clip_height.getValue()
 		config.plugins.VideoClippingSetup.save()
 		self.close()
 

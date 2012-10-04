@@ -118,9 +118,9 @@ class Satfinder(ScanSetup):
 		satpos = int(self.tuning_sat.getValue())
 		if self.tuning_type.getValue() == "manual_transponder":
 			if self.scan_sat.system.getValue() == eDVBFrontendParametersSatellite.System_DVB_S2:
-				fec = self.scan_sat.fec_s2.value
+				fec = self.scan_sat.fec_s2.getValue()
 			else:
-				fec = self.scan_sat.fec.value
+				fec = self.scan_sat.fec.getValue()
 			returnvalue = (
 				self.scan_sat.frequency.value,
 				self.scan_sat.symbolrate.value,
