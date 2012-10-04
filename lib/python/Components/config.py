@@ -1655,7 +1655,7 @@ class Config(ConfigSubsection):
 			base[names[-1]] = val
 
 			if not base_file: # not the initial config file..
-				#update config.x.y.value when exist
+				#update config.x.y.getValue() when exist
 				try:
 					configEntry = eval(name)
 					if configEntry is not None:

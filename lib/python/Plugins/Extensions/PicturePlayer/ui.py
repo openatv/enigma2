@@ -124,7 +124,7 @@ class picshow(Screen):
 		self.setTitle(_("PicturePlayer"))
 		sc = getScale()
 		#0=Width 1=Height 2=Aspect 3=use_cache 4=resize_type 5=Background(#AARRGGBB)
-		self.picload.setPara((self["thn"].instance.size().width(), self["thn"].instance.size().height(), sc[0], sc[1], config.pic.cache.value, int(config.pic.resize.value), "#00000000"))
+		self.picload.setPara((self["thn"].instance.size().width(), self["thn"].instance.size().height(), sc[0], sc[1], config.pic.cache.value, int(config.pic.resize.getValue()), "#00000000"))
 
 	def callbackView(self, val=0):
 		if val > 0:
@@ -344,7 +344,7 @@ class Pic_Thumb(Screen):
 
 	def setPicloadConf(self):
 		sc = getScale()
-		self.picload.setPara([self["thumb0"].instance.size().width(), self["thumb0"].instance.size().height(), sc[0], sc[1], config.pic.cache.value, int(config.pic.resize.value), self.color])
+		self.picload.setPara([self["thumb0"].instance.size().width(), self["thumb0"].instance.size().height(), sc[0], sc[1], config.pic.cache.value, int(config.pic.resize.getValue()), self.color])
 		self.paintFrame()
 
 	def paintFrame(self):
@@ -506,17 +506,17 @@ class Pic_Full_View(Screen):
 
 	def setPicloadConf(self):
 		sc = getScale()
-		self.picload.setPara([self["pic"].instance.size().width(), self["pic"].instance.size().height(), sc[0], sc[1], 0, int(config.pic.resize.value), self.bgcolor])
+		self.picload.setPara([self["pic"].instance.size().width(), self["pic"].instance.size().height(), sc[0], sc[1], 0, int(config.pic.resize.getValue()), self.bgcolor])
 
 		self["play_icon"].hide()
-		if config.pic.infoline.value == False:
+		if config.pic.infoline.getValue() == False:
 			self["file"].setText("")
 		self.start_decode()
 
 	def ShowPicture(self):
 		if self.shownow and len(self.currPic):
 			self.shownow = False
-			if config.pic.infoline.value:
+			if config.pic.infoline.getValue():
 				self["file"].setText(self.currPic[0])
 			else:
 				self["file"].setText("")
@@ -569,7 +569,7 @@ class Pic_Full_View(Screen):
 			self.slideTimer.stop()
 			self["play_icon"].hide()
 		else:
-			self.slideTimer.start(config.pic.slidetime.value*1000)
+			self.slideTimer.start(config.pic.slidetime.getValue() * 1000)
 			self["play_icon"].show()
 			self.nextPic()
 

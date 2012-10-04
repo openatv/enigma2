@@ -215,8 +215,8 @@ class UpdatePlugin(Screen):
 			self.status.setText(_("Configuring"))
 
 		elif event == IpkgComponent.EVENT_MODIFIED:
-			if config.plugins.softwaremanager.overwriteConfigFiles.value in ("N", "Y"):
-				self.ipkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.value)
+			if config.plugins.softwaremanager.overwriteConfigFiles.getValue() in ("N", "Y"):
+				self.ipkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.getValue())
 			else:
 				self.session.openWithCallback(
 					self.modificationCallback,
@@ -240,10 +240,10 @@ class UpdatePlugin(Screen):
 					config.softwareupdate.updateisunstable.setValue(1)
 				socket.setdefaulttimeout(currentTimeoutDefault)
 				self.total_packages = None
-				if config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
+				if config.softwareupdate.updateisunstable.getValue() == '1' and config.softwareupdate.updatebeta.getValue():
 					self.total_packages = len(self.ipkg.getFetchedList())
 					message = _("The current update maybe unstable") + "\n" + _("Are you sure you want to update your STB_BOX?") + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
-				elif config.softwareupdate.updateisunstable.value == '0':
+				elif config.softwareupdate.updateisunstable.getValue() == '0':
 					self.total_packages = len(self.ipkg.getFetchedList())
 					message = _("Do you want to update your STB_BOX?") + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
 				if self.total_packages:
@@ -306,9 +306,9 @@ class UpdatePlugin(Screen):
 			return
 
 		if answer[1] == "menu":
-			if config.softwareupdate.updateisunstable.value == '1':
+			if config.softwareupdate.updateisunstable.getValue() == '1':
 				message = _("The current update maybe unstable") + "\n" + _("Are you sure you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
-			elif config.softwareupdate.updateisunstable.value == '0':
+			elif config.softwareupdate.updateisunstable.getValue() == '0':
 				message = _("Do you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
 			choices = [(_("View the changes"), "changes"),
 				(_("Upgrade and reboot system"), "cold")]

@@ -66,7 +66,7 @@ class OSDScreenPosition(Screen, ConfigListScreen):
 		self.setPreviewPosition()
 
 	def setPreviewPosition(self):
-		setPosition(int(self.dst_left.value), int(self.dst_width.value), int(self.dst_top.value), int(self.dst_height.value))
+		setPosition(int(self.dst_left.getValue()), int(self.dst_width.getValue()), int(self.dst_top.getValue()), int(self.dst_height.getValue()))
 
 	def keyGo(self):
 		config.plugins.OSDPositionSetup.dst_left.value = self.dst_left.value
@@ -102,7 +102,7 @@ def setPosition(dst_left, dst_width, dst_top, dst_height):
 		return
 
 def setConfiguredPosition():
-	setPosition(int(config.plugins.OSDPositionSetup.dst_left.value), int(config.plugins.OSDPositionSetup.dst_width.value), int(config.plugins.OSDPositionSetup.dst_top.value), int(config.plugins.OSDPositionSetup.dst_height.value))
+	setPosition(int(config.plugins.OSDPositionSetup.dst_left.getValue()), int(config.plugins.OSDPositionSetup.dst_width.getValue()), int(config.plugins.OSDPositionSetup.dst_top.getValue()), int(config.plugins.OSDPositionSetup.dst_height.getValue()))
 
 def main(session, **kwargs):
 	session.open(OSDScreenPosition)

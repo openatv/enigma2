@@ -303,13 +303,13 @@ class MovieList(GUIComponent):
 					if data.part is not None and data.part > 0:
 						data.icon = self.iconPart[data.part // 25]
 					else:
-						if config.usage.movielist_unseen.value:
+						if config.usage.movielist_unseen.getValue():
 							data.icon = self.iconUnwatched
 				elif switch == 'p' or switch == 's':
 					if data.part is not None and data.part > 0:
 						data.partcol = 0xffc71d
 					else:
-						if config.usage.movielist_unseen.value:
+						if config.usage.movielist_unseen.getValue():
 							data.part = 100
 							data.partcol = 0x206333
 		len = data.len
@@ -439,10 +439,10 @@ class MovieList(GUIComponent):
 		rootPath = os.path.normpath(root.getPath());
 		parent = None
 		# Don't navigate above the "root"
-		if len(rootPath) > 1 and (os.path.realpath(rootPath) != config.movielist.root.value):
+		if len(rootPath) > 1 and (os.path.realpath(rootPath) != config.movielist.root.getValue()):
 			parent = os.path.split(os.path.normpath(rootPath))[0]
 			currentfolder = os.path.normpath(rootPath) + '/'
-			if parent and (parent not in defaultInhibitDirs) and not currentfolder.endswith(config.usage.default_path.value):
+			if parent and (parent not in defaultInhibitDirs) and not currentfolder.endswith(config.usage.default_path.getValue()):
 				# enigma wants an extra '/' appended
 				if not parent.endswith('/'):
 					parent += '/'

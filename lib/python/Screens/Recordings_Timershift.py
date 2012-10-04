@@ -53,7 +53,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 
 	def checkReadWriteDir(self, configele):
 		print "checkReadWrite: ", configele.value
-		if configele.value in [x[0] for x in self.styles] or fileExists(configele.value, "w"):
+		if configele.getValue() in [x[0] for x in self.styles] or fileExists(configele.value, "w"):
 			configele.last_value = configele.value
 			return True
 		else:
@@ -139,7 +139,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Background delete speed"), config.misc.erase_speed, _("Only change for debugging; default is '20 MB/s'.")))
 			self.list.append(getConfigListEntry(_("Offline decode delay (ms)"), config.recording.offline_decode_delay, _("Change this value if your smartcard can't doesn't handle off-line decoding well; default is '1000'.")))
 		self["config"].setList(self.list)
-		if config.usage.sort_settings.value:
+		if config.usage.sort_settings.getValue():
 			self["config"].list.sort()
 
 	def SelectionChanged(self):
@@ -172,7 +172,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 				self.dirnameSelected,
 				MovieLocationBox,
 				txt,
-				preferredPath(self.default_dirname.value)
+				preferredPath(self.default_dirname.getValue())
 			)
 		elif currentry == self.timer_entry:
 			self.entrydirname = self.timer_dirname
@@ -180,7 +180,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 				self.dirnameSelected,
 				MovieLocationBox,
 				_("New timers location"),
-				preferredPath(self.timer_dirname.value)
+				preferredPath(self.timer_dirname.getValue())
 			)
 		elif currentry == self.instantrec_entry:
 			self.entrydirname = self.instantrec_dirname
@@ -188,13 +188,13 @@ class RecordingSettings(Screen,ConfigListScreen):
 				self.dirnameSelected,
 				MovieLocationBox,
 				_("Instant recordings location"),
-				preferredPath(self.instantrec_dirname.value)
+				preferredPath(self.instantrec_dirname.getValue())
 			)
 
 	def dirnameSelected(self, res):
 		if res is not None:
 			self.entrydirname.value = res
-			if config.movielist.videodirs.value != self.lastvideodirs:
+			if config.movielist.videodirs.getValue() != self.lastvideodirs:
 				styles_keys = [x[0] for x in self.styles]
 				tmp = config.movielist.videodirs.value
 				default = self.default_dirname.value
@@ -321,7 +321,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			locations = []
 			for validdevice in candidates:
 				locations.append(validdevice[1])
-			if Components.Harddisk.findMountPoint(os.path.realpath(configele.value))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(configele.value)) in locations:
+			if Components.Harddisk.findMountPoint(os.path.realpath(configele.getValue()))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(configele.getValue())) in locations:
 				if fileExists(configele.value, "w"):
 					configele.last_value = configele.value
 					return True
@@ -366,7 +366,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		self.timeshift_entry = getConfigListEntry(_("Timeshift location"), self.timeshift_dirname, _("Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."))
 		self.list.append(self.timeshift_entry)
 		self.list.append(getConfigListEntry(_("Permanent Timeshift Enable"), config.timeshift.enabled, _("Enable or disable Permanent Timeshift. When activated, you can wind back until the time you zapped to a channel, and you can make recordings in retrospect.")))
-		if config.usage.setup_level.index >= 2 and config.timeshift.enabled.value:
+		if config.usage.setup_level.index >= 2 and config.timeshift.enabled.getValue():
 			self.list.append(getConfigListEntry(_("Permanent Timeshift Max Events"), config.timeshift.maxevents, _("Set the maximum number of events (programs) that timeshift may handle.")))
 			self.list.append(getConfigListEntry(_("Permanent Timeshift Max Length"), config.timeshift.maxlength, _("Set the maximum length a timeshift file may be.")))
 			self.list.append(getConfigListEntry(_("Permanent Timeshift Start Delay"), config.timeshift.startdelay, _("Timeshift will only start when the start delay time has passed. This prevents numurous very short files when zapping.")))
@@ -374,7 +374,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Timeshift-Save Action on zap"), config.timeshift.favoriteSaveAction, _("Set what the required action must be when zapping while a timeshift has been set as recording.")))
 			self.list.append(getConfigListEntry(_("Use PTS seekbar while timeshifting? *"), config.timeshift.showinfobar, _("If set to 'yes' a special seekbar is available during timeshift.")))
 		self["config"].setList(self.list)
-		if config.usage.sort_settings.value:
+		if config.usage.sort_settings.getValue():
 			self["config"].list.sort()
 
 	def SelectionChanged(self):
@@ -408,7 +408,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 					locations.append(validdevice[1])
 				if Components.Harddisk.findMountPoint(os.path.realpath(res))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(res)) in locations:
 					self.entrydirname.value = res
-					if config.usage.allowed_timeshift_paths.value != self.lasttimeshiftdirs:
+					if config.usage.allowed_timeshift_paths.getValue() != self.lasttimeshiftdirs:
 						tmp = config.usage.allowed_timeshift_paths.value
 						default = self.timeshift_dirname.value
 						if default not in tmp:
@@ -449,7 +449,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			locations = []
 			for validdevice in candidates:
 				locations.append(validdevice[1])
-			if Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.value))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.value)) in locations:
+			if Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.getValue()))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.getValue())) in locations:
 				config.usage.timeshift_path.value = self.timeshift_dirname.value
 				config.usage.timeshift_path.save()
 				self.saveAll()

@@ -84,7 +84,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			self.audioTracks = audio = service and service.audioTracks()
 			n = audio and audio.getNumberOfTracks() or 0
 			if SystemInfo["CanDownmixAC3"]:
-				self.settings.downmix = ConfigOnOff(default=config.av.downmix_ac3.value)
+				self.settings.downmix = ConfigOnOff(default=config.av.downmix_ac3.getValue())
 				self.settings.downmix.addNotifier(self.changeAC3Downmix, initial_call = False)
 				conflist.append(getConfigListEntry(_("Digital downmix"), self.settings.downmix))
 				self["key_red"].setBoolean(True)

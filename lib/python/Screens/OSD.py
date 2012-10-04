@@ -102,10 +102,10 @@ class OSDSetup(Screen, ConfigListScreen):
 		size_h = getDesktop(0).size().height()
 		dsk_w = int(float(size_w)) / float(720)
 		dsk_h = int(float(size_h)) / float(576)
-		dst_left = int(config.osd.dst_left.value)
-		dst_width = int(config.osd.dst_width.value)
-		dst_top = int(config.osd.dst_top.value)
-		dst_height = int(config.osd.dst_height.value)
+		dst_left = int(config.osd.dst_left.getValue())
+		dst_width = int(config.osd.dst_width.getValue())
+		dst_top = int(config.osd.dst_top.getValue())
+		dst_height = int(config.osd.dst_height.getValue())
 		while dst_width + (dst_left / float(dsk_w)) >= 720.5 or dst_width + dst_left > 720:
 			dst_width = int(dst_width) - 1
 		while dst_height + (dst_top / float(dsk_h)) >= 576.5 or dst_height + dst_top > 576:
@@ -116,8 +116,8 @@ class OSDSetup(Screen, ConfigListScreen):
 		config.osd.dst_top.setValue(dst_top)
 		config.osd.dst_height.setValue(dst_height)
 
-		setPosition(config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
-		setAlpha(config.osd.alpha.value)
+		setPosition(config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.getValue())
+		setAlpha(config.osd.alpha.getValue())
 
 	def saveAll(self):
 		for x in self["config"].list:
@@ -219,7 +219,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self.setPreviewSettings()
 
 	def setPreviewSettings(self):
-		applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.value) - 50)
+		applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.getValue()) - 50)
 
 	def saveAll(self):
 		for x in self["config"].list:
@@ -256,15 +256,15 @@ def applySettings(mode, znorm):
 
 def setConfiguredPosition():
 	if SystemInfo["CanChangeOsdPosition"]:
-		setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
+		setPosition(int(config.osd.dst_left.getValue()), int(config.osd.dst_width.getValue()), int(config.osd.dst_top.getValue()), int(config.osd.dst_height.getValue()))
 
 def setConfiguredAplha():
 	if SystemInfo["CanChangeOsdAlpha"]:
-		setAlpha(int(config.osd.alpha.value))
+		setAlpha(int(config.osd.alpha.getValue()))
 
 def setConfiguredSettings():
 	if SystemInfo["CanChange3DOsd"]:
-		applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.value))
+		applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.getValue()))
 
 def InitOsd():
 	SystemInfo["CanChange3DOsd"] = (open("/proc/stb/fb/3dmode", "r") or open("/proc/stb/fb/primary/3d", "r")) and True or False

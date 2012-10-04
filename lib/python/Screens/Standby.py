@@ -184,7 +184,7 @@ class TryQuitMainloop(MessageBox):
 		self.close(True)
 
 	def getRecordEvent(self, recservice, event):
-		if event == iRecordableService.evEnd and config.timeshift.isRecording.value:
+		if event == iRecordableService.evEnd and config.timeshift.isRecording.getValue():
 			return
 		else:
 			if event == iRecordableService.evEnd:

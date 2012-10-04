@@ -76,8 +76,8 @@ class VideoHardware:
 		else:
 			mode = config.av.videomode[port].value
 			force_widescreen = self.isWidescreenMode(port, mode)
-			is_widescreen = force_widescreen or config.av.aspect.value in ("16_9", "16_10")
-			is_auto = config.av.aspect.value == "auto"
+			is_widescreen = force_widescreen or config.av.aspect.getValue() in ("16_9", "16_10")
+			is_auto = config.av.aspect.getValue() == "auto"
 			if is_widescreen:
 				if force_widescreen:
 					pass
@@ -302,7 +302,7 @@ class VideoHardware:
 		# determine policy = {bestfit,letterbox,panscan,nonlinear}
 
 		# based on;
-		#   config.av.videoport.value: current video output device
+		#   config.av.videoport.getValue(): current video output device
 		#     Scart:
 		#   config.av.aspect:
 		#     4_3:            use policy_169
@@ -326,8 +326,8 @@ class VideoHardware:
 
 		force_widescreen = self.isWidescreenMode(port, mode)
 
-		is_widescreen = force_widescreen or config.av.aspect.value in ("16_9", "16_10")
-		is_auto = config.av.aspect.value == "auto"
+		is_widescreen = force_widescreen or config.av.aspect.getValue() in ("16_9", "16_10")
+		is_auto = config.av.aspect.getValue() == "auto"
 		policy2 = "policy" # use main policy
 
 		if is_widescreen:
@@ -354,7 +354,7 @@ class VideoHardware:
 			aspect = "4:3"
 			policy = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit", "auto": "bestfit"}[config.av.policy_169.value]
 
-		if not config.av.wss.value:
+		if not config.av.wss.getValue():
 			wss = "auto(4:3_off)"
 		else:
 			wss = "auto"

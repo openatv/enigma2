@@ -60,7 +60,7 @@ class PluginBrowser(Screen):
 
 		self.list = []
 		self["list"] = PluginList(self.list)
- 		if config.usage.sort_pluginlist.value:
+ 		if config.usage.sort_pluginlist.getValue():
  			self["list"].list.sort()
 
 		self["actions"] = ActionMap(["WizardActions"],
@@ -330,10 +330,10 @@ class PluginDownloadBrowser(Screen):
 				config.softwareupdate.updateisunstable.setValue(1)
 			socket.setdefaulttimeout(currentTimeoutDefault)
 
-			if config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
+			if config.softwareupdate.updateisunstable.getValue() == '1' and config.softwareupdate.updatebeta.getValue():
 				self["text"].setText(_("WARNING: feeds maybe unstable.") + '\n' + _("Downloading plugin information. Please wait..."))
 				self.container.execute(self.ipkg + " update")
-			elif config.softwareupdate.updateisunstable.value == '1' and not config.softwareupdate.updatebeta.value:
+			elif config.softwareupdate.updateisunstable.getValue() == '1' and not config.softwareupdate.updatebeta.getValue():
 				self["text"].setText(_("Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in online update setup."))
 			else:
 				self.container.execute(self.ipkg + " update")
@@ -452,7 +452,7 @@ class PluginDownloadBrowser(Screen):
 			self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1], x[1]))
 
 		temp = self.plugins.keys()
-		if config.usage.sort_pluginlist.value:
+		if config.usage.sort_pluginlist.getValue():
 			temp.sort()
 		for x in temp:
 			if x in self.expanded:

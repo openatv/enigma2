@@ -121,7 +121,7 @@ class Setup(ConfigListScreen, Screen):
 		list = []
 		self.refill(list)
  		self["config"].setList(list)
-		if config.usage.sort_settings.value:
+		if config.usage.sort_settings.getValue():
 			self["config"].list.sort()
 		self.moveToItem(self.item)
 
@@ -226,7 +226,7 @@ class Setup(ConfigListScreen, Screen):
 				requires = x.get("requires")
 				if requires and requires.startswith('config.'):
 					item = eval(requires or "");
-					if item.value and not item.value == "0":
+					if item.getValue() and not item.getValue() == "0":
 						SystemInfo[requires] = True
 					else:
 						SystemInfo[requires] = False

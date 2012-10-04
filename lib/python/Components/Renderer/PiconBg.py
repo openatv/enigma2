@@ -14,7 +14,7 @@ class PiconBg(Renderer):
 
 	def changed(self, what):
 		if self.instance:
-			pngname = resolveFilename(SCOPE_SKIN_IMAGE, "ViX_HD_Common/piconbg/"+config.usage.show_picon_bkgrn.value+".png")
+			pngname = resolveFilename(SCOPE_SKIN_IMAGE, "ViX_HD_Common/piconbg/"+config.usage.show_picon_bkgrn.getValue() + ".png")
 			if pngname:
 				self.instance.setScale(1)
 				self.instance.setPixmapFromFile(pngname)

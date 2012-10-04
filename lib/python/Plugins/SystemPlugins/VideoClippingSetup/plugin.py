@@ -76,7 +76,7 @@ class VideoClippingCoordinates(Screen, ConfigListScreen):
 		self.setPreviewPosition()
 
 	def setPreviewPosition(self):
-		setPosition(int(self.clip_left.value), int(self.clip_width.value), int(self.clip_top.value), int(self.clip_height.value))
+		setPosition(int(self.clip_left.getValue()), int(self.clip_width.getValue()), int(self.clip_top.getValue()), int(self.clip_height.getValue()))
 
 	def keyGo(self):
 		config.plugins.VideoClippingSetup.clip_left.value = self.clip_left.value
@@ -112,7 +112,7 @@ def setPosition(clip_left, clip_width, clip_top, clip_height):
 		return
 
 def setConfiguredPosition():
-	setPosition(int(config.plugins.VideoClippingSetup.clip_left.value), int(config.plugins.VideoClippingSetup.clip_width.value), int(config.plugins.VideoClippingSetup.clip_top.value), int(config.plugins.VideoClippingSetup.clip_height.value))
+	setPosition(int(config.plugins.VideoClippingSetup.clip_left.getValue()), int(config.plugins.VideoClippingSetup.clip_width.getValue()), int(config.plugins.VideoClippingSetup.clip_top.getValue()), int(config.plugins.VideoClippingSetup.clip_height.getValue()))
 
 def main(session, **kwargs):
 	session.open(VideoClippingCoordinates)

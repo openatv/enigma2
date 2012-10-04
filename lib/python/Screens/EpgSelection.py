@@ -297,7 +297,7 @@ class EPGSelection(Screen, HelpableScreen):
 		elif isinstance(service, list):
 			if self.GraphicalEPG:
 				self.type = EPG_TYPE_GRAPH
-				if not config.epgselection.pictureingraphics.value:
+				if not config.epgselection.pictureingraphics.getValue():
 					self.skin = self.GraphEPG
 					self.skinName = "GraphicalEPG"
 				else:
@@ -348,7 +348,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.currentService=self.session.nav.getCurrentlyPlayingServiceReference()
 			self.zapFunc = None
 
-		self["list"] = EPGList(type = self.type, selChangedCB = self.onSelectionChanged, timer = session.nav.RecordTimer, time_epoch = config.epgselection.prev_time_period.getValue(), overjump_empty = config.epgselection.overjump.value)
+		self["list"] = EPGList(type = self.type, selChangedCB = self.onSelectionChanged, timer = session.nav.RecordTimer, time_epoch = config.epgselection.prev_time_period.getValue(), overjump_empty = config.epgselection.overjump.getValue())
 
 		HelpableScreen.__init__(self)
 		self["okactions"] = HelpableActionMap(self, "OkCancelActions",
@@ -583,8 +583,8 @@ class EPGSelection(Screen, HelpableScreen):
 			l.setServiceFontsize()
 			self["timeline_text"].setTimeLineFontsize()
 			l.setEpoch(config.epgselection.prev_time_period.getValue())
-			l.setOverjump_Empty(config.epgselection.overjump.value)
-			l.setShowServiceMode(config.epgselection.servicetitle_mode.value)
+			l.setOverjump_Empty(config.epgselection.overjump.getValue())
+			l.setShowServiceMode(config.epgselection.servicetitle_mode.getValue())
 			now = time() - int(config.epg.histminutes.getValue()) * 60
 			self.ask_time = now - now % (int(config.epgselection.roundTo.getValue()) * 60)
 			l.fillGraphEPG(None, self.ask_time)
@@ -595,10 +595,10 @@ class EPGSelection(Screen, HelpableScreen):
 			l.setItemsPerPage()
 			l.setEventFontsize()
 			l.recalcEntrySize()
-			l.sortSingleEPG(int(config.epgselection.sort.value))
+			l.sortSingleEPG(int(config.epgselection.sort.getValue()))
 
 	def togglePIG(self):
-		if not config.epgselection.pictureingraphics.value:
+		if not config.epgselection.pictureingraphics.getValue():
 			config.epgselection.pictureingraphics.setValue(True)
 		else:
 			config.epgselection.pictureingraphics.setValue(False)
@@ -625,9 +625,9 @@ class EPGSelection(Screen, HelpableScreen):
 			l.fillGraphEPG(self.services, self.ask_time)
 			l.moveToService(serviceref)
 			l.setCurrentlyPlaying(serviceref)
-			l.setShowServiceMode(config.epgselection.servicetitle_mode.value)
+			l.setShowServiceMode(config.epgselection.servicetitle_mode.getValue())
 			self.moveTimeLines()
-			if config.epgselection.channel1.value:
+			if config.epgselection.channel1.getValue():
 				l.instance.moveSelectionTo(0)
 			self.setTitle(ServiceReference(self.StartBouquet).getServiceName())
 			self.listTimer.start(10)
@@ -643,7 +643,7 @@ class EPGSelection(Screen, HelpableScreen):
 			title = title + ' - ' + service.getServiceName()
 			self.setTitle(title)
 			l.fillSingleEPG(service)
-			l.sortSingleEPG(int(config.epgselection.sort.value))
+			l.sortSingleEPG(int(config.epgselection.sort.getValue()))
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			service = ServiceReference(self.servicelist.getCurrentSelection())
 			self["Service"].newService(service.ref)
@@ -651,7 +651,7 @@ class EPGSelection(Screen, HelpableScreen):
 			title = title + ' - ' + service.getServiceName()
 			self.setTitle(title)
 			l.fillSingleEPG(service)
-			l.sortSingleEPG(int(config.epgselection.sort.value))
+			l.sortSingleEPG(int(config.epgselection.sort.getValue()))
 		else:
 			l.fillSimilarList(self.currentService, self.eventid)
 
@@ -693,14 +693,14 @@ class EPGSelection(Screen, HelpableScreen):
 	def nextBouquet(self):
 		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH) and self.bouquetChangeCB:
 			self.bouquetChangeCB(self)
-		elif (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR) and config.usage.multibouquet.value:
+		elif (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR) and config.usage.multibouquet.getValue():
 			self.servicelist.nextBouquet()
 			self.onCreate()
 
 	def prevBouquet(self):
 		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH) and self.bouquetChangeCB:
 			self.bouquetChangeCB(self)
-		elif (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR) and config.usage.multibouquet.value:
+		elif (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR) and config.usage.multibouquet.getValue():
 			self.servicelist.prevBouquet()
 			self.onCreate()
 
@@ -716,7 +716,7 @@ class EPGSelection(Screen, HelpableScreen):
 				if prev:
 					prev = prev.toString()
 					while True:
-						if config.usage.quickzap_bouquet_change.value and self.servicelist.atEnd():
+						if config.usage.quickzap_bouquet_change.getValue() and self.servicelist.atEnd():
 							self.servicelist.nextBouquet()
 						else:
 							self.servicelist.moveDown()
@@ -727,7 +727,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.servicelist.moveDown()
 			if self.isPlayable():
 				self.onCreate()
-				if not self["list"].getCurrent()[1] and config.epgselection.overjump.value:
+				if not self["list"].getCurrent()[1] and config.epgselection.overjump.getValue():
 					self.nextService()
 			else:
 				self.nextService()
@@ -760,7 +760,7 @@ class EPGSelection(Screen, HelpableScreen):
 				if prev:
 					prev = prev.toString()
 					while True:
-						if config.usage.quickzap_bouquet_change.value:
+						if config.usage.quickzap_bouquet_change.getValue():
 							if self.servicelist.atBegin():
 								self.servicelist.prevBouquet()
 						self.servicelist.moveUp()
@@ -771,7 +771,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.servicelist.moveUp()
 			if self.isPlayable():
 				self.onCreate()
-				if not self["list"].getCurrent()[1] and config.epgselection.overjump.value:
+				if not self["list"].getCurrent()[1] and config.epgselection.overjump.getValue():
 					self.prevService()
 			else:
 				self.prevService()
@@ -822,7 +822,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def closing(self):
 		if self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toString() != self.StartRef.toString():
-			if ((self.type == 5 and config.epgselection.preview_mode_vixepg.value) or (self.type == 4 and config.epgselection.preview_mode_infobar.value) or (self.type == 3 and config.epgselection.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselection.preview_mode.value)) and (self.StartRef and self.StartBouquet):
+			if ((self.type == 5 and config.epgselection.preview_mode_vixepg.getValue()) or (self.type == 4 and config.epgselection.preview_mode_infobar.getValue()) or (self.type == 3 and config.epgselection.preview_mode_enhanced.getValue()) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselection.preview_mode.getValue())) and (self.StartRef and self.StartBouquet):
 				if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 					if self.StartRef.toString().find('0:0:0:0:0:0:0:0:0')== -1:
 						self.session.nav.playService(self.StartRef)
@@ -919,13 +919,13 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def sortEpg(self):
 		if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
-			if config.epgselection.sort.value == "0":
+			if config.epgselection.sort.getValue() == "0":
 				config.epgselection.sort.setValue("1")
 			else:
 				config.epgselection.sort.setValue("0")
 			config.epgselection.sort.save()
 			configfile.save()
-			self["list"].sortSingleEPG(int(config.epgselection.sort.value))
+			self["list"].sortSingleEPG(int(config.epgselection.sort.getValue()))
 
 	def OpenSingleEPG(self):
 		cur = self["list"].getCurrent()
@@ -1024,7 +1024,7 @@ class EPGSelection(Screen, HelpableScreen):
 			autotimer.parseEPG()
 
 		# Start autopoller again if wanted
-		if config.plugins.autotimer.autopoll.value:
+		if config.plugins.autotimer.autopoll.getValue():
 			if autopoller is None:
 				from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
 				autopoller = AutoPoller()
@@ -1148,7 +1148,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.updEvent(+2)
 
 	def key7(self):
-		if config.epgselection.heightswitch.value:
+		if config.epgselection.heightswitch.getValue():
 			config.epgselection.heightswitch.setValue(False)
 		else:
 			config.epgselection.heightswitch.setValue(True)
@@ -1178,37 +1178,37 @@ class EPGSelection(Screen, HelpableScreen):
 		self.moveTimeLines()
 
 	def OK(self):
-		if config.epgselection.OK_vixepg.value == "Zap" or config.epgselection.OK_enhanced.value == "Zap" or config.epgselection.OK_infobar.value == "Zap" or config.epgselection.OK_multi.value == "Zap":
+		if config.epgselection.OK_vixepg.getValue() == "Zap" or config.epgselection.OK_enhanced.getValue() == "Zap" or config.epgselection.OK_infobar.getValue() == "Zap" or config.epgselection.OK_multi.getValue() == "Zap":
 			self.ZapTo()
 		if self.type == EPG_TYPE_GRAPH:
 				serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 				self["list"].setCurrentlyPlaying(serviceref)
 				self["list"].fillGraphEPG(None, self.ask_time)
 				self.moveTimeLines(True)
-		if config.epgselection.OK_vixepg.value == "Zap + Exit" or config.epgselection.OK_enhanced.value == "Zap + Exit" or config.epgselection.OK_infobar.value == "Zap + Exit":
+		if config.epgselection.OK_vixepg.getValue() == "Zap + Exit" or config.epgselection.OK_enhanced.getValue() == "Zap + Exit" or config.epgselection.OK_infobar.getValue() == "Zap + Exit":
 			self.zap()
 
 	def OKLong(self):
-		if config.epgselection.OKLong_vixepg.value == "Zap" or config.epgselection.OKLong_enhanced.value == "Zap" or config.epgselection.OKLong_infobar.value == "Zap":
+		if config.epgselection.OKLong_vixepg.getValue() == "Zap" or config.epgselection.OKLong_enhanced.getValue() == "Zap" or config.epgselection.OKLong_infobar.getValue() == "Zap":
 			self.ZapTo()
 		if self.type == EPG_TYPE_GRAPH:
 				serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 				self["list"].setCurrentlyPlaying(serviceref)
 				self["list"].fillGraphEPG(None, self.ask_time)
 				self.moveTimeLines(True)
-		if config.epgselection.OKLong_vixepg.value == "Zap + Exit" or config.epgselection.OKLong_enhanced.value == "Zap + Exit" or config.epgselection.OKLong_infobar.value == "Zap + Exit" or config.epgselection.OKLong_multi.value == "Zap + Exit":
+		if config.epgselection.OKLong_vixepg.getValue() == "Zap + Exit" or config.epgselection.OKLong_enhanced.getValue() == "Zap + Exit" or config.epgselection.OKLong_infobar.getValue() == "Zap + Exit" or config.epgselection.OKLong_multi.getValue() == "Zap + Exit":
 			self.zap()
 
 	def Info(self):
-		if config.epgselection.Info.value == "Channel Info":
+		if config.epgselection.Info.getValue() == "Channel Info":
 			self.infoKeyPressed()
-		if config.epgselection.Info.value == "Single EPG":
+		if config.epgselection.Info.getValue() == "Single EPG":
 			self.OpenSingleEPG()
 
 	def InfoLong(self):
-		if config.epgselection.InfoLong.value == "Channel Info":
+		if config.epgselection.InfoLong.getValue() == "Channel Info":
 			self.infoKeyPressed()
-		if config.epgselection.InfoLong.value == "Single EPG":
+		if config.epgselection.InfoLong.getValue() == "Single EPG":
 			self.OpenSingleEPG()
 
 	def applyButtonState(self, state):
@@ -1434,7 +1434,7 @@ class EPGSelection(Screen, HelpableScreen):
 		service = None
 		serviceHandler = eServiceCenter.getInstance()
 		service = self.searchNumberHelper(serviceHandler, number, bouquet)
-		if config.usage.multibouquet.value:
+		if config.usage.multibouquet.getValue():
 			service = self.searchNumberHelper(serviceHandler, number, bouquet) #search the current bouqeut first
 			if service is None:
 				bouquet = self.servicelist.bouquet_root
@@ -1449,7 +1449,7 @@ class EPGSelection(Screen, HelpableScreen):
 								if not playable:
 									service = None
 								break
-							if config.usage.alternative_number_mode.value:
+							if config.usage.alternative_number_mode.getValue():
 								break
 						bouquet = bouquetlist.getNext()
 		return service, bouquet
@@ -1535,7 +1535,7 @@ class RecordSetup(TimerEntry):
 
 	def keyGo(self, result = None):
 		if self.timer.justplay:
-			self.timer.begin += (config.recording.margin_before.value * 60)
+			self.timer.begin += (config.recording.margin_before.getValue() * 60)
 			self.timer.end = self.timer.begin
 		self.timer.resetRepeated()
 		self.saveTimer()
