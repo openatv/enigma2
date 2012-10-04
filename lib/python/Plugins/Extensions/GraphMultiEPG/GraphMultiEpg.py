@@ -45,7 +45,7 @@ config.misc.graph_mepg.servicetitle_mode = ConfigSelection(default = "picon+serv
 	("picon+servicename", _("Picon and Service Name")) ])
 config.misc.graph_mepg.roundTo = ConfigSelection(default = 15, choices = [("900", _("%d minutes") % 15), ("1800", _("%d minutes") % 30), ("3600", _("%d minutes") % 60)])
 
-listscreen = config.misc.graph_mepg.default_mode.value
+listscreen = config.misc.graph_mepg.default_mode.getValue()
 
 class EPGList(HTMLComponent, GUIComponent):
 	def __init__(self, selChangedCB = None, timer = None, time_epoch = 120, overjump_empty = True):
@@ -755,8 +755,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 
 		self["list"] = EPGList( selChangedCB = self.onSelectionChanged,
 					timer = self.session.nav.RecordTimer,
-					time_epoch = config.misc.graph_mepg.prev_time_period.value,
-					overjump_empty = config.misc.graph_mepg.overjump.value)
+					time_epoch = config.misc.graph_mepg.prev_time_period.getValue(),
+					overjump_empty = config.misc.graph_mepg.overjump.getValue())
 
 		HelpableScreen.__init__(self)
 		self["okactions"] = HelpableActionMap(self, "OkCancelActions",
@@ -833,7 +833,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 
 	def updEpoch(self, mins):
 		self["list"].setEpoch(mins)
-		config.misc.graph_mepg.prev_time_period.value = mins
+		config.misc.graph_mepg.prev_time_period.setValue(mins)
 		self.moveTimeLines()
 
 	def key1(self):
@@ -861,7 +861,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 
 	def enterDateTime(self):
 		t = localtime(time())
-		config.misc.graph_mepg.prev_time.value = [t.tm_hour, t.tm_min]
+		config.misc.graph_mepg.prev_time.setValue([t.tm_hour, t.tm_min])
 		self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.misc.graph_mepg.prev_time)
 
 	def onDateTimeInputClosed(self, ret):
@@ -882,10 +882,10 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		l = self["list"]
 		l.setItemsPerPage()
 		l.setEventFontsize()
-		l.setEpoch(config.misc.graph_mepg.prev_time_period.value)
-		l.setOverjump_Empty(config.misc.graph_mepg.overjump.value)
-		l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.value)
-		self["timeline_text"].setDateFormat(config.misc.graph_mepg.servicetitle_mode.value)
+		l.setEpoch(config.misc.graph_mepg.prev_time_period.getValue())
+		l.setOverjump_Empty(config.misc.graph_mepg.overjump.getValue())
+		l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.getValue())
+		self["timeline_text"].setDateFormat(config.misc.graph_mepg.servicetitle_mode.getValue())
 		now = time() - config.epg.histminutes.getValue() * 60
 		self.ask_time = now - now % int(config.misc.graph_mepg.roundTo.getValue())
 		l.fillMultiEPG(None, self.ask_time)
@@ -929,11 +929,11 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def onCreate(self):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 		l = self["list"]
-		l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.value)
+		l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.getValue())
 		l.fillMultiEPG(self.services, self.ask_time)
 		l.moveToService(serviceref)
 		l.setCurrentlyPlaying(serviceref)
-		self["timeline_text"].setDateFormat(config.misc.graph_mepg.servicetitle_mode.value)
+		self["timeline_text"].setDateFormat(config.misc.graph_mepg.servicetitle_mode.getValue())
 		self.moveTimeLines()
 
 	def eventViewCallback(self, setEvent, setService, val):

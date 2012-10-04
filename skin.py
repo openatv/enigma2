@@ -40,7 +40,7 @@ class SkinError(Exception):
 		self.msg = message
 
 	def __str__(self):
-		return "{%s}: %s. Please contact the skin's author!" % (config.skin.primary_skin.value, self.msg)
+		return "{%s}: %s. Please contact the skin's author!" % (config.skin.primary_skin.getValue(), self.msg)
 
 dom_skins = [ ]
 
@@ -55,7 +55,7 @@ def addSkin(name, scope = SCOPE_SKIN):
 
 # get own skin_user_skinname.xml file, if exist
 def skin_user_skinname():
-	name = "skin_user_" + config.skin.primary_skin.value[:config.skin.primary_skin.value.rfind('/')] + ".xml"
+	name = "skin_user_" + config.skin.primary_skin.getValue()[:config.skin.primary_skin.getValue().rfind('/')] + ".xml"
 	filename = resolveFilename(SCOPE_CONFIG, name)
 	if fileExists(filename):
 		return name
@@ -110,7 +110,7 @@ if addSkin('skin_display128.xml'):
 	# Color OLED DM7020HD / DM8000
 	display_skin_id = 2	
 
-if config.skin.display_skin.value:
+if config.skin.display_skin.getValue():
 	if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display_picon.xml')):
 		addSkin('skin_display_picon.xml', SCOPE_CONFIG)
 	else:
@@ -123,22 +123,22 @@ else:
 
 # Add Skin for Display
 try:
-	addSkin(config.vfd.show.value)
+	addSkin(config.vfd.show.getValue())
 except:
 	addSkin('skin_text.xml')
 
 addSkin('skin_subtitles.xml')
 
 try:
-	if not addSkin(config.skin.primary_skin.value):
+	if not addSkin(config.skin.primary_skin.getValue()):
 		raise SkinError, "primary skin not found"
 except Exception, err:
 	print "SKIN ERROR:", err
 	skin = DEFAULT_SKIN
-	if config.skin.primary_skin.value == skin:
+	if config.skin.primary_skin.getValue() == skin:
 		skin = 'skin.xml'
 	print "defaulting to standard skin...", skin
-	config.skin.primary_skin.value = skin
+	config.skin.primary_skin.setValue(skin)
 	addSkin(skin)
 	del skin
 

@@ -63,7 +63,7 @@ class picshow(Screen):
 		self["label"] = StaticText("")
 		self["thn"] = Pixmap()
 
-		currDir = config.pic.lastDir.value
+		currDir = config.pic.lastDir.getValue()
 		if not pathExists(currDir):
 			currDir = "/"
 
@@ -124,7 +124,7 @@ class picshow(Screen):
 		self.setTitle(_("PicturePlayer"))
 		sc = getScale()
 		#0=Width 1=Height 2=Aspect 3=use_cache 4=resize_type 5=Background(#AARRGGBB)
-		self.picload.setPara((self["thn"].instance.size().width(), self["thn"].instance.size().height(), sc[0], sc[1], config.pic.cache.value, int(config.pic.resize.value), "#00000000"))
+		self.picload.setPara((self["thn"].instance.size().width(), self["thn"].instance.size().height(), sc[0], sc[1], config.pic.cache.getValue(), int(config.pic.resize.getValue()), "#00000000"))
 
 	def callbackView(self, val=0):
 		if val > 0:
@@ -134,9 +134,9 @@ class picshow(Screen):
 		del self.picload
 
 		if self.filelist.getCurrentDirectory() is None:
-			config.pic.lastDir.value = "/"
+			config.pic.lastDir.setValue("/")
 		else:
-			config.pic.lastDir.value = self.filelist.getCurrentDirectory()
+			config.pic.lastDir.setValue(self.filelist.getCurrentDirectory())
 
 		config.pic.save()
 		self.close()
@@ -260,8 +260,8 @@ T_FULL = 4
 class Pic_Thumb(Screen):
 	def __init__(self, session, piclist, lastindex, path):
 
-		self.textcolor = config.pic.textcolor.value
-		self.color = config.pic.bgcolor.value
+		self.textcolor = config.pic.textcolor.getValue()
+		self.color = config.pic.bgcolor.getValue()
 		textsize = 20
 		self.spaceX = 35
 		self.picX = 190
@@ -347,7 +347,7 @@ class Pic_Thumb(Screen):
 
 	def setPicloadConf(self):
 		sc = getScale()
-		self.picload.setPara([self["thumb0"].instance.size().width(), self["thumb0"].instance.size().height(), sc[0], sc[1], config.pic.cache.value, int(config.pic.resize.value), self.color])
+		self.picload.setPara([self["thumb0"].instance.size().width(), self["thumb0"].instance.size().height(), sc[0], sc[1], config.pic.cache.getValue(), int(config.pic.resize.getValue()), self.color])
 		self.paintFrame()
 
 	def paintFrame(self):
@@ -441,9 +441,9 @@ class Pic_Thumb(Screen):
 class Pic_Full_View(Screen):
 	def __init__(self, session, filelist, index, path):
 
-		self.textcolor = config.pic.textcolor.value
-		self.bgcolor = config.pic.bgcolor.value
-		space = config.pic.framesize.value
+		self.textcolor = config.pic.textcolor.getValue()
+		self.bgcolor = config.pic.bgcolor.getValue()
+		space = config.pic.framesize.getValue()
 		size_w = getDesktop(0).size().width()
 		size_h = getDesktop(0).size().height()
 
@@ -509,17 +509,17 @@ class Pic_Full_View(Screen):
 
 	def setPicloadConf(self):
 		sc = getScale()
-		self.picload.setPara([self["pic"].instance.size().width(), self["pic"].instance.size().height(), sc[0], sc[1], 0, int(config.pic.resize.value), self.bgcolor])
+		self.picload.setPara([self["pic"].instance.size().width(), self["pic"].instance.size().height(), sc[0], sc[1], 0, int(config.pic.resize.getValue()), self.bgcolor])
 
 		self["play_icon"].hide()
-		if config.pic.infoline.value == False:
+		if config.pic.infoline.getValue() == False:
 			self["file"].setText("")
 		self.start_decode()
 
 	def ShowPicture(self):
 		if self.shownow and len(self.currPic):
 			self.shownow = False
-			if config.pic.infoline.value:
+			if config.pic.infoline.getValue():
 				self["file"].setText(self.currPic[0])
 			else:
 				self["file"].setText("")
@@ -562,7 +562,7 @@ class Pic_Full_View(Screen):
 
 	def slidePic(self):
 		print "slide to next Picture index=" + str(self.lastindex)
-		if config.pic.loop.value==False and self.lastindex == self.maxentry:
+		if config.pic.loop.getValue() == False and self.lastindex == self.maxentry:
 			self.PlayPause()
 		self.shownow = True
 		self.ShowPicture()
@@ -572,7 +572,7 @@ class Pic_Full_View(Screen):
 			self.slideTimer.stop()
 			self["play_icon"].hide()
 		else:
-			self.slideTimer.start(config.pic.slidetime.value*1000)
+			self.slideTimer.start(config.pic.slidetime.getValue()*1000)
 			self["play_icon"].show()
 			self.nextPic()
 

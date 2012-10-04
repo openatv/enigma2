@@ -9,7 +9,7 @@ from Components.Pixmap import Pixmap
 from Components.language_cache import LANG_TEXT
 
 def _cached(x):
-	return LANG_TEXT.get(config.osd.language.value, {}).get(x, "")
+	return LANG_TEXT.get(config.osd.language.getValue(), {}).get(x, "")
 
 from Screens.Rc import Rc
 
@@ -68,7 +68,7 @@ class LanguageSelection(Screen):
 	def run(self, justlocal = False):
 		print "updating language..."
 		lang = self["languages"].getCurrent()[0]
-		config.osd.language.value = lang
+		config.osd.language.setValue(lang)
 		config.osd.language.save()
 		self.setTitle(_cached("T2"))
 
@@ -76,7 +76,7 @@ class LanguageSelection(Screen):
 			return
 
 		language.activateLanguage(lang)
-		config.misc.languageselected.value = 0
+		config.misc.languageselected.setValue(0)
 		config.misc.languageselected.save()
 		print "ok"
 

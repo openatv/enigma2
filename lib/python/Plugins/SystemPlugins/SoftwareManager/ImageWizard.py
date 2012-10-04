@@ -37,21 +37,21 @@ def checkConfigBackup():
 			if x[1].endswith('/'):
 				fullbackupfile =  x[1] + 'backup/' + backupfile
 				if fileExists(fullbackupfile):
-					config.plugins.configurationbackup.backuplocation.value = str(x[1])
+					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
 					config.plugins.configurationbackup.backuplocation.save()
 					config.plugins.configurationbackup.save()
 					return x
 			else:
 				fullbackupfile =  x[1] + '/backup/' + backupfile
 				if fileExists(fullbackupfile):
-					config.plugins.configurationbackup.backuplocation.value = str(x[1])
+					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
 					config.plugins.configurationbackup.backuplocation.save()
 					config.plugins.configurationbackup.save()
 					return x
 		return None		
 
 def checkBackupFile():
-	backuplocation = config.plugins.configurationbackup.backuplocation.value
+	backuplocation = config.plugins.configurationbackup.backuplocation.getValue()
 	if backuplocation.endswith('/'):
 		fullbackupfile =  backuplocation + 'backup/' + backupfile
 		if fileExists(fullbackupfile):
@@ -117,11 +117,11 @@ class ImageWizard(WizardLanguage, Rc):
 		
 	def deviceSelect(self, device):
 		self.selectedDevice = device
-		config.plugins.configurationbackup.backuplocation.value = self.selectedDevice
+		config.plugins.configurationbackup.backuplocation.setValue(self.selectedDevice)
 		config.plugins.configurationbackup.backuplocation.save()
 		config.plugins.configurationbackup.save()
 
 	
-if config.misc.firstrun.value:
+if config.misc.firstrun.getValue():
 	wizardManager.registerWizard(ImageWizard, backupAvailable, priority = 10)
 

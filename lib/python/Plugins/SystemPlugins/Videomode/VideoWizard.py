@@ -85,7 +85,7 @@ class VideoWizard(WizardLanguage, Rc):
 
 	def markDone(self):
 		self.hw.saveMode(self.port, self.mode, self.rate)
-		config.misc.videowizardenabled.value = 0
+		config.misc.videowizardenabled.setValue(0)
 		config.misc.videowizardenabled.save()
 		configfile.save()
 
@@ -191,9 +191,9 @@ class VideoWizard(WizardLanguage, Rc):
 			selection = self.selection
 		print "set config.misc.showtestcard to", {'yes': True, 'no': False}[selection]
 		if selection == "yes":
-			config.misc.showtestcard.value = True
+			config.misc.showtestcard.setValue(True)
 		else:
-			config.misc.showtestcard.value = False
+			config.misc.showtestcard.setValue(False)
 
 	def keyNumberGlobal(self, number):
 		if number in (1,2,3):

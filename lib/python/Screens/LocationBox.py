@@ -77,7 +77,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		self.filename = filename
 		self.minFree = minFree
 		self.realBookmarks = bookmarks
-		self.bookmarks = bookmarks and bookmarks.value[:] or []
+		self.bookmarks = bookmarks and bookmarks.getValue()[:] or []
 		self.userMode = userMode
 		self.autoAdd = autoAdd
 		self.editDir = editDir
@@ -181,7 +181,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		self.onClose.append(self.disableTimer)
 
 	def switchToFileListOnStart(self):
-		if self.realBookmarks and self.realBookmarks.value:
+		if self.realBookmarks and self.realBookmarks.getValue():
 			self.currList = "booklist"
 			currDir = self["filelist"].current_directory
 			if currDir in self.bookmarks:
@@ -295,10 +295,10 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			else:
 				self["filelist"].refresh()
 				self.removeBookmark(name, True)
-				val = self.realBookmarks and self.realBookmarks.value
+				val = self.realBookmarks and self.realBookmarks.getValue()
 				if val and name in val:
 					val.remove(name)
-					self.realBookmarks.value = val
+					self.realBookmarks.setValue(val)
 					self.realBookmarks.save()
 
 	def up(self):
@@ -343,8 +343,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 					self.bookmarks.append(self.getPreferredFolder())
 					self.bookmarks.sort()
 
-				if self.bookmarks != self.realBookmarks.value:
-					self.realBookmarks.value = self.bookmarks
+				if self.bookmarks != self.realBookmarks.getValue():
+					self.realBookmarks.setValue(self.bookmarks)
 					self.realBookmarks.save()
 			self.close(ret)
 
@@ -522,7 +522,7 @@ class TimeshiftLocationBox(LocationBox):
 				self,
 				session,
 				text = _("Where to save temporary timeshift recordings?"),
-				currDir = config.usage.timeshift_path.value,
+				currDir = config.usage.timeshift_path.getValue(),
 				bookmarks = config.usage.allowed_timeshift_paths,
 				autoAdd = True,
 				editDir = True,
@@ -537,7 +537,7 @@ class TimeshiftLocationBox(LocationBox):
 
 	def selectConfirmed(self, ret):
 		if ret:
-			config.usage.timeshift_path.value = self.getPreferredFolder()
+			config.usage.timeshift_path.setValue(self.getPreferredFolder())
 			config.usage.timeshift_path.save()
 			LocationBox.selectConfirmed(self, ret)
 

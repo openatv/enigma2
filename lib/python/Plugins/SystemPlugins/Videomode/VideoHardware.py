@@ -94,19 +94,19 @@ class VideoHardware:
 
 	def getOutputAspect(self):
 		ret = (16,9)
-		port = config.av.videoport.value
+		port = config.av.videoport.getValue()
 		if port not in config.av.videomode:
 			print "current port not available in getOutputAspect!!! force 16:9"
 		else:
-			mode = config.av.videomode[port].value
+			mode = config.av.videomode[port].getValue()
 			force_widescreen = self.isWidescreenMode(port, mode)
-			is_widescreen = force_widescreen or config.av.aspect.value in ("16_9", "16_10")
-			is_auto = config.av.aspect.value == "auto"
+			is_widescreen = force_widescreen or config.av.aspect.getValue() in ("16_9", "16_10")
+			is_auto = config.av.aspect.getValue() == "auto"
 			if is_widescreen:
 				if force_widescreen:
 					pass
 				else:
-					aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.value]
+					aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.getValue()]
 					if aspect == "16:10":
 						ret = (16,10)
 			elif is_auto:
@@ -200,7 +200,7 @@ class VideoHardware:
 	def setMode(self, port, mode, rate, force = None):
 		print "setMode - port:", port, "mode:", mode, "rate:", rate
 
-		config.av.videoport.value = port		# [iq]
+		config.av.videoport.setValue(port)		# [iq]
 
 		# we can ignore "port"
 		self.current_mode = mode
@@ -242,13 +242,13 @@ class VideoHardware:
 
 	def saveMode(self, port, mode, rate):
 		print "saveMode", port, mode, rate
-		config.av.videoport.value = port
+		config.av.videoport.setValue(port)
 		config.av.videoport.save()
 		if port in config.av.videomode:
-			config.av.videomode[port].value = mode
+			config.av.videomode[port].setValue(mode)
 			config.av.videomode[port].save()
 		if mode in config.av.videorate:
-			config.av.videorate[mode].value = rate
+			config.av.videorate[mode].setValue(rate)
 			config.av.videorate[mode].save()
 
 	def isPortAvailable(self, port):
@@ -306,24 +306,24 @@ class VideoHardware:
 
 # tmtwin [
 		def setColorFormatAsPort(configElement):
-			if configElement.value == "YPbPr":
-				config.av.colorformat.value = "cvbs"
+			if configElement.getValue() == "YPbPr":
+				config.av.colorformat.setValue("cvbs")
 		config.av.videoport.addNotifier(setColorFormatAsPort)
 # ]
 
 	def setConfiguredMode(self):
-		port = config.av.videoport.value
+		port = config.av.videoport.getValue()
 		if port not in config.av.videomode:
 			print "current port not available, not setting videomode"
 			return
 
-		mode = config.av.videomode[port].value
+		mode = config.av.videomode[port].getValue()
 
 		if mode not in config.av.videorate:
 			print "current mode not available, not setting videomode"
 			return
 
-		rate = config.av.videorate[mode].value
+		rate = config.av.videorate[mode].getValue()
 		self.setMode(port, mode, rate)
 
 	def updateAspect(self, cfgelement):
@@ -347,43 +347,43 @@ class VideoHardware:
 		#     nonlinear       use nonlinear
 		#     scale           use bestfit
 
-		port = config.av.videoport.value
+		port = config.av.videoport.getValue()
 		if port not in config.av.videomode:
 			print "current port not available, not setting videomode"
 			return
-		mode = config.av.videomode[port].value
+		mode = config.av.videomode[port].getValue()
 
 		force_widescreen = self.isWidescreenMode(port, mode)
 
-		is_widescreen = force_widescreen or config.av.aspect.value in ("16_9", "16_10")
-		is_auto = config.av.aspect.value == "auto"
+		is_widescreen = force_widescreen or config.av.aspect.getValue() in ("16_9", "16_10")
+		is_auto = config.av.aspect.getValue() == "auto"
 		policy2 = "policy" # use main policy
 
 		if is_widescreen:
 			if force_widescreen:
 				aspect = "16:9"
 			else:
-				aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.value]
+				aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.getValue()]
 			policy_choices = {"pillarbox": "panscan", "panscan": "letterbox", "nonlinear": "nonlinear", "scale": "bestfit"}
 			if path.exists("/proc/stb/video/policy_choices") and "auto" in open("/proc/stb/video/policy_choices").readline():
 				policy_choices.update({"auto": "auto"})
 			else:
 				policy_choices.update({"auto": "bestfit"})
-			policy = policy_choices[config.av.policy_43.value]
+			policy = policy_choices[config.av.policy_43.getValue()]
 			policy2_choices = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit"}
 			if path.exists("/proc/stb/video/policy2_choices") and "auto" in open("/proc/stb/video/policy2_choices").readline():
 				policy2_choices.update({"auto": "auto"})
 			else:
 				policy2_choices.update({"auto": "bestfit"})
-			policy2 = policy2_choices[config.av.policy_169.value]
+			policy2 = policy2_choices[config.av.policy_169.getValue()]
 		elif is_auto:
 			aspect = "any"
 			policy = "bestfit"
 		else:
 			aspect = "4:3"
-			policy = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit", "auto": "bestfit"}[config.av.policy_169.value]
+			policy = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit", "auto": "bestfit"}[config.av.policy_169.getValue()]
 
-		if not config.av.wss.value:
+		if not config.av.wss.getValue():
 			wss = "auto(4:3_off)"
 		else:
 			wss = "auto"

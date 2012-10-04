@@ -61,8 +61,8 @@ class Trashcan:
 		if self.recordings:
 			print "[Trashcan] Recording in progress", self.recordings
 			return
-		ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.value * 3600 * 24)
-		reserveBytes = 1024*1024*1024 * int(config.usage.movielist_trashcan_reserve.value)
+		ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.getValue() * 3600 * 24)
+		reserveBytes = 1024*1024*1024 * config.usage.movielist_trashcan_reserve.getValue()
 		clean(ctimeLimit, reserveBytes)
 
 def clean(ctimeLimit, reserveBytes):
@@ -73,7 +73,7 @@ def clean(ctimeLimit, reserveBytes):
 			isCleaning = True
 			break
 
-	if config.usage.movielist_trashcan.value and not isCleaning:
+	if config.usage.movielist_trashcan.getValue() and not isCleaning:
 		name = _("Cleaning Trashes")
 		job = Components.Task.Job(name)
 		task = CleanTrashTask(job, name)
@@ -122,7 +122,7 @@ class CleanTrashTask(Components.Task.PythonTask):
 			mounts.append(parts[1])
 		f.close()
 
- 		for mount in mounts:
+		for mount in mounts:
 			if os.path.isdir(os.path.join(mount,'.Trash')):
 				matches.append(os.path.join(mount,'.Trash'))
 			if os.path.isdir(os.path.join(mount,'movie/.Trash')):

@@ -133,7 +133,7 @@ class Picon(Renderer):
 				pngname = getPiconName(self.source.text)
 			if not pngname: # no picon for service found
 				pngname = self.defaultpngname
-			if not config.usage.showpicon.value:
+			if not config.usage.showpicon.getValue():
 				pngname = self.nopicon
 			if self.pngname != pngname:
 				if pngname:

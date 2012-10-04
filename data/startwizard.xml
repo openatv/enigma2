@@ -40,7 +40,7 @@ self.selectKey("OK")
 		</step>
 		<step id="networkfailed" >
 			<condition>
-self.condition = not config.misc.installwizard.ipkgloaded.value
+self.condition = not config.misc.installwizard.ipkgloaded.getValue()
 			</condition>
 			<text value="Your receiver is not connected to the internet" />
 			<list>
@@ -108,7 +108,7 @@ self.selectKey("RIGHT")
 		<step id="channels">
 			<condition>
 from Components.NimManager import nimmanager
-self.condition = nimmanager.somethingConnected() and config.misc.installwizard.hasnetwork.value and config.misc.installwizard.ipkgloaded.value
+self.condition = nimmanager.somethingConnected() and config.misc.installwizard.hasnetwork.getValue() and config.misc.installwizard.ipkgloaded.getValue()
 			</condition>
 			<text value="Do you want to install a channel list?" />
 			<config screen="InstallWizard" module="InstallWizard" args="1" type="ConfigList" />
@@ -122,7 +122,7 @@ self.selectKey("RIGHT")
 			<text value="Do you want to do a service scan?" />
 			<condition>
 from Components.NimManager import nimmanager
-self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
+self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.getValue()
 			</condition>
 			<list>
 				<listentry caption="No, scan later manually" step="finisheddefaultsatlists" />
@@ -133,7 +133,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 		<step id="scan" nextstep="finisheddefaultsatlists">
 			<condition>
 from Components.NimManager import nimmanager
-self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
+self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.getValue()
 			</condition>			
 			<text value="What do you want to scan?" />
 			<config screen="ScanSimple" module="ScanSetup" type="ConfigList" />
@@ -141,7 +141,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 		<step id="manualscan">
 			<condition>
 from Components.NimManager import nimmanager
-self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
+self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.getValue()
 			</condition>
 			<text value="What do you want to scan?" />
 			<config screen="ScanSetup" module="ScanSetup" type="ConfigList" />
@@ -149,7 +149,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 		<step id="nextscan">
 			<condition>
 from Components.NimManager import nimmanager
-self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
+self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.getValue()
 			</condition>
 			<text value="Do you want to do another manual service scan?" />
 			<list>
@@ -165,9 +165,9 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 			</list>
 			<code pos="after">
 if self["list"].index == 0:
-	config.ParentalControl.configured.value = True
+	config.ParentalControl.configured.getValue() = True
 else:
-	config.ParentalControl.configured.value = False
+	config.ParentalControl.configured.getValue() = False
 config.ParentalControl.configured.save()
 			</code>
 		</step>
@@ -188,14 +188,14 @@ if self["list"].index == 0:
 		</step>
 		<step id="finishparentalsetup">
 			<code>
-if config.ParentalControl.setuppin.value == "aaaa":
-	config.ParentalControl.setuppinactive.value = False
+if config.ParentalControl.setuppin.getValue() == "aaaa":
+	config.ParentalControl.setuppinactive.getValue() = False
 else:
-	config.ParentalControl.setuppinactive.value = True
+	config.ParentalControl.setuppinactive.getValue() = True
 config.ParentalControl.setuppinactive.save()
-config.ParentalControl.servicepinactive.value = True
+config.ParentalControl.servicepinactive.getValue() = True
 config.ParentalControl.servicepinactive.save()
-config.ParentalControl.setuppin.value = config.ParentalControl.servicepin[0].value
+config.ParentalControl.setuppin.getValue() = config.ParentalControl.servicepin[0].getValue()
 config.ParentalControl.setuppin.save()
 			</code>
 			<text value="After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that." />

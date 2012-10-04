@@ -142,16 +142,16 @@ class IpkgComponent:
 	def parseLine(self, data):
 		if self.currentCommand in (self.CMD_LIST, self.CMD_UPGRADE_LIST):
 			item = data.split(' - ', 2)
-			if item[0].find('-settings-') > -1 and not config.plugins.softwaremanager.overwriteSettingsFiles.value:
+			if item[0].find('-settings-') > -1 and not config.plugins.softwaremanager.overwriteSettingsFiles.getValue():
 				self.excludeList.append(item)
 				return
-			elif item[0].find('kernel-module-') > -1 and not config.plugins.softwaremanager.overwriteDriversFiles.value:
+			elif item[0].find('kernel-module-') > -1 and not config.plugins.softwaremanager.overwriteDriversFiles.getValue():
 				self.excludeList.append(item)
 				return
-			elif item[0].find('-softcams-') > -1 and not config.plugins.softwaremanager.overwriteEmusFiles.value:
+			elif item[0].find('-softcams-') > -1 and not config.plugins.softwaremanager.overwriteEmusFiles.getValue():
 				self.excludeList.append(item)
 				return
-			elif item[0].find('-picons-') > -1 and not config.plugins.softwaremanager.overwritePiconsFiles.value:
+			elif item[0].find('-picons-') > -1 and not config.plugins.softwaremanager.overwritePiconsFiles.getValue():
 				self.excludeList.append(item)
 				return
 			else:

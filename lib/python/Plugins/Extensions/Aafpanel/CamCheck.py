@@ -8,7 +8,7 @@ isBusy = None
 
 def CamCheck():
         global campoller, POLLTIME
-        POLLTIME = int(config.plugins.aafpanel_frozencheck.list.value) * 60
+        POLLTIME = int(config.plugins.aafpanel_frozencheck.list.getValue()) * 60
         if campoller is None:
             campoller = CamCheckPoller()
         campoller.start()
@@ -58,7 +58,7 @@ class CamCheckPoller:
         self.emuBin = []
         self.emuStart = []
         self.emuDirlist = listdir(emuDir)
-        cam_name = config.softcam.actCam.value
+        cam_name = config.softcam.actCam.getValue()
         if cam_name == "no CAM active" or cam_name == "":
             print "[CAMSCHECK] No Cam to Check, Exit"
             global isBusy

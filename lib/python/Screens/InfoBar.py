@@ -47,7 +47,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		if config.usage.show_infobar_lite.value and config.skin.primary_skin.value == "DMConcinnity-HD/skin.xml":
+		if config.usage.show_infobar_lite.getValue() and config.skin.primary_skin.getValue() == "DMConcinnity-HD/skin.xml":
 			self.skinName = "InfoBarLite"
 		
 		self["actions"] = HelpableActionMap(self, "InfobarActions",
@@ -96,14 +96,14 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		assert InfoBar.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
 		InfoBar.instance = self
 
-		if config.misc.initialchannelselection.value:
+		if config.misc.initialchannelselection.getValue():
 			self.onShown.append(self.showMenu)
 
 		self.onShow.append(self.doButtonsCheck)
 
 	def showMenu(self):
 		self.onShown.remove(self.showMenu)
-		config.misc.initialchannelselection.value = False
+		config.misc.initialchannelselection.setValue(False)
 		config.misc.initialchannelselection.save()
 		self.mainMenu()
 

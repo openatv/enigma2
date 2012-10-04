@@ -18,7 +18,7 @@ def InitUsageConfig():
 
 	config.usage.alternative_number_mode = ConfigYesNo(default = False)
 	def alternativeNumberModeChange(configElement):
-		enigma.eDVBDB.getInstance().setNumberingMode(configElement.value)
+		enigma.eDVBDB.getInstance().setNumberingMode(configElement.getValue())
 		refreshServiceList()
 	config.usage.alternative_number_mode.addNotifier(alternativeNumberModeChange)
 
@@ -74,13 +74,13 @@ def InitUsageConfig():
 		except:
 			pass
 	config.usage.default_path = ConfigText(default = resolveFilename(SCOPE_HDD))
-	if not config.usage.default_path.value.endswith('/'):
-		tmpvalue = config.usage.default_path.value
+	if not config.usage.default_path.getValue().endswith('/'):
+		tmpvalue = config.usage.default_path.getValue()
 		config.usage.default_path.setValue(tmpvalue + '/')
 		config.usage.default_path.save()
 	def defaultpathChanged(configElement):
-		if not config.usage.default_path.value.endswith('/'):
-			tmpvalue = config.usage.default_path.value
+		if not config.usage.default_path.getValue().endswith('/'):
+			tmpvalue = config.usage.default_path.getValue()
 			config.usage.default_path.setValue(tmpvalue + '/')
 			config.usage.default_path.save()
 	config.usage.default_path.addNotifier(defaultpathChanged, immediate_feedback = False)
@@ -94,13 +94,13 @@ def InitUsageConfig():
 		except:
 			pass
 	config.usage.timeshift_path = ConfigText(default = resolveFilename(SCOPE_TIMESHIFT))
-	if not config.usage.default_path.value.endswith('/'):
-		tmpvalue = config.usage.timeshift_path.value
+	if not config.usage.default_path.getValue().endswith('/'):
+		tmpvalue = config.usage.timeshift_path.getValue()
 		config.usage.timeshift_path.setValue(tmpvalue + '/')
 		config.usage.timeshift_path.save()
 	def timeshiftpathChanged(configElement):
-		if not config.usage.timeshift_path.value.endswith('/'):
-			tmpvalue = config.usage.timeshift_path.value
+		if not config.usage.timeshift_path.getValue().endswith('/'):
+			tmpvalue = config.usage.timeshift_path.getValue()
 			config.usage.timeshift_path.setValue(tmpvalue + '/')
 			config.usage.timeshift_path.save()
 	config.usage.timeshift_path.addNotifier(timeshiftpathChanged, immediate_feedback = False)
@@ -206,19 +206,19 @@ def InitUsageConfig():
 	config.usage.elapsed_time_positive_vfd = ConfigYesNo(default = False)
 
 	def SpinnerOnOffChanged(configElement):
-		setSpinnerOnOff(int(configElement.value))
+		setSpinnerOnOff(int(configElement.getValue()))
 	config.usage.show_spinner.addNotifier(SpinnerOnOffChanged)
 
 	def EnableTtCachingChanged(configElement):
-		setEnableTtCachingOnOff(int(configElement.value))
+		setEnableTtCachingOnOff(int(configElement.getValue()))
 	config.usage.enable_tt_caching.addNotifier(EnableTtCachingChanged)
 
 	def TunerTypePriorityOrderChanged(configElement):
-		setTunerTypePriorityOrder(int(configElement.value))
+		setTunerTypePriorityOrder(int(configElement.getValue()))
 	config.usage.alternatives_priority.addNotifier(TunerTypePriorityOrderChanged, immediate_feedback=False)
 
 	def PreferredTunerChanged(configElement):
-		setPreferredTuner(int(configElement.value))
+		setPreferredTuner(int(configElement.getValue()))
 	config.usage.frontend_priority.addNotifier(PreferredTunerChanged)
 
 	config.usage.hide_zap_errors = ConfigYesNo(default = True)
@@ -237,15 +237,15 @@ def InitUsageConfig():
 	def EpgSettingsChanged(configElement):
 		from enigma import eEPGCache
 		mask = 0xffffffff
-		if not config.epg.eit.value:
+		if not config.epg.eit.getValue():
 			mask &= ~(eEPGCache.NOWNEXT | eEPGCache.SCHEDULE | eEPGCache.SCHEDULE_OTHER)
-		if not config.epg.mhw.value:
+		if not config.epg.mhw.getValue():
 			mask &= ~eEPGCache.MHW
-		if not config.epg.freesat.value:
+		if not config.epg.freesat.getValue():
 			mask &= ~(eEPGCache.FREESAT_NOWNEXT | eEPGCache.FREESAT_SCHEDULE | eEPGCache.FREESAT_SCHEDULE_OTHER)
-		if not config.epg.viasat.value:
+		if not config.epg.viasat.getValue():
 			mask &= ~eEPGCache.VIASAT
-		if not config.epg.netmed.value:
+		if not config.epg.netmed.getValue():
 			mask &= ~(eEPGCache.NETMED_SCHEDULE | eEPGCache.NETMED_SCHEDULE_OTHER)
 		eEPGCache.getInstance().setEpgSources(mask)
 	config.epg.eit.addNotifier(EpgSettingsChanged)
@@ -292,17 +292,17 @@ def InitUsageConfig():
 				hddchoises.append((d + '/', p.mountpoint))
 	config.misc.epgcachepath = ConfigSelection(default = '/etc/enigma2/', choices = hddchoises)
 	config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
-	config.misc.epgcache_filename = ConfigText(default = (config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
+	config.misc.epgcache_filename = ConfigText(default = (config.misc.epgcachepath.getValue() + config.misc.epgcachefilename.getValue().replace('.dat','') + '.dat'))
 	def EpgCacheChanged(configElement):
-		config.misc.epgcache_filename.setValue(os.path.join(config.misc.epgcachepath.value, config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
+		config.misc.epgcache_filename.setValue(os.path.join(config.misc.epgcachepath.getValue(), config.misc.epgcachefilename.getValue().replace('.dat','') + '.dat'))
 		config.misc.epgcache_filename.save()
-		enigma.eEPGCache.getInstance().setCacheFile(config.misc.epgcache_filename.value)
+		enigma.eEPGCache.getInstance().setCacheFile(config.misc.epgcache_filename.getValue())
 		from enigma import eEPGCache
 		epgcache = eEPGCache.getInstance()
 		epgcache.save()
 		if not config.misc.epgcache_filename.getValue().startswith("/etc/enigma2/"):
-			if os.path.exists('/etc/enigma2/' + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'):
-				os.remove('/etc/enigma2/' + config.misc.epgcachefilename.value.replace('.dat','') + '.dat')
+			if os.path.exists('/etc/enigma2/' + config.misc.epgcachefilename.getValue().replace('.dat','') + '.dat'):
+				os.remove('/etc/enigma2/' + config.misc.epgcachefilename.getValue().replace('.dat','') + '.dat')
 	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback = False)
 	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback = False)
 
@@ -310,13 +310,13 @@ def InitUsageConfig():
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
-			hdd[1].setIdleTime(int(configElement.value),config.usage.hdd_timer.value)
+			hdd[1].setIdleTime(int(configElement.getValue()),config.usage.hdd_timer.getValue())
 	config.usage.hdd_standby.addNotifier(setHDDStandby, immediate_feedback=False)
 
 	def set12VOutput(configElement):
-		if configElement.value == "on":
+		if configElement.getValue() == "on":
 			enigma.Misc_Options.getInstance().set_12V_output(1)
-		elif configElement.value == "off":
+		elif configElement.getValue() == "off":
 			enigma.Misc_Options.getInstance().set_12V_output(0)
 	config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
 
@@ -389,29 +389,29 @@ def InitUsageConfig():
 	config.crash.debug_path = ConfigSelection(default = "/home/root/logs/", choices = debugpath)
 
 	def updatedebug_path(configElement):
-		if not os.path.exists(config.crash.debug_path.value):
-			os.mkdir(config.crash.debug_path.value,0755)
+		if not os.path.exists(config.crash.debug_path.getValue()):
+			os.mkdir(config.crash.debug_path.getValue(),0755)
 	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback = False)
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "end", choices = [("beginning", _("at beginning")), ("end", _("at end"))])
 
 	def updateEnterForward(configElement):
-		if not configElement.value:
-			configElement.value = [2]
-		updateChoices(config.seek.enter_forward, configElement.value)
+		if not configElement.getValue():
+			configElement.setValue([2])
+		updateChoices(config.seek.enter_forward, configElement.getValue())
 
 	config.seek.speeds_forward.addNotifier(updateEnterForward, immediate_feedback = False)
 
 	def updateEnterBackward(configElement):
-		if not configElement.value:
-			configElement.value = [2]
-		updateChoices(config.seek.enter_backward, configElement.value)
+		if not configElement.getValue():
+			configElement.getValue([2])
+		updateChoices(config.seek.enter_backward, configElement.getValue())
 
 	config.seek.speeds_backward.addNotifier(updateEnterBackward, immediate_feedback = False)
 
 	def updateEraseSpeed(el):
-		enigma.eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.value))
+		enigma.eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.getValue()))
 	def updateEraseFlags(el):
-		enigma.eBackgroundFileEraser.getInstance().setEraseFlags(int(el.value))
+		enigma.eBackgroundFileEraser.getInstance().setEraseFlags(int(el.getValue()))
 	config.misc.erase_speed = ConfigSelection(default="20", choices = [
 		("10", "10 MB/s"),
 		("20", "20 MB/s"),
@@ -440,7 +440,7 @@ def InitUsageConfig():
 		def setZapmode(el):
 			try:
 				file = open(zapfile, "w")
-				file.write(el.value)
+				file.write(el.getValue())
 				file.close()
 			except:
 				pass
@@ -519,12 +519,12 @@ def InitUsageConfig():
 		("tur Audio_TUR", _("Turkish"))]
 
 	def setEpgLanguage(configElement):
-		enigma.eServiceEvent.setEPGLanguage(configElement.value)
+		enigma.eServiceEvent.setEPGLanguage(configElement.getValue())
 	config.autolanguage.audio_epglanguage = ConfigSelection(audio_language_choices[:1] + audio_language_choices [2:], default="---")
 	config.autolanguage.audio_epglanguage.addNotifier(setEpgLanguage)
 
 	def setEpgLanguageAlternative(configElement):
-		enigma.eServiceEvent.setEPGLanguageAlternative(configElement.value)
+		enigma.eServiceEvent.setEPGLanguageAlternative(configElement.getValue())
 	config.autolanguage.audio_epglanguage_alternative = ConfigSelection(audio_language_choices[:1] + audio_language_choices [2:], default="---")
 	config.autolanguage.audio_epglanguage_alternative.addNotifier(setEpgLanguageAlternative)
 
@@ -662,7 +662,7 @@ def InitUsageConfig():
 def updateChoices(sel, choices):
 	if choices:
 		defval = None
-		val = int(sel.value)
+		val = int(sel.getValue())
 		if not val in choices:
 			tmp = choices[:]
 			tmp.reverse()
@@ -676,20 +676,20 @@ def preferredPath(path):
 	if config.usage.setup_level.index < 2 or path == "<default>":
 		return None  # config.usage.default_path.value, but delay lookup until usage
 	elif path == "<current>":
-		return config.movielist.last_videodir.value
+		return config.movielist.last_videodir.getValue()
 	elif path == "<timer>":
-		return config.movielist.last_timer_videodir.value
+		return config.movielist.last_timer_videodir.getValue()
 	else:
 		return path
 
 def preferredTimerPath():
-	return preferredPath(config.usage.timer_path.value)
+	return preferredPath(config.usage.timer_path.getValue())
 
 def preferredInstantRecordPath():
-	return preferredPath(config.usage.instantrec_path.value)
+	return preferredPath(config.usage.instantrec_path.getValue())
 
 def defaultMoviePath():
-	return config.usage.default_path.value
+	return config.usage.default_path.getValue()
 
 def refreshServiceList(configElement = None):
 	from Screens.InfoBar import InfoBar

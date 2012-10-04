@@ -143,7 +143,7 @@ class UpdatePluginMenu(Screen):
 		self.menutext = _("Press MENU on your remote control for additional options.")
 		self.infotext = _("Press INFO on your remote control for additional information.")
 		self.text = ""
-		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
+		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.getValue() )
 		if self.menu == 0:
 			print "building menu entries"
 			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your STB_BOX" ) + self.oktext, None))
@@ -170,7 +170,7 @@ class UpdatePluginMenu(Screen):
 				self.list.append(("advanced", _("Advanced Options"), _("\nAdvanced options and settings." ) + self.oktext, None))
 		elif self.menu == 1:
 			self.list.append(("advancedrestore", _("Advanced restore"), _("\nRestore your backups by date." ) + self.oktext, None))
-			self.list.append(("backuplocation", _("Choose backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
+			self.list.append(("backuplocation", _("Choose backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.getValue() + self.oktext, None))
 			self.list.append(("backupfiles", _("Choose backup files"),  _("Select files for backup.") + self.oktext + "\n\n" + self.infotext, None))
 			if config.usage.setup_level.index >= 2: # expert+
 				self.list.append(("ipkg-manager", _("Packet management"),  _("\nView, install and remove available or installed packages." ) + self.oktext, None))
@@ -323,7 +323,7 @@ class UpdatePluginMenu(Screen):
 					self.extended(self.session, None)
 
 	def backupfiles_choosen(self, ret):
-		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
+		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.getValue() )
 		config.plugins.configurationbackup.backupdirs.save()
 		config.plugins.configurationbackup.save()
 		config.save()
@@ -331,7 +331,7 @@ class UpdatePluginMenu(Screen):
 	def backuplocation_choosen(self, option):
 		oldpath = config.plugins.configurationbackup.backuplocation.getValue()
 		if option is not None:
-			config.plugins.configurationbackup.backuplocation.value = str(option[1])
+			config.plugins.configurationbackup.backuplocation.setValue(str(option[1]))
 		config.plugins.configurationbackup.backuplocation.save()
 		config.plugins.configurationbackup.save()
 		config.save()
@@ -498,7 +498,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		return self["config"].getCurrent()[0]
 
 	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].value)
+		return str(self["config"].getCurrent()[1].getValue())
 
 	def createSummary(self):
 		from Screens.Setup import SetupSummary
@@ -563,7 +563,7 @@ class SoftwareManagerInfo(Screen):
 	def showInfos(self):
 		if self.mode == "backupinfo":
 			self.list = []
-			backupfiles = config.plugins.configurationbackup.backupdirs.value
+			backupfiles = config.plugins.configurationbackup.backupdirs.getValue()
 			for entry in backupfiles:
 				self.list.append((entry,))
 			self['list'].setList(self.list)
@@ -1545,8 +1545,8 @@ class UpdatePlugin(Screen):
 			self.status.setText(_("Configuring"))
 
 		elif event == IpkgComponent.EVENT_MODIFIED:
-			if config.plugins.softwaremanager.overwriteConfigFiles.value in ("N", "Y"):
-				self.ipkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.value)
+			if config.plugins.softwaremanager.overwriteConfigFiles.getValue() in ("N", "Y"):
+				self.ipkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.getValue())
 			else:
 				self.session.openWithCallback(
 					self.modificationCallback,
@@ -1566,7 +1566,7 @@ class UpdatePlugin(Screen):
 					return
 				if self.total_packages and self.TraficCheck and self.TraficResult:
 					message = _("Do you want to update your STB_BOX?") + "                 \n(%s " % self.total_packages + _("Packages") + ")"
-					if config.plugins.softwaremanager.updatetype.value == "cold":
+					if config.plugins.softwaremanager.updatetype.getValue() == "cold":
 						choices = [(_("Show new Packages"), "show"), (_("Unattended upgrade without GUI and reboot system"), "cold"), (_("Cancel"), "")]
 					else:
 						choices = [(_("Show new Packages"), "show"), (_("Upgrade and ask to reboot"), "hot"), (_("Cancel"), "")]

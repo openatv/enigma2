@@ -635,7 +635,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				listpath.append((i,playlistdir + i))
 		except IOError,e:
 			print "Error while scanning subdirs ",e
-		if config.setupmediap.sortPlaylists.value:
+		if config.setupmediap.sortPlaylists.getValue():
 			listpath.sort()
 		self.session.openWithCallback(self.PlaylistSelected, ChoiceBox, title=_("Please select a playlist..."), list = listpath)
 
@@ -659,7 +659,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				listpath.append((i,playlistdir + i))
 		except IOError,e:
 			print "Error while scanning subdirs ",e
-		if config.setupmediap.sortPlaylists.value:
+		if config.setupmediap.sortPlaylists.getValue():
 			listpath.sort()
 		self.session.openWithCallback(self.DeletePlaylistSelected, ChoiceBox, title=_("Please select a playlist to delete..."), list = listpath)
 
@@ -1016,7 +1016,7 @@ def movielist_open(list, session, **kwargs):
 		path = os.path.split(f.path)[0]
 		if not path.endswith('/'):
 			path += '/'
-		config.movielist.last_videodir.value = path
+		config.movielist.last_videodir.setValue(path)
 		try:
 			InfoBar.instance.showMovies(eServiceReference(stype, 0, f.path))
 		except:

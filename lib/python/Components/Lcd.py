@@ -41,9 +41,9 @@ class IconCheckPoller:
 			if LinkState != 'down':
 				LinkState = open('/sys/class/net/eth0/carrier').read()
 		LinkState = LinkState[:1]
-		if fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.value == '1':
+		if fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.getValue() == '1':
 			open("/proc/stb/lcd/symbol_network", "w").write(str(LinkState))
-		elif fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.value == '0':
+		elif fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.getValue() == '0':
 			open("/proc/stb/lcd/symbol_network", "w").write('0')
 
 		USBState = 0
@@ -58,9 +58,9 @@ class IconCheckPoller:
 # 						print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
 # 						print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
 					USBState = 1
-		if fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.value == '1':
+		if fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.getValue() == '1':
 			open("/proc/stb/lcd/symbol_usb", "w").write(str(USBState))
-		elif fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.value == '0':
+		elif fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.getValue() == '0':
 			open("/proc/stb/lcd/symbol_usb", "w").write('0')
 
 		self.timer.startLongTimer(30)
@@ -107,7 +107,7 @@ class LCD:
 	def setMode(self, value):
 		print 'setLCDMode',value
 		open("/proc/stb/lcd/show_symbols", "w").write(value)
-		if config.lcd.mode.value == "0":
+		if config.lcd.mode.getValue() == "0":
 			if fileExists("/proc/stb/lcd/symbol_hdd"):	
 				open("/proc/stb/lcd/symbol_hdd", "w").write("0")
 			if fileExists("/proc/stb/lcd/symbol_hddprogress"):	
@@ -172,31 +172,31 @@ def InitLcd():
 	config.lcd = ConfigSubsection();
 	if detected:
 		def setLCDbright(configElement):
-			ilcd.setBright(configElement.value);
+			ilcd.setBright(configElement.getValue());
 
 		def setLCDcontrast(configElement):
-			ilcd.setContrast(configElement.value);
+			ilcd.setContrast(configElement.getValue());
 
 		def setLCDinverted(configElement):
-			ilcd.setInverted(configElement.value);
+			ilcd.setInverted(configElement.getValue());
 
 		def setLCDflipped(configElement):
-			ilcd.setFlipped(configElement.value);
+			ilcd.setFlipped(configElement.getValue());
 
 		def setLCDmode(configElement):
-			ilcd.setMode(configElement.value);
+			ilcd.setMode(configElement.getValue());
 			
 		def setLCDpower(configElement):
-			ilcd.setPower(configElement.value);	
+			ilcd.setPower(configElement.getValue());	
 			
 		def setLCDshowoutputresolution(configElement):
-			ilcd.setShowoutputresolution(configElement.value);	
+			ilcd.setShowoutputresolution(configElement.getValue());	
 
 		def setLCDrepeat(configElement):
-			ilcd.setRepeat(configElement.value);
+			ilcd.setRepeat(configElement.getValue());
 
 		def setLCDscrollspeed(configElement):
-			ilcd.setScrollspeed(configElement.value);
+			ilcd.setScrollspeed(configElement.getValue());
 			
 		if fileExists("/proc/stb/lcd/symbol_hdd"):
 			open("/proc/stb/lcd/symbol_hdd", "w").write("0")
@@ -204,13 +204,13 @@ def InitLcd():
 			open("/proc/stb/lcd/symbol_hddprogress", "w").write("0")
 
 		def setLEDnormalstate(configElement):
-			ilcd.setNormalstate(configElement.value);
+			ilcd.setNormalstate(configElement.getValue());
 
 		def setLEDdeepstandby(configElement):
-			ilcd.setDeepStandby(configElement.value);
+			ilcd.setDeepStandby(configElement.getValue());
 
 		def setLEDblinkingtime(configElement):
-			ilcd.setBlinkingtime(configElement.value);
+			ilcd.setBlinkingtime(configElement.getValue());
 
 		standby_default = 0
 

@@ -24,7 +24,7 @@ startswap = None
 def SwapAutostart(reason, session=None, **kwargs):
 	global startswap
 	if reason == 0:
- 		if config.plugins.aafpanel.swapautostart.value:
+		if config.plugins.aafpanel.swapautostart.getValue():
 			print "[SwapManager] autostart"
 			startswap = StartSwap()
 			startswap.start()
@@ -132,7 +132,7 @@ class Swap(Screen):
 		self.activityTimer.stop()
 		if path.exists('/etc/rcS.d/S98SwapManager'):
 			remove('/etc/rcS.d/S98SwapManager')
-			config.plugins.aafpanel.swapautostart.value = True
+			config.plugins.aafpanel.swapautostart.setValue(True)
 			config.plugins.aafpanel.swapautostart.save()
 		if path.exists('/tmp/swapdevices.tmp'):
 			remove('/tmp/swapdevices.tmp')
@@ -176,7 +176,7 @@ class Swap(Screen):
 						self.swapsize = info[stat.ST_SIZE]
 						continue
 
-		if config.plugins.aafpanel.swapautostart.value and self.swap_place:
+		if config.plugins.aafpanel.swapautostart.getValue() and self.swap_place:
 			self['autostart_off'].hide()
 			self['autostart_on'].show()
 		else:
@@ -258,7 +258,7 @@ class Swap(Screen):
 	def createDel2(self, result, retval, extra_args = None):
 		if retval == 0:
 			remove(self.swap_place)
-			if config.plugins.aafpanel.swapautostart.value:
+			if config.plugins.aafpanel.swapautostart.getValue():
 				config.plugins.aafpanel.swapautostart.setValue(False)
 				config.plugins.aafpanel.swapautostart.save()
 				configfile.save()
@@ -298,7 +298,7 @@ class Swap(Screen):
 		
 	def autoSsWap(self):
 		if self.swap_place:
-			if config.plugins.aafpanel.swapautostart.value:
+			if config.plugins.aafpanel.swapautostart.getValue():
 				config.plugins.aafpanel.swapautostart.setValue(False)
 				config.plugins.aafpanel.swapautostart.save()
 			else:

@@ -31,13 +31,13 @@ class SleepTimerEntry(timer.TimerEntry):
 
 	def activate(self):
 		if self.state == self.StateRunning:
-			if config.SleepTimer.action.value == "shutdown":
-				if config.SleepTimer.ask.value and not Screens.Standby.inTryQuitMainloop:
+			if config.SleepTimer.action.getValue() == "shutdown":
+				if config.SleepTimer.ask.getValue() and not Screens.Standby.inTryQuitMainloop:
 					Notifications.AddNotificationWithCallback(self.shutdown, MessageBox, _("A sleep timer wants to shut down\nyour STB_BOX. Shutdown now?"), timeout = 20)
 				else:
 					self.shutdown(True)
-			elif config.SleepTimer.action.value == "standby":
-				if config.SleepTimer.ask.value and not Screens.Standby.inStandby:
+			elif config.SleepTimer.action.getValue() == "standby":
+				if config.SleepTimer.ask.getValue() and not Screens.Standby.inStandby:
 					Notifications.AddNotificationWithCallback(self.standby, MessageBox, _("A sleep timer wants to set your\nSTB_BOX to standby. Do that now?"), timeout = 20)
 				else:
 					self.standby(True)

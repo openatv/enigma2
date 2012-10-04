@@ -66,19 +66,19 @@ class VideoSetup(Screen, ConfigListScreen):
 		]
 
 		# if we have modes for this port:
-		if config.av.videoport.value in config.av.videomode:
+		if config.av.videoport.getValue() in config.av.videomode:
 			# add mode- and rate-selection:
-			self.list.append(getConfigListEntry(pgettext("Video output mode", "Mode"), config.av.videomode[config.av.videoport.value], _("This option configures the video output mode (or resolution).")))
-			if config.av.videomode[config.av.videoport.value].value == 'PC':
-				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("This option configures the screen resolution in PC output mode.")))
+			self.list.append(getConfigListEntry(pgettext("Video output mode", "Mode"), config.av.videomode[config.av.videoport.getValue()], _("This option configures the video output mode (or resolution).")))
+			if config.av.videomode[config.av.videoport.getValue()].getValue() == 'PC':
+				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.getValue()].getValue()], _("This option configures the screen resolution in PC output mode.")))
 			else:
-				self.list.append(getConfigListEntry(_("Refresh rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("This option configures the screen refresh rate.")))
+				self.list.append(getConfigListEntry(_("Refresh rate"), config.av.videorate[config.av.videomode[config.av.videoport.getValue()].getValue()], _("This option configures the screen refresh rate.")))
 
-		port = config.av.videoport.value
+		port = config.av.videoport.getValue()
 		if port not in config.av.videomode:
 			mode = None
 		else:
-			mode = config.av.videomode[port].value
+			mode = config.av.videomode[port].getValue()
 
 		# some modes (720p, 1080i) are always widescreen. Don't let the user select something here, "auto" is not what he wants.
 		force_wide = self.hw.isWidescreenMode(port, mode)
@@ -86,17 +86,17 @@ class VideoSetup(Screen, ConfigListScreen):
 		if not force_wide:
 			self.list.append(getConfigListEntry(_("Aspect ratio"), config.av.aspect, _("This option configures the screen aspect ratio.")))
 
-		if force_wide or config.av.aspect.value in ("16_9", "16_10"):
+		if force_wide or config.av.aspect.getValue() in ("16_9", "16_10"):
 			self.list.extend((
 				getConfigListEntry(_("Display 4:3 content as"), config.av.policy_43, _("When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture.")),
 				getConfigListEntry(_("Display >16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."))
 			))
-		elif config.av.aspect.value == "4_3":
+		elif config.av.aspect.getValue() == "4_3":
 			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
 
 #		if config.av.videoport.value == "DVI":
 #			self.list.append(getConfigListEntry(_("Allow Unsupported Modes"), config.av.edid_override))
-		if config.av.videoport.value == "Scart":
+		if config.av.videoport.getValue() == "Scart":
 			self.list.append(getConfigListEntry(_("Color format"), config.av.colorformat, _("When using scart connection, choose what color format to use.")))
 			if level >= 1:
 				self.list.append(getConfigListEntry(_("WSS on 4:3"), config.av.wss, _("When the content has an aspect ratio of 4:3, choose whether to stretch the picture to fill the screen.")))
@@ -116,7 +116,7 @@ class VideoSetup(Screen, ConfigListScreen):
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
-		if config.usage.sort_settings.value:
+		if config.usage.sort_settings.getValue():
 			self["config"].list.sort()
 
 	def keyLeft(self):
@@ -129,23 +129,23 @@ class VideoSetup(Screen, ConfigListScreen):
 
 	def confirm(self, confirmed):
 		if not confirmed:
-			config.av.videoport.value = self.last_good[0]
-			config.av.videomode[self.last_good[0]].value = self.last_good[1]
-			config.av.videorate[self.last_good[1]].value = self.last_good[2]
+			config.av.videoport.setValue(self.last_good[0])
+			config.av.videomode[self.last_good[0]].setValue(self.last_good[1])
+			config.av.videorate[self.last_good[1]].setValue(self.last_good[2])
 			self.hw.setMode(*self.last_good)
 		else:
 			self.keySave()
 
 	def grabLastGoodMode(self):
-		port = config.av.videoport.value
-		mode = config.av.videomode[port].value
-		rate = config.av.videorate[mode].value
+		port = config.av.videoport.getValue()
+		mode = config.av.videomode[port].getValue()
+		rate = config.av.videorate[mode].getValue()
 		self.last_good = (port, mode, rate)
 
 	def apply(self):
-		port = config.av.videoport.value
-		mode = config.av.videomode[port].value
-		rate = config.av.videorate[mode].value
+		port = config.av.videoport.getValue()
+		mode = config.av.videomode[port].getValue()
+		rate = config.av.videorate[mode].getValue()
 		if (port, mode, rate) != self.last_good:
 			self.hw.setMode(port, mode, rate)
 			from Screens.MessageBox import MessageBox
@@ -183,9 +183,9 @@ class VideomodeHotplug:
 
 	def hotplug(self, what):
 		print "hotplug detected on port '%s'" % (what)
-		port = config.av.videoport.value
-		mode = config.av.videomode[port].value
-		rate = config.av.videorate[mode].value
+		port = config.av.videoport.getValue()
+		mode = config.av.videomode[port].getValue()
+		rate = config.av.videorate[mode].getValue()
 
 		if not self.hw.isModeAvailable(port, mode, rate):
 			print "mode %s/%s/%s went away!" % (port, mode, rate)
@@ -239,6 +239,6 @@ def Plugins(**kwargs):
 #		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),
 		PluginDescriptor(name=_("Video setup"), description=_("Advanced video setup"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup)
 	]
-	if config.misc.videowizardenabled.value:
+	if config.misc.videowizardenabled.getValue():
 		list.append(PluginDescriptor(name=_("Video wizard"), where = PluginDescriptor.WHERE_WIZARD, needsRestart = False, fnc=(0, VideoWizard)))
 	return list

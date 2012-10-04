@@ -19,10 +19,10 @@ class AVSwitch:
 		eAVSwitch.getInstance().setVideomode(value)
 
 	def getOutputAspect(self):
-		valstr = config.av.aspectratio.value
+		valstr = config.av.aspectratio.getValue()
 		if valstr in ("4_3_letterbox", "4_3_panscan"): # 4:3
 			return (4,3)
-		elif valstr == "16_9": # auto ... 4:3 or 16:9
+		elif valstr == "16_9": # auto ... 4:3 or 16:9.getValue()
 			try:
 				aspect_str = open("/proc/stb/vmpeg/0/aspect", "r").read()
 				if aspect_str == "1": # 4:3
@@ -41,7 +41,7 @@ class AVSwitch:
 		return (aspect[0] * fb_size.height(), aspect[1] * fb_size.width())
 
 	def getAspectRatioSetting(self):
-		valstr = config.av.aspectratio.value
+		valstr = config.av.aspectratio.getValue()
 		if valstr == "4_3_letterbox":
 			val = 0
 		elif valstr == "4_3_panscan":
@@ -59,7 +59,7 @@ class AVSwitch:
 		return val
 
 	def setAspectWSS(self, aspect=None):
-		if not config.av.wss.value:
+		if not config.av.wss.getValue():
 			value = 2 # auto(4:3_off)
 		else:
 			value = 1 # auto
@@ -71,7 +71,7 @@ def InitAVSwitch():
 	colorformat_choices = {"cvbs": _("CVBS"), "rgb": _("RGB"), "svideo": _("S-Video")}
 
 	# when YUV is not enabled, don't let the user select it
-	if config.av.yuvenabled.value:
+	if config.av.yuvenabled.getValue():
 		colorformat_choices["yuv"] = _("YPbPr")
 
 	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
@@ -124,15 +124,15 @@ def InitAVSwitch():
 
 	def setColorFormat(configElement):
 		map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
-		iAVSwitch.setColorFormat(map[configElement.value])
+		iAVSwitch.setColorFormat(map[configElement.getValue()])
 
 	def setAspectRatio(configElement):
 		map = {"4_3_letterbox": 0, "4_3_panscan": 1, "16_9": 2, "16_9_always": 3, "16_10_letterbox": 4, "16_10_panscan": 5, "16_9_letterbox" : 6}
-		iAVSwitch.setAspectRatio(map[configElement.value])
+		iAVSwitch.setAspectRatio(map[configElement.getValue()])
 
 	def setSystem(configElement):
 		map = {"pal": 0, "ntsc": 1, "multinorm" : 2}
-		iAVSwitch.setSystem(map[configElement.value])
+		iAVSwitch.setSystem(map[configElement.getValue()])
 
 	def setWSS(configElement):
 		iAVSwitch.setAspectWSS()
@@ -154,13 +154,13 @@ def InitAVSwitch():
 	SystemInfo["CanDownmixAC3"] = can_downmix
 	if can_downmix:
 		def setAC3Downmix(configElement):
-			open("/proc/stb/audio/ac3", "w").write(configElement.value and "downmix" or "passthrough")
+			open("/proc/stb/audio/ac3", "w").write(configElement.getValue() and "downmix" or "passthrough")
 		config.av.downmix_ac3 = ConfigYesNo(default = True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
 
 	if os.path.exists("/proc/stb/vmpeg/0/pep_scaler_sharpness"):
 		def setScaler_sharpness(config):
-			myval = int(config.value)
+			myval = int(config.getValue())
 			try:
 				print "--> setting scaler_sharpness to: %0.8X" % myval
 				open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w").write("%0.8X" % myval)

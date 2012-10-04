@@ -161,7 +161,7 @@ def getConfigValue(l):
 
 def notBlackListed(entry):
 	try:
-		f = open(config.cccaminfo.blacklist.value, "r")
+		f = open(config.cccaminfo.blacklist.getValue(), "r")
 		content = f.read().split("\n")
 		f.close()
 	except:
@@ -339,10 +339,10 @@ class CCcamInfoMain(Screen):
 		self.working = False
 		self.Console = Console()
 
-		if config.cccaminfo.profile.value == "":
+		if config.cccaminfo.profile.getValue() == "":
 			self.readConfig()
 		else:
-			self.url = config.cccaminfo.profile.value
+			self.url = config.cccaminfo.profile.getValue()
 
 		self["actions"] = NumberActionMap(["CCcamInfoActions"],
 			{
@@ -418,13 +418,13 @@ class CCcamInfoMain(Screen):
 		if (username is not None) and (password is not None) and (username != "") and (password != ""):
 			self.url = self.url.replace('http://', ("http://%s:%s@" % (username, password)))
 
-		config.cccaminfo.profile.value = ""
+		config.cccaminfo.profile.setValue("")
 		config.cccaminfo.profile.save()
 
 	def profileSelected(self, url=None):
 		if url is not None:
 			self.url = url
-			config.cccaminfo.profile.value = self.url
+			config.cccaminfo.profile.setValue(self.url)
 			config.cccaminfo.profile.save()
 			self.showInfo(_("New profile: ") + url, _("Profile"))
 		else:
@@ -1238,11 +1238,11 @@ class CCcamInfoConfigMenu(ConfigListScreen, Screen):
 	def __init__(self, session, profile):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("CCcam Info Setup"))
-		config.cccaminfo.name.value = profile.name
-		config.cccaminfo.ip.value = profile.ip
-		config.cccaminfo.username.value = profile.username
-		config.cccaminfo.password.value = profile.password
-		config.cccaminfo.port.value = profile.port
+		config.cccaminfo.name.setValue(profile.name)
+		config.cccaminfo.ip.setValue(profile.ip)
+		config.cccaminfo.username.setValue(profile.username)
+		config.cccaminfo.password.setValue(profile.password)
+		config.cccaminfo.port.setValue(profile.port)
 
 		ConfigListScreen.__init__(self, [
 			getConfigListEntry(_("Name:"), config.cccaminfo.name),
@@ -1254,7 +1254,7 @@ class CCcamInfoConfigMenu(ConfigListScreen, Screen):
 		self["actions"] = ActionMap(["CCcamInfoActions"], {"ok": self.okClicked, "cancel": self.exit}, -2)
 
 	def okClicked(self):
-		self.close(CCcamInfoRemoteBox(config.cccaminfo.name.value, config.cccaminfo.ip.value, config.cccaminfo.username.value, config.cccaminfo.password.value, config.cccaminfo.port.value))
+		self.close(CCcamInfoRemoteBox(config.cccaminfo.name.getValue(), config.cccaminfo.ip.getValue(), config.cccaminfo.username.getValue(), config.cccaminfo.password.getValue(), config.cccaminfo.port.getValue()))
 
 	def exit(self):
 		self.close(None)
@@ -1302,7 +1302,7 @@ class CCcamInfoRemoteBoxMenu(Screen):
 
 	def readProfiles(self):
 		try:
-			f = open(config.cccaminfo.profiles.value, "r")
+			f = open(config.cccaminfo.profiles.getValue(), "r")
 			content = f.read()
 			f.close()
 		except:
@@ -1326,7 +1326,7 @@ class CCcamInfoRemoteBoxMenu(Screen):
 		for x in self.profiles:
 			content = "%s\n%s|%s|%s|%s|%d" % (content, x.name, x.ip, x.username, x.password, x.port)
 		try:
-			f = open(config.cccaminfo.profiles.value, "w")
+			f = open(config.cccaminfo.profiles.getValue(), "w")
 			f.write(content)
 			f.close()
 		except:
@@ -1371,7 +1371,7 @@ class CCcamInfoRemoteBoxMenu(Screen):
 
 	def locationCallback(self, callback):
 		if callback:
-			config.cccaminfo.profiles.value = ("%s/CCcamInfo.profiles"%callback).replace("//", "/")
+			config.cccaminfo.profiles.setValue(("%s/CCcamInfo.profiles"%callback).replace("//", "/").getValue())
 			config.cccaminfo.profiles.save()
 		del self.list
 		self.list = []
@@ -1721,7 +1721,7 @@ class CCcamInfoMenuConfig(Screen):
 
 	def getBlacklistedMenuEntries(self):
 		try:
-			f = open(config.cccaminfo.blacklist.value, "r")
+			f = open(config.cccaminfo.blacklist.getValue(), "r")
 			content = f.read()
 			f.close()
 			self.blacklisted = content.split("\n")
@@ -1759,18 +1759,18 @@ class CCcamInfoMenuConfig(Screen):
 			content = content + x + "\n"
 		content = content.replace("\n\n", "\n")
 		try:
-			f = open(config.cccaminfo.blacklist.value, "w")
+			f = open(config.cccaminfo.blacklist.getValue(), "w")
 			f.write(content)
 			f.close()
-			self.session.open(MessageBox, _("Configfile %s saved.") % config.cccaminfo.blacklist.value, MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, _("Configfile %s saved.") % config.cccaminfo.blacklist.getValue(), MessageBox.TYPE_INFO)
 		except:
-			self.session.open(MessageBox, _("Could not save configfile %s!") % config.cccaminfo.blacklist.value, MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Could not save configfile %s!") % config.cccaminfo.blacklist.getValue(), MessageBox.TYPE_ERROR)
 
 	def location(self):
 		self.session.openWithCallback(self.locationCallback, LocationBox)
 
 	def locationCallback(self, callback):
 		if callback:
-			config.cccaminfo.blacklist.value = ("%s/CCcamInfo.blacklisted"%callback).replace("//", "/")
+			config.cccaminfo.blacklist.setValue(("%s/CCcamInfo.blacklisted"%callback).replace("//", "/"))
 			config.cccaminfo.blacklist.save()
 

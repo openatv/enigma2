@@ -186,7 +186,7 @@ class TryQuitMainloop(MessageBox):
 		self.close(True)
 
 	def getRecordEvent(self, recservice, event):
-		if event == iRecordableService.evEnd and config.timeshift.isRecording.value:
+		if event == iRecordableService.evEnd and config.timeshift.isRecording.getValue():
 			return
 		else:
 			if event == iRecordableService.evEnd:
@@ -208,7 +208,7 @@ class TryQuitMainloop(MessageBox):
 		if value:
 			self.hide()
 			if self.retval == 1:
-				config.misc.DeepStandby.value = True
+				config.misc.DeepStandby.setValue(True)
 			self.session.nav.stopService()
 			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
 			self.quitScreen.show()

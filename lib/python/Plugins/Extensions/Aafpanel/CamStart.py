@@ -73,9 +73,9 @@ class CamStart:
 			self.service = None
 
 	def timerEvent(self):
-		if config.softcam.restartAttempts.value == "0":
+		if config.softcam.restartAttempts.getValue() == "0":
 			return
-		self.timerTime = int(config.softcam.restartTime.value)
+		self.timerTime = int(config.softcam.restartTime.getValue())
 		emuDir = "/etc/"
 		self.emuList = []
 		self.mlist = []
@@ -83,7 +83,7 @@ class CamStart:
 		self.emuBin = []
 		self.emuStart = []
 		self.emuDirlist = os.listdir(emuDir)
-		cam_name = config.softcam.actCam.value
+		cam_name = config.softcam.actCam.getValue()
 		if cam_name == "no CAM active" or cam_name == "":
 			self.timer.stop()
 			self.service = None
@@ -152,7 +152,7 @@ class CamStart:
 						self.container.execute(start)
 				else:
 					# If Cam is running don't check anymore
-					if config.softcam.restartRunning.value:
+					if config.softcam.restartRunning.getValue():
 						print "[CAMSTARTER] Cam is running, exit camstarter"
 						self.count = 0
 						return
@@ -161,7 +161,7 @@ class CamStart:
 			except:
 				pass
 
-			if self.count < int(config.softcam.restartAttempts.value):
+			if self.count < int(config.softcam.restartAttempts.getValue()):
 				self.startTimer()
 			else:
 				self.count = 0

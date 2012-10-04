@@ -140,34 +140,34 @@ class InitInputDevices:
 
 	def inputDevicesEnabledChanged(self,configElement):
 		if self.currentDevice != "" and iInputDevices.currentDevice == "":
-			iInputDevices.setEnabled(self.currentDevice, configElement.value)
+			iInputDevices.setEnabled(self.currentDevice, configElement.getValue())
 		elif iInputDevices.currentDevice != "":
-			iInputDevices.setEnabled(iInputDevices.currentDevice, configElement.value)
+			iInputDevices.setEnabled(iInputDevices.currentDevice, configElement.getValue())
 
 	def inputDevicesNameChanged(self,configElement):
 		if self.currentDevice != "" and iInputDevices.currentDevice == "":
-			iInputDevices.setName(self.currentDevice, configElement.value)
-			if configElement.value != "":
+			iInputDevices.setName(self.currentDevice, configElement.getValue())
+			if configElement.getValue() != "":
 				devname = iInputDevices.getDeviceAttribute(self.currentDevice, 'name')
-				if devname != configElement.value:
-					cmd = "config.inputDevices." + self.currentDevice + ".enabled.value = False"
+				if devname != configElement.getValue():
+					cmd = "config.inputDevices." + self.currentDevice + ".enabled.getValue() = False"
 					exec (cmd)
 					cmd = "config.inputDevices." + self.currentDevice + ".enabled.save()"
 					exec (cmd)
 		elif iInputDevices.currentDevice != "":
-			iInputDevices.setName(iInputDevices.currentDevice, configElement.value)
+			iInputDevices.setName(iInputDevices.currentDevice, configElement.getValue())
 
 	def inputDevicesRepeatChanged(self,configElement):
 		if self.currentDevice != "" and iInputDevices.currentDevice == "":
-			iInputDevices.setRepeat(self.currentDevice, configElement.value)
+			iInputDevices.setRepeat(self.currentDevice, configElement.getValue())
 		elif iInputDevices.currentDevice != "":
-			iInputDevices.setRepeat(iInputDevices.currentDevice, configElement.value)
+			iInputDevices.setRepeat(iInputDevices.currentDevice, configElement.getValue())
 
 	def inputDevicesDelayChanged(self,configElement):
 		if self.currentDevice != "" and iInputDevices.currentDevice == "":
-			iInputDevices.setDelay(self.currentDevice, configElement.value)
+			iInputDevices.setDelay(self.currentDevice, configElement.getValue())
 		elif iInputDevices.currentDevice != "":
-			iInputDevices.setDelay(iInputDevices.currentDevice, configElement.value)
+			iInputDevices.setDelay(iInputDevices.currentDevice, configElement.getValue())
 
 	def setupConfigEntries(self,device):
 		cmd = "config.inputDevices." + device + " = ConfigSubsection()"
@@ -205,8 +205,8 @@ class RcTypeControl():
 			self.boxType = fd.read()
 			fd.close()
 
-			if config.plugins.remotecontroltype.rctype.value != 0:
-				self.writeRcType(config.plugins.remotecontroltype.rctype.value)
+			if config.plugins.remotecontroltype.rctype.getValue() != 0:
+				self.writeRcType(config.plugins.remotecontroltype.rctype.getValue())
 		else:
 			self.isSupported = False
 

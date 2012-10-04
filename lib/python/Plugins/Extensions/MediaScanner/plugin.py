@@ -106,7 +106,7 @@ def movielist_open(list, session, **kwargs):
 		videopath = path.split(f.path)[0]
 		if not videopath.endswith('/'):
 			videopath += '/'
-		config.movielist.last_videodir.value = videopath
+		config.movielist.last_videodir.setValue(videopath)
 		try:
 			InfoBar.instance.showMovies(eServiceReference(stype, 0, f.path))
 		except:

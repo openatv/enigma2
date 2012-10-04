@@ -51,9 +51,9 @@ class SkinSelector(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		tmp = config.skin.primary_skin.value.find('/skin.xml')
+		tmp = config.skin.primary_skin.getValue().find('/skin.xml')
 		if tmp != -1:
-			tmp = config.skin.primary_skin.value[:tmp]
+			tmp = config.skin.primary_skin.getValue()[:tmp]
 			idx = 0
 			for skin in self.skinlist:
 				if skin == tmp:
@@ -100,7 +100,7 @@ class SkinSelector(Screen):
 			skinfile = self["SkinList"].getCurrent()+"/skin.xml"
 
 		print "Skinselector: Selected Skin: "+self.root+skinfile
-		config.skin.primary_skin.value = skinfile
+		config.skin.primary_skin.setValue(skinfile)
 		config.skin.primary_skin.save()
 		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))

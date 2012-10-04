@@ -20,7 +20,7 @@ def InitSetupDevices():
 	config.keyboard.keymap.addNotifier(keyboardNotifier)
 
 	def languageNotifier(configElement):
-		language.activateLanguage(configElement.value)
+		language.activateLanguage(configElement.getValue())
 
 	config.osd = ConfigSubsection();
 	config.osd.language = ConfigText(default = "de_DE");

@@ -25,14 +25,14 @@ class StartWizard(WizardLanguage, Rc):
 			boxType = open("/proc/stb/info/model").read().strip().lower()
 
 		if 'dm8000' in boxType:
-			config.misc.rcused.value = 0
+			config.misc.rcused.setValue(0)
 		else:
-			config.misc.rcused.value = 1
+			config.misc.rcused.setValue(1)
 		config.misc.rcused.save()
 
-		config.misc.firstrun.value = 0
+		config.misc.firstrun.setValue(0)
 		config.misc.firstrun.save()
 		configfile.save()
 
-wizardManager.registerWizard(LanguageWizard, config.misc.languageselected.value, priority = 0)
-wizardManager.registerWizard(StartWizard, config.misc.firstrun.value, priority = 20)
+wizardManager.registerWizard(LanguageWizard, config.misc.languageselected.getValue(), priority = 0)
+wizardManager.registerWizard(StartWizard, config.misc.firstrun.getValue(), priority = 20)

@@ -13,7 +13,7 @@ from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
 MAX_NUM_CI = 4
 
 def setCIBitrate(configElement):
-	if configElement.value == "no":
+	if configElement.getValue() == "no":
 		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateNormal)
 	else:
 		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateHigh)
@@ -116,7 +116,7 @@ class MMIDialog(Screen):
 			self.showWait()
 		elif self.tag == "ENQ":
 			cur = self["entries"].getCurrent()
-			answer = str(cur[1].value)
+			answer = str(cur[1].getValue())
 			length = len(answer)
 			while length < cur[1].getLength():
 				answer = '0'+answer
@@ -258,7 +258,7 @@ class CiMessageHandler:
 			if slot in self.dlgs:
 				self.dlgs[slot].ciStateChanged()
 			elif eDVBCI_UI.getInstance().availableMMI(slot) == 1:
-				if self.session and not config.usage.hide_ci_messages.value:
+				if self.session and not config.usage.hide_ci_messages.getValue():
 					self.dlgs[slot] = self.session.openWithCallback(self.dlgClosed, MMIDialog, slot, 3)
 
 	def dlgClosed(self, slot):

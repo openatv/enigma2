@@ -31,10 +31,10 @@ class Rc:
 
 	def initRc(self):
 		if getBoxType() == 'ventonhdx':
-			self["rc"].setPixmapNum(config.misc.rcused.value)
+			self["rc"].setPixmapNum(config.misc.rcused.getValue())
 		else:
 			if self.isDefaultRc:
-				self["rc"].setPixmapNum(config.misc.rcused.value)
+				self["rc"].setPixmapNum(config.misc.rcused.getValue())
 			else:
 				self["rc"].setPixmapNum(0)
 
@@ -69,12 +69,12 @@ class Rc:
 
 	def selectKey(self, key):
 		if self.isDefaultRc:
-			rc = self.rcs[config.misc.rcused.value]
+			rc = self.rcs[config.misc.rcused.getValue()]
 		else:
 			try:
 				rc = self.rcs[2]
 			except:
-				rc = self.rcs[config.misc.rcused.value]
+				rc = self.rcs[config.misc.rcused.getValue()]
 
 		if rc.has_key(key):
 			rcpos = self["rc"].getPosition()

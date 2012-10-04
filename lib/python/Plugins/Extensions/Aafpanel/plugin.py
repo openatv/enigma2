@@ -71,24 +71,24 @@ def Check_Softcam():
 	return found
 
 # Hide Softcam-Panel Setup when no softcams installed
-if not Check_Softcam() and (config.plugins.showaafpanelextensions.value or config.plugins.aafpanel_redpanel.enabledlong.value):
-	config.plugins.showaafpanelextensions.value = False
-	config.plugins.aafpanel_redpanel.enabledlong.value = False
+if not Check_Softcam() and (config.plugins.showaafpanelextensions.getValue() or config.plugins.aafpanel_redpanel.enabledlong.getValue()):
+	config.plugins.showaafpanelextensions.setValue(False)
+	config.plugins.aafpanel_redpanel.enabledlong.setValue(False)
 	config.plugins.showaafpanelextensions.save()
 	config.plugins.aafpanel_redpanel.save()
 
 # Hide Keymap selection when no other keymaps installed.
-if config.usage.keymap.value != eEnv.resolve("${datadir}/enigma2/keymap.xml"):
-	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.usr")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.usr"):
+if config.usage.keymap.getValue() != eEnv.resolve("${datadir}/enigma2/keymap.xml"):
+	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.usr")) and config.usage.keymap.getValue() == eEnv.resolve("${datadir}/enigma2/keymap.usr"):
 		setDefaultKeymap()
-	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.ntr")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.ntr"):
+	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.ntr")) and config.usage.keymap.getValue() == eEnv.resolve("${datadir}/enigma2/keymap.ntr"):
 		setDefaultKeymap()
-	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.u80")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.u80"):
+	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.u80")) and config.usage.keymap.getValue() == eEnv.resolve("${datadir}/enigma2/keymap.u80"):
 		setDefaultKeymap()
 		
 def setDefaultKeymap():
 	print "[Aaf-Panel] Set Keymap to Default"
-	config.usage.keymap.value = eEnv.resolve("${datadir}/enigma2/keymap.xml")
+	config.usage.keymap.setValue(eEnv.resolve("${datadir}/enigma2/keymap.xml"))
 	config.save()
 
 # edit bb , touch commands.getouput with this def #
@@ -119,7 +119,7 @@ panel = open("/tmp/aafpanel.ver", "w")
 panel.write(AAF_Panel_Version + '\n')
 panel.write("Boxversion: %s " % (boxversion)+ '\n')
 try:
-	panel.write("Keymap: %s " % (config.usage.keymap.value)+ '\n')
+	panel.write("Keymap: %s " % (config.usage.keymap.getValue())+ '\n')
 except:
 	panel.write("Keymap: keymap file not found !!" + '\n')
 panel.close()
@@ -141,11 +141,11 @@ def Apanel(menuid, **kwargs):
 		return []
 
 def camstart(reason, **kwargs):
-	if not config.plugins.aafpanel_frozencheck.list.value == '0':
+	if not config.plugins.aafpanel_frozencheck.list.getValue() == '0':
 		CamCheck()
 	try:
-		open("/proc/stb/video/alpha", "w").write(str(config.osd.alpha.value))
-		if config.softcam.camstartMode.value == "0":
+		open("/proc/stb/video/alpha", "w").write(str(config.osd.alpha.getValue()))
+		if config.softcam.camstartMode.getValue() == "0":
 			global timerInstance
 			if timerInstance is None:
 				timerInstance = CamStart(None)
@@ -552,7 +552,7 @@ class KeymapSel(ConfigListScreen, Screen):
 		usrkey = eEnv.resolve("${datadir}/enigma2/keymap.usr")
 		ntrkey = eEnv.resolve("${datadir}/enigma2/keymap.ntr")
 		u80key = eEnv.resolve("${datadir}/enigma2/keymap.u80")
-		self.actkeymap = self.getKeymap(config.usage.keymap.value)
+		self.actkeymap = self.getKeymap(config.usage.keymap.getValue())
 		keySel = [ ('keymap.xml',_("Default  (keymap.xml)"))]
 		if os.path.isfile(usrkey):
 			keySel.append(('keymap.usr',_("User  (keymap.usr)")))
@@ -567,7 +567,7 @@ class KeymapSel(ConfigListScreen, Screen):
 		if self.actkeymap == u80key and not os.path.isfile(u80key):
 			setDefaultKeymap()
 		self.keyshow = ConfigSelection(keySel)
-		self.keyshow.value = self.actkeymap
+		self.keyshow.setValue(self.actkeymap)
 
 		self.onChangedEntry = [ ]
 		self.list = []
@@ -596,7 +596,7 @@ class KeymapSel(ConfigListScreen, Screen):
 		
 		self["config"].list = self.list
 		self["config"].setList(self.list)
-		if config.usage.sort_settings.value:
+		if config.usage.sort_settings.getValue():
 			self["config"].list.sort()
 
 	def selectionChanged(self):
@@ -621,10 +621,10 @@ class KeymapSel(ConfigListScreen, Screen):
 		return SetupSummary
 
 	def saveAll(self):
-		config.usage.keymap.value = eEnv.resolve("${datadir}/enigma2/" + self.keyshow.value)
+		config.usage.keymap.setValue(eEnv.resolve("${datadir}/enigma2/" + self.keyshow.getValue()))
 		config.usage.keymap.save()
 		configfile.save()
-		if self.actkeymap != self.keyshow.value:
+		if self.actkeymap != self.keyshow.getValue():
 			self.changedFinished()
 
 	def keySave(self):
@@ -699,7 +699,7 @@ class RedPanel(ConfigListScreen, Screen):
 		
 		self["config"].list = self.list
 		self["config"].setList(self.list)
-		if config.usage.sort_settings.value:
+		if config.usage.sort_settings.getValue():
 			self["config"].list.sort()
 
 	def selectionChanged(self):
@@ -786,7 +786,7 @@ class YellowPanel(ConfigListScreen, Screen):
 		
 		self["config"].list = self.list
 		self["config"].setList(self.list)
-		if config.usage.sort_settings.value:
+		if config.usage.sort_settings.getValue():
 			self["config"].list.sort()
 
 	def selectionChanged(self):
@@ -872,7 +872,7 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 		self.list = []
 		self.list.append(getConfigListEntry(_("Show Softcam-Panel in Extensions Menu"), config.plugins.showaafpanelextensions))
 		self.list.append(getConfigListEntry(_("Start Mode"), config.softcam.camstartMode))
-		if config.softcam.camstartMode.value == "0":
+		if config.softcam.camstartMode.getValue() == "0":
 			self.list.append(getConfigListEntry(_("Start attempts"), config.softcam.restartAttempts))
 			self.list.append(getConfigListEntry(_("Time between start attempts (sec.)"), config.softcam.restartTime))
 			self.list.append(getConfigListEntry(_("Stop check when cam is running"), config.softcam.restartRunning))
@@ -882,7 +882,7 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 		
 		self["config"].list = self.list
 		self["config"].setList(self.list)
-		if config.usage.sort_settings.value:
+		if config.usage.sort_settings.getValue():
 			self["config"].list.sort()
 
 	def selectionChanged(self):
@@ -908,7 +908,7 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 		return SetupSummary
 	
 	def saveAll(self):
-		if config.softcam.camstartMode.value == "0":
+		if config.softcam.camstartMode.getValue() == "0":
 			if os.path.exists("/etc/rc2.d/S20softcam"):
 				print"Delete Symbolink link"
 				self.container = eConsoleAppContainer()
@@ -939,7 +939,7 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 			self.doClose()
 
 	def doClose(self):
-		if not config.plugins.aafpanel_frozencheck.list.value == '0':
+		if not config.plugins.aafpanel_frozencheck.list.getValue() == '0':
 			CamCheck()
 		self.close()
 

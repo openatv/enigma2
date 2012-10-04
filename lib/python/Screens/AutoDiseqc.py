@@ -156,25 +156,25 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		if self.state == 0:
 			if self.port_index == 0:
 				self.clearNimEntries()
-				config.Nims[self.feid].diseqcA.value = "%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
+				config.Nims[self.feid].diseqcA.setValue("%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS]))
 			elif self.port_index == 1:
 				self.clearNimEntries()
-				config.Nims[self.feid].diseqcB.value = "%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
+				config.Nims[self.feid].diseqcB.setValue("%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS]))
 			elif self.port_index == 2:
 				self.clearNimEntries()
-				config.Nims[self.feid].diseqcC.value = "%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
+				config.Nims[self.feid].diseqcC.setValue("%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS]))
 			elif self.port_index == 3:
 				self.clearNimEntries()
-				config.Nims[self.feid].diseqcD.value = "%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
+				config.Nims[self.feid].diseqcD.setValue("%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS]))
 
 			if self.nr_of_ports == 4:
-				config.Nims[self.feid].diseqcMode.value = "diseqc_a_b_c_d"
+				config.Nims[self.feid].diseqcMod.setValue("diseqc_a_b_c_d")
 			elif self.nr_of_ports == 2:
-				config.Nims[self.feid].diseqcMode.value = "diseqc_a_b"
+				config.Nims[self.feid].diseqcMode.setValue("diseqc_a_b")
 			else:
-				config.Nims[self.feid].diseqcMode.value = "single"
+				config.Nims[self.feid].diseqcMode.setValue("single")
 
-			config.Nims[self.feid].configMode.value = "simple"
+			config.Nims[self.feid].configMode.setValue("simple")
 			config.Nims[self.feid].simpleDiSEqCSetVoltageTone = self.simple_tone
 			config.Nims[self.feid].simpleDiSEqCOnlyOnSatChange = self.simple_sat_change
 
@@ -212,13 +212,13 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		self.clearNimEntries()
 		for x in self.found_sats:
 			if x[0] == "A":
-				config.Nims[self.feid].diseqcA.value = "%d" % (x[1])
+				config.Nims[self.feid].diseqcA.setValue("%d" % (x[1]))
 			elif x[0] == "B":
-				config.Nims[self.feid].diseqcB.value = "%d" % (x[1])
+				config.Nims[self.feid].diseqcB.setValue("%d" % (x[1]))
 			elif x[0] == "C":
-				config.Nims[self.feid].diseqcC.value = "%d" % (x[1])
+				config.Nims[self.feid].diseqcC.setValue("%d" % (x[1]))
 			elif x[0] == "D":
-				config.Nims[self.feid].diseqcD.value = "%d" % (x[1])
+				config.Nims[self.feid].diseqcD.setValue("%d" % (x[1]))
 		self.saveAndReloadNimConfig()
 
 	def setupClear(self):
@@ -226,10 +226,10 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		self.saveAndReloadNimConfig()
 
 	def clearNimEntries(self):
-		config.Nims[self.feid].diseqcA.value = "3601"
-		config.Nims[self.feid].diseqcB.value = "3601"
-		config.Nims[self.feid].diseqcC.value = "3601"
-		config.Nims[self.feid].diseqcD.value = "3601"
+		config.Nims[self.feid].diseqcA.setValue("3601")
+		config.Nims[self.feid].diseqcB.setValue("3601")
+		config.Nims[self.feid].diseqcC.setValue("3601")
+		config.Nims[self.feid].diseqcD.setValue("3601")
 
 	def saveAndReloadNimConfig(self):
 		config.Nims[self.feid].save()

@@ -478,7 +478,7 @@ class SoftcamPanel(Screen):
 		import time
 		self.container = eConsoleAppContainer()
 
-		if config.softcam.camstartMode.value == "0" or not fileExists('/etc/init.d/softcam'):
+		if config.softcam.camstartMode.getValue() == "0" or not fileExists('/etc/init.d/softcam'):
 			print  '[SOFTCAM] Python stop cam: ' + oldcam
 			self.container.execute(self.emuStop[oldcamIndex])
 		
@@ -519,7 +519,7 @@ class SoftcamPanel(Screen):
 		print "count=",count
 		try:
 			if count > 0:
-				if config.softcam.camstartMode.value == "0":
+				if config.softcam.camstartMode.getValue() == "0":
 					self.Stopcam()
 				global camIndex
 				camIndex = self["Mlist"].getSelectedIndex()
@@ -531,7 +531,7 @@ class SoftcamPanel(Screen):
 				print emustart
 				self.Save_Settings(actcam)
 				start = self.emuStart[camIndex]
-				if config.softcam.camstartMode.value == "0":
+				if config.softcam.camstartMode.getValue() == "0":
 					print  '[SOFTCAM] Python start cam: ' + actcam
 					import time
 					time.sleep (1) # was 5sec
@@ -565,7 +565,7 @@ class SoftcamPanel(Screen):
 
 	def Save_Settings(self, cam_name):
 		#// Save Came Name to Settings file
-		config.softcam.actCam.value = cam_name
+		config.softcam.actCam.setValue(cam_name)
 		config.softcam.save()
 		configfile.save()
 

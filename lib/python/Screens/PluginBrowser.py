@@ -73,7 +73,7 @@ class PluginBrowser(Screen):
 
 		self.list = []
 		self["list"] = PluginList(self.list)
-		if config.usage.sort_pluginlist.value:
+		if config.usage.sort_pluginlist.getValue():
 			self["list"].list.sort()
 
 		self["actions"] = ActionMap(["SetupActions","WizardActions"],
@@ -215,31 +215,31 @@ class PluginDownloadBrowser(Screen):
 	def createPluginFilter(self):
 		#Create Plugin Filter
 		self.PLUGIN_PREFIX2 = []
-		if config.pluginfilter.drivers.value:
+		if config.pluginfilter.drivers.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'drivers')
-		if config.pluginfilter.extensions.value:
+		if config.pluginfilter.extensions.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'extensions')
-		if config.pluginfilter.m2k.value:
+		if config.pluginfilter.m2k.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'm2k')
-		if config.pluginfilter.picons.value:
+		if config.pluginfilter.picons.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'picons')
-		if config.pluginfilter.pli.value:
+		if config.pluginfilter.pli.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'pli')
-		if config.pluginfilter.security.value:
+		if config.pluginfilter.security.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'security')
-		if config.pluginfilter.settings.value:
+		if config.pluginfilter.settings.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'settings')
-		if config.pluginfilter.skins.value:
+		if config.pluginfilter.skins.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'skins')
-		if config.pluginfilter.softcams.value:
+		if config.pluginfilter.softcams.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'softcams')
-		if config.pluginfilter.systemplugins.value:
+		if config.pluginfilter.systemplugins.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'systemplugins')
-		if config.pluginfilter.vix.value:
+		if config.pluginfilter.vix.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'vix')
-		if config.pluginfilter.weblinks.value:
+		if config.pluginfilter.weblinks.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'weblinks')
-		if config.pluginfilter.kernel.value:
+		if config.pluginfilter.kernel.getValue():
 			self.PLUGIN_PREFIX2.append('kernel-module-')
 
 	def go(self):
@@ -513,7 +513,7 @@ class PluginDownloadBrowser(Screen):
 				self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1], x[1]))
 
 		temp = self.plugins.keys()
-		if config.usage.sort_pluginlist.value:
+		if config.usage.sort_pluginlist.getValue():
 			temp.sort()
 		for x in temp:
 			if x in self.expanded:
@@ -574,7 +574,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		
 		self["config"].list = self.list
 		self["config"].setList(self.list)
-		if config.usage.sort_settings.value:
+		if config.usage.sort_settings.getValue():
 			self["config"].list.sort()
 
 	def selectionChanged(self):

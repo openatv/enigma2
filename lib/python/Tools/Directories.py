@@ -87,12 +87,12 @@ def resolveFilename(scope, base = "", path_prefix = None):
 			path = tmp
 		else:
 			tmp = defaultPaths[SCOPE_SKIN][0]
-			pos = config.skin.primary_skin.value.rfind('/')
+			pos = config.skin.primary_skin.getValue().rfind('/')
 			if pos != -1:
 				#if basefile is not available use default skin path as fallback
-				tmpfile = tmp+config.skin.primary_skin.value[:pos+1] + base
+				tmpfile = tmp+config.skin.primary_skin.getValue()[:pos+1] + base
 				if pathExists(tmpfile):
-					path = tmp+config.skin.primary_skin.value[:pos+1]
+					path = tmp+config.skin.primary_skin.getValue()[:pos+1]
 				else:
 					path = tmp
 			else:
@@ -102,12 +102,12 @@ def resolveFilename(scope, base = "", path_prefix = None):
 		tmp = defaultPaths[SCOPE_PLUGINS]
 		from Components.config import config
 		skintmp = defaultPaths[SCOPE_SKIN]
-		pos = config.skin.primary_skin.value.rfind('/')
+		pos = config.skin.primary_skin.getValue().rfind('/')
 		if pos != -1:
 			#if basefile is not available inside current skin path, use the original provided file as fallback
-			skintmpfile = skintmp[0]+config.skin.primary_skin.value[:pos+1] + base
+			skintmpfile = skintmp[0]+config.skin.primary_skin.getValue()[:pos+1] + base
 			if fileExists(skintmpfile):
-				path = skintmp[0]+config.skin.primary_skin.value[:pos+1]
+				path = skintmp[0]+config.skin.primary_skin.getValue()[:pos+1]
 			else:
 				path = tmp[0]
 		else:

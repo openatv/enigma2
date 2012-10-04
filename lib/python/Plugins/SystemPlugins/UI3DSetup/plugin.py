@@ -42,9 +42,9 @@ class UI3DSetupScreen(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session)
 
-		mode = config.plugins.UI3DSetup.mode.value
-		znorm = config.plugins.UI3DSetup.znorm.value
-		setmode = config.plugins.UI3DSetup.setmode.value
+		mode = config.plugins.UI3DSetup.mode.getValue()
+		znorm = config.plugins.UI3DSetup.znorm.getValue()
+		setmode = config.plugins.UI3DSetup.setmode.getValue()
 
 		self.mode = ConfigSelection(choices = modelist, default = mode)
 		self.znorm = ConfigSlider(default = znorm + 50, increment = 1, limits = (0, 100))
@@ -64,12 +64,12 @@ class UI3DSetupScreen(Screen, ConfigListScreen):
 		self.setPreviewSettings()
 
 	def setPreviewSettings(self):
-		applySettings(self.mode.value, int(self.znorm.value) - 50, self.setmode.value)
+		applySettings(self.mode.getValue(), self.znorm.getValue() - 50, self.setmode.getValue())
 
 	def keyGo(self):
-		config.plugins.UI3DSetup.mode.value = self.mode.value
-		config.plugins.UI3DSetup.znorm.value = int(self.znorm.value) - 50
-		config.plugins.UI3DSetup.setmode.value = self.setmode.value
+		config.plugins.UI3DSetup.mode.setValue(self.mode.getValue())
+		config.plugins.UI3DSetup.znorm.setValue(self.znorm.getValue() - 50)
+		config.plugins.UI3DSetup.setmode.setValue(self.setmode.getValue())
 		config.plugins.UI3DSetup.save()
 		self.close()
 
@@ -101,8 +101,8 @@ def applySettings(mode, znorm, setmode):
 		return
 
 def setConfiguredSettings():
-	applySettings(config.plugins.UI3DSetup.mode.value,
-		int(config.plugins.UI3DSetup.znorm.value), config.plugins.UI3DSetup.setmode.value)
+	applySettings(config.plugins.UI3DSetup.mode.getValue(),
+		int(config.plugins.UI3DSetup.znorm.getValue()), config.plugins.UI3DSetup.setmode.getValue())
 
 def main(session, **kwargs):
 	session.open(UI3DSetupScreen)

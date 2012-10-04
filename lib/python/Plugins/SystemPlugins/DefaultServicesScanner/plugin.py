@@ -64,7 +64,7 @@ class DefaultServicesScannerPlugin(ScanSetup):
 		# backup lamedb
 		confdir = resolveFilename(SCOPE_CONFIG)
 		copyfile(confdir + "/lamedb", confdir + "/lamedb.backup")
-		self.scan_type.value = "multisat"
+		self.scan_type.setValue("multisat")
 		self.createSetup()
 		self.scanIndex = 0
 		self.selectSat(0)
@@ -73,9 +73,9 @@ class DefaultServicesScannerPlugin(ScanSetup):
 	def selectSat(self, index):
 		for satindex in range(len(self.multiscanlist)):
 			if satindex != index:
-				self.multiscanlist[satindex][1].value = False
+				self.multiscanlist[satindex][1].setValue(False)
 			else:
-				self.multiscanlist[satindex][1].value = True
+				self.multiscanlist[satindex][1].setValue(True)
 
 	def runScan(self):
 		print "runScan"

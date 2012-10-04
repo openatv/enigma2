@@ -30,16 +30,16 @@ class VolumeControl:
 		self.hideVolTimer = eTimer()
 		self.hideVolTimer.callback.append(self.volHide)
 
-		vol = config.audio.volume.value
+		vol = config.audio.volume.getValue()
 		self.volumeDialog.setValue(vol)
 		self.volctrl = eDVBVolumecontrol.getInstance()
 		self.volctrl.setVolume(vol, vol)
 
 	def volSave(self):
 		if self.volctrl.isMuted():
-			config.audio.volume.value = 0
+			config.audio.volume.setValue(0)
 		else:
-			config.audio.volume.value = self.volctrl.getVolume()
+			config.audio.volume.setValue(self.volctrl.getVolume())
 		config.audio.volume.save()
 
 	def volUp(self):

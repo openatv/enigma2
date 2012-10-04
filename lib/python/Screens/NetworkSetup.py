@@ -294,7 +294,7 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 	def ok(self):
 		iNetwork.clearNameservers()
 		for nameserver in self.nameserverEntries:
-			iNetwork.addNameserver(nameserver.value)
+			iNetwork.addNameserver(nameserver.getValue())
 		iNetwork.writeNameserverConfig()
 		self.close()
 
@@ -477,15 +477,15 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.InterfaceEntry = getConfigListEntry(_("Use Interface"), self.activateInterfaceEntry)
 
 		self.list.append(self.InterfaceEntry)
-		if self.activateInterfaceEntry.value:
+		if self.activateInterfaceEntry.getValue():
 			self.dhcpEntry = getConfigListEntry(_("Use DHCP"), self.dhcpConfigEntry)
 			self.list.append(self.dhcpEntry)
-			if not self.dhcpConfigEntry.value:
+			if not self.dhcpConfigEntry.getValue():
 				self.list.append(getConfigListEntry(_('IP Address'), self.ipConfigEntry))
 				self.list.append(getConfigListEntry(_('Netmask'), self.netmaskConfigEntry))
 				self.gatewayEntry = getConfigListEntry(_('Use a gateway'), self.hasGatewayConfigEntry)
 				self.list.append(self.gatewayEntry)
-				if self.hasGatewayConfigEntry.value:
+				if self.hasGatewayConfigEntry.getValue():
 					self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
 
 			self.extended = None
@@ -508,8 +508,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 						self.encryptionType = getConfigListEntry(_("Encryption Keytype"), config.plugins.wlan.wepkeytype)
 						self.encryptionKey = getConfigListEntry(_("Encryption Key"), config.plugins.wlan.psk)
 
-						if config.plugins.wlan.encryption.value != "Unencrypted":
-							if config.plugins.wlan.encryption.value == 'WEP':
+						if config.plugins.wlan.encryption.getValue() != "Unencrypted":
+							if config.plugins.wlan.encryption.getValue() == 'WEP':
 								self.list.append(self.encryptionType)
 							self.list.append(self.encryptionKey)
 		self["config"].list = self.list
@@ -578,12 +578,12 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def applyConfig(self, ret = False):
 		if (ret == True):
 			self.applyConfigRef = None
-			iNetwork.setAdapterAttribute(self.iface, "up", self.activateInterfaceEntry.value)
-			iNetwork.setAdapterAttribute(self.iface, "dhcp", self.dhcpConfigEntry.value)
-			iNetwork.setAdapterAttribute(self.iface, "ip", self.ipConfigEntry.value)
-			iNetwork.setAdapterAttribute(self.iface, "netmask", self.netmaskConfigEntry.value)
-			if self.hasGatewayConfigEntry.value:
-				iNetwork.setAdapterAttribute(self.iface, "gateway", self.gatewayConfigEntry.value)
+			iNetwork.setAdapterAttribute(self.iface, "up", self.activateInterfaceEntry.getValue())
+			iNetwork.setAdapterAttribute(self.iface, "dhcp", self.dhcpConfigEntry.getValue())
+			iNetwork.setAdapterAttribute(self.iface, "ip", self.ipConfigEntry.getValue())
+			iNetwork.setAdapterAttribute(self.iface, "netmask", self.netmaskConfigEntry.getValue())
+			if self.hasGatewayConfigEntry.getValue():
+				iNetwork.setAdapterAttribute(self.iface, "gateway", self.gatewayConfigEntry.getValue())
 			else:
 				iNetwork.removeAdapterAttribute(self.iface, "gateway")
 
@@ -591,7 +591,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				iNetwork.setAdapterAttribute(self.iface, "configStrings", self.configStrings(self.iface))
 				self.ws.writeConfig(self.iface)
 
-			if self.activateInterfaceEntry.value is False:
+			if self.activateInterfaceEntry.getValue() is False:
 				iNetwork.deactivateInterface(self.iface,self.deactivateInterfaceCB)
 				iNetwork.writeNetworkConfig()
 				self.applyConfigRef = self.session.openWithCallback(self.applyConfigfinishedCB, MessageBox, _("Please wait for activation of your network configuration..."), type = MessageBox.TYPE_INFO, enable_input = False)
@@ -673,7 +673,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		if current == self.wlanSSID:
 			if current[1].help_window.instance is not None:
 				current[1].help_window.instance.hide()
-		elif current == self.encryptionKey and config.plugins.wlan.encryption.value is not "Unencrypted":
+		elif current == self.encryptionKey and config.plugins.wlan.encryption.getValue() is not "Unencrypted":
 			if current[1].help_window.instance is not None:
 				current[1].help_window.instance.hide()
 
@@ -2850,7 +2850,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 		item = self["config"].getCurrent()
 		if item:
 			name = str(item[0])
-			desc = str(item[1].value)
+			desc = str(item[1].getValue())
 		else:
 			name = ""
 			desc = ""
@@ -2871,35 +2871,35 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 				line = line.strip()
 				if line.startswith('username '):
 					line = line[9:]
-					self.ina_user.value = line
+					self.ina_user.setValue(line)
 					ina_user1 = getConfigListEntry(_("Username") + ":", self.ina_user)
 					self.list.append(ina_user1)
 				elif line.startswith('password '):
 					line = line[9:]
-					self.ina_pass.value = line
+					self.ina_pass.setValue(line)
 					ina_pass1 = getConfigListEntry(_("Password") + ":", self.ina_pass)
 					self.list.append(ina_pass1)
 				elif line.startswith('alias '):
 					line = line[6:]
-					self.ina_alias.value = line
+					self.ina_alias.setValue(line)
 					ina_alias1 = getConfigListEntry(_("Alias") + ":", self.ina_alias)
 					self.list.append(ina_alias1)
 				elif line.startswith('update_period_sec '):
 					line = line[18:]
 					line = (int(line) / 60)
-					self.ina_period.value = line
+					self.ina_period.setValue(line)
 					ina_period1 = getConfigListEntry(_("Time Update in Minutes") + ":", self.ina_period)
 					self.list.append(ina_period1)
 				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
 					if not line.startswith('#'):
-						self.ina_sysactive.value = True
+						self.ina_sysactive.setValue(True)
 						line = line[14:]
 					else:
-						self.ina_sysactive.value = False
+						self.ina_sysactive.setValue(False)
 						line = line[15:]
 					ina_sysactive1 = getConfigListEntry(_("Set System") + ":", self.ina_sysactive)
 					self.list.append(ina_sysactive1)
-					self.ina_system.value = line
+					self.ina_system.setValue(line)
 					ina_system1 = getConfigListEntry(_("System") + ":", self.ina_system)
 					self.list.append(ina_system1)
 
@@ -2930,20 +2930,20 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 			for line in inme.readlines():
 				line = line.replace('\n', '')
 				if line.startswith('username '):
-					line = ('username ' + self.ina_user.value.strip())
+					line = ('username ' + self.ina_user.getValue().strip())
 				elif line.startswith('password '):
-					line = ('password ' + self.ina_pass.value.strip())
+					line = ('password ' + self.ina_pass.getValue().strip())
 				elif line.startswith('alias '):
-					line = ('alias ' + self.ina_alias.value.strip())
+					line = ('alias ' + self.ina_alias.getValue().strip())
 				elif line.startswith('update_period_sec '):
-					strview = (self.ina_period.value * 60)
+					strview = (self.ina_period.getValue() * 60)
 					strview = str(strview)
 					line = ('update_period_sec ' + strview)
 				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
-					if self.ina_sysactive.value == True:
-						line = ('dyndns_system ' + self.ina_system.value.strip())
+					if self.ina_sysactive.getValue() == True:
+						line = ('dyndns_system ' + self.ina_system.getValue().strip())
 					else:
-						line = ('#dyndns_system ' + self.ina_system.value.strip())
+						line = ('#dyndns_system ' + self.ina_system.getValue().strip())
 				out.write((line + '\n'))
 			out.close()
 			inme.close()
@@ -3279,7 +3279,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 		item = self["config"].getCurrent()
 		if item:
 			name = str(item[0])
-			desc = str(item[1].value)
+			desc = str(item[1].getValue())
 		else:
 			name = ""
 			desc = ""
@@ -3304,50 +3304,50 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 				line = line.strip()
 				if line.startswith('USHARE_NAME='):
 					line = line[12:]
-					self.ushare_user.value = line
+					self.ushare_user.setValue(line)
 					ushare_user1 = getConfigListEntry(_("uShare Name") + ":", self.ushare_user)
 					self.list.append(ushare_user1)
 				elif line.startswith('USHARE_IFACE='):
 					line = line[13:]
-					self.ushare_iface.value = line
+					self.ushare_iface.setValue(line)
 					ushare_iface1 = getConfigListEntry(_("Interface") + ":", self.ushare_iface)
 					self.list.append(ushare_iface1)
 				elif line.startswith('USHARE_PORT='):
 					line = line[12:]
-					self.ushare_port.value = line
+					self.ushare_port.setValue(line)
 					ushare_port1 = getConfigListEntry(_("uShare Port") + ":", self.ushare_port)
 					self.list.append(ushare_port1)
 				elif line.startswith('USHARE_TELNET_PORT='):
 					line = line[19:]
-					self.ushare_telnetport.value = line
+					self.ushare_telnetport.setValue(line)
 					ushare_telnetport1 = getConfigListEntry(_("Telnet Port") + ":", self.ushare_telnetport)
 					self.list.append(ushare_telnetport1)
 				elif line.startswith('ENABLE_WEB='):
 					if line[11:] == 'no':
-						self.ushare_web.value = False
+						self.ushare_web.setValue(False)
 					else:
-						self.ushare_web.value = True
+						self.ushare_web.setValue(True)
 					ushare_web1 = getConfigListEntry(_("Web Interface") + ":", self.ushare_web)
 					self.list.append(ushare_web1)
 				elif line.startswith('ENABLE_TELNET='):
 					if line[14:] == 'no':
-						self.ushare_telnet.value = False
+						self.ushare_telnet.setValue(False)
 					else:
-						self.ushare_telnet.value = True
+						self.ushare_telnet.setValue(True)
 					ushare_telnet1 = getConfigListEntry(_("Telnet Interface") + ":", self.ushare_telnet)
 					self.list.append(ushare_telnet1)
 				elif line.startswith('ENABLE_XBOX='):
 					if line[12:] == 'no':
-						self.ushare_xbox.value = False
+						self.ushare_xbox.setValue(False)
 					else:
-						self.ushare_xbox.value = True
+						self.ushare_xbox.setValue(True)
 					ushare_xbox1 = getConfigListEntry(_("XBox 360 support") + ":", self.ushare_xbox)
 					self.list.append(ushare_xbox1)
 				elif line.startswith('ENABLE_DLNA='):
 					if line[12:] == 'no':
-						self.ushare_ps3.value = False
+						self.ushare_ps3.setValue(False)
 					else:
-						self.ushare_ps3.value = True
+						self.ushare_ps3.setValue(True)
 					ushare_ps31 = getConfigListEntry(_("DLNA support") + ":", self.ushare_ps3)
 					self.list.append(ushare_ps31)
 			f.close()
@@ -3377,32 +3377,32 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 			for line in inme.readlines():
 				line = line.replace('\n', '')
 				if line.startswith('USHARE_NAME='):
-					line = ('USHARE_NAME=' + self.ushare_user.value.strip())
+					line = ('USHARE_NAME=' + self.ushare_user.getValue().strip())
 				elif line.startswith('USHARE_IFACE='):
-					line = ('USHARE_IFACE=' + self.ushare_iface.value.strip())
+					line = ('USHARE_IFACE=' + self.ushare_iface.getValue().strip())
 				elif line.startswith('USHARE_PORT='):
-					line = ('USHARE_PORT=' + str(self.ushare_port.value))
+					line = ('USHARE_PORT=' + str(self.ushare_port.getValue()))
 				elif line.startswith('USHARE_TELNET_PORT='):
-					line = ('USHARE_TELNET_PORT=' + str(self.ushare_telnetport.value))
+					line = ('USHARE_TELNET_PORT=' + str(self.ushare_telnetport.getValue()))
 				elif line.startswith('USHARE_DIR='):
-					line = ('USHARE_DIR=' + ', '.join( config.networkushare.mediafolders.value ))
+					line = ('USHARE_DIR=' + ', '.join( config.networkushare.mediafolders.getValue() ))
 				elif line.startswith('ENABLE_WEB='):
-					if not self.ushare_web.value:
+					if not self.ushare_web.getValue():
 						line = 'ENABLE_WEB=no'
 					else:
 						line = 'ENABLE_WEB=yes'
 				elif line.startswith('ENABLE_TELNET='):
-					if not self.ushare_telnet.value:
+					if not self.ushare_telnet.getValue():
 						line = 'ENABLE_TELNET=no'
 					else:
 						line = 'ENABLE_TELNET=yes'
 				elif line.startswith('ENABLE_XBOX='):
-					if not self.ushare_xbox.value:
+					if not self.ushare_xbox.getValue():
 						line = 'ENABLE_XBOX=no'
 					else:
 						line = 'ENABLE_XBOX=yes'
 				elif line.startswith('ENABLE_DLNA='):
-					if not self.ushare_ps3.value:
+					if not self.ushare_ps3.getValue():
 						line = 'ENABLE_DLNA=no'
 					else:
 						line = 'ENABLE_DLNA=yes'
@@ -3500,7 +3500,7 @@ class uShareSelection(Screen):
 
 	def saveSelection(self):
 		self.selectedFiles = self["checkList"].getSelectedList()
-		config.networkushare.mediafolders.value = self.selectedFiles
+		config.networkushare.mediafolders.setValue(self.selectedFiles)
 		self.close(None)
 
 	def exit(self):
@@ -3819,7 +3819,7 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 		item = self["config"].getCurrent()
 		if item:
 			name = str(item[0])
-			desc = str(item[1].value)
+			desc = str(item[1].getValue())
 		else:
 			name = ""
 			desc = ""
@@ -3843,43 +3843,43 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 				line = line.strip()
 				if line.startswith('friendly_name='):
 					line = line[14:]
-					self.minidlna_name.value = line
+					self.minidlna_name.setValue(line)
 					minidlna_name1 = getConfigListEntry(_("Name") + ":", self.minidlna_name)
 					self.list.append(minidlna_name1)
 				elif line.startswith('network_interface='):
 					line = line[18:]
-					self.minidlna_iface.value = line
+					self.minidlna_iface.setValue(line)
 					minidlna_iface1 = getConfigListEntry(_("Interface") + ":", self.minidlna_iface)
 					self.list.append(minidlna_iface1)
 				elif line.startswith('port='):
 					line = line[5:]
-					self.minidlna_port.value = line
+					self.minidlna_port.setValue(line)
 					minidlna_port1 = getConfigListEntry(_("Port") + ":", self.minidlna_port)
 					self.list.append(minidlna_port1)
 				elif line.startswith('serial='):
 					line = line[7:]
-					self.minidlna_serialno.value = line
+					self.minidlna_serialno.setValue(line)
 					minidlna_serialno1 = getConfigListEntry(_("Serial No") + ":", self.minidlna_serialno)
 					self.list.append(minidlna_serialno1)
 				elif line.startswith('inotify='):
 					if line[8:] == 'no':
-						self.minidlna_inotify.value = False
+						self.minidlna_inotify.setValue(False)
 					else:
-						self.minidlna_inotify.value = True
+						self.minidlna_inotify.setValue(True)
 					minidlna_inotify1 = getConfigListEntry(_("Inotify Monitoring") + ":", self.minidlna_inotify)
 					self.list.append(minidlna_inotify1)
 				elif line.startswith('enable_tivo='):
 					if line[12:] == 'no':
-						self.minidlna_tivo.value = False
+						self.minidlna_tivo.setValue(False)
 					else:
-						self.minidlna_tivo.value = True
+						self.minidlna_tivo.setValue(True)
 					minidlna_tivo1 = getConfigListEntry(_("TiVo support") + ":", self.minidlna_tivo)
 					self.list.append(minidlna_tivo1)
 				elif line.startswith('strict_dlna='):
 					if line[12:] == 'no':
-						self.minidlna_strictdlna.value = False
+						self.minidlna_strictdlna.setValue(False)
 					else:
-						self.minidlna_strictdlna.value = True
+						self.minidlna_strictdlna.setValue(True)
 					minidlna_strictdlna1 = getConfigListEntry(_("Strict DLNA") + ":", self.minidlna_strictdlna)
 					self.list.append(minidlna_strictdlna1)
 			f.close()
@@ -3909,27 +3909,27 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 			for line in inme.readlines():
 				line = line.replace('\n', '')
 				if line.startswith('friendly_name='):
-					line = ('friendly_name=' + self.minidlna_name.value.strip())
+					line = ('friendly_name=' + self.minidlna_name.getValue().strip())
 				elif line.startswith('network_interface='):
-					line = ('network_interface=' + self.minidlna_iface.value.strip())
+					line = ('network_interface=' + self.minidlna_iface.getValue().strip())
 				elif line.startswith('port='):
-					line = ('port=' + str(self.minidlna_port.value))
+					line = ('port=' + str(self.minidlna_port.getValue()))
 				elif line.startswith('serial='):
-					line = ('serial=' + str(self.minidlna_serialno.value))
+					line = ('serial=' + str(self.minidlna_serialno.getValue()))
 				elif line.startswith('media_dir='):
-					line = ('media_dir=' + ', '.join( config.networkminidlna.mediafolders.value ))
+					line = ('media_dir=' + ', '.join( config.networkminidlna.mediafolders.getValue() ))
 				elif line.startswith('inotify='):
-					if not self.minidlna_inotify.value:
+					if not self.minidlna_inotify.getValue():
 						line = 'inotify=no'
 					else:
 						line = 'inotify=yes'
 				elif line.startswith('enable_tivo='):
-					if not self.minidlna_tivo.value:
+					if not self.minidlna_tivo.getValue():
 						line = 'enable_tivo=no'
 					else:
 						line = 'enable_tivo=yes'
 				elif line.startswith('strict_dlna='):
-					if not self.minidlna_strictdlna.value:
+					if not self.minidlna_strictdlna.getValue():
 						line = 'strict_dlna=no'
 					else:
 						line = 'strict_dlna=yes'
@@ -4027,7 +4027,7 @@ class MiniDLNASelection(Screen):
 
 	def saveSelection(self):
 		self.selectedFiles = self["checkList"].getSelectedList()
-		config.networkminidlna.mediafolders.value = self.selectedFiles
+		config.networkminidlna.mediafolders.setValue(self.selectedFiles)
 		self.close(None)
 
 	def exit(self):
