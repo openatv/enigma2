@@ -3955,26 +3955,29 @@ class InfoBarInstantRecord:
 						 "\n" + _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
 			return
 
+		common =((_("Add recording (stop after current event)"), "event"),
+		(_("Add recording (indefinitely)"), "indefinitely"),
+		(_("Add recording (enter recording duration)"), "manualduration"),
+		(_("Add recording (enter recording endtime)"), "manualendtime"),)
+
+		timeshiftcommon = ((_("Timeshift save recording (stop after current event)"), "savetimeshift"),
+		(_("Timeshift save recording (Select event)"), "savetimeshiftEvent"),)
+
+
 		if self.isInstantRecordRunning():
-			l = [(_("Stop recording"), "stop"), \
-			(_("Add recording (stop after current event)"), "event"), \
-			(_("Add recording (indefinitely)"), "indefinitely"), \
-			(_("Add recording (enter recording duration)"), "manualduration"), \
-			(_("Add recording (enter recording endtime)"), "manualendtime"), \
-			(_("Change recording (duration)"), "changeduration"), \
-			(_("Change recording (endtime)"), "changeendtime")]
+			title =_("A recording is currently running.\nWhat do you want to do?")
+			list = ((_("Stop recording"), "stop"),) + common + \
+			((_("Change recording (duration)"), "changeduration"),
+			(_("Change recording (endtime)"), "changeendtime"),)
 		else:
-			l = [(_("Add recording (stop after current event)"), "event"), \
-			(_("Add recording (indefinitely)"), "indefinitely"), \
-			(_("Add recording (enter recording duration)"), "manualduration"), \
-			(_("Add recording (enter recording endtime)"), "manualendtime")]
+			title=_("Start recording?")
+			list = common
+
 		if config.timeshift.enabled.getValue() or self.timeshift_enabled:
-			l.append((_("Timeshift")+" "+_("save recording (stop after current event)"), "savetimeshift"))
-			l.append((_("Timeshift")+" "+_("save recording (Select event)"), "savetimeshiftEvent"))
-		l.append((_("Do nothing"), "no"))
-		self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, \
-			title=_("A recording is currently running.\nWhat do you want to do?"), \
-			list=l)
+			list = list + timeshiftcommon
+
+		list = list + ((_("Do not record"), "no"),)
+		self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox,title=title,list=list)
 		return
 
 from Tools.ISO639 import LanguageCodes

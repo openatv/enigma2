@@ -2,7 +2,7 @@ installdir = $(pkglibdir)/python/Components
 
 SUBDIRS = Sources Converter Renderer
 
-install_PYTHON = \
+install_PYTHON = OnlineUpdateCheck.py NetworkTime.py EpgLoadSave.py \
 	ActionMap.py GUISkin.py PerServiceDisplay.py components.py              \
 	Button.py HTMLComponent.py ProgressBar.py TimerList.py config.py        \
 	HTMLSkin.py ServiceList.py VariableText.py                              \
@@ -18,6 +18,5 @@ install_PYTHON = \
 	MultiContent.py MediaPlayer.py TunerInfo.py VideoWindow.py ChoiceList.py \
 	Element.py Playlist.py ParentalControl.py ParentalControlList.py \
 	Ipkg.py SelectionList.py Scanner.py SystemInfo.py PackageInfo.py \
-	Task.py language_cache.py Console.py ResourceManager.py TuneTest.py \
-	Keyboard.py Sensors.py FanControl.py HdmiCec.py RcModel.py \
-	OnlineUpdateCheck.py NetworkTime.py EpgLoadSave.py
+	Task.py Console.py ResourceManager.py TuneTest.py \
+	Keyboard.py Sensors.py FanControl.py HdmiCec.py RcModel.py
