@@ -1,5 +1,5 @@
 from Components.Harddisk import harddiskmanager
-from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
+from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv
 from Components.NimManager import nimmanager
@@ -102,8 +102,8 @@ def InitUsageConfig():
 	config.usage.allowed_timeshift_paths = ConfigLocations(default = [resolveFilename(SCOPE_TIMESHIFT)])
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
-	config.usage.movielist_trashcan_days = ConfigNumber(default=8)
-	config.usage.movielist_trashcan_reserve = ConfigNumber(default=40)
+	config.usage.movielist_trashcan_days = ConfigSelectionNumber(min = 1, max = 31, stepwidth = 1, default = 8, wraparound = True)
+	config.usage.movielist_trashcan_reserve = ConfigSelectionNumber(min = 1, max = 3000, stepwidth = 4, default = 40, wraparound = True)
 	config.usage.on_movie_start = ConfigSelection(default = "ask", choices = [
 		("ask", _("Ask user")), ("resume", _("Resume from last position")), ("beginning", _("Start from the beginning")) ])
 	config.usage.on_movie_stop = ConfigSelection(default = "movielist", choices = [
@@ -231,15 +231,15 @@ def InitUsageConfig():
 	def EpgSettingsChanged(configElement):
 		from enigma import eEPGCache
 		mask = 0xffffffff
-		if not config.epg.eit.value:
+		if not config.epg.eit.getValue():
 			mask &= ~(eEPGCache.NOWNEXT | eEPGCache.SCHEDULE | eEPGCache.SCHEDULE_OTHER)
-		if not config.epg.mhw.value:
+		if not config.epg.mhw.getValue():
 			mask &= ~eEPGCache.MHW
-		if not config.epg.freesat.value:
+		if not config.epg.freesat.getValue():
 			mask &= ~(eEPGCache.FREESAT_NOWNEXT | eEPGCache.FREESAT_SCHEDULE | eEPGCache.FREESAT_SCHEDULE_OTHER)
-		if not config.epg.viasat.value:
+		if not config.epg.viasat.getValue():
 			mask &= ~eEPGCache.VIASAT
-		if not config.epg.netmed.value:
+		if not config.epg.netmed.getValue():
 			mask &= ~(eEPGCache.NETMED_SCHEDULE | eEPGCache.NETMED_SCHEDULE_OTHER)
 		eEPGCache.getInstance().setEpgSources(mask)
 	config.epg.eit.addNotifier(EpgSettingsChanged)
@@ -284,11 +284,11 @@ def InitUsageConfig():
 				hddchoises.append((d + '/', p.mountpoint))
 	config.misc.epgcachepath = ConfigSelection(default = '/etc/enigma2/', choices = hddchoises)
 	config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
-	config.misc.epgcache_filename = ConfigText(default = (config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
+	config.misc.epgcache_filename = ConfigText(default = (config.misc.epgcachepath.getValue() + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
 	def EpgCacheChanged(configElement):
 		config.misc.epgcache_filename.setValue(os.path.join(config.misc.epgcachepath.value, config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
 		config.misc.epgcache_filename.save()
-		enigma.eEPGCache.getInstance().setCacheFile(config.misc.epgcache_filename.value)
+		enigma.eEPGCache.getInstance().setCacheFile(config.misc.epgcache_filename.getValue())
 		from enigma import eEPGCache
 		epgcache = eEPGCache.getInstance()
 		epgcache.save()
@@ -328,7 +328,7 @@ def InitUsageConfig():
 	config.softwareupdate.autosettingsbackup = ConfigYesNo(default = True)
 	config.softwareupdate.autoimagebackup = ConfigYesNo(default = False)
 	config.softwareupdate.check = ConfigYesNo(default = True)
-	config.softwareupdate.checktimer = ConfigInteger(default=6, limits=(1, 48))
+	config.softwareupdate.checktimer = ConfigSelectionNumber(min = 1, max = 48, stepwidth = 1, default = 6, wraparound = True)
 	config.softwareupdate.updatelastcheck = ConfigInteger(default=0)
 	config.softwareupdate.updatefound = NoSave(ConfigBoolean(default = False))
 	config.softwareupdate.updatebeta = ConfigYesNo(default = False)
@@ -336,9 +336,9 @@ def InitUsageConfig():
 
 	config.timeshift = ConfigSubsection()
 	config.timeshift.enabled = ConfigYesNo(default = False)
-	config.timeshift.maxevents = ConfigInteger(default=5, limits=(1, 99))
-	config.timeshift.maxlength = ConfigInteger(default=180, limits=(5, 999))
-	config.timeshift.startdelay = ConfigInteger(default=5, limits=(5, 999))
+	config.timeshift.maxevents = ConfigSelectionNumber(min = 1, max = 99, stepwidth = 1, default = 5, wraparound = True)
+	config.timeshift.maxlength = ConfigSelectionNumber(min = 30, max = 999, stepwidth = 10, default = 180, wraparound = True)
+	config.timeshift.startdelay = ConfigSelectionNumber(min = 1, max = 10, stepwidth = 1, default = 5, wraparound = True)
 	config.timeshift.showinfobar = ConfigYesNo(default = True)
 	config.timeshift.stopwhilerecording = ConfigYesNo(default = False)
 	config.timeshift.favoriteSaveAction = ConfigSelection([("askuser", _("Ask user")),("savetimeshift", _("Save and stop")),("savetimeshiftandrecord", _("Save and record")),("noSave", _("Don't save"))], "askuser")
@@ -347,10 +347,10 @@ def InitUsageConfig():
 
 	config.seek = ConfigSubsection()
 	config.seek.baractivation = ConfigSelection([("leftright", _("Long Left/Right")),("ffrw", _("Long << / >>"))], "leftright")
-	config.seek.sensibility = ConfigInteger(default=10, limits=(1, 10))
-	config.seek.selfdefined_13 = ConfigNumber(default=15)
-	config.seek.selfdefined_46 = ConfigNumber(default=60)
-	config.seek.selfdefined_79 = ConfigNumber(default=300)
+	config.seek.sensibility = ConfigSelectionNumber(min = 1, max = 10, stepwidth = 1, default = 10, wraparound = True)
+	config.seek.selfdefined_13 = ConfigSelectionNumber(min = 1, max = 120, stepwidth = 1, default = 15, wraparound = True)
+	config.seek.selfdefined_46 = ConfigSelectionNumber(min = 1, max = 240, stepwidth = 1, default = 60, wraparound = True)
+	config.seek.selfdefined_79 = ConfigSelectionNumber(min = 1, max = 480, stepwidth = 1, default = 300, wraparound = True)
 
 	config.seek.speeds_forward = ConfigSet(default=[2, 4, 8, 16, 32, 64, 128], choices=[2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
 	config.seek.speeds_backward = ConfigSet(default=[2, 4, 8, 16, 32, 64, 128], choices=[1, 2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
@@ -368,9 +368,9 @@ def InitUsageConfig():
 	config.crash = ConfigSubsection()
 	config.crash.details = ConfigYesNo(default = True)
 	config.crash.enabledebug = ConfigYesNo(default = False)
-	config.crash.debugloglimit = ConfigNumber(default=4)
-	config.crash.daysloglimit = ConfigNumber(default=8)
-	config.crash.sizeloglimit = ConfigNumber(default=10)
+	config.crash.debugloglimit = ConfigSelectionNumber(min = 1, max = 10, stepwidth = 1, default = 4, wraparound = True)
+	config.crash.daysloglimit = ConfigSelectionNumber(min = 1, max = 30, stepwidth = 1, default = 8, wraparound = True)
+	config.crash.sizeloglimit = ConfigSelectionNumber(min = 1, max = 20, stepwidth = 1, default = 10, wraparound = True)
 
 	debugpath = [('/home/root/logs/', '/home/root/')]
 	for p in harddiskmanager.getMountedPartitions():
@@ -381,7 +381,7 @@ def InitUsageConfig():
 	config.crash.debug_path = ConfigSelection(default = "/home/root/logs/", choices = debugpath)
 
 	def updatedebug_path(configElement):
-		if not os.path.exists(config.crash.debug_path.value):
+		if not os.path.exists(config.crash.debug_path.getValue()):
 			os.mkdir(config.crash.debug_path.value,0755)
 	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback = False)
 
@@ -402,9 +402,9 @@ def InitUsageConfig():
 	config.seek.speeds_backward.addNotifier(updateEnterBackward, immediate_feedback = False)
 
 	def updateEraseSpeed(el):
-		enigma.eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.value))
+		enigma.eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.getValue()))
 	def updateEraseFlags(el):
-		enigma.eBackgroundFileEraser.getInstance().setEraseFlags(int(el.value))
+		enigma.eBackgroundFileEraser.getInstance().setEraseFlags(int(el.getValue()))
 	config.misc.erase_speed = ConfigSelection(default="20", choices = [
 		("10", "10 MB/s"),
 		("20", "20 MB/s"),
@@ -428,7 +428,7 @@ def InitUsageConfig():
 		def setZapmode(el):
 			try:
 				file = open(zapfile, "w")
-				file.write(el.value)
+				file.write(el.getValue())
 				file.close()
 			except:
 				pass
@@ -612,12 +612,12 @@ def InitUsageConfig():
 	config.oscaminfo.password = ConfigPassword(default = "password", fixed_size = False)
 	config.oscaminfo.ip = ConfigIP( default = [ 127,0,0,1 ], auto_jump=True)
 	config.oscaminfo.port = ConfigInteger(default = 16002, limits=(0,65536) )
-	config.oscaminfo.intervall = ConfigInteger(default = 10, limits=(1,600) )
+	config.oscaminfo.intervall = ConfigSelectionNumber(min = 1, max = 600, stepwidth = 1, default = 10, wraparound = True)
 	SystemInfo["OScamInstalled"] = False
 
 	config.cccaminfo = ConfigSubsection()
 	config.cccaminfo.showInExtensions = ConfigYesNo(default=False)
-	config.cccaminfo.serverNameLength = ConfigInteger(default=22, limits=(10, 100))
+	config.cccaminfo.serverNameLength = ConfigSelectionNumber(min = 10, max = 100, stepwidth = 1, default = 22, wraparound = True)
 	config.cccaminfo.name = ConfigText(default="Profile", fixed_size=False)
 	config.cccaminfo.ip = ConfigText(default="192.168.2.12", fixed_size=False)
 	config.cccaminfo.username = ConfigText(default="", fixed_size=False)
@@ -625,7 +625,7 @@ def InitUsageConfig():
 	config.cccaminfo.port = ConfigInteger(default=16001, limits=(1, 65535))
 	config.cccaminfo.profile = ConfigText(default="", fixed_size=False)
 	config.cccaminfo.ecmInfoEnabled = ConfigYesNo(default=True)
-	config.cccaminfo.ecmInfoTime = ConfigInteger(default=5, limits=(1, 10))
+	config.cccaminfo.ecmInfoTime = ConfigSelectionNumber(min = 1, max = 10, stepwidth = 1, default = 5, wraparound = True)
 	config.cccaminfo.ecmInfoForceHide = ConfigYesNo(default=True)
 	config.cccaminfo.ecmInfoPositionX = ConfigInteger(default=50)
 	config.cccaminfo.ecmInfoPositionY = ConfigInteger(default=50)
@@ -649,7 +649,7 @@ def InitUsageConfig():
 def updateChoices(sel, choices):
 	if choices:
 		defval = None
-		val = int(sel.value)
+		val = int(sel.getValue())
 		if not val in choices:
 			tmp = choices[:]
 			tmp.reverse()
@@ -670,10 +670,10 @@ def preferredPath(path):
 		return path
 
 def preferredTimerPath():
-	return preferredPath(config.usage.timer_path.value)
+	return preferredPath(config.usage.timer_path.getValue())
 
 def preferredInstantRecordPath():
-	return preferredPath(config.usage.instantrec_path.value)
+	return preferredPath(config.usage.instantrec_path.getValue())
 
 def defaultMoviePath():
 	return config.usage.default_path.value
