@@ -64,11 +64,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 			}, prio=2)
 
-		self["key_red"] = Label()
-		self["key_yellow"] = Label()
-		self["key_blue"] = Label()
-		self["key_green"] = Label()
-
 		self.allowPiP = True
 
 		for x in HelpableScreen, \
@@ -96,28 +91,11 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		if config.misc.initialchannelselection.value:
 			self.onShown.append(self.showMenu)
 
-		self.onShow.append(self.doButtonsCheck)
-
 	def showMenu(self):
 		self.onShown.remove(self.showMenu)
 		config.misc.initialchannelselection.value = False
 		config.misc.initialchannelselection.save()
 		self.mainMenu()
-
-	def doButtonsCheck(self):
-		if config.vixsettings.ColouredButtons.value:
-			self["key_yellow"].setText(_("Search"))
-
-			if config.usage.defaultEPGType.value == "Graphical EPG..." or config.usage.defaultEPGType.value == "None":
-				self["key_red"].setText(_("Single EPG"))
-			else:
-				self["key_red"].setText(_("ViX EPG"))
-
-			if not config.vixsettings.Subservice.value:
-				self["key_green"].setText(_("Timers"))
-			else:
-				self["key_green"].setText(_("Subservices"))
-		self["key_blue"].setText(_("Extensions"))
 
 	def __onClose(self):
 		InfoBar.instance = None

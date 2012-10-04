@@ -67,18 +67,12 @@
 					<item level="2" text="Position setup" entryID="osdsetup" requires="OsdSetup"><screen module="OSD" screen="OSDSetup"/></item>
 					<item level="2" text="3D setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="OSD" screen="OSD3DSetupScreen"/></item>
 				</menu>
-				<!--<item weight="13" level="0" entryID="remote_setup"><setup id="remotesetup"/></item>-->
 				<item weight="14" level="0" entryID="usage_setup"><setup id="usage" /></item>
 				<item weight="15" entryID="lcd_setup" requires="Display"><setup level="1" id="lcd" /></item>
 				<item weight="16" level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
 				<menu weight="20" level="0" text="Expert Settings" entryID="input_device_setup" >
 				  <id val="expert" />
 				  <item level="1" entryID="onlineupdate_setup"><setup id="softwareupdate"/></item>
-				  <menu level="2" text="Logs" entryID="logs_setup">
-					  <id val="logs_menu" />
-					  <item level="2" entryID="logs_setup"><setup id="logs" /></item>
-					  <item level="2" text="Logs manager" entryID="logs_man"><screen module="LogManager" screen="LogManager"/></item>
-				  </menu>
 				  <menu level="0" text="Network" entryID="network_menu">
 					  <id val="network2" />
 					  <item level="0" text="Device setup" entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
