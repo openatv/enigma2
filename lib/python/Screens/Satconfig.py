@@ -289,9 +289,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
 					self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 				elif currLnb.unicable.getValue() == "unicable_matrix":
-					manufacturer_name = currLnb.unicableMatrixManufacturer.value
+					manufacturer_name = currLnb.unicableMatrixManufacturer.getValue()
 					manufacturer = currLnb.unicableMatrix[manufacturer_name]
-					product_name = manufacturer.product.value
+					product_name = manufacturer.product.getValue()
 					self.advancedManufacturer = getConfigListEntry(_("Manufacturer"), currLnb.unicableMatrixManufacturer)
 					self.advancedType = getConfigListEntry(_("Type"), manufacturer.product)
 					self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name])
@@ -300,9 +300,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.list.append(self.advancedSCR)
 					self.list.append(getConfigListEntry(_("Frequency"), manufacturer.vco[product_name][manufacturer.scr[product_name].index]))
 				elif currLnb.unicable.getValue() == "unicable_lnb":
-					manufacturer_name = currLnb.unicableLnbManufacturer.value
+					manufacturer_name = currLnb.unicableLnbManufacturer.getValue()
 					manufacturer = currLnb.unicableLnb[manufacturer_name]
-					product_name = manufacturer.product.value
+					product_name = manufacturer.product.getValue()
 					self.advancedManufacturer = getConfigListEntry(_("Manufacturer"), currLnb.unicableLnbManufacturer)
 					self.advancedType = getConfigListEntry(_("Type"), manufacturer.product)
 					self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name])
@@ -537,7 +537,7 @@ class NimSelection(Screen):
 		for x in nimmanager.nim_slots:
 			slotid = x.slot
 			nimConfig = nimmanager.getNimConfig(x.slot)
-			text = nimConfig.configMode.value
+			text = nimConfig.configMode.getValue()
 			if self.showNim(x):
 				if x.isCompatible("DVB-S"):
 					if nimConfig.configMode.getValue() in ("loopthrough", "equal", "satposdepends"):

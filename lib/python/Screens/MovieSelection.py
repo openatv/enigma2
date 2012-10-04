@@ -72,7 +72,7 @@ l_moviesort = [(str(MovieList.SORT_RECORDED), _("by date"), '03/02/01'),
 	(str(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE), _("flat alphabetic reverse"), 'Z-A Flat')]
 
 def defaultMoviePath():
-	result = config.usage.default_path.value
+	result = config.usage.default_path.getValue()
 	if not os.path.isdir(result):
 		for mount in Components.Harddisk.getProcMounts():
 			if mount[1].startswith('/media/'):
@@ -423,7 +423,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.initUserDefinedActions()
 		self.tags = {}
 		if selectedmovie:
-			self.selected_tags = config.movielist.last_selected_tags.value
+			self.selected_tags = config.movielist.last_selected_tags.getValue()
 		else:
 			self.selected_tags = None
 		self.selected_tags_ele = None
@@ -456,7 +456,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.settings = {
 			"moviesort": config.movielist.moviesort.value,
 			"description": config.movielist.description.value,
-			"movieoff": config.usage.on_movie_eof.value
+			"movieoff": config.usage.on_movie_eof.getValue()
 		}
 		self.movieOff = self.settings["movieoff"]
 
@@ -776,7 +776,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def updateButtons(self):
 		item = self.getCurrentSelection()
 		for name in ('red', 'green', 'yellow', 'blue'):
-			action = userDefinedButtons[name].value
+			action = userDefinedButtons[name].getValue()
 			if action.startswith('@'):
 				check = self.can_default
 			else:
@@ -1035,7 +1035,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			updates = {
 				"moviesort": config.movielist.moviesort.value,
 				"description": config.movielist.description.value,
-				"movieoff": config.usage.on_movie_eof.value
+				"movieoff": config.usage.on_movie_eof.getValue()
 				}
 			self.applyConfigSettings(updates)
 
@@ -1144,7 +1144,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.updateTags()
 		title = ""
 		if config.usage.setup_level.index >= 2: # expert+
-			title += config.movielist.last_videodir.value
+			title += config.movielist.last_videodir.getValue()
 		if self.selected_tags is not None:
 			title += " - " + ','.join(self.selected_tags)
 		self.setTitle(title)
@@ -1170,7 +1170,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.gotFilename,
 			MovieLocationBox,
 			_("Please select the movie path..."),
-			config.movielist.last_videodir.value
+			config.movielist.last_videodir.getValue()
 		)
 
 	def gotFilename(self, res, selItem = None):
@@ -1179,7 +1179,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		# serviceref must end with /
 		if not res.endswith('/'):
 			res += '/'
-		currentDir = config.movielist.last_videodir.value
+		currentDir = config.movielist.last_videodir.getValue()
 		if res != currentDir:
 			if os.path.isdir(res):
 				config.movielist.last_videodir.value = res
@@ -1287,7 +1287,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					self.gotMovieLocation,
 					MovieLocationBox,
 					self.movieSelectTitle,
-					config.movielist.last_videodir.value
+					config.movielist.last_videodir.getValue()
 				)
 				return
 			choice = choice[1]
@@ -1311,7 +1311,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def can_addbookmark(self, item):
 		return True
 	def do_addbookmark(self):
-		path = config.movielist.last_videodir.value
+		path = config.movielist.last_videodir.getValue()
 		if path in config.movielist.videodirs.getValue():
 			if len(path) > 40:
 				path = '...' + path[-40:]
@@ -1323,8 +1323,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def removeBookmark(self, yes):
 		if not yes:
 			return
-		path = config.movielist.last_videodir.value
-		bookmarks = config.movielist.videodirs.value
+		path = config.movielist.last_videodir.getValue()
+		bookmarks = config.movielist.videodirs.getValue()
 		bookmarks.remove(path)
 		config.movielist.videodirs.value = bookmarks
 		config.movielist.videodirs.save()
@@ -1795,7 +1795,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def setNextMovieOffStatus(self):
 		config.usage.on_movie_eof.selectNext()
-		self.settings["movieoff"] = config.usage.on_movie_eof.value
+		self.settings["movieoff"] = config.usage.on_movie_eof.getValue()
 		if config.movielist.settings_per_directory.getValue():
 			self.saveLocalSettings()
 

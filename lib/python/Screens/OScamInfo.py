@@ -114,9 +114,9 @@ class OscamInfo:
 				self.password = udata[1]
 		else:
 			self.ip = ".".join("%d" % d for d in config.oscaminfo.ip.getValue())
-			self.port = config.oscaminfo.port.value
-			self.username = config.oscaminfo.username.value
-			self.password = config.oscaminfo.password.value
+			self.port = config.oscaminfo.port.getValue()
+			self.username = config.oscaminfo.username.getValue()
+			self.password = config.oscaminfo.password.getValue()
 		if part is None:
 			self.url = "http://%s:%s/oscamapi.html?part=status" % ( self.ip, self.port )
 		else:

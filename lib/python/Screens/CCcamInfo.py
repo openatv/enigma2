@@ -342,7 +342,7 @@ class CCcamInfoMain(Screen):
 		if config.cccaminfo.profile.getValue() == "":
 			self.readConfig()
 		else:
-			self.url = config.cccaminfo.profile.value
+			self.url = config.cccaminfo.profile.getValue()
 
 		self["actions"] = NumberActionMap(["CCcamInfoActions"],
 			{

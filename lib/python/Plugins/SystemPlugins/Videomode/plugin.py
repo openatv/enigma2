@@ -74,11 +74,11 @@ class VideoSetup(Screen, ConfigListScreen):
 			else:
 				self.list.append(getConfigListEntry(_("Refresh rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("This option configures the screen refresh rate.")))
 
-		port = config.av.videoport.value
+		port = config.av.videoport.getValue()
 		if port not in config.av.videomode:
 			mode = None
 		else:
-			mode = config.av.videomode[port].value
+			mode = config.av.videomode[port].getValue()
 
 		# some modes (720p, 1080i) are always widescreen. Don't let the user select something here, "auto" is not what he wants.
 		force_wide = self.hw.isWidescreenMode(port, mode)
@@ -140,15 +140,15 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.keySave()
 
 	def grabLastGoodMode(self):
-		port = config.av.videoport.value
-		mode = config.av.videomode[port].value
-		rate = config.av.videorate[mode].value
+		port = config.av.videoport.getValue()
+		mode = config.av.videomode[port].getValue()
+		rate = config.av.videorate[mode].getValue()
 		self.last_good = (port, mode, rate)
 
 	def apply(self):
-		port = config.av.videoport.value
-		mode = config.av.videomode[port].value
-		rate = config.av.videorate[mode].value
+		port = config.av.videoport.getValue()
+		mode = config.av.videomode[port].getValue()
+		rate = config.av.videorate[mode].getValue()
 		if (port, mode, rate) != self.last_good:
 			self.hw.setMode(port, mode, rate)
 			from Screens.MessageBox import MessageBox
@@ -186,9 +186,9 @@ class VideomodeHotplug:
 
 	def hotplug(self, what):
 		print "hotplug detected on port '%s'" % (what)
-		port = config.av.videoport.value
-		mode = config.av.videomode[port].value
-		rate = config.av.videorate[mode].value
+		port = config.av.videoport.getValue()
+		mode = config.av.videomode[port].getValue()
+		rate = config.av.videorate[mode].getValue()
 
 		if not self.hw.isModeAvailable(port, mode, rate):
 			print "mode %s/%s/%s went away!" % (port, mode, rate)

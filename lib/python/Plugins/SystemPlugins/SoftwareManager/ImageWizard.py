@@ -46,7 +46,7 @@ def checkConfigBackup():
 		return None		
 
 def checkBackupFile():
-	backuplocation = config.plugins.configurationbackup.backuplocation.value
+	backuplocation = config.plugins.configurationbackup.backuplocation.getValue()
 	if backuplocation.endswith('/'):
 		fullbackupfile =  backuplocation + 'backup/' + backupfile
 		if fileExists(fullbackupfile):

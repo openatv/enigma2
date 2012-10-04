@@ -295,7 +295,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			else:
 				self["filelist"].refresh()
 				self.removeBookmark(name, True)
-				val = self.realBookmarks and self.realBookmarks.value
+				val = self.realBookmarks and self.realBookmarks.getValue()
 				if val and name in val:
 					val.remove(name)
 					self.realBookmarks.value = val

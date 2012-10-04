@@ -118,7 +118,7 @@ class ParentalControl:
 
 	def unProtectService(self, service):
 		#print "unprotect"
-		#print "config.ParentalControl.type.getValue():", config.ParentalControl.type.value
+		#print "config.ParentalControl.type.getValue():", config.ParentalControl.type.getValue()
 		if config.ParentalControl.type.getValue() == LIST_WHITELIST:
 			if not self.whitelist.has_key(service):
 				self.serviceMethodWrapper(service, self.addServiceToList, self.whitelist)
@@ -168,7 +168,7 @@ class ParentalControl:
 		self.pinIntervalSeconds = 0
 		self.pinIntervalSecondsCancel = 0
 
-		self.storeServicePin = config.ParentalControl.storeservicepin.value
+		self.storeServicePin = config.ParentalControl.storeservicepin.getValue()
 
 		if self.storeServicePin == "never":
 			pass

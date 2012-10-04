@@ -407,7 +407,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.list.append(getConfigListEntry(_("Modulation"), self.scan_cab.modulation))
 				self.list.append(getConfigListEntry(_("FEC"), self.scan_cab.fec))
 			if config.Nims[index_to_scan].cable.scan_networkid.getValue():
-				self.networkid = config.Nims[index_to_scan].cable.scan_networkid.value
+				self.networkid = config.Nims[index_to_scan].cable.scan_networkid.getValue()
 				self.scan_networkScan.value = True
 		elif nim.isCompatible("DVB-T"):
 			if self.scan_typeterrestrial.getValue() == "single_transponder":
@@ -787,9 +787,9 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				if len(nimsats):
 					orbpos = nimsats[selsatidx][0]
 					if self.scan_sat.system.getValue() == eDVBFrontendParametersSatellite.System_DVB_S:
-						fec = self.scan_sat.fec.value
+						fec = self.scan_sat.fec.getValue()
 					else:
-						fec = self.scan_sat.fec_s2.value
+						fec = self.scan_sat.fec_s2.getValue()
 					print "add sat transponder"
 					self.addSatTransponder(tlist, self.scan_sat.frequency.value,
 								self.scan_sat.symbolrate.value,
@@ -844,7 +844,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		flags = self.scan_networkScan.getValue() and eComponentScan.scanNetworkSearch or 0
 
-		tmp = self.scan_clearallservices.value
+		tmp = self.scan_clearallservices.getValue()
 		if tmp == "yes":
 			flags |= eComponentScan.scanRemoveServices
 		elif tmp == "yes_hold_feeds":
@@ -1014,14 +1014,14 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 						getInitialCableTransponderList(tlist, nim.slot)
 					else:
 						action = SEARCH_CABLE_TRANSPONDERS
-						networkid = config.Nims[nim.slot].cable.scan_networkid.value
+						networkid = config.Nims[nim.slot].cable.scan_networkid.getValue()
 				elif nim.isCompatible("DVB-T"):
 					getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(nim.slot))
 				else:
 					assert False
 
 				flags |= eComponentScan.scanNetworkSearch #FIXMEEE.. use flags from cables / satellites / terrestrial.xml
-				tmp = self.scan_clearallservices.value
+				tmp = self.scan_clearallservices.getValue()
 				if tmp == "yes":
 					flags |= eComponentScan.scanRemoveServices
 				elif tmp == "yes_hold_feeds":

@@ -247,7 +247,7 @@ class MovieList(GUIComponent):
 		self.invalidateItem(self.getCurrentIndex())
 
 	def buildMovieListEntry(self, serviceref, info, begin, data):
-		switch = config.usage.show_icons_in_movielist.value
+		switch = config.usage.show_icons_in_movielist.getValue()
 		width = self.l.getItemSize().width()
 		pathName = serviceref.getPath()
 		res = [ None ]

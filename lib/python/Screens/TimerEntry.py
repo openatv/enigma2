@@ -126,7 +126,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_showendtime = ConfigSelection(default = ((self.timer.end - self.timer.begin) > 4), choices = [(True, _("yes")), (False, _("no"))])
 
 			default = self.timer.dirname or defaultMoviePath()
-			tmp = config.movielist.videodirs.value
+			tmp = config.movielist.videodirs.getValue()
 			if default not in tmp:
 				tmp.append(default)
 			self.timerentry_dirname = ConfigSelection(default = default, choices = tmp)
@@ -266,9 +266,9 @@ class TimerEntry(Screen, ConfigListScreen):
 		return int(mktime(dt.timetuple()))
 
 	def getBeginEnd(self):
-		date = self.timerentry_date.value
-		endtime = self.timerentry_endtime.value
-		starttime = self.timerentry_starttime.value
+		date = self.timerentry_date.getValue()
+		endtime = self.timerentry_endtime.getValue()
+		starttime = self.timerentry_starttime.getValue()
 
 		begin = self.getTimestamp(date, starttime)
 		end = self.getTimestamp(date, endtime)
@@ -294,12 +294,12 @@ class TimerEntry(Screen, ConfigListScreen):
 		if not self.timerentry_service_ref.isRecordable():
 			self.session.openWithCallback(self.selectChannelSelector, MessageBox, _("You didn't select a channel to record from."), MessageBox.TYPE_ERROR)
 			return
-		self.timer.name = self.timerentry_name.value
-		self.timer.description = self.timerentry_description.value
+		self.timer.name = self.timerentry_name.getValue()
+		self.timer.description = self.timerentry_description.getValue()
 		self.timer.justplay = self.timerentry_justplay.getValue() == "zap"
 		if self.timerentry_justplay.getValue() == "zap":
 			if not self.timerentry_showendtime.getValue():
-				self.timerentry_endtime.value = self.timerentry_starttime.value
+				self.timerentry_endtime.value = self.timerentry_starttime.getValue()
 		self.timer.resetRepeated()
 		self.timer.afterEvent = {
 			"nothing": AFTEREVENT.NONE,
@@ -321,7 +321,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timer.tags = self.timerentry_tags
 
 		if self.timer.dirname or self.timerentry_dirname.getValue() != defaultMoviePath():
-			self.timer.dirname = self.timerentry_dirname.value
+			self.timer.dirname = self.timerentry_dirname.getValue()
 			config.movielist.last_timer_videodir.value = self.timer.dirname
 			config.movielist.last_timer_videodir.save()
 

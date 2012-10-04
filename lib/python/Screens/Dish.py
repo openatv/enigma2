@@ -48,7 +48,7 @@ class Dish(Screen):
 		config.usage.showdish.addNotifier(self.configChanged)
 		self.configChanged(config.usage.showdish)
 
-		self.rotor_pos = self.cur_orbpos = config.misc.lastrotorposition.value
+		self.rotor_pos = self.cur_orbpos = config.misc.lastrotorposition.getValue()
 		self.turn_time = self.total_time = None
 		self.cur_polar = 0
 		self.__state = self.STATE_HIDDEN
