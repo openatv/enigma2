@@ -1870,25 +1870,20 @@ class InfoBarInstantRecord:
 						 "\n" + _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
 			return
 
+		common =((_("Add recording (stop after current event)"), "event"),
+		(_("Add recording (indefinitely)"), "indefinitely"),
+		(_("Add recording (enter recording duration)"), "manualduration"),
+		(_("Add recording (enter recording endtime)"), "manualendtime"),)
 		if self.isInstantRecordRunning():
-			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, \
-				title=_("A recording is currently running.\nWhat do you want to do?"), \
-				list=((_("Stop recording"), "stop"), \
-				(_("Add recording (stop after current event)"), "event"), \
-				(_("Add recording (indefinitely)"), "indefinitely"), \
-				(_("Add recording (enter recording duration)"), "manualduration"), \
-				(_("Add recording (enter recording endtime)"), "manualendtime"), \
-				(_("Change recording (duration)"), "changeduration"), \
-				(_("Change recording (endtime)"), "changeendtime"), \
-				(_("Do nothing"), "no")))
+			title =_("A recording is currently running.\nWhat do you want to do?")
+			list = ((_("Stop recording"), "stop"),) + common + \
+			((_("Change recording (duration)"), "changeduration"),
+			(_("Change recording (endtime)"), "changeendtime"),
+			(_("Do nothing"), "no"),)
 		else:
-			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, \
-				title=_("Start recording?"), \
-				list=((_("Add recording (stop after current event)"), "event"), \
-				(_("Add recording (indefinitely)"), "indefinitely"), \
-				(_("Add recording (enter recording duration)"), "manualduration"), \
-				(_("Add recording (enter recording endtime)"), "manualendtime"), \
-				(_("Do not record"), "no")))
+			title=_("Start recording?")
+			list = common + ((_("Do not record"), "no"),)
+		self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox,title=title,list=list)
 
 from Tools.ISO639 import LanguageCodes
 
