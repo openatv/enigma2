@@ -919,9 +919,13 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (snr * 100) >> 8;
 	}
-	else if (!strcmp(m_description, "Vuplus DVB-S NIM"))
+	else if (!strcmp(m_description, "Vuplus DVB-S NIM")) // VU+Ultimo DVB-S2 NIM
 	{
 		ret = (int)((((float(snr) / (65536.0 / 100.0)) * 0.1600) + (float)0.2100) * 100);
+	}
+	else if (!strcmp(m_description, "BCM7335 DVB-S2 NIM")) // VU+Duo DVB-S2 Nim
+	{
+		ret = (int)((((float(snr) / (65536.0 / 100.0)) * 0.1600) + (float)0.2100) * 100); // FIXME: calibrate against actual tuner
 	}
 	else if (!strcmp(m_description, "Genpix"))
 	{

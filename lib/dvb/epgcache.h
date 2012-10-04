@@ -306,6 +306,7 @@ private:
 	unsigned int enabledSources;
 	unsigned int historySeconds;
 
+	std::vector<int> onid_blacklist;
 	eventCache eventDB;
 	updateMap channelLastUpdated;
 	static pthread_mutex_t cache_lock, channel_map_lock;
