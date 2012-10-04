@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/Extensions/AspectRatioSwitch
+installdir = $(pkglibdir)/python/Plugins/Extensions/GBAspectRatioSwitch
 
 install_PYTHON =	\
 	__init__.py \

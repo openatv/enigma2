@@ -193,7 +193,7 @@ def main(session, **kwargs):
 def Plugins(**kwargs):
  	return [
 		PluginDescriptor(
-			name="AspectRatioSwitch",
+			name="GBAspectRatioSwitch",
 			description=_("Quick switching of aspect ratio setting"),
 			where = PluginDescriptor.WHERE_PLUGINMENU,
 			#icon='plugin.png',
