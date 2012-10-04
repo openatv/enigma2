@@ -669,7 +669,7 @@ class InfoBarNumberZap:
 						self.servicelist.enterPath(rootbouquet)
 						self.servicelist.enterPath(bouquet)
 						self.servicelist.saveRoot()
-					self.zapToNumber(service, bouquet)
+					self.selectAndStartService(service, bouquet)
 				else:
 					self.servicelist.recallPrevService()
 		else:
