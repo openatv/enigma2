@@ -15,11 +15,11 @@ from enigma import eEnv
 import xml.etree.cElementTree
 
 class SetupError(Exception):
-    def __init__(self, message):
-        self.msg = message
+	def __init__(self, message):
+		self.msg = message
 
-    def __str__(self):
-        return self.msg
+	def __str__(self):
+		return self.msg
 
 class SetupSummary(Screen):
 	def __init__(self, session, parent):
@@ -84,7 +84,6 @@ class Setup(ConfigListScreen, Screen):
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
-		self["status"] = StaticText()
 
 		self.onChangedEntry = [ ]
 		self.item = None
