@@ -822,6 +822,8 @@ class InfoBarChannelSelection:
 			self.secondInfoBarWasShown = False
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="showRadioChannelList")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			self.servicelist.setModeRadio()
 			if zap:
@@ -841,6 +843,8 @@ class InfoBarChannelSelection:
 			self.ptsSeekPointerOK()
 		elif self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="historyBack")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			self.servicelist.historyBack()
 
@@ -856,6 +860,8 @@ class InfoBarChannelSelection:
 			self.ptsSeekPointerOK()
 		elif self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="historyNext")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			self.servicelist.historyNext()
 
@@ -865,6 +871,8 @@ class InfoBarChannelSelection:
 			self.secondInfoBarWasShown = False
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelUp")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			if not config.usage.show_bouquetalways.getValue():
  # 				self.servicelist.moveUp()
@@ -879,6 +887,8 @@ class InfoBarChannelSelection:
 			self.secondInfoBarWasShown = False
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelDown")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			if not config.usage.show_bouquetalways.getValue():
 #  				self.servicelist.moveDown()
@@ -893,12 +903,16 @@ class InfoBarChannelSelection:
 			self.secondInfoBarWasShown = False
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="openServiceList")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			self.session.execDialog(self.servicelist)
 
 	def openSatellites(self):
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="openSatellites")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			self.servicelist.showSatellites()
 			self.session.execDialog(self.servicelist)
@@ -916,6 +930,8 @@ class InfoBarChannelSelection:
 
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="zapUp")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			if self.servicelist.inBouquet():
 				prev = self.servicelist.getCurrentSelection()
@@ -939,6 +955,8 @@ class InfoBarChannelSelection:
 
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="zapDown")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			if self.servicelist.inBouquet():
 				prev = self.servicelist.getCurrentSelection()
