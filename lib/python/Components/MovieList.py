@@ -290,7 +290,7 @@ class MovieList(GUIComponent):
 					else:
 						data.icon = self.iconMovieRec
 				elif switch == 'p' or switch == 's':
-					data.part = 0
+					data.part = 100
 					if self.playInBackground and serviceref == self.playInBackground:
 						data.partcol = 0xffc71d
 					else:
