@@ -38,7 +38,7 @@ class LanguageSelection(Screen):
 		self.updateList()
 		self.onLayoutFinish.append(self.selectActiveLanguage)
 
-		self["actions"] = ActionMap(["OkCancelActions"], 
+		self["actions"] = ActionMap(["OkCancelActions"],
 		{
 			"ok": self.save,
 			"cancel": self.cancel,
@@ -69,7 +69,7 @@ class LanguageSelection(Screen):
 			config.osd.language.save()
 			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[config.osd.language.value])
 		self.setTitle(self.catalog.gettext("Language selection"))
-		
+
 		if justlocal:
 			return
 
@@ -95,19 +95,19 @@ class LanguageWizard(LanguageSelection, Rc):
 		LanguageSelection.__init__(self, session)
 		Rc.__init__(self)
 		self.onLayoutFinish.append(self.selectKeys)
-				
+
 		self["wizard"] = Pixmap()
 		self["text"] = Label()
 		self.setText()
-		
+
 	def selectKeys(self):
 		self.clearSelectedKeys()
 		self.selectKey("UP")
 		self.selectKey("DOWN")
-		
+
 	def changed(self):
 		self.run(justlocal = True)
 		self.setText()
-		
+
 	def setText(self):
 		self["text"].setText(self.catalog.gettext("Please use the UP and DOWN keys to select your language. Afterwards press the OK button."))

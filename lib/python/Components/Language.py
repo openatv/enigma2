@@ -96,7 +96,7 @@ class Language:
 			if x == self.activeLanguage:
 				return idx
 			idx += 1
-		return None			
+		return None
 
 	def getLanguage(self):
 		try:
