@@ -452,7 +452,7 @@ class InfoBarChannelSelection:
 	def openHistoryBrowser(self):
 		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/ZapHistoryBrowser/plugin.pyo"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				if plugin.name == _("Zap-Historie Browser"):
+				if plugin.name == _("Zap-Historie Browser") or plugin.name == _("Zap-History Browser"):
 					self.runPlugin(plugin)
 					break
 		else:
