@@ -58,7 +58,7 @@ class EGServiceName(Converter, object):
 			transponder_info = info.getInfoObject(iServiceInformation.sTransponderData)
 			
 		transponderData = info.getInfoObject(iServiceInformation.sTransponderData)
-		orbital = 0
+		orbital = ""
 		info = service and service.info()
 		
 		try:
