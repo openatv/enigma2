@@ -224,11 +224,10 @@ class Devices(Screen):
 				if line.find(device) != -1:
 					parts = line.strip().split()
 					mount = str(parts[1])
-					print"mount1: %s" % mount
 					break
 					continue
 			f.close()
-			print"mount2: %s" % mount
+
 			if not mount.startswith('/dev/'):
 				size = Harddisk(device).diskSize()
 				free = Harddisk(device).free()
