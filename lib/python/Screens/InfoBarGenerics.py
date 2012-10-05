@@ -446,6 +446,7 @@ class InfoBarChannelSelection:
 				"opendevicemanager": (self.openDeviceManager, _("open device manager")),
 				"openaroraplugins": (self.openAroraPlugins, _("open Arora Browser")),
 				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
+				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
 			})
 
 	def openHistoryBrowser(self):
@@ -506,6 +507,10 @@ class InfoBarChannelSelection:
 
 	def historyNext(self):
 		self.servicelist.historyNext()
+		
+	def openBouquetList(self):
+		self.servicelist.showFavourites()
+		self.session.execDialog(self.servicelist)	
 
 	def switchChannelUp(self):
 		self.servicelist.moveUp()

@@ -123,6 +123,7 @@
 		<key id="KEY_F1" mapto="opendevicemanager" flags="mr" />
 		<key id="KEY_F4" mapto="openaroraplugins" flags="mr" />
 		<key id="KEY_GREEN" mapto="showPluginBrowser" flags="mr" />
+		<key id="KEY_FAVORITES" mapto="openBouquetList" flags="b" />
 	</map>
 	
 	<map context="MinuteInputActions">
@@ -216,7 +217,6 @@
 		<key id="KEY_LIST" mapto="showMediaPlayer" flags="b" />
 		<key id="KEY_F5" mapto="openTimerList" flags="b" />
 		<key id="KEY_SEARCH" mapto="openEPGSearch" flags="b" />
-
 	</map>
 
 	<map context="InfobarAudioSelectionActions">
@@ -481,7 +481,7 @@
 		<key id="KEY_GREEN" mapto="showSatellites" flags="m" />
 		<key id="KEY_YELLOW" mapto="showProviders" flags="m" />
 		<key id="KEY_BLUE" mapto="showFavourites" flags="m" />
-		<key id="KEY_FAVORITES" mapto="showFavourites" flags="m" />
+		<key id="KEY_FAVORITES" mapto="showFavourites" flags="b" />
 		<key id="KEY_CHANNELUP" mapto="nextBouquet" flags="m" />
 		<key id="KEY_CHANNELDOWN" mapto="prevBouquet" flags="m" />
 		<key id="KEY_PREVIOUS" mapto="prevMarker" flags="m" />
