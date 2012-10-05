@@ -229,11 +229,11 @@ class wpaSupplicant:
 			config.plugins.wlan.encryption.value = encryption
 
 			wsconfig = {
-					'hiddenessid': config.plugins.wlan.hiddenessid.value,
-					'ssid': config.plugins.wlan.essid.value,
-					'encryption': config.plugins.wlan.encryption.value,
-					'wepkeytype': config.plugins.wlan.wepkeytype.value,
-					'key': config.plugins.wlan.psk.value,
+					'hiddenessid': config.plugins.wlan.hiddenessid.getValue(),
+					'ssid': config.plugins.wlan.essid.getValue(),
+					'encryption': config.plugins.wlan.encryption.getValue(),
+					'wepkeytype': config.plugins.wlan.wepkeytype.getValue(),
+					'key': config.plugins.wlan.psk.getValue(),
 				}
 
 			for (key, item) in wsconfig.items():

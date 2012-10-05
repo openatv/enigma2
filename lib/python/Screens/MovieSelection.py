@@ -454,8 +454,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.setCurrentRef(config.movielist.last_videodir.getValue())
 
 		self.settings = {
-			"moviesort": config.movielist.moviesort.value,
-			"description": config.movielist.description.value,
+			"moviesort": config.movielist.moviesort.getValue(),
+			"description": config.movielist.description.getValue(),
 			"movieoff": config.usage.on_movie_eof.getValue()
 		}
 		self.movieOff = self.settings["movieoff"]
@@ -1033,8 +1033,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				print "Failed to load settings from %s: %s" % (path, e)
 		else:
 			updates = {
-				"moviesort": config.movielist.moviesort.value,
-				"description": config.movielist.description.value,
+				"moviesort": config.movielist.moviesort.getValue(),
+				"description": config.movielist.description.getValue(),
 				"movieoff": config.usage.on_movie_eof.getValue()
 				}
 			self.applyConfigSettings(updates)
@@ -1093,8 +1093,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def configureDone(self, result):
 		if result:
 			self.applyConfigSettings({\
-				"moviesort": config.movielist.moviesort.value,
-				"description": config.movielist.description.value,
+				"moviesort": config.movielist.moviesort.getValue(),
+				"description": config.movielist.description.getValue(),
 				"movieoff": config.usage.on_movie_eof.value})
 			self.saveLocalSettings()
 			self._updateButtonTexts()

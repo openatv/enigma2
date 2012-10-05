@@ -242,7 +242,7 @@ class TimerEntry(Screen, ConfigListScreen):
 				self.pathSelected,
 				MovieLocationBox,
 				_("Choose target folder"),
-				self.timerentry_dirname.value,
+				self.timerentry_dirname.getValue(),
 				minFree = 100 # We require at least 100MB free space
 			)
 		elif getPreferredTagEditor() and cur == self.tagsSet:
