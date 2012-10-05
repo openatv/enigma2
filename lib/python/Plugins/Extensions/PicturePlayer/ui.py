@@ -124,7 +124,7 @@ class picshow(Screen):
 		self.setTitle(_("PicturePlayer"))
 		sc = getScale()
 		#0=Width 1=Height 2=Aspect 3=use_cache 4=resize_type 5=Background(#AARRGGBB)
-		self.picload.setPara((self["thn"].instance.size().width(), self["thn"].instance.size().height(), sc[0], sc[1], config.pic.cache.value, int(config.pic.resize.getValue()), "#00000000"))
+		self.picload.setPara((self["thn"].instance.size().width(), self["thn"].instance.size().height(), sc[0], sc[1], config.pic.cache.getValue(), int(config.pic.resize.getValue()), "#00000000"))
 
 	def callbackView(self, val=0):
 		if val > 0:
@@ -344,7 +344,7 @@ class Pic_Thumb(Screen):
 
 	def setPicloadConf(self):
 		sc = getScale()
-		self.picload.setPara([self["thumb0"].instance.size().width(), self["thumb0"].instance.size().height(), sc[0], sc[1], config.pic.cache.value, int(config.pic.resize.getValue()), self.color])
+		self.picload.setPara([self["thumb0"].instance.size().width(), self["thumb0"].instance.size().height(), sc[0], sc[1], config.pic.cache.getValue(), int(config.pic.resize.getValue()), self.color])
 		self.paintFrame()
 
 	def paintFrame(self):
