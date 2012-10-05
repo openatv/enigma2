@@ -1,3 +1,5 @@
+import gettext
+
 from Screen import Screen
 
 from Components.ActionMap import ActionMap
@@ -6,21 +8,19 @@ from Components.config import config
 from Components.Sources.List import List
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-from Components.language_cache import LANG_TEXT
-
-def _cached(x):
-	return LANG_TEXT.get(config.osd.language.value, {}).get(x, "")
 
 from Screens.Rc import Rc
 
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_LANGUAGE
 
 from Tools.LoadPixmap import LoadPixmap
 
 def LanguageEntryComponent(file, name, index):
-	png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/" + file + ".png"))
+	png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/" + index + ".png"))
 	if png == None:
-		png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/missing.png"))
+		png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/" + file + ".png"))
+		if png == None:
+			png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/missing.png"))
 	res = (index, name, png)
 	return res
 
@@ -29,6 +29,7 @@ class LanguageSelection(Screen):
 		Screen.__init__(self, session)
 
 		self.oldActiveLanguage = language.getActiveLanguage()
+		self.catalog = language.getActiveCatalog()
 
 		self.list = []
 		self["languages"] = List(self.list)
@@ -37,7 +38,7 @@ class LanguageSelection(Screen):
 		self.updateList()
 		self.onLayoutFinish.append(self.selectActiveLanguage)
 
-		self["actions"] = ActionMap(["OkCancelActions"], 
+		self["actions"] = ActionMap(["OkCancelActions"],
 		{
 			"ok": self.save,
 			"cancel": self.cancel,
@@ -63,10 +64,12 @@ class LanguageSelection(Screen):
 	def run(self, justlocal = False):
 		print "updating language..."
 		lang = self["languages"].getCurrent()[0]
-		config.osd.language.value = lang
-		config.osd.language.save()
-		self.setTitle(_cached("T2"))
-		
+		if lang != config.osd.language.value:
+			config.osd.language.value = lang
+			config.osd.language.save()
+			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[config.osd.language.value])
+		self.setTitle(self.catalog.gettext("Language selection"))
+
 		if justlocal:
 			return
 
@@ -92,19 +95,19 @@ class LanguageWizard(LanguageSelection, Rc):
 		LanguageSelection.__init__(self, session)
 		Rc.__init__(self)
 		self.onLayoutFinish.append(self.selectKeys)
-				
+
 		self["wizard"] = Pixmap()
 		self["text"] = Label()
 		self.setText()
-		
+
 	def selectKeys(self):
 		self.clearSelectedKeys()
 		self.selectKey("UP")
 		self.selectKey("DOWN")
-		
+
 	def changed(self):
 		self.run(justlocal = True)
 		self.setText()
-		
+
 	def setText(self):
-		self["text"].setText(_cached("T1"))
+		self["text"].setText(self.catalog.gettext("Please use the UP and DOWN keys to select your language. Afterwards press the OK button."))

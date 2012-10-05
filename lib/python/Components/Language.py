@@ -9,11 +9,11 @@ class Language:
 	def __init__(self):
 		gettext.install('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), unicode=0, codeset="utf-8")
 		self.activeLanguage = 0
+		self.catalog = None
 		self.lang = {}
 		self.langlist = []
 		# FIXME make list dynamically
 		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
-		# also, see "precalcLanguageList" below on how to re-create the language cache after you added a language
 		self.addLanguage("Arabic",      "ar", "AE")
 		self.addLanguage("Български",   "bg", "BG")
 		self.addLanguage("Català",      "ca", "AD")
@@ -39,6 +39,7 @@ class Language:
 		self.addLanguage("Norsk",       "no", "NO")
 		self.addLanguage("Polski",      "pl", "PL")
 		self.addLanguage("Português",   "pt", "PT")
+		self.addLanguage("Brasileira",  "pt", "BR")
 		self.addLanguage("Romanian",    "ro", "RO")
 		self.addLanguage("Русский",     "ru", "RU")
 		self.addLanguage("Slovensky",   "sk", "SK")
@@ -62,7 +63,8 @@ class Language:
 		try:
 			lang = self.lang[index]
 			print "Activating language " + lang[0]
-			gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[lang[1]]).install(names=("ngettext", "pgettext"))
+			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[lang[1]])
+			self.catalog.install(names=("ngettext", "pgettext"))
 			self.activeLanguage = index
 			for x in self.callbacks:
 				x()
@@ -84,14 +86,17 @@ class Language:
 
 	def getActiveLanguage(self):
 		return self.activeLanguage
-	
+
+	def getActiveCatalog(self):
+		return self.catalog
+
 	def getActiveLanguageIndex(self):
 		idx = 0
 		for x in self.langlist:
 			if x == self.activeLanguage:
 				return idx
 			idx += 1
-		return None			
+		return None
 
 	def getLanguage(self):
 		try:
@@ -101,21 +106,5 @@ class Language:
 
 	def addCallback(self, callback):
 		self.callbacks.append(callback)
-
-	def precalcLanguageList(self):
-		# excuse me for those T1, T2 hacks please. The goal was to keep the language_cache.py as small as possible, *and* 
-		# don't duplicate these strings.
-		T1 = _("Please use the UP and DOWN keys to select your language. Afterwards press the OK button.")
-		T2 = _("Language selection")
-		l = open("language_cache.py", "w")
-		print >>l, "# -*- coding: UTF-8 -*-"
-		print >>l, "LANG_TEXT = {"
-		for language in self.langlist:
-			self.activateLanguage(language)
-			print >>l, '"%s": {' % language
-			print >>l, '\t"T1": "%s",' % (_(T1))
-			print >>l, '\t"T2": "%s",' % (_(T2))
-			print >>l, '},'
-		print >>l, "}"
 
 language = Language()
