@@ -881,7 +881,7 @@ class InfoBarEPG:
 		if self.defaultEPGType is not None:
 			self.defaultEPGType()
 			return
-		self.openEventView()
+		self.openMultiServiceEPG()
 
 	def openEventView(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
