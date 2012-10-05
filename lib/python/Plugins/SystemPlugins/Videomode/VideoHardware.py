@@ -1,4 +1,4 @@
-from enigma import eTimer
+from enigma import eTimer, getBoxType
 from Components.config import config, ConfigSelection, ConfigSubDict, ConfigYesNo
 
 from Tools.CList import CList
@@ -38,7 +38,7 @@ class VideoHardware:
 								"60Hz":		{ 60: "1080i" },
 								"multi":	{ 50: "1080i50", 60: "1080i" } }
 
-	if config.misc.boxtype.value == 'tmtwin':
+	if getBoxType() == 'tmtwin':
 		rates["1080p"] =		{ "24Hz":		{ 24: "1080p24" },
 									"30Hz":		{ 30: "1080p30" } }
 	else:
@@ -70,14 +70,14 @@ class VideoHardware:
 
 	def getOutputAspect(self):
 		ret = (16,9)
-		port = config.av.videoport.value
+		port = config.av.videoport.getValue()
 		if port not in config.av.videomode:
 			print "current port not available in getOutputAspect!!! force 16:9"
 		else:
-			mode = config.av.videomode[port].value
+			mode = config.av.videomode[port].getValue()
 			force_widescreen = self.isWidescreenMode(port, mode)
-			is_widescreen = force_widescreen or config.av.aspect.value in ("16_9", "16_10")
-			is_auto = config.av.aspect.value == "auto"
+			is_widescreen = force_widescreen or config.av.aspect.getValue() in ("16_9", "16_10")
+			is_auto = config.av.aspect.getValue() == "auto"
 			if is_widescreen:
 				if force_widescreen:
 					pass
@@ -187,7 +187,7 @@ class VideoHardware:
 
 		try:
 			mode_etc = None
-			if mode == "1080p" and config.misc.boxtype.value == 'tmtwin':
+			if mode == "1080p" and getBoxType() == 'tmtwin':
 				mode_etc = modes.get(int(rate[:2]))
 				open("/proc/stb/video/videomode", "w").write(mode_etc)
 				# not support 50Hz, 60Hz for 1080p
@@ -202,7 +202,7 @@ class VideoHardware:
 				print "setting videomode failed."
 
 		try:
-			if mode == "1080p" and config.misc.boxtype.value == 'tmtwin':
+			if mode == "1080p" and getBoxType() == 'tmtwin':
 				open("/etc/videomode", "w").write(mode_etc)
 			else:
 				open("/etc/videomode", "w").write(mode_50) # use 50Hz mode (if available) for booting
@@ -283,18 +283,18 @@ class VideoHardware:
 # ]
 
 	def setConfiguredMode(self):
-		port = config.av.videoport.value
+		port = config.av.videoport.getValue()
 		if port not in config.av.videomode:
 			print "current port not available, not setting videomode"
 			return
 
-		mode = config.av.videomode[port].value
+		mode = config.av.videomode[port].getValue()
 
 		if mode not in config.av.videorate:
 			print "current mode not available, not setting videomode"
 			return
 
-		rate = config.av.videorate[mode].value
+		rate = config.av.videorate[mode].getValue()
 		self.setMode(port, mode, rate)
 
 	def updateAspect(self, cfgelement):
@@ -302,7 +302,7 @@ class VideoHardware:
 		# determine policy = {bestfit,letterbox,panscan,nonlinear}
 
 		# based on;
-		#   config.av.videoport.value: current video output device
+		#   config.av.videoport.getValue(): current video output device
 		#     Scart:
 		#   config.av.aspect:
 		#     4_3:            use policy_169
@@ -318,16 +318,16 @@ class VideoHardware:
 		#     nonlinear       use nonlinear
 		#     scale           use bestfit
 
-		port = config.av.videoport.value
+		port = config.av.videoport.getValue()
 		if port not in config.av.videomode:
 			print "current port not available, not setting videomode"
 			return
-		mode = config.av.videomode[port].value
+		mode = config.av.videomode[port].getValue()
 
 		force_widescreen = self.isWidescreenMode(port, mode)
 
-		is_widescreen = force_widescreen or config.av.aspect.value in ("16_9", "16_10")
-		is_auto = config.av.aspect.value == "auto"
+		is_widescreen = force_widescreen or config.av.aspect.getValue() in ("16_9", "16_10")
+		is_auto = config.av.aspect.getValue() == "auto"
 		policy2 = "policy" # use main policy
 
 		if is_widescreen:
@@ -354,7 +354,7 @@ class VideoHardware:
 			aspect = "4:3"
 			policy = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit", "auto": "bestfit"}[config.av.policy_169.value]
 
-		if not config.av.wss.value:
+		if not config.av.wss.getValue():
 			wss = "auto(4:3_off)"
 		else:
 			wss = "auto"

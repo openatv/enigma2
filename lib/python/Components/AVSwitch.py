@@ -19,7 +19,7 @@ class AVSwitch:
 		eAVSwitch.getInstance().setVideomode(value)
 
 	def getOutputAspect(self):
-		valstr = config.av.aspectratio.value
+		valstr = config.av.aspectratio.getValue()
 		if valstr in ("4_3_letterbox", "4_3_panscan"): # 4:3
 			return (4,3)
 		elif valstr == "16_9": # auto ... 4:3 or 16:9
@@ -41,7 +41,7 @@ class AVSwitch:
 		return (aspect[0] * fb_size.height(), aspect[1] * fb_size.width())
 
 	def getAspectRatioSetting(self):
-		valstr = config.av.aspectratio.value
+		valstr = config.av.aspectratio.getValue()
 		if valstr == "4_3_letterbox":
 			val = 0
 		elif valstr == "4_3_panscan":
@@ -59,7 +59,7 @@ class AVSwitch:
 		return val
 
 	def setAspectWSS(self, aspect=None):
-		if not config.av.wss.value:
+		if not config.av.wss.getValue():
 			value = 2 # auto(4:3_off)
 		else:
 			value = 1 # auto
@@ -71,7 +71,7 @@ def InitAVSwitch():
 	colorformat_choices = {"cvbs": _("CVBS"), "rgb": _("RGB"), "svideo": _("S-Video")}
 
 	# when YUV is not enabled, don't let the user select it
-	if config.av.yuvenabled.value:
+	if config.av.yuvenabled.getValue():
 		colorformat_choices["yuv"] = _("YPbPr")
 
 	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
@@ -160,7 +160,7 @@ def InitAVSwitch():
 
 	if os.path.exists("/proc/stb/vmpeg/0/pep_scaler_sharpness"):
 		def setScaler_sharpness(config):
-			myval = int(config.value)
+			myval = int(config.getValue())
 			try:
 				print "--> setting scaler_sharpness to: %0.8X" % myval
 				open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w").write("%0.8X" % myval)

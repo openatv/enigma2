@@ -29,8 +29,6 @@ def onPartitionChange(why, part):
 					opkgStatusPath = 'usr/lib/opkg/status'
 			if os.path.exists(os.path.join(mountpoint, opkgStatusPath)):
 				opkgAddDestination(mountpoint)
-			if os.path.exists(os.path.join(mountpoint, 'var/lib/opkg/status')):
-				opkgAddDestination(mountpoint)
 		elif why == 'remove':
 			try:
 				opkgDestinations.remove(mountpoint)
