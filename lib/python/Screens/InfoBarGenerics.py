@@ -1022,7 +1022,7 @@ class InfoBarMenu:
 		else:
 			config.av.aspect.value = "auto"
 		config.av.aspect.save()
-		self.session.open(MessageBox, _("AV aspect is %s." % ASPECT_MSG[config.av.aspect.value]), MessageBox.TYPE_INFO, timeout=5)
+		self.session.open(MessageBox, _("AV aspect is %s." % ASPECT_MSG[config.av.aspect.getValue()]), MessageBox.TYPE_INFO, timeout=5)
 
 	def showNetworkMounts(self):
 		menulist = mdom.getroot().findall('menu')
@@ -1782,7 +1782,7 @@ class InfoBarSeek:
 			self.setSeekState(self.makeStateForward(int(config.seek.enter_forward.getValue())))
 		elif self.seekstate == self.SEEK_STATE_PAUSE:
 			if len(config.seek.speeds_slowmotion.getValue()):
-				self.setSeekState(self.makeStateSlowMotion(config.seek.speeds_slowmotion.value[-1]))
+				self.setSeekState(self.makeStateSlowMotion(config.seek.speeds_slowmotion.getValue()[-1]))
 			else:
 				self.setSeekState(self.makeStateForward(int(config.seek.enter_forward.getValue())))
 		elif self.seekstate == self.SEEK_STATE_EOF:
@@ -1791,7 +1791,7 @@ class InfoBarSeek:
 			speed = self.seekstate[1]
 			if self.seekstate[2]:
 				speed /= self.seekstate[2]
-			speed = self.getHigher(speed, config.seek.speeds_forward.getValue()) or config.seek.speeds_forward.value[-1]
+			speed = self.getHigher(speed, config.seek.speeds_forward.getValue()) or config.seek.speeds_forward.getValue()[-1]
 			self.setSeekState(self.makeStateForward(speed))
 		elif self.isStateBackward(self.seekstate):
 			speed = -self.seekstate[1]
@@ -1803,7 +1803,7 @@ class InfoBarSeek:
 			else:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 		elif self.isStateSlowMotion(self.seekstate):
-			speed = self.getLower(self.seekstate[2], config.seek.speeds_slowmotion.getValue()) or config.seek.speeds_slowmotion.value[0]
+			speed = self.getLower(self.seekstate[2], config.seek.speeds_slowmotion.getValue()) or config.seek.speeds_slowmotion.getValue()[0]
 			self.setSeekState(self.makeStateSlowMotion(speed))
 
 	def seekBack(self):
@@ -1835,7 +1835,7 @@ class InfoBarSeek:
 			speed = -seekstate[1]
 			if seekstate[2]:
 				speed /= seekstate[2]
-			speed = self.getHigher(speed, config.seek.speeds_backward.getValue()) or config.seek.speeds_backward.value[-1]
+			speed = self.getHigher(speed, config.seek.speeds_backward.getValue()) or config.seek.speeds_backward.getValue()[-1]
 			self.setSeekState(self.makeStateBackward(speed))
 		elif self.isStateSlowMotion(seekstate):
 			speed = self.getHigher(seekstate[2], config.seek.speeds_slowmotion.getValue())
