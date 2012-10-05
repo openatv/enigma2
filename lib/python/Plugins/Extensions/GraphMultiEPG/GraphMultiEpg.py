@@ -755,7 +755,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 
 		self["list"] = EPGList( selChangedCB = self.onSelectionChanged,
 					timer = self.session.nav.RecordTimer,
-					time_epoch = config.misc.graph_mepg.prev_time_period.value,
+					time_epoch = config.misc.graph_mepg.prev_time_period.getValue(),
 					overjump_empty = config.misc.graph_mepg.overjump.getValue())
 
 		HelpableScreen.__init__(self)

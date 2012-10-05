@@ -522,7 +522,7 @@ class TimeshiftLocationBox(LocationBox):
 				self,
 				session,
 				text = _("Where to save temporary timeshift recordings?"),
-				currDir = config.usage.timeshift_path.value,
+				currDir = config.usage.timeshift_path.getValue(),
 				bookmarks = config.usage.allowed_timeshift_paths,
 				autoAdd = True,
 				editDir = True,

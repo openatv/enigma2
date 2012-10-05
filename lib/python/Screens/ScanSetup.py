@@ -791,15 +791,15 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					else:
 						fec = self.scan_sat.fec_s2.getValue()
 					print "add sat transponder"
-					self.addSatTransponder(tlist, self.scan_sat.frequency.value,
-								self.scan_sat.symbolrate.value,
-								self.scan_sat.polarization.value,
+					self.addSatTransponder(tlist, self.scan_sat.frequency.getValue(),
+								self.scan_sat.symbolrate.getValue(),
+								self.scan_sat.polarization.getValue(),
 								fec,
-								self.scan_sat.inversion.value,
+								self.scan_sat.inversion.getValue(),
 								orbpos,
-								self.scan_sat.system.value,
-								self.scan_sat.modulation.value,
-								self.scan_sat.rolloff.value,
+								self.scan_sat.system.getValue(),
+								self.scan_sat.modulation.getValue(),
+								self.scan_sat.rolloff.getValue(),
 								self.scan_sat.pilot.getValue())
 				removeAll = False
 			elif self.scan_type.getValue() == "single_satellite":
@@ -814,10 +814,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		elif nim.isCompatible("DVB-C"):
 			if self.scan_typecable.getValue() == "single_transponder":
-				self.addCabTransponder(tlist, self.scan_cab.frequency.value,
-											  self.scan_cab.symbolrate.value,
-											  self.scan_cab.modulation.value,
-											  self.scan_cab.fec.value,
+				self.addCabTransponder(tlist, self.scan_cab.frequency.getValue(),
+											  self.scan_cab.symbolrate.getValue(),
+											  self.scan_cab.modulation.getValue(),
+											  self.scan_cab.fec.getValue(),
 											  self.scan_cab.inversion.getValue())
 				removeAll = False
 			elif self.scan_typecable.getValue() == "complete":
@@ -830,13 +830,13 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			if self.scan_typeterrestrial.getValue() == "single_transponder":
 				self.addTerTransponder(tlist,
 						self.scan_ter.frequency.getValue() * 1000,
-						inversion = self.scan_ter.inversion.value,
-						bandwidth = self.scan_ter.bandwidth.value,
-						fechigh = self.scan_ter.fechigh.value,
-						feclow = self.scan_ter.feclow.value,
-						modulation = self.scan_ter.modulation.value,
-						transmission = self.scan_ter.transmission.value,
-						guard = self.scan_ter.guard.value,
+						inversion = self.scan_ter.inversion.getValue(),
+						bandwidth = self.scan_ter.bandwidth.getValue(),
+						fechigh = self.scan_ter.fechigh.getValue(),
+						feclow = self.scan_ter.feclow.getValue(),
+						modulation = self.scan_ter.modulation.getValue(),
+						transmission = self.scan_ter.transmission.getValue(),
+						guard = self.scan_ter.guard.getValue(),
 						hierarchy = self.scan_ter.hierarchy.getValue())
 				removeAll = False
 			elif self.scan_typeterrestrial.getValue() == "complete":

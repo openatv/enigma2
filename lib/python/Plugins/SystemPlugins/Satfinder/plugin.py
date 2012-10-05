@@ -122,15 +122,15 @@ class Satfinder(ScanSetup):
 			else:
 				fec = self.scan_sat.fec.getValue()
 			returnvalue = (
-				self.scan_sat.frequency.value,
-				self.scan_sat.symbolrate.value,
-				self.scan_sat.polarization.value,
+				self.scan_sat.frequency.getValue(),
+				self.scan_sat.symbolrate.getValue(),
+				self.scan_sat.polarization.getValue(),
 				fec,
-				self.scan_sat.inversion.value,
+				self.scan_sat.inversion.getValue(),
 				satpos,
-				self.scan_sat.system.value,
-				self.scan_sat.modulation.value,
-				self.scan_sat.rolloff.value,
+				self.scan_sat.system.getValue(),
+				self.scan_sat.modulation.getValue(),
+				self.scan_sat.rolloff.getValue(),
 				self.scan_sat.pilot.getValue())
 			self.tune(returnvalue)
 		elif self.tuning_type.getValue() == "predefined_transponder":
