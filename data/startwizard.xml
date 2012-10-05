@@ -165,9 +165,9 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 			</list>
 			<code pos="after">
 if self["list"].index == 0:
-	config.ParentalControl.configured.getValue() = True
+	config.ParentalControl.configured.setValue(True)
 else:
-	config.ParentalControl.configured.getValue() = False
+	config.ParentalControl.configured.setValue(False)
 config.ParentalControl.configured.save()
 			</code>
 		</step>
