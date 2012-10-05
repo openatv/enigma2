@@ -183,13 +183,14 @@ class Timer:
 #		else:
 #			print "no NAV"
 
-	def setNextActivation(self, when):
-		delay = int((when - time()) * 1000)
+	def setNextActivation(self, now, when):
+		delay = int((when - now) * 1000)
 		self.timer.start(delay, 1)
 		self.next = when
 
 	def calcNextActivation(self):
-		if self.lastActivation > time():
+		now = time()
+		if self.lastActivation > now:
 			print "[timer.py] timewarp - re-evaluating all processed timers."
 			tl = self.processed_timers
 			self.processed_timers = [ ]
@@ -199,9 +200,9 @@ class Timer:
 				self.addTimerEntry(x, noRecalc=1)
 
 		self.processActivation()
-		self.lastActivation = time()
+		self.lastActivation = now
 
-		min = int(time()) + self.MaxWaitTime
+		min = int(now) + self.MaxWaitTime
 
 		# calculate next activation point
 		if self.timer_list:
@@ -209,7 +210,11 @@ class Timer:
 			if w < min:
 				min = w
 
-		self.setNextActivation(min)
+		if int(now) < 1072224000 and min > now + 5:
+			# system time has not yet been set (before 01.01.2004), keep a short poll interval
+			min = now + 5
+
+		self.setNextActivation(now, min)
 
 	def timeChanged(self, timer):
 		print "time changed"
