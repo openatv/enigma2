@@ -40,65 +40,10 @@
 			</menu>
 			<menu weight="5" level="0" text="System" entryID="system_selection">
 				<id val="system" />
-				<!--<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>-->
-				  <!--<item text="Keyboard"><setup id="keyboard" /></item>-->
-				<menu weight="0" level="0" text="A/V Settings" entryID="av_setup" >
-				  <id val="av" />
-				</menu>
-				<item weight="1" level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
-				<item weight="2" level="0" entryID="timezone_setup"><setup id="time"/></item>
-				<item weight="3" level="0" text="Network setup" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
-				<item weight="5" level="0" text="Recording settings" entryID="record_paths"><screen module="Recordings_Timershift" screen="RecordingSettings" /></item>
-				<item weight="6" level="0" text="Timeshift settings" entryID="record_paths"><screen module="Recordings_Timershift" screen="TimeshiftSettings" /></item>
-				<item weight="7" level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
-				<item weight="8" level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
-				<item weight="9" level="0" text="EPG Settings" entryID="epg_setup"><setup id="epgsettings" /></item>
-				<item weight="10" level="0" text="Skin setup" entryID="skin_selection"><screen module="SkinSelector" screen="SkinSelector"/></item>
-				<menu weight="11" level="0" text="Harddisk" entryID="hardisk_selection" requires="Harddisk">
-					<id val="harddisk" />
-					<item level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
-					<item level="0" text="Initialization" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
-					<!--<item level="0" text="Filesystem check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
-					<item level="0" text="Convert filesystem ext3 to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>-->
-				</menu>
-				<menu weight="12" level="2" text="User interface" entryID="osd_setup" requires="OsdMenu">
-					<id val="osd_menu" />
-					<item level="0" entryID="osd_setup"><setup id="osdsetup" /></item>
-					<item level="2" text="Position setup" entryID="osdsetup" requires="OsdSetup"><screen module="OSD" screen="OSDSetup"/></item>
-					<item level="2" text="3D setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="OSD" screen="OSD3DSetupScreen"/></item>
-				</menu>
-				<item weight="14" level="0" entryID="usage_setup"><setup id="usage" /></item>
-				<item weight="15" entryID="lcd_setup" requires="Display"><setup level="1" id="lcd" /></item>
-				<item weight="16" level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
-				<menu weight="20" level="0" text="Expert Settings" entryID="input_device_setup" >
-				  <id val="expert" />
-				  <item level="1" entryID="onlineupdate_setup"><setup id="softwareupdate"/></item>
-				  <menu level="0" text="Network" entryID="network_menu">
-					  <id val="network2" />
-					  <item level="0" text="Device setup" entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
-					  <item level="1" text="Mounts setup" entryID="netmounts_setup"><screen module="NetworkSetup" screen="NetworkMountsMenu"/></item>
-					  <item level="2" text="AFP setup" entryID="netafp_setup"><screen module="NetworkSetup" screen="NetworkAfp"/></item>
-					  <item level="2" text="FTP setup" entryID="netftp_setup"><screen module="NetworkSetup" screen="NetworkFtp"/></item>
-					  <item level="2" text="Inadyn setup" entryID="Inadyn_setup"><screen module="NetworkSetup" screen="NetworkInadyn"/></item>
-					  <item level="2" text="MiniDLNA setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkMiniDLNA"/></item>
-					  <item level="2" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkSetup" screen="NetworkNfs"/></item>
-					  <item level="2" text="OpenVPN setup" entryID="netvpn_setup"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
-					  <item level="2" text="SABnzbd setup" entryID="netsabnzbd_setup" requires="SABSetup">
-<code>
-from Plugins.SystemPlugins.SABnzbd.plugin import SABnzbdSetupScreen
-self.session.open(SABnzbdSetupScreen)
-</code>
-					  </item>
-					  <item level="2" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkSetup" screen="NetworkSamba"/></item>
-					  <item level="2" text="Telnet setup" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
-					  <item level="2" text="uShare setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
-				  </menu>
-				  <item level="0" text="HDMI CEC" entryID="hdmicec" requires="HDMICEC">
-<code>
-from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
-self.session.open(HdmiCECSetupScreen)
-</code>
-				  </item>
+				<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
+				<item level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
+				<item level="0" entryID="usage_setup"><setup id="usage" /></item>
+				<item requires="Display"><setup level="1" id="lcd" /></item>
 				<menu level="2" text="EPG" entryID="epg_menu">
 					<id val="epg" />
 					<item level="0" entryID="epg_setup"><setup id="epgsettings" /></item>
@@ -127,8 +72,65 @@ self.session.openWithCallback(msgClosed, EpgLoadMsg)
 </code>
 						</item>
 					</menu>
-				</menu>				  
-				
+					<item level="2" entryID="setup_epgsingle"><setup id="epgsingle" /></item>
+					<item level="2" entryID="setup_epgmulti"><setup id="epgmulti" /></item>
+					<item level="2" entryID="setup_epgenhanced"><setup id="epgenhanced" /></item>
+					<item level="2" entryID="setup_epginfobar"><setup id="epginfobar" /></item>
+					<item level="2" entryID="setup_epggraphical"><setup id="epggraphical" /></item>
+				</menu>
+				<menu level="0" text="Harddisk" entryID="hardisk_selection" requires="Harddisk">
+					<id val="harddisk" />
+					<item level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
+					<item level="0" text="Initialization" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
+					<item level="0" text="Filesystem check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
+					<item level="0" text="Convert filesystem ext3 to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
+				</menu>
+				<item level="0" text="HDMI CEC" entryID="hdmicec" requires="HDMICEC">
+<code>
+from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
+self.session.open(HdmiCECSetupScreen)
+</code>
+				</item>
+				<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
+				<item text="Keyboard"><setup id="keyboard" /></item>
+				<item level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
+				<menu level="2" text="Logs" entryID="logs_setup">
+					<id val="logs_menu" />
+					<item level="2" entryID="logs_setup"><setup id="logs" /></item>
+					<item level="2" text="Logs manager" entryID="logs_man"><screen module="LogManager" screen="LogManager"/></item>
+				</menu>
+				<menu level="0" text="Network" entryID="network_menu">
+					<id val="network" />
+					<item level="0" text="Device setup" entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
+					<item level="1" text="Mounts setup" entryID="netmounts_setup"><screen module="NetworkSetup" screen="NetworkMountsMenu"/></item>
+					<item level="2" text="AFP setup" entryID="netafp_setup"><screen module="NetworkSetup" screen="NetworkAfp"/></item>
+					<item level="2" text="FTP setup" entryID="netftp_setup"><screen module="NetworkSetup" screen="NetworkFtp"/></item>
+					<item level="2" text="Inadyn setup" entryID="Inadyn_setup"><screen module="NetworkSetup" screen="NetworkInadyn"/></item>
+					<item level="2" text="MiniDLNA setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkMiniDLNA"/></item>
+					<item level="2" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkSetup" screen="NetworkNfs"/></item>
+					<item level="2" text="OpenVPN setup" entryID="netvpn_setup"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
+					<item level="2" text="SABnzbd setup" entryID="netsabnzbd_setup" requires="SABSetup">
+<code>
+from Plugins.SystemPlugins.SABnzbd.plugin import SABnzbdSetupScreen
+self.session.open(SABnzbdSetupScreen)
+</code>
+					</item>
+					<item level="2" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkSetup" screen="NetworkSamba"/></item>
+					<item level="2" text="Telnet setup" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
+					<item level="2" text="uShare setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
+				</menu>
+				<item level="1" entryID="onlineupdate_setup"><setup id="softwareupdate"/></item>
+				<item level="0" text="Recording settings" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings" /></item>
+				<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
+				<item level="0" text="Skin setup" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector"/></item>
+				<item level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
+				<item level="0" text="Timeshift settings" entryID="timshift_setup"><screen module="Timershift" screen="TimeshiftSettings" /></item>
+				<item level="0" entryID="time_setup"><setup id="time"/></item>
+				<menu level="2" text="User interface" entryID="osd_setup" requires="OsdMenu">
+					<id val="osd_menu" />
+					<item level="0" entryID="osd_setup"><setup id="osdsetup" /></item>
+					<item level="2" text="Position setup" entryID="osdsetup" requires="OsdSetup"><screen module="OSD" screen="OSDSetup"/></item>
+					<item level="2" text="3D setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="OSD" screen="OSD3DSetupScreen"/></item>
 				</menu>
 			</menu>
 			<menu weight="10" text="SoftCam / CI" entryID="cam_setup">
@@ -160,7 +162,7 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 			<item text="Sleep timer" entryID="sleep"><screen module="SleepTimerEdit" screen="SleepTimerEdit" /></item>
 			<item text="Standby" entryID="standby"><screen module="Standby" screen="Standby"/></item>
 			<item text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
-			<item text="Restart GUI" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
+			<item text="Restart enigma" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
 			<item text="Deep standby" requires="DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
 			<item text="Shutdown" requires="!DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
 		</menu>

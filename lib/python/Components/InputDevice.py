@@ -205,8 +205,8 @@ class RcTypeControl():
 			self.boxType = fd.read()
 			fd.close()
 
-			if config.plugins.remotecontroltype.rctype.value != 0:
-				self.writeRcType(config.plugins.remotecontroltype.rctype.value)
+			if config.plugins.remotecontroltype.rctype.getValue() != 0:
+				self.writeRcType(config.plugins.remotecontroltype.rctype.getValue())
 		else:
 			self.isSupported = False
 

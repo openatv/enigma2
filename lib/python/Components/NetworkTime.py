@@ -29,7 +29,7 @@ class NTPSyncPoller:
 		self.timer.stop()
 
 	def ntp_sync(self):
-		if config.misc.SyncTimeUsing.value == "1":
+		if config.misc.SyncTimeUsing.getValue() == "1":
 			print '[NTP]: Updating'
 			self.Console.ePopen('/usr/bin/ntpdate -s -u pool.ntp.org', self.update_schedule)
 
@@ -38,4 +38,4 @@ class NTPSyncPoller:
 		print '[NTP]: setting E2 time:',nowTime
 		setRTCtime(nowTime)
 		eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)
-		self.timer.startLongTimer(int(config.misc.useNTPminutes.value) * 60)
+		self.timer.startLongTimer(int(config.misc.useNTPminutes.getValue()) * 60)

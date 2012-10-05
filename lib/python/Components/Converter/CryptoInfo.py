@@ -11,7 +11,7 @@ class CryptoInfo(Poll, Converter, object):
 		Poll.__init__(self)
 
 		self.active = False
-		if int(config.usage.show_cryptoinfo.value) > 0:
+		if int(config.usage.show_cryptoinfo.getValue()) > 0:
 			self.visible = True
 		else:
 			self.visible = False
@@ -22,7 +22,7 @@ class CryptoInfo(Poll, Converter, object):
 
 	@cached
 	def getText(self):
-		if int(config.usage.show_cryptoinfo.value) < 1:
+		if int(config.usage.show_cryptoinfo.getValue()) < 1:
 			self.visible = False
 			return ''
 		self.visible = True

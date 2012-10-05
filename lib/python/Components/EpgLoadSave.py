@@ -6,7 +6,7 @@ from enigma import eTimer
 def EpgCacheLoadCheck(session=None, **kwargs):
 	global epgcacheloadcheckpoller
 	epgcacheloadcheckpoller = EpgCacheLoadCheckPoller()
-	if config.epg.cacheloadsched.value:
+	if config.epg.cacheloadsched.getValue():
 		epgcacheloadcheckpoller.start()
 	else:
 		epgcacheloadcheckpoller.stop()
@@ -14,7 +14,7 @@ def EpgCacheLoadCheck(session=None, **kwargs):
 def EpgCacheSaveCheck(session=None, **kwargs):
 	global epgcachesavecheckpoller
 	epgcachesavecheckpoller = EpgCacheSaveCheckPoller()
-	if config.epg.cachesavesched.value:
+	if config.epg.cachesavesched.getValue():
 		epgcachesavecheckpoller.start()
 	else:
 		epgcachesavecheckpoller.stop()
@@ -40,7 +40,7 @@ class EpgCacheLoadCheckPoller:
 
 	def createLoadCheckJob(self):
 		job = Components.Task.Job(_("EPG Cache Check"))
-		if config.epg.cacheloadsched.value:
+		if config.epg.cacheloadsched.getValue():
 			task = Components.Task.PythonTask(job, _("Reloading EPG Cache..."))
 			task.work = self.JobEpgCacheLoad
 			task.weighting = 1
@@ -79,7 +79,7 @@ class EpgCacheSaveCheckPoller:
 
 	def createSaveCheckJob(self):
 		job = Components.Task.Job(_("EPG Cache Check"))
-		if config.epg.cachesavesched.value:
+		if config.epg.cachesavesched.getValue():
 			task = Components.Task.PythonTask(job, _("Saving EPG Cache..."))
 			task.work = self.JobEpgCacheSave
 			task.weighting = 1

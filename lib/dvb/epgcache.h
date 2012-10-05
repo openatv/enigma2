@@ -141,14 +141,14 @@ private:
 	static void load(FILE *);
 	static void save(FILE *);
 	static void cacheCorrupt(const char* context);
-public:
-	eventData(const eit_event_struct* e = NULL, int size = 0, int type = 0, int tsidonid = 0);
-	~eventData();
 	const eit_event_struct* get() const;
 	operator const eit_event_struct*() const
 	{
 		return get();
 	}
+public:
+	eventData(const eit_event_struct* e = NULL, int size = 0, int type = 0, int tsidonid = 0);
+	~eventData();
 	int getEventID()
 	{
 		return (EITdata[0] << 8) | EITdata[1];
@@ -306,6 +306,7 @@ private:
 	unsigned int enabledSources;
 	unsigned int historySeconds;
 
+	std::vector<int> onid_blacklist;
 	eventCache eventDB;
 	updateMap channelLastUpdated;
 	static pthread_mutex_t cache_lock, channel_map_lock;

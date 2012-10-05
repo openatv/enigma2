@@ -1,6 +1,6 @@
 from twisted.internet import threads
 from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
-from enigma import eDBoxLCD, eTimer
+from enigma import eDBoxLCD, eTimer, getBoxType
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
 import usb
@@ -41,9 +41,9 @@ class IconCheckPoller:
 			if LinkState != 'down':
 				LinkState = open('/sys/class/net/eth0/carrier').read()
 		LinkState = LinkState[:1]
-		if fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.value == '1':
+		if fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.getValue() == '1':
 			open("/proc/stb/lcd/symbol_network", "w").write(str(LinkState))
-		elif fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.value == '0':
+		elif fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.getValue() == '0':
 			open("/proc/stb/lcd/symbol_network", "w").write('0')
 
 		USBState = 0
@@ -58,9 +58,9 @@ class IconCheckPoller:
 # 						print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
 # 						print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
 					USBState = 1
-		if fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.value == '1':
+		if fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.getValue() == '1':
 			open("/proc/stb/lcd/symbol_usb", "w").write(str(USBState))
-		elif fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.value == '0':
+		elif fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.getValue() == '0':
 			open("/proc/stb/lcd/symbol_usb", "w").write('0')
 
 		self.timer.startLongTimer(30)
@@ -72,7 +72,7 @@ class LCD:
 	LED_IOCTL_SET_DEFAULT = 0X13
 
 	def __init__(self):
-		if config.misc.boxtype.value == 'vuultimo':
+		if getBoxType() == 'vuultimo':
 			self.led_fd = open("/dev/dbox/oled0",'rw')
 
 	def __del__(self):
@@ -140,7 +140,7 @@ def standbyCounterChanged(configElement):
 	config.lcd.ledbrightnessdeepstandby.apply()
 
 def InitLcd():
-	if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
+	if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'gb800ue':
 		detected = False
 	else:
 		detected = eDBoxLCD.getInstance().detected()
@@ -215,7 +215,7 @@ def InitLcd():
 			config.lcd.repeat = ConfigNothing()
 			config.lcd.scrollspeed = ConfigNothing()
 
-		if config.misc.boxtype.value == 'vuultimo':
+		if getBoxType() == 'vuultimo':
 			config.lcd.ledblinkingtime = ConfigSlider(default = 5, increment = 1, limits = (0,15))
 			config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime);
 			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default = 1, increment = 1, limits = (0,15))

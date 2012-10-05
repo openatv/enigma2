@@ -599,90 +599,90 @@ class PliExtraInfo(Poll, Converter, object):
 
 		if self.type == "CryptoInfo":
 			self.getCryptoInfo(info)
-			if int(config.usage.show_cryptoinfo.value) > 0:
+			if int(config.usage.show_cryptoinfo.getValue()) > 0:
 				return addspace(self.createCryptoBar(info)) + self.createCryptoSpecial(info)
 			else:
 				return addspace(self.createCryptoBar(info)) + addspace(self.current_source) + self.createCryptoSpecial(info)
 
 		if self.type == "CryptoBar":
-			if int(config.usage.show_cryptoinfo.value) > 0:
+			if int(config.usage.show_cryptoinfo.getValue()) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoBar(info)
 			else:
 				return ""
 
 		if self.type == "CryptoSeca":
-			if int(config.usage.show_cryptoinfo.value) > 0:
+			if int(config.usage.show_cryptoinfo.getValue()) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoSeca(info)
 			else:
 				return ""
 
 		if self.type == "CryptoVia":
-			if int(config.usage.show_cryptoinfo.value) > 0:
+			if int(config.usage.show_cryptoinfo.getValue()) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoVia(info)
 			else:
 				return ""
 
 		if self.type == "CryptoIrdeto":
-			if int(config.usage.show_cryptoinfo.value) > 0:
+			if int(config.usage.show_cryptoinfo.getValue()) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoIrdeto(info)
 			else:
 				return ""
 
 		if self.type == "CryptoNDS":
-			if int(config.usage.show_cryptoinfo.value) > 0:
+			if int(config.usage.show_cryptoinfo.getValue()) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoNDS(info)
 			else:
 				return ""
 
 		if self.type == "CryptoConax":
-			if int(config.usage.show_cryptoinfo.value) > 0:
+			if int(config.usage.show_cryptoinfo.getValue()) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoConax(info)
 			else:
 				return ""
 
 		if self.type == "CryptoCryptoW":
-			if int(config.usage.show_cryptoinfo.value) > 0:
+			if int(config.usage.show_cryptoinfo.getValue()) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoCryptoW(info)
 			else:
 				return ""
 
 		if self.type == "CryptoBeta":
-			if int(config.usage.show_cryptoinfo.value) > 0:
+			if int(config.usage.show_cryptoinfo.getValue()) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoBeta(info)
 			else:
 				return ""
 
 		if self.type == "CryptoNagra":
-			if int(config.usage.show_cryptoinfo.value) > 0:
+			if int(config.usage.show_cryptoinfo.getValue()) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoNagra(info)
 			else:
 				return ""
 
 		if self.type == "CryptoBiss":
-			if int(config.usage.show_cryptoinfo.value) > 0:
+			if int(config.usage.show_cryptoinfo.getValue()) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoBiss(info)
 			else:
 				return ""
 
 		if self.type == "CryptoDre":
-			if int(config.usage.show_cryptoinfo.value) > 0:
+			if int(config.usage.show_cryptoinfo.getValue()) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoDre(info)
 			else:
 				return ""
 
 		if self.type == "CryptoSpecial":
-			if int(config.usage.show_cryptoinfo.value) > 0:
+			if int(config.usage.show_cryptoinfo.getValue()) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoSpecial(info)
 			else:
@@ -709,7 +709,7 @@ class PliExtraInfo(Poll, Converter, object):
 
 		if self.type == "All":
 			self.getCryptoInfo(info)
-			if int(config.usage.show_cryptoinfo.value) > 0:
+			if int(config.usage.show_cryptoinfo.getValue()) > 0:
 				return addspace(self.createProviderName(info)) + self.createTransponderInfo(fedata,feraw) + "\n"\
 				+ addspace(self.createCryptoBar(info)) + addspace(self.createCryptoSpecial(info)) + "\n"\
 				+ addspace(self.createPIDInfo(info)) + addspace(self.createVideoCodec(info)) + self.createResolution(info)
