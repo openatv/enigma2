@@ -194,7 +194,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 		if self.scan_hd.getValue() and pid >=900 and pid < 930:
 			pid += 1
 		if self.scan_nims.getValue():
-			self.session.open(FastScanStatus, scanTuner = int(self.scan_nims.getValue()), scanPid = pid, keepNumbers = self.scan_keepnumbering.value, keepSettings = self.scan_keepsettings.value, providerName = self.scan_provider.getText())
+			self.session.open(FastScanStatus, scanTuner = int(self.scan_nims.getValue()), scanPid = pid, keepNumbers = self.scan_keepnumbering.getValue(), keepSettings = self.scan_keepsettings.getValue(), providerName = self.scan_provider.getText())
 
 	def keyCancel(self):
 		self.close()

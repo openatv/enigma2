@@ -482,8 +482,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self["movie_sort"] = MultiPixmap()
 		self["movie_sort"].hide()
 
-		self["freeDiskSpace"] = self.diskinfo = DiskInfo(config.movielist.last_videodir.value, DiskInfo.FREE, update=False)
-		self["TrashcanSize"] = self.trashinfo = TrashInfo(config.movielist.last_videodir.value, TrashInfo.USED, update=False)
+		self["freeDiskSpace"] = self.diskinfo = DiskInfo(config.movielist.last_videodir.getValue(), DiskInfo.FREE, update=False)
+		self["TrashcanSize"] = self.trashinfo = TrashInfo(config.movielist.last_videodir.getValue(), TrashInfo.USED, update=False)
 
 		self["InfobarActions"] = HelpableActionMap(self, "InfobarActions",
 			{
@@ -1005,7 +1005,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def saveLocalSettings(self):
 		try:
-			path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
+			path = os.path.join(config.movielist.last_videodir.getValue(), ".e2settings.pkl")
 			pickle.dump(self.settings, open(path, "wb"))
 		except Exception, e:
 			print "Failed to save settings to %s: %s" % (path, e)
@@ -1018,7 +1018,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		'Load settings, called when entering a directory'
 		if config.movielist.settings_per_directory.getValue():
 			try:
-				path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
+				path = os.path.join(config.movielist.last_videodir.getValue(), ".e2settings.pkl")
 				updates = pickle.load(open(path, "rb"))
 				self.applyConfigSettings(updates)
 			except IOError, e:
@@ -1341,7 +1341,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			return
 		msg = None
 		try:
-			path = os.path.join(config.movielist.last_videodir.value, name)
+			path = os.path.join(config.movielist.last_videodir.getValue(), name)
 			os.mkdir(path)
 			if not path.endswith('/'):
 				path += '/'
