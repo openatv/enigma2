@@ -213,7 +213,7 @@ class Devices(Screen):
 			if not parts:
 				continue
 			device = parts[3]
- 			if not search('sd[a-z][1-9]',device):
+			if not search('sd[a-z][1-9]',device):
 				continue
 			if device in list2:
 				continue
@@ -224,10 +224,11 @@ class Devices(Screen):
 				if line.find(device) != -1:
 					parts = line.strip().split()
 					mount = str(parts[1])
+					print"mount1: %s" % mount
 					break
 					continue
 			f.close()
-
+			print"mount2: %s" % mount
 			if not mount.startswith('/dev/'):
 				size = Harddisk(device).diskSize()
 				free = Harddisk(device).free()
