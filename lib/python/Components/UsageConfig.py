@@ -69,12 +69,12 @@ def InitUsageConfig():
 		except:
 			pass
 	config.usage.default_path = ConfigText(default = resolveFilename(SCOPE_HDD))
-	if not config.usage.default_path.value.endswith('/'):
+	if not config.usage.default_path.getValue().endswith('/'):
 		tmpvalue = config.usage.default_path.getValue()
 		config.usage.default_path.setValue(tmpvalue + '/')
 		config.usage.default_path.save()
 	def defaultpathChanged(configElement):
-		if not config.usage.default_path.value.endswith('/'):
+		if not config.usage.default_path.getValue().endswith('/'):
 			tmpvalue = config.usage.default_path.getValue()
 			config.usage.default_path.setValue(tmpvalue + '/')
 			config.usage.default_path.save()
@@ -89,12 +89,12 @@ def InitUsageConfig():
 		except:
 			pass
 	config.usage.timeshift_path = ConfigText(default = resolveFilename(SCOPE_TIMESHIFT))
-	if not config.usage.default_path.value.endswith('/'):
+	if not config.usage.default_path.getValue().endswith('/'):
 		tmpvalue = config.usage.timeshift_path.getValue()
 		config.usage.timeshift_path.setValue(tmpvalue + '/')
 		config.usage.timeshift_path.save()
 	def timeshiftpathChanged(configElement):
-		if not config.usage.timeshift_path.value.endswith('/'):
+		if not config.usage.timeshift_path.getValue().endswith('/'):
 			tmpvalue = config.usage.timeshift_path.getValue()
 			config.usage.timeshift_path.setValue(tmpvalue + '/')
 			config.usage.timeshift_path.save()
@@ -284,17 +284,17 @@ def InitUsageConfig():
 				hddchoises.append((d + '/', p.mountpoint))
 	config.misc.epgcachepath = ConfigSelection(default = '/etc/enigma2/', choices = hddchoises)
 	config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
-	config.misc.epgcache_filename = ConfigText(default = (config.misc.epgcachepath.getValue() + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
+	config.misc.epgcache_filename = ConfigText(default = (config.misc.epgcachepath.getValue() + config.misc.epgcachefilename.getValue().replace('.dat','') + '.dat'))
 	def EpgCacheChanged(configElement):
-		config.misc.epgcache_filename.setValue(os.path.join(config.misc.epgcachepath.getValue(), config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
+		config.misc.epgcache_filename.setValue(os.path.join(config.misc.epgcachepath.getValue(), config.misc.epgcachefilename.getValue().replace('.dat','') + '.dat'))
 		config.misc.epgcache_filename.save()
 		enigma.eEPGCache.getInstance().setCacheFile(config.misc.epgcache_filename.getValue())
 		from enigma import eEPGCache
 		epgcache = eEPGCache.getInstance()
 		epgcache.save()
 		if not config.misc.epgcache_filename.getValue().startswith("/etc/enigma2/"):
-			if os.path.exists('/etc/enigma2/' + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'):
-				os.remove('/etc/enigma2/' + config.misc.epgcachefilename.value.replace('.dat','') + '.dat')
+			if os.path.exists('/etc/enigma2/' + config.misc.epgcachefilename.getValue().replace('.dat','') + '.dat'):
+				os.remove('/etc/enigma2/' + config.misc.epgcachefilename.getValue().replace('.dat','') + '.dat')
  	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback = False)
 	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback = False)
 
