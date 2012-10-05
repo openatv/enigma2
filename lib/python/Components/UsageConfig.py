@@ -286,7 +286,7 @@ def InitUsageConfig():
 	config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
 	config.misc.epgcache_filename = ConfigText(default = (config.misc.epgcachepath.getValue() + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
 	def EpgCacheChanged(configElement):
-		config.misc.epgcache_filename.setValue(os.path.join(config.misc.epgcachepath.value, config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
+		config.misc.epgcache_filename.setValue(os.path.join(config.misc.epgcachepath.getValue(), config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
 		config.misc.epgcache_filename.save()
 		enigma.eEPGCache.getInstance().setCacheFile(config.misc.epgcache_filename.getValue())
 		from enigma import eEPGCache
@@ -382,7 +382,7 @@ def InitUsageConfig():
 
 	def updatedebug_path(configElement):
 		if not os.path.exists(config.crash.debug_path.getValue()):
-			os.mkdir(config.crash.debug_path.value,0755)
+			os.mkdir(config.crash.debug_path.getValue(),0755)
 	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback = False)
 
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "end", choices = [("beginning", _("at beginning")), ("end", _("at end"))])
@@ -661,7 +661,7 @@ def updateChoices(sel, choices):
 
 def preferredPath(path):
 	if config.usage.setup_level.index < 2 or path == "<default>":
-		return None  # config.usage.default_path.value, but delay lookup until usage
+		return None  # config.usage.default_path.getValue(), but delay lookup until usage
 	elif path == "<current>":
 		return config.movielist.last_videodir.getValue()
 	elif path == "<timer>":

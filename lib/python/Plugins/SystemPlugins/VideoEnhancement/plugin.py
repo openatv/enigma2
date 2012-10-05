@@ -118,7 +118,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				self.splitEntry
 			]
 			maxvalue = current[1].max
-			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = config.pep.split.value, maxValue = maxvalue)
+			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = config.pep.split.getValue(), maxValue = maxvalue)
 		else:
 			self.previewlist = [
 				current
@@ -136,7 +136,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				self.splitEntry
 			]
 			maxvalue = current[1].max
-			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = config.pep.split.value, maxValue = maxvalue )
+			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = config.pep.split.getValue(), maxValue = maxvalue )
 		else:
 			self.previewlist = [
 				current

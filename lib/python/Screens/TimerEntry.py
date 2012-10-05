@@ -344,10 +344,10 @@ class TimerEntry(Screen, ConfigListScreen):
 					if self.timerentry_day[x].getValue():
 						self.timer.setRepeated(x)
 
-			self.timer.repeatedbegindate = self.getTimestamp(self.timerentry_repeatedbegindate.value, self.timerentry_starttime.getValue())
+			self.timer.repeatedbegindate = self.getTimestamp(self.timerentry_repeatedbegindate.getValue(), self.timerentry_starttime.getValue())
 			if self.timer.repeated:
-				self.timer.begin = self.getTimestamp(self.timerentry_repeatedbegindate.value, self.timerentry_starttime.getValue())
-				self.timer.end = self.getTimestamp(self.timerentry_repeatedbegindate.value, self.timerentry_endtime.getValue())
+				self.timer.begin = self.getTimestamp(self.timerentry_repeatedbegindate.getValue(), self.timerentry_starttime.getValue())
+				self.timer.end = self.getTimestamp(self.timerentry_repeatedbegindate.getValue(), self.timerentry_endtime.getValue())
 			else:
 				self.timer.begin = self.getTimestamp(time.time(), self.timerentry_starttime.getValue())
 				self.timer.end = self.getTimestamp(time.time(), self.timerentry_endtime.getValue())
@@ -411,7 +411,7 @@ class TimerEntry(Screen, ConfigListScreen):
 	def pathSelected(self, res):
 		if res is not None:
 			if config.movielist.videodirs.getValue() != self.timerentry_dirname.choices:
-				self.timerentry_dirname.setChoices(config.movielist.videodirs.value, default=res)
+				self.timerentry_dirname.setChoices(config.movielist.videodirs.getValue(), default=res)
 			self.timerentry_dirname.value = res
 
 	def tagEditFinished(self, ret):
