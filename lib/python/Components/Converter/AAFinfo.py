@@ -31,18 +31,18 @@ class AAFinfo(Converter, object):
 
 	def scaleValue(self, value):
 		if value > 100:
-			return 25
+			return 41
 		elif value < 0:
-			return 75
+			return 59
 		elif 0 <= value <= 100:
-			# scale to use the upper half of the gauge (0>100 == 75>25)
-			tmp = value / 2
-			if 0 <= tmp <= 25:
-				# 0>25 = 75>100
-				return (tmp + 75)
-			elif 25 < tmp <= 50:
-				# 26>50 = 1>25
-				return (tmp - 25)
+			# scale to use the upper half of the gauge (0>100 == 58>41)
+			tmp = int((value + 0.0)  * 0.83)
+			if 0 <= tmp <= 41:
+				# 0>41 = 58>100
+				return (tmp + 58)
+			elif 41 < tmp <= 82:
+				# 42>82 = 1>41
+				return (tmp - 41)
 			else:
 				return 0
 		else:

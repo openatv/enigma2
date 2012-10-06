@@ -29,10 +29,10 @@ int eGauge::event(int event, void *data, void *data2)
 
 		gRGB pal[256];
 		pal[0] = 0;
-		pal[1] = 0xff0000;
+		pal[1] = m_border_color;
 		pal[2] = 0xffFFff;
 		pal[3] = 0x00ff00;
-	
+
 		for (int a=0; a<0x10; ++a)
 			pal[a | 0x10] = (0x111111 * a) | 0xFF;
 		painter.setPalette(pal, 0, 256);
@@ -64,7 +64,7 @@ int eGauge::event(int event, void *data, void *data2)
 	}
 	case evtChangedGauge:
 	{
-		
+
 		int mystart = 0;
 		int perc = m_value;
 
@@ -72,12 +72,12 @@ int eGauge::event(int event, void *data, void *data2)
 		basey = size().height() >> 1;
 		double angle = (double) mystart + (double) perc * (double)(360 - (mystart<<1)) / 100.0;
 		double rads  = angle*M_PI/180;
-		
+
 		endx = basex + (int) (sin(rads) * (double)(size().width())/2.0);
 		endy = basey - (int) (cos(rads) * (double)(size().height())/2.0);
 
 		invalidate();
-		
+
 		return 0;
 	}
 	default:
