@@ -41,7 +41,7 @@ class LanguageSelection(Screen):
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("Save"))
 
-		self["actions"] = ActionMap(["SetupActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 			"ok": self.save,
 			"cancel": self.cancel,
