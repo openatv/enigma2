@@ -162,7 +162,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.showTvChannelList(True)
 			self.servicelist.showFavourites()
 	def showTvButton(self):
-		if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'gb800ue' or getBoxType() == 'gbquad' or getBoxType() == 'venton-hdx':
+		if enigma.getBoxType() == 'gb800se' or enigma.getBoxType() == 'gb800solo' or enigma.getBoxType() == 'gb800ue' or enigma.getBoxType() == 'gbquad' or enigma.getBoxType() == 'venton-hdx':
 			self.toogleTvRadio()
 		else:
 			self.showTv()
@@ -178,7 +178,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.showTvChannelList(True)
 
 	def showRadioButton(self):
-		if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'gb800ue' or getBoxType() == 'gbquad' or getBoxType() == 'venton-hdx':
+		if getBoxType() == 'gb800se' or enigma.getBoxType() == 'gb800solo' or enigma.getBoxType() == 'gb800ue' or enigma.getBoxType() == 'gbquad' or enigma.getBoxType() == 'venton-hdx':
 			self.toogleTvRadio()
 		else:
 			self.showRadio()
