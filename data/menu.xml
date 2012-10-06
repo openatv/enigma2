@@ -13,23 +13,8 @@
 	<code> .. code .. </code>
 		"exec"s code
 -->
-		<menu level="0" text="Timers" entryID="timer_menu">
-			<id val="timermenu" />
-			<item weight="100" level="0" text="Timers" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
-		</menu>
-		<item level="1" text="VCR scart" entryID="scart_switch" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>
-
-		<menu level="0" text="Information" entryID="info_screen">
-			<id val="information" />
-			<item level="0" text="About" entryID="about_screen"><screen module="About" screen="About"/></item>
-			<item level="0" text="Devices" entryID="device_screen"><screen module="About" screen="Devices"/></item>
-			<item level="0" text="Memory" entryID="device_screen"><screen module="About" screen="SystemMemoryInfo"/></item>
-			<item level="0" text="Network" entryID="device_screen"><screen module="About" screen="SystemNetworkInfo"/></item>
-			<item level="1" text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
-		</menu>
-
-		<item level="1" text="Plugins" entryID="plugin_selection"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
-		<menu level="0" text="Setup" flushConfigOnClose="1" entryID="setup_selection" >
+		<item weight="2" level="1" text="Plugins" entryID="plugin_selection"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
+		<menu weight="3" level="0" text="Setup" flushConfigOnClose="1" entryID="setup_selection" >
 			<id val="setup" />
 			<menu weight="7" level="0" text="Service searching" entryID="service_searching_selection">
 				<id val="scan" />
@@ -158,7 +143,18 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 			</item>
 			<item weight="15" level="0" text="Software update" entryID="software_update"><screen module="SoftwareUpdate" screen="UpdatePlugin" /></item>
 		</menu>
-		<menu text="Standby / Restart" entryID="standby_restart_list">
+
+		<menu weight="4" level="0" text="Information" entryID="info_screen">
+			<id val="information" />
+			<item level="0" text="About" entryID="about_screen"><screen module="About" screen="About"/></item>
+			<item level="0" text="Devices" entryID="device_screen"><screen module="About" screen="Devices"/></item>
+			<item level="0" text="Memory" entryID="device_screen"><screen module="About" screen="SystemMemoryInfo"/></item>
+			<item level="0" text="Network" entryID="device_screen"><screen module="About" screen="SystemNetworkInfo"/></item>
+			<item level="1" text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
+		</menu>
+		<item weight="5" level="0" text="Timers" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
+		<item weight="6" level="0" text="VCR scart" entryID="scart_switch" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>
+		<menu weight="7" text="Standby / Restart" entryID="standby_restart_list">
 			<id val="shutdown" />
 			<item text="Sleep timer" entryID="sleep"><screen module="SleepTimerEdit" screen="SleepTimerEdit" /></item>
 			<item text="Standby" entryID="standby"><screen module="Standby" screen="Standby"/></item>
