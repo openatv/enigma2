@@ -52,7 +52,7 @@
 				<menu weight="0" level="0" text="A/V settings" entryID="av_setup" >
 				  <id val="av" />
 				</menu>
-				<item weight="1" level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
+				<item weight="1" level="0" text="Language setup" entryID="language_setup"><screen module="LanguageSelection" /></item>
 				<item weight="2" level="0" entryID="timezone_setup"><setup id="time"/></item>
 				<item weight="3" level="0" text="Network setup" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
 				<item weight="5" level="0" text="Recording settings" entryID="record_paths"><screen module="Recordings" screen="RecordingSettings" /></item>
