@@ -387,24 +387,22 @@ class InfoBarNumberZap:
 		service = None
 		serviceHandler = eServiceCenter.getInstance()
 		service = self.searchNumberHelper(serviceHandler, number, bouquet)
-		if config.usage.multibouquet.value:
-			service = self.searchNumberHelper(serviceHandler, number, bouquet) #search the current bouqeut first
-			if not service:
-				bouquet = self.servicelist.bouquet_root
-				bouquetlist = serviceHandler.list(bouquet)
-				if bouquetlist:
+		if config.usage.multibouquet.value and not service:
+			bouquet = self.servicelist.bouquet_root
+			bouquetlist = serviceHandler.list(bouquet)
+			if bouquetlist:
+				bouquet = bouquetlist.getNext()
+				while bouquet.valid():
+					if bouquet.flags & eServiceReference.isDirectory:
+						service = self.searchNumberHelper(serviceHandler, number, bouquet)
+						if service:
+							playable = not (service.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)) or (service.flags & eServiceReference.isNumberedMarker)
+							if not playable:
+								service = None
+							break
+						if config.usage.alternative_number_mode.value:
+							break
 					bouquet = bouquetlist.getNext()
-					while bouquet.valid():
-						if bouquet.flags & eServiceReference.isDirectory:
-							service = self.searchNumberHelper(serviceHandler, number, bouquet)
-							if service:
-								playable = not (service.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)) or (service.flags & eServiceReference.isNumberedMarker)
-								if not playable:
-									service = None
-								break
-							if config.usage.alternative_number_mode.value:
-								break
-						bouquet = bouquetlist.getNext()
 		return service, bouquet
 
 	def selectAndStartService(self, service, bouquet):

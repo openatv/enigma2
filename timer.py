@@ -8,7 +8,7 @@ class TimerEntry:
 	StatePrepared = 1
 	StateRunning  = 2
 	StateEnded    = 3
-	
+
 	def __init__(self, begin, end):
 		self.begin = begin
 		self.prepare_time = 20
@@ -19,7 +19,7 @@ class TimerEntry:
 		#newdate = datetime.datetime(begindate.tm_year, begindate.tm_mon, begindate.tm_mday 0, 0, 0);
 		self.repeatedbegindate = begin
 		self.backoff = 0
-		
+
 		self.disabled = False
 
 	def resetState(self):
@@ -33,17 +33,17 @@ class TimerEntry:
 
 	def setRepeated(self, day):
 		self.repeated |= (2 ** day)
-		
+
 	def isRunning(self):
 		return self.state == self.StateRunning
-		
+
 	def addOneDay(self, timedatestruct):
 		oldHour = timedatestruct.tm_hour
 		newdate =  (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=1)).timetuple()
 		if localtime(mktime(newdate)).tm_hour != oldHour:
-			return (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=2)).timetuple()			
+			return (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=2)).timetuple()
 		return newdate
-		
+
 	# update self.begin and self.end according to the self.repeated-flags
 	def processRepeated(self, findRunningEvent = True):
 		if (self.repeated != 0):
@@ -70,7 +70,7 @@ class TimerEntry:
 				((day[localbegin.tm_wday] == 0) and ((findRunningEvent and localend < localnow) or ((not findRunningEvent) and localbegin < localnow)))):
 				localbegin = self.addOneDay(localbegin)
 				localend = self.addOneDay(localend)
-				
+
 			#we now have a struct_time representation of begin and end in localtime, but we have to calculate back to (gmt) seconds since epoch
 			self.begin = int(mktime(localbegin))
 			self.end = int(mktime(localend))
@@ -81,11 +81,11 @@ class TimerEntry:
 
 	def __lt__(self, o):
 		return self.getNextActivation() < o.getNextActivation()
-	
+
 	# must be overridden
 	def activate(self):
 		pass
-		
+
 	# can be overridden
 	def timeChanged(self):
 		pass
@@ -96,21 +96,21 @@ class TimerEntry:
 
 	def abort(self):
 		self.end = time()
-		
+
 		# in case timer has not yet started, but gets aborted (so it's preparing),
 		# set begin to now.
 		if self.begin > self.end:
 			self.begin = self.end
 
 		self.cancelled = True
-	
+
 	# must be overridden!
 	def getNextActivation():
 		pass
 
 	def disable(self):
 		self.disabled = True
-	
+
 	def enable(self):
 		self.disabled = False
 
@@ -121,7 +121,7 @@ class Timer:
 	# it's not good. thus, you have to repoll when
 	# you change the time.
 	#
-	# this is just in case. We don't want the timer 
+	# this is just in case. We don't want the timer
 	# hanging. we use this "edge-triggered-polling-scheme"
 	# anyway, so why don't make it a bit more fool-proof?
 	MaxWaitTime = 100
@@ -129,11 +129,11 @@ class Timer:
 	def __init__(self):
 		self.timer_list = [ ]
 		self.processed_timers = [ ]
-		
+
 		self.timer = eTimer()
 		self.timer.callback.append(self.calcNextActivation)
 		self.lastActivation = time()
-		
+
 		self.calcNextActivation()
 		self.on_state_change = [ ]
 
@@ -143,9 +143,9 @@ class Timer:
 
 	def cleanup(self):
 		self.processed_timers = [entry for entry in self.processed_timers if entry.disabled]
-	
+
 	def cleanupDaily(self, days):
-		limit = time() - (days * 3600 * 24) 
+		limit = time() - (days * 3600 * 24)
 		self.processed_timers = [entry for entry in self.processed_timers if (entry.disabled and entry.repeated) or (entry.end and (entry.end > limit))]
 
 	def addTimerEntry(self, entry, noRecalc=0):
@@ -182,14 +182,15 @@ class Timer:
 #				NavigationInstance.instance.stopRecordService(rec)
 #		else:
 #			print "no NAV"
-	
-	def setNextActivation(self, when):
-		delay = int((when - time()) * 1000)
+
+	def setNextActivation(self, now, when):
+		delay = int((when - now) * 1000)
 		self.timer.start(delay, 1)
 		self.next = when
 
 	def calcNextActivation(self):
-		if self.lastActivation > time():
+		now = time()
+		if self.lastActivation > now:
 			print "[timer.py] timewarp - re-evaluating all processed timers."
 			tl = self.processed_timers
 			self.processed_timers = [ ]
@@ -197,20 +198,24 @@ class Timer:
 				# simulate a "waiting" state to give them a chance to re-occure
 				x.resetState()
 				self.addTimerEntry(x, noRecalc=1)
-		
+
 		self.processActivation()
-		self.lastActivation = time()
-	
-		min = int(time()) + self.MaxWaitTime
-		
+		self.lastActivation = now
+
+		min = int(now) + self.MaxWaitTime
+
 		# calculate next activation point
 		if self.timer_list:
 			w = self.timer_list[0].getNextActivation()
 			if w < min:
 				min = w
-		
-		self.setNextActivation(min)
-	
+
+		if int(now) < 1072224000 and min > now + 5:
+			# system time has not yet been set (before 01.01.2004), keep a short poll interval
+			min = now + 5
+
+		self.setNextActivation(now, min)
+
 	def timeChanged(self, timer):
 		print "time changed"
 		timer.timeChanged()
@@ -226,7 +231,7 @@ class Timer:
 		if timer.state == TimerEntry.StateEnded:
 			timer.state = TimerEntry.StateWaiting
 		self.addTimerEntry(timer)
-	
+
 	def doActivate(self, w):
 		self.timer_list.remove(w)
 
@@ -253,7 +258,7 @@ class Timer:
 				self.addTimerEntry(w)
 			else:
 				insort(self.processed_timers, w)
-		
+
 		self.stateChanged(w)
 
 	def processActivation(self):
