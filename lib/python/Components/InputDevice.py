@@ -150,7 +150,7 @@ class InitInputDevices:
 			if configElement.getValue() != "":
 				devname = iInputDevices.getDeviceAttribute(self.currentDevice, 'name')
 				if devname != configElement.getValue():
-					cmd = "config.inputDevices." + self.currentDevice + ".enabled.getValue() = False"
+					cmd = "config.inputDevices." + self.currentDevice + ".enabled.setValue(False)"
 					exec (cmd)
 					cmd = "config.inputDevices." + self.currentDevice + ".enabled.save()"
 					exec (cmd)

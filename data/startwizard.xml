@@ -189,13 +189,13 @@ if self["list"].index == 0:
 		<step id="finishparentalsetup">
 			<code>
 if config.ParentalControl.setuppin.getValue() == "aaaa":
-	config.ParentalControl.setuppinactive.getValue() = False
+	config.ParentalControl.setuppinactive.setValue(False)
 else:
-	config.ParentalControl.setuppinactive.getValue() = True
+	config.ParentalControl.setuppinactive.setValue(True)
 config.ParentalControl.setuppinactive.save()
-config.ParentalControl.servicepinactive.getValue() = True
+config.ParentalControl.servicepinactive.setValue(True)
 config.ParentalControl.servicepinactive.save()
-config.ParentalControl.setuppin.getValue() = config.ParentalControl.servicepin[0].getValue()
+config.ParentalControl.setuppin.setValue(config.ParentalControl.servicepin[0].getValue())
 config.ParentalControl.setuppin.save()
 			</code>
 			<text value="After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that." />
