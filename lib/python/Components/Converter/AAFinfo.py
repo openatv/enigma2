@@ -7,6 +7,8 @@ class AAFinfo(Converter, object):
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
+		self.usedspace = self.Harddiskspace()
+	
 		if type == "Harddiskspace":
 			self.type = 1
 		elif type == "HarddiskspaceText":
@@ -17,11 +19,11 @@ class AAFinfo(Converter, object):
 	@cached
 	def getValue(self):
 		if self.type == 1:
-			return self.scaleValue(self.Harddiskspace())
+			return self.scaleValue(self.usedspace)
 
 	def getText(self):
 		if self.type == 2:
-			used = str(self.Harddiskspace())
+			used = str(self.usedspace)
 			return (used + " %")
 
 	value = property(getValue)
@@ -29,9 +31,9 @@ class AAFinfo(Converter, object):
 
 	def scaleValue(self, value):
 		if value > 100:
-			return 100
+			return 25
 		elif value < 0:
-			return 0
+			return 75
 		elif 0 <= value <= 100:
 			# scale to use the upper half of the gauge (0>100 == 75>25)
 			tmp = value / 2
@@ -47,6 +49,7 @@ class AAFinfo(Converter, object):
 			return 0
 
 	def Harddiskspace(self):
+		print"Harddiskspace"
 		list2 = []
 		f = open('/proc/partitions', 'r')
 		for line in f.readlines():
