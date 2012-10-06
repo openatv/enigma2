@@ -18,7 +18,7 @@ config.mediaplayer.defaultDir = ConfigDirectory()
 config.mediaplayer.useAlternateUserAgent = ConfigYesNo(default=False)
 config.mediaplayer.alternateUserAgent = ConfigText(default="")
 config.mediaplayer.sortPlaylists = ConfigYesNo(default=False)
-config.mediaplayer.onMainMenu = ConfigYesNo(default=False)
+config.mediaplayer.onMainMenu = ConfigYesNo(default=True)
 
 class DirectoryBrowser(Screen, HelpableScreen):
 
