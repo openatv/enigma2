@@ -11,6 +11,13 @@ from Tools.HardwareInfo import HardwareInfo
 
 config.misc.showtestcard = ConfigBoolean(default = False)
 
+try:
+	file = open("/proc/stb/info/chipset", "r")
+	chipset = file.readline().strip()
+	file.close()
+except:
+	chipset = "unknown"
+
 class VideoWizardSummary(WizardSummary):
 	skin = (
 	"""<screen name="VideoWizardSummary" position="0,0" size="132,64" id="1">
@@ -151,7 +158,7 @@ class VideoWizard(WizardLanguage, Rc):
 	def modeSelect(self, mode):
 		ratesList = self.listRates(mode)
 		print "ratesList:", ratesList
-		if self.port == "DVI" and mode in ("720p", "1080i", "1080p"):
+		if self.port == "DVI" and mode in ("720p", "1080i", "1080p") and chipset != 'bcm7405':
 			self.rate = "multi"
 			self.hw.setMode(port = self.port, mode = mode, rate = "multi")
 		else:
