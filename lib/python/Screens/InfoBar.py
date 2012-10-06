@@ -178,7 +178,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.showTvChannelList(True)
 
 	def showRadioButton(self):
-		if getBoxType() == 'gb800se' or enigma.getBoxType() == 'gb800solo' or enigma.getBoxType() == 'gb800ue' or enigma.getBoxType() == 'gbquad' or enigma.getBoxType() == 'venton-hdx':
+		if enigma.getBoxType() == 'gb800se' or enigma.getBoxType() == 'gb800solo' or enigma.getBoxType() == 'gb800ue' or enigma.getBoxType() == 'gbquad' or enigma.getBoxType() == 'venton-hdx':
 			self.toogleTvRadio()
 		else:
 			self.showRadio()
