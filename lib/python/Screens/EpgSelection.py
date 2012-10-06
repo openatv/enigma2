@@ -358,7 +358,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self["okactions"] = HelpableActionMap(self, "OkCancelActions",
 			{
 				"cancel": (self.closeScreen, _("Exit EPG")),
-				"OK":     (self.OK, _("Zap to channel (setup in menu)")),
+				"ok":     (self.OK, _("Zap to channel (setup in menu)")),
 				"OKLong": (self.OKLong, _("Zap to channel and close (setup in menu)")),
 			}, -1)
 		self["okactions"].csel = self
@@ -1183,19 +1183,41 @@ class EPGSelection(Screen, HelpableScreen):
 		self.moveTimeLines()
 
 	def OK(self):
-		if config.epgselection.OK_pliepg.getValue() == "EventView":
-				self.infoKeyPressed()
-		elif config.epgselection.OK_pliepg.getValue() == "Zap" or config.epgselection.OK_enhanced.getValue() == "Zap" or config.epgselection.OK_infobar.getValue() == "Zap":
-			self.ZapTo()
 		if self.type == EPG_TYPE_GRAPH:
-				serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
-				self["list"].setCurrentlyPlaying(serviceref)
-				self["list"].fillGraphEPG(None, self.ask_time)
-				self.moveTimeLines(True)
-		if config.epgselection.OK_pliepg.getValue() == "EventView":
+			if config.epgselection.OK_pliepg.value == "EventView":
 				self.infoKeyPressed()
-		elif config.epgselection.OK_pliepg.getValue() == "Zap + Exit" or config.epgselection.OK_enhanced.getValue() == "Zap + Exit" or config.epgselection.OK_infobar.getValue() == "Zap + Exit":
-			self.zap()
+			elif config.epgselection.OK_pliepg.value == "Zap":
+				self.ZapTo()
+			elif config.epgselection.OK_pliepg.value == "Zap + Exit":
+				self.zap()
+		elif self.type == EPG_TYPE_INFOBAR:
+			if config.epgselection.OK_infobar.value == "EventView":
+				self.infoKeyPressed()
+			elif config.epgselection.OK_infobar.value == "Zap":
+				self.ZapTo()
+			elif config.epgselection.OK_infobar.value == "Zap + Exit":
+				self.zap()
+		elif self.type == EPG_TYPE_ENHANCED:
+			if config.epgselection.OK_enhanced.value == "EventView":
+				self.infoKeyPressed()
+			elif config.epgselection.OK_enhanced.value == "Zap":
+				self.ZapTo()
+			elif config.epgselection.OK_enhanced.value == "Zap + Exit":
+				self.zap()
+		elif self.type == EPG_TYPE_MULTI:
+			if config.epgselection.OK.value == "EventView":
+				self.infoKeyPressed()
+			elif config.epgselection.OK.value == "Zap":
+				self.ZapTo()
+			elif config.epgselection.OK.value == "Zap + Exit":
+				self.zap()
+
+		if self.type == EPG_TYPE_GRAPH:
+			serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+			self["list"].setCurrentlyPlaying(serviceref)
+			self["list"].fillGraphEPG(None, self.ask_time)
+			self.moveTimeLines(True)
+
 
 	def OKLong(self):
 		if config.epgselection.OKLong_pliepg.getValue() == "Zap" or config.epgselection.OKLong_enhanced.getValue() == "Zap" or config.epgselection.OKLong_infobar.getValue() == "Zap":
