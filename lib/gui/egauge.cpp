@@ -47,9 +47,13 @@ int eGauge::event(int event, void *data, void *data2)
 
 		painter.line(ePoint(basex, basey), ePoint(endx, endy));
 		painter.line(ePoint(basex, (basey -1)), ePoint(endx, endy));
+		painter.line(ePoint(basex, (basey -2)), ePoint(endx, endy));
 		painter.line(ePoint(basex, (basey +1)), ePoint(endx, endy));
+		painter.line(ePoint(basex, (basey +2)), ePoint(endx, endy));
 		painter.line(ePoint((basex -1), basey), ePoint(endx, endy));
+		painter.line(ePoint((basex -2), basey), ePoint(endx, endy));
 		painter.line(ePoint((basex +1), basey), ePoint(endx, endy));
+		painter.line(ePoint((basex +2), basey), ePoint(endx, endy));
 		if(basex < endx)
 			painter.line(ePoint(basex, basey), ePoint((endx -1), endy));
 		if(basex > endx)
