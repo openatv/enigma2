@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2012-10-07 11:54+0100\n"
+"PO-Revision-Date: 2012-10-07 15:26+0100\n"
 "Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: AAF\n"
 "Language: de\n"
@@ -2103,7 +2103,7 @@ msgid "Copy"
 msgstr "Kopiere"
 
 msgid "Correct"
-msgstr "Korrect"
+msgstr "Richtig"
 
 msgid ""
 "Could not activate Permanent-Timeshift!\n"
@@ -8934,10 +8934,6 @@ msgid "Use usals for this sat"
 msgstr "USALS für diesen Satelliten benutzen"
 
 #
-msgid "Use wizard to set up basic features"
-msgstr "Asistenten für Grundeinstellungen verwenden"
-
-#
 msgid "Used service scan type"
 msgstr "Verwendeter Kanalsuchlauf"
 
@@ -9032,14 +9028,14 @@ msgid ""
 "Please press OK if you can see this page on your TV (or select a different "
 "input port).\n"
 "\n"
-"The next input port will be automatically probed in 10 seconds."
+"The next input port will be automatically probed in 20 seconds."
 msgstr ""
 "Auswahl des Videoeingangs\n"
 "\n"
 "Bitte drücken Sie OK, wenn Sie diese Seite auf Ihrem Fernseher sehen können "
 "(oder wählen Sie einen anderen Eingang aus).\n"
 "\n"
-"Der nächste Videoeingang wird automatisch nach 10 Sekunden getestet."
+"Der nächste Videoeingang wird automatisch nach 20 Sekunden getestet."
 
 #
 msgid "Video mode selection."
@@ -13288,3 +13284,40 @@ msgstr "Auf eingefrorene CAM prüfen"
 # Plugin Manager
 msgid "Install plugins"
 msgstr "Installiere Plugins"
+
+# Erstassi
+msgid "Use the wizard to set up basic features"
+msgstr "Assistenten für die Grundeinstellung benutzen"
+
+# Erstassi
+msgid "Please connect your receiver to the internet"
+msgstr "Bitte die STB_BOX mit dem Internet verbinden"
+
+# Erstassi
+msgid ""
+"Skip internet connection check (disables automatic package installation)"
+msgstr "Überspringe den Netzwerk-Test(keine auto. Paket Installation)"
+
+#, python-format
+msgid "Found %d position(s) of %d total"
+msgstr "Es wurden %d von insgesamt %d Positionen gefunden"
+
+# Erstassi SAT
+msgid "Wrong"
+msgstr "Falsch"
+
+# InfoScreen
+msgid "OE Changes"
+msgstr "OE Änderungen"
+
+# InfoScreen
+msgid "Enigma2 Changes"
+msgstr "Enigma2 Änderungen"
+
+# InfoScreen
+msgid "Show E2 Log"
+msgstr "Zeige E2 Log"
+
+# InfoScreen
+msgid "Show OE Log"
+msgstr "Zeige OE Log"
