@@ -1,5 +1,5 @@
 from Components.Harddisk import harddiskmanager
-from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
+from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber, ConfigNumber
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv
 from Components.NimManager import nimmanager
@@ -108,7 +108,7 @@ def InitUsageConfig():
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_days = ConfigSelectionNumber(min = 1, max = 31, stepwidth = 1, default = 8, wraparound = True)
-	config.usage.movielist_trashcan_reserve = ConfigSelectionNumber(min = 1, max = 3000, stepwidth = 4, default = 40, wraparound = True)
+	config.usage.movielist_trashcan_reserve = ConfigNumber(default = 40)
 	config.usage.on_movie_start = ConfigSelection(default = "ask", choices = [
 		("ask", _("Ask user")), ("resume", _("Resume from last position")), ("beginning", _("Start from the beginning")) ])
 	config.usage.on_movie_stop = ConfigSelection(default = "movielist", choices = [
@@ -331,6 +331,7 @@ def InitUsageConfig():
 	config.network.Samba_autostart = ConfigYesNo(default = True)
 	config.network.Inadyn_autostart = ConfigYesNo(default = False)
 	config.network.uShare_autostart = ConfigYesNo(default = False)
+
 	config.softwareupdate = ConfigSubsection()
 	config.softwareupdate.autosettingsbackup = ConfigYesNo(default = False)
 	config.softwareupdate.autoimagebackup = ConfigYesNo(default = False)
@@ -609,7 +610,7 @@ def InitUsageConfig():
 	("picon", _("Picon")),
 	("picon+servicename", _("Picon and Service Name")) ])
 	config.epgselection.channel1 = ConfigYesNo(default = False)
-	config.epgselection.prev_time_period = ConfigSelectionNumber(default = 180, stepwidth = 1, min = 60, max = 300, wraparound = True)
+	config.epgselection.prev_time_period = ConfigInteger(default=180, limits = (60, 300))
 	config.epgselection.serv_fontsize_pliepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.epgselection.ev_fontsize_pliepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.epgselection.tl_fontsize_pliepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
