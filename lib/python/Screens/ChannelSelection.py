@@ -1448,6 +1448,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				if self.dopipzap:
 					# This unfortunately won't work with subservices
 					self.setCurrentSelection(self.session.pip.getCurrentService())
+				self.revertMode = None
 
 	def newServicePlayed(self):
 		ret = self.new_service_played
