@@ -168,7 +168,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 				config.Nims[self.feid].diseqcD.setValue("%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS]))
 
 			if self.nr_of_ports == 4:
-				config.Nims[self.feid].diseqcMod.setValue("diseqc_a_b_c_d")
+				config.Nims[self.feid].diseqcMode.setValue("diseqc_a_b_c_d")
 			elif self.nr_of_ports == 2:
 				config.Nims[self.feid].diseqcMode.setValue("diseqc_a_b")
 			else:
