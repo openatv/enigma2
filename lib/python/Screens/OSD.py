@@ -30,6 +30,8 @@ class OSDSetup(Screen, ConfigListScreen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = StaticText(_("Defaults"))
+		self["info1"] = Label(_("Use arrows Up/Down to select"))
+		self["info2"] = Label(_("Use arrows Left/Right to adjust"))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
@@ -182,6 +184,8 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self["HelpWindow"].hide()
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
+		self["info1"] = Label(_("Use arrows Up/Down to select"))
+		self["info2"] = Label(_("Use arrows Left/Right to adjust"))
 
 		self["actions"] = ActionMap(["SetupActions"],
 			{
