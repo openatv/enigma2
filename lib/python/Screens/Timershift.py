@@ -1,0 +1,338 @@
+from Screens.Screen import Screen
+from Screens.LocationBox import MovieLocationBox, TimeshiftLocationBox
+from Screens.MessageBox import MessageBox
+from Components.Label import Label
+from Components.config import config, configfile, ConfigYesNo, ConfigNothing, ConfigSelection, getConfigListEntry
+from Components.ConfigList import ConfigListScreen
+from Components.ActionMap import ActionMap
+from Components.Pixmap import Pixmap
+from Tools.Directories import fileExists
+from Components.UsageConfig import preferredPath
+from Components.Sources.Boolean import Boolean
+from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import SystemInfo
+
+from enigma import eEnv
+import xml.etree.cElementTree
+
+class SetupSummary(Screen):
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent = parent)
+		self["SetupTitle"] = StaticText(_(parent.setup_title))
+		self["SetupEntry"] = StaticText("")
+		self["SetupValue"] = StaticText("")
+		self.onShow.append(self.addWatcher)
+		self.onHide.append(self.removeWatcher)
+
+	def addWatcher(self):
+		self.parent.onChangedEntry.append(self.selectionChanged)
+		self.parent["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def removeWatcher(self):
+		self.parent.onChangedEntry.remove(self.selectionChanged)
+		self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
+
+	def selectionChanged(self):
+		self["SetupEntry"].text = self.parent.getCurrentEntry()
+		self["SetupValue"].text = self.parent.getCurrentValue()
+		if hasattr(self.parent,"getCurrentDescription"):
+			self.parent["description"].text = self.parent.getCurrentDescription()
+
+class TimeshiftSettings(Screen,ConfigListScreen):
+	skin = """
+		<screen name="RecordPathsSettings" position="160,150" size="450,200" title="Recording paths">
+			<ePixmap pixmap="skin_default/buttons/red.png" position="10,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="300,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="10,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="300,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="config" position="10,44" size="430,146" />
+		</screen>"""
+
+	def removeNotifier(self):
+		config.usage.setup_level.notifiers.remove(self.levelChanged)
+
+	def levelChanged(self, configElement):
+		list = []
+		self.refill(list)
+		self["config"].setList(list)
+
+	def refill(self, list):
+		xmldata = self.setupdom.getroot()
+		for x in xmldata.findall("setup"):
+			if x.get("key") != self.setup:
+				continue
+			self.addItems(list, x);
+			self.setup_title = x.get("title", "").encode("UTF-8")
+			self.seperation = int(x.get('separation', '0'))
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		setupfile = file(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
+		self.setupdom = xml.etree.cElementTree.parse(setupfile)
+		setupfile.close()
+
+		self.skinName = "Setup"
+		self['footnote'] = Label()
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
+
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Save"))
+		self["description"] = Label(_(""))
+
+		self.onChangedEntry = [ ]
+		self.setup = "timeshift"
+		list = []
+		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
+		self.createSetup()
+
+		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
+		{
+			"green": self.keySave,
+			"red": self.keyCancel,
+			"cancel": self.keyCancel,
+			"ok": self.ok,
+			"menu": self.closeRecursive,
+		}, -2)
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	# for summary:
+	def changedEntry(self):
+		self.item = self["config"].getCurrent()
+		if self["config"].getCurrent()[0] == _("Timeshift location"):
+			self.checkReadWriteDir(self["config"].getCurrent()[1])
+		for x in self.onChangedEntry:
+			x()
+		try:
+			if isinstance(self["config"].getCurrent()[1], ConfigYesNo) or isinstance(self["config"].getCurrent()[1], ConfigSelection):
+				self.createSetup()
+		except:
+			pass
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent() and self["config"].getCurrent()[0] or ""
+
+	def getCurrentValue(self):
+		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
+
+	def getCurrentDescription(self):
+		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
+
+	def checkReadWriteDir(self, configele):
+		import os.path
+		import Components.Harddisk
+		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs'))
+		candidates = []
+		mounts = Components.Harddisk.getProcMounts()
+		for partition in Components.Harddisk.harddiskmanager.getMountedPartitions(False, mounts):
+			if partition.filesystem(mounts) in supported_filesystems:
+				candidates.append((partition.description, partition.mountpoint))
+		if candidates:
+			locations = []
+			for validdevice in candidates:
+				locations.append(validdevice[1])
+			if Components.Harddisk.findMountPoint(os.path.realpath(configele.getValue()))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(configele.getValue())) in locations:
+				if fileExists(configele.value, "w"):
+					configele.last_value = configele.getValue()
+					return True
+				else:
+					dir = configele.getValue()
+					configele.value = configele.last_value
+					self.session.open(
+						MessageBox,
+						_("The directory %s is not writable.\nMake sure you select a writable directory instead.")%dir,
+						type = MessageBox.TYPE_ERROR
+						)
+					return False
+			else:
+				dir = configele.getValue()
+				configele.value = configele.last_value
+				self.session.open(
+					MessageBox,
+					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%dir,
+					type = MessageBox.TYPE_ERROR
+					)
+				return False
+		else:
+			dir = configele.getValue()
+			configele.value = configele.last_value
+			self.session.open(
+				MessageBox,
+				_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%dir,
+				type = MessageBox.TYPE_ERROR
+				)
+			return False
+
+	def createSetup(self):
+		default = config.usage.timeshift_path.getValue()
+		tmp = config.usage.allowed_timeshift_paths.getValue()
+		if default not in tmp:
+			tmp = tmp[:]
+			tmp.append(default)
+# 		print "TimeshiftPath: ", default, tmp
+		self.timeshift_dirname = ConfigSelection(default = default, choices = tmp)
+		self.timeshift_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
+		list = []
+		self.timeshift_entry = getConfigListEntry(_("Timeshift location"), self.timeshift_dirname, _("Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."))
+		list.append(self.timeshift_entry)
+
+		self.refill(list)
+ 		self["config"].setList(list)
+		if config.usage.sort_settings.getValue():
+			self["config"].list.sort()
+
+	def layoutFinished(self):
+		self.setTitle(_(self.setup_title))
+
+	def ok(self):
+		currentry = self["config"].getCurrent()
+		self.lastvideodirs = config.movielist.videodirs.getValue()
+		self.lasttimeshiftdirs = config.usage.allowed_timeshift_paths.getValue()
+		if currentry == self.timeshift_entry:
+			self.entrydirname = self.timeshift_dirname
+			config.usage.timeshift_path.value = self.timeshift_dirname.getValue()
+			self.session.openWithCallback(
+				self.dirnameSelected,
+				TimeshiftLocationBox
+			)
+
+	def dirnameSelected(self, res):
+		if res is not None:
+			import os.path
+			import Components.Harddisk
+			supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs'))
+			candidates = []
+			mounts = Components.Harddisk.getProcMounts()
+			for partition in Components.Harddisk.harddiskmanager.getMountedPartitions(False, mounts):
+				if partition.filesystem(mounts) in supported_filesystems:
+					candidates.append((partition.description, partition.mountpoint))
+			if candidates:
+				locations = []
+				for validdevice in candidates:
+					locations.append(validdevice[1])
+				if Components.Harddisk.findMountPoint(os.path.realpath(res))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(res)) in locations:
+					self.entrydirname.value = res
+					if config.usage.allowed_timeshift_paths.getValue() != self.lasttimeshiftdirs:
+						tmp = config.usage.allowed_timeshift_paths.getValue()
+						default = self.timeshift_dirname.getValue()
+						if default not in tmp:
+							tmp = tmp[:]
+							tmp.append(default)
+						self.timeshift_dirname.setChoices(tmp, default=default)
+						self.entrydirname.value = res
+				else:
+					self.session.open(
+						MessageBox,
+						_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%res,
+						type = MessageBox.TYPE_ERROR
+						)
+			else:
+				self.session.open(
+					MessageBox,
+					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%res,
+					type = MessageBox.TYPE_ERROR
+					)
+
+	def saveAll(self):
+		for x in self["config"].list:
+			x[1].save()
+		configfile.save()
+
+	# keySave and keyCancel are just provided in case you need them.
+	# you have to call them by yourself.
+	def keySave(self):
+		import os.path
+		import Components.Harddisk
+		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs'))
+		candidates = []
+		mounts = Components.Harddisk.getProcMounts()
+		for partition in Components.Harddisk.harddiskmanager.getMountedPartitions(False, mounts):
+			if partition.filesystem(mounts) in supported_filesystems:
+				candidates.append((partition.description, partition.mountpoint))
+		if candidates:
+			locations = []
+			for validdevice in candidates:
+				locations.append(validdevice[1])
+			if Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.getValue()))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.getValue())) in locations:
+				config.usage.timeshift_path.value = self.timeshift_dirname.getValue()
+				config.usage.timeshift_path.save()
+				self.saveAll()
+				self.close()
+			else:
+				if config.timeshift.enabled.getValue():
+					self.session.open(
+						MessageBox,
+						_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.getValue(),
+						type = MessageBox.TYPE_ERROR
+						)
+				else:
+					config.timeshift.enabled.setValue(False)
+					self.saveAll()
+					self.close()
+		else:
+			if config.timeshift.enabled.getValue():
+				self.session.open(
+					MessageBox,
+					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.getValue(),
+					type = MessageBox.TYPE_ERROR
+					)
+			else:
+				config.timeshift.enabled.setValue(False)
+				self.saveAll()
+				self.close()
+
+	def cancelConfirm(self, result):
+		if not result:
+			return
+		for x in self["config"].list:
+			x[1].cancel()
+		self.close()
+
+	def keyCancel(self):
+		if self["config"].isChanged():
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
+		else:
+			self.close()
+
+	def createSummary(self):
+		return SetupSummary
+
+	def addItems(self, list, parentNode):
+		for x in parentNode:
+			if not x.tag:
+				continue
+			if x.tag == 'item':
+				item_level = int(x.get("level", 0))
+
+				if not self.levelChanged in config.usage.setup_level.notifiers:
+					config.usage.setup_level.notifiers.append(self.levelChanged)
+					self.onClose.append(self.removeNotifier)
+
+				if item_level > config.usage.setup_level.index:
+					continue
+
+				requires = x.get("requires")
+				if requires and requires.startswith('config.'):
+					item = eval(requires or "");
+					if item.getValue() and not item.getValue() == "0":
+						SystemInfo[requires] = True
+					else:
+						SystemInfo[requires] = False
+
+				if requires and not SystemInfo.get(requires, False):
+					continue;
+
+				item_text = _(x.get("text", "??").encode("UTF-8"))
+				item_description = _(x.get("description", " ").encode("UTF-8"))
+				b = eval(x.text or "");
+				if b == "":
+					continue
+				#add to configlist
+				item = b
+				# the first b is the item itself, ignored by the configList.
+				# the second one is converted to string.
+				if not isinstance(item, ConfigNothing):
+					list.append((item_text, item, item_description))
+

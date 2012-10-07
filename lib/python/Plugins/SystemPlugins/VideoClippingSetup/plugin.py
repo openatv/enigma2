@@ -79,10 +79,10 @@ class VideoClippingCoordinates(Screen, ConfigListScreen):
 		setPosition(int(self.clip_left.getValue()), int(self.clip_width.getValue()), int(self.clip_top.getValue()), int(self.clip_height.getValue()))
 
 	def keyGo(self):
-		config.plugins.VideoClippingSetup.clip_left.setValue(self.clip_left.getValue())
-		config.plugins.VideoClippingSetup.clip_width.setValue(self.clip_width.getValue())
-		config.plugins.VideoClippingSetup.clip_top.setValue(self.clip_top.getValue())
-		config.plugins.VideoClippingSetup.clip_height.setValue(self.clip_height.getValue())
+		config.plugins.VideoClippingSetup.clip_left.value = self.clip_left.getValue()
+		config.plugins.VideoClippingSetup.clip_width.value = self.clip_width.getValue()
+		config.plugins.VideoClippingSetup.clip_top.value = self.clip_top.getValue()
+		config.plugins.VideoClippingSetup.clip_height.value = self.clip_height.getValue()
 		config.plugins.VideoClippingSetup.save()
 		self.close()
 

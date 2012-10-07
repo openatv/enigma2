@@ -2428,7 +2428,6 @@ class NetworkSamba(Screen):
 			commands.append('/etc/init.d/samba start')
 			commands.append('nmbd -D')
 			commands.append('smbd -D')
-
 		elif self.my_Samba_run == True:
 			commands.append('/etc/init.d/samba stop')
 			commands.append('killall nmbd')
@@ -2444,6 +2443,7 @@ class NetworkSamba(Screen):
 			chmod('/etc/network/if-up.d/01samba-start', 0644)
 		elif not access('/etc/network/if-up.d/01samba-start', X_OK):
 			chmod('/etc/network/if-up.d/01samba-start', 0755)
+
 		if fileExists('/etc/rc2.d/S20samba'):
 			self.Console.ePopen('update-rc.d -f samba remove', self.StartStopCallback)
 		else:
@@ -2732,7 +2732,6 @@ class NetworkInadyn(Screen):
 	def InadynStartStop(self):
 		if self.my_inadyn_run == False:
 			self.Console.ePopen('/etc/init.d/inadyn-mt start', self.StartStopCallback)
-
 		elif self.my_inadyn_run == True:
 			self.Console.ePopen('/etc/init.d/inadyn-mt stop', self.StartStopCallback)
 
@@ -3134,7 +3133,6 @@ class NetworkuShare(Screen):
 	def uShareStartStop(self):
 		if self.my_ushare_run == False:
 			self.Console.ePopen('/etc/init.d/ushare start >> /tmp/uShare.log', self.StartStopCallback)
-
 		elif self.my_ushare_run == True:
 			self.Console.ePopen('/etc/init.d/ushare stop >> /tmp/uShare.log', self.StartStopCallback)
 
@@ -3683,7 +3681,6 @@ class NetworkMiniDLNA(Screen):
 	def MiniDLNAStartStop(self):
 		if self.my_minidlna_run == False:
 			self.Console.ePopen('/etc/init.d/minidlna start', self.StartStopCallback)
-
 		elif self.my_minidlna_run == True:
 			self.Console.ePopen('/etc/init.d/minidlna stop', self.StartStopCallback)
 

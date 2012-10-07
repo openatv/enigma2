@@ -333,7 +333,7 @@ class VideoHardware:
 		# determine policy = {bestfit,letterbox,panscan,nonlinear}
 
 		# based on;
-		#   config.av.videoport.value: current video output device
+		#   config.av.videoport.getValue(): current video output device
 		#     Scart:
 		#   config.av.aspect:
 		#     4_3:            use policy_169

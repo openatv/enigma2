@@ -17,7 +17,6 @@ class Rc:
 
 		config.misc.rcused = ConfigInteger(default = 1)
 		self.isDefaultRc = rc_model.rcIsDefault()
-
 		self.rcheight = 500
 		self.rcheighthalf = 250
 

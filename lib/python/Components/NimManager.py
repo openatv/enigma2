@@ -301,7 +301,7 @@ class SecConfigure:
 						manufacturer = ProductDict[manufacturer_name]
 						product_name = manufacturer.product.getValue()
 						sec.setLNBSatCR(manufacturer.scr[product_name].index)
-						sec.setLNBSatCRvco(manufacturer.vco[product_name][manufacturer.scr[product_name].index].getValue()*1000)
+						sec.setLNBSatCRvco(manufacturer.vco[product_name][manufacturer.scr[product_name].index].getValue() * 1000)
 						sec.setLNBSatCRpositions(manufacturer.positions[product_name][0].getValue())
 						sec.setLNBLOFL(manufacturer.lofl[product_name][0].getValue() * 1000)
 						sec.setLNBLOFH(manufacturer.lofh[product_name][0].getValue() * 1000)
@@ -316,7 +316,7 @@ class SecConfigure:
 						sec.setLNBLOFH(currLnb.lofh.getValue() * 1000)
 						sec.setLNBThreshold(currLnb.threshold.getValue() * 1000)
 						sec.setLNBSatCR(currLnb.satcruser.index)
-						sec.setLNBSatCRvco(currLnb.satcrvcouser[currLnb.satcruser.index].getValue()*1000)
+						sec.setLNBSatCRvco(currLnb.satcrvcouser[currLnb.satcruser.index].getValue() * 1000)
 						sec.setLNBSatCRpositions(1)	#HACK
 					elif currLnb.unicable.getValue() == "unicable_matrix":
 						setupUnicable(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix)

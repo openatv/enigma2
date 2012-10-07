@@ -699,7 +699,7 @@ class InfoBarNumberZap:
 						self.servicelist.enterPath(rootbouquet)
 						self.servicelist.enterPath(bouquet)
 						self.servicelist.saveRoot()
-					self.zapToNumber(service, bouquet)
+					self.selectAndStartService(service, bouquet)
 				else:
 					self.servicelist.recallPrevService()
 		else:
@@ -727,24 +727,22 @@ class InfoBarNumberZap:
 		service = None
 		serviceHandler = eServiceCenter.getInstance()
 		service = self.searchNumberHelper(serviceHandler, number, bouquet)
-		if config.usage.multibouquet.getValue():
-			service = self.searchNumberHelper(serviceHandler, number, bouquet) #search the current bouqeut first
-			if not service:
-				bouquet = self.servicelist.bouquet_root
-				bouquetlist = serviceHandler.list(bouquet)
-				if bouquetlist:
+		if config.usage.multibouquet.getValue() and not service:
+			bouquet = self.servicelist.bouquet_root
+			bouquetlist = serviceHandler.list(bouquet)
+			if bouquetlist:
+				bouquet = bouquetlist.getNext()
+				while bouquet.valid():
+					if bouquet.flags & eServiceReference.isDirectory:
+						service = self.searchNumberHelper(serviceHandler, number, bouquet)
+						if service:
+							playable = not (service.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)) or (service.flags & eServiceReference.isNumberedMarker)
+							if not playable:
+								service = None
+							break
+						if config.usage.alternative_number_mode.getValue():
+							break
 					bouquet = bouquetlist.getNext()
-					while bouquet.valid():
-						if bouquet.flags & eServiceReference.isDirectory:
-							service = self.searchNumberHelper(serviceHandler, number, bouquet)
-							if service:
-								playable = not (service.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)) or (service.flags & eServiceReference.isNumberedMarker)
-								if not playable:
-									service = None
-								break
-							if config.usage.alternative_number_mode.getValue():
-								break
-						bouquet = bouquetlist.getNext()
 		return service, bouquet
 
 	def selectAndStartService(self, service, bouquet):
@@ -852,6 +850,8 @@ class InfoBarChannelSelection:
 			self.secondInfoBarWasShown = False
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="showRadioChannelList")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			self.servicelist.setModeRadio()
 			if zap:
@@ -871,6 +871,8 @@ class InfoBarChannelSelection:
 			self.ptsSeekPointerOK()
 		elif self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="historyBack")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			self.servicelist.historyBack()
 
@@ -886,6 +888,8 @@ class InfoBarChannelSelection:
 			self.ptsSeekPointerOK()
 		elif self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="historyNext")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			self.servicelist.historyNext()
 
@@ -895,6 +899,8 @@ class InfoBarChannelSelection:
 			self.secondInfoBarWasShown = False
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelUp")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			if not config.usage.show_bouquetalways.getValue():
 # 				self.servicelist.moveUp()
@@ -909,6 +915,8 @@ class InfoBarChannelSelection:
 			self.secondInfoBarWasShown = False
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelDown")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			if not config.usage.show_bouquetalways.getValue():
 #  				self.servicelist.moveDown()
@@ -923,12 +931,16 @@ class InfoBarChannelSelection:
 			self.secondInfoBarWasShown = False
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="openServiceList")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			self.session.execDialog(self.servicelist)
 
 	def openSatellites(self):
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="openSatellites")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			self.servicelist.showSatellites()
 			self.session.execDialog(self.servicelist)
@@ -946,6 +958,8 @@ class InfoBarChannelSelection:
 
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="zapUp")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			if self.servicelist.inBouquet():
 				prev = self.servicelist.getCurrentSelection()
@@ -969,6 +983,8 @@ class InfoBarChannelSelection:
 
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="zapDown")
+		elif self.timeshift_enabled and self.isSeekable():
+			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
 		else:
 			if self.servicelist.inBouquet():
 				prev = self.servicelist.getCurrentSelection()
@@ -1686,8 +1702,8 @@ class InfoBarSeek:
 		self["SeekActions"] = InfoBarSeekActionMap(self, actionmap,
 			{
 				"playpauseService": self.playpauseService,
-				"pauseService": (self.pauseServiceYellow, _("pause")),
-				"unPauseService": (self.unPauseService, _("continue")),
+				"pauseService": (self.pauseServiceYellow, _("Pause playback")),
+				"unPauseService": (self.unPauseService, _("Continue playback")),
 
 				"seekFwd": (self.seekFwd, _("skip forward")),
 				"seekFwdManual": (self.seekFwdManual, _("skip forward (enter time)")),
@@ -1701,8 +1717,8 @@ class InfoBarSeek:
 		self["SeekActionsPTS"] = InfoBarSeekActionMap(self, "InfobarSeekActionsPTS",
 			{
 				"playpauseService": self.playpauseService,
-				"pauseService": (self.pauseServiceYellow, _("pause")),
-				"unPauseService": (self.unPauseService, _("continue")),
+				"pauseService": (self.pauseServiceYellow, _("Pause playback")),
+				"unPauseService": (self.unPauseService, _("Continue playback")),
 
 				"seekFwd": (self.seekFwd, _("skip forward")),
 				"seekFwdManual": (self.seekFwdManual, _("skip forward (enter time)")),
@@ -2464,7 +2480,7 @@ class InfoBarTimeshift:
 			if self.save_current_timeshift and self.timeshift_enabled:
 				if config.recording.margin_after.getValue() > 0 and len(self.recording) == 0:
 					self.SaveTimeshift(mergelater=True)
-					recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()), time(), time()+(config.recording.margin_after.getValue()*60), self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, dirname = config.usage.default_path.getValue())
+					recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()), time(), time()+(config.recording.margin_after.getValue() * 60), self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, dirname = config.usage.default_path.getValue())
 					recording.dontSave = True
 					self.session.nav.RecordTimer.record(recording)
 					self.recording.append(recording)
@@ -2473,7 +2489,7 @@ class InfoBarTimeshift:
 
 			# Restarting active timers after zap ...
 			if self.pts_delay_timer.isActive() and not self.timeshift_enabled:
-				self.pts_delay_timer.start(config.timeshift.startdelay.getValue()*1000, True)
+				self.pts_delay_timer.start(config.timeshift.startdelay.getValue() * 1000, True)
 			if self.pts_cleanUp_timer.isActive() and not self.timeshift_enabled:
 				self.pts_cleanUp_timer.start(3000, True)
 
@@ -2482,7 +2498,7 @@ class InfoBarTimeshift:
 				if not self.timeshift_enabled or old_begin_time != self.pts_begintime or old_begin_time == 0:
 					if self.pts_service_changed:
 						self.pts_service_changed = False
-						self.pts_delay_timer.start(config.timeshift.startdelay.getValue()*1000, True)
+						self.pts_delay_timer.start(config.timeshift.startdelay.getValue() * 1000, True)
 					else:
 						self.pts_delay_timer.start(1000, True)
 
@@ -2571,7 +2587,7 @@ class InfoBarTimeshift:
 			self.ptsCreateHardlink()
 			self.__seekableStatusChanged()
 		else:
-			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
 			self.pts_eventcount = 0
 
 	def selectYellowkeyAction(self):
@@ -2678,7 +2694,7 @@ class InfoBarTimeshift:
 		ts = self.getTimeshift()
 		if ts is None:
 			return 0
-		self.session.openWithCallback(self.stopTimeshiftConfirmed, MessageBox, _("Stop Timeshift?"), MessageBox.TYPE_YESNO, simple = True)
+		self.session.openWithCallback(self.stopTimeshiftConfirmed, MessageBox, _("Stop timeshift?"), MessageBox.TYPE_YESNO, simple = True)
 
 	def stopTimeshiftConfirmed(self, confirmed, switchToLive=True):
 		was_enabled = self.timeshift_enabled
@@ -4264,7 +4280,6 @@ class InfoBarInstantRecord:
 					self.recording[self.selectedEntry].autoincrease = False
 				self.recording[self.selectedEntry].end = ret[1]
 		else:
-			print"[INSTAND RECORD] EndTime not changed !!"
 			#if self.recording[self.selectedEntry].end != int(time()):
 			#	self.recording[self.selectedEntry].autoincrease = False
 			#self.recording[self.selectedEntry].end = int(time())
@@ -4283,7 +4298,6 @@ class InfoBarInstantRecord:
 				entry.autoincrease = False
 			entry.end = int(time()) + 60 * int(value)
 		else:
-			print"[INSTAND RECORD] Duration not changed !!"
 			#if entry.end != int(time()):
 			#	entry.autoincrease = False
 			#entry.end = int(time())
@@ -4301,26 +4315,28 @@ class InfoBarInstantRecord:
 						 "\n" + _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
 			return
 
+		common =((_("Add recording (stop after current event)"), "event"),
+		(_("Add recording (indefinitely)"), "indefinitely"),
+		(_("Add recording (enter recording duration)"), "manualduration"),
+		(_("Add recording (enter recording endtime)"), "manualendtime"),)
+
+		timeshiftcommon = ((_("Timeshift save recording (stop after current event)"), "savetimeshift"),
+		(_("Timeshift save recording (Select event)"), "savetimeshiftEvent"),)
+
 		if self.isInstantRecordRunning():
-			l = [(_("Stop recording"), "stop"), \
-			(_("Add recording (stop after current event)"), "event"), \
-			(_("Add recording (indefinitely)"), "indefinitely"), \
-			(_("Add recording (enter recording duration)"), "manualduration"), \
-			(_("Add recording (enter recording endtime)"), "manualendtime"), \
-			(_("Change recording (duration)"), "changeduration"), \
-			(_("Change recording (endtime)"), "changeendtime")]
+			title =_("A recording is currently running.\nWhat do you want to do?")
+			list = ((_("Stop recording"), "stop"),) + common + \
+			((_("Change recording (duration)"), "changeduration"),
+			(_("Change recording (endtime)"), "changeendtime"),)
 		else:
-			l = [(_("Add recording (stop after current event)"), "event"), \
-			(_("Add recording (indefinitely)"), "indefinitely"), \
-			(_("Add recording (enter recording duration)"), "manualduration"), \
-			(_("Add recording (enter recording endtime)"), "manualendtime")]
+			title=_("Start recording?")
+			list = common
+
 		if config.timeshift.enabled.getValue() or self.timeshift_enabled:
-			l.append((_("Timeshift")+" "+_("save recording (stop after current event)"), "savetimeshift"))
-			l.append((_("Timeshift")+" "+_("save recording (Select event)"), "savetimeshiftEvent"))
-		l.append((_("Do nothing"), "no"))
-		self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, \
-			title=_("A recording is currently running.\nWhat do you want to do?"), \
-			list=l)
+			list = list + timeshiftcommon
+
+		list = list + ((_("Do not record"), "no"),)
+		self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox,title=title,list=list)
 		return
 
 from Tools.ISO639 import LanguageCodes
@@ -4329,8 +4345,8 @@ class InfoBarAudioSelection:
 	def __init__(self):
 		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions",
 			{
-				"audioSelection": (self.audioSelection, _("Audio Options...")),
-				"audio_key": (self.audio_key, _("Audio Options...")),
+				"audioSelection": (self.audioSelection, _("Audio options...")),
+				"audio_key": (self.audio_key, _("Audio options...")),
 			})
 
 	def audioSelection(self):

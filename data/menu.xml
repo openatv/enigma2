@@ -45,8 +45,8 @@
 				<menu level="0" text="Extended System" entryID="extended_selection">
 					<id val="extended" />
 				<item requires="Display"><setup level="1" id="lcd" /></item>
-				<item level="0" text="Timeshift Settings" entryID="timshift_setup"><screen module="Recordings_Timershift" screen="TimeshiftSettings" /></item>
-				<item level="0" text="Recording Settings" entryID="recording_setup"><screen module="Recordings_Timershift" screen="RecordingSettings" /></item>
+				<item level="0" text="Timeshift settings" entryID="timshift_setup"><screen module="Timershift" screen="TimeshiftSettings" /></item>
+				<item level="0" text="Recording settings" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings" /></item>
 				<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 				<item text="Keyboard"><setup id="keyboard" /></item>
 				<item level="0" entryID="time_setup"><setup id="time"/></item>
@@ -92,6 +92,10 @@ self.session.openWithCallback(msgClosed, EpgLoadMsg)
 </code>
 						</item>
 					</menu>
+					<item level="2" entryID="setup_epgmulti"><setup id="epgmulti" /></item>
+					<item level="2" entryID="setup_epgenhanced"><setup id="epgenhanced" /></item>
+					<item level="2" entryID="setup_epginfobar"><setup id="epginfobar" /></item>
+					<item level="2" entryID="setup_epggraphical"><setup id="epggraphical" /></item>
 				</menu>
 				<item level="0" text="HDMI CEC" entryID="hdmicec" requires="HDMICEC">
 <code>

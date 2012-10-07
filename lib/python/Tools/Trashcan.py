@@ -62,7 +62,7 @@ class Trashcan:
 			print "[Trashcan] Recording in progress", self.recordings
 			return
 		ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.getValue() * 3600 * 24)
-		reserveBytes = 1024*1024*1024 * config.usage.movielist_trashcan_reserve.getValue()
+		reserveBytes = 1024*1024*1024 * int(config.usage.movielist_trashcan_reserve.getValue())
 		clean(ctimeLimit, reserveBytes)
 
 def clean(ctimeLimit, reserveBytes):

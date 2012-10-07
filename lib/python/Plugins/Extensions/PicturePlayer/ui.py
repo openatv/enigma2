@@ -572,7 +572,7 @@ class Pic_Full_View(Screen):
 			self.slideTimer.stop()
 			self["play_icon"].hide()
 		else:
-			self.slideTimer.start(config.pic.slidetime.getValue()*1000)
+			self.slideTimer.start(config.pic.slidetime.getValue() * 1000)
 			self["play_icon"].show()
 			self.nextPic()
 

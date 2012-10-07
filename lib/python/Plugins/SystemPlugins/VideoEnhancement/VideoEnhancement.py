@@ -16,7 +16,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_contrast"):
 			def setContrast(config):
-				myval = int(config.getValue()*256)
+				myval = int(config.getValue() * 256)
 				try:
 					print "--> setting contrast to: %0.8X" % myval
 					open("/proc/stb/vmpeg/0/pep_contrast", "w").write("%0.8X" % myval)
@@ -33,7 +33,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_saturation"):
 			def setSaturation(config):
-				myval = int(config.getValue()*256)
+				myval = int(config.getValue() * 256)
 				try:
 					print "--> setting saturation to: %0.8X" % myval
 					open("/proc/stb/vmpeg/0/pep_saturation", "w").write("%0.8X" % myval)
@@ -50,7 +50,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_hue"):
 			def setHue(config):
-				myval = int(config.getValue()*256)
+				myval = int(config.getValue() * 256)
 				try:
 					print "--> setting hue to: %0.8X" % myval
 					open("/proc/stb/vmpeg/0/pep_hue", "w").write("%0.8X" % myval)
@@ -67,7 +67,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_brightness"):
 			def setBrightness(config):
-				myval = int(config.getValue()*256)
+				myval = int(config.getValue() * 256)
 				try:
 					print "--> setting brightness to: %0.8X" % myval
 					open("/proc/stb/vmpeg/0/pep_brightness", "w").write("%0.8X" % myval)
@@ -155,7 +155,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_sharpness"):
 			def setSharpness(config):
-				myval = int(config.getValue()*256)
+				myval = int(config.getValue() * 256)
 				try:
 					print "--> setting sharpness to: %0.8X" % myval
 					open("/proc/stb/vmpeg/0/pep_sharpness", "w").write("%0.8X" % myval)

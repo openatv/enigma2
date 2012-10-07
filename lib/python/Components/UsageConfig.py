@@ -41,7 +41,7 @@ def InitUsageConfig():
 	config.usage.show_second_infobar = ConfigSelection(default = "1", choices = [("0", _("Off")), ("1", _("Event Info")), ("2", _("2nd Infobar INFO")), ("3", _("2nd Infobar ECM"))])
 	config.usage.second_infobar_timeout = ConfigSelection(default = "5", choices = [("0", _("no timeout"))] + choicelist)
 	config.usage.show_picon_bkgrn = ConfigSelection(default = "transparent", choices = [("transparent", _("Transparent")), ("blue", _("Blue")), ("red", _("Red")), ("black", _("Black")), ("white", _("White")), ("lightgrey", _("Light Grey")), ("grey", _("Grey"))])
-	
+
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
 	config.usage.sort_settings = ConfigYesNo(default = True)
@@ -107,8 +107,8 @@ def InitUsageConfig():
 	config.usage.allowed_timeshift_paths = ConfigLocations(default = [resolveFilename(SCOPE_TIMESHIFT)])
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
-	config.usage.movielist_trashcan_days = ConfigNumber(default=8)
-	config.usage.movielist_trashcan_reserve = ConfigNumber(default=40)
+	config.usage.movielist_trashcan_days = ConfigSelectionNumber(min = 1, max = 31, stepwidth = 1, default = 8, wraparound = True)
+	config.usage.movielist_trashcan_reserve = ConfigSelectionNumber(min = 1, max = 3000, stepwidth = 4, default = 40, wraparound = True)
 	config.usage.on_movie_start = ConfigSelection(default = "ask", choices = [
 		("ask", _("Ask user")), ("resume", _("Resume from last position")), ("beginning", _("Start from the beginning")) ])
 	config.usage.on_movie_stop = ConfigSelection(default = "movielist", choices = [
@@ -335,7 +335,7 @@ def InitUsageConfig():
 	config.softwareupdate.autosettingsbackup = ConfigYesNo(default = False)
 	config.softwareupdate.autoimagebackup = ConfigYesNo(default = False)
 	config.softwareupdate.check = ConfigYesNo(default = False)
-	config.softwareupdate.checktimer = ConfigInteger(default=6, limits=(1, 48))
+	config.softwareupdate.checktimer = ConfigSelectionNumber(min = 1, max = 48, stepwidth = 1, default = 6, wraparound = True)
 	config.softwareupdate.updatelastcheck = ConfigInteger(default=0)
 	config.softwareupdate.updatefound = NoSave(ConfigBoolean(default = False))
 	config.softwareupdate.updatebeta = ConfigYesNo(default = False)
@@ -344,9 +344,9 @@ def InitUsageConfig():
 	config.timeshift = ConfigSubsection()
 	config.timeshift.pauzekeyenabled = ConfigYesNo(default = True)
 	config.timeshift.enabled = ConfigYesNo(default = False)
-	config.timeshift.maxevents = ConfigInteger(default=5, limits=(1, 99))
-	config.timeshift.maxlength = ConfigInteger(default=180, limits=(5, 999))
-	config.timeshift.startdelay = ConfigInteger(default=5, limits=(5, 999))
+	config.timeshift.maxevents = ConfigSelectionNumber(min = 1, max = 99, stepwidth = 1, default = 5, wraparound = True)
+	config.timeshift.maxlength = ConfigSelectionNumber(min = 30, max = 999, stepwidth = 10, default = 360, wraparound = True)
+	config.timeshift.startdelay = ConfigSelectionNumber(min = 5, max = 60, stepwidth = 1, default = 5, wraparound = True)
 	config.timeshift.showinfobar = ConfigYesNo(default = True)
 	config.timeshift.stopwhilerecording = ConfigYesNo(default = False)
 	config.timeshift.favoriteSaveAction = ConfigSelection([("askuser", _("Ask user")),("savetimeshift", _("Save and stop")),("savetimeshiftandrecord", _("Save and record")),("noSave", _("Don't save"))], "askuser")
@@ -355,10 +355,10 @@ def InitUsageConfig():
 
 	config.seek = ConfigSubsection()
 	config.seek.baractivation = ConfigSelection([("leftright", _("Long Left/Right")),("ffrw", _("Long << / >>"))], "leftright")
-	config.seek.sensibility = ConfigInteger(default=10, limits=(1, 10))
-	config.seek.selfdefined_13 = ConfigNumber(default=15)
-	config.seek.selfdefined_46 = ConfigNumber(default=60)
-	config.seek.selfdefined_79 = ConfigNumber(default=300)
+	config.seek.sensibility = ConfigSelectionNumber(min = 1, max = 10, stepwidth = 1, default = 10, wraparound = True)
+	config.seek.selfdefined_13 = ConfigSelectionNumber(min = 1, max = 120, stepwidth = 1, default = 15, wraparound = True)
+	config.seek.selfdefined_46 = ConfigSelectionNumber(min = 1, max = 240, stepwidth = 1, default = 60, wraparound = True)
+	config.seek.selfdefined_79 = ConfigSelectionNumber(min = 1, max = 480, stepwidth = 1, default = 300, wraparound = True)
 
 	config.seek.speeds_forward = ConfigSet(default=[2, 4, 8, 16, 32, 64, 128], choices=[2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
 	config.seek.speeds_backward = ConfigSet(default=[2, 4, 8, 16, 32, 64, 128], choices=[1, 2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
@@ -376,9 +376,9 @@ def InitUsageConfig():
 	config.crash = ConfigSubsection()
 	config.crash.details = ConfigYesNo(default = True)
 	config.crash.enabledebug = ConfigYesNo(default = False)
-	config.crash.debugloglimit = ConfigNumber(default=4)
-	config.crash.daysloglimit = ConfigNumber(default=8)
-	config.crash.sizeloglimit = ConfigNumber(default=10)
+	config.crash.debugloglimit = ConfigSelectionNumber(min = 1, max = 10, stepwidth = 1, default = 4, wraparound = True)
+	config.crash.daysloglimit = ConfigSelectionNumber(min = 1, max = 30, stepwidth = 1, default = 8, wraparound = True)
+	config.crash.sizeloglimit = ConfigSelectionNumber(min = 1, max = 20, stepwidth = 1, default = 10, wraparound = True)
 
 	debugpath = [('/home/root/logs/', '/home/root/')]
 	for p in harddiskmanager.getMountedPartitions():
@@ -589,8 +589,8 @@ def InitUsageConfig():
 	config.epgselection.preview_mode_infobar = ConfigYesNo(default = True)
 	config.epgselection.preview_mode = ConfigYesNo(default = True)
 	config.epgselection.graphics_mode = ConfigSelection(choices = [("graphics",_("Graphics")), ("text", _("Text"))], default = "graphics")
-	config.epgselection.OK = ConfigSelection(choices = [("EventView",_("EventView")),("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
-	config.epgselection.OKLong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
+	config.epgselection.OK_multi = ConfigSelection(choices = [("EventView",_("EventView")),("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.epgselection.OKLong_multi= ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
 	config.epgselection.OK_pliepg = ConfigSelection(choices = [("EventView",_("EventView")),("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
 	config.epgselection.OKLong_pliepg = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
 	config.epgselection.OK_enhanced = ConfigSelection(choices = [("EventView",_("EventView")),("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
@@ -620,10 +620,11 @@ def InitUsageConfig():
 	config.epgselection.itemsperpage_enhanced = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 12, max = 40, wraparound = True)
 	config.epgselection.itemsperpage_multi = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 12, max = 40, wraparound = True)
 	config.epgselection.itemsperpage_infobar = ConfigSelectionNumber(default = 2, stepwidth = 1, min = 2, max = 4, wraparound = True)
-	config.epgselection.servicewidth = ConfigSelectionNumber(default = 250, stepwidth = 1, min = 70, max = 500, wraparound = True)
 	config.epgselection.overjump = ConfigYesNo(default = False)
 	config.epgselection.pictureingraphics = ConfigYesNo(default = True)
 	config.epgselection.heightswitch = NoSave(ConfigYesNo(default = False))
+	config.epgselection.servicewidth = ConfigSelectionNumber(default = 250, stepwidth = 1, min = 70, max = 500, wraparound = True)
+	config.epgselection.piconwidth = ConfigSelectionNumber(default = 100, stepwidth = 1, min = 70, max = 500, wraparound = True)
 
 	config.oscaminfo = ConfigSubsection()
 	config.oscaminfo.showInExtensions = ConfigYesNo(default=False)
@@ -633,12 +634,12 @@ def InitUsageConfig():
 	config.oscaminfo.password = ConfigPassword(default = "password", fixed_size = False)
 	config.oscaminfo.ip = ConfigIP( default = [ 127,0,0,1 ], auto_jump=True)
 	config.oscaminfo.port = ConfigInteger(default = 16002, limits=(0,65536) )
-	config.oscaminfo.intervall = ConfigInteger(default = 10, limits=(1,600) )
+	config.oscaminfo.intervall = ConfigSelectionNumber(min = 1, max = 600, stepwidth = 1, default = 10, wraparound = True)
 	SystemInfo["OScamInstalled"] = False
 
 	config.cccaminfo = ConfigSubsection()
 	config.cccaminfo.showInExtensions = ConfigYesNo(default=False)
-	config.cccaminfo.serverNameLength = ConfigInteger(default=22, limits=(10, 100))
+	config.cccaminfo.serverNameLength = ConfigSelectionNumber(min = 10, max = 100, stepwidth = 1, default = 22, wraparound = True)
 	config.cccaminfo.name = ConfigText(default="Profile", fixed_size=False)
 	config.cccaminfo.ip = ConfigText(default="192.168.2.12", fixed_size=False)
 	config.cccaminfo.username = ConfigText(default="", fixed_size=False)
@@ -646,7 +647,7 @@ def InitUsageConfig():
 	config.cccaminfo.port = ConfigInteger(default=16001, limits=(1, 65535))
 	config.cccaminfo.profile = ConfigText(default="", fixed_size=False)
 	config.cccaminfo.ecmInfoEnabled = ConfigYesNo(default=True)
-	config.cccaminfo.ecmInfoTime = ConfigInteger(default=5, limits=(1, 10))
+	config.cccaminfo.ecmInfoTime = ConfigSelectionNumber(min = 1, max = 10, stepwidth = 1, default = 5, wraparound = True)
 	config.cccaminfo.ecmInfoForceHide = ConfigYesNo(default=True)
 	config.cccaminfo.ecmInfoPositionX = ConfigInteger(default=50)
 	config.cccaminfo.ecmInfoPositionY = ConfigInteger(default=50)

@@ -25,11 +25,11 @@ class OSDSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		self.skin = OSDSetup.skin
 		Screen.__init__(self, session)
-		self.setup_title = _("OSD Setup")
+		self.setup_title = _("OSD Position Setup")
 		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
-		self["key_yellow"] = StaticText(_("Default"))
+		self["key_yellow"] = StaticText(_("Defaults"))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
