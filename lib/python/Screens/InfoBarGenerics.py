@@ -4280,10 +4280,11 @@ class InfoBarInstantRecord:
 					self.recording[self.selectedEntry].autoincrease = False
 				self.recording[self.selectedEntry].end = ret[1]
 		else:
+			pass
 			#if self.recording[self.selectedEntry].end != int(time()):
 			#	self.recording[self.selectedEntry].autoincrease = False
 			#self.recording[self.selectedEntry].end = int(time())
-			self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
+		self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
 	def changeDuration(self, entry):
 		if entry is not None and entry >= 0:
@@ -4298,10 +4299,11 @@ class InfoBarInstantRecord:
 				entry.autoincrease = False
 			entry.end = int(time()) + 60 * int(value)
 		else:
+			pass
 			#if entry.end != int(time()):
 			#	entry.autoincrease = False
 			#entry.end = int(time())
-			self.session.nav.RecordTimer.timeChanged(entry)
+		self.session.nav.RecordTimer.timeChanged(entry)
 
 	def instantRecord(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
