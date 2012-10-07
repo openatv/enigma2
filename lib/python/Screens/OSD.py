@@ -5,6 +5,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
+from Components.Label import Label
 from os import path
 from enigma import getDesktop, getBoxType
 
