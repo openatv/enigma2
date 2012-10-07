@@ -50,7 +50,8 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		</screen>"""
 
 	def removeNotifier(self):
-		config.usage.setup_level.notifiers.remove(self.levelChanged)
+		if config.usage.setup_level.notifiers:
+			config.usage.setup_level.notifiers.remove(self.levelChanged)
 
 	def levelChanged(self, configElement):
 		list = []
@@ -179,7 +180,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		list.append(self.timeshift_entry)
 
 		self.refill(list)
- 		self["config"].setList(list)
+		self["config"].setList(list)
 		if config.usage.sort_settings.getValue():
 			self["config"].list.sort()
 

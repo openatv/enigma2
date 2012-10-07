@@ -1720,19 +1720,11 @@ msgstr "Wähle den korrekten DiSEqC-Modus für dieses LNB."
 msgid "Choose the location for crash and debuglogs."
 msgstr "Wähle den Speicherort für Crash- und Debug-Logs"
 
-msgid ""
-"Choose the location where the EPG data will be stored when the STB_BOX "
-"is shut down. The location must be available at boot time."
-msgstr ""
-"Wähle den Speicherort wo die EPG Daten gespeichert werden wenn die STB_BOX"
-"ausgeschaltet wird. Dieser Ort muss beim Booten verfügbar sein."
+msgid "Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time."
+msgstr "Wähle einen Ort wo die EPG Daten gespeichert werden wenn die STB_BOX ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein."
 
-msgid ""
-"Choose the name of the file that holds the EPG data when the STB_BOX "
-"is shut down. This can be handy to differentiate between several boxes."
-msgstr ""
-"Wähle den Dateinamen für die EPG Datei wenn die STB_BOX ausgeschaltet "
-"wird. Dies ist nützlich wenn mehrere Boxen den selben Speicherort benutzen."
+msgid "Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes."
+msgstr "Wähle den Dateinamen für die EPG-Daten wenn die STB_BOX ausgeschaltetet wird. Das kann nützlich sein wenn mehrere Boxen verwendet werden."
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Wähle das Zeitraster auf das die Grafiken gerundet werden."
@@ -3601,6 +3593,18 @@ msgstr "Gehe zum angegebenen Datum/Uhrzeit"
 
 msgid "GraphMultiEpg Settings"
 msgstr "GraphMultiEpg Einstellungen"
+
+msgid "MultiEPG settings"
+msgstr "MultiEPG Einstellungen"
+
+msgid "SingleEPG settings"
+msgstr "SingleEPG Einstellungen"
+
+msgid "InfobarEPG settings"
+msgstr "InfobarEPG Einstellungen"
+
+msgid "GraphicalEPG settings"
+msgstr "GraphicalEPG Einstellungen"
 
 msgid "Graphical EPG..."
 msgstr "Grafischer EPG"
@@ -13127,6 +13131,21 @@ msgstr "Neustart des Netzwerkadapters"
 
 msgid "Use AAF coloured Buttons *"
 msgstr "Farbtasten vom AAF benutzen *"
+
+msgid "Use ViaSat EPG information when it is available."
+msgstr "Verwende ViaSat EPG Information wenn Sie verfügbar ist."
+
+msgid "Use MHW EPG information when it is available."
+msgstr "Verwende MHW EPG Information wenn Sie verfügbar ist."
+
+msgid "Use Netmed EPG information when it is available."
+msgstr "Verwende Netmed EPG Information wenn Sie verfügbar ist."
+
+msgid "Use EIT EPG information when it is available."
+msgstr "Verwende EIT EPG Information wenn Sie vorhanden ist."
+
+msgid "Use FreeSat EPG information when it is available."
+msgstr "Verwende FreeSat EPG Information wenn Sie verfügbar ist."
 
 # Informationen
 msgid "Network Information"
