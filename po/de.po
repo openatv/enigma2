@@ -925,10 +925,10 @@ msgstr "Alle Alter"
 msgid "All satellites"
 msgstr "Alle Satelliten"
 
-msgid "Allow Subtitle equals Audio mask"
+msgid "Allow subtitle language to equal audio language"
 msgstr "Erlaube Untertitel entsprechend Audioeinstellung"
 
-msgid "Allow hearing impaired subtitles"
+msgid "Allow subtitles for hearing impaired"
 msgstr "Untertitel für Hörgeschädigte zulassen"
 
 msgid "Allow unstable (untested) updates"
@@ -3852,13 +3852,6 @@ msgstr ""
 "Wenn auf 'Ja' gestellt wird die STB_BOX die Tonspur benutzen die "
 "früher benutzt wurde."
 
-msgid ""
-"If set to 'yes' the receiver will use the subtitles that has been used "
-"earlier."
-msgstr ""
-"Wenn auf 'Ja' gestellt so wird die STB_BOX den Untertitel benutzen der "
-"Früher benutzt wurde."
-
 msgid "If set to 'yes' you can preview channels in the EPG list."
 msgstr "Wenn 'Ja' eingestellt ist erhältst Du eine Programmvorschau im EPG."
 
@@ -5069,7 +5062,7 @@ msgstr "OK, Erweiterungen entfernen."
 msgid "ONID"
 msgstr "ONID"
 
-msgid "OSD Position setup"
+msgid "OSD Position Setup"
 msgstr "OSD Einstellungen"
 
 msgid "OSD 3D Setup"
@@ -5078,6 +5071,9 @@ msgstr "3D Konfiguration"
 #
 msgid "OSD Position"
 msgstr "OSD Kalibrieren"
+
+msgid "OSD Settings"
+msgstr "Menu Anpassungen"
 
 msgid "OSD settings"
 msgstr "Menu Anpassungen"
@@ -5740,25 +5736,25 @@ msgstr "Vordefinierte Transponder"
 msgid "Prefer AC3"
 msgstr "AC3 bevorzugen"
 
-msgid "Prefer DVB-grafical subtitles"
+msgid "Prefer DVB-graphical subtitles"
 msgstr "Grafische DVB-Untertitel bevorzugen"
 
 msgid "Prefer audio stream stored by service"
 msgstr "Standard-Audio-Stream des Programms bevorzugen"
 
-msgid "Prefer hearing impaired subtitles"
+msgid "Prefer subtitles for hearing impaired"
 msgstr "Untertitel für Hörgeschädigte bevorzugen"
 
-msgid "Prefer hearing impaired subtitles over normal subtitles."
-msgstr "Bevorzuge Untertitel für Hörgeschädigte vor anderen Untertiteln."
+msgid "Prefer subtitles for hearing impaired over normal subtitles, when both types are available."
+msgstr "Bevorzuge Untertitel für Hörgeschädigte vor anderen Untertiteln, wenn beide verfügbar sind."
 
-msgid "Prefer the DVB-graphical subtitles over Teletext subtitles."
-msgstr "Bevorzuge grafische DVB Untertitel vor anderen Untertiteln."
+msgid "Prefer DVB-graphical subtitles over teletext subtitles, when both types are available."
+msgstr "Bevorzuge grafische DVB Untertitel vor anderen Untertiteln, wenn beide verfügbar sind."
 
-msgid "Prefer subtitle stored by service"
+msgid "Prefer subtitles stored by service"
 msgstr "Standard-Untertitel des Programms bevorzugen"
 
-msgid "Preferred tuner"
+msgid "Prefered tuner"
 msgstr "Bevorzugter Tuner "
 
 msgid "Prepare another USB stick for image flashing"
@@ -6873,23 +6869,23 @@ msgstr "Setze Netzwerkadapter als Standard"
 msgid "Set limits"
 msgstr "Grenzen einstellen"
 
-msgid "Set the EPG language selection 1"
-msgstr "EPG Sprachwahl 1"
+msgid "Configure the primary EPG language."
+msgstr "EPG Sprachwahl 1 einstellen."
 
-msgid "Set the EPG language selection 2"
-msgstr "EPG Sprachwahl 2"
+msgid "Configure the secundary EPG language."
+msgstr "EPG Sprachwahl 2 einstellen."
 
-msgid "Set the audio language 1 (highest priority)"
-msgstr "Audio Sprachwahl 1 (höchste Priorität)"
+msgid "Configure the first audio language (highest priority)."
+msgstr "Audio Sprachwahl 1 (höchste Priorität) einstellen."
 
-msgid "Set the audio language 2"
-msgstr "Audio Sprachwahl 2"
+msgid "Configure the second audio language."
+msgstr "Audio Sprachwahl 2 einstellen."
 
-msgid "Set the audio language 3"
-msgstr "Audio Sprachwahl 3"
+msgid "Configure the third audio language."
+msgstr "Audio Sprachwahl 3 einstellen."
 
-msgid "Set the audio language 4 (lowest priority)"
-msgstr "Audio Sprachwahl 4 (niedrigste Priorität)"
+msgid "Configure the fourth audio language."
+msgstr "Audio Sprachwahl 4 (niedrigste Priorität) einstellen."
 
 msgid "Configure the brightness level of the front panel displ for normal operation."
 msgstr "Helligkeit des Displays für normalem Betrieb einstellen."
@@ -6971,17 +6967,17 @@ msgstr "Wähle die Sprung vorwärt/rückwärts Zeit für die Tasten 4 und 6."
 msgid "Set the skip-forward/backward time of the 7-9 number keys."
 msgstr "Wähle die Sprung vorwärt/rückwärts Zeit für die Tasten 7 und 9."
 
-msgid "Set the subtitle language selection 1 (highest priority)"
-msgstr "Untertitel Sprachwahl 1 (höchste Priorität)"
+msgid "Configure the first subtitle language (highest priority)."
+msgstr "Untertitel für die Sprachauswahl 1 (höchste Priorität) einstellen."
 
-msgid "Set the subtitle language selection 2"
-msgstr "Untertitel Sprachwahl 2"
+msgid "Configure the second subtitle language."
+msgstr "Untertitel für die Sprachauswahl 2 einstellen."
 
-msgid "Set the subtitle language selection 3"
-msgstr "Untertitel Sprachwahl 3"
+msgid "Configure the third subtitle language."
+msgstr "Untertitel für die Sprachauswahl 3 einstellen."
 
-msgid "Set the subtitle language selection 4 (lowest priority)"
-msgstr "Untertitel Sprachwahl 4 (niedrigste Priorität)"
+msgid "Configure the fourth subtitle language."
+msgstr "Untertitel für die Sprachauswahl 4 (niedrigste Priorität) einstellen."
 
 msgid ""
 "Usually when the subtitle language is the same as the audio language "
@@ -13411,3 +13407,12 @@ msgstr "Die Angabe im EPG für eine Aufnahme wird entsprechend Verlängert in Mi
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Konfigurieren Sie auf welche Geräte der Hintergrund Löschoption verwendet werden soll."
+
+msgid "Restoring..."
+msgstr "Wiederherstellen..."
+
+msgid "When enabled, the receiver will use the subtitles which have been selected earlier."
+msgstr "Wenn eingeschaltet, werden die Standard Untertitel des Programms benutzt."
+
+
+
