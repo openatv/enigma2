@@ -124,8 +124,42 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 		surface->clut.start=0;
 		png_read_end(png_ptr, end_info);
 	} else {
-		result=0;
-		eDebug("%s: %dx%dx%d png, %d", filename, (int)width, (int)height, (int)bit_depth, color_type);
+		result=new gPixmap(eSize(width, height), 32, accel);
+		gSurface *surface = result->surface;
+		
+		if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))
+			png_set_expand(png_ptr);
+		if (bit_depth == 16)
+			png_set_strip_16(png_ptr);
+		if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
+			png_set_gray_to_rgb(png_ptr);
+		if (color_type == PNG_COLOR_TYPE_RGB)
+			png_set_filler(png_ptr, 0xff, PNG_FILLER_BEFORE);		
+			
+		int number_passes = png_set_interlace_handling(png_ptr);
+		png_read_update_info(png_ptr, info_ptr);
+		
+		if (width * 4 != png_get_rowbytes(png_ptr, info_ptr))
+		{
+			eDebug("error processing %s (did not get RGBA data from PNG file)", filename);
+			png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
+			fclose(fp);
+			return 0;
+		}
+		
+		unsigned char *pic_buffer = ((unsigned char *)(surface->data));
+		
+		for(int pass = 0; pass < number_passes; pass++)
+		{
+			png_byte *fbptr = (png_byte *)pic_buffer;
+			for (int i = 0; i < height; i++, fbptr += width * 4)
+				png_read_row(png_ptr, fbptr, NULL);
+		}
+		png_read_end(png_ptr, info_ptr);
+		
+		surface->clut.data=0;
+		surface->clut.colors=0;
+		surface->clut.start=0;
 	}
 
 	png_destroy_read_struct(&png_ptr, &info_ptr,&end_info);
