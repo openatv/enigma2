@@ -1,5 +1,5 @@
 from Components.Harddisk import harddiskmanager
-from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
+from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber, ConfigNumber
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv
 from Components.NimManager import nimmanager
@@ -35,7 +35,7 @@ def InitUsageConfig():
 	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_event_change = ConfigYesNo(default = False)
-	config.usage.show_second_infobar = ConfigYesNo(default = True)
+	config.usage.show_second_infobar = ConfigYesNo(default = False)
 	config.usage.second_infobar_timeout = ConfigSelection(default = "5", choices = [("0", _("no timeout"))] + choicelist)
 	config.usage.show_picon_bkgrn = ConfigSelection(default = "transparent", choices = [("transparent", _("Transparent")), ("blue", _("Blue")), ("red", _("Red")), ("black", _("Black")), ("white", _("White")), ("lightgrey", _("Light Grey")), ("grey", _("Grey"))])
 
@@ -103,7 +103,7 @@ def InitUsageConfig():
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_days = ConfigSelectionNumber(min = 1, max = 31, stepwidth = 1, default = 8, wraparound = True)
-	config.usage.movielist_trashcan_reserve = ConfigSelectionNumber(min = 1, max = 3000, stepwidth = 4, default = 40, wraparound = True)
+	config.usage.movielist_trashcan_reserve = ConfigNumber(default = 40)
 	config.usage.on_movie_start = ConfigSelection(default = "ask", choices = [
 		("ask", _("Ask user")), ("resume", _("Resume from last position")), ("beginning", _("Start from the beginning")) ])
 	config.usage.on_movie_stop = ConfigSelection(default = "movielist", choices = [
@@ -337,8 +337,8 @@ def InitUsageConfig():
 	config.timeshift = ConfigSubsection()
 	config.timeshift.enabled = ConfigYesNo(default = False)
 	config.timeshift.maxevents = ConfigSelectionNumber(min = 1, max = 99, stepwidth = 1, default = 5, wraparound = True)
-	config.timeshift.maxlength = ConfigSelectionNumber(min = 30, max = 999, stepwidth = 10, default = 180, wraparound = True)
-	config.timeshift.startdelay = ConfigSelectionNumber(min = 1, max = 10, stepwidth = 1, default = 5, wraparound = True)
+	config.timeshift.maxlength = ConfigSelectionNumber(min = 30, max = 999, stepwidth = 10, default = 360, wraparound = True)
+	config.timeshift.startdelay = ConfigSelectionNumber(min = 1, max = 60, stepwidth = 1, default = 5, wraparound = True)
 	config.timeshift.showinfobar = ConfigYesNo(default = True)
 	config.timeshift.stopwhilerecording = ConfigYesNo(default = False)
 	config.timeshift.favoriteSaveAction = ConfigSelection([("askuser", _("Ask user")),("savetimeshift", _("Save and stop")),("savetimeshiftandrecord", _("Save and record")),("noSave", _("Don't save"))], "askuser")
@@ -584,7 +584,7 @@ def InitUsageConfig():
 	("picon", _("Picon")),
 	("picon+servicename", _("Picon and Service Name")) ])
 	config.epgselection.channel1 = ConfigYesNo(default = False)
-	config.epgselection.prev_time_period = ConfigSelectionNumber(default = 180, stepwidth = 1, min = 60, max = 300, wraparound = True)
+	config.epgselection.prev_time_period = ConfigInteger(default=180, limits = (60, 300))
 	config.epgselection.serv_fontsize_vixepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.epgselection.ev_fontsize_vixepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.epgselection.tl_fontsize_vixepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
