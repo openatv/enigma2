@@ -649,14 +649,14 @@ class ViewGitLog(Screen):
 		self.onLayoutFinish.append(self.getlog)
 
 	def changelogtype(self):
-		if self.logtype == 'oe':
+		if self.logtype == 'e2':
 			self["key_yellow"].setText(_("Show E2 Log"))
 			self.setTitle(_("OE Changes"))
-			self.logtype = 'e2'
+			self.logtype = 'oe'
 		else:
 			self["key_yellow"].setText(_("Show OE Log"))
 			self.setTitle(_("Enimga2 Changes"))
-			self.logtype = 'oe'
+			self.logtype = 'e2'
 		self.getlog()
 
 	def pageUp(self):
