@@ -1,6 +1,7 @@
 from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
+from Screens.Screen import Screen
 from VideoHardware import video_hw
 
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
@@ -79,6 +80,7 @@ class VideoWizard(WizardLanguage, Rc):
 		Rc.__init__(self)
 		self["wizard"] = Pixmap()
 		self["portpic"] = Pixmap()
+		Screen.setTitle(self, _("Welcome..."))
 
 		self.port = None
 		self.mode = None

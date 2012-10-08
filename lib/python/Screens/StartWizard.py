@@ -1,6 +1,7 @@
 from Wizard import wizardManager
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
+from Screens.Screen import Screen
 
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from Components.config import config, ConfigBoolean, configfile, ConfigSubsection
@@ -16,6 +17,7 @@ class StartWizard(WizardLanguage, Rc):
 		WizardLanguage.__init__(self, session, showSteps = False)
 		Rc.__init__(self)
 		self["wizard"] = Pixmap()
+		Screen.setTitle(self, _("Welcome..."))
 
 	def markDone(self):
 		# setup remote control, all stb have same settings except dm8000 which uses a different settings
