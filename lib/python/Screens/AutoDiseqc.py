@@ -88,6 +88,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 
 		self["key_red"] = StaticText(" ")
 		self["key_green"] = StaticText(" ")
+		Screen.setTitle(self, _("AutoDiseqc"))
 
 		self.index = 0
 		self.port_index = 0
