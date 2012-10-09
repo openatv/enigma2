@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2012-10-09 21:09+0100\n"
+"PO-Revision-Date: 2012-10-09 23:48+0100\n"
 "Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: AAF\n"
 "Language: de\n"
@@ -3026,8 +3026,8 @@ msgstr ""
 msgid "Enable freesat EPG"
 msgstr "freesat EPG aktivieren"
 
-msgid "Enable hearing impaired subtitles"
-msgstr "Untertitel für Hörgeschädigte aktivieren"
+msgid "Enable subtitles for the hearing impaired."
+msgstr "Untertitel für Hörgeschädigte aktivieren."
 
 msgid "Enable multiple bouquets"
 msgstr "Mehrere Favoritenlisten erlauben"
@@ -5339,13 +5339,13 @@ msgstr "Timeshift aktivieren"
 msgid "Permanent Timeshift enable"
 msgstr "Permanentes Timeshift aktivieren"
 
-msgid "Permanent Timeshift Max Events"
+msgid "Permanent Timeshift max events"
 msgstr "Permanentes Timeshift - max. Events"
 
-msgid "Permanent Timeshift Max Length"
+msgid "Permanent Timeshift max length"
 msgstr "Permanentes Timeshift - max. Länge"
 
-msgid "Permanent Timeshift Start Delay"
+msgid "Permanent Timeshift start delay"
 msgstr "Permanentes Timeshift - Startverzögerung"
 
 msgid "Permanently delete all recordings in the trash can?"
@@ -5794,8 +5794,8 @@ msgid "Prefer subtitles for hearing impaired"
 msgstr "Untertitel für Hörgeschädigte bevorzugen"
 
 msgid ""
-"Prefer subtitles for hearing impaired over normal subtitles, when both types "
-"are available."
+"Prefer subtitles for the hearing impaired over normal subtitles, when both "
+"types are available."
 msgstr ""
 "Bevorzuge Untertitel für Hörgeschädigte vor anderen Untertiteln, wenn beide "
 "verfügbar sind."
@@ -5810,7 +5810,7 @@ msgstr ""
 msgid "Prefer subtitles stored by service"
 msgstr "Standard-Untertitel des Programms bevorzugen"
 
-msgid "Prefered tuner"
+msgid "Preferred tuner"
 msgstr "Bevorzugter Tuner "
 
 msgid "Prepare another USB stick for image flashing"
@@ -7037,7 +7037,7 @@ msgid "Configure the fourth subtitle language."
 msgstr "Untertitel für die Sprachauswahl 4 (niedrigste Priorität) einstellen."
 
 msgid ""
-"Usually when the subtitle language is the same as the audio language "
+"Usually when the subtitle language is the same as the audio language, "
 "subtitles are surpressed. This option allows showing subtitles when they are "
 "the same."
 msgstr ""
@@ -8568,7 +8568,7 @@ msgstr "Timeshift auf Festplatte gespeichert!"
 msgid "Timeshift will get saved at end of event!"
 msgstr "Timeshift wird am Ende des Events gespeichert!"
 
-msgid "Timeshift-Save Action on zap"
+msgid "Timeshift-save action on zap"
 msgstr "Aktion Timeshift speichern bei Zap"
 
 #
@@ -13244,7 +13244,7 @@ msgid "Use the Left/Right buttons on your remote to move the OSD up/down"
 msgstr "Vertikale Position OSD Hoch/Runter zum  Verschieben"
 
 # Timeshift Einstellungen
-msgid "Use PTS seekbar while timeshifting? *"
+msgid "Use PTS seekbar while timeshifting?"
 msgstr "Benutze PTS SeekBar bei Timeshift? *"
 
 # Zeitenstellung
@@ -13510,13 +13510,21 @@ msgid "Size: "
 msgstr "Größe: "
 
 #
-msgid "Preferred tuner"
-msgstr "bevorzugte Tuner"
-
-#
 msgid "Setup mode"
-msgstr "Einstellungs modus"
+msgstr "Einstellungs Modus"
 
 #
 msgid "EPG settings"
 msgstr "EPG Einstellungen"
+
+msgid "Enable or disable Timeshift. When activated, you can use Timeshift"
+msgstr ""
+"Timeshift ein oder ausschalten. Wenn Timeshift aktiviert ist, können Sie im "
+"laufenden Programm hin und her springen"
+
+msgid ""
+"Timeshift will only start when the start delay time has passed. This "
+"prevents numurous very short files when zapping."
+msgstr ""
+"Timeshift wird erst nach der eingestellten Verzögerung starten. Dies "
+"verhindert unnötige Dateien durch Umschalten."
