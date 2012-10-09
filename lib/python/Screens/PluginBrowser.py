@@ -168,6 +168,7 @@ class PluginDownloadBrowser(Screen):
 
 	def __init__(self, session, type = 0, needupdate = True):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Downloadable plugins"))
 
 		self.type = type
 		self.needupdate = needupdate
