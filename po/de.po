@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2012-10-07 16:23+0100\n"
+"PO-Revision-Date: 2012-10-09 21:09+0100\n"
 "Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: AAF\n"
 "Language: de\n"
@@ -837,8 +837,8 @@ msgstr "Adresse"
 
 #
 msgid ""
-"Adds enigma2 settings and STB_BOX model informations like SN, rev... "
-"if enabled."
+"Adds enigma2 settings and STB_BOX model informations like SN, rev... if "
+"enabled."
 msgstr ""
 "Fügt Enigma2-Einstellungen und modellspezifische Informationen wie SN, Rev. "
 "hinzu falls aktiviert."
@@ -1082,8 +1082,7 @@ msgstr ""
 "Sicher das Folgendes wiederhergestellt werden soll?\n"
 "Backup:%s\n"
 "\n"
-"Deine STB_BOX wird neu gestartet wenn das Backup wiederhergestellt "
-"wurde."
+"Deine STB_BOX wird neu gestartet wenn das Backup wiederhergestellt wurde."
 
 #
 msgid ""
@@ -1091,8 +1090,7 @@ msgid ""
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
 "Sicher das dieses Backup wiederhergestellt werden soll?\n"
-"Deine STB_BOX wird neu gestartet wenn das Backup wiederhergestellt "
-"wurde."
+"Deine STB_BOX wird neu gestartet wenn das Backup wiederhergestellt wurde."
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Den EPG-Cache hier speichern:\n"
@@ -1180,6 +1178,18 @@ msgstr "Automatische Scart-Umschaltung"
 
 msgid "AutoTimer"
 msgstr "Auto-Timer"
+
+#
+msgid "Auto Language"
+msgstr "Einstellungen Sprachenwahl"
+
+#
+msgid "Auto Language Selection"
+msgstr "Einstellungen Sprachenwahl"
+
+#
+msgid "VideoEnhancement"
+msgstr "Video Optimierung"
 
 #
 msgid "Automatic"
@@ -1372,7 +1382,7 @@ msgid "Brightness"
 msgstr "Helligkeit"
 
 msgid "Buffers:"
-msgstr "Puffer:"
+msgstr "Puffer: \t"
 
 msgid "Build:"
 msgstr "Build:"
@@ -1697,6 +1707,22 @@ msgid "Choose backup files"
 msgstr "Zu sichernde Dateien"
 
 #
+msgid "Zu sichernde Dateien"
+msgstr "Zu sichernde Dateien"
+
+#
+msgid "Complete Backup"
+msgstr "Komplettes Backup"
+
+#
+msgid "Restore Settings"
+msgstr "Einstellungen wiederherstellen"
+
+#
+msgid "Select Backup files"
+msgstr "Zu sichernde Dateien"
+
+#
 msgid "Choose backup location"
 msgstr "Sicherungsort auswählen"
 
@@ -1720,11 +1746,19 @@ msgstr "Wähle den korrekten DiSEqC-Modus für dieses LNB."
 msgid "Choose the location for crash and debuglogs."
 msgstr "Wähle den Speicherort für Crash- und Debug-Logs"
 
-msgid "Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time."
-msgstr "Wähle einen Ort wo die EPG Daten gespeichert werden wenn die STB_BOX ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein."
+msgid ""
+"Choose the location where the EPG data will be stored when the STB_BOX is "
+"shut down. The location must be available at boot time."
+msgstr ""
+"Wähle einen Ort wo die EPG Daten gespeichert werden wenn die STB_BOX "
+"ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein."
 
-msgid "Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes."
-msgstr "Wähle den Dateinamen für die EPG-Daten wenn die STB_BOX ausgeschaltetet wird. Das kann nützlich sein wenn mehrere Boxen verwendet werden."
+msgid ""
+"Choose the name of the file that holds the EPG data when the STB_BOX is shut "
+"down. This can be handy to differentiate between several boxes."
+msgstr ""
+"Wähle den Dateinamen für die EPG-Daten wenn die STB_BOX ausgeschaltetet "
+"wird. Das kann nützlich sein wenn mehrere Boxen verwendet werden."
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Wähle das Zeitraster auf das die Grafiken gerundet werden."
@@ -1894,8 +1928,7 @@ msgstr "Einstellen auf welchen Laufwerke im Hintergrund gelöscht werden soll"
 msgid "Configure remote control type"
 msgstr "Fernbedienungstyp einstellen"
 
-msgid ""
-"Configure the Harddisk to go to standby after a specified idle time"
+msgid "Configure the Harddisk to go to standby after a specified idle time"
 msgstr ""
 "Einstellen nach wieviel Leerlauf eine Festplatte in den Ruhezustand geht"
 
@@ -2582,11 +2615,17 @@ msgstr "Inhalt > 16:9 anzeigen als"
 msgid "Display settings"
 msgstr "Einstellungen Box-Display"
 
-msgid "Configure the brightness level of the front panel display for normal operation." 
-msgstr "Einstellungen der Helligkeit für das Frontdisplay Konfigurieren im Normal Modus"
+msgid ""
+"Configure the brightness level of the front panel display for normal "
+"operation."
+msgstr ""
+"Einstellungen der Helligkeit für das Frontdisplay Konfigurieren im Normal "
+"Modus"
 
 msgid "Configure the brightness level of the front panel display for standby."
-msgstr "Einstellungen der Helligkeit für das Frontdisplay Konfigurieren im Standby Modus"
+msgstr ""
+"Einstellungen der Helligkeit für das Frontdisplay Konfigurieren im Standby "
+"Modus"
 
 #
 msgid "Display and Userinterface"
@@ -2685,8 +2724,7 @@ msgid "Do you want to download the image to %s ?"
 msgstr "Das Image nach %s herunterladen?"
 
 #
-msgid ""
-"Do you want to enable the parental control feature on your STB_BOX?"
+msgid "Do you want to enable the parental control feature on your STB_BOX?"
 msgstr "Den Jugendschutz auf der STB_BOX aktivieren?"
 
 #
@@ -3396,7 +3434,7 @@ msgid "Frame size in full view"
 msgstr "Rahmengröße in Vollansicht"
 
 msgid "Free Memory:"
-msgstr "Freier Speicher:"
+msgstr "Freier Speicher: \t"
 
 msgid "Free Swap:"
 msgstr "Freie Auslagerungsdatei:"
@@ -3405,7 +3443,7 @@ msgid "Free memory"
 msgstr "Freier Speicher"
 
 msgid "Free memory:"
-msgstr "Freier Speicher:"
+msgstr "Freier Speicher: \t"
 
 msgid "Free to Air"
 msgstr "Free-To-Air"
@@ -3842,15 +3880,14 @@ msgstr ""
 
 msgid "If set to 'yes' the receiver will use AC3 sound (when available)."
 msgstr ""
-"Wenn auf 'Ja' gestellt so wird die STB_BOX AC3 Ton benutzen wenn "
-"verfügbar."
+"Wenn auf 'Ja' gestellt so wird die STB_BOX AC3 Ton benutzen wenn verfügbar."
 
 msgid ""
 "If set to 'yes' the receiver will use the audio stream that has been used "
 "earlier."
 msgstr ""
-"Wenn auf 'Ja' gestellt wird die STB_BOX die Tonspur benutzen die "
-"früher benutzt wurde."
+"Wenn auf 'Ja' gestellt wird die STB_BOX die Tonspur benutzen die früher "
+"benutzt wurde."
 
 msgid "If set to 'yes' you can preview channels in the EPG list."
 msgstr "Wenn 'Ja' eingestellt ist erhältst Du eine Programmvorschau im EPG."
@@ -4684,7 +4721,7 @@ msgstr "Netzmaske"
 
 #
 msgid "Network"
-msgstr "Netzwerk-Einstellungen"
+msgstr "Netzwerk Einstellungen"
 
 #
 msgid "Network Configuration..."
@@ -4702,7 +4739,19 @@ msgstr "Netzwerk-Einstellungen"
 
 #
 msgid "Network Wizard"
-msgstr "Netzwerk-Assistent"
+msgstr "Netzwerk Assistent"
+
+#
+msgid "Network Restart"
+msgstr "Netzwerk Neustart"
+
+#
+msgid "Network Interface"
+msgstr "Netzwerk Interface"
+
+#
+msgid "Network Services"
+msgstr "Netzwerk Dienste"
 
 #
 msgid "Network scan"
@@ -4710,18 +4759,18 @@ msgstr "Netzwerk-Suchlauf"
 
 #
 msgid "Network setup"
-msgstr "Netzwerk-Einstellungen"
+msgstr "Netzwerk Einstellungen"
 
 #
 msgid "Network test"
-msgstr "Netzwerk-Test"
+msgstr "Netzwerk Test"
 
 #
 msgid "Network test..."
 msgstr "Teste Netzwerk..."
 
 msgid "Network test: "
-msgstr "Netzwerk-Test: "
+msgstr "Netzwerk Test: "
 
 #
 msgid "Network:"
@@ -5109,8 +5158,7 @@ msgid ""
 "On reaching the end of a file during playback, you can choose the box's "
 "behavior."
 msgstr ""
-"Am Ende einer Filmwiedergabe kann das Verhalten der STB_BOX bestimmt "
-"werden"
+"Am Ende einer Filmwiedergabe kann das Verhalten der STB_BOX bestimmt werden"
 
 msgid ""
 "On reaching the end of a file during playback, you can choose the box's "
@@ -5657,19 +5705,19 @@ msgid "Please wait... Loading list..."
 msgstr "Bitte warten... Liste wird geladen..."
 
 msgid "Plugin Browser"
-msgstr "Plugin-Manager"
+msgstr "Plugin Manager"
 
 #
 msgid "Plugin browser"
-msgstr "Plugin-Manager"
+msgstr "Plugin Manager"
 
 #
 msgid "Plugin manager activity information"
-msgstr "Plugin-Manager: geplante Aktionen"
+msgstr "Plugin Manager: geplante Aktionen"
 
 #
 msgid "Plugin manager help"
-msgstr "Hilfe Plugin-Manager"
+msgstr "Hilfe Plugin Manager"
 
 #
 msgid "Plugins"
@@ -5745,11 +5793,19 @@ msgstr "Standard-Audio-Stream des Programms bevorzugen"
 msgid "Prefer subtitles for hearing impaired"
 msgstr "Untertitel für Hörgeschädigte bevorzugen"
 
-msgid "Prefer subtitles for hearing impaired over normal subtitles, when both types are available."
-msgstr "Bevorzuge Untertitel für Hörgeschädigte vor anderen Untertiteln, wenn beide verfügbar sind."
+msgid ""
+"Prefer subtitles for hearing impaired over normal subtitles, when both types "
+"are available."
+msgstr ""
+"Bevorzuge Untertitel für Hörgeschädigte vor anderen Untertiteln, wenn beide "
+"verfügbar sind."
 
-msgid "Prefer DVB-graphical subtitles over teletext subtitles, when both types are available."
-msgstr "Bevorzuge grafische DVB Untertitel vor anderen Untertiteln, wenn beide verfügbar sind."
+msgid ""
+"Prefer DVB-graphical subtitles over teletext subtitles, when both types are "
+"available."
+msgstr ""
+"Bevorzuge grafische DVB Untertitel vor anderen Untertiteln, wenn beide "
+"verfügbar sind."
 
 msgid "Prefer subtitles stored by service"
 msgstr "Standard-Untertitel des Programms bevorzugen"
@@ -6887,7 +6943,8 @@ msgstr "Audio Sprachwahl 3 einstellen."
 msgid "Configure the fourth audio language."
 msgstr "Audio Sprachwahl 4 (niedrigste Priorität) einstellen."
 
-msgid "Configure the brightness level of the front panel displ for normal operation."
+msgid ""
+"Configure the brightness level of the front panel displ for normal operation."
 msgstr "Helligkeit des Displays für normalem Betrieb einstellen."
 
 msgid "Configure the brightness level of the front panel displ for standby."
@@ -7787,8 +7844,7 @@ msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using your STB_BOX."
 msgstr ""
-"Der Assistent ist hiermit beendet. Ihre STB_BOX kann nun benutzt "
-"werden.\n"
+"Der Assistent ist hiermit beendet. Ihre STB_BOX kann nun benutzt werden.\n"
 "OK drücken, um den Assistenten zu verlassen."
 
 msgid ""
@@ -7808,8 +7864,8 @@ msgstr ""
 #
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a STB_BOX format data DVD (which will not play in stand-alone "
-"DVD players) instead?"
+"create a STB_BOX format data DVD (which will not play in stand-alone DVD "
+"players) instead?"
 msgstr ""
 "Der DVD-Standard unterstützt keine H.264 (HDTV) Videos. Soll stattdessen "
 "eine Daten-DVD im STB_BOX-Format (die nicht in einem herkömmlichen DVD-"
@@ -7934,8 +7990,7 @@ msgstr "Die Installation der Standard-Kanallisten wurde abgeschlossen."
 #
 msgid ""
 "The installation of the default settings is finished. You can now continue "
-"configuring your STB_BOX by pressing the OK button on the remote "
-"control."
+"configuring your STB_BOX by pressing the OK button on the remote control."
 msgstr ""
 "Die Installation der Standardeinstellungen wurde beendet. OK drücken und mit "
 "der Konfiguration der STB_BOX fortfahren."
@@ -8301,12 +8356,12 @@ msgid ""
 "Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
 "Dieses Plugin erzeugt einen USB-Stick, mit dessen Hilfe die Firmware Ihrer "
-"STB_BOX aktualisiert werden kann, ohne dass dafür eine Netzwerk- oder "
-"WLAN-Verbindung notwendig ist.Zuerst muss ein USB-Stick vorbereitet und "
-"bootfähig gemacht werden. Im nächsten Schritt kann eine NFI-Imagedatei vom "
-"Update-Server heruntergeladen und auf diesem Stick gespeichert werden.Wenn "
-"Sie bereits einen bootfähigen USB-Stick vorbereitet haben, stecken Sie ihn "
-"bitte jetzt ein. Anderenfalls stecken Sie bitte einen USB-Stick mit einer "
+"STB_BOX aktualisiert werden kann, ohne dass dafür eine Netzwerk- oder WLAN-"
+"Verbindung notwendig ist.Zuerst muss ein USB-Stick vorbereitet und bootfähig "
+"gemacht werden. Im nächsten Schritt kann eine NFI-Imagedatei vom Update-"
+"Server heruntergeladen und auf diesem Stick gespeichert werden.Wenn Sie "
+"bereits einen bootfähigen USB-Stick vorbereitet haben, stecken Sie ihn bitte "
+"jetzt ein. Anderenfalls stecken Sie bitte einen USB-Stick mit einer "
 "Mindestgröße von 64 MB ein."
 
 #
@@ -8551,8 +8606,8 @@ msgid ""
 msgstr ""
 "Um Ihre STB_BOX-Firmware zu aktualisieren, folgen Sie bitte diesen "
 "Anweisungen:\n"
-"1) Schalten Sie Ihre STB_BOX mit dem Schalter auf der Rückseite aus "
-"und achten Sie darauf, dass der bootfähige USB-Stick eingesteckt ist.\n"
+"1) Schalten Sie Ihre STB_BOX mit dem Schalter auf der Rückseite aus und "
+"achten Sie darauf, dass der bootfähige USB-Stick eingesteckt ist.\n"
 "2) Schalten Sie den Netzschalter wieder ein und halten dabei den \"nach unten"
 "\"-Knopf auf der Vorderseite für 10 Sekunden gedrückt.\n"
 "3) Nach dem Bootvorgang folgen Sie bitte den Instruktionen des Assistenten."
@@ -9258,8 +9313,8 @@ msgstr ""
 #
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your STB_BOX by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
+"the firmware of your STB_BOX by providing a backup facility for your current "
+"settings and a short explanation of how to upgrade your firmware."
 msgstr ""
 "Willkommen im Image-Upgrade-Assistenten. Der Assistent wird Ihnen bei der "
 "Aktualisierung der Firmware helfen. Sie können mit diesem Assistenten die "
@@ -9271,37 +9326,46 @@ msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your STB_BOX, the internal memory should "
-"be cleaned up.\n"
+"To ensure stable operation of your STB_BOX, the internal memory should be "
+"cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
 "Willkommen.\n"
 "\n"
 "Es wurde festgestellt, dass Ihr verfügbarer interner Speicher unter den von "
 "Ihnen festgelegten Wert gefallen ist.\n"
-"Um einen stabilen Betrieb Ihrer STB_BOX sicherzustellen, sollte der "
-"interne Speicher bereinigt werden.\n"
+"Um einen stabilen Betrieb Ihrer STB_BOX sicherzustellen, sollte der interne "
+"Speicher bereinigt werden.\n"
 "Sie können diesen Assistenten benutzen, um Erweiterungen zu entfernen.\n"
 
 #
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will "
-"guide you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your STB_BOX to the Internet, this wizard will guide "
+"you through the basic network setup of your STB_BOX.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
 "Willkommen.\n"
 "\n"
-"Wenn Sie Ihre STB_BOX mit dem Internet verbinden möchten, wird Sie "
-"dieser Assistent durch die grundlegenden Netzwerkeinstellungen führen.\n"
+"Wenn Sie Ihre STB_BOX mit dem Internet verbinden möchten, wird Sie dieser "
+"Assistent durch die grundlegenden Netzwerkeinstellungen führen.\n"
 "\n"
 "Drücken Sie OK um Ihr Netzwerk zu konfigurieren"
 
 #
-msgid "Welcome.\n\nThis start wizard will guide you through the basic setup of your STB_BOX.\nPress the OK button on your remote control to move to the next step."
-msgstr "Willkommen.\n\nDer Startassistent wird Sie durch die Grundeinstellungen Ihrer STB_BOX führen.\nDrücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Willkommen.\n"
+"\n"
+"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer STB_BOX "
+"führen.\n"
+"Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
 
 #
 msgid "Welcome..."
@@ -9436,9 +9500,8 @@ msgid ""
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
 msgstr ""
-"Wenn ein Sender eingestellt ist durchsucht die STB_BOX den Transponder "
-"nach Änderungen und speichert sie. Nur 'Ja' einstellen wenn Du weißt was Du "
-"tust."
+"Wenn ein Sender eingestellt ist durchsucht die STB_BOX den Transponder nach "
+"Änderungen und speichert sie. Nur 'Ja' einstellen wenn Du weißt was Du tust."
 
 msgid "When using scart connection, choose what color format to use."
 msgstr "Welches Farbformat bei einer SCART-Verbindung."
@@ -9446,8 +9509,7 @@ msgstr "Welches Farbformat bei einer SCART-Verbindung."
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your STB_BOX will restart "
-"automatically!\n"
+"After completion of factory reset, your STB_BOX will restart automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
@@ -9735,8 +9797,8 @@ msgstr "Sie müssen %s warten!"
 
 #
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further "
-"instructions, please visit the website http://www.aaf-digital.info.\n"
+"You need a PC connected to your STB_BOX. If you need further instructions, "
+"please visit the website http://www.aaf-digital.info.\n"
 "Your STB_BOX will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
@@ -9793,11 +9855,11 @@ msgid "Your STB_BOX is shutting down"
 msgstr "Ihre STB_BOX wird Ausgeschaltet"
 
 msgid ""
-"Your STB_BOX might be unusable now. Please consult the manual for "
-"further assistance before rebooting your STB_BOX."
+"Your STB_BOX might be unusable now. Please consult the manual for further "
+"assistance before rebooting your STB_BOX."
 msgstr ""
-"Die STB_BOX könnte jetzt unbenutzbar sein. Bitte im Handbuch nach "
-"Hinweisen suchen bevor die STB_BOX neu gestartet wird."
+"Die STB_BOX könnte jetzt unbenutzbar sein. Bitte im Handbuch nach Hinweisen "
+"suchen bevor die STB_BOX neu gestartet wird."
 
 #, python-format
 msgid ""
@@ -9862,11 +9924,11 @@ msgstr "Ihre STB_BOX fährt herunter. Bitte warten Sie einen Moment..."
 
 #
 msgid ""
-"Your STB_BOX isn't connected to the internet properly. Please check it "
-"and try again."
+"Your STB_BOX isn't connected to the internet properly. Please check it and "
+"try again."
 msgstr ""
-"Ihre STB_BOX ist nicht korrekt mit dem Internet verbunden. Bitte "
-"prüfen und erneut versuchen."
+"Ihre STB_BOX ist nicht korrekt mit dem Internet verbunden. Bitte prüfen und "
+"erneut versuchen."
 
 #
 msgid "Your email address:"
@@ -11329,8 +11391,8 @@ msgstr "Ja (Feeds behalten)"
 
 #
 msgid ""
-"your STB_BOX might be unusable now. Please consult the manual for "
-"further assistance before rebooting your STB_BOX."
+"your STB_BOX might be unusable now. Please consult the manual for further "
+"assistance before rebooting your STB_BOX."
 msgstr ""
 "Ihre STB_BOX könnte jetzt unbenutzbar sein. Bitte konsultieren Sie das "
 "Handbuch bevor Sie Ihre STB_BOX rebooten."
@@ -12851,7 +12913,7 @@ msgid ""
 msgstr "Backup vom ganzen Image auf HDD oder USB."
 
 msgid "Backup your current settings"
-msgstr "Backup der Settings"
+msgstr "Einstellungen sichern"
 
 msgid ""
 "Backup your current settings. This includes E2-setup, channels, network and "
@@ -12861,7 +12923,7 @@ msgstr ""
 "ausgewählten Dateien"
 
 msgid "Restore settings from a backup"
-msgstr "Restore Settings vom Backup"
+msgstr "Einstellungen wiederherstellen"
 
 msgid ""
 "Restore your settings back from a backup. After restore the box will restart "
@@ -13062,8 +13124,8 @@ msgstr ""
 
 #: Download Netzwerk Dienste
 msgid ""
-"Your STB_BOX is not connected to the internet, please check your "
-"network settings and try again."
+"Your STB_BOX is not connected to the internet, please check your network "
+"settings and try again."
 msgstr ""
 "Ihre STB_BOX hat keine Internetverbindung, bitte prüfen Sie ihre "
 "Netzwerkeinstellungen."
@@ -13261,8 +13323,8 @@ msgstr "Option zum Auswählen des internen Standby Timers der HDD"
 
 # EPG Setup
 msgid ""
-"Choose the location where the EPG data will be stored when STB_BOX is "
-"shut down. The location must be available at boot time."
+"Choose the location where the EPG data will be stored when STB_BOX is shut "
+"down. The location must be available at boot time."
 msgstr ""
 "Wähle den Speicherort wo die EPG Daten gespeichert werden wenn die STB_BOX "
 "ausgeschaltet wird. Dieser Ort muss beim Booten verfügbar sein."
@@ -13357,11 +13419,16 @@ msgstr "Zeige E2 Log"
 msgid "Show OE Log"
 msgstr "Zeige OE Log"
 
-msgid "When enabled, a recording is allowed to interrupt live tv, when there are no free tuners."
-msgstr "Wenn aktiviert, eine Aufzeichnung darf live TV unterbrechen, wenn keine freien Tuner verfügbar sind."
+msgid ""
+"When enabled, a recording is allowed to interrupt live tv, when there are no "
+"free tuners."
+msgstr ""
+"Wenn aktiviert, eine Aufzeichnung darf live TV unterbrechen, wenn keine "
+"freien Tuner verfügbar sind."
 
 msgid "Show a popup when one movie has finished and the next one will start."
-msgstr "Zeigen eine Info, wenn eine Aufzeichnung fertig ist und die nächste beginnt."
+msgstr ""
+"Zeigen eine Info, wenn eine Aufzeichnung fertig ist und die nächste beginnt."
 
 msgid "Configure the possible fast forward speeds."
 msgstr "Konfigurieren der Schnellen Vorlauf Geschwindigkeiten."
@@ -13369,17 +13436,25 @@ msgstr "Konfigurieren der Schnellen Vorlauf Geschwindigkeiten."
 msgid "Fast forward speeds"
 msgstr "Schneller Vorlauf Geschwindigkeiten"
 
-msgid "Configure the speed of the background deletion process. A low speed will have less impact on harddisk performance."
-msgstr "Konfigurieren Sie die Geschwindigkeit des Hintergrunds Löschvorgang. Eine niedrigere Geschwindigkeit hat weniger Einfluss auf die Leistung der Festplatte."
+msgid ""
+"Configure the speed of the background deletion process. A low speed will "
+"have less impact on harddisk performance."
+msgstr ""
+"Konfigurieren Sie die Geschwindigkeit des Hintergrunds Löschvorgang. Eine "
+"niedrigere Geschwindigkeit hat weniger Einfluss auf die Leistung der "
+"Festplatte."
 
 msgid "Configure the skip time interval on the '1'/'3'-keys."
-msgstr "Konfigurieren Sie die Überspringen Zeitintervall auf der '1'/'3'-Tasten."
+msgstr ""
+"Konfigurieren Sie die Überspringen Zeitintervall auf der '1'/'3'-Tasten."
 
 msgid "Configure the skip time interval on the '4'/'6'-keys."
-msgstr "Konfigurieren Sie die Überspringen Zeitintervall auf der '4'/'6'-Tasten."
+msgstr ""
+"Konfigurieren Sie die Überspringen Zeitintervall auf der '4'/'6'-Tasten."
 
 msgid "Configure the skip time interval on the '7'/'9'-keys."
-msgstr "Konfigurieren Sie die Überspringen Zeitintervall auf der '7'/'9'-Tasten."
+msgstr ""
+"Konfigurieren Sie die Überspringen Zeitintervall auf der '7'/'9'-Tasten."
 
 msgid "Initial fast forward speed"
 msgstr "Initial Vorlaufgeschwindigkeit"
@@ -13396,23 +13471,52 @@ msgstr "Stellen Sie den Anfangswert der Rücklaufgeschwindigkeit ein."
 msgid "Limit character set for recording filenames"
 msgstr "Beschränken des Zeichensatz für die Aufnahme Dateinamen"
 
-msgid "Limit the characters that can be used in recording filenames to (7 bit) ascii. This ensures compatibility with operating systems or file systems with limited character sets."
-msgstr "Begrenzen Sie die Zeichen, die in der Aufnahme Dateinamen (7 Bit) ascii verwendet werden können. Dies gewährleistet die Kompatibilität mit Betriebssystemen oder Dateisystemen mit begrenztem Zeichenvorrat."
+msgid ""
+"Limit the characters that can be used in recording filenames to (7 bit) "
+"ascii. This ensures compatibility with operating systems or file systems "
+"with limited character sets."
+msgstr ""
+"Begrenzen Sie die Zeichen, die in der Aufnahme Dateinamen (7 Bit) ascii "
+"verwendet werden können. Dies gewährleistet die Kompatibilität mit "
+"Betriebssystemen oder Dateisystemen mit begrenztem Zeichenvorrat."
 
 msgid "Margin after record (minutes)"
 msgstr "Verlängere Aufnahme (in Minuten)"
 
-msgid "When nonzero, a recording will stop later than the ending time as indicated by the EPG."
-msgstr "Die Angabe im EPG für eine Aufnahme wird entsprechend Verlängert in Minuten."
+msgid ""
+"When nonzero, a recording will stop later than the ending time as indicated "
+"by the EPG."
+msgstr ""
+"Die Angabe im EPG für eine Aufnahme wird entsprechend Verlängert in Minuten."
 
 msgid "Configure on which devices the background delete option should be used."
-msgstr "Konfigurieren Sie auf welche Geräte der Hintergrund Löschoption verwendet werden soll."
+msgstr ""
+"Konfigurieren Sie auf welche Geräte der Hintergrund Löschoption verwendet "
+"werden soll."
 
 msgid "Restoring..."
 msgstr "Wiederherstellen..."
 
-msgid "When enabled, the receiver will use the subtitles which have been selected earlier."
-msgstr "Wenn eingeschaltet, werden die Standard Untertitel des Programms benutzt."
+msgid ""
+"When enabled, the receiver will use the subtitles which have been selected "
+"earlier."
+msgstr ""
+"Wenn eingeschaltet, werden die Standard Untertitel des Programms benutzt."
 
+msgid "Free: "
+msgstr "Frei: "
 
+msgid "Size: "
+msgstr "Größe: "
 
+#
+msgid "Preferred tuner"
+msgstr "bevorzugte Tuner"
+
+#
+msgid "Setup mode"
+msgstr "Einstellungs modus"
+
+#
+msgid "EPG settings"
+msgstr "EPG Einstellungen"
