@@ -142,7 +142,7 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 		if (width * 4 != png_get_rowbytes(png_ptr, info_ptr))
 		{
 			eDebug("error processing %s (did not get RGBA data from PNG file)", filename);
-			png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
+			png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
 			fclose(fp);
 			return 0;
 		}
