@@ -35,7 +35,7 @@ class SkinSelector(Screen):
 		self["Preview"] = Pixmap()
 		self.skinlist.sort()
 
-		self["actions"] = NumberActionMap(["DirectionActions", "TimerEditActions", "ColorActions"],
+		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "EPGSelectActions"],								  
 		{
 			"ok": self.ok,
 			"back": self.close,
@@ -45,7 +45,7 @@ class SkinSelector(Screen):
 			"down": self.down,
 			"left": self.left,
 			"right": self.right,
-			"log": self.info,
+			"info": self.info,
 		}, -1)
 
 		self.onLayoutFinish.append(self.layoutFinished)
