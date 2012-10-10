@@ -157,6 +157,17 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 		}
 		png_read_end(png_ptr, info_ptr);
 		
+		// the disposition of channels inside the framebuffer is inverted
+		for (int offset = 0; offset < (width * height * 4); offset += 4)
+		{
+			unsigned char tmp = pic_buffer[offset];
+			pic_buffer[offset] = pic_buffer[offset + 3];
+			pic_buffer[offset + 3] = tmp;
+			tmp = pic_buffer[offset + 2];
+			pic_buffer[offset + 2] = pic_buffer[offset + 1];
+			pic_buffer[offset + 1] = tmp;
+		}
+		
 		surface->clut.data=0;
 		surface->clut.colors=0;
 		surface->clut.start=0;
