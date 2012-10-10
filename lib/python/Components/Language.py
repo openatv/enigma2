@@ -70,11 +70,14 @@ class Language:
 				x()
 		except:
 			print "Selected language does not exist!"
-		try:
-			locale.setlocale(locale.LC_TIME, (self.getLanguage(), 'UTF-8'))
-		except:
-			print "Failed to set LC_TIME to " + self.getLanguage() + ". Setting it to 'C'"
-			locale.setlocale(locale.LC_TIME, 'C')
+		# NOTE: we do not use LC_ALL, because LC_ALL will not set any of the categories, when one of the categories fails.
+		# We'd rather try to set all available categories, and ignore the others
+		for category in [locale.LC_CTYPE, locale.LC_COLLATE, locale.LC_TIME, locale.LC_MONETARY, locale.LC_MESSAGES, locale.LC_NUMERIC]:
+			try:
+				locale.setlocale(category, (self.getLanguage(), 'UTF-8'))
+			except:
+				pass
+		# HACK: sometimes python 2.7 reverts to the LC_TIME environment value, so make sure it has the correct value
 		os.environ["LC_TIME"] = self.getLanguage() + '.UTF-8'
 
 	def activateLanguageIndex(self, index):
