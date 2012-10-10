@@ -1,6 +1,7 @@
 import os
 from Renderer import Renderer
 from enigma import ePixmap
+from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
 
@@ -49,18 +50,30 @@ def findLcdPicon(serviceName):
 		pngname = lastLcdPiconPath + serviceName + ".png"
 		if pathExists(pngname):
 			return pngname
-	global searchPaths
-	for path in searchPaths:
-		if pathExists(path):
-			pngname = path + serviceName + ".png"
-			if pathExists(pngname):
-				lastLcdPiconPath = path
-				return pngname
-	return ""
+		else:
+			return ""
+	else:
+		global searchPaths
+		pngname = ""
+		for path in searchPaths:
+			if pathExists(path) and not path.startswith('/media/net'):
+				pngname = path + serviceName + ".png"
+				if pathExists(pngname):
+					lastLcdPiconPath = path
+					break
+			elif pathExists(path):
+				pngname = path + serviceName + ".png"
+				if pathExists(pngname):
+					lastLcdPiconPath = path
+					break
+		if pathExists(pngname):
+			return pngname
+		else:
+			return ""
 
 def getLcdPiconName(serviceName):
 	#remove the path and name fields, and replace ':' by '_'
-	sname = '_'.join(serviceName.split(':', 10)[:10])
+	sname = '_'.join(GetWithAlternative(serviceName).split(':', 10)[:10])
 	pngname = findLcdPicon(sname)
 	if not pngname:
 		fields = sname.split('_', 3)
@@ -104,6 +117,9 @@ class LcdPicon(Renderer):
 		return Renderer.applySkin(self, desktop, parent)
 
 	GUI_WIDGET = ePixmap
+
+	def postWidgetCreate(self, instance):
+		self.changed((self.CHANGED_DEFAULT,))
 
 	def changed(self, what):
 		if self.instance:
