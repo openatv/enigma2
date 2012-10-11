@@ -338,8 +338,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		if old_service and self.cur_event is not None:
 			events = old_service[2]
 			cur_event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
-			if cur_event[2] > last_time:
-				last_time = cur_event[2]
+			last_time = cur_event[2]
 		if cur_service:
 			self.cur_event = 0
 			events = cur_service[2]
@@ -349,13 +348,16 @@ class EPGList(HTMLComponent, GUIComponent):
 				idx = 0
 				for event in events: #iterate all events
 					ev_time = event[2]
+					ev_end_time = event[2] + event[3]
 					if ev_time < time_base:
 						ev_time = time_base
 					diff = abs(ev_time - last_time)
 					if best is None or (diff < best_diff):
 						best = idx
 						best_diff = diff
-					if best is not None and ev_time > last_time:
+					if ev_end_time < time():
+						best = idx+1
+					if best is not None and ev_time > last_time and ev_end_time > time():
 						break
 					idx += 1
 			self.cur_event = best
