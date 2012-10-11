@@ -178,7 +178,7 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 		
 		png_read_end(png_ptr, info_ptr);
 		
-		//       image is GBRA
+		//       image is RGBA
 		// framebuffer is BGRA
 		// the alpha channel for the framebuffer mean transparency
 		// the alpha channel for the png mean opacity
