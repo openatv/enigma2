@@ -34,6 +34,19 @@ void ePixmap::setPixmap(ePtr<gPixmap> &pixmap)
 	event(evtChangedPixmap);
 }
 
+//DDamir fix for LCD
+void ePixmap::setPixmapFromFileLCD(const char *filename)
+{
+	FILE *lcd = fopen("/tmp/.lcd","w");
+	if (lcd)
+	{
+		fprintf(lcd, "lcd");
+		fclose(lcd);
+		setPixmapFromFile(filename);
+	}
+}
+//DDamir fix for LCD
+
 void ePixmap::setPixmapFromFile(const char *filename)
 {
 	loadPNG(m_pixmap, filename, m_scale);
