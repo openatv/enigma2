@@ -1,7 +1,8 @@
 installdir = $(pkgdatadir)/lcd
 
 dist_install_DATA = \
-	update.png \
+	update_unstable.png \
+	update_stable.png \
 	txt.png \
 	tuner-d.png \
 	tuner-d-act.png \
