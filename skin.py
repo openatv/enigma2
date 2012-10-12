@@ -92,16 +92,30 @@ addSkin('skin_second_infobar.xml')
 # Only one of these is present, compliments of AM_CONDITIONAL
 config.skin.display_skin = ConfigYesNo(default = False)
 display_skin_id = 1
-if config.skin.display_skin.getValue():
-	if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display_picon.xml')):
-		addSkin('skin_display_picon.xml', SCOPE_CONFIG)
+f = open("/proc/stb/lcd/xres", "r").read()
+if int(f, 16) == 256:
+	if config.skin.display_skin.getValue():
+		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display_picon.xml')):
+			addSkin('skin_display_picon.xml', SCOPE_CONFIG)
+		else:
+			addSkin('skin_display_picon.xml')
 	else:
-		addSkin('skin_display_picon.xml')
-else:
-	if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display_no_picon.xml')):
-		addSkin('skin_display_no_picon.xml', SCOPE_CONFIG)
+		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display_no_picon.xml')):
+			addSkin('skin_display_no_picon.xml', SCOPE_CONFIG)
+		else:
+			addSkin('skin_display_no_picon.xml')
+elif int(f, 16) == 220:
+	if config.skin.display_skin.getValue():
+		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display220_picon.xml')):
+			addSkin('skin_display220_picon.xml', SCOPE_CONFIG)
+		else:
+			addSkin('skin_display220_picon.xml')
 	else:
-		addSkin('skin_display_no_picon.xml')
+		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display220_no_picon.xml')):
+			addSkin('skin_display220_no_picon.xml', SCOPE_CONFIG)
+		else:
+			addSkin('skin_display220_no_picon.xml')
+
 
 if addSkin('skin_display96.xml'):
 	# Color OLED
@@ -152,7 +166,7 @@ def parseCoordinate(s, e, size=0, font=None):
 	if val < 0:
 		val = 0
 	return val
-	        
+
 
 def getParentSize(object, desktop):
 	size = eSize()
@@ -280,7 +294,7 @@ class AttributeParser:
 	def position(self, value):
 		if isinstance(value, tuple):
 			self.guiObject.move(ePoint(*value))
-		else: 
+		else:
 			self.guiObject.move(parsePosition(value, self.scale, self.guiObject, self.desktop, self.guiObject.csize()))
 	def size(self, value):
 		if isinstance(value, tuple):
@@ -772,7 +786,7 @@ def readSkin(screen, skin, names, desktop):
 				if candidate.tag == 'screen':
 					sid = candidate.attrib.get('id', None)
 					if (not sid) or (int(sid) == display_skin_id):
-						myscreen = candidate 
+						myscreen = candidate
 						break;
 			else:
 				print "[SKIN] Hey, no suitable screen!"
