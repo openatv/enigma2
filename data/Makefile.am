@@ -22,7 +22,11 @@ else
 if HAVE_COLORLCD
 dist_pkgdata_DATA += skin_display96.xml
 else
-SUBDIRS += lcd
+if HAVE_GIGABLUELCD
+SUBDIRS += lcd_large
+dist_pkgdata_DATA += skin_display220_picon.xml skin_display220_no_picon.xml
+else
+SUBDIRS += lcd_small
 dist_pkgdata_DATA += skin_display_picon.xml skin_display_no_picon.xml
 endif
 endif
