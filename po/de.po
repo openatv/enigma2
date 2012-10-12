@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2012-10-12 13:16+0100\n"
+"PO-Revision-Date: 2012-10-12 17:11+0100\n"
 "Last-Translator: mike99\n"
 "Language-Team: AAF\n"
 "Language: de\n"
@@ -1935,7 +1935,7 @@ msgstr ""
 msgid "Configure the behaviour of 'pause' when the movie is paused"
 msgstr "Verhalten der Pausetaste bei Standbild"
 
-msgid "Configure the behaviour when a movie is manually stopped"
+msgid "Configure the behavior when movie playback is manually stopped."
 msgstr "Verhalten beim Stoppen eines Films"
 
 msgid "Configure the behaviour when a movie is started"
@@ -1961,13 +1961,13 @@ msgid "Configure the horizontal alignment of the subtitles."
 msgstr "Konfiguriere die horizontale Ausrichtung der Untertitel."
 
 msgid ""
-"Configure the number of days old timers are kept and then auto deleted from "
-"the timers list"
+"Configure the number of days old timers are kept before they are "
+"automatically removed from the timers list."
 msgstr "Wieviele Tage soll ein Timer erhalten bleiben bevor er gelöscht wird"
 
 msgid ""
-"Configure the number of days that items are automaticaly removed from the "
-"trashcan"
+"Configure the number of days after which items are automaticaly removed from "
+"the trash can."
 msgstr "Wieviele Tage soll der Inhalt vom Mülleimer erhalten bleiben"
 
 msgid "Configure the offline decode delay in ms"
@@ -2006,7 +2006,7 @@ msgstr ""
 "Konfiguriere die Transparenz des schwarzen Hintergrunds von grafischen DVB "
 "Untertiteln."
 
-msgid "Configure the type of status indication icons shown in the movielist"
+msgid "Configure the type of status indication icons shown in the movielist."
 msgstr "Typ der Statusanzeige in der Filmliste"
 
 msgid ""
@@ -2016,7 +2016,7 @@ msgstr ""
 "Konfiguriere die vertikale Position von Untertiteln, gemessen vom unteren "
 "Bildrand."
 
-msgid "Configure the way recording filenames are composed"
+msgid "Configure how recording filenames are constructed."
 msgstr "Zusammensetzung des Namens von Aufnahmen"
 
 msgid ""
@@ -13433,6 +13433,9 @@ msgstr ""
 msgid "Configure the possible fast forward speeds."
 msgstr "Konfigurieren der Schnellen Vorlauf Geschwindigkeiten."
 
+msgid "Configure the possible rewind speeds."
+msgstr "Konfigurieren der Schnellen Rücklauf Geschwindigkeiten."
+
 msgid "Fast forward speeds"
 msgstr "Schneller Vorlauf Geschwindigkeiten"
 
@@ -13651,3 +13654,37 @@ msgstr "Einstellung der Schriftgröße"
 #
 msgid "Event font size"
 msgstr "Ereignis Schriftgröße"
+
+#
+msgid ""
+"When nonzero, a recording will start earlier than the starting time as "
+"indicated by the EPG."
+msgstr ""
+"Die Angabe im EPG für eine Aufnahme wird entsprechend früher gestartet in "
+"Minuten."
+
+#
+msgid "Show a popup when a recording starts."
+msgstr "Zeigen eine Info, wenn eine Aufzeichnung startet."
+
+#
+msgid ""
+"Show the lenght of a recording in the movielist (this might cause some "
+"additional loading time)."
+msgstr "Zeige die Länge einer Aufnahme in der Filmliste."
+
+#
+msgid "Configure the behavior when movie playback is started."
+msgstr "Verhalten beim Start eines Films"
+
+#
+msgid ""
+"Configure the behavior when reaching the end of a movie, during movie "
+"playback."
+msgstr "Verhalten bei Filmende"
+
+#
+msgid ""
+"Configure the behavior of the 'pause' key when movie playback is already "
+"paused."
+msgstr "Verhalten der Pausetaste bei Standbild"
