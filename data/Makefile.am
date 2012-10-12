@@ -30,3 +30,4 @@ SUBDIRS += lcd_small
 dist_pkgdata_DATA += skin_display_picon.xml skin_display_no_picon.xml
 endif
 endif
+endif
