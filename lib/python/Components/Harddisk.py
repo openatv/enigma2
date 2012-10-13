@@ -192,6 +192,11 @@ class Harddisk:
 				self.mount_path = parts[1]
 				return parts[1]
 
+	def enumMountDevices(self):
+		for parts in getProcMounts():
+			if os.path.realpath(parts[0]).startswith(self.dev_path):
+				yield parts[1]
+
 	def findMount(self):
 		if self.mount_path is None:
 			return self.mountDevice()
@@ -794,16 +799,29 @@ class UnmountTask(Task.LoggingTask):
 	def __init__(self, job, hdd):
 		Task.LoggingTask.__init__(self, job, _("Unmount"))
 		self.hdd = hdd
+		self.mountpoints = []
 	def prepare(self):
 		try:
 			dev = self.hdd.disk_path.split('/')[-1]
 			open('/dev/nomount.%s' % dev, "wb").close()
 		except Exception, e:
 			print "ERROR: Failed to create /dev/nomount file:", e
-		dev = self.hdd.mountDevice()
-		if dev:
-			self.setCmdline('umount -f ' + dev)
+		self.setTool('umount')
+		self.args.append('-f')
+		for dev in self.hdd.enumMountDevices():
+			self.args.append(dev)
 			self.postconditions.append(Task.ReturncodePostcondition())
+			self.mountpoints.append(dev)
+		if not self.mountpoints:
+			print "UnmountTask: No mountpoints found?"
+			self.cmd = 'true'
+			self.args = [self.cmd]
+	def afterRun(self):
+		for path in self.mountpoints:
+			try:
+				os.rmdir(path)
+			except Exception, ex:
+				print "Failed to remove path '%s':" % path, ex
 
 class MountTask(Task.LoggingTask):
 	def __init__(self, job, hdd):
@@ -828,7 +846,7 @@ class MountTask(Task.LoggingTask):
 			parts = line.strip().split(" ")
 			fspath = os.path.realpath(parts[0])
 			if os.path.realpath(fspath) == dev:
-				self.setCmdline("mount -t ext3 " + fspath)
+				self.setCmdline("mount -t auto " + fspath)
 				self.postconditions.append(Task.ReturncodePostcondition())
 				return
 		# device is not in fstab
