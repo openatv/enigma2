@@ -177,6 +177,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def showMovies(self, defaultRef=None):
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
+		if self.lastservice.toString().find(':0:/') != -1:
+			self.lastservice = enimga.eServiceReference(config.movielist.curentlyplayingservice.getValue())
 		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef)
 
 	def movieSelected(self, service):
@@ -436,7 +438,10 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 	def showMovies(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
-		self.playingservice = ref # movie list may change the currently playing
+		if ref.toString().find(':0:/') == -1:
+			self.playingservice = ref # movie list may change the currently playing
+		else:
+			self.playingservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.getValue())
 		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)
 
 	def movieSelected(self, service):

@@ -444,6 +444,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.LivePlayTimer = eTimer()
 		self.LivePlayTimer.timeout.get().append(self.LivePlay)
 
+		self.filePlayingTimer = eTimer()
+		self.filePlayingTimer.timeout.get().append(self.FilePlaying)
+
 		# create optional description border and hide immediately
 		self["DescriptionBorder"] = Pixmap()
 		self["DescriptionBorder"].hide()
@@ -803,7 +806,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.listHeight = listsize.height()
 		self.updateDescription()
 
+	def FilePlaying(self):
+		if self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') != -1:
+			self.list.playInForeground = self.session.nav.getCurrentlyPlayingServiceReference()
+		else:
+			self.list.playInForeground = None
+		self.filePlayingTimer.stop()
+
 	def onFirstTimeShown(self):
+		self.filePlayingTimer.start(100)
 		self.onShown.remove(self.onFirstTimeShown) # Just once, not after returning etc.
 		self.show()
 		self.reloadList(self.selectedmovie, home=True)
@@ -816,10 +827,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self["waitingtext"].hide()
 
 	def LivePlay(self):
-		if not self.list.playInBackground:
-			if self.session.nav.getCurrentlyPlayingServiceReference():
-				if self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') == -1:
-					config.movielist.curentlyplayingservice.setValue(self.session.nav.getCurrentlyPlayingServiceReference().toString())
+		if self.session.nav.getCurrentlyPlayingServiceReference():
+			if self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') == -1:
+				config.movielist.curentlyplayingservice.setValue(self.session.nav.getCurrentlyPlayingServiceReference().toString())
 		checkplaying = self.session.nav.getCurrentlyPlayingServiceReference()
 		if checkplaying:
 			checkplaying = checkplaying.toString()
@@ -847,7 +857,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			print "[ML] DVD Player not installed:", e
 
 	def __serviceStarted(self):
-		if not self.list.playInBackground:
+		if not self.list.playInBackground or not self.list.playInForeground:
 			return
 		ref = self.session.nav.getCurrentService()
 		cue = ref.cueSheet()
@@ -893,12 +903,17 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def __evEOF(self):
 		playInBackground = self.list.playInBackground
+		playInForeground = self.list.playInForeground
 		if not playInBackground:
 			print "Not playing anything in background"
+			return
+		if not playInBackground:
+			print "Not playing anything in foreground"
 			return
 		current = self.getCurrent()
 		self.session.nav.stopService()
 		self.list.playInBackground = None
+		self.list.playInForeground = None
 		if config.movielist.play_audio_internal.getValue():
 			if playInBackground == current:
 				self["list"].moveDown()
@@ -922,18 +937,38 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				self.gotFilename(path)
 			else:
 				playInBackground = self.list.playInBackground
+				playInForeground = self.list.playInForeground
 				if playInBackground:
 					self.list.playInBackground = None
+					from Screens.InfoBar import MoviePlayer
+					MoviePlayerInstance = MoviePlayer.instance
+					if MoviePlayerInstance is not None:
+						from Screens.InfoBarGenerics import setResumePoint
+						setResumePoint(MoviePlayer.instance.session)
 					self.session.nav.stopService()
-					if playInBackground != current:
+					if playInBackground and playInBackground != current:
 						# come back to play the new one
 						self.callLater(self.preview)
+					if config.movielist.show_live_tv_in_movielist.getValue():
+						self.LivePlayTimer.start(100)
+					self.filePlayingTimer.start(100)
+				elif self.list.playInForeground:
+					from Screens.InfoBar import MoviePlayer
+					MoviePlayerInstance = MoviePlayer.instance
+					if MoviePlayerInstance is not None:
+						from Screens.InfoBarGenerics import setResumePoint
+						setResumePoint(MoviePlayer.instance.session)
+						MoviePlayerInstance.close()
+					self.session.nav.stopService()
+					if config.movielist.show_live_tv_in_movielist.getValue():
+						self.LivePlayTimer.start(100)
+					self.filePlayingTimer.start(100)
 				else:
 					self.list.playInBackground = current
 					self.session.nav.playService(current)
 
 	def seekRelative(self, direction, amount):
-		if self.list.playInBackground:
+		if self.list.playInBackground or self.list.playInBackground:
 			seekable = self.getSeek()
 			if seekable is None:
 				return
@@ -942,10 +977,27 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def playbackStop(self):
 		if self.list.playInBackground:
 			self.list.playInBackground = None
+			from Screens.InfoBar import MoviePlayer
+			MoviePlayerInstance = MoviePlayer.instance
+			if MoviePlayerInstance is not None:
+				from Screens.InfoBarGenerics import setResumePoint
+				setResumePoint(MoviePlayer.instance.session)
 			self.session.nav.stopService()
 			if config.movielist.show_live_tv_in_movielist.getValue():
 				self.LivePlayTimer.start(100)
+			self.filePlayingTimer.start(100)
 			return
+		elif self.list.playInForeground:
+			from Screens.InfoBar import MoviePlayer
+			MoviePlayerInstance = MoviePlayer.instance
+			if MoviePlayerInstance is not None:
+				from Screens.InfoBarGenerics import setResumePoint
+				setResumePoint(MoviePlayer.instance.session)
+				MoviePlayerInstance.close()
+			self.session.nav.stopService()
+			if config.movielist.show_live_tv_in_movielist.getValue():
+				self.LivePlayTimer.start(100)
+			self.filePlayingTimer.start(100)
 
 	def itemSelected(self):
 		current = self.getCurrent()
@@ -1204,6 +1256,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def showAll(self):
 		self.selected_tags_ele = None
 		self.selected_tags = None
+		self.saveconfig()
 		self.reloadList(home = True)
 
 	def showTagsN(self, tagele):
@@ -1237,6 +1290,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			if self.selected_tags_ele:
 				self.selected_tags_ele.value = tag[0]
 				self.selected_tags_ele.save()
+			self.saveconfig()
 			self.reloadList(home = True)
 
 	def showTagsMenu(self, tagele):
