@@ -29,3 +29,4 @@ else
 dist_pkgdata_DATA += skin_display.xml
 endif
 endif
+endif
