@@ -284,6 +284,8 @@ class Harddisk:
 
 	def createInitializeJob(self):
 		job = Task.Job(_("Initializing storage device..."))
+		size = self.diskSize()
+		print "[HD] size: %s MB" % size
 
 		task = UnmountTask(job, self)
 
@@ -301,21 +303,42 @@ class Harddisk:
 		task.check = lambda: not path.exists(self.partitionPath("1"))
 		task.weighting = 1
 
-		size = self.diskSize()
-		print "[HD] size: %s MB" % size
+		if path.exists('/usr/sbin/parted'):
+			use_parted = True
+		else:
+			if size > 2097151:
+				addInstallTask(job, 'parted')
+				use_parted = True
+			else:
+				use_parted = False
+
 		task = Task.LoggingTask(job, _("Create Partition"))
 		task.weighting = 5
-		task.setTool('sfdisk')
-		task.args.append('-f')
-		task.args.append('-uS')
-		task.args.append(self.disk_path)
-		if size > 128000:
-			# Start at sector 8 to better support 4k aligned disks
-			print "[HD] Detected >128GB disk, using 4k alignment"
-			task.initial_input = "8,\n;0,0\n;0,0\n;0,0\ny\n"
+		if use_parted:
+			task.setTool('parted')
+			if size < 1024:
+				# On very small devices, align to block only
+				alignment = 'min'
+			else:
+				# Prefer optimal alignment for performance
+				alignment = 'opt'
+			if size > 2097151:
+				parttype = 'gpt'
+			else:
+				parttype = 'msdos'
+			task.args += ['-a', alignment, '-s', self.disk_path, 'mklabel', parttype, 'mkpart', 'primary', '0%', '100%']
 		else:
-			# Smaller disks (CF cards, sticks etc) don't need that
-			task.initial_input = "0,\n;\n;\n;\ny\n"
+			task.setTool('sfdisk')
+			task.args.append('-f')
+			task.args.append('-uS')
+			task.args.append(self.disk_path)
+			if size > 128000:
+				# Start at sector 8 to better support 4k aligned disks
+				print "[HD] Detected >128GB disk, using 4k alignment"
+				task.initial_input = "8,\n;0,0\n;0,0\n;0,0\ny\n"
+			else:
+				# Smaller disks (CF cards, sticks etc) don't need that
+				task.initial_input = "0,\n;\n;\n;\ny\n"
 
 		task = Task.ConditionTask(job, _("Wait for partition"))
 		task.check = lambda: path.exists(self.partitionPath("1"))
@@ -387,13 +410,7 @@ class Harddisk:
 			raise Exception, _("You system does not support ext4")
 		job = Task.Job(_("Convert ext3 to ext4..."))
 		if not path.exists('/sbin/tune2fs'):
-			task = Task.LoggingTask(job, "update packages")
-			task.setTool('opkg')
-			task.args.append('update')
-			task = Task.LoggingTask(job, "Install e2fsprogs-tune2fs")
-			task.setTool('opkg')
-			task.args.append('install')
-			task.args.append('e2fsprogs-tune2fs')
+			addInstallTask(job, 'e2fsprogs-tune2fs')
 		if self.findMount():
 			# Create unmount task if it was not mounted
 			UnmountTask(job, self)
@@ -574,6 +591,15 @@ DEVICEDB =  \
 		"/devices/pci0000:00/0000:00:14.1/ide0/0.0": "Internal Harddisk"
 	}
 	}
+
+def addInstallTask(job, package):
+	task = Task.LoggingTask(job, "update packages")
+	task.setTool('opkg')
+	task.args.append('update')
+	task = Task.LoggingTask(job, "Install " + package)
+	task.setTool('opkg')
+	task.args.append('install')
+	task.args.append(package)
 
 class HarddiskManager:
 	def __init__(self):
