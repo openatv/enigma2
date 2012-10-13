@@ -11,19 +11,6 @@ extern "C" {
 
 int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 {
-	//DDamir fix for LCD
-	char fname[50];
-	sprintf(fname,"/tmp/.lcd");
-	int lcd = 0;
-	FILE *in = fopen(fname,"r");
-	if (in)
-	{
-		lcd = 1;
-		fclose(in);
-		remove(fname);
-	}
-	//DDamir fix for LCD
-	
 	__u8 header[8];
 	FILE *fp=fopen(filename, "rb");
 	
@@ -121,13 +108,6 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 				surface->clut.data[i].r=palette[i].red;
 				surface->clut.data[i].g=palette[i].green;
 				surface->clut.data[i].b=palette[i].blue;
-				//DDamir fix for LCD
-				if (lcd == 1)
-				{
-					surface->clut.data[i].r=palette[i].blue;
-					surface->clut.data[i].b=palette[i].red;
-				}
-				//DDamir fix for LCD
 			}
 			if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))
 			{
@@ -154,7 +134,7 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 		if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
 			png_set_gray_to_rgb(png_ptr);
 		if (color_type == PNG_COLOR_TYPE_RGB)
-			png_set_filler(png_ptr, 0xff, PNG_FILLER_BEFORE);		
+			png_set_filler(png_ptr, 0x00, PNG_FILLER_AFTER);
 			
 		int number_passes = png_set_interlace_handling(png_ptr);
 		png_read_update_info(png_ptr, info_ptr);
@@ -175,17 +155,20 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 			for (int i = 0; i < height; i++, fbptr += width * 4)
 				png_read_row(png_ptr, fbptr, NULL);
 		}
+		
 		png_read_end(png_ptr, info_ptr);
 		
-		// the disposition of channels inside the framebuffer is inverted
+		//       image is RGBA
+		// framebuffer is BGRA
+		// the alpha channel for the framebuffer mean transparency
+		// the alpha channel for the png mean opacity
+		// the api png_set_invert_alpha(png_ptr) seem doesn't work!
 		for (int offset = 0; offset < (width * height * 4); offset += 4)
 		{
-			unsigned char tmp = pic_buffer[offset];
-			pic_buffer[offset] = pic_buffer[offset + 3];
-			pic_buffer[offset + 3] = tmp;
-			tmp = pic_buffer[offset + 2];
-			pic_buffer[offset + 2] = pic_buffer[offset + 1];
-			pic_buffer[offset + 1] = tmp;
+			unsigned char tmp = pic_buffer[offset + 2];
+			pic_buffer[offset + 2] = pic_buffer[offset];
+			pic_buffer[offset] = tmp;
+			pic_buffer[offset + 3] ^= 0xff;		// fix the alpha channel
 		}
 		
 		surface->clut.data=0;
