@@ -5,15 +5,15 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2012-10-13 00:16+0100\n"
-"Last-Translator: mike99\n"
+"PO-Revision-Date: 2012-10-13 15:20+0100\n"
+"Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: AAF\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.3\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 #
@@ -1089,8 +1089,11 @@ msgid ""
 "Are you sure you want to restore the backup?\n"
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
-"Sicher das dieses Backup wiederhergestellt werden soll?\n"
-"Deine STB_BOX wird neu gestartet wenn das Backup wiederhergestellt wurde."
+"Sind Sie sicher, dass die Einstellungen ihrer STB_BOX wiederhergestellt "
+"werden sollen?\n"
+"\n"
+"Ihre STB_BOX wird neu gestartet,\n"
+"nachdem die Einstellungen wiederhergestellt wurden!"
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Den EPG-Cache hier speichern:\n"
@@ -1968,7 +1971,9 @@ msgstr "Wieviele Tage soll ein Timer erhalten bleiben bevor er gelöscht wird"
 msgid ""
 "Configure the number of days after which items are automaticaly removed from "
 "the trash can."
-msgstr "Wieviele Tage soll der Inhalt vom Mülleimer erhalten bleiben"
+msgstr ""
+"Hier können Sie festlegen, wie viele Tage der Inhalt vom Papierkorb erhalten "
+"bleiben soll."
 
 msgid "Configure the offline decode delay in ms"
 msgstr "Länge der Verzögerung einer Offline-Entschlüsselung "
@@ -2492,7 +2497,7 @@ msgid "Details for plugin: "
 msgstr "Plugin-Details: "
 
 msgid "Detected Devices:"
-msgstr "Entdeckte Geräte:"
+msgstr "Erkannte Speichermedien:"
 
 #
 msgid "Detected NIMs:"
@@ -3037,9 +3042,9 @@ msgid ""
 "until the time you zapped to a channel, and you can make recordings in "
 "retrospect."
 msgstr ""
-"Permanents Timeshift aktivieren oder deaktivieren. Wenn aktiviert kannst Du "
-"zurückspulen bis zu der Zeit als umgeschaltet wurde. Aus diesen Daten kann "
-"nachträglich eine Aufnahme gemacht werden."
+"Wenn aktiviert, können Sie zurückspulen bis zu der Zeit als auf den Sender "
+"umgeschaltet wurde. Sie können auch nachträglich eine Aufnahme aus dem "
+"Timeshift machen."
 
 msgid "Enable panic button"
 msgstr "Panik-Taste aktivieren"
@@ -3179,22 +3184,22 @@ msgid "Ethernet network interface"
 msgstr "Ethernet Netzwerk-Schnittstelle"
 
 msgid "Event Fontsize"
-msgstr "Event-Schriftgröße"
+msgstr "Sendungs-Info Schriftgröße"
 
 msgid "Event Fontsize (relative to skin size)"
-msgstr "Sendung Schriftgröße (relativ zur Skingröße)"
+msgstr "Sendungs-Info Schriftgröße (relativ zur Skingröße)"
 
 msgid "Event Info"
-msgstr "Ereignis-Info"
+msgstr "Sendungs Informationen"
 
 msgid "Event Info..."
-msgstr "Programminformation..."
+msgstr "Sendungs Informationen..."
 
 msgid "Eventview"
-msgstr "Event-Viewer"
+msgstr "Sendungs Informationen"
 
 msgid "Eventview menu"
-msgstr "Menü Event-Viever"
+msgstr "Menü Sendungs Informationen"
 
 #
 msgid "Everything is fine"
@@ -3642,9 +3647,9 @@ msgid "InfobarEPG settings"
 msgstr "InfobarEPG Einstellungen"
 
 msgid "GraphicalEPG settings"
-msgstr "GraphicalEPG Einstellungen"
+msgstr "GrafischerEPG Einstellungen"
 
-msgid "Graphical EPG"
+msgid "Graphical EPG..."
 msgstr "Grafischer EPG"
 
 msgid "Go to first movie"
@@ -3661,7 +3666,7 @@ msgstr "Grafische MEpg-Einstellungen"
 
 #
 msgid "Graphical Multi EPG"
-msgstr "Grafischer Multi EPG"
+msgstr "Grafischer Multi-EPG"
 
 #
 msgid "Green boost"
@@ -4200,7 +4205,7 @@ msgid "Keyboard Map"
 msgstr "Tastaturlayout"
 
 #
-msgid "Keyboard Setup"
+msgid "Keyboard setup"
 msgstr "Tastatur-Einstellungen"
 
 #
@@ -4621,6 +4626,10 @@ msgstr "Filmverzeichnis"
 #
 msgid "Movielist menu"
 msgstr "Menü Filmverzeichnis"
+
+#
+msgid "Multi EPG"
+msgstr "Multi-EPG"
 
 msgid "Multi EPG..."
 msgstr "Multi-EPG..."
@@ -6317,7 +6326,7 @@ msgstr "Wiederherstellung läuft"
 
 #
 msgid "Restore system settings"
-msgstr "System-Einstellungen wiederherstellen"
+msgstr "Einstellungen wiederherstellen"
 
 #
 msgid "Resume from last position"
@@ -7456,10 +7465,6 @@ msgstr "Entschuldigung, der MediaScanner ist nicht installiert!"
 
 #
 msgid "Sorry no backups found!"
-msgstr "Entschuldigung, keine Sicherungen gefunden!"
-
-#
-msgid "Sorry, no backups found!"
 msgstr "Entschuldigung, keine Sicherungen gefunden!"
 
 msgid "Sorry uShare Config is Missing"
@@ -13614,10 +13619,11 @@ msgid ""
 "Are you sure you want to restore your STB_BOX backup?\n"
 "STB will restart after the restore"
 msgstr ""
-"Sind Sie sicher, dass Sie das Backup der STB_BOX\n"
-"wiederherstellen wollen?\n"
+"Sind Sie sicher, dass die Einstellungen ihrer STB_BOX wiederhergestellt "
+"werden sollen?\n"
 "\n"
-"STB wird nach der Wiederherstellung neu starten"
+"Ihre STB_BOX wird neu gestartet,\n"
+"nachdem die Einstellungen wiederhergestellt wurden!"
 
 #
 msgid "Configure the harddisk to go to standby after a specified idle time."
@@ -13629,7 +13635,7 @@ msgstr "Entferne fertige Timer nach (Tagen)"
 
 #
 msgid "Remove items from trash can after (days)"
-msgstr "Entferne gelöschte Aufnahmen aus trash nach (Tagen)"
+msgstr "Gelöschte Aufnahmen nach (Tagen) aus dem Papierkorb entfernen"
 
 #
 msgid "Show movie lengths in movielist"
@@ -13641,7 +13647,7 @@ msgstr "Zeitlupen Geschwindigkeit"
 
 #
 msgid "Use trash can in movielist"
-msgstr "Zeige trash in Filmliste"
+msgstr "Papierkorb in der Filmliste benutzen"
 
 #
 msgid "Display message before playing next movie"
@@ -13689,18 +13695,71 @@ msgid ""
 "paused."
 msgstr "Verhalten der Pausetaste bei Standbild"
 
-#
-msgid "Infobar EPG"
-msgstr "Quick EPG"
+msgid ""
+"Configure the minimum amount of disk space to be available for recordings. "
+"When the amount of space drops below this value, deleted items will be "
+"removed from the trash can."
+msgstr ""
+"Den erforderlichen Speicherplatz einstellen, der für Aufnahmen zur Verfügung "
+"stehen muss.  Wird der Wert erreicht, werden Inhalte aus dem Papierkorb "
+"gelöscht."
 
-#
-msgid "Show EPG for current channel..."
-msgstr "Zeige EPG vom aktuellen Kanal"
+msgid ""
+"When enabled, deleted recordings are moved to the trash can, instead of "
+"being immediately deleted."
+msgstr ""
+"Konfigurieren Sie, ob gelöschte Aufnahmen in den Papierkorb verschoben "
+"werden sollen. Sonst werden Aufnahmen sofort undwiderruflich gelöscht."
 
-#
-msgid "Select default EPG type..."
-msgstr "Wählen Sie einen EPG Typ"
+# AAFPanel restore settings
+msgid ""
+"Are you sure you want to restore your STB backup?\n"
+"STB will restart after the restore"
+msgstr ""
+"Sind Sie sicher, dass die Einstellungen ihrer STB_BOX wiederhergestellt "
+"werden sollen?\n"
+"\n"
+"Ihre STB_BOX wird neu gestartet,\n"
+"nachdem die Einstellungen wiederhergestellt wurden!"
 
-#
-msgid "Please select a default EPG type..."
-msgstr "Wählen Sie einen EPG Typ"
+msgid "Install Softcams"
+msgstr "Installiere Softcams"
+
+msgid "active CAM: "
+msgstr "aktive CAM: "
+
+msgid "active CAM 1: "
+msgstr "aktive CAM 1: "
+
+msgid "active CAM 2: "
+msgstr "aktive CAM 2: "
+
+msgid "no CAM active"
+msgstr "Keine CAM aktiv"
+
+msgid "no CAM 1 active"
+msgstr "Keine CAM 1 aktiv"
+
+msgid "no CAM 2 active"
+msgstr "Keine CAM 2 aktiv"
+
+msgid "No new ECM info"
+msgstr "Keine neuen ECM Informationen"
+
+msgid "No ECM info"
+msgstr "Keine ECM Informationen"
+
+msgid "Select Cam 1"
+msgstr "Wähle Cam 1"
+
+msgid "Select Cam 2"
+msgstr "Wähle Cam 2"
+
+msgid "Wait time before start Cam 2"
+msgstr "Wartezeit für den Start der Cam 2"
+
+msgid "Starting Cam 1: "
+msgstr "Starte Cam 1: "
+
+msgid "Starting Cam 2: "
+msgstr "Starte Cam 2: "
