@@ -1,7 +1,6 @@
 import os
 import time
 from os import system, listdir, statvfs, popen, makedirs, stat, major, minor, path, access
-from Tools.Directories import SCOPE_HDD, resolveFilename, pathExists
 from Tools.CList import CList
 from SystemInfo import SystemInfo
 from Components.Console import Console
@@ -24,11 +23,6 @@ def getProcMounts():
 		# Spaces are encoded as \040 in mounts
 		item[1] = item[1].replace('\\040', ' ')
 	return result
-
-def createMovieFolder():
-	movie = resolveFilename(SCOPE_HDD)
-	if not pathExists(movie):
-		makedirs(movie)
 
 def isFileSystemSupported(filesystem):
 	try:
@@ -254,14 +248,6 @@ class Harddisk:
 			sleep(3)
 		return (res >> 8)
 
-	def createMovieFolder(self):
-		if not pathExists(resolveFilename(SCOPE_HDD)):
-			try:
-				makedirs(resolveFilename(SCOPE_HDD))
-			except OSError:
-				return -1
-		return 0
-
 	def fsck(self):
 		# No longer supported, use createCheckJob instead
 		return 1
@@ -371,10 +357,6 @@ class Harddisk:
 		task = Task.ConditionTask(job, _("Wait for mount"), timeoutCount=20)
 		task.check = self.mountDevice
 		task.weighting = 1
-
-		task = Task.PythonTask(job, _("Create movie directory"))
-		task.weighting = 1
-		task.work = createMovieFolder
 
 		return job
 
