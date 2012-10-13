@@ -77,7 +77,7 @@ class SoftwareUpdateChanges(Screen):
 		fd = open('/tmp/' + self.logtype + '-git.log', 'r')
 		releasenotes = fd.read()
 		fd.close()
-		releasenotes = releasenotes.replace('\nopenvix: build',"\n\nopenvix: build")
+		releasenotes = releasenotes.replace('\nopenvix: build',"\n\nventonsupport: build")
 		releasenotes = releasenotes.split('\n\n')
 		ver=0
 		releasever = releasenotes[int(ver)].split('\n')
@@ -248,13 +248,9 @@ class UpdatePlugin(Screen):
 					message = _("Do you want to update your STB_BOX?") + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
 				if self.total_packages:
 					config.softwareupdate.updatefound.setValue(True)
-					choices = [(_("View the changes"), "changes"),
-						(_("Upgrade and reboot system"), "cold")]
-					if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/BackupManager.pyo"):
-						if not config.softwareupdate.autosettingsbackup.getValue():
-							choices.append((_("Perform a setting backup,") + '\n\t' + _("making a backup before updating") + '\n\t' +_("is strongly advised."), "backup"))
-						if not config.softwareupdate.autoimagebackup.getValue():
-							choices.append((_("Perform a full image backup"), "imagebackup"))
+					choices = [(_("Upgrade and reboot system"), "cold")]
+					#choices.append((_("View the changes"), "changes"))
+					choices.append((_("Perform a setting backup,") + '\n\t' + _("making a backup before updating") + '\n\t' +_("is strongly advised."), "backup"))
 					choices.append((_("Update channel list only"), "channels"))
 					choices.append((_("Cancel"), ""))
 					upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name = "SoftwareUpdateChoices")
@@ -312,12 +308,9 @@ class UpdatePlugin(Screen):
 				message = _("The current update maybe unstable") + "\n" + _("Are you sure you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
 			elif config.softwareupdate.updateisunstable.getValue() == '0':
 				message = _("Do you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
-			choices = [(_("View the changes"), "changes"),
-				(_("Upgrade and reboot system"), "cold")]
-			if not self.SettingsBackupDone and not config.softwareupdate.autosettingsbackup.getValue():
-				choices.append((_("Perform a setting backup, making a backup before updating is strongly advised."), "backup"))
-			if not self.ImageBackupDone and not config.softwareupdate.autoimagebackup.getValue():
-				choices.append((_("Perform a full image backup"), "imagebackup"))
+			choices = [(_("Upgrade and reboot system"), "cold")]
+			#choices.append((_("View the changes"), "changes"))
+			choices.append((_("Perform a setting backup, making a backup before updating is strongly advised."), "backup"))
 			choices.append((_("Update channel list only"), "channels"))
 			choices.append((_("Cancel"), ""))
 			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
@@ -326,14 +319,12 @@ class UpdatePlugin(Screen):
 			self.session.openWithCallback(self.startActualUpgrade,SoftwareUpdateChanges)
 		elif answer[1] == "backup":
 			self.doSettingsBackup()
-		elif answer[1] == "imagebackup":
-			self.doImageBackup()
 		elif answer[1] == "channels":
 			self.channellist_only = 1
 			self.slider.setValue(1)
 			self.ipkg.startCmd(IpkgComponent.CMD_LIST, args = {'installed_only': True})
 		elif answer[1] == "cold":
-			if config.softwareupdate.autosettingsbackup.getValue() or config.softwareupdate.autoimagebackup.getValue():
+			if config.softwareupdate.autosettingsbackup.getValue():
 				self.doAutoBackup()
 			else:
 				self.session.open(TryQuitMainloop,retvalue=42)
@@ -341,46 +332,24 @@ class UpdatePlugin(Screen):
 
 	def modificationCallback(self, res):
 		self.ipkg.write(res and "N" or "Y")
-
+	
 	def doSettingsBackup(self):
-		backup = None
-		from Plugins.SystemPlugins.ViX.BackupManager import BackupFiles
-		self.BackupFiles = BackupFiles(self.session)
-		Components.Task.job_manager.AddJob(self.BackupFiles.createBackupJob())
-		Components.Task.job_manager.in_background = False
-		for job in Components.Task.job_manager.getPendingJobs():
-			if job.name.startswith(_("BackupManager")):
-				backup = job
-		if backup:
-			self.showJobView(backup)
-
-	def doImageBackup(self):
-		backup = None
-		from Plugins.SystemPlugins.ViX.ImageManager import ImageBackup
-		self.ImageBackup = ImageBackup(self.session)
-		Components.Task.job_manager.AddJob(self.ImageBackup.createBackupJob())
-		Components.Task.job_manager.in_background = False
-		for job in Components.Task.job_manager.getPendingJobs():
-			if job.name.startswith(_("ImageManager")):
-				backup = job
-		if backup:
-			self.showJobView(backup)
+		from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
+		if not self.SettingsBackupDone:
+		  self.SettingsBackupDone = True
+		  self.session.openWithCallback(self.startActualUpgrade(("menu", "menu")), BackupScreen, runBackup = True)
+		else:
+		  self.session.openWithCallback(self.startActualUpgrade(("cold", "cold")), BackupScreen, runBackup = True)
 
 	def doAutoBackup(self, val = False):
 		self.autobackuprunning = True
 		if config.softwareupdate.autosettingsbackup.getValue() and not self.SettingsBackupDone:
 			self.doSettingsBackup()
-		elif config.softwareupdate.autoimagebackup.getValue() and not self.ImageBackupDone:
-			self.doImageBackup()
 		else:
 			self.session.open(TryQuitMainloop,retvalue=42)
 			self.close()
 
 	def showJobView(self, job):
-		if job.name.startswith(_("ImageManager")):
-			self.ImageBackupDone = True
-		elif job.name.startswith(_("BackupManager")):
-			self.SettingsBackupDone = True
 		from Screens.TaskView import JobView
 		Components.Task.job_manager.in_background = False
 		if not self.autobackuprunning:
