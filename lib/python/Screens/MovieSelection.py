@@ -943,9 +943,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if self.list.playInBackground:
 			self.list.playInBackground = None
 			self.session.nav.stopService()
+			if config.movielist.show_live_tv_in_movielist.getValue():
+				self.LivePlayTimer.start(100)
 			return
-		if config.movielist.show_live_tv_in_movielist.getValue():
-			self.LivePlayTimer.start(100)
 
 	def itemSelected(self):
 		current = self.getCurrent()
