@@ -14,7 +14,7 @@ class VideoHardware:
 
 	modes = { }  # a list of (high-level) modes for a certain port.
 
-	rates["PAL"] =			{ "50Hz":		{ 50: "pal" },
+	rates["PAL"] =			{ "50Hz":	{ 50: "pal" },
 								"60Hz":		{ 60: "pal60" },
 								"multi":	{ 50: "pal", 60: "pal60" } }
 
@@ -34,16 +34,17 @@ class VideoHardware:
 								"60Hz": 	{ 60: "720p" },
 								"multi": 	{ 50: "720p50", 60: "720p" } }
 
-	rates["1080i"] =		{ "50Hz":		{ 50: "1080i50" },
+	rates["1080i"] =		{ "50Hz":	{ 50: "1080i50" },
 								"60Hz":		{ 60: "1080i" },
 								"multi":	{ 50: "1080i50", 60: "1080i" } }
 
 	if getBoxType() == 'tmtwin':
 		rates["1080p"] =		{ "24Hz":		{ 24: "1080p24" },
 									"30Hz":		{ 30: "1080p30" } }
+									"60Hz":		{ 60: "1080p" },
 	else:
 		rates["1080p"] =		{ "50Hz":		{ 50: "1080p50" },
-									"60Hz":		{ 60: "1080p60" },
+									"60Hz":		{ 60: "1080p" },
 									"multi":	{ 50: "1080p50", 60: "1080p60" } }
 
 
