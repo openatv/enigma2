@@ -23,6 +23,9 @@ else
 if HAVE_COLORLCD
 dist_pkgdata_DATA += skin_display96.xml
 else
+if HAVE_GIGABLUELCD
+dist_pkgdata_DATA += skin_display96.xml
+else
 dist_pkgdata_DATA += skin_display.xml
 endif
 endif
