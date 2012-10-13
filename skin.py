@@ -92,8 +92,7 @@ addSkin('skin_second_infobar.xml')
 # Only one of these is present, compliments of AM_CONDITIONAL
 config.skin.display_skin = ConfigYesNo(default = False)
 display_skin_id = 1
-f = open("/proc/stb/lcd/xres", "r").read()
-if int(f, 16) == 256:
+if fileExists('/usr/share/enigma2/skin_display_picon.xml'):
 	if config.skin.display_skin.getValue():
 		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display_picon.xml')):
 			addSkin('skin_display_picon.xml', SCOPE_CONFIG)
@@ -104,7 +103,7 @@ if int(f, 16) == 256:
 			addSkin('skin_display_no_picon.xml', SCOPE_CONFIG)
 		else:
 			addSkin('skin_display_no_picon.xml')
-elif int(f, 16) == 220:
+elif fileExists('/usr/share/enigma2/skin_display220_picon.xml'):
 	if config.skin.display_skin.getValue():
 		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display220_picon.xml')):
 			addSkin('skin_display220_picon.xml', SCOPE_CONFIG)
