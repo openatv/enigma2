@@ -3,7 +3,6 @@ from enigma import *
 import os
 import datetime
 
-config.softcam = ConfigSubsection()
 config.softcam.actCam = ConfigText(visible_width = 200)
 config.softcam.restartRunning = ConfigYesNo(default=True)
 config.softcam.restartAttempts =  ConfigSelection(
@@ -31,24 +30,24 @@ config.softcam.camstartMode =  ConfigSelection(
                     ], "0")
 
 def command(comandline, strip=1):
-  comandline = comandline + " >/tmp/command.txt"
-  os.system(comandline)
-  text = ""
-  if os.path.exists("/tmp/command.txt") is True:
-    file = open("/tmp/command.txt", "r")
-    if strip == 1:
-      for line in file:
-        text = text + line.strip() + '\n'
-    else:
-      for line in file:
-        text = text + line
-        if text[-1:] != '\n': text = text + "\n"
-    file.close
-  # if one or last line then remove linefeed
-  if text[-1:] == '\n': text = text[:-1]
-  comandline = text
-  os.system("rm /tmp/command.txt")
-  return comandline
+	comandline = comandline + " >/tmp/command.txt"
+	os.system(comandline)
+	text = ""
+	if os.path.exists("/tmp/command.txt") is True:
+		file = open("/tmp/command.txt", "r")
+		if strip == 1:
+			for line in file:
+				text = text + line.strip() + '\n'
+		else:
+			for line in file:
+				text = text + line
+				if text[-1:] != '\n': text = text + "\n"
+		file.close
+	# if one or last line then remove linefeed
+	if text[-1:] == '\n': text = text[:-1]
+	comandline = text
+	os.system("rm /tmp/command.txt")
+	return comandline
 
 class CamStart:
 
@@ -84,7 +83,8 @@ class CamStart:
 		self.emuStart = []
 		self.emuDirlist = os.listdir(emuDir)
 		cam_name = config.softcam.actCam.getValue()
-		if cam_name == "no CAM active" or cam_name == "":
+		cam_name2 = config.softcam.actCam2.getValue()
+		if (cam_name == "no CAM 1 active" or cam_name == "") and (cam_name2 == "no CAM 1 active" or cam_name2 == ""):
 			self.timer.stop()
 			self.service = None
 			print "[CAMSTARTER] No Cam to Start, Exit"
@@ -117,27 +117,37 @@ class CamStart:
 
 			camrunning = 0
 			camfound = 0
+			indexcam = -1
+			camrunning2 = 0
+			camfound2 = 0
+			indexcam2 = -1
 			tel = 0
 			for x in self.mlist:
 				#print '[CAMSTARTER] searching active cam: ' + x
 				if x == cam_name:
 					camfound = 1
+					indexcam = tel
 					cam_bin = self.emuBin[tel]
 					p = command('pidof %s |wc -w' % cam_bin)
-					#print '[CAMSTARTER] binname : ' + cam_bin
-					import time
-					time.sleep(2)
-					#print '[CAMSTARTER] cam pid found: ' + str(p)
 					if p != '':
 						if int(p) > 0:
 							actcam = self.mlist[tel]
 							print datetime.datetime.now()
-							print '[CAMSTARTER] CAM is Running, active cam: ' + actcam
-							if cam_bin.find('camd3')>-1 and self.count == 1:
-								print '[CAMSTARTER] stop ' + cam_bin
-								os.system('killall -9 '  + cam_bin)
+							print '[CAMSTARTER] CAM 1 is Running, active cam 1: ' + actcam
 							camrunning = 1
-						break
+					tel +=1
+				elif x == cam_name2:
+					camfound2 = 1
+					indexcam2 = tel
+					cam_bin = self.emuBin[tel]
+					p = command('pidof %s |wc -w' % cam_bin)
+					if p != '':
+						if int(p) > 0:
+							actcam = self.mlist[tel]
+							print datetime.datetime.now()
+							print '[CAMSTARTER] CAM 2 is Running, active cam 2: ' + actcam
+							camrunning2 = 1
+					tel +=1
 				else:
 					tel +=1
 			try:
@@ -145,19 +155,31 @@ class CamStart:
 				if camrunning == 0:
 					#// AND CAM IN LIST
 					if camfound == 1:
-						start = self.emuStart[tel]
+						start = self.emuStart[indexcam]
 						print "[CAMSTARTER] no CAM active, starting " + start
-						os.system("echo Start attempts: " + str(self.count) + " > " + "/tmp/camstarter.txt")
+						os.system("echo Start attempts cam 1: " + str(self.count) + " cmd=" + start + " > " + "/tmp/camstarter.txt")
 						self.container = eConsoleAppContainer()
 						self.container.execute(start)
+						if camrunning2 == 0:
+							#// AND CAM IN LIST
+							if camfound2 == 1:
+								import time
+								time.sleep (int(config.softcam.waittime.getValue()))
+								start = self.emuStart[indexcam2]
+								print "[CAMSTARTER] no CAM active, starting " + start
+								os.system("echo Start attempts cam 2: " + str(self.count) + " cmd=" + start + " >> " + "/tmp/camstarter.txt")
+								self.container = eConsoleAppContainer()
+								self.container.execute(start)
 				else:
-					# If Cam is running don't check anymore
-					if config.softcam.restartRunning.getValue():
-						print "[CAMSTARTER] Cam is running, exit camstarter"
-						self.count = 0
-						return
 					if camfound == 0:
 						print "[CAMSTARTER] No Cam found to start"
+				
+				# If Cam is running don't check anymore
+				if config.softcam.restartRunning.getValue() and camrunning == 1 and camrunning2 == 1:
+					print "[CAMSTARTER] Cam is running, exit camstarter"
+					self.count = 0
+					return
+
 			except:
 				pass
 

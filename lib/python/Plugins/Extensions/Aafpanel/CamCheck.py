@@ -7,11 +7,11 @@ from datetime import datetime
 isBusy = None
 
 def CamCheck():
-        global campoller, POLLTIME
-        POLLTIME = int(config.plugins.aafpanel_frozencheck.list.getValue()) * 60
-        if campoller is None:
-            campoller = CamCheckPoller()
-        campoller.start()
+    global campoller, POLLTIME
+    POLLTIME = int(config.plugins.aafpanel_frozencheck.list.getValue()) * 60
+    if campoller is None:
+        campoller = CamCheckPoller()
+    campoller.start()
 
 def CamCheckStop():
     try:
@@ -31,7 +31,7 @@ class CamCheckPoller:
         isBusy = True
         if self.camcheck not in self.timer.callback:
             self.timer.callback.append(self.camcheck)
-        self.timer.startLongTimer(0)
+        self.timer.startLongTimer(60)
 
     def stop(self):
         global isBusy
@@ -59,13 +59,14 @@ class CamCheckPoller:
         self.emuStart = []
         self.emuDirlist = listdir(emuDir)
         cam_name = config.softcam.actCam.getValue()
-        if cam_name == "no CAM active" or cam_name == "":
+        cam_name2 = config.softcam.actCam2.getValue()
+        if (cam_name == "no CAM 1 active" or cam_name == "") and (cam_name2 == "no CAM 1 active" or cam_name2 == ""):
             print "[CAMSCHECK] No Cam to Check, Exit"
             global isBusy
             isBusy = None
             return
 
-        #// check emu dir for config files
+
         for x in self.emuDirlist:
             #// if file contains the string "emu" (then this is a emu config file)
             if x.find("emu") > -1:
@@ -91,30 +92,63 @@ class CamCheckPoller:
 
         camrunning = 0
         camfound = 0
+        indexcam = -1
+        camrunning2 = 0
+        camfound2 = 0
+        indexcam2 = -1
         tel = 0
         for x in self.mlist:
+            #print '[CAMSTARTER] searching active cam: ' + x
             if x == cam_name:
                 camfound = 1
+                indexcam = tel
                 cam_bin = self.emuBin[tel]
                 p = system('pidof %s' % cam_bin)
                 if p != '':
                     if int(p) == 0:
                         actcam = self.mlist[tel]
-                        print '[CAMSCHECK] %s: CAM is Running, active cam: %s' %(datetime.now(), actcam)
+                        print datetime.now()
+                        print '[CAMSTARTER] CAM 1 is Running, active cam 1: ' + actcam
                         camrunning = 1
-                    break
+                tel +=1
+            elif x == cam_name2:
+                camfound2 = 1
+                indexcam2 = tel
+                cam_bin = self.emuBin[tel]
+                p = system('pidof %s' % cam_bin)
+                if p != '':
+                    if int(p) == 0:
+                        actcam = self.mlist[tel]
+                        print datetime.now()
+                        print '[CAMSTARTER] CAM 2 is Running, active cam 2: ' + actcam
+                        camrunning2 = 1
+                tel +=1
             else:
                 tel +=1
         try:
-        #// CAM IS NOT RUNNING SO START
+            #// CAM IS NOT RUNNING SO START
             if camrunning == 0:
                 #// AND CAM IN LIST
                 if camfound == 1:
-                    start = self.emuStart[tel]
-                    print "[CAMSCHECK] no CAM active, starting %s" % start
-                    system("echo %s Started at: %s >> /tmp/camcheck.txt" % (start, datetime.now()))
+                    start = self.emuStart[indexcam]
+                    print "[CAMSTARTER] no CAM 1 active, starting " + start
+                    system("echo %s Started cam 1 at: %s >> /tmp/camcheck.txt" % (start, datetime.now()))
                     self.container = eConsoleAppContainer()
                     self.container.execute(start)
+                    if camrunning2 == 0:
+                        #// AND CAM IN LIST
+                        if camfound2 == 1:
+                            import time
+                            time.sleep (int(config.softcam.waittime.getValue()))
+                            start = self.emuStart[indexcam2]
+                            print "[CAMSTARTER] no CAM 2 active, starting " + start
+                            system("echo %s Started cam 2 at: %s >> /tmp/camcheck.txt" % (start, datetime.now()))
+                            self.container = eConsoleAppContainer()
+                            self.container.execute(start)
+            else:
+                if camfound == 0:
+                    print "[CAMSTARTER] No Cam found to start"
+
         except:
             print "[CAMSCHECK] Error, can not start Cam"
 

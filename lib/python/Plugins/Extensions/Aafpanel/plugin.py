@@ -36,6 +36,10 @@ import time
 import datetime
 inAAFPanel = None
 
+config.softcam = ConfigSubsection()
+config.softcam.actCam = ConfigText(visible_width = 200)
+config.softcam.actCam2 = ConfigText(visible_width = 200)
+config.softcam.waittime = ConfigSelection([('0',_("dont wait")),('1',_("1 second")), ('5',_("5 seconds")),('10',_("10 seconds")),('15',_("15 seconds")),('20',_("20 seconds")),('30',_("30 seconds"))], default='15')
 config.plugins.aafpanel_redpanel = ConfigSubsection()
 config.plugins.aafpanel_redpanel.enabled = ConfigYesNo(default=True)
 config.plugins.aafpanel_redpanel.enabledlong = ConfigYesNo(default=False)
@@ -879,6 +883,7 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Show CCcamInfo in Extensions Menu"), config.cccaminfo.showInExtensions))
 		self.list.append(getConfigListEntry(_("Show OscamInfo in Extensions Menu"), config.oscaminfo.showInExtensions))
 		self.list.append(getConfigListEntry(_("Frozen Cam Check"), config.plugins.aafpanel_frozencheck.list))
+		self.list.append(getConfigListEntry(_("Wait time before start Cam 2"), config.softcam.waittime))
 		
 		self["config"].list = self.list
 		self["config"].setList(self.list)
@@ -909,13 +914,21 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 	
 	def saveAll(self):
 		if config.softcam.camstartMode.getValue() == "0":
-			if os.path.exists("/etc/rc2.d/S20softcam"):
+			if os.path.exists("/etc/rc2.d/S20softcam.cam1"):
 				print"Delete Symbolink link"
 				self.container = eConsoleAppContainer()
-				self.container.execute('update-rc.d -f softcam defaults')
-			if os.path.exists("/etc/init.d/softcam"):
-				print"Delete softcam init script"
-				os.system("rm /etc/init.d/softcam")
+				self.container.execute('update-rc.d -f softcam.cam1 defaults')
+			if os.path.exists("/etc/init.d/softcam.cam1"):
+				print"Delete softcam init script cam1"
+				os.system("rm /etc/init.d/softcam.cam1")
+				
+			if os.path.exists("/etc/rc2.d/S20softcam.cam2"):
+				print"Delete Symbolink link"
+				self.container = eConsoleAppContainer()
+				self.container.execute('update-rc.d -f softcam.cam2 defaults')
+			if os.path.exists("/etc/init.d/softcam.cam2"):
+				print"Delete softcam init script cam2"
+				os.system("rm /etc/init.d/softcam.cam2")
 			
 		for x in self["config"].list:
 			x[1].save()
