@@ -2408,7 +2408,7 @@ class InfoBarTimeshift:
 			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
 			self.pts_eventcount = 0
 
-	def createTimeshiftFolder():
+	def createTimeshiftFolder(self):
 		timeshiftdir = Directories.resolveFilename(Directories.SCOPE_TIMESHIFT)
 		if not pathExists(timeshiftdir):
 			os.makedirs(timeshiftdir)
