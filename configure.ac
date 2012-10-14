@@ -247,6 +247,7 @@ data/rc_models/odin/Makefile
 data/rc_models/tm/Makefile
 data/rc_models/vu/Makefile
 data/rc_models/vu2/Makefile
+data/rc_models/xp1000/Makefile
 data/skin_default/Makefile
 data/skin_default/menu/Makefile
 data/skin_default/icons/Makefile
