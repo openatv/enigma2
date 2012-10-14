@@ -20,7 +20,7 @@ class VideoHardware:
 	rates = { } # high-level, use selectable modes.
 
 	modes = { }  # a list of (high-level) modes for a certain port.
-	
+
 	rates["PAL"] =			{ "50Hz":		{ 50: "pal" },
 								"60Hz":		{ 60: "pal60" },
 								"multi":	{ 50: "pal", 60: "pal60" } }

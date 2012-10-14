@@ -74,7 +74,7 @@ AM_CONDITIONAL(GBQUAD, test "$BOXTYPE" == gbquad)
 AM_CONDITIONAL(VENTONHDX, test "$BOXTYPE" == ventonhdx)
 AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
 AM_CONDITIONAL(HAVE_DISPLAY128, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm7020HD)
-AM_CONDITIONAL(HAVE_DISPLAY96, test "$BOXTYPE" == gb800ue -o "$BOXTYPE" == gbquad)
+#AM_CONDITIONAL(HAVE_DISPLAY96, test "$BOXTYPE" == gb800ue -o "$BOXTYPE" == gbquad)
 AM_CONDITIONAL(HAVE_DISPLAYDM, test "$BOXTYPE" == dm800 -o "$BOXTYPE" == dm800se)
 
 if test `echo "$BOXTYPE" | cut -b 1-2` == "dm"; then
@@ -120,6 +120,16 @@ if test x"$withcolorlcd" != xno ; then
 	AC_DEFINE(HAVE_COLORLCD, 1,[Define when using a 96x64 color display device])
 fi
 AM_CONDITIONAL(HAVE_COLORLCD, test x"$withcolorlcd" != xno)
+
+AC_ARG_WITH(gigabluelcd,
+	AC_HELP_STRING([--with-gigabluelcd], [use 220x176 16bpp color display, yes or no]),
+	[[withgigabluelcd=$withval]],
+	[[withgigabluelcd=no]]
+)
+if test x"$withgigabluelcd" != xno ; then
+	AC_DEFINE(HAVE_GIGABLUELCD, 1,[Define when using a 220x176 color display device])
+fi
+AM_CONDITIONAL(HAVE_GIGABLUELCD, test x"$withgigabluelcd" != xno)
 
 AC_ARG_WITH(oldpvr,
 	AC_HELP_STRING([--with-oldpvr], [use /dev/misc/pvr instead of /dev/dvb/adapterX/dvrX, yes or no]),
@@ -221,7 +231,8 @@ data/fonts/Makefile
 data/countries/Makefile
 data/extensions/Makefile
 data/keymaps/Makefile
-data/lcd/Makefile
+data/lcd_large/Makefile
+data/lcd_small/Makefile
 data/rc_models/Makefile
 data/rc_models/et4000/Makefile
 data/rc_models/et6x00/Makefile

@@ -453,8 +453,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			"ok": self.keySave,
 			"cancel": self.keyCancel,
 			"nothingconnected": self.nothingConnectedShortcut,
-			"red": self.keySave,
-			"green": self.keyCancel,
+			"red": self.keyCancel,
+			"green": self.keySave,
 		}, -2)
 
 		self.slotid = slotid
