@@ -39,7 +39,6 @@ void eFilePushThread::thread()
 {
 	int eofcount = 0;
 	setIoPrio(prio_class, prio);
-	int buf_start = 0;
 	int buf_end = 0;
 
 	size_t bytes_read = 0;
@@ -55,31 +54,8 @@ void eFilePushThread::thread()
 	
 	hasStarted();
 
-		/* m_stop must be evaluated after each syscall. */
 	while (!m_stop)
 	{
-			/* first try flushing the bufptr */
-		while (buf_start != buf_end)
-		{
-			filterRecordData(m_buffer, buf_end - buf_start);
-
-			int w = write(m_fd_dest, m_buffer + buf_start, buf_end - buf_start);
-
-			if (w <= 0)
-			{
-				if (w < 0 && (errno == EINTR || errno == EAGAIN || errno == EBUSY))
-					continue;
-				eDebug("eFilePushThread WRITE ERROR");
-				sendEvent(evtWriteError);
-				break;
-				// ... we would stop the thread
-			}
-
-//			printf("FILEPUSH: wrote %d bytes\n", w);
-			buf_start += w;
-		}
-
-		/* now fill our buffer. */
 		if (m_sg && !current_span_remaining)
 		{
 			m_sg->getNextSourceSpan(m_current_position, bytes_read, current_span_offset, current_span_remaining);
@@ -97,20 +73,22 @@ void eFilePushThread::thread()
 			/* align to blocksize */
 		maxread -= maxread % m_blocksize;
 
-		buf_start = 0;
-		buf_end = 0;
-
 		if (maxread)
 			buf_end = m_source->read(m_current_position, m_buffer, maxread);
+		else
+			buf_end = 0;
 
 		if (buf_end < 0)
 		{
 			buf_end = 0;
+			/* Check m_stop after interrupted syscall. */
+			if (m_stop)
+				break;
 			if (errno == EINTR || errno == EBUSY || errno == EAGAIN)
 				continue;
 			if (errno == EOVERFLOW)
 			{
-				eWarning("OVERFLOW while recording");
+				eWarning("OVERFLOW while playback?");
 				continue;
 			}
 			eDebug("eFilePushThread *read error* (%m) - not yet handled");
@@ -164,34 +142,36 @@ void eFilePushThread::thread()
 			break;
 		} else
 		{
+			/* Write data to mux */
+			int buf_start = 0;
+			filterRecordData(m_buffer, buf_end);
+			while (buf_start != buf_end)
+			{
+				int w = write(m_fd_dest, m_buffer + buf_start, buf_end - buf_start);
+
+				if (w <= 0)
+				{
+					/* Check m_stop after interrupted syscall. */
+					if (m_stop)
+						break;
+					if (w < 0 && (errno == EINTR || errno == EAGAIN || errno == EBUSY))
+						continue;
+					eDebug("eFilePushThread WRITE ERROR");
+					sendEvent(evtWriteError);
+					break;
+				}
+				buf_start += w;
+			}
+
 			eofcount = 0;
 			m_current_position += buf_end;
 			bytes_read += buf_end;
 			if (m_sg)
 				current_span_remaining -= buf_end;
 		}
-//		printf("FILEPUSH: read %d bytes\n", buf_end);
 	}
 	sendEvent(evtStopped);
 	eDebug("FILEPUSH THREAD STOP");
-}
-
-void eFilePushThread::start(int fd, int fd_dest)
-{
-	eRawFile *f = new eRawFile();
-	ePtr<iTsSource> source = f;
-	f->setfd(fd);
-	start(source, fd_dest);
-}
-
-int eFilePushThread::start(const char *file, int fd_dest)
-{
-	eRawFile *f = new eRawFile();
-	ePtr<iTsSource> source = f;
-	if (f->open(file) < 0)
-		return -1;
-	start(source, fd_dest);
-	return 0;
 }
 
 void eFilePushThread::start(ePtr<iTsSource> &source, int fd_dest)
