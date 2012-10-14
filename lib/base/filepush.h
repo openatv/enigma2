@@ -22,8 +22,6 @@ public:
 	~eFilePushThread();
 	void thread();
 	void stop();
-	void start(int sourcefd, int destfd);
-	int start(const char *filename, int destfd);
 	void start(ePtr<iTsSource> &source, int destfd);
 
 	void pause();
@@ -81,7 +79,7 @@ protected:
 	// Called when terminating the recording thread. Allows to clean up memory and
 	// flush buffers, terminate outstanding IO requests.
 	virtual void flush() = 0;
-	
+
 	int m_fd_source;
 	size_t m_buffersize;
 	unsigned char* m_buffer;
