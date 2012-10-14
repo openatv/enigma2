@@ -3438,10 +3438,10 @@ class InfoBarExtensions:
 
 	def RedPressed(self):
 		if isinstance(self, InfoBarEPG):
-			if config.usage.defaultEPGType.getValue() == "Graphical EPG..." or config.usage.defaultEPGType.getValue() == "None":
-				self.openSingleServiceEPG()
-			else:
+			if config.usage.defaultEPGType.getValue() != "Graphical EPG" and config.usage.defaultEPGType.getValue() != "None":
 				self.openGraphEPG()
+			else:
+				self.openSingleServiceEPG()
 		else:
 			self.openEventView()
 
