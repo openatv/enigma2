@@ -24,19 +24,14 @@ public:
 	void stop();
 	void start(int sourcefd, int destfd);
 	int start(const char *filename, int destfd);
-
 	void start(ePtr<iTsSource> &source, int destfd);
 
 	void pause();
 	void resume();
 	
-		/* flushes the internal readbuffer */ 
-	void flush();
 	void enablePVRCommit(int);
-	
-		/* stream mode will wait on EOF until more data is available. */
+	/* stream mode will wait on EOF until more data is available. */
 	void setStreamMode(int);
-	
 	void setScatterGather(iFilePushScatterGather *);
 	
 	enum { evtEOF, evtReadError, evtWriteError, evtUser, evtStopped };
@@ -45,13 +40,12 @@ public:
 		/* you can send private events if you want */
 	void sendEvent(int evt);
 protected:
-	virtual int filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining);
+	virtual void filterRecordData(const unsigned char *data, int len);
 private:
 	int prio_class;
 	int prio;
 	iFilePushScatterGather *m_sg;
 	int m_stop;
-	int m_buf_start, m_buf_end, m_filter_end;
 	int m_fd_dest;
 	int m_send_pvr_commit;
 	int m_stream_mode;

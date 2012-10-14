@@ -14,7 +14,6 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 	 prio(io_prio_level),
 	 m_sg(NULL),
 	 m_stop(0),
-	 m_buf_start(0),
 	 m_send_pvr_commit(0),
 	 m_stream_mode(0),
 	 m_blocksize(blocksize),
@@ -24,8 +23,6 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 {
 	if (m_buffer == MAP_FAILED)
 		eFatal("Failed to allocate filepush buffer, contact MiLo\n");
-	flush();
-	enablePVRCommit(0);
 	CONNECT(m_messagepump.recv_msg, eFilePushThread::recvEvent);
 }
 
@@ -42,6 +39,8 @@ void eFilePushThread::thread()
 {
 	int eofcount = 0;
 	setIoPrio(prio_class, prio);
+	int buf_start = 0;
+	int buf_end = 0;
 
 	size_t bytes_read = 0;
 	off_t current_span_offset = 0;
@@ -60,57 +59,11 @@ void eFilePushThread::thread()
 	while (!m_stop)
 	{
 			/* first try flushing the bufptr */
-		if (m_buf_start != m_buf_end)
+		while (buf_start != buf_end)
 		{
-				/* filterRecordData wants to work on multiples of blocksize.
-				   if it returns a negative result, it means that this many bytes should be skipped
-				   *in front* of the buffer. Then, it will be called again. with the newer, shorter buffer.
-				   if filterRecordData wants to skip more data then currently available, it must do that internally.
-				   Skipped bytes will also not be output.
+			filterRecordData(m_buffer, buf_end - buf_start);
 
-				   if it returns a positive result, that means that only these many bytes should be used
-				   in the buffer. 
-				   
-				   In either case, current_span_remaining is given as a reference and can be modified. (Of course it 
-				   doesn't make sense to decrement it to a non-zero value unless you return 0 because that would just
-				   skip some data). This is probably a very special application for fast-forward, where the current
-				   span is to be cancelled after a complete iframe has been output.
-
-				   we always call filterRecordData with our full buffer (otherwise we couldn't easily strip from the end)
-				   
-				   we filter data only once, of course, but it might not get immediately written.
-				   that's what m_filter_end is for - it points to the start of the unfiltered data.
-				*/
-			
-			int filter_res;
-			
-			do
-			{
-				filter_res = filterRecordData(m_buffer + m_filter_end, m_buf_end - m_filter_end, current_span_remaining);
-
-				if (filter_res < 0)
-				{
-					eDebug("[eFilePushThread] filterRecordData re-syncs and skips %d bytes", -filter_res);
-					m_buf_start = m_filter_end + -filter_res;  /* this will also drop unwritten data */
-					ASSERT(m_buf_start <= m_buf_end); /* otherwise filterRecordData skipped more data than available. */
-					continue; /* try again */
-				}
-				
-					/* adjust end of buffer to strip dropped tail bytes */
-				m_buf_end = m_filter_end + filter_res;
-					/* mark data as filtered. */
-				m_filter_end = m_buf_end;
-			} while (0);
-			
-			ASSERT(m_filter_end == m_buf_end);
-			
-			if (m_buf_start == m_buf_end)
-				continue;
-
-			/* now write out data. it will be 'aligned' (according to filterRecordData). 
-			   absolutely forbidden is to return EINTR and consume a non-aligned number of bytes. 
-			*/
-			int w = write(m_fd_dest, m_buffer + m_buf_start, m_buf_end - m_buf_start);
+			int w = write(m_fd_dest, m_buffer + buf_start, buf_end - buf_start);
 
 			if (w <= 0)
 			{
@@ -123,12 +76,10 @@ void eFilePushThread::thread()
 			}
 
 //			printf("FILEPUSH: wrote %d bytes\n", w);
-			m_buf_start += w;
-			continue;
+			buf_start += w;
 		}
 
-			/* now fill our buffer. */
-			
+		/* now fill our buffer. */
 		if (m_sg && !current_span_remaining)
 		{
 			m_sg->getNextSourceSpan(m_current_position, bytes_read, current_span_offset, current_span_remaining);
@@ -146,16 +97,15 @@ void eFilePushThread::thread()
 			/* align to blocksize */
 		maxread -= maxread % m_blocksize;
 
-		m_buf_start = 0;
-		m_filter_end = 0;
-		m_buf_end = 0;
+		buf_start = 0;
+		buf_end = 0;
 
 		if (maxread)
-			m_buf_end = m_source->read(m_current_position, m_buffer, maxread);
+			buf_end = m_source->read(m_current_position, m_buffer, maxread);
 
-		if (m_buf_end < 0)
+		if (buf_end < 0)
 		{
-			m_buf_end = 0;
+			buf_end = 0;
 			if (errno == EINTR || errno == EBUSY || errno == EAGAIN)
 				continue;
 			if (errno == EOVERFLOW)
@@ -167,11 +117,11 @@ void eFilePushThread::thread()
 		}
 
 			/* a read might be mis-aligned in case of a short read. */
-		int d = m_buf_end % m_blocksize;
+		int d = buf_end % m_blocksize;
 		if (d)
-			m_buf_end -= d;
+			buf_end -= d;
 
-		if (m_buf_end == 0)
+		if (buf_end == 0)
 		{
 				/* on EOF, try COMMITting once. */
 			if (m_send_pvr_commit)
@@ -215,12 +165,12 @@ void eFilePushThread::thread()
 		} else
 		{
 			eofcount = 0;
-			m_current_position += m_buf_end;
-			bytes_read += m_buf_end;
+			m_current_position += buf_end;
+			bytes_read += buf_end;
 			if (m_sg)
-				current_span_remaining -= m_buf_end;
+				current_span_remaining -= buf_end;
 		}
-//		printf("FILEPUSH: read %d bytes\n", m_buf_end);
+//		printf("FILEPUSH: read %d bytes\n", buf_end);
 	}
 	sendEvent(evtStopped);
 	eDebug("FILEPUSH THREAD STOP");
@@ -276,11 +226,6 @@ void eFilePushThread::resume()
 	run();
 }
 
-void eFilePushThread::flush()
-{
-	m_buf_start = m_buf_end = m_filter_end = 0;
-}
-
 void eFilePushThread::enablePVRCommit(int s)
 {
 	m_send_pvr_commit = s;
@@ -306,9 +251,8 @@ void eFilePushThread::recvEvent(const int &evt)
 	m_event(evt);
 }
 
-int eFilePushThread::filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining)
+void eFilePushThread::filterRecordData(const unsigned char *data, int len)
 {
-	return len;
 }
 
 
