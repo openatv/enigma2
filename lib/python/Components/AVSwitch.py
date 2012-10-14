@@ -1,6 +1,6 @@
 from config import config, ConfigSlider, ConfigSelection, ConfigYesNo, \
 	ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
-from enigma import eAVSwitch, getDesktop
+from enigma import eAVSwitch, getDesktop, getBoxType
 from SystemInfo import SystemInfo
 import os
 
@@ -182,7 +182,10 @@ def InitAVSwitch():
 			except IOError:
 				print "couldn't write pep_scaler_sharpness"
 
-		config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
+		if getBoxType() == 'gbquad':		
+			config.av.scaler_sharpness = ConfigSlider(default=0, limits=(0,26))
+		else:
+			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
 		config.av.scaler_sharpness.addNotifier(setScaler_sharpness)
 	else:
 		config.av.scaler_sharpness = NoSave(ConfigNothing())
