@@ -1,4 +1,5 @@
-from Components.config import config, ConfigSubsection, ConfigText, configfile
+from Components.config import config, ConfigSubsection, ConfigText, configfile, getConfigListEntry, ConfigSelection
+from Components.ConfigList import ConfigListScreen
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.MenuList import MenuList
 from Components.Label import Label
@@ -43,22 +44,21 @@ def command(comandline, strip=1):
   os.system("rm /tmp/command.txt")
   return comandline
 
-class EMUlist(MenuList):
-	def __init__(self, list=[], enableWrapAround = False):
-		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		Schriftart = 22
-		self.l.setFont(0, gFont("Regular", Schriftart))
-		self.l.setItemHeight(24)
+#class EMUlist(MenuList):
+#	def __init__(self, list=[], enableWrapAround = False):
+#		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
+#		Schriftart = 22
+#		self.l.setFont(0, gFont("Regular", Schriftart))
+#		self.l.setItemHeight(24)
 
-	def moveSelection(self,idx=0):
-		if self.instance is not None:
-			self.instance.moveSelectionTo(idx)
+#	def moveSelection(self,idx=0):
+#		if self.instance is not None:
+#			self.instance.moveSelectionTo(idx)
 
 SOFTCAM_SKIN = """<screen name="SoftcamPanel" position="center,center" size="500,450" title="Softcam Panel">
 	<eLabel font="Regular;22" position="10,10" size="185,25" text="Softcam Selection:" />
 	<widget font="Regular;18" name="camcount" position="420,10" size="60,25" />
-	<widget name="Mlist" position="200,10" size="200,25" />
-	<widget font="Regular;22" name="enigma2" position="10,10" size="185,25" />
+	<widget name="config" position="10,100" size="400,100" />
 	<eLabel backgroundColor="red" position="10,60" size="120,3" zPosition="0" />
 	<eLabel backgroundColor="green" position="130,60" size="120,3" zPosition="0" />
 	<eLabel backgroundColor="yellow" position="250,60" size="120,3" zPosition="0" />
@@ -67,21 +67,19 @@ SOFTCAM_SKIN = """<screen name="SoftcamPanel" position="center,center" size="500
 	<widget font="Regular;16" halign="center" name="key_green" position="130,62" size="120,35" transparent="1" valign="center" zPosition="2" />
 	<widget font="Regular;16" halign="center" name="key_yellow" position="250,62" size="120,35" transparent="1" valign="center" zPosition="2" />
 	<widget font="Regular;16" halign="center" name="key_blue" position="370,62" size="120,35" transparent="1" valign="center" zPosition="2" />
-	<eLabel backgroundColor="#56C856" position="0,99" size="500,1" zPosition="0" />
-	<widget font="Regular;22" name="actifcam" position="10,100" size="480,32" />
-	<eLabel backgroundColor="#56C856" position="0,133" size="500,1" zPosition="0" />
-	<widget font="Regular;16" name="ecminfo" position="10,140" size="480,300" />
-	<widget name="emulist" position="160,160" size="190,245" scrollbarMode="showOnDemand" />
+	<eLabel backgroundColor="#56C856" position="0,199" size="500,1" zPosition="0" />
+	<widget font="Regular;16" name="actifcam" position="10,205" size="220,32" />
+	<widget font="Regular;16" name="actifcam2" position="250,205" size="220,32" />
+	<eLabel backgroundColor="#56C856" position="0,225" size="500,1" zPosition="0" />
+	<widget font="Regular;16" name="ecminfo" position="10,235" size="480,300" />
 </screen>"""
 
-config.softcam = ConfigSubsection()
-config.softcam.actCam = ConfigText(visible_width = 200)
 
 REFRESH = 0
 CCCAMINFO = 1
 OSCAMINFO = 2
 
-class SoftcamPanel(Screen):
+class SoftcamPanel(ConfigListScreen, Screen):
 	def __init__(self, session):
 		global emuDir
 		emuDir = "/etc/"
@@ -94,21 +92,17 @@ class SoftcamPanel(Screen):
 		self.YellowAction = REFRESH
 
 		self.mlist = []
-		self["Mlist"] = MenuList(self.mlist)
-		#// set the label text
 		self["key_green"] = Label(_("Restart"))
 		self["key_red"] = Label(_("Stop"))
 		self["key_yellow"] = Label(_("Refresh"))
-		self.partyfeed = os.path.exists("/etc/opkg/3rd-party-feed.conf")
+		self.partyfeed = os.path.exists("/etc/opkg/3rdparty-feed.conf") or os.path.exists("/etc/opkg/3rd-party-feed.conf")
 		if self.partyfeed:
 			self["key_blue"]= Label(_("Install"))
 		else:
 			self["key_blue"]= Label(_("Exit"))
 		self["ecminfo"] = Label(_("No ECM info"))
-		self["camcount"] = Label("(0/0)")
-		self["actifcam"] = Label(_("no CAM active"))
-		self["enigma2"] = Label("")
-		self["emulist"] = EMUlist([0,(eListboxPythonMultiContent.TYPE_TEXT, 0, 0,250, 30, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, "EMU not found")])
+		self["actifcam"] = Label(_("no CAM 1 active"))
+		self["actifcam2"] = Label(_("no CAM 2 active"))
 
 		#// create listings
 		self.emuDirlist = []
@@ -120,6 +114,7 @@ class SoftcamPanel(Screen):
 		self.emuDirlist = os.listdir(emuDir)
 		self.ecmtel = 0
 		self.first = 0
+		self.isCam2 = False
 		global count
 		count = 0
 		#// check emu dir for config files
@@ -138,39 +133,35 @@ class SoftcamPanel(Screen):
 					if line.find("startcam") > -1:
 						line = line.split("=")
 						self.emuStart.append(line[1].strip())
-						#print  '[SOFTCAM] startcam: ' + line[1].strip()
 
 					#// stopcam
 					line = line1
 					if line.find("stopcam") > -1:
 						line = line.split("=")
 						self.emuStop.append(line[1].strip())
-						#print  '[SOFTCAM] stopcam: ' + line[1].strip()
 
 					#// Restart GUI
 					line = line1
 					if line.find("restartgui") > -1:
 						self.emuRgui[count] = 1
-						#print  '[SOFTCAM] emuname: ' + line[1].strip()
 
 					#// binname
 					line = line1
 					if line.find("binname") > -1:
 						line = line.split("=")
 						self.emuBin.append(line[1].strip())
-						#print  '[SOFTCAM] binname: ' + line[1].strip()
 					#// startcam
 				em.close()
 				count += 1
-				self["camcount"].setText("(1/" + str(count) + ")")
 
 		self.maxcount = count
+		
+		self.onChangedEntry = [ ]
+		self.list = []
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.ReadMenu()
-
-		self["emulist"].hide()
-		self["Mlist"].show()
+		self.createSetup()
 		self["ecminfo"].show()
-		self.focus = "ml"
 
 		self.read_shareinfo()
 		self.Timer = eTimer()
@@ -180,10 +171,6 @@ class SoftcamPanel(Screen):
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions"],
 		{
 			"cancel": self.Exit,
-			"left": self.left,
-			"right": self.right,
-			"up": self.up,
-			"down": self.down,
 			"ok": self.ok,
 			"blue": self.Blue,
 			"red": self.Red,
@@ -194,11 +181,11 @@ class SoftcamPanel(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def setWindowTitle(self):
-		self.setTitle(_("Softcam Panel V1.0"))
+		self.setTitle(_("Softcam Panel V2.0"))
 
 	def ReadMenu(self):
 		self.whichCam()
-		self.fileresultlist = []
+		
 		for x in self.emuDirlist:
 			#// if file contains the string "emu" (then this is a emu config file)
 			if x.find("emu") > -1:
@@ -207,7 +194,6 @@ class SoftcamPanel(Screen):
 				self.emuRgui.append(0)
 				#// read the emu config file
 				for line in em.readlines():
-					farbwahl = 16777215  # weiss
 					line1 = line
 					#// emuname
 					line = line1
@@ -215,26 +201,83 @@ class SoftcamPanel(Screen):
 						line = line.split("=")
 						self.mlist.append(line[1].strip())
 						name = line[1].strip()
-						print "current CAM" + self.curcam
-						if self.curcam == name:
-							farbwahl = 65280  # print in green
-						entry = [[name],(eListboxPythonMultiContent.TYPE_TEXT, 0, 0,250, 30, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, name, farbwahl)]
-						print "adding to feedlist: " + str(entry), farbwahl
-						self.fileresultlist.append(entry)
 				em.close()
-		self["emulist"].l.setList(self.fileresultlist)
-		camIndex = self["Mlist"].getSelectedIndex()
-		self["emulist"].moveSelection(0)
+
+		emusel = [_('no cam')]
+		for x in self.mlist:
+			emusel.append(x)
+		self.cam1sel = ConfigSelection(emusel)
+		self.cam2sel = ConfigSelection(emusel)
+		self.setYellowKey(self.curcam)
 
 	def whichCam(self):
-			#// check for active cam
-			self.curcam = ""
-			for x in self.emuBin:
-				p = command('pidof ' + x + ' |wc -w')
-				if not p.isdigit(): p=0
-				if int(p) > 0:
+			#// check for active cam 1
+			cam = config.softcam.actCam.getValue()
+			self.curcam = None
+			self.curcamIndex = None
+			if cam in self.mlist:
+				index = self.mlist.index(cam)
+				x = self.emuBin[index]
+				if self.isCamrunning(x):
 					self.curcam = x
-					break
+					self.curcamIndex = index
+
+			#// check for active cam 2		
+			cam = config.softcam.actCam2.getValue()
+			self.curcam2 = None
+			self.curcam2Index = None
+			if cam in self.mlist:
+				index = self.mlist.index(cam)
+				x = self.emuBin[index]
+				if self.isCamrunning(x):
+					self.curcam2 = x
+					self.curcam2Index = index
+
+	def createSetup(self):
+		self.editListEntry = None
+		self.list = []
+		self.list.append(getConfigListEntry(_("Select Cam 1"), self.cam1sel))
+		if self.cam1sel.getValue() != _('no cam'):
+			self.list.append(getConfigListEntry(_("Select Cam 2"), self.cam2sel))
+			if self.cam2sel.getValue() != _('no cam'):
+				self.list.append(getConfigListEntry(_("Wait time before start Cam 2"), config.softcam.waittime))
+
+		self["config"].list = self.list
+		self["config"].setList(self.list)
+
+	def setYellowKey(self, cam):
+		if cam == None or cam == _('no cam'):
+			self.YellowAction = REFRESH
+			self["key_yellow"].setText(_("Refresh"))
+			return
+		if cam.upper().startswith('CCCAM'):
+			self.YellowAction = CCCAMINFO
+			self["key_yellow"].setText(_("CCcamInfo"))
+		elif cam.upper().startswith('OSCAM'):
+			self.YellowAction = OSCAMINFO
+			self["key_yellow"].setText(_("OscamInfo"))
+		else:
+			self.YellowAction = REFRESH
+			self["key_yellow"].setText(_("Refresh"))
+
+	def selectionChanged(self):
+		#self["status"].setText(self["config"].getCurrent()[0])
+		pass
+
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+		self.selectionChanged()
+		self.createSetup()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
+
+	def getCurrentDescription(self):
+		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
 
 	def layoutFinished(self):
 		self.Timer.stop()
@@ -242,44 +285,41 @@ class SoftcamPanel(Screen):
 			self.Exit()
 		#// check for active cam
 		try:
-			global oldcamIndex
-			oldcamIndex = 0
+			self.whichCam()
+			global oldcamIndex, oldcam2Index
+			oldcamIndex = -1
+			oldcam2Index = -1
 			tel = 0
-			camrunning = 0
-			for x in self.emuBin:
-				print '[SOFTCAM] searching active cam: ' + x
-				p = command('pidof ' + x + ' |wc -w')
-				if not p.isdigit(): p=0
-				if int(p) > 0:
-					oldcamIndex = tel
-					if self.first == 0: # Only update first time or when refresh button was pressed
-						self["Mlist"].moveToIndex(tel)
-						self["emulist"].moveToIndex(tel)
-						actcam = self.mlist[tel]
 
-					self["camcount"].setText("(" + str(tel + 1) + "/" + str(count) + ")")
-					self["key_green"].setText(_("Restart"))
-					self.Save_Settings(actcam)
-					self["actifcam"].setText(_("active CAM: ") + actcam )
-					print  '[SOFTCAM] set active cam to: ' + actcam
-					self.Label_restart_Enigma2(tel)
-					camrunning = 1
-					if actcam.upper().startswith('CCCAM'):
-						self.YellowAction = CCCAMINFO
-						self["key_yellow"].setText(_("CCcamInfo"))
-					elif actcam.upper().startswith('OSCAM'):
-						self.YellowAction = OSCAMINFO
-						self["key_yellow"].setText(_("OscamInfo"))
-					else:
-						self.YellowAction = REFRESH
-						self["key_yellow"].setText(_("Refresh"))
-					break
-				else:
-					tel +=1
+			if self.curcam:
+				oldcamIndex = self.curcamIndex
+				actcam = self.mlist[oldcamIndex]
+				if self.first == 0:
+					self.cam1sel.setValue(actcam)		
+				self["key_green"].setText(_("Restart"))
+				self["actifcam"].setText(_("active CAM 1: ") + actcam )
+				print '[SOFTCAM] set active cam 1 to: ' + actcam
+			else:
+				actcam = _("no CAM 1 active")
+				self["actifcam"].setText(actcam)
+		
+			if self.curcam2:
+				oldcam2Index = self.curcam2Index
+				actcam = self.mlist[oldcam2Index]
+				if self.first == 0:
+					self.cam2sel.setValue(actcam)
+				self["actifcam2"].setText(_("active CAM 2: ") + actcam )
+				print '[SOFTCAM] set active cam 2 to: ' + actcam
+			else:
+				actcam2 = _("no CAM 2 active")
+				self["actifcam2"].setText(actcam2)
+
+			if self.first == 0: # Only update first time or when refresh button was pressed
+				self.createSetup()
+				self.first = 1
+
 			#// CAM IS NOT RUNNING
-			if camrunning == 0:
-				actcam = _("no CAM active")
-				self["actifcam"].setText(actcam )
+			if not self.curcam and not self.curcam2:
 				self["key_green"].setText(_("Start"))
 				self.YellowAction = REFRESH
 				self["key_yellow"].setText(_("Refresh"))
@@ -287,11 +327,14 @@ class SoftcamPanel(Screen):
 					os.system("rm /tmp/ecm.info")
 				if os.path.exists('/tmp/ecm0.info') is True:
 					os.system("rm /tmp/ecm0.info")
-				self.Save_Settings(actcam)
-				self.Label_restart_Enigma2(tel)
-			self.first = 1
+
 		except:
 			pass
+
+		if self["config"].getCurrent()[0] == _("Select Cam 1"):
+			self.setYellowKey(self.curcam)
+		else:
+			self.setYellowKey(self.curcam2)
 		
 		#// read ecm.info
 		ecmi = ""
@@ -349,46 +392,6 @@ class SoftcamPanel(Screen):
 		f.close()
 		return ecmi2
 
-	def up(self):
-		print "you pressed up"
-		self.Timer.stop()
-		self["emulist"].show()
-		self["Mlist"].hide()
-		self["ecminfo"].hide()
-		self.focus = "em"
-		print "Count=" + str(count)
-		curentIndex = self["Mlist"].getSelectedIndex()
-		print "CurentIndex=" + str(curentIndex)
-		if count > 0 and curentIndex >0:
-			self["emulist"].up()
-			self["Mlist"].up()
-			camIndex = self["Mlist"].getSelectedIndex()
-			#camIndex = self["emulist"].getSelectedIndex()
-			self["camcount"].setText("(" + str(camIndex + 1 )+ "/" + str(count) + ")")
-			self.Label_restart_Enigma2(camIndex)
-
-	def down(self):
-		print "you pressed down"
-		self.Timer.stop()
-		self["emulist"].show()
-		self["Mlist"].hide()
-		self["ecminfo"].hide()
-		self.focus = "em"
-		print "Count=" + str(count)
-		curentIndex = self["Mlist"].getSelectedIndex()
-		if count > 0 and (curentIndex + 1)  < count:
-			self["emulist"].down()
-			self["Mlist"].down()
-			camIndex = self["Mlist"].getSelectedIndex()
-			#camIndex = self["emulist"].getSelectedIndex()
-			self["camcount"].setText("(" + str(camIndex + 1 )+ "/" + str(count) + ")")
-			self.Label_restart_Enigma2(camIndex)
-
-	def ShowEmuList(self):
-		self["emulist"].hide()
-		self["Mlist"].show()
-		self["ecminfo"].show()
-		self.focus = "ml"
 
 	def Red(self):
 		#// Stopping the CAM when pressing the RED button
@@ -404,48 +407,14 @@ class SoftcamPanel(Screen):
 			self.Timer.stop()
 			self.session.openWithCallback(self.ShowSoftcamCallback, OscamInfoMenu)
 		else:
-			self.ShowEmuList()
 			self.first = 0
 			self.layoutFinished()
 
 	def Green(self):
 		#// Start the CAM when pressing the GREEN button
-		self.ShowEmuList()
 		self.Timer.stop()
 		self.Startcam()
 		self.Timer.start(2000, True)		#reset timer
-
-
-	def left(self):
-		#// Go to the previous CAM in list
-		self["emulist"].hide()
-		self["Mlist"].show()
-		self["ecminfo"].show()
-		self.focus = "ml"
-		curentIndex = self["Mlist"].getSelectedIndex()
-		if count > 0 and curentIndex >0:
-			global camIndex
-			self["Mlist"].up()
-			self["emulist"].up()
-			camIndex = self["Mlist"].getSelectedIndex()
-			self["camcount"].setText("(" + str(camIndex + 1 )+ "/" + str(count) + ")")
-			self.Label_restart_Enigma2(camIndex)
-
-	def right(self):
-		#// Go to the next CAM in list
-		self["emulist"].hide()
-		self["Mlist"].show()
-		self["ecminfo"].show()
-		self.focus = "ml" # which list is active
-		curentIndex = self["Mlist"].getSelectedIndex()
-		if count > 0 and (curentIndex + 1)  < count:
-			global camIndex
-			self["Mlist"].down()
-			self["emulist"].down()
-			camIndex = self["Mlist"].getSelectedIndex()
-			#	camIndex = self["Mlist"].getSelectedIndex()
-			self["camcount"].setText("(" + str(camIndex + 1 )+ "/" + str(count) + ")")
-			self.Label_restart_Enigma2(camIndex)
 
 	def Exit(self):
 		self.Timer.stop()
@@ -463,7 +432,6 @@ class SoftcamPanel(Screen):
 
 	def ok(self):
 		#// Exit Softcam when pressing the OK button
-		self.ShowEmuList()
 		self.Timer.stop()
 		self.Startcam()
 		if self.YellowAction == REFRESH:
@@ -472,96 +440,133 @@ class SoftcamPanel(Screen):
 
 	def Stopcam(self):
 		#// Stopping the CAM
-		self.ShowEmuList()
-		global oldcamIndex
-		oldcam = self.emuBin[oldcamIndex]
+		global oldcamIndex, oldcam2Index
+		if oldcamIndex >= 0:
+			oldcam = self.emuBin[oldcamIndex]
+		else:
+			oldcam = None
+		if oldcam2Index >= 0:
+			oldcam2 = self.emuBin[oldcam2Index]
+		else:
+			oldcam2 = None
 		import time
 		self.container = eConsoleAppContainer()
 
 		if config.softcam.camstartMode.getValue() == "0" or not fileExists('/etc/init.d/softcam'):
-			print  '[SOFTCAM] Python stop cam: ' + oldcam
-			self.container.execute(self.emuStop[oldcamIndex])
-		
-			# check if incubus_watch runs
-			p = command('pidof incubus_watch |wc -w')
-			if not p.isdigit(): p=0
-			if int(p) > 0:
-				# stop incubus_watch
-				print '[SOFTCAM] stop incubus_watch'
-				self.container = eConsoleAppContainer()
-				self.container.execute('killall -9 incubus_watch')
-			time.sleep(1) # was 5sec
-			t = 0
-			while t < 5:
-				p = command('pidof %s |wc -w' % oldcam )
-				if not p.isdigit(): p=0
-				if int(p) > 0:
-					self.container = eConsoleAppContainer()
-					self.container.execute('killall -9 ' + oldcam)
-					t += 1
-					time.sleep(1)
-				else:
-					t = 5
+			if oldcam:
+				print  '[SOFTCAM] Python stop cam 1: ' + oldcam
+				self.container.execute(self.emuStop[oldcamIndex])
+
+				time.sleep(1) # was 5sec
+				t = 0
+				while t < 5:
+					p = command('pidof %s |wc -w' % oldcam )
+					if not p.isdigit(): p=0
+					if int(p) > 0:
+						self.container = eConsoleAppContainer()
+						self.container.execute('killall -9 ' + oldcam)
+						t += 1
+						time.sleep(1)
+					else:
+						t = 5
+
+			if oldcam2:
+				print  '[SOFTCAM] Python stop cam 2: ' + oldcam2
+				self.container.execute(self.emuStop[oldcam2Index])
+
+				time.sleep(1) # was 5sec
+				t = 0
+				while t < 5:
+					p = command('pidof %s |wc -w' % oldcam2 )
+					if not p.isdigit(): p=0
+					if int(p) > 0:
+						self.container = eConsoleAppContainer()
+						self.container.execute('killall -9 ' + oldcam2)
+						t += 1
+						time.sleep(1)
+					else:
+						t = 5
+
 		else:
-			print  '[SOFTCAM] init.d stop cam: ' + oldcam
-			self.container.execute('/etc/init.d/softcam stop')
+			self.container.execute('/etc/init.d/softcam.cam1 stop')
+			self.container.execute('/etc/init.d/softcam.cam2 stop')
 
 		if os.path.exists('/tmp/ecm.info') is True:
 			os.system("rm /tmp/ecm.info")
-		actcam = _("no CAM active")
+		actcam = _("no CAM 1 active")
+		actcam2 = _("no CAM 2 active")
 		self["actifcam"].setText(actcam)
+		self["actifcam2"].setText(actcam2)
 		self["key_green"].setText(_("Start"))
 		self["ecminfo"].setText(_("No ECM info"))
 		self.Save_Settings(actcam)
+		self.Save_Settings2(actcam2)
 
 	def Startcam(self):
 		#// Starting the CAM
-		print "count=",count
 		try:
 			if count > 0:
 				if config.softcam.camstartMode.getValue() == "0":
 					self.Stopcam()
-				global camIndex
-				camIndex = self["Mlist"].getSelectedIndex()
-				print "camindex", camIndex
-				actcam = self.mlist[camIndex]
-				#print  '[SOFTCAM ml] start cam: ' + actcam
-				self["actifcam"].setText(_("active CAM: ") + actcam)
-				emustart = self.emuStart[camIndex][self.emuStart[camIndex].find(self.emuBin[camIndex]):]
-				print emustart
-				self.Save_Settings(actcam)
-				start = self.emuStart[camIndex]
-				if config.softcam.camstartMode.getValue() == "0":
-					print  '[SOFTCAM] Python start cam: ' + actcam
-					import time
-					time.sleep (1) # was 5sec
-					if self.emuRgui[camIndex] == 0:
-						kk = start.find(';')
-						if kk >-1:
-							print "[SOFTCAM] starting two cam's"
-							emu1 = start[0:kk]
-							emu2 = start[kk+1:]
-							print "[SOFTCAM] starting cam 1 " + emu1
-							self.container = eConsoleAppContainer()
-							self.container.execute(emu1)
-							time.sleep (5)
-							print "[SOFTCAM] starting cam 2 " + emu2
-							self.container = eConsoleAppContainer()
-							self.container.execute(emu2)
-						else:
-							self.container = eConsoleAppContainer()
-							self.container.execute(start)
-					else:
-						self.session.open(MessageBox, "Prepairing " + actcam + " to start\n\n" + "Restarting Enigma2", MessageBox.TYPE_WARNING)
-						TryQuitMainloop(self.session, 2)
-				else:
-					print  '[SOFTCAM] init.d start cam: ' + actcam
-					self.createInitdscript("/usr/bin/" + self.emuBin[camIndex], self.emuStart[camIndex], self.emuStop[camIndex])
 
-				self["key_green"].setText(_("Restart"))
-				self.ReadMenu()
+				self.camIndex = self.cam1sel.getIndex() -1
+				self.cam2Index = self.cam2sel.getIndex() - 1
+				if self.camIndex >= 0:
+					actcam = self.cam1sel.getValue()
+					self["actifcam"].setText(_("active CAM 1: ") + actcam)
+					emustart = self.emuStart[self.camIndex][self.emuStart[self.camIndex].find(self.emuBin[self.camIndex]):]
+					self.Save_Settings(actcam)
+					start = self.emuStart[self.camIndex]
+					if config.softcam.camstartMode.getValue() == "0":
+						print  '[SOFTCAM] Python start cam 1: ' + actcam
+						self.container = eConsoleAppContainer()
+						self.container.execute(start)
+						self.session.openWithCallback(self.waitTime, MessageBox, _("Starting Cam 1: ") + actcam, MessageBox.TYPE_WARNING, timeout=5, simple=True)
+					else:
+						# Create INIT.D start
+						self.session.openWithCallback(self.doNothing, MessageBox, _("Creating start scripts and starting the cam"), MessageBox.TYPE_WARNING, timeout=10, simple=True)
+						self.Save_Settings2(self.cam2sel.getValue())
+
+						camname1 = self.emuBin[self.camIndex]
+						camname2 = self.emuBin[self.cam2Index]
+						self.deleteInit()
+						camname = "/usr/bin/" + camname1
+						startcmd = self.emuStart[self.camIndex]
+						stopcmd = self.emuStop[self.camIndex]							
+						self.createInitdscript("cam1", camname, startcmd, stopcmd)
+						if self.cam2Index >= 0:
+							camname = "/usr/bin/" + camname2
+							startcmd = self.emuStart[self.cam2Index]
+							stopcmd = self.emuStop[self.cam2Index]							
+							self.createInitdscript("cam2", camname, startcmd, stopcmd, config.softcam.waittime.getValue())
+
+					self["key_green"].setText(_("Restart"))
+
 		except:
 			pass
+
+	def waitTime(self, ret):
+		if self.cam2Index >= 0:
+			if config.softcam.waittime.getValue() == '0':
+				self.startcam2(None)
+			else:
+				self.session.openWithCallback(self.startcam2, MessageBox, _("Waiting..."), MessageBox.TYPE_WARNING, timeout=int(config.softcam.waittime.getValue()), simple=True)
+
+	def doNothing(self, ret):
+		pass
+
+	def startcam2(self, ret):
+		camIndex = self.cam2Index
+		if camIndex >= 0:
+			actcam = self.cam2sel.getValue()
+			self["actifcam2"].setText(_("active CAM 2: ") + actcam)
+			emustart = self.emuStart[camIndex][self.emuStart[camIndex].find(self.emuBin[camIndex]):]
+			self.Save_Settings2(actcam)
+			start = self.emuStart[camIndex]
+			print  '[SOFTCAM] Python start cam 2: ' + actcam
+			self.session.open(MessageBox, _("Starting Cam 2: ") + actcam, MessageBox.TYPE_WARNING, timeout=5, simple=True)
+			self.container = eConsoleAppContainer()
+			self.container.execute(start)
 
 	def Save_Settings(self, cam_name):
 		#// Save Came Name to Settings file
@@ -569,26 +574,12 @@ class SoftcamPanel(Screen):
 		config.softcam.save()
 		configfile.save()
 
-	def Label_restart_Enigma2(self, index):
-		#// Display warning when Enigma2 restarts with Cam
-		if self.emuRgui[index] == 0:
-			self["enigma2"].setText("")
-		else:
-			self["enigma2"].setText("Enigma2 restarts with cam")
+	def Save_Settings2(self, cam_name):
+		#// Save Came Name to Settings file
+		config.softcam.actCam2.setValue(cam_name)
+		config.softcam.save()
+		configfile.save()
 
-	def read_startconfig(self, item):
-		Adir = "/var/etc/autostart/start-config"
-		be = []
-		if os.path.exists(Adir) is True:
-			f = open( Adir, "r" )
-			be = f.readlines()
-			f.close
-			for line in be:
-				if line.find(item) > -1:
-					k = line.split("=")
-					if k[1][:-1] == "y":
-						return True
-						break
 	def isCamrunning(self, cam):
 		p = command('pidof ' + cam + ' |wc -w')
 		if not p.isdigit(): p=0
@@ -597,8 +588,8 @@ class SoftcamPanel(Screen):
 		else:
 			return False
 
-	def createInitdscript(self, emubin, start, stop):
-		Adir = "/etc/init.d/softcam"
+	def createInitdscript(self, camname, emubin, start, stop, wait=None):
+		Adir = "/etc/init.d/softcam." + camname
 		softcamfile = []
 		softcamfile.append('#!/bin/sh')
 		softcamfile.append('DAEMON=%s' % emubin)
@@ -612,6 +603,8 @@ class SoftcamPanel(Screen):
 		softcamfile.append('case "$1" in')
 		softcamfile.append('	start)')
 		softcamfile.append('		echo -n "starting $DESC: $DAEMON... "')
+		if wait:
+			softcamfile.append('		sleep ' + wait)
 		softcamfile.append('		$STARTCAM')
 		softcamfile.append('		echo "done."')
 		softcamfile.append('		;;')
@@ -645,17 +638,34 @@ class SoftcamPanel(Screen):
 		# Set execute rights
 		os.chmod(Adir,0755)
 		# Create symbolic link for startup
-		if not os.path.exists("/etc/rc2.d/S20softcam"):
-			self.container.execute('update-rc.d -f softcam defaults')
+		if not os.path.exists("/etc/rc2.d/S20softcam." + camname):
+			self.container.execute('update-rc.d -f softcam.' + camname + ' defaults')
 		# Wait a few seconds
 		import time
 		time.sleep (3) 
 
 		# Start cam
 		if self.isCamrunning(emubin):
-			self.container.execute('/etc/init.d/softcam restart')
+			self.container.execute('/etc/init.d/softcam.' + camname + ' restart')
 		else:
-			self.container.execute('/etc/init.d/softcam start')
+			self.container.execute('/etc/init.d/softcam.' + camname + ' start')
+
+	def deleteInit(self):
+		if os.path.exists("/etc/rc2.d/S20softcam.cam1"):
+			print"Delete Symbolink link"
+			self.container = eConsoleAppContainer()
+			self.container.execute('update-rc.d -f softcam.cam1 defaults')
+		if os.path.exists("/etc/init.d/softcam.cam1"):
+			print"Delete softcam init script cam1"
+			os.system("rm /etc/init.d/softcam.cam1")
+			
+		if os.path.exists("/etc/rc2.d/S20softcam.cam2"):
+			print"Delete Symbolink link"
+			self.container = eConsoleAppContainer()
+			self.container.execute('update-rc.d -f softcam.cam2 defaults')
+		if os.path.exists("/etc/init.d/softcam.cam2"):
+			print"Delete softcam init script cam2"
+			os.system("rm /etc/init.d/softcam.cam2")
 
 class ShowSoftcamPackages(Screen):
 	skin = """
@@ -768,7 +778,6 @@ class ShowSoftcamPackages(Screen):
 		self.container.execute('opkg update')
 
 	def doneupdateList(self, answer):
-		print answer
 		self.container.appClosed.remove(self.doneupdateList)
 		self.Timer1.start(1000, True)
 
