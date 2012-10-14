@@ -41,7 +41,6 @@ class CamCheckPoller:
         isBusy = None
 
     def camcheck(self):
-        print"Camcheck ===================================================="
         global isBusy
         isBusy = True
         threads.deferToThread(self.JobTask)
