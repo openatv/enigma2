@@ -14,6 +14,7 @@ class RcModel:
 	RCTYPE_TM = 10
 	RCTYPE_ET6500 = 11
 	RCTYPE_ET4000 = 12
+	RCTYPE_XP1000 = 13
 
 	def __init__(self):
 		self.currentRcType = self.RCTYPE_DMM
@@ -37,7 +38,7 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_TM
 		elif os.path.exists('/proc/stb/info/boxtype'):
 			model = self.readFile('/proc/stb/info/boxtype')
-			if len(model) == 6 and model[:2] == 'et':
+			if len(model) == 6 and model[:2] == 'et' or 'xp':
 				rc = self.readFile('/proc/stb/ir/rc/type')
 				if rc == '3':
 					self.currentRcType = self.RCTYPE_ODIN
@@ -63,6 +64,8 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_ET9x00
 				elif rc == '13' and model == 'et4000':
 					self.currentRcType = self.RCTYPE_ET4000
+				elif rc == '14':
+					self.currentRcType = self.RCTYPE_XP1000
 			elif model == 'gigablue':
 				self.currentRcType = self.RCTYPE_GB
 			elif model == 'ini-3000':
@@ -84,7 +87,9 @@ class RcModel:
 		elif self.currentRcType == self.RCTYPE_ET6500:
 			return '/usr/share/enigma2/rc_models/et6500/'
 		elif self.currentRcType == self.RCTYPE_ET4000:
-			return '/usr/share/enigma2/rc_models/et4000/'	
+			return '/usr/share/enigma2/rc_models/et4000/'
+		elif self.currentRcType == self.RCTYPE_XP1000:
+			return '/usr/share/enigma2/rc_models/xp1000/'			
 		elif self.currentRcType == self.RCTYPE_GB:
 			return '/usr/share/enigma2/rc_models/gb/'
 		elif self.currentRcType == self.RCTYPE_INI3000:
