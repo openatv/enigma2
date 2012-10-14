@@ -2410,7 +2410,7 @@ class InfoBarTimeshift:
 
 	def createTimeshiftFolder(self):
 		timeshiftdir = Directories.resolveFilename(Directories.SCOPE_TIMESHIFT)
-		if not pathExists(timeshiftdir):
+		if not Directories.pathExists(timeshiftdir):
 			os.makedirs(timeshiftdir)
 
 	def startTimeshift(self):
