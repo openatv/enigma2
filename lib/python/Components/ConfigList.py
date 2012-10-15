@@ -257,7 +257,7 @@ class ConfigListScreen:
 
 	def closeMenuList(self, recursive = False):
 		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
 		else:
 			self.close(recursive)
 

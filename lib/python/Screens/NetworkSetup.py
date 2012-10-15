@@ -644,7 +644,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def keyCancel(self):
 		self.hideInputHelp()
 		if self["config"].isChanged():
-			self.session.openWithCallback(self.keyCancelConfirm, MessageBox, _("Really close without saving settings?"))
+			self.session.openWithCallback(self.keyCancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
 		else:
 			self.close('cancel')
 
