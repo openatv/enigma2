@@ -144,6 +144,7 @@ class MovieList(GUIComponent):
 		self.tags = set()
 		self.root = None
 		self._playInBackground = None
+		self._playInForeground = None
 		self._char = ''
 
 		if root is not None:
@@ -186,9 +187,17 @@ class MovieList(GUIComponent):
 
 	def set_playInBackground(self, value):
 		self._playInBackground = value
-		self.reload()
+		self.reload(filter_tags=config.movielist.last_selected_tags.getValue())
 
 	playInBackground = property(get_playInBackground, set_playInBackground)
+
+	def get_playInForeground(self):
+		return self._playInForeground
+
+	def set_playInForeground(self, value):
+		self._playInForeground = value
+
+	playInForeground = property(get_playInForeground, set_playInForeground)
 
 	def updateRecordings(self, timer=None):
 		if timer is not None:
@@ -285,17 +294,17 @@ class MovieList(GUIComponent):
 			data.part = None
 			if os.path.split(pathName)[1] in self.runningTimers:
 				if switch == 'i':
-					if self.playInBackground and serviceref == self.playInBackground:
+					if (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
 						data.icon = self.iconMoviePlayRec
 					else:
 						data.icon = self.iconMovieRec
 				elif switch == 'p' or switch == 's':
 					data.part = 100
-					if self.playInBackground and serviceref == self.playInBackground:
+					if (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
 						data.partcol = 0xffc71d
 					else:
 						data.partcol = 0xff001d
-			elif self.playInBackground and serviceref == self.playInBackground:
+			elif (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
 				data.icon = self.iconMoviePlay
 			else:
 				data.part = moviePlayState(pathName + '.cuts', serviceref, data.len)
