@@ -1823,7 +1823,7 @@ class InfoBarSeek:
 
 	def doActivityTimer(self):
 		if self.isSeekable():
-			self.activity += 16
+			self.activity += 4
 			hdd = 1
 			if self.activity >= 100:
 				self.activity = 0
