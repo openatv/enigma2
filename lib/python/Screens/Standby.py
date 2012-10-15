@@ -142,7 +142,7 @@ class QuitMainloopScreen(Screen):
 inTryQuitMainloop = False
 
 class TryQuitMainloop(MessageBox):
-	def __init__(self, session, retvalue=1, timeout=-1, default_yes = False):
+	def __init__(self, session, retvalue=1, timeout=-1, default_yes = True):
 		self.retval = retvalue
 		self.ptsmainloopvalue = retvalue
 		recordings = session.nav.getRecordings()
@@ -160,6 +160,7 @@ class TryQuitMainloop(MessageBox):
 			else:
 				reason += (_("%d jobs are running in the background!") % jobs) + '\n'
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
+			default_yes = False
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
 
 		if reason and inStandby:
