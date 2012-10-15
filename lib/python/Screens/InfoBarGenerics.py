@@ -1827,10 +1827,6 @@ class InfoBarSeek:
 			hdd = 1
 			if self.activity >= 100:
 				self.activity = 0
-		else:
-			self.activityTimer.stop()
-			self.activity = 0
-			hdd = 0
 			if SystemInfo["FrontpanelDisplay"]:
 				if os_path.exists("/proc/stb/lcd/symbol_hdd"):
 					if config.lcd.hdd.getValue() == "1":
@@ -1842,6 +1838,10 @@ class InfoBarSeek:
 						file = open("/proc/stb/lcd/symbol_hddprogress", "w")
 						file.write('%d' % int(self.activity))
 						file.close()
+		else:
+			self.activityTimer.stop()
+			self.activity = 0
+			hdd = 0
 
 	def __serviceStarted(self):
 		self.fast_winding_hint_message_showed = False
