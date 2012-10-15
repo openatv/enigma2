@@ -16,9 +16,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 			<widget source="tunerstatusbar" render="Label" position="10,60" zPosition="10" size="e-10,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 			<widget name="config" position="10,100" size="e-10,100" scrollbarMode="showOnDemand" />
 			<ePixmap pixmap="skin_default/buttons/red.png" position="c-140,e-45" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="c+10,e-45" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="c-140,e-45" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="c+10,e-45" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		</screen>"""
 
 	diseqc_ports = [
@@ -86,8 +84,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
-		self["key_red"] = StaticText(" ")
-		self["key_green"] = StaticText(" ")
+		self["key_red"] = StaticText(_("Abort"))
 
 		self.index = 0
 		self.port_index = 0
@@ -109,13 +106,12 @@ class AutoDiseqc(Screen, ConfigListScreen):
 
 		self["actions"] = ActionMap(["SetupActions"],
 		{
-			"ok": self.keySave,
-			"save": self.keySave,
 			"cancel": self.keyCancel,
 		}, -2)
 
 		self.count = 0
 		self.state = 0
+		self.abort = False
 
 		self.statusTimer = eTimer()
 		self.statusTimer.callback.append(self.statusCallback)
@@ -123,15 +119,8 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		self.tunerStatusTimer.callback.append(self.tunerStatusCallback)
 		self.startStatusTimer()
 
-	def keySave(self):
-		if self.state == 99 and len(self.found_sats) > 0:
-			self.setupSave()
-			self.close(True)
-
 	def keyCancel(self):
-		if self.state == 99:
-			self.setupClear()
-			self.close(False)
+		self.abort = True
 
 	def keyOK(self):
 		return
@@ -201,13 +190,6 @@ class AutoDiseqc(Screen, ConfigListScreen):
 	def startStatusTimer(self):
 		self.statusTimer.start(100, True)
 
-	def setupConfig(self):
-		self["statusbar"].setText(_("Automatic configuration is finished"))
-		self["tunerstatusbar"].setText(_("Found %d position(s) of %d total") % (len(self.found_sats), self.nr_of_ports))
-		self["key_red"].setText(_("Wrong"))
-		if len(self.found_sats) > 0:
-			self["key_green"].setText(_("Correct"))
-
 	def setupSave(self):
 		self.clearNimEntries()
 		for x in self.found_sats:
@@ -267,6 +249,10 @@ class AutoDiseqc(Screen, ConfigListScreen):
 			self.tunerStopScan(False)
 
 	def tunerStopScan(self, result):
+		if self.abort:
+			self.setupClear()
+			self.close(False)
+			return
 		if result:
 			self.found_sats.append((self.diseqc_ports[self.port_index], self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS], self.sat_frequencies[self.index][self.SAT_TABLE_NAME]))
 			self.index = 0
@@ -284,8 +270,9 @@ class AutoDiseqc(Screen, ConfigListScreen):
 			self["config"].l.setList(self.list)
 
 		if self.nr_of_ports == self.port_index:
-			self.setupConfig()
 			self.state = 99
+			self.setupSave()
+			self.close(len(self.found_sats) > 0)
 			return
 
 		for x in self.found_sats:
