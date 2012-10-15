@@ -210,27 +210,39 @@ class SoftcamPanel(ConfigListScreen, Screen):
 		self.setYellowKey(self.curcam)
 
 	def whichCam(self):
-			#// check for active cam 1
-			cam = config.softcam.actCam.getValue()
-			self.curcam = None
-			self.curcamIndex = None
-			if cam in self.mlist:
-				index = self.mlist.index(cam)
-				x = self.emuBin[index]
-				if self.isCamrunning(x):
-					self.curcam = x
-					self.curcamIndex = index
+		#// check for active cam 1
+		cam = config.softcam.actCam.getValue()
+		self.curcam = None
+		self.curcamIndex = None
+		if cam in self.mlist:
+			index = self.mlist.index(cam)
+			x = self.emuBin[index]
+			if self.isCamrunning(x):
+				self.curcam = x
+				self.curcamIndex = index
 
-			#// check for active cam 2		
-			cam = config.softcam.actCam2.getValue()
-			self.curcam2 = None
-			self.curcam2Index = None
-			if cam in self.mlist:
-				index = self.mlist.index(cam)
-				x = self.emuBin[index]
-				if self.isCamrunning(x):
-					self.curcam2 = x
-					self.curcam2Index = index
+		#// check for active cam 2		
+		cam = config.softcam.actCam2.getValue()
+		self.curcam2 = None
+		self.curcam2Index = None
+		if cam in self.mlist:
+			index = self.mlist.index(cam)
+			x = self.emuBin[index]
+			if self.isCamrunning(x):
+				self.curcam2 = x
+				self.curcam2Index = index
+
+		if not self.curcam and not self.curcam2 and self.mlist:
+			print "[SOFTCAMPANEL] try to find a running cam"
+			for cam in self.emuBin:
+				index = self.emuBin.index(cam)
+				if self.isCamrunning(cam):
+					self.curcam = cam
+					self.curcamIndex = index
+					camname = self.mlist[index]
+					print"[SOFTCAMPANEL] found %s running" % camname
+					self.Save_Settings(camname)
+					break
 
 	def createSetup(self):
 		self.editListEntry = None
