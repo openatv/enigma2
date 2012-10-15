@@ -114,7 +114,6 @@ class SoftcamPanel(ConfigListScreen, Screen):
 		self.emuDirlist = os.listdir(emuDir)
 		self.ecmtel = 0
 		self.first = 0
-		self.isCam2 = False
 		global count
 		count = 0
 		#// check emu dir for config files
@@ -128,7 +127,7 @@ class SoftcamPanel(ConfigListScreen, Screen):
 				#// read the emu config file
 				for line in em.readlines():
 					line1 = line
-					#// emuname
+					#// startcam
 					line = line1
 					if line.find("startcam") > -1:
 						line = line.split("=")
@@ -150,7 +149,7 @@ class SoftcamPanel(ConfigListScreen, Screen):
 					if line.find("binname") > -1:
 						line = line.split("=")
 						self.emuBin.append(line[1].strip())
-					#// startcam
+					
 				em.close()
 				count += 1
 
@@ -237,10 +236,15 @@ class SoftcamPanel(ConfigListScreen, Screen):
 		self.editListEntry = None
 		self.list = []
 		self.list.append(getConfigListEntry(_("Select Cam 1"), self.cam1sel))
-		if self.cam1sel.getValue() != _('no cam'):
-			self.list.append(getConfigListEntry(_("Select Cam 2"), self.cam2sel))
-			if self.cam2sel.getValue() != _('no cam'):
-				self.list.append(getConfigListEntry(_("Wait time before start Cam 2"), config.softcam.waittime))
+		if len(self.emuStart) > 1:
+			self["actifcam2"].show()
+			if self.cam1sel.getValue() != _('no cam') or config.softcam.actCam.getValue() != _("no CAM 1 active"):
+				self.list.append(getConfigListEntry(_("Select Cam 2"), self.cam2sel))
+				if self.cam2sel.getValue() != _('no cam'):
+					self.list.append(getConfigListEntry(_("Wait time before start Cam 2"), config.softcam.waittime))
+		else:
+			self["actifcam2"].hide()
+			self.cam2sel.setValue(_('no cam'))
 
 		self["config"].list = self.list
 		self["config"].setList(self.list)
@@ -454,7 +458,7 @@ class SoftcamPanel(ConfigListScreen, Screen):
 
 		if config.softcam.camstartMode.getValue() == "0" or not fileExists('/etc/init.d/softcam'):
 			if oldcam:
-				print  '[SOFTCAM] Python stop cam 1: ' + oldcam
+				print '[SOFTCAM] Python stop cam 1: ' + oldcam
 				self.container.execute(self.emuStop[oldcamIndex])
 
 				time.sleep(1) # was 5sec
@@ -471,7 +475,7 @@ class SoftcamPanel(ConfigListScreen, Screen):
 						t = 5
 
 			if oldcam2:
-				print  '[SOFTCAM] Python stop cam 2: ' + oldcam2
+				print '[SOFTCAM] Python stop cam 2: ' + oldcam2
 				self.container.execute(self.emuStop[oldcam2Index])
 
 				time.sleep(1) # was 5sec
@@ -506,6 +510,9 @@ class SoftcamPanel(ConfigListScreen, Screen):
 		#// Starting the CAM
 		try:
 			if count > 0:
+				if self.cam1sel.getValue() == self.cam2sel.getValue():
+					self.session.openWithCallback(self.doNothing, MessageBox, _("No Cam started !!\n\nCam 1 must be different from Cam 2"), MessageBox.TYPE_ERROR, simple=True)
+					return
 				if config.softcam.camstartMode.getValue() == "0":
 					self.Stopcam()
 
@@ -514,14 +521,16 @@ class SoftcamPanel(ConfigListScreen, Screen):
 				if self.camIndex >= 0:
 					actcam = self.cam1sel.getValue()
 					self["actifcam"].setText(_("active CAM 1: ") + actcam)
-					emustart = self.emuStart[self.camIndex][self.emuStart[self.camIndex].find(self.emuBin[self.camIndex]):]
 					self.Save_Settings(actcam)
 					start = self.emuStart[self.camIndex]
+					if self.checkBinName(self.emuBin[self.camIndex], start):
+						self.session.openWithCallback(self.startcam2, MessageBox, actcam + _(" Not Started !!\n\nCam binname must be in the start command line\nCheck your emu config file"), MessageBox.TYPE_ERROR, simple=True)
+						return
 					if config.softcam.camstartMode.getValue() == "0":
-						print  '[SOFTCAM] Python start cam 1: ' + actcam
+						print '[SOFTCAM] Python start cam 1: ' + actcam
+						self.session.openWithCallback(self.waitTime, MessageBox, _("Starting Cam 1: ") + actcam, MessageBox.TYPE_WARNING, timeout=5, simple=True)
 						self.container = eConsoleAppContainer()
 						self.container.execute(start)
-						self.session.openWithCallback(self.waitTime, MessageBox, _("Starting Cam 1: ") + actcam, MessageBox.TYPE_WARNING, timeout=5, simple=True)
 					else:
 						# Create INIT.D start
 						self.session.openWithCallback(self.doNothing, MessageBox, _("Creating start scripts and starting the cam"), MessageBox.TYPE_WARNING, timeout=10, simple=True)
@@ -560,10 +569,12 @@ class SoftcamPanel(ConfigListScreen, Screen):
 		if camIndex >= 0:
 			actcam = self.cam2sel.getValue()
 			self["actifcam2"].setText(_("active CAM 2: ") + actcam)
-			emustart = self.emuStart[camIndex][self.emuStart[camIndex].find(self.emuBin[camIndex]):]
 			self.Save_Settings2(actcam)
 			start = self.emuStart[camIndex]
-			print  '[SOFTCAM] Python start cam 2: ' + actcam
+			if self.checkBinName(self.emuBin[self.cam2Index], start):
+					self.session.open(MessageBox, actcam + _(" Not Started !!\n\nCam binname must be in the start command line\nCheck your emu config file"), MessageBox.TYPE_ERROR, simple=True)
+					return
+			print '[SOFTCAM] Python start cam 2: ' + actcam
 			self.session.open(MessageBox, _("Starting Cam 2: ") + actcam, MessageBox.TYPE_WARNING, timeout=5, simple=True)
 			self.container = eConsoleAppContainer()
 			self.container.execute(start)
@@ -587,6 +598,19 @@ class SoftcamPanel(ConfigListScreen, Screen):
 			return True
 		else:
 			return False
+
+	def checkBinName(self, binname, start):
+		print "[CHECKBINNAME] bin=%s ,start=%s" %(binname,start)
+		if start.find(binname + ' ') > -1:
+			print "[CHECKBINNAME] OK"
+			return False
+		else:
+			if start[start.rfind('/')+1:] == binname:
+				print "[CHECKBINNAME] OK"
+				return False
+			else:
+				print "[CHECKBINNAME] ERROR"
+				return True
 
 	def createInitdscript(self, camname, emubin, start, stop, wait=None):
 		Adir = "/etc/init.d/softcam." + camname
@@ -652,19 +676,19 @@ class SoftcamPanel(ConfigListScreen, Screen):
 
 	def deleteInit(self):
 		if os.path.exists("/etc/rc2.d/S20softcam.cam1"):
-			print"Delete Symbolink link"
+			print "Delete Symbolink link"
 			self.container = eConsoleAppContainer()
 			self.container.execute('update-rc.d -f softcam.cam1 defaults')
 		if os.path.exists("/etc/init.d/softcam.cam1"):
-			print"Delete softcam init script cam1"
+			print "Delete softcam init script cam1"
 			os.system("rm /etc/init.d/softcam.cam1")
 			
 		if os.path.exists("/etc/rc2.d/S20softcam.cam2"):
-			print"Delete Symbolink link"
+			print "Delete Symbolink link"
 			self.container = eConsoleAppContainer()
 			self.container.execute('update-rc.d -f softcam.cam2 defaults')
 		if os.path.exists("/etc/init.d/softcam.cam2"):
-			print"Delete softcam init script cam2"
+			print "Delete softcam init script cam2"
 			os.system("rm /etc/init.d/softcam.cam2")
 
 class ShowSoftcamPackages(Screen):
