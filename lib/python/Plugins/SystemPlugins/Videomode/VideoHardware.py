@@ -1,9 +1,16 @@
-from enigma import eTimer, getBoxType
+from enigma import eTimer
 from Components.config import config, ConfigSelection, ConfigSubDict, ConfigYesNo
 
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
 from os import path
+
+try:
+	file = open("/proc/stb/info/chipset", "r")
+	chipset = file.readline().strip()
+	file.close()
+except:
+	chipset = "unknown"
 
 # The "VideoHardware" is the interface to /proc/stb/video.
 # It generates hotplug events, and gives you the list of
@@ -30,7 +37,15 @@ class VideoHardware:
 
 	rates["576p"] =			{ "50Hz": 	{ 50: "576p" } }
 
-	rates["720p"] =			{ "50Hz": 	{ 50: "720p50" },
+	if chipset == 'bcm7358' or chipset == 'bcm7356' or chipset == 'bcm7405':
+		rates["720p"] =		{ "24Hz": 		{ 24: "720p24" },
+								"25Hz": 	{ 25: "720p25" },
+								"30Hz": 	{ 30: "720p30" },
+								"50Hz": 	{ 50: "720p50" },
+								"60Hz": 	{ 60: "720p" },
+								"multi": 	{ 50: "720p50", 60: "720p" } }
+	else:
+		rates["720p"] =		{ "50Hz": 	{ 50: "720p50" },
 								"60Hz": 	{ 60: "720p" },
 								"multi": 	{ 50: "720p50", 60: "720p" } }
 
@@ -38,18 +53,18 @@ class VideoHardware:
 								"60Hz":		{ 60: "1080i" },
 								"multi":	{ 50: "1080i50", 60: "1080i" } }
 
-	if getBoxType() == 'tmtwin':
-		rates["1080p"] =		{ "24Hz":		{ 24: "1080p24" },
-									"25Hz":		{ 30: "1080p25" },
-									"30Hz":		{ 30: "1080p30" } }
-	else:
-		rates["1080p"] =		{ "24Hz":		{ 24: "1080p24" },
-									"25Hz":		{ 25: "1080p25" },
-									"30Hz":		{ 30: "1080p30" },
-									"50Hz":		{ 50: "1080p50" },
-									"60Hz":		{ 60: "1080p" },
-									"multi":	{ 50: "1080p50", 60: "1080p" } }
+	if chipset == 'bcm7405':
+		rates["1080p"] =	{ "24Hz":		{ 24: "1080p24" },
+								"25Hz":		{ 25: "1080p25" },
+								"30Hz":		{ 30: "1080p30" }}
 
+	elif chipset == 'bcm7358' or chipset == 'bcm7356':
+		rates["1080p"] =	{ 	"24Hz":		{ 24: "1080p24" },
+								"25Hz":		{ 25: "1080p25" },
+								"30Hz":		{ 30: "1080p30" },
+								"50Hz":		{ 50: "1080p50" },
+								"60Hz":		{ 60: "1080p" },
+								"multi":	{ 50: "1080p50", 60: "1080p" }}
 
 	rates["PC"] = {
 		"1024x768": { 60: "1024x768" }, # not possible on DM7025
@@ -68,9 +83,16 @@ class VideoHardware:
 	}
 
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
-	modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
-	modes["DVI"] = ["720p", "1080p", "1080i", "576p", "480p", "576i", "480i"]
 	modes["DVI-PC"] = ["PC"]
+
+	if chipset == 'bcm7358' or chipset == 'bcm7356' or chipset == 'bcm7405':
+		modes["YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
+		modes["DVI"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
+		widescreen_modes = set(["720p", "1080i", "1080p"])
+	else:
+		modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
+		modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
+		widescreen_modes = set(["720p", "1080i"])
 
 	def getOutputAspect(self):
 		ret = (16,9)
@@ -111,21 +133,12 @@ class VideoHardware:
 		if self.modes.has_key("DVI-PC") and not self.getModeList("DVI-PC"):
 			print "remove DVI-PC because of not existing modes"
 			del self.modes["DVI-PC"]
+		if config.misc.boxtype.getValue() == 'gbquad' or config.misc.boxtype.getValue() == 'et5x00' or config.misc.boxtype.getValue() == 'et6x00':
+			del self.modes["Scart"]
 
 		self.createConfig()
 		self.readPreferredModes()
 
-		portlist = self.getPortList()
-		has1080p50 = False
-		for port in portlist:
-			if port == 'DVI' and HardwareInfo().has_hdmi():
-				if "1080p50" in self.modes_available:
-					has1080p50 = True
-
-		if has1080p50:
-			self.widescreen_modes = set(["720p", "1080i", "1080p"])
-		else:
-			self.widescreen_modes = set(["720p", "1080i"])
 
 		# take over old AVSwitch component :)
 		from Components.AVSwitch import AVSwitch
@@ -192,7 +205,7 @@ class VideoHardware:
 		try:
 			mode_etc = None
 			mode_etc = modes.get(int(rate[:2]))
-			if mode == "1080p" and getBoxType() == 'tmtwin':
+			if rate == "24Hz" or rate == "25Hz" or rate == "30Hz":
 				open("/proc/stb/video/videomode", "w").write(mode_etc)
 				# not support 50Hz, 60Hz for 1080p
 			else:
