@@ -499,12 +499,25 @@ class RestorePlugins(Screen):
 
 	def green(self):
 		pluginlist = []
+		self.myipklist = []
 		for x in self.list:
 			if x[2]:
-				pluginlist.append(x[0])
+				myipk = self.SearchIPK(x[0])
+				if myipk:
+					self.myipklist.append(myipk)
+				else:
+					pluginlist.append(x[0])
 		if len(pluginlist) > 0:
-			self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['ipkg --force-overwrite install ' + ' '.join(pluginlist)], finishedCallback = self.exit, closeOnSuccess = True)
+			if len(self.myipklist) > 0:
+				self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['ipkg --force-overwrite install ' + ' '.join(pluginlist)], finishedCallback = self.installLocalIPK, closeOnSuccess = True)
+			else:
+				self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['ipkg --force-overwrite install ' + ' '.join(pluginlist)], finishedCallback = self.exit, closeOnSuccess = True)
+		elif len(self.myipklist) > 0:
+			self.installLocalIPK()
 
+	def installLocalIPK(self):
+		self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['ipkg --force-overwrite install ' + ' '.join(self.myipklist)], finishedCallback = self.exit, closeOnSuccess = True)
+	
 	def ok(self):
 		index = self["menu"].getIndex()
 		item = self["menu"].getCurrent()[0]
@@ -529,3 +542,14 @@ class RestorePlugins(Screen):
 
 	def exitNoPlugin(self, ret):
 		self.close()
+
+	def SearchIPK(self, ipkname):
+		ipkname = ipkname + "*"
+		search_dirs = [ "/media/hdd", "/media/usb" ]
+		sdirs = " ".join(search_dirs)
+		cmd = 'find %s -name "%s"' % (sdirs, ipkname)
+		res = popen(cmd).read()
+		if res == "":
+			return None
+		else:
+			return res.replace("\n", "")
