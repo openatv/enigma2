@@ -515,7 +515,7 @@ class Harddisk:
 				if idle_parm > 251:
 					idle_parm = 251
 			# don't support timeouts of more than 5.5 hours
-			system("hdparm -S " + `idle_parm` + ' ' + self.disk_path)
+			os.system("hdparm -S " + `idle_parm` + ' ' + self.disk_path)
 			return
 		self.max_idle_time = idle # make it by hand
 		if self.idle_running:
