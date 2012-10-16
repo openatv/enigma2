@@ -175,10 +175,16 @@ class CamStart:
 						print "[CAMSTARTER] No Cam found to start"
 				
 				# If Cam is running don't check anymore
-				if config.softcam.restartRunning.getValue() and camrunning == 1 and camrunning2 == 1:
-					print "[CAMSTARTER] Cam is running, exit camstarter"
-					self.count = 0
-					return
+				if config.softcam.restartRunning.getValue() and camrunning == 1:
+					if camfound2 == 1:
+						if camrunning2 == 1:
+							print "[CAMSTARTER] Cam is running, exit camstarter"
+							self.count = 0
+							return
+					else:
+						print "[CAMSTARTER] Cam is running, exit camstarter"
+						self.count = 0
+						return
 
 			except:
 				pass
