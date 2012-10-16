@@ -12,7 +12,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.ScrollLabel import ScrollLabel
 from Components.ServiceEventTracker import ServiceEventTracker
 from enigma import eListboxPythonMultiContent, ePoint, eTimer, getDesktop, gFont, iPlayableService, iServiceInformation, loadPNG, RT_HALIGN_RIGHT
-from os import environ, listdir, remove, rename, system
+from os import environ, listdir, remove, rename, system, popen
 from Plugins.Plugin import PluginDescriptor
 from Screens.HelpMenu import HelpableScreen
 #from Screens.InfoBar import InfoBar
@@ -31,9 +31,18 @@ import gettext
 
 VERSION = "v1.3c"
 DATE = "24.12.2009"
-CFG = "/var/etc/CCcam.cfg"
 
 #############################################################
+
+def confPath():
+	search_dirs = [ "/usr", "/var", "/etc" ]
+	sdirs = " ".join(search_dirs)
+	cmd = 'find %s -name "CCcam.cfg"' % sdirs
+	res = popen(cmd).read()
+	if res == "":
+		return None
+	else:
+		return res.replace("\n", "")
 
 def _parse(url):
 	url = url.strip()
@@ -81,6 +90,8 @@ def getPage(url, contextFactory=None, *args, **kwargs):
 
 	return factory.deferred
 
+#############################################################
+CFG = confPath()
 #############################################################
 
 class HelpableNumberActionMap(NumberActionMap):
