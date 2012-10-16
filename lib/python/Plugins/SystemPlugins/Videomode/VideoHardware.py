@@ -21,7 +21,7 @@ class VideoHardware:
 
 	modes = { }  # a list of (high-level) modes for a certain port.
 
-	rates["PAL"] =			{ "50Hz":		{ 50: "pal" },
+	rates["PAL"] =			{ "50Hz":	{ 50: "pal" },
 								"60Hz":		{ 60: "pal60" },
 								"multi":	{ 50: "pal", 60: "pal60" } }
 
@@ -37,7 +37,7 @@ class VideoHardware:
 
 	rates["576p"] =			{ "50Hz": 	{ 50: "576p" } }
 
-	if chipset == 'bcm7358' or chipset == 'bcm7356' or chipset == 'bcm7405':
+	if chipset.find('7335') != -1 or chipset.find('7358') != -1 or chipset.find('7356') != -1 or chipset.find('7405') != -1:
 		rates["720p"] =			{ "24Hz": 	{ 24: "720p24" },
 									"25Hz": 	{ 25: "720p25" },
 									"30Hz": 	{ 30: "720p30" },
@@ -53,17 +53,17 @@ class VideoHardware:
 								"60Hz":		{ 60: "1080i" },
 								"multi":	{ 50: "1080i50", 60: "1080i" } }
 
-	if chipset == 'bcm7405' or chipset == '7335':
+	if chipset.find('7405') != -1 or chipset.find('7335') != -1:
 		rates["1080p"] =		{ "24Hz":		{ 24: "1080p24" },
 									"25Hz":		{ 25: "1080p25" },
 									"30Hz":		{ 30: "1080p30" }}
 
-	elif chipset == 'bcm7358' or chipset == 'bcm7356':
+	elif chipset.find('7358') != -1 or chipset.find('7356') != -1:
 		rates["1080p"] =		{ 	"24Hz":		{ 24: "1080p24" },
 									"25Hz":		{ 25: "1080p25" },
 									"30Hz":		{ 30: "1080p30" },
-									"50Hz":	{ 50: "1080p50" },
-									"60Hz":	{ 60: "1080p" },
+									"50Hz":		{ 50: "1080p50" },
+									"60Hz":		{ 60: "1080p" },
 									"multi":	{ 50: "1080p50", 60: "1080p" }}
 
 	rates["PC"] = {
@@ -84,8 +84,8 @@ class VideoHardware:
 
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	modes["DVI-PC"] = ["PC"]
-	
-	if chipset == 'bcm7358' or chipset == 'bcm7356' or chipset == 'bcm7405' or chipset == '7335':
+
+	if  chipset.find('7335') != -1 or chipset.find('7358') != -1 or chipset.find('7356') != -1 or chipset.find('7405') != -1:
 		modes["YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		modes["DVI"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i", "1080p"])
@@ -139,13 +139,11 @@ class VideoHardware:
 			del self.modes["Scart"]
 
 		self.createConfig()
-#		self.on_hotplug.append(self.createConfig)
 
 		self.readPreferredModes()
 
 		# take over old AVSwitch component :)
 		from Components.AVSwitch import AVSwitch
-#		config.av.colorformat.notifiers = [ ]
 		config.av.aspectratio.notifiers = [ ]
 		config.av.tvsystem.notifiers = [ ]
 		config.av.wss.notifiers = [ ]
@@ -155,11 +153,6 @@ class VideoHardware:
 		config.av.wss.addNotifier(self.updateAspect)
 		config.av.policy_169.addNotifier(self.updateAspect)
 		config.av.policy_43.addNotifier(self.updateAspect)
-
-		# until we have the hotplug poll socket
-#		self.timer = eTimer()
-#		self.timer.callback.append(self.readPreferredModes)
-#		self.timer.start(1000)
 
 	def readAvailableModes(self):
 		try:
@@ -187,11 +180,6 @@ class VideoHardware:
 	def isModeAvailable(self, port, mode, rate):
 		rate = self.rates[mode][rate]
 		for mode in rate.values():
-			# DVI modes must be in "modes_preferred"
-#			if port == "DVI":
-#				if mode not in self.modes_preferred and not config.av.edid_override.value:
-#					print "no, not preferred"
-#					return False
 			if mode not in self.modes_available:
 				return False
 		return True
@@ -218,8 +206,8 @@ class VideoHardware:
 
 		try:
 			mode_etc = None
+			mode_etc = modes.get(int(rate[:2]))
 			if rate == "24Hz" or rate == "25Hz" or rate == "30Hz":
-				mode_etc = modes.get(int(rate[:2]))
 				open("/proc/stb/video/videomode", "w").write(mode_etc)
 			# not support 50Hz, 60Hz for 1080p
 			else:
