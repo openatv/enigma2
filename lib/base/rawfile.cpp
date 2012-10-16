@@ -48,14 +48,6 @@ int eRawFile::open(const char *filename, int cached)
 	}
 }
 
-void eRawFile::setfd(int fd)
-{
-	close();
-	m_cached = 0;
-	m_nrfiles = 1;
-	m_fd = fd;
-}
-
 off_t eRawFile::lseek(off_t offset, int whence)
 {
 	eSingleLocker l(m_lock);
