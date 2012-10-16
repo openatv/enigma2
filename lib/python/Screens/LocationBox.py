@@ -170,7 +170,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 		# Run some functions when shown
 		self.onShown.extend((
-			boundFunction(self.setTitle, windowTitle),
+			boundFunction(self.setTitle, _("Select Location")),
 			self.updateTarget,
 			self.showHideRename,
 		))
