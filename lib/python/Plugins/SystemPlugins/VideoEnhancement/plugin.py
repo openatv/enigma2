@@ -153,7 +153,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 			self.keySave()
 
 	def apply(self):
-		self.session.openWithCallback(self.confirm, MessageBox, _("Use this video enhancement settings?"), MessageBox.TYPE_YESNO, timeout = 20, default = False)
+		self.session.openWithCallback(self.confirm, MessageBox, _("Use this video enhancement settings?"), MessageBox.TYPE_YESNO, timeout = 20, default = True)
 
 	def cancelConfirm(self, result):
 		if not result:
