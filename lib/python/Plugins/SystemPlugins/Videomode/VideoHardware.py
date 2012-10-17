@@ -206,8 +206,8 @@ class VideoHardware:
 
 		try:
 			mode_etc = None
-			mode_etc = modes.get(int(rate[:2]))
 			if rate == "24Hz" or rate == "25Hz" or rate == "30Hz":
+				mode_etc = modes.get(int(rate[:2]))
 				open("/proc/stb/video/videomode", "w").write(mode_etc)
 			# not support 50Hz, 60Hz for 1080p
 			else:
