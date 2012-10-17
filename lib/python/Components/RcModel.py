@@ -64,7 +64,7 @@ class RcModel:
 				elif rc == '11' and model == 'et9000':
 					self.currentRcType = self.RCTYPE_ET9x00
 				elif model == 'et4000':
-					self.currentRcType = self.RCTYPE_GB
+					self.currentRcType = self.RCTYPE_ET4x00
 			elif model == 'gigablue':
 				self.currentRcType = self.RCTYPE_GB
 			elif model == 'ini-3000':
