@@ -4,15 +4,16 @@ class RcModel:
 	RCTYPE_DMM = 0
 	RCTYPE_ET9X00 = 1
 	RCTYPE_ET6X00 = 2
-	RCTYPE_ET9500 = 3
-	RCTYPE_VU = 4
-	RCTYPE_VU2 = 5
-	RCTYPE_GB = 6
-	RCTYPE_INI3000 = 7
-	RCTYPE_INI5000 = 8
-	RCTYPE_INI7000 = 9
-	RCTYPE_ODIN = 10
-	RCTYPE_TM = 11
+	RCTYPE_ET4X00 = 3
+	RCTYPE_ET9500 = 4
+	RCTYPE_VU = 5
+	RCTYPE_VU2 = 6
+	RCTYPE_GB = 7
+	RCTYPE_INI3000 = 8
+	RCTYPE_INI5000 = 9
+	RCTYPE_INI7000 = 10
+	RCTYPE_ODIN = 11
+	RCTYPE_TM = 12
 
 	def __init__(self):
 		self.currentRcType = self.RCTYPE_DMM
@@ -35,12 +36,11 @@ class RcModel:
 			if model == 'twin' or model == '2t':
 				self.currentRcType = self.RCTYPE_TM
 		elif os.path.exists('/proc/stb/info/vumodel'):
-			self.currentRcType = self.RCTYPE_VU
-# 			model = self.readFile('/proc/stb/info/vumodel')
-# 			if model == 'ultimo':
-# 				self.currentRcType = self.RCTYPE_VU2
-# 			else:
-# 				self.currentRcType = self.RCTYPE_VU
+			model = self.readFile('/proc/stb/info/vumodel')
+			if model == 'ultimo':
+				self.currentRcType = self.RCTYPE_VU2
+			else:
+				self.currentRcType = self.RCTYPE_VU
 		elif os.path.exists('/proc/stb/info/boxtype'):
 			model = self.readFile('/proc/stb/info/boxtype')
 			if len(model) == 6 and model[:2] == 'et':
@@ -63,6 +63,8 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_ET9500
 				elif rc == '11' and model == 'et9000':
 					self.currentRcType = self.RCTYPE_ET9x00
+				elif model == 'et4000':
+					self.currentRcType = self.RCTYPE_GB
 			elif model == 'gigablue':
 				self.currentRcType = self.RCTYPE_GB
 			elif model == 'ini-3000':
@@ -75,6 +77,8 @@ class RcModel:
 	def getRcLocation(self):
 		if self.currentRcType == self.RCTYPE_ET9X00:
 			return '/usr/share/enigma2/rc_models/et9x00/'
+		elif self.currentRcType == self.RCTYPE_ET4X00:
+			return '/usr/share/enigma2/rc_models/et4x00/'
 		elif self.currentRcType == self.RCTYPE_ET6X00:
 			return '/usr/share/enigma2/rc_models/et6x00/'
 		elif self.currentRcType == self.RCTYPE_ET9500:
