@@ -222,6 +222,7 @@ class VideoHardware:
 
 		try:
 			if rate == "24Hz" or rate == "25Hz" or rate == "30Hz":
+				mode_etc = modes.get(int(rate[:2]))
 				open("/etc/videomode", "w").write(mode_etc)
 			else:
 				open("/etc/videomode", "w").write(mode_50) # use 50Hz mode (if available) for booting
