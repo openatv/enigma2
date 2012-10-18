@@ -12,7 +12,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.ScrollLabel import ScrollLabel
 from Components.ServiceEventTracker import ServiceEventTracker
 from enigma import eListboxPythonMultiContent, ePoint, eTimer, getDesktop, gFont, iPlayableService, iServiceInformation, loadPNG, RT_HALIGN_RIGHT
-from os import environ, listdir, remove, rename, system, popen
+from os import environ, listdir, remove, rename, system, popen, path
 from Plugins.Plugin import PluginDescriptor
 from Screens.HelpMenu import HelpableScreen
 #from Screens.InfoBar import InfoBar
@@ -37,7 +37,7 @@ DATE = "24.12.2009"
 def confPath():
 	search_dirs = [ "/usr", "/var", "/etc" ]
 	sdirs = " ".join(search_dirs)
-	cmd = 'find %s -name "CCcam.cfg"' % sdirs
+	cmd = 'find %s -name "CCcam.cfg" | head -n 1' % sdirs
 	res = popen(cmd).read()
 	if res == "":
 		return None
@@ -92,6 +92,7 @@ def getPage(url, contextFactory=None, *args, **kwargs):
 
 #############################################################
 CFG = confPath()
+CFG_path =  path.dirname(CFG)
 #############################################################
 
 class HelpableNumberActionMap(NumberActionMap):
@@ -222,7 +223,7 @@ def getConfigNameAndContent(fileName):
 		idx = name.index("\n")
 		name = name[:idx]
 	else:
-		name = fileName.replace("/var/etc/", "")
+		name = fileName.replace(CFG_path + "/", "")
 
 	return (name, content)
 
@@ -1609,13 +1610,13 @@ class CCcamInfoConfigSwitcher(Screen):
 		list = []
 
 		try:
-			files = listdir("/var/etc")
+			files = listdir(CFG_path)
 		except:
 			files = []
 
 		for file in files:
 			if file.startswith("CCcam_") and file.endswith(".cfg"):
-				list.append(CCcamConfigListEntry("/var/etc/"+file))
+				list.append(CCcamConfigListEntry(CFG_path + "/"+file))
 
 		self["list"].setList(list)
 
