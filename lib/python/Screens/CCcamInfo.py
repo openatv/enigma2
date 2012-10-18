@@ -90,9 +90,13 @@ def getPage(url, contextFactory=None, *args, **kwargs):
 
 	return factory.deferred
 
-#############################################################
-CFG = confPath()
-CFG_path =  path.dirname(CFG)
+def searchConfig():
+	global CFG, CFG_path
+	CFG = confPath()
+	CFG_path = '/var/etc'
+	if CFG:
+		CFG_path =  path.dirname(CFG)
+
 #############################################################
 
 class HelpableNumberActionMap(NumberActionMap):
@@ -350,6 +354,7 @@ class CCcamInfoMain(Screen):
 
 		self.working = False
 		self.Console = Console()
+		searchConfig()
 
 		if config.cccaminfo.profile.getValue() == "":
 			self.readConfig()
