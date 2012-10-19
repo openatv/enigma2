@@ -1388,7 +1388,7 @@ class CCcamInfoRemoteBoxMenu(Screen):
 
 	def locationCallback(self, callback):
 		if callback:
-			config.cccaminfo.profiles.setValue(("%s/CCcamInfo.profiles"%callback).replace("//", "/").getValue())
+			config.cccaminfo.profiles.setValue(("%s/CCcamInfo.profiles"%callback).replace("//", "/"))
 			config.cccaminfo.profiles.save()
 		del self.list
 		self.list = []
