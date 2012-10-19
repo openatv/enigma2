@@ -5,7 +5,7 @@ from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Components.FIFOList import FIFOList
 from Components.Sources.FrontendInfo import FrontendInfo
-from enigma import eServiceCenter, eTimer
+from enigma import eServiceCenter
 
 class ServiceScanSummary(Screen):
 	skin = """
@@ -31,7 +31,6 @@ class ServiceScanSummary(Screen):
 class ServiceScan(Screen):
 
 	def ok(self):
-		print "ok"
 		if self["scan"].isDone():
 			if `self.currentInfobar`.endswith(".InfoBar'>"):
 				if self.currentServiceList is not None:
@@ -77,41 +76,16 @@ class ServiceScan(Screen):
 		self["servicelist"] = FIFOList(len=10)
 		self["FrontendInfo"] = FrontendInfo()
 
-		self.timer = eTimer()
-
 		self["actions"] = ActionMap(["OkCancelActions"],
 			{
 				"ok": self.ok,
 				"cancel": self.cancel
 			})
 
-		self.onClose.append(self.__onClose)
 		self.onFirstExecBegin.append(self.doServiceScan)
 
-	def __onClose(self):
-		self.stop()
-
-	def start(self):
-		if self.finish_check not in self.timer.callback:
-			self.timer.callback.append(self.finish_check)
-		self.timer.startLongTimer(60)
-
-	def stop(self):
-		if self.finish_check in self.timer.callback:
-			self.timer.callback.remove(self.finish_check)
-		self.timer.stop()
-
-	def finish_check(self):
-		if not self["scan"].isDone():
-			self.timer.startLongTimer(60)
-		else:
-			self.stop()
-			self.close()
-
 	def doServiceScan(self):
-		self.start()
 		self["scan"] = CScan(self["scan_progress"], self["scan_state"], self["servicelist"], self["pass"], self.scanList, self["network"], self["transponder"], self["FrontendInfo"], self.session.summary)
 
 	def createSummary(self):
-		print "ServiceScanCreateSummary"
 		return ServiceScanSummary
