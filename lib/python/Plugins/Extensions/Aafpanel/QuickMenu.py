@@ -153,6 +153,7 @@ class QuickMenu(Screen):
 			self.menu = 1
 			self.selectedList = self["sublist"]
 			self["sublist"].moveToIndex(0)
+			self["list"].selectionEnabled(0)
 			self["sublist"].selectionEnabled(1)
 			self.selectionSubChanged()
 
