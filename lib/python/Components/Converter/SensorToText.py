@@ -5,12 +5,12 @@ class SensorToText(Converter, object):
 		Converter.__init__(self, arguments)
 
 	def getText(self):
-		if self.source.value is None:
+		if self.source.getValue() is None:
 			return ""
 		mark = " "
 		unit = self.source.getUnit()
 		if unit in ('C','F'):
 			mark = str('\xc2\xb0')
-		return "%d%s%s" % (self.source.value, mark, unit)
+		return "%d%s%s" % (self.source.getValue(), mark, unit)
 
 	text = property(getText)
