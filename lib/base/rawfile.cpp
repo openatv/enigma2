@@ -27,25 +27,30 @@ eRawFile::~eRawFile()
 	close();
 }
 
-int eRawFile::open(const char *filename, int cached)
+int eRawFile::open(const char *filename)
 {
 	close();
-	m_cached = cached;
+	m_cached = 0;
 	m_basename = filename;
 	scan();
 	m_current_offset = 0;
 	m_last_offset = 0;
-	if (!cached)
-	{
-		m_fd = ::open(filename, O_RDONLY | O_LARGEFILE);
-		return m_fd;
-	} else
-	{
-		m_file = ::fopen64(filename, "rb");
-		if (!m_file)
-			return -1;
-		return 0;
-	}
+	m_fd = ::open(filename, O_RDONLY | O_LARGEFILE);
+	return m_fd;
+}
+
+int eRawFile::openCached(const char *filename)
+{
+	close();
+	m_cached = 1;
+	m_basename = filename;
+	scan();
+	m_current_offset = 0;
+	m_last_offset = 0;
+	m_file = ::fopen64(filename, "rb");
+	if (!m_file)
+		return -1;
+	return 0;
 }
 
 off_t eRawFile::lseek(off_t offset, int whence)
