@@ -580,7 +580,6 @@ RESULT eDVBPVRServiceOfflineOperations::reindex()
 	}
 
 	parser.stopSave();
-	f.close();
 
 	return 0;
 }

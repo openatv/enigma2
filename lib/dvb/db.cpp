@@ -681,7 +681,7 @@ int eDVBDB::loadBouquet(const char *path, int startChannelNum)
 			bouquet.m_bouquet_name="Bouquets (Radio)";
 			bouquet.flushChanges();
 		}
-		return;
+		return startChannelNum;
 	}
 	int entries=0;
 	size_t linesize = 256;
