@@ -286,7 +286,7 @@ class QuickMenu(Screen):
 		if self.menu > 0:
 			self.okSubList()
 		else:
-			self.okList()
+			self.goRight()
 
 
 #####################################################################
