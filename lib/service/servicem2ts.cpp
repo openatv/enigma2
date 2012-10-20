@@ -12,7 +12,7 @@ class eM2TSFile: public iTsSource
 	DECLARE_REF(eM2TSFile);
 	eSingleLock m_lock;
 public:
-	eM2TSFile(const char *filename, bool cached=false);
+	eM2TSFile(const char *filename);
 	~eM2TSFile();
 
 	// iTsSource
@@ -23,10 +23,9 @@ public:
 	int valid();
 private:
 	int m_sync_offset;
-	int m_fd;     /* for uncached */
-	FILE *m_file; /* for cached */
-	off_t m_current_offset, m_length;
-	bool m_cached;
+	int m_fd;
+	off_t m_current_offset;
+	off_t m_length;
 	off_t lseek_internal(off_t offset, int whence);
 };
 
@@ -170,33 +169,21 @@ RESULT eStaticServiceM2TSInformation::getEvent(const eServiceReference &ref, ePt
 
 DEFINE_REF(eM2TSFile);
 
-eM2TSFile::eM2TSFile(const char *filename, bool cached)
-	:m_lock(false), m_sync_offset(0), m_fd(-1), m_file(NULL), m_current_offset(0), m_length(0), m_cached(cached)
+eM2TSFile::eM2TSFile(const char *filename):
+	m_lock(false),
+	m_sync_offset(0),
+	m_fd(::open(filename, O_RDONLY | O_LARGEFILE)),
+	m_current_offset(0),
+	m_length(0)
 {
-	if (!m_cached)
-		m_fd = ::open(filename, O_RDONLY | O_LARGEFILE);
-	else
-		m_file = ::fopen64(filename, "rb");
-	if (valid())
+	if (m_fd != -1)
 		m_current_offset = m_length = lseek_internal(0, SEEK_END);
 }
 
 eM2TSFile::~eM2TSFile()
 {
-	if (m_cached)
-	{
-		if (m_file)
-		{
-			::fclose(m_file);
-			m_file = 0;
-		}
-	}
-	else
-	{
-		if (m_fd >= 0)
-			::close(m_fd);
-		m_fd = -1;
-	}
+	if (m_fd != -1)
+		::close(m_fd);
 }
 
 off_t eM2TSFile::lseek(off_t offset, int whence)
@@ -215,14 +202,7 @@ off_t eM2TSFile::lseek_internal(off_t offset, int whence)
 {
 	off_t ret;
 
-	if (!m_cached)
-		ret = ::lseek(m_fd, offset, whence);
-	else
-	{
-		if (::fseeko(m_file, offset, whence) < 0)
-			perror("fseeko");
-		ret = ::ftello(m_file);
-	}
+	ret = ::lseek(m_fd, offset, whence);
 	return ret <= 0 ? ret : (ret % 192) + (ret*188) / 192;
 }
 
@@ -246,10 +226,7 @@ sync:
 
 	while (rd < count) {
 		size_t ret;
-		if (!m_cached)
-			ret = ::read(m_fd, tmp, 192);
-		else
-			ret = ::fread(tmp, 1, 192, m_file);
+		ret = ::read(m_fd, tmp, 192);
 		if (ret < 0 || ret < 192)
 			return rd ? rd : ret;
 
@@ -261,10 +238,7 @@ sync:
 			}
 			else {
 				int x=0;
-				if (!m_cached)
-					ret = ::read(m_fd, tmp+192, 384);
-				else
-					ret = ::fread(tmp+192, 1, 384, m_file);
+				ret = ::read(m_fd, tmp+192, 384);
 
 #if 0
 				eDebugNoNewLine("m2ts out of sync at pos %lld, real %lld:", offset + m_sync_offset, m_current_offset);
@@ -301,10 +275,7 @@ sync:
 
 int eM2TSFile::valid()
 {
-	if (!m_cached)
-		return m_fd != -1;
-	else
-		return !!m_file;
+	return m_fd != -1;
 }
 
 off_t eM2TSFile::length()
