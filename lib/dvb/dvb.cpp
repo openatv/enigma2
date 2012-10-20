@@ -1338,17 +1338,17 @@ protected:
 	int m_packet_size;
 	int m_parity_switch_delay;
 	int m_parity;
-	int filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining);
+	void filterRecordData(const unsigned char *data, int len);
 };
 
-int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, size_t &current_span_remaining)
+void eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len)
 {
 	if (m_parity_switch_delay)
 	{
 		int offset;
 		for (offset = 0; offset < len; offset += m_packet_size)
 		{
-			unsigned char *pkt = (unsigned char*)_data + offset + m_packet_size - 188;
+			const unsigned char *pkt = _data + offset + m_packet_size - 188;
 			if (pkt[3] & 0xc0)
 			{
 				int parity = (pkt[3] & 0x40) ? 1 : 0;
@@ -1364,171 +1364,6 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 			}
 		}
 	}
-#if 0
-	if (m_timebase_change)
-	{
-		eDebug("timebase change: %d", m_timebase_change);
-		int offset;
-		for (offset = 0; offset < len; offset += 188)
-		{
-			unsigned char *pkt = (unsigned char*)_data + offset;
-			if (pkt[1] & 0x40) /* pusi */
-			{
-				if (pkt[3] & 0x20) // adaption field present?
-					pkt += pkt[4] + 4 + 1;  /* skip adaption field and header */
-				else
-					pkt += 4; /* skip header */
-				if (pkt[0] || pkt[1] || (pkt[2] != 1))
-				{
-					eWarning("broken startcode");
-					continue;
-				}
-
-				pts_t pts = 0;
-
-				if (pkt[7] & 0x80) // PTS present?
-				{
-					pts  = ((unsigned long long)(pkt[ 9]&0xE))  << 29;
-					pts |= ((unsigned long long)(pkt[10]&0xFF)) << 22;
-					pts |= ((unsigned long long)(pkt[11]&0xFE)) << 14;
-					pts |= ((unsigned long long)(pkt[12]&0xFF)) << 7;
-					pts |= ((unsigned long long)(pkt[13]&0xFE)) >> 1;
-
-#if 0
-					off_t off = 0;
-					RESULT r = m_tstools.fixupPTS(off, pts);
-					if (r)
-						eWarning("fixup PTS while trickmode playback failed.\n");
-#endif
-
-					int sec = pts / 90000;
-					int frm = pts % 90000;
-					int min = sec / 60;
-					sec %= 60;
-					int hr = min / 60;
-					min %= 60;
-					int d = hr / 24;
-					hr %= 24;
-
-//					eDebug("original, fixed pts: %016llx %d:%02d:%02d:%02d:%05d", pts, d, hr, min, sec, frm);
-
-					pts += 0x80000000LL;
-					pts *= m_timebase_change;
-					pts >>= 16;
-
-					sec = pts / 90000;
-					frm = pts % 90000;
-					min = sec / 60;
-					sec %= 60;
-					hr = min / 60;
-					min %= 60;
-					d = hr / 24;
-					hr %= 24;
-
-//					eDebug("new pts (after timebase change): %016llx %d:%02d:%02d:%02d:%05d", pts, d, hr, min, sec, frm);
-
-					pkt[9] &= ~0xE;
-					pkt[10] = 0;
-					pkt[11] &= ~1;
-					pkt[12] = 0;
-					pkt[13] &= ~1;
-
-					pkt[9]  |= (pts >> 29) & 0xE;
-					pkt[10] |= (pts >> 22) & 0xFF;
-					pkt[11] |= (pts >> 14) & 0xFE;
-					pkt[12] |= (pts >> 7) & 0xFF;
-					pkt[13] |= (pts << 1) & 0xFE;
-				}
-			}
-		}
-	}
-#endif
-
-#if 0
-	if (!m_iframe_search)
-		return len;
-
-	unsigned char *data = (unsigned char*)_data; /* remove that const. we know what we are doing. */
-
-//	eDebug("filterRecordData, size=%d (mod 188=%d), first byte is %02x", len, len %188, data[0]);
-
-	unsigned char *d = data;
-	while ((d + 3 < data + len) && (d = (unsigned char*)memmem(d, data + len - d, "\x00\x00\x01", 3)))
-	{
-		int offset = d - data;
-		int ts_offset = offset - offset % 188; /* offset to the start of TS packet */
-		unsigned char *ts = data + ts_offset;
-		int pid = ((ts[1] << 8) | ts[2]) & 0x1FFF;
-
-		if ((d[3] == 0 || d[3] == 0x09 && d[-1] == 0 && (ts[1] & 0x40)) && (m_pid == pid))  /* picture start */
-		{
-			int picture_type = (d[3]==0 ? (d[5] >> 3) & 7 : (d[4] >> 5) + 1);
-			d += 4;
-
-//			eDebug("%d-frame at %d, offset in TS packet: %d, pid=%04x", picture_type, offset, offset % 188, pid);
-
-			if (m_iframe_state == 1)
-			{
-					/* we are allowing data, and stop allowing data on the next frame.
-					   we now found a frame. so stop here. */
-				memset(data + offset, 0, 188 - (offset%188)); /* zero out rest of TS packet */
-				current_span_remaining = 0;
-				m_iframe_state = 0;
-				unsigned char *fts = ts + 188;
-				while (fts < (data + len))
-				{
-					fts[1] |= 0x1f;
-					fts[2] |= 0xff; /* drop packet */
-					fts += 188;
-				}
-
-				return len; // ts_offset + 188; /* deliver this packet, but not more. */
-			} else
-			{
-				if (picture_type != 1) /* we are only interested in I frames */
-					continue;
-
-				unsigned char *fts = data;
-				while (fts < ts)
-				{
-					fts[1] |= 0x1f;
-					fts[2] |= 0xff; /* drop packet */
-
-					fts += 188;
-				}
-
-				m_iframe_state = 1;
-			}
-		} else if ((d[3] & 0xF0) == 0xE0) /* video stream */
-		{
-				/* verify that this is actually a PES header, not just some ES data */
-			if (ts[1] & 0x40) /* PUSI set */
-			{
-				int payload_start = 4;
-				if (ts[3] & 0x20) /* adaptation field present */
-					payload_start += ts[4] + 1; /* skip AF */
-				if (payload_start == (offset%188)) /* the 00 00 01 should be directly at the payload start, otherwise it's not a PES header */
-				{
-					if (m_pid != pid)
-					{
-						eDebug("now locked to pid %04x (%02x %02x %02x %02x)", pid, ts[0], ts[1], ts[2], ts[3]);
-						m_pid = pid;
-					}
-				}
-			}
-//			m_pid = 0x6e;
-			d += 4;
-		} else
-			d += 4; /* ignore */
-	}
-
-	if (m_iframe_state == 1)
-		return len;
-	else
-		return 0; /* we need find an iframe first */
-#else
-	return len;
-#endif
 }
 
 DEFINE_REF(eDVBChannel);
@@ -1551,7 +1386,7 @@ eDVBChannel::~eDVBChannel()
 	if (m_channel_id)
 		m_mgr->removeChannel(this);
 
-	stopFile();
+	stop();
 }
 
 void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
@@ -2250,7 +2085,7 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 	return 0;
 }
 
-void eDVBChannel::stopSource()
+void eDVBChannel::stop()
 {
 	if (m_pvr_thread)
 	{
@@ -2265,11 +2100,6 @@ void eDVBChannel::stopSource()
 	}
 	m_source = NULL;
 	m_tstools.setSource(m_source);
-}
-
-void eDVBChannel::stopFile()
-{
-	stopSource();
 }
 
 void eDVBChannel::setCueSheet(eCueSheet *cuesheet)
@@ -2340,8 +2170,6 @@ void eDVBChannel::flushPVR(iDVBDemux *decoding_demux)
 			*/
 
 	m_pvr_thread->pause();
-		/* flush internal filepush buffer */
-	m_pvr_thread->flush();
 		/* HACK: flush PVR buffer */
 	::ioctl(m_pvr_fd_dst, 0);
 
