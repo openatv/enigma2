@@ -11,7 +11,8 @@ class eRawFile: public iTsSource
 public:
 	eRawFile(int packetsize = 188);
 	~eRawFile();
-	int open(const char *filename, int cached = 0);
+	int open(const char *filename);
+	int openCached(const char *filename);
 
 	// iTsSource
 	off_t lseek(off_t offset, int whence);

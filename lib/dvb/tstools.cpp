@@ -34,7 +34,7 @@ int eDVBTSTools::openFile(const char *filename, int nostreaminfo)
 	eRawFile *f = new eRawFile();
 	ePtr<iTsSource> src = f;
 
-	if (f->open(filename, 1) < 0)
+	if (f->openCached(filename) < 0)
 		return -1;
 
 	setSource(src, nostreaminfo ? NULL : filename);
