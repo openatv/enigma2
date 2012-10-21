@@ -38,7 +38,7 @@ class SkinSelector(Screen):
 		self["actions"] = NumberActionMap(["SetupActions", "DirectionActions", "TimerEditActions", "ColorActions"],
 		{
 			"ok": self.ok,
-			"back": self.close,
+			"cancel": self.close,
 			"red": self.close,
 			"green": self.ok,
 			"up": self.up,
