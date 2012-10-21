@@ -7,6 +7,11 @@ from Components.Ipkg import IpkgComponent
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
 from enigma import eTimer, getBoxType, eDVBDB
+from urllib import urlopen
+import socket
+import os
+import re
+import time
 
 class UpdatePlugin(Screen):
 	skin = """
@@ -62,9 +67,6 @@ class UpdatePlugin(Screen):
 		self.activityTimer.callback.remove(self.checkTraficLight)
 		self.activityTimer.start(100, False)
 
-		from urllib import urlopen
-		import socket
-		import os
 		currentTimeoutDefault = socket.getdefaulttimeout()
 		socket.setdefaulttimeout(3)
 		message = ""
@@ -87,6 +89,20 @@ class UpdatePlugin(Screen):
 		else:
 			message += "\n" + _("Do you want to update your receiver?")
 			self.session.openWithCallback(self.startActualUpdate, MessageBox, message, default = default, picon = picon)
+
+	def getLatestImageTimestamp(self):
+		currentTimeoutDefault = socket.getdefaulttimeout()
+		socket.setdefaulttimeout(3)
+		latestImageTimestamp = ""
+		try:
+			# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
+			# run in parallel to the package update.
+			latestImageTimestamp = re.findall('<dd>(.*?)</dd>', urlopen("http://openpli.org/download/"+getBoxType()+"/").read())[0][:16]
+			latestImageTimestamp = time.strftime(_("%d-%b-%Y %-H:%M"), time.strptime(latestImageTimestamp, "%Y/%m/%d %H:%M"))
+		except:
+			pass
+		socket.setdefaulttimeout(currentTimeoutDefault)
+		return latestImageTimestamp
 
 	def startActualUpdate(self,answer):
 		if answer:
@@ -148,7 +164,12 @@ class UpdatePlugin(Screen):
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = len(self.ipkg.getFetchedList())
 				if self.total_packages:
-					message = _("Do you want to update your receiver?") + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
+					latestImageTimestamp = self.getLatestImageTimestamp()
+					if latestImageTimestamp:
+						message = _("Do you want to update your receiver to %s?") % self.getLatestImageTimestamp() + "\n"
+					else:
+						message = _("Do you want to update your receiver?") + "\n"
+					message = message + "(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
 					choices = [(_("Update and reboot (recommended)"), "cold"),
 						(_("Update and ask to reboot"), "hot"),
 						(_("Update channel list only"), "channels"),
