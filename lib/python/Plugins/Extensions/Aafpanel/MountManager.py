@@ -106,7 +106,7 @@ class HddMount(Screen):
 			if not parts:
 				continue
 			device = parts[3]
- 			if not search('sd[a-z][1-9]',device):
+			if not search('sd[a-z][1-9]',device):
 				continue
 			if device in list2:
 				continue
@@ -264,11 +264,11 @@ class HddMount(Screen):
 		sel = self['list'].getCurrent()
 		if sel:
 			parts = sel[1].split()
-			self.device = parts[5]
+			self.device = parts[4].split(':')[1]
 			self.mountp = parts[3]
-			self.Console.ePopen('umount /media/hdd')
-			self.Console.ePopen('umount ' + self.device)
 			if self.mountp.find('/media/hdd') < 0:
+				self.Console.ePopen('umount /media/hdd')
+				self.Console.ePopen('umount ' + self.device)
 				self.Console.ePopen("/sbin/blkid | grep " + self.device, self.add_fstab, [self.device, self.mountp])
 			else:
 				self.session.open(MessageBox, _("This Device is already mounted as HDD."), MessageBox.TYPE_INFO, timeout = 10, close_on_any_key = True)
@@ -279,6 +279,7 @@ class HddMount(Screen):
 		self.device_uuid_tmp = result.split('UUID=')
 		self.device_uuid_tmp = self.device_uuid_tmp[1].replace('"',"")
 		self.device_uuid_tmp = self.device_uuid_tmp.replace('\n',"")
+		self.device_uuid_tmp = self.device_uuid_tmp.split()[0]
 		self.device_uuid = 'UUID=' + self.device_uuid_tmp
 		if not path.exists(self.mountp):
 			mkdir(self.mountp, 0755)
@@ -341,7 +342,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			if not parts:
 				continue
 			device = parts[3]
- 			if not search('sd[a-z][1-9]',device):
+			if not search('sd[a-z][1-9]',device):
 				continue
 			if device in list2:
 				continue
