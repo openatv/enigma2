@@ -289,10 +289,8 @@ public:
 
 		/* iDVBPVRChannel */
 	RESULT playFile(const char *file);
-	void stopFile();
-
 	RESULT playSource(ePtr<iTsSource>& source, const char *priv=NULL);
-	void stopSource();
+	void stop();
 
 	void setCueSheet(eCueSheet *cuesheet);
 	void setOfflineDecodeMode(int parityswitchdelay);
