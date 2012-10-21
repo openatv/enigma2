@@ -556,7 +556,7 @@ RESULT eDVBPVRServiceOfflineOperations::reindex()
 
 	eRawFile f;
 
-	int err = f.open(m_ref.path.c_str(), 0);
+	int err = f.open(m_ref.path.c_str());
 	if (err < 0)
 		return -1;
 
