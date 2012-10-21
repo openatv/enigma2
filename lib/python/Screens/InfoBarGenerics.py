@@ -682,6 +682,9 @@ class InfoBarEPG:
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
 				"showEventInfo": (self.showDefaultEPG, _("Show EPG...")),
+				"showCurrentEvent": (self.openEventView, _("Show Current Info...")),
+				"showSingleCurrentEPG": (self.openSingleServiceEPG, _("Show single channel EPG...")),
+				"showBouquetEPG": (self.openMultiServiceEPG, _("Show Bouquet EPG...")),
 				"showEventInfoPlugin": (self.showEventInfoPlugins, _("List EPG functions...")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 			})
