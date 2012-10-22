@@ -55,11 +55,11 @@ class EPGList(HTMLComponent, GUIComponent):
 			assert(type == EPG_TYPE_SIMILAR)
 			self.l.setBuildFunc(self.buildSimilarEntry)
 		self.epgcache = eEPGCache.getInstance()
-		self.clock_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock.png'))
-		self.clock_add_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_add.png'))
-		self.clock_pre_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png'))
-		self.clock_post_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_post.png'))
-		self.clock_prepost_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png'))
+		self.clocks = [ LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_add.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_post.png')) ]
 
 	def getEventFromId(self, service, eventid):
 		event = None
@@ -142,40 +142,17 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.datetime_rect = Rect(width/20*2, 0, width/20*5-15, height)
 			self.service_rect = Rect(width/20*7, 0, width/20*13, height)
 
-	def getClockPixmap(self, refstr, beginTime, duration, eventId):
-		pre_clock = 1
-		post_clock = 2
-		clock_type = 0
-		endTime = beginTime + duration
-		for x in self.timer.timer_list:
-			if x.service_ref.ref.toString() == refstr:
-				if x.eit == eventId:
-					return self.clock_pixmap
-				beg = x.begin
-				end = x.end
-				if beginTime > beg and beginTime < end and endTime > end:
-					clock_type |= pre_clock
-				elif beginTime < beg and endTime > beg and endTime < end:
-					clock_type |= post_clock
-		if clock_type == 0:
-			return self.clock_add_pixmap
-		elif clock_type == pre_clock:
-			return self.clock_pre_pixmap
-		elif clock_type == post_clock:
-			return self.clock_post_pixmap
-		else:
-			return self.clock_prepost_pixmap
-		
 	def getPixmapForEntry(self, service, eventId, beginTime, duration):
-		rec=beginTime and (self.timer.isInTimer(eventId, beginTime, duration, service))
-		if rec:
-			clock_pic = self.getClockPixmap(service, beginTime, duration, eventId)
+		if not beginTime:
+			return None
+		rec = self.timer.isInTimer(eventId, beginTime, duration, service)
+		if rec is not None:
+			return self.clocks[rec[1]]
 		else:
-			clock_pic = None
-		return (clock_pic, rec)
+			return None
 
 	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
-		(clock_pic, rec) = self.getPixmapForEntry(service, eventId, beginTime, duration)
+		clock_pic = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1=self.weekday_rect
 		r2=self.datetime_rect
 		r3=self.descr_rect
@@ -185,7 +162,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_RIGHT, self.days[t[6]]),
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_RIGHT, "%2d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
 		]
-		if rec:
+		if clock_pic is not None:
 			res.extend((
 				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.x, r3.y, 21, 21, clock_pic),
 				(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 25, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT, EventName)
@@ -195,7 +172,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
-		(clock_pic, rec) = self.getPixmapForEntry(service, eventId, beginTime, duration)
+		clock_pic = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1=self.weekday_rect
 		r2=self.datetime_rect
 		r3=self.service_rect
@@ -205,7 +182,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_RIGHT, self.days[t[6]]),
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_RIGHT, "%2d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
 		]
-		if rec:
+		if clock_pic is not None:
 			res.extend((
 				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.x, r3.y, 21, 21, clock_pic),
 				(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 25, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT, service_name)
@@ -215,13 +192,13 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def buildMultiEntry(self, changecount, service, eventId, beginTime, duration, EventName, nowTime, service_name):
-		(clock_pic, rec) = self.getPixmapForEntry(service, eventId, beginTime, duration)
+		clock_pic = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1=self.service_rect
 		r2=self.progress_rect
 		r3=self.descr_rect
 		r4=self.start_end_rect
 		res = [ None ] # no private data needed
-		if rec:
+		if clock_pic is not None:
 			res.extend((
 				(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w-21, r1.h, 0, RT_HALIGN_LEFT, service_name),
 				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r1.x+r1.w-16, r1.y, 21, 21, clock_pic)
