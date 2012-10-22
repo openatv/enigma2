@@ -63,7 +63,7 @@ def setRTCtime(wutime):
 def getFPWakeuptime():
 	ret = 0
 	try:
-		ret = long(open("/proc/stb/fp/wakeup_time", "a").read())
+		ret = long(open("/proc/stb/fp/wakeup_time", "r").read())
 	except IOError:
 		try:
 			fp = open("/dev/dbox/fp0")
