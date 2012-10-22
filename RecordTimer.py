@@ -716,9 +716,8 @@ class RecordTimer(timer.Timer):
 
 	def isInTimer(self, eventid, begin, duration, service):
 		time_match = 0
-		chktime = None
-		chktimecmp = None
-		chktimecmp_end = None
+		type = 0
+		bt = None
 		end = begin + duration
 		refstr = str(service)
 		for x in self.timer_list:
@@ -751,30 +750,54 @@ class RecordTimer(timer.Timer):
 							break
 			if check:
 				if x.repeated != 0:
-					if chktime is None:
-						chktime = localtime(begin)
-						chktimecmp = chktime.tm_wday * 1440 + chktime.tm_hour * 60 + chktime.tm_min
-						chktimecmp_end = chktimecmp + (duration / 60)
-					time = localtime(x.begin)
-					for y in (0, 1, 2, 3, 4, 5, 6):
-						if x.repeated & (1 << y) and (x.begin <= begin or begin <= x.begin <= end):
-							timecmp = y * 1440 + time.tm_hour * 60 + time.tm_min
-							if timecmp <= chktimecmp < (timecmp + ((x.end - x.begin) / 60)):
-								time_match = ((timecmp + ((x.end - x.begin) / 60)) - chktimecmp) * 60
-							elif chktimecmp <= timecmp < chktimecmp_end:
-								time_match = (chktimecmp_end - timecmp) * 60
-				else: #if x.eit is None:
-					if begin <= x.begin <= end:
-						diff = end - x.begin
-						if time_match < diff:
-							time_match = diff
+					if bt is None:
+						bt = localtime(begin)
+						et = localtime(end)
+						bday = bt.tm_wday;
+						begin2 = bday * 1440 + bt.tm_hour * 60 + bt.tm_min
+						end2   = et.tm_wday * 1440 + et.tm_hour * 60 + et.tm_min
+					if x.repeated & (1 << bday):
+						xbt = localtime(x.begin)
+						xet = localtime(x.end)
+						xbegin = bday * 1440 + xbt.tm_hour * 60 + xbt.tm_min
+						xend   = bday * 1440 + xet.tm_hour * 60 + xet.tm_min
+						if xend < xbegin:
+							xend += 1440
+						if begin2 < xbegin <= end2:
+							if xend < end2: # recording within event
+								time_match = (xend - xbegin) * 60
+								type = 3
+							else:           # recording last part of event
+								time_match = (end2 - xbegin) * 60
+								type = 1
+						elif xbegin <= begin2 <= xend:
+							if xend < end2: # recording first part of event
+								time_match = (xend - begin2) * 60
+								type = 4
+							else:           # recording whole event
+								time_match = (end2 - begin2) * 60
+								type = 2
+				else:
+					if begin < x.begin <= end:
+						if x.end < end: # recording within event
+							time_match = x.end - x.begin
+							type = 3
+						else:           # recording last part of event
+							time_match = end - x.begin
+							type = 1
 					elif x.begin <= begin <= x.end:
-						diff = x.end - begin
-						if time_match < diff:
-							time_match = diff
+						if x.end < end: # recording first part of event
+							time_match = x.end - begin
+							type = 4
+						else:           # recording whole event
+							time_match = end - begin
+							type = 2
 				if time_match:
 					break
-		return time_match
+		if time_match:
+			return (time_match, type)
+		else:
+			return None
 
 	def removeEntry(self, entry):
 		print "[Timer] Remove " + str(entry)
