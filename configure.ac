@@ -252,6 +252,9 @@ data/rc_models/tm/Makefile
 data/rc_models/vu/Makefile
 data/rc_models/vu2/Makefile
 data/rc_models/xp1000/Makefile
+data/rc_models/dmm0/Makefile
+data/rc_models/dmm1/Makefile
+data/rc_models/dmm2/Makefile
 data/skin_default/Makefile
 data/skin_default/menu/Makefile
 data/skin_default/icons/Makefile

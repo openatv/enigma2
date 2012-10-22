@@ -1,3 +1,4 @@
+from enigma import getBoxType
 import os
 
 class RcModel:
@@ -15,6 +16,8 @@ class RcModel:
 	RCTYPE_ET6500 = 11
 	RCTYPE_ET4000 = 12
 	RCTYPE_XP1000 = 13
+	RCTYPE_DMM1 = 14
+	RCTYPE_DMM2 = 15
 
 	def __init__(self):
 		self.currentRcType = self.RCTYPE_DMM
@@ -34,8 +37,14 @@ class RcModel:
 	def readRcTypeFromProc(self):
 		if os.path.exists('/proc/stb/info/hwmodel'):
 			model = self.readFile('/proc/stb/info/hwmodel')
-			if model == 'twin':
+			if model == 'twin' or model == '2t':
 				self.currentRcType = self.RCTYPE_TM
+		elif getBoxType() == 'dm8000':
+				self.currentRcType = self.RCTYPE_DMM
+		elif getBoxType() == 'dm7020hd':
+				self.currentRcType = self.RCTYPE_DMM2	
+		elif getBoxType() == 'dm800' or getBoxType() == 'dm800se' or getBoxType() == 'dm500hd':
+				self.currentRcType = self.RCTYPE_DMM1
 		elif os.path.exists('/proc/stb/info/boxtype'):
 			model = self.readFile('/proc/stb/info/boxtype')
 			if len(model) == 6 and model[:2] == 'et' or model[:2] == 'xp':
@@ -75,7 +84,11 @@ class RcModel:
 			elif model == 'ini-7000':
 				self.currentRcType = self.RCTYPE_INI7000
 		elif os.path.exists('/proc/stb/info/vumodel'):
-			self.currentRcType = self.RCTYPE_VU
+			model = self.readFile('/proc/stb/info/vumodel')
+			if model == 'ultimo':
+				self.currentRcType = self.RCTYPE_VU2
+			else:
+				self.currentRcType = self.RCTYPE_VU	
 
 	def getRcLocation(self):
 		if self.currentRcType == self.RCTYPE_ET9X00:
@@ -104,5 +117,13 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/tm/'
 		elif self.currentRcType == self.RCTYPE_VU:
 			return '/usr/share/enigma2/rc_models/vu/'
+		elif self.currentRcType == self.RCTYPE_VU2:
+			return '/usr/share/enigma2/rc_models/vu2/'	
+		elif self.currentRcType == self.RCTYPE_DMM:
+			return '/usr/share/enigma2/rc_models/dmm0/'
+		elif self.currentRcType == self.RCTYPE_DMM1:
+			return '/usr/share/enigma2/rc_models/dmm1/'
+		elif self.currentRcType == self.RCTYPE_DMM2:
+			return '/usr/share/enigma2/rc_models/dmm2/'			
 
 rc_model = RcModel()
