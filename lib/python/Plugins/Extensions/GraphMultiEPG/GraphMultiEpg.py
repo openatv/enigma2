@@ -80,6 +80,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.nowEvPix = None
 		self.othEvPix = None
 		self.selEvPix = None
+		self.recEvPix = None
 
 		self.foreColor = 0xffffff
 		self.foreColorSelected = 0xffc000
@@ -286,6 +287,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.l.setItemHeight(itemHeight)
 
 		self.picload.setPara((self.listWidth, itemHeight - 2 * self.eventBorderWidth, 0, 0, 1, 1, "#00000000"))
+
 		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentEvent.png'), 0, 0, False)
 		self.nowEvPix = self.picload.getData()
 
@@ -294,6 +296,9 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedEvent.png'), 0, 0, False)
 		self.selEvPix = self.picload.getData()
+
+		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/RecordingEvent.png'), 0, 0, False)
+		self.recEvPix = self.picload.getData()
 
 	def setEventFontsize(self):
 		self.l.setFont(1, gFont(self.entryFontName, self.entryFontSize + config.misc.graph_mepg.ev_fontsize.getValue()))
@@ -430,6 +435,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				stime = ev[2]
 				duration = ev[3]
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
+				rec = self.timer.isInTimer(ev[0], stime, duration, service)
 
 				# event box background
 				if stime <= now and now < stime + duration:
@@ -442,6 +448,8 @@ class EPGList(HTMLComponent, GUIComponent):
 				if selected and self.select_rect.x == xpos + left and self.selEvPix:
 					bgpng = self.selEvPix
 					backColorSel = None
+				elif rec is not None and rec[1] == 2:
+					bgpng = self.recEvPix
 				elif stime <= now and now < stime + duration:
 					bgpng = self.nowEvPix
 				else:
@@ -473,7 +481,6 @@ class EPGList(HTMLComponent, GUIComponent):
 						color = foreColor, color_sel = self.foreColorSelected,
 						backcolor_sel = backColorSel))
 				# recording icons
-				rec = self.timer.isInTimer(ev[0], stime, duration, service)
 				if rec is not None and ewidth > 23:
 					res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (left + xpos + ewidth - 22, top + height - 22), size = (21, 21),
