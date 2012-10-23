@@ -225,26 +225,26 @@ class Devices(Screen):
 		self.list = '\n'.join(self.list)
 		self["hdd"].setText(self.list)
 
-		f = open('/proc/mounts', 'r')
-		for line in f.readlines():
-			self.parts = line.strip().split()
-			if self.parts[0] and (self.parts[0].startswith('192') or self.parts[0].startswith('//192')):
-				self.Console.ePopen("df -mh " + self.parts[1] + " | grep -v '^Filesystem'", self.Stage1Complete)
-			else:
-				self["mounts"].setText(_('none'))
-				self["actions"].setEnabled(True)
-		f.close()
+		self.Console.ePopen("df -mh | grep -v '^Filesystem'", self.Stage1Complete)
 
 	def Stage1Complete(self,result, retval, extra_args = None):
-		mount = str(result).replace('\n','')
-		mount = mount.split()
-		ipaddress = mount[0]
-		mounttotal = mount[1]
-		mountfree = mount[3]
+		result = result.replace('\n                        ',' ').split('\n')
+		self.mountinfo = ""
+		for line in result:
+			self.parts = line.split()
+			if line and self.parts[0] and (self.parts[0].startswith('192') or self.parts[0].startswith('//192')):
+				line = line.split()
+				ipaddress = line[0]
+				mounttotal = line[1]
+				mountfree = line[3]
+				if self.mountinfo:
+					self.mountinfo += "\n"
+				self.mountinfo += "%s (%sB, %sB %s)" % (ipaddress, mounttotal, mountfree, _("free"))
+
 		if self.mountinfo:
-			self.mountinfo += "\n"
-		self.mountinfo += "%s (%sB, %sB %s)" % (ipaddress, mounttotal, mountfree, _("free"))
-		self["mounts"].setText(self.mountinfo)
+			self["mounts"].setText(self.mountinfo)
+		else:
+			self["mounts"].setText(_('none'))
 		self["actions"].setEnabled(True)
 
 	def createSummary(self):
