@@ -871,7 +871,9 @@ class RecordTimer(timer.Timer):
 				if time_match:
 					break
 		if time_match:
-			return (time_match, type)
+			if x.justplay == 1 and type == 4 and (x.end - (x.begin + (config.recording.margin_before.getValue() * 60))) == 1:
+				type = 2
+			return (time_match, type, x.justplay)
 		else:
 			return None
 
