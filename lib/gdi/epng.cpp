@@ -71,29 +71,35 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 	int color_type;
 	int interlace_type;
 	int channels;
+	int trns;
 	
 	png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type, 0, 0);
 	channels = png_get_channels(png_ptr, info_ptr);
+	trns = png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS);
 	//eDebug("[ePNG] %s: before %dx%dx%dbpcx%dchan coltyp=%d", filename, (int)width, (int)height, bit_depth, channels, color_type);
 
 	/*
-	 * convert 1,2 and 4 bpp to 8bpp images that enigma can blit
+	 * gPixmaps use 8 bits per channel. rgb pixmaps are stored as abgr.
+	 * So convert 1,2 and 4 bpc to 8bpc images that enigma can blit
+	 * so add 'empty' alpha channel
 	 * Expand G+tRNS to GA, RGB+tRNS to RGBA
 	 */
-	if (color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8)
-		png_set_expand_gray_1_2_4_to_8(png_ptr);
-	if (color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
-		png_set_gray_to_rgb(png_ptr);
-
-	if (bit_depth == 16) // convert 16 bit images to 8 bit per channel!
+	if (bit_depth == 16)
 		png_set_strip_16(png_ptr);
-
 	if (bit_depth < 8)
 		png_set_packing (png_ptr);
 
-	// gPixmaps use 4 bytes for 24 bit images so add 'empty' alpha channel
+	if (color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8)
+		png_set_expand_gray_1_2_4_to_8(png_ptr);
+	if (color_type == PNG_COLOR_TYPE_GRAY && trns)
+		png_set_tRNS_to_alpha(png_ptr);
+	if ((color_type == PNG_COLOR_TYPE_GRAY && trns) || color_type == PNG_COLOR_TYPE_GRAY_ALPHA) {
+		png_set_gray_to_rgb(png_ptr);
+		png_set_bgr(png_ptr);
+	}
+
 	if (color_type == PNG_COLOR_TYPE_RGB) {
-		if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))
+		if (trns)
 			png_set_tRNS_to_alpha(png_ptr);
 		else
 			png_set_add_alpha(png_ptr, 255, PNG_FILLER_AFTER);
@@ -136,11 +142,13 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 				surface->clut.data[i].g = palette[i].green;
 				surface->clut.data[i].b = palette[i].blue;
 			}
-			if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS)) {
+			if (trns) {
 				png_byte *trans;
 				png_get_tRNS(png_ptr, info_ptr, &trans, &num_trans, 0);
 				for (int i = 0; i < num_trans; i++)
 					surface->clut.data[i].a = 255 - trans[i];
+				for (int i = num_trans; i < num_palette; i++)
+					surface->clut.data[i].a = 0;
 			}
 		}
 		else {
