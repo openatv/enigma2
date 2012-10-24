@@ -78,11 +78,11 @@ class EPGList(HTMLComponent, GUIComponent):
 			assert(type == EPG_TYPE_SIMILAR)
 			self.l.setBuildFunc(self.buildSimilarEntry)
 		self.epgcache = eEPGCache.getInstance()
-		self.clock_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock.png'))
-		self.clock_add_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_add.png'))
-		self.clock_pre_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png'))
-		self.clock_post_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_post.png'))
-		self.clock_prepost_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png'))
+		self.clocks = [ LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_add.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_post.png')) ]
 
 		self.nowEvPix = None
 		self.nowSelEvPix = None
@@ -548,8 +548,17 @@ class EPGList(HTMLComponent, GUIComponent):
 		xpos, width = self.calcEntryPosAndWidthHelper(ev_start, ev_duration, time_base, time_base + time_epoch * 60, event_rect.width())
 		return xpos + event_rect.left(), width
 
+	def getPixmapForEntry(self, service, eventId, beginTime, duration):
+		if not beginTime:
+			return None
+		rec = self.timer.isInTimer(eventId, beginTime, duration, service)
+		if rec is not None:
+			return self.clocks[rec[1]]
+		else:
+			return None
+
 	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
-		(clock_pic, rec) = self.getPixmapForEntry(service, eventId, beginTime, duration)
+		clock_pic = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1 = self.weekday_rect
 		r2 = self.datetime_rect
 		r3 = self.descr_rect
@@ -560,7 +569,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t))
 		]
-		if rec:
+		if clock_pic is not None:
 			res.extend((
 				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.x, r3.y, 21, 21, clock_pic),
 				(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 25, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
@@ -570,7 +579,7 @@ class EPGList(HTMLComponent, GUIComponent):
  		return res
 
 	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
-		(clock_pic, rec) = self.getPixmapForEntry(service, eventId, beginTime, duration)
+		clock_pic = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1 = self.weekday_rect
 		r2 = self.datetime_rect
 		r3 = self.service_rect
@@ -580,7 +589,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t))
 		]
-		if rec:
+		if clock_pic is not None:
 			res.extend((
 				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.x, r3.y, 21, 21, clock_pic),
 				(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 25, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name)
@@ -590,13 +599,13 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def buildMultiEntry(self, changecount, service, eventId, beginTime, duration, EventName, nowTime, service_name):
-		(clock_pic, rec) = self.getPixmapForEntry(service, eventId, beginTime, duration)
+		clock_pic = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1 = self.service_rect
 		r2 = self.progress_rect
 		r3 = self.descr_rect
 		r4 = self.start_end_rect
 		res = [ None ] # no private data needed
-		if rec:
+		if clock_pic is not None:
 			res.extend((
 				(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w-21, r1.h, 0, RT_HALIGN_LEFT, service_name),
 				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r1.x+r1.w-16, r1.y, 21, 21, clock_pic)
@@ -714,7 +723,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				stime = ev[2]
 				duration = ev[3]
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
-				rec = stime and self.timer.isInTimer(ev[0], stime, duration, service)
+				rec = self.timer.isInTimer(ev[0], stime, duration, service)
 				rectype = self.GraphEPGRecRed(service, ev[2], ev[3], ev[0])
 				if self.eventNameAlign.lower() == 'left':
 					alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
@@ -722,7 +731,26 @@ class EPGList(HTMLComponent, GUIComponent):
 					alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
 
 				if selected and self.select_rect.x == xpos + left:
-					if stime <= now and now < (stime + duration):
+					if rec is not None and rec[1] == 2:
+						if rectype == "record":
+							foreColor = self.foreColorRecord
+							backColor = self.backColorRecord
+							foreColorSel = self.foreColorRecordSelected
+							backColorSel = self.backColorRecordSelected
+							bgpng = self.recSelEvPix
+							if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
+								backColor = None
+								backColorSel = None
+						elif rectype == "justplay":
+							foreColor = self.foreColorZap
+							backColor = self.backColorZap
+							foreColorSel = self.foreColorZapSelected
+							backColorSel = self.backColorZapSelected
+							bgpng = self.zapSelEvPix
+							if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
+								backColor = None
+								backColorSel = None
+					elif stime <= now and now < (stime + duration):
 						foreColor = self.foreColorNow
 						backColor = self.backColorNow
 						foreColorSel = self.foreColorNowSelected
@@ -737,6 +765,25 @@ class EPGList(HTMLComponent, GUIComponent):
 						foreColorSel = self.foreColorSelected
 						backColorSel = self.backColorSelected
 						bgpng = self.selEvPix
+						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
+							backColor = None
+							backColorSel = None
+				elif rec is not None and rec[1] == 2:
+					if rectype == "record":
+						foreColor = self.foreColorRecord
+						backColor = self.backColorRecord
+						foreColorSel = self.foreColorRecordSelected
+						backColorSel = self.backColorRecordSelected
+						bgpng = self.recEvPix
+						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
+							backColor = None
+							backColorSel = None
+					elif rectype == "justplay":
+						foreColor = self.foreColorZap
+						backColor = self.backColorZap
+						foreColorSel = self.foreColorZapSelected
+						backColorSel = self.backColorZapSelected
+						bgpng = self.zapEvPix
 						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
 							backColor = None
 							backColorSel = None
@@ -758,45 +805,6 @@ class EPGList(HTMLComponent, GUIComponent):
 					if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
 						backColor = None
 						backColorSel = None
-
-				if rec and selected and self.select_rect.x == xpos + left:
-					if rectype == "record":
-						foreColor = self.foreColorRecord
-						backColor = self.backColorRecord
-						foreColorSel = self.foreColorRecordSelected
-						backColorSel = self.backColorRecordSelected
-						bgpng = self.recSelEvPix
-						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
-							backColor = None
-							backColorSel = None
-					elif rectype == "justplay":
-						foreColor = self.foreColorZap
-						backColor = self.backColorZap
-						foreColorSel = self.foreColorZapSelected
-						backColorSel = self.backColorZapSelected
-						bgpng = self.zapSelEvPix
-						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
-							backColor = None
-							backColorSel = None
-				elif rec:
-					if rectype == "record":
-						foreColor = self.foreColorRecord
-						backColor = self.backColorRecord
-						foreColorSel = self.foreColorRecordSelected
-						backColorSel = self.backColorRecordSelected
-						bgpng = self.recEvPix
-						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
-							backColor = None
-							backColorSel = None
-					elif rectype == "justplay":
-						foreColor = self.foreColorZap
-						backColor = self.backColorZap
-						foreColorSel = self.foreColorZapSelected
-						backColorSel = self.backColorZapSelected
-						bgpng = self.zapEvPix
-						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
-							backColor = None
-							backColorSel = None
 
 				# event box background
 				if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
@@ -826,10 +834,10 @@ class EPGList(HTMLComponent, GUIComponent):
 						backcolor = backColor, backcolor_sel = backColorSel))
 
 				# recording icons
-				if rec:
+				if rec is not None and ewidth > 23:
 					res.append(MultiContentEntryPixmapAlphaBlend(
 						pos = (left+xpos+ewidth-22, top+height-22), size = (21, 21),
-						png = self.getClockPixmap(service, stime, duration, ev[0]),
+						png = self.clocks[rec[1]],
 						backcolor_sel = backColorSel))
 		else:
 			# event box background
@@ -1001,38 +1009,6 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def resetOffset(self):
 		self.offs = 0
-
-	def getClockPixmap(self, refstr, beginTime, duration, eventId):
-		pre_clock = 1
-		post_clock = 2
-		clock_type = 0
-		endTime = beginTime + duration
-		for x in self.timer.timer_list:
-			if x.service_ref.ref.toString() == refstr:
-				if x.eit == eventId:
-					return self.clock_pixmap
-				beg = x.begin
-				end = x.end
-				if beginTime > beg and beginTime < end and endTime > end:
-					clock_type |= pre_clock
-				elif beginTime < beg and endTime > beg and endTime < end:
-					clock_type |= post_clock
-		if clock_type == 0:
-			return self.clock_add_pixmap
-		elif clock_type == pre_clock:
-			return self.clock_pre_pixmap
-		elif clock_type == post_clock:
-			return self.clock_post_pixmap
-		else:
-			return self.clock_prepost_pixmap
-
-	def getPixmapForEntry(self, service, eventId, beginTime, duration):
-		rec = beginTime and (self.timer.isInTimer(eventId, beginTime, duration, service))
-		if rec:
-			clock_pic = self.getClockPixmap(service, beginTime, duration, eventId)
-		else:
-			clock_pic = None
-		return (clock_pic, rec)
 
 	def GraphEPGRecRed(self, refstr, beginTime, duration, eventId):
 		for x in self.timer.timer_list:

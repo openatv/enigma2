@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-04 11:30+0100\n"
-"PO-Revision-Date: 2012-10-05 14:00+0100\n"
+"POT-Creation-Date: 2012-10-20 14:52+0100\n"
+"PO-Revision-Date: 2012-10-23 10:53+0100\n"
 "Last-Translator: DeLaGrooV <delagroov@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -269,9 +269,6 @@ msgstr "(optioneel DVD audio menu weergeven)"
 
 msgid "* = Restart Required"
 msgstr "* = Herstart noodzakelijk"
-
-msgid "* = Restart timeshift required"
-msgstr "* = Herstarten timeshift noodzakelijk"
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Alleen beschikbaar indien meer dan één interface actief is."
@@ -668,9 +665,6 @@ msgstr "Geavanceerde video instellingen"
 msgid "After event"
 msgstr "Na opname"
 
-msgid "After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that."
-msgstr ""
-
 msgid "Album"
 msgstr "Album"
 
@@ -687,7 +681,7 @@ msgid "All satellites"
 msgstr "Alle satellieten"
 
 msgid "Allow subtitle language to equal audio language"
-msgstr ""
+msgstr "Ondertitel taal overeenkomstig aan audio taal"
 
 msgid "Allow subtitles for hearing impaired"
 msgstr "Geef de voorkeur aan ondertitels voor slechthorenden boven normale ondertitels."
@@ -900,9 +894,6 @@ msgstr "Automatisch"
 
 msgid "Automatic Scan"
 msgstr "Automatisch zoeken"
-
-msgid "Automatic configuration is finished"
-msgstr "Automatische configuratie is gereed"
 
 msgid "Automatic image backup"
 msgstr "Automatische image backup"
@@ -1214,9 +1205,6 @@ msgstr "Wijzig menu pincode"
 msgid "Change step size"
 msgstr "Wijzig stap grootte"
 
-msgid "Change this value if your smartcard can't doesn't handle off-line decoding well; default is '1000'."
-msgstr "Verander deze waarde als uw smartcard het off-line decoderen niet goed afhandelt; default is '1000'."
-
 msgid "Changelog"
 msgstr "Changelog"
 
@@ -1497,31 +1485,31 @@ msgid "Configure the amount of time that will be presented."
 msgstr "Kies het tijdsinterval dat getoond moet worden."
 
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
-msgstr ""
+msgstr "Configureer gedrag van de 'pause' knop wanneer de film gepauzeerd is."
 
 msgid "Configure the behavior when movie playback is manually stopped."
-msgstr ""
+msgstr "Configureer het gedrag wanneer de film handmatig gestopt is."
 
 msgid "Configure the behavior when movie playback is started."
-msgstr ""
+msgstr "Configureer het gedrag wanneer de film gestart is."
 
 msgid "Configure the behavior when reaching the end of a movie, during movie playback."
-msgstr ""
+msgstr "Configureer het gedrag aan het einde van de film."
 
 msgid "Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background."
 msgstr "Bepaal de breeedte van de rand rond ondertitels. De donkere rand maakt het lezen op een lichte achtergrond makkelijker."
 
 msgid "Configure the brightness level of the front panel displa for normal operation."
-msgstr ""
+msgstr "Configureer de helderheid van het front panel display gedurende normaal gebruik."
 
 msgid "Configure the brightness level of the front panel displa for standby."
-msgstr ""
+msgstr "Configureer de helderheid van het front panel display gedurende standby."
 
 msgid "Configure the color of the teletext subtitles."
 msgstr "Bepaal de kleur van de teletekst ondertitels"
 
 msgid "Configure the contrast level of the front panel display."
-msgstr ""
+msgstr "Configureer het contrast van het front panel display"
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "Kies audio taal 1 (hoogste proriteit)"
@@ -1730,9 +1718,6 @@ msgstr "Cool TV Guide"
 msgid "Copy"
 msgstr "Kopieer"
 
-msgid "Correct"
-msgstr "Correct"
-
 msgid ""
 "Could not activate Permanent-Timeshift!\n"
 "Timeshift-Path does not exist"
@@ -1785,9 +1770,6 @@ msgstr "Creëer partitie"
 
 msgid "Create more detailed crash log"
 msgstr "Crash logs met extra informatie"
-
-msgid "Create movie directory"
-msgstr "Creëer opname map"
 
 msgid "Creating AP and SC Files"
 msgstr "Creëer AP en SC bestanden"
@@ -2080,9 +2062,6 @@ msgstr "Toon >16:9 materiaal als"
 msgid "Display and Userinterface"
 msgstr "Scherm- en gebruikersinterface"
 
-msgid "Display message before next played movie"
-msgstr "Toon een bericht alvorens de volgende film te spelen"
-
 msgid "Display message before playing next movie"
 msgstr "Toon een bericht alvorens de volgende film te spelen"
 
@@ -2092,8 +2071,8 @@ msgstr "Display instellingen"
 msgid "Display the EIT now/next eventdata in infobar."
 msgstr "Toon EIT nu/straks programmagegevens in de infobar."
 
-msgid "Do nothing"
-msgstr "geen actie"
+msgid "Do not record"
+msgstr "Niet openemen"
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -2154,9 +2133,6 @@ msgstr "Wilt u echt deze applicatie \"%s\" verwijderen?"
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "Weet u zeker dat u de het markeerpunt van %s wilt wissen?"
 
-msgid "Do you want a pop-up message saying 'a recording has started'?"
-msgstr "Wilt u een pop-up bericht dat aangeeft dat een opname gestart is?"
-
 msgid "Do you want to add any additional information ?"
 msgstr "Wilt u informatie toevoegen?"
 
@@ -2193,12 +2169,6 @@ msgstr "Wilt u opnieuw handmatig zoeken?"
 #, python-format
 msgid "Do you want to download the image to %s ?"
 msgstr "Wilt u het image downloaden naar %s ?"
-
-msgid "Do you want to enable the parental control feature on your STB_BOX?"
-msgstr "Wilt u het Kinderslot  op uw STB_BOX inschakelen?"
-
-msgid "Do you want to install a channel list?"
-msgstr "Wilt u een kanaallijst instaleren?"
 
 msgid "Do you want to install the package:\n"
 msgstr "Wilt u het volgende pakket installeren:\n"
@@ -2660,9 +2630,6 @@ msgstr "Snel"
 msgid "Fast DiSEqC"
 msgstr "Snelle DiSEqC"
 
-msgid "Fast Forward speeds"
-msgstr "Vooruitspoel snelheid"
-
 msgid "Fast Scan"
 msgstr "Fast Scan"
 
@@ -2729,10 +2696,6 @@ msgstr "Formaat"
 
 msgid "Forward volume keys"
 msgstr "Geef volume opdrachten door"
-
-#, python-format
-msgid "Found %d position(s) of %d total"
-msgstr "%d positie(s) gevonden van een totaal van %d "
 
 msgid "Frame size in full view"
 msgstr "Framegrootte in vol beeld"
@@ -2958,9 +2921,6 @@ msgstr "Hebreeuws"
 msgid "Height"
 msgstr "Hoogte"
 
-msgid "Here you can select the behaviour of the 'puase'-button when playback has been paused."
-msgstr "Hier stelt u in wat de 'pauze-toets' doet als het afspelen van een opname is gepauzeerd."
-
 msgid "Hidden network"
 msgstr "Verborgen network"
 
@@ -3057,9 +3017,6 @@ msgstr "Tijd werkloos"
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Maximale ruimte die de logs in beslag mogen nemen. Als dat overschreden wordt,worden de oudste het eerste verwijderd."
-
-msgid "If set to 'Yes' recordings will be deleted to a trashcan. That way thay can still be played."
-msgstr "Als u de prullenbak activeert worden opnames niet echt verwijderd, maar naar de prullenbak verplaatst. Daardoor staan die opnames nog enige tijd ter beschikking."
 
 msgid "If set to 'yes' a special seekbar is available during timeshift."
 msgstr "Indie 'ja' is gekozen, is er tijdens timeshift een speciale 'seekbar' beschikbaar. Deze maakt het gemakelijk naar een ander afspeeltijdstip te navigeren."
@@ -3188,12 +3145,6 @@ msgstr "Informatie"
 msgid "Init"
 msgstr "Initialiseren"
 
-msgid "Initial Fast Forward speed"
-msgstr "Initiële snelheid snel vooruit spoelen "
-
-msgid "Initial Rewind speed"
-msgstr "Initiële snelheid snel achteruit spoelen"
-
 msgid "Initial fast forward speed"
 msgstr "Initiële snelheid snel vooruit spoelen "
 
@@ -3316,9 +3267,6 @@ msgstr "Is deze videomode goed?"
 msgid "Italian"
 msgstr "Italiaans"
 
-msgid "Items in trashcan will be deleted if less then the set space is available."
-msgstr "Bestanden in de prullenbak worden verwijderd indien minder dan de ingestelde vrije ruimte beschikbaar is."
-
 msgid "Items per Page "
 msgstr "Onderdelen per pagina"
 
@@ -3358,9 +3306,6 @@ msgstr "Alleen schalen"
 
 msgid "Just change channels"
 msgstr "Kanaal veranderen"
-
-msgid "Keep old timers for how many days"
-msgstr "Bewaar gebruikte timers zoveel dagen:"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Houdt de opnamelijst geopend tijdens het afspelen van audio bestanden."
@@ -3477,9 +3422,6 @@ msgstr ""
 
 msgid "Limit west"
 msgstr "Limiet west"
-
-msgid "Limited character set for recording filenames"
-msgstr "Beperkte tekenset voor de bestandsnamen"
 
 msgid "Limits off"
 msgstr "Limieten uit"
@@ -3628,9 +3570,6 @@ msgstr "Transponder handmatig"
 
 msgid "Manufacturer"
 msgstr "Fabrikant"
-
-msgid "Margin after record"
-msgstr "Marge na afloop opname (minuten)"
 
 msgid "Margin after record (minutes)"
 msgstr "Marge na opname (minuten)"
@@ -4175,7 +4114,7 @@ msgstr "Geen upgrades beschikbaar"
 
 msgctxt "now/next: 'now' event label"
 msgid "Now"
-msgstr "nu"
+msgstr "Nu"
 
 msgid "Now Playing"
 msgstr "Weergave loopt"
@@ -4248,15 +4187,6 @@ msgstr "Bij het einde van bestand"
 msgid "On reaching the end of a file during playback, you can choose the box's behavior."
 msgstr "U kunt instellen wat er moet gebeuren bij het einde van het afspelen."
 
-msgid "On reaching the end of a file during playback, you can choose the box's behaviour."
-msgstr "Bepaal het gedrag bij het bereiken van het einde van een bestand tijdens het afspelen."
-
-msgid "On starting playback of a file, you can choose the box's behaviour."
-msgstr "Hiert stelt u in wat er gebeurt bij het starten van het afspelen."
-
-msgid "On stopping playback of a file, you can choose the box's behaviour."
-msgstr "Hiert stelt u in wat er gebeurt bij het stoppen van het afspelen."
-
 msgid "Once per day"
 msgstr "Eenmaal per dag"
 
@@ -4272,12 +4202,6 @@ msgstr "Controle op update"
 msgid "Only Free scan"
 msgstr "Alleen ongecodeerde zenders scannen"
 
-msgid "Only change for debugging; default is '20 MB/s'."
-msgstr "Verander deze waarde alleen ten behoeve van debugging; default is '20 MB/s'."
-
-msgid "Only change for debugging; default is 'Internal hdd only'."
-msgstr "Enige kans voor debuggen: default is 'alleen interne HDD'."
-
 msgid "Only extensions."
 msgstr "Alleen extensions"
 
@@ -4288,10 +4212,10 @@ msgid "Open service list"
 msgstr "Open service list"
 
 msgid "Open service list and select next channel"
-msgstr ""
+msgstr "Open zenderlijst en volgende zender"
 
 msgid "Open service list and select previous channel"
-msgstr ""
+msgstr "Open zenderlijst en vorige zender"
 
 msgid "Open the movie list"
 msgstr "Open Opnamelijst"
@@ -4436,18 +4360,6 @@ msgstr "Maak een settings backup; het maken van een backup alvorens te updaten w
 msgid "Perform an online update check in the background"
 msgstr "Controleer op de achtergrond op updates "
 
-msgid "Permanent Timeshift Enable"
-msgstr "Permanent Timeshift Inschakelen"
-
-msgid "Permanent Timeshift Max Events"
-msgstr "Permanent Timeshift max. aantal events"
-
-msgid "Permanent Timeshift Max Length"
-msgstr "Permanent Timeshift max. lengte"
-
-msgid "Permanent Timeshift Start Delay"
-msgstr "Permanent Timeshift start vertraging"
-
 msgid "Permanent Timeshift enable"
 msgstr "Permanent Timeshift Inschakelen"
 
@@ -4536,9 +4448,6 @@ msgstr "Selecteer het te scannen medium..."
 #
 msgid "Please add titles to the compilation."
 msgstr "Gelieve titels aan de compilatie toe te voegen."
-
-msgid "Please be aware, that anyone can disable the parental control, if you have not set a PIN."
-msgstr "Let op: als u geen PIN ingeeft, kan iedereen het kinderslot uitschakelen"
 
 msgid "Please change recording endtime"
 msgstr "Wijzig de opname eindtijd a.u.b."
@@ -5135,11 +5044,8 @@ msgstr "De momenteel geselecteerde titel verwijderen"
 msgid "Remove finished."
 msgstr "Verwijderen voltooid."
 
-msgid "Remove items from trash after (days)"
-msgstr "Verwijder uit prullenbak na (dagen)"
-
 msgid "Remove items from trash can after (days)"
-msgstr ""
+msgstr "Verwijder items uit de prullenbak na x (dagen)"
 
 msgid "Remove plugins"
 msgstr "Verwijderen"
@@ -5509,12 +5415,6 @@ msgstr "Seekbar gevoeligheid"
 msgid "Select"
 msgstr "Selecteer"
 
-msgid "Select 'Yes' if you want only a small number of characters to be used for recording names."
-msgstr "Kies 'Ja' als voor de namen van opnames slechts een beperkt aantal karakters mag worden gebruikt."
-
-msgid "Select 'Yes' if you want recordings to have priority over live-TV."
-msgstr "Kies 'Ja' als u wilt dat opnames voorrang hebben boven live-TV (default)."
-
 msgid "Select HDD"
 msgstr "Kies harde schijf"
 
@@ -5557,9 +5457,6 @@ msgstr "Kies folders"
 msgid "Select how to activate the Quick EPG mode:"
 msgstr "Stel hier in hoe u de Quick-EPG modus wilt activeren"
 
-msgid "Select how you want recording names to be populated."
-msgstr "Hier stelt u in hoe de namen van opnames worden samengesteld."
-
 msgid "Select if timeshift must continue when set to record."
 msgstr "Stel hier in of timeshift moet doorlopen als er een opname wordt gemaakt."
 
@@ -5589,9 +5486,6 @@ msgstr "Hier geeft u aan of de 'seekbar' wordt geactiveerd met pijl L/R (lang) o
 
 msgid "Select service to add..."
 msgstr "Selecteer zender om toe te voegen..."
-
-msgid "Select the number of days after which the box is allowed to permanently delete recordings (from the trashcan)."
-msgstr "Geef het aantal dagen op waarna opnames uit de prullenbak permanent mogen worden verwijderd."
 
 msgid "Select upgrade source to edit."
 msgstr "Kies de te wijzigen upgrade bron."
@@ -5777,20 +5671,8 @@ msgstr "Geef de maximale tijdsduur aan die een timeshift bestand mag krijgen."
 msgid "Set the maximum number of events (programs) that timeshift may handle."
 msgstr "Stel het maximale aantal events (programma's) in dat timeshift mag behandelen."
 
-msgid "Set the number of days you want old timers to be kept."
-msgstr "Stel het aantal dagen in dat afgewerkte timers bewaard moeten worden."
-
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Stel de rol snelheid op het schermpje van uw STB_BOX in."
-
-msgid "Set the skip-forward/backward time of the 1-3 number keys."
-msgstr "Stel de waarde in van de 'tijdsprong toetsen'1-3'. "
-
-msgid "Set the skip-forward/backward time of the 4-6 number keys."
-msgstr "Stel de waarde in van de 'tijdsprong toetsen'4-6'."
-
-msgid "Set the skip-forward/backward time of the 7-9 number keys."
-msgstr "Stel de waarde in van de 'tijdsprong toetsen'7-9'."
 
 msgid "Set the time to hide the infobar."
 msgstr "Stel de tijd in waarna de infobalk verdwijnt."
@@ -5798,29 +5680,8 @@ msgstr "Stel de tijd in waarna de infobalk verdwijnt."
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
 msgstr "Stel de tijd in waarna de 2e informatiebalk verdwijnt. Die verdwijnt ook door op 'OK' te drukken."
 
-msgid "Set the time you want recordings to start before the event start-time."
-msgstr "Stel de tijd in die een opname eerder moet beginnen dan de programmatijd (voorloop)."
-
-msgid "Set the time you want recordings to stop after the event stop-time."
-msgstr "Stel de tijd in die een opname later moet eindigen dan de programmatijd (naloop)."
-
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Bepaal teh type voortgangsindicator dat u wilt gebruiken in de kanalenlijst."
-
-msgid "Set the value for the initial fast-backward speed."
-msgstr "Stel de snelheid in waarmee initieel snel achteruit gespeeld wordt."
-
-msgid "Set the value for the initial fast-forward speed."
-msgstr "Stel de snelheid in waarmee initieel snel vooruit gespeeld wordt."
-
-msgid "Set the values for fast-backward speeds."
-msgstr "Stel de waardes in voor snel achteruit spelen."
-
-msgid "Set the values for fast-forward speeds."
-msgstr "Stel de waardes in voor snel vooruit spelen."
-
-msgid "Set the values for slow-motion speeds."
-msgstr "Stel de waardes in voor afspelen in slow-motion."
 
 msgid "Set time window to 1 hour"
 msgstr "Stel tijdvenster in op 1 uur"
@@ -5941,9 +5802,6 @@ msgstr "Toon logmanager in extensies?"
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Toon resterende/verstreken media afspeeltijd als"
 
-msgid "Show Message when Recording starts"
-msgstr "Toon bericht wanneer opname begint"
-
 msgid "Show OE Log"
 msgstr "Toon OE Log"
 
@@ -5976,9 +5834,6 @@ msgstr "Toon de ViX-spinners als het systeem bezet is."
 
 msgid "Show WLAN Status"
 msgstr "WLAN status weergeven"
-
-msgid "Show a popup message after a recording has finished and before start next in queue."
-msgstr "Toon een bericht nadat een opname beeindigd is en voordat een volgende gestart wordt."
 
 msgid "Show a popup when a recording starts."
 msgstr "Toon een pop-up als een opname start"
@@ -6204,9 +6059,6 @@ msgstr "Sloveens"
 msgid "Slow"
 msgstr "Langzaam"
 
-msgid "Slow Motion speeds"
-msgstr "Stap snelheid"
-
 msgid "Slow motion speeds"
 msgstr "Stap snelheid"
 
@@ -6351,6 +6203,9 @@ msgstr "Start vanaf het begin"
 
 msgid "Start offline decode"
 msgstr "Start offline decoderen"
+
+msgid "Start recording?"
+msgstr "Opname starten?"
 
 msgid "Start test"
 msgstr "Start test"
@@ -6503,7 +6358,7 @@ msgid "Switch next channel"
 msgstr "Ga naar volgende kanaal"
 
 msgid "Switch to next channel in history"
-msgstr ""
+msgstr "Schakel naar volgende zender in geschiedenis"
 
 msgid "Switch to next subservice"
 msgstr "Ga naar volgende subzender"
@@ -6512,7 +6367,7 @@ msgid "Switch to previous channel"
 msgstr "Ga naar vorige kanaal"
 
 msgid "Switch to previous channel in history"
-msgstr ""
+msgstr "Schakel naar vorige zender in geschiedenis"
 
 msgid "Switch to previous subservice"
 msgstr "Ga naar vorige subzender"
@@ -7139,6 +6994,12 @@ msgstr "Timeshift is niet mogelijk!"
 msgid "Timeshift save failed!"
 msgstr "Opslaan timeshift mislukt!"
 
+msgid "Timeshift save recording (Select event)"
+msgstr "Bewaar timeshift opname (selecteer event)"
+
+msgid "Timeshift save recording (stop after current event)"
+msgstr ""
+
 msgid "Timeshift saved to your harddisk!"
 msgstr "Timeshift opgeslagen op uw HDD!"
 
@@ -7150,9 +7011,6 @@ msgstr "Timeshift zal na afloop van het event worden opgeslagen!"
 
 msgid "Timeshift will only start when the start delay time has passed. This prevents numurous very short files when zapping."
 msgstr "Timeshift zal pas beginnen na de ingestelde vertraging. Dit voorkomt een grote hoeveelheid korte opnames tijdens zappen"
-
-msgid "Timeshift-Save Action on zap"
-msgstr "Timeshift-save actie bij zappen"
 
 msgid "Timeshift-save action on zap"
 msgstr "Timeshift-save actie bij zappen"
@@ -7445,25 +7303,22 @@ msgid "Use DHCP"
 msgstr "Automatisch IP verkrijgen (DHCP)"
 
 msgid "Use EIT EPG information when it is available."
-msgstr ""
+msgstr "Gebruik EIT EPG informatie indien beschikbaar."
 
 msgid "Use FreeSat EPG information when it is available."
-msgstr ""
+msgstr "Gebruik FreeSat EPG informatie indien beschikbaar."
 
 msgid "Use Interface"
 msgstr "Gebruik interface"
 
 msgid "Use MHW EPG information when it is available."
-msgstr ""
+msgstr "Gebruik MHW EPG informatie indien beschikbaar."
 
 msgid "Use Netmed EPG information when it is available."
-msgstr ""
+msgstr "Gebruik Netmed EPG informatie indien beschikbaar."
 
 msgid "Use PTS seekbar while timeshifting?"
 msgstr "Gebruik PTS seekbar tijdens timeshift?"
-
-msgid "Use PTS seekbar while timeshifting? *"
-msgstr "Gebruik PTS seekbar tijdens timeshift? *"
 
 msgid "Use TV remote control"
 msgstr "Gebruik de afstandsbediening van de TV"
@@ -7475,7 +7330,7 @@ msgid "Use ViX coloured Buttons *"
 msgstr "Gebruik ViX kleurtoetsen *"
 
 msgid "Use ViaSat EPG information when it is available."
-msgstr ""
+msgstr "Gebruik ViaSat EPG informatie indien beschikbaar."
 
 msgid "Use a gateway"
 msgstr "Gateway gebruiken"
@@ -7542,9 +7397,6 @@ msgstr "Gebruik de tijd van de huidige zender"
 
 msgid "Use trash can in movielist"
 msgstr "Gebruik de prullenbak in movielijst"
-
-msgid "Use trashcan in movielist"
-msgstr "Gebruik prullenbak in de opnamelijst"
 
 msgid "Used service scan type"
 msgstr "Gebruikte zoekmethode"
@@ -8011,9 +7863,6 @@ msgstr ""
 msgid "Write failed!"
 msgstr "Schrijven mislukt!"
 
-msgid "Wrong"
-msgstr "Fout"
-
 msgid "XBox 360 support"
 msgstr "XBox 360 support"
 
@@ -8151,14 +8000,8 @@ msgstr ""
 "U moet uw PC met uw STB_BOX verbinden. Voor meer informatie verwijzen wij u naar de website http://www.dm7025.de.\n"
 "De STB_BOX word nu uitgeschakeld. Indien u deze aanwijzingen nauwgezet volgt, zal de STB_BOX u na de update vragen of u uw instellingen terug wilt plaatsen."
 
-msgid ""
-"You need to set a PIN code and hide it from your children.\n"
-"\n"
-"Do you want to set the pin now?"
-msgstr ""
-"U moet een PIN code instellen en die voor uw kinderen verborgen houden.\n"
-"\n"
-"Wilt u nu een PIN code instellen?"
+msgid "You seem to be in timeshift, please stop it first."
+msgstr "U bent in timeshift modus, stop timeshift eerst a.u.b"
 
 msgid "You system does not support ext4"
 msgstr "Uw systeem ondersteunt geen ext4"
@@ -9240,12 +9083,6 @@ msgstr "Afspeellijst opslaan"
 msgid "save playlist on exit"
 msgstr "Bij verlaten bewaar afspeellijst"
 
-msgid "save recording (Select event)"
-msgstr "bewaar opname (kies event)"
-
-msgid "save recording (stop after current event)"
-msgstr "bewaar opname (stop na huidig event)"
-
 msgid "scan done!"
 msgstr "Zoeken voltooid."
 
@@ -9646,8 +9483,21 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zapte"
 
+#~ msgid "* = Restart timeshift required"
+#~ msgstr "* = Herstarten timeshift noodzakelijk"
+
+#~ msgid "Automatic configuration is finished"
+#~ msgstr "Automatische configuratie is gereed"
+
 #~ msgid "Base Time"
 #~ msgstr "Basis timer"
+
+#~ msgid ""
+#~ "Change this value if your smartcard can't doesn't handle off-line "
+#~ "decoding well; default is '1000'."
+#~ msgstr ""
+#~ "Verander deze waarde als uw smartcard het off-line decoderen niet goed "
+#~ "afhandelt; default is '1000'."
 
 #~ msgid "Channel 1 at Start"
 #~ msgstr "Kanaal 1 bij opstarten"
@@ -9661,11 +9511,54 @@ msgstr "zapte"
 #~ "Kies of de kanaalnamen, de picons of beide vertoond moeten worden in de "
 #~ "EPG."
 
+#~ msgid "Correct"
+#~ msgstr "Correct"
+
+#~ msgid "Create movie directory"
+#~ msgstr "Creëer opname map"
+
+#~ msgid "Display message before next played movie"
+#~ msgstr "Toon een bericht alvorens de volgende film te spelen"
+
+#~ msgid "Do nothing"
+#~ msgstr "geen actie"
+
+#~ msgid "Do you want a pop-up message saying 'a recording has started'?"
+#~ msgstr "Wilt u een pop-up bericht dat aangeeft dat een opname gestart is?"
+
+#~ msgid ""
+#~ "Do you want to enable the parental control feature on your STB_BOX?"
+#~ msgstr "Wilt u het Kinderslot  op uw STB_BOX inschakelen?"
+
+#~ msgid "Do you want to install a channel list?"
+#~ msgstr "Wilt u een kanaallijst instaleren?"
+
 #~ msgid "EPG Setup"
 #~ msgstr "EPG instellingen"
 
 #~ msgid "Event Fontsize"
 #~ msgstr "Event lettergrootte"
+
+#~ msgid "Fast Forward speeds"
+#~ msgstr "Vooruitspoel snelheid"
+
+#~ msgid "Found %d position(s) of %d total"
+#~ msgstr "%d positie(s) gevonden van een totaal van %d "
+
+#~ msgid ""
+#~ "Here you can select the behaviour of the 'puase'-button when playback has "
+#~ "been paused."
+#~ msgstr ""
+#~ "Hier stelt u in wat de 'pauze-toets' doet als het afspelen van een opname "
+#~ "is gepauzeerd."
+
+#~ msgid ""
+#~ "If set to 'Yes' recordings will be deleted to a trashcan. That way thay "
+#~ "can still be played."
+#~ msgstr ""
+#~ "Als u de prullenbak activeert worden opnames niet echt verwijderd, maar "
+#~ "naar de prullenbak verplaatst. Daardoor staan die opnames nog enige tijd "
+#~ "ter beschikking."
 
 #~ msgid ""
 #~ "If set to 'yes' the bouquets will be shown each time you open the EPG"
@@ -9679,17 +9572,140 @@ msgstr "zapte"
 #~ msgid "Info Button (short)"
 #~ msgstr "Info (kort) toets"
 
+#~ msgid "Initial Fast Forward speed"
+#~ msgstr "Initiële snelheid snel vooruit spoelen "
+
+#~ msgid "Initial Rewind speed"
+#~ msgstr "Initiële snelheid snel achteruit spoelen"
+
+#~ msgid ""
+#~ "Items in trashcan will be deleted if less then the set space is available."
+#~ msgstr ""
+#~ "Bestanden in de prullenbak worden verwijderd indien minder dan de "
+#~ "ingestelde vrije ruimte beschikbaar is."
+
+#~ msgid "Keep old timers for how many days"
+#~ msgstr "Bewaar gebruikte timers zoveel dagen:"
+
+#~ msgid "Limited character set for recording filenames"
+#~ msgstr "Beperkte tekenset voor de bestandsnamen"
+
+#~ msgid "Margin after record"
+#~ msgstr "Marge na afloop opname (minuten)"
+
 #~ msgid "OK Button (long)"
 #~ msgstr "OK (lang) toets"
 
 #~ msgid "OK Button (short)"
 #~ msgstr "OK (kort) toets"
 
+#~ msgid ""
+#~ "On reaching the end of a file during playback, you can choose the box's "
+#~ "behaviour."
+#~ msgstr ""
+#~ "Bepaal het gedrag bij het bereiken van het einde van een bestand tijdens "
+#~ "het afspelen."
+
+#~ msgid "On starting playback of a file, you can choose the box's behaviour."
+#~ msgstr "Hiert stelt u in wat er gebeurt bij het starten van het afspelen."
+
+#~ msgid "On stopping playback of a file, you can choose the box's behaviour."
+#~ msgstr "Hiert stelt u in wat er gebeurt bij het stoppen van het afspelen."
+
+#~ msgid "Only change for debugging; default is '20 MB/s'."
+#~ msgstr ""
+#~ "Verander deze waarde alleen ten behoeve van debugging; default is '20 MB/"
+#~ "s'."
+
+#~ msgid "Only change for debugging; default is 'Internal hdd only'."
+#~ msgstr "Enige kans voor debuggen: default is 'alleen interne HDD'."
+
+#~ msgid "Permanent Timeshift Enable"
+#~ msgstr "Permanent Timeshift Inschakelen"
+
+#~ msgid "Permanent Timeshift Max Events"
+#~ msgstr "Permanent Timeshift max. aantal events"
+
+#~ msgid "Permanent Timeshift Max Length"
+#~ msgstr "Permanent Timeshift max. lengte"
+
+#~ msgid "Permanent Timeshift Start Delay"
+#~ msgstr "Permanent Timeshift start vertraging"
+
 #~ msgid "Picture in Graphics"
 #~ msgstr "Picture in Graphics"
 
+#~ msgid ""
+#~ "Please be aware, that anyone can disable the parental control, if you "
+#~ "have not set a PIN."
+#~ msgstr ""
+#~ "Let op: als u geen PIN ingeeft, kan iedereen het kinderslot uitschakelen"
+
+#~ msgid "Remove items from trash after (days)"
+#~ msgstr "Verwijder uit prullenbak na (dagen)"
+
+#~ msgid ""
+#~ "Select 'Yes' if you want only a small number of characters to be used for "
+#~ "recording names."
+#~ msgstr ""
+#~ "Kies 'Ja' als voor de namen van opnames slechts een beperkt aantal "
+#~ "karakters mag worden gebruikt."
+
+#~ msgid "Select 'Yes' if you want recordings to have priority over live-TV."
+#~ msgstr ""
+#~ "Kies 'Ja' als u wilt dat opnames voorrang hebben boven live-TV (default)."
+
+#~ msgid "Select how you want recording names to be populated."
+#~ msgstr "Hier stelt u in hoe de namen van opnames worden samengesteld."
+
+#~ msgid ""
+#~ "Select the number of days after which the box is allowed to permanently "
+#~ "delete recordings (from the trashcan)."
+#~ msgstr ""
+#~ "Geef het aantal dagen op waarna opnames uit de prullenbak permanent mogen "
+#~ "worden verwijderd."
+
 #~ msgid "Service Fontsize"
 #~ msgstr "Kanaal lettergrootte"
+
+#~ msgid "Set the number of days you want old timers to be kept."
+#~ msgstr ""
+#~ "Stel het aantal dagen in dat afgewerkte timers bewaard moeten worden."
+
+#~ msgid "Set the skip-forward/backward time of the 1-3 number keys."
+#~ msgstr "Stel de waarde in van de 'tijdsprong toetsen'1-3'. "
+
+#~ msgid "Set the skip-forward/backward time of the 4-6 number keys."
+#~ msgstr "Stel de waarde in van de 'tijdsprong toetsen'4-6'."
+
+#~ msgid "Set the skip-forward/backward time of the 7-9 number keys."
+#~ msgstr "Stel de waarde in van de 'tijdsprong toetsen'7-9'."
+
+#~ msgid ""
+#~ "Set the time you want recordings to start before the event start-time."
+#~ msgstr ""
+#~ "Stel de tijd in die een opname eerder moet beginnen dan de programmatijd "
+#~ "(voorloop)."
+
+#~ msgid "Set the time you want recordings to stop after the event stop-time."
+#~ msgstr ""
+#~ "Stel de tijd in die een opname later moet eindigen dan de programmatijd "
+#~ "(naloop)."
+
+#~ msgid "Set the value for the initial fast-backward speed."
+#~ msgstr "Stel de snelheid in waarmee initieel snel achteruit gespeeld wordt."
+
+#~ msgid "Set the value for the initial fast-forward speed."
+#~ msgstr "Stel de snelheid in waarmee initieel snel vooruit gespeeld wordt."
+
+#~ msgid "Set the values for fast-backward speeds."
+#~ msgstr "Stel de waardes in voor snel achteruit spelen."
+
+#~ msgid "Set the values for fast-forward speeds."
+#~ msgstr "Stel de waardes in voor snel vooruit spelen."
+
+#~ msgid "Set the values for slow-motion speeds."
+#~ msgstr "Stel de waardes in voor afspelen in slow-motion."
 
 #~ msgid "Set the width allocated to the picon."
 #~ msgstr "Breedte beschikbaar voor picons"
@@ -9697,8 +9713,48 @@ msgstr "zapte"
 #~ msgid "Set the width allocated to the service name."
 #~ msgstr "Breedte beschikbaar voor kanaalnaam"
 
+#~ msgid "Show Message when Recording starts"
+#~ msgstr "Toon bericht wanneer opname begint"
+
+#~ msgid ""
+#~ "Show a popup message after a recording has finished and before start next "
+#~ "in queue."
+#~ msgstr ""
+#~ "Toon een bericht nadat een opname beeindigd is en voordat een volgende "
+#~ "gestart wordt."
+
+#~ msgid "Slow Motion speeds"
+#~ msgstr "Stap snelheid"
+
 #~ msgid "Sort List by"
 #~ msgstr "Sorteer lijst op"
 
 #~ msgid "Timeline Fontsize"
 #~ msgstr "Tijdlijn lettergrootte"
+
+#~ msgid "Timeshift-Save Action on zap"
+#~ msgstr "Timeshift-save actie bij zappen"
+
+#~ msgid "Use PTS seekbar while timeshifting? *"
+#~ msgstr "Gebruik PTS seekbar tijdens timeshift? *"
+
+#~ msgid "Use trashcan in movielist"
+#~ msgstr "Gebruik prullenbak in de opnamelijst"
+
+#~ msgid "Wrong"
+#~ msgstr "Fout"
+
+#~ msgid ""
+#~ "You need to set a PIN code and hide it from your children.\n"
+#~ "\n"
+#~ "Do you want to set the pin now?"
+#~ msgstr ""
+#~ "U moet een PIN code instellen en die voor uw kinderen verborgen houden.\n"
+#~ "\n"
+#~ "Wilt u nu een PIN code instellen?"
+
+#~ msgid "save recording (Select event)"
+#~ msgstr "bewaar opname (kies event)"
+
+#~ msgid "save recording (stop after current event)"
+#~ msgstr "bewaar opname (stop na huidig event)"
