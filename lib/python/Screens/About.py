@@ -170,26 +170,27 @@ class Devices(Screen):
 		self.AboutText += hddinfo + "\n"
 		self.AboutText += "\n" + _("Network Servers:") + "\n"
 		self.mountinfo = ""
-		f = open('/proc/mounts', 'r')
-		for line in f.readlines():
-			self.parts = line.strip().split()
-			if self.parts[0] and (self.parts[0].startswith('192') or self.parts[0].startswith('//192')):
-				self.Console.ePopen("df -mh " + self.parts[1] + " | grep -v '^Filesystem'", self.Stage1Complete)
-			else:
-				self.mountinfo=(_('none')) + "\n"
-		f.close()
+		self.Console.ePopen("df -mh | grep -v '^Filesystem'", self.Stage1Complete)
 		self.AboutText +=self.mountinfo
 		self["AboutScrollLabel"].setText(self.AboutText)
 
 	def Stage1Complete(self,result, retval, extra_args = None):
-		mount = str(result).replace('\n','')
-		mount = mount.split()
-		ipaddress = mount[0]
-		mounttotal = mount[1]
-		mountfree = mount[3]
+		result = result.replace('\n                        ',' ').split('\n')
+		self.mountinfo = ""
+		for line in result:
+			self.parts = line.split()
+			if line and self.parts[0] and (self.parts[0].startswith('192') or self.parts[0].startswith('//192')):
+				line = line.split()
+				ipaddress = line[0]
+				mounttotal = line[1]
+				mountfree = line[3]
+				if self.mountinfo:
+					self.mountinfo += "\n"
+					self.mountinfo += "%s (%sB, %sB %s)" % (ipaddress, mounttotal, mountfree, _("free"))
 		if self.mountinfo:
 			self.mountinfo += "\n"
-		self.mountinfo += "%s (%sB, %sB %s)" % (ipaddress, mounttotal, mountfree, _("free"))
+		else:
+			self["mounts"].setText(_('none'))
 		self.AboutText += self.mountinfo + "\n"
 
 
