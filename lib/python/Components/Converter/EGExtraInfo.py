@@ -38,22 +38,113 @@ class EGExtraInfo(Poll, Converter, object):
 				d = line.split(':', 1)
 				if len(d) > 1:
 					info[d[0].strip()] = d[1].strip()
+			# 1st values
+			data['caid'] = '0x00'
+			data['pid'] = ''
+			data['provider'] = ''
+			data['using'] = ''
+			data['decode'] = ''
+			data['source'] = ''
+			data['reader'] = ''
+			data['address'] = ''
+			data['address_from'] = ''
+			data['hops'] = '0'
+			data['ecm_time'] = '0'
 			
 			data['caid'] = info.get('caid', '0')
 			data['provider'] = info.get('provider', '')
 			if data['provider'] == '':
 				data['provider'] = info.get('prov', ' ')
+				
 			data['using'] = info.get('using', '')
-			data['decode'] = info.get('decode', '')
-			data['source'] = info.get('source', '')
 			data['reader'] = info.get('reader', '')
-			data['address'] = info.get('address', 'Unknown')
-			data['address_from'] = info.get('from', 'Unknown')
-			data['hops'] = info.get('hops', '0')
-			data['ecm_time'] = info.get('ecm time', '?')
+			## CCcam
+			if data['using']:	
+			    data['using'] = info.get('using', '')
+			    data['decode'] = info.get('decode', '')
+			    data['source'] = info.get('source', '')
+			    data['reader'] = info.get('reader', '')
+			    data['address'] = info.get('address', 'Unknown')
+			    data['address_from'] = info.get('from', 'Unknown')
+			    data['hops'] = info.get('hops', '0')
+			    data['ecm_time'] = info.get('ecm time', '?')
+			elif data['reader']:
+			    data['caid'] = info.get('caid', '')
+			    data['pid'] = info.get('pid', '')
+			    data['provider'] = info.get('prov', '')
+			    data['reader'] = info.get('reader', '')
+			    data['address'] = info.get('from', 'Unknown')
+			    data['hops'] = info.get('hops', '0')
+			    data['ecm_time'] = info.get('ecm time', '?')			    
+			else:
+				data['decode'] = info.get('decode', '')
+				if data['decode']:
+					# gbox (untested)
+					if data['decode'] == 'Network':
+						cardid = 'id:' + info.get('prov', '')
+						try:
+							share = open('/tmp/share.info', 'rb').readlines()
+							for line in share:
+								if cardid in line:
+									data['address'] = line.strip()
+									break
+							else:
+								data['address'] = cardid
+						except:
+							data['address'] = data['decode']
+					else:
+						# adddess = slot or emu
+						data['address'] = data['decode']
+						
+					if ecm[1].startswith('SysID'):
+						data['provider'] = ecm[1].strip()[6:]
+					if 'CaID 0x' in ecm[0] and 'pid 0x' in ecm[0]:
+						data['ecm_time'] = info.get('response', '?')
+						data['caid'] = ecm[0][ecm[0].find('CaID 0x')+7:ecm[0].find(',')]
+						data['pid'] = ecm[0][ecm[0].find('pid 0x')+6:ecm[0].find(' =')]
+						data['provider'] = info.get('prov', '0')[:4]
+				else:
+					source = info.get('source', None)
+					if source:
+						print "Found Source"
+						#wicardd
+						if 'CaID 0x' in ecm[0] and 'pid 0x' in ecm[0]:
+							data['caid'] = ecm[0][ecm[0].find('CaID 0x')+7:ecm[0].find(',')]
+							data['pid'] = ecm[0][ecm[0].find('pid 0x')+6:ecm[0].find(' =')]
+							data['provider'] = info.get('prov', '0')[2:]
+						# MGcam
+						else:
+							data['caid'] = info['caid'][2:]
+							data['pid'] = info['pid'][2:]
+							data['provider'] = info['prov'][2:]
+						time = " ?"
+						for line in ecm:
+							if line.find('msec') != -1:
+								line = line.split(' ')
+								if line[0]:
+									time = " (%ss)" % (float(line[0])/1000)
+									continue
+						data['address'] = source 
+						data['ecm_time'] = time
+					else:
+						reader = info.get('reader', '')
+						if reader:
+							hops = info.get('hops', None)
+							if hops and hops != '0':
+								hops = ' @' + hops
+							else:
+								hops = ''
+							data['hops'] = hops
+							data['ecm_time'] = info.get('ecm time', '?')
+							data['address'] = reader
+						else:
+							data['hops'] = ""
+							data['ecm_time'] = ""
+							data['address'] = ""
 		except:
 			data['caid'] = '0x00'
 			data['provider'] = ''
+			data['pid'] = ''
 			data['using'] = ''
 			data['decode'] = ''
 			data['source'] = ''
@@ -92,7 +183,11 @@ class EGExtraInfo(Poll, Converter, object):
 			if data['using']:
 				return "Address: %s   Hops: %s   Ecm time: %ss" % (data['address'], data['hops'], data['ecm_time'])
 			elif data['reader']:
-				return "Address: %s   Hops: %s   Ecm time: %ss" % (data['address_from'], data['hops'], data['ecm_time'])
+				return "Address: %s   Hops: %s   Ecm time: %ss" % (data['address'], data['hops'], data['ecm_time'])
+			elif data['decode'] == "slot-1" or data['decode'] == "slot-2" or data['decode'] == "Network":
+				return "Decode: %s   Ecm time: %s Pid: %s" % (data['address'], data['ecm_time'], data['pid'])
+			elif data['address']:
+				return "Address: %s   Ecm time: %s Pid: %s" % (data['address'], data['ecm_time'], data['pid'])
 				
 		elif self.type == "EcmInfo":
 			if is_crypted != 1:
@@ -119,6 +214,18 @@ class EGExtraInfo(Poll, Converter, object):
 					return "Network"
 				else:
 					return "Card"
+			elif data['decode']:
+				if data['decode'] == 'Network':
+					return 'Netowrk'
+				elif data['decode'] == 'slot-1' or data['decode'] == 'slot-2':
+					return 'Card'
+			elif data['address']:
+				if data['address'][:3] == "net":
+					return 'Network'
+				elif data['address'][:3] == "emu":
+					return 'Emulator'
+				else:
+					return 'Fta'
 			return ""
 		
 		elif self.type == "CryptoBar":
