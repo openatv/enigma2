@@ -50,26 +50,14 @@ def findPicon(serviceName):
 		pngname = lastPiconPath + serviceName + ".png"
 		if pathExists(pngname):
 			return pngname
-		else:
-			return ""
-	else:
-		global searchPaths
-		pngname = ""
-		for path in searchPaths:
-			if pathExists(path) and not path.startswith('/media/net'):
-				pngname = path + serviceName + ".png"
-				if pathExists(pngname):
-					lastPiconPath = path
-					break
-			elif pathExists(path):
-				pngname = path + serviceName + ".png"
-				if pathExists(pngname):
-					lastPiconPath = path
-					break
-		if pathExists(pngname):
-			return pngname
-		else:
-			return ""
+	global searchPaths
+	for path in searchPaths:
+		if pathExists(path):
+			pngname = path + serviceName + ".png"
+			if pathExists(pngname):
+				lastPiconPath = path
+				return pngname
+	return ""
 
 def getPiconName(serviceName):
 	#remove the path and name fields, and replace ':' by '_'
@@ -118,9 +106,6 @@ class Picon(Renderer):
 
 	GUI_WIDGET = ePixmap
 
-	def postWidgetCreate(self, instance):
-		self.changed((self.CHANGED_DEFAULT,))
-
 	def changed(self, what):
 		if self.instance:
 			pngname = ""
@@ -130,7 +115,7 @@ class Picon(Renderer):
 				pngname = self.defaultpngname
 			if self.pngname != pngname:
 				if pngname:
-					self.instance.setScale(1)
+					#self.instance.setScale(1)
 					self.instance.setPixmapFromFile(pngname)
 					self.instance.show()
 				else:
