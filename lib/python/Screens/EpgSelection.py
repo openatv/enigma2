@@ -1080,7 +1080,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.finishedAdd(answer)
 
 	def doRecordTimer(self):
-		zap = False
+		zap = 0
 		cur = self["list"].getCurrent()
 		event = cur[0]
 		serviceref = cur[1]
@@ -1098,7 +1098,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.session.openWithCallback(self.finishedAdd, RecordSetup, newEntry, zap)
 
 	def doZapTimer(self):
-		zap = True
+		zap = 1
 		cur = self["list"].getCurrent()
 		event = cur[0]
 		serviceref = cur[1]
@@ -1535,8 +1535,7 @@ class RecordSetup(TimerEntry):
 
 	def keyGo(self, result = None):
 		if self.timer.justplay:
-			self.timer.begin += (config.recording.margin_before.getValue() * 60)
-			self.timer.end = self.timer.begin
+			self.timer.end = self.timer.begin + (config.recording.margin_before.getValue() * 60) + 1
 		self.timer.resetRepeated()
 		self.saveTimer()
 		self.close((True, self.timer))

@@ -724,7 +724,6 @@ class EPGList(HTMLComponent, GUIComponent):
 				duration = ev[3]
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
 				rec = self.timer.isInTimer(ev[0], stime, duration, service)
-				rectype = self.GraphEPGRecRed(service, ev[2], ev[3], ev[0])
 				if self.eventNameAlign.lower() == 'left':
 					alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
 				else:
@@ -732,7 +731,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 				if selected and self.select_rect.x == xpos + left:
 					if rec is not None and rec[1] == 2:
-						if rectype == "record":
+						if rec[2] == 0:
 							foreColor = self.foreColorRecord
 							backColor = self.backColorRecord
 							foreColorSel = self.foreColorRecordSelected
@@ -741,7 +740,7 @@ class EPGList(HTMLComponent, GUIComponent):
 							if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
 								backColor = None
 								backColorSel = None
-						elif rectype == "justplay":
+						elif rec[2] == 1:
 							foreColor = self.foreColorZap
 							backColor = self.backColorZap
 							foreColorSel = self.foreColorZapSelected
@@ -769,7 +768,7 @@ class EPGList(HTMLComponent, GUIComponent):
 							backColor = None
 							backColorSel = None
 				elif rec is not None and rec[1] == 2:
-					if rectype == "record":
+					if rec[2] == 0:
 						foreColor = self.foreColorRecord
 						backColor = self.backColorRecord
 						foreColorSel = self.foreColorRecordSelected
@@ -778,7 +777,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
 							backColor = None
 							backColorSel = None
-					elif rectype == "justplay":
+					elif rec[2] == 1:
 						foreColor = self.foreColorZap
 						backColor = self.backColorZap
 						foreColorSel = self.foreColorZapSelected
@@ -1009,16 +1008,6 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def resetOffset(self):
 		self.offs = 0
-
-	def GraphEPGRecRed(self, refstr, beginTime, duration, eventId):
-		for x in self.timer.timer_list:
-			if x.service_ref.ref.toString() == refstr:
-				if x.eit == eventId:
-					if x.justplay:
-						return "justplay"
-					else:
-						return "record"
-		return ""
 
 	def getSelectedEventId(self):
 		x = self.l.getCurrentSelection()
