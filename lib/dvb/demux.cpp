@@ -414,8 +414,6 @@ protected:
 	eMPEGStreamParserTS m_ts_parser;
 	off_t m_current_offset;
 	int m_fd_dest;
-	off_t offset_last_sync;
-	size_t written_since_last_sync;
 	typedef std::vector<AsyncIO> AsyncIOvector;
 	unsigned char* m_allocated_buffer;
 	AsyncIOvector m_aio;
@@ -430,8 +428,6 @@ eDVBRecordFileThread::eDVBRecordFileThread(int packetsize, int bufferCount):
 	 m_ts_parser(packetsize),
 	 m_current_offset(0),
 	 m_fd_dest(-1),
-	 offset_last_sync(0),
-	 written_since_last_sync(0),
 	 m_aio(bufferCount),
 	 m_current_buffer(m_aio.begin()),
 	 m_buffer_use_histogram(bufferCount+1, 0)
@@ -498,8 +494,6 @@ int eDVBRecordFileThread::AsyncIO::wait()
 			eDebug("[eDVBRecordFileThread] wait: aio_return returned failure: %m");
 			return -1;
 		}
-		/* now start writing out the cache (nonblocking) */
-		sync_file_range(aio.aio_fildes, aio.aio_offset, aio.aio_nbytes, SYNC_FILE_RANGE_WRITE);
 	}
 	return 0;
 }
@@ -528,8 +522,6 @@ int eDVBRecordFileThread::AsyncIO::poll()
 		eDebug("[eDVBRecordFileThread] poll: aio_return returned failure: %m");
 		return -1;
 	}
-	/* now start writing out the cache (nonblocking) */
-	sync_file_range(aio.aio_fildes, aio.aio_offset, aio.aio_nbytes, SYNC_FILE_RANGE_WRITE);
 	return 0;
 }
 
@@ -574,28 +566,6 @@ int eDVBRecordFileThread::asyncWrite(int len)
 	diff = (1000000 * (now.tv_sec - starttime.tv_sec)) + now.tv_usec - starttime.tv_usec;
 	eDebug("[eFilePushThreadRecorder] aio_write: %9u us", (unsigned int)diff);
 #endif
-
-	written_since_last_sync += len;
-	if (written_since_last_sync >= 8 * 1024 * 1024)
-	{
-		/* data written more than 8MB ago should really be synced by now, wait for it */
-		sync_file_range(m_fd_dest, 0, offset_last_sync, SYNC_FILE_RANGE_WAIT_AFTER);
-		/*
-		 * Now advise the kernel to drop written out pages from the cache,
-		 * we do not need them anymore.
-		 * Note that POSIX_FADV_DONTNEED ignores dirty pages.
-		 * We will get them next time, because we use start offset 0 each time.
-		 */
-		posix_fadvise(m_fd_dest, 0, offset_last_sync, POSIX_FADV_DONTNEED);
-		offset_last_sync += written_since_last_sync;
-		written_since_last_sync = 0;
-#ifdef SHOW_WRITE_TIME
-		gettimeofday(&now, NULL);
-		diff = (1000000 * (now.tv_sec - starttime.tv_sec)) + now.tv_usec - starttime.tv_usec;
-		eDebug("[eFilePushThreadRecorder] sync_file_range: %9u us", (unsigned int)diff);
-#endif
-	}
-
 	// Count how many buffers are still "busy". Move backwards from current,
 	// because they can reasonably be expected to finish in that order.
 	AsyncIOvector::iterator i = m_current_buffer;
@@ -656,7 +626,6 @@ void eDVBRecordFileThread::flush()
 	}
 	if (m_fd_dest >= 0)
 	{
-		fdatasync(m_fd_dest);
 		posix_fadvise(m_fd_dest, 0, 0, POSIX_FADV_DONTNEED);
 	}
 }

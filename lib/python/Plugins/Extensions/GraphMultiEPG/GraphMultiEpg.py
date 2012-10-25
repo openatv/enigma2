@@ -61,11 +61,11 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.l.setBuildFunc(self.buildEntry)
 		self.setOverjump_Empty(overjump_empty)
 		self.epgcache = eEPGCache.getInstance()
-		self.clock_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock.png'))
-		self.clock_add_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_add.png'))
-		self.clock_pre_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png'))
-		self.clock_post_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_post.png'))
-		self.clock_prepost_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png'))
+		self.clocks =  [ LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_add.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_post.png')) ]
 		self.time_base = None
 		self.time_epoch = time_epoch
 		self.list = None
@@ -80,6 +80,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.nowEvPix = None
 		self.othEvPix = None
 		self.selEvPix = None
+		self.recEvPix = None
 
 		self.foreColor = 0xffffff
 		self.foreColorSelected = 0xffc000
@@ -286,6 +287,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.l.setItemHeight(itemHeight)
 
 		self.picload.setPara((self.listWidth, itemHeight - 2 * self.eventBorderWidth, 0, 0, 1, 1, "#00000000"))
+
 		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentEvent.png'), 0, 0, False)
 		self.nowEvPix = self.picload.getData()
 
@@ -294,6 +296,9 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedEvent.png'), 0, 0, False)
 		self.selEvPix = self.picload.getData()
+
+		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/RecordingEvent.png'), 0, 0, False)
+		self.recEvPix = self.picload.getData()
 
 	def setEventFontsize(self):
 		self.l.setFont(1, gFont(self.entryFontName, self.entryFontSize + config.misc.graph_mepg.ev_fontsize.getValue()))
@@ -430,6 +435,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				stime = ev[2]
 				duration = ev[3]
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
+				rec = self.timer.isInTimer(ev[0], stime, duration, service)
 
 				# event box background
 				if stime <= now and now < stime + duration:
@@ -442,6 +448,8 @@ class EPGList(HTMLComponent, GUIComponent):
 				if selected and self.select_rect.x == xpos + left and self.selEvPix:
 					bgpng = self.selEvPix
 					backColorSel = None
+				elif rec is not None and rec[1] == 2:
+					bgpng = self.recEvPix
 				elif stime <= now and now < stime + duration:
 					bgpng = self.nowEvPix
 				else:
@@ -473,11 +481,10 @@ class EPGList(HTMLComponent, GUIComponent):
 						color = foreColor, color_sel = self.foreColorSelected,
 						backcolor_sel = backColorSel))
 				# recording icons
-				rec = stime and self.timer.isInTimer(ev[0], stime, duration, service)
-				if rec and ewidth > 23:
+				if rec is not None and ewidth > 23:
 					res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (left + xpos + ewidth - 22, top + height - 22), size = (21, 21),
-						png = self.getClockPixmap(service, stime, duration, ev[0])) )
+						png = self.clocks[rec[1]] ) )
 		return res
 
 	def selEntry(self, dir, visible = True):
@@ -582,30 +589,6 @@ class EPGList(HTMLComponent, GUIComponent):
 	def resetOffset(self):
 		self.offs = 0
 	
-	def getClockPixmap(self, refstr, beginTime, duration, eventId):
-		pre_clock = 1
-		post_clock = 2
-		clock_type = 0
-		endTime = beginTime + duration
-		for x in self.timer.timer_list:
-			if x.service_ref.ref.toString() == refstr:
-				if x.eit == eventId:
-					return self.clock_pixmap
-				beg = x.begin
-				end = x.end
-				if beginTime > beg and beginTime < end and endTime > end:
-					clock_type |= pre_clock
-				elif beginTime < beg and endTime > beg and endTime < end:
-					clock_type |= post_clock
-		if clock_type == 0:
-			return self.clock_add_pixmap
-		elif clock_type == pre_clock:
-			return self.clock_pre_pixmap
-		elif clock_type == post_clock:
-			return self.clock_post_pixmap
-		else:
-			return self.clock_prepost_pixmap
-
 class TimelineText(HTMLComponent, GUIComponent):
 	def __init__(self):
 		GUIComponent.__init__(self)
