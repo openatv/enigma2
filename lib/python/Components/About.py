@@ -141,5 +141,12 @@ def getIfConfig(ifname):
 	sock.close()
 	return ifreq
 
+def getIfTransferredData(ifname):
+	for line in open('/proc/net/dev', 'r'):
+		if ifname in line:
+			data = line.split('%s:' % ifname)[1].split()
+			rx_bytes, tx_bytes = (data[0], data[8])
+			return (rx_bytes, tx_bytes)
+
 # For modules that do "from About import about"
 about = sys.modules[__name__]

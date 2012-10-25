@@ -96,6 +96,14 @@ class About(Screen):
 			AboutText += fp_version + "\n"
 		self["FPVersion"] = StaticText(fp_version)
 
+		try:
+			tempinfo = open('//proc/stb/sensors/temp0/value', 'r').read()
+			mark = str('\xc2\xb0')
+		except IOError:
+			mark = ""
+			tempinfo = "Unable to read info"
+		AboutText += _("System Temperature:") + " " + tempinfo.replace('\n','') + mark + "C\n\n"
+
 		self["TranslationHeader"] = StaticText(_("Translation:"))
 		AboutText += _("Translation:") + "\n"
 
@@ -413,11 +421,13 @@ class SystemNetworkInfo(Screen):
 			self["LabelBitrate"].setText(_('Bitrate:'))
 			self["LabelEnc"].setText(_('Encryption:'))
 
+		rx_bytes, tx_bytes = about.getIfTransferredData(self.iface)
+		AboutText += "\n" + _("Bytes received:") + "\t" + rx_bytes + "\n"
+		AboutText += _("Bytes sent:") + "\t" + tx_bytes + "\n"
+
 		hostname = file('/proc/sys/kernel/hostname').read()
 		AboutText += "\n" + _("Hostname:") + "\t" + hostname + "\n"
-
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
-
 
 	def cleanup(self):
 		iStatus.stopWlanConsole()
