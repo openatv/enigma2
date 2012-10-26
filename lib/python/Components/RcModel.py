@@ -35,12 +35,6 @@ class RcModel:
 			model = self.readFile('/proc/stb/info/hwmodel')
 			if model == 'twin' or model == '2t':
 				self.currentRcType = self.RCTYPE_TM
-		elif os.path.exists('/proc/stb/info/vumodel'):
-			model = self.readFile('/proc/stb/info/vumodel')
-			if model == 'ultimo':
-				self.currentRcType = self.RCTYPE_VU2
-			else:
-				self.currentRcType = self.RCTYPE_VU
 		elif os.path.exists('/proc/stb/info/boxtype'):
 			model = self.readFile('/proc/stb/info/boxtype')
 			if len(model) == 6 and model[:2] == 'et':
@@ -73,6 +67,13 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_INI5000
 			elif model == 'ini-7000':
 				self.currentRcType = self.RCTYPE_INI7000
+		elif os.path.exists('/proc/stb/info/vumodel'):
+			model = self.readFile('/proc/stb/info/vumodel')
+			if model == 'ultimo':
+				self.currentRcType = self.RCTYPE_VU2
+			else:
+				self.currentRcType = self.RCTYPE_VU
+
 
 	def getRcLocation(self):
 		if self.currentRcType == self.RCTYPE_ET9X00:
