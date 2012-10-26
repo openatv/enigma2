@@ -1447,6 +1447,7 @@ class NetworkMountsMenu(Screen,HelpableScreen):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		Screen.setTitle(self, _("Mounts Setup"))
+		self.skinName = ["NetworkMountsMenu", "AdapterSetupConfiguration"]
 		self.session = session
 		self.onChangedEntry = [ ]
 		self.mainmenu = self.genMainMenu()
