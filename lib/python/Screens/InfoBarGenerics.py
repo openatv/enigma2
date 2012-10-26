@@ -4312,14 +4312,20 @@ class InfoBarZoom:
 		    zoomval=self.zoomrate
 		print "zoomRate:", self.zoomrate
 		print "zoomval:", zoomval
-		file = open("/proc/stb/vmpeg/0/zoomrate", "w")
-		file.write('%d' % int(zoomval))
-		file.close()
+		try:
+		  file = open("/proc/stb/vmpeg/0/zoomrate", "w")
+		  file.write('%d' % int(zoomval))
+		  file.close()
+		except:
+		  pass
 
 	def ZoomOff(self):
 		self.zoomrate = 0
 		self.zoomin = 1
-		open("/proc/stb/vmpeg/0/zoomrate", "w").write(str(0))
+		try:
+		  open("/proc/stb/vmpeg/0/zoomrate", "w").write(str(0))
+		except:
+		  pass
 
 
 
