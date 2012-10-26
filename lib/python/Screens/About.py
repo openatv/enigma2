@@ -190,7 +190,7 @@ class Devices(Screen):
 		if self.mountinfo:
 			self.mountinfo += "\n"
 		else:
-			self["mounts"].setText(_('none'))
+			self.mountinfo += (_('none'))
 		self.AboutText += self.mountinfo + "\n"
 
 
@@ -287,7 +287,7 @@ class SystemNetworkInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Network Information"))
-		self.skinName = ["SystemNetworkInfo", "WlanStatus"]
+		self.skinName = ["SystemNetworkInfo", "About"]
 		self["LabelBSSID"] = StaticText()
 		self["LabelESSID"] = StaticText()
 		self["LabelQuality"] = StaticText()
