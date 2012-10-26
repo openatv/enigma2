@@ -284,7 +284,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	const char *filename = m_ref.path.c_str();
 	const char *ext = strrchr(filename, '.');
 	if (!ext)
-		ext = filename;
+		ext = filename + strlen(filename);
 
 	m_sourceinfo.is_video = FALSE;
 	m_sourceinfo.audiotype = atUnknown;
@@ -438,10 +438,10 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		GstBus *bus = gst_pipeline_get_bus(GST_PIPELINE (m_gst_playbin));
 		gst_bus_set_sync_handler(bus , gstBusSyncHandler, this);
 		gst_object_unref(bus);
-		char srt_filename[strlen(filename)+1];
-		strncpy(srt_filename,filename,strlen(filename)-3);
-		srt_filename[strlen(filename)-3]='\0';
-		strcat(srt_filename, "srt");
+		char srt_filename[ext - filename + 5];
+		strncpy(srt_filename,filename, ext - filename);
+		srt_filename[ext - filename] = '\0';
+		strcat(srt_filename, ".srt");
 		if (::access(srt_filename, R_OK) >= 0)
 		{
 			eDebug("eServiceMP3::subtitle uri: %s", g_filename_to_uri(srt_filename, NULL, NULL));

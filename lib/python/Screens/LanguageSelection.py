@@ -1,12 +1,14 @@
 import gettext
 
 from Screen import Screen
+from Screens.Wizard import WizardSummary
 
 from Components.ActionMap import ActionMap
 from Components.Language import language
 from Components.config import config
 from Components.Sources.List import List
 from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 
 from Screens.Rc import Rc
@@ -32,6 +34,8 @@ class LanguageSelection(Screen):
 		self.catalog = language.getActiveCatalog()
 
 		self.list = []
+# 		self["flag"] = Pixmap()
+		self["summarylangname"] = StaticText()
 		self["languages"] = List(self.list)
 		self["languages"].onSelectionChanged.append(self.changed)
 
@@ -74,6 +78,10 @@ class LanguageSelection(Screen):
 			config.osd.language.save()
 			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[config.osd.language.value])
 		self.setTitle(self.catalog.gettext("Language selection"))
+		self["summarylangname"].setText(self["languages"].getCurrent()[1])
+# 		index = self["languages"].getCurrent()[2]
+# 		print 'INDEX:',index
+# 		self["flag"].instance.setPixmap(self["languages"].getCurrent()[2])
 
 		if justlocal:
 			return
@@ -102,6 +110,7 @@ class LanguageWizard(LanguageSelection, Rc):
 		self.onLayoutFinish.append(self.selectKeys)
 
 		self["wizard"] = Pixmap()
+		self["summarytext"] = StaticText()
 		self["text"] = Label()
 		self.setText()
 
@@ -116,3 +125,11 @@ class LanguageWizard(LanguageSelection, Rc):
 
 	def setText(self):
 		self["text"].setText(self.catalog.gettext("Please use the UP and DOWN keys to select your language. Afterwards press the OK button."))
+		self["summarytext"].setText(self.catalog.gettext("Please use the UP and DOWN keys to select your language. Afterwards press the OK button."))
+
+	def createSummary(self):
+		return LanguageWizardSummary
+
+class LanguageWizardSummary(Screen):
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent)

@@ -583,16 +583,9 @@ public:
 		state_eof = state_release + 1  /* end-of-file reached. */
 	};
 	
-		/* FIXME: there are some very ugly buffer-end and ... related problems */
-		/* so this is VERY UGLY. 
-		
-		   ok, it's going to get better. but still...*/
 	virtual RESULT playFile(const char *file) = 0;
-	virtual void stopFile() = 0;
-	
-	/* new interface */
 	virtual RESULT playSource(ePtr<iTsSource> &source, const char *priv=NULL) = 0;
-	virtual void stopSource() = 0;
+	virtual void stop() = 0;
 	
 	virtual void setCueSheet(eCueSheet *cuesheet) = 0;
 	virtual void setOfflineDecodeMode(int parityswitchdelay) = 0;

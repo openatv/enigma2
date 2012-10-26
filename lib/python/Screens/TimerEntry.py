@@ -276,6 +276,12 @@ class TimerEntry(Screen, ConfigListScreen):
 		# if the endtime is less than the starttime, add 1 day.
 		if end < begin:
 			end += 86400
+
+		# if the timer type is a Zap and no end is set, set duration to 1 second so time is shown in EPG's.
+		if self.timerentry_justplay.getValue() == "zap":
+			if not self.timerentry_showendtime.getValue():
+				end = begin + (config.recording.margin_before.getValue()*60) + 1
+
 		return begin, end
 
 	def selectChannelSelector(self, *args):

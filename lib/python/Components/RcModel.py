@@ -119,7 +119,7 @@ class RcModel:
 		elif self.currentRcType == self.RCTYPE_VU:
 			return '/usr/share/enigma2/rc_models/vu/'
 		elif self.currentRcType == self.RCTYPE_VU2:
-			return '/usr/share/enigma2/rc_models/vu2/'	
+			return '/usr/share/enigma2/rc_models/vu2/'
 		elif self.currentRcType == self.RCTYPE_DMM:
 			return '/usr/share/enigma2/rc_models/dmm0/'
 		elif self.currentRcType == self.RCTYPE_DMM1:

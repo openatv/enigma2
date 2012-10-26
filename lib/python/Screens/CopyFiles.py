@@ -19,7 +19,7 @@ class CopyFileTask(Components.Task.PythonTask):
 		errors = []
 		for src, dst in self.fileList:
 			try:
-				copy2(self.src,self.dest)
+				copy2(src, dst)
 			except Exception, e:
 				errors.append(e)
 		if errors:

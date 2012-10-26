@@ -656,7 +656,6 @@ void eDVBRecordFileThread::flush()
 	}
 	if (m_fd_dest >= 0)
 	{
-		fdatasync(m_fd_dest);
 		posix_fadvise(m_fd_dest, 0, 0, POSIX_FADV_DONTNEED);
 	}
 }
