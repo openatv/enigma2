@@ -3138,7 +3138,7 @@ class InfoBarExtensions:
 
 	def getCCcamInfo(self):
 		if Directories.pathExists('/usr/emu_scripts/'):
-			softcams = os_listdir('/usr/emu_scripts/')
+			softcams = os.listdir('/usr/emu_scripts/')
 		for softcam in softcams:
 			if softcam.lower().startswith('cccam') and config.cccaminfo.showInExtensions.value:
 				return [((boundFunction(self.getCCname), boundFunction(self.openCCcamInfo), lambda: True), None)] or []
@@ -3150,7 +3150,7 @@ class InfoBarExtensions:
 
 	def getOScamInfo(self):
 		if Directories.pathExists('/usr/emu_scripts/'):
-			softcams = os_listdir('/usr/emu_scripts/')
+			softcams = os.listdir('/usr/emu_scripts/')
 		for softcam in softcams:
 			if softcam.lower().startswith('oscam') and config.oscaminfo.showInExtensions.value:
 				return [((boundFunction(self.getOSname), boundFunction(self.openOScamInfo), lambda: True), None)] or []
