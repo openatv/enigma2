@@ -2147,7 +2147,7 @@ class NetworkVpnLog(Screen):
 
 class NetworkSamba(Screen):
 	skin = """
-		<screen position="center,center" size="560,310" ">
+		<screen position="center,center" size="560,310" >
 			<widget name="lab1" position="20,90" size="150,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="labactive" position="180,90" size="250,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
@@ -2162,7 +2162,6 @@ class NetworkSamba(Screen):
 			<widget name="key_yellow" position="280,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 			<widget name="key_blue" position="420,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 		</screen>"""
-
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Samba Setup"))
