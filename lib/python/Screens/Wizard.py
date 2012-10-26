@@ -549,7 +549,6 @@ class Wizard(Screen):
 				for renderer in self.renderer:
 					rootrenderer = renderer
 					while renderer.source is not None:
-						print "self.list:", self["list"]
 						if renderer.source is self["list"]:
 							print "setZPosition"
 							rootrenderer.instance.setZPosition(1)

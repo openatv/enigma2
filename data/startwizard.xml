@@ -1,6 +1,6 @@
 <wizard>
 		<step id="start" nextstep="introduction">
-			<text value="Welcome.\n\nThis start wizard will guide you through the basic setup of your STB_BOX.\nPress the OK button on your remote control to move to the next step." />
+			<text value="Welcome.\n\nThis start wizard will guide you through the basic setup of your Venton HD.\nPress the OK button on your remote control to move to the next step." />
 			<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
@@ -164,7 +164,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 			<condition>
 self.condition = self.isLastWizard
 			</condition>
-			<text value="Thank you for using the wizard. Your STB_BOX is now ready to use.\nPlease press OK to start using your STB_BOX." />
+			<text value="Thank you for using the wizard. Your Venton HD is now ready to use.\nPlease press OK to start using your Venton HD." />
 			<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
