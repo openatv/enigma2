@@ -36,6 +36,7 @@ int eRawFile::open(const char *filename)
 	m_current_offset = 0;
 	m_last_offset = 0;
 	m_fd = ::open(filename, O_RDONLY | O_LARGEFILE);
+	posix_fadvise(m_fd, 0, 0, POSIX_FADV_SEQUENTIAL);
 	return m_fd;
 }
 
