@@ -1,6 +1,7 @@
 #define _ISOC99_SOURCE /* for llabs */
 #include <lib/dvb/tstools.h>
 #include <lib/base/eerror.h>
+#include <lib/base/cachedtssource.h>
 #include <unistd.h>
 #include <fcntl.h>
 
@@ -34,8 +35,10 @@ int eDVBTSTools::openFile(const char *filename, int nostreaminfo)
 	eRawFile *f = new eRawFile();
 	ePtr<iTsSource> src = f;
 
-	if (f->openCached(filename) < 0)
+	if (f->open(filename) < 0)
 		return -1;
+
+	src = new eCachedSource(src);
 
 	setSource(src, nostreaminfo ? NULL : filename);
 
