@@ -53,43 +53,24 @@ int eRawFile::openCached(const char *filename)
 	return 0;
 }
 
-off_t eRawFile::lseek(off_t offset, int whence)
-{
-	eSingleLocker l(m_lock);
-	m_current_offset = lseek_internal(offset, whence);
-	return m_current_offset;
-}
-
-off_t eRawFile::lseek_internal(off_t offset, int whence)
+off_t eRawFile::lseek_internal(off_t offset)
 {
 //	eDebug("lseek: %lld, %d", offset, whence);
 		/* if there is only one file, use the native lseek - the file could be growing! */
 	if (m_nrfiles < 2)
 	{
 		if (!m_cached)
-			return ::lseek(m_fd, offset, whence);
+		{
+			return ::lseek(m_fd, offset, SEEK_SET);
+		}
 		else
 		{
-			if (::fseeko(m_file, offset, whence) < 0)
+			if (::fseeko(m_file, offset, SEEK_SET) < 0)
 				perror("fseeko");
 			return ::ftello(m_file);
 		}
 	}
-	switch (whence)
-	{
-	case SEEK_SET:
-		m_current_offset = offset;
-		break;
-	case SEEK_CUR:
-		m_current_offset += offset;
-		break;
-	case SEEK_END:
-		m_current_offset = m_totallength + offset;
-		break;
-	}
-
-	if (m_current_offset < 0)
-		m_current_offset = 0;
+	m_current_offset = offset;
 	return m_current_offset;
 }
 
@@ -124,7 +105,7 @@ ssize_t eRawFile::read(off_t offset, void *buf, size_t count)
 
 	if (offset != m_current_offset)
 	{
-		m_current_offset = lseek_internal(offset, SEEK_SET);
+		m_current_offset = lseek_internal(offset);
 		if (m_current_offset < 0)
 			return m_current_offset;
 	}
@@ -267,7 +248,18 @@ int eRawFile::openFileUncached(int nr)
 
 off_t eRawFile::length()
 {
-	return m_totallength;
+	if (m_nrfiles >= 2)
+	{
+		return m_totallength;
+	}
+	else
+	{
+		struct stat st;
+		int fd = m_cached ? fileno(m_file) : m_fd;
+		if (::fstat(fd, &st) < 0)
+			return -1;
+		return st.st_size;
+	}
 }
 
 off_t eRawFile::offset()
