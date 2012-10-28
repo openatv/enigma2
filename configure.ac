@@ -143,7 +143,7 @@ if test x"$BOXTYPE" == "xodinm9"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 fi
 
-if test x"$BOXTYPE" == "xvuduo" -o x"$BOXTYPE" == "xvusolo" -o x"$BOXTYPE" == "xvuuno" -o x"$BOXTYPE" == "xvuultimo" -o x"$BOXTYPE" == "xtmtwin"; then
+if test x"$BOXTYPE" == "xvuduo" -o x"$BOXTYPE" == "xvusolo" -o x"$BOXTYPE" == "xvuuno" -o x"$BOXTYPE" == "xvuultimo"  -o x"$BOXTYPE" == "xtm2t"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
