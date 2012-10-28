@@ -65,8 +65,9 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 			{
 			"yellow": (self.setDefaultInterface, [_("Set interface as default Interface"),_("* Only available if more than one interface is active.")] ),
 			})
-
-		self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
+		
+		self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getInstalledAdapters()]
+		#self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
 
 		if not self.adapters:
 			self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getConfiguredAdapters()]
@@ -395,13 +396,17 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def layoutFinished(self):
 		self["DNS1"].setText(self.primaryDNS.getText())
 		self["DNS2"].setText(self.secondaryDNS.getText())
-		if self.ipConfigEntry.getText() is not None:
-			if self.ipConfigEntry.getText() == "0.0.0.0":
-				self["IP"].setText(_("N/A"))
+		try:
+			if self.ipConfigEntry.getText() is not None:
+				if self.ipConfigEntry.getText() == "0.0.0.0":
+					self["IP"].setText(_("N/A"))
+				else:
+					self["IP"].setText(self.ipConfigEntry.getText())
 			else:
-				self["IP"].setText(self.ipConfigEntry.getText())
-		else:
+				self["IP"].setText(_("N/A"))
+		except:
 			self["IP"].setText(_("N/A"))
+			
 		if self.netmaskConfigEntry.getText() is not None:
 			if self.netmaskConfigEntry.getText() == "0.0.0.0":
 					self["Mask"].setText(_("N/A"))
@@ -443,7 +448,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.encryptionlist.append(("WEP", _("WEP")))
 			self.encryptionlist.append(("WPA", _("WPA")))
 			self.encryptionlist.append(("WPA/WPA2", _("WPA or WPA2")))
-			self.encryptionlist.append(("WPA2", _("WPA2")))
+			self.encryptionlist.append(("WPA/WPA2", _("WPA2")))
 			self.weplist = []
 			self.weplist.append("ASCII")
 			self.weplist.append("HEX")
