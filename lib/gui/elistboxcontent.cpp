@@ -443,14 +443,14 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						int size = (pvalue && PyInt_Check(psize)) ? PyInt_AsLong(psize) : 100;
 
 							/* calc. slider length */
-						int width = (m_itemsize.width() - m_seperation) * value / size;
+						int width = (m_itemsize.width() - m_seperation - 40) * value / size;
 						int height = m_itemsize.height();
 
 
 							/* draw slider */
 						//painter.fill(eRect(offset.x() + m_seperation, offset.y(), width, height));
 						//hack - make it customizable
-						painter.fill(eRect(offset.x() + m_seperation, offset.y() + 5, width-50, height-10));
+						painter.fill(eRect(offset.x() + m_seperation, offset.y() + 5, width, height-10));
 						
 							/* draw text value at the end of the slider*/
 						std::ostringstream sin;
