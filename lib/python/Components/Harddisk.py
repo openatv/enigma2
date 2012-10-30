@@ -665,7 +665,7 @@ class HarddiskManager:
 
 	def enumerateNetworkMounts(self):
 		print "[Harddisk] enumerating network mounts..."
-		netmount = os.listdir('/media/net')
+		netmount = (os.path.exists('/media/net') and os.listdir('/media/net')) or ""
 		if len(netmount) > 0:
 			for fil in netmount:
 				if os.path.ismount('/media/net/' + fil):
