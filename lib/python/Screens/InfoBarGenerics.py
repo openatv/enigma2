@@ -1059,6 +1059,7 @@ class InfoBarEPG:
 
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
+				"IPressed": (self.IPressed, _("show program information...")),
 				"InfoPressed": (self.InfoPressed, _("show program information...")),
 				"showEventInfoPlugin": (self.showEventInfoPlugins, _("List EPG functions...")),
 				"EPGPressed":  (self.showDefaultEPG, _("show EPG...")),
@@ -1091,6 +1092,12 @@ class InfoBarEPG:
 			self.openEventView()
 		else:
 			self.showDefaultEPG()
+
+	def IPressed(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
+		self.openEventView()
 
 	def EPGPressed(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:

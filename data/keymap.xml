@@ -75,6 +75,7 @@
 	</map>
 
 	<map context="InfobarEPGActions">
+		<key id="KEY_I" mapto="IPressed" flags="b" />
 		<key id="KEY_INFO" mapto="InfoPressed" flags="b" />
 		<key id="KEY_INFO" mapto="showEventInfoPlugin" flags="l" />
 		<key id="KEY_EPG" mapto="EPGPressed" flags="b" />
@@ -524,6 +525,7 @@
 
 	<map context="TimerEditActions">
 		<key id="KEY_INFO" mapto="log" flags="m" />
+		<key id="KEY_I" mapto="log" flags="m" />
 	</map>
 
 	<map context="EPGSelectActions">
@@ -534,6 +536,7 @@
 		<key id="KEY_PREVIOUS" mapto="prevBouquet" flags="m" />
 		<key id="KEY_MENU" mapto="menu" flags="m"/>
 		<key id="KEY_TEXT" mapto="input_date_time" flags="m"/>
+		<key id="KEY_I" mapto="info" flags="b"/>
 		<key id="KEY_INFO" mapto="info" flags="b"/>
 		<key id="KEY_INFO" mapto="infolong" flags="l"/>
 		<key id="KEY_EPG" mapto="epg" flags="b"/>
