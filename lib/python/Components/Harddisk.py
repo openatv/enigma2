@@ -551,7 +551,7 @@ class Partition:
 			if mounts is None:
 				mounts = getProcMounts()
 			for parts in mounts:
-				if parts[1] == self.mountpoint:
+				if self.mountpoint.startswith(parts[1]): # use startswith so a mount not ending with '/' is also detected.
 					return True
 		return False
 
@@ -608,14 +608,9 @@ class HarddiskManager:
 		self.devices_scanned_on_init = [ ]
 		self.on_partition_list_change = CList()
 		self.enumerateBlockDevices()
+		self.enumerateNetworkMounts()
 		# Find stuff not detected by the enumeration
 		p = [("/", _("Internal Flash"))]
-		try:
-			netmount = listdir('/media/net')
-			for fil in netmount:
-				p.append(('/media/net/' + fil, fil))
-		except:
-			pass
 		self.partitions.extend([ Partition(mountpoint = x[0], description = x[1]) for x in p ])
 
 	def getBlockDevInfo(self, blockdev):
@@ -667,6 +662,18 @@ class HarddiskManager:
 				for part in partitions:
 					self.addHotplugPartition(part)
 				self.devices_scanned_on_init.append((blockdev, removable, is_cdrom, medium_found))
+
+	def enumerateNetworkMounts(self):
+		print "[Harddisk] enumerating network mounts..."
+		netmount = (os.path.exists('/media/net') and os.listdir('/media/net')) or ""
+		if len(netmount) > 0:
+			for fil in netmount:
+				if os.path.ismount('/media/net/' + fil):
+					print "new Network Mount", fil, '->', os.path.join('/media/net/',fil)
+					self.partitions.append(Partition(mountpoint = os.path.join('/media/net/',fil), description = fil))
+		if os.path.ismount('/media/hdd') and '/media/hdd/' not in [p.mountpoint for p in self.partitions]:
+			print "new Network Mount being used as HDD replacement -> /media/hdd/"
+			self.partitions.append(Partition(mountpoint = '/media/hdd/', description = '/media/hdd'))
 
 	def getAutofsMountpoint(self, device):
 		return "/autofs/%s" % (device)
