@@ -57,7 +57,7 @@
 				  </menu>
 				  <item weight="4" level="0" entryID="usage_setup"><setup id="usage" /></item>
 				  <item weight="5" entryID="lcd_setup" requires="Display"><setup level="1" id="lcd" /></item>
-				  <menu weight="6" level="0" text="Network settings" entryID="network_menu">
+				  <menu weight="6" level="0" text="Network advanced settings" entryID="network_menu">
 					  <id val="network2" />
 					  <item level="0" text="Device setup" entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
 					  <item level="1" text="Mounts setup" entryID="netmounts_setup"><screen module="NetworkSetup" screen="NetworkMountsMenu"/></item>
@@ -120,7 +120,7 @@ self.session.openWithCallback(msgClosed, EpgLoadMsg)
 				
 				</menu>
 			</menu>
-			<menu weight="10" text="SoftCam / CI" entryID="cam_setup">
+			<menu weight="10" text="Common interface" entryID="cam_setup">
 				<id val="cam" />
 				<item weight="1" level="2" entryID="softcam_setup"><setup id="softcamsetup" /></item>
 				<item weight="10" level="1" text="Common interface" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
