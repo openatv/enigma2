@@ -14,6 +14,11 @@ def main(session, **kwargs):
 	from ui import picshow
 	session.open(picshow)
 
+def menu(menuid, **kwargs):
+	if menuid == "mainmenu":
+		return [(_("Picture player"), main, "picture_player", 1)]
+	return []
+      
 def filescan_open(list, session, **kwargs):
 	# Recreate List as expected by PicView
 	filelist = [((file.path, False), None) for file in list]
@@ -43,5 +48,5 @@ def filescan(**kwargs):
 
 def Plugins(**kwargs):
 	return \
-		[PluginDescriptor(name=_("PicturePlayer"), description=_("fileformats (BMP, PNG, JPG, GIF)"), icon="pictureplayer.png", where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=main),
+		[PluginDescriptor(name =_("PicturePlayer"), description =_("fileformats (BMP, PNG, JPG, GIF)"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu),
 		 PluginDescriptor(name=_("PicturePlayer"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)]
