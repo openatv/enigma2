@@ -9,11 +9,12 @@ class RcModel:
 	RCTYPE_VU = 5
 	RCTYPE_VU2 = 6
 	RCTYPE_GB = 7
-	RCTYPE_INI3000 = 8
-	RCTYPE_INI5000 = 9
-	RCTYPE_INI7000 = 10
-	RCTYPE_ODIN = 11
-	RCTYPE_TM = 12
+	RCTYPE_INI1000 = 8
+	RCTYPE_INI3000 = 9
+	RCTYPE_INI5000 = 10
+	RCTYPE_INI7000 = 11
+	RCTYPE_ODIN = 12
+	RCTYPE_TM = 13
 
 	def __init__(self):
 		self.currentRcType = self.RCTYPE_DMM
@@ -61,6 +62,8 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_ET4X00
 			elif model == 'gigablue':
 				self.currentRcType = self.RCTYPE_GB
+			elif model == 'ini-1000':
+				self.currentRcType = self.RCTYPE_INI1000
 			elif model == 'ini-3000':
 				self.currentRcType = self.RCTYPE_INI3000
 			elif model == 'ini-5000':
@@ -86,6 +89,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/et9500/'
 		elif self.currentRcType == self.RCTYPE_GB:
 			return '/usr/share/enigma2/rc_models/gb/'
+		elif self.currentRcType == self.RCTYPE_INI1000:
+			return '/usr/share/enigma2/rc_models/ini7000/'
 		elif self.currentRcType == self.RCTYPE_INI3000:
 			return '/usr/share/enigma2/rc_models/ini3000/'
 		elif self.currentRcType == self.RCTYPE_INI5000:
