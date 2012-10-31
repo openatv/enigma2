@@ -154,7 +154,7 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 		</menu>
 		<item weight="5" level="0" text="Timers" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
 		<item weight="6" level="0" text="VCR scart" entryID="scart_switch" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>
-		<menu weight="7" text="Standby / Restart" entryID="standby_restart_list" endtext="&gt;&lt;">
+		<menu weight="7" text="Standby / Restart" entryID="standby_restart_list" endtext=">">
 			<id val="shutdown" />
 			<item text="Sleep timer" entryID="sleep" endtext=">" ><screen module="SleepTimerEdit" screen="SleepTimerEdit" /></item>
 			<item text="Standby" entryID="standby" endtext="&gt;&lt;"><screen module="Standby" screen="Standby"/></item>
