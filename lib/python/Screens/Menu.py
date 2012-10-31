@@ -18,7 +18,7 @@ from Screens.Setup import Setup, getSetupTitle
 #		<item text="File-Mode">self.setModeFile()</item>
 #			<item text="Sleep Timer"></item>
 mainmenu = _("Main Menu")
-
+menutitle_string = ""
 # read the menu
 mdom = xml.etree.cElementTree.parse(resolveFilename(SCOPE_SKIN, 'menu.xml'))
 
@@ -165,6 +165,7 @@ class Menu(Screen):
 
 		list = []
 		self.endtext = endtext
+		
 		menuID = None
 		for x in parent:						#walk through the actual nodelist
 			if not x.tag:
@@ -235,7 +236,13 @@ class Menu(Screen):
 		a = a and _(a)
 		if a is None:
 			a = _(parent.get("text", "").encode("UTF-8"))
-		self["title"] = StaticText(a)
+		global menutitle_string
+		if _(a) == _("Main menu"):
+		  menutitle_string += a 
+		else:
+		  menutitle_string += " ---> " + a
+		self["title"] = StaticText(menutitle_string)
+
 		Screen.setTitle(self, a)
 		self.menu_title = a
 
@@ -249,9 +256,11 @@ class Menu(Screen):
 			self.okbuttonClick()
 
 	def closeNonRecursive(self):
+		menutitle_string = ""
 		self.close(False)
 
 	def closeRecursive(self):
+		menutitle_string = ""
 		self.close(True)
 
 	def createSummary(self):
@@ -262,4 +271,6 @@ class MainMenu(Menu):
 
 	def __init__(self, *x):
 		self.skinName = "Menu"
+		global menutitle_string
+		menutitle_string = ""
 		Menu.__init__(self, *x)
