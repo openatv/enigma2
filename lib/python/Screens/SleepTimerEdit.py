@@ -26,14 +26,18 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
 
-		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
+		self["actions"] = NumberActionMap(['SetupActions', 'ColorActions'],
 		{
+		  "green": self.keySave,
+		  "red": self.keyCancel,
+		  "blue": self.useServiceTime,
 		  "cancel": self.keyCancel,
 		  "save": self.keySave,
 		  "menu": self.keyCancel,
 		}, -2)
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("OK"))
+		self['key_blue'] = Label(_('Service Time'))
 		if not self.selectionChanged in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
