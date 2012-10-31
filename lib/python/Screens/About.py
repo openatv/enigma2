@@ -99,10 +99,9 @@ class About(Screen):
 		try:
 			tempinfo = open('//proc/stb/sensors/temp0/value', 'r').read()
 			mark = str('\xc2\xb0')
+			AboutText += _("System Temperature:") + " " + tempinfo.replace('\n','') + mark + "C\n\n"
 		except IOError:
-			mark = ""
-			tempinfo = "Unable to read info"
-		AboutText += _("System Temperature:") + " " + tempinfo.replace('\n','') + mark + "C\n\n"
+			pass
 
 		self["TranslationHeader"] = StaticText(_("Translation:"))
 		AboutText += _("Translation:") + "\n"
