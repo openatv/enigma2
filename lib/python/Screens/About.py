@@ -60,6 +60,38 @@ class About(Screen):
 			AboutText += fp_version + "\n"
 
 		self["FPVersion"] = StaticText(fp_version)
+
+		try:
+			tempinfo = open('//proc/stb/sensors/temp0/value', 'r').read()
+			mark = str('\xc2\xb0')
+			AboutText += _("System Temperature:") + " " + tempinfo.replace('\n','') + mark + "C\n\n"
+		except IOError:
+			pass
+
+		self["TranslationHeader"] = StaticText(_("Translation:"))
+		AboutText += _("Translation:") + "\n"
+
+		# don't remove the string out of the _(), or it can't be "translated" anymore.
+		# TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+		info = _("TRANSLATOR_INFO")
+
+		if info == _("TRANSLATOR_INFO"):
+			info = ""
+
+		infolines = _("").split("\n")
+		infomap = {}
+		for x in infolines:
+			l = x.split(': ')
+			if len(l) != 2:
+				continue
+			(type, value) = l
+			infomap[type] = value
+
+		translator_name = infomap.get("Language-Team", "none")
+		if translator_name == "none":
+			translator_name = infomap.get("Last-Translator", "")
+
+		self["FPVersion"] = StaticText(fp_version)
 		
 		#try:
 		#  AboutText += "\n" + _("MAC Address: ") + getHwAddr('eth0') + "\n"
