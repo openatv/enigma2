@@ -90,6 +90,8 @@ def getDriversVersionString():
 		if (os.path.isfile("/proc/stb/info/boxtype") and os.path.isfile("/proc/stb/info/version")):
 			  if ((open("/proc/stb/info/chipset").read().strip()) == "bcm7405"):
 			    return open("/proc/stb/info/chipset").read().strip().replace("7405", "7413") + "-" + open("/proc/stb/info/version").read().strip()
+			  else:
+			    return open("/proc/stb/info/chipset").read().strip() + "-" + open("/proc/stb/info/version").read().strip()
 	except:
 		pass
 	return "Unavailable"  
