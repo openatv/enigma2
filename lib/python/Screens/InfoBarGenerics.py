@@ -299,14 +299,20 @@ class NumberZap(Screen):
 		if self.searchNumber:
 			self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
 			self ["servicename"].text = ServiceReference(self.service).getServiceName()
+			if not self.startBouquet:
+				self.startBouquet = self.bouquet
 
 	def keyBlue(self):
+		self.Timer.start(3000, True)
 		if self.searchNumber:
-			self.service, self.bouquet = self.searchNumber(int(self["number"].getText()), firstBouquetOnly = True)
+			if self.startBouquet == self.bouquet:
+				self.service, self.bouquet = self.searchNumber(int(self["number"].getText()), firstBouquetOnly = True)
+			else:
+				self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
 			self ["servicename"].text = ServiceReference(self.service).getServiceName()
 
 	def keyNumberGlobal(self, number):
-		self.Timer.start(3000, True)		#reset timer
+		self.Timer.start(3000, True)
 		self.field = self.field + str(number)
 		self["number"].setText(self.field)
 
@@ -319,6 +325,7 @@ class NumberZap(Screen):
 		Screen.__init__(self, session)
 		self.field = str(number)
 		self.searchNumber = searchNumberFunction
+		self.startBouquet = None
 
 		self["channel"] = Label(_("Channel:"))
 		self["number"] = Label(self.field)
