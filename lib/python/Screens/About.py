@@ -38,7 +38,7 @@ class About(Screen):
 		Screen.setTitle(self, _("Image Information"))
 		self.populate()
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions", "TimerEditActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
