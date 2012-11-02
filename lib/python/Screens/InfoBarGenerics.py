@@ -753,7 +753,6 @@ class InfoBarChannelSelection:
 			self.stopTimeshiftConfirmed(True)
 			self.tscallback()
 
->>>>>>> bad0a70bcb6646be305ee8c92ac5e4c4ed910425
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
 	def __init__(self):
