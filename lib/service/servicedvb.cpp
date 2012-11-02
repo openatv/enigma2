@@ -1869,6 +1869,13 @@ std::string eDVBServicePlay::getInfoString(int w)
 		h.getHBBTVUrl(url);
 		return url;
 	}
+	case sLiveStreamDemuxId:
+	{
+		eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
+		std::string demux;
+		demux += h.getDemuxID() + '0';
+		return demux;
+	}
 	default:
 		break;
 	}
