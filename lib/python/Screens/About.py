@@ -222,7 +222,10 @@ class Devices(Screen):
 			self.mountinfo += "\n"
 		else:
 			self.mountinfo += (_('none'))
-		self.AboutText += self.mountinfo + "\n"
+		try:
+			self.AboutText += self.mountinfo + "\n"
+		except:	
+			pass
 
 
 class SystemMemoryInfo(Screen):
