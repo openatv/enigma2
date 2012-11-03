@@ -1217,11 +1217,11 @@ class EPGSelection(Screen, HelpableScreen):
 			elif config.epgselection.OK_enhanced.value == "Zap + Exit":
 				self.zap()
 		elif self.type == EPG_TYPE_MULTI:
-			if config.epgselection.OK.value == "EventView":
+			if config.epgselection.OK_multi.value == "EventView":
 				self.infoKeyPressed()
-			elif config.epgselection.OK.value == "Zap":
+			elif config.epgselection.OK_multi.value == "Zap":
 				self.ZapTo()
-			elif config.epgselection.OK.value == "Zap + Exit":
+			elif config.epgselection.OK_multi.value == "Zap + Exit":
 				self.zap()
 
 		if self.type == EPG_TYPE_GRAPH:

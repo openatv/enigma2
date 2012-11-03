@@ -122,8 +122,6 @@ class CamCheckPoller:
         if (username is not None) and (password is not None) and (username != "") and (password != ""):
             self.url = self.url.replace('http://', ("http://%s:%s@" % (username, password)))
 
-        print self.url
-
     def doCheck(self):
         emuDir = "/etc/"
         self.emuList = []
