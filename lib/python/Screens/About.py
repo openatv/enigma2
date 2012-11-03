@@ -68,7 +68,7 @@ class About(Screen):
 			pass
 
 		self["TranslationHeader"] = StaticText(_("Translation:"))
-		AboutText += _("Translation:") + "\n"
+
 
 		# don't remove the string out of the _(), or it can't be "translated" anymore.
 		# TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
@@ -90,6 +90,8 @@ class About(Screen):
 		if translator_name == "none":
 			translator_name = infomap.get("Last-Translator", "")
 
+		AboutText += _("Translation: ") + translator_name + "\n"
+		
 		self["FPVersion"] = StaticText(fp_version)
 		
 		#try:
