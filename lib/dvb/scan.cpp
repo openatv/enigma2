@@ -1262,13 +1262,13 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 				{
 					CaIdentifierDescriptor &d = (CaIdentifierDescriptor&)**desc;
 					const CaSystemIdList &caids = *d.getCaSystemIds();
-					SCAN_eDebugNoNewLine("CA ");
+					SCAN_eDebugNoNewLine("CA");
 					for (CaSystemIdList::const_iterator i(caids.begin()); i != caids.end(); ++i)
 					{
-						SCAN_eDebugNoNewLine("%04x ", *i);
+						SCAN_eDebugNoNewLine(" %04x", *i);
 						service->m_ca.push_front(*i);
 					}
-					SCAN_eDebug("");
+					SCAN_eDebug(".");
 					break;
 				}
 				default:

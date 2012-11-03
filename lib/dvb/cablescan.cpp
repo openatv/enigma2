@@ -135,9 +135,6 @@ void eCableScan::parseNIT()
 		for (TransportStreamInfoConstIterator tsinfo(tsinfovec.begin());
 			tsinfo != tsinfovec.end(); ++tsinfo)
 		{
-			eOriginalNetworkID onid = (*tsinfo)->getOriginalNetworkId();
-			eTransportStreamID tsid = (*tsinfo)->getTransportStreamId();
-
 			for (DescriptorConstIterator desc = (*tsinfo)->getDescriptors()->begin();
 					desc != (*tsinfo)->getDescriptors()->end(); ++desc)
 			{

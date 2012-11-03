@@ -1,4 +1,3 @@
-#define _ISOC99_SOURCE /* for llabs */
 #include <lib/dvb/tstools.h>
 #include <lib/base/eerror.h>
 #include <lib/base/cachedtssource.h>
