@@ -10,7 +10,6 @@ from Components.Console import Console
 from Screens.SoftwareUpdate import SoftwareUpdateChanges
 from enigma import eTimer, getBoxType
 
-from Plugins.SystemPlugins.WirelessLan.Wlan import iWlan, iStatus, getWlanConfigName
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
 
@@ -123,8 +122,7 @@ class About(Screen):
 			mark = str('\xc2\xb0')
 			AboutText += _("System Temperature:") + " " + tempinfo.replace('\n','') + mark + "C\n\n"
 		except IOError:
-			tempinfo = "Unable to read info"
-			AboutText += _("System Temperature:") + " " + tempinfo + "\n\n"
+			pass
 
 		self["TranslationHeader"] = StaticText(_("Translation:"))
 		AboutText += _("Translation:") + "\n"
@@ -405,7 +403,9 @@ class SystemNetworkInfo(Screen):
 		self.iface = None
 		self.createscreen()
 
-		self.resetList()
+		if iNetwork.isWirelessInterface(self.iface):
+			self.resetList()
+			self.onClose.append(self.cleanup)
 		self.updateStatusbar()
 
 		self["key_red"] = StaticText(_("Close"))
@@ -417,10 +417,6 @@ class SystemNetworkInfo(Screen):
 				"up": self["AboutScrollLabel"].pageUp,
 				"down": self["AboutScrollLabel"].pageDown
 			})
-# 		self.timer = eTimer()
-# 		self.timer.timeout.get().append(self.resetList)
-# 		self.onShown.append(lambda: self.timer.start(500))
-		self.onClose.append(self.cleanup)
 
 	def createscreen(self):
 		AboutText = ""
@@ -536,11 +532,10 @@ class SystemNetworkInfo(Screen):
 		if iNetwork.isWirelessInterface(self.iface):
 			try:
 				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
+				iStatus.getDataForInterface(self.iface,self.getInfoCB)
 			except:
 				self["statuspic"].setPixmapNum(1)
 				self["statuspic"].show()
-			else:
-				iStatus.getDataForInterface(self.iface,self.getInfoCB)
 		else:
 			iNetwork.getLinkState(self.iface,self.dataAvail)
 

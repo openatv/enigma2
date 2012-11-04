@@ -68,6 +68,18 @@ def findSafeRecordPath(dirname):
 			return None
 	return dirname
 
+# type 1 = digital television service
+# type 4 = nvod reference service (NYI)
+# type 17 = MPEG-2 HD digital television service
+# type 22 = advanced codec SD digital television
+# type 24 = advanced codec SD NVOD reference service (NYI)
+# type 25 = advanced codec HD digital television
+# type 27 = advanced codec HD NVOD reference service (NYI)
+# type 2 = digital radio sound service
+# type 10 = advanced codec digital radio sound service
+
+service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)'
+
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry, object):
 ######### the following static methods and members are only in use when the box is in (soft) standby
@@ -112,7 +124,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 #################################################################
 
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = True, record_ecm = False):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = True, record_ecm = True):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers == True:
 			if self.begin < time() - 1209600:
@@ -343,6 +355,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					NavigationInstance.instance.isMovieplayerActive()
 					from Screens.ChannelSelection import ChannelSelection
 					ChannelSelectionInstance = ChannelSelection.instance
+					self.service_types = service_types_tv
 					if ChannelSelectionInstance:
 						if config.usage.multibouquet.getValue():
 							bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
@@ -633,54 +646,13 @@ class RecordTimer(timer.Timer):
 				checkit = False # at moment it is enough when the message is displayed one time
 
 	def saveTimer(self):
-		#root_element = xml.etree.cElementTree.Element('timers')
-		#root_element.text = "\n"
-
-		#for timer in self.timer_list + self.processed_timers:
-			# some timers (instant records) don't want to be saved.
-			# skip them
-			#if timer.dontSave:
-				#continue
-			#t = xml.etree.cElementTree.SubElement(root_element, 'timers')
-			#t.set("begin", str(int(timer.begin)))
-			#t.set("end", str(int(timer.end)))
-			#t.set("serviceref", str(timer.service_ref))
-			#t.set("repeated", str(timer.repeated))
-			#t.set("name", timer.name)
-			#t.set("description", timer.description)
-			#t.set("afterevent", str({
-			#	AFTEREVENT.NONE: "nothing",
-			#	AFTEREVENT.STANDBY: "standby",
-			#	AFTEREVENT.DEEPSTANDBY: "deepstandby",
-			#	AFTEREVENT.AUTO: "auto"}))
-			#if timer.eit is not None:
-			#	t.set("eit", str(timer.eit))
-			#if timer.dirname is not None:
-			#	t.set("location", str(timer.dirname))
-			#t.set("disabled", str(int(timer.disabled)))
-			#t.set("justplay", str(int(timer.justplay)))
-			#t.text = "\n"
-			#t.tail = "\n"
-
-			#for time, code, msg in timer.log_entries:
-				#l = xml.etree.cElementTree.SubElement(t, 'log')
-				#l.set("time", str(time))
-				#l.set("code", str(code))
-				#l.text = str(msg)
-				#l.tail = "\n"
-
-		#doc = xml.etree.cElementTree.ElementTree(root_element)
-		#doc.write(self.Filename)
-
 		list = []
-
 		list.append('<?xml version="1.0" ?>\n')
 		list.append('<timers>\n')
 
 		for timer in self.timer_list + self.processed_timers:
 			if timer.dontSave:
 				continue
-
 			list.append('<timer')
 			list.append(' begin="' + str(int(timer.begin)) + '"')
 			list.append(' end="' + str(int(timer.end)) + '"')

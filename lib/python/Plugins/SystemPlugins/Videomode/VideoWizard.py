@@ -160,7 +160,7 @@ class VideoWizard(WizardLanguage, Rc):
 	def modeSelect(self, mode):
 		ratesList = self.listRates(mode)
 		print "ratesList:", ratesList
-		if self.port == "DVI" and mode in ("720p", "1080i", "1080p") and chipset != 'bcm7405' and chipset != '7335':
+		if self.port == "DVI" and mode in ("720p", "1080i", "1080p") and (chipset.find('7358') != -1 or chipset.find('7356') != -1):
 			self.rate = "multi"
 			self.hw.setMode(port = self.port, mode = mode, rate = "multi")
 		elif self.port == "DVI" and mode in ("720p", "1080i"):

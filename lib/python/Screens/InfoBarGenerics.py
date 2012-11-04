@@ -48,7 +48,7 @@ from Tools import Directories, ASCIItranslit, Notifications
 
 from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eServiceCenter, eEPGCache, eActionMap, getBoxType
 
-from time import time, localtime, strftime
+from time import time, localtime, strftime, sleep
 from bisect import insort
 from random import randint
 
@@ -769,6 +769,7 @@ class InfoBarChannelSelection:
 	def __init__(self):
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
+		self.tscallback = None
 
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
@@ -853,7 +854,8 @@ class InfoBarChannelSelection:
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="showRadioChannelList")
 		elif self.timeshift_enabled and self.isSeekable():
-			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
+			self.tscallback = self.showRadioChannelList
+			self.session.openWithCallback(self.tsquestionCalBack, MessageBox, _("You seem to be in timeshift, Do you want to leave timeshift ?"), MessageBox.TYPE_YESNO, timeout=10, default=False)
 		else:
 			self.servicelist.setModeRadio()
 			if zap:
@@ -874,7 +876,8 @@ class InfoBarChannelSelection:
 		elif self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="historyBack")
 		elif self.timeshift_enabled and self.isSeekable():
-			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
+			self.tscallback = self.historyBack
+			self.session.openWithCallback(self.tsquestionCalBack, MessageBox, _("You seem to be in timeshift, Do you want to leave timeshift ?"), MessageBox.TYPE_YESNO, timeout=10, default=False)
 		else:
 			self.servicelist.historyBack()
 
@@ -891,7 +894,8 @@ class InfoBarChannelSelection:
 		elif self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="historyNext")
 		elif self.timeshift_enabled and self.isSeekable():
-			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
+			self.tscallback = self.historyNext
+			self.session.openWithCallback(self.tsquestionCalBack, MessageBox, _("You seem to be in timeshift, Do you want to leave timeshift ?"), MessageBox.TYPE_YESNO, timeout=10, default=False)
 		else:
 			self.servicelist.historyNext()
 
@@ -902,7 +906,8 @@ class InfoBarChannelSelection:
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelUp")
 		elif self.timeshift_enabled and self.isSeekable():
-			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
+			self.tscallback = self.switchChannelUp
+			self.session.openWithCallback(self.tsquestionCalBack, MessageBox, _("You seem to be in timeshift, Do you want to leave timeshift ?"), MessageBox.TYPE_YESNO, timeout=10, default=False)
 		else:
 			if not config.usage.show_bouquetalways.getValue():
 # 				self.servicelist.moveUp()
@@ -918,7 +923,8 @@ class InfoBarChannelSelection:
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelDown")
 		elif self.timeshift_enabled and self.isSeekable():
-			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
+			self.tscallback = self.switchChannelDown
+			self.session.openWithCallback(self.tsquestionCalBack, MessageBox, _("You seem to be in timeshift, Do you want to leave timeshift ?"), MessageBox.TYPE_YESNO, timeout=10, default=False)
 		else:
 			if not config.usage.show_bouquetalways.getValue():
 #  				self.servicelist.moveDown()
@@ -934,7 +940,8 @@ class InfoBarChannelSelection:
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="openServiceList")
 		elif self.timeshift_enabled and self.isSeekable():
-			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
+			self.tscallback = self.openServiceList
+			self.session.openWithCallback(self.tsquestionCalBack, MessageBox, _("You seem to be in timeshift, Do you want to leave timeshift ?"), MessageBox.TYPE_YESNO, timeout=10, default=False)
 		else:
 			self.session.execDialog(self.servicelist)
 
@@ -942,7 +949,8 @@ class InfoBarChannelSelection:
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="openSatellites")
 		elif self.timeshift_enabled and self.isSeekable():
-			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
+			self.tscallback = self.openSatellites
+			self.session.openWithCallback(self.tsquestionCalBack, MessageBox, _("You seem to be in timeshift, Do you want to leave timeshift ?"), MessageBox.TYPE_YESNO, timeout=10, default=False)
 		else:
 			self.servicelist.showSatellites()
 			self.session.execDialog(self.servicelist)
@@ -961,7 +969,8 @@ class InfoBarChannelSelection:
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="zapUp")
 		elif self.timeshift_enabled and self.isSeekable():
-			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
+			self.tscallback = self.zapUp
+			self.session.openWithCallback(self.tsquestionCalBack, MessageBox, _("You seem to be in timeshift, Do you want to leave timeshift ?"), MessageBox.TYPE_YESNO, timeout=10, default=False)
 		else:
 			if self.servicelist.inBouquet():
 				prev = self.servicelist.getCurrentSelection()
@@ -986,7 +995,8 @@ class InfoBarChannelSelection:
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="zapDown")
 		elif self.timeshift_enabled and self.isSeekable():
-			self.session.open(MessageBox, _("You seem to be in timeshift, please stop it first."), MessageBox.TYPE_INFO, timeout=5)
+			self.tscallback = self.zapDown
+			self.session.openWithCallback(self.tsquestionCalBack, MessageBox, _("You seem to be in timeshift, Do you want to leave timeshift ?"), MessageBox.TYPE_YESNO, timeout=10, default=False)
 		else:
 			if self.servicelist.inBouquet():
 				prev = self.servicelist.getCurrentSelection()
@@ -1014,6 +1024,10 @@ class InfoBarChannelSelection:
 				return True
 		return False
 
+	def tsquestionCalBack(self, answer):
+		if answer and self.tscallback:
+			self.stopTimeshiftConfirmed(True)
+			self.tscallback()
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
 	def __init__(self):
@@ -1173,6 +1187,7 @@ class InfoBarEPG:
 
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
+				"IPressed": (self.IPressed, _("show program information...")),
 				"InfoPressed": (self.InfoPressed, _("show program information...")),
 				"showEventInfoPlugin": (self.showEventInfoPlugins, _("List EPG functions...")),
 				"EPGPressed":  (self.showDefaultEPG, _("show EPG...")),
@@ -1213,6 +1228,12 @@ class InfoBarEPG:
 			self.showCoolInfoGuide()
 		elif config.plisettings.PLIINFO_mode.getValue() == "coolsingleguide":
 			self.showCoolSingleGuide()			
+
+	def IPressed(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
+		self.openEventView()			
 
 	def EPGPressed(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
@@ -2699,8 +2720,6 @@ class InfoBarTimeshift:
 				return 1
 			return 0
 
-		if not self.timeshift_enabled:
-			return 0
 #		print "disable timeshift"
 		ts = self.getTimeshift()
 		if ts is None:
