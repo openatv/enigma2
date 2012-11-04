@@ -6,6 +6,7 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/frontend.h>
 #include <lib/dvb/fastscan.h>
+#include <lib/base/cfile.h>
 #include <lib/base/estring.h>
 #include <lib/base/nconfig.h>
 
@@ -310,25 +311,26 @@ eFastScan::~eFastScan()
 
 void eFastScan::startFile(const char *fnt, const char *fst)
 {
-	FILE *file = fopen(fst, "rb");
-
 	versionNumber = -1;
+	{
+		CFile file(fst, "rb");
+		if (file)
+		{
+			eFastScanFileTable<FastScanServicesSection> *table = new eFastScanFileTable<FastScanServicesSection>;
+			m_ServicesTable = table;
+			table->readFile(file);
+		}
+	}
+	{
+		CFile file(fnt, "rb");
+		if (file)
+		{
+			eFastScanFileTable<FastScanNetworkSection> *table = new eFastScanFileTable<FastScanNetworkSection>;
+			m_NetworkTable = table;
+			table->readFile(file);
+		}
+	}
 
-	if (file)
-	{
-		eFastScanFileTable<FastScanServicesSection> *table = new eFastScanFileTable<FastScanServicesSection>;
-		m_ServicesTable = table;
-		table->readFile(file);
-		fclose(file);
-	}
-	file = fopen(fnt, "rb");
-	if (file)
-	{
-		eFastScanFileTable<FastScanNetworkSection> *table = new eFastScanFileTable<FastScanNetworkSection>;
-		m_NetworkTable = table;
-		table->readFile(file);
-		fclose(file);
-	}
 	if (m_ServicesTable && m_NetworkTable)
 	{
 		parseResult();
