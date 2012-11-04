@@ -1,3 +1,4 @@
+#include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
 #include <lib/base/elock.h>
 #include <cstdarg>
@@ -21,7 +22,10 @@ void DumpUnfreed()
 	if(!allocList)
 		return;
 
-	FILE *f = fopen("/var/tmp/enigma2_mem.out", "w");
+	CFile f_rai("/tmp/enigma2_mem.out", "w");
+	if (!f_rai.valid())
+		return;
+	FILE *f = f_rai.handle;
 	size_t len = 1024;
 	char *buffer = (char*)malloc(1024);
 	for(i = allocList->begin(); i != allocList->end(); i++)

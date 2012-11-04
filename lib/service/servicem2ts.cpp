@@ -16,7 +16,6 @@ public:
 	~eM2TSFile();
 
 	// iTsSource
-	off_t lseek(off_t offset, int whence);
 	ssize_t read(off_t offset, void *buf, size_t count);
 	off_t length();
 	off_t offset();
@@ -184,18 +183,6 @@ eM2TSFile::~eM2TSFile()
 {
 	if (m_fd != -1)
 		::close(m_fd);
-}
-
-off_t eM2TSFile::lseek(off_t offset, int whence)
-{
-	eSingleLocker l(m_lock);
-
-	offset = (offset % 188) + (offset * 192) / 188;
-
-	if (offset != m_current_offset)
-		m_current_offset = lseek_internal(offset, whence);
-
-	return m_current_offset;
 }
 
 off_t eM2TSFile::lseek_internal(off_t offset, int whence)

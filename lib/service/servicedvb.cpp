@@ -1588,7 +1588,7 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 	}
 
 		/* fixup */
-	return pvr_channel->getCurrentPosition(m_decode_demux, pos, m_decoder ? 1 : 0);
+	return pvr_channel->getCurrentPosition(m_decode_demux, pos, m_decoder);
 }
 
 RESULT eDVBServicePlay::setTrickmode(int trick)
@@ -1872,6 +1872,13 @@ std::string eDVBServicePlay::getInfoString(int w)
 		eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 		h.getHBBTVUrl(url);
 		return url;
+	}
+	case sLiveStreamDemuxId:
+	{
+		eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
+		std::string demux;
+		demux += h.getDemuxID() + '0';
+		return demux;
 	}
 	default:
 		break;

@@ -7,7 +7,7 @@ import os
 import struct
 import random
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import SCOPE_HDD, SCOPE_SKIN_IMAGE, resolveFilename
+from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
 from Screens.LocationBox import defaultInhibitDirs
 import NavigationInstance
 import skin
