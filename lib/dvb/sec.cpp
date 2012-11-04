@@ -44,11 +44,6 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 		if (!simulate) \
 			eSecDebug(x); \
 	} while(0)
-//		else \
-//		{ \
-//			eDebugNoNewLine("SIMULATE:"); \
-//			eDebug(x); \
-//		} \
 
 int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite &sat, iDVBFrontend *fe, int slot_id, int *highest_score_lnb)
 {
@@ -286,11 +281,6 @@ bool need_turn_fast(int turn_speed)
 		if (!simulate) \
 			eDebug(x); \
 	} while(0)
-//		else \
-//		{ \
-//			eDebugNoNewLine("SIMULATE:"); \
-//			eDebug(x); \
-//		} \
 
 RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVBFrontendParametersSatellite &sat, int &frequency, int slot_id, unsigned int tunetimeout)
 {

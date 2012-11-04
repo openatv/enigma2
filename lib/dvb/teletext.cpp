@@ -231,7 +231,7 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 	
 	while (len > 2)
 	{
-		/*unsigned char data_unit_id = */*p++;
+		p++; /* data_unit_id */
 		unsigned char data_unit_length = *p++;
 		len -= 2;
 		
@@ -253,7 +253,7 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 //			break;
 //		}
 		
-		/*unsigned char line_offset =*/ *p++; len--;
+		p++; len--; /* line_offset */
 		unsigned char framing_code = *p++; len--;
 
 		int magazine_and_packet_address = decode_hamming_84(p++); len--;

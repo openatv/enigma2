@@ -555,12 +555,23 @@ class NumberZap(Screen):
 		self.close(self.service, self.bouquet)
 
 	def handleServiceName(self):
-		if not self.searchNumber is None:
+		if self.searchNumber:
 			self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
+			self ["servicename"].text = ServiceReference(self.service).getServiceName()
+			if not self.startBouquet:
+				self.startBouquet = self.bouquet
+
+	def keyBlue(self):
+		self.Timer.start(3000, True)
+		if self.searchNumber:
+			if self.startBouquet == self.bouquet:
+				self.service, self.bouquet = self.searchNumber(int(self["number"].getText()), firstBouquetOnly = True)
+			else:
+				self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
 			self ["servicename"].text = ServiceReference(self.service).getServiceName()
 
 	def keyNumberGlobal(self, number):
-		self.Timer.start(5000, True)		#reset timer
+		self.Timer.start(5000, True)
 		self.field = self.field + str(number)
 		self["number"].setText(self.field)
 		self["number_summary"].setText(self.field)
@@ -575,6 +586,7 @@ class NumberZap(Screen):
 		self.onChangedEntry = [ ]
 		self.field = str(number)
 		self.searchNumber = searchNumberFunction
+		self.startBouquet = None
 
 		self["channel"] = Label(_("Channel:"))
 		self["channel_summary"] = StaticText(_("Channel:"))
@@ -585,10 +597,11 @@ class NumberZap(Screen):
 
 		self.handleServiceName()
 
-		self["actions"] = NumberActionMap( [ "SetupActions" ],
+		self["actions"] = NumberActionMap( [ "SetupActions", "ShortcutActions" ],
 			{
 				"cancel": self.quit,
 				"ok": self.keyOK,
+				"blue": self.keyBlue,
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
 				"3": self.keyNumberGlobal,
@@ -693,12 +706,13 @@ class InfoBarNumberZap:
 				serviceIterator = servicelist.getNext()
 		return None
 
-	def searchNumber(self, number):
+	def searchNumber(self, number, firstBouquetOnly = False):
 		bouquet = self.servicelist.getRoot()
 		service = None
 		serviceHandler = eServiceCenter.getInstance()
-		service = self.searchNumberHelper(serviceHandler, number, bouquet)
-		if config.usage.multibouquet.getValue() and not service:
+		if not firstBouquetOnly:
+			service = self.searchNumberHelper(serviceHandler, number, bouquet)
+		if config.usage.multibouquet.value and not service:
 			bouquet = self.servicelist.bouquet_root
 			bouquetlist = serviceHandler.list(bouquet)
 			if bouquetlist:
@@ -711,7 +725,7 @@ class InfoBarNumberZap:
 							if not playable:
 								service = None
 							break
-						if config.usage.alternative_number_mode.getValue():
+						if config.usage.alternative_number_mode.getValue() or firstBouquetOnly:
 							break
 					bouquet = bouquetlist.getNext()
 		return service, bouquet
