@@ -49,9 +49,9 @@ int eAVSwitch::getVCRSlowBlanking()
 	if (m_fp_fd >= 0)
 	{
 		CFile f("/proc/stb/fp/vcr_fns", "r");
-		if (f.valid())
+		if (f)
 		{
-			if (fscanf(f.handle, "%d", &val) != 1)
+			if (fscanf(f, "%d", &val) != 1)
 				eDebug("read /proc/stb/fp/vcr_fns failed!! (%m)");
 		}
 		else if (ioctl(m_fp_fd, FP_IOCTL_GET_VCR, &val) < 0)
@@ -70,10 +70,10 @@ void eAVSwitch::fp_event(int what)
 	else
 	{
 		CFile f("/proc/stb/fp/events", "r");
-		if (f.valid())
+		if (f)
 		{
 			int events;
-			if (fscanf(f.handle, "%d", &events) != 1)
+			if (fscanf(f, "%d", &events) != 1)
 				eDebug("read /proc/stb/fp/events failed!! (%m)");
 			else if (events & FP_EVENT_VCR_SB_CHANGED)
 				/* emit */ vcr_sb_notifier(getVCRSlowBlanking());

@@ -91,9 +91,8 @@ void Cexif::ClearExif()
 
 bool Cexif::DecodeExif(const char *filename, int Thumb)
 {
-	CFile wrapper(filename, "rb");
-	FILE * hFile = wrapper.handle;
-	if(!wrapper.valid())
+	CFile hFile(filename, "rb");
+	if (!hFile)
 		return false;
 
 	m_exifinfo = new EXIFINFO;
