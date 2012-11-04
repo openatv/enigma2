@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <cstdlib>
+#include <lib/base/cfile.h>
 #include <lib/base/encoding.h>
 #include <lib/base/eerror.h>
 #include <lib/base/eenv.h>
@@ -24,7 +25,8 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 		/* no personalized encoding.conf, fallback to the system default */
 		file = eEnv::resolve("${datadir}/enigma2/encoding.conf");
 	}
-	FILE *f = fopen(file.c_str(), "rt");
+	CFile f_rai(file.c_str(), "rt");
+	FILE *f = f_rai.handle;
 	if (f)
 	{
 		char *line = (char*) malloc(256);
@@ -63,7 +65,6 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 			else
 				eDebug("encoding.conf: couldn't parse %s", line);
 		}
-		fclose(f);
 		free(line);
 	}
 	else
