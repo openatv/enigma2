@@ -20,22 +20,9 @@ struct CFile
 	operator FILE*() const { return handle; }
 
 	/* Fetch integer from /proc files and such */
-	static int parseIntHex(int *result, const char *filename)
-	{
-		CFile f(filename, "r");
-		if (!f)
-			return -1;
-		if (fscanf(f, "%x", result) != 1)
-			return -2;
-		return 0;
-	}
-	static int writeIntHex(const char *filename, int value)
-	{
-		CFile f(filename, "w");
-		if (!f)
-			return -1;
-		return fprintf(f, "%x", value);
-	}
+	static int parseIntHex(int *result, const char *filename);
+	static int writeIntHex(const char *filename, int value);
+	static int writeInt(const char *filename, int value);
 };
 
 #endif
