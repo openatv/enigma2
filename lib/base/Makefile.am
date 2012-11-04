@@ -8,6 +8,7 @@ noinst_LIBRARIES = libenigma_base.a
 
 libenigma_base_a_SOURCES = \
 	buffer.cpp \
+	cachedtssource.cpp \
 	connection.cpp \
 	console.cpp \
 	ebase.cpp \
@@ -35,6 +36,8 @@ EXTRA_DIST = \
 baseincludedir = $(pkgincludedir)/lib/base
 baseinclude_HEADERS = \
 	buffer.h \
+	cachedtssource.h \
+	cfile.h \
 	console.h \
 	ebase.h \
 	eenv.h \
@@ -45,7 +48,7 @@ baseinclude_HEADERS = \
 	estring.h \
 	etpm.h \
 	filepush.h \
-	freesatv2.cpp \
+	freesatv2.h \
 	i18n.h \
 	itssource.h \
 	init.h \

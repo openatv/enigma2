@@ -1766,6 +1766,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		ChannelSelectionEPG.__init__(self)
 		InfoBarBase.__init__(self)
 		self.infobar = infobar
+		self.startServiceRef = None
 		self.onLayoutFinish.append(self.onCreate)
 
 		self.info = session.instantiateDialog(RadioInfoBar) # our simple infobar
@@ -1895,6 +1896,9 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 					config.radio.lastservice.setValue(ref.toString())
 					config.radio.lastservice.save()
 				self.saveRoot()
+
+	def zapBack(self):
+		self.channelSelected()
 
 class SimpleChannelSelection(ChannelSelectionBase):
 	def __init__(self, session, title):
