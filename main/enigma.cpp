@@ -212,9 +212,9 @@ int main(int argc, char **argv)
 			}
 		}
 		if (i)
-			my_dc->setSpinner(eRect(ePoint(640, 360), wait[0]->size()), wait, i);
+			my_dc->setSpinner(eRect(ePoint(608, 328), wait[0]->size()), wait, i);
 		else
-			my_dc->setSpinner(eRect(640, 360, 0, 0), wait, 1);
+			my_dc->setSpinner(eRect(608, 328, 0, 0), wait, 1);
 	}
 	
 	gRC::getInstance()->setSpinnerDC(my_dc);
