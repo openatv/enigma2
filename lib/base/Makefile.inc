@@ -2,6 +2,7 @@ noinst_LIBRARIES += base/libenigma_base.a
 
 base_libenigma_base_a_SOURCES = \
 	base/buffer.cpp \
+	base/cachedtssource.cpp \
 	base/connection.cpp \
 	base/console.cpp \
 	base/ebase.cpp \
@@ -29,6 +30,7 @@ EXTRA_DIST += \
 baseincludedir = $(pkgincludedir)/lib/base
 baseinclude_HEADERS = \
 	base/buffer.h \
+	base/cachedtssource.h \
 	base/console.h \
 	base/ebase.h \
 	base/eenv.h \

@@ -199,9 +199,10 @@ public:
 	int getService(ePtr<eDVBService> &service) { service = m_service; return 0; }
 	int getPMT(ePtr<eTable<ProgramMapSection> > &ptr) { return m_PMT.getCurrent(ptr); }
 	int getChannel(eUsePtr<iDVBChannel> &channel);
+	int getDemuxID() const { return m_decode_demux_num; }
 	void resetCachedProgram() { m_have_cached_program = false; }
 	void sendEventNoPatEntry();
-	void getHBBTVUrl(std::string &ret) { ret = m_HBBTVUrl; }
+	void getHBBTVUrl(std::string &ret) const { ret = m_HBBTVUrl; }
 
 	enum serviceType
 	{

@@ -298,11 +298,12 @@ class RemoteControlType(Screen, ConfigListScreen):
 	rcList = [
 			("0", _("Default")),
 			("4", _("DMM normal")), ("6", _("DMM advanced")),
-			("11", "et9x00/6500"), ("7", "et5000/6000"),
+			("11", "et9x00/6500"), ("7", "et5000/6000"), ("13", "et4000"),
 			("8", "VU+"),
 		]
 
 	defaultRcList = [
+			("et4000", 13),
 			("et5000", 7),
 			("et6000", 7),
 			("et6500", 11),

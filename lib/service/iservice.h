@@ -370,6 +370,7 @@ public:
 		sTransferBPS,
 
 		sHBBTVUrl,
+		sLiveStreamDemuxId,
 
 		sUser = 0x100
 	};

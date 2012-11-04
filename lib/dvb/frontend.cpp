@@ -1789,7 +1789,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				else if (!memcmp(m_sec_sequence.current()->diseqc.data, "\xE0\x00\x03", 3))
 					eDebugNoSimulate("(DiSEqC peripherial power on)");
 				else
-					eDebugNoSimulate("");
+					eDebugNoSimulate("(?)");
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SEND_TONEBURST:
