@@ -16,7 +16,7 @@ void eGTable::sectionRead(const __u8 *d)
 		timeout();
 		return;
 	}
-	
+
 	m_tries++;
 
 	if (createTable(d[6], d, last_section_number + 1))
@@ -63,19 +63,19 @@ RESULT eGTable::start(iDVBSectionReader *reader, const eDVBTableSpec &table)
 
 	m_reader = reader;
 	m_reader->connectRead(slot(*this, &eGTable::sectionRead), m_sectionRead_conn);
-	
+
 	m_tries = 0;
-	
+
 	// setup filter struct
 	eDVBSectionFilterMask mask;
-	
+
 	memset(&mask, 0, sizeof(mask));
 	mask.pid   = m_table.pid;
 	mask.flags = 0;
-	
+
 	if (m_table.flags & eDVBTableSpec::tfCheckCRC)
 		mask.flags |= eDVBSectionFilterMask::rfCRC;
-	
+
 	if (m_table.flags & eDVBTableSpec::tfHaveTID)
 	{
 		mask.data[0] = m_table.tid;
@@ -100,7 +100,7 @@ RESULT eGTable::start(iDVBSectionReader *reader, const eDVBTableSpec &table)
 			mask.mask[2] = 0xFF;
 		}
 	}
-	
+
 	if (!(m_table.flags & eDVBTableSpec::tfAnyVersion))
 	{
 		TABLE_eDebug("doing version filtering");
@@ -127,14 +127,14 @@ RESULT eGTable::start(iDVBSectionReader *reader, const eDVBTableSpec &table)
 		TABLE_eDebug("reader failed to start.");
 		return res;
 	}
-	
+
 	if (m_table.flags & eDVBTableSpec::tfHaveTimeout)
 	{
 		m_timeout = eTimer::create(eApp);
 		m_timeout->start(m_table.timeout, 1); // begin timeout
 		CONNECT(m_timeout->timeout, eGTable::timeout);
 	}
-	
+
 	return 0;
 }
 
