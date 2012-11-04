@@ -4,6 +4,7 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/frontend.h>
 #include <lib/dvb/epgcache.h>
+#include <lib/base/cfile.h>
 #include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
@@ -79,27 +80,28 @@ RESULT eBouquet::moveService(const eServiceReference &ref, unsigned int pos)
 RESULT eBouquet::flushChanges()
 {
 	std::string filename = eEnv::resolve("${sysconfdir}/enigma2/" + m_filename);
-	FILE *f = fopen((filename + ".writing").c_str(), "w");
-	if (!f)
-		return -1;
-	if ( fprintf(f, "#NAME %s\r\n", m_bouquet_name.c_str()) < 0 )
-		goto err;
-	for (list::iterator i(m_services.begin()); i != m_services.end(); ++i)
 	{
-		eServiceReference tmp = *i;
-		std::string str = tmp.path;
-		if ( fprintf(f, "#SERVICE %s\r\n", tmp.toString().c_str()) < 0 )
+		CFile f_rai((filename + ".writing").c_str(), "w");
+		if (!f_rai.valid())
 			goto err;
-		if ( i->name.length() )
-			if ( fprintf(f, "#DESCRIPTION %s\r\n", i->name.c_str()) < 0 )
+		FILE *f = f_rai.handle;
+		if ( fprintf(f, "#NAME %s\r\n", m_bouquet_name.c_str()) < 0 )
+			goto err;
+		for (list::iterator i(m_services.begin()); i != m_services.end(); ++i)
+		{
+			eServiceReference tmp = *i;
+			std::string str = tmp.path;
+			if ( fprintf(f, "#SERVICE %s\r\n", tmp.toString().c_str()) < 0 )
 				goto err;
+			if ( i->name.length() )
+				if ( fprintf(f, "#DESCRIPTION %s\r\n", i->name.c_str()) < 0 )
+					goto err;
+		}
+		f_rai.sync();
 	}
-	fsync(fileno(f));
-	fclose(f);
 	rename((filename + ".writing").c_str(), filename.c_str());
 	return 0;
 err:
-	fclose(f);
 	eDebug("couldn't write file %s", m_filename.c_str());
 	return -1;
 }
@@ -335,29 +337,27 @@ void eDVBDB::parseServiceData(ePtr<eDVBService> s, std::string str)
 	}
 }
 
-	/* THIS CODE IS BAD. it should be replaced by somethine better. */
 void eDVBDB::loadServicelist(const char *file)
 {
 	eDebug("---- opening lame channel db");
-	FILE *f=fopen(file, "rt");
-	if (!f) {
+	CFile f_rai(file, "rt");
+	if (!f_rai.valid()) {
 		eDebug("can't open %s: %m", file);
 		return;
 	}
+	FILE *f = f_rai.handle;
 
 	char line[256];
 	int version=3;
 	if ((!fgets(line, 256, f)) || sscanf(line, "eDVB services /%d/", &version) != 1)
 	{
 		eDebug("not a valid servicefile");
-		fclose(f);
 		return;
 	}
 	eDebug("reading services (version %d)", version);
 	if ((!fgets(line, 256, f)) || strcmp(line, "transponders\n"))
 	{
 		eDebug("services invalid, no transponders");
-		fclose(f);
 		return;
 	}
 
@@ -516,15 +516,15 @@ void eDVBDB::loadServicelist(const char *file)
 	free(linebuf);
 
 	eDebug("loaded %d services", count);
-
-	fclose(f);
 }
 
 void eDVBDB::saveServicelist(const char *file)
 {
 	eDebug("---- saving lame channel db");
 	std::string filename = file;
-	FILE *f = fopen((filename + ".writing").c_str(), "w");
+	{
+	CFile f_rai((filename + ".writing").c_str(), "w");
+	FILE *f = f_rai.handle;
 	int channels=0, services=0;
 	if (!f)
 		eFatal("couldn't save lame channel db!");
@@ -631,8 +631,8 @@ void eDVBDB::saveServicelist(const char *file)
 	}
 	fprintf(f, "end\nHave a lot of bugs!\n");
 	eDebug("saved %d channels and %d services!", channels, services);
-	fsync(fileno(f));
-	fclose(f);
+	f_rai.sync();
+	}
 	rename((filename + ".writing").c_str(), filename.c_str());
 }
 
@@ -665,8 +665,9 @@ int eDVBDB::loadBouquet(const char *path, int startChannelNum)
 	std::string p = eEnv::resolve("${sysconfdir}/enigma2/");
 	p+=path;
 	eDebug("loading bouquet... %s %d", p.c_str(), startChannelNum);
-	FILE *fp=fopen(p.c_str(), "rt");
-	if (!fp)
+	CFile fp_rai(p.c_str(), "rt");
+	FILE *fp = fp_rai.handle;
+	if (!fp_rai.valid())
 	{
 		eDebug("can't open %s: %m", p.c_str());
 		if (!strcmp(path, "bouquets.tv"))
@@ -760,7 +761,6 @@ int eDVBDB::loadBouquet(const char *path, int startChannelNum)
 			bouquet.m_bouquet_name=line+6;
 	}
 	free(line);
-	fclose(fp);
 	eDebug("%d entries in Bouquet %s", entries, bouquet_name.c_str());
 	return startChannelNum;
 }
