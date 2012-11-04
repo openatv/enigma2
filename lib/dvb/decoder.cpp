@@ -1,3 +1,4 @@
+#include <lib/base/cfile.h>
 #include <lib/base/ebase.h>
 #include <lib/base/eerror.h>
 #include <lib/dvb/decoder.h>
@@ -478,12 +479,7 @@ int eDVBVideo::getProgressive()
 		{
 			char tmp[64];
 			sprintf(tmp, "/proc/stb/vmpeg/%d/progressive", m_dev);
-			FILE *f = fopen(tmp, "r");
-			if (f)
-			{
-				fscanf(f, "%x", &m_progressive);
-				fclose(f);
-			}
+			CFile::parseIntHex(&m_progressive, tmp);
 		}
 	}
 	return m_progressive;
@@ -762,11 +758,8 @@ RESULT eTSMPEGDecoder::setHwPCMDelay(int delay)
 {
 	if (delay != m_pcm_delay )
 	{
-		FILE *fp = fopen("/proc/stb/audio/audio_delay_pcm", "w");
-		if (fp)
+		if (CFile::writeIntHex("/proc/stb/audio/audio_delay_pcm", delay*90) == 0)
 		{
-			fprintf(fp, "%x", delay*90);
-			fclose(fp);
 			m_pcm_delay = delay;
 			return 0;
 		}
@@ -778,11 +771,8 @@ RESULT eTSMPEGDecoder::setHwAC3Delay(int delay)
 {
 	if ( delay != m_ac3_delay )
 	{
-		FILE *fp = fopen("/proc/stb/audio/audio_delay_bitstream", "w");
-		if (fp)
+		if (CFile::writeIntHex("/proc/stb/audio/audio_delay_bitstream", delay*90) == 0)
 		{
-			fprintf(fp, "%x", delay*90);
-			fclose(fp);
 			m_ac3_delay = delay;
 			return 0;
 		}

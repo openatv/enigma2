@@ -31,6 +31,7 @@ baseincludedir = $(pkgincludedir)/lib/base
 baseinclude_HEADERS = \
 	base/buffer.h \
 	base/cachedtssource.h \
+	base/cfile.h \
 	base/console.h \
 	base/ebase.h \
 	base/eenv.h \
