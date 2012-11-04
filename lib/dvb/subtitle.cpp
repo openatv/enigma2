@@ -518,9 +518,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 		memset(region->buffer->surface->data, 0, region->height * region->buffer->surface->stride);
 //		eDebug("new buffer %p", &(*region->buffer));
 
-		int region_level_of_compatibility, depth;
-
-		region_level_of_compatibility = (*segment >> 5) & 7;
+		int depth;
 		depth = (*segment++ >> 2) & 7;
 
 		region->depth = (subtitle_region::tDepth) depth;
@@ -710,15 +708,14 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 	}
 	case 0x13: // object data segment
 	{
-		int object_id, object_version_number, object_coding_method, non_modifying_color_flag;
+		int object_id;
+		int object_coding_method;
 
 		object_id  = *segment++ << 8;
 		object_id |= *segment++;
 		processed_length += 2;
 
-		object_version_number = *segment >> 4;
 		object_coding_method  = (*segment >> 2) & 3;
-		non_modifying_color_flag = (*segment++ >> 1) & 1;
 		processed_length++;
 
 //		eDebug("object id %04x, version %d, object_coding_method %d (page_id %d)", object_id, object_version_number, object_coding_method, page_id);
@@ -879,7 +876,7 @@ void eDVBSubtitleParser::subtitle_process_pes(__u8 *pkt, int len)
 			return;
 		}
 		pkt++; len--; // data identifier
-		*pkt++; len--; // stream id;
+		pkt++; len--; // stream id;
 
 		if (len <= 0)
 		{
