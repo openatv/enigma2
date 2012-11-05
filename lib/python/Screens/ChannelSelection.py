@@ -1472,7 +1472,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def historyBack(self):
 		hlen = len(self.history)
-		if hlen > 1 and self.history_pos > 0:
+		if hlen > 0 and self.history[self.history_pos][-1] != self.session.nav.getCurrentlyPlayingServiceReference():
+			self.setHistoryPath()
+		elif hlen > 1 and self.history_pos > 0:
 			self.history_pos -= 1
 			self.setHistoryPath()
 
