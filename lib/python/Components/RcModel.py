@@ -38,7 +38,7 @@ class RcModel:
 	def readRcTypeFromProc(self):
 		if os.path.exists('/proc/stb/info/hwmodel'):
 			model = self.readFile('/proc/stb/info/hwmodel')
-			if model == 'twin' or model == '2t':
+			if model == 'tmtwinoe' or model == 'tm2toe' or model == 'tmsingle':
 				self.currentRcType = self.RCTYPE_TM
 		elif getBoxType() == 'dm8000':
 				self.currentRcType = self.RCTYPE_DMM
