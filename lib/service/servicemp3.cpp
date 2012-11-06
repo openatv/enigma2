@@ -399,8 +399,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	{
 		guint flags;
 		g_object_get(G_OBJECT (m_gst_playbin), "flags", &flags, NULL);
-		/* avoid video/audio conversion, let the (hardware) sinks handle that */
-		flags |= (GST_PLAY_FLAG_NATIVE_VIDEO | GST_PLAY_FLAG_NATIVE_AUDIO);
+		/* avoid video conversion, let the (hardware) sinks handle that */
+		flags |= GST_PLAY_FLAG_NATIVE_VIDEO;
 		/* volume control is done by hardware */
 		flags &= ~GST_PLAY_FLAG_SOFT_VOLUME;
 		if ( m_sourceinfo.is_streaming )
