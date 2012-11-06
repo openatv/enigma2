@@ -76,8 +76,6 @@ AM_CONDITIONAL(GBQUAD, test "$BOXTYPE" == gbquad)
 AM_CONDITIONAL(VENTONHDX, test "$BOXTYPE" == ventonhdx)
 AM_CONDITIONAL(VENTONHDE, test "$BOXTYPE" == ventonhde)
 AM_CONDITIONAL(XP1000, test "$BOXTYPE" == xp1000)
-
-AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
 AM_CONDITIONAL(HAVE_DISPLAY128, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm7020HD)
 AM_CONDITIONAL(HAVE_DISPLAY96, test "$BOXTYPE" == gb800xx )
 AM_CONDITIONAL(HAVE_DISPLAYDM, test "$BOXTYPE" == dm800 -o "$BOXTYPE" == dm800se)
@@ -85,6 +83,7 @@ AM_CONDITIONAL(HAVE_DISPLAYDM, test "$BOXTYPE" == dm800 -o "$BOXTYPE" == dm800se
 if test `echo "$BOXTYPE" | cut -b 1-2` == "dm"; then
 	AC_DEFINE(DREAMBOX, 1, [Dreambox hardware])
 fi
+AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
 
 AC_ARG_WITH(textlcd,
 	AC_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
@@ -96,26 +95,6 @@ if test x"$withtextlcd" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_TEXTLCD, test x"$withtextlcd" != xno)
 
-AC_ARG_WITH(graphiclcd,
-	AC_HELP_STRING([--with-graphiclcd], [use graphic based lcd, yes or no]),
-	[[withgraphiclcd=$withval]],
-	[[withgraphiclcd=no]]
-)
-if test x"$withgraphiclcd" != xno ; then
-	AC_DEFINE(HAVE_GRAPHICLCD, 1,[Define when using an graphic based vfd device])
-fi
-AM_CONDITIONAL(HAVE_GRAPHICLCD, test x"$withgraphiclcd != xno")
-
-AC_ARG_WITH(fullgraphiclcd,
-        AC_HELP_STRING([--with-fullgraphiclcd], [display right_half_vfd_icons from skin(for ultimo), yes or no]),
-        [[withfullgraphiclcd=$withval]],
-        [[withfullgraphiclcd=no]]
-)
-if test x"$withfullgraphiclcd" != xno ; then
-        AC_DEFINE(HAVE_FULLGRAPHICLCD, 1,[Define when display right_half_vfd_icons from skin, for ultimo])
-fi
-AM_CONDITIONAL(HAVE_FULLGRAPHICLCD, test x"$withfullgraphiclcd" != xno)
-
 AC_ARG_WITH(colorlcd,
 	AC_HELP_STRING([--with-colorlcd], [use 96x64 16bpp color display, yes or no]),
 	[[withcolorlcd=$withval]],
@@ -126,6 +105,16 @@ if test x"$withcolorlcd" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_COLORLCD, test x"$withcolorlcd" != xno)
 
+AC_ARG_WITH(fullgraphiclcd,
+	AC_HELP_STRING([--with-fullgraphiclcd], [display right_half_vfd_icons from skin(for ultimo), yes or no]),
+	[[withfullgraphiclcd=$withval]],
+	[[withfullgraphiclcd=no]]
+)
+if test x"$withfullgraphiclcd" != xno ; then
+	AC_DEFINE(HAVE_FULLGRAPHICLCD, 1,[Define when display right_half_vfd_icons from skin, for ultimo])
+fi
+AM_CONDITIONAL(HAVE_FULLGRAPHICLCD, test x"$withfullgraphiclcd" != xno)
+
 AC_ARG_WITH(gigabluelcd,
 	AC_HELP_STRING([--with-gigabluelcd], [use 220x176 16bpp color display, yes or no]),
 	[[withgigabluelcd=$withval]],
@@ -135,6 +124,26 @@ if test x"$withgigabluelcd" != xno ; then
 	AC_DEFINE(HAVE_GIGABLUELCD, 1,[Define when using a 220x176 color display device])
 fi
 AM_CONDITIONAL(HAVE_GIGABLUELCD, test x"$withgigabluelcd" != xno)
+
+AC_ARG_WITH(colorlcd220,
+	AC_HELP_STRING([--with-colorlcd220], [use 220x176 16bpp color display, yes or no]),
+	[[withcolorlcd220=$withval]],
+	[[withcolorlcd220=no]]
+)
+if test x"$withcolorlcd220" != xno ; then
+	AC_DEFINE(HAVE_COLORLCD220, 1,[Define when using a 220x176 color display device])
+fi
+AM_CONDITIONAL(HAVE_COLORLCD220, test x"$withcolorlcd220" != xno)
+
+AC_ARG_WITH(bwlcd255,
+	AC_HELP_STRING([--with-bwlcd255], [use 255x64 1bpp black and white display, yes or no]),
+	[[withbwlcd255=$withval]],
+	[[withbwlcd255=no]]
+)
+if test x"$withbwlcd255" != xno ; then
+	AC_DEFINE(HAVE_BWLCD255, 1,[Define when using a 255x64 black and white display device])
+fi
+AM_CONDITIONAL(HAVE_BWLCD255, test x"$withbwlcd255" != xno)
 
 AC_ARG_WITH(oldpvr,
 	AC_HELP_STRING([--with-oldpvr], [use /dev/misc/pvr instead of /dev/dvb/adapterX/dvrX, yes or no]),
@@ -152,7 +161,7 @@ AM_CONDITIONAL(HAVE_OLDPVR, test x"$witholdpvr" != xno)
 
 if test x"$BOXTYPE" == "xgbquad"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
-fi 
+fi
 
 if test x"$BOXTYPE" == "xgb800se" -o x"$BOXTYPE" == "xgb800solo" -o x"$BOXTYPE" == "xgb800ue" -o x"$BOXTYPE" == "xgbquad" ; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
@@ -240,8 +249,8 @@ data/fonts/Makefile
 data/countries/Makefile
 data/extensions/Makefile
 data/keymaps/Makefile
-data/lcd_large/Makefile
-data/lcd_small/Makefile
+data/lcd220/Makefile
+data/lcd255/Makefile
 data/rc_models/Makefile
 data/rc_models/et4000/Makefile
 data/rc_models/et6x00/Makefile
@@ -289,10 +298,10 @@ lib/python/Components/Renderer/Makefile
 lib/python/Components/Sources/Makefile
 lib/python/Screens/Makefile
 lib/python/Plugins/Makefile
-lib/python/Plugins/SystemPlugins/CableScan/Makefile
-lib/python/Plugins/SystemPlugins/FastScan/Makefile
-lib/python/Plugins/SystemPlugins/HdmiCEC/Makefile
-lib/python/Plugins/SystemPlugins/VideoClippingSetup/Makefile
+
+
+
+
 lib/python/Plugins/DemoPlugins/Makefile
 lib/python/Plugins/DemoPlugins/TPMDemo/Makefile
 lib/python/Plugins/DemoPlugins/TestPlugin/Makefile
@@ -326,15 +335,17 @@ lib/python/Plugins/Extensions/GraphMultiEPG/Makefile
 lib/python/Plugins/Extensions/GraphMultiEPG/meta/Makefile
 lib/python/Plugins/Extensions/Volume_adjust/Makefile
 lib/python/Plugins/Extensions/Volume_adjust/nl/Makefile
-
+lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/meta/Makefile
 lib/python/Plugins/SystemPlugins/DefaultServicesScanner/Makefile
 lib/python/Plugins/SystemPlugins/DefaultServicesScanner/meta/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/meta/Makefile
+lib/python/Plugins/SystemPlugins/FastScan/Makefile
 lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/Makefile
 lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/meta/Makefile
+lib/python/Plugins/SystemPlugins/HdmiCEC/Makefile
 lib/python/Plugins/SystemPlugins/Hotplug/Makefile
 lib/python/Plugins/SystemPlugins/Hotplug/meta/Makefile
 lib/python/Plugins/SystemPlugins/Makefile
@@ -350,6 +361,9 @@ lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/meta/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/meta/Makefile
+lib/python/Plugins/SystemPlugins/SoftwareManager/Makefile
+lib/python/Plugins/SystemPlugins/SoftwareManager/meta/Makefile
+lib/python/Plugins/SystemPlugins/VideoClippingSetup/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/meta/Makefile
 lib/python/Plugins/SystemPlugins/VideoTune/Makefile
@@ -360,8 +374,6 @@ lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/meta/Makefile
 lib/python/Plugins/SystemPlugins/SkinSelector/Makefile
 lib/python/Plugins/SystemPlugins/SkinSelector/meta/Makefile
-lib/python/Plugins/SystemPlugins/SoftwareManager/Makefile
-lib/python/Plugins/SystemPlugins/SoftwareManager/meta/Makefile
 lib/python/Tools/Makefile
 lib/components/Makefile
 lib/components/eitsave/Makefile

@@ -21,24 +21,25 @@ dist_pkgdata_DATA = \
 
 if HAVE_TEXTLCD
 dist_pkgdata_DATA += skin_text.xml skin_text_clock.xml
-else
+endif
 if HAVE_DISPLAY96
 dist_pkgdata_DATA += skin_display96.xml
-else
+endif
+
 if HAVE_DISPLAY128
 dist_pkgdata_DATA += skin_display128.xml
-else
+endif
+
 if HAVE_DISPLAYDM
 dist_pkgdata_DATA += skin_display.xml
-else
-if HAVE_GIGABLUELCD
-SUBDIRS += lcd_large
+endif
+
+if HAVE_COLORLCD220
+SUBDIRS += lcd220
 dist_pkgdata_DATA += skin_display220_picon.xml skin_display220_no_picon.xml
-else
-SUBDIRS += lcd_small
-dist_pkgdata_DATA += skin_display_picon.xml skin_display_no_picon.xml
 endif
-endif
-endif
-endif
+
+if HAVE_BWLCD255
+SUBDIRS += lcd255
+dist_pkgdata_DATA += skin_display255_picon.xml skin_display255_no_picon.xml
 endif
