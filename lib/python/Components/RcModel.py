@@ -34,7 +34,7 @@ class RcModel:
 	def readRcTypeFromProc(self):
 		if os.path.exists('/proc/stb/info/hwmodel'):
 			model = self.readFile('/proc/stb/info/hwmodel')
-			if model == 'tmtwinoe' or model == 'tm2toe' or model == 'tmsingle':
+			if model == 'twin' or model == '2t':
 				self.currentRcType = self.RCTYPE_TM
 		elif os.path.exists('/proc/stb/info/boxtype'):
 			model = self.readFile('/proc/stb/info/boxtype')
@@ -66,9 +66,9 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_INI1000
 			elif model == 'ini-3000':
 				self.currentRcType = self.RCTYPE_INI3000
-			elif model == 'ini-5000':
+			elif model == 'ini-5000' or model = 'ini-5000R':
 				self.currentRcType = self.RCTYPE_INI5000
-			elif model == 'ini-7000':
+			elif model == 'ini-7000' or model = 'ini-7012':
 				self.currentRcType = self.RCTYPE_INI7000
 		elif os.path.exists('/proc/stb/info/vumodel'):
 			model = self.readFile('/proc/stb/info/vumodel')
