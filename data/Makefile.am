@@ -24,12 +24,12 @@ if HAVE_COLORLCD
 dist_pkgdata_DATA += skin_display96.xml
 endif
 
-if HAVE_LCD220
+if HAVE_COLORLCD220
 SUBDIRS += lcd220
 dist_pkgdata_DATA += skin_display220_picon.xml skin_display220_no_picon.xml
 endif
 
-if HAVE_LCD255
+if HAVE_BWLCD255
 SUBDIRS += lcd255
 dist_pkgdata_DATA += skin_display255_picon.xml skin_display255_no_picon.xml
 endif
