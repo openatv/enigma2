@@ -82,7 +82,7 @@ int eStaticServiceDVBInformation::getLength(const eServiceReference &ref)
 	return -1;
 }
 
-int eStaticServiceDVBInformation::isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate=false)
+int eStaticServiceDVBInformation::isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate)
 {
 	ePtr<eDVBResourceManager> res_mgr;
 	if ( eDVBResourceManager::getInstance( res_mgr ) )
