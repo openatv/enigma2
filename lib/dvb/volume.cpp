@@ -1,3 +1,4 @@
+#include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
 #include <lib/dvb/volume.h>
 #include <stdio.h>
@@ -150,15 +151,7 @@ void eDVBVolumecontrol::setVolume(int left, int right)
 	}
 
 	//HACK?
-	FILE *f;
-	if((f = fopen("/proc/stb/avs/0/volume", "wb")) == NULL) {
-		eDebug("cannot open /proc/stb/avs/0/volume(%m)");
-		return;
-	}
-
-	fprintf(f, "%d", left); /* in -1dB */
-
-	fclose(f);
+	CFile::writeInt("/proc/stb/avs/0/volume", left); /* in -1dB */
 #endif
 }
 
@@ -190,15 +183,7 @@ void eDVBVolumecontrol::volumeMute()
 	muted = true;
 
 	//HACK?
-	FILE *f;
-	if((f = fopen("/proc/stb/audio/j1_mute", "wb")) == NULL) {
-		eDebug("cannot open /proc/stb/audio/j1_mute(%m)");
-		return;
-	}
-	
-	fprintf(f, "%d", 1);
-
-	fclose(f);
+	CFile::writeInt("/proc/stb/audio/j1_mute", 1);
 #endif
 }
 
@@ -219,15 +204,7 @@ void eDVBVolumecontrol::volumeUnMute()
 	muted = false;
 
 	//HACK?
-	FILE *f;
-	if((f = fopen("/proc/stb/audio/j1_mute", "wb")) == NULL) {
-		eDebug("cannot open /proc/stb/audio/j1_mute(%m)");
-		return;
-	}
-	
-	fprintf(f, "%d", 0);
-
-	fclose(f);
+	CFile::writeInt("/proc/stb/audio/j1_mute", 0);
 #endif
 }
 

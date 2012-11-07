@@ -25,8 +25,7 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 		/* no personalized encoding.conf, fallback to the system default */
 		file = eEnv::resolve("${datadir}/enigma2/encoding.conf");
 	}
-	CFile f_rai(file.c_str(), "rt");
-	FILE *f = f_rai.handle;
+	CFile f(file.c_str(), "rt");
 	if (f)
 	{
 		char *line = (char*) malloc(256);
