@@ -716,6 +716,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 		processed_length += 2;
 
 		object_coding_method  = (*segment >> 2) & 3;
+		segment++; // non_modifying_color_flag
 		processed_length++;
 
 //		eDebug("object id %04x, version %d, object_coding_method %d (page_id %d)", object_id, object_version_number, object_coding_method, page_id);

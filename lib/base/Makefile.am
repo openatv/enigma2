@@ -9,6 +9,7 @@ noinst_LIBRARIES = libenigma_base.a
 libenigma_base_a_SOURCES = \
 	buffer.cpp \
 	cachedtssource.cpp \
+	cfile.cpp \
 	connection.cpp \
 	console.cpp \
 	ebase.cpp \

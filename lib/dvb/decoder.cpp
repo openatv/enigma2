@@ -758,7 +758,7 @@ RESULT eTSMPEGDecoder::setHwPCMDelay(int delay)
 {
 	if (delay != m_pcm_delay )
 	{
-		if (CFile::writeIntHex("/proc/stb/audio/audio_delay_pcm", delay*90) == 0)
+		if (CFile::writeIntHex("/proc/stb/audio/audio_delay_pcm", delay*90) >= 0)
 		{
 			m_pcm_delay = delay;
 			return 0;
@@ -771,7 +771,7 @@ RESULT eTSMPEGDecoder::setHwAC3Delay(int delay)
 {
 	if ( delay != m_ac3_delay )
 	{
-		if (CFile::writeIntHex("/proc/stb/audio/audio_delay_bitstream", delay*90) == 0)
+		if (CFile::writeIntHex("/proc/stb/audio/audio_delay_bitstream", delay*90) >= 0)
 		{
 			m_ac3_delay = delay;
 			return 0;
