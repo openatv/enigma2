@@ -7,10 +7,7 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
 from Screens.ChoiceBox import ChoiceBox
-from Screens.InfoBarGenerics import InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, \
-	InfoBarShowHide, InfoBarServiceErrorPopupSupport, \
-	InfoBarPVRState, InfoBarSimpleEventView, InfoBarServiceNotifications, \
-	InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, InfoBarTeletextPlugin
+from Screens.InfoBarGenerics import InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarShowHide, InfoBarServiceErrorPopupSupport, InfoBarPVRState, InfoBarServiceNotifications, InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, InfoBarTeletextPlugin
 from Components.ActionMap import NumberActionMap, HelpableActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap,MultiPixmap
@@ -862,7 +859,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				text = ">"+text
 				#ext = text[-4:].lower()
 
-				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead 
+				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead
 				if ext in audio_extensions or self.isAudioCD:
 					needsInfoUpdate = True
 				self.summaries.setText(text,1)
@@ -959,11 +956,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				if self.isAudioCD:
 					self.clear_playlist()
 
-class MoviePlayer(InfoBarShowHide, \
-		InfoBarSeek, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
-		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView,
-		InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
-		InfoBarServiceErrorPopupSupport):
+class MoviePlayer(InfoBarShowHide, InfoBarSeek, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications, InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport):
 
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
@@ -983,12 +976,7 @@ class MoviePlayer(InfoBarShowHide, \
 				"next": (self.nextMarkOrEntry, _("play from next mark or playlist entry")),
 			}, -2)
 
-		for x in HelpableScreen, InfoBarShowHide, \
-				InfoBarSeek, \
-				InfoBarAudioSelection, InfoBarNotifications, InfoBarSimpleEventView, \
-				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,\
-				InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, \
-				InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport:
+		for x in HelpableScreen, InfoBarShowHide, InfoBarSeek, InfoBarAudioSelection, InfoBarNotifications, InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport:
 			x.__init__(self)
 
 		self.session.nav.playService(service)
