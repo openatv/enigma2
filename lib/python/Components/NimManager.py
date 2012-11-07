@@ -147,6 +147,13 @@ class SecConfigure:
 		eDVBResourceManager.getInstance().setFrontendSlotInformations(used_nim_slots)
 
 		for slot in nim_slots:
+			types = [type for type in ["DVB-T", "DVB-C", "DVB-S", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, type)]
+			if len(types) > 1:
+				slot.multi_type = {}
+				for type in types:
+					slot.multi_type[str(types.index(type))] = type
+
+		for slot in nim_slots:
 			x = slot.slot
 			nim = slot.config
 			if slot.isCompatible("DVB-S"):
@@ -504,9 +511,14 @@ class NIM(object):
 				"DVB-T2": ("DVB-T", "DVB-T2", None),
 				"ATSC": ("ATSC", None),
 			}
-		return what in compatible[self.type]
+		return what in compatible[self.getType()]
 
 	def getType(self):
+		try:
+			if self.isMultiType():
+				return self.multi_type[self.config.multiType.value]
+		except:
+			pass
 		return self.type
 
 	def connectableTo(self):
@@ -519,7 +531,7 @@ class NIM(object):
 				"DVB-T2": ("DVB-T", "DVB-T2"),
 				"ATSC": ("ATSC"),
 			}
-		return connectable[self.type]
+		return connectable[self.getType()]
 
 	def getSlotName(self):
 		# get a friendly description for a slot name.
@@ -577,7 +589,7 @@ class NIM(object):
 			"DVB-C2": "DVB-C2",
 			"ATSC": "ATSC",
 			None: _("empty")
-			}[self.type]
+			}[self.getType()]
 
 	friendly_type = property(getFriendlyType)
 
@@ -596,7 +608,7 @@ class NIM(object):
 	friendly_full_description = property(getFriendlyFullDescription)
 	config_mode = property(lambda self: config.Nims[self.slot].configMode.value)
 	config = property(lambda self: config.Nims[self.slot])
-	empty = property(lambda self: self.type is None)
+	empty = property(lambda self: self.getType is None)
 
 class NimManager:
 	def getConfiguredSats(self):
@@ -1371,50 +1383,6 @@ def InitNimManager(nimmgr):
 		if nimmgr.nim_slots[slot_id].description == 'Alps BSBE2':
 			open("/proc/stb/frontend/%d/tone_amplitude" %(fe_id), "w").write(configElement.value)
 
-	def tunerTypeChanged(nimmgr, configElement):
-		fe_id = configElement.fe_id
-
-		cur_type = int(open("/proc/stb/frontend/%d/mode" % (fe_id), "r").read())
-		if cur_type != int(configElement.value):
-			print "tunerTypeChanged feid %d from %d to mode %d" % (fe_id, cur_type, int(configElement.value))
-
-			try:
-				oldvalue = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "r").readline()
-				open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write("0")
-			except:
-				print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
-
-			frontend = eDVBResourceManager.getInstance().allocateRawChannel(fe_id).getFrontend()
-			frontend.closeFrontend()
-			open("/proc/stb/frontend/%d/mode" % (fe_id), "w").write(configElement.value)
-			frontend.reopenFrontend()
-			try:
-				open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write(oldvalue)
-			except:
-				print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
-			nimmgr.enumerateNIMs()
-		else:
-			print "tuner type is already already %d" %cur_type
-
-	empty_slots = 0
-	for slot in nimmgr.nim_slots:
-		x = slot.slot
-		nim = config.Nims[x]
-		addMultiType = False
-		try:
-			nim.multiType
-		except:
-			addMultiType = True
-		if slot.isMultiType() and addMultiType:
-			typeList = []
-			for id in slot.getMultiTypeList().keys():
-				type = slot.getMultiTypeList()[id]
-				typeList.append((id, type))
-			nim.multiType = ConfigSelection(typeList, "0")
-
-			nim.multiType.fe_id = x - empty_slots
-			nim.multiType.addNotifier(boundFunction(tunerTypeChanged, nimmgr))
-
 	empty_slots = 0
 	for slot in nimmgr.nim_slots:
 		x = slot.slot
@@ -1525,5 +1493,51 @@ def InitNimManager(nimmgr):
 #			assert False
 
 	nimmgr.sec = SecConfigure(nimmgr)
+
+	def tunerTypeChanged(nimmgr, configElement):
+		fe_id = configElement.fe_id
+		eDVBResourceManager.getInstance().setFrontendType(nimmgr.nim_slots[fe_id].frontend_id, nimmgr.nim_slots[fe_id].getType())
+		import os
+		if os.path.exists("/proc/stb/frontend/%d/mode" % fe_id):
+			cur_type = int(open("/proc/stb/frontend/%d/mode" % (fe_id), "r").read())
+			if cur_type != int(configElement.value):
+				print "tunerTypeChanged feid %d from %d to mode %d" % (fe_id, cur_type, int(configElement.value))
+
+				try:
+					oldvalue = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "r").readline()
+					open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write("0")
+				except:
+					print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
+
+				frontend = eDVBResourceManager.getInstance().allocateRawChannel(fe_id).getFrontend()
+				frontend.closeFrontend()
+				open("/proc/stb/frontend/%d/mode" % (fe_id), "w").write(configElement.value)
+				frontend.reopenFrontend()
+				try:
+					open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write(oldvalue)
+				except:
+					print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
+				nimmgr.enumerateNIMs()
+			else:
+				print "tuner type is already already %d" %cur_type
+
+	empty_slots = 0
+	for slot in nimmgr.nim_slots:
+		x = slot.slot
+		nim = config.Nims[x]
+		addMultiType = False
+		try:
+			nim.multiType
+		except:
+			addMultiType = True
+		if slot.isMultiType() and addMultiType:
+			typeList = []
+			for id in slot.getMultiTypeList().keys():
+				type = slot.getMultiTypeList()[id]
+				typeList.append((id, type))
+			nim.multiType = ConfigSelection(typeList, "0")
+
+			nim.multiType.fe_id = x - empty_slots
+			nim.multiType.addNotifier(boundFunction(tunerTypeChanged, nimmgr))
 
 nimmanager = NimManager()
