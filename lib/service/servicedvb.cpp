@@ -97,11 +97,6 @@ int eStaticServiceDVBInformation::isPlayable(const eServiceReference &ref, const
 	return false;
 }
 
-extern void PutToDict(ePyObject &dict, const char*key, long value);  // defined in dvb/frontend.cpp
-extern void PutSatelliteDataToDict(ePyObject &dict, eDVBFrontendParametersSatellite &feparm); // defined in dvb/frontend.cpp
-extern void PutTerrestrialDataToDict(ePyObject &dict, eDVBFrontendParametersTerrestrial &feparm); // defined in dvb/frontend.cpp
-extern void PutCableDataToDict(ePyObject &dict, eDVBFrontendParametersCable &feparm); // defined in dvb/frontend.cpp
-
 PyObject *eStaticServiceDVBInformation::getInfoObject(const eServiceReference &r, int what)
 {
 	if (r.type == eServiceReference::idDVB)
@@ -126,27 +121,21 @@ PyObject *eStaticServiceDVBInformation::getInfoObject(const eServiceReference &r
 							if (!feparm->getSystem(system))
 							{
 								ePyObject dict = PyDict_New();
-								switch(system)
+								switch (system)
 								{
 									case iDVBFrontend::feSatellite:
 									{
-										eDVBFrontendParametersSatellite s;
-										feparm->getDVBS(s);
-										PutSatelliteDataToDict(dict, s);
+										PutSatelliteDataToDict(dict, feparm);
 										break;
 									}
 									case iDVBFrontend::feTerrestrial:
 									{
-										eDVBFrontendParametersTerrestrial t;
-										feparm->getDVBT(t);
-										PutTerrestrialDataToDict(dict, t);
+										PutTerrestrialDataToDict(dict, feparm);
 										break;
 									}
 									case iDVBFrontend::feCable:
 									{
-										eDVBFrontendParametersCable c;
-										feparm->getDVBC(c);
-										PutCableDataToDict(dict, c);
+										PutCableDataToDict(dict, feparm);
 										break;
 									}
 									default:
