@@ -2,6 +2,7 @@
 #include <zlib.h>
 #include <png.h>
 #include <stdio.h>
+#include <lib/base/cfile.h>
 #include <lib/gdi/epng.h>
 #include <unistd.h>
 
@@ -12,7 +13,7 @@ extern "C" {
 int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 {
 	__u8 header[8];
-	FILE *fp = fopen(filename, "rb");
+	CFile fp(filename, "rb");
 	
 	if (!fp)
 	{
@@ -22,20 +23,17 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 	if (!fread(header, 8, 1, fp))
 	{
 		eDebug("[ePNG] failed to get png header");
-		fclose(fp);
 		return 0;
 	}
 	if (png_sig_cmp(header, 0, 8))
 	{
 		eDebug("[ePNG] header size mismatch");
-		fclose(fp);
 		return 0;
 	}
 	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
 	if (!png_ptr)
 	{
 		eDebug("[ePNG] failed to create read struct");
-		fclose(fp);
 		return 0;
 	}
 	png_infop info_ptr = png_create_info_struct(png_ptr);
@@ -43,7 +41,6 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 	{
 		eDebug("[ePNG] failed to create info struct");
 		png_destroy_read_struct(&png_ptr, (png_infopp)0, (png_infopp)0);
-		fclose(fp);
 		return 0;
 	}
 	png_infop end_info = png_create_info_struct(png_ptr);
@@ -51,14 +48,12 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 	{
 		eDebug("[ePNG] failed to create end info struct");
 		png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
-		fclose(fp);
 		return 0;
 	}
 	if (setjmp(png_jmpbuf(png_ptr)))
 	{
 		eDebug("[ePNG] png setjump failed or activated");
 		png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
-		fclose(fp);
 		result = 0;
 		return 0;
 	}
@@ -161,7 +156,6 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 
 	png_read_end(png_ptr, end_info);
 	png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
-	fclose(fp);
 	return 0;
 }
 
@@ -184,10 +178,9 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha)
 {
 	struct jpeg_decompress_struct cinfo;
 	struct my_error_mgr jerr;
-	FILE *infile;
 	JSAMPARRAY buffer;
 	int row_stride;
-	infile = fopen(filename, "rb");
+	CFile infile(filename, "rb");
 	result = 0;
 
 	if (alpha)
@@ -206,7 +199,6 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha)
 	if (setjmp(jerr.setjmp_buffer)) {
 		result = 0;
 		jpeg_destroy_decompress(&cinfo);
-		fclose(infile);
 		return -1;
 	}
 	jpeg_create_decompress(&cinfo);
@@ -263,28 +255,19 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha)
 	}
 	(void) jpeg_finish_decompress(&cinfo);
 	jpeg_destroy_decompress(&cinfo);
-	fclose(infile);
 	return 0;
 }
 
-int savePNG(const char *filename, gPixmap *pixmap)
+static int savePNGto(FILE *fp, gPixmap *pixmap)
 {
-
-	eDebug("[ePNG] saveing to %s",filename);
-	FILE *fp=fopen(filename, "wb");
-	if (!fp)
-		return -1;
-	
 	gSurface *surface = pixmap->surface;
 	if (!surface)
 		return -2;
-	
+
 	png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
 	if (!png_ptr)
 	{
 		eDebug("[ePNG] couldn't allocate write struct");
-		fclose(fp);
-		unlink(filename);
 		return -2;
 	}
 	png_infop info_ptr = png_create_info_struct(png_ptr);
@@ -292,8 +275,6 @@ int savePNG(const char *filename, gPixmap *pixmap)
 	{
 		eDebug("[ePNG] failed to allocate info struct");
 		png_destroy_write_struct(&png_ptr, 0);
-		fclose(fp);
-		unlink(filename);
 		return -3;
 	}
 
@@ -305,8 +286,6 @@ int savePNG(const char *filename, gPixmap *pixmap)
 	{
 		eDebug("[ePNG] png setjump failed or activated");
 		png_destroy_write_struct(&png_ptr, &info_ptr);
-		fclose(fp);
-		unlink(filename);
 		return -4;
 	}
 	png_init_io(png_ptr, fp);
@@ -344,7 +323,21 @@ int savePNG(const char *filename, gPixmap *pixmap)
 
 	png_write_end(png_ptr, info_ptr);
 	png_destroy_write_struct(&png_ptr, &info_ptr);
-	fclose(fp);
-	eDebug("[ePNG] wrote png succesful");
 	return 0;
+}
+
+int savePNG(const char *filename, gPixmap *pixmap)
+{
+	int result;
+
+	{
+		eDebug("[ePNG] saving to %s",filename);
+		CFile fp(filename, "wb");
+		if (!fp)
+			return -1;
+		result = savePNGto(fp, pixmap);
+	}
+	if (result != 0)
+		::unlink(filename);
+	return result;
 }

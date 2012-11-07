@@ -1,4 +1,5 @@
 #include <lib/dvb/metaparser.h>
+#include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
 #include <errno.h>
 #include <sys/stat.h>
@@ -64,8 +65,8 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 {
 	/* if it's a PVR channel, recover service id. */
 	std::string filename = tsname + ".meta";
-		
-	FILE *f = fopen(filename.c_str(), "r");
+	CFile f(filename.c_str(), "r");
+
 	if (!f)
 		return -ENOENT;
 
@@ -136,7 +137,6 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 		}
 		++linecnt;
 	}
-	fclose(f);
 	m_data_ok = 1;
 	return 0;
 }
@@ -149,7 +149,7 @@ int eDVBMetaParser::parseRecordings(const std::string &filename)
 	
 	std::string recordings = filename.substr(0, slash) + "/recordings.epl";
 	
-	FILE *f = fopen(recordings.c_str(), "r");
+	CFile f(recordings.c_str(), "r");
 	if (!f)
 	{
 //		eDebug("no recordings.epl found: %s: %m", recordings.c_str());
@@ -192,12 +192,10 @@ int eDVBMetaParser::parseRecordings(const std::string &filename)
 			m_filesize = fileSize(filename);
 			m_data_ok = 1;
 			m_scrambled = 0;
-			fclose(f);
 			updateMeta(filename);
 			return 0;
 		}
 	}
-	fclose(f);
 	return -1;
 }
 
@@ -210,10 +208,9 @@ int eDVBMetaParser::updateMeta(const std::string &tsname)
 	eServiceReference ref = m_ref;
 	ref.path = "";
 
-	FILE *f = fopen(filename.c_str(), "w");
+	CFile f(filename.c_str(), "w");
 	if (!f)
 		return -ENOENT;
 	fprintf(f, "%s\n%s\n%s\n%d\n%s\n%d\n%lld\n%s\n%d\n%d\n", ref.toString().c_str(), m_name.c_str(), m_description.c_str(), m_time_create, m_tags.c_str(), m_length, m_filesize, m_service_data.c_str(), m_packet_size, m_scrambled);
-	fclose(f);
 	return 0;
 }
