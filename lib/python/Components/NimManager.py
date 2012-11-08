@@ -499,10 +499,7 @@ class NIM(object):
 		self.frontend_id = frontend_id
 		self.__is_empty = is_empty
 
-	def isCompatible(self, what):
-		if not self.isSupported():
-			return False
-		compatible = {
+		self.compatible = {
 				None: (None,),
 				"DVB-S": ("DVB-S", None),
 				"DVB-C": ("DVB-C", None),
@@ -512,7 +509,21 @@ class NIM(object):
 				"DVB-T2": ("DVB-T", "DVB-T2", None),
 				"ATSC": ("ATSC", None),
 			}
-		return what in compatible[self.getType()]
+
+	def isCompatible(self, what):
+		if not self.isSupported():
+			return False
+		return what in self.compatible[self.getType()]
+
+	def canBeCompatible(self, what):
+		if not self.isSupported():
+			return False
+		if self.isCompatible(what):
+			return True
+		for type in self.multi_type.values():
+			if what in self.compatible[type]:
+				return True
+		return False
 
 	def getType(self):
 		try:
@@ -1384,12 +1395,10 @@ def InitNimManager(nimmgr):
 		if nimmgr.nim_slots[slot_id].description == 'Alps BSBE2':
 			open("/proc/stb/frontend/%d/tone_amplitude" %(fe_id), "w").write(configElement.value)
 
-	empty_slots = 0
-	for slot in nimmgr.nim_slots:
-		x = slot.slot
-		nim = config.Nims[x]
-
-		if slot.isCompatible("DVB-S"):
+	def createSatConfig(nim, x, empty_slots):
+		try:
+			nim.toneAmplitude
+		except:
 			nim.toneAmplitude = ConfigSelection([("11", "340mV"), ("10", "360mV"), ("9", "600mV"), ("8", "700mV"), ("7", "800mV"), ("6", "900mV"), ("5", "1100mV")], "7")
 			nim.toneAmplitude.fe_id = x - empty_slots
 			nim.toneAmplitude.slot_id = x
@@ -1419,25 +1428,11 @@ def InitNimManager(nimmgr):
 			nim.fastTurningBegin = ConfigDateTime(default = mktime(btime.timetuple()), formatstring = _("%H:%M"), increment = 900)
 			etime = datetime(1970, 1, 1, 19, 0);
 			nim.fastTurningEnd = ConfigDateTime(default = mktime(etime.timetuple()), formatstring = _("%H:%M"), increment = 900)
-			config_mode_choices = [("nothing", _("nothing connected")),
-				("simple", _("simple")), ("advanced", _("advanced"))]
-			if len(nimmgr.getNimListOfType(slot.type, exception = x)) > 0:
-				config_mode_choices.append(("equal", _("equal to")))
-				config_mode_choices.append(("satposdepends", _("second cable of motorized LNB")))
-			if len(nimmgr.canConnectTo(x)) > 0:
-				config_mode_choices.append(("loopthrough", _("loopthrough to")))
-			nim.advanced = ConfigNothing()
-			tmp = ConfigSelection(config_mode_choices, "simple")
-			tmp.slot_id = x
-			tmp.addNotifier(configModeChanged, initial_call = False)
-			nim.configMode = tmp
-		elif slot.isCompatible("DVB-C"):
-			nim.configMode = ConfigSelection(
-				choices = {
-					"enabled": _("enabled"),
-					"nothing": _("nothing connected"),
-					},
-				default = "enabled")
+
+	def createCableConfig(nim, x):
+		try:
+			nim.cable
+		except:
 			list = [ ]
 			n = 0
 			for x in nimmgr.cablesList:
@@ -1472,13 +1467,11 @@ def InitNimManager(nimmgr):
 			nim.cable.scan_sr_6875 = ConfigYesNo(default = True)
 			nim.cable.scan_sr_ext1 = ConfigInteger(default = 0, limits = (0, 7230))
 			nim.cable.scan_sr_ext2 = ConfigInteger(default = 0, limits = (0, 7230))
-		elif slot.isCompatible("DVB-T"):
-			nim.configMode = ConfigSelection(
-				choices = {
-					"enabled": _("enabled"),
-					"nothing": _("nothing connected"),
-					},
-				default = "enabled")
+
+	def createTerrestrialConfig(nim, x):
+		try:
+			nim.terrestrial
+		except:
 			list = []
 			n = 0
 			for x in nimmgr.terrestrialsList:
@@ -1486,6 +1479,42 @@ def InitNimManager(nimmgr):
 				n += 1
 			nim.terrestrial = ConfigSelection(choices = list)
 			nim.terrestrial_5V = ConfigOnOff()
+
+	empty_slots = 0
+	for slot in nimmgr.nim_slots:
+		x = slot.slot
+		nim = config.Nims[x]
+
+		if slot.isCompatible("DVB-S"):
+			createSatConfig(nim, x, empty_slots)
+			config_mode_choices = [("nothing", _("nothing connected")),
+				("simple", _("simple")), ("advanced", _("advanced"))]
+			if len(nimmgr.getNimListOfType(slot.type, exception = x)) > 0:
+				config_mode_choices.append(("equal", _("equal to")))
+				config_mode_choices.append(("satposdepends", _("second cable of motorized LNB")))
+			if len(nimmgr.canConnectTo(x)) > 0:
+				config_mode_choices.append(("loopthrough", _("loopthrough to")))
+			nim.advanced = ConfigNothing()
+			tmp = ConfigSelection(config_mode_choices, "simple")
+			tmp.slot_id = x
+			tmp.addNotifier(configModeChanged, initial_call = False)
+			nim.configMode = tmp
+		elif slot.isCompatible("DVB-C"):
+			nim.configMode = ConfigSelection(
+				choices = {
+					"enabled": _("enabled"),
+					"nothing": _("nothing connected"),
+					},
+				default = "enabled")
+			createCableConfig(nim, x)
+		elif slot.isCompatible("DVB-T"):
+			nim.configMode = ConfigSelection(
+				choices = {
+					"enabled": _("enabled"),
+					"nothing": _("nothing connected"),
+					},
+				default = "enabled")
+			createTerrestrialConfig(nim, x)
 		else:
 			empty_slots += 1
 			nim.configMode = ConfigSelection(choices = { "nothing": _("disabled") }, default="nothing");
@@ -1540,5 +1569,23 @@ def InitNimManager(nimmgr):
 
 			nim.multiType.fe_id = x - empty_slots
 			nim.multiType.addNotifier(boundFunction(tunerTypeChanged, nimmgr))
+
+	empty_slots = 0
+	for slot in nimmgr.nim_slots:
+		x = slot.slot
+		nim = config.Nims[x]
+		empty = True
+
+		if slot.canBeCompatible("DVB-S"):
+			createSatConfig(nim, x, empty_slots)
+			empty = False
+		if slot.canBeCompatible("DVB-C"):
+			createCableConfig(nim, x)
+			empty = False
+		if slot.canBeCompatible("DVB-T"):
+			createTerrestrialConfig(nim, x)
+			empty = False
+		if empty:
+			empty_slots += 1
 
 nimmanager = NimManager()
