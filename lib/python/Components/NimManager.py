@@ -147,11 +147,12 @@ class SecConfigure:
 		eDVBResourceManager.getInstance().setFrontendSlotInformations(used_nim_slots)
 
 		for slot in nim_slots:
-			types = [type for type in ["DVB-T", "DVB-C", "DVB-S", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, type)]
-			if len(types) > 1:
-				slot.multi_type = {}
-				for type in types:
-					slot.multi_type[str(types.index(type))] = type
+			if slot.frontend_id is not None:
+				types = [type for type in ["DVB-T", "DVB-C", "DVB-S", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, type)]
+				if len(types) > 1:
+					slot.multi_type = {}
+					for type in types:
+						slot.multi_type[str(types.index(type))] = type
 
 		for slot in nim_slots:
 			x = slot.slot
