@@ -260,7 +260,7 @@ DEFINE_REF(eDVBUsbAdapter);
 eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 : eDVBAdapterLinux(nr)
 {
-	FILE *file = NULL;
+	int file;
 	char type[8];
 	struct dmx_pes_filter_params filter;
 	struct dvb_frontend_info fe_info;
@@ -289,20 +289,27 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	demuxFd = vtunerFd = pipeFd[0] = pipeFd[1] = -1;
 
 	snprintf(filename, sizeof(filename), "/sys/class/dvb/dvb%d.frontend0/device/product", nr);
-	file = fopen(filename, "r");
-	if (!file)
+	file = ::open(filename, O_RDONLY);
+	if (file < 0)
 	{
 		snprintf(filename, sizeof(filename), "/sys/class/dvb/dvb%d.frontend0/device/manufacturer", nr);
-		file = fopen(filename, "r");
+		file = ::open(filename, O_RDONLY);
 	}
 
-	if (file)
+	if (file >= 0)
 	{
 		char *tmp = name;
-		fread(tmp, sizeof(name), 1, file);
-		tmp[sizeof(name) - 1] = 0;
-		while (strlen(tmp) > 0 && (tmp[strlen(tmp) - 1] == '\n' || tmp[strlen(tmp) - 1] == ' ')) tmp[strlen(tmp) - 1] = 0;
-		fclose(file);
+		int len = read(file, tmp, sizeof(name) - 1);
+		if (len > 0)
+		{
+			tmp[len] = 0;
+			while (len && (strchr(" \n\r", tmp[len-1]) != NULL))
+			{
+				--len;
+				tmp[len] = 0;
+			}
+		}
+		::close(file);
 	}
 
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/frontend0", nr);
