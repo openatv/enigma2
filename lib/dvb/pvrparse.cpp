@@ -1,4 +1,5 @@
 #include <lib/dvb/pvrparse.h>
+#include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -59,7 +60,7 @@ int eMPEGStreamInformation::load(const char *filename)
 	m_access_points.clear();
 	m_pts_to_offset.clear();
 	m_timestamp_deltas.clear();
-	FILE *f = fopen((s_filename + ".ap").c_str(), "rb");
+	CFile f((s_filename + ".ap").c_str(), "rb");
 	if (!f)
 		return -1;
 	while (1)
@@ -72,7 +73,6 @@ int eMPEGStreamInformation::load(const char *filename)
 		m_access_points[d[0]] = d[1];
 		m_pts_to_offset.insert(std::pair<pts_t,off_t>(d[1], d[0]));
 	}
-	fclose(f);
 	/* assume the accesspoints are in streamtime, if they start with a 0 timestamp */
 	m_streamtime_accesspoints = (!m_access_points.empty() && m_access_points.begin()->second == 0);
 	fixupDiscontinuties();
@@ -645,7 +645,7 @@ int eMPEGStreamInformationWriter::stopSave(void)
 	if (m_access_points.empty() && (m_streamtime_access_points.size() <= 1))
 		// Nothing to save, don't create an ap file at all
 		return 1;
-	FILE *f = fopen((m_filename + ".ap").c_str(), "wb");
+	CFile f((m_filename + ".ap").c_str(), "wb");
 	if (!f)
 		return -1;
 	for (std::deque<AccessPoint>::const_iterator i(m_streamtime_access_points.begin()); i != m_streamtime_access_points.end(); ++i)
@@ -662,7 +662,6 @@ int eMPEGStreamInformationWriter::stopSave(void)
 		d[1] = htobe64(i->pts);
 		fwrite(d, sizeof(d), 1, f);
 	}
-	fclose(f);
 	return 0;
 }
 
