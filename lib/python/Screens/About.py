@@ -375,7 +375,11 @@ class SystemNetworkInfo(Screen):
 		self.createscreen()
 
 		if iNetwork.isWirelessInterface(self.iface):
-			self.resetList()
+			try:
+				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
+				self.resetList()
+			except:
+				pass
 			self.onClose.append(self.cleanup)
 		self.updateStatusbar()
 
@@ -502,7 +506,6 @@ class SystemNetworkInfo(Screen):
 
 		if iNetwork.isWirelessInterface(self.iface):
 			try:
-				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 				iStatus.getDataForInterface(self.iface,self.getInfoCB)
 			except:
 				self["statuspic"].setPixmapNum(1)
