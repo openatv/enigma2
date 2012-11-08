@@ -190,6 +190,7 @@ void eDVBFrontendParametersTerrestrial::set(const TerrestrialDeliverySystemDescr
 		modulation = Modulation_Auto;
 	inversion = Inversion_Unknown;
 	system = System_DVB_T;
+	plpid = 0;
 	eDebug("Terr freq %d, bw %d, cr_hp %d, cr_lp %d, tm_mode %d, guard %d, hierarchy %d, const %d",
 		frequency, bandwidth, code_rate_HP, code_rate_LP, transmission_mode,
 		guard_interval, hierarchy, modulation);
@@ -1104,6 +1105,7 @@ void PutTerrestrialDataToDict(ePyObject &dict, iDVBFrontendParameters *oparm)
 		PutToDict(dict, "hierarchy_information", feparm.hierarchy);
 		PutToDict(dict, "inversion", feparm.inversion);
 		PutToDict(dict, "system", feparm.system);
+		PutToDict(dict, "plp_id", feparm.plpid);
 	}
 }
 
@@ -2245,16 +2247,16 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 		else if (type == iDVBFrontend::feTerrestrial)
 		{
 			eDVBFrontendParametersTerrestrial parm;
+			fe_delivery_system_t system = SYS_DVBT;
 			oparm.getDVBT(parm);
-			p[cmdseq.num].cmd = DTV_DELIVERY_SYSTEM;
 			switch (parm.system)
 			{
 				default:
-				case eDVBFrontendParametersTerrestrial::System_DVB_T: p[cmdseq.num].u.data = SYS_DVBT; break;
-				case eDVBFrontendParametersTerrestrial::System_DVB_T2: p[cmdseq.num].u.data = SYS_DVBT2; break;
+				case eDVBFrontendParametersTerrestrial::System_DVB_T: system = SYS_DVBT; break;
+				case eDVBFrontendParametersTerrestrial::System_DVB_T2: system = SYS_DVBT2; break;
 			}
-			cmdseq.num++;
 
+			p[cmdseq.num].cmd = DTV_DELIVERY_SYSTEM, p[cmdseq.num].u.data = system, cmdseq.num++;
 			p[cmdseq.num].cmd = DTV_FREQUENCY, p[cmdseq.num].u.data = parm.frequency, cmdseq.num++;
 
 			p[cmdseq.num].cmd = DTV_INVERSION;
@@ -2345,6 +2347,12 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 			cmdseq.num++;
 
 			p[cmdseq.num].cmd = DTV_BANDWIDTH_HZ, p[cmdseq.num].u.data = parm.bandwidth, cmdseq.num++;
+			if (system == SYS_DVBT2)
+			{
+#ifdef DTV_DVBT2_PLP_ID
+				p[cmdseq.num].cmd = DTV_DVBT2_PLP_ID, p[cmdseq.num].u.data = parm.plpid, cmdseq.num++;
+#endif
+			}
 		}
 		else if (type == iDVBFrontend::feATSC)
 		{
