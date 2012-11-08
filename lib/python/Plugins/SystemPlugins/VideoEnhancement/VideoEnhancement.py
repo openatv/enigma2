@@ -258,6 +258,26 @@ class VideoEnhancement:
 			else:
 				config.av.scaler_sharpness = NoSave(ConfigNothing())
 
+		if os_path.exists("/proc/stb/video/hdmi_colorspace") and os_path.exists("/proc/stb/video/hdmi_colorspace_choices"):
+			def setColour_space(config):
+				myval = config.getValue()
+				try:
+					print "--> setting color_soace to:", myval
+					open("/proc/stb/video/hdmi_colorspace", "w").write(myval)
+				except IOError:
+					print "couldn't write color_soace."
+
+				if not VideoEnhancement.firstRun:
+					self.setConfiguredValues()
+
+			file = open("/proc/stb/video/hdmi_colorspace_choices", "r")
+			modes = file.readline().split()
+			file.close()
+			config.pep.color_space = ConfigSelection(modes, modes[0])
+			config.pep.color_space.addNotifier(setColour_space)
+		else:
+			config.pep.color_space = NoSave(ConfigNothing())
+
 		if VideoEnhancement.firstRun:
 			self.setConfiguredValues()
 
