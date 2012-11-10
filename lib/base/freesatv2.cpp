@@ -82,29 +82,32 @@ void freesatHuffmanDecoder::loadTables()
 *
 *  \return Raw character
 */
-static unsigned char resolveChar(char *str)
+static unsigned char resolveChar(const char *str)
 {
-	if (str[1] == 0) return str[0];
+	if (str[1] == 0)
+		return str[0];
 
-	if ( strcmp(str,"ESCAPE") == 0 )
+	switch(str[0])
 	{
-		return ESCAPE;
-	}
-	else if ( strcmp(str,"STOP") == 0 )
-	{
-		return STOP;
-	}
-	else if ( strcmp(str,"START") == 0 )
-	{
-		return START;
-	}
-	else
-	{
-		int val;
-		if ( sscanf(str,"0x%02x", &val) == 1 )
-		{
-			return val;
-		}
+		case 'E':
+			if ( strcmp(str,"ESCAPE") == 0 )
+				return ESCAPE;
+			break;
+		case 'S':
+			if ( strcmp(str,"STOP") == 0 )
+				return STOP;
+			if ( strcmp(str,"START") == 0 )
+				return START;
+			break;
+		case '0':
+			{
+				int val;
+				if ( sscanf(str,"0x%02x", &val) == 1 )
+				{
+					return val;
+				}
+			}
+			break;
 	}
 	return str[0];
 }
@@ -116,19 +119,19 @@ static unsigned char resolveChar(char *str)
 *
 *  \return Decoded value
 */
-static unsigned long decodeBinary(char *binary)
+static unsigned long decodeBinary(const char *binary)
 {
 	unsigned long mask = 0x80000000;
 	unsigned long val = 0;
-	size_t i, len = strlen(binary);
 
-	for ( i = 0; i < len; i++ )
+	while (*binary)
 	{
-		if ( binary[i] == '1' )
+		if ( *binary == '1' )
 		{
 			val |= mask;
 		}
 		mask >>= 1;
+		++binary;
 	}
 	return val;
 }
@@ -140,8 +143,11 @@ static unsigned long decodeBinary(char *binary)
 */
 void freesatHuffmanDecoder::loadFile(int tableid, const char *filename)
 {
-	char     buf[1024];
-	char    *from, *to, *binary;
+	char buf[1024];
+	char *from;
+	char *to;
+	char *binary;
+	char *colon;
 
 	CFile fp(filename, "r");
 	if ( fp )
@@ -151,9 +157,21 @@ void freesatHuffmanDecoder::loadFile(int tableid, const char *filename)
 		tableid--;
 		while ( fgets(buf,sizeof(buf),fp) != NULL )
 		{
-			from = binary = to = NULL;
-			int elems = sscanf(buf,"%a[^:]:%a[^:]:%a[^:]:", &from, &binary, &to);
-			if ( elems == 3 )
+			// Tokenize string "in place"
+			from = buf;
+			colon = strchr(buf, ':');
+			if (colon == NULL)
+				continue;
+			binary = colon + 1;
+			*colon = 0;
+			colon = strchr(binary, ':');
+			if (colon == NULL)
+				continue;
+			*colon = 0;
+			to = colon + 1;
+			colon = strchr(to, ':');
+			if (colon != NULL)
+				*colon = 0;
 			{
 				int bin_len = strlen(binary);
 				int from_char = resolveChar(from);
@@ -168,9 +186,6 @@ void freesatHuffmanDecoder::loadFile(int tableid, const char *filename)
 				}
 				*pCurrent = new huffTableEntry(bin, bin_len, to_char, NULL);
 			}
-			free(from);
-			free(to);
-			free(binary);
 		}
 	}
 	else

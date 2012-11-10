@@ -54,6 +54,7 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Skip Empty Services"), config.misc.graph_mepg.overjump))
 		self.list.append(getConfigListEntry(_("Service Title mode"), config.misc.graph_mepg.servicetitle_mode))
 		self.list.append(getConfigListEntry(_("Round start time on"), config.misc.graph_mepg.roundTo))
+		self.list.append(getConfigListEntry(_("Function on OK button"), config.misc.graph_mepg.OKButton))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)

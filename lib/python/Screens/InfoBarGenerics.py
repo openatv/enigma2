@@ -312,7 +312,7 @@ class NumberZap(Screen):
 			self ["servicename"].text = ServiceReference(self.service).getServiceName()
 
 	def keyNumberGlobal(self, number):
-		self.Timer.start(3000, True)
+		self.Timer.start(1000, True)
 		self.field = self.field + str(number)
 		self["number"].setText(self.field)
 
