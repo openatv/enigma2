@@ -792,7 +792,7 @@ class RecordTimer(timer.Timer):
 						else:           # recording whole event
 							time_match = end - begin
 							type = 2
-				if time_match:
+				if type == 2: # stop searching if a full recording is found
 					break
 		if time_match:
 			return (time_match, type)
