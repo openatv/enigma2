@@ -144,9 +144,9 @@ static unsigned long decodeBinary(const char *binary)
 void freesatHuffmanDecoder::loadFile(int tableid, const char *filename)
 {
 	char buf[1024];
-	const char *from;
-	const char *to;
-	const char *binary;
+	char *from;
+	char *to;
+	char *binary;
 	char *colon;
 
 	CFile fp(filename, "r");
@@ -167,6 +167,7 @@ void freesatHuffmanDecoder::loadFile(int tableid, const char *filename)
 			colon = strchr(binary, ':');
 			if (colon == NULL)
 				continue;
+			*colon = 0;
 			to = colon + 1;
 			colon = strchr(to, ':');
 			if (colon != NULL)
