@@ -44,6 +44,7 @@ config.misc.graph_mepg.servicetitle_mode = ConfigSelection(default = "picon+serv
 	("picon", _("Picon")),
 	("picon+servicename", _("Picon and Service Name")) ])
 config.misc.graph_mepg.roundTo = ConfigSelection(default = 15, choices = [("900", _("%d minutes") % 15), ("1800", _("%d minutes") % 30), ("3600", _("%d minutes") % 60)])
+config.misc.graph_mepg.OKButton = ConfigSelection(default = "info", choices = [("info", _("Show detailed event info")), ("zap", _("Zap to selected channel"))])
 
 listscreen = config.misc.graph_mepg.default_mode.value
 
@@ -745,7 +746,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self["okactions"] = HelpableActionMap(self, "OkCancelActions",
 			{
 				"cancel": (self.closeScreen,   _("Exit EPG")),
-				"ok":	  (self.eventSelected, _("Show detailed event info"))
+				"ok":	  (self.eventSelected, _("Configurable, Zap or detailed event info"))
 			}, -1)
 		self["okactions"].csel = self
 		self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
@@ -951,7 +952,10 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.close(None)
 
 	def eventSelected(self):
-		self.infoKeyPressed()
+		if config.misc.graph_mepg.OKButton.value == "info":
+			self.infoKeyPressed()
+		else:
+			self.zapTo()
 
 	def removeTimer(self, timer):
 		timer.afterEvent = AFTEREVENT.NONE
