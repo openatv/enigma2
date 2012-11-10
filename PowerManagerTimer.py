@@ -41,10 +41,11 @@ class AFTEREVENT:
 class TIMERTYPE:
 	NONE = 0
 	WAKEUP = 1
-	STANDBY = 2
-	DEEPSTANDBY = 3
-	REBOOT = 4
-	RESTART = 5
+	WAKEUPTOSTANDBY = 1
+	STANDBY = 3
+	DEEPSTANDBY = 4
+	REBOOT = 5
+	RESTART = 6
 
 # please do not translate log messages
 class PowerManagerTimerEntry(timer.TimerEntry, object):
@@ -61,7 +62,7 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 			print "PowerManager.staticGotRecordEvent(iRecordableService.evEnd)"
 			recordings = NavigationInstance.instance.getRecordings()
 			if not recordings: # no more recordings exist
-				rec_time = NavigationInstance.instance.PowerManager.getNextPowerManagerTime()
+				rec_time = NavigationInstance.instance.PowerManagerTimer.getNextPowerManagerTime()
 				if rec_time > 0 and (rec_time - time()) < 360:
 					print "another recording starts in", rec_time - time(), "seconds... do not shutdown yet"
 				else:
@@ -263,6 +264,7 @@ def createTimer(xml):
 	timertype = str(xml.get("timertype") or "wakeup")
 	timertype = {
 		"wakeup": TIMERTYPE.WAKEUP,
+		"wakeuptostandby": TIMERTYPE.WAKEUPTOSTANDBY,
 		"standby": TIMERTYPE.STANDBY,
 		"deepstandby": TIMERTYPE.DEEPSTANDBY,
 		"reboot": TIMERTYPE.REBOOT,
@@ -374,15 +376,13 @@ class PowerManagerTimer(timer.Timer):
 		list = []
 		list.append('<?xml version="1.0" ?>\n')
 		list.append('<timers>\n')
-		print 'self.timer_list',self.timer_list
-		print 'self.processed_timers',self.processed_timers
-
 		for timer in self.timer_list + self.processed_timers:
 			if timer.dontSave:
 				continue
 			list.append('<timer')
 			list.append(' timertype="' + str(stringToXML({
 				TIMERTYPE.WAKEUP: "wakeup",
+				TIMERTYPE.WAKEUPTOSTANDBY: "wakeuptostandby",
 				TIMERTYPE.STANDBY: "standby",
 				TIMERTYPE.DEEPSTANDBY: "deepstandby",
 				TIMERTYPE.REBOOT: "reboot",
@@ -443,7 +443,6 @@ class PowerManagerTimer(timer.Timer):
 	def getNextPowerManagerTime(self):
 		nextrectime = self.getNextPowerManagerTimeOld()
 		faketime = time()+300
-
 		if config.timeshift.isRecording.getValue():
 			if nextrectime > 0 and nextrectime < faketime:
 				return nextrectime
@@ -458,7 +457,7 @@ class PowerManagerTimer(timer.Timer):
 		for timer in self.timer_list:
 			if t is None or t.begin == timer.begin:
 				t = timer
-				if t.afterEvent == AFTEREVENT.AUTO:
+				if t.timerType == TIMERTYPE.WAKEUPTOSTANDBY:
 					return True
 		return False
 

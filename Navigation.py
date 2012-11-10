@@ -71,7 +71,7 @@ class Navigation:
 				RecordTimer.RecordTimerEntry.TryQuitMainloop(False) # start shutdown handling
 
 	def checkShutdownAfterPowerManager(self):
-		if abs(self.checkShutdownAfterPowerManager.getNextPowerManagerTime() - time()) <= 360:
+		if abs(self.PowerManagerTimer.getNextPowerManagerTime() - time()) <= 360:
 			if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 				PowerManagerTimer.PowerManagerTimerEntry.TryQuitMainloop(False) # start shutdown handling
 

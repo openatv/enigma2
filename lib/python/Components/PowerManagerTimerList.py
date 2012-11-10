@@ -19,6 +19,7 @@ class PowerManagerTimerList(HTMLComponent, GUIComponent, object):
 	def buildTimerEntry(self, timer, processed):
 		timertype = {
 			TIMERTYPE.WAKEUP: "Wake Up",
+			TIMERTYPE.WAKEUPTOSTANDBY: "Wake Up To Standby",
 			TIMERTYPE.DEEPSTANDBY: "Deep Standby",
 			TIMERTYPE.STANDBY: "Standby",
 			TIMERTYPE.REBOOT: "Reboot",
