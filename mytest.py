@@ -593,12 +593,12 @@ import Components.Lcd
 Components.Lcd.InitLcd()
 Components.Lcd.IconCheck()
 
-profile("OSD")
-import Screens.OSD
-Screens.OSD.InitOsd()
-Screens.OSD.setConfiguredPosition()
-Screens.OSD.setConfiguredSettings()
-Screens.OSD.setConfiguredAplha()
+profile("UserInterface")
+import Screens.UserInterfacePostioner
+Screens.UserInterfacePositioner.InitOsd()
+Screens.UserInterfacePositioner.setConfiguredPosition()
+Screens.UserInterfacePositioner.setConfiguredSettings()
+Screens.UserInterfacePositioner.setConfiguredAplha()
 
 profile("EpgCacheSched")
 import Components.EpgLoadSave

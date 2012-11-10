@@ -128,7 +128,7 @@ self.session.open(SABnzbdSetupScreen)
 				<menu level="2" text="User interface" entryID="osd_setup" requires="OsdMenu">
 					<id val="osd_menu" />
 					<item level="0" entryID="osd_setup"><setup id="osdsetup" /></item>
-					<item level="2" text="Position setup" entryID="osdsetup" requires="OsdSetup"><screen module="OSD" screen="OSDSetup"/></item>
+					<item level="2" text="Position setup" entryID="osdsetup" requires="OsdSetup"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner"/></item>
 					<item level="2" text="3D setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="OSD" screen="OSD3DSetupScreen"/></item>
 				</menu>
 			</menu>
