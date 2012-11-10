@@ -2,7 +2,7 @@ installdir = $(pkglibdir)/python/Screens
 
 install_PYTHON = \
 	Recordings.py Timershift.py LogManager.py CCcamInfo.py OScamInfo.py SkinSelector.py \
-	UserInterfacePostioner.py WizardUserInterfacePostioner.py \
+	UserInterfacePositioner.py WizardUserInterfacePositioner.py PowerManagerTimerEntry.py PowerManagerTimerEdit.py \
 	\
 	AudioSelection.py ChannelSelection.py ClockDisplay.py ConfigMenu.py CopyFiles.py InfoBar.py \
 	Menu.py	MessageBox.py Screen.py ServiceScan.py TimerEdit.py \
