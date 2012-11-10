@@ -477,6 +477,11 @@ class InfoBarShowHide:
 			idx = config.usage.second_infobar_timeout.index
 			if idx:
 				self.hideTimer.start(idx*1000, True)
+		elif self.pvrStateDialog:
+			self.hideTimer.stop()
+			idx = config.usage.infobar_timeout.index
+			if idx:
+				self.hideTimer.start(idx*1000, True)
 
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
@@ -502,6 +507,8 @@ class InfoBarShowHide:
 			except:
 				pass
 			self.EventViewIsShown = False
+		elif self.pvrStateDialog:
+			self.pvrStateDialog.hide()
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
@@ -1992,6 +1999,7 @@ class InfoBarPVRState:
 			self["speed"].setText("")
 		if self.execing and self.seekstate != self.SEEK_STATE_EOF and not config.usage.movieplayer_pvrstate.getValue():
 			self.pvrStateDialog.show()
+			self.startHideTimer()
 
 	def __playStateChanged(self, state):
 		playstateString = state[3]
@@ -2088,6 +2096,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 			else:
 				self["SeekActions"].setEnabled(True)
 			self.pvrStateDialog.show()
+			self.startHideTimer()
 
 		elif self.execing and self.timeshift_enabled and not self.isSeekable():
 			if config.timeshift.enabled.getValue():
