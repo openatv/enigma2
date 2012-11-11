@@ -15,6 +15,14 @@ from Components.ActionMap import ActionMap
 
 from enigma import eFastScan
 
+from enigma import eDVBFrontendParametersSatellite, eComponentScan, \
+	eDVBSatelliteEquipmentControl, eDVBFrontendParametersTerrestrial, \
+	eDVBFrontendParametersCable, eConsoleAppContainer, eDVBResourceManager
+from Screens.ServiceScan import ServiceScan	
+from Components.NimManager import nimmanager
+
+import os
+
 class FastScan:
 	def __init__(self, text, progressbar, scanTuner = 0, scanPid = 900, keepNumbers = False, keepSettings = False, providerName = 'Favorites'):
 		self.text = text;
@@ -150,6 +158,17 @@ class FastScanScreen(ConfigListScreen, Screen):
 
 		self.scan_nims = ConfigSelection(choices = nim_list)
 		provider_list = []
+
+		try:					
+		  myscripts = os.listdir('/usr/lib/enigma2/python/Plugins/SystemPlugins/FastScan/xml')
+		  for fil in myscripts:
+		      if (fil.endswith('.xml') != -1):
+			  fil2 = fil[:-4]
+			  print fil2
+			  provider_list.append((fil2,  fil2.title()))
+		except:
+		  pass
+			
 		provider_list.append((str(900), 'Canal Digitaal'))
 		provider_list.append((str(910), 'TV Vlaanderen'))
 		provider_list.append((str(920), 'TéléSAT'))
@@ -186,8 +205,126 @@ class FastScanScreen(ConfigListScreen, Screen):
 
 		self["introduction"] = Label(_("Select your provider, and press OK to start the scan"))
 
+
+                
+		
+
+	def addSatTransponder(self, tlist, frequency, symbol_rate, polarisation, fec, inversion, orbital_position, system, modulation, rolloff, pilot):
+		print "Add Sat: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(polarisation) + " fec: " + str(fec) + " inversion: " + str(inversion) + " modulation: " + str(modulation) + " system: " + str(system) + " rolloff" + str(rolloff) + " pilot" + str(pilot)
+		print "orbpos: " + str(orbital_position)
+		parm = eDVBFrontendParametersSatellite()
+		parm.modulation = modulation
+		parm.system = system
+		parm.frequency = frequency * 1000
+		parm.symbol_rate = symbol_rate * 1000
+		parm.polarisation = polarisation
+		parm.fec = fec
+		parm.inversion = inversion
+		parm.orbital_position = orbital_position
+		parm.rolloff = rolloff
+		parm.pilot = pilot
+		tlist.append(parm)
+		
+	def readXML(self, xml):
+		tlist = []
+
+		import xml.dom.minidom as minidom
+		xmldoc = "/usr/lib/enigma2/python/Plugins/SystemPlugins/FastScan/xml/" + xml + ".xml"
+		xmldoc = minidom.parse(xmldoc)
+		tr_list = xmldoc.getElementsByTagName('transporder')
+		for lista in tr_list:      
+			frequency = lista.getAttribute("frequency")
+			symbolrate = lista.getAttribute("symbolrate")
+			fec = lista.getAttribute("fec")
+			orbpos = lista.getAttribute("orbpos")
+			pol = lista.getAttribute("pol")
+			system = lista.getAttribute("system")
+			modulation = lista.getAttribute("modulation")
+			
+			#print frequency
+			#print symbolrate
+			#print fec
+			#print pol
+			#print system
+			#print modulation
+			
+			self.frequency = frequency
+			self.symbolrate = symbolrate
+			if pol == "H":
+			    pol = 0
+			elif pol == "V":
+			    pol = 1
+			elif pol == "L":
+			    pol = 2
+			elif pol == "R":
+			    pol = 3
+			self.polarization =  pol # 0 - H, 1 - V, 2- CL, 3 - CR
+
+			if fec == "Auto":
+			    fec = 0
+			elif fec == "1/2":
+			    fec = 1
+			elif fec == "2/3":
+			    fec = 2
+			elif fec == "3/4":
+			    fec = 3
+			elif fec == "3/5":
+			    fec = 4
+			elif fec == "4/5":
+			    fec = 5
+			elif fec == "5/6":
+			    fec = 6
+			elif fec == "7/8":
+			    fec = 7
+			elif fec == "8/9":
+			    fec = 8
+			elif fec == "9/10":
+			    fec = 9
+		
+			self.fec = fec # 0 - Auto, 1 - 1/2, 2 - 2/3, 3 - 3/4, 4 - 3/5, 5 - 4/5, 6 - 5/6, 7 - 7/8, 8 - 8/9 , 9 - 9/10,
+			
+			self.inversion = 2 # 0 - off, 1 -on, 2 - AUTO
+			
+			self.orbpos = orbpos
+			
+			if system == "DVBS":
+			    system = 0
+			elif system == "DVBS2":
+			    system = 1
+			    
+			self.system = system # DVB-S = 0, DVB-S2 = 1
+			
+			if modulation == "QPSK":
+			    modulation = 0
+			elif modulation == "8PSK":
+			    modulation = 1
+			    
+			self.modulation = modulation # 0- QPSK, 1 -8PSK
+			
+			self.rolloff = 0 #
+			
+			self.pilot = 2 # 0 - off, 1 - on 2 - AUTO
+		
+			print "add sat transponder"
+			self.addSatTransponder(tlist, int(self.frequency),
+						int(self.symbolrate),
+						int(self.polarization),
+						int(fec),
+						int(self.inversion),
+						int(orbpos),
+						int(self.system),
+						int(self.modulation),
+						int(self.rolloff),
+						int(self.pilot))
+
+		self.session.open(ServiceScan, [{"transponders": tlist, "feid": 0, "flags": 0, "networkid": 0}])
+									
 	def keyGo(self):
-		self.startScan()
+		prov = self.scan_provider.getValue()
+		if prov == "tricolor" or prov == "kontinent" or prov == "telekarta" or prov == "ntvplus" or prov == "raduga":
+		  self.readXML(self.scan_provider.getValue())
+		else:
+		  self.startScan()
 
 	def startScan(self):
 		pid = int(self.scan_provider.getValue())
