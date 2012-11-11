@@ -569,7 +569,7 @@ class NumberZap(Screen):
 				self.startBouquet = self.bouquet
 
 	def keyBlue(self):
-		self.Timer.start(3000, True)
+		self.Timer.start(5000, True)
 		if self.searchNumber:
 			if self.startBouquet == self.bouquet:
 				self.service, self.bouquet = self.searchNumber(int(self["number"].getText()), firstBouquetOnly = True)
