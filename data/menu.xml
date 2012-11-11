@@ -16,6 +16,7 @@
 		<menu level="0" text="Timers" entryID="timer_menu">
 			<id val="timermenu" />
 			<item weight="100" level="0" text="Timers" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
+			<item weight="100" level="0" text="PowerTimers" entryID="powertimer_edit"><screen module="PowerManagerTimerEdit" screen="PowerManagerTimerEditList" /></item>
 		</menu>
 		<item level="1" text="VCR scart" entryID="scart_switch" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>
 
@@ -54,7 +55,7 @@
 				<menu level="2" text="OSD settings" entryID="osd_setup" requires="OsdMenu">
 					<id val="osd_menu" />
 					<item level="0" entryID="osd_setup"><setup id="osdsetup" /></item>
-					<item level="2" text="OSD Position" entryID="osdsetup" requires="OsdSetup"><screen module="OSD" screen="OSDSetup"/></item>
+					<item level="2" text="OSD Position" entryID="osdsetup" requires="OsdSetup"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner"/></item>
 					<item level="2" text="OSD 3D Setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="OSD" screen="OSD3DSetupScreen"/></item>
 				</menu>
 				<menu level="0" text="Harddisk" entryID="hardisk_selection" requires="Harddisk">

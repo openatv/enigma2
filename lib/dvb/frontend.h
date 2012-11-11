@@ -75,24 +75,18 @@ private:
 	DECLARE_REF(eDVBFrontend);
 	bool m_simulate;
 	bool m_enabled;
-	int m_type;
 	eDVBFrontend *m_simulate_fe; // only used to set frontend type in dvb.cpp
 	int m_dvbid;
 	int m_slotid;
 	int m_fd;
 	bool m_rotor_mode;
 	bool m_need_rotor_workaround;
-	std::map<fe_delivery_system_t, bool> m_delsys;
+	std::map<fe_delivery_system_t, bool> m_delsys, m_delsys_whitelist;
 	std::string m_filename;
 	char m_description[128];
 	dvb_frontend_info fe_info;
 	int satfrequency;
-	union {
-		eDVBFrontendParametersSatellite sat;
-		eDVBFrontendParametersCable cab;
-		eDVBFrontendParametersTerrestrial ter;
-		eDVBFrontendParametersATSC atsc;
-	} oparm;
+	eDVBFrontendParameters oparm;
 
 	int m_state;
 	ePtr<iDVBSatelliteEquipmentControl> m_sec;
@@ -155,6 +149,8 @@ public:
 	static int getTypePriorityOrder() { return PriorityOrder; }
 	static void setPreferredFrontend(int index) { PreferredFrontendIndex = index; }
 	static int getPreferredFrontend() { return PreferredFrontendIndex; }
+	bool supportsDeliverySystem(const fe_delivery_system_t &sys, bool obeywhitelist);
+	void setDeliverySystemWhitelist(const std::vector<fe_delivery_system_t> &whitelist);
 
 	void reopenFrontend();
 	int openFrontend();
@@ -164,4 +160,10 @@ public:
 };
 
 #endif // SWIG
+
+void PutToDict(ePyObject &dict, const char*key, long value);
+void PutSatelliteDataToDict(ePyObject &dict, iDVBFrontendParameters *feparm);
+void PutTerrestrialDataToDict(ePyObject &dict, iDVBFrontendParameters *feparm);
+void PutCableDataToDict(ePyObject &dict, iDVBFrontendParameters *feparm);
+
 #endif

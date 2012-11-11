@@ -9,7 +9,7 @@ from Components.Label import Label
 from os import path
 from enigma import getDesktop, getBoxType
 
-class OSDSetup(Screen, ConfigListScreen):
+class UserInterfacePositioner(Screen, ConfigListScreen):
 	skin = """
 	<screen name="OSDSetup" position="c-250,c-200" size="500,400">
 		<widget name="config" position="c-175,30" size="350,150" foregroundColor="white" />
@@ -148,6 +148,14 @@ class OSDSetup(Screen, ConfigListScreen):
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
 		else:
 			self.close()
+
+	def run(self):
+		config.osd.dst_left.save()
+		config.osd.dst_width.save()
+		config.osd.dst_top.save()
+		config.osd.dst_height.save()
+		configfile.save()
+		self.close()
 
 def setPosition(dst_left, dst_width, dst_top, dst_height):
 	try:
