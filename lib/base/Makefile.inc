@@ -3,6 +3,7 @@ noinst_LIBRARIES += base/libenigma_base.a
 base_libenigma_base_a_SOURCES = \
 	base/buffer.cpp \
 	base/cachedtssource.cpp \
+	base/cfile.cpp \
 	base/connection.cpp \
 	base/console.cpp \
 	base/ebase.cpp \

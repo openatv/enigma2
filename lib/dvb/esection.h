@@ -12,9 +12,9 @@ class eGTable: public iObject, public Object
 	DECLARE_REF(eGTable);
 	ePtr<iDVBSectionReader> m_reader;
 	eDVBTableSpec m_table;
-	
+
 	unsigned int m_tries;
-	
+
 	ePtr<eTimer> m_timeout;
 
 	void sectionRead(const __u8 *data);
@@ -23,7 +23,7 @@ class eGTable: public iObject, public Object
 protected:
 	static const bool m_debug = false;
 	virtual int createTable(unsigned int nr, const __u8 *data, unsigned int max)=0;
-	virtual int totalSections(int max) { return max + 1; }
+	virtual unsigned int totalSections(unsigned int max) { return max + 1; }
 public:
 	Signal1<void, int> tableReady;
 	eGTable();
@@ -63,7 +63,7 @@ protected:
 				TABLE_eDebugNoNewLine("+");
 			else
 				TABLE_eDebugNoNewLine("-");
-				
+
 		TABLE_eDebug(" %zd/%d TID %02x", avail.size(), max, data[0]);
 
 		if (avail.size() == max)
@@ -112,13 +112,13 @@ public:
 	{
 		stop();
 	}
-	
+
 	void stop()
 	{
 		current = next = 0;
 		m_demux = 0;
 	}
-	
+
 	int begin(eMainloop *m, const eDVBTableSpec &spec, ePtr<iDVBDemux> demux)
 	{
 		m_table_cnt = 0;
@@ -131,7 +131,7 @@ public:
 		next->start(demux, spec);
 		return 0;
 	}
-	
+
 	int get()
 	{
 		if (current)
@@ -145,7 +145,7 @@ public:
 		} else
 			return 1;
 	}
-	
+
 	RESULT getCurrent(ePtr<Table> &ptr)
 	{
 		if (!current)
@@ -154,7 +154,7 @@ public:
 		return 0;
 	}
 
-#if 0	
+#if 0
 	void abort()
 	{
 		eDebug("eAUTable: aborted!");
@@ -169,7 +169,7 @@ public:
 	{
 		return !!current;
 	}
-	
+
 	void inject(Table *t)
 	{
 		next=t;
@@ -191,11 +191,11 @@ public:
 
 		next=0;
 		first=0;
-		
+
 		ASSERT(current->ready);
-			
+
 		/*emit*/ tableReady(0);
-		
+
 		eDVBTableSpec spec;
 
 		if (current && (!current->getSpec(spec)))

@@ -81,10 +81,9 @@ RESULT eBouquet::flushChanges()
 {
 	std::string filename = eEnv::resolve("${sysconfdir}/enigma2/" + m_filename);
 	{
-		CFile f_rai((filename + ".writing").c_str(), "w");
-		if (!f_rai.valid())
+		CFile f((filename + ".writing").c_str(), "w");
+		if (!f)
 			goto err;
-		FILE *f = f_rai.handle;
 		if ( fprintf(f, "#NAME %s\r\n", m_bouquet_name.c_str()) < 0 )
 			goto err;
 		for (list::iterator i(m_services.begin()); i != m_services.end(); ++i)
@@ -97,7 +96,7 @@ RESULT eBouquet::flushChanges()
 				if ( fprintf(f, "#DESCRIPTION %s\r\n", i->name.c_str()) < 0 )
 					goto err;
 		}
-		f_rai.sync();
+		f.sync();
 	}
 	rename((filename + ".writing").c_str(), filename.c_str());
 	return 0;
@@ -340,12 +339,11 @@ void eDVBDB::parseServiceData(ePtr<eDVBService> s, std::string str)
 void eDVBDB::loadServicelist(const char *file)
 {
 	eDebug("---- opening lame channel db");
-	CFile f_rai(file, "rt");
-	if (!f_rai.valid()) {
+	CFile f(file, "rt");
+	if (!f) {
 		eDebug("can't open %s: %m", file);
 		return;
 	}
-	FILE *f = f_rai.handle;
 
 	char line[256];
 	int version=3;
@@ -523,8 +521,7 @@ void eDVBDB::saveServicelist(const char *file)
 	eDebug("---- saving lame channel db");
 	std::string filename = file;
 	{
-	CFile f_rai((filename + ".writing").c_str(), "w");
-	FILE *f = f_rai.handle;
+	CFile f((filename + ".writing").c_str(), "w");
 	int channels=0, services=0;
 	if (!f)
 		eFatal("couldn't save lame channel db!");
@@ -631,7 +628,7 @@ void eDVBDB::saveServicelist(const char *file)
 	}
 	fprintf(f, "end\nHave a lot of bugs!\n");
 	eDebug("saved %d channels and %d services!", channels, services);
-	f_rai.sync();
+	f.sync();
 	}
 	rename((filename + ".writing").c_str(), filename.c_str());
 }
@@ -665,9 +662,8 @@ int eDVBDB::loadBouquet(const char *path, int startChannelNum)
 	std::string p = eEnv::resolve("${sysconfdir}/enigma2/");
 	p+=path;
 	eDebug("loading bouquet... %s %d", p.c_str(), startChannelNum);
-	CFile fp_rai(p.c_str(), "rt");
-	FILE *fp = fp_rai.handle;
-	if (!fp_rai.valid())
+	CFile fp(p.c_str(), "rt");
+	if (!fp)
 	{
 		eDebug("can't open %s: %m", p.c_str());
 		if (!strcmp(path, "bouquets.tv"))
