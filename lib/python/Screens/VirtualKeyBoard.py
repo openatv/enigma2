@@ -82,7 +82,7 @@ class VirtualKeyBoard(Screen):
 		self.smsChar = None
 		self.sms = NumericalTextInput(self.smsOK)
 
-		self["country"] = StaticText("")
+		self["country"] = Label(_("Keyboard language"))
 		self["header"] = Label(title)
 		self["text"] = Label(self.text)
 		self["list"] = VirtualKeyBoardList([])
@@ -252,7 +252,7 @@ class VirtualKeyBoard(Screen):
 				[u"SHIFT", u"SPACE", u"OK"]]
 			self.lang = 'en_EN'
 			self.nextLang = language.getLanguage()
-		self["country"].setText(self.lang)
+		#self["country"].setText(self.lang + (_(" press Yellow to change Keyboard language")))
 		self.max_key=47+len(self.keys_list[4])
 
 	def buildVirtualKeyBoard(self, selectedKey=0):
