@@ -167,6 +167,8 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 					self.do_backoff()
 					# retry
 					self.begin = time() + self.backoff
+					if self.end <= self.begin:
+						self.end = self.begin
 					return False
 				if not Screens.Standby.inStandby: # not already in standby
 					self.log(11, "go to deepstandby")
@@ -179,6 +181,8 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 					self.do_backoff()
 					# retry
 					self.begin = time() + self.backoff
+					if self.end <= self.begin:
+						self.end = self.begin
 					return False
 				if not Screens.Standby.inStandby: # not already in standby
 					self.log(11, "reboot system")
@@ -191,6 +195,8 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 					self.do_backoff()
 					# retry
 					self.begin = time() + self.backoff
+					if self.end <= self.begin:
+						self.end = self.begin
 					return False
 				if not Screens.Standby.inStandby: # not already in standby
 					self.log(11, "restart system")
