@@ -840,7 +840,7 @@ class RecordTimer(timer.Timer):
 						else:           # recording whole event
 							time_match = end - begin
 							type = 2
-				if time_match:
+				if type == 2: # stop searching if a full recording is found
 					break
 		if time_match:
 			if x.justplay == 1 and type == 4 and (x.end - (x.begin + (config.recording.margin_before.getValue() * 60))) == 1:
