@@ -2,7 +2,7 @@
 	   <step id="start" nextstep="end">
 				<text value="Please setup your user interface by adjusting the values till the edges of the blue box are touching the edges of your TV.\nWhen you are ready press OK to continue." />
 				<displaytext value="Configure interface" />
-				<config screen="UserInterfacePostioner" module="UserInterfacePostioner" type="ConfigList" />
+				<config screen="UserInterfacePositioner" module="UserInterfacePositioner" type="ConfigList" />
 				<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
