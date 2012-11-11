@@ -22,7 +22,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
 		self['footnote'] = Label()
-		self["status"] = StaticText()
+		self["description"] = Label(_(""))
 
 		self.list = [ ]
 		self.xtdlist = [ ]
@@ -67,6 +67,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.oldGreen_boost = config.pep.green_boost.getValue()
 		self.oldBlue_boost = config.pep.blue_boost.getValue()
 		self.oldDynamic_contrast = config.pep.dynamic_contrast.getValue()
+		self.oldColor_space = config.pep.color_space.getValue()
 
 	def addToConfigList(self, description, configEntry, hinttext, add_to_xtdlist=False):
 		if isinstance(configEntry, ConfigNothing):
@@ -96,13 +97,14 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.scaler_sharpnessEntry = addToConfigList(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option sets the scaler sharpness, used when stretching picture from 4:3 to 16:9."))
 		self.sharpnessEntry = addToConfigList(_("Sharpness"), config.pep.sharpness, _("This option sets up the picture sharpness, used when the picture is being upscaled."), add_to_xtdlist)
 		self.saturationEntry = addToConfigList(_("Saturation"), config.pep.saturation, _("This option sets the picture saturation."))
+		self.color_spaceEntry = addToConfigList(_("Color space"), config.pep.color_space, _("This option sets the picture color space."))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 		if config.usage.sort_settings.getValue():
 			self["config"].list.sort()
 
 	def SelectionChanged(self):
-		self["status"].setText(self["config"].getCurrent()[2])
+		self["description"].setText(self["config"].getCurrent()[2])
 
 	def PreviewClosed(self):
 		self["config"].invalidate(self["config"].getCurrent())
@@ -110,7 +112,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 	def keyLeft(self):
 		current = self["config"].getCurrent()
-		if current == self.splitEntry:
+		if current == self.splitEntry or self.color_spaceEntry:
 			ConfigListScreen.keyLeft(self)
 		elif current != self.splitEntry and current in self.xtdlist:
 			self.previewlist = [
@@ -128,7 +130,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 	def keyRight(self):
 		current = self["config"].getCurrent()
-		if current == self.splitEntry:
+		if current == self.splitEntry or self.color_spaceEntry:
 			ConfigListScreen.keyRight(self)
 		elif current != self.splitEntry and current in self.xtdlist:
 			self.previewlist = [
@@ -199,6 +201,8 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				config.pep.blue_boost.setValue(self.oldBlue_boost)
 			if self.dynamic_contrastEntry is not None:
 				config.pep.dynamic_contrast.setValue(self.oldDynamic_contrast)
+			if self.color_spaceEntry is not None:
+				config.pep.color_space.setValue(self.oldColor_space)
 			self.keySave()
 
 	def keyYellow(self):
@@ -236,6 +240,11 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				config.pep.blue_boost.setValue(0)
 			if self.dynamic_contrastEntry is not None:
 				config.pep.dynamic_contrast.setValue(0)
+			if self.color_spaceEntry is not None:
+				file = open("/proc/stb/video/hdmi_colorspace_choices", "r")
+				modes = file.readline().split()
+				file.close()
+				config.pep.color_space.setValue(modes[0])
 			self.keySave()
 
 	def keyBlue(self):
