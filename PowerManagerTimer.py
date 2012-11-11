@@ -121,12 +121,12 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 
 	def do_backoff(self):
 		if self.backoff == 0:
-			self.backoff = 5
+			self.backoff = 5*60
 		else:
 			self.backoff *= 2
-			if self.backoff > 100:
-				self.backoff = 100
-		self.log(10, "backoff: retry in %d seconds" % self.backoff)
+			if self.backoff > 1800:
+				self.backoff = 1800
+		self.log(10, "backoff: retry in %d minuets" % (int(self.backoff)/60))
 
 	def activate(self):
 		next_state = self.state + 1
@@ -163,6 +163,11 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("Your STB_BOX wants to set your STB_BOX to standby.\nDo that now?"), timeout = 20)
 				return True
 			elif self.timerType == TIMERTYPE.DEEPSTANDBY:
+				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
+					self.do_backoff()
+					# retry
+					self.begin = time() + self.backoff
+					return False
 				if not Screens.Standby.inStandby: # not already in standby
 					self.log(11, "go to deepstandby")
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("Your STB_BOX wants to shut down your STB_BOX.\nDo that now?"), timeout = 20)
@@ -170,6 +175,11 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 					Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
 				return True
 			elif self.timerType == TIMERTYPE.REBOOT:
+				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
+					self.do_backoff()
+					# retry
+					self.begin = time() + self.backoff
+					return False
 				if not Screens.Standby.inStandby: # not already in standby
 					self.log(11, "reboot system")
 					Notifications.AddNotificationWithCallback(self.sendRebootNotification, MessageBox, _("Your STB_BOX wants to reboot your STB_BOX.\nDo that now?"), timeout = 20)
@@ -177,6 +187,11 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 					Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 2)
 				return True
 			elif self.timerType == TIMERTYPE.RESTART:
+				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
+					self.do_backoff()
+					# retry
+					self.begin = time() + self.backoff
+					return False
 				if not Screens.Standby.inStandby: # not already in standby
 					self.log(11, "restart system")
 					Notifications.AddNotificationWithCallback(self.sendRestartNotification, MessageBox, _("Your STB_BOX wants to restart the GUI.\nDo that now?"), timeout = 20)
