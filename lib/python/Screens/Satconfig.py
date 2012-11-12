@@ -277,7 +277,13 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry("LOF/L", currLnb.lofl))
 				self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
 				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
-
+			if currLnb.lof.getValue() == "circle":
+				currLnb.lofl.setValue(10750)
+				currLnb.lofh.setValue(10750)
+				currLnb.threshold.setValue(12700)
+				self.list.append(getConfigListEntry("LOF/L", currLnb.lofl))
+				self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
+				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 			if currLnb.lof.getValue() == "unicable":
 				self.advancedUnicable = getConfigListEntry("Unicable "+_("Configuration mode"), currLnb.unicable)
 				self.list.append(self.advancedUnicable)
