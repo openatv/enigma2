@@ -90,7 +90,7 @@ class CamCheckPoller:
             print "[CAMSCHECK] exit Frozen CCcam check, CCcam.cfg not found"
             return False
         self.readConfig()
-        ff = system('wget -s ' + self.url)
+        ff = system('wget -s ' + self.url + ' 2>/dev/null')
         if ff > 0:
             print "[CAMSCHECK] Frozen CCcam detected"
             return True
@@ -217,7 +217,7 @@ class CamCheckPoller:
                 #// AND CAM IN LIST
                 if camfound == 1:
                     stop = self.emuStop[indexcam]
-                    print "[CAMSTARTER] CAM 1 frozen, stop " + stop
+                    print "[CAMSTARTER] CAM 1 not running, stop " + stop
                     self.container = eConsoleAppContainer()
                     self.container.execute(stop)
 
@@ -230,7 +230,7 @@ class CamCheckPoller:
                         #// AND CAM IN LIST
                         if camfound2 == 1:
                             stop = self.emuStop[indexcam2]
-                            print "[CAMSTARTER] CAM 2 frozen, stop " + stop
+                            print "[CAMSTARTER] CAM 2 not running, stop " + stop
                             self.container = eConsoleAppContainer()
                             self.container.execute(stop)
                             
