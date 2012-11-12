@@ -260,7 +260,7 @@ DEFINE_REF(eDVBUsbAdapter);
 eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 : eDVBAdapterLinux(nr)
 {
-	FILE *file = NULL;
+	int file;
 	char type[8];
 	struct dmx_pes_filter_params filter;
 	struct dvb_frontend_info fe_info;
@@ -289,20 +289,27 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	demuxFd = vtunerFd = pipeFd[0] = pipeFd[1] = -1;
 
 	snprintf(filename, sizeof(filename), "/sys/class/dvb/dvb%d.frontend0/device/product", nr);
-	file = fopen(filename, "r");
-	if (!file)
+	file = ::open(filename, O_RDONLY);
+	if (file < 0)
 	{
 		snprintf(filename, sizeof(filename), "/sys/class/dvb/dvb%d.frontend0/device/manufacturer", nr);
-		file = fopen(filename, "r");
+		file = ::open(filename, O_RDONLY);
 	}
 
-	if (file)
+	if (file >= 0)
 	{
 		char *tmp = name;
-		fread(tmp, sizeof(name), 1, file);
-		tmp[sizeof(name) - 1] = 0;
-		while (strlen(tmp) > 0 && (tmp[strlen(tmp) - 1] == '\n' || tmp[strlen(tmp) - 1] == ' ')) tmp[strlen(tmp) - 1] = 0;
-		fclose(file);
+		int len = read(file, tmp, sizeof(name) - 1);
+		if (len > 0)
+		{
+			tmp[len] = 0;
+			while (len && (strchr(" \n\r", tmp[len-1]) != NULL))
+			{
+				--len;
+				tmp[len] = 0;
+			}
+		}
+		::close(file);
 	}
 
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/frontend0", nr);
@@ -646,14 +653,12 @@ void eDVBResourceManager::addAdapter(iDVBAdapter *adapter, bool front)
 		ePtr<eDVBFrontend> frontend;
 		if (!adapter->getFrontend(frontend, i))
 		{
-			int frontendType=0;
-			frontend->getFrontendType(frontendType);
 			eDVBRegisteredFrontend *new_fe = new eDVBRegisteredFrontend(frontend, adapter);
 			CONNECT(new_fe->stateChanged, eDVBResourceManager::feStateChanged);
 			m_frontend.push_back(new_fe);
 			frontend->setSEC(m_sec);
 			// we must link all dvb-t frontends ( for active antenna voltage )
-			if (frontendType == iDVBFrontend::feTerrestrial)
+			if (frontend->supportsDeliverySystem(SYS_DVBT, false) || frontend->supportsDeliverySystem(SYS_DVBT2, false))
 			{
 				if (prev_dvbt_frontend)
 				{
@@ -671,14 +676,12 @@ void eDVBResourceManager::addAdapter(iDVBAdapter *adapter, bool front)
 		ePtr<eDVBFrontend> frontend;
 		if (!adapter->getFrontend(frontend, i, true))
 		{
-			int frontendType=0;
-			frontend->getFrontendType(frontendType);
 			eDVBRegisteredFrontend *new_fe = new eDVBRegisteredFrontend(frontend, adapter);
 //			CONNECT(new_fe->stateChanged, eDVBResourceManager::feStateChanged);
 			m_simulate_frontend.push_back(new_fe);
 			frontend->setSEC(m_sec);
 			// we must link all dvb-t frontends ( for active antenna voltage )
-			if (frontendType == iDVBFrontend::feTerrestrial)
+			if (frontend->supportsDeliverySystem(SYS_DVBT, false) || frontend->supportsDeliverySystem(SYS_DVBT2, false))
 			{
 				if (prev_dvbt_frontend)
 				{
@@ -726,6 +729,83 @@ PyObject *eDVBResourceManager::setFrontendSlotInformations(ePyObject list)
 		}
 	}
 	Py_RETURN_NONE;
+}
+
+bool eDVBResourceManager::frontendIsCompatible(int index, const char *type)
+{
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
+	{
+		if (i->m_frontend->getSlotID() == index)
+		{
+			if (!strcmp(type, "DVB-S2"))
+			{
+				return i->m_frontend->supportsDeliverySystem(SYS_DVBS2, false);
+			}
+			else if (!strcmp(type, "DVB-S"))
+			{
+				return i->m_frontend->supportsDeliverySystem(SYS_DVBS, false);
+			}
+			else if (!strcmp(type, "DVB-T2"))
+			{
+				return i->m_frontend->supportsDeliverySystem(SYS_DVBT2, false);
+			}
+			else if (!strcmp(type, "DVB-T"))
+			{
+				return i->m_frontend->supportsDeliverySystem(SYS_DVBT, false);
+			}
+			else if (!strcmp(type, "DVB-C"))
+			{
+#ifdef SYS_DVBC_ANNEX_A
+				return i->m_frontend->supportsDeliverySystem(SYS_DVBC_ANNEX_A, false) || i->m_frontend->supportsDeliverySystem(SYS_DVBC_ANNEX_C, false);
+#else
+				return i->m_frontend->supportsDeliverySystem(SYS_DVBC_ANNEX_AC, false);
+#endif
+			}
+			else if (!strcmp(type, "ATSC"))
+			{
+				return i->m_frontend->supportsDeliverySystem(SYS_ATSC, false) || i->m_frontend->supportsDeliverySystem(SYS_DVBC_ANNEX_B, false);
+			}
+			break;
+		}
+	}
+	return false;
+}
+
+void eDVBResourceManager::setFrontendType(int index, const char *type)
+{
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
+	{
+		if (i->m_frontend->getSlotID() == index)
+		{
+			std::vector<fe_delivery_system_t> whitelist;
+			if (!strcmp(type, "DVB-S2") || !strcmp(type, "DVB-S"))
+			{
+				whitelist.push_back(SYS_DVBS);
+				whitelist.push_back(SYS_DVBS2);
+			}
+			else if (!strcmp(type, "DVB-T2") || !strcmp(type, "DVB-T"))
+			{
+				whitelist.push_back(SYS_DVBT);
+				whitelist.push_back(SYS_DVBT2);
+			}
+			else if (!strcmp(type, "DVB-C"))
+			{
+#ifdef SYS_DVBC_ANNEX_A
+				whitelist.push_back(SYS_DVBC_ANNEX_A);
+				whitelist.push_back(SYS_DVBC_ANNEX_C);
+#else
+				whitelist.push_back(SYS_DVBC_ANNEX_AC);
+#endif
+			}
+			else if (!strcmp(type, "ATSC"))
+			{
+				whitelist.push_back(SYS_ATSC);
+				whitelist.push_back(SYS_DVBC_ANNEX_B);
+			}
+			i->m_frontend->setDeliverySystemWhitelist(whitelist);
+			break;
+		}
+	}
 }
 
 RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, ePtr<iDVBFrontendParameters> &feparm, bool simulate)

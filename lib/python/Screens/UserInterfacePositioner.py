@@ -8,9 +8,9 @@ from Components.Pixmap import Pixmap
 from os import path
 from enigma import getDesktop
 
-class OSDSetup(Screen, ConfigListScreen):
+class UserInterfacePositioner(Screen, ConfigListScreen):
 	skin = """
-	<screen name="OSDSetup" position="0,0" size="e,e" backgroundColor="blue">
+	<screen position="0,0" size="e,e" backgroundColor="blue">
 		<widget name="config" position="c-175,c-75" size="350,150" foregroundColor="black" backgroundColor="blue" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="c-215,e-100" zPosition="0" size="140,40" alphatest="on" />
 		<widget source="key_green" render="Label" position="c-215,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
@@ -23,9 +23,8 @@ class OSDSetup(Screen, ConfigListScreen):
 	</screen>"""
 
 	def __init__(self, session):
-		self.skin = OSDSetup.skin
 		Screen.__init__(self, session)
-		self.setup_title = _("OSD Position Setup")
+		self.setup_title = _("Position Setup")
 		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
@@ -44,12 +43,12 @@ class OSDSetup(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		if SystemInfo["CanChangeOsdAlpha"] == True:
-			self.list.append(getConfigListEntry(_("OSD visibility"), config.osd.alpha, _("This option lets you adjust the transparency of the OSD")))
+			self.list.append(getConfigListEntry(_("User interface visibility"), config.osd.alpha, _("This option lets you adjust the transparency of the user interface")))
 		if SystemInfo["CanChangeOsdPosition"] == True:
-			self.list.append(getConfigListEntry(_("Move Left/Right"), config.osd.dst_left, _("Use the Left/Right buttons on your remote to move the OSD left/right")))
-			self.list.append(getConfigListEntry(_("Width"), config.osd.dst_width, _("Use the Left/Right buttons on your remote to adjust the size of the OSD. Left button decreases the size, Right increases the size.")))
-			self.list.append(getConfigListEntry(_("Move Up/Down"), config.osd.dst_top, _("Use the Left/Right buttons on your remote to move the OSD up/down")))
-			self.list.append(getConfigListEntry(_("Height"), config.osd.dst_height, _("Use the Left/Right buttons on your remote to adjust the size of the OSD. Left button decreases the size, Right increases the size.")))
+			self.list.append(getConfigListEntry(_("Move Left/Right"), config.osd.dst_left, _("Use the Left/Right buttons on your remote to move the user inyterface left/right")))
+			self.list.append(getConfigListEntry(_("Width"), config.osd.dst_width, _("Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size.")))
+			self.list.append(getConfigListEntry(_("Move Up/Down"), config.osd.dst_top, _("Use the Left/Right buttons on your remote to move the user interface up/down")))
+			self.list.append(getConfigListEntry(_("Height"), config.osd.dst_height, _("Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size.")))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -145,6 +144,14 @@ class OSDSetup(Screen, ConfigListScreen):
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
 		else:
 			self.close()
+
+	def run(self):
+		config.osd.dst_left.save()
+		config.osd.dst_width.save()
+		config.osd.dst_top.save()
+		config.osd.dst_height.save()
+		configfile.save()
+		self.close()
 
 def setPosition(dst_left, dst_width, dst_top, dst_height):
 	print 'Setting OSD position:' + str(dst_left) + " " + str(dst_width) + " " + str(dst_top) + " " + str(dst_height)

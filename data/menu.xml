@@ -52,7 +52,7 @@
 				  <item weight="2" level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
 				  <menu weight="3" level="2" text="User interface" entryID="osd_setup" requires="OsdMenu" endtext="•••>">
 					  <id val="osd_menu" />
-					  <item level="2" text="Position setup" entryID="osdsetup" requires="OsdSetup"><screen module="OSD" screen="OSDSetup"/></item>
+					  <item level="2" text="Position setup" entryID="osdsetup" requires="OsdSetup"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner"/></item>
 					  <item level="2" text="3D setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="OSD" screen="OSD3DSetupScreen"/></item>
 				  </menu>
 				  <item weight="4" level="0" entryID="usage_setup"><setup id="usage" /></item>
