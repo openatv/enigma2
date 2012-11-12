@@ -6,7 +6,6 @@ dist_pkgdata_DATA = \
 	keymap.ntr \
 	keymap.u80 \
 	menu.xml \
-	radio.mvi \
 	prev.png \
 	black.mvi \
 	rcpositions.xml \
