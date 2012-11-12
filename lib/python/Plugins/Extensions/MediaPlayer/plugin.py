@@ -119,10 +119,6 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.delname = ""
 		self.playlistname = ""
 
-		self["state"] = Label(text="")
-		self["speed"] = Label(text="")
-		self["statusicon"] = MultiPixmap()
-
 		self["playlist"] = self.playlist
 
 		self["PositionGauge"] = ServicePositionGauge(self.session.nav)
@@ -980,6 +976,10 @@ class MoviePlayer(InfoBarShowHide, InfoBarSeek, InfoBarAudioSelection, HelpableS
 				"previous": (self.previousMarkOrEntry, _("play from previous mark or playlist entry")),
 				"next": (self.nextMarkOrEntry, _("play from next mark or playlist entry")),
 			}, -2)
+
+		self["state"] = Label()
+		self["speed"] = Label()
+		self["statusicon"] = MultiPixmap()
 
 		for x in HelpableScreen, InfoBarShowHide, InfoBarSeek, InfoBarAudioSelection, InfoBarNotifications, InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport:
 			x.__init__(self)
