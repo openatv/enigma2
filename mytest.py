@@ -619,11 +619,11 @@ Components.Lcd.IconCheck()
 # Disable internal clock vfd for Venton-HD1 until we can adjust it for standby
 if enigma.getBoxType() == 'ventonhdx':
 	try:
-		f = open("/proc/stb/fp/clock_enable", "r").readline()[:-1]
+		f = open("/proc/stb/fp/enable_clock", "r").readline()[:-1]
 		if f != '0':
-			open("/proc/stb/fp/clock_enable", "w").write('0')
+			open("/proc/stb/fp/enable_clock", "w").write('0')
 	except:
-		print "Error disable clock_enable for venton boxes"
+		print "Error disable enable_clock for venton boxes"
 
 profile("UserInterface")
 import Screens.UserInterfacePositioner
