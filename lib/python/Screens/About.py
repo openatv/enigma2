@@ -15,8 +15,7 @@ from Components.Network import iNetwork
 
 from Tools.StbHardware import getFPVersion
 
-from os import statvfs, path, remove
-from time import sleep
+from os import path
 from re import search
 
 class About(Screen):
@@ -95,12 +94,14 @@ class About(Screen):
 			AboutText += fp_version + "\n"
 		self["FPVersion"] = StaticText(fp_version)
 
-		try:
-			tempinfo = open('//proc/stb/sensors/temp0/value', 'r').read()
+		tempinfo = ""
+		if path.exists('/proc/stb/sensors/temp0/value'):
+			tempinfo = open('/proc/stb/sensors/temp0/value', 'r').read()
+		elif path.exists('/proc/stb/fp/temp_sensor'):
+			tempinfo = open('/proc/stb/fp/temp_sensor', 'r').read()
+		if tempinfo:
 			mark = str('\xc2\xb0')
 			AboutText += _("System Temperature:") + " " + tempinfo.replace('\n','') + mark + "C\n\n"
-		except IOError:
-			pass
 
 		self["TranslationHeader"] = StaticText(_("Translation:"))
 		AboutText += _("Translation:") + "\n"
