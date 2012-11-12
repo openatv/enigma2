@@ -368,7 +368,7 @@ class Infopanel(Screen, InfoBarPiP):
 		elif menu == "Infos":
 			self.Infos()
 		elif menu == "InfoPanel":
-			self.session.open(Info, "INFO")
+			self.session.open(Info, "InfoPanel")
 		elif menu == "Info":
 			self.session.open(Info, "Sytem_info")
 		elif menu == "Default":
@@ -467,7 +467,7 @@ class Infopanel(Screen, InfoBarPiP):
 		self.oldmlist = []
 		self.oldmlist1 = []
 		self.oldmlist = self.Mlist
-		self.tlist.append(MenuEntryItem((InfoEntryComponent('InfoPanel'), _("InfoPanel"), 'Infopanel')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('InfoPanel'), _("InfoPanel"), 'InfoPanel')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('Default'), _("Default"), 'Default')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('FreeSpace'), _("FreeSpace"), 'FreeSpace')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('Kernel'), _("Kernel"), 'Kernel')))
@@ -1016,7 +1016,7 @@ class Info(Screen):
 	def Up(self):
 		self["label1"].pageUp()
 
-	def INFO(self):
+	def InfoPanel(self):
 		try:
 			self["label2"].setText("INFO")
 			info1 = self.Do_cmd("cat", "/etc/motd", None)
