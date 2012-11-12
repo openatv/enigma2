@@ -118,6 +118,11 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.MoviePlayerOpen = False
 		self.delname = ""
 		self.playlistname = ""
+
+		self["state"] = Label(text="")
+		self["speed"] = Label(text="")
+		self["statusicon"] = MultiPixmap()
+
 		self["playlist"] = self.playlist
 
 		self["PositionGauge"] = ServicePositionGauge(self.session.nav)
