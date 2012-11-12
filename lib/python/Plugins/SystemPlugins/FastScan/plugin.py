@@ -316,8 +316,8 @@ class FastScanScreen(ConfigListScreen, Screen):
 						int(self.modulation),
 						int(self.rolloff),
 						int(self.pilot))
-
-		self.session.open(ServiceScan, [{"transponders": tlist, "feid": 0, "flags": 0, "networkid": 0}])
+		 
+		self.session.open(ServiceScan, [{"transponders": tlist, "feid": int(self.scan_nims.getValue()), "flags": 0, "networkid": 0}])
 									
 	def keyGo(self):
 		prov = self.scan_provider.getValue()
