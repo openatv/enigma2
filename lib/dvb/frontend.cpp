@@ -930,6 +930,11 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		default: break;
 		}
 	}
+	else if (!strcmp(m_description, "DVB-S2 NIM")) // Venton DVB-S2 NIM
+	{
+	  	sat_max = 1618;
+		ret = ((snr * sat_max) / 100);
+	}	
 	else if (!strcmp(m_description, "DVB-T NIM")) // Venton DVB-T NIM
 	{
 	  	sat_max = 1618;
