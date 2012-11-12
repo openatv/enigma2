@@ -10,14 +10,14 @@ from Components.Console import Console
 from os import system, listdir, rename, symlink, unlink, path, mkdir
 from time import sleep
 
-config.aafpanel = ConfigSubsection()
-config.aafpanel.cronmanager_commandtype = NoSave(ConfigSelection(choices = [ ('custom',_("Custom")),('predefined',_("Predefined")) ]))
-config.aafpanel.cronmanager_cmdtime = NoSave(ConfigClock(default=0))
-config.aafpanel.cronmanager_cmdtime.value, mytmpt = ([0, 0], [0, 0])
-config.aafpanel.cronmanager_user_command = NoSave(ConfigText(fixed_size=False))
-config.aafpanel.cronmanager_runwhen = NoSave(ConfigSelection(default='Daily', choices = [('Hourly', _("Hourly")),('Daily', _("Daily")),('Weekly', _("Weekly")),('Monthly', _("Monthly"))]))
-config.aafpanel.cronmanager_dayofweek = NoSave(ConfigSelection(default='Monday', choices = [('Monday', _("Monday")),('Tuesday', _("Tuesday")),('Wednesday', _("Wednesday")),('Thursday', _("Thursday")),('Friday', _("Friday")),('Saturday', _("Saturday")),('Sunday', _("Sunday"))]))
-config.aafpanel.cronmanager_dayofmonth = NoSave(ConfigInteger(default=1, limits=(1, 31)))
+config.infopanel = ConfigSubsection()
+config.infopanel.cronmanager_commandtype = NoSave(ConfigSelection(choices = [ ('custom',_("Custom")),('predefined',_("Predefined")) ]))
+config.infopanel.cronmanager_cmdtime = NoSave(ConfigClock(default=0))
+config.infopanel.cronmanager_cmdtime.value, mytmpt = ([0, 0], [0, 0])
+config.infopanel.cronmanager_user_command = NoSave(ConfigText(fixed_size=False))
+config.infopanel.cronmanager_runwhen = NoSave(ConfigSelection(default='Daily', choices = [('Hourly', _("Hourly")),('Daily', _("Daily")),('Weekly', _("Weekly")),('Monthly', _("Monthly"))]))
+config.infopanel.cronmanager_dayofweek = NoSave(ConfigSelection(default='Monday', choices = [('Monday', _("Monday")),('Tuesday', _("Tuesday")),('Wednesday', _("Wednesday")),('Thursday', _("Thursday")),('Friday', _("Friday")),('Saturday', _("Saturday")),('Sunday', _("Sunday"))]))
+config.infopanel.cronmanager_dayofmonth = NoSave(ConfigInteger(default=1, limits=(1, 31)))
 
 class CronManager(Screen):
 	skin = """
@@ -297,21 +297,21 @@ class SetupCronConf(Screen, ConfigListScreen):
 				if pkg.find('.sh') >= 0:
 					predefinedlist.append((description, pkg))
 			predefinedlist.sort()
-		config.aafpanel.cronmanager_predefined_command = NoSave(ConfigSelection(choices = predefinedlist))
+		config.infopanel.cronmanager_predefined_command = NoSave(ConfigSelection(choices = predefinedlist))
 		self.editListEntry = None
 		self.list = []
-		self.list.append(getConfigListEntry(_("Run how often ?"), config.aafpanel.cronmanager_runwhen))
-		if config.aafpanel.cronmanager_runwhen.getValue() != 'Hourly':
-			self.list.append(getConfigListEntry(_("Time to execute command or script"), config.aafpanel.cronmanager_cmdtime))
-		if config.aafpanel.cronmanager_runwhen.getValue() == 'Weekly':
-			self.list.append(getConfigListEntry(_("What Day of week ?"), config.aafpanel.cronmanager_dayofweek))
-		if config.aafpanel.cronmanager_runwhen.getValue() == 'Monthly':
-			self.list.append(getConfigListEntry(_("What Day of month ?"), config.aafpanel.cronmanager_dayofmonth))
-		self.list.append(getConfigListEntry(_("Command type"), config.aafpanel.cronmanager_commandtype))
-		if config.aafpanel.cronmanager_commandtype.getValue() == 'custom':
-			self.list.append(getConfigListEntry(_("Command To Run"), config.aafpanel.cronmanager_user_command))
+		self.list.append(getConfigListEntry(_("Run how often ?"), config.infopanel.cronmanager_runwhen))
+		if config.infopanel.cronmanager_runwhen.getValue() != 'Hourly':
+			self.list.append(getConfigListEntry(_("Time to execute command or script"), config.infopanel.cronmanager_cmdtime))
+		if config.infopanel.cronmanager_runwhen.getValue() == 'Weekly':
+			self.list.append(getConfigListEntry(_("What Day of week ?"), config.infopanel.cronmanager_dayofweek))
+		if config.infopanel.cronmanager_runwhen.getValue() == 'Monthly':
+			self.list.append(getConfigListEntry(_("What Day of month ?"), config.infopanel.cronmanager_dayofmonth))
+		self.list.append(getConfigListEntry(_("Command type"), config.infopanel.cronmanager_commandtype))
+		if config.infopanel.cronmanager_commandtype.getValue() == 'custom':
+			self.list.append(getConfigListEntry(_("Command To Run"), config.infopanel.cronmanager_user_command))
 		else:
-			self.list.append(getConfigListEntry(_("Command To Run"), config.aafpanel.cronmanager_predefined_command))
+			self.list.append(getConfigListEntry(_("Command To Run"), config.infopanel.cronmanager_predefined_command))
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 
@@ -340,7 +340,7 @@ class SetupCronConf(Screen, ConfigListScreen):
 
 	def checkentry(self):
 		msg = ''
-		if (config.aafpanel.cronmanager_commandtype.getValue() == 'predefined' and config.aafpanel.cronmanager_predefined_command.getValue() == '') or config.aafpanel.cronmanager_commandtype.getValue() == 'custom' and config.aafpanel.cronmanager_user_command.getValue() == '':
+		if (config.infopanel.cronmanager_commandtype.getValue() == 'predefined' and config.infopanel.cronmanager_predefined_command.getValue() == '') or config.infopanel.cronmanager_commandtype.getValue() == 'custom' and config.infopanel.cronmanager_user_command.getValue() == '':
 			msg = 'You must set at least one Command'
 		if msg:
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
@@ -348,45 +348,45 @@ class SetupCronConf(Screen, ConfigListScreen):
 			self.saveMycron()
 
 	def saveMycron(self):
-		hour = '%02d' % config.aafpanel.cronmanager_cmdtime.getValue()[0]
-		minutes = '%02d' % config.aafpanel.cronmanager_cmdtime.getValue()[1]
-		if config.aafpanel.cronmanager_commandtype.getValue() == 'predefined' and config.aafpanel.cronmanager_predefined_command.getValue() != '':
-			command = config.aafpanel.cronmanager_predefined_command.getValue()
+		hour = '%02d' % config.infopanel.cronmanager_cmdtime.getValue()[0]
+		minutes = '%02d' % config.infopanel.cronmanager_cmdtime.getValue()[1]
+		if config.infopanel.cronmanager_commandtype.getValue() == 'predefined' and config.infopanel.cronmanager_predefined_command.getValue() != '':
+			command = config.infopanel.cronmanager_predefined_command.getValue()
 		else:
-			command = config.aafpanel.cronmanager_user_command.getValue()
+			command = config.infopanel.cronmanager_user_command.getValue()
 
-		if config.aafpanel.cronmanager_runwhen.getValue() == 'Hourly':
+		if config.infopanel.cronmanager_runwhen.getValue() == 'Hourly':
 			newcron = minutes + ' ' + ' * * * * ' + command.strip() + '\n'
-		elif config.aafpanel.cronmanager_runwhen.getValue() == 'Daily':
+		elif config.infopanel.cronmanager_runwhen.getValue() == 'Daily':
 			newcron = minutes + ' ' + hour + ' * * * ' + command.strip() + '\n'
-		elif config.aafpanel.cronmanager_runwhen.getValue() == 'Weekly':
-			if config.aafpanel.cronmanager_dayofweek.getValue() == 'Sunday':
+		elif config.infopanel.cronmanager_runwhen.getValue() == 'Weekly':
+			if config.infopanel.cronmanager_dayofweek.getValue() == 'Sunday':
 				newcron = minutes + ' ' + hour + ' * * 0 ' + command.strip() + '\n'
-			elif config.aafpanel.cronmanager_dayofweek.getValue() == 'Monday':
+			elif config.infopanel.cronmanager_dayofweek.getValue() == 'Monday':
 				newcron = minutes + ' ' + hour + ' * * 1 ' + command.strip() + '\n'
-			elif config.aafpanel.cronmanager_dayofweek.getValue() == 'Tuesday':
+			elif config.infopanel.cronmanager_dayofweek.getValue() == 'Tuesday':
 				newcron = minutes + ' ' + hour + ' * * 2 ' + command.strip() + '\n'
-			elif config.aafpanel.cronmanager_dayofweek.getValue() == 'Wednesday':
+			elif config.infopanel.cronmanager_dayofweek.getValue() == 'Wednesday':
 				newcron = minutes + ' ' + hour + ' * * 3 ' + command.strip() + '\n'
-			elif config.aafpanel.cronmanager_dayofweek.getValue() == 'Thursday':
+			elif config.infopanel.cronmanager_dayofweek.getValue() == 'Thursday':
 				newcron = minutes + ' ' + hour + ' * * 4 ' + command.strip() + '\n'
-			elif config.aafpanel.cronmanager_dayofweek.getValue() == 'Friday':
+			elif config.infopanel.cronmanager_dayofweek.getValue() == 'Friday':
 				newcron = minutes + ' ' + hour + ' * * 5 ' + command.strip() + '\n'
-			elif config.aafpanel.cronmanager_dayofweek.getValue() == 'Saturday':
+			elif config.infopanel.cronmanager_dayofweek.getValue() == 'Saturday':
 				newcron = minutes + ' ' + hour + ' * * 6 ' + command.strip() + '\n'
-		elif config.aafpanel.cronmanager_runwhen.getValue() == 'Monthly':
-			newcron = minutes + ' ' + hour + ' ' + str(config.aafpanel.cronmanager_dayofmonth.getValue()) + ' * * ' + command.strip() + '\n'
+		elif config.infopanel.cronmanager_runwhen.getValue() == 'Monthly':
+			newcron = minutes + ' ' + hour + ' ' + str(config.infopanel.cronmanager_dayofmonth.getValue()) + ' * * ' + command.strip() + '\n'
 		else:
-			command = config.aafpanel.cronmanager_user_command.getValue()
+			command = config.infopanel.cronmanager_user_command.getValue()
 
 		out = open('/etc/cron/crontabs/root', 'a')
 		out.write(newcron)
 		out.close()
 		rc = system('crontab /etc/cron/crontabs/root -c /etc/cron/crontabs')
-		config.aafpanel.cronmanager_predefined_command.setValue('None')
-		config.aafpanel.cronmanager_user_command.setValue('None')
-		config.aafpanel.cronmanager_runwhen.setValue('Daily')
-		config.aafpanel.cronmanager_dayofweek.setValue('Monday')
-		config.aafpanel.cronmanager_dayofmonth.setValue(1)
-		config.aafpanel.cronmanager_cmdtime.value, mytmpt = ([0, 0], [0, 0])
+		config.infopanel.cronmanager_predefined_command.setValue('None')
+		config.infopanel.cronmanager_user_command.setValue('None')
+		config.infopanel.cronmanager_runwhen.setValue('Daily')
+		config.infopanel.cronmanager_dayofweek.setValue('Monday')
+		config.infopanel.cronmanager_dayofmonth.setValue(1)
+		config.infopanel.cronmanager_cmdtime.value, mytmpt = ([0, 0], [0, 0])
 		self.close()

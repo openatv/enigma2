@@ -141,13 +141,13 @@ class HddMount(Screen):
 		devicetype = path.realpath('/sys/block/' + device2 + '/device')
 		d2 = device
 		name = 'USB: '
-		mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/icons/dev_usbstick.png'
+		mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_usbstick.png'
 		model = file('/sys/block/' + device2 + '/device/model').read()
 		model = str(model).replace('\n', '')
 		des = ''
 		if devicetype.find('/devices/pci') != -1:
 			name = _("HARD DISK: ")
-			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/icons/dev_hdd.png'
+			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_hdd.png'
 		name = name + model
 		self.Console = Console()
 		self.Console.ePopen("sfdisk -l /dev/sd? | grep swap | awk '{print $(NF-9)}' >/tmp/devices.tmp")
@@ -379,13 +379,13 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		devicetype = path.realpath('/sys/block/' + device2 + '/device')
 		d2 = device
 		name = 'USB: '
-		mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/icons/dev_usbstick.png'
+		mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_usbstick.png'
 		model = file('/sys/block/' + device2 + '/device/model').read()
 		model = str(model).replace('\n', '')
 		des = ''
 		if devicetype.find('/devices/pci') != -1:
 			name = _("HARD DISK: ")
-			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/icons/dev_hdd.png'
+			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_hdd.png'
 		name = name + model
 		f = open('/proc/mounts', 'r')
 		for line in f.readlines():

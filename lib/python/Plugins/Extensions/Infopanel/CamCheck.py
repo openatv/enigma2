@@ -9,7 +9,7 @@ CFG = "/usr/keys/CCcam.cfg"
 
 def CamCheck():
     global campoller, POLLTIME
-    POLLTIME = int(config.plugins.aafpanel_frozencheck.list.getValue()) * 60
+    POLLTIME = int(config.plugins.infopanel_frozencheck.list.getValue()) * 60
     if campoller is None:
         campoller = CamCheckPoller()
     campoller.start()

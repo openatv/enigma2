@@ -7,9 +7,9 @@ from Tools.LoadPixmap import LoadPixmap
 from Components.Label import Label
 
 def MessageBoxEntry(name, picture):
-	pixmap = LoadPixmap(cached = True, path = resolveFilename(SCOPE_PLUGINS, "Extensions/Aafpanel/icons/" + picture));
+	pixmap = LoadPixmap(cached = True, path = resolveFilename(SCOPE_PLUGINS, "Extensions/Infopanel/icons/" + picture));
 	if not pixmap:
-		pixmap = LoadPixmap(cached = True, path = resolveFilename(SCOPE_PLUGINS, "Extensions/Aafpanel/icons/empty.png"));
+		pixmap = LoadPixmap(cached = True, path = resolveFilename(SCOPE_PLUGINS, "Extensions/Infopanel/icons/empty.png"));
 		
 	return (pixmap, name)
 	

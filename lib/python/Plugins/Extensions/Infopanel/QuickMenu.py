@@ -28,9 +28,9 @@ from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
 from Plugins.SystemPlugins.Videomode.plugin import VideoSetup
 from Plugins.SystemPlugins.Videomode.VideoHardware import video_hw
 from Plugins.SystemPlugins.VideoEnhancement.plugin import VideoEnhancementSetup
-from Plugins.Extensions.Aafpanel.RestartNetwork import RestartNetwork
-from Plugins.Extensions.Aafpanel.MountManager import HddMount
-from Plugins.Extensions.Aafpanel.SoftcamPanel import *
+from Plugins.Extensions.Infopanel.RestartNetwork import RestartNetwork
+from Plugins.Extensions.Infopanel.MountManager import HddMount
+from Plugins.Extensions.Infopanel.SoftcamPanel import *
 from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
 from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
@@ -525,9 +525,9 @@ class QuickMenu(Screen):
 ######## Create MENULIST format #######################
 def QuickMenuEntryComponent(name, description, long_description = None, width=540):
 	pngname = name.replace(" ","_") 
-	png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/icons/" + pngname + ".png")
+	png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/" + pngname + ".png")
 	if png is None:
-		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/icons/default.png")
+		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/default.png")
 
 	return [
 		_(name),
@@ -645,13 +645,13 @@ class QuickMenuDevices(Screen):
 		devicetype = path.realpath('/sys/block/' + device2 + '/device')
 		d2 = device
 		name = 'USB: '
-		mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/icons/dev_usbstick.png'
+		mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_usbstick.png'
 		model = file('/sys/block/' + device2 + '/device/model').read()
 		model = str(model).replace('\n', '')
 		des = ''
 		if devicetype.find('/devices/pci') != -1:
 			name = _("HARD DISK: ")
-			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/icons/dev_hdd.png'
+			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_hdd.png'
 		name = name + model
 
 		from Components.Console import Console

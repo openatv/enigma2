@@ -31,7 +31,7 @@ class ExtraActionBox(Screen):
 		
 	def __setTitle(self):
 		if self["logo"].instance is not None:
-			self["logo"].instance.setPixmapFromFile("/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/icons/run.png")
+			self["logo"].instance.setPixmapFromFile("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/run.png")
 		self.setTitle(self.ctitle)
 		self.timer = eTimer()
 		self.timer.callback.append(self.__start)

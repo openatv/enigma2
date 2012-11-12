@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/Extensions/Aafpanel
+installdir = $(pkglibdir)/python/Plugins/Extensions/Infopanel
 
 SUBDIRS = meta Extra icons locale meta pics
 

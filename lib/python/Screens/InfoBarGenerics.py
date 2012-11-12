@@ -1958,9 +1958,9 @@ class InfoBarSeek:
 		self.setSeekState(self.SEEK_STATE_PAUSE)
 
 	def pauseServiceYellow(self):
-		if config.plugins.aafpanel_yellowkey.list.getValue() == '0':
+		if config.plugins.infopanel_yellowkey.list.getValue() == '0':
 			self.audioSelection()
-		elif config.plugins.aafpanel_yellowkey.list.getValue() == '2':
+		elif config.plugins.infopanel_yellowkey.list.getValue() == '2':
 			ToggleVideo()
 		else:
 			if self.seekstate != self.SEEK_STATE_EOF:
@@ -2638,17 +2638,17 @@ class InfoBarTimeshift:
 			self.pts_eventcount = 0
 
 	def selectYellowkeyAction(self):
-		if config.plugins.aafpanel_yellowkey.list.getValue() == '0':
+		if config.plugins.infopanel_yellowkey.list.getValue() == '0':
 			self.audioSelection()
-		elif config.plugins.aafpanel_yellowkey.list.getValue() == '1':
+		elif config.plugins.infopanel_yellowkey.list.getValue() == '1':
 			self.startTimeshift()
 		else:
 			ToggleVideo()
 
 	def selectYellowkeyTimeshiftEndAndPause(self):
-		if config.plugins.aafpanel_yellowkey.list.getValue() == '0':
+		if config.plugins.infopanel_yellowkey.list.getValue() == '0':
 			self.audioSelection()
-		elif config.plugins.aafpanel_yellowkey.list.getValue() == '2':
+		elif config.plugins.infopanel_yellowkey.list.getValue() == '2':
 			ToggleVideo()
 		else:
 			self.activateTimeshiftEndAndPause()
@@ -2661,19 +2661,19 @@ class InfoBarTimeshift:
 				for x in self.onHBBTVActivation:
 					x()
 					
-			elif config.plugins.aafpanel_redpanel.enabled.getValue() == True:
+			elif config.plugins.infopanel_redpanel.enabled.getValue() == True:
 				try:
-					from Plugins.Extensions.Aafpanel.plugin import Aafpanel
-					self.session.open(Aafpanel, services = self.servicelist)
+					from Plugins.Extensions.Infopanel.plugin import Infopanel
+					self.session.open(Infopanel, services = self.servicelist)
 				except:
 					pass
 			else:
 				self.activateTimeshiftEnd()		
 		
-		elif config.plugins.aafpanel_redpanel.enabled.getValue() == True:
+		elif config.plugins.infopanel_redpanel.enabled.getValue() == True:
 			try:
-				from Plugins.Extensions.Aafpanel.plugin import Aafpanel
-				self.session.open(Aafpanel, services = self.servicelist)
+				from Plugins.Extensions.Infopanel.plugin import Infopanel
+				self.session.open(Infopanel, services = self.servicelist)
 			except:
 				pass
 		else:
@@ -3703,7 +3703,7 @@ class InfoBarExtensions:
 		return _("Softcam-Panel")
 
 	def getSoftcamPanel(self):
-		if config.plugins.showaafpanelextensions.getValue():
+		if config.plugins.showinfopanelextensions.getValue():
 			return [((boundFunction(self.getSoftcamPanelname), boundFunction(self.openSoftcamPanel), lambda: True), None)]
 		else:
 			return []
@@ -3851,12 +3851,12 @@ class InfoBarExtensions:
 		self.session.open(OSD3DSetupScreen)
 
 	def openSoftcamPanel(self):
-		from Plugins.Extensions.Aafpanel.SoftcamPanel import SoftcamPanel
+		from Plugins.Extensions.Infopanel.SoftcamPanel import SoftcamPanel
 		self.session.open(SoftcamPanel)
 
 	def openRestartNetwork(self):
 		try:
-			from Plugins.Extensions.Aafpanel.RestartNetwork import RestartNetwork
+			from Plugins.Extensions.Infopanel.RestartNetwork import RestartNetwork
 			self.session.open(RestartNetwork)
 		except:
 			print'[INFOBARGENERICS] failed to restart network'
@@ -4117,12 +4117,12 @@ class InfoBarPiP:
 		elif "stop" == use:
 			self.showPiP()
 
-class InfoBarAAFpanel:
-	"""AAF-Panel - handles the aafPanel action"""
+class InfoBarINFOpanel:
+	"""INFO-Panel - handles the infoPanel action"""
 	def __init__(self):
-		self["AAFpanelActions"] = HelpableActionMap(self, "InfoBarAAFpanel",
+		self["INFOpanelActions"] = HelpableActionMap(self, "InfoBarINFOpanel",
 			{
-				"aafPanel": (self.selectRedKeytask, _("AAF-Panel...")),
+				"infoPanel": (self.selectRedKeytask, _("INFO-Panel...")),
 				"softcamPanel": (self.softcamPanel, _("Softcam-Panel...")),
 			})
 		self.onHBBTVActivation = [ ]
@@ -4136,28 +4136,28 @@ class InfoBarAAFpanel:
 				for x in self.onHBBTVActivation:
 					x()
 					
-			elif config.plugins.aafpanel_redpanel.enabled.getValue() == True:
+			elif config.plugins.infopanel_redpanel.enabled.getValue() == True:
 				try:
-					from Plugins.Extensions.Aafpanel.plugin import Aafpanel
-					self.session.open(Aafpanel, services = self.servicelist)
+					from Plugins.Extensions.Infopanel.plugin import Infopanel
+					self.session.open(Infopanel, services = self.servicelist)
 				except:
 					pass
 			else:
 				self.instantRecord()		
 		
-		elif config.plugins.aafpanel_redpanel.enabled.getValue() == True:
+		elif config.plugins.infopanel_redpanel.enabled.getValue() == True:
 			try:
-				from Plugins.Extensions.Aafpanel.plugin import Aafpanel
-				self.session.open(Aafpanel, services = self.servicelist)
+				from Plugins.Extensions.Infopanel.plugin import Infopanel
+				self.session.open(Infopanel, services = self.servicelist)
 			except:
 				pass
 		else:
 			self.instantRecord()
 		
 	def softcamPanel(self):
-		if config.plugins.aafpanel_redpanel.enabledlong.getValue() == True:
+		if config.plugins.infopanel_redpanel.enabledlong.getValue() == True:
 			try:
-				from Plugins.Extensions.Aafpanel.SoftcamPanel import SoftcamPanel
+				from Plugins.Extensions.Infopanel.SoftcamPanel import SoftcamPanel
 				self.session.open(SoftcamPanel)
 			except:
 				pass
@@ -4176,13 +4176,13 @@ class InfoBarQuickMenu:
 	def quickmenuStart(self):
 		try:
 			if not self.session.pipshown:
-				from Plugins.Extensions.Aafpanel.QuickMenu import QuickMenu
+				from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
 				self.session.open(QuickMenu)
 			else:
 				self.showExtensionSelection()
 		except:
 			print "[INFOBARGENERICS] QuickMenu: error pipshow, starting Quick Menu"
-			from Plugins.Extensions.Aafpanel.QuickMenu import QuickMenu
+			from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
 			self.session.open(QuickMenu)
 
 class InfoBarInstantRecord:
@@ -4410,10 +4410,10 @@ class InfoBarAudioSelection:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if config.plugins.aafpanel_yellowkey.list.getValue() == '0':
+		if config.plugins.infopanel_yellowkey.list.getValue() == '0':
 			from Screens.AudioSelection import AudioSelection
 			self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
-		elif config.plugins.aafpanel_yellowkey.list.getValue() == '2':
+		elif config.plugins.infopanel_yellowkey.list.getValue() == '2':
 			ToggleVideo()
 		else:
 			try:

@@ -56,7 +56,7 @@ class SundtekControlCenter(Screen, ConfigListScreen):
 			<widget name="bouquets" position="10,340" zPosition="1" size="450,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="netservers" position="10,364" zPosition="1" size="450,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="config" position="100,100" size="370,200" scrollbarMode="showOnDemand" zPosition="1"/>
-			<ePixmap position="460, 350" size="100,40" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/icons/plugin.png" transparent="1" alphatest="on" />
+			<ePixmap position="460, 350" size="100,40" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/plugin.png" transparent="1" alphatest="on" />
 		</screen>"""
 
 	def __init__(self, session, args=0):
@@ -120,7 +120,7 @@ class SundtekControlCenter(Screen, ConfigListScreen):
 
 	def disclaimer(self, result): 
 		if result:
-			self.prompt("/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/sundtekinstall.sh")
+			self.prompt("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/sundtekinstall.sh")
 
 	def save(self):
 		for x in self["config"].list:

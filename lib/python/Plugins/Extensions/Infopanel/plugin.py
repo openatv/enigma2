@@ -34,20 +34,20 @@ font = "Regular;16"
 import ServiceReference
 import time
 import datetime
-inAAFPanel = None
+inINFOPanel = None
 
 config.softcam = ConfigSubsection()
 config.softcam.actCam = ConfigText(visible_width = 200)
 config.softcam.actCam2 = ConfigText(visible_width = 200)
 config.softcam.waittime = ConfigSelection([('0',_("dont wait")),('1',_("1 second")), ('5',_("5 seconds")),('10',_("10 seconds")),('15',_("15 seconds")),('20',_("20 seconds")),('30',_("30 seconds"))], default='15')
-config.plugins.aafpanel_redpanel = ConfigSubsection()
-config.plugins.aafpanel_redpanel.enabled = ConfigYesNo(default=True)
-config.plugins.aafpanel_redpanel.enabledlong = ConfigYesNo(default=False)
-config.plugins.aafpanel_yellowkey = ConfigSubsection()
-config.plugins.aafpanel_yellowkey.list = ConfigSelection([('0',_("Audio Selection")),('1',_("Default (Timeshift)")), ('2',_("Toggle Pillarbox <> Pan&Scan"))])
-config.plugins.showaafpanelextensions = ConfigYesNo(default=False)
-config.plugins.aafpanel_frozencheck = ConfigSubsection()
-config.plugins.aafpanel_frozencheck.list = ConfigSelection([('0',_("Off")),('1',_("1 min.")), ('5',_("5 min.")),('10',_("10 min.")),('15',_("15 min.")),('30',_("30 min."))])
+config.plugins.infopanel_redpanel = ConfigSubsection()
+config.plugins.infopanel_redpanel.enabled = ConfigYesNo(default=True)
+config.plugins.infopanel_redpanel.enabledlong = ConfigYesNo(default=False)
+config.plugins.infopanel_yellowkey = ConfigSubsection()
+config.plugins.infopanel_yellowkey.list = ConfigSelection([('0',_("Audio Selection")),('1',_("Default (Timeshift)")), ('2',_("Toggle Pillarbox <> Pan&Scan"))])
+config.plugins.showinfopanelextensions = ConfigYesNo(default=False)
+config.plugins.infopanel_frozencheck = ConfigSubsection()
+config.plugins.infopanel_frozencheck.list = ConfigSelection([('0',_("Off")),('1',_("1 min.")), ('5',_("5 min.")),('10',_("10 min.")),('15',_("15 min.")),('30',_("30 min."))])
 	
 if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
 	try:
@@ -55,14 +55,14 @@ if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/p
 	except:
 		pass
 
-from Plugins.Extensions.Aafpanel.CronManager import *
-from Plugins.Extensions.Aafpanel.ScriptRunner import *
-from Plugins.Extensions.Aafpanel.MountManager import *
-from Plugins.Extensions.Aafpanel.SoftcamPanel import *
-from Plugins.Extensions.Aafpanel.CamStart import *
-from Plugins.Extensions.Aafpanel.CamCheck import *
-from Plugins.Extensions.Aafpanel.sundtek import *
-from Plugins.Extensions.Aafpanel.SwapManager import Swap, SwapAutostart
+from Plugins.Extensions.Infopanel.CronManager import *
+from Plugins.Extensions.Infopanel.ScriptRunner import *
+from Plugins.Extensions.Infopanel.MountManager import *
+from Plugins.Extensions.Infopanel.SoftcamPanel import *
+from Plugins.Extensions.Infopanel.CamStart import *
+from Plugins.Extensions.Infopanel.CamCheck import *
+from Plugins.Extensions.Infopanel.sundtek import *
+from Plugins.Extensions.Infopanel.SwapManager import Swap, SwapAutostart
 from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
 
@@ -75,11 +75,11 @@ def Check_Softcam():
 	return found
 
 # Hide Softcam-Panel Setup when no softcams installed
-if not Check_Softcam() and (config.plugins.showaafpanelextensions.getValue() or config.plugins.aafpanel_redpanel.enabledlong.getValue()):
-	config.plugins.showaafpanelextensions.setValue(False)
-	config.plugins.aafpanel_redpanel.enabledlong.setValue(False)
-	config.plugins.showaafpanelextensions.save()
-	config.plugins.aafpanel_redpanel.save()
+if not Check_Softcam() and (config.plugins.showinfopanelextensions.getValue() or config.plugins.infopanel_redpanel.enabledlong.getValue()):
+	config.plugins.showinfopanelextensions.setValue(False)
+	config.plugins.infopanel_redpanel.enabledlong.setValue(False)
+	config.plugins.showinfopanelextensions.save()
+	config.plugins.infopanel_redpanel.save()
 
 # Hide Keymap selection when no other keymaps installed.
 if config.usage.keymap.getValue() != eEnv.resolve("${datadir}/enigma2/keymap.xml"):
@@ -91,7 +91,7 @@ if config.usage.keymap.getValue() != eEnv.resolve("${datadir}/enigma2/keymap.xml
 		setDefaultKeymap()
 		
 def setDefaultKeymap():
-	print "[Aaf-Panel] Set Keymap to Default"
+	print "[Info-Panel] Set Keymap to Default"
 	config.usage.keymap.setValue(eEnv.resolve("${datadir}/enigma2/keymap.xml"))
 	config.save()
 
@@ -116,11 +116,11 @@ def command(comandline, strip=1):
   os.system("rm /tmp/command.txt")
   return comandline
 
-AAF_Panel_Version = 'OpenAAF-Panel V1.1'
+INFO_Panel_Version = 'Info-Panel V1.1'
 boxversion = command('cat /etc/image-version | grep box_type | cut -d = -f2')
-print "[Aaf-Panel] boxversion: %s"  % (boxversion)
-panel = open("/tmp/aafpanel.ver", "w")
-panel.write(AAF_Panel_Version + '\n')
+print "[Info-Panel] boxversion: %s"  % (boxversion)
+panel = open("/tmp/infopanel.ver", "w")
+panel.write(INFO_Panel_Version + '\n')
 panel.write("Boxversion: %s " % (boxversion)+ '\n')
 try:
 	panel.write("Keymap: %s " % (config.usage.keymap.getValue())+ '\n')
@@ -136,16 +136,16 @@ class ConfigPORT(ConfigSequence):
 		ConfigSequence.__init__(self, seperator = ".", limits = [(1,65535)], default = default)
 
 def main(session, **kwargs):
-		session.open(Aafpanel)
+		session.open(Infopanel)
 
 def Apanel(menuid, **kwargs):
 	if menuid == "mainmenu":
-		return [("OpenAAF Panel", main, "Aafpanel", 11)]
+		return [("Info Panel", main, "Infopanel", 11)]
 	else:
 		return []
 
 def camstart(reason, **kwargs):
-	if not config.plugins.aafpanel_frozencheck.list.getValue() == '0':
+	if not config.plugins.infopanel_frozencheck.list.getValue() == '0':
 		CamCheck()
 	try:
 		open("/proc/stb/video/alpha", "w").write(str(config.osd.alpha.getValue()))
@@ -160,20 +160,20 @@ def camstart(reason, **kwargs):
 def Plugins(**kwargs):
 	return [
 
-	#// show Aafpanel in Main Menu
-	PluginDescriptor(name="OpenAAF Panel", description="OpenAAF panel AAF-GUI 16/04/2012", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
+	#// show Infopanel in Main Menu
+	PluginDescriptor(name="Info Panel", description="Info panel GUI 12/11/2012", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
 	#// autostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = camstart),
 	#// SwapAutostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = SwapAutostart),
-	#// show Aafpanel in EXTENSIONS Menu
-	PluginDescriptor(name="OpenAAF Panel", description="OpenAAAF panel AAF-GUI 16/04/2012", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
+	#// show Infopanel in EXTENSIONS Menu
+	PluginDescriptor(name="Info Panel", description="Info panel GUI 12/11/2012", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
 
 
 
 #############------- SKINS --------############################
 
-MENU_SKIN = """<screen position="center,center" size="500,370" title="OpenAAF Panel" >
+MENU_SKIN = """<screen position="center,center" size="500,370" title="INFO Panel" >
 	<widget source="global.CurrentTime" render="Label" position="0, 340" size="500,24" font="Regular;20" foregroundColor="#FFFFFF" halign="right" transparent="1" zPosition="5">
 		<convert type="ClockToText">>Format%H:%M:%S</convert>
 	</widget>
@@ -182,17 +182,17 @@ MENU_SKIN = """<screen position="center,center" size="500,370" title="OpenAAF Pa
 	<widget name="label1" position="10,340" size="490,25" font="Regular;20" transparent="1" foregroundColor="#f2e000" halign="left" />
 </screen>"""
 
-CONFIG_SKIN = """<screen position="center,center" size="600,440" title="AAF Config" >
+CONFIG_SKIN = """<screen position="center,center" size="600,440" title="PANEL Config" >
 	<widget name="config" position="10,10" size="580,377" enableWrapAround="1" scrollbarMode="showOnDemand" />
 	<widget name="labelExitsave" position="90,410" size="420,25" halign="center" font="Regular;20" transparent="1" foregroundColor="#f2e000" />
 </screen>"""
 
-INFO_SKIN =  """<screen name="AAF-Info"  position="center,center" size="730,400" title="AAF-Info" >
+INFO_SKIN =  """<screen name="Panel-Info"  position="center,center" size="730,400" title="PANEL-Info" >
 	<widget name="label2" position="0,10" size="730,25" font="Regular;20" transparent="1" halign="center" foregroundColor="#f2e000" />
 	<widget name="label1" position="10,45" size="710,350" font="Console;20" zPosition="1" backgroundColor="#251e1f20" transparent="1" />
 </screen>"""
 
-INFO_SKIN2 =  """<screen name="AAF-Info2"  position="center,center" size="530,400" title="AAF-Info" backgroundColor="#251e1f20">
+INFO_SKIN2 =  """<screen name="PANEL-Info2"  position="center,center" size="530,400" title="PANEL-Info" backgroundColor="#251e1f20">
 	<widget name="label1" position="10,50" size="510,340" font="Regular;15" zPosition="1" backgroundColor="#251e1f20" transparent="1" />
 </screen>"""
 
@@ -217,18 +217,18 @@ from Screens.PiPSetup import PiPSetup
 from Screens.InfoBarGenerics import InfoBarPiP
 #g
 
-def AafEntryComponent(file):
+def InfoEntryComponent(file):
 	png = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "pics/" + file + ".png"));
 	if png == None:
-		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/pics/" + file + ".png")
+		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/pics/" + file + ".png")
 		if png == None:
 			png = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "pics/default.png"));
 			if png == None:
-				png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/pics/default.png")
+				png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/pics/default.png")
 	res = (png)
 	return res
 
-class Aafpanel(Screen, InfoBarPiP):
+class Infopanel(Screen, InfoBarPiP):
 	servicelist = None
 	def __init__(self, session, services = None):
 		Screen.__init__(self, session)
@@ -238,17 +238,17 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.service = None
 		global pluginlist
 		global videomode
-		global aafok
-		global AAFCONF
+		global infook
+		global INFOCONF
 		global menu
-		AAFCONF = 0
+		INFOCONF = 0
 		pluginlist="False"
 		try:
-			print '[AAF-Panel] SHOW'
-			global inAAFPanel
-			inAAFPanel = self
+			print '[INFO-Panel] SHOW'
+			global inINFOPanel
+			inINFOPanel = self
 		except:
-			print '[AAF-Panel] Error Hide'
+			print '[INFO-Panel] Error Hide'
 #		global servicelist
 		if services is not None:
 			self.servicelist = services
@@ -264,19 +264,19 @@ class Aafpanel(Screen, InfoBarPiP):
 				"ok": self.ok,
 			}, 1)
 		
-		self["label1"] = Label(AAF_Panel_Version)
+		self["label1"] = Label(INFO_Panel_Version)
 
 		self.Mlist = []
 		if Check_Softcam():
-			self.Mlist.append(MenuEntryItem((AafEntryComponent('SoftcamPanel'), _("SoftcamPanel"), 'SoftcamPanel')))
-			self.Mlist.append(MenuEntryItem((AafEntryComponent('Softcam-Panel Setup'), _("Softcam-Panel Setup"), 'Softcam-Panel Setup')))
-		#self.Mlist.append(MenuEntryItem((AafEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
-		self.Mlist.append(MenuEntryItem((AafEntryComponent ("SoftwareManager" ), _("Software Manager"), ("software-manager"))))
-		self.Mlist.append(MenuEntryItem((AafEntryComponent('RedPanel'), _("RedPanel"), 'RedPanel')))
-		self.Mlist.append(MenuEntryItem((AafEntryComponent('Yellow-Key-Action'), _("Yellow-Key-Action"), 'Yellow-Key-Action')))
-		self.Mlist.append(MenuEntryItem((AafEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))	
-		self.Mlist.append(MenuEntryItem((AafEntryComponent('Plugins'), _("Plugins"), 'Plugins')))
-		self.Mlist.append(MenuEntryItem((AafEntryComponent('Infos'), _("Infos"), 'Infos')))
+			self.Mlist.append(MenuEntryItem((InfoEntryComponent('SoftcamPanel'), _("SoftcamPanel"), 'SoftcamPanel')))
+			self.Mlist.append(MenuEntryItem((InfoEntryComponent('Softcam-Panel Setup'), _("Softcam-Panel Setup"), 'Softcam-Panel Setup')))
+		#self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
+		self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software Manager"), ("software-manager"))))
+		self.Mlist.append(MenuEntryItem((InfoEntryComponent('RedPanel'), _("RedPanel"), 'RedPanel')))
+		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Yellow-Key-Action'), _("Yellow-Key-Action"), 'Yellow-Key-Action')))
+		self.Mlist.append(MenuEntryItem((InfoEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))	
+		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Plugins'), _("Plugins"), 'Plugins')))
+		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Infos'), _("Infos"), 'Infos')))
 		self.onChangedEntry = []
 		if (getDesktop(0).size().width() == 1280):
 			self["Mlist"] = PanelList([])
@@ -296,7 +296,7 @@ class Aafpanel(Screen, InfoBarPiP):
 		item = self.getCurrentEntry()
 
 	def setWindowTitle(self):
-		self.setTitle(_("OpenAAF Panel"))
+		self.setTitle(_("Info Panel"))
 
 	def up(self):
 		#self["Mlist"].up()
@@ -329,24 +329,24 @@ class Aafpanel(Screen, InfoBarPiP):
 		pass
 
 	def Exit(self):
-		#// Exit Aafpanel when pressing the EXIT button or go back to the MainMenu
+		#// Exit Infopanel when pressing the EXIT button or go back to the MainMenu
 		global menu
 		if menu == 0:
 			try:
 				self.service = self.session.nav.getCurrentlyPlayingServiceReference()
 				service = self.service.toCompareString()
 				servicename = ServiceReference.ServiceReference(service).getServiceName().replace('\xc2\x87', '').replace('\xc2\x86', '').ljust(16)
-				print '[AAF-Panel] HIDE'
-				global inAAFPanel
-				inAAFPanel = None
+				print '[INFO-Panel] HIDE'
+				global inINFOPanel
+				inINFOPanel = None
 			except:
-				print '[AAF-Panel] Error Hide'
+				print '[INFO-Panel] Error Hide'
 			self.close()
 		elif menu == 1:
 			self["Mlist"].moveToIndex(0)
 			self["Mlist"].l.setList(self.oldmlist)
 			menu = 0
-			self["label1"].setText(AAF_Panel_Version)
+			self["label1"].setText(INFO_Panel_Version)
 		elif menu == 2:
 			self["Mlist"].moveToIndex(0)
 			self["Mlist"].l.setList(self.oldmlist1)
@@ -358,17 +358,17 @@ class Aafpanel(Screen, InfoBarPiP):
 	def ok(self):
 		#// Menu Selection
 #		menu = self["Mlist"].getCurrent()
-		global AAFCONF
+		global INFOCONF
 		menu = self['Mlist'].l.getCurrentSelection()[0][2]
-		print '[AAF-Panel] MenuItem: ' + menu
+		print '[INFO-Panel] MenuItem: ' + menu
 		if menu == "Plugins":
 			self.Plugins()
 		elif menu == "Pluginbrowser":
 			self.session.open(PluginBrowser)
 		elif menu == "Infos":
 			self.Infos()
-		elif menu == "OpenAAF":
-			self.session.open(Info, "AAF")
+		elif menu == "InfoPanel":
+			self.session.open(Info, "INFO")
 		elif menu == "Info":
 			self.session.open(Info, "Sytem_info")
 		elif menu == "Default":
@@ -448,13 +448,13 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.tlist = []
 		self.oldmlist = []
 		self.oldmlist = self.Mlist
-		self.tlist.append(MenuEntryItem((AafEntryComponent('MountManager'), _("MountManager"), 'MountManager')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('CronManager'), _("CronManager"), 'CronManager')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('JobManager'), _("JobManager"), 'JobManager')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('SwapManager'), _("SwapManager"), 'SwapManager')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('SundtekControlCenter'), _("SundtekControlCenter"), 'SundtekControlCenter')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('MountManager'), _("MountManager"), 'MountManager')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('CronManager'), _("CronManager"), 'CronManager')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('JobManager'), _("JobManager"), 'JobManager')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('SwapManager'), _("SwapManager"), 'SwapManager')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('SundtekControlCenter'), _("SundtekControlCenter"), 'SundtekControlCenter')))
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
-			self.tlist.append(MenuEntryItem((AafEntryComponent('MultiQuickButton'), _("MultiQuickButton"), 'MultiQuickButton')))
+			self.tlist.append(MenuEntryItem((InfoEntryComponent('MultiQuickButton'), _("MultiQuickButton"), 'MultiQuickButton')))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 
@@ -467,14 +467,14 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.oldmlist = []
 		self.oldmlist1 = []
 		self.oldmlist = self.Mlist
-		self.tlist.append(MenuEntryItem((AafEntryComponent('OpenAAF'), _("OpenAAF"), 'OpenAAF')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('Default'), _("Default"), 'Default')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('FreeSpace'), _("FreeSpace"), 'FreeSpace')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('Kernel'), _("Kernel"), 'Kernel')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('Mounts'), _("Mounts"), 'Mounts')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('Network'), _("Network"), 'Network')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('Ram'), _("Ram"), 'Ram')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('System_Info'), _("System_Info"), 'System_Info')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('InfoPanel'), _("InfoPanel"), 'Infopanel')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('Default'), _("Default"), 'Default')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('FreeSpace'), _("FreeSpace"), 'FreeSpace')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('Kernel'), _("Kernel"), 'Kernel')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('Mounts'), _("Mounts"), 'Mounts')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('Network'), _("Network"), 'Network')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('Ram'), _("Ram"), 'Ram')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('System_Info'), _("System_Info"), 'System_Info')))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 		self.oldmlist1 = self.tlist
@@ -485,13 +485,13 @@ class Aafpanel(Screen, InfoBarPiP):
 		menu = 2
 		self["label1"].setText(_("System Info"))
 		self.tlist = []
-		self.tlist.append(MenuEntryItem((AafEntryComponent('Cpu'), _("Cpu"), 'Cpu')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('MemInfo'), _("MemInfo"), 'MemInfo')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('Mtd'), _("Mtd"), 'Mtd')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('Module'), _("Module"), 'Module')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('Partitions'), _("Partitions"), 'Partitions')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('Swap'), _("Swap"), 'Swap')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('Top'), _("Top"), 'Top')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('Cpu'), _("Cpu"), 'Cpu')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('MemInfo'), _("MemInfo"), 'MemInfo')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('Mtd'), _("Mtd"), 'Mtd')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('Module'), _("Module"), 'Module')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('Partitions'), _("Partitions"), 'Partitions')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('Swap'), _("Swap"), 'Swap')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('Top'), _("Top"), 'Top')))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 
@@ -503,7 +503,7 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.tlist = []
 		self.oldmlist = []
 		self.oldmlist = self.Mlist
-		self.tlist.append(MenuEntryItem((AafEntryComponent('Info'), _("Info"), 'Info')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('Info'), _("Info"), 'Info')))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 
@@ -515,10 +515,10 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.tlist = []
 		self.oldmlist = []
 		self.oldmlist = self.Mlist
-		self.tlist.append(MenuEntryItem((AafEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
-		self.tlist.append(MenuEntryItem((AafEntryComponent ("BackupSettings" ), _("Backup Settings"), ("backup-settings"))))
-		self.tlist.append(MenuEntryItem((AafEntryComponent ("RestoreSettings" ), _("Restore Settings"), ("restore-settings"))))
-		self.tlist.append(MenuEntryItem((AafEntryComponent ("BackupFiles" ), _("Choose backup files"), ("backup-files"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent ("BackupSettings" ), _("Backup Settings"), ("backup-settings"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent ("RestoreSettings" ), _("Restore Settings"), ("restore-settings"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent ("BackupFiles" ), _("Choose backup files"), ("backup-files"))))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 
@@ -698,8 +698,8 @@ class RedPanel(ConfigListScreen, Screen):
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
-		self.list.append(getConfigListEntry(_("Show AAF-Panel Red-key"), config.plugins.aafpanel_redpanel.enabled))
-		self.list.append(getConfigListEntry(_("Show Softcam-Panel Red-key long"), config.plugins.aafpanel_redpanel.enabledlong))
+		self.list.append(getConfigListEntry(_("Show INFO-Panel Red-key"), config.plugins.infopanel_redpanel.enabled))
+		self.list.append(getConfigListEntry(_("Show Softcam-Panel Red-key long"), config.plugins.infopanel_redpanel.enabledlong))
 		
 		self["config"].list = self.list
 		self["config"].setList(self.list)
@@ -786,7 +786,7 @@ class YellowPanel(ConfigListScreen, Screen):
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
-		self.list.append(getConfigListEntry(_("Yellow Key Action"), config.plugins.aafpanel_yellowkey.list))
+		self.list.append(getConfigListEntry(_("Yellow Key Action"), config.plugins.infopanel_yellowkey.list))
 		
 		self["config"].list = self.list
 		self["config"].setList(self.list)
@@ -874,7 +874,7 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
-		self.list.append(getConfigListEntry(_("Show Softcam-Panel in Extensions Menu"), config.plugins.showaafpanelextensions))
+		self.list.append(getConfigListEntry(_("Show Softcam-Panel in Extensions Menu"), config.plugins.showinfopanelextensions))
 		self.list.append(getConfigListEntry(_("Start Mode"), config.softcam.camstartMode))
 		if config.softcam.camstartMode.getValue() == "0":
 			self.list.append(getConfigListEntry(_("Start attempts"), config.softcam.restartAttempts))
@@ -882,7 +882,7 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 			self.list.append(getConfigListEntry(_("Stop check when cam is running"), config.softcam.restartRunning))
 		self.list.append(getConfigListEntry(_("Show CCcamInfo in Extensions Menu"), config.cccaminfo.showInExtensions))
 		self.list.append(getConfigListEntry(_("Show OscamInfo in Extensions Menu"), config.oscaminfo.showInExtensions))
-		self.list.append(getConfigListEntry(_("Frozen Cam Check"), config.plugins.aafpanel_frozencheck.list))
+		self.list.append(getConfigListEntry(_("Frozen Cam Check"), config.plugins.infopanel_frozencheck.list))
 		self.list.append(getConfigListEntry(_("Wait time before start Cam 2"), config.softcam.waittime))
 		
 		self["config"].list = self.list
@@ -952,7 +952,7 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 			self.doClose()
 
 	def doClose(self):
-		if not config.plugins.aafpanel_frozencheck.list.getValue() == '0':
+		if not config.plugins.infopanel_frozencheck.list.getValue() == '0':
 			CamCheck()
 		self.close()
 
@@ -963,10 +963,10 @@ class Info(Screen):
 
 		self.skin = INFO_SKIN
 
-		self["label2"] = Label("AAF")
+		self["label2"] = Label("INFO")
 		self["label1"] =  ScrollLabel()
-		if info == "AAF":
-			self.AAF()
+		if info == "INFO":
+			self.INFO()
 		if info == "Sytem_info":
 			self.Sytem_info()
 		elif info == "Default":
@@ -1016,15 +1016,15 @@ class Info(Screen):
 	def Up(self):
 		self["label1"].pageUp()
 
-	def AAF(self):
+	def INFO(self):
 		try:
-			self["label2"].setText("AAF")
+			self["label2"].setText("INFO")
 			info1 = self.Do_cmd("cat", "/etc/motd", None)
 			if info1.find('wElc0me') > -1:
 				info1 = info1[info1.find('wElc0me'):len(info1)] + "\n"
 				info1 = info1.replace('|','')
 			else:
-				info1 = info1[info1.find('AAF'):len(info1)] + "\n"
+				info1 = info1[info1.find('INFO'):len(info1)] + "\n"
 			info2 = self.Do_cmd("cat", "/etc/image-version", None)
 			info3 = self.Do_cut(info1 + info2)
 			self["label1"].setText(info3)
