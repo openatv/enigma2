@@ -107,7 +107,6 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.addPlaylistParser(PlaylistIOM3U, "m3u")
 		self.addPlaylistParser(PlaylistIOPLS, "pls")
 		self.addPlaylistParser(PlaylistIOInternal, "e2pls")
-		self.standardInfoBar = False
 
 		# 'None' is magic to start at the list of mountpoints
 		defaultDir = config.mediaplayer.defaultDir.getValue()
@@ -982,6 +981,10 @@ class MoviePlayer(InfoBarShowHide, InfoBarSeek, InfoBarAudioSelection, HelpableS
 				"next": (self.nextMarkOrEntry, _("play from next mark or playlist entry")),
 			}, -2)
 
+		self["state"] = Label()
+		self["speed"] = Label()
+		self["statusicon"] = MultiPixmap()
+
 		for x in HelpableScreen, InfoBarShowHide, InfoBarSeek, InfoBarAudioSelection, InfoBarNotifications, InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport:
 			x.__init__(self)
 
@@ -1108,11 +1111,8 @@ def movielist_open(list, session, **kwargs):
 		path = os.path.split(f.path)[0]
 		if not path.endswith('/'):
 			path += '/'
-		config.movielist.last_videodir.setValue(path)
-		try:
-			InfoBar.instance.showMovies(eServiceReference(stype, 0, f.path))
-		except:
-			pass
+		config.movielist.last_videodir.value = path
+		InfoBar.instance.showMovies(eServiceReference(stype, 0, f.path))
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
