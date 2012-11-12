@@ -752,6 +752,7 @@ class NimManager:
 			elif  line.startswith("Mode"):
 				# "Mode 0: DVB-T" -> ["Mode 0", "DVB-T"]
 				split = line.split(":")
+				split[1] = split[1].replace(' ','')
 				# "Mode 0" -> ["Mode", "0"]
 				split2 = split[0].split(" ")
 				modes = entries[current_slot].get("multi_type", {})
