@@ -42,7 +42,7 @@ class About(Screen):
 		AboutText += _("Image: ") + about.getImageTypeString() + "\n"
 		AboutText += _("Kernel Version: ") + about.getKernelVersionString() + "\n"
 		
-		EnigmaVersion = "GUI: " + about.getEnigmaVersionString()
+		EnigmaVersion = _("GUI: ") + about.getEnigmaVersionString()
 		self["EnigmaVersion"] = StaticText(EnigmaVersion)
 		AboutText += EnigmaVersion + "\n"
 
@@ -372,20 +372,20 @@ class SystemNetworkInfo(Screen):
 		self.iface = "eth0"
 		eth0 = about.getIfConfig('eth0')
 		if eth0.has_key('addr'):
-			AboutText += _("IP:") + "\t" + eth0['addr'] + "\n"
+			AboutText += _("IP:") + " " + eth0['addr'] + "\n"
 			if eth0.has_key('netmask'):
-				AboutText += _("Netmask:") + "\t" + eth0['netmask'] + "\n"
+				AboutText += _("Netmask:") + " " + eth0['netmask'] + "\n"
 			if eth0.has_key('hwaddr'):
-				AboutText += _("MAC:") + "\t" + eth0['hwaddr'] + "\n"
+				AboutText += _("MAC:") + " " + eth0['hwaddr'] + "\n"
 			self.iface = 'eth0'
 
 		wlan0 = about.getIfConfig('wlan0')
 		if wlan0.has_key('addr'):
-			AboutText += _("IP:") + "\t" + wlan0['addr'] + "\n"
+			AboutText += _("IP:") + " " + wlan0['addr'] + "\n"
 			if wlan0.has_key('netmask'):
-				AboutText += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
+				AboutText += _("Netmask:") + " " + wlan0['netmask'] + "\n"
 			if wlan0.has_key('hwaddr'):
-				AboutText += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n"
+				AboutText += _("MAC:") + " " + wlan0['hwaddr'] + "\n"
 			self.iface = 'wlan0'
 
 			self["LabelBSSID"].setText(_('Accesspoint:'))
@@ -396,7 +396,7 @@ class SystemNetworkInfo(Screen):
 			self["LabelEnc"].setText(_('Encryption:'))
 
 		hostname = file('/proc/sys/kernel/hostname').read()
-		AboutText += "\n" + _("Hostname:") + "\t" + hostname + "\n"
+		AboutText += "\n" + _("Hostname:") + " " + hostname + "\n"
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 

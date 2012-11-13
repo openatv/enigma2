@@ -94,7 +94,10 @@ class LanguageSelection(Screen):
 	def updateList(self):
 		languageList = language.getLanguageList()
 		if not languageList: # no language available => display only english
-			list = [ LanguageEntryComponent("en_GB", "English (UK)", "en_GB_GB") ]
+			if open("/proc/stb/info/boxtype").read().strip() == "ini-5000R":
+				list = [ LanguageEntryComponent("ru_RU", "Русский", "ru_RU_RU") ]
+			else:
+				list = [ LanguageEntryComponent("en_GB", "English (UK)", "en_GB_GB") ]
 		else:
 			list = [ LanguageEntryComponent(file = x[1][2].lower(), name = x[1][0], index = x[0]) for x in languageList]
 		self.list = list

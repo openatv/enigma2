@@ -271,18 +271,18 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 		if currLnb:
 			self.list.append(getConfigListEntry(_("Priority"), currLnb.prio))
-			self.advancedLof = getConfigListEntry("LOF", currLnb.lof)
+			self.advancedLof = getConfigListEntry(_("LOF"), currLnb.lof)
 			self.list.append(self.advancedLof)
 			if currLnb.lof.getValue() == "user_defined":
-				self.list.append(getConfigListEntry("LOF/L", currLnb.lofl))
-				self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
+				self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl))
+				self.list.append(getConfigListEntry(_("LOF/H"), currLnb.lofh))
 				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 			if currLnb.lof.getValue() == "circle":
 				currLnb.lofl.setValue(10750)
 				currLnb.lofh.setValue(10750)
 				currLnb.threshold.setValue(12700)
-				self.list.append(getConfigListEntry("LOF/L", currLnb.lofl))
-				self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
+				self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl))
+				self.list.append(getConfigListEntry(_("LOF/H"), currLnb.lofh))
 				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 			if currLnb.lof.getValue() == "unicable":
 				self.advancedUnicable = getConfigListEntry("Unicable "+_("Configuration mode"), currLnb.unicable)
@@ -291,8 +291,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.advancedSCR = getConfigListEntry(_("Channel"), currLnb.satcruser)
 					self.list.append(self.advancedSCR)
 					self.list.append(getConfigListEntry(_("Frequency"), currLnb.satcrvcouser[currLnb.satcruser.index]))
-					self.list.append(getConfigListEntry("LOF/L", currLnb.lofl))
-					self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
+					self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl))
+					self.list.append(getConfigListEntry(_("LOF/H"), currLnb.lofh))
 					self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 				elif currLnb.unicable.getValue() == "unicable_matrix":
 					manufacturer_name = currLnb.unicableMatrixManufacturer.getValue()
