@@ -177,7 +177,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def showMovies(self, defaultRef=None):
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
-		if self.lastservice.toString().find(':0:/') != -1:
+		if self.lastservice and self.lastservice.toString().find(':0:/') != -1:
 			self.lastservice = enimga.eServiceReference(config.movielist.curentlyplayingservice.getValue())
 		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef)
 
