@@ -55,7 +55,16 @@ elif [ $MODEL = "odinm9" ] ; then
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/odin
 	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_odin/$DATE	
+	EXTRA=$DIRECTORY/fullbackup_odin/$DATE
+elif [ $MODEL = "xp1000" ] ; then
+	TYPE=MAXDIGITAL
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="MaxDigital $MODEL"
+	MTDKERNEL="mtd1"
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/$MODEL
 ## TESTING THE Venton HDx Models
 elif [ $MODEL = "ventonhdx" ] ; then
 	TYPE=VENTON
@@ -66,7 +75,16 @@ elif [ $MODEL = "ventonhdx" ] ; then
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/venton/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_$MODEL/$DATE/venton
-## TESTING THE Gigablue HD 800 SE Model	
+elif [ $MODEL = "tmtwin" ] ; then
+	TYPE=TECHNOTWIN
+	MODEL="tmtwinoe"
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096 -F"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="$MODEL"
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/update/$MODEL/cfe
+	EXTRA=$DIRECTORY/fullbackup_TECHNO/$DATE/update/$MODEL/cfe
+## TESTING THE Gigablue HD 800 SE Model
 elif [ $MODEL = "gb800se" ] ; then
 	TYPE=GIGABLUE
 	MODEL="se"
@@ -102,7 +120,7 @@ elif [ $MODEL = "gb800solo" ] ; then
 elif [ $MODEL = "gbquad" ] ; then
 	TYPE=GIGABLUE
 	MODEL="quad"
-	MKUBIFS_ARGS="-m 2048 -e 126976 -c 1978"
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4000"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
 	SHOWNAME="GigaBlue $MODEL"
 	MTDKERNEL="mtd2"	
@@ -305,8 +323,41 @@ if [ $TYPE = "VENTON" ] ; then
 	mkdir -p $EXTRA/$MODEL
 	mv $WORKDIR/root.ubifs $MAINDEST/rootfs.bin
 	mv $WORKDIR/vmlinux.gz $MAINDEST/kernel.bin
+	echo "rename this file to 'force' to force an update without confirmation" > $MAINDEST/noforce;
+	echo ${MODEL}-$IMAGEVERSION > $MAINDEST/imageversion
 	cp -r $MAINDEST $EXTRA #copy the made back-up to images
-	if [ -f $MAINDEST/rootfs.bin -a -f $MAINDEST/kernel.bin ] ; then
+	if [ -f $MAINDEST/rootfs.bin -a -f $MAINDEST/kernel.bin -a -f $MAINDEST/imageversion -a -f $MAINDEST/noforce] ; then
+		echo "_________________________________________________\n"
+		echo "USB Image created on:" $MAINDEST
+		echo "and there is made an extra copy on:"
+		echo $EXTRA
+		echo "_________________________________________________\n"
+		echo " "
+		echo "To restore the image: \n"
+		echo "Place the USB-flash drive in the (back) USB-port "
+		echo "and switch the Venton off and on with the powerswitch "
+		echo "on the back of the Venton. Follow the instructions "
+		echo "on the front-display.\n"
+		echo "\nPlease wait...almost ready! "
+	else
+		echo "Image creation failed - "
+		echo "Probable causes could be"
+		echo "     wrong back-up destination "
+		echo "     no space left on back-up device"
+		echo "     no writing permission on back-up device"
+		echo " "
+	fi
+fi
+
+if [ $TYPE = "TECHNOTWIN" ] ; then
+	rm -rf $MAINDEST
+	mkdir -p $MAINDEST
+	mkdir -p $EXTRA/$MODEL
+	mv $WORKDIR/root.ubifs $MAINDEST/oe_rootfs.bin
+	mv $WORKDIR/vmlinux.gz $MAINDEST/oe_kernel.bin
+	echo ${MODEL}-$IMAGEVERSION > $MAINDEST/imageversion
+	cp -r $MAINDEST $EXTRA #copy the made back-up to images
+	if [ -f $MAINDEST/oe_rootfs.bin -a -f $MAINDEST/oe_kernel.bin -a -f $MAINDEST/imageversion] ; then
 		echo "_________________________________________________\n"
 		echo "USB Image created on:" $MAINDEST
 		echo "and there is made an extra copy on:"
@@ -315,8 +366,8 @@ if [ $TYPE = "VENTON" ] ; then
 		echo " "
 		echo "To restore the image: \n"
 		echo "Place the USB-flash drive in the (front) USB-port "
-		echo "and switch the Venton off and on with the powerswitch "
-		echo "on the back of the Venton. Follow the instructions "
+		echo "and switch the Technomate off and on with the powerswitch "
+		echo "on the back of the Technomate. Follow the instructions "
 		echo "on the front-display.\n"
 		echo "\nPlease wait...almost ready! "
 	else
@@ -350,6 +401,37 @@ if [ $TYPE = "ODIN" ] ; then
 		echo "and switch the Odin off and on with the powerswitch "
 		echo "on the back of the Odin. Follow the instructions "
 		echo "on the front-display.\n"
+		echo "\nPlease wait...almost ready! "
+	else
+		echo "Image creation failed - "
+		echo "Probable causes could be"
+		echo "     wrong back-up destination "
+		echo "     no space left on back-up device"
+		echo "     no writing permission on back-up device"
+		echo " "
+	fi
+fi
+
+if [ $TYPE = "MAXDIGITAL" ] ; then
+	rm -rf $MAINDEST
+	mkdir -p $MAINDEST
+	mkdir -p $EXTRA
+	mv $WORKDIR/root.$ROOTFSTYPE $MAINDEST/rootfs.bin 
+	mv $WORKDIR/vmlinux.gz $MAINDEST/kernel.bin
+	echo "rename this file to 'force' to force an update without confirmation" > $MAINDEST/noforce;
+	echo $MODEL-$IMAGEVERSION > $MAINDEST/imageversion
+	cp -r $MAINDEST $EXTRA #copy the made back-up to images
+	if [ -f $MAINDEST/rootfs.bin -a -f $MAINDEST/kernel.bin -a -f $MAINDEST/imageversion -a -f $MAINDEST/noforce ] ; then
+		echo "_________________________________________________\n"
+		echo "USB Image created on:" $MAINDEST
+		echo "and there is made an extra copy on:"
+		echo $EXTRA
+		echo "_________________________________________________\n"
+		echo " "
+		echo "To restore the image: \n"
+		echo "Place the USB-flash drive in the (back) USB-port "
+		echo "and switch the MaxDigital off and on with the powerswitch "
+		echo "on the back of the MaxDigital."
 		echo "\nPlease wait...almost ready! "
 	else
 		echo "Image creation failed - "
@@ -451,7 +533,13 @@ if [ $DIRECTORY == /hdd ]; then
 			cp -r $MAINDEST $TARGET/gigablue/
 		elif [ $TYPE = "ODIN" ] ; then					# Odin detected
 			mkdir -p $TARGET/odin/$MODEL
-			cp -r $MAINDEST $TARGET/odin/			
+			cp -r $MAINDEST $TARGET/odin/
+		elif [ $TYPE = "MAXDIGITAL" ] ; then					# MaxDigital detected
+			mkdir -p $TARGET/$MODEL
+			cp -r $MAINDEST $TARGET
+		elif [ $TYPE = "TECHNOTWIN" ] ; then					# Technomate detected
+			mkdir -p $TARGET/update/$MODEL/cfe
+			cp -r $MAINDEST $TARGET/update/$MODEL/cfe			
 		else
 			echo 
 		fi
