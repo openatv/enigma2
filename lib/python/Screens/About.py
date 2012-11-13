@@ -379,9 +379,9 @@ class SystemNetworkInfo(Screen):
 			try:
 				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 				self.resetList()
+				self.onClose.append(self.cleanup)
 			except:
 				pass
-			self.onClose.append(self.cleanup)
 		self.updateStatusbar()
 
 		self["key_red"] = StaticText(_("Close"))
