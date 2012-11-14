@@ -3461,7 +3461,7 @@ class InfoBarExtensions:
 
 	def getOsd3DSetup(self):
 		if config.osd.show3dextensions .getValue():
-			return [((boundFunction(self.get3DSetupname), boundFunction(self.openOSD3DSetup), lambda: True), None)]
+			return [((boundFunction(self.get3DSetupname), boundFunction(self.open3DSetup), lambda: True), None)]
 		else:
 			return []
 
@@ -3578,9 +3578,9 @@ class InfoBarExtensions:
 		from Screens.LogManager import LogManager
 		self.session.open(LogManager)
 
-	def openOSD3DSetup(self):
-		from Screens.OSD import OSD3DSetupScreen
-		self.session.open(OSD3DSetupScreen)
+	def open3DSetup(self):
+		from Screens.UserInterfacePositioner import 3DSetupScreen
+		self.session.open(3DSetupScreen)
 
 	def showAutoTimerList(self):
 		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
