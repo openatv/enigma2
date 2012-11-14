@@ -160,10 +160,12 @@ data/countries/Makefile
 data/extensions/Makefile
 data/keymaps/Makefile
 data/rc_models/Makefile
+data/rc_models/et4x00/Makefile
 data/rc_models/et6x00/Makefile
 data/rc_models/et9500/Makefile
 data/rc_models/et9x00/Makefile
 data/rc_models/vu/Makefile
+data/rc_models/xp1000/Makefile
 data/skin_default/Makefile
 data/skin_default/menu/Makefile
 data/skin_default/icons/Makefile
