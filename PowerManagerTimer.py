@@ -172,7 +172,7 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 					return False
 				if not Screens.Standby.inStandby: # not already in standby
 					self.log(11, "go to deepstandby")
-					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("Your STB_BOX wants to shut down your STB_BOX.\nDo that now?"), timeout = 20)
+					Notifications.AddNotificationWithCallback(self.sendDeepStandbyNotification, MessageBox, _("Your STB_BOX wants to shut down your STB_BOX.\nDo that now?"), timeout = 20)
 				else:
 					Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
 				return True
@@ -244,6 +244,10 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 			Notifications.AddNotification(Screens.Standby.Standby)
 
 	def sendTryQuitMainloopNotification(self, answer):
+		if answer:
+			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
+
+	def sendDeepStandbyNotification(self, answer):
 		if answer:
 			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
 
