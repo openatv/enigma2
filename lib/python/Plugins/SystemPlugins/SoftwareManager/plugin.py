@@ -45,7 +45,7 @@ from SoftwareTools import iSoftwareTools
 import os
 
 config.plugins.configurationbackup = ConfigSubsection()
-if getBoxType() == "odinm9" :
+if getBoxType() == "maram9" :
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
 else:
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)

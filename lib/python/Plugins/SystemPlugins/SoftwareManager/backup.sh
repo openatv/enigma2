@@ -45,17 +45,17 @@ if [ $MODEL = "et9x00" ] || [ $MODEL = "et5x00" ] || [ $MODEL = "et6x00" ] || [ 
 		MAINDESTOLD=$DIRECTORY/$MODEL
 		EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
 	fi
-## TESTING THE Odin M9 Model	
-elif [ $MODEL = "odinm9" ] ; then
-	TYPE=ODIN
+## TESTING THE Mara M9 Model	
+elif [ $MODEL = "maram9" ] ; then
+	TYPE=MARA
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
-	SHOWNAME="ODIN $MODEL"
+	SHOWNAME="MARA $MODEL"
 	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/$MODEL
-	MAINDEST=$DIRECTORY/odin
+	MAINDEST=$DIRECTORY/mara
 	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_odin/$DATE
+	EXTRA=$DIRECTORY/fullbackup_mara/$DATE
 elif [ $MODEL = "xp1000" ] ; then
 	TYPE=MAXDIGITAL
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
@@ -380,7 +380,7 @@ if [ $TYPE = "TECHNOTWIN" ] ; then
 	fi
 fi
 
-if [ $TYPE = "ODIN" ] ; then
+if [ $TYPE = "MARA" ] ; then
 	rm -rf $MAINDEST
 	mkdir -p $MAINDEST
 	mkdir -p $EXTRA
@@ -398,8 +398,8 @@ if [ $TYPE = "ODIN" ] ; then
 		echo " "
 		echo "To restore the image: \n"
 		echo "Place the USB-flash drive in the (front) USB-port "
-		echo "and switch the Odin off and on with the powerswitch "
-		echo "on the back of the Odin. Follow the instructions "
+		echo "and switch the Mara off and on with the powerswitch "
+		echo "on the back of the Mara. Follow the instructions "
 		echo "on the front-display.\n"
 		echo "\nPlease wait...almost ready! "
 	else
@@ -531,9 +531,9 @@ if [ $DIRECTORY == /hdd ]; then
 		elif [ $TYPE = "GIGABLUE" ] ; then				# Gigablue detected
 			mkdir -p $TARGET/gigablue/$MODEL
 			cp -r $MAINDEST $TARGET/gigablue/
-		elif [ $TYPE = "ODIN" ] ; then					# Odin detected
-			mkdir -p $TARGET/odin/$MODEL
-			cp -r $MAINDEST $TARGET/odin/
+		elif [ $TYPE = "MARA" ] ; then					# Mara detected
+			mkdir -p $TARGET/mara/$MODEL
+			cp -r $MAINDEST $TARGET/mara/
 		elif [ $TYPE = "MAXDIGITAL" ] ; then					# MaxDigital detected
 			mkdir -p $TARGET/$MODEL
 			cp -r $MAINDEST $TARGET
