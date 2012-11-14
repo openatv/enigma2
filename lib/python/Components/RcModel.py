@@ -14,6 +14,7 @@ class RcModel:
 	RCTYPE_INI7000 = 10
 	RCTYPE_MARA = 11
 	RCTYPE_TM = 12
+	RCTYPE_XP1000 = 13
 
 	def __init__(self):
 		self.currentRcType = self.RCTYPE_DMM
@@ -73,6 +74,8 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_INI5000
 			elif model == 'ini-7000':
 				self.currentRcType = self.RCTYPE_INI7000
+			elif model == 'xp1000':
+				self.currentRcType = self.RCTYPE_XP1000
 
 	def getRcLocation(self):
 		if self.currentRcType == self.RCTYPE_ET9X00:
@@ -99,5 +102,7 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/vu/'
 		elif self.currentRcType == self.RCTYPE_VU2:
 			return '/usr/share/enigma2/rc_models/vu2/'
+		elif self.currentRcType == self.RCTYPE_XP1000:
+			return '/usr/share/enigma2/rc_models/xp1000/'
 
 rc_model = RcModel()
