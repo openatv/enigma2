@@ -881,7 +881,7 @@ class InfoBarEPG:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if config.misc.boxtype.getValue().startswith('et') or config.misc.boxtype.getValue().startswith('odin') or config.misc.boxtype.getValue().startswith('venton') or config.misc.boxtype.getValue().startswith('tm') or config.misc.boxtype.getValue().startswith('gb'):
+		if config.misc.boxtype.getValue().startswith('et') or config.misc.boxtype.getValue().startswith('mara') or config.misc.boxtype.getValue().startswith('venton') or config.misc.boxtype.getValue().startswith('tm') or config.misc.boxtype.getValue().startswith('gb'):
 			self.openEventView()
 		else:
 			self.showDefaultEPG()
@@ -3192,8 +3192,8 @@ class InfoBarExtensions:
 		return _("OSD 3D Setup")
 
 	def getOsd3DSetup(self):
-		if config.osd.show3dextensions .value:
-			return [((boundFunction(self.get3DSetupname), boundFunction(self.openOSD3DSetup), lambda: True), None)]
+		if config.osd.show3dextensions .getValue():
+			return [((boundFunction(self.get3DSetupname), boundFunction(self.open3DSetup), lambda: True), None)]
 		else:
 			return []
 
@@ -3295,8 +3295,8 @@ class InfoBarExtensions:
 		self.session.open(OscamInfoMenu)
 
 	def openOSD3DSetup(self):
-		from Screens.OSD import OSD3DSetupScreen
-		self.session.open(OSD3DSetupScreen)
+		from Screens.UserInterfacePositioner import 3DSetupScreen
+		self.session.open(3DSetupScreen)
 
 	def editCallback(self, session):
 		global autotimer

@@ -46,7 +46,6 @@ class About(Screen):
 		self["EnigmaVersion"] = StaticText(EnigmaVersion)
 		AboutText += EnigmaVersion + "\n"
 
-		
 		ImageVersion = _("Last Upgrade: ") + about.getImageVersionString()
 		self["ImageVersion"] = StaticText(ImageVersion)
 		AboutText += ImageVersion + "\n"
@@ -347,13 +346,15 @@ class SystemNetworkInfo(Screen):
 
 		self.iface = None
 		self.createscreen()
+		self.iStatus = None
 
 		if iNetwork.isWirelessInterface(self.iface):
 			try:
 				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
-				self.resetList()
+				self.iStatus = iStatus
 			except:
 				pass
+			self.resetList()
 			self.onClose.append(self.cleanup)
 		self.updateStatusbar()
 
@@ -402,10 +403,12 @@ class SystemNetworkInfo(Screen):
 
 
 	def cleanup(self):
-		iStatus.stopWlanConsole()
+		if self.iStatus:
+			self.iStatus.stopWlanConsole()
 
 	def resetList(self):
-		iStatus.getDataForInterface(self.iface,self.getInfoCB)
+		if self.iStatus:
+			self.iStatus.getDataForInterface(self.iface,self.getInfoCB)
 
 	def getInfoCB(self,data,status):
 		self.LinkState = None
@@ -479,7 +482,7 @@ class SystemNetworkInfo(Screen):
 
 		if iNetwork.isWirelessInterface(self.iface):
 			try:
-				iStatus.getDataForInterface(self.iface,self.getInfoCB)
+				self.iStatus.getDataForInterface(self.iface,self.getInfoCB)
 			except:
 				self["statuspic"].setPixmapNum(1)
 				self["statuspic"].show()
@@ -533,6 +536,7 @@ class AboutSummary(Screen):
 		self["selected"] = StaticText("About")
 
 		self["BoxType"] = StaticText(_("Hardware: "))
+
 		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
 		self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
 		self["ImageVersion"] = StaticText(_("Version:") + " " + about.getImageVersionString())
