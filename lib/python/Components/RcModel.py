@@ -1,20 +1,24 @@
+from enigma import getBoxType
 import os
 
 class RcModel:
 	RCTYPE_DMM = 0
-	RCTYPE_ET9X00 = 1
-	RCTYPE_ET6X00 = 2
+	RCTYPE_DMM1 = 1
+	RCTYPE_DMM2 = 2
 	RCTYPE_ET4X00 = 3
-	RCTYPE_ET9500 = 4
-	RCTYPE_VU = 5
-	RCTYPE_VU2 = 6
-	RCTYPE_GB = 7
-	RCTYPE_INI3000 = 8
-	RCTYPE_INI5000 = 9
-	RCTYPE_INI7000 = 10
-	RCTYPE_MARA = 11
-	RCTYPE_TM = 12
-	RCTYPE_XP1000 = 13
+	RCTYPE_ET6X00 = 4
+	RCTYPE_ET6500 = 5
+	RCTYPE_ET9X00 = 6
+	RCTYPE_ET9500 = 7
+	RCTYPE_GB = 8
+	RCTYPE_INI3000 = 9
+	RCTYPE_INI5000 = 10
+	RCTYPE_INI7000 = 11
+	RCTYPE_MARA = 12
+	RCTYPE_TM = 13
+	RCTYPE_VU = 14
+	RCTYPE_VU2 = 15
+	RCTYPE_XP1000 = 16
 
 	def __init__(self):
 		self.currentRcType = self.RCTYPE_DMM
@@ -42,10 +46,18 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_VU2
 			else:
 				self.currentRcType = self.RCTYPE_VU
+		elif getBoxType() == 'dm8000':
+				self.currentRcType = self.RCTYPE_DMM
+		elif getBoxType() == 'dm7020hd':
+				self.currentRcType = self.RCTYPE_DMM2
+		elif getBoxType() == 'dm800' or getBoxType() == 'dm800se' or getBoxType() == 'dm500hd':
+				self.currentRcType = self.RCTYPE_DMM1
 		elif os.path.exists('/proc/stb/info/boxtype'):
 			model = self.readFile('/proc/stb/info/boxtype')
-			if len(model) == 6 and model[:2] == 'et':
+			if len(model) == 6 and model[:2] == 'et' or model[:2] == 'xp':
 				rc = self.readFile('/proc/stb/ir/rc/type')
+				if rc == '3':
+					self.currentRcType = self.RCTYPE_MARA
 				if rc == '4':
 					self.currentRcType = self.RCTYPE_DMM
 				elif rc == '5' and model == 'et9200':
@@ -58,14 +70,18 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_ET6X00
 				elif rc == '8':
 					self.currentRcType = self.RCTYPE_VU
-				elif rc == '9':
+				elif rc == '9' and model == 'et9500':
 					self.currentRcType = self.RCTYPE_ET9500
+				elif rc == '9' and model == 'et6500':
+					self.currentRcType = self.RCTYPE_ET6500
 				elif rc == '11' and model == 'et9200':
 					self.currentRcType = self.RCTYPE_ET9500
 				elif rc == '11' and model == 'et9000':
 					self.currentRcType = self.RCTYPE_ET9x00
-				elif model == 'et4000':
-					self.currentRcType = self.RCTYPE_ET4X00
+				elif rc == '13' and model == 'et4000':
+					self.currentRcType = self.RCTYPE_ET4x00
+				elif rc == '14':
+					self.currentRcType = self.RCTYPE_XP1000
 			elif model == 'gigablue':
 				self.currentRcType = self.RCTYPE_GB
 			elif model == 'ini-3000':
@@ -78,12 +94,20 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_XP1000
 
 	def getRcLocation(self):
-		if self.currentRcType == self.RCTYPE_ET9X00:
-			return '/usr/share/enigma2/rc_models/et9x00/'
+		if self.currentRcType == self.RCTYPE_DMM:
+			return '/usr/share/enigma2/rc_models/dmm0/'
+		elif self.currentRcType == self.RCTYPE_DMM1:
+			return '/usr/share/enigma2/rc_models/dmm1/'
+		elif self.currentRcType == self.RCTYPE_DMM2:
+			return '/usr/share/enigma2/rc_models/dmm2/'
 		elif self.currentRcType == self.RCTYPE_ET4X00:
 			return '/usr/share/enigma2/rc_models/et4x00/'
 		elif self.currentRcType == self.RCTYPE_ET6X00:
 			return '/usr/share/enigma2/rc_models/et6x00/'
+		elif self.currentRcType == self.RCTYPE_ET6500:
+			return '/usr/share/enigma2/rc_models/et6500/'
+		elif self.currentRcType == self.RCTYPE_ET9X00:
+			return '/usr/share/enigma2/rc_models/et9x00/'
 		elif self.currentRcType == self.RCTYPE_ET9500:
 			return '/usr/share/enigma2/rc_models/et9500/'
 		elif self.currentRcType == self.RCTYPE_GB:
