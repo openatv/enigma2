@@ -12,7 +12,7 @@ class RcModel:
 	RCTYPE_INI3000 = 8
 	RCTYPE_INI5000 = 9
 	RCTYPE_INI7000 = 10
-	RCTYPE_ODIN = 11
+	RCTYPE_MARA = 11
 	RCTYPE_TM = 12
 
 	def __init__(self):
@@ -48,7 +48,7 @@ class RcModel:
 				if rc == '4':
 					self.currentRcType = self.RCTYPE_DMM
 				elif rc == '5' and model == 'et9200':
-					self.currentRcType = self.RCTYPE_ODIN
+					self.currentRcType = self.RCTYPE_MARA
 				elif rc == '5':
 					self.currentRcType = self.RCTYPE_ET9X00
 				elif rc == '6':
@@ -91,8 +91,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/ini5000/'
 		elif self.currentRcType == self.RCTYPE_INI7000:
 			return '/usr/share/enigma2/rc_models/ini7000/'
-		elif self.currentRcType == self.RCTYPE_ODIN:
-			return '/usr/share/enigma2/rc_models/odin/'
+		elif self.currentRcType == self.RCTYPE_MARA:
+			return '/usr/share/enigma2/rc_models/mara/'
 		elif self.currentRcType == self.RCTYPE_TM:
 			return '/usr/share/enigma2/rc_models/tm/'
 		elif self.currentRcType == self.RCTYPE_VU:

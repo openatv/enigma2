@@ -1,4 +1,4 @@
-installdir = $(pkgdatadir)/rc_models/odin
+installdir = $(pkgdatadir)/rc_models/mara
 
 dist_install_DATA = \
 	arrowdown.png \
