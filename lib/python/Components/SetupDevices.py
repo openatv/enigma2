@@ -23,7 +23,11 @@ def InitSetupDevices():
 		language.activateLanguage(configElement.value)
 
 	config.osd = ConfigSubsection();
-	config.osd.language = ConfigText(default = "en_GB_GB");
+	if open("/proc/stb/info/boxtype").read().strip() == "ini-5000R":
+		config.osd.language = ConfigText(default = "ru_RU");
+	else:
+		config.osd.language = ConfigText(default = "en_GB_GB");
+		
 	config.osd.language.addNotifier(languageNotifier)
 
 	config.parental = ConfigSubsection();
