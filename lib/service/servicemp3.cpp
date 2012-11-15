@@ -47,7 +47,7 @@ typedef enum
 eServiceFactoryMP3::eServiceFactoryMP3()
 {
 	ePtr<eServiceCenter> sc;
-	
+
 	eServiceCenter::getPrivInstance(sc);
 	if (sc)
 	{
@@ -84,7 +84,7 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 eServiceFactoryMP3::~eServiceFactoryMP3()
 {
 	ePtr<eServiceCenter> sc;
-	
+
 	eServiceCenter::getPrivInstance(sc);
 	if (sc)
 		sc->removeServiceFactory(eServiceFactoryMP3::id);
@@ -124,7 +124,7 @@ class eMP3ServiceOfflineOperations: public iServiceOfflineOperations
 	eServiceReference m_ref;
 public:
 	eMP3ServiceOfflineOperations(const eServiceReference &ref);
-	
+
 	RESULT deleteFromDisk(int simulate);
 	RESULT getListOfFilenames(std::list<std::string> &);
 	RESULT reindex();
@@ -143,7 +143,7 @@ RESULT eMP3ServiceOfflineOperations::deleteFromDisk(int simulate)
 		std::list<std::string> res;
 		if (getListOfFilenames(res))
 			return -1;
-		
+
 		eBackgroundFileEraser *eraser = eBackgroundFileEraser::getInstance();
 		if (!eraser)
 			eDebug("FATAL !! can't get background file eraser");
@@ -611,11 +611,11 @@ RESULT eServiceMP3::getLength(pts_t &pts)
 
 	GstFormat fmt = GST_FORMAT_TIME;
 	gint64 len;
-	
+
 	if (!gst_element_query_duration(m_gst_playbin, &fmt, &len))
 		return -1;
 		/* len is in nanoseconds. we have 90 000 pts per second. */
-	
+
 	pts = len / 11111LL;
 	return 0;
 }
@@ -730,7 +730,7 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 	else
 	{
 		GstFormat fmt = GST_FORMAT_TIME;
-		if (!gst_element_query_position(m_gst_playbin, &fmt, &pos)) 
+		if (!gst_element_query_position(m_gst_playbin, &fmt, &pos))
 		{
 			eDebug("gst_element_query_position failed in getPlayPosition");
 			return -1;
@@ -873,7 +873,7 @@ int eServiceMP3::getInfo(int w)
 
 	if (!m_stream_tags || !tag)
 		return 0;
-	
+
 	guint value;
 	if (gst_tag_list_get_uint(m_stream_tags, tag, &value))
 		return (int) value;
@@ -911,7 +911,7 @@ std::string eServiceMP3::getInfoString(int w)
 		if (gst_tag_list_get_date(m_stream_tags, GST_TAG_DATE, &date))
 		{
 			gchar res[5];
- 			g_date_strftime (res, sizeof(res), "%Y-%M-%D", date); 
+ 			g_date_strftime (res, sizeof(res), "%Y-%M-%D", date);
 			return (std::string)res;
 		}
 		break;
@@ -1126,7 +1126,7 @@ RESULT eServiceMP3::selectTrack(unsigned int i)
 	}
 
 	int ret = selectAudioStream(i);
-	if (!ret) 
+	if (!ret)
 	{
 		if (validposition)
 		{
@@ -1270,14 +1270,14 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 
 			GstState old_state, new_state;
 			gst_message_parse_state_changed(msg, &old_state, &new_state, NULL);
-		
+
 			if(old_state == new_state)
 				break;
-	
+
 			eDebug("eServiceMP3::state transition %s -> %s", gst_element_state_get_name(old_state), gst_element_state_get_name(new_state));
-	
+
 			GstStateChange transition = (GstStateChange)GST_STATE_TRANSITION(old_state, new_state);
-	
+
 			switch(transition)
 			{
 				case GST_STATE_CHANGE_NULL_TO_READY:
@@ -1290,7 +1290,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					if (subsink)
 					{
 #ifdef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
-						/* 
+						/*
 						 * HACK: disable sync mode for now, gstreamer suffers from a bug causing sparse streams to loose sync, after pause/resume / skip
 						 * see: https://bugzilla.gnome.org/show_bug.cgi?id=619434
 						 * Sideeffect of using sync=false is that we receive subtitle buffers (far) ahead of their
@@ -1386,7 +1386,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 		{
 			gchar *debug;
 			GError *inf;
-	
+
 			gst_message_parse_info (msg, &inf, &debug);
 			g_free (debug);
 			if ( inf->domain == GST_STREAM_ERROR && inf->code == GST_STREAM_ERROR_DECODE )
@@ -1401,7 +1401,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 		{
 			GstTagList *tags, *result;
 			gst_message_parse_tag(msg, &tags);
-	
+
 			result = gst_tag_list_merge(m_stream_tags, tags, GST_TAG_MERGE_REPLACE);
 			if (result)
 			{
@@ -1409,7 +1409,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					gst_tag_list_free(m_stream_tags);
 				m_stream_tags = result;
 			}
-	
+
 			const GValue *gv_image = gst_tag_list_get_value_index(tags, GST_TAG_IMAGE, 0);
 			if ( gv_image )
 			{
@@ -1448,7 +1448,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				break;
 
 			GstTagList *tags;
-			gint i, active_idx, n_video = 0, n_audio = 0, n_text = 0;
+			gint i, n_video = 0, n_audio = 0, n_text = 0;
 
 			g_object_get (m_gst_playbin, "n-video", &n_video, NULL);
 			g_object_get (m_gst_playbin, "n-audio", &n_audio, NULL);
@@ -1496,7 +1496,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			}
 
 			for (i = 0; i < n_text; i++)
-			{	
+			{
 				gchar *g_codec = NULL, *g_lang = NULL;
 				g_signal_emit_by_name (m_gst_playbin, "get-text-tags", i, &tags);
 				subtitleStream subs;
@@ -1511,7 +1511,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 
 				subs.language_code = std::string(g_lang);
 				eDebug("eServiceMP3::subtitle stream=%i language=%s codec=%s", i, g_lang, g_codec);
-				
+
 				GstPad* pad = 0;
 				g_signal_emit_by_name (m_gst_playbin, "get-text-pad", i, &pad);
 				if ( pad )
@@ -1819,7 +1819,7 @@ eAutoInitPtr<eServiceFactoryMP3> init_eServiceFactoryMP3(eAutoInitNumbers::servi
 void eServiceMP3::gstCBsubtitleAvail(GstElement *subsink, GstBuffer *buffer, gpointer user_data)
 {
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
-	if (_this->m_currentSubtitleStream < 0) 
+	if (_this->m_currentSubtitleStream < 0)
 	{
 		if (buffer) gst_buffer_unref(buffer);
 		return;
@@ -2022,8 +2022,8 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 		eDebug ("eServiceMP3::switched to subtitle stream %i", m_currentSubtitleStream);
 
 #ifdef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
-		/* 
-		 * when we're running the subsink in sync=false mode, 
+		/*
+		 * when we're running the subsink in sync=false mode,
 		 * we have to force a seek, before the new subtitle stream will start
 		 */
 		seekRelative(-1, 90000);
@@ -2071,7 +2071,7 @@ PyObject *eServiceMP3::getSubtitleList()
 // 	eDebug("eServiceMP3::getSubtitleList");
 	ePyObject l = PyList_New(0);
 	int stream_idx = 0;
-	
+
 	for (std::vector<subtitleStream>::iterator IterSubtitleStream(m_subtitleStreams.begin()); IterSubtitleStream != m_subtitleStreams.end(); ++IterSubtitleStream)
 	{
 		subtype_t type = IterSubtitleStream->type;
@@ -2143,8 +2143,8 @@ void eServiceMP3::setAC3Delay(int delay)
 	{
 		int config_delay_int = delay;
 
-		/* 
-		 * NOTE: We only look for dvbmediasinks. 
+		/*
+		 * NOTE: We only look for dvbmediasinks.
 		 * If either the video or audio sink is of a different type,
 		 * we have no chance to get them synced anyway.
 		 */
@@ -2176,8 +2176,8 @@ void eServiceMP3::setPCMDelay(int delay)
 	{
 		int config_delay_int = delay;
 
-		/* 
-		 * NOTE: We only look for dvbmediasinks. 
+		/*
+		 * NOTE: We only look for dvbmediasinks.
 		 * If either the video or audio sink is of a different type,
 		 * we have no chance to get them synced anyway.
 		 */
@@ -2199,4 +2199,3 @@ void eServiceMP3::setPCMDelay(int delay)
 		}
 	}
 }
-
