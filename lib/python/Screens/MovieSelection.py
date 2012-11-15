@@ -335,10 +335,11 @@ class MovieContextMenu(Screen):
 
 		menu = []
 		if service:
-		 	if (service.flags & eServiceReference.mustDescent):
+			if (service.flags & eServiceReference.mustDescent):
 				if isTrashFolder(service):
 					menu.append((_("Permanently remove all deleted items"), csel.purgeAll))
 				else:
+					menu.append((_("Delete"), csel.do_delete))
 					menu.append((_("Move"), csel.do_move))
 					menu.append((_("Rename"), csel.do_rename))
 			else:
