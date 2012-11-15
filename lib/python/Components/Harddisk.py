@@ -608,9 +608,10 @@ class HarddiskManager:
 		self.devices_scanned_on_init = [ ]
 		self.on_partition_list_change = CList()
 		self.enumerateBlockDevices()
+		# Find stuff not detected by the enumeration
 		self.enumerateNetworkMounts()
 		# Find stuff not detected by the enumeration
-		p = [("/", _("Internal Flash"))]
+		p = [("/", _("Internal Flash")),("/media/upnp", _("DLNA")),]
 		self.partitions.extend([ Partition(mountpoint = x[0], description = x[1]) for x in p ])
 
 	def getBlockDevInfo(self, blockdev):
@@ -671,6 +672,12 @@ class HarddiskManager:
 				if os.path.ismount('/media/net/' + fil):
 					print "new Network Mount", fil, '->', os.path.join('/media/net/',fil)
 					self.partitions.append(Partition(mountpoint = os.path.join('/media/net/',fil), description = fil))
+		#upnpmount = (os.path.exists('/media/upnp') and os.listdir('/media/upnp')) or ""
+		#if len(upnpmount) > 0:
+		#	for fil in upnpmount:
+		#		if os.path.ismount('/media/upnp/'):
+		#			print "new UPNP DLNA -> /media/upnp/"
+		#			self.partitions.append(Partition(mountpoint = '/media/upnp/', description = 'DLNA'))
 		if os.path.ismount('/media/hdd') and '/media/hdd/' not in [p.mountpoint for p in self.partitions]:
 			print "new Network Mount being used as HDD replacement -> /media/hdd/"
 			self.partitions.append(Partition(mountpoint = '/media/hdd/', description = '/media/hdd'))
