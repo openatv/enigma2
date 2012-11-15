@@ -89,6 +89,30 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 			# send normal notification for the case the user leave the standby now..
 			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=PowerManagerTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
 
+	@staticmethod
+	def TryToReboot(default_yes = True):
+		if not PowerManagerTimerEntry.receiveRecordEvents:
+			print "PowerManager.TryQuitMainloop"
+			NavigationInstance.instance.record_event.append(PowerManagerTimerEntry.staticGotRecordEvent)
+			PowerManagerTimerEntry.receiveRecordEvents = True
+			# send fake event.. to check if another recordings are running or
+			# other timers start in a few seconds
+			PowerManagerTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
+			# send normal notification for the case the user leave the standby now..
+			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 2, onSessionOpenCallback=PowerManagerTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
+
+	@staticmethod
+	def TryToRestart(default_yes = True):
+		if not PowerManagerTimerEntry.receiveRecordEvents:
+			print "PowerManager.TryQuitMainloop"
+			NavigationInstance.instance.record_event.append(PowerManagerTimerEntry.staticGotRecordEvent)
+			PowerManagerTimerEntry.receiveRecordEvents = True
+			# send fake event.. to check if another recordings are running or
+			# other timers start in a few seconds
+			PowerManagerTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
+			# send normal notification for the case the user leave the standby now..
+			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 3, onSessionOpenCallback=PowerManagerTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
+
 #################################################################
 
 	def __init__(self, begin, end, disabled = False, afterEvent = AFTEREVENT.NONE, timerType = TIMERTYPE.STANDBY, checkOldTimers = False):
@@ -170,11 +194,12 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 					if self.end <= self.begin:
 						self.end = self.begin
 					return False
-				if not Screens.Standby.inStandby: # not already in standby
-					self.log(11, "go to deepstandby")
-					Notifications.AddNotificationWithCallback(self.sendDeepStandbyNotification, MessageBox, _("Your STB_BOX wants to shut down your STB_BOX.\nDo that now?"), timeout = 20)
-				else:
-					Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
+				self.log(11, "go to deepstandby")
+				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+					if Screens.Standby.inStandby: # in standby
+						PowerManagerTimerEntry.TryQuitMainloop() # start shutdown handling without screen
+					else:
+						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("Your STB_BOX wants to shut down your STB_BOX.\nDo that now?"), timeout = 20)
 				return True
 			elif self.timerType == TIMERTYPE.REBOOT:
 				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
@@ -184,11 +209,12 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 					if self.end <= self.begin:
 						self.end = self.begin
 					return False
-				if not Screens.Standby.inStandby: # not already in standby
-					self.log(11, "reboot system")
-					Notifications.AddNotificationWithCallback(self.sendRebootNotification, MessageBox, _("Your STB_BOX wants to reboot your STB_BOX.\nDo that now?"), timeout = 20)
-				else:
-					Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 2)
+				self.log(11, "reboot system")
+				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+					if Screens.Standby.inStandby: # in standby
+						PowerManagerTimerEntry.TryToReboot() # start reboot handling without screen
+					else:
+						Notifications.AddNotificationWithCallback(self.sendTryToRebootNotification, MessageBox, _("Your STB_BOX wants to reboot your STB_BOX.\nDo that now?"), timeout = 20)
 				return True
 			elif self.timerType == TIMERTYPE.RESTART:
 				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
@@ -198,11 +224,12 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 					if self.end <= self.begin:
 						self.end = self.begin
 					return False
-				if not Screens.Standby.inStandby: # not already in standby
-					self.log(11, "restart system")
-					Notifications.AddNotificationWithCallback(self.sendRestartNotification, MessageBox, _("Your STB_BOX wants to restart the GUI.\nDo that now?"), timeout = 20)
-				else:
-					Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 3)
+				self.log(11, "restart system")
+				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+					if Screens.Standby.inStandby: # in standby
+						PowerManagerTimerEntry.TryToRestart() # start restart handling without screen
+					else:
+						Notifications.AddNotificationWithCallback(self.sendTryToRestartNotification, MessageBox, _("Your STB_BOX wants to restart the user interface.\nDo that now?"), timeout = 20)
 				return True
 
 		elif next_state == self.StateEnded:
@@ -245,19 +272,15 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 
 	def sendTryQuitMainloopNotification(self, answer):
 		if answer:
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
+			PowerManagerTimerEntry.TryQuitMainloop()  # start shutdown handling without screen
 
-	def sendDeepStandbyNotification(self, answer):
+	def sendTryToRebootNotification(self, answer):
 		if answer:
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
+			PowerManagerTimerEntry.TryToReboot() # start reboot handling without screen
 
-	def sendRebootNotification(self, answer):
+	def sendTryToRestartNotification(self, answer):
 		if answer:
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 2)
-
-	def sendRestartNotification(self, answer):
-		if answer:
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 3)
+			PowerManagerTimerEntry.TryToRestart() # start reboot handling without screen
 
 	def getNextActivation(self):
 		if self.state == self.StateEnded or self.state == self.StateFailed:
