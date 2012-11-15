@@ -11,7 +11,7 @@ class RcModel:
 	RCTYPE_INI3000 = 6
 	RCTYPE_INI5000 = 7
 	RCTYPE_INI7000 = 8
-	RCTYPE_MARA = 9
+	RCTYPE_MARAM9 = 9
 	RCTYPE_TM = 10
 	RCTYPE_ET6500 = 11
 	RCTYPE_ET4000 = 12
@@ -54,8 +54,8 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_MARA
 				if rc == '4':
 					self.currentRcType = self.RCTYPE_DMM
-				elif rc == '5' and model == 'et9200':
-					self.currentRcType = self.RCTYPE_MARA
+				elif model == 'MaraA M9':
+					self.currentRcType = self.RCTYPE_MARAM9
 				elif rc == '5':
 					self.currentRcType = self.RCTYPE_ET9X00
 				elif rc == '6':
@@ -112,8 +112,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/ini5000/'
 		elif self.currentRcType == self.RCTYPE_INI7000:
 			return '/usr/share/enigma2/rc_models/ini7000/'
-		elif self.currentRcType == self.RCTYPE_MARA:
-			return '/usr/share/enigma2/rc_models/mara/'
+		elif self.currentRcType == self.RCTYPE_MARAM9:
+			return '/usr/share/enigma2/rc_models/maram9/'
 		elif self.currentRcType == self.RCTYPE_TM:
 			return '/usr/share/enigma2/rc_models/tm/'
 		elif self.currentRcType == self.RCTYPE_VU:

@@ -261,7 +261,7 @@ data/rc_models/gb/Makefile
 data/rc_models/ini3000/Makefile
 data/rc_models/ini5000/Makefile
 data/rc_models/ini7000/Makefile
-data/rc_models/mara/Makefile
+data/rc_models/maram9/Makefile
 data/rc_models/tm/Makefile
 data/rc_models/vu/Makefile
 data/rc_models/vu2/Makefile
