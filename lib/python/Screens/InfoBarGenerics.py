@@ -3579,8 +3579,8 @@ class InfoBarExtensions:
 		self.session.open(LogManager)
 
 	def open3DSetup(self):
-		from Screens.UserInterfacePositioner import 3DSetupScreen
-		self.session.open(3DSetupScreen)
+		from Screens.UserInterfacePositioner import OSD3DSetupScreen
+		self.session.open(OSD3DSetupScreen)
 
 	def showAutoTimerList(self):
 		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):

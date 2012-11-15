@@ -164,7 +164,7 @@ def setAlpha(alpha_value):
 	print 'Setting OSD alpha:', str(alpha_value)
 	open("/proc/stb/video/alpha", "w").write(str(alpha_value))
 
-class 3DSetupScreen(Screen, ConfigListScreen):
+class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.setup_title = _("OSD 3D Setup")
