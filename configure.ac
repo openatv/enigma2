@@ -242,6 +242,9 @@ data/keymaps/Makefile
 data/lcd220/Makefile
 data/lcd255/Makefile
 data/rc_models/Makefile
+data/rc_models/dmm0/Makefile
+data/rc_models/dmm1/Makefile
+data/rc_models/dmm2/Makefile
 data/rc_models/et4x00/Makefile
 data/rc_models/et6x00/Makefile
 data/rc_models/et6500/Makefile
