@@ -1459,8 +1459,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			if ( n_video + n_audio <= 0 )
 				stop();
 
-			active_idx = 0;
-
 			m_audioStreams.clear();
 			m_subtitleStreams.clear();
 
