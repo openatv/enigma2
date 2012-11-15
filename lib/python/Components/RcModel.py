@@ -82,7 +82,7 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_INI5000
 			elif model == 'ini-7000':
 				self.currentRcType = self.RCTYPE_INI7000
-			elif model == 'MaraA M9':
+			elif model == 'MarA M9':
 				self.currentRcType = self.RCTYPE_MARAM9	
 		elif os.path.exists('/proc/stb/info/vumodel'):
 			model = self.readFile('/proc/stb/info/vumodel')
