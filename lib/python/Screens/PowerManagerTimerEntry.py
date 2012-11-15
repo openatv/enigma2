@@ -115,7 +115,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
 			self.timerentry_starttime = ConfigClock(default = self.timer.begin)
 			self.timerentry_endtime = ConfigClock(default = self.timer.end)
-			self.timerentry_showendtime = ConfigSelection(default = False, choices = [(True, _("yes")), (False, _("no"))])
+			self.timerentry_showendtime = ConfigSelection(default = ((self.timer.end - self.timer.begin) > 1), choices = [(True, _("yes")), (False, _("no"))])
 
 			self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = _("%d.%B %Y"), increment = 86400)
 
