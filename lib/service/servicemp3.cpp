@@ -1045,9 +1045,25 @@ PyObject *eServiceMP3::getInfoObject(int w)
 			const GValue *gv_buffer = gst_tag_list_get_value_index(m_stream_tags, tag, 0);
 			if ( gv_buffer )
 			{
+				PyObject *retval = NULL;
+				guint8 *data;
+				gsize size;
 				GstBuffer *buffer;
 				buffer = gst_value_get_buffer (gv_buffer);
-				return PyBuffer_FromMemory(GST_BUFFER_DATA(buffer), GST_BUFFER_SIZE(buffer));
+#if GST_VERSION_MAJOR < 1
+				data = GST_BUFFER_DATA(buffer);
+				size = GST_BUFFER_SIZE(buffer);
+#else
+				GstMapInfo map;
+				gst_buffer_map(buffer, &map, GST_MAP_READ);
+				data = map.data;
+				size = map.size;
+#endif
+				retval = PyBuffer_FromMemory(data, size);
+#if GST_VERSION_MAJOR >= 1
+				gst_buffer_unmap(buffer, &map);
+#endif
+				return retval;
 			}
 		}
 		else
@@ -1402,7 +1418,21 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				int fd = open("/tmp/.id3coverart", O_CREAT|O_WRONLY|O_TRUNC, 0644);
 				if (fd >= 0)
 				{
-					int ret = write(fd, GST_BUFFER_DATA(buf_image), GST_BUFFER_SIZE(buf_image));
+					guint8 *data;
+					gsize size;
+#if GST_VERSION_MAJOR < 1
+					data = GST_BUFFER_DATA(buf_image);
+					size = GST_BUFFER_SIZE(buf_image);
+#else
+					GstMapInfo map;
+					gst_buffer_map(buf_image, &map, GST_MAP_READ);
+					data = map.data;
+					size = map.size;
+#endif
+					int ret = write(fd, data, size);
+#if GST_VERSION_MAJOR >= 1
+					gst_buffer_unmap(buf_image, &map);
+#endif
 					close(fd);
 					eDebug("eServiceMP3::/tmp/.id3coverart %d bytes written ", ret);
 				}
@@ -1794,7 +1824,13 @@ void eServiceMP3::gstCBsubtitleAvail(GstElement *subsink, GstBuffer *buffer, gpo
 		if (buffer) gst_buffer_unref(buffer);
 		return;
 	}
-	eDebug("gstCBsubtitleAvail: %s", GST_BUFFER_DATA(buffer));
+#if GST_VERSION_MAJOR < 1
+	guint8 *label = GST_BUFFER_DATA(buffer);
+#else
+	guint8 label[32] = {0};
+	gst_buffer_extract(buffer, 0, label, sizeof(label));
+#endif
+	eDebug("gstCBsubtitleAvail: %s", (const char*)label);
 	_this->m_pump.send(new GstMessageContainer(2, NULL, NULL, buffer));
 }
 
@@ -1862,7 +1898,11 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 	{
 		gint64 buf_pos = GST_BUFFER_TIMESTAMP(buffer);
 		gint64 duration_ns = GST_BUFFER_DURATION(buffer);
+#if GST_VERSION_MAJOR < 1
 		size_t len = GST_BUFFER_SIZE(buffer);
+#else
+		size_t len = gst_buffer_get_size(buffer);
+#endif
 		eDebug("pullSubtitle m_subtitleStreams[m_currentSubtitleStream].type=%i",m_subtitleStreams[m_currentSubtitleStream].type);
 
 		if ( m_subtitleStreams[m_currentSubtitleStream].type )
@@ -1871,7 +1911,11 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 			{
 				unsigned char line[len+1];
 				SubtitlePage page;
+#if GST_VERSION_MAJOR < 1
 				memcpy(line, GST_BUFFER_DATA(buffer), len);
+#else
+				gst_buffer_extract(buffer, 0, line, len);
+#endif
 				line[len] = 0;
 				eDebug("got new text subtitle @ buf_pos = %lld ns (in pts=%lld): '%s' ", buf_pos, buf_pos/11111, line);
 				gRGB rgbcol(0xD0,0xD0,0xD0);
