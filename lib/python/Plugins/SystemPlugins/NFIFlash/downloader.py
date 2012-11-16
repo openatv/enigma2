@@ -732,7 +732,7 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 		except IndexError:
 			pass
 
-		self.menulist.append((ALLIMAGES, _("Choose image to download"), _("Select desired image from feed list" ), None))
+		self.menulist.append((ALLIMAGES, _("Select an image to be downloaded"), _("Select desired image from feed list" ), None))
 		self.menulist.append((STICK_WIZARD, _("USB stick wizard"), _("Prepare another USB stick for image flashing" ), None))
 		self["menu"].setList(self.menulist)
 		self["status"].text = _("Currently installed image") + ": %s" % (about.getImageVersionString())

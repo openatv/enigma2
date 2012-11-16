@@ -641,7 +641,7 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 
 class DiseqcTesterNimSelection(NimSelection):
 	skin = """
-		<screen position="160,123" size="400,330" title="Choose Tuner">
+		<screen position="160,123" size="400,330" title="Select a tuner">
 		<widget source="nimlist" render="Listbox" position="0,0" size="380,300" scrollbarMode="showOnDemand">
 			<convert type="TemplatedMultiContent">
 				{"template": [
