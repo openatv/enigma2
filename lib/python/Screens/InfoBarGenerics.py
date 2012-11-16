@@ -1296,6 +1296,9 @@ class Seekbar(Screen):
 			self.percent = float(number) * 10.0
 		else:
 			ConfigListScreen.keyNumberGlobal(self, number)
+			
+
+from enigma import eDVBVolumecontrol
 
 class InfoBarSeek:
 	"""handles actions like seeking, pause"""
@@ -1305,6 +1308,10 @@ class InfoBarSeek:
 	SEEK_STATE_EOF = (1, 0, 0, "END")
 
 	def __init__(self, actionmap = "InfobarSeekActions"):
+		
+		self.volctrl = eDVBVolumecontrol.getInstance()
+		self.vol = self.volctrl.getVolume()
+
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
@@ -1506,12 +1513,15 @@ class InfoBarSeek:
 				self.activityTimer.stop()
 				service.stop()
 			elif self.seekstate[1]:
+				self.volctrl.setVolume(0,0)
 # 				print "resolved to FAST FORWARD"
 				pauseable.setFastForward(self.seekstate[1])
 			elif self.seekstate[2]:
+				self.volctrl.setVolume(0,0)
 # 				print "resolved to SLOW MOTION"
 				pauseable.setSlowMotion(self.seekstate[2])
 			else:
+				self.volctrl.setVolume(self.vol,self.vol)
 # 				print "resolved to PLAY"
 				self.activityTimer.start(200, False)
 				pauseable.unpause()
