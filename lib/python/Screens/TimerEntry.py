@@ -238,7 +238,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.session.openWithCallback(
 				self.pathSelected,
 				MovieLocationBox,
-				_("Choose target folder"),
+				_("Select target folder"),
 				self.timerentry_dirname.value,
 				minFree = 100 # We require at least 100MB free space
 			)

@@ -190,7 +190,7 @@ class WlanStatus(Screen):
 
 class WlanScan(Screen):
 	skin = """
-		<screen name="WlanScan" position="center,center" size="560,400" title="Choose a Wireless Network" >
+		<screen name="WlanScan" position="center,center" size="560,400" title="Select a wireless network" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -257,7 +257,7 @@ class WlanScan(Screen):
 		self.getAccessPoints(refresh = False)
 		
 	def layoutFinished(self):
-		self.setTitle(_("Choose a wireless network"))
+		self.setTitle(_("Select a wireless network"))
 	
 	def select(self):
 		cur = self["list"].getCurrent()
