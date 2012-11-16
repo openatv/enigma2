@@ -397,9 +397,40 @@ class VirtualKeyBoard(Screen):
 		self.buildVirtualKeyBoard(self.selectedKey)
 
 	def keyNumberGlobal(self, number):
-		self.smsChar = self.sms.getKey(number)
-		print "SMS", number, self.smsChar
-		self.selectAsciiKey(self.smsChar)
+		if number == 1:
+			self.text += "1"
+			self["text"].setText(self.text.encode("utf-8"))
+		elif number == 2:
+			self.text += "2"
+			self["text"].setText(self.text.encode("utf-8"))
+		elif number == 3:
+			self.text += "3"
+			self["text"].setText(self.text.encode("utf-8"))
+		elif number == 4:
+			self.text += "4"
+			self["text"].setText(self.text.encode("utf-8"))
+		elif number == 5:
+			self.text += "5"
+			self["text"].setText(self.text.encode("utf-8"))
+		elif number == 6:
+			self.text += "6"
+			self["text"].setText(self.text.encode("utf-8"))
+		elif number == 7:
+			self.text += "7"
+			self["text"].setText(self.text.encode("utf-8"))
+		elif number == 8:
+			self.text += "8"
+			self["text"].setText(self.text.encode("utf-8"))
+		elif number == 9:
+			self.text += "9"
+			self["text"].setText(self.text.encode("utf-8"))
+		elif number == 0:
+			self.text += "0"
+			self["text"].setText(self.text.encode("utf-8"))
+		else:
+			self.smsChar = self.sms.getKey(number)
+			print "SMS", number, self.smsChar
+			self.selectAsciiKey(self.smsChar)
 
 	def smsOK(self):
 		print "SMS ok", self.smsChar
