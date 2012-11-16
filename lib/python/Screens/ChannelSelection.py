@@ -200,7 +200,7 @@ class ChannelContextMenu(Screen):
 						append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level = 0)
 						append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level = 0)
 
-		menu.append(ChoiceEntryComponent(text = (_("Configuration..."), boundFunction(self.openSetup, "channelselection"))))
+		menu.append(ChoiceEntryComponent(text = (_("Configuration..."), boundFunction(self.openSetup, "userinterface"))))
 		self["menu"] = ChoiceList(menu)
 
 	def playMain(self):
