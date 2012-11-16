@@ -1506,8 +1506,28 @@ class MyTubeVideoHelpScreen(Screen):
 	def pageDown(self):
 		self["detailtext"].pageDown()
 
+	def __init__(self, session, service):
+		self.session = session
+		MoviePlayer.__init__(self, session, service)
+		self.skinName = "MoviePlayer"
+		MoviePlayer.WithoutStopClose = True
 
-class MyTubePlayer(Screen, InfoBarNotifications):
+	def doEofInternal(self, playing):
+		self.leavePlayer()
+			
+	def leavePlayer(self):
+		list = ((_("Yes"), "y"), (_("No"), "n"),)
+		self.session.openWithCallback(self.cbDoExit, ChoiceBox, title=_("Stop playing this movie?"), list = list)
+
+	def cbDoExit(self, answer):
+		answer = answer and answer[1]
+		if answer == "y":
+			self.close()
+			
+			
+from Screens.InfoBar import MoviePlayer
+			
+class MyTubePlayer(MoviePlayer):
 	STATE_IDLE = 0
 	STATE_PLAYING = 1
 	STATE_PAUSED = 2
@@ -1538,7 +1558,9 @@ class MyTubePlayer(Screen, InfoBarNotifications):
 
 	def __init__(self, session, service, lastservice, infoCallback = None, nextCallback = None, prevCallback = None):
 		Screen.__init__(self, session)
-		InfoBarNotifications.__init__(self)
+		MoviePlayer.__init__(self, session, service)
+		self.skinName = "MoviePlayer"
+		MoviePlayer.WithoutStopClose = True
 		self.session = session
 		self.service = service
 		self.infoCallback = infoCallback
@@ -1555,18 +1577,6 @@ class MyTubePlayer(Screen, InfoBarNotifications):
 				iPlayableService.evEOF: self.__evEOF,
 			})
 		
-		self["actions"] = ActionMap(["OkCancelActions", "InfobarSeekActions", "MediaPlayerActions", "MovieSelectionActions"],
-		{
-				"ok": self.ok,
-				"cancel": self.leavePlayer,
-				"stop": self.leavePlayer,
-				"playpauseService": self.playpauseService,
-				"seekFwd": self.playNextFile,
-				"seekBack": self.playPrevFile,
-				"showEventInfo": self.showVideoInfo,
-			}, -2)
-
-
 		self.lastservice = lastservice
 
 		self.hidetimer = eTimer()
@@ -1674,10 +1684,10 @@ class MyTubePlayer(Screen, InfoBarNotifications):
 		if self.state == self.STATE_PLAYING:
 			self.setSeekState(self.STATE_PAUSED)
 		
-	def unPauseService(self):
-		print "unPauseService"
-		if self.state == self.STATE_PAUSED:
-			self.setSeekState(self.STATE_PLAYING)
+	#def unPauseService(self):
+	#	print "unPauseService"
+	#	if self.state == self.STATE_PAUSED:
+	#		self.setSeekState(self.STATE_PLAYING)
 
 
 	def getSeek(self):
