@@ -88,7 +88,7 @@ def menu(menuid, **kwargs):
 			if onPartitionChange not in harddiskmanager.on_partition_list_change:
 				harddiskmanager.on_partition_list_change.append(onPartitionChange)
 		if detected_DVD:
-			return [(_("DVD Player"), play, "dvd_player", 46)]
+			return [(_("DVD player"), play, "dvd_player", 46)]
 	return []
 
 def Plugins(**kwargs):

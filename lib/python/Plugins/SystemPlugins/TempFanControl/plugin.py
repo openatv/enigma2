@@ -123,10 +123,10 @@ class TempFanControl(Screen, ConfigListScreen):
 		
 		self.list = []
 		for count in range(fancontrol.getFanCount()):
-			self.list.append(getConfigListEntry(_("Fan %d Voltage") % (count + 1), fancontrol.getConfig(count).vlt))
+			self.list.append(getConfigListEntry(_("Fan %d voltage") % (count + 1), fancontrol.getConfig(count).vlt))
 			self.list.append(getConfigListEntry(_("Fan %d PWM") % (count + 1), fancontrol.getConfig(count).pwm))
-			self.list.append(getConfigListEntry(_("Standby Fan %d Voltage") % (count + 1), fancontrol.getConfig(count).vlt_standby))
-			self.list.append(getConfigListEntry(_("Standby Fan %d PWM") % (count + 1), fancontrol.getConfig(count).pwm_standby))
+			self.list.append(getConfigListEntry(_("Standby fan %d voltage") % (count + 1), fancontrol.getConfig(count).vlt_standby))
+			self.list.append(getConfigListEntry(_("Standby fan %d PWM") % (count + 1), fancontrol.getConfig(count).pwm_standby))
 		
 		ConfigListScreen.__init__(self, self.list, session = self.session)
 		#self["config"].list = self.list
@@ -164,8 +164,8 @@ def main(session, **kwargs):
 def startMenu(menuid):
 	if menuid != "system":
 		return []
-	return [(_("Temperature and Fan control"), main, "tempfancontrol", 80)]
+	return [(_("Temperature and fan control"), main, "tempfancontrol", 80)]
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name = "Temperature and Fan control", description = _("Temperature and Fan control"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = startMenu)
+	return PluginDescriptor(name = _("Temperature and fan control"), description = _("Temperature and fan control"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = startMenu)
 

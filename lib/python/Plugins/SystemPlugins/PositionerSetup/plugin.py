@@ -56,7 +56,7 @@ class PositionerSetup(Screen):
 
 			<eLabel text="Frequency:" position="320,290" size="120,22" font="Regular;20" foregroundColor="white"/>
 			<eLabel text="Polarisation:" position="320,315" size="120,22" font="Regular;20" foregroundColor="white"/>
-			<eLabel text="Symbolrate:" position="320,340" size="120,22" font="Regular;20" foregroundColor="white"/>
+			<eLabel text="Symbol rate:" position="320,340" size="120,22" font="Regular;20" foregroundColor="white"/>
 			<widget name="frequency_value" position="440,290" size="120,22" font="Regular;20" foregroundColor="white"/>
 			<widget name="polarisation" position="440,315" size="120,22" font="Regular;20" foregroundColor="white"/>
 			<widget name="symbolrate_value" position="440,340" size="120,22" font="Regular;20" foregroundColor="white"/>
@@ -285,9 +285,9 @@ class PositionerSetup(Screen):
 	def createConfig(self):
 		rotorposition = 1
 		orb_pos = 0
-		self.printMsg((_("Using Tuner ") + "%s") % chr(0x41 + self.feid))
+		self.printMsg(_("Using tuner %s") % chr(0x41 + self.feid))
 		if not self.advanced:
-			self.printMsg((_("Configuration mode: ") + "%s") % _("simple"))
+			self.printMsg(_("Configuration mode: %s") % _("simple"))
 			nim = config.Nims[self.feid]
 			self.sitelon = nim.longitude.float
 			self.longitudeOrientation = nim.longitudeOrientation.value
@@ -299,7 +299,7 @@ class PositionerSetup(Screen):
 			self.turningspeedH = nim.turningspeedH.float
 			self.turningspeedV = nim.turningspeedV.float
 		else:	# it is advanced
-			self.printMsg((_("Configuration mode: ") + "%s") % _("advanced"))
+			self.printMsg(_("Configuration mode: %s") % _("advanced"))
 			fe_data = { }
 			self.frontend.getFrontendData(fe_data)
 			self.frontend.getTransponderData(fe_data, True)
@@ -314,7 +314,7 @@ class PositionerSetup(Screen):
 						if lnbnum:
 							break
 				if lnbnum:
-					self.printMsg((_("Using LNB") + "%d") % lnbnum)
+					self.printMsg(_("Using LNB %d") % lnbnum)
 					lnb = self.advancedconfig.lnb[lnbnum]
 			if not lnb:
 				self.logMsg(_("Warning: no LNB; using factory defaults."))
@@ -329,10 +329,10 @@ class PositionerSetup(Screen):
 		self.orientation = ConfigSelection([("east", _("East")), ("west", _("West"))], m[1])
 
 	def createSetup(self):
-		self.list.append((_("Tune and Focus"), self.positioner_tune, "tune"))
+		self.list.append((_("Tune and focus"), self.positioner_tune, "tune"))
 		self.list.append((_("Movement"), self.positioner_move, "move"))
 		self.list.append((_("Fine movement"), self.positioner_finemove, "finemove"))
-		self.list.append((_("Set Limits"), self.positioner_limits, "limits"))
+		self.list.append((_("Set limits"), self.positioner_limits, "limits"))
 		self.list.append((_("Memory index"), self.positioner_storage, "storage"))
 		self.list.append((_("Goto"), self.orbitalposition, "goto"))
 		self.list.append((" ", self.orientation, "goto"))
@@ -448,7 +448,7 @@ class PositionerSetup(Screen):
 		entry = self.getCurrentConfigPath()
 		if entry == "tune":
 			# Auto focus
-			self.printMsg(_("Auto-focus"))
+			self.printMsg(_("Auto focus"))
 			print>>log, (_("Site latitude") + "      : %5.1f %s") % PositionerSetup.latitude2orbital(self.sitelat)
 			print>>log, (_("Site longitude") + "     : %5.1f %s") % PositionerSetup.longitude2orbital(self.sitelon)
 			Thread(target = self.autofocus).start()
@@ -515,7 +515,7 @@ class PositionerSetup(Screen):
 			self.gotoX(satlon)
 		elif entry == "tune":
 			# Start USALS calibration
-			self.printMsg(_("USALS Calibration"))
+			self.printMsg(_("USALS calibration"))
 			print>>log, (_("Site latitude") + "      : %5.1f %s") % PositionerSetup.latitude2orbital(self.sitelat)
 			print>>log, (_("Site longitude") + "     : %5.1f %s") % PositionerSetup.longitude2orbital(self.sitelon)
 			Thread(target = self.gotoXcalibration).start()

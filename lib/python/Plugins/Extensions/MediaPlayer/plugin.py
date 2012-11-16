@@ -159,25 +159,25 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions", 
 			{
-				"ok": (self.ok, _("add file to playlist")),
-				"cancel": (self.exit, _("exit mediaplayer")),
+				"ok": (self.ok, _("Add file to playlist")),
+				"cancel": (self.exit, _("Exit mediaplayer")),
 			}, -2)
 
 		self["MediaPlayerActions"] = HelpableActionMap(self, "MediaPlayerActions", 
 			{
-				"play": (self.xplayEntry, _("play entry")),
-				"pause": (self.pauseEntry, _("pause")),
-				"stop": (self.stopEntry, _("stop entry")),
-				"previous": (self.previousMarkOrEntry, _("play from previous mark or playlist entry")),
-				"next": (self.nextMarkOrEntry, _("play from next mark or playlist entry")),
-				"menu": (self.showMenu, _("menu")),
-				"skipListbegin": (self.skip_listbegin, _("jump to listbegin")),
-				"skipListend": (self.skip_listend, _("jump to listend")),
-				"prevBouquet": (self.switchToPlayList, _("switch to playlist")),
-				"nextBouquet": (self.switchToFileList, _("switch to filelist")),
-				"delete": (self.deletePlaylistEntry, _("delete playlist entry")),
-				"shift_stop": (self.clear_playlist, _("clear playlist")),
-				"shift_record": (self.playlist.PlayListShuffle, _("shuffle playlist")),
+				"play": (self.xplayEntry, _("Play entry")),
+				"pause": (self.pauseEntry, _("Pause")),
+				"stop": (self.stopEntry, _("Stop entry")),
+				"previous": (self.previousMarkOrEntry, _("Play from previous mark or playlist entry")),
+				"next": (self.nextMarkOrEntry, _("Play from next mark or playlist entry")),
+				"menu": (self.showMenu, _("Menu")),
+				"skipListbegin": (self.skip_listbegin, _("Jump to beginning of list")),
+				"skipListend": (self.skip_listend, _("Jump to end of list")),
+				"prevBouquet": (self.switchToPlayList, _("Switch to playlist")),
+				"nextBouquet": (self.switchToFileList, _("Switch to filelist")),
+				"delete": (self.deletePlaylistEntry, _("Delete playlist entry")),
+				"shift_stop": (self.clear_playlist, _("Clear playlist")),
+				"shift_record": (self.playlist.PlayListShuffle, _("Shuffle playlist")),
 				"subtitles": (self.subtitleSelection, _("Subtitle selection")),
 			}, -2)
 
@@ -290,13 +290,13 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		currPlay = self.session.nav.getCurrentService()
 		sTagAudioCodec = currPlay.info().getInfoString(iServiceInformation.sTagAudioCodec)
 		print "[__evAudioDecodeError] audio-codec %s can't be decoded by hardware" % (sTagAudioCodec)
-		self.session.open(MessageBox, _("This receiver can't decode %s streams!") % sTagAudioCodec, type = MessageBox.TYPE_INFO,timeout = 20 )
+		self.session.open(MessageBox, _("This receiver cannot decode %s streams!") % sTagAudioCodec, type = MessageBox.TYPE_INFO,timeout = 20 )
 
 	def __evVideoDecodeError(self):
 		currPlay = self.session.nav.getCurrentService()
 		sTagVideoCodec = currPlay.info().getInfoString(iServiceInformation.sTagVideoCodec)
 		print "[__evVideoDecodeError] video-codec %s can't be decoded by hardware" % (sTagVideoCodec)
-		self.session.open(MessageBox, _("This receiver can't decode %s streams!") % sTagVideoCodec, type = MessageBox.TYPE_INFO,timeout = 20 )
+		self.session.open(MessageBox, _("This receiver cannot decode %s streams!") % sTagVideoCodec, type = MessageBox.TYPE_INFO,timeout = 20 )
 
 	def __evPluginError(self):
 		currPlay = self.session.nav.getCurrentService()
@@ -502,26 +502,26 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 	def showMenu(self):
 		menu = []
 		if len(self.cdAudioTrackFiles):
-			menu.insert(0,(_("Play Audio-CD..."), "audiocd"))
+			menu.insert(0,(_("Play audio-CD..."), "audiocd"))
 		if self.currList == "filelist":
 			if self.filelist.canDescent():
-				menu.append((_("add directory to playlist"), "copydir"))
+				menu.append((_("Add directory to playlist"), "copydir"))
 			else:
-				menu.append((_("add files to playlist"), "copyfiles"))
-			menu.append((_("switch to playlist"), "playlist"))
+				menu.append((_("Add files to playlist"), "copyfiles"))
+			menu.append((_("Switch to playlist"), "playlist"))
 			if config.usage.setup_level.index >= 1: # intermediate+
-				menu.append((_("delete file"), "deletefile"))
+				menu.append((_("Delete file"), "deletefile"))
 		else:
-			menu.append((_("switch to filelist"), "filelist"))
-			menu.append((_("clear playlist"), "clear"))
+			menu.append((_("Switch to filelist"), "filelist"))
+			menu.append((_("Clear playlist"), "clear"))
 			menu.append((_("Delete entry"), "deleteentry"))
 			if config.usage.setup_level.index >= 1: # intermediate+
-				menu.append((_("shuffle playlist"), "shuffle"))
-		menu.append((_("hide player"), "hide"));
-		menu.append((_("load playlist"), "loadplaylist"));
+				menu.append((_("Shuffle playlist"), "shuffle"))
+		menu.append((_("Hide player"), "hide"));
+		menu.append((_("Load playlist"), "loadplaylist"));
 		if config.usage.setup_level.index >= 1: # intermediate+
-			menu.append((_("save playlist"), "saveplaylist"));
-			menu.append((_("delete saved playlist"), "deleteplaylist"));
+			menu.append((_("Save playlist"), "saveplaylist"));
+			menu.append((_("Delete saved playlist"), "deleteplaylist"));
 			menu.append((_("Edit settings"), "settings"))
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 
@@ -618,7 +618,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.updateCurrentInfo()
 
 	def save_playlist(self):
-		self.session.openWithCallback(self.save_playlist2,InputBox, title=_("Please enter filename (empty = use current date)"),windowTitle = _("Save Playlist"), text=self.playlistname)
+		self.session.openWithCallback(self.save_playlist2,InputBox, title=_("Please enter filename (empty = use current date)"),windowTitle = _("Save playlist"), text=self.playlistname)
 
 	def save_playlist2(self, name):
 		if name is not None:
@@ -1013,7 +1013,7 @@ class MoviePlayer(InfoBarShowHide, \
 			list.append((_("Yes"), "quit"))
 			list.append((_("No"), "continue"))
 			if config.usage.setup_level.index >= 2: # expert+
-				list.append((_("No, but restart from begin"), "restart"))
+				list.append((_("No, but restart from beginning"), "restart"))
 			self.session.openWithCallback(self.leavePlayerConfirmed, ChoiceBox, title=_("Stop playing this movie?"), list = list)
 		else:
 			self.close(0)
@@ -1049,7 +1049,7 @@ class MediaPlayerLCDScreen(Screen):
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
-		self["text1"] = Label("Mediaplayer")
+		self["text1"] = Label("Media player")
 		self["text3"] = Label("")
 		self["text4"] = Label("")
 
@@ -1126,7 +1126,7 @@ def filescan(**kwargs):
 					ScanPath(path = "", with_subdirs = False),
 				],
 			name = "Movie",
-			description = _("View Movies..."),
+			description = _("Watch movies..."),
 			openfnc = movielist_open,
 		),
 		Scanner(mimetypes = ["video/x-vcd"],
@@ -1136,7 +1136,7 @@ def filescan(**kwargs):
 					ScanPath(path = "MPEGAV", with_subdirs = False),
 				],
 			name = "Video CD",
-			description = _("View Video CD..."),
+			description = _("View video CD..."),
 			openfnc = filescan_open,
 		),
 		Scanner(mimetypes = ["audio/mpeg", "audio/x-wav", "application/ogg", "audio/x-flac"],
@@ -1145,7 +1145,7 @@ def filescan(**kwargs):
 					ScanPath(path = "", with_subdirs = False),
 				],
 			name = "Music",
-			description = _("Play Music..."),
+			description = _("Play music..."),
 			openfnc = filescan_open,
 		),
 		Scanner(mimetypes = ["audio/x-cda"],
@@ -1154,7 +1154,7 @@ def filescan(**kwargs):
 					ScanPath(path = "", with_subdirs = False),
 				],
 			name = "Audio-CD",
-			description = _("Play Audio-CD..."),
+			description = _("Play audio-CD..."),
 			openfnc = audioCD_open,
 		),
 		]
@@ -1162,7 +1162,7 @@ def filescan(**kwargs):
 from Plugins.Plugin import PluginDescriptor
 def Plugins(**kwargs):
 	return [
-		PluginDescriptor(name = "MediaPlayer", description = "Play back media files", where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc = main),
-		PluginDescriptor(name = "MediaPlayer", where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
-		PluginDescriptor(name = "MediaPlayer", description = "Play back media files", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu)
+		PluginDescriptor(name = _("Media player"), description = _("Play back media files"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc = main),
+		PluginDescriptor(name = _("Media player"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
+		PluginDescriptor(name = _("Media player"), description = _("Play back media files"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu)
 	]

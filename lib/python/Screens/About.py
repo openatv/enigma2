@@ -15,13 +15,13 @@ class About(Screen):
 
 		AboutText = _("Hardware: ") + about.getHardwareTypeString() + "\n"
 		AboutText += _("Image: ") + about.getImageTypeString() + "\n"
-		AboutText += _("Kernel Version: ") + about.getKernelVersionString() + "\n"
+		AboutText += _("Kernel version: ") + about.getKernelVersionString() + "\n"
 
 		EnigmaVersion = "Enigma: " + about.getEnigmaVersionString()
 		self["EnigmaVersion"] = StaticText(EnigmaVersion)
 		AboutText += EnigmaVersion + "\n"
 
-		ImageVersion = _("Last Upgrade: ") + about.getImageVersionString()
+		ImageVersion = _("Last upgrade: ") + about.getImageVersionString()
 		self["ImageVersion"] = StaticText(ImageVersion)
 		AboutText += ImageVersion + "\n"
 

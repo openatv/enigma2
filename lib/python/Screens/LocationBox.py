@@ -50,7 +50,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			<widget name="key_blue" position="405,415" zPosition="2" size="135,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />            
 		</screen>"""
 
-	def __init__(self, session, text = "", filename = "", currDir = None, bookmarks = None, userMode = False, windowTitle = _("Select Location"), minFree = None, autoAdd = False, editDir = False, inhibitDirs = [], inhibitMounts = []):
+	def __init__(self, session, text = "", filename = "", currDir = None, bookmarks = None, userMode = False, windowTitle = _("Select location"), minFree = None, autoAdd = False, editDir = False, inhibitDirs = [], inhibitMounts = []):
 		# Init parents
 		Screen.__init__(self, session)
 		NumericalTextInput.__init__(self, handleTimeout = False)
@@ -92,7 +92,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		# Buttons
 		self["key_green"] = Button(_("OK"))
 		self["key_yellow"] = Button(_("Rename"))
-		self["key_blue"] = Button(_("Remove Bookmark"))
+		self["key_blue"] = Button(_("Remove bookmark"))
 		self["key_red"] = Button(_("Cancel"))
 
 		# Background for Buttons
@@ -198,14 +198,14 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			self.currList = "filelist"
 			self["filelist"].selectionEnabled(1)
 			self["booklist"].selectionEnabled(0)
-			self["key_blue"].text = _("Add Bookmark")
+			self["key_blue"].text = _("Add bookmark")
 			self.updateTarget()
 
 	def switchToBookList(self):
 		self.currList = "booklist"
 		self["filelist"].selectionEnabled(0)
 		self["booklist"].selectionEnabled(1)
-		self["key_blue"].text = _("Remove Bookmark")
+		self["key_blue"].text = _("Remove bookmark")
 		self.updateTarget()
 
 	def addRemoveBookmark(self):
@@ -400,7 +400,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			self["target"].setText(''.join((currFolder, self.filename)))
 		# Display a Warning otherwise
 		else:
-			self["target"].setText(_("Invalid Location"))
+			self["target"].setText(_("Invalid location"))
 
 	def showMenu(self):
 		if not self.userMode and self.realBookmarks:

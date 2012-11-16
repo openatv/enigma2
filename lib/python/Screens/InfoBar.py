@@ -61,8 +61,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				InfoBarPlugins, InfoBarServiceErrorPopupSupport:
 			x.__init__(self)
 
-		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", _("view recordings..."))]))
-		self.helpList.append((self["actions"], "InfobarActions", [("showRadio", _("hear radio..."))]))
+		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", _("Watch recordings..."))]))
+		self.helpList.append((self["actions"], "InfobarActions", [("showRadio", _("Listen to the radio..."))]))
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -211,7 +211,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		elif self.shown:
 			self.hide()
 		elif answer is None:
-			self.session.openWithCallback(self.leavePlayerOnExit, MessageBox, _("Exit Movieplayer?"), MessageBox.TYPE_YESNO, simple = True)
+			self.session.openWithCallback(self.leavePlayerOnExit, MessageBox, _("Exit movie player?"), MessageBox.TYPE_YESNO, simple = True)
 
 	def deleteConfirmed(self, answer):
 		if answer:

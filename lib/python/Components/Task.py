@@ -39,7 +39,7 @@ class Job(object):
 	progress = property(getProgress)
 
 	def getStatustext(self):
-		return { self.NOT_STARTED: _("Waiting"), self.IN_PROGRESS: _("In Progress"), self.FINISHED: _("Finished"), self.FAILED: _("Failed") }[self.status]
+		return { self.NOT_STARTED: _("Waiting"), self.IN_PROGRESS: _("In progress"), self.FINISHED: _("Finished"), self.FAILED: _("Failed") }[self.status]
 
 	def task_progress_changed_CB(self):
 		self.state_changed()
@@ -401,7 +401,7 @@ class JobManager:
 #
 #class CreatePartitionTask(Task):
 #	def __init__(self, device):
-#		Task.__init__(self, _("Create Partition"))
+#		Task.__init__(self, "Creating partition")
 #		self.device = device
 #		self.setTool("/sbin/sfdisk")
 #		self.args += ["-f", self.device + "disc"]
@@ -410,7 +410,7 @@ class JobManager:
 #
 #class CreateFilesystemTask(Task):
 #	def __init__(self, device, partition = 1, largefile = True):
-#		Task.__init__(self, _("Create Filesystem"))
+#		Task.__init__(self, "Creating filesystem")
 #		self.setTool("/sbin/mkfs.ext")
 #		if largefile:
 #			self.args += ["-T", "largefile"]
@@ -419,7 +419,7 @@ class JobManager:
 #
 #class FilesystemMountTask(Task):
 #	def __init__(self, device, partition = 1, filesystem = "ext3"):
-#		Task.__init__(self, _("Mounting Filesystem"))
+#		Task.__init__(self, "Mounting filesystem")
 #		self.setTool("/bin/mount")
 #		if filesystem is not None:
 #			self.args += ["-t", filesystem]
@@ -450,7 +450,7 @@ class DiskspacePrecondition(Condition):
 			return False
 
 	def getErrorMessage(self, task):
-		return _("Not enough diskspace. Please free up some diskspace and try again. (%d MB required, %d MB available)") % (self.diskspace_required / 1024 / 1024, self.diskspace_available / 1024 / 1024)
+		return _("Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)") % (self.diskspace_required / 1024 / 1024, self.diskspace_available / 1024 / 1024)
 
 class ToolExistsPrecondition(Condition):
 	def check(self, task):

@@ -85,7 +85,7 @@ class TitleList(Screen, HelpableScreen):
 		self["error_label"] = StaticText()
 		self["space_label_single"] = StaticText()
 		self["space_label_dual"] = StaticText()
-		self["hint"] = StaticText(_("Advanced Options"))
+		self["hint"] = StaticText(_("Advanced options"))
 		self["medium_label"] = MultiColorLabel()
 		self["space_bar_single"] = Progress()
 		self["space_bar_dual"] = Progress()
@@ -99,7 +99,7 @@ class TitleList(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self.setTitle(_("DVD Titlelist"))
+		self.setTitle(_("DVD titlelist"))
 
 	def checkBackgroundJobs(self):
 		for job in job_manager.getPendingJobs():
@@ -295,7 +295,7 @@ class TitleList(Screen, HelpableScreen):
 		if len(list):
 			self["key_red"].text = _("Remove title")
 			self["key_yellow"].text = _("Title properties")
-			self["title_label"].text = _("Table of content for collection") + " \"" + self.project.settings.name.getValue() + "\":"
+			self["title_label"].text = _("Table of contents for collection") + " \"" + self.project.settings.name.getValue() + "\":"
 		else:
 			self["key_red"].text = ""
 			self["key_yellow"].text = ""

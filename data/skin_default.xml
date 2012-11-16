@@ -169,7 +169,7 @@
 		<widget name="menu" position="10,10" size="340,230" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Channel selection - TV -->
-	<screen name="ChannelSelection" position="center,center" size="560,430" title="Channel Sslection">
+	<screen name="ChannelSelection" position="center,center" size="560,430" title="Channel selection">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -326,11 +326,11 @@ self.autoResize()
 		<widget name="list" position="11,75" size="540,350" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Eventview context menu -->
-	<screen name="EventViewContextMenu" position="150,160" size="400,260" title="Eventview menu" >
+	<screen name="EventViewContextMenu" position="150,160" size="400,260" title="Event view menu" >
 		<widget name="menu" position="10,10" size="390,250" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Eventview -->
-	<screen name="EventView" position="center,center" size="560,430" title="Eventview">
+	<screen name="EventView" position="center,center" size="560,430" title="Event view">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -518,7 +518,7 @@ self.autoResize()
 		<widget name="year" position="94,47" size="339,17" font="Regular;16" valign="top" transparent="1" />
 		<widget name="genretext" position="20,65" size="74,17" font="Regular;16" valign="top" foregroundColor="#cccccc" transparent="1" />
 		<widget name="genre" position="94,65" size="339,17" font="Regular;16" valign="top" transparent="1" />
-		<eLabel name="nowPlaying" position="20,92" size="413,16" text="Now Playing" font="Regular;14" foregroundColor="#ffc435" transparent="1" />
+		<eLabel name="nowPlaying" position="20,92" size="413,16" text="Now playing" font="Regular;14" foregroundColor="#ffc435" transparent="1" />
 		<widget name="title" position="20,108" size="413,18" font="Regular;16" valign="top" transparent="1" />
 		<widget name="coverArt" pixmap="skin_default/no_coverArt.png" position="446,11" size="116,116" transparent="1" alphatest="blend" />
 		<ePixmap pixmap="skin_default/icons/mp_buttons.png" position="454,136" size="108,13" alphatest="on" />
@@ -771,7 +771,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<panel name="PinInputTemplate" />
 	</screen>
 	<!-- Picture in picture setup -->
-	<screen name="PiPSetup" position="center,center" size="600,150" backgroundColor="transparent" flags="wfNoBorder" title="PiPSetup">
+	<screen name="PiPSetup" position="center,center" size="600,150" backgroundColor="transparent" flags="wfNoBorder" title="PiP setup">
 		<widget name="text" position="0,0" size="600,150" font="Regular;23" />
 	</screen>
 	<!-- Plugin browser -->
@@ -1172,7 +1172,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</widget>
 	</screen>
 	<!-- VirtualKeyBoard -->
-	<screen name="VirtualKeyBoard" position="center,center" size="560,350" zPosition="99" title="Virtual keyBoard">
+	<screen name="VirtualKeyBoard" position="center,center" size="560,350" zPosition="99" title="Virtual keyboard">
 		<ePixmap pixmap="skin_default/vkey_text.png" position="9,45" zPosition="-4" size="542,52" alphatest="on" />
 		<widget source="country" render="Pixmap" position="490,0" size="60,40" alphatest="on" borderWidth="2" borderColor="yellow" >
 			<convert type="ValueToPixmap">LanguageCode</convert>

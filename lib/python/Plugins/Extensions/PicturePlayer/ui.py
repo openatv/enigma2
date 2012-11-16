@@ -29,7 +29,7 @@ config.pic.textcolor = ConfigSelection(default="#0038FF48", choices = [("#000000
 
 class picshow(Screen):
 	skin = """
-		<screen name="picshow" position="center,center" size="560,440" title="PicturePlayer" >
+		<screen name="picshow" position="center,center" size="560,440" title="Picture player" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -121,7 +121,7 @@ class picshow(Screen):
 			self.session.openWithCallback(self.callbackView, Pic_Full_View, self.filelist.getFileList(), self.filelist.getSelectionIndex(), self.filelist.getCurrentDirectory())
 
 	def setConf(self, retval=None):
-		self.setTitle(_("PicturePlayer"))
+		self.setTitle(_("Picture player"))
 		sc = getScale()
 		#0=Width 1=Height 2=Aspect 3=use_cache 4=resize_type 5=Background(#AARRGGBB)
 		self.picload.setPara((self["thn"].instance.size().width(), self["thn"].instance.size().height(), sc[0], sc[1], config.pic.cache.value, int(config.pic.resize.value), "#00000000"))
@@ -170,14 +170,14 @@ class Pic_Setup(Screen, ConfigListScreen):
 
 	def createSetup(self):
 		setup_list = [
-			getConfigListEntry(_("Slideshow Interval (sec.)"), config.pic.slidetime),
-			getConfigListEntry(_("Scaling Mode"), config.pic.resize),
-			getConfigListEntry(_("Cache Thumbnails"), config.pic.cache),
-			getConfigListEntry(_("show Infoline"), config.pic.infoline),
+			getConfigListEntry(_("Slide show interval (sec.)"), config.pic.slidetime),
+			getConfigListEntry(_("Scaling mode"), config.pic.resize),
+			getConfigListEntry(_("Cache thumbnails"), config.pic.cache),
+			getConfigListEntry(_("Show info line"), config.pic.infoline),
 			getConfigListEntry(_("Frame size in full view"), config.pic.framesize),
-			getConfigListEntry(_("slide picture in loop"), config.pic.loop),
-			getConfigListEntry(_("backgroundcolor"), config.pic.bgcolor),
-			getConfigListEntry(_("textcolor"), config.pic.textcolor),
+			getConfigListEntry(_("Slide picture in loop"), config.pic.loop),
+			getConfigListEntry(_("Background color"), config.pic.bgcolor),
+			getConfigListEntry(_("Text color"), config.pic.textcolor),
 		]
 		self["config"].list = setup_list
 		self["config"].l.setList(setup_list)

@@ -46,15 +46,15 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 	def createSetup(self):
 		print "Creating Graph Epg Setup"
 		self.list = [ ]
-		self.list.append(getConfigListEntry(_("Event Fontsize (relative to skin size)"), config.misc.graph_mepg.ev_fontsize))
-		self.list.append(getConfigListEntry(_("Time Scale"), config.misc.graph_mepg.prev_time_period))
-		self.list.append(getConfigListEntry(_("Items per Page "), config.misc.graph_mepg.items_per_page))
-		self.list.append(getConfigListEntry(_("Items per Page for Listscreen"), config.misc.graph_mepg.items_per_page_listscreen))
-		self.list.append(getConfigListEntry(_("Listscreen default at start user interface"), config.misc.graph_mepg.default_mode))
-		self.list.append(getConfigListEntry(_("Skip Empty Services"), config.misc.graph_mepg.overjump))
-		self.list.append(getConfigListEntry(_("Service Title mode"), config.misc.graph_mepg.servicetitle_mode))
+		self.list.append(getConfigListEntry(_("Event font size (relative to skin size)"), config.misc.graph_mepg.ev_fontsize))
+		self.list.append(getConfigListEntry(_("Time scale"), config.misc.graph_mepg.prev_time_period))
+		self.list.append(getConfigListEntry(_("Items per page "), config.misc.graph_mepg.items_per_page))
+		self.list.append(getConfigListEntry(_("Items per page for list screen"), config.misc.graph_mepg.items_per_page_listscreen))
+		self.list.append(getConfigListEntry(_("Start with list screen"), config.misc.graph_mepg.default_mode))
+		self.list.append(getConfigListEntry(_("Skip empty services"), config.misc.graph_mepg.overjump))
+		self.list.append(getConfigListEntry(_("Service title mode"), config.misc.graph_mepg.servicetitle_mode))
 		self.list.append(getConfigListEntry(_("Round start time on"), config.misc.graph_mepg.roundTo))
-		self.list.append(getConfigListEntry(_("Function on OK button"), config.misc.graph_mepg.OKButton))
+		self.list.append(getConfigListEntry(_("Function of OK button"), config.misc.graph_mepg.OKButton))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)

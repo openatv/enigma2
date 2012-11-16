@@ -221,7 +221,7 @@ class EPGSelection(Screen):
 	def setSortDescription(self):
 		if self.sort_type == 1:
 			# TRANSLATORS: This must fit into the header button in the EPG-List
-			self["key_yellow"].setText(_("Sort Time"))
+			self["key_yellow"].setText(_("Sort time"))
 		else:
 			# TRANSLATORS: This must fit into the header button in the EPG-List
 			self["key_yellow"].setText(_("Sort A-Z"))
