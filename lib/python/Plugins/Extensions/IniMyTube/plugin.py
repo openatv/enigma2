@@ -1579,8 +1579,8 @@ class MyTubePlayer(MoviePlayer):
 		
 		self.lastservice = lastservice
 
-		self.hidetimer = eTimer()
-		self.hidetimer.timeout.get().append(self.ok)
+		#self.hidetimer = eTimer()
+		#self.hidetimer.timeout.get().append(self.ok)
 		self.returning = False
 
 		self.state = self.STATE_PLAYING
@@ -1601,31 +1601,31 @@ class MyTubePlayer(MoviePlayer):
 		self.pauseService()
 		self.handleLeave(config.plugins.mytube.general.on_movie_stop.value)
 
-	def __setHideTimer(self):
-		self.hidetimer.start(self.screen_timeout)
+	#def __setHideTimer(self):
+	#	self.hidetimer.start(self.screen_timeout)
 
-	def showInfobar(self):
-		self.show()
-		if self.state == self.STATE_PLAYING:
-			self.__setHideTimer()
-		else:
-			pass
+	#def showInfobar(self):
+	#	self.show()
+	#	if self.state == self.STATE_PLAYING:
+	#		self.__setHideTimer()
+	#	else:
+	#		pass
 
-	def hideInfobar(self):
-		self.hide()
-		self.hidetimer.stop()
+	#def hideInfobar(self):
+	#	self.hide()
+	#	self.hidetimer.stop()
 
-	def ok(self):
-		if self.shown:
-			self.hideInfobar()
-		else:
-			self.showInfobar()
+	#def ok(self):
+	#	if self.shown:
+	#		self.hideInfobar()
+	#	else:
+	#		self.showInfobar()
 
-	def showVideoInfo(self):
-		if self.shown:
-			self.hideInfobar()
-		if self.infoCallback is not None:	
-			self.infoCallback()
+	#def showVideoInfo(self):
+	#	if self.shown:
+	#		self.hideInfobar()
+	#	if self.infoCallback is not None:	
+	#		self.infoCallback()
 
 	def playNextFile(self):
 		print "playNextFile"
@@ -1659,13 +1659,13 @@ class MyTubePlayer(MoviePlayer):
 		self.play()
 
 	def play(self):
-		if self.state == self.STATE_PAUSED:
-			if self.shown:
-				self.__setHideTimer()	
+		#if self.state == self.STATE_PAUSED:
+		#	if self.shown:
+		#		self.__setHideTimer()	
 		self.state = self.STATE_PLAYING
 		self.session.nav.playService(self.service)
-		if self.shown:
-			self.__setHideTimer()
+		#if self.shown:
+		#	self.__setHideTimer()
 
 	def stopCurrent(self):
 		print "stopCurrent"
@@ -1740,14 +1740,14 @@ class MyTubePlayer(MoviePlayer):
 				pauseable.pause()
 				self.state = self.STATE_PAUSED
 				if not self.shown:
-					self.hidetimer.stop()
+					#self.hidetimer.stop()
 					self.show()
 			elif wantstate == self.STATE_PLAYING:
 				print "WANT TO PLAY"
 				pauseable.unpause()
 				self.state = self.STATE_PLAYING
-				if self.shown:
-					self.__setHideTimer()
+				#if self.shown:
+				#	self.__setHideTimer()
 
 		for c in self.onPlayStateChanged:
 			c(self.state)
