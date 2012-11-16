@@ -43,7 +43,7 @@ config.misc.graph_mepg.servicetitle_mode = ConfigSelection(default = "picon+serv
 	("servicename", _("Service Name")),
 	("picon", _("Picon")),
 	("picon+servicename", _("Picon and Service Name")) ])
-config.misc.graph_mepg.roundTo = ConfigSelection(default = 15, choices = [("900", _("%d minutes") % 15), ("1800", _("%d minutes") % 30), ("3600", _("%d minutes") % 60)])
+config.misc.graph_mepg.roundTo = ConfigSelection(default = 900, choices = [("900", _("%d minutes") % 15), ("1800", _("%d minutes") % 30), ("3600", _("%d minutes") % 60)])
 config.misc.graph_mepg.OKButton = ConfigSelection(default = "info", choices = [("info", _("Show detailed event info")), ("zap", _("Zap to selected channel"))])
 
 listscreen = config.misc.graph_mepg.default_mode.value
