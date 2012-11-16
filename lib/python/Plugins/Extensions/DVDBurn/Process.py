@@ -302,7 +302,7 @@ class BurnTaskPostcondition(Condition):
 	def getErrorMessage(self, task):
 		return {
 			task.ERROR_NOTWRITEABLE: _("Medium is not a writeable DVD!"),
-			task.ERROR_LOAD: _("Could not load Medium! No disc inserted?"),
+			task.ERROR_LOAD: _("Could not load medium! No disc inserted?"),
 			task.ERROR_SIZE: _("Content does not fit on DVD!"),
 			task.ERROR_WRITE_FAILED: _("Write failed!"),
 			task.ERROR_DVDROM: _("No (supported) DVDROM found!"),

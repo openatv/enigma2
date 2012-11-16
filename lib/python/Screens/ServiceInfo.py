@@ -140,24 +140,24 @@ class ServiceInfo(Screen):
 		else:
 			if self.transponder_info:
 				tp_info = ConvertToHumanReadable(self.transponder_info)
-				conv = { "tuner_type" 		: _("Transponder Type"),
+				conv = { "tuner_type" 		: _("Transponder type"),
 						 "system"			: _("System"),
 						 "modulation"		: _("Modulation"),
-						 "orbital_position" : _("Orbital Position"),
+						 "orbital_position" : _("Orbital position"),
 						 "frequency"		: _("Frequency"),
-						 "symbol_rate"		: _("Symbolrate"),
+						 "symbol_rate"		: _("Symbol rate"),
 						 "bandwidth"		: _("Bandwidth"),
 						 "polarization"		: _("Polarization"),
 						 "inversion"		: _("Inversion"),
 						 "pilot"			: _("Pilot"),
-						 "rolloff"			: _("Rolloff"),
+						 "rolloff"			: _("Roll-off"),
 						 "fec_inner"		: _("FEC"),
 						 "code_rate_lp"		: _("Coderate LP"),
 						 "code_rate_hp"		: _("Coderate HP"),
 						 "constellation"	: _("Constellation"),
-						 "transmission_mode": _("Transmission Mode"),
-						 "guard_interval" 	: _("Guard Interval"),
-						 "hierarchy_information": _("Hierarchy Information") }
+						 "transmission_mode": _("Transmission mode"),
+						 "guard_interval" 	: _("Guard interval"),
+						 "hierarchy_information": _("Hierarchy information") }
 				Labels = [(conv[i], tp_info[i], i == "orbital_position" and TYPE_VALUE_ORBIT_DEC or TYPE_VALUE_DEC) for i in tp_info.keys() if i in conv]
 				self.fillList(Labels)
 

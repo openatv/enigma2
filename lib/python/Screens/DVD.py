@@ -95,7 +95,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	ENABLE_RESUME_SUPPORT = True
 	
 	skin = """
-	<screen name="DVDPlayer" flags="wfNoBorder" position="0,380" size="720,160" title="InfoBar" backgroundColor="transparent" >
+	<screen name="DVDPlayer" flags="wfNoBorder" position="0,380" size="720,160" title="Info bar" backgroundColor="transparent" >
 		<!-- Background -->
 		<ePixmap position="0,0" zPosition="-2" size="720,160" pixmap="skin_default/info-bg_mp.png" alphatest="off" />
 		<ePixmap position="29,40" zPosition="0" size="665,104" pixmap="skin_default/screws_mp.png" alphatest="on" transparent="1" />
@@ -433,7 +433,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			cur = self.session.nav.getCurrentlyPlayingServiceReference()
 			if cur and not cur.toString().endswith(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())):
 			    choices.insert(0,(_("Play DVD"), "playPhysical" ))
-		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list = choices)
+		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD player?"), list = choices)
 
 	def sendKey(self, key):
 		keys = self.getServiceInterface("keys")

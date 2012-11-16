@@ -62,7 +62,7 @@ class FileBrowser(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self.setTitle(_("DVD File Browser"))
+		self.setTitle(_("DVD file browser"))
 
 	def getDir(self, currentVal=None, defaultDir=None):
 		if currentVal:

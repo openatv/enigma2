@@ -91,9 +91,9 @@ class RecordPathsSettings(Screen,ConfigListScreen):
 		if config.usage.setup_level.index >= 2:
 			self.default_entry = getConfigListEntry(_("Default movie location"), self.default_dirname)
 			self.list.append(self.default_entry)
-			self.timer_entry = getConfigListEntry(_("Timer record location"), self.timer_dirname)
+			self.timer_entry = getConfigListEntry(_("Timer recording location"), self.timer_dirname)
 			self.list.append(self.timer_entry)
-			self.instantrec_entry = getConfigListEntry(_("Instant record location"), self.instantrec_dirname)
+			self.instantrec_entry = getConfigListEntry(_("Instant recording location"), self.instantrec_dirname)
 			self.list.append(self.instantrec_entry)
 		else:
 			self.default_entry = getConfigListEntry(_("Movie location"), self.default_dirname)

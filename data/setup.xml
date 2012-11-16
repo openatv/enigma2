@@ -20,7 +20,7 @@
 		<item level="1" text="12V output" description="12V output" requires="12V_Output.">config.usage.output_12V</item>
 		<item level="2" text="Alternative services tuner priority" description="Configure which tuner type will be preferred, when the same service is available on different types of tuners.">config.usage.alternatives_priority</item>
 		<item level="2" text="Preferred tuner" description="Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites.">config.usage.frontend_priority</item>
-		<item level="2" text="Disable background scanning" description="When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing.">config.misc.disable_background_scan</item>
+		<item level="2" text="Disable background scanning" description="When enabled, the receiver will no longer monitor the tuned transponder for possible changes. Do not use this option unless you know what you are doing.">config.misc.disable_background_scan</item>
 		<item level="2" text="Create more detailed crash log" description="Add more details to the crash log">config.crash.details</item>
 		<item level="2" text="Include EIT in http streams" description="When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG.">config.streaming.stream_eit</item>
 		<item level="2" text="Include AIT in http streams" description="When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV.">config.streaming.stream_ait</item>
@@ -31,14 +31,14 @@
 		<item level="0" text="Show animation while busy" description="Show busy indicator when the system is busy.">config.usage.show_spinner</item>
 		<item level="1" text="Show positioner movement" description="Configure whether or not an icon should be shown when your motorized dish is moving.">config.usage.showdish</item>
 		<item level="1" text="Enable multiple bouquets" description="When enabled, services may be grouped in multiple bouquets.">config.usage.multibouquet</item>
-		<item level="1" text="Multi-EPG bouquet selection" description="Enable bouquet selection in Multi-EPG">config.usage.multiepg_ask_bouquet</item>
+		<item level="1" text="Multi-EPG bouquet selection" description="Enable bouquet selection in multi-EPG">config.usage.multiepg_ask_bouquet</item>
 		<item level="1" text="Alternative numbering mode" description="When enabled, channel numbering will start at '1' for each bouquet.">config.usage.alternative_number_mode</item>
-		<item level="1" text="Change bouquets in quickzap" description="When enabled, continue to the next bouquet when the last channel of the current bouquet is reached, while changing channels.">config.usage.quickzap_bouquet_change</item>
-		<item level="1" text="Hide channel list in radio mode" description="If set to 'yes', the channel selection list will be hidden while listening to a radio channel">config.usage.e1like_radio_mode</item>
+		<item level="1" text="Change bouquets in quickzap" description="When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels.">config.usage.quickzap_bouquet_change</item>
+		<item level="1" text="Hide channel list in radio mode" description="When enabled, the channel selection list will be hidden while listening to a radio channel">config.usage.e1like_radio_mode</item>
 		<item level="1" text="Action on long powerbutton press" description="Configure the function of a long press on the power button.">config.usage.on_long_powerpress</item>
 		<item level="1" text="Action on short powerbutton press" description="Configure the function of a short press on the power button.">config.usage.on_short_powerpress</item>
 		<item level="1" text="Position of completed timers in timerlist" description="Configure where completed timers show up in the timer list.">config.usage.timerlist_finished_timer_position</item>
-		<item level="0" text="Infobar timeout" description="Configure for how long the infobar will remain visible after activation.">config.usage.infobar_timeout</item>
+		<item level="0" text="Info bar timeout" description="Configure for how long the infobar will remain visible after activation.">config.usage.infobar_timeout</item>
 		<item level="0" text="Show event-progress in channel selection" description="Set the type of the progress indication in the channel selection screen.">config.usage.show_event_progress_in_servicelist</item>
 		<item level="0" text="Show channel numbers in channel selection" description="When enabled, show channel numbers in the channel selection screen.">config.usage.show_channel_numbers_in_servicelist</item>
 		<item level="2" text="Show infobar on channel change" description="When enabled, the infobar will be displayed when changing channels.">config.usage.show_infobar_on_zap</item>
@@ -97,8 +97,8 @@
 	</setup>
 	<setup key="recording" title="Record">
 		<item level="1" text="Recordings always have priority" description="When enabled, a recording is allowed to interrupt live tv, when there are no free tuners.">config.recording.asktozap</item>
-		<item level="0" text="Margin before record (minutes)" description="When nonzero, a recording will start earlier than the starting time as indicated by the EPG.">config.recording.margin_before</item>
-		<item level="0" text="Margin after record (minutes)" description="When nonzero, a recording will stop later than the ending time as indicated by the EPG.">config.recording.margin_after</item>
+		<item level="0" text="Margin before recording (minutes)" description="When nonzero, a recording will start earlier than the starting time indicated by the EPG.">config.recording.margin_before</item>
+		<item level="0" text="Margin after recording (minutes)" description="When nonzero, a recording will stop later than the ending time indicated by the EPG.">config.recording.margin_after</item>
 		<item level="2" text="Show message when recording starts" description="When enabled, a popup message will be shown when a recording starts.">config.usage.show_message_when_recording_starts</item>
 		<item level="2" text="Show movie lengths in movielist" description="When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time).">config.usage.load_length_of_movies_in_moviellist</item>
 		<item level="2" text="Show status icons in movielist" description="Configure the type of status indication icons shown in the movielist.">config.usage.show_icons_in_movielist</item>
@@ -107,18 +107,18 @@
 		<item level="2" text="Behavior when a movie reaches the end" description="Configure the behavior when reaching the end of a movie, during movie playback.">config.usage.on_movie_eof</item>
 		<item level="2" text="Display message before playing next movie" description="When enabled, a popup message will be shown when a movie has finished and the next one will start.">config.usage.next_movie_msg</item>
 		<item level="2" text="Behavior of 'pause' when paused" description="Configure the behavior of the 'pause' key when movie playback is already paused.">config.seek.on_pause</item>
-		<item level="2" text="Custom skip time for '1'/'3'-keys" description="Configure the skip time interval on the '1'/'3'-keys.">config.seek.selfdefined_13</item>
-		<item level="2" text="Custom skip time for '4'/'6'-keys" description="Configure the skip time interval on the '4'/'6'-keys.">config.seek.selfdefined_46</item>
-		<item level="2" text="Custom skip time for '7'/'9'-keys" description="Configure the skip time interval on the '7'/'9'-keys.">config.seek.selfdefined_79</item>
+		<item level="2" text="Custom skip time for '1'/'3' buttons" description="Configure the skip time interval for the '1'/'3' buttons.">config.seek.selfdefined_13</item>
+		<item level="2" text="Custom skip time for '4'/'6' buttons" description="Configure the skip time interval for the '4'/'6' buttons.">config.seek.selfdefined_46</item>
+		<item level="2" text="Custom skip time for '7'/'9' buttons" description="Configure the skip time interval for the '7'/'9' buttons.">config.seek.selfdefined_79</item>
 		<item level="2" text="Fast forward speeds" description="Configure the possible fast forward speeds.">config.seek.speeds_forward</item>
 		<item level="2" text="Rewind speeds" description="Configure the possible rewind speeds.">config.seek.speeds_backward</item>
 		<item level="2" text="Slow motion speeds" description="Configure the slow motion speeds.">config.seek.speeds_slowmotion</item>
-		<item level="2" text="Initial fast forward speed" description="Configure the initial fast forward speed. When you press the fast forward key, winding will start at this speed.">config.seek.enter_forward</item>
-		<item level="2" text="Initial rewind speed" description="Configure the initial rewind speed. When you press the rewind key, winding will start at this speed.">config.seek.enter_backward</item>
+		<item level="2" text="Initial fast forward speed" description="Configure the initial fast forward speed. When you press the fast forward button, winding will start at this speed.">config.seek.enter_forward</item>
+		<item level="2" text="Initial rewind speed" description="Configure the initial rewind speed. When you press the rewind button, winding will start at this speed.">config.seek.enter_backward</item>
 		<item level="2" text="Limit character set for recording filenames" description="Limit the characters that can be used in recording filenames to (7 bit) ascii. This ensures compatibility with operating systems or file systems with limited character sets.">config.recording.ascii_filenames</item>
 		<item level="2" text="Composition of the recording filenames" description="Configure how recording filenames are constructed.">config.recording.filename_composition</item>
 		<item level="2" text="Remove completed timers after (days)" description="Configure the number of days old timers are kept before they are automatically removed from the timer list.">config.recording.keep_timers</item>
-		<item level="1" text="Use trash can in movielist" description="When enabled, deleted recordings are moved to the trash can, instead of being immediately deleted.">config.usage.movielist_trashcan</item>
+		<item level="1" text="Use trash can in movielist" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
 		<item level="1" text="Remove items from trash can after (days)" description="Configure the number of days after which items are automaticaly removed from the trash can.">config.usage.movielist_trashcan_days</item>
 		<item level="1" text="Disk space to reserve for recordings (in GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>
 		<item level="2" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
@@ -140,7 +140,7 @@
 		<item level="1" text="Modulator">config.rfmod.enable</item>
 		<item level="2" text="Test mode">config.rfmod.test</item>
 		<item level="2" text="Sound">config.rfmod.sound</item>
-		<item level="2" text="Soundcarrier">config.rfmod.soundcarrier</item>
+		<item level="2" text="Sound carrier">config.rfmod.soundcarrier</item>
 		<item level="1" text="Channel">config.rfmod.channel</item>
 		<item level="1" text="Finetune">config.rfmod.finetune</item>
 	</setup>

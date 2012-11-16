@@ -28,9 +28,9 @@ class SleepTimerEdit(Screen):
 		self["current_status"] = Label()
 		self.is_active = self.session.nav.SleepTimer.isActive()
 		if self.is_active:
-			self["current_status"].setText(_("Timer status:") + " " + _("Enabled"))
+			self["current_status"].setText(_("Timer status:") + " " + _("enabled"))
 		else:
-			self["current_status"].setText(_("Timer status:") + " " + _("Disabled"))
+			self["current_status"].setText(_("Timer status:") + " " + _("disabled"))
 		
 		if self.is_active:
 			self.time = self.session.nav.SleepTimer.getCurrentSleepTime()
@@ -80,7 +80,7 @@ class SleepTimerEdit(Screen):
 		
 		if config.SleepTimer.action.value == "shutdown":
 			if SystemInfo["DeepstandbySupport"]:
-				shutdownString = _("Deep Standby")
+				shutdownString = _("Deep standby")
 			else:
 				shutdownString = _("Shutdown")
 			self["green_text"].setText(_("Sleep timer action:") + " " + shutdownString)
@@ -88,9 +88,9 @@ class SleepTimerEdit(Screen):
 			self["green_text"].setText(_("Sleep timer action:") + " " + _("Standby"))
 		
 		if config.SleepTimer.ask.value:
-			self["yellow_text"].setText(_("Ask before shutdown:") + " " + _("yes"))
+			self["yellow_text"].setText(_("Confirm shutdown:") + " " + _("yes"))
 		else:
-			self["yellow_text"].setText(_("Ask before shutdown:") + " " + _("no"))
+			self["yellow_text"].setText(_("Confirm shutdown:") + " " + _("no"))
 		self["blue_text"].setText(_("Use time of currently running service"))
 
 	def cancel(self):

@@ -42,7 +42,7 @@ self.selectKey("OK")
 			<condition>
 self.condition = not config.misc.installwizard.ipkgloaded.value
 			</condition>
-			<text value="Your receiver is not connected to the internet" />
+			<text value="Your receiver does not have an internet connection" />
 			<list>
 				<listentry caption="Check the internet connection again" step="update" />
 				<listentry caption="Skip internet connection check (disables automatic package installation)" step="nima" />

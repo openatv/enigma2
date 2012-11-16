@@ -35,7 +35,7 @@ class HelpMenu(Screen, Rc):
 			if selection[1] == "SHIFT":
 				self.selectKey("SHIFT")
 			elif selection[1] == "long":
-				longText = _("Long Keypress")
+				longText = _("Long key press")
 		self["long_key"].setText(longText)
 
 		self.selectKey(selection[0])

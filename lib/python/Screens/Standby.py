@@ -115,9 +115,9 @@ class QuitMainloopScreen(Screen):
 		from Components.Label import Label
 		text = { 1: _("Your receiver is shutting down"),
 			2: _("Your receiver is rebooting"),
-			3: _("The User Interface of your receiver is restarting"),
+			3: _("The user interface of your receiver is restarting"),
 			4: _("Your frontprocessor will be upgraded\nPlease wait until your receiver reboots\nThis may take a few minutes"),
-			5: _("The User Interface of your receiver is restarting\ndue to an error in mytest.py"),
+			5: _("The user interface of your receiver is restarting\ndue to an error in mytest.py"),
 			42: _("Unattended upgrade in progress\nPlease wait until your receiver reboots\nThis may take a few minutes") }.get(retvalue) 
 		self["text"] = Label(text)
 

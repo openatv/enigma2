@@ -27,11 +27,11 @@ def InitUsageConfig():
 	choicelist = []
 	for i in range(1, 12):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
-	config.usage.infobar_timeout = ConfigSelection(default = "5", choices = [("0", _("no timeout"))] + choicelist)
+	config.usage.infobar_timeout = ConfigSelection(default = "5", choices = [("0", _("No timeout"))] + choicelist)
 	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_event_change = ConfigYesNo(default = False)
-	config.usage.show_second_infobar = ConfigSelection(default = None, choices = [(None, _("None")), ("0", _("no timeout"))] + choicelist + [("EPG",_("EPG"))]) 
+	config.usage.show_second_infobar = ConfigSelection(default = None, choices = [(None, _("None")), ("0", _("No timeout"))] + choicelist + [("EPG",_("EPG"))]) 
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
 	choicelist = []
@@ -43,13 +43,13 @@ def InitUsageConfig():
 	for i in (3600, 7200, 14400):
 		h = i / 3600
 		choicelist.append(("%d" % i, ngettext("%d hour", "%d hours", h) % h))
-	config.usage.hdd_standby = ConfigSelection(default = "300", choices = [("0", _("no standby"))] + choicelist)
+	config.usage.hdd_standby = ConfigSelection(default = "300", choices = [("0", _("No standby"))] + choicelist)
 	config.usage.output_12V = ConfigSelection(default = "do not change", choices = [
-		("do not change", _("do not change")), ("off", _("off")), ("on", _("on")) ])
+		("do not change", _("Do not change")), ("off", _("Off")), ("on", _("On")) ])
 
 	config.usage.pip_zero_button = ConfigSelection(default = "standard", choices = [
-		("standard", _("standard")), ("swap", _("swap PiP and main picture")),
-		("swapstop", _("move PiP to main picture")), ("stop", _("stop PiP")) ])
+		("standard", _("Standard")), ("swap", _("Swap PiP and main picture")),
+		("swapstop", _("Move PiP to main picture")), ("stop", _("Stop PiP")) ])
 
 	config.usage.default_path = ConfigText(default = resolveFilename(SCOPE_HDD))
 	config.usage.timer_path = ConfigText(default = "<default>")
@@ -75,13 +75,13 @@ def InitUsageConfig():
 		("expert", _("Expert")) ])
 
 	config.usage.on_long_powerpress = ConfigSelection(default = "show_menu", choices = [
-		("show_menu", _("show shutdown menu")),
-		("shutdown", _("immediate shutdown")),
+		("show_menu", _("Show shutdown menu")),
+		("shutdown", _("Immediate shutdown")),
 		("standby", _("Standby")) ] )
 	
 	config.usage.on_short_powerpress = ConfigSelection(default = "standby", choices = [
-		("show_menu", _("show shutdown menu")),
-		("shutdown", _("immediate shutdown")),
+		("show_menu", _("Show shutdown menu")),
+		("shutdown", _("Immediate shutdown")),
 		("standby", _("Standby")) ] )
 
 
@@ -100,10 +100,10 @@ def InitUsageConfig():
 	config.misc.disable_background_scan = ConfigYesNo(default = False)
 
 	config.usage.show_event_progress_in_servicelist = ConfigSelection(default = 'barright', choices = [
-		('barleft', _("Progress Bar Left")),
-		('barright', _("Progress Bar Right")),
-		('percleft', _("Percentage Left")),
-		('percright', _("Percentage Right")),
+		('barleft', _("Progress bar left")),
+		('barright', _("Progress bar right")),
+		('percleft', _("Percentage left")),
+		('percright', _("Percentage right")),
 		('no', _("No")) ])
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default = True)
 	config.usage.show_event_progress_in_servicelist.addNotifier(refreshServiceList)
@@ -117,7 +117,7 @@ def InitUsageConfig():
 	config.usage.show_icons_in_movielist = ConfigSelection(default = 'i', choices = [
 		('o', _("Off")),
 		('p', _("Progress")),
-		('s', _("Progress Small")),
+		('s', _("Small progress")),
 		('i', _("Icons")),
 	])
 	config.usage.movielist_unseen = ConfigYesNo(default = False)
@@ -208,13 +208,13 @@ def InitUsageConfig():
 
 	config.seek.on_pause = ConfigSelection(default = "play", choices = [
 		("play", _("Play")),
-		("step", _("Singlestep (GOP)")),
+		("step", _("Single step (GOP)")),
 		("last", _("Last speed")) ])
 
 
 	config.crash = ConfigSubsection()
 	config.crash.details = ConfigYesNo(default = False)
-	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "end", choices = [("beginning", _("at beginning")), ("end", _("at end"))])
+	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "end", choices = [("beginning", _("At beginning")), ("end", _("At end"))])
 
 	def updateEnterForward(configElement):
 		if not configElement.value:
@@ -273,13 +273,13 @@ def InitUsageConfig():
 	choicelist = []
 	for i in range(45000, 945000, 45000):
 		choicelist.append(("%d" % i, "%2.1f sec" % (i / 90000.)))
-	config.subtitles.subtitle_noPTSrecordingdelay = ConfigSelection(default = "315000", choices = [("0", _("No Delay"))] + choicelist)
+	config.subtitles.subtitle_noPTSrecordingdelay = ConfigSelection(default = "315000", choices = [("0", _("No delay"))] + choicelist)
 
 	config.subtitles.dvb_subtitles_yellow = ConfigYesNo(default = False)
-	config.subtitles.dvb_subtitles_original_position = ConfigSelection(default = "0", choices = [("0", _("original")), ("1", _("fixed")), ("2", _("relative"))])
+	config.subtitles.dvb_subtitles_original_position = ConfigSelection(default = "0", choices = [("0", _("Original")), ("1", _("Fixed")), ("2", _("Relative"))])
 	config.subtitles.dvb_subtitles_centered = ConfigYesNo(default = False)
 	config.subtitles.dvb_subtitles_backtrans = ConfigSelection(default = "0", choices = [
-		("0", _("no transparency")),
+		("0", _("No transparency")),
 		("25", "10%"),
 		("50", "20%"),
 		("75", "30%"),
@@ -289,7 +289,7 @@ def InitUsageConfig():
 		("175", "70%"),
 		("200", "80%"),
 		("225", "90%"),
-		("255", _("full transparency"))])
+		("255", _("Full transparency"))])
 	config.subtitles.pango_subtitles_yellow = ConfigYesNo(default = False)
 
 	config.autolanguage = ConfigSubsection()
@@ -314,7 +314,7 @@ def InitUsageConfig():
 		("ita", _("Italian")),
 		("lat", _("Latvian")),
 		("lit", _("Lithuanian")),
-		("ltz", _("Letzeburgesch")),
+		("ltz", _("Luxembourgish")),
 		("nor", _("Norwegian")),
 		("pol", _("Polish")),
 		("por", _("Portuguese")),

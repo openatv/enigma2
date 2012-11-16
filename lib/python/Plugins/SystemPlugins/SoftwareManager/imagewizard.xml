@@ -17,7 +17,7 @@ self.selectKey("OK")
 	</step>
 
 	<step id="welcome">
-		<text value="Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your receiver by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware." />
+		<text value="Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your receiver by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware." />
 		<list>
 			<listentry caption="OK, guide me through the upgrade process" step="backupquestion" />
 			<listentry caption="Exit the wizard" step="end" />

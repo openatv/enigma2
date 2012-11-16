@@ -98,7 +98,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 				self.editBouquetListEntry = getConfigListEntry(_("Edit bouquets list"), NoSave(ConfigNothing()))
 				self.list.append(self.editBouquetListEntry)
 				#New option to reload service lists (for example if bouquets have changed)
-				self.reloadLists = getConfigListEntry(_("Reload Black-/Whitelists"), NoSave(ConfigNothing()))
+				self.reloadLists = getConfigListEntry(_("Reload black-/white lists"), NoSave(ConfigNothing()))
 				self.list.append(self.reloadLists)
 				
 		self["config"].list = self.list

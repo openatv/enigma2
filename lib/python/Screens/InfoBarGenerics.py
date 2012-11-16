@@ -1730,7 +1730,7 @@ class InfoBarInstantRecord:
 	def __init__(self):
 		self["InstantRecordActions"] = HelpableActionMap(self, "InfobarInstantRecord",
 			{
-				"instantRecord": (self.instantRecord, _("Instant Record...")),
+				"instantRecord": (self.instantRecord, _("Instant recording...")),
 			})
 		self.recording = []
 
@@ -1922,8 +1922,8 @@ class InfoBarSubserviceSelection:
 
 		self["SubserviceQuickzapAction"] = HelpableActionMap(self, "InfobarSubserviceQuickzapActions",
 			{
-				"nextSubservice": (self.nextSubservice, _("Switch to next subservice")),
-				"prevSubservice": (self.prevSubservice, _("Switch to previous subservice"))
+				"nextSubservice": (self.nextSubservice, _("Switch to next sub service")),
+				"prevSubservice": (self.prevSubservice, _("Switch to previous sub service"))
 			}, -1)
 		self["SubserviceQuickzapAction"].setEnabled(False)
 
@@ -1995,16 +1995,16 @@ class InfoBarSubserviceSelection:
 			if self.bouquets and len(self.bouquets):
 				keys = ["red", "blue", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
 				if config.usage.multibouquet.value:
-					tlist = [(_("Quickzap"), "quickzap", service.subServices()), (_("Add to bouquet"), "CALLFUNC", self.addSubserviceToBouquetCallback), ("--", "")] + tlist
+					tlist = [(_("Quick zap"), "quickzap", service.subServices()), (_("Add to bouquet"), "CALLFUNC", self.addSubserviceToBouquetCallback), ("--", "")] + tlist
 				else:
-					tlist = [(_("Quickzap"), "quickzap", service.subServices()), (_("Add to favourites"), "CALLFUNC", self.addSubserviceToBouquetCallback), ("--", "")] + tlist
+					tlist = [(_("Quick zap"), "quickzap", service.subServices()), (_("Add to favourites"), "CALLFUNC", self.addSubserviceToBouquetCallback), ("--", "")] + tlist
 				selection += 3
 			else:
-				tlist = [(_("Quickzap"), "quickzap", service.subServices()), ("--", "")] + tlist
+				tlist = [(_("Quick zap"), "quickzap", service.subServices()), ("--", "")] + tlist
 				keys = ["red", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
 				selection += 2
 
-			self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice..."), list = tlist, selection = selection, keys = keys, skin_name = "SubserviceSelection")
+			self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a sub service..."), list = tlist, selection = selection, keys = keys, skin_name = "SubserviceSelection")
 
 	def subserviceSelected(self, service):
 		del self.bouquets

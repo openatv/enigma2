@@ -78,7 +78,7 @@ class SkinSelector(Screen):
 		self.loadPreview()
 
 	def info(self):
-		aboutbox = self.session.open(MessageBox,_("Enigma2 Skinselector\n\nIf you experience any problems please contact\nstephan@reichholf.net\n\n\xA9 2006 - Stephan Reichholf"), MessageBox.TYPE_INFO)
+		aboutbox = self.session.open(MessageBox,_("Enigma2 skin selector"), MessageBox.TYPE_INFO)
 		aboutbox.setTitle(_("About..."))
 
 	def find(self, arg, dirname, names):

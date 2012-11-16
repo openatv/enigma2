@@ -232,7 +232,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		
 	def __init__(self, session, args = 0):
 		self.session = session
-		self.setup_title = _("Movie List Configuration")
+		self.setup_title = _("Movie list configuration")
 		Screen.__init__(self, session)
 		cfg = ConfigSubsection()
 		self.cfg = cfg
@@ -241,12 +241,12 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		cfg.description = ConfigYesNo(default=(config.movielist.description.value != MovieList.HIDE_DESCRIPTION))
 		configList = [
 			getConfigListEntry(_("Sort"), cfg.moviesort),
-			getConfigListEntry(_("show extended description"), cfg.description),
+			getConfigListEntry(_("Show extended description"), cfg.description),
 			getConfigListEntry(_("Type"), cfg.listtype),
 			getConfigListEntry(_("Remember these settings for each folder"), config.movielist.settings_per_directory),
 			getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof),
-			getConfigListEntry(_("Load Length of Movies in Movielist"), config.usage.load_length_of_movies_in_moviellist),
-			getConfigListEntry(_("Show status icons in Movielist"), config.usage.show_icons_in_movielist),
+			getConfigListEntry(_("Load length of movies in movie list"), config.usage.load_length_of_movies_in_moviellist),
+			getConfigListEntry(_("Show status icons in movie list"), config.usage.show_icons_in_movielist),
 			getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen),
 			getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal),
 			getConfigListEntry(_("Root directory"), config.movielist.root),
@@ -353,7 +353,7 @@ class MovieContextMenu(Screen):
 				# Plugins expect a valid selection, so only include them if we selected a non-dir 
 				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 
-		menu.append((_("Add Bookmark"), csel.do_addbookmark))
+		menu.append((_("Add bookmark"), csel.do_addbookmark))
 		menu.append((_("create directory"), csel.do_createdir))
 		menu.append((_("Network") + "...", csel.showNetworkSetup))
 		menu.append((_("Settings") + "...", csel.configure))
@@ -471,7 +471,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 		self.playGoTo = None #1 - preview next item / -1 - preview previous
 
-		title = _("Movie Selection")
+		title = _("Movie selection")
 		self.setTitle(title)
 
 		# Need list for init
@@ -493,10 +493,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 		self["InfobarActions"] = HelpableActionMap(self, "InfobarActions", 
 			{
-				"showMovies": (self.doPathSelect, _("select the movie path")),
+				"showMovies": (self.doPathSelect, _("Select the movie path")),
 				"showRadio": (self.btn_radio, "?"),
 				"showTv": (self.btn_tv, _("Home")),
-				"showText": (self.btn_text, _("on end of movie")),
+				"showText": (self.btn_text, _("On end of movie")),
 			})
 
 		self["NumberActions"] =  NumberActionMap(["NumberActions", "InputAsciiActions"],
@@ -524,21 +524,21 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			})
 		self["MovieSelectionActions"] = HelpableActionMap(self, "MovieSelectionActions",
 			{
-				"contextMenu": (self.doContext, _("menu")),
-				"showEventInfo": (self.showEventInformation, _("show event details")),
+				"contextMenu": (self.doContext, _("Menu")),
+				"showEventInfo": (self.showEventInformation, _("Show event details")),
 			})
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-				"red": (self.btn_red, _("delete...")),
+				"red": (self.btn_red, _("Delete...")),
 				"green": (self.btn_green, _("Move to other directory")),
-				"yellow": (self.btn_yellow, _("select the movie path")),
-				"blue": (self.btn_blue, _("show tag menu")),
+				"yellow": (self.btn_yellow, _("Select the movie path")),
+				"blue": (self.btn_blue, _("Show tag menu")),
 			})
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-				"cancel": (self.abort, _("exit movielist")),
-				"ok": (self.itemSelected, _("select movie")),
+				"cancel": (self.abort, _("Exit movie list")),
+				"ok": (self.itemSelected, _("Select movie")),
 			})
 		self["DirectionActions"] = HelpableActionMap(self, "DirectionActions",
 			{
@@ -592,7 +592,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'copy': _("Copy"),
 				'reset': _("Reset"),
 				'tags': _("Tags"),
-				'addbookmark': _("Add Bookmark"),
+				'addbookmark': _("Add bookmark"),
 				'bookmarks': _("Location"),
 				'rename': _("Rename"),
 				'gohome': _("Home"),
@@ -1185,7 +1185,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			else:
 				self.session.open(
 					MessageBox,
-					_("Directory %s nonexistent.") % (res),
+					_("Directory %s does not exist.") % (res),
 					type = MessageBox.TYPE_ERROR,
 					timeout = 5
 					)
