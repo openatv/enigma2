@@ -44,8 +44,6 @@ class PowerManagerTimerEditList(Screen):
 		self["key_yellow"] = Button(" ")
 		self["key_blue"] = Button(" ")
 
-		print "key_red_choice:",self.key_red_choice
-
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"],
 			{
 				"ok": self.openEdit,
@@ -167,26 +165,21 @@ class PowerManagerTimerEditList(Screen):
 		if len(self.list) == 0:
 			return
 		timer = self['timerlist'].getCurrent()
-		print 'timer:',timer
 
 		if timer:
- 			try:
-				time = ("%s %s ... %s") % (FuzzyTime(timer.begin)[0], FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1])
-				duration = ("(%d " + _("mins") + ")") % ((timer.end - timer.begin) / 60)
+			time = ("%s %s ... %s") % (FuzzyTime(timer.begin)[0], FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1])
+			duration = ("(%d " + _("mins") + ")") % ((timer.end - timer.begin) / 60)
 
-				if timer.state == RealTimerEntry.StateWaiting:
-					state = _("waiting")
-				elif timer.state == RealTimerEntry.StatePrepared:
-					state = _("about to start")
-				elif timer.state == RealTimerEntry.StateRunning:
-					state = _("running...")
-				elif timer.state == RealTimerEntry.StateEnded:
-					state = _("done!")
-				else:
-					state = _("<unknown>")
- 			except:
-				time = ""
-				duration = ""
+			if timer.state == RealTimerEntry.StateWaiting:
+				state = _("waiting")
+			elif timer.state == RealTimerEntry.StatePrepared:
+				state = _("about to start")
+			elif timer.state == RealTimerEntry.StateRunning:
+				state = _("running...")
+			elif timer.state == RealTimerEntry.StateEnded:
+				state = _("done!")
+			else:
+				state = _("<unknown>")
 		else:
 			time = ""
 			duration = ""

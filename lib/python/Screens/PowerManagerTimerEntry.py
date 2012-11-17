@@ -1,7 +1,7 @@
 from Screen import Screen
 import ChannelSelection
 from ServiceReference import ServiceReference
-from Components.config import config, ConfigSelection, ConfigText, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry
+from Components.config import config, ConfigSelection, ConfigText, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, ConfigInteger, getConfigListEntry
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
@@ -61,8 +61,10 @@ class TimerEntry(Screen, ConfigListScreen):
 			timertype = {
 				TIMERTYPE.WAKEUP: "wakeup",
 				TIMERTYPE.WAKEUPTOSTANDBY: "wakeuptostandby",
-				TIMERTYPE.DEEPSTANDBY: "deepstandby",
+				TIMERTYPE.AUTOSTANDBY: "autostandby",
+				TIMERTYPE.AUTODEEPSTANDBY: "autodeepstandby",
 				TIMERTYPE.STANDBY: "standby",
+				TIMERTYPE.DEEPSTANDBY: "deepstandby",
 				TIMERTYPE.REBOOT: "reboot",
 				TIMERTYPE.RESTART: "restart"
 				}[self.timer.timerType]
@@ -102,20 +104,25 @@ class TimerEntry(Screen, ConfigListScreen):
 				weekday = int(strftime("%u", localtime(self.timer.begin))) - 1
 				day[weekday] = 1
 
+			autosleepdelay = self.timer.autosleepdelay
+			autosleeprepeat = self.timer.autosleeprepeat
+
 			if SystemInfo["DeepstandbySupport"]:
 				shutdownString = _("go to deep standby")
 			else:
 				shutdownString = _("shut down")
-			self.timerentry_timertype = ConfigSelection(choices = [("wakeup", _("wakeup")),("wakeuptostandby", _("wakeup to standby")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("reboot", _("reboot system")), ("restart", _("restart GUI"))], default = timertype)
+			self.timerentry_timertype = ConfigSelection(choices = [("wakeup", _("wakeup")),("wakeuptostandby", _("wakeup to standby")), ("autostandby", _("auto standby")), ("autodeepstandby", _("auto deepstandby")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("reboot", _("reboot system")), ("restart", _("restart GUI"))], default = timertype)
 			self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("nothing", _("do nothing"))], default = afterevent)
 			self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
 
 			self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
+			self.timerrntry_autosleepdelay = ConfigInteger(default=autosleepdelay, limits = (10, 300))
+			self.timerentry_autosleeprepeat = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = autosleeprepeat)
 
 			self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
 			self.timerentry_starttime = ConfigClock(default = self.timer.begin)
 			self.timerentry_endtime = ConfigClock(default = self.timer.end)
-			self.timerentry_showendtime = ConfigSelection(default = ((self.timer.end - self.timer.begin) > 1), choices = [(True, _("yes")), (False, _("no"))])
+			self.timerentry_showendtime = ConfigSelection(default = (((self.timer.end - self.timer.begin) /60 ) > 1), choices = [(True, _("yes")), (False, _("no"))])
 
 			self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = _("%d.%B %Y"), increment = 86400)
 
@@ -127,53 +134,63 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def createSetup(self, widget):
 		self.list = []
-		self.list.append(getConfigListEntry(_("Timer type"), self.timerentry_timertype))
-		self.timerTypeEntry = getConfigListEntry(_("Repeat Type"), self.timerentry_type)
-		self.list.append(self.timerTypeEntry)
+		self.timerType = getConfigListEntry(_("Timer type"), self.timerentry_timertype)
+		self.list.append(self.timerType)
 
-		if self.timerentry_type.getValue() == "once":
-			self.frequencyEntry = None
-		else: # repeated
+
+		if self.timerentry_timertype.getValue() == "autostandby" or self.timerentry_timertype.getValue() == "autodeepstandby":
+			self.list.append(getConfigListEntry(_("Sleep delay"), self.timerrntry_autosleepdelay))
+			self.list.append(getConfigListEntry(_("Repeat Type"), self.timerentry_autosleeprepeat))
+			self.timerTypeEntry = getConfigListEntry(_("Repeat Type"), self.timerentry_type)
+			self.entryShowEndTime = getConfigListEntry(_("Set End Time"), self.timerentry_showendtime)
 			self.frequencyEntry = getConfigListEntry(_("Repeats"), self.timerentry_repeated)
-			self.list.append(self.frequencyEntry)
-			self.repeatedbegindateEntry = getConfigListEntry(_("Starting on"), self.timerentry_repeatedbegindate)
-			self.list.append(self.repeatedbegindateEntry)
-			if self.timerentry_repeated.getValue() == "daily":
-				pass
-			if self.timerentry_repeated.getValue() == "weekdays":
-				pass
-			if self.timerentry_repeated.getValue() == "weekly":
-				self.list.append(getConfigListEntry(_("Weekday"), self.timerentry_weekday))
+		else:
+			self.timerTypeEntry = getConfigListEntry(_("Repeat Type"), self.timerentry_type)
+			self.list.append(self.timerTypeEntry)
 
-			if self.timerentry_repeated.getValue() == "user":
-				self.list.append(getConfigListEntry(_("Monday"), self.timerentry_day[0]))
-				self.list.append(getConfigListEntry(_("Tuesday"), self.timerentry_day[1]))
-				self.list.append(getConfigListEntry(_("Wednesday"), self.timerentry_day[2]))
-				self.list.append(getConfigListEntry(_("Thursday"), self.timerentry_day[3]))
-				self.list.append(getConfigListEntry(_("Friday"), self.timerentry_day[4]))
-				self.list.append(getConfigListEntry(_("Saturday"), self.timerentry_day[5]))
-				self.list.append(getConfigListEntry(_("Sunday"), self.timerentry_day[6]))
+			if self.timerentry_type.getValue() == "once":
+				self.frequencyEntry = None
+			else: # repeated
+				self.frequencyEntry = getConfigListEntry(_("Repeats"), self.timerentry_repeated)
+				self.list.append(self.frequencyEntry)
+				self.repeatedbegindateEntry = getConfigListEntry(_("Starting on"), self.timerentry_repeatedbegindate)
+				self.list.append(self.repeatedbegindateEntry)
+				if self.timerentry_repeated.getValue() == "daily":
+					pass
+				if self.timerentry_repeated.getValue() == "weekdays":
+					pass
+				if self.timerentry_repeated.getValue() == "weekly":
+					self.list.append(getConfigListEntry(_("Weekday"), self.timerentry_weekday))
 
-		self.entryDate = getConfigListEntry(_("Date"), self.timerentry_date)
-		if self.timerentry_type.getValue() == "once":
-			self.list.append(self.entryDate)
+				if self.timerentry_repeated.getValue() == "user":
+					self.list.append(getConfigListEntry(_("Monday"), self.timerentry_day[0]))
+					self.list.append(getConfigListEntry(_("Tuesday"), self.timerentry_day[1]))
+					self.list.append(getConfigListEntry(_("Wednesday"), self.timerentry_day[2]))
+					self.list.append(getConfigListEntry(_("Thursday"), self.timerentry_day[3]))
+					self.list.append(getConfigListEntry(_("Friday"), self.timerentry_day[4]))
+					self.list.append(getConfigListEntry(_("Saturday"), self.timerentry_day[5]))
+					self.list.append(getConfigListEntry(_("Sunday"), self.timerentry_day[6]))
 
-		self.entryStartTime = getConfigListEntry(_("StartTime"), self.timerentry_starttime)
-		self.list.append(self.entryStartTime)
+			self.entryDate = getConfigListEntry(_("Date"), self.timerentry_date)
+			if self.timerentry_type.getValue() == "once":
+				self.list.append(self.entryDate)
 
-		self.entryShowEndTime = getConfigListEntry(_("Set End Time"), self.timerentry_showendtime)
-		self.list.append(self.entryShowEndTime)
-		self.entryEndTime = getConfigListEntry(_("EndTime"), self.timerentry_endtime)
-		if self.timerentry_showendtime.getValue():
-			self.list.append(self.entryEndTime)
+			self.entryStartTime = getConfigListEntry(_("StartTime"), self.timerentry_starttime)
+			self.list.append(self.entryStartTime)
 
-		self.list.append(getConfigListEntry(_("After event"), self.timerentry_afterevent))
+			self.entryShowEndTime = getConfigListEntry(_("Set End Time"), self.timerentry_showendtime)
+			self.list.append(self.entryShowEndTime)
+			self.entryEndTime = getConfigListEntry(_("EndTime"), self.timerentry_endtime)
+			if self.timerentry_showendtime.getValue():
+				self.list.append(self.entryEndTime)
+
+			self.list.append(getConfigListEntry(_("After event"), self.timerentry_afterevent))
 
 		self[widget].list = self.list
 		self[widget].l.setList(self.list)
 
 	def newConfig(self):
-		if self["config"].getCurrent() in (self.timerTypeEntry, self.frequencyEntry, self.entryShowEndTime):
+		if self["config"].getCurrent() in (self.timerType, self.timerTypeEntry, self.frequencyEntry, self.entryShowEndTime):
 			self.createSetup("config")
 
 	def keyLeft(self):
@@ -210,12 +227,15 @@ class TimerEntry(Screen, ConfigListScreen):
 	def keyGo(self, result = None):
 		if not self.timerentry_showendtime.getValue():
 			self.timerentry_endtime.value = self.timerentry_starttime.getValue()
+
 		self.timer.resetRepeated()
 		self.timer.timerType = {
 			"wakeup": TIMERTYPE.WAKEUP,
 			"wakeuptostandby": TIMERTYPE.WAKEUPTOSTANDBY,
-			"deepstandby": TIMERTYPE.DEEPSTANDBY,
+			"autostandby": TIMERTYPE.AUTOSTANDBY,
+			"autodeepstandby": TIMERTYPE.AUTODEEPSTANDBY,
 			"standby": TIMERTYPE.STANDBY,
+			"deepstandby": TIMERTYPE.DEEPSTANDBY,
 			"reboot": TIMERTYPE.REBOOT,
 			"restart": TIMERTYPE.RESTART
 			}[self.timerentry_timertype.value]
@@ -228,6 +248,12 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		if self.timerentry_type.getValue() == "once":
 			self.timer.begin, self.timer.end = self.getBeginEnd()
+
+		if self.timerentry_timertype.getValue() == "autostandby" or self.timerentry_timertype.getValue() == "autodeepstandby":
+			self.timer.begin = int(time()) + 10
+			self.timer.end = self.timer.begin
+			self.timer.autosleepdelay = self.timerrntry_autosleepdelay.getValue()
+			self.timer.autosleeprepeat = self.timerentry_autosleeprepeat.getValue()
 		if self.timerentry_type.getValue() == "repeated":
 			if self.timerentry_repeated.getValue() == "daily":
 				for x in (0, 1, 2, 3, 4, 5, 6):

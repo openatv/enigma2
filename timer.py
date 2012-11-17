@@ -1,6 +1,6 @@
 from bisect import insort
 from time import time, localtime, mktime
-from enigma import eTimer
+from enigma import eTimer, eActionMap
 import datetime
 
 class TimerEntry:
@@ -94,7 +94,18 @@ class TimerEntry:
 
 	# check if a timer entry must be skipped
 	def shouldSkip(self):
-		return self.end <= time() and self.state == TimerEntry.StateWaiting
+		if "RecordTimerEntry" in `self`:
+			return self.end <= time() and self.state == TimerEntry.StateWaiting
+		else:
+			if (self.timerType == 3 or self.timerType == 4) and self.autosleeprepeat != 'once':
+				return False
+			elif self.begin >= time() and (self.timerType == 3 or self.timerType == 4) and self.autosleeprepeat == 'once':
+				return False
+			elif (self.timerType == 3 or self.timerType == 4) and self.autosleeprepeat == 'once' and self.state != TimerEntry.StatePrepared:
+				return True
+			else:
+				print self.end <= time() and self.state == TimerEntry.StateWaiting and self.timerType != 3 and self.timerType != 4
+				return self.end <= time() and self.state == TimerEntry.StateWaiting and self.timerType != 3 and self.timerType != 4
 
 	def abort(self):
 		self.end = time()
@@ -222,7 +233,6 @@ class Timer:
 		self.setNextActivation(now, min)
 
 	def timeChanged(self, timer):
-		print "time changed"
 		timer.timeChanged()
 		if timer.state == TimerEntry.StateEnded:
 			self.processed_timers.remove(timer)
@@ -235,6 +245,12 @@ class Timer:
 		# give the timer a chance to re-enqueue
 		if timer.state == TimerEntry.StateEnded:
 			timer.state = TimerEntry.StateWaiting
+
+		elif timer.timerType == 3 or timer.timerType == 4:
+			if timer.state > 0:
+				eActionMap.getInstance().unbindAction('', timer.keyPressed)
+			timer.state = TimerEntry.StateWaiting
+
 		self.addTimerEntry(timer)
 
 	def doActivate(self, w):

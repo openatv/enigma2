@@ -18,63 +18,84 @@ class PowerManagerTimerList(HTMLComponent, GUIComponent, object):
 #
 	def buildTimerEntry(self, timer, processed):
 		timertype = {
-			TIMERTYPE.WAKEUP: "Wake Up",
-			TIMERTYPE.WAKEUPTOSTANDBY: "Wake Up To Standby",
-			TIMERTYPE.DEEPSTANDBY: "Deep Standby",
-			TIMERTYPE.STANDBY: "Standby",
-			TIMERTYPE.REBOOT: "Reboot",
-			TIMERTYPE.RESTART: "Restart GUI"
+			TIMERTYPE.WAKEUP: _("Wake Up"),
+			TIMERTYPE.WAKEUPTOSTANDBY: _("Wake Up To Standby"),
+			TIMERTYPE.STANDBY: _("Standby"),
+			TIMERTYPE.AUTOSTANDBY: _("Auto Standby"),
+			TIMERTYPE.AUTODEEPSTANDBY: _("Auto Deep Standby"),
+			TIMERTYPE.DEEPSTANDBY: _("Deep Standby"),
+			TIMERTYPE.REBOOT: _("Reboot"),
+			TIMERTYPE.RESTART: _("Restart GUI")
 			}[timer.timerType]
 
 		afterevent = {
-			AFTEREVENT.NONE: "Nothing",
-			AFTEREVENT.DEEPSTANDBY: "Deep Standby",
-			AFTEREVENT.STANDBY: "standby",
-			AFTEREVENT.AUTO: "auto"
+			AFTEREVENT.NONE: _("Nothing"),
+			AFTEREVENT.DEEPSTANDBY: _("Deep Standby"),
+			AFTEREVENT.STANDBY: _("Standby"),
+			AFTEREVENT.AUTO: _("auto")
 			}[timer.afterEvent]
 
 		width = self.l.getItemSize().width()
 		res = [ None ]
 		x = width / 2
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 24, 2, x-2-24, 25, 1, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, _('Timer Type:') + ' ' + timertype))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 2, x-2, 25, 0, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _('When finished:') + ' ' + afterevent))
-
-		days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
-		begin = FuzzyTime(timer.begin)
-		if timer.repeated:
-			repeatedtext = []
-			flags = timer.repeated
-			for x in (0, 1, 2, 3, 4, 5, 6):
-				if (flags & 1 == 1):
-					repeatedtext.append(days[x])
-				flags = flags >> 1
-			repeatedtext = ", ".join(repeatedtext)
-			if self.iconRepeat:
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 25, 20, 20, self.iconRepeat))
-		else:
-			repeatedtext = begin[0] # date
-		text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 148, 26, width-150, 25, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, text))
-		icon = None
-		if not processed:
-			if timer.state == TimerEntry.StateWaiting:
-				state = _("waiting")
-				icon = self.iconWait
-			elif timer.state == TimerEntry.StatePrepared:
-				state = _("about to start")
-				icon = self.iconPrepared
-			elif timer.state == TimerEntry.StateRunning:
-				state = _("running...")
-				icon = self.iconZapped
-			elif timer.state == TimerEntry.StateEnded:
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 24, 2, width, 25, 0, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, timertype))
+		if timer.timerType == TIMERTYPE.AUTOSTANDBY or timer.timerType == TIMERTYPE.AUTODEEPSTANDBY:
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 148, 26, width-150, 25, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _('Run Type:') + ' ' + _(timer.autosleeprepeat)))
+			icon = None
+			if not processed:
+				if timer.state == TimerEntry.StateWaiting:
+					state = _("waiting")
+					icon = self.iconWait
+				elif timer.state == TimerEntry.StatePrepared or timer.state == TimerEntry.StateRunning:
+					state = _("running...")
+					icon = self.iconZapped
+				elif timer.state == TimerEntry.StateEnded:
+					state = _("done!")
+					icon = self.iconDone
+				else:
+					state = _("<unknown>")
+					icon = None
+			else:
 				state = _("done!")
 				icon = self.iconDone
-			else:
-				state = _("<unknown>")
-				icon = None
 		else:
-			state = _("done!")
-			icon = self.iconDone
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, x+24, 2, x-2-24, 25, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _('When finished:') + ' ' + afterevent))
+			days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
+			begin = FuzzyTime(timer.begin)
+			if timer.repeated:
+				repeatedtext = []
+				flags = timer.repeated
+				for x in (0, 1, 2, 3, 4, 5, 6):
+					if (flags & 1 == 1):
+						repeatedtext.append(days[x])
+					flags = flags >> 1
+				repeatedtext = ", ".join(repeatedtext)
+				if self.iconRepeat:
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 25, 20, 20, self.iconRepeat))
+			else:
+				repeatedtext = begin[0] # date
+			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 148, 26, width-150, 25, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, text))
+			icon = None
+			if not processed:
+				if timer.state == TimerEntry.StateWaiting:
+					state = _("waiting")
+					icon = self.iconWait
+				elif timer.state == TimerEntry.StatePrepared:
+					state = _("about to start")
+					icon = self.iconPrepared
+				elif timer.state == TimerEntry.StateRunning:
+					state = _("running...")
+					icon = self.iconZapped
+				elif timer.state == TimerEntry.StateEnded:
+					state = _("done!")
+					icon = self.iconDone
+				else:
+					state = _("<unknown>")
+					icon = None
+			else:
+				state = _("done!")
+				icon = self.iconDone
 
 		if timer.disabled:
 			state = _("disabled")
@@ -84,7 +105,7 @@ class PowerManagerTimerList(HTMLComponent, GUIComponent, object):
 			state = _("failed")
 			icon = self.iconFailed
 
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 25, 126, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 26, 126, 25, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
 		if icon:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 5, 20, 20, icon))
 		return res
