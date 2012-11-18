@@ -149,7 +149,7 @@ class UpdatePluginMenu(Screen):
 							menuEntryDescription = _('Extended Software Plugin')
 						self.list.append(('default-plugin', menuEntryName, menuEntryDescription + self.oktext, callFnc))
 			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(("advanced", _("Advanced pptions"), _("\nAdvanced options and settings." ) + self.oktext, None))
+				self.list.append(("advanced", _("Advanced options"), _("\nAdvanced options and settings." ) + self.oktext, None))
 		elif self.menu == 1:
 			self.list.append(("advancedrestore", _("Advanced restore"), _("\nRestore your backups by date." ) + self.oktext, None))
 			self.list.append(("backuplocation", _("Select backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
