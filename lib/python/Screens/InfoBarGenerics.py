@@ -3659,7 +3659,7 @@ class InfoBarTimeshift:
 					self.ts_rewind_timer.start(100, 1)
 
 	def rewindService(self):
-		if getBoxType().startswith('gb'):
+		if getBoxType().startswith('gb') or getBoxType().startswith('xp1000'):
 				self.setSeekState(self.SEEK_STATE_PLAY)
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.getValue())))
 
@@ -3742,7 +3742,7 @@ class InfoBarExtensions:
 
 	def getOsd3DSetup(self):
 		if config.osd.show3dextensions .getValue():
-			return [((boundFunction(self.get3DSetupname), boundFunction(self.openOSD3DSetup), lambda: True), None)]
+			return [((boundFunction(self.get3DSetupname), boundFunction(self.open3DSetup), lambda: True), None)]
 		else:
 			return []
 
@@ -3869,8 +3869,8 @@ class InfoBarExtensions:
 		from Screens.LogManager import LogManager
 		self.session.open(LogManager)
 
-	def openOSD3DSetup(self):
-		from Screens.OSD import OSD3DSetupScreen
+	def open3DSetup(self):
+		from Screens.UserInterfacePositioner import OSD3DSetupScreen
 		self.session.open(OSD3DSetupScreen)
 
 	def openSoftcamPanel(self):

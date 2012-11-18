@@ -403,14 +403,16 @@ class SystemNetworkInfo(Screen):
 
 		self.iface = None
 		self.createscreen()
+		self.iStatus = None
 
 		if iNetwork.isWirelessInterface(self.iface):
 			try:
 				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
-				self.resetList()
-				self.onClose.append(self.cleanup)
+				self.iStatus = iStatus
 			except:
 				pass
+			self.resetList()
+			self.onClose.append(self.cleanup)
 		self.updateStatusbar()
 
 		self["key_red"] = StaticText(_("Close"))
@@ -460,10 +462,12 @@ class SystemNetworkInfo(Screen):
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
 	def cleanup(self):
-		iStatus.stopWlanConsole()
+		if self.iStatus:
+			self.iStatus.stopWlanConsole()
 
 	def resetList(self):
-		iStatus.getDataForInterface(self.iface,self.getInfoCB)
+		if self.iStatus:
+			self.iStatus.getDataForInterface(self.iface,self.getInfoCB)
 
 	def getInfoCB(self,data,status):
 		self.LinkState = None
@@ -536,7 +540,7 @@ class SystemNetworkInfo(Screen):
 
 		if iNetwork.isWirelessInterface(self.iface):
 			try:
-				iStatus.getDataForInterface(self.iface,self.getInfoCB)
+				self.iStatus.getDataForInterface(self.iface,self.getInfoCB)
 			except:
 				self["statuspic"].setPixmapNum(1)
 				self["statuspic"].show()

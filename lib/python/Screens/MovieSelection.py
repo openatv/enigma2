@@ -95,7 +95,7 @@ def getPreferredTagEditor():
 	return preferredTagEditor
 
 def isTrashFolder(ref):
-	if not ref.flags & eServiceReference.mustDescent:
+	if not config.usage.movielist_trashcan.value or not ref.flags & eServiceReference.mustDescent:
 		return False
 	return os.path.realpath(ref.getPath()).endswith('.Trash') or os.path.realpath(ref.getPath()).endswith('.Trash/')
 
@@ -328,6 +328,7 @@ class MovieContextMenu(Screen):
 				if isTrashFolder(service):
 					menu.append((_("Permanently remove all deleted items"), csel.purgeAll))
 				else:
+					menu.append((_("Delete"), csel.do_delete))
 					menu.append((_("Move"), csel.do_move))
 					menu.append((_("Rename"), csel.do_rename))
 			else:
