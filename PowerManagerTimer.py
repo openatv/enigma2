@@ -162,7 +162,7 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 
 		if next_state == 1 and (self.timerType == TIMERTYPE.AUTOSTANDBY or self.timerType == TIMERTYPE.AUTODEEPSTANDBY):
 			eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.keyPressed)
-			self.begin = time() + int(self.autosleepdelay)
+			self.begin = time() + int(self.autosleepdelay)*60
 			if self.end <= self.begin:
 				self.end = self.begin
 
@@ -202,11 +202,11 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 						eActionMap.getInstance().unbindAction('', self.keyPressed)
 						return True
 					else:
-						self.begin = time() + int(self.autosleepdelay)
+						self.begin = time() + int(self.autosleepdelay)*60
 						if self.end <= self.begin:
 							self.end = self.begin
 				else:
-					self.begin = time() + int(self.autosleepdelay)
+					self.begin = time() + int(self.autosleepdelay)*60
 					if self.end <= self.begin:
 						self.end = self.begin
 
@@ -228,7 +228,7 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 							eActionMap.getInstance().unbindAction('', self.keyPressed)
 							return True
 						else:
-							self.begin = time() + int(self.autosleepdelay)
+							self.begin = time() + int(self.autosleepdelay)*60
 							if self.end <= self.begin:
 								self.end = self.begin
 
@@ -328,8 +328,7 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 			PowerManagerTimerEntry.TryToRestart() # start reboot handling without screen
 
 	def keyPressed(self, key, tag):
-		print 'DELAYED'
-		self.begin = time() + int(self.autosleepdelay)
+		self.begin = time() + int(self.autosleepdelay)*60
 		if self.end <= self.begin:
 			self.end = self.begin
 
