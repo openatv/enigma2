@@ -140,12 +140,12 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		if self.timerentry_timertype.getValue() == "autostandby" or self.timerentry_timertype.getValue() == "autodeepstandby":
 			self.list.append(getConfigListEntry(_("Sleep delay"), self.timerrntry_autosleepdelay))
-			self.list.append(getConfigListEntry(_("Repeat Type"), self.timerentry_autosleeprepeat))
-			self.timerTypeEntry = getConfigListEntry(_("Repeat Type"), self.timerentry_type)
-			self.entryShowEndTime = getConfigListEntry(_("Set End Time"), self.timerentry_showendtime)
+			self.list.append(getConfigListEntry(_("Repeat type"), self.timerentry_autosleeprepeat))
+			self.timerTypeEntry = getConfigListEntry(_("Repeat type"), self.timerentry_type)
+			self.entryShowEndTime = getConfigListEntry(_("Set end Time"), self.timerentry_showendtime)
 			self.frequencyEntry = getConfigListEntry(_("Repeats"), self.timerentry_repeated)
 		else:
-			self.timerTypeEntry = getConfigListEntry(_("Repeat Type"), self.timerentry_type)
+			self.timerTypeEntry = getConfigListEntry(_("Repeat type"), self.timerentry_type)
 			self.list.append(self.timerTypeEntry)
 
 			if self.timerentry_type.getValue() == "once":
@@ -175,12 +175,12 @@ class TimerEntry(Screen, ConfigListScreen):
 			if self.timerentry_type.getValue() == "once":
 				self.list.append(self.entryDate)
 
-			self.entryStartTime = getConfigListEntry(_("StartTime"), self.timerentry_starttime)
+			self.entryStartTime = getConfigListEntry(_("Start time"), self.timerentry_starttime)
 			self.list.append(self.entryStartTime)
 
-			self.entryShowEndTime = getConfigListEntry(_("Set End Time"), self.timerentry_showendtime)
+			self.entryShowEndTime = getConfigListEntry(_("Set end time"), self.timerentry_showendtime)
 			self.list.append(self.entryShowEndTime)
-			self.entryEndTime = getConfigListEntry(_("EndTime"), self.timerentry_endtime)
+			self.entryEndTime = getConfigListEntry(_("End time"), self.timerentry_endtime)
 			if self.timerentry_showendtime.getValue():
 				self.list.append(self.entryEndTime)
 

@@ -49,7 +49,7 @@
 	<!-- Fonts -->
 	<!-- Fonts are already in skin_default.xml -->
 	<!-- Main infobar -->
-	<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,160" title="InfoBar" backgroundColor="transparent">
+	<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,160" title="Info bar" backgroundColor="transparent">
 		<!-- Background -->
 		<ePixmap position="0,0" zPosition="-1" size="720,160" pixmap="skin_default/info-bg.png" />
 		<ePixmap position="27,73" size="665,71" pixmap="skin_default/screws.png" alphatest="on" transparent="1" />
@@ -269,7 +269,7 @@
 		</widget>
 	</screen>
 	<!-- Movieplayer infobar -->
-	<screen name="MoviePlayer" flags="wfNoBorder" position="0,380" size="720,160" title="InfoBar" backgroundColor="transparent">
+	<screen name="MoviePlayer" flags="wfNoBorder" position="0,380" size="720,160" title="Info bar" backgroundColor="transparent">
 		<!-- Background -->
 		<ePixmap position="0,0" pixmap="skin_default/info-bg_mp.png" zPosition="-1" size="720,160" />
 		<ePixmap position="29,40" pixmap="skin_default/screws_mp.png" size="665,104" alphatest="on" />

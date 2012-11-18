@@ -10,9 +10,7 @@ struct huffTableEntry;
 class freesatHuffmanDecoder 
 {
 private:
-	huffTableEntry	*m_tables[2][256];
-	void 		loadFile(int tableid, const char *filename);
-	void 		loadTables();
+	huffTableEntry *m_tables[2][256];
 public:
 	freesatHuffmanDecoder();
 	~freesatHuffmanDecoder();

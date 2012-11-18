@@ -147,9 +147,9 @@ class RecordingSettings(Screen,ConfigListScreen):
 		if config.usage.setup_level.index >= 2:
 			self.default_entry = getConfigListEntry(_("Default movie location"), self.default_dirname, _("Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."))
 			list.append(self.default_entry)
-			self.timer_entry = getConfigListEntry(_("Timer record location"), self.timer_dirname, _("Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."))
+			self.timer_entry = getConfigListEntry(_("Timer recording location"), self.timer_dirname, _("Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."))
 			list.append(self.timer_entry)
-			self.instantrec_entry = getConfigListEntry(_("Instant record location"), self.instantrec_dirname, _("Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."))
+			self.instantrec_entry = getConfigListEntry(_("Instant recording location"), self.instantrec_dirname, _("Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."))
 			list.append(self.instantrec_entry)
 		else:
 			self.default_entry = getConfigListEntry(_("Movie location"), self.default_dirname, _("Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."))
