@@ -84,7 +84,7 @@ class About(Screen):
 		self["BuildVersion"] = StaticText(_("Build:") + " " + about.getBuildVersionString())
 		AboutText += _("Build:") + " " + about.getBuildVersionString() + "\n"
 		self["EnigmaVersion"] = StaticText(_("Last Update:") + " " + about.getLastUpdateString())
-		AboutText += _("Last Update:") + " " + about.getLastUpdateString() + "\n\n"
+		AboutText += _("Last update:") + " " + about.getLastUpdateString() + "\n\n"
 
 		fp_version = getFPVersion()
 		if fp_version is None:
@@ -101,7 +101,7 @@ class About(Screen):
 			tempinfo = open('/proc/stb/fp/temp_sensor', 'r').read()
 		if tempinfo:
 			mark = str('\xc2\xb0')
-			AboutText += _("System Temperature:") + " " + tempinfo.replace('\n','') + mark + "C\n\n"
+			AboutText += _("System temperature:") + " " + tempinfo.replace('\n','') + mark + "C\n\n"
 
 		self["TranslationHeader"] = StaticText(_("Translation:"))
 		AboutText += _("Translation:") + "\n"

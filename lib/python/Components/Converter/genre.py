@@ -14,7 +14,7 @@ maintype = [	_("Reserved"),
 		_("Arts/Culture"),
 		_("Social/Political/Economics"),
 		_("Education/Science/..."),
-		_("Leisure hobies"),
+		_("Leisure hobbies"),
 		_("Other")]
 
 

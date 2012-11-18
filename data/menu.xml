@@ -83,7 +83,7 @@ self.session.openWithCallback(msgClosed, EpgLoadMsg)
 					<item level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
 					<item level="0" text="Initialization" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
 					<item level="0" text="Filesystem check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
-					<item level="0" text="Convert filesystem ext3 to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
+					<item level="0" text="Convert ext3 filesystem to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
 				</menu>
 				<item level="0" text="HDMI CEC" entryID="hdmicec" requires="HDMICEC">
 <code>
@@ -128,7 +128,7 @@ self.session.open(SABnzbdSetupScreen)
 				<item level="0" entryID="time_setup"><setup id="time"/></item>
 				<menu level="2" text="User interface" entryID="osd_setup" requires="OsdMenu">
 					<id val="osd_menu" />
-					<item level="0" entryID="osd_setup"><setup id="osdsetup" /></item>
+					<item level="0" entryID="user_interface"><setup id="userinterface" /></item>
 					<item level="2" text="Position setup" entryID="osdsetup" requires="OsdSetup"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner"/></item>
 					<item level="2" text="3D setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="UserInterfacePositioner" screen="OSD3DSetupScreen"/></item>
 				</menu>

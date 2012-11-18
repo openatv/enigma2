@@ -120,12 +120,12 @@ class CIconfigMenu(Screen):
 		self.filename = eEnv.resolve("${sysconfdir}/enigma2/ci") + str(self.ci_slot) + ".xml"
 
 		self["key_red"] = StaticText(_("Delete"))
-		self["key_green"] = StaticText(_("add Service"))
-		self["key_yellow"] = StaticText(_("add Provider"))
-		self["key_blue"] = StaticText(_("select CAId"))
-		self["CAidList_desc"] = StaticText(_("assigned CAIds:"))
+		self["key_green"] = StaticText(_("Add service"))
+		self["key_yellow"] = StaticText(_("Add provider"))
+		self["key_blue"] = StaticText(_("Select CAId"))
+		self["CAidList_desc"] = StaticText(_("Assigned CAIds:"))
 		self["CAidList"] = StaticText()
-		self["ServiceList_desc"] = StaticText(_("assigned Services/Provider:"))
+		self["ServiceList_desc"] = StaticText(_("Assigned services/provider:"))
 		self["ServiceList_info"] = StaticText()
 
 		self["actions"] = ActionMap(["ColorActions","SetupActions"],
@@ -188,7 +188,7 @@ class CIconfigMenu(Screen):
 		if len(self.servicelist):
 			self["ServiceList_info"].setText("")
 		else:
-			self["ServiceList_info"].setText(_("no Services/Providers selected"))
+			self["ServiceList_info"].setText(_("No services/providers selected"))
 
 	def delete(self):
 		cur = self["ServiceList"].getCurrent()
@@ -421,7 +421,7 @@ class myProviderSelection(ChannelSelectionBase):
 		self["key_green"] = StaticText()
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
-		self["introduction"] = StaticText(_("Press OK to select a Provider."))
+		self["introduction"] = StaticText(_("Press OK to select a provider."))
 
 	def doNothing(self):
 		pass
@@ -529,7 +529,7 @@ class myChannelSelection(ChannelSelectionBase):
 		self["key_green"] = StaticText(_("All"))
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText(_("Favourites"))
-		self["introduction"] = StaticText(_("Press OK to select a Provider."))
+		self["introduction"] = StaticText(_("Press OK to select a provider."))
 
 	def __onExecCallback(self):
 		self.setModeTv()
@@ -641,8 +641,8 @@ def Plugins(**kwargs):
 	if config.usage.setup_level.index > 1:
 		return [PluginDescriptor( where = PluginDescriptor.WHERE_SESSIONSTART, needsRestart = False, fnc = sessionstart ),
 				PluginDescriptor( where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = False, fnc = autostart ),
-				PluginDescriptor( name = "CommonInterfaceAssignment", description = _("a gui to assign services/providers/caids to common interface modules"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu )]
+				PluginDescriptor( name = _("Common Interface assignment"), description = _("a gui to assign services/providers/caids to common interface modules"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu )]
 	else:
 		return [PluginDescriptor( where = PluginDescriptor.WHERE_SESSIONSTART, needsRestart = False, fnc = sessionstart ),
 				PluginDescriptor( where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = False, fnc = autostart ),
-				PluginDescriptor( name = "CommonInterfaceAssignment", description = _("a gui to assign services/providers to common interface modules"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu )]
+				PluginDescriptor( name = _("Common Interface assignment"), description = _("a gui to assign services/providers to common interface modules"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu )]

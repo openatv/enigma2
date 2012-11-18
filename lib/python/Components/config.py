@@ -1144,7 +1144,7 @@ class ConfigDirectory(ConfigText):
 
 	def getMulti(self, selected):
 		if self.text == "":
-			return ("mtext"[1-selected:], _("List of Storage Devices"), range(0))
+			return ("mtext"[1-selected:], _("List of storage devices"), range(0))
 		else:
 			return ConfigText.getMulti(self, selected)
 
