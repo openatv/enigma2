@@ -965,8 +965,8 @@ class Info(Screen):
 
 		self["label2"] = Label("INFO")
 		self["label1"] =  ScrollLabel()
-		if info == "INFO":
-			self.INFO()
+		if info == "InfoPanel":
+			self.InfoPanel()
 		if info == "Sytem_info":
 			self.Sytem_info()
 		elif info == "Default":
