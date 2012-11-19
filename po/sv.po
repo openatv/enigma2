@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-16 18:48+0100\n"
-"PO-Revision-Date: 2012-11-18 16:00+0100\n"
+"PO-Revision-Date: 2012-11-19 19:34+0100\n"
 "Last-Translator: Magnus Nilsson <mag_nilsson@hotmail.com>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -1403,11 +1403,11 @@ msgstr ""
 
 #
 msgid "Configure the behavior when movie playback is manually stopped."
-msgstr "Beteende när en film stoppas"
+msgstr "Konfigurera Beteendet när en film stoppas"
 
 #
 msgid "Configure the behavior when movie playback is started."
-msgstr "Beteende när en film startas"
+msgstr "Konfigurera Beteendet när en film startas"
 
 msgid ""
 "Configure the behavior when reaching the end of a movie, during movie "
@@ -1503,9 +1503,9 @@ msgid ""
 "When the amount of space drops below this value, deleted items will be "
 "removed from the trash can."
 msgstr ""
-"Konfigurera det minsta diskutrymmet att vara tillgänglig för inspelning. När "
-"utrymmet sjunker under detta värde kommer borttagna objekt tas bort från "
-"papperskorgen."
+"Konfigurera det minsta diskutrymmet som skall vara tillgänglig för "
+"inspelning. När utrymmet sjunker under detta värde kommer borttagna objekt "
+"tas bort från papperskorgen."
 
 #
 msgid "Configure the nameserver (DNS)."
@@ -2307,7 +2307,7 @@ msgstr "Dynamisk kontrast"
 
 #
 msgid "E"
-msgstr "Ö"
+msgstr "E"
 
 msgid "EPG"
 msgstr "EPG"
@@ -3348,7 +3348,7 @@ msgstr "Länkade titlar med en DVD meny"
 
 #
 msgid "List EPG functions..."
-msgstr "lista över EPG funktioner..."
+msgstr "Lista över EPG funktioner..."
 
 msgid "List available networks"
 msgstr "Lista tillgängliga nätverk"
@@ -4450,7 +4450,7 @@ msgid ""
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
 "Använd piltangenterna för att flytta BiB fönstret.\n"
-"Tryck Bouquet +/- för ändra storleken på fönstret.\n"
+"Tryck Favoritlista +/- för ändra storleken på fönstret.\n"
 "Tryck OK för att gå tillbaka till TV läge eller EXIT för att avbryta "
 "flyttning."
 
@@ -5283,7 +5283,7 @@ msgstr "Välj HDD"
 
 #
 msgid "Select a bouquet"
-msgstr "Välj en bouquet"
+msgstr "Välj en favoritlista"
 
 #
 msgid "Select a movie"
@@ -6947,7 +6947,7 @@ msgid "Use FreeSat EPG information when it is available."
 msgstr "Använd Freesat EPG information när den är tillgänglig."
 
 msgid "Use MHW EPG information when it is available."
-msgstr "Använd MHW EPG information när är tillgänglig."
+msgstr "Använd MHW EPG information när den är tillgänglig."
 
 msgid "Use Netmed EPG information when it is available."
 msgstr "Använd Netmed EPG information när den är tillgänglig."
@@ -7410,7 +7410,8 @@ msgstr ""
 "några lediga mottagare."
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Vid aktiverad, kommer kanalnumreringen börja på '1' för varje bouquet."
+msgstr ""
+"Vid aktiverad, kommer kanalnumreringen börja på '1' för varje favoritlista."
 
 msgid ""
 "When enabled, content with an aspect ratio of 4:3 will be stretched to fit "
@@ -7423,8 +7424,8 @@ msgid ""
 "When enabled, continue to the next bouquet when the last channel of the "
 "current bouquet is reached while changing channels."
 msgstr ""
-"Vid aktiverad, fortsätter du till nästa bouquet när den sista kanalen i den "
-"nuvarande bouqueten nås när du byter kanal."
+"Vid aktiverad, fortsätter du till nästa favoritlista när den sista kanalen i "
+"den nuvarande favoritlistan nås när du byter kanal."
 
 msgid ""
 "When enabled, deleted recordings are moved to the trash can, instead of "
@@ -7455,14 +7456,15 @@ msgstr ""
 "inte visas."
 
 msgid "When enabled, error messages related to zapping will not be shown."
-msgstr "Vid aktiverad, kommer felmeddelanden relaterade till ZAP inte visas."
+msgstr ""
+"Vid aktiverad, kommer felmeddelanden relaterade till zappning inte visas."
 
 msgid ""
 "When enabled, external subtitles (in media files) will be displayed in "
 "yellow, instead of the original color."
 msgstr ""
 "Vid aktiverad, kommer externa undertexter (i mediefiler) att visas i gult, i "
-"stället för original färgen."
+"stället för originalfärgen."
 
 msgid ""
 "When enabled, graphical DVB subtitles are preferred over teletext subtitles, "
@@ -7485,7 +7487,7 @@ msgid ""
 "of the original color."
 msgstr ""
 "Vid aktiverad, kommer grafisk DVB textning att visas i gult, i stället för "
-"original färgen."
+"originalfärgen."
 
 msgid ""
 "When enabled, http streams are descrambled on the server side. The (remote) "
@@ -7502,7 +7504,7 @@ msgstr ""
 "vrida (om det stöds av tunern)."
 
 msgid "When enabled, services may be grouped in multiple bouquets."
-msgstr "Vid aktiverad, kan kanaler grupperas i flera bouqueter."
+msgstr "Vid aktiverad, kan kanaler grupperas i flera favoritlistor."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Vid aktiverad, visa kanalnummer i kanallistan"
@@ -7636,7 +7638,7 @@ msgid ""
 "Really do a factory reset?"
 msgstr ""
 "När du utför en fabriksreset, du kommer förlora ALL konfigurationsdata\n"
-"(inkl bouquets, kanaler, satellite data ...)\n"
+"(inkl favoritlistor, kanaler, satellit data ...)\n"
 "När fabriksreset är klar, din mottagare kommer automatiskt starta om!\n"
 "\n"
 "Verkligen utföra en fabriksreset?"
@@ -8073,7 +8075,7 @@ msgid "arts/culture (without music, general)"
 msgstr "konst/kultur (utan musik, allmänt)"
 
 msgid "arts/culture magazine"
-msgstr "konst/kultur magasin"
+msgstr "konst/kulturmagasin"
 
 msgid "athletics"
 msgstr "idrott"
@@ -8472,7 +8474,7 @@ msgid "left"
 msgstr "vänster"
 
 msgid "leisure hobbies (general)"
-msgstr "fritid/hobby (allmänt)"
+msgstr "hobby (allmänt)"
 
 #
 msgid "length"
@@ -8570,7 +8572,7 @@ msgid "multinorm"
 msgstr "multinorm"
 
 msgid "music/ballet/dance (general)"
-msgstr "musik/ balett/dans (allmänt)"
+msgstr "musik/balett/dans (allmänt)"
 
 msgid "musical/opera"
 msgstr "musikal/opera"
@@ -8820,7 +8822,7 @@ msgid "scan state"
 msgstr "sökningsstatus"
 
 msgid "science fiction/fantasy/horror"
-msgstr "science fiction/fantasy/skräck"
+msgstr "science fiction/fantasi/skräck"
 
 #
 msgid "second cable of motorized LNB"
