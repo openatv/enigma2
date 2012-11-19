@@ -4315,6 +4315,8 @@ class InfoBarSubtitleSupport(object):
 	subtitles_enabled = property(lambda self: self.__subtitles_enabled, setSubtitlesEnable)
 	selected_subtitle = property(lambda self: self.__selected_subtitle, setSelectedSubtitle)
 
+from EGAMI.EGAMI_infobar_setup import *
+
 class InfoBarServiceErrorPopupSupport:
 	def __init__(self):
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
@@ -4329,33 +4331,38 @@ class InfoBarServiceErrorPopupSupport:
 		Notifications.RemovePopup(id = "ZapError")
 
 	def __tuneFailed(self):
-		if not config.usage.hide_zap_errors.getValue():
-			service = self.session.nav.getCurrentService()
-			info = service and service.info()
-			error = info and info.getInfo(iServiceInformation.sDVBState)
-
-			if error == self.last_error:
-				error = None
-			else:
-				self.last_error = error
-
-			error = {
-				eDVBServicePMTHandler.eventNoResources: _("No free tuner!"),
-				eDVBServicePMTHandler.eventTuneFailed: _("Tune failed!"),
-				eDVBServicePMTHandler.eventNoPAT: _("No data on transponder!\n(Timeout reading PAT)"),
-				eDVBServicePMTHandler.eventNoPATEntry: _("Service not found!\n(SID not found in PAT)"),
-				eDVBServicePMTHandler.eventNoPMT: _("Service invalid!\n(Timeout reading PMT)"),
-				eDVBServicePMTHandler.eventNewProgramInfo: None,
-				eDVBServicePMTHandler.eventTuned: None,
-				eDVBServicePMTHandler.eventSOF: None,
-				eDVBServicePMTHandler.eventEOF: None,
-				eDVBServicePMTHandler.eventMisconfiguration: _("Service unavailable!\nCheck tuner configuration!"),
-			}.get(error) #this returns None when the key not exist in the dict
-
-			if error is not None:
-				Notifications.AddPopup(text = error, type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapError")
-			else:
-				Notifications.RemovePopup(id = "ZapError")
+		service = self.session.nav.getCurrentService()
+		info = (service and service.info ())
+		error = (info and info.getInfo(iServiceInformation.sDVBState))
+		if (error == self.last_error):
+			error = None
+		else:
+			self.last_error = error
+		errors = { eDVBServicePMTHandler.eventNoResources: _("No free tuner!"),
+		eDVBServicePMTHandler.eventTuneFailed: _("Tune failed!"),
+		eDVBServicePMTHandler.eventNoPAT: _("No data on transponder!\n(Timeout reading PAT)"),
+		eDVBServicePMTHandler.eventNoPATEntry: _("Service not found!\n(SID not found in PAT)"),
+		eDVBServicePMTHandler.eventNoPMT: _("Service invalid!\n(Timeout reading PMT)"),
+		eDVBServicePMTHandler.eventNewProgramInfo: None,
+		eDVBServicePMTHandler.eventTuned: None,
+		eDVBServicePMTHandler.eventSOF: None,
+		eDVBServicePMTHandler.eventEOF: None}
+		if (error is not None):
+			if ((error == eDVBServicePMTHandler.eventNoResources) and (config.EGDecoding.messageNoResources.value == False)):
+				return
+			elif ((error == eDVBServicePMTHandler.eventTuneFailed ) and (config.EGDecoding.messageTuneFailed.value == False)):
+				return
+			elif ((error == eDVBServicePMTHandler.eventNoPAT) and (config.EGDecoding.messageNoPAT.value == False)):
+				return
+			elif ((error == eDVBServicePMTHandler.eventNoPATEntry) and (config.EGDecoding.messageNoPATEntry.value == False)):
+				return
+			elif ((error == eDVBServicePMTHandler.eventNoPMT) and (config.EGDecoding.messageNoPMT.value == False)):
+				return
+		error = errors.get(error)
+		if (error is not None):
+			Notifications.AddPopup (text=error, type=MessageBox.TYPE_ERROR, timeout=5, id="ZapError")
+		else:
+			Notifications.RemovePopup(id="ZapError")
 
 class InfoBarZoom:
 	def __init__(self):

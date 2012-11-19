@@ -75,7 +75,22 @@ def onPartitionChange(action, partition):
 		elif action == 'add':
 			print "[@] DVD Inserted"
 			detected_DVD = None
-
+		
+def menu(menuid, **kwargs):
+	if menuid == "mainmenu":
+		global detected_DVD
+		if detected_DVD is None:
+			cd = harddiskmanager.getCD()
+			if cd and os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()), "VIDEO_TS")):
+				detected_DVD = True
+			else:
+				detected_DVD = False
+			if onPartitionChange not in harddiskmanager.on_partition_list_change:
+				harddiskmanager.on_partition_list_change.append(onPartitionChange)
+		if detected_DVD:
+			return [(_("DVD player"), play, "dvd_player", 46)]
+	return []
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)]
+	return [PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
+		PluginDescriptor(name = "DVDPlayer", description = "Play DVDs", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu)]

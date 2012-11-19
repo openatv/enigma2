@@ -1,13 +1,13 @@
 <setupxml>
 	<setup key="time" title="Time settings">
-		<item level="0" text="Timezone" summary="Setup your timezone.">config.timezone.val</item>
-		<item level="0" text="Sync time using" summary="Synchronize systemtime using transponder or internet.">config.misc.SyncTimeUsing</item>
-		<item level="0" text="Sync NTP every (minutes)" requires="config.misc.SyncTimeUsing" summary="Setup network time synchronization interval.">config.misc.useNTPminutes</item>
+		<item level="0" text="Timezone" description="Setup your timezone.">config.timezone.val</item>
+		<item level="0" text="Sync time using" description="Synchronize systemtime using transponder or internet.">config.misc.SyncTimeUsing</item>
+		<item level="0" text="Sync NTP every (minutes)" description="Setup network time synchronization interval." requires="config.misc.SyncTimeUsing" >config.misc.useNTPminutes</item>
 	</setup>
-	<setup key="avsetup" title="A/V Settings">
-		<item level="0" text="Color Format">config.av.colorformat</item>
-		<item level="0" text="Aspect Ratio">config.av.aspectratio</item>
-		<item level="0" text="TV System">config.av.tvsystem</item>
+	<setup key="avsetup" title="A/V settings">
+		<item level="0" text="Color format">config.av.colorformat</item>
+		<item level="0" text="Aspect ratio">config.av.aspectratio</item>
+		<item level="0" text="TV system">config.av.tvsystem</item>
 		<item level="1" text="WSS on 4:3">config.av.wss</item>
 		<item level="1" text="General AC3 delay (ms)">config.av.generalAC3delay</item>
 		<item level="1" text="General PCM delay (ms)">config.av.generalPCMdelay</item>
@@ -27,10 +27,12 @@
 		<item level="2" text="Include ECM in http streams" description="ECM data will be included in the stream. This enables a client receiver to decode it.">config.streaming.stream_ecm</item>
 		<item level="2" text="Descramble http streams" description="Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available).">config.streaming.descramble</item>
 	</setup>
-	<setup key="osdsetup" title="OSD Settings">
+	<setup key="userinterface" title="Settings...">
 		<item level="0" text="1st Infobar timeout" description="Set the time to hide the infobar.">config.usage.infobar_timeout</item>
-		<item level="0" text="2nd infobar" description="Enable and set the duration of the second infobar (press OK twice) that may include more information on the current service.">config.usage.show_second_infobar</item>
-		<item level="0" text="2nd Infobar timeout" description="Set the time to hide the second infobar. The bar also disappears on pressing 'OK'.">config.usage.second_infobar_timeout</item>
+		<item level="2" text="Show second infobar" description="Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel.">config.usage.show_second_infobar</item>
+		<item level="0" text="InfoBar EPG mode" description="Select how to activate the Quick EPG mode:" requires="InfoBarEpg">config.vixsettings.InfoBarEpg_mode</item>
+		<item level="1" text="Action on long powerbutton press" description="Configure the function of a long press on the power button.">config.usage.on_long_powerpress</item>
+		<item level="1" text="Action on short powerbutton press" description="Configure the function of a short press on the power button.">config.usage.on_short_powerpress</item>
 		<item level="0" text="Show animation while busy" description="Show ViX spinning logo when system is busy.">config.usage.show_spinner</item>
 		<item level="1" text="Show job tasks in extensions" description="With this option you can hide Job Tasks from the extension screen (short blue button press).">config.usage.jobtaksextensions</item>
 		<item level="1" text="Show positioner movement" description="Choose whether or not to show an icon when a motorized dish is moving.">config.usage.showdish</item>
@@ -55,10 +57,10 @@
 		<item level="1" text="Sort plug-in browser alphabetically" description="This option allows you to disable sorting of the plugin browser.">config.usage.sort_pluginlist</item>
 		<item level="1" text="Show PVR status in MoviePlayer infobar" description="This option moves the PVR status from the seprate window into the MoviePlayer infobar.">config.usage.movieplayer_pvrstate</item>
 	</setup>
-	<setup key="channelselection" title="Channel Selection Configuration">
+	<setup key="channelselection" title="Channel selection configuration">
 		<item level="1" text="Alternative numbering mode" description="When enabled, channel numbering will start at '1' for each bouquet.">config.usage.alternative_number_mode</item>
 		<item level="1" text="Always show bouquets" description="With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened.">config.usage.show_bouquetalways</item>
-		<item level="1" text="Change bouquets in quickzap" description="Services may be grouped in bouquets. When enabled you can zap to a channel in another bouquet then you are in at present.">config.usage.quickzap_bouquet_change</item>
+		<item level="1" text="Change bouquets in quickzap" description="When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels.">config.usage.quickzap_bouquet_change</item>
 		<item level="1" text="Channel list preview" description="If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at.">config.usage.servicelistpreview_mode</item>
 		<item level="1" text="Channel list service mode*" description="This option allows you to choose from the two channel lists that are available.">config.usage.servicelist_mode</item>
 		<item level="1" text="Channel list on mode change" description="If set to 'yes' the channel list will be shown after switching between radio and TV modes.">config.usage.show_servicelist</item>
@@ -73,7 +75,7 @@
 		<item level="1" text="Service info font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.usage.serviceinfo_fontsize</item>
 		<item level="1" text="Zap mode" requires="ZapMode" description="Setup how to control the channel changing.">config.misc.zapmode</item>
 	</setup>
-	<setup key="epgsettings" title="EPG settings">
+	<setup key="epgsettings" title="Settings...">
 		<item level="2" text="EPG location" description="Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time.">config.misc.epgcachepath</item>
 		<item level="2" text="EPG filename" description="Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes.">config.misc.epgcachefilename</item>
 		<item level="2" text="Automatic refresh" description="Allows the STB_BOX to read the stored EPG data regularly.">config.epg.cacheloadsched</item>
@@ -86,7 +88,7 @@
 		<item level="2" text="Enable freesat EPG" description="Use FreeSat EPG information when it is available.">config.epg.freesat</item>
 		<item level="2" text="Enable ViaSat EPG" description="Use ViaSat EPG information when it is available.">config.epg.viasat</item>
 		<item level="2" text="Enable Netmed EPG" description="Use Netmed EPG information when it is available.">config.epg.netmed</item>
-		<item level="2" text="Maintain old EPG data for" description="Enables EPG data of events in the past to be displayed. Handy when you want to know something about an event that is about to finish or has just finished (minutes).">config.epg.histminutes</item>
+		<item level="2" text="Maintain old EPG data for" description="Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed.">config.epg.histminutes</item>
 		<item level="2" text="Include EIT in http streams" description="When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG.">config.streaming.stream_eit</item>
 		<item level="2" text="Include AIT in http streams" description="When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV.">config.streaming.stream_ait</item>
 	</setup>
@@ -110,58 +112,58 @@
 		<item level="1" text="Audio language selection 2" description="Configure the second audio language.">config.autolanguage.audio_autoselect2</item>
 		<item level="1" text="Audio language selection 3" description="Configure the third audio language.">config.autolanguage.audio_autoselect3</item>
 		<item level="1" text="Audio language selection 4" description="Configure the fourth audio language.">config.autolanguage.audio_autoselect4</item>
-		<item level="1" text="Prefer AC3" description="If set to 'yes' the receiver will use AC3 sound (when available).">config.autolanguage.audio_defaultac3</item>
-		<item level="1" text="Prefer audio stream stored by service" description="If set to 'yes' the receiver will use the audio stream that has been used earlier.">config.autolanguage.audio_usecache</item>
+		<item level="1" text="Prefer AC3 track" description="When enabled, the receiver will select an AC3 track (when available).">config.autolanguage.audio_defaultac3</item>
+		<item level="1" text="Prefer audio track stored by service" description="When enabled, the receiver will automatically use the audio track which you selected before.">config.autolanguage.audio_usecache</item>
 		<item level="1" text="Subtitle language selection 1" description="Configure the first subtitle language (highest priority).">config.autolanguage.subtitle_autoselect1</item>
 		<item level="1" text="Subtitle language selection 2" description="Configure the second subtitle language.">config.autolanguage.subtitle_autoselect2</item>
 		<item level="1" text="Subtitle language selection 3" description="Configure the third subtitle language.">config.autolanguage.subtitle_autoselect3</item>
 		<item level="1" text="Subtitle language selection 4" description="Configure the fourth subtitle language.">config.autolanguage.subtitle_autoselect4</item>
-		<item level="1" text="Allow subtitle language to equal audio language" description="Usually when the subtitle language is the same as the audio language, subtitles are surpressed. This option allows showing subtitles when they are the same.">config.autolanguage.equal_languages</item>
-		<item level="1" text="Allow subtitles for hearing impaired" description="Enable subtitles for the hearing impaired.">config.autolanguage.subtitle_hearingimpaired</item>
-		<item level="1" text="Prefer subtitles for hearing impaired" description="Prefer subtitles for the hearing impaired over normal subtitles, when both types are available.">config.autolanguage.subtitle_defaultimpaired</item>
-		<item level="1" text="Prefer DVB-graphical subtitles" description="Prefer DVB-graphical subtitles over teletext subtitles, when both types are available.">config.autolanguage.subtitle_defaultdvb</item>
-		<item level="1" text="Prefer subtitles stored by service" description="When enabled, the receiver will use the subtitles which have been selected earlier.">config.autolanguage.subtitle_usecache</item>
+		<item level="1" text="Allow subtitle language to equal audio language" description="Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used.">config.autolanguage.equal_languages</item>
+		<item level="1" text="Allow subtitles for hearing impaired" description="When enabled, subtitles for the hearing impaired can be used.">config.autolanguage.subtitle_hearingimpaired</item>
+		<item level="1" text="Prefer subtitles for hearing impaired" description="When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available.">config.autolanguage.subtitle_defaultimpaired</item>
+		<item level="1" text="Prefer graphical DVB subtitles" description="When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available.">config.autolanguage.subtitle_defaultdvb</item>
+		<item level="1" text="Prefer subtitles stored by service" description="When enabled, the receiver will automatically use the subtitles which you selected before.">config.autolanguage.subtitle_usecache</item>
 		<item level="1" text="EPG language selection 1" description="Configure the primary EPG language.">config.autolanguage.audio_epglanguage</item>
 		<item level="1" text="EPG language selection 2" description="Configure the secundary EPG language.">config.autolanguage.audio_epglanguage_alternative</item>
 	</setup>
 	<setup key="recording" title="Recording settings">
 		<item level="1" text="Recordings always have priority" description="When enabled, a recording is allowed to interrupt live tv, when there are no free tuners.">config.recording.asktozap</item>
-		<item level="0" text="Margin before record (minutes)" description="When nonzero, a recording will start earlier than the starting time as indicated by the EPG.">config.recording.margin_before</item>
-		<item level="0" text="Margin after record (minutes)" description="When nonzero, a recording will stop later than the ending time as indicated by the EPG.">config.recording.margin_after</item>
-		<item level="2" text="Show message when recording starts" description="Show a popup when a recording starts.">config.usage.show_message_when_recording_starts</item>
-		<item level="2" text="Show movie lengths in movielist" description="Show the lenght of a recording in the movielist (this might cause some additional loading time).">config.usage.load_length_of_movies_in_moviellist</item>
+		<item level="0" text="Margin before recording (minutes)" description="When nonzero, a recording will start earlier than the starting time indicated by the EPG.">config.recording.margin_before</item>
+		<item level="0" text="Margin after recording (minutes)" description="When nonzero, a recording will stop later than the ending time indicated by the EPG.">config.recording.margin_after</item>
+		<item level="2" text="Show message when recording starts" description="When enabled, a popup message will be shown when a recording starts.">config.usage.show_message_when_recording_starts</item>
+		<item level="2" text="Show movie lengths in movielist" description="When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time).">config.usage.load_length_of_movies_in_moviellist</item>
 		<item level="2" text="Show status icons in movielist" description="Configure the type of status indication icons shown in the movielist.">config.usage.show_icons_in_movielist</item>
 		<item level="2" text="Behavior when a movie is started" description="Configure the behavior when movie playback is started.">config.usage.on_movie_start</item>
 		<item level="2" text="Behavior when a movie is stopped" description="Configure the behavior when movie playback is manually stopped.">config.usage.on_movie_stop</item>
 		<item level="2" text="Behavior when a movie reaches the end" description="Configure the behavior when reaching the end of a movie, during movie playback.">config.usage.on_movie_eof</item>
-		<item level="2" text="Display message before playing next movie" description="Show a popup when one movie has finished and the next one will start.">config.usage.next_movie_msg</item>
+		<item level="2" text="Display message before playing next movie" description="When enabled, a popup message will be shown when a movie has finished and the next one will start.">config.usage.next_movie_msg</item>
 		<item level="2" text="Behavior of 'pause' when paused" description="Configure the behavior of the 'pause' key when movie playback is already paused.">config.seek.on_pause</item>
-		<item level="2" text="Custom skip time for '1'/'3'-keys" description="Configure the skip time interval on the '1'/'3'-keys.">config.seek.selfdefined_13</item>
-		<item level="2" text="Custom skip time for '4'/'6'-keys" description="Configure the skip time interval on the '4'/'6'-keys.">config.seek.selfdefined_46</item>
-		<item level="2" text="Custom skip time for '7'/'9'-keys" description="Configure the skip time interval on the '7'/'9'-keys.">config.seek.selfdefined_79</item>
+		<item level="2" text="Custom skip time for '1'/'3' buttons" description="Configure the skip time interval for the '1'/'3' buttons.">config.seek.selfdefined_13</item>
+		<item level="2" text="Custom skip time for '4'/'6' buttons" description="Configure the skip time interval for the '4'/'6' buttons.">config.seek.selfdefined_46</item>
+		<item level="2" text="Custom skip time for '7'/'9' buttons" description="Configure the skip time interval for the '7'/'9' buttons.">config.seek.selfdefined_79</item>
 		<item level="2" text="Seekbar activation" description="Select seekbar to be activated by arrow L/R (long) or &lt;&lt; &gt;&gt; (long).">config.seek.baractivation</item>
 		<item level="2" text="Seekbar sensibility" description="Set the jump-size of the seekbar.">config.seek.sensibility</item>
 		<item level="2" text="Fast forward speeds" description="Configure the possible fast forward speeds.">config.seek.speeds_forward</item>
 		<item level="2" text="Rewind speeds" description="Configure the possible rewind speeds.">config.seek.speeds_backward</item>
 		<item level="2" text="Slow motion speeds" description="Configure the slow motion speeds.">config.seek.speeds_slowmotion</item>
-		<item level="2" text="Initial fast forward speed" description="Set the initial fast forward speed.">config.seek.enter_forward</item>
-		<item level="2" text="Initial rewind speed" description="Set the initial rewind speed.">config.seek.enter_backward</item>
+		<item level="2" text="Initial fast forward speed" description="Configure the initial fast forward speed. When you press the fast forward button, winding will start at this speed.">config.seek.enter_forward</item>
+		<item level="2" text="Initial rewind speed" description="Configure the initial rewind speed. When you press the rewind button, winding will start at this speed.">config.seek.enter_backward</item>
 		<item level="2" text="Limit character set for recording filenames" description="Limit the characters that can be used in recording filenames to (7 bit) ascii. This ensures compatibility with operating systems or file systems with limited character sets.">config.recording.ascii_filenames</item>
 		<item level="2" text="Composition of the recording filenames" description="Configure how recording filenames are constructed.">config.recording.filename_composition</item>
-		<item level="2" text="Remove completed timers after (days)" description="Configure the number of days old timers are kept before they are automatically removed from the timers list.">config.recording.keep_timers</item>
-		<item level="1" text="Use trash can in movielist" description="When enabled, deleted recordings are moved to the trash can, instead of being immediately deleted.">config.usage.movielist_trashcan</item>
+		<item level="2" text="Remove completed timers after (days)" description="Configure the number of days old timers are kept before they are automatically removed from the timer list.">config.recording.keep_timers</item>
+		<item level="1" text="Use trash can in movielist" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
 		<item level="1" text="Remove items from trash can after (days)" description="Configure the number of days after which items are automaticaly removed from the trash can.">config.usage.movielist_trashcan_days</item>
 		<item level="1" text="Disk space to reserve for recordings (in GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>
 		<item level="2" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
-		<item level="2" text="Background delete speed" description="Configure the speed of the background deletion process. A low speed will have less impact on harddisk performance.">config.misc.erase_speed</item>
-		<item level="2" text="Offline decode delay (ms)" description="Configure the offline decode delay in ms">config.recording.offline_decode_delay</item>
+		<item level="2" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.">config.misc.erase_speed</item>
+		<item level="2" text="Offline decode delay (ms)" description="Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change.">config.recording.offline_decode_delay</item>
 	</setup>
-	<setup key="harddisk" title="Harddisk setup" >
-		<item level="0" text="Harddisk standby after" description="Configure the harddisk to go to standby after a specified idle time.">config.usage.hdd_standby</item>
+	<setup key="harddisk" title="Hard disk setup" >
+		<item level="0" text="Hard disk standby after" description="Configure the hard disk drive to go to standby after the specified idle time.">config.usage.hdd_standby</item>
 	</setup>
 	<setup key="network" title="Network setup">
 		<item text="Use DHCP" description="When enabled, use DHCP for the IP configuration.">config.network.dhcp</item>
-		<item text="IP Address" description="Configure the IP address.">config.network.ip</item>
+		<item text="IP address" description="Configure the IP address.">config.network.ip</item>
 		<item text="Netmask" description="Configure the netmask.">config.network.netmask</item>
 		<item text="Gateway" description="Configure the gateway.">config.network.gateway</item>
 		<item text="Nameserver" description="Configure the nameserver (DNS).">config.network.dns</item>
@@ -171,12 +173,12 @@
 		<item level="1" text="Modulator">config.rfmod.enable</item>
 		<item level="2" text="Test mode">config.rfmod.test</item>
 		<item level="2" text="Sound">config.rfmod.sound</item>
-		<item level="2" text="Soundcarrier">config.rfmod.soundcarrier</item>
+		<item level="2" text="Sound carrier">config.rfmod.soundcarrier</item>
 		<item level="1" text="Channel">config.rfmod.channel</item>
 		<item level="1" text="Finetune">config.rfmod.finetune</item>
 	</setup>
 	<setup key="keyboard" title="Keyboard setup">
-		<item level="0" text="Keyboard Map" description="Keyboard Map">config.keyboard.keymap</item>
+		<item level="0" text="Keyboard map">config.keyboard.keymap</item>
 	</setup>
 	<setup key="lcd" title="Display settings" requires="FrontpanelDisplay">
 		<item level="0" text="Brightness (Normal)" description="Configure the brightness level of the front panel displa for normal operation.">config.lcd.bright</item>
@@ -195,13 +197,13 @@
 		<item level="1" text="Show Media playback Remaining/Elapsed as" description="This option allows you choose how to display the remaining/elapsed time for Media playback.">config.usage.swap_media_time_display_on_vfd</item>
 		<item level="0" text="Show time elapsed as positive" description="This option allows you choose how to display elapsed time  as + or -">config.usage.elapsed_time_positive_vfd</item>
 	</setup>
-	<setup key="satconfig" title="Sat / Dish Setup">
+	<setup key="satconfig" title="Satellite dish setup">
 		<item text="Tuner slot" description="Choose which tuner to configure.">config.sat.tunerslot</item>
 		<item text="Configuration mode" description="Configure the tuner mode.">config.sat.configmode</item>
-		<item text="DiSEqC" description="Choose the correct DiSEqC mode for this LNB.">config.sat.diseqc</item>
+		<item text="DiSEqC" description="Configure the DiSEqC mode for this LNB.">config.sat.diseqc</item>
 		<item text="Longitude" description="Configure the longitude of your location.">config.sat.diseqca</item>
 		<item text="Latitude" description="Configure the latitude of your location.">config.sat.diseqcb</item>
-		<item text="Use power measurement" description="When enabled, use power measurement to detect when the rotor stops turning (when supported by the tuner)." >config.sat.diseqcc</item>
+		<item text="Use power measurement" description="When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)." >config.sat.diseqcc</item>
 	</setup>
 	<setup key="softwareupdate" title="Software update">
 		<item level="1" text="Background check" description="Perform an online update check in the background">config.softwareupdate.check</item>
@@ -212,7 +214,6 @@
 	</setup>
 	<setup key="remotesetup" title="Button setup">
 		<item level="0" text="Subservice mode" description="Select if you want the Subservice mode to be activated.">config.vixsettings.Subservice</item>
-		<item level="0" text="QuickEPG mode" description="Select how to activate the Quick EPG mode:">config.vixsettings.QuickEPG_mode</item>
 		<item level="0" text="TV button mode" description="Select what you want the TV button to activate:">config.usage.tvradiobutton_mode</item>
 		<item level="0" text="Channel +/- button mode" description="Select what you want the Channel +/- button to activate:">config.usage.channelbutton_mode</item>
 		<item level="0" text="Use ViX coloured Buttons *" description="Select if you want to use the ViX coloured Buttons (set to 'no' if you want to use (Multi) Quick Button).">config.vixsettings.ColouredButtons</item>

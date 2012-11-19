@@ -5,7 +5,7 @@ from Tools.BoundFunction import boundFunction
 from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup
 from time import time
 import RecordTimer
-import PowerManagerTimer
+import PowerTimer
 import SleepTimer
 import Screens.Standby
 import NavigationInstance
@@ -33,7 +33,7 @@ class Navigation:
 		self.currentlyPlayingServiceReference = None
 		self.currentlyPlayingService = None
 		self.RecordTimer = RecordTimer.RecordTimer()
-		self.PowerManagerTimer = PowerManagerTimer.PowerManagerTimer()
+		self.PowerTimer = PowerTimer.PowerTimer()
 		if getFPWasTimerWakeup():
 			if nextRecordTimerAfterEventActionAuto:
 				# We need to give the system the chance to fully startup,
@@ -71,9 +71,9 @@ class Navigation:
 				RecordTimer.RecordTimerEntry.TryQuitMainloop(False) # start shutdown handling
 
 	def checkShutdownAfterPowerManager(self):
-		if abs(self.PowerManagerTimer.getNextPowerManagerTime() - time()) <= 360:
+		if abs(self.PowerTimer.getNextPowerManagerTime() - time()) <= 360:
 			if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
-				PowerManagerTimer.PowerManagerTimerEntry.TryQuitMainloop(False) # start shutdown handling
+				PowerTimer.PowerTimerEntry.TryQuitMainloop(False) # start shutdown handling
 
 	def dispatchEvent(self, i):
 		for x in self.event:

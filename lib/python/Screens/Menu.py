@@ -19,6 +19,7 @@ from Screens.Setup import Setup, getSetupTitle
 #			<item text="Sleep Timer"></item>
 mainmenu = _("Main Menu")
 menutitle_string = ""
+
 # read the menu
 mdom = xml.etree.cElementTree.parse(resolveFilename(SCOPE_SKIN, 'menu.xml'))
 

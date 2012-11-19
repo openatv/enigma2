@@ -16,11 +16,11 @@ def Plugins(**kwargs):
 		return [PluginDescriptor()]
 	#return [PluginDescriptor(where = PluginDescriptor.WHERE_WIZARD, fnc = (9,NFIFlash))]
 		# it's not possible to rewrite the flash memory with a system currently booted from it
-	return [PluginDescriptor(name=_("NFI Image Flashing"),
-		description=_("Download .NFI-Files for USB-Flasher"),
+	return [PluginDescriptor(name=_("NFI image flashing"),
+		description=_("Download .NFI-files for USB-flasher"),
 		icon = "flash.png",
 		where = PluginDescriptor.WHERE_SOFTWAREMANAGER,
 		needsRestart = False,
-		fnc={"SoftwareSupported": NFICallFnc, "menuEntryName": lambda x: _("NFI Image Flashing"),
-			"menuEntryDescription": lambda x: _("Download .NFI-Files for USB-Flasher")}),
+		fnc={"SoftwareSupported": NFICallFnc, "menuEntryName": lambda x: _("NFI image flashing"),
+			"menuEntryDescription": lambda x: _("Download .NFI-files for USB-flasher")}),
 		PluginDescriptor(name="nfi", where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)]
