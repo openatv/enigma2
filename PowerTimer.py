@@ -231,7 +231,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					return False
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
-						Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
+						quitMainloop(1)
 					else:
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("Your STB_BOX wants to shut down your STB_BOX.\nDo that now?"), timeout = 180)
 				return True
@@ -246,7 +246,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					return False
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
-						Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 2)
+						quitMainloop(2)
 					else:
 						Notifications.AddNotificationWithCallback(self.sendTryToRebootNotification, MessageBox, _("Your STB_BOX wants to reboot your STB_BOX.\nDo that now?"), timeout = 180)
 				return True
@@ -261,7 +261,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					return False
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
-						Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 3)
+						quitMainloop(3)
 					else:
 						Notifications.AddNotificationWithCallback(self.sendTryToRestartNotification, MessageBox, _("Your STB_BOX wants to restart the user interface.\nDo that now?"), timeout = 180)
 				return True
