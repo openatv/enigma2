@@ -852,7 +852,7 @@ class PositionerSetup(Screen):
 			satlon -= 360
 		x0 += satlon
 		xm += satlon
-		print>>log, (_("Weigthed position") + "     : %5.1f" + chr(176) + " %s") % (abs(x0), toGeopos(x0))
+		print>>log, (_("Weighted position") + "     : %5.1f" + chr(176) + " %s") % (abs(x0), toGeopos(x0))
 		print>>log, (_("Strongest position") + "    : %5.1f" + chr(176) + " %s") % (abs(xm), toGeopos(xm))
 		self.logMsg((_("Final position at") + " %5.1f" + chr(176) + " %s / %d; " + _("offset is") + " %4.1f" + chr(176)) % (abs(x0), toGeopos(x0), x, x0 - satlon), timeout = 10)
 
@@ -948,7 +948,7 @@ class PositionerSetup(Screen):
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout = 5)
 			return
 		(x0, xm) = optimise(measurements)
-		print>>log, (_("Weigthed position") + "     : %2d") % x0
+		print>>log, (_("Weighted position") + "     : %2d") % x0
 		print>>log, (_("Strongest position") + "    : %2d") % xm
 		self.logMsg((_("Final position at index") + " %2d (%5.1f" + chr(176) + ")") % (x0, x0 * self.tuningstepsize), timeout = 6)
 		move(x0 - x)
