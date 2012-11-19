@@ -163,7 +163,11 @@ class CleanTrashTask(Components.Task.PythonTask):
 					for st_ctime, fn, st_size in candidates:
 						if bytesToRemove < 0:
 							break
-						enigma.eBackgroundFileEraser.getInstance().erase(fn)
+						try:
+							# somtimes the file does not exist, can happen if trashcan is on a network, the main box could also be emptying trash at same time.
+							enigma.eBackgroundFileEraser.getInstance().erase(fn)
+						except:
+							pass
 						bytesToRemove -= st_size
 						size -= st_size
 					print "[Trashcan] " + str(trashfolder) + ": Size now:",size

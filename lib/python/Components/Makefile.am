@@ -2,7 +2,7 @@ installdir = $(pkglibdir)/python/Components
 
 SUBDIRS = Sources Converter Renderer
 
-install_PYTHON = OnlineUpdateCheck.py NetworkTime.py EpgLoadSave.py PowerManagerTimerList.py \
+install_PYTHON = OnlineUpdateCheck.py NetworkTime.py EpgLoadSave.py PowerTimerList.py \
 	VfdSymbols.py \
 	ActionMap.py GUISkin.py PerServiceDisplay.py components.py              \
 	Button.py HTMLComponent.py ProgressBar.py TimerList.py config.py        \

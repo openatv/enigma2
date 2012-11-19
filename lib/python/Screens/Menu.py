@@ -13,11 +13,7 @@ import xml.etree.cElementTree
 
 from Screens.Setup import Setup, getSetupTitle
 
-#		<item text="TV-Mode">self.setModeTV()</item>
-#		<item text="Radio-Mode">self.setModeRadio()</item>
-#		<item text="File-Mode">self.setModeFile()</item>
-#			<item text="Sleep Timer"></item>
-mainmenu = _("Main Menu")
+mainmenu = _("Main menu")
 
 # read the menu
 mdom = xml.etree.cElementTree.parse(resolveFilename(SCOPE_SKIN, 'menu.xml'))

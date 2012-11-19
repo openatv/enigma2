@@ -1,22 +1,23 @@
 from Components.ActionMap import ActionMap
 from Components.Button import Button
+from Components.Label import Label
 from Components.config import config
 from Components.MenuList import MenuList
-from Components.PowerManagerTimerList import PowerManagerTimerList
+from Components.PowerTimerList import PowerTimerList
 from Components.TimerSanityCheck import TimerSanityCheck
 from Components.Sources.StaticText import StaticText
-from PowerManagerTimer import PowerManagerTimerEntry, parseEvent, AFTEREVENT
+from PowerTimer import PowerTimerEntry, parseEvent, AFTEREVENT
 from Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from ServiceReference import ServiceReference
-from PowerManagerTimerEntry import TimerEntry, TimerLog
+from PowerTimerEntry import TimerEntry, TimerLog
 from Tools.BoundFunction import boundFunction
 from Tools.FuzzyDate import FuzzyTime
 from time import time
 from timer import TimerEntry as RealTimerEntry
 
-class PowerManagerTimerEditList(Screen):
+class PowerTimerEditList(Screen):
 	EMPTY = 0
 	ENABLE = 1
 	DISABLE = 2
@@ -26,14 +27,14 @@ class PowerManagerTimerEditList(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = "TimerEditList"
-		Screen.setTitle(self, _("PowerManagerTimer List"))
+		Screen.setTitle(self, _("PowerTimer List"))
 
 		self.onChangedEntry = [ ]
 		list = [ ]
 		self.list = list
 		self.fillTimerList()
 
-		self["timerlist"] = PowerManagerTimerList(list)
+		self["timerlist"] = PowerTimerList(list)
 
 		self.key_red_choice = self.EMPTY
 		self.key_yellow_choice = self.EMPTY
@@ -43,6 +44,8 @@ class PowerManagerTimerEditList(Screen):
 		self["key_green"] = Button(_("Add"))
 		self["key_yellow"] = Button(" ")
 		self["key_blue"] = Button(" ")
+
+		self["description"] = Label()
 
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"],
 			{
@@ -55,12 +58,12 @@ class PowerManagerTimerEditList(Screen):
 				"up": self.up,
 				"down": self.down
 			}, -1)
-		self.setTitle(_("PowerManagerTimer Overview"))
-		self.session.nav.PowerManagerTimer.on_state_change.append(self.onStateChange)
+		self.setTitle(_("PowerTimer Overview"))
+		self.session.nav.PowerTimer.on_state_change.append(self.onStateChange)
 		self.onShown.append(self.updateState)
 
 	def createSummary(self):
-		return PowerManagerTimerEditListSummary
+		return PowerTimerEditListSummary
 
 	def up(self):
 		self["timerlist"].instance.moveSelection(self["timerlist"].instance.moveUp)
@@ -96,7 +99,7 @@ class PowerManagerTimerEditList(Screen):
 						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list = list)
 				else:
 					t.disable()
-			self.session.nav.PowerManagerTimer.timeChanged(t)
+			self.session.nav.PowerTimer.timeChanged(t)
 			self.refill()
 			self.updateState()
 
@@ -105,10 +108,10 @@ class PowerManagerTimerEditList(Screen):
 			if result[1] == "stoponlycurrent" or result[1] == "stopall":
 				t.enable()
 				t.processRepeated(findRunningEvent = False)
-				self.session.nav.PowerManagerTimer.doActivate(t)
+				self.session.nav.PowerTimer.doActivate(t)
 			if result[1] == "stoponlycoming" or result[1] == "stopall":
 				t.disable()
-			self.session.nav.PowerManagerTimer.timeChanged(t)
+			self.session.nav.PowerTimer.timeChanged(t)
 			self.refill()
 			self.updateState()
 
@@ -196,8 +199,8 @@ class PowerManagerTimerEditList(Screen):
 
 		list = self.list
 		del list[:]
-		list.extend([(timer, False) for timer in self.session.nav.PowerManagerTimer.timer_list])
-		list.extend([(timer, True) for timer in self.session.nav.PowerManagerTimer.processed_timers])
+		list.extend([(timer, False) for timer in self.session.nav.PowerTimer.timer_list])
+		list.extend([(timer, True) for timer in self.session.nav.PowerTimer.processed_timers])
 		if config.usage.timerlist_finished_timer_position.index: #end of list
 			list.sort(cmp = eol_compare)
 		else:
@@ -218,7 +221,7 @@ class PowerManagerTimerEditList(Screen):
 
 	def cleanupTimer(self, delete):
 		if delete:
-			self.session.nav.PowerManagerTimer.cleanup()
+			self.session.nav.PowerTimer.cleanup()
 			self.refill()
 			self.updateState()
 
@@ -237,7 +240,7 @@ class PowerManagerTimerEditList(Screen):
 		if cur:
 			timer = cur
 			timer.afterEvent = AFTEREVENT.NONE
-			self.session.nav.PowerManagerTimer.removeEntry(timer)
+			self.session.nav.PowerTimer.removeEntry(timer)
 			self.refill()
 			self.updateState()
 
@@ -254,7 +257,7 @@ class PowerManagerTimerEditList(Screen):
 
 	def addCurrentTimer(self):
 		data = (int(time() + 60), int(time() + 120))
-		self.addTimer(PowerManagerTimerEntry(checkOldTimers = True, *data))
+		self.addTimer(PowerTimerEntry(checkOldTimers = True, *data))
 
 	def addTimer(self, timer):
 		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)
@@ -266,18 +269,18 @@ class PowerManagerTimerEditList(Screen):
 		if answer[0]:
 			print "Edited timer"
 			entry = answer[1]
-			self.session.nav.PowerManagerTimer.timeChanged(entry)
+			self.session.nav.PowerTimer.timeChanged(entry)
 			self.fillTimerList()
 			self.updateState()
 		else:
-			print "PowerManagerTimeredit aborted"
+			print "PowerTimeredit aborted"
 
 	def finishedAdd(self, answer):
 		print "finished add"
 		print 'answer',answer
 		if answer[0]:
 			entry = answer[1]
-			simulTimerList = self.session.nav.PowerManagerTimer.record(entry)
+			simulTimerList = self.session.nav.PowerTimer.record(entry)
 			self.fillTimerList()
 			self.updateState()
 		else:
@@ -287,14 +290,14 @@ class PowerManagerTimerEditList(Screen):
 		self.finishedAdd(answer)
 
 	def leave(self):
-		self.session.nav.PowerManagerTimer.on_state_change.remove(self.onStateChange)
+		self.session.nav.PowerTimer.on_state_change.remove(self.onStateChange)
 		self.close()
 
 	def onStateChange(self, entry):
 		self.refill()
 		self.updateState()
 
-class PowerManagerTimerEditListSummary(Screen):
+class PowerTimerEditListSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
 		self["time"] = StaticText("")

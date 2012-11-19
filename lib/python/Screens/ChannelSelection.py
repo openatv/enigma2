@@ -264,9 +264,6 @@ class ChannelContextMenu(Screen):
 
 		self["menu"] = ChoiceList(menu)
 
-	def createSetup(self):
-		self.session.open(SettingsMenu)
-
 	def playMain(self):
 		# XXX: we want to keep the current selection
 		sel = self.csel.getCurrentSelection()
@@ -956,7 +953,7 @@ class ChannelSelectionBase(Screen):
 				"9": self.keyNumberGlobal,
 				"0": self.keyNumberGlobal
 			})
-#		self.maintitle = _("Channel Selection")
+		self.maintitle = _("Channel selection")
 		self.recallBouquetMode()
 
 	def getBouquetNumOffset(self, bouquet):
@@ -1191,7 +1188,7 @@ class ChannelSelectionBase(Screen):
 								cur_ref.getUnsignedData(3), # ONID
 								self.service_types[pos+1:])
 							ref = eServiceReference(refstr)
-							ref.setName(_("Current Transponder"))
+							ref.setName(_("Current transponder"))
 							self.servicelist.addService(ref)
 						self.servicelist.finishFill()
 						if prev is not None:

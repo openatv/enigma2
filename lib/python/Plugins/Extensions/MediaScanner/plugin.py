@@ -1,6 +1,7 @@
 from Plugins.Plugin import PluginDescriptor
 from Components.Scanner import scanDevice
-from os import access, F_OK, R_OK, path
+from Screens.InfoBar import InfoBar
+import os
 
 def execute(option):
 	print "execute", option
@@ -24,28 +25,21 @@ def mountpoint_choosen(option):
 
 	if not list:
 		from Screens.MessageBox import MessageBox
-		if access(mountpoint, F_OK|R_OK):
+		if os.access(mountpoint, os.F_OK|os.R_OK):
 			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_ERROR, simple = True, timeout = 5)
 		else:
 			print "ignore", mountpoint, "because its not accessible"
 		return
-	
-	session.openWithCallback(execute, ChoiceBox, 
+
+	session.openWithCallback(execute, ChoiceBox,
 		title = _("The following files were found..."),
 		list = list)
 
 def scan(session):
 	from Screens.ChoiceBox import ChoiceBox
-
-	from Components.Harddisk import harddiskmanager
-
-	parts = [ (r.description, r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
+	parts = [ (r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False) if os.access(r.mountpoint, os.F_OK|os.R_OK) ]
 	parts.append( (_("Memory") + "\t/tmp", "/tmp", session) )
-	if parts:
-		for x in parts:
-			if not access(x[1], F_OK|R_OK):
-				parts.remove(x)	
-		session.openWithCallback(mountpoint_choosen, ChoiceBox, title = _("Please Select Medium to be Scanned"), list = parts)
+	session.openWithCallback(mountpoint_choosen, ChoiceBox, title = _("Please select medium to be scanned"), list = parts)
 
 def main(session, **kwargs):
 	scan(session)
@@ -56,16 +50,14 @@ def menuEntry(*args):
 from Components.Harddisk import harddiskmanager
 
 def menuHook(menuid):
-	if menuid != "mainmenu": 
+	if menuid != "mainmenu":
 		return [ ]
-
 	from Tools.BoundFunction import boundFunction
 	return [(("%s (files)") % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug_%s" % r.mountpoint, None) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
 
 global_session = None
 
 def partitionListChanged(action, device):
-	from Screens.InfoBar import InfoBar
 	if InfoBar.instance:
 		if InfoBar.instance.execing:
 			if action == 'add' and device.is_hotplug:
@@ -103,10 +95,10 @@ def movielist_open(list, session, **kwargs):
 	else:
 		stype = 4097
 	if InfoBar.instance:
-		videopath = path.split(f.path)[0]
-		if not videopath.endswith('/'):
-			videopath += '/'
-		config.movielist.last_videodir.setValue(videopath)
+		path = os.path.split(f.path)[0]
+		if not path.endswith('/'):
+			path += '/'
+		config.movielist.last_videodir.value = path
 		try:
 			InfoBar.instance.showMovies(eServiceReference(stype, 0, f.path))
 		except:
@@ -156,8 +148,7 @@ def filescan(**kwargs):
 
 def Plugins(**kwargs):
 	return [
-		PluginDescriptor(name="MediaScanner", description=_("Scan Files..."), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = True, fnc=main),
-		PluginDescriptor(name = "MediaScanner", where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
+		PluginDescriptor(name="Media scanner", description=_("Scan files..."), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = True, fnc=main),
 #		PluginDescriptor(where = PluginDescriptor.WHERE_MENU, fnc=menuHook),
 		PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, needsRestart = True, fnc = sessionstart),
 		PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = True, fnc = autostart)

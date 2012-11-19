@@ -286,7 +286,7 @@ class UpdatePlugin(Screen):
 				if self.packages == 0:
 					error = _("No updates available. Please try again later.")
 				if self.updating:
-					error = _("Your STB_BOX isn't connected to the internet properly. Please check it and try again.")
+					error = _("Update failed. Your STB_BOX does not have a working internet connection.")
 				self.status.setText(_("Error") +  " - " + error)
 		elif event == IpkgComponent.EVENT_LISTITEM:
 			if 'enigma2-plugin-settings-' in param[0] and self.channellist_only > 0:

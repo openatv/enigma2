@@ -68,8 +68,8 @@ class PluginBrowser(Screen):
 
 		self.firsttime = True
 
-		self["red"] = Label(_("Remove Plugins"))
-		self["green"] = Label(_("Download Plugins"))
+		self["red"] = Label(_("Remove plugins"))
+		self["green"] = Label(_("Download plugins"))
 
 		self.list = []
 		self["list"] = PluginList(self.list)
@@ -154,7 +154,7 @@ class PluginBrowser(Screen):
 			try:
 				from Plugins.SystemPlugins.SoftwareManager.plugin import PluginManager
 			except ImportError:
-				self.session.open(MessageBox, _("The Softwaremanagement extension is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+				self.session.open(MessageBox, _("The software management extension is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginManager)
 

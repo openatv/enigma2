@@ -784,7 +784,7 @@ def filescan_open(list, session, **kwargs):
 			if x.mimetype == "video/x-dvd-iso":
 				dvd_filelist.append(x.path)
 			if x.mimetype == "video/x-dvd":
-				dvd_filelist.append(x.path.rsplit('/',1)[0])			
+				dvd_filelist.append(x.path.rsplit('/',1)[0])
 		session.open(DVDPlayer, dvd_filelist=dvd_filelist)
 
 def filescan(**kwargs):
