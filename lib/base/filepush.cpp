@@ -137,7 +137,7 @@ void eFilePushThread::thread()
 				/* in stream_mode, we are sending EOF events 
 				   over and over until somebody responds.
 				   
-				   in stream_mode, think of evtEOF as "buffer underrun occured". */
+				   in stream_mode, think of evtEOF as "buffer underrun occurred". */
 			sendEvent(evtEOF);
 
 			if (m_stop)
