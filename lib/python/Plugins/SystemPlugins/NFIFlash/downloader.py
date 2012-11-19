@@ -28,7 +28,7 @@ import re
 
 class ImageDownloadJob(Job):
 	def __init__(self, url, filename, device=None, mountpoint="/"):
-		Job.__init__(self, _("Download .NFI-Files for USB-Flasher"))
+		Job.__init__(self, _("Download .NFI-files for USB-flasher"))
 		if device:
 			if isMount(mountpoint):
 				UmountTask(self, mountpoint)
@@ -810,5 +810,5 @@ def filescan(**kwargs):
 					ScanPath(path = "", with_subdirs = False),
 				], 
 			name = "NFI", 
-			description = (_("Download .NFI-Files for USB-flasher")+"..."),
+			description = (_("Download .NFI-files for USB-flasher")+"..."),
 			openfnc = filescan_open, )
