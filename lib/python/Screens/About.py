@@ -217,7 +217,7 @@ class Devices(Screen):
 					sizeline = _("Size: ") + _("unavailable")
 
 				if ((float(free) / 1024) / 1024) >= 1:
-					freeline = _("Fee: ") + str(round(((float(free) / 1024) / 1024),2)) + _("TB")
+					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024),2)) + _("TB")
 				elif (free / 1024) >= 1:
 					freeline = _("Free: ") + str(round((float(free) / 1024),2)) + _("GB")
 				elif free >= 1:
