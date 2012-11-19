@@ -15,6 +15,8 @@ enigma2-xml.pot: $(srcdir)/xml2po.py $(top_srcdir)/data/*.xml $(top_srcdir)/lib/
 	$(PYTHON) $^ > $@
 
 enigma2.pot: enigma2-py.pot enigma2-xml.pot
+	sed --in-place enigma2-py.pot --expression=s/CHARSET/UTF-8/
+	sed --in-place enigma2-xml.pot --expression=s/CHARSET/UTF-8/
 	cat $^ | $(MSGUNIQ) --no-location -o $@ -
 
 %.po: enigma2.pot
