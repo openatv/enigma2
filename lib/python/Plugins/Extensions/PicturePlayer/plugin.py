@@ -42,7 +42,7 @@ def filescan(**kwargs):
 					ScanPath(path = "", with_subdirs = False),
 				],
 			name = "Pictures",
-			description = _("View Photos..."),
+			description = _("View photos..."),
 			openfnc = filescan_open,
 		)
 
@@ -50,3 +50,4 @@ def Plugins(**kwargs):
 	return \
 		[PluginDescriptor(name =_("PicturePlayer"), description =_("fileformats (BMP, PNG, JPG, GIF)"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu),
 		 PluginDescriptor(name=_("PicturePlayer"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)]
+

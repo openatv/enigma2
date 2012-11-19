@@ -152,6 +152,11 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 			<item level="0" text="Network" entryID="device_screen"><screen module="About" screen="SystemNetworkInfo"/></item>
 			<item level="1" text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
 		</menu>
+		<!--<menu level="0" text="Timers" entryID="timer_menu">
+		      <id val="timermenu" />
+		      <item weight="100" level="0" text="Timers" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
+		      <item weight="100" level="0" text="PowerTimers" entryID="powertimer_edit"><screen module="PowerTimerEdit" screen="PowerTimerEditList" /></item>
+		    </menu>-->
 		<item weight="5" level="0" text="Timers" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
 		<item weight="6" level="0" text="VCR scart" entryID="scart_switch" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>
 		<menu weight="7" text="Standby / Restart" entryID="standby_restart_list" endtext=">">

@@ -152,9 +152,9 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.list = []
 		self.list.append(getConfigListEntry(_("Name"), self.timerentry_name))
 		self.list.append(getConfigListEntry(_("Description"), self.timerentry_description))
-		self.timerJustplayEntry = getConfigListEntry(_("Timer Type"), self.timerentry_justplay)
+		self.timerJustplayEntry = getConfigListEntry(_("Timer type"), self.timerentry_justplay)
 		self.list.append(self.timerJustplayEntry)
-		self.timerTypeEntry = getConfigListEntry(_("Repeat Type"), self.timerentry_type)
+		self.timerTypeEntry = getConfigListEntry(_("Repeat type"), self.timerentry_type)
 		self.list.append(self.timerTypeEntry)
 
 		if self.timerentry_type.getValue() == "once":
@@ -184,13 +184,13 @@ class TimerEntry(Screen, ConfigListScreen):
 		if self.timerentry_type.getValue() == "once":
 			self.list.append(self.entryDate)
 
-		self.entryStartTime = getConfigListEntry(_("StartTime"), self.timerentry_starttime)
+		self.entryStartTime = getConfigListEntry(_("Start time"), self.timerentry_starttime)
 		self.list.append(self.entryStartTime)
 
-		self.entryShowEndTime = getConfigListEntry(_("Set End Time"), self.timerentry_showendtime)
+		self.entryShowEndTime = getConfigListEntry(_("Set end time"), self.timerentry_showendtime)
 		if self.timerentry_justplay.getValue() == "zap":
 			self.list.append(self.entryShowEndTime)
-		self.entryEndTime = getConfigListEntry(_("EndTime"), self.timerentry_endtime)
+		self.entryEndTime = getConfigListEntry(_("End time"), self.timerentry_endtime)
 		if self.timerentry_justplay.getValue() != "zap" or self.timerentry_showendtime.getValue():
 			self.list.append(self.entryEndTime)
 
@@ -241,7 +241,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.session.openWithCallback(
 				self.pathSelected,
 				MovieLocationBox,
-				_("Choose target folder"),
+				_("Select target folder"),
 				self.timerentry_dirname.getValue(),
 				minFree = 100 # We require at least 100MB free space
 			)

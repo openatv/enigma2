@@ -43,7 +43,7 @@ config.misc.boxtype = ConfigText(default = enigma.getBoxType())
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
 config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
-config.misc.isNextPowerManagerTimerAfterEventActionAuto = ConfigYesNo(default=False)
+config.misc.isNextPowerTimerAfterEventActionAuto = ConfigYesNo(default=False)
 config.misc.SyncTimeUsing = ConfigSelection(default = "0", choices = [("0", "Transponder Time"), ("1", _("NTP"))])
 
 config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
@@ -447,7 +447,7 @@ def runScreenTest():
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 	profile("Init:Session")
-	nav = Navigation(config.misc.isNextRecordTimerAfterEventActionAuto.getValue(), config.misc.isNextPowerManagerTimerAfterEventActionAuto.getValue())
+	nav = Navigation(config.misc.isNextRecordTimerAfterEventActionAuto.getValue(), config.misc.isNextPowerTimerAfterEventActionAuto.getValue())
 	session = Session(desktop = enigma.getDesktop(0), summary_desktop = enigma.getDesktop(1), navigation = nav)
 
 	CiHandler.setSession(session)
@@ -510,12 +510,12 @@ def runScreenTest():
 		x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
 					(session.nav.RecordTimer.getNextZapTime(), 1),
 					(plugins.getNextWakeupTime(), 2),
-					(session.nav.PowerManagerTimer.getNextPowerManagerTime(), 3, session.nav.PowerManagerTimer.isNextPowerManagerAfterEventActionAuto()))
+					(session.nav.PowerTimer.getNextPowerManagerTime(), 3, session.nav.PowerTimer.isNextPowerManagerAfterEventActionAuto()))
 		if x[0] != -1
 	]
 	wakeupList.sort()
 	recordTimerWakeupAuto = False
-	powermanagerTimerWakeupAuto = False
+	PowerTimerWakeupAuto = False
 	if wakeupList:
 		from time import strftime
 		startTime = wakeupList[0]
@@ -532,11 +532,11 @@ def runScreenTest():
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
 		setFPWakeuptime(wptime)
 		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
-		powermanagerTimerWakeupAuto = startTime[1] == 3 and startTime[2]
+		PowerTimerWakeupAuto = startTime[1] == 3 and startTime[2]
 	config.misc.isNextRecordTimerAfterEventActionAuto.value = recordTimerWakeupAuto
 	config.misc.isNextRecordTimerAfterEventActionAuto.save()
-	config.misc.isNextPowerManagerTimerAfterEventActionAuto.value = powermanagerTimerWakeupAuto
-	config.misc.isNextPowerManagerTimerAfterEventActionAuto.save()
+	config.misc.isNextPowerTimerAfterEventActionAuto.value = PowerTimerWakeupAuto
+	config.misc.isNextPowerTimerAfterEventActionAuto.save()
 
 	profile("stopService")
 	session.nav.stopService()
