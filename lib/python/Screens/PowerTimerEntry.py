@@ -11,7 +11,7 @@ from Components.Pixmap import Pixmap
 from Components.SystemInfo import SystemInfo
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-from PowerManagerTimer import AFTEREVENT, TIMERTYPE
+from PowerTimer import AFTEREVENT, TIMERTYPE
 from enigma import eEPGCache, eServiceReference
 from time import localtime, mktime, time, strftime
 from datetime import datetime
@@ -305,7 +305,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self["config"].invalidate(self.entryEndTime)
 
 	def saveTimer(self):
-		self.session.nav.PowerManagerTimer.saveTimer()
+		self.session.nav.PowerTimer.saveTimer()
 
 	def keyCancel(self):
 		self.close((False,))

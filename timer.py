@@ -94,7 +94,7 @@ class TimerEntry:
 
 	# check if a timer entry must be skipped
 	def shouldSkip(self):
-		if "PowerManagerTimerEntry" in `self`:
+		if "PowerTimerEntry" in `self`:
 			if (self.timerType == 3 or self.timerType == 4) and self.autosleeprepeat != 'once':
 				return False
 			elif self.begin >= time() and (self.timerType == 3 or self.timerType == 4) and self.autosleeprepeat == 'once':
@@ -102,7 +102,6 @@ class TimerEntry:
 			elif (self.timerType == 3 or self.timerType == 4) and self.autosleeprepeat == 'once' and self.state != TimerEntry.StatePrepared:
 				return True
 			else:
-				print self.end <= time() and self.state == TimerEntry.StateWaiting and self.timerType != 3 and self.timerType != 4
 				return self.end <= time() and self.state == TimerEntry.StateWaiting and self.timerType != 3 and self.timerType != 4
 		else:
 			return self.end <= time() and self.state == TimerEntry.StateWaiting
@@ -245,7 +244,7 @@ class Timer:
 		# give the timer a chance to re-enqueue
 		if timer.state == TimerEntry.StateEnded:
 			timer.state = TimerEntry.StateWaiting
-		elif "PowerManagerTimerEntry" in `timer` and (timer.timerType == 3 or timer.timerType == 4):
+		elif "PowerTimerEntry" in `timer` and (timer.timerType == 3 or timer.timerType == 4):
 			if timer.state > 0:
 				eActionMap.getInstance().unbindAction('', timer.keyPressed)
 			timer.state = TimerEntry.StateWaiting

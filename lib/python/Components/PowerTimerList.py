@@ -9,9 +9,9 @@ from Tools.LoadPixmap import LoadPixmap
 from timer import TimerEntry
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_SKIN_IMAGE
 
-from PowerManagerTimer import AFTEREVENT, TIMERTYPE
+from PowerTimer import AFTEREVENT, TIMERTYPE
 
-class PowerManagerTimerList(HTMLComponent, GUIComponent, object):
+class PowerTimerList(HTMLComponent, GUIComponent, object):
 #
 #  | <Service>     <Name of the Timer>  |
 #  | <start, end>              <state>  |
@@ -40,7 +40,8 @@ class PowerManagerTimerList(HTMLComponent, GUIComponent, object):
 		x = width / 2
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 24, 2, width, 25, 0, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, timertype))
 		if timer.timerType == TIMERTYPE.AUTOSTANDBY or timer.timerType == TIMERTYPE.AUTODEEPSTANDBY:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 148, 26, width-150, 25, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _('Run Type:') + ' ' + _(timer.autosleeprepeat)))
+			if self.iconRepeat and timer.autosleeprepeat != "once":
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 25, 20, 20, self.iconRepeat))
 			icon = None
 			if not processed:
 				if timer.state == TimerEntry.StateWaiting:
