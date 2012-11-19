@@ -39,7 +39,7 @@ class Language:
 		self.addLanguage("Norsk",       "no", "NO")
 		self.addLanguage("Polski",      "pl", "PL")
 		self.addLanguage("Português",   "pt", "PT")
-		self.addLanguage("Brasileira",  "pt", "BR")
+		self.addLanguage("Português do Brasil",  "pt", "BR")
 		self.addLanguage("Romanian",    "ro", "RO")
 		self.addLanguage("Русский",     "ru", "RU")
 		self.addLanguage("Slovensky",   "sk", "SK")
