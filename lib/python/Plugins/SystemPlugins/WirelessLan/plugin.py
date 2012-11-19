@@ -402,4 +402,4 @@ def configStrings(iface):
 	return ret
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Wireless LAN"), description=_("Connect to a wireless network"), where = PluginDescriptor.WHERE_NETWORKSETUP, needsRestart = False, fnc={"ifaceSupported": callFunction, "configStrings": configStrings, "WlanPluginEntry": lambda x: _("Wireless network configuartion...")})
+	return PluginDescriptor(name=_("Wireless LAN"), description=_("Connect to a wireless network"), where = PluginDescriptor.WHERE_NETWORKSETUP, needsRestart = False, fnc={"ifaceSupported": callFunction, "configStrings": configStrings, "WlanPluginEntry": lambda x: _("Wireless network configuration...")})
