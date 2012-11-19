@@ -52,7 +52,7 @@ class MovieInfo(Converter, object):
 					return _("Directory")
 				filesize = info.getInfoObject(service, iServiceInformation.sFileSize)
 				if filesize is not None:
-					return _("%d Mb") % (filesize / (1024*1024))
+					return _("%d MB") % (filesize / (1024*1024))
 		return ""
 
 	text = property(getText)
