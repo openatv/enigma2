@@ -45,7 +45,7 @@
 				<item weight="9" level="0" text="EPG settings" entryID="epg_setup"><setup id="epgsettings" /></item>
 				<item weight="10" level="0" text="Skin setup" entryID="skin_selection"><screen module="SkinSelector" screen="SkinSelector"/></item>
 				<item weight="16" level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
-				<item weight="17" level="0" entryID="osd_setup"><setup id="osdsetup" /></item>
+				<item level="0" entryID="user_interface"><setup id="userinterface" /></item>
 				<menu weight="20" level="0" text="Expert settings" entryID="expert_setup" endtext="•••>">
 				  <id val="expert" />
 				  <item weight="1" level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
