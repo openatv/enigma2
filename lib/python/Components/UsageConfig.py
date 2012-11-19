@@ -35,8 +35,7 @@ def InitUsageConfig():
 	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_event_change = ConfigYesNo(default = False)
-	config.usage.show_second_infobar = ConfigYesNo(default = False)
-	config.usage.second_infobar_timeout = ConfigSelection(default = "5", choices = [("0", _("no timeout"))] + choicelist)
+	config.usage.show_second_infobar = ConfigSelection(default = "5", choices = [("0", _("no timeout"))] + choicelist)
 	
 	config.usage.show_picon_bkgrn = ConfigSelection(default = "transparent", choices = [("transparent", _("Transparent")), ("blue", _("Blue")), ("red", _("Red")), ("black", _("Black")), ("white", _("White")), ("lightgrey", _("Light Grey")), ("grey", _("Grey"))])
 
@@ -637,7 +636,7 @@ def InitUsageConfig():
 		if softcam.lower().startswith('cccam'):
 			config.cccaminfo.showInExtensions = ConfigYesNo(default=True)
 			SystemInfo["CCcamInstalled"] = True
-		elif softcam.lower().find('oscam'):
+		elif softcam.lower().startswith('oscam'):
 			config.oscaminfo.showInExtensions = ConfigYesNo(default=True)
 			SystemInfo["OScamInstalled"] = True
 
