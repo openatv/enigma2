@@ -47,7 +47,7 @@ public:
 	
 	enum {
 		eventWriteError,
-				/* a write error has occured. data won't get lost if fd is writable after return. */
+				/* a write error has occurred. data won't get lost if fd is writable after return. */
 				/* you MUST respond with either stop() or fixing the problems, else you get the error */
 				/* again. */
 		eventReachedBoundary,
