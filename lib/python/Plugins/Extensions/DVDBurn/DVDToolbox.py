@@ -177,7 +177,7 @@ class DVDformatTaskPostcondition(Condition):
 		return {
 			task.ERROR_ALREADYFORMATTED: _("This DVD RW medium is already formatted - reformatting will erase all content on the disc."),
 			task.ERROR_NOTWRITEABLE: _("Medium is not a writeable DVD!"),
-			task.ERROR_UNKNOWN: _("An unknown error occured!")
+			task.ERROR_UNKNOWN: _("An unknown error occurred!")
 		}[task.error]
 
 class DVDformatTask(Task):
