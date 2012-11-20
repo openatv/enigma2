@@ -2,7 +2,7 @@ from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Sources.StaticText import StaticText
-from Components.Harddisk import harddiskmanager
+from Components.Harddisk import harddiskmanager,Harddisk
 from Components.NimManager import nimmanager
 from Components.About import about
 from Components.config import config
@@ -180,14 +180,13 @@ class Devices(Screen):
 
 		nims = nimmanager.nimList()
 		for count in range(len(nims)):
-<<<<<<< HEAD
 			if count < 4:
 				self["Tuner" + str(count)] = StaticText(nims[count])
-=======
-			if niminfo:
-				niminfo += "\n"
-			niminfo += nims[count]
-		self["nims"].setText(niminfo)
+			else:
+				self["Tuner" + str(count)] = StaticText("")
+			self.AboutText += nims[count] + "\n"
+
+		self.AboutText += "\n" + _("Detected HDD:") + "\n"
 
 		self.list = []
 		list2 = []
@@ -234,29 +233,15 @@ class Devices(Screen):
 				else:
 					freeline = _("Free: ") + _("full")
 				self.list.append(mount +'\t'  + sizeline + ' \t' + freeline)
->>>>>>> e01b0cc6bd631a3ef61d4c9d458fef4d4ec36fe1
 			else:
-				self["Tuner" + str(count)] = StaticText("")
-			self.AboutText += nims[count] + "\n"
+				self.list.append(mount +'\t'  + _('Not mounted'))
 
-		self.AboutText += "\n" + _("Detected HDD:") + "\n"
-
-		hddlist = harddiskmanager.HDDList()
-		hddinfo = ""
-		if hddlist:
-			for count in range(len(hddlist)):
-				if hddinfo:
-					hddinfo += "\n"
-				hdd = hddlist[count][1]
-				if int(hdd.free()) > 1024:
-					hddinfo += "%s\n(%s, %d GB %s)" % (hdd.model(), hdd.capacity(), hdd.free()/1024, _("free"))
-				else:
-					hddinfo += "%s\n(%s, %d MB %s)" % (hdd.model(), hdd.capacity(), hdd.free(), _("free"))
-		else:
-			hddinfo = _("none")
-		self.AboutText += hddinfo + "\n"
+			list2.append(device)
+		self.list = '\n'.join(self.list)
+		
+		self.AboutText += self.list + "\n"
 		self.AboutText += "\n" + _("Network Servers:") + "\n"
-		self.mountinfo = ""
+		self.mountinfo = "none"
 		self.Console.ePopen("df -mh | grep -v '^Filesystem'", self.Stage1Complete)
 		self.AboutText +=self.mountinfo
 		self["AboutScrollLabel"].setText(self.AboutText)
