@@ -53,13 +53,7 @@ class Navigation:
 				self.standbytimer = eTimer()
 				self.standbytimer.callback.append(self.gotostandby)
 				self.standbytimer.start(15000, True)
-				# We need to give the systemclock the chance to sync with the transponder time,
-				# before we will make the decision about whether or not we need to shutdown
-				# after the upcoming recording has completed
-				self.recordshutdowntimer = eTimer()
-				self.recordshutdowntimer.callback.append(self.checkShutdownAfterPowerManager)
-				self.recordshutdowntimer.start(30000, True)
-		self.SleepTimer = SleepTimer.SleepTimer()
+# 		self.SleepTimer = SleepTimer.SleepTimer()
 
 	def gotostandby(self):
 		from Tools import Notifications

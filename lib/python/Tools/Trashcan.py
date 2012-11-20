@@ -193,11 +193,11 @@ class TrashInfo(VariableText, GUIComponent):
 		if self.type == self.USED:
 			try:
 				if total_size < 10000000:
-					total_size = _("%d Kb") % (total_size >> 10)
+					total_size = _("%d KB") % (total_size >> 10)
 				elif total_size < 10000000000:
-					total_size = _("%d Mb") % (total_size >> 20)
+					total_size = _("%d MB") % (total_size >> 20)
 				else:
-					total_size = _("%d Gb") % (total_size >> 30)
+					total_size = _("%d GB") % (total_size >> 30)
 				self.setText(_("Trashcan:") + " " + total_size)
 			except:
 				# occurs when f_blocks is 0 or a similar error

@@ -263,11 +263,7 @@ class PowerTimerEditList(Screen):
 		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)
 
 	def finishedEdit(self, answer):
-		print 'answer',answer
-		print "finished edit"
-
 		if answer[0]:
-			print "Edited timer"
 			entry = answer[1]
 			self.session.nav.PowerTimer.timeChanged(entry)
 			self.fillTimerList()
@@ -276,8 +272,6 @@ class PowerTimerEditList(Screen):
 			print "PowerTimeredit aborted"
 
 	def finishedAdd(self, answer):
-		print "finished add"
-		print 'answer',answer
 		if answer[0]:
 			entry = answer[1]
 			simulTimerList = self.session.nav.PowerTimer.record(entry)
