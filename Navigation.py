@@ -99,6 +99,32 @@ class Navigation:
 		elif path.exists("/proc/stb/lcd/symbol_signal") and config.lcd.mode.getValue() == '0':
 			open("/proc/stb/lcd/symbol_signal", "w").write("0")
 
+		# Venton series
+		if path.exists("/proc/stb/lcd/symbol_scrambled") and config.lcd.mode.getValue() == '1':
+			try:
+				if ref.toString().find('0:0:0:0:0:0:0:0:0') == -1:
+					signal = 1
+				else:
+					signal = 0
+				open("/proc/stb/lcd/symbol_scrambled", "w").write(str(signal))
+			except:
+				open("/proc/stb/lcd/symbol_scrambled", "w").write("0")
+		elif path.exists("/proc/stb/lcd/symbol_scrambled") and config.lcd.mode.getValue() == '0':
+			open("/proc/stb/lcd/symbol_scrambled", "w").write("0")
+
+		# Venton series
+		if path.exists("/proc/stb/lcd/symbol_mp3") and config.lcd.mode.getValue() == '1':
+			try:
+				if ref.toString().endswith('.mp3'):
+					mp3 = 1
+				else:
+					mp3l = 0
+				open("/proc/stb/lcd/symbol_mp3", "w").write(str(mp3))
+			except:
+				open("/proc/stb/lcd/symbol_mp3", "w").write("0")
+		elif path.exists("/proc/stb/lcd/symbol_mp3") and config.lcd.mode.getValue() == '0':
+			open("/proc/stb/lcd/symbol_mp3", "w").write("0")
+			
 		if ref is None:
 			self.stopService()
 			return 0
@@ -142,7 +168,7 @@ class Navigation:
 			from Screens.InfoBarGenerics import setResumePoint
 			setResumePoint(MoviePlayer.instance.session)
 			MoviePlayerInstance.close()
-
+			
 	def recordService(self, ref, simulate=False):
 		service = None
 		if not simulate: print "recording service: %s" % (str(ref))
@@ -174,7 +200,35 @@ class Navigation:
 		self.currentlyPlayingServiceReference = None
 		if path.exists("/proc/stb/lcd/symbol_signal"):
 			open("/proc/stb/lcd/symbol_signal", "w").write("0")
+			
+		# Venton series	
+		if path.exists("/proc/stb/lcd/symbol_scrambled"):
+			open("/proc/stb/lcd/symbol_scrambled", "w").write("0")
+	
+		if path.exists("/proc/stb/lcd/symbol_1080p"):
+			open("/proc/stb/lcd/symbol_1080p", "w").write("0")
+			
+		if path.exists("/proc/stb/lcd/symbol_1080i"):
+			open("/proc/stb/lcd/symbol_1080i", "w").write("0")
+		  
+		if path.exists("/proc/stb/lcd/symbol_720p"):
+			open("/proc/stb/lcd/symbol_720p", "w").write("0")
+		  
+		if path.exists("/proc/stb/lcd/symbol_576i"):
+			open("/proc/stb/lcd/symbol_576i", "w").write("0")
+		  
+		if path.exists("/proc/stb/lcd/symbol_576p"): 
+			open("/proc/stb/lcd/symbol_576p", "w").write("0")
+		
+		if path.exists("/proc/stb/lcd/symbol_hd"): 
+			open("/proc/stb/lcd/symbol_hd", "w").write("0")  
 
+		if path.exists("/proc/stb/lcd/symbol_dolby_audio"): 
+			open("/proc/stb/lcd/symbol_dolby_audio", "w").write("0") 
+
+		if path.exists("/proc/stb/lcd/symbol_mp3"): 
+			open("/proc/stb/lcd/symbol_mp3", "w").write("0") 
+			
 	def pause(self, p):
 		return self.pnav and self.pnav.pause(p)
 

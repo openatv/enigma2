@@ -20,7 +20,8 @@ class SymbolsCheckPoller:
 		self.onClose = []
 		self.__event_tracker = ServiceEventTracker(screen=self,eventmap=
 			{
-				iPlayableService.evUpdatedInfo: self.__evUpdatedInfo,
+				#iPlayableService.evUpdatedInfo: self.__evUpdatedInfo,
+				iPlayableService.evVideoSizeChanged: self.__evUpdatedInfo,
 			})
 
 	def start(self):
@@ -43,9 +44,10 @@ class SymbolsCheckPoller:
 
 	def __evUpdatedInfo(self):
 		self.service = self.session.nav.getCurrentService()
+		self.Resolution()
+		self.Audio()
 		self.Subtitle()
 		self.ParentalControl()
-		self.Resolution()
 		del self.service
 
 	def Recording(self):
@@ -88,9 +90,9 @@ class SymbolsCheckPoller:
 			subtitles = len(subtitlelist)
 			if fileExists("/proc/stb/lcd/symbol_subtitle"):
 				if subtitles > 0:
-					open("/proc/stb/lcd/symbol_subtitle", "w").write("0")
-				else:
 					open("/proc/stb/lcd/symbol_subtitle", "w").write("1")
+				else:
+					open("/proc/stb/lcd/symbol_subtitle", "w").write("0")
 			else:
 				if subtitles > 0:
 					open("/proc/stb/lcd/symbol_smartcard", "w").write("1")
@@ -118,10 +120,12 @@ class SymbolsCheckPoller:
 			return
 
 		info = self.service and self.service.info()
+		if not info:
+			return ""
 
-		if info:
-			videosize = int(info.getInfo(iServiceInformation.sVideoWidth))
-			
+		videosize = int(info.getInfo(iServiceInformation.sVideoWidth))
+
+		if videosize == 65535 or videosize == -1:
 			# lets clear all symbols before turn on which are needed
 			open("/proc/stb/lcd/symbol_1080p", "w").write("0")
 			open("/proc/stb/lcd/symbol_1080i", "w").write("0")
@@ -129,14 +133,32 @@ class SymbolsCheckPoller:
 			open("/proc/stb/lcd/symbol_576p", "w").write("0")
 			open("/proc/stb/lcd/symbol_576i", "w").write("0")
 			open("/proc/stb/lcd/symbol_hd", "w").write("0")
-				
-			if videosize > 1280:
-				open("/proc/stb/lcd/symbol_1080i", "w").write("1")
-				open("/proc/stb/lcd/symbol_hd", "w").write("1")
-			elif videosize == 1280:
-				open("/proc/stb/lcd/symbol_720p", "w").write("1")
-				open("/proc/stb/lcd/symbol_hd", "w").write("1")
-			elif videosize < 1280:
-				open("/proc/stb/lcd/symbol_576i", "w").write("1")
-				open("/proc/stb/lcd/symbol_hd", "w").write("0")
+			return ""
+		
+		if videosize >= 1280:
+			open("/proc/stb/lcd/symbol_1080i", "w").write("1")
+			open("/proc/stb/lcd/symbol_hd", "w").write("1")
+		elif videosize < 1280 and videosize > 720:
+			open("/proc/stb/lcd/symbol_720p", "w").write("1")
+			open("/proc/stb/lcd/symbol_hd", "w").write("1")
+		elif videosize <= 720:
+			open("/proc/stb/lcd/symbol_576i", "w").write("1")
+			open("/proc/stb/lcd/symbol_hd", "w").write("0")
 
+	def Audio(self):
+		if not fileExists("/proc/stb/lcd/symbol_dolby_audio"):
+			return
+		      
+		audio = self.service.audioTracks()
+		if audio:
+			n = audio.getNumberOfTracks()
+			idx = 0
+			while idx < n:
+				i = audio.getTrackInfo(idx)
+				description = i.getDescription();
+				if "AC3" in description or "AC-3" in description or "DTS" in description:
+					open("/proc/stb/lcd/symbol_dolby_audio", "w").write("1")
+					return
+				idx += 1	
+		open("/proc/stb/lcd/symbol_dolby_audio", "w").write("0")
+		
