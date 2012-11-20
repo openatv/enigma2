@@ -364,7 +364,7 @@ class WlanScan(Screen):
 		if length == 0:
 			self["info"].setText(_("No wireless networks found! Searching..."))
 		else:
-			self["info"].setText(ngettext("%d wireless network found!", "%d wireless networks found!", i) % i)
+			self["info"].setText(ngettext("%d wireless network found!", "%d wireless networks found!", length) % length)
 
 	def buildWlanList(self):
 		self.WlanList = []
