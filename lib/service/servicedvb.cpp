@@ -2779,7 +2779,6 @@ void eDVBServicePlay::loadCuesheet()
 
 	if (f)
 	{
-		eDebug("loading cuts..");
 		while (1)
 		{
 			unsigned long long where;
@@ -2799,7 +2798,7 @@ void eDVBServicePlay::loadCuesheet()
 			m_cue_entries.insert(cueEntry(where, what));
 		}
 		fclose(f);
-		eDebug("%zd entries", m_cue_entries.size());
+		eDebug("cuts file has %zd entries", m_cue_entries.size());
 	} else
 		eDebug("cutfile not found!");
 
@@ -2842,7 +2841,7 @@ void eDVBServicePlay::cutlistToCuesheet()
 	}
 	m_cue->clear();
 
-	if (!m_cutlist_enabled)
+	if ((m_cutlist_enabled & 1) == 0)
 	{
 		m_cue->commitSpans();
 		eDebug("cutlists were disabled");
@@ -3231,19 +3230,16 @@ void eDVBServicePlay::checkSubtitleTiming()
 		{
 			if (type == TELETEXT)
 			{
-				eDebug("display teletext subtitle page %lld", show_time);
 				m_subtitle_widget->setPage(page);
 				m_subtitle_pages.pop_front();
 			}
 			else
 			{
-				eDebug("display dvb subtitle Page %lld", show_time);
 				m_subtitle_widget->setPage(dvb_page);
 				m_dvb_subtitle_pages.pop_front();
 			}
 		} else
 		{
-			eDebug("start subtitle delay %d", diff / 90);
 			m_subtitle_sync_timer->start(diff / 90, 1);
 			break;
 		}
@@ -3257,11 +3253,8 @@ void eDVBServicePlay::newDVBSubtitlePage(const eDVBSubtitlePage &p)
 		pts_t pos = 0;
 		if (m_decoder)
 			m_decoder->getPTS(0, pos);
-		eDebug("got new subtitle page %lld %lld", pos, p.m_show_time);
 		if ( abs(pos-p.m_show_time)>1800000 && (m_is_pvr || m_timeshift_enabled))
 		{
-			eDebug("Subtitle without PTS and recording");
-
 			std::string configvalue;
 			int subtitledelay = 315000;
 			if (!ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_noPTSrecordingdelay", configvalue))
