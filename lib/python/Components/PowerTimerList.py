@@ -30,9 +30,9 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 
 		afterevent = {
 			AFTEREVENT.NONE: _("Nothing"),
-			AFTEREVENT.DEEPSTANDBY: _("Deep Standby"),
+			AFTEREVENT.WAKEUPTOSTANDBY: _("Wake Up To Standby"),
 			AFTEREVENT.STANDBY: _("Standby"),
-			AFTEREVENT.AUTO: _("auto")
+			AFTEREVENT.DEEPSTANDBY: _("Deep Standby")
 			}[timer.afterEvent]
 
 		width = self.l.getItemSize().width()
@@ -60,7 +60,7 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 				state = _("done!")
 				icon = self.iconDone
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, x+24, 2, x-2-24, 25, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _('When finished:') + ' ' + afterevent))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, x+24, 2, x-2-24, 25, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _('At End:') + ' ' + afterevent))
 			days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
 			begin = FuzzyTime(timer.begin)
 			if timer.repeated:
