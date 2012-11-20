@@ -190,7 +190,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					print 'TEST19:'
 					if Screens.Standby.inStandby: # in standby
 						print 'TEST20:'
-						Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
+						quitMainloop(1)
 						return True
 					else:
 						print 'TEST21:'
