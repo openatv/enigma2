@@ -111,7 +111,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 	def keyLeft(self):
 		current = self["config"].getCurrent()
-		if current == self.splitEntry or self.color_spaceEntry:
+		if current == self.splitEntry or current == self.color_spaceEntry:
 			ConfigListScreen.keyLeft(self)
 		elif current != self.splitEntry and current in self.xtdlist:
 			self.previewlist = [
@@ -129,7 +129,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 	def keyRight(self):
 		current = self["config"].getCurrent()
-		if current == self.splitEntry or self.color_spaceEntry:
+		if current == self.splitEntry or current == self.color_spaceEntry:
 			ConfigListScreen.keyRight(self)
 		elif current != self.splitEntry and current in self.xtdlist:
 			self.previewlist = [
