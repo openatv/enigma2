@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2012-11-20 13:08+0100\n"
+"PO-Revision-Date: 2012-11-20 20:23+0100\n"
 "Last-Translator: mike99\n"
 "Language-Team: AAF\n"
 "Language: de\n"
@@ -2282,16 +2282,16 @@ msgid "Currently installed image"
 msgstr "Aktuell installiertes Image"
 
 #
-msgid "Custom skip time for '1'/'3'-keys"
-msgstr "Gewünschte Sprungzeit für '1'/'3'-Tasten"
+msgid "Custom skip time for '1'/'3' buttons"
+msgstr "Gewünschte Sprungzeit für '1'/'3' Tasten"
 
 #
-msgid "Custom skip time for '4'/'6'-keys"
-msgstr "Gewünschte Sprungzeit für '4'/'6'-Tasten"
+msgid "Custom skip time for '4'/'6' buttons"
+msgstr "Gewünschte Sprungzeit für '4'/'6' Tasten"
 
 #
-msgid "Custom skip time for '7'/'9'-keys"
-msgstr "Gewünschte Sprungzeit für '7'/'9'-Tasten"
+msgid "Custom skip time for '7'/'9' buttons"
+msgstr "Gewünschte Sprungzeit für '7'/'9' Tasten"
 
 msgid "Custom text alignment"
 msgstr "Benutzerdefinierte Textausrichtung"
@@ -3062,9 +3062,9 @@ msgid "Enabled"
 msgstr "Aktiviert"
 
 msgid ""
-"Enables EPG data of events in the past to be displayed. Handy when you want "
-"to know something about an event that is about to finish or has just "
-"finished (minutes)."
+"Configure for how many minutes finished events should remain visible in the "
+"EPG. Useful when you need information about an event which has just "
+"finished, or has been delayed."
 msgstr ""
 "Bestimmt wie lange EPG Daten aus der Vergangenheit erhalten bleiben. "
 "Nützlich wenn man wissen möchte ob eine Sendung demnächst beendet wird oder "
@@ -4109,7 +4109,7 @@ msgstr "Sofortaufnahme..."
 msgid "Instant record location"
 msgstr "Verzeichnis der Sofortaufnahme"
 
-msgid "Instant recordings location"
+msgid "Instant recording location"
 msgstr "Ziel für Sofortaufnahmen"
 
 msgid "Interface"
@@ -4466,11 +4466,11 @@ msgid "March"
 msgstr "März"
 
 #
-msgid "Margin after record"
-msgstr "Nachlauf hinter Aufnahme"
+msgid "Margin after recording (minutes)"
+msgstr "Nachlauf hinter Aufnahme (in Minuten)"
 
 #
-msgid "Margin before record (minutes)"
+msgid "Margin before recording (minutes)"
 msgstr "Vorlauf bei Aufnahme (in Minuten)"
 
 #
@@ -6885,8 +6885,8 @@ msgid "Services"
 msgstr "Kanäle"
 
 msgid ""
-"Services may be grouped in bouquets. When enabled you can zap to a channel "
-"in another bouquet then you are in at present."
+"When enabled, continue to the next bouquet when the last channel of the "
+"current bouquet is reached while changing channels."
 msgstr ""
 "Sender können in Favoriten gruppiert werden. Wenn aktiviert kann beim Zappen "
 "die Favoritenliste gewechselt werden."
@@ -8516,7 +8516,7 @@ msgstr ""
 "Bitte überprüfen!"
 
 #
-msgid "Timer record location"
+msgid "Timer recording location"
 msgstr "Timer-Aufnahmeverzeichnis"
 
 #
@@ -13452,17 +13452,17 @@ msgstr ""
 "niedrigere Geschwindigkeit hat weniger Einfluss auf die Leistung der "
 "Festplatte."
 
-msgid "Configure the skip time interval on the '1'/'3'-keys."
+msgid "Configure the skip time interval on the '1'/'3' buttons."
 msgstr ""
-"Konfigurieren Sie die Überspringen Zeitintervall auf der '1'/'3'-Tasten."
+"Konfigurieren Sie die Überspringen Zeitintervall auf der '1'/'3' Tasten."
 
-msgid "Configure the skip time interval on the '4'/'6'-keys."
+msgid "Configure the skip time interval on the '4'/'6' buttons."
 msgstr ""
-"Konfigurieren Sie die Überspringen Zeitintervall auf der '4'/'6'-Tasten."
+"Konfigurieren Sie die Überspringen Zeitintervall auf der '4'/'6' Tasten."
 
-msgid "Configure the skip time interval on the '7'/'9'-keys."
+msgid "Configure the skip time interval on the '7'/'9' buttons."
 msgstr ""
-"Konfigurieren Sie die Überspringen Zeitintervall auf der '7'/'9'-Tasten."
+"Konfigurieren Sie die Überspringen Zeitintervall auf der '7'/'9' Tasten."
 
 msgid "Initial fast forward speed"
 msgstr "Initial Vorlaufgeschwindigkeit"
