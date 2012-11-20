@@ -157,7 +157,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				print 'TEST09:'
 				if not Screens.Standby.inStandby: # not already in standby
 					print 'TEST10:'
-					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("Your STB_BOX wants to set your STB_BOX to standby.\nDo that now?"), timeout = 10)
+					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("Your STB_BOX wants to set your STB_BOX to standby.\nDo that now?"), timeout = 180)
 					if self.autosleeprepeat == "once":
 						print 'TEST11:'
 						eActionMap.getInstance().unbindAction('', self.keyPressed)
@@ -194,7 +194,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						return True
 					else:
 						print 'TEST21:'
-						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("Your STB_BOX wants to shut down your STB_BOX.\nDo that now?"), timeout = 10)
+						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("Your STB_BOX wants to shut down your STB_BOX.\nDo that now?"), timeout = 180)
 						if self.autosleeprepeat == "once":
 							print 'TEST22:'
 							eActionMap.getInstance().unbindAction('', self.keyPressed)
