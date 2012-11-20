@@ -124,12 +124,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			self.backoff = 0
 			return True
 
-		elif next_state == self.StateRunning and getFPWasTimerWakeup():
-			print 'TEST01a:'
-			return True
-
-		elif next_state == self.StateRunning and not getFPWasTimerWakeup():
-			print 'TEST01b:'
+		elif next_state == self.StateRunning:
+			print 'TEST01:'
 			# if this timer has been cancelled, just go to "end" state.
 			if self.cancelled:
 				print 'TEST02:'
@@ -210,8 +206,12 @@ class PowerTimerEntry(timer.TimerEntry, object):
 								print 'TEST24:'
 								self.end = self.begin
 
-			elif self.timerType == TIMERTYPE.DEEPSTANDBY:
-				print 'TEST25:'
+			elif self.timerType == TIMERTYPE.DEEPSTANDBY and getFPWasTimerWakeup():
+				print 'TEST25a:'
+				return True
+
+			elif self.timerType == TIMERTYPE.DEEPSTANDBY and not getFPWasTimerWakeup():
+				print 'TEST25b:'
 				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
 					print 'TEST26:'
 					self.do_backoff()
