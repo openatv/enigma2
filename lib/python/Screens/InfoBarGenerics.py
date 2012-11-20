@@ -1079,7 +1079,7 @@ class InfoBarEPG:
 			else:
 				self.openSingleServiceEPG()
 		else:
-			self.showEventInformation()
+			self.openEventView(True)
 
 	def runPlugin(self, plugin):
 		plugin(session = self.session, servicelist = self.servicelist)
@@ -1124,7 +1124,7 @@ class InfoBarEPG:
 			return
 		self.EPGPressed()
 
-	def openEventView(self):
+	def openEventView(self, simple=False):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
@@ -1143,29 +1143,10 @@ class InfoBarEPG:
 		else:
 			self.is_now_next = True
 		if epglist:
-			self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
-			self.dlg_stack.append(self.eventView)
-
-	def showEventInformation(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-		ref = self.session.nav.getCurrentlyPlayingServiceReference()
-		self.getNowNext()
-		epglist = self.epglist
-		if not epglist:
-			self.is_now_next = False
-			epg = eEPGCache.getInstance()
-			ptr = ref and ref.valid() and epg.lookupEventTime(ref, -1)
-			if ptr:
-				epglist.append(ptr)
-				ptr = epg.lookupEventTime(ref, ptr.getBeginTime(), +1)
-				if ptr:
-					epglist.append(ptr)
-		else:
-			self.is_now_next = True
-		if epglist:
-			self.eventView = self.session.openWithCallback(self.closed, EventViewSimple, epglist[0], ServiceReference(ref))
+			if not simple:
+				self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
+			else:
+				self.eventView = self.session.openWithCallback(self.closed, EventViewSimple, epglist[0], ServiceReference(ref))
 			self.dlg_stack.append(self.eventView)
 
 	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying

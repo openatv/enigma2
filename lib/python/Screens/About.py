@@ -180,8 +180,61 @@ class Devices(Screen):
 
 		nims = nimmanager.nimList()
 		for count in range(len(nims)):
+<<<<<<< HEAD
 			if count < 4:
 				self["Tuner" + str(count)] = StaticText(nims[count])
+=======
+			if niminfo:
+				niminfo += "\n"
+			niminfo += nims[count]
+		self["nims"].setText(niminfo)
+
+		self.list = []
+		list2 = []
+		f = open('/proc/partitions', 'r')
+		for line in f.readlines():
+			parts = line.strip().split()
+			if not parts:
+				continue
+			device = parts[3]
+ 			if not search('sd[a-z][1-9]',device):
+				continue
+			if device in list2:
+				continue
+
+			mount = '/dev/' + device
+			f = open('/proc/mounts', 'r')
+			for line in f.readlines():
+				if line.find(device) != -1:
+					parts = line.strip().split()
+					mount = str(parts[1])
+					break
+					continue
+			f.close()
+
+			if not mount.startswith('/dev/'):
+				size = Harddisk(device).diskSize()
+				free = Harddisk(device).free()
+
+				if ((float(size) / 1024) / 1024) >= 1:
+					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024),2)) + _("TB")
+				elif (size / 1024) >= 1:
+					sizeline = _("Size: ") + str(round((float(size) / 1024),2)) + _("GB")
+				elif size >= 1:
+					sizeline = _("Size: ") + str(size) + _("MB")
+				else:
+					sizeline = _("Size: ") + _("unavailable")
+
+				if ((float(free) / 1024) / 1024) >= 1:
+					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024),2)) + _("TB")
+				elif (free / 1024) >= 1:
+					freeline = _("Free: ") + str(round((float(free) / 1024),2)) + _("GB")
+				elif free >= 1:
+					freeline = _("Free: ") + str(free) + _("MB")
+				else:
+					freeline = _("Free: ") + _("full")
+				self.list.append(mount +'\t'  + sizeline + ' \t' + freeline)
+>>>>>>> e01b0cc6bd631a3ef61d4c9d458fef4d4ec36fe1
 			else:
 				self["Tuner" + str(count)] = StaticText("")
 			self.AboutText += nims[count] + "\n"

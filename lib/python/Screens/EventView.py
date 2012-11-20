@@ -245,7 +245,7 @@ class EventViewBase:
 			self.session.open(EventViewContextMenu, self.currentService, self.event)
 
 class EventViewSimple(Screen, EventViewBase):
-	def __init__(self, session, Event, Ref, callback=None, similarEPGCB=None):
+	def __init__(self, session, Event, Ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None):
 		Screen.__init__(self, session)
 		data = resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")
 		data = data.replace('/ skin.xml','/skin.xml')

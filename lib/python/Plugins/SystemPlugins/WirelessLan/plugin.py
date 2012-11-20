@@ -364,7 +364,7 @@ class WlanScan(Screen):
 		if length == 0:
 			self["info"].setText(_("No wireless networks found! Searching..."))
 		else:
-			self["info"].setText(ngettext("%d wireless network found!", "%d wireless networks found!", i) % i)
+			self["info"].setText(ngettext("%d wireless network found!", "%d wireless networks found!", length) % length)
 
 	def buildWlanList(self):
 		self.WlanList = []
@@ -402,4 +402,4 @@ def configStrings(iface):
 	return ret
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Wireless LAN"), description=_("Connect to a wireless network"), where = PluginDescriptor.WHERE_NETWORKSETUP, needsRestart = False, fnc={"ifaceSupported": callFunction, "configStrings": configStrings, "WlanPluginEntry": lambda x: _("Wireless network configuartion...")})
+	return PluginDescriptor(name=_("Wireless LAN"), description=_("Connect to a wireless network"), where = PluginDescriptor.WHERE_NETWORKSETUP, needsRestart = False, fnc={"ifaceSupported": callFunction, "configStrings": configStrings, "WlanPluginEntry": lambda x: _("Wireless network configuration...")})
