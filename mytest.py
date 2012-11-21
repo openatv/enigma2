@@ -514,9 +514,9 @@ def runScreenTest():
 		if x[0] != -1
 	]
 	wakeupList.sort()
+	print 'wakeupList',wakeupList
 	recordTimerWakeupAuto = False
-	PowerTimerWakeupAuto = False
-	if wakeupList:
+	if wakeupList and wakeupList[0] != 3:
 		from time import strftime
 		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 270: # no time to switch box back on
@@ -532,9 +532,29 @@ def runScreenTest():
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
 		setFPWakeuptime(wptime)
 		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
-		PowerTimerWakeupAuto = startTime[1] == 3 and startTime[2]
 	config.misc.isNextRecordTimerAfterEventActionAuto.value = recordTimerWakeupAuto
 	config.misc.isNextRecordTimerAfterEventActionAuto.save()
+
+
+	PowerTimerWakeupAuto = False
+	if wakeupList and wakeupList[0][1] == 3:
+		print 'PT TEST:', wakeupList
+		from time import strftime
+		startTime = wakeupList[0]
+		if (startTime[0] - nowTime) < 60: # no time to switch box back on
+			wptime = nowTime + 30  # so switch back on in 30 seconds
+		else:
+			if config.misc.boxtype.getValue().startswith("gb"):
+				wptime = startTime[0] + 120 # Gigaboxes already starts 2 min. before wakeup time
+			else:
+				wptime = startTime[0]
+		if not config.misc.SyncTimeUsing.getValue() == "0":
+			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
+			setRTCtime(nowTime)
+		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime+60))
+		setFPWakeuptime(wptime)
+		PowerTimerWakeupAuto = startTime[1] == 3 and startTime[2]
+		print 'PowerTimerWakeupAuto',PowerTimerWakeupAuto
 	config.misc.isNextPowerTimerAfterEventActionAuto.value = PowerTimerWakeupAuto
 	config.misc.isNextPowerTimerAfterEventActionAuto.save()
 

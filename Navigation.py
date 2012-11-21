@@ -34,6 +34,7 @@ class Navigation:
 		self.currentlyPlayingService = None
 		self.RecordTimer = RecordTimer.RecordTimer()
 		self.PowerTimer = PowerTimer.PowerTimer()
+		print 'getFPWasTimerWakeup:',getFPWasTimerWakeup()
 		if getFPWasTimerWakeup():
 			open("/tmp/was_timer_wakeup", "w").write('1')
 			if nextRecordTimerAfterEventActionAuto:
@@ -50,6 +51,7 @@ class Navigation:
 				self.recordshutdowntimer.callback.append(self.checkShutdownAfterRecording)
 				self.recordshutdowntimer.start(30000, True)
 			elif nextPowerManagerAfterEventActionAuto:
+				print 'POWERTIMER: wakeup to standby detected.'
 				# We need to give the system the chance to fully startup,
 				# before we initiate the standby command.
 				self.standbytimer = eTimer()
@@ -58,6 +60,7 @@ class Navigation:
 # 		self.SleepTimer = SleepTimer.SleepTimer()
 
 	def gotostandby(self):
+		print 'TIMER: now entering stadnby'
 		from Tools import Notifications
 		Notifications.AddNotification(Screens.Standby.Standby)
 
