@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-16 18:48+0100\n"
-"PO-Revision-Date: 2012-11-19 19:34+0100\n"
+"PO-Revision-Date: 2012-11-20 20:20+0100\n"
 "Last-Translator: Magnus Nilsson <mag_nilsson@hotmail.com>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -418,7 +418,7 @@ msgid ""
 "receiver to standby. Do that now?"
 msgstr ""
 "En utförd inspelningstimer vill försätta din\n"
-"mottagare i standby. Utföra det nu?"
+"mottagare i viloläge. Utföra det nu?"
 
 msgid ""
 "A finished record timer wants to shut down\n"
@@ -494,7 +494,7 @@ msgid ""
 "receiver to standby. Do that now?"
 msgstr ""
 "En sovtimer vill försätta din\n"
-"mottagare i standby. Utföra det?"
+"mottagare i viloläge. Utföra det?"
 
 msgid ""
 "A sleep timer wants to shut down\n"
@@ -552,10 +552,10 @@ msgstr "Accespunkt:"
 
 #
 msgid "Action on long powerbutton press"
-msgstr "Beteende vid långt tryck på powerknapp"
+msgstr "Beteende vid långt tryck på powerknappen"
 
 msgid "Action on short powerbutton press"
-msgstr "Beteende vid kort tryckning på strömknappen"
+msgstr "Beteende vid kort tryck på powerknappen"
 
 #
 msgid "Action:"
@@ -617,7 +617,7 @@ msgid "Add files to playlist"
 msgstr "Lägg till fil i spellista"
 
 msgid "Add more details to the crash log"
-msgstr "Skapa mer detaljerad krasch-logg"
+msgstr "Vid aktiverad, skapa en mer detaljerad krasch-logg."
 
 #
 msgid "Add provider"
@@ -999,7 +999,7 @@ msgstr "Starttid"
 
 #
 msgid "Behavior of 'pause' when paused"
-msgstr "Beteende av 'pause' vid paus"
+msgstr "Beteende av 'paus' vid paus"
 
 #
 msgid "Behavior of 0 key in PiP-mode"
@@ -1355,8 +1355,7 @@ msgstr "Konfiguration..."
 
 msgid ""
 "Configure for how long the infobar will remain visible after activation."
-msgstr ""
-"Konfigurera hur länge informationsfältet förblir synlig efter aktivering."
+msgstr "Konfigurera hur länge infobalken förblir synlig efter aktivering."
 
 msgid ""
 "Configure for how many minutes finished events should remain visible in the "
@@ -1403,11 +1402,11 @@ msgstr ""
 
 #
 msgid "Configure the behavior when movie playback is manually stopped."
-msgstr "Konfigurera Beteendet när en film stoppas"
+msgstr "Konfigurera beteendet när en film stoppas"
 
 #
 msgid "Configure the behavior when movie playback is started."
-msgstr "Konfigurera Beteendet när en film startas"
+msgstr "Konfigurera beteendet när en film startas"
 
 msgid ""
 "Configure the behavior when reaching the end of a movie, during movie "
@@ -1424,7 +1423,7 @@ msgstr ""
 
 msgid ""
 "Configure the brightness level of the front panel display during standby."
-msgstr "Konfigurera ljusstyrkan på frontpanelens display i standby."
+msgstr "Konfigurera ljusstyrkan på frontpanelens display i viloläge."
 
 msgid "Configure the brightness level of the front panel display."
 msgstr "Konfigurera ljusstyrkan på frontpanelens display."
@@ -1442,7 +1441,7 @@ msgid "Configure the first subtitle language (highest priority)."
 msgstr "Konfigurera det första textningsspråket (högsta prioritet)."
 
 msgid "Configure the font size of the subtitles."
-msgstr "Konfigurera teckenstorleken på undertexter."
+msgstr "Konfigurera fontstorleken på undertexter."
 
 msgid "Configure the fourth audio language."
 msgstr "Konfigurera det fjärde ljudspråket."
@@ -1452,10 +1451,10 @@ msgid "Configure the fourth subtitle language."
 msgstr "Konfigurera det fjärde undertextspråket."
 
 msgid "Configure the function of a long press on the power button."
-msgstr "Konfigurera funktionen med ett långt tryck på power knappen."
+msgstr "Konfigurera funktionen med ett långt tryck på powerknappen."
 
 msgid "Configure the function of a short press on the power button."
-msgstr "Konfigurera funktionen med ett kort tryck på power knappen."
+msgstr "Konfigurera funktionen med ett kort tryck på powerknappen."
 
 msgid "Configure the function of the '0' button do when PIP is active."
 msgstr "Konfigurera funktionen av '0' knappen när BiB är aktiv."
@@ -1473,7 +1472,7 @@ msgstr "Konfigurera den generella ljudfördröjningen av stereo ljudspår."
 msgid ""
 "Configure the hard disk drive to go to standby after the specified idle time."
 msgstr ""
-"Konfigurera hårddisken för att gå till väntläge efter den angivna vilotiden."
+"Konfigurera hårddisken för att gå till viloläge efter den angivna tiden."
 
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr "Konfigurera den horisontella inriktningen av undertexter."
@@ -1482,14 +1481,14 @@ msgid ""
 "Configure the initial fast forward speed. When you press the fast forward "
 "button, winding will start at this speed."
 msgstr ""
-"Konfigurera den första framåt hastigheten. När du trycker på framåt knappen, "
+"Konfigurera den första framåthastigheten. När du trycker på framåtknappen, "
 "kommer snabbspolning starta vid denna hastighet."
 
 msgid ""
 "Configure the initial rewind speed. When you press the rewind button, "
 "winding will start at this speed."
 msgstr ""
-"Konfigurera den första bakåt hastigheten. När du trycker på bakåt knappen, "
+"Konfigurera den första bakåthastigheten. När du trycker på bakåtknappen, "
 "kommer bakåtspolning starta vid denna hastighet."
 
 msgid "Configure the latitude of your location."
@@ -1532,15 +1531,13 @@ msgstr ""
 msgid ""
 "Configure the offline decoding delay in milliseconds. The configured delay "
 "is observed at each control word parity change."
-msgstr ""
-"Konfigurera offline avkodnings fördröjningen i millisekunder. Den "
-"konfigurerade fördröjningen observeras vid varje paritet förändring."
+msgstr "Konfigurera avkodnings-fördröjningen i millisekunder (offline)."
 
 msgid "Configure the possible fast forward speeds."
-msgstr "Konfigurera snabbspolninghastighet framåt"
+msgstr "Konfigurera snabbspolningshastighet framåt."
 
 msgid "Configure the possible rewind speeds."
-msgstr "Konfigurera de möjliga bakåt hastigheterna."
+msgstr "Konfigurera snabbspolningshastighet bakåt."
 
 msgid "Configure the primary EPG language."
 msgstr "Konfigurera det primära EPG språket."
@@ -1562,31 +1559,31 @@ msgid "Configure the secondary EPG language."
 msgstr "Konfigurera det sekundära EPG språket."
 
 msgid "Configure the sharpness of the video scaling."
-msgstr "Konfigurera skärpan i video skalningen."
+msgstr "Konfigurera skärpan i videoskalningen."
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
-msgstr "Konfigurera tidsintervallet för '1'/'3' knapparna."
+msgstr "Konfigurera hopptidsintervallet för '1'/'3' knapparna."
 
 msgid "Configure the skip time interval for the '4'/'6' buttons."
-msgstr "Konfigurera tidsintervallet för '4'/'6' knapparna."
+msgstr "Konfigurera hopptidsintervallet för '4'/'6' knapparna."
 
 msgid "Configure the skip time interval for the '7'/'9' buttons."
-msgstr "Konfigurera tidsintervallet för '7'/'9'knapparna."
+msgstr "Konfigurera hopptidsintervallet för '7'/'9' knapparna."
 
 #
 msgid "Configure the slow motion speeds."
-msgstr "Konfigurera hastigehter för slow motion"
+msgstr "Konfigurera hastighter för slowmotion."
 
 msgid ""
 "Configure the speed of the background deletion process. Lower speed will "
 "consume less hard disk drive performance."
 msgstr ""
 "Konfigurera borttagningshastigheten i bakgrunden. Lägre hastighet kommer att "
-"förbruka mindre hårddisk prestanda."
+"förbruka mindre hårddiskprestanda."
 
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr ""
-"Konfigurera undertext fördröjningen när tidsinformation inte är tillgänglig."
+"Konfigurera undertext-fördröjningen när tidsinformation inte är tillgänglig."
 
 msgid "Configure the third audio language."
 msgstr "Konfigurera det tredje ljudspråket."
@@ -1602,10 +1599,10 @@ msgid ""
 "Configure the transparency of the black background of graphical DVB "
 "subtitles."
 msgstr ""
-"Konfigurera transparensen i svart bakgrund av grafiska DVB undertexter."
+"Konfigurera transparensen i svart bakgrund av grafiska DVB-undertexter."
 
 msgid "Configure the tuner mode."
-msgstr "Konfigurera tuner läge"
+msgstr "Konfigurera tunerläge"
 
 msgid "Configure the type of status indication icons shown in the movielist."
 msgstr "Konfigurera den typ av ikon statusindikeringen visar i filmlistan."
@@ -1659,17 +1656,17 @@ msgid ""
 "Configure which tuner type will be preferred, when the same service is "
 "available on different types of tuners."
 msgstr ""
-"Konfigurera vilken mottagare som kommer att föredras, när samma kanal är "
-"tillgänglig på olika typer av mottagare."
+"Konfigurera vilken tuner som kommer att föredras, när samma kanal är "
+"tillgänglig på olika typer av tuners."
 
 msgid ""
 "Configure which tuner will be preferred, when more than one tuner is "
 "available. If set to 'auto' the system will give priority to the tuner "
 "having the lowest number of channels/satellites."
 msgstr ""
-"Konfigurera vilken mottagare som kommer att föredras, då mer än en mottagare "
-"finns tillgänglig. Om du väljer 'auto' kommer systemet att prioritera tunern "
-"som har det lägsta antalet kanaler/satelliter."
+"Konfigurera vilken tuner som kommer att föredras, då mer än en tuner finns "
+"tillgänglig. Om du väljer 'auto' kommer systemet att prioritera tunern som "
+"har det lägsta antalet kanaler/satelliter."
 
 #
 msgid "Configure your internal LAN"
@@ -2401,7 +2398,7 @@ msgid "Enable ViaSat EPG"
 msgstr "Aktivera Viasat EPG"
 
 msgid "Enable bouquet selection in multi-EPG"
-msgstr "Visa favoritlistemenyn"
+msgstr "Vid aktiverad, visa Multi-EPG favoritlisteval"
 
 msgid "Enable freesat EPG"
 msgstr "Aktivera freesat EPG"
@@ -3058,7 +3055,7 @@ msgid "Init"
 msgstr "Initiera"
 
 msgid "Initial fast forward speed"
-msgstr "Initial snabbspolninghastighet framåt"
+msgstr "Initial snabbspolningshastighet framåt"
 
 #
 msgid "Initial location in new timers"
@@ -3068,7 +3065,7 @@ msgid "Initial lock ratio"
 msgstr "Initial låst ratio"
 
 msgid "Initial rewind speed"
-msgstr "Initial snabbspolninghastighet bakåt"
+msgstr "Initial snabbspolningshastighet bakåt"
 
 msgid "Initial signal quality"
 msgstr "Initial signalkvalitet"
@@ -4714,10 +4711,10 @@ msgid "Providers"
 msgstr "Leverantörer"
 
 msgid "Put TV in standby"
-msgstr "Sätt TV:n i standby"
+msgstr "Sätt TV:n i viloläge"
 
 msgid "Put receiver in standby"
-msgstr "Sätt mottagaren i standby"
+msgstr "Sätt mottagaren i viloläge"
 
 #
 msgid "Python frontend for /tmp/mmi.socket"
@@ -5591,7 +5588,7 @@ msgid "Show bouquet selection menu"
 msgstr "Visa favoritlistemenyn"
 
 msgid "Show busy indicator when the system is busy."
-msgstr "Visa upptaget indikator när systemet är upptaget."
+msgstr "Vid aktiverad, visa animation när mottagaren arbetar."
 
 msgid "Show channel numbers in channel selection"
 msgstr "Visa kanalnummer i kanallistan"
@@ -5804,7 +5801,7 @@ msgstr "Sakta"
 
 #
 msgid "Slow motion speeds"
-msgstr "Hastigheter för slow motion"
+msgstr "Hastigheter för slowmotion"
 
 #
 msgid "Small progress"
@@ -6979,7 +6976,7 @@ msgid "Use official channel numbering"
 msgstr "Använd den officiella kanalnumreringen"
 
 msgid "Use original DVB subtitle position"
-msgstr "Använd DVB undertext original position"
+msgstr "Använd DVB-undertextens originalposition"
 
 msgid "Use original teletext position"
 msgstr "Använd undertextens originalposition"
@@ -7262,10 +7259,10 @@ msgid "Wakeup"
 msgstr "Wakeup"
 
 msgid "Wakeup TV from standby"
-msgstr "Wakeup TV från standby"
+msgstr "Wakeup TV från viloläge"
 
 msgid "Wakeup receiver from standby"
-msgstr "Wakeup mottagaren från standby"
+msgstr "Wakeup mottagaren från viloläge"
 
 msgid "Wakeup signal from TV"
 msgstr "Wakeup signal från TV:n"
@@ -7367,33 +7364,32 @@ msgid ""
 "When enabled, AIT data will be included in http streams. This allows a "
 "client receiver to use HbbTV."
 msgstr ""
-"Vid aktiverad, kommer AIT data inkluderas i http strömmar. Detta gör att en "
-"klient mottagare får använda HbbTV."
+"Vid aktiverad, kommer AIT data inkluderas i http-strömmar. Detta gör att en "
+"klientmottagare får använda HbbTV."
 
 msgid ""
 "When enabled, ECM data will be included in http streams. This allows a "
 "client receiver to do the descrambling."
 msgstr ""
-"Vid aktiverad, kommer ECM data inkluderas i http strömmar. Detta tillåter en "
-"klient mottagare att göra avkodningen."
+"Vid aktiverad, kommer ECM data inkluderas i http-strömmar. Detta tillåter en "
+"klientmottagare att göra avkodningen."
 
 msgid ""
 "When enabled, EIT data will be included in http streams. This allows a "
 "client receiver to show EPG."
 msgstr ""
-"Vid aktiverad, kommer EIT data inkluderas i http strömmar. Detta tillåter en "
-"klient mottagare att visa EPG."
+"Vid aktiverad, kommer EIT data inkluderas i http-strömmar. Detta tillåter en "
+"klientmottagare att visa EPG."
 
 msgid ""
 "When enabled, a popup message will be shown when a movie has finished and "
 "the next one will start."
 msgstr ""
-"Vid aktiverad, kommer ett popup meddelande visas när en film är klar och "
-"nästa börjar."
+"Vid aktiverad, kommer ett meddelande visas när en film är klar och nästa "
+"börjar."
 
 msgid "When enabled, a popup message will be shown when a recording starts."
-msgstr ""
-"Vid aktiverad, kommer ett popup meddelande visas när en inspelning startar."
+msgstr "Vid aktiverad, kommer ett meddelande visas när en inspelning startar."
 
 msgid ""
 "When enabled, a radio background image will be visible while listening to a "
@@ -7438,15 +7434,15 @@ msgid ""
 "When enabled, display the EIT now/next eventdata in infobar. When disabled, "
 "display now/next eventdata from the EPG cache instead."
 msgstr ""
-"Vid aktiverad, visas EIT nu/nästa Programdata i informationsfältet. När den "
-"är avaktiverad visas nu/nästa Programdata från EPG cachen istället."
+"Vid aktiverad, visas EIT nu/nästa Programdata i infobalken. När den är "
+"avaktiverad visas nu/nästa Programdata från EPG cachen istället."
 
 msgid ""
 "When enabled, encryption info will be shown in the infobar (when supported "
 "by the skin)."
 msgstr ""
-"Vid aktiverad, kommer krypterings info att visas i informationsfältet (om "
-"det stöds av skinnet)."
+"Vid aktiverad, kommer krypteringsinfo att visas i infobalken (om det stöds "
+"av skinnet)."
 
 msgid ""
 "When enabled, error messages related to the Common Interface module will not "
@@ -7470,31 +7466,31 @@ msgid ""
 "When enabled, graphical DVB subtitles are preferred over teletext subtitles, "
 "when both types are available."
 msgstr ""
-"Vid aktiverad, är grafisk DVB textning prioriterad  före Teletext textning, "
+"Vid aktiverad, är grafisk DVB-textning prioriterad  före Teletext textning, "
 "när båda är tillgängliga."
 
 msgid "When enabled, graphical DVB subtitles will be centered horizontally."
-msgstr "Vid aktiverad, kommer grafisk DVB textning centreras horisontellt."
+msgstr "Vid aktiverad, kommer grafisk DVB-textning centreras horisontellt."
 
 msgid ""
 "When enabled, graphical DVB subtitles will be displayed at their original "
 "position."
 msgstr ""
-"Vid aktiverad, kommer grafisk DVB textning visas vid original positionen."
+"Vid aktiverad, kommer grafisk DVB-textning visas vid originalpositionen."
 
 msgid ""
 "When enabled, graphical DVB subtitles will be displayed in yellow, instead "
 "of the original color."
 msgstr ""
-"Vid aktiverad, kommer grafisk DVB textning att visas i gult, i stället för "
+"Vid aktiverad, kommer grafisk DVB-textning att visas i gult, i stället för "
 "originalfärgen."
 
 msgid ""
 "When enabled, http streams are descrambled on the server side. The (remote) "
 "client receiver does not have to do descrambling."
 msgstr ""
-"Vid aktiverad, avkodas http strömmar på serversidan. (Fjärr) klient "
-"mottagaren behöver inte göra avkodning."
+"Vid aktiverad, avkodas http-strömmar på serversidan. (Fjärr) "
+"Klientmottagaren behöver inte göra avkodning."
 
 msgid ""
 "When enabled, measure power consumption to detect when the rotor stops "
@@ -7526,7 +7522,7 @@ msgid ""
 "When enabled, teletext subtitles will be displayed at their original "
 "position."
 msgstr ""
-"Vid aktiverad, kommer Teletext textremsor visas på deras original position."
+"Vid aktiverad, kommer Teletext textremsor visas på deras originalposition."
 
 msgid ""
 "When enabled, the channel selection list will be hidden while listening to a "
@@ -7535,18 +7531,17 @@ msgstr ""
 "Vid aktiverad, kommer kanallistan döljas när du lyssnar på en radiokanal"
 
 msgid "When enabled, the infobar will be displayed when a new event starts."
-msgstr ""
-"Vid aktiverad, kommer informationsfältet visas när ett nytt program startar."
+msgstr "Vid aktiverad, kommer infobalken visas när ett nytt program startar."
 
 msgid "When enabled, the infobar will be displayed when changing channels."
-msgstr "Vid aktiverad, kommer informationsfältet att visas när du byter kanal."
+msgstr "Vid aktiverad, kommer infobalken att visas när du byter kanal."
 
 msgid ""
 "When enabled, the infobar will be displayed when skipping forwards/backwards "
 "during media playback."
 msgstr ""
-"Vid aktiverad, kommer informationsfältet visas när man hoppar framåt/bakåt "
-"under uppspelning av media."
+"Vid aktiverad, kommer infobalken visas när man hoppar framåt/bakåt under "
+"uppspelning av media."
 
 msgid ""
 "When enabled, the lenght of each recording will be shown in the movielist "
@@ -7879,7 +7874,7 @@ msgid "Your network configuration has been activated."
 msgstr "Din nätverkskonfiguration har aktiverats."
 
 msgid "Your receiver does not have an internet connection"
-msgstr "Din mottagare har inte någon internet anslutning"
+msgstr "Din mottagare har inte någon internetanslutning"
 
 #
 msgid ""
@@ -7890,7 +7885,7 @@ msgid ""
 msgstr ""
 "Din mottagare är nu klar för att användas.\n"
 "\n"
-"Din Internet anslutning fungerar.\n"
+"Din Internetanslutning fungerar.\n"
 "\n"
 
 msgid ""
@@ -7902,7 +7897,7 @@ msgid ""
 msgstr ""
 "Din mottagare är nu klar för användning.\n"
 "\n"
-"Din Internet anslutning fungerar nu.\n"
+"Din Internetanslutning fungerar nu.\n"
 "\n"
 "Vänligen tryck OK för att forsätta."
 
@@ -7919,7 +7914,7 @@ msgid ""
 "Your receiver might be unusable now. Please consult the manual for further "
 "assistance before rebooting your receiver."
 msgstr ""
-"din mottagare kanske inte fungerar längre. Vänligen läs manualen hur du får "
+"Din mottagare kanske inte fungerar längre. Vänligen läs manualen hur du får "
 "hjälp innan du startar om din mottagare."
 
 msgid "Your receiver will restart after pressing OK on your remote control."
@@ -8409,7 +8404,7 @@ msgstr "stäng av mottagaren"
 
 #
 msgid "go to standby"
-msgstr "inta standby"
+msgstr "inta viloläge"
 
 #
 msgid "grab this frame as bitmap"
@@ -9050,7 +9045,7 @@ msgstr "opublicerad"
 
 #
 msgid "until standby/restart"
-msgstr "tills standby/omstart"
+msgstr "tills viloläge/omstart"
 
 #
 msgid "user defined"
