@@ -44,7 +44,7 @@ class OscamInfo:
 	ECMTIME = 7
 	HEAD = { NAME: _("Label"), PROT: _("Protocol"),
 		CAID_SRVID: "CAID:SrvID", SRVNAME: _("Serv.Name"),
-		ECMTIME: _("ECM-Time"), IP_PORT: _("IP-Address") }
+		ECMTIME: _("ECM-Time"), IP_PORT: _("IP address") }
 	version = ""
 
 	def confPath(self):
@@ -1127,7 +1127,7 @@ class OscamInfoConfigScreen(Screen, ConfigListScreen):
 		if not config.oscaminfo.userdatafromconf.getValue():
 			self.oscamconfig.append(getConfigListEntry(_("Username (httpuser)"), config.oscaminfo.username))
 			self.oscamconfig.append(getConfigListEntry(_("Password (httpwd)"), config.oscaminfo.password))
-			self.oscamconfig.append(getConfigListEntry(_("IP-Address"), config.oscaminfo.ip))
+			self.oscamconfig.append(getConfigListEntry(_("IP address"), config.oscaminfo.ip))
 			self.oscamconfig.append(getConfigListEntry("Port", config.oscaminfo.port))
 		self.oscamconfig.append(getConfigListEntry(_("Automatically update Client/Server View?"), config.oscaminfo.autoupdate))
 		if config.oscaminfo.autoupdate.getValue():
