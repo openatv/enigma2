@@ -73,7 +73,6 @@ class HdmiCec:
 		elif message == "standby":
 			cmd = 0x36
 		elif message == "sourceinactive":
-			address = 0x0f # use broadcast for inactive source command
 			physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
 			cmd = 0x9d
 			data = str(struct.pack('BB', int(physicaladdress/256), int(physicaladdress%256)))
