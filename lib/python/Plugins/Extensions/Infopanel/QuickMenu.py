@@ -260,7 +260,7 @@ class QuickMenu(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Backup Settings",_("Backup your current settings"),_("Backup your current settings. This includes E2-setup, channels, network and all selected files")))
 		self.sublist.append(QuickSubMenuEntryComponent("Restore Settings",_("Restore settings from a backup"),_("Restore your settings back from a backup. After restore the box will restart to activated the new settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("Select Backup files",_("Choose the files to backup"),_("Here you can select which files should be added to backupfile. (default: E2-setup, channels, network")))
-		self.sublist.append(QuickSubMenuEntryComponent("Software Manager Setup",_("Mange your online update files"),_("Here you can select which files should be updated with a online update")))
+		self.sublist.append(QuickSubMenuEntryComponent("Software Manager Setup",_("Manage your online update files"),_("Here you can select which files should be updated with a online update")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Plugins Menu ##############################
