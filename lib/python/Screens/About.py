@@ -64,10 +64,10 @@ class About(Screen):
 			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
 			AboutText = _("Hardware:") + " Xtrend ET9x00 Series\n"
-		elif getBoxType() == 'maram9':
-			self["lab3"] = StaticText(_("Support at") + " www.mara-support.co.uk")
-			self["BoxType"] = StaticText(_("Hardware:") + " Mara M9")
-			AboutText = _("Hardware:") + " Mara M9\n"
+		elif getBoxType() == 'odinm9':
+			self["lab3"] = StaticText(_("Support at") + " www.odin-support.co.uk")
+			self["BoxType"] = StaticText(_("Hardware:") + " Odin M9")
+			AboutText = _("Hardware:") + " Odin M9\n"
 		else:
 			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " " + getBoxType())
@@ -580,8 +580,8 @@ class AboutSummary(Screen):
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET6x00 Series")
 		elif getBoxType() == 'et9x00':
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
-		elif getBoxType() == 'maram9':
-			self["BoxType"] = StaticText(_("Hardware:") + " Mara M9")
+		elif getBoxType() == 'odinm9':
+			self["BoxType"] = StaticText(_("Hardware:") + " Odin M9")
 		else:
 			self["BoxType"] = StaticText(_("Hardware:") + " " + getBoxType())
 		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())

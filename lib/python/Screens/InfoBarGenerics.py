@@ -1128,7 +1128,7 @@ class InfoBarEPG:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if config.misc.boxtype.getValue().startswith('et') or config.misc.boxtype.getValue().startswith('mara') or config.misc.boxtype.getValue().startswith('venton') or config.misc.boxtype.getValue().startswith('tm') or config.misc.boxtype.getValue().startswith('gb') or getBoxType().startswith('xp1000'):
+		if config.misc.boxtype.getValue().startswith('et') or config.misc.boxtype.getValue().startswith('odin') or config.misc.boxtype.getValue().startswith('venton') or config.misc.boxtype.getValue().startswith('tm') or config.misc.boxtype.getValue().startswith('gb') or getBoxType().startswith('xp1000'):
 			self.openEventView()
 		else:
 			self.showDefaultEPG()
