@@ -60,6 +60,7 @@ config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=Fals
 config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
 config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=True)
 config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
+config.plugins.softwaremanager.overwriteBootlogoFiles = ConfigYesNo(default=True)
 config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
 				[
 				 ("Y", _("Yes, always")),
@@ -425,6 +426,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.overwriteDriversfilesEntry = getConfigListEntry(_("Overwrite Driver Files ?"), config.plugins.softwaremanager.overwriteDriversFiles)
 		self.overwriteEmusfilesEntry = getConfigListEntry(_("Overwrite Emu Files ?"), config.plugins.softwaremanager.overwriteEmusFiles)
 		self.overwritePiconsfilesEntry = getConfigListEntry(_("Overwrite Picon Files ?"), config.plugins.softwaremanager.overwritePiconsFiles)
+		self.overwriteBootlogofilesEntry = getConfigListEntry(_("Overwrite Boologo Files ?"), config.plugins.softwaremanager.overwriteBootlogoFiles)
 		self.updatetypeEntry  = getConfigListEntry(_("Select Software Update"), config.plugins.softwaremanager.updatetype)
 		if self.boxversion.upper()[:2] == 'ET': 
 			self.list.append(self.updatetypeEntry)
@@ -433,6 +435,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.list.append(self.overwriteDriversfilesEntry)
 		self.list.append(self.overwriteEmusfilesEntry)
 		self.list.append(self.overwritePiconsfilesEntry)
+		self.list.append(self.overwriteBootlogofilesEntry)
 		self["config"].list = self.list
 		self["config"].l.setSeperation(400)
 		self["config"].l.setList(self.list)
@@ -451,6 +454,8 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 			self["introduction"].setText(_("Overwrite softcam files during software upgrade?"))
 		elif self["config"].getCurrent() == self.overwritePiconsfilesEntry:
 			self["introduction"].setText(_("Overwrite picon files during software upgrade?"))
+		elif self["config"].getCurrent() == self.overwriteBootlogofilesEntry:
+			self["introduction"].setText(_("Overwrite bootlogo files during software upgrade?"))
 		elif self["config"].getCurrent() == self.updatetypeEntry:
 			self["introduction"].setText(_("Select how your box will upgrade."))
 		else:

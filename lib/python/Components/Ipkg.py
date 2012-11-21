@@ -154,6 +154,9 @@ class IpkgComponent:
 			elif item[0].find('-picons-') > -1 and not config.plugins.softwaremanager.overwritePiconsFiles.getValue():
 				self.excludeList.append(item)
 				return
+			elif item[0].find('-bootlogo') > -1 and not config.plugins.softwaremanager.overwriteBootlogoFiles.getValue():
+				self.excludeList.append(item)
+				return
 			else:
 				self.fetchedList.append(item)
 				self.callCallbacks(self.EVENT_LISTITEM, item)
