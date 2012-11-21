@@ -15,7 +15,8 @@ dist_pkgdata_DATA = \
 	userinterfacepositionerwizard.xml \
 	freesat.t1 \
 	freesat.t2 \
-	unicable.xml
+	unicable.xml \
+	hd-testcard.mvi
 
 if HAVE_TEXTLCD
 dist_pkgdata_DATA += skin_text.xml
