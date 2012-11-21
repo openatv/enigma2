@@ -18,6 +18,7 @@ from ServiceReference import ServiceReference
 
 from time import localtime, strftime, ctime, time
 from bisect import insort
+import os
 
 # ok, for descriptions etc we have:
 # service reference  (to get the service name)
@@ -105,8 +106,6 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		next_state = self.state + 1
 		self.log(5, "activating state %d" % next_state)
 
-		print '!!!!!!!!!!!!!!!!!!!!!!!!getFPWasTimerWakeup:',getFPWasTimerWakeup()
-
 		if next_state == 1 and (self.timerType == TIMERTYPE.AUTOSTANDBY or self.timerType == TIMERTYPE.AUTODEEPSTANDBY):
 			eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.keyPressed)
 			self.begin = time() + int(self.autosleepdelay)*60
@@ -125,6 +124,12 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			return True
 
 		elif next_state == self.StateRunning:
+			wasTimerWakeup = False
+			if os.path.exists("/tmp/was_timer_wakeup"):
+				wasTimerWakeup = int(open("/tmp/was_timer_wakeup", "r").read()) and True or False
+				os.remove("/tmp/was_timer_wakeup")
+			print '!!!!!!!!!!!!!!!!!!!!!!!!wasTimerWakeup:',wasTimerWakeup
+
 			print 'TEST01:'
 			# if this timer has been cancelled, just go to "end" state.
 			if self.cancelled:
@@ -206,11 +211,11 @@ class PowerTimerEntry(timer.TimerEntry, object):
 								print 'TEST24:'
 								self.end = self.begin
 
-			elif self.timerType == TIMERTYPE.DEEPSTANDBY and getFPWasTimerWakeup():
+			elif self.timerType == TIMERTYPE.DEEPSTANDBY and wasTimerWakeup:
 				print 'TEST25a:'
 				return True
 
-			elif self.timerType == TIMERTYPE.DEEPSTANDBY and not getFPWasTimerWakeup():
+			elif self.timerType == TIMERTYPE.DEEPSTANDBY and not wasTimerWakeup:
 				print 'TEST25b:'
 				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
 					print 'TEST26:'
