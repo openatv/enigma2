@@ -426,7 +426,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.overwriteDriversfilesEntry = getConfigListEntry(_("Overwrite Driver Files ?"), config.plugins.softwaremanager.overwriteDriversFiles)
 		self.overwriteEmusfilesEntry = getConfigListEntry(_("Overwrite Emu Files ?"), config.plugins.softwaremanager.overwriteEmusFiles)
 		self.overwritePiconsfilesEntry = getConfigListEntry(_("Overwrite Picon Files ?"), config.plugins.softwaremanager.overwritePiconsFiles)
-		self.overwriteBootlogofilesEntry = getConfigListEntry(_("Overwrite Boologo Files ?"), config.plugins.softwaremanager.overwriteBootlogoFiles)
+		self.overwriteBootlogofilesEntry = getConfigListEntry(_("Overwrite Bootlogo Files ?"), config.plugins.softwaremanager.overwriteBootlogoFiles)
 		self.updatetypeEntry  = getConfigListEntry(_("Select Software Update"), config.plugins.softwaremanager.updatetype)
 		if self.boxversion.upper()[:2] == 'ET': 
 			self.list.append(self.updatetypeEntry)
