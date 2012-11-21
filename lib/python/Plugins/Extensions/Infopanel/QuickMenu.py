@@ -32,7 +32,7 @@ from Plugins.Extensions.Infopanel.RestartNetwork import RestartNetwork
 from Plugins.Extensions.Infopanel.MountManager import HddMount
 from Plugins.Extensions.Infopanel.SoftcamPanel import *
 from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
-from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin
+from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin, SoftwareManagerSetup
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
 from Plugins.SystemPlugins.AutoResolution.plugin import AutoResSetupMenu
 
@@ -260,6 +260,7 @@ class QuickMenu(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Backup Settings",_("Backup your current settings"),_("Backup your current settings. This includes E2-setup, channels, network and all selected files")))
 		self.sublist.append(QuickSubMenuEntryComponent("Restore Settings",_("Restore settings from a backup"),_("Restore your settings back from a backup. After restore the box will restart to activated the new settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("Select Backup files",_("Choose the files to backup"),_("Here you can select which files should be added to backupfile. (default: E2-setup, channels, network")))
+		self.sublist.append(QuickSubMenuEntryComponent("Software Manager Setup",_("Mange your online update files"),_("Here you can select which files should be updated with a online update")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Plugins Menu ##############################
@@ -414,6 +415,8 @@ class QuickMenu(Screen):
 				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout = 10)
 		elif item[0] == _("Select Backup files"):
 			self.session.openWithCallback(self.backupfiles_choosen,BackupSelection)
+		elif item[0] == _("Software Manager Setup"):
+			self.session.open(SoftwareManagerSetup)
 ######## Select PluginDownloadBrowser Menu ##############################
 		elif item[0] == _("Plugin Browser"):
 			self.session.open(PluginBrowser)
