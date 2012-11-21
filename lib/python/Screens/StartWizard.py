@@ -1,6 +1,6 @@
 from Wizard import wizardManager
 from Screens.WizardLanguage import WizardLanguage
-from Screens.WizardUserInterfacePositioner import WizardUserInterfacePositioner
+from Screens.WizardUserInterfacePositioner import UserInterfacePositionerWizard
 from Screens.Rc import Rc
 
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
@@ -36,5 +36,5 @@ class StartWizard(WizardLanguage, Rc):
 		configfile.save()
 
 wizardManager.registerWizard(LanguageWizard, config.misc.languageselected.getValue(), priority = 2)
-wizardManager.registerWizard(WizardUserInterfacePositioner, config.misc.firstrun.getValue(), priority = 1)
+wizardManager.registerWizard(UserInterfacePositionerWizard, config.misc.firstrun.getValue(), priority = 3)
 wizardManager.registerWizard(StartWizard, config.misc.firstrun.getValue(), priority = 20)
