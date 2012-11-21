@@ -18,8 +18,8 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		<widget source="key_red" render="Label" position="c-65,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="c+75,e-100" zPosition="0" size="140,40" alphatest="on" />
 		<widget source="key_yellow" render="Label" position="c+75,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="yellow" />
-		<ePixmap pixmap="skin_default/div-h.png" position="c-200,e-180" zPosition="1" size="400,2" />
-		<widget source="status" render="Label" position="c-300,e-170" size="600,60" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="black" backgroundColor="blue" transparent="1" />
+		<ePixmap pixmap="skin_default/div-h.png" position="c-200,e-200" zPosition="1" size="400,2" />
+		<widget source="status" render="Label" position="c-300,e-190" size="600,70" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="black" backgroundColor="blue" transparent="1" />
 	</screen>"""
 
 	def __init__(self, session):
