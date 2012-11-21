@@ -286,7 +286,6 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 				/* page on the same magazine? end current page. */
 			if ((serial_mode || M == m_page_M) && m_page_open)
 			{
-				eDebug("Page End %d %lld", !have_pts, pts);
 				handlePageEnd(!have_pts, pts);
 				m_page_open = 0;
 			}
@@ -308,7 +307,6 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 				/* correct page on correct magazine? open page. */
 			if (M == m_page_M && X == m_page_X)
 			{
-				eDebug("Page Start %d %lld", !have_pts, pts);
 				m_C = C;
 				m_Y = Y;
 				handlePageStart();
