@@ -35,7 +35,9 @@ class Navigation:
 		self.RecordTimer = RecordTimer.RecordTimer()
 		self.PowerTimer = PowerTimer.PowerTimer()
 		if getFPWasTimerWakeup():
+			open("/tmp/was_timer_wakeup", "w").write('1')
 			if nextRecordTimerAfterEventActionAuto:
+				open("/tmp/was_timer_wakeup", "w").write('0')
 				# We need to give the system the chance to fully startup,
 				# before we initiate the standby command.
 				self.standbytimer = eTimer()
@@ -63,11 +65,6 @@ class Navigation:
 		if len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
 			if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 				RecordTimer.RecordTimerEntry.TryQuitMainloop(False) # start shutdown handling
-
-	def checkShutdownAfterPowerManager(self):
-		if abs(self.PowerTimer.getNextPowerManagerTime() - time()) <= 360:
-			if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
-				PowerTimer.PowerTimerEntry.TryQuitMainloop(False) # start shutdown handling
 
 	def dispatchEvent(self, i):
 		for x in self.event:
