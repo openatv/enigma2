@@ -11,7 +11,7 @@ class RcModel:
 	RCTYPE_INI3000 = 6
 	RCTYPE_INI5000 = 7
 	RCTYPE_INI7000 = 8
-	RCTYPE_MARAM9 = 9
+	RCTYPE_ODINM9 = 9
 	RCTYPE_TM = 10
 	RCTYPE_ET6500 = 11
 	RCTYPE_ET4000 = 12
@@ -51,7 +51,7 @@ class RcModel:
 			if len(model) == 6 and model[:2] == 'et' or model[:2] == 'xp':
 				rc = self.readFile('/proc/stb/ir/rc/type')
 				if rc == '3':
-					self.currentRcType = self.RCTYPE_MARAM9
+					self.currentRcType = self.RCTYPE_ODINM9
 				if rc == '4':
 					self.currentRcType = self.RCTYPE_DMM
 				elif rc == '5':
@@ -82,8 +82,8 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_INI5000
 			elif model == 'ini-7000':
 				self.currentRcType = self.RCTYPE_INI7000
-			elif model[:4] == 'MarA':
-				self.currentRcType = self.RCTYPE_MARAM9	
+			elif model[:4] == 'Odin':
+				self.currentRcType = self.RCTYPE_ODINM9	
 		elif os.path.exists('/proc/stb/info/vumodel'):
 			model = self.readFile('/proc/stb/info/vumodel')
 			if model == 'ultimo':
@@ -112,8 +112,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/ini5000/'
 		elif self.currentRcType == self.RCTYPE_INI7000:
 			return '/usr/share/enigma2/rc_models/ini7000/'
-		elif self.currentRcType == self.RCTYPE_MARAM9:
-			return '/usr/share/enigma2/rc_models/maram9/'
+		elif self.currentRcType == self.RCTYPE_ODINM9:
+			return '/usr/share/enigma2/rc_models/odinm9/'
 		elif self.currentRcType == self.RCTYPE_TM:
 			return '/usr/share/enigma2/rc_models/tm/'
 		elif self.currentRcType == self.RCTYPE_VU:
