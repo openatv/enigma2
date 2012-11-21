@@ -273,6 +273,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.list.append(getConfigListEntry(_("Priority"), currLnb.prio))
 			self.advancedLof = getConfigListEntry(_("LOF"), currLnb.lof)
 			self.list.append(self.advancedLof)
+			if currLnb.lof.getValue() == "universal_lnb":
+				Sat.tonemode.setValue("band")			
 			if currLnb.lof.getValue() == "user_defined":
 				self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl))
 				self.list.append(getConfigListEntry(_("LOF/H"), currLnb.lofh))
@@ -281,6 +283,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				currLnb.lofl.setValue(10750)
 				currLnb.lofh.setValue(10750)
 				currLnb.threshold.setValue(12700)
+				Sat.tonemode.setValue("off")
 				self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl))
 				self.list.append(getConfigListEntry(_("LOF/H"), currLnb.lofh))
 				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
