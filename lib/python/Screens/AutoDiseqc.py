@@ -42,7 +42,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 
 		# astra 282 bbc
 		( 10776, 22000, \
-		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_Auto, \
+		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_5_6, \
 		eDVBFrontendParametersSatellite.Inversion_Unknown, 282, \
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
 		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
