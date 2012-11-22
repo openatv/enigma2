@@ -18,6 +18,7 @@ from ServiceReference import ServiceReference
 
 from time import localtime, strftime, ctime, time
 from bisect import insort
+import os
 
 # ok, for descriptions etc we have:
 # service reference  (to get the service name)
@@ -105,8 +106,6 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		next_state = self.state + 1
 		self.log(5, "activating state %d" % next_state)
 
-		print '!!!!!!!!!!!!!!!!!!!!!!!!getFPWasTimerWakeup:',getFPWasTimerWakeup()
-
 		if next_state == 1 and (self.timerType == TIMERTYPE.AUTOSTANDBY or self.timerType == TIMERTYPE.AUTODEEPSTANDBY):
 			eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.keyPressed)
 			self.begin = time() + int(self.autosleepdelay)*60
@@ -125,6 +124,12 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			return True
 
 		elif next_state == self.StateRunning:
+			wasTimerWakeup = False
+			if os.path.exists("/tmp/was_timer_wakeup"):
+				self.wasTimerWakeup = int(open("/tmp/was_timer_wakeup", "r").read()) and True or False
+				os.remove("/tmp/was_timer_wakeup")
+			print '!!!!!!!!!!!!!!!!!!!!!!!!self.wasTimerWakeup:',self.wasTimerWakeup
+
 			print 'TEST01:'
 			# if this timer has been cancelled, just go to "end" state.
 			if self.cancelled:
@@ -206,11 +211,11 @@ class PowerTimerEntry(timer.TimerEntry, object):
 								print 'TEST24:'
 								self.end = self.begin
 
-			elif self.timerType == TIMERTYPE.DEEPSTANDBY and getFPWasTimerWakeup():
+			elif self.timerType == TIMERTYPE.DEEPSTANDBY and self.wasTimerWakeup:
 				print 'TEST25a:'
 				return True
 
-			elif self.timerType == TIMERTYPE.DEEPSTANDBY and not getFPWasTimerWakeup():
+			elif self.timerType == TIMERTYPE.DEEPSTANDBY and not self.wasTimerWakeup:
 				print 'TEST25b:'
 				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
 					print 'TEST26:'
@@ -563,13 +568,16 @@ class PowerTimer(timer.Timer):
 			return nextrectime
 
 	def isNextPowerManagerAfterEventActionAuto(self):
+		print 'isNextPowerManagerAfterEventActionAuto:'
 		now = time()
 		t = None
+		print 'self.timer_list',self.timer_list
 		for timer in self.timer_list:
-			if t is None or t.begin == timer.begin:
-				t = timer
-				if t.timerType == TIMERTYPE.WAKEUPTOSTANDBY or t.afterEvent == AFTEREVENT.WAKEUPTOSTANDBY:
-					return True
+			print 'POWERTIMER:',timer
+			if timer.timerType == TIMERTYPE.WAKEUPTOSTANDBY or timer.afterEvent == AFTEREVENT.WAKEUPTOSTANDBY:
+				print 'TRUE'
+				return True
+		print 'FALSE'
 		return False
 
 	def record(self, entry, ignoreTSC=False, dosave=True):		#wird von loadTimer mit dosave=False aufgerufen
