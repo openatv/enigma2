@@ -16,6 +16,8 @@ from os import path
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:
 	def __init__(self, nextRecordTimerAfterEventActionAuto=False, nextPowerManagerAfterEventActionAuto=False):
+		print 'nextRecordTimerAfterEventActionAuto',nextRecordTimerAfterEventActionAuto
+		print 'nextPowerManagerAfterEventActionAuto',nextPowerManagerAfterEventActionAuto
 		if NavigationInstance.instance is not None:
 			raise NavigationInstance.instance
 
@@ -34,22 +36,20 @@ class Navigation:
 		self.currentlyPlayingService = None
 		self.RecordTimer = RecordTimer.RecordTimer()
 		self.PowerTimer = PowerTimer.PowerTimer()
-		print 'getFPWasTimerWakeup:',getFPWasTimerWakeup()
 		if getFPWasTimerWakeup():
 			open("/tmp/was_timer_wakeup", "w").write('1')
 			if nextRecordTimerAfterEventActionAuto:
-				open("/tmp/was_timer_wakeup", "w").write('0')
-				# We need to give the system the chance to fully startup,
-				# before we initiate the standby command.
-				self.standbytimer = eTimer()
-				self.standbytimer.callback.append(self.gotostandby)
-				self.standbytimer.start(15000, True)
+				print 'RECTIMER: wakeup to standby detected.'
 				# We need to give the systemclock the chance to sync with the transponder time,
 				# before we will make the decision about whether or not we need to shutdown
 				# after the upcoming recording has completed
-				self.recordshutdowntimer = eTimer()
-				self.recordshutdowntimer.callback.append(self.checkShutdownAfterRecording)
-				self.recordshutdowntimer.start(30000, True)
+# 				self.recordshutdowntimer = eTimer()
+# 				self.recordshutdowntimer.callback.append(self.checkShutdownAfterRecording)
+# 				self.recordshutdowntimer.start(15000, True)
+				self.standbytimer = eTimer()
+				self.standbytimer.callback.append(self.gotostandby)
+				self.standbytimer.start(15000, True)
+
 			elif nextPowerManagerAfterEventActionAuto:
 				print 'POWERTIMER: wakeup to standby detected.'
 				# We need to give the system the chance to fully startup,
@@ -60,14 +60,14 @@ class Navigation:
 # 		self.SleepTimer = SleepTimer.SleepTimer()
 
 	def gotostandby(self):
-		print 'TIMER: now entering stadnby'
+		print 'TIMER: now entering standby'
 		from Tools import Notifications
 		Notifications.AddNotification(Screens.Standby.Standby)
 
-	def checkShutdownAfterRecording(self):
-		if len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
-			if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
-				RecordTimer.RecordTimerEntry.TryQuitMainloop(False) # start shutdown handling
+# 	def checkShutdownAfterRecording(self):
+# 		if len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
+# 			if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+# 				RecordTimer.RecordTimerEntry.TryQuitMainloop(False) # start shutdown handling
 
 	def dispatchEvent(self, i):
 		for x in self.event:
