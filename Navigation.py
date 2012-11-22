@@ -201,34 +201,6 @@ class Navigation:
 		if path.exists("/proc/stb/lcd/symbol_signal"):
 			open("/proc/stb/lcd/symbol_signal", "w").write("0")
 			
-		# Venton series	
-		if path.exists("/proc/stb/lcd/symbol_scrambled"):
-			open("/proc/stb/lcd/symbol_scrambled", "w").write("0")
-	
-		if path.exists("/proc/stb/lcd/symbol_1080p"):
-			open("/proc/stb/lcd/symbol_1080p", "w").write("0")
-			
-		if path.exists("/proc/stb/lcd/symbol_1080i"):
-			open("/proc/stb/lcd/symbol_1080i", "w").write("0")
-		  
-		if path.exists("/proc/stb/lcd/symbol_720p"):
-			open("/proc/stb/lcd/symbol_720p", "w").write("0")
-		  
-		if path.exists("/proc/stb/lcd/symbol_576i"):
-			open("/proc/stb/lcd/symbol_576i", "w").write("0")
-		  
-		if path.exists("/proc/stb/lcd/symbol_576p"): 
-			open("/proc/stb/lcd/symbol_576p", "w").write("0")
-		
-		if path.exists("/proc/stb/lcd/symbol_hd"): 
-			open("/proc/stb/lcd/symbol_hd", "w").write("0")  
-
-		if path.exists("/proc/stb/lcd/symbol_dolby_audio"): 
-			open("/proc/stb/lcd/symbol_dolby_audio", "w").write("0") 
-
-		if path.exists("/proc/stb/lcd/symbol_mp3"): 
-			open("/proc/stb/lcd/symbol_mp3", "w").write("0") 
-			
 	def pause(self, p):
 		return self.pnav and self.pnav.pause(p)
 
