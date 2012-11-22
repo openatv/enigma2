@@ -44,8 +44,9 @@ class SymbolsCheckPoller:
 
 	def __evUpdatedInfo(self):
 		self.service = self.session.nav.getCurrentService()
-		self.Resolution()
-		self.Audio()
+		if open("/proc/stb/info/boxtype").read().strip() == "ini-7012":
+			self.Resolution()
+			self.Audio()
 		self.Subtitle()
 		self.ParentalControl()
 		del self.service
