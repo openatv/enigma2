@@ -58,8 +58,9 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Handle wakeup from TV"), config.hdmicec.handle_tv_wakeup))
 		self.list.append(getConfigListEntry(_("Wakeup signal from TV"), config.hdmicec.tv_wakeup_detection))
 		self.list.append(getConfigListEntry(_("Forward volume keys"), config.hdmicec.volume_forwarding))
-		self.list.append(getConfigListEntry(_("Put receiver in standby"), config.hdmicec.control_receiver_standby)) 
-		self.list.append(getConfigListEntry(_("Wakeup receiver from standby"), config.hdmicec.control_receiver_wakeup)) 
+		self.list.append(getConfigListEntry(_("Put receiver in standby"), config.hdmicec.control_receiver_standby))
+		self.list.append(getConfigListEntry(_("Wakeup receiver from standby"), config.hdmicec.control_receiver_wakeup))
+		self.list.append(getConfigListEntry(_("Minimum send interval"), config.hdmicec.minimum_send_interval))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 

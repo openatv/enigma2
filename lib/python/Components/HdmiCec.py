@@ -3,6 +3,7 @@ import os
 from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText
 from enigma import eHdmiCEC, eRCInput
 from Tools.StbHardware import getFPWasTimerWakeup
+from enigma import eTimer
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = True)
@@ -27,6 +28,10 @@ config.hdmicec.volume_forwarding = ConfigYesNo(default = False)
 config.hdmicec.control_receiver_wakeup = ConfigYesNo(default = False)
 config.hdmicec.control_receiver_standby = ConfigYesNo(default = False)
 config.hdmicec.handle_deepstandby_events = ConfigYesNo(default = False)
+choicelist = []
+for i in (10, 50, 100, 150, 250):
+	choicelist.append(("%d" % i, "%d ms" % i))
+config.hdmicec.minimum_send_interval = ConfigSelection(default = "0", choices = [("0", _("Disabled"))] + choicelist)
 
 class HdmiCec:
 	instance = None
@@ -34,6 +39,10 @@ class HdmiCec:
 	def __init__(self):
 		assert not HdmiCec.instance, "only one HdmiCec instance is allowed!"
 		HdmiCec.instance = self
+
+		self.wait = eTimer()
+		self.wait.timeout.get().append(self.sendCmd)
+		self.queue = []
 
 		eHdmiCEC.getInstance().messageReceived.get().append(self.messageReceived)
 		config.misc.standbyCounter.addNotifier(self.onEnterStandby, initial_call = False)
@@ -116,7 +125,18 @@ class HdmiCec:
 			cmd = 0x44
 			data = str(struct.pack('B', 0x6c))
 		if cmd:
+			if config.hdmicec.minimum_send_interval.value != "0":
+				self.queue.append((address, cmd, data))
+				if not self.wait.isActive():
+					self.wait.start(int(config.hdmicec.minimum_send_interval.value), True)
+			else:
+				eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
+
+	def sendCmd(self):
+		if len(self.queue):
+			(address, cmd, data) = self.queue.pop(0)
 			eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
+			self.wait.start(int(config.hdmicec.minimum_send_interval.value), True)
 
 	def sendMessages(self, address, messages):
 		for message in messages:
