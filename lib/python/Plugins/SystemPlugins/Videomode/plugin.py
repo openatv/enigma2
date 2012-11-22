@@ -37,7 +37,7 @@ class VideoSetup(Screen, ConfigListScreen):
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
-		self["description"] = Label(_(""))
+		self["description"] = Label("")
 
 		self.createSetup()
 		self.grabLastGoodMode()
@@ -56,17 +56,17 @@ class VideoSetup(Screen, ConfigListScreen):
 		level = config.usage.setup_level.index
 
 		self.list = [
-			getConfigListEntry(_("Video output"), config.av.videoport, _("This option configures which video output connector will be used."))
+			getConfigListEntry(_("Video output"), config.av.videoport, _("Configures which video output connector will be used."))
 		]
 
 		# if we have modes for this port:
 		if config.av.videoport.value in config.av.videomode:
 			# add mode- and rate-selection:
-			self.list.append(getConfigListEntry(pgettext("Video output mode", "Mode"), config.av.videomode[config.av.videoport.value], _("This option configures the video output mode (or resolution).")))
+			self.list.append(getConfigListEntry(pgettext("Video output mode", "Mode"), config.av.videomode[config.av.videoport.value], _("Configure the video output mode (or resolution).")))
 			if config.av.videomode[config.av.videoport.value].value == 'PC':
-				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("This option configures the screen resolution in PC output mode.")))
+				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("Configure the screen resolution in PC output mode.")))
 			else:
-				self.list.append(getConfigListEntry(_("Refresh rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("This option configures the screen refresh rate.")))
+				self.list.append(getConfigListEntry(_("Refresh rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("Configure the refresh rate of the screen.")))
 
 		port = config.av.videoport.value
 		if port not in config.av.videomode:
@@ -78,7 +78,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		force_wide = self.hw.isWidescreenMode(port, mode)
 
 		if not force_wide:
-			self.list.append(getConfigListEntry(_("Aspect ratio"), config.av.aspect, _("This option configures the screen aspect ratio.")))
+			self.list.append(getConfigListEntry(_("Aspect ratio"), config.av.aspect, _("Configure the aspect ratio of the screen.")))
 
 		if force_wide or config.av.aspect.value in ("16_9", "16_10"):
 			self.list.extend((
@@ -91,25 +91,25 @@ class VideoSetup(Screen, ConfigListScreen):
 #		if config.av.videoport.value == "DVI":
 #			self.list.append(getConfigListEntry(_("Allow Unsupported Modes"), config.av.edid_override))
 		if config.av.videoport.value == "Scart":
-			self.list.append(getConfigListEntry(_("Color format"), config.av.colorformat, _("When using scart connection, choose what color format to use.")))
+			self.list.append(getConfigListEntry(_("Color format"), config.av.colorformat, _("Configure which color format should be used on the SCART output.")))
 			if level >= 1:
-				self.list.append(getConfigListEntry(_("WSS on 4:3"), config.av.wss, _("When the content has an aspect ratio of 4:3, choose whether to stretch the picture to fill the screen.")))
+				self.list.append(getConfigListEntry(_("WSS on 4:3"), config.av.wss, _("When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen.")))
 				if SystemInfo["ScartSwitch"]:
-					self.list.append(getConfigListEntry(_("Auto scart switching"), config.av.vcrswitch, _("Choose whether to control the A/V input of your TV with the scart connection.")))
+					self.list.append(getConfigListEntry(_("Auto scart switching"), config.av.vcrswitch, _("When enabled, your receiver will detect activity on the VCR SCART input.")))
 
 		if level >= 1:
 			if SystemInfo["CanDownmixAC3"]:
-				self.list.append(getConfigListEntry(_("AC3/DTS downmix"), config.av.downmix_ac3, _("Choose whether multi channel sound tracks should be downmixed to stereo.")))
+				self.list.append(getConfigListEntry(_("AC3/DTS downmix"), config.av.downmix_ac3, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
 			self.list.extend((
-				getConfigListEntry(_("General AC3 delay"), config.av.generalAC3delay, _("This option configures the general audio delay of Dolby Digital sound tracks.")),
-				getConfigListEntry(_("General PCM delay"), config.av.generalPCMdelay, _("This option configures the general audio delay of stereo sound tracks."))
+				getConfigListEntry(_("General AC3 delay"), config.av.generalAC3delay, _("Configure the general audio delay of Dolby Digital sound tracks.")),
+				getConfigListEntry(_("General PCM delay"), config.av.generalPCMdelay, _("Configure the general audio delay of stereo sound tracks."))
 			))
 
 		if SystemInfo["CanChangeOsdAlpha"]:
-			self.list.append(getConfigListEntry(_("OSD transparency"), config.av.osd_alpha, _("This option configures the transparency of the OSD.")))
+			self.list.append(getConfigListEntry(_("OSD transparency"), config.av.osd_alpha, _("Configure the transparency of the OSD.")))
 
 		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
-			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option configures the picture sharpness.")))
+			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("Configure the sharpness of the video scaling.")))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)

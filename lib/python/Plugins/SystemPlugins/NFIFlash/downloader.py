@@ -28,7 +28,7 @@ import re
 
 class ImageDownloadJob(Job):
 	def __init__(self, url, filename, device=None, mountpoint="/"):
-		Job.__init__(self, _("Download .NFI-Files for USB-Flasher"))
+		Job.__init__(self, _("Download .NFI-files for USB-flasher"))
 		if device:
 			if isMount(mountpoint):
 				UmountTask(self, mountpoint)
@@ -520,7 +520,7 @@ class NFIDownload(Screen):
 				else:
 					version = result.group("version")
 				description = "\nOpendreambox %s\n%s image\n%s\n" % (result.group("OE_vers"), result.group("branch"), version)
-				imagelist.append((url, name, _("Download %s from Server" ) % description, None))
+				imagelist.append((url, name, _("Download %s from server" ) % description, None))
 		self["menu"].setList(imagelist)
 	
 	def getUSBPartitions(self):
@@ -558,7 +558,7 @@ class NFIDownload(Screen):
 		else:
 			dev = device_description
 		message = _("Do you want to download the image to %s ?") % (dev)
-		choices = [(_("Yes"), self.ackedDestination), (_("List of Storage Devices"),self.openDeviceBrowser), (_("Cancel"),self.keyRed)]
+		choices = [(_("Yes"), self.ackedDestination), (_("List of storage devices"),self.openDeviceBrowser), (_("Cancel"),self.keyRed)]
 		self.session.openWithCallback(self.ackDestination_query, ChoiceBox, title=message, list=choices)
 
 	def ackDestination_query(self, choice):
@@ -643,7 +643,7 @@ class NFIDownload(Screen):
 		self.feedDownloader16.getList(self.gotFeed, self.feed_failed)
 		
 	def feed_failed(self, message=""):
-		self["status"].text = _("Could not connect to receiver .NFI Image Feed Server:") + "\n" + str(message) + "\n" + _("Please check your network settings!")
+		self["status"].text = _("Could not connect to receiver .NFI image feed server:") + "\n" + str(message) + "\n" + _("Please check your network settings!")
 
 	def gotFeed(self, feedlist, OE_vers):
 		print "[gotFeed]", OE_vers
@@ -714,25 +714,25 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 				description = name
 		message = _("You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased.") + "\n"
 		message += _("The following device was found:\n\n%s\n\nDo you want to write the USB flasher to this stick?") % description
-		choices = [(_("Yes"), self.ackedDestination), (_("List of Storage Devices"),self.askStartWizard), (_("Cancel"),self.close)]
+		choices = [(_("Yes"), self.ackedDestination), (_("List of storage devices"),self.askStartWizard), (_("Cancel"),self.close)]
 		self.session.openWithCallback(self.ackDestination_query, ChoiceBox, title=message, list=choices)
 			
 	def setMenu(self):
 		self.menulist = []
 		try:
 			latest_release = "Release %s (Opendreambox 1.5)" % self.feedlists[RELEASE][0][0][-9:-4]
-			self.menulist.append((RELEASE, _("Get latest release image"), _("Download %s from Server" ) % latest_release, None))
+			self.menulist.append((RELEASE, _("Get latest release image"), _("Download %s from server" ) % latest_release, None))
 		except IndexError:
 			pass
 
 		try:
 			dat = self.feedlists[EXPERIMENTAL][0][0][-12:-4]
 			latest_experimental = "Experimental %s-%s-%s (Opendreambox 1.6)" % (dat[:4], dat[4:6], dat[6:])
-			self.menulist.append((EXPERIMENTAL, _("Get latest experimental image"), _("Download %s from Server") % latest_experimental, None))
+			self.menulist.append((EXPERIMENTAL, _("Get latest experimental image"), _("Download %s from server") % latest_experimental, None))
 		except IndexError:
 			pass
 
-		self.menulist.append((ALLIMAGES, _("Choose image to download"), _("Select desired image from feed list" ), None))
+		self.menulist.append((ALLIMAGES, _("Select an image to be downloaded"), _("Select desired image from feed list" ), None))
 		self.menulist.append((STICK_WIZARD, _("USB stick wizard"), _("Prepare another USB stick for image flashing" ), None))
 		self["menu"].setList(self.menulist)
 		self["status"].text = _("Currently installed image") + ": %s" % (about.getImageVersionString())
@@ -810,5 +810,5 @@ def filescan(**kwargs):
 					ScanPath(path = "", with_subdirs = False),
 				], 
 			name = "NFI", 
-			description = (_("Download .NFI-Files for USB-Flasher")+"..."),
+			description = (_("Download .NFI-files for USB-flasher")+"..."),
 			openfnc = filescan_open, )

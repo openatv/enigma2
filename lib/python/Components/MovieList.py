@@ -290,7 +290,7 @@ class MovieList(GUIComponent):
 				if txt == ".Trash":
 					res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,24), png=self.iconTrash))
 					res.append(MultiContentEntryText(pos=(iconSize+2, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = _("Deleted items")))
-					res.append(MultiContentEntryText(pos=(width-145, 4), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT, text=_("Trashcan")))
+					res.append(MultiContentEntryText(pos=(width-145, 4), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT, text=_("Trash can")))
 					return res
 			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,iconSize), png=self.iconFolder))
 			res.append(MultiContentEntryText(pos=(iconSize+2, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = txt))

@@ -40,7 +40,7 @@ class TitleProperties(Screen,ConfigListScreen):
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
-		self["key_yellow"] = StaticText(_("Edit Title"))
+		self["key_yellow"] = StaticText(_("Edit title"))
 		self["key_blue"] = StaticText()
 		self["serviceinfo"] = StaticText()
 
@@ -82,19 +82,19 @@ class TitleProperties(Screen,ConfigListScreen):
 			if config.usage.setup_level.index >= 2: # expert+
 				for audiotrack in self.properties.audiotracks:
 					DVB_aud = audiotrack.DVB_lang.getValue() or audiotrack.pid.getValue()
-					self.list.append(getConfigListEntry(_("burn audio track (%s)") % DVB_aud, audiotrack.active))
+					self.list.append(getConfigListEntry(_("Burn audio track (%s)") % DVB_aud, audiotrack.active))
 					if audiotrack.active.getValue():
-						self.list.append(getConfigListEntry(_("audio track (%s) format") % DVB_aud, audiotrack.format))
-						self.list.append(getConfigListEntry(_("audio track (%s) language") % DVB_aud, audiotrack.language))
+						self.list.append(getConfigListEntry(_("Audio track (%s) format") % DVB_aud, audiotrack.format))
+						self.list.append(getConfigListEntry(_("Audio track (%s) language") % DVB_aud, audiotrack.language))
 						
-				self.list.append(getConfigListEntry("DVD " + _("Aspect Ratio"), self.properties.aspect))
+				self.list.append(getConfigListEntry("DVD " + _("Aspect ratio"), self.properties.aspect))
 				if self.properties.aspect.getValue() == "16:9":
 					self.list.append(getConfigListEntry("DVD " + "widescreen", self.properties.widescreen))
 				else:
 					self.list.append(getConfigListEntry("DVD " + "widescreen", self.properties.crop))
 			if len(title.chaptermarks) == 0:
 				self.list.append(getConfigListEntry(_("Auto chapter split every ? minutes (0=never)"), self.properties.autochapter))
-			infotext = "DVB " + _("Title") + ': ' + title.DVBname + "\n" + _("Description") + ': ' + title.DVBdescr + "\n" + _("Channel") + ': ' + title.DVBchannel + '\n' + _("Begin time") + title.formatDVDmenuText(": $D.$M.$Y, $T\n", self.title_idx+1)
+			infotext = "DVB " + _("Title") + ': ' + title.DVBname + "\n" + _("Description") + ': ' + title.DVBdescr + "\n" + _("Channel") + ': ' + title.DVBchannel + '\n' + _("Start time") + title.formatDVDmenuText(": $D.$M.$Y, $T\n", self.title_idx+1)
 			chaptermarks = title.getChapterMarks(template="$h:$m:$s")
 			chapters_count = len(chaptermarks)
 			if chapters_count >= 1:

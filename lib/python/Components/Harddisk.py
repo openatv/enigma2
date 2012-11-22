@@ -279,17 +279,17 @@ class Harddisk:
 
 		task = UnmountTask(job, self)
 
-		task = Task.PythonTask(job, _("Kill partition table"))
+		task = Task.PythonTask(job, _("Removing partition table"))
 		task.work = self.killPartitionTable
 		task.weighting = 1
 
-		task = Task.LoggingTask(job, _("Reread partition table"))
+		task = Task.LoggingTask(job, _("Rereading partition table"))
 		task.weighting = 1
 		task.setTool('sfdisk')
 		task.args.append('-R')
 		task.args.append(self.disk_path)
 
-		task = Task.ConditionTask(job, _("Wait for partition"), timeoutCount=20)
+		task = Task.ConditionTask(job, _("Waiting for partition"), timeoutCount=20)
 		task.check = lambda: not os.path.exists(self.partitionPath("1"))
 		task.weighting = 1
 
@@ -302,7 +302,7 @@ class Harddisk:
 			else:
 				use_parted = False
 
-		task = Task.LoggingTask(job, _("Create Partition"))
+		task = Task.LoggingTask(job, _("Creating partition"))
 		task.weighting = 5
 		if use_parted:
 			task.setTool('parted')
@@ -330,11 +330,11 @@ class Harddisk:
 				# Smaller disks (CF cards, sticks etc) don't need that
 				task.initial_input = "0,\n;\n;\n;\ny\n"
 
-		task = Task.ConditionTask(job, _("Wait for partition"))
+		task = Task.ConditionTask(job, _("Waiting for partition"))
 		task.check = lambda: os.path.exists(self.partitionPath("1"))
 		task.weighting = 1
 
-		task = MkfsTask(job, _("Create Filesystem"))
+		task = MkfsTask(job, _("Creating filesystem"))
 		if isFileSystemSupported("ext4"):
 			task.setTool("mkfs.ext4")
 			if size > 20000:
@@ -358,7 +358,7 @@ class Harddisk:
 		task = MountTask(job, self)
 		task.weighting = 3
 
-		task = Task.ConditionTask(job, _("Wait for mount"), timeoutCount=20)
+		task = Task.ConditionTask(job, _("Waiting for mount"), timeoutCount=20)
 		task.check = self.mountDevice
 		task.weighting = 1
 
@@ -373,7 +373,7 @@ class Harddisk:
 		return -5
 
 	def createCheckJob(self):
-		job = Task.Job(_("Checking Filesystem..."))
+		job = Task.Job(_("Checking filesystem..."))
 		if self.findMount():
 			# Create unmount task if it was not mounted
 			UnmountTask(job, self)
@@ -387,14 +387,14 @@ class Harddisk:
 		task.args.append('-p')
 		task.args.append(dev)
 		MountTask(job, self)
-		task = Task.ConditionTask(job, _("Wait for mount"))
+		task = Task.ConditionTask(job, _("Waiting for mount"))
 		task.check = self.mountDevice
 		return job
 
 	def createExt4ConversionJob(self):
 		if not isFileSystemSupported('ext4'):
 			raise Exception, _("You system does not support ext4")
-		job = Task.Job(_("Convert ext3 to ext4..."))
+		job = Task.Job(_("Converting ext3 to ext4..."))
 		if not os.path.exists('/sbin/tune2fs'):
 			addInstallTask(job, 'e2fsprogs-tune2fs')
 		if self.findMount():
@@ -423,7 +423,7 @@ class Harddisk:
 		task.args.append('-D')
 		task.args.append(dev)
 		MountTask(job, self)
-		task = Task.ConditionTask(job, _("Wait for mount"))
+		task = Task.ConditionTask(job, _("Waiting for mount"))
 		task.check = self.mountDevice
 		return job
 
@@ -597,17 +597,17 @@ class HarddiskManager:
 		self.enumerateBlockDevices()
 		# Find stuff not detected by the enumeration
 		p = (
-			("/media/hdd", _("Harddisk")),
+			("/media/hdd", _("Hard disk")),
 			("/media/card", _("Card")),
-			("/media/cf", _("Compact Flash")),
-			("/media/mmc1", _("MMC Card")),
-			("/media/net", _("Network Mount")),
-			("/media/net1", _("Network Mount") + " 1"),
-			("/media/net2", _("Network Mount") + " 2"),
-			("/media/net3", _("Network Mount") + " 3"),
-			("/media/ram", _("Ram Disk")),
-			("/media/usb", _("USB Stick")),
-			("/", _("Internal Flash"))
+			("/media/cf", _("Compact flash")),
+			("/media/mmc1", _("MMC card")),
+			("/media/net", _("Network mount")),
+			("/media/net1", _("Network mount %s") % ("1")),
+			("/media/net2", _("Network mount %s") % ("2")),
+			("/media/net3", _("Network mount %s") % ("3")),
+			("/media/ram", _("Ram disk")),
+			("/media/usb", _("USB stick")),
+			("/", _("Internal flash"))
 		)
 		known = set([os.path.normpath(a.mountpoint) for a in self.partitions if a.mountpoint])
 		for m,d in p:

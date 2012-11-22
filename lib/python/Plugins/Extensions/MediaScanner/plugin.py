@@ -39,7 +39,7 @@ def scan(session):
 	from Screens.ChoiceBox import ChoiceBox
 	parts = [ (r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False) if os.access(r.mountpoint, os.F_OK|os.R_OK) ]
 	parts.append( (_("Memory") + "\t/tmp", "/tmp", session) )
-	session.openWithCallback(mountpoint_choosen, ChoiceBox, title = _("Please Select Medium to be Scanned"), list = parts)
+	session.openWithCallback(mountpoint_choosen, ChoiceBox, title = _("Please select medium to be scanned"), list = parts)
 
 def main(session, **kwargs):
 	scan(session)
@@ -84,7 +84,7 @@ def autostart(reason, **kwargs):
 
 def Plugins(**kwargs):
 	return [
-		PluginDescriptor(name="MediaScanner", description=_("Scan Files..."), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = True, fnc=main),
+		PluginDescriptor(name=_("Media scanner"), description=_("Scan files..."), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = True, fnc=main),
 #		PluginDescriptor(where = PluginDescriptor.WHERE_MENU, fnc=menuHook),
 		PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, needsRestart = True, fnc = sessionstart),
 		PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = True, fnc = autostart)

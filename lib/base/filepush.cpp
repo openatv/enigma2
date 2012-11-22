@@ -3,11 +3,8 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
-#include <sys/mman.h>
 
-#define PVR_COMMIT 1
-
-//#define SHOW_WRITE_TIME 1
+//#define SHOW_WRITE_TIME
 
 eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
 	:prio_class(io_prio_class),
@@ -18,17 +15,17 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 	 m_stream_mode(0),
 	 m_blocksize(blocksize),
 	 m_buffersize(buffersize),
-	 m_buffer((unsigned char*) mmap(NULL, buffersize, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, /*ignored*/-1, 0)),
+	 m_buffer(malloc(buffersize)),
 	 m_messagepump(eApp, 0)
 {
-	if (m_buffer == MAP_FAILED)
-		eFatal("Failed to allocate filepush buffer, contact MiLo\n");
+	if (m_buffer == NULL)
+		eFatal("Failed to allocate %d bytes", buffersize);
 	CONNECT(m_messagepump.recv_msg, eFilePushThread::recvEvent);
 }
 
 eFilePushThread::~eFilePushThread()
 {
-	munmap(m_buffer, m_buffersize);
+	free(m_buffer);
 }
 
 static void signal_handler(int x)
@@ -74,7 +71,19 @@ void eFilePushThread::thread()
 		maxread -= maxread % m_blocksize;
 
 		if (maxread)
+		{
+#ifdef SHOW_WRITE_TIME
+			struct timeval starttime;
+			struct timeval now;
+			gettimeofday(&starttime, NULL);
+#endif
 			buf_end = m_source->read(m_current_position, m_buffer, maxread);
+#ifdef SHOW_WRITE_TIME
+			gettimeofday(&now, NULL);
+			suseconds_t diff = (1000000 * (now.tv_sec - starttime.tv_sec)) + now.tv_usec - starttime.tv_usec;
+			eDebug("[eFilePushThread] read %d bytes time: %9u us", buf_end, (unsigned int)diff);
+#endif
+		}
 		else
 			buf_end = 0;
 
@@ -128,7 +137,7 @@ void eFilePushThread::thread()
 				/* in stream_mode, we are sending EOF events 
 				   over and over until somebody responds.
 				   
-				   in stream_mode, think of evtEOF as "buffer underrun occured". */
+				   in stream_mode, think of evtEOF as "buffer underrun occurred". */
 			sendEvent(evtEOF);
 
 			if (m_stop)

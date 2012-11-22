@@ -53,7 +53,7 @@ class TimerEditList(Screen):
 				"up": self.up,
 				"down": self.down
 			}, -1)
-		self.setTitle(_("Timer Overview"))
+		self.setTitle(_("Timer overview"))
 		self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
 		self.onShown.append(self.updateState)
 

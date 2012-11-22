@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-30 16:54+0200\n"
+"POT-Creation-Date: 2012-11-16 18:48+0100\n"
 "PO-Revision-Date: 2010-03-09 21:03+0100\n"
 "Last-Translator: \n"
 "Language-Team: HDTV ROMANIA(superonic,costel_mbc,neutrin,otheitis,cipy_1982,"
@@ -94,11 +94,6 @@ msgstr ""
 
 msgid ""
 "\n"
-"System will restart after the restore!"
-msgstr ""
-
-msgid ""
-"\n"
 "View, install and remove available or installed packages."
 msgstr ""
 "\n"
@@ -123,9 +118,6 @@ msgid " packages selected."
 msgstr ""
 
 msgid " updates available."
-msgstr ""
-
-msgid " wireless networks found!"
 msgstr ""
 
 #. TRANSLATORS: short time representation hour:minute
@@ -194,6 +186,15 @@ msgstr[1] ""
 msgid "%d services found!"
 msgstr "%d servicii gasite!"
 
+#, fuzzy, python-format
+msgid "%d wireless network found!"
+msgid_plural "%d wireless networks found!"
+msgstr[0] "Wireless Network"
+msgstr[1] "Wireless Network"
+
+msgid "%d-%b-%Y %-H:%M"
+msgstr ""
+
 msgid "%d-%m"
 msgstr ""
 
@@ -204,9 +205,24 @@ msgstr ""
 msgid "%k:%M %e/%m"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "%s %s free disk space"
+msgstr "spatiu liber pe disk"
+
 #, python-format
 msgid "%s (%s)\n"
 msgstr ""
+
+#. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
+#, python-format
+msgid "%s is no longer used. Should it be deleted?"
+msgstr ""
+
+#, python-format
+msgid "%s updated package available"
+msgid_plural "%s updated packages available"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%s/%s: %s"
@@ -225,19 +241,10 @@ msgid "* Only available if more than one interface is active."
 msgstr ""
 "* Disponibil doar in cazul in care mai mult de o interfata este activa."
 
-msgid "/usr/share/enigma2 directory"
-msgstr "/usr/share/enigma2 director"
-
-msgid "/var directory"
-msgstr "/var director"
-
 msgid "0"
 msgstr ""
 
 msgid "1"
-msgstr ""
-
-msgid "1 wireless network found!"
 msgstr ""
 
 msgid "1.0"
@@ -330,6 +337,14 @@ msgstr ""
 msgid "A"
 msgstr ""
 
+#, fuzzy, python-format
+msgid ""
+"A configuration file (%s) has been modified since it was installed.\n"
+"Do you want to keep your modifications?"
+msgstr ""
+"Un file de configuratia (%s) a fost modificat de la instalare.\n"
+"Vrei sa tinem pe versiuna?"
+
 #, python-format
 msgid ""
 "A configuration file (%s) was modified since Installation.\n"
@@ -421,7 +436,8 @@ msgstr ""
 "Un timer a esuat sa registreze!\n"
 "Dezactiveaza TV si incearca din nou?\n"
 
-msgid "A/V Settings"
+#, fuzzy
+msgid "A/V settings"
 msgstr "Setarile A/V"
 
 msgid "AA"
@@ -457,10 +473,22 @@ msgstr ""
 msgid "Action:"
 msgstr "Actiune:"
 
+#, fuzzy
+msgid "Activate PiP"
+msgstr "Activeaza PIP"
+
 msgid "Activate Picture in Picture"
 msgstr "Activeaza PIP"
 
+#, fuzzy
+msgid "Activate current configuration"
+msgstr "activeaza configurarea curenta"
+
 msgid "Activate network settings"
+msgstr "Activeaza setari retea"
+
+#, fuzzy
+msgid "Activate the configured network settings."
 msgstr "Activeaza setari retea"
 
 msgid "Adapter settings"
@@ -469,20 +497,58 @@ msgstr "Adaptare setari"
 msgid "Add"
 msgstr "Adauga"
 
-msgid "Add Bookmark"
-msgstr "Adauga Bookmark"
-
-msgid "Add WLAN configuration?"
-msgstr ""
-
 msgid "Add a mark"
 msgstr "Adauga un mark"
+
+#, fuzzy
+msgid "Add a nameserver entry"
+msgstr "adauga intrare de nameserver"
 
 msgid "Add a new title"
 msgstr "Adauga un nou titlu"
 
-msgid "Add network configuration?"
+#, fuzzy
+msgid "Add bookmark"
+msgstr "adauga bookmark"
+
+#, fuzzy
+msgid "Add directory to playlist"
+msgstr "adauga director la playlist"
+
+#, fuzzy
+msgid "Add file to playlist"
+msgstr "adauga file la playlist"
+
+#, fuzzy
+msgid "Add files to playlist"
+msgstr "adauga file-uri la playlist"
+
+msgid "Add more details to the crash log"
 msgstr ""
+
+#, fuzzy
+msgid "Add provider"
+msgstr "adauga Provider"
+
+#, fuzzy
+msgid "Add recording (enter recording duration)"
+msgstr "adauga inregistrare (pune durata inregistrarii)"
+
+#, fuzzy
+msgid "Add recording (enter recording endtime)"
+msgstr "adauga inregistrare (pune sfarsitul inregistrarii)"
+
+#, fuzzy
+msgid "Add recording (indefinitely)"
+msgstr "adauga inregistrare (indefinit)"
+
+#, fuzzy
+msgid "Add recording (stop after current event)"
+msgstr "adauga inregistrare (opreste dupa evenimentul curent)"
+
+#, fuzzy
+msgid "Add service"
+msgstr "adauga Serviciu"
 
 msgid "Add timer"
 msgstr "Adauga timer "
@@ -496,19 +562,9 @@ msgstr "Adauga la buchet"
 msgid "Add to favourites"
 msgstr "Adauga la favorite "
 
-msgid "Add/Remove timer for current event"
-msgstr ""
-
-msgid ""
-"Adds enigma2 settings and receiver model informations like SN, rev... if "
-"enabled."
-msgstr ""
-
-msgid "Adds network configuration if enabled."
-msgstr ""
-
-msgid "Adds wlan configuration if enabled."
-msgstr ""
+#, fuzzy
+msgid "Add/remove timer for current event"
+msgstr "adauga inregistrare (opreste dupa evenimentul curent)"
 
 msgid "Adjust 3D settings"
 msgstr ""
@@ -527,34 +583,31 @@ msgstr ""
 "fine-tuning, sau foloseste pe tastele numerice pentru a selecta altetestarea "
 "screens."
 
-msgid "Advanced Options"
+#, fuzzy
+msgid "Advanced options"
 msgstr "Optiuni avansate"
-
-msgid "Advanced Software"
-msgstr ""
-
-msgid "Advanced Software Plugin"
-msgstr ""
-
-msgid "Advanced Video Enhancement Setup"
-msgstr ""
-
-msgid "Advanced Video Setup"
-msgstr "Setarile video avansate"
 
 msgid "Advanced restore"
 msgstr "Restaurare avansata"
 
+#, fuzzy
+msgid "Advanced software"
+msgstr "Restaurare avansata"
+
+#, fuzzy
+msgid "Advanced software plugin"
+msgstr "Restaurare avansata"
+
+#, fuzzy
+msgid "Advanced video enhancement setup"
+msgstr "Setarile video avansate"
+
+#, fuzzy
+msgid "Advanced video setup"
+msgstr "Setarile video avansate"
+
 msgid "After event"
 msgstr "Dupa eventul"
-
-msgid "After pressing OK, please wait!"
-msgstr ""
-
-msgid ""
-"After the start wizard is completed, you need to protect single services. "
-"Refer to your receiver's manual on how to do that."
-msgstr ""
 
 msgid "Album"
 msgstr "Album"
@@ -562,11 +615,12 @@ msgstr "Album"
 msgid "All"
 msgstr "Toate"
 
-msgid "All Satellites"
-msgstr "Toti Sateliti"
-
 msgid "All ages"
 msgstr ""
+
+#, fuzzy
+msgid "All satellites"
+msgstr "Toti Sateliti"
 
 msgid "Allocate"
 msgstr ""
@@ -574,16 +628,21 @@ msgstr ""
 msgid "Allocate unused memory index"
 msgstr ""
 
-msgid "Allow Subtitle equals Audio mask"
+msgid "Allow subtitle language to equal audio language"
 msgstr ""
 
-msgid "Allow hearing impaired subtitles"
+msgid "Allow subtitles for hearing impaired"
 msgstr ""
 
 msgid "Alpha"
 msgstr "Alpha"
 
-msgid "Alternative radio mode"
+#, fuzzy
+msgid "Alternative"
+msgstr "adauga alternative"
+
+#, fuzzy
+msgid "Alternative numbering mode"
 msgstr "Modul radio alternativ"
 
 msgid "Alternative services tuner priority"
@@ -592,17 +651,17 @@ msgstr "Prioritate tuner servicii alternative"
 msgid "Always ask"
 msgstr ""
 
-msgid "Always ask before sending"
-msgstr ""
-
 msgid "An empty filename is illegal."
 msgstr "Este illegal un gol filename."
 
-msgid "An unknown error occured!"
-msgstr "S-a produs o eroare necunoscuta!"
-
-msgid "Anonymize crashlog?"
+#, fuzzy
+msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr ""
+"A intervenit o eroare in timpul descarcarii listei. Va rugam incercati din "
+"nou."
+
+msgid "An unknown error occurred!"
+msgstr "S-a produs o eroare necunoscuta!"
 
 msgid "Any activity"
 msgstr ""
@@ -617,9 +676,10 @@ msgstr ""
 "Esti sigur ca vrei sa activezi asta configuratia de retea?\n"
 "\n"
 
+#, fuzzy
 msgid ""
 "Are you sure you want to delete\n"
-"following backup:\n"
+"the following backup:\n"
 msgstr ""
 "Esti sigur ca vrei sa stergi\n"
 "urmarire backup:\n"
@@ -634,16 +694,20 @@ msgstr ""
 "Esti sigur vrei sa restartezi interfata retelei?\n"
 "\n"
 
+#, fuzzy, python-format
 msgid ""
 "Are you sure you want to restore\n"
-"following backup:\n"
+"the following backup:\n"
+"%s\n"
+"Your receiver will restart after the backup has been restored!"
 msgstr ""
-"Esti sigur ca vrei sa restaurezi\n"
-"Urmareste backup-ul:\n"
+"Esti sigur ca vrei sa restaurezi backup-ul Enigma2?\n"
+"Enigma2 va reporni dupa restaurare"
 
+#, fuzzy
 msgid ""
-"Are you sure you want to restore your Enigma2 backup?\n"
-"Enigma2 will restart after the restore"
+"Are you sure you want to restore the backup?\n"
+"Your receiver will restart after the backup has been restored!"
 msgstr ""
 "Esti sigur ca vrei sa restaurezi backup-ul Enigma2?\n"
 "Enigma2 va reporni dupa restaurare"
@@ -654,20 +718,28 @@ msgstr "Artist"
 msgid "Arts/Culture"
 msgstr ""
 
-msgid "Ask before shutdown:"
-msgstr "Intreaba inainte de shutdown:"
-
 msgid "Ask user"
 msgstr "Intreaba pe user"
 
-msgid "Aspect Ratio"
+#, fuzzy
+msgid "Aspect ratio"
 msgstr "Aspect Ratio"
+
+msgid "Assigned CAIds:"
+msgstr ""
+
+msgid "Assigned services/provider:"
+msgstr ""
+
+#, fuzzy
+msgid "At beginning"
+msgstr "Incepe de la capat"
+
+msgid "At end"
+msgstr ""
 
 msgid "Audio"
 msgstr "Audio"
-
-msgid "Audio Options..."
-msgstr "Optiune de audio..."
 
 msgid "Audio PID"
 msgstr ""
@@ -683,6 +755,18 @@ msgstr ""
 
 msgid "Audio language selection 4"
 msgstr ""
+
+#, fuzzy
+msgid "Audio options..."
+msgstr "Optiune de audio..."
+
+#, fuzzy, python-format
+msgid "Audio track (%s) format"
+msgstr "track audio (%s) format"
+
+#, fuzzy, python-format
+msgid "Audio track (%s) language"
+msgstr "track audio (%s) limba"
 
 msgid "Author: "
 msgstr "Autor: "
@@ -712,13 +796,11 @@ msgstr ""
 msgid "Auto scart switching"
 msgstr "Auto scart switching"
 
-msgid "Auto-focus"
-msgstr ""
-
 msgid "Automatic"
 msgstr "Automat"
 
-msgid "Automatic Scan"
+#, fuzzy
+msgid "Automatic scan"
 msgstr "Scanare automata"
 
 msgid "Available format variables"
@@ -745,23 +827,19 @@ msgstr "Inapoi"
 msgid "Background"
 msgstr "Fond"
 
+#, fuzzy
+msgid "Background color"
+msgstr "colorit fundal"
+
 msgid "Background delete option"
 msgstr ""
 
 msgid "Background delete speed"
 msgstr ""
 
-msgid "Backup"
-msgstr "Backup"
-
-msgid "Backup Location"
-msgstr "Locatia Backup"
-
-msgid "Backup Mode"
-msgstr "Backup Mode"
-
-msgid "Backup done."
-msgstr "Backup terminat."
+#, fuzzy
+msgid "Backup completed."
+msgstr "Backup esuat."
 
 msgid "Backup failed."
 msgstr "Backup esuat."
@@ -826,6 +904,10 @@ msgstr ""
 msgid "Burn DVD"
 msgstr "Scrie DVD"
 
+#, fuzzy, python-format
+msgid "Burn audio track (%s)"
+msgstr "burn track audio (%s)"
+
 msgid "Burn existing image to DVD"
 msgstr "Scrie imaginea existenta pe DVD"
 
@@ -836,18 +918,15 @@ msgid "Bus: "
 msgstr "Magistrala: "
 
 msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
-msgstr "Apasand pe butonul OK de pe telecomanda, bara de informatiise afiseaza"
+"By default, SNR will be shown in dB (when supported by the tuner). This "
+"setting forces SNR to be shown as a percentage instead."
+msgstr ""
 
 msgid "C"
 msgstr "C"
 
 msgid "C-Band"
 msgstr "Banda C"
-
-msgid "CF Drive"
-msgstr "Compact Flash"
 
 msgid "CI assignment"
 msgstr "Asignarea CI"
@@ -861,7 +940,8 @@ msgstr "Cablu"
 msgid "Cable Scan"
 msgstr ""
 
-msgid "Cache Thumbnails"
+#, fuzzy
+msgid "Cache thumbnails"
 msgstr "Memoreaza miniaturile imaginilor"
 
 msgid "Calculate"
@@ -897,7 +977,7 @@ msgstr "Capacitate: "
 msgid "Card"
 msgstr "Card"
 
-msgid "Centered DVB subtitles"
+msgid "Center DVB subtitles"
 msgstr ""
 
 msgid "Change bouquets in quickzap"
@@ -905,6 +985,14 @@ msgstr "Permite schimbarea buchetului prin zapping"
 
 msgid "Change pin code"
 msgstr "Schimba codul pin"
+
+#, fuzzy
+msgid "Change recording (duration)"
+msgstr "schimba inregistrare (durata)"
+
+#, fuzzy
+msgid "Change recording (endtime)"
+msgstr "schimbare inregistrare (sfarsit)"
 
 msgid "Change repeat and delay settings?"
 msgstr ""
@@ -927,11 +1015,16 @@ msgstr ""
 msgid "Channel"
 msgstr "Canal"
 
-msgid "Channel Selection"
-msgstr "Selectie canal"
+#, fuzzy
+msgid "Channel list type"
+msgstr "Meniul lista de canale"
 
 msgid "Channel not in services list"
 msgstr "Canalul nu se gaseste in lista de servicii"
+
+#, fuzzy
+msgid "Channel selection"
+msgstr "Selectie canal"
 
 msgid "Channel:"
 msgstr "Canal:"
@@ -951,38 +1044,30 @@ msgstr "Capitolul:"
 msgid "Check"
 msgstr "Verifica"
 
-msgid "Checking Filesystem..."
+msgid "Check the internet connection"
+msgstr ""
+
+msgid "Check the internet connection again"
+msgstr ""
+
+#, fuzzy
+msgid "Checking filesystem..."
 msgstr "Se verifica sistemul de fisiere..."
+
+msgid "Checking the internet connection"
+msgstr ""
+
+#, python-format
+msgid ""
+"Checking tuner %d\n"
+"DiSEqC port %s for %s"
+msgstr ""
 
 msgid "Children/Youth"
 msgstr ""
 
-msgid "Choose Tuner"
-msgstr "Alege un tuner"
-
-msgid "Choose a wireless network"
+msgid "Choose which tuner to configure."
 msgstr ""
-
-msgid "Choose backup files"
-msgstr "Selecteaza fisierele copii de siguranta"
-
-msgid "Choose backup location"
-msgstr "Alege locatia copiei de siguranta"
-
-msgid "Choose bouquet"
-msgstr "Alege buchet"
-
-msgid "Choose image to download"
-msgstr ""
-
-msgid "Choose target folder"
-msgstr "Alege directorul destinatie"
-
-msgid "Choose upgrade source"
-msgstr "Alege sursa de actualizare"
-
-msgid "Choose your Skin"
-msgstr "Alege decoratiunea dorita"
 
 msgid "Circular left"
 msgstr "Circular stang"
@@ -992,15 +1077,6 @@ msgstr "Circular drept"
 
 msgid "Cleanup"
 msgstr "Curatenie"
-
-msgid "Cleanup Wizard"
-msgstr ""
-
-msgid "Cleanup Wizard settings"
-msgstr ""
-
-msgid "CleanupWizard"
-msgstr ""
 
 msgid "Clear"
 msgstr ""
@@ -1013,6 +1089,10 @@ msgstr ""
 
 msgid "Clear log"
 msgstr "Sterge logul"
+
+#, fuzzy
+msgid "Clear playlist"
+msgstr "sterge playlist"
 
 msgid "Close"
 msgstr "Inchide"
@@ -1038,7 +1118,8 @@ msgstr "Nume colectie"
 msgid "Collection settings"
 msgstr "Setari colectie"
 
-msgid "Color Format"
+#, fuzzy
+msgid "Color format"
 msgstr "Format color"
 
 msgid "Command execution..."
@@ -1053,16 +1134,15 @@ msgstr "Comanda DiSEqC-ului selectat"
 msgid "Common Interface"
 msgstr "Common Interface"
 
-msgid "Common Interface Assignment"
+#, fuzzy
+msgid "Common Interface assignment"
 msgstr "Atribuirea pentru Common Interface"
-
-msgid "CommonInterface"
-msgstr "CommonInterface"
 
 msgid "Communication"
 msgstr "Comunicare"
 
-msgid "Compact Flash"
+#, fuzzy
+msgid "Compact flash"
 msgstr "Compact Flash"
 
 msgid "Complete"
@@ -1074,16 +1154,290 @@ msgstr "Complex (permite orice combinatie de canale audio si aspecte)"
 msgid "Composition of the recording filenames"
 msgstr ""
 
-msgid "Configuration Mode"
+#, fuzzy
+msgid "Configuration mode"
 msgstr "Mod configurare"
 
-msgid "Configuration mode: "
+#, fuzzy, python-format
+msgid "Configuration mode: %s"
+msgstr "Mod configurare"
+
+#, fuzzy
+msgid "Configuration..."
+msgstr "Configurare retea..."
+
+msgid ""
+"Configure for how long the infobar will remain visible after activation."
+msgstr ""
+
+msgid ""
+"Configure for how many minutes finished events should remain visible in the "
+"EPG. Useful when you need information about an event which has just "
+"finished, or has been delayed."
+msgstr ""
+
+msgid "Configure how recording filenames are constructed."
 msgstr ""
 
 msgid "Configure interface"
 msgstr ""
 
 msgid "Configure nameservers"
+msgstr ""
+
+msgid "Configure on which devices the background delete option should be used."
+msgstr ""
+
+#, fuzzy
+msgid "Configure remote control type"
+msgstr "Tip control parental"
+
+msgid "Configure the DiSEqC mode for this LNB."
+msgstr ""
+
+msgid "Configure the IP address."
+msgstr ""
+
+msgid "Configure the aspect ratio of the screen."
+msgstr ""
+
+msgid ""
+"Configure the behavior of the 'pause' key when movie playback is already "
+"paused."
+msgstr ""
+
+#, fuzzy
+msgid "Configure the behavior when movie playback is manually stopped."
+msgstr "Cand un film este oprit"
+
+#, fuzzy
+msgid "Configure the behavior when movie playback is started."
+msgstr "Cand un film este pornit"
+
+msgid ""
+"Configure the behavior when reaching the end of a movie, during movie "
+"playback."
+msgstr ""
+
+msgid ""
+"Configure the border width of the subtitles. The dark border makes the "
+"subtitles easier to read on a light background."
+msgstr ""
+
+msgid ""
+"Configure the brightness level of the front panel display during standby."
+msgstr ""
+
+msgid "Configure the brightness level of the front panel display."
+msgstr ""
+
+msgid "Configure the color of the teletext subtitles."
+msgstr ""
+
+msgid "Configure the contrast level of the front panel display."
+msgstr ""
+
+msgid "Configure the first audio language (highest priority)."
+msgstr ""
+
+msgid "Configure the first subtitle language (highest priority)."
+msgstr ""
+
+msgid "Configure the font size of the subtitles."
+msgstr ""
+
+msgid "Configure the fourth audio language."
+msgstr ""
+
+#, fuzzy
+msgid "Configure the fourth subtitle language."
+msgstr "mergi la urmatoarea limba pentru subtitrari"
+
+msgid "Configure the function of a long press on the power button."
+msgstr ""
+
+msgid "Configure the function of a short press on the power button."
+msgstr ""
+
+msgid "Configure the function of the '0' button do when PIP is active."
+msgstr ""
+
+msgid "Configure the gateway."
+msgstr ""
+
+msgid "Configure the general audio delay of Dolby Digital sound tracks."
+msgstr ""
+
+msgid "Configure the general audio delay of stereo sound tracks."
+msgstr ""
+
+msgid ""
+"Configure the hard disk drive to go to standby after the specified idle time."
+msgstr ""
+
+msgid "Configure the horizontal alignment of the subtitles."
+msgstr ""
+
+msgid ""
+"Configure the initial fast forward speed. When you press the fast forward "
+"button, winding will start at this speed."
+msgstr ""
+
+msgid ""
+"Configure the initial rewind speed. When you press the rewind button, "
+"winding will start at this speed."
+msgstr ""
+
+msgid "Configure the latitude of your location."
+msgstr ""
+
+msgid "Configure the longitude of your location."
+msgstr ""
+
+msgid ""
+"Configure the minimum amount of disk space to be available for recordings. "
+"When the amount of space drops below this value, deleted items will be "
+"removed from the trash can."
+msgstr ""
+
+msgid "Configure the nameserver (DNS)."
+msgstr ""
+
+msgid "Configure the netmask."
+msgstr ""
+
+msgid ""
+"Configure the number of days after which items are automaticaly removed from "
+"the trash can."
+msgstr ""
+
+msgid ""
+"Configure the number of days old timers are kept before they are "
+"automatically removed from the timer list."
+msgstr ""
+
+msgid ""
+"Configure the offline decoding delay in milliseconds. The configured delay "
+"is observed at each control word parity change."
+msgstr ""
+
+msgid "Configure the possible fast forward speeds."
+msgstr ""
+
+msgid "Configure the possible rewind speeds."
+msgstr ""
+
+msgid "Configure the primary EPG language."
+msgstr ""
+
+msgid "Configure the refresh rate of the screen."
+msgstr ""
+
+msgid "Configure the screen resolution in PC output mode."
+msgstr ""
+
+msgid "Configure the second audio language."
+msgstr ""
+
+#, fuzzy
+msgid "Configure the second subtitle language."
+msgstr "mergi la urmatoarea limba pentru subtitrari"
+
+msgid "Configure the secondary EPG language."
+msgstr ""
+
+msgid "Configure the sharpness of the video scaling."
+msgstr ""
+
+msgid "Configure the skip time interval for the '1'/'3' buttons."
+msgstr ""
+
+msgid "Configure the skip time interval for the '4'/'6' buttons."
+msgstr ""
+
+msgid "Configure the skip time interval for the '7'/'9' buttons."
+msgstr ""
+
+#, fuzzy
+msgid "Configure the slow motion speeds."
+msgstr "Viteza imagine cu incetinitorul"
+
+msgid ""
+"Configure the speed of the background deletion process. Lower speed will "
+"consume less hard disk drive performance."
+msgstr ""
+
+msgid "Configure the subtitle delay when timing information is not available."
+msgstr ""
+
+msgid "Configure the third audio language."
+msgstr ""
+
+#, fuzzy
+msgid "Configure the third subtitle language."
+msgstr "mergi la urmatoarea limba pentru subtitrari"
+
+msgid "Configure the transparency of the OSD."
+msgstr ""
+
+msgid ""
+"Configure the transparency of the black background of graphical DVB "
+"subtitles."
+msgstr ""
+
+#, fuzzy
+msgid "Configure the tuner mode."
+msgstr "Mod configurare"
+
+msgid "Configure the type of status indication icons shown in the movielist."
+msgstr ""
+
+msgid ""
+"Configure the vertical position of the subtitles, measured from the bottom "
+"of the screen."
+msgstr ""
+
+msgid "Configure the video output mode (or resolution)."
+msgstr ""
+
+msgid "Configure the way in which the receiver changes channels."
+msgstr ""
+
+msgid "Configure where completed timers show up in the timer list."
+msgstr ""
+
+msgid ""
+"Configure whether (and for how long) a second infobar will be shown when OK "
+"is pressed twice. The second infobar contains additional information about "
+"the current channel."
+msgstr ""
+
+msgid ""
+"Configure whether multi channel sound tracks should be downmixed to stereo."
+msgstr ""
+
+msgid ""
+"Configure whether or not an icon should be shown when your motorized dish is "
+"moving."
+msgstr ""
+
+msgid ""
+"Configure which access level to use for the configuration menu. Expert level "
+"gives access to all items."
+msgstr ""
+
+msgid "Configure which color format should be used on the SCART output."
+msgstr ""
+
+msgid ""
+"Configure which tuner type will be preferred, when the same service is "
+"available on different types of tuners."
+msgstr ""
+
+msgid ""
+"Configure which tuner will be preferred, when more than one tuner is "
+"available. If set to 'auto' the system will give priority to the tuner "
+"having the lowest number of channels/satellites."
 msgstr ""
 
 msgid "Configure your internal LAN"
@@ -1098,8 +1452,15 @@ msgstr ""
 msgid "Configure your wireless LAN again"
 msgstr ""
 
+msgid "Configures which video output connector will be used."
+msgstr ""
+
 msgid "Configuring"
 msgstr "Se configureaza"
+
+#, fuzzy
+msgid "Confirm shutdown:"
+msgstr "Intreaba inainte de shutdown:"
 
 msgid "Conflicting timer"
 msgstr "Programare aflata in conflict"
@@ -1107,8 +1468,9 @@ msgstr "Programare aflata in conflict"
 msgid "Connect"
 msgstr ""
 
-msgid "Connect to a Wireless Network"
-msgstr ""
+#, fuzzy
+msgid "Connect to a wireless network"
+msgstr "Scanare retele wireless"
 
 msgid "Connected to"
 msgstr "Conectat la"
@@ -1128,6 +1490,10 @@ msgstr ""
 msgid "Continue in background"
 msgstr "Continua in fundal"
 
+#, fuzzy
+msgid "Continue playback"
+msgstr "Continua redarea"
+
 msgid "Continue playing"
 msgstr "Continua redarea"
 
@@ -1137,80 +1503,63 @@ msgstr ""
 msgid "Contrast"
 msgstr "Contrast"
 
+msgid "Convert ext3 filesystem to ext4"
+msgstr ""
+
 msgid "Convert ext3 to ext4"
 msgstr ""
 
-msgid "Convert ext3 to ext4..."
-msgstr ""
-
-msgid "Convert filesystem ext3 to ext4"
+msgid "Converting ext3 to ext4..."
 msgstr ""
 
 msgid "Copy"
 msgstr ""
 
-msgid "Could not connect to receiver .NFI Image Feed Server:"
+msgid "Could not connect to receiver .NFI image feed server:"
 msgstr ""
 
-msgid "Could not load Medium! No disc inserted?"
+msgid "Could not find installed channel list."
+msgstr ""
+
+#, fuzzy
+msgid "Could not load medium! No disc inserted?"
 msgstr "Nu s-a putut incarca! E vreun disc introdus?"
 
 msgid "Could not open Picture in Picture"
 msgstr ""
 
-#, python-format
-msgid "Couldn't record due to conflicting timer %s"
+#, fuzzy, python-format
+msgid "Could not record due to conflicting timer %s"
 msgstr ""
 "Nu s-a putut porni inregistrarea din cauza programarii %s aflate in conflict"
 
-#, python-format
-msgid "Couldn't record due to invalid service %s"
+#, fuzzy, python-format
+msgid "Could not record due to invalid service %s"
 msgstr ""
-
-msgid "Crashlog settings"
-msgstr ""
-
-msgid "CrashlogAutoSubmit"
-msgstr ""
-
-msgid "CrashlogAutoSubmit settings"
-msgstr ""
-
-msgid "CrashlogAutoSubmit settings..."
-msgstr ""
-
-msgid ""
-"Crashlogs found!\n"
-"Send them to the Image Developper?"
-msgstr ""
+"Nu s-a putut porni inregistrarea din cauza programarii %s aflate in conflict"
 
 msgid "Create DVD-ISO"
 msgstr "Creeaza DVD-ISO"
 
-msgid "Create Filesystem"
-msgstr ""
-
-msgid "Create Partition"
-msgstr ""
-
 msgid "Create more detailed crash log"
-msgstr ""
-
-msgid "Create movie directory"
 msgstr ""
 
 #, python-format
 msgid "Creating directory %s failed."
 msgstr "Crearea directorului %s a esuat"
 
+#, fuzzy
+msgid "Creating filesystem"
+msgstr "Se verifica sistemul de fisiere..."
+
+msgid "Creating partition"
+msgstr ""
+
 msgid "Croatian"
 msgstr "Croata"
 
 msgid "Current CEC address"
 msgstr ""
-
-msgid "Current Transponder"
-msgstr "Transponderul curent"
 
 msgid "Current device: "
 msgstr ""
@@ -1221,6 +1570,10 @@ msgstr ""
 msgid "Current settings:"
 msgstr "Setarile curente:"
 
+#, fuzzy
+msgid "Current transponder"
+msgstr "Transponderul curent"
+
 msgid "Current value: "
 msgstr ""
 
@@ -1230,20 +1583,17 @@ msgstr "Versiunea curenta:"
 msgid "Currently installed image"
 msgstr ""
 
-msgid "Custom skip time for '1'/'3'-keys"
+#, fuzzy
+msgid "Custom skip time for '1'/'3' buttons"
 msgstr "Butoanele '1'/'3' produc saltul cu"
 
-msgid "Custom skip time for '4'/'6'-keys"
+#, fuzzy
+msgid "Custom skip time for '4'/'6' buttons"
 msgstr "Butoanele '4'/'6' produc saltul cu"
 
-msgid "Custom skip time for '7'/'9'-keys"
+#, fuzzy
+msgid "Custom skip time for '7'/'9' buttons"
 msgstr "Butoanele '7'/'9' produc saltul cu"
-
-msgid "Custom text alignment"
-msgstr ""
-
-msgid "Custom text position"
-msgstr ""
 
 msgid "Customize"
 msgstr "Personalizare"
@@ -1262,6 +1612,13 @@ msgstr "D"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+#, fuzzy
+msgid "DMM advanced"
+msgstr "avansat"
+
+msgid "DMM normal"
+msgstr ""
 
 msgid "DTS downmix"
 msgstr ""
@@ -1290,20 +1647,23 @@ msgstr ""
 msgid "DVB-T2"
 msgstr ""
 
-msgid "DVD File Browser"
-msgstr ""
-
-msgid "DVD Player"
-msgstr "Player DVD"
-
-msgid "DVD Titlelist"
-msgstr ""
-
 msgid "DVD data format"
 msgstr ""
 
+#, fuzzy
+msgid "DVD file browser"
+msgstr "Browser-ul plugin"
+
 msgid "DVD media toolbox"
 msgstr "Instrumente DVD"
+
+#, fuzzy
+msgid "DVD player"
+msgstr "Player DVD"
+
+#, fuzzy
+msgid "DVD titlelist"
+msgstr "lista alba"
 
 msgid "Danish"
 msgstr "Daneza"
@@ -1311,26 +1671,23 @@ msgstr "Daneza"
 msgid "Date"
 msgstr "Data"
 
-msgid "Decide if you want to enable or disable the Cleanup Wizard."
-msgstr ""
+#, fuzzy
+msgid "Date/time input"
+msgstr "Intrare Ora/Data"
 
-msgid "Decide what should be done when crashlogs are found."
-msgstr ""
-
-msgid "Decide what should happen to the crashlogs after submission."
-msgstr ""
-
-msgid "Deep Standby"
+#, fuzzy
+msgid "Deep standby"
 msgstr "Oprire completa"
 
 msgid "Default"
 msgstr ""
 
-msgid "Default Settings"
-msgstr "Setari implicite"
-
 msgid "Default movie location"
 msgstr ""
+
+#, fuzzy
+msgid "Default settings"
+msgstr "Setari implicite"
 
 msgid "Delay before key repeat starts:"
 msgstr ""
@@ -1338,22 +1695,27 @@ msgstr ""
 msgid "Delete"
 msgstr "Sterge"
 
-msgid "Delete crashlogs"
-msgstr ""
-
 msgid "Delete entry"
 msgstr "Sterge articol"
 
 msgid "Delete failed!"
 msgstr "Stergere esuata!"
 
-#, python-format
-msgid ""
-"Delete no more configured satellite\n"
-"%s?"
-msgstr ""
-"Doriti stergerea satelitului\n"
-"%s?"
+#, fuzzy
+msgid "Delete file"
+msgstr "sterge file"
+
+#, fuzzy
+msgid "Delete playlist entry"
+msgstr "sterge intrare playlist"
+
+#, fuzzy
+msgid "Delete saved playlist"
+msgstr "sterge playlist salvat"
+
+#, fuzzy
+msgid "Delete..."
+msgstr "sterge..."
 
 msgid "Deleted"
 msgstr ""
@@ -1397,11 +1759,16 @@ msgstr "DiSEqC A/B/C/D"
 msgid "DiSEqC mode"
 msgstr "Mod DiSEqC"
 
+#, fuzzy, python-format
+msgid "DiSEqC port %s: %s"
+msgstr "DiSEqC in cascada"
+
 msgid "DiSEqC repeats"
 msgstr "DiSEqC in cascada"
 
-msgid "DiSEqC-Tester settings"
-msgstr ""
+#, fuzzy
+msgid "DiSEqC-tester settings"
+msgstr "Test setari DiSEqC"
 
 msgid "Dialing:"
 msgstr ""
@@ -1415,8 +1782,8 @@ msgstr "Redare directa a titlurilor fara meniu"
 msgid "Directory"
 msgstr ""
 
-#, python-format
-msgid "Directory %s nonexistent."
+#, fuzzy, python-format
+msgid "Directory %s does not exist."
 msgstr "Directorul %s nu exista."
 
 msgid "Directory browser"
@@ -1433,9 +1800,6 @@ msgid "Disable Picture in Picture"
 msgstr "Dezactiveaza PiP (Imagine in Imagine)"
 
 msgid "Disable background scanning"
-msgstr ""
-
-msgid "Disable crashlog reporting"
 msgstr ""
 
 msgid "Disable timer"
@@ -1462,20 +1826,28 @@ msgstr "Afiseaza continutul format 4:3 ca"
 msgid "Display >16:9 content as"
 msgstr "Afiseaza continutul format >16:9 ca"
 
-msgid "Display Setup"
-msgstr "Configurare afisaj"
-
-msgid "Display and Userinterface"
+#, fuzzy
+msgid "Display and userinterface"
 msgstr "Afisaj si interfata utilizator"
 
-msgid "Display message before next played movie"
+msgid "Display message before playing next movie"
 msgstr ""
 
-#, python-format
-msgid ""
-"Do you really want to REMOVE\n"
-"the plugin \"%s\"?"
-msgstr "Confirmati STERGEREApluginului \"%s\"?"
+#, fuzzy
+msgid "Display setup"
+msgstr "Configurare afisaj"
+
+#, fuzzy
+msgid "Do not change"
+msgstr "nu schimba"
+
+#, fuzzy
+msgid "Do not record"
+msgstr "nu inregistra"
+
+#, fuzzy
+msgid "Do nothing"
+msgstr "nu face nimic"
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -1509,6 +1881,14 @@ msgid ""
 "All data on the disk will be lost!"
 msgstr ""
 
+#, fuzzy, python-format
+msgid ""
+"Do you really want to remove\n"
+"the plugin \"%s\"?"
+msgstr ""
+"Confirmati descarcarea\n"
+"pluginului \"%s\"?"
+
 #, python-format
 msgid "Do you really want to remove directory %s from the disk?"
 msgstr "Confirmati stergerea directorului %s de pe disc?"
@@ -1516,13 +1896,6 @@ msgstr "Confirmati stergerea directorului %s de pe disc?"
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "Confirmati stergerea semnului de carte %s?"
-
-msgid ""
-"Do you want to backup now?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"Doriti crearea copiei de siguranta acum?\n"
-"Dupa apasarea butonului OK sunteti rugat sa asteptati!"
 
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Doriti scrierea acestei colectii pe discul DVD?"
@@ -1537,8 +1910,9 @@ msgstr "Doriti efectuarea unei alte operatiuni de scanare manuala?"
 msgid "Do you want to download the image to %s ?"
 msgstr ""
 
-msgid "Do you want to enable the parental control feature on your receiver?"
-msgstr ""
+#, fuzzy
+msgid "Do you want to install a channel list?"
+msgstr "Doriti sa instalati pachetul:\n"
 
 msgid "Do you want to install the package:\n"
 msgstr "Doriti sa instalati pachetul:\n"
@@ -1561,37 +1935,18 @@ msgstr "Doriti restaurarea setarilor dvs?"
 msgid "Do you want to resume this playback?"
 msgstr "Doriti continuarea redarii acestei inregistrari?"
 
-msgid ""
-"Do you want to submit your email address and name so that we can contact you "
-"if needed?"
-msgstr ""
+#, fuzzy, python-format
+msgid "Do you want to update your receiver to %s?"
+msgstr "Doriti restaurarea setarilor dvs?"
 
 msgid "Do you want to update your receiver?"
-msgstr ""
-
-msgid ""
-"Do you want to update your receiver?\n"
-"After pressing OK, please wait!"
 msgstr ""
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Doriti actualizarea pachetului:\n"
 
-msgid "Do you want to upgrade?"
-msgstr ""
-
-msgid "Do you want to view a tutorial?"
-msgstr "Doriti sa urmariti un tutorial?"
-
-msgid "Don't ask, just send"
-msgstr ""
-
 msgid "Don't stop current event but disable coming events"
 msgstr "Nu opri evenimentul curent dar anuleaza evenimentele urmatoare"
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "S-a finalizat instalarea sau actualizarea a %d pachete"
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d packages with %d errors"
@@ -1602,13 +1957,14 @@ msgid "Download"
 msgstr "Descarcare"
 
 #, python-format
-msgid "Download %s from Server"
+msgid "Download %s from server"
 msgstr ""
 
-msgid "Download .NFI-Files for USB-Flasher"
+msgid "Download .NFI-files for USB-flasher"
 msgstr "Descarca fisiere .NFI pentru USB-Flasher"
 
-msgid "Download Plugins"
+#, fuzzy
+msgid "Download plugins"
 msgstr "Descarca Pluginuri"
 
 msgid "Downloadable new plugins"
@@ -1635,14 +1991,15 @@ msgstr "E"
 msgid "EPG"
 msgstr ""
 
-msgid "EPG Selection"
-msgstr "Selectie EPG"
-
 msgid "EPG language selection 1"
 msgstr ""
 
 msgid "EPG language selection 2"
 msgstr ""
+
+#, fuzzy
+msgid "EPG selection"
+msgstr "Selectie EPG"
 
 msgid "EPG settings"
 msgstr ""
@@ -1663,9 +2020,6 @@ msgstr "Editare"
 msgid "Edit DNS"
 msgstr "Editare DNS"
 
-msgid "Edit Title"
-msgstr "Editare Titlu"
-
 msgid "Edit bouquets list"
 msgstr ""
 
@@ -1678,8 +2032,9 @@ msgstr "Editare lista de servicii"
 msgid "Edit settings"
 msgstr "Editare setari"
 
-msgid "Edit the Nameserver configuration of your receiver.\n"
-msgstr ""
+#, fuzzy
+msgid "Edit the nameserver configuration of your receiver.\n"
+msgstr "iesire configurare nameserver"
 
 msgid "Edit the network configuration of your receiver.\n"
 msgstr ""
@@ -1702,9 +2057,6 @@ msgstr "Activeaza"
 msgid "Enable 5V for active antenna"
 msgstr "Activeaza 5V pentru antena activa"
 
-msgid "Enable Cleanup Wizard?"
-msgstr ""
-
 msgid "Enable EIT EPG"
 msgstr ""
 
@@ -1716,6 +2068,10 @@ msgstr ""
 
 msgid "Enable ViaSat EPG"
 msgstr ""
+
+#, fuzzy
+msgid "Enable bouquet selection in multi-EPG"
+msgstr "activeaza editare bouquet"
 
 msgid "Enable freesat EPG"
 msgstr ""
@@ -1741,10 +2097,12 @@ msgstr ""
 msgid "Encryption"
 msgstr "Criptare"
 
-msgid "Encryption Key"
+#, fuzzy
+msgid "Encryption key"
 msgstr "Cheie de criptare"
 
-msgid "Encryption Keytype"
+#, fuzzy
+msgid "Encryption key type"
 msgstr "Tipul cheii de criptare"
 
 msgid "Encryption:"
@@ -1753,20 +2111,12 @@ msgstr ""
 msgid "End time"
 msgstr "Momentul incheierii"
 
-msgid "EndTime"
-msgstr "MomentulIncheierii"
-
 msgid "English"
 msgstr "Engleza"
 
-msgid ""
-"Enigma2 Skinselector\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
+#, fuzzy
+msgid "Enigma2 skin selector"
+msgstr "enigma2 si retea"
 
 msgid "Enter main menu..."
 msgstr "Intrati in meniul principal..."
@@ -1776,9 +2126,6 @@ msgstr ""
 
 msgid "Enter the service pin"
 msgstr "Introduceti pinul serviciului"
-
-msgid "Enter your email address so that we can contact you if needed."
-msgstr ""
 
 msgid "Error"
 msgstr "Eroare"
@@ -1803,14 +2150,16 @@ msgstr ""
 msgid "Ethernet network interface"
 msgstr ""
 
-msgid "Event Fontsize (relative to skin size)"
+msgid "Event font size (relative to skin size)"
 msgstr ""
 
-msgid "Eventview"
+#, fuzzy
+msgid "Event view"
 msgstr "Detalii eveniment"
 
-msgid "Eventview menu"
-msgstr ""
+#, fuzzy
+msgid "Event view menu"
+msgstr "Detalii eveniment"
 
 msgid "Everywhere"
 msgstr ""
@@ -1818,11 +2167,12 @@ msgstr ""
 msgid "Exceeds dual layer medium!"
 msgstr ""
 
-msgid "Execution Progress:"
-msgstr "Rezumat progres:"
-
 msgid "Execution finished!!"
 msgstr "Executie finalizata!!"
+
+#, fuzzy
+msgid "Execution progress:"
+msgstr "Rezumat progres:"
 
 msgid "Exif"
 msgstr "Exif"
@@ -1833,41 +2183,54 @@ msgstr "Iesire"
 msgid "Exit EPG"
 msgstr ""
 
-msgid "Exit Movieplayer?"
-msgstr ""
-
 msgid "Exit editor"
 msgstr "Iesire din editor"
 
 msgid "Exit input device selection."
 msgstr ""
 
-msgid "Exit network wizard"
-msgstr ""
+#, fuzzy
+msgid "Exit mediaplayer"
+msgstr "iesire mediaplayer"
 
-msgid "Exit the cleanup wizard"
+#, fuzzy
+msgid "Exit movie list"
+msgstr "iesire lista filme"
+
+#, fuzzy
+msgid "Exit movie player?"
+msgstr "iesire mediaplayer"
+
+#, fuzzy
+msgid "Exit nameserver configuration"
+msgstr "iesire configurare nameserver"
+
+#, fuzzy
+msgid "Exit network interface list"
+msgstr "iesire interfata retea"
+
+msgid "Exit network wizard"
 msgstr ""
 
 msgid "Exit the wizard"
 msgstr "Iesi din ajutorul de configurare"
 
-msgid "Exit wizard"
-msgstr "Iesire din ajutorul de configurare"
-
 msgid "Expert"
 msgstr "Expert"
-
-msgid "Extended Networksetup Plugin..."
-msgstr "Plugin pentru setari de retea extinse..."
-
-msgid "Extended Setup..."
-msgstr "Setari extinse..."
 
 msgid "Extended Software"
 msgstr ""
 
 msgid "Extended Software Plugin"
 msgstr ""
+
+#, fuzzy
+msgid "Extended network setup plugin..."
+msgstr "Plugin pentru setari de retea extinse..."
+
+#, fuzzy
+msgid "Extended setup..."
+msgstr "Setari extinse..."
 
 msgid "Extensions"
 msgstr "Extensii"
@@ -1898,9 +2261,9 @@ msgstr ""
 msgid "Fan %d PWM"
 msgstr ""
 
-#, python-format
-msgid "Fan %d Voltage"
-msgstr ""
+#, fuzzy, python-format
+msgid "Fan %d voltage"
+msgstr "Voltaj marit"
 
 msgid "Fast"
 msgstr "Rapid"
@@ -1908,14 +2271,15 @@ msgstr "Rapid"
 msgid "Fast DiSEqC"
 msgstr "DiSEqC rapid"
 
-msgid "Fast Forward speeds"
-msgstr "Vitezele pentru Repede Inainte"
-
 msgid "Fast Scan"
 msgstr ""
 
 msgid "Fast epoch"
 msgstr "Epoch rapid"
+
+#, fuzzy
+msgid "Fast forward speeds"
+msgstr "Vitezele pentru Repede Inainte"
 
 msgid "Favourites"
 msgstr "Favorite"
@@ -1923,7 +2287,7 @@ msgstr "Favorite"
 msgid "File appears to be busy.\n"
 msgstr ""
 
-msgid "Filesystem Check"
+msgid "Filesystem check"
 msgstr ""
 
 msgid "Final position at"
@@ -1950,6 +2314,9 @@ msgstr "Reteaua dvs a fost repornita"
 msgid "Finnish"
 msgstr "Finlandeza"
 
+msgid "Fixed"
+msgstr ""
+
 msgid "Flash"
 msgstr "Flash"
 
@@ -1957,9 +2324,6 @@ msgid "Flashing failed"
 msgstr "Operatia de flash a esuat"
 
 msgid "Following tasks will be done after you press OK!"
-msgstr ""
-
-msgid "For more information see www.openpli.org"
 msgstr ""
 
 msgid "Format"
@@ -1999,9 +2363,15 @@ msgstr ""
 msgid "Frontprocessor version: %d"
 msgstr "Versiune frontprocesor: %d"
 
+msgid "Full transparency"
+msgstr ""
+
+msgid "Function of OK button"
+msgstr ""
+
 msgid ""
 "GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
+"Do you want to restart the GUI now?"
 msgstr ""
 "Interfata grafica necesita repornirea pentru aplicarea noilor "
 "decoratiuniDoriti repornirea interfetei grafice acum?"
@@ -2009,13 +2379,15 @@ msgstr ""
 msgid "Gateway"
 msgstr "Gateway"
 
-msgid "General AC3 Delay"
+#, fuzzy
+msgid "General AC3 delay"
 msgstr "Intarziere AC3 generala"
 
 msgid "General AC3 delay (ms)"
 msgstr ""
 
-msgid "General PCM Delay"
+#, fuzzy
+msgid "General PCM delay"
 msgstr "Intarziere PCM generala"
 
 msgid "General PCM delay (ms)"
@@ -2045,6 +2417,30 @@ msgstr ""
 msgid "Go to first movie or top of list"
 msgstr ""
 
+#, fuzzy
+msgid "Go to first service"
+msgstr "muta sus la prima intrare"
+
+#, fuzzy
+msgid "Go to last service"
+msgstr "Servicii de protectie"
+
+#, fuzzy
+msgid "Go to next event"
+msgstr "muta jos la urmatoarea intrare"
+
+#, fuzzy
+msgid "Go to next page of service"
+msgstr "Schimba la urmatorul subserviciu"
+
+#, fuzzy
+msgid "Go to previous event"
+msgstr "muta sus la anterioara intrare"
+
+#, fuzzy
+msgid "Go to previous page of service"
+msgstr "Revenire la serviciul anterior"
+
 msgid "Go up the list"
 msgstr ""
 
@@ -2060,34 +2456,16 @@ msgstr ""
 msgid "Goto X"
 msgstr ""
 
-msgid "Goto first service"
-msgstr ""
-
 msgid "Goto index position"
-msgstr ""
-
-msgid "Goto last service"
-msgstr ""
-
-msgid "Goto next event"
 msgstr ""
 
 msgid "Goto next page of events"
 msgstr ""
 
-msgid "Goto next page of service"
-msgstr ""
-
 msgid "Goto position"
 msgstr "Goto pozitie"
 
-msgid "Goto previous event"
-msgstr ""
-
 msgid "Goto previous page of events"
-msgstr ""
-
-msgid "Goto previous page of service"
 msgstr ""
 
 msgid "Goto specific data/time"
@@ -2108,9 +2486,6 @@ msgstr "Greaca"
 msgid "Green boost"
 msgstr ""
 
-msgid "Guard Interval"
-msgstr "Interval garda"
-
 msgid "Guard interval"
 msgstr ""
 
@@ -2123,14 +2498,20 @@ msgstr ""
 msgid "Handle wakeup from TV"
 msgstr ""
 
-msgid "Harddisk"
+#, fuzzy
+msgid "Hard disk"
 msgstr "Hard disc"
 
-msgid "Harddisk setup"
+#, fuzzy
+msgid "Hard disk setup"
 msgstr "Configurare hard disc"
 
-msgid "Harddisk standby after"
+#, fuzzy
+msgid "Hard disk standby after"
 msgstr "Comuta hard discul in standby dupa"
+
+msgid "Harddisk"
+msgstr "Hard disc"
 
 msgid "Hardware: "
 msgstr ""
@@ -2144,14 +2525,22 @@ msgstr ""
 msgid "Hide CI messages"
 msgstr ""
 
+msgid "Hide channel list in radio mode"
+msgstr ""
+
+#, fuzzy
+msgid "Hide player"
+msgstr "ascunde player"
+
 msgid "Hide zap errors"
 msgstr ""
 
-msgid "Hierarchy Information"
-msgstr "Informatii despre ierarhie"
-
 msgid "Hierarchy info"
 msgstr ""
+
+#, fuzzy
+msgid "Hierarchy information"
+msgstr "Informatii despre ierarhie"
 
 msgid "High bitrate support"
 msgstr "Sprijin pentru bitrate rapid"
@@ -2174,16 +2563,14 @@ msgstr ""
 msgid "How many minutes do you want to record?"
 msgstr "Pentru cate minute doriti sa inregistrati?"
 
-msgid "How to handle found crashlogs?"
-msgstr ""
-
 msgid "Hue"
 msgstr ""
 
 msgid "Hungarian"
 msgstr "Maghiara"
 
-msgid "IP Address"
+#, fuzzy
+msgid "IP address"
 msgstr "IP Address"
 
 msgid "ISO file is too large for this filesystem!"
@@ -2217,14 +2604,19 @@ msgstr ""
 msgid "Image: "
 msgstr ""
 
-msgid "In Progress"
-msgstr "In curs de desfasurare"
+#, fuzzy
+msgid "Immediate shutdown"
+msgstr "shutdown imediat"
 
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr ""
 "Pentru a putea porni inregistrarea programata,s-a comutat pe canalul "
 "respectiv!\n"
+
+#, fuzzy
+msgid "In progress"
+msgstr "In curs de desfasurare"
 
 msgid "Include AIT in http streams"
 msgstr ""
@@ -2233,9 +2625,6 @@ msgid "Include ECM in http streams"
 msgstr ""
 
 msgid "Include EIT in http streams"
-msgstr ""
-
-msgid "Include your email and name (optional) in the mail?"
 msgstr ""
 
 msgid "Increased voltage"
@@ -2250,10 +2639,12 @@ msgstr ""
 msgid "Info"
 msgstr ""
 
-msgid "InfoBar"
+#, fuzzy
+msgid "Info bar"
 msgstr "Bara de informatii"
 
-msgid "Infobar timeout"
+#, fuzzy
+msgid "Info bar timeout"
 msgstr "Timeout bara de informatii"
 
 msgid "Information"
@@ -2262,17 +2653,19 @@ msgstr "Informatii"
 msgid "Init"
 msgstr "Initializare"
 
-msgid "Initial Fast Forward speed"
-msgstr ""
-
-msgid "Initial Rewind speed"
-msgstr ""
+#, fuzzy
+msgid "Initial fast forward speed"
+msgstr "Vitezele pentru Repede Inainte"
 
 msgid "Initial location in new timers"
 msgstr ""
 
 msgid "Initial lock ratio"
 msgstr ""
+
+#, fuzzy
+msgid "Initial rewind speed"
+msgstr "Viteze de derulare"
 
 msgid "Initial signal quality"
 msgstr ""
@@ -2307,44 +2700,45 @@ msgstr "Instalare imagine noua cu un stick USB"
 msgid "Install a new image with your web browser"
 msgstr "Instalare imagine noua cu browser-ul web"
 
+#, fuzzy
+msgid "Install channel list"
+msgstr "canalul urmator in istoric"
+
 msgid "Install extensions."
 msgstr ""
 
 msgid "Install local extension"
 msgstr ""
 
-msgid "Install or remove finished."
-msgstr "Instaleaza sau elimina fisierele terminate"
-
 msgid "Install picons on"
 msgstr ""
 
-msgid "Install settings, skins, software..."
-msgstr "Instalare setari, skin-uri, software..."
+#, fuzzy
+msgid "Install softcam"
+msgstr "Instaleaza software"
 
-msgid "Installation finished."
+#, fuzzy
+msgid "Installation has completed."
 msgstr "Instalare terminata"
+
+#, fuzzy
+msgid "Installation or removal has completed."
+msgstr "Instaleaza sau elimina fisierele terminate"
 
 msgid "Installing"
 msgstr "Instaleaza"
 
-msgid "Installing Software..."
+#, fuzzy
+msgid "Installing software..."
 msgstr "Instaleaza software"
 
-msgid "Installing default sat lists... Please wait..."
-msgstr "Instaleaza listele implicite cu sateliti...Va rugam asteptati..."
+#, fuzzy
+msgid "Instant recording location"
+msgstr "schimba inregistrare (durata)"
 
-msgid "Installing defaults... Please wait..."
-msgstr "Instaleaza setarile implicite...Va rugam asteptati..."
-
-msgid "Installing package content... Please wait..."
-msgstr "Instaleaza continutul pachetului...Va rugam asteptati..."
-
-msgid "Instant Record..."
+#, fuzzy
+msgid "Instant recording..."
 msgstr "Inregistrare instant"
-
-msgid "Instant record location"
-msgstr ""
 
 msgid "Interface: "
 msgstr ""
@@ -2352,7 +2746,8 @@ msgstr ""
 msgid "Intermediate"
 msgstr "Intermediar"
 
-msgid "Internal Flash"
+#, fuzzy
+msgid "Internal flash"
 msgstr "Memorie Flash interna"
 
 msgid "Internal hdd only"
@@ -2361,12 +2756,13 @@ msgstr ""
 msgid "Interval between keys when repeating:"
 msgstr ""
 
-msgid "Invalid Location"
-msgstr "Locatie nevalida"
-
 #, python-format
 msgid "Invalid directory selected: %s"
 msgstr "Director selectat nevalid: %s"
+
+#, fuzzy
+msgid "Invalid location"
+msgstr "Locatie nevalida"
 
 msgid "Inversion"
 msgstr "Inversare"
@@ -2377,44 +2773,63 @@ msgstr ""
 msgid "Ipkg"
 msgstr "Ipkg"
 
-msgid "Is this videomode ok?"
+msgid "Is this setting ok?"
 msgstr ""
+
+#, fuzzy
+msgid "Is this video mode ok?"
+msgstr "Selectati modul vieo"
 
 msgid "Italian"
 msgstr "Italiana"
 
-msgid "Items per Page "
+msgid "Items per page "
 msgstr ""
 
-msgid "Items per Page for Listscreen"
+msgid "Items per page for list screen"
 msgstr ""
 
-msgid "Job View"
+#, fuzzy
+msgid "Job overview"
 msgstr "Vedere serviciu"
 
+msgid "Jump to beginning of list"
+msgstr ""
+
+#, fuzzy
+msgid "Jump to end of list"
+msgstr "dai la sfarsitul listei"
+
+#, fuzzy
+msgid "Jump to next marked position"
+msgstr "dai la urmatoarea pozitie marcata"
+
+#, fuzzy
+msgid "Jump to previous marked position"
+msgstr "dai la pozitia marcata anterior"
+
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
-msgid "Just Scale"
+#, fuzzy
+msgid "Just scale"
 msgstr "Doar dimensiune"
 
-msgid "Keep old timers for how many days"
-msgstr ""
-
-msgid "Kernel Version: "
-msgstr ""
+#, fuzzy
+msgid "Kernel version: "
+msgstr "Versiune noua:"
 
 msgid "Keyboard"
 msgstr "Tastatura"
 
-msgid "Keyboard Map"
+#, fuzzy
+msgid "Keyboard map"
 msgstr "Harta tastatura"
 
-msgid "Keyboard Setup"
+#, fuzzy
+msgid "Keyboard setup"
 msgstr "Configurare tastatura"
 
-msgid "Kill partition table"
-msgstr ""
-
-msgid "LAN Adapter"
+#, fuzzy
+msgid "LAN adapter"
 msgstr "Adaptor LAN"
 
 msgid "LAN connection"
@@ -2423,23 +2838,11 @@ msgstr ""
 msgid "LNB"
 msgstr "LNB"
 
-msgid "LOF"
-msgstr "LOF"
-
-msgid "LOF/H"
-msgstr "LOF/H"
-
-msgid "LOF/L"
-msgstr "LOF/L"
-
 msgid "Language"
 msgstr ""
 
 msgid "Language selection"
 msgstr "Selectare limba"
-
-msgid "Last Upgrade: "
-msgstr ""
 
 msgid "Last config"
 msgstr ""
@@ -2447,36 +2850,44 @@ msgstr ""
 msgid "Last speed"
 msgstr "Ultima viteza"
 
+msgid "Last upgrade: "
+msgstr ""
+
 msgid "Latitude"
 msgstr "Latitudine"
 
 msgid "Latvian"
 msgstr "Letona"
 
-msgid "Leave DVD Player?"
+#, fuzzy
+msgid "Leave DVD player?"
 msgstr "Parasiti player-ul DVD?"
 
 msgid "Left"
 msgstr "Stanga"
 
-msgid "Leisure hobies"
+msgid "Leisure hobbies"
 msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
 msgstr "Letterbox"
 
-msgid "Letzeburgesch"
-msgstr ""
+#, fuzzy
+msgid "Limit character set for recording filenames"
+msgstr "Caractere limitate pentru inregistrarea numelor fisierelor"
 
 msgid "Limit east"
 msgstr "Limita estica"
 
+msgid ""
+"Limit the characters that can be used in recording filenames to (7 bit) "
+"ascii. This ensures compatibility with operating systems or file systems "
+"with limited character sets."
+msgstr ""
+
 msgid "Limit west"
 msgstr "Limita vestica"
-
-msgid "Limited character set for recording filenames"
-msgstr "Caractere limitate pentru inregistrarea numelor fisierelor"
 
 msgid "Limits cancelled"
 msgstr ""
@@ -2490,7 +2901,7 @@ msgstr "Limite dezactivate"
 msgid "Limits on"
 msgstr "Limite activate"
 
-msgid "Link Quality:"
+msgid "Link quality:"
 msgstr ""
 
 msgid "Link:"
@@ -2499,13 +2910,17 @@ msgstr "Link:"
 msgid "Linked titles with a DVD menu"
 msgstr "Titluri legate cu un meniu DVD"
 
+msgid "List EPG functions..."
+msgstr ""
+
 msgid "List available networks"
 msgstr ""
 
 msgid "List mode"
 msgstr ""
 
-msgid "List of Storage Devices"
+#, fuzzy
+msgid "List of storage devices"
 msgstr "Lista cu dispozitive de stocare"
 
 msgid "List type"
@@ -2515,8 +2930,9 @@ msgstr ""
 msgid "List version %d, found %d channels"
 msgstr ""
 
-msgid "Listscreen default at start user interface"
-msgstr ""
+#, fuzzy
+msgid "Listen to the radio..."
+msgstr "auzi radio"
 
 msgid "Lithuanian"
 msgstr "Lituaniana"
@@ -2524,10 +2940,16 @@ msgstr "Lituaniana"
 msgid "Load"
 msgstr "Incarca"
 
-msgid "Load Length of Movies in Movielist"
+#, fuzzy
+msgid "Load length of movies in movie list"
 msgstr "Incarca durata filmelor in lista cu filme"
 
-msgid "Local Network"
+#, fuzzy
+msgid "Load playlist"
+msgstr "incarca playlist"
+
+#, fuzzy
+msgid "Local network"
 msgstr "Retea locala"
 
 msgid "Location"
@@ -2545,25 +2967,27 @@ msgstr "Blocat"
 msgid "Log results to harddisk"
 msgstr "Inregistrare rezultate pe harddisk"
 
-msgid "Long Keypress"
-msgstr "Apasare lunga pe tasta"
-
 msgid "Long filenames"
 msgstr ""
+
+#, fuzzy
+msgid "Long key press"
+msgstr "Apasare lunga pe tasta"
 
 msgid "Longitude"
 msgstr "Longitudine"
 
-msgid "MMC Card"
+msgid "Luxembourgish"
+msgstr ""
+
+#, fuzzy
+msgid "MMC card"
 msgstr "Card MMC"
 
 msgid "MORE"
 msgstr "MULT"
 
 msgid "Main menu"
-msgstr "Meniu principal"
-
-msgid "Mainmenu"
 msgstr "Meniu principal"
 
 msgid "Maintain old EPG data for"
@@ -2590,26 +3014,33 @@ msgstr "Scanare manuala"
 msgid "Manual configuration"
 msgstr ""
 
+#, fuzzy
+msgid "Manual scan"
+msgstr "Scanare manuala"
+
 msgid "Manual transponder"
 msgstr "Transponder manual"
 
 msgid "Manufacturer"
 msgstr "Fabricant"
 
-msgid "Margin after record"
-msgstr "Creaza margini dupa inregistrare"
-
-msgid "Margin before record (minutes)"
+#, fuzzy
+msgid "Margin after recording (minutes)"
 msgstr "Creaza margini inainte de inregistrare (minute)"
 
-msgid "Max. Bitrate: "
+#, fuzzy
+msgid "Margin before recording (minutes)"
+msgstr "Creaza margini inainte de inregistrare (minute)"
+
+msgid "Max. bitrate: "
 msgstr ""
 
 msgid "Media player"
 msgstr "Media player"
 
-msgid "MediaPlayer"
-msgstr "MediaPlayer"
+#, fuzzy
+msgid "Media scanner"
+msgstr "Media player"
 
 msgid "Medium is not a writeable DVD!"
 msgstr "Mediul nu este un DVD inscriptibil!"
@@ -2639,6 +3070,13 @@ msgstr ""
 msgid "Missing "
 msgstr ""
 
+#, fuzzy
+msgctxt "Satellite configuration mode"
+msgid "Mode"
+msgstr "Mod"
+
+#, fuzzy
+msgctxt "Video output mode"
 msgid "Mode"
 msgstr "Mod"
 
@@ -2669,6 +3107,10 @@ msgstr ""
 msgid "Move"
 msgstr ""
 
+#, fuzzy
+msgid "Move PiP to main picture"
+msgstr "muta pip la imagine principala"
+
 msgid "Move Picture in Picture"
 msgstr "Muta picture in picture"
 
@@ -2693,14 +3135,16 @@ msgstr ""
 msgid "Movement"
 msgstr ""
 
-msgid "Movie List Configuration"
-msgstr ""
-
-msgid "Movie Selection"
-msgstr ""
+#, fuzzy
+msgid "Movie list configuration"
+msgstr "Configurare tuner"
 
 msgid "Movie location"
 msgstr ""
+
+#, fuzzy
+msgid "Movie selection"
+msgstr "Selectare timer"
 
 msgid "Movie/Drama"
 msgstr ""
@@ -2750,7 +3194,7 @@ msgstr "N/A"
 msgid "NEXT"
 msgstr "URMATORUL"
 
-msgid "NFI Image Flashing"
+msgid "NFI image flashing"
 msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
@@ -2776,11 +3220,12 @@ msgstr "Nameserver"
 msgid "Nameserver %d"
 msgstr "Numele server-ului %d"
 
-msgid "Nameserver Setup"
-msgstr "Configurare nume server"
-
 msgid "Nameserver settings"
 msgstr "Setari nume server"
+
+#, fuzzy
+msgid "Nameserver setup"
+msgstr "Configurare nume server"
 
 msgid "Namespace"
 msgstr ""
@@ -2791,19 +3236,22 @@ msgstr "Netmask"
 msgid "Network"
 msgstr "Retea"
 
-msgid "Network Configuration..."
-msgstr "Configurare retea..."
-
 msgid "Network ID"
 msgstr ""
 
-msgid "Network Mount"
+#, fuzzy
+msgid "Network configuration..."
+msgstr "Configurare retea..."
+
+#, fuzzy
+msgid "Network mount"
 msgstr "Network mount"
 
-msgid "Network Setup"
-msgstr "Configurare retea"
+#, fuzzy, python-format
+msgid "Network mount %s"
+msgstr "Network mount"
 
-msgid "Network Wizard"
+msgid "Network name (SSID)"
 msgstr ""
 
 msgid "Network scan"
@@ -2821,14 +3269,12 @@ msgstr "Test retea..."
 msgid "Network test: "
 msgstr ""
 
-msgid "Network:"
-msgstr "Retea"
-
-msgid "NetworkWizard"
+#, fuzzy
+msgid "Network wizard"
 msgstr "Wizard de retea"
 
-msgid "Networkname (SSID)"
-msgstr ""
+msgid "Network:"
+msgstr "Retea"
 
 msgid "New"
 msgstr "Nou"
@@ -2859,9 +3305,6 @@ msgstr "Nu s-a gasit niciun DVDROM (suportat)!"
 msgid "No Connection"
 msgstr ""
 
-msgid "No Delay"
-msgstr ""
-
 msgid "No HDD found or HDD not initialized!"
 msgstr "Nu s-a gasit niciun HDD sau HDD neinitializat!"
 
@@ -2877,6 +3320,9 @@ msgid ""
 msgstr ""
 "Nu exista date pe transponder!\n"
 " (Timeout reading PAT)"
+
+msgid "No delay"
+msgstr ""
 
 msgid "No description available."
 msgstr "Descrierea nu este disponibila"
@@ -2907,15 +3353,6 @@ msgstr ""
 msgid "No networks found"
 msgstr ""
 
-msgid ""
-"No packages were upgraded yet. So you can check your network and try again."
-msgstr ""
-"Niciun pachet nu a fost actualizat inca. Verificati reteaua si incercati din "
-"nou."
-
-msgid "No picture on TV? Press EXIT and retry."
-msgstr "Nu este imagine pe TV? Apasati EXIT si incercati din nou."
-
 msgid "No positioner capable frontend found."
 msgstr "Nu a fost gasit niciun pozitioner"
 
@@ -2925,10 +3362,24 @@ msgstr ""
 msgid "No satellite frontend found!!"
 msgstr "Nu a fost gasit niciun satelit!"
 
+msgid "No services/providers selected"
+msgstr ""
+
+#, fuzzy
+msgid "No standby"
+msgstr "fara standby"
+
 msgid "No tags are set on these movies."
 msgstr "Nu exista tag-uri stabilite pentru aceste filme."
 
+#, fuzzy
+msgid "No timeout"
+msgstr "fara timeout"
+
 msgid "No to all"
+msgstr ""
+
+msgid "No transparency"
 msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
@@ -2941,6 +3392,13 @@ msgid ""
 msgstr ""
 "Niciun tuner nu este activat!\n"
 "Va rugam configurati setarile tuner-ului inainte de a incepe o scanare noua."
+
+#, fuzzy
+msgid "No updates available"
+msgstr "Descrierea nu este disponibila"
+
+msgid "No updates available. Please try again later."
+msgstr ""
 
 msgid ""
 "No valid service PIN found!\n"
@@ -2993,6 +3451,10 @@ msgstr ""
 msgid "No, but restart from begin"
 msgstr "Nu, dar reluati de la capat"
 
+#, fuzzy
+msgid "No, but restart from beginning"
+msgstr "Nu, dar reluati de la capat"
+
 msgid "No, do nothing."
 msgstr "Nu, nu face nimic."
 
@@ -3000,15 +3462,6 @@ msgid "No, just start my receiver"
 msgstr ""
 
 msgid "No, never"
-msgstr ""
-
-msgid "No, not now"
-msgstr ""
-
-msgid "No, scan later manually"
-msgstr "Nu, scaneaza manual mai tarziu"
-
-msgid "No, send them never"
 msgstr ""
 
 msgid "None"
@@ -3027,16 +3480,16 @@ msgstr "Nord"
 msgid "Norwegian"
 msgstr "Norvegiana"
 
-#, python-format
+msgid "Not associated"
+msgstr ""
+
+#, fuzzy, python-format
 msgid ""
-"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"Not enough disk space. Please free up some disk space and try again. (%d MB "
 "required, %d MB available)"
 msgstr ""
 "Nu este spatiu suficient. Va rugam eliberati din spatiu si incercati din "
 "nou. (%d MB necesari, %d MB disponibili)"
-
-msgid "Not-Associated"
-msgstr ""
 
 msgid ""
 "Nothing to scan!\n"
@@ -3045,14 +3498,12 @@ msgstr ""
 "Nu este nimic de scanat!\n"
 "Va rugam configurati setarile tuner-ului inainte de a incepe o scanare."
 
-msgid "Nothing to upgrade"
-msgstr ""
-
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr ""
 
-msgid "Now Playing"
+#, fuzzy
+msgid "Now playing"
 msgstr "In redare acum"
 
 msgid ""
@@ -3071,23 +3522,18 @@ msgstr "OK"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, ghideaza-ma prin procesul de actualizare"
 
-msgid "OK, remove another extensions"
-msgstr ""
-
-msgid "OK, remove some extensions"
-msgstr ""
-
 msgid "ONID"
 msgstr ""
-
-msgid "OSD Settings"
-msgstr "Setari OSD"
 
 msgid "OSD name request"
 msgstr ""
 
-msgid "OSD visibility"
-msgstr "Vizibilitate OSD"
+#, fuzzy
+msgid "OSD settings"
+msgstr "Setari OSD"
+
+msgid "OSD transparency"
+msgstr ""
 
 msgid "Off"
 msgstr "Oprit"
@@ -3107,17 +3553,26 @@ msgstr ""
 msgid "One"
 msgstr "Unu"
 
-msgid "Only Free scan"
-msgstr "Numai scanare la programele libere"
-
 msgid "Only extensions."
 msgstr ""
 
-msgid "Optionally enter your name if you want to."
+#, fuzzy
+msgid "Only free scan"
+msgstr "Numai scanare la programele libere"
+
+#, fuzzy
+msgid "Open service list"
+msgstr "deschide servicelist"
+
+msgid "Open service list and select next channel"
 msgstr ""
 
-msgid "Orbital Position"
-msgstr "Pozitie orbitala"
+msgid "Open service list and select previous channel"
+msgstr ""
+
+#, fuzzy
+msgid "Open the movie list"
+msgstr "Revenire la lista de filme"
 
 msgid "Orbital position"
 msgstr ""
@@ -3131,11 +3586,12 @@ msgstr ""
 msgid "Output"
 msgstr ""
 
-msgid "Overwrite configuration files ?"
-msgstr ""
-
 msgid "Overwrite configuration files during software upgrade?"
 msgstr ""
+
+#, fuzzy
+msgid "Overwrite configuration files?"
+msgstr "Configurare tuner"
 
 msgid "PAL"
 msgstr "PAL"
@@ -3146,20 +3602,15 @@ msgstr ""
 msgid "PIDs"
 msgstr "PID-uri"
 
+#, fuzzy
+msgid "PIN code needed"
+msgstr "Este nevoie de codul pin"
+
 msgid "PMT PID"
 msgstr ""
 
 msgid "Package list update"
 msgstr "Actualizare lista pachet"
-
-msgid "Package removal failed.\n"
-msgstr ""
-
-msgid "Package removed successfully.\n"
-msgstr ""
-
-msgid "Packages"
-msgstr ""
 
 msgid "Packet management"
 msgstr "Administrare pachet"
@@ -3168,16 +3619,19 @@ msgid "Packet manager"
 msgstr "Manager pachet"
 
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-msgid "Pan&Scan"
+#, fuzzy
+msgid "Pan&scan"
 msgstr "Pan&Scan"
 
-msgid "Parent Directory"
+#, fuzzy
+msgid "Parent directory"
 msgstr "Directorul sursa"
 
 msgid "Parental control"
 msgstr "Control parental"
 
-msgid "Parental control services Editor"
+#, fuzzy
+msgid "Parental control services editor"
 msgstr "Editor servicii control parental"
 
 msgid "Parental control setup"
@@ -3189,14 +3643,23 @@ msgstr "Tip control parental"
 msgid "Password"
 msgstr ""
 
+#, fuzzy
+msgid "Pause"
+msgstr "pauza"
+
 msgid "Pause movie at end"
 msgstr "Opreste filmul la sfarsit"
 
-msgid "Percentage Left"
+#, fuzzy
+msgid "Pause playback"
+msgstr "Reluare redare"
+
+msgid "Percentage left"
 msgstr ""
 
-msgid "Percentage Right"
-msgstr ""
+#, fuzzy
+msgid "Percentage right"
+msgstr "Circular drept"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr ""
@@ -3210,16 +3673,18 @@ msgstr ""
 msgid "Phone number"
 msgstr ""
 
-msgid "PiPSetup"
+#, fuzzy
+msgid "PiP setup"
 msgstr "Configurare PiP"
 
 msgid "Picon"
 msgstr ""
 
-msgid "Picon and Service Name"
+msgid "Picon and service name"
 msgstr ""
 
-msgid "PicturePlayer"
+#, fuzzy
+msgid "Picture player"
 msgstr "PicturePlayer"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
@@ -3229,23 +3694,37 @@ msgstr "Pillarbox"
 msgid "Pilot"
 msgstr "Pilot"
 
-msgid "Pin code needed"
-msgstr "Este nevoie de codul pin"
-
 msgid "Play"
 msgstr "Redare"
-
-msgid "Play Audio-CD..."
-msgstr "Redare Audio-CD..."
 
 msgid "Play DVD"
 msgstr "Redare DVD"
 
-msgid "Play Music..."
-msgstr "Redare Muzica..."
-
 msgid "Play audio in background"
 msgstr ""
+
+#, fuzzy
+msgid "Play audio-CD..."
+msgstr "Redare Audio-CD..."
+
+msgid "Play back media files"
+msgstr ""
+
+#, fuzzy
+msgid "Play entry"
+msgstr "deschide selectarea"
+
+#, fuzzy
+msgid "Play from next mark or playlist entry"
+msgstr "deschide de la urmatoarea sau selectarea playlist"
+
+#, fuzzy
+msgid "Play from previous mark or playlist entry"
+msgstr "deschide de la anterioara sau selectarea playlist"
+
+#, fuzzy
+msgid "Play music..."
+msgstr "Redare Muzica..."
 
 msgid "Play next"
 msgstr ""
@@ -3262,15 +3741,7 @@ msgstr ""
 msgid "Play recorded movies..."
 msgstr "Redare filme inregistrate..."
 
-msgid "Please Select Medium to be Scanned"
-msgstr "Va rugam selectati mediul de scanat"
-
 msgid "Please add titles to the compilation."
-msgstr ""
-
-msgid ""
-"Please be aware, that anyone can disable the parental control, if you have "
-"not set a PIN."
 msgstr ""
 
 msgid "Please change recording endtime"
@@ -3282,13 +3753,6 @@ msgstr "Va rugam verificati setarile de retea!"
 msgid "Please choose an extension..."
 msgstr "Va rugam alegeti o extensie..."
 
-msgid "Please choose he package..."
-msgstr "Va rugam alegeti pachetul..."
-
-msgid "Please choose the default services lists you want to install."
-msgstr ""
-"Va rugam alegeti listele de servicii implicite pe care doriti sa le instalati"
-
 msgid ""
 "Please configure or verify your Nameservers by filling out the required "
 "values.\n"
@@ -3299,6 +3763,9 @@ msgid ""
 "Please configure your internet connection by filling out the required "
 "values.\n"
 "When you are ready press OK to continue."
+msgstr ""
+
+msgid "Please connect your receiver to the internet"
 msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -3327,12 +3794,6 @@ msgstr "Va rugam introduceti codul pin corect"
 msgid "Please enter the old PIN code"
 msgstr ""
 
-msgid "Please enter your email address here:"
-msgstr ""
-
-msgid "Please enter your name here (optional):"
-msgstr ""
-
 msgid "Please follow the instructions on the TV"
 msgstr "Va rugam sa urmati instructiunile de pe ecranul TV-ului"
 
@@ -3346,9 +3807,6 @@ msgstr ""
 msgid "Please press OK to continue."
 msgstr "Va rugam apasati OK pentru a continua"
 
-msgid "Please press OK!"
-msgstr "Va rugam apasati OK!"
-
 msgid "Please select a default EPG type..."
 msgstr ""
 
@@ -3357,6 +3815,10 @@ msgstr "Va rugam selectati o lista de redare pentru a fi stearsa..."
 
 msgid "Please select a playlist..."
 msgstr "Va rugam selectati o lista de redare..."
+
+#, fuzzy
+msgid "Please select a sub service..."
+msgstr "Va rugam selectati un subserviciu..."
 
 msgid "Please select a subservice to record..."
 msgstr "Va rugam selectati un subserviciu pentru a fi inregistrat..."
@@ -3367,11 +3829,9 @@ msgstr "Va rugam selectati un subserviciu..."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr ""
 
-msgid "Please select an extension to remove."
-msgstr ""
-
-msgid "Please select an option below."
-msgstr ""
+#, fuzzy
+msgid "Please select medium to be scanned"
+msgstr "Va rugam selectati mediul de scanat"
 
 msgid "Please select medium to use as backup location"
 msgstr ""
@@ -3395,6 +3855,10 @@ msgid ""
 "\n"
 "Please press OK to continue."
 msgstr ""
+
+#, fuzzy
+msgid "Please set up tuner A"
+msgstr "Va rugam configurati tuner-ul B"
 
 msgid "Please set up tuner B"
 msgstr "Va rugam configurati tuner-ul B"
@@ -3421,17 +3885,23 @@ msgstr ""
 "Va rugam folositi tastele SUS si JOS pentru a selecta limba. Dupa aceea "
 "apasatitasta OK."
 
+#, fuzzy
+msgid "Please wait (downloading channel list)"
+msgstr "Va rugam asteptati... Se incarca lista..."
+
+#, fuzzy
+msgid "Please wait (downloading softcam)"
+msgstr "Va rugam asteptati... Se incarca lista..."
+
+#, fuzzy
+msgid "Please wait (updating packages)"
+msgstr "te rog asteapta, se incarca imagine"
+
 msgid "Please wait for activation of your network configuration..."
 msgstr "Va rugam asteptati activarea configurarilor de retea..."
 
-msgid "Please wait while removing selected package..."
-msgstr ""
-
 msgid "Please wait while scanning is in progress..."
 msgstr "Va rugam asteptati cat are loc scanarea..."
-
-msgid "Please wait while searching for removable packages..."
-msgstr ""
 
 msgid "Please wait while we configure your network..."
 msgstr "Va rugam asteptati pana cand se configureaza reteaua..."
@@ -3487,7 +3957,7 @@ msgstr "Portul D"
 msgid "Portuguese"
 msgstr "Portugheza"
 
-msgid "Position of finished Timers in Timerlist"
+msgid "Position of completed timers in timerlist"
 msgstr ""
 
 msgid "Position stored at index"
@@ -3505,19 +3975,19 @@ msgstr "Prag de putere in mA"
 msgid "Predefined transponder"
 msgstr "Transponder predefinit"
 
-msgid "Prefer AC3"
+msgid "Prefer AC3 track"
 msgstr ""
 
-msgid "Prefer DVB-grafical subtitles"
+msgid "Prefer audio track stored by service"
 msgstr ""
 
-msgid "Prefer audio stream stored by service"
+msgid "Prefer graphical DVB subtitles"
 msgstr ""
 
-msgid "Prefer hearing impaired subtitles"
+msgid "Prefer subtitles for hearing impaired"
 msgstr ""
 
-msgid "Prefer subtitle stored by service"
+msgid "Prefer subtitles stored by service"
 msgstr ""
 
 msgid "Preferred tuner"
@@ -3557,8 +4027,9 @@ msgstr "Apasati OK pentru a primi detaliile urmatoare pentru %s"
 msgid "Press OK to scan"
 msgstr "Apasati OK pentru scanare"
 
-msgid "Press OK to select a Provider."
-msgstr ""
+#, fuzzy
+msgid "Press OK to select a provider."
+msgstr "Apasati OK pentru scanare"
 
 msgid "Press OK to select/deselect a CAId."
 msgstr ""
@@ -3597,13 +4068,10 @@ msgstr ""
 msgid "Progress"
 msgstr ""
 
-msgid "Progress Bar Left"
+msgid "Progress bar left"
 msgstr ""
 
-msgid "Progress Bar Right"
-msgstr ""
-
-msgid "Progress Small"
+msgid "Progress bar right"
 msgstr ""
 
 msgid "Properties of current title"
@@ -3636,7 +4104,8 @@ msgstr "Python frontend pentru /tmp/mni.socket"
 msgid "Quick"
 msgstr "Rapid"
 
-msgid "Quickzap"
+#, fuzzy
+msgid "Quick zap"
 msgstr "Zap rapid"
 
 msgid "RF output"
@@ -3648,7 +4117,8 @@ msgstr "RGB"
 msgid "Radio"
 msgstr "Radio"
 
-msgid "Ram Disk"
+#, fuzzy
+msgid "Ram disk"
 msgstr "Disk Ram"
 
 msgid "Random"
@@ -3691,7 +4161,8 @@ msgstr "Repornire sistem"
 msgid "Rec"
 msgstr ""
 
-msgid "Reception Settings"
+#, fuzzy
+msgid "Reception settings"
 msgstr "Setari receptie"
 
 msgid "Record"
@@ -3731,7 +4202,8 @@ msgstr ""
 msgid "Reenter new PIN"
 msgstr ""
 
-msgid "Refresh Rate"
+#, fuzzy
+msgid "Refresh rate"
 msgstr "Rata de reimprospatare"
 
 msgid "Refresh rate selection."
@@ -3740,10 +4212,13 @@ msgstr "Selectie rata de reimprospatare"
 msgid "Regard deep standby as standby"
 msgstr ""
 
+msgid "Relative"
+msgstr ""
+
 msgid "Reload"
 msgstr "Reincarcare"
 
-msgid "Reload Black-/Whitelists"
+msgid "Reload black-/white lists"
 msgstr ""
 
 msgid "Reloading bouquets and services..."
@@ -3755,28 +4230,34 @@ msgstr ""
 msgid "Remember these settings for each folder"
 msgstr ""
 
+#, fuzzy
+msgid "Remote control type"
+msgstr "Tip control parental"
+
+msgid "Removal has completed."
+msgstr ""
+
 msgid "Remove"
 msgstr "Eliminare"
-
-msgid "Remove Bookmark"
-msgstr "Eliminare bookmark"
-
-msgid "Remove Plugins"
-msgstr "Eliminare pulgin-uri"
 
 msgid "Remove a mark"
 msgstr "Eliminare semn"
 
+#, fuzzy
+msgid "Remove a nameserver entry"
+msgstr "elimina o intrare de nameserver"
+
+#, fuzzy
+msgid "Remove bookmark"
+msgstr "elimina bookmark-ul"
+
+msgid "Remove completed timers after (days)"
+msgstr ""
+
 msgid "Remove currently selected title"
 msgstr "Eliminare titlu curent selectat"
 
-msgid "Remove failed."
-msgstr ""
-
-msgid "Remove finished."
-msgstr "Eliminare fisiere terminate"
-
-msgid "Remove items from trash after (days)"
+msgid "Remove items from trash can after (days)"
 msgstr ""
 
 msgid "Remove plugins"
@@ -3788,9 +4269,6 @@ msgstr "Eliminare timer"
 msgid "Remove title"
 msgstr "Stergere titlu"
 
-msgid "Removed successfully."
-msgstr ""
-
 msgid "Removing"
 msgstr "Stergere"
 
@@ -3798,13 +4276,15 @@ msgstr "Stergere"
 msgid "Removing directory %s failed. (Maybe not empty.)"
 msgstr "Stergere drector %s esuata. (Probabil nu este gol.)"
 
+#, fuzzy
+msgid "Removing partition table"
+msgstr "Stergere titlu"
+
 msgid "Rename"
 msgstr "Redenumire"
 
-msgid "Rename crashlogs"
-msgstr ""
-
-msgid "Repeat Type"
+#, fuzzy
+msgid "Repeat type"
 msgstr "Tip repetare"
 
 msgid "Repeating event currently recording... What do you want to do?"
@@ -3816,7 +4296,7 @@ msgstr "Repeta"
 msgid "Required medium type:"
 msgstr ""
 
-msgid "Reread partition table"
+msgid "Rereading partition table"
 msgstr ""
 
 msgid "Reserved"
@@ -3867,11 +4347,12 @@ msgstr ""
 msgid "Restore is running..."
 msgstr ""
 
-msgid "Restore running"
-msgstr "Restabilire setari in curs"
-
 msgid "Restore system settings"
 msgstr "Revenire la setarile sistemului"
+
+#, fuzzy
+msgid "Restoring..."
+msgstr "se inregistreaza"
 
 msgid "Resume from last position"
 msgstr "Reluare de la ultima pozitie"
@@ -3907,9 +4388,6 @@ msgstr "Dreapta"
 
 msgid "Roll-off"
 msgstr ""
-
-msgid "Rolloff"
-msgstr "Rolloff"
 
 msgid "Romanian"
 msgstr ""
@@ -3950,17 +4428,19 @@ msgstr ""
 msgid "Sat"
 msgstr "Sat"
 
-msgid "Sat / Dish Setup"
-msgstr "Configurare Sat / Antena "
-
 msgid "Satellite"
 msgstr "Satelit"
 
-msgid "Satellite Equipment Setup"
+#, fuzzy
+msgid "Satellite dish setup"
 msgstr "Configurare Echipament Satelit"
 
 msgid "Satellite equipment"
 msgstr ""
+
+#, fuzzy
+msgid "Satellite equipment setup"
+msgstr "Configurare Echipament Satelit"
 
 msgid "Satellite longitude:"
 msgstr ""
@@ -3983,83 +4463,40 @@ msgstr "Sambata"
 msgid "Save"
 msgstr "Salvare"
 
-msgid "Save Playlist"
-msgstr "Salvare lista de redare"
+#, fuzzy
+msgid "Save playlist"
+msgstr "salveaza playlist"
 
 msgid "Scaler sharpness"
 msgstr ""
 
-msgid "Scaling Mode"
+#, fuzzy
+msgid "Scaling mode"
 msgstr "Mod de scalare"
 
 msgid "Scan "
 msgstr "Scanare"
 
-msgid "Scan Files..."
-msgstr "Scanare fisiere..."
+#. TRANSLATORS: option name, indicating which type of (DVB-C) modulation should be scanned. The modulation type is printed in '%s'. E.g.: 'Scan QAM16'
+#, fuzzy, python-format
+msgid "Scan %s"
+msgstr "Scanare"
 
-msgid "Scan QAM128"
-msgstr "Scanare QAM128"
-
-msgid "Scan QAM16"
-msgstr "Scanare QAM16"
-
-msgid "Scan QAM256"
-msgstr "scanare QAM256"
-
-msgid "Scan QAM32"
-msgstr "Scanare QAM32"
-
-msgid "Scan QAM64"
-msgstr "Scanare QAM64"
-
-msgid "Scan SR6875"
-msgstr "Scanare SR6875"
-
-msgid "Scan SR6900"
-msgstr "sCANARE SR6900"
-
-msgid "Scan Wireless Networks"
-msgstr "Scanare retele wireless"
+#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#, fuzzy, python-format
+msgid "Scan %s band"
+msgstr "Scanare banda EU MID"
 
 msgid "Scan additional SR"
 msgstr "Scanare SR aditional"
 
-msgid "Scan band EU HYPER"
-msgstr "Scanare banda EU HYPER"
+#, fuzzy
+msgid "Scan files..."
+msgstr "Scanare fisiere..."
 
-msgid "Scan band EU MID"
-msgstr "Scanare banda EU MID"
-
-msgid "Scan band EU SUPER"
-msgstr "Scanare banda EU SUPER"
-
-msgid "Scan band EU UHF IV"
-msgstr "Scanare banda EU UHF IV"
-
-msgid "Scan band EU UHF V"
-msgstr "Scanare banda EU UHF V"
-
-msgid "Scan band EU VHF I"
-msgstr "Scanare banda EU VHF I"
-
-msgid "Scan band EU VHF III"
-msgstr "Scanare banda EU VHF III"
-
-msgid "Scan band US HIGH"
-msgstr "Scanare banda US HIGH"
-
-msgid "Scan band US HYPER"
-msgstr "Scanare banda US HYPER"
-
-msgid "Scan band US LOW"
-msgstr "Scanare banda US LOW"
-
-msgid "Scan band US MID"
-msgstr "Scanare anda US MID"
-
-msgid "Scan band US SUPER"
-msgstr "Scanare banda US SUPER"
+#, fuzzy
+msgid "Scan wireless networks"
+msgstr "Scanare retele wireless"
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -4111,23 +4548,68 @@ msgstr "DNS Secundar"
 msgid "Seek"
 msgstr "Cautare"
 
+#, fuzzy
+msgid "Seek backward"
+msgstr "skin inapoi"
+
+#, fuzzy
+msgid "Seek backward (enter time)"
+msgstr "skin inapoi (seteaza ceas)"
+
+#, fuzzy
+msgid "Seek forward"
+msgstr "skin inainte"
+
+#, fuzzy
+msgid "Seek forward (enter time)"
+msgstr "skin inainte (seteaza ceas)"
+
 msgid "Select"
 msgstr "Selectare"
+
+#, fuzzy
+msgid "Select CAId"
+msgstr "selecteaza CAId"
 
 msgid "Select HDD"
 msgstr "Selectare HDD"
 
-msgid "Select Location"
-msgstr "Alege locatia"
-
-msgid "Select Network Adapter"
-msgstr "Selectare Adaptor Retea"
+#, fuzzy
+msgid "Select a bouquet"
+msgstr "Alegeti un film"
 
 msgid "Select a movie"
 msgstr "Alegeti un film"
 
+#, fuzzy
+msgid "Select a network adapter"
+msgstr "Selectare Adaptor Retea"
+
+#, fuzzy
+msgid "Select a skin"
+msgstr "Alegeti un film"
+
+#, fuzzy
+msgid "Select a tuner"
+msgstr "Alegeti un film"
+
+#, fuzzy
+msgid "Select a wireless network"
+msgstr "Scanare retele wireless"
+
+msgid "Select an image to be downloaded"
+msgstr ""
+
 msgid "Select audio track"
 msgstr "Selectare pista audio"
+
+#, fuzzy
+msgid "Select backup files"
+msgstr "Selecteaza fisierele copii de siguranta"
+
+#, fuzzy
+msgid "Select backup location"
+msgstr "Alege locatia copiei de siguranta"
 
 msgid "Select channel to record from"
 msgstr "Selectare canal de inregistrat"
@@ -4159,8 +4641,13 @@ msgstr ""
 msgid "Select interface"
 msgstr ""
 
-msgid "Select package"
-msgstr ""
+#, fuzzy
+msgid "Select location"
+msgstr "Alege locatia"
+
+#, fuzzy
+msgid "Select movie"
+msgstr "Alegeti un film"
 
 msgid "Select provider to add..."
 msgstr "Alegeti furnizor pentru a fi adaugat..."
@@ -4170,6 +4657,18 @@ msgstr "Selectati rata de reimprospatare"
 
 msgid "Select service to add..."
 msgstr "Selectati serviciul care sa fie adaugat..."
+
+#, fuzzy
+msgid "Select target folder"
+msgstr "Alege directorul destinatie"
+
+#, fuzzy
+msgid "Select the movie path"
+msgstr "selecteaza calea filmului"
+
+#, fuzzy
+msgid "Select upgrade source"
+msgstr "Alege sursa de actualizare"
 
 msgid "Select upgrade source to edit."
 msgstr ""
@@ -4192,7 +4691,7 @@ msgstr "Trimite DiSEqC"
 msgid "Send DiSEqC only on satellite change"
 msgstr "Trimite DiSEqC numai la schimbarea satelitului"
 
-msgid "Seperate titles with a main menu"
+msgid "Separate titles with a main menu"
 msgstr "Titluri separate cu meniu princpial"
 
 msgid "Sequence repeat"
@@ -4204,23 +4703,15 @@ msgstr ""
 msgid "Service"
 msgstr "Serviciu"
 
-msgid "Service Name"
-msgstr ""
-
-msgid "Service Scan"
-msgstr "Scanare Serviciu"
-
-msgid "Service Searching"
-msgstr "Cautare Serviciu"
-
-msgid "Service Title mode"
-msgstr ""
-
 msgid "Service has been added to the favourites."
 msgstr "Serviciul a fost adaugat la favorite"
 
 msgid "Service has been added to the selected bouquet."
 msgstr "Serviciul a fost adaugat in pachetul selectat"
+
+#, fuzzy
+msgid "Service info"
+msgstr "Info serviciu"
 
 msgid ""
 "Service invalid!\n"
@@ -4228,6 +4719,10 @@ msgid ""
 msgstr ""
 "Serviciu nevalid!\n"
 "(Timeout reading PMT)"
+
+#, fuzzy
+msgid "Service name"
+msgstr "Scanare Serviciu"
 
 msgid ""
 "Service not found!\n"
@@ -4242,6 +4737,14 @@ msgstr ""
 msgid "Service scan"
 msgstr "Scanare serviciu"
 
+#, fuzzy
+msgid "Service searching"
+msgstr "Cautare Serviciu"
+
+#, fuzzy
+msgid "Service title mode"
+msgstr "Selectati modul vieo"
+
 msgid ""
 "Service unavailable!\n"
 "Check tuner configuration!"
@@ -4249,29 +4752,25 @@ msgstr ""
 "Serviciul nu este valabil!\n"
 "Verificati setarile tunerului!"
 
-msgid "Serviceinfo"
-msgstr "Info serviciu"
-
 msgid "Services"
 msgstr "Servicii"
 
-msgid "Set End Time"
-msgstr ""
-
-msgid "Set Limits"
-msgstr ""
-
-msgid "Set Voltage and 22KHz"
-msgstr "Setare Voltaj si 22KHz"
-
-msgid "Set available internal memory threshold for the warning."
-msgstr ""
+#, fuzzy
+msgid "Set end time"
+msgstr "Momentul incheierii"
 
 msgid "Set fixed"
 msgstr ""
 
 msgid "Set interface as default Interface"
 msgstr "Setare interfata ca interfata implicita"
+
+msgid "Set limits"
+msgstr ""
+
+msgid ""
+"Set the type of the progress indication in the channel selection screen."
+msgstr ""
 
 msgid "Set time window to 1 hour"
 msgstr ""
@@ -4288,20 +4787,29 @@ msgstr ""
 msgid "Set time window to 5 hours"
 msgstr ""
 
+#, fuzzy
+msgid "Set voltage and 22KHz"
+msgstr "Setare Voltaj si 22KHz"
+
 msgid "Settings"
 msgstr "Setari"
 
 msgid "Setup"
 msgstr "Configurare"
 
-msgid "Setup Mode"
-msgstr "Mod configurare"
-
 msgid "Setup menu"
 msgstr ""
 
+#, fuzzy
+msgid "Setup mode"
+msgstr "Mod configurare"
+
 msgid "Setup your positioner"
 msgstr ""
+
+#, fuzzy
+msgid "Setup your satellite equipment"
+msgstr "Configurare Echipament Satelit"
 
 #, python-format
 msgid ""
@@ -4318,25 +4826,35 @@ msgstr ""
 msgid "Show EIT now/next in infobar"
 msgstr ""
 
+#, fuzzy
+msgid "Show EPG for current channel..."
+msgstr "Arata bara de informatii la schimbarea evenimentelor"
+
+#, fuzzy
+msgid "Show EPG..."
+msgstr "arata EPG..."
+
 msgid "Show Games show"
 msgstr ""
 
-msgid "Show Info"
-msgstr "Arata Informatii"
-
-msgid "Show Message when Recording starts"
+msgid "Show SNR percentage instead of dB value"
 msgstr ""
 
-msgid "Show WLAN Status"
+#, fuzzy
+msgid "Show WLAN status"
 msgstr "Arata stare WLAN"
 
 msgid "Show animation while busy"
 msgstr ""
 
-msgid "Show background in Radio Mode"
-msgstr ""
+#, fuzzy
+msgid "Show background in radio mode"
+msgstr "imagine fundal"
 
 msgid "Show bouquet selection menu"
+msgstr ""
+
+msgid "Show busy indicator when the system is busy."
 msgstr ""
 
 msgid "Show channel numbers in channel selection"
@@ -4348,11 +4866,31 @@ msgstr ""
 msgid "Show detailed event info"
 msgstr ""
 
+#, fuzzy
+msgid "Show event details"
+msgstr "arata detaliile evenimentului"
+
 msgid "Show event-progress in channel selection"
 msgstr ""
 
+#, fuzzy
+msgid "Show extended description"
+msgstr "arata descriere extinsa"
+
+#, fuzzy
+msgid "Show extensions..."
+msgstr "arata extensii..."
+
 msgid "Show icon for new/unseen items"
 msgstr ""
+
+#, fuzzy
+msgid "Show info"
+msgstr "Arata Informatii"
+
+#, fuzzy
+msgid "Show info line"
+msgstr "arata Infoline"
 
 msgid "Show infobar on channel change"
 msgstr "Arata bara de informatii la schimbarea canalelor"
@@ -4363,6 +4901,13 @@ msgstr "Arata bara de informatii la schimbarea evenimentelor"
 msgid "Show infobar on skip forward/backward"
 msgstr "Arata bara de informatii la saltul inainte/inapoi"
 
+msgid "Show message when recording starts"
+msgstr ""
+
+#, fuzzy
+msgid "Show movie lengths in movielist"
+msgstr "Incarca durata filmelor in lista cu filme"
+
 msgid "Show positioner movement"
 msgstr "Arata miscarea pozitionerului"
 
@@ -4372,8 +4917,19 @@ msgstr ""
 msgid "Show services beginning with"
 msgstr "Arata serviciile incepand cu"
 
-msgid "Show status icons in Movielist"
+#, fuzzy
+msgid "Show shutdown menu"
+msgstr "arata meniul de shutdown"
+
+msgid "Show status icons in movie list"
 msgstr ""
+
+msgid "Show status icons in movielist"
+msgstr ""
+
+#, fuzzy
+msgid "Show tag menu"
+msgstr "arata meniul de tag-uri"
 
 msgid "Show the radio player..."
 msgstr "Arata player-ul radio"
@@ -4384,22 +4940,26 @@ msgstr "Arata player-ul tv"
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Arata statusul conexiunii LAN wireless.\n"
 
+#, fuzzy
+msgid "Shuffle playlist"
+msgstr "amesteca plylist"
+
 msgid "Shutdown"
 msgstr ""
 
 msgid "Shutdown receiver after"
 msgstr ""
 
-msgid "Side by Side"
+msgid "Side by side"
 msgstr ""
 
 msgid "Signal OK, proceeding"
 msgstr ""
 
-msgid "Signal Strength:"
+msgid "Signal quality"
 msgstr ""
 
-msgid "Signal quality"
+msgid "Signal strength:"
 msgstr ""
 
 msgid "Signal: "
@@ -4426,11 +4986,12 @@ msgstr "EPG Individual"
 msgid "Single satellite"
 msgstr "Satelit individual"
 
+#, fuzzy
+msgid "Single step (GOP)"
+msgstr "Singlestep (GOP)"
+
 msgid "Single transponder"
 msgstr "Transponder individual"
-
-msgid "Singlestep (GOP)"
-msgstr "Singlestep (GOP)"
 
 msgid "Site latitude"
 msgstr ""
@@ -4444,16 +5005,27 @@ msgstr ""
 msgid "Skins"
 msgstr "Skinuri"
 
-msgid "Skip Empty Services"
+#, fuzzy
+msgid "Skip empty services"
+msgstr "Servicii de protectie"
+
+msgid ""
+"Skip internet connection check (disables automatic package installation)"
 msgstr ""
 
-msgid "Sleep Timer"
+#, fuzzy
+msgid "Sleep timer"
 msgstr "Sleep timer"
 
 msgid "Sleep timer action:"
 msgstr "Actiune sleep timer:"
 
-msgid "Slideshow Interval (sec.)"
+#, fuzzy
+msgid "Slide picture in loop"
+msgstr "pune poza in loop"
+
+#, fuzzy
+msgid "Slide show interval (sec.)"
 msgstr "Interval prezentare (sec.)"
 
 #, python-format
@@ -4469,14 +5041,23 @@ msgstr ""
 msgid "Slow"
 msgstr "Incet"
 
-msgid "Slow Motion speeds"
+#, fuzzy
+msgid "Slow motion speeds"
 msgstr "Viteza imagine cu incetinitorul"
+
+#, fuzzy
+msgid "Small progress"
+msgstr "In curs de desfasurare"
 
 msgid "Social/Political/Economics"
 msgstr ""
 
 msgid "SoftCam / CI"
 msgstr ""
+
+#, fuzzy
+msgid "Softcam type"
+msgstr "Software"
 
 msgid "Software"
 msgstr "Software"
@@ -4499,42 +5080,28 @@ msgstr ""
 msgid "Some plugins are not available:\n"
 msgstr "Anumite plugin-uri nu sunt disponibile:\n"
 
-msgid "Sorry MediaScanner is not installed!"
+#, fuzzy, python-format
+msgid "Sorry, %s has not been installed!"
 msgstr "MediaScanner nu este instalat!"
-
-msgid "Sorry no backups found!"
-msgstr "Nu au fost gasite fisiere backup!"
-
-msgid ""
-"Sorry your Backup destination does not exist\n"
-"\n"
-"Please choose an other one."
-msgstr ""
-"Destinatia aleasa pentru fisierele backup nu exista\n"
-"\n"
-"Va rugam alegeti alta destinatie."
-
-msgid ""
-"Sorry your backup destination is not writeable.\n"
-"Please choose an other one."
-msgstr ""
-"Destinatia aleasa pentru fisierele backup nu poate fi creata.\n"
-"Va rugam alegeti alta destinatie."
 
 msgid ""
 "Sorry, deleting directories can (for now) only be done through the trash can."
 msgstr ""
 
-msgid "Sorry, no Details available!"
+#, fuzzy
+msgid "Sorry, no backups found!"
+msgstr "Nu au fost gasite fisiere backup!"
+
+#, fuzzy
+msgid "Sorry, no details available!"
 msgstr "Detaliile nu sunt disponibile!"
 
+#, fuzzy
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
-"\n"
-"Please choose another one."
+"Please select a different one."
 msgstr ""
 "Destinatia aleasa pentru fisierele backup nu poate fi creata.\n"
-"\n"
 "Va rugam alegeti alta destinatie."
 
 msgid "Sort"
@@ -4545,13 +5112,15 @@ msgid "Sort A-Z"
 msgstr "Sortare A-Z"
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
-msgid "Sort Time"
+#, fuzzy
+msgid "Sort time"
 msgstr "Timpul de sortare"
 
 msgid "Sound"
 msgstr "Sunet"
 
-msgid "Soundcarrier"
+#, fuzzy
+msgid "Sound carrier"
 msgstr "Purtatoare audio"
 
 msgid "Source request"
@@ -4569,18 +5138,26 @@ msgstr ""
 msgid "Sports"
 msgstr ""
 
+#, fuzzy
+msgid "Standard"
+msgstr "standard"
+
 msgid "Standby"
 msgstr "Asteptare"
 
 msgid "Standby / Restart"
 msgstr "Asteptare / Restart"
 
+#, fuzzy
+msgid "Standby / restart"
+msgstr "Asteptare / Restart"
+
 #, python-format
-msgid "Standby Fan %d PWM"
+msgid "Standby fan %d PWM"
 msgstr ""
 
 #, python-format
-msgid "Standby Fan %d Voltage"
+msgid "Standby fan %d voltage"
 msgstr ""
 
 msgid "Start from the beginning"
@@ -4595,8 +5172,16 @@ msgstr "Incepe inregistrarea?"
 msgid "Start test"
 msgstr "Incepe test"
 
-msgid "StartTime"
+#, fuzzy
+msgid "Start time"
 msgstr "Ora de incepere"
+
+#, fuzzy
+msgid "Start timeshift"
+msgstr "start timeshift"
+
+msgid "Start with list screen"
+msgstr ""
 
 msgid "Starting on"
 msgstr "Incepand de la"
@@ -4616,14 +5201,19 @@ msgstr ""
 msgid "Stop"
 msgstr "Stop"
 
-msgid "Stop Timeshift?"
-msgstr "Oprire Timeshift"
+#, fuzzy
+msgid "Stop PiP"
+msgstr "stop pip"
 
 msgid "Stop current event and disable coming events"
 msgstr "Oprire eveniment curent si dezactivare evenimente urmatoare"
 
 msgid "Stop current event but not coming events"
 msgstr "Oprire eveniment curent dar nu si evenimentele urmatoare"
+
+#, fuzzy
+msgid "Stop entry"
+msgstr "stop intrarea"
 
 msgid "Stop playing this movie?"
 msgstr "Opriti redarea filmului?"
@@ -4643,6 +5233,14 @@ msgstr "Oprire testare dupa # transpondere esuate"
 msgid "Stop testing plane after # successful transponders"
 msgstr "Oprire testare dupa # transpondere reusite"
 
+#, fuzzy
+msgid "Stop timeshift"
+msgstr "stop timeshift"
+
+#, fuzzy
+msgid "Stop timeshift?"
+msgstr "Oprire Timeshift"
+
 msgid "Stopped"
 msgstr ""
 
@@ -4654,6 +5252,9 @@ msgstr "Memoreaza pozitia"
 
 msgid "Stored position"
 msgstr "Pozitie memorata"
+
+msgid "Stream"
+msgstr ""
 
 msgid "Stream request"
 msgstr ""
@@ -4667,8 +5268,19 @@ msgstr "Lista subserviciilor..."
 msgid "Subservices"
 msgstr "Subservicii"
 
+#, fuzzy
+msgid "Subtitle alignment"
+msgstr "Selectare subtitrare"
+
+msgid "Subtitle border width"
+msgstr ""
+
 msgid "Subtitle delay when timing lacks"
 msgstr ""
+
+#, fuzzy
+msgid "Subtitle font size"
+msgstr "Subtitrari"
 
 msgid "Subtitle language selection 1"
 msgstr ""
@@ -4681,6 +5293,10 @@ msgstr ""
 
 msgid "Subtitle language selection 4"
 msgstr ""
+
+#, fuzzy
+msgid "Subtitle position"
+msgstr "Selectare subtitrare"
 
 msgid "Subtitle selection"
 msgstr "Selectare subtitrare"
@@ -4700,14 +5316,13 @@ msgstr "Dum"
 msgid "Sunday"
 msgstr "Duminica"
 
-msgid "Swap SNR in db with SNR in percentage on OSD"
-msgstr ""
+#, fuzzy
+msgid "Swap PiP and main picture"
+msgstr "schimba pip si imagine principala"
 
-msgid "Swap Services"
+#, fuzzy
+msgid "Swap services"
 msgstr "Schimbare servicii"
-
-msgid "Swap from normal to list mode"
-msgstr ""
 
 msgid "Swedish"
 msgstr "Suedeza"
@@ -4715,23 +5330,46 @@ msgstr "Suedeza"
 msgid "Switch TV to correct input"
 msgstr ""
 
-msgid "Switch to next subservice"
+msgid "Switch between normal mode and list mode"
+msgstr ""
+
+#, fuzzy
+msgid "Switch next channel"
+msgstr "canalul urmator"
+
+#, fuzzy
+msgid "Switch to filelist"
+msgstr "mergi la filelist"
+
+#, fuzzy
+msgid "Switch to next channel in history"
+msgstr "canalul urmator in istoric"
+
+#, fuzzy
+msgid "Switch to next sub service"
 msgstr "Schimba la urmatorul subserviciu"
 
-msgid "Switch to previous subservice"
+#, fuzzy
+msgid "Switch to playlist"
+msgstr "mergi la filelist"
+
+#, fuzzy
+msgid "Switch to previous channel"
+msgstr "Schimba la subserviciul anterior"
+
+#, fuzzy
+msgid "Switch to previous channel in history"
+msgstr "canalul anterior din istoric"
+
+#, fuzzy
+msgid "Switch to previous sub service"
 msgstr "Schimba la subserviciul anterior"
 
 msgid "Switchable tuner types:"
 msgstr ""
 
-msgid "Symbol Rate"
-msgstr "Rata simbol"
-
 msgid "Symbol rate"
 msgstr ""
-
-msgid "Symbolrate"
-msgstr "Symbolrate"
 
 msgid "Sync failure moving back to origin !"
 msgstr ""
@@ -4749,13 +5387,18 @@ msgstr "Fisierul TS este prea mare pentru standardul ISO9660 nivelul 1!"
 msgid "TSID"
 msgstr ""
 
-msgid "TV System"
+msgid "TV physical address report"
+msgstr ""
+
+#, fuzzy
+msgid "TV system"
 msgstr "Sistem TV"
 
 msgid "TXT PID"
 msgstr ""
 
-msgid "Table of content for collection"
+#, fuzzy
+msgid "Table of contents for collection"
 msgstr "Lista continuturilor pentru colectie"
 
 msgid "Tags"
@@ -4764,8 +5407,9 @@ msgstr "Tag-uri"
 msgid "Teletext subtitle color"
 msgstr ""
 
-msgid "Temperature and Fan control"
-msgstr ""
+#, fuzzy
+msgid "Temperature and fan control"
+msgstr "Control parental"
 
 msgid "Terrestrial"
 msgstr "Terestru"
@@ -4776,23 +5420,19 @@ msgstr "Furnizor terestru"
 msgid "Test DiSEqC settings"
 msgstr "Test setari DiSEqC"
 
-msgid "Test Type"
-msgstr "Tipul de test"
-
 msgid "Test mode"
 msgstr "Mod de testare"
 
 msgid "Test the network configuration of your receiver.\n"
 msgstr ""
 
-msgid "Test-Messagebox?"
-msgstr "Test-Messagebox?"
+#, fuzzy
+msgid "Test type"
+msgstr "Tipul de test"
 
-msgid "Text border width"
-msgstr ""
-
-msgid "Text font size"
-msgstr ""
+#, fuzzy
+msgid "Text color"
+msgstr "textcolor"
 
 msgid "Thai"
 msgstr ""
@@ -4803,19 +5443,14 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using your receiver."
+"Thank you for using the wizard. Your receiver is now ready for use.\n"
+"Press OK to start using your receiver."
 msgstr ""
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
 "create a special format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
-msgstr ""
-
-msgid ""
-"The NetworkWizard extension is not installed!\n"
-"Please install it."
 msgstr ""
 
 msgid "The PIN code has been changed successfully."
@@ -4825,21 +5460,8 @@ msgid "The PIN codes you entered are different."
 msgstr ""
 
 msgid ""
-"The Softwaremanagement extension is not installed!\n"
-"Please install it."
-msgstr ""
-
-msgid ""
 "The USB stick was prepared to be bootable.\n"
 "Now you can download an NFI image file!"
-msgstr ""
-
-msgid "The User Interface of your receiver is restarting"
-msgstr ""
-
-msgid ""
-"The User Interface of your receiver is restarting\n"
-"due to an error in mytest.py"
 msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
@@ -4847,7 +5469,10 @@ msgstr ""
 "Operatiunea backup nu a reusit. Va rugam alegeti o alta locatie pentru "
 "fisierele backup."
 
-msgid "The current beta image could not be stable"
+#, python-format
+msgid ""
+"The current beta image might not be stable.\n"
+"For more information see %s."
 msgstr ""
 
 #, python-format
@@ -4873,31 +5498,16 @@ msgstr ""
 msgid "The following files were found..."
 msgstr "Urmatoarele fisiere nu au fost gasite..."
 
-msgid ""
-"The input port should be configured now.\n"
-"You can now configure the screen by displaying some test pictures. Do you "
-"want to do that now?"
-msgstr ""
-"Portul de intrare ar trebui sa fie configurat acum.\n"
-"Acum puteti configura ecranul prin afisarea catorva fotografii.Doriti sa "
-"faceti acest lucru acum?"
-
-msgid "The installation of the default services lists is finished."
-msgstr "Instalarea serviciilor implicite este incheiata."
-
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your receiver by pressing the OK button on the remote control."
-msgstr ""
-
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
 
-msgid "The package doesn't contain anything."
-msgstr "Pachetul nu contine nimic."
-
-msgid "The package:"
+#, fuzzy
+msgid ""
+"The network wizard extension is not installed!\n"
+"Please install it."
 msgstr ""
+"Plugin-ul LAN wireless nu este instalat!\n"
+"Va rugam sa-l instalati."
 
 #, python-format
 msgid "The path %s already exists."
@@ -4916,13 +5526,31 @@ msgstr "Sleep timer a fost activat."
 msgid "The sleep timer has been disabled."
 msgstr "Sleep timer a fost dezactivat."
 
+#, fuzzy
 msgid ""
-"The status of the current beta image could not be checked because www."
-"openpli.org could not be reached for some reason"
+"The software management extension is not installed!\n"
+"Please install it."
+msgstr ""
+"Plugin-ul LAN wireless nu este instalat!\n"
+"Va rugam sa-l instalati."
+
+#, python-format
+msgid ""
+"The status of the current beta image could not be checked because %s can not "
+"be reached."
 msgstr ""
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Fisierul timer (timer.xml) este corupt si nu a putut fi incarcat."
+
+#, fuzzy
+msgid "The user interface of your receiver is restarting"
+msgstr "Va rugam asteptati pana cand reteaua se va restarta..."
+
+msgid ""
+"The user interface of your receiver is restarting\n"
+"due to an error in mytest.py"
+msgstr ""
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -4954,19 +5582,14 @@ msgstr "Aplicatia s-a incheiat."
 msgid "There are at least "
 msgstr ""
 
+#, python-format
+msgid "There are at least %s updates available."
+msgstr ""
+
 msgid "There are currently no outstanding actions."
 msgstr ""
 
-msgid "There are no default services lists in your image."
-msgstr "Nu exista liste cu servicii implicite in imaginea dumneavoastra"
-
-msgid "There are no default settings in your image."
-msgstr "Nu exista setari implicite in imaginea dumneavoastra."
-
 msgid "There are no updates available."
-msgstr ""
-
-msgid "There are now "
 msgstr ""
 
 msgid "There is no signal to lock on !"
@@ -4979,23 +5602,12 @@ msgstr ""
 "S-ar putea sa nu existe spatiu suficient pe partitia selectata.\n"
 "Doriti sa continuati?"
 
-msgid "There was an error downloading the packetlist. Please try again."
-msgstr ""
-"A intervenit o eroare in timpul descarcarii listei. Va rugam incercati din "
-"nou."
-
-msgid "There was an error. The package:"
-msgstr ""
-
 msgid ""
 "This DVD RW medium is already formatted - reformatting will erase all "
 "content on the disc."
 msgstr ""
 "Acest DVD RW este deja formatat - reformatarea presupune stergerea "
 "tuturorfisierelor de pe disc."
-
-msgid "This is step number 2."
-msgstr "Acesta este pasul numarul 2"
 
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
@@ -5020,15 +5632,16 @@ msgid "This plugin will be removed."
 msgstr ""
 
 #, python-format
-msgid "This receiver can't decode %s streams!"
+msgid "This receiver cannot decode %s streams!"
 msgstr ""
 
+#, fuzzy
 msgid ""
-"This test checks for configured Nameservers.\n"
+"This test checks for configured nameservers.\n"
 "If you get a \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and Adapter setup\n"
-"- if you configured your Nameservers manually please verify your entries in "
-"the \"Nameserver\" Configuration"
+"- please check your DHCP, cabling and adapter setup\n"
+"- if you configured your nameservers manually please verify your entries in "
+"the \"Nameserver\" configuration"
 msgstr ""
 "Acest test verifica nume de servere configurate.\n"
 "Daca primiti un mesaj \"neconfirmat\":\n"
@@ -5036,8 +5649,9 @@ msgstr ""
 "- daca ati configurat numele serverelor manual va rugam verificati "
 "inregistrarile facute in\"Nume server\" Configurare"
 
+#, fuzzy
 msgid ""
-"This test checks whether a network cable is connected to your LAN-Adapter.\n"
+"This test checks whether a network cable is connected to your LAN adapter.\n"
 "If you get a \"disconnected\" message:\n"
 "- verify that a network cable is attached\n"
 "- verify that the cable is not broken"
@@ -5047,10 +5661,11 @@ msgstr ""
 "- verificati daca un cablu de retea este conectat\n"
 "- verificati daca nu cumva cablul este defect"
 
+#, fuzzy
 msgid ""
-"This test checks whether a valid IP Address is found for your LAN Adapter.\n"
+"This test checks whether a valid IP address is found for your LAN adapter.\n"
 "If you get a \"unconfirmed\" message:\n"
-"- no valid IP Address was found\n"
+"- no valid IP address was found\n"
 "- please check your DHCP, cabling and adapter setup"
 msgstr ""
 "Acest test verifica daca o adresa IP valida este gasita pentru adaptorul "
@@ -5059,15 +5674,16 @@ msgstr ""
 "- nu a fost gasita o adresa IP valida\n"
 "- va rugam verificati DHCP, conexiunile si configurarea adaptorului"
 
+#, fuzzy
 msgid ""
-"This test checks whether your LAN Adapter is set up for automatic IP Address "
+"This test checks whether your LAN adapter is set up for automatic IP address "
 "configuration with DHCP.\n"
 "If you get a \"disabled\" message:\n"
-" - then your LAN Adapter is configured for manual IP Setup\n"
-"- verify thay you have entered correct IP informations in the AdapterSetup "
+" - then your LAN adapter is configured for manual IP setup\n"
+"- verify thay you have entered correct IP informations in the adapter setup "
 "dialog.\n"
 "If you get an \"enabeld\" message:\n"
-"-verify that you have a configured and working DHCP Server in your network."
+"-verify that you have a configured and working DHCP server in your network."
 msgstr ""
 "Acest test verifica daca adaptorul LAN este setat pentru configurarea "
 "automata a adresei IP cu DHCP.\n"
@@ -5076,7 +5692,8 @@ msgstr ""
 "- verificati daca ati introdus informatiile corecte despre IP in "
 "configurarea adaptorului"
 
-msgid "This test detects your configured LAN-Adapter."
+#, fuzzy
+msgid "This test detects your configured LAN adapter."
 msgstr "Acest test detecteaza Adaptorul-LAN configurat."
 
 msgid ""
@@ -5103,26 +5720,20 @@ msgstr "Joi"
 msgid "Time"
 msgstr "Ora"
 
-msgid "Time Scale"
-msgstr ""
-
-msgid "Time/Date Input"
-msgstr "Intrare Ora/Data"
+#, fuzzy
+msgid "Time scale"
+msgstr "Selectare timer"
 
 msgid "Timer"
 msgstr "Timer"
 
-msgid "Timer Edit"
+#, fuzzy
+msgid "Timer edit"
 msgstr "Editare timer"
 
-msgid "Timer Editor"
+#, fuzzy
+msgid "Timer editor"
 msgstr "Editor Timer"
-
-msgid "Timer Overview"
-msgstr ""
-
-msgid "Timer Type"
-msgstr "Tip Timer"
 
 msgid "Timer entry"
 msgstr "Intrare timer"
@@ -5137,8 +5748,13 @@ msgstr ""
 "Suprapunere timer detectata in timers.xml!\n"
 "Te rog verifica din nou!"
 
-msgid "Timer record location"
-msgstr ""
+#, fuzzy
+msgid "Timer overview"
+msgstr "Intrare timer"
+
+#, fuzzy
+msgid "Timer recording location"
+msgstr "schimba inregistrare (durata)"
 
 msgid "Timer sanity error"
 msgstr "Eroare timer"
@@ -5148,6 +5764,10 @@ msgstr "Selectare timer"
 
 msgid "Timer status:"
 msgstr "Stare timer:"
+
+#, fuzzy
+msgid "Timer type"
+msgstr "Tip Timer"
 
 msgid "Timeshift"
 msgstr "Timeshift"
@@ -5188,8 +5808,13 @@ msgstr ""
 msgid "Today"
 msgstr "Astazi"
 
-msgid "Tone Amplitude"
-msgstr ""
+#, fuzzy
+msgid "Toggle a cut mark at the current position"
+msgstr "schimba o marcare la pozitia curenta"
+
+#, fuzzy
+msgid "Tone amplitude"
+msgstr "Mod ton"
 
 msgid "Tone mode"
 msgstr "Mod ton"
@@ -5200,7 +5825,7 @@ msgstr "Toneburst"
 msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
-msgid "Top and Bottom"
+msgid "Top and bottom"
 msgstr ""
 
 msgid "Track"
@@ -5212,27 +5837,21 @@ msgstr "Traducere"
 msgid "Translation:"
 msgstr "Traducere:"
 
-msgid "Transmission Mode"
-msgstr "Mod transmisie"
-
 msgid "Transmission mode"
 msgstr "Mod transmisie"
 
 msgid "Transponder"
 msgstr "Transponder"
 
-msgid "Transponder Type"
+#, fuzzy
+msgid "Transponder type"
 msgstr "Tip transponder"
 
-msgid "Trashcan"
+msgid "Trash can"
 msgstr ""
 
 msgid "Tries left:"
 msgstr "Incercari ramase:"
-
-msgid "Try to find used Transponders in cable network.. please wait..."
-msgstr ""
-"Cautare transpondere folosite in reteaua de cablu...va rugam asteptati..."
 
 msgid "Try to find used transponders in cable network.. please wait..."
 msgstr ""
@@ -5250,8 +5869,9 @@ msgstr "Marti"
 msgid "Tune"
 msgstr "Acordare"
 
-msgid "Tune and Focus"
-msgstr ""
+#, fuzzy
+msgid "Tune and focus"
+msgstr "Stare tuner"
 
 msgid "Tune failed!"
 msgstr "Acordare esuata!"
@@ -5259,16 +5879,18 @@ msgstr "Acordare esuata!"
 msgid "Tuner"
 msgstr "Tuner"
 
-msgid "Tuner "
-msgstr "Tuner"
-
-msgid "Tuner Slot"
-msgstr "Slot tuner"
-
 msgid "Tuner configuration"
 msgstr "Configurare tuner"
 
+#, fuzzy
+msgid "Tuner slot"
+msgstr "Slot tuner"
+
 msgid "Tuner status"
+msgstr "Stare tuner"
+
+#, fuzzy, python-format
+msgid "Tuner status %s"
 msgstr "Stare tuner"
 
 msgid "Tuner type"
@@ -5292,10 +5914,11 @@ msgstr "Tipul scanarii"
 msgid "USALS"
 msgstr "USALS"
 
-msgid "USALS Calibration"
+msgid "USALS calibration"
 msgstr ""
 
-msgid "USB Stick"
+#, fuzzy
+msgid "USB stick"
 msgstr "USB Stick"
 
 msgid "USB stick wizard"
@@ -5305,9 +5928,6 @@ msgid ""
 "Unattended upgrade in progress\n"
 "Please wait until your receiver reboots\n"
 "This may take a few minutes"
-msgstr ""
-
-msgid "Unattended upgrade without GUI and reboot system"
 msgstr ""
 
 msgid "Uncommitted DiSEqC command"
@@ -5352,35 +5972,40 @@ msgstr ""
 msgid "Update"
 msgstr "Updateza"
 
-msgid "Updatefeed not available."
+msgid "Update and ask to reboot"
 msgstr ""
 
-msgid "Updates your receiver's software"
-msgstr "Updateaza softul receiverului"
+msgid "Update and reboot (recommended)"
+msgstr ""
 
-msgid "Updating finished. Here is the result:"
-msgstr "Updatare terminata. Uite aici rezultatul:"
+#, fuzzy
+msgid "Update channel list only"
+msgstr "canalul urmator in istoric"
+
+#, python-format
+msgid "Update completed, %d package was installed."
+msgid_plural "Update completed, %d packages were installed."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Update completed. Do you want to reboot your receiver?"
+msgstr ""
+
+msgid ""
+"Update failed. Your receiver does not have a working internet connection."
+msgstr ""
+
+msgid "Update has completed."
+msgstr ""
+
+msgid "Updatefeed not available."
+msgstr ""
 
 msgid "Updating software catalog"
 msgstr ""
 
-msgid "Updating... Please wait... This can take some minutes..."
-msgstr "Updatare....Te rugam asteapta.... Poate dura cateva minute"
-
-msgid "Upgrade and ask to reboot"
-msgstr ""
-
-msgid "Upgrade finished."
-msgstr "Upgrate terminat."
-
-msgid "Upgrade finished. Do you want to reboot your receiver?"
-msgstr ""
-
 msgid "Upgrading"
 msgstr "Upgradare"
-
-msgid "Upgrading receiver... Please wait"
-msgstr ""
 
 msgid "Use"
 msgstr "Foloseste"
@@ -5388,16 +6013,26 @@ msgstr "Foloseste"
 msgid "Use DHCP"
 msgstr "Foloseste DHCP"
 
-msgid "Use DVB subtitles position"
+msgid "Use EIT EPG information when it is available."
 msgstr ""
 
-msgid "Use Interface"
-msgstr "Foloseste Interfata"
+msgid "Use FreeSat EPG information when it is available."
+msgstr ""
 
-msgid "Use Power Measurement"
-msgstr "Foloseste Masurarea Energiei"
+msgid "Use MHW EPG information when it is available."
+msgstr ""
+
+msgid "Use Netmed EPG information when it is available."
+msgstr ""
 
 msgid "Use TV remote control"
+msgstr ""
+
+#, fuzzy
+msgid "Use USALS for this sat"
+msgstr "Foloseste usals pentru acest satelit"
+
+msgid "Use ViaSat EPG information when it is available."
 msgstr ""
 
 msgid "Use a gateway"
@@ -5409,7 +6044,14 @@ msgstr ""
 msgid "Use fastscan channel numbering"
 msgstr ""
 
+#, fuzzy
+msgid "Use interface"
+msgstr "Foloseste Interfata"
+
 msgid "Use official channel numbering"
+msgstr ""
+
+msgid "Use original DVB subtitle position"
 msgstr ""
 
 msgid "Use original teletext position"
@@ -5418,20 +6060,13 @@ msgstr ""
 msgid "Use power measurement"
 msgstr "Foloseste Masurarea Energiei"
 
-msgid "Use the Networkwizard to configure selected network adapter"
-msgstr ""
-
-msgid "Use the Networkwizard to configure your Network\n"
+#, fuzzy
+msgid "Use the network wizard to configure selected network adapter"
 msgstr "Foloseste expertul de retea, pentru a configura reteaua\n"
 
-msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-"Foloseste butoanele dreapta-stanga pentru a schimba optiunile.\n"
-"\n"
-"Please set up tuner A"
+#, fuzzy
+msgid "Use the network wizard to configure your network\n"
+msgstr "Foloseste expertul de retea, pentru a configura reteaua\n"
 
 msgid ""
 "Use the up/down keys on your remote control to select an option. After that, "
@@ -5439,11 +6074,17 @@ msgid ""
 msgstr ""
 "Foloseste tastele sus/jos pentru a selecta optiunile. Dopa asta,  apasa OK."
 
-msgid "Use this input device settings?"
-msgstr ""
+#, fuzzy
+msgid "Use the wizard to set up basic features"
+msgstr "Foloseste expertul pentru setarile de baza"
 
-msgid "Use this settings?"
-msgstr ""
+#, fuzzy
+msgid "Use these input device settings?"
+msgstr "Inchideti fara sa salvati setarile?"
+
+#, fuzzy
+msgid "Use these settings?"
+msgstr "Revenire la setarile sistemului"
 
 msgid "Use this video enhancement settings?"
 msgstr ""
@@ -5451,14 +6092,9 @@ msgstr ""
 msgid "Use time of currently running service"
 msgstr ""
 
-msgid "Use trashcan in movielist"
-msgstr ""
-
-msgid "Use usals for this sat"
-msgstr "Foloseste usals pentru acest satelit"
-
-msgid "Use wizard to set up basic features"
-msgstr "Foloseste expertul pentru setarile de baza"
+#, fuzzy
+msgid "Use trash can in movielist"
+msgstr "Revenire la lista de filme"
 
 msgid "Used service scan type"
 msgstr "Tipul serviciului folosit pentru scanare"
@@ -5466,22 +6102,31 @@ msgstr "Tipul serviciului folosit pentru scanare"
 msgid "User - bouquets"
 msgstr ""
 
-msgid "User Interface"
-msgstr ""
-
 msgid "User defined"
 msgstr "Userul ales"
+
+#, fuzzy
+msgid "User interface"
+msgstr "Foloseste Interfata"
 
 msgid "Username"
 msgstr ""
 
-msgid "Using LNB"
-msgstr ""
-
-msgid "Using Tuner "
+#, python-format
+msgid "Using LNB %d"
 msgstr ""
 
 msgid "Using fixed address"
+msgstr ""
+
+#, python-format
+msgid "Using tuner %s"
+msgstr ""
+
+msgid ""
+"Usually when the subtitle language is the same as the audio language, the "
+"subtitles will not be used. Enable this option to allow these subtitles to "
+"be used."
 msgstr ""
 
 msgid "VCR scart"
@@ -5496,23 +6141,8 @@ msgstr "Vertical"
 msgid "Vertical turning speed"
 msgstr ""
 
-msgid "Video Fine-Tuning"
-msgstr "Acord fin video"
-
-msgid "Video Fine-Tuning Wizard"
-msgstr "Expert acord fin video"
-
-msgid "Video Output"
-msgstr "Iesire video"
-
 msgid "Video PID"
 msgstr ""
-
-msgid "Video Setup"
-msgstr "Video Setup"
-
-msgid "Video Wizard"
-msgstr "Expert Video"
 
 msgid "Video enhancement preview"
 msgstr ""
@@ -5523,13 +6153,18 @@ msgstr ""
 msgid "Video enhancement setup"
 msgstr ""
 
+#, fuzzy
+msgid "Video fine tuning"
+msgstr "Acord fin video"
+
+#, fuzzy
 msgid ""
 "Video input selection\n"
 "\n"
 "Please press OK if you can see this page on your TV (or select a different "
 "input port).\n"
 "\n"
-"The next input port will be automatically probed in 10 seconds."
+"The next input port will be automatically probed in 20 seconds."
 msgstr ""
 "Selectare intrare video\n"
 "\n"
@@ -5541,10 +6176,19 @@ msgstr ""
 msgid "Video mode selection."
 msgstr "Selectare MOD VIDEO"
 
-msgid "Videocodec"
-msgstr ""
+#, fuzzy
+msgid "Video output"
+msgstr "Iesire video"
 
-msgid "Videoenhancement Setup"
+#, fuzzy
+msgid "Video setup"
+msgstr "Video Setup"
+
+#, fuzzy
+msgid "Video wizard"
+msgstr "Expert Video"
+
+msgid "Videocodec"
 msgstr ""
 
 msgid "Videoformat"
@@ -5553,17 +6197,8 @@ msgstr ""
 msgid "Videosize"
 msgstr ""
 
-msgid "View Movies..."
-msgstr "Vezi filmele..."
-
-msgid "View Photos..."
-msgstr "Vezi Pozele..."
-
 msgid "View Rass interactive..."
 msgstr "Vezi Rass interactive..."
-
-msgid "View Video CD..."
-msgstr "Vezi video CD..."
 
 msgid "View details"
 msgstr ""
@@ -5573,9 +6208,6 @@ msgstr ""
 
 msgid "View list of available CommonInterface extensions"
 msgstr "Vezi lista cu estensiile CommonInterface disponibile"
-
-msgid "View list of available Display and Userinterface extensions."
-msgstr "Vezi lista cu Display disponibile si extemsiile Interfata user"
 
 msgid "View list of available EPG extensions."
 msgstr "Vezi lista extensiilor EPG disponible"
@@ -5588,6 +6220,10 @@ msgstr "Vezi lista comunicatiilor disponibile"
 
 msgid "View list of available default settings"
 msgstr "Vezi lista setarilor predefinite disponibile"
+
+#, fuzzy
+msgid "View list of available display and userinterface extensions."
+msgstr "Vezi lista cu Display disponibile si extemsiile Interfata user"
 
 msgid "View list of available multimedia extensions."
 msgstr "Vezi lista extensiilor multimedia disponibile "
@@ -5607,10 +6243,19 @@ msgstr "Vezi lista estensiilor software disponibile"
 msgid "View list of available system extensions"
 msgstr "Vezi lista estensiilor sistemului disponibile"
 
+#, fuzzy
+msgid "View photos..."
+msgstr "Vezi Pozele..."
+
 msgid "View teletext..."
 msgstr "Vezi teletext ..."
 
-msgid "Virtual KeyBoard"
+#, fuzzy
+msgid "View video CD..."
+msgstr "Vezi video CD..."
+
+#, fuzzy
+msgid "Virtual keyboard"
 msgstr "Tastatura Virtuala"
 
 msgid "Voltage mode"
@@ -5640,14 +6285,14 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS on 4:3"
 
-msgid "Wait for mount"
-msgstr ""
-
-msgid "Wait for partition"
-msgstr ""
-
 msgid "Waiting"
 msgstr "Asteaptare"
+
+msgid "Waiting for mount"
+msgstr ""
+
+msgid "Waiting for partition"
+msgstr ""
 
 msgid "Wakeup"
 msgstr ""
@@ -5661,11 +6306,16 @@ msgstr ""
 msgid "Wakeup signal from TV"
 msgstr ""
 
-msgid "Warn if free space drops below (kB):"
-msgstr ""
-
 msgid "Warning: no LNB; using factory defaults."
 msgstr ""
+
+#, fuzzy
+msgid "Watch movies..."
+msgstr "Redare filme inregistrate..."
+
+#, fuzzy
+msgid "Watch recordings..."
+msgstr "se inregistreaza"
 
 msgid "Wed"
 msgstr "Wed"
@@ -5676,11 +6326,12 @@ msgstr "Miercuri\t"
 msgid "Weekday"
 msgstr "Saptamanal"
 
-msgid "Weigthed position"
+msgid "Weighted position"
 msgstr ""
 
+#, fuzzy
 msgid ""
-"Welcome to the Cutlist editor.\n"
+"Welcome to the cutlist editor.\n"
 "\n"
 "Seek to the start of the stuff you want to cut away. Press OK, select 'start "
 "cut'.\n"
@@ -5694,18 +6345,9 @@ msgstr ""
 "Cauta sfarsitul listei.Apasa ok, apoi selecteaza 'end cut'. Asta este tot"
 
 msgid ""
-"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
+"Welcome to the image upgrade wizard. The wizard will assist you in upgrading "
 "the firmware of your receiver by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
-msgstr ""
-
-msgid ""
-"Welcome to the cleanup wizard.\n"
-"\n"
-"We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your receiver, the internal memory should be "
-"cleaned up.\n"
-"You can use this wizard to remove some extensions.\n"
 msgstr ""
 
 msgid ""
@@ -5736,7 +6378,201 @@ msgstr ""
 msgid "What do you want to scan?"
 msgstr "Ce vrei sa scanezi"
 
-msgid "What to do with submitted crashlogs?"
+msgid ""
+"When enabled, AIT data will be included in http streams. This allows a "
+"client receiver to use HbbTV."
+msgstr ""
+
+msgid ""
+"When enabled, ECM data will be included in http streams. This allows a "
+"client receiver to do the descrambling."
+msgstr ""
+
+msgid ""
+"When enabled, EIT data will be included in http streams. This allows a "
+"client receiver to show EPG."
+msgstr ""
+
+msgid ""
+"When enabled, a popup message will be shown when a movie has finished and "
+"the next one will start."
+msgstr ""
+
+msgid "When enabled, a popup message will be shown when a recording starts."
+msgstr ""
+
+msgid ""
+"When enabled, a radio background image will be visible while listening to a "
+"radio channel."
+msgstr ""
+
+msgid ""
+"When enabled, a recording is allowed to interrupt live tv, when there are no "
+"free tuners."
+msgstr ""
+
+msgid "When enabled, channel numbering will start at '1' for each bouquet."
+msgstr ""
+
+msgid ""
+"When enabled, content with an aspect ratio of 4:3 will be stretched to fit "
+"the screen."
+msgstr ""
+
+msgid ""
+"When enabled, continue to the next bouquet when the last channel of the "
+"current bouquet is reached while changing channels."
+msgstr ""
+
+msgid ""
+"When enabled, deleted recordings are moved to the trash can, instead of "
+"being deleted immediately."
+msgstr ""
+
+msgid ""
+"When enabled, display the EIT now/next eventdata in infobar. When disabled, "
+"display now/next eventdata from the EPG cache instead."
+msgstr ""
+
+msgid ""
+"When enabled, encryption info will be shown in the infobar (when supported "
+"by the skin)."
+msgstr ""
+
+msgid ""
+"When enabled, error messages related to the Common Interface module will not "
+"be shown."
+msgstr ""
+
+msgid "When enabled, error messages related to zapping will not be shown."
+msgstr ""
+
+msgid ""
+"When enabled, external subtitles (in media files) will be displayed in "
+"yellow, instead of the original color."
+msgstr ""
+
+msgid ""
+"When enabled, graphical DVB subtitles are preferred over teletext subtitles, "
+"when both types are available."
+msgstr ""
+
+msgid "When enabled, graphical DVB subtitles will be centered horizontally."
+msgstr ""
+
+msgid ""
+"When enabled, graphical DVB subtitles will be displayed at their original "
+"position."
+msgstr ""
+
+msgid ""
+"When enabled, graphical DVB subtitles will be displayed in yellow, instead "
+"of the original color."
+msgstr ""
+
+msgid ""
+"When enabled, http streams are descrambled on the server side. The (remote) "
+"client receiver does not have to do descrambling."
+msgstr ""
+
+msgid ""
+"When enabled, measure power consumption to detect when the rotor stops "
+"turning (when supported by the tuner)."
+msgstr ""
+
+msgid "When enabled, services may be grouped in multiple bouquets."
+msgstr ""
+
+msgid "When enabled, show channel numbers in the channel selection screen."
+msgstr ""
+
+msgid "When enabled, subtitles for the hearing impaired can be used."
+msgstr ""
+
+msgid ""
+"When enabled, subtitles for the hearing impaired will be preferred over "
+"normal subtitles, when both types are available."
+msgstr ""
+
+msgid "When enabled, teletext pages will be cached, allowing faster access."
+msgstr ""
+
+msgid ""
+"When enabled, teletext subtitles will be displayed at their original "
+"position."
+msgstr ""
+
+msgid ""
+"When enabled, the channel selection list will be hidden while listening to a "
+"radio channel"
+msgstr ""
+
+msgid "When enabled, the infobar will be displayed when a new event starts."
+msgstr ""
+
+msgid "When enabled, the infobar will be displayed when changing channels."
+msgstr ""
+
+msgid ""
+"When enabled, the infobar will be displayed when skipping forwards/backwards "
+"during media playback."
+msgstr ""
+
+msgid ""
+"When enabled, the lenght of each recording will be shown in the movielist "
+"(this might cause some additional loading time)."
+msgstr ""
+
+msgid ""
+"When enabled, the original line breaks will be removed from the teletext "
+"subtitles."
+msgstr ""
+
+msgid ""
+"When enabled, the receiver will automatically use the audio track which you "
+"selected before."
+msgstr ""
+
+msgid ""
+"When enabled, the receiver will automatically use the subtitles which you "
+"selected before."
+msgstr ""
+
+msgid ""
+"When enabled, the receiver will no longer monitor the tuned transponder for "
+"possible changes. Do not use this option unless you know what you are doing."
+msgstr ""
+
+msgid "When enabled, the receiver will select an AC3 track (when available)."
+msgstr ""
+
+#, fuzzy
+msgid "When enabled, use DHCP for the IP configuration."
+msgstr "deschide configurarea nameserverului"
+
+msgid ""
+"When enabled, your TV will automatically select the SCART input when you "
+"switch on your receiver."
+msgstr ""
+
+msgid ""
+"When nonzero, a recording will start earlier than the starting time "
+"indicated by the EPG."
+msgstr ""
+
+msgid ""
+"When nonzero, a recording will stop later than the ending time indicated by "
+"the EPG."
+msgstr ""
+
+msgid ""
+"When the content has an aspect ratio of 16:9, choose whether to scale/"
+"stretch the picture."
+msgstr ""
+
+msgid ""
+"When the content has an aspect ratio of 4:3, choose whether to scale/stretch "
+"the picture."
 msgstr ""
 
 msgid ""
@@ -5762,8 +6598,13 @@ msgstr "Unde salvam inregistrarile temporate timeshift?"
 msgid "Wireless LAN"
 msgstr ""
 
-msgid "Wireless Network"
+#, fuzzy
+msgid "Wireless network"
 msgstr "Wireless Network"
+
+#, fuzzy
+msgid "Wireless network configuration..."
+msgstr "Configurare retea..."
 
 msgid "Wireless network connection setup"
 msgstr ""
@@ -5772,6 +6613,9 @@ msgid "Wireless network connection setup."
 msgstr ""
 
 msgid "Wireless network state"
+msgstr ""
+
+msgid "Would you like to install a softcam?"
 msgstr ""
 
 msgid "Write error while recording. Disk full?\n"
@@ -5789,7 +6633,7 @@ msgstr "An"
 msgid "Yellow DVB subtitles"
 msgstr ""
 
-msgid "Yellow pango subtitles"
+msgid "Yellow external subtitles"
 msgstr ""
 
 msgid "Yes"
@@ -5803,9 +6647,6 @@ msgstr ""
 
 msgid "Yes, and delete this movie"
 msgstr "Da si sterge acest film"
-
-msgid "Yes, and don't ask again"
-msgstr ""
 
 msgid "Yes, backup my settings!"
 msgstr "Da, salveaza-mi setarile"
@@ -5828,9 +6669,6 @@ msgstr "Da, restaureaza setari acum"
 msgid "Yes, returning to movie list"
 msgstr "Da, rintoarcere la lista filme"
 
-msgid "Yes, view the tutorial"
-msgstr "Da, vezi tutorial"
-
 msgid "Yesterday"
 msgstr ""
 
@@ -5847,16 +6685,6 @@ msgstr ""
 msgid "You can cancel the removal."
 msgstr ""
 
-msgid ""
-"You can choose some default settings now. Please select the settings you "
-"want to be installed."
-msgstr ""
-"Poti alege niste setari default acum.Te rog alege setraile pe carele vrei "
-"instalate."
-
-msgid "You can choose, what you want to install..."
-msgstr "Poti alege, ce vrei sa instalezi..."
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr ""
 
@@ -5871,22 +6699,6 @@ msgstr ""
 
 msgid "You cannot delete this!"
 msgstr "Nu poti sterge asta!"
-
-msgid "You chose not to install any default services lists."
-msgstr "Ai ales sa nu instalezi liste de servicii default."
-
-msgid ""
-"You chose not to install any default settings. You can however install the "
-"default settings later in the settings menu."
-msgstr ""
-"Ai ales sa nu instalezi setari default. Poti totusi sa instalezi setari "
-"default ulterior in meniul setari."
-
-msgid ""
-"You chose not to install anything. Please press OK finish the install wizard."
-msgstr ""
-"Ai ales sa nu instalezi nimic. Te rog apasa OK pentru inchiderea expertului "
-"de instalare."
 
 msgid "You didn't select a channel to record from."
 msgstr ""
@@ -5923,20 +6735,7 @@ msgid ""
 "your settings."
 msgstr ""
 
-msgid ""
-"You need to set a PIN code and hide it from your children.\n"
-"\n"
-"Do you want to set the pin now?"
-msgstr ""
-
 msgid "You system does not support ext4"
-msgstr ""
-
-msgid ""
-"Your Dreambox is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
 msgstr ""
 
 msgid ""
@@ -5953,9 +6752,6 @@ msgstr ""
 "blank dual layer DVD!"
 
 msgid "Your current collection will get lost!"
-msgstr ""
-
-msgid "Your email address:"
 msgstr ""
 
 msgid ""
@@ -5976,11 +6772,22 @@ msgid ""
 "Please choose what you want to do next."
 msgstr ""
 
-msgid "Your name (optional):"
+#, python-format
+msgid "Your internet connection is working (ip: %s)"
 msgstr ""
 
 msgid "Your network configuration has been activated."
 msgstr "Configurarea retelei a fost activata."
+
+msgid "Your receiver does not have an internet connection"
+msgstr ""
+
+msgid ""
+"Your receiver is now ready to be used.\n"
+"\n"
+"Your internet connection is working.\n"
+"\n"
+msgstr ""
 
 msgid ""
 "Your receiver is now ready to use.\n"
@@ -6000,8 +6807,8 @@ msgid "Your receiver is shutting down. Please stand by..."
 msgstr ""
 
 msgid ""
-"Your receiver isn't connected to the internet properly. Please check it and "
-"try again."
+"Your receiver might be unusable now. Please consult the manual for further "
+"assistance before rebooting your receiver."
 msgstr ""
 
 msgid "Your receiver will restart after pressing OK on your remote control."
@@ -6041,6 +6848,11 @@ msgstr ""
 msgid "Zap to selected channel"
 msgstr ""
 
+msgid ""
+"Zap to selected channel, or show detailed event info (depends on "
+"configuration)"
+msgstr ""
+
 msgid "[alternative edit]"
 msgstr "[editare alternativa]"
 
@@ -6073,23 +6885,8 @@ msgstr "renunta la editarea favoritelor"
 msgid "about to start"
 msgstr "in curs de incepere"
 
-msgid "activate PiP"
-msgstr ""
-
-msgid "activate current configuration"
-msgstr "activeaza configurarea curenta"
-
 msgid "activate network adapter configuration"
 msgstr ""
-
-msgid "add Provider"
-msgstr "adauga Provider"
-
-msgid "add Service"
-msgstr "adauga Serviciu"
-
-msgid "add a nameserver entry"
-msgstr "adauga intrare de nameserver"
 
 msgid "add alternatives"
 msgstr "adauga alternative"
@@ -6100,29 +6897,8 @@ msgstr "adauga bookmark"
 msgid "add bouquet"
 msgstr "adauga bouquet"
 
-msgid "add directory to playlist"
-msgstr "adauga director la playlist"
-
-msgid "add file to playlist"
-msgstr "adauga file la playlist"
-
-msgid "add files to playlist"
-msgstr "adauga file-uri la playlist"
-
 msgid "add marker"
 msgstr "adauga marker"
-
-msgid "add recording (enter recording duration)"
-msgstr "adauga inregistrare (pune durata inregistrarii)"
-
-msgid "add recording (enter recording endtime)"
-msgstr "adauga inregistrare (pune sfarsitul inregistrarii)"
-
-msgid "add recording (indefinitely)"
-msgstr "adauga inregistrare (indefinit)"
-
-msgid "add recording (stop after current event)"
-msgstr "adauga inregistrare (opreste dupa evenimentul curent)"
 
 msgid "add service to bouquet"
 msgstr "adauga serviciu la bouquet"
@@ -6145,18 +6921,12 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
-msgid "alphabetic reverse"
-msgstr ""
-
-msgid "alphabetic sort"
+#, fuzzy
+msgid "alphabetic"
 msgstr "sortare alfabetica"
 
-msgid ""
-"are you sure you want to restore\n"
-"following backup:\n"
+msgid "alphabetic reverse"
 msgstr ""
-"esti sigur ca vrei restore\n"
-"dupa backup:\n"
 
 msgid "arts/culture (without music, general)"
 msgstr ""
@@ -6164,28 +6934,8 @@ msgstr ""
 msgid "arts/culture magazine"
 msgstr ""
 
-msgid "assigned CAIds:"
-msgstr ""
-
-msgid "assigned Services/Provider:"
-msgstr ""
-
-msgid "at beginning"
-msgstr ""
-
-msgid "at end"
-msgstr ""
-
 msgid "athletics"
 msgstr ""
-
-#, python-format
-msgid "audio track (%s) format"
-msgstr "track audio (%s) format"
-
-#, python-format
-msgid "audio track (%s) language"
-msgstr "track audio (%s) limba"
 
 msgid "audio tracks"
 msgstr "track-uri audio"
@@ -6193,17 +6943,15 @@ msgstr "track-uri audio"
 msgid "auto"
 msgstr "auto"
 
-msgid "available"
-msgstr ""
+#, fuzzy
+msgid "automatic"
+msgstr "Automat"
 
 msgid "back"
 msgstr "inapoi"
 
 msgid "background image"
 msgstr "imagine fundal"
-
-msgid "backgroundcolor"
-msgstr "colorit fundal"
 
 msgid "ballet"
 msgstr ""
@@ -6230,21 +6978,15 @@ msgstr "albastru"
 msgid "broadcasting/press"
 msgstr ""
 
-#, python-format
-msgid "burn audio track (%s)"
-msgstr "burn track audio (%s)"
+#, fuzzy
+msgid "by date"
+msgstr "sorteaza dupa data"
 
 msgid "cartoon/puppets"
 msgstr ""
 
 msgid "center"
 msgstr ""
-
-msgid "change recording (duration)"
-msgstr "schimba inregistrare (durata)"
-
-msgid "change recording (endtime)"
-msgstr "schimbare inregistrare (sfarsit)"
 
 msgid "chapters"
 msgstr "capitole"
@@ -6257,9 +6999,6 @@ msgstr "circular stanga"
 
 msgid "circular right"
 msgstr "circular dreapta"
-
-msgid "clear playlist"
-msgstr "sterge playlist"
 
 msgid "comedy"
 msgstr ""
@@ -6285,9 +7024,6 @@ msgstr ""
 msgid "copy to bouquets"
 msgstr "copiaza in bouquete"
 
-msgid "could not be removed"
-msgstr ""
-
 msgid "create directory"
 msgstr "creaza director"
 
@@ -6301,20 +7037,11 @@ msgstr "zilnic"
 msgid "day"
 msgstr "ziua"
 
+msgid "default"
+msgstr ""
+
 msgid "delete cut"
 msgstr "sterge decupare"
-
-msgid "delete file"
-msgstr "sterge file"
-
-msgid "delete playlist entry"
-msgstr "sterge intrare playlist"
-
-msgid "delete saved playlist"
-msgstr "sterge playlist salvat"
-
-msgid "delete..."
-msgstr "sterge..."
 
 msgid "descramble and record ecm"
 msgstr ""
@@ -6337,9 +7064,6 @@ msgstr "deconectat"
 msgid "discussion/interview/debate"
 msgstr ""
 
-msgid "do not change"
-msgstr "nu schimba"
-
 msgid "do nothing"
 msgstr "nu face nimic"
 
@@ -6348,9 +7072,6 @@ msgstr ""
 
 msgid "don't descramble, record ecm"
 msgstr ""
-
-msgid "don't record"
-msgstr "nu inregistra"
 
 msgid "done!"
 msgstr "gata!"
@@ -6412,9 +7133,6 @@ msgstr "sfarsit decupare aici"
 msgid "end favourites edit"
 msgstr "sfarsit editare favorite"
 
-msgid "enigma2 and network"
-msgstr "enigma2 si retea"
-
 msgid "entertainment (10-16 year old)"
 msgstr ""
 
@@ -6430,20 +7148,8 @@ msgstr ""
 msgid "exit DVD player or return to file browser"
 msgstr "iesire DVD player sau inapoi la file browser"
 
-msgid "exit mediaplayer"
-msgstr "iesire mediaplayer"
-
-msgid "exit movielist"
-msgstr "iesire lista filme"
-
-msgid "exit nameserver configuration"
-msgstr "iesire configurare nameserver"
-
 msgid "exit network adapter configuration"
 msgstr "iesire configurare retea"
-
-msgid "exit network interface list"
-msgstr "iesire interfata retea"
 
 msgid "exit networkadapter setup menu"
 msgstr "iesire meniu setari adaptor retea"
@@ -6475,8 +7181,13 @@ msgstr "reglati fin display-ul"
 msgid "fitness & health"
 msgstr ""
 
-msgid "fixed"
-msgstr ""
+#, fuzzy
+msgid "flat alphabetic"
+msgstr "sortare alfabetica"
+
+#, fuzzy
+msgid "flat alphabetic reverse"
+msgstr "sortare alfabetica"
 
 msgid "folk/traditional music"
 msgstr ""
@@ -6492,12 +7203,6 @@ msgstr "inainte la capitolul urmator"
 
 msgid "free"
 msgstr "liber"
-
-msgid "free diskspace"
-msgstr "spatiu liber pe disk"
-
-msgid "full transparency"
-msgstr ""
 
 msgid "further education"
 msgstr ""
@@ -6523,23 +7228,14 @@ msgstr "verde"
 msgid "handicraft"
 msgstr ""
 
-msgid "hear radio..."
-msgstr "auzi radio"
-
 msgid "height"
 msgstr ""
 
 msgid "help..."
 msgstr "ajutor..."
 
-msgid "hide player"
-msgstr "ascunde player"
-
 msgid "horizontal"
 msgstr "orizontal"
-
-msgid "immediate shutdown"
-msgstr "shutdown imediat"
 
 msgid "information/education/school program"
 msgstr ""
@@ -6565,18 +7261,6 @@ msgstr "inapoi la titlul anterior"
 msgid "jump forward to the next title"
 msgstr "inainte la urmatorul titlu "
 
-msgid "jump to listbegin"
-msgstr "dai la inceputul listei"
-
-msgid "jump to listend"
-msgstr "dai la sfarsitul listei"
-
-msgid "jump to next marked position"
-msgstr "dai la urmatoarea pozitie marcata"
-
-msgid "jump to previous marked position"
-msgstr "dai la pozitia marcata anterior"
-
 msgid "languages"
 msgstr ""
 
@@ -6593,9 +7277,6 @@ msgid "length"
 msgstr "lungime"
 
 msgid "limit ..., aborting !"
-msgstr ""
-
-msgid "list of EPG views..."
 msgstr ""
 
 msgid "list style compact"
@@ -6615,9 +7296,6 @@ msgstr ""
 
 msgid "live broadcast"
 msgstr ""
-
-msgid "load playlist"
-msgstr "incarca playlist"
 
 msgid "locked"
 msgstr "inchis"
@@ -6655,9 +7333,6 @@ msgstr ""
 msgid "motoring"
 msgstr ""
 
-msgid "move PiP to main picture"
-msgstr "muta pip la imagine principala"
-
 msgid "move down to last entry"
 msgstr "muta jos la ultima intrare"
 
@@ -6669,9 +7344,6 @@ msgstr "muta sus la prima intrare"
 
 msgid "move up to previous entry"
 msgstr "muta sus la anterioara intrare"
-
-msgid "movie list"
-msgstr "lista cu filme"
 
 msgid "movie/drama (general)"
 msgstr ""
@@ -6703,12 +7375,6 @@ msgstr ""
 msgid "news/weather report"
 msgstr ""
 
-msgid "next channel"
-msgstr "canalul urmator"
-
-msgid "next channel in history"
-msgstr "canalul urmator in istoric"
-
 msgid "no"
 msgstr "nu"
 
@@ -6718,22 +7384,10 @@ msgstr "niciun CAID selectat"
 msgid "no CI slots found"
 msgstr "niciun slot CI gasit"
 
-msgid "no Services/Providers selected"
-msgstr ""
-
 msgid "no module found"
 msgstr "niciun modul gasit"
 
-msgid "no standby"
-msgstr "fara standby"
-
 msgid "no storage devices found"
-msgstr ""
-
-msgid "no timeout"
-msgstr "fara timeout"
-
-msgid "no transparency"
 msgstr ""
 
 msgid "none"
@@ -6775,23 +7429,11 @@ msgstr "pornit"
 msgid "on READ ONLY medium."
 msgstr "la READ ONLY mediu"
 
-msgid "on end of movie"
-msgstr ""
-
 msgid "once"
 msgstr "odata"
 
 msgid "open nameserver configuration"
 msgstr "deschide configurarea nameserverului"
-
-msgid "open servicelist"
-msgstr "deschide servicelist"
-
-msgid "open servicelist(down)"
-msgstr "deschide servicelist(jos)"
-
-msgid "open servicelist(up)"
-msgstr "deschide servicelist(sus)"
 
 msgid "original"
 msgstr ""
@@ -6802,17 +7444,11 @@ msgstr ""
 msgid "pass"
 msgstr "pass"
 
-msgid "pause"
-msgstr "pauza"
-
 msgid "performing arts"
 msgstr ""
 
 msgid "play as picture in picture"
 msgstr ""
-
-msgid "play entry"
-msgstr "deschide selectarea"
 
 msgid "play from next mark or playlist entry"
 msgstr "deschide de la urmatoarea sau selectarea playlist"
@@ -6835,12 +7471,6 @@ msgstr ""
 msgid "pre-school children's program"
 msgstr ""
 
-msgid "previous channel"
-msgstr "canalul anterior"
-
-msgid "previous channel in history"
-msgstr "canalul anterior din istoric"
-
 msgid "receiver software because updates are available."
 msgstr ""
 
@@ -6853,17 +7483,11 @@ msgstr "se inregistreaza"
 msgid "red"
 msgstr "rosu"
 
-msgid "relative"
-msgstr ""
-
 msgid "religion"
 msgstr ""
 
 msgid "remarkable people"
 msgstr ""
-
-msgid "remove a nameserver entry"
-msgstr "elimina o intrare de nameserver"
 
 msgid "remove after this position"
 msgstr "elimina dupa aceasta pozitie"
@@ -6922,9 +7546,6 @@ msgstr ""
 msgid "save last directory on exit"
 msgstr "salveaza ultimul director la iesire"
 
-msgid "save playlist"
-msgstr "salveaza playlist"
-
 msgid "save playlist on exit"
 msgstr "salveaza playlist la iesire"
 
@@ -6950,23 +7571,11 @@ msgstr "secunde"
 msgid "select"
 msgstr "selectat"
 
-msgid "select CAId"
-msgstr "selecteaza CAId"
-
 msgid "select CAId's"
 msgstr "selecteaza CAId-uri"
 
-msgid "select interface"
-msgstr "selecteaza interfata"
-
 msgid "select menu entry"
 msgstr "selecteaza intrarea meniu"
-
-msgid "select movie"
-msgstr "selecteaza film"
-
-msgid "select the movie path"
-msgstr "selecteaza calea filmului"
 
 msgid "serious music/classic music"
 msgstr ""
@@ -6986,12 +7595,6 @@ msgstr ""
 msgid "show DVD main menu"
 msgstr "arata meniul principal DVD"
 
-msgid "show EPG..."
-msgstr "arata EPG..."
-
-msgid "show Infoline"
-msgstr "arata Infoline"
-
 msgid "show all tags"
 msgstr ""
 
@@ -7001,26 +7604,14 @@ msgstr "arata alternative"
 msgid "show event details"
 msgstr "arata detaliile evenimentului"
 
-msgid "show extended description"
-msgstr "arata descriere extinsa"
-
 msgid "show mediaplayer on mainmenu"
 msgstr ""
-
-msgid "show shutdown menu"
-msgstr "arata meniul de shutdown"
-
-msgid "show single service EPG..."
-msgstr "arata EPG singular"
 
 msgid "show softwaremanager in setup menu"
 msgstr ""
 
 msgid "show softwaremanager on blue button"
 msgstr ""
-
-msgid "show tag menu"
-msgstr "arata meniul de tag-uri"
 
 msgid "show transponder info"
 msgstr "arata info despre transponder"
@@ -7030,9 +7621,6 @@ msgstr ""
 
 msgid "shuffle"
 msgstr ""
-
-msgid "shuffle playlist"
-msgstr "amesteca plylist"
 
 msgid "shut down"
 msgstr ""
@@ -7046,17 +7634,8 @@ msgstr "simplu"
 msgid "skip backward"
 msgstr "skin inapoi"
 
-msgid "skip backward (enter time)"
-msgstr "skin inapoi (seteaza ceas)"
-
 msgid "skip forward"
 msgstr "skin inainte"
-
-msgid "skip forward (enter time)"
-msgstr "skin inainte (seteaza ceas)"
-
-msgid "slide picture in loop"
-msgstr "pune poza in loop"
 
 msgid "soap/melodram/folkloric"
 msgstr ""
@@ -7066,9 +7645,6 @@ msgstr ""
 
 msgid "social/spiritual science"
 msgstr ""
-
-msgid "sort by date"
-msgstr "sorteaza dupa data"
 
 msgid "sorting of playlists"
 msgstr ""
@@ -7100,40 +7676,19 @@ msgstr "incepe decupare aici"
 msgid "start directory"
 msgstr "start director"
 
-msgid "start timeshift"
-msgstr "start timeshift"
-
 msgid "stepsize"
 msgstr ""
 
 msgid "stereo"
 msgstr "stereo"
 
-msgid "stop PiP"
-msgstr "stop pip"
-
-msgid "stop entry"
-msgstr "stop intrarea"
-
-msgid "stop recording"
-msgstr "stop inregistrare"
-
-msgid "stop timeshift"
-msgstr "stop timeshift"
-
 msgid "stop using as startup service"
 msgstr ""
-
-msgid "swap PiP and main picture"
-msgstr "schimba pip si imagine principala"
 
 msgid "switch to bookmarks"
 msgstr "mergi la bookmarks"
 
 msgid "switch to filelist"
-msgstr "mergi la filelist"
-
-msgid "switch to playlist"
 msgstr "mergi la filelist"
 
 msgid "switch to the next angle"
@@ -7160,17 +7715,11 @@ msgstr "fisier template"
 msgid "tennis/squash"
 msgstr ""
 
-msgid "textcolor"
-msgstr "textcolor"
-
 msgid "this recording"
 msgstr "aceasta inregistrare"
 
 msgid "this service is protected by a parental control pin"
 msgstr "acest serviciu este protejat de pin pentru control parental"
-
-msgid "toggle a cut mark at the current position"
-msgstr "schimba o marcare la pozitia curenta"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "schimba ceas, capitol, audio, info sutitrari"
@@ -7217,12 +7766,6 @@ msgstr ""
 msgid "vertical"
 msgstr "vertical"
 
-msgid "view extensions..."
-msgstr "arata extensii..."
-
-msgid "view recordings..."
-msgstr "arata inregistrari..."
-
 msgid "wait for ci..."
 msgstr "asteapta ci..."
 
@@ -7231,9 +7774,6 @@ msgstr "asteapta mmi..."
 
 msgid "waiting"
 msgstr "in asteptare"
-
-msgid "was removed successfully"
-msgstr ""
 
 msgid "water sport"
 msgstr ""
@@ -7271,19 +7811,396 @@ msgstr "da"
 msgid "yes (keep feeds)"
 msgstr "da (pastreaza feed-uri)"
 
-msgid ""
-"your receiver might be unusable now. Please consult the manual for further "
-"assistance before rebooting your receiver."
-msgstr ""
-
 msgid "zap"
 msgstr "zap"
 
 msgid "zapped"
 msgstr "zapped"
 
+#~ msgid "/usr/share/enigma2 directory"
+#~ msgstr "/usr/share/enigma2 director"
+
+#~ msgid "/var directory"
+#~ msgstr "/var director"
+
+#~ msgid "Add Bookmark"
+#~ msgstr "Adauga Bookmark"
+
+#~ msgid ""
+#~ "Are you sure you want to restore\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "Esti sigur ca vrei sa restaurezi\n"
+#~ "Urmareste backup-ul:\n"
+
+#~ msgid "Backup"
+#~ msgstr "Backup"
+
+#~ msgid "Backup Location"
+#~ msgstr "Locatia Backup"
+
+#~ msgid "Backup Mode"
+#~ msgstr "Backup Mode"
+
+#~ msgid "Backup done."
+#~ msgstr "Backup terminat."
+
+#~ msgid ""
+#~ "By pressing the OK Button on your remote control, the info bar is being "
+#~ "displayed."
+#~ msgstr ""
+#~ "Apasand pe butonul OK de pe telecomanda, bara de informatiise afiseaza"
+
+#~ msgid "CF Drive"
+#~ msgstr "Compact Flash"
+
+#~ msgid "Choose Tuner"
+#~ msgstr "Alege un tuner"
+
+#~ msgid "Choose bouquet"
+#~ msgstr "Alege buchet"
+
+#~ msgid "Choose your Skin"
+#~ msgstr "Alege decoratiunea dorita"
+
+#~ msgid "CommonInterface"
+#~ msgstr "CommonInterface"
+
+#~ msgid ""
+#~ "Delete no more configured satellite\n"
+#~ "%s?"
+#~ msgstr ""
+#~ "Doriti stergerea satelitului\n"
+#~ "%s?"
+
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \"%s\"?"
+#~ msgstr "Confirmati STERGEREApluginului \"%s\"?"
+
+#~ msgid ""
+#~ "Do you want to backup now?\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "Doriti crearea copiei de siguranta acum?\n"
+#~ "Dupa apasarea butonului OK sunteti rugat sa asteptati!"
+
+#~ msgid "Do you want to view a tutorial?"
+#~ msgstr "Doriti sa urmariti un tutorial?"
+
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "S-a finalizat instalarea sau actualizarea a %d pachete"
+
+#~ msgid "Edit Title"
+#~ msgstr "Editare Titlu"
+
+#~ msgid "EndTime"
+#~ msgstr "MomentulIncheierii"
+
+#~ msgid "Exit wizard"
+#~ msgstr "Iesire din ajutorul de configurare"
+
+#~ msgid "Guard Interval"
+#~ msgstr "Interval garda"
+
+#~ msgid "Install settings, skins, software..."
+#~ msgstr "Instalare setari, skin-uri, software..."
+
+#~ msgid "Installing default sat lists... Please wait..."
+#~ msgstr "Instaleaza listele implicite cu sateliti...Va rugam asteptati..."
+
+#~ msgid "Installing defaults... Please wait..."
+#~ msgstr "Instaleaza setarile implicite...Va rugam asteptati..."
+
+#~ msgid "Installing package content... Please wait..."
+#~ msgstr "Instaleaza continutul pachetului...Va rugam asteptati..."
+
+#~ msgid "LOF"
+#~ msgstr "LOF"
+
+#~ msgid "LOF/H"
+#~ msgstr "LOF/H"
+
+#~ msgid "LOF/L"
+#~ msgstr "LOF/L"
+
+#~ msgid "Mainmenu"
+#~ msgstr "Meniu principal"
+
+#~ msgid "Margin after record"
+#~ msgstr "Creaza margini dupa inregistrare"
+
+#~ msgid "MediaPlayer"
+#~ msgstr "MediaPlayer"
+
+#~ msgid "Network Setup"
+#~ msgstr "Configurare retea"
+
 #~ msgid "Next"
 #~ msgstr "Urmator"
 
+#~ msgid ""
+#~ "No packages were upgraded yet. So you can check your network and try "
+#~ "again."
+#~ msgstr ""
+#~ "Niciun pachet nu a fost actualizat inca. Verificati reteaua si incercati "
+#~ "din nou."
+
+#~ msgid "No picture on TV? Press EXIT and retry."
+#~ msgstr "Nu este imagine pe TV? Apasati EXIT si incercati din nou."
+
+#~ msgid "No, scan later manually"
+#~ msgstr "Nu, scaneaza manual mai tarziu"
+
+#~ msgid "OSD visibility"
+#~ msgstr "Vizibilitate OSD"
+
+#~ msgid "Orbital Position"
+#~ msgstr "Pozitie orbitala"
+
+#~ msgid "Please choose he package..."
+#~ msgstr "Va rugam alegeti pachetul..."
+
+#~ msgid "Please choose the default services lists you want to install."
+#~ msgstr ""
+#~ "Va rugam alegeti listele de servicii implicite pe care doriti sa le "
+#~ "instalati"
+
+#~ msgid "Please press OK!"
+#~ msgstr "Va rugam apasati OK!"
+
 #~ msgid "Prev"
 #~ msgstr "Ant"
+
+#~ msgid "Remove Bookmark"
+#~ msgstr "Eliminare bookmark"
+
+#~ msgid "Remove Plugins"
+#~ msgstr "Eliminare pulgin-uri"
+
+#~ msgid "Remove finished."
+#~ msgstr "Eliminare fisiere terminate"
+
+#~ msgid "Restore running"
+#~ msgstr "Restabilire setari in curs"
+
+#~ msgid "Rolloff"
+#~ msgstr "Rolloff"
+
+#~ msgid "Sat / Dish Setup"
+#~ msgstr "Configurare Sat / Antena "
+
+#~ msgid "Save Playlist"
+#~ msgstr "Salvare lista de redare"
+
+#~ msgid "Scan QAM128"
+#~ msgstr "Scanare QAM128"
+
+#~ msgid "Scan QAM16"
+#~ msgstr "Scanare QAM16"
+
+#~ msgid "Scan QAM256"
+#~ msgstr "scanare QAM256"
+
+#~ msgid "Scan QAM32"
+#~ msgstr "Scanare QAM32"
+
+#~ msgid "Scan QAM64"
+#~ msgstr "Scanare QAM64"
+
+#~ msgid "Scan SR6875"
+#~ msgstr "Scanare SR6875"
+
+#~ msgid "Scan SR6900"
+#~ msgstr "sCANARE SR6900"
+
+#~ msgid "Scan band EU HYPER"
+#~ msgstr "Scanare banda EU HYPER"
+
+#~ msgid "Scan band EU SUPER"
+#~ msgstr "Scanare banda EU SUPER"
+
+#~ msgid "Scan band EU UHF IV"
+#~ msgstr "Scanare banda EU UHF IV"
+
+#~ msgid "Scan band EU UHF V"
+#~ msgstr "Scanare banda EU UHF V"
+
+#~ msgid "Scan band EU VHF I"
+#~ msgstr "Scanare banda EU VHF I"
+
+#~ msgid "Scan band EU VHF III"
+#~ msgstr "Scanare banda EU VHF III"
+
+#~ msgid "Scan band US HIGH"
+#~ msgstr "Scanare banda US HIGH"
+
+#~ msgid "Scan band US HYPER"
+#~ msgstr "Scanare banda US HYPER"
+
+#~ msgid "Scan band US LOW"
+#~ msgstr "Scanare banda US LOW"
+
+#~ msgid "Scan band US MID"
+#~ msgstr "Scanare anda US MID"
+
+#~ msgid "Scan band US SUPER"
+#~ msgstr "Scanare banda US SUPER"
+
+#~ msgid ""
+#~ "Sorry your Backup destination does not exist\n"
+#~ "\n"
+#~ "Please choose an other one."
+#~ msgstr ""
+#~ "Destinatia aleasa pentru fisierele backup nu exista\n"
+#~ "\n"
+#~ "Va rugam alegeti alta destinatie."
+
+#~ msgid ""
+#~ "Sorry, your backup destination is not writeable.\n"
+#~ "\n"
+#~ "Please choose another one."
+#~ msgstr ""
+#~ "Destinatia aleasa pentru fisierele backup nu poate fi creata.\n"
+#~ "\n"
+#~ "Va rugam alegeti alta destinatie."
+
+#~ msgid "Symbol Rate"
+#~ msgstr "Rata simbol"
+
+#~ msgid "Symbolrate"
+#~ msgstr "Symbolrate"
+
+#~ msgid "Test-Messagebox?"
+#~ msgstr "Test-Messagebox?"
+
+#~ msgid ""
+#~ "The input port should be configured now.\n"
+#~ "You can now configure the screen by displaying some test pictures. Do you "
+#~ "want to do that now?"
+#~ msgstr ""
+#~ "Portul de intrare ar trebui sa fie configurat acum.\n"
+#~ "Acum puteti configura ecranul prin afisarea catorva fotografii.Doriti sa "
+#~ "faceti acest lucru acum?"
+
+#~ msgid "The installation of the default services lists is finished."
+#~ msgstr "Instalarea serviciilor implicite este incheiata."
+
+#~ msgid "The package doesn't contain anything."
+#~ msgstr "Pachetul nu contine nimic."
+
+#~ msgid "There are no default services lists in your image."
+#~ msgstr "Nu exista liste cu servicii implicite in imaginea dumneavoastra"
+
+#~ msgid "There are no default settings in your image."
+#~ msgstr "Nu exista setari implicite in imaginea dumneavoastra."
+
+#~ msgid "This is step number 2."
+#~ msgstr "Acesta este pasul numarul 2"
+
+#~ msgid "Transmission Mode"
+#~ msgstr "Mod transmisie"
+
+#~ msgid "Try to find used Transponders in cable network.. please wait..."
+#~ msgstr ""
+#~ "Cautare transpondere folosite in reteaua de cablu...va rugam asteptati..."
+
+#~ msgid "Tuner "
+#~ msgstr "Tuner"
+
+#~ msgid "Updates your receiver's software"
+#~ msgstr "Updateaza softul receiverului"
+
+#~ msgid "Updating finished. Here is the result:"
+#~ msgstr "Updatare terminata. Uite aici rezultatul:"
+
+#~ msgid "Updating... Please wait... This can take some minutes..."
+#~ msgstr "Updatare....Te rugam asteapta.... Poate dura cateva minute"
+
+#~ msgid "Upgrade finished."
+#~ msgstr "Upgrate terminat."
+
+#~ msgid "Use Power Measurement"
+#~ msgstr "Foloseste Masurarea Energiei"
+
+#~ msgid ""
+#~ "Use the left and right buttons to change an option.\n"
+#~ "\n"
+#~ "Please set up tuner A"
+#~ msgstr ""
+#~ "Foloseste butoanele dreapta-stanga pentru a schimba optiunile.\n"
+#~ "\n"
+#~ "Please set up tuner A"
+
+#~ msgid "Video Fine-Tuning Wizard"
+#~ msgstr "Expert acord fin video"
+
+#~ msgid "View Movies..."
+#~ msgstr "Vezi filmele..."
+
+#~ msgid "Yes, view the tutorial"
+#~ msgstr "Da, vezi tutorial"
+
+#~ msgid ""
+#~ "You can choose some default settings now. Please select the settings you "
+#~ "want to be installed."
+#~ msgstr ""
+#~ "Poti alege niste setari default acum.Te rog alege setraile pe carele vrei "
+#~ "instalate."
+
+#~ msgid "You can choose, what you want to install..."
+#~ msgstr "Poti alege, ce vrei sa instalezi..."
+
+#~ msgid "You chose not to install any default services lists."
+#~ msgstr "Ai ales sa nu instalezi liste de servicii default."
+
+#~ msgid ""
+#~ "You chose not to install any default settings. You can however install "
+#~ "the default settings later in the settings menu."
+#~ msgstr ""
+#~ "Ai ales sa nu instalezi setari default. Poti totusi sa instalezi setari "
+#~ "default ulterior in meniul setari."
+
+#~ msgid ""
+#~ "You chose not to install anything. Please press OK finish the install "
+#~ "wizard."
+#~ msgstr ""
+#~ "Ai ales sa nu instalezi nimic. Te rog apasa OK pentru inchiderea "
+#~ "expertului de instalare."
+
+#~ msgid ""
+#~ "are you sure you want to restore\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "esti sigur ca vrei restore\n"
+#~ "dupa backup:\n"
+
+#~ msgid "jump to listbegin"
+#~ msgstr "dai la inceputul listei"
+
+#~ msgid "movie list"
+#~ msgstr "lista cu filme"
+
+#~ msgid "open servicelist(down)"
+#~ msgstr "deschide servicelist(jos)"
+
+#~ msgid "open servicelist(up)"
+#~ msgstr "deschide servicelist(sus)"
+
+#~ msgid "previous channel"
+#~ msgstr "canalul anterior"
+
+#~ msgid "select interface"
+#~ msgstr "selecteaza interfata"
+
+#~ msgid "select movie"
+#~ msgstr "selecteaza film"
+
+#~ msgid "show single service EPG..."
+#~ msgstr "arata EPG singular"
+
+#~ msgid "stop recording"
+#~ msgstr "stop inregistrare"
+
+#~ msgid "view recordings..."
+#~ msgstr "arata inregistrari..."

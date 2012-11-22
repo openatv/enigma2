@@ -196,7 +196,7 @@ class MplexTaskPostcondition(Condition):
 	def getErrorMessage(self, task):
 		return {
 			task.ERROR_UNDERRUN: ("Can't multiplex source video!"),
-			task.ERROR_UNKNOWN: ("An unknown error occured!")
+			task.ERROR_UNKNOWN: ("An unknown error occurred!")
 		}[task.error]
 
 class MplexTask(Task):
@@ -302,14 +302,14 @@ class BurnTaskPostcondition(Condition):
 	def getErrorMessage(self, task):
 		return {
 			task.ERROR_NOTWRITEABLE: _("Medium is not a writeable DVD!"),
-			task.ERROR_LOAD: _("Could not load Medium! No disc inserted?"),
+			task.ERROR_LOAD: _("Could not load medium! No disc inserted?"),
 			task.ERROR_SIZE: _("Content does not fit on DVD!"),
 			task.ERROR_WRITE_FAILED: _("Write failed!"),
 			task.ERROR_DVDROM: _("No (supported) DVDROM found!"),
 			task.ERROR_ISOFS: _("Medium is not empty!"),
 			task.ERROR_FILETOOLARGE: _("TS file is too large for ISO9660 level 1!"),
 			task.ERROR_ISOTOOLARGE: _("ISO file is too large for this filesystem!"),
-			task.ERROR_UNKNOWN: _("An unknown error occured!")
+			task.ERROR_UNKNOWN: _("An unknown error occurred!")
 		}[task.error]
 
 class BurnTask(Task):

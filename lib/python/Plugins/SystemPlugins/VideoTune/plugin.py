@@ -8,7 +8,7 @@ def startSetup(menuid):
 	if menuid != "system": 
 		return [ ]
 
-	return [(_("Video Fine-Tuning"), videoFinetuneMain, "video_finetune", None)]
+	return [(_("Video fine tuning"), videoFinetuneMain, "video_finetune", None)]
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Video Fine-Tuning"), description=_("fine-tune your display"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup)
+	return PluginDescriptor(name=_("Video fine tuning"), description=_("fine-tune your display"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup)

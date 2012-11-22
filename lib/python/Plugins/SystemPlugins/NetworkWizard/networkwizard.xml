@@ -1,7 +1,7 @@
 <wizard>
         <step id="welcome">
                 <text value="Welcome.\n\nIf you want to connect your receiver to the Internet, this wizard will guide you through the basic network setup of your receiver.\n\nPress OK to start configuring your network" />
-                <displaytext value="Network Wizard" />
+                <displaytext value="Network wizard" />
 	        <code>
 self.clearSelectedKeys()
 self.selectKey("OK")

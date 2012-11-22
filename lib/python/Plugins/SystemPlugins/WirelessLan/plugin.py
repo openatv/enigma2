@@ -45,7 +45,7 @@ config.plugins.wlan.psk = NoSave(ConfigPassword(default = "", fixed_size = False
 
 class WlanStatus(Screen):
 	skin = """
-		<screen name="WlanStatus" position="center,center" size="560,400" title="Wireless Network State" >
+		<screen name="WlanStatus" position="center,center" size="560,400" title="Wireless network status" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 
@@ -76,8 +76,8 @@ class WlanStatus(Screen):
 				    
 		self["LabelBSSID"] = StaticText(_('Accesspoint:'))
 		self["LabelESSID"] = StaticText(_('SSID:'))
-		self["LabelQuality"] = StaticText(_('Link Quality:'))
-		self["LabelSignal"] = StaticText(_('Signal Strength:'))
+		self["LabelQuality"] = StaticText(_('Link quality:'))
+		self["LabelSignal"] = StaticText(_('Signal strength:'))
 		self["LabelBitrate"] = StaticText(_('Bitrate:'))
 		self["LabelEnc"] = StaticText(_('Encryption:'))
 			
@@ -128,7 +128,7 @@ class WlanStatus(Screen):
 					else:
 						essid = status[self.iface]["essid"]
 					if status[self.iface]["accesspoint"] == "Not-Associated":
-						accesspoint = _("Not-Associated")
+						accesspoint = _("Not associated")
 						essid = _("No Connection")
 					else:
 						accesspoint = status[self.iface]["accesspoint"]
@@ -190,7 +190,7 @@ class WlanStatus(Screen):
 
 class WlanScan(Screen):
 	skin = """
-		<screen name="WlanScan" position="center,center" size="560,400" title="Choose a Wireless Network" >
+		<screen name="WlanScan" position="center,center" size="560,400" title="Select a wireless network" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -257,7 +257,7 @@ class WlanScan(Screen):
 		self.getAccessPoints(refresh = False)
 		
 	def layoutFinished(self):
-		self.setTitle(_("Choose a wireless network"))
+		self.setTitle(_("Select a wireless network"))
 	
 	def select(self):
 		cur = self["list"].getCurrent()
@@ -288,7 +288,7 @@ class WlanScan(Screen):
 	def buildEntryComponent(self, essid, bssid, encrypted, iface, maxrate, signal):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
 		encryption = encrypted and _("Yes") or _("No")
-		return((essid, bssid, _("Signal: ") + str(signal), _("Max. Bitrate: ") + str(maxrate), _("Encrypted: ") + encryption, _("Interface: ") + str(iface), divpng))
+		return((essid, bssid, _("Signal: ") + str(signal), _("Max. bitrate: ") + str(maxrate), _("Encrypted: ") + encryption, _("Interface: ") + str(iface), divpng))
 
 	def updateAPList(self):
 		newList = []
@@ -363,10 +363,8 @@ class WlanScan(Screen):
 		length = self.getLength()
 		if length == 0:
 			self["info"].setText(_("No wireless networks found! Searching..."))
-		elif length == 1:
-			self["info"].setText(_("1 wireless network found!"))
 		else:
-			self["info"].setText(str(length)+_(" wireless networks found!"))
+			self["info"].setText(ngettext("%d wireless network found!", "%d wireless networks found!", length) % length)
 
 	def buildWlanList(self):
 		self.WlanList = []
@@ -404,4 +402,4 @@ def configStrings(iface):
 	return ret
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Wireless LAN"), description=_("Connect to a Wireless Network"), where = PluginDescriptor.WHERE_NETWORKSETUP, needsRestart = False, fnc={"ifaceSupported": callFunction, "configStrings": configStrings, "WlanPluginEntry": lambda x: "Wireless Network Configuartion..."})
+	return PluginDescriptor(name=_("Wireless LAN"), description=_("Connect to a wireless network"), where = PluginDescriptor.WHERE_NETWORKSETUP, needsRestart = False, fnc={"ifaceSupported": callFunction, "configStrings": configStrings, "WlanPluginEntry": lambda x: _("Wireless network configuration...")})

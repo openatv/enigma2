@@ -169,7 +169,7 @@ class CableTransponderSearchSupport:
 					parm.modulation = qam[data[4]]
 					parm.inversion = inv[data[5]]
 					self.__tlist.append(parm)
-				tmpstr = _("Try to find used Transponders in cable network.. please wait...")
+				tmpstr = _("Try to find used transponders in cable network.. please wait...")
 				tmpstr += "\n\n"
 				tmpstr += data[1]
 				tmpstr += " kHz "
@@ -419,7 +419,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.list.append(getConfigListEntry(_("Hierarchy info"), self.scan_ter.hierarchy))
 		self.list.append(getConfigListEntry(_("Network scan"), self.scan_networkScan))
 		self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
-		self.list.append(getConfigListEntry(_("Only Free scan"), self.scan_onlyfree))
+		self.list.append(getConfigListEntry(_("Only free scan"), self.scan_onlyfree))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -965,7 +965,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.list.append(getConfigListEntry(_("Scan ") + nim.slot_name + " (" + nim.friendly_type + ")", nimconfig))
 
 		ConfigListScreen.__init__(self, self.list)
-		self["header"] = Label(_("Automatic Scan"))
+		self["header"] = Label(_("Automatic scan"))
 		self["footer"] = Label(_("Press OK to scan"))
 
 	def runAsync(self, finished_cb):

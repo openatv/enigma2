@@ -202,7 +202,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 	def showTutorial(self):
 		if not self.tutorial_seen:
 			self.tutorial_seen = True
-			self.session.open(MessageBox,_("Welcome to the Cutlist editor.\n\nSeek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n\nThen seek to the end, press OK, select 'end cut'. That's it."), MessageBox.TYPE_INFO)
+			self.session.open(MessageBox,_("Welcome to the cutlist editor.\n\nSeek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n\nThen seek to the end, press OK, select 'end cut'. That's it."), MessageBox.TYPE_INFO)
 
 	def checkSkipShowHideLock(self):
 		pass

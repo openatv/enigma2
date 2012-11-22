@@ -149,14 +149,14 @@ class UpdatePluginMenu(Screen):
 							menuEntryDescription = _('Extended Software Plugin')
 						self.list.append(('default-plugin', menuEntryName, menuEntryDescription + self.oktext, callFnc))
 			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(("advanced", _("Advanced Options"), _("\nAdvanced options and settings." ) + self.oktext, None))
+				self.list.append(("advanced", _("Advanced options"), _("\nAdvanced options and settings." ) + self.oktext, None))
 		elif self.menu == 1:
 			self.list.append(("advancedrestore", _("Advanced restore"), _("\nRestore your backups by date." ) + self.oktext, None))
-			self.list.append(("backuplocation", _("Choose backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
-			self.list.append(("backupfiles", _("Choose backup files"),  _("Select files for backup.") + self.oktext + "\n\n" + self.infotext, None))
+			self.list.append(("backuplocation", _("Select backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
+			self.list.append(("backupfiles", _("Select backup files"),  _("Select files for backup.") + self.oktext + "\n\n" + self.infotext, None))
 			if config.usage.setup_level.index >= 2: # expert+
 				self.list.append(("ipkg-manager", _("Packet management"),  _("\nView, install and remove available or installed packages." ) + self.oktext, None))
-			self.list.append(("ipkg-source",_("Choose upgrade source"), _("\nEdit the upgrade source address." ) + self.oktext, None))
+			self.list.append(("ipkg-source",_("Select upgrade source"), _("\nEdit the upgrade source address." ) + self.oktext, None))
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
 				if p.__call__.has_key("AdvancedSoftwareSupported"):
 					callFnc = p.__call__["AdvancedSoftwareSupported"](None)
@@ -164,11 +164,11 @@ class UpdatePluginMenu(Screen):
 						if p.__call__.has_key("menuEntryName"):
 							menuEntryName = p.__call__["menuEntryName"](None)
 						else:
-							menuEntryName = _('Advanced Software')
+							menuEntryName = _('Advanced software')
 						if p.__call__.has_key("menuEntryDescription"):
 							menuEntryDescription = p.__call__["menuEntryDescription"](None)
 						else:
-							menuEntryDescription = _('Advanced Software Plugin')
+							menuEntryDescription = _('Advanced software plugin')
 						self.list.append(('advanced-plugin', menuEntryName, menuEntryDescription + self.oktext, callFnc))
 
 		self["menu"] = List(self.list)
@@ -892,9 +892,9 @@ class PluginManager(Screen, PackageInfoHandler):
 			elif tag == 'Network':
 				return(( _("Network"), _("View list of available networking extensions" ), tag, divpng ))
 			elif tag == 'CI':
-				return(( _("CommonInterface"), _("View list of available CommonInterface extensions" ), tag, divpng ))
+				return(( _("Common Interface"), _("View list of available CommonInterface extensions" ), tag, divpng ))
 			elif tag == 'Default':
-				return(( _("Default Settings"), _("View list of available default settings" ), tag, divpng ))
+				return(( _("Default settings"), _("View list of available default settings" ), tag, divpng ))
 			elif tag == 'SAT':
 				return(( _("Satellite equipment"), _("View list of available Satellite equipment extensions." ), tag, divpng ))
 			elif tag == 'Software':
@@ -902,7 +902,7 @@ class PluginManager(Screen, PackageInfoHandler):
 			elif tag == 'Multimedia':
 				return(( _("Multimedia"), _("View list of available multimedia extensions." ), tag, divpng ))
 			elif tag == 'Display':
-				return(( _("Display and Userinterface"), _("View list of available Display and Userinterface extensions." ), tag, divpng ))
+				return(( _("Display and userinterface"), _("View list of available display and userinterface extensions." ), tag, divpng ))
 			elif tag == 'EPG':
 				return(( _("Electronic Program Guide"), _("View list of available EPG extensions." ), tag, divpng ))
 			elif tag == 'Communication':

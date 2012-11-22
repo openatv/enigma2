@@ -565,7 +565,7 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		# for the skin: first try MediaPlayerSettings, then Setup, this allows individual skinning
 		self.skinName = ["DiseqcTesterTestTypeSelection", "Setup" ]
-		self.setup_title = _("DiSEqC-Tester settings")
+		self.setup_title = _("DiSEqC-tester settings")
 		self.onChangedEntry = [ ]
 		self.feid = feid
 		
@@ -591,7 +591,7 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 
 	def createSetup(self):
 		self.testtype = ConfigSelection(choices={"quick": _("Quick"), "random": _("Random"), "complete": _("Complete")}, default = "quick")
-		self.testtypeEntry = getConfigListEntry(_("Test Type"), self.testtype)
+		self.testtypeEntry = getConfigListEntry(_("Test type"), self.testtype)
 		self.list.append(self.testtypeEntry)
 		
 		self.loopsfailed = ConfigSelection(choices={"-1": "Every known", "1": "1", "2": "2", "3": "3", "4": "4", "5": "5", "6": "6", "7": "7", "8": "8"}, default = "3")
@@ -641,7 +641,7 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 
 class DiseqcTesterNimSelection(NimSelection):
 	skin = """
-		<screen position="160,123" size="400,330" title="Choose Tuner">
+		<screen position="160,123" size="400,330" title="Select a tuner">
 		<widget source="nimlist" render="Listbox" position="0,0" size="380,300" scrollbarMode="showOnDemand">
 			<convert type="TemplatedMultiContent">
 				{"template": [

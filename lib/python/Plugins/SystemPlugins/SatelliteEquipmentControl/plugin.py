@@ -9,7 +9,7 @@ from Components.NimManager import nimmanager as nimmgr
 
 class SecParameterSetup(Screen, ConfigListScreen):
 	skin = """
-		<screen position="100,100" size="560,400" title="Satellite Equipment Setup" >
+		<screen position="100,100" size="560,400" title="Satellite equipment setup" >
 			<widget name="config" position="10,10" size="540,390" />
 		</screen>"""
 	def __init__(self, session):
@@ -66,12 +66,12 @@ def SecSetupStart(menuid):
 	# only show if DVB-S frontends are available
 	for slot in nimmgr.nim_slots:
 		if slot.isCompatible("DVB-S"):
-			return [(_("Satellite Equipment Setup"), SecSetupMain, "satellite_equipment_setup", None)]
+			return [(_("Satellite equipment setup"), SecSetupMain, "satellite_equipment_setup", None)]
 
 	return [ ]
 
 def Plugins(**kwargs):
 	if (nimmgr.hasNimType("DVB-S")):
-		return PluginDescriptor(name=_("Satellite Equipment Setup"), description="Setup your satellite equipment", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SecSetupStart)
+		return PluginDescriptor(name=_("Satellite equipment setup"), description=_("Setup your satellite equipment"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SecSetupStart)
 	else:
 		return []

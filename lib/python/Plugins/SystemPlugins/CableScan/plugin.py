@@ -147,7 +147,7 @@ class CableScanScreen(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Tuner"), self.scan_nims))
 
 		self.list.append(getConfigListEntry(_('Frequency'), config.plugins.CableScan.frequency))
-		self.list.append(getConfigListEntry(_('Symbol Rate'), config.plugins.CableScan.symbolrate))
+		self.list.append(getConfigListEntry(_('Symbol rate'), config.plugins.CableScan.symbolrate))
 		self.list.append(getConfigListEntry(_('Modulation'), config.plugins.CableScan.modulation))
 		self.list.append(getConfigListEntry(_('Network ID'), config.plugins.CableScan.networkid))
 		self.list.append(getConfigListEntry(_("Use official channel numbering"), config.plugins.CableScan.keepnumbering))

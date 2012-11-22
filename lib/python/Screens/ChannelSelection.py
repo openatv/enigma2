@@ -200,7 +200,7 @@ class ChannelContextMenu(Screen):
 						append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level = 0)
 						append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level = 0)
 
-		menu.append(ChoiceEntryComponent(text = (_("Configuration..."), boundFunction(self.openSetup, "channelselection"))))
+		menu.append(ChoiceEntryComponent(text = (_("Configuration..."), boundFunction(self.openSetup, "userinterface"))))
 		self["menu"] = ChoiceList(menu)
 
 	def playMain(self):
@@ -832,7 +832,7 @@ class ChannelSelectionBase(Screen):
 				"9": self.keyNumberGlobal,
 				"0": self.keyNumber0
 			})
-		self.maintitle = _("Channel Selection")
+		self.maintitle = _("Channel selection")
 		self.recallBouquetMode()
 
 	def getBouquetNumOffset(self, bouquet):
@@ -1063,7 +1063,7 @@ class ChannelSelectionBase(Screen):
 								cur_ref.getUnsignedData(3), # ONID
 								self.service_types[pos+1:])
 							ref = eServiceReference(refstr)
-							ref.setName(_("Current Transponder"))
+							ref.setName(_("Current transponder"))
 							self.servicelist.addService(ref)
 						self.servicelist.finishFill()
 						if prev is not None:

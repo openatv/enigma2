@@ -40,10 +40,10 @@ config.misc.graph_mepg.items_per_page_listscreen = ConfigSelectionNumber(min = 3
 config.misc.graph_mepg.default_mode = ConfigYesNo(default = False)
 config.misc.graph_mepg.overjump = ConfigYesNo(default = True)
 config.misc.graph_mepg.servicetitle_mode = ConfigSelection(default = "picon+servicename", choices = [
-	("servicename", _("Service Name")),
+	("servicename", _("Service name")),
 	("picon", _("Picon")),
-	("picon+servicename", _("Picon and Service Name")) ])
-config.misc.graph_mepg.roundTo = ConfigSelection(default = 15, choices = [("900", _("%d minutes") % 15), ("1800", _("%d minutes") % 30), ("3600", _("%d minutes") % 60)])
+	("picon+servicename", _("Picon and service name")) ])
+config.misc.graph_mepg.roundTo = ConfigSelection(default = "900", choices = [("900", _("%d minutes") % 15), ("1800", _("%d minutes") % 30), ("3600", _("%d minutes") % 60)])
 config.misc.graph_mepg.OKButton = ConfigSelection(default = "info", choices = [("info", _("Show detailed event info")), ("zap", _("Zap to selected channel"))])
 
 listscreen = config.misc.graph_mepg.default_mode.value
@@ -746,15 +746,15 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self["okactions"] = HelpableActionMap(self, "OkCancelActions",
 			{
 				"cancel": (self.closeScreen,   _("Exit EPG")),
-				"ok":	  (self.eventSelected, _("Configurable, Zap or detailed event info"))
+				"ok":	  (self.eventSelected, _("Zap to selected channel, or show detailed event info (depends on configuration)"))
 			}, -1)
 		self["okactions"].csel = self
 		self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
 			{
-				"timerAdd":    (self.timerAdd,       _("Add/Remove timer for current event")),
+				"timerAdd":    (self.timerAdd,       _("Add/remove timer for current event")),
 				"info":        (self.infoKeyPressed, _("Show detailed event info")),
 				"red":         (self.zapTo,          _("Zap to selected channel")),
-				"yellow":      (self.swapMode,       _("Swap from normal to list mode")),	
+				"yellow":      (self.swapMode,       _("Switch between normal mode and list mode")),	
 				"blue":        (self.enterDateTime,  _("Goto specific data/time")),
 				"menu":        (self.showSetup,      _("Setup menu")),
 				"nextBouquet": (self.nextBouquet,    _("Show bouquet selection menu")),
@@ -767,17 +767,17 @@ class GraphMultiEPG(Screen, HelpableScreen):
 
 		self["inputactions"] = HelpableActionMap(self, "InputActions",
 			{
-				"left":  (self.leftPressed,  _("Goto previous event")),
-				"right": (self.rightPressed, _("Goto next event")),
+				"left":  (self.leftPressed,  _("Go to previous event")),
+				"right": (self.rightPressed, _("Go to next event")),
 				"1":     (self.key1,         _("Set time window to 1 hour")),
 				"2":     (self.key2,         _("Set time window to 2 hours")),
 				"3":     (self.key3,         _("Set time window to 3 hours")),
 				"4":     (self.key4,         _("Set time window to 4 hours")),
 				"5":     (self.key5,         _("Set time window to 5 hours")),
-				"7":     (self.prevPage,     _("Goto previous page of service")),
-				"9":     (self.nextPage,     _("Goto next page of service")),
-				"8":     (self.toTop,        _("Goto first service")),
-				"0":     (self.toEnd,        _("Goto last service"))
+				"7":     (self.prevPage,     _("Go to previous page of service")),
+				"9":     (self.nextPage,     _("Go to next page of service")),
+				"8":     (self.toTop,        _("Go to first service")),
+				"0":     (self.toEnd,        _("Go to last service"))
 			}, -1)
 		self["inputactions"].csel = self
 

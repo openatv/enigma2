@@ -14,7 +14,7 @@ epg_bouquet = None
 epg = None
 
 class SelectBouquet(Screen):
-	skin = """<screen name="SelectBouquet" position="center,center" size="300,240" title="Choose bouquet">
+	skin = """<screen name="SelectBouquet" position="center,center" size="300,240" title="Select a bouquet">
 		<widget name="menu" position="10,10" size="290,225" scrollbarMode="showOnDemand" />
 	</screen>"""
 
