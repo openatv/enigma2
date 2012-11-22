@@ -21,8 +21,8 @@ class Language:
 		self.addLanguage("Dansk", "da", "DK")
 		self.addLanguage("Deutsch", "de", "DE")
 		self.addLanguage("Ελληνικά", "el", "GR")
-		self.addLanguage("English (UK)", "en_GB", "GB")
-		self.addLanguage("English (US)", "en", "EN")
+		self.addLanguage("English (UK)", "en", "GB")
+		self.addLanguage("English (US)", "en", "US")
 		self.addLanguage("Español", "es", "ES")
 		self.addLanguage("Eesti", "et", "EE")
 		self.addLanguage("Persian", "fa", "IR")
@@ -38,6 +38,7 @@ class Language:
 		self.addLanguage("Latviešu", "lv", "LV")
 		self.addLanguage("Nederlands", "nl", "NL")
 		self.addLanguage("Norsk", "no", "NO")
+		self.addLanguage("Bokmål", "nb", "NO")
 		self.addLanguage("Polski", "pl", "PL")
 		self.addLanguage("Português", "pt", "PT")
 		self.addLanguage("Português do Brasil", "pt", "BR")
@@ -64,7 +65,11 @@ class Language:
 		try:
 			lang = self.lang[index]
 			print "Activating language " + lang[0]
-			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[lang[1]])
+			if os.path.exists(resolveFilename(SCOPE_LANGUAGE, "") + lang[1] + '_' + lang[2]):
+				langfile = lang[1] + '_' + lang[2]
+			else:
+				langfile = lang[1]
+			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[langfile])
 			self.catalog.install(names=("ngettext", "pgettext"))
 			self.activeLanguage = index
 			for x in self.callbacks:
