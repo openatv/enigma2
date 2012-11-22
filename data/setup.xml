@@ -2,16 +2,8 @@
 	<setup key="timezone" title="Timezone">
 		<item level="0" text="Timezone">config.timezone.val</item>
 	</setup>
-	<setup key="avsetup" title="A/V settings">
-		<item level="0" text="Color format">config.av.colorformat</item>
-		<item level="0" text="Aspect ratio">config.av.aspectratio</item>
-		<item level="0" text="TV system">config.av.tvsystem</item>
-		<item level="1" text="WSS on 4:3">config.av.wss</item>
-		<item level="1" text="General AC3 delay (ms)">config.av.generalAC3delay</item>
-		<item level="1" text="General PCM delay (ms)">config.av.generalPCMdelay</item>
-		<item level="1" text="AC3 downmix" requires="CanDownmixAC3">config.av.downmix_ac3</item>
-		<item level="1" text="DTS downmix" requires="CanDownmixDTS">config.av.downmix_dts</item>
-		<item level="1" text="Auto scart switching" requires="ScartSwitch" description="When enabled, your TV will automatically select the SCART input when you switch on your receiver.">config.av.vcrswitch</item>
+	<setup key="avsetup">
+		<!-- this is just a placeholder, the Videomode plugin implements this submenu -->
 	</setup>
 	<setup key="usage" title="Customize">
 		<item level="0" text="Setup mode" description="Configure which access level to use for the configuration menu. Expert level gives access to all items.">config.usage.setup_level</item>
