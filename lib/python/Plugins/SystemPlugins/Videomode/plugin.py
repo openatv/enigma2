@@ -37,7 +37,7 @@ class VideoSetup(Screen, ConfigListScreen):
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
-		self["description"] = Label(_(""))
+		self["description"] = Label("")
 
 		self.createSetup()
 		self.grabLastGoodMode()
