@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-19 16:58+0000\n"
-"PO-Revision-Date: 2012-10-23 10:53+0100\n"
-"Last-Translator: DeLaGrooV <delagroov@gmail.com>\n"
+"POT-Creation-Date: 2012-11-21 18:01+0000\n"
+"PO-Revision-Date: 2012-11-22 16:01+0100\n"
+"Last-Translator: \n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
-"X-Generator: Poedit 1.5.3\n"
+"X-Generator: Poedit 1.5.4\n"
 
 msgid ""
 "\n"
@@ -169,20 +169,20 @@ msgstr "%a %e/%m"
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
+#, fuzzy, python-format
+msgid "%d GB"
+msgstr "%d Gb"
+
 #, python-format
 msgid "%d Gb"
 msgstr "%d Gb"
 
-#, python-format
-msgid "%d Kb"
+#, fuzzy, python-format
+msgid "%d KB"
 msgstr "%d Kb"
 
 #, fuzzy, python-format
 msgid "%d MB"
-msgstr "%d Mb"
-
-#, python-format
-msgid "%d Mb"
 msgstr "%d Mb"
 
 #, python-format
@@ -203,7 +203,7 @@ msgstr "%d opdrachten draaien op de achtergrond."
 
 #, python-format
 msgid "%d kB"
-msgstr ""
+msgstr "%d kB"
 
 #, python-format
 msgid "%d min"
@@ -305,7 +305,7 @@ msgid "1.2"
 msgstr "1.2"
 
 msgid "12V output"
-msgstr "12V Uitgang"
+msgstr "12V uitgang"
 
 msgid "13 V"
 msgstr "13 V"
@@ -314,10 +314,10 @@ msgid "16:10"
 msgstr "16:10"
 
 msgid "16:10 Letterbox"
-msgstr "16:10 Letterbox"
+msgstr "16:10 letterbox"
 
 msgid "16:10 PanScan"
-msgstr "16:10 PanScan"
+msgstr "16:10 pan & scan"
 
 msgid "16:9"
 msgstr "16:9"
@@ -347,7 +347,7 @@ msgid "3"
 msgstr "3"
 
 msgid "3D Mode"
-msgstr "3D Mode"
+msgstr "3D mode"
 
 msgid "3D setup"
 msgstr "3D instellingen"
@@ -365,10 +365,10 @@ msgid "4:3"
 msgstr "4:3"
 
 msgid "4:3 Letterbox"
-msgstr "4:3 Letterbox"
+msgstr "4:3 letterbox"
 
 msgid "4:3 PanScan"
-msgstr "4:3 PanScan"
+msgstr "4:3 pan & scan"
 
 msgid "4X"
 msgstr "4X"
@@ -721,10 +721,6 @@ msgstr ""
 msgid "Advanced options"
 msgstr "Geavanceerde opties"
 
-#, fuzzy
-msgid "Advanced pptions"
-msgstr "Geavanceerde opties"
-
 msgid "Advanced restore"
 msgstr "Geavanceerd herstellen"
 
@@ -855,7 +851,8 @@ msgstr ""
 "Er is een fout opgetreden bij het downloaden van de pakketlijst. Probeer het "
 "nogmaals."
 
-msgid "An unknown error occured!"
+#, fuzzy
+msgid "An unknown error occurred!"
 msgstr "Een onbekende fout heeft plaatsgevonden!"
 
 msgid "Any activity"
@@ -947,6 +944,9 @@ msgstr "toegewezen CAIds:"
 #, fuzzy
 msgid "Assigned services/provider:"
 msgstr "togewezen zenders/providers"
+
+msgid "At End:"
+msgstr "Aan het einde:"
 
 msgid "Attach a file"
 msgstr "Voeg een bestand toe"
@@ -1200,10 +1200,10 @@ msgid "By Team ViX"
 msgstr "Door het VIX team"
 
 msgid "Bytes received:"
-msgstr ""
+msgstr "Ontvangen bytes:"
 
 msgid "Bytes sent:"
-msgstr ""
+msgstr "Verzonden bytes:"
 
 msgid "C"
 msgstr "C"
@@ -1459,11 +1459,11 @@ msgstr ""
 "afgesloten. De locatie moet tijdens het booten beschikbaar zijn."
 
 msgid ""
-"Choose the name of the file that holds the EPG data when the STB_BOX is "
-"shut down. This can be handy to differentiate between several boxes."
+"Choose the name of the file that holds the EPG data when the STB_BOX is shut "
+"down. This can be handy to differentiate between several boxes."
 msgstr ""
-"Kies de naam van het bestand waarin uw STB_BOX de EPG-data moet opslaan "
-"als wordt afgesloten. Dit kan handig zijn om ondersheid te maken tussen de "
+"Kies de naam van het bestand waarin uw STB_BOX de EPG-data moet opslaan als "
+"wordt afgesloten. Dit kan handig zijn om ondersheid te maken tussen de "
 "bestanden van verschillende ontvangers."
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -1595,6 +1595,8 @@ msgid ""
 "EPG. Useful when you need information about an event which has just "
 "finished, or has been delayed."
 msgstr ""
+"Bepaal hoelang oude info in de EPG zichtbaar moet blijven. Nuttig als u "
+"informatie zoekt over ene programma dat net is afgelopen of dat verlaat is."
 
 msgid "Configure how recording filenames are constructed."
 msgstr "Stel in hoe de namen van opnames worden samengesteld"
@@ -1629,7 +1631,7 @@ msgstr "Bepaal de lettergrootte van de ondertitels"
 msgid ""
 "Configure the behavior of the 'pause' key when movie playback is already "
 "paused."
-msgstr "Configureer gedrag van de 'pause' knop wanneer de film gepauzeerd is."
+msgstr "Configureer gedrag van de pauze-knop wanneer de film gepauzeerd is."
 
 msgid "Configure the behavior when movie playback is manually stopped."
 msgstr "Configureer het gedrag wanneer de film handmatig gestopt is."
@@ -1679,6 +1681,8 @@ msgid ""
 "Configure the font size relative to skin size, so 1 increases by 1 point "
 "size, and -1 decreases by 1 point size."
 msgstr ""
+"Configureer de lettergrootte relatief tov die van de skin. +1 vergroot met 1 "
+"puntin, -1 verkleint met 1 punt."
 
 msgid "Configure the fourth audio language."
 msgstr "Kies audio taal 4 "
@@ -1710,23 +1714,30 @@ msgid ""
 "Configure the initial fast forward speed. When you press the fast forward "
 "button, winding will start at this speed."
 msgstr ""
+"Configureer de initiële vooruitspoelsnelheid. Als u op snel spoelen drukt, "
+"zal begonnen worden op die snelheid."
 
 msgid ""
 "Configure the initial rewind speed. When you press the rewind button, "
 "winding will start at this speed."
 msgstr ""
+"Configureer de initiële terugspoelsnelheid. Als u op snel terugspoelen "
+"drukt, zal begonnen worden op die snelheid."
 
 msgid "Configure the latitude of your location."
-msgstr "Configureer de latitude van uw lokatie"
+msgstr "Configureer de latitude van uw locatie"
 
 msgid "Configure the longitude of your location."
-msgstr "Configureer de longitude van uw lokatie"
+msgstr "Configureer de longitude van uw locatie"
 
 msgid ""
 "Configure the minimum amount of disk space to be available for recordings. "
 "When the amount of space drops below this value, deleted items will be "
 "removed from the trash can."
 msgstr ""
+"Bepaal hoeveel ruimte er minimaal beschikbaar moet zijn voor opnames. Als "
+"deze waarde bereikt wordt, zulle bestanden uit de prullenbak worden "
+"verwijderd."
 
 msgid "Configure the nameserver (DNS)."
 msgstr "Configureer uw nameserver (DNS)."
@@ -1738,19 +1749,24 @@ msgid ""
 "Configure the number of days after which items are automaticaly removed from "
 "the trash can."
 msgstr ""
+"Configureer het aantal dagen waarna opnames in de prullenbak worden "
+"verwijderd."
 
 msgid ""
 "Configure the number of days old timers are kept before they are "
 "automatically removed from the timer list."
-msgstr ""
+msgstr "Confugureer het aantal dagen dat verlopen timers worden bewaard."
 
 msgid "Configure the number of rows shown."
-msgstr ""
+msgstr "Configureer het aantal rijen."
 
 msgid ""
 "Configure the offline decoding delay in milliseconds. The configured delay "
 "is observed at each control word parity change."
 msgstr ""
+"Bepaal de offline decodeer vertraging (in milisecondes). De ingestelde "
+"vertraging wordt telkenmale gebruikt voor het opvragen van het 'control "
+"word'."
 
 msgid "Configure the possible fast forward speeds."
 msgstr "Stel de mogelijke vooruitspoel snelheden in"
@@ -1771,7 +1787,8 @@ msgstr "Kies audio taal 2"
 msgid "Configure the second subtitle language."
 msgstr "Kies ondertitel taal 2"
 
-msgid "Configure the secundary EPG language."
+#, fuzzy
+msgid "Configure the secondary EPG language."
 msgstr "Kies EPG taal 2"
 
 #, fuzzy
@@ -1793,6 +1810,8 @@ msgid ""
 "Configure the speed of the background deletion process. Lower speed will "
 "consume less hard disk drive performance."
 msgstr ""
+"Bepaal de snelheid waarmee bestande op de achtergrond worden verwijderd. Een "
+"lage snelheid vergt minder prestaies van de schijf."
 
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr ""
@@ -1840,9 +1859,11 @@ msgid ""
 "is pressed twice. The second infobar contains additional information about "
 "the current channel."
 msgstr ""
+"Stel in of (en hoe lang) de tweede informatie balk wordt vertoond als ; OK;  "
+"tweemaal wordt ingedrukt. Die bevat extra informatie over het huidige kanaal."
 
 msgid "Configure which color format should be used on the SCART output."
-msgstr ""
+msgstr "Bepaalt welk kleur formaat voor de scart-aansluiting wordt benut"
 
 msgid ""
 "Configure which tuner type will be preferred, when the same service is "
@@ -2511,13 +2532,6 @@ msgstr "Downloaden"
 msgid "Download %s from server"
 msgstr "Download %s van server"
 
-msgid "Download .NFI-Files for USB-Flasher"
-msgstr "Download .NFI-Bestanden naar USB-Flasher"
-
-#, fuzzy
-msgid "Download .NFI-Files for USB-flasher"
-msgstr "Download .NFI-Bestanden naar USB-Flasher"
-
 #, fuzzy
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Download .NFI-Bestanden naar USB-Flasher"
@@ -2703,6 +2717,8 @@ msgid ""
 "Enables a feature so that the receiver can decrypt streams (if the ECM data "
 "is included in the stream and a valid card is available)."
 msgstr ""
+"Maakt het mogelijk dat de ontvanger opnames can decoderen (als de ECM-data "
+"in de opname is opgenomen en een geldige smartcard aanwezif is)"
 
 msgid "Encrypted: "
 msgstr "Gecodeerd"
@@ -2728,7 +2744,7 @@ msgid "English"
 msgstr "Engels"
 
 msgid "Enigma2 skin selector"
-msgstr ""
+msgstr "Enigma2 skin selectie"
 
 msgid "Enimga2 Changes"
 msgstr "Enimga2 veranderingen"
@@ -2927,9 +2943,9 @@ msgid "Fan %d PWM"
 msgstr "Ventilator %d PWM"
 
 #
-#, fuzzy, python-format
+#, python-format
 msgid "Fan %d voltage"
-msgstr "Ventilator %d Voltage"
+msgstr "Ventilator %d voltage"
 
 msgid "Fast"
 msgstr "Snel"
@@ -2948,9 +2964,6 @@ msgstr "Vooruitspoel snelheid"
 
 msgid "Favourites"
 msgstr "Favorieten"
-
-msgid "Fee: "
-msgstr ""
 
 msgid "File appears to be busy.\n"
 msgstr "Bestand lijkt in gebruik te zijn.\n"
@@ -3068,14 +3081,15 @@ msgid "Full transparency"
 msgstr "volledig doorzichtig"
 
 msgid "Function of OK button"
-msgstr ""
+msgstr "Functie van OK-toets"
 
 msgid "GB"
 msgstr "GB"
 
+#, fuzzy
 msgid ""
 "GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
+"Do you want to restart the GUI now?"
 msgstr ""
 "De gebruikersinterface moet herstart worden om\n"
 "de nieuwe skin te activeren. Nu herstarten?"
@@ -3425,8 +3439,8 @@ msgid ""
 "If the text is too long to be displayed on the front panel, it will be "
 "repeated (number of times):"
 msgstr ""
-"Als de tekst te lang is voor het schermpje van uw STB_BOX, zal het "
-"(aantal keren) worden herhaald:"
+"Als de tekst te lang is voor het schermpje van uw STB_BOX, zal het (aantal "
+"keren) worden herhaald:"
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -3696,7 +3710,7 @@ msgid "Jump forward 24 hours"
 msgstr "Spring 24 uur vooruit"
 
 msgid "Jump to beginning of list"
-msgstr ""
+msgstr "Spring naar het begin van de lijst"
 
 msgid "Jump to current time"
 msgstr "Spring naar actuele tijd"
@@ -3839,6 +3853,9 @@ msgid ""
 "ascii. This ensures compatibility with operating systems or file systems "
 "with limited character sets."
 msgstr ""
+"Beperk het aantal karakters dat voor de namen van opnames wordt gebruikt tot "
+"(7 bit) ascii. Dit verzekert compatibiliteit met andere systemen die slechts "
+"beperkte karakter sets ondersteunen."
 
 msgid "Limit west"
 msgstr "Limiet west"
@@ -3953,7 +3970,7 @@ msgid "Longitude"
 msgstr "Lengtegraad"
 
 msgid "Luxembourgish"
-msgstr ""
+msgstr "Luxumburgs"
 
 msgid "MAC:"
 msgstr "MAC:"
@@ -4935,7 +4952,7 @@ msgid "Play audio-CD..."
 msgstr "Muziek-CD afspelen..."
 
 msgid "Play back media files"
-msgstr ""
+msgstr "Speel mediabestanden af"
 
 #, fuzzy
 msgid "Play entry"
@@ -5971,7 +5988,7 @@ msgid "Search"
 msgstr "Zoek"
 
 msgid "Search IMDb for information about current event."
-msgstr ""
+msgstr "Zoek in IMDB naar informatie over huidige programma"
 
 msgid "Search east"
 msgstr "Zoek oost"
@@ -6431,12 +6448,12 @@ msgid "Setup mode"
 msgstr "Setup mode"
 
 msgid "Setup network time synchronization interval."
-msgstr ""
+msgstr "Stel het netwerk synchronisatie interval in."
 
 msgid "Setup the interval to check for online updates. (in hours)"
 msgstr ""
-"Hier stelt u het tijdsinterval in waarmee uw STB_BOX naar updates zoekt "
-"(in uren; '0' betekent dat er niet gezocht wordt)."
+"Hier stelt u het tijdsinterval in waarmee uw STB_BOX naar updates zoekt (in "
+"uren; '0' betekent dat er niet gezocht wordt)."
 
 msgid "Setup what a long press on the power button does."
 msgstr "Stel in wat een lange druk op de aan/uit toets moet doen."
@@ -6979,7 +6996,7 @@ msgid "Start timeshift"
 msgstr "Timeshift starten"
 
 msgid "Start with list screen"
-msgstr ""
+msgstr "Begin met lijst weergave"
 
 msgid "Starting on"
 msgstr "Start op"
@@ -7174,13 +7191,13 @@ msgid "Sync time using"
 msgstr "Synchroniseer systeemtijd vanaf"
 
 msgid "Synchronize systemtime using transponder or internet."
-msgstr ""
+msgstr "Synchroniseer de systeemtijd met de transponder of met internet."
 
 msgid "System"
 msgstr "Systeem"
 
 msgid "System temperature:"
-msgstr ""
+msgstr "Systeem temperatuur:"
 
 msgid "System: "
 msgstr "Systeem: "
@@ -7719,8 +7736,7 @@ msgid ""
 "Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
 "Deze plugin creëert een USB-stick die kan worden gebruikt om de software van "
-"uw STB_BOX te updaten zonder dat u een LAN of WLAN verbinding nodig "
-"heeft.\n"
+"uw STB_BOX te updaten zonder dat u een LAN of WLAN verbinding nodig heeft.\n"
 "Eerst moet de stick bootaable gemaakt worden.\n"
 "In de volgende stap kan een BFI-bestand worden gedownload van de update "
 "server en op de stick worden opgeslagen.\n"
@@ -7914,6 +7930,7 @@ msgstr "Bewaar timeshift opname (selecteer event)"
 
 msgid "Timeshift save recording (stop after current event)"
 msgstr ""
+"Timeshift wordt opgeslagen als opname (stopt na het huidige programma)."
 
 msgid "Timeshift saved to your harddisk!"
 msgstr "Timeshift opgeslagen op uw HDD!"
@@ -7960,8 +7977,7 @@ msgid ""
 "for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-"Om de firmware van uw STB_BOX te upgraden, voert u de volgende stappen "
-"uit:\n"
+"Om de firmware van uw STB_BOX te upgraden, voert u de volgende stappen uit:\n"
 "1) Schakel uw box uit met de schakelaar en zorg dat er een bootable USB "
 "stick is ingeplugd.\n"
 "2) Schakel de box in en houdt de DOWN-toets op het front paneel 10 seconden "
@@ -8678,18 +8694,18 @@ msgstr ""
 #, fuzzy
 msgid ""
 "Welcome to the image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your STB_BOX by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
+"the firmware of your STB_BOX by providing a backup facility for your current "
+"settings and a short explanation of how to upgrade your firmware."
 msgstr ""
 "Welkom bij de software update wizard. De wizard biedt u hulp bij het "
-"vernieuwen van de software in uw STB_BOX, het maken van een back-up van "
-"uw huidige instellingen en geeft u een korte uitleg over dit proces."
+"vernieuwen van de software in uw STB_BOX, het maken van een back-up van uw "
+"huidige instellingen en geeft u een korte uitleg over dit proces."
 
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will "
-"guide you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your STB_BOX to the Internet, this wizard will guide "
+"you through the basic network setup of your STB_BOX.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -8754,6 +8770,8 @@ msgid ""
 "When enabled, a recording is allowed to interrupt live tv, when there are no "
 "free tuners."
 msgstr ""
+"Indien ingeschakeld mogen opnames live-TV beeindigen als er niet voldoende "
+"tuners vrij zijn."
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr "Indien gekozen begint de kanaalnummering voor elk bouquet met '1'."
@@ -8770,11 +8788,15 @@ msgid ""
 "When enabled, continue to the next bouquet when the last channel of the "
 "current bouquet is reached while changing channels."
 msgstr ""
+"Indien ingeschakeld zal worden doorgegaan naar de volgende favorietenlijst "
+"als de laatste zender van de huidige lijst bereikt is."
 
 msgid ""
 "When enabled, deleted recordings are moved to the trash can, instead of "
 "being deleted immediately."
 msgstr ""
+"Indien ingeschakeld zullen opnames die verwijderd worden naar de prullenbak "
+"worden verplaatst in plaats van direct verwijderd. Dat scheelt ja/nee vragen."
 
 msgid ""
 "When enabled, external subtitles (in media files) will be displayed in "
@@ -8814,6 +8836,8 @@ msgid ""
 "When enabled, measure power consumption to detect when the rotor stops "
 "turning (when supported by the tuner)."
 msgstr ""
+"Indien ingeschakeld zal de motor het stroomverbruik benutten om te bepalen "
+"of een motor gestopt is (als de tuners dat ondersteunen)."
 
 msgid ""
 "When enabled, pressing '0' will zap you to the first channel in your first "
@@ -8835,6 +8859,8 @@ msgid ""
 "When enabled, subtitles for the hearing impaired will be preferred over "
 "normal subtitles, when both types are available."
 msgstr ""
+"Indien ingeschakeld zullen ondertitels voor slecht horenden voorkeur hebben "
+"boven normale ondertitels (indien beschikbaar)."
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr ""
@@ -8866,11 +8892,15 @@ msgid ""
 "When enabled, the receiver will automatically use the audio track which you "
 "selected before."
 msgstr ""
+"Indien ingeschakeld zal uw STB_BOX automatisch eerder gemaakte audiokeuzes "
+"weer maken."
 
 msgid ""
 "When enabled, the receiver will automatically use the subtitles which you "
 "selected before."
 msgstr ""
+"Indien ingeschakeld zal uw STB_BOX automatisch eerder gemaakte "
+"ondertitelkeuzes weer maken."
 
 #, fuzzy
 msgid "When enabled, the receiver will select an AC3 track (when available)."
@@ -8879,26 +8909,28 @@ msgstr ""
 "beschikbaar)"
 
 msgid "When enabled, use DHCP for the IP configuration."
-msgstr ""
+msgstr "Indien ingeschakeld wordt DHCP gebruikt voor de IP-configuratie."
 
 msgid ""
 "When enabled, your TV will automatically select the SCART input when you "
 "switch on your receiver."
 msgstr ""
-
-#, fuzzy
-msgid "When finished:"
-msgstr "Verwijderen voltooid."
+"Indien ingeschakeld zal uw TV automatisch de SCART-ingang kiezen als uw "
+"STB_BOX wordt ingeschakeld."
 
 msgid ""
 "When nonzero, a recording will start earlier than the starting time "
 "indicated by the EPG."
 msgstr ""
+"Indien een waarde wordt gebruikt, zal een opname eerder beginnen dan volgens "
+"de EPG-tijd."
 
 msgid ""
 "When nonzero, a recording will stop later than the ending time indicated by "
 "the EPG."
 msgstr ""
+"Indien een waarde wordt gebruikt, zal een opname later stoppen dan volgens "
+"de EPG-tijd."
 
 msgid ""
 "When set each folder will show the previous state used, when off the default "
@@ -8931,15 +8963,14 @@ msgid ""
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
 msgstr ""
-"Als uw STB_BOX op een kanaal is afgestemd, wordt normaal gesproken de "
-"gehele transponder gescand op veranderingen. Schakel dit alleen uit, als u "
-"zeker bent van wat u doet. "
+"Als uw STB_BOX op een kanaal is afgestemd, wordt normaal gesproken de gehele "
+"transponder gescand op veranderingen. Schakel dit alleen uit, als u zeker "
+"bent van wat u doet. "
 
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your STB_BOX will restart "
-"automatically!\n"
+"After completion of factory reset, your STB_BOX will restart automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
@@ -8974,7 +9005,7 @@ msgid "Wireless network"
 msgstr "Draadloos netwerk"
 
 #, fuzzy
-msgid "Wireless network configuartion..."
+msgid "Wireless network configuration..."
 msgstr "Draadloze netwerkinstellingen."
 
 msgid "Wireless network connection setup"
@@ -9158,17 +9189,17 @@ msgid "You have to wait %s!"
 msgstr "Wacht op %s!"
 
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further "
-"instructions, please visit the website http://www.dm7025.de.\n"
+"You need a PC connected to your STB_BOX. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
 "Your STB_BOX will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"U moet uw PC met uw STB_BOX verbinden. Voor meer informatie verwijzen wij "
-"u naar de website http://www.dm7025.de.\n"
+"U moet uw PC met uw STB_BOX verbinden. Voor meer informatie verwijzen wij u "
+"naar de website http://www.dm7025.de.\n"
 "De STB_BOX word nu uitgeschakeld. Indien u deze aanwijzingen nauwgezet "
-"volgt, zal de STB_BOX u na de update vragen of u uw instellingen terug "
-"wilt plaatsen."
+"volgt, zal de STB_BOX u na de update vragen of u uw instellingen terug wilt "
+"plaatsen."
 
 #, fuzzy
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
@@ -9396,6 +9427,8 @@ msgid ""
 "Zap to selected channel, or show detailed event info (depends on "
 "configuration)"
 msgstr ""
+"Zap naar het gekozen kanaal of toon gedetaileerde programma info "
+"(afhankelijk van de configuratie)."
 
 msgid "Zoom In/Out TV..."
 msgstr "Zoom In/Uit TV..."
@@ -10555,6 +10588,9 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zapte"
 
+#~ msgid "%d Mb"
+#~ msgstr "%d Mb"
+
 #~ msgid "* = Restart timeshift required"
 #~ msgstr "* = Herstarten timeshift noodzakelijk"
 
@@ -10569,6 +10605,10 @@ msgstr "zapte"
 
 #~ msgid "Add Bookmark"
 #~ msgstr "Markeerpunt toevoegen"
+
+#, fuzzy
+#~ msgid "Advanced pptions"
+#~ msgstr "Geavanceerde opties"
 
 #~ msgid "Altern"
 #~ msgstr "Altern"
@@ -10650,12 +10690,18 @@ msgstr "zapte"
 #~ msgid "Do you want a pop-up message saying 'a recording has started'?"
 #~ msgstr "Wilt u een pop-up bericht dat aangeeft dat een opname gestart is?"
 
-#~ msgid ""
-#~ "Do you want to enable the parental control feature on your STB_BOX?"
+#~ msgid "Do you want to enable the parental control feature on your STB_BOX?"
 #~ msgstr "Wilt u het Kinderslot  op uw STB_BOX inschakelen?"
 
 #~ msgid "Do you want to install a channel list?"
 #~ msgstr "Wilt u een kanaallijst instaleren?"
+
+#~ msgid "Download .NFI-Files for USB-Flasher"
+#~ msgstr "Download .NFI-Bestanden naar USB-Flasher"
+
+#, fuzzy
+#~ msgid "Download .NFI-Files for USB-flasher"
+#~ msgstr "Download .NFI-Bestanden naar USB-Flasher"
 
 #~ msgid "Download Plugins"
 #~ msgstr "Downloaden plugins"
@@ -11030,6 +11076,10 @@ msgstr "zapte"
 
 #~ msgid "Videoenhancement Setup"
 #~ msgstr "Videoverbeteringsinstellingen"
+
+#, fuzzy
+#~ msgid "When finished:"
+#~ msgstr "Verwijderen voltooid."
 
 #~ msgid "When using scart connection, choose what color format to use."
 #~ msgstr "Kies het kleursysteem voor gebruik van de scart aansluiting."
