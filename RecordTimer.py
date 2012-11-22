@@ -83,44 +83,46 @@ service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry, object):
 ######### the following static methods and members are only in use when the box is in (soft) standby
-	receiveRecordEvents = False
-
-	@staticmethod
-	def shutdown():
-		quitMainloop(1)
-
-	@staticmethod
-	def staticGotRecordEvent(recservice, event):
-		if event == iRecordableService.evEnd:
-			print "RecordTimer.staticGotRecordEvent(iRecordableService.evEnd)"
-			recordings = NavigationInstance.instance.getRecordings()
-			if not recordings: # no more recordings exist
-				rec_time = NavigationInstance.instance.RecordTimer.getNextRecordingTime()
-				if rec_time > 0 and (rec_time - time()) < 360:
-					print "another recording starts in", rec_time - time(), "seconds... do not shutdown yet"
-				else:
-					print "no starting records in the next 360 seconds... immediate shutdown"
-					RecordTimerEntry.shutdown() # immediate shutdown
-		elif event == iRecordableService.evStart:
-			print "RecordTimer.staticGotRecordEvent(iRecordableService.evStart)"
-
-	@staticmethod
-	def stopTryQuitMainloop():
-		print "RecordTimer.stopTryQuitMainloop"
-		NavigationInstance.instance.record_event.remove(RecordTimerEntry.staticGotRecordEvent)
-		RecordTimerEntry.receiveRecordEvents = False
-
-	@staticmethod
-	def TryQuitMainloop(default_yes = True):
-		if not RecordTimerEntry.receiveRecordEvents:
-			print "RecordTimer.TryQuitMainloop"
-			NavigationInstance.instance.record_event.append(RecordTimerEntry.staticGotRecordEvent)
-			RecordTimerEntry.receiveRecordEvents = True
-			# send fake event.. to check if another recordings are running or
-			# other timers start in a few seconds
-			RecordTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
-			# send normal notification for the case the user leave the standby now..
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
+# 	receiveRecordEvents = False
+#
+# 	@staticmethod
+# 	def shutdown():
+# 		quitMainloop(1)
+#
+# 	@staticmethod
+# 	def staticGotRecordEvent(recservice, event):
+# 		if event == iRecordableService.evEnd:
+# 			print "RecordTimer.staticGotRecordEvent(iRecordableService.evEnd)"
+# 			recordings = NavigationInstance.instance.getRecordings()
+# 			if not recordings: # no more recordings exist
+# 				rec_time = NavigationInstance.instance.RecordTimer.getNextRecordingTime()
+# 				if rec_time > 0 and (rec_time - time()) < 360:
+# 					print "another recording starts in", rec_time - time(), "seconds... do not shutdown yet"
+# 					# as we woke the box to record, place the box in standby.
+# 					Notifications.AddNotification(Screens.Standby.Standby)
+# 				else:
+# 					print "no starting records in the next 360 seconds... immediate shutdown"
+# 					RecordTimerEntry.shutdown() # immediate shutdown
+# 		elif event == iRecordableService.evStart:
+# 			print "RecordTimer.staticGotRecordEvent(iRecordableService.evStart)"
+#
+# 	@staticmethod
+# 	def stopTryQuitMainloop():
+# 		print "RecordTimer.stopTryQuitMainloop"
+# 		NavigationInstance.instance.record_event.remove(RecordTimerEntry.staticGotRecordEvent)
+# 		RecordTimerEntry.receiveRecordEvents = False
+#
+# 	@staticmethod
+# 	def TryQuitMainloop(default_yes = True):
+# 		if not RecordTimerEntry.receiveRecordEvents:
+# 			print "RecordTimer.TryQuitMainloop"
+# 			NavigationInstance.instance.record_event.append(RecordTimerEntry.staticGotRecordEvent)
+# 			RecordTimerEntry.receiveRecordEvents = True
+# 			# send fake event.. to check if another recordings are running or
+# 			# other timers start in a few seconds
+# 			RecordTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
+# 			# send normal notification for the case the user leave the standby now..
+# 			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
 
 #################################################################
 
@@ -336,6 +338,14 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			return False
 
 		elif next_state == self.StateRunning:
+			self.wasTimerWakeup = False
+			if os.path.exists("/tmp/was_timer_wakeup"):
+				self.wasTimerWakeup = int(open("/tmp/was_timer_wakeup", "r").read()) and True or False
+				os.remove("/tmp/was_timer_wakeup")
+			print '!!!!!!!!!!!!!!!!!!!!!!!!self.wasTimerWakeup:',self.wasTimerWakeup
+
+			self.autostate = Screens.Standby.inStandby
+
 			# if this timer has been cancelled, just go to "end" state.
 			if self.cancelled:
 				return True
@@ -399,23 +409,35 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				return True
 
 		elif next_state == self.StateEnded:
+			print 'TEST1:'
 			old_end = self.end
 			if self.setAutoincreaseEnd():
+				print 'TEST2:'
 				self.log(12, "autoincrase recording %d minute(s)" % int((self.end - old_end)/60))
 				self.state -= 1
 				return True
 			self.log(12, "stop recording")
 			if not self.justplay:
+				print 'TEST3:'
 				NavigationInstance.instance.stopRecordService(self.record_service)
 				self.record_service = None
-			if self.afterEvent == AFTEREVENT.STANDBY:
+			print 'self.afterEvent',self.afterEvent
+			print 'AFTEREVENT.STANDBY',AFTEREVENT.STANDBY
+			print 'AFTEREVENT.DEEPSTANDBY',AFTEREVENT.DEEPSTANDBY
+			if self.afterEvent == AFTEREVENT.STANDBY or (self.autostate and self.afterEvent == AFTEREVENT.AUTO):
+				print 'TEST4:'
 				if not Screens.Standby.inStandby: # not already in standby
+					print 'TEST5:'
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nSTB_BOX to standby. Do that now?"), timeout = 20)
-			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
+			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (self.wasTimerWakeup and self.afterEvent == AFTEREVENT.AUTO):
+				print 'TEST6:'
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+					print 'TEST7:'
 					if Screens.Standby.inStandby: # in standby
-						RecordTimerEntry.TryQuitMainloop() # start shutdown handling without screen
+						print 'TEST8:'
+						quitMainloop(1)
 					else:
+						print 'TEST9:'
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour STB_BOX. Shutdown now?"), timeout = 20)
 			return True
 
@@ -731,15 +753,18 @@ class RecordTimer(timer.Timer):
 			return nextrectime
 
 	def isNextRecordAfterEventActionAuto(self):
+		print 'isNextRecordAfterEventActionAuto:'
 		now = time()
-		t = None
+		print 'self.timer_list',self.timer_list
 		for timer in self.timer_list:
-			if timer.justplay or timer.begin < now:
+			print 'RECTIMER:',timer
+			if timer.justplay:
 				continue
-			if t is None or t.begin == timer.begin:
-				t = timer
-				if t.afterEvent == AFTEREVENT.AUTO:
-					return True
+			print 'timer.afterEvent',timer.afterEvent
+			if timer.afterEvent == AFTEREVENT.AUTO:
+				print 'TRUE 2'
+				return True
+		print 'FALSE 2'
 		return False
 
 	def record(self, entry, ignoreTSC=False, dosave=True):		#wird von loadTimer mit dosave=False aufgerufen

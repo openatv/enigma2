@@ -126,9 +126,9 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		elif next_state == self.StateRunning:
 			wasTimerWakeup = False
 			if os.path.exists("/tmp/was_timer_wakeup"):
-				wasTimerWakeup = int(open("/tmp/was_timer_wakeup", "r").read()) and True or False
+				self.wasTimerWakeup = int(open("/tmp/was_timer_wakeup", "r").read()) and True or False
 				os.remove("/tmp/was_timer_wakeup")
-			print '!!!!!!!!!!!!!!!!!!!!!!!!wasTimerWakeup:',wasTimerWakeup
+			print '!!!!!!!!!!!!!!!!!!!!!!!!self.wasTimerWakeup:',self.wasTimerWakeup
 
 			print 'TEST01:'
 			# if this timer has been cancelled, just go to "end" state.
@@ -211,11 +211,11 @@ class PowerTimerEntry(timer.TimerEntry, object):
 								print 'TEST24:'
 								self.end = self.begin
 
-			elif self.timerType == TIMERTYPE.DEEPSTANDBY and wasTimerWakeup:
+			elif self.timerType == TIMERTYPE.DEEPSTANDBY and self.wasTimerWakeup:
 				print 'TEST25a:'
 				return True
 
-			elif self.timerType == TIMERTYPE.DEEPSTANDBY and not wasTimerWakeup:
+			elif self.timerType == TIMERTYPE.DEEPSTANDBY and not self.wasTimerWakeup:
 				print 'TEST25b:'
 				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
 					print 'TEST26:'
@@ -568,13 +568,16 @@ class PowerTimer(timer.Timer):
 			return nextrectime
 
 	def isNextPowerManagerAfterEventActionAuto(self):
+		print 'isNextPowerManagerAfterEventActionAuto:'
 		now = time()
 		t = None
+		print 'self.timer_list',self.timer_list
 		for timer in self.timer_list:
-			if t is None or t.begin == timer.begin:
-				t = timer
-				if t.timerType == TIMERTYPE.WAKEUPTOSTANDBY or t.afterEvent == AFTEREVENT.WAKEUPTOSTANDBY:
-					return True
+			print 'POWERTIMER:',timer
+			if timer.timerType == TIMERTYPE.WAKEUPTOSTANDBY or timer.afterEvent == AFTEREVENT.WAKEUPTOSTANDBY:
+				print 'TRUE'
+				return True
+		print 'FALSE'
 		return False
 
 	def record(self, entry, ignoreTSC=False, dosave=True):		#wird von loadTimer mit dosave=False aufgerufen
