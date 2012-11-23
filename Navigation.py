@@ -43,12 +43,16 @@ class Navigation:
 				# We need to give the systemclock the chance to sync with the transponder time,
 				# before we will make the decision about whether or not we need to shutdown
 				# after the upcoming recording has completed
-#				self.recordshutdowntimer = eTimer()
-#				self.recordshutdowntimer.callback.append(self.checkShutdownAfterRecording)
-#				self.recordshutdowntimer.start(30000, True)
-				self.standbytimer = eTimer()
-				self.standbytimer.callback.append(self.gotostandby)
-				self.standbytimer.start(15000, True)
+# 				self.recordshutdowntimer = eTimer()
+# 				self.recordshutdowntimer.callback.append(self.checkShutdownAfterRecording)
+# 				self.recordshutdowntimer.start(15000, True)
+				rec_time = self.RecordTimer.getNextRecordingTime()
+				if rec_time > 0 and (rec_time - time()) < 300:
+					print "another recording starts in", rec_time - time(), "seconds... goto standby"
+					# as we woke the box to record, place the box in standby.
+					self.standbytimer = eTimer()
+					self.standbytimer.callback.append(self.gotostandby)
+					self.standbytimer.start(15000, True)
 
 			elif nextPowerManagerAfterEventActionAuto:
 				print 'POWERTIMER: wakeup to standby detected.'
@@ -64,10 +68,10 @@ class Navigation:
 		from Tools import Notifications
 		Notifications.AddNotification(Screens.Standby.Standby)
 
-#	def checkShutdownAfterRecording(self):
-#		if len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
-#			if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
-#				RecordTimer.RecordTimerEntry.TryQuitMainloop(False) # start shutdown handling
+# 	def checkShutdownAfterRecording(self):
+# 		if len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
+# 			if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+# 				RecordTimer.RecordTimerEntry.TryQuitMainloop(False) # start shutdown handling
 
 	def dispatchEvent(self, i):
 		for x in self.event:
