@@ -5,17 +5,15 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-16 18:48+0100\n"
-"PO-Revision-Date: 2012-06-14 17:48+0200\n"
-"Last-Translator: Timo Jarvenpaa <timojarvenpaa@hotmail.com>\n"
+"PO-Revision-Date: 2012-09-17 10:07+0200\n"
+"Last-Translator: BoxFreak\n"
 "Language-Team: none\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.3\n"
-"X-Poedit-Language: Finnish\n"
-"X-Poedit-Country: FINLAND\n"
+"X-Generator: Poedit 1.5.3\n"
 
 #
 msgid ""
@@ -37,6 +35,8 @@ msgid ""
 "\n"
 "Backup your receiver settings."
 msgstr ""
+"\n"
+"Varmuuskopioi vastaanottimesi asetukset."
 
 #
 msgid ""
@@ -44,17 +44,21 @@ msgid ""
 "Edit the upgrade source address."
 msgstr ""
 "\n"
-"Muokkaa päivityksen osoitetta."
+"Muokkaa päivityslähteen osoitetta."
 
 msgid ""
 "\n"
 "Manage extensions or plugins for your receiver"
 msgstr ""
+"\n"
+"Hallitse lisäosia tai plugineja vastaanottimesessasi"
 
 msgid ""
 "\n"
 "Online update of your receiver software."
 msgstr ""
+"\n"
+"Päivitä verkosta vastaanottimesi ohjelmisto."
 
 #
 msgid ""
@@ -77,11 +81,15 @@ msgid ""
 "\n"
 "Restore your receiver settings."
 msgstr ""
+"\n"
+"Palauta vastaanottimesi asetukset."
 
 msgid ""
 "\n"
 "Restore your receiver with a new firmware."
 msgstr ""
+"\n"
+"Palauta vastaanottimesi uudelle firmwarelle."
 
 #
 msgid ""
@@ -141,7 +149,7 @@ msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
 msgid "%A %d %B"
-msgstr ""
+msgstr "%A %d %B"
 
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
@@ -211,7 +219,7 @@ msgid "%d-%b-%Y %-H:%M"
 msgstr "%a %e.%-m  %-H:%M"
 
 msgid "%d-%m"
-msgstr ""
+msgstr "%d-%m"
 
 #
 msgid "%d.%B %Y"
@@ -243,7 +251,7 @@ msgstr[1] " päivitystä."
 
 #, python-format
 msgid "%s/%s: %s"
-msgstr ""
+msgstr "%s/%s: %s"
 
 #
 msgid "(ZAP)"
@@ -398,11 +406,15 @@ msgid ""
 "A finished record timer wants to set your\n"
 "receiver to standby. Do that now?"
 msgstr ""
+"Päättynyt ajastus haluaa asettaa vastaanottimesi\n"
+"valmiustilaan. Tehdäänkö niin nyt?"
 
 msgid ""
 "A finished record timer wants to shut down\n"
 "your receiver. Shutdown now?"
 msgstr ""
+"Päättynyt ajastus haluaa sammuttaa\n"
+"vastaanottimesi. Sammutetaanko nyt?"
 
 #
 msgid "A graphical EPG for all services of an specific bouquet"
@@ -468,11 +480,15 @@ msgid ""
 "A sleep timer wants to set your\n"
 "receiver to standby. Do that now?"
 msgstr ""
+"Uniajastin haluaa asettaa vastaanottimesi\n"
+"valmiustilaan. Tehdäänkö niin nyt?"
 
 msgid ""
 "A sleep timer wants to shut down\n"
 "your receiver. Shutdown now?"
 msgstr ""
+"Uniajastin haluaan sammuttaa vastaanottimesi.\n"
+"Sammutetaanko nyt?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Kuvaus kuvakkeiden tiloista ja toiminnoista."
@@ -709,7 +725,7 @@ msgid "All"
 msgstr "Kaikki"
 
 msgid "All ages"
-msgstr ""
+msgstr "Kaikenikäisille"
 
 #
 #, fuzzy
@@ -761,6 +777,7 @@ msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr "Virhe ladattaessa IPKG-ohjelmapakettiluetteloa. Yritä uudestaan."
 
 #
+#, fuzzy
 msgid "An unknown error occurred!"
 msgstr "Tuntematon virhe!"
 
@@ -824,7 +841,7 @@ msgid "Artist"
 msgstr "Esittäjä"
 
 msgid "Arts/Culture"
-msgstr ""
+msgstr "Taide/Kulttuuri"
 
 #
 msgid "Ask user"
@@ -1142,7 +1159,7 @@ msgstr "Kortti"
 
 #, fuzzy
 msgid "Center DVB subtitles"
-msgstr "Keskitetyt DBV-tekstit"
+msgstr "Keskitetyt DVB-tekstit"
 
 #
 msgid "Change bouquets in quickzap"
@@ -1244,7 +1261,7 @@ msgid ""
 msgstr ""
 
 msgid "Children/Youth"
-msgstr ""
+msgstr "Lapset/Nuoriso"
 
 msgid "Choose which tuner to configure."
 msgstr ""
@@ -1734,7 +1751,7 @@ msgid "Continue playing"
 msgstr "Jatka toistoa"
 
 msgid "Continues play (loop)"
-msgstr ""
+msgstr "Jatkuva toisto (loop)"
 
 #
 msgid "Contrast"
@@ -1754,8 +1771,9 @@ msgstr "Muunna ext3:sta ext4:ään..."
 msgid "Copy"
 msgstr "Kopioi"
 
+#, fuzzy
 msgid "Could not connect to receiver .NFI image feed server:"
-msgstr ""
+msgstr "Ei yhteyttä .NFI ohjelmisto palvelimeen:"
 
 msgid "Could not find installed channel list."
 msgstr ""
@@ -1808,7 +1826,7 @@ msgid "Current device: "
 msgstr "Nykyinen laite: "
 
 msgid "Current event EPG"
-msgstr ""
+msgstr "Nykyisen tapahtuman ohjelmaopas"
 
 #
 msgid "Current settings:"
@@ -2134,8 +2152,9 @@ msgstr "Näytä >16:9 sisältö"
 msgid "Display and userinterface"
 msgstr "Näyttö ja käyttöliittymä"
 
+#, fuzzy
 msgid "Display message before playing next movie"
-msgstr ""
+msgstr "Näytä viesti ennen seuraavaa elokuvaa"
 
 #, fuzzy
 msgid "Display setup"
@@ -2250,7 +2269,7 @@ msgid "Do you want to preview this DVD before burning?"
 msgstr "Haluatko esikatsella tämän DVD:n ennen polttoa?"
 
 msgid "Do you want to reboot your receiver?"
-msgstr ""
+msgstr "Haluatko uudelleenkäynnistää vastaanottimesi?"
 
 #
 msgid "Do you want to remove the package:\n"
@@ -2268,10 +2287,10 @@ msgstr ""
 
 #, fuzzy, python-format
 msgid "Do you want to update your receiver to %s?"
-msgstr "Haluatko ladata ohjelmistopäivityksen %s :lle ?"
+msgstr "Haluatko päivittää vastaanottimesi?"
 
 msgid "Do you want to update your receiver?"
-msgstr ""
+msgstr "Haluatko päivittää vastaanottimesi?"
 
 #
 msgid "Do you want to upgrade the package:\n"
@@ -2294,6 +2313,8 @@ msgstr "Lataa"
 msgid "Download %s from server"
 msgstr "Lataa %s palvelimelta"
 
+#
+#, fuzzy
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Lataa .NFI-tiedostoja USB-päivitysohjelmalle"
 
@@ -2331,7 +2352,7 @@ msgid "E"
 msgstr "E"
 
 msgid "EPG"
-msgstr ""
+msgstr "Ohjelmaopas"
 
 msgid "EPG language selection 1"
 msgstr "EPG:n kielen valinta 1"
@@ -2345,7 +2366,7 @@ msgid "EPG selection"
 msgstr "Ohjelman valinta"
 
 msgid "EPG settings"
-msgstr ""
+msgstr "Ohjelmaoppaan asetukset"
 
 #
 #, python-format
@@ -2382,13 +2403,12 @@ msgstr "Muokkaa kanavalistaa"
 msgid "Edit settings"
 msgstr "Muokkaa asetuksia"
 
-#
 #, fuzzy
 msgid "Edit the nameserver configuration of your receiver.\n"
-msgstr "lopeta nimipalvelimen määritys"
+msgstr "Muokkaa Nimipalvelin asetuksia vastaanottimessasi.\n"
 
 msgid "Edit the network configuration of your receiver.\n"
-msgstr ""
+msgstr "Muokkaa verkko asetuksia vastaanottimessasi.\n"
 
 #
 msgid "Edit title"
@@ -2399,7 +2419,7 @@ msgid "Edit upgrade source url."
 msgstr "Muokkaa päivitys-URL:ia."
 
 msgid "Education/Science/..."
-msgstr ""
+msgstr "Koulutus/Tiede/..."
 
 #
 msgid "Electronic Program Guide"
@@ -2579,7 +2599,7 @@ msgstr "poistu tallenneluettelosta"
 
 #, fuzzy
 msgid "Exit movie player?"
-msgstr "Poistu Mediasoittimesta"
+msgstr "Poistu tallenteista?"
 
 #
 #, fuzzy
@@ -2785,6 +2805,7 @@ msgid "Function of OK button"
 msgstr ""
 
 #
+#, fuzzy
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to restart the GUI now?"
@@ -2823,7 +2844,7 @@ msgid "German"
 msgstr "Saksa"
 
 msgid "Get latest experimental image"
-msgstr "Hae viimeisin koeversioinen ohjelmistopäivitys"
+msgstr "Hae viimeisin testiversion ohjelmistopäivitys"
 
 msgid "Get latest release image"
 msgstr "Hae viimeisin virallinen ohjelmistopäivitys"
@@ -2901,7 +2922,7 @@ msgid "GotoX calibration"
 msgstr "MeneX kalibrointi"
 
 msgid "GraphMultiEpg Settings"
-msgstr ""
+msgstr "Graafisen ohjelmaoppaan asetukset"
 
 #
 msgid "Graphical Multi EPG"
@@ -3272,7 +3293,7 @@ msgstr "Kohdetta sivulla"
 
 #, fuzzy
 msgid "Items per page for list screen"
-msgstr "Kohdetta sivulla"
+msgstr "Merkintöjä per sivu Luettelossa"
 
 #
 #, fuzzy
@@ -3369,8 +3390,9 @@ msgstr "Poistutaanko DVD-soittimesta?"
 msgid "Left"
 msgstr "Vasen"
 
+#, fuzzy
 msgid "Leisure hobbies"
-msgstr ""
+msgstr "Vapaa-ajan harrastukset"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
@@ -3431,7 +3453,7 @@ msgid "List available networks"
 msgstr "Näytä verkot"
 
 msgid "List mode"
-msgstr ""
+msgstr "Luettelotila"
 
 #
 #, fuzzy
@@ -3610,7 +3632,7 @@ msgstr "Viesti..."
 
 #, python-format
 msgid "Minimum age %d years"
-msgstr ""
+msgstr "Alaikäraja %d vuotta"
 
 msgid "Missing "
 msgstr "Puuttuu"
@@ -3705,7 +3727,7 @@ msgid "Movie selection"
 msgstr "Tallenteen valinta"
 
 msgid "Movie/Drama"
-msgstr ""
+msgstr "Elokuva/Draama"
 
 #
 msgid "Movielist menu"
@@ -3745,7 +3767,7 @@ msgid "Multisat"
 msgstr "Usea satelliitti"
 
 msgid "Music/Ballet/Dance"
-msgstr ""
+msgstr "Musiikki/Baletti/Tanssi"
 
 #
 msgid "Mute"
@@ -3875,15 +3897,15 @@ msgid "New version:"
 msgstr "Uusi versio:"
 
 msgid "News Current Affairs"
-msgstr ""
+msgstr "Uutiset ajankohtaisohjelmat"
 
 msgctxt "button label, 'next screen'"
 msgid "Next"
-msgstr ""
+msgstr "Seuraava"
 
 msgctxt "now/next: 'next' event label"
 msgid "Next"
-msgstr ""
+msgstr "Seuraava"
 
 #
 msgid "No"
@@ -4087,7 +4109,7 @@ msgid "No, do nothing."
 msgstr "Ei, älä tee mitään."
 
 msgid "No, just start my receiver"
-msgstr ""
+msgstr "Ei, Käynnistä vain vastaanottimeni"
 
 msgid "No, never"
 msgstr "Ei koskaan"
@@ -4102,7 +4124,7 @@ msgid "Nonlinear"
 msgstr "Epälineaarinen"
 
 msgid "Normal mode"
-msgstr ""
+msgstr "Normaalitila"
 
 #
 msgid "North"
@@ -4135,7 +4157,7 @@ msgstr ""
 
 msgctxt "now/next: 'now' event label"
 msgid "Now"
-msgstr ""
+msgstr "Nyt"
 
 #
 #, fuzzy
@@ -4192,7 +4214,7 @@ msgid "On"
 msgstr "Päällä"
 
 msgid "On end of movie"
-msgstr ""
+msgstr "Tallenteen lopussa"
 
 #
 msgid "One"
@@ -4211,8 +4233,9 @@ msgstr "Hae vain salaamattomat"
 msgid "Open service list"
 msgstr "Avaa kanavalista"
 
+#, fuzzy
 msgid "Open service list and select next channel"
-msgstr ""
+msgstr "Esikatsele valittua kanavaa"
 
 msgid "Open service list and select previous channel"
 msgstr ""
@@ -4317,13 +4340,13 @@ msgstr "Pysähdy tallenteen loppuun"
 msgid "Pause playback"
 msgstr "Toisto jatkuu viimeksi katsotusta kohdasta"
 
+#, fuzzy
 msgid "Percentage left"
-msgstr ""
+msgstr "Prosentti vasemmalle"
 
-#
 #, fuzzy
 msgid "Percentage right"
-msgstr "Kiertopol. oikea"
+msgstr "Prosentti Oikealle"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Poista kaikki roskakorin tallenteet pysyvästi?"
@@ -4343,10 +4366,11 @@ msgid "PiP setup"
 msgstr "PiP-kuvan asetukset"
 
 msgid "Picon"
-msgstr ""
+msgstr "Kanavalogo"
 
+#, fuzzy
 msgid "Picon and service name"
-msgstr ""
+msgstr "Kanavaloga ja kanavan nimi"
 
 #
 #, fuzzy
@@ -4403,10 +4427,10 @@ msgid "Play next"
 msgstr "Toista seuraava"
 
 msgid "Play next (return to movie list)"
-msgstr ""
+msgstr "Soita seuraava (palaa tallenneluetteloon)"
 
 msgid "Play next (return to previous service)"
-msgstr ""
+msgstr "Soita seuraava (palaa aiemmalle kanavalle)"
 
 msgid "Play previous"
 msgstr "Toista edellinen"
@@ -4448,8 +4472,11 @@ msgstr ""
 "Määritä lähiverkkoyhteys syöttämällä tarvittavat arvot.\n"
 "Paina OK-näppäintä kun olet valmis."
 
+#, fuzzy
 msgid "Please connect your receiver to the internet"
 msgstr ""
+"\n"
+"Palauta vastaanottimesi asetukset."
 
 #
 msgid "Please do not change any values unless you know what you are doing!"
@@ -4499,7 +4526,7 @@ msgid "Please press OK to continue."
 msgstr "Jatka painamalla OK."
 
 msgid "Please select a default EPG type..."
-msgstr ""
+msgstr "Ole hyvä ja valitse oletus ohjelmaoppaan tyyppi..."
 
 #
 msgid "Please select a playlist to delete..."
@@ -4801,7 +4828,7 @@ msgstr "Määritä tämä oletukseksi keltaisella näppäimellä."
 
 msgctxt "button label, 'previous screen'"
 msgid "Prev"
-msgstr ""
+msgstr "Edellinen"
 
 msgid "Preview"
 msgstr "Esikatselu"
@@ -4811,7 +4838,7 @@ msgid "Preview menu"
 msgstr "Esikatsele valikkoa"
 
 msgid "Preview selected channel"
-msgstr ""
+msgstr "Esikatsele valittua kanavaa"
 
 #
 msgid "Primary DNS"
@@ -4830,11 +4857,11 @@ msgstr "Eteneminen"
 
 #, fuzzy
 msgid "Progress bar left"
-msgstr "Eteneminen pieni"
+msgstr "Etenemispalkki Vasen"
 
 #, fuzzy
 msgid "Progress bar right"
-msgstr "Eteneminen pieni"
+msgstr "Etenemispalkki Oikea"
 
 #
 msgid "Properties of current title"
@@ -4900,10 +4927,10 @@ msgstr "Satunnainen"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
-msgstr ""
+msgstr "Kanavan määrittelemä ikäraja - %d"
 
 msgid "Rating undefined"
-msgstr ""
+msgstr "Ikärajaa ei määritelty"
 
 #
 msgid "Really close without saving settings?"
@@ -5114,7 +5141,7 @@ msgid "Rereading partition table"
 msgstr "Lue osiotaulukko uudelleen"
 
 msgid "Reserved"
-msgstr ""
+msgstr "Varattu"
 
 #
 msgid "Reset"
@@ -5269,7 +5296,7 @@ msgstr "SSID:"
 
 #
 msgid "Sat"
-msgstr "la"
+msgstr "La"
 
 #
 msgid "Satellite"
@@ -5505,7 +5532,7 @@ msgid "Select copy destination for:"
 msgstr "Valitse kohde kopioinnille:"
 
 msgid "Select default EPG type..."
-msgstr ""
+msgstr "Valitse oletus ohjelmaoppaan tyyppi"
 
 msgid "Select desired image from feed list"
 msgstr "Valitse haluamasi ohjelmistopäivitys feed-luettelosta"
@@ -5595,6 +5622,7 @@ msgid "Send DiSEqC only on satellite change"
 msgstr "Lähetä DiSEqC vain satelliitin vaihdossa"
 
 #
+#, fuzzy
 msgid "Separate titles with a main menu"
 msgstr "Erilliset tallenteet ja päävalikko"
 
@@ -5634,7 +5662,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Service name"
-msgstr "Laitenimi:"
+msgstr "Kanavan nimi"
 
 #
 msgid ""
@@ -5657,10 +5685,9 @@ msgstr "Kanavahaku"
 msgid "Service searching"
 msgstr "Kanavien haku"
 
-#
 #, fuzzy
 msgid "Service title mode"
-msgstr "Valitse video-tila"
+msgstr "Palvelun Otsikkotila"
 
 #
 msgid ""
@@ -5763,10 +5790,10 @@ msgstr "Näytä tietopalkki ohjelman vaihtuessa"
 #
 #, fuzzy
 msgid "Show EPG..."
-msgstr "näytä EPG..."
+msgstr "näytä ohjelmaopas..."
 
 msgid "Show Games show"
-msgstr ""
+msgstr "Show Visailu"
 
 msgid "Show SNR percentage instead of dB value"
 msgstr ""
@@ -5880,7 +5907,7 @@ msgstr "näytä avainsanavalikko"
 
 #
 msgid "Show the radio player..."
-msgstr "Näytä radiosoitin..."
+msgstr "Näytä radio..."
 
 #
 msgid "Show the tv player..."
@@ -5900,7 +5927,7 @@ msgid "Shutdown"
 msgstr "Sammuta"
 
 msgid "Shutdown receiver after"
-msgstr ""
+msgstr "Sammuta vastaanotin "
 
 #, fuzzy
 msgid "Side by side"
@@ -6025,7 +6052,7 @@ msgid "Small progress"
 msgstr "Käynnissä"
 
 msgid "Social/Political/Economics"
-msgstr ""
+msgstr "Sosiaali/Politiikka/Talous"
 
 msgid "SoftCam / CI"
 msgstr "SoftCam / CI"
@@ -6054,7 +6081,7 @@ msgid "Software update"
 msgstr "Ohjelmiston päivitys"
 
 msgid "Softwaremanager information"
-msgstr "Ohjelmiston hallinnan tiedot"
+msgstr "Ohjelmistonhallinnan tiedot"
 
 #
 msgid "Some plugins are not available:\n"
@@ -6068,6 +6095,8 @@ msgstr "Mediascanneria ei ole asennettu!"
 msgid ""
 "Sorry, deleting directories can (for now) only be done through the trash can."
 msgstr ""
+"Pahoittelen, hakemistojen tuhoaminen voidaan tehdä vain roskakorin kautta "
+"(toistaiseksi)."
 
 #
 #, fuzzy
@@ -6127,7 +6156,7 @@ msgid "Split preview mode"
 msgstr "Jaettu esikatseluruutu"
 
 msgid "Sports"
-msgstr ""
+msgstr "Urheilu"
 
 #
 #, fuzzy
@@ -6357,8 +6386,9 @@ msgstr "Ruotsi"
 msgid "Switch TV to correct input"
 msgstr "Vaihda TV oikealle sisäänmenolle"
 
+#, fuzzy
 msgid "Switch between normal mode and list mode"
-msgstr ""
+msgstr "Vaihda normaalista luettelotilaan"
 
 #
 #, fuzzy
@@ -6418,6 +6448,7 @@ msgid "TRANSLATOR_INFO"
 msgstr ""
 "Suomenkielinen käännös: Timo Järvenpää\n"
 "timojarvenpaa@hotmail.com\n"
+"Päivitys: BoxFreak 17.9.2012\n"
 "http://huoltovalikko.keskustelupalstat.com"
 
 #
@@ -6471,7 +6502,7 @@ msgid "Test mode"
 msgstr "Virityskuvan lähetys"
 
 msgid "Test the network configuration of your receiver.\n"
-msgstr ""
+msgstr "Testaa vastaanottimesi verkko konfiguraatio.\n"
 
 #
 #, fuzzy
@@ -6498,14 +6529,17 @@ msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
 "Press OK to start using your receiver."
 msgstr ""
-"Ohjattu verkkoasennus on päättynyt.\n"
-"Jatka painamalla OK-näppäintä."
+"Kiitos että käytit avustajaa. Vastaanottimesi on nyt valmis käyttöön.\n"
+"Ole hyvä ja paina OK aloittaaksesi käytön."
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
 "create a special format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
+"DVD standardi ei tue H.264 (HDTV) videota. Haluatko luoda "
+"erikoisformaattisen data DVD:n (jota ei voi soittaa normaaleilla DVD "
+"soittimilla) sen sijaan?"
 
 msgid "The PIN code has been changed successfully."
 msgstr "PIN-koodin vaihto onnistui."
@@ -6698,6 +6732,14 @@ msgid ""
 "If you already have a prepared bootable USB stick, please insert it now. "
 "Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
+"Tämä plugin luo USB tikun jota voidaan käyttää vastaanottimesi ohjemiston "
+"päivittämiseen ilman verkko- tai WLAN-yhteyttä.\n"
+"Ensiksi, USB tikku tulee alustaa niin että siitä tulee boottaava.\n"
+"Seuraavaksi, NFI ohjelmatiedosto voidaan ladata päivityspalvelimelta ja "
+"tallentaa USB tikulle.\n"
+"Jos olet jo valmistellut boottaavan USB tikun, ole hyvä ja liitä se "
+"vastaanottimeesi nyt. Muussa tapauksessa liitä USB tikku jonka koko on "
+"vähintään 64 MB!"
 
 #
 msgid "This plugin is installed."
@@ -6715,9 +6757,9 @@ msgstr "Tämä lisäosa asennetaan."
 msgid "This plugin will be removed."
 msgstr "Tämä lisäosa poistetaan."
 
-#, python-format
+#, fuzzy, python-format
 msgid "This receiver cannot decode %s streams!"
-msgstr ""
+msgstr "Tämä vastaanotin ei osaa purkaa %s striimejä!"
 
 #
 #, fuzzy
@@ -6922,6 +6964,12 @@ msgid ""
 "for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
+"Päivittääksesi vastaanottimesi, toimi seuraavasti:\n"
+"1) Katkaise virta vastaanottimesi takana olevasta katkaisijasta ja laita "
+"boottaava USB tikku paikoilleen.\n"
+"2) Laita virta takaisin päälle ja paina ALAS näppäintä vastaanottimesi "
+"etupaneelissa 10 sekunnin ajan.\n"
+"3) Odota käynnistymistä ja seuraa avustajan ohjeita."
 
 #
 msgid "Today"
@@ -6988,7 +7036,7 @@ msgstr "Yrityksiä jäljellä:"
 
 #
 msgid "Try to find used transponders in cable network.. please wait..."
-msgstr "Haetaan kaapeliverkon lähetystaajuuksia...odota..."
+msgstr "Haetaan kaapeliverkon lähetystaajuuksia... odota..."
 
 #
 msgid "Trying to download a new packetlist. Please wait..."
@@ -7151,8 +7199,9 @@ msgid_plural "Update completed, %d packages were installed."
 msgstr[0] ""
 msgstr[1] ""
 
+#, fuzzy
 msgid "Update completed. Do you want to reboot your receiver?"
-msgstr ""
+msgstr "Päivitys asennettu. Haluatko uudelleenkäynnistää vastaanottimesi?"
 
 msgid ""
 "Update failed. Your receiver does not have a working internet connection."
@@ -7296,10 +7345,9 @@ msgstr "Käyttäjä - suosikit"
 msgid "User defined"
 msgstr "Käyttäjän määrittelemä"
 
-#
 #, fuzzy
 msgid "User interface"
-msgstr "Sovitin käytössä"
+msgstr "Käyttöliittymä"
 
 #
 msgid "Username"
@@ -7559,6 +7607,7 @@ msgstr "Keskiviikko"
 msgid "Weekday"
 msgstr "Viikonpäivä"
 
+#, fuzzy
 msgid "Weighted position"
 msgstr "Painotettu sijainti"
 
@@ -7580,11 +7629,16 @@ msgstr ""
 "Hae seuraavaksi kohta, johon haluat lopettaa leikkauksen. Paina OK-näppäintä "
 "ja valitse 'Lopeta leikkaus'."
 
+#, fuzzy
 msgid ""
 "Welcome to the image upgrade wizard. The wizard will assist you in upgrading "
 "the firmware of your receiver by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
+"Tervetuloa ohjelmiston päivitysavustajaan. Avustaja ohjaa sinua "
+"vastaanottimesi ohjelmiston päivityksessä tarjoten nykyisten asetusten "
+"varmuuskopiointi mahdollisuuden ja lyhyen selityksen siitä kuinka päivittää "
+"vastaanottimesi ohjelmisto."
 
 msgid ""
 "Welcome.\n"
@@ -7594,6 +7648,12 @@ msgid ""
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
+"Tervetuloa.\n"
+"\n"
+"Jos haluat kytkeä vastaanottimesi Internettiin tämä avustaja ohjaa sinua "
+"perus verkkoasetusten teossa vastaanottimeesi.\n"
+"\n"
+"Paina OK näppäintä aloittaaksesi verkkokonfiguraation teon."
 
 msgid ""
 "Welcome.\n"
@@ -7601,6 +7661,10 @@ msgid ""
 "This start wizard will guide you through the basic setup of your receiver.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
+"Tervetuloa.\n"
+"\n"
+"Tämä avustaja ohjaa sinua perus asetusten teossa vastaanottimeesi.\n"
+"Paina OK nappia kaukosäätimessäsi siirtyäksesi seuraavaan vaiheeseen."
 
 #
 msgid "Welcome..."
@@ -7850,9 +7914,10 @@ msgstr "WLAN-verkko"
 msgid "Wireless network"
 msgstr "Langaton verkko"
 
+#
 #, fuzzy
 msgid "Wireless network configuration..."
-msgstr "WLAN-verkon asetukset."
+msgstr "Verkon asetukset"
 
 msgid "Wireless network connection setup"
 msgstr "WLAN-verkon asetukset"
@@ -7960,7 +8025,7 @@ msgid "You can install this plugin."
 msgstr "Voit asentaa tämän lisäosan."
 
 msgid "You can only burn receiver recordings!"
-msgstr ""
+msgstr "Sinä voit polttaa ainoastaan vastaanottimesi nauhoituksia!"
 
 #
 msgid "You can remove this plugin."
@@ -8007,6 +8072,11 @@ msgid ""
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
+"Tarvitset PC:ltä yhteyden vastaanottimeesi. Jos tarvitset lisäohjeita, "
+"vieraile verkkosivulla http://www.dm7025.de.\n"
+"Vastaanottimesi pysäytetään nyt. Kun olet suorittanut päivityksen "
+"verkkosivun päivitysohjeen mukaan, vastaanottimesi uusi ohjelmisto kysyy "
+"sinulta asetusten palauttamista."
 
 msgid "You system does not support ext4"
 msgstr "Järjetelmä ei tue ext4-tiedostojärjestelmää"
@@ -8069,7 +8139,7 @@ msgid ""
 "Your internet connection is working.\n"
 "\n"
 msgstr ""
-"Laite on nyt valmis käyttöön.\n"
+"Vastaanottimesi on nyt valmis käyttöön.\n"
 "\n"
 "Verkkoyhteys toimii.\n"
 "\n"
@@ -8081,6 +8151,11 @@ msgid ""
 "\n"
 "Please press OK to continue."
 msgstr ""
+"Vastaanottimesi on valmiina käyttöön.\n"
+"\n"
+"Internet yhteytesi toimii nyt.\n"
+"\n"
+"Ole hyvä ja paina OK jatkaaksesi."
 
 msgid "Your receiver is rebooting"
 msgstr "Viritin käynnistyy uudelleen"
@@ -8089,15 +8164,20 @@ msgid "Your receiver is shutting down"
 msgstr "Viritin sammutetaan"
 
 msgid "Your receiver is shutting down. Please stand by..."
-msgstr ""
+msgstr "Vastaanotintasi sammutetaan. Ole hyvä ja odota..."
 
+#, fuzzy
 msgid ""
 "Your receiver might be unusable now. Please consult the manual for further "
 "assistance before rebooting your receiver."
 msgstr ""
+"vastaanottimesi saattaa olla nyt poissa käytöstä. Lue opaskirjasta "
+"lisäohjeita ennenkuin uudelleenkäynnistät vastaanottimesi."
 
 msgid "Your receiver will restart after pressing OK on your remote control."
 msgstr ""
+"Vastaanottimesi uudelleenkäynnistyy kun painat OK näppäintä "
+"kaukosäätimessäsi."
 
 #
 msgid ""
@@ -8112,7 +8192,7 @@ msgstr ""
 "Valitse mitä haluat tehdä seuraavaksi."
 
 msgid "Zap"
-msgstr ""
+msgstr "Kanavanvaihto"
 
 msgid "Zap back to previously tuned service?"
 msgstr "Palataanko aikaisemmalle kanavalle?"
@@ -8223,17 +8303,17 @@ msgid "add to parental protection"
 msgstr "lisää lapsilukkoon"
 
 msgid "adult movie/drama"
-msgstr ""
+msgstr "aikuisviihde"
 
 #
 msgid "advanced"
 msgstr "Laaja"
 
 msgid "adventure/western/war"
-msgstr ""
+msgstr "seikkailu/länkkäri/sota"
 
 msgid "advertisement/shopping"
-msgstr ""
+msgstr "mainos/ostos"
 
 #
 #, fuzzy
@@ -8244,13 +8324,13 @@ msgid "alphabetic reverse"
 msgstr "aakkosittain käänteinen"
 
 msgid "arts/culture (without music, general)"
-msgstr ""
+msgstr "taide/kulttuuri (ilman musiikkia, yleinen)"
 
 msgid "arts/culture magazine"
-msgstr ""
+msgstr "taide/kulttuuri makasiini"
 
 msgid "athletics"
-msgstr ""
+msgstr "yleisurheilu"
 
 #
 msgid "audio tracks"
@@ -8276,11 +8356,11 @@ msgid "background image"
 msgstr "Taustakuva"
 
 msgid "ballet"
-msgstr ""
+msgstr "baletti"
 
 #, python-format
 msgid "bc%s"
-msgstr ""
+msgstr "bc%s"
 
 #
 msgid "better"
@@ -8291,7 +8371,7 @@ msgid "black"
 msgstr "musta"
 
 msgid "black & white"
-msgstr ""
+msgstr "mustavalkoinen"
 
 #
 msgid "blacklist"
@@ -8302,7 +8382,7 @@ msgid "blue"
 msgstr "sininen"
 
 msgid "broadcasting/press"
-msgstr ""
+msgstr "lähetys/lehdistö"
 
 #
 #, fuzzy
@@ -8310,7 +8390,7 @@ msgid "by date"
 msgstr "Aikajärjestys"
 
 msgid "cartoon/puppets"
-msgstr ""
+msgstr "piirretty/nukke"
 
 msgid "center"
 msgstr "keski"
@@ -8320,7 +8400,7 @@ msgid "chapters"
 msgstr "kappaleet"
 
 msgid "childrens's/youth program (general)"
-msgstr ""
+msgstr "lasten/nuorten ohjelma (yleinen)"
 
 #
 msgid "circular left"
@@ -8331,7 +8411,7 @@ msgid "circular right"
 msgstr "Kiertopolarisaatio oikea"
 
 msgid "comedy"
-msgstr ""
+msgstr "komedia"
 
 #
 msgid "complex"
@@ -8354,7 +8434,7 @@ msgid "continue"
 msgstr "jatka"
 
 msgid "cooking"
-msgstr ""
+msgstr "ruuanlaitto"
 
 #
 msgid "copy to bouquets"
@@ -8389,7 +8469,7 @@ msgid "descramble and record ecm"
 msgstr "pura salaus ja tallenna"
 
 msgid "detective/thriller"
-msgstr ""
+msgstr "salapoliisi/jännitys"
 
 #
 msgid "disable"
@@ -8408,14 +8488,14 @@ msgid "disconnected"
 msgstr "ei kytketty"
 
 msgid "discussion/interview/debate"
-msgstr ""
+msgstr "keskustelu/haastattelu/väittely"
 
 #
 msgid "do nothing"
 msgstr "älä tee mitään"
 
 msgid "documentary"
-msgstr ""
+msgstr "dokumentti"
 
 msgid "don't descramble, record ecm"
 msgstr "älä pura, tallenna salattuna"
@@ -8443,14 +8523,14 @@ msgid "east"
 msgstr "itä"
 
 msgid "economics/social advisory"
-msgstr ""
+msgstr "talous/sosiaalinen neuvonta"
 
 #
 msgid "edit alternatives"
 msgstr "Vaihtoehtojen lisäys ja poisto"
 
 msgid "education/science/factual topics (general)"
-msgstr ""
+msgstr "koulutus/tiede/tosiasiat (yleinen)"
 
 #
 msgid "empty"
@@ -8493,17 +8573,17 @@ msgid "end favourites edit"
 msgstr "Tallenna muutokset ja poistu"
 
 msgid "entertainment (10-16 year old)"
-msgstr ""
+msgstr "viihde (10-16 vuotiaille)"
 
 msgid "entertainment (6-14 year old)"
-msgstr ""
+msgstr "viihde (6-14 vuotiaille)"
 
 #
 msgid "equal to"
 msgstr "Sama kuin"
 
 msgid "equestrian"
-msgstr ""
+msgstr "ratsastus"
 
 #
 msgid "exit DVD player or return to file browser"
@@ -8518,13 +8598,13 @@ msgid "exit networkadapter setup menu"
 msgstr "poistu verkkosovittimen asetusvalikosta"
 
 msgid "experimental film/video"
-msgstr ""
+msgstr "kokeellinen elokuva/video"
 
 msgid "false"
 msgstr "epätosi"
 
 msgid "fashion"
-msgstr ""
+msgstr "muoti"
 
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
@@ -8535,17 +8615,17 @@ msgid "filename"
 msgstr "tiedostonimi"
 
 msgid "film/cinema"
-msgstr ""
+msgstr "elokuva"
 
 msgid "fine arts"
-msgstr ""
+msgstr "kuvataide"
 
 #
 msgid "fine-tune your display"
 msgstr "hienosäädä näyttöä"
 
 msgid "fitness & health"
-msgstr ""
+msgstr "kuntoilu ja terveys"
 
 #
 #, fuzzy
@@ -8557,13 +8637,13 @@ msgid "flat alphabetic reverse"
 msgstr "aakkosittain käänteinen"
 
 msgid "folk/traditional music"
-msgstr ""
+msgstr "kansan/perinteinen musiikki"
 
 msgid "football/soccer"
-msgstr ""
+msgstr "jalkapallo"
 
 msgid "foreign countries/expeditions"
-msgstr ""
+msgstr "ulkomaat/tutkimusmatkat"
 
 #
 msgid "forward to the next chapter"
@@ -8574,13 +8654,13 @@ msgid "free"
 msgstr "vapaana"
 
 msgid "further education"
-msgstr ""
+msgstr "jatkokoulutus"
 
 msgid "game show/quiz/contest"
-msgstr ""
+msgstr "visailu/tietovisa/kilpailu"
 
 msgid "gardening"
-msgstr ""
+msgstr "puutarhanhoito"
 
 #
 msgid "go to deep standby"
@@ -8599,7 +8679,7 @@ msgid "green"
 msgstr "vihreä"
 
 msgid "handicraft"
-msgstr ""
+msgstr "käsityö"
 
 msgid "height"
 msgstr "korkeus"
@@ -8613,7 +8693,7 @@ msgid "horizontal"
 msgstr "Horisontaali"
 
 msgid "information/education/school program"
-msgstr ""
+msgstr "tiedotus/koulutus/koulu ohjelma"
 
 #
 msgid "init module"
@@ -8631,7 +8711,7 @@ msgid "invalid type"
 msgstr "epäkelpo tyyppi"
 
 msgid "jazz"
-msgstr ""
+msgstr "jazz"
 
 #
 msgid "jump back to the previous title"
@@ -8642,7 +8722,7 @@ msgid "jump forward to the next title"
 msgstr "hyppää eteenpäin seuraavaan kappaleeseen"
 
 msgid "languages"
-msgstr ""
+msgstr "kielet"
 
 #
 msgid "leave movie player..."
@@ -8653,7 +8733,7 @@ msgid "left"
 msgstr "vasen"
 
 msgid "leisure hobbies (general)"
-msgstr ""
+msgstr "vapaa-ajan harrastukset (yleinen)"
 
 #
 msgid "length"
@@ -8679,10 +8759,10 @@ msgid "list style single line"
 msgstr "Luettelon tyyli: yksi rivi"
 
 msgid "literature"
-msgstr ""
+msgstr "kirjallisuus"
 
 msgid "live broadcast"
-msgstr ""
+msgstr "suora lähetys"
 
 #
 msgid "locked"
@@ -8693,17 +8773,17 @@ msgid "loopthrough to"
 msgstr "Läpisyöttö"
 
 msgid "magazines/reports/documentary"
-msgstr ""
+msgstr "makasiini/raportti/dokumentti"
 
 #
 msgid "manual"
 msgstr "manuaalinen"
 
 msgid "martial sports"
-msgstr ""
+msgstr "kamppailulajit"
 
 msgid "medicine/physiology/psychology"
-msgstr ""
+msgstr "lääketiede/fysiologia/psykologia"
 
 #
 msgid "menu"
@@ -8722,10 +8802,10 @@ msgid "month"
 msgstr "kuukausi"
 
 msgid "motor sport"
-msgstr ""
+msgstr "moottoriurheilu"
 
 msgid "motoring"
-msgstr ""
+msgstr "autoilu"
 
 #
 msgid "move down to last entry"
@@ -8744,36 +8824,36 @@ msgid "move up to previous entry"
 msgstr "siirry edelliseen kohtaan"
 
 msgid "movie/drama (general)"
-msgstr ""
+msgstr "elokuva/draama (yleinen)"
 
 #
 msgid "multinorm"
 msgstr "moninormi"
 
 msgid "music/ballet/dance (general)"
-msgstr ""
+msgstr "musiikki/baletti/tanssi (yleinen)"
 
 msgid "musical/opera"
-msgstr ""
+msgstr "musikaali/ooppera"
 
 msgid "nature/animals/environment"
-msgstr ""
+msgstr "luonto/eläimet/ympäristö"
 
 #
 msgid "never"
 msgstr "ei koskaan"
 
 msgid "new media"
-msgstr ""
+msgstr "uusmedia"
 
 msgid "news magazine"
-msgstr ""
+msgstr "uutismakasiini"
 
 msgid "news/current affairs (general)"
-msgstr ""
+msgstr "uutiset/ajankohtaisohjelmat (yleinen)"
 
 msgid "news/weather report"
-msgstr ""
+msgstr "uutiset/sää"
 
 #
 msgid "no"
@@ -8855,14 +8935,14 @@ msgid "original"
 msgstr "alkuperäinen"
 
 msgid "original language"
-msgstr ""
+msgstr "alkuperäinen kieli"
 
 #
 msgid "pass"
 msgstr "hyväksytty"
 
 msgid "performing arts"
-msgstr ""
+msgstr "esittävä taide"
 
 msgid "play as picture in picture"
 msgstr "toista kuva-kuvassa"
@@ -8887,13 +8967,13 @@ msgid "please wait, loading picture..."
 msgstr "Kuvaa ladataan. Odota..."
 
 msgid "popular culture/traditional arts"
-msgstr ""
+msgstr "populäärikulttuuri/perinteinen taide"
 
 msgid "pre-school children's program"
-msgstr ""
+msgstr "esikouluikäisten lasten ohjelma"
 
 msgid "receiver software because updates are available."
-msgstr ""
+msgstr "vastaanottimen ohjelmisto, koska päivityksiä on saatavilla."
 
 #
 msgid "record"
@@ -8908,10 +8988,10 @@ msgid "red"
 msgstr "punainen"
 
 msgid "religion"
-msgstr ""
+msgstr "uskonto"
 
 msgid "remarkable people"
-msgstr ""
+msgstr "merkittäviä ihmisiä"
 
 #
 msgid "remove after this position"
@@ -8977,10 +9057,10 @@ msgid "right"
 msgstr "oikea"
 
 msgid "rock/pop"
-msgstr ""
+msgstr "rock/pop"
 
 msgid "romance"
-msgstr ""
+msgstr "romantiikka"
 
 #
 msgid "save last directory on exit"
@@ -8992,23 +9072,23 @@ msgstr "tallenna soittolista suljettaessa"
 
 #
 msgid "scan done!"
-msgstr "Haku suoritettu!"
+msgstr "haku suoritettu!"
 
 #
 #, python-format
 msgid "scan in progress - %d%% done!"
-msgstr "Haku käynnissä - %d%% tehty!"
+msgstr "haku käynnissä - %d%% tehty!"
 
 #
 msgid "scan state"
 msgstr "haun tila"
 
 msgid "science fiction/fantasy/horror"
-msgstr ""
+msgstr "scifi/fantasia/kauhu"
 
 #
 msgid "second cable of motorized LNB"
-msgstr "Kääntyvän antennin twin-LNB:n toinen kaapeli"
+msgstr "kääntyvän antennin twin-LNB:n toinen kaapeli"
 
 #
 msgid "seconds"
@@ -9027,10 +9107,10 @@ msgid "select menu entry"
 msgstr "valitse valikon kohta"
 
 msgid "serious music/classic music"
-msgstr ""
+msgstr "vakava musiikki/klassinen musiikki"
 
 msgid "serious/classical/religious/historical movie/drama"
-msgstr ""
+msgstr "vakava/klassinen/uskonnollinen/historiallinen elokuva/draama"
 
 msgid "service PIN"
 msgstr "kanavan PIN"
@@ -9060,17 +9140,17 @@ msgid "show mediaplayer on mainmenu"
 msgstr "näytä mediatoistin päävalikossa"
 
 msgid "show softwaremanager in setup menu"
-msgstr ""
+msgstr "näytä ohjelmistonhallinta asetusvalikossa"
 
 msgid "show softwaremanager on blue button"
-msgstr ""
+msgstr "näytä ohjelmistonhallinta sinisestä napista"
 
 #
 msgid "show transponder info"
-msgstr "Näytä lähettimen tietoja"
+msgstr "näytä lähettimen tietoja"
 
 msgid "show/game show (general)"
-msgstr ""
+msgstr "show/visailu (yleinen)"
 
 msgid "shuffle"
 msgstr "satunnainen"
@@ -9096,13 +9176,13 @@ msgid "skip forward"
 msgstr "siirry eteenpäin"
 
 msgid "soap/melodram/folkloric"
-msgstr ""
+msgstr "saippuasarja/melodraama/folkloristiikka"
 
 msgid "social/political issues/economics (general)"
-msgstr ""
+msgstr "sosiaaliset/poliittiset aiheet/talous (yleinen)"
 
 msgid "social/spiritual science"
-msgstr ""
+msgstr "sosiaalinen/hengellinen tiede"
 
 msgid "sorting of playlists"
 msgstr "soittolistojen järjestely"
@@ -9112,16 +9192,16 @@ msgid "special characters"
 msgstr "erikoismerkit"
 
 msgid "special events"
-msgstr ""
+msgstr "erikoistapahtumat"
 
 msgid "special format data DVD (HDTV compatible)"
-msgstr ""
+msgstr "erikoisformaattinen DVD (HDTV yhteensopiva)"
 
 msgid "sports (general)"
-msgstr ""
+msgstr "urheilu (yleinen)"
 
 msgid "sports magazine"
-msgstr ""
+msgstr "urheilumakasiini"
 
 #
 msgid "standard"
@@ -9170,20 +9250,20 @@ msgid "switch to the next subtitle language"
 msgstr "vaihda seuraavalle tekstityskielelle"
 
 msgid "talk show"
-msgstr ""
+msgstr "keskusteluohjelma"
 
 msgid "team sports"
-msgstr ""
+msgstr "joukkueurheilu"
 
 msgid "technology/natural science"
-msgstr ""
+msgstr "teknologia/luonnontiede"
 
 #
 msgid "template file"
 msgstr "Mallitiedosto"
 
 msgid "tennis/squash"
-msgstr ""
+msgstr "tennis/squash"
 
 #
 msgid "this recording"
@@ -9201,7 +9281,7 @@ msgid "top"
 msgstr "ylä"
 
 msgid "tourism/travel"
-msgstr ""
+msgstr "turismi/matkailu"
 
 msgid "true"
 msgstr "tosi"
@@ -9211,7 +9291,7 @@ msgstr "viritin ei ole tuettu"
 
 #
 msgid "unavailable"
-msgstr "Ei saatavilla"
+msgstr "ei saatavilla"
 
 #
 msgid "unconfirmed"
@@ -9229,7 +9309,7 @@ msgid "unknown service"
 msgstr "tuntematon kanava"
 
 msgid "unpublished"
-msgstr ""
+msgstr "julkaisematon"
 
 #
 msgid "until standby/restart"
@@ -9240,11 +9320,11 @@ msgid "user defined"
 msgstr "käyttäjän määrittelemä"
 
 msgid "variety show"
-msgstr ""
+msgstr "varietee"
 
 #
 msgid "vertical"
-msgstr "Vertikaali"
+msgstr "vertikaali"
 
 #
 msgid "wait for ci..."
@@ -9259,7 +9339,7 @@ msgid "waiting"
 msgstr "odottaa"
 
 msgid "water sport"
-msgstr ""
+msgstr "vesiurheilu"
 
 #
 msgid "weekly"
@@ -9279,7 +9359,7 @@ msgid "width"
 msgstr "leveys"
 
 msgid "winter sport"
-msgstr ""
+msgstr "talviurheilu"
 
 msgid "wireless network interface"
 msgstr "WLAN-yhteys"
@@ -9451,7 +9531,7 @@ msgstr "vaihdettu"
 #~ msgstr "Kaatumislokien automaattilähetys..."
 
 #~ msgid "Create movie directory"
-#~ msgstr "Luo tallennehakemistp"
+#~ msgstr "Luo tallennehakemisto"
 
 #~ msgid "Custom text position"
 #~ msgstr "Muokattu tekstin paikka"
@@ -9639,7 +9719,7 @@ msgstr "vaihdettu"
 #~ msgid "NetworkWizard"
 #~ msgstr "Verkkoavustaja"
 
-#
+#, fuzzy
 #~ msgid "Next"
 #~ msgstr "Seuraava"
 
@@ -9742,12 +9822,13 @@ msgstr "vaihdettu"
 #~ msgid "Please wait while searching for removable packages..."
 #~ msgstr "Odota, poistettavia paketteja haetaan..."
 
-#
+#, fuzzy
 #~ msgid "Prev"
 #~ msgstr "Edellinen"
 
+#, fuzzy
 #~ msgid "Recording data sync size"
-#~ msgstr "Tallenteen tietojen synkronointikoko"
+#~ msgstr "Tallennuksen tyyppi"
 
 #
 #~ msgid "Remove Bookmark"
@@ -10113,7 +10194,7 @@ msgstr "vaihdettu"
 
 #
 #~ msgid "show single service EPG..."
-#~ msgstr "Näytä yhden kanavan EPG"
+#~ msgstr "näytä yhden kanavan ohjelmaopas..."
 
 #
 #~ msgid "stop recording"
@@ -10126,3 +10207,78 @@ msgstr "vaihdettu"
 #
 #~ msgid "was removed successfully"
 #~ msgstr "poistettiin onnistuneesti"
+
+#~ msgid ""
+#~ "Adds enigma2 settings and receiver model informations like SN, rev... if "
+#~ "enabled."
+#~ msgstr ""
+#~ "Lisää enigma2 asetuksia ja vastaanottimen mallitietoja, kuten SN, rev... "
+#~ "jos päällä."
+
+#~ msgid ""
+#~ "After the start wizard is completed, you need to protect single services. "
+#~ "Refer to your receiver's manual on how to do that."
+#~ msgstr ""
+#~ "Kun käynnistysavustaja on valmis, sinun pitää suojata yksittäiset "
+#~ "palvelut. Tarkista vastaanottimesi käsikirjasta kuinka sen teet."
+
+#~ msgid ""
+#~ "Crashlogs found!\n"
+#~ "Send them to the Image Developper?"
+#~ msgstr ""
+#~ "Kaatumislogeja löytyi!\n"
+#~ "Lähetetäänkö ne ohjelmiston kehittäjille?"
+
+#~ msgid "Do you want to enable the parental control feature on your receiver?"
+#~ msgstr "Haluatko asettaa lapsilukon käyttöön vastaanottimessasi?"
+
+#~ msgid ""
+#~ "Do you want to update your receiver?\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "Haluatko päivittää vastaanottimesi?\n"
+#~ "Painettuasi OK, ole hyvä ja odota!"
+
+#~ msgid "Listscreen default at start user interface"
+#~ msgstr "Luettelo oletuksena käyttöliittymän käynnistyksessä"
+
+#~ msgid "Progress Small"
+#~ msgstr "Eteneminen pieni"
+
+#~ msgid ""
+#~ "The installation of the default settings is finished. You can now "
+#~ "continue configuring your receiver by pressing the OK button on the "
+#~ "remote control."
+#~ msgstr ""
+#~ "Oletusasetusten asennus on valmis. Voit nyt jatkaa vastaanottimesi "
+#~ "konfigurointia painamalla OK näppäintä kaukosäätimessäsi."
+
+#~ msgid "Upgrading receiver... Please wait"
+#~ msgstr "Vastaanotinta päivitetään... Ole hyvä ja odota"
+
+#~ msgid ""
+#~ "Welcome to the cleanup wizard.\n"
+#~ "\n"
+#~ "We have detected that your available internal memory has dropped below "
+#~ "2MB.\n"
+#~ "To ensure stable operation of your receiver, the internal memory should "
+#~ "be cleaned up.\n"
+#~ "You can use this wizard to remove some extensions.\n"
+#~ msgstr ""
+#~ "Tervetuloa muistin vapautusavustajaan.\n"
+#~ "\n"
+#~ "Olemme huomanneet että vastaanottimesi vapaa sisäinen muisti on pudonnut "
+#~ "alle 2MB.\n"
+#~ "Varmistaaksesi vastaanottimesi vakaa toiminta, sisäistä muistia pitäisi "
+#~ "vapauttaa.\n"
+#~ "Voit käyttää tätä avustajaa poistaaksesi joitakin lisäosia.\n"
+
+#~ msgid ""
+#~ "Your receiver isn't connected to the internet properly. Please check it "
+#~ "and try again."
+#~ msgstr ""
+#~ "Vastaanottimesi ei ole kytkettynä internettiin kunnolla. Tarkista yhteys "
+#~ "ja yritä uudelleen."
+
+#~ msgid "on end of movie"
+#~ msgstr "tallenteen lopussa"
