@@ -44,14 +44,7 @@
 		<widget source="session.Event_Now" render="Progress" position="top" size="*,14" borderWidth="3" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-<!--		<panel position="bottom" size="*,44" name="SummaryClockPanel">
-			<widget source="session.Event_Now" render="Label" position="4,0" size="60,25" font="FdLcD;25" halign="left" noWrap="1">
-				<convert type="EventTime">Remaining</convert>
-				<convert type="RemainingToText">NoSeconds</convert>
-			</widget>
-		</panel> -->
 		<panel name="SummaryClockPanel" />
-		<panel name="SummaryIconsPanel" />
 	</screen>
     
   
