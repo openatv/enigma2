@@ -124,7 +124,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			return True
 
 		elif next_state == self.StateRunning:
-			wasTimerWakeup = False
+			self.wasTimerWakeup = False
 			if os.path.exists("/tmp/was_timer_wakeup"):
 				self.wasTimerWakeup = int(open("/tmp/was_timer_wakeup", "r").read()) and True or False
 				os.remove("/tmp/was_timer_wakeup")
@@ -550,10 +550,11 @@ class PowerTimer(timer.Timer):
 	def getNextPowerManagerTimeOld(self):
 		now = time()
 		for timer in self.timer_list:
-			next_act = timer.getNextActivation()
-			if next_act < now:
-				continue
-			return next_act
+			if timer.timerType != TIMERTYPE.AUTOSTANDBY and timer.timerType != TIMERTYPE.AUTODEEPSTANDBY:
+				next_act = timer.getNextActivation()
+				if next_act < now:
+					continue
+				return next_act
 		return -1
 
 	def getNextPowerManagerTime(self):
