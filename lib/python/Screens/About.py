@@ -76,6 +76,9 @@ class About(Screen):
 		elif getBoxType() == 'odinm9':
 			self["BoxType"] = StaticText(_("Hardware:") + " Odin M9")
 			AboutText = _("Hardware:") + " Odin M9\n"
+		elif getBoxType() == 'iclassm7':
+			self["BoxType"] = StaticText(_("Hardware:") + " iclass")
+			AboutText = _("Hardware:") + " iclass\n"			
 		elif getBoxType() == 'gb800solo':
 			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD 800SOLO")
 			AboutText = _("Hardware:") + " GigaBlue HD 800SOLO\n"
@@ -609,6 +612,8 @@ class AboutSummary(Screen):
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
 		elif getBoxType() == 'odinm9':
 			self["BoxType"] = StaticText(_("Hardware:") + " Odin M9")
+		elif getBoxType() == 'iclassm7':
+			self["BoxType"] = StaticText(_("Hardware:") + " iclass")			
 		elif getBoxType() == 'gb800solo':
 			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD 800SOLO")
 		elif getBoxType() == 'gb800se':
