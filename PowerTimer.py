@@ -124,7 +124,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			return True
 
 		elif next_state == self.StateRunning:
-			wasTimerWakeup = False
+			self.wasTimerWakeup = False
 			if os.path.exists("/tmp/was_timer_wakeup"):
 				self.wasTimerWakeup = int(open("/tmp/was_timer_wakeup", "r").read()) and True or False
 				os.remove("/tmp/was_timer_wakeup")
