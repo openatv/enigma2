@@ -1315,7 +1315,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				case GST_STATE_CHANGE_READY_TO_PAUSED:
 				{
 #if GST_VERSION_MAJOR >= 1
-					GValue element;
+					GValue element = { 0, };
 #endif
 					GstIterator *children;
 					GstElement *subsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
