@@ -46,9 +46,13 @@ class Navigation:
 # 				self.recordshutdowntimer = eTimer()
 # 				self.recordshutdowntimer.callback.append(self.checkShutdownAfterRecording)
 # 				self.recordshutdowntimer.start(15000, True)
-				self.standbytimer = eTimer()
-				self.standbytimer.callback.append(self.gotostandby)
-				self.standbytimer.start(15000, True)
+				rec_time = self.RecordTimer.getNextRecordingTime()
+				if rec_time > 0 and (rec_time - time()) < 300:
+					print "another recording starts in", rec_time - time(), "seconds... goto standby"
+					# as we woke the box to record, place the box in standby.
+					self.standbytimer = eTimer()
+					self.standbytimer.callback.append(self.gotostandby)
+					self.standbytimer.start(15000, True)
 
 			elif nextPowerManagerAfterEventActionAuto:
 				print 'POWERTIMER: wakeup to standby detected.'
