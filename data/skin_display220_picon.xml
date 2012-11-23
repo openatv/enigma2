@@ -21,10 +21,10 @@
 
 <!-- template -->
 	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="right" size="160,*" font="FdLcD;50" halign="right" valign="top" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="right" size="160,55" font="FdLcD;50" halign="right" valign="top" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="145,40" size="40,25" foregroundColor="#0000ff" font="FdLcD;25" zPosition="1" noWrap="1">
+		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="105,50" size="129,25" foregroundColor="#ff0000" font="FdLcD;25" zPosition="1" noWrap="1">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
@@ -35,21 +35,23 @@
 		<widget source="session.CurrentService" render="Picon" position="0,100" zPosition="1" size="100,60" alphatest="on">
 				<convert type="ServiceName">Reference</convert>
 			</widget>
-		<widget source="session.CurrentService" render="Label" position="top" size="*,43" font="FdLcD;21" halign="center" foregroundColor="#ffff7f" >
+		<widget source="session.CurrentService" render="Label" position="top" size="*,43" font="FdLcD;36" halign="center" foregroundColor="#00ffff" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="top" size="*,41" font="FdLcD;20" halign="center" >
+		<widget source="session.Event_Now" render="Label" position="top" size="*,41" font="FdLcD;20" halign="center"  foregroundColor="#ffffff">
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Progress" position="top" size="*,14" borderWidth="3" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<panel position="bottom" size="*,44" name="SummaryClockPanel">
+<!--		<panel position="bottom" size="*,44" name="SummaryClockPanel">
 			<widget source="session.Event_Now" render="Label" position="4,0" size="60,25" font="FdLcD;25" halign="left" noWrap="1">
 				<convert type="EventTime">Remaining</convert>
 				<convert type="RemainingToText">NoSeconds</convert>
 			</widget>
-		</panel>
+		</panel> -->
+		<panel name="SummaryClockPanel" />
+		<panel name="SummaryIconsPanel" />
 	</screen>
     
   
@@ -158,10 +160,13 @@
 
 <!-- standby -->
 	<screen name="StandbySummary" position="fill">
-		<widget source="global.CurrentTime" render="Label" position="center,center" size="220,70" font="FdLcD;68" halign="center" valign="center" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="220,24" font="FdLcD;22" halign="left"  noWrap="1">
+			<convert type="ClockToText">FullDate</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="center,center" size="220,70" font="FdLcD;85" halign="center" valign="center" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="center,150" size="190,22" font="FdLcD;22" zPosition="2" valign="bottom" halign="center" noWrap="1" foregroundColor="#0000ff" >
+		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="center,150" size="190,22" font="FdLcD;22" zPosition="2" valign="bottom" halign="center" noWrap="1" foregroundColor="#ff0000" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
