@@ -1229,22 +1229,27 @@ subtype_t getSubtitleType(GstPad* pad, gchar *g_codec=NULL)
 		caps = gst_pad_get_allowed_caps(pad);
 	}
 
-	if ( caps )
+	if (caps && !gst_caps_is_empty(caps))
 	{
 		GstStructure* str = gst_caps_get_structure(caps, 0);
-		const gchar *g_type = gst_structure_get_name(str);
-		eDebug("getSubtitleType::subtitle probe caps type=%s", g_type);
-
-		if ( !strcmp(g_type, "video/x-dvd-subpicture") )
-			type = stVOB;
-		else if ( !strcmp(g_type, "text/x-pango-markup") )
-			type = stSRT;
-		else if ( !strcmp(g_type, "text/plain") )
-			type = stPlainText;
-		else if ( !strcmp(g_type, "subpicture/x-pgs") )
-			type = stPGS;
-		else
-			eDebug("getSubtitleType::unsupported subtitle caps %s (%s)", g_type, g_codec ? g_codec : "(null)");
+		if (str)
+		{
+			const gchar *g_type = gst_structure_get_name(str);
+			eDebug("getSubtitleType::subtitle probe caps type=%s", g_type ? g_type : "(null)");
+			if (g_type)
+			{
+				if ( !strcmp(g_type, "video/x-dvd-subpicture") )
+					type = stVOB;
+				else if ( !strcmp(g_type, "text/x-pango-markup") )
+					type = stSRT;
+				else if ( !strcmp(g_type, "text/plain") )
+					type = stPlainText;
+				else if ( !strcmp(g_type, "subpicture/x-pgs") )
+					type = stPGS;
+				else
+					eDebug("getSubtitleType::unsupported subtitle caps %s (%s)", g_type, g_codec ? g_codec : "(null)");
+			}
+		}
 	}
 	else if ( g_codec )
 	{
