@@ -56,6 +56,17 @@ elif [ $MODEL = "odinm9" ] ; then
 	MAINDEST=$DIRECTORY/odin
 	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_odin/$DATE
+## TESTING THE iclass M7 Model	
+elif [ $MODEL = "iclassm7" ] ; then
+	TYPE=ICLASS
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="ICLASS $MODEL"
+	MTDKERNEL="mtd2"
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/en2
+	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_ICLASS/$DATE	
 elif [ $MODEL = "xp1000" ] ; then
 	TYPE=MAXDIGITAL
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
@@ -412,6 +423,38 @@ if [ $TYPE = "ODIN" ] ; then
 	fi
 fi
 
+if [ $TYPE = "ICLASS" ] ; then
+	rm -rf $MAINDEST
+	mkdir -p $MAINDEST
+	mkdir -p $EXTRA
+	mv $WORKDIR/root.$ROOTFSTYPE $MAINDEST/rootfs.bin 
+	mv $WORKDIR/vmlinux.gz $MAINDEST/kernel.bin
+	echo "rename this file to 'force' to force an update without confirmation" > $MAINDEST/noforce;
+	echo $MODEL-$IMAGEVERSION > $MAINDEST/imageversion
+	cp -r $MAINDEST $EXTRA #copy the made back-up to images
+	if [ -f $MAINDEST/rootfs.bin -a -f $MAINDEST/kernel.bin -a -f $MAINDEST/imageversion -a -f $MAINDEST/noforce ] ; then
+		echo "_________________________________________________\n"
+		echo "USB Image created on:" $MAINDEST
+		echo "and there is made an extra copy on:"
+		echo $EXTRA
+		echo "_________________________________________________\n"
+		echo " "
+		echo "To restore the image: \n"
+		echo "Place the USB-flash drive in the (front) USB-port "
+		echo "and switch the iclass off and on with the powerswitch "
+		echo "on the back of the iclass. Follow the instructions "
+		echo "on the front-display.\n"
+		echo "\nPlease wait...almost ready! "
+	else
+		echo "Image creation failed - "
+		echo "Probable causes could be"
+		echo "     wrong back-up destination "
+		echo "     no space left on back-up device"
+		echo "     no writing permission on back-up device"
+		echo " "
+	fi
+fi
+
 if [ $TYPE = "MAXDIGITAL" ] ; then
 	rm -rf $MAINDEST
 	mkdir -p $MAINDEST
@@ -534,6 +577,9 @@ if [ $DIRECTORY == /hdd ]; then
 		elif [ $TYPE = "ODIN" ] ; then					# Odin detected
 			mkdir -p $TARGET/odin/$MODEL
 			cp -r $MAINDEST $TARGET/odin/
+		elif [ $TYPE = "ICLASS" ] ; then					# iclass detected
+			mkdir -p $TARGET/iclass/$MODEL
+			cp -r $MAINDEST $TARGET/en2/			
 		elif [ $TYPE = "MAXDIGITAL" ] ; then					# MaxDigital detected
 			mkdir -p $TARGET/$MODEL
 			cp -r $MAINDEST $TARGET
