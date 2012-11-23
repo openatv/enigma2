@@ -1,6 +1,6 @@
 from config import config, ConfigSlider, ConfigSelection, ConfigYesNo, \
 	ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
-from enigma import eAVSwitch, getDesktop
+from enigma import eAVSwitch, getDesktop, getBoxType
 from SystemInfo import SystemInfo
 import os
 
