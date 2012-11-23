@@ -19,6 +19,7 @@ class RcModel:
 	RCTYPE_DMM1 = 14
 	RCTYPE_DMM2 = 15
 	RCTYPE_VU2 = 16
+	RCTYPE_ICLASSM7 = 17
 
 	def __init__(self):
 		self.currentRcType = self.RCTYPE_DMM
@@ -83,7 +84,9 @@ class RcModel:
 			elif model == 'ini-7000':
 				self.currentRcType = self.RCTYPE_INI7000
 			elif model == 'odinm9':
-				self.currentRcType = self.RCTYPE_ODINM9	
+				self.currentRcType = self.RCTYPE_ODINM9
+			elif model == 'PlaySmartBox':
+				self.currentRcType = self.RCTYPE_ICLASSM7
 		elif os.path.exists('/proc/stb/info/vumodel'):
 			model = self.readFile('/proc/stb/info/vumodel')
 			if model == 'ultimo':
@@ -114,6 +117,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/ini7000/'
 		elif self.currentRcType == self.RCTYPE_ODINM9:
 			return '/usr/share/enigma2/rc_models/odinm9/'
+		elif self.currentRcType == self.RCTYPE_ICLASSM7:
+			return '/usr/share/enigma2/rc_models/iclassm7/'			
 		elif self.currentRcType == self.RCTYPE_TM:
 			return '/usr/share/enigma2/rc_models/tm/'
 		elif self.currentRcType == self.RCTYPE_VU:
