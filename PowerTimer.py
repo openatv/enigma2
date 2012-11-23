@@ -550,7 +550,7 @@ class PowerTimer(timer.Timer):
 	def getNextPowerManagerTimeOld(self):
 		now = time()
 		for timer in self.timer_list:
-			if timer.timerType != TIMERTYPE.AUTOSTANDBY or timer.timerType != TIMERTYPE.AUTODEEPSTANDBY
+			if timer.timerType != TIMERTYPE.AUTOSTANDBY or timer.timerType != TIMERTYPE.AUTODEEPSTANDBY:
 				next_act = timer.getNextActivation()
 				if next_act < now:
 					continue
