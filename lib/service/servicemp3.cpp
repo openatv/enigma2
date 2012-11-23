@@ -434,7 +434,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		else
 		{
 			m_subs_to_pull_handler_id = g_signal_connect (subsink, "new-buffer", G_CALLBACK (gstCBsubtitleAvail), this);
-			g_object_set (G_OBJECT (subsink), "caps", gst_caps_from_string("text/plain; text/x-plain; text/x-pango-markup; video/x-dvd-subpicture; subpicture/x-pgs"), NULL);
+			g_object_set (G_OBJECT (subsink), "caps", gst_caps_from_string("text/plain; text/x-plain; text/x-raw; text/x-pango-markup; video/x-dvd-subpicture; subpicture/x-pgs"), NULL);
 			g_object_set (G_OBJECT (m_gst_playbin), "text-sink", subsink, NULL);
 			g_object_set (G_OBJECT (m_gst_playbin), "current-text", m_currentSubtitleStream, NULL);
 		}
@@ -1242,7 +1242,7 @@ subtype_t getSubtitleType(GstPad* pad, gchar *g_codec=NULL)
 					type = stVOB;
 				else if ( !strcmp(g_type, "text/x-pango-markup") )
 					type = stSRT;
-				else if ( !strcmp(g_type, "text/plain") )
+				else if ( !strcmp(g_type, "text/plain") || !strcmp(g_type, "text/x-plain") || !strcmp(g_type, "text/x-raw") )
 					type = stPlainText;
 				else if ( !strcmp(g_type, "subpicture/x-pgs") )
 					type = stPGS;
