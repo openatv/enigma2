@@ -71,9 +71,11 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		self.setupList()
 	
 	def windowShow(self):
+		job_manager.visible = True
 		self.job.state_changed.append(self.state_changed)
 
 	def windowHide(self):
+		job_manager.visible = False
 		if len(self.job.state_changed) > 0:
 		    self.job.state_changed.remove(self.state_changed)
 
@@ -107,6 +109,8 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 	def ok(self):
 		if self.job.status in (self.job.FINISHED, self.job.FAILED):
 			self.close(False)
+		else:
+			self.background()
 
 	def abort(self):
 		if self.job.status == self.job.NOT_STARTED:
