@@ -342,6 +342,7 @@ class JobManager:
 		self.failed_jobs = [ ]
 		self.job_classes = [ ]
 		self.in_background = False
+		self.visible = False
 		self.active_job = None
 		self.MesgAfterRun = None
 
@@ -361,9 +362,9 @@ class JobManager:
 	def jobDone(self, job, task, problems):
 		print "job", job, "completed with", problems, "in", task
 		from Tools import Notifications
-		if self.in_background:
+		if not self.visible:
 			from Screens.TaskView import JobView
-			self.in_background = False
+			self.visible = True
 			Notifications.AddNotification(JobView, self.active_job)
 		if problems:
 			from Screens.MessageBox import MessageBox
