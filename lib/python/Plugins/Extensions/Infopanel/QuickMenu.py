@@ -33,7 +33,7 @@ from Plugins.Extensions.Infopanel.MountManager import HddMount
 from Plugins.Extensions.Infopanel.SoftcamPanel import *
 from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
 from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin, SoftwareManagerSetup
-from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
+from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getOldBackupPath, getBackupFilename
 from Plugins.SystemPlugins.AutoResolution.plugin import AutoResSetupMenu
 
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, SCOPE_SKIN
@@ -407,6 +407,8 @@ class QuickMenu(Screen):
 			self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
 		elif item[0] == _("Restore Settings"):
 			self.backuppath = getBackupPath()
+			if not path.isdir(self.backuppath):
+				self.backuppath = getOldBackupPath()
 			self.backupfile = getBackupFilename()
 			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 			if os_path.exists(self.fullbackupfilename):

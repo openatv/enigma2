@@ -34,6 +34,14 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.re
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.getValue()
+	box = getBoxType()
+	if backuppath.endswith('/'):
+		return backuppath + 'backup_' + box
+	else:
+		return backuppath + '/backup_' + box
+
+def getOldBackupPath():
+	backuppath = config.plugins.configurationbackup.backuplocation.getValue()
 	if backuppath.endswith('/'):
 		return backuppath + 'backup'
 	else:
@@ -323,6 +331,8 @@ class RestoreScreen(Screen, ConfigListScreen):
 			"cancel": self.close,
 		}, -1)
 		self.backuppath = getBackupPath()
+		if not path.isdir(self.backuppath):
+			self.backuppath = getOldBackupPath()
 		self.backupfile = getBackupFilename()
 		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 		self.list = []
