@@ -1,17 +1,12 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
-from Components.Harddisk import harddiskmanager			#global harddiskmanager
+from Components.Harddisk import harddiskmanager
 from Components.MenuList import MenuList
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Screens.MessageBox import MessageBox
-import Components.Task
-
 
 class HarddiskSetup(Screen):
-	HARDDISK_INITIALIZE = 1
-	HARDDISK_CHECK = 2
-
 	def __init__(self, session, hdd, action, text, question):
 		Screen.__init__(self, session)
 		self.action = action
@@ -23,7 +18,7 @@ class HarddiskSetup(Screen):
 		self["initializetext"] = Label(text)
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
-			"ok": self.close,
+			"ok": self.hddQuestion,
 			"cancel": self.close
 		})
 		self["shortcuts"] = ActionMap(["ShortcutActions"],
@@ -38,26 +33,26 @@ class HarddiskSetup(Screen):
 	def hddConfirmed(self, confirmed):
 		if not confirmed:
 			return
+		import Components.Task
 		try:
 			Components.Task.job_manager.AddJob(self.action())
 		except Exception, ex:
 			self.session.open(MessageBox, str(ex), type=MessageBox.TYPE_ERROR, timeout=10)
 		self.close()
 
-
 class HarddiskSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.skinName = "HarddiskSelection" # For derived classes
 		if harddiskmanager.HDDCount() == 0:
 			tlist = []
 			tlist.append((_("no storage devices found"), 0))
 			self["hddlist"] = MenuList(tlist)
 		else:			
 			self["hddlist"] = MenuList(harddiskmanager.HDDList())
-		
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
-			"ok": self.okbuttonClick ,
+			"ok": self.okbuttonClick,
 			"cancel": self.close
 		})
 
@@ -66,7 +61,7 @@ class HarddiskSelection(Screen):
 			 action=selection.createInitializeJob,
 			 text=_("Initialize"),
 			 question=_("Do you really want to initialize the device?\nAll data on the disk will be lost!"))
-	
+
 	def okbuttonClick(self):
 		selection = self["hddlist"].getCurrent()
 		if selection[1] != 0:
@@ -74,10 +69,6 @@ class HarddiskSelection(Screen):
 
 # This is actually just HarddiskSelection but with correct type
 class HarddiskFsckSelection(HarddiskSelection):
-	def __init__(self, session):
-		HarddiskSelection.__init__(self, session)
-		self.skinName = "HarddiskSelection"
-
 	def doIt(self, selection):
 		self.session.openWithCallback(self.close, HarddiskSetup, selection,
 			 action=selection.createCheckJob,
@@ -85,10 +76,6 @@ class HarddiskFsckSelection(HarddiskSelection):
 			 question=_("Do you really want to check the filesystem?\nThis could take lots of time!"))
 
 class HarddiskConvertExt4Selection(HarddiskSelection):
-	def __init__(self, session):
-		HarddiskSelection.__init__(self, session)
-		self.skinName = "HarddiskSelection"
-
 	def doIt(self, selection):
 		self.session.openWithCallback(self.close, HarddiskSetup, selection,
 			 action=selection.createExt4ConversionJob,
