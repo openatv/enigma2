@@ -49,9 +49,11 @@ class MessageBox(Screen):
 			else:
 				self.list = [ (_("no"), 1), (_("yes"), 0) ]
 		
+		self["list"] = MenuList(self.list)
 		if self.list:
 			self["selectedChoice"].setText(self.list[0][0])
-		self["list"] = MenuList(self.list)
+		else:
+			self["list"].hide()
 
 		if enable_input:
 			self["actions"] = ActionMap(["MsgBoxActions", "DirectionActions"], 
