@@ -79,6 +79,7 @@ def findSafeRecordPath(dirname):
 # type 10 = advanced codec digital radio sound service
 
 service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)'
+wasTimerWakeup = False
 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry, object):
@@ -338,11 +339,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			return False
 
 		elif next_state == self.StateRunning:
-			self.wasTimerWakeup = False
-			if os.path.exists("/tmp/was_timer_wakeup"):
-				self.wasTimerWakeup = int(open("/tmp/was_timer_wakeup", "r").read()) and True or False
+			global wasTimerWakeup
+			if os.path.exists("/tmp/was_timer_wakeup") and not wasTimerWakeup:
+				wasTimerWakeup = int(open("/tmp/was_timer_wakeup", "r").read()) and True or False
 				os.remove("/tmp/was_timer_wakeup")
-			print '!!!!!!!!!!!!!!!!!!!!!!!!self.wasTimerWakeup:',self.wasTimerWakeup
+			print '!!!!!!!!!!!!!!!!!!!!!!!!self.wasTimerWakeup:',wasTimerWakeup
 
 			self.autostate = Screens.Standby.inStandby
 
@@ -419,26 +420,35 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.log(12, "stop recording")
 			if not self.justplay:
 				print 'TEST3:'
-				NavigationInstance.instance.stopRecordService(self.record_service)
-				self.record_service = None
+				if self.record_service:
+					NavigationInstance.instance.stopRecordService(self.record_service)
+					self.record_service = None
+
+			print 'wasTimerWakeup',wasTimerWakeup
 			print 'self.afterEvent',self.afterEvent
 			print 'AFTEREVENT.STANDBY',AFTEREVENT.STANDBY
 			print 'AFTEREVENT.DEEPSTANDBY',AFTEREVENT.DEEPSTANDBY
+
 			if self.afterEvent == AFTEREVENT.STANDBY or (self.autostate and self.afterEvent == AFTEREVENT.AUTO):
 				print 'TEST4:'
 				if not Screens.Standby.inStandby: # not already in standby
-					print 'TEST5:'
-					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nSTB_BOX to standby. Do that now?"), timeout = 20)
-			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (self.wasTimerWakeup and self.afterEvent == AFTEREVENT.AUTO):
-				print 'TEST6:'
+					print 'TEST6:'
+					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nSTB_BOX to standby. Do that now?"), timeout = 180)
+			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasTimerWakeup and self.afterEvent == AFTEREVENT.AUTO):
+				print 'TEST7:'
+				if abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
+					print 'TEST8:'
+					print 'getNextRecordingTime',NavigationInstance.instance.RecordTimer.getNextRecordingTime()
+					print 'TIME',time()
+					return True
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
-					print 'TEST7:'
+					print 'TEST10:'
 					if Screens.Standby.inStandby: # in standby
-						print 'TEST8:'
+						print 'TEST11:'
 						quitMainloop(1)
 					else:
-						print 'TEST9:'
-						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour STB_BOX. Shutdown now?"), timeout = 20)
+						print 'TEST12:'
+						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour STB_BOX. Shutdown now?"), timeout = 180)
 			return True
 
 	def setAutoincreaseEnd(self, entry = None):
@@ -469,6 +479,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	def sendTryQuitMainloopNotification(self, answer):
 		if answer:
 			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
+		else:
+			global wasTimerWakeup
+			wasTimerWakeup = False
 
 	def getNextActivation(self):
 		if self.state == self.StateEnded or self.state == self.StateFailed:
