@@ -89,7 +89,7 @@ class TimerEntry(Screen, ConfigListScreen):
 					count = 0
 					for x in (0, 1, 2, 3, 4, 5, 6):
 						if flags == 1: # weekly
-÷							print "Set to weekday " + str(x)
+# 							print "Set to weekday " + str(x)
 							weekday = x
 						if flags & 1 == 1: # set user defined flags
 							day[x] = 1
