@@ -89,7 +89,7 @@ class TimerEntry(Screen, ConfigListScreen):
 					count = 0
 					for x in (0, 1, 2, 3, 4, 5, 6):
 						if flags == 1: # weekly
-#							print "Set to weekday " + str(x)
+# 							print "Set to weekday " + str(x)
 							weekday = x
 						if flags & 1 == 1: # set user defined flags
 							day[x] = 1
@@ -304,30 +304,30 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timer.justplay = self.timerentry_justplay.getValue() == "zap"
 		if self.timerentry_justplay.getValue() == "zap":
 			if not self.timerentry_showendtime.getValue():
-				self.timerentry_endtime.setValue(self.timerentry_starttime.getValue())
+				self.timerentry_endtime.value = self.timerentry_starttime.getValue()
 		self.timer.resetRepeated()
 		self.timer.afterEvent = {
 			"nothing": AFTEREVENT.NONE,
 			"deepstandby": AFTEREVENT.DEEPSTANDBY,
 			"standby": AFTEREVENT.STANDBY,
 			"auto": AFTEREVENT.AUTO
-			}[self.timerentry_afterevent.getValue()]
+			}[self.timerentry_afterevent.value]
 		self.timer.descramble = {
 			"normal": True,
 			"descrambled+ecm": True,
 			"scrambled+ecm": False,
-			}[self.timerentry_recordingtype.getValue()]
+			}[self.timerentry_recordingtype.value]
 		self.timer.record_ecm = {
 			"normal": False,
 			"descrambled+ecm": True,
 			"scrambled+ecm": True,
-			}[self.timerentry_recordingtype.getValue()]
+			}[self.timerentry_recordingtype.value]
 		self.timer.service_ref = self.timerentry_service_ref
 		self.timer.tags = self.timerentry_tags
 
 		if self.timer.dirname or self.timerentry_dirname.getValue() != defaultMoviePath():
 			self.timer.dirname = self.timerentry_dirname.getValue()
-			config.movielist.last_timer_videodir.setValue(self.timer.dirname)
+			config.movielist.last_timer_videodir.value = self.timer.dirname
 			config.movielist.last_timer_videodir.save()
 
 		if self.timerentry_type.getValue() == "once":
@@ -417,7 +417,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		if res is not None:
 			if config.movielist.videodirs.getValue() != self.timerentry_dirname.choices:
 				self.timerentry_dirname.setChoices(config.movielist.videodirs.getValue(), default=res)
-			self.timerentry_dirname.setValue(res)
+			self.timerentry_dirname.value = res
 
 	def tagEditFinished(self, ret):
 		if ret is not None:
