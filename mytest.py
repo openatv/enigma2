@@ -534,7 +534,7 @@ def runScreenTest():
 	wakeupList.sort()
 	print 'wakeupList',wakeupList
 	recordTimerWakeupAuto = False
-	if wakeupList and wakeupList[0] != 3:
+	if wakeupList and wakeupList[0][1] != 3:
 		from time import strftime, altzone, timezone
 		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 270: # no time to switch box back on

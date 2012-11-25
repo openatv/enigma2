@@ -86,7 +86,7 @@ class TimerEditList(Screen):
 		if cur:
 			t = cur
 			if t.disabled:
-				print "try to ENABLE timer"
+# 				print "try to ENABLE timer"
 				t.enable()
 				timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, cur)
 				if not timersanitycheck.check():
@@ -303,10 +303,10 @@ class TimerEditList(Screen):
 
 
 	def finishedEdit(self, answer):
-		print "finished edit"
+# 		print "finished edit"
 
 		if answer[0]:
-			print "Edited timer"
+# 			print "Edited timer"
 			entry = answer[1]
 			timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
 			success = False
@@ -330,11 +330,11 @@ class TimerEditList(Screen):
 
 			self.fillTimerList()
 			self.updateState()
-		else:
-			print "Timeredit aborted"
+# 		else:
+# 			print "Timeredit aborted"
 
 	def finishedAdd(self, answer):
-		print "finished add"
+# 		print "finished add"
 		if answer[0]:
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
@@ -347,8 +347,8 @@ class TimerEditList(Screen):
 					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 			self.fillTimerList()
 			self.updateState()
-		else:
-			print "Timeredit aborted"
+# 		else:
+# 			print "Timeredit aborted"
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
