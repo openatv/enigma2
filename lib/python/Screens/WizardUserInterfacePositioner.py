@@ -1,3 +1,4 @@
+from Screens.Screen import Screen
 from Screens.Wizard import wizardManager, WizardSummary
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
@@ -16,6 +17,7 @@ class UserInterfacePositionerWizard(WizardLanguage, Rc):
 		self.skinName = "StartWizard"
 		self.skin = "StartWizard.skin"
 		self.session = session
+		Screen.setTitle(self, _("Welcome..."))
 		self.Console = Console()
 		self["wizard"] = Pixmap()
 		self["HelpWindow"] = Pixmap()
