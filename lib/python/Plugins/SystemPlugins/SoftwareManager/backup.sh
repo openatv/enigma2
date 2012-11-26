@@ -75,7 +75,7 @@ elif [ $MODEL = "xp1000" ] ; then
 	MTDKERNEL="mtd1"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE
 ## TESTING THE Venton HDx Models
 elif [ $MODEL = "ventonhdx" ] ; then
 	TYPE=VENTON
@@ -105,7 +105,7 @@ elif [ $MODEL = "gb800se" ] ; then
 	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue
 ## TESTING THE Gigablue HD 800 UE Models	
 elif [ $MODEL = "gb800ue" ]; then
 	TYPE=GIGABLUE
@@ -116,7 +116,7 @@ elif [ $MODEL = "gb800ue" ]; then
 	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue
 ## TESTING THE Gigablue HD 800 Solo Model	
 elif [ $MODEL = "gb800solo" ] ; then
 	TYPE=GIGABLUE
@@ -126,7 +126,7 @@ elif [ $MODEL = "gb800solo" ] ; then
 	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue
 ## TESTING THE Gigablue HD Quad Model	
 elif [ $MODEL = "gbquad" ] ; then
 	TYPE=GIGABLUE
@@ -137,7 +137,7 @@ elif [ $MODEL = "gbquad" ] ; then
 	MTDKERNEL="mtd2"	
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue
 	
 ## TESTING THE VU+ MODELS
 elif [ $MODEL = "vusolo" ] || [ $MODEL = "vuduo" ] || [ $MODEL = "vuuno" ] || [ $MODEL = "vuultimo" ] ; then
@@ -489,7 +489,7 @@ fi
 if [ $TYPE = "GIGABLUE" ] ; then
 	rm -rf $MAINDEST
 	mkdir -p $MAINDEST
-	mkdir -p $EXTRA/$MODEL
+	mkdir -p $EXTRA
 	if [ $ROOTFSTYPE = "jffs2" ] ; then
 		mv $WORKDIR/root.jffs2 $MAINDEST/rootfs.bin
 	else
