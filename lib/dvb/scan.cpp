@@ -25,26 +25,40 @@
 DEFINE_REF(eDVBScan);
 
 eDVBScan::eDVBScan(iDVBChannel *channel, bool usePAT, bool debug)
-	:m_channel(channel), m_channel_state(iDVBChannel::state_idle)
-	,m_ready(0), m_ready_all(usePAT ? (readySDT|readyPAT) : readySDT)
-	,m_pmt_running(false), m_abort_current_pmt(false), m_flags(0)
-	,m_usePAT(usePAT), m_scan_debug(debug), m_show_add_tsid_onid_check_failed_msg(true)
+	:m_channel(channel)
+	,m_channel_state(iDVBChannel::state_idle)
+	,m_ready(0)
+	,m_ready_all(usePAT ? (readySDT|readyPAT) : readySDT)
+	,m_pmt_running(false)
+	,m_abort_current_pmt(false)
+	,m_flags(0)
+	,m_usePAT(usePAT)
+	,m_scan_debug(debug)
+	,m_show_add_tsid_onid_check_failed_msg(true)
 {
 	if (m_channel->getDemux(m_demux))
 		SCAN_eDebug("scan: failed to allocate demux!");
 	m_channel->connectStateChange(slot(*this, &eDVBScan::stateChange), m_stateChanged_connection);
 	std::string filename = eEnv::resolve("${sysconfdir}/scan_tp_valid_check.py");
-	FILE *f = fopen(filename.c_str(), "r");
-	if (f)
+	int fd = open(filename.c_str(), O_RDONLY);
+	if (fd >= 0)
 	{
-		char code[16384];
-		size_t rd = fread(code, 1, 16383, f);
-		if (rd)
+		struct stat st;
+		if ((fstat(fd, &st) == 0) && (st.st_size))
 		{
-			code[rd]=0;
-			m_additional_tsid_onid_check_func = Py_CompileString(code, filename.c_str(), Py_file_input);
+			char* code = (char*)malloc(st.st_size + 1);
+			if (code)
+			{
+				size_t rd = read(fd, code, st.st_size);
+				if (rd)
+				{
+					code[rd]=0;
+					m_additional_tsid_onid_check_func = Py_CompileString(code, filename.c_str(), Py_file_input);
+				}
+				free(code);
+			}
 		}
-		fclose(f);
+		close(fd);
 	}
 }
 
