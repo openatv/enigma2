@@ -29,7 +29,7 @@ MTDKERNEL="mtd1"
 ## TESTING WHICH KIND OF SATELLITE RECEIVER IS USED
 ## TESTING THE XTREND AND CLARK TECH MODELS
 MODEL=$( cat /etc/model )
-if [ $MODEL = "et9x00" ] || [ $MODEL = "et5x00" ] || [ $MODEL = "et6x00" ] || [ $MODEL = "et4x00" ]; then
+if [ $MODEL = "et9x00" ] || [ $MODEL = "et5x00" ] || [ $MODEL = "et6x00" ] || [ $MODEL = "et6500" ] || [ $MODEL = "et4x00" ]; then
 	TYPE=ET
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
