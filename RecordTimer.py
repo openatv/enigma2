@@ -1,6 +1,5 @@
 import os
-from enigma import eEPGCache, getBestPlayableServiceReference, \
-	eServiceReference, eServiceCenter, iRecordableService, quitMainloop
+from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference, eServiceCenter, iRecordableService, quitMainloop
 
 from Components.config import config
 from Components.UsageConfig import defaultMoviePath
@@ -79,54 +78,10 @@ def findSafeRecordPath(dirname):
 # type 10 = advanced codec digital radio sound service
 
 service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)'
-wasTimerWakeup = False
+wasRecTimerWakeup = False
 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry, object):
-######### the following static methods and members are only in use when the box is in (soft) standby
-# 	receiveRecordEvents = False
-#
-# 	@staticmethod
-# 	def shutdown():
-# 		quitMainloop(1)
-#
-# 	@staticmethod
-# 	def staticGotRecordEvent(recservice, event):
-# 		if event == iRecordableService.evEnd:
-# 			print "RecordTimer.staticGotRecordEvent(iRecordableService.evEnd)"
-# 			recordings = NavigationInstance.instance.getRecordings()
-# 			if not recordings: # no more recordings exist
-# 				rec_time = NavigationInstance.instance.RecordTimer.getNextRecordingTime()
-# 				if rec_time > 0 and (rec_time - time()) < 360:
-# 					print "another recording starts in", rec_time - time(), "seconds... do not shutdown yet"
-# 					# as we woke the box to record, place the box in standby.
-# 					Notifications.AddNotification(Screens.Standby.Standby)
-# 				else:
-# 					print "no starting records in the next 360 seconds... immediate shutdown"
-# 					RecordTimerEntry.shutdown() # immediate shutdown
-# 		elif event == iRecordableService.evStart:
-# 			print "RecordTimer.staticGotRecordEvent(iRecordableService.evStart)"
-#
-# 	@staticmethod
-# 	def stopTryQuitMainloop():
-# 		print "RecordTimer.stopTryQuitMainloop"
-# 		NavigationInstance.instance.record_event.remove(RecordTimerEntry.staticGotRecordEvent)
-# 		RecordTimerEntry.receiveRecordEvents = False
-#
-# 	@staticmethod
-# 	def TryQuitMainloop(default_yes = True):
-# 		if not RecordTimerEntry.receiveRecordEvents:
-# 			print "RecordTimer.TryQuitMainloop"
-# 			NavigationInstance.instance.record_event.append(RecordTimerEntry.staticGotRecordEvent)
-# 			RecordTimerEntry.receiveRecordEvents = True
-# 			# send fake event.. to check if another recordings are running or
-# 			# other timers start in a few seconds
-# 			RecordTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
-# 			# send normal notification for the case the user leave the standby now..
-# 			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
-
-#################################################################
-
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = True, record_ecm = True):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers == True:
@@ -194,11 +149,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		service_name = self.service_ref.getServiceName()
 		begin_date = strftime("%Y%m%d %H%M", localtime(self.begin))
 
-		print "begin_date: ", begin_date
-		print "service_name: ", service_name
-		print "name:", self.name
-		print "description: ", self.description
-
+# 		print "begin_date: ", begin_date
+# 		print "service_name: ", service_name
+# 		print "name:", self.name
+# 		print "description: ", self.description
+#
 		filename = begin_date + " - " + service_name
 		if self.name:
 			if config.recording.filename_composition.getValue() == "short":
@@ -339,11 +294,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			return False
 
 		elif next_state == self.StateRunning:
-			global wasTimerWakeup
-			if os.path.exists("/tmp/was_timer_wakeup") and not wasTimerWakeup:
-				wasTimerWakeup = int(open("/tmp/was_timer_wakeup", "r").read()) and True or False
+			global wasRecTimerWakeup
+			if os.path.exists("/tmp/was_rectimer_wakeup") and not wasRecTimerWakeup:
+				wasRecTimerWakeup = int(open("/tmp/was_rectimer_wakeup", "r").read()) and True or False
 				os.remove("/tmp/was_timer_wakeup")
-			print '!!!!!!!!!!!!!!!!!!!!!!!!self.wasTimerWakeup:',wasTimerWakeup
+			print '!!!!!!!!!!!!!!!!!!!!!!!!wasRecTimerWakeup:',wasRecTimerWakeup
 
 			self.autostate = Screens.Standby.inStandby
 
@@ -424,7 +379,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					NavigationInstance.instance.stopRecordService(self.record_service)
 					self.record_service = None
 
-			print 'wasTimerWakeup',wasTimerWakeup
+			print 'wasRecTimerWakeup',wasRecTimerWakeup
 			print 'self.afterEvent',self.afterEvent
 			print 'AFTEREVENT.STANDBY',AFTEREVENT.STANDBY
 			print 'AFTEREVENT.DEEPSTANDBY',AFTEREVENT.DEEPSTANDBY
@@ -434,7 +389,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if not Screens.Standby.inStandby: # not already in standby
 					print 'TEST6:'
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nSTB_BOX to standby. Do that now?"), timeout = 180)
-			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasTimerWakeup and self.afterEvent == AFTEREVENT.AUTO):
+			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO):
 				print 'TEST7:'
 				if abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
 					print 'TEST8:'
@@ -480,8 +435,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if answer:
 			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
 		else:
-			global wasTimerWakeup
-			wasTimerWakeup = False
+			global wasRecTimerWakeup
+			wasRecTimerWakeup = False
 
 	def getNextActivation(self):
 		if self.state == self.StateEnded or self.state == self.StateFailed:
@@ -537,13 +492,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	# we have record_service as property to automatically subscribe to record service events
 	def setRecordService(self, service):
 		if self.__record_service is not None:
-			print "[remove callback]"
+# 			print "[remove callback]"
 			NavigationInstance.instance.record_event.remove(self.gotRecordEvent)
 
 		self.__record_service = service
 
 		if self.__record_service is not None:
-			print "[add callback]"
+# 			print "[add callback]"
 			NavigationInstance.instance.record_event.append(self.gotRecordEvent)
 
 	record_service = property(lambda self: self.__record_service, setRecordService)
@@ -901,9 +856,9 @@ class RecordTimer(timer.Timer):
 		if entry.state != entry.StateEnded:
 			self.timeChanged(entry)
 
-		print "state: ", entry.state
-		print "in processed: ", entry in self.processed_timers
-		print "in running: ", entry in self.timer_list
+# 		print "state: ", entry.state
+# 		print "in processed: ", entry in self.processed_timers
+# 		print "in running: ", entry in self.timer_list
 		# autoincrease instanttimer if possible
 		if not entry.dontSave:
 			for x in self.timer_list:

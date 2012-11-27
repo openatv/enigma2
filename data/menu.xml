@@ -159,7 +159,6 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 		</menu>
 		<menu text="Standby / Restart" entryID="standby_restart_list">
 			<id val="shutdown" />
-			<item text="Sleep timer" entryID="sleep"><screen module="SleepTimerEdit" screen="SleepTimerEdit" /></item>
 			<item text="Standby" entryID="standby"><screen module="Standby" screen="Standby"/></item>
 			<item text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
 			<item text="Restart enigma" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
