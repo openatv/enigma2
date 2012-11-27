@@ -152,20 +152,19 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 			<item level="0" text="Network" entryID="device_screen"><screen module="About" screen="SystemNetworkInfo"/></item>
 			<item level="1" text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
 		</menu>
-		<!--<menu level="0" text="Timers" entryID="timer_menu">
+		<menu level="5" text="Timers" entryID="timer_menu">
 		      <id val="timermenu" />
-		      <item weight="100" level="0" text="Timers" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
-		      <item weight="100" level="0" text="PowerTimers" entryID="powertimer_edit"><screen module="PowerTimerEdit" screen="PowerTimerEditList" /></item>
-		    </menu>-->
-		<item weight="5" level="0" text="Timers" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
+		      <item weight="100" level="0" text="Timers" entryID="timer_edit" endtext=">"><screen module="TimerEdit" screen="TimerEditList" /></item>
+		      <item weight="100" level="0" text="PowerTimers" entryID="powertimer_edit" endtext=">"><screen module="PowerTimerEdit" screen="PowerTimerEditList" /></item>
+		</menu>
 		<item weight="6" level="0" text="VCR scart" entryID="scart_switch" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>
 		<menu weight="7" text="Standby / Restart" entryID="standby_restart_list" endtext=">">
 			<id val="shutdown" />
-			<item text="Sleep timer" entryID="sleep" endtext=">" ><screen module="SleepTimerEdit" screen="SleepTimerEdit" /></item>
 			<item text="Standby" entryID="standby" endtext="&gt;&lt;"><screen module="Standby" screen="Standby"/></item>
 			<item text="Restart" entryID="restart" endtext="&gt;&lt;"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
 			<item text="Restart GUI" entryID="restart_enigma" endtext="&gt;&lt;"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
 			<item text="Deep standby" requires="DeepstandbySupport" entryID="deep_standby" endtext="&gt;&lt;"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
 			<item text="Shutdown" requires="!DeepstandbySupport" entryID="deep_standby" endtext="&gt;&lt;"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
+
 		</menu>
 </menu>

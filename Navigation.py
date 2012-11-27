@@ -37,9 +37,9 @@ class Navigation:
 		self.RecordTimer = RecordTimer.RecordTimer()
 		self.PowerTimer = PowerTimer.PowerTimer()
 		if getFPWasTimerWakeup():
-			open("/tmp/was_timer_wakeup", "w").write('1')
 			if nextRecordTimerAfterEventActionAuto:
 				print 'RECTIMER: wakeup to standby detected.'
+				open("/tmp/was_rectimer_wakeup", "w").write('1')
 				# We need to give the systemclock the chance to sync with the transponder time,
 				# before we will make the decision about whether or not we need to shutdown
 				# after the upcoming recording has completed
@@ -56,6 +56,7 @@ class Navigation:
 
 			elif nextPowerManagerAfterEventActionAuto:
 				print 'POWERTIMER: wakeup to standby detected.'
+				open("/tmp/was_powertimer_wakeup", "w").write('1')
 				# We need to give the system the chance to fully startup,
 				# before we initiate the standby command.
 				self.standbytimer = eTimer()
