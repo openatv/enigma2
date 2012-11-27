@@ -1,6 +1,5 @@
 import os
-from enigma import eActionMap, eEPGCache, getBestPlayableServiceReference, eServiceReference, eServiceCenter, iRecordableService, quitMainloop
-from Tools.StbHardware import getFPWasTimerWakeup
+from enigma import eActionMap, eEPGCache, quitMainloop
 
 from Components.config import config
 from Components.TimerSanityCheck import TimerSanityCheck
@@ -19,13 +18,6 @@ from ServiceReference import ServiceReference
 from time import localtime, strftime, ctime, time
 from bisect import insort
 import os
-
-# ok, for descriptions etc we have:
-# service reference  (to get the service name)
-# name               (title)
-# description        (description)
-# event data         (ONLY for time adjustments etc.)
-
 
 # parses an event, and gives out a (begin, end, name, duration, eit)-tuple.
 # begin and end will be corrected
@@ -114,21 +106,16 @@ class PowerTimerEntry(timer.TimerEntry, object):
 
 		if next_state == self.StatePrepared:
 			self.log(6, "prepare ok, waiting for begin")
-			# create file to "reserve" the filename
-			# because another recording at the same time on another service can try to record the same event
-			# i.e. cable / sat.. then the second recording needs an own extension... when we create the file
-			# here than calculateFilename is happy
-			# fine. it worked, resources are allocated.
 			self.next_activation = self.begin
 			self.backoff = 0
 			return True
 
 		elif next_state == self.StateRunning:
-			self.wasTimerWakeup = False
+			self.wasPowerTimerWakeup = False
 			if os.path.exists("/tmp/was_timer_wakeup"):
-				self.wasTimerWakeup = int(open("/tmp/was_timer_wakeup", "r").read()) and True or False
-				os.remove("/tmp/was_timer_wakeup")
-			print '!!!!!!!!!!!!!!!!!!!!!!!!self.wasTimerWakeup:',self.wasTimerWakeup
+				self.wasPowerTimerWakeup = int(open("/tmp/was_powertimer_wakeup", "r").read()) and True or False
+				os.remove("/tmp/was_powertimer_wakeup")
+			print '!!!!!!!!!!!!!!!!!!!!!!!!wasPowerTimerWakeup:',self.wasPowerTimerWakeup
 
 			print 'TEST01:'
 			# if this timer has been cancelled, just go to "end" state.
@@ -211,11 +198,11 @@ class PowerTimerEntry(timer.TimerEntry, object):
 								print 'TEST24:'
 								self.end = self.begin
 
-			elif self.timerType == TIMERTYPE.DEEPSTANDBY and self.wasTimerWakeup:
+			elif self.timerType == TIMERTYPE.DEEPSTANDBY and self.wasPowerTimerWakeup:
 				print 'TEST25a:'
 				return True
 
-			elif self.timerType == TIMERTYPE.DEEPSTANDBY and not self.wasTimerWakeup:
+			elif self.timerType == TIMERTYPE.DEEPSTANDBY and not self.wasPowerTimerWakeup:
 				print 'TEST25b:'
 				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
 					print 'TEST26:'

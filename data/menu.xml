@@ -157,6 +157,5 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 			<item text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
 			<item text="Restart Gui" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
 			<item text="Shutdown" requires="!DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
-			<item text="Sleep Timer" entryID="sleep"><screen module="SleepTimerEdit" screen="SleepTimerEdit" /></item>
 		</menu>
 </menu>
