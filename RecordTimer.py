@@ -56,7 +56,7 @@ def findSafeRecordPath(dirname):
 	from Components import Harddisk
 	dirname = os.path.realpath(dirname)
 	mountpoint = Harddisk.findMountPoint(dirname)
-	if mountpoint in ('/', '/media'):
+	if mountpoint in ('/', '/media', '/media/net'):
 		print '[RecordTimer] media is not mounted:', dirname
 		return None
 	if not os.path.isdir(dirname):
@@ -271,7 +271,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if not self.freespace():
 				Notifications.AddPopup(text = _("Write error while recording. Disk full?\n%s") % self.name, type = MessageBox.TYPE_ERROR, timeout = 5, id = "DiskFullMessage")
 				self.state = 4
-# 				self.disabled = True
 				self.failed = True
 				return False
 
@@ -297,7 +296,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			global wasRecTimerWakeup
 			if os.path.exists("/tmp/was_rectimer_wakeup") and not wasRecTimerWakeup:
 				wasRecTimerWakeup = int(open("/tmp/was_rectimer_wakeup", "r").read()) and True or False
-				os.remove("/tmp/was_timer_wakeup")
+				os.remove("/tmp/was_rectimer_wakeup")
 			print '!!!!!!!!!!!!!!!!!!!!!!!!wasRecTimerWakeup:',wasRecTimerWakeup
 
 			self.autostate = Screens.Standby.inStandby
@@ -729,7 +728,7 @@ class RecordTimer(timer.Timer):
 			if timer.justplay:
 				continue
 			print 'timer.afterEvent',timer.afterEvent
-			if timer.afterEvent == AFTEREVENT.AUTO:
+			if timer.afterEvent == AFTEREVENT.AUTO or timer.afterEvent == AFTEREVENT.DEEPSTANDBY:
 				print 'TRUE 2'
 				return True
 		print 'FALSE 2'
