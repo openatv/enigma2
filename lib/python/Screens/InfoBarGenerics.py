@@ -4152,7 +4152,14 @@ class InfoBarINFOpanel:
 		self.onRedButtonActivation = [ ]	
 
 	def selectRedKeytask(self):
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/WebBrowser/browser.pyo") is True:
+		isWEBBROWSER = None
+		isHBBTV = None
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/WebBrowser/browser.pyo"):
+			isWEBBROWSER = True
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/HbbTV/plugin.pyo") and getBoxType() == 'vuduo' or getBoxType() == 'vuultimo' or getBoxType() == 'vuuno':
+			isHBBTV = True
+
+		if isWEBBROWSER or isHBBTV:
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
 			if info and info.getInfoString(iServiceInformation.sHBBTVUrl) != "":
