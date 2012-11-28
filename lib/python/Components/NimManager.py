@@ -146,13 +146,16 @@ class SecConfigure:
 				used_nim_slots.append((slot.slot, slot.description, slot.config.configMode.getValue() != "nothing" and True or False, slot.isCompatible("DVB-S2"), slot.frontend_id is None and -1 or slot.frontend_id))
 		eDVBResourceManager.getInstance().setFrontendSlotInformations(used_nim_slots)
 
-		for slot in nim_slots:
-			if slot.frontend_id is not None:
-				types = [type for type in ["DVB-T", "DVB-C", "DVB-S", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, type)]
-				if len(types) > 1:
-					slot.multi_type = {}
-					for type in types:
-						slot.multi_type[str(types.index(type))] = type
+		try:
+			for slot in nim_slots:
+				if slot.frontend_id is not None:
+					types = [type for type in ["DVB-T", "DVB-C", "DVB-S", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, type)]
+					if len(types) > 1:
+						slot.multi_type = {}
+						for type in types:
+							slot.multi_type[str(types.index(type))] = type
+		except:
+			pass
 
 		for slot in nim_slots:
 			x = slot.slot
@@ -521,8 +524,9 @@ class NIM(object):
 		if self.isCompatible(what):
 			return True
 		for type in self.multi_type.values():
-			if what in self.compatible[type]:
-				return True
+			if type and what:
+				if what in self.compatible[type]:
+					return True
 		return False
 
 	def getType(self):
@@ -1357,7 +1361,7 @@ def InitNimManager(nimmgr):
 
 	def configModeChanged(configMode):
 		slot_id = configMode.slot_id
- 		nim = config.Nims[slot_id]
+		nim = config.Nims[slot_id]
 		if configMode.getValue() == "advanced" and isinstance(nim.advanced, ConfigNothing):
 			# advanced config:
 			nim.advanced = ConfigSubsection()
@@ -1559,7 +1563,8 @@ def InitNimManager(nimmgr):
 		try:
 			nim.multiType
 		except:
-			addMultiType = True
+			print"[NimManager] error nim.multiType"
+			addMultiType = False
 		if slot.isMultiType() and addMultiType:
 			typeList = []
 			for id in slot.getMultiTypeList().keys():

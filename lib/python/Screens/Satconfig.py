@@ -100,9 +100,12 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.advancedConnected = None
 
 		if self.nim.isMultiType():
-			multiType = self.nimConfig.multiType
-			self.multiType = getConfigListEntry(_("Tuner type"), multiType)
-			self.list.append(self.multiType)
+			try:
+				multiType = self.nimConfig.multiType
+				self.multiType = getConfigListEntry(_("Tuner type"), multiType)
+				self.list.append(self.multiType)
+			except:
+				self.multiType = None
 
 		if self.nim.isCompatible("DVB-S"):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.configMode)
