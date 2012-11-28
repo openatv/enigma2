@@ -336,7 +336,7 @@ class CronTimersConfig(Screen, ConfigListScreen):
 			<widget name="config" position="10,20" size="540,400" scrollbarMode="showOnDemand" />
 			<ePixmap pixmap="skin_default/buttons/red.png" position="90,350" size="140,40" alphatest="on" />
 			<widget name="key_red" position="90,350" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="450,300" zPosition="1" size="1,1" transparent="1" alphatest="on" />
+			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="450,320" zPosition="1" size="1,1" transparent="1" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/key_text.png" position="250,353" zPosition="4" size="35,25" alphatest="on" transparent="1" />
 		</screen>"""
 
