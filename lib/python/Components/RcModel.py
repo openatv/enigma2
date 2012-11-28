@@ -7,7 +7,7 @@ class RcModel:
 	RCTYPE_ET9500 = 3
 	RCTYPE_VU = 4
 	RCTYPE_ET4X00 = 5
-	RCTYPE_XP1000 = 6	
+	RCTYPE_XP1000 = 6
 
 	def __init__(self):
 		self.currentRcType = self.RCTYPE_DMM
@@ -59,7 +59,7 @@ class RcModel:
 		elif self.currentRcType == self.RCTYPE_ET4X00:
 			return '/usr/share/enigma2/rc_models/et4x00/'
 		elif self.currentRcType == self.RCTYPE_XP1000:
-			return '/usr/share/enigma2/rc_models/xp1000/'			
+			return '/usr/share/enigma2/rc_models/xp1000/'
 		elif self.currentRcType == self.RCTYPE_VU:
 			return '/usr/share/enigma2/rc_models/vu/'
 
