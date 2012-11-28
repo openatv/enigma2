@@ -62,7 +62,7 @@ class Navigation:
 				self.standbytimer = eTimer()
 				self.standbytimer.callback.append(self.gotostandby)
 				self.standbytimer.start(15000, True)
-# 		self.SleepTimer = SleepTimer.SleepTimer()
+		self.SleepTimer = SleepTimer.SleepTimer()
 
 	def gotostandby(self):
 		print 'TIMER: now entering standby'
