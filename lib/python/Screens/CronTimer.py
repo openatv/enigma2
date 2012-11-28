@@ -1,6 +1,6 @@
 from Components.ActionMap import ActionMap
 from Components.About import about
-from Components.config import getConfigListEntry, config, ConfigText, ConfigSelection, ConfigInteger, ConfigClock, NoSave
+from Components.config import getConfigListEntry, config, ConfigSubsection, ConfigText, ConfigSelection, ConfigInteger, ConfigClock, NoSave
 from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
 from Components.Label import Label
@@ -321,6 +321,15 @@ class CronTimers(Screen):
 	def closeRecursive(self):
 		self.close(True)
 
+config.crontimers = ConfigSubsection()
+config.crontimers.commandtype = NoSave(ConfigSelection(choices = [ ('custom',_("Custom")),('predefined',_("Predefined")) ]))
+config.crontimers.cmdtime = NoSave(ConfigClock(default=0))
+config.crontimers.cmdtime.value, mytmpt = ([0, 0], [0, 0])
+config.crontimers.user_command = NoSave(ConfigText(fixed_size=False))
+config.crontimers.runwhen = NoSave(ConfigSelection(default='Daily', choices = [('Hourly', _("Hourly")),('Daily', _("Daily")),('Weekly', _("Weekly")),('Monthly', _("Monthly"))]))
+config.crontimers.dayofweek = NoSave(ConfigSelection(default='Monday', choices = [('Monday', _("Monday")),('Tuesday', _("Tuesday")),('Wednesday', _("Wednesday")),('Thursday', _("Thursday")),('Friday', _("Friday")),('Saturday', _("Saturday")),('Sunday', _("Sunday"))]))
+config.crontimers.dayofmonth = NoSave(ConfigInteger(default=1, limits=(1, 31)))
+
 class CronTimersConfig(Screen, ConfigListScreen):
 	skin = """
 		<screen position="center,center" size="560,400" title="Cron Manager">
@@ -355,30 +364,22 @@ class CronTimersConfig(Screen, ConfigListScreen):
 				if pkg.find('.sh') >= 0:
 					predefinedlist.append((description, pkg))
 			predefinedlist.sort()
-		config.vixsettings.cronmanager_predefined_command = NoSave(ConfigSelection(choices = predefinedlist))
+		config.crontimers.predefined_command = NoSave(ConfigSelection(choices = predefinedlist))
 		self.editListEntry = None
 
-		self.commandtype = NoSave(ConfigSelection(choices = [ ('custom',_("Custom")),('predefined',_("Predefined")) ]))
-		self.cmdtime = NoSave(ConfigClock(default=0))
-		self.cmdtime.value, mytmpt = ([0, 0], [0, 0])
-		self.user_command = NoSave(ConfigText(fixed_size=False))
-		self.runwhen = NoSave(ConfigSelection(default='Daily', choices = [('Hourly', _("Hourly")),('Daily', _("Daily")),('Weekly', _("Weekly")),('Monthly', _("Monthly"))]))
-		self.dayofweek = NoSave(ConfigSelection(default='Monday', choices = [('Monday', _("Monday")),('Tuesday', _("Tuesday")),('Wednesday', _("Wednesday")),('Thursday', _("Thursday")),('Friday', _("Friday")),('Saturday', _("Saturday")),('Sunday', _("Sunday"))]))
-		self.dayofmonth = NoSave(ConfigInteger(default=1, limits=(1, 31)))
-
 		self.list = []
-		self.list.append(getConfigListEntry(_("Run how often ?"), self.runwhen))
-		if self.runwhen.value != 'Hourly':
-			self.list.append(getConfigListEntry(_("Time to execute command or script"), self.cmdtime))
-		if self.runwhen.value == 'Weekly':
-			self.list.append(getConfigListEntry(_("What Day of week ?"), self.dayofweek))
-		if self.runwhen.value == 'Monthly':
-			self.list.append(getConfigListEntry(_("What Day of month ?"), self.dayofmonth))
-		self.list.append(getConfigListEntry(_("Command type"), self.commandtype))
-		if self.commandtype.value == 'custom':
-			self.list.append(getConfigListEntry(_("Command To Run"), self.user_command))
+		self.list.append(getConfigListEntry(_("Run how often ?"), config.crontimers.runwhen))
+		if config.crontimers.runwhen.value != 'Hourly':
+			self.list.append(getConfigListEntry(_("Time to execute command or script"), config.crontimers.cmdtime))
+		if config.crontimers.runwhen.value == 'Weekly':
+			self.list.append(getConfigListEntry(_("What Day of week ?"), config.crontimers.dayofweek))
+		if config.crontimers.runwhen.value == 'Monthly':
+			self.list.append(getConfigListEntry(_("What Day of month ?"), config.crontimers.dayofmonth))
+		self.list.append(getConfigListEntry(_("Command type"), config.crontimers.commandtype))
+		if config.crontimers.commandtype.value == 'custom':
+			self.list.append(getConfigListEntry(_("Command To Run"), config.crontimers.user_command))
 		else:
-			self.list.append(getConfigListEntry(_("Command To Run"), self.predefined_command))
+			self.list.append(getConfigListEntry(_("Command To Run"), config.crontimers.predefined_command))
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 
@@ -407,7 +408,7 @@ class CronTimersConfig(Screen, ConfigListScreen):
 
 	def checkentry(self):
 		msg = ''
-		if (self.commandtype.value == 'predefined' and self.predefined_command.value == '') or self.commandtype.value == 'custom' and self.user_command.value == '':
+		if (config.crontimers.commandtype.value == 'predefined' and config.crontimers.predefined_command.value == '') or config.crontimers.commandtype.value == 'custom' and config.crontimers.user_command.value == '':
 			msg = 'You must set at least one Command'
 		if msg:
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
@@ -415,45 +416,45 @@ class CronTimersConfig(Screen, ConfigListScreen):
 			self.saveMycron()
 
 	def saveMycron(self):
-		hour = '%02d' % self.cmdtime.value[0]
-		minutes = '%02d' % self.cmdtime.value[1]
-		if self.commandtype.value == 'predefined' and self.predefined_command.value != '':
-			command = self.predefined_command.value
+		hour = '%02d' % config.crontimers.cmdtime.value[0]
+		minutes = '%02d' % config.crontimers.cmdtime.value[1]
+		if config.crontimers.commandtype.value == 'predefined' and config.crontimers.predefined_command.value != '':
+			command = config.crontimers.predefined_command.value
 		else:
-			command = self.user_command.value
+			command = config.crontimers.user_command.value
 
-		if self.runwhen.value == 'Hourly':
+		if config.crontimers.runwhen.value == 'Hourly':
 			newcron = minutes + ' ' + ' * * * * ' + command.strip() + '\n'
-		elif self.runwhen.value == 'Daily':
+		elif config.crontimers.runwhen.value == 'Daily':
 			newcron = minutes + ' ' + hour + ' * * * ' + command.strip() + '\n'
-		elif self.runwhen.value == 'Weekly':
-			if self.dayofweek.value == 'Sunday':
+		elif config.crontimers.runwhen.value == 'Weekly':
+			if config.crontimers.dayofweek.value == 'Sunday':
 				newcron = minutes + ' ' + hour + ' * * 0 ' + command.strip() + '\n'
-			elif self.dayofweek.value == 'Monday':
+			elif config.crontimers.dayofweek.value == 'Monday':
 				newcron = minutes + ' ' + hour + ' * * 1 ' + command.strip() + '\n'
-			elif self.dayofweek.value == 'Tuesday':
+			elif config.crontimers.dayofweek.value == 'Tuesday':
 				newcron = minutes + ' ' + hour + ' * * 2 ' + command.strip() + '\n'
-			elif self.dayofweek.value == 'Wednesday':
+			elif config.crontimers.dayofweek.value == 'Wednesday':
 				newcron = minutes + ' ' + hour + ' * * 3 ' + command.strip() + '\n'
-			elif self.dayofweek.value == 'Thursday':
+			elif config.crontimers.dayofweek.value == 'Thursday':
 				newcron = minutes + ' ' + hour + ' * * 4 ' + command.strip() + '\n'
-			elif self.dayofweek.value == 'Friday':
+			elif config.crontimers.dayofweek.value == 'Friday':
 				newcron = minutes + ' ' + hour + ' * * 5 ' + command.strip() + '\n'
-			elif self.dayofweek.value == 'Saturday':
+			elif config.crontimers.dayofweek.value == 'Saturday':
 				newcron = minutes + ' ' + hour + ' * * 6 ' + command.strip() + '\n'
-		elif self.runwhen.value == 'Monthly':
-			newcron = minutes + ' ' + hour + ' ' + str(self.dayofmonth.value) + ' * * ' + command.strip() + '\n'
+		elif config.crontimers.runwhen.value == 'Monthly':
+			newcron = minutes + ' ' + hour + ' ' + str(config.crontimers.dayofmonth.value) + ' * * ' + command.strip() + '\n'
 		else:
-			command = self.user_command.value
+			command = config.crontimers.user_command.value
 
 		out = open('/etc/cron/crontabs/root', 'a')
 		out.write(newcron)
 		out.close()
 		rc = system('crontab /etc/cron/crontabs/root -c /etc/cron/crontabs')
-		self.predefined_command.value = 'None'
-		self.user_command.value = 'None'
-		self.runwhen.value = 'Daily'
-		self.dayofweek.value = 'Monday'
-		self.dayofmonth.value = 1
-		self.cmdtime.value, mytmpt = ([0, 0], [0, 0])
+		config.crontimers.predefined_command.value = 'None'
+		config.crontimers.user_command.value = 'None'
+		config.crontimers.runwhen.value = 'Daily'
+		config.crontimers.dayofweek.value = 'Monday'
+		config.crontimers.dayofmonth.value = 1
+		config.crontimers.cmdtime.value, mytmpt = ([0, 0], [0, 0])
 		self.close()
