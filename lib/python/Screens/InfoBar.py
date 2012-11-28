@@ -63,7 +63,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"openEPGSearch": (self.openEPGSearch, _("Show the tv player...")),
 				"openIMDB": (self.openIMDB, _("Show the tv player...")),
 				"showMC": (self.showMediaCenter, _("Show the media center...")),
-				"openSleepTimer": (self.openSleepTimer, _("Show the Sleep Timer...")),
+				"openSleepTimer": (self.openPowerTimerList, _("Show the Sleep Timer...")),
 			}, prio=2)
 
 		self["key_red"] = Label()
@@ -246,6 +246,10 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def openTimerList(self):
 		from Screens.TimerEdit import TimerEditList
 		self.session.open(TimerEditList)
+
+	def openPowerTimerList(self):
+		from Screens.PowerTimerEdit import PowerTimerEditList
+		self.session.open(PowerTimerEditList)
 
 	def openAutoTimerList(self):
 		try:
