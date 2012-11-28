@@ -359,14 +359,6 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				self.StateRunning: self.begin,
 				self.StateEnded: self.end }[next_state]
 
-	def failureCB(self, answer):
-		if answer == True:
-			self.log(13, "ok, zapped away")
-			#NavigationInstance.instance.stopUserServices()
-			NavigationInstance.instance.playService(self.service_ref.ref)
-		else:
-			self.log(14, "user didn't want to zap away, record will probably fail")
-
 	def timeChanged(self):
 		old_prepare = self.start_prepare
 		self.start_prepare = self.begin - self.prepare_time
