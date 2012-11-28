@@ -152,7 +152,7 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 			<item level="0" text="Network" entryID="device_screen"><screen module="About" screen="SystemNetworkInfo"/></item>
 			<item level="1" text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
 		</menu>		
-		<menu level="0" text="Timers" entryID="timer_menu">
+		<menu level="5" text="Timers" entryID="timer_menu">
 			<id val="timermenu" />
 			<item weight="100" level="0" text="CronTimers" entryID="crontimer_edit"><screen module="CronTimer" screen="CronTimers" /></item>
 			<item weight="100" level="0" text="Timers" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
