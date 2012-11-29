@@ -14,12 +14,13 @@ class RcModel:
 	RCTYPE_INI1000 = 9
 	RCTYPE_INI3000 = 10
 	RCTYPE_INI5000 = 11
-	RCTYPE_INI7000 = 12
-	RCTYPE_ODIN = 13
-	RCTYPE_TM = 14
-	RCTYPE_VU = 15
-	RCTYPE_VU2 = 16
-	RCTYPE_XP1000 = 17
+	RCTYPE_INI5000R = 12
+	RCTYPE_INI7000 = 13
+	RCTYPE_ODIN = 14
+	RCTYPE_TM = 15
+	RCTYPE_VU = 16
+	RCTYPE_VU2 = 17
+	RCTYPE_XP1000 = 18
 
 
 
@@ -85,8 +86,10 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_INI1000
 			elif model == 'ini-3000':
 				self.currentRcType = self.RCTYPE_INI3000
-			elif model == 'ini-5000' or model == 'ini-5000R':
+			elif model == 'ini-5000':
 				self.currentRcType = self.RCTYPE_INI5000
+			elif model == 'ini-5000R'
+				self.currentRcType = self.RCTYPE_INI5000R
 			elif model == 'ini-7000' or model == 'ini-7012':
 				self.currentRcType = self.RCTYPE_INI7000
 			elif model == 'xp1000':
@@ -123,6 +126,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/ini3000/'
 		elif self.currentRcType == self.RCTYPE_INI5000:
 			return '/usr/share/enigma2/rc_models/ini5000/'
+		elif self.currentRcType == self.RCTYPE_INI5000R:
+			return '/usr/share/enigma2/rc_models/ini5000r/'      
 		elif self.currentRcType == self.RCTYPE_INI7000:
 			return '/usr/share/enigma2/rc_models/ini7000/'
 		elif self.currentRcType == self.RCTYPE_ODIN:
