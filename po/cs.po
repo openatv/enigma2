@@ -188,11 +188,11 @@ msgstr[1] "%d hodiny"
 msgstr[2] "%d hodin"
 
 #
-#, fuzzy, python-format
+#, python-format
 msgid "%d job is running in the background!"
 msgid_plural "%d jobs are running in the background!"
-msgstr[0] "%d úloh běží na pozadí!"
-msgstr[1] "%d úloh běží na pozadí!"
+msgstr[0] "%d úloha běží na pozadí!"
+msgstr[1] "%d úlohy běží na pozadí!"
 msgstr[2] "%d úloh běží na pozadí!"
 
 #
@@ -219,12 +219,12 @@ msgstr[1] "%d sekundy"
 msgstr[2] "%d sekund"
 
 #
-#, fuzzy, python-format
+#, python-format
 msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
-msgstr[0] "Kořenový adresář"
-msgstr[1] "Kořenový adresář"
-msgstr[2] "Kořenový adresář"
+msgstr[0] "%d podadresář"
+msgstr[1] "%d podadresáře"
+msgstr[2] "%d podadresářů"
 
 #
 #, python-format
@@ -2015,9 +2015,9 @@ msgstr "Adresář %s neexistuje."
 msgid "Directory browser"
 msgstr "Prohlížeč adresářů"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Directory contains %s and %s."
-msgstr "Adresář obsahuje %d soubor(ů) a %d podadresář(ů).\n"
+msgstr "Adresář obsahuje %s a %s."
 
 #
 msgid "Disable"
@@ -2207,12 +2207,12 @@ msgid "Don't stop current event but disable coming events"
 msgstr "Nezastavovat aktuální událost, ale zakázat následující události"
 
 #
-#, fuzzy, python-format
+#, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
-msgstr[0] "Dokončeno - instalováno, aktualizováno nebo odstraněno: %d balíčků s %d chybami"
-msgstr[1] "Dokončeno - instalováno, aktualizováno nebo odstraněno: %d balíčků s %d chybami"
-msgstr[2] "Dokončeno - instalováno, aktualizováno nebo odstraněno: %d balíčků s %d chybami"
+msgstr[0] "Dokončeno - instalován, aktualizován nebo odstraněn %d balíček (%s)"
+msgstr[1] "Dokončeno - instalovány, aktualizovány nebo odstraněny %d balíčky (%s)"
+msgstr[2] "Dokončeno - instalováno, aktualizováno nebo odstraněno %d balíčků (%s)"
 
 #
 msgid "Download"
@@ -3323,11 +3323,11 @@ msgstr "Seznam záznamových zařízení"
 msgid "List type"
 msgstr "Typ seznamu"
 
-#, fuzzy, python-format
+#, python-format
 msgid "List version %d, found %d channel"
 msgid_plural "List version %d, found %d channels"
-msgstr[0] "Seznam verze %d, nalezeno %d kanálů"
-msgstr[1] "Seznam verze %d, nalezeno %d kanálů"
+msgstr[0] "Seznam verze %d, nalezen %d kanál"
+msgstr[1] "Seznam verze %d, nalezeny %d kanály"
 msgstr[2] "Seznam verze %d, nalezeno %d kanálů"
 
 #
@@ -5174,18 +5174,18 @@ msgstr "Vyhledá v síti bezdrátové připojovací body a připojí se k nim za
 msgid "Scanning %s..."
 msgstr "Prohledává %s..."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Scanning - %d%% completed, %d channel found"
 msgid_plural "Scanning - %d%% completed, %d channels found"
-msgstr[0] "Prohledávání dokončeno, bylo nalezeno %d programů "
-msgstr[1] "Prohledávání dokončeno, bylo nalezeno %d programů "
-msgstr[2] "Prohledávání dokončeno, bylo nalezeno %d programů "
+msgstr[0] "Prohledávání - %d%% dokončeno, nalezen %d program"
+msgstr[1] "Prohledávání - %d%% dokončeno, nalezeny %d programy"
+msgstr[2] "Prohledávání - %d%% dokončeno, nalezeno %d programů"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
-msgstr[0] "Prohledávání dokončeno, bylo nalezeno %d programů "
-msgstr[1] "Prohledávání dokončeno, bylo nalezeno %d programů "
+msgstr[0] "Prohledávání dokončeno, byl nalezen %d program "
+msgstr[1] "Prohledávání dokončeno, byly nalezeny %d programy"
 msgstr[2] "Prohledávání dokončeno, bylo nalezeno %d programů "
 
 #
@@ -7376,13 +7376,13 @@ msgid "When enabled, the channel selection list will be hidden while listening t
 msgstr "Při povolení bude při poslechu rádia skrytý seznam pro výběr programů."
 
 msgid "When enabled, the infobar will be displayed when a new event starts."
-msgstr "Povolením bude infobar automaticky zobrazen při začátku každé nové události (pořadu). "
+msgstr "Při povolení bude infobar automaticky zobrazen při začátku každé nové události (pořadu). "
 
 msgid "When enabled, the infobar will be displayed when changing channels."
-msgstr "Povolením bude infobar zobrazován při každé změně kanálů."
+msgstr "Při povolení bude infobar zobrazován při každé změně kanálů."
 
 msgid "When enabled, the infobar will be displayed when skipping forwards/backwards during media playback."
-msgstr "Povolením bude infobar zobrazován při každém přeskočení vpřed/vzad během přehrávání souborů."
+msgstr "Při povolení bude infobar zobrazován při každém přeskočení vpřed/vzad během přehrávání souborů."
 
 msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
 msgstr "Jestliže je povoleno, délka každého záznamu bude zobrazená v seznamu souborů (to může prodloužit dobu načítání). "
@@ -7406,9 +7406,8 @@ msgstr "Jestliže je povoleno, přijímač bude vybírat AC3 stopu (bude-li dost
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Při povolení používá DHCP pro nastavení IP."
 
-#, fuzzy
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
-msgstr "Jestliže je povoleno, přijímač bude vybírat AC3 stopu (bude-li dostupná)."
+msgstr "Jestliže je povoleno, přijímač bude detekovat aktivitu na vstupu VCR SCART."
 
 msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
 msgstr "Při nenulové hodnotě nahrávání začne dříve, než je čas začátku uvedený v EPG. "
@@ -8873,9 +8872,9 @@ msgstr "bezdrátový síťový adaptér"
 #, python-format
 msgid "with %d error"
 msgid_plural "with %d errors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "s %d chybou"
+msgstr[1] "se %d chybami"
+msgstr[2] "s %d chybami"
 
 #
 msgid "working"
@@ -8901,37 +8900,3 @@ msgstr "přepnout"
 msgid "zapped"
 msgstr "přepnutý"
 
-#
-#~ msgid "%d services found!"
-#~ msgstr "%d programů nalezeno!"
-
-#
-#~ msgid "AC3 downmix"
-#~ msgstr "AC3 downmix"
-
-#
-#~ msgid "General AC3 delay (ms)"
-#~ msgstr "Hlavní AC3 zpoždění (ms)"
-
-#
-#~ msgid "General PCM delay (ms)"
-#~ msgstr "Hlavní PCM zpoždění (ms)"
-
-#
-#~ msgid "Standby / Restart"
-#~ msgstr "Standby / Restart"
-
-#
-#~ msgid "TV system"
-#~ msgstr "TV systém"
-
-#~ msgid "When enabled, your TV will automatically select the SCART input when you switch on your receiver."
-#~ msgstr "Jestliže je povoleno, TV bude automaticky vybírat SCART vstup při přepnutí na Váš přijímač. "
-
-#
-#~ msgid "scan done!"
-#~ msgstr "Prohledávání dokončeno!"
-
-#
-#~ msgid "scan in progress - %d%% done!"
-#~ msgstr "Probíhá prohledávání - %d%% dokončeno!"
