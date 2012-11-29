@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-29 21:48+0100\n"
-"PO-Revision-Date: 2012-11-21 15:33+0100\n"
-"Last-Translator: PLiteam <translators@openpli.org>\n"
+"PO-Revision-Date: 2012-11-29 21:58+0100\n"
+"Last-Translator: \n"
 "Language-Team: PLiteam <translators@openpli.org>\n"
 "Language: Nederlands\n"
 "MIME-Version: 1.0\n"
@@ -166,8 +166,8 @@ msgstr "%a %e/%m  %-H:%M"
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d bestand"
+msgstr[1] "%d bestanden"
 
 #, python-format
 msgid "%d hour"
@@ -175,10 +175,10 @@ msgid_plural "%d hours"
 msgstr[0] "%d uur"
 msgstr[1] "%d uren"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d job is running in the background!"
 msgid_plural "%d jobs are running in the background!"
-msgstr[0] "%d opdrachten draaien op de achtergrond."
+msgstr[0] "%d opdracht draait op de achtergrond."
 msgstr[1] "%d opdrachten draaien op de achtergrond."
 
 #, python-format
@@ -201,11 +201,11 @@ msgid_plural "%d seconds"
 msgstr[0] "%d seconde"
 msgstr[1] "%d seconden"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
-msgstr[0] "Hoofddirectory"
-msgstr[1] "Hoofddirectory"
+msgstr[0] "%d subdirectory"
+msgstr[1] "%d subdirectories"
 
 # Niet gewijzigd
 #, python-format
@@ -244,8 +244,8 @@ msgstr "%s is niet langer gebruikt. Kan deze verwijderd worden?"
 #, python-format
 msgid "%s updated package available"
 msgid_plural "%s updated packages available"
-msgstr[0] "%s updated package available"
-msgstr[1] "%s updated packages available"
+msgstr[0] "%s nieuw pakket beschikbaar"
+msgstr[1] "%s nieuwe pakketten beschikbaar"
 
 #, python-format
 msgid "%s/%s: %s"
@@ -646,7 +646,6 @@ msgstr "Een lege bestandsnaam is ongeldig."
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr "Er is een fout opgetreden bij het downloaden van de pakketlijst. Probeer het aub opnieuw."
 
-#, fuzzy
 msgid "An unknown error occurred!"
 msgstr "Er heeft zich een onbekende fout voorgedaan!"
 
@@ -1687,9 +1686,9 @@ msgstr "Map %s bestaat niet."
 msgid "Directory browser"
 msgstr "Bestandsverkenner"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Directory contains %s and %s."
-msgstr "Directory bevat %d bestand(en) en %d sub-directory's.\n"
+msgstr "Directory bevat %s en %s."
 
 msgid "Disable"
 msgstr "Uit"
@@ -1845,11 +1844,11 @@ msgstr "Wilt u een upgrade van dit pakket:\n"
 msgid "Don't stop current event but disable coming events"
 msgstr "Huidige timer niet stoppen, maar toekomstige timers uitschakelen"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
-msgstr[0] "Klaar - %d pakket(ten) geïnstalleerd, vervangen of verwijderd met %d fouten"
-msgstr[1] "Klaar - %d pakket(ten) geïnstalleerd, vervangen of verwijderd met %d fouten"
+msgstr[0] "Gereed - %d pakket geïnstalleerd, vervangen of verwijderd (%s)"
+msgstr[1] "Gereed - %d pakketten geïnstalleerd, vervangen of verwijderd (%s)"
 
 msgid "Download"
 msgstr "Downloaden"
@@ -2756,11 +2755,11 @@ msgstr "Overzicht van opslagmedia"
 msgid "List type"
 msgstr "Lijsttype"
 
-#, fuzzy, python-format
+#, python-format
 msgid "List version %d, found %d channel"
 msgid_plural "List version %d, found %d channels"
-msgstr[0] "Lijstversie %d, %d kanalen gevonden"
-msgstr[1] "Lijstversie %d, %d kanalen gevonden"
+msgstr[0] "Lijstversie %d, %d zender gevonden"
+msgstr[1] "Lijstversie %d, %d zenders gevonden"
 
 msgid "Listen to the radio..."
 msgstr "Luister naar de radio..."
@@ -4261,16 +4260,16 @@ msgstr "Scan in uw netwerk naar accesspoints en maak een verbinding met het door
 msgid "Scanning %s..."
 msgstr "Zoeken %s..."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Scanning - %d%% completed, %d channel found"
 msgid_plural "Scanning - %d%% completed, %d channels found"
-msgstr[0] "Zoeken voltooid, %d zenders gevonden"
-msgstr[1] "Zoeken voltooid, %d zenders gevonden"
+msgstr[0] "Zoeken - %d%% voltooid, %d zender gevonden"
+msgstr[1] "Zoeken - %d%% voltooid, %d zenders gevonden"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
-msgstr[0] "Zoeken voltooid, %d zenders gevonden"
+msgstr[0] "Zoeken voltooid, %d zender gevonden"
 msgstr[1] "Zoeken voltooid, %d zenders gevonden"
 
 msgid "Scanning failed!"
@@ -6143,9 +6142,8 @@ msgstr "Indien geactiveerd, dan selecteert de ontvanger een AC3 spoor indien dez
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Indien geactiveerd, gebruik dan DHCP om uw IPadres te bepalen."
 
-#, fuzzy
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
-msgstr "Indien geactiveerd, dan selecteert de ontvanger een AC3 spoor indien deze beschikbaar is."
+msgstr "Indien geactiveerd, herkent de ontvanger een signaal op de VCR SCART ingang."
 
 msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
 msgstr "Indien de ingestelde waarde ongelijk aan nul is, dan start de opname het aangegeven aantal minuten eerder dan de door de EPG aangegeven tijd."
@@ -6184,9 +6182,8 @@ msgstr "Draadloos netwerk"
 msgid "Wireless network"
 msgstr "WIFI netwerk"
 
-#, fuzzy
 msgid "Wireless network configuration..."
-msgstr "Instellen van het WIFI netwerk."
+msgstr "WIFI netwerk instellingen..."
 
 msgid "Wireless network connection setup"
 msgstr "Installatie van het draadloos netwerk"
@@ -7375,8 +7372,8 @@ msgstr "draadloze netwerkinterface"
 #, python-format
 msgid "with %d error"
 msgid_plural "with %d errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "met %d fout"
+msgstr[1] "met %d fouten"
 
 msgid "working"
 msgstr "bezig"
