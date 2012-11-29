@@ -61,7 +61,7 @@ class FastScan:
 		if result < 0:
 			self.text.setText(_('Scanning failed!'))
 		else:
-			self.text.setText(_('List version %d, found %d channels') % (self.scan.getVersion(), result))
+			self.text.setText(ngettext('List version %d, found %d channel', 'List version %d, found %d channels', result) % (self.scan.getVersion(), result))
 
 	def destroy(self):
 		pass

@@ -47,7 +47,7 @@ class CableScan:
 		if result < 0:
 			self.text.setText(_('Scanning failed!'))
 		else:
-			self.text.setText(_('Scanning completed, %d channels found') % (result))
+			self.text.setText(ngettext("Scanning completed, %d channel found", "Scanning completed, %d channels found", result) % result)
 
 	def destroy(self):
 		pass
