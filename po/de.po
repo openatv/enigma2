@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-29 21:48+0100\n"
-"PO-Revision-Date: 2012-11-19 11:03+0100\n"
+"POT-Creation-Date: 2012-11-29 22:50+0100\n"
+"PO-Revision-Date: 2012-11-29 22:50+0100\n"
 "Last-Translator: philsmd\n"
 "Language-Team: OpenPLi <openpli.org>\n"
 "Language: de\n"
@@ -163,8 +163,8 @@ msgstr "%a %e/%m  %-H:%M"
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Datei"
+msgstr[1] "%d Dateien"
 
 #, python-format
 msgid "%d hour"
@@ -172,10 +172,10 @@ msgid_plural "%d hours"
 msgstr[0] "%d Stunde"
 msgstr[1] "%d Stunden"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d job is running in the background!"
 msgid_plural "%d jobs are running in the background!"
-msgstr[0] "Es laufen noch %d Jobs im Hintergrund!"
+msgstr[0] "Es läuft noch %d Job im Hintergrund!"
 msgstr[1] "Es laufen noch %d Jobs im Hintergrund!"
 
 #, python-format
@@ -198,11 +198,11 @@ msgid_plural "%d seconds"
 msgstr[0] "%d Sekunde"
 msgstr[1] "%d Sekunden"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
-msgstr[0] "Hauptverzeichnis"
-msgstr[1] "Hauptverzeichnis"
+msgstr[0] "%d Hauptverzeichnis"
+msgstr[1] "%d Hauptverzeichnisse"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -464,7 +464,7 @@ msgid "AB"
 msgstr "AB"
 
 msgid "AC3/DTS downmix"
-msgstr "AC3/DTS Downmix"
+msgstr "AC3/DTS heruntermischen"
 
 msgid "Abort"
 msgstr "Abbrechen"
@@ -1672,9 +1672,9 @@ msgstr "Verzeichnis %s existiert nicht."
 msgid "Directory browser"
 msgstr "Verzeichnis Browser"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Directory contains %s and %s."
-msgstr "Das Verzeichnis enthält %d Datei(en) und %d Unterverzeichnisse.\n"
+msgstr "Das Verzeichnis enthält %s und %s."
 
 msgid "Disable"
 msgstr "Aus"
@@ -1825,11 +1825,11 @@ msgstr "Wollen Sie das Paket aktualisieren:\n"
 msgid "Don't stop current event but disable coming events"
 msgstr "Aktuelles Event nicht beenden, aber alle zukünftige Events deaktivieren"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
-msgstr[0] "Abgeschlossen - %d Pakete mit %d Fehlern installiert, aktualisiert oder entfernt"
-msgstr[1] "Abgeschlossen - %d Pakete mit %d Fehlern installiert, aktualisiert oder entfernt"
+msgstr[0] "Abgeschlossen - %d Paket installiert, aktualisiert oder entfernt (%s)"
+msgstr[1] "Abgeschlossen - %d Pakete installiert, aktualisiert oder entfernt (%s)"
 
 msgid "Download"
 msgstr "Herunterladen"
@@ -2732,10 +2732,10 @@ msgstr "Speichergeräteliste"
 msgid "List type"
 msgstr "Listen Typ"
 
-#, fuzzy, python-format
+#, python-format
 msgid "List version %d, found %d channel"
 msgid_plural "List version %d, found %d channels"
-msgstr[0] "Listen Version %d, %d gefundene Kanäle"
+msgstr[0] "Listen Version %d, %d Kanal gefunden"
 msgstr[1] "Listen Version %d, %d gefundene Kanäle"
 
 msgid "Listen to the radio..."
@@ -4228,16 +4228,16 @@ msgstr "Durchsucht Ihr Netzwerk nach WLAN-Zugangspunkten und stellt eine Verbind
 msgid "Scanning %s..."
 msgstr "Suche %s..."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Scanning - %d%% completed, %d channel found"
 msgid_plural "Scanning - %d%% completed, %d channels found"
-msgstr[0] "Suche beendet, %d Kanäle gefunden"
-msgstr[1] "Suche beendet, %d Kanäle gefunden"
+msgstr[0] "Suche %d%% beendet, %d gefundener Kanal"
+msgstr[1] "Suche %d%% beendet, %d Kanäle gefunden"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
-msgstr[0] "Suche beendet, %d Kanäle gefunden"
+msgstr[0] "Suche beendet, %d gefundener Kanal"
 msgstr[1] "Suche beendet, %d Kanäle gefunden"
 
 msgid "Scanning failed!"
@@ -5996,7 +5996,7 @@ msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fi
 msgstr "Inhalte mit einem Bildschirmformat von 4:3 werden gestreckt um die volle Bildschirmfläche in Anspruch zu nehmen."
 
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
-msgstr ""
+msgstr "Wechselt zum nächsten Bouquet wenn der letzte Kanal bei Kanalwechsel erreicht wurde."
 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr "Verschiebe Aufnahmem in den Mülleimer bevor sie endgültig gelöscht werden."
@@ -6085,9 +6085,8 @@ msgstr "AC3 Tonspur verwenden (falls vorhanden)."
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Dynamische IP Adressen (DHCP) für IP-Vergabe verwenden."
 
-#, fuzzy
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
-msgstr "AC3 Tonspur verwenden (falls vorhanden)."
+msgstr "Der Receiver erkennt Aktivitäten am Video-SCART Eingang."
 
 msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
 msgstr "Aufnahme früher beginnen, als Startzeit die EPG zur Verfügung stellt (falls nicht 0)."
@@ -7312,8 +7311,8 @@ msgstr "Funk Netzwerkadapter"
 #, python-format
 msgid "with %d error"
 msgid_plural "with %d errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "mit %d Fehler"
+msgstr[1] "mit %d Fehlern"
 
 msgid "working"
 msgstr "Arbeite"
@@ -7332,33 +7331,3 @@ msgstr "Umschalten"
 
 msgid "zapped"
 msgstr "umgeschaltet"
-
-#~ msgid "%d services found!"
-#~ msgstr "%d Kanäle gefunden!"
-
-#~ msgid "AC3 downmix"
-#~ msgstr "AC3 Downmix"
-
-#~ msgid "DTS downmix"
-#~ msgstr "DTS heruntermischen"
-
-#~ msgid "General AC3 delay (ms)"
-#~ msgstr "Generelles AC3 delay (ms)"
-
-#~ msgid "General PCM delay (ms)"
-#~ msgstr "Generelles PCM delay (ms)"
-
-#~ msgid "Standby / Restart"
-#~ msgstr "Standby / Neustart"
-
-#~ msgid "TV system"
-#~ msgstr "Fernsehnorm"
-
-#~ msgid "When enabled, your TV will automatically select the SCART input when you switch on your receiver."
-#~ msgstr "SCART Videoanschluss verwenden beim Einschalten des Receivers."
-
-#~ msgid "scan done!"
-#~ msgstr "Suche beendet!"
-
-#~ msgid "scan in progress - %d%% done!"
-#~ msgstr "Suche läuft - %d%% erledigt!"
