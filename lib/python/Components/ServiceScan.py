@@ -31,7 +31,7 @@ class ServiceScan:
 				self.transponder.setText("")
 			else:
 				result = self.foundServices + self.scan.getNumServices()
-				self.text.setText(_("scan in progress - %d%% done!") % self.scan.getProgress() + ' ' + ngettext("%d service found!", "%d services found!", result) % result)
+				self.text.setText(ngettext("Scanning - %d%% completed, %d channel found", "Scanning - %d%% completed, %d channels found", result) % (self.scan.getProgress(), result))
 				transponder = self.scan.getCurrentTransponder()
 				network = ""
 				tp_text = ""
@@ -104,7 +104,7 @@ class ServiceScan:
 
 		if self.state == self.Done:
 			result = self.foundServices + self.scan.getNumServices()
-			self.text.setText(_("scan done!") + ' ' + ngettext("%d service found!", "%d services found!", result) % result)
+			self.text.setText(ngettext("Scanning completed, %d channel found", "Scanning completed, %d channels found", result) % result)
 
 		if self.state == self.Error:
 			self.text.setText(_("ERROR - failed to scan (%s)!") % (self.Errors[self.errorcode]) )
