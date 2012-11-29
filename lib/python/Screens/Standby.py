@@ -140,7 +140,7 @@ class TryQuitMainloop(MessageBox):
 				job = job_manager.getPendingJobs()[0]
 				reason += "%s: %s (%d%%)\n" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
 			else:
-				reason += (_("%d jobs are running in the background!") % jobs) + '\n'
+				reason += (ngettext("%d job is running in the background!", "%d jobs are running in the background!", jobs) % jobs) + '\n'
 		if reason:
 			text = { 1: _("Really shutdown now?"), 
 				2: _("Really reboot now?"),
