@@ -12,6 +12,16 @@ class Label(VariableText, HTMLComponent, GUIComponent):
 		VariableText.__init__(self)
 		self.setText(text)
 	
+# fake Source methods:
+	def connectDownstream(self, downstream):
+		pass
+
+	def checkSuspend(self):
+		pass
+
+	def disconnectDownstream(self, downstream):
+		pass
+
 # html:	
 	def produceHTML(self):
 		return self.getText()

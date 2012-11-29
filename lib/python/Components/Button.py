@@ -22,6 +22,16 @@ class Button(VariableText, HTMLComponent, GUIComponent):
 	def enable(self):
 		pass
 
+# fake Source methods:
+	def connectDownstream(self, downstream):
+		pass
+
+	def checkSuspend(self):
+		pass
+
+	def disconnectDownstream(self, downstream):
+		pass
+
 # html:
 	def produceHTML(self):
 		return "<input type=\"submit\" text=\"" + self.getText() + "\">\n"
