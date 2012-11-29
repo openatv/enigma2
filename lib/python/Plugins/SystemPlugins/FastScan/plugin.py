@@ -92,7 +92,7 @@ class FastScanStatus(Screen):
 		self.prevservice = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.stopService()
 
-		self["actions"] = ActionMap(["OkCancelActions"], 
+		self["actions"] = ActionMap(["OkCancelActions"],
 			{
 				"ok": self.ok,
 				"cancel": self.cancel
@@ -111,7 +111,7 @@ class FastScanStatus(Screen):
 		if self["scan"].isDone():
 			self.restoreService()
 			self.close()
-	
+
 	def cancel(self):
 		self.restoreService()
 		self.close()

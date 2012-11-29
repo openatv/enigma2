@@ -2,26 +2,26 @@ from enigma import eComponentScan, iDVBFrontend
 from Components.NimManager import nimmanager as nimmgr
 
 class ServiceScan:
-	
+
 	Idle = 1
 	Running = 2
 	Done = 3
 	Error = 4
-	
-	Errors = { 
+
+	Errors = {
 		0: "error starting scanning",
 		1: "error while scanning",
 		2: "no resource manager",
 		3: "no channel list"
 		}
-	
+
 	def scanStatusChanged(self):
 		if self.state == self.Running:
 			self.progressbar.setValue(self.scan.getProgress())
 			self.lcd_summary.updateProgress(self.scan.getProgress())
 			if self.scan.isDone():
 				errcode = self.scan.getError()
-				
+
 				if errcode == 0:
 					self.state = self.Done
 				else:
@@ -81,18 +81,18 @@ class ServiceScan:
 					elif tp_type == iDVBFrontend.feTerrestrial:
 						network = _("Terrestrial")
 						tp = transponder.getDVBT()
-						tp_text = ("%s %s %d %s") %( 
-							{ 
+						tp_text = ("%s %s %d %s") %(
+							{
 								tp.System_DVB_T : "DVB-T",
 								tp.System_DVB_T2 : "DVB-T2"
 							}.get(tp.system, ""),
-							{ 
+							{
 								tp.Modulation_QPSK : "QPSK",
 								tp.Modulation_QAM16 : "QAM16", tp.Modulation_QAM64 : "QAM64",
 								tp.Modulation_Auto : "AUTO", tp.Modulation_QAM256 : "QAM256"
 							}.get(tp.modulation, ""),
 							tp.frequency,
-							{ 
+							{
 								tp.Bandwidth_8MHz : "Bw 8MHz", tp.Bandwidth_7MHz : "Bw 7MHz", tp.Bandwidth_6MHz : "Bw 6MHz",
 								tp.Bandwidth_Auto : "Bw Auto", tp.Bandwidth_5MHz : "Bw 5MHz",
 								tp.Bandwidth_1_712MHz : "Bw 1.712MHz", tp.Bandwidth_10MHz : "Bw 10MHz"
@@ -101,21 +101,21 @@ class ServiceScan:
 						print "unknown transponder type in scanStatusChanged"
 				self.network.setText(network)
 				self.transponder.setText(tp_text)
-		
+
 		if self.state == self.Done:
 			result = self.foundServices + self.scan.getNumServices()
 			self.text.setText(_("scan done!") + ' ' + ngettext("%d service found!", "%d services found!", result) % result)
-		
+
 		if self.state == self.Error:
 			self.text.setText(_("ERROR - failed to scan (%s)!") % (self.Errors[self.errorcode]) )
-			
+
 		if self.state == self.Done or self.state == self.Error:
 			if self.run != len(self.scanList) - 1:
 				self.foundServices += self.scan.getNumServices()
 				self.execEnd()
 				self.run += 1
 				self.execBegin()
-	
+
 	def __init__(self, progressbar, text, servicelist, passNumber, scanList, network, transponder, frontendInfo, lcd_summary):
 		self.foundServices = 0
 		self.progressbar = progressbar
@@ -139,7 +139,7 @@ class ServiceScan:
 			self.networkid = self.scanList[self.run]["networkid"]
 		self.state = self.Idle
 		self.scanStatusChanged()
-		
+
 		for x in self.scanList[self.run]["transponders"]:
 			self.scan.addInitial(x)
 
@@ -147,7 +147,7 @@ class ServiceScan:
 		size = len(self.scanList)
 		if size > 1:
 			self.passNumber.setText(_("pass") + " " + str(self.run + 1) + "/" + str(size) + " (" + _("Tuner") + " " + str(self.scanList[self.run]["feid"]) + ")")
-		
+
 	def execBegin(self):
 		self.doRun()
 		self.updatePass()
@@ -161,13 +161,13 @@ class ServiceScan:
 			self.state = self.Error
 			self.errorcode = 0
 		self.scanStatusChanged()
-	
+
 	def execEnd(self):
 		self.scan.statusChanged.get().remove(self.scanStatusChanged)
 		self.scan.newService.get().remove(self.newService)
 		if not self.isDone():
 			print "*** warning *** scan was not finished!"
-		
+
 		del self.scan
 
 	def isDone(self):
