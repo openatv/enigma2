@@ -88,7 +88,7 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_INI3000
 			elif model == 'ini-5000':
 				self.currentRcType = self.RCTYPE_INI5000
-			elif model == 'ini-5000R'
+			elif model == 'ini-5000R':
 				self.currentRcType = self.RCTYPE_INI5000R
 			elif model == 'ini-7000' or model == 'ini-7012':
 				self.currentRcType = self.RCTYPE_INI7000
