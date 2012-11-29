@@ -61,6 +61,7 @@ config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
 config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=True)
 config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
 config.plugins.softwaremanager.overwriteBootlogoFiles = ConfigYesNo(default=True)
+config.plugins.softwaremanager.overwriteSpinnerFiles = ConfigYesNo(default=True)
 config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
 				[
 				 ("Y", _("Yes, always")),
@@ -429,6 +430,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.overwriteEmusfilesEntry = getConfigListEntry(_("Overwrite Emu Files ?"), config.plugins.softwaremanager.overwriteEmusFiles)
 		self.overwritePiconsfilesEntry = getConfigListEntry(_("Overwrite Picon Files ?"), config.plugins.softwaremanager.overwritePiconsFiles)
 		self.overwriteBootlogofilesEntry = getConfigListEntry(_("Overwrite Bootlogo Files ?"), config.plugins.softwaremanager.overwriteBootlogoFiles)
+		self.overwriteSpinnerfilesEntry = getConfigListEntry(_("Overwrite Spinner Files ?"), config.plugins.softwaremanager.overwriteSpinnerFiles)
 		self.updatetypeEntry  = getConfigListEntry(_("Select Software Update"), config.plugins.softwaremanager.updatetype)
 		if self.boxversion.upper()[:2] == 'ET': 
 			self.list.append(self.updatetypeEntry)
@@ -458,6 +460,8 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 			self["introduction"].setText(_("Overwrite picon files during software upgrade?"))
 		elif self["config"].getCurrent() == self.overwriteBootlogofilesEntry:
 			self["introduction"].setText(_("Overwrite bootlogo files during software upgrade?"))
+		elif self["config"].getCurrent() == self.overwriteSpinnerfilesEntry:
+			self["introduction"].setText(_("Overwrite spinner files during software upgrade?"))
 		elif self["config"].getCurrent() == self.updatetypeEntry:
 			self["introduction"].setText(_("Select how your box will upgrade."))
 		else:
