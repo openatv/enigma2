@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-16 18:48+0100\n"
+"POT-Creation-Date: 2012-11-29 21:48+0100\n"
 "PO-Revision-Date: 2012-11-21 15:33+0100\n"
 "Last-Translator: PLiteam <translators@openpli.org>\n"
 "Language-Team: PLiteam <translators@openpli.org>\n"
@@ -164,14 +164,22 @@ msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
 #, python-format
+msgid "%d file"
+msgid_plural "%d files"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d uur"
 msgstr[1] "%d uren"
 
-#, python-format
-msgid "%d jobs are running in the background!"
-msgstr "%d opdrachten draaien op de achtergrond."
+#, fuzzy, python-format
+msgid "%d job is running in the background!"
+msgid_plural "%d jobs are running in the background!"
+msgstr[0] "%d opdrachten draaien op de achtergrond."
+msgstr[1] "%d opdrachten draaien op de achtergrond."
 
 #, python-format
 msgid "%d min"
@@ -193,9 +201,11 @@ msgid_plural "%d seconds"
 msgstr[0] "%d seconde"
 msgstr[1] "%d seconden"
 
-#, python-format
-msgid "%d services found!"
-msgstr "%d kanalen gevonden."
+#, fuzzy, python-format
+msgid "%d subdirectory"
+msgid_plural "%d subdirectories"
+msgstr[0] "Hoofddirectory"
+msgstr[1] "Hoofddirectory"
 
 # Niet gewijzigd
 #, python-format
@@ -458,9 +468,6 @@ msgstr "AA"
 msgid "AB"
 msgstr "AB"
 
-msgid "AC3 downmix"
-msgstr "AC3 downmix"
-
 msgid "AC3/DTS downmix"
 msgstr "AC3/DTS downmix"
 
@@ -639,7 +646,8 @@ msgstr "Een lege bestandsnaam is ongeldig."
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr "Er is een fout opgetreden bij het downloaden van de pakketlijst. Probeer het aub opnieuw."
 
-msgid "An unknown error occured!"
+#, fuzzy
+msgid "An unknown error occurred!"
 msgstr "Er heeft zich een onbekende fout voorgedaan!"
 
 msgid "Any activity"
@@ -1524,9 +1532,6 @@ msgstr "DMM geavanceerd"
 msgid "DMM normal"
 msgstr "DMM normaal"
 
-msgid "DTS downmix"
-msgstr "DTS downmix"
-
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
 
@@ -1682,8 +1687,8 @@ msgstr "Map %s bestaat niet."
 msgid "Directory browser"
 msgstr "Bestandsverkenner"
 
-#, python-format
-msgid "Directory contains %d file(s) and %d sub-directories.\n"
+#, fuzzy, python-format
+msgid "Directory contains %s and %s."
 msgstr "Directory bevat %d bestand(en) en %d sub-directory's.\n"
 
 msgid "Disable"
@@ -1840,9 +1845,11 @@ msgstr "Wilt u een upgrade van dit pakket:\n"
 msgid "Don't stop current event but disable coming events"
 msgstr "Huidige timer niet stoppen, maar toekomstige timers uitschakelen"
 
-#, python-format
-msgid "Done - Installed, upgraded or removed %d packages with %d errors"
-msgstr "Klaar - %d pakket(ten) geïnstalleerd, vervangen of verwijderd met %d fouten"
+#, fuzzy, python-format
+msgid "Done - Installed, upgraded or removed %d package (%s)"
+msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
+msgstr[0] "Klaar - %d pakket(ten) geïnstalleerd, vervangen of verwijderd met %d fouten"
+msgstr[1] "Klaar - %d pakket(ten) geïnstalleerd, vervangen of verwijderd met %d fouten"
 
 msgid "Download"
 msgstr "Downloaden"
@@ -2255,14 +2262,8 @@ msgstr "Gateway"
 msgid "General AC3 delay"
 msgstr "Algehele AC3 vertraging"
 
-msgid "General AC3 delay (ms)"
-msgstr "Algemene AC3 vertraging (ms)"
-
 msgid "General PCM delay"
 msgstr "Algehele PCM vertraging"
-
-msgid "General PCM delay (ms)"
-msgstr "Algemene PCM vertraging (ms)"
 
 msgid "Genre"
 msgstr "Genre"
@@ -2755,9 +2756,11 @@ msgstr "Overzicht van opslagmedia"
 msgid "List type"
 msgstr "Lijsttype"
 
-#, python-format
-msgid "List version %d, found %d channels"
-msgstr "Lijstversie %d, %d kanalen gevonden"
+#, fuzzy, python-format
+msgid "List version %d, found %d channel"
+msgid_plural "List version %d, found %d channels"
+msgstr[0] "Lijstversie %d, %d kanalen gevonden"
+msgstr[1] "Lijstversie %d, %d kanalen gevonden"
 
 msgid "Listen to the radio..."
 msgstr "Luister naar de radio..."
@@ -4258,9 +4261,17 @@ msgstr "Scan in uw netwerk naar accesspoints en maak een verbinding met het door
 msgid "Scanning %s..."
 msgstr "Zoeken %s..."
 
-#, python-format
-msgid "Scanning completed, %d channels found"
-msgstr "Zoeken voltooid, %d zenders gevonden"
+#, fuzzy, python-format
+msgid "Scanning - %d%% completed, %d channel found"
+msgid_plural "Scanning - %d%% completed, %d channels found"
+msgstr[0] "Zoeken voltooid, %d zenders gevonden"
+msgstr[1] "Zoeken voltooid, %d zenders gevonden"
+
+#, fuzzy, python-format
+msgid "Scanning completed, %d channel found"
+msgid_plural "Scanning completed, %d channels found"
+msgstr[0] "Zoeken voltooid, %d zenders gevonden"
+msgstr[1] "Zoeken voltooid, %d zenders gevonden"
 
 msgid "Scanning failed!"
 msgstr "Zoeken mislukt!"
@@ -4850,9 +4861,6 @@ msgstr "Standaard"
 msgid "Standby"
 msgstr "Standby"
 
-msgid "Standby / Restart"
-msgstr "Standby / Afsluiten"
-
 msgid "Standby / restart"
 msgstr "Standby / herstart"
 
@@ -5080,9 +5088,6 @@ msgstr "TSID"
 # Twijfel
 msgid "TV physical address report"
 msgstr "TV fysiek adres overzicht"
-
-msgid "TV system"
-msgstr "TV systeem"
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -6138,8 +6143,9 @@ msgstr "Indien geactiveerd, dan selecteert de ontvanger een AC3 spoor indien dez
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Indien geactiveerd, gebruik dan DHCP om uw IPadres te bepalen."
 
-msgid "When enabled, your TV will automatically select the SCART input when you switch on your receiver."
-msgstr "Indien geactiveerd, dan kiest uw TV automatisch de SCART ingang zodra de ontvanger ingeschakeld wordt."
+#, fuzzy
+msgid "When enabled, your receiver will detect activity on the VCR SCART input."
+msgstr "Indien geactiveerd, dan selecteert de ontvanger een AC3 spoor indien deze beschikbaar is."
 
 msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
 msgstr "Indien de ingestelde waarde ongelijk aan nul is, dan start de opname het aangegeven aantal minuten eerder dan de door de EPG aangegeven tijd."
@@ -6178,7 +6184,8 @@ msgstr "Draadloos netwerk"
 msgid "Wireless network"
 msgstr "WIFI netwerk"
 
-msgid "Wireless network configuartion..."
+#, fuzzy
+msgid "Wireless network configuration..."
 msgstr "Instellen van het WIFI netwerk."
 
 msgid "Wireless network connection setup"
@@ -7120,13 +7127,6 @@ msgstr "Bewaar laatste map bij het beëindigen"
 msgid "save playlist on exit"
 msgstr "Bewaar afspeellijst bij het beëindigen"
 
-msgid "scan done!"
-msgstr "Zoeken voltooid."
-
-#, python-format
-msgid "scan in progress - %d%% done!"
-msgstr "Bezig met zoeken - %d%% voltooid."
-
 msgid "scan state"
 msgstr "zoekstatus"
 
@@ -7372,6 +7372,12 @@ msgstr "wintersport"
 msgid "wireless network interface"
 msgstr "draadloze netwerkinterface"
 
+#, python-format
+msgid "with %d error"
+msgid_plural "with %d errors"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "working"
 msgstr "bezig"
 
@@ -7400,11 +7406,17 @@ msgstr "zapte"
 #~ msgid " wireless networks found!"
 #~ msgstr "draadloze netwerken gevonden!"
 
+#~ msgid "%d services found!"
+#~ msgstr "%d kanalen gevonden."
+
 #~ msgid "/usr/share/enigma2 directory"
 #~ msgstr "/usr/share/enigma2 map"
 
 #~ msgid "/var directory"
 #~ msgstr "/var map"
+
+#~ msgid "AC3 downmix"
+#~ msgstr "AC3 downmix"
 
 #~ msgid "Add Bookmark"
 #~ msgstr "Markeerpunt toevoegen"
@@ -7415,12 +7427,8 @@ msgstr "zapte"
 #~ msgid "Add network configuration?"
 #~ msgstr "Netwerkconfiguratie toevoegen?"
 
-#~ msgid ""
-#~ "Adds enigma2 settings and receiver model informations like SN, rev... if "
-#~ "enabled."
-#~ msgstr ""
-#~ "Voegt enigma2-settings en ontvanger modelinformatie zoals SN, rev. toe, "
-#~ "indien beschikbaar."
+#~ msgid "Adds enigma2 settings and receiver model informations like SN, rev... if enabled."
+#~ msgstr "Voegt enigma2-settings en ontvanger modelinformatie zoals SN, rev. toe, indien beschikbaar."
 
 #~ msgid "Adds network configuration if enabled."
 #~ msgstr "Netwerkconfiguratie toevoegen indien ingeschakeld."
@@ -7431,12 +7439,8 @@ msgstr "zapte"
 #~ msgid "After pressing OK, please wait!"
 #~ msgstr "Druk op OK. Een moment geduld aub!"
 
-#~ msgid ""
-#~ "After the start wizard is completed, you need to protect single services. "
-#~ "Refer to your receiver's manual on how to do that."
-#~ msgstr ""
-#~ "Als de opstartwizard afgerond is kunt u de verschillende kanalen van een "
-#~ "kinderslot te voorzien. In de handleiding kunt u nalezen hoe u dat doet."
+#~ msgid "After the start wizard is completed, you need to protect single services. Refer to your receiver's manual on how to do that."
+#~ msgstr "Als de opstartwizard afgerond is kunt u de verschillende kanalen van een kinderslot te voorzien. In de handleiding kunt u nalezen hoe u dat doet."
 
 #~ msgid "Always ask before sending"
 #~ msgstr "Altijd vragen voor verzending"
@@ -7466,12 +7470,8 @@ msgstr "zapte"
 #~ msgid "Backup done."
 #~ msgstr "Backup voltooid."
 
-#~ msgid ""
-#~ "By pressing the OK Button on your remote control, the info bar is being "
-#~ "displayed."
-#~ msgstr ""
-#~ "Door op de OK Knop van de afstandsbediening te drukken, wordt de infobalk "
-#~ "zichtbaar."
+#~ msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
+#~ msgstr "Door op de OK Knop van de afstandsbediening te drukken, wordt de infobalk zichtbaar."
 
 #~ msgid "CF Drive"
 #~ msgstr "CF kaart"
@@ -7531,6 +7531,9 @@ msgstr "zapte"
 #~ msgid "Custom text position"
 #~ msgstr "Eigen tekstpositie"
 
+#~ msgid "DTS downmix"
+#~ msgstr "DTS downmix"
+
 #~ msgid "Decide if you want to enable or disable the Cleanup Wizard."
 #~ msgstr "Wilt u de opschoonwizard in- of uitschakelen."
 
@@ -7570,12 +7573,8 @@ msgstr "zapte"
 #~ msgid "Do you want to enable the parental control feature on your receiver?"
 #~ msgstr "Wilt u het kinderslot activeren?"
 
-#~ msgid ""
-#~ "Do you want to submit your email address and name so that we can contact "
-#~ "you if needed?"
-#~ msgstr ""
-#~ "Wilt u uw e-mailadres en naam opgeven zodat wij, indien nodig, contact "
-#~ "met u kunnen opnemen?"
+#~ msgid "Do you want to submit your email address and name so that we can contact you if needed?"
+#~ msgstr "Wilt u uw e-mailadres en naam opgeven zodat wij, indien nodig, contact met u kunnen opnemen?"
 
 #~ msgid ""
 #~ "Do you want to update your receiver?\n"
@@ -7621,9 +7620,7 @@ msgstr "zapte"
 #~ "© 2006 - Stephan Reichholf"
 
 #~ msgid "Enter your email address so that we can contact you if needed."
-#~ msgstr ""
-#~ "Geef uw e-mailadres, zodat wij, indien nodig, contact met u kunnen "
-#~ "opnemen."
+#~ msgstr "Geef uw e-mailadres, zodat wij, indien nodig, contact met u kunnen opnemen."
 
 #~ msgid "Exit the cleanup wizard"
 #~ msgstr "Verlaat de opschoonwizard"
@@ -7633,6 +7630,12 @@ msgstr "zapte"
 
 #~ msgid "For more information see www.openpli.org"
 #~ msgstr "Kijk op www.openpli.org voor meer informatie"
+
+#~ msgid "General AC3 delay (ms)"
+#~ msgstr "Algemene AC3 vertraging (ms)"
+
+#~ msgid "General PCM delay (ms)"
+#~ msgstr "Algemene PCM vertraging (ms)"
 
 #~ msgid "Guard Interval"
 #~ msgstr "Guard interval"
@@ -7650,8 +7653,7 @@ msgstr "zapte"
 #~ msgstr "Installatie mislukt."
 
 #~ msgid "Installing default sat lists... Please wait..."
-#~ msgstr ""
-#~ "De standaard satellietlijst wordt geïnstalleerd. Een ogenblik aub..."
+#~ msgstr "De standaard satellietlijst wordt geïnstalleerd. Een ogenblik aub..."
 
 #~ msgid "Installing defaults... Please wait..."
 #~ msgstr "Herstellen van standaardwaarden. Een ogenblik aub..."
@@ -7676,3 +7678,18 @@ msgstr "zapte"
 
 #~ msgid "Letzeburgesch"
 #~ msgstr "Luxemburgs"
+
+#~ msgid "Standby / Restart"
+#~ msgstr "Standby / Afsluiten"
+
+#~ msgid "TV system"
+#~ msgstr "TV systeem"
+
+#~ msgid "When enabled, your TV will automatically select the SCART input when you switch on your receiver."
+#~ msgstr "Indien geactiveerd, dan kiest uw TV automatisch de SCART ingang zodra de ontvanger ingeschakeld wordt."
+
+#~ msgid "scan done!"
+#~ msgstr "Zoeken voltooid."
+
+#~ msgid "scan in progress - %d%% done!"
+#~ msgstr "Bezig met zoeken - %d%% voltooid."

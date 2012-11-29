@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-16 18:48+0100\n"
+"POT-Creation-Date: 2012-11-29 21:48+0100\n"
 "PO-Revision-Date: 2012-11-25 14:51+0100\n"
 "Last-Translator: robertut <robertut@yahoo.com>\n"
 "Language-Team: Mediavox, robertut <info@mediavox.hu, robertut@yahoo.com>\n"
@@ -165,14 +165,22 @@ msgid "%a %e/%m  %-H:%M"
 msgstr "%m. %e %a  %-H:%M"
 
 #, python-format
+msgid "%d file"
+msgid_plural "%d files"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d óra"
 msgstr[1] "%d óra"
 
-#, python-format
-msgid "%d jobs are running in the background!"
-msgstr "%d feladat fut a háttérben!"
+#, fuzzy, python-format
+msgid "%d job is running in the background!"
+msgid_plural "%d jobs are running in the background!"
+msgstr[0] "%d feladat fut a háttérben!"
+msgstr[1] "%d feladat fut a háttérben!"
 
 #, python-format
 msgid "%d min"
@@ -194,9 +202,11 @@ msgid_plural "%d seconds"
 msgstr[0] "%d másodperc"
 msgstr[1] "%d másodperc"
 
-#, python-format
-msgid "%d services found!"
-msgstr "%d csatornát találtam!"
+#, fuzzy, python-format
+msgid "%d subdirectory"
+msgid_plural "%d subdirectories"
+msgstr[0] "Gyökérmappa"
+msgstr[1] "Gyökérmappa"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -456,9 +466,6 @@ msgstr "AA"
 
 msgid "AB"
 msgstr "AB"
-
-msgid "AC3 downmix"
-msgstr "AC3 lekeverés"
 
 msgid "AC3/DTS downmix"
 msgstr "AC3/DTS lekeverés"
@@ -1513,9 +1520,6 @@ msgstr "haladó"
 msgid "DMM normal"
 msgstr "hagyományos"
 
-msgid "DTS downmix"
-msgstr "DTS lekeverés"
-
 msgid "DUAL LAYER DVD"
 msgstr "Kétréteges DVD"
 
@@ -1671,8 +1675,8 @@ msgstr "A %s mappa nem létezik"
 msgid "Directory browser"
 msgstr "Mappa tallózása"
 
-#, python-format
-msgid "Directory contains %d file(s) and %d sub-directories.\n"
+#, fuzzy, python-format
+msgid "Directory contains %s and %s."
 msgstr "A mappa%d fájlt és %d al-mappát tartalmaz.\n"
 
 msgid "Disable"
@@ -1828,9 +1832,11 @@ msgstr "Biztos benne, hogy frissíteni szeretné ezt a csomagot:\n"
 msgid "Don't stop current event but disable coming events"
 msgstr "Ne állítsa le a futó eseményt, inkább kapcsolja le a következőt"
 
-#, python-format
-msgid "Done - Installed, upgraded or removed %d packages with %d errors"
-msgstr "Kész - %d szoftvercsomag telepítése, frissítése vagy eltávolítása megtörtént %d hibával"
+#, fuzzy, python-format
+msgid "Done - Installed, upgraded or removed %d package (%s)"
+msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
+msgstr[0] "Kész - %d szoftvercsomag telepítése, frissítése vagy eltávolítása megtörtént %d hibával"
+msgstr[1] "Kész - %d szoftvercsomag telepítése, frissítése vagy eltávolítása megtörtént %d hibával"
 
 msgid "Download"
 msgstr "Letöltés"
@@ -2243,14 +2249,8 @@ msgstr "Átjáró IP címe"
 msgid "General AC3 delay"
 msgstr "Általános AC3 késleltetés"
 
-msgid "General AC3 delay (ms)"
-msgstr "Általános AC3 késleltetés (ms)"
-
 msgid "General PCM delay"
 msgstr "Általános PCM késleltetés"
-
-msgid "General PCM delay (ms)"
-msgstr "Általános PCM késleltetés (ms)"
 
 msgid "Genre"
 msgstr "Zsáner"
@@ -2738,9 +2738,11 @@ msgstr "Tárolóeszközök listája"
 msgid "List type"
 msgstr "Típuslista"
 
-#, python-format
-msgid "List version %d, found %d channels"
-msgstr "%d listaverzió, %d csatornát találtam"
+#, fuzzy, python-format
+msgid "List version %d, found %d channel"
+msgid_plural "List version %d, found %d channels"
+msgstr[0] "%d listaverzió, %d csatornát találtam"
+msgstr[1] "%d listaverzió, %d csatornát találtam"
 
 msgid "Listen to the radio..."
 msgstr "Rádiólista megnyitása..."
@@ -4226,9 +4228,17 @@ msgstr "Vezeték nélküli hálózatok keresése, és csatlakoztatása a kivála
 msgid "Scanning %s..."
 msgstr "%s keresés..."
 
-#, python-format
-msgid "Scanning completed, %d channels found"
-msgstr "Keresés kész, %d csatornát találtam"
+#, fuzzy, python-format
+msgid "Scanning - %d%% completed, %d channel found"
+msgid_plural "Scanning - %d%% completed, %d channels found"
+msgstr[0] "Keresés kész, %d csatornát találtam"
+msgstr[1] "Keresés kész, %d csatornát találtam"
+
+#, fuzzy, python-format
+msgid "Scanning completed, %d channel found"
+msgid_plural "Scanning completed, %d channels found"
+msgstr[0] "Keresés kész, %d csatornát találtam"
+msgstr[1] "Keresés kész, %d csatornát találtam"
 
 msgid "Scanning failed!"
 msgstr "A keresés sikertelen!"
@@ -4806,9 +4816,6 @@ msgstr "hagyományos"
 msgid "Standby"
 msgstr "Készenlét"
 
-msgid "Standby / Restart"
-msgstr "Kikapcsolás"
-
 msgid "Standby / restart"
 msgstr "Kikapcsolás"
 
@@ -5034,9 +5041,6 @@ msgstr "TSID"
 
 msgid "TV physical address report"
 msgstr "TV fizikai port-cím"
-
-msgid "TV system"
-msgstr "TV rendszer"
 
 msgid "TXT PID"
 msgstr "Teletext PID"
@@ -6082,7 +6086,7 @@ msgstr ""
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "névszerver konfiguráció megnyítása"
 
-msgid "When enabled, your TV will automatically select the SCART input when you switch on your receiver."
+msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr ""
 
 msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
@@ -6122,7 +6126,8 @@ msgstr "Vezeték nélküli hálózat"
 msgid "Wireless network"
 msgstr "Vezeték nélküli hálózat"
 
-msgid "Wireless network configuartion..."
+#, fuzzy
+msgid "Wireless network configuration..."
 msgstr "Vezeték nélküli hálózat beállítása."
 
 msgid "Wireless network connection setup"
@@ -7057,13 +7062,6 @@ msgstr "az utolsó mappa mentése kilépéskor"
 msgid "save playlist on exit"
 msgstr "lejátszási lista mentése kilépéskor"
 
-msgid "scan done!"
-msgstr "keresés kész!"
-
-#, python-format
-msgid "scan in progress - %d%% done!"
-msgstr "keresés folyamatban - %d%% kész!"
-
 msgid "scan state"
 msgstr "keresési állapot"
 
@@ -7307,6 +7305,12 @@ msgstr "téli sport"
 msgid "wireless network interface"
 msgstr "Vezeték nélküli hálózati interfész"
 
+#, python-format
+msgid "with %d error"
+msgid_plural "with %d errors"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "working"
 msgstr "működőképes"
 
@@ -7342,11 +7346,17 @@ msgstr "ugrott"
 #~ msgid " wireless networks found!"
 #~ msgstr " elérhető vezeték nélküli hálózat "
 
+#~ msgid "%d services found!"
+#~ msgstr "%d csatornát találtam!"
+
 #~ msgid "/usr/share/enigma2 directory"
 #~ msgstr "/usr/share/enigma2 mappa"
 
 #~ msgid "/var directory"
 #~ msgstr "/var mappa"
+
+#~ msgid "AC3 downmix"
+#~ msgstr "AC3 lekeverés"
 
 #~ msgid "Add Bookmark"
 #~ msgstr "Bookmark hozzáadása"
@@ -7357,12 +7367,8 @@ msgstr "ugrott"
 #~ msgid "Add network configuration?"
 #~ msgstr "Hálózati konfiguráció hozzáadása?"
 
-#~ msgid ""
-#~ "Adds enigma2 settings and dreambox model informations like SN, rev... if "
-#~ "enabled."
-#~ msgstr ""
-#~ "Hozzáadja az enigma2 beállításokat, és típus infókat mint gyári szám, "
-#~ "rev..."
+#~ msgid "Adds enigma2 settings and dreambox model informations like SN, rev... if enabled."
+#~ msgstr "Hozzáadja az enigma2 beállításokat, és típus infókat mint gyári szám, rev..."
 
 #~ msgid "Adds network configuration if enabled."
 #~ msgstr "Hozzáadja a hálózati konfigurációt."
@@ -7373,13 +7379,8 @@ msgstr "ugrott"
 #~ msgid "After pressing OK, please wait!"
 #~ msgstr "Az OK gomb lenyomása után, kérem várjon!"
 
-#~ msgid ""
-#~ "After the start wizard is completed, you need to protect single services. "
-#~ "Refer to your dreambox's manual on how to do that."
-#~ msgstr ""
-#~ "Miután elvégezte az indítási varázsló, le kell védenie a szimpla "
-#~ "szolgáltatásokat. Olvassa el a készülékének kezelési útmutatóját, hogyan "
-#~ "kell ezt elvégeznie."
+#~ msgid "After the start wizard is completed, you need to protect single services. Refer to your dreambox's manual on how to do that."
+#~ msgstr "Miután elvégezte az indítási varázsló, le kell védenie a szimpla szolgáltatásokat. Olvassa el a készülékének kezelési útmutatóját, hogyan kell ezt elvégeznie."
 
 #~ msgid "Always ask before sending"
 #~ msgstr "Küldés előtt mindig rákérdezzen"
@@ -7409,9 +7410,7 @@ msgstr "ugrott"
 #~ msgid "Backup done."
 #~ msgstr "A mentés elkészült."
 
-#~ msgid ""
-#~ "By pressing the OK Button on your remote control, the info bar is being "
-#~ "displayed."
+#~ msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
 #~ msgstr "Az OK gomb megnyomásávalmegjelenítésre kerül az info-sáv."
 
 #~ msgid "CF Drive"
@@ -7472,6 +7471,9 @@ msgstr "ugrott"
 #~ msgid "Custom text position"
 #~ msgstr "Egyedi felirat elhelyezés"
 
+#~ msgid "DTS downmix"
+#~ msgstr "DTS lekeverés"
+
 #~ msgid "Decide if you want to enable or disable the Cleanup Wizard."
 #~ msgstr "Döntse el, hogy engedélyezi-e vagy sem a Takarító Varázslót."
 
@@ -7511,12 +7513,8 @@ msgstr "ugrott"
 #~ msgid "Do you want to enable the parental control feature on your receiver?"
 #~ msgstr "Be szeretné kapcsolni a készüléken a gyermekzárat?"
 
-#~ msgid ""
-#~ "Do you want to submit your email address and name so that we can contact "
-#~ "you if needed?"
-#~ msgstr ""
-#~ "Megadná a nevét és e-mail címét, hogy szükség esetén felvehessük Önnel a "
-#~ "kapcsolatot?"
+#~ msgid "Do you want to submit your email address and name so that we can contact you if needed?"
+#~ msgstr "Megadná a nevét és e-mail címét, hogy szükség esetén felvehessük Önnel a kapcsolatot?"
 
 #~ msgid ""
 #~ "Do you want to update your receiver?\n"
@@ -7535,8 +7533,7 @@ msgstr "ugrott"
 #~ msgstr "Küldés rákérdezés nélkül"
 
 #~ msgid "Done - Installed or upgraded %d packages"
-#~ msgstr ""
-#~ "Kész - %d szoftvercsomag telepítése vagy frissítése rendben megtörtént"
+#~ msgstr "Kész - %d szoftvercsomag telepítése vagy frissítése rendben megtörtént"
 
 #~ msgid "Dreambox format data DVD (HDTV compatible)"
 #~ msgstr "Dreambox formátumú adat DVD (HDTV kompatibilis)"
@@ -7579,6 +7576,12 @@ msgstr "ugrott"
 
 #~ msgid "For more information see www.openpli.org"
 #~ msgstr "Bővebb információért látogasson el a www.openpli.org weboldalra"
+
+#~ msgid "General AC3 delay (ms)"
+#~ msgstr "Általános AC3 késleltetés (ms)"
+
+#~ msgid "General PCM delay (ms)"
+#~ msgstr "Általános PCM késleltetés (ms)"
 
 #~ msgid "Guard Interval"
 #~ msgstr "Védelmi intervallum"
@@ -7646,12 +7649,8 @@ msgstr "ugrott"
 #~ msgid "Next"
 #~ msgstr "Következő"
 
-#~ msgid ""
-#~ "No packages were upgraded yet. So you can check your network and try "
-#~ "again."
-#~ msgstr ""
-#~ "Egyetlen szoftvercsomag sem lett még frissítve. Ellenőrizze a hálózati "
-#~ "beállításokat és próbálja újra."
+#~ msgid "No packages were upgraded yet. So you can check your network and try again."
+#~ msgstr "Egyetlen szoftvercsomag sem lett még frissítve. Ellenőrizze a hálózati beállításokat és próbálja újra."
 
 #~ msgid "No picture on TV? Press EXIT and retry."
 #~ msgstr "Nincs kép a TV-n? nyomja le az EXIT-et és próbálja újra."
@@ -7695,11 +7694,8 @@ msgstr "ugrott"
 #~ msgid "Packages"
 #~ msgstr "szoftvercsomag"
 
-#~ msgid ""
-#~ "Please be aware, that anyone can disable the parental control, if you "
-#~ "have not set a PIN."
-#~ msgstr ""
-#~ "Figyelem: a szülői zárat bárki kikapcsolhatja, ha nincs beállítva PIN-kód!"
+#~ msgid "Please be aware, that anyone can disable the parental control, if you have not set a PIN."
+#~ msgstr "Figyelem: a szülői zárat bárki kikapcsolhatja, ha nincs beállítva PIN-kód!"
 
 #~ msgid "Please choose he package..."
 #~ msgstr "Kérem, válassza ki a csomagot..."
@@ -7723,13 +7719,10 @@ msgstr "ugrott"
 #~ msgstr "Kérem, válasszon egy alábbi opciót."
 
 #~ msgid "Please wait while removing selected package..."
-#~ msgstr ""
-#~ "Kérem, várjon, ameddig a kijelölt szoftvercsomag eltávolításra kerül..."
+#~ msgstr "Kérem, várjon, ameddig a kijelölt szoftvercsomag eltávolításra kerül..."
 
 #~ msgid "Please wait while searching for removable packages..."
-#~ msgstr ""
-#~ "Kérem, várjon, míg az eltávolítható szoftvercsomagok keresése folyamatban "
-#~ "van..."
+#~ msgstr "Kérem, várjon, míg az eltávolítható szoftvercsomagok keresése folyamatban van..."
 
 #~ msgid "Prev"
 #~ msgstr "Előző"
@@ -7851,6 +7844,9 @@ msgstr "ugrott"
 #~ "\n"
 #~ "Kérem, válasszon új mappát."
 
+#~ msgid "Standby / Restart"
+#~ msgstr "Kikapcsolás"
+
 #~ msgid "Swap SNR in db with SNR in percentage on OSD"
 #~ msgstr "SNR (Jel/Zaj viszony) megjelenítése db helyett százalékban"
 
@@ -7860,28 +7856,24 @@ msgstr "ugrott"
 #~ msgid "Symbolrate"
 #~ msgstr "Szimbólumsebesség"
 
+#~ msgid "TV system"
+#~ msgstr "TV rendszer"
+
 #~ msgid "Test-Messagebox?"
 #~ msgstr "Teszteljem az Üzenet-dobozt?"
 
 #~ msgid ""
 #~ "The input port should be configured now.\n"
-#~ "You can now configure the screen by displaying some test pictures. Do you "
-#~ "want to do that now?"
+#~ "You can now configure the screen by displaying some test pictures. Do you want to do that now?"
 #~ msgstr ""
 #~ "A bemeneti portot beállítottuk.\n"
-#~ "Most a képernyőt állíthatja be teszt képek segítségével. Szeretné "
-#~ "folytatni?"
+#~ "Most a képernyőt állíthatja be teszt képek segítségével. Szeretné folytatni?"
 
 #~ msgid "The installation of the default services lists is finished."
 #~ msgstr "A csatornalisták telepítése elkészült."
 
-#~ msgid ""
-#~ "The installation of the default settings is finished. You can now "
-#~ "continue configuring your receiver by pressing the OK button on the "
-#~ "remote control."
-#~ msgstr ""
-#~ "A beállítások telepítése elkészült. Az OK gomb megnyomásával folytathatja "
-#~ "a  készülék további beállítását."
+#~ msgid "The installation of the default settings is finished. You can now continue configuring your receiver by pressing the OK button on the remote control."
+#~ msgstr "A beállítások telepítése elkészült. Az OK gomb megnyomásával folytathatja a  készülék további beállítását."
 
 #~ msgid "The package doesn't contain anything."
 #~ msgstr "A szoftvercsomag nem tartalmaz semmit."
@@ -7905,36 +7897,27 @@ msgstr "ugrott"
 #~ msgstr "Ez a 2. lépés."
 
 #~ msgid ""
-#~ "This plugin creates a USB stick which can be used to update the firmware "
-#~ "of your Dreambox without the need for a network or WLAN connection.\n"
+#~ "This plugin creates a USB stick which can be used to update the firmware of your Dreambox without the need for a network or WLAN connection.\n"
 #~ "First, a USB stick needs to be prepared so that it becomes bootable.\n"
-#~ "In the next step, an NFI image file can be downloaded from the update "
-#~ "server and saved on the USB stick.\n"
-#~ "If you already have a prepared bootable USB stick, please insert it now. "
-#~ "Otherwise plug in a USB stick with a minimum size of 64 MB!"
+#~ "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+#~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 #~ msgstr ""
-#~ "Ez a plugin egy USB meghajtót arra készít fel, hogy azzal frissíthető "
-#~ "legyen a készülék hálózati kapcsolat nélkül.\n"
+#~ "Ez a plugin egy USB meghajtót arra készít fel, hogy azzal frissíthető legyen a készülék hálózati kapcsolat nélkül.\n"
 #~ "Legelőször, az USB meghajtót boot-olhatóvá kell tenni.\n"
-#~ "A következő lépésben egy NFI image-t le lehet tölteni a "
-#~ "frissítőszerverről, és az USB meghajtóra lehet azt tenni.\n"
+#~ "A következő lépésben egy NFI image-t le lehet tölteni a frissítőszerverről, és az USB meghajtóra lehet azt tenni.\n"
 #~ "Csatlakoztasson most egy USB meghajtót a folytatáshoz!"
 
 #~ msgid "Transmission Mode"
 #~ msgstr "Adás módja"
 
 #~ msgid "Try to find used Transponders in cable network.. please wait..."
-#~ msgstr ""
-#~ "Felhasználói transzponderek keresése a kábeles hálózaton.. Kérem, "
-#~ "várjon..."
+#~ msgstr "Felhasználói transzponderek keresése a kábeles hálózaton.. Kérem, várjon..."
 
 #~ msgid "Tuner "
 #~ msgstr "Tuner"
 
 #~ msgid "Unattended upgrade without GUI and reboot system"
-#~ msgstr ""
-#~ "Frissítés a háttérben, kezelő felület leállításával és automatikus "
-#~ "újraindításával"
+#~ msgstr "Frissítés a háttérben, kezelő felület leállításával és automatikus újraindításával"
 
 #~ msgid "Updates your receiver's software"
 #~ msgstr "A a készülék szoftverét frissíti"
@@ -7978,20 +7961,15 @@ msgstr "ugrott"
 #~ msgid ""
 #~ "Welcome to the cleanup wizard.\n"
 #~ "\n"
-#~ "We have detected that your available internal memory has dropped below "
-#~ "2MB.\n"
-#~ "To ensure stable operation of your receiver, the internal memory should "
-#~ "be cleaned up.\n"
+#~ "We have detected that your available internal memory has dropped below 2MB.\n"
+#~ "To ensure stable operation of your receiver, the internal memory should be cleaned up.\n"
 #~ "You can use this wizard to remove some extensions.\n"
 #~ msgstr ""
 #~ "Üdvözöljük a takarító varázslóban!\n"
 #~ "\n"
-#~ "A rendszer jelzései szerint, a belső memóriában a szabad kapacitás 2MB "
-#~ "alá csökkent.\n"
-#~ "A készülék stabil üzemelésének biztosításához, a belső memóriát "
-#~ "takarítani szükséges.\n"
-#~ "Ez a Varázsló segíthet Önnek abban, hogy néhány bővítményt "
-#~ "eltávolíthasson.\n"
+#~ "A rendszer jelzései szerint, a belső memóriában a szabad kapacitás 2MB alá csökkent.\n"
+#~ "A készülék stabil üzemelésének biztosításához, a belső memóriát takarítani szükséges.\n"
+#~ "Ez a Varázsló segíthet Önnek abban, hogy néhány bővítményt eltávolíthasson.\n"
 
 #~ msgid "What to do with submitted crashlogs?"
 #~ msgstr "Mit szeretne tenni az elküldött hibanaplókkal?"
@@ -8002,12 +7980,8 @@ msgstr "ugrott"
 #~ msgid "Yes, view the tutorial"
 #~ msgstr "Igen, mutassa a leírást"
 
-#~ msgid ""
-#~ "You can choose some default settings now. Please select the settings you "
-#~ "want to be installed."
-#~ msgstr ""
-#~ "Most kiválaszthat pár alaphelyzeti bállítást. Kérem, válassza ki azt a "
-#~ "beállítást melyet telepíteni szeretne."
+#~ msgid "You can choose some default settings now. Please select the settings you want to be installed."
+#~ msgstr "Most kiválaszthat pár alaphelyzeti bállítást. Kérem, válassza ki azt a beállítást melyet telepíteni szeretne."
 
 #~ msgid "You can choose, what you want to install..."
 #~ msgstr "Itt kiválaszhatja mit szeretne telepíteni..."
@@ -8015,32 +7989,18 @@ msgstr "ugrott"
 #~ msgid "You chose not to install any default services lists."
 #~ msgstr "Nem választott ki egyetlen csatornalistát sem."
 
-#~ msgid ""
-#~ "You chose not to install any default settings. You can however install "
-#~ "the default settings later in the settings menu."
-#~ msgstr ""
-#~ "Nem választott ki telepítésre egyetlen beállítást sem. Később "
-#~ "természetesen bármikor telepítheti ezeket a beállítások menüben."
+#~ msgid "You chose not to install any default settings. You can however install the default settings later in the settings menu."
+#~ msgstr "Nem választott ki telepítésre egyetlen beállítást sem. Később természetesen bármikor telepítheti ezeket a beállítások menüben."
+
+#~ msgid "You chose not to install anything. Please press OK finish the install wizard."
+#~ msgstr "Úgy döntött, hogy nem telepít semmit. Az OK gomb megnyomásával bezárhatja a varázslót."
 
 #~ msgid ""
-#~ "You chose not to install anything. Please press OK finish the install "
-#~ "wizard."
+#~ "You need a PC connected to your receiver. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+#~ "Your dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 #~ msgstr ""
-#~ "Úgy döntött, hogy nem telepít semmit. Az OK gomb megnyomásával bezárhatja "
-#~ "a varázslót."
-
-#~ msgid ""
-#~ "You need a PC connected to your receiver. If you need further "
-#~ "instructions, please visit the website http://www.dm7025.de.\n"
-#~ "Your dreambox will now be halted. After you have performed the update "
-#~ "instructions from the website, your new firmware will ask you to restore "
-#~ "your settings."
-#~ msgstr ""
-#~ "Szüksége lesz egy PC kapcsolatra a készülékhez. Amennyiben segítségre van "
-#~ "szüksége, kérem, látogasson el a http://www.pli-images.org weboldalra.\n"
-#~ "A készülék most meg fog állni. Miután végrehajtotta a weboldalon "
-#~ "olvasható utasításokat, az új firmware fel fogja Önt kérni a saját "
-#~ "beállításainak visszatöltésére."
+#~ "Szüksége lesz egy PC kapcsolatra a készülékhez. Amennyiben segítségre van szüksége, kérem, látogasson el a http://www.pli-images.org weboldalra.\n"
+#~ "A készülék most meg fog állni. Miután végrehajtotta a weboldalon olvasható utasításokat, az új firmware fel fogja Önt kérni a saját beállításainak visszatöltésére."
 
 #~ msgid ""
 #~ "You need to set a PIN code and hide it from your children.\n"
@@ -8057,12 +8017,8 @@ msgstr "ugrott"
 #~ msgid "Your name (optional):"
 #~ msgstr "Neve (nem kötelező):"
 
-#~ msgid ""
-#~ "Your receiver isn't connected to the internet properly. Please check it "
-#~ "and try again."
-#~ msgstr ""
-#~ "A készülék nem csatlakozik helyesen az internethez. Kérem, ellenőrizze a "
-#~ "beállításokat és próbálja meg újra."
+#~ msgid "Your receiver isn't connected to the internet properly. Please check it and try again."
+#~ msgstr "A készülék nem csatlakozik helyesen az internethez. Kérem, ellenőrizze a beállításokat és próbálja meg újra."
 
 #~ msgid ""
 #~ "are you sure you want to restore\n"
@@ -8094,6 +8050,12 @@ msgstr "ugrott"
 
 #~ msgid "previous channel"
 #~ msgstr "Előző csatorna"
+
+#~ msgid "scan done!"
+#~ msgstr "keresés kész!"
+
+#~ msgid "scan in progress - %d%% done!"
+#~ msgstr "keresés folyamatban - %d%% kész!"
 
 #~ msgid "select interface"
 #~ msgstr "interfész kiválasztása"
