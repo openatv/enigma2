@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-16 18:48+0100\n"
+"POT-Creation-Date: 2012-11-29 21:48+0100\n"
 "PO-Revision-Date: 2012-11-17 17:10+0100\n"
 "Last-Translator: blzr <blzr@o2.pl>\n"
 "Language-Team: \n"
@@ -167,6 +167,13 @@ msgstr ""
 msgid "%a %e/%m  %-H:%M"
 msgstr ""
 
+#, python-format
+msgid "%d file"
+msgid_plural "%d files"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 #
 #, python-format
 msgid "%d hour"
@@ -176,9 +183,12 @@ msgstr[1] "%d godziny"
 msgstr[2] "%d godzin"
 
 #
-#, python-format
-msgid "%d jobs are running in the background!"
-msgstr "%d zadanie jest wykonywane w tle!"
+#, fuzzy, python-format
+msgid "%d job is running in the background!"
+msgid_plural "%d jobs are running in the background!"
+msgstr[0] "%d zadanie jest wykonywane w tle!"
+msgstr[1] "%d zadanie jest wykonywane w tle!"
+msgstr[2] "%d zadanie jest wykonywane w tle!"
 
 #
 #, python-format
@@ -206,9 +216,13 @@ msgstr[0] "%d sekunda"
 msgstr[1] "%d sekundy"
 msgstr[2] "%d sekund"
 
-#, python-format
-msgid "%d services found!"
-msgstr "%d znalezionych kanałów!"
+#
+#, fuzzy, python-format
+msgid "%d subdirectory"
+msgid_plural "%d subdirectories"
+msgstr[0] "Katalog root"
+msgstr[1] "Katalog root"
+msgstr[2] "Katalog root"
 
 #
 #, python-format
@@ -525,10 +539,6 @@ msgstr "AA"
 #
 msgid "AB"
 msgstr "AB"
-
-#
-msgid "AC3 downmix"
-msgstr "AC3 downmix"
 
 msgid "AC3/DTS downmix"
 msgstr ""
@@ -1814,9 +1824,6 @@ msgstr "DMM zaawansowane"
 msgid "DMM normal"
 msgstr ""
 
-msgid "DTS downmix"
-msgstr ""
-
 #
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
@@ -2013,8 +2020,8 @@ msgstr "Katalog %s nie istnieje."
 msgid "Directory browser"
 msgstr "Przeglądarka katalogów"
 
-#, python-format
-msgid "Directory contains %d file(s) and %d sub-directories.\n"
+#, fuzzy, python-format
+msgid "Directory contains %s and %s."
 msgstr "Katalog zawiera %d plik(ów) i %d podkatalog(ów).\n"
 
 #
@@ -2207,9 +2214,12 @@ msgid "Don't stop current event but disable coming events"
 msgstr "Nie zatrzymuj aktualnego wydarzenia ale wyłącz przyszłe"
 
 #
-#, python-format
-msgid "Done - Installed, upgraded or removed %d packages with %d errors"
-msgstr "Zrobione - zainstalowano, zaktualizowano lub usunięto %d pakietów z %d błędami"
+#, fuzzy, python-format
+msgid "Done - Installed, upgraded or removed %d package (%s)"
+msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
+msgstr[0] "Zrobione - zainstalowano, zaktualizowano lub usunięto %d pakietów z %d błędami"
+msgstr[1] "Zrobione - zainstalowano, zaktualizowano lub usunięto %d pakietów z %d błędami"
+msgstr[2] "Zrobione - zainstalowano, zaktualizowano lub usunięto %d pakietów z %d błędami"
 
 #
 msgid "Download"
@@ -2731,16 +2741,8 @@ msgid "General AC3 delay"
 msgstr "Ogólne opóźnienie AC3"
 
 #
-msgid "General AC3 delay (ms)"
-msgstr "Ogólne opóźnienie AC3 (ms)"
-
-#
 msgid "General PCM delay"
 msgstr "Ogólne opóźnienie PCM"
-
-#
-msgid "General PCM delay (ms)"
-msgstr "Ogólne opóźnienie PCM (ms)"
 
 #
 msgid "Genre"
@@ -3335,9 +3337,12 @@ msgstr "Lista urządzeń przechowywania danych"
 msgid "List type"
 msgstr "Typ listy"
 
-#, python-format
-msgid "List version %d, found %d channels"
-msgstr "Wersja listy %d, znaleziono %d kanałów"
+#, fuzzy, python-format
+msgid "List version %d, found %d channel"
+msgid_plural "List version %d, found %d channels"
+msgstr[0] "Wersja listy %d, znaleziono %d kanałów"
+msgstr[1] "Wersja listy %d, znaleziono %d kanałów"
+msgstr[2] "Wersja listy %d, znaleziono %d kanałów"
 
 #
 msgid "Listen to the radio..."
@@ -5201,9 +5206,19 @@ msgstr "Skanuj sieć w poszukiwaniu punktów dostępu i połącz z nimi używaj�
 msgid "Scanning %s..."
 msgstr "Skanowanie %s..."
 
-#, python-format
-msgid "Scanning completed, %d channels found"
-msgstr "Skanowanie zakończone, %d znalezionych kanałów"
+#, fuzzy, python-format
+msgid "Scanning - %d%% completed, %d channel found"
+msgid_plural "Scanning - %d%% completed, %d channels found"
+msgstr[0] "Skanowanie zakończone, %d znalezionych kanałów"
+msgstr[1] "Skanowanie zakończone, %d znalezionych kanałów"
+msgstr[2] "Skanowanie zakończone, %d znalezionych kanałów"
+
+#, fuzzy, python-format
+msgid "Scanning completed, %d channel found"
+msgid_plural "Scanning completed, %d channels found"
+msgstr[0] "Skanowanie zakończone, %d znalezionych kanałów"
+msgstr[1] "Skanowanie zakończone, %d znalezionych kanałów"
+msgstr[2] "Skanowanie zakończone, %d znalezionych kanałów"
 
 #
 msgid "Scanning failed!"
@@ -5931,10 +5946,6 @@ msgid "Standby"
 msgstr "Czuwanie"
 
 #
-msgid "Standby / Restart"
-msgstr "Czuwanie / Restart"
-
-#
 msgid "Standby / restart"
 msgstr "Czuwanie / Restart"
 
@@ -6216,10 +6227,6 @@ msgstr ""
 
 msgid "TV physical address report"
 msgstr "Raportuj fizyczny adres TV"
-
-#
-msgid "TV system"
-msgstr "System TV"
 
 msgid "TXT PID"
 msgstr ""
@@ -7454,8 +7461,9 @@ msgstr "Gdy włączone, automatycznie zostanie wybrana ścieżka audio AC3 (gdy 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Gdy włączone, używa DHCP do konfiguracji IP."
 
-msgid "When enabled, your TV will automatically select the SCART input when you switch on your receiver."
-msgstr "Gdy włączone, TV automatycznie wybierze wejście SCART gdy włączysz odbiornik."
+#, fuzzy
+msgid "When enabled, your receiver will detect activity on the VCR SCART input."
+msgstr "Gdy włączone, automatycznie zostanie wybrana ścieżka audio AC3 (gdy dostępna)."
 
 msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
 msgstr "Gdy różne od 0, nagranie wystartuje wcześniej niż czas rozpoczęcia określony w EPG."
@@ -8630,15 +8638,6 @@ msgid "save playlist on exit"
 msgstr "Zapisz playlistę przy wyjściu"
 
 #
-msgid "scan done!"
-msgstr "Skanowanie zakończone!"
-
-#
-#, python-format
-msgid "scan in progress - %d%% done!"
-msgstr "Skanowanie w toku - %d%% skończone!"
-
-#
 msgid "scan state"
 msgstr "Status skanowania"
 
@@ -8930,6 +8929,13 @@ msgstr "Sporty zimowe"
 msgid "wireless network interface"
 msgstr "Interfejs sieci bezprzewodowej"
 
+#, python-format
+msgid "with %d error"
+msgid_plural "with %d errors"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 #
 msgid "working"
 msgstr "Pracuje"
@@ -8954,3 +8960,36 @@ msgstr "Przełącz"
 msgid "zapped"
 msgstr "Przełączony"
 
+#~ msgid "%d services found!"
+#~ msgstr "%d znalezionych kanałów!"
+
+#
+#~ msgid "AC3 downmix"
+#~ msgstr "AC3 downmix"
+
+#
+#~ msgid "General AC3 delay (ms)"
+#~ msgstr "Ogólne opóźnienie AC3 (ms)"
+
+#
+#~ msgid "General PCM delay (ms)"
+#~ msgstr "Ogólne opóźnienie PCM (ms)"
+
+#
+#~ msgid "Standby / Restart"
+#~ msgstr "Czuwanie / Restart"
+
+#
+#~ msgid "TV system"
+#~ msgstr "System TV"
+
+#~ msgid "When enabled, your TV will automatically select the SCART input when you switch on your receiver."
+#~ msgstr "Gdy włączone, TV automatycznie wybierze wejście SCART gdy włączysz odbiornik."
+
+#
+#~ msgid "scan done!"
+#~ msgstr "Skanowanie zakończone!"
+
+#
+#~ msgid "scan in progress - %d%% done!"
+#~ msgstr "Skanowanie w toku - %d%% skończone!"

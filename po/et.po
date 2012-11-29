@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-16 18:48+0100\n"
+"POT-Creation-Date: 2012-11-29 21:48+0100\n"
 "PO-Revision-Date: 2012-11-20 14:15+0300\n"
 "Last-Translator: rimas\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -161,14 +161,22 @@ msgid "%a %e/%m  %-H:%M"
 msgstr ""
 
 #, python-format
+msgid "%d file"
+msgid_plural "%d files"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d tund"
 msgstr[1] "%d tundi"
 
-#, python-format
-msgid "%d jobs are running in the background!"
-msgstr "%d protsessi käib taustal!"
+#, fuzzy, python-format
+msgid "%d job is running in the background!"
+msgid_plural "%d jobs are running in the background!"
+msgstr[0] "%d protsessi käib taustal!"
+msgstr[1] "%d protsessi käib taustal!"
 
 #, python-format
 msgid "%d min"
@@ -190,9 +198,11 @@ msgid_plural "%d seconds"
 msgstr[0] "%d sekund"
 msgstr[1] "%d sekundit"
 
-#, python-format
-msgid "%d services found!"
-msgstr "%d kanalit leitud!"
+#, fuzzy, python-format
+msgid "%d subdirectory"
+msgid_plural "%d subdirectories"
+msgstr[0] "Juurkataloog"
+msgstr[1] "Juurkataloog"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -452,9 +462,6 @@ msgstr "AA"
 
 msgid "AB"
 msgstr "AB"
-
-msgid "AC3 downmix"
-msgstr "AC3 > stereo"
 
 msgid "AC3/DTS downmix"
 msgstr "AC3/DTS > stereo"
@@ -1509,9 +1516,6 @@ msgstr ""
 msgid "DMM normal"
 msgstr ""
 
-msgid "DTS downmix"
-msgstr "DTS > stereo"
-
 msgid "DUAL LAYER DVD"
 msgstr "Kahekihiline DVD"
 
@@ -1668,8 +1672,8 @@ msgstr "Kataloogi %s ei eksisteeri."
 msgid "Directory browser"
 msgstr "Kataloogi brauser"
 
-#, python-format
-msgid "Directory contains %d file(s) and %d sub-directories.\n"
+#, fuzzy, python-format
+msgid "Directory contains %s and %s."
 msgstr "Kataloog sisaldab %d faili and %d alamkataloogi.\n"
 
 msgid "Disable"
@@ -1825,9 +1829,11 @@ msgstr "Kas uuendad paketti:\n"
 msgid "Don't stop current event but disable coming events"
 msgstr "Ära peata toimuvat salvestust, aga keela tulevad"
 
-#, python-format
-msgid "Done - Installed, upgraded or removed %d packages with %d errors"
-msgstr "Valmis - paigaldatud või uuendatud %d , %d veaga"
+#, fuzzy, python-format
+msgid "Done - Installed, upgraded or removed %d package (%s)"
+msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
+msgstr[0] "Valmis - paigaldatud või uuendatud %d , %d veaga"
+msgstr[1] "Valmis - paigaldatud või uuendatud %d , %d veaga"
 
 msgid "Download"
 msgstr "Allalaadimine"
@@ -2240,14 +2246,8 @@ msgstr "Lüüs"
 msgid "General AC3 delay"
 msgstr "Üldine AC3 viide"
 
-msgid "General AC3 delay (ms)"
-msgstr "Üldine AC3 viide (ms)"
-
 msgid "General PCM delay"
 msgstr "Üldine PCM viide"
-
-msgid "General PCM delay (ms)"
-msgstr "Üldine PCM viide (ms)"
 
 msgid "Genre"
 msgstr "Žanr"
@@ -2735,9 +2735,11 @@ msgstr "Andmekandjate loetelu"
 msgid "List type"
 msgstr ""
 
-#, python-format
-msgid "List version %d, found %d channels"
-msgstr "Versioon  %d, leiti %d kanalit"
+#, fuzzy, python-format
+msgid "List version %d, found %d channel"
+msgid_plural "List version %d, found %d channels"
+msgstr[0] "Versioon  %d, leiti %d kanalit"
+msgstr[1] "Versioon  %d, leiti %d kanalit"
 
 msgid "Listen to the radio..."
 msgstr "Kuula raadiot..."
@@ -4223,9 +4225,17 @@ msgstr "Otsi oma võrgus WiFi ruutereid ja ühendu nendega, kasutades valitud Wi
 msgid "Scanning %s..."
 msgstr "Otsib %s..."
 
-#, python-format
-msgid "Scanning completed, %d channels found"
-msgstr "Otsing tehtud, %d kanalit leitud"
+#, fuzzy, python-format
+msgid "Scanning - %d%% completed, %d channel found"
+msgid_plural "Scanning - %d%% completed, %d channels found"
+msgstr[0] "Otsing tehtud, %d kanalit leitud"
+msgstr[1] "Otsing tehtud, %d kanalit leitud"
+
+#, fuzzy, python-format
+msgid "Scanning completed, %d channel found"
+msgid_plural "Scanning completed, %d channels found"
+msgstr[0] "Otsing tehtud, %d kanalit leitud"
+msgstr[1] "Otsing tehtud, %d kanalit leitud"
 
 msgid "Scanning failed!"
 msgstr "Otsing nurjus!"
@@ -4803,9 +4813,6 @@ msgstr "Tavaline"
 msgid "Standby"
 msgstr "Ooterežiim"
 
-msgid "Standby / Restart"
-msgstr "Välja lülitamine"
-
 msgid "Standby / restart"
 msgstr "Seiskamine"
 
@@ -5027,9 +5034,6 @@ msgstr "TSID"
 
 msgid "TV physical address report"
 msgstr "TV füüsilise aadressi raport"
-
-msgid "TV system"
-msgstr "TV süsteem"
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -6078,8 +6082,9 @@ msgstr "Määrates 'jah', kasutab vastuvõtja (võimaluse korral) AC3 heli."
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Määrates 'jah', kasutatakse IP määramiseks DHCP-d."
 
-msgid "When enabled, your TV will automatically select the SCART input when you switch on your receiver."
-msgstr "Määrates 'jah', kasutab teler vastuvõtja käivitamisel automaatselt SCART sisendidit."
+#, fuzzy
+msgid "When enabled, your receiver will detect activity on the VCR SCART input."
+msgstr "Määrates 'jah', kasutab vastuvõtja (võimaluse korral) AC3 heli."
 
 msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
 msgstr "Salvestamist alustatakse enne saatekavas näidatud aega."
@@ -7057,13 +7062,6 @@ msgstr "pea väljumisel asukoht meeles"
 msgid "save playlist on exit"
 msgstr "salvesta esitusloend"
 
-msgid "scan done!"
-msgstr "otsing valmis!"
-
-#, python-format
-msgid "scan in progress - %d%% done!"
-msgstr "otsing käib - %d%% valmis!"
-
 msgid "scan state"
 msgstr "otsingu seis"
 
@@ -7307,6 +7305,12 @@ msgstr "talisport"
 msgid "wireless network interface"
 msgstr "wifi võrguliides"
 
+#, python-format
+msgid "with %d error"
+msgid_plural "with %d errors"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "working"
 msgstr "töös"
 
@@ -7335,6 +7339,12 @@ msgstr "vahetatud"
 #~ msgid " wireless networks found!"
 #~ msgstr " WiFi võrku leitud!"
 
+#~ msgid "%d services found!"
+#~ msgstr "%d kanalit leitud!"
+
+#~ msgid "AC3 downmix"
+#~ msgstr "AC3 > stereo"
+
 #~ msgid "Add Bookmark"
 #~ msgstr "Lisa lemmik"
 
@@ -7349,6 +7359,10 @@ msgstr "vahetatud"
 
 #~ msgid "Adds wlan configuration if enabled."
 #~ msgstr "Lisab WiFi seaded, kui on lubatud."
+
+#, fuzzy
+#~ msgid "Advanced pptions"
+#~ msgstr "Lisavalikud"
 
 #~ msgid "Always ask before sending"
 #~ msgstr "Küsi alati enne saatmist"
@@ -7366,9 +7380,7 @@ msgstr "vahetatud"
 #~ msgid "Backup done."
 #~ msgstr "Varukoopia valmis."
 
-#~ msgid ""
-#~ "By pressing the OK Button on your remote control, the info bar is being "
-#~ "displayed."
+#~ msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
 #~ msgstr "Vajuta OK-nuppu et näha olekuriba."
 
 #~ msgid "Choose Tuner"
@@ -7413,6 +7425,9 @@ msgstr "vahetatud"
 #~ msgid "Custom text position"
 #~ msgstr "Kohandatud teksti asukoht"
 
+#~ msgid "DTS downmix"
+#~ msgstr "DTS > stereo"
+
 #~ msgid "Decide if you want to enable or disable the Cleanup Wizard."
 #~ msgstr "Otsusta kas lubate või keelate puhastusabilise."
 
@@ -7442,12 +7457,8 @@ msgstr "vahetatud"
 #~ "Kas soovid kindlasti eemaldada\n"
 #~ "laiendust \"%s\"?"
 
-#~ msgid ""
-#~ "Do you want to submit your email address and name so that we can contact "
-#~ "you if needed?"
-#~ msgstr ""
-#~ "Kas soovid saata ka oma emaili ja nime, et saaksime vajadusel ühendust "
-#~ "võtta?"
+#~ msgid "Do you want to submit your email address and name so that we can contact you if needed?"
+#~ msgstr "Kas soovid saata ka oma emaili ja nime, et saaksime vajadusel ühendust võtta?"
 
 #~ msgid "Do you want to view a tutorial?"
 #~ msgstr "Soovid vaadata juhendit?"
@@ -7457,6 +7468,12 @@ msgstr "vahetatud"
 
 #~ msgid "Done - Installed or upgraded %d packages"
 #~ msgstr "Valmis - paigaldatud või uuendatud %d"
+
+#~ msgid "Download .NFI-Files for USB-Flasher"
+#~ msgstr "Allalaadimine .NFI-failid USB-le"
+
+#~ msgid "Download .NFI-Files for USB-flasher"
+#~ msgstr "Allalaadimine .NFI-failid USB-le"
 
 #~ msgid "Edit Title"
 #~ msgstr "Muuda pealkirja"
@@ -7490,6 +7507,12 @@ msgstr "vahetatud"
 
 #~ msgid "Exit wizard"
 #~ msgstr "Välju (määra kõik seaded käsitsi)"
+
+#~ msgid "General AC3 delay (ms)"
+#~ msgstr "Üldine AC3 viide (ms)"
+
+#~ msgid "General PCM delay (ms)"
+#~ msgstr "Üldine PCM viide (ms)"
 
 #~ msgid "Guard Interval"
 #~ msgstr "Kaitsevahemik"
@@ -7542,9 +7565,7 @@ msgstr "vahetatud"
 #~ msgid "Next"
 #~ msgstr "Järgmine"
 
-#~ msgid ""
-#~ "No packages were upgraded yet. So you can check your network and try "
-#~ "again."
+#~ msgid "No packages were upgraded yet. So you can check your network and try again."
 #~ msgstr "Pakette ei uuendatud. Kontrolli võrgu seadeid ja proovi uuesti."
 
 #~ msgid "No picture on TV? Press EXIT and retry."
@@ -7715,6 +7736,9 @@ msgstr "vahetatud"
 #~ "\n"
 #~ "Vali uus asukoht."
 
+#~ msgid "Standby / Restart"
+#~ msgstr "Välja lülitamine"
+
 #~ msgid "Swap SNR in db with SNR in percentage on OSD"
 #~ msgstr "Vaheta SNR db > SNR % inforibal"
 
@@ -7724,13 +7748,15 @@ msgstr "vahetatud"
 #~ msgid "Symbolrate"
 #~ msgstr "Sümbolrate"
 
+#~ msgid "TV system"
+#~ msgstr "TV süsteem"
+
 #~ msgid "Test-Messagebox?"
 #~ msgstr "Testsõnum?"
 
 #~ msgid ""
 #~ "The input port should be configured now.\n"
-#~ "You can now configure the screen by displaying some test pictures. Do you "
-#~ "want to do that now?"
+#~ "You can now configure the screen by displaying some test pictures. Do you want to do that now?"
 #~ msgstr ""
 #~ "Sisendport tuleks nüüd seadistada.\n"
 #~ "Saad ekraani seadistada mõne testpildi abil.Kas soovid seda teha?"
@@ -7807,18 +7833,17 @@ msgstr "vahetatud"
 #~ msgid "What to do with submitted crashlogs?"
 #~ msgstr "Mida teha saadud vealogidega?"
 
+#~ msgid "When enabled, your TV will automatically select the SCART input when you switch on your receiver."
+#~ msgstr "Määrates 'jah', kasutab teler vastuvõtja käivitamisel automaatselt SCART sisendidit."
+
 #~ msgid "Yes, and don't ask again"
 #~ msgstr "Jah, ja ära uuesti küsi"
 
 #~ msgid "Yes, view the tutorial"
 #~ msgstr "Jah, vaata juhendit"
 
-#~ msgid ""
-#~ "You can choose some default settings now. Please select the settings you "
-#~ "want to be installed."
-#~ msgstr ""
-#~ "Saad valida nüüd mõningaid vaikimisi seadeid.Palun vali seaded, mida "
-#~ "soovid paigaldada."
+#~ msgid "You can choose some default settings now. Please select the settings you want to be installed."
+#~ msgstr "Saad valida nüüd mõningaid vaikimisi seadeid.Palun vali seaded, mida soovid paigaldada."
 
 #~ msgid "You can choose, what you want to install..."
 #~ msgstr "Saad valida, mida tahad paigaldada."
@@ -7826,16 +7851,10 @@ msgstr "vahetatud"
 #~ msgid "You chose not to install any default services lists."
 #~ msgstr "Ei soovinud paigaldada ühtegi vaikimisi teenuste nimekirja."
 
-#~ msgid ""
-#~ "You chose not to install any default settings. You can however install "
-#~ "the default settings later in the settings menu."
-#~ msgstr ""
-#~ "Ei soovinud paigaldada ühtegi vaikimisi seadet.Siiski saab ka hiljem "
-#~ "vaikimisi seadeid paigaldada seadete menüüst."
+#~ msgid "You chose not to install any default settings. You can however install the default settings later in the settings menu."
+#~ msgstr "Ei soovinud paigaldada ühtegi vaikimisi seadet.Siiski saab ka hiljem vaikimisi seadeid paigaldada seadete menüüst."
 
-#~ msgid ""
-#~ "You chose not to install anything. Please press OK finish the install "
-#~ "wizard."
+#~ msgid "You chose not to install anything. Please press OK finish the install wizard."
 #~ msgstr "Ei soovinud paigaldada midagi. Väljumiseks vajuta OK ."
 
 #~ msgid ""
@@ -7874,6 +7893,12 @@ msgstr "vahetatud"
 #~ msgid "previous channel"
 #~ msgstr "eelmine kanal"
 
+#~ msgid "scan done!"
+#~ msgstr "otsing valmis!"
+
+#~ msgid "scan in progress - %d%% done!"
+#~ msgstr "otsing käib - %d%% valmis!"
+
 #~ msgid "select interface"
 #~ msgstr "vali võrguliides"
 
@@ -7891,13 +7916,3 @@ msgstr "vahetatud"
 
 #~ msgid "was removed successfully"
 #~ msgstr "edukalt eemaldatud"
-
-#~ msgid "Download .NFI-Files for USB-Flasher"
-#~ msgstr "Allalaadimine .NFI-failid USB-le"
-
-#~ msgid "Download .NFI-Files for USB-flasher"
-#~ msgstr "Allalaadimine .NFI-failid USB-le"
-
-#, fuzzy
-#~ msgid "Advanced pptions"
-#~ msgstr "Lisavalikud"
