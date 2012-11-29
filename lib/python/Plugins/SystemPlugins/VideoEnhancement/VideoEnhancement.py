@@ -28,7 +28,7 @@ class VideoEnhancement:
 					self.setConfiguredValues()
 
 			if getBoxType() == 'iclassm7':
-				config.pep.contrast = ConfigSlider(default=9, limits=(0,256))
+				config.pep.contrast = ConfigSlider(default=128, limits=(0,256))
 			else:
 				config.pep.contrast = ConfigSlider(default=128, limits=(0,256))			
 			config.pep.contrast.addNotifier(setContrast)
@@ -48,7 +48,7 @@ class VideoEnhancement:
 					self.setConfiguredValues()
 
 			if getBoxType() == 'iclassm7':
-				config.pep.saturation = ConfigSlider(default=10, limits=(0,256))
+				config.pep.saturation = ConfigSlider(default=128, limits=(0,256))
 			else:
 				config.pep.saturation = ConfigSlider(default=128, limits=(0,256))
 			config.pep.saturation.addNotifier(setSaturation)
@@ -68,7 +68,7 @@ class VideoEnhancement:
 					self.setConfiguredValues()
 
 			if getBoxType() == 'iclassm7':
-				config.pep.hue = ConfigSlider(default=8, limits=(0,256))
+				config.pep.hue = ConfigSlider(default=128, limits=(0,256))
 			else:
 				config.pep.hue = ConfigSlider(default=128, limits=(0,256))
 			config.pep.hue.addNotifier(setHue)
@@ -87,7 +87,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 			if getBoxType() == 'iclassm7':
-				config.pep.brightness = ConfigSlider(default=7, limits=(0,256))
+				config.pep.brightness = ConfigSlider(default=128, limits=(0,256))
 			else:
 				config.pep.brightness = ConfigSlider(default=128, limits=(0,256))			
 			config.pep.brightness.addNotifier(setBrightness)
@@ -180,7 +180,7 @@ class VideoEnhancement:
 			if getBoxType() == 'gbquad':
 				config.pep.sharpness = ConfigSlider(default=128, limits=(0,256))
 			elif getBoxType() == 'iclassm7':
-				config.pep.sharpness = ConfigSlider(default=1, limits=(0,256))	
+				config.pep.sharpness = ConfigSlider(default=128, limits=(0,256))	
 			else:
 				config.pep.sharpness = ConfigSlider(default=0, limits=(0,256))
 			config.pep.sharpness.addNotifier(setSharpness)
