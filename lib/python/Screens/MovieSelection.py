@@ -1608,7 +1608,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					else:
 						files += 1
 			if files or subdirs:
-				self.session.openWithCallback(self.delete, MessageBox, _("Directory contains %d file(s) and %d sub-directories.\n") % (files,subdirs) + are_you_sure)
+				self.session.openWithCallback(self.delete, MessageBox, _("Directory contains %s and %s.") % (ngettext("%d file", "%d files", files) % files, ngettext("%d subdirectory", "%d subdirectories", subdirs) % subdirs) + '\n' + are_you_sure)
 				return
 			else:
 				try:
