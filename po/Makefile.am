@@ -9,17 +9,17 @@ EXTRA_DIST = $(LANGPO)
 if UPDATE_PO
 # the TRANSLATORS: allows putting translation comments before the to-be-translated line.
 enigma2-py.pot: $(top_srcdir)/*.py $(top_srcdir)/lib/python/*/*.py $(top_srcdir)/lib/python/*/*/*.py $(top_srcdir)/lib/python/Plugins/*/*/*.py
-	$(XGETTEXT) -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d @PACKAGE_NAME@ -s -o $@ $^
+	$(XGETTEXT) --no-wrap -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d @PACKAGE_NAME@ -s -o $@ $^
 
 enigma2-xml.pot: $(srcdir)/xml2po.py $(top_srcdir)/data/*.xml $(top_srcdir)/lib/python/Plugins/SystemPlugins/*/*.xml
 	$(PYTHON) $^ > $@
 
 enigma2.pot: enigma2-py.pot enigma2-xml.pot
-	cat $^ | $(MSGUNIQ) --no-location -o $@ -
+	cat $^ | $(MSGUNIQ) --no-wrap --no-location -o $@ -
 
 %.po: enigma2.pot
 	if [ -f $@ ]; then \
-		$(MSGMERGE) --backup=none --no-location -s -U $@ $< && touch $@; \
+		$(MSGMERGE) --backup=none --no-wrap --no-location -s -U $@ $< && touch $@; \
 	else \
 		$(MSGINIT) -l $@ -o $@ -i $< --no-translator; \
 	fi
