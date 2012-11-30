@@ -33,7 +33,7 @@ class ServiceScan:
 				progress = self.scan.getProgress()
 				if(progress > 99):
 					progress = 99
-				self.text.setText(_("scan in progress - %d%% done!") % progress + ' ' + _("%d services found!") % (self.foundServices + self.scan.getNumServices()))
+				self.text.setText(ngettext("Scanning - %d%% completed, %d channel found", "Scanning - %d%% completed, %d channels found", self.scan.getNumServices()) % (progress, self.scan.getNumServices())
 				transponder = self.scan.getCurrentTransponder()
 				network = ""
 				tp_text = ""
@@ -83,18 +83,18 @@ class ServiceScan:
 					elif tp_type == iDVBFrontend.feTerrestrial:
 						network = _("Terrestrial")
 						tp = transponder.getDVBT()
-						tp_text = ("%s %s %d %s") %( 
-							{ 
+						tp_text = ("%s %s %d %s") %(
+							{
 								tp.System_DVB_T : "DVB-T",
 								tp.System_DVB_T2 : "DVB-T2"
 							}.get(tp.system, ""),
-							{ 
+							{
 								tp.Modulation_QPSK : "QPSK",
 								tp.Modulation_QAM16 : "QAM16", tp.Modulation_QAM64 : "QAM64",
 								tp.Modulation_Auto : "AUTO", tp.Modulation_QAM256 : "QAM256"
 							}.get(tp.modulation, ""),
 							tp.frequency,
-							{ 
+							{
 								tp.Bandwidth_8MHz : "Bw 8MHz", tp.Bandwidth_7MHz : "Bw 7MHz", tp.Bandwidth_6MHz : "Bw 6MHz",
 								tp.Bandwidth_Auto : "Bw Auto", tp.Bandwidth_5MHz : "Bw 5MHz",
 								tp.Bandwidth_1_712MHz : "Bw 1.712MHz", tp.Bandwidth_10MHz : "Bw 10MHz"
@@ -105,10 +105,8 @@ class ServiceScan:
 				self.transponder.setText(tp_text)
 
 		if self.state == self.Done:
-			if self.scan.getNumServices() == 0:
-				self.text.setText(_("scan done!") + ' ' + _("%d services found!") % 0 )
-			else:
-				self.text.setText(_("scan done!") + ' ' + _("%d services found!") % (self.foundServices + self.scan.getNumServices()))
+			result = self.foundServices + self.scan.getNumServices()
+			self.text.setText(ngettext("Scanning completed, %d channel found", "Scanning completed, %d channels found", result) % result)
 
 		if self.state == self.Error:
 			self.text.setText(_("ERROR - failed to scan (%s)!") % (self.Errors[self.errorcode]) )

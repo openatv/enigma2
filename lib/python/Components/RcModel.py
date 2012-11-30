@@ -54,7 +54,7 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_DMM1
 		elif os.path.exists('/proc/stb/info/boxtype'):
 			model = self.readFile('/proc/stb/info/boxtype')
-			if len(model) == 6 and model[:2] == 'et' or model[:2] == 'xp':
+			if model.startswith('et') or model.startswith('xp'):
 				rc = self.readFile('/proc/stb/ir/rc/type')
 				if rc == '3':
 					self.currentRcType = self.RCTYPE_ODIN
