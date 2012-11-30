@@ -398,6 +398,8 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.overwriteDriversfilesEntry = None
 		self.overwriteEmusfilesEntry = None
 		self.overwritePiconsfilesEntry = None
+		self.overwriteBootlogofilesEntry = None
+		self.overwriteSpinnerfilesEntry = None
 		self.updatetypeEntry = None
 
 		self.list = [ ]
@@ -440,6 +442,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.list.append(self.overwriteEmusfilesEntry)
 		self.list.append(self.overwritePiconsfilesEntry)
 		self.list.append(self.overwriteBootlogofilesEntry)
+		self.list.append(self.overwriteSpinnerfilesEntry)
 		self["config"].list = self.list
 		self["config"].l.setSeperation(400)
 		self["config"].l.setList(self.list)
