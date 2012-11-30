@@ -1504,7 +1504,7 @@ class InfoBarSeek:
 # 				print "resolved to SLOW MOTION"
 				pauseable.setSlowMotion(self.seekstate[2])
 			else:
-				self.volctrl.setVolume(self.vol,self.vol)
+				self.volctrl.setVolume(int(self.vol),int(self.vol))
 # 				print "resolved to PLAY"
 				self.activityTimer.start(200, False)
 				pauseable.unpause()
