@@ -307,6 +307,8 @@ lib/python/Plugins/Extensions/nStreamPlayer/Makefile
 lib/python/Plugins/Extensions/nStreamPlayer/img/Makefile
 lib/python/Plugins/Extensions/nStreamPlayer/picon35x35/Makefile
 lib/python/Plugins/Extensions/IniMyTube/Makefile
+lib/python/Plugins/Extensions/IPTVStreams/Makefile
+lib/python/Plugins/Extensions/IPTVStreams/url/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/meta/Makefile
