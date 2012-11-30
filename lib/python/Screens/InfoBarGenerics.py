@@ -4724,7 +4724,11 @@ class InfoBarResolutionSelection:
 
 		xresString = open("/proc/stb/vmpeg/0/xres", "r").read()
 		yresString = open("/proc/stb/vmpeg/0/yres", "r").read()
-		fpsString = open("/proc/stb/vmpeg/0/framerate", "r").read()
+		try:
+			fpsString = open("/proc/stb/vmpeg/0/framerate", "r").read()
+		except:
+			print"[InfoBarResolutionSelection] Error open /proc/stb/vmpeg/0/framerate !!"
+			fpsString = '50000'
 		xres = int(xresString, 16)
 		yres = int(yresString, 16)
 		fps = int(fpsString)
