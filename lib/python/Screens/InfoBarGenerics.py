@@ -176,7 +176,6 @@ class SecondInfoBar(Screen):
 		Screen.__init__(self, session)
 		self.skin = None
 
-
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
 	fancy animations. """
@@ -3989,7 +3988,7 @@ class InfoBarCueSheetSupport:
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
 
 	def playLastCB(self, answer):
-		if answer == True:
+		if answer == True and self.resume_point:
 			self.doSeek(self.resume_point)
 		self.hideAfterResume()
 
