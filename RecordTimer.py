@@ -383,7 +383,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			print 'AFTEREVENT.STANDBY',AFTEREVENT.STANDBY
 			print 'AFTEREVENT.DEEPSTANDBY',AFTEREVENT.DEEPSTANDBY
 
-			if self.afterEvent == AFTEREVENT.STANDBY or (self.autostate and self.afterEvent == AFTEREVENT.AUTO):
+			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and self.autostate and self.afterEvent == AFTEREVENT.AUTO):
 				print 'TEST4:'
 				if not Screens.Standby.inStandby: # not already in standby
 					print 'TEST6:'
