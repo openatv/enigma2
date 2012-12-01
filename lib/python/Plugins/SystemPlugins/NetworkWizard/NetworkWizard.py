@@ -2,6 +2,7 @@ from Screens.Wizard import wizardManager, WizardSummary
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
 from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from Components.Sources.Boolean import Boolean
 from Components.Network import iNetwork
@@ -34,7 +35,9 @@ class NetworkWizard(WizardLanguage, Rc):
 		self.xmlfile = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")
 		WizardLanguage.__init__(self, session, showSteps = False, showStepSlider = False)
 		Rc.__init__(self)
+		Screen.setTitle(self, _("NetworkWizard"))
 		self.session = session
+
 		self["wizard"] = Pixmap()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
