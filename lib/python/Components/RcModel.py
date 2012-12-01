@@ -41,15 +41,21 @@ class RcModel:
 			model = self.readFile('/proc/stb/info/hwmodel')
 			if model == 'tmtwinoe' or model == 'tm2toe' or model == 'tmsingle':
 				self.currentRcType = self.RCTYPE_TM
+		elif os.path.exists('/proc/stb/info/vumodel'):
+			model = self.readFile('/proc/stb/info/vumodel')
+			if model == 'ultimo':
+				self.currentRcType = self.RCTYPE_VU2
+			else:
+				self.currentRcType = self.RCTYPE_VU
 		elif getBoxType() == 'dm8000':
 				self.currentRcType = self.RCTYPE_DMM
 		elif getBoxType() == 'dm7020hd':
-				self.currentRcType = self.RCTYPE_DMM2	
+				self.currentRcType = self.RCTYPE_DMM2
 		elif getBoxType() == 'dm800' or getBoxType() == 'dm800se' or getBoxType() == 'dm500hd':
 				self.currentRcType = self.RCTYPE_DMM1
 		elif os.path.exists('/proc/stb/info/boxtype'):
 			model = self.readFile('/proc/stb/info/boxtype')
-			if len(model) == 6 and model[:2] == 'et' or model[:2] == 'xp':
+			if model.startswith('et') or model.startswith('xp'):
 				rc = self.readFile('/proc/stb/ir/rc/type')
 				if rc == '3':
 					self.currentRcType = self.RCTYPE_ODINM9
@@ -87,26 +93,25 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_ODINM9
 			elif model == 'PlaySmartBox':
 				self.currentRcType = self.RCTYPE_ICLASSM7
-		elif os.path.exists('/proc/stb/info/vumodel'):
-			model = self.readFile('/proc/stb/info/vumodel')
-			if model == 'ultimo':
-				self.currentRcType = self.RCTYPE_VU2
-			else:
-				self.currentRcType = self.RCTYPE_VU	
+
 
 	def getRcLocation(self):
-		if self.currentRcType == self.RCTYPE_ET9X00:
-			return '/usr/share/enigma2/rc_models/et9x00/'
-		elif self.currentRcType == self.RCTYPE_ET6X00:
-			return '/usr/share/enigma2/rc_models/et6x00/'
-		elif self.currentRcType == self.RCTYPE_ET9500:
-			return '/usr/share/enigma2/rc_models/et9500/'
-		elif self.currentRcType == self.RCTYPE_ET6500:
-			return '/usr/share/enigma2/rc_models/et6500/'
+		if self.currentRcType == self.RCTYPE_DMM:
+			return '/usr/share/enigma2/rc_models/dmm0/'
+		elif self.currentRcType == self.RCTYPE_DMM1:
+			return '/usr/share/enigma2/rc_models/dmm1/'
+		elif self.currentRcType == self.RCTYPE_DMM2:
+			return '/usr/share/enigma2/rc_models/dmm2/'
 		elif self.currentRcType == self.RCTYPE_ET4000:
 			return '/usr/share/enigma2/rc_models/et4000/'
-		elif self.currentRcType == self.RCTYPE_XP1000:
-			return '/usr/share/enigma2/rc_models/xp1000/'			
+		elif self.currentRcType == self.RCTYPE_ET6X00:
+			return '/usr/share/enigma2/rc_models/et6x00/'
+		elif self.currentRcType == self.RCTYPE_ET6500:
+			return '/usr/share/enigma2/rc_models/et6500/'
+		elif self.currentRcType == self.RCTYPE_ET9X00:
+			return '/usr/share/enigma2/rc_models/et9x00/'
+		elif self.currentRcType == self.RCTYPE_ET9500:
+			return '/usr/share/enigma2/rc_models/et9500/'
 		elif self.currentRcType == self.RCTYPE_GB:
 			return '/usr/share/enigma2/rc_models/gb/'
 		elif self.currentRcType == self.RCTYPE_INI3000:
@@ -125,11 +130,6 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/vu/'
 		elif self.currentRcType == self.RCTYPE_VU2:
 			return '/usr/share/enigma2/rc_models/vu2/'
-		elif self.currentRcType == self.RCTYPE_DMM:
-			return '/usr/share/enigma2/rc_models/dmm0/'
-		elif self.currentRcType == self.RCTYPE_DMM1:
-			return '/usr/share/enigma2/rc_models/dmm1/'
-		elif self.currentRcType == self.RCTYPE_DMM2:
-			return '/usr/share/enigma2/rc_models/dmm2/'			
-
+		elif self.currentRcType == self.RCTYPE_XP1000:
+			return '/usr/share/enigma2/rc_models/xp1000/'
 rc_model = RcModel()

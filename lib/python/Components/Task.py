@@ -5,13 +5,14 @@ from Tools.CList import CList
 
 class Job(object):
 	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = range(4)
-	def __init__(self, name):
+	def __init__(self, name, showoncompletion = False):
 		self.tasks = [ ]
 		self.resident_tasks = [ ]
 		self.workspace = "/tmp"
 		self.current_task = 0
 		self.callback = None
 		self.name = name
+		self.showoncompletion = showoncompletion
 		self.finished = False
 		self.end = 100
 		self.__progress = 0
@@ -342,6 +343,7 @@ class JobManager:
 		self.failed_jobs = [ ]
 		self.job_classes = [ ]
 		self.in_background = False
+		self.visible = False
 		self.active_job = None
 		self.MesgAfterRun = None
 
@@ -361,9 +363,9 @@ class JobManager:
 	def jobDone(self, job, task, problems):
 		print "job", job, "completed with", problems, "in", task
 		from Tools import Notifications
-		if self.in_background:
+		if not self.visible and job.showoncompletion:
 			from Screens.TaskView import JobView
-			self.in_background = False
+			self.visible = True
 			Notifications.AddNotification(JobView, self.active_job)
 		if problems:
 			from Screens.MessageBox import MessageBox

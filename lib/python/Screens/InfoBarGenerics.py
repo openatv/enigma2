@@ -361,15 +361,16 @@ class SecondInfoBar(Screen):
 			return 1
 
 	def setEvent(self, event):
-		self.event = event
+		text = ""
+		self["epg_description"].setText(text)
 		if event is None:
 			return
+		self.event = event
 		try:
 			name = event.getEventName()
 			self["channel"].setText(name)
 		except:
 			pass
-		text = ""
 		description = event.getShortDescription()
 		extended = event.getExtendedDescription()
 		if description and extended:
@@ -4900,7 +4901,7 @@ class InfoBarCueSheetSupport:
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
 
 	def playLastCB(self, answer):
-		if answer == True:
+		if answer == True and self.resume_point:
 			self.doSeek(self.resume_point)
 		self.hideAfterResume()
 

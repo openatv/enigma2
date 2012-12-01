@@ -153,7 +153,7 @@ class TryQuitMainloop(MessageBox):
 		if not recordings:
 			next_rec_time = session.nav.RecordTimer.getNextRecordingTime()
 		if jobs:
-			reason = _("Job task(s) are in progress!") + '\n'
+			reason = (ngettext("%d job is running in the background!", "%d jobs are running in the background!", jobs) % jobs) + '\n'
 			if jobs == 1:
 				job = job_manager.getPendingJobs()[0]
 				reason += "%s: %s (%d%%)\n" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))

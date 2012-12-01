@@ -86,16 +86,16 @@ def setPosition(dst_left, dst_width, dst_top, dst_height):
 	if dst_top + dst_height > 576:
 		dst_height = 576 - dst_top
 	try:
-		file = open("/proc/stb/fb/dst_left", "w")
+		file = open("/proc/stb/vmpeg/0/dst_left", "w")
 		file.write('%X' % dst_left)
 		file.close()
-		file = open("/proc/stb/fb/dst_width", "w")
+		file = open("/proc/stb/vmpeg/0/dst_width", "w")
 		file.write('%X' % dst_width)
 		file.close()
-		file = open("/proc/stb/fb/dst_top", "w")
+		file = open("/proc/stb/vmpeg/0/dst_top", "w")
 		file.write('%X' % dst_top)
 		file.close()
-		file = open("/proc/stb/fb/dst_height", "w")
+		file = open("/proc/stb/vmpeg/0/dst_height", "w")
 		file.write('%X' % dst_height)
 		file.close()
 	except:
@@ -112,7 +112,7 @@ def startup(reason, **kwargs):
 
 def Plugins(**kwargs):
 	from os import path
-	if path.exists("/proc/stb/fb/dst_left"):
+	if path.exists("/proc/stb/vmpeg/0/dst_left"):
 		from Plugins.Plugin import PluginDescriptor
 		return [PluginDescriptor(name = "OSD position setup", description = "Compensate for overscan", where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
 					PluginDescriptor(name = "OSD position setup", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]
