@@ -1560,11 +1560,16 @@ def InitNimManager(nimmgr):
 		x = slot.slot
 		nim = config.Nims[x]
 		addMultiType = False
+		print"[NimManager] slot name=%s" % slot.description
 		try:
 			nim.multiType
 		except:
-			print"[NimManager] error nim.multiType"
-			addMultiType = False
+			if slot.description.find("Sundtek SkyTV Ultimate III") > -1:
+				print"[NimManager] Sundtek SkyTV Ultimate III detected, multiType = False"
+				addMultiType = False
+			else:
+				print"[NimManager] multiType = True"
+				addMultiType = True
 		if slot.isMultiType() and addMultiType:
 			typeList = []
 			for id in slot.getMultiTypeList().keys():
