@@ -243,7 +243,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 			getConfigListEntry(_("Sort"), cfg.moviesort),
 			getConfigListEntry(_("Show extended description"), cfg.description),
 			getConfigListEntry(_("Type"), cfg.listtype),
-			getConfigListEntry(_("Remember these settings for each folder"), config.movielist.settings_per_directory),
+			getConfigListEntry(_("Use individual settings for each directory"), config.movielist.settings_per_directory),
 			getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof),
 			getConfigListEntry(_("Load length of movies in movie list"), config.usage.load_length_of_movies_in_moviellist),
 			getConfigListEntry(_("Show status icons in movie list"), config.usage.show_icons_in_movielist),
