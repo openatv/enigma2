@@ -1,13 +1,25 @@
 from config import config, ConfigSlider, ConfigSelection, ConfigYesNo, \
 	ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
-from enigma import eAVSwitch, getDesktop, getBoxType
+from enigma import eAVSwitch, getDesktop, getBoxType, eHdmiCEC
 from SystemInfo import SystemInfo
 import os
 
 class AVSwitch:
 	def setInput(self, input):
 		INPUT = { "ENCODER": 0, "SCART": 1, "AUX": 2 }
+		if getBoxType() == 'gbquad' and input == 'ENCODER':
+			self.runonce = False
+			myHdmiCEC = eHdmiCEC.getInstance()
+			myHdmiCEC.messageReceived.get().append(self.messageReceived)
+			
 		eAVSwitch.getInstance().setInput(INPUT[input])
+
+	def messageReceived(self, message):
+		cmd = message.getCommand()
+		if cmd == 131 and self.runonce == False:
+			self.runonce = True
+			print"[AVSWITCH] setAVinput for gbquad again"
+			eAVSwitch.getInstance().setInput(0)
 
 	def setColorFormat(self, value):
 		eAVSwitch.getInstance().setColorFormat(value)
