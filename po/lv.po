@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-29 21:48+0100\n"
+"POT-Creation-Date: 2012-12-01 21:48+0100\n"
 "PO-Revision-Date: 2012-11-25 16:48+0200\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -175,12 +175,12 @@ msgstr[0] "%d stunda"
 msgstr[1] "%d stundas"
 msgstr[2] "%d stundas"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d job is running in the background!"
 msgid_plural "%d jobs are running in the background!"
-msgstr[0] "%d darbi tiek veikti fonā"
-msgstr[1] "%d darbi tiek veikti fonā"
-msgstr[2] "%d darbi tiek veikti fonā"
+msgstr[0] "%d darbi tiek veikti fonā!"
+msgstr[1] "%d darbs tiek veikts fonā!"
+msgstr[2] "%d darbi tiek veikti fonā!"
 
 #, python-format
 msgid "%d min"
@@ -204,12 +204,12 @@ msgstr[0] "%d sekunde"
 msgstr[1] "%d sekundes"
 msgstr[2] "%d sekundes"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
-msgstr[0] "Root mape"
-msgstr[1] "Root mape"
-msgstr[2] "Root mape"
+msgstr[0] "%d apakšmapes"
+msgstr[1] "%d apakšmape"
+msgstr[2] "%d apakšmape"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -363,7 +363,7 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A configuration file (%s) has been modified since it was installed.\n"
 "Do you want to keep your modifications?"
@@ -649,7 +649,6 @@ msgstr "Datnes nosaukums nevar būt tukšs"
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr "Kļūda lejupielādējot pakotņu sarakstu. Lūdzu mēģiniet vēlreiz."
 
-#, fuzzy
 msgid "An unknown error occurred!"
 msgstr "Nezināma kļūda!"
 
@@ -1095,7 +1094,6 @@ msgstr "Kolekcijas nosaukums"
 msgid "Collection settings"
 msgstr "Kolekcijas iestatījumi"
 
-#, fuzzy
 msgid "Color format"
 msgstr "Krāsu formāts"
 
@@ -1286,7 +1284,6 @@ msgstr "Uzstāda otro audio valodu."
 msgid "Configure the second subtitle language."
 msgstr "iet uz nākamo subtitru valodu"
 
-#, fuzzy
 msgid "Configure the secondary EPG language."
 msgstr "Uzstāda otro EPG valodu."
 
@@ -1578,7 +1575,6 @@ msgstr "Datums"
 msgid "Date/time input"
 msgstr "Laiks / Datums"
 
-#, fuzzy
 msgid "Deep standby"
 msgstr "Dziļā gaidstāve"
 
@@ -1686,9 +1682,9 @@ msgstr "Mape %s neeksistē."
 msgid "Directory browser"
 msgstr "Mapju pārlūks"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Directory contains %s and %s."
-msgstr "mape satur %d failus %d apakšmapes.\n"
+msgstr "Mape satur %s un %s."
 
 msgid "Disable"
 msgstr "Izslēgt"
@@ -1844,12 +1840,12 @@ msgstr "Vai vēlaties atjaunināt pakotni:\n"
 msgid "Don't stop current event but disable coming events"
 msgstr "Neapturēt pašreizējo notikumu bet izslēgt nākamos notikumus"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
-msgstr[0] "Pabeigts - uzstādītas, atjauninātas vai dzēstas %d pakotnes ar %d kļūdām"
-msgstr[1] "Pabeigts - uzstādītas, atjauninātas vai dzēstas %d pakotnes ar %d kļūdām"
-msgstr[2] "Pabeigts - uzstādītas, atjauninātas vai dzēstas %d pakotnes ar %d kļūdām"
+msgstr[0] "Pabeigts - uzstādītas, atjauninātas vai dzēstas %d pakotnes (%s)"
+msgstr[1] "Pabeigts - uzstādīta, atjaunināta vai dzēsta %d pakotne (%s)"
+msgstr[2] "Pabeigts - uzstādītas, atjauninātas vai dzēstas %d pakotnes (%s)"
 
 msgid "Download"
 msgstr "Lejuplādēt"
@@ -1858,9 +1854,8 @@ msgstr "Lejuplādēt"
 msgid "Download %s from server"
 msgstr "Lejuplādēt %s no servera"
 
-#, fuzzy
 msgid "Download .NFI-files for USB-flasher"
-msgstr "Lejuplādēt .NFI-failus priekš USB-ielādes"
+msgstr "Lejuplādēt .NFI-failus USB ielādei"
 
 msgid "Download plugins"
 msgstr "Lejuplādēt spraudņus"
@@ -2168,7 +2163,6 @@ msgstr "Favorīti"
 msgid "File appears to be busy.\n"
 msgstr "Fails šķiet aizņemts.\n"
 
-#, fuzzy
 msgid "Filesystem check"
 msgstr "Failsistēmas pārbaude"
 
@@ -2251,13 +2245,12 @@ msgstr "Pilnīgi caurspīdīgs"
 msgid "Function of OK button"
 msgstr "OK pogas funkcija"
 
-#, fuzzy
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to restart the GUI now?"
 msgstr ""
 "Lai lietotu jauno ādiņu nepieciešams pārstartēt GUI,\n"
-"Vai vēlaties pārstartēt GUI tagad?"
+"vai vēlaties pārstartēt GUI tagad?"
 
 msgid "Gateway"
 msgstr "Vārteja"
@@ -2754,11 +2747,11 @@ msgstr "Atmiņas ierīču saraksts"
 msgid "List type"
 msgstr "Saraksta tips"
 
-#, fuzzy, python-format
+#, python-format
 msgid "List version %d, found %d channel"
 msgid_plural "List version %d, found %d channels"
 msgstr[0] "Saraksta versija %d, atrasti %d kanāli"
-msgstr[1] "Saraksta versija %d, atrasti %d kanāli"
+msgstr[1] "Saraksta versija %d, atrasts %d kanāls"
 msgstr[2] "Saraksta versija %d, atrasti %d kanāli"
 
 msgid "Listen to the radio..."
@@ -3693,7 +3686,6 @@ msgstr "Spraudņi"
 msgid "Polarisation"
 msgstr "Polarizācija"
 
-#, fuzzy
 msgid "Polarization"
 msgstr "Polarizācija"
 
@@ -3920,7 +3912,7 @@ msgid "Reception settings"
 msgstr "Uztveršanas iestatījumi"
 
 msgid "Record"
-msgstr "Ierakstīt"
+msgstr "Ieraksta uzstādījumi"
 
 #, python-format
 msgid "Record time limited due to conflicting timer %s"
@@ -3987,7 +3979,7 @@ msgid "Remote control type"
 msgstr "Vecāku kontroles veids"
 
 msgid "Removal has completed."
-msgstr "Dzēšana pabaigta."
+msgstr "Dzēšana pabeigta."
 
 msgid "Remove"
 msgstr "Dzēst"
@@ -4246,19 +4238,19 @@ msgstr "Meklē jūsu bezvadu pieejas punktus, un pieslēdz tiem lietojot jūsu i
 msgid "Scanning %s..."
 msgstr "Meklē %s..."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Scanning - %d%% completed, %d channel found"
 msgid_plural "Scanning - %d%% completed, %d channels found"
-msgstr[0] "Meklēšana pabaigta, %d kanāli atrasti"
-msgstr[1] "Meklēšana pabaigta, %d kanāli atrasti"
-msgstr[2] "Meklēšana pabaigta, %d kanāli atrasti"
+msgstr[0] "Meklēšana - %d%% pabeigta, %d kanāli atrasti"
+msgstr[1] "Meklēšana - %d%% pabeigta, %d kanāls atrasts"
+msgstr[2] "Meklēšana - %d%% pabeigta, %d kanāli atrasti"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
-msgstr[0] "Meklēšana pabaigta, %d kanāli atrasti"
-msgstr[1] "Meklēšana pabaigta, %d kanāli atrasti"
-msgstr[2] "Meklēšana pabaigta, %d kanāli atrasti"
+msgstr[0] "Meklēšana pabeigta, %d kanāli atrasti"
+msgstr[1] "Meklēšana pabeigta, %d kanāls atrasts"
+msgstr[2] "Meklēšana pabeigta, %d kanāli atrasti"
 
 msgid "Scanning failed!"
 msgstr "Meklēšana pārtraukta!"
@@ -4422,7 +4414,6 @@ msgstr "Sūtīt DiSEqC"
 msgid "Send DiSEqC only on satellite change"
 msgstr "Sūtīt DiSEqC tikai mainoties pavadonim"
 
-#, fuzzy
 msgid "Separate titles with a main menu"
 msgstr "Atsevišķi nosaukumi ar galveno izvēlni"
 
@@ -4467,7 +4458,6 @@ msgstr "Kanālu atsauce"
 msgid "Service scan"
 msgstr "Kanālu meklēšana"
 
-#, fuzzy
 msgid "Service searching"
 msgstr "Kanālu meklēšana"
 
@@ -4635,7 +4625,6 @@ msgstr "Rādīt izslēgšanas izvēlni"
 msgid "Show status icons in movie list"
 msgstr "Statusa ikona filmu sarakstā"
 
-#, fuzzy
 msgid "Show status icons in movielist"
 msgstr "Statusa ikona filmu sarakstā"
 
@@ -4720,7 +4709,6 @@ msgstr "Izlaist tukšos kanālus"
 msgid "Skip internet connection check (disables automatic package installation)"
 msgstr "Izlaist interneta savienojuma pārbudi (atspējo automātisku pakotņu uzstādīšanu)"
 
-#, fuzzy
 msgid "Sleep timer"
 msgstr "Miega taimeris"
 
@@ -5940,7 +5928,6 @@ msgstr "Trešdiena"
 msgid "Weekday"
 msgstr "Nedēļas diena"
 
-#, fuzzy
 msgid "Weighted position"
 msgstr "Pozīcijas nozīmīgums"
 
@@ -6113,9 +6100,8 @@ msgstr "Ja iespējots, uztvērējs izvēlēsies AC3 celiņu (ja pieejams)."
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Ja iespējots, lieto DHCP IP konfigurācijai"
 
-#, fuzzy
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
-msgstr "Ja iespējots, uztvērējs izvēlēsies AC3 celiņu (ja pieejams)."
+msgstr "Ja iespējots, jūsu uztvērējs noteiks aktivitāti VRC SCART ieejā."
 
 msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
 msgstr "Ja nav nulle, ieraksts sāksies ātrāk, nevis laikā kas parādīts EPG."
@@ -6154,7 +6140,6 @@ msgstr "Bezvadu tīkls"
 msgid "Wireless network"
 msgstr "Bezvadu tīkls"
 
-#, fuzzy
 msgid "Wireless network configuration..."
 msgstr "Bezvadu tīkla konfigurācija..."
 
