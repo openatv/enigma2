@@ -28,7 +28,8 @@ backupfile = "enigma2settingsbackup.tar.gz"
 
 def checkConfigBackup():
 	parts = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
-	if getBoxType() == "odinm9" or getBoxType() == "iclassm7":
+	box = getBoxType()
+	if box == "odinm9" or box == "iclassm7":
 		parts.append(('mtd backup','/media/backup'))
 	for x in parts:
 		if x[1] == '/':
@@ -36,6 +37,12 @@ def checkConfigBackup():
 	if len(parts):
 		for x in parts:
 			if x[1].endswith('/'):
+				fullbackupfile =  x[1] + 'backup_' + box + '/' + backupfile
+				if fileExists(fullbackupfile):
+					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
+					config.plugins.configurationbackup.backuplocation.save()
+					config.plugins.configurationbackup.save()
+					return x
 				fullbackupfile =  x[1] + 'backup/' + backupfile
 				if fileExists(fullbackupfile):
 					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
@@ -43,6 +50,12 @@ def checkConfigBackup():
 					config.plugins.configurationbackup.save()
 					return x
 			else:
+				fullbackupfile =  x[1] + '/backup_' + box + '/' + backupfile
+				if fileExists(fullbackupfile):
+					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
+					config.plugins.configurationbackup.backuplocation.save()
+					config.plugins.configurationbackup.save()
+					return x
 				fullbackupfile =  x[1] + '/backup/' + backupfile
 				if fileExists(fullbackupfile):
 					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
@@ -54,17 +67,25 @@ def checkConfigBackup():
 def checkBackupFile():
 	backuplocation = config.plugins.configurationbackup.backuplocation.getValue()
 	if backuplocation.endswith('/'):
-		fullbackupfile =  backuplocation + 'backup/' + backupfile
+		fullbackupfile =  backuplocation + 'backup_' + box + '/' + backupfile
 		if fileExists(fullbackupfile):
 			return True
 		else:
-			return False
+			fullbackupfile =  backuplocation + 'backup/' + backupfile
+			if fileExists(fullbackupfile):
+				return True
+			else:
+				return False
 	else:
-		fullbackupfile =  backuplocation + '/backup/' + backupfile
+		fullbackupfile =  backuplocation + '/backup_' + box + '/' + backupfile
 		if fileExists(fullbackupfile):
 			return True
 		else:
-			return False
+			fullbackupfile =  backuplocation + '/backup/' + backupfile
+			if fileExists(fullbackupfile):
+				return True
+			else:
+				return False
 
 if checkConfigBackup() is None:
 	backupAvailable = 0
