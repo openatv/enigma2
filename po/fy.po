@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-29 21:48+0100\n"
+"POT-Creation-Date: 2012-12-01 16:48+0100\n"
 "PO-Revision-Date: 2008-12-29 16:22+0100\n"
 "Last-Translator: gerrit <gerrit@nedlinux.nl>\n"
 "Language-Team: gerrit <fy@li.org>\n"
@@ -150,6 +150,14 @@ msgstr ""
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr ""
+
+#
+#. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
+#, fuzzy, python-format
+msgid "%d channel found"
+msgid_plural "%d channels found"
+msgstr[0] "%d services fûn"
+msgstr[1] "%d services fûn"
 
 #, python-format
 msgid "%d file"
@@ -3520,6 +3528,9 @@ msgstr ""
 msgid "Minimum age %d years"
 msgstr ""
 
+msgid "Minimum send interval"
+msgstr ""
+
 msgid "Missing "
 msgstr ""
 
@@ -5220,9 +5231,10 @@ msgstr ""
 msgid "Scanning %s..."
 msgstr ""
 
+#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
 #, python-format
-msgid "Scanning - %d%% completed, %d channel found"
-msgid_plural "Scanning - %d%% completed, %d channels found"
+msgid "Scanning - %d%% completed"
+msgid_plural "Scanning - %d%% completed"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -8960,10 +8972,6 @@ msgstr "knip"
 #
 msgid "zapped"
 msgstr "knipt"
-
-#
-#~ msgid "%d services found!"
-#~ msgstr "%d services fûn"
 
 #
 #~ msgid "/usr/share/enigma2 directory"

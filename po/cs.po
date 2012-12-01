@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ims\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-29 21:48+0100\n"
+"POT-Creation-Date: 2012-12-01 16:48+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: ims <ims21@users.sourceforge.net>\n"
 "Language-Team: PLi <ims21@users.sourceforge.net>\n"
@@ -172,6 +172,14 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr ""
+
+#. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
+#, fuzzy, python-format
+msgid "%d channel found"
+msgid_plural "%d channels found"
+msgstr[0] "Prohledávání dokončeno, byl nalezen %d program "
+msgstr[1] "Prohledávání dokončeno, byly nalezeny %d programy"
+msgstr[2] "Prohledávání dokončeno, bylo nalezeno %d programů "
 
 #, python-format
 msgid "%d file"
@@ -3493,6 +3501,10 @@ msgstr "Zpráva..."
 msgid "Minimum age %d years"
 msgstr "minimální věk %d roků"
 
+#, fuzzy
+msgid "Minimum send interval"
+msgstr "minimální věk %d roků"
+
 msgid "Missing "
 msgstr "Chybí"
 
@@ -5174,9 +5186,10 @@ msgstr "Vyhledá v síti bezdrátové připojovací body a připojí se k nim za
 msgid "Scanning %s..."
 msgstr "Prohledává %s..."
 
-#, python-format
-msgid "Scanning - %d%% completed, %d channel found"
-msgid_plural "Scanning - %d%% completed, %d channels found"
+#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
+#, fuzzy, python-format
+msgid "Scanning - %d%% completed"
+msgid_plural "Scanning - %d%% completed"
 msgstr[0] "Prohledávání - %d%% dokončeno, nalezen %d program"
 msgstr[1] "Prohledávání - %d%% dokončeno, nalezeny %d programy"
 msgstr[2] "Prohledávání - %d%% dokončeno, nalezeno %d programů"
@@ -8899,4 +8912,3 @@ msgstr "přepnout"
 #
 msgid "zapped"
 msgstr "přepnutý"
-
