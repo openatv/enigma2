@@ -8,7 +8,7 @@ import Screens.Standby
 from Tools import Notifications
 
 class JobView(InfoBarNotifications, Screen, ConfigListScreen):
-	def __init__(self, session, job, parent=None, cancelable = True, backgroundable = True, afterEventChangeable = True , afterEvent=None):
+	def __init__(self, session, job, parent=None, cancelable = True, backgroundable = True, afterEventChangeable = True , afterEvent="nothing"):
 		from Components.Sources.StaticText import StaticText
 		from Components.Sources.Progress import Progress
 		from Components.Sources.Boolean import Boolean
@@ -40,11 +40,11 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 
 		self["setupActions"] = ActionMap(["ColorActions", "SetupActions"],
 		{
-		    "green": self.ok,
-		    "red": self.abort,
-		    "blue": self.background,
-		    "cancel": self.ok,
-		    "ok": self.ok,
+			"green": self.ok,
+			"red": self.abort,
+			"blue": self.background,
+			"cancel": self.ok,
+			"ok": self.ok,
 		}, -2)
 
 		self.settings = ConfigSubsection()
@@ -80,7 +80,7 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 	def windowHide(self):
 		job_manager.visible = False
 		if len(self.job.state_changed) > 0:
-		    self.job.state_changed.remove(self.state_changed)
+			self.job.state_changed.remove(self.state_changed)
 
 	def state_changed(self):
 		j = self.job
