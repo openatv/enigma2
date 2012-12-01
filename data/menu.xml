@@ -124,8 +124,8 @@ self.session.openWithCallback(msgClosed, EpgLoadMsg)
 				<id val="cam" />
 				<item weight="1" level="2" entryID="softcam_setup"><setup id="softcamsetup" /></item>
 				<item weight="10" level="1" text="Common interface" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
-				<item weight="11" level="2" text="CCcam info" entryID="cccaminfo" requires="CCcamInstalled"><screen module="CCcamInfo" screen="CCcamInfoMain" /></item>
-				<item weight="11" level="2" text="OScam info" entryID="oscaminfo" requires="OScamInstalled"><screen module="OScamInfo" screen="OscamInfoMenu" /></item>
+				<!--<item weight="11" level="2" text="CCcam info" entryID="cccaminfo" requires="CCcamInstalled"><screen module="CCcamInfo" screen="CCcamInfoMain" /></item>
+				<item weight="11" level="2" text="OScam info" entryID="oscaminfo" requires="OScamInstalled"><screen module="OScamInfo" screen="OscamInfoMenu" /></item>-->
 			</menu>
 			<item weight="15" level="0" text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 			<item weight="15" level="0" text="Factory reset" entryID="factory_reset" endtext="&gt;&lt;">
