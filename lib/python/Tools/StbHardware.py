@@ -35,11 +35,12 @@ def setFPWakeuptime(wutime):
 def setRTCoffset():
 	import time
 	if time.localtime().tm_isdst == 0:
-		forsleep = time.timezone
+		forsleep = 7200+time.timezone
 	else:
 		forsleep = 3600-time.timezone
 
 	t_local = time.localtime(int(time.time()))
+
 	print "set RTC to %s (rtc_offset = %s sec.)" % (time.strftime("%Y/%m/%d %H:%M", t_local), forsleep)
 
 	# Set RTC OFFSET (diff. between UTC and Local Time)
