@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-01 16:48+0100\n"
-"PO-Revision-Date: 2012-11-25 16:48+0200\n"
+"PO-Revision-Date: 2012-12-01 22:55+0200\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
 "Language: lv_LV\n"
@@ -162,12 +162,12 @@ msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-#, fuzzy, python-format
+#, python-format
 msgid "%d channel found"
 msgid_plural "%d channels found"
-msgstr[0] "%d kanāli atrasti!"
-msgstr[1] "%d kanāli atrasti!"
-msgstr[2] "%d kanāli atrasti!"
+msgstr[0] "%d kanāli atrasti"
+msgstr[1] "%d kanāls atrasts"
+msgstr[2] "%d kanāli atrasti"
 
 #, python-format
 msgid "%d file"
@@ -2889,9 +2889,8 @@ msgstr "Paziņojums..."
 msgid "Minimum age %d years"
 msgstr "Minimālais vecums %d gadi"
 
-#, fuzzy
 msgid "Minimum send interval"
-msgstr "Minimālais vecums %d gadi"
+msgstr "Minimālais sūtīšanas intervāls"
 
 msgid "Missing "
 msgstr "Trūkst"
@@ -4251,12 +4250,12 @@ msgid "Scanning %s..."
 msgstr "Meklē %s..."
 
 #. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
-#, fuzzy, python-format
+#, python-format
 msgid "Scanning - %d%% completed"
 msgid_plural "Scanning - %d%% completed"
-msgstr[0] "Meklēšana - %d%% pabeigta, %d kanāli atrasti"
-msgstr[1] "Meklēšana - %d%% pabeigta, %d kanāls atrasts"
-msgstr[2] "Meklēšana - %d%% pabeigta, %d kanāli atrasti"
+msgstr[0] "Meklēšana - %d%% pabeigti"
+msgstr[1] "Meklēšana - %d%% pabeigts"
+msgstr[2] "Meklēšana - %d%% pabeigti"
 
 #, python-format
 msgid "Scanning completed, %d channel found"
