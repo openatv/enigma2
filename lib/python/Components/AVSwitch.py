@@ -9,8 +9,8 @@ class AVSwitch:
 		INPUT = { "ENCODER": 0, "SCART": 1, "AUX": 2 }
 		if getBoxType() == 'gbquad' and input == 'ENCODER':
 			self.runonce = False
-			myHdmiCEC = eHdmiCEC.getInstance()
-			myHdmiCEC.messageReceived.get().append(self.messageReceived)
+			self.myHdmiCEC = eHdmiCEC.getInstance()
+			self.myHdmiCEC.messageReceived.get().append(self.messageReceived)
 			
 		eAVSwitch.getInstance().setInput(INPUT[input])
 
@@ -20,6 +20,8 @@ class AVSwitch:
 			self.runonce = True
 			print"[AVSWITCH] setAVinput for gbquad again"
 			eAVSwitch.getInstance().setInput(0)
+			self.myHdmiCEC.messageReceived.get().remove((self.messageReceived))
+			self.myHdmiCEC = None
 
 	def setColorFormat(self, value):
 		eAVSwitch.getInstance().setColorFormat(value)
