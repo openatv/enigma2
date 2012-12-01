@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-29 21:48+0100\n"
+"POT-Creation-Date: 2012-12-01 16:48+0100\n"
 "PO-Revision-Date: 2012-11-16 18:48+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -162,6 +162,13 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
+
+#. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
+#, fuzzy, python-format
+msgid "%d channel found"
+msgid_plural "%d channels found"
+msgstr[0] "%d services found!"
+msgstr[1] "%d services found!"
 
 #, python-format
 msgid "%d file"
@@ -2872,6 +2879,10 @@ msgstr "Message..."
 msgid "Minimum age %d years"
 msgstr "Minimum age %d years"
 
+#, fuzzy
+msgid "Minimum send interval"
+msgstr "Minimum age %d years"
+
 msgid "Missing "
 msgstr "Missing "
 
@@ -4229,9 +4240,10 @@ msgstr "Scan your network for wireless access points and connect to them using y
 msgid "Scanning %s..."
 msgstr "Scanning %s..."
 
+#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
 #, fuzzy, python-format
-msgid "Scanning - %d%% completed, %d channel found"
-msgid_plural "Scanning - %d%% completed, %d channels found"
+msgid "Scanning - %d%% completed"
+msgid_plural "Scanning - %d%% completed"
 msgstr[0] "Scanning completed, %d channels found"
 msgstr[1] "Scanning completed, %d channels found"
 
@@ -7332,9 +7344,6 @@ msgstr "zap"
 
 msgid "zapped"
 msgstr "zapped"
-
-#~ msgid "%d services found!"
-#~ msgstr "%d services found!"
 
 #~ msgid "AC3 downmix"
 #~ msgstr "AC3 downmix"
