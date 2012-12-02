@@ -23,10 +23,6 @@ if VUULTIMO
 SUBDIRS += SatelliteEquipmentControl DiseqcTester CableScan
 endif
 
-if HAVE_TEMPFANCONTROL
-SUBDIRS += TempFanControl
-endif
-
 if DREAMBOX
 SUBDIRS += FrontprocessorUpgrade NFIFlash SatelliteEquipmentControl DiseqcTester CableScan
 endif
