@@ -6,10 +6,6 @@ SUBDIRS = PositionerSetup Satfinder SoftwareManager \
 	VideoEnhancement WirelessLan NetworkWizard VideoClippingSetup \
 	SatelliteEquipmentControl DiseqcTester HdmiCEC
 
-if HAVE_TEMPFANCONTROL
-SUBDIRS += TempFanControl
-endif
-
 if DREAMBOX
 SUBDIRS += FrontprocessorUpgrade NFIFlash
 endif
