@@ -738,6 +738,10 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 def main(session, **kwargs):
 	session.open(DVDPlayer)
 	
+def play(session, **kwargs):
+	from Screens import DVD
+	session.open(DVD.DVDPlayer, dvd_device=harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()))	
+	
 def onPartitionChange(action, partition):
 	print "[@] onPartitionChange", action, partition
 	if partition != harddiskmanager.getCD():
