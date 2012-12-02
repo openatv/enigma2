@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2012-12-01 00:48+0100\n"
-"Last-Translator: mike99\n"
+"PO-Revision-Date: 2012-12-02 15:25+0100\n"
+"Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: AAF\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -895,9 +895,6 @@ msgstr "Erweiterte Video-Einstellungen"
 msgid "After event"
 msgstr "Nach dem Event"
 
-msgid "After pressing OK, please wait!"
-msgstr "Nach OK drücken bitte warten!"
-
 #
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
@@ -930,6 +927,9 @@ msgstr "Erlaube Untertitel entsprechend Audioeinstellung"
 
 msgid "Allow subtitles for hearing impaired"
 msgstr "Untertitel für Hörgeschädigte zulassen"
+
+msgid "When enabled, subtitles for the hearing impaired can be used."
+msgstr "Wenn aktiviert, können Untertitel für Hörgeschädigte benutzt werden."
 
 msgid "Allow unstable (untested) updates"
 msgstr "Instabile (ungetestete) Updates erlauben"
@@ -1934,9 +1934,10 @@ msgstr "Einstellen auf welchen Laufwerke im Hintergrund gelöscht werden soll"
 msgid "Configure remote control type"
 msgstr "Fernbedienungstyp einstellen"
 
-msgid "Configure the Harddisk to go to standby after a specified idle time"
+msgid ""
+"Configure the hard disk drive to go to standby after the specified idle time."
 msgstr ""
-"Einstellen nach wieviel Leerlauf eine Festplatte in den Ruhezustand geht"
+"Einstellen nach wieviel Leerlaufzeit eine Festplatte in den Ruhezustand geht."
 
 msgid "Configure the behaviour of 'pause' when the movie is paused"
 msgstr "Verhalten der Pausetaste bei Standbild"
@@ -1968,8 +1969,10 @@ msgstr "Konfiguriere die horizontale Ausrichtung der Untertitel."
 
 msgid ""
 "Configure the number of days old timers are kept before they are "
-"automatically removed from the timers list."
-msgstr "Wieviele Tage soll ein Timer erhalten bleiben bevor er gelöscht wird"
+"automatically removed from the timer list."
+msgstr ""
+"Konfigurieren Sie, wieviele Tage alte Timer erhalten bleiben sollen, bevor "
+"sie automatisch aus der Timer-Liste gelöscht werden"
 
 msgid ""
 "Configure the number of days after which items are automaticaly removed from "
@@ -1978,8 +1981,12 @@ msgstr ""
 "Hier können Sie festlegen, wie viele Tage der Inhalt vom Papierkorb erhalten "
 "bleiben soll."
 
-msgid "Configure the offline decode delay in ms"
-msgstr "Länge der Verzögerung einer Offline-Entschlüsselung "
+msgid ""
+"Configure the offline decoding delay in milliseconds. The configured delay "
+"is observed at each control word parity change."
+msgstr ""
+"Konfigurieren Sie die Verzögerung der Offline-Entschlüsselung in (ms). Die "
+"eingestellte Verzögerung wird bei jedem Control Word Wechsel berücksichtigt."
 
 msgid "Configure the possible fast forward speeds"
 msgstr "Vorlauf Geschwindigkeiten"
@@ -1987,8 +1994,8 @@ msgstr "Vorlauf Geschwindigkeiten"
 msgid "Configure the possible rewind speeds"
 msgstr "Rücklauf Geschwindigkeiten"
 
-msgid "Configure the slow motion speeds"
-msgstr "Zeitlupen-Geschwindigkeiten"
+msgid "Configure the slow motion speeds."
+msgstr "Konfigurieren der Zeitlupen Geschwindigkeiten"
 
 msgid "Configure the speed of the background delete feature"
 msgstr "Lösch-Geschwindigkeit im Hintergrund"
@@ -2626,14 +2633,10 @@ msgstr "Einstellungen Box-Display"
 msgid ""
 "Configure the brightness level of the front panel display for normal "
 "operation."
-msgstr ""
-"Einstellungen der Helligkeit für das Frontdisplay Konfigurieren im Normal "
-"Modus"
+msgstr "Einstellung der Helligkeit für das Frontdisplay im Normal Modus."
 
 msgid "Configure the brightness level of the front panel display for standby."
-msgstr ""
-"Einstellungen der Helligkeit für das Frontdisplay Konfigurieren im Standby "
-"Modus"
+msgstr "Einstellung der Helligkeit für das Frontdisplay im Standby Modus."
 
 #
 msgid "Display and Userinterface"
@@ -3562,6 +3565,9 @@ msgstr "STB_BOX erweiterte Fernbedienung (native)"
 msgid "STB_BOX front panel"
 msgstr "STB_BOX Frontpaneel"
 
+msgid "front panel"
+msgstr "STB_BOX Frontpaneel"
+
 msgid "STB_BOX ir keyboard"
 msgstr "STB_BOX IR Tastatur"
 
@@ -3714,7 +3720,7 @@ msgid "Harddisk setup"
 msgstr "Festplatten-Standby"
 
 #
-msgid "Harddisk standby after"
+msgid "Hard disk standby after"
 msgstr "Festplatten-Standby nach"
 
 msgid "Hardware:"
@@ -3880,16 +3886,16 @@ msgstr ""
 "Wenn 'Ja' eingestellt ist wird die Infobar angezeigt wenn der Sender "
 "gewechselt wird."
 
-msgid "If set to 'yes' the receiver will use AC3 sound (when available)."
+msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr ""
-"Wenn auf 'Ja' gestellt so wird die STB_BOX AC3 Ton benutzen wenn verfügbar."
+"Wenn auf 'Ja' gestellt, wird die STB_BOX AC3 Ton benutzen (wenn verfügbar)."
 
 msgid ""
-"If set to 'yes' the receiver will use the audio stream that has been used "
-"earlier."
+"When enabled, the receiver will automatically use the audio track which you "
+"selected before."
 msgstr ""
-"Wenn auf 'Ja' gestellt wird die STB_BOX die Tonspur benutzen die früher "
-"benutzt wurde."
+"Wenn auf 'Ja' gestellt wird die STB_BOX die Tonspur benutzen die zuvor "
+"ausgewählt wurde."
 
 msgid "If set to 'yes' you can preview channels in the EPG list."
 msgstr "Wenn 'Ja' eingestellt ist erhalten Sie eine Programmvorschau im EPG."
@@ -4198,7 +4204,7 @@ msgid "Keyboard"
 msgstr "Einstellung ext. Tastatur"
 
 #
-msgid "Keyboard Map"
+msgid "Keyboard map"
 msgstr "Tastaturlayout"
 
 #
@@ -5792,18 +5798,25 @@ msgid "Prefer subtitles for hearing impaired"
 msgstr "Untertitel für Hörgeschädigte bevorzugen"
 
 msgid ""
-"Prefer subtitles for the hearing impaired over normal subtitles, when both "
-"types are available."
+"When enabled, subtitles for the hearing impaired will be preferred over "
+"normal subtitles, when both types are available."
 msgstr ""
 "Bevorzuge Untertitel für Hörgeschädigte vor anderen Untertiteln, wenn beide "
 "verfügbar sind."
 
 msgid ""
-"Prefer DVB-graphical subtitles over teletext subtitles, when both types are "
-"available."
+"When enabled, graphical DVB subtitles are preferred over teletext subtitles, "
+"when both types are available."
 msgstr ""
 "Bevorzuge grafische DVB Untertitel vor anderen Untertiteln, wenn beide "
 "verfügbar sind."
+
+msgid ""
+"When enabled, the receiver will automatically use the subtitles which you "
+"selected before."
+msgstr ""
+"Wenn auf 'Ja' gestellt, wird die STB_BOX die Untertitel benutzen, die zuvor "
+"ausgewählt wurden."
 
 msgid "Prefer subtitles stored by service"
 msgstr "Standard-Untertitel des Programms bevorzugen"
@@ -6142,6 +6155,9 @@ msgstr "Diese Einstellungen auf alle Ordner anwenden"
 
 msgid "Remote Control Code"
 msgstr "Fernbedienungscode"
+
+msgid "Remote control type"
+msgstr "Fernbedienungstyp"
 
 msgid "Remote Control System Code"
 msgstr "Fernbedienungs-Systemcode"
@@ -6652,7 +6668,7 @@ msgid "Seek"
 msgstr "Ermitteln"
 
 msgid "Seekbar sensibility"
-msgstr "Seekbar-Empfindlichkeit"
+msgstr "Seekbar-Sprungweite"
 
 #
 msgid "Select"
@@ -6941,13 +6957,6 @@ msgstr "Audio Sprachwahl 3 einstellen."
 msgid "Configure the fourth audio language."
 msgstr "Audio Sprachwahl 4 (niedrigste Priorität) einstellen."
 
-msgid ""
-"Configure the brightness level of the front panel displ for normal operation."
-msgstr "Helligkeit des Displays für normalem Betrieb einstellen."
-
-msgid "Configure the brightness level of the front panel displ for standby."
-msgstr "Helligkeit des Displays für Bereitschaft einstellen."
-
 msgid "Set the contrast level."
 msgstr "Kontrast einstellen."
 
@@ -7008,7 +7017,8 @@ msgstr ""
 
 msgid "Set the number of days you want old timers to be kept."
 msgstr ""
-"Wähle die maximale Anzahl von Tagen für die Timer aufbewahrt werden sollen."
+"Wähle Sie die maximale Anzahl von Tagen für die Timer aufbewahrt werden "
+"sollen."
 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Wähle die Durchlaufgeschwindigkeit für Text im Display"
@@ -7035,9 +7045,9 @@ msgid "Configure the fourth subtitle language."
 msgstr "Untertitel für die Sprachauswahl 4 (niedrigste Priorität) einstellen."
 
 msgid ""
-"Usually when the subtitle language is the same as the audio language, "
-"subtitles are surpressed. This option allows showing subtitles when they are "
-"the same."
+"Usually when the subtitle language is the same as the audio language, the "
+"subtitles will not be used. Enable this option to allow these subtitles to "
+"be used."
 msgstr ""
 "Normalerweise werden Untertitel unterdrückt wenn es die selbe Sprache ist "
 "wie die der Tonspur. Mit dieser Einstellung kann man Untertitel erzwingen."
@@ -7052,12 +7062,16 @@ msgstr ""
 "Wähle die Anzeigedauer der 2. Infobar. Sie verschwindet auch bei druck auf "
 "OK."
 
-msgid "Set the time you want recordings to start before the event start-time."
+msgid ""
+"When nonzero, a recording will start earlier than the starting time "
+"indicated by the EPG."
 msgstr ""
 "Wähle die Vorlaufzeit, d.h. die Anzahl von Minuten die eine Aufnahme vor dem "
 "eigentlichen Sendungsbegin startet."
 
-msgid "Set the time you want recordings to stop after the event stop-time."
+msgid ""
+"When nonzero, a recording will stop later than the ending time indicated by "
+"the EPG."
 msgstr ""
 "Wähle die Nachlaufzeit, d.h. die Anzahl von Minuten die eine Aufnahme nach "
 "dem eigentlichen Ende noch weiter läuft."
@@ -12814,7 +12828,7 @@ msgstr "Download Erweiterungen"
 msgid "Shows available pluigns. Here you can download and install them"
 msgstr "Zeige verfügbare Erweiterungen, Zum downloaden und Installieren."
 
-msgid "Hard disk Setup"
+msgid "Hard disk setup"
 msgstr "Konfiguration der HDD"
 
 msgid "Setup your Harddisk"
@@ -13100,6 +13114,12 @@ msgstr "Benachrichtigung anzeigen vor dem Abspielen des nächsten Filmes"
 #: Einstellunen Aufnahmen
 msgid "Seekbar activation"
 msgstr "Seekbar Aktivierung"
+
+#: Einstellunen Aufnahmen
+msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
+msgstr ""
+"Wählen sie die Tasten für die Seekbar Aktivierung: Pfeil L/R (lang) oder << "
+">>(lang)."
 
 #: Einstellunen Aufnahmen
 msgid "Long Left/Right"
@@ -13451,9 +13471,12 @@ msgstr ""
 "Wenn aktiviert, eine Aufzeichnung darf live TV unterbrechen, wenn keine "
 "freien Tuner verfügbar sind."
 
-msgid "Show a popup when one movie has finished and the next one will start."
+msgid ""
+"When enabled, a popup message will be shown when a movie has finished and "
+"the next one will start."
 msgstr ""
-"Zeigen eine Info, wenn eine Aufzeichnung fertig ist und die nächste beginnt."
+"Wenn ausgewählt, wird eine Info angezeigt, sobald ein Film beendet ist und "
+"der nächste beginnt."
 
 msgid "Configure the possible fast forward speeds."
 msgstr "Konfigurieren der Schnellen Vorlauf Geschwindigkeiten."
@@ -13465,36 +13488,41 @@ msgid "Fast forward speeds"
 msgstr "Schneller Vorlauf Geschwindigkeiten"
 
 msgid ""
-"Configure the speed of the background deletion process. A low speed will "
-"have less impact on harddisk performance."
+"Configure the speed of the background deletion process. Lower speed will "
+"consume less hard disk drive performance."
 msgstr ""
 "Konfigurieren Sie die Geschwindigkeit des Hintergrunds Löschvorgang. Eine "
 "niedrigere Geschwindigkeit hat weniger Einfluss auf die Leistung der "
 "Festplatte."
 
-msgid "Configure the skip time interval on the '1'/'3' buttons."
-msgstr ""
-"Konfigurieren Sie die Überspringen Zeitintervall auf der '1'/'3' Tasten."
+msgid "Configure the skip time interval for the '1'/'3' buttons."
+msgstr "Konfigurieren Sie den Sprung-Zeitintervall für die '1'/'3' Tasten."
 
-msgid "Configure the skip time interval on the '4'/'6' buttons."
-msgstr ""
-"Konfigurieren Sie die Überspringen Zeitintervall auf der '4'/'6' Tasten."
+msgid "Configure the skip time interval for the '4'/'6' buttons."
+msgstr "Konfigurieren Sie den Sprung-Zeitintervall für die '4'/'6' Tasten."
 
-msgid "Configure the skip time interval on the '7'/'9' buttons."
-msgstr ""
-"Konfigurieren Sie die Überspringen Zeitintervall auf der '7'/'9' Tasten."
+msgid "Configure the skip time interval for the '7'/'9' buttons."
+msgstr "Konfigurieren Sie den Sprung-Zeitintervall für die '7'/'9' Tasten."
 
 msgid "Initial fast forward speed"
 msgstr "Initial Vorlaufgeschwindigkeit"
 
-msgid "Set the initial fast forward speed."
-msgstr "Stellen Sie den Anfangswert der Vorlaufgeschwindigkeit ein."
+msgid ""
+"Configure the initial fast forward speed. When you press the fast forward "
+"button, winding will start at this speed."
+msgstr ""
+"Konfigurieren Sie den Anfangswert der Vorlaufgeschwindigkeit. Wenn Sie die "
+"Taste für den schnellen Vorlauf drücken, wird mit diesem Wert begonnen."
 
 msgid "Initial rewind speed"
 msgstr "Initial Rücklaufgeschwindigkeit"
 
-msgid "Set the initial rewind speed."
-msgstr "Stellen Sie den Anfangswert der Rücklaufgeschwindigkeit ein."
+msgid ""
+"Configure the initial rewind speed. When you press the rewind button, "
+"winding will start at this speed."
+msgstr ""
+"Konfigurieren Sie den Anfangswert der Rücklaufgeschwindigkeit. Wenn Sie die "
+"Taste für den Rücklauf drücken, wird mit diesem Wert begonnen."
 
 msgid "Limit character set for recording filenames"
 msgstr "Beschränken des Zeichensatz für die Aufnahme Dateinamen"
@@ -13646,7 +13674,8 @@ msgstr ""
 "nachdem die Einstellungen wiederhergestellt wurden!"
 
 #
-msgid "Configure the harddisk to go to standby after a specified idle time."
+msgid ""
+"Configure the harddisk drive to go to standby after the specified idle time."
 msgstr "Einstellung, nach welcher Zeit die Festplatte in den Standby geht."
 
 #
@@ -13671,7 +13700,7 @@ msgstr "Papierkorb in der Filmliste benutzen"
 
 #
 msgid "Display message before playing next movie"
-msgstr "Zeige Info wenn eine Aufnahme beendet ist"
+msgstr "Zeige Info bevor der nächste Film abgespielt wird."
 
 #
 msgid "Service font size"
@@ -13690,14 +13719,17 @@ msgstr ""
 "Minuten."
 
 #
-msgid "Show a popup when a recording starts."
-msgstr "Zeigen eine Info, wenn eine Aufzeichnung startet."
+msgid "When enabled, a popup message will be shown when a recording starts."
+msgstr ""
+"Wenn ausgeählt, wird eine Info angezeigt, sobald eine Aufnahme startet."
 
 #
 msgid ""
-"Show the lenght of a recording in the movielist (this might cause some "
-"additional loading time)."
-msgstr "Zeige die Länge einer Aufnahme in der Filmliste."
+"When enabled, the lenght of each recording will be shown in the movielist "
+"(this might cause some additional loading time)."
+msgstr ""
+"Wenn ausgewählt, wird die Länge einer Aufnahme in der Filmliste angezeigt "
+"(dies kann die Ladezeit der Fimliste beinflussen)."
 
 #
 msgid "Configure the behavior when movie playback is started."
@@ -13726,7 +13758,7 @@ msgstr ""
 
 msgid ""
 "When enabled, deleted recordings are moved to the trash can, instead of "
-"being immediately deleted."
+"being deleted immediately."
 msgstr ""
 "Konfigurieren Sie, ob gelöschte Aufnahmen in den Papierkorb verschoben "
 "werden sollen. Sonst werden Aufnahmen sofort undwiderruflich gelöscht."
