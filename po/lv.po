@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-01 16:48+0100\n"
-"PO-Revision-Date: 2012-12-01 22:55+0200\n"
+"PO-Revision-Date: 2012-12-02 22:55+0200\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
 "Language: lv_LV\n"
@@ -165,16 +165,16 @@ msgstr "%a %e/%m  %-H:%M"
 #, python-format
 msgid "%d channel found"
 msgid_plural "%d channels found"
-msgstr[0] "%d kanāli atrasti"
-msgstr[1] "%d kanāls atrasts"
+msgstr[0] "%d kanāls atrasts"
+msgstr[1] "%d kanāli atrasti"
 msgstr[2] "%d kanāli atrasti"
 
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d fails"
+msgstr[1] "%d faili"
+msgstr[2] "%d faili"
 
 #, python-format
 msgid "%d hour"
@@ -186,8 +186,8 @@ msgstr[2] "%d stundas"
 #, python-format
 msgid "%d job is running in the background!"
 msgid_plural "%d jobs are running in the background!"
-msgstr[0] "%d darbi tiek veikti fonā!"
-msgstr[1] "%d darbs tiek veikts fonā!"
+msgstr[0] "%d darbs tiek veikts fonā!"
+msgstr[1] "%d darbi tiek veikti fonā!"
 msgstr[2] "%d darbi tiek veikti fonā!"
 
 #, python-format
@@ -215,9 +215,9 @@ msgstr[2] "%d sekundes"
 #, python-format
 msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
-msgstr[0] "%d apakšmapes"
-msgstr[1] "%d apakšmape"
-msgstr[2] "%d apakšmape"
+msgstr[0] "%d apakšmape"
+msgstr[1] "%d apakšmapes"
+msgstr[2] "%d apakšmapes"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -255,7 +255,7 @@ msgstr "%s vairs neizmanto. Vai izdzēst?"
 #, python-format
 msgid "%s updated package available"
 msgid_plural "%s updated packages available"
-msgstr[0] "%s pakotnes atjaunojumi pieejami"
+msgstr[0] "%s pakotnes atjaunojums pieejams"
 msgstr[1] "%s pakotņu atjaunojumi pieejami"
 msgstr[2] "%s pakotņu atjaunojumi pieejami"
 
@@ -1851,8 +1851,8 @@ msgstr "Neapturēt pašreizējo notikumu bet izslēgt nākamos notikumus"
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
-msgstr[0] "Pabeigts - uzstādītas, atjauninātas vai dzēstas %d pakotnes (%s)"
-msgstr[1] "Pabeigts - uzstādīta, atjaunināta vai dzēsta %d pakotne (%s)"
+msgstr[0] "Pabeigts - uzstādīta, atjaunināta vai dzēsta %d pakotne (%s)"
+msgstr[1] "Pabeigts - uzstādītas, atjauninātas vai dzēstas %d pakotnes (%s)"
 msgstr[2] "Pabeigts - uzstādītas, atjauninātas vai dzēstas %d pakotnes (%s)"
 
 msgid "Download"
@@ -2758,8 +2758,8 @@ msgstr "Saraksta tips"
 #, python-format
 msgid "List version %d, found %d channel"
 msgid_plural "List version %d, found %d channels"
-msgstr[0] "Saraksta versija %d, atrasti %d kanāli"
-msgstr[1] "Saraksta versija %d, atrasts %d kanāls"
+msgstr[0] "Saraksta versija %d, atrasts %d kanāls"
+msgstr[1] "Saraksta versija %d, atrasti %d kanāli"
 msgstr[2] "Saraksta versija %d, atrasti %d kanāli"
 
 msgid "Listen to the radio..."
@@ -3923,7 +3923,7 @@ msgid "Reception settings"
 msgstr "Uztveršanas iestatījumi"
 
 msgid "Record"
-msgstr "Ieraksta uzstādījumi"
+msgstr "Ieraksta iestatījumi"
 
 #, python-format
 msgid "Record time limited due to conflicting timer %s"
@@ -4253,15 +4253,15 @@ msgstr "Meklē %s..."
 #, python-format
 msgid "Scanning - %d%% completed"
 msgid_plural "Scanning - %d%% completed"
-msgstr[0] "Meklēšana - %d%% pabeigti"
-msgstr[1] "Meklēšana - %d%% pabeigts"
+msgstr[0] "Meklēšana - %d%% pabeigts"
+msgstr[1] "Meklēšana - %d%% pabeigti"
 msgstr[2] "Meklēšana - %d%% pabeigti"
 
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
-msgstr[0] "Meklēšana pabeigta, %d kanāli atrasti"
-msgstr[1] "Meklēšana pabeigta, %d kanāls atrasts"
+msgstr[0] "Meklēšana pabeigta, %d kanāls atrasts"
+msgstr[1] "Meklēšana pabeigta, %d kanāli atrasti"
 msgstr[2] "Meklēšana pabeigta, %d kanāli atrasti"
 
 msgid "Scanning failed!"
@@ -6227,8 +6227,8 @@ msgid ""
 "would you like to remove\n"
 "\"%s\"?"
 msgstr ""
-"Jūs jau esat kanālu sarakstu uzstādījis,\n"
-"vai vēlaties nodzēst\n"
+"Jūs jau esat iestatījis kanālu sarakstu,\n"
+"vai vēlaties to nodzēst\n"
 "\"%s\"?"
 
 msgid "You can cancel the installation."
@@ -7335,9 +7335,9 @@ msgstr "bezvadu tīkla interfeiss"
 #, python-format
 msgid "with %d error"
 msgid_plural "with %d errors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "ar %d kļūdu"
+msgstr[1] "ar %d kļūdām"
+msgstr[2] "ar %d kļūdām"
 
 msgid "working"
 msgstr "darbojas"
