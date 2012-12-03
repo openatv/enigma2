@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-14 17:59+0100\n"
-"PO-Revision-Date: 2012-12-01 13:01+0100\n"
+"PO-Revision-Date: 2012-12-03 19:53+0100\n"
 "Last-Translator: xxx\n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -3224,7 +3224,7 @@ msgid "Instant record location"
 msgstr "Расположение записей"
 
 msgid "Instant recordings location"
-msgstr "Расположение файлов записи"
+msgstr "Текущие файлы записи"
 
 msgid "Interface"
 msgstr "Интерфейс"
@@ -7135,9 +7135,6 @@ msgstr ""
 "Обнаружено дублирование таймера в timers.xml!\n"
 "Пожалуйста, проверьте!"
 
-msgid "Timer record location"
-msgstr "Расположение записей по таймеру"
-
 msgid "Timer sanity error"
 msgstr "Ошибка состояния таймера"
 
@@ -7673,19 +7670,6 @@ msgstr "Просмотр улучшения изображения"
 
 msgid "Video enhancement setup"
 msgstr "Настройка улучшения изображения"
-
-msgid ""
-"Video input selection\n"
-"\n"
-"Please press OK if you can see this page on your TV (or select a different input port).\n"
-"\n"
-"The next input port will be automatically probed in 10 seconds."
-msgstr ""
-"Выбор видеовхода\n"
-"\n"
-"Нажмите ОК, если вы видите эту страницу на экране ТВ (или выберите другой вход).\n"
-"\n"
-"Следующий вход будет автоматически выбран через 10 сек."
 
 msgid "Video mode selection."
 msgstr "Выбор режима видео."
@@ -9551,7 +9535,7 @@ msgid "start directory"
 msgstr "начальный каталог"
 
 msgid "start timeshift"
-msgstr "запуск сдвига времени"
+msgstr "Запустить Timeshift"
 
 msgid "stepsize"
 msgstr "размер шага"
@@ -10858,7 +10842,7 @@ msgid "Permanent Timeshift start delay"
 msgstr "Время задержки Timeshift"
 
 msgid "Timeshift-save action on zap"
-msgstr "Timeshift- сохранить действие при переключении"
+msgstr "Timeshift-сохранить действие при переключении"
 
 msgid "Show shutdown menu"
 msgstr "меню выключения"
@@ -10925,4 +10909,102 @@ msgstr "Режим переподключений"
 
 msgid "Re-mount network shares every (in hours)"
 msgstr "Переподключать каждые (в часах)"
+
+#, python-format
+msgid "Scanning completed, %d channel found"
+msgstr "Сканирование выполнено, %d канало"
+
+msgid "Switch to filelist"
+msgstr "перейти к списку файло"
+
+msgid "Сlear playlist"
+msgstr "очистить плэйлист"
+
+msgid "Shuffle playlist"
+msgstr "перемешать плейлист"
+
+msgid "Timer recording location"
+msgstr "Запись по таймеру"
+
+msgid "Instant recording location"
+msgstr "Текущие файлы записи"
+
+msgid "Instant recording..."
+msgstr "Текущая запись"
+
+msgid "Minimum send interval"
+msgstr "Мин.интервал отправки"
+
+msgid "Load/Save EPG"
+msgstr "Загрузка/Сохранение EPG"
+
+msgid "Timer record location"
+msgstr "Запись по таймеру"
+
+msgid "Swap SNR in '%' with SNR in 'db'"
+msgstr "Переключить проценты/децибелы для SNR"
+
+msgid "Zap-History Browser"
+msgstr "История просмотра каналов"
+
+msgid "MultiEPG settings"
+msgstr "Настройки мульти EPG"
+
+msgid "SingleEPG settings"
+msgstr "Настройки EPG на канал"
+
+msgid "InfobarEPG settings"
+msgstr "Настройки инфорпанели EPG"
+
+msgid "GraphicalEPG settings"
+msgstr "Настройки графического EPG"
+
+msgid "Stop timeshift"
+msgstr "Остановить Timeshift"
+
+msgid "Start timeshift"
+msgstr "Запустить Timeshift"
+
+msgid "Seek forward (enter time)"
+msgstr "Перемотка вперед"
+
+msgid "Seek backward (enter time)"
+msgstr "Перемотка назад"
+
+msgid "Listen to the radio…"
+msgstr "Радио"
+
+msgid "Pause playback"
+msgstr "Пауза"
+
+msgid "Seek forward"
+msgstr "Перемотка вперед"
+
+msgid "Continue playback"
+msgstr "Продолжить воспроизведение"
+
+msgid "Show Format Setup…"
+msgstr "Показать формат"
+
+msgid "List EPG functions…"
+msgstr "Список EPG Функций"
+
+msgid "show single EPG…"
+msgstr "EPG на канал"
+
+msgid "Audio options…"
+msgstr "Аудио опции"
+
+msgid ""
+"Video input selection\n"
+"\n"
+"Please press OK if you can see this page on your TV (or select a different input port).\n"
+"\n"
+"The next input port will be automatically probed in 20 seconds."
+msgstr ""
+"Выберите видеовыход\n"
+"\n"
+"Нажмите ОК, если вы видите эту страницу на экране ТВ (или выберите другой вход).\n"
+"\n"
+"Следующий вход будет автоматически выбран через 20 сек."
 
