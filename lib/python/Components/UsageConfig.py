@@ -1,7 +1,7 @@
 from Components.Harddisk import harddiskmanager
 from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber, ConfigNumber
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC
-from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv
+from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv, getBoxType
 from Components.NimManager import nimmanager
 from SystemInfo import SystemInfo
 import os
@@ -568,19 +568,36 @@ def InitUsageConfig():
 					("1", _("with long OK press")),
 					("2", _("with exit button")),
 					("3", _("with left/right buttons"))])
-	config.plisettings.PLIEPG_mode = ConfigSelection(default="cooltvguide", choices = [
+					
+	if getBoxType() == 'dm800hd' or getBoxType() == 'dm800se' or getBoxType() == 'dm500hd':				
+		config.plisettings.PLIEPG_mode = ConfigSelection(default="pliepg", choices = [
 					("pliepg", _("Show Graphical EPG")),
 					("single", _("Show Single EPG")),
 					("multi", _("Show Multi EPG")),
 					("eventview", _("Show Eventview")),
 					("merlinepgcenter", _("Show Merlin EPG Center")),
 					("cooltvguide", _("Show CoolTVGuide"))])
-	config.plisettings.PLIINFO_mode = ConfigSelection(default="coolinfoguide", choices = [
+		config.plisettings.PLIINFO_mode = ConfigSelection(default="eventview", choices = [
 					("eventview", _("Show Eventview")),
 					("epgpress", _("Show EPG")),
 					("single", _("Show Single EPG")),
 					("coolsingleguide", _("Show CoolSingleGuide")),
-					("coolinfoguide", _("Show CoolInfoGuide"))])				
+					("coolinfoguide", _("Show CoolInfoGuide"))])
+	else:
+		config.plisettings.PLIEPG_mode = ConfigSelection(default="cooltvguide", choices = [
+					("pliepg", _("Show Graphical EPG")),
+					("single", _("Show Single EPG")),
+					("multi", _("Show Multi EPG")),
+					("eventview", _("Show Eventview")),
+					("merlinepgcenter", _("Show Merlin EPG Center")),
+					("cooltvguide", _("Show CoolTVGuide"))])
+		config.plisettings.PLIINFO_mode = ConfigSelection(default="coolinfoguide", choices = [
+					("eventview", _("Show Eventview")),
+					("epgpress", _("Show EPG")),
+					("single", _("Show Single EPG")),
+					("coolsingleguide", _("Show CoolSingleGuide")),
+					("coolinfoguide", _("Show CoolInfoGuide"))])
+
 	config.plisettings.QuickEPG_mode = ConfigSelection(default="3", choices = [
 					("0", _("as plugin in extended bar")),
 					("1", _("with long OK press")),
