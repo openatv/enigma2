@@ -140,7 +140,6 @@ private:
 	int vtunerFd;
 	int demuxFd;
 	int pipeFd[2];
-	char name[64];
 	std::string usbFrontendName;
 	std::string virtualFrontendName;
 	bool running;
