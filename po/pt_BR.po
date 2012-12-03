@@ -1,19 +1,20 @@
 # None <None>, 2012.
 # Frank <franksrviana@gmail.com>, 2012.
+# Samuel <samuel_leiro@hotmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-01 16:48+0100\n"
-"PO-Revision-Date: 2012-11-24 10:31-0300\n"
-"Last-Translator: Frank <franksrviana@gmail.com>\n"
-"Language-Team: No-Team\n"
+"PO-Revision-Date: 2012-12-03 11:22-0300\n"
+"Last-Translator: Samuel <samuel_leiro@hotmail.com>\n"
+"Language-Team: Feito por FrankVianna\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -163,17 +164,17 @@ msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-#, fuzzy, python-format
+#, python-format
 msgid "%d channel found"
 msgid_plural "%d channels found"
-msgstr[0] "%d serviços encontrados!"
-msgstr[1] "%d serviços encontrados!"
+msgstr[0] "%d serviços encontrados"
+msgstr[1] "%d serviços encontrados"
 
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d arquivo"
+msgstr[1] "%d arquivos"
 
 #, python-format
 msgid "%d hour"
@@ -181,10 +182,10 @@ msgid_plural "%d hours"
 msgstr[0] "%d hora"
 msgstr[1] "%d horas"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d job is running in the background!"
 msgid_plural "%d jobs are running in the background!"
-msgstr[0] "%d tarefas estão decorrendo em background!"
+msgstr[0] "%d tarefa está decorrendo em background!"
 msgstr[1] "%d tarefas estão decorrendo em background!"
 
 #, python-format
@@ -207,11 +208,11 @@ msgid_plural "%d seconds"
 msgstr[0] "%d segundo"
 msgstr[1] "%d segundos"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
-msgstr[0] "Pasta raiz"
-msgstr[1] "Pasta raiz"
+msgstr[0] "%d subdiretório"
+msgstr[1] "%d subdiretórios"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -581,7 +582,10 @@ msgid "Adjust HDMI CEC settings"
 msgstr "Ajustar opções HDMI CEC"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
-msgstr "Ajuste as cores para que as sombras fiquem visíveis, mas apareçam o mais saturado possível. Se estiver satisfeito com o resultado, pressione 'OK' para sair, ou use as teclas com números para selecionar outras telas."
+msgstr ""
+"Ajuste as cores para que as sombras fiquem visíveis, mas apareçam o mais "
+"saturado possível. Se estiver satisfeito com o resultado, pressione 'OK' "
+"para sair, ou use as teclas com números para selecionar outras telas."
 
 msgid "Advanced options"
 msgstr "Opções avançadas"
@@ -1306,7 +1310,9 @@ msgid "Configure the speed of the background deletion process. Lower speed will 
 msgstr "Configurar a velocidade do processo de eliminação de fundo. Velocidade menor vai consumir menos desempenho do disco rígido."
 
 msgid "Configure the subtitle delay when timing information is not available."
-msgstr "Configurar o atraso da legenda quando informações de tempo não estão disponíveis."
+msgstr ""
+"Configurar o atraso da legenda quando informações de tempo não estão "
+"disponíveis."
 
 msgid "Configure the third audio language."
 msgstr "Configurar o terceiro idioma de áudio."
@@ -1682,9 +1688,9 @@ msgstr "A pasta %s não existe."
 msgid "Directory browser"
 msgstr "Explorador de pastas"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Directory contains %s and %s."
-msgstr "A pasta contém %d arquivos(s) e %d sub-pastas.\n"
+msgstr "A pasta contém %s e %s."
 
 msgid "Disable"
 msgstr "Desabilitar"
@@ -1839,11 +1845,11 @@ msgstr "Deseja atualizar o pacote:\n"
 msgid "Don't stop current event but disable coming events"
 msgstr "Não parar o programa atual mas desabilitar novos programas"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
-msgstr[0] "Terminado - Instalados, atualizados, ou removidos %d pacotes com %d erros"
-msgstr[1] "Terminado - Instalados, atualizados, ou removidos %d pacotes com %d erros"
+msgstr[0] "Terminado - Instalado, atualizado, ou removido %d pacote (%s)"
+msgstr[1] "Terminado - Instalados, atualizados, ou removidos %d pacotes (%s)"
 
 msgid "Download"
 msgstr "Baixar"
@@ -2745,10 +2751,10 @@ msgstr "Listar dispositivos de armazenamento"
 msgid "List type"
 msgstr "Listar tipo"
 
-#, fuzzy, python-format
+#, python-format
 msgid "List version %d, found %d channel"
 msgid_plural "List version %d, found %d channels"
-msgstr[0] "Versão de lista %d, encontrados %d canais"
+msgstr[0] "Versão de lista %d, encontrado %d canal"
 msgstr[1] "Versão de lista %d, encontrados %d canais"
 
 msgid "Listen to the radio..."
@@ -2878,9 +2884,8 @@ msgstr "Mensagem..."
 msgid "Minimum age %d years"
 msgstr "Idade mínima %d anos"
 
-#, fuzzy
 msgid "Minimum send interval"
-msgstr "Idade mínima %d anos"
+msgstr "Intervalo mínimo de envio"
 
 msgid "Missing "
 msgstr "Em falta"
@@ -4240,17 +4245,17 @@ msgid "Scanning %s..."
 msgstr "Pesquisando %s..."
 
 #. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
-#, fuzzy, python-format
+#, python-format
 msgid "Scanning - %d%% completed"
 msgid_plural "Scanning - %d%% completed"
-msgstr[0] "Pesquisa completa, %d canais encontrados."
-msgstr[1] "Pesquisa completa, %d canais encontrados."
+msgstr[0] "Pesquisando - %d%% completado"
+msgstr[1] "Pesquisando - %d%% completado"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
-msgstr[0] "Pesquisa completa, %d canais encontrados."
-msgstr[1] "Pesquisa completa, %d canais encontrados."
+msgstr[0] "Pesquisa completa, %d canal encontrado"
+msgstr[1] "Pesquisa completa, %d canais encontrados"
 
 msgid "Scanning failed!"
 msgstr "A pesquisa falhou!"
@@ -5941,9 +5946,11 @@ msgid ""
 msgstr ""
 "Bem-vindo ao editor 'Cutlist' (corte de listas).\n"
 "\n"
-"Procure o início do conteúdo que deseja cortar. Pressione 'OK', selecione 'iniciar cortar'.\n"
+"Procure o início do conteúdo que deseja cortar. Pressione 'OK', selecione "
+"'iniciar cortar'.\n"
 "\n"
-"Em seguida, procure até ao fim, pressione 'OK', selecione \"corte final\". E é só isso."
+"Em seguida, procure até ao fim, pressione 'OK', selecione \"corte final\". E é "
+"só isso."
 
 msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your receiver by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
 msgstr "Bem-vindo ao assistente de atualização de imagem. O assistente irá ajudá-lo a atualizar o firmware do seu receptor fornecendo um recurso de backup para suas configurações atuais e uma breve explicação de como atualizar seu firmware."
@@ -6101,9 +6108,8 @@ msgstr "Quando ativado, o receptor irá selecionar uma faixa AC3 (quando dispon�
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Quando ativado, use o DHCP para a configuração de IP."
 
-#, fuzzy
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
-msgstr "Quando ativado, o receptor irá selecionar uma faixa AC3 (quando disponível)."
+msgstr "Quando ativado, o receptor irá detectar atividade na entrada VCR SCART."
 
 msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
 msgstr "Quando diferente de zero, uma gravação vai começar mais cedo do que o horário de início indicado pelo EPG."
@@ -7325,8 +7331,8 @@ msgstr "interface de rede sem fios"
 #, python-format
 msgid "with %d error"
 msgid_plural "with %d errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "com %d de erro"
+msgstr[1] "com %d de erros"
 
 msgid "working"
 msgstr "trabalhando"
