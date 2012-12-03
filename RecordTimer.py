@@ -592,6 +592,9 @@ class RecordTimer(timer.Timer):
 				insort(self.processed_timers, w)
 		self.stateChanged(w)
 
+	def isRecTimerWakeup(self):
+		return wasRecTimerWakeup
+
 	def isRecording(self):
 		isRunning = False
 		for timer in self.timer_list:
