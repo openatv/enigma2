@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-19 16:58+0000\n"
+"POT-Creation-Date: 2012-12-03 15:00+0000\n"
 "PO-Revision-Date: 2012-10-03 16:01-0000\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: none\n"
@@ -33,8 +33,7 @@ msgstr ""
 
 msgid ""
 "\n"
-"An Input/output error usually indicates a corrupted filesystem! Please check "
-"the filesystem of your timeshift-device!"
+"An Input/output error usually indicates a corrupted filesystem! Please check the filesystem of your timeshift-device!"
 msgstr ""
 
 #
@@ -176,19 +175,19 @@ msgid "%a %e/%m  %-H:%M"
 msgstr ""
 
 #, python-format
+msgid "%d GB"
+msgstr ""
+
+#, python-format
 msgid "%d Gb"
 msgstr ""
 
 #, python-format
-msgid "%d Kb"
+msgid "%d KB"
 msgstr ""
 
 #, python-format
 msgid "%d MB"
-msgstr ""
-
-#, python-format
-msgid "%d Mb"
 msgstr ""
 
 #, python-format
@@ -198,12 +197,27 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
+#. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
+#, fuzzy, python-format
+msgid "%d channel found"
+msgid_plural "%d channels found"
+msgstr[0] "Nájdených %d staníc!"
+msgstr[1] "Nájdených %d staníc!"
+msgstr[2] "Nájdených %d staníc!"
+
 #, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+#, fuzzy, python-format
+msgid "%d job is running in the background!"
+msgid_plural "%d jobs are running in the background!"
+msgstr[0] "%d úloh beží na pozadí!"
+msgstr[1] "%d úloh beží na pozadí!"
+msgstr[2] "%d úloh beží na pozadí!"
 
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -234,10 +248,6 @@ msgid_plural "%d seconds"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-
-#, python-format
-msgid "%d services found!"
-msgstr "Nájdených %d staníc!"
 
 #, fuzzy, python-format
 msgid "%d wireless network found!"
@@ -418,9 +428,7 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-msgid ""
-"A background update check is is progress, please wait a few minutes and try "
-"again."
+msgid "A background update check is is progress, please wait a few minutes and try again."
 msgstr ""
 
 #, python-format
@@ -486,21 +494,14 @@ msgstr ""
 "Práve sa nahráva.\n"
 "Čo chcete urobiť?"
 
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"configure the positioner."
+msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Práve sa nahráva. Zastavte nahrávanie pred nastavovaním motora."
 
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"scan."
+msgid "A recording is currently running. Please stop the recording before trying to scan."
 msgstr ""
 
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"start the satfinder."
-msgstr ""
-"Práve sa nahráva. Zastavte nahrávanie pred spustením vyhľadávača satelitov."
+msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
+msgstr "Práve sa nahráva. Zastavte nahrávanie pred spustením vyhľadávača satelitov."
 
 #, python-format
 msgid "A required tool (%s) was not found."
@@ -549,9 +550,6 @@ msgstr "AA"
 
 msgid "AB"
 msgstr "AB"
-
-msgid "AC3 downmix"
-msgstr ""
 
 msgid "AFP Setup"
 msgstr ""
@@ -706,23 +704,11 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
-msgid ""
-"Adjust the color settings so that all the color shades are distinguishable, "
-"but appear as saturated as possible. If you are happy with the result, press "
-"OK to close the video fine-tuning, or use the number keys to select other "
-"test screens."
-msgstr ""
-"Nastavte farby tak, aby boli jednotlivé odtiene dobre rozlíšiteľné, ale "
-"zároveň čo najsýtejšie. Ak ste s výsledkom spokojní, stlačením tlačidla OK "
-"ukončite jemné ladenie obrazu alebo číslicovými tlačidlami zvoľte iný "
-"testovací obrazec."
+msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
+msgstr "Nastavte farby tak, aby boli jednotlivé odtiene dobre rozlíšiteľné, ale zároveň čo najsýtejšie. Ak ste s výsledkom spokojní, stlačením tlačidla OK ukončite jemné ladenie obrazu alebo číslicovými tlačidlami zvoľte iný testovací obrazec."
 
 #, fuzzy
 msgid "Advanced options"
-msgstr "Rozšírené voľby"
-
-#, fuzzy
-msgid "Advanced pptions"
 msgstr "Rozšírené voľby"
 
 msgid "Advanced restore"
@@ -785,9 +771,7 @@ msgstr ""
 msgid "Allows you to choose the Picons to be displayed on the frontpanel."
 msgstr ""
 
-msgid ""
-"Allows you to enable the debug log. They contain very detailed information "
-"of everything the system does."
+msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr ""
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
@@ -796,9 +780,7 @@ msgstr ""
 msgid "Allows you to send a copy of the log to yourself."
 msgstr ""
 
-msgid ""
-"Allows you to set the maximum size of the Debug log size (MB). When that "
-"size is reached, a new file will be created."
+msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr ""
 
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
@@ -841,7 +823,8 @@ msgstr "Prázdny názov súboru je neplatný."
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr ""
 
-msgid "An unknown error occured!"
+#, fuzzy
+msgid "An unknown error occurred!"
 msgstr "Objavila sa neznáma chyba!"
 
 msgid "Any activity"
@@ -867,6 +850,12 @@ msgstr ""
 
 msgid "Are you sure you want to delete this log:\n"
 msgstr ""
+
+#, fuzzy
+msgid ""
+"Are you sure you want to delete this:\n"
+" "
+msgstr "Naozaj chcete ukončiť tohto spirevodcu?"
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Naozaj chcete ukončiť tohto spirevodcu?"
@@ -925,6 +914,9 @@ msgstr "Priradené CAIdy:"
 #, fuzzy
 msgid "Assigned services/provider:"
 msgstr "Priradené služby a poskytovatelia:"
+
+msgid "At End:"
+msgstr ""
 
 msgid "Attach a file"
 msgstr ""
@@ -1424,14 +1416,10 @@ msgstr ""
 msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
-msgid ""
-"Choose the location where the EPG data will be stored when the STB_BOX is "
-"shut down. The location must be available at boot time."
+msgid "Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time."
 msgstr ""
 
-msgid ""
-"Choose the name of the file that holds the EPG data when the STB_BOX is "
-"shut down. This can be handy to differentiate between several boxes."
+msgid "Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -1440,16 +1428,13 @@ msgstr ""
 msgid "Choose what you want the button '0' to do when PIP is active."
 msgstr ""
 
-msgid ""
-"Choose whether multi channel sound tracks should be downmixed to stereo."
+msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr ""
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
 msgstr ""
 
-msgid ""
-"Choose which level of menu/setting's to display. 'Expert'-level shows all "
-"items."
+msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr ""
 
 msgid "Choose which tuner to configure."
@@ -1514,10 +1499,18 @@ msgstr ""
 msgid "Color space"
 msgstr "Formát farby"
 
+#, fuzzy
+msgid "Command To Run"
+msgstr "Poradie príkazov"
+
 msgid "Command execution..."
 msgstr "Vykonávanie príkazu..."
 
 msgid "Command order"
+msgstr "Poradie príkazov"
+
+#, fuzzy
+msgid "Command type"
 msgstr "Poradie príkazov"
 
 msgid "Committed DiSEqC command"
@@ -1555,10 +1548,7 @@ msgstr ""
 msgid "Configuration mode"
 msgstr ""
 
-msgid ""
-"Configure for how many minutes finished events should remain visible in the "
-"EPG. Useful when you need information about an event which has just "
-"finished, or has been delayed."
+msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
 msgstr ""
 
 msgid "Configure how recording filenames are constructed."
@@ -1588,9 +1578,7 @@ msgstr ""
 msgid "Configure the aspect ratio of the screen."
 msgstr ""
 
-msgid ""
-"Configure the behavior of the 'pause' key when movie playback is already "
-"paused."
+msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr ""
 
 msgid "Configure the behavior when movie playback is manually stopped."
@@ -1599,19 +1587,13 @@ msgstr ""
 msgid "Configure the behavior when movie playback is started."
 msgstr ""
 
-msgid ""
-"Configure the behavior when reaching the end of a movie, during movie "
-"playback."
+msgid "Configure the behavior when reaching the end of a movie, during movie playback."
 msgstr ""
 
-msgid ""
-"Configure the border width of the subtitles. The dark border makes the "
-"subtitles easier to read on a light background."
+msgid "Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background."
 msgstr ""
 
-msgid ""
-"Configure the brightness level of the front panel displa for normal "
-"operation."
+msgid "Configure the brightness level of the front panel displa for normal operation."
 msgstr ""
 
 msgid "Configure the brightness level of the front panel displa for standby."
@@ -1632,9 +1614,7 @@ msgstr ""
 msgid "Configure the font size of the subtitles."
 msgstr ""
 
-msgid ""
-"Configure the font size relative to skin size, so 1 increases by 1 point "
-"size, and -1 decreases by 1 point size."
+msgid "Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 msgstr ""
 
 msgid "Configure the fourth audio language."
@@ -1652,21 +1632,16 @@ msgstr ""
 msgid "Configure the gateway."
 msgstr ""
 
-msgid ""
-"Configure the hard disk drive to go to standby after the specified idle time."
+msgid "Configure the hard disk drive to go to standby after the specified idle time."
 msgstr ""
 
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr ""
 
-msgid ""
-"Configure the initial fast forward speed. When you press the fast forward "
-"button, winding will start at this speed."
+msgid "Configure the initial fast forward speed. When you press the fast forward button, winding will start at this speed."
 msgstr ""
 
-msgid ""
-"Configure the initial rewind speed. When you press the rewind button, "
-"winding will start at this speed."
+msgid "Configure the initial rewind speed. When you press the rewind button, winding will start at this speed."
 msgstr ""
 
 msgid "Configure the latitude of your location."
@@ -1675,10 +1650,7 @@ msgstr ""
 msgid "Configure the longitude of your location."
 msgstr ""
 
-msgid ""
-"Configure the minimum amount of disk space to be available for recordings. "
-"When the amount of space drops below this value, deleted items will be "
-"removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
 msgstr ""
 
 msgid "Configure the nameserver (DNS)."
@@ -1687,22 +1659,16 @@ msgstr ""
 msgid "Configure the netmask."
 msgstr ""
 
-msgid ""
-"Configure the number of days after which items are automaticaly removed from "
-"the trash can."
+msgid "Configure the number of days after which items are automaticaly removed from the trash can."
 msgstr ""
 
-msgid ""
-"Configure the number of days old timers are kept before they are "
-"automatically removed from the timer list."
+msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr ""
 
 msgid "Configure the number of rows shown."
 msgstr ""
 
-msgid ""
-"Configure the offline decoding delay in milliseconds. The configured delay "
-"is observed at each control word parity change."
+msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr ""
 
 msgid "Configure the possible fast forward speeds."
@@ -1723,7 +1689,7 @@ msgstr ""
 msgid "Configure the second subtitle language."
 msgstr ""
 
-msgid "Configure the secundary EPG language."
+msgid "Configure the secondary EPG language."
 msgstr ""
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
@@ -1738,9 +1704,7 @@ msgstr ""
 msgid "Configure the slow motion speeds."
 msgstr ""
 
-msgid ""
-"Configure the speed of the background deletion process. Lower speed will "
-"consume less hard disk drive performance."
+msgid "Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance."
 msgstr ""
 
 msgid "Configure the subtitle delay when timing information is not available."
@@ -1752,9 +1716,7 @@ msgstr ""
 msgid "Configure the third subtitle language."
 msgstr ""
 
-msgid ""
-"Configure the transparency of the black background of graphical DVB "
-"subtitles."
+msgid "Configure the transparency of the black background of graphical DVB subtitles."
 msgstr ""
 
 msgid "Configure the tuner mode."
@@ -1763,9 +1725,7 @@ msgstr ""
 msgid "Configure the type of status indication icons shown in the movielist."
 msgstr ""
 
-msgid ""
-"Configure the vertical position of the subtitles, measured from the bottom "
-"of the screen."
+msgid "Configure the vertical position of the subtitles, measured from the bottom of the screen."
 msgstr ""
 
 msgid "Configure the width allocated to the picon."
@@ -1777,24 +1737,16 @@ msgstr ""
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr ""
 
-msgid ""
-"Configure whether (and for how long) a second infobar will be shown when OK "
-"is pressed twice. The second infobar contains additional information about "
-"the current channel."
+msgid "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
 msgstr ""
 
 msgid "Configure which color format should be used on the SCART output."
 msgstr ""
 
-msgid ""
-"Configure which tuner type will be preferred, when the same service is "
-"available on different types of tuners."
+msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr ""
 
-msgid ""
-"Configure which tuner will be preferred, when more than one tuner is "
-"available. If set to 'auto' the system will give priority to the tuner "
-"having the lowest number of channels/satellites."
+msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr ""
 
 msgid "Configure your internal LAN"
@@ -1956,6 +1908,12 @@ msgstr ""
 msgid "Croatian"
 msgstr "Chorvátčina"
 
+msgid "Cron Manager"
+msgstr ""
+
+msgid "CronTimers"
+msgstr ""
+
 msgid "Current CEC address"
 msgstr ""
 
@@ -1986,6 +1944,10 @@ msgstr "Aktuálna verzia:"
 
 msgid "Currently installed image"
 msgstr "Aktuálne nainštalovaný image"
+
+#, fuzzy
+msgid "Custom"
+msgstr "Upraviť"
 
 #, fuzzy
 msgid "Custom skip time for '1'/'3' buttons"
@@ -2029,9 +1991,6 @@ msgstr ""
 msgid "DMM normal"
 msgstr ""
 
-msgid "DTS downmix"
-msgstr ""
-
 msgid "DUAL LAYER DVD"
 msgstr "DVOJVRSTVOVÉ DVD"
 
@@ -2073,6 +2032,10 @@ msgstr "skryť prehrávač"
 #, fuzzy
 msgid "DVD titlelist"
 msgstr "Zoznam titulov DVD"
+
+#, fuzzy
+msgid "Daily"
+msgstr "denne"
 
 msgid "Danish"
 msgstr "Dánčina"
@@ -2416,11 +2379,12 @@ msgstr ""
 msgid "Don't stop current event but disable coming events"
 msgstr "Nezastaviť aktuálny záznam, ale vypnúť nasledujúce záznamy."
 
-#, python-format
-msgid "Done - Installed, upgraded or removed %d packages with %d errors"
-msgstr ""
-"Hotovo - %d nainštalovaných, aktualizovaných alebo odstránených balíčkov s "
-"%d chybami"
+#, fuzzy, python-format
+msgid "Done - Installed, upgraded or removed %d package (%s)"
+msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
+msgstr[0] "Hotovo - %d nainštalovaných, aktualizovaných alebo odstránených balíčkov s %d chybami"
+msgstr[1] "Hotovo - %d nainštalovaných, aktualizovaných alebo odstránených balíčkov s %d chybami"
+msgstr[2] "Hotovo - %d nainštalovaných, aktualizovaných alebo odstránených balíčkov s %d chybami"
 
 msgid "Download"
 msgstr "Stiahnuť"
@@ -2428,13 +2392,6 @@ msgstr "Stiahnuť"
 #, fuzzy, python-format
 msgid "Download %s from server"
 msgstr "Stiahnuť %s zo servera"
-
-msgid "Download .NFI-Files for USB-Flasher"
-msgstr "Stiahnuť súbory .NFI pre USB-Flasher"
-
-#, fuzzy
-msgid "Download .NFI-Files for USB-flasher"
-msgstr "Stiahnuť súbory .NFI pre USB-Flasher"
 
 #, fuzzy
 msgid "Download .NFI-files for USB-flasher"
@@ -2473,9 +2430,7 @@ msgstr ""
 msgid "ECM avg"
 msgstr ""
 
-msgid ""
-"ECM data will be included in the stream. This enables a client receiver to "
-"decode it."
+msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr ""
 
 msgid "ECM last"
@@ -2591,10 +2546,7 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "Zapnúť viacnásobné bukety"
 
-msgid ""
-"Enable or disable Permanent Timeshift. When activated, you can wind back "
-"until the time you zapped to a channel, and you can make recordings in "
-"retrospect."
+msgid "Enable or disable Permanent Timeshift. When activated, you can wind back until the time you zapped to a channel, and you can make recordings in retrospect."
 msgstr ""
 
 msgid "Enable panic button"
@@ -2612,9 +2564,7 @@ msgstr "Zapnúť časovač"
 msgid "Enabled"
 msgstr "Zapnuté"
 
-msgid ""
-"Enables a feature so that the receiver can decrypt streams (if the ECM data "
-"is included in the stream and a valid card is available)."
+msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr ""
 
 msgid "Encrypted: "
@@ -2827,14 +2777,6 @@ msgstr ""
 msgid "Fan %d"
 msgstr "Ventilítor %d"
 
-#, python-format
-msgid "Fan %d PWM"
-msgstr "PWM ventilátora %d"
-
-#, fuzzy, python-format
-msgid "Fan %d voltage"
-msgstr "Napätie na ventilátore %d"
-
 msgid "Fast"
 msgstr "rýchlo"
 
@@ -2852,9 +2794,6 @@ msgstr ""
 
 msgid "Favourites"
 msgstr "Obľúbené"
-
-msgid "Fee: "
-msgstr ""
 
 msgid "File appears to be busy.\n"
 msgstr ""
@@ -2973,9 +2912,10 @@ msgstr ""
 msgid "GB"
 msgstr ""
 
+#, fuzzy
 msgid ""
 "GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
+"Do you want to restart the GUI now?"
 msgstr ""
 "Pre použitie nového vzhľadu sa musí reštartovať GUI\n"
 "Chcete teraz reštartovať GUI?"
@@ -2989,13 +2929,7 @@ msgstr ""
 msgid "General AC3 delay"
 msgstr ""
 
-msgid "General AC3 delay (ms)"
-msgstr ""
-
 msgid "General PCM delay"
-msgstr ""
-
-msgid "General PCM delay (ms)"
 msgstr ""
 
 msgid "Genre"
@@ -3015,6 +2949,27 @@ msgstr ""
 
 msgid "Getting plugin information. Please wait..."
 msgstr "Získavam informácie o module. Čakajte..."
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr ""
+
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "Dátové DVD vo formáte STB_BOX (vyhovuje HDTV)"
+
+msgid "STB_BOX front panel"
+msgstr ""
+
+msgid "STB_BOX ir keyboard"
+msgstr ""
+
+msgid "STB_BOX ir mouse"
+msgstr ""
+
+msgid "STB_BOX remote control (native)"
+msgstr ""
+
+msgid "STB_BOX software because updates are available."
+msgstr "Softvér STB_BOXa, lebo sú k dispozícii aktualizácie."
 
 msgid "Go down the list"
 msgstr ""
@@ -3116,6 +3071,9 @@ msgstr ""
 msgid "Guard interval"
 msgstr "Interval ochrany"
 
+msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
+msgstr ""
+
 msgid "HD list"
 msgstr ""
 
@@ -3207,6 +3165,9 @@ msgstr ""
 msgid "Hour"
 msgstr ""
 
+msgid "Hourly"
+msgstr ""
+
 msgid "Hours Mins"
 msgstr ""
 
@@ -3250,8 +3211,7 @@ msgstr ""
 msgid "Idle Time: "
 msgstr ""
 
-msgid ""
-"If logs are using the set maximum space used the eldest will be deleted."
+msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr ""
 
 msgid "If set to 'yes' a special seekbar is available during timeshift."
@@ -3263,17 +3223,13 @@ msgstr ""
 msgid "If set to 'yes' shows a small TV-screen in the EPG."
 msgstr ""
 
-msgid ""
-"If set to 'yes' the EPG will alway open at the first channel. If set to 'no' "
-"the EPG will open on the present channel."
+msgid "If set to 'yes' the EPG will alway open at the first channel. If set to 'no' the EPG will open on the present channel."
 msgstr ""
 
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
 msgstr ""
 
-msgid ""
-"If set to 'yes' the channel list will be shown after switching between radio "
-"and TV modes."
+msgid "If set to 'yes' the channel list will be shown after switching between radio and TV modes."
 msgstr ""
 
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
@@ -3285,20 +3241,13 @@ msgstr ""
 msgid "If set to 'yes' you can preview channels in the EPG list."
 msgstr ""
 
-msgid ""
-"If set to 'yes' you can preview channels in the channel list. Press 'OK' to "
-"preview the selected channel, press a 2nd 'OK' to exit and zap to that "
-"channel, pressing 'EXIT' to return to the channel you started at."
+msgid "If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at."
 msgstr ""
 
-msgid ""
-"If set to 'yes; the infobar will be displayed when Fast Forwarding or "
-"Rewinding during media playback."
+msgid "If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
 msgstr ""
 
-msgid ""
-"If the text is too long to be displayed on the front panel, it will be "
-"repeated (number of times):"
+msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr ""
 
 msgid ""
@@ -3309,24 +3258,14 @@ msgstr ""
 "s pripojením scart. Vráťte sa stlačením tlačidla OK."
 
 msgid ""
-"If your TV has a brightness or contrast enhancement, disable it. If there is "
-"something called \"dynamic\", set it to standard. Adjust the backlight level "
-"to a value suiting your taste. Turn down contrast on your TV as much as "
-"possible.\n"
-"Then turn the brightness setting as low as possible, but make sure that the "
-"two lowermost shades of gray stay distinguishable.\n"
-"Do not care about the bright shades now. They will be set up in the next "
-"step.\n"
+"If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
+"Then turn the brightness setting as low as possible, but make sure that the two lowermost shades of gray stay distinguishable.\n"
+"Do not care about the bright shades now. They will be set up in the next step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
-"Ak máte na televízore zdôraznenie jasu alebo kontrastu, zrušte ho. Ak je v "
-"nastaveniach niečo ako „dynamický režim“, nastavte ho na štandardnú hodnotu. "
-"Podsvietenie nastavte na hodnotu, ktorá vám vyhovuje. Stiahnite kontrast "
-"televízora na najnižšiu hodnotu.\n"
-"Potom nastavte jas na najnižšiu možnú hodnotu, ale tak, aby dva najtmavšie "
-"odtiene sivej zostali rozlíšiteľné.\n"
-"V tejto chvíli sa nestarajte o svetlé odtiene. Tie nastavíte v ďalšom "
-"kroku.\n"
+"Ak máte na televízore zdôraznenie jasu alebo kontrastu, zrušte ho. Ak je v nastaveniach niečo ako „dynamický režim“, nastavte ho na štandardnú hodnotu. Podsvietenie nastavte na hodnotu, ktorá vám vyhovuje. Stiahnite kontrast televízora na najnižšiu hodnotu.\n"
+"Potom nastavte jas na najnižšiu možnú hodnotu, ale tak, aby dva najtmavšie odtiene sivej zostali rozlíšiteľné.\n"
+"V tejto chvíli sa nestarajte o svetlé odtiene. Tie nastavíte v ďalšom kroku.\n"
 "Ak ste spokojní s výsledkom, stlačte tlačidlo OK."
 
 msgid "Image Information"
@@ -3342,10 +3281,8 @@ msgstr ""
 msgid "Immediate shutdown"
 msgstr "ihneď vypnúť"
 
-msgid ""
-"In order to record a timer, the TV was switched to the recording service!\n"
-msgstr ""
-"Aby sa mohol nahrať načasovaný program, preplo sa na nahrávanú stanicu!\n"
+msgid "In order to record a timer, the TV was switched to the recording service!\n"
+msgstr "Aby sa mohol nahrať načasovaný program, preplo sa na nahrávanú stanicu!\n"
 
 #, fuzzy
 msgid "In progress"
@@ -3554,9 +3491,6 @@ msgstr "Prehľad úloh"
 msgid "Job overview"
 msgstr "Prehľad úloh"
 
-msgid "Job task(s) are in progress!"
-msgstr ""
-
 msgid "Jump back 24 hours"
 msgstr ""
 
@@ -3704,10 +3638,7 @@ msgstr ""
 msgid "Limit east"
 msgstr "Východný limit"
 
-msgid ""
-"Limit the characters that can be used in recording filenames to (7 bit) "
-"ascii. This ensures compatibility with operating systems or file systems "
-"with limited character sets."
+msgid "Limit the characters that can be used in recording filenames to (7 bit) ascii. This ensures compatibility with operating systems or file systems with limited character sets."
 msgstr ""
 
 msgid "Limit west"
@@ -3746,8 +3677,11 @@ msgid "List of storage devices"
 msgstr "Zoznam záznamových zariadení"
 
 #, python-format
-msgid "List version %d, found %d channels"
-msgstr ""
+msgid "List version %d, found %d channel"
+msgid_plural "List version %d, found %d channels"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #, fuzzy
 msgid "Listen to the radio..."
@@ -3951,6 +3885,10 @@ msgstr ""
 msgid "Minimum age %d years"
 msgstr ""
 
+#, fuzzy
+msgid "Minimum send interval"
+msgstr "Interval ochrany"
+
 msgid "Mins"
 msgstr ""
 
@@ -3985,6 +3923,10 @@ msgstr "Po-Pi"
 
 msgid "Monday"
 msgstr "Pondelok"
+
+#, fuzzy
+msgid "Monthly"
+msgstr "mesiac"
 
 msgid "Mosquito noise reduction"
 msgstr "Potlačenie šumu na hranách"
@@ -4256,12 +4198,8 @@ msgstr "Na tomto médiu sa nenašli žiadne zobraziteľné súbory!"
 msgid "No event info found, recording indefinitely."
 msgstr "Žiadne informácie EPG, spúšťam nekonečné nahrávanie."
 
-msgid ""
-"No fast winding possible yet.. but you can use the number buttons to skip "
-"forward/backward!"
-msgstr ""
-"Ešte nie je možné prevíjanie, ale pomocou číselných tlačidiel môžete skočiť "
-"dopredu alebo dozadu."
+msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
+msgstr "Ešte nie je možné prevíjanie, ale pomocou číselných tlačidiel môžete skočiť dopredu alebo dozadu."
 
 msgid "No free tuner!"
 msgstr "Nie je voľný tuner!"
@@ -4350,30 +4288,24 @@ msgstr "Nenájdená bezdrôtová sieť. Hľadám ..."
 
 msgid ""
 "No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is "
-"configured correctly."
+"Please verify that you have attached a network cable and your network is configured correctly."
 msgstr ""
 "Nenájdená funkčný miestny sieťový adaptér.\n"
-"Skontrolujte, či máte pripojený sieťový kábel a či máte sieť správne "
-"nastavenú."
+"Skontrolujte, či máte pripojený sieťový kábel a či máte sieť správne nastavenú."
 
 msgid ""
 "No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your "
-"network is configured correctly."
+"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
 msgstr ""
 "Nenájdený funkčný bezdrôtový sieťový adaptér.\n"
-"Skontrolujte, či máte pripojené kompatibilné zariadenie WLAN a či máte sieť "
-"správne nastavenú."
+"Skontrolujte, či máte pripojené kompatibilné zariadenie WLAN a či máte sieť správne nastavenú."
 
 msgid ""
 "No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable "
-"your local network interface."
+" Please verify that you have attached a compatible WLAN device or enable your local network interface."
 msgstr ""
 "Nenájdené funkčné bezdrôtové sieťové rozhranie.\n"
-"Skontrolujte, či máte pripojené kompatibilné zariadenie WLAN alebo zapnite "
-"miestne sieťové rozhranie."
+"Skontrolujte, či máte pripojené kompatibilné zariadenie WLAN alebo zapnite miestne sieťové rozhranie."
 
 msgid "No, but restart from begin"
 msgstr "Nie, ale začať od začiatku."
@@ -4423,12 +4355,8 @@ msgid "Not associated"
 msgstr ""
 
 #, fuzzy, python-format
-msgid ""
-"Not enough disk space. Please free up some disk space and try again. (%d MB "
-"required, %d MB available)"
-msgstr ""
-"Nie je dosť miesta na disku. Uvoľnite miesto a skúste znova. (Je treba %d "
-"MB, ale je len %d MB.)"
+msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
+msgstr "Nie je dosť miesta na disku. Uvoľnite miesto a skúste znova. (Je treba %d MB, ale je len %d MB.)"
 
 #, python-format
 msgid ""
@@ -4467,13 +4395,8 @@ msgstr ""
 msgid "Now playing"
 msgstr "Beží prehrávanie"
 
-msgid ""
-"Now, use the contrast setting to turn up the brightness of the background as "
-"much as possible, but make sure that you can still see the difference "
-"between the two brightest levels of shades.If you have done that, press OK."
-msgstr ""
-"Teraz kontrastom zvýšte svetlosť pozadia čo najviac, ale tak, aby ste stále "
-"rozlíšili dva najjasnejšie prúžky sivej. Keď skončíte, stlačte tlačidlo OK."
+msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
+msgstr "Teraz kontrastom zvýšte svetlosť pozadia čo najviac, ale tak, aby ste stále rozlíšili dva najjasnejšie prúžky sivej. Keď skončíte, stlačte tlačidlo OK."
 
 msgid "Number"
 msgstr ""
@@ -4526,9 +4449,7 @@ msgstr "Zapnúť"
 msgid "On end of movie"
 msgstr ""
 
-msgid ""
-"On reaching the end of a file during playback, you can choose the box's "
-"behavior."
+msgid "On reaching the end of a file during playback, you can choose the box's behavior."
 msgstr ""
 
 msgid "Once per day"
@@ -4708,9 +4629,7 @@ msgstr ""
 msgid "Perform a setting backup,"
 msgstr ""
 
-msgid ""
-"Perform a setting backup, making a backup before updating is strongly "
-"advised."
+msgid "Perform a setting backup, making a backup before updating is strongly advised."
 msgstr ""
 
 msgid "Perform an online update check in the background"
@@ -4843,17 +4762,14 @@ msgid "Please choose reader"
 msgstr ""
 
 msgid ""
-"Please configure or verify your Nameservers by filling out the required "
-"values.\n"
+"Please configure or verify your Nameservers by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
-"Nakonfigurujte alebo skontrolujte názvy serverov vyplnením požadovaných "
-"hodnôt.\n"
+"Nakonfigurujte alebo skontrolujte názvy serverov vyplnením požadovaných hodnôt.\n"
 "Po skončení stlačte OK a pokračujte."
 
 msgid ""
-"Please configure your internet connection by filling out the required "
-"values.\n"
+"Please configure your internet connection by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "Nakonfigurujte si internetové pripojenie vyplnením požadovaných hodnôt.\n"
@@ -4889,12 +4805,8 @@ msgstr "Zadajte starý kód PIN"
 msgid "Please follow the instructions on the TV"
 msgstr "Riaďte sa pokynmi na televíznej obrazovke"
 
-msgid ""
-"Please note that the previously selected media could not be accessed and "
-"therefore the default directory is being used instead."
-msgstr ""
-"Nie je prístup k predtým zvolenému médiu, preto sa namiesto neho použije "
-"predvolený adresár."
+msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
+msgstr "Nie je prístup k predtým zvolenému médiu, preto sa namiesto neho použije predvolený adresár."
 
 msgid "Please press OK to continue."
 msgstr "Pre pokračovanie stlačte tlačidlo OK."
@@ -4935,8 +4847,7 @@ msgid "Please select the movie path..."
 msgstr "Zvoľte cestu k filmu..."
 
 msgid ""
-"Please select the network interface that you want to use for your internet "
-"connection.\n"
+"Please select the network interface that you want to use for your internet connection.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -4967,8 +4878,7 @@ msgstr "Nastavte tuner D"
 
 #, fuzzy
 msgid ""
-"Please setup your user interface by adjusting the values till the edges of "
-"the blue box are touching the edges of your TV.\n"
+"Please setup your user interface by adjusting the values till the edges of the blue box are touching the edges of your TV.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "Nakonfigurujte si internetové pripojenie vyplnením požadovaných hodnôt.\n"
@@ -4983,9 +4893,7 @@ msgstr ""
 "Stlačením tlačidla Bouquet +/- zmeníte veľkosť okna.\n"
 "Stlačením OK sa vrátite do režimu TV alebo stlačením EXIT zrušíte presúvanie."
 
-msgid ""
-"Please use the UP and DOWN keys to select your language. Afterwards press "
-"the OK button."
+msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
 msgstr "Tlačidlami NAHOR alebo NADOL zvoľte jazyk. Potom stlačte tlačidlo OK."
 
 msgid "Please wait (downloading channel list)"
@@ -5113,6 +5021,10 @@ msgstr ""
 
 msgid "PowerTimers"
 msgstr ""
+
+#, fuzzy
+msgid "Predefined"
+msgstr "Užívateľsky definované"
 
 msgid "Predefined transponder"
 msgstr "Preddefinovaný transpondér"
@@ -5444,6 +5356,10 @@ msgstr ""
 msgid "Remove"
 msgstr "Odstrániť"
 
+#, fuzzy
+msgid "Remove Confirmation"
+msgstr "Nastavenie tunera"
+
 msgid "Remove Service"
 msgstr ""
 
@@ -5633,6 +5549,9 @@ msgstr "Rýchlosť otáčania motora"
 msgid "Round start time on"
 msgstr ""
 
+msgid "Run how often ?"
+msgstr ""
+
 msgid "Running"
 msgstr ""
 
@@ -5772,20 +5691,27 @@ msgstr "Vyhľadať súbory..."
 msgid "Scan wireless networks"
 msgstr "Vyhľadať bezdrôt. siete"
 
-msgid ""
-"Scan your network for wireless access points and connect to them using your "
-"selected wireless device.\n"
-msgstr ""
-"Vyhľadať v sieti bezdrôtové prístupové body a pripojiť ich zvoleným "
-"bezdrôtovýmn zariadením\n"
+msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
+msgstr "Vyhľadať v sieti bezdrôtové prístupové body a pripojiť ich zvoleným bezdrôtovýmn zariadením\n"
 
 #, python-format
 msgid "Scanning %s..."
 msgstr ""
 
+#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
 #, python-format
-msgid "Scanning completed, %d channels found"
-msgstr ""
+msgid "Scanning - %d%% completed"
+msgid_plural "Scanning - %d%% completed"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "Scanning completed, %d channel found"
+msgid_plural "Scanning completed, %d channels found"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "Scanning failed!"
 msgstr ""
@@ -5793,10 +5719,8 @@ msgstr ""
 msgid "Scanning..."
 msgstr ""
 
-msgid ""
-"Scans default lamedbs sorted by satellite with a connected dish positioner"
-msgstr ""
-"Prehľadať predvolené lamedb zotriedené podľa satelitov a pripojeného motora"
+msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
+msgstr "Prehľadať predvolené lamedb zotriedené podľa satelitov a pripojeného motora"
 
 msgid "Scrolling Speed"
 msgstr ""
@@ -5930,9 +5854,7 @@ msgstr ""
 msgid "Select if you want the Subservice mode to be activated."
 msgstr ""
 
-msgid ""
-"Select if you want to use the ViX coloured Buttons (set to 'no' if you want "
-"to use (Multi) Quick Button)."
+msgid "Select if you want to use the ViX coloured Buttons (set to 'no' if you want to use (Multi) Quick Button)."
 msgstr ""
 
 msgid "Select input device"
@@ -6115,9 +6037,7 @@ msgstr ""
 msgid "Services"
 msgstr "Stanice"
 
-msgid ""
-"Services may be grouped in bouquets. When enabled, you can use more then one "
-"bouquet."
+msgid "Services may be grouped in bouquets. When enabled, you can use more then one bouquet."
 msgstr ""
 
 msgid "Set System"
@@ -6140,24 +6060,16 @@ msgstr "Nastaviť rozhranie ako predvolené"
 msgid "Set limits"
 msgstr ""
 
-msgid ""
-"Set the default location for your instant recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr ""
 
-msgid ""
-"Set the default location for your recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
+msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr ""
 
-msgid ""
-"Set the default location for your timers. Press 'OK' to add new locations, "
-"select left/right to select an existing location."
+msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr ""
 
-msgid ""
-"Set the default location for your timeshift-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
+msgid "Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr ""
 
 msgid "Set the default sorting method."
@@ -6178,8 +6090,7 @@ msgstr ""
 msgid "Set the time to hide the infobar."
 msgstr ""
 
-msgid ""
-"Set the type of the progress indication in the channel selection screen."
+msgid "Set the type of the progress indication in the channel selection screen."
 msgstr ""
 
 msgid "Set time window to 1 hour"
@@ -6209,14 +6120,10 @@ msgstr ""
 msgid "Set voltage and 22KHz"
 msgstr ""
 
-msgid ""
-"Set what the required action must be when zapping while a timeshift has been "
-"set as recording."
+msgid "Set what the required action must be when zapping while a timeshift has been set as recording."
 msgstr ""
 
-msgid ""
-"Sets the root folder of movie list, to remove the '..' from benign shown in "
-"that folder."
+msgid "Sets the root folder of movie list, to remove the '..' from benign shown in that folder."
 msgstr ""
 
 msgid "Settings"
@@ -6257,12 +6164,8 @@ msgid "Setup your timezone."
 msgstr ""
 
 #, python-format
-msgid ""
-"Shall the USB stick wizard proceed and program the image file %s into flash "
-"memory?"
-msgstr ""
-"Má sorievodca kľúčom USB pokračovať a naprogramovať súbor image %s do pamäte "
-"flash?"
+msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
+msgstr "Má sorievodca kľúčom USB pokračovať a naprogramovať súbor image %s do pamäte flash?"
 
 msgid "Share Folder's"
 msgstr ""
@@ -6574,8 +6477,7 @@ msgstr "Vzhľady"
 msgid "Skip empty services"
 msgstr "Ochrániť stanice"
 
-msgid ""
-"Skip internet connection check (disables automatic package installation)"
+msgid "Skip internet connection check (disables automatic package installation)"
 msgstr ""
 
 msgid "Sleep Timer"
@@ -6584,9 +6486,6 @@ msgstr "Časovač vypnutia"
 #, fuzzy
 msgid "Sleep delay"
 msgstr "Časovač vypnutia"
-
-msgid "Sleep timer"
-msgstr ""
 
 #, fuzzy
 msgid "Slide picture in loop"
@@ -6664,9 +6563,7 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid ""
-"Sorry feeds seem be in an unstable state, if you wish to use them please "
-"enable 'Allow unstable updates' in online update setup."
+msgid "Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in online update setup."
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -6739,13 +6636,9 @@ msgstr "Pohotovostný režim"
 msgid "Standby / Restart"
 msgstr "Vypnúť, reštartovať"
 
-#, fuzzy, python-format
-msgid "Standby fan %d PWM"
-msgstr "Pohotovosť, PWM ventilátora %d"
-
-#, fuzzy, python-format
-msgid "Standby fan %d voltage"
-msgstr "Pohotovosť, napätie ventilátora %d"
+#, fuzzy
+msgid "Standby / restart"
+msgstr "Vypnúť, reštartovať"
 
 msgid "Start"
 msgstr ""
@@ -6905,7 +6798,7 @@ msgstr ""
 msgid "Swap PiP and main picture"
 msgstr "vymeniť PiP a hlavný obraz"
 
-msgid "Swap SNR in db with SNR in percentage"
+msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr ""
 
 msgid "Swap services"
@@ -6994,10 +6887,6 @@ msgstr ""
 msgid "TV physical address report"
 msgstr ""
 
-#, fuzzy
-msgid "TV system"
-msgstr "Systém"
-
 msgid "TXT PID"
 msgstr ""
 
@@ -7022,10 +6911,6 @@ msgstr ""
 
 msgid "Telnet setup"
 msgstr ""
-
-#, fuzzy
-msgid "Temperature and fan control"
-msgstr "Teplota a ventilátor"
 
 msgid "Terrestrial"
 msgstr "Pozemné"
@@ -7078,14 +6963,8 @@ msgid ""
 "Please install it."
 msgstr ""
 
-msgid ""
-"The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a STB_BOX format data DVD (which will not play in stand-alone DVD "
-"players) instead?"
-msgstr ""
-"DVD norma nepodporuje video H.264 (HDTV). Chcete namiesto toho vytvoriť "
-"dátové DVD vo formáte STB_BOX (nedá sa prehrať na samostatných DVD "
-"prehrávačoch)?"
+msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a STB_BOX format data DVD (which will not play in stand-alone DVD players) instead?"
+msgstr "DVD norma nepodporuje video H.264 (HDTV). Chcete namiesto toho vytvoriť dátové DVD vo formáte STB_BOX (nedá sa prehrať na samostatných DVD prehrávačoch)?"
 
 msgid ""
 "The EPGSearch plugin is not installed!\n"
@@ -7095,6 +6974,12 @@ msgstr ""
 msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
+msgstr ""
+
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr ""
+
+msgid "The STB_BOX stores the EPG data every (hours)."
 msgstr ""
 
 msgid ""
@@ -7124,12 +7009,6 @@ msgid ""
 msgstr ""
 "Kľúč USB je pripravený ako bootovateľný.\n"
 "Teraz môžete stiahnuť súbor NFI."
-
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr ""
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Zálohovanie zlyhalo. Zvoľte iné umiestnenie zálohy."
@@ -7237,16 +7116,12 @@ msgstr ""
 "Modul bezdrôtovej LAN nie je nainštalovaný!\n"
 "Nainštalujte ho."
 
-msgid ""
-"The wizard can backup your current settings. Do you want to do a backup now?"
+msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "Sprievodca môže zálohovať aktuálne nastavenia. Chcete teraz zálohovať?"
 
 #, python-format
-msgid ""
-"The wizard found a configuration backup. Do you want to restore your old "
-"settings from %s?"
-msgstr ""
-"Sprievodca našiel zálohu nastavení. Chcete obnoviť staré nastavenia z %s?"
+msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+msgstr "Sprievodca našiel zálohu nastavení. Chcete obnoviť staré nastavenia z %s?"
 
 msgid "The wizard is finished now."
 msgstr "Sprievodca teraz skončil."
@@ -7274,28 +7149,20 @@ msgstr ""
 "Vo zvolenej partícii nemusí byť dostatok miesta.\n"
 "Naozaj chcete pokračovať?"
 
-msgid ""
-"This DVD RW medium is already formatted - reformatting will erase all "
-"content on the disc."
-msgstr ""
-"Toto médium DVD RW je už naformátované - opätovným formátovaním sa vymaže "
-"celý obsah disku."
+msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
+msgstr "Toto médium DVD RW je už naformátované - opätovným formátovaním sa vymaže celý obsah disku."
 
 #, fuzzy, python-format
 msgid "This STB_BOX cannot decode %s streams!"
 msgstr "Tento STB_BOX nedokáže dekódovať toky typu %s!"
 
-msgid ""
-"This allows you change the font size relative to skin size, so 1 increases "
-"by 1 point size, and -1 decreases by 1 point size"
+msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr ""
 
 msgid "This allows you change the number of rows shown."
 msgstr ""
 
-msgid ""
-"This option allows to reduce the block-noise in the picture. Obviously this "
-"is at the cost of the picture's sharpness."
+msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr ""
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
@@ -7304,28 +7171,19 @@ msgstr ""
 msgid "This option allows you choose how to display elapsed time  as + or -"
 msgstr ""
 
-msgid ""
-"This option allows you choose how to display remaining time, or elapsed "
-"time, or both."
+msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr ""
 
-msgid ""
-"This option allows you choose how to display the remaining/elapsed time for "
-"Media playback."
+msgid "This option allows you choose how to display the remaining/elapsed time for Media playback."
 msgstr ""
 
-msgid ""
-"This option allows you choose how to display the remaining/elapsed time for "
-"live tv."
+msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
 msgstr ""
 
-msgid ""
-"This option allows you choose how to display the remaining/elapsed time for "
-"media playback."
+msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
 msgstr ""
 
-msgid ""
-"This option allows you choose the background colour of transparent picons."
+msgid "This option allows you choose the background colour of transparent picons."
 msgstr ""
 
 msgid "This option allows you set the layout view (Text or Graphics)."
@@ -7337,36 +7195,28 @@ msgstr ""
 msgid "This option allows you to boost the green tones in the picture."
 msgstr ""
 
-msgid ""
-"This option allows you to choose from the two channel lists that are "
-"available."
+msgid "This option allows you to choose from the two channel lists that are available."
 msgstr ""
 
-msgid ""
-"This option allows you to choose what the first button press jumps to in "
-"channel list screen, (so pressing '2' jumps to 'A' or '2' first)"
+msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first)"
 msgstr ""
 
 msgid "This option allows you to disable sorting of the menus"
 msgstr ""
 
-msgid ""
-"This option allows you to disable sorting of the option in setting screen's"
+msgid "This option allows you to disable sorting of the option in setting screen's"
 msgstr ""
 
 msgid "This option allows you to disable sorting of the plugin browser."
 msgstr ""
 
-msgid ""
-"This option allows you to the SNR as a percentage (not all receivers support "
-"this)."
+msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr ""
 
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
-msgid ""
-"This option configures the general audio delay of Dolby Digital sound tracks."
+msgid "This option configures the general audio delay of Dolby Digital sound tracks."
 msgstr ""
 
 msgid "This option configures the general audio delay of stereo sound tracks."
@@ -7390,15 +7240,10 @@ msgstr ""
 msgid "This option lets you show the option in the extension screen"
 msgstr ""
 
-msgid ""
-"This option moves the PVR status from the seprate window into the "
-"MoviePlayer infobar."
+msgid "This option moves the PVR status from the seprate window into the MoviePlayer infobar."
 msgstr ""
 
-msgid ""
-"This option set the level of surpression of musquito noise (Musquito Noise "
-"is random aliasing as a result of strong compression). Obviously this goes "
-"at the cost of picture details."
+msgid "This option set the level of surpression of musquito noise (Musquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr ""
 
 msgid "This option sets  the picture contrast."
@@ -7419,36 +7264,25 @@ msgstr ""
 msgid "This option sets the picture saturation."
 msgstr ""
 
-msgid ""
-"This option sets the scaler sharpness, used when stretching picture from 4:3 "
-"to 16:9."
+msgid "This option sets the scaler sharpness, used when stretching picture from 4:3 to 16:9."
+msgstr ""
+
+msgid "This option sets the surpression of false digital contours, that are the result of a limited number of discrete values."
+msgstr ""
+
+msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr ""
 
 msgid ""
-"This option sets the surpression of false digital contours, that are the "
-"result of a limited number of discrete values."
-msgstr ""
-
-msgid ""
-"This option sets up the picture sharpness, used when the picture is being "
-"upscaled."
-msgstr ""
-
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of "
-"your STB_BOX without the need for a network or WLAN connection.\n"
+"This plugin creates a USB stick which can be used to update the firmware of your STB_BOX without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server "
-"and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. "
-"Otherwise plug in a USB stick with a minimum size of 64 MB!"
+"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
-"Tento zásuvný modul vytvorí kľúč USB, ktorý sa dá použiť na aktualizáciu "
-"firmvéru STB_BOXa bez pripojenia LAN alebo WLAN.\n"
+"Tento zásuvný modul vytvorí kľúč USB, ktorý sa dá použiť na aktualizáciu firmvéru STB_BOXa bez pripojenia LAN alebo WLAN.\n"
 "Najprv treba kľúč USB pripraviť tak, aby bol bootovateľný.\n"
 "Potom stiahnete súbor NFI zo servera a uložíte na kľúč USB.\n"
-"Ak ste si už pripravili bootovateľný kľúč USB, vložte ho. Ak nie, vložte "
-"kľúč USB s minimálnou kapacitou 64 MB."
+"Ak ste si už pripravili bootovateľný kľúč USB, vložte ho. Ak nie, vložte kľúč USB s minimálnou kapacitou 64 MB."
 
 msgid "This plugin is installed."
 msgstr "Tento modul je nainštalovaný."
@@ -7467,14 +7301,12 @@ msgid ""
 "This test checks for configured nameservers.\n"
 "If you get a \"unconfirmed\" message:\n"
 "- please check your DHCP, cabling and adapter setup\n"
-"- if you configured your nameservers manually please verify your entries in "
-"the \"Nameserver\" configuration"
+"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
 msgstr ""
 "Tento test hľadá nakonfigurované DNS.\n"
 "Ak dostanete hlásenie „nepotvrdené“:\n"
 "- skontrolujte DHCP, kabeláž a nastavenie adaptéra\n"
-"- ak ste DNS konfigurovali ručne, skontrolujte údaje v nastavení "
-"„konfigurácia servera DNS“"
+"- ak ste DNS konfigurovali ručne, skontrolujte údaje v nastavení „konfigurácia servera DNS“"
 
 #, fuzzy
 msgid ""
@@ -7501,12 +7333,10 @@ msgstr ""
 "- skontrolujte DHCP, kabeláž a nastavenie karty"
 
 msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address "
-"configuration with DHCP.\n"
+"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
 "If you get a \"disabled\" message:\n"
 " - then your LAN adapter is configured for manual IP setup\n"
-"- verify thay you have entered correct IP informations in the adapter setup "
-"dialog.\n"
+"- verify thay you have entered correct IP informations in the adapter setup dialog.\n"
 "If you get an \"enabled\" message:\n"
 "-verify that you have a configured and working DHCP server in your network."
 msgstr ""
@@ -7547,6 +7377,9 @@ msgid "Time scale"
 msgstr "Voľba časovača"
 
 msgid "Time settings"
+msgstr ""
+
+msgid "Time to execute command or script"
 msgstr ""
 
 msgid "Timeline font size"
@@ -7638,9 +7471,7 @@ msgstr ""
 msgid "Timeshift will get saved at end of event!"
 msgstr ""
 
-msgid ""
-"Timeshift will only start when the start delay time has passed. This "
-"prevents numurous very short files when zapping."
+msgid "Timeshift will only start when the start delay time has passed. This prevents numurous very short files when zapping."
 msgstr ""
 
 msgid "Timeshift-save action on zap"
@@ -7666,10 +7497,8 @@ msgstr ""
 
 msgid ""
 "To update your STB_BOX firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable "
-"USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed "
-"for 10 seconds.\n"
+"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
 
@@ -7887,8 +7716,7 @@ msgstr[1] ""
 msgstr[2] ""
 
 #, fuzzy
-msgid ""
-"Update failed. Your STB_BOX does not have a working internet connection."
+msgid "Update failed. Your STB_BOX does not have a working internet connection."
 msgstr ""
 "Váš STB_BOX je teraz pripravený na používanie.\n"
 "\n"
@@ -7986,18 +7814,13 @@ msgstr "Použiť meranie spotreby"
 msgid "Use slim screen"
 msgstr ""
 
-msgid ""
-"Use the Left/Right buttons on your remote to adjust the size of the user "
-"interface. Left button decreases the size, Right increases the size."
+msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
 msgstr ""
 
-msgid ""
-"Use the Left/Right buttons on your remote to move the user interface up/down"
+msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
 msgstr ""
 
-msgid ""
-"Use the Left/Right buttons on your remote to move the user inyterface left/"
-"right"
+msgid "Use the Left/Right buttons on your remote to move the user inyterface left/right"
 msgstr ""
 
 msgid "Use the alternative or the conventional radio mode."
@@ -8008,19 +7831,14 @@ msgstr ""
 
 #, fuzzy
 msgid "Use the network wizard to configure selected network adapter"
-msgstr ""
-"Použiť Sprievodcu nastavením siete na nastavenie zvoleného sieťového adaptéra"
+msgstr "Použiť Sprievodcu nastavením siete na nastavenie zvoleného sieťového adaptéra"
 
 #, fuzzy
 msgid "Use the networkwizard to configure your Network\n"
 msgstr "Na nastavenie siete použiť sprievodcu sieťou\n"
 
-msgid ""
-"Use the up/down keys on your remote control to select an option. After that, "
-"press OK."
-msgstr ""
-"Šípkami nahor alebo nadol na diaľkovom ovládači vyberte voľbu. Potom stlačte "
-"tlačidlo OK."
+msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+msgstr "Šípkami nahor alebo nadol na diaľkovom ovládači vyberte voľbu. Potom stlačte tlačidlo OK."
 
 msgid "Use the wizard to set up basic features"
 msgstr ""
@@ -8077,10 +7895,7 @@ msgstr ""
 msgid "Using old profile: "
 msgstr ""
 
-msgid ""
-"Usually when the subtitle language is the same as the audio language, the "
-"subtitles will not be used. Enable this option to allow these subtitles to "
-"be used."
+msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
 msgstr ""
 
 msgid "VCR scart"
@@ -8127,8 +7942,7 @@ msgstr "Jemné nastavenie obrazu"
 msgid ""
 "Video input selection\n"
 "\n"
-"Please press OK if you can see this page on your TV (or select a different "
-"input port).\n"
+"Please press OK if you can see this page on your TV (or select a different input port).\n"
 "\n"
 "The next input port will be automatically probed in 20 seconds."
 msgstr ""
@@ -8189,8 +8003,7 @@ msgstr "Zobraziť zoznam dostupných predvolených nastavení"
 
 #, fuzzy
 msgid "View list of available display and userinterface extensions."
-msgstr ""
-"Zobraziť zoznam dostupných rozšírení zobrazenia a užívateľského rozhrania"
+msgstr "Zobraziť zoznam dostupných rozšírení zobrazenia a užívateľského rozhrania"
 
 msgid "View list of available multimedia extensions."
 msgstr "Zobraziť zoznam dostupných multimediálnych rozšírení."
@@ -8239,27 +8052,6 @@ msgstr "Napäťový režim"
 
 msgid "Volume"
 msgstr "Hlasitosť"
-
-msgid "STB_BOX advanced remote control (native)"
-msgstr ""
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "Dátové DVD vo formáte STB_BOX (vyhovuje HDTV)"
-
-msgid "STB_BOX front panel"
-msgstr ""
-
-msgid "STB_BOX ir keyboard"
-msgstr ""
-
-msgid "STB_BOX ir mouse"
-msgstr ""
-
-msgid "STB_BOX remote control (native)"
-msgstr ""
-
-msgid "STB_BOX software because updates are available."
-msgstr "Softvér STB_BOXa, lebo sú k dispozícii aktualizácie."
 
 msgid "W"
 msgstr "Z"
@@ -8340,53 +8132,52 @@ msgid "Weekday"
 msgstr "Pracovný deň"
 
 #, fuzzy
+msgid "Weekly"
+msgstr "týždenne"
+
+#, fuzzy
 msgid ""
 "Welcome to the cutlist editor.\n"
 "\n"
-"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
-"cut'.\n"
+"Seek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n"
 "\n"
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
 "Vitajte v strihovom editore.\n"
 "\n"
-"Nájdite začiatok materiálu, ktorý chcete vystrihnúť. Stlačte OK, zvoľte "
-"„začiatok strihu“\n"
+"Nájdite začiatok materiálu, ktorý chcete vystrihnúť. Stlačte OK, zvoľte „začiatok strihu“\n"
 "\n"
 "Potom nájdite koniec, stlačte OK, zvoľte „koniec strihu“ To je všetko."
 
 #, fuzzy
-msgid ""
-"Welcome to the image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your STB_BOX by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
-msgstr ""
-"Víta vás sprievodca aktualizáciou image. Pomôže vám pri aktualizácii "
-"firmvéru v STB_BOXe umožnením zálohovania aktuálnych nastavení a stručným "
-"vysvetlením, ako aktualizovať firmvér."
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your STB_BOX by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgstr "Víta vás sprievodca aktualizáciou image. Pomôže vám pri aktualizácii firmvéru v STB_BOXe umožnením zálohovania aktuálnych nastavení a stručným vysvetlením, ako aktualizovať firmvér."
 
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will "
-"guide you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your STB_BOX to the Internet, this wizard will guide you through the basic network setup of your STB_BOX.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
 "Vitajte.\n"
 "\n"
-"Ak chcete pripojiť STB_BOX k internetu, tento sprievodca vás povedie "
-"základnými nastaveniami siete.\n"
+"Ak chcete pripojiť STB_BOX k internetu, tento sprievodca vás povedie základnými nastaveniami siete.\n"
 "\n"
 "Po stlačení OK začnite konfigurovať sieť"
 
+#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Vu+ "
-"Ultimo.\n"
+"This start wizard will guide you through the basic setup of your STB_BOX.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
+"Vitajte.\n"
+"\n"
+"Ak chcete pripojiť STB_BOX k internetu, tento sprievodca vás povedie základnými nastaveniami siete.\n"
+"\n"
+"Po stlačení OK začnite konfigurovať sieť"
 
 msgid "Welcome..."
 msgstr "Vitajte..."
@@ -8394,85 +8185,64 @@ msgstr "Vitajte..."
 msgid "West"
 msgstr "západne"
 
+msgid "What Day of month ?"
+msgstr ""
+
+msgid "What Day of week ?"
+msgstr ""
+
 msgid "What do you want to scan?"
 msgstr "Čo chcete vyhľadať?"
 
-msgid ""
-"When enabled the online checker will also check for experimental versions"
+msgid "When enabled the online checker will also check for experimental versions"
 msgstr ""
 
-msgid ""
-"When enabled, AIT data will be included in http streams. This allows a "
-"client receiver to use HbbTV."
+msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr ""
 
-msgid ""
-"When enabled, EIT data will be included in http streams. This allows a "
-"client receiver to show EPG."
+msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
 msgstr ""
 
-msgid ""
-"When enabled, a popup message will be shown when a movie has finished and "
-"the next one will start."
+msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
 msgstr ""
 
 msgid "When enabled, a popup message will be shown when a recording starts."
 msgstr ""
 
-msgid ""
-"When enabled, a recording is allowed to interrupt live tv, when there are no "
-"free tuners."
+msgid "When enabled, a recording is allowed to interrupt live tv, when there are no free tuners."
 msgstr ""
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr ""
 
-msgid ""
-"When enabled, content with an aspect ratio of 4:3 will be stretched to fit "
-"the screen."
+msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr ""
 
-msgid ""
-"When enabled, continue to the next bouquet when the last channel of the "
-"current bouquet is reached while changing channels."
+msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr ""
 
-msgid ""
-"When enabled, deleted recordings are moved to the trash can, instead of "
-"being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr ""
 
-msgid ""
-"When enabled, external subtitles (in media files) will be displayed in "
-"yellow, instead of the original color."
+msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
 msgstr ""
 
-msgid ""
-"When enabled, graphical DVB subtitles are preferred over teletext subtitles, "
-"when both types are available."
+msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
 msgstr ""
 
 msgid "When enabled, graphical DVB subtitles will be centered horizontally."
 msgstr ""
 
-msgid ""
-"When enabled, graphical DVB subtitles will be displayed at their original "
-"position."
+msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr ""
 
-msgid ""
-"When enabled, graphical DVB subtitles will be displayed in yellow, instead "
-"of the original color."
+msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr ""
 
-msgid ""
-"When enabled, measure power consumption to detect when the rotor stops "
-"turning (when supported by the tuner)."
+msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr ""
 
-msgid ""
-"When enabled, pressing '0' will zap you to the first channel in your first "
-"bouquet and delete your zap-history."
+msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
@@ -8481,37 +8251,25 @@ msgstr ""
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr ""
 
-msgid ""
-"When enabled, subtitles for the hearing impaired will be preferred over "
-"normal subtitles, when both types are available."
+msgid "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
 msgstr ""
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr ""
 
-msgid ""
-"When enabled, teletext subtitles will be displayed at their original "
-"position."
+msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr ""
 
-msgid ""
-"When enabled, the lenght of each recording will be shown in the movielist "
-"(this might cause some additional loading time)."
+msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
 msgstr ""
 
-msgid ""
-"When enabled, the original line breaks will be removed from the teletext "
-"subtitles."
+msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
 msgstr ""
 
-msgid ""
-"When enabled, the receiver will automatically use the audio track which you "
-"selected before."
+msgid "When enabled, the receiver will automatically use the audio track which you selected before."
 msgstr ""
 
-msgid ""
-"When enabled, the receiver will automatically use the subtitles which you "
-"selected before."
+msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
 msgstr ""
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
@@ -8520,61 +8278,40 @@ msgstr ""
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr ""
 
-msgid ""
-"When enabled, your TV will automatically select the SCART input when you "
-"switch on your receiver."
+msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr ""
 
-#, fuzzy
-msgid "When finished:"
-msgstr "Odstraňovanie skončené."
-
-msgid ""
-"When nonzero, a recording will start earlier than the starting time "
-"indicated by the EPG."
+msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
 msgstr ""
 
-msgid ""
-"When nonzero, a recording will stop later than the ending time indicated by "
-"the EPG."
+msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
 msgstr ""
 
-msgid ""
-"When set each folder will show the previous state used, when off the default "
-"values will be shown."
+msgid "When set each folder will show the previous state used, when off the default values will be shown."
 msgstr ""
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr ""
 
-msgid ""
-"When the content has an aspect ratio of 16:9, choose whether to scale/"
-"stretch the picture."
+msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr ""
 
-msgid ""
-"When the content has an aspect ratio of 4:3, choose whether to scale/stretch "
-"the picture."
+msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
 msgstr ""
 
-msgid ""
-"When tuned to a service the system will normally scan the transponder for "
-"any changes and save them. Only set to 'yes' if you're absolutely sure what "
-"you're doing."
+msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr ""
 
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your STB_BOX will restart "
-"automatically!\n"
+"After completion of factory reset, your STB_BOX will restart automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
 "Keď resetujete na továrenské nastavenia, stratíte všetky konfiguračné dáta\n"
 "(vrátane buketov, staníc, údajov o satelitoch...)\n"
-"Po skončení prechodu na továrenské nastavenia sa prijímač automaticky "
-"reštartuje!\n"
+"Po skončení prechodu na továrenské nastavenia sa prijímač automaticky reštartuje!\n"
 "\n"
 "Naozaj chcete resetovať na továrenské nastavenia?"
 
@@ -8601,7 +8338,7 @@ msgid "Wireless network"
 msgstr "Bezdrôtová sieť"
 
 #, fuzzy
-msgid "Wireless network configuartion..."
+msgid "Wireless network configuration..."
 msgstr "Nastavenie bezdrôtovej siete."
 
 msgid "Wireless network connection setup"
@@ -8613,14 +8350,10 @@ msgstr "Nastavenie bezdrôtovej siete."
 msgid "Wireless network state"
 msgstr "Stav bezdrôtovej siete"
 
-msgid ""
-"With this option set to 'yes' the channel lists will always show you the "
-"bouquet screen first. If set to 'no' the current bouquet will be opened."
+msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr ""
 
-msgid ""
-"With this option you can hide Job Tasks from the extension screen (short "
-"blue button press)."
+msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr ""
 
 msgid "Write error while recording. Disk full?\n"
@@ -8730,31 +8463,17 @@ msgstr "Toto nemôžete zmazať!"
 msgid "You didn't select a channel to record from."
 msgstr "Nezvolili ste stanicu, z ktorej sa má nahrávať."
 
-msgid ""
-"You have already sent this log, are you sure you want to resend this log:\n"
+msgid "You have already sent this log, are you sure you want to resend this log:\n"
 msgstr ""
 
-msgid ""
-"You have chosen to backup your settings. Please press OK to start the backup "
-"now."
-msgstr ""
-"Vybrali ste si zálohovanie nastavení. Stlačením tlačidla OK spustíte "
-"zálohovanie."
+msgid "You have chosen to backup your settings. Please press OK to start the backup now."
+msgstr "Vybrali ste si zálohovanie nastavení. Stlačením tlačidla OK spustíte zálohovanie."
 
-msgid ""
-"You have chosen to create a new .NFI flasher bootable USB stick. This will "
-"repartition the USB stick and therefore all data on it will be erased."
-msgstr ""
-"Zvolili ste si vytvorenie nového bootovateľného USB kľúča pre zápis .NFI. "
-"Pritom sa vytvorí nová partícia na kľúči a stratíte všetky dáta, ktoré sú na "
-"ňom."
+msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+msgstr "Zvolili ste si vytvorenie nového bootovateľného USB kľúča pre zápis .NFI. Pritom sa vytvorí nová partícia na kľúči a stratíte všetky dáta, ktoré sú na ňom."
 
-msgid ""
-"You have chosen to restore your settings. Enigma2 will restart after "
-"restore. Please press OK to start the restore now."
-msgstr ""
-"Vybrali ste si obnovu nastavení. Po obnovení sa Enigma2 reštartuje. "
-"Stlačením tlačidla OK spustíte obnovu."
+msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
+msgstr "Vybrali ste si obnovu nastavení. Po obnovení sa Enigma2 reštartuje. Stlačením tlačidla OK spustíte obnovu."
 
 msgid ""
 "You have not setup your user info in the setup screen\n"
@@ -8772,16 +8491,11 @@ msgid "You have to wait %s!"
 msgstr "Musíte čakať %s!"
 
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further "
-"instructions, please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
+"You need a PC connected to your STB_BOX. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your STB_BOX will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Musíte mať počítač pripojený k STB_BOXu. Ak potrebujete ďalšie pokyny, "
-"navštívte webovú stránku http://www.dm7025.de.\n"
-"STB_BOX sa teraz zastaví. Po splnení aktualizačných pokynov z webovej "
-"stránky vás nový firmvér požiada o obnovu nastavení."
+"Musíte mať počítač pripojený k STB_BOXu. Ak potrebujete ďalšie pokyny, navštívte webovú stránku http://www.dm7025.de.\n"
+"STB_BOX sa teraz zastaví. Po splnení aktualizačných pokynov z webovej stránky vás nový firmvér požiada o obnovu nastavení."
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr ""
@@ -8789,12 +8503,7 @@ msgstr ""
 msgid "You system does not support ext4"
 msgstr ""
 
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr ""
-
-msgid ""
-"Your STB_BOX is not connected to the internet, please check your network "
-"settings and try again."
+msgid "Your STB_BOX is not connected to the internet, please check your network settings and try again."
 msgstr ""
 
 #, fuzzy
@@ -8831,9 +8540,7 @@ msgstr ""
 msgid "Your STB_BOX is shutting down. Please stand by..."
 msgstr "STB_BOX sa vypína. Vyčkajte..."
 
-msgid ""
-"Your STB_BOX might be unusable now. Please consult the manual for further "
-"assistance before rebooting your STB_BOX."
+msgid "Your STB_BOX might be unusable now. Please consult the manual for further assistance before rebooting your STB_BOX."
 msgstr ""
 
 #, fuzzy
@@ -8885,18 +8592,14 @@ msgid ""
 "Do you want to remove now ?"
 msgstr ""
 
-msgid ""
-"Your backup succeeded. We will now continue to explain the further upgrade "
-"process."
+msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
-"Zálohovanie sa podarilo.Teraz vysvetlíme ďalší postup pri aktualizácii."
 
-msgid ""
-"Your collection exceeds the size of a single layer medium, you will need a "
-"blank dual layer DVD!"
-msgstr ""
-"Zostava presahuje kapacitu jednovrstvového média. Potrebujete prázdny "
-"dvojvrstvový disk DVD!"
+msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
+msgstr "Zálohovanie sa podarilo.Teraz vysvetlíme ďalší postup pri aktualizácii."
+
+msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
+msgstr "Zostava presahuje kapacitu jednovrstvového média. Potrebujete prázdny dvojvrstvový disk DVD!"
 
 #, python-format
 msgid ""
@@ -8987,9 +8690,7 @@ msgstr ""
 msgid "Zap to selected channel"
 msgstr ""
 
-msgid ""
-"Zap to selected channel, or show detailed event info (depends on "
-"configuration)"
+msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 msgstr ""
 
 msgid "Zoom In/Out TV..."
@@ -9789,13 +9490,6 @@ msgstr "pri ukončení uložiť posledný adresár"
 msgid "save playlist on exit"
 msgstr "pri ukončení uložiť zoznam prehrávok"
 
-msgid "scan done!"
-msgstr "Vyhľadávanie skončené!"
-
-#, python-format
-msgid "scan in progress - %d%% done!"
-msgstr "Hľadám - %d%% hotových!"
-
 msgid "scan state"
 msgstr "stav vyhľadávania"
 
@@ -10115,6 +9809,13 @@ msgstr ""
 msgid "wireless network interface"
 msgstr "rozhranie bezdrôtovej siete"
 
+#, python-format
+msgid "with %d error"
+msgid_plural "with %d errors"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 msgid "with exit button"
 msgstr ""
 
@@ -10148,6 +9849,10 @@ msgstr "prepnuté"
 #~ msgid "Add Bookmark"
 #~ msgstr "Pridať záložku"
 
+#, fuzzy
+#~ msgid "Advanced pptions"
+#~ msgstr "Rozšírené voľby"
+
 #~ msgid "Aspect Ratio"
 #~ msgstr "Pomer strán"
 
@@ -10168,6 +9873,13 @@ msgstr "prepnuté"
 
 #~ msgid "CommonInterface"
 #~ msgstr "CommonInterface"
+
+#~ msgid "Download .NFI-Files for USB-Flasher"
+#~ msgstr "Stiahnuť súbory .NFI pre USB-Flasher"
+
+#, fuzzy
+#~ msgid "Download .NFI-Files for USB-flasher"
+#~ msgstr "Stiahnuť súbory .NFI pre USB-Flasher"
 
 #~ msgid "Download Plugins"
 #~ msgstr "Stiahnuť prídavné moduly"
@@ -10192,6 +9904,13 @@ msgstr "prepnuté"
 #~ "stephan@reichholf.net\n"
 #~ "\n"
 #~ "© 2006 - Stephan Reichholf"
+
+#~ msgid "Fan %d PWM"
+#~ msgstr "PWM ventilátora %d"
+
+#, fuzzy
+#~ msgid "Fan %d voltage"
+#~ msgstr "Napätie na ventilátore %d"
 
 #~ msgid "Fast Forward speeds"
 #~ msgstr "Rýchlosti prevíjania vpred"
@@ -10241,11 +9960,27 @@ msgstr "prepnuté"
 #~ msgid "Slow Motion speeds"
 #~ msgstr "Rýchlosti časovej lupy"
 
+#, fuzzy
+#~ msgid "Standby fan %d PWM"
+#~ msgstr "Pohotovosť, PWM ventilátora %d"
+
+#, fuzzy
+#~ msgid "Standby fan %d voltage"
+#~ msgstr "Pohotovosť, napätie ventilátora %d"
+
 #~ msgid "Symbol Rate"
 #~ msgstr "Symbolová rýchlosť"
 
 #~ msgid "Symbolrate"
 #~ msgstr "Symb. rých."
+
+#, fuzzy
+#~ msgid "TV system"
+#~ msgstr "Systém"
+
+#, fuzzy
+#~ msgid "Temperature and fan control"
+#~ msgstr "Teplota a ventilátor"
 
 #~ msgid "Test-Messagebox?"
 #~ msgstr "Hlásenie o teste?"
@@ -10254,21 +9989,26 @@ msgstr "prepnuté"
 #~ msgstr "Režim prenosu"
 
 #~ msgid "Try to find used Transponders in cable network.. please wait..."
-#~ msgstr ""
-#~ "Pokúšam sa nájsť použité transpondéry v káblovej sieti ... čakajte..."
+#~ msgstr "Pokúšam sa nájsť použité transpondéry v káblovej sieti ... čakajte..."
 
 #~ msgid "Videoenhancement Setup"
 #~ msgstr "Rozšírené nastavenia obrazu"
 
-#~ msgid ""
-#~ "Your STB_BOX isn't connected to the internet properly. Please check it "
-#~ "and try again."
-#~ msgstr ""
-#~ "STB_BOX nie je správne pripojený do internetu. Skontrolujte a skúste "
-#~ "znova."
+#, fuzzy
+#~ msgid "When finished:"
+#~ msgstr "Odstraňovanie skončené."
+
+#~ msgid "Your STB_BOX isn't connected to the internet properly. Please check it and try again."
+#~ msgstr "STB_BOX nie je správne pripojený do internetu. Skontrolujte a skúste znova."
 
 #~ msgid "jump to listbegin"
 #~ msgstr "skok na začiatok zoznamu"
+
+#~ msgid "scan done!"
+#~ msgstr "Vyhľadávanie skončené!"
+
+#~ msgid "scan in progress - %d%% done!"
+#~ msgstr "Hľadám - %d%% hotových!"
 
 #~ msgid "select interface"
 #~ msgstr "zvoliť rozhranie"
