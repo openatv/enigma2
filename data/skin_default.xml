@@ -1183,4 +1183,17 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		<widget name="filelist" position="5,50" size="510,370" scrollbarMode="showOnDemand" />
 	</screen>
+	<screen name="HistoryZapSelector" position="center,center" size="350,240" title="History zap...">
+		<widget source="menu" render="Listbox" position="0,10" size="350,220" scrollbarMode="showOnDemand">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (10, 0), size = (20, 22), flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER, text = 1),
+						MultiContentEntryText(pos = (40, 0), size = (290, 22), font = 1, flags = RT_HALIGN_LEFT, text = 2)
+					],
+				 "fonts": [gFont("Regular", 22), gFont("Regular", 20)],
+				 "itemHeight": 22
+				}
+			</convert>
+		</widget>
+	</screen>
 </skin>
