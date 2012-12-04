@@ -21,6 +21,7 @@ class RcModel:
 	RCTYPE_VU2 = 16
 	RCTYPE_ICLASSM7 = 17
 	RCTYPE_INI5000R = 18
+	RCTYPE_INI1000 = 19
 
 	def __init__(self):
 		self.currentRcType = self.RCTYPE_DMM
