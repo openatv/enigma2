@@ -95,18 +95,6 @@ class HelpableNumberActionMap(NumberActionMap):
 
 #############################################################
 
-lang = language.getLanguage()
-environ["LANGUAGE"] = lang[:2]
-gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
-gettext.textdomain("enigma2")
-gettext.bindtextdomain("CCcamInfo", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "Extensions/CCcamInfo/locale/"))
-
-def _(txt):
-	t = gettext.dgettext("CCcamInfo", txt)
-	if t == txt:
-		t = gettext.gettext(txt)
-	return t
-
 TranslationHelper = [
 	["Current time", _("Current time")],
 	["NodeID", _("NodeID")],
