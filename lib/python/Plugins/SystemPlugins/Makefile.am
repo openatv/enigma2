@@ -15,6 +15,10 @@ if ODIN
 SUBDIRS += SatelliteEquipmentControl DiseqcTester
 endif
 
+if VUSOLO2
+SUBDIRS += SatelliteEquipmentControl DiseqcTester
+endif
+
 if VUUNO
 SUBDIRS += SatelliteEquipmentControl DiseqcTester CableScan
 endif
