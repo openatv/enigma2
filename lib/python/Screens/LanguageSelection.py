@@ -55,6 +55,7 @@ class LanguageSelection(Screen):
 
 	def selectActiveLanguage(self):
 		activeLanguage = language.getActiveLanguage()
+		self.langnamelist = language.getLangName()
 		pos = 0
 		for x in self.list:
 			if x[0] == activeLanguage:
@@ -76,8 +77,9 @@ class LanguageSelection(Screen):
 		if lang != config.osd.language.getValue():
 			config.osd.language.setValue(lang)
 			config.osd.language.save()
-			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[config.osd.language.getValue()])
-		self.setTitle(self.catalog.gettext("Language selection"))
+
+		langname = self.langnamelist[config.osd.language.getValue()][0]
+		self.setTitle(langname)
 		self["summarylangname"].setText(self["languages"].getCurrent()[1])
 # 		index = self["languages"].getCurrent()[2]
 # 		print 'INDEX:',index
@@ -124,8 +126,9 @@ class LanguageWizard(LanguageSelection, Rc):
 		self.setText()
 
 	def setText(self):
-		self["text"].setText(self.catalog.gettext("Please use the UP and DOWN keys to select your language. Afterwards press the OK button."))
-		self["summarytext"].setText(self.catalog.gettext("Please use the UP and DOWN keys to select your language. Afterwards press the OK button."))
+		langinfo = self.langnamelist[config.osd.language.getValue()][1]
+		self["text"].setText(langinfo)
+		self["summarytext"].setText(langinfo)
 
 	def createSummary(self):
 		return LanguageWizardSummary

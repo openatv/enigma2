@@ -3,6 +3,7 @@ import gettext
 import locale
 import os
 
+from twisted.internet import threads
 from Tools.Directories import SCOPE_LANGUAGE, resolveFilename
 
 class Language:
@@ -11,6 +12,7 @@ class Language:
 		self.activeLanguage = 0
 		self.catalog = None
 		self.lang = {}
+		self.langname = {}
 		self.langlist = []
 		# FIXME make list dynamically
 		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
@@ -82,9 +84,24 @@ class Language:
 		# HACK: sometimes python 2.7 reverts to the LC_TIME environment value, so make sure it has the correct value
 		os.environ["LC_TIME"] = self.getLanguage() + '.UTF-8'
 
+		# Load Language names in there own language (new thread)
+		if not self.langname:
+			threads.deferToThread(self.getLangNameList)
+
 	def activateLanguageIndex(self, index):
 		if index < len(self.langlist):
 			self.activateLanguage(self.langlist[index])
+
+	def getLangName(self):
+		return self.langname
+
+	def getLangNameList(self):
+		for lang in self.langlist:
+			catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[str(lang)])
+			self.langname[str(lang)] = (catalog.gettext("Language selection"),catalog.gettext("Please use the UP and DOWN keys to select your language. Afterwards press the OK button."))
+
+		catalog = None
+		lang = None
 
 	def getLanguageList(self):
 		return [ (x, self.lang[x]) for x in self.langlist ]
