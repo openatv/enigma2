@@ -61,6 +61,12 @@ class About(Screen):
 		elif getBoxType() == 'vuduo':
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo")
 			AboutText = _("Hardware:") + " Vu+ Duo\n"
+		elif getBoxType() == 'vusolo2':
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo 2")
+			AboutText = _("Hardware:") + " Vu+ Solo 2\n"
+		elif getBoxType() == 'vuduo2':
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo 2")
+			AboutText = _("Hardware:") + " Vu+ Duo 2\n"			
 		elif getBoxType() == 'et4x00':
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET4x00 Series")
 			AboutText = _("Hardware:") + "  Xtrend ET4x00 Series\n"	
@@ -602,6 +608,10 @@ class AboutSummary(Screen):
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo")
 		elif getBoxType() == 'vuduo':
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo")
+		elif getBoxType() == 'vusolo2':
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo 2")
+		elif getBoxType() == 'vuduo2':
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo 2")			
 		elif getBoxType() == 'et4x00':
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET4x00 Series")	
 		elif getBoxType() == 'et5x00':
