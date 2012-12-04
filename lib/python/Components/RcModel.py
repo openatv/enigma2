@@ -121,7 +121,7 @@ class RcModel:
 		elif self.currentRcType == self.RCTYPE_GB:
 			return '/usr/share/enigma2/rc_models/gb/'
 		elif self.currentRcType == self.RCTYPE_INI1000:
-			return '/usr/share/enigma2/rc_models/ini7000/'
+			return '/usr/share/enigma2/rc_models/ini1000/'
 		elif self.currentRcType == self.RCTYPE_INI3000:
 			return '/usr/share/enigma2/rc_models/ini3000/'
 		elif self.currentRcType == self.RCTYPE_INI5000:
