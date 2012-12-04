@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-19 16:58+0000\n"
-"PO-Revision-Date: 2012-11-19 17:46-0000\n"
+"POT-Creation-Date: 2012-12-03 15:00+0000\n"
+"PO-Revision-Date: 2012-12-03 15:26-0000\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -13,6 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.4\n"
 
 msgid ""
 "\n"
@@ -168,20 +169,20 @@ msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
 #, python-format
+msgid "%d GB"
+msgstr "%d GB"
+
+#, python-format
 msgid "%d Gb"
 msgstr "%d Gb"
 
 #, python-format
-msgid "%d Kb"
-msgstr "%d Kb"
+msgid "%d KB"
+msgstr "%d KB"
 
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
-
-#, python-format
-msgid "%d Mb"
-msgstr "%d Mb"
 
 #, python-format
 msgid "%d Min"
@@ -189,11 +190,24 @@ msgid_plural "%d Mins"
 msgstr[0] "%d Min"
 msgstr[1] "%d Mins"
 
+#. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
+#, python-format
+msgid "%d channel found"
+msgid_plural "%d channels found"
+msgstr[0] "%d channel found"
+msgstr[1] "%d channels found"
+
 #, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d hour"
 msgstr[1] "%d hours"
+
+#, python-format
+msgid "%d job is running in the background!"
+msgid_plural "%d jobs are running in the background!"
+msgstr[0] "%d job is running in the background!"
+msgstr[1] "%d jobs are running in the background!"
 
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -222,10 +236,6 @@ msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d second"
 msgstr[1] "%d seconds"
-
-#, python-format
-msgid "%d services found!"
-msgstr "%d services found!"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -546,9 +556,6 @@ msgstr "AA"
 msgid "AB"
 msgstr "AB"
 
-msgid "AC3 downmix"
-msgstr "AC3 down mix"
-
 msgid "AFP Setup"
 msgstr "AFP Setup"
 
@@ -708,9 +715,6 @@ msgstr ""
 msgid "Advanced options"
 msgstr "Advanced options"
 
-msgid "Advanced pptions"
-msgstr "Advanced pptions"
-
 msgid "Advanced restore"
 msgstr "Advanced restore"
 
@@ -827,8 +831,8 @@ msgstr "An empty filename is illegal."
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr "An error occurred while downloading the packetlist. Please try again."
 
-msgid "An unknown error occured!"
-msgstr "An unknown error occured!"
+msgid "An unknown error occurred!"
+msgstr "An unknown error occurred!"
 
 msgid "Any activity"
 msgstr "Any activity"
@@ -855,6 +859,13 @@ msgstr "Are you sure you want to delete all selected logs:\n"
 
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Are you sure you want to delete this log:\n"
+
+msgid ""
+"Are you sure you want to delete this:\n"
+" "
+msgstr ""
+"Are you sure you want to delete this:\n"
+" "
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Are you sure you want to exit this wizard?"
@@ -917,6 +928,9 @@ msgstr "Assigned CAIds:"
 
 msgid "Assigned services/provider:"
 msgstr "Assigned services/provider:"
+
+msgid "At End:"
+msgstr "At End:"
 
 msgid "Attach a file"
 msgstr "Attach a file"
@@ -1508,11 +1522,17 @@ msgstr "Color format"
 msgid "Color space"
 msgstr "Color space"
 
+msgid "Command To Run"
+msgstr "Command To Run"
+
 msgid "Command execution..."
 msgstr "Command execution..."
 
 msgid "Command order"
 msgstr "Command order"
+
+msgid "Command type"
+msgstr "Command type"
 
 msgid "Committed DiSEqC command"
 msgstr "Committed DiSEqC command"
@@ -1744,8 +1764,8 @@ msgstr "Configure the second audio language."
 msgid "Configure the second subtitle language."
 msgstr "Configure the second subtitle language."
 
-msgid "Configure the secundary EPG language."
-msgstr "Configure the secundary EPG language."
+msgid "Configure the secondary EPG language."
+msgstr "Configure the secondary EPG language."
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
 msgstr "Configure the skip time interval for the '1'/'3' buttons."
@@ -1989,6 +2009,12 @@ msgstr "Creating partition"
 msgid "Croatian"
 msgstr "Croatian"
 
+msgid "Cron Manager"
+msgstr "Cron Manager"
+
+msgid "CronTimers"
+msgstr "CronTimers"
+
 msgid "Current CEC address"
 msgstr "Current CEC address"
 
@@ -2018,6 +2044,9 @@ msgstr "Current version:"
 
 msgid "Currently installed image"
 msgstr "Currently installed image"
+
+msgid "Custom"
+msgstr "Custom"
 
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "Custom skip time for '1'/'3' buttons"
@@ -2058,9 +2087,6 @@ msgstr "DMM advanced"
 msgid "DMM normal"
 msgstr "DMM normal"
 
-msgid "DTS downmix"
-msgstr "DTS downmix"
-
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
 
@@ -2100,6 +2126,9 @@ msgstr "DVD player"
 
 msgid "DVD titlelist"
 msgstr "DVD titlelist"
+
+msgid "Daily"
+msgstr "Daily"
 
 msgid "Danish"
 msgstr "Danish"
@@ -2445,8 +2474,10 @@ msgid "Don't stop current event but disable coming events"
 msgstr "Don't stop current event but disable coming events"
 
 #, python-format
-msgid "Done - Installed, upgraded or removed %d packages with %d errors"
-msgstr "Done - Installed, upgraded or removed %d packages with %d errors"
+msgid "Done - Installed, upgraded or removed %d package (%s)"
+msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
+msgstr[0] "Done - Installed, upgraded or removed %d package (%s)"
+msgstr[1] "Done - Installed, upgraded or removed %d packages (%s)"
 
 msgid "Download"
 msgstr "Download"
@@ -2454,12 +2485,6 @@ msgstr "Download"
 #, python-format
 msgid "Download %s from server"
 msgstr "Download %s from server"
-
-msgid "Download .NFI-Files for USB-Flasher"
-msgstr "Download .NFI-Files for USB-Flasher"
-
-msgid "Download .NFI-Files for USB-flasher"
-msgstr "Download .NFI-Files for USB-flasher"
 
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Download .NFI-files for USB-flasher"
@@ -2847,14 +2872,6 @@ msgstr "Failed to remove old files."
 msgid "Fan %d"
 msgstr "Fan %d"
 
-#, python-format
-msgid "Fan %d PWM"
-msgstr "Fan %d PWM"
-
-#, python-format
-msgid "Fan %d voltage"
-msgstr "Fan %d voltage"
-
 msgid "Fast"
 msgstr "Fast"
 
@@ -2872,9 +2889,6 @@ msgstr "Fast forward speeds"
 
 msgid "Favourites"
 msgstr "Favourites"
-
-msgid "Fee: "
-msgstr "Fee: "
 
 msgid "File appears to be busy.\n"
 msgstr "File appears to be busy.\n"
@@ -2997,10 +3011,10 @@ msgstr "GB"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
+"Do you want to restart the GUI now?"
 msgstr ""
 "GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
+"Do you want to restart the GUI now?"
 
 msgid "Gateway"
 msgstr "Gateway"
@@ -3011,14 +3025,8 @@ msgstr "General"
 msgid "General AC3 delay"
 msgstr "General AC3 delay"
 
-msgid "General AC3 delay (ms)"
-msgstr "General AC3 delay (ms)"
-
 msgid "General PCM delay"
 msgstr "General PCM delay"
-
-msgid "General PCM delay (ms)"
-msgstr "General PCM delay (ms)"
 
 msgid "Genre"
 msgstr "Genre"
@@ -3037,6 +3045,27 @@ msgstr "Getting Event Info failed!"
 
 msgid "Getting plugin information. Please wait..."
 msgstr "Getting plugin information. Please wait..."
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr "STB_BOX advanced remote control (native)"
+
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "STB_BOX format data DVD (HDTV compatible)"
+
+msgid "STB_BOX front panel"
+msgstr "STB_BOX front panel"
+
+msgid "STB_BOX ir keyboard"
+msgstr "STB_BOX ir keyboard"
+
+msgid "STB_BOX ir mouse"
+msgstr "STB_BOX ir mouse"
+
+msgid "STB_BOX remote control (native)"
+msgstr "STB_BOX remote control (native)"
+
+msgid "STB_BOX software because updates are available."
+msgstr "STB_BOX software because updates are available."
 
 msgid "Go down the list"
 msgstr "Go down the list"
@@ -3131,6 +3160,9 @@ msgstr "Grey"
 msgid "Guard interval"
 msgstr "Guard interval"
 
+msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
+msgstr "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
+
 msgid "HD list"
 msgstr "HD list"
 
@@ -3217,6 +3249,9 @@ msgstr "Hostname: "
 
 msgid "Hour"
 msgstr "Hour"
+
+msgid "Hourly"
+msgstr "Hourly"
 
 msgid "Hours Mins"
 msgstr "Hours Mins"
@@ -3564,9 +3599,6 @@ msgstr "Job View"
 msgid "Job overview"
 msgstr "Job overview"
 
-msgid "Job task(s) are in progress!"
-msgstr "Job task(s) are in progress!"
-
 msgid "Jump back 24 hours"
 msgstr "Jump back 24 hours"
 
@@ -3751,8 +3783,10 @@ msgid "List of storage devices"
 msgstr "List of storage devices"
 
 #, python-format
-msgid "List version %d, found %d channels"
-msgstr "List version %d, found %d channels"
+msgid "List version %d, found %d channel"
+msgid_plural "List version %d, found %d channels"
+msgstr[0] "List version %d, found %d channel"
+msgstr[1] "List version %d, found %d channels"
 
 msgid "Listen to the radio..."
 msgstr "Listen to the radio..."
@@ -3951,6 +3985,9 @@ msgstr "MiniDLNA setup"
 msgid "Minimum age %d years"
 msgstr "Minimum age %d years"
 
+msgid "Minimum send interval"
+msgstr "Minimum send interval"
+
 msgid "Mins"
 msgstr "Mins"
 
@@ -3985,6 +4022,9 @@ msgstr "Mon-Fri"
 
 msgid "Monday"
 msgstr "Monday"
+
+msgid "Monthly"
+msgstr "Monthly"
 
 msgid "Mosquito noise reduction"
 msgstr "Mosquito noise reduction"
@@ -5094,6 +5134,9 @@ msgstr "PowerTimer Overview"
 msgid "PowerTimers"
 msgstr "PowerTimers"
 
+msgid "Predefined"
+msgstr "Predefined"
+
 msgid "Predefined transponder"
 msgstr "Predefined transponder"
 
@@ -5420,6 +5463,9 @@ msgstr "Remote control type"
 msgid "Remove"
 msgstr "Remove"
 
+msgid "Remove Confirmation"
+msgstr "Remove Confirmation"
+
 msgid "Remove Service"
 msgstr "Remove Service"
 
@@ -5604,6 +5650,9 @@ msgstr "Rotor turning speed"
 msgid "Round start time on"
 msgstr "Round start time on"
 
+msgid "Run how often ?"
+msgstr "Run how often ?"
+
 msgid "Running"
 msgstr "Running"
 
@@ -5748,9 +5797,18 @@ msgstr ""
 msgid "Scanning %s..."
 msgstr "Scanning %s..."
 
+#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
 #, python-format
-msgid "Scanning completed, %d channels found"
-msgstr "Scanning completed, %d channels found"
+msgid "Scanning - %d%% completed"
+msgid_plural "Scanning - %d%% completed"
+msgstr[0] "Scanning - %d%% completed"
+msgstr[1] "Scanning - %d%% completed"
+
+#, python-format
+msgid "Scanning completed, %d channel found"
+msgid_plural "Scanning completed, %d channels found"
+msgstr[0] "Scanning completed, %d channel found"
+msgstr[1] "Scanning completed, %d channels found"
 
 msgid "Scanning failed!"
 msgstr "Scanning failed!"
@@ -6533,9 +6591,6 @@ msgstr "Sleep Timer"
 msgid "Sleep delay"
 msgstr "Sleep delay"
 
-msgid "Sleep timer"
-msgstr "Sleep timer"
-
 msgid "Slide picture in loop"
 msgstr "Slide picture in loop"
 
@@ -6687,13 +6742,8 @@ msgstr "Standby"
 msgid "Standby / Restart"
 msgstr "Standby / Restart"
 
-#, python-format
-msgid "Standby fan %d PWM"
-msgstr "Standby fan %d PWM"
-
-#, python-format
-msgid "Standby fan %d voltage"
-msgstr "Standby fan %d voltage"
+msgid "Standby / restart"
+msgstr "Standby / restart"
 
 msgid "Start"
 msgstr "Start"
@@ -6848,8 +6898,8 @@ msgstr "Support at"
 msgid "Swap PiP and main picture"
 msgstr "Swap PiP and main picture"
 
-msgid "Swap SNR in db with SNR in percentage"
-msgstr "Swap SNR in db with SNR in percentage"
+msgid "Swap SNR in '%' with SNR in 'db'"
+msgstr "Swap SNR in '%' with SNR in 'db'"
 
 msgid "Swap services"
 msgstr "Swap services"
@@ -6933,9 +6983,6 @@ msgstr "TV button mode"
 msgid "TV physical address report"
 msgstr "TV physical address report"
 
-msgid "TV system"
-msgstr "TV system"
-
 msgid "TXT PID"
 msgstr "TXT PID"
 
@@ -6959,9 +7006,6 @@ msgstr "Telnet Setup"
 
 msgid "Telnet setup"
 msgstr "Telnet setup"
-
-msgid "Temperature and fan control"
-msgstr "Temperature and fan control"
 
 msgid "Terrestrial"
 msgstr "Terrestrial"
@@ -7041,6 +7085,12 @@ msgstr ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
 
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr "The STB_BOX reads the stored EPG data every (hours)."
+
+msgid "The STB_BOX stores the EPG data every (hours)."
+msgstr "The STB_BOX stores the EPG data every (hours)."
+
 msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
@@ -7074,12 +7124,6 @@ msgid ""
 msgstr ""
 "The USB stick was prepared to be bootable.\n"
 "Now you can download an NFI image file!"
-
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr "The STB_BOX reads the stored EPG data every (hours)."
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr "The STB_BOX stores the EPG data every (hours)."
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "The backup failed. Please choose a different backup location."
@@ -7534,6 +7578,9 @@ msgstr "Time scale"
 
 msgid "Time settings"
 msgstr "Time settings"
+
+msgid "Time to execute command or script"
+msgstr "Time to execute command or script"
 
 msgid "Timeline font size"
 msgstr "Timeline font size"
@@ -8227,27 +8274,6 @@ msgstr "Voltage mode"
 msgid "Volume"
 msgstr "Volume"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX advanced remote control (native)"
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX format data DVD (HDTV compatible)"
-
-msgid "STB_BOX front panel"
-msgstr "STB_BOX front panel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX ir keyboard"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX ir mouse"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX remote control (native)"
-
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX software because updates are available."
-
 msgid "W"
 msgstr "W"
 
@@ -8323,6 +8349,9 @@ msgstr "Wednesday"
 msgid "Weekday"
 msgstr "Weekday"
 
+msgid "Weekly"
+msgstr "Weekly"
+
 msgid ""
 "Welcome to the cutlist editor.\n"
 "\n"
@@ -8365,14 +8394,12 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Vu+ "
-"Ultimo.\n"
+"This start wizard will guide you through the basic setup of your STB_BOX.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Vu+ "
-"Ultimo.\n"
+"This start wizard will guide you through the basic setup of your STB_BOX.\n"
 "Press the OK button on your remote control to move to the next step."
 
 msgid "Welcome..."
@@ -8380,6 +8407,12 @@ msgstr "Welcome..."
 
 msgid "West"
 msgstr "West"
+
+msgid "What Day of month ?"
+msgstr "What Day of month ?"
+
+msgid "What Day of week ?"
+msgstr "What Day of week ?"
 
 msgid "What do you want to scan?"
 msgstr "What do you want to scan?"
@@ -8547,14 +8580,9 @@ msgid "When enabled, use DHCP for the IP configuration."
 msgstr "When enabled, use DHCP for the IP configuration."
 
 msgid ""
-"When enabled, your TV will automatically select the SCART input when you "
-"switch on your receiver."
+"When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr ""
-"When enabled, your TV will automatically select the SCART input when you "
-"switch on your receiver."
-
-msgid "When finished:"
-msgstr "When finished:"
+"When enabled, your receiver will detect activity on the VCR SCART input."
 
 msgid ""
 "When nonzero, a recording will start earlier than the starting time "
@@ -8638,8 +8666,8 @@ msgstr "Wireless LAN"
 msgid "Wireless network"
 msgstr "Wireless network"
 
-msgid "Wireless network configuartion..."
-msgstr "Wireless network configuartion..."
+msgid "Wireless network configuration..."
+msgstr "Wireless network configuration…"
 
 msgid "Wireless network connection setup"
 msgstr "Wireless network connection setup"
@@ -8841,9 +8869,6 @@ msgstr "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgid "You system does not support ext4"
 msgstr "You system does not support ext4"
 
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Your STB will restart after pressing OK on your remote control."
-
 msgid ""
 "Your STB_BOX is not connected to the internet, please check your network "
 "settings and try again."
@@ -8942,6 +8967,9 @@ msgid ""
 msgstr ""
 "Your STB_BOX will be restarted after the removal of service\n"
 "Do you want to remove now ?"
+
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr "Your STB will restart after pressing OK on your remote control."
 
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
@@ -9853,13 +9881,6 @@ msgstr "save last directory on exit"
 msgid "save playlist on exit"
 msgstr "save playlist on exit"
 
-msgid "scan done!"
-msgstr "scan done!"
-
-#, python-format
-msgid "scan in progress - %d%% done!"
-msgstr "scan in progress - %d%% done!"
-
 msgid "scan state"
 msgstr "scan state"
 
@@ -10182,6 +10203,12 @@ msgstr "winter sport"
 msgid "wireless network interface"
 msgstr "wireless network interface"
 
+#, python-format
+msgid "with %d error"
+msgid_plural "with %d errors"
+msgstr[0] "with %d error"
+msgstr[1] "with %d errors"
+
 msgid "with exit button"
 msgstr "with exit button"
 
@@ -10209,6 +10236,9 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zapped"
 
+#~ msgid "%d Mb"
+#~ msgstr "%d Mb"
+
 #~ msgid "* = Restart timeshift required"
 #~ msgstr "* = Restart timeshift required"
 
@@ -10221,8 +10251,14 @@ msgstr "zapped"
 #~ msgid "A/V Settings"
 #~ msgstr "A/V Settings"
 
+#~ msgid "AC3 downmix"
+#~ msgstr "AC3 down mix"
+
 #~ msgid "Add Bookmark"
 #~ msgstr "Add Bookmark"
+
+#~ msgid "Advanced pptions"
+#~ msgstr "Advanced pptions"
 
 #~ msgid ""
 #~ "After the start wizard is completed, you need to protect single services. "
@@ -10287,6 +10323,9 @@ msgstr "zapped"
 #~ msgid "Create movie directory"
 #~ msgstr "Create movie directory"
 
+#~ msgid "DTS downmix"
+#~ msgstr "DTS downmix"
+
 #~ msgid "Display message before next played movie"
 #~ msgstr "Display message before next played movie"
 
@@ -10301,6 +10340,12 @@ msgstr "zapped"
 
 #~ msgid "Do you want to install a channel list?"
 #~ msgstr "Do you want to install a channel list?"
+
+#~ msgid "Download .NFI-Files for USB-Flasher"
+#~ msgstr "Download .NFI-Files for USB-Flasher"
+
+#~ msgid "Download .NFI-Files for USB-flasher"
+#~ msgstr "Download .NFI-Files for USB-flasher"
 
 #~ msgid "Download Plugins"
 #~ msgstr "Download Plugins"
@@ -10345,11 +10390,26 @@ msgstr "zapped"
 #~ "\n"
 #~ "© 2006 - Stephan Reichholf"
 
+#~ msgid "Fan %d PWM"
+#~ msgstr "Fan %d PWM"
+
+#~ msgid "Fan %d voltage"
+#~ msgstr "Fan %d voltage"
+
 #~ msgid "Fast Forward speeds"
 #~ msgstr "Fast Forward speeds"
 
+#~ msgid "Fee: "
+#~ msgstr "Fee: "
+
 #~ msgid "Found %d position(s) of %d total"
 #~ msgstr "Found %d position(s) of %d total"
+
+#~ msgid "General AC3 delay (ms)"
+#~ msgstr "General AC3 delay (ms)"
+
+#~ msgid "General PCM delay (ms)"
+#~ msgstr "General PCM delay (ms)"
 
 #~ msgid "Guard Interval"
 #~ msgstr "Guard Interval"
@@ -10390,6 +10450,9 @@ msgstr "zapped"
 #~ "Items in trashcan will be deleted if less then the set space is available."
 #~ msgstr ""
 #~ "Items in trashcan will be deleted if less then the set space is available."
+
+#~ msgid "Job task(s) are in progress!"
+#~ msgstr "Job task(s) are in progress!"
 
 #~ msgid "Keep old timers for how many days"
 #~ msgstr "Keep old timers for how many days"
@@ -10583,14 +10646,29 @@ msgstr "zapped"
 #~ msgid "Show status icons in Movielist"
 #~ msgstr "Show status icons in Movielist"
 
+#~ msgid "Sleep timer"
+#~ msgstr "Sleep timer"
+
 #~ msgid "Slow Motion speeds"
 #~ msgstr "Slow Motion speeds"
+
+#~ msgid "Standby fan %d PWM"
+#~ msgstr "Standby fan %d PWM"
+
+#~ msgid "Standby fan %d voltage"
+#~ msgstr "Standby fan %d voltage"
 
 #~ msgid "Symbol Rate"
 #~ msgstr "Symbol Rate"
 
 #~ msgid "Symbolrate"
 #~ msgstr "Symbolrate"
+
+#~ msgid "TV system"
+#~ msgstr "TV system"
+
+#~ msgid "Temperature and fan control"
+#~ msgstr "Temperature and fan control"
 
 #~ msgid "Test-Messagebox?"
 #~ msgstr "Test-Messagebox?"
@@ -10625,6 +10703,16 @@ msgstr "zapped"
 #~ msgid "Videoenhancement Setup"
 #~ msgstr "Videoenhancement Setup"
 
+#~ msgid ""
+#~ "When enabled, your TV will automatically select the SCART input when you "
+#~ "switch on your receiver."
+#~ msgstr ""
+#~ "When enabled, your TV will automatically select the SCART input when you "
+#~ "switch on your receiver."
+
+#~ msgid "When finished:"
+#~ msgstr "When finished:"
+
 #~ msgid "When using scart connection, choose what color format to use."
 #~ msgstr "When using scart connection, choose what color format to use."
 
@@ -10655,6 +10743,12 @@ msgstr "zapped"
 
 #~ msgid "on end of movie"
 #~ msgstr "on end of movie"
+
+#~ msgid "scan done!"
+#~ msgstr "scan done!"
+
+#~ msgid "scan in progress - %d%% done!"
+#~ msgstr "scan in progress - %d%% done!"
 
 #~ msgid "select interface"
 #~ msgstr "select interface"

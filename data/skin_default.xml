@@ -1085,7 +1085,8 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
 		<widget name="canceltext" position="0,0" zPosition="2" size="140,40" halign="center" valign="center" font="Regular;21" backgroundColor="#9f1313" transparent="1" />
 		<widget name="oktext" position="140,0" zPosition="2" size="140,40" halign="center" valign="center" font="Regular;21" backgroundColor="#1f771f" transparent="1" />
-		<widget name="config" position="10,45" size="540,385" scrollbarMode="showOnDemand" />
+		<widget name="config" position="10,45" size="540,330" scrollbarMode="showOnDemand" />
+		<widget name="description" position="10,335" size="540,50" font="Regular;18" halign="center" valign="center"  />
 	</screen>
 	<!-- Timer log -->
 	<screen name="TimerLog" position="center,center" size="560,430" title="Timer log">
@@ -1182,5 +1183,18 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		<widget name="filelist" position="5,50" size="510,370" scrollbarMode="showOnDemand" />
+	</screen>
+	<screen name="HistoryZapSelector" position="center,center" size="350,240" title="History zap...">
+		<widget source="menu" render="Listbox" position="0,10" size="350,220" scrollbarMode="showOnDemand">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (10, 0), size = (20, 22), flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER, text = 1),
+						MultiContentEntryText(pos = (40, 0), size = (290, 22), font = 1, flags = RT_HALIGN_LEFT, text = 2)
+					],
+				 "fonts": [gFont("Regular", 22), gFont("Regular", 20)],
+				 "itemHeight": 22
+				}
+			</convert>
+		</widget>
 	</screen>
 </skin>
