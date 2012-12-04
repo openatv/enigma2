@@ -73,10 +73,10 @@ class LanguageSelection(Screen):
 	def run(self, justlocal = False):
 		print "updating language..."
 		lang = self["languages"].getCurrent()[0]
-		if lang != config.osd.language.setValue(lang):
+		if lang != config.osd.language.getValue():
 			config.osd.language.setValue(lang)
 			config.osd.language.save()
-			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[config.osd.language.value])
+			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[config.osd.language.getValue()])
 		self.setTitle(self.catalog.gettext("Language selection"))
 		self["summarylangname"].setText(self["languages"].getCurrent()[1])
 # 		index = self["languages"].getCurrent()[2]

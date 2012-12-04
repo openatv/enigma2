@@ -65,11 +65,7 @@ class Language:
 		try:
 			lang = self.lang[index]
 			print "Activating language " + lang[0]
-			if os.path.exists(resolveFilename(SCOPE_LANGUAGE, "") + lang[1] + '_' + lang[2]):
-				langfile = lang[1] + '_' + lang[2]
-			else:
-				langfile = lang[1]
-			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[langfile])
+			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[index])
 			self.catalog.install(names=("ngettext", "pgettext"))
 			self.activeLanguage = index
 			for x in self.callbacks:

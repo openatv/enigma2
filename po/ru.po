@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-14 17:59+0100\n"
-"PO-Revision-Date: 2012-12-03 19:53+0100\n"
+"PO-Revision-Date: 2012-12-04 17:20+0100\n"
 "Last-Translator: xxx\n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -5419,6 +5419,19 @@ msgstr "Сканирование %s..."
 #, python-format
 msgid "Scanning completed, %d channels found"
 msgstr "Сканирование выполнено, %d каналов найдено"
+
+#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
+#, python-format
+msgid "Scanning - %d%% completed"
+msgid_plural "Scanning - %d%% completed"
+msgstr[0] "Сканирование - %d%% завершено"
+msgstr[1] "Сканирование - %d%% завершено"
+
+#, python-format
+msgid "Scanning completed, %d channel found"
+msgid_plural "Scanning completed, %d channels found"
+msgstr[0] "Сканирование завершено, %d каналов найдено"
+msgstr[1] "Сканирование завершено, %d каналов найдено"
 
 msgid "Scanning failed!"
 msgstr "Сканирование неудачно!"
@@ -10909,10 +10922,6 @@ msgstr "Режим переподключений"
 
 msgid "Re-mount network shares every (in hours)"
 msgstr "Переподключать каждые (в часах)"
-
-#, python-format
-msgid "Scanning completed, %d channel found"
-msgstr "Сканирование выполнено, %d канало"
 
 msgid "Switch to filelist"
 msgstr "перейти к списку файло"
