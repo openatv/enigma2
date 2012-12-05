@@ -137,9 +137,9 @@ class VideoHardware:
 		if self.modes.has_key("DVI-PC") and not self.getModeList("DVI-PC"):
 			print "remove DVI-PC because of not existing modes"
 			del self.modes["DVI-PC"]
-		if getBoxType('gbquad') or getBoxType('et5x00') or getBoxType('et6x00'):
+		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'et6x00':
 			del self.modes["Scart"]
-		if getBoxType('tm2t') or getBoxType('tmsingle'):
+		if getBoxType() == 'tm2t' or getBoxType() == 'tmsingle':
 			del self.modes["YPbPr"]
 
 		self.createConfig()
