@@ -22,6 +22,7 @@ class RcModel:
 	RCTYPE_ICLASSM7 = 17
 	RCTYPE_INI5000R = 18
 	RCTYPE_INI1000 = 19
+	RCTYPE_IXUSSONE = 20
 
 	def __init__(self):
 		self.currentRcType = self.RCTYPE_DMM
@@ -99,6 +100,8 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_ODINM9
 			elif model == 'PlaySmartBox':
 				self.currentRcType = self.RCTYPE_ICLASSM7
+			elif model.startswith('Ixuss'):
+				self.currentRcType = self.RCTYPE_IXUSSONE	
 
 
 	def getRcLocation(self):
@@ -133,7 +136,9 @@ class RcModel:
 		elif self.currentRcType == self.RCTYPE_ODINM9:
 			return '/usr/share/enigma2/rc_models/odinm9/'
 		elif self.currentRcType == self.RCTYPE_ICLASSM7:
-			return '/usr/share/enigma2/rc_models/iclassm7/'			
+			return '/usr/share/enigma2/rc_models/iclassm7/'
+		elif self.currentRcType == self.RCTYPE_IXUSSONE:
+			return '/usr/share/enigma2/rc_models/ixussone/'			
 		elif self.currentRcType == self.RCTYPE_TM:
 			return '/usr/share/enigma2/rc_models/tm/'
 		elif self.currentRcType == self.RCTYPE_VU:

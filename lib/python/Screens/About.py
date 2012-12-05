@@ -100,6 +100,9 @@ class About(Screen):
 		elif getBoxType() == 'ventonhdx':
 			self["BoxType"] = StaticText(_("Hardware:") + " Venton Unibox HDx")
 			AboutText = _("Hardware:") + " Venton Unibox HDx\n"
+		elif getBoxType() == 'ixussone':
+			self["BoxType"] = StaticText(_("Hardware:") + " Ixuss One")
+			AboutText = _("Hardware:") + " Ixuss One\n"			
 		else:
 			self["BoxType"] = StaticText(_("Hardware:") + " " + getBoxType())
 			AboutText = _("Hardware:") + " " + getBoxType() + "\n"
@@ -634,6 +637,8 @@ class AboutSummary(Screen):
 			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD QUAD")
 		elif getBoxType() == 'ventonhdx':
 			self["BoxType"] = StaticText(_("Hardware:") + " Venton Unibox HDx")
+		elif getBoxType() == 'ixussone':
+			self["BoxType"] = StaticText(_("Hardware:") + " Ixuss Onex")			
 		else:
 			self["BoxType"] = StaticText(_("Hardware:") + " " + getBoxType())
 		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
