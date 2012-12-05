@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-01 16:48+0100\n"
-"PO-Revision-Date: 2012-12-02 12:58+0100\n"
+"PO-Revision-Date: 2012-12-05 19:52+0100\n"
 "Last-Translator: Magnus Nilsson <mag_nilsson@hotmail.com>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -1360,7 +1360,7 @@ msgid "Configure nameservers"
 msgstr "Konfigurera namnservers"
 
 msgid "Configure on which devices the background delete option should be used."
-msgstr "Konfigurera på vilka enheter i bakgrunden alternativet radera bör användas."
+msgstr "Konfigurera på vilka enheter radering i bakgrunden skall användas."
 
 msgid "Configure remote control type"
 msgstr "Konfigurera fjärrkontrolls typ"
@@ -1390,7 +1390,7 @@ msgid "Configure the behavior when reaching the end of a movie, during movie pla
 msgstr "Konfigurera beteendet när man når slutet av en film, under filmuppspelning."
 
 msgid "Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background."
-msgstr "Konfigurera undertextens kantbred . Den mörka gränsen gör undertexter lättare att läsa på en ljus bakgrund."
+msgstr "Konfigurera undertexternas kantbred . Den mörka gränsen gör undertexter lättare att läsa på en ljus bakgrund."
 
 msgid "Configure the brightness level of the front panel display during standby."
 msgstr "Konfigurera ljusstyrkan på frontpanelens display i viloläge."
@@ -1399,7 +1399,7 @@ msgid "Configure the brightness level of the front panel display."
 msgstr "Konfigurera ljusstyrkan på frontpanelens display."
 
 msgid "Configure the color of the teletext subtitles."
-msgstr "Konfigurera färgen på Teletext textremsor."
+msgstr "Konfigurera färgen på Teletextens undertexter"
 
 msgid "Configure the contrast level of the front panel display."
 msgstr "Konfigurera kontrastnivån på  frontpanelens display."
@@ -2021,7 +2021,7 @@ msgid "Display and userinterface"
 msgstr "Display och Användargränssnitt"
 
 msgid "Display message before playing next movie"
-msgstr "Visa meddelande innan nästa spelade film"
+msgstr "Visa meddelande innan nästa film spelas upp"
 
 #
 msgid "Display setup"
@@ -2300,13 +2300,13 @@ msgid "Enable Netmed EPG"
 msgstr "Aktivera Netmed EPG"
 
 msgid "Enable ViaSat EPG"
-msgstr "Aktivera Viasat EPG"
+msgstr "Aktivera ViaSat EPG"
 
 msgid "Enable bouquet selection in multi-EPG"
 msgstr "Vid aktiverad, visa Multi-EPG favoritlisteval"
 
 msgid "Enable freesat EPG"
-msgstr "Aktivera freesat EPG"
+msgstr "Aktivera freeSat EPG"
 
 #
 msgid "Enable multiple bouquets"
@@ -2317,7 +2317,7 @@ msgid "Enable parental control"
 msgstr "Aktivera föräldrakontroll"
 
 msgid "Enable teletext caching"
-msgstr "Aktivera text-TV cache"
+msgstr "Aktivera teletext cache"
 
 #
 msgid "Enable timer"
@@ -3186,7 +3186,7 @@ msgstr "Letterbox"
 
 #
 msgid "Limit character set for recording filenames"
-msgstr "Begränsad teckenuppsättning för inspelningsfilnamn"
+msgstr "Begränsad teckenuppsättning för inspelningens filnamn"
 
 #
 msgid "Limit east"
@@ -4429,13 +4429,13 @@ msgid "Prefer audio track stored by service"
 msgstr "Föredra ljudspår sparad av kanal"
 
 msgid "Prefer graphical DVB subtitles"
-msgstr "Föredra DVB-grafiska undertexter"
+msgstr "Föredra grafiska DVB-undertexter"
 
 msgid "Prefer subtitles for hearing impaired"
 msgstr "Föredra undertexter för hörselskadade"
 
 msgid "Prefer subtitles stored by service"
-msgstr "Föredra undertext sparad av kanal"
+msgstr "Föredra undertexter sparade av kanal"
 
 msgid "Preferred tuner"
 msgstr "Vilken tuner skall användas först?"
@@ -4905,7 +4905,7 @@ msgid "Rewind speeds"
 msgstr "Hastigheter för snabbspolning bakåt"
 
 msgid "Rewrap teletext subtitles"
-msgstr "Packa om undertexter (text-TV)"
+msgstr "Packa om teletextens undertexter"
 
 #
 msgid "Right"
@@ -5901,28 +5901,28 @@ msgid "Subservices"
 msgstr "Underkanaler"
 
 msgid "Subtitle alignment"
-msgstr "Anpassad textjustering"
+msgstr "Undertext justering"
 
 msgid "Subtitle border width"
 msgstr "Undertextens kantbredd"
 
 msgid "Subtitle delay when timing lacks"
-msgstr "Undertextens fördröjning när den inte är i synk"
+msgstr "Undertext-fördröjning när den inte är i synk"
 
 msgid "Subtitle font size"
 msgstr "Undertextens fontstorlek"
 
 msgid "Subtitle language selection 1"
-msgstr "Undertexter språkval 1"
+msgstr "Undertext språkval 1"
 
 msgid "Subtitle language selection 2"
-msgstr "Undertexter språkval 2"
+msgstr "Undertext språkval 2"
 
 msgid "Subtitle language selection 3"
-msgstr "Undertexter språkval 3"
+msgstr "Undertext språkval 3"
 
 msgid "Subtitle language selection 4"
-msgstr "Undertexter språkval 4"
+msgstr "Undertext språkval 4"
 
 #
 msgid "Subtitle position"
@@ -5930,17 +5930,17 @@ msgstr "Undertextens position"
 
 #
 msgid "Subtitle selection"
-msgstr "Textningsval"
+msgstr "Undertext val"
 
 msgid "Subtitle selection..."
-msgstr "Textningsval...."
+msgstr "Undertext val..."
 
 msgid "Subtitle settings"
-msgstr "Inställningar för undertexter"
+msgstr "Undertext inställningar"
 
 #
 msgid "Subtitles"
-msgstr "Textning"
+msgstr "Undertexter"
 
 #
 msgid "Sun"
@@ -6040,7 +6040,7 @@ msgid "Tags"
 msgstr "Märken"
 
 msgid "Teletext subtitle color"
-msgstr "Undertextens färg (text-TV)"
+msgstr "Teletextens undertextfärg"
 
 #
 msgid "Temperature and fan control"
@@ -6467,7 +6467,7 @@ msgid "To audio selection"
 msgstr "Till ljudval"
 
 msgid "To subtitle selection"
-msgstr "Välj undertext"
+msgstr "Till undertextval"
 
 msgid ""
 "To update your receiver firmware, please follow these steps:\n"
@@ -6732,16 +6732,16 @@ msgid "Use DHCP"
 msgstr "Använd DHCP"
 
 msgid "Use EIT EPG information when it is available."
-msgstr "Använd EIT EPG information när den är tillgänglig."
+msgstr "Använd EIT EPG-information när den är tillgänglig."
 
 msgid "Use FreeSat EPG information when it is available."
-msgstr "Använd Freesat EPG information när den är tillgänglig."
+msgstr "Använd FreeSat EPG-information när den är tillgänglig."
 
 msgid "Use MHW EPG information when it is available."
-msgstr "Använd MHW EPG information när den är tillgänglig."
+msgstr "Använd MHW EPG-information när den är tillgänglig."
 
 msgid "Use Netmed EPG information when it is available."
-msgstr "Använd Netmed EPG information när den är tillgänglig."
+msgstr "Använd Netmed EPG-information när den är tillgänglig."
 
 msgid "Use TV remote control"
 msgstr "Använd TV:ns fjärrkontroll"
@@ -6750,7 +6750,7 @@ msgid "Use USALS for this sat"
 msgstr "Använd usals för denna sat"
 
 msgid "Use ViaSat EPG information when it is available."
-msgstr "Använd ViaSat EPG information när den är tillgänglig."
+msgstr "Använd ViaSat EPG-information när den är tillgänglig."
 
 #
 msgid "Use a gateway"
@@ -6773,7 +6773,7 @@ msgid "Use original DVB subtitle position"
 msgstr "Använd DVB-undertextens originalposition"
 
 msgid "Use original teletext position"
-msgstr "Använd undertextens originalposition"
+msgstr "Använd teletextens originalposition"
 
 #
 msgid "Use power measurement"
@@ -6842,7 +6842,7 @@ msgid "Using tuner %s"
 msgstr "Använder Tuner %s"
 
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
-msgstr "Vanligtvis när textningsspråk är detsamma som ljudspråk, kommer textningen inte användas. Aktivera det här alternativet för att tillåta dessa undertexter."
+msgstr "Vanligtvis när undertextspråk är detsamma som ljudspråk, kommer undertexter inte användas. Aktivera det här alternativet för att tillåta dessa undertexter."
 
 #
 msgid "VCR scart"
@@ -7141,7 +7141,7 @@ msgid "When enabled, EIT data will be included in http streams. This allows a cl
 msgstr "Vid aktiverad, kommer EIT data inkluderas i http-strömmar. Detta tillåter en klientmottagare att visa EPG."
 
 msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
-msgstr "Vid aktiverad, kommer ett meddelande visas när en film är klar och nästa börjar."
+msgstr "Vid aktiverad, kommer ett meddelande visas när en film är klar och nästa kommer att starta."
 
 msgid "When enabled, a popup message will be shown when a recording starts."
 msgstr "Vid aktiverad, kommer ett meddelande visas när en inspelning startar."
@@ -7180,16 +7180,16 @@ msgid "When enabled, external subtitles (in media files) will be displayed in ye
 msgstr "Vid aktiverad, kommer externa undertexter (i mediefiler) att visas i gult, i stället för originalfärgen."
 
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
-msgstr "Vid aktiverad, är grafisk DVB-textning prioriterad  före Teletext textning, när båda är tillgängliga."
+msgstr "Vid aktiverad, är grafiska DVB-undertexter prioriterade  före Teletext undertexter, när båda är tillgängliga."
 
 msgid "When enabled, graphical DVB subtitles will be centered horizontally."
-msgstr "Vid aktiverad, kommer grafisk DVB-textning centreras horisontellt."
+msgstr "Vid aktiverad, kommer grafiska DVB-undertexter centreras horisontellt."
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
-msgstr "Vid aktiverad, kommer grafisk DVB-textning visas vid originalpositionen."
+msgstr "Vid aktiverad, kommer grafiska DVB-undertexter visas vid originalpositionen."
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Vid aktiverad, kommer grafisk DVB-textning att visas i gult, i stället för originalfärgen."
+msgstr "Vid aktiverad, kommer grafiska DVB-undertexter att visas i gult, i stället för originalfärgen."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling."
 msgstr "Vid aktiverad, avkodas http-strömmar på serversidan. (Fjärr) Klientmottagaren behöver inte göra avkodning."
@@ -7204,16 +7204,16 @@ msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Vid aktiverad, visa kanalnummer i kanallistan"
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
-msgstr "Vid aktiverad, kan textning för hörselskadade användas."
+msgstr "Vid aktiverad, kan undertexter för hörselskadade användas."
 
 msgid "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
-msgstr "Vid aktiverad, kommer textning för hörselskadade vara att föredra framför vanliga undertexter, när båda är tillgängliga."
+msgstr "Vid aktiverad, kommer undertexter för hörselskadade föredras framför vanliga undertexter, när båda är tillgängliga."
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr "Vid aktiverad, kommer teletextsidor cachas, tillåter snabbare åtkomst."
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
-msgstr "Vid aktiverad, kommer Teletext textremsor visas på deras originalposition."
+msgstr "Vid aktiverad, kommer teletext undertexter visas på deras originalposition."
 
 msgid "When enabled, the channel selection list will be hidden while listening to a radio channel"
 msgstr "Vid aktiverad, kommer kanallistan döljas när du lyssnar på en radiokanal"
@@ -7231,7 +7231,7 @@ msgid "When enabled, the lenght of each recording will be shown in the movielist
 msgstr "Vid aktiverad, kommer längden på varje inspelning att visas i filmlistan (detta kan orsaka ytterligare laddningstid)."
 
 msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
-msgstr "Vid aktiverad, kommer de ursprungliga radbrytningarna tas bort från Teletext textremsor."
+msgstr "Vid aktiverad, kommer de ursprungliga radbrytningarna plockas bort från Teletext undertexter."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
 msgstr "Vid aktiverad, kommer mottagaren automatiskt använda ljudspåret som du valde tidigare."
@@ -8571,7 +8571,7 @@ msgstr "byt till nästa ljudspår"
 
 #
 msgid "switch to the next subtitle language"
-msgstr "byt till nästa textningsspråk"
+msgstr "byt till nästa undertextspråk"
 
 msgid "talk show"
 msgstr "talk show"
@@ -8599,7 +8599,7 @@ msgstr "denna kanal är föräldraskyddad"
 
 #
 msgid "toggle time, chapter, audio, subtitle info"
-msgstr "skifta tid, kapitel, ljud, textning info"
+msgstr "skifta tid, kapitel, ljud, undertext info"
 
 msgid "top"
 msgstr "längst upp"
@@ -8717,3 +8717,4 @@ msgstr "zap"
 #
 msgid "zapped"
 msgstr "zapped"
+
