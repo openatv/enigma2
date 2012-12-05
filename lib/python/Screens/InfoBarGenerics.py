@@ -905,12 +905,12 @@ class InfoBarChannelSelection:
 		return False
 
 	def historyZap(self, direction):
-		historyitems = len(self.servicelist.history)
-		if historyitems < 1: return
+		hlen = len(self.servicelist.history)
+		if hlen < 1: return
 		mark = self.servicelist.history_pos
 		selpos = self.servicelist.history_pos + direction
 		if selpos < 0: selpos = 0
-		if selpos > historyitems-1: selpos = historyitems-1
+		if selpos > hlen-1: selpos = hlen-1
 		serviceHandler = eServiceCenter.getInstance()
 		historylist = [ ]
 		for x in self.servicelist.history:
@@ -920,35 +920,17 @@ class InfoBarChannelSelection:
 
 	def historyMenuClosed(self, retval):
 		if not retval: return
-		historyitems = len(self.servicelist.history)
+		hlen = len(self.servicelist.history)
 		pos = 0
 		for x in self.servicelist.history:
 			if x[-1] == retval: break
 			pos += 1
-		if pos < historyitems and pos != self.servicelist.history_pos:
+		if pos < hlen and pos != self.servicelist.history_pos:
 			tmp = self.servicelist.history[pos]
 			self.servicelist.history.append(tmp)
 			del self.servicelist.history[pos]
-			self.servicelist.history_pos = historyitems-1
+			self.servicelist.history_pos = hlen-1
 			self.servicelist.setHistoryPath()
-
-	def addToHistory(self, ref):
-		if self.servicePath is not None:
-			tmp=self.servicePath[:]
-			tmp.append(ref)
-			self.history.append(tmp)
-			historyitems = len(self.history)
-			x = 0
-			while x < historyitems-1:
-				if self.history[x][-1] == ref:
-					del self.history[x]
-					historyitems -= 1
-				else:
-					x += 1
-			if historyitems > 20:
-				del self.history[0]
-				historyitems -= 1
-			self.history_pos = historyitems-1
 
 	def switchChannelUp(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:

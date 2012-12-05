@@ -1599,12 +1599,15 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if self.servicePath is not None:
 			tmp=self.servicePath[:]
 			tmp.append(ref)
-			try:
-				del self.history[self.history_pos+1:]
-			except:
-				pass
 			self.history.append(tmp)
 			hlen = len(self.history)
+			x = 0
+			while x < hlen-1:
+				if self.history[x][-1] == ref:
+					del self.history[x]
+					hlen -= 1
+				else:
+					x += 1
 			if hlen > HISTORYSIZE:
 				del self.history[0]
 				hlen -= 1
