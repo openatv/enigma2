@@ -15,6 +15,7 @@ from Components.UsageConfig import preferredTimerPath
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.EventView import EventViewSimple
 from Screens.MessageBox import MessageBox
+from Screens.PictureInPicture import PictureInPicture
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 # from Tools.LoadPixmap import LoadPixmap
 from TimeDateInput import TimeDateInput
@@ -25,6 +26,13 @@ from ServiceReference import ServiceReference
 from time import localtime, time, strftime, mktime
 
 mepg_config_initialized = False
+
+# PiPServiceRelation installed?
+try:
+	from Plugins.SystemPlugins.PiPServiceRelation.plugin import getRelationDict, CONFIG_FILE
+	plugin_PiPServiceRelation_installed = True
+except:
+	plugin_PiPServiceRelation_installed = False
 
 class EPGSelection(Screen, HelpableScreen):
 	data = resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")
@@ -341,6 +349,11 @@ class EPGSelection(Screen, HelpableScreen):
 				self.type = EPG_TYPE_INFOBAR
 				self.skin = self.QuickEPG
 				self.skinName = "QuickEPG"
+				self.currentpip = None
+				if plugin_PiPServiceRelation_installed:
+					self.pipServiceRelation = getRelationDict()
+				else:
+					self.pipServiceRelation = {}
 			else:
 				self.type = EPG_TYPE_ENHANCED
 			self.list = []
@@ -822,7 +835,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def closing(self):
 		if self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toString() != self.StartRef.toString():
-			if ((self.type == 5 and config.epgselection.preview_mode_vixepg.getValue()) or (self.type == 4 and config.epgselection.preview_mode_infobar.getValue()) or (self.type == 3 and config.epgselection.preview_mode_enhanced.getValue()) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselection.preview_mode.getValue())) and (self.StartRef and self.StartBouquet):
+			if ((self.type == 5 and config.epgselection.preview_mode_vixepg.getValue()) or (self.type == 4 and (config.epgselection.preview_mode_infobar.getValue() == "1" or config.epgselection.preview_mode_infobar.getValue() == "2")) or (self.type == 3 and config.epgselection.preview_mode_enhanced.getValue()) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselection.preview_mode.getValue())) and (self.StartRef and self.StartBouquet):
 				if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 					if self.StartRef.toString().find('0:0:0:0:0:0:0:0:0')== -1:
 						self.session.nav.playService(self.StartRef)
@@ -836,6 +849,11 @@ class EPGSelection(Screen, HelpableScreen):
 						self.session.nav.playService(self.StartRef)
 			self.close(self.closeRecursive)
 		else:
+			if self.type == EPG_TYPE_INFOBAR:
+				self.session.pipshown = False
+				self.currentpip = None
+				if self.session.pip:
+					del self.session.pip
 			if self.StartRef and self.StartRef.toString().find('0:0:0:0:0:0:0:0:0') == -1 and (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR):
 					self.setServicelistSelection(self.StartBouquet, self.StartRef)
 			self.close(False)
@@ -1400,7 +1418,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.refreshTimer.start(10000)
 			else:
 				self.close('close')
-		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+		elif self.type == EPG_TYPE_ENHANCED:
 			currch = self.session.nav.getCurrentlyPlayingServiceReference()
 			currch = currch.toString()
 			switchto = ServiceReference(self.servicelist.getCurrentSelection())
@@ -1410,6 +1428,39 @@ class EPGSelection(Screen, HelpableScreen):
 				self.refreshTimer.start(10000)
 			else:
 				self.close('close')
+
+		elif self.type == EPG_TYPE_INFOBAR:
+			currch = self.session.nav.getCurrentlyPlayingServiceReference()
+			currch = currch.toString()
+			switchto = ServiceReference(self.servicelist.getCurrentSelection())
+			switchto = str(switchto)
+			if config.epgselection.preview_mode_infobar.getValue() == "2":
+				# activate standard PiP
+				if not switchto == self.currentpip:
+					n_service = self.pipServiceRelation.get(switchto,None) # PiPServiceRelation
+					if n_service is not None:
+						service = eServiceReference(n_service)
+					else:
+						service = self.servicelist.getCurrentSelection()
+					self.session.pip = self.session.instantiateDialog(PictureInPicture)
+					self.session.pip.show()
+					self.session.pip.playService(service)
+					self.session.pipshown = True
+					self.currentpip = switchto
+					self.refreshTimer.start(10000)
+				else:
+					self.session.pipshown = False
+					self.currentpip = None
+					del self.session.pip
+					self.servicelist.zap()
+					self.close('close')
+
+			elif config.epgselection.preview_mode_infobar.getValue() == "1":
+				if not switchto == currch:
+					self.servicelist.zap()
+					self.refreshTimer.start(10000)
+				else:
+					self.close('close')
 
 	def keyNumberGlobal(self, number):
 		from Screens.InfoBarGenerics import NumberZap
@@ -1458,71 +1509,6 @@ class EPGSelection(Screen, HelpableScreen):
 		if not service is None:
 			self.setServicelistSelection(bouquet, service)
 		self.onCreate()
-
-	# ChannelSelection Support
-# 	def prepareChannelSelectionDisplay(self):
-# 		# save current ref and bouquet ( for cancel )
-# 		self.curSelectedRef = eServiceReference(self.servicelist.getCurrentSelection().toString())
-# 		self.curSelectedBouquet = self.servicelist.getRoot()
-#
-# 	def cancelChannelSelection(self):
-# 		# select service and bouquet selected before started ChannelSelection
-# 		if self.servicelist.revertMode is None:
-# 			ref = self.curSelectedRef
-# 			bouquet = self.curSelectedBouquet
-# 			if ref.valid() and bouquet.valid():
-# 				# select bouquet and ref in servicelist
-# 				self.setServicelistSelection(bouquet, ref)
-# 		# close ChannelSelection
-# 		self.servicelist.revertMode = None
-# 		self.servicelist.asciiOff()
-# 		self.servicelist.close(None)
-#
-# 		# clean up
-# 		self.curSelectedRef = None
-# 		self.curSelectedBouquet = None
-# 		# display VZ data
-# 		self.servicelist_overwrite_zap()
-
-	#def switchChannelDown(self):
-		#self.prepareChannelSelectionDisplay()
-		#self.servicelist.moveDown()
-		## show ChannelSelection
-		#self.session.execDialog(self.servicelist)
-
-	#def switchChannelUp(self):
-		#self.prepareChannelSelectionDisplay()
-		#self.servicelist.moveUp()
-		## show ChannelSelection
-		#self.session.execDialog(self.servicelist)
-
-# 	def showFavourites(self):
-# 		self.prepareChannelSelectionDisplay()
-# 		self.servicelist.showFavourites()
-# 		# show ChannelSelection
-# 		self.session.execDialog(self.servicelist)
-
-# 	def openServiceList(self):
-# 		self.prepareChannelSelectionDisplay()
-# 		# show ChannelSelection
-# 		self.session.execDialog(self.servicelist)
-
-# 	def servicelist_overwrite_zap(self):
-# 		# we do not really want to zap to the service, just display data for VZ
-# 		self.currentPiP = ""
-# 		if self.isPlayable():
-# 			self.onCreate()
-
-# 	def __onClose(self):
-# 		# reverse changes of ChannelSelection
-# 		self.servicelist.zap = self.servicelist_orig_zap
-# 		self.servicelist["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
-# 			{
-# 				"cancel": self.servicelist.cancel,
-# 				"ok": self.servicelist.channelSelected,
-# 				"keyRadio": self.servicelist.setModeRadio,
-# 				"keyTV": self.servicelist.setModeTv,
-# 			})
 
 class RecordSetup(TimerEntry):
 	def __init__(self, session, timer, zap):
