@@ -4,6 +4,7 @@ from Components.config import config, ConfigSelection, ConfigSubDict, ConfigYesN
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
 from os import path
+from enigma import getBoxType
 
 try:
 	file = open("/proc/stb/info/chipset", "r")
@@ -136,8 +137,10 @@ class VideoHardware:
 		if self.modes.has_key("DVI-PC") and not self.getModeList("DVI-PC"):
 			print "remove DVI-PC because of not existing modes"
 			del self.modes["DVI-PC"]
-		if config.misc.boxtype.getValue() == 'gbquad' or config.misc.boxtype.getValue() == 'et5x00' or config.misc.boxtype.getValue() == 'et6x00':
+		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'et6x00':
 			del self.modes["Scart"]
+		if getBoxType() == 'tm2t' or getBoxType() == 'tmsingle':
+			del self.modes["YPbPr"]
 
 		self.createConfig()
 		self.readPreferredModes()
