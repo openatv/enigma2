@@ -4,6 +4,7 @@ import locale
 import os
 
 from Tools.Directories import SCOPE_LANGUAGE, resolveFilename
+from time import time, localtime, strftime
 
 class Language:
 	def __init__(self):
@@ -111,5 +112,29 @@ class Language:
 
 	def addCallback(self, callback):
 		self.callbacks.append(callback)
+
+	def updateLanguageCache(self):
+		t = localtime(time())
+		createdate = strftime("%d.%m.%Y  %H:%M:%S", t)
+		f = open('/usr/lib/enigma2/python/Components/Language_cache.py','w')
+		f.write('# -*- coding: UTF-8 -*-\n')
+		f.write('# date: ' + createdate + '\n#\n\n')
+		f.write('LANG_TEXT = {\n')
+		for lang in self.langlist:
+			catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[str(lang)])
+			T1 = catalog.gettext("Please use the UP and DOWN keys to select your language. Afterwards press the OK button.")
+			T2 = catalog.gettext("Language selection")
+			T3 = catalog.gettext("Cancel")
+			T4 = catalog.gettext("Save")
+			f.write('"' + lang + '"' + ': {\n')
+			f.write('\t "T1"' + ': "' + T1 + '",\n')
+			f.write('\t "T2"' + ': "' + T2 + '",\n')
+			f.write('\t "T3"' + ': "' + T3 + '",\n')
+			f.write('\t "T4"' + ': "' + T4 + '",\n')
+			f.write('},\n')
+		f.write('}\n')
+		f.close
+		catalog = None
+		lang = None
 
 language = Language()
