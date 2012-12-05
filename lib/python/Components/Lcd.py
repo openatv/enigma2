@@ -164,7 +164,7 @@ def standbyCounterChanged(configElement):
 	config.lcd.ledbrightnessdeepstandby.apply()
 
 def InitLcd():
-	if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo':
+	if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'tmsingle':
 		detected = False
 	else:
 		detected = eDBoxLCD.getInstance().detected()
