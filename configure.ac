@@ -227,7 +227,7 @@ if test "$with_po" = "yes"; then
 		AC_MSG_ERROR([Could not find required gettext tools])
 	fi
 fi
-AM_CONDITIONAL(UPDATE_PO, test "$with_po" = "no")
+AM_CONDITIONAL(UPDATE_PO, test "$with_po" = "yes")
 
 ENIGMA2_CFLAGS="-fno-rtti -fno-exceptions"
 AC_SUBST(ENIGMA2_CFLAGS)

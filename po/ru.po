@@ -5926,6 +5926,9 @@ msgstr "Настройка"
 msgid "Setup Mode"
 msgstr "Режим настроек"
 
+msgid "Setup mode"
+msgstr "Режим настроек"
+
 msgid "Setup how to control the channel changing."
 msgstr "Установка контроля смены канала"
 
@@ -10303,17 +10306,27 @@ msgstr "Используйте Помощник для настройки осн
 msgid "Please connect your STB_BOX to the internet"
 msgstr "Подключите ваш ресивер к сети Интернет"
 
+msgid "Please connect your receiver to the internet"
+msgstr "Подключите ваш ресивер к сети Интернет"
+
 msgid "Check the internet connection"
 msgstr "Проверьте интернет соединение"
 
 msgid "Skip internet connection check (disables automatic package installation)"
 msgstr "Пропустить проверку интернет соединения"
 
-msgid "Your internet connection is working (ip: 192.168.0.19)"
-msgstr "Соединение установлено "
+#, python-format
+msgid "Your internet connection is working (ip: %s)"
+msgstr "Соединение установлено (ip: %s)"
+
+msgid "Please wait (downloading channel list)"
+msgstr "Подожди (обновление каналов)"
 
 msgid "Please wait (updating package)"
 msgstr "Подожди (обновление пакетов)"
+
+msgid "Please wait (downloading softcam)"
+msgstr "Подожди (обновление эмулятор)"
 
 msgid "Please set up tuner A"
 msgstr "Настройте тюнер А"
@@ -10406,6 +10419,9 @@ msgid "Recording paths"
 msgstr "Путь записи"
 
 msgid "Audio Sync"
+msgstr "Аудио Синхронизация"
+
+msgid "Audio Sync Setup"
 msgstr "Аудио Синхронизация"
 
 msgid "2 wireless networks found!"
