@@ -1514,6 +1514,7 @@ class EPGSelection(Screen, HelpableScreen):
 class RecordSetup(TimerEntry):
 	def __init__(self, session, timer, zap):
 		Screen.__init__(self, session)
+		self.setup_title = ""
 		self.timer = timer
 		self.timer.justplay = zap
 		self.entryDate = None
