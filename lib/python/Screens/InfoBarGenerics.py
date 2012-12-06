@@ -222,6 +222,8 @@ class SecondInfoBar(Screen):
 			self["SecondInfoBar"].doUnbind()
 
 	def getEvent(self):
+		self["epg_description"].setText("")
+		self["channel"].setText("")
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.getNowNext()
 		epglist = self.epglist
@@ -347,8 +349,6 @@ class SecondInfoBar(Screen):
 			return 1
 
 	def setEvent(self, event):
-		text = ""
-		self["epg_description"].setText(text)
 		if event is None:
 			return
 		self.event = event
