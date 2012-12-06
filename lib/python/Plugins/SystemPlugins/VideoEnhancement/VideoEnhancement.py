@@ -27,7 +27,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			if getBoxType() == 'iclassm7':
+			if getBoxType() == 'odinm7':
 				config.pep.contrast = ConfigSlider(default=128, limits=(0,256))
 			else:
 				config.pep.contrast = ConfigSlider(default=128, limits=(0,256))			
@@ -47,7 +47,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			if getBoxType() == 'iclassm7':
+			if getBoxType() == 'odinm7':
 				config.pep.saturation = ConfigSlider(default=128, limits=(0,256))
 			else:
 				config.pep.saturation = ConfigSlider(default=128, limits=(0,256))
@@ -67,7 +67,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			if getBoxType() == 'iclassm7':
+			if getBoxType() == 'odinm7':
 				config.pep.hue = ConfigSlider(default=128, limits=(0,256))
 			else:
 				config.pep.hue = ConfigSlider(default=128, limits=(0,256))
@@ -86,7 +86,7 @@ class VideoEnhancement:
 
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
-			if getBoxType() == 'iclassm7':
+			if getBoxType() == 'odinm7':
 				config.pep.brightness = ConfigSlider(default=128, limits=(0,256))
 			else:
 				config.pep.brightness = ConfigSlider(default=128, limits=(0,256))			
@@ -179,7 +179,7 @@ class VideoEnhancement:
 
 			if getBoxType() == 'gbquad':
 				config.pep.sharpness = ConfigSlider(default=128, limits=(0,256))
-			elif getBoxType() == 'iclassm7':
+			elif getBoxType() == 'odinm7':
 				config.pep.sharpness = ConfigSlider(default=128, limits=(0,256))	
 			else:
 				config.pep.sharpness = ConfigSlider(default=0, limits=(0,256))

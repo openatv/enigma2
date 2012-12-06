@@ -23,7 +23,7 @@ from time import gmtime, strftime, localtime, sleep
 from datetime import date
 
 config.plugins.configurationbackup = ConfigSubsection()
-if getBoxType() == "odinm9" or getBoxType() == "iclassm7":
+if getBoxType() == "odinm9" or getBoxType() == "odinm7":
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
 else:	
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)

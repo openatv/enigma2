@@ -2,27 +2,29 @@ from enigma import getBoxType
 import os
 
 class RcModel:
-	RCTYPE_DMM = 0
-	RCTYPE_ET9X00 = 1
-	RCTYPE_ET6X00 = 2
-	RCTYPE_ET9500 = 3
-	RCTYPE_VU = 4
-	RCTYPE_GB = 5
-	RCTYPE_INI3000 = 6
-	RCTYPE_INI5000 = 7
-	RCTYPE_INI7000 = 8
-	RCTYPE_ODINM9 = 9
-	RCTYPE_TM = 10
-	RCTYPE_ET6500 = 11
-	RCTYPE_ET4000 = 12
-	RCTYPE_XP1000 = 13
-	RCTYPE_DMM1 = 14
-	RCTYPE_DMM2 = 15
-	RCTYPE_VU2 = 16
-	RCTYPE_ICLASSM7 = 17
-	RCTYPE_INI5000R = 18
-	RCTYPE_INI1000 = 19
-	RCTYPE_IXUSSONE = 20
+	RCTYPE_DMM1 = 0
+	RCTYPE_DMM2 = 1
+	RCTYPE_DMM = 2
+	RCTYPE_ET4000 = 3	
+	RCTYPE_ET6X00 = 4	
+	RCTYPE_ET9X00 = 5
+	RCTYPE_ET6X00 = 6
+	RCTYPE_ET6500 = 7	
+	RCTYPE_ET9500 = 8
+	RCTYPE_GB = 9
+	RCTYPE_INI1000 = 10
+	RCTYPE_INI3000 = 11
+	RCTYPE_INI5000 = 12
+	RCTYPE_INI5000R = 13
+	RCTYPE_INI7000 = 14
+	RCTYPE_IXUSSONE = 15
+	RCTYPE_ODINM7 = 16
+	RCTYPE_ODINM9 = 17	
+	RCTYPE_TM = 18
+	RCTYPE_VU = 19	
+	RCTYPE_VU2 = 20
+	RCTYPE_XP1000 = 21
+
 
 	def __init__(self):
 		self.currentRcType = self.RCTYPE_DMM
@@ -99,7 +101,7 @@ class RcModel:
 			elif model == 'odinm9':
 				self.currentRcType = self.RCTYPE_ODINM9
 			elif model == 'PlaySmartBox':
-				self.currentRcType = self.RCTYPE_ICLASSM7
+				self.currentRcType = self.RCTYPE_ODINM7
 			elif model.startswith('Ixuss'):
 				self.currentRcType = self.RCTYPE_IXUSSONE	
 
@@ -135,8 +137,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/ini7000/'
 		elif self.currentRcType == self.RCTYPE_ODINM9:
 			return '/usr/share/enigma2/rc_models/odinm9/'
-		elif self.currentRcType == self.RCTYPE_ICLASSM7:
-			return '/usr/share/enigma2/rc_models/iclassm7/'
+		elif self.currentRcType == self.RCTYPE_ODINM7:
+			return '/usr/share/enigma2/rc_models/odinm7/'
 		elif self.currentRcType == self.RCTYPE_IXUSSONE:
 			return '/usr/share/enigma2/rc_models/ixussone/'			
 		elif self.currentRcType == self.RCTYPE_TM:

@@ -56,17 +56,17 @@ elif [ $MODEL = "odinm9" ] ; then
 	MAINDEST=$DIRECTORY/odin
 	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_odin/$DATE
-## TESTING THE iclass M7 Model	
-elif [ $MODEL = "iclassm7" ] ; then
-	TYPE=ICLASS
+## TESTING THE Odin M7 Model	
+elif [ $MODEL = "odinm7" ] ; then
+	TYPE=ODINM7
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
-	SHOWNAME="ICLASS $MODEL"
+	SHOWNAME="ODIN $MODEL"
 	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/$MODEL
-	MAINDEST=$DIRECTORY/en2
+	MAINDEST=$DIRECTORY/odin
 	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_ICLASS/$DATE	
+	EXTRA=$DIRECTORY/fullbackup_odin/$DATE	
 elif [ $MODEL = "xp1000" ] ; then
 	TYPE=MAXDIGITAL
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
@@ -423,7 +423,7 @@ if [ $TYPE = "ODIN" ] ; then
 	fi
 fi
 
-if [ $TYPE = "ICLASS" ] ; then
+if [ $TYPE = "ODINM7" ] ; then
 	rm -rf $MAINDEST
 	mkdir -p $MAINDEST
 	mkdir -p $EXTRA
@@ -441,8 +441,8 @@ if [ $TYPE = "ICLASS" ] ; then
 		echo " "
 		echo "To restore the image: \n"
 		echo "Place the USB-flash drive in the (front) USB-port "
-		echo "and switch the iclass off and on with the powerswitch "
-		echo "on the back of the iclass. Follow the instructions "
+		echo "and switch the Odin M7 off and on with the powerswitch "
+		echo "on the back of the Odin M7. Follow the instructions "
 		echo "on the front-display.\n"
 		echo "\nPlease wait...almost ready! "
 	else
@@ -577,9 +577,9 @@ if [ $DIRECTORY == /hdd ]; then
 		elif [ $TYPE = "ODIN" ] ; then					# Odin detected
 			mkdir -p $TARGET/odin/$MODEL
 			cp -r $MAINDEST $TARGET/odin/
-		elif [ $TYPE = "ICLASS" ] ; then					# iclass detected
-			mkdir -p $TARGET/iclass/$MODEL
-			cp -r $MAINDEST $TARGET/en2/			
+		elif [ $TYPE = "ODINM7" ] ; then					# Odin M7 detected
+			mkdir -p $TARGET/odin/$MODEL
+			cp -r $MAINDEST $TARGET/odin/			
 		elif [ $TYPE = "MAXDIGITAL" ] ; then					# MaxDigital detected
 			mkdir -p $TARGET/$MODEL
 			cp -r $MAINDEST $TARGET
