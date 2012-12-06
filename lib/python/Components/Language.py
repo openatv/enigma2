@@ -79,6 +79,7 @@ class Language:
 				pass
 		# HACK: sometimes python 2.7 reverts to the LC_TIME environment value, so make sure it has the correct value
 		os.environ["LC_TIME"] = self.getLanguage() + '.UTF-8'
+		os.environ["LANGUAGE"] = self.getLanguage() + '.UTF-8'
 
 	def activateLanguageIndex(self, index):
 		if index < len(self.langlist):
