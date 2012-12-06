@@ -99,7 +99,7 @@ class About(Screen):
 			tempinfo = open('/proc/stb/sensors/temp0/value', 'r').read()
 		elif path.exists('/proc/stb/fp/temp_sensor'):
 			tempinfo = open('/proc/stb/fp/temp_sensor', 'r').read()
-		if tempinfo:
+		if tempinfo and int(tempinfo.replace('\n','')) > 0:
 			mark = str('\xc2\xb0')
 			AboutText += _("System temperature:") + " " + tempinfo.replace('\n','') + mark + "C\n\n"
 
