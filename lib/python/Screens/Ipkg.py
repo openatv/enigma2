@@ -9,11 +9,11 @@ from enigma import eTimer
 class Ipkg(Screen):
 	def __init__(self, session, cmdList = []):
 		Screen.__init__(self, session)
-		
+
 		self.cmdList = cmdList
 
 		self.sliderPackages = {}
-		
+
 		self.slider = Slider(0, len(cmdList))
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
@@ -22,28 +22,28 @@ class Ipkg(Screen):
 		self["status"] = self.status
 		self.package = Label()
 		self["package"] = self.package
-		
+
 		self.packages = 0
 		self.error = 0
 		self.processed_packages = []
-		
+
 		self.activity = 0
 		self.activityTimer = eTimer()
 		self.activityTimer.callback.append(self.doActivityTimer)
 		#self.activityTimer.start(100, False)
-				
+
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
-		
+
 		self.runningCmd = None
 		self.runNextCmd()
-		
-		self["actions"] = ActionMap(["WizardActions"], 
+
+		self["actions"] = ActionMap(["WizardActions"],
 		{
-			"ok": self.exit, 
+			"ok": self.exit,
 			"back": self.exit
 		}, -1)
-		
+
 	def runNextCmd(self):
 		if self.runningCmd is None:
 			self.runningCmd = 0
@@ -53,16 +53,16 @@ class Ipkg(Screen):
 		if len(self.cmdList) - 1 < self.runningCmd:
 			self.activityslider.setValue(0)
 			self.slider.setValue(len(self.cmdList))
-				
+
 			self.package.setText("")
-			self.status.setText(_("Done - Installed, upgraded or removed %d packages with %d errors") % (self.packages, self.error))
+			self.status.setText(ngettext("Done - Installed, upgraded or removed %d package (%s)", "Done - Installed, upgraded or removed %d packages (%s)", self.packages) % (self.packages, ngettext("with %d error", "with %d errors", self.error) % self.error))
 			return False
 		else:
 			cmd = self.cmdList[self.runningCmd]
 			self.slider.setValue(self.runningCmd)
 			self.ipkg.startCmd(cmd[0], args = cmd[1])
 			self.startActivityTimer()
-			
+
 	def doActivityTimer(self):
 		if not self.ipkg.isRunning():
 			self.stopActivityTimer()
@@ -71,13 +71,13 @@ class Ipkg(Screen):
 			if self.activity == 100:
 				self.activity = 0
 			self.activityslider.setValue(self.activity)
-		
+
 	def startActivityTimer(self):
 		self.activityTimer.start(100, False)
-		
+
 	def stopActivityTimer(self):
 		self.activityTimer.stop()
-		
+
 	def ipkgCallback(self, event, param):
 		if event == IpkgComponent.EVENT_DOWNLOAD:
 			self.status.setText(_("Downloading"))

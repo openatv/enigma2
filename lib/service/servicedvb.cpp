@@ -90,11 +90,12 @@ int eStaticServiceDVBInformation::isPlayable(const eServiceReference &ref, const
 	else
 	{
 		eDVBChannelID chid, chid_ignore;
+		int system;
 		((const eServiceReferenceDVB&)ref).getChannelID(chid);
 		((const eServiceReferenceDVB&)ignore).getChannelID(chid_ignore);
-		return res_mgr->canAllocateChannel(chid, chid_ignore);
+		return res_mgr->canAllocateChannel(chid, chid_ignore, system);
 	}
-	return false;
+	return 0;
 }
 
 PyObject *eStaticServiceDVBInformation::getInfoObject(const eServiceReference &r, int what)
@@ -229,23 +230,24 @@ int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref
 				{ 1, 2, 3 }, // -T -C -S
 				{ 2, 1, 3 }  // -T -S -C
 			};
+			int system;
 			((const eServiceReferenceDVB&)*it).getChannelID(chid);
-			int tmp=res->canAllocateChannel(chid, chid_ignore, simulate);
-			switch(tmp)
+			int tmp = res->canAllocateChannel(chid, chid_ignore, system, simulate);
+			if (tmp > 0)
 			{
-				case 0:
-					break;
-				case 30000: // cached DVB-T channel
-				case 1: // DVB-T frontend
-					tmp = prio_map[prio_order][2];
-					break;
-				case 40000: // cached DVB-C channel
-				case 2:
-					tmp = prio_map[prio_order][1];
-					break;
-				default: // DVB-S
-					tmp = prio_map[prio_order][0];
-					break;
+				switch (system)
+				{
+					case iDVBFrontend::feTerrestrial:
+						tmp = prio_map[prio_order][2];
+						break;
+					case iDVBFrontend::feCable:
+						tmp = prio_map[prio_order][1];
+						break;
+					default:
+					case iDVBFrontend::feSatellite:
+						tmp = prio_map[prio_order][0];
+						break;
+				}
 			}
 			if (tmp > cur)
 			{

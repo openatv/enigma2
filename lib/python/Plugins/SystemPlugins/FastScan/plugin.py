@@ -61,7 +61,7 @@ class FastScan:
 		if result < 0:
 			self.text.setText(_('Scanning failed!'))
 		else:
-			self.text.setText(_('List version %d, found %d channels') % (self.scan.getVersion(), result))
+			self.text.setText(ngettext('List version %d, found %d channel', 'List version %d, found %d channels', result) % (self.scan.getVersion(), result))
 
 	def destroy(self):
 		pass
@@ -92,7 +92,7 @@ class FastScanStatus(Screen):
 		self.prevservice = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.stopService()
 
-		self["actions"] = ActionMap(["OkCancelActions"], 
+		self["actions"] = ActionMap(["OkCancelActions"],
 			{
 				"ok": self.ok,
 				"cancel": self.cancel
@@ -111,7 +111,7 @@ class FastScanStatus(Screen):
 		if self["scan"].isDone():
 			self.restoreService()
 			self.close()
-	
+
 	def cancel(self):
 		self.restoreService()
 		self.close()
