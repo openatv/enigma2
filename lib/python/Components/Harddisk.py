@@ -117,14 +117,14 @@ class Harddisk:
 		elif self.type == DEVTYPE_DEVFS:
 			ide_cf = self.device[:2] == "hd" and "host0" not in self.dev_path
 
-		internal = "pci" in self.phys_path
+		internal = ("pci" or "ata") in self.phys_path
 
 		if ide_cf:
-			ret = "External (CF)"
+			ret = _("External (CF)")
 		elif internal:
-			ret = "Internal"
+			ret = _("Internal")
 		else:
-			ret = "External"
+			ret = _("External")
 		return ret
 
 	def diskSize(self):
@@ -459,7 +459,7 @@ class Harddisk:
 		from enigma import eTimer
 
 		# disable HDD standby timer
-		if self.bus() == "External":
+		if self.bus() == _("External"):
 			Console().ePopen(("sdparm", "sdparm", "--set=SCT=0", self.disk_path))
 		else:
 			Console().ePopen(("hdparm", "hdparm", "-S0", self.disk_path))
@@ -489,7 +489,7 @@ class Harddisk:
 			self.is_sleeping = True
 
 	def setSleep(self):
-		if self.bus() == "External":
+		if self.bus() == _("External"):
 			Console().ePopen(("sdparm", "sdparm", "--flexible", "--readonly", "--command=stop", self.disk_path))
 		else:
 			Console().ePopen(("hdparm", "hdparm", "-y", self.disk_path))
