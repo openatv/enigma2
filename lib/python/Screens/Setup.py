@@ -27,8 +27,9 @@ class SetupSummary(Screen):
 		self["SetupTitle"] = StaticText(_(parent.setup_title))
 		self["SetupEntry"] = StaticText("")
 		self["SetupValue"] = StaticText("")
-		self.onShow.append(self.addWatcher)
-		self.onHide.append(self.removeWatcher)
+		if hasattr(self.parent,"onChangedEntry"):
+			self.onShow.append(self.addWatcher)
+			self.onHide.append(self.removeWatcher)
 
 	def addWatcher(self):
 		self.parent.onChangedEntry.append(self.selectionChanged)
@@ -40,8 +41,10 @@ class SetupSummary(Screen):
 		self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
 
 	def selectionChanged(self):
-		self["SetupEntry"].text = self.parent.getCurrentEntry()
-		self["SetupValue"].text = self.parent.getCurrentValue()
+		if hasattr(self.parent,"getCurrentEntry"):
+			self["SetupEntry"].text = self.parent.getCurrentEntry()
+		if hasattr(self.parent,"getCurrentValue"):
+			self["SetupValue"].text = self.parent.getCurrentValue()
 		if hasattr(self.parent,"getCurrentDescription"):
 			self.parent["description"].text = self.parent.getCurrentDescription()
 
