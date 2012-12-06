@@ -353,6 +353,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.type = EPG_TYPE_INFOBAR
 				self.skin = self.QuickEPG
 				self.skinName = "QuickEPG"
+				self.session.pipshown = False
 				self.currentpip = None
 				if plugin_PiPServiceRelation_installed:
 					self.pipServiceRelation = getRelationDict()
@@ -862,9 +863,9 @@ class EPGSelection(Screen, HelpableScreen):
 			self.close(self.closeRecursive)
 		else:
 			if self.type == EPG_TYPE_INFOBAR:
-				self.session.pipshown = False
-				self.currentpip = None
-				if self.session.pip:
+				if self.session.pipshown:
+					self.session.pipshown = False
+					self.currentpip = None
 					del self.session.pip
 			if self.StartRef and self.StartRef.toString().find('0:0:0:0:0:0:0:0:0') == -1 and (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR):
 					self.setServicelistSelection(self.StartBouquet, self.StartRef)
@@ -1559,6 +1560,7 @@ class EPGSelection(Screen, HelpableScreen):
 class RecordSetup(TimerEntry):
 	def __init__(self, session, timer, zap):
 		Screen.__init__(self, session)
+		self.setup_title = ""
 		self.timer = timer
 		self.timer.justplay = zap
 		self.entryDate = None
