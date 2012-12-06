@@ -135,7 +135,7 @@ class VideoHardware:
 			del self.modes["DVI-PC"]
 		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle':
 			del self.modes["YPbPr"]
-		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'odinm7':
+		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'odinm7' or getBoxType() == 'ixussone':
 			del self.modes["Scart"]
 
 		self.createConfig()
