@@ -178,6 +178,7 @@ class SecondInfoBar(Screen):
 		Screen.__init__(self, session)
 		self.skin = None
 
+
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
 	fancy animations. """
