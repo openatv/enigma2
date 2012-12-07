@@ -95,7 +95,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		self.found_sats = []
 
 		if not self.openFrontend():
-			self.oldref = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.session.nav.stopService()
 			if not self.openFrontend():
 				if self.session.pipshown:
