@@ -279,7 +279,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.log(7, "prepare failed")
 			if self.first_try_prepare:
 				self.first_try_prepare = False
-				cur_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
+				cur_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference(False)
 				if cur_ref and not cur_ref.getPath():
 					if not config.recording.asktozap.value:
 						self.log(8, "asking user to zap away")
