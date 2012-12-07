@@ -100,7 +100,7 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_INI7000
 			elif model == 'odinm9':
 				self.currentRcType = self.RCTYPE_ODINM9
-			elif model == 'PlaySmartBox':
+			elif model == 'odinm7':
 				self.currentRcType = self.RCTYPE_ODINM7
 			elif model.startswith('Ixuss'):
 				self.currentRcType = self.RCTYPE_IXUSSONE	
