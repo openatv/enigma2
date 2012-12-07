@@ -1,5 +1,4 @@
 from Components.ActionMap import ActionMap
-from Components.About import about
 from Components.config import getConfigListEntry, config, ConfigSubsection, ConfigText, ConfigSelection, ConfigInteger, ConfigClock, NoSave
 from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
@@ -132,7 +131,7 @@ class CronTimers(Screen):
 		self.message.setTitle(_('Removing Service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
-	def removeComplete(self,result = None, retval = None, extra_args = None):
+	def removeComplete(self, result = None, retval = None, extra_args = None):
 		self.message.close()
 		self.close()
 
@@ -147,7 +146,7 @@ class CronTimers(Screen):
 			else:
 				name = ""
 		except:
-				name = ""
+			name = ""
 		desc = _("Current Status:") + ' ' +self.summary_running
 		for cb in self.onChangedEntry:
 			cb(name, desc)
@@ -173,7 +172,7 @@ class CronTimers(Screen):
 	def addtocron(self):
 		self.session.openWithCallback(self.updateList, CronTimersConfig)
 
-	def updateList(self,result = None, retval = None, extra_args = None):
+	def updateList(self, result = None, retval = None, extra_args = None):
 		import process
 		p = process.ProcessList()
 		crond_process = str(p.named('crond')).strip('[]')

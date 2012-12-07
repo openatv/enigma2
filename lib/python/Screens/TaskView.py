@@ -1,6 +1,6 @@
-from Screen import Screen
+from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, ConfigSubsection, ConfigSelection, getConfigListEntry
+from Components.config import ConfigSubsection, ConfigSelection, getConfigListEntry
 from Components.SystemInfo import SystemInfo
 from Components.Task import job_manager
 from InfoBarGenerics import InfoBarNotifications

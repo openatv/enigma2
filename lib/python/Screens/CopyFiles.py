@@ -1,5 +1,4 @@
 import Components.Task
-from twisted.internet import reactor, threads, task
 from shutil import move, copy2, rmtree
 
 class FailedPostcondition(Components.Task.Condition):
@@ -23,7 +22,7 @@ class CopyFileTask(Components.Task.PythonTask):
 			except Exception, e:
 				errors.append(e)
 		if errors:
-			 raise errors[0]
+			raise errors[0]
 
 class MoveFileTask(CopyFileTask):
 	def work(self):
@@ -35,7 +34,7 @@ class MoveFileTask(CopyFileTask):
 			except Exception, e:
 				errors.append(e)
 		if errors:
-			 raise errors[0]
+			raise errors[0]
 
 class DeleteFolderTask(CopyFileTask):
 	def work(self):
@@ -46,7 +45,7 @@ class DeleteFolderTask(CopyFileTask):
 		except Exception, e:
 			errors.append(e)
 		if errors:
-			 raise errors[0]
+			raise errors[0]
 
 def copyFiles(fileList, name):
 	name = _("Copy") + " " + name

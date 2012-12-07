@@ -1,7 +1,6 @@
 from Screens.Screen import Screen
-from Components.ConfigList import ConfigListScreen, ConfigList
+from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap
-from Components.Sources.FrontendStatus import FrontendStatus
 from Components.Sources.StaticText import StaticText
 from Components.config import config, configfile, getConfigListEntry
 from Components.NimManager import nimmanager, InitNimManager
@@ -24,13 +23,13 @@ class AutoDiseqc(Screen, ConfigListScreen):
 	]
 
 	sat_frequencies = [
-		# astra 192 zdf
-		( 11953, 27500, \
-		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_3_4, \
-		eDVBFrontendParametersSatellite.Inversion_Off, 192, \
+		# astra 282 bbc
+		( 10773, 22000, \
+		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_5_6, \
+		eDVBFrontendParametersSatellite.Inversion_Off, 282, \
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
 		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
-		1079, 1, "Astra 1 19.2e"),
+		2045, 2, "Astra 2 28.2e"),
 
 		# astra 235 astra ses
 		( 12168, 27500, \
@@ -40,13 +39,13 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
 		3224, 3, "Astra 3 23.5e"),
 
-		# astra 282 bbc
-		( 10773, 22000, \
-		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_5_6, \
-		eDVBFrontendParametersSatellite.Inversion_Off, 282, \
+		# astra 192 zdf
+		( 11953, 27500, \
+		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_3_4, \
+		eDVBFrontendParametersSatellite.Inversion_Off, 192, \
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
 		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
-		2045, 2, "Astra 2 28.2e"),
+		1079, 1, "Astra 1 19.2e"),
 
 		# hotbird 130 rai
 		( 10992, 27500, \

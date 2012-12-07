@@ -1,8 +1,4 @@
-import gettext
-
-from Screen import Screen
-from Screens.Wizard import WizardSummary
-
+from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Language import language
 from Components.config import config
@@ -14,8 +10,8 @@ from Components.Pixmap import Pixmap
 from Screens.Rc import Rc
 
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_LANGUAGE
-
 from Tools.LoadPixmap import LoadPixmap
+import gettext
 
 def LanguageEntryComponent(file, name, index):
 	png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/" + index + ".png"))

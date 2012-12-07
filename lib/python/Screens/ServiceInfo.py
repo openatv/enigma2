@@ -1,6 +1,6 @@
 from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
-from Screen import Screen
+from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from ServiceReference import ServiceReference

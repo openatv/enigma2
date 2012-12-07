@@ -1,4 +1,4 @@
-from Screen import Screen
+from Screens.Screen import Screen
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap
@@ -8,16 +8,14 @@ from Components.Sources.StaticText import StaticText
 from Components.ScrollLabel import ScrollLabel
 from Components.PluginComponent import plugins
 from Components.MenuList import MenuList
-from Components.TimerList import TimerList
 from Components.UsageConfig import preferredTimerPath
 from enigma import eEPGCache, eTimer, eServiceReference
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
-from TimerEntry import TimerEntry
+from Screens.TimerEntry import TimerEntry
 from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from Tools.BoundFunction import boundFunction
 from time import localtime
-from Components.config import config
 
 class EventViewContextMenu(Screen):
 	def __init__(self, session, service, event):
@@ -57,7 +55,7 @@ class EventViewBase:
 	def __init__(self, Event, Ref, callback=None, similarEPGCB=None):
 		self.similarEPGCB = similarEPGCB
 		self.cbFunc = callback
-		self.currentService=Ref
+		self.currentService = Ref
 		self.isRecording = (not Ref.ref.flags & eServiceReference.isGroup) and Ref.ref.getPath()
 		self.event = Event
 		self["epg_description"] = ScrollLabel()
@@ -178,7 +176,7 @@ class EventViewBase:
 			self.setTitle(event.getEventName())
 		except:
 			pass
- 		text = ""
+		text = ""
 		description = event.getShortDescription()
 		extended = event.getExtendedDescription()
 		if description and extended:
@@ -190,7 +188,7 @@ class EventViewBase:
 		self["duration"].setText(_("%d min")%(event.getDuration()/60))
 		self["key_red"].setText("")
 		if self.SimilarBroadcastTimer is not None:
-			self.SimilarBroadcastTimer.start(400,True)
+			self.SimilarBroadcastTimer.start(400, True)
 
 		serviceref = self.currentService
 		eventid = self.event.getEventId()
