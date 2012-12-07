@@ -1,4 +1,4 @@
-from Screen import Screen
+from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import NumberActionMap
 from Components.config import config, getConfigListEntry, ConfigNothing, NoSave, ConfigPIN
@@ -187,7 +187,7 @@ class ParentalControlEditor(Screen):
 		Screen.setTitle(self, _("Parental control editor"))
 		self.list = []
 		self.servicelist = ParentalControlList(self.list)
-		self["servicelist"] = self.servicelist;
+		self["servicelist"] = self.servicelist
 		#self.onShown.append(self.chooseLetter)
 		self.currentLetter = chr(SPECIAL_CHAR)
 		self.readServiceList()
@@ -275,7 +275,7 @@ class ParentalControlBouquetEditor(Screen):
 		self.skinName = "ParentalControlEditor"
 		self.list = []
 		self.bouquetslist = ParentalControlList(self.list)
-		self["servicelist"] = self.bouquetslist;
+		self["servicelist"] = self.bouquetslist
 		self.readBouquetList()
 		self.onLayoutFinish.append(self.selectBouquet)
 

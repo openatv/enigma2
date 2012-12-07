@@ -2,12 +2,11 @@ from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Sources.StaticText import StaticText
-from Components.Harddisk import harddiskmanager,Harddisk
+from Components.Harddisk import Harddisk
 from Components.NimManager import nimmanager
 from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
-from Screens.SoftwareUpdate import SoftwareUpdateChanges
 from enigma import eTimer, getBoxType
 
 from Components.Pixmap import MultiPixmap

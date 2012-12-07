@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from Screen import Screen
+from Screens.Screen import Screen
 import ChannelSelection
 from ServiceReference import ServiceReference
 from Components.config import config, ConfigSelection, ConfigText, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry
@@ -15,6 +15,7 @@ from Screens.MovieSelection import getPreferredTagEditor
 from Screens.LocationBox import MovieLocationBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
+from Screens.Setup import SetupSummary
 from RecordTimer import AFTEREVENT
 from enigma import eEPGCache, eServiceReference
 from time import localtime, mktime, time, strftime
@@ -61,99 +62,99 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.selectionChanged()
 
 	def createConfig(self):
-			justplay = self.timer.justplay
+		justplay = self.timer.justplay
 
-			afterevent = {
-				AFTEREVENT.NONE: "nothing",
-				AFTEREVENT.DEEPSTANDBY: "deepstandby",
-				AFTEREVENT.STANDBY: "standby",
-				AFTEREVENT.AUTO: "auto"
-				}[self.timer.afterEvent]
+		afterevent = {
+			AFTEREVENT.NONE: "nothing",
+			AFTEREVENT.DEEPSTANDBY: "deepstandby",
+			AFTEREVENT.STANDBY: "standby",
+			AFTEREVENT.AUTO: "auto"
+			}[self.timer.afterEvent]
 
-			if self.timer.record_ecm and self.timer.descramble:
-				recordingtype = "descrambled+ecm"
-			elif self.timer.record_ecm:
-				recordingtype = "scrambled+ecm"
-			elif self.timer.descramble:
-				recordingtype = "normal"
+		if self.timer.record_ecm and self.timer.descramble:
+			recordingtype = "descrambled+ecm"
+		elif self.timer.record_ecm:
+			recordingtype = "scrambled+ecm"
+		elif self.timer.descramble:
+			recordingtype = "normal"
 
-			weekday_table = ("mon", "tue", "wed", "thu", "fri", "sat", "sun")
+		weekday_table = ("mon", "tue", "wed", "thu", "fri", "sat", "sun")
 
-			# calculate default values
-			day = []
-			weekday = 0
-			for x in (0, 1, 2, 3, 4, 5, 6):
-				day.append(0)
-			if self.timer.repeated: # repeated
-				type = "repeated"
-				if (self.timer.repeated == 31): # Mon-Fri
-					repeated = "weekdays"
-				elif (self.timer.repeated == 127): # daily
-					repeated = "daily"
-				else:
-					flags = self.timer.repeated
-					repeated = "user"
-					count = 0
-					for x in (0, 1, 2, 3, 4, 5, 6):
-						if flags == 1: # weekly
-# 							print "Set to weekday " + str(x)
-							weekday = x
-						if flags & 1 == 1: # set user defined flags
-							day[x] = 1
-							count += 1
-						else:
-							day[x] = 0
-						flags = flags >> 1
-					if count == 1:
-						repeated = "weekly"
-			else: # once
-				type = "once"
-				repeated = None
-				weekday = int(strftime("%u", localtime(self.timer.begin))) - 1
-				day[weekday] = 1
-
-			self.timerentry_justplay = ConfigSelection(choices = [("zap", _("zap")), ("record", _("record"))], default = {0: "record", 1: "zap"}[justplay])
-			if SystemInfo["DeepstandbySupport"]:
-				shutdownString = _("go to deep standby")
+		# calculate default values
+		day = []
+		weekday = 0
+		for x in (0, 1, 2, 3, 4, 5, 6):
+			day.append(0)
+		if self.timer.repeated: # repeated
+			type = "repeated"
+			if (self.timer.repeated == 31): # Mon-Fri
+				repeated = "weekdays"
+			elif (self.timer.repeated == 127): # daily
+				repeated = "daily"
 			else:
-				shutdownString = _("shut down")
-			self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("auto", _("auto"))], default = afterevent)
-			self.timerentry_recordingtype = ConfigSelection(choices = [("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default = recordingtype)
-			self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
-			self.timerentry_name = ConfigText(default = self.timer.name.replace('\xc2\x86', '').replace('\xc2\x87', '').encode("utf-8"), visible_width = 50, fixed_size = False)
-			self.timerentry_description = ConfigText(default = self.timer.description, visible_width = 50, fixed_size = False)
-			self.timerentry_tags = self.timer.tags[:]
-			self.timerentry_tagsset = ConfigSelection(choices = [not self.timerentry_tags and "None" or " ".join(self.timerentry_tags)])
+				flags = self.timer.repeated
+				repeated = "user"
+				count = 0
+				for x in (0, 1, 2, 3, 4, 5, 6):
+					if flags == 1: # weekly
+# 							print "Set to weekday " + str(x)
+						weekday = x
+					if flags & 1 == 1: # set user defined flags
+						day[x] = 1
+						count += 1
+					else:
+						day[x] = 0
+					flags = flags >> 1
+				if count == 1:
+					repeated = "weekly"
+		else: # once
+			type = "once"
+			repeated = None
+			weekday = int(strftime("%u", localtime(self.timer.begin))) - 1
+			day[weekday] = 1
 
-			self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
+		self.timerentry_justplay = ConfigSelection(choices = [("zap", _("zap")), ("record", _("record"))], default = {0: "record", 1: "zap"}[justplay])
+		if SystemInfo["DeepstandbySupport"]:
+			shutdownString = _("go to deep standby")
+		else:
+			shutdownString = _("shut down")
+		self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("auto", _("auto"))], default = afterevent)
+		self.timerentry_recordingtype = ConfigSelection(choices = [("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default = recordingtype)
+		self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
+		self.timerentry_name = ConfigText(default = self.timer.name.replace('\xc2\x86', '').replace('\xc2\x87', '').encode("utf-8"), visible_width = 50, fixed_size = False)
+		self.timerentry_description = ConfigText(default = self.timer.description, visible_width = 50, fixed_size = False)
+		self.timerentry_tags = self.timer.tags[:]
+		self.timerentry_tagsset = ConfigSelection(choices = [not self.timerentry_tags and "None" or " ".join(self.timerentry_tags)])
 
-			self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
-			self.timerentry_starttime = ConfigClock(default = self.timer.begin)
-			self.timerentry_endtime = ConfigClock(default = self.timer.end)
-			self.timerentry_showendtime = ConfigSelection(default = ((self.timer.end - self.timer.begin) > 4), choices = [(True, _("yes")), (False, _("no"))])
+		self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
 
-			default = self.timer.dirname or defaultMoviePath()
-			tmp = config.movielist.videodirs.getValue()
-			if default not in tmp:
-				tmp.append(default)
-			self.timerentry_dirname = ConfigSelection(default = default, choices = tmp)
+		self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
+		self.timerentry_starttime = ConfigClock(default = self.timer.begin)
+		self.timerentry_endtime = ConfigClock(default = self.timer.end)
+		self.timerentry_showendtime = ConfigSelection(default = ((self.timer.end - self.timer.begin) > 4), choices = [(True, _("yes")), (False, _("no"))])
 
-			self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = _("%d.%B %Y"), increment = 86400)
+		default = self.timer.dirname or defaultMoviePath()
+		tmp = config.movielist.videodirs.getValue()
+		if default not in tmp:
+			tmp.append(default)
+		self.timerentry_dirname = ConfigSelection(default = default, choices = tmp)
 
-			self.timerentry_weekday = ConfigSelection(default = weekday_table[weekday], choices = [("mon",_("Monday")), ("tue", _("Tuesday")), ("wed",_("Wednesday")), ("thu", _("Thursday")), ("fri", _("Friday")), ("sat", _("Saturday")), ("sun", _("Sunday"))])
+		self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = _("%d.%B %Y"), increment = 86400)
 
-			self.timerentry_day = ConfigSubList()
-			for x in (0, 1, 2, 3, 4, 5, 6):
-				self.timerentry_day.append(ConfigYesNo(default = day[x]))
+		self.timerentry_weekday = ConfigSelection(default = weekday_table[weekday], choices = [("mon",_("Monday")), ("tue", _("Tuesday")), ("wed",_("Wednesday")), ("thu", _("Thursday")), ("fri", _("Friday")), ("sat", _("Saturday")), ("sun", _("Sunday"))])
 
-			# FIXME some service-chooser needed here
-			servicename = "N/A"
-			try: # no current service available?
-				servicename = str(self.timer.service_ref.getServiceName())
-			except:
-				pass
-			self.timerentry_service_ref = self.timer.service_ref
-			self.timerentry_service = ConfigSelection([servicename])
+		self.timerentry_day = ConfigSubList()
+		for x in (0, 1, 2, 3, 4, 5, 6):
+			self.timerentry_day.append(ConfigYesNo(default = day[x]))
+
+		# FIXME some service-chooser needed here
+		servicename = "N/A"
+		try: # no current service available?
+			servicename = str(self.timer.service_ref.getServiceName())
+		except:
+			pass
+		self.timerentry_service_ref = self.timer.service_ref
+		self.timerentry_service = ConfigSelection([servicename])
 
 	def createSetup(self, widget):
 		self.list = []
@@ -225,7 +226,6 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.setTitle(_(self.setup_title))
 
 	def createSummary(self):
-		from Screens.Setup import SetupSummary
 		return SetupSummary
 
 	# for summary:
@@ -457,7 +457,7 @@ class TimerEntry(Screen, ConfigListScreen):
 class TimerLog(Screen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
-		self.timer = timer;
+		self.timer = timer
 		self.log_entries = self.timer.log_entries[:]
 
 		self.fillLogList()

@@ -7,7 +7,6 @@ from Components.config import config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Tools.Notifications import AddPopup
 from enigma import eEPGCache
-from SleepTimer import SleepTimer
 from time import time
 
 class SleepTimerEdit(ConfigListScreen, Screen):

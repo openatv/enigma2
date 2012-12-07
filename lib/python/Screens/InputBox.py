@@ -1,4 +1,4 @@
-from enigma import eRCInput, getPrevAsciiCode
+from enigma import getPrevAsciiCode
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import NumberActionMap

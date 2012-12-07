@@ -161,7 +161,7 @@ def parseCoordinate(s, e, size=0, font=None):
 	if s == "center":
 		val = (e - size)/2
 	elif s == '*':
-	        return None
+		return None
 	else:
 		if s[0] is 'e':
 			val = e
@@ -170,14 +170,14 @@ def parseCoordinate(s, e, size=0, font=None):
 			val = e/2
 			s = s[1:]
 		else:
-			val = 0;
+			val = 0
 		if s:
 			if s[-1] is '%':
 				val += e * int(s[:-1]) / 100
 			elif s[-1] is 'w':
-			        val += fonts[font][3] * int(s[:-1]);
+			        val += fonts[font][3] * int(s[:-1])
 			elif s[-1] is 'h':
-			        val += fonts[font][2] * int(s[:-1]);
+			        val += fonts[font][2] * int(s[:-1])
 			else:
 				val += int(s)
 	if val < 0:
@@ -256,12 +256,12 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 			# Similar situation for a scrollbar in a listbox; when the scrollbar setting is applied after
 			# the size, a scrollbar will not be shown until the selection moves for the first time
 			if attrib == 'size':
-			        size = value.encode("utf-8")
+				size = value.encode("utf-8")
 			elif attrib == 'position':
-			        pos = value.encode("utf-8")
+				pos = value.encode("utf-8")
 			elif attrib == 'font':
-			        font = value.encode("utf-8")
-			        skinAttributes.append((attrib, font))
+				font = value.encode("utf-8")
+				skinAttributes.append((attrib, font))
 			else:
 				skinAttributes.append((attrib, value.encode("utf-8")))
 	if pos is not None:
@@ -583,7 +583,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			offset = parseSize(get_attr("offset"), ((1,1),(1,1)))
 			font = parseFont(get_attr("font"), ((1,1),(1,1)))
 
-		style.setTitleFont(font);
+		style.setTitleFont(font)
 		style.setTitleOffset(offset)
 		#print "  ", font, offset
 		for borderset in windowstyle.findall("borderset"):
@@ -713,7 +713,7 @@ class SkinContext:
 				self.w = None
 				self.h = None
 	def __str__(self):
-	        return "Context (%s,%s)+(%s,%s) " % (self.x, self.y, self.w, self.h)
+		return "Context (%s,%s)+(%s,%s) " % (self.x, self.y, self.w, self.h)
 	def parse(self, pos, size, font):
 		if pos == "fill":
 			pos = (self.x, self.y)
@@ -806,7 +806,7 @@ def readSkin(screen, skin, names, desktop):
 					sid = candidate.attrib.get('id', None)
 					if (not sid) or (int(sid) == display_skin_id):
 						myscreen = candidate
-						break;
+						break
 			else:
 				print "[SKIN] Hey, no suitable screen!"
 		else:
@@ -836,7 +836,7 @@ def readSkin(screen, skin, names, desktop):
 
 	# now walk all widgets and stuff
 	def process_none(widget, context):
-	        pass
+		pass
 
 	def process_widget(widget, context):
 		get_attr = widget.attrib.get
@@ -969,16 +969,16 @@ def readSkin(screen, skin, names, desktop):
 		try:
 			c = cc(context, widget.attrib.get('position'), widget.attrib.get('size'), widget.attrib.get('font'))
 		except Exception, ex:
-		        raise SkinError("Failed to create skincontext (%s,%s,%s) in %s: %s" % (widget.attrib.get('position'), widget.attrib.get('size'), widget.attrib.get('font'), context, ex) )
+			raise SkinError("Failed to create skincontext (%s,%s,%s) in %s: %s" % (widget.attrib.get('position'), widget.attrib.get('size'), widget.attrib.get('font'), context, ex) )
 		process_screen(widget, c)
 
 	processors = {
-		None: process_none,
-		"widget": process_widget,
-		"applet": process_applet,
-		"eLabel": process_elabel,
-		"ePixmap": process_epixmap,
-		"panel": process_panel
+			None: process_none,
+			"widget": process_widget,
+			"applet": process_applet,
+			"eLabel": process_elabel,
+			"ePixmap": process_epixmap,
+			"panel": process_panel
 	}
 
 	try:

@@ -176,9 +176,10 @@ int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferenc
 	else
 	{
 		eDVBChannelID chid, chid_ignore;
+		int system;
 		((const eServiceReferenceDVB&)ref).getChannelID(chid);
 		((const eServiceReferenceDVB&)ignore).getChannelID(chid_ignore);
-		return res_mgr->canAllocateChannel(chid, chid_ignore, simulate);
+		return res_mgr->canAllocateChannel(chid, chid_ignore, system, simulate);
 	}
 	return 0;
 }

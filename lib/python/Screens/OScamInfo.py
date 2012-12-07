@@ -1,27 +1,21 @@
-from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 
 from Components.ActionMap import ActionMap, NumberActionMap
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryPixmap, MultiContentEntryPixmapAlphaBlend
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.config import config, configfile, getConfigListEntry
 from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.MenuList import MenuList
-from Components.Label import Label
-from Components.ScrollLabel import ScrollLabel
-from Components.Button import Button
 
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
 
-from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eSize, ePoint
+from enigma import eTimer, RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont, getDesktop, eSize, ePoint
 from xml.etree import ElementTree
 
 from operator import itemgetter
-import os, re, time
+import os, time
 import urllib2
 
 fb = getDesktop(0).size()
@@ -1044,7 +1038,7 @@ class oscReaderStats(Screen, OscamInfo):
 								except IndexError:
 									last_req = time.strftime("%H:%M:%S",time.localtime(float(lastreq)))
 							else:
-									last_req = ""
+								last_req = ""
 						else:
 							avg_time = last_time = last_req = ""
 #						if lastreq != "":

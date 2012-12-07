@@ -1,16 +1,13 @@
 from Screen import Screen
 from Screens.HelpMenu import HelpableScreen
-from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
+from Components.ActionMap import NumberActionMap, HelpableActionMap
 from Components.Button import Button
-from Components.config import config, configfile, ConfigClock, getConfigListEntry
-from Components.ConfigList import ConfigListScreen
+from Components.config import config, configfile, ConfigClock
 from Components.EpgList import EPGList, TimelineText, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_GRAPH, MAX_TIMELINES
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.Event import Event
-from Components.Sources.StaticText import StaticText
-from Components.Sources.Boolean import Boolean
 from Components.UsageConfig import preferredTimerPath
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.EventView import EventViewSimple
@@ -29,7 +26,7 @@ mepg_config_initialized = False
 
 # PiPServiceRelation installed?
 try:
-	from Plugins.SystemPlugins.PiPServiceRelation.plugin import getRelationDict, CONFIG_FILE
+	from Plugins.SystemPlugins.PiPServiceRelation.plugin import getRelationDict
 	plugin_PiPServiceRelation_installed = True
 except:
 	plugin_PiPServiceRelation_installed = False
@@ -1248,7 +1245,8 @@ class EPGSelection(Screen, HelpableScreen):
 			self["list"].setCurrentlyPlaying(serviceref)
 			self["list"].fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines(True)
-
+		if config.epgselection.OK_pliepg.getValue() == "Zap + Exit" or config.epgselection.OK_enhanced.getValue() == "Zap + Exit" or config.epgselection.OK_infobar.getValue() == "Zap + Exit":
+			self.zap()
 
 	def OKLong(self):
 		if config.epgselection.OKLong_pliepg.getValue() == "Zap" or config.epgselection.OKLong_enhanced.getValue() == "Zap" or config.epgselection.OKLong_infobar.getValue() == "Zap":
@@ -1328,9 +1326,9 @@ class EPGSelection(Screen, HelpableScreen):
 				nowTime = localtime(now)
 				begTime = localtime(beg)
 				if nowTime[2] != begTime[2]:
-						datestr = strftime(_("%A %e %b"), begTime)
+					datestr = strftime(_("%A %e %b"), begTime)
 				else:
-						datestr = '%s'%(_("Today"))
+					datestr = '%s'%(_("Today"))
 			self["date"].setText(datestr)
 
 		if self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH:

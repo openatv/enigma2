@@ -1,23 +1,17 @@
 ﻿from Screens.Screen import Screen
 from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
-from Components.ActionMap import ActionMap, NumberActionMap
+from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Button import Button
 from Components.FileList import FileList
-from Components.Scanner import openFile
 from Components.ScrollLabel import ScrollLabel
-from Components.MenuList import MenuList
-from Components.config import getConfigListEntry, config, configfile, ConfigText, ConfigYesNo, NoSave
-from Components.ConfigList import ConfigListScreen, ConfigList
+from Components.config import config, configfile
 from Components.FileList import MultiFileSelectList
-from Components.Pixmap import Pixmap,MultiPixmap
-from Components.Sources.Boolean import Boolean
-from Components.Sources.StaticText import StaticText
+from Components.Pixmap import Pixmap
 from Screens.MessageBox import MessageBox
-from Screens.VirtualKeyBoard import VirtualKeyBoard
-from os import path, listdir, remove, walk, stat, rmdir
-from time import time, localtime, strftime
+from os import path, remove, walk, stat, rmdir
+from time import time
 from enigma import eTimer, eBackgroundFileEraser, eLabel
 from glob import glob
 
@@ -30,7 +24,6 @@ import smtplib, base64
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.Utils import formatdate
-from email import encoders
 
 _session = None
 
@@ -93,7 +86,7 @@ class LogManagerPoller:
 		ctimeLimit = time() - (config.crash.daysloglimit.getValue() * 3600 * 24)
 		allowedBytes = 1024*1024 * int(config.crash.sizeloglimit.getValue())
 
-		mounts=[]
+		mounts = []
 		matches = []
 		print "[LogManager] probing folders"
 		f = open('/proc/mounts', 'r')
@@ -107,10 +100,10 @@ class LogManagerPoller:
 				matches.append(path.join(mount,'logs'))
 		matches.append('/home/root/logs')
 
-		print "[LogManager] found following log's:",matches
+		print "[LogManager] found following log's:", matches
 		if len(matches):
 			for logsfolder in matches:
-				print "[LogManager] looking in:",logsfolder
+				print "[LogManager] looking in:", logsfolder
 				logssize = get_size(logsfolder)
 				bytesToRemove = logssize - allowedBytes
 				candidates = []
@@ -121,7 +114,7 @@ class LogManagerPoller:
 							fn = path.join(root, name)
 							st = stat(fn)
 							if st.st_ctime < ctimeLimit:
-								print "[LogManager] " + str(fn) + ": Too old:",name, st.st_ctime
+								print "[LogManager] " + str(fn) + ": Too old:", name, st.st_ctime
 								eBackgroundFileEraser.getInstance().erase(fn)
 								bytesToRemove -= st.st_size
 							else:
@@ -138,7 +131,7 @@ class LogManagerPoller:
 					candidates.sort()
 					# Now we have a list of ctime, candidates, size. Sorted by ctime (=deletion time)
 					for st_ctime, fn, st_size in candidates:
-						print "[LogManager] " + str(logsfolder) + ": bytesToRemove",bytesToRemove
+						print "[LogManager] " + str(logsfolder) + ": bytesToRemove", bytesToRemove
 						if bytesToRemove < 0:
 							break
 						eBackgroundFileEraser.getInstance().erase(fn)
@@ -264,7 +257,7 @@ class LogManager(Screen):
 			self["key_red"].setText(_("Debug Logs"))
 			self.logtype = 'crashlogs'
 			self.matchingPattern = 'enigma2_crash_'
-		self["list"].matchingPattern=re.compile(self.matchingPattern)
+		self["list"].matchingPattern = re.compile(self.matchingPattern)
 		self["list"].changeDir(self.defaultDir)
 
 	def showLog(self):
@@ -356,7 +349,7 @@ class LogManager(Screen):
 		else:
 			self.session.open(MessageBox, _("You have selected no logs to send."), MessageBox.TYPE_INFO, timeout = 10)
 
-	def sendlog1(self,answer):
+	def sendlog1(self, answer):
 		if answer:
 			self.sendallfiles = True
 			message = _("Do you want to add any additional information ?")
@@ -368,14 +361,14 @@ class LogManager(Screen):
 			ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
 			ybox.setTitle(_("Send Confirmation"))
 
-	def sendlog2(self,answer):
+	def sendlog2(self, answer):
 		if answer:
 			self.sendallfiles = False
 			message = _("Do you want to add any additional information ?")
 			ybox = self.session.openWithCallback(self.sendlog3, MessageBox, message, MessageBox.TYPE_YESNO)
 			ybox.setTitle(_("Additional Info"))
 
-	def sendlog3(self,answer):
+	def sendlog3(self, answer):
 		if answer:
 			message = _("Do you want to attach a text file to explain the log ?\n(choose 'No' to type message using virtual keyboard.)")
 			ybox = self.session.openWithCallback(self.sendlog4, MessageBox, message, MessageBox.TYPE_YESNO)
@@ -383,14 +376,14 @@ class LogManager(Screen):
 		else:
 			self.doSendlog()
 
-	def sendlog4(self,answer):
+	def sendlog4(self, answer):
 		if answer:
 			self.session.openWithCallback(self.doSendlog, LogManagerFb)
 		else:
 			from Screens.VirtualKeyBoard import VirtualKeyBoard
 			self.session.openWithCallback(self.doSendlog, VirtualKeyBoard, title = 'Additonal Info')
 
-	def doSendlog(self,additonalinfo = None):
+	def doSendlog(self, additonalinfo = None):
 		ref = str(time())
 		# Create the container (outer) email message.
 		msg = MIMEMultipart()
@@ -491,7 +484,7 @@ class LogManagerFb(Screen):
 			<widget name="list" position="0,0" size="265,430" scrollbarMode="showOnDemand" />
 		</screen>
 		"""
-	def __init__(self, session,logpath=None):
+	def __init__(self, session, logpath=None):
 		if logpath is None:
 			if path.isdir(config.logmanager.path.getValue()):
 				logpath = config.logmanager.path.getValue()
@@ -512,8 +505,8 @@ class LogManagerFb(Screen):
 
 		self["actions"] = ActionMap(["ChannelSelectBaseActions","WizardActions", "DirectionActions","MenuActions","NumberActions","ColorActions"],
 			{
-			 "ok":	  self.ok,
-			 "back":	self.exit,
+			 "ok": self.ok,
+			 "back": self.exit,
 			 "up": self.goUp,
 			 "down": self.goDown,
 			 "left": self.goLeft,

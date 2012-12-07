@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 # (c) 2006 Stephan Reichholf
 # This Software is Free, use it where you want, when you want for whatever you want and modify it if you want but don't remove my copyright!
 from Screens.Screen import Screen
@@ -8,10 +8,8 @@ from Components.ActionMap import NumberActionMap
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
-from Plugins.Plugin import PluginDescriptor
 from Components.config import config
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from os import path, walk
+from os import path
 from enigma import eEnv
 
 class SkinSelector(Screen):
@@ -86,7 +84,7 @@ class SkinSelector(Screen):
 	def find(self, arg, dirname, names):
 		for x in names:
 			if x == "skin.xml":
-				if dirname <> self.root:
+				if dirname != self.root:
 					subdir = dirname[19:]
 					self.skinlist.append(subdir)
 				else:
