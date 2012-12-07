@@ -18,8 +18,8 @@ class ServiceScanSummary(Screen):
 	def __init__(self, session, parent, showStepSlider = True):
 		Screen.__init__(self, session, parent)
 		
-		self["Title"] = Label(parent.title or "ServiceScan")
-		self["Service"] = Label("No Service")
+		self["Title"] = Label(parent.title or _("Service scan"))
+		self["Service"] = Label(_("No service"))
 		self["scan_progress"] = ProgressBar()
 		
 	def updateProgress(self, value):
