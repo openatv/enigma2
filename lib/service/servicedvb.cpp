@@ -196,6 +196,7 @@ int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref
 	{
 		ePtr<iDVBChannelList> db;
 		ePtr<eDVBResourceManager> res;
+		eServiceReference streamable_service;
 
 		if (eDVBResourceManager::getInstance(res))
 		{
@@ -254,17 +255,19 @@ int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref
 				m_playable_service = *it;
 				cur = tmp;
 			}
-		}
-		if (cur)
-			return cur;
-		/* fallback to stream (or pvr) service alternative */
-		for (std::list<eServiceReference>::iterator it(bouquet->m_services.begin()); it != bouquet->m_services.end(); ++it)
-		{
 			if (!it->path.empty())
 			{
-				m_playable_service = *it;
-				return 1;
+				streamable_service = *it;
 			}
+		}
+		if (cur)
+		{
+			return cur;
+		}
+		/* fallback to stream (or pvr) service alternative */
+		if (streamable_service)
+		{
+			m_playable_service = streamable_service;
 		}
 	}
 	m_playable_service = eServiceReference();
