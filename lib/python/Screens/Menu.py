@@ -1,4 +1,4 @@
-from Screen import Screen
+from Screens.Screen import Screen
 from Components.Sources.List import List
 from Components.ActionMap import NumberActionMap
 from Components.Sources.StaticText import StaticText

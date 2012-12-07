@@ -1,15 +1,11 @@
 # -*- coding: utf-8 -*-
-from Screen import Screen
+from Screens.Screen import Screen
 from Components.BlinkingPixmap import BlinkingPixmapConditional
-from Components.Pixmap import Pixmap
 from Components.config import config, ConfigInteger
-from Components.Sources.Boolean import Boolean
 from Components.Label import Label
-from Components.ProgressBar import ProgressBar
 from Components.ServiceEventTracker import ServiceEventTracker
-from enigma import eDVBSatelliteEquipmentControl, eTimer, eComponentScan, iPlayableService
+from enigma import eDVBSatelliteEquipmentControl, eTimer, iPlayableService
 from enigma import eServiceCenter, iServiceInformation
-from ServiceReference import ServiceReference
 
 INVALID_POSITION = 9999
 config.misc.lastrotorposition = ConfigInteger(INVALID_POSITION)

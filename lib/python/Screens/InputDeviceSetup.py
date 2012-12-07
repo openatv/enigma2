@@ -1,4 +1,4 @@
-from Screen import Screen
+from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Components.InputDevice import iInputDevices, iRcTypeControl
@@ -10,7 +10,7 @@ from Components.ActionMap import ActionMap, HelpableActionMap
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 
-class InputDeviceSelection(Screen,HelpableScreen):
+class InputDeviceSelection(Screen, HelpableScreen):
 	skin = """
 	<screen name="InputDeviceSelection" position="center,center" size="560,400" title="Select input device">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on"/>
@@ -299,6 +299,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("0", _("Default")),
 			("4", _("DMM normal")), ("6", _("DMM advanced")),
 			("11", "et9x00/6500"), ("7", "et5000/6000"), ("13", "et4000"),
+			("14", "xp1000"),
 			("8", "VU+"),
 		]
 
@@ -310,6 +311,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("et9000", 11),
 			("et9200", 11),
 			("et9500", 11),
+			("xp1000", 14),
 		]
 
 	def __init__(self, session):

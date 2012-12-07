@@ -2,13 +2,13 @@ from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Sources.StaticText import StaticText
-from Components.Harddisk import harddiskmanager,Harddisk
+from Components.Harddisk import Harddisk
 from Components.NimManager import nimmanager
 from Components.About import about
 from Components.config import config
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
-from enigma import eTimer
+from enigma import eTimer, getBoxType
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
@@ -64,7 +64,7 @@ class About(Screen):
 			tempinfo = open('/proc/stb/sensors/temp0/value', 'r').read()
 		elif path.exists('/proc/stb/fp/temp_sensor'):
 			tempinfo = open('/proc/stb/fp/temp_sensor', 'r').read()
-		if tempinfo:
+		if tempinfo and int(tempinfo.replace('\n','')) > 0:
 			mark = str('\xc2\xb0')
 			AboutText += _("System Temperature:") + " " + tempinfo.replace('\n','') + mark + "C\n\n"
 
@@ -196,7 +196,7 @@ class Devices(Screen):
 			if not parts:
 				continue
 			device = parts[3]
- 			if not search('sd[a-z][1-9]',device):
+			if not search('sd[a-z][1-9]',device):
 				continue
 			if device in list2:
 				continue

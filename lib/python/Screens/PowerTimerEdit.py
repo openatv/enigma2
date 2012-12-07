@@ -2,16 +2,13 @@ from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
 from Components.config import config
-from Components.MenuList import MenuList
 from Components.PowerTimerList import PowerTimerList
-from Components.TimerSanityCheck import TimerSanityCheck
 from Components.Sources.StaticText import StaticText
-from PowerTimer import PowerTimerEntry, parseEvent, AFTEREVENT
-from Screen import Screen
+from PowerTimer import PowerTimerEntry, AFTEREVENT
+from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-from ServiceReference import ServiceReference
-from PowerTimerEntry import TimerEntry, TimerLog
+from Screens.PowerTimerEntry import TimerEntry, TimerLog
 from Tools.BoundFunction import boundFunction
 from Tools.FuzzyDate import FuzzyTime
 from time import time

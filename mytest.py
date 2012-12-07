@@ -78,8 +78,6 @@ config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 
 profile("Twisted")
 try:
-	import twisted.python.runtime
-
 	import e2reactor
 	e2reactor.install()
 
@@ -441,7 +439,6 @@ class AutoScartControl:
 				self.scartDialog.switchToTV()
 
 profile("Load:CI")
-from enigma import eDVBCIInterfaces
 from Screens.Ci import CiHandler
 
 profile("Load:VolumeControl")
@@ -463,18 +460,11 @@ def runScreenTest():
 
 	profile("wizards")
 	screensToRun += wizardManager.getWizards()
-
 	screensToRun.append((100, InfoBar.InfoBar))
-
 	screensToRun.sort()
 
 	enigma.ePythonConfigQuery.setQueryFunc(configfile.getResolvedKey)
 
-#	eDVBCIInterfaces.getInstance().setDescrambleRules(0 # Slot Number
-#		,(	["1:0:1:24:4:85:C00000:0:0:0:"], #service_list
-#			["PREMIERE"], #provider_list,
-#			[] #caid_list
-#		));
 	def runNextScreen(session, screensToRun, *result):
 		if result:
 			enigma.quitMainloop(*result)

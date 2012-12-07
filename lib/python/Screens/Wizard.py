@@ -1,13 +1,11 @@
-from Screen import Screen
-from Screens.HelpMenu import HelpableScreen
+from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Components.config import config, ConfigText, ConfigPassword, KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS
+from Components.config import ConfigText, ConfigPassword, KEY_LEFT, KEY_RIGHT, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_ASCII
 
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
 from Components.ActionMap import NumberActionMap
-from Components.MenuList import MenuList
 from Components.ConfigList import ConfigList
 from Components.Sources.List import List
 from enigma import eTimer, eEnv
@@ -31,8 +29,8 @@ class Wizard(Screen):
 	instance = None
 
 	def createSummary(self):
-			print "WizardCreateSummary"
-			return WizardSummary
+		print "WizardCreateSummary"
+		return WizardSummary
 
 	class parseWizard(ContentHandler):
 		def __init__(self, wizard):
@@ -145,7 +143,7 @@ class Wizard(Screen):
 					else:
 						self.wizard[self.lastStep]["code"] = self.wizard[self.lastStep]["code"] + ch
 			elif self.currContent == "condition":
-				 self.wizard[self.lastStep]["condition"] = self.wizard[self.lastStep]["condition"] + ch
+				self.wizard[self.lastStep]["condition"] = self.wizard[self.lastStep]["condition"] + ch
 
 	def __init__(self, session, showSteps = True, showStepSlider = True, showList = True, showConfig = True):
 		Screen.__init__(self, session)
@@ -578,9 +576,9 @@ class Wizard(Screen):
 				print "showing config"
 # 				self["config"].instance.setZPosition(1)
 				if self.wizard[self.currStep]["config"]["type"] == "dynamic":
-						print "config type is dynamic"
-						self["config"].instance.setZPosition(2)
-						self["config"].l.setList(eval("self." + self.wizard[self.currStep]["config"]["source"])())
+					print "config type is dynamic"
+					self["config"].instance.setZPosition(2)
+					self["config"].l.setList(eval("self." + self.wizard[self.currStep]["config"]["source"])())
 				elif (self.wizard[self.currStep]["config"]["screen"] != None):
 					if self.wizard[self.currStep]["config"]["type"] == "standalone":
 						print "Type is standalone"

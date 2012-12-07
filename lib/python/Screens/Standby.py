@@ -1,11 +1,10 @@
-from Screen import Screen
+from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
 from enigma import eDVBVolumecontrol
-from os import path
 import Screens.InfoBar
 
 inStandby = None

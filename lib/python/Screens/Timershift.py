@@ -1,5 +1,5 @@
 from Screens.Screen import Screen
-from Screens.LocationBox import MovieLocationBox, TimeshiftLocationBox
+from Screens.LocationBox import TimeshiftLocationBox
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.config import config, configfile, ConfigYesNo, ConfigNothing, ConfigSelection, getConfigListEntry
@@ -7,7 +7,6 @@ from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap
 from Components.Pixmap import Pixmap
 from Tools.Directories import fileExists
-from Components.UsageConfig import preferredPath
 from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
@@ -62,7 +61,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		for x in xmldata.findall("setup"):
 			if x.get("key") != self.setup:
 				continue
-			self.addItems(list, x);
+			self.addItems(list, x)
 			self.setup_title = x.get("title", "").encode("UTF-8")
 			self.seperation = int(x.get('separation', '0'))
 
@@ -179,7 +178,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		list.append(self.timeshift_entry)
 
 		self.refill(list)
- 		self["config"].setList(list)
+		self["config"].setList(list)
 		if config.usage.sort_settings.getValue():
 			self["config"].list.sort()
 
@@ -315,18 +314,18 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 
 				requires = x.get("requires")
 				if requires and requires.startswith('config.'):
-					item = eval(requires or "");
+					item = eval(requires or "")
 					if item.getValue() and not item.getValue() == "0":
 						SystemInfo[requires] = True
 					else:
 						SystemInfo[requires] = False
 
 				if requires and not SystemInfo.get(requires, False):
-					continue;
+					continue
 
 				item_text = _(x.get("text", "??").encode("UTF-8"))
 				item_description = _(x.get("description", " ").encode("UTF-8"))
-				b = eval(x.text or "");
+				b = eval(x.text or "")
 				if b == "":
 					continue
 				#add to configlist
