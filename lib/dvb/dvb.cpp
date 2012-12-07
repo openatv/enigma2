@@ -17,6 +17,9 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 
+#define MIN(a,b) (a < b ? a : b)
+#define MAX(a,b) (a > b ? a : b)
+
 DEFINE_REF(eDVBRegisteredFrontend);
 DEFINE_REF(eDVBRegisteredDemux);
 
@@ -266,6 +269,7 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	struct dvb_frontend_info fe_info;
 	int frontend = -1;
 	char filename[256];
+	char name[128] = {0};
 	int vtunerid = nr - 1;
 
 	pumpThread = 0;
@@ -288,6 +292,7 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 
 	demuxFd = vtunerFd = pipeFd[0] = pipeFd[1] = -1;
 
+	/* find the device name */
 	snprintf(filename, sizeof(filename), "/sys/class/dvb/dvb%d.frontend0/device/product", nr);
 	file = ::open(filename, O_RDONLY);
 	if (file < 0)
@@ -298,18 +303,13 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 
 	if (file >= 0)
 	{
-		char *tmp = name;
-		int len = read(file, tmp, sizeof(name) - 1);
-		if (len > 0)
+		int len = read(file, name, sizeof(name) - 1);
+		if (len >= 0)
 		{
-			tmp[len] = 0;
-			while (len && (strchr(" \n\r", tmp[len-1]) != NULL))
-			{
-				--len;
-				tmp[len] = 0;
-			}
+			name[len] = 0;
 		}
 		::close(file);
+		file = -1;
 	}
 
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/frontend0", nr);
@@ -328,6 +328,29 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	frontend = -1;
 
 	usbFrontendName = filename;
+
+	if (!name[0])
+	{
+		/* fallback to the dvb_frontend_info name */
+		int len = MIN(sizeof(fe_info.name), sizeof(name) - 1);
+		strncpy(name, fe_info.name, len);
+		name[len] = 0;
+	}
+	if (name[0])
+	{
+		/* strip trailing LF / CR / whitespace */
+		int len = strlen(name);
+		char *tmp = name;
+		while (len && (strchr(" \n\r\t", tmp[len - 1]) != NULL))
+		{
+			tmp[--len] = 0;
+		}
+	}
+	if (!name[0])
+	{
+		/* we did not find a usable name, fallback to a default */
+		snprintf(name, sizeof(name), "usb frontend");
+	}
 
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/demux0", nr);
 	demuxFd = open(filename, O_RDONLY | O_NONBLOCK);
@@ -1246,17 +1269,17 @@ int eDVBResourceManager::canAllocateFrontend(ePtr<iDVBFrontendParameters> &fepar
 	return bestval;
 }
 
-int tuner_type_channel_default(ePtr<iDVBChannelList> &channellist, const eDVBChannelID &chid)
+int tuner_type_channel_default(ePtr<iDVBChannelList> &channellist, const eDVBChannelID &chid, int &system)
 {
+	system = iDVBFrontend::feSatellite;
 	if (channellist)
 	{
 		ePtr<iDVBFrontendParameters> feparm;
 		if (!channellist->getChannelFrontendData(chid, feparm))
 		{
-			int system;
 			if (!feparm->getSystem(system))
 			{
-				switch(system)
+				switch (system)
 				{
 					case iDVBFrontend::feSatellite:
 						return 50000;
@@ -1273,15 +1296,16 @@ int tuner_type_channel_default(ePtr<iDVBChannelList> &channellist, const eDVBCha
 	return 0;
 }
 
-int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID& ignore, bool simulate)
+int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID& ignore, int &system, bool simulate)
 {
 	std::list<active_channel> &active_channels = simulate ? m_active_simulate_channels : m_active_channels;
-	int ret=0;
+	int ret = 0;
+	system = iDVBFrontend::feSatellite;
 	if (!simulate && m_cached_channel)
 	{
 		eDVBChannel *cache_chan = (eDVBChannel*)&(*m_cached_channel);
 		if(channelid==cache_chan->getChannelID())
-			return tuner_type_channel_default(m_list, channelid);
+			return tuner_type_channel_default(m_list, channelid, system);
 	}
 
 		/* first, check if a channel is already existing. */
@@ -1292,7 +1316,7 @@ int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, cons
 		if (i->m_channel_id == channelid)
 		{
 //			eDebug("found shared channel..");
-			return tuner_type_channel_default(m_list, channelid);
+			return tuner_type_channel_default(m_list, channelid, system);
 		}
 	}
 
@@ -1372,6 +1396,7 @@ int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, cons
 		eDebug("channel not found!");
 		goto error;
 	}
+	feparm->getSystem(system);
 
 	ret = canAllocateFrontend(feparm, simulate);
 
