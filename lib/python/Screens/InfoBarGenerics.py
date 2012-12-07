@@ -50,7 +50,7 @@ def isStandardInfoBar(self):
 def setResumePoint(session):
 	global resumePointCache, resumePointCacheLast
 	service = session.nav.getCurrentService()
-	ref = session.nav.getCurrentlyPlayingServiceReference()
+	ref = session.nav.getCurrentlyPlayingServiceOrGroup()
 	if (service is not None) and (ref is not None): # and (ref.type != 1):
 		# ref type 1 has its own memory...
 		seek = service.seek()
@@ -85,7 +85,7 @@ def delResumePoint(ref):
 
 def getResumePoint(session):
 	global resumePointCache
-	ref = session.nav.getCurrentlyPlayingServiceReference()
+	ref = session.nav.getCurrentlyPlayingServiceOrGroup()
 	if (ref is not None) and (ref.type != 1):
 		try:
 			entry = resumePointCache[ref.toString()]
@@ -525,7 +525,7 @@ class InfoBarChannelSelection:
 
 	def isPlayable(self, ref):
 		if not (ref.flags & eServiceReference.isMarker):
-			cur_running = self.session.nav.getCurrentlyPlayingServiceReference(False)
+			cur_running = self.session.nav.getCurrentlyPlayingServiceReference()
 			if not cur_running:
 				cur_running = eServiceReference()
 			info = eServiceCenter.getInstance().info(ref)
@@ -576,7 +576,7 @@ class InfoBarSimpleEventView:
 		epglist = [ ]
 		self.epglist = epglist
 		service = self.session.nav.getCurrentService()
-		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		info = service.info()
 		ptr=info.getEvent(0)
 		if ptr:
@@ -680,7 +680,7 @@ class InfoBarEPG:
 
 	def zapToService(self, service, preview = False, zapback = False):
 		if self.servicelist.startServiceRef is None:
-			self.servicelist.startServiceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.servicelist.startServiceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if service is not None:
 			if self.servicelist.getRoot() != self.epg_bouquet: #already in correct bouquet?
 				self.servicelist.clearPath()
@@ -789,7 +789,7 @@ class InfoBarEPG:
 		self.serviceSel = None
 
 	def openSingleServiceEPG(self):
-		ref=self.session.nav.getCurrentlyPlayingServiceReference()
+		ref=self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if ref:
 			if self.servicelist.getMutableList() is not None: # bouquet in channellist
 				current_path = self.servicelist.getRoot()
@@ -855,7 +855,7 @@ class InfoBarEPG:
 		self.openEventView()
 
 	def openEventView(self):
-		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.getNowNext()
 		epglist = self.epglist
 		if not epglist:
@@ -1696,7 +1696,7 @@ class InfoBarPiP:
 				del self.session.pip
 
 	def swapPiP(self):
-		swapservice = self.session.nav.getCurrentlyPlayingServiceReference()
+		swapservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		pipref = self.session.pip.getCurrentService()
 		if swapservice and pipref and pipref.toString() != swapservice.toString():
 			currentServicePath = self.servicelist.getCurrentServicePath()
@@ -1740,7 +1740,7 @@ class InfoBarInstantRecord:
 			self.recording.remove(self.recording[entry])
 
 	def startInstantRecording(self, limitEvent = False):
-		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 
 		# try to get event info
 		event = None
@@ -1956,7 +1956,7 @@ class InfoBarSubserviceSelection:
 		n = subservices and subservices.getNumberOfSubservices()
 		if n and n > 0:
 			selection = -1
-			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			idx = 0
 			while idx < n:
 				if subservices.getSubservice(idx).toString() == ref.toString():
@@ -1982,7 +1982,7 @@ class InfoBarSubserviceSelection:
 		n = subservices and subservices.getNumberOfSubservices()
 		selection = 0
 		if n and n > 0:
-			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			tlist = []
 			idx = 0
 			while idx < n:

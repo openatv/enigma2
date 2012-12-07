@@ -53,7 +53,7 @@ class Standby(Screen):
 		if self.session.current_dialog:
 			if self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_STOPS:
 				#get currently playing service reference
-				self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceReference()
+				self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 				#stop actual played dvb-service
 				self.session.nav.stopService()
 			elif self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_PAUSES:

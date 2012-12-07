@@ -28,6 +28,7 @@ class Navigation:
 		self.event = [ ]
 		self.record_event = [ ]
 		self.currentlyPlayingServiceReference = None
+		self.currentlyPlayingServiceOrGroup = None
 		self.currentlyPlayingService = None
 		self.RecordTimer = RecordTimer.RecordTimer()
 		if getFPWasTimerWakeup():
@@ -50,6 +51,7 @@ class Navigation:
 			x(i)
 		if i == iPlayableService.evEnd:
 			self.currentlyPlayingServiceReference = None
+			self.currentlyPlayingServiceOrGroup = None
 			self.currentlyPlayingService = None
 
 	def dispatchRecordEvent(self, rec_service, event):
@@ -83,22 +85,24 @@ class Navigation:
 			if self.pnav:
 				self.pnav.stopService()
 				self.currentlyPlayingServiceReference = playref
-				self.currentlyPlayingSelectedServiceReference = ref
+				self.currentlyPlayingServiceOrGroup = ref
 				InfoBarInstance = InfoBar.instance
 				if InfoBarInstance is not None:
 					InfoBarInstance.servicelist.servicelist.setCurrent(ref)
 				if self.pnav.playService(playref):
 					print "Failed to start", playref
 					self.currentlyPlayingServiceReference = None
+					self.currentlyPlayingServiceOrGroup = None
 				return 0
 		else:
 			self.stopService()
 		return 1
 
-	def getCurrentlyPlayingServiceReference(self, selected = True):
-		if selected and self.currentlyPlayingServiceReference:
-			return self.currentlyPlayingSelectedServiceReference
+	def getCurrentlyPlayingServiceReference(self):
 		return self.currentlyPlayingServiceReference
+
+	def getCurrentlyPlayingServiceOrGroup(self):
+		return self.currentlyPlayingServiceOrGroup
 
 	def recordService(self, ref, simulate=False):
 		service = None
@@ -129,6 +133,7 @@ class Navigation:
 		if self.pnav:
 			self.pnav.stopService()
 		self.currentlyPlayingServiceReference = None
+		self.currentlyPlayingServiceOrGroup = None
 
 	def pause(self, p):
 		return self.pnav and self.pnav.pause(p)

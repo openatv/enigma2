@@ -22,7 +22,7 @@ class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu, \
 				InfoBarExtensions, InfoBarAudioSelection:
 			x.__init__(self)
 
-		self.restoreService = self.session.nav.getCurrentlyPlayingServiceReference()
+		self.restoreService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		
 		self["CurrentSubserviceNumber"] = Label("")
 		self.currentSubserviceNumberLabel = self["CurrentSubserviceNumber"]
