@@ -789,7 +789,7 @@ class InfoBarEPG:
 		self.serviceSel = None
 
 	def openSingleServiceEPG(self):
-		ref=self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if ref:
 			if self.servicelist.getMutableList() is not None: # bouquet in channellist
 				current_path = self.servicelist.getRoot()
