@@ -8,11 +8,11 @@ from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import preferredTimerPath
 from Components.Sources.StaticText import StaticText
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
-from Screen import Screen
+from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from ServiceReference import ServiceReference
-from TimerEntry import TimerEntry, TimerLog
+from Screens.TimerEntry import TimerEntry, TimerLog
 from Tools.BoundFunction import boundFunction
 from Tools.FuzzyDate import FuzzyTime
 from time import time
@@ -182,7 +182,7 @@ class TimerEditList(Screen):
 		timer = self['timerlist'].getCurrent()
 
 		if timer:
- 			try:
+			try:
 				name = str(timer.name)
 				time = ("%s %s ... %s") % (FuzzyTime(timer.begin)[0], FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1])
 				duration = ("(%d " + _("mins") + ")") % ((timer.end - timer.begin) / 60)
@@ -201,7 +201,7 @@ class TimerEditList(Screen):
 					state = _("done!")
 				else:
 					state = _("<unknown>")
- 			except:
+			except:
 				name = ""
 				time = ""
 				duration = ""

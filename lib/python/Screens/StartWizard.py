@@ -3,8 +3,8 @@ from Screens.WizardLanguage import WizardLanguage
 from Screens.WizardUserInterfacePositioner import UserInterfacePositionerWizard
 from Screens.Rc import Rc
 
-from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
-from Components.config import config, ConfigBoolean, configfile, ConfigSubsection
+from Components.Pixmap import Pixmap
+from Components.config import config, ConfigBoolean, configfile
 
 from LanguageSelection import LanguageWizard
 

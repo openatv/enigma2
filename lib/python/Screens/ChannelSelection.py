@@ -2,19 +2,14 @@ from Tools.Profile import profile
 
 from Screen import Screen
 from Components.Button import Button
-from Components.config import configfile, config, getConfigListEntry
-from Components.ConfigList import ConfigListScreen
+from Components.config import configfile, config
 from Components.ServiceList import ServiceList
 from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.SystemInfo import SystemInfo
-from Components.Sources.StaticText import StaticText
-from Components.Pixmap import Pixmap,MultiPixmap
 from Components.UsageConfig import preferredTimerPath
 from Screens.TimerEdit import TimerSanityConflict
-from Components.Label import Label
-from Components.Sources.Boolean import Boolean
 profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv
@@ -30,7 +25,7 @@ profile("ChannelSelection.py 2.3")
 from Components.Input import Input
 profile("ChannelSelection.py 3")
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
-from RecordTimer import RecordTimerEntry, AFTEREVENT
+from RecordTimer import RecordTimerEntry
 from TimerEntry import TimerEntry
 from Screens.InputBox import InputBox, PinInput
 from Screens.MessageBox import MessageBox
@@ -229,8 +224,8 @@ class ChannelContextMenu(Screen):
 				if current_root and current_root.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
 					append_when_current_valid(current, menu, (_("remove new found flag"), self.removeNewFoundFlag), level = 0)
 			else:
-					menu.append(ChoiceEntryComponent(text = (_("add bouquet"), self.showBouquetInputBox)))
-					append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet), level = 0)
+				menu.append(ChoiceEntryComponent(text = (_("add bouquet"), self.showBouquetInputBox)))
+				append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet), level = 0)
 
 		if inBouquet: # current list is editable?
 			if csel.bouquet_mark_edit == OFF:
@@ -259,8 +254,8 @@ class ChannelContextMenu(Screen):
 						append_when_current_valid(current, menu, (_("end favourites edit"), self.bouquetMarkEnd), level = 0)
 						append_when_current_valid(current, menu, (_("abort favourites edit"), self.bouquetMarkAbort), level = 0)
 				else:
-						append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level = 0)
-						append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level = 0)
+					append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level = 0)
+					append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level = 0)
 
 		self["menu"] = ChoiceList(menu)
 
@@ -692,7 +687,7 @@ class ChannelSelectionEdit:
 				else:
 					print "get mutable list for new created bouquet failed"
 				# do some voodoo to check if current_root is equal to bouquet_root
-				cur_root = self.getRoot();
+				cur_root = self.getRoot()
 				str1 = cur_root and cur_root.toString()
 				pos1 = str1 and str1.find("FROM BOUQUET") or -1
 				pos2 = self.bouquet_rootstr.find("FROM BOUQUET")
@@ -828,7 +823,7 @@ class ChannelSelectionEdit:
 			if not mutableList.addService(service):
 				mutableList.flushChanges()
 				# do some voodoo to check if current_root is equal to dest
-				cur_root = self.getRoot();
+				cur_root = self.getRoot()
 				str1 = cur_root and cur_root.toString() or -1
 				str2 = dest.toString()
 				pos1 = str1.find("FROM BOUQUET")
@@ -857,7 +852,7 @@ class ChannelSelectionEdit:
 			new_title = self.saved_title
 			pos = self.saved_title.find(')')
 			new_title = self.saved_title[:pos+1] + ' ' + _("[move mode]") + self.saved_title[pos+1:]
-			self.setTitle(new_title);
+			self.setTitle(new_title)
 
 	def handleEditCancel(self):
 		if self.movemode: #movemode active?
@@ -1808,7 +1803,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.session.nav.playService(lastservice)
 
 	def startRassInteractive(self):
-		self.info.hide();
+		self.info.hide()
 		self.infobar.rass_interactive = self.session.openWithCallback(self.RassInteractiveClosed, RassInteractive)
 
 	def RassInteractiveClosed(self):

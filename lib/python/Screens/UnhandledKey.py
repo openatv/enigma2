@@ -1,4 +1,4 @@
-from Screen import Screen
+from Screens.Screen import Screen
 from Components.Pixmap import Pixmap
 
 class UnhandledKey(Screen):

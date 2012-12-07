@@ -151,8 +151,8 @@ class RassInteractive(Screen):
 			3 : LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/rass_page3.png")),
 			4 : LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/rass_page4.png")) }
 
-		self.current_page=0;
-		self.current_subpage=0;
+		self.current_page=0
+		self.current_subpage=0
 		self.showRassPage(0,0)
 		self.onLayoutFinish.append(self.updateSubPagePixmaps)
 

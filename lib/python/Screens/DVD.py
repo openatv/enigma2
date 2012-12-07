@@ -7,12 +7,10 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarShowHide, InfoBarNotifications, InfoBarAudioSelection, InfoBarSubtitleSupport
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.Label import Label
-from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
-from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.config import config
-from Tools.Directories import pathExists, fileExists
+from Tools.Directories import pathExists
 from Components.Harddisk import harddiskmanager
 
 lastpath = ""
@@ -371,7 +369,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		audioTuple = info and info.getInfoObject(iServiceInformation.sUser+6)
 		print "AudioInfoAvail ", repr(audioTuple)
 		if audioTuple:
-			audioString = "%d: %s (%s)" % (audioTuple[0],audioTuple[1],audioTuple[2])
+			audioString = "%d: %s (%s)" % (audioTuple[0], audioTuple[1],audioTuple[2])
 			self["audioLabel"].setText(audioString)
 			if audioTuple != self.last_audioTuple and not self.in_menu:
 				self.doShow()
@@ -384,7 +382,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if subtitleTuple:
 			subtitleString = ""
 			if subtitleTuple[0] is not 0:
-				subtitleString = "%d: %s" % (subtitleTuple[0],subtitleTuple[1])
+				subtitleString = "%d: %s" % (subtitleTuple[0], subtitleTuple[1])
 			self["subtitleLabel"].setText(subtitleString)
 			if subtitleTuple != self.last_subtitleTuple and not self.in_menu:
 				self.doShow()
@@ -397,7 +395,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if angleTuple:
 			angleString = ""
 			if angleTuple[1] > 1:
-				angleString = "%d / %d" % (angleTuple[0],angleTuple[1])
+				angleString = "%d / %d" % (angleTuple[0], angleTuple[1])
 				self["anglePix"].show()
 			else:
 				self["anglePix"].hide()
@@ -432,7 +430,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if self.physicalDVD:
 			cur = self.session.nav.getCurrentlyPlayingServiceReference()
 			if cur and not cur.toString().endswith(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())):
-			    choices.insert(0,(_("Play DVD"), "playPhysical" ))
+				choices.insert(0,(_("Play DVD"), "playPhysical" ))
 		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD player?"), list = choices)
 
 	def sendKey(self, key):
@@ -548,7 +546,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				for name in files:
 					(status, isNTSC, isLowResolution) = self.readVideoAtributes( ifofilename, name )
 					if status:
-						 break
+						break
 				height = getDesktop(0).size().height()
 				print "[DVD] height:", height
 				if isNTSC:

@@ -1,32 +1,27 @@
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Screens.InputBox import InputBox
-from Screens.Standby import *
-from Screens.VirtualKeyBoard import VirtualKeyBoard
+from Screens.Standby import TryQuitMainloop
 from Screens.HelpMenu import HelpableScreen
-from Components.About import about
 from Components.Console import Console
 from Components.Network import iNetwork
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
-from Components.Label import Label,MultiColorLabel
+from Components.Label import Label, MultiColorLabel
 from Components.ScrollLabel import ScrollLabel
-from Components.Pixmap import Pixmap,MultiPixmap
+from Components.Pixmap import Pixmap, MultiPixmap
 from Components.MenuList import MenuList
-from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNothing, ConfigNumber, ConfigLocations, NoSave
+from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNumber, ConfigLocations, NoSave
 from Components.ConfigList import ConfigListScreen
 from Components.PluginComponent import plugins
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.FileList import MultiFileSelectList
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
-from enigma import eTimer, ePoint, eSize, RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont, getBoxType
-from os import path as os_path, remove, symlink, unlink, rename, chmod, access, X_OK
+from enigma import eTimer, getBoxType
+from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
 from shutil import move
-from re import compile as re_compile, search as re_search
 import time
 
 class NetworkAdapterSelection(Screen,HelpableScreen):
@@ -168,7 +163,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 				active_int = True
 			else:
 				active_int = False
-			self.list.append(self.buildInterfaceList(x[1],_(x[0]),default_int,active_int ))
+			self.list.append(self.buildInterfaceList(x[1], _(x[0]), default_int, active_int ))
 
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			self["key_blue"].setText(_("Network wizard"))
@@ -220,7 +215,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 		if data is True:
 			self.restartLanRef.close(True)
 
-	def restartfinishedCB(self,data):
+	def restartfinishedCB(self, data):
 		if data is True:
 			self.updateList()
 			self.session.open(MessageBox, _("Finished configuring your network"), type = MessageBox.TYPE_INFO, timeout = 10, default = False)
@@ -309,7 +304,7 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.close()
 
 	def add(self):
-		iNetwork.addNameserver([0,0,0,0])
+		iNetwork.addNameserver([0, 0, 0, 0])
 		self.createConfig()
 		self.createSetup()
 
@@ -404,7 +399,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self["IP"].setText(_("N/A"))
 		if self.netmaskConfigEntry.getText() is not None:
 			if self.netmaskConfigEntry.getText() == "0.0.0.0":
-					self["Mask"].setText(_("N/A"))
+				self["Mask"].setText(_("N/A"))
 			else:
 				self["Mask"].setText(self.netmaskConfigEntry.getText())
 		else:
@@ -463,9 +458,9 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.ipConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "ip")) or [0,0,0,0])
 		self.netmaskConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "netmask") or [255,0,0,0]))
 		if iNetwork.getAdapterAttribute(self.iface, "gateway"):
-			self.dhcpdefault=True
+			self.dhcpdefault = True
 		else:
-			self.dhcpdefault=False
+			self.dhcpdefault = False
 		self.hasGatewayConfigEntry = NoSave(ConfigYesNo(default=self.dhcpdefault or False))
 		self.gatewayConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "gateway") or [0,0,0,0]))
 		nameserver = (iNetwork.getNameserverList() + [[0,0,0,0]] * 2)[0:2]
@@ -560,7 +555,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		else:
 			self.keyCancel()
 
-	def secondIfaceFoundCB(self,data):
+	def secondIfaceFoundCB(self, data):
 		if data is False:
 			self.applyConfig(True)
 		else:
@@ -1347,10 +1342,10 @@ class NetworkAdapterTest(Screen):
 			try:
 				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			except:
-					self["Network"].setForegroundColorNum(1)
-					self["Network"].setText(_("disconnected"))
-					self["NetworkInfo_Check"].setPixmapNum(1)
-					self["NetworkInfo_Check"].show()
+				self["Network"].setForegroundColorNum(1)
+				self["Network"].setText(_("disconnected"))
+				self["NetworkInfo_Check"].setPixmapNum(1)
+				self["NetworkInfo_Check"].show()
 			else:
 				iStatus.getDataForInterface(self.iface,self.getInfoCB)
 		else:
@@ -1630,9 +1625,6 @@ class NetworkAfp(Screen):
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
-		print 'INSTALLING: RE-ENABLING REMOTE'
-		from Screens.Standby import TryQuitMainloop
-		print 'INSTALLING: REBOOT'
 		self.session.open(TryQuitMainloop, 2)
 
 	def UninstallCheck(self):
@@ -1655,9 +1647,6 @@ class NetworkAfp(Screen):
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
-		print 'INSTALLING: RE-ENABLING REMOTE'
-		from Screens.Standby import TryQuitMainloop
-		print 'INSTALLING: REBOOT'
 		self.session.open(TryQuitMainloop, 2)
 
 	def createSummary(self):
@@ -1885,9 +1874,6 @@ class NetworkNfs(Screen):
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
-		print 'INSTALLING: RE-ENABLING REMOTE'
-		from Screens.Standby import TryQuitMainloop
-		print 'INSTALLING: REBOOT'
 		self.session.open(TryQuitMainloop, 2)
 
 	def UninstallCheck(self):
@@ -1910,9 +1896,6 @@ class NetworkNfs(Screen):
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
-		print 'INSTALLING: RE-ENABLING REMOTE'
-		from Screens.Standby import TryQuitMainloop
-		print 'INSTALLING: REBOOT'
 		self.session.open(TryQuitMainloop, 2)
 
 	def createSummary(self):
@@ -2816,7 +2799,7 @@ class NetworkInadynLog(Screen):
 			f.close()
 		self['infotext'].setText(strview)
 
-config.networkushare = ConfigSubsection();
+config.networkushare = ConfigSubsection()
 config.networkushare.mediafolders = NoSave(ConfigLocations(default=""))
 class NetworkuShare(Screen):
 	skin = """
@@ -3370,7 +3353,7 @@ class NetworkuShareLog(Screen):
 			remove('/tmp/tmp.log')
 		self['infotext'].setText(strview)
 
-config.networkminidlna = ConfigSubsection();
+config.networkminidlna = ConfigSubsection()
 config.networkminidlna.mediafolders = NoSave(ConfigLocations(default=""))
 class NetworkMiniDLNA(Screen):
 	skin = """
