@@ -525,7 +525,7 @@ class InfoBarChannelSelection:
 
 	def isPlayable(self, ref):
 		if not (ref.flags & eServiceReference.isMarker):
-			cur_running = self.session.nav.getCurrentlyPlayingServiceReference()
+			cur_running = self.session.nav.getCurrentlyPlayingServiceReference(False)
 			if not cur_running:
 				cur_running = eServiceReference()
 			info = eServiceCenter.getInstance().info(ref)
