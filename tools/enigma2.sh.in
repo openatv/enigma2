@@ -4,6 +4,9 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 
+echo 99 >/proc/sys/vm/overcommit_ratio
+echo 2 >/proc/sys/vm/overcommit_memory
+
 if [ -x @bindir@/showiframe ]; then
 	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
 		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
