@@ -2,14 +2,11 @@ from Tools.Profile import profile
 
 # workaround for required config entry dependencies.
 import Screens.MovieSelection
+
+from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Components.PluginComponent import plugins
 from Components.Label import Label
 from Components.Pixmap import MultiPixmap
-from Plugins.Plugin import PluginDescriptor
-
-from Screen import Screen
-from Screens.MessageBox import MessageBox
 
 profile("LOAD:enigma")
 import enigma

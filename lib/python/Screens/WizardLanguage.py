@@ -1,4 +1,4 @@
-from Wizard import Wizard
+from Screens.Wizard import Wizard
 from Components.Label import Label
 from Components.Language import language
 

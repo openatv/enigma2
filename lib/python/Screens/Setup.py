@@ -1,13 +1,12 @@
-from Screen import Screen
+from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap, ActionMap
 from Components.config import config, ConfigNothing, ConfigYesNo, ConfigSelection, ConfigText, ConfigPassword
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
-from Components.Pixmap import Pixmap,MultiPixmap
+from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Components.Label import Label
-from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.Sources.Boolean import Boolean
 
 from enigma import eEnv
@@ -122,7 +121,7 @@ class Setup(ConfigListScreen, Screen):
 	def createSetup(self):
 		list = []
 		self.refill(list)
- 		self["config"].setList(list)
+		self["config"].setList(list)
 		if config.usage.sort_settings.getValue():
 			self["config"].list.sort()
 		self.moveToItem(self.item)
@@ -227,18 +226,18 @@ class Setup(ConfigListScreen, Screen):
 
 				requires = x.get("requires")
 				if requires and requires.startswith('config.'):
-					item = eval(requires or "");
+					item = eval(requires or "")
 					if item.getValue() and not item.getValue() == "0":
 						SystemInfo[requires] = True
 					else:
 						SystemInfo[requires] = False
 
 				if requires and not SystemInfo.get(requires, False):
-					continue;
+					continue
 
 				item_text = _(x.get("text", "??").encode("UTF-8"))
 				item_description = _(x.get("description", " ").encode("UTF-8"))
-				b = eval(x.text or "");
+				b = eval(x.text or "")
 				if b == "":
 					continue
 				#add to configlist

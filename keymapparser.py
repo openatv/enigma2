@@ -7,11 +7,11 @@ from keyids import KEYIDS
 from Tools.KeyBindings import addKeyBinding
 
 class KeymapError(Exception):
-    def __init__(self, message):
-        self.msg = message
+	def __init__(self, message):
+		self.msg = message
 
-    def __str__(self):
-        return self.msg
+	def __str__(self):
+		return self.msg
 
 def parseKeys(context, filename, actionmap, device, keys):
 	for x in keys.findall("key"):

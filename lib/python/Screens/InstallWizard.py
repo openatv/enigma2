@@ -1,6 +1,5 @@
 from Screens.Screen import Screen
-from Components.ConfigList import ConfigListScreen, ConfigList
-from Components.ActionMap import ActionMap
+from Components.ConfigList import ConfigListScreen
 from Components.Sources.StaticText import StaticText
 from Components.config import config, ConfigSubsection, ConfigBoolean, getConfigListEntry, ConfigSelection, ConfigYesNo, ConfigIP
 from Components.Network import iNetwork

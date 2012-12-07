@@ -1,12 +1,11 @@
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
-from Components.config import config, configfile, ConfigSubsection, ConfigSelectionNumber, ConfigSelection, ConfigSlider, ConfigYesNo, getConfigListEntry
+from Components.config import config, configfile, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Console import Console
-from os import path
 from enigma import getDesktop
 
 class UserInterfacePositioner(Screen, ConfigListScreen):
@@ -200,7 +199,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self.selectionChanged()
 
 	def selectionChanged(self):
- 		self["status"].setText(self["config"].getCurrent()[2])
+		self["status"].setText(self["config"].getCurrent()[2])
 
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))

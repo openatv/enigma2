@@ -1,11 +1,10 @@
 # -*- coding: UTF-8 -*-
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_VALIGN_CENTER, getPrevAsciiCode
-from Screen import Screen
+from Screens.Screen import Screen
 from Components.Language import language
 from Components.ActionMap import NumberActionMap
 from Components.Sources.StaticText import StaticText
 from Components.Label import Label
-from Components.Pixmap import Pixmap
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN

@@ -1,11 +1,11 @@
-from Screen import Screen
+from Screens.Screen import Screen
 from Components.Language import language
 from enigma import eConsoleAppContainer, eDVBDB
 
 from Components.About import about
 from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
-from Components.PluginList import *
+from Components.PluginList import PluginList
 from Components.Label import Label
 from Components.Harddisk import harddiskmanager
 from Components.Sources.StaticText import StaticText
@@ -21,7 +21,6 @@ from Tools.LoadPixmap import LoadPixmap
 from urllib import urlopen
 import socket
 
-from time import time
 import os
 
 def languageChanged():
@@ -60,8 +59,8 @@ class PluginBrowser(Screen):
 
 		self.list = []
 		self["list"] = PluginList(self.list)
- 		if config.usage.sort_pluginlist.getValue():
- 			self["list"].list.sort()
+		if config.usage.sort_pluginlist.getValue():
+			self["list"].list.sort()
 
 		self["actions"] = ActionMap(["WizardActions"],
 		{
@@ -185,11 +184,11 @@ class PluginDownloadBrowser(Screen):
 		if os.path.isfile('/usr/bin/opkg'):
 			self.ipkg = '/usr/bin/opkg'
 			self.ipkg_install = self.ipkg + ' install'
-			self.ipkg_remove =  self.ipkg + ' remove --autoremove'
+			self.ipkg_remove =	self.ipkg + ' remove --autoremove'
 		else:
 			self.ipkg = 'ipkg'
 			self.ipkg_install = 'ipkg install -force-defaults'
-			self.ipkg_remove =  self.ipkg + ' remove'
+			self.ipkg_remove =	self.ipkg + ' remove'
 
 	def go(self):
 		sel = self["list"].l.getCurrentSelection()

@@ -1,4 +1,4 @@
-from Screen import Screen
+from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap
