@@ -1328,8 +1328,12 @@ class InfoBarSeek:
 
 	def __init__(self, actionmap = "InfobarSeekActions"):
 		
-		self.volctrl = eDVBVolumecontrol.getInstance()
-		self.vol = self.volctrl.getVolume()
+		self.paused = False
+		if not self.paused:
+			self.volctrl = eDVBVolumecontrol.getInstance()
+			self.vol = self.volctrl.getVolume()
+		
+		self.paused = False
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -1525,22 +1529,30 @@ class InfoBarSeek:
 		if pauseable is not None:
 			if self.seekstate[0] and self.seekstate[3] == '||':
 #				print "resolved to PAUSE"
+				if not self.paused:
+					self.vol = self.volctrl.getVolume()
+				self.paused = True
 				self.activityTimer.stop()
 				pauseable.pause()
 			elif self.seekstate[0] and self.seekstate[3] == 'END':
+				self.volctrl.setVolume(int(self.vol), int(self.vol))
+				self.paused = False			  
 #				print "resolved to STOP"
 				self.activityTimer.stop()
 				service.stop()
 			elif self.seekstate[1]:
+				self.paused = True
 				self.volctrl.setVolume(0,0)
 # 				print "resolved to FAST FORWARD"
 				pauseable.setFastForward(self.seekstate[1])
 			elif self.seekstate[2]:
+				self.paused = True			  
 				self.volctrl.setVolume(0,0)
 # 				print "resolved to SLOW MOTION"
 				pauseable.setSlowMotion(self.seekstate[2])
 			else:
-				self.volctrl.setVolume(50,50)
+				self.volctrl.setVolume(int(self.vol), int(self.vol))
+				self.paused = False
 # 				print "resolved to PLAY"
 				self.activityTimer.start(200, False)
 				pauseable.unpause()
