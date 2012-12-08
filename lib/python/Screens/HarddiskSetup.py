@@ -33,9 +33,9 @@ class HarddiskSetup(Screen):
 	def hddConfirmed(self, confirmed):
 		if not confirmed:
 			return
-		import Components.Task
+		from Components.Task import job_manager
 		try:
-			Components.Task.job_manager.AddJob(self.action())
+			job_manager.AddJob(self.action(), onSuccess=job_manager.popupTaskView)
 		except Exception, ex:
 			self.session.open(MessageBox, str(ex), type=MessageBox.TYPE_ERROR, timeout=10)
 		self.close()
