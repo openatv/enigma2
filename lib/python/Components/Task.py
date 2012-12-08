@@ -17,10 +17,9 @@ class Job(object):
 		self.__progress = 0
 		self.weightScale = 1
 		self.afterEvent = None
-
 		self.state_changed = CList()
-
 		self.status = self.NOT_STARTED
+		self.onSuccess = None
 
 	# description is a dict
 	def fromDescription(self, description):
@@ -198,7 +197,7 @@ class Task(object):
 
 	def cleanup(self, failed):
 		pass
-
+	
 	def processStdout(self, data):
 		self.processOutput(data)
 
@@ -344,12 +343,15 @@ class JobManager:
 		self.in_background = False
 		self.visible = False
 		self.active_job = None
-		self.MesgAfterRun = None
 
-	def AddJob(self, job, MesgAfterRun=None):
-		if self.active_job is None:
-			print"[Jobmanager] addjob with MesgAfterRun"
-			self.MesgAfterRun = MesgAfterRun
+	# Set onSuccess to popupTaskView to get a visible notification.
+	# onFail defaults to notifyFailed which tells the user that it went south.
+	def AddJob(self, job, onSuccess=None, onFail=None):
+		job.onSuccess = onSuccess
+		if onFail is None:
+			job.onFail = self.notifyFailed
+		else:
+			job.onFail = onFail
 		self.active_jobs.append(job)
 		self.kick()
 
@@ -359,28 +361,34 @@ class JobManager:
 				self.active_job = self.active_jobs.pop(0)
 				self.active_job.start(self.jobDone)
 
+	def notifyFailed(self, job, task, problems):
+		from Tools import Notifications
+		from Screens.MessageBox import MessageBox
+		if problems[0].RECOVERABLE:
+			Notifications.AddNotificationWithCallback(self.errorCB, MessageBox, _("Error: %s\nRetry?") % (problems[0].getErrorMessage(task)))
+			return True
+		else:
+			Notifications.AddNotification(MessageBox, job.name + "\n" + _("Error") + (': %s') % (problems[0].getErrorMessage(task)), type = MessageBox.TYPE_ERROR )
+			return False
+
 	def jobDone(self, job, task, problems):
 		print "job", job, "completed with", problems, "in", task
-		from Tools import Notifications
+		if problems:
+			if not job.onFail(job, task, problems):
+				self.errorCB(False)
+		else:
+			self.active_job = None
+			if job.onSuccess:
+				job.onSuccess(job)
+			self.kick()
+
+	# Set job.onSuccess to this function if you want to pop up the jobview when the job is done/
+	def popupTaskView(self, job):
 		if not self.visible:
+			from Tools import Notifications
 			from Screens.TaskView import JobView
 			self.visible = True
-			Notifications.AddNotification(JobView, self.active_job)
-		if problems:
-			from Screens.MessageBox import MessageBox
-			if problems[0].RECOVERABLE:
-				Notifications.AddNotificationWithCallback(self.errorCB, MessageBox, _("Error: %s\nRetry?") % (problems[0].getErrorMessage(task)))
-			else:
-				Notifications.AddNotification(MessageBox, job.name + "\n" + _("Error") + (': %s') % (problems[0].getErrorMessage(task)), type = MessageBox.TYPE_ERROR )
-				self.errorCB(False)
-			return
-			#self.failed_jobs.append(self.active_job)
-		if self.MesgAfterRun:
-			self.MesgAfterRun = None
-			from Screens.MessageBox import MessageBox
-			Notifications.AddNotification(MessageBox, job.name + "\n\n" + _("Finished") , type = MessageBox.TYPE_INFO, timeout = 20 )
-		self.active_job = None
-		self.kick()
+			Notifications.AddNotification(JobView, job)
 
 	def errorCB(self, answer):
 		if answer:
