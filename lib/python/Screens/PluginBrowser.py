@@ -5,7 +5,7 @@ from enigma import eConsoleAppContainer, eDVBDB
 from Components.About import about
 from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
-from Components.PluginList import PluginList
+from Components.PluginList import PluginList, PluginEntryComponent, PluginCategoryComponent, PluginDownloadComponent
 from Components.Label import Label
 from Components.Harddisk import harddiskmanager
 from Components.Sources.StaticText import StaticText
