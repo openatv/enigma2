@@ -2,7 +2,7 @@ from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Sources.StaticText import StaticText
-from Components.Harddisk import Harddisk
+from Components.Harddisk import Harddisk, harddiskmanager
 from Components.NimManager import nimmanager
 from Components.About import about
 from Components.config import config

@@ -6,6 +6,7 @@ from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
 from enigma import eDVBVolumecontrol
 import Screens.InfoBar
+from os import path
 
 inStandby = None
 
