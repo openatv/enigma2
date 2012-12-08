@@ -21,7 +21,7 @@ from Components.Console import Console
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.SelectionList import SelectionList
 from Components.PluginComponent import plugins
-from Components.About import about
+#from Components.About import about
 from Components.PackageInfo import PackageInfoHandler
 from Components.Language import language
 from Components.AVSwitch import AVSwitch
@@ -29,12 +29,12 @@ from Components.Task import job_manager
 from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN, SCOPE_METADIR
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
-from enigma import eTimer, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, iRecordableService, getBoxType
+from enigma import eTimer, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, iRecordableService, getBoxType, getEnigmaVersionString
 from cPickle import dump, load
 from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
 from time import time, gmtime, strftime, localtime
 from stat import ST_MTIME
-from datetime import date
+from datetime import date, timedelta
 from twisted.web import client
 from twisted.internet import reactor
 
@@ -1448,6 +1448,8 @@ class UpdatePlugin(Screen):
 		self.skin_path = plugin_path
 		self.TraficCheck = False
 		self.TraficResult = False
+		self.CheckDateDone = False
+		self.updatecounter = 0
 
 		self.activity = 0
 		self.activityTimer = eTimer()
@@ -1464,9 +1466,32 @@ class UpdatePlugin(Screen):
 			"back": self.exit
 		}, -1)
 
-		self.updating = True
 		self.activityTimer.start(100, False)
-		self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+
+	def CheckDate(self):
+		# Check if image is not to old for update (max 30days old or max 14x update)
+		self.CheckDateDone = True
+		tmpdate = getEnigmaVersionString()
+		imageDate = date(int(tmpdate[0:4]), int(tmpdate[5:7]), int(tmpdate[8:10]))
+		datedelay = imageDate +  timedelta(days=30)
+		if os.path.exists("/usr/share/misc/.update"):
+			self.updatecounter = int(open("/usr/share/misc/.update","r").readline()[:-1])
+
+			if self.updatecounter > 14:
+				print"[SOFTWAREMANAGER] Your image is to old (to much online updates), you need to flash new !!"
+				self.session.open(MessageBox, _("Your image is out of date\n You need to flash new !!"), type=MessageBox.TYPE_ERROR, timeout=30, close_on_any_key=True, simple=True)
+				self.close()
+				return
+			
+		if datedelay > date.today():
+			self.updating = True
+			self.activityTimer.start(100, False)
+			self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+		else:
+			print"[SOFTWAREMANAGER] Your image is to old (%s), you need to flash new !!" %getEnigmaVersionString()
+			self.session.open(MessageBox, _("Your image is out of date\n You need to flash new !!"), type=MessageBox.TYPE_ERROR, timeout=30, close_on_any_key=True, simple=True)
+			self.close()
+			return
 
 	def checkTraficLight(self):
 		from urllib import urlopen
@@ -1481,11 +1506,8 @@ class UpdatePlugin(Screen):
 		# run in parallel to the package update.
 		try:
 			urlopenAAF = "http://mipsel-ipk-update.aaf-board.com/Ampel/index.php"
-			#statusDate = "n/a"
 			d = urlopen(urlopenAAF)
 			tmpStatus = d.read()
-			#if 'Last-Modified' in str(d.info()):
-				#statusDate = str(d.info()['Last-Modified'])
 			if (os.path.exists("/etc/.beta") and 'rot.png' in tmpStatus) or 'gelb.png' in tmpStatus:
 				message = _("Caution update not yet tested !!") + "\n" + _("Update at your own risk") + "\n\n" + _("For more information see http://www.aaf-digital.info") + "\n\n"# + _("Last Status Date") + ": "  + statusDate + "\n\n"
 				picon = MessageBox.TYPE_ERROR
@@ -1526,6 +1548,10 @@ class UpdatePlugin(Screen):
 			self.exit()
 
 	def doActivityTimer(self):
+		if not self.CheckDateDone:
+			self.activityTimer.stop()
+			self.CheckDate()
+			return
 		self.activity += 1
 		if self.activity == 100:
 			self.activity = 0
@@ -1624,6 +1650,7 @@ class UpdatePlugin(Screen):
 	def exit(self):
 		if not self.ipkg.isRunning():
 			if self.packages != 0 and self.error == 0:
+				open("/usr/share/misc/.update","w").writelines(str(self.updatecounter+1) + "\n")
 				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your STB_BOX?"))
 			else:
 				self.close()
