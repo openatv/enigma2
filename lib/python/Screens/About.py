@@ -116,8 +116,8 @@ class About(Screen):
 		AboutText += _("Version:") + " " + about.getImageVersionString() + "\n"
 		self["BuildVersion"] = StaticText(_("Build:") + " " + about.getBuildVersionString())
 		AboutText += _("Build:") + " " + about.getBuildVersionString() + "\n"
-		self["EnigmaVersion"] = StaticText(_("Last Update:") + " " + about.getLastUpdateString())
-		AboutText += _("Last update:") + " " + about.getLastUpdateString() + "\n\n"
+		self["EnigmaVersion"] = StaticText(_("Last Update:") + " " + about.getEnigmaVersionString())
+		AboutText += _("Last update:") + " " + about.getEnigmaVersionString() + "\n\n"
 
 		fp_version = getFPVersion()
 		if fp_version is None:
