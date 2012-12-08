@@ -349,10 +349,9 @@ class UpdatePlugin(Screen):
 		Components.Task.job_manager.AddJob(self.BackupFiles.createBackupJob())
 		Components.Task.job_manager.in_background = False
 		for job in Components.Task.job_manager.getPendingJobs():
-			if job.name.startswith(_("Backup Manager")):
-				backup = job
-		if backup:
-			self.showJobView(backup)
+			if _(job.name) == _("Backup Manager"):
+				break
+		self.showJobView(job)
 
 	def doImageBackup(self):
 		backup = None
@@ -361,10 +360,9 @@ class UpdatePlugin(Screen):
 		Components.Task.job_manager.AddJob(self.ImageBackup.createBackupJob())
 		Components.Task.job_manager.in_background = False
 		for job in Components.Task.job_manager.getPendingJobs():
-			if job.name.startswith(_("Image Manager")):
-				backup = job
-		if backup:
-			self.showJobView(backup)
+			if _(job.name) == _("Image Manager"):
+				break
+		self.showJobView(job)
 
 	def doAutoBackup(self, val = False):
 		self.autobackuprunning = True
@@ -377,10 +375,10 @@ class UpdatePlugin(Screen):
 			self.close()
 
 	def showJobView(self, job):
-		if job.name.startswith(_("Image Manager")):
+		if _(job.name) == _("Image Manager"):
 			self.ImageBackupDone = True
-		elif job.name.startswith(_("Backup Manager")):
-			self.SettingsBackupDone = True
+		elif _(job.name) == _("Backup Manager"):
+				self.SettingsBackupDone = True
 		from Screens.TaskView import JobView
 		Components.Task.job_manager.in_background = False
 		if not self.autobackuprunning:
