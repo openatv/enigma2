@@ -104,9 +104,9 @@ class ServiceInfo(Screen):
 
 	def information(self):
 		if self.type == TYPE_SERVICE_INFO:
-			if self.session.nav.getCurrentlyPlayingServiceReference():
-				name = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference(False)).getServiceName()
-				refstr = self.session.nav.getCurrentlyPlayingServiceReference(False).toString()
+			if self.session.nav.getCurrentlyPlayingServiceOrGroup():
+				name = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
+				refstr = self.session.nav.getCurrentlyPlayingServiceReference().toString()
 			else:
 				name = _("N/A")
 				refstr = _("N/A")

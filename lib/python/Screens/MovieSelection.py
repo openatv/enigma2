@@ -706,7 +706,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		return False
 
 	def goToPlayingService(self):
-		service = self.session.nav.getCurrentlyPlayingServiceReference()
+		service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if service:
 			path = service.getPath()
 			if path:

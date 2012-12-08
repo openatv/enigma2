@@ -437,7 +437,7 @@ class ChannelSelectionEPG:
 
 	def zapToService(self, service, preview = False, zapback = False):
 		if self.startServiceRef is None:
-			self.startServiceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.startServiceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if service is not None:
 			if self.servicelist.getRoot() != self.epg_bouquet:
 				self.servicelist.clearPath()
@@ -999,7 +999,7 @@ class ChannelSelectionBase(Screen):
 				if currentRoot is None or currentRoot != ref:
 					self.clearPath()
 					self.enterPath(ref)
-					self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceReference())
+					self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
 	def showSatellites(self):
 		if not self.pathChangeDisabled:
@@ -1054,7 +1054,7 @@ class ChannelSelectionBase(Screen):
 									service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
 							service.setName("%s - %s" % (service_name, service_type))
 							self.servicelist.addService(service)
-						cur_ref = self.session.nav.getCurrentlyPlayingServiceReference(False)
+						cur_ref = self.session.nav.getCurrentlyPlayingServiceReference()
 						if cur_ref:
 							pos = self.service_types.rfind(':')
 							refstr = '%s (channelID == %08x%04x%04x) && %s ORDER BY name' %(self.service_types[:pos+1],
@@ -1218,11 +1218,11 @@ class ChannelSelectionBase(Screen):
 				info = service.info()
 				if info:
 					provider = info.getInfoString(iServiceInformation.sProvider)
-					op = int(self.session.nav.getCurrentlyPlayingServiceReference().toString().split(':')[6][:-4] or "0",16)
+					op = int(self.session.nav.getCurrentlyPlayingServiceOrGroup().toString().split(':')[6][:-4] or "0",16)
 					refstr = '1:7:0:0:0:0:0:0:0:0:(provider == \"%s\") && (satellitePosition == %s) && %s ORDER BY name:%s'%(provider,op,self.service_types[self.service_types.rfind(':')+1:],provider)
 					self.servicelist.setCurrent(eServiceReference(refstr))
 		else:
-			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceReference())
+			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
 HISTORYSIZE = 20
 
@@ -1364,7 +1364,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def channelSelected(self, doClose = True):
 		if self.startServiceRef is None and not doClose:
-			self.startServiceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.startServiceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		ref = self.getCurrentSelection()
 		if self.movemode:
 			self.toggleMoveMarked()
@@ -1430,7 +1430,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					# XXX: Make sure we set an invalid ref
 					self.session.pip.playService(None)
 		else:
-			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if ref is None or ref != nref:
 				self.new_service_played = True
 				self.session.nav.playService(nref)
@@ -1472,7 +1472,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def historyBack(self):
 		hlen = len(self.history)
-		currentPlayedRef = self.session.nav.getCurrentlyPlayingServiceReference()
+		currentPlayedRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if hlen > 0 and self.history[self.history_pos][-1] != currentPlayedRef:
 			self.addToHistory(currentPlayedRef)
 			hlen = len(self.history)
@@ -1563,7 +1563,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def recallPrevService(self):
 		hlen = len(self.history)
-		currentPlayedRef = self.session.nav.getCurrentlyPlayingServiceReference()
+		currentPlayedRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if hlen > 0 and self.history[self.history_pos][-1] != currentPlayedRef:
 			self.addToHistory(currentPlayedRef)
 			hlen = len(self.history)
@@ -1598,7 +1598,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.close(None)
 
 	def zapBack(self):
-		if self.startServiceRef and self.session.nav.getCurrentlyPlayingServiceReference() != self.startServiceRef:
+		if self.startServiceRef and self.session.nav.getCurrentlyPlayingServiceOrGroup() != self.startServiceRef:
 			if self.startRoot:
 				self.clearPath()
 				self.recallBouquetMode()
@@ -1753,7 +1753,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		elif not (ref.flags & eServiceReference.isMarker): # no marker
 			cur_root = self.getRoot()
 			if not cur_root or not (cur_root.flags & eServiceReference.isGroup):
-				playingref = self.session.nav.getCurrentlyPlayingServiceReference()
+				playingref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 				if playingref is None or playingref != ref:
 					self.session.nav.playService(ref)
 					config.radio.lastservice.value = ref.toString()
