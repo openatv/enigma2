@@ -543,6 +543,7 @@ skin.loadSkinData(enigma.getDesktop(0))
 profile("InputDevice")
 import Components.InputDevice
 Components.InputDevice.InitInputDevices()
+import Components.InputHotplug
 
 profile("SetupDevices")
 import Components.SetupDevices
