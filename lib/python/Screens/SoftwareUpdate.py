@@ -1,3 +1,4 @@
+import Components.Task
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
@@ -11,9 +12,9 @@ from Components.Ipkg import IpkgComponent
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
-import Components.Task
 from enigma import eTimer, eDVBDB
 from os import rename, path, remove
+from gettext import dgettext
 
 class SoftwareUpdateChanges(Screen):
 	def __init__(self, session, args = None):
@@ -320,7 +321,7 @@ class UpdatePlugin(Screen):
 				choices.append((_("Perform a full image backup"), "imagebackup"))
 			choices.append((_("Update channel list only"), "channels"))
 			choices.append((_("Cancel"), ""))
-			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
+			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name = "SoftwareUpdateChoices")
 			upgrademessage.setTitle(_('Software update'))
 		elif answer[1] == "changes":
 			self.session.openWithCallback(self.startActualUpgrade,SoftwareUpdateChanges)
@@ -349,7 +350,7 @@ class UpdatePlugin(Screen):
 		Components.Task.job_manager.AddJob(self.BackupFiles.createBackupJob())
 		Components.Task.job_manager.in_background = False
 		for job in Components.Task.job_manager.getPendingJobs():
-			if _(job.name) == _("Backup Manager"):
+			if job.name == dgettext('ViX', 'Backup Manager'):
 				break
 		self.showJobView(job)
 
@@ -360,7 +361,7 @@ class UpdatePlugin(Screen):
 		Components.Task.job_manager.AddJob(self.ImageBackup.createBackupJob())
 		Components.Task.job_manager.in_background = False
 		for job in Components.Task.job_manager.getPendingJobs():
-			if _(job.name) == _("Image Manager"):
+			if job.name == dgettext('ViX', 'Image Manager'):
 				break
 		self.showJobView(job)
 
@@ -375,10 +376,10 @@ class UpdatePlugin(Screen):
 			self.close()
 
 	def showJobView(self, job):
-		if _(job.name) == _("Image Manager"):
+		if job.name == dgettext('ViX', 'Image Manager'):
 			self.ImageBackupDone = True
-		elif _(job.name) == _("Backup Manager"):
-				self.SettingsBackupDone = True
+		elif job.name == dgettext('ViX', 'Backup Manager'):
+			self.SettingsBackupDone = True
 		from Screens.TaskView import JobView
 		Components.Task.job_manager.in_background = False
 		if not self.autobackuprunning:
