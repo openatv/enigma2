@@ -1298,7 +1298,7 @@ class ChannelSelectionBase(Screen):
 					s = list.getNext()
 					if not s.valid():
 						break
-					if s.flags & eServiceReference.isDirectory:
+					if (s.flags and int(s.flags) != 519) & eServiceReference.isDirectory:
 						info = serviceHandler.info(s)
 						if info:
 							bouquets.append((info.getName(s), s))
