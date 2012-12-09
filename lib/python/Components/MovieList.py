@@ -476,6 +476,11 @@ class MovieList(GUIComponent):
 			# convert space-seperated list of tags into a set
 			this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
 			name = info.getName(serviceref)
+
+			# OSX put a lot of stupid files ._* everywhere... we need to skip them
+			if name[:2] == "._":
+				continue
+
 			if this_tags == ['']:
 				# No tags? Auto tag!
 				this_tags = name.replace(',',' ').replace('.',' ').replace('_',' ').replace(':',' ').split()
