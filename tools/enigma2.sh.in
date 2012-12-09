@@ -33,6 +33,11 @@ else
 	LIBS="/usr/lib/libopen.so.0.0.0"
 fi
 
+#check for specific pagecache helper lib
+if [ -e /usr/lib/libpagecache.so ]; then
+	LIBS="$LIBS /usr/lib/libpagecache.so"
+fi
+
 #check for receiver specific passthrough helper lib
 if [ -e @libdir@/libpassthrough.so ]; then
 	LIBS="$LIBS @libdir@/libpassthrough.so"
