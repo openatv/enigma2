@@ -1930,7 +1930,7 @@ class InfoBarSeek:
 			hdd = 1
 			if self.activity >= 100:
 				self.activity = 0
-			if SystemInfo["FrontpanelDisplay"]:
+			if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
 				if os.path.exists("/proc/stb/lcd/symbol_hdd"):
 					if config.lcd.hdd.getValue() == "1":
 						file = open("/proc/stb/lcd/symbol_hdd", "w")
