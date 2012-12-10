@@ -1,3 +1,4 @@
+import Components.Task
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
@@ -11,9 +12,9 @@ from Components.Ipkg import IpkgComponent
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
-import Components.Task
 from enigma import eTimer, eDVBDB
 from os import rename, path, remove
+from gettext import dgettext
 
 class SoftwareUpdateChanges(Screen):
 	def __init__(self, session, args = None):
@@ -313,7 +314,7 @@ class UpdatePlugin(Screen):
 			choices.append((_("Perform a setting backup, making a backup before updating is strongly advised."), "backup"))
 			choices.append((_("Update channel list only"), "channels"))
 			choices.append((_("Cancel"), ""))
-			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
+			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name = "SoftwareUpdateChoices")
 			upgrademessage.setTitle(_('Software update'))
 		elif answer[1] == "changes":
 			self.session.openWithCallback(self.startActualUpgrade,SoftwareUpdateChanges)
@@ -340,6 +341,7 @@ class UpdatePlugin(Screen):
 		  self.session.openWithCallback(self.startActualUpgrade(("menu", "menu")), BackupScreen, runBackup = True)
 		else:
 		  self.session.openWithCallback(self.startActualUpgrade(("cold", "cold")), BackupScreen, runBackup = True)
+
 
 	def doAutoBackup(self, val = False):
 		self.autobackuprunning = True
