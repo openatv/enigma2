@@ -2,6 +2,7 @@ import os
 from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference, eServiceCenter, iRecordableService, quitMainloop
 
 from Components.config import config
+from Components import Harddisk
 from Components.UsageConfig import defaultMoviePath
 from Components.TimerSanityCheck import TimerSanityCheck
 
@@ -53,10 +54,9 @@ class AFTEREVENT:
 def findSafeRecordPath(dirname):
 	if not dirname:
 		return None
-	from Components import Harddisk
 	dirname = os.path.realpath(dirname)
 	mountpoint = Harddisk.findMountPoint(dirname)
-	if mountpoint in ('/', '/media', '/media/net'):
+	if not os.path.ismount(mountpoint):
 		print '[RecordTimer] media is not mounted:', dirname
 		return None
 	if not os.path.isdir(dirname):
@@ -380,7 +380,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if not Screens.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nSTB_BOX to standby. Do that now?"), timeout = 180)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO):
-				if abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
+				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
 					return True
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
