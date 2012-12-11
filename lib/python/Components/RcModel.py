@@ -46,12 +46,6 @@ class RcModel:
 			model = self.readFile('/proc/stb/info/hwmodel')
 			if model == 'tmtwinoe' or model == 'tm2toe' or model == 'tmsingle':
 				self.currentRcType = self.RCTYPE_TM
-		elif os.path.exists('/proc/stb/info/vumodel'):
-			model = self.readFile('/proc/stb/info/vumodel')
-			if model == 'ultimo':
-				self.currentRcType = self.RCTYPE_VU2
-			else:
-				self.currentRcType = self.RCTYPE_VU
 		elif getBoxType() == 'dm8000':
 				self.currentRcType = self.RCTYPE_DMM
 		elif getBoxType() == 'dm7020hd':
@@ -103,7 +97,13 @@ class RcModel:
 			elif model == 'odinm7':
 				self.currentRcType = self.RCTYPE_ODINM7
 			elif model.startswith('Ixuss'):
-				self.currentRcType = self.RCTYPE_IXUSSONE	
+				self.currentRcType = self.RCTYPE_IXUSSONE
+		elif os.path.exists('/proc/stb/info/vumodel'):
+			model = self.readFile('/proc/stb/info/vumodel')
+			if model == 'ultimo':
+				self.currentRcType = self.RCTYPE_VU2
+			else:
+				self.currentRcType = self.RCTYPE_VU		
 
 
 	def getRcLocation(self):
