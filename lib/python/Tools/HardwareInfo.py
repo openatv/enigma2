@@ -1,3 +1,5 @@
+from enigma import getBoxType
+
 class HardwareInfo:
 	device_name = None
 	device_version = None
@@ -44,4 +46,4 @@ class HardwareInfo:
 		return HardwareInfo.device_version
 
 	def has_hdmi(self):
-		return (HardwareInfo.device_name == 'dm7020hd' or HardwareInfo.device_name == 'dm800se' or HardwareInfo.device_name == 'dm500hd' or (HardwareInfo.device_name == 'dm8000' and HardwareInfo.device_version != None) or HardwareInfo.device_name.startswith('gb'))
+		return (HardwareInfo.device_name == 'dm7020hd' or HardwareInfo.device_name == 'dm800se' or HardwareInfo.device_name == 'dm500hd' or (HardwareInfo.device_name == 'dm8000' and HardwareInfo.device_version != None) or getBoxType().startswith('gb') or getBoxType().startswith('tm'))
