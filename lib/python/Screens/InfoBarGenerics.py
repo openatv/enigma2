@@ -1516,9 +1516,11 @@ class Seekbar(Screen):
 			if self.seek:
 				self.length = self.seek.getLength()
 				position = self.seek.getPlayPosition()
-				if self.length and position:
+				if self.length and position and int(self.length[1]) > 0:
 					if int(position[1]) > 0:
 						self.percent = float(position[1]) * 100.0 / float(self.length[1])
+				else:
+					self.close()
 
 		self["cursor"] = MovingPixmap()
 		self["time"] = Label()
@@ -1822,7 +1824,7 @@ class InfoBarSeek:
 
 	def doSeekRelative(self, pts):
 		seekable = self.getSeek()
-		if seekable is None:
+		if seekable is None and int(self.seek.getLength()[1]) < 1:
 			return
 		prevstate = self.seekstate
 
