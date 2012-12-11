@@ -156,7 +156,6 @@ class PositionerSetup(Screen):
 			cur.get("pilot", eDVBFrontendParametersSatellite.Pilot_Unknown))
 
 		self.tuner.tune(tp)
-		self.polarisation = tp[2]
 		self.isMoving = False
 		self.stopOnLock = False
 
@@ -188,6 +187,7 @@ class PositionerSetup(Screen):
 		self.statusMsgBlinking = False
 		self.statusMsgBlinkCount = 0
 		self.statusMsgBlinkRate = 500 / self.UPDATE_INTERVAL	# milliseconds
+		self.tuningChangedTo(tp)
 
 		self["actions"] = NumberActionMap(["DirectionActions", "OkCancelActions", "ColorActions", "TimerEditActions", "InputActions"],
 		{
@@ -584,7 +584,7 @@ class PositionerSetup(Screen):
 		self.statusTimer.start(self.UPDATE_INTERVAL, True)
 		if transponder is not None:
 			self.tuner.tune(transponder)
-			self.polarisation = transponder[2]
+			self.tuningChangedTo(transponder)
 		feparm = self.tuner.lastparm.getDVBS()
 		orb_pos = feparm.orbital_position
 		m = PositionerSetup.satposition2metric(orb_pos)
@@ -620,11 +620,6 @@ class PositionerSetup(Screen):
 		self["snr_bar"].update()
 		self["ber_bar"].update()
 		self["lock_state"].update()
-		transponderdata = ConvertToHumanReadable(self.tuner.getTransponderData(), "DVB-S")
-		self["frequency_value"].setText(str(transponderdata.get("frequency") / 1000))
-		self["symbolrate_value"].setText(str(transponderdata.get("symbol_rate") / 1000))
-		self["fec_value"].setText(str(transponderdata.get("fec_inner")))
-		self["polarisation"].setText(str(transponderdata.get("polarization")))
 		if self.statusMsgBlinking:
 			self.statusMsgBlinkCount += 1
 			if self.statusMsgBlinkCount == self.statusMsgBlinkRate:
@@ -640,16 +635,38 @@ class PositionerSetup(Screen):
 			self.stopMoving()
 			self.updateColors(self.getCurrentConfigPath())
 		if self.collectingStatistics:
-			self.snr_percentage += self["snr_percentage"].getValue(TunerInfo.SNR)
-			self.lock_count += self["lock_state"].getValue(TunerInfo.LOCK)
-			self.stat_count += 1
-			if self.stat_count == self.max_count:
-				self.collectingStatistics = False
-				count = float(self.stat_count)
-				self.lock_count /= count
-				self.snr_percentage *= 100.0 / 0x10000 / count
-				self.dataAvailable.set()
+			self.low_rate_adapter_count += 1
+			if self.low_rate_adapter_count == self.MAX_LOW_RATE_ADAPTER_COUNT:
+				self.low_rate_adapter_count = 0
+				self.snr_percentage += self["snr_percentage"].getValue(TunerInfo.SNR)
+				self.lock_count += self["lock_state"].getValue(TunerInfo.LOCK)
+				self.stat_count += 1
+				if self.stat_count == self.max_count:
+					self.collectingStatistics = False
+					count = float(self.stat_count)
+					self.lock_count /= count
+					self.snr_percentage *= 100.0 / 0x10000 / count
+					self.dataAvailable.set()
 
+	def tuningChangedTo(self, tp):
+
+		def setLowRateAdapterCount(symbolrate):
+			# change the measurement time and update interval in case of low symbol rate,
+			# since more time is needed for the front end in that case.
+			# It is an heuristic determination without any pretence. For symbol rates
+			# of 5000 the interval is multiplied by 3 until 15000 which is seen
+			# as a high symbol rate. Linear interpolation elsewhere.
+			return max(int(round((3 - 1) * (symbolrate - 15000) / (5000 - 15000) + 1)), 1)
+
+		self.symbolrate = tp[1]
+		self.polarisation = tp[2]
+		self.MAX_LOW_RATE_ADAPTER_COUNT = setLowRateAdapterCount(self.symbolrate)
+		transponderdata = ConvertToHumanReadable(self.tuner.getTransponderData(), "DVB-S")
+		self["frequency_value"].setText(str(transponderdata.get("frequency") / 1000))
+		self["symbolrate_value"].setText(str(transponderdata.get("symbol_rate") / 1000))
+		self["fec_value"].setText(str(transponderdata.get("fec_inner")))
+		self["polarisation"].setText(str(transponderdata.get("polarization")))
+	
 	@staticmethod
 	def rotorCmd2Step(rotorCmd, stepsize):
 		return round(float(rotorCmd & 0xFFF) / 0x10 / stepsize) * (1 - ((rotorCmd & 0x1000) >> 11))
@@ -689,7 +706,7 @@ class PositionerSetup(Screen):
 			turningspeed = self.turningspeedV
 		return max(turningspeed, 0.1)
 
-	TURNING_START_STOP_DELAY = 1.200	# seconds
+	TURNING_START_STOP_DELAY = 1.600	# seconds
 	MAX_SEARCH_ANGLE = 12.0				# degrees
 	MAX_FOCUS_ANGLE = 6.0				# degrees
 	LOCK_LIMIT = 0.1					# ratio
@@ -699,6 +716,7 @@ class PositionerSetup(Screen):
 		self.snr_percentage = 0.0
 		self.lock_count = 0.0
 		self.stat_count = 0
+		self.low_rate_adapter_count = 0
 		self.max_count = max(int((time * 1000 + self.UPDATE_INTERVAL / 2)/ self.UPDATE_INTERVAL), 1)
 		self.collectingStatistics = True
 		self.dataAvailable.clear()
@@ -729,7 +747,7 @@ class PositionerSetup(Screen):
 		def move(x):
 			z = self.gotoX(x + satlon)
 			time = int(abs(x - prev_pos) / turningspeed + 2 * self.TURNING_START_STOP_DELAY)
-			sleep(time)
+			sleep(time * self.MAX_LOW_RATE_ADAPTER_COUNT)
 			return z
 
 		def reportlevels(pos, level, lock):
@@ -865,7 +883,7 @@ class PositionerSetup(Screen):
 				self.diseqccommand("moveWest", x & 0xFF)
 			if x != 0:
 				time = int(abs(x) * self.tuningstepsize / turningspeed + 2 * self.TURNING_START_STOP_DELAY)
-				sleep(time)
+				sleep(time * self.MAX_LOW_RATE_ADAPTER_COUNT)
 
 		def reportlevels(pos, level, lock):
 			print>>log, (_("Signal quality") + " [%2d]   : %6.2f") % (pos, level)
