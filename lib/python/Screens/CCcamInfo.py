@@ -12,6 +12,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.ServiceEventTracker import ServiceEventTracker
+from Screens.HelpMenu import HelpableScreen
 from enigma import eListboxPythonMultiContent, ePoint, eTimer, getDesktop, gFont, iPlayableService, iServiceInformation, loadPNG, RT_HALIGN_RIGHT
 from os import environ, listdir, remove, rename, system
 from Plugins.Plugin import PluginDescriptor
@@ -38,6 +39,7 @@ class EGCCcamEditAddLine(ConfigListScreen,Screen):
 		<widget name="config" position="10,5" size="e-20,e-90" scrollbarMode="showOnDemand" />
 		<ePixmap pixmap="skin_default/buttons/red.png" position="c-300,e-45" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="c-150,e-45" size="140,40" alphatest="on" />
+		<widget name="HelpText" position="10,e-90" zPosition="1" size="600,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 		<widget name="key_red" position="c-300,e-45" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 		<widget name="key_green" position="c-150,e-45" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 	</screen>"""
@@ -46,15 +48,6 @@ class EGCCcamEditAddLine(ConfigListScreen,Screen):
 	Screen.__init__(self, session)
 	
 	self.def_mode = def_mode
-	print "EDIT"
-	print def_protocol
-	print def_domain
-	print def_port
-	print def_username
-	print def_password
-	print def_deskey
-	print def_mode
-	print "EDIT"
 	des = str(def_deskey)
 	des = list(des)
 	# N: 127.0.0.1 10000 dummy dummy 01 02 03 04 05 06 07 08 09 10 11 12 13 14
@@ -79,16 +72,35 @@ class EGCCcamEditAddLine(ConfigListScreen,Screen):
 	
 	self.protocol.addNotifier(self.typeChange)
 	
-	self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "CiSelectionActions"],
+	self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "CiSelectionActions", "VirtualKeyboardActions"],
 	{
 		"cancel": self.cancel,
 		"red": self.save,
 		"green": self.cancel,
+		"showVirtualKeyboard": self.KeyText,
 	}, -2)
 		
-	self["key_red"] = Label(_("Save"))		
-	self["key_green"] = Label(_("Cancel"))		
-		
+	self["key_red"] = Label(_("Save"))
+	self["key_green"] = Label(_("Cancel"))
+	self["HelpText"] = Label(_("Please to press button TXT to open Virtual keyboard"))
+
+
+    def KeyText(self):
+		sel = self['config'].getCurrent()
+		if sel:
+			if sel == self.domain or sel == self.username or sel == self.password:
+				if self["config"].getCurrent()[1].help_window.instance is not None:
+					self["config"].getCurrent()[1].help_window.hide()
+			self.vkvar = sel[0]
+			if self.vkvar == _("Domain") + ':' or self.vkvar == _("Username") + ':' or self.vkvar == _("Password") + ':':
+				from Screens.VirtualKeyBoard import VirtualKeyBoard
+				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+    
+    def VirtualKeyBoardCallback(self, callback = None):
+		if callback is not None and len(callback):
+			self["config"].getCurrent()[1].setValue(callback)
+			self["config"].invalidate(self["config"].getCurrent())
+			
     def typeChange(self, value):
 		self.createSetup()
 		self["config"].l.setList(self.list)
@@ -101,7 +113,7 @@ class EGCCcamEditAddLine(ConfigListScreen,Screen):
         	self.list.append(getConfigListEntry(_("Username:"), self.username))
         	self.list.append(getConfigListEntry(_("Password:"), self.password))
 		if self.protocol.value == "N:":
-        		self.list.append(getConfigListEntry(_("NewCamd DES Key"), self.deskey))
+        		self.list.append(getConfigListEntry(_("NewCamd DES Key:"), self.deskey))
 		
     def save(self):
 	if self.protocol.value == "N:":
@@ -203,7 +215,6 @@ class EGCCcamConfigEdit(Screen):
 		self["menu"].setList(self.list)
 
 	def keyAdd(self):
-	      print "keyAdd"
 	      def_protocol = "N:"
 	      def_domain = "address.dyndns.org"
 	      def_username = "username"
@@ -214,7 +225,6 @@ class EGCCcamConfigEdit(Screen):
 	      self.session.openWithCallback(self.readConfig, EGCCcamEditAddLine, def_protocol, def_domain, def_port, def_username, def_password, def_deskey, def_mode)
 
 	def keyEdit(self):
-	  print "keyEdit"
 	  mysel = self['menu'].getCurrent()
 	  if mysel:
 	      mysel = mysel.split()
@@ -235,12 +245,15 @@ class EGCCcamConfigEdit(Screen):
 	def keyRemove(self):
 	      print "keyRemove2"
 	      mysel = self['menu'].getCurrent()    
-	      zrodlo = open('/etc/CCcam.cfg').readlines()
-	      cel = open('/etc/CCcam.cfg', 'w')
-	      for s in zrodlo:
-		      cel.write(s.replace(mysel , "#"))
-	      cel.close()
-	      
+	      if mysel:
+		zrodlo = open('/etc/CCcam.cfg').readlines()
+		cel = open('/etc/CCcam.cfg', 'w')
+		for s in zrodlo:
+			cel.write(s.replace(mysel , "#"))
+		cel.close()
+	      else:
+		mysel
+		
 	      self.readConfig()
     
 	def keyExit(self):
