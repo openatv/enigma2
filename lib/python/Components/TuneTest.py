@@ -49,7 +49,7 @@ class TuneTest:
 		self.currTuned = None
 		print "TuneTest for feid %d" % self.feid
 		if not self.openFrontend():
-			self.oldref = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.session.nav.stopService() # try to disable foreground service
 			if not self.openFrontend():
 				if self.session.pipshown: # try to disable pip

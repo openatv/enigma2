@@ -12,6 +12,7 @@
 #include <unistd.h>  // for usleep
 #include <sys/vfs.h> // for statfs
 // #include <libmd5sum.h>
+#include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
 #include <lib/base/encoding.h>
 #include <lib/base/estring.h>
@@ -884,21 +885,24 @@ next:
 #ifdef EPG_DEBUG
 		if ( servicemap.first.size() != servicemap.second.size() )
 		{
-			FILE *f = fopen("/hdd/event_map.txt", "w+");
-			int i=0;
-			for (eventMap::iterator it(servicemap.first.begin())
-				; it != servicemap.first.end(); ++it )
-				fprintf(f, "%d(key %d) -> time %d, event_id %d, data %p\n", 
-					i++, (int)it->first, (int)it->second->getStartTime(), (int)it->second->getEventID(), it->second );
-			fclose(f);
-			f = fopen("/hdd/time_map.txt", "w+");
-			i=0;
-			for (timeMap::iterator it(servicemap.second.begin())
-				; it != servicemap.second.end(); ++it )
+			{
+				CFile f("/hdd/event_map.txt", "w+");
+				int i = 0;
+				for (eventMap::iterator it(servicemap.first.begin()); it != servicemap.first.end(); ++it )
+				{
 					fprintf(f, "%d(key %d) -> time %d, event_id %d, data %p\n", 
+					i++, (int)it->first, (int)it->second->getStartTime(), (int)it->second->getEventID(), it->second );
+				}
+			}
+			{
+				CFile f("/hdd/time_map.txt", "w+");
+				int i = 0;
+				for (timeMap::iterator it(servicemap.second.begin()); it != servicemap.second.end(); ++it )
+				{
+					fprintf(f, "%d(key %d) -> time %d, event_id %d, data %p\n",
 						i++, (int)it->first, (int)it->second->getStartTime(), (int)it->second->getEventID(), it->second );
-			fclose(f);
-
+				}
+			}
 			eFatal("(1)map sizes not equal :( sid %04x tsid %04x onid %04x size %d size2 %d", 
 				service.sid, service.tsid, service.onid, 
 				servicemap.first.size(), servicemap.second.size() );
