@@ -460,7 +460,7 @@ void eListbox::setItemHeight(int h)
 	if (h)
 		m_itemheight = h;
 	else
-		m_itemheight = 20;
+		m_itemheight = 30;
 	recalcSize();
 }
 
