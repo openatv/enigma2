@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-03 15:00+0000\n"
+"POT-Creation-Date: 2012-12-11 02:39+0000\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
+"Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
@@ -166,7 +166,7 @@ msgstr "%a %e/%m  %-H:%M"
 
 #, python-format
 msgid "%d GB"
-msgstr "%d Gb"
+msgstr "%d GB"
 
 #, python-format
 msgid "%d Gb"
@@ -174,11 +174,11 @@ msgstr "%d Gb"
 
 #, python-format
 msgid "%d KB"
-msgstr "%d Kb"
+msgstr "%d KB"
 
 #, python-format
 msgid "%d MB"
-msgstr "%d Mb"
+msgstr "%d MB"
 
 #, python-format
 msgid "%d Min"
@@ -187,11 +187,11 @@ msgstr[0] "%d min"
 msgstr[1] "%d min"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-#, fuzzy, python-format
+#, python-format
 msgid "%d channel found"
 msgid_plural "%d channels found"
-msgstr[0] "%d kanalit leitud!"
-msgstr[1] "%d kanalit leitud!"
+msgstr[0] "Leiti %d kanal"
+msgstr[1] "Leiti %d kanalit"
 
 #, python-format
 msgid "%d hour"
@@ -288,7 +288,7 @@ msgid "(show optional DVD audio menu)"
 msgstr "(näita DVD valikulist helimenüüd)"
 
 msgid "* = Restart Required"
-msgstr "* = Taaskäivita"
+msgstr "* = Jõustamiseks taaskäivita"
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Enam kui ühe aktiivse liidese puhul."
@@ -468,7 +468,7 @@ msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
-"Salvestus on alanud:\n"
+"Algas salvestamine:\n"
 "%s"
 
 msgid ""
@@ -486,6 +486,9 @@ msgstr "Hetkel salvestatakse. Peata salvestamine enne kanaliotsingu alustamist."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Hetkel salvestatakse. Peata salvestamine enne kui käivitad satelliidi otsimise."
+
+msgid "A repeating timer or just once?"
+msgstr "Kas korduv taimer või ainult üks kord?"
 
 #, python-format
 msgid "A required tool (%s) was not found."
@@ -550,7 +553,7 @@ msgid "Abort"
 msgstr "Katkesta"
 
 msgid "About"
-msgstr "Tarkvarast"
+msgstr "Süsteemi andmed"
 
 msgid "About..."
 msgstr "Teave..."
@@ -1025,6 +1028,9 @@ msgstr "Taustal kustutamise valikud"
 msgid "Background delete speed"
 msgstr "Taustal kustutamise kiirus"
 
+msgid "Backup Manager"
+msgstr "Varukoopia haldur"
+
 msgid "Backup completed."
 msgstr "Varukoopia on tehtud."
 
@@ -1036,9 +1042,6 @@ msgstr "Varukoopia loomine..."
 
 msgid "Backup system settings"
 msgstr "Seadistuste varundamine"
-
-msgid "Backup Manager"
-msgstr "Varukoopia haldur"
 
 msgid "Band"
 msgstr "Sagedusala"
@@ -1379,12 +1382,20 @@ msgid ""
 "Checking tuner %d\n"
 "DiSEqC port %s for %s"
 msgstr ""
+"Kontrollitakse tuuneri %d\n"
+"DiSEqC port %s / %s"
 
 msgid "Children/Youth"
 msgstr "Lapsed/noored"
 
 msgid "Choose Bouquet"
 msgstr "Vali lemmiknimekiri"
+
+msgid "Choose a tag for easy finding a recording."
+msgstr "Vali salvestuse lihtsaks leidmiseks märksõna."
+
+msgid "Choose between Daily, Weekly, Weekdays or self defined."
+msgstr "Vali kas kord päevas, kord nädalas, tööpäevadel või kasutaja määratud."
 
 msgid "Choose the location for crash and debuglogs."
 msgstr "Vali vea- ja silumislogide jaoks asukoht."
@@ -1412,6 +1423,9 @@ msgstr "Vali, mis tasemel seadistumenüüd kuvatakse. 'Täpsem' näitab kõiki v
 
 msgid "Choose which tuner to configure."
 msgstr "Vali seadistamiseks tuuner."
+
+msgid "Chose between record and ZAP."
+msgstr "Vali, kas salvestad või lähed kanalile."
 
 msgid "Circular left"
 msgstr "Ringpolarisatsioon vasak"
@@ -1447,10 +1461,10 @@ msgid "Close title selection"
 msgstr "Sulge pealkirja valik"
 
 msgid "Code rate HP"
-msgstr ""
+msgstr "Koodikiirus HP"
 
 msgid "Code rate LP"
-msgstr ""
+msgstr "Koodikiirus LP"
 
 msgid "Coderate HP"
 msgstr "Coderate HP"
@@ -2026,6 +2040,9 @@ msgstr "Vaikeväärtused"
 msgid "Delay before key repeat starts:"
 msgstr "Viiviteaeg enne võtme kordamist:"
 
+msgid "Delay:"
+msgstr "Viiteaeg:"
+
 msgid "Delete"
 msgstr "Kustuta"
 
@@ -2067,6 +2084,9 @@ msgstr "Prügikast"
 msgid "Depth"
 msgstr "Sügavus"
 
+msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgstr "'Dekodeeri ja salvesta ecm' annab võimaluse salvestuse hilisemaks dekodeerimiseks, juhul kui dekodeerimine salvestamise ajal nurjus. 'Ära dekodeeri, salvesta ecm' valimisel salvestatakse saade kodeerituna ja dekodeerimine toimub taasesitusel. Valikul 'tavaline' salvestatakse saade dekodeerituna ja ECM ei salvestata."
+
 msgid "Descramble http streams"
 msgstr "Dekodeeri http vood"
 
@@ -2086,7 +2106,7 @@ msgid "Detected NIMs:"
 msgstr "Leitud tuunerid:"
 
 msgid "Device Information"
-msgstr "Seadme info"
+msgstr "Seadmed"
 
 msgid "Device mounts"
 msgstr "Haakepunktid"
@@ -2178,7 +2198,7 @@ msgid "Display and userinterface"
 msgstr "Esipaneel ja kasutajaliides"
 
 msgid "Display message before playing next movie"
-msgstr "Teavita enne järgmise filimi alustamist"
+msgstr "Teavita enne järgmise filmi alustamist"
 
 msgid "Display settings"
 msgstr "Esipaneeli seaded"
@@ -2696,6 +2716,12 @@ msgstr "Laiendused"
 msgid "Extensions management"
 msgstr "Laienduste haldamine"
 
+msgid "External"
+msgstr "Väline"
+
+msgid "External (CF)"
+msgstr "Väline (CF)"
+
 msgid "FEC"
 msgstr "FEC"
 
@@ -2852,6 +2878,9 @@ msgstr "Ftpd tüüp: Vsftpd server"
 msgid "Full transparency"
 msgstr "Täiesti läbipaistev"
 
+msgid "Fulscreen"
+msgstr "Täisekraan"
+
 msgid "Function of OK button"
 msgstr "OK nupu toime"
 
@@ -2894,27 +2923,6 @@ msgstr "Saateinfo hankimine nurjus!"
 
 msgid "Getting plugin information. Please wait..."
 msgstr "Hangitakse laienduse andmeid. Oota..."
-
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX täpsem pult (algupärane)"
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX vormingus data DVD"
-
-msgid "STB_BOX front panel"
-msgstr "STB_BOX esipaneel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX infrapuna klaviatuur"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX infrapuna hiir"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX pult (algupärane)"
-
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX tarkvara, sest uuendused on saadaval."
 
 msgid "Go down the list"
 msgstr "Liigu nimekirjas alla"
@@ -3072,6 +3080,9 @@ msgstr "Hierarhia teave"
 msgid "High bitrate support"
 msgstr "Kõrge bitrate tugi"
 
+msgid "History zap..."
+msgstr "Kanalivahetuse ajalugu..."
+
 msgid "Hold screen"
 msgstr "Hoia pilti"
 
@@ -3204,11 +3215,11 @@ msgstr ""
 msgid "Image Information"
 msgstr "Tarkvarast"
 
-msgid "Image:"
-msgstr "Tarkvara:"
-
 msgid "Image Manager"
 msgstr "Tarkvarakoopia haldur"
+
+msgid "Image:"
+msgstr "Tarkvara:"
 
 msgid "Immediate shutdown"
 msgstr "Kohene väljalülitus"
@@ -3366,6 +3377,9 @@ msgstr "Liides: "
 msgid "Intermediate"
 msgstr "Keskmine"
 
+msgid "Internal"
+msgstr "Sisemine"
+
 msgid "Internal flash"
 msgstr "Sisemine flash-mälu"
 
@@ -3437,7 +3451,7 @@ msgid "Jump to previous marked position"
 msgstr "Hüppa eelmisele tähistatud kohale"
 
 msgid "Jump to prime time"
-msgstr ""
+msgstr "Hüppa tippajale"
 
 msgid "Just change channels"
 msgstr "Kanalivahetus"
@@ -3671,7 +3685,7 @@ msgid "MAC:"
 msgstr "MAC:"
 
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 msgid "MORE"
 msgstr "VEEL"
@@ -4547,6 +4561,9 @@ msgstr "Pärsia"
 msgid "Phone number"
 msgstr "Telefoninumber"
 
+msgid "PiP"
+msgstr "PiP"
+
 msgid "PiP setup"
 msgstr "PiP seaded"
 
@@ -4982,10 +4999,10 @@ msgid "Primary DNS"
 msgstr "Esmane nimeserver"
 
 msgid "Primetime hour"
-msgstr ""
+msgstr "Tippaja tund"
 
 msgid "Primetime minute"
-msgstr ""
+msgstr "Tippaja minut"
 
 msgid "Priority"
 msgstr "Prioriteet"
@@ -5213,9 +5230,6 @@ msgstr "Jäänud & möödunud"
 msgid "Remember service PIN"
 msgstr "Mäleta kanali PIN-i"
 
-msgid "Remember the settings for each folder"
-msgstr "Pea iga kataloogi seadistused meeles"
-
 msgid "Remote box"
 msgstr "Kauge vastuvõtja"
 
@@ -5413,7 +5427,7 @@ msgid "Round start time on"
 msgstr "Ümarda algusaega"
 
 msgid "Run how often ?"
-msgstr ""
+msgstr "Kui tihti käivitada?"
 
 msgid "Running"
 msgstr "Kasutusel"
@@ -5556,11 +5570,11 @@ msgid "Scanning %s..."
 msgstr "Otsib %s..."
 
 #. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
-#, fuzzy, python-format
+#, python-format
 msgid "Scanning - %d%% completed"
 msgid_plural "Scanning - %d%% completed"
-msgstr[0] "Otsing - %d%% tehtud, %d kanal leitud"
-msgstr[1] "Otsing - %d%% tehtud, %d kanalit leitud"
+msgstr[0] "Otsing - %d%% tehtud"
+msgstr[1] "Otsing - %d%% tehtud"
 
 #, python-format
 msgid "Scanning completed, %d channel found"
@@ -5895,6 +5909,12 @@ msgstr "Määra vaikimisi võrguliideseks"
 msgid "Set limits"
 msgstr "Seadista piirid"
 
+msgid "Set the channel for this timer."
+msgstr "Määra sellele taimerile kanal."
+
+msgid "Set the date the timer must start."
+msgstr "Määra taimeri alguskuupäev."
+
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Määra kohese salvestamise tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
 
@@ -5910,6 +5930,9 @@ msgstr "Määra ajanihke failide tavaasukoht. Uue asukoha lisamiseks vajuta 'OK'
 msgid "Set the default sorting method."
 msgstr "Määra järjestusviis."
 
+msgid "Set the description of the recording."
+msgstr "Määra salvestuse kirjeldus."
+
 msgid "Set the jump-size of the seekbar."
 msgstr "Määra otsiriba hüppe pikkus."
 
@@ -5919,8 +5942,17 @@ msgstr "Määra ajanihke suurim lubatud pikkus."
 msgid "Set the maximum number of events (programs) that timeshift may handle."
 msgstr "Määra ajanihkele suurim lubatud saadete arv."
 
+msgid "Set the name the recording will get."
+msgstr "Määra salvestuse nimi."
+
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Määra esipaneeli teksti kerimise kiirus."
+
+msgid "Set the time the timer must start."
+msgstr "Määra taimeri algusaeg."
+
+msgid "Set the time the timer must stop."
+msgstr "Määra taimeri lõppaeg."
 
 msgid "Set the time to hide the infobar."
 msgstr "Määra aeg inforiba peitmiseks."
@@ -5944,10 +5976,10 @@ msgid "Set time window to 5 hours"
 msgstr "Määra ajaaknaks 5 tundi"
 
 msgid "Set to the desired primetime (hour)."
-msgstr ""
+msgstr "Määra tippajaks (tunnid)."
 
 msgid "Set to the desired primetime (minutes."
-msgstr ""
+msgstr "Määra tippajaks (minutid)."
 
 msgid "Set to what you want the button to do."
 msgstr "Määra nupu toime."
@@ -6173,7 +6205,7 @@ msgid "Show positioner movement"
 msgstr "Näita positsioneeri liikumist"
 
 msgid "Show second infobar"
-msgstr "Näita teist inforiba"
+msgstr "Teise inforiba näitamine"
 
 msgid "Show services beginning with"
 msgstr "Näita kanalid mis algavad"
@@ -6305,7 +6337,7 @@ msgid "Sleep Timer"
 msgstr "Unetaimer"
 
 msgid "Sleep delay"
-msgstr ""
+msgstr "Sulgemise viiteaeg"
 
 msgid "Slide picture in loop"
 msgstr "Vaata pilte tsüklis"
@@ -6791,12 +6823,6 @@ msgstr ""
 "Ajanihkeks valitud andmekandja ei toeta hardlinke.\n"
 "Vorminda see EXT2 või EXT3 formaati!"
 
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr "STB_BOX loeb salvestatud EPG andmeid iga (tund)."
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr "STB_BOX salvestab EPG andmed iga (tund)."
-
 msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
@@ -6830,6 +6856,12 @@ msgid ""
 msgstr ""
 "USB pulk oli ette valmistatud käivitatavana.\n"
 "Nüüd saad NFI tarkvara faili alla laadida!"
+
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr "STB_BOX loeb salvestatud EPG andmeid iga (tund)."
+
+msgid "The STB_BOX stores the EPG data every (hours)."
+msgstr "STB_BOX salvestab EPG andmed iga (tund)."
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Varundamine nurjus. Vali uus varukoopia asukoht."
@@ -7608,6 +7640,9 @@ msgstr "Kasuta kiirotsingu kanalinimesi"
 msgid "Use fastscan channel numbering"
 msgstr "Kasuta kiirotsingu kanalinumeratsiooni"
 
+msgid "Use individual settings for each directory"
+msgstr "Igal kataloogil võivad olla oma seadistused"
+
 msgid "Use interface"
 msgstr "Kasutajaliides"
 
@@ -7861,6 +7896,27 @@ msgstr "Pinge valik"
 msgid "Volume"
 msgstr "Helitugevus"
 
+msgid "STB_BOX advanced remote control (native)"
+msgstr "STB_BOX täpsem pult (algupärane)"
+
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "STB_BOX vormingus data DVD"
+
+msgid "STB_BOX front panel"
+msgstr "STB_BOX esipaneel"
+
+msgid "STB_BOX ir keyboard"
+msgstr "STB_BOX infrapuna klaviatuur"
+
+msgid "STB_BOX ir mouse"
+msgstr "STB_BOX infrapuna hiir"
+
+msgid "STB_BOX remote control (native)"
+msgstr "STB_BOX pult (algupärane)"
+
+msgid "STB_BOX software because updates are available."
+msgstr "STB_BOX tarkvara, sest uuendused on saadaval."
+
 msgid "W"
 msgstr "W"
 
@@ -7904,7 +7960,7 @@ msgid "Wake Up"
 msgstr "Ärata"
 
 msgid "Wake Up To Standby"
-msgstr ""
+msgstr "Käivita TV"
 
 msgid "Wakeup"
 msgstr "Ärata"
@@ -7990,6 +8046,9 @@ msgstr "Mis kuupäev?"
 
 msgid "What Day of week ?"
 msgstr "Mis nädalapäev?"
+
+msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
+msgstr "Mida teha taimeri lõppemisel? 'Automaatne' laseb vstuvõtjal minna olekusse, mis oli enne taimeri alustamist. 'Ära tee midagi', 'mine ooterežiimi' ja 'mine sügavootrežiimi' teevad just seda, mis kirjas."
 
 msgid "What do you want to scan?"
 msgstr "Mida soovid otsida?"
@@ -8117,6 +8176,9 @@ msgstr ""
 
 msgid "Where do you want to backup your settings?"
 msgstr "Kuhu teha varukoopia seadistustest?"
+
+msgid "Where should the recording be saved?"
+msgstr "Kuhu salvetatakse?"
 
 msgid "Where to save temporary timeshift recordings?"
 msgstr "Kuhu salvestada ajanihke sisu?"
@@ -8311,6 +8373,9 @@ msgstr "Ajanihe on kasutusel. Kas peatad selle?"
 msgid "You system does not support ext4"
 msgstr "Vastuvõtja ei toeta ext4"
 
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr "Vastuvõtja taaskäivitub pärast puldil OK vajutamist."
+
 msgid "Your STB_BOX is not connected to the internet, please check your network settings and try again."
 msgstr "Internetiühendust pole. Kontrolli võrgu seadeid ja ürita uuesti."
 
@@ -8401,9 +8466,6 @@ msgid ""
 msgstr ""
 "STB_BOX taaskäivitub pärast teenuse eemaldamist\n"
 "Kas eemaldad?"
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Vastuvõtja taaskäivitub pärast puldil OK vajutamist."
 
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr "Turvakoopia valmis. Me informeerime edasistest uuenduste käigust."
@@ -8883,10 +8945,10 @@ msgid "fitness & health"
 msgstr "trenn ja tervis"
 
 msgid "flat alphabetic"
-msgstr ""
+msgstr "tähestikujärjekord"
 
 msgid "flat alphabetic reverse"
-msgstr ""
+msgstr "pööratud tähestikujärjekord"
 
 msgid "folk/traditional music"
 msgstr "folk/rahvamuusika"
@@ -9589,7 +9651,7 @@ msgid "wakeup"
 msgstr "ärata"
 
 msgid "wakeup to standby"
-msgstr ""
+msgstr "pane ooterežiimi"
 
 msgid "water sport"
 msgstr "veesport"

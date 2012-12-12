@@ -33,6 +33,7 @@ class Navigation:
 		self.event = [ ]
 		self.record_event = [ ]
 		self.currentlyPlayingServiceReference = None
+		self.currentlyPlayingServiceOrGroup = None
 		self.currentlyPlayingService = None
 		self.RecordTimer = RecordTimer.RecordTimer()
 		self.PowerTimer = PowerTimer.PowerTimer()
@@ -79,6 +80,7 @@ class Navigation:
 			x(i)
 		if i == iPlayableService.evEnd:
 			self.currentlyPlayingServiceReference = None
+			self.currentlyPlayingServiceOrGroup = None
 			self.currentlyPlayingService = None
 
 	def dispatchRecordEvent(self, rec_service, event):
@@ -150,22 +152,24 @@ class Navigation:
 			if self.pnav:
 				self.pnav.stopService()
 				self.currentlyPlayingServiceReference = playref
-				self.currentlyPlayingSelectedServiceReference = ref
+				self.currentlyPlayingServiceOrGroup = ref
 				InfoBarInstance = InfoBar.instance
 				if InfoBarInstance is not None:
 					InfoBarInstance.servicelist.servicelist.setCurrent(ref)
 				if self.pnav.playService(playref):
 					print "Failed to start", playref
 					self.currentlyPlayingServiceReference = None
+					self.currentlyPlayingServiceOrGroup = None
 				return 0
 		else:
 			self.stopService()
 		return 1
 
-	def getCurrentlyPlayingServiceReference(self, selected = True):
-		if selected and self.currentlyPlayingServiceReference:
-			return self.currentlyPlayingSelectedServiceReference
+	def getCurrentlyPlayingServiceReference(self):
 		return self.currentlyPlayingServiceReference
+
+	def getCurrentlyPlayingServiceOrGroup(self):
+		return self.currentlyPlayingServiceOrGroup
 
 	def isMovieplayerActive(self):
 		MoviePlayerInstance = MoviePlayer.instance
@@ -203,6 +207,7 @@ class Navigation:
 		if self.pnav:
 			self.pnav.stopService()
 		self.currentlyPlayingServiceReference = None
+		self.currentlyPlayingServiceOrGroup = None
 		if path.exists("/proc/stb/lcd/symbol_signal"):
 			open("/proc/stb/lcd/symbol_signal", "w").write("0")
 			

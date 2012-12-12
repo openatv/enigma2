@@ -38,7 +38,7 @@ class InfoBarBase:
 			ServiceEventTracker.setActiveInfoBar(self, None, None)
 		else:
 			nav = self.session.nav
-			ServiceEventTracker.setActiveInfoBar(self, not steal_current_service and nav.getCurrentService(), nav.getCurrentlyPlayingServiceReference())
+			ServiceEventTracker.setActiveInfoBar(self, not steal_current_service and nav.getCurrentService(), nav.getCurrentlyPlayingServiceOrGroup())
 		self.onClose.append(self.__close)
 		InfoBarBase.infoBarOpened(self)
 
@@ -65,6 +65,7 @@ class ServiceEventTracker:
 			  old_service_running = set.oldRef and cur_ref and cur_ref == set.oldRef and set.oldServiceStr == nav.getCurrentService().getPtrString()
 			except:
 			  old_service_running = None
+
 			if not old_service_running and set.oldServiceStr:
 				set.oldServiceStr = None
 				set.oldRef = None
@@ -96,7 +97,7 @@ class ServiceEventTracker:
 			del stack[set.InfoBarStackSize]
 			old_service = nav.getCurrentService()
 			set.oldServiceStr = old_service and old_service.getPtrString()
-			set.oldRef = nav.getCurrentlyPlayingServiceReference()
+			set.oldRef = nav.getCurrentlyPlayingServiceOrGroup()
 #			if set.InfoBarStackSize:
 #				print "ServiceEventTracker reset active '" + str(stack[set.InfoBarStackSize-1]) + "'"
 

@@ -1,3 +1,4 @@
+#include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
 #include <lib/dvb/radiotext.h>
 #include <lib/dvb/idemux.h>
@@ -249,9 +250,10 @@ void eDVBRdsDecoder::process_qdar(unsigned char *buf)
 						if (ctrl&0x01) // display slide
 						{
 							sprintf(fname,"/tmp/RassLast.mvi");
-							FILE *fh=fopen(fname,"wb");
-							fwrite(buf+ptr,1,item_length-2,fh);
-							fclose(fh);
+							{
+								CFile fh(fname,"wb");
+								fwrite(buf+ptr,1,item_length-2,fh);
+							}
 							/*emit*/ m_event(RecvRassSlidePic);
 							qdarmvi_show=1;
 						}
@@ -260,9 +262,10 @@ void eDVBRdsDecoder::process_qdar(unsigned char *buf)
 							if (id == 0 || id >= 1000)
 							{
 								sprintf(fname,"/tmp/Rass%04d.mvi",(int)id);
-								FILE *fh=fopen(fname,"wb");
-								fwrite(buf+ptr,1,item_length-2,fh);
-								fclose(fh);
+								{
+									CFile fh(fname,"wb");
+									fwrite(buf+ptr,1,item_length-2,fh);
+								}
 								addToPictureMask(id);
 							}
 							else
@@ -273,9 +276,10 @@ void eDVBRdsDecoder::process_qdar(unsigned char *buf)
 							if (qdarmvi_show != 1)
 							{
 								sprintf(fname,"/tmp/RassLast.mvi");
-								FILE *fh=fopen(fname,"wb");
-								fwrite(buf+ptr,1,item_length-2,fh);
-								fclose(fh);
+								{
+									CFile fh(fname,"wb");
+									fwrite(buf+ptr,1,item_length-2,fh);
+								}
 								/*emit*/ m_event(RecvRassSlidePic);
 								qdarmvi_show=1;
 							}

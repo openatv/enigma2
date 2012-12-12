@@ -23,6 +23,7 @@ driverinclude_HEADERS = \
 	driver/rcdbox.h \
 	driver/rcdreambox2.h \
 	driver/rcinput.h \
+	driver/rcinput_swig.h \
 	driver/rfmod.h \
 	driver/hdmi_cec.h \
 	driver/vfd.h
