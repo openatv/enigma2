@@ -65,7 +65,7 @@ def isMoviePlayerInfoBar(self):
 def setResumePoint(session):
 	global resumePointCache, resumePointCacheLast
 	service = session.nav.getCurrentService()
-	ref = session.nav.getCurrentlyPlayingServiceReference()
+	ref = session.nav.getCurrentlyPlayingServiceOrGroup()
 	if (service is not None) and (ref is not None): # and (ref.type != 1):
 		# ref type 1 has its own memory...
 		seek = service.seek()
@@ -102,7 +102,7 @@ def delResumePoint(ref):
 
 def getResumePoint(session):
 	global resumePointCache
-	ref = session.nav.getCurrentlyPlayingServiceReference()
+	ref = session.nav.getCurrentlyPlayingServiceOrGroup()
 	if (ref is not None) and (ref.type != 1):
 		try:
 			entry = resumePointCache[ref.toString()]
@@ -222,7 +222,7 @@ class SecondInfoBar(Screen):
 	def getEvent(self):
 		self["epg_description"].setText("")
 		self["channel"].setText("")
-		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.getNowNext()
 		epglist = self.epglist
 		if not epglist:
@@ -1047,7 +1047,7 @@ class InfoBarChannelSelection:
 
 	def isPlayable(self, ref):
 		if not (ref.flags & eServiceReference.isMarker):
-			cur_running = self.session.nav.getCurrentlyPlayingServiceReference(False)
+			cur_running = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if not cur_running:
 				cur_running = eServiceReference()
 			info = eServiceCenter.getInstance().info(ref)
@@ -1339,7 +1339,7 @@ class InfoBarEPG:
 		if answer == 'reopen':
 			self.openGraphEPG()
 		elif answer == 'close' and isMoviePlayerInfoBar(self):
-			self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.close()
 
 	def showCoolTVGuide(self):
@@ -1413,7 +1413,7 @@ class InfoBarEPG:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.getNowNext()
 		epglist = self.epglist
 		if not epglist:
@@ -2367,7 +2367,7 @@ class InfoBarTimeshift:
 			if self.save_current_timeshift and self.timeshift_enabled:
 				if config.recording.margin_after.getValue() > 0 and len(self.recording) == 0:
 					self.SaveTimeshift(mergelater=True)
-					recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()), time(), time()+(config.recording.margin_after.getValue() * 60), self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, dirname = config.usage.default_path.getValue())
+					recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), time()+(config.recording.margin_after.getValue() * 60), self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, dirname = config.usage.default_path.getValue())
 					recording.dontSave = True
 					self.session.nav.RecordTimer.record(recording)
 					self.recording.append(recording)
@@ -2859,7 +2859,7 @@ class InfoBarTimeshift:
 	def ptsGetEventInfo(self):
 		event = None
 		try:
-			serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+			serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			serviceHandler = eServiceCenter.getInstance()
 			info = serviceHandler.info(serviceref)
 
@@ -2952,7 +2952,7 @@ class InfoBarTimeshift:
 					Notifications.AddNotification(MessageBox, _("Creating Hardlink to Timeshift file failed!")+"\n%s" % (errormsg), MessageBox.TYPE_ERROR)
 
 	def ptsRecordCurrentEvent(self):
-		recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()), time(), self.pts_curevent_end, self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, dirname = config.usage.default_path.getValue())
+		recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), self.pts_curevent_end, self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, dirname = config.usage.default_path.getValue())
 		recording.dontSave = True
 		self.session.nav.RecordTimer.record(recording)
 		self.recording.append(recording)
@@ -3045,7 +3045,7 @@ class InfoBarTimeshift:
 		if self.pts_curevent_eventid is not None:
 			try:
 				import Components.eitsave
-				serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()).ref.toString()
+				serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()).ref.toString()
 				Components.eitsave.SaveEIT(serviceref, filename+".eit", self.pts_curevent_eventid, -1, -1)
 			except Exception, errormsg:
 				print "[Timeshift] %s" % (errormsg)
@@ -3674,7 +3674,7 @@ class InfoBarExtensions:
 			if event:
 				name = event and event.getEventName() or ''
 			else:
-				name = self.session.nav.getCurrentlyPlayingServiceReference().toString()
+				name = self.session.nav.getCurrentlyPlayingServiceOrGroup().toString()
 				name = name.split('/')
 				name = name[-1]
 				name = name.replace('.',' ')
@@ -3837,7 +3837,7 @@ class InfoBarPiP:
 				del self.session.pip
 
 	def swapPiP(self):
-		swapservice = self.session.nav.getCurrentlyPlayingServiceReference()
+		swapservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		pipref = self.session.pip.getCurrentService()
 		if swapservice and pipref and pipref.toString() != swapservice.toString():
 			currentServicePath = self.servicelist.getCurrentServicePath()
@@ -3881,7 +3881,7 @@ class InfoBarInstantRecord:
 			self.recording.remove(self.recording[entry])
 
 	def startInstantRecording(self, limitEvent = False):
-		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 
 		# try to get event info
 		event = None
@@ -4143,7 +4143,7 @@ class InfoBarSubserviceSelection:
 		n = subservices and subservices.getNumberOfSubservices()
 		if n and n > 0:
 			selection = -1
-			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			idx = 0
 			while idx < n:
 				if subservices.getSubservice(idx).toString() == ref.toString():
@@ -4169,7 +4169,7 @@ class InfoBarSubserviceSelection:
 		n = subservices and subservices.getNumberOfSubservices()
 		selection = 0
 		if n and n > 0:
-			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			tlist = []
 			idx = 0
 			while idx < n:

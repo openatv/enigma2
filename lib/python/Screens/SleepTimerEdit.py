@@ -97,7 +97,7 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 
 	def useServiceTime(self):
 		remaining = None
-		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if ref:
 			path = ref.getPath()
 			if path: # Movie

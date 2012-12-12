@@ -141,9 +141,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.saved_config_seek_speeds_slowmotion = config.seek.speeds_slowmotion.getValue()
 
 	def change_infobar_seek_config(self):
-		config.seek.speeds_forward.value = [2, 4, 8, 16, 32, 64]
-		config.seek.speeds_backward.value = [8, 16, 32, 64]
-		config.seek.speeds_slowmotion.value = [ ]
+		config.seek.speeds_forward.value = [2, 4, 6, 8, 16, 32, 64]
+		config.seek.speeds_backward.value = [2, 4, 6, 8, 16, 32, 64]
+		config.seek.speeds_slowmotion.value = [ 2, 3, 4, 6 ]
 		config.seek.enter_forward.value = "2"
 		config.seek.enter_backward.value = "2"
 		config.seek.on_pause.value = "play"
@@ -170,7 +170,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		InfoBarSeek.__init__(self)
 		InfoBarPVRState.__init__(self)
 
-		self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
+		self.oldService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
 		self["audioLabel"] = Label("n/a")
 		self["subtitleLabel"] = Label("")
@@ -428,7 +428,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			return
 		choices = [(_("Exit"), "exit"), (_("Continue playing"), "play")]
 		if self.physicalDVD:
-			cur = self.session.nav.getCurrentlyPlayingServiceReference()
+			cur = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if cur and not cur.toString().endswith(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())):
 				choices.insert(0,(_("Play DVD"), "playPhysical" ))
 		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD player?"), list = choices)
@@ -518,7 +518,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			self.FileBrowserClosed(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()))
 
 	def FileBrowserClosed(self, val):
-		curref = self.session.nav.getCurrentlyPlayingServiceReference()
+		curref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		print "FileBrowserClosed", val
 		if val is None:
 			self.askLeavePlayer()
