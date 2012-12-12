@@ -62,10 +62,11 @@ class PluginBrowser(Screen):
 		if config.usage.sort_pluginlist.getValue():
 			self["list"].list.sort()
 
-		self["actions"] = ActionMap(["WizardActions"],
+		self["actions"] = ActionMap(["WizardActions", "MenuActions"],
 		{
 			"ok": self.save,
 			"back": self.close,
+			"menu": self.openSetup,
 		})
 		self["PluginDownloadActions"] = ActionMap(["ColorActions"],
 		{
@@ -78,6 +79,10 @@ class PluginBrowser(Screen):
 		self.onChangedEntry = []
 		self["list"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.saveListsize)
+
+	def openSetup(self):
+		from Screens.Setup import Setup
+		self.session.open(Setup, "pluginbrowsersetup")
 
 	def saveListsize(self):
 		listsize = self["list"].instance.size()
@@ -388,10 +393,9 @@ class PluginDownloadBrowser(Screen):
 					self["text"].setText(_("Sorry feeds are down for maintenance"))
 
 	def dataAvail(self, str):
-		if self.type == self.DOWNLOAD and ((float(about.getImageVersionString()) < 3.0 and str.find('mipsel/Packages.gz, wget returned 1') != -1) or (float(about.getImageVersionString()) >= 3.0 and str.find('mips32el/Packages.gz, wget returned 1') != -1)):
+		if self.type == self.DOWNLOAD and str.find('wget returned 1') != -1 or str.find('wget returned 255') != -1 or str.find('404 Not Found') != -1:
 			self.run = 3
 			return
-
 
 		#prepend any remaining data from the previous call
 		str = self.remainingdata + str
@@ -421,7 +425,7 @@ class PluginDownloadBrowser(Screen):
 			plugin = x.split(" - ", 2)
 			# 'opkg list_installed' only returns name + version, no description field
 			if len(plugin) >= 2:
-				if not plugin[0].endswith('-dev') and not plugin[0].endswith('-staticdev') and not plugin[0].endswith('-dbg') and not plugin[0].endswith('-doc'):
+				if not plugin[0].endswith('-dev') and not plugin[0].endswith('-staticdev') and not plugin[0].endswith('-dbg') and not plugin[0].endswith('-doc') and ((not config.pluginbrowser.po.getValue() and not plugin[0].endswith('-po')) or config.pluginbrowser.po.getValue()) and ((not config.pluginbrowser.src.getValue() and not plugin[0].endswith('-src')) or config.pluginbrowser.src.getValue()):
 					if self.run == 1 and self.type == self.DOWNLOAD:
 						if plugin[0] not in self.installedplugins:
 							self.installedplugins.append(plugin[0])

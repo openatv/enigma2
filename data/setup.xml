@@ -291,4 +291,8 @@
 		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.tl_fontsize_vixepg</item>
 		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.prev_time_period</item>
 	</setup>
+	<setup key="pluginbrowsersetup" title="Settings...">
+		<item level="2" text="Show translation packages" description="If set to 'yes' it will show the 'PO' packages in browser.">config.pluginbrowser.po</item>
+		<item level="2" text="Show source packages" description="If set to 'yes' it will show the 'SRC' packages in browser.">config.pluginbrowser.src</item>
+	</setup>
 </setupxml>
