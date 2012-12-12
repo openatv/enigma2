@@ -134,9 +134,26 @@ const char *eRCDeviceInputDev::getDescription() const
 
 class eInputDeviceInit
 {
-	ePtrList<eRCInputEventDriver> m_drivers;
-	ePtrList<eRCDeviceInputDev> m_devices;
-
+	struct element {
+		char* filename;
+		eRCInputEventDriver* driver;
+		eRCDeviceInputDev* device;
+		element(const char* fn, eRCInputEventDriver* drv, eRCDeviceInputDev* dev):
+			filename(strdup(fn)),
+			driver(drv),
+			device(dev)
+		{}
+		~element()
+		{
+			delete device;
+			delete driver;
+			free(filename);
+		}
+	private:
+		element(const element& other); /* no copy */
+	};
+	typedef std::vector<element*> itemlist;
+	std::vector<element*> items;
 	int consoleFd;
 
 public:
@@ -146,31 +163,60 @@ public:
 		consoleFd = ::open("/dev/tty0", O_RDWR);
 		while (1)
 		{
-			char filename[128];
+			char filename[32];
 			sprintf(filename, "/dev/input/event%d", i);
 			if (::access(filename, R_OK) < 0) break;
-			eRCInputEventDriver *p;
-			m_drivers.push_back(p = new eRCInputEventDriver(filename));
-			m_devices.push_back(new eRCDeviceInputDev(p, consoleFd));
+			add(filename);
 			++i;
 		}
-		eDebug("Found %d input devices!", i);
+		eDebug("Found %d input devices.", i);
 	}
 	
 	~eInputDeviceInit()
 	{
-		while (m_drivers.size())
+		for (itemlist::iterator it = items.begin();
+		     it != items.end();
+		     ++it)
 		{
-			delete m_devices.back();
-			m_devices.pop_back();
-			delete m_drivers.back();
-			m_drivers.pop_back();
+			delete *it;
 		}
 		if (consoleFd >= 0)
 		{
 			::close(consoleFd);
 		}
 	}
+
+	void add(const char* filename)
+	{
+		eRCInputEventDriver *p = new eRCInputEventDriver(filename);
+		items.push_back(new element(filename, p, new eRCDeviceInputDev(p, consoleFd)));
+	}
+
+	void remove(const char* filename)
+	{
+		for (itemlist::iterator it = items.begin();
+		     it != items.end();
+		     ++it)
+		{
+			if (strcmp((*it)->filename, filename) == 0)
+			{
+				delete *it;
+				items.erase(it);
+				return;
+			}
+		}
+		eDebug("Remove '%s', not found", filename);
+	}
 };
 
 eAutoInitP0<eInputDeviceInit> init_rcinputdev(eAutoInitNumbers::rc+1, "input device driver");
+
+void addInputDevice(const char* filename)
+{
+	init_rcinputdev->add(filename);
+}
+
+void removeInputDevice(const char* filename)
+{
+	init_rcinputdev->remove(filename);
+}
