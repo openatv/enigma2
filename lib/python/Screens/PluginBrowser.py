@@ -7,6 +7,7 @@ from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
 from Components.PluginList import PluginList, PluginEntryComponent, PluginCategoryComponent, PluginDownloadComponent
 from Components.Label import Label
+from Components.Button import Button
 from Components.Harddisk import harddiskmanager
 from Components.Sources.StaticText import StaticText
 from Components import Ipkg
@@ -54,8 +55,8 @@ class PluginBrowser(Screen):
 
 		self.firsttime = True
 
-		self["red"] = Label(_("Remove plugins"))
-		self["green"] = Label(_("Download plugins"))
+		self["key_red"] = Button(_("Remove plugins"))
+		self["key_green"] = Button(_("Download plugins"))
 
 		self.list = []
 		self["list"] = PluginList(self.list)
