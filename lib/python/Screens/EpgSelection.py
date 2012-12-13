@@ -862,7 +862,7 @@ class EPGSelection(Screen, HelpableScreen):
 		service = cur[1]
 		if event is not None:
 			if self.type != EPG_TYPE_SIMILAR:
-				self.session.open(EventViewSimple, event, service, self.eventViewCallback, self.openSimilarList)
+				self.session.open(EventViewSimple, event, service, self.eventViewCallback, None, None, self.openSimilarList)
 			else:
 				self.session.open(EventViewSimple, event, service, self.eventViewCallback)
 
