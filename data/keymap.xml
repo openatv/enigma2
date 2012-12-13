@@ -107,7 +107,7 @@
 		<key id="KEY_F4" mapto="extensions" flags="b" />
 		<key id="KEY_BLUE" mapto="extensions" flags="l" />
 	</map>
-	
+
 	<map context="InfoBarQuickMenu">
 		<key id="KEY_BLUE" mapto="quickmenu" flags="b" />
  	</map>
@@ -300,7 +300,7 @@
 			<key id="KEY_NEXTSONG" mapto="seekFwdManual" flags="l" />
 		</device>
 
-		<key id="KEY_YELLOW" mapto="pauseService" flags="b" />
+		<key id="KEY_YELLOW" mapto="pauseServiceYellow" flags="b" />
 		<key id="KEY_GREEN" mapto="unPauseService" flags="b" />
 		<key id="KEY_RED" mapto="seekBack" flags="b" />
 		<key id="KEY_BLUE" mapto="seekFwd" flags="b" />
@@ -308,7 +308,7 @@
 		<key id="KEY_BLUE" mapto="seekFwdManual" flags="l" />
 
 		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m" />
-		<key id="KEY_PAUSE" mapto="pauseService" flags="m" />
+		<key id="KEY_PAUSE" mapto="playpauseService" flags="m" />
 		<key id="KEY_PLAY" mapto="playpauseService" flags="m" />
 		<key id="KEY_REWIND" mapto="seekBack" flags="b" />
 		<key id="KEY_FASTFORWARD" mapto="seekFwd" flags="b" />
