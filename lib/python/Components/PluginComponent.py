@@ -1,4 +1,5 @@
 import os
+from shutil import rmtree
 from bisect import insort
 from Tools.Directories import fileExists
 from Tools.Import import my_import
@@ -62,10 +63,8 @@ class PluginComponent:
 									break
 							else:
 								print "Plugin probably removed, but not cleanly in", path
-								try:
-									os.rmdir(path)
-								except:
-								        pass
+								print "trying to remove:", path
+								rmtree(path)
 							continue
 
 						# allow single entry not to be a list
