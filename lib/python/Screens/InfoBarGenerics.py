@@ -3776,10 +3776,7 @@ class InfoBarSubserviceSelection:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if not config.vixsettings.Subservice.getValue():
-			self.openTimerList()
-		else:
-			self.subserviceSelection()
+		self.subserviceSelection()
 
 	def __removeNotifications(self):
 		self.session.nav.event.remove(self.checkSubservicesAvail)
