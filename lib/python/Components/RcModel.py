@@ -36,62 +36,50 @@ class RcModel:
 		return out.split()[0]
 
 	def readRcTypeFromProc(self):
-		if os.path.exists('/proc/stb/info/hwmodel'):
-			model = self.readFile('/proc/stb/info/hwmodel')
-			if model == 'tmtwinoe' or model == 'tm2toe' or model == 'tmsingle':
-				self.currentRcType = self.RCTYPE_TM
-		elif os.path.exists('/proc/stb/info/vumodel'):
-			model = self.readFile('/proc/stb/info/vumodel')
-			if model == 'ultimo':
-				self.currentRcType = self.RCTYPE_VU2
-			else:
-				self.currentRcType = self.RCTYPE_VU
-		elif getBoxType() == 'dm8000':
-				self.currentRcType = self.RCTYPE_DMM
+		if getBoxType() == 'dm8000':
+			self.currentRcType = self.RCTYPE_DMM
 		elif getBoxType() == 'dm7020hd':
-				self.currentRcType = self.RCTYPE_DMM2
+			self.currentRcType = self.RCTYPE_DMM2
 		elif getBoxType() == 'dm800' or getBoxType() == 'dm800se' or getBoxType() == 'dm500hd':
-				self.currentRcType = self.RCTYPE_DMM1
-		elif os.path.exists('/proc/stb/info/boxtype'):
+			self.currentRcType = self.RCTYPE_DMM1
+		elif getBoxType().startswith('et'):
 			model = self.readFile('/proc/stb/info/boxtype')
-			if model.startswith('et') or model.startswith('xp'):
-				rc = self.readFile('/proc/stb/ir/rc/type')
-				if rc == '3':
-					self.currentRcType = self.RCTYPE_ODIN
-				if rc == '4':
-					self.currentRcType = self.RCTYPE_DMM
-				elif rc == '5' and model == 'et9200':
-					self.currentRcType = self.RCTYPE_ODIN
-				elif rc == '5':
-					self.currentRcType = self.RCTYPE_ET9X00
-				elif rc == '6':
-					self.currentRcType = self.RCTYPE_DMM
-				elif rc == '7':
-					self.currentRcType = self.RCTYPE_ET6X00
-				elif rc == '8':
-					self.currentRcType = self.RCTYPE_VU
-				elif rc == '9' and model == 'et9500':
-					self.currentRcType = self.RCTYPE_ET9500
-				elif rc == '9' and model == 'et6500':
-					self.currentRcType = self.RCTYPE_ET6500
-				elif rc == '11' and model == 'et9200':
-					self.currentRcType = self.RCTYPE_ET9500
-				elif rc == '11' and model == 'et9000':
-					self.currentRcType = self.RCTYPE_ET9X00
-				elif rc == '13' and model == 'et4000':
-					self.currentRcType = self.RCTYPE_ET4X00
-				elif rc == '14':
-					self.currentRcType = self.RCTYPE_XP1000
-			elif model == 'gigablue':
-				self.currentRcType = self.RCTYPE_GB
-			elif model == 'ini-3000':
+			rc = self.readFile('/proc/stb/ir/rc/type')
+			if rc == '5':
+				self.currentRcType = self.RCTYPE_ET9X00
+			elif rc == '7':
+				self.currentRcType = self.RCTYPE_ET6X00
+			elif rc == '9' and model == 'et9500':
+				self.currentRcType = self.RCTYPE_ET9500
+			elif rc == '9' and model == 'et6500':
+				self.currentRcType = self.RCTYPE_ET6500
+			elif rc == '11' and model == 'et9200':
+				self.currentRcType = self.RCTYPE_ET9500
+			elif rc == '11' and model == 'et9000':
+				self.currentRcType = self.RCTYPE_ET9X00
+			elif rc == '13' and model == 'et4000':
+				self.currentRcType = self.RCTYPE_ET4X00
+		elif getBoxType().startswith('gb'):
+			self.currentRcType = self.RCTYPE_GB
+		elif getBoxType().startswith('odin'):
+			self.currentRcType = self.RCTYPE_ODIN
+		elif getBoxType().startswith('tm'):
+				self.currentRcType = self.RCTYPE_TM
+		elif getBoxType().startswith('venton'):
+			model = self.readFile('/proc/stb/info/boxtype')
+			if model == 'ini-3000':
 				self.currentRcType = self.RCTYPE_INI3000
 			elif model == 'ini-5000':
 				self.currentRcType = self.RCTYPE_INI5000
 			elif model == 'ini-7000':
 				self.currentRcType = self.RCTYPE_INI7000
-			elif model == 'xp1000':
-				self.currentRcType = self.RCTYPE_XP1000
+		elif getBoxType().startswith('vu'):
+			if getBoxType() == 'vuultimo':
+				self.currentRcType = self.RCTYPE_VU2
+			else:
+				self.currentRcType = self.RCTYPE_VU
+		elif getBoxType().startswith('xp'):
+			self.currentRcType = self.RCTYPE_XP1000
 
 	def getRcLocation(self):
 		if self.currentRcType == self.RCTYPE_DMM:
