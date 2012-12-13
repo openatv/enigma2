@@ -470,11 +470,15 @@ class EPGList(HTMLComponent, GUIComponent):
 				evH = height - 2 * self.eventBorderWidth
 				if evW > 0:
 					res.append(MultiContentEntryText(
-						pos = (evX, evY), size = (evW, evH),
-						font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+						pos = (evX, evY),
+						size = (evW, evH),
+						font = 1,
+						flags = RT_HALIGN_LEFT
+						 | RT_VALIGN_CENTER,
 						text = ev[1],
-						color = foreColor, color_sel = self.foreColorSelected,
-						backcolor_sel = backColorSel))
+						color = foreColor,
+						color_sel
+						 = self.foreColorSelected))
 				# recording icons
 				if rec is not None and ewidth > 23:
 					res.append(MultiContentEntryPixmapAlphaTest(
