@@ -906,8 +906,7 @@ void eDVBSubtitleParser::subtitle_redraw_all()
 	subtitle_page *page = m_pages;
 	while(page)
 	{
-		if (page->state != 0)
-			subtitle_redraw(page->page_id);
+		subtitle_redraw(page->page_id);
 		page = page->next;
 	}
 #else
