@@ -36,19 +36,13 @@ int bitstream_get(bitstream *bit)
 
 static int extract_pts(pts_t &pts, __u8 *pkt)
 {
-	pkt += 7;
-	int flags = *pkt++;
-
-	pkt++; // header length
-
-	if (flags & 0x80) /* PTS present? */
+	if (pkt[7] & 0x80) /* PTS present? */
 	{
-			/* damn gcc bug */
-		pts  = ((unsigned long long)(((pkt[0] >> 1) & 7))) << 30;
-		pts |=   pkt[1] << 22;
-		pts |=  (pkt[2]>>1) << 15;
-		pts |=   pkt[3] << 7;
-		pts |=  (pkt[5]>>1);
+		pts = ((unsigned long long)(pkt[9] & 0xe) << 29;
+		pts |= ((unsigned long long)(pkt[10] & 0xff) << 22;
+		pts |= ((unsigned long long)(pkt[11] & 0xfe) << 14;
+		pts |= ((unsigned long long)(pkt[12] & 0xff) << 7;
+		pts |= ((unsigned long long)(pkt[13] & 0xfe) >> 1;
 
 		return 0;
 	} else
