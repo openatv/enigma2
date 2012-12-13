@@ -55,6 +55,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.cur_service = None
 		self.offs = 0
 		self.timer = timer
+		self.last_time = time()
 		self.onSelChanged = [ ]
 		if selChangedCB is not None:
 			self.onSelChanged.append(selChangedCB)
@@ -238,31 +239,24 @@ class EPGList(HTMLComponent, GUIComponent):
 		old_service = self.cur_service  #(service, service_name, events, picon)
 		cur_service = self.cur_service = self.l.getCurrentSelection()
 		time_base = self.getTimeBase()
-		last_time = time()
+		now = time()
 		if old_service and self.cur_event is not None:
 			events = old_service[2]
 			cur_event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
-			if cur_event[2] > last_time:
-				last_time = cur_event[2]
+			if self.last_time < cur_event[2] or cur_event[2]+cur_event[3] < self.last_time:
+				self.last_time = cur_event[2]
+		if now > self.last_time:
+			self.last_time = now
 		if cur_service:
-			self.cur_event = 0
+			self.cur_event = None
 			events = cur_service[2]
-			best = None
 			if events and len(events):
-				best_diff = 0
 				idx = 0
 				for event in events: #iterate all events
-					ev_time = event[2]
-					if ev_time < time_base:
-						ev_time = time_base
-					diff = abs(ev_time - last_time)
-					if best is None or (diff < best_diff):
-						best = idx
-						best_diff = diff
-					if best is not None and ev_time > last_time:
+					if event[2] <= self.last_time and event[2]+event[3] > self.last_time:
+						self.cur_event = idx
 						break
 					idx += 1
-			self.cur_event = best
 		self.selEntry(0)
 
 	def selectionChanged(self):
