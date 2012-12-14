@@ -747,6 +747,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			else:
 				self.playGoTo = -1
 				self.goToPlayingService()
+		else:
+			current = self.getCurrent()
+			if current is not None:
+				if self["list"].getCurrentIndex() > 0:
+					path = current.getPath()
+					path = os.path.abspath(os.path.join(path, os.path.pardir))
+					path = os.path.abspath(os.path.join(path, os.path.pardir))
+					self.gotFilename(path)
 
 	def __onClose(self):
 		try:
