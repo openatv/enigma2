@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-01 16:48+0100\n"
-"PO-Revision-Date: 2012-12-13 22:11+0100\n"
+"PO-Revision-Date: 2012-12-15 09:43+0100\n"
 "Last-Translator: Magnus Nilsson <mag_nilsson@hotmail.com>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -386,15 +386,15 @@ msgstr "9"
 
 #
 msgid "<Current movielist location>"
-msgstr "<Aktuell filmlistas plats>"
+msgstr "<Filmlistans aktuella plats>"
 
 #
 msgid "<Default movie location>"
-msgstr "<Grund filmlistas plats>"
+msgstr "<Filmlistans grundplats>"
 
 #
 msgid "<Last timer location>"
-msgstr "<Senaste timers filmplats>"
+msgstr "<Timerns senaste filmplats>"
 
 #
 msgid "<unknown>"
@@ -687,7 +687,7 @@ msgstr "Avancerad Mjukvara"
 
 #
 msgid "Advanced software plugin"
-msgstr "Avancerad Mjukvaru Plugin"
+msgstr "Avancerad Mjukvaruplugin"
 
 msgid "Advanced video enhancement setup"
 msgstr "Avancerad Videoförbättringsinstallation"
@@ -1167,7 +1167,7 @@ msgstr "Kanal"
 
 #
 msgid "Channel list type"
-msgstr "Kanallista meny"
+msgstr "Typ av kanallista"
 
 #
 msgid "Channel not in services list"
@@ -1343,10 +1343,10 @@ msgid "Configuration..."
 msgstr "Konfiguration..."
 
 msgid "Configure for how long the infobar will remain visible after activation."
-msgstr "Konfigurera hur länge infobalken förblir synlig efter aktivering."
+msgstr "Konfigurera hur länge infobalken är synlig efter aktivering."
 
 msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-msgstr "Konfigurera hur många minuter avslutade program skall förbli synliga i EPG. Användbart när du behöver information om ett program som just har avslutats, eller har försenats."
+msgstr "Konfigurera hur många minuter avslutade program ska förbli synliga i EPG. Användbart när du behöver information om ett program som just har avslutats eller har försenats."
 
 msgid "Configure how recording filenames are constructed."
 msgstr "Konfigurera hur inspelningens filnamn är sammansatt."
@@ -1360,7 +1360,7 @@ msgid "Configure nameservers"
 msgstr "Konfigurera namnservers"
 
 msgid "Configure on which devices the background delete option should be used."
-msgstr "Konfigurera på vilka enheter som bakgrundsraderingen skall användas."
+msgstr "Konfigurera på vilka enheter som bakgrundsradering ska användas."
 
 msgid "Configure remote control type"
 msgstr "Konfigurera fjärrkontrolls typ"
@@ -1440,7 +1440,7 @@ msgid "Configure the general audio delay of stereo sound tracks."
 msgstr "Konfigurera den generella ljudfördröjningen av stereo ljudspår."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
-msgstr "Konfigurera när hårddisken skall gå i viloläge efter angiven tid."
+msgstr "Konfigurera när hårddisken ska gå i viloläge efter angiven tid."
 
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr "Konfigurera den horisontella placeringen av undertexter."
@@ -1458,7 +1458,7 @@ msgid "Configure the longitude of your location."
 msgstr "Konfigurera longituden för din plats."
 
 msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
-msgstr "Konfigurera det minsta diskutrymmet som skall vara tillgänglig för inspelning. När utrymmet sjunker under detta värde, kommer raderade objekt tas bort från papperskorgen."
+msgstr "Konfigurera det minsta diskutrymmet som ska vara tillgänglig för inspelning. När utrymmet sjunker under detta värde, kommer raderade objekt tas bort från papperskorgen."
 
 #
 msgid "Configure the nameserver (DNS)."
@@ -1469,10 +1469,10 @@ msgid "Configure the netmask."
 msgstr "Konfigurera nätmasken."
 
 msgid "Configure the number of days after which items are automaticaly removed from the trash can."
-msgstr "Konfigurera antalet dagar objekt är kvar i papperskorgen innan dessa objekt automatiskt tas bort."
+msgstr "Konfigurera det antal dagar objekt är kvar i papperskorgen innan de automatiskt tas bort."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
-msgstr "Konfigurera antalet dagar gamla timers sparas innan de automatiskt tas bort från timerlistan."
+msgstr "Konfigurera det antal dagar gamla timers sparas innan de automatiskt tas bort från timerlistan."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "Konfigurera avkodningsfördröjningen i millisekunder (offline). Den konfigurerade fördröjningen iakttas vid varje paritetändring."
@@ -1522,7 +1522,7 @@ msgid "Configure the speed of the background deletion process. Lower speed will 
 msgstr "Konfigurera borttagningshastigheten i bakgrunden. Lägre hastighet kommer att förbruka mindre hårddiskprestanda."
 
 msgid "Configure the subtitle delay when timing information is not available."
-msgstr "Konfigurera fördröjningen på undertexten när timinginformation inte är tillgänglig."
+msgstr "Konfigurera fördröjningen på undertexten när timing information inte är tillgänglig."
 
 msgid "Configure the third audio language."
 msgstr "Konfigurera det tredje ljudspråket."
@@ -1544,10 +1544,10 @@ msgid "Configure the type of status indication icons shown in the movielist."
 msgstr "Konfigurera den typ av ikon statusindikeringen visar i filmlistan."
 
 msgid "Configure the vertical position of the subtitles, measured from the bottom of the screen."
-msgstr "Konfigurera den vertikala positionen för undertexterna, mätt från botten av skärmen."
+msgstr "Konfigurera den vertikala positionen för undertexterna, uppmätt från botten av skärmen."
 
 msgid "Configure the video output mode (or resolution)."
-msgstr "Konfigurera videoutgångsläget (eller upplösningen)."
+msgstr "Konfigurera videoutgångsläget eller upplösningen."
 
 msgid "Configure the way in which the receiver changes channels."
 msgstr "Konfigurera hur mottagaren ändrar kanalerna."
@@ -1556,25 +1556,25 @@ msgid "Configure where completed timers show up in the timer list."
 msgstr "Konfigurera var färdiga timers visas i timerlistan."
 
 msgid "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
-msgstr "Konfigurera om (och hur länge) den andra infobalken visas när du trycker på OK två gånger. Det andra infobalken innehåller ytterligare information om den aktuella kanalen."
+msgstr "Konfigurera om (och hur länge) den andra infobalken visas när du trycker på OK två gånger. Den andra infobalken innehåller ytterligare information om den aktuella kanalen."
 
 msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
-msgstr "Konfigurera om flerkanals ljudspår skall mixas ned till stereo."
+msgstr "Konfigurera om flerkanals ljudspår ska mixas ned till stereo."
 
 msgid "Configure whether or not an icon should be shown when your motorized dish is moving."
-msgstr "Konfigurera om en ikon ska visas när motoriserad parabol är i rörelse."
+msgstr "Vid aktiverad, kommer en ikon att visas när motoriserad parabol är i rörelse."
 
 msgid "Configure which access level to use for the configuration menu. Expert level gives access to all items."
 msgstr "Konfigurera vilken behörighetsnivå som ska användas för konfigurationsmenyn. Expertnivå ger tillgång till alla objekt."
 
 msgid "Configure which color format should be used on the SCART output."
-msgstr "Konfigurera vilket färgformat som skall användas på SCART-utgången."
+msgstr "Konfigurera vilket färgformat som ska användas på SCART-utgången."
 
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
-msgstr "Konfigurera vilken tuner som kommer att föredras, när samma kanal är tillgänglig på olika typer av tuners."
+msgstr "Konfigurera vilken tunertyp som kommer att föredras, när samma kanal är tillgänglig på olika typer av tuners."
 
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
-msgstr "Konfigurera vilken tuner som kommer att föredras, då mer än en tuner finns tillgänglig. Om du väljer 'auto' kommer systemet att prioritera tunern som har det lägsta antalet kanaler/satelliter."
+msgstr "Konfigurera vilken tuner som kommer att föredras, då mer än en tuner är tillgänglig. Om du väljer 'auto' kommer systemet att prioritera tunern som har det lägsta antalet kanaler/satelliter."
 
 #
 msgid "Configure your internal LAN"
@@ -1592,7 +1592,7 @@ msgid "Configure your wireless LAN again"
 msgstr "Konfigurera ditt trådlösa LAN igen"
 
 msgid "Configures which video output connector will be used."
-msgstr "Konfigurerar vilken videoutgång som kommer att användas."
+msgstr "Konfigurera vilken videoutgång som ska användas."
 
 #
 msgid "Configuring"
@@ -2303,7 +2303,7 @@ msgid "Enable ViaSat EPG"
 msgstr "Aktivera ViaSat EPG"
 
 msgid "Enable bouquet selection in multi-EPG"
-msgstr "Aktivera favoritlisteval i multi-EPG"
+msgstr "Aktivera multi-EPG favoritlisteval."
 
 msgid "Enable freesat EPG"
 msgstr "Aktivera freeSat EPG"
@@ -2474,7 +2474,7 @@ msgstr "Utökad Mjukvaru"
 
 #
 msgid "Extended Software Plugin"
-msgstr "Utökad Mjukvaru Plugin"
+msgstr "Utökad Mjukvaruplugin"
 
 #
 msgid "Extended network setup plugin..."
@@ -2687,7 +2687,7 @@ msgstr "Tag senaste release image"
 
 #
 msgid "Getting plugin information. Please wait..."
-msgstr "Hämtar plugin information. Var vänlig vänta..."
+msgstr "Hämtar plugininformation. Var vänlig vänta..."
 
 msgid "Go down the list"
 msgstr "Gå ner i listan"
@@ -4355,7 +4355,7 @@ msgstr "Vänligen vänta... Laddar lista..."
 
 #
 msgid "Plugin browser"
-msgstr "Plugin hanterare"
+msgstr "Pluginhanterare"
 
 #
 msgid "Plugin manager activity information"
@@ -4401,7 +4401,7 @@ msgid "Portuguese"
 msgstr "Portugisiska"
 
 msgid "Position of completed timers in timerlist"
-msgstr "Position för färdiga Timers i timerlistan"
+msgstr "Position för färdiga timers i timerlistan"
 
 msgid "Position stored at index"
 msgstr "Position sparad vid index"
@@ -4905,7 +4905,7 @@ msgid "Rewind speeds"
 msgstr "Hastigheter för snabbspolning bakåt"
 
 msgid "Rewrap teletext subtitles"
-msgstr "Ta bort radbrytningen på teletextens undertexter"
+msgstr "Ta bort radbrytningen på teletext undertexter"
 
 #
 msgid "Right"
@@ -5151,7 +5151,7 @@ msgstr "Välj ett skin"
 
 #
 msgid "Select a tuner"
-msgstr "Välj en mottagare"
+msgstr "Välj en tuner"
 
 #
 msgid "Select a wireless network"
@@ -5352,7 +5352,7 @@ msgstr "Sätt gränserna"
 
 #
 msgid "Set the type of the progress indication in the channel selection screen."
-msgstr "Ange vilken typ av förloppsindikator som skall användas i kanalvalskärmen."
+msgstr "Ange vilken typ av förloppsindikator som ska användas i kanallistan."
 
 msgid "Set time window to 1 hour"
 msgstr "Sätt tidsfönster till 1 timme"
@@ -5438,7 +5438,7 @@ msgid "Show bouquet selection menu"
 msgstr "Visa favoritlistemenyn"
 
 msgid "Show busy indicator when the system is busy."
-msgstr "Vid aktiverad, visa en ikon när mottagaren är upptagen."
+msgstr "Vid aktiverad, kommer en ikon att visas när mottagaren är upptagen."
 
 msgid "Show channel numbers in channel selection"
 msgstr "Visa kanalnummer i kanallistan"
@@ -5616,7 +5616,7 @@ msgstr "Hoppa över kontroll av internetanslutning (inaktiverar automatisk paket
 
 #
 msgid "Sleep timer"
-msgstr "Sov Timer"
+msgstr "Sovtimer"
 
 #
 msgid "Sleep timer action:"
@@ -5936,7 +5936,7 @@ msgid "Subtitle selection..."
 msgstr "Undertext val..."
 
 msgid "Subtitle settings"
-msgstr "Undertext inställningar"
+msgstr "Undertextinställningar"
 
 #
 msgid "Subtitles"
@@ -6044,7 +6044,7 @@ msgstr "Teletextens undertextfärg"
 
 #
 msgid "Temperature and fan control"
-msgstr "Temperatur och Fläkt kontroll"
+msgstr "Temperatur och Fläktkontroll"
 
 #
 msgid "Terrestrial"
@@ -6571,7 +6571,7 @@ msgstr "Tuner"
 
 #
 msgid "Tuner configuration"
-msgstr "Tuner konfiguration"
+msgstr "Tunerkonfiguration"
 
 #
 msgid "Tuner slot"
@@ -6579,12 +6579,12 @@ msgstr "Tuner Slot"
 
 #
 msgid "Tuner status"
-msgstr "Tuner status"
+msgstr "Tunerstatus"
 
 #
 #, python-format
 msgid "Tuner status %s"
-msgstr "Tuner status %s"
+msgstr "Tunerstatus %s"
 
 #
 msgid "Tuner type"
@@ -6824,7 +6824,7 @@ msgid "User defined"
 msgstr "Användardefinierat"
 
 msgid "User interface"
-msgstr "Användar Interface"
+msgstr "Användargränssnitt"
 
 #
 msgid "Username"
@@ -6864,7 +6864,7 @@ msgstr "Video PID"
 
 #
 msgid "Video enhancement preview"
-msgstr "Videoförbättring förhandsvisning"
+msgstr "Förhandsvisning av videoförbättring"
 
 #
 msgid "Video enhancement settings"
@@ -6876,7 +6876,7 @@ msgstr "Videoförbättringsinstallation"
 
 #
 msgid "Video fine tuning"
-msgstr "Video fininställning"
+msgstr "Fininställning av video"
 
 #
 msgid ""
@@ -7132,7 +7132,7 @@ msgid "What do you want to scan?"
 msgstr "Vad vill du söka efter?"
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
-msgstr "Vid aktiverad, kommer AIT data inkluderas i http-strömmar. Detta gör att en klientmottagare får använda HbbTV."
+msgstr "Vid aktiverad, kommer AIT data inkluderas i http-strömmar. Detta tillåter en klientmottagare att använda HbbTV."
 
 msgid "When enabled, ECM data will be included in http streams. This allows a client receiver to do the descrambling."
 msgstr "Vid aktiverad, kommer ECM data inkluderas i http-strömmar. Detta tillåter en klientmottagare att göra avkodningen."
@@ -7141,7 +7141,7 @@ msgid "When enabled, EIT data will be included in http streams. This allows a cl
 msgstr "Vid aktiverad, kommer EIT data inkluderas i http-strömmar. Detta tillåter en klientmottagare att visa EPG."
 
 msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
-msgstr "Vid aktiverad, kommer ett meddelande visas när en film är klar och nästa kommer att starta."
+msgstr "Vid aktiverad, kommer ett meddelande visas när en film har slutat och nästa kommer att starta."
 
 msgid "When enabled, a popup message will be shown when a recording starts."
 msgstr "Vid aktiverad, kommer ett meddelande visas när en inspelning startar."
@@ -7153,13 +7153,13 @@ msgid "When enabled, a recording is allowed to interrupt live tv, when there are
 msgstr "Vid aktiverad, kommer en inspelning avbryta direktsänd TV, när det inte finns några lediga tuners."
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Vid aktiverad, kommer kanalnumreringen börja på '1' för varje favoritlista."
+msgstr "Vid aktiverad, kommer kanalnumreringen starta på '1' för varje favoritlista."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Vid aktiverad, kommer innehåll med ett bildförhållande på 4:3 sträckas för att passa skärmen."
 
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
-msgstr "Vid aktiverad, kommer du till nästa favoritlista när den sista kanalen i den nuvarande favoritlistan är nådd vid byte av kanal."
+msgstr "Vid aktiverad, byts favoritlistan till nästa när man nått sista kanalen i nuvarande favoritlistan."
 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr "Vid aktiverad, kommer raderade inspelningar flyttas till papperskorgen, istället för att raderas omedelbart."
@@ -7192,7 +7192,7 @@ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instea
 msgstr "Vid aktiverad, kommer grafiska DVB-undertexter att visas i gult, i stället för originalfärgen."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling."
-msgstr "Vid aktiverad, kommer http-strömmar avkodas på serversidan. (Fjärr) Klientmottagaren behöver inte göra avkodning."
+msgstr "Vid aktiverad, kommer http-strömmar avkodas på serversidan. (Fjärr) Klientmottagaren behöver inte göra avkodningen."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Vid aktiverad, kommer energiförbrukningen mätas för att upptäcka när rotorn slutar vrida (när det stöds av tunern)."
@@ -7216,7 +7216,7 @@ msgid "When enabled, teletext subtitles will be displayed at their original posi
 msgstr "Vid aktiverad, kommer teletextens undertexter visas på originalpositionen."
 
 msgid "When enabled, the channel selection list will be hidden while listening to a radio channel"
-msgstr "Vid aktiverad, kommer kanallistan döljas när du lyssnar på en radiokanal"
+msgstr "Vid aktiverad, kommer kanallistan döljas när du lyssnar på en radiokanal."
 
 msgid "When enabled, the infobar will be displayed when a new event starts."
 msgstr "Vid aktiverad, kommer infobalken visas när ett nytt program startar."
@@ -7240,7 +7240,7 @@ msgid "When enabled, the receiver will automatically use the subtitles which you
 msgstr "Vid aktiverad, kommer mottagaren automatiskt använda undertexter som du valt tidigare."
 
 msgid "When enabled, the receiver will no longer monitor the tuned transponder for possible changes. Do not use this option unless you know what you are doing."
-msgstr "Vid aktiverad, kommer mottagaren inte längre övervaka transpondern för eventuella ändringar. Använd inte detta alternativet, gör det endast om du vet vad du gör."
+msgstr "Vid aktiverad, kommer mottagaren inte längre övervaka transpondern för eventuella ändringar. Använd endast detta alternativ om du vet vad du gör."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "Vid aktiverad, kommer mottagaren välja ett AC3 spår (när det är tillgängligt)."
@@ -7259,10 +7259,10 @@ msgid "When nonzero, a recording will stop later than the ending time indicated 
 msgstr "Vid icke noll, kommer en inspelning stanna senare än sluttiden som anges av EPG."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
-msgstr "När innehållet har ett bildförhållande på 16:9, välj om man skall skala/sträcka bilden."
+msgstr "När innehållet har ett bildförhållande på 16:9, välj om man ska skala/sträcka bilden."
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
-msgstr "När innehållet har ett bildförhållande på 4:3, välj om man skall skala/sträcka bilden."
+msgstr "När innehållet har ett bildförhållande på 4:3, välj om man ska skala/sträcka bilden."
 
 #
 msgid ""
@@ -7399,14 +7399,14 @@ msgstr "Du kan fortsätta titta på TV etc, medan detta körs"
 
 #
 msgid "You can install this plugin."
-msgstr "Du kan installera den pluginen."
+msgstr "Du kan installera detta plugin."
 
 msgid "You can only burn receiver recordings!"
 msgstr "Du kan bara bränna mottagarens inspelningar!"
 
 #
 msgid "You can remove this plugin."
-msgstr "Du kan ta bort den pluginen."
+msgstr "Du kan ta bort detta plugin."
 
 #
 msgid "You cannot delete this!"
