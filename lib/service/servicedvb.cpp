@@ -3192,7 +3192,23 @@ void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
 			m_subtitle_pages.push_back(tmppage);
 		}
 		else
-			m_subtitle_pages.push_back(page);
+		{
+			int subtitledelay = 0;
+			std::string configvalue;
+			if(!ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_bad_timing_delay", configvalue))
+			{
+				subtitledelay = atoi(configvalue.c_str());
+			}
+			if (subtitledelay != 0)
+			{
+				eDVBTeletextSubtitlePage tmppage;
+				tmppage = page;
+				tmppage.m_pts += subtitledelay;
+				m_subtitle_pages.push_back(tmppage);
+			}
+			else
+				m_subtitle_pages.push_back(page);
+		}
 		checkSubtitleTiming();
 	}
 }
@@ -3273,7 +3289,23 @@ void eDVBServicePlay::newDVBSubtitlePage(const eDVBSubtitlePage &p)
 			m_dvb_subtitle_pages.push_back(tmppage);
 		}
 		else
-			m_dvb_subtitle_pages.push_back(p);
+		{
+			int subtitledelay = 0;
+			std::string configvalue;
+			if(!ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_bad_timing_delay", configvalue))
+			{
+				subtitledelay = atoi(configvalue.c_str());
+			}
+			if (subtitledelay != 0)
+			{
+				eDVBSubtitlePage tmppage;
+				tmppage = p;
+				tmppage.m_show_time += subtitledelay;
+				m_dvb_subtitle_pages.push_back(tmppage);
+			}
+			else
+				m_dvb_subtitle_pages.push_back(p);
+		}
 		checkSubtitleTiming();
 	}
 }
