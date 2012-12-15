@@ -366,6 +366,7 @@ class PowerKey:
 		self.session.infobar = None
 
 	def shutdown(self):
+		wasRecTimerWakeup = False
 		from time import time
 		recordings = self.session.nav.getRecordings()
 		if not recordings:
@@ -376,6 +377,9 @@ class PowerKey:
 			if self.session.nav.RecordTimer.isRecTimerWakeup() or wasRecTimerWakeup:
 				print "PowerOff (timer wakewup) - Recording in progress or a timer about to activate, entering standby!"
 				self.standby()
+			else:
+				print "PowerOff - Now!"
+				self.session.open(Screens.Standby.TryQuitMainloop, 1)
 		elif not Screens.Standby.inTryQuitMainloop and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
 			print "PowerOff - Now!"
 			self.session.open(Screens.Standby.TryQuitMainloop, 1)
