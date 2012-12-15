@@ -143,9 +143,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.saved_config_seek_speeds_slowmotion = config.seek.speeds_slowmotion.value
 
 	def change_infobar_seek_config(self):
-		config.seek.speeds_forward.value = [2, 4, 8, 16, 32, 64]
-		config.seek.speeds_backward.value = [8, 16, 32, 64]
-		config.seek.speeds_slowmotion.value = [ ]
+		config.seek.speeds_forward.value = [2, 4, 6, 8, 16, 32, 64]
+		config.seek.speeds_backward.value = [2, 4, 6, 8, 16, 32, 64]
+		config.seek.speeds_slowmotion.value = [ 2, 3, 4, 6 ]
 		config.seek.enter_forward.value = "2"
 		config.seek.enter_backward.value = "2"
 		config.seek.on_pause.value = "play"
