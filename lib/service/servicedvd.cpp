@@ -459,42 +459,22 @@ RESULT eServiceDVD::keys(ePtr<iServiceKeys> &ptr)
 }
 
 	// iPausableService
-RESULT eServiceDVD::setSlowMotion(int /*ratio*/)
+RESULT eServiceDVD::setSlowMotion(int ratio)
 {
-	return -1;
+	eDebug("setSlowmode(%d)", ratio);
+	// pass ratio as repeat factor.
+	// ratio=2 means 1/2 speed
+	// ratio=3 means 1/3 speed
+	ddvd_send_key(m_ddvdconfig, ratio < 0 ? DDVD_KEY_SLOWBWD : DDVD_KEY_SLOWFWD);
+	ddvd_send_key(m_ddvdconfig, ratio);
+	return 0;
 }
 
 RESULT eServiceDVD::setFastForward(int trick)
 {
 	eDebug("setTrickmode(%d)", trick);
-	while (m_current_trick > trick && m_current_trick != -64)
-	{
-		ddvd_send_key(m_ddvdconfig, DDVD_KEY_FBWD);
-		if (m_current_trick == 0)
-			m_current_trick = -2;
-		else if (m_current_trick > 0)
-		{
-			m_current_trick /= 2;
-			if (abs(m_current_trick) == 1)
-				m_current_trick=0;
-		}
-		else
-			m_current_trick *= 2;
-	}
-	while (m_current_trick < trick && m_current_trick != 64)
-	{
-		ddvd_send_key(m_ddvdconfig, DDVD_KEY_FFWD);
-		if (m_current_trick == 0)
-			m_current_trick = 2;
-		else if (m_current_trick < 0)
-		{
-			m_current_trick /= 2;
-			if (abs(m_current_trick) == 1)
-				m_current_trick=0;
-		}
-		else
-			m_current_trick *= 2;
-	}
+	ddvd_send_key(m_ddvdconfig, trick < 0 ? DDVD_KEY_FASTBWD : DDVD_KEY_FASTFWD);
+	ddvd_send_key(m_ddvdconfig, trick);
 	return 0;
 }
 

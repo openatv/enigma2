@@ -282,7 +282,7 @@ class Harddisk:
 		h.close()
 
 	def createInitializeJob(self):
-		job = Task.Job(_("Initializing storage device..."),True)
+		job = Task.Job(_("Initializing storage device..."))
 		size = self.diskSize()
 		print "[HD] size: %s MB" % size
 
@@ -382,7 +382,7 @@ class Harddisk:
 		return -5
 
 	def createCheckJob(self):
-		job = Task.Job(_("Checking filesystem..."),True)
+		job = Task.Job(_("Checking filesystem..."))
 		if self.findMount():
 			# Create unmount task if it was not mounted
 			UnmountTask(job, self)
@@ -403,7 +403,7 @@ class Harddisk:
 	def createExt4ConversionJob(self):
 		if not isFileSystemSupported('ext4'):
 			raise Exception, _("You system does not support ext4")
-		job = Task.Job(_("Converting ext3 to ext4..."),True)
+		job = Task.Job(_("Converting ext3 to ext4..."))
 		if not os.path.exists('/sbin/tune2fs'):
 			addInstallTask(job, 'e2fsprogs-tune2fs')
 		if self.findMount():

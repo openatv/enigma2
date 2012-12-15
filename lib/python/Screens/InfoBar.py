@@ -100,7 +100,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def showMenu(self):
 		self.onShown.remove(self.showMenu)
-		config.misc.initialchannelselection.setValue(False)
+		config.misc.initialchannelselection.setValue(True)
 		config.misc.initialchannelselection.save()
 		self.mainMenu()
 
@@ -206,7 +206,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.rds_display.show()  # in InfoBarRdsDecoder
 
 	def showMovies(self, defaultRef=None):
-		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
+		self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if self.lastservice and self.lastservice.toString().find(':0:/') != -1:
 			self.lastservice = enimga.eServiceReference(config.movielist.curentlyplayingservice.getValue())
 		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef)
@@ -215,7 +215,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		ref = self.lastservice
 		del self.lastservice
 		if service is None:
-			if ref and not self.session.nav.getCurrentlyPlayingServiceReference():
+			if ref and not self.session.nav.getCurrentlyPlayingServiceOrGroup():
 				self.session.nav.playService(ref)
 		else:
 			self.session.open(MoviePlayer, service, slist = self.servicelist, lastservice = ref)
@@ -318,7 +318,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 		self.onChangedEntry = [ ]
 		self.servicelist = slist
-		self.lastservice = lastservice or session.nav.getCurrentlyPlayingServiceReference()
+		self.lastservice = lastservice or session.nav.getCurrentlyPlayingServiceOrGroup()
 		session.nav.playService(service)
 		self.cur_service = service
 		self.returning = False
@@ -383,7 +383,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		answer = answer and answer[1]
 
 		if answer in ("quitanddelete", "quitanddeleteconfirmed"):
-			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			serviceHandler = enigma.eServiceCenter.getInstance()
 			if answer == "quitanddelete":
 				msg = ''
@@ -413,7 +413,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		if answer in ("quit", "quitanddeleteconfirmed"):
 			self.close()
 		elif answer == "movielist":
-			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.returning = True
 			self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)
 			self.session.nav.stopService()
@@ -440,7 +440,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			return
 		if not playing :
 			return
-		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if ref:
 			delResumePoint(ref)
 		self.handleLeave(config.usage.on_movie_eof.getValue())
@@ -524,7 +524,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		pass
 
 	def showMovies(self):
-		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if ref.toString().find(':0:/') == -1:
 			self.playingservice = ref # movie list may change the currently playing
 		else:
@@ -545,7 +545,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				ref = self.playingservice
 				del self.playingservice
 				# no selection? Continue where we left off
-				if ref and not self.session.nav.getCurrentlyPlayingServiceReference():
+			if ref and not self.session.nav.getCurrentlyPlayingServiceOrGroup():
 					self.session.nav.playService(ref)
 			except:
 				pass		

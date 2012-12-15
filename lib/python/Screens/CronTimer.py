@@ -158,7 +158,7 @@ class CronTimers(Screen):
 			self.Console.ePopen('/etc/init.d/busybox-cron stop', self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
-		time.sleep(3)
+		sleep(3)
 		self.updateList()
 
 	def autostart(self):

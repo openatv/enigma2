@@ -12,7 +12,7 @@
 		<item level="1" text="Action on short powerbutton press" description="Setup what a short press on the power button does.">config.usage.on_short_powerpress</item>
 		<item level="0" text="Setup mode" description="Choose which level of menu/setting's to display. 'Expert'-level shows all items.">config.usage.setup_level</item>
 		<item level="1" text="Enable teletext caching" description="When enabled, teletext pages will be cached, allowing faster access.">config.usage.enable_tt_caching</item>
-		<item level="1" text="12V output" description="12V output" requires="12V_Output.">config.usage.output_12V</item>
+		<item level="1" text="12V output" description="12V output." requires="12V_Output">config.usage.output_12V</item>
 		<item level="2" text="Alternative services tuner priority" description="Configure which tuner type will be preferred, when the same service is available on different types of tuners.">config.usage.alternatives_priority</item>
 		<item level="2" text="Preferred tuner" description="Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites.">config.usage.frontend_priority</item>
 		<item level="2" text="Disable background scanning" description="When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing.">config.misc.disable_background_scan</item>
@@ -176,8 +176,8 @@
 		<item level="0" text="Keyboard map">config.keyboard.keymap</item>
 	</setup>
 	<setup key="lcd" title="Display settings" requires="FrontpanelDisplay">
-		<item level="0" text="Brightness (Normal)" description="Configure the brightness level of the front panel display for normal operation.">config.lcd.bright</item>
-		<item level="0" text="Brightness (Standby)" description="Configure the brightness level of the front panel display for standby.">config.lcd.standby</item>
+		<item level="0" text="Brightness (Normal)" description="Configure the brightness level of the front panel displa for normal operation.">config.lcd.bright</item>
+		<item level="0" text="Brightness (Standby)" description="Configure the brightness level of the front panel displa for standby.">config.lcd.standby</item>
 		<item level="0" text="Contrast" description="Configure the contrast level of the front panel display.">config.lcd.contrast</item>
 		<item level="0" text="LED Normal" description="LED brightness during normal operations.">config.lcd.ledbrightness</item>
 		<item level="0" text="LED Standby" description="LED brightness during standby.">config.lcd.ledbrightnessstandby</item>
@@ -304,5 +304,9 @@
 	</setup>
 	<setup key="dvdplayer" title="DVD-Player Setup">
 		<item level="0" text="Show DVD-Player in Mainmenu when BMC is installed ?" description="Show DVD-Player in Mainmenu">config.usage.show_dvdplayer</item>
+	</setup>
+	<setup key="pluginbrowsersetup" title="Settings...">
+		<item level="2" text="Show translation packages" description="If set to 'yes' it will show the 'PO' packages in browser.">config.pluginbrowser.po</item>
+		<item level="2" text="Show source packages" description="If set to 'yes' it will show the 'SRC' packages in browser.">config.pluginbrowser.src</item>
 	</setup>
 </setupxml>

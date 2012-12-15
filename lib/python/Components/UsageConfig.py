@@ -609,7 +609,10 @@ def InitUsageConfig():
 	config.epgselection.showbouquet_multi = ConfigYesNo(default = False)
 	config.epgselection.preview_mode_pliepg = ConfigYesNo(default = True)
 	config.epgselection.preview_mode_enhanced = ConfigYesNo(default = True)
-	config.epgselection.preview_mode_infobar = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fulscreen")), ("2", _("PiP"))], default = "1")
+	if SystemInfo.get("NumVideoDecoders", 1) > 1:
+		config.epgselection.preview_mode_infobar = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fulscreen")), ("2", _("PiP"))], default = "1")
+	else:
+		config.epgselection.preview_mode_infobar = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fulscreen"))], default = "1")
 	config.epgselection.preview_mode = ConfigYesNo(default = True)
 	config.epgselection.graphics_mode = ConfigSelection(choices = [("graphics",_("Graphics")), ("text", _("Text"))], default = "graphics")
 	config.epgselection.OK_multi = ConfigSelection(choices = [("EventView",_("EventView")),("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
@@ -682,6 +685,10 @@ def InitUsageConfig():
 	config.streaming.descramble = ConfigYesNo(default = True)
 	config.streaming.stream_eit = ConfigYesNo(default = True)
 	config.streaming.stream_ait = ConfigYesNo(default = True)
+
+	config.pluginbrowser = ConfigSubsection()
+	config.pluginbrowser.po = ConfigYesNo(default = False)
+	config.pluginbrowser.src = ConfigYesNo(default = False)
 
 def updateChoices(sel, choices):
 	if choices:

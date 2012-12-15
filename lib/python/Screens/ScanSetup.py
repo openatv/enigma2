@@ -296,7 +296,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		del self.feinfo
 		del self.service
 
-		self.session.postScanService = session.nav.getCurrentlyPlayingServiceReference()
+		self.session.postScanService = session.nav.getCurrentlyPlayingServiceOrGroup()
 
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Scan"))
@@ -898,7 +898,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			"green": self.keyGo,
 		}, -2)
 
-		self.session.postScanService = session.nav.getCurrentlyPlayingServiceReference()
+		self.session.postScanService = session.nav.getCurrentlyPlayingServiceOrGroup()
 
 		self.list = []
 		tlist = []

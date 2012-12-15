@@ -67,7 +67,7 @@ def isMoviePlayerInfoBar(self):
 def setResumePoint(session):
 	global resumePointCache, resumePointCacheLast
 	service = session.nav.getCurrentService()
-	ref = session.nav.getCurrentlyPlayingServiceReference()
+	ref = session.nav.getCurrentlyPlayingServiceOrGroup()
 	if (service is not None) and (ref is not None): # and (ref.type != 1):
 		# ref type 1 has its own memory...
 		seek = service.seek()
@@ -104,7 +104,7 @@ def delResumePoint(ref):
 
 def getResumePoint(session):
 	global resumePointCache
-	ref = session.nav.getCurrentlyPlayingServiceReference()
+	ref = session.nav.getCurrentlyPlayingServiceOrGroup()
 	if (ref is not None) and (ref.type != 1):
 		try:
 			entry = resumePointCache[ref.toString()]
@@ -1096,7 +1096,7 @@ class InfoBarChannelSelection:
 
 	def isPlayable(self, ref):
 		if not (ref.flags & eServiceReference.isMarker):
-			cur_running = self.session.nav.getCurrentlyPlayingServiceReference(False)
+			cur_running = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if not cur_running:
 				cur_running = eServiceReference()
 			info = eServiceCenter.getInstance().info(ref)
@@ -1108,6 +1108,8 @@ class InfoBarChannelSelection:
 		if answer and self.tscallback:
 			self.stopTimeshiftConfirmed(True)
 			self.tscallback()
+
+
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
 	def __init__(self):
@@ -1716,10 +1718,11 @@ class Seekbar(Screen):
 			if self.seek:
 				self.length = self.seek.getLength()
 				position = self.seek.getPlayPosition()
-				if self.length and position:
+				if self.length and position and int(self.length[1]) > 0:
 					if int(position[1]) > 0:
 						self.percent = float(position[1]) * 100.0 / float(self.length[1])
-
+				else:
+					self.close()
 		self["cursor"] = MovingPixmap()
 		self["time"] = Label()
 
@@ -2039,7 +2042,7 @@ class InfoBarSeek:
 
 	def doSeekRelative(self, pts):
 		seekable = self.getSeek()
-		if seekable is None:
+		if seekable is None and int(self.seek.getLength()[1]) < 1:
 			return
 		prevstate = self.seekstate
 
@@ -4150,7 +4153,7 @@ class InfoBarPiP:
 				del self.session.pip
 
 	def swapPiP(self):
-		swapservice = self.session.nav.getCurrentlyPlayingServiceReference()
+		swapservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		pipref = self.session.pip.getCurrentService()
 		if swapservice and pipref and pipref.toString() != swapservice.toString():
 			currentServicePath = self.servicelist.getCurrentServicePath()
@@ -4267,7 +4270,7 @@ class InfoBarInstantRecord:
 			self.recording.remove(self.recording[entry])
 
 	def startInstantRecording(self, limitEvent = False):
-		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 
 		# try to get event info
 		event = None
@@ -4555,7 +4558,7 @@ class InfoBarSubserviceSelection:
 		n = subservices and subservices.getNumberOfSubservices()
 		if n and n > 0:
 			selection = -1
-			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			idx = 0
 			while idx < n:
 				if subservices.getSubservice(idx).toString() == ref.toString():
@@ -4581,7 +4584,7 @@ class InfoBarSubserviceSelection:
 		n = subservices and subservices.getNumberOfSubservices()
 		selection = 0
 		if n and n > 0:
-			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			tlist = []
 			idx = 0
 			while idx < n:

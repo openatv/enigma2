@@ -360,7 +360,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.type = EPG_TYPE_ENHANCED
 			self.list = []
 			self.servicelist = service
-			self.currentService=self.session.nav.getCurrentlyPlayingServiceReference()
+			self.currentService=self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.zapFunc = None
 
 		self["list"] = EPGList(type = self.type, selChangedCB = self.onSelectionChanged, timer = session.nav.RecordTimer, time_epoch = config.epgselection.prev_time_period.getValue(), overjump_empty = config.epgselection.overjump.getValue())
@@ -629,11 +629,11 @@ class EPGSelection(Screen, HelpableScreen):
 		self.activityTimer.start(100)
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			self.StartBouquet = self.servicelist.getRoot()
-		self.StartRef = self.session.nav.getCurrentlyPlayingServiceReference()
+		self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 
 	def onCreate(self):
 		self.activityTimer.stop()
-		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		l = self["list"]
 		l.recalcEntrySize()
 		if self.type == EPG_TYPE_GRAPH:
@@ -844,7 +844,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.close(False)
 			return
 
-		if self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toString() != self.StartRef.toString():
+		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
 			if ((self.type == 5 and config.epgselection.preview_mode_pliepg.getValue()) or (self.type == 4 and (config.epgselection.preview_mode_infobar.getValue() == "1" or config.epgselection.preview_mode_infobar.getValue() == "2")) or (self.type == 3 and config.epgselection.preview_mode_enhanced.getValue()) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselection.preview_mode.getValue())) and (self.StartRef and self.StartBouquet):
 				if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_SINGLE:
 					if self.StartRef.toString().find('0:0:0:0:0:0:0:0:0')== -1:
@@ -865,7 +865,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.currentpip = None
 					del self.session.pip
 			if self.StartRef and self.StartRef.toString().find('0:0:0:0:0:0:0:0:0') == -1 and (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR):
-					self.setServicelistSelection(self.StartBouquet, self.StartRef)
+				self.setServicelistSelection(self.StartBouquet, self.StartRef)
 			self.close(False)
 
 	def infoKeyPressed(self):
@@ -874,7 +874,7 @@ class EPGSelection(Screen, HelpableScreen):
 		service = cur[1]
 		if event is not None:
 			if self.type != EPG_TYPE_SIMILAR:
-				self.session.open(EventViewSimple, event, service, self.eventViewCallback, self.openSimilarList)
+				self.session.open(EventViewSimple, event, service, self.eventViewCallback, None, None, self.openSimilarList)
 			else:
 				self.session.open(EventViewSimple, event, service, self.eventViewCallback)
 
@@ -1241,7 +1241,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.zap()
 
 		if self.type == EPG_TYPE_GRAPH:
-			serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+			serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self["list"].setCurrentlyPlaying(serviceref)
 			self["list"].fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines(True)
@@ -1252,11 +1252,11 @@ class EPGSelection(Screen, HelpableScreen):
 		if config.epgselection.OKLong_pliepg.getValue() == "Zap" or config.epgselection.OKLong_enhanced.getValue() == "Zap" or config.epgselection.OKLong_infobar.getValue() == "Zap":
 			self.ZapTo()
 		if self.type == EPG_TYPE_GRAPH:
-				serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
-				self["list"].setCurrentlyPlaying(serviceref)
-				self["list"].fillGraphEPG(None, self.ask_time)
-				self.moveTimeLines(True)
-		if config.epgselection.OKLong_pliepg.getValue() == "Zap + Exit" or config.epgselection.OKLong_enhanced.getValue() == "Zap + Exit" or config.epgselection.OKLong_infobar.getValue() == "Zap + Exit":
+			serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			self["list"].setCurrentlyPlaying(serviceref)
+			self["list"].fillGraphEPG(None, self.ask_time)
+			self.moveTimeLines(True)
+		if config.epgselection.OKLong_pliepg.getValue() == "Zap + Exit" or config.epgselection.OKLong_enhanced.getValue() == "Zap + Exit" or config.epgselection.OKLong_infobar.getValue() == "Zap + Exit" or config.epgselection.OKLong_multi.getValue() == "Zap + Exit":
 			self.zap()
 
 	def Info(self):
@@ -1399,7 +1399,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.servicelist.setCurrent(service)
 
 	def zap(self):
-		if self.session.nav.getCurrentlyPlayingServiceReference().toString().find('0:0:0:0:0:0:0:0:0')!= -1:
+		if self.session.nav.getCurrentlyPlayingServiceOrGroup().toString().find('0:0:0:0:0:0:0:0:0')!= -1:
 			from Screens.InfoBarGenerics import setResumePoint
 			setResumePoint(self.session)
 
@@ -1416,7 +1416,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.close('close')
 		else:
 			try:
-				currch = self.session.nav.getCurrentlyPlayingServiceReference()
+				currch = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 				currch = currch.toString()
 				switchto = ServiceReference(self.servicelist.getCurrentSelection())
 				switchto = str(switchto)
@@ -1429,13 +1429,13 @@ class EPGSelection(Screen, HelpableScreen):
 				self.close(False)
 
 	def ZapTo(self):
-		if self.session.nav.getCurrentlyPlayingServiceReference().toString().find('0:0:0:0:0:0:0:0:0')!= -1:
+		if self.session.nav.getCurrentlyPlayingServiceOrGroup().toString().find('0:0:0:0:0:0:0:0:0')!= -1:
 			from Screens.InfoBarGenerics import setResumePoint
 			setResumePoint(self.session)
 
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_MULTI:
 			if self.zapFunc:
-				currch = self.session.nav.getCurrentlyPlayingServiceReference()
+				currch = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 				currch = currch.toString()
 				ref = self["list"].getCurrent()[1]
 				if ref:
@@ -1454,7 +1454,7 @@ class EPGSelection(Screen, HelpableScreen):
 					else:
 						self.close('close')
 		elif self.type == EPG_TYPE_SINGLE:
-			currch = self.session.nav.getCurrentlyPlayingServiceReference()
+			currch = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			currch = currch.toString()
 			switchto = ServiceReference(self.currentService.ref)
 			switchto = str(switchto)
@@ -1464,7 +1464,7 @@ class EPGSelection(Screen, HelpableScreen):
 			else:
 				self.close('close')
 		elif self.type == EPG_TYPE_ENHANCED:
-			currch = self.session.nav.getCurrentlyPlayingServiceReference()
+			currch = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			currch = currch.toString()
 			switchto = ServiceReference(self.servicelist.getCurrentSelection())
 			switchto = str(switchto)
@@ -1475,7 +1475,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.close('close')
 
 		elif self.type == EPG_TYPE_INFOBAR:
-			currch = self.session.nav.getCurrentlyPlayingServiceReference()
+			currch = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			currch = currch.toString()
 			switchto = ServiceReference(self.servicelist.getCurrentSelection())
 			switchto = str(switchto)

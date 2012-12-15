@@ -289,7 +289,7 @@ class TimerEditList(Screen):
 				event = info.getEvent(0)
 
 		# FIXME only works if already playing a service
-		serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference())
+		serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
 		if event is None:
 			data = (int(time()), int(time() + 60), "", "", None)
