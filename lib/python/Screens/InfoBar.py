@@ -545,7 +545,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				ref = self.playingservice
 				del self.playingservice
 				# no selection? Continue where we left off
-			if ref and not self.session.nav.getCurrentlyPlayingServiceOrGroup():
+				if ref and not self.session.nav.getCurrentlyPlayingServiceOrGroup():
 					self.session.nav.playService(ref)
 			except:
 				pass		
