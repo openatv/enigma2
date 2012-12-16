@@ -723,14 +723,7 @@ RESULT eServiceMP3::seekRelative(int direction, pts_t to)
 
 gint eServiceMP3::match_sinktype(GstElement *element, gpointer type)
 {
-	gint retval = strcmp(g_type_name(G_OBJECT_TYPE(element)), (const char*)type);
-#if GST_VERSION_MAJOR < 1
-	if (retval)
-	{
-		gst_object_unref(element);
-	}
-#endif
-	return retval;
+	return strcmp(g_type_name(G_OBJECT_TYPE(element)), (const char*)type);
 }
 
 RESULT eServiceMP3::getPlayPosition(pts_t &pts)
