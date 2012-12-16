@@ -1,6 +1,6 @@
 from Renderer import Renderer
 
-from enigma import eCanvas, eRect, gRGB
+from enigma import eCanvas, eRect, ePoint, gRGB
 
 class Canvas(Renderer):
 	GUI_WIDGET = eCanvas
@@ -33,6 +33,8 @@ class Canvas(Renderer):
 				self.instance.fillRect(eRect(l[1], l[2], l[3], l[4]), gRGB(l[5]))
 			elif l[0] == 2:
 				self.instance.writeText(eRect(l[1], l[2], l[3], l[4]), gRGB(l[5]), gRGB(l[6]), l[7], l[8], l[9])
+			elif l[0] == 3:
+				self.instance.drawLine(l[1], l[2], l[3], l[4], gRGB(l[5]))
 			else:
 				print "drawlist entry:", l
 				raise RuntimeError("invalid drawlist entry")
