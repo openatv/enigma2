@@ -334,10 +334,10 @@ if [ $TYPE = "VENTON" ] ; then
 	mkdir -p $EXTRA/$MODEL
 	mv $WORKDIR/root.ubifs $MAINDEST/rootfs.bin
 	mv $WORKDIR/vmlinux.gz $MAINDEST/kernel.bin
-	echo "rename this file to 'force' to force an update without confirmation" > $MAINDEST/noforce;
+	echo "rename this file to 'force' to force an update without confirmation" > $MAINDEST/noforce
 	echo ${MODEL}-$IMAGEVERSION > $MAINDEST/imageversion
 	cp -r $MAINDEST $EXTRA #copy the made back-up to images
-	if [ -f $MAINDEST/rootfs.bin -a -f $MAINDEST/kernel.bin -a -f $MAINDEST/imageversion -a -f $MAINDEST/noforce] ; then
+	if [ -f $MAINDEST/rootfs.bin -a -f $MAINDEST/kernel.bin -a -f $MAINDEST/imageversion -a -f $MAINDEST/noforce ] ; then
 		echo "_________________________________________________\n"
 		echo "USB Image created on:" $MAINDEST
 		echo "and there is made an extra copy on:"
@@ -397,7 +397,7 @@ if [ $TYPE = "ODIN" ] ; then
 	mkdir -p $EXTRA
 	mv $WORKDIR/root.$ROOTFSTYPE $MAINDEST/rootfs.bin 
 	mv $WORKDIR/vmlinux.gz $MAINDEST/kernel.bin
-	echo "rename this file to 'force' to force an update without confirmation" > $MAINDEST/noforce;
+	echo "rename this file to 'force' to force an update without confirmation" > $MAINDEST/noforce
 	echo $MODEL-$IMAGEVERSION > $MAINDEST/imageversion
 	cp -r $MAINDEST $EXTRA #copy the made back-up to images
 	if [ -f $MAINDEST/rootfs.bin -a -f $MAINDEST/kernel.bin -a -f $MAINDEST/imageversion -a -f $MAINDEST/noforce ] ; then
@@ -461,7 +461,7 @@ if [ $TYPE = "MAXDIGITAL" ] ; then
 	mkdir -p $EXTRA
 	mv $WORKDIR/root.$ROOTFSTYPE $MAINDEST/rootfs.bin 
 	mv $WORKDIR/vmlinux.gz $MAINDEST/kernel.bin
-	echo "rename this file to 'force' to force an update without confirmation" > $MAINDEST/noforce;
+	echo "rename this file to 'force' to force an update without confirmation" > $MAINDEST/noforce
 	echo $MODEL-$IMAGEVERSION > $MAINDEST/imageversion
 	cp -r $MAINDEST $EXTRA #copy the made back-up to images
 	if [ -f $MAINDEST/rootfs.bin -a -f $MAINDEST/kernel.bin -a -f $MAINDEST/imageversion -a -f $MAINDEST/noforce ] ; then
@@ -496,7 +496,7 @@ if [ $TYPE = "GIGABLUE" ] ; then
 		mv $WORKDIR/root.ubifs $MAINDEST/rootfs.bin
 	fi
 	mv $WORKDIR/vmlinux.gz $MAINDEST/kernel.bin
-	echo "rename this file to 'force' to force an update without confirmation" > $MAINDEST/noforce;
+	echo "rename this file to 'force' to force an update without confirmation" > $MAINDEST/noforce
 	echo $MODEL-$IMAGEVERSION > $MAINDEST/imageversion
 	macaddr=`ifconfig eth0 | awk '/HWaddr/ {print $5}' | tr -s : -`
 	[ -f $MAINDEST/../../burn.bat ] && rm $MAINDEST/../../burn.bat
