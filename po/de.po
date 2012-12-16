@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-03 15:00+0000\n"
-"PO-Revision-Date: 2012-12-09 02:03+0100\n"
-"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
+"POT-Creation-Date: 2012-12-15 18:28+0000\n"
+"PO-Revision-Date: 2012-12-16 20:19+0100\n"
+"Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -13,6 +13,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: Germany\n"
 
 msgid ""
 "\n"
@@ -312,6 +314,9 @@ msgstr "1.2"
 msgid "12V output"
 msgstr "12V-Ausgang"
 
+msgid "12V output."
+msgstr "12V-Ausgang"
+
 msgid "13 V"
 msgstr "13 V"
 
@@ -487,6 +492,9 @@ msgstr "Zur Zeit sind Aufnahmen aktiv. Bitte Aufnahme beenden, bevor gesucht wir
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Zur Zeit sind Aufnahmen aktiv. Bitte Aufnahme beenden, bevor der Sat-Finder gestartet wird."
+
+msgid "A repeating timer or just once?"
+msgstr "Ein wiederholender oder einmaliger Timer?"
 
 #, python-format
 msgid "A required tool (%s) was not found."
@@ -1026,6 +1034,9 @@ msgstr "Löschen im Hintergrund"
 msgid "Background delete speed"
 msgstr "Löschen im Hintergrund Geschwindigkeit"
 
+msgid "Backup Manager"
+msgstr "Backup Verwaltung"
+
 msgid "Backup completed."
 msgstr "Sicherung beendet."
 
@@ -1037,9 +1048,6 @@ msgstr "Sicherung wird ausgeführt..."
 
 msgid "Backup system settings"
 msgstr "Einstellungen sichern"
-
-msgid "Backup Manager"
-msgstr "Backup Verwaltung"
 
 msgid "Band"
 msgstr "Band"
@@ -1389,6 +1397,12 @@ msgstr "Kinder/Jugend"
 msgid "Choose Bouquet"
 msgstr "Wähle Favoritenliste"
 
+msgid "Choose a tag for easy finding a recording."
+msgstr "Wähle einen TAG um Aufnahmen einfacher finden zu können."
+
+msgid "Choose between Daily, Weekly, Weekdays or self defined."
+msgstr "Wähle zwischen täglich, wöchentlich, wochentags oder benutzerdefiniert."
+
 msgid "Choose the location for crash and debuglogs."
 msgstr "Wähle den Speicherort für Crash- und Debug-Logs"
 
@@ -1415,6 +1429,9 @@ msgstr "Wähle Level der Anzeige für Menü/Einstellungen. 'Expert'-Level zeigt 
 
 msgid "Choose which tuner to configure."
 msgstr "Wähle welcher Tuner konfiguriert werden soll."
+
+msgid "Chose between record and ZAP."
+msgstr "Wähle zwischen Aufnahme und Umschalten."
 
 msgid "Circular left"
 msgstr "Linkszirkular"
@@ -2030,6 +2047,9 @@ msgstr "Standardwerte"
 msgid "Delay before key repeat starts:"
 msgstr "Verzögerung bevor Tastenwiederholung startet:"
 
+msgid "Delay:"
+msgstr ""
+
 msgid "Delete"
 msgstr "Löschen"
 
@@ -2070,6 +2090,9 @@ msgstr "Gelöschte Objekte"
 
 msgid "Depth"
 msgstr "Tiefe"
+
+msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgstr "'Entschlüsseln&ECM aufnehmen' erlaubt es auch nachträglich zu entschlüsseln falls es während der Aufnahme fehlgeschlagen ist. 'Nicht entschlüsseln&ECM aufnehmen' nimmt verschlüsselt auf und erlaubt es nachträglich zu entschlüsseln. 'Normal' bedeutet das entschlüsselt aufgenommen wird und keine ECM gespeichert werden."
 
 msgid "Descramble http streams"
 msgstr "HTTP Streams entschlüsseln"
@@ -2698,6 +2721,12 @@ msgstr "Erweiterungen"
 msgid "Extensions management"
 msgstr "Erweiterungsverwaltung"
 
+msgid "External"
+msgstr "Extern"
+
+msgid "External (CF)"
+msgstr "Extern (CF)"
+
 msgid "FEC"
 msgstr "FEC"
 
@@ -2854,6 +2883,9 @@ msgstr "FTPD Service: VSFTP Server"
 msgid "Full transparency"
 msgstr "volle Transparenz"
 
+msgid "Fulscreen"
+msgstr "Vollbild"
+
 msgid "Function of OK button"
 msgstr "Funktion von der OK Taste"
 
@@ -2897,27 +2929,6 @@ msgstr "Holen der Programminformationen gescheitert!"
 
 msgid "Getting plugin information. Please wait..."
 msgstr "Lade Plugin-Informationen. Bitte warten..."
-
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX erweiterte Fernbedienung (native)"
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "Daten-DVD im STB_BOX Format (HDTV-kompatibel)"
-
-msgid "STB_BOX front panel"
-msgstr "STB_BOX Frontpaneel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX IR Tastatur"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX IR Maus"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX Fernbedienung (native)"
-
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX Software, da Aktualisierungen verfügbar sind."
 
 msgid "Go down the list"
 msgstr "In der Liste runter gehen"
@@ -3075,6 +3086,9 @@ msgstr "Hierarchie..."
 msgid "High bitrate support"
 msgstr "Kann hohe Datenraten verarbeiten"
 
+msgid "History zap..."
+msgstr ""
+
 msgid "Hold screen"
 msgstr "Bild halten"
 
@@ -3151,10 +3165,16 @@ msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Wenn die Log-Dateien zu viel Speicher belegen werden die ältesten Dateien gelöscht."
 
 msgid "If set to 'yes' a special seekbar is available during timeshift."
-msgstr "Mit 'JA' ist eine spzielle Seekbar während Timeshift verfügbar."
+msgstr "Mit 'JA' ist eine spezielle Seekbar während Timeshift verfügbar."
 
 msgid "If set to 'yes' channels without EPG will not be shown."
 msgstr "Wenn 'Ja' eingestellt ist werden Sender ohne EPG nicht angezeigt."
+
+msgid "If set to 'yes' it will show the 'PO' packages in browser."
+msgstr "Mit 'JA' werden 'PO' Pakete im Browser angezeigt. 'PO' Dateien werden für Übersetzungen benötigt."
+
+msgid "If set to 'yes' it will show the 'SRC' packages in browser."
+msgstr "Mit 'JA' werden 'SRC' Pakete im Browser angezeigt. 'SRC' Dateien enthälten den Quelltext wenn verfügbar falls man Änderungen vornehmen möchte und kann."
 
 msgid "If set to 'yes' shows a small TV-screen in the EPG."
 msgstr "Wenn 'Ja' eingestellt ist wird PIG (kleines TV-Bild) im EPG angezeigt."
@@ -3207,11 +3227,11 @@ msgstr ""
 msgid "Image Information"
 msgstr "Image Informationen"
 
-msgid "Image:"
-msgstr "Image:"
-
 msgid "Image Manager"
 msgstr "Image Verwaltung"
+
+msgid "Image:"
+msgstr "Image:"
 
 msgid "Immediate shutdown"
 msgstr "Direkt ausschalten"
@@ -3368,6 +3388,9 @@ msgstr "Interface: "
 
 msgid "Intermediate"
 msgstr "Fortgeschritten"
+
+msgid "Internal"
+msgstr "Intern"
 
 msgid "Internal flash"
 msgstr "Interner Flash"
@@ -4134,6 +4157,9 @@ msgstr "Kein Satempfänger gefunden!"
 msgid "No satellite frontend found!!"
 msgstr "Kein Satellit-Tuner gefunden"
 
+msgid "No service"
+msgstr "Kein Sender"
+
 msgid "No services/providers selected"
 msgstr "Keine Sender/Anbieter ausgewählt"
 
@@ -4553,6 +4579,9 @@ msgstr "Persisch"
 
 msgid "Phone number"
 msgstr "Telefonnummer"
+
+msgid "PiP"
+msgstr "(PiP"
 
 msgid "PiP setup"
 msgstr "PiP Einstellung"
@@ -5220,9 +5249,6 @@ msgstr "verbleibend und verstrichen"
 msgid "Remember service PIN"
 msgstr "Service PIN merken"
 
-msgid "Remember the settings for each folder"
-msgstr "Diese Einstellungen für jeden Ordner verwenden"
-
 msgid "Remote box"
 msgstr "Entfernte Box"
 
@@ -5422,7 +5448,7 @@ msgid "Round start time on"
 msgstr "Runde Startzeit auf"
 
 msgid "Run how often ?"
-msgstr ""
+msgstr "Wie oft laufen lassen?"
 
 msgid "Running"
 msgstr "läuft"
@@ -5904,6 +5930,12 @@ msgstr "Setze Netzwerkadapter als Standardd"
 msgid "Set limits"
 msgstr "Limits setzen"
 
+msgid "Set the channel for this timer."
+msgstr "Setze den Sender für diesen Timer."
+
+msgid "Set the date the timer must start."
+msgstr "Setze das Datum für den Start des Timers."
+
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Wähle das Standardverzeichnis für Sofortaufnahmen. Drücke 'OK' um ein neues Verzeichnis zu wählen. Benutze Kreuz links/rechts um bestehende Verzeichnisse zu wählen."
 
@@ -5919,6 +5951,9 @@ msgstr "Wähle das Standardverzeichnis für Timeshift Dateien. Drücke 'OK' um e
 msgid "Set the default sorting method."
 msgstr "Standardsortiermethode wählen."
 
+msgid "Set the description of the recording."
+msgstr "Setze die Beschreibung für die Aufnahme."
+
 msgid "Set the jump-size of the seekbar."
 msgstr "Wähle die Sprungweite für die Seekbar."
 
@@ -5928,8 +5963,17 @@ msgstr "Wähle die Maximallänge von Timeshift Dateien."
 msgid "Set the maximum number of events (programs) that timeshift may handle."
 msgstr "Wähle die maximale Anzahl von Sendungen die Timeshift verarbeiten können soll."
 
+msgid "Set the name the recording will get."
+msgstr "Setze den Namen den die Aufnahme bekommen soll."
+
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Wähle die Durchlaufgeschwindigkeit für Text im Display"
+
+msgid "Set the time the timer must start."
+msgstr "Setze die Zeit für den Start des Timers."
+
+msgid "Set the time the timer must stop."
+msgstr "Setze die Zeit für das Ende des Timers."
 
 msgid "Set the time to hide the infobar."
 msgstr "Wähle die Anzeigedauer von Infobar."
@@ -6193,6 +6237,9 @@ msgstr "Zeige Ausschaltmenü"
 msgid "Show single epg for current channel"
 msgstr "Zeige EinzelEPG für den aktuellen Sender"
 
+msgid "Show source packages"
+msgstr "Zeige Source-Pakete (SRC)"
+
 msgid "Show status icons in movielist"
 msgstr "Zeige Status-Icons in der Filmliste"
 
@@ -6225,6 +6272,9 @@ msgstr "Zeige verstrichene Zeit positiv"
 
 msgid "Show time remaining/elapsed"
 msgstr "Zeige Zeit verbleibend/verstrichen"
+
+msgid "Show translation packages"
+msgstr "Zeige Pakete mit den Sprachdateien für die Übersetzung."
 
 msgid "Show transponder remaining/elapsed as"
 msgstr "Zeige Transponder verbleibend/verstrichen"
@@ -6800,12 +6850,6 @@ msgstr ""
 "Das Dateisystem vom Timeshift-Verzeichnis unterstützt keine Hardlinks.\n"
 "Stelle sicher das es mit EXT2/3/4 formatiert ist!"
 
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr "Die STB_BOX liest die EPG Daten alle x Stunden."
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr "Die STB_BOX speichert die EPG alle x Stunden."
-
 msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
@@ -6839,6 +6883,12 @@ msgid ""
 msgstr ""
 "Der USB-Stick wurde bootfähig gemacht.\n"
 "Du kannst jetzt eine NFI-Imagedatei herunterladen!"
+
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr "Die STB_BOX liest die EPG Daten alle x Stunden."
+
+msgid "The STB_BOX stores the EPG data every (hours)."
+msgstr "Die STB_BOX speichert die EPG alle x Stunden."
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Die Sicherung ist fehlgeschlagen. Bitte einen anderes Sicherungs-Verzeichnis auswählen."
@@ -7614,6 +7664,9 @@ msgstr "Benutze Fast-Scan Sendernamen"
 msgid "Use fastscan channel numbering"
 msgstr "Benutze Fast-Scan Sendernummern"
 
+msgid "Use individual settings for each directory"
+msgstr "Individuelle Einstellungen für jeden Ordner verwenden"
+
 msgid "Use interface"
 msgstr "Benutze Interface"
 
@@ -7867,6 +7920,27 @@ msgstr "Spannungs-Modus"
 msgid "Volume"
 msgstr "Lautstärke"
 
+msgid "STB_BOX advanced remote control (native)"
+msgstr "STB_BOX erweiterte Fernbedienung (native)"
+
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "Daten-DVD im STB_BOX Format (HDTV-kompatibel)"
+
+msgid "STB_BOX front panel"
+msgstr "STB_BOX Frontpaneel"
+
+msgid "STB_BOX ir keyboard"
+msgstr "STB_BOX IR Tastatur"
+
+msgid "STB_BOX ir mouse"
+msgstr "STB_BOX IR Maus"
+
+msgid "STB_BOX remote control (native)"
+msgstr "STB_BOX Fernbedienung (native)"
+
+msgid "STB_BOX software because updates are available."
+msgstr "STB_BOX Software, da Aktualisierungen verfügbar sind."
+
 msgid "W"
 msgstr "W"
 
@@ -7997,6 +8071,9 @@ msgstr "Welchen Tag des Monats?"
 msgid "What Day of week ?"
 msgstr "Welchen Tag der Woche?"
 
+msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
+msgstr "Was soll am Ende des Timer geschehen? 'Auto' schickt die STB_BOX in den Zustand den sie hatte als der Timer startete. 'Nichts machen', 'In Bereitschaft gehen', 'Ausschalten' machen genau das was sie sagen."
+
 msgid "What do you want to scan?"
 msgstr "Was durchsuchen?"
 
@@ -8123,6 +8200,9 @@ msgstr ""
 
 msgid "Where do you want to backup your settings?"
 msgstr "Wohin die Einstellungen sichern?"
+
+msgid "Where should the recording be saved?"
+msgstr "Wo soll die Aufnahme gespeichert werden?"
 
 msgid "Where to save temporary timeshift recordings?"
 msgstr "Temporäre Timeshift Aufnahmen speichern?"
@@ -8316,6 +8396,9 @@ msgstr "TimeShift scheint aktiv zu sein. Bitte TimeShift stoppen."
 msgid "You system does not support ext4"
 msgstr "Ihr System unterstützt nicht das ext4 Dateisystem"
 
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr "Deine STB_BOX wird neu Starten wenn Du OK auf der Fernbedienung drückst."
+
 msgid "Your STB_BOX is not connected to the internet, please check your network settings and try again."
 msgstr "Die STB_BOX ist nicht mit dem Internet verbunden. Bitte überprüfe die Netzwerkeinstellungen und versuche es erneut."
 
@@ -8407,9 +8490,6 @@ msgid ""
 msgstr ""
 "Deine STB_BOX wird nach entfernen des Services neu gestartet\n"
 "Service jetzt entfernen?"
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Deine STB_BOX wird neu Starten wenn Du OK auf der Fernbedienung drückst."
 
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr "Die Sicherung ist geglückt. Die STB_BOX wird nun den weiteren Aktualisierungs-Prozess erklären."
@@ -8773,7 +8853,7 @@ msgid "discussion/interview/debate"
 msgstr "Diskussion/Interview/Debatte"
 
 msgid "do nothing"
-msgstr "nichts"
+msgstr "nichts machen"
 
 msgid "documentary"
 msgstr "Dokumentation"
@@ -9637,8 +9717,8 @@ msgstr "Funk Netzwerkadapter"
 #, python-format
 msgid "with %d error"
 msgid_plural "with %d errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "mit %d Fehler"
+msgstr[1] "mit %d Fehler"
 
 msgid "with exit button"
 msgstr "Mit Exit Taste"
