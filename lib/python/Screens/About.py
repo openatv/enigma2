@@ -35,55 +35,74 @@ class About(Screen):
 	def populate(self):
 		self["lab1"] = StaticText(_("Virtuosso Image Xtreme"))
 		self["lab2"] = StaticText(_("By Team ViX"))
+		model = None
+		AboutText = ""
 		if getBoxType() == 'vuuno':
 			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
-			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
-			AboutText = _("Hardware:") + " Vu+ Uno\n"
+			model = "Vu+ Uno"
 		elif getBoxType() == 'vuultimo':
 			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
-			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Ultimo")
-			AboutText = _("Hardware:") + " Vu+ Ultimo\n"
+			model = "Vu+ Ultimo"
 		elif getBoxType() == 'vusolo':
 			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
-			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo")
-			AboutText = _("Hardware:") + " Vu+ Solo\n"
+			model = "Vu+ Solo\n"
+		elif getBoxType() == 'vusolo2':
+			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
+			model = "Vu+ Solo" + chr(178)
 		elif getBoxType() == 'vuduo':
 			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
-			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo")
-			AboutText = _("Hardware:") + " Vu+ Duo\n"
+			model = "Vu+ Duo"
+		elif getBoxType() == 'vuduo2':
+			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
+			model = "Vu+ Duo" + chr(178)
 		elif getBoxType() == 'et5x00':
 			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
-			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET5x00 Series")
-			AboutText = _("Hardware:") + "  Xtrend ET5x00 Series\n"
+			model = "Xtrend ET5x00 Series"
 		elif getBoxType() == 'et6x00':
 			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
-			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET6x00 Series")
-			AboutText = _("Hardware:") + "  Xtrend ET6x00 Series\n"
+			model = "Xtrend ET6x00 Series"
 		elif getBoxType() == 'et9x00':
 			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
-			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
-			AboutText = _("Hardware:") + " Xtrend ET9x00 Series\n"
+			model = "Xtrend ET9x00 Series"
 		elif getBoxType() == 'odinm9':
 			self["lab3"] = StaticText(_("Support at") + " www.odin-support.co.uk")
-			self["BoxType"] = StaticText(_("Hardware:") + " Odin M9")
-			AboutText = _("Hardware:") + " Odin M9\n"
+			model = "Odin M9"
+		elif getBoxType() == 'gb800solo':
+			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
+			model = "GigaBlue HD 800 Solo"
+		elif getBoxType() == 'gb800se':
+			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
+			model = "GigaBlue HD 800SE"
+		elif getBoxType() == 'gb800ue':
+			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
+			model = "GigaBlue HD 800UE"
+		elif getBoxType() == 'gbquad':
+			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
+			model = "GigaBlue HD Quad"
+		elif getBoxType() == 'ventonhdx':
+			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
+			model = "Venton Unibox HDx"
+		elif getBoxType() == 'ixussone':
+			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
+			model = "Ixuss One"			
 		else:
 			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
-			self["BoxType"] = StaticText(_("Hardware:") + " " + getBoxType())
-			AboutText = _("Hardware:") + " " + getBoxType() + "\n"
+			model = getBoxType()
 
-		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
-		AboutText += _("Kernel:") + " " + about.getKernelVersionString() + "\n"
-		self["DriversVersion"] = StaticText(_("Drivers:") + " " + about.getDriversString())
-		AboutText += _("Drivers:") + " " + about.getDriversString() + "\n"
-		self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
-		AboutText += _("Image:") + " " + about.getImageTypeString() + "\n"
-		self["ImageVersion"] = StaticText(_("Version:") + " " + about.getImageVersionString())
-		AboutText += _("Version:") + " " + about.getImageVersionString() + "\n"
-		self["BuildVersion"] = StaticText(_("Build:") + " " + about.getBuildVersionString())
-		AboutText += _("Build:") + " " + about.getBuildVersionString() + "\n"
-		self["EnigmaVersion"] = StaticText(_("Last Update:") + " " + about.getLastUpdateString())
-		AboutText += _("Last update:") + " " + about.getLastUpdateString() + "\n\n"
+		if model:
+			AboutText += _("Model: %s") % model + "\n"
+
+		if path.exists('/proc/stb/info/chipset'):
+			chipset = open('/proc/stb/info/chipset', 'r').read()
+			AboutText += _("Chipset: BCM%s") % chipset.replace('\n','') + "\n"
+
+		AboutText += _("Kernel: %s") % about.getKernelVersionString() + "\n"
+		AboutText += _("Drivers: %s") % about.getDriversString() + "\n"
+		# self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
+		# AboutText += _("Image: %s") % about.getImageTypeString() + "\n"
+		AboutText += _("Version: %s") % about.getImageVersionString() + "\n"
+		AboutText += _("Build: %s") % about.getBuildVersionString() + "\n"
+		AboutText += _("Last update: %s") % about.getLastUpdateString() + "\n\n"
 
 		fp_version = getFPVersion()
 		if fp_version is None:
@@ -91,11 +110,6 @@ class About(Screen):
 		elif fp_version != 0:
 			fp_version = _("Frontprocessor version: %d") % fp_version
 			AboutText += fp_version + "\n"
-		self["FPVersion"] = StaticText(fp_version)
-
-		if path.exists('/proc/stb/info/chipset'):
-			chipset = open('/proc/stb/info/chipset', 'r').read()
-			AboutText += _("System chipset:") + " " + chipset.replace('\n','') + "\n"
 
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value'):
@@ -104,9 +118,8 @@ class About(Screen):
 			tempinfo = open('/proc/stb/fp/temp_sensor', 'r').read()
 		if tempinfo and int(tempinfo.replace('\n','')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temperature:") + " " + tempinfo.replace('\n','') + mark + "C\n\n"
+			AboutText += _("System temperature: %s") % tempinfo.replace('\n','') + mark + "C\n\n"
 
-		self["TranslationHeader"] = StaticText(_("Translation:"))
 		AboutText += _("Translation:") + "\n"
 
 		# don't remove the string out of the _(), or it can't be "translated" anymore.
@@ -129,10 +142,7 @@ class About(Screen):
 		if translator_name == "none":
 			translator_name = infomap.get("Last-Translator", "")
 
-		self["TranslatorName"] = StaticText(translator_name)
 		AboutText += translator_name + "\n\n"
-
-		self["TranslationInfo"] = StaticText(info)
 		AboutText += info
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
@@ -565,32 +575,69 @@ class AboutSummary(Screen):
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
-		if about.getImageTypeString() == 'Release':
-			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + ' (R)')
-		elif about.getImageTypeString() == 'Experimental':
-			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + ' (B)')
+		self["selected"] = StaticText("ViX:" + about.getImageVersionString())
+
+		AboutText = ""
+		model = None
+
 		if getBoxType() == 'vuuno':
-			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
+			model = "Vu+ Uno"
 		elif getBoxType() == 'vuultimo':
-			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Ultimo")
+			model = "Vu+ Ultimo"
 		elif getBoxType() == 'vusolo':
-			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo")
+			model = "Vu+ Solo"
+		elif getBoxType() == 'vusolo2':
+			model = "Vu+ Solo" + chr(178)
 		elif getBoxType() == 'vuduo':
-			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo")
+			model = "Vu+ Duo"
+		elif getBoxType() == 'vuduo2':
+			model = "Vu+ Duo" + chr(178)
 		elif getBoxType() == 'et5x00':
-			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET5x00 Series")
+			model = "Xtrend ET5x00 Series"
 		elif getBoxType() == 'et6x00':
-			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET6x00 Series")
+			model = "Xtrend ET6x00 Series"
 		elif getBoxType() == 'et9x00':
-			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
+			model = "Xtrend ET9x00 Series"
 		elif getBoxType() == 'odinm9':
-			self["BoxType"] = StaticText(_("Hardware:") + " Odin M9")
+			model = "Odin M9"
+		elif getBoxType() == 'gb800solo':
+			model = "GigaBlue HD 800 Solo"
+		elif getBoxType() == 'gb800se':
+			model = "GigaBlue HD 800SE"
+		elif getBoxType() == 'gb800ue':
+			model = "GigaBlue HD 800UE"
+		elif getBoxType() == 'gbquad':
+			model = "GigaBlue HD Quad"
+		elif getBoxType() == 'ventonhdx':
+			model = "Venton Unibox HDx"
+		elif getBoxType() == 'ixussone':
+			model = "Ixuss One"
 		else:
-			self["BoxType"] = StaticText(_("Hardware:") + " " + getBoxType())
-		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
-		self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
-		self["ImageVersion"] = StaticText(_("Version:") + " " + about.getImageVersionString() + "   " + _("Build:") + " " + about.getBuildVersionString())
-		self["EnigmaVersion"] = StaticText(_("Last Update:") + " " + about.getLastUpdateString())
+			model = getBoxType()
+
+		if model:
+			AboutText += _("Model: %s") % model + "\n"
+
+		if path.exists('/proc/stb/info/chipset'):
+			chipset = open('/proc/stb/info/chipset', 'r').read()
+			AboutText += _("Chipset: BCM%s") % chipset.replace('\n','') + "\n"
+
+		AboutText += _("Kernel: %s") % about.getKernelVersionString() + "\n"
+		AboutText += _("Drivers: %s") % about.getDriversString() + "\n"
+		AboutText += _("Version: %s") % about.getImageVersionString() + "\n"
+		AboutText += _("Build: %s") % about.getBuildVersionString() + "\n"
+		AboutText += _("Last update: %s") % about.getLastUpdateString() + "\n\n"
+
+		tempinfo = ""
+		if path.exists('/proc/stb/sensors/temp0/value'):
+			tempinfo = open('/proc/stb/sensors/temp0/value', 'r').read()
+		elif path.exists('/proc/stb/fp/temp_sensor'):
+			tempinfo = open('/proc/stb/fp/temp_sensor', 'r').read()
+		if tempinfo and int(tempinfo.replace('\n','')) > 0:
+			mark = str('\xc2\xb0')
+			AboutText += _("System temperature: %s") % tempinfo.replace('\n','') + mark + "C\n\n"
+
+		self["AboutText"] = StaticText(AboutText)
 
 class ViewGitLog(Screen):
 	def __init__(self, session, args = None):
