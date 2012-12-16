@@ -93,6 +93,10 @@ class About(Screen):
 			AboutText += fp_version + "\n"
 		self["FPVersion"] = StaticText(fp_version)
 
+		if path.exists('/proc/stb/info/chipset'):
+			chipset = open('/proc/stb/info/chipset', 'r').read()
+			AboutText += _("System chipset:") + " " + chipset.replace('\n','') + "\n"
+
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value'):
 			tempinfo = open('/proc/stb/sensors/temp0/value', 'r').read()
