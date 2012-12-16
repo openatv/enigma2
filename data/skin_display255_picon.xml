@@ -341,11 +341,7 @@
 	</screen>
 
 	<screen name="AboutSummary" position="0,0" size="255,64">
-		<widget source="BoxType" render="Label" position="0,0" size="255,13" font="FdLcD;13" />
-		<widget source="KernelVersion" render="Label" position="0,13" size="255,12" font="FdLcD;12" />
-		<widget source="ImageType" render="Label" position="0,26" size="255,12" font="FdLcD;12" />
-		<widget source="ImageVersion" render="Label" position="0,39" size="255,12" font="FdLcD;12" />
-		<widget source="EnigmaVersion" render="Label" position="0,52" size="255,12" font="FdLcD;12" />
+		<widget source="AboutText" render="Label" position="0,0" size="255,64" font="FdLcD;11" />
 	</screen>
 
 	<screen name="TimerEditListSummary" position="0,0" size="255,64">
