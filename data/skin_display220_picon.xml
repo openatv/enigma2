@@ -306,11 +306,7 @@
 	</screen>
 
 	<screen name="AboutSummary" position="0,0" size="220,176">
-		<widget source="BoxType" render="Label" position="0,0" size="220,22" font="FdLcD;20" />
-		<widget source="KernelVersion" render="Label" position="0,21" size="220,22" font="FdLcD;20" />
-		<widget source="ImageType" render="Label" position="0,42" size="220,22" font="FdLcD;20" />
-		<widget source="ImageVersion" render="Label" position="0,63" size="220,22" font="FdLcD;18" />
-		<widget source="EnigmaVersion" render="Label" position="0,84" size="220,22" font="FdLcD;18" />
+		<widget source="AboutText" render="Label" position="0,0" size="220,176" font="FdLcD;11" />
 	</screen>
 
 	<screen name="TimerEditListSummary" position="0,0" size="220,176">
@@ -322,6 +318,24 @@
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
+	</screen>
+
+	<screen name="WizardSummary" position="0,0" size="220,176">
+		<widget source="text" render="Label" position="0,0" size="220,55" font="FdLcD;24" halign="center" />
+		<widget source="parent.list" render="Label" position="0,85" size="220,124" font="FdLcD;24" halign="center" >
+			<convert type="StringListSelection" />
+		</widget>
+	</screen>
+	<screen name="LanguageWizardSummary" position="0,0" size="220,176">
+		<widget source="parent.summarytext" render="Label" position="0,0" size="220,55" font="FdLcD;24" halign="center" />
+		<widget source="parent.summarylangname" render="Label" position="0,85" size="220,124" font="FdLcD;24" halign="center" />
+<!-- 		<widget source="parent.flag" render="Pixmap" position="0,0" size="110,40" backgroundColor="#ff000000" /> -->
+	</screen>
+	<screen name="VideoWizardSummary" position="fill">
+		<widget source="text" render="Label" position="0,0" size="220,50" font="FdLcD;24" halign="center" />
+		<widget source="parent.list" render="Label" position="0,85" size="220,124" font="FdLcD;24" halign="center" >
+			<convert type="StringListSelection" />
+		</widget>
 	</screen>
 
 <!-- DVD -->
