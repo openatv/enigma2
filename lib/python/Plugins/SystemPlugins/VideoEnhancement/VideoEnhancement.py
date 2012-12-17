@@ -178,7 +178,7 @@ class VideoEnhancement:
 					self.setConfiguredValues()
 
 			if getBoxType() == 'gbquad':
-				config.pep.sharpness = ConfigSlider(default=128, limits=(0,256))
+				config.pep.sharpness = ConfigSlider(default=256, limits=(0,256))
 			elif getBoxType() == 'odinm7':
 				config.pep.sharpness = ConfigSlider(default=128, limits=(0,256))	
 			else:
@@ -274,7 +274,7 @@ class VideoEnhancement:
 						self.setConfiguredValues()
 
 				if getBoxType() == 'gbquad':
-					config.av.scaler_sharpness = ConfigSlider(default=20, limits=(0,26))
+					config.av.scaler_sharpness = ConfigSlider(default=5, limits=(0,26))
 				else:
 					config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
 				config.av.scaler_sharpness.addNotifier(setScaler_sharpness)
