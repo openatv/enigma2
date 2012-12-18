@@ -77,7 +77,7 @@ public:
 
 	int getItemHeight() { return m_itemheight; }
 	void setItemHeight(int height);
-	void eListboxServiceContent::setHideNumberMarker(bool doHide);
+	void setHideNumberMarker(bool doHide);
 
 	enum {
 		markedForeground,
