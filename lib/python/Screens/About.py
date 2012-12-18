@@ -37,6 +37,7 @@ class About(Screen):
 		self["lab2"] = StaticText(_("By Team ViX"))
 		model = None
 		AboutText = ""
+		self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
 		if getBoxType() == 'vuuno':
 			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
 			model = "Vu+ Uno"
@@ -68,25 +69,26 @@ class About(Screen):
 			self["lab3"] = StaticText(_("Support at") + " www.odin-support.co.uk")
 			model = "Odin M9"
 		elif getBoxType() == 'gb800solo':
-			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
 			model = "GigaBlue HD 800 Solo"
 		elif getBoxType() == 'gb800se':
-			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
-			model = "GigaBlue HD 800SE"
+			model = "GigaBlue HD 800 SE"
 		elif getBoxType() == 'gb800ue':
-			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
-			model = "GigaBlue HD 800UE"
+			model = "GigaBlue HD 800 UE"
 		elif getBoxType() == 'gbquad':
-			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
 			model = "GigaBlue HD Quad"
 		elif getBoxType() == 'ventonhdx':
-			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
 			model = "Venton Unibox HDx"
+		elif getBoxType() == 'ventonhde':
+			model = "Venton Unibox HDe"
 		elif getBoxType() == 'ixussone':
-			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
-			model = "Ixuss One"			
+			model = "Ixuss One"
+		elif getBoxType() == 'tmtwin':
+			model = "Technomate Twin"
+		elif getBoxType() == 'tm2t':
+			model = "Technomate 2T"
+		elif getBoxType() == 'tmsingle':
+			model = "Technomate Single"
 		else:
-			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
 			model = getBoxType()
 
 		if model:
@@ -603,15 +605,23 @@ class AboutSummary(Screen):
 		elif getBoxType() == 'gb800solo':
 			model = "GigaBlue HD 800 Solo"
 		elif getBoxType() == 'gb800se':
-			model = "GigaBlue HD 800SE"
+			model = "GigaBlue HD 800 SE"
 		elif getBoxType() == 'gb800ue':
-			model = "GigaBlue HD 800UE"
+			model = "GigaBlue HD 800 UE"
 		elif getBoxType() == 'gbquad':
 			model = "GigaBlue HD Quad"
 		elif getBoxType() == 'ventonhdx':
 			model = "Venton Unibox HDx"
+		elif getBoxType() == 'ventonhde':
+			model = "Venton Unibox HDe"
 		elif getBoxType() == 'ixussone':
 			model = "Ixuss One"
+		elif getBoxType() == 'tmtwin':
+			model = "Technomate Twin"
+		elif getBoxType() == 'tm2t':
+			model = "Technomate 2T"
+		elif getBoxType() == 'tmsingle':
+			model = "Technomate Single"
 		else:
 			model = getBoxType()
 
