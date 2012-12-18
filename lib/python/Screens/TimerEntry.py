@@ -378,10 +378,16 @@ class TimerEntry(Screen, ConfigListScreen):
 	def incrementStart(self):
 		self.timerentry_starttime.increment()
 		self["config"].invalidate(self.entryStartTime)
+		if self.timerentry_type.value == "once" and self.timerentry_starttime.value == [0, 0]:
+			self.timerentry_date.value = self.timerentry_date.value + 86400
+			self["config"].invalidate(self.entryDate)
 
 	def decrementStart(self):
 		self.timerentry_starttime.decrement()
 		self["config"].invalidate(self.entryStartTime)
+		if self.timerentry_type.value == "once" and self.timerentry_starttime.value == [23, 59]:
+			self.timerentry_date.value = self.timerentry_date.value - 86400
+			self["config"].invalidate(self.entryDate)
 
 	def incrementEnd(self):
 		if self.entryEndTime is not None:
