@@ -77,6 +77,7 @@ public:
 
 	int getItemHeight() { return m_itemheight; }
 	void setItemHeight(int height);
+	void eListboxServiceContent::setHideNumberMarker(bool doHide);
 
 	enum {
 		markedForeground,
@@ -102,6 +103,7 @@ protected:
 	int cursorMove(int count=1);
 	int cursorValid();
 	int cursorSet(int n);
+	int cursorResolve(int);
 	int cursorGet();
 	int currentCursorSelectable();
 
@@ -147,6 +149,7 @@ private:
 	eServiceReference m_is_playable_ignore;
 
 	int m_itemheight;
+	bool m_hide_mumber_marker;
 };
 
 #endif
