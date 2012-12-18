@@ -922,6 +922,8 @@ class InfoBarChannelSelection:
 		elif self.timeshift_enabled and self.isSeekable():
 			self.tscallback = self.historyBack
 			self.session.openWithCallback(self.tsquestionCalBack, MessageBox, _("You seem to be in timeshift, Do you want to leave timeshift ?"), MessageBox.TYPE_YESNO, timeout=10, default=False)
+		elif config.usage.show_zaphistory_menu.getValue() == "0":
+			self.servicelist.historyBack()
 		else:
 			self.historyZap(-1)
 
@@ -940,6 +942,8 @@ class InfoBarChannelSelection:
 		elif self.timeshift_enabled and self.isSeekable():
 			self.tscallback = self.historyNext
 			self.session.openWithCallback(self.tsquestionCalBack, MessageBox, _("You seem to be in timeshift, Do you want to leave timeshift ?"), MessageBox.TYPE_YESNO, timeout=10, default=False)
+		elif config.usage.show_zaphistory_menu.getValue()  == "0":
+			self.servicelist.historyNext()
 		else:
 			self.historyZap(+1)
 
@@ -990,7 +994,7 @@ class InfoBarChannelSelection:
 			self.session.openWithCallback(self.tsquestionCalBack, MessageBox, _("You seem to be in timeshift, Do you want to leave timeshift ?"), MessageBox.TYPE_YESNO, timeout=10, default=False)
 		else:
 			if not config.usage.show_bouquetalways.getValue():
- #				self.servicelist.moveUp()
+#				self.servicelist.moveUp()
 				self.session.execDialog(self.servicelist)
 			else:
 				self.servicelist.showFavourites()
