@@ -26,7 +26,7 @@ from Components.Input import Input
 profile("ChannelSelection.py 3")
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from RecordTimer import RecordTimerEntry
-from TimerEntry import TimerEntry
+from TimerEntry import TimerEntry, InstantRecordTimerEntry
 from Screens.InputBox import InputBox, PinInput
 from Screens.MessageBox import MessageBox
 from Screens.ServiceInfo import ServiceInfo
@@ -465,26 +465,6 @@ def parseEvent(list):
 	eit = list[0]
 	return (begin, end, name, description, eit)
 
-class RecordSetup(TimerEntry):
-	def __init__(self, session, timer, zap):
-		Screen.__init__(self, session)
-		self.timer = timer
-		self.timer.justplay = zap
-		self.entryDate = None
-		self.entryService = None
-		self.keyGo()
-
-	def keyGo(self, result = None):
-		if self.timer.justplay:
-			self.timer.begin += (config.recording.margin_before.getValue() * 60)
-			self.timer.end = self.timer.begin
-		self.timer.resetRepeated()
-		self.saveTimer()
-		self.close((True, self.timer))
-
-	def saveTimer(self):
-		self.session.nav.RecordTimer.saveTimer()
-
 class ChannelSelectionEPG:
 	def __init__(self):
 		self["ChannelSelectEPGActions"] = ActionMap(["ChannelSelectEPGActions"],
@@ -515,7 +495,7 @@ class ChannelSelectionEPG:
 				break
 		else:
 			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.list))
-			self.session.openWithCallback(self.finishedAdd, RecordSetup, newEntry, zap)
+			self.session.openWithCallback(self.finishedAdd, InstantRecordTimerEntry, newEntry, zap)
 
 	def finishedAdd(self, answer):
 		print "finished add"
