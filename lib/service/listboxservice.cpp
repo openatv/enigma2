@@ -271,7 +271,7 @@ void eListboxServiceContent::sort()
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
-	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_itemheight(25), m_hide_mumber_marker(false)
+	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_itemheight(25), m_hide_number_marker(false)
 {
 	memset(m_color_set, 0, sizeof(m_color_set));
 	cursorHome();
@@ -391,7 +391,7 @@ int eListboxServiceContent::cursorMove(int count)
 					m_listbox->entryChanged(cursorResolve(m_cursor_number));
 			}
 			++m_cursor_number;
-			if (!(m_hide_mumber_marker && m_cursor->flags & eServiceReference::isNumberedMarker))
+			if (!(m_hide_number_marker && m_cursor->flags & eServiceReference::isNumberedMarker))
 				--count;
 		}
 	}
@@ -407,7 +407,7 @@ int eListboxServiceContent::cursorMove(int count)
 					m_listbox->entryChanged(cursorResolve(m_cursor_number));
 			}
 			--m_cursor_number;
-			if (!(m_hide_mumber_marker && m_cursor->flags & eServiceReference::isNumberedMarker))
+			if (!(m_hide_number_marker && m_cursor->flags & eServiceReference::isNumberedMarker))
 				++count;
 		}
 	}
@@ -428,7 +428,7 @@ int eListboxServiceContent::cursorSet(int n)
 
 int eListboxServiceContent::cursorResolve(int cursorPosition)
 {
-	if (!m_hide_mumber_marker)
+	if (!m_hide_number_marker)
 		return cursorPosition;
 	int strippedCursor = 0;
 	int count = 0;
@@ -475,7 +475,7 @@ void eListboxServiceContent::cursorRestore()
 
 int eListboxServiceContent::size()
 {
-	if (!m_hide_mumber_marker)
+	if (!m_hide_number_marker)
 		return m_size;	
 	int size = 0;
 	for (list::iterator i(m_list.begin()); i != m_list.end(); ++i)
@@ -497,7 +497,7 @@ void eListboxServiceContent::setSize(const eSize &size)
 
 void eListboxServiceContent::setHideNumberMarker(bool doHide)
 {
-	m_hide_mumber_marker = doHide;
+	m_hide_number_marker = doHide;
 }
 
 void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)

@@ -149,7 +149,7 @@ private:
 	eServiceReference m_is_playable_ignore;
 
 	int m_itemheight;
-	bool m_hide_mumber_marker;
+	bool m_hide_number_marker;
 };
 
 #endif
