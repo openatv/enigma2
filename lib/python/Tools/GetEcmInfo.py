@@ -53,6 +53,8 @@ class GetEcmInfo:
 						address = info.get('address', '')
 					elif info.get('from', None):
 						address = info.get('from', '')
+					else:
+						address = ''
 					hops = info.get('hops', None)
 					if hops and hops != '0':
 						hops = ' @' + hops
