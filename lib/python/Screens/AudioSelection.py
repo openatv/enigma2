@@ -375,29 +375,29 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 
 		if sub[0] == 0:  # dvb
 			menu = [
-				getConfigListEntry(_("Yellow subtitles"),   config.subtitles.dvb_subtitles_yellow),
-				getConfigListEntry(_("Centered"), config.subtitles.dvb_subtitles_centered),
-				getConfigListEntry(_("Back Transparency"), config.subtitles.dvb_subtitles_backtrans),
+				getConfigListEntry(_("Yellow DVB subtitles"), config.subtitles.dvb_subtitles_yellow),
+				getConfigListEntry(_("Center DVB subtitles"), config.subtitles.dvb_subtitles_centered),
+				getConfigListEntry(_("DVB subtitle black transparency"), config.subtitles.dvb_subtitles_backtrans),
 				getConfigListEntry(_("Subtitle delay when timing lacks"),config.subtitles.subtitle_noPTSrecordingdelay),
 			]
 		elif sub[0] == 1: # teletext
 			menu = [
-				getConfigListEntry(_("Color"),   config.subtitles.ttx_subtitle_colors),
-				getConfigListEntry(_("Original position"), config.subtitles.ttx_subtitle_original_position),
-				getConfigListEntry(_("Size"), config.subtitles.subtitle_fontsize),
-				getConfigListEntry(_("Position"), config.subtitles.subtitle_position),
+				getConfigListEntry(_("Teletext subtitle color"), config.subtitles.ttx_subtitle_colors),
+				getConfigListEntry(_("Use original teletext position"), config.subtitles.ttx_subtitle_original_position),
+				getConfigListEntry(_("Subtitle font size"), config.subtitles.subtitle_fontsize),
+				getConfigListEntry(_("Subtitle position"), config.subtitles.subtitle_position),
 				getConfigListEntry(_("Rewrap teletext subtitles"),config.subtitles.subtitle_rewrap),
-				getConfigListEntry(_("Text border width"),config.subtitles.subtitle_borderwidth),
+				getConfigListEntry(_("Subtitle border width"),config.subtitles.subtitle_borderwidth),
 				getConfigListEntry(_("Subtitle delay when timing lacks"),config.subtitles.subtitle_noPTSrecordingdelay),
 			]
 		else: 		# pango
 			menu = [
 				getConfigListEntry(_("Delay subtitles"),  config.subtitles.pango_subtitles_delay),
-				getConfigListEntry(_("Yellow subtitles"), config.subtitles.pango_subtitles_yellow),
-				getConfigListEntry(_("Size"), config.subtitles.subtitle_fontsize),
-				getConfigListEntry(_("Position"), config.subtitles.subtitle_position),
+				getConfigListEntry(_("Yellow external subtitles"), config.subtitles.pango_subtitles_yellow),
+				getConfigListEntry(_("Subtitle font size"), config.subtitles.subtitle_fontsize),
+				getConfigListEntry(_("Subtitle position"), config.subtitles.subtitle_position),
 				getConfigListEntry(_("Rewrap teletext subtitles"),config.subtitles.subtitle_rewrap),
-				getConfigListEntry(_("Text border width"),config.subtitles.subtitle_borderwidth),
+				getConfigListEntry(_("Subtitle border width"),config.subtitles.subtitle_borderwidth),
 			]
 
 		ConfigListScreen.__init__(self, menu, self.session)
