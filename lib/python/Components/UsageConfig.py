@@ -301,6 +301,13 @@ def InitUsageConfig():
 		("225", "90%"),
 		("255", _("Full transparency"))])
 	config.subtitles.pango_subtitles_yellow = ConfigYesNo(default = False)
+	choicelist = []
+	for i in range(-900000, 945000, 45000):
+		if i == 0:
+			choicelist.append(("0", _("No delay")))
+		else:
+			choicelist.append(("%d" % i, "%2.1f sec" % (i / 90000.)))
+	config.subtitles.pango_subtitles_delay = ConfigSelection(default = "0", choices = choicelist)
 
 	config.autolanguage = ConfigSubsection()
 	audio_language_choices=[
