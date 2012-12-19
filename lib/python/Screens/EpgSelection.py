@@ -18,7 +18,7 @@ from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from TimeDateInput import TimeDateInput
 from enigma import eServiceReference, eTimer, eServiceCenter
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
-from TimerEntry import TimerEntry
+from TimerEntry import TimerEntry, InstantRecordTimerEntry
 from ServiceReference import ServiceReference
 from time import localtime, time, strftime, mktime
 
@@ -1111,7 +1111,7 @@ class EPGSelection(Screen, HelpableScreen):
 				break
 		else:
 			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))
-			self.session.openWithCallback(self.finishedAdd, RecordSetup, newEntry, zap)
+			self.session.openWithCallback(self.finishedAdd, InstantRecordTimerEntry, newEntry, zap)
 
 	def doZapTimer(self):
 		zap = 1
@@ -1129,7 +1129,7 @@ class EPGSelection(Screen, HelpableScreen):
 				break
 		else:
 			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))
-			self.session.openWithCallback(self.finishedAdd, RecordSetup, newEntry, zap)
+			self.session.openWithCallback(self.finishedAdd, InstantRecordTimerEntry, newEntry, zap)
 
 	def key1(self):
 		hilf = config.epgselection.prev_time_period.getValue()
@@ -1507,26 +1507,6 @@ class EPGSelection(Screen, HelpableScreen):
 		if not service is None:
 			self.setServicelistSelection(bouquet, service)
 		self.onCreate()
-
-class RecordSetup(TimerEntry):
-	def __init__(self, session, timer, zap):
-		Screen.__init__(self, session)
-		self.setup_title = ""
-		self.timer = timer
-		self.timer.justplay = zap
-		self.entryDate = None
-		self.entryService = None
-		self.keyGo()
-
-	def keyGo(self, result = None):
-		if self.timer.justplay:
-			self.timer.end = self.timer.begin + (config.recording.margin_before.getValue() * 60) + 1
-		self.timer.resetRepeated()
-		self.saveTimer()
-		self.close((True, self.timer))
-
-	def saveTimer(self):
-		self.session.nav.RecordTimer.saveTimer()
 
 class SingleEPG(EPGSelection):
 	def __init__(self, session, service, zapFunc=None, bouquetChangeCB=None, serviceChangeCB=None):
