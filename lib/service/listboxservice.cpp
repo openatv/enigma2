@@ -140,14 +140,14 @@ int eListboxServiceContent::getPrevMarkerPos()
 	{
 		--i;
 		--index;
-		if (! (i->flags & eServiceReference::isMarker))
+		if (!(i->flags & eServiceReference::isMarker && !(i->flags & eServiceReference::isInvisible)))
 			break;
 	}
 	while (index)
 	{
 		--i;
 		--index;
-		if (i->flags & eServiceReference::isMarker)
+		if (i->flags & eServiceReference::isMarker && !(i->flags & eServiceReference::isInvisible))
 			break;
 	}
 	return cursorResolve(index);
@@ -163,7 +163,7 @@ int eListboxServiceContent::getNextMarkerPos()
 	{
 		++i;
 		++index;
-		if (i->flags & eServiceReference::isMarker)
+		if (i->flags & eServiceReference::isMarker && !(i->flags & eServiceReference::isInvisible))
 			break;
 	}
 	return cursorResolve(index);
@@ -391,7 +391,7 @@ int eListboxServiceContent::cursorMove(int count)
 					m_listbox->entryChanged(cursorResolve(m_cursor_number));
 			}
 			++m_cursor_number;
-			if (!(m_hide_number_marker && m_cursor->flags & eServiceReference::isNumberedMarker))
+			if (!(m_hide_number_marker && m_cursor->flags & eServiceReference::isNumberedMarker) && !(m_cursor->flags & eServiceReference::isInvisible))
 				--count;
 		}
 	}
@@ -407,7 +407,7 @@ int eListboxServiceContent::cursorMove(int count)
 					m_listbox->entryChanged(cursorResolve(m_cursor_number));
 			}
 			--m_cursor_number;
-			if (!(m_hide_number_marker && m_cursor->flags & eServiceReference::isNumberedMarker))
+			if (!(m_hide_number_marker && m_cursor->flags & eServiceReference::isNumberedMarker) && !(m_cursor->flags & eServiceReference::isInvisible))
 				++count;
 		}
 	}
@@ -428,8 +428,6 @@ int eListboxServiceContent::cursorSet(int n)
 
 int eListboxServiceContent::cursorResolve(int cursorPosition)
 {
-	if (!m_hide_number_marker)
-		return cursorPosition;
 	int strippedCursor = 0;
 	int count = 0;
 	for (list::iterator i(m_list.begin()); i != m_list.end(); ++i)
@@ -437,7 +435,7 @@ int eListboxServiceContent::cursorResolve(int cursorPosition)
 		if (count == cursorPosition)
 			break;
 		count++;
-		if (i->flags & eServiceReference::isNumberedMarker)
+		if (m_hide_number_marker && i->flags & eServiceReference::isNumberedMarker || i->flags & eServiceReference::isInvisible)
 			continue;
 		strippedCursor++;
 	}
@@ -475,12 +473,10 @@ void eListboxServiceContent::cursorRestore()
 
 int eListboxServiceContent::size()
 {
-	if (!m_hide_number_marker)
-		return m_size;	
 	int size = 0;
 	for (list::iterator i(m_list.begin()); i != m_list.end(); ++i)
 	{
-		if (i->flags & eServiceReference::isNumberedMarker)
+		if (m_hide_number_marker && i->flags & eServiceReference::isNumberedMarker || i->flags & eServiceReference::isInvisible)
 			continue;
 		size++;
 	}
