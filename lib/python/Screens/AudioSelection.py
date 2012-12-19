@@ -138,8 +138,27 @@ class AudioSelection(Screen, ConfigListScreen):
 			else:
 				self["key_yellow"].setBoolean(False)
 				conflist.append(('',))
-	
-			
+
+			from Components.PluginComponent import plugins
+			from Plugins.Plugin import PluginDescriptor
+
+			if hasattr(self.infobar, "runPlugin"):
+				class PluginCaller:
+					def __init__(self, fnc, *args):
+						self.fnc = fnc
+						self.args = args
+					def __call__(self, *args, **kwargs):
+						self.fnc(*self.args)
+
+				Plugins = [ (p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_AUDIOMENU) ]
+
+				if len(Plugins):
+					self["key_blue"].setBoolean(True)
+					conflist.append(getConfigListEntry(Plugins[0][0], ConfigNothing()))
+					self.plugincallfunc = Plugins[0][1]
+				if len(Plugins) > 1:
+					print "plugin(s) installed but not displayed in the dialog box:", Plugins[1:]
+
 		elif self.settings.menupage.getValue() == PAGE_SUBTITLES:
 	
 			self.setTitle(_("Subtitle selection"))
@@ -191,25 +210,12 @@ class AudioSelection(Screen, ConfigListScreen):
 
 			conflist.append(getConfigListEntry(_("To audio selection"), self.settings.menupage))
 
-		from Components.PluginComponent import plugins
-		from Plugins.Plugin import PluginDescriptor
-		
-		if hasattr(self.infobar, "runPlugin"):
-			class PluginCaller:
-				def __init__(self, fnc, *args):
-					self.fnc = fnc
-					self.args = args
-				def __call__(self, *args, **kwargs):
-					self.fnc(*self.args)
-
-			Plugins = [ (p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_AUDIOMENU) ]
-
-			if len(Plugins):
+			if self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0,0,0,0):
 				self["key_blue"].setBoolean(True)
-				conflist.append(getConfigListEntry(Plugins[0][0], ConfigNothing()))
-				self.plugincallfunc = Plugins[0][1]
-			if len(Plugins) > 1:
-				print "plugin(s) installed but not displayed in the dialog box:", Plugins[1:]
+				conflist.append(getConfigListEntry(_("Subtitle Quickmenu"), ConfigNothing()))
+			else:
+				self["key_blue"].setBoolean(False)
+				conflist.append(('',))
 
 		self["config"].list = conflist
 		self["config"].l.setList(conflist)
@@ -274,8 +280,11 @@ class AudioSelection(Screen, ConfigListScreen):
 		if config or self.focus == FOCUS_CONFIG:
 			if self["config"].getCurrentIndex() < 3:
 				ConfigListScreen.keyRight(self)
-			elif hasattr(self, "plugincallfunc"):
-				self.plugincallfunc()
+			elif self["config"].getCurrentIndex() == 3:
+				if self.settings.menupage.getValue() == PAGE_AUDIO and hasattr(self, "plugincallfunc"):
+					self.plugincallfunc()
+				elif self.settings.menupage.getValue() == PAGE_SUBTITLES and self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0,0,0,0):
+					self.session.open(QuickSubtitlesConfigMenu, self.infobar.selected_subtitle)
 		if self.focus == FOCUS_STREAMS and self["streams"].count() and config == False:
 			self["streams"].setIndex(self["streams"].count()-1)
 
@@ -353,3 +362,51 @@ class SubtitleSelection(AudioSelection):
 	def __init__(self, session, infobar=None):
 		AudioSelection.__init__(self, session, infobar, page=PAGE_SUBTITLES)
 		self.skinName = ["AudioSelection"]
+
+class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
+	skin = """
+	<screen position="50,50" size="480,210" title="Subtitle settings" backgroundColor="#7f000000" flags="wfNoBorder">
+		<widget name="config" position="5,5" size="470,200" font="Regular;18" zPosition="1" transparent="1" selectionPixmap="PLi-HD/buttons/sel.png" valign="center" />
+	</screen>"""
+
+	def __init__(self, session, sub):
+		Screen.__init__(self, session)
+		self.skin = QuickSubtitlesConfigMenu.skin
+
+		if sub[0] == 0:  # dvb
+			menu = [
+				getConfigListEntry(_("Yellow DVB subtitles"), config.subtitles.dvb_subtitles_yellow),
+				getConfigListEntry(_("Center DVB subtitles"), config.subtitles.dvb_subtitles_centered),
+				getConfigListEntry(_("DVB subtitle black transparency"), config.subtitles.dvb_subtitles_backtrans),
+				getConfigListEntry(_("Subtitle delay when timing lacks"),config.subtitles.subtitle_noPTSrecordingdelay),
+			]
+		elif sub[0] == 1: # teletext
+			menu = [
+				getConfigListEntry(_("Teletext subtitle color"), config.subtitles.ttx_subtitle_colors),
+				getConfigListEntry(_("Use original teletext position"), config.subtitles.ttx_subtitle_original_position),
+				getConfigListEntry(_("Subtitle font size"), config.subtitles.subtitle_fontsize),
+				getConfigListEntry(_("Subtitle position"), config.subtitles.subtitle_position),
+				getConfigListEntry(_("Rewrap teletext subtitles"),config.subtitles.subtitle_rewrap),
+				getConfigListEntry(_("Subtitle border width"),config.subtitles.subtitle_borderwidth),
+				getConfigListEntry(_("Subtitle delay when timing lacks"),config.subtitles.subtitle_noPTSrecordingdelay),
+			]
+		else: 		# pango
+			menu = [
+				getConfigListEntry(_("Delay subtitles"),  config.subtitles.pango_subtitles_delay),
+				getConfigListEntry(_("Yellow external subtitles"), config.subtitles.pango_subtitles_yellow),
+				getConfigListEntry(_("Subtitle font size"), config.subtitles.subtitle_fontsize),
+				getConfigListEntry(_("Subtitle position"), config.subtitles.subtitle_position),
+				getConfigListEntry(_("Rewrap teletext subtitles"),config.subtitles.subtitle_rewrap),
+				getConfigListEntry(_("Subtitle border width"),config.subtitles.subtitle_borderwidth),
+			]
+
+		ConfigListScreen.__init__(self, menu, self.session)
+
+		self["actions"] = NumberActionMap(["SetupActions"],
+		{
+			"cancel": self.finish,
+			"ok": self.finish,
+		},-2)
+
+	def finish(self):
+		self.close()
