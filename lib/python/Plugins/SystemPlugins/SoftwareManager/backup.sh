@@ -47,15 +47,15 @@ if [ $MODEL = "et9x00" ] || [ $MODEL = "et5x00" ] || [ $MODEL = "et6x00" ] || [ 
 	fi
 ## TESTING THE Odin M9 Model	
 elif [ $MODEL = "odinm9" ] ; then
-	TYPE=ODIN
+	TYPE=ODINM9
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
 	SHOWNAME="ODIN $MODEL"
 	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/$MODEL
-	MAINDEST=$DIRECTORY/odin
+	MAINDEST=$DIRECTORY/odinm9
 	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_odin/$DATE
+	EXTRA=$DIRECTORY/fullbackup_odinm9/$DATE
 ## TESTING THE Odin M7 Model	
 elif [ $MODEL = "odinm7" ] ; then
 	TYPE=ODINM7
@@ -64,9 +64,9 @@ elif [ $MODEL = "odinm7" ] ; then
 	SHOWNAME="ODIN $MODEL"
 	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/$MODEL
-	MAINDEST=$DIRECTORY/odin
+	MAINDEST=$DIRECTORY/en2
 	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_odin/$DATE	
+	EXTRA=$DIRECTORY/fullbackup_odinm7/$DATE	
 elif [ $MODEL = "xp1000" ] ; then
 	TYPE=MAXDIGITAL
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
@@ -164,7 +164,7 @@ echo "_________________________________________________"
 echo "Please be patient, a backup will now be made,"
 if [ $ROOTFSTYPE = "ubifs" ] ; then
 	echo "because of the used filesystem the back-up"
-	echo "will take about 5-7 minutes for this system"
+	echo "will take about 5-12 minutes for this system"
 	echo " "
 	echo " "
 else 
@@ -391,7 +391,7 @@ if [ $TYPE = "TECHNOTWIN" ] ; then
 	fi
 fi
 
-if [ $TYPE = "ODIN" ] ; then
+if [ $TYPE = "ODINM9" ] ; then
 	rm -rf $MAINDEST
 	mkdir -p $MAINDEST
 	mkdir -p $EXTRA
@@ -409,8 +409,8 @@ if [ $TYPE = "ODIN" ] ; then
 		echo " "
 		echo "To restore the image: \n"
 		echo "Place the USB-flash drive in the (front) USB-port "
-		echo "and switch the Odin off and on with the powerswitch "
-		echo "on the back of the Odin. Follow the instructions "
+		echo "and switch the Odin M9 off and on with the powerswitch "
+		echo "on the back of the Odin M9. Follow the instructions "
 		echo "on the front-display.\n"
 		echo "\nPlease wait...almost ready! "
 	else
@@ -532,6 +532,7 @@ if [ $TYPE = "GIGABLUE" ] ; then
 	fi
 fi
 if [ $DIRECTORY == /hdd ]; then
+	TARGET="XX"
 	for candidate in  /media/usb /media/sdb1 /media/sdc1 /media/sdd1 /media/sde1 /media/mmc1 
 	do
 		if [ -f ${candidate}/*backupstick* ]
@@ -539,6 +540,7 @@ if [ $DIRECTORY == /hdd ]; then
 		TARGET=${candidate}
 		fi    
 	done
+
 	if [ $TARGET = "XX" ]
 		then
 		echo
@@ -574,12 +576,12 @@ if [ $DIRECTORY == /hdd ]; then
 		elif [ $TYPE = "GIGABLUE" ] ; then				# Gigablue detected
 			mkdir -p $TARGET/gigablue/$MODEL
 			cp -r $MAINDEST $TARGET/gigablue/
-		elif [ $TYPE = "ODIN" ] ; then					# Odin detected
-			mkdir -p $TARGET/odin/$MODEL
-			cp -r $MAINDEST $TARGET/odin/
+		elif [ $TYPE = "ODINM9" ] ; then					# Odin M9 detected
+			#mkdir -p $TARGET/odinm9/$MODEL
+			cp -r $MAINDEST $TARGET/
 		elif [ $TYPE = "ODINM7" ] ; then					# Odin M7 detected
-			mkdir -p $TARGET/odin/$MODEL
-			cp -r $MAINDEST $TARGET/odin/			
+			#mkdir -p $TARGET
+			cp -r $MAINDEST $TARGET/		
 		elif [ $TYPE = "MAXDIGITAL" ] ; then					# MaxDigital detected
 			mkdir -p $TARGET/$MODEL
 			cp -r $MAINDEST $TARGET
