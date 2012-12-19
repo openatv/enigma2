@@ -125,6 +125,7 @@
 		<key id="KEY_NEXT" mapto="historyNext" flags="mr" />
 		<key id="KEY_BACK" mapto="historyBack" flags="mr" />
 		<key id="KEY_FORWARD" mapto="historyNext" flags="mr" />
+		<key id="KEY_ARCHIVE" mapto="historyBack" flags="mr" />
 		<key id="KEY_CHANNELUP" mapto="ChannelPlusPressed" flags="m" />
 		<key id="KEY_CHANNELDOWN" mapto="ChannelMinusPressed" flags="m" />
 		<key id="BTN_0" mapto="zapUp" flags="mr" />
@@ -198,7 +199,6 @@
 
 	<map context="InfobarActions">
 		<key id="KEY_VIDEO" mapto="showMovies" flags="b" />
-		<key id="KEY_ARCHIVE" mapto="showMovies" flags="b" />
 		<key id="KEY_VIDEO" mapto="showMediaPlayer" flags="l" />
 		<key id="KEY_PLAY" mapto="showMovies" flags="m" />
 		<key id="KEY_RADIO" mapto="showRadio" flags="b" />
