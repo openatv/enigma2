@@ -100,7 +100,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def showMenu(self):
 		self.onShown.remove(self.showMenu)
-		config.misc.initialchannelselection.setValue(True)
+		config.misc.initialchannelselection.setValue(False)
 		config.misc.initialchannelselection.save()
 		self.mainMenu()
 
