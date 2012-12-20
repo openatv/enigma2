@@ -377,8 +377,8 @@ def findSetupText(text):
 
 class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 	skin = """
-	<screen position="50,50" size="480,210" title="Subtitle settings" backgroundColor="#7f000000" flags="wfNoBorder">
-		<widget name="config" position="5,5" size="470,200" font="Regular;18" zPosition="1" transparent="1" selectionPixmap="PLi-HD/buttons/sel.png" valign="center" />
+	<screen position="50,50" size="480,235" title="Subtitle settings" backgroundColor="#7f000000" flags="wfNoBorder">
+		<widget name="config" position="5,5" size="470,225" font="Regular;18" zPosition="1" transparent="1" selectionPixmap="PLi-HD/buttons/sel.png" valign="center" />
 	</screen>"""
 
 	def __init__(self, session, infobar):
@@ -392,6 +392,9 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 				getConfigListEntry(findSetupText("config.subtitles.dvb_subtitles_yellow"),config.subtitles.dvb_subtitles_yellow),
 				getConfigListEntry(findSetupText("config.subtitles.dvb_subtitles_centered"),config.subtitles.dvb_subtitles_centered),
 				getConfigListEntry(findSetupText("config.subtitles.dvb_subtitles_backtrans"),config.subtitles.dvb_subtitles_backtrans),
+				getConfigListEntry(findSetupText("config.subtitles.dvb_subtitles_original_position"),config.subtitles.dvb_subtitles_original_position),
+				getConfigListEntry(findSetupText("config.subtitles.subtitle_position"),config.subtitles.subtitle_position),
+				getConfigListEntry(findSetupText("config.subtitles.subtitle_bad_timing_delay"),config.subtitles.subtitle_bad_timing_delay),
 				getConfigListEntry(findSetupText("config.subtitles.subtitle_noPTSrecordingdelay"),config.subtitles.subtitle_noPTSrecordingdelay),
 			]
 		elif sub[0] == 1: # teletext
@@ -402,6 +405,8 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 				getConfigListEntry(findSetupText("config.subtitles.subtitle_position"),config.subtitles.subtitle_position),
 				getConfigListEntry(findSetupText("config.subtitles.subtitle_rewrap"),config.subtitles.subtitle_rewrap),
 				getConfigListEntry(findSetupText("config.subtitles.subtitle_borderwidth"),config.subtitles.subtitle_borderwidth),
+				getConfigListEntry(findSetupText("config.subtitles.subtitle_alignment"),config.subtitles.subtitle_alignment),
+				getConfigListEntry(findSetupText("config.subtitles.subtitle_bad_timing_delay"),config.subtitles.subtitle_bad_timing_delay),
 				getConfigListEntry(findSetupText("config.subtitles.subtitle_noPTSrecordingdelay"),config.subtitles.subtitle_noPTSrecordingdelay),
 			]
 		else: 		# pango
@@ -410,6 +415,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 				getConfigListEntry(findSetupText("config.subtitles.pango_subtitles_yellow"),config.subtitles.pango_subtitles_yellow),
 				getConfigListEntry(findSetupText("config.subtitles.subtitle_fontsize"),config.subtitles.subtitle_fontsize),
 				getConfigListEntry(findSetupText("config.subtitles.subtitle_position"),config.subtitles.subtitle_position),
+				getConfigListEntry(findSetupText("config.subtitles.subtitle_alignment"),config.subtitles.subtitle_alignment),
 				getConfigListEntry(findSetupText("config.subtitles.subtitle_rewrap"),config.subtitles.subtitle_rewrap),
 				getConfigListEntry(findSetupText("config.subtitles.subtitle_borderwidth"),config.subtitles.subtitle_borderwidth),
 			]
