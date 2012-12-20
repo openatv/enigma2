@@ -365,6 +365,7 @@ class SubtitleSelection(AudioSelection):
 
 import xml.etree.cElementTree
 from Screens.Setup import setupdom
+from enigma import eTimer
 
 def findSetupText(text):
 	xmldata = setupdom.getroot()
@@ -385,6 +386,9 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		Screen.__init__(self, session)
 		self.skin = QuickSubtitlesConfigMenu.skin
 		self.infobar = infobar or self.session.infobar
+
+		self.wait = eTimer()
+		self.wait.timeout.get().append(self.resyncSubtitles)
 
 		sub = self.infobar.selected_subtitle
 		if sub[0] == 0:  # dvb
@@ -430,8 +434,11 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 
 	def changedEntry(self):
 		if self["config"].getCurrent()[0] == findSetupText("config.subtitles.pango_subtitles_delay"):
-			self.infobar.setSeekState(self.infobar.SEEK_STATE_PAUSE)
-			self.infobar.setSeekState(self.infobar.SEEK_STATE_PLAY)
+			self.wait.start(500, True)
+
+	def resyncSubtitles(self):
+		self.infobar.setSeekState(self.infobar.SEEK_STATE_PAUSE)
+		self.infobar.setSeekState(self.infobar.SEEK_STATE_PLAY)
 
 	def finish(self):
 		self.close()
