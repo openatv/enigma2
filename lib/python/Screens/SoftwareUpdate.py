@@ -80,11 +80,15 @@ class SoftwareUpdateChanges(Screen):
 		fd.close()
 		releasenotes = releasenotes.replace('\nopenvix: build',"\n\nopenvix: build")
 		releasenotes = releasenotes.split('\n\n')
-		ver=0
-		releasever = releasenotes[int(ver)].split('\n')
-		releasever = releasever[0].split(' ')
-		releasever = releasever[2].replace(':',"")
+		ver = -1
+		releasever = ""
 		viewrelease=""
+		while not releasever.isdigit():
+			ver += 1
+			releasever = releasenotes[int(ver)].split('\n')
+			releasever = releasever[0].split(' ')
+			releasever = releasever[2].replace(':',"")
+
 		while int(releasever) > int(about.getBuildVersionString()):
 			viewrelease += releasenotes[int(ver)]+'\n\n'
 			ver += 1
