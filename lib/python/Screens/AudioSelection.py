@@ -284,7 +284,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				if self.settings.menupage.getValue() == PAGE_AUDIO and hasattr(self, "plugincallfunc"):
 					self.plugincallfunc()
 				elif self.settings.menupage.getValue() == PAGE_SUBTITLES and self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0,0,0,0):
-					self.session.open(QuickSubtitlesConfigMenu, self.infobar.selected_subtitle)
+					self.session.open(QuickSubtitlesConfigMenu, self.infobar)
 		if self.focus == FOCUS_STREAMS and self["streams"].count() and config == False:
 			self["streams"].setIndex(self["streams"].count()-1)
 
@@ -381,10 +381,12 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		<widget name="config" position="5,5" size="470,200" font="Regular;18" zPosition="1" transparent="1" selectionPixmap="PLi-HD/buttons/sel.png" valign="center" />
 	</screen>"""
 
-	def __init__(self, session, sub):
+	def __init__(self, session, infobar):
 		Screen.__init__(self, session)
 		self.skin = QuickSubtitlesConfigMenu.skin
+		self.infobar = infobar or self.session.infobar
 
+		sub = self.infobar.selected_subtitle
 		if sub[0] == 0:  # dvb
 			menu = [
 				getConfigListEntry(findSetupText("config.subtitles.dvb_subtitles_yellow"),config.subtitles.dvb_subtitles_yellow),
@@ -412,13 +414,18 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 				getConfigListEntry(findSetupText("config.subtitles.subtitle_borderwidth"),config.subtitles.subtitle_borderwidth),
 			]
 
-		ConfigListScreen.__init__(self, menu, self.session)
+		ConfigListScreen.__init__(self, menu, self.session, on_change = self.changedEntry)
 
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"cancel": self.finish,
 			"ok": self.finish,
 		},-2)
+
+	def changedEntry(self):
+		if self["config"].getCurrent()[0] == findSetupText("config.subtitles.pango_subtitles_delay"):
+			self.infobar.setSeekState(self.infobar.SEEK_STATE_PAUSE)
+			self.infobar.setSeekState(self.infobar.SEEK_STATE_PLAY)
 
 	def finish(self):
 		self.close()
