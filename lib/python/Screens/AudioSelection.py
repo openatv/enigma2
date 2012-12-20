@@ -388,8 +388,8 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		if sub[0] == 0:  # dvb
 			menu = [
 				getConfigListEntry(findSetupText("config.subtitles.dvb_subtitles_yellow"),config.subtitles.dvb_subtitles_yellow),
-				getConfigListEntry(findSetupText("config.subtitles.dvb_subtitles_centered",config.subtitles.dvb_subtitles_centered)),
-				getConfigListEntry(findSetupText("config.subtitles.dvb_subtitles_backtrans",config.subtitles.dvb_subtitles_backtrans)),
+				getConfigListEntry(findSetupText("config.subtitles.dvb_subtitles_centered"),config.subtitles.dvb_subtitles_centered),
+				getConfigListEntry(findSetupText("config.subtitles.dvb_subtitles_backtrans"),config.subtitles.dvb_subtitles_backtrans),
 				getConfigListEntry(findSetupText("config.subtitles.subtitle_noPTSrecordingdelay"),config.subtitles.subtitle_noPTSrecordingdelay),
 			]
 		elif sub[0] == 1: # teletext
