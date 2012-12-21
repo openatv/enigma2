@@ -344,7 +344,10 @@ class AudioSelection(Screen, ConfigListScreen):
 					self.__updatedInfo()
 			self.close(0)
 		elif self.focus == FOCUS_CONFIG:
-			self.keyRight()
+			if self["config"].getCurrent()[0] == _("To subtitle selection") or self["config"].getCurrent()[0] == _("To audio selection") or self["config"].getCurrent()[0] == _("Audio Sync"):
+				self.keyRight()
+			else:
+				self.close(0)
 
 	def keySubtitle(self):
 		if self.settings.menupage.getValue() == PAGE_SUBTITLES:
