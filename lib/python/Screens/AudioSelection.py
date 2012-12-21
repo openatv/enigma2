@@ -71,7 +71,9 @@ class AudioSelection(Screen, ConfigListScreen):
 		streams = []
 		conflist = []
 		selectedidx = 0
-		
+
+		self["key_blue"].setBoolean(False)
+
 		service = self.session.nav.getCurrentService()
 		self.audioTracks = audio = service and service.audioTracks()
 		n = audio and audio.getNumberOfTracks() or 0
@@ -213,9 +215,6 @@ class AudioSelection(Screen, ConfigListScreen):
 			if self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0,0,0,0):
 				self["key_blue"].setBoolean(True)
 				conflist.append(getConfigListEntry(_("Subtitle Quickmenu"), ConfigNothing()))
-			else:
-				self["key_blue"].setBoolean(False)
-				conflist.append(('',))
 
 		self["config"].list = conflist
 		self["config"].l.setList(conflist)
