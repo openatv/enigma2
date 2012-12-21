@@ -1,15 +1,18 @@
 from Screen import Screen
+from Screens.Setup import getConfigMenuItem
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.config import config, ConfigSubsection, getConfigListEntry, ConfigNothing, ConfigSelection, ConfigOnOff
+from Components.Label import Label
 from Components.MultiContent import MultiContentEntryText
 from Components.Sources.List import List
 from Components.Sources.Boolean import Boolean
 from Components.SystemInfo import SystemInfo
 
-from enigma import iPlayableService
+
+from enigma import iPlayableService, eTimer
 
 from Tools.ISO639 import LanguageCodes
 from Tools.BoundFunction import boundFunction
@@ -362,20 +365,6 @@ class SubtitleSelection(AudioSelection):
 		AudioSelection.__init__(self, session, infobar, page=PAGE_SUBTITLES)
 		self.skinName = ["AudioSelection"]
 
-import xml.etree.cElementTree
-from Screens.Setup import setupdom
-from enigma import eTimer
-from Components.Label import Label
-
-def findSetupText(text):
-	xmldata = setupdom.getroot()
-	for subtitlesection in xmldata:
-		if subtitlesection.attrib["key"] == 'subtitlesetup':
-			for d in subtitlesection:
-				if d.text == text:
-					return _(d.attrib['text'])
-	return ""
-
 class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 	skin = """
 	<screen position="50,50" size="480,255" title="Subtitle settings" backgroundColor="#7f000000" flags="wfNoBorder">
@@ -396,36 +385,36 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		sub = self.infobar.selected_subtitle
 		if sub[0] == 0:  # dvb
 			menu = [
-				getConfigListEntry(findSetupText("config.subtitles.dvb_subtitles_yellow"),config.subtitles.dvb_subtitles_yellow),
-				getConfigListEntry(findSetupText("config.subtitles.dvb_subtitles_centered"),config.subtitles.dvb_subtitles_centered),
-				getConfigListEntry(findSetupText("config.subtitles.dvb_subtitles_backtrans"),config.subtitles.dvb_subtitles_backtrans),
-				getConfigListEntry(findSetupText("config.subtitles.dvb_subtitles_original_position"),config.subtitles.dvb_subtitles_original_position),
-				getConfigListEntry(findSetupText("config.subtitles.subtitle_position"),config.subtitles.subtitle_position),
-				getConfigListEntry(findSetupText("config.subtitles.subtitle_bad_timing_delay"),config.subtitles.subtitle_bad_timing_delay),
-				getConfigListEntry(findSetupText("config.subtitles.subtitle_noPTSrecordingdelay"),config.subtitles.subtitle_noPTSrecordingdelay),
+				getConfigMenuItem("config.subtitles.dvb_subtitles_yellow"),
+				getConfigMenuItem("config.subtitles.dvb_subtitles_centered"),
+				getConfigMenuItem("config.subtitles.dvb_subtitles_backtrans"),
+				getConfigMenuItem("config.subtitles.dvb_subtitles_original_position"),
+				getConfigMenuItem("config.subtitles.subtitle_position"),
+				getConfigMenuItem("config.subtitles.subtitle_bad_timing_delay"),
+				getConfigMenuItem("config.subtitles.subtitle_noPTSrecordingdelay"),
 			]
 		elif sub[0] == 1: # teletext
 			menu = [
-				getConfigListEntry(findSetupText("config.subtitles.ttx_subtitle_colors"),config.subtitles.ttx_subtitle_colors),
-				getConfigListEntry(findSetupText("config.subtitles.ttx_subtitle_original_position"),config.subtitles.ttx_subtitle_original_position),
-				getConfigListEntry(findSetupText("config.subtitles.subtitle_fontsize"),config.subtitles.subtitle_fontsize),
-				getConfigListEntry(findSetupText("config.subtitles.subtitle_position"),config.subtitles.subtitle_position),
-				getConfigListEntry(findSetupText("config.subtitles.subtitle_rewrap"),config.subtitles.subtitle_rewrap),
-				getConfigListEntry(findSetupText("config.subtitles.subtitle_borderwidth"),config.subtitles.subtitle_borderwidth),
-				getConfigListEntry(findSetupText("config.subtitles.subtitle_alignment"),config.subtitles.subtitle_alignment),
-				getConfigListEntry(findSetupText("config.subtitles.subtitle_bad_timing_delay"),config.subtitles.subtitle_bad_timing_delay),
-				getConfigListEntry(findSetupText("config.subtitles.subtitle_noPTSrecordingdelay"),config.subtitles.subtitle_noPTSrecordingdelay),
+				getConfigMenuItem("config.subtitles.ttx_subtitle_colors"),
+				getConfigMenuItem("config.subtitles.ttx_subtitle_original_position"),
+				getConfigMenuItem("config.subtitles.subtitle_fontsize"),
+				getConfigMenuItem("config.subtitles.subtitle_position"),
+				getConfigMenuItem("config.subtitles.subtitle_rewrap"),
+				getConfigMenuItem("config.subtitles.subtitle_borderwidth"),
+				getConfigMenuItem("config.subtitles.subtitle_alignment"),
+				getConfigMenuItem("config.subtitles.subtitle_bad_timing_delay"),
+				getConfigMenuItem("config.subtitles.subtitle_noPTSrecordingdelay"),
 			]
 		else: 		# pango
 			menu = [
-				getConfigListEntry(findSetupText("config.subtitles.pango_subtitles_delay"),config.subtitles.pango_subtitles_delay),
-				getConfigListEntry(findSetupText("config.subtitles.pango_subtitles_yellow"),config.subtitles.pango_subtitles_yellow),
-				getConfigListEntry(findSetupText("config.subtitles.subtitle_fontsize"),config.subtitles.subtitle_fontsize),
-				getConfigListEntry(findSetupText("config.subtitles.subtitle_position"),config.subtitles.subtitle_position),
-				getConfigListEntry(findSetupText("config.subtitles.subtitle_alignment"),config.subtitles.subtitle_alignment),
-				getConfigListEntry(findSetupText("config.subtitles.subtitle_rewrap"),config.subtitles.subtitle_rewrap),
-				getConfigListEntry(findSetupText("config.subtitles.subtitle_borderwidth"),config.subtitles.subtitle_borderwidth),
-				getConfigListEntry(findSetupText("config.subtitles.pango_subtitles_fps"),config.subtitles.pango_subtitles_fps),
+				getConfigMenuItem("config.subtitles.pango_subtitles_delay"),
+				getConfigMenuItem("config.subtitles.pango_subtitles_yellow"),
+				getConfigMenuItem("config.subtitles.subtitle_fontsize"),
+				getConfigMenuItem("config.subtitles.subtitle_position"),
+				getConfigMenuItem("config.subtitles.subtitle_alignment"),
+				getConfigMenuItem("config.subtitles.subtitle_rewrap"),
+				getConfigMenuItem("config.subtitles.subtitle_borderwidth"),
+				getConfigMenuItem("config.subtitles.pango_subtitles_fps"),
 			]
 			self["videofps"].setText(_("Video: %s fps") % (self.getFps().rstrip(".000")))
 
@@ -438,7 +427,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		},-2)
 
 	def changedEntry(self):
-		if self["config"].getCurrent()[0] in [findSetupText("config.subtitles.pango_subtitles_delay"),findSetupText("config.subtitles.pango_subtitles_fps")]:
+		if self["config"].getCurrent() in [getConfigMenuItem("config.subtitles.pango_subtitles_delay"),getConfigMenuItem("config.subtitles.pango_subtitles_fps")]:
 			self.wait.start(500, True)
 
 	def resyncSubtitles(self):
