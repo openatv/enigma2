@@ -399,7 +399,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			elif not self.showServiceTitle:
 				# no picon so show servicename anyway in picon space
 				namefont = 1
-				namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
+				namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER
 				namewidth = piconWidth
 				piconWidth = 0
 		else:
@@ -464,7 +464,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				else:
 					res.append(MultiContentEntryText(
 						pos = (left + xpos, top), size = (ewidth, height),
-						font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER,
+						font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 						text = "", color = None, color_sel = None,
 						backcolor = backColor, backcolor_sel = backColorSel,
 						border_width = self.eventBorderWidth, border_color = self.borderColor))
@@ -477,7 +477,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				if evW > 0:
 					res.append(MultiContentEntryText(
 						pos = (evX, evY), size = (evW, evH),
-						font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP,
+						font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 						text = ev[1],
 						color = foreColor, color_sel = self.foreColorSelected,
 						backcolor_sel = backColorSel))
