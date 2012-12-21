@@ -361,10 +361,11 @@ class SubtitleSelection(AudioSelection):
 		self.skinName = ["AudioSelection"]
 
 import xml.etree.cElementTree
-from Screens.Setup import setupdom
-from enigma import eTimer
+from enigma import eEnv, eTimer
 
 def findSetupText(text):
+	setupfile = file(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
+	setupdom = xml.etree.cElementTree.parse(setupfile)
 	xmldata = setupdom.getroot()
 	for subtitlesection in xmldata:
 		if subtitlesection.attrib["key"] == 'subtitlesetup':
