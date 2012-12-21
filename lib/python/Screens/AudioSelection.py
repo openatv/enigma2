@@ -1,5 +1,5 @@
 from Screen import Screen
-from Screens.Setup import getConfigMenuItem
+from Screens.Setup import getConfigMenuItem, Setup
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
@@ -39,7 +39,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.cached_subtitle_checked = False
 		self.__selected_subtitle = None
 
-		self["actions"] = NumberActionMap(["ColorActions", "SetupActions", "DirectionActions"],
+		self["actions"] = NumberActionMap(["ColorActions", "SetupActions", "DirectionActions", "MenuActions"],
 		{
 			"red": self.keyRed,
 			"green": self.keyGreen,
@@ -49,6 +49,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			"cancel": self.cancel,
 			"up": self.keyUp,
 			"down": self.keyDown,
+			"menu": self.openAutoLanguageSetup,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -356,6 +357,9 @@ class AudioSelection(Screen, ConfigListScreen):
 			self.close(0)
 		elif self.focus == FOCUS_CONFIG:
 			self.keyRight()
+
+	def openAutoLanguageSetup(self):
+		self.session.open(Setup, "autolanguagesetup")
 
 	def cancel(self):
 		self.close(0)
