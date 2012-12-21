@@ -16,13 +16,8 @@ from Components.RcModel import rc_model
 
 config.vfd = ConfigSubsection()
 config.vfd.show = ConfigSelection([("skin_text.xml", _("Channel Name")), ("skin_text_clock.xml", _("Clock"))], "skin_text.xml")
-config.vfd.char4 = ConfigSelection([("skin_display4.xml", _("Channel Number")), ("skin_display4_clock.xml", _("Clock"))], "skin_display4.xml")
-
 if not os.path.exists("/usr/share/enigma2/skin_text.xml"):
 	config.vfd.show = ConfigNothing()
-
-if not os.path.exists("/usr/share/enigma2/skin_display4.xml"):
-	config.vfd.char4 = ConfigNothing()
 
 colorNames = {}
 # Predefined fonts, typically used in built-in screens and for components like
@@ -142,12 +137,6 @@ try:
 	addSkin(config.vfd.show.getValue())
 except:
 	addSkin('skin_text.xml')
-
-# Add Skin for Display 4chars
-try:
-	addSkin(config.vfd.char4.getValue())
-except:
-	addSkin('skin_display4.xml')
 
 addSkin('skin_subtitles.xml')
 
