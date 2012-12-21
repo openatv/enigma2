@@ -104,6 +104,16 @@ if test x"$withtextlcd" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_TEXTLCD, test x"$withtextlcd" != xno)
 
+AC_ARG_WITH(led4char,
+	AC_HELP_STRING([--with-led4char], [use ascii based 8leds display, yes or no]),
+	[[withled4char=$withval]],
+	[[withled4char=no]]
+)
+if test x"$withled4char" != xno ; then
+	AC_DEFINE(HAVE_DISPLAY4, 1,[Define when using an ascii based 8leds device])
+fi
+AM_CONDITIONAL(HAVE_DISPLAY4, test x"$withled4char" != xno)
+
 AC_ARG_WITH(colorlcd,
 	AC_HELP_STRING([--with-colorlcd], [use 96x64 16bpp color display, yes or no]),
 	[[withcolorlcd=$withval]],
