@@ -365,6 +365,7 @@ class SubtitleSelection(AudioSelection):
 import xml.etree.cElementTree
 from Screens.Setup import setupdom
 from enigma import eTimer
+from Components.Label import Label
 
 def findSetupText(text):
 	xmldata = setupdom.getroot()
@@ -377,8 +378,9 @@ def findSetupText(text):
 
 class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 	skin = """
-	<screen position="50,50" size="480,235" title="Subtitle settings" backgroundColor="#7f000000" flags="wfNoBorder">
+	<screen position="50,50" size="480,255" title="Subtitle settings" backgroundColor="#7f000000" flags="wfNoBorder">
 		<widget name="config" position="5,5" size="470,225" font="Regular;18" zPosition="1" transparent="1" selectionPixmap="PLi-HD/buttons/sel.png" valign="center" />
+		<widget name="videofps" position="5,230" size="470,20" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;16" valign="center" halign="left" foregroundColor="blue"/>
 	</screen>"""
 
 	def __init__(self, session, infobar):
@@ -388,6 +390,8 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 
 		self.wait = eTimer()
 		self.wait.timeout.get().append(self.resyncSubtitles)
+
+		self["videofps"] = Label("")
 
 		sub = self.infobar.selected_subtitle
 		if sub[0] == 0:  # dvb
@@ -421,7 +425,9 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 				getConfigListEntry(findSetupText("config.subtitles.subtitle_alignment"),config.subtitles.subtitle_alignment),
 				getConfigListEntry(findSetupText("config.subtitles.subtitle_rewrap"),config.subtitles.subtitle_rewrap),
 				getConfigListEntry(findSetupText("config.subtitles.subtitle_borderwidth"),config.subtitles.subtitle_borderwidth),
+				getConfigListEntry(findSetupText("config.subtitles.pango_subtitles_fps"),config.subtitles.pango_subtitles_fps),
 			]
+			self["videofps"].setText(_("Video: %s fps") % (self.getFps().rstrip(".000")))
 
 		ConfigListScreen.__init__(self, menu, self.session, on_change = self.changedEntry)
 
@@ -432,12 +438,23 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		},-2)
 
 	def changedEntry(self):
-		if self["config"].getCurrent()[0] == findSetupText("config.subtitles.pango_subtitles_delay"):
+		if self["config"].getCurrent()[0] in [findSetupText("config.subtitles.pango_subtitles_delay"),findSetupText("config.subtitles.pango_subtitles_fps")]:
 			self.wait.start(500, True)
 
 	def resyncSubtitles(self):
 		self.infobar.setSeekState(self.infobar.SEEK_STATE_PAUSE)
 		self.infobar.setSeekState(self.infobar.SEEK_STATE_PLAY)
+
+	def getFps(self):
+		from enigma import iServiceInformation
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		if not info:
+			return ""
+		fps = info.getInfo(iServiceInformation.sFrameRate)
+		if fps > 0:
+			return "%6.3f" % (fps/1000.)
+		return ""
 
 	def finish(self):
 		self.close()

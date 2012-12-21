@@ -308,6 +308,13 @@ def InitUsageConfig():
 		else:
 			choicelist.append(("%d" % i, "%2.1f sec" % (i / 90000.)))
 	config.subtitles.pango_subtitles_delay = ConfigSelection(default = "0", choices = choicelist)
+	config.subtitles.pango_subtitles_fps = ConfigSelection(default = "1", choices = [
+		("1", _("Original")),
+		("23976", _("23.976")),
+		("24000", _("24")),
+		("25000", _("25")),
+		("29970", _("29.97")),
+		("30000", _("30"))])
 
 	config.autolanguage = ConfigSubsection()
 	audio_language_choices=[
