@@ -20,6 +20,12 @@ except:
 setupdom = xml.etree.cElementTree.parse(setupfile)
 setupfile.close()
 
+def getConfigMenuItem(configElement):
+	for item in setupdom.getroot().findall('./setup/item/.'):
+		if item.text == configElement:
+			return _(item.attrib["text"]), eval(configElement)
+	return "", None
+
 class SetupError(Exception):
     def __init__(self, message):
         self.msg = message
