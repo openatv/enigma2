@@ -1,33 +1,51 @@
 import os
+import time
 
 ECM_INFO = '/tmp/ecm.info'
 
-old_ecm_mtime = None
-data = None
+old_ecm_time = time.time()
+info = {}
+data = '','0','0','0'
 
 class GetEcmInfo:
-	def getEcmData(self):
-		global old_ecm_mtime
-		global data
-		try:
-			ecm_mtime = os.stat(ECM_INFO).st_mtime
-		except:
-			ecm_mtime = None
-		if ecm_mtime != old_ecm_mtime:
-			old_ecm_mtime = ecm_mtime
-			data = self.getText()
-		if data == None:
-			return '','0','0','0'
-		return data
+  def pollEcmData(self):
+    global data
+    global old_ecm_time
+    global info
+    try:
+      ecm_time = os.stat(ECM_INFO).st_mtime
+    except:
+      ecm_time = old_ecm_time;
+    if ecm_time != old_ecm_time:
+      oecmi1 = info.get('ecminterval1','')
+      oecmi0 = info.get('ecminterval0','')
+      info = {}
+      info['ecminterval2'] = oecmi1
+      info['ecminterval1'] = oecmi0
+      old_ecm_time = ecm_time
+      try:	
+        ecm = open(ECM_INFO, 'rb').readlines()
+      except:
+        ecm = ''
+      for line in ecm:
+        d = line.split(':', 1)
+        if len(d) > 1:
+          info[d[0].strip()] = d[1].strip()
+      data = self.getText()
+      return True
+    info['ecminterval0'] = int(time.time()-ecm_time+0.5)
+    return False
 
-	def getText(self):
+  def getEcmData(self):
+    self.pollEcmData()
+    return data
+
+  def getInfo(self, member, ifempty = ''):
+    self.pollEcmData()
+    return str(info.get(member, ifempty))
+
+  def getText(self):
 		try:
-			ecm = open(ECM_INFO, 'rb').readlines()
-			info = {}
-			for line in ecm:
-				d = line.split(':', 1)
-				if len(d) > 1:
-					info[d[0].strip()] = d[1].strip()
 			# info is dictionary
 			using = info.get('using', '')
 			if using:
