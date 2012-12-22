@@ -354,8 +354,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			self.cancel()
 
 	def keyAudio(self):
-		if self.settings.menupage.getValue() == PAGE_AUDIO:
-			self.cancel()
+		pass
 
 	def cancel(self):
 		self.close(0)
