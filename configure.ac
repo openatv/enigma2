@@ -68,6 +68,7 @@ AM_CONDITIONAL(VUSOLO, test "$BOXTYPE" == vusolo)
 AM_CONDITIONAL(VUDUO, test "$BOXTYPE" == vuduo)
 AM_CONDITIONAL(VUSOLO2, test "$BOXTYPE" == vusolo2)
 AM_CONDITIONAL(VUDUO2, test "$BOXTYPE" == vuduo2)
+AM_CONDITIONAL(EBOX5000, test "$BOXTYPE" == ebox5000)
 AM_CONDITIONAL(ET4X00, test "$BOXTYPE" == et4x00)
 AM_CONDITIONAL(ET5X00, test "$BOXTYPE" == et5x00)
 AM_CONDITIONAL(ET6X00, test "$BOXTYPE" == et6x00)
@@ -277,6 +278,7 @@ data/rc_models/vu2/Makefile
 data/rc_models/xp1000/Makefile
 data/rc_models/odinm7/Makefile
 data/rc_models/ixussone/Makefile
+data/rc_models/ebox5000/Makefile
 data/skin_default/Makefile
 data/skin_default/menu/Makefile
 data/skin_default/icons/Makefile

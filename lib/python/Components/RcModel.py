@@ -5,24 +5,25 @@ class RcModel:
 	RCTYPE_DMM = 0
 	RCTYPE_DMM1 = 1
 	RCTYPE_DMM2 = 2
-	RCTYPE_ET4000 = 3	
-	RCTYPE_ET6X00 = 4
-	RCTYPE_ET6500 = 5
-	RCTYPE_ET9X00 = 6	
-	RCTYPE_ET9500 = 7
-	RCTYPE_GB = 8
-	RCTYPE_INI1000 = 9
-	RCTYPE_INI3000 = 10
-	RCTYPE_INI5000 = 11
-	RCTYPE_INI5000R = 12
-	RCTYPE_INI7000 = 13
-	RCTYPE_IXUSSONE = 14
-	RCTYPE_ODINM7 = 15
-	RCTYPE_ODINM9 = 16	
-	RCTYPE_TM = 17
-	RCTYPE_VU = 18	
-	RCTYPE_VU2 = 19
-	RCTYPE_XP1000 = 20
+	RCTYPE_EBOX5000 = 3	
+	RCTYPE_ET4000 = 4
+	RCTYPE_ET6X00 = 5
+	RCTYPE_ET6500 = 6
+	RCTYPE_ET9X00 = 7	
+	RCTYPE_ET9500 = 8
+	RCTYPE_GB = 9
+	RCTYPE_INI1000 = 10
+	RCTYPE_INI3000 = 11
+	RCTYPE_INI5000 = 12
+	RCTYPE_INI5000R = 13
+	RCTYPE_INI7000 = 14
+	RCTYPE_IXUSSONE = 15
+	RCTYPE_ODINM7 = 16
+	RCTYPE_ODINM9 = 17	
+	RCTYPE_TM = 18
+	RCTYPE_VU = 19	
+	RCTYPE_VU2 = 20
+	RCTYPE_XP1000 = 21
 
 
 	def __init__(self):
@@ -79,6 +80,8 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_ET4000
 				elif rc == '14':
 					self.currentRcType = self.RCTYPE_XP1000
+			elif model == 'ebox5000':
+				self.currentRcType = self.RCTYPE_EBOX5000					
 			elif model == 'gigablue':
 				self.currentRcType = self.RCTYPE_GB
 			elif model == 'ini-1000':
@@ -112,6 +115,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/dmm1/'
 		elif self.currentRcType == self.RCTYPE_DMM2:
 			return '/usr/share/enigma2/rc_models/dmm2/'
+		elif self.currentRcType == self.RCTYPE_EBOX5000:
+			return '/usr/share/enigma2/rc_models/ebox5000/'			
 		elif self.currentRcType == self.RCTYPE_ET4000:
 			return '/usr/share/enigma2/rc_models/et4000/'
 		elif self.currentRcType == self.RCTYPE_ET6X00:
