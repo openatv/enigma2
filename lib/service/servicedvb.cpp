@@ -539,39 +539,47 @@ RESULT eDVBPVRServiceOfflineOperations::getListOfFilenames(std::list<std::string
 	return 0;
 }
 
-RESULT eDVBPVRServiceOfflineOperations::reindex()
+static int reindex_work(const std::string& filename)
 {
-	const char *filename = m_ref.path.c_str();
-	eDebug("reindexing %s...", filename);
+	/* This does not work, need to call parser.setPid(pid, type) otherwise
+	 * the parser will not actually output any data! */
 
-	eMPEGStreamParserTS parser;
+	eMPEGStreamParserTS parser; /* Missing packetsize, should be determined from stream? */
 
 	parser.startSave(filename);
-
 	eRawFile f;
 
-	int err = f.open(m_ref.path.c_str());
+	int err = f.open(filename.c_str());
 	if (err < 0)
 		return -1;
 
 	off_t offset = 0;
 	off_t length = f.length();
-	unsigned char buffer[188*256*4];
+	std::vector<char> buffer(188*256*4);
 	while (1)
 	{
-		eDebug("at %08llx / %08llx (%d %%)", offset, length, (int)(offset * 100 / length));
-		int r = f.read(offset, buffer, sizeof(buffer));
+		/*eDebug("at %08llx / %08llx (%d %%)", offset, length, (int)(offset * 100 / length));*/
+		int r = f.read(offset, &buffer[0], buffer.size());
 		if (!r)
 			break;
 		if (r < 0)
 			return r;
 		offset += r;
-		parser.parseData(offset, buffer, r);
+		parser.parseData(offset, &buffer[0], r);
 	}
 
 	parser.stopSave();
-
 	return 0;
+}
+
+RESULT eDVBPVRServiceOfflineOperations::reindex()
+{
+	int result;
+	/* Release global interpreter lock */
+	Py_BEGIN_ALLOW_THREADS;
+	result = reindex_work(m_ref.path.c_str());
+	Py_END_ALLOW_THREADS;
+	return result;
 }
 
 DEFINE_REF(eServiceFactoryDVB)
