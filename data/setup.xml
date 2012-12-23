@@ -8,8 +8,6 @@
 		<!-- this is just a placeholder, the Videomode plugin implements this submenu -->
 	</setup>
 	<setup key="usage" title="Customize">
-		<item level="1" text="Action on long powerbutton press" description="Setup what a long press on the power button does.">config.usage.on_long_powerpress</item>
-		<item level="1" text="Action on short powerbutton press" description="Setup what a short press on the power button does.">config.usage.on_short_powerpress</item>
 		<item level="0" text="Setup mode" description="Choose which level of menu/setting's to display. 'Expert'-level shows all items.">config.usage.setup_level</item>
 		<item level="1" text="Enable teletext caching" description="When enabled, teletext pages will be cached, allowing faster access.">config.usage.enable_tt_caching</item>
 		<item level="1" text="12V output" description="12V output." requires="12V_Output">config.usage.output_12V</item>
@@ -68,7 +66,6 @@
 		<item level="1" text="Service name font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.usage.servicename_fontsize</item>
 		<item level="1" text="Service info font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.usage.serviceinfo_fontsize</item>
 		<item level="1" text="Zap mode" requires="ZapMode" description="Setup how to control the channel changing.">config.misc.zapmode</item>
-		<item level="1" text="History mode" description="Show history selection menu.">config.usage.show_zaphistory_menu</item>
 	</setup>
 	<setup key="epgsettings" title="EPG settings">
 		<item level="2" text="EPG location" description="Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time.">config.misc.epgcachepath</item>
@@ -214,11 +211,14 @@
 		<item level="1" text="Automatic image backup" description="Perform a image backup before updating.">config.softwareupdate.autoimagebackup</item>
 	</setup>
 	<setup key="remotesetup" title="Button setup">
+		<item level="1" text="Action on long powerbutton press" description="Setup what a long press on the power button does.">config.usage.on_long_powerpress</item>
+		<item level="1" text="Action on short powerbutton press" description="Setup what a short press on the power button does.">config.usage.on_short_powerpress</item>
 		<item level="0" text="EPG button mode" description="Select what you want the EPG button to activate:">config.plisettings.PLIEPG_mode</item>
 		<item level="0" text="INFO button mode" description="Select what you want the INFO button to activate:">config.plisettings.PLIINFO_mode</item>
 		<item level="0" text="Subservice mode" description="Select if you want the Subservice mode to be activated.">config.plisettings.Subservice</item>
 		<item level="0" text="QuickEPG mode" description="Select how to activate the Quick EPG mode:">config.plisettings.QuickEPG_mode</item>
 		<item level="0" text="TV button mode" description="Select what you want the TV button to activate:">config.usage.tvradiobutton_mode</item>
+		<item level="1" text="History buttons mode" description="Configure the function of the &lt;  &gt; buttons.">config.usage.historymode</item>
 		<item level="0" text="Channel +/- button mode" description="Select what you want the Channel +/- button to activate:">config.usage.channelbutton_mode</item>
 		<item level="0" text="Use image coloured Buttons *" description="Select if you want to use the image coloured Buttons (set to 'no' if you want to use (Multi) Quick Button).">config.plisettings.ColouredButtons</item>
 	</setup>
