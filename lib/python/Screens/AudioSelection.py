@@ -151,7 +151,8 @@ class AudioSelection(Screen, ConfigListScreen):
 			idx = 0
 
 			for x in subtitlelist:
-				number = str(x[1])
+				#number = str(x[1])
+				number = str(idx)
 				description = "?"
 				language = ""
 				selected = ""
