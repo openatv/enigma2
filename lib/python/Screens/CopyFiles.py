@@ -14,7 +14,7 @@ class CopyFileTask(Components.Task.PythonTask):
 	def openFiles(self, fileList):
 		self.callback = None
 		self.fileList = fileList
-		self.handles = [(open(fn[0], 'rb'), open(fn[1], 'wb')) for fn in fileList]
+		self.handles = [(open(fn[0], 'rb', buffering=0), open(fn[1], 'wb', buffering=0)) for fn in fileList]
 		self.end = 0
 		for src,dst in fileList:
 			try:
@@ -27,19 +27,24 @@ class CopyFileTask(Components.Task.PythonTask):
 	def work(self):
 		print "[CopyFileTask] handles ", len(self.handles)
 		try:
+			bs = 65536
+			d = bytearray(bs)
 			for src, dst in self.handles:
 				while 1:
 					if self.aborted:
 						print "[CopyFileTask] aborting"
 						raise Exception, "Aborted"
-					d = src.read(65536)
-					if not d:
-						src.close()
-						dst.close()
-						# EOF
-						break
-					dst.write(d)
-					self.pos += len(d)
+					l = src.readinto(d)
+					if l < bs:
+						if not l:
+							# EOF
+							src.close()
+							dst.close()
+							break
+						dst.write(buffer(d, 0, l))
+					else:
+						dst.write(d)
+					self.pos += l
 		except:
 			# In any event, close all handles
 			for src, dst in self.handles:
