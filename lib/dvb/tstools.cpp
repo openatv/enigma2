@@ -551,11 +551,11 @@ void eDVBTSTools::takeSamples()
 {
 	m_samples_taken = 1;
 	m_samples.clear();
-	pts_t dummy;
 	int retries=2;
 
-	if (calcLen(dummy) == -1)
-		return;
+	calcBeginAndEnd();
+	if (!(m_begin_valid && m_end_valid))
+		return -1;
 	
 	int nr_samples = 30;
 	off_t bytes_per_sample = (m_offset_end - m_offset_begin) / (long long)nr_samples;
@@ -649,11 +649,8 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 			}
 			continue;
 		}
-		int pid = ((packet[1] << 8) | packet[2]) & 0x1FFF;
 		
-		int pusi = !!(packet[1] & 0x40);
-		
-		if (!pusi)
+		if (!(packet[1] & 0x40)) /* pusi */
 			continue;
 		
 			/* ok, now we have a PES header or section header*/
@@ -673,7 +670,7 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 
 		if (sec[1] == 0x02) /* program map section */
 		{
-			pmt_pid = pid;
+			pmt_pid = ((packet[1] << 8) | packet[2]) & 0x1FFF;
 			service_id = (sec[4] << 8) | sec[5];
 			return 0;
 		}
