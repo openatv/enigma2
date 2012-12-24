@@ -916,14 +916,30 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 		pkt += pkt[8] + 9;
 	}
 
-	while (pkt < (end-4))
+	for (; pkt < (end-4); ++pkt)
 	{
 		int pkt_offset = pkt - begin;
 		if (!(pkt[0] || pkt[1] || (pkt[2] != 1)))
 		{
 //			 ("SC %02x %02x %02x %02x, %02x", pkt[0], pkt[1], pkt[2], pkt[3], pkt[4]);
 			unsigned int sc = pkt[3];
-			
+
+			if (m_streamtype < 0) /* unknown */
+			{
+				if ((sc == 0x00) || (sc == 0xb3) || (sc == 0xb8))
+				{
+					eDebug("eMPEGStreamParserTS - detected MPEG2 stream");
+					m_streamtype = 0;
+				}
+				else if (sc == 0x09)
+				{
+					eDebug("eMPEGStreamParserTS - detected H264 stream");
+					m_streamtype =  1;
+				}
+				else
+					continue;
+			}
+
 			if (m_streamtype == 0) /* mpeg2 */
 			{
 				if ((sc == 0x00) || (sc == 0xb3) || (sc == 0xb8)) /* picture, sequence, group start code */
@@ -952,7 +968,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 					}
 				}
 			}
-			else if (m_streamtype == 1) /* H.264 */
+			else /* (m_streamtype == 1) means H.264 */
 			{
 				if (sc == 0x09)
 				{
@@ -973,7 +989,6 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 				}
 			}
 		}
-		++pkt;
 	}
 	return 0;
 }
