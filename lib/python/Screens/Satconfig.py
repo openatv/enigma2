@@ -391,7 +391,40 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.fillListWithAdvancedSatEntrys(Sat)
 		self["config"].list = self.list
 
+	def checkLoopthrough(self):
+		if self.nimConfig.configMode.value == "loopthrough":
+			loopthrough_count = 0
+			dvbs_slots = nimmanager.getNimListOfType('DVB-S')
+			dvbs_slots_len = len(dvbs_slots)
+
+			for x in dvbs_slots:
+				try:
+					nim_slot = nimmanager.nim_slots[x]
+					if nim_slot == self.nimConfig:
+						self_idx = x
+					if nim_slot.config.configMode.value == "loopthrough":
+						loopthrough_count += 1
+				except: pass
+			if loopthrough_count >= dvbs_slots_len:
+				return False
+
+		self.slot_dest_list = []
+		def checkRecursiveConnect(slot_id):
+			if slot_id in self.slot_dest_list:
+				return False
+			self.slot_dest_list.append(slot_id)
+			slot_config = nimmanager.nim_slots[slot_id].config
+			if slot_config.configMode.value == "loopthrough":
+				return checkRecursiveConnect(int(slot_config.connectedTo.value))
+			return True
+
+		return checkRecursiveConnect(self.slotid)
+
 	def keySave(self):
+		if not self.checkLoopthrough():
+			self.session.open(MessageBox, _("The loopthrough setting is wrong."),MessageBox.TYPE_ERROR,timeout=10)
+			return
+
 		old_configured_sats = nimmanager.getConfiguredSats()
 		if not self.run():
 			return
