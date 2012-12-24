@@ -615,7 +615,7 @@ int eDVBTSTools::takeSample(off_t off, pts_t &p)
 	return -1;
 }
 
-int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
+int eDVBTSTools::findPMT(int *pmt_pid, int *service_id, int* pcr_pid)
 {
 		/* FIXME: this will be factored out soon! */
 	if (!m_source || !m_source->valid())
@@ -670,8 +670,12 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 
 		if (sec[1] == 0x02) /* program map section */
 		{
-			pmt_pid = ((packet[1] << 8) | packet[2]) & 0x1FFF;
-			service_id = (sec[4] << 8) | sec[5];
+			if (pmt_pid)
+				*pmt_pid = ((packet[1] << 8) | packet[2]) & 0x1FFF;
+			if (service_id)
+				*service_id = (sec[4] << 8) | sec[5];
+			if (pcr_pid)
+				*pcr_pid = ((sec[9] << 8) | sec[10]) & 0x1FFF; /* 13-bits */
 			return 0;
 		}
 	}
