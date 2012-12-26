@@ -1660,6 +1660,13 @@ static inline long long align(long long x, int align)
 	}
 }
 
+static size_t diff_upto(off_t high, off_t low, size_t max)
+{
+	off_t diff = high - low;
+	if (diff < max)
+		return (size_t)diff;
+	return max;
+}
 
 	/* remember, this gets called from another thread. */
 void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size)
@@ -1828,62 +1835,43 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 
 	for (std::list<std::pair<off_t, off_t> >::const_iterator i(m_source_span.begin()); i != m_source_span.end(); ++i)
 	{
-		long long aligned_start = align(i->first, blocksize);
-		long long aligned_end = align(i->second, blocksize);
-
-		if ((current_offset >= aligned_start) && (current_offset < aligned_end))
+		if (current_offset >= i->first)
 		{
-			start = current_offset;
-				/* max can not exceed max(size_t). aligned_end - current_offset, however, can. */
-			if ((aligned_end - current_offset) > max)
-				size = max;
-			else
-				size = aligned_end - current_offset;
-			eDebug("HIT, %lld < %lld < %lld, size: %zd", i->first, current_offset, i->second, size);
-			return;
+			if (current_offset < i->second)
+			{
+				start = current_offset;
+				size = diff_upto(i->second, start, max);
+				//eDebug("HIT, %lld < %lld < %lld, size: %zd", i->first, current_offset, i->second, size);
+				return;
+			}
 		}
-		if (current_offset < aligned_start)
+		else /* (current_offset < i->first) */
 		{
 				/* ok, our current offset is in an 'out' zone. */
 			if ((m_skipmode_m >= 0) || (i == m_source_span.begin()))
 			{
 					/* in normal playback, just start at the next zone. */
 				start = i->first;
-
-					/* size is not 64bit! */
-				if ((i->second - i->first) > max)
-					size = max;
-				else
-					size = aligned_end - aligned_start;
-
+				size = diff_upto(i->second, start, max);
 				eDebug("skip");
 				if (m_skipmode_m < 0)
 				{
 					eDebug("reached SOF");
-						/* reached SOF */
 					m_skipmode_m = 0;
 					m_pvr_thread->sendEvent(eFilePushThread::evtUser);
 				}
 			} else
 			{
 					/* when skipping reverse, however, choose the zone before. */
+					/* This returns a size 0 block, in case you noticed... */
 				--i;
 				eDebug("skip to previous block, which is %llu..%llu", i->first, i->second);
-				size_t len;
-
-				aligned_start = align(i->first, blocksize);
-				aligned_end = align(i->second, blocksize);
-
-				if ((aligned_end - aligned_start) > max)
-					len = max;
-				else
-					len = aligned_end - aligned_start;
-
-				start = aligned_end - len;
+				size_t len = diff_upto(i->second, i->first, max);
+				start = i->second - len;
 				eDebug("skipping to %llu, %zd", start, len);
 			}
 
-			eDebug("result: %llu, %zx (%llu %llu)", start, size, aligned_start, aligned_end);
+			eDebug("result: %llu, %zx (%llu %llu)", start, size, i->first, i->second);
 			return;
 		}
 	}
