@@ -306,7 +306,6 @@ int eDVBTSTools::fixupPTS(const off_t &offset, pts_t &now)
 
 int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 {
-	eDebug("getOffset for pts %llu", pts);
 	if (m_streaminfo.hasAccessPoints())
 	{
 		if ((pts >= m_pts_end) && (marg > 0) && m_end_valid)
