@@ -1639,7 +1639,7 @@ void eDVBChannel::cueSheetEvent(int event)
 				eDebug("span translation failed.\n");
 				continue;
 			}
-			eDebug("source span: %llx .. %llx, translated to %llx..%llx", pts_in, pts_out, offset_in, offset_out);
+			eDebug("source span: %llu .. %llu, translated to %llu..%llu", pts_in, pts_out, offset_in, offset_out);
 			m_source_span.push_back(std::pair<off_t, off_t>(offset_in, offset_out));
 		}
 		break;
@@ -1665,7 +1665,7 @@ static inline long long align(long long x, int align)
 void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size)
 {
 	const int blocksize = 188;
-	unsigned int max = align(10*1024*1024, blocksize);
+	unsigned int max = align(1024*1024*1024, blocksize);
 	current_offset = align(current_offset, blocksize);
 
 	if (!m_cue)
@@ -1687,7 +1687,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 	if (m_skipmode_m)
 	{
 		int frames_to_skip = m_skipmode_frames + m_skipmode_frames_remainder;
-		//eDebug("we are at %llx, and we try to skip %d+%d frames from here", current_offset, m_skipmode_frames, m_skipmode_frames_remainder);
+		//eDebug("we are at %llu, and we try to skip %d+%d frames from here", current_offset, m_skipmode_frames, m_skipmode_frames_remainder);
 		size_t iframe_len;
 		off_t iframe_start = current_offset;
 		int frames_skipped = frames_to_skip;
@@ -1714,7 +1714,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 
 		if (m_skipmode_m)
 		{
-			eDebug("we are at %llx, and we try to find the iframe here:", current_offset);
+			eDebug("we are at %llu, and we try to find the iframe here:", current_offset);
 			size_t iframe_len;
 			off_t iframe_start = current_offset;
 
@@ -1759,7 +1759,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			}
 			if (!m_cue->m_decoding_demux)
 			{
-				eDebug("getNextSourceSpan, no decoding demux. couldn't seek to %llx... ignore request!", pts);
+				eDebug("getNextSourceSpan, no decoding demux. couldn't seek to %llu... ignore request!", pts);
 				start = current_offset;
 				size = max;
 				continue;
@@ -1868,7 +1868,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			{
 					/* when skipping reverse, however, choose the zone before. */
 				--i;
-				eDebug("skip to previous block, which is %llx..%llx", i->first, i->second);
+				eDebug("skip to previous block, which is %llu..%llu", i->first, i->second);
 				size_t len;
 
 				aligned_start = align(i->first, blocksize);
@@ -1880,10 +1880,10 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 					len = aligned_end - aligned_start;
 
 				start = aligned_end - len;
-				eDebug("skipping to %llx, %zd", start, len);
+				eDebug("skipping to %llu, %zd", start, len);
 			}
 
-			eDebug("result: %llx, %zx (%llx %llx)", start, size, aligned_start, aligned_end);
+			eDebug("result: %llu, %zx (%llu %llu)", start, size, aligned_start, aligned_end);
 			return;
 		}
 	}
