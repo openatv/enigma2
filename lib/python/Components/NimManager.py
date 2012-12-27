@@ -18,6 +18,7 @@ from Tools.BoundFunction import boundFunction
 
 from Tools import Directories
 import xml.etree.cElementTree
+from os import path
 
 def getConfigSatlist(orbpos, satlist):
 	default_orbpos = None
@@ -110,8 +111,17 @@ class SecConfigure:
 			nim.setInternalLink()
 
 	def linkNIMs(self, sec, nim1, nim2):
+		if path.exists('/proc/stb/info/chipset'):
+			chipset = open('/proc/stb/info/chipset', 'r').read()
+			print 'found chipset:',chipset
+		else:
+			chipset = None
+		
 		print "link tuner", nim1, "to tuner", nim2
-		if nim2 == (nim1 - 1):
+		# for internally connect tuner A to B
+		if chipset.find('7356') == -1 and nim2 == (nim1 - 1):
+			self.linkInternally(nim1)
+		elif chipset.find('7356') != -1:
 			self.linkInternally(nim1)
 		sec.setTunerLinked(nim1, nim2)
 
