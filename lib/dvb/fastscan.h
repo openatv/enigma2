@@ -226,6 +226,7 @@ class eFastScan: public Object, public iObject
 #ifndef SWIG
 	eUsePtr<iDVBChannel> m_channel;
 	ePtr<iDVBDemux> m_demux;
+	eDVBFrontendParametersSatellite transponderParameters;
 	bool originalNumbering;
 	bool useFixedServiceInfo;
 	int versionNumber;
@@ -244,7 +245,7 @@ class eFastScan: public Object, public iObject
 #endif /* no SWIG */
 
 public:
-	eFastScan(int pid, const char *providername, bool originalnumbering = false, bool fixedserviceinfo = false);
+	eFastScan(int pid, const char *providername, eDVBFrontendParametersSatellite transponderparameters, bool originalnumbering = false, bool fixedserviceinfo = false);
 	~eFastScan();
 
 	void start(int frontendid = 0);
