@@ -52,7 +52,9 @@ public:
 	int findFrame(off_t &offset, size_t &len, int &direction, int frame_types = frametypeI);
 	int findNextPicture(off_t &offset, size_t &len, int &distance, int frame_types = frametypeAll);
 
-	int findPMT(int &pmt_pid, int &service_id);
+	/* Retrieve pmt, service number and PCR PID. Returns 0 on success.
+	 * Arguments may be NULL for items you don't need. */
+	int findPMT(int *pmt_pid, int *service_id, int* pcr_pid);
 
 protected:
 	void closeSource();
