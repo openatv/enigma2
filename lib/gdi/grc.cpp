@@ -779,7 +779,10 @@ void gDC::exec(const gOpcode *o)
 	case gOpcode::line:
 	{
 		ePoint start = o->parm.line->start + m_current_offset, end = o->parm.line->end + m_current_offset;
-		m_pixmap->line(m_current_clip, start, end, m_foreground_color);
+		if (m_pixmap->needClut())
+			m_pixmap->line(m_current_clip, start, end, m_foreground_color);
+		else
+			m_pixmap->line(m_current_clip, start, end, m_foreground_color_rgb);
 		delete o->parm.line;
 		break;
 	}
