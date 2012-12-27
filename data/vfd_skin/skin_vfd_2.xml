@@ -1,0 +1,177 @@
+<skin>
+	<fonts>
+		<font filename="lcd.ttf" name="LCD" scale="100" />
+		<font filename="MyriadPro-Regular.otf" name="Myrida" scale="100" />
+	</fonts>
+<!-- LCD screen InfoBar -->
+	<screen name="InfoBarSummary" position="0,0" size="256,64">
+		<widget source="session.CurrentService" render="Picon" position="126,0" size="132,46" zPosition="1" path="piconlcd">
+			<convert type="ServiceName">Reference</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="126,0" size="132,46" zPosition="0" font="Myrida;18" halign="center" valign="center">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Progress" position="0,22" size="123,10" borderWidth="1">
+			<convert type="EventTime">Progress</convert>
+		</widget>
+		<widget source="session.CurrentService" render="RollerCharLCD" position="0,0" size="123,20" font="LCD;18" noWrap="1" valign="top">
+			<convert type="ServiceName">Name</convert>
+		</widget >
+		<widget source="session.Event_Now" render="RollerCharLCDLong" position="0,48" size="256,16" font="Myrida;14" noWrap="1" >
+			<convert type="EventName">Name</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Label" position="0,34" size=" 35,14" font="Myrida;14" halign="left">
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<eLabel text="-" position="35, 34" size=" 8,14" font="Myrida;14" halign="center"/>
+		<widget source="session.Event_Now" render="Label" position="43,34" size="35,14" font="Myrida;14" halign="left">
+			<convert type="EventTime">EndTime</convert>
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Label" position="80, 34" size="30,14" font="Myrida;14">
+			<convert type="EventTime">Remaining</convert>
+			<convert type="RemainingToText">InMinutes</convert>
+		</widget>
+	</screen>
+<!-- LCD screen InfoBarMoviePlayer -->
+	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="256,64">
+		<widget source="session.CurrentService" render="RollerCharLCDLong" position="0,0" size="256,20" font="Myrida;20" noWrap="1" valign="top">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="0,22" size="85,20" font="Myrida;20" halign="left" valign="top">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="85,22" size="85,20" font="Myrida;20" halign="center" valign="top">
+			<convert type="ServicePosition">Length</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="170,22" size="85,20" font="Myrida;20" halign="right" valign="top">
+			<convert type="ServicePosition">Remaining</convert>
+		</widget>
+		<eLabel position="0,43" size="256,1" backgroundColor="white" />
+		<widget source="session.CurrentService" render="Progress" position="0,51" size="256,12" borderWidth="1">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+	</screen>
+<!-- LCD screen Channelselection -->
+	<screen name="ChannelSelection_summary" position="0,0" size="256,64">
+		<widget source="parent.ServiceEvent" render="RollerCharLCDLong" position="0,0" size="256,20" font="Myrida;18" noWrap="1">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="parent.ServiceEvent" render="RollerCharLCDLong" position="0,23" size="256,20" font="Myrida;16" noWrap="1" >
+			<convert type="EventName">Name</convert>
+		</widget>
+		<eLabel position="0,43" size="256,1" backgroundColor="white" />
+		<widget source="parent.ServiceEvent" render="Progress" position="0,51" size="256,10" borderWidth="1">
+			<convert type="EventTime">Progress</convert>
+		</widget>
+	</screen>
+<!-- LCD screen (menus) -->
+	<screen name="MenuSummary" position="0,0" size="256,64">
+		<widget source="parent.title" render="RollerCharLCDLong" position="0,0" size="256,21" font="Myrida;18" noWrap="1" />
+		<widget source="parent.menu" render="RollerCharLCDLong" position="0,25" size="256,21" font="Myrida;16" noWrap="1" >
+			<convert type="StringListSelection" />
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="0,46" size="256,18" font="Myrida;16" halign="left">
+			<convert type="ClockToText">WithSeconds</convert>
+		</widget>
+	</screen>
+<!-- LCD screen (dvd player ) -->
+	<screen name="DVDSummary" position="0,0" size="256,64">
+		<widget source="session.CurrentService" render="RollerCharLCDLong" position="0,0" size="256,20" font="Myrida;20" noWrap="1" valign="top">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="0,22" size="85,20" font="Myrida;20" halign="left" valign="top">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="85,22" size="85,20" font="Myrida;20" halign="center" valign="top">
+			<convert type="ServicePosition">Length</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="170,22" size="85,20" font="Myrida;20" halign="right" valign="top">
+			<convert type="ServicePosition">Remaining</convert>
+		</widget>
+		<eLabel position="0,43" size="256,1" backgroundColor="white" />
+		<widget source="session.CurrentService" render="Progress" position="0,51" size="256,12" borderWidth="1">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+	</screen>
+<!-- LCD screen Standby -->
+	<screen name="StandbySummary" position="0,0" size="256,64">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="256,20" font="Myrida;20" halign="center">
+			<convert type="ClockToText">Format:%d.%m.%Y - %H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" font="Myrida;20" position="0, 24" size="128, 20" halign="center">
+			<convert type="VtiTempFan">FanInfo</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" font="Myrida;20" position="128, 24" size="128, 20" halign="center">
+			<convert type="VtiTempFan">TempInfo</convert>
+		</widget>
+		<widget source="session.CurrentService" render="RollerCharLCDLong" position="0,46" size="256,18" font="Myrida;18" halign="center" valign="top">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" zPosition="1" size="256,64" text=" ">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+	</screen>
+<!-- LCD screen Service Scan -->
+	<screen name="ServiceScanSummary" position="0,0" size="256,64">
+		<widget name="Title" position="0,0" size="256,42" font="Myrida;18" transparent="1" />
+		<widget name="scan_progress" position="0,50" borderWidth="1" size="256,12" />
+		<widget name="Service" position="0,22" size="256,26" font="Myrida;16" transparent="1" />
+	</screen>
+<!-- LCD screen Mediaplayer -->
+	<screen name="MediaPlayerLCDScreen" position="0,0" size="256,64" id="1">
+		<widget name="text1" position="0,0" size="256,35" font="Myrida;16"/>
+		<widget name="text3" position="0,36" size="256,14" font="Myrida;12"/>
+		<widget name="text4" position="0,49" size="256,14" font="Myrida;12"/>
+	</screen>
+<!-- LCD screen Simple Summary -->
+	<screen name="SimpleSummary" position="0,0" size="256,64">
+		<widget source="parent.Title" render="RollerCharLCDLong" position="0,0" size="256,18" font="Myrida;18" noWrap="1" />
+		<widget source="global.CurrentTime" render="Label" position="0,20" size="256,16" font="Myrida;16">
+			<convert type="ClockToText">WithSeconds</convert>
+		</widget>
+	</screen>
+<!-- LCD screen PluginBrowser -->
+	<screen name="PluginBrowserSummary" position="0,0" size="256,64">
+		<widget source="entry" render="RollerCharLCDLong" position="6,0" size="256,20" font="Myrida;20" noWrap="1" />
+		<widget source="desc" render="RollerCharLCDLong" position="6,20" size="256,20" font="Myrida;20" noWrap="1" />
+	</screen>
+<!-- LCD screen VTIPanel -->
+	<screen name="VTIPanelSummary" position="0,0" size="256,64">
+		<widget source="entry" render="RollerCharLCDLong" position="6,0" size="256,20" font="Myrida;20" noWrap="1" />
+		<widget source="desc" render="RollerCharLCDLong" position="6,20" size="256,20" font="Myrida;20" noWrap="1" />
+		<eLabel text="www.vuplus-support.org" position="0, 43" size="256,20" font="LCD;18" halign="center"/>
+	</screen>
+<!-- LCD screen DeviceManager2 -->
+	<screen name="DeviceManager2Summary" position="0,0" size="256,64">
+		<widget source="entry" render="RollerCharLCDLong" position="6,0" size="256,20" font="Myrida;20" noWrap="1" />
+		<widget source="desc" render="RollerCharLCDLong" position="6,20" size="256,20" font="Myrida;20" noWrap="1" />
+		<eLabel text="www.vuplus-support.org" position="0, 43" size="256,20" font="LCD;18" halign="center"/>
+	</screen>
+<!-- LCD screen Setup -->
+	<screen name="SetupSummary" position="0,0" size="256,64">
+		<widget source="SetupTitle" render="RollerCharLCDLong" position="6,0" size="256,16" font="Myrida;18" noWrap="1" />
+		<widget source="SetupEntry" render="RollerCharLCDLong" position="6,20" size="256,16" font="Myrida;16" noWrap="1" />
+		<widget source="SetupValue" render="RollerCharLCDLong" position="6,38" size="256,16" font="Myrida;16" noWrap="1" />
+	</screen>
+<!-- LCD screen MessageBox -->
+	<screen name="MessageBox_summary" position="0,0" size="256,64" id="1">
+		<widget source="parent.Text" render="Label" position="0,0" size="256,45" font="Myrida;14" halign="center" valign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="6,46" size="244,18" font="Myrida;16" halign="center" valign="center" />
+	</screen>
+<!-- LCD screen ChoiceBox -->
+	<screen name="ChoiceBox_summary" position="0,0" size="256,64" id="1">
+		<widget source="parent.summary_list" render="Label" position="0,0" size="244,64" font="Myrida;12" />
+	</screen>
+</skin> 
+
+
+
+
+
+
+
+
+

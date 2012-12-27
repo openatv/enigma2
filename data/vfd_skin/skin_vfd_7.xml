@@ -1,0 +1,375 @@
+<skin>
+	<fonts>
+		<font filename="nmsbd.ttf" name="VFD" scale="90"/>
+	</fonts>
+	<screen name="InfoBarSummary" position="0,0" size="256,64" id="1">
+		<widget source="session.CurrentService" render="Label" position="0,7" size="143,48" font="VFD;24" halign="center" valign="center" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Progress" position="0,59" size="143,5" borderWidth="1">
+			<convert type="EventTime">Progress</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="180,44" size="58,20" font="VFD;20" halign="right" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="241,46" zPosition="1" size="15,10" font="VFD;10" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%S</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="155,0" zPosition="3" size="28,12" text=" ">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="155,0"  size="28,12">
+			<convert type="ConditionalShowHide" />
+		</widget>	
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/crypt.png" position="186,0"  size="10,12">
+			<convert type="ServiceInfo">IsCrypted</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/txt.png" position="199,0" size="14,12">
+			<convert type="ServiceInfo">HasTelext</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/format.png" position="216,0" size="21,12">
+			<convert type="ServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/dolby.png" position="240,0" size="16,12">
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	 </screen>
+	 <screen name="ChannelSelection_summary" position="0,0" size="256,64" id="1">
+		<widget source="parent.ServiceEvent" render="Label" position="0,7" size="143,48" font="VFD;24" halign="center" valign="center" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Progress" position="0,59" size="143,5" borderWidth="1">
+			<convert type="EventTime">Progress</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="180,44" size="58,20" font="VFD;20" halign="right" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="241,46" zPosition="1" size="15,10" font="VFD;10" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%S</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="155,0" zPosition="3" size="28,12" text=" ">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="155,0"  size="28,12">
+			<convert type="ConditionalShowHide" />
+		</widget>	
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/crypt.png" position="186,0"  size="10,12">
+			<convert type="ServiceInfo">IsCrypted</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/txt.png" position="199,0" size="14,12">
+			<convert type="ServiceInfo">HasTelext</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/format.png" position="216,0" size="21,12">
+			<convert type="ServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/dolby.png" position="240,0" size="16,12">
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="256,64" id="1">
+		<widget source="session.CurrentService" render="Label" position="0,7" size="143,48" font="VFD;24" halign="center" valign="center" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Progress" position="0,59" size="143,5" borderWidth="1">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="180,44" size="58,20" font="VFD;20" halign="right" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="241,46" zPosition="1" size="15,10" font="VFD;10" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%S</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="155,0" zPosition="3" size="28,12" text=" ">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="155,0"  size="28,12">
+			<convert type="ConditionalShowHide" />
+		</widget>	
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/crypt.png" position="186,0"  size="10,12">
+			<convert type="ServiceInfo">IsCrypted</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/txt.png" position="199,0" size="14,12">
+			<convert type="ServiceInfo">HasTelext</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/format.png" position="216,0" size="21,12">
+			<convert type="ServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/dolby.png" position="240,0" size="16,12">
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<screen name="ChoiceBox_summary" position="0,0" size="256,64" id="1">
+		<widget source="parent.summary_list" render="Label" position="6,0" size="244,64" font="Regular;12" />
+	</screen>
+	<screen name="MessageBox_summary" position="0,0" size="256,64" id="1">
+		<widget source="parent.Text" render="Label" position="6,0" size="244,45" font="Regular;15" halign="center" valign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="6,46" size="244,18" font="Regular;18" halign="center" valign="center" />
+	</screen>
+	<screen name="MenuSummary" position="0,0" size="256,64" id="1">
+		<widget source="parent.title" render="Label" position="0,0" size="143,32" font="VFD;18" halign="center" valign="center"/>
+		<widget source="parent.menu" render="Label" position="0,32" size="143,32" font="VFD;18" halign="center" valign="center">
+			<convert type="StringListSelection" />
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="180,44" size="58,20" font="VFD;20" halign="right" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="241,46" zPosition="1" size="15,10" font="VFD;10" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%S</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="155,0" zPosition="3" size="28,12" text=" ">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="155,0"  size="28,12">
+			<convert type="ConditionalShowHide" />
+		</widget>	
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/crypt.png" position="186,0"  size="10,12">
+			<convert type="ServiceInfo">IsCrypted</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/txt.png" position="199,0" size="14,12">
+			<convert type="ServiceInfo">HasTelext</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/format.png" position="216,0" size="21,12">
+			<convert type="ServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/dolby.png" position="240,0" size="16,12">
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<screen name="ServiceScanSummary" position="0,0" size="256,64" id="1">
+		<widget name="Title" position="0,0" size="256,26" font="VFD;20" transparent="1" />
+		<widget name="Service" position="0,30" size="256,30" font="VFD;15" transparent="1" />
+		<widget name="scan_progress" position="0,59" zPosition="1" borderWidth="1" size="143,5" backgroundColor="dark" />
+	</screen>
+	<screen name="SetupSummary" position="0,0" size="256,64" id="1">
+		<widget source="SetupTitle" render="Label" position="6,0" size="143,16" font="VFD;16" />
+		<widget source="SetupEntry" render="Label" position="6,16" size="143,32" font="VFD;14" />
+		<widget source="SetupValue" render="Label" position="6,48" size="143,16" font="VFD;14" />
+		<widget source="global.CurrentTime" render="Label" position="180,44" size="58,20" font="VFD;20" halign="right" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="241,46" zPosition="1" size="15,10" font="VFD;10" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%S</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="155,0" zPosition="3" size="28,12" text=" ">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="155,0"  size="28,12">
+			<convert type="ConditionalShowHide" />
+		</widget>	
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/crypt.png" position="186,0"  size="10,12">
+			<convert type="ServiceInfo">IsCrypted</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/txt.png" position="199,0" size="14,12">
+			<convert type="ServiceInfo">HasTelext</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/format.png" position="216,0" size="21,12">
+			<convert type="ServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/dolby.png" position="240,0" size="16,12">
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<screen name="StandbySummary" position="0,0" size="256,64" id="1">
+		<widget source="global.CurrentTime" render="Label" position="20,22" size="113,32" font="VFD;40" halign="right" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="135,20" zPosition="1" size="32,20" font="VFD;20" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%S</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="155,0" zPosition="3" size="28,12" text=" ">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="155,0"  size="28,12">
+			<convert type="ConditionalShowHide" />
+		</widget>	
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/crypt.png" position="186,0"  size="10,12">
+			<convert type="ServiceInfo">IsCrypted</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/txt.png" position="199,0" size="14,12">
+			<convert type="ServiceInfo">HasTelext</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/format.png" position="216,0" size="21,12">
+			<convert type="ServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/dolby.png" position="240,0" size="16,12">
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<screen name="SimpleSummary" position="0,0" size="256,64" id="1">
+		<widget source="parent.Title" render="Label" position="0,0" size="143,64" font="VFD;20" halign="center" valign="center" />
+		<widget source="global.CurrentTime" render="Label" position="180,44" size="58,20" font="VFD;20" halign="right" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="241,46" zPosition="1" size="15,10" font="VFD;10" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%S</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="155,0" zPosition="3" size="28,12" text=" ">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="155,0"  size="28,12">
+			<convert type="ConditionalShowHide" />
+		</widget>	
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/crypt.png" position="186,0"  size="10,12">
+			<convert type="ServiceInfo">IsCrypted</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/txt.png" position="199,0" size="14,12">
+			<convert type="ServiceInfo">HasTelext</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/format.png" position="216,0" size="21,12">
+			<convert type="ServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/dolby.png" position="240,0" size="16,12">
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<screen name="MediaPlayerLCDScreen" position="0,0" size="256,64" id="1">
+		<widget name="text1" position="4,0" size="252,38" font="VFD;18"/>
+		<widget name="text3" position="4,39" size="252,12" font="VFD;12"/>
+		<widget name="text4" position="4,52" size="252,12" font="VFD;12"/>
+	</screen>
+	<screen name="WizardSummary" position="0,0" size="256,64" id="1">
+		<widget source="text" render="Label" position="6,0" size="252,16" font="VFD;18" transparent="1" />
+		<widget source="parent.list" render="Label" position="6,18" size="252,46" font="VFD;12">
+			<convert type="StringListSelection" />
+		</widget>
+	</screen>
+<!-- LCD screen VTIPanel -->
+	<screen name="VTIPanelSummary" position="0,0" size="256,64">
+		<widget source="global.CurrentTime" render="Label" position="180,44" size="58,20" font="VFD;20" halign="right" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="241,46" zPosition="1" size="15,10" font="VFD;10" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%S</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="155,0" zPosition="3" size="28,12" text=" ">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="155,0"  size="28,12">
+			<convert type="ConditionalShowHide" />
+		</widget>	
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/crypt.png" position="186,0"  size="10,12">
+			<convert type="ServiceInfo">IsCrypted</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/txt.png" position="199,0" size="14,12">
+			<convert type="ServiceInfo">HasTelext</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/format.png" position="216,0" size="21,12">
+			<convert type="ServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/dolby.png" position="240,0" size="16,12">
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="entry" render="Label" position="0,0" size="143,20" font="VFD;18" noWrap="1" />
+		<widget source="desc" render="RollerCharLCD" position="0,21" size="143,20" font="VFD;18" noWrap="1" />
+		<eLabel text="www.vuplus-support.org" position="0, 43" size="143,20" font="VFD;12" halign="left"/>
+	</screen>
+<!-- LCD screen DeviceManager2 -->
+	<screen name="DeviceManager2Summary" position="0,0" size="256,64">
+		<widget source="global.CurrentTime" render="Label" position="180,44" size="58,20" font="VFD;20" halign="right" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="241,46" zPosition="1" size="15,10" font="VFD;10" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%S</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="155,0" zPosition="3" size="28,12" text=" ">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="155,0"  size="28,12">
+			<convert type="ConditionalShowHide" />
+		</widget>	
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/crypt.png" position="186,0"  size="10,12">
+			<convert type="ServiceInfo">IsCrypted</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/txt.png" position="199,0" size="14,12">
+			<convert type="ServiceInfo">HasTelext</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/format.png" position="216,0" size="21,12">
+			<convert type="ServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/dolby.png" position="240,0" size="16,12">
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="entry" render="Label" position="0,0" size="143,20" font="VFD;18" noWrap="1" />
+		<widget source="desc" render="RollerCharLCD" position="0,21" size="143,20" font="VFD;18" noWrap="1" />
+		<eLabel text="www.vuplus-support.org" position="0, 43" size="143,20" font="VFD;12" halign="left"/>
+	</screen>
+<!-- LCD screen PluginBrowser -->
+	<screen name="PluginBrowserSummary" position="0,0" size="256,64">
+		<widget source="global.CurrentTime" render="Label" position="180,44" size="58,20" font="VFD;20" halign="right" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="241,46" zPosition="1" size="15,10" font="VFD;10" valign="center" transparent="1">
+			<convert type="ClockToText">Format:%S</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="155,0" zPosition="3" size="28,12" text=" ">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="155,0"  size="28,12">
+			<convert type="ConditionalShowHide" />
+		</widget>	
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/crypt.png" position="186,0"  size="10,12">
+			<convert type="ServiceInfo">IsCrypted</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/txt.png" position="199,0" size="14,12">
+			<convert type="ServiceInfo">HasTelext</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/format.png" position="216,0" size="21,12">
+			<convert type="ServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/dolby.png" position="240,0" size="16,12">
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="entry" render="RollerCharLCD" position="0,0" size="143,20" font="VFD;18" noWrap="1" />
+		<widget source="desc" render="Label" position="0,21" size="143,40" font="VFD;18" />
+	</screen>
+</skin>

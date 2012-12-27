@@ -5,7 +5,7 @@ import os
 
 profile("LOAD:enigma_skin")
 from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, \
-	addFont, gRGB, eWindowStyleSkinned, getDesktop
+	addFont, gRGB, eWindowStyleSkinned, getDesktop, getBoxType
 from Components.config import ConfigSubsection, ConfigText, config, ConfigYesNo, ConfigSelection, ConfigNothing
 from Components.Converter.Converter import Converter
 from Components.Sources.Source import Source, ObsoleteSource
@@ -95,19 +95,29 @@ addSkin('skin_box.xml')
 # add optional discrete second infobar
 addSkin('skin_second_infobar.xml')
 # Only one of these is present, compliments of AM_CONDITIONAL
-config.skin.display_skin = ConfigYesNo(default = False)
+if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2':
+	config.skin.vfdskin = ConfigSelection(default = "skin_display255_no_picon.xml", choices = [("skin_display255_no_picon.xml", _("default no picon")), 
+	("skin_display255_picon.xml", _("default with picon")),
+	("skin_vfd_1.xml", _("VFD SKIN Typ 1")),
+	("skin_vfd_2.xml", _("VFD SKIN Typ 2")),
+	("skin_vfd_3.xml", _("VFD SKIN Typ 3")),
+	("skin_vfd_4.xml", _("VFD SKIN Typ 4")), 
+	("skin_vfd_5.xml", _("VFD SKIN Typ 5")),
+	("skin_vfd_6.xml", _("VFD SKIN Typ 6")),	
+	("skin_vfd_7.xml", _("VFD SKIN Typ 7"))])
+	config.skin.display_skin = ConfigNothing()
+else:	
+	config.skin.display_skin = ConfigYesNo(default = False)
+	config.skin.primary_vfdskin = ConfigNothing()
+
 display_skin_id = 1
-if fileExists('/usr/share/enigma2/skin_display255_picon.xml'):
-	if config.skin.display_skin.getValue():
-		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display255_picon.xml')):
-			addSkin('skin_display255_picon.xml', SCOPE_CONFIG)
-		else:
-			addSkin('skin_display255_picon.xml')
+if fileExists('/usr/share/enigma2/vfd_skin/skin_display255_picon.xml'):
+	if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.vfdskin.value)):
+		addSkin(config.skin.vfdskin.value, SCOPE_CONFIG)
 	else:
-		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display255_no_picon.xml')):
-			addSkin('skin_display255_no_picon.xml', SCOPE_CONFIG)
-		else:
-			addSkin('skin_display255_no_picon.xml')
+		addSkin('vfd_skin/' + config.skin.vfdskin.value)
+	
+
 elif fileExists('/usr/share/enigma2/skin_display220_picon.xml'):
 	if config.skin.display_skin.getValue():
 		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display220_picon.xml')):
