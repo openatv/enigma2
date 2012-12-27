@@ -1,4 +1,4 @@
-installdir = $(pkgdatadir)/rc_models/ini1000
+installdir = $(pkgdatadir)/rc_models/inix000
 
 dist_install_DATA = \
 	arrowdown.png \

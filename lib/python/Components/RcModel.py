@@ -11,16 +11,12 @@ class RcModel:
 	RCTYPE_ET9X00 = 6
 	RCTYPE_ET9500 = 7
 	RCTYPE_GB = 8
-	RCTYPE_INI1000 = 9
-	RCTYPE_INI3000 = 10
-	RCTYPE_INI5000 = 11
-	RCTYPE_INI5000R = 12
-	RCTYPE_INI7000 = 13
-	RCTYPE_ODIN = 14
-	RCTYPE_TM = 15
-	RCTYPE_VU = 16
-	RCTYPE_VU2 = 17
-	RCTYPE_XP1000 = 18
+	RCTYPE_INIX000 = 9
+	RCTYPE_ODIN = 10
+	RCTYPE_TM = 11
+	RCTYPE_VU = 12
+	RCTYPE_VU2 = 13
+	RCTYPE_XP1000 = 14
 
 	def __init__(self):
 		self.currentRcType = self.RCTYPE_DMM
@@ -69,16 +65,8 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_TM
 		elif getBoxType().startswith('venton'):
 			model = self.readFile('/proc/stb/info/boxtype')
-			if model == 'ini-1000':
-				self.currentRcType = self.RCTYPE_INI1000
-			elif model == 'ini-3000':
-				self.currentRcType = self.RCTYPE_INI3000
-			elif model == 'ini-5000':
-				self.currentRcType = self.RCTYPE_INI5000
-			elif model == 'ini-5000R':
-				self.currentRcType = self.RCTYPE_INI5000R
-			elif model == 'ini-7000' or model == 'ini-7012':
-				self.currentRcType = self.RCTYPE_INI7000
+			if model.startswith('ini-'):
+				self.currentRcType = self.RCTYPE_INIX000
 		elif getBoxType().startswith('vu'):
 			if getBoxType() == 'vuultimo':
 				self.currentRcType = self.RCTYPE_VU2
@@ -106,16 +94,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/et9500/'
 		elif self.currentRcType == self.RCTYPE_GB:
 			return '/usr/share/enigma2/rc_models/gb/'
-		elif self.currentRcType == self.RCTYPE_INI1000:
-			return '/usr/share/enigma2/rc_models/ini1000/'		      
-		elif self.currentRcType == self.RCTYPE_INI3000:
-			return '/usr/share/enigma2/rc_models/ini3000/'
-		elif self.currentRcType == self.RCTYPE_INI5000:
-			return '/usr/share/enigma2/rc_models/ini5000/'
-		elif self.currentRcType == self.RCTYPE_INI5000R:
-			return '/usr/share/enigma2/rc_models/ini5000r/'
-		elif self.currentRcType == self.RCTYPE_INI7000:
-			return '/usr/share/enigma2/rc_models/ini7000/'
+		elif self.currentRcType == self.RCTYPE_INIX000:
+			return '/usr/share/enigma2/rc_models/inix000/'
 		elif self.currentRcType == self.RCTYPE_ODIN:
 			return '/usr/share/enigma2/rc_models/odin/'
 		elif self.currentRcType == self.RCTYPE_TM:

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-15 18:28+0000\n"
-"PO-Revision-Date: 2012-12-16 20:19+0100\n"
+"POT-Creation-Date: 2012-12-23 15:49+0000\n"
+"PO-Revision-Date: 2012-12-24 04:52+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -987,7 +987,7 @@ msgid "Automatic setting backup"
 msgstr "Automatische Einstellungs-Sicherung"
 
 msgid "Automatically update Client/Server View?"
-msgstr "Anzeige von Client/Server automatisch aktualisieren?"
+msgstr "Anzeige von Klienten/Server automatisch aktualisieren?"
 
 msgid "Autostart"
 msgstr ""
@@ -1121,7 +1121,8 @@ msgstr "Helligkeit (Bereitschaft)"
 msgid "Buffers:"
 msgstr "Buffer:"
 
-msgid "Build:"
+#, python-format
+msgid "Build: %s"
 msgstr ""
 
 msgid "Bulgarian"
@@ -1394,6 +1395,10 @@ msgstr ""
 msgid "Children/Youth"
 msgstr "Kinder/Jugend"
 
+#, python-format
+msgid "Chipset: BCM%s"
+msgstr ""
+
 msgid "Choose Bouquet"
 msgstr "Wähle Favoritenliste"
 
@@ -1536,6 +1541,12 @@ msgstr "Configfile %s gespeichert."
 msgid "Configuration mode"
 msgstr "Konfigurationsmodus"
 
+msgid "Configure an additional delay to improve external subtitle synchronisation."
+msgstr "Konfiguriere eine zusätzliche Verzögerung um die Synchronisation mit externen Untertiteln zu verbessern."
+
+msgid "Configure an additional delay to improve subtitle synchronisation."
+msgstr "Konfiguriere eine zusätzliche Verzögerung um die Synchronisation mit Untertiteln zu verbessern."
+
 msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
 msgstr "Stelle eine wieviele Minuten abgelaufene Daten im EPG erhalten bleiben sollen. Es kann hilfreich sein wenn Informationen gerade beendeter Sendungen benötigt oder wenn das Ende einer Sendung sich verzögert."
 
@@ -1612,10 +1623,13 @@ msgid "Configure the fourth subtitle language."
 msgstr "Konfiguriere die vierte Sprache für den Untertitek."
 
 msgid "Configure the function of a long press on the power button."
-msgstr "Setze was bei langem Druck auf die Aus-Taste passieren soll."
+msgstr "Stelle ein was bei langem Druck auf die Aus-Taste passieren soll."
 
 msgid "Configure the function of a short press on the power button."
-msgstr "Setze was bei kurzem Druck auf die Aus-Taste passieren soll."
+msgstr "Stelle ein was bei kurzem Druck auf die Aus-Taste passieren soll."
+
+msgid "Configure the function of the <  > buttons."
+msgstr "Stelle ein was beim Druck auf die < > Tasten passieren soll."
 
 msgid "Configure the gateway."
 msgstr "Konfiguriere das Gateway."
@@ -1765,7 +1779,7 @@ msgid "Connect to a wireless network"
 msgstr "Mit Funk-Netzwerk verbinden"
 
 msgid "Connected clients"
-msgstr "Verbundene Clients"
+msgstr "Verbundene Klienten"
 
 msgid "Connected to"
 msgstr "Verbunden mit"
@@ -2047,8 +2061,11 @@ msgstr "Standardwerte"
 msgid "Delay before key repeat starts:"
 msgstr "Verzögerung bevor Tastenwiederholung startet:"
 
+msgid "Delay for external subtitles"
+msgstr "Verzögerung für externe Untertitel"
+
 msgid "Delay:"
-msgstr ""
+msgstr "Verzögerung:"
 
 msgid "Delete"
 msgstr "Löschen"
@@ -2389,8 +2406,9 @@ msgstr "Herunterladen"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Lade Plugin-Informationen herunter. Bitte warten..."
 
-msgid "Drivers:"
-msgstr "Treiber:"
+#, python-format
+msgid "Drivers: %s"
+msgstr "Treiber: %s"
 
 msgid "Dutch"
 msgstr "Holländisch"
@@ -3050,9 +3068,6 @@ msgstr "Festplatte Ruhezustand nach"
 msgid "Harddisk"
 msgstr "Festplatte"
 
-msgid "Hardware:"
-msgstr "Hardware:"
-
 msgid "Hebrew"
 msgstr "Hebräisch"
 
@@ -3085,6 +3100,9 @@ msgstr "Hierarchie..."
 
 msgid "High bitrate support"
 msgstr "Kann hohe Datenraten verarbeiten"
+
+msgid "History buttons mode"
+msgstr "History Tasten bewirken"
 
 msgid "History zap..."
 msgstr ""
@@ -3229,9 +3247,6 @@ msgstr "Image Informationen"
 
 msgid "Image Manager"
 msgstr "Image Verwaltung"
-
-msgid "Image:"
-msgstr "Image:"
 
 msgid "Immediate shutdown"
 msgstr "Direkt ausschalten"
@@ -3472,11 +3487,15 @@ msgstr "Nur Umschalten"
 msgid "Just scale"
 msgstr "Nur Skalieren"
 
+msgid "Just zap"
+msgstr "Nur Umschalten"
+
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Movielist offen lassen wenn Musikdateien abgespielt werden."
 
-msgid "Kernel:"
-msgstr "Kernel:"
+#, python-format
+msgid "Kernel: %s"
+msgstr "Kernel: %s"
 
 msgid "Keyboard"
 msgstr "Tastatur"
@@ -3529,17 +3548,15 @@ msgstr "Sprachauswahl"
 msgid "Last Req."
 msgstr ""
 
-msgid "Last Update:"
-msgstr "Letztes Update:"
-
 msgid "Last config"
 msgstr "Letzte Konfiguration"
 
 msgid "Last speed"
 msgstr "Letzte Geschwindigkeit"
 
-msgid "Last update:"
-msgstr "Letztes Update:"
+#, python-format
+msgid "Last update: %s"
+msgstr "Letztes Update: %s"
 
 msgid "Last used share: "
 msgstr "Letzte benutzte Freigabe:"
@@ -3840,6 +3857,10 @@ msgstr "Modus [Video Ausgang]"
 
 msgid "Model: "
 msgstr "Modell:"
+
+#, python-format
+msgid "Model: %s"
+msgstr "Modell: %s"
 
 msgid "Modulation"
 msgstr "Modulation"
@@ -6039,10 +6060,10 @@ msgid "Setup the interval to check for online updates. (in hours)"
 msgstr "Überprüfungen ob eine Online Aktualisierung verfügbar ist alle x Stunden. "
 
 msgid "Setup what a long press on the power button does."
-msgstr "Setze was bei langem Druck auf die Aus-Taste passieren soll."
+msgstr "Stelle ein was bei langem Druck auf die Aus-Taste passieren soll."
 
 msgid "Setup what a short press on the power button does."
-msgstr "Setze was bei kurzem Druck auf die Aus-Taste passieren soll."
+msgstr "Stelle ein was bei kurzem Druck auf die Aus-Taste passieren soll."
 
 msgid "Setup your satellite equipment"
 msgstr "Satelliten-Ausrüstung konfigurieren"
@@ -6206,6 +6227,9 @@ msgstr "Zeige Jobs in Erweiterungen"
 
 msgid "Show live tv when movie stopped"
 msgstr "Zeige Live-TV wenn Film beendet"
+
+msgid "Show menu"
+msgstr "Zeige Menü"
 
 msgid "Show message when recording starts"
 msgstr "Zeige Nachricht wenn eine Aufnahme startet"
@@ -6618,11 +6642,17 @@ msgstr "Unterkanal Modus"
 msgid "Subservices"
 msgstr "Unterkanäle"
 
+msgid "Subtitle Quickmenu"
+msgstr "Untertitel Schnellmenü"
+
 msgid "Subtitle alignment"
 msgstr "Untertitel Ausrichtung"
 
 msgid "Subtitle border width"
 msgstr "Untertitel Randbreite"
+
+msgid "Subtitle delay when timing is bad"
+msgstr "Verzögerung Untertitel bei schlechtem Timing"
 
 msgid "Subtitle delay when timing lacks"
 msgstr "Verzögerung Untertitel bei fehlendem Timing"
@@ -6729,8 +6759,9 @@ msgstr "Synchronisiere Systemzeit mit Transponder oder Internet."
 msgid "System"
 msgstr "System"
 
-msgid "System temperature:"
-msgstr "Systemtemperatur:"
+#, python-format
+msgid "System temperature: %s"
+msgstr "Systemtemperatur: %s"
 
 msgid "System: "
 msgstr ""
@@ -7620,7 +7651,7 @@ msgid "Uphops: "
 msgstr "Uphops: "
 
 msgid "Uptime"
-msgstr ""
+msgstr "Laufzeit"
 
 msgid "Use"
 msgstr "Benutzen"
@@ -7772,11 +7803,12 @@ msgstr "Scart-Videorekorder"
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (Intro-Trailer)"
 
-msgid "Version:"
-msgstr "Version:"
-
 msgid "Version: "
 msgstr "Version: "
+
+#, python-format
+msgid "Version: %s"
+msgstr "Version: %s"
 
 msgid "Vertical"
 msgstr "Vertikal"
@@ -9747,3 +9779,14 @@ msgstr "umschalten"
 msgid "zapped"
 msgstr "umgeschaltet"
 
+#~ msgid "Hardware:"
+#~ msgstr "Hardware:"
+
+#~ msgid "Image:"
+#~ msgstr "Image:"
+
+#~ msgid "Last Update:"
+#~ msgstr "Letztes Update:"
+
+#~ msgid "Version:"
+#~ msgstr "Version:"
