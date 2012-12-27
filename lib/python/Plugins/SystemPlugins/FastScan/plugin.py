@@ -13,12 +13,13 @@ from Components.Pixmap import Pixmap
 from Components.ProgressBar import ProgressBar
 from Components.ActionMap import ActionMap
 
-from enigma import eFastScan
+from enigma import eFastScan, eDVBFrontendParametersSatellite
 
 class FastScan:
-	def __init__(self, text, progressbar, scanTuner = 0, scanPid = 900, keepNumbers = False, keepSettings = False, providerName = 'Favorites'):
+	def __init__(self, text, progressbar, scanTuner = 0, transponderParameters = None, scanPid = 900, keepNumbers = False, keepSettings = False, providerName = 'Favorites'):
 		self.text = text;
 		self.progressbar = progressbar;
+		self.transponderParameters = transponderParameters
 		self.scanPid = scanPid
 		self.scanTuner = scanTuner
 		self.keepNumbers = keepNumbers
@@ -29,7 +30,7 @@ class FastScan:
 	def execBegin(self):
 		self.text.setText(_('Scanning %s...') % (self.providerName))
 		self.progressbar.setValue(0)
-		self.scan = eFastScan(self.scanPid, self.providerName, self.keepNumbers, self.keepSettings)
+		self.scan = eFastScan(self.scanPid, self.providerName, self.transponderParameters, self.keepNumbers, self.keepSettings)
 		self.scan.scanCompleted.get().append(self.scanCompleted)
 		self.scan.scanProgress.get().append(self.scanProgress)
 		fstfile = None
@@ -77,10 +78,11 @@ class FastScanStatus(Screen):
 		<widget name="scan_progress" position="10,155" size="400,15" pixmap="skin_default/progress_big.png" borderWidth="2" borderColor="#cccccc" />
 	</screen>"""
 
-	def __init__(self, session, scanTuner = 0, scanPid = 900, keepNumbers = False, keepSettings = False, providerName = 'Favorites'):
+	def __init__(self, session, scanTuner = 0, transponderParameters = None, scanPid = 900, keepNumbers = False, keepSettings = False, providerName = 'Favorites'):
 		Screen.__init__(self, session)
 		self.scanPid = scanPid
 		self.scanTuner = scanTuner
+		self.transponderParameters = transponderParameters
 		self.keepNumbers = keepNumbers
 		self.keepSettings = keepSettings
 		self.providerName = providerName
@@ -101,7 +103,7 @@ class FastScanStatus(Screen):
 		self.onFirstExecBegin.append(self.doServiceScan)
 
 	def doServiceScan(self):
-		self["scan"] = FastScan(self["scan_state"], self["scan_progress"], self.scanTuner, self.scanPid, self.keepNumbers, self.keepSettings, self.providerName)
+		self["scan"] = FastScan(self["scan_state"], self["scan_progress"], self.scanTuner, self.transponderParameters, self.scanPid, self.keepNumbers, self.keepSettings, self.providerName)
 
 	def restoreService(self):
 		if self.prevservice:
@@ -192,7 +194,24 @@ class FastScanScreen(ConfigListScreen, Screen):
 		if self.scan_hd.value and pid >=900 and pid < 930:
 			pid += 1
 		if self.scan_nims.value:
-			self.session.open(FastScanStatus, scanTuner = int(self.scan_nims.value), scanPid = pid, keepNumbers = self.scan_keepnumbering.value, keepSettings = self.scan_keepsettings.value, providerName = self.scan_provider.getText())
+			transponderParameters = eDVBFrontendParametersSatellite()
+			if pid >= 900:
+				transponderParameters.frequency = 12515000;
+				transponderParameters.symbol_rate = 22000000;
+				transponderParameters.fec = eDVBFrontendParametersSatellite.FEC_5_6;
+				transponderParameters.orbital_position = 192;
+			else:
+				transponderParameters.frequency = 12070000;
+				transponderParameters.symbol_rate = 27500000;
+				transponderParameters.fec = eDVBFrontendParametersSatellite.FEC_3_4;
+				transponderParameters.orbital_position = 235;
+			transponderParameters.polarisation = eDVBFrontendParametersSatellite.Polarisation_Horizontal;
+			transponderParameters.inversion = eDVBFrontendParametersSatellite.Inversion_Unknown;
+			transponderParameters.system = eDVBFrontendParametersSatellite.System_DVB_S;
+			transponderParameters.modulation = eDVBFrontendParametersSatellite.Modulation_QPSK;
+			transponderParameters.rolloff = eDVBFrontendParametersSatellite.RollOff_alpha_0_35;
+			transponderParameters.pilot = eDVBFrontendParametersSatellite.Pilot_Off;
+			self.session.open(FastScanStatus, scanTuner = int(self.scan_nims.value), transponderParameters = transponderParameters, scanPid = pid, keepNumbers = self.scan_keepnumbering.value, keepSettings = self.scan_keepsettings.value, providerName = self.scan_provider.getText())
 
 	def keyCancel(self):
 		self.close()
