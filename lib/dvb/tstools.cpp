@@ -306,7 +306,6 @@ int eDVBTSTools::fixupPTS(const off_t &offset, pts_t &now)
 
 int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 {
-	eDebug("getOffset for pts %llu", pts);
 	if (m_streaminfo.hasAccessPoints())
 	{
 		if ((pts >= m_pts_end) && (marg > 0) && m_end_valid)
@@ -551,11 +550,11 @@ void eDVBTSTools::takeSamples()
 {
 	m_samples_taken = 1;
 	m_samples.clear();
-	pts_t dummy;
 	int retries=2;
 
-	if (calcLen(dummy) == -1)
-		return;
+	calcBeginAndEnd();
+	if (!(m_begin_valid && m_end_valid))
+		return -1;
 	
 	int nr_samples = 30;
 	off_t bytes_per_sample = (m_offset_end - m_offset_begin) / (long long)nr_samples;
@@ -615,7 +614,7 @@ int eDVBTSTools::takeSample(off_t off, pts_t &p)
 	return -1;
 }
 
-int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
+int eDVBTSTools::findPMT(int *pmt_pid, int *service_id, int* pcr_pid)
 {
 		/* FIXME: this will be factored out soon! */
 	if (!m_source || !m_source->valid())
@@ -649,11 +648,8 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 			}
 			continue;
 		}
-		int pid = ((packet[1] << 8) | packet[2]) & 0x1FFF;
 		
-		int pusi = !!(packet[1] & 0x40);
-		
-		if (!pusi)
+		if (!(packet[1] & 0x40)) /* pusi */
 			continue;
 		
 			/* ok, now we have a PES header or section header*/
@@ -673,8 +669,12 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 
 		if (sec[1] == 0x02) /* program map section */
 		{
-			pmt_pid = pid;
-			service_id = (sec[4] << 8) | sec[5];
+			if (pmt_pid)
+				*pmt_pid = ((packet[1] << 8) | packet[2]) & 0x1FFF;
+			if (service_id)
+				*service_id = (sec[4] << 8) | sec[5];
+			if (pcr_pid)
+				*pcr_pid = ((sec[9] << 8) | sec[10]) & 0x1FFF; /* 13-bits */
 			return 0;
 		}
 	}
