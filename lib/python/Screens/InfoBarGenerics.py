@@ -1302,7 +1302,7 @@ class InfoBarEPG:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if getBoxType() == 'vuduo' or getBoxType() == 'vusolo' or getBoxType() == 'vuuno':
+		if getBoxType().startswith('vu'):
 			self.EPGPressed()
 		elif config.plisettings.PLIINFO_mode.getValue() == "eventview":
 			self.openEventView()
