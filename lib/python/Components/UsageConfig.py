@@ -5,6 +5,7 @@ from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff
 from enigma import Misc_Options, eEnv;
 from Components.NimManager import nimmanager
 from Components.Harddisk import harddiskmanager
+from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
 import os
 import enigma
@@ -422,11 +423,3 @@ def preferredInstantRecordPath():
 
 def defaultMoviePath():
 	return config.usage.default_path.value
-
-def refreshServiceList(configElement = None):
-		from Screens.InfoBar import InfoBar
-		InfoBarInstance = InfoBar.instance
-		if InfoBarInstance is not None:
-			servicelist = InfoBarInstance.servicelist
-			if servicelist:
-				servicelist.setMode()

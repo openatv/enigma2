@@ -12,7 +12,7 @@ from Components.NimManager import nimmanager
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.ProgressBar import ProgressBar
-from Components.UsageConfig import refreshServiceList
+from Components.ServiceList import refreshServiceList
 from Components.ActionMap import ActionMap
 
 from enigma import eFastScan, eDVBFrontendParametersSatellite
