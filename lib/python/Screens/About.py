@@ -96,7 +96,7 @@ class About(Screen):
 
 		if path.exists('/proc/stb/info/chipset'):
 			chipset = open('/proc/stb/info/chipset', 'r').read()
-			AboutText += _("Chipset: BCM%s") % chipset.replace('\n','') + "\n"
+			AboutText += _("Chipset: BCM%s") % chipset.lower().replace('\n','').replace('bcm','') + "\n"
 
 		AboutText += _("Kernel: %s") % about.getKernelVersionString() + "\n"
 		AboutText += _("Drivers: %s") % about.getDriversString() + "\n"
