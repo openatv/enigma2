@@ -36,7 +36,7 @@ class EPGSelection(Screen):
 		self["key_red"] = Button("")
 		self.closeRecursive = False
 		self.saved_title = None
-		self["Service"] = ServiceEvent()
+		self["ServiceEvent"] = ServiceEvent()
 		self["Event"] = Event()
 		if isinstance(service, str) and eventid != None:
 			self.type = EPG_TYPE_SIMILAR
@@ -161,7 +161,7 @@ class EPGSelection(Screen):
 			l.moveToService(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		elif self.type == EPG_TYPE_SINGLE:
 			service = self.currentService
-			self["Service"].newService(service.ref)
+			self["ServiceEvent"].newService(service.ref)
 			if self.saved_title is None:
 				self.saved_title = self.instance.getTitle()
 			title = self.saved_title + ' - ' + service.getServiceName()
@@ -350,9 +350,9 @@ class EPGSelection(Screen):
 					datestr = '%s %d.%d.'%(_("Today"), begTime[2], begTime[1])
 			self["date"].setText(datestr)
 			if cur[1] is None:
-				self["Service"].newService(None)
+				self["ServiceEvent"].newService(None)
 			else:
-				self["Service"].newService(cur[1].ref)
+				self["ServiceEvent"].newService(cur[1].ref)
 
 		if cur[1] is None or cur[1].getServiceName() == "":
 			if self.key_green_choice != self.EMPTY:
