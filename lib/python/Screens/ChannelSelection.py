@@ -916,6 +916,7 @@ class ChannelSelectionBase(Screen):
 		self.servicePathTV = [ ]
 		self.servicePathRadio = [ ]
 		self.servicePath = [ ]
+		self.history = [ ]
 		self.rootChanged = False
 		self.startRoot = None
 
