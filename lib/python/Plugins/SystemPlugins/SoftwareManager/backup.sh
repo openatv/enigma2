@@ -140,7 +140,7 @@ elif [ $MODEL = "gbquad" ] ; then
 	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue
 	
 ## TESTING THE VU+ MODELS
-elif [ $MODEL = "vusolo" ] || [ $MODEL = "vuduo" ] || [ $MODEL = "vuuno" ] || [ $MODEL = "vuultimo" ] ; then
+elif [ $MODEL = "vusolo" ] || [ $MODEL = "vuduo" ] || [ $MODEL = "vuuno" ] || [ $MODEL = "vuultimo" ] || [ $MODEL = "vusolo2" ] || [ $MODEL = "vuduo2" ]; then
 	TYPE=VU
 	SHOWNAME="VU+ ${MODEL:2}"
 	MAINDEST=$DIRECTORY/vuplus/${MODEL:2}
