@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from os import path as os_path, walk as os_walk, unlink as os_unlink
+import operator
 
 from Plugins.Plugin import PluginDescriptor
 
@@ -11,14 +12,16 @@ from Components.NimManager import nimmanager
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.ProgressBar import ProgressBar
+from Components.ServiceList import refreshServiceList
 from Components.ActionMap import ActionMap
 
-from enigma import eFastScan
+from enigma import eFastScan, eDVBFrontendParametersSatellite
 
 class FastScan:
-	def __init__(self, text, progressbar, scanTuner = 0, scanPid = 900, keepNumbers = False, keepSettings = False, providerName = 'Favorites'):
+	def __init__(self, text, progressbar, scanTuner = 0, transponderParameters = None, scanPid = 900, keepNumbers = False, keepSettings = False, providerName = 'Favorites'):
 		self.text = text;
 		self.progressbar = progressbar;
+		self.transponderParameters = transponderParameters
 		self.scanPid = scanPid
 		self.scanTuner = scanTuner
 		self.keepNumbers = keepNumbers
@@ -29,7 +32,7 @@ class FastScan:
 	def execBegin(self):
 		self.text.setText(_('Scanning %s...') % (self.providerName))
 		self.progressbar.setValue(0)
-		self.scan = eFastScan(self.scanPid, self.providerName, self.keepNumbers, self.keepSettings)
+		self.scan = eFastScan(self.scanPid, self.providerName, self.transponderParameters, self.keepNumbers, self.keepSettings)
 		self.scan.scanCompleted.get().append(self.scanCompleted)
 		self.scan.scanProgress.get().append(self.scanProgress)
 		fstfile = None
@@ -77,10 +80,11 @@ class FastScanStatus(Screen):
 		<widget name="scan_progress" position="10,155" size="400,15" pixmap="skin_default/progress_big.png" borderWidth="2" borderColor="#cccccc" />
 	</screen>"""
 
-	def __init__(self, session, scanTuner = 0, scanPid = 900, keepNumbers = False, keepSettings = False, providerName = 'Favorites'):
+	def __init__(self, session, scanTuner = 0, transponderParameters = None, scanPid = 900, keepNumbers = False, keepSettings = False, providerName = 'Favorites'):
 		Screen.__init__(self, session)
 		self.scanPid = scanPid
 		self.scanTuner = scanTuner
+		self.transponderParameters = transponderParameters
 		self.keepNumbers = keepNumbers
 		self.keepSettings = keepSettings
 		self.providerName = providerName
@@ -101,7 +105,7 @@ class FastScanStatus(Screen):
 		self.onFirstExecBegin.append(self.doServiceScan)
 
 	def doServiceScan(self):
-		self["scan"] = FastScan(self["scan_state"], self["scan_progress"], self.scanTuner, self.scanPid, self.keepNumbers, self.keepSettings, self.providerName)
+		self["scan"] = FastScan(self["scan_state"], self["scan_progress"], self.scanTuner, self.transponderParameters, self.scanPid, self.keepNumbers, self.keepSettings, self.providerName)
 
 	def restoreService(self):
 		if self.prevservice:
@@ -109,6 +113,7 @@ class FastScanStatus(Screen):
 
 	def ok(self):
 		if self["scan"].isDone():
+			refreshServiceList()
 			self.restoreService()
 			self.close()
 
@@ -125,6 +130,25 @@ class FastScanScreen(ConfigListScreen, Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+
+		self.providers = {}
+		self.providers['Canal Digitaal'] = (0, 900, True)
+		self.providers['TV Vlaanderen'] = (0, 910, True)
+		self.providers['TéléSAT'] = (0, 920, True)
+		self.providers['Mobistar NL'] = (0, 930, False)
+		self.providers['Mobistar FR'] = (0, 940, False)
+		self.providers['AustriaSat'] = (0, 950, False)
+		self.providers['Czech Republic'] = (1, 30, False)
+		self.providers['Slovak Republic'] = (1, 31, False)
+
+		self.transponders = ((12515000, 22000000, eDVBFrontendParametersSatellite.FEC_5_6, 192,
+			eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.Inversion_Unknown,
+			eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_QPSK,
+			eDVBFrontendParametersSatellite.RollOff_alpha_0_35, eDVBFrontendParametersSatellite.Pilot_Off),
+			(12070000, 27500000, eDVBFrontendParametersSatellite.FEC_3_4, 235,
+			eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.Inversion_Unknown,
+			eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_QPSK,
+			eDVBFrontendParametersSatellite.RollOff_alpha_0_35, eDVBFrontendParametersSatellite.Pilot_Off))
 
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 		{
@@ -147,17 +171,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 			nim_list.append((str(n.slot), n.friendly_full_description))
 
 		self.scan_nims = ConfigSelection(choices = nim_list)
-		provider_list = []
-		provider_list.append((str(900), 'Canal Digitaal'))
-		provider_list.append((str(910), 'TV Vlaanderen'))
-		provider_list.append((str(920), 'TéléSAT'))
-		provider_list.append((str(930), 'Mobistar NL'))
-		provider_list.append((str(940), 'Mobistar FR'))
-		provider_list.append((str(950), 'AustriaSat'))
-		provider_list.append((str(30),  'Czech Republic'))
-		provider_list.append((str(31),  'Slovak Republic'))
-
-		self.scan_provider = ConfigSelection(choices = provider_list)
+		self.scan_provider = ConfigSelection(choices = list(x[0] for x in sorted(self.providers.iteritems(), key = operator.itemgetter(1))))
 		self.scan_hd = ConfigYesNo(default = True)
 		self.scan_keepnumbering = ConfigYesNo(default = False)
 		self.scan_keepsettings = ConfigYesNo(default = False)
@@ -187,12 +201,29 @@ class FastScanScreen(ConfigListScreen, Screen):
 	def keyGo(self):
 		self.startScan()
 
+	def getTransponderParameters(self, number):
+		transponderParameters = eDVBFrontendParametersSatellite()
+		transponderParameters.frequency = self.transponders[number][0]
+		transponderParameters.symbol_rate = self.transponders[number][1]
+		transponderParameters.fec = self.transponders[number][2]
+		transponderParameters.orbital_position = self.transponders[number][3]
+		transponderParameters.polarisation = self.transponders[number][4]
+		transponderParameters.inversion = self.transponders[number][5]
+		transponderParameters.system = self.transponders[number][6]
+		transponderParameters.modulation = self.transponders[number][7]
+		transponderParameters.rolloff = self.transponders[number][8]
+		transponderParameters.pilot = self.transponders[number][9]
+		return transponderParameters
+
 	def startScan(self):
-		pid = int(self.scan_provider.value)
-		if self.scan_hd.value and pid >=900 and pid < 930:
+		pid = self.providers[self.scan_provider.value][1]
+		if self.scan_hd.value and self.providers[self.scan_provider.value][2]:
 			pid += 1
 		if self.scan_nims.value:
-			self.session.open(FastScanStatus, scanTuner = int(self.scan_nims.value), scanPid = pid, keepNumbers = self.scan_keepnumbering.value, keepSettings = self.scan_keepsettings.value, providerName = self.scan_provider.getText())
+			self.session.open(FastScanStatus, scanTuner = int(self.scan_nims.value),
+				transponderParameters = self.getTransponderParameters(self.providers[self.scan_provider.value][0]),
+				scanPid = pid, keepNumbers = self.scan_keepnumbering.value, keepSettings = self.scan_keepsettings.value,
+				providerName = self.scan_provider.getText())
 
 	def keyCancel(self):
 		self.close()

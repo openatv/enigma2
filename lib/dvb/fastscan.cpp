@@ -295,11 +295,12 @@ const FastScanTransportStreamList *FastScanNetworkSection::getTransportStreams(v
 
 DEFINE_REF(eFastScan);
 
-eFastScan::eFastScan(int pid, const char *providername, bool originalnumbering, bool fixedserviceinfo)
+eFastScan::eFastScan(int pid, const char *providername, eDVBFrontendParametersSatellite transponderparameters, bool originalnumbering, bool fixedserviceinfo)
 {
 	m_pid = pid;
 	providerName = providername;
 	bouquetFilename = replace_all(providerName, " ", "");
+	transponderParameters = transponderparameters;
 	originalNumbering = originalnumbering;
 	useFixedServiceInfo = fixedserviceinfo;
 	versionNumber = -1;
@@ -363,30 +364,8 @@ void eFastScan::start(int frontendid)
 	m_channel->getFrontend(fe);
 	m_channel->getDemux(m_demux);
 
-	eDVBFrontendParametersSatellite fesat;
-	if (m_pid >= 900)
-	{
-		fesat.frequency = 12515000;
-		fesat.symbol_rate = 22000000;
-		fesat.fec = eDVBFrontendParametersSatellite::FEC_5_6;
-		fesat.orbital_position = 192;
-	}
-	else
-	{
-		fesat.frequency = 12070000;
-		fesat.symbol_rate = 27500000;
-		fesat.fec = eDVBFrontendParametersSatellite::FEC_3_4;
-		fesat.orbital_position = 235;
-	}
-	fesat.polarisation = eDVBFrontendParametersSatellite::Polarisation_Horizontal;
-	fesat.inversion = eDVBFrontendParametersSatellite::Inversion_Unknown;
-	fesat.system = eDVBFrontendParametersSatellite::System_DVB_S;
-	fesat.modulation = eDVBFrontendParametersSatellite::Modulation_QPSK;
-	fesat.rolloff = eDVBFrontendParametersSatellite::RollOff_alpha_0_35;
-	fesat.pilot = eDVBFrontendParametersSatellite::Pilot_Off;
-
 	eDVBFrontendParameters parm;
-	parm.setDVBS(fesat);
+	parm.setDVBS(transponderParameters);
 
 	fe->tune(parm);
 

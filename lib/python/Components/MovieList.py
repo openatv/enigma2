@@ -72,11 +72,14 @@ def moviePlayState(cutsFileName, ref, length):
 			# Get the cut point from the cache if not in the file
 			if not cutPTS:
 				cutPTS = last[1]
+		if cutPTS is None:
+			# Unseen movie
+			return None
 		if not lastCut:
 			if length and (length > 0):
 				lastCut = length * 90000
 			else:
-				# dunno
+				# Seen, but unknown how far
 				return 50
 		if cutPTS >= lastCut:
 			return 100

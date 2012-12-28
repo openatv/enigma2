@@ -544,28 +544,41 @@ static int reindex_work(const std::string& filename)
 	/* This does not work, need to call parser.setPid(pid, type) otherwise
 	 * the parser will not actually output any data! */
 
-	eMPEGStreamParserTS parser; /* Missing packetsize, should be determined from stream? */
-
-	parser.startSave(filename);
 	eRawFile f;
 
 	int err = f.open(filename.c_str());
 	if (err < 0)
-		return -1;
+		return err;
+
+	eMPEGStreamParserTS parser; /* Missing packetsize, should be determined from stream? */
+
+	{
+		eDVBTSTools tstools;
+		tstools.openFile(filename.c_str(), 1);
+		int pcr_pid;
+		err = tstools.findPMT(NULL, NULL, &pcr_pid);
+		if (err)
+		{
+			eDebug("reindex - Failed to find PMT");
+			return err;
+		}
+		eDebug("reindex: pcr_pid=0x%x", pcr_pid);
+		parser.setPid(pcr_pid, -1); /* -1 = automatic MPEG2/h264 detection */
+	}
+
+	parser.startSave(filename);
 
 	off_t offset = 0;
-	off_t length = f.length();
-	std::vector<char> buffer(188*256*4);
+	std::vector<char> buffer(188*1024);
 	while (1)
 	{
-		/*eDebug("at %08llx / %08llx (%d %%)", offset, length, (int)(offset * 100 / length));*/
 		int r = f.read(offset, &buffer[0], buffer.size());
 		if (!r)
 			break;
 		if (r < 0)
 			return r;
-		offset += r;
 		parser.parseData(offset, &buffer[0], r);
+		offset += r;
 	}
 
 	parser.stopSave();
