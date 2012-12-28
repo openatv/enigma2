@@ -109,6 +109,7 @@ if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2':
 else:	
 	config.skin.display_skin = ConfigYesNo(default = False)
 	config.skin.primary_vfdskin = ConfigNothing()
+	config.skin.vfdskin = ConfigNothing()
 
 display_skin_id = 1
 if fileExists('/usr/share/enigma2/vfd_skin/skin_display255_picon.xml'):
