@@ -243,22 +243,16 @@ class FastScanScreen(ConfigListScreen, Screen):
 		self.close()
 
 def FastScanMain(session, **kwargs):
-	nims = nimmanager.getNimListOfType("DVB-S")
-
-	nimList = []
-	for x in nims:
-		nimList.append(x)
-
-	if len(nimList) == 0:
-		session.open(MessageBox, _("No sat tuner found!"), MessageBox.TYPE_ERROR)
-	else:
+	if getSuitableNims():
 		if session.nav.RecordTimer.isRecording():
 			session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to scan."), MessageBox.TYPE_ERROR)
 		else:
 			session.open(FastScanScreen)
+	else:
+		session.open(MessageBox, _("No suitable sat tuner found!"), MessageBox.TYPE_ERROR)
 
 def FastScanStart(menuid, **kwargs):
-	if menuid == "scan" and getSuitableNims():
+	if menuid == "scan":
 		return [(_("Fast Scan"), FastScanMain, "fastscan", None)]
 	else:
 		return []
