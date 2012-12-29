@@ -142,6 +142,9 @@ elif [ $MODEL = "gbquad" ] ; then
 ## TESTING THE VU+ MODELS
 elif [ $MODEL = "vusolo" ] || [ $MODEL = "vuduo" ] || [ $MODEL = "vuuno" ] || [ $MODEL = "vuultimo" ] || [ $MODEL = "vusolo2" ] || [ $MODEL = "vuduo2" ]; then
 	TYPE=VU
+	if [ $MODEL = "vusolo2" ] || [ $MODEL = "vuduo2" ]; then
+		MTDKERNEL="mtd2"
+	fi
 	SHOWNAME="VU+ ${MODEL:2}"
 	MAINDEST=$DIRECTORY/vuplus/${MODEL:2}
 	EXTRA=$DIRECTORY/fullbackup_${MODEL:2}/$DATE/vuplus 
