@@ -187,6 +187,8 @@ private:
 	
 	void mergePalette(const gPixmap &target);
 	void line(const gRegion &clip, ePoint start, ePoint end, gColor color);
+	void line(const gRegion &clip, ePoint start, ePoint end, gRGB color);
+	void line(const gRegion &clip, ePoint start, ePoint end, unsigned int color);
 #ifdef SWIG
 	gPixmap();
 #endif
