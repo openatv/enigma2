@@ -158,12 +158,12 @@ def moveServiceFiles(serviceref, dest, name=None, allowCopy=True):
 	movedList = []
 	try:
 		print "[MovieSelection] Moving in background..."
-		import CopyFiles
+		import Tools.CopyFiles
 		# start with the smaller files, do the big one later.
 		moveList.reverse()
 		if name is None:
 			name = os.path.split(moveList[-1][0])[1]
-		CopyFiles.moveFiles(moveList, name)
+		Tools.CopyFiles.moveFiles(moveList, name)
 	except Exception, e:
 		print "[MovieSelection] Failed move:", e
 		# rethrow exception
@@ -176,12 +176,12 @@ def copyServiceFiles(serviceref, dest, name=None):
 	movedList = []
 	try:
 		print "[MovieSelection] Copying in background..."
-		import CopyFiles
+		import Tools.CopyFiles
 		# start with the smaller files, do the big one later.
 		moveList.reverse()
 		if name is None:
 			name = os.path.split(moveList[-1][0])[1]
-		CopyFiles.copyFiles(moveList, name)
+		Tools.CopyFiles.copyFiles(moveList, name)
 	except Exception, e:
 		print "[MovieSelection] Failed copy:", e
 		# rethrow exception
