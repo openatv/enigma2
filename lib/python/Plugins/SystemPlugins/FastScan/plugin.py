@@ -20,6 +20,21 @@ from enigma import eFastScan, eDVBFrontendParametersSatellite
 config.misc.fastscan = ConfigSubsection()
 config.misc.fastscan.last_configuration = ConfigText(default = "()")
 
+def getSuitableNims():
+	nim_list = []
+	# collect all nims which are *not* set to "nothing"
+	for n in nimmanager.nim_slots:
+		if not n.isCompatible("DVB-S"):
+			continue
+		if n.config_mode == "nothing":
+			continue
+		if n.config_mode in ("loopthrough", "satposdepends"):
+			root_id = nimmanager.sec.getRoot(n.slot_id, int(n.config.connectedTo.value))
+			if n.type == nimmanager.nim_slots[root_id].type: # check if connected from a DVB-S to DVB-S2 Nim or vice versa
+				continue
+		nim_list.append((str(n.slot), n.friendly_full_description))
+	return nim_list
+
 class FastScan:
 	def __init__(self, text, progressbar, scanTuner = 0, transponderParameters = None, scanPid = 900, keepNumbers = False, keepSettings = False, providerName = 'Favorites'):
 		self.text = text;
@@ -160,19 +175,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 			"menu": self.closeRecursive,
 		}, -2)
 
-		nim_list = []
-		# collect all nims which are *not* set to "nothing"
-		for n in nimmanager.nim_slots:
-			if not n.isCompatible("DVB-S"):
-				continue
-			if n.config_mode == "nothing":
-				continue
-			if n.config_mode in ("loopthrough", "satposdepends"):
-				root_id = nimmanager.sec.getRoot(n.slot_id, int(n.config.connectedTo.value))
-				if n.type == nimmanager.nim_slots[root_id].type: # check if connected from a DVB-S to DVB-S2 Nim or vice versa
-					continue
-			nim_list.append((str(n.slot), n.friendly_full_description))
-
+		nim_list = getSuitableNims()
 		providerList = list(x[0] for x in sorted(self.providers.iteritems(), key = operator.itemgetter(1)))
 
 		lastConfiguration = eval(config.misc.fastscan.last_configuration.value)
@@ -255,7 +258,7 @@ def FastScanMain(session, **kwargs):
 			session.open(FastScanScreen)
 
 def FastScanStart(menuid, **kwargs):
-	if menuid == "scan":
+	if menuid == "scan" and getSuitableNims():
 		return [(_("Fast Scan"), FastScanMain, "fastscan", None)]
 	else:
 		return []
