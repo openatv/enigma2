@@ -40,7 +40,9 @@ class Navigation:
 		if getFPWasTimerWakeup():
 			if nextRecordTimerAfterEventActionAuto:
 				print 'RECTIMER: wakeup to standby detected.'
-				open("/tmp/was_rectimer_wakeup", "w").write('1')
+				f = open("/tmp/was_rectimer_wakeup", "w")
+				f.write('1')
+				f.close()
 				# We need to give the systemclock the chance to sync with the transponder time,
 				# before we will make the decision about whether or not we need to shutdown
 				# after the upcoming recording has completed
@@ -57,7 +59,9 @@ class Navigation:
 
 			elif nextPowerManagerAfterEventActionAuto:
 				print 'POWERTIMER: wakeup to standby detected.'
-				open("/tmp/was_powertimer_wakeup", "w").write('1')
+				f = open("/tmp/was_powertimer_wakeup", "w")
+				f.write('1')
+				f.close()
 				# We need to give the system the chance to fully startup,
 				# before we initiate the standby command.
 				self.standbytimer = eTimer()
@@ -100,11 +104,17 @@ class Navigation:
 					signal = 1
 				else:
 					signal = 0
-				open("/proc/stb/lcd/symbol_signal", "w").write(str(signal))
+				f = open("/proc/stb/lcd/symbol_signal", "w")
+				f.write(str(signal))
+				f.close()
 			except:
-				open("/proc/stb/lcd/symbol_signal", "w").write("0")
+				f = open("/proc/stb/lcd/symbol_signal", "w")
+				f.write("0")
+				f.close()
 		elif path.exists("/proc/stb/lcd/symbol_signal") and config.lcd.mode.getValue() == '0':
-			open("/proc/stb/lcd/symbol_signal", "w").write("0")
+			f = open("/proc/stb/lcd/symbol_signal", "w")
+			f.write("0")
+			f.close()
 
 		if ref is None:
 			self.stopService()
@@ -183,7 +193,9 @@ class Navigation:
 		self.currentlyPlayingServiceReference = None
 		self.currentlyPlayingServiceOrGroup = None
 		if path.exists("/proc/stb/lcd/symbol_signal"):
-			open("/proc/stb/lcd/symbol_signal", "w").write("0")
+			f = open("/proc/stb/lcd/symbol_signal", "w")
+			f.write("0")
+			f.close()
 
 	def pause(self, p):
 		return self.pnav and self.pnav.pause(p)

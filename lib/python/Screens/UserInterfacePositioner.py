@@ -7,7 +7,7 @@ from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Console import Console
 from enigma import getDesktop
-
+from os import access, R_OK
 class UserInterfacePositioner(Screen, ConfigListScreen):
 	skin = """
 	<screen position="0,0" size="e,e" backgroundColor="blue">
@@ -157,14 +157,24 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 
 def setPosition(dst_left, dst_width, dst_top, dst_height):
 	print 'Setting OSD position:' + str(dst_left) + " " + str(dst_width) + " " + str(dst_top) + " " + str(dst_height)
-	open("/proc/stb/fb/dst_left", "w").write('%X' % int(dst_left))
-	open("/proc/stb/fb/dst_width", "w").write('%X' % int(dst_width))
-	open("/proc/stb/fb/dst_top", "w").write('%X' % int(dst_top))
-	open("/proc/stb/fb/dst_height", "w").write('%X' % int(dst_height))
+	f = open("/proc/stb/fb/dst_left", "w")
+	f.write('%X' % int(dst_left))
+	f.close()
+	f = open("/proc/stb/fb/dst_width", "w")
+	f.write('%X' % int(dst_width))
+	f.close()
+	f = open("/proc/stb/fb/dst_top", "w")
+	f.write('%X' % int(dst_top))
+	f.close()
+	f = open("/proc/stb/fb/dst_height", "w")
+	f.write('%X' % int(dst_height))
+	f.close()
 
 def setAlpha(alpha_value):
 	print 'Setting OSD alpha:', str(alpha_value)
-	open("/proc/stb/video/alpha", "w").write(str(alpha_value))
+	f = open("/proc/stb/video/alpha", "w")
+	f.write(str(alpha_value))
+	f.close()
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session):
@@ -259,9 +269,13 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 
 def applySettings(mode, znorm):
 	print 'Setting 3D mode:',mode
-	open("/proc/stb/fb/3dmode", "w").write(mode)
+	f = open("/proc/stb/fb/3dmode", "w")
+	f.write(mode)
+	f.close()
 	print 'Setting 3D depth:',znorm
-	open("/proc/stb/fb/znorm", "w").write('%d' % znorm)
+	f = open("/proc/stb/fb/znorm", "w")
+	f.write('%d' % znorm)
+	f.close()
 
 def setConfiguredPosition():
 	if SystemInfo["CanChangeOsdPosition"]:
@@ -276,9 +290,9 @@ def setConfiguredSettings():
 		applySettings(config.osd.threeDmode.getValue(), int(config.osd.threeDznorm.getValue()))
 
 def InitOsd():
-	SystemInfo["CanChange3DOsd"] = (open("/proc/stb/fb/3dmode", "r") or open("/proc/stb/fb/primary/3d", "r")) and True or False
-	SystemInfo["CanChangeOsdAlpha"] = open("/proc/stb/video/alpha", "r") and True or False
-	SystemInfo["CanChangeOsdPosition"] = open("/proc/stb/fb/dst_left", "r") and True or False
+	SystemInfo["CanChange3DOsd"] = (access('/proc/stb/fb/3dmode', R_OK) or access('/proc/stb/fb/primary/3d', R_OK)) and True or False
+	SystemInfo["CanChangeOsdAlpha"] = access('/proc/stb/video/alpha', R_OK) and True or False
+	SystemInfo["CanChangeOsdPosition"] = access('/proc/stb/fb/dst_left', R_OK) and True or False
 	SystemInfo["OsdSetup"] = SystemInfo["CanChangeOsdPosition"]
 	if SystemInfo["CanChangeOsdAlpha"] == True or SystemInfo["CanChangeOsdPosition"] == True:
 		SystemInfo["OsdMenu"] = True
