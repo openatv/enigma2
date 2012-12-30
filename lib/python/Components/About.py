@@ -1,5 +1,6 @@
 from Tools.Directories import resolveFilename, SCOPE_SYSETC
 from Tools.HardwareInfo import HardwareInfo
+from os import path
 import sys
 
 def getVersionString():
@@ -147,6 +148,16 @@ def getIfTransferredData(ifname):
 			data = line.split('%s:' % ifname)[1].split()
 			rx_bytes, tx_bytes = (data[0], data[8])
 			return (rx_bytes, tx_bytes)
+
+def getChipSetString():
+	try:
+		if path.exists('/proc/stb/info/chipset'):
+			f = open('/proc/stb/info/chipset', 'r')
+			chipset = f.read()
+			f.close()
+			return chipset
+	except IOError:
+		return "unavailable"
 
 # For modules that do "from About import about"
 about = sys.modules[__name__]

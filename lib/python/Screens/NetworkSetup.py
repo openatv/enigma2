@@ -2978,7 +2978,9 @@ class NetworkuShare(Screen):
 		self.my_ushare_active = False
 		self.my_ushare_run = False
 		if not fileExists('/tmp/uShare.log'):
-			open('/tmp/uShare.log', "w").write("")
+			f = open('/tmp/uShare.log', "w")
+			f.write("")
+			f.close()
 		if fileExists('/etc/rc2.d/S20ushare'):
 			self['labdisabled'].hide()
 			self['labactive'].show()

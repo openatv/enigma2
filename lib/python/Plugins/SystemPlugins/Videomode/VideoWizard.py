@@ -3,6 +3,7 @@ from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
 from VideoHardware import video_hw
 
+from Components.About import about
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from Components.config import config, ConfigBoolean, configfile
 
@@ -10,13 +11,6 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Tools.HardwareInfo import HardwareInfo
 
 config.misc.showtestcard = ConfigBoolean(default = False)
-
-try:
-	file = open("/proc/stb/info/chipset", "r")
-	chipset = file.readline().strip()
-	file.close()
-except:
-	chipset = "unknown"
 
 class VideoWizardSummary(WizardSummary):
 	def __init__(self, session, parent):
@@ -140,7 +134,7 @@ class VideoWizard(WizardLanguage, Rc):
 	def modeSelect(self, mode):
 		ratesList = self.listRates(mode)
 		print "ratesList:", ratesList
-		if self.port == "DVI" and mode in ("720p", "1080i", "1080p") and (chipset.find('7358') != -1 or chipset.find('7356') != -1):
+		if self.port == "DVI" and mode in ("720p", "1080i", "1080p") and (about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1):
 			self.rate = "multi"
 			self.hw.setMode(port = self.port, mode = mode, rate = "multi")
 		elif self.port == "DVI" and mode in ("720p", "1080i"):
