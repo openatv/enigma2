@@ -214,12 +214,12 @@ class VideoHardware:
 				f.close()
 			# not support 50Hz, 60Hz for 1080p
 			else:
-			f = open("/proc/stb/video/videomode_50hz", "w")
-			f.write(mode_50)
-			f.close()
-			f = open("/proc/stb/video/videomode_60hz", "w")
-			f.write(mode_60)
-			f.close()
+				f = open("/proc/stb/video/videomode_50hz", "w")
+				f.write(mode_50)
+				f.close()
+				f = open("/proc/stb/video/videomode_60hz", "w")
+				f.write(mode_60)
+				f.close()
 		except IOError:
 			try:
 				# fallback if no possibility to setup 50/60 hz mode

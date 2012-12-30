@@ -139,16 +139,16 @@ def loadResumePoints():
 def ToggleVideo():
 	mode = open("/proc/stb/video/policy").read()[:-1]
 	if mode == "letterbox":
-		f = open(/proc/stb/video/policy", "w")
+		f = open("/proc/stb/video/policy", "w")
 		f.write("panscan")
 		f.close()		
 	elif mode == "panscan":
-		f = open(/proc/stb/video/policy", "w")
+		f = open("/proc/stb/video/policy", "w")
 		f.write("letterbox")
 		f.close()		
 	else:
 		# if current policy is not panscan or letterbox, set to panscan
-		f = open(/proc/stb/video/policy", "w")
+		f = open("/proc/stb/video/policy", "w")
 		f.write("panscan")
 		f.close()		
 
@@ -4858,7 +4858,7 @@ class InfoBarResolutionSelection:
 				if Resolution[1] == "exit" or Resolution[1] == "" or Resolution[1] == "auto":
 					self.ExGreen_toggleGreen()
 				if Resolution[1] != "auto":
-					f = open(/proc/stb/video/videomode", "w")
+					f = open("/proc/stb/video/videomode", "w")
 					f.write(Resolution[1])
 					f.close()					
 					#from enigma import gMainDC

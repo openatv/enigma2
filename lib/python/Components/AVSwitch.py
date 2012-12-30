@@ -114,8 +114,9 @@ def InitAVSwitch():
 	if os.path.exists("/proc/stb/video/policy2_choices"):
 		f = open("/proc/stb/video/policy2_choices")
 		if "auto" in f.readline():
-		# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
-		policy2_choices.update({"auto": _("Auto")})
+			# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
+			policy2_choices.update({"auto": _("Auto")})
+		f.close()	
 	config.av.policy_169 = ConfigSelection(choices=policy2_choices, default = "letterbox")
 	policy_choices = {
 	# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
@@ -129,8 +130,8 @@ def InitAVSwitch():
 	if os.path.exists("/proc/stb/video/policy_choices"):
 		f = open("/proc/stb/video/policy_choices")
 		if "auto" in f.readline():
-		# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
-		policy_choices.update({"auto": _("Auto")})
+			# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
+			policy_choices.update({"auto": _("Auto")})
 		f.close()
 	config.av.policy_43 = ConfigSelection(choices=policy_choices, default = "pillarbox")
 	config.av.tvsystem = ConfigSelection(choices = {"pal": _("PAL"), "ntsc": _("NTSC"), "multinorm": _("multinorm")}, default="pal")

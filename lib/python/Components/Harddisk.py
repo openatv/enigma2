@@ -29,7 +29,7 @@ def getProcMounts():
 def isFileSystemSupported(filesystem):
 	try:
 		f = open('/proc/filesystems', 'r')
-		file = f
+		file = f.read()
 		f.close()
 		for fs in file:
 			if fs.strip().endswith(filesystem):
