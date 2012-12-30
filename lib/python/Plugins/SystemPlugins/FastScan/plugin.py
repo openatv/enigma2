@@ -20,21 +20,6 @@ from enigma import eFastScan, eDVBFrontendParametersSatellite
 config.misc.fastscan = ConfigSubsection()
 config.misc.fastscan.last_configuration = ConfigText(default = "()")
 
-def getSuitableNims():
-	nim_list = []
-	# collect all nims which are *not* set to "nothing"
-	for n in nimmanager.nim_slots:
-		if not n.isCompatible("DVB-S"):
-			continue
-		if n.config_mode == "nothing":
-			continue
-		if n.config_mode in ("loopthrough", "satposdepends"):
-			root_id = nimmanager.sec.getRoot(n.slot_id, int(n.config.connectedTo.value))
-			if n.type == nimmanager.nim_slots[root_id].type: # check if connected from a DVB-S to DVB-S2 Nim or vice versa
-				continue
-		nim_list.append((str(n.slot), n.friendly_full_description))
-	return nim_list
-
 class FastScan:
 	def __init__(self, text, progressbar, scanTuner = 0, transponderParameters = None, scanPid = 900, keepNumbers = False, keepSettings = False, providerName = 'Favorites'):
 		self.text = text;
@@ -146,7 +131,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 		<widget name="introduction" position="10,265" size="500,25" font="Regular;20" halign="center" />
 	</screen>"""
 
-	def __init__(self, session):
+	def __init__(self, session, nimList):
 		Screen.__init__(self, session)
 
 		self.providers = {}
@@ -175,14 +160,13 @@ class FastScanScreen(ConfigListScreen, Screen):
 			"menu": self.closeRecursive,
 		}, -2)
 
-		nim_list = getSuitableNims()
 		providerList = list(x[0] for x in sorted(self.providers.iteritems(), key = operator.itemgetter(1)))
 
 		lastConfiguration = eval(config.misc.fastscan.last_configuration.value)
 		if not lastConfiguration:
 			lastConfiguration = (nim_list[0][0], providerList[0], True, True, False)
 
-		self.scan_nims = ConfigSelection(default = lastConfiguration[0], choices = nim_list)
+		self.scan_nims = ConfigSelection(default = lastConfiguration[0], choices = nimList)
 		self.scan_provider = ConfigSelection(default = lastConfiguration[1], choices = providerList)
 		self.scan_hd = ConfigYesNo(default = lastConfiguration[2])
 		self.scan_keepnumbering = ConfigYesNo(default = lastConfiguration[3])
@@ -243,11 +227,24 @@ class FastScanScreen(ConfigListScreen, Screen):
 		self.close()
 
 def FastScanMain(session, **kwargs):
-	if getSuitableNims():
+	nimList = []
+	# collect all nims which are *not* set to "nothing"
+	for n in nimmanager.nim_slots:
+		if not n.isCompatible("DVB-S"):
+			continue
+		if n.config_mode == "nothing":
+			continue
+		if n.config_mode in ("loopthrough", "satposdepends"):
+			root_id = nimmanager.sec.getRoot(n.slot_id, int(n.config.connectedTo.value))
+			if n.type == nimmanager.nim_slots[root_id].type: # check if connected from a DVB-S to DVB-S2 Nim or vice versa
+				continue
+		nimList.append((str(n.slot), n.friendly_full_description))
+
+	if nimList:
 		if session.nav.RecordTimer.isRecording():
 			session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to scan."), MessageBox.TYPE_ERROR)
 		else:
-			session.open(FastScanScreen)
+			session.open(FastScanScreen, nimList)
 	else:
 		session.open(MessageBox, _("No suitable sat tuner found!"), MessageBox.TYPE_ERROR)
 
