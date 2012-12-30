@@ -303,6 +303,11 @@ if [ $TYPE = "VU" ] ; then
 	mkdir -p $MAINDEST
 	mkdir -p $EXTRA/${MODEL:2}
 	if [ $ROOTFSTYPE = "ubifs" ] ; then
+		if [ $MODEL = "vusolo2" ] || [ $MODEL = "vuduo2" ]; then
+			mv $WORKDIR/root.ubifs $MAINDEST/root_cfe_auto.bin
+		else
+			mv $WORKDIR/root.ubifs $MAINDEST/root_cfe_auto.jffs2
+		fi
 		mv $WORKDIR/root.ubifs $MAINDEST/root_cfe_auto.jffs2
 	else
 		mv $WORKDIR/root.jffs2 $MAINDEST/root_cfe_auto.jffs2
@@ -322,6 +327,19 @@ if [ $TYPE = "VU" ] ; then
 		echo "on the back of the VU+. Follow the instructions "
 		echo "on the front-display.\n"
 		echo "\nPlease wait...almost ready! "
+	elif [ -f $MAINDEST/root_cfe_auto.bin -a -f $MAINDEST/kernel_cfe_auto.bin ] ; then
+		echo "_________________________________________________\n"
+		echo "USB Image created on:" $MAINDEST
+		echo "and there is made an extra copy on:"
+		echo $EXTRA
+		echo "_________________________________________________\n"
+		echo " "
+		echo "To restore the image: \n"
+		echo "Place the USB-flash drive in the (front) USB-port "
+		echo "and switch the VU+ off and on with the powerswitch "
+		echo "on the back of the VU+. Follow the instructions "
+		echo "on the front-display.\n"
+		echo "\nPlease wait...almost ready! "	
 	else
 		echo "Image creation failed - "
 		echo "Probable causes could be"
