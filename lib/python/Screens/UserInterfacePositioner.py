@@ -6,7 +6,7 @@ from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Label import Label
-from os import path
+from os import path, access, R_OK
 from enigma import getDesktop, getBoxType
 
 class UserInterfacePositioner(Screen, ConfigListScreen):
@@ -258,17 +258,27 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 def setPosition(dst_left, dst_width, dst_top, dst_height):
 	try:
 		print 'Setting OSD position:' + str(dst_left) + " " + str(dst_width) + " " + str(dst_top) + " " + str(dst_height)
-		open("/proc/stb/fb/dst_left", "w").write('%X' % int(dst_left))
-		open("/proc/stb/fb/dst_width", "w").write('%X' % int(dst_width))
-		open("/proc/stb/fb/dst_top", "w").write('%X' % int(dst_top))
-		open("/proc/stb/fb/dst_height", "w").write('%X' % int(dst_height))
+		f = open("/proc/stb/fb/dst_left", "w")
+		f.write('%X' % int(dst_left))
+		f.close()
+		f = open("/proc/stb/fb/dst_width", "w")
+		f.write('%X' % int(dst_width))
+		f.close()
+		f = open("/proc/stb/fb/dst_top", "w")
+		f.write('%X' % int(dst_top))
+		f.close()
+		f = open("/proc/stb/fb/dst_height", "w")
+		f.write('%X' % int(dst_height))
+		f.close()
 	except:
 		return
 
 def setAlpha(alpha_value):
 	try:
 		print 'Setting OSD alpha:', str(alpha_value)
-		open("/proc/stb/video/alpha", "w").write(str(alpha_value))
+		f = open("/proc/stb/video/alpha", "w")
+		f.write(str(alpha_value))
+		f.close()
 	except:
 		return
 
@@ -379,9 +389,13 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 def applySettings(mode, znorm):
 	try:
 		print 'Setting 3D mode:',mode
-		open("/proc/stb/fb/3dmode", "w").write(mode)
+		f = open("/proc/stb/fb/3dmode", "w")
+		f.write(mode)
+		f.close()
 		print 'Setting 3D depth:',znorm
-		open("/proc/stb/fb/znorm", "w").write('%d' % znorm)
+		f = open("/proc/stb/fb/znorm", "w")
+		f.write('%d' % znorm)
+		f.close()
 	except:
 		return		
 
@@ -389,18 +403,26 @@ def applySettings2(mode, znorm, setmode):
 	try:
 		if setmode == "mode1":
 			print 'Setting 3D mode:',mode
-			open("/proc/stb/fb/3dmode", "w").write(mode)
+			f = open("/proc/stb/fb/3dmode", "w")
+			f.write(mode)
+			f.close()
 			print 'Setting 3D depth:',znorm
-			open("/proc/stb/fb/znorm", "w").write('%d' % znorm)
+			f = open("/proc/stb/fb/znorm", "w")
+			f.write('%d' % znorm)
+			f.close()
 		elif setmode == "mode2":
 			if mode == "sidebyside" :
 				mode = "sbs"
 			elif mode == "topandbottom":
 				mode = "tab"
 			print 'Setting primary 3D mode:',mode	
-			open("/proc/stb/fb/primary/3d", "w").write(mode)
+			f = open("/proc/stb/fb/primary/3d", "w")
+			f.write(mode)
+			f.close()
 			print 'Setting zoffset 3D mode:',znorm
-			open("/proc/stb/fb/primary/zoffset", "w").write('%d' % znorm)
+			f = open("/proc/stb/fb/primary/zoffset", "w")
+			f.write('%d' % znorm)
+			f.close()			
 	except:
 		return			
 
@@ -421,15 +443,15 @@ def setConfiguredSettings():
 
 def InitOsd():
 	try:
-		SystemInfo["CanChange3DOsd"] = (open("/proc/stb/fb/3dmode", "r") or open("/proc/stb/fb/primary/3d", "r")) and True or False
+		SystemInfo["CanChange3DOsd"] = (access('/proc/stb/fb/3dmode', R_OK) or access('/proc/stb/fb/primary/3d', R_OK)) and True or False
 	except:
 		SystemInfo["CanChange3DOsd"] = False
 	try:
-		SystemInfo["CanChangeOsdAlpha"] = open("/proc/stb/video/alpha", "r") and True or False
+		SystemInfo["CanChangeOsdAlpha"] = access('/proc/stb/video/alpha', R_OK) and True or False
 	except:
 		SystemInfo["CanChangeOsdAlpha"] = False
 	try:	
-		SystemInfo["CanChangeOsdPosition"] = open("/proc/stb/fb/dst_left", "r") and True or False
+		SystemInfo["CanChangeOsdPosition"] = access('/proc/stb/fb/dst_left', R_OK) and True or False
 	except:
 		SystemInfo["CanChangeOsdPosition"] = False
 	SystemInfo["OsdSetup"] = SystemInfo["CanChangeOsdPosition"]

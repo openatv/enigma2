@@ -139,7 +139,6 @@ class VideoHardware:
 			del self.modes["Scart"]
 
 		self.createConfig()
-
 		self.readPreferredModes()
 
 		# take over old AVSwitch component :)
@@ -165,7 +164,9 @@ class VideoHardware:
 
 	def readPreferredModes(self):
 		try:
-			modes = open("/proc/stb/video/videomode_preferred").read()[:-1]
+			f = open("/proc/stb/video/videomode_preferred")
+			modes = f.read()[:-1]
+			f.close()
 			self.modes_preferred = modes.split(' ')
 		except IOError:
 			print "reading preferred modes failed, using all modes"
@@ -208,24 +209,37 @@ class VideoHardware:
 			mode_etc = None
 			if rate == "24Hz" or rate == "25Hz" or rate == "30Hz":
 				mode_etc = modes.get(int(rate[:2]))
-				open("/proc/stb/video/videomode", "w").write(mode_etc)
+				f = open("/proc/stb/video/videomode", "w")
+				f.write(mode_etc)
+				f.close()
 			# not support 50Hz, 60Hz for 1080p
 			else:
-				open("/proc/stb/video/videomode_50hz", "w").write(mode_50)
-				open("/proc/stb/video/videomode_60hz", "w").write(mode_60)
+			f = open("/proc/stb/video/videomode_50hz", "w")
+			f.write(mode_50)
+			f.close()
+			f = open("/proc/stb/video/videomode_60hz", "w")
+			f.write(mode_60)
+			f.close()
 		except IOError:
 			try:
 				# fallback if no possibility to setup 50/60 hz mode
-				open("/proc/stb/video/videomode", "w").write(mode_50)
+				f = open("/proc/stb/video/videomode", "w")
+				f.write(mode_50)
+				f.close()				
 			except IOError:
 				print "setting videomode failed."
 
 		try:
 			if rate == "24Hz" or rate == "25Hz" or rate == "30Hz":
 				mode_etc = modes.get(int(rate[:2]))
-				open("/etc/videomode", "w").write(mode_etc)
+				f = open("/proc/stb/video/videomode", "w")
+				f.write(mode_etc)
+				f.close()				
 			else:
-				open("/etc/videomode", "w").write(mode_50) # use 50Hz mode (if available) for booting
+				# fallback if no possibility to setup 50/60 hz mode
+				f = open("/proc/stb/video/videomode", "w")
+				f.write(mode_50)
+				f.close()
 		except IOError:
 			print "writing initial videomode to /etc/videomode failed."
 
@@ -356,16 +370,22 @@ class VideoHardware:
 			else:
 				aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.getValue()]
 			policy_choices = {"pillarbox": "panscan", "panscan": "letterbox", "nonlinear": "nonlinear", "scale": "bestfit"}
-			if path.exists("/proc/stb/video/policy_choices") and "auto" in open("/proc/stb/video/policy_choices").readline():
-				policy_choices.update({"auto": "auto"})
-			else:
-				policy_choices.update({"auto": "bestfit"})
+			if path.exists("/proc/stb/video/policy_choices"):
+				f = open("/proc/stb/video/policy_choices")
+				if "auto" in f.readline():
+					policy_choices.update({"auto": "auto"})
+				else:
+					policy_choices.update({"auto": "bestfit"})
+				f.close()
 			policy = policy_choices[config.av.policy_43.getValue()]
 			policy2_choices = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit"}
-			if path.exists("/proc/stb/video/policy2_choices") and "auto" in open("/proc/stb/video/policy2_choices").readline():
-				policy2_choices.update({"auto": "auto"})
-			else:
-				policy2_choices.update({"auto": "bestfit"})
+			if path.exists("/proc/stb/video/policy2_choices"):
+				f = open("/proc/stb/video/policy2_choices")
+				if "auto" in f.readline():
+					policy2_choices.update({"auto": "auto"})
+				else:
+					policy2_choices.update({"auto": "bestfit"})
+				f.close()
 			policy2 = policy2_choices[config.av.policy_169.getValue()]
 		elif is_auto:
 			aspect = "any"
@@ -380,11 +400,19 @@ class VideoHardware:
 			wss = "auto"
 
 		print "-> setting aspect, policy, policy2, wss", aspect, policy, policy2, wss
-		open("/proc/stb/video/aspect", "w").write(aspect)
-		open("/proc/stb/video/policy", "w").write(policy)
-		open("/proc/stb/denc/0/wss", "w").write(wss)
+		f = open("/proc/stb/video/aspect", "w")
+		f.write(aspect)
+		f.close()
+		f = open("/proc/stb/video/policy", "w")
+		f.write(policy)
+		f.close()
+		f = open("/proc/stb/denc/0/wss", "w")
+		f.write(wss)
+		f.close()
 		try:
-			open("/proc/stb/video/policy2", "w").write(policy2)
+			f = open("/proc/stb/video/policy2", "w")
+			f.write(policy2)
+			f.close()
 		except IOError:
 			pass
 

@@ -120,6 +120,7 @@ def saveResumePoints():
 	try:
 		f = open('/etc/enigma2/resumepoints.pkl', 'wb')
 		cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
+		f.close()
 	except Exception, ex:
 		print "[InfoBar] Failed to write resumepoints:", ex
 	resumePointCacheLast = int(time())
@@ -127,7 +128,10 @@ def saveResumePoints():
 def loadResumePoints():
 	import cPickle
 	try:
-		return cPickle.load(open('/etc/enigma2/resumepoints.pkl', 'rb'))
+		f = open('/etc/enigma2/resumepoints.pkl', 'rb')
+		file = f
+		f.close
+		return cPickle.load(file)
 	except Exception, ex:
 		print "[InfoBar] Failed to load resumepoints:", ex
 		return {}
@@ -135,11 +139,18 @@ def loadResumePoints():
 def ToggleVideo():
 	mode = open("/proc/stb/video/policy").read()[:-1]
 	if mode == "letterbox":
-		open("/proc/stb/video/policy", "w").write("panscan")
+		f = open(/proc/stb/video/policy", "w")
+		f.write("panscan")
+		f.close()		
 	elif mode == "panscan":
-		open("/proc/stb/video/policy", "w").write("letterbox")
+		f = open(/proc/stb/video/policy", "w")
+		f.write("letterbox")
+		f.close()		
 	else:
-		open("/proc/stb/video/policy", "w").write("panscan") # if current policy is not panscan or letterbox, set to panscan
+		# if current policy is not panscan or letterbox, set to panscan
+		f = open(/proc/stb/video/policy", "w")
+		f.write("panscan")
+		f.close()		
 
 resumePointCache = loadResumePoints()
 resumePointCacheLast = int(time())
@@ -1919,9 +1930,13 @@ class InfoBarSeek:
 		if not self.isSeekable():
 			SystemInfo["SeekStatePlay"] = False
 			if os.path.exists("/proc/stb/lcd/symbol_hdd"):
-				open("/proc/stb/lcd/symbol_hdd", "w").write("0")
+				f = open("/proc/stb/lcd/symbol_hdd", "w")
+				f.write("0")
+				f.close()				
 			if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):	
-				open("/proc/stb/lcd/symbol_hddprogress", "w").write("0")
+				f = open("/proc/stb/lcd/symbol_hddprogress", "w")
+				f.write("0")
+				f.close()				
 #			print "not seekable, return to play"
 			self["SeekActions"].setEnabled(False)
 			self.setSeekState(self.SEEK_STATE_PLAY)
@@ -2696,7 +2711,9 @@ class InfoBarTimeshift:
 		if ts and not ts.startTimeshift():
 			if (getBoxType() == 'vuuno' or getBoxType() == 'vuduo') and os.path.exists("/proc/stb/lcd/symbol_timeshift"):
 				if self.session.nav.RecordTimer.isRecording():
-					open("/proc/stb/lcd/symbol_timeshift", "w").write("0")
+					f = open("/proc/stb/lcd/symbol_timeshift", "w")
+					f.write("0")
+					f.close()
 			self.pts_starttime = time()
 			self.pts_LengthCheck_timer.start(120000)
 			self.timeshift_enabled = 1
@@ -3170,18 +3187,30 @@ class InfoBarTimeshift:
 		try:
 			if action == "start":
 				if os.path.exists("/proc/stb/fp/led_set_pattern"):
-					open("/proc/stb/fp/led_set_pattern", "w").write("0xa7fccf7a")
+					f = open("/proc/stb/fp/led_set_pattern", "w")
+					f.write("0xa7fccf7a")
+					f.close()
 				elif os.path.exists("/proc/stb/fp/led0_pattern"):
-					open("/proc/stb/fp/led0_pattern", "w").write("0x55555555")
+					f = open("/proc/stb/fp/led0_pattern", "w")
+					f.write("0x55555555")
+					f.close()
 				if os.path.exists("/proc/stb/fp/led_pattern_speed"):
-					open("/proc/stb/fp/led_pattern_speed", "w").write("20")
+					f = open("/proc/stb/fp/led_pattern_speed", "w")
+					f.write("20")
+					f.close()
 				elif os.path.exists("/proc/stb/fp/led_set_speed"):
-					open("/proc/stb/fp/led_set_speed", "w").write("20")
+					f = open("/proc/stb/fp/led_set_speed", "w")
+					f.write("20")
+					f.close()
 			elif action == "stop":
 				if os.path.exists("/proc/stb/fp/led_set_pattern"):
-					open("/proc/stb/fp/led_set_pattern", "w").write("0")
+					f = open("/proc/stb/fp/led_set_pattern", "w")
+					f.write("0")
+					f.close()
 				elif os.path.exists("/proc/stb/fp/led0_pattern"):
-					open("/proc/stb/fp/led0_pattern", "w").write("0")
+					f = open("/proc/stb/fp/led0_pattern", "w")
+					f.write("0")
+					f.close()
 		except Exception, errormsg:
 			print "[Timeshift] %s" % (errormsg)
 
@@ -4754,11 +4783,17 @@ class InfoBarAspectSelection:
 					self.ExGreen_toggleGreen()
 				else:
 					if aspect[1] == "letterbox":
-						open("/proc/stb/video/policy", "w").write("panscan")
+						f = open("/proc/stb/video/policy", "w")
+						f.write("panscan")
+						f.close()						
 					elif aspect[1] == "panscan":
-						open("/proc/stb/video/policy", "w").write("letterbox")
+						f = open("/proc/stb/video/policy", "w")
+						f.write("letterbox")
+						f.close()							
 					else:
-						open("/proc/stb/video/policy", "w").write(aspect[1])
+						f = open("/proc/stb/video/policy", "w")
+						f.write(aspect[1])
+						f.close()						
 					self.ExGreen_doHide()
 		else:
 			self.ExGreen_doHide()
@@ -4769,11 +4804,17 @@ class InfoBarResolutionSelection:
 		return
 
 	def resolutionSelection(self):
-
-		xresString = open("/proc/stb/vmpeg/0/xres", "r").read()
-		yresString = open("/proc/stb/vmpeg/0/yres", "r").read()
+		f = open("/proc/stb/vmpeg/0/xres", "r")
+		xresString = f.read()
+		f.close()		
+		f = open("/proc/stb/vmpeg/0/yres", "r")
+		yresString = f.read()
+		f.close()			
 		try:
-			fpsString = open("/proc/stb/vmpeg/0/framerate", "r").read()
+			f = open("/proc/stb/vmpeg/0/framerate", "r")
+			fpsString = f.read()
+			f.close()			
+			
 		except:
 			print"[InfoBarResolutionSelection] Error open /proc/stb/vmpeg/0/framerate !!"
 			fpsString = '50000'
@@ -4817,7 +4858,9 @@ class InfoBarResolutionSelection:
 				if Resolution[1] == "exit" or Resolution[1] == "" or Resolution[1] == "auto":
 					self.ExGreen_toggleGreen()
 				if Resolution[1] != "auto":
-					open("/proc/stb/video/videomode", "w").write(Resolution[1])
+					f = open(/proc/stb/video/videomode", "w")
+					f.write(Resolution[1])
+					f.close()					
 					#from enigma import gMainDC
 					#gMainDC.getInstance().setResolution(-1, -1)
 					self.ExGreen_doHide()
@@ -5335,7 +5378,9 @@ class InfoBarZoom:
 	def ZoomOff(self):
 		self.zoomrate = 0
 		self.zoomin = 1
-		open("/proc/stb/vmpeg/0/zoomrate", "w").write(str(0))
+		f = open("/proc/stb/vmpeg/0/zoomrate", "w")
+		f.write(str(0))
+		f.close()
 
 
 ###################################

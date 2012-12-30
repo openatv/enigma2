@@ -373,7 +373,10 @@ class PowerKey:
 			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			if os.path.exists("/tmp/was_rectimer_wakeup") and not self.session.nav.RecordTimer.isRecTimerWakeup():
-				wasRecTimerWakeup = int(open("/tmp/was_rectimer_wakeup", "r").read()) and True or False
+				f = open("/tmp/was_rectimer_wakeup", "r")
+				file = f.read()
+				f.close()
+				wasRecTimerWakeup = int(file) and True or False
 			if self.session.nav.RecordTimer.isRecTimerWakeup() or wasRecTimerWakeup:
 				print "PowerOff (timer wakewup) - Recording in progress or a timer about to activate, entering standby!"
 				self.standby()
@@ -647,7 +650,9 @@ if enigma.getBoxType() == 'ventonhdx':
 	try:
 		f = open("/proc/stb/fp/enable_clock", "r").readline()[:-1]
 		if f != '0':
-			open("/proc/stb/fp/enable_clock", "w").write('0')
+			f = open("/proc/stb/fp/enable_clock", "w")
+			f.write('0')
+			f.close()
 	except:
 		print "Error disable enable_clock for venton boxes"
 

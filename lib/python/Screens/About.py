@@ -272,6 +272,7 @@ class Devices(Screen):
 				self.list.append(mount +'\t'  + _('Not mounted'))
 
 			list2.append(device)
+		f.close()	
 		self.list = '\n'.join(self.list)
 		self["hdd"].setText(self.list)
 
