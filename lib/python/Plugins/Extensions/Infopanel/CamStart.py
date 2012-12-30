@@ -42,7 +42,7 @@ def command(comandline, strip=1):
 			for line in file:
 				text = text + line
 				if text[-1:] != '\n': text = text + "\n"
-		file.close
+		file.close()
 	# if one or last line then remove linefeed
 	if text[-1:] == '\n': text = text[:-1]
 	comandline = text
