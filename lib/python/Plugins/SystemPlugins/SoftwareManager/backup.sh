@@ -312,9 +312,10 @@ if [ $TYPE = "VU" ] ; then
 	else
 		mv $WORKDIR/root.jffs2 $MAINDEST/root_cfe_auto.jffs2
 	fi
+	echo vuplus-reboot > $MAINDEST/reboot.update
 	mv $WORKDIR/vmlinux.gz $MAINDEST/kernel_cfe_auto.bin
 	cp -r $MAINDEST $EXTRA #copy the made back-up to images
-	if [ -f $MAINDEST/root_cfe_auto.jffs2 -a -f $MAINDEST/kernel_cfe_auto.bin ] ; then
+	if [ -f $MAINDEST/root_cfe_auto.jffs2 -a -f $MAINDEST/kernel_cfe_auto.bin -a -f $MAINDEST/reboot.update ] ; then
 		echo "_________________________________________________\n"
 		echo "USB Image created on:" $MAINDEST
 		echo "and there is made an extra copy on:"
@@ -327,7 +328,7 @@ if [ $TYPE = "VU" ] ; then
 		echo "on the back of the VU+. Follow the instructions "
 		echo "on the front-display.\n"
 		echo "\nPlease wait...almost ready! "
-	elif [ -f $MAINDEST/root_cfe_auto.bin -a -f $MAINDEST/kernel_cfe_auto.bin ] ; then
+	elif [ -f $MAINDEST/root_cfe_auto.bin -a -f $MAINDEST/kernel_cfe_auto.bin -a -f $MAINDEST/reboot.update ] ; then
 		echo "_________________________________________________\n"
 		echo "USB Image created on:" $MAINDEST
 		echo "and there is made an extra copy on:"
