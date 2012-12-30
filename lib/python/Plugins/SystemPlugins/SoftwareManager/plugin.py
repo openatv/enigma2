@@ -386,10 +386,6 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.skin_path = skin_path
 		if self.skin_path == None:
 			self.skin_path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager")
-		try:
-			self.boxversion = tmp = open('/etc/image-version').readline()[9:-1]
-		except:
-			self.boxversion = 'Unknown'
 
 		self.onChangedEntry = [ ]
 		self.setup_title = _("Software manager setup")
@@ -434,7 +430,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.overwriteBootlogofilesEntry = getConfigListEntry(_("Overwrite Bootlogo Files ?"), config.plugins.softwaremanager.overwriteBootlogoFiles)
 		self.overwriteSpinnerfilesEntry = getConfigListEntry(_("Overwrite Spinner Files ?"), config.plugins.softwaremanager.overwriteSpinnerFiles)
 		self.updatetypeEntry  = getConfigListEntry(_("Select Software Update"), config.plugins.softwaremanager.updatetype)
-		if self.boxversion.upper()[:2] == 'ET': 
+		if getBoxType().startswith('et'): 
 			self.list.append(self.updatetypeEntry)
 		self.list.append(self.overwriteConfigfilesEntry)
 		self.list.append(self.overwriteSettingsfilesEntry)

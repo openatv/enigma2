@@ -148,7 +148,9 @@ def camstart(reason, **kwargs):
 	if not config.plugins.infopanel_frozencheck.list.getValue() == '0':
 		CamCheck()
 	try:
-		open("/proc/stb/video/alpha", "w").write(str(config.osd.alpha.getValue()))
+		f = open("/proc/stb/video/alpha", "w")
+		f.write(str(config.osd.alpha.getValue()))
+		f.close()	
 		if config.softcam.camstartMode.getValue() == "0":
 			global timerInstance
 			if timerInstance is None:

@@ -95,7 +95,6 @@ def getFPWasTimerWakeup():
 		file = f.read()
 		f.close()
 		wasTimerWakeup = int(file) and True or False
-		open("/tmp/was_timer_wakeup.txt", "w").write(str(wasTimerWakeup))
 		f = open("/tmp/was_timer_wakeup.txt", "w")
 		file = f.write(str(wasTimerWakeup))
 		f.close()
