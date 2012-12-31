@@ -27,6 +27,8 @@ from Screens.HelpMenu import HelpableScreen
 from Tools import NumericalTextInput
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_CURRENT_SKIN
 from Tools.BoundFunction import boundFunction
+
+import Tools.CopyFiles
 import Tools.Trashcan
 import NavigationInstance
 import RecordTimer
@@ -158,7 +160,6 @@ def moveServiceFiles(serviceref, dest, name=None, allowCopy=True):
 	movedList = []
 	try:
 		print "[MovieSelection] Moving in background..."
-		import Tools.CopyFiles
 		# start with the smaller files, do the big one later.
 		moveList.reverse()
 		if name is None:
@@ -176,7 +177,6 @@ def copyServiceFiles(serviceref, dest, name=None):
 	movedList = []
 	try:
 		print "[MovieSelection] Copying in background..."
-		import Tools.CopyFiles
 		# start with the smaller files, do the big one later.
 		moveList.reverse()
 		if name is None:
@@ -1653,7 +1653,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.purgeAll()
 			return
 		if current.flags & eServiceReference.mustDescent:
-			import CopyFiles
 			if cur_path.find('.Trash') == -1 and config.usage.movielist_trashcan.getValue():
 				try:
 					# Move the files to the trash can in a way that their CTIME is
@@ -1682,7 +1681,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						# already confirmed...
 						# but not implemented yet...
 						msg = ''
-						CopyFiles.deleteFiles(cur_path, name)
+						Tools.CopyFiles.deleteFiles(cur_path, name)
 						self["list"].removeService(current)
 						self.showActionFeedback(_("Deleted") + " " + name)
 						return
