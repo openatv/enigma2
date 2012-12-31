@@ -154,7 +154,9 @@ class VideoHardware:
 
 	def readAvailableModes(self):
 		try:
-			modes = open("/proc/stb/video/videomode_choices").read()[:-1]
+			f = open("/proc/stb/video/videomode_choices")
+			modes = f.read()[:-1]
+			f.close()
 		except IOError:
 			print "couldn't read available videomodes."
 			self.modes_available = [ ]

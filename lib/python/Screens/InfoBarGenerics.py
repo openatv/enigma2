@@ -126,10 +126,10 @@ def saveResumePoints():
 def loadResumePoints():
 	import cPickle
 	try:
-		f = open('/etc/enigma2/resumepoints.pkl', 'rb')
-		file = f
-		f.close
-		return cPickle.load(file)
+		file = open('/etc/enigma2/resumepoints.pkl', 'rb')
+		PickleFile = cPickle.load(file)
+		file.close()
+		return PickleFile
 	except Exception, ex:
 		print "[InfoBar] Failed to load resumepoints:", ex
 		return {}
