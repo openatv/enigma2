@@ -143,45 +143,53 @@ class LCD:
 				f.close()
 				
 	def setPower(self, value):
-		print 'setLCDPower',value
-		f = open("/proc/stb/lcd/vfd", "w")
-		f.write(value)
-		f.close()		
+		if fileExists("/proc/stb/lcd/vfd"):
+			print 'setLCDPower',value
+			f = open("/proc/stb/lcd/vfd", "w")
+			f.write(value)
+			f.close()		
 
 	def setShowoutputresolution(self, value):
-		print 'setLCDShowoutputresolution',value
-		f = open("/proc/stb/lcd/show_outputresolution", "w")
-		f.write(value)
-		f.close()		
+		if fileExists("/proc/stb/lcd/show_outputresolution"):
+			print 'setLCDShowoutputresolution',value
+			f = open("/proc/stb/lcd/show_outputresolution", "w")
+			f.write(value)
+			f.close()
+
 	def setRepeat(self, value):
-		print 'setLCDRepeat',value
-		f = open("/proc/stb/lcd/scroll_repeats", "w")
-		f.write(value)
-		f.close()
+		if fileExists("/proc/stb/lcd/scroll_repeats"):
+			print 'setLCDRepeat',value
+			f = open("/proc/stb/lcd/scroll_repeats", "w")
+			f.write(value)
+			f.close()
 
 	def setScrollspeed(self, value):
-		print 'setLCDScrollspeed',value
-		f = open("/proc/stb/lcd/scroll_delay", "w")
-		f.write(str(value))
-		f.close()
+		if fileExists("/proc/stb/lcd/scroll_delay"):
+			print 'setLCDScrollspeed',value
+			f = open("/proc/stb/lcd/scroll_delay", "w")
+			f.write(str(value))
+			f.close()
 
 	def setNormalstate(self, value):
-		print 'setLEDNormal',value
-		led_fd = open("/dev/dbox/oled0",'rw')
-		fcntl.ioctl(led_fd, self.LED_IOCTL_BRIGHTNESS_NORMAL, value)
-		led_fd.close()
+		if fileExists("/dev/dbox/oled0"):
+			print 'setLEDNormal',value
+			led_fd = open("/dev/dbox/oled0",'rw')
+			fcntl.ioctl(led_fd, self.LED_IOCTL_BRIGHTNESS_NORMAL, value)
+			led_fd.close()
 
 	def setDeepStandby(self, value):
-		print 'setLEDSeepStandby',value
-		led_fd = open("/dev/dbox/oled0",'rw')
-		fcntl.ioctl(led_fd, self.LED_IOCTL_BRIGHTNESS_DEEPSTANDBY, value)
-		led_fd.close()
+		if fileExists("/dev/dbox/oled0"):
+			print 'setLEDSeepStandby',value
+			led_fd = open("/dev/dbox/oled0",'rw')
+			fcntl.ioctl(led_fd, self.LED_IOCTL_BRIGHTNESS_DEEPSTANDBY, value)
+			led_fd.close()
 
 	def setBlinkingtime(self, value):
-		print 'setBlinking',value
-		led_fd = open("/dev/dbox/oled0",'rw')
-		fcntl.ioctl(led_fd, self.LED_IOCTL_BLINKING_TIME, value)
-		led_fd.close()
+		if fileExists("/dev/dbox/oled"):
+			print 'setBlinking',value
+			led_fd = open("/dev/dbox/oled0",'rw')
+			fcntl.ioctl(led_fd, self.LED_IOCTL_BLINKING_TIME, value)
+			led_fd.close()
 
 def leaveStandby():
 	config.lcd.bright.apply()
