@@ -668,7 +668,7 @@ class SoftcamPanel(ConfigListScreen, Screen):
 		f = open( Adir, "w" )
 		for x in softcamfile:
 			f.writelines(x + '\n')
-		f.close
+		f.close()
 
 		self.container = eConsoleAppContainer()
 		# Set execute rights

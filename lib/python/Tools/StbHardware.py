@@ -124,14 +124,4 @@ def clearFPWasTimerWakeup():
 		except IOError:
 			print "clearFPWasTimerWakeup failed!"
 
-def getBoxtype():
-	try:
-		lines = open('/etc/image-version', 'r').readlines()
-		boxtype = lines[0][:-1].split("=")[1]
-		lines.close()
-	except:
-		boxtype="not detected"
-
-	return boxtype
-
 boxtype = getBoxtype()

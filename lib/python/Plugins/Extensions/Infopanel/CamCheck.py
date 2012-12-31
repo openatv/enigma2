@@ -168,6 +168,8 @@ class CamCheckPoller:
                         line = line.split("=")
                         self.emuStop.append(line[1].strip())
 
+                em.close()
+
         camrunning = 0
         camfound = 0
         camfrozen = 0

@@ -115,6 +115,8 @@ class CamStart:
 							line = line.split("=")
 							self.emuStart.append(line[1].strip())
 
+					em.close()
+
 			camrunning = 0
 			camfound = 0
 			indexcam = -1
