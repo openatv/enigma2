@@ -1127,7 +1127,9 @@ def InitNimManager(nimmgr):
 
 	unicablelnbproducts = {}
 	unicablematrixproducts = {}
-	doc = xml.etree.cElementTree.parse(eEnv.resolve("${datadir}/enigma2/unicable.xml"))
+	file = open(eEnv.resolve("${datadir}/enigma2/unicable.xml"), 'r')
+	doc = xml.etree.cElementTree.parse(file)
+	file.close()
 	root = doc.getroot()
 
 	entry = root.find("lnb")

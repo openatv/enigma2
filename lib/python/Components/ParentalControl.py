@@ -231,9 +231,11 @@ class ParentalControl:
 		#I don't like to have two functions with identical code...
 		result = {}
 		try:
-			for x in open(resolveFilename(SCOPE_CONFIG, sWhichList ), 'r'):
+			file =  open(resolveFilename(SCOPE_CONFIG, sWhichList ), 'r')
+			for x in file:
 				sPlain = x.strip()
 				self.serviceMethodWrapper(sPlain, self.addServiceToList, result)
+			file.close()
 		except:
 			pass
 		return result
