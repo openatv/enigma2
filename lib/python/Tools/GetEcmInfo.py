@@ -23,7 +23,9 @@ class GetEcmInfo:
 
 	def getText(self):
 		try:
-			ecm = open(ECM_INFO, 'rb').readlines()
+			f = open(ECM_INFO, 'rb')
+			ecm = f.readlines()
+			f.close()
 			info = {}
 			for line in ecm:
 				d = line.split(':', 1)
