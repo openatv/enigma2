@@ -130,7 +130,7 @@ def loadResumePoints():
 	try:
 		f = open('/etc/enigma2/resumepoints.pkl', 'rb')
 		file = f
-		f.close
+		f.close()
 		return cPickle.load(file)
 	except Exception, ex:
 		print "[InfoBar] Failed to load resumepoints:", ex
