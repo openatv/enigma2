@@ -145,14 +145,24 @@ class FastScanScreen(ConfigListScreen, Screen):
 		self.setTitle(_("Fast Scan"))
 
 		self.providers = {}
-		self.providers['Canal Digitaal'] = (0, 900, True)
-		self.providers['TV Vlaanderen'] = (0, 910, True)
-		self.providers['TéléSAT'] = (0, 920, True)
-		self.providers['Mobistar NL'] = (0, 930, False)
-		self.providers['Mobistar FR'] = (0, 940, False)
-		self.providers['AustriaSat'] = (0, 950, False)
-		self.providers['Czech Republic'] = (1, 30, False)
-		self.providers['Slovak Republic'] = (1, 31, False)
+		
+		#hacky way
+		self.providers['Kontinent'] = (0, 900, True)
+		self.providers['Ntvplus'] = (0, 900, True)
+		self.providers['Raduga'] = (0, 900, True)
+		self.providers['Telekarta'] = (0, 900, True)
+		self.providers['Tricolor'] = (0, 900, True)
+		
+		#orgin
+		#self.providers['Canal Digitaal'] = (0, 900, True)
+		#self.providers['TV Vlaanderen'] = (0, 910, True)
+		#self.providers['TéléSAT'] = (0, 920, True)
+		#self.providers['Mobistar NL'] = (0, 930, False)
+		#self.providers['Mobistar FR'] = (0, 940, False)
+		#self.providers['AustriaSat'] = (0, 950, False)
+		#self.providers['Czech Republic'] = (1, 30, False)
+		#self.providers['Slovak Republic'] = (1, 31, False)
+
 
 		self.transponders = ((12515000, 22000000, eDVBFrontendParametersSatellite.FEC_5_6, 192,
 			eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.Inversion_Unknown,
@@ -171,6 +181,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 		}, -2)
 
 		nim_list = []
+
 		# collect all nims which are *not* set to "nothing"
 		for n in nimmanager.nim_slots:
 			if not n.isCompatible("DVB-S"):
@@ -185,16 +196,6 @@ class FastScanScreen(ConfigListScreen, Screen):
 
 		providerList = list(x[0] for x in sorted(self.providers.iteritems(), key = operator.itemgetter(1)))
 
-		try:					
-		  myscripts = os.listdir('/usr/lib/enigma2/python/Plugins/SystemPlugins/FastScan/xml')
-		  for fil in myscripts:
-		      if (fil.endswith('.xml') != -1):
-			  fil2 = fil[:-4]
-			  print fil2
-			  provider_list.append((fil2,  fil2.title()))
-		except:
-		  pass
-		
 		lastConfiguration = eval(config.misc.fastscan.last_configuration.value)
 		if not lastConfiguration:
 			lastConfiguration = (nim_list[0][0], providerList[0], True, True, False)
@@ -227,9 +228,6 @@ class FastScanScreen(ConfigListScreen, Screen):
 
 		self["introduction"] = Label(_("Select your provider, and press OK to start the scan"))
 
-
-                
-		
 
 	def addSatTransponder(self, tlist, frequency, symbol_rate, polarisation, fec, inversion, orbital_position, system, modulation, rolloff, pilot):
 		print "Add Sat: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(polarisation) + " fec: " + str(fec) + " inversion: " + str(inversion) + " modulation: " + str(modulation) + " system: " + str(system) + " rolloff" + str(rolloff) + " pilot" + str(pilot)
@@ -342,17 +340,14 @@ class FastScanScreen(ConfigListScreen, Screen):
 		self.session.open(ServiceScan, [{"transponders": tlist, "feid": int(self.scan_nims.getValue()), "flags": 0, "networkid": 0}])
 									
 	def keyGo(self):
-<<<<<<< HEAD
-		prov = self.scan_provider.getValue()
+		prov = self.scan_provider.value.lower()
 		if prov == "tricolor" or prov == "kontinent" or prov == "telekarta" or prov == "ntvplus" or prov == "raduga":
-		  self.readXML(self.scan_provider.getValue())
+		  self.readXML(self.scan_provider.value.lower())
 		else:
+		  config.misc.fastscan.last_configuration.value = `(self.scan_nims.value, self.scan_provider.value, self.scan_hd.value, self.scan_keepnumbering.value, self.scan_keepsettings.value)`
+		  config.misc.fastscan.save()
 		  self.startScan()
-=======
-		config.misc.fastscan.last_configuration.value = `(self.scan_nims.value, self.scan_provider.value, self.scan_hd.value, self.scan_keepnumbering.value, self.scan_keepsettings.value)`
-		config.misc.fastscan.save()
-		self.startScan()
->>>>>>> c94c5683df6f287c66f300a793f88e36ed64622d
+
 
 	def getTransponderParameters(self, number):
 		transponderParameters = eDVBFrontendParametersSatellite()
