@@ -1471,7 +1471,9 @@ class UpdatePlugin(Screen):
 		imageDate = date(int(tmpdate[0:4]), int(tmpdate[5:7]), int(tmpdate[8:10]))
 		datedelay = imageDate +  timedelta(days=30)
 		if os.path.exists("/usr/share/misc/.update"):
-			self.updatecounter = int(open("/usr/share/misc/.update","r").readline()[:-1])
+			f = open("/usr/share/misc/.update","r")
+			self.updatecounter = int(f.readline()[:-1])
+			f.close()
 
 			if self.updatecounter > 14:
 				print"[SOFTWAREMANAGER] Your image is to old (to much online updates), you need to flash new !!"
@@ -1646,7 +1648,9 @@ class UpdatePlugin(Screen):
 	def exit(self):
 		if not self.ipkg.isRunning():
 			if self.packages != 0 and self.error == 0:
-				open("/usr/share/misc/.update","w").writelines(str(self.updatecounter+1) + "\n")
+				f = open("/usr/share/misc/.update","w")
+				f.writelines(str(self.updatecounter+1) + "\n")
+				f.close()
 				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your STB_BOX?"))
 			else:
 				self.close()
