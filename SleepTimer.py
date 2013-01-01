@@ -10,7 +10,7 @@ from Screens.MessageBox import MessageBox
 import Screens.Standby
 
 config.SleepTimer = ConfigSubsection()
-config.SleepTimer.ask = ConfigYesNo(default = True)
+config.SleepTimer.ask = ConfigYesNo(default = False)
 config.SleepTimer.action = ConfigSelection(default = "shutdown", choices = [("shutdown", _("shutdown")), ("standby", _("standby"))])
 
 class SleepTimerEntry(timer.TimerEntry):
