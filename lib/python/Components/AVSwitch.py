@@ -97,9 +97,11 @@ def InitAVSwitch():
 	"panscan": _("Pan&scan"),
 	# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 	"scale": _("Just scale")}
-	if os.path.exists("/proc/stb/video/policy2_choices") and "auto" in open("/proc/stb/video/policy2_choices").readline():
-		# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
-		policy2_choices.update({"auto": _("Auto")})
+	if os.path.exists("/proc/stb/video/policy2_choices"):
+		f = open("/proc/stb/video/policy2_choices")
+		if "auto" in f.readline():
+			# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
+			policy2_choices.update({"auto": _("Auto")})
 	config.av.policy_169 = ConfigSelection(choices=policy2_choices, default = "letterbox")
 	policy_choices = {
 	# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
@@ -110,9 +112,12 @@ def InitAVSwitch():
 	"nonlinear": _("Nonlinear"),
 	# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 	"scale": _("Just scale")}
-	if os.path.exists("/proc/stb/video/policy_choices") and "auto" in open("/proc/stb/video/policy_choices").readline():
-		# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
-		policy_choices.update({"auto": _("Auto")})
+	if os.path.exists("/proc/stb/video/policy_choices"):
+		f = open("/proc/stb/video/policy_choices")
+		if "auto" in f.readline():
+			# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
+			policy_choices.update({"auto": _("Auto")})
+		f.close()
 	config.av.policy_43 = ConfigSelection(choices=policy_choices, default = "pillarbox")
 	config.av.tvsystem = ConfigSelection(choices = {"pal": _("PAL"), "ntsc": _("NTSC"), "multinorm": _("multinorm")}, default="pal")
 	config.av.wss = ConfigEnableDisable(default = True)
@@ -147,14 +152,19 @@ def InitAVSwitch():
 	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
 
 	try:
-		can_downmix = open("/proc/stb/audio/ac3_choices", "r").read()[:-1].find("downmix") != -1
+		f = open("/proc/stb/audio/ac3_choices", "r")
+		file = f.read()[:-1]
+		f.close()
+		can_downmix = file.find("downmix") != -1
 	except:
 		can_downmix = False
 
 	SystemInfo["CanDownmixAC3"] = can_downmix
 	if can_downmix:
 		def setAC3Downmix(configElement):
-			open("/proc/stb/audio/ac3", "w").write(configElement.value and "downmix" or "passthrough")
+			f = open("/proc/stb/audio/ac3", "w")
+			f.write(configElement.value and "downmix" or "passthrough")
+			f.close()
 		config.av.downmix_ac3 = ConfigYesNo(default = True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
 
@@ -163,8 +173,12 @@ def InitAVSwitch():
 			myval = int(config.getValue())
 			try:
 				print "--> setting scaler_sharpness to: %0.8X" % myval
-				open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w").write("%0.8X" % myval)
-				open("/proc/stb/vmpeg/0/pep_apply", "w").write("1")
+				f = open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w")
+				f.write("%0.8X" % myval)
+				f.close()
+				f = open("/proc/stb/vmpeg/0/pep_apply", "w")
+				f.write("1")
+				f.close()
 			except IOError:
 				print "couldn't write pep_scaler_sharpness"
 

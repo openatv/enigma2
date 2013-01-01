@@ -16,6 +16,7 @@ def getProcMounts():
 		mounts = open("/proc/mounts", 'r')
 		result = []
 		tmp = [line.strip().split(' ') for line in mounts]
+		mounts.close()
 		for item in tmp:
 			# Spaces are encoded as \040 in mounts
 			item[1] = item[1].replace('\\040', ' ')
@@ -27,7 +28,10 @@ def getProcMounts():
 
 def isFileSystemSupported(filesystem):
 	try:
-		for fs in open('/proc/filesystems', 'r'):
+		f = open('/proc/filesystems', 'r')
+		file = f
+		f.close()
+		for fs in file:
 			if fs.strip().endswith(filesystem):
 				return True
 		return False
@@ -240,9 +244,9 @@ class Harddisk:
 		try:
 			fstab = open("/etc/fstab")
 			lines = fstab.readlines()
+			fstab.close()
 		except IOError:
 			return -1
-		fstab.close()
 		for line in lines:
 			parts = line.strip().split(" ")
 			fspath = os.path.realpath(parts[0])
@@ -449,7 +453,9 @@ class Harddisk:
 	# we set the hdd into standby.
 	def readStats(self):
 		try:
-			l = open("/sys/block/%s/stat" % self.device).read()
+			f = open("/sys/block/%s/stat" % self.device)
+			l = f.read()
+			f.close()
 		except IOError:
 			return -1,-1
 		data = l.split(None,5)

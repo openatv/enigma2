@@ -42,7 +42,9 @@ def addSkin(name, scope = SCOPE_SKIN):
 	filename = resolveFilename(scope, name)
 	if fileExists(filename):
 		mpath = os.path.dirname(filename) + "/"
-		dom_skins.append((mpath, xml.etree.cElementTree.parse(filename).getroot()))
+		file = open(filename, 'r')
+		dom_skins.append((mpath, xml.etree.cElementTree.parse(file).getroot()))
+		file.close()
 		return True
 	return False
 

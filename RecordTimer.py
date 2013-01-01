@@ -127,14 +127,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def freespace(self):
 		try:
-			if not self.dirname:
-				dirname = findSafeRecordPath(defaultMoviePath())
-			else:
-				dirname = findSafeRecordPath(self.dirname)
-				if dirname is None:
-					dirname = findSafeRecordPath(defaultMoviePath())
-					self.dirnameHadToFallback = True
-			s = os.statvfs(dirname)
+			if not self.MountPath:
+				return False
+			s = os.statvfs(self.MountPath)
 			if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
 				self.log(0, "Not enough free space to record")
 				return False
@@ -167,6 +162,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			filename = ASCIItranslit.legacyEncode(filename)
 
 
+		self.MountPath = None
 		if not self.dirname:
 			dirname = findSafeRecordPath(defaultMoviePath())
 		else:
@@ -176,6 +172,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.dirnameHadToFallback = True
 		if not dirname:
 			return None
+		self.MountPath = dirname
 		self.Filename = Directories.getRecordingFilename(filename, dirname)
 		self.log(0, "Filename calculated as: '%s'" % self.Filename)
 		return self.Filename
@@ -591,7 +588,9 @@ class RecordTimer(timer.Timer):
 		if not Directories.fileExists(self.Filename):
 			return
 		try:
-			doc = xml.etree.cElementTree.parse(self.Filename)
+			file = open(self.Filename, 'r')
+			doc = xml.etree.cElementTree.parse(file)
+			file.close()
 		except SyntaxError:
 			from Tools.Notifications import AddPopup
 			from Screens.MessageBox import MessageBox

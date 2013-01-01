@@ -400,7 +400,9 @@ class PowerTimer(timer.Timer):
 		if not Directories.fileExists(self.Filename):
 			return
 		try:
-			doc = xml.etree.cElementTree.parse(self.Filename)
+			file = open(self.Filename, 'r')
+			doc = xml.etree.cElementTree.parse(file)
+			file.close()
 		except SyntaxError:
 			from Tools.Notifications import AddPopup
 			from Screens.MessageBox import MessageBox

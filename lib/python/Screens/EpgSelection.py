@@ -1398,12 +1398,8 @@ class EPGSelection(Screen, HelpableScreen):
 					switchto = ServiceReference(ref.ref)
 					switchto = str(switchto)
 					if not switchto == currch:
-						if ref and switchto.find('alternatives') != -1:
-							self.zapFunc(ref.ref)
-							self.close(False)
-						else:
-							self.zapFunc(ref.ref)
-							self.refreshTimer.start(10000)
+						self.zapFunc(ref.ref)
+						self.refreshTimer.start(10000)
 					else:
 						self.close('close')
 		elif self.type == EPG_TYPE_SINGLE:
