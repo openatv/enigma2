@@ -57,6 +57,7 @@ def readKeymap(filename):
 	except:
 		raise KeymapError("keymap %s not well-formed." % filename)
 
+	source.close()
 	keymap = dom.getroot()
 
 	for cmap in keymap.findall("map"):

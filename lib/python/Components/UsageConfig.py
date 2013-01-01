@@ -3,6 +3,7 @@ from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, Confi
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv
 from Components.NimManager import nimmanager
+from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
 import os
 import enigma
@@ -706,11 +707,3 @@ def preferredInstantRecordPath():
 
 def defaultMoviePath():
 	return config.usage.default_path.getValue()
-
-def refreshServiceList(configElement = None):
-		from Screens.InfoBar import InfoBar
-		InfoBarInstance = InfoBar.instance
-		if InfoBarInstance is not None:
-			servicelist = InfoBarInstance.servicelist
-			if servicelist:
-				servicelist.setMode()

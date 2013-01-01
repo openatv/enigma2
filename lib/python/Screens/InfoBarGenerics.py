@@ -118,6 +118,7 @@ def saveResumePoints():
 	try:
 		f = open('/etc/enigma2/resumepoints.pkl', 'wb')
 		cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
+		f.close()
 	except Exception, ex:
 		print "[InfoBar] Failed to write resumepoints:", ex
 	resumePointCacheLast = int(time())
@@ -125,7 +126,10 @@ def saveResumePoints():
 def loadResumePoints():
 	import cPickle
 	try:
-		return cPickle.load(open('/etc/enigma2/resumepoints.pkl', 'rb'))
+		file = open('/etc/enigma2/resumepoints.pkl', 'rb')
+		PickleFile = cPickle.load(file)
+		file.close()
+		return PickleFile
 	except Exception, ex:
 		print "[InfoBar] Failed to load resumepoints:", ex
 		return {}
@@ -2245,7 +2249,9 @@ class InfoBarTimeshift:
 		if ts and not ts.startTimeshift():
 			if (getBoxType() == 'vuuno' or getBoxType() == 'vuduo') and os.path.exists("/proc/stb/lcd/symbol_timeshift"):
 				if self.session.nav.RecordTimer.isRecording():
-					open("/proc/stb/lcd/symbol_timeshift", "w").write("0")
+					f = open("/proc/stb/lcd/symbol_timeshift", "w")
+					f.write("0")
+					f.close()
 			self.pts_starttime = time()
 			self.pts_LengthCheck_timer.start(120000)
 			self.timeshift_enabled = 1
@@ -2666,18 +2672,30 @@ class InfoBarTimeshift:
 		try:
 			if action == "start":
 				if os.path.exists("/proc/stb/fp/led_set_pattern"):
-					open("/proc/stb/fp/led_set_pattern", "w").write("0xa7fccf7a")
+					f = open("/proc/stb/fp/led_set_pattern", "w")
+					f.write("0xa7fccf7a")
+					f.close()
 				elif os.path.exists("/proc/stb/fp/led0_pattern"):
-					open("/proc/stb/fp/led0_pattern", "w").write("0x55555555")
+					f = open("/proc/stb/fp/led0_pattern", "w")
+					f.write("0x55555555")
+					f.close()
 				if os.path.exists("/proc/stb/fp/led_pattern_speed"):
-					open("/proc/stb/fp/led_pattern_speed", "w").write("20")
+					f = open("/proc/stb/fp/led_pattern_speed", "w")
+					f.write("20")
+					f.close()
 				elif os.path.exists("/proc/stb/fp/led_set_speed"):
-					open("/proc/stb/fp/led_set_speed", "w").write("20")
+					f = open("/proc/stb/fp/led_set_speed", "w")
+					f.write("20")
+					f.close()
 			elif action == "stop":
 				if os.path.exists("/proc/stb/fp/led_set_pattern"):
-					open("/proc/stb/fp/led_set_pattern", "w").write("0")
+					f = open("/proc/stb/fp/led_set_pattern", "w")
+					f.write("0")
+					f.close()
 				elif os.path.exists("/proc/stb/fp/led0_pattern"):
-					open("/proc/stb/fp/led0_pattern", "w").write("0")
+					f = open("/proc/stb/fp/led0_pattern", "w")
+					f.write("0")
+					f.close()
 		except Exception, errormsg:
 			print "[Timeshift] %s" % (errormsg)
 
@@ -4428,11 +4446,13 @@ class InfoBarZoom:
 	def ZoomOff(self):
 		self.zoomrate = 0
 		self.zoomin = 1
+
 		try:
-		  open("/proc/stb/vmpeg/0/zoomrate", "w").write(str(0))
+		  f = open("/proc/stb/vmpeg/0/zoomrate", "w")
+		  f.write(str(0))
+		  f.close()
 		except:
 		  pass
-
 
 
 ###################################

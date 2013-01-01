@@ -42,9 +42,13 @@ class IconCheckPoller:
 				LinkState = open('/sys/class/net/eth0/carrier').read()
 		LinkState = LinkState[:1]
 		if fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.getValue() == '1':
-			open("/proc/stb/lcd/symbol_network", "w").write(str(LinkState))
+			f = open("/proc/stb/lcd/symbol_network", "w")
+			f.write(str(LinkState))
+			f.close()
 		elif fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.getValue() == '0':
-			open("/proc/stb/lcd/symbol_network", "w").write('0')
+			f = open("/proc/stb/lcd/symbol_network", "w")
+			f.write('0')
+			f.close()
 
 		USBState = 0
 		busses = usb.busses()
@@ -59,9 +63,13 @@ class IconCheckPoller:
 # 						print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
 					USBState = 1
 		if fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.getValue() == '1':
-			open("/proc/stb/lcd/symbol_usb", "w").write(str(USBState))
+			f = open("/proc/stb/lcd/symbol_usb", "w")
+			f.write(str(USBState))
+			f.close()
 		elif fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.getValue() == '0':
-			open("/proc/stb/lcd/symbol_usb", "w").write('0')
+			f = open("/proc/stb/lcd/symbol_usb", "w")
+			f.write('0')
+			f.close()
 
 		self.timer.startLongTimer(30)
 
@@ -72,11 +80,7 @@ class LCD:
 	LED_IOCTL_SET_DEFAULT = 0X13
 
 	def __init__(self):
-		if getBoxType() == 'vuultimo':
-			self.led_fd = open("/dev/dbox/oled0",'rw')
-
-	def __del__(self):
-		self.led_fd.close()
+		pass
 
 	def setBright(self, value):
 		value *= 255
@@ -105,27 +109,39 @@ class LCD:
 
 	def setMode(self, value):
 		print 'setLCDMode',value
-		open("/proc/stb/lcd/show_symbols", "w").write(value)
+		f = open("/proc/stb/lcd/show_symbols", "w")
+		f.write(value)
+		f.close()
 
 	def setRepeat(self, value):
 		print 'setLCDRepeat',value
-		open("/proc/stb/lcd/scroll_repeats", "w").write(value)
+		f = open("/proc/stb/lcd/scroll_repeats", "w")
+		f.write(value)
+		f.close()
 
 	def setScrollspeed(self, value):
 		print 'setLCDScrollspeed',value
-		open("/proc/stb/lcd/scroll_delay", "w").write(str(value))
+		f = open("/proc/stb/lcd/scroll_delay", "w")
+		f.write(str(value))
+		f.close()
 
 	def setNormalstate(self, value):
 		print 'setLEDNormal',value
-		fcntl.ioctl(self.led_fd, self.LED_IOCTL_BRIGHTNESS_NORMAL, value)
+		led_fd = open("/dev/dbox/oled0",'rw')
+		fcntl.ioctl(led_fd, self.LED_IOCTL_BRIGHTNESS_NORMAL, value)
+		led_fd.close()
 
 	def setDeepStandby(self, value):
 		print 'setLEDSeepStandby',value
-		fcntl.ioctl(self.led_fd, self.LED_IOCTL_BRIGHTNESS_DEEPSTANDBY, value)
+		led_fd = open("/dev/dbox/oled0",'rw')
+		fcntl.ioctl(led_fd, self.LED_IOCTL_BRIGHTNESS_DEEPSTANDBY, value)
+		led_fd.close()
 
 	def setBlinkingtime(self, value):
 		print 'setBlinking',value
-		fcntl.ioctl(self.led_fd, self.LED_IOCTL_BLINKING_TIME, value)
+		led_fd = open("/dev/dbox/oled0",'rw')
+		fcntl.ioctl(led_fd, self.LED_IOCTL_BLINKING_TIME, value)
+		led_fd.close()
 
 def leaveStandby():
 	config.lcd.bright.apply()
@@ -215,7 +231,7 @@ def InitLcd():
 			config.lcd.repeat = ConfigNothing()
 			config.lcd.scrollspeed = ConfigNothing()
 
-		if getBoxType() == 'vuultimo':
+		if getBoxType() == 'vusolo2'or getBoxType() == 'vuultimo':
 			config.lcd.ledblinkingtime = ConfigSlider(default = 5, increment = 1, limits = (0,15))
 			config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime);
 			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default = 1, increment = 1, limits = (0,15))

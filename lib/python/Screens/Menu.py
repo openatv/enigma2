@@ -21,7 +21,9 @@ mainmenu = _("Main Menu")
 menutitle_string = ""
 
 # read the menu
-mdom = xml.etree.cElementTree.parse(resolveFilename(SCOPE_SKIN, 'menu.xml'))
+file = open(resolveFilename(SCOPE_SKIN, 'menu.xml'), 'r')
+mdom = xml.etree.cElementTree.parse(file)
+file.close()
 
 class boundFunction:
 	def __init__(self, fnc, *args):
