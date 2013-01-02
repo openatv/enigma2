@@ -164,7 +164,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 
 		lastConfiguration = eval(config.misc.fastscan.last_configuration.value)
 		if not lastConfiguration:
-			lastConfiguration = (nim_list[0][0], providerList[0], True, True, False)
+			lastConfiguration = (nimList[0][0], providerList[0], True, True, False)
 
 		self.scan_nims = ConfigSelection(default = lastConfiguration[0], choices = nimList)
 		self.scan_provider = ConfigSelection(default = lastConfiguration[1], choices = providerList)
