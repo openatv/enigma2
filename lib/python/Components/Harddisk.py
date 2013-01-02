@@ -28,12 +28,12 @@ def getProcMounts():
 
 def isFileSystemSupported(filesystem):
 	try:
-		f = open('/proc/filesystems', 'r')
-		file = f
-		f.close()
+		file = open('/proc/filesystems', 'r')
 		for fs in file:
 			if fs.strip().endswith(filesystem):
+				file.close()
 				return True
+		file.close()
 		return False
 	except Exception, ex:
 		print "[Harddisk] Failed to read /proc/filesystems:", ex
