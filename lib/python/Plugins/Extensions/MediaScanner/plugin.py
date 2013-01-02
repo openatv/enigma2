@@ -104,10 +104,11 @@ def movielist_open(list, session, **kwargs):
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
 	return [
-		Scanner(mimetypes = ["video/mpeg", "video/MP2T", "video/x-msvideo", "video/mkv"],
+		Scanner(mimetypes = ["video/mpeg", "video/MP2T", "video/x-msvideo", "video/mkv", "video/avi"],
 			paths_to_scan =
 				[
 					ScanPath(path = "", with_subdirs = False),
+					ScanPath(path = "movie", with_subdirs = False),
 				],
 			name = "Movie",
 			description = _("View Movies..."),
@@ -147,6 +148,7 @@ def Plugins(**kwargs):
 	return [
 		PluginDescriptor(name="Media scanner", description=_("Scan files..."), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = True, fnc=main),
 #		PluginDescriptor(where = PluginDescriptor.WHERE_MENU, fnc=menuHook),
+		PluginDescriptor(name=_("Media scanner"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
 		PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, needsRestart = True, fnc = sessionstart),
 		PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = True, fnc = autostart)
 		]
