@@ -26,7 +26,10 @@ def getEnigmaVersionString():
 
 def getKernelVersionString():
 	try:
-		return open("/proc/version","r").read().split(' ', 4)[2].split('-',2)[0]
+		f = open("/proc/version","r")
+		kernelversion = f.read().split(' ', 4)[2].split('-',2)[0]
+		f.close()
+		return kernelversion
 	except:
 		return _("unknown")
 
@@ -143,19 +146,20 @@ def getIfConfig(ifname):
 	return ifreq
 
 def getIfTransferredData(ifname):
-	for line in open('/proc/net/dev', 'r'):
+	f = open('/proc/net/dev', 'r')
+	for line in f:
 		if ifname in line:
 			data = line.split('%s:' % ifname)[1].split()
 			rx_bytes, tx_bytes = (data[0], data[8])
+			f.close()
 			return (rx_bytes, tx_bytes)
 
 def getChipSetString():
 	try:
-		if path.exists('/proc/stb/info/chipset'):
-			f = open('/proc/stb/info/chipset', 'r')
-			chipset = f.read()
-			f.close()
-			return chipset
+		f = open('/proc/stb/info/chipset', 'r')
+		chipset = f.read()
+		f.close()
+		return chipset
 	except IOError:
 		return "unavailable"
 
