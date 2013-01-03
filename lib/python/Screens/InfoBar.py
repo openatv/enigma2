@@ -48,7 +48,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			{
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
 				"showRadio": (self.showRadio, _("Show the radio player...")),
-				"showTv": (self.showTv, _("Show the tv player...")),
+				"showTv": (self.TvRadioToggle, _("Show the tv player...")),
 				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
 				"openTimerList": (self.openTimerList, _("Open Timer List...")),
 				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
@@ -61,6 +61,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 			}, prio=2)
 
+		self.radioTV = 0
 		self.allowPiP = True
 
 		for x in HelpableScreen, \
@@ -133,6 +134,20 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		elif config.usage.tvradiobutton_mode.getValue() == "BouquetList":
 			self.showTvChannelList(True)
 			self.servicelist.showFavourites()
+
+	def TvRadioToggle(self):
+		if enigma.getBoxType().startswith('gb'):
+			self.toogleTvRadio()
+		else:
+			self.showTv()
+
+	def toogleTvRadio(self): 
+		if self.radioTV == 1:
+			self.radioTV = 0
+			self.showTv() 
+		else: 
+			self.radioTV = 1
+			self.showRadio() 
 
 	def showTv(self):
 		if config.usage.tvradiobutton_mode.getValue() == "MovieList":
