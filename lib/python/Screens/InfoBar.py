@@ -149,7 +149,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.servicelist.showFavourites()
 
 	def TvRadioToggle(self):
-		if enigma.getBoxType().startswith'gb':
+		if enigma.getBoxType().startswith('gb'):
 			self.toogleTvRadio()
 		else:
 			self.showTv()
