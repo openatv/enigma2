@@ -7,6 +7,7 @@ class ServiceName(Converter, object):
 	NAME = 0
 	PROVIDER = 1
 	REFERENCE = 2
+	SID = 3
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -14,6 +15,8 @@ class ServiceName(Converter, object):
 			self.type = self.PROVIDER
 		elif type == "Reference":
 			self.type = self.REFERENCE
+		elif type == "Sid":
+			self.type = self.SID
 		else:
 			self.type = self.NAME
 
@@ -46,6 +49,17 @@ class ServiceName(Converter, object):
 				return ref.toString()
 			else:
 				return self.getServiceInfoValue(info, iServiceInformation.sServiceref, ref)
+		elif self.type == self.SID:
+			if str(ref) != 'None':
+				tmpref = ref.toString()
+			else:
+				tmpref = self.getServiceInfoValue(info, iServiceInformation.sServiceref, ref)
+
+			if tmpref:
+				refsplit = tmpref.split(':')
+				return refsplit[3]
+			else:
+				return 'N/A'
 
 	text = property(getText)
 
