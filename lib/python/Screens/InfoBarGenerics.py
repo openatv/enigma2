@@ -2780,7 +2780,7 @@ class InfoBarTimeshift:
 			# Let's try to copy the file in background now! This might take a while ...
 			if not timeshift_saved:
 				try:
-					stat = statvfs(config.usage.default_path.getValue())
+					stat = os.statvfs(config.usage.default_path.getValue())
 					freespace = stat.f_bfree / 1000 * stat.f_bsize / 1000
 					randomint = randint(1, 999)
 
