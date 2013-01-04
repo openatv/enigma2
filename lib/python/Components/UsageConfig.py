@@ -633,9 +633,9 @@ def InitUsageConfig():
 	config.epgselection.preview_mode_pliepg = ConfigYesNo(default = True)
 	config.epgselection.preview_mode_enhanced = ConfigYesNo(default = True)
 	if SystemInfo.get("NumVideoDecoders", 1) > 1:
-		config.epgselection.preview_mode_infobar = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fullscreen")), ("2", _("PiP"))], default = "1")
+		config.epgselection.preview_mode_infobar = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fulscreen")), ("2", _("PiP"))], default = "1")
 	else:
-		config.epgselection.preview_mode_infobar = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fullscreen"))], default = "1")
+		config.epgselection.preview_mode_infobar = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fulscreen"))], default = "1")
 	config.epgselection.preview_mode = ConfigYesNo(default = True)
 	config.epgselection.graphics_mode = ConfigSelection(choices = [("graphics",_("Graphics")), ("text", _("Text"))], default = "graphics")
 	config.epgselection.OK_multi = ConfigSelection(choices = [("EventView",_("EventView")),("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
