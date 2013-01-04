@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2013-01-03 18:26+0100\n"
-"Last-Translator: mike99\n"
+"PO-Revision-Date: 2013-01-04 02:43+0100\n"
+"Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: AAF\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -2834,6 +2834,20 @@ msgid "Done - Installed, upgraded or removed %d packages with %d errors"
 msgstr ""
 "Beendet - %d Pakete mit %d Fehlern installiert, aktualisiert oder entfernt"
 
+# neu 04.01.13 husky
+#, python-format
+msgid "Done - Installed, upgraded or removed %d package (%s)"
+msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
+msgstr[0] "Beendet - %d Paket (%s) installiert, aktualisiert oder entfernt."
+msgstr[1] "Beendet - %d Pakete (%s) installiert, aktualisiert oder entfernt."
+
+# neu 04.01.13 husky
+#, python-format
+msgid "with %d error"
+msgid_plural "with %d errors"
+msgstr[0] "mit %d Fehler"
+msgstr[1] "mit %d Fehlern"
+
 #
 msgid "Download"
 msgstr "Download"
@@ -4071,7 +4085,7 @@ msgstr "Neues Image mittels Web-Browser installieren"
 
 #
 msgid "Install extensions."
-msgstr "Erweiterungen installieren."
+msgstr "Erweiterungen installieren..."
 
 #
 msgid "Install local extension"
@@ -5397,7 +5411,7 @@ msgstr "Abspielen"
 
 #
 msgid "Play Audio-CD..."
-msgstr "Audio-CD abspielen"
+msgstr "Audio-CD abspielen..."
 
 #
 msgid "Play DVD"
@@ -5406,6 +5420,10 @@ msgstr "DVD abspielen"
 #
 msgid "Play Music..."
 msgstr "Musik abspielen..."
+
+# hinzu 04.01.13
+msgid "Play music..."
+msgstr "Musik abspielen"
 
 msgid "Play audio in background"
 msgstr "Audio im Hintergrund abspielen"
@@ -9156,13 +9174,17 @@ msgstr "Bildgröße"
 msgid "View"
 msgstr "Ansicht"
 
-#
-msgid "View Movies..."
+# hinzu  03.01.13 husky
+msgid "Watch movies..."
 msgstr "Filme ansehen"
 
-#
-msgid "View Photos..."
-msgstr "Fotos ansehen"
+# geändert 03.01.13 husky
+msgid "View Movies..."
+msgstr "Filme ansehen..."
+
+# geändert 03.01.13 husky
+msgid "View photos..."
+msgstr "Fotos ansehen..."
 
 #
 msgid "View Rass interactive..."
@@ -14023,3 +14045,7 @@ msgstr "History-Einstellungen"
 #
 msgid "Configure the function of the <  > buttons."
 msgstr "Einstellung der Funktion der < > Tasten."
+
+#
+msgid "IpkgInstaller"
+msgstr "Ipk Installieren"
