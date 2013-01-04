@@ -57,7 +57,10 @@ class ServiceName(Converter, object):
 
 			if tmpref:
 				refsplit = tmpref.split(':')
-				return refsplit[3]
+				if len(refsplit) >= 3: 
+					return refsplit[3]
+				else:
+					return tmpref
 			else:
 				return 'N/A'
 
