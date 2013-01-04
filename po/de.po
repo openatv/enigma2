@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2013-01-04 02:43+0100\n"
+"PO-Revision-Date: 2013-01-04 23:31+0100\n"
 "Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: AAF\n"
 "Language: de\n"
@@ -2009,6 +2009,11 @@ msgid "Configure the subtitle delay when timing information is not available."
 msgstr ""
 "Konfiguriere die Verzögerung für Untertitel wenn keine Informationen "
 "vorhanden sind."
+
+msgid "Configure an additional delay to improve subtitle synchronisation."
+msgstr ""
+"Konfiguriere eine zusätzliche Verzögerung, um die Sychronität der Untertitel "
+"zu verbessern."
 
 msgid "Configure the time of the stepskip on the '1'/'3'-keys"
 msgstr "Gewünschte Sprungzeit für '1'/'3'-Tasten"
@@ -5385,8 +5390,8 @@ msgstr "Telefonnummer"
 msgid "PiPSetup"
 msgstr "PiP-Einstellungen"
 
-msgid "Picture In Graphics (close EPG)"
-msgstr "Picture-In-Graphics (EPG schließen)"
+msgid "Picture in graphics"
+msgstr "Mini-TV Bild im grafischen EPG anzeigen"
 
 #
 msgid "PicturePlayer"
@@ -7682,7 +7687,27 @@ msgid "Subtitle settings"
 msgstr "Einstellungen Untertitel"
 
 msgid "Subtitle delay when timing lacks"
-msgstr "Verzögerung der Untertitel bei Timing-Problemen"
+msgstr "Verzögerung der Untertitel wenn das Timing fehlt"
+
+msgid "Subtitle delay when timing is bad"
+msgstr "Verzögerung der Untertitel bei schlechter Sychronität"
+
+msgid "Delay for external subtitles"
+msgstr "Verzögerung für externe Untertitel"
+
+msgid ""
+"Configure an additional delay to improve external subtitle synchronisation."
+msgstr ""
+"Konfiguriere eine zusätzliche Verzögerung, um die Sychronität der externen "
+"Untertitel zu verbessern."
+
+msgid "Set fps for external subtitles"
+msgstr "Bilder/Sekunde für externe Untertitel"
+
+msgid "Can be used for different fps between external subtitles and video."
+msgstr ""
+"Kann bei unterschiedlichen Bildern/Sekunde von externen Untertiteln und "
+"Video benutzt werden, um die Synchronität herzustellen."
 
 msgid "Subtitle language selection 1"
 msgstr "Untertitel-Sprachauswahl 1"
@@ -10043,7 +10068,7 @@ msgid "Zap"
 msgstr "Umschalten"
 
 msgid "Zap + Exit"
-msgstr "Zap + Verlassen"
+msgstr "Umschalten + Verlassen"
 
 #
 msgid "Zap back to previously tuned service?"
@@ -10822,7 +10847,7 @@ msgstr "Keine Speichergeräte gefunden"
 msgid "no timeout"
 msgstr "Kein Timeout"
 
-msgid "no transparency"
+msgid "No transparency"
 msgstr "Keine Transparenz"
 
 msgid "none"
@@ -10890,7 +10915,7 @@ msgstr "Kanalliste öffnen(nach unten)"
 msgid "open servicelist(up)"
 msgstr "Kanalliste öffnen(nach oben)"
 
-msgid "original"
+msgid "Original"
 msgstr "Original"
 
 #
@@ -12292,6 +12317,9 @@ msgstr "%02d.%02d. %02d:%02d"
 msgid "No Delay"
 msgstr "Keine Verzögerung"
 
+msgid "No delay"
+msgstr "Keine Verzögerung"
+
 msgid "1 second"
 msgstr "1 Sekunde"
 
@@ -12400,10 +12428,10 @@ msgstr "zentriert"
 msgid "Use DVB subtitles position"
 msgstr "DVB Untertitel Position"
 
-msgid "fixed"
+msgid "Fixed"
 msgstr "fixiert"
 
-msgid "relative"
+msgid "Relative"
 msgstr "relativ"
 
 msgid "DVD-Player Setup"
@@ -13680,7 +13708,7 @@ msgstr "Breite"
 
 #
 msgid "Timeline font size"
-msgstr "Timeline Schriftgröße"
+msgstr "Zeitskala Schriftgröße"
 
 #
 msgid "Service Title mode"
@@ -14049,3 +14077,19 @@ msgstr "Einstellung der Funktion der < > Tasten."
 #
 msgid "IpkgInstaller"
 msgstr "Ipk Installieren"
+
+#
+msgid "Fullscreen"
+msgstr "Vollbild"
+
+#
+msgid "Service Name"
+msgstr "Sendername"
+
+#
+msgid "Graphics"
+msgstr "Grafisch"
+
+#
+msgid "Picon and Service Name"
+msgstr "Picon und Sendername"
