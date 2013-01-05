@@ -8,6 +8,7 @@ from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.Network import iNetwork
 from Components.NimManager import nimmanager
+from Components.SystemInfo import SystemInfo
 
 from Screens.Screen import Screen
 from Screens.NetworkSetup import *
@@ -42,6 +43,7 @@ from Tools.LoadPixmap import LoadPixmap
 from os import path
 from time import sleep
 from re import search
+
 import NavigationInstance
 
 plugin_path_networkbrowser = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/NetworkBrowser")
@@ -177,15 +179,29 @@ class QuickMenu(Screen):
 		self.menu = 0
 		self.list = []
 		self.oldlist = []
-		self.list.append(QuickMenuEntryComponent("Network",_("Setup your local network"),_("Setup your local network. For Wlan you need to boot with a USB-Wlan stick")))
+		self.list.append(QuickMenuEntryComponent("Software Manager",_("Update/Backup/Restore your box"),_("Update/Backup your firmware, Backup/Restore settings")))
+		self.list.append(QuickMenuEntryComponent("Softcam",_("Start/stop/select cam"),_("Start/stop/select your cam, You need to install first a softcam")))
+		self.list.append(QuickMenuEntryComponent("System",_("System Setup"),_("Setup your System")))
 		self.list.append(QuickMenuEntryComponent("Mounts",_("Mount Setup"),_("Setup your mounts for network")))
+		self.list.append(QuickMenuEntryComponent("Network",_("Setup your local network"),_("Setup your local network. For Wlan you need to boot with a USB-Wlan stick")))
 		self.list.append(QuickMenuEntryComponent("AV Setup",_("Setup Videomode"),_("Setup your Video Mode, Video Output and other Video Settings")))
 		self.list.append(QuickMenuEntryComponent("Tuner Setup",_("Setup Tuner"),_("Setup your Tuner and search for channels")))
-		self.list.append(QuickMenuEntryComponent("Softcam",_("Start/stop/select cam"),_("Start/stop/select your cam, You need to install first a softcam")))
-		self.list.append(QuickMenuEntryComponent("Software Manager",_("Update/Backup/Restore your box"),_("Update/Backup your firmware, Backup/Restore settings")))
 		self.list.append(QuickMenuEntryComponent("Plugins",_("Download plugins"),_("Shows available pluigns. Here you can download and install them")))
 		self.list.append(QuickMenuEntryComponent("Harddisk",_("Harddisk Setup"),_("Setup your Harddisk")))
 		self["list"].l.setList(self.list)
+
+######## System Setup Menu ##############################
+	def Qsystem(self):
+		self.sublist = []
+		self.sublist.append(QuickSubMenuEntryComponent("Customise",_("Setup Enigma2"),_("Customise enigma2 personal settings")))
+		self.sublist.append(QuickSubMenuEntryComponent("OSD settings",_("Settings..."),_("Setup your OSD")))
+		self.sublist.append(QuickSubMenuEntryComponent("Button Setup",_("Button Setup"),_("Setup your remote buttons")))
+		if SystemInfo["FrontpanelDisplay"]:
+			self.sublist.append(QuickSubMenuEntryComponent("Display Settings",_("Display Setup"),_("Setup your display")))
+		self.sublist.append(QuickSubMenuEntryComponent("Channel selection",_("Channel selection configuration"),_("Setup your Channel selection configuration")))
+		self.sublist.append(QuickSubMenuEntryComponent("Recording settings",_("Recording Setup"),_("Setup your recording config")))
+		self.sublist.append(QuickSubMenuEntryComponent("EPG settings",_("EPG Setup"),_("Setup your EPG config")))
+		self["sublist"].l.setList(self.sublist)
 
 ######## Network Menu ##############################
 	def Qnetwork(self):
@@ -301,6 +317,9 @@ class QuickMenu(Screen):
 		if item[0] == _("Network"):
 			self.GetNetworkInterfaces()
 			self.Qnetwork()
+######## Select System Setup Menu ##############################
+		elif item[0] == _("System"):
+			self.Qsystem()
 ######## Select Mount Menu ##############################
 		elif item[0] == _("Mounts"):
 			self.Qmount()
@@ -364,6 +383,21 @@ class QuickMenu(Screen):
 			self.session.open(NetworkuShare)
 		elif item[0] == _("Telnet"):
 			self.session.open(NetworkTelnet)
+######## Select System Setup Menu ##############################
+		elif item[0] == _("Customise"):
+			self.openSetup("usage")
+		elif item[0] == _("Button Setup"):
+			self.openSetup("remotesetup")
+		elif item[0] == _("Display Settings"):
+			self.openSetup("lcd")
+		elif item[0] == _("OSD settings"):
+			self.openSetup("userinterface")
+		elif item[0] == _("Channel selection"):
+			self.openSetup("channelselection")
+		elif item[0] == _("Recording settings"):
+			self.openSetup("recording")
+		elif item[0] == _("EPG settings"):
+			self.openSetup("epgsettings")
 ######## Select Mounts Menu ##############################
 		elif item[0] == _("Mount Manager"):
 			self.session.open(AutoMountManager, None, plugin_path_networkbrowser)
