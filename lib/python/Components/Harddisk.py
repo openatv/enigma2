@@ -159,8 +159,8 @@ class Harddisk:
 			if self.device[:2] == "hd":
 				return readFile('/proc/ide/' + self.device + '/model')
 			elif self.device[:2] == "sd":
-				vendor = readFile(self.phys_path('/vendor'))
-				model = readFile(self.phys_path('/model'))
+				vendor = readFile(self.phys_path + '/vendor')
+				model = readFile(self.phys_path + '/model')
 				return vendor + '(' + model + ')'
 			else:
 				raise Exception, "no hdX or sdX"
