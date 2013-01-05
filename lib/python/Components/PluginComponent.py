@@ -62,9 +62,10 @@ class PluginComponent:
 									print_exc()
 									break
 							else:
-								print "Plugin probably removed, but not cleanly in", path
-								print "trying to remove:", path
-								rmtree(path)
+								if not pluginname == "WebInterface":
+									print "Plugin probably removed, but not cleanly in", path
+									print "trying to remove:", path
+									rmtree(path)
 							continue
 
 						# allow single entry not to be a list
