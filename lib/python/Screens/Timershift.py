@@ -1,4 +1,5 @@
 from Screens.Screen import Screen
+from Screens.Setup import setupdom
 from Screens.LocationBox import TimeshiftLocationBox
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
@@ -57,7 +58,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		self["config"].setList(list)
 
 	def refill(self, list):
-		xmldata = self.setupdom.getroot()
+		xmldata = setupdom().getroot()
 		for x in xmldata.findall("setup"):
 			if x.get("key") != self.setup:
 				continue
@@ -67,10 +68,6 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		setupfile = file(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
-		self.setupdom = xml.etree.cElementTree.parse(setupfile)
-		setupfile.close()
-
 		self.skinName = "Setup"
 		self['footnote'] = Label()
 		self["HelpWindow"] = Pixmap()
