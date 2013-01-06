@@ -1,5 +1,5 @@
 from Screen import Screen
-from Screens.Setup import getConfigMenuItem, Setup
+from Screens.Setup import Setup
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
@@ -450,7 +450,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		},-2)
 
 	def changedEntry(self):
-		if self["config"].getCurrent() in [getConfigMenuItem("config.subtitles.pango_subtitles_delay"),getConfigMenuItem("config.subtitles.pango_subtitles_fps")]:
+		if self["config"].getCurrent()[0] in [findSetupText("config.subtitles.pango_subtitles_delay"),findSetupText("config.subtitles.pango_subtitles_fps")]:
 			self.wait.start(500, True)
 
 	def resyncSubtitles(self):
