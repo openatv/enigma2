@@ -932,6 +932,10 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		sat_max = 1618;
 		ret = ((snr * sat_max) / 100);
 	}
+    else if (!strcmp(m_description, "BCM7346 (internal)")) // MaxDigital XP1000
+	{
+		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1880) + 0.1959) * 100);
+	}
 	else if (!strcmp(m_description, "Genpix"))
 	{
 		ret = (int)((snr << 1) / 5);
@@ -950,26 +954,6 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		case eDVBFrontendParametersCable::Modulation_QAM128: ret = (int)(-875 * log(((double)mse) / 650)); break;
 		default: break;
 		}
-	}
-	else if (!strcmp(m_description, "DVB-S2 NIM")) // Venton DVB-S2 NIM
-	{
-		sat_max = 1618;
-		ret = ((snr * sat_max) / 100);
-	}
-	else if (!strcmp(m_description, "DVB-T NIM")) // Venton DVB-T NIM
-	{
-		sat_max = 1618;
-		ret = ((snr * sat_max) / 100);
-		}
-	else if (!strcmp(m_description, "DVB-T2 NIM")) // Venton DVB-T2 NIM
-	{
-		sat_max = 1618;
-		ret = ((snr * sat_max) / 100);
-	}
-	else if (!strcmp(m_description, "DVB-C NIM")) // Venton DVB-C NIM
-	{
-		sat_max = 1618;
-		ret = ((snr * sat_max) / 100);
 	}
 
 	signalqualitydb = ret;
