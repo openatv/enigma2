@@ -1,3 +1,4 @@
+#include <fcntl.h>
 #include <lib/dvb/idvb.h>
 #include <dvbsi++/descriptor_tag.h>
 #include <dvbsi++/service_descriptor.h>
