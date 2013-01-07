@@ -51,7 +51,9 @@ class PositionerSetup(Screen):
 			<widget name="lock_state" position="70,340" size="150,22" font="Regular;20" foregroundColor="white"/>
 			<widget name="snr_bar" position="70,290" size="150,22" foregroundColor="white"/>
 			<widget name="ber_bar" position="70,315" size="150,22" foregroundColor="white"/>
-
+			<eLabel text="FEC:" position="10,365" size="60,22" font="Regular;20" foregroundColor="white"/>
+			<widget name="fec_value" position="70,365" size="150,22" font="Regular;20" foregroundColor="white"/>
+			
 			<eLabel text="Frequency:" position="320,290" size="120,22" font="Regular;20" foregroundColor="white"/>
 			<eLabel text="Polarisation:" position="320,315" size="120,22" font="Regular;20" foregroundColor="white"/>
 			<eLabel text="Symbol rate:" position="320,340" size="120,22" font="Regular;20" foregroundColor="white"/>
