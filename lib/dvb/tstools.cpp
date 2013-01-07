@@ -429,7 +429,13 @@ void eDVBTSTools::calcBegin()
 		// Just ask streaminfo
 		if (m_streaminfo.getFirstFrame(m_offset_begin, m_pts_begin) == 0)
 		{
-			eDebug("[@ML] m_streaminfo.getFirstFrame returned %llu, %llu", m_offset_begin, m_pts_begin);
+			off_t begin = m_offset_begin;
+			pts_t pts = m_pts_begin;
+			if (m_streaminfo.fixupPTS(begin, pts) == 0)
+			{
+				eDebug("[@ML] m_streaminfo.getLastFrame returned %llu, %llu (%us), fixup to: %llu, %llu (%us)",
+				       m_offset_begin, m_pts_begin, (unsigned int)(m_pts_begin/90000), begin, pts, (unsigned int)(pts/90000));
+			}
 			m_begin_valid = 1;
 		}
 		else
@@ -441,6 +447,14 @@ void eDVBTSTools::calcBegin()
 				m_futile = 1;
 		}
 	}
+}
+
+static pts_t pts_diff(pts_t low, pts_t high)
+{
+	high -= low;
+	if (high < 0)
+		high += 0x200000000LL;
+	return high;
 }
 
 void eDVBTSTools::calcEnd()
@@ -468,7 +482,13 @@ void eDVBTSTools::calcEnd()
 	{
 		if (m_streaminfo.getLastFrame(m_offset_end, m_pts_end) == 0)
 		{
-			//eDebug("[@ML] m_streaminfo.getLastFrame returned %llu, %llu", m_offset_end, m_pts_end);
+			m_pts_length = m_pts_end;
+			end = m_offset_end;
+			if (m_streaminfo.fixupPTS(end, m_pts_length) != 0)
+			{
+				/* Not enough structure info, estimate */
+				m_pts_length = pts_diff(m_pts_begin, m_pts_end);
+			}
 			m_end_valid = 1;
 		}
 		else
@@ -490,7 +510,10 @@ void eDVBTSTools::calcEnd()
 				off_t off = m_offset_end;
 
 				if (!getPTS(m_offset_end, m_pts_end))
+				{
+					m_pts_length = pts_diff(m_pts_begin, m_pts_end);
 					m_end_valid = 1;
+				}
 				else
 					m_offset_end = off;
 
@@ -515,24 +538,15 @@ int eDVBTSTools::calcLen(pts_t &len)
 	calcBeginAndEnd();
 	if (!(m_begin_valid && m_end_valid))
 		return -1;
-	len = m_pts_end - m_pts_begin;
-		/* wrap around? */
-	if (len < 0)
-		len += 0x200000000LL;
+	len = m_pts_length;
 	return 0;
 }
 
 int eDVBTSTools::calcBitrate()
 {
-	calcBeginAndEnd();
-	if (!(m_begin_valid && m_end_valid))
+	pts_t len_in_pts;
+	if (calcLen(len_in_pts) != 0)
 		return -1;
-
-	pts_t len_in_pts = m_pts_end - m_pts_begin;
-
-		/* wrap around? */
-	if (len_in_pts < 0)
-		len_in_pts += 0x200000000LL;
 	off_t len_in_bytes = m_offset_end - m_offset_begin;
 	
 	if (!len_in_pts)

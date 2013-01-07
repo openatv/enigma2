@@ -912,27 +912,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1244) + 2.5079) * 100);
 	}
-	else if (!strcmp(m_description, "DVB-S2 NIM")) // Venton DVB-S2 NIM
-	{
-    	sat_max = 1618;
-		ret = ((snr * sat_max) / 100);
-	} 
-	else if (!strcmp(m_description, "DVB-T NIM")) // Venton DVB-T NIM
-	{
-		sat_max = 1618;
-		ret = ((snr * sat_max) / 100);
-	}
-	else if (!strcmp(m_description, "DVB-T2 NIM")) // Venton DVB-T2 NIM
-	{
-		sat_max = 1618;
-		ret = ((snr * sat_max) / 100);
-	}
-	else if (!strcmp(m_description, "DVB-C NIM")) // Venton DVB-C NIM
-	{
-		sat_max = 1618;
-		ret = ((snr * sat_max) / 100);
-	}
-    else if (!strcmp(m_description, "BCM7346 (internal)")) // MaxDigital XP1000
+	else if (!strcmp(m_description, "BCM7346 (internal)")) // MaxDigital XP1000
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1880) + 0.1959) * 100);
 	}
@@ -954,6 +934,26 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		case eDVBFrontendParametersCable::Modulation_QAM128: ret = (int)(-875 * log(((double)mse) / 650)); break;
 		default: break;
 		}
+	}
+	else if (!strcmp(m_description, "DVB-S2 NIM")) // Venton DVB-S2 NIM
+	{
+		sat_max = 1618;
+		ret = ((snr * sat_max) / 100);
+	}
+	else if (!strcmp(m_description, "DVB-T NIM")) // Venton DVB-T NIM
+	{
+		sat_max = 1618;
+		ret = ((snr * sat_max) / 100);
+		}
+	else if (!strcmp(m_description, "DVB-T2 NIM")) // Venton DVB-T2 NIM
+	{
+		sat_max = 1618;
+		ret = ((snr * sat_max) / 100);
+	}
+	else if (!strcmp(m_description, "DVB-C NIM")) // Venton DVB-C NIM
+	{
+		sat_max = 1618;
+		ret = ((snr * sat_max) / 100);
 	}
 
 	signalqualitydb = ret;
@@ -988,51 +988,59 @@ int eDVBFrontend::readFrontendData(int type)
 	switch(type)
 	{
 		case iFrontendInformation_ENUMS::bitErrorRate:
-		{
-			uint32_t ber=0;
-			if (!m_simulate)
+			if (m_state == stateLock)
 			{
-				if (ioctl(m_fd, FE_READ_BER, &ber) < 0 && errno != ERANGE)
-					eDebug("FE_READ_BER failed (%m)");
+				uint32_t ber=0;
+				if (!m_simulate)
+				{
+					if (ioctl(m_fd, FE_READ_BER, &ber) < 0 && errno != ERANGE)
+						eDebug("FE_READ_BER failed (%m)");
+				}
+				return ber;
 			}
-			return ber;
-		}
+			break;
 		case iFrontendInformation_ENUMS::snrValue:
-		{
-			uint16_t snr = 0;
-			if (!m_simulate)
+			if (m_state == stateLock)
 			{
-				if (ioctl(m_fd, FE_READ_SNR, &snr) < 0 && errno != ERANGE)
-					eDebug("FE_READ_SNR failed (%m)");
+				uint16_t snr = 0;
+				if (!m_simulate)
+				{
+					if (ioctl(m_fd, FE_READ_SNR, &snr) < 0 && errno != ERANGE)
+						eDebug("FE_READ_SNR failed (%m)");
+				}
+				return snr;
 			}
-			return snr;
-		}
+			break;
 		case iFrontendInformation_ENUMS::signalQuality:
 		case iFrontendInformation_ENUMS::signalQualitydB: /* this will move into the driver */
-		{
-			int snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
-			int signalquality = 0;
-			int signalqualitydb = 0;
-			calculateSignalQuality(snr, signalquality, signalqualitydb);
-			if (type == iFrontendInformation_ENUMS::signalQuality)
+			if (m_state == stateLock)
 			{
-				return signalquality;
+				int snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
+				int signalquality = 0;
+				int signalqualitydb = 0;
+				calculateSignalQuality(snr, signalquality, signalqualitydb);
+				if (type == iFrontendInformation_ENUMS::signalQuality)
+				{
+					return signalquality;
+				}
+				else
+				{
+					return signalqualitydb;
+				}
 			}
-			else
-			{
-				return signalqualitydb;
-			}
-		}
+			break;
 		case iFrontendInformation_ENUMS::signalPower:
-		{
-			uint16_t strength=0;
-			if (!m_simulate)
+			if (m_state == stateLock)
 			{
-				if (ioctl(m_fd, FE_READ_SIGNAL_STRENGTH, &strength) < 0 && errno != ERANGE)
-					eDebug("FE_READ_SIGNAL_STRENGTH failed (%m)");
+				uint16_t strength=0;
+				if (!m_simulate)
+				{
+					if (ioctl(m_fd, FE_READ_SIGNAL_STRENGTH, &strength) < 0 && errno != ERANGE)
+						eDebug("FE_READ_SIGNAL_STRENGTH failed (%m)");
+				}
+				return strength;
 			}
-			return strength;
-		}
+			break;
 		case iFrontendInformation_ENUMS::lockState:
 			return !!(readFrontendData(iFrontendInformation_ENUMS::frontendStatus) & FE_HAS_LOCK);
 		case iFrontendInformation_ENUMS::syncState:

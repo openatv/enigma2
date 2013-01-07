@@ -25,27 +25,27 @@ class ServiceList(HTMLComponent, GUIComponent):
 		GUIComponent.__init__(self)
 		self.l = eListboxServiceContent()
 
-		pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/folder.png"))
+		pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/folder.png"))
 		if pic:
 			self.l.setPixmap(self.l.picFolder, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/marker.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/marker.png"))
 		if pic:
 			self.l.setPixmap(self.l.picMarker, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "ico_dvb_s-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/dvb-s.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_S, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "ico_dvb_c-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/dvb-c.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_C, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "ico_dvb_t-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/dvb-t.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_T, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "ico_service_group-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "ico_service_group.png"))
 		if pic:
 			self.l.setPixmap(self.l.picServiceGroup, pic)
 
