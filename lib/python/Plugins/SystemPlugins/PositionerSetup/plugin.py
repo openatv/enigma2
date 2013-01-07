@@ -1,6 +1,4 @@
-from enigma import eTimer, eDVBSatelliteEquipmentControl, eDVBResourceManager, \
-	eDVBDiseqcCommand, eDVBFrontendParametersSatellite, eDVBFrontendParameters,\
-	iDVBFrontend
+from enigma import eTimer, eDVBResourceManager, eDVBDiseqcCommand, eDVBFrontendParametersSatellite, iDVBFrontend
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -228,7 +226,7 @@ class PositionerSetup(Screen):
 
 	def __onClose(self):
 		self.statusTimer.stop()
-		log.close();
+		log.close()
 		self.session.nav.playService(self.oldref)
 
 	def restartPrevService(self, yesno):
