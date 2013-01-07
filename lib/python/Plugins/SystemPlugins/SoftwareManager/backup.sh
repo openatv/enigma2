@@ -146,7 +146,7 @@ elif [ $MODEL = "vusolo" ] || [ $MODEL = "vuduo" ] || [ $MODEL = "vuuno" ] || [ 
 		MTDKERNEL="mtd2"
 	fi
 	SHOWNAME="VU+ ${MODEL:2}"
-	MAINDEST=$DIRECTORY/vuplus/${MODEL:2}
+	MAINDEST=$DIRECTORY/vuplus_back/${MODEL:2}
 	EXTRA=$DIRECTORY/fullbackup_${MODEL:2}/$DATE/vuplus 
 	if [ $ROOTFSTYPE = "ubifs" ] ; then
 		MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096 -F"
@@ -590,8 +590,8 @@ if [ $DIRECTORY == /hdd ]; then
 				cp -r $MAINDEST $TARGET
 			fi
 		elif [ $TYPE = "VU" ] ; then					# VU+ detected
-			mkdir -p $TARGET/vuplus/${MODEL:2}
-			cp -r $MAINDEST $TARGET/vuplus/
+			mkdir -p $TARGET/vuplus_back/${MODEL:2}
+			cp -r $MAINDEST $TARGET/vuplus_back/
 		elif [ $TYPE = "VENTON" ] ; then				# Venton detected
 			mkdir -p $TARGET/venton/$MODEL
 			cp -r $MAINDEST $TARGET/venton/	
