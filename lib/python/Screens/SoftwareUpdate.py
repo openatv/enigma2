@@ -346,10 +346,9 @@ class UpdatePlugin(Screen):
 		else:
 		  self.session.openWithCallback(self.startActualUpgrade(("cold", "cold")), BackupScreen, runBackup = True)
 
-
 	def doAutoBackup(self, val = False):
 		self.autobackuprunning = True
-		if config.softwareupdate.autosettingsbackup.getValue() and not self.SettingsBackupDone:
+		if config.softwareupdate.autosettingsbackup.getValue() and config.backupmanager.backuplocation.getValue() and not self.SettingsBackupDone:
 			self.doSettingsBackup()
 		else:
 			self.session.open(TryQuitMainloop,retvalue=42)
