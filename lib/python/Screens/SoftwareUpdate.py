@@ -256,9 +256,9 @@ class UpdatePlugin(Screen):
 					choices = [(_("View the changes"), "changes"),
 						(_("Upgrade and reboot system"), "cold")]
 					if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/BackupManager.pyo"):
-						if not config.softwareupdate.autosettingsbackup.getValue():
+						if not config.softwareupdate.autosettingsbackup.getValue() and config.backupmanager.backuplocation.getValue():
 							choices.append((_("Perform a setting backup,") + '\n\t' + _("making a backup before updating") + '\n\t' +_("is strongly advised."), "backup"))
-						if not config.softwareupdate.autoimagebackup.getValue():
+						if not config.softwareupdate.autoimagebackup.getValue() and config.imagemanager.backuplocation.getValue():
 							choices.append((_("Perform a full image backup"), "imagebackup"))
 					choices.append((_("Update channel list only"), "channels"))
 					choices.append((_("Cancel"), ""))
@@ -319,9 +319,9 @@ class UpdatePlugin(Screen):
 				message = _("Do you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
 			choices = [(_("View the changes"), "changes"),
 				(_("Upgrade and reboot system"), "cold")]
-			if not self.SettingsBackupDone and not config.softwareupdate.autosettingsbackup.getValue():
+			if not self.SettingsBackupDone and not config.softwareupdate.autosettingsbackup.getValue() and config.backupmanager.backuplocation.getValue():
 				choices.append((_("Perform a setting backup, making a backup before updating is strongly advised."), "backup"))
-			if not self.ImageBackupDone and not config.softwareupdate.autoimagebackup.getValue():
+			if not self.ImageBackupDone and not config.softwareupdate.autoimagebackup.getValue() and config.imagemanager.backuplocation.getValue():
 				choices.append((_("Perform a full image backup"), "imagebackup"))
 			choices.append((_("Update channel list only"), "channels"))
 			choices.append((_("Cancel"), ""))
@@ -338,7 +338,7 @@ class UpdatePlugin(Screen):
 			self.slider.setValue(1)
 			self.ipkg.startCmd(IpkgComponent.CMD_LIST, args = {'installed_only': True})
 		elif answer[1] == "cold":
-			if config.softwareupdate.autosettingsbackup.getValue() or config.softwareupdate.autoimagebackup.getValue():
+			if (config.softwareupdate.autosettingsbackup.getValue() and config.backupmanager.backuplocation.getValue()) or (config.softwareupdate.autoimagebackup.getValue() and config.imagemanager.backuplocation.getValue()):
 				self.doAutoBackup()
 			else:
 				self.session.open(TryQuitMainloop,retvalue=42)
@@ -371,9 +371,9 @@ class UpdatePlugin(Screen):
 
 	def doAutoBackup(self, val = False):
 		self.autobackuprunning = True
-		if config.softwareupdate.autosettingsbackup.getValue() and not self.SettingsBackupDone:
+		if config.softwareupdate.autosettingsbackup.getValue() and config.backupmanager.backuplocation.getValue() and not self.SettingsBackupDone:
 			self.doSettingsBackup()
-		elif config.softwareupdate.autoimagebackup.getValue() and not self.ImageBackupDone:
+		elif config.softwareupdate.autoimagebackup.getValue() and config.imagemanager.backuplocation.getValue() and not self.ImageBackupDone:
 			self.doImageBackup()
 		else:
 			self.session.open(TryQuitMainloop,retvalue=42)
