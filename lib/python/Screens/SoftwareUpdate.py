@@ -350,7 +350,7 @@ class UpdatePlugin(Screen):
 	def doSettingsBackup(self):
 		backup = None
 		from Plugins.SystemPlugins.ViX.BackupManager import BackupFiles
-		self.BackupFiles = BackupFiles(self.session)
+		self.BackupFiles = BackupFiles(self.session, True)
 		Components.Task.job_manager.AddJob(self.BackupFiles.createBackupJob())
 		Components.Task.job_manager.in_background = False
 		for job in Components.Task.job_manager.getPendingJobs():
@@ -361,7 +361,7 @@ class UpdatePlugin(Screen):
 	def doImageBackup(self):
 		backup = None
 		from Plugins.SystemPlugins.ViX.ImageManager import ImageBackup
-		self.ImageBackup = ImageBackup(self.session)
+		self.ImageBackup = ImageBackup(self.session, True)
 		Components.Task.job_manager.AddJob(self.ImageBackup.createBackupJob())
 		Components.Task.job_manager.in_background = False
 		for job in Components.Task.job_manager.getPendingJobs():
