@@ -88,6 +88,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.nowSelEvPix = None
 		self.othEvPix = None
 		self.selEvPix = None
+		self.othServPix = None
 		self.nowServPix = None
 		self.recEvPix = None
 		self.recSelEvPix = None
@@ -407,6 +408,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedEvent.png'), 0, 0, False)
 			self.selEvPix = self.picload.getData()
 
+			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/OtherService.png'), 0, 0, False)
+			self.othServPix = self.picload.getData()
 			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentService.png'), 0, 0, False)
 			self.nowServPix = self.picload.getData()
 
@@ -643,7 +646,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		else:
 			serviceForeColor = self.foreColorService
 			serviceBackColor = self.backColorService
-			bgpng = self.othEvPix
+			bgpng = self.othServPix
 			if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":    # bacground for service rect
 				serviceBackColor = None
 
@@ -1029,6 +1032,8 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.l = eListboxPythonMultiContent()
 		self.l.setSelectionClip(eRect(0,0,0,0))
 		self.l.setItemHeight(30);
+		self.TlDate = None
+		self.TlTime = None
 		self.foreColor = 0xffc000
 		self.borderColor = 0x000000
 		self.backColor = 0x000000
@@ -1038,6 +1043,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.timelineFontName = "Regular"
 		self.timelineFontSize = 20
 		self.datefmt = ""
+		self.picload = ePicLoad()
 
 	GUI_WIDGET = eListbox
 
@@ -1062,10 +1068,21 @@ class TimelineText(HTMLComponent, GUIComponent):
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
-		return GUIComponent.applySkin(self, desktop, screen)
+		rc = GUIComponent.applySkin(self, desktop, screen)
+		self.listHeight = self.instance.size().height()
+		self.listWidth = self.instance.size().width()
+		self.setBackgroundPix()
+		return rc
 
 	def setTimeLineFontsize(self):
 		self.l.setFont(0, gFont(self.timelineFontName, self.timelineFontSize + config.epgselection.tl_fontsize_vixepg.getValue()))
+
+	def setBackgroundPix(self):
+		self.picload.setPara((self.listWidth, self.listHeight, 0, 0, 1, 1, "#00000000"))
+		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/TimeLineDate.png'), 0, 0, False)
+		self.TlDate = self.picload.getData()
+		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/TimeLineTime.png'), 0, 0, False)
+		self.TlTime = self.picload.getData()
 
 	def postWidgetCreate(self, instance):
 		self.setTimeLineFontsize()
@@ -1087,7 +1104,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 		# while the time lines are relative to the GraphEPG screen position!
 		if self.time_base != time_base or self.time_epoch != time_epoch or force:
 			service_rect = l.getServiceRect()
-			itemHeight = self.l.getItemSize().height()
 			time_steps = 60 if time_epoch > 180 else 30
 			num_lines = time_epoch / time_steps
 			incWidth = event_rect.width() / num_lines
@@ -1112,25 +1128,60 @@ class TimelineText(HTMLComponent, GUIComponent):
 			else:
 				datestr = '%s'%(_("Today"))
 
-			res.append( MultiContentEntryText(
+			foreColor = self.foreColor
+			backColor = self.backColor
+			bgpng = self.TlDate
+			if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
+				backColor = None
+				backColorSel = None
+				res.append(MultiContentEntryPixmapAlphaTest(
+					pos = (0, 0),
+					size = (service_rect.width(), self.listHeight),
+					png = bgpng))
+			else:
+				res.append( MultiContentEntryText(
+					pos = (0, 0),
+					size = (service_rect.width(), self.listHeight),
+					color = self.foreColor,
+					backcolor = self.backColor,
+					border_width = self.borderWidth, border_color = self.borderColor))
+
+			res.append(MultiContentEntryText(
 				pos = (0, 0),
-				size = (service_rect.width(), itemHeight),
+				size = (service_rect.width(), self.listHeight),
 				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP,
 				text = _(datestr),
-				color = self.foreColor, color_sel = self.foreColor,
-				backcolor = self.backColor, backcolor_sel = self.backColor,
-				border_width = self.borderWidth, border_color = self.borderColor))
+				color = foreColor,
+				backcolor = backColor))
 
+			foreColor = self.foreColor
+			backColor = self.backColor
+			bgpng = self.TlTime
 			xpos = 0 # eventLeft
 			for x in range(0, num_lines):
+				if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
+					backColor = None
+					backColorSel = None
+					res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (service_rect.width() + xpos, 0),
+						size = (incWidth, self.listHeight),
+						png = bgpng))
+
+				else:
+					res.append( MultiContentEntryText(
+						pos = (service_rect.width() + xpos, 0),
+						size = (incWidth, self.listHeight),
+						color = self.foreColor,
+						backcolor = self.backColor,
+						border_width = self.borderWidth, border_color = self.borderColor))
+
 				res.append( MultiContentEntryText(
 					pos = (service_rect.width() + xpos, 0),
-					size = (incWidth, itemHeight),
+					size = (incWidth, self.listHeight),
 					font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP,
 					text = strftime("%H:%M", localtime( time_base + x*timeStepsCalc )),
-					color = self.foreColor, color_sel = self.foreColor,
-					backcolor = self.backColor, backcolor_sel = self.backColor,
-					border_width = self.borderWidth, border_color = self.borderColor) )
+					color = foreColor,
+					backcolor = backColor))
 				line = time_lines[x]
 				old_pos = line.position
 				line.setPosition(xpos + eventLeft, old_pos[1])
