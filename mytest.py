@@ -527,10 +527,12 @@ def runScreenTest():
 
 	from time import time, strftime, localtime
 	from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime, setRTCoffset
-	if enigma.getBoxType().startswith('gb'):
-		setRTCoffset()
 	#get currentTime
 	nowTime = time()
+
+	if enigma.getBoxType().startswith('gb'):
+		setRTCtime(nowTime)
+	
 	wakeupList = [
 		x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
 					(session.nav.RecordTimer.getNextZapTime(), 1),
@@ -571,7 +573,7 @@ def runScreenTest():
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
 			if enigma.getBoxType().startswith("gb"):
-				wptime = startTime[0] + 120 # Gigaboxes already starts 2 min. before wakeup time
+				wptime = startTime[0] # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0]
 		if not config.misc.SyncTimeUsing.getValue() == "0":

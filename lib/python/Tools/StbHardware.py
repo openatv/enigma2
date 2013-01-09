@@ -1,15 +1,7 @@
 from fcntl import ioctl
 from struct import pack, unpack
 from Components.config import config
-
-def getBoxtype():
-	try:
-		lines = open('/etc/image-version', 'r').readlines()
-		boxtype = lines[0][:-1].split("=")[1]
-		lines.close()
-	except:
-		boxtype="not detected"
-	return boxtype
+from enigma import getBoxType
 
 def getFPVersion():
 	ret = None
@@ -54,7 +46,7 @@ def setRTCoffset():
 		print "set RTC Offset failed!"
 
 def setRTCtime(wutime):
-	if boxtype.startswith('gb'):
+	if getBoxType().startswith('gb'):
 		setRTCoffset()
 	try:
 		f = open("/proc/stb/fp/rtc", "w")
@@ -124,4 +116,3 @@ def clearFPWasTimerWakeup():
 		except IOError:
 			print "clearFPWasTimerWakeup failed!"
 
-boxtype = getBoxtype()
