@@ -78,7 +78,7 @@ class Setup(ConfigListScreen, Screen):
 		self["config"].setList(list)
 
 	def refill(self, list):
-		xmldata = setupdom().getroot()
+		xmldata = setupdom(self.plugin).getroot()
 		for x in xmldata.findall("setup"):
 			if x.get("key") != self.setup:
 				continue
@@ -86,7 +86,7 @@ class Setup(ConfigListScreen, Screen):
 			self.setup_title = x.get("title", "").encode("UTF-8")
 			self.seperation = int(x.get('separation', '0'))
 
-	def __init__(self, session, setup):
+	def __init__(self, session, setup, plugin=None):
 		Screen.__init__(self, session)
 		# for the skin: first try a setup_<setupID>, then Setup
 		self.skinName = ["setup_" + setup, "Setup" ]
@@ -99,6 +99,7 @@ class Setup(ConfigListScreen, Screen):
 		self.onChangedEntry = [ ]
 		self.item = None
 		self.setup = setup
+		self.plugin = plugin
 		list = []
 
 		self.refill(list)
