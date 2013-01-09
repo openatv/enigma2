@@ -1189,23 +1189,23 @@ class TimelineText(HTMLComponent, GUIComponent):
 			backColor = self.backColor
 			bgpng = self.TlTime
 			xpos = 0 # eventLeft
+			if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
+				backColor = None
+				backColorSel = None
+				res.append(MultiContentEntryPixmapAlphaTest(
+					pos = (service_rect.width(), 0),
+					size = (event_rect.width(), self.listHeight),
+					png = bgpng))
+
+			else:
+				res.append( MultiContentEntryText(
+					pos = (service_rect.width(), 0),
+					size = (event_rect.width(), self.listHeight),
+					color = self.foreColor,
+					backcolor = self.backColor,
+					border_width = self.borderWidth, border_color = self.borderColor))
+
 			for x in range(0, num_lines):
-				if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
-					backColor = None
-					backColorSel = None
-					res.append(MultiContentEntryPixmapAlphaTest(
-						pos = (service_rect.width() + xpos, 0),
-						size = (incWidth, self.listHeight),
-						png = bgpng))
-
-				else:
-					res.append( MultiContentEntryText(
-						pos = (service_rect.width() + xpos, 0),
-						size = (incWidth, self.listHeight),
-						color = self.foreColor,
-						backcolor = self.backColor,
-						border_width = self.borderWidth, border_color = self.borderColor))
-
 				res.append( MultiContentEntryText(
 					pos = (service_rect.width() + xpos, 0),
 					size = (incWidth, self.listHeight),
