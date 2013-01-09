@@ -783,14 +783,14 @@ class RecordTimer(timer.Timer):
 						if begin2 < xbegin <= end2:
 							if xend < end2: # recording within event
 								time_match = (xend - xbegin) * 60
-								type = 3
+								type = 4
 							else:			# recording last part of event
 								time_match = (end2 - xbegin) * 60
 								type = 1
 						elif xbegin <= begin2 <= xend:
 							if xend < end2: # recording first part of event
 								time_match = (xend - begin2) * 60
-								type = 4
+								type = 5
 							else:			# recording whole event
 								time_match = (end2 - begin2) * 60
 								type = 2
@@ -798,22 +798,22 @@ class RecordTimer(timer.Timer):
 					if begin < x.begin <= end:
 						if x.end < end: # recording within event
 							time_match = x.end - x.begin
-							type = 3
+							type = 4
 						else:			# recording last part of event
 							time_match = end - x.begin
 							type = 1
 					elif x.begin <= begin <= x.end:
 						if x.end < end: # recording first part of event
 							time_match = x.end - begin
-							type = 4
+							type = 5
 						else:			# recording whole event
 							time_match = end - begin
 							type = 2
 				if type == 2: # stop searching if a full recording is found
 					break
 		if time_match:
-			if x.justplay == 1 and type == 4 and (x.end - (x.begin + (config.recording.margin_before.getValue() * 60))) == 1:
-				type = 2
+			if x.justplay == 1 and type == 5 and (x.end - (x.begin + (config.recording.margin_before.getValue() * 60))) == 1:
+				type = 3 
 			return (time_match, type, x.justplay)
 		else:
 			return None

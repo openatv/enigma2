@@ -313,6 +313,9 @@ class EPGSelection(Screen, HelpableScreen):
 				self.closeRecursive = False
 				self["timeline_text"] = TimelineText()
 				self["Event"] = Event()
+				self["change_day"] = Label(_('CHANGE DAY'))
+				self["jump"] = Label(_('JUMP 24 HOURS'))
+				self["page"] = Label(_('PAGE UP/DOWN'))
 				self.time_lines = [ ]
 				for x in range(0, MAX_TIMELINES):
 					pm = Pixmap()
