@@ -78,35 +78,12 @@ class EPGList(HTMLComponent, GUIComponent):
 			assert(type == EPG_TYPE_SIMILAR)
 			self.l.setBuildFunc(self.buildSimilarEntry)
 		self.epgcache = eEPGCache.getInstance()
-		if path.exists(resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_add.png')):
-			epgclock_add = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_add.png')
-		else:
-			epgclock_add = resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png')
-
-		if path.exists(resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_pre.png')):
-			epgclock_pre = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_pre.png')
-		else:
-			epgclock_pre = resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png')
-
-		if path.exists(resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock.png')):
-			epgclock_rec = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock.png')
-		else:
-			epgclock_rec = resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock.png')
-
-		if path.exists(resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_zap.png')):
-			epgclock_zap = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_zap.png')
-		else:
-			epgclock_zap = resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_zap.png')
-
-		if path.exists(resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_prepost.png')):
-			epgclock_prepost = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_prepost.png')
-		else:
-			epgclock_prepost = resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png')
-
-		if path.exists(resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_post.png')):
-			epgclock_post = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_post.png')
-		else:
-			epgclock_post = resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_post.png')
+		epgclock_add = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_add.png')
+		epgclock_pre = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_pre.png')
+		epgclock_rec = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock.png')
+		epgclock_zap = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_zap.png')
+		epgclock_prepost = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_prepost.png')
+		epgclock_post = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_post.png')
 
 		self.clocks = [ LoadPixmap(cached=True, path=epgclock_add),
 				LoadPixmap(cached=True, path=epgclock_pre),
