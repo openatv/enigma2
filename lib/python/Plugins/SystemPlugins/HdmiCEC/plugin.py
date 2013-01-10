@@ -1,6 +1,6 @@
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, getConfigListEntry
+from Components.config import config, configfile, getConfigListEntry
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
 from os import path
@@ -49,26 +49,38 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 			"menu": self.closeRecursive,
 		}, -2)
 
+		self.onChangedEntry = [ ]
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session)
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		self.createSetup()
 
+	def createSetup(self):
+		self.list = []
 		self.list.append(getConfigListEntry(_("Enabled"), config.hdmicec.enabled))
-		self.list.append(getConfigListEntry(_("Put TV in standby"), config.hdmicec.control_tv_standby))
-		self.list.append(getConfigListEntry(_("Wakeup TV from standby"), config.hdmicec.control_tv_wakeup))
-		self.list.append(getConfigListEntry(_("Regard deep standby as standby"), config.hdmicec.handle_deepstandby_events))
-		self.list.append(getConfigListEntry(_("Switch TV to correct input"), config.hdmicec.report_active_source))
-		self.list.append(getConfigListEntry(_("Use TV remote control"), config.hdmicec.report_active_menu))
-		self.list.append(getConfigListEntry(_("Handle standby from TV"), config.hdmicec.handle_tv_standby))
-		self.list.append(getConfigListEntry(_("Handle wakeup from TV"), config.hdmicec.handle_tv_wakeup))
-		self.list.append(getConfigListEntry(_("Wakeup signal from TV"), config.hdmicec.tv_wakeup_detection))
-		self.list.append(getConfigListEntry(_("Forward volume keys"), config.hdmicec.volume_forwarding))
-		self.list.append(getConfigListEntry(_("Put your STB_BOX in standby"), config.hdmicec.control_receiver_standby))
-		self.list.append(getConfigListEntry(_("Wakeup your STB_BOX from standby"), config.hdmicec.control_receiver_wakeup))
-		self.list.append(getConfigListEntry(_("Minimum send interval"), config.hdmicec.minimum_send_interval))
+		if config.hdmicec.enabled.getValue():
+			self.list.append(getConfigListEntry(_("Put TV in standby"), config.hdmicec.control_tv_standby))
+			self.list.append(getConfigListEntry(_("Wakeup TV from standby"), config.hdmicec.control_tv_wakeup))
+			self.list.append(getConfigListEntry(_("Regard deep standby as standby"), config.hdmicec.handle_deepstandby_events))
+			self.list.append(getConfigListEntry(_("Switch TV to correct input"), config.hdmicec.report_active_source))
+			self.list.append(getConfigListEntry(_("Use TV remote control"), config.hdmicec.report_active_menu))
+			self.list.append(getConfigListEntry(_("Handle standby from TV"), config.hdmicec.handle_tv_standby))
+			self.list.append(getConfigListEntry(_("Handle wakeup from TV"), config.hdmicec.handle_tv_wakeup))
+			self.list.append(getConfigListEntry(_("Wakeup signal from TV"), config.hdmicec.tv_wakeup_detection))
+			self.list.append(getConfigListEntry(_("Forward volume keys"), config.hdmicec.volume_forwarding))
+			self.list.append(getConfigListEntry(_("Put your STB_BOX in standby"), config.hdmicec.control_receiver_standby))
+			self.list.append(getConfigListEntry(_("Wakeup your STB_BOX from standby"), config.hdmicec.control_receiver_wakeup))
+			self.list.append(getConfigListEntry(_("Minimum send interval"), config.hdmicec.minimum_send_interval))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
 		self.updateAddress()
+
+	# for summary:
+	def changedEntry(self):
+		if self["config"].getCurrent()[0] == _("Enabled"):
+			self.createSetup()
+		for x in self.onChangedEntry:
+			x()
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
@@ -79,6 +91,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 	def keyGo(self):
 		for x in self["config"].list:
 			x[1].save()
+		configfile.save()
 		self.close()
 
 	def keyCancel(self):
@@ -87,17 +100,14 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		self.close()
 
 	def setFixedAddress(self):
-		import Components.HdmiCec
 		Components.HdmiCec.hdmi_cec.setFixedPhysicalAddress(Components.HdmiCec.hdmi_cec.getPhysicalAddress())
 		self.updateAddress()
 
 	def clearFixedAddress(self):
-		import Components.HdmiCec
 		Components.HdmiCec.hdmi_cec.setFixedPhysicalAddress("0.0.0.0")
 		self.updateAddress()
 
 	def updateAddress(self):
-		import Components.HdmiCec
 		self["current_address"].setText(_("Current CEC address") + ": " + Components.HdmiCec.hdmi_cec.getPhysicalAddress())
 		if config.hdmicec.fixed_physical_address.getValue() == "0.0.0.0":
 			fixedaddresslabel = ""
