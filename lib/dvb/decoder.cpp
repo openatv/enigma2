@@ -1033,7 +1033,7 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 				memset(stuffing, 0, 8192);
 				read(f, iframe, s.st_size);
 				if (iframe[0] == 0x00 && iframe[1] == 0x00 && iframe[2] == 0x00 && iframe[3] == 0x01 && (iframe[4] & 0x0f) == 0x07)
-					streamtype = VIDEO_STREAMTYPE_MPEG4_H264
+					streamtype = VIDEO_STREAMTYPE_MPEG4_H264;
 				else
 					streamtype = VIDEO_STREAMTYPE_MPEG2;
 
