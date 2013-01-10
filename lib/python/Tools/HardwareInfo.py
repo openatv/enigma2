@@ -1,3 +1,5 @@
+from enigma import getBoxType
+
 class HardwareInfo:
 	device_name = None
 	device_version = None
@@ -12,6 +14,8 @@ class HardwareInfo:
 			file = open("/proc/stb/info/model", "r")
 			HardwareInfo.device_name = file.readline().strip()
 			file.close()
+			if getBoxType().startswith('tm'):
+				HardwareInfo.device_name = "dm800se"
 			try:
 				file = open("/proc/stb/info/version", "r")
 				HardwareInfo.device_version = file.readline().strip()
