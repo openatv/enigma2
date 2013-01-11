@@ -806,16 +806,20 @@ class RecordTimer(timer.Timer):
 					elif x.begin <= begin <= x.end:
 						if x.end < end: # recording first part of event
 							time_match = x.end - begin
-							type = 5
+							if not x.justplay or (x.end - (x.begin + (config.recording.margin_before.getValue() * 60))) > 1:
+								type = 5
+							elif x.justplay:
+								type = 3
 						else:			# recording whole event
 							time_match = end - begin
-							type = 2
-				if type == 2: # stop searching if a full recording is found
+							if not x.justplay:
+								type = 2
+							else:
+								type = 3
+				if type == 2 or type == 3: # stop searching if a full recording is found
 					break
 		if time_match:
-			if x.justplay == 1 and type == 5 and (x.end - (x.begin + (config.recording.margin_before.getValue() * 60))) == 1:
-				type = 3 
-			return (time_match, type, x.justplay)
+			return (time_match, type)
 		else:
 			return None
 
