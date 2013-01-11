@@ -3760,7 +3760,7 @@ class InfoBarExtensions:
 		if config.plisettings.ColouredButtons.getValue():
 			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
 				{
-					"extensions": (self.showExtensionSelection, _("Show extensions...")),
+					"extensions": (self.bluekey_ex, _("Show extensions...")),
 					"RedPressed": (self.RedPressed, _("Show epg")),
 					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
 					"showEventInfo": (self.SelectopenEventView, _("Show the infomation on current event.")),
@@ -3773,7 +3773,7 @@ class InfoBarExtensions:
 		else:
 			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
 				{
-					"extensions": (self.showExtensionSelection, _("view extensions...")),
+					"extensions": (self.bluekey_ex, _("view extensions...")),
 					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
 					"showEventInfo": (self.SelectopenEventView, _("Show the infomation on current event.")),
 					"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
@@ -3785,6 +3785,12 @@ class InfoBarExtensions:
 		self.addExtension(extension = self.getOScamInfo, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getSoftcamPanel, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getRestartNetwork, type = InfoBarExtensions.EXTENSION_LIST)
+
+	def bluekey_ex(self):
+		if os.path.exists("/etc/enigma2/blueswitch"):
+			self.quickmenuStart()
+		else:
+			self.showExtensionSelection()
 
 	def SelectopenEventView(self):
 		try:
@@ -4279,8 +4285,14 @@ class InfoBarQuickMenu:
 	def __init__(self):
 		self["QuickMenuActions"] = HelpableActionMap(self, "InfoBarQuickMenu",
 				{
-					"quickmenu": (self.quickmenuStart, _("Quick Menu...")),
+					"quickmenu": (self.bluekey_qm, _("Quick Menu...")),
 				})
+
+	def bluekey_qm(self):
+		if os.path.exists("/etc/enigma2/blueswitch"):
+			self.showExtensionSelection()
+		else:
+			self.quickmenuStart()			
 
 	def quickmenuStart(self):
 		try:
