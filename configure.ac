@@ -197,7 +197,7 @@ fi
 
 if test x"$BOXTYPE" == "xtmtwin" -o x"$BOXTYPE" == "xtm2t" -o x"$BOXTYPE" == "tmsingle"; then
 	AC_DEFINE(KEY_F1_TO_KEY_PC", 1,[define when rc sends a KEY_F1 event for its KEY_PC" key])
-	AC_DEFINE(KEY_F5_IS_KEY_SCREEN, 1,[define when rc sends a KEY_F5 event for its KEY_SCREEN key])
+	AC_DEFINE(KEY_F5_TO_KEY_SCREEN, 1,[define when rc sends a KEY_F5 event for its KEY_SCREEN key])
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
