@@ -155,6 +155,15 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+#if KEY_DOT_TO_KEY_HOMEPAGE
+	if (ev->code == KEY_DOT)
+	{
+		/* Technomate , which sends KEY_DOT events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_HOMEPAGE;
+		
+	}
+#endif
+
 	switch (ev->value)
 	{
 	case 0:
