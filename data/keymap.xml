@@ -130,6 +130,7 @@
 		<key id="KEY_CHANNELDOWN" mapto="ChannelMinusPressed" flags="m" />
 		<key id="BTN_0" mapto="zapUp" flags="mr" />
 		<key id="BTN_1" mapto="zapDown" flags="mr" />
+		<key id="KEY_SAT" mapto="openSatellites" flags="m" />		
 	</map>
 
 	<map context="MinuteInputActions">
@@ -182,6 +183,9 @@
 	<map context="InfobarMenuActions">
 		<key id="KEY_MENU" mapto="mainMenu" flags="mr" />
 		<key id="KEY_SPACE" mapto="mainMenu" flags="mr" />
+		<key id="KEY_PC" mapto="showNetworkSetup" flags="mr" />
+		<key id="KEY_SCREEN" mapto="showRFmod" flags="l" /> 
+		<key id="KEY_SCREEN" mapto="toggleAspectRatio" flags="b" />		
 	</map>
 
 	<map context="MenuActions">
@@ -217,6 +221,9 @@
 		<key id="KEY_SEARCH" mapto="openEPGSearch" flags="b" />
 		<key id="KEY_SEARCH" mapto="openIMDB" flags="l" />
 		<key id="KEY_SLEEP" mapto="openSleepTimer" flags="b" />
+		<key id="KEY_ZOOM" mapto="ZoomInOut" flags="b" />
+		<key id="KEY_ZOOM" mapto="ZoomOff" flags="l" />
+		<key id="KEY_CONNECT" mapto="HarddiskSetup" flags="b" />
 	</map>
 
 	<map context="InfobarAudioSelectionActions">

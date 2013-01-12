@@ -7,6 +7,7 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.Pixmap import MultiPixmap
+from Tools.Directories import fileExists
 
 profile("LOAD:enigma")
 import enigma
@@ -61,6 +62,9 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"openIMDB": (self.openIMDB, _("Show the tv player...")),
 				"showMC": (self.showMediaCenter, _("Show the media center...")),
 				"openSleepTimer": (self.openPowerTimerList, _("Show the Sleep Timer...")),
+				'ZoomInOut': (self.ZoomInOut, _('Zoom In/Out TV...')),
+				'ZoomOff': (self.ZoomOff, _('Zoom Off...')),
+				'HarddiskSetup': (self.HarddiskSetup, _('Select HDD')),				
 			}, prio=2)
 
 		self["key_red"] = Label()
@@ -92,6 +96,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.current_begin_time=0
 		assert InfoBar.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
 		InfoBar.instance = self
+		self.zoomrate = 0
+		self.zoomin = 1
 
 		if config.misc.initialchannelselection.getValue():
 			self.onShown.append(self.showMenu)
@@ -274,6 +280,39 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 					break
 		except Exception, e:
 			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+    def ZoomInOut(self):
+        zoomval = 0
+        if self.zoomrate > 3:
+            self.zoomin = 0
+        elif self.zoomrate < -9:
+            self.zoomin = 1
+        if self.zoomin == 1:
+            self.zoomrate += 1
+        else:
+            self.zoomrate -= 1
+        if self.zoomrate < 0:
+            zoomval = abs(self.zoomrate) + 10
+        else:
+            zoomval = self.zoomrate
+        print 'zoomRate:', self.zoomrate
+        print 'zoomval:', zoomval
+		if fileExists("/proc/stb/vmpeg/0/zoomrate")
+			file = open('/proc/stb/vmpeg/0/zoomrate', 'w')
+			file.write('%d' % int(zoomval))
+			file.close()
+
+    def ZoomOff(self):
+        self.zoomrate = 0
+        self.zoomin = 1
+		if fileExists("/proc/stb/vmpeg/0/zoomrate")
+			file = open('/proc/stb/vmpeg/0/zoomrate', 'w')
+			file.write(str(0))
+			file.close()
+
+    def HarddiskSetup(self):
+        from Screens.HarddiskSetup import HarddiskSelection
+        self.session.open(HarddiskSelection)
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		InfoBarMenu, InfoBarEPG, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,

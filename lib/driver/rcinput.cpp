@@ -137,6 +137,24 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+#if KEY_F1_TO_KEY_PC
+	if (ev->code == KEY_F1)
+	{
+		/* Technomate , which sends KEY_F1 events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_PC;
+		
+	}
+#endif
+
+#if KEY_F5_IS_KEY_SCREEN
+	if (ev->code == KEY_F4)
+	{
+		/* Technomate , which sends KEY_F5 events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_SCREEN;
+		
+	}
+#endif
+
 	switch (ev->value)
 	{
 	case 0:
