@@ -1445,7 +1445,6 @@ class UpdatePlugin(Screen):
 		self.TraficCheck = False
 		self.TraficResult = False
 		self.CheckDateDone = False
-		self.updatecounter = 0
 
 		self.activity = 0
 		self.activityTimer = eTimer()
@@ -1465,29 +1464,36 @@ class UpdatePlugin(Screen):
 		self.activityTimer.start(100, False)
 
 	def CheckDate(self):
-		# Check if image is not to old for update (max 30days old or max 14x update)
+		# Check if image is not to old for update (max 30days)
 		self.CheckDateDone = True
 		tmpdate = getEnigmaVersionString()
 		imageDate = date(int(tmpdate[0:4]), int(tmpdate[5:7]), int(tmpdate[8:10]))
 		datedelay = imageDate +  timedelta(days=30)
-		if os.path.exists("/usr/share/misc/.update"):
-			f = open("/usr/share/misc/.update","r")
-			self.updatecounter = int(f.readline()[:-1])
-			f.close()
+		message = ("Your image is out of date"
+				"\n\n"
+				"After such a long time, there is a risk that after update, the box will not boot"
+				"\n"
+				"A new flash will increase the stability"
+				"\n\n"
+				"An online update is done at your own risk !!"
+				"\n\n\n"
+				"Do you still want to update?")
 
-			if self.updatecounter > 14:
-				print"[SOFTWAREMANAGER] Your image is to old (to much online updates), you need to flash new !!"
-				self.session.open(MessageBox, _("Your image is out of date\n You need to flash new !!"), type=MessageBox.TYPE_ERROR, timeout=30, close_on_any_key=True, simple=True)
-				self.close()
-				return
-			
 		if datedelay > date.today():
 			self.updating = True
 			self.activityTimer.start(100, False)
 			self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
 		else:
 			print"[SOFTWAREMANAGER] Your image is to old (%s), you need to flash new !!" %getEnigmaVersionString()
-			self.session.open(MessageBox, _("Your image is out of date\n You need to flash new !!"), type=MessageBox.TYPE_ERROR, timeout=30, close_on_any_key=True, simple=True)
+			self.session.openWithCallback(self.checkDateCallback, MessageBox, _(message))
+			return
+
+	def checkDateCallback(self, ret):
+		print ret
+		if ret:
+			self.activityTimer.start(100, False)
+			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
+		else:
 			self.close()
 			return
 
@@ -1648,9 +1654,6 @@ class UpdatePlugin(Screen):
 	def exit(self):
 		if not self.ipkg.isRunning():
 			if self.packages != 0 and self.error == 0:
-				f = open("/usr/share/misc/.update","w")
-				f.writelines(str(self.updatecounter+1) + "\n")
-				f.close()
 				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your STB_BOX?"))
 			else:
 				self.close()
