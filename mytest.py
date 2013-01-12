@@ -518,10 +518,24 @@ def runScreenTest():
 		except:
 			evfd.getInstance().vfd_write_string("-E2-")
 		evfd.getInstance().vfd_led(str(1)) 	
+
+	print config.usage.shutdownOK.getValue()
+	print config.usage.shutdownNOK_action.getValue()
+	if not config.usage.shutdownOK.getValue() and not config.usage.shutdownNOK_action.getValue() == 'normal':
+		print "last shutdown = %s" % config.usage.shutdownOK.getValue()
+		import Screens.PowerLost
+		Screens.PowerLost.PowerLost(session)
+
+	config.usage.shutdownOK.setValue(False)
+	config.usage.shutdownOK.save()
+	configfile.save()
 	
 	runReactor()
 
+	print "normal shutdown"
 	config.misc.startCounter.save()
+	config.usage.shutdownOK.setValue(True)
+	config.usage.shutdownOK.save()
 
 	profile("wakeup")
 

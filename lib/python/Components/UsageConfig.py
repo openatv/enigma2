@@ -14,6 +14,8 @@ def InitUsageConfig():
 	config.misc.remotecontrol_text_support = ConfigYesNo(default = True)
 
 	config.usage = ConfigSubsection();
+	config.usage.shutdownOK = ConfigBoolean(default = True)
+	config.usage.shutdownNOK_action = ConfigSelection(default = "normal", choices = [("normal", _("just boot")), ("standby", _("goto standby")), ("deepstandby", _("goto deep-standby"))])
 	config.usage.showdish = ConfigSelection(default = "flashing", choices = [("flashing", _("Flashing")), ("normal", _("Not Flashing")), ("off", _("Off"))])
 	config.usage.multibouquet = ConfigYesNo(default = True)
 
