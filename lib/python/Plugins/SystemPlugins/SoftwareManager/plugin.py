@@ -1469,14 +1469,11 @@ class UpdatePlugin(Screen):
 		tmpdate = getEnigmaVersionString()
 		imageDate = date(int(tmpdate[0:4]), int(tmpdate[5:7]), int(tmpdate[8:10]))
 		datedelay = imageDate +  timedelta(days=30)
-		message = ("Your image is out of date"
-				"\n\n"
-				"After such a long time, there is a risk that after update, the box will not boot"
-				"\n"
-				"A new flash will increase the stability"
-				"\n\n"
-				"An online update is done at your own risk !!"
-				"\n\n\n"
+		message = _("Your image is out of date!\n\n"
+				"After such a long time, there is a risk that your STB_BOX will not\n"
+				"boot after online-update, or will show disfunction in running Image.\n\n"
+				"A new flash will increase the stability\n\n"
+				"An online update is done at your own risk !!\n\n\n"
 				"Do you still want to update?")
 
 		if datedelay > date.today():
@@ -1485,7 +1482,7 @@ class UpdatePlugin(Screen):
 			self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
 		else:
 			print"[SOFTWAREMANAGER] Your image is to old (%s), you need to flash new !!" %getEnigmaVersionString()
-			self.session.openWithCallback(self.checkDateCallback, MessageBox, _(message))
+			self.session.openWithCallback(self.checkDateCallback, MessageBox, message, default = False)
 			return
 
 	def checkDateCallback(self, ret):
