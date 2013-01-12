@@ -294,6 +294,7 @@ data/skin_default/buttons/Makefile
 data/skin_default/GraphEPG/Makefile
 data/skin_default/lcd/Makefile
 data/skin_default/piconbg/Makefile
+data/skin_default/extensions/Makefile
 include/Makefile
 lib/Makefile
 lib/actions/Makefile
