@@ -281,38 +281,38 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		except Exception, e:
 			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
-    def ZoomInOut(self):
-        zoomval = 0
-        if self.zoomrate > 3:
-            self.zoomin = 0
-        elif self.zoomrate < -9:
-            self.zoomin = 1
-        if self.zoomin == 1:
-            self.zoomrate += 1
-        else:
-            self.zoomrate -= 1
-        if self.zoomrate < 0:
-            zoomval = abs(self.zoomrate) + 10
-        else:
-            zoomval = self.zoomrate
-        print 'zoomRate:', self.zoomrate
-        print 'zoomval:', zoomval
-		if fileExists("/proc/stb/vmpeg/0/zoomrate")
+	def ZoomInOut(self):
+		zoomval = 0
+		if self.zoomrate > 3:
+			self.zoomin = 0
+		elif self.zoomrate < -9:
+			self.zoomin = 1
+		if self.zoomin == 1:
+			self.zoomrate += 1
+		else:
+			self.zoomrate -= 1
+		if self.zoomrate < 0:
+			zoomval = abs(self.zoomrate) + 10
+		else:
+			zoomval = self.zoomrate
+		print 'zoomRate:', self.zoomrate
+		print 'zoomval:', zoomval
+		if fileExists("/proc/stb/vmpeg/0/zoomrate"):
 			file = open('/proc/stb/vmpeg/0/zoomrate', 'w')
 			file.write('%d' % int(zoomval))
 			file.close()
 
-    def ZoomOff(self):
-        self.zoomrate = 0
-        self.zoomin = 1
-		if fileExists("/proc/stb/vmpeg/0/zoomrate")
+	def ZoomOff(self):
+		self.zoomrate = 0
+		self.zoomin = 1
+		if fileExists("/proc/stb/vmpeg/0/zoomrate"):
 			file = open('/proc/stb/vmpeg/0/zoomrate', 'w')
 			file.write(str(0))
 			file.close()
 
-    def HarddiskSetup(self):
-        from Screens.HarddiskSetup import HarddiskSelection
-        self.session.open(HarddiskSelection)
+	def HarddiskSetup(self):
+		from Screens.HarddiskSetup import HarddiskSelection
+		self.session.open(HarddiskSelection)
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		InfoBarMenu, InfoBarEPG, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
