@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version:  enigma2 3.0.0\n"
+"Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-01 16:48+0100\n"
-"PO-Revision-Date: 2010-03-26 23:44+0200\n"
+"PO-Revision-Date: 2013-01-12 13:05+0200\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
 "Language: bg\n"
@@ -11,6 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.4\n"
 
 msgid ""
 "\n"
@@ -63,6 +64,13 @@ msgstr ""
 
 msgid ""
 "\n"
+"Restore your backups by date."
+msgstr ""
+"\n"
+"Възстановяване на вашите копия по дата."
+
+msgid ""
+"\n"
 "Restore your receiver settings."
 msgstr ""
 "\n"
@@ -77,14 +85,7 @@ msgstr ""
 
 msgid ""
 "\n"
-"Restore your backups by date."
-msgstr ""
-"\n"
-"Възстановяване на вашите копия по дата."
-
-msgid ""
-"\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
 "\n"
 "Сканиране за местни пакети и инсталация."
@@ -125,6 +126,11 @@ msgstr "%d мин"
 
 msgid "%d services found!"
 msgstr "%d намерени програми!"
+
+msgid "%s updated package available"
+msgid_plural "%s updated packages available"
+msgstr[0] "%s актуализиран пакет е наличен"
+msgstr[1] "%s актуализирани пакети са налични"
 
 msgid "(show optional DVD audio menu)"
 msgstr "(покажи DVD аудио меню)"
@@ -898,6 +904,9 @@ msgstr "Покажи >16:9 като"
 msgid "Display setup"
 msgstr "Настройки Дисплей"
 
+msgid "Do not record"
+msgstr "Не записвай"
+
 msgid "Display and Userinterface"
 msgstr "Дисплей и Юзъринтерфейс"
 
@@ -989,6 +998,9 @@ msgstr ""
 "Искате ли да изпратите ваши данни(име и email) за да се свържем с вас при "
 "нужда?"
 
+msgid "Do you want to update your receiver to %s?"
+msgstr "Искате ли да актуализирате вашия Clarke-Tech към %s?"
+
 msgid "Do you want to update your receiver?"
 msgstr "Искате ли да актуализирате вашия Clarke-Tech?"
 
@@ -1026,8 +1038,8 @@ msgstr "Изтегли"
 msgid "Download .NFI-Files for USB-Flasher"
 msgstr "Изтегли .NFI-Файлове за USB-флашка"
 
-msgid "Download Plugins"
-msgstr "Изтегли Плъгини"
+msgid "Download plugins"
+msgstr "Изтегли плъгини"
 
 msgid "Downloadable new plugins"
 msgstr "Има нови плъгини за теглене"
@@ -1058,6 +1070,9 @@ msgstr "Редактирай"
 
 msgid "Edit DNS"
 msgstr "Редактирай DNS"
+
+msgid "Edit bouquets list"
+msgstr "Редакт. списъка с букети"
 
 msgid "Edit Title"
 msgstr "Редакт. Заглавие"
@@ -1188,6 +1203,9 @@ msgstr "Бърз"
 
 msgid "Fast DiSEqC"
 msgstr "Бърз DiSEqC"
+
+msgid "Fast Scan"
+msgstr "Бързо Сканиране"
 
 msgid "Fast Forward speeds"
 msgstr "Скорост превъртане напред"
@@ -1368,6 +1386,9 @@ msgstr "Увеличен волтаж"
 msgid "Index"
 msgstr "Индекс"
 
+msgid "Info"
+msgstr "Инфо"
+
 msgid "Info bar"
 msgstr "Инфо Лента"
 
@@ -1398,8 +1419,26 @@ msgstr "Инсталирай нов имидж с USB стик"
 msgid "Install a new image with your web browser"
 msgstr "Инсталирай нов имидж с уеб браузър"
 
-msgid "Install local IPKG"
-msgstr "Инсталирай местен IPKG"
+msgid "Install channel list"
+msgstr "Инсталирай списък с канали"
+
+msgid "Install extensions."
+msgstr "Инсталирай плъгини."
+
+msgid "Install local extension"
+msgstr "Инсталирай плъгин от HDD,USB или .tmp"
+
+msgid "Install picons on"
+msgstr "Инсталирай picons"
+
+msgid "Install softcam"
+msgstr "Инсталирай софткам"
+
+msgid "Installation has completed."
+msgstr "Инсталирането завърши."
+
+msgid "Installation or removal has completed."
+msgstr "Инсталирането или премахването завърши."
 
 msgid "Install or remove finished."
 msgstr "Инсталацията или премахването завърши."
@@ -1477,6 +1516,9 @@ msgstr "Език"
 msgid "Language selection"
 msgstr "Избор Език"
 
+msgid "Last upgrade: "
+msgstr "Последна актуализация: "
+
 msgid "Last speed"
 msgstr "Последна скорост"
 
@@ -1540,11 +1582,17 @@ msgstr "Основно Меню"
 msgid "Mainmenu"
 msgstr "Основно Меню"
 
+msgid "Manage extensions"
+msgstr "Управление на пакети"
+
 msgid "Manage your receiver's software"
 msgstr "Управление софтуера на ресийвъра"
 
-msgid "Manual scan"
+msgid "Manual Scan"
 msgstr "Ръчно Търсене"
+
+msgid "Manual scan"
+msgstr "Ръчно търсене"
 
 msgid "Manual transponder"
 msgstr "Ръчен транспондер"
@@ -1878,7 +1926,7 @@ msgstr "Вкл."
 msgid "One"
 msgstr "Един"
 
-msgid "Only Free scan"
+msgid "Only free scan"
 msgstr "Търсене само Свободни"
 
 msgid "Optionally enter your name if you want to."
@@ -1914,7 +1962,7 @@ msgstr "Главна Директория"
 msgid "Parental control"
 msgstr "Родителски контрол"
 
-msgid "Parental control services editor"
+msgid "Parental control services Еditor"
 msgstr "Родителски контрол редактор канали"
 
 msgid "Parental control setup"
@@ -2327,6 +2375,12 @@ msgstr "Избор честота на обновяване."
 msgid "Reload"
 msgstr "Презареди"
 
+msgid "Reload black-/white lists"
+msgstr "Презареди черен/бял списък"
+
+msgid "Remember service PIN"
+msgstr "Помни ПИН кода"
+
 msgid "Remove"
 msgstr "Премахни"
 
@@ -2401,6 +2455,9 @@ msgstr "Рестарт GUI"
 
 msgid "Restart GUI now?"
 msgstr "Рестарт GUI сега?"
+
+msgid "Restart enigma"
+msgstr "Рестарт енигма"
 
 msgid "Restart network"
 msgstr "Рестарт мрежа"
@@ -3198,13 +3255,16 @@ msgstr "Въвеждане Час/Дата"
 msgid "Timer"
 msgstr "Таймер"
 
-msgid "Timer Edit"
+msgid "Timer edit"
 msgstr "Редактирай Таймер"
 
-msgid "Timer Editor"
+msgid "Timer editor"
 msgstr "Редактор Таймер"
 
-msgid "Timer Type"
+msgid "Timer overview"
+msgstr "Преглед на таймерите"
+
+msgid "Timer type"
 msgstr "Вид Таймер"
 
 msgid "Timer entry"
@@ -3335,6 +3395,15 @@ msgstr ""
 "Не мога да инициализирам твърдия диск.\n"
 "Грешка: "
 
+msgid ""
+"Unattended upgrade in progress\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+"Извършва се автоматична актуализация\n"
+"Моля изчакайте докато приемникът ви се рестартира\n"
+"Това може да отнеме няколко минути"
+
 msgid "Universal LNB"
 msgstr "Универсално LNB"
 
@@ -3346,6 +3415,36 @@ msgstr "Не се поддържа"
 
 msgid "Update"
 msgstr "Актуализация"
+
+msgid "Update and ask to reboot"
+msgstr "Актуализирай и попитай за рестарт"
+
+msgid "Update and reboot (recommended)"
+msgstr "Актуализирай и рестартирай (препоръчително)"
+
+msgid "Update channel list only"
+msgstr "Актуализирай само списъка с канали"
+
+msgid "Update completed, %d package was installed."
+msgid_plural "Update completed, %d packages were installed."
+msgstr[0] "Актуализацията завърши, %d пакет беше инсталиран."
+msgstr[1] "Актуализацията завърши, %d пакета бяха инсталирани."
+
+msgid "Update completed. Do you want to reboot your receiver?"
+msgstr "Актуализацията завърши. Искате ли да рестартирате приемника?"
+
+msgid ""
+"Update failed. Your receiver does not have a working internet connection."
+msgstr "Неуспешна актуализация. Приемникът няма работеща интернет връзка."
+
+msgid "Update has completed."
+msgstr "Актуализацията завърши."
+
+msgid "Updatefeed not available."
+msgstr "Няма наличен updatefeed."
+
+msgid "Updating software catalog"
+msgstr "Актуализирам софтуер каталога"
 
 msgid "Updates your receiver's software"
 msgstr "Актуализира софтуера на вашия приемник"
@@ -3886,17 +3985,17 @@ msgstr "добави файлове към плейлиста"
 msgid "add marker"
 msgstr "добави маркер"
 
-msgid "add recording (enter recording duration)"
-msgstr "добави запис (въведете продължителност на записа)"
+msgid "Add recording (enter recording duration)"
+msgstr "Добави запис (въведете продължителност на записа)"
 
-msgid "add recording (enter recording endtime)"
-msgstr "добави запис (въведете край на записа)"
+msgid "Add recording (enter recording endtime)"
+msgstr "Добави запис (въведете край на записа)"
 
-msgid "add recording (indefinitely)"
-msgstr "добави запис (без ограничение)"
+msgid "Add recording (indefinitely)"
+msgstr "Добави запис (без ограничение)"
 
-msgid "add recording (stop after current event)"
-msgstr "добави запис (спри след текущото предаване)"
+msgid "Add recording (stop after current event)"
+msgstr "Добави запис (спри след текущото предаване)"
 
 msgid "add service to bouquet"
 msgstr "добави канала към букет"
@@ -4292,6 +4391,14 @@ msgstr "не се използва"
 msgid "nothing connected"
 msgstr "нищо не е свързано"
 
+msgctxt "now/next: 'next' event label"
+msgid "Next"
+msgstr "Следва"
+
+msgctxt "now/next: 'now' event label"
+msgid "Now"
+msgstr "Сега"
+
 msgid "off"
 msgstr "изкл."
 
@@ -4315,6 +4422,9 @@ msgstr "отвори списъка с канали(up)"
 
 msgid "pause"
 msgstr "пауза"
+
+msgid "play as picture in picture"
+msgstr "Активиране картина в картината"
 
 msgid "please press OK when ready"
 msgstr "моля натиснете ОК когато е готово"
@@ -4433,10 +4543,13 @@ msgstr "избор menu entry"
 msgid "select movie"
 msgstr "избор филм"
 
-msgid "service pin"
+msgid "service PIN"
 msgstr "ПИН канали"
 
-msgid "setup pin"
+msgid "set as startup service"
+msgstr "задаване като стартиращ канал"
+
+msgid "setup PIN"
 msgstr "ПИН настройки"
 
 msgid "show DVD main menu"
