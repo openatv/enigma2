@@ -78,35 +78,12 @@ class EPGList(HTMLComponent, GUIComponent):
 			assert(type == EPG_TYPE_SIMILAR)
 			self.l.setBuildFunc(self.buildSimilarEntry)
 		self.epgcache = eEPGCache.getInstance()
-		if path.exists(resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_add.png')):
-			epgclock_add = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_add.png')
-		else:
-			epgclock_add = resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png')
-
-		if path.exists(resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_pre.png')):
-			epgclock_pre = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_pre.png')
-		else:
-			epgclock_pre = resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png')
-
-		if path.exists(resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock.png')):
-			epgclock_rec = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock.png')
-		else:
-			epgclock_rec = resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock.png')
-
-		if path.exists(resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_zap.png')):
-			epgclock_zap = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_zap.png')
-		else:
-			epgclock_zap = resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_zap.png')
-
-		if path.exists(resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_prepost.png')):
-			epgclock_prepost = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_prepost.png')
-		else:
-			epgclock_prepost = resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png')
-
-		if path.exists(resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_post.png')):
-			epgclock_post = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_post.png')
-		else:
-			epgclock_post = resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_post.png')
+		epgclock_add = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_add.png')
+		epgclock_pre = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_pre.png')
+		epgclock_rec = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock.png')
+		epgclock_zap = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_zap.png')
+		epgclock_prepost = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_prepost.png')
+		epgclock_post = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_post.png')
 
 		self.clocks = [ LoadPixmap(cached=True, path=epgclock_add),
 				LoadPixmap(cached=True, path=epgclock_pre),
@@ -765,24 +742,23 @@ class EPGList(HTMLComponent, GUIComponent):
 
 				if selected and self.select_rect.x == xpos + left:
 					if rec is not None and rec[1] == 2:
-						if rec[2] == 0:
-							foreColor = self.foreColorRecord
-							backColor = self.backColorRecord
-							foreColorSel = self.foreColorRecordSelected
-							backColorSel = self.backColorRecordSelected
-							bgpng = self.recSelEvPix
-							if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
-								backColor = None
-								backColorSel = None
-						elif rec[2] == 1:
-							foreColor = self.foreColorZap
-							backColor = self.backColorZap
-							foreColorSel = self.foreColorZapSelected
-							backColorSel = self.backColorZapSelected
-							bgpng = self.zapSelEvPix
-							if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
-								backColor = None
-								backColorSel = None
+						foreColor = self.foreColorRecord
+						backColor = self.backColorRecord
+						foreColorSel = self.foreColorRecordSelected
+						backColorSel = self.backColorRecordSelected
+						bgpng = self.recSelEvPix
+						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
+							backColor = None
+							backColorSel = None
+					elif rec is not None and rec[1] == 3:
+						foreColor = self.foreColorZap
+						backColor = self.backColorZap
+						foreColorSel = self.foreColorZapSelected
+						backColorSel = self.backColorZapSelected
+						bgpng = self.zapSelEvPix
+						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
+							backColor = None
+							backColorSel = None
 					elif stime <= now and now < (stime + duration):
 						foreColor = self.foreColorNow
 						backColor = self.backColorNow
@@ -802,24 +778,23 @@ class EPGList(HTMLComponent, GUIComponent):
 							backColor = None
 							backColorSel = None
 				elif rec is not None and rec[1] == 2:
-					if rec[2] == 0:
-						foreColor = self.foreColorRecord
-						backColor = self.backColorRecord
-						foreColorSel = self.foreColorRecordSelected
-						backColorSel = self.backColorRecordSelected
-						bgpng = self.recEvPix
-						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
-							backColor = None
-							backColorSel = None
-					elif rec[2] == 1:
-						foreColor = self.foreColorZap
-						backColor = self.backColorZap
-						foreColorSel = self.foreColorZapSelected
-						backColorSel = self.backColorZapSelected
-						bgpng = self.zapEvPix
-						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
-							backColor = None
-							backColorSel = None
+					foreColor = self.foreColorRecord
+					backColor = self.backColorRecord
+					foreColorSel = self.foreColorRecordSelected
+					backColorSel = self.backColorRecordSelected
+					bgpng = self.recEvPix
+					if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
+						backColor = None
+						backColorSel = None
+				elif rec is not None and rec[1] == 3:
+					foreColor = self.foreColorZap
+					backColor = self.backColorZap
+					foreColorSel = self.foreColorZapSelected
+					backColorSel = self.backColorZapSelected
+					bgpng = self.zapEvPix
+					if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
+						backColor = None
+						backColorSel = None
 				elif stime <= now and now < (stime + duration):
 					foreColor = self.foreColorNow
 					backColor = self.backColorNow
@@ -867,7 +842,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						backcolor = backColor, backcolor_sel = backColorSel))
 
 				# recording icons
-				if rec is not None and ewidth > 23:
+				if rec is not None and rec[1] >0 and ewidth > 23:
 					res.append(MultiContentEntryPixmapAlphaBlend(
 						pos = (left+xpos+ewidth-22, top+height-22), size = (21, 21),
 						png = self.clocks[rec[1]],
@@ -1189,23 +1164,23 @@ class TimelineText(HTMLComponent, GUIComponent):
 			backColor = self.backColor
 			bgpng = self.TlTime
 			xpos = 0 # eventLeft
+			if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
+				backColor = None
+				backColorSel = None
+				res.append(MultiContentEntryPixmapAlphaTest(
+					pos = (service_rect.width(), 0),
+					size = (event_rect.width(), self.listHeight),
+					png = bgpng))
+
+			else:
+				res.append( MultiContentEntryText(
+					pos = (service_rect.width(), 0),
+					size = (event_rect.width(), self.listHeight),
+					color = self.foreColor,
+					backcolor = self.backColor,
+					border_width = self.borderWidth, border_color = self.borderColor))
+
 			for x in range(0, num_lines):
-				if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
-					backColor = None
-					backColorSel = None
-					res.append(MultiContentEntryPixmapAlphaTest(
-						pos = (service_rect.width() + xpos, 0),
-						size = (incWidth, self.listHeight),
-						png = bgpng))
-
-				else:
-					res.append( MultiContentEntryText(
-						pos = (service_rect.width() + xpos, 0),
-						size = (incWidth, self.listHeight),
-						color = self.foreColor,
-						backcolor = self.backColor,
-						border_width = self.borderWidth, border_color = self.borderColor))
-
 				res.append( MultiContentEntryText(
 					pos = (service_rect.width() + xpos, 0),
 					size = (incWidth, self.listHeight),

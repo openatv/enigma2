@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-23 16:08+0000\n"
+"POT-Creation-Date: 2013-01-11 04:34+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -347,11 +347,26 @@ msgstr "Inforiba näitamine"
 msgid "2"
 msgstr "2"
 
+msgid "23.976"
+msgstr "23.976"
+
+msgid "24"
+msgstr "24"
+
+msgid "25"
+msgstr "25"
+
+msgid "29.97"
+msgstr "29.97"
+
 msgid "2X"
 msgstr "2X"
 
 msgid "3"
 msgstr "3"
+
+msgid "30"
+msgstr "30"
 
 msgid "3D Mode"
 msgstr "3D režiim"
@@ -726,6 +741,12 @@ msgstr "Kõik vanused"
 msgid "All satellites"
 msgstr "Kõik satelliidid"
 
+msgid "Allocate"
+msgstr ""
+
+msgid "Allocate unused memory index"
+msgstr ""
+
 msgid "Allow subtitle language to equal audio language"
 msgstr "Luba subtiitrid heli keele valiku järgi"
 
@@ -955,6 +976,12 @@ msgstr "Automaatne kaadri lõikamine iga ? minuti (0=mitte kunagi)"
 
 msgid "Auto flesh"
 msgstr "Ihutooni esiletoomine"
+
+msgid "Auto focus"
+msgstr "Ihutooni esiletoomine"
+
+msgid "Auto focus commencing ..."
+msgstr ""
 
 msgid "Auto language selection"
 msgstr "Automaatsed keele valikud"
@@ -1213,6 +1240,9 @@ msgstr ""
 msgid "CCcam info"
 msgstr "CCcam info"
 
+msgid "CHANGE BOUQUET"
+msgstr "VAHETA LEMMIKNIMEKIRI"
+
 msgid "CI assignment"
 msgstr "CI määrangud"
 
@@ -1234,11 +1264,32 @@ msgstr "Salvesta pisipildid"
 msgid "Cached:"
 msgstr "Vahemälus:"
 
+msgid "Calculate"
+msgstr "Arvuta"
+
+msgid "Calculate all positions"
+msgstr "Arvuta kõik positsioonid"
+
+msgid "Calculation complete"
+msgstr "Arvutamine on tehtud"
+
+msgid "Calibrate"
+msgstr "Kalibreeri"
+
+msgid "Can be used for different fps between external subtitles and video."
+msgstr "Saab kasutada väliste subtiitrite ja video erineva fps korral."
+
 msgid "Cancel"
 msgstr "Tühista"
 
 msgid "Cannot delete file"
 msgstr "Faili ei saa kustutada"
+
+msgid "Cannot determine"
+msgstr "Ei saa määrata"
+
+msgid "Cannot find any signal ..., aborting !"
+msgstr "Mingit signaali ei leita..., katkestame!"
 
 msgid "Cannot move to trash can"
 msgstr "Prügikasti saatmine ei ole võimalik"
@@ -1447,6 +1498,9 @@ msgstr "Prügikasti puhastamine"
 msgid "Cleanup"
 msgstr "Puhastus"
 
+msgid "Clear"
+msgstr "Kustuta"
+
 msgid "Clear before scan"
 msgstr "Kustuta kanalid"
 
@@ -1538,8 +1592,12 @@ msgstr "Seadistusfail %s salvestati."
 msgid "Configuration mode"
 msgstr "Häälestamine"
 
+#, python-format
+msgid "Configuration mode: %s"
+msgstr "Häälestamine: %s"
+
 msgid "Configure an additional delay to improve external subtitle synchronisation."
-msgstr "Väliste subtiitrite täpsemaks ajastamiseks määra vajadusel viiteaeg."
+msgstr "Määra viiteaeg väliste subtiitrite täpsemaks ajastamiseks."
 
 msgid "Configure an additional delay to improve subtitle synchronisation."
 msgstr "Subtiitrite täpsemaks ajastamiseks määra vajadusel viiteaeg."
@@ -1838,6 +1896,9 @@ msgstr "Cool TV Guide"
 msgid "Copy"
 msgstr "Kopeeri"
 
+msgid "Copying files"
+msgstr "Failide kopeerimine"
+
 msgid ""
 "Could not activate Permanent-Timeshift!\n"
 "Timeshift-Path does not exist"
@@ -2100,6 +2161,9 @@ msgstr "Kustutatud %s!"
 
 msgid "Deleted items"
 msgstr "Prügikast"
+
+msgid "Deleting files"
+msgstr "Failide kustutamine"
 
 msgid "Depth"
 msgstr "Sügavus"
@@ -2469,6 +2533,9 @@ msgstr "VIGA - otsing nurjus (%s)!"
 msgid "East"
 msgstr "Ida"
 
+msgid "East limit set"
+msgstr "Eda piir on määratud"
+
 msgid "Ecm:"
 msgstr "Ecm:"
 
@@ -2764,9 +2831,12 @@ msgstr "Nurjus"
 msgid "Failed to remove old files."
 msgstr "Vanade failide kustutamine nurjus."
 
+msgid "Failed to write /tmp/positionersetup.log: "
+msgstr "/tmp/positionersetup.logi loomine nurjus: "
+
 #, python-format
 msgid "Fan %d"
-msgstr "Ventilaator %d"
+msgstr "Vent. %d"
 
 msgid "Fast"
 msgstr "Kiire"
@@ -2801,6 +2871,15 @@ msgstr "Failisüsteemi kontroll"
 
 msgid "Filesystem check"
 msgstr "Failisüsteemi kontroll"
+
+msgid "Final position at"
+msgstr "Lõplik asukoht"
+
+msgid "Final position at index"
+msgstr "Lõplik asukoht indeksis"
+
+msgid "Fine movement"
+msgstr "Täppisliigutamine"
 
 msgid "Finetune"
 msgstr "Peenhäälestus"
@@ -2943,7 +3022,7 @@ msgid "Getting Event Info failed!"
 msgstr "Saateinfo hankimine nurjus!"
 
 msgid "Getting plugin information. Please wait..."
-msgstr "Hangitakse laienduse andmeid. Oota..."
+msgstr "Laienduste nimekirja laadimine. Oota..."
 
 msgid "Go down the list"
 msgstr "Liigu nimekirjas alla"
@@ -2984,6 +3063,12 @@ msgstr "Goto 0"
 msgid "Goto :"
 msgstr "Mine :"
 
+msgid "Goto X"
+msgstr "Goto X"
+
+msgid "Goto index position"
+msgstr ""
+
 msgid "Goto next bouquet"
 msgstr "Liigu järgmisele lemmiknimekirjale"
 
@@ -3013,6 +3098,9 @@ msgstr "Liigu eelmisele saatekava lehele"
 
 msgid "Goto specific data/time"
 msgstr "Mine kindlale kellaajale/kuupäevale"
+
+msgid "GotoX calibration"
+msgstr "GotoX kalibreerimine"
 
 msgid "GraphMultiEpg Settings"
 msgstr "Graph MEpg seadistused"
@@ -3281,6 +3369,9 @@ msgstr "Suurendatud pinge"
 msgid "Index"
 msgstr "Indeks"
 
+msgid "Index allocated:"
+msgstr ""
+
 msgid "Info"
 msgstr "Andmed"
 
@@ -3314,8 +3405,17 @@ msgstr "Init"
 msgid "Initial fast forward speed"
 msgstr "Edasikerimise algkiirus"
 
+msgid "Initial lock ratio"
+msgstr ""
+
 msgid "Initial rewind speed"
 msgstr "Tagasikerimise algkiirus"
+
+msgid "Initial signal quality"
+msgstr "Algne signaali kvaliteet"
+
+msgid "Initial signal quality:"
+msgstr "Algne signaali kvaliteet:"
 
 msgid "Initialization"
 msgstr "Vorminda"
@@ -3443,6 +3543,9 @@ msgstr "Kirjet lehel"
 
 msgid "Items per page for list screen"
 msgstr "Kirjet lehel nimekirja laadis"
+
+msgid "JUMP 24 HOURS"
+msgstr "HÜPPA 24 TUNDI"
 
 msgid "Job View"
 msgstr "Töövaade"
@@ -3599,6 +3702,12 @@ msgstr "Kasuta failinimedes ainult (7 bit) ascii tähemärke. See tagab failide 
 msgid "Limit west"
 msgstr "Lääne piir"
 
+msgid "Limits cancelled"
+msgstr "Piirid tühistatud"
+
+msgid "Limits enabled"
+msgstr "Piirid kasutusel"
+
 msgid "Limits off"
 msgstr "Piirid pole kasutusel"
 
@@ -3661,6 +3770,9 @@ msgstr "Kohalik võrk"
 
 msgid "Location"
 msgstr "Asukoht"
+
+msgid "Lock ratio"
+msgstr ""
 
 msgid "Lock:"
 msgstr "Lukus:"
@@ -3792,6 +3904,9 @@ msgstr "Jäänud/möödunud meedia esitus"
 msgid "Media player"
 msgstr "Meediamängija"
 
+msgid "Media scanner"
+msgstr "Meediaskanner"
+
 msgid "Medium is not a writeable DVD!"
 msgstr "DVD ketas ei ole kirjutatav!"
 
@@ -3803,6 +3918,9 @@ msgstr "Mälu"
 
 msgid "Memory Information"
 msgstr "Mälu andmed"
+
+msgid "Memory index"
+msgstr "Mälu indeks"
 
 msgid "Menu"
 msgstr "Menüü"
@@ -3916,11 +4034,23 @@ msgstr "Liigu nimekirja kodukataloogi"
 msgid "Move to other directory"
 msgstr "Liiguta teise kataloogi"
 
+msgid "Move to position X"
+msgstr "Liigu positsioonile X"
+
 msgid "Move up a page"
 msgstr "Liigu lehe algusesse"
 
 msgid "Move west"
 msgstr "Liiguta läände"
+
+msgid "Moved to position 0"
+msgstr "Liiguti kohale 0"
+
+msgid "Moved to position at index"
+msgstr "Liigutati asukohta indeksis"
+
+msgid "Movement"
+msgstr "Liikumine"
 
 msgid "Movie List"
 msgstr "Filmilist"
@@ -3939,6 +4069,21 @@ msgstr "Film/draama"
 
 msgid "Movielist menu"
 msgstr "Filmilisti menüü"
+
+msgid "Moving"
+msgstr "Liigutamine"
+
+msgid "Moving east ..."
+msgstr "Keerab itta ..."
+
+msgid "Moving files"
+msgstr "Failide liigutamine"
+
+msgid "Moving to position"
+msgstr "Liikumine positsioonile"
+
+msgid "Moving west ..."
+msgstr "Keerab läände ..."
 
 msgid "Multi EPG"
 msgstr "Multi EPG"
@@ -4141,6 +4286,9 @@ msgstr "Saatel pole teada lõppaeg. Salvestatakse pidevalt."
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
 msgstr "Kiire kerimine pole veel võimalik, aga saad kasutad numbrinuppe edasi/tagasi hüppamiseks!"
 
+msgid "No free index available"
+msgstr "Vaba indeks puudub"
+
 msgid "No free tuner!"
 msgstr "Pole vaba tuunerit!"
 
@@ -4165,9 +4313,6 @@ msgstr "Pole, mida vahetada (suurendada või vähendada)"
 msgid "No positioner capable frontend found."
 msgstr "Ei leitud positsioneeri toetavat tuunerit."
 
-msgid "No sat tuner found!"
-msgstr "Satituunerit ei leitud"
-
 msgid "No satellite frontend found!!"
 msgstr "Ei leitud satituunerit!!"
 
@@ -4179,6 +4324,9 @@ msgstr "Kanalit/levitajat pole valitud"
 
 msgid "No standby"
 msgstr "Ooterežiimita"
+
+msgid "No suitable sat tuner found!"
+msgstr "Satituunerit tuunerit ei leitud!"
 
 msgid "No tags are set on these movies."
 msgstr "Salvestustele pole märksõnu määratud."
@@ -4460,6 +4608,9 @@ msgstr "Kas tarkvara uuendamisel kirjutatakse seadistusfailid üle?"
 msgid "Overwrite configuration files?"
 msgstr "Seadistusfailid kirjutatakse üle?"
 
+msgid "PAGE UP/DOWN"
+msgstr "LEHT ÜLES/ALLA"
+
 msgid "PAL"
 msgstr "PAL"
 
@@ -4474,6 +4625,9 @@ msgstr "Vajalik on pin-kood"
 
 msgid "PMT PID"
 msgstr "PMT PID"
+
+msgid "PRIMETIME"
+msgstr "TIPPAEG"
 
 #, python-format
 msgid "PTS Plugin Error: %s"
@@ -4604,10 +4758,10 @@ msgid "Picon"
 msgstr "Kanalilogo"
 
 msgid "Picon and Service Name"
-msgstr "Kanalilogod ja -nimi"
+msgstr "Kanalilogo ja nimi"
 
 msgid "Picon and service name"
-msgstr "Kanalilogod ja nimi"
+msgstr "Kanalilogo ja nimi"
 
 msgid "Picon width"
 msgstr "Kanalilogo laius"
@@ -4874,6 +5028,9 @@ msgstr "Laienduste halduri abi"
 msgid "Plugins"
 msgstr "Laiendused"
 
+msgid "Polarisation"
+msgstr "Polarisatsioon"
+
 msgid "Polarization"
 msgstr "Polarisatsioon"
 
@@ -4910,23 +5067,14 @@ msgstr "Lõpetatud taimerite asukoht nimekirjas"
 msgid "Position setup"
 msgstr "Ekraanigraafika asukoht"
 
+msgid "Position stored at index"
+msgstr "Asukoht salvestati indeksis"
+
 msgid "Positioner"
 msgstr "Positsioneer"
 
-msgid "Positioner Setup"
-msgstr "Positsioneeri seadistus"
-
-msgid "Positioner fine movement"
-msgstr "Positsioneeri täppisliigutamine"
-
-msgid "Positioner movement"
-msgstr "Positsioneeri liigutamine"
-
 msgid "Positioner setup"
 msgstr "Positsioneeri seadistus"
-
-msgid "Positioner storage"
-msgstr "Positsioneeri mälu"
 
 msgid "Power threshold in mA"
 msgstr "Tuvastusvool mA"
@@ -5453,6 +5601,9 @@ msgstr "Rumeenia"
 msgid "Root directory"
 msgstr "Juurkataloog"
 
+msgid "Rotor step position:"
+msgstr "Mootori sammu asukoht:"
+
 msgid "Rotor turning speed"
 msgstr "Mootori pööramise kiirus"
 
@@ -5515,6 +5666,9 @@ msgstr "Satelliidiseadmed"
 
 msgid "Satellite equipment setup"
 msgstr "Satelliidiseadmete seaded"
+
+msgid "Satellite longitude:"
+msgstr "Satelliidi pikkuskraad:"
 
 msgid "Satellites"
 msgstr "Satelliidid"
@@ -5645,11 +5799,20 @@ msgstr "Otsi käesoleva saate kava."
 msgid "Search west"
 msgstr "Otsi läände"
 
+msgid "Searching"
+msgstr "Otsing"
+
+msgid "Searching east ..."
+msgstr "Otsitakse itta..."
+
 msgid "Searching for available updates. Please wait..."
 msgstr "Otsin uuendusi. Oota..."
 
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Otsin uusi paigaldatud või kustutatud pakette. Oota..."
+
+msgid "Searching west ..."
+msgstr "Otsitakse läände..."
 
 msgid "Secondary DNS"
 msgstr "Teine nimeserver"
@@ -5936,6 +6099,9 @@ msgstr "Määra lõppaeg"
 msgid "Set fixed"
 msgstr "Määra püsiaadress"
 
+msgid "Set fps for external subtitles"
+msgstr "Määra väliste subtiitrite fps"
+
 msgid "Set interface as default Interface"
 msgstr "Määra vaikimisi võrguliideseks"
 
@@ -6055,6 +6221,9 @@ msgstr "Seadista, mida toitenupu pikk vajutus teeb."
 
 msgid "Setup what a short press on the power button does."
 msgstr "Seadista, mida toitenupu lühike vajutus teeb."
+
+msgid "Setup your positioner"
+msgstr "Mootori häälestamine"
 
 msgid "Setup your satellite equipment"
 msgstr "Satelliidiseadmed"
@@ -6318,8 +6487,14 @@ msgstr "Kõrvuti"
 msgid "Side by side"
 msgstr "Kõrvuti"
 
+msgid "Signal OK, proceeding"
+msgstr "Korralik signaal, jätkame"
+
 msgid "Signal Strength:"
 msgstr "Signaali tugevus:"
+
+msgid "Signal quality"
+msgstr "Signaali kvaliteet"
 
 msgid "Signal strength:"
 msgstr "Signaali tugevus:"
@@ -6356,6 +6531,12 @@ msgstr "Üksik transponder"
 
 msgid "SingleEPG settings"
 msgstr "Kanali EPG seaded"
+
+msgid "Site latitude"
+msgstr "Koha laiuskraad"
+
+msgid "Site longitude"
+msgstr "Koha pikkuskraad"
 
 msgid "Size: "
 msgstr "Suurus: "
@@ -6567,6 +6748,12 @@ msgstr "Samm itta"
 msgid "Step west"
 msgstr "Samm läände"
 
+msgid "Stepped east"
+msgstr ""
+
+msgid "Stepped west"
+msgstr ""
+
 msgid "Stop"
 msgstr "Peata"
 
@@ -6612,6 +6799,9 @@ msgstr "Ajanihe peatatakse?"
 msgid "Stopped"
 msgstr "Peatatud"
 
+msgid "Store at index"
+msgstr "Salvesta indeksis"
+
 msgid "Store position"
 msgstr "Salvesta asukoht"
 
@@ -6626,6 +6816,9 @@ msgstr "Striimi päring"
 
 msgid "Strict DLNA"
 msgstr "Puhas DLNA"
+
+msgid "Strongest position"
+msgstr "Tugevaim positsioon"
 
 msgid "Subservice mode"
 msgstr "Alamkanalid"
@@ -6740,6 +6933,9 @@ msgstr "Sümbolikiirus"
 
 msgid "Sync NTP every (minutes)"
 msgstr "Sükroniseeri NTP iga (minut)"
+
+msgid "Sync failure moving back to origin !"
+msgstr "Sünroniseerimine nurjus, naaseme esialgsele!"
 
 msgid "Sync time using"
 msgstr "Sükroniseeri aeg kasutades"
@@ -7041,6 +7237,9 @@ msgstr "Uuendusi ei ole saadaval."
 msgid "There is no [webif] section in oscam.conf"
 msgstr ""
 
+msgid "There is no signal to lock on !"
+msgstr "Lukustamiseks puudub signaal!"
+
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
@@ -7245,6 +7444,11 @@ msgstr ""
 
 msgid "This test detects your configured LAN adapter."
 msgstr "See test kontrollib seadistatud kohtvõrku."
+
+msgid ""
+"This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
+"Are you sure?"
+msgstr ""
 
 msgid "Three"
 msgstr "Kolm"
@@ -7496,6 +7700,9 @@ msgstr "Teisipäev"
 msgid "Tune"
 msgstr "Häälesta"
 
+msgid "Tune and focus"
+msgstr ""
+
 msgid "Tune failed!"
 msgstr "Häälestus nurjus!"
 
@@ -7544,6 +7751,9 @@ msgstr "Tüüp: "
 
 msgid "USALS"
 msgstr "USALS"
+
+msgid "USALS calibration"
+msgstr "USALS kalibreerimine"
 
 msgid "USB stick wizard"
 msgstr "USB-mälupulk"
@@ -7782,11 +7992,19 @@ msgstr "Kasutajanimi (httpuser)"
 msgid "Username:"
 msgstr "Kasutajanimi:"
 
+#, python-format
+msgid "Using LNB %d"
+msgstr "Kasutuses LNB %d"
+
 msgid "Using fixed address"
 msgstr "Püsiaadress kasutuses"
 
 msgid "Using old profile: "
 msgstr "Kasutuses vana profiil: "
+
+#, python-format
+msgid "Using tuner %s"
+msgstr "Kasutuses tuuner %s"
 
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
 msgstr "Tavaliselt subtiitreid ei näidata, kui nende keel kattub heli keelega. Siin valikus saab selle lubada."
@@ -7855,6 +8073,10 @@ msgstr "Video seaded"
 
 msgid "Video wizard"
 msgstr "Video abimees"
+
+#, python-format
+msgid "Video: %s fps"
+msgstr "Video: %s fps"
 
 msgid "Videocodec"
 msgstr "Videokoodek"
@@ -8024,6 +8246,9 @@ msgstr "Äratussignaal TV-st"
 msgid "Wakeup your STB_BOX from standby"
 msgstr "Käivita STB_BOX "
 
+msgid "Warning: no LNB; using factory defaults."
+msgstr "Hoiatus: LNB puudub; kautatakse algseadeid."
+
 msgid "Watch movies..."
 msgstr "Vaata salvestusi..."
 
@@ -8044,6 +8269,9 @@ msgstr "Nädalapäev"
 
 msgid "Weekly"
 msgstr "Iga nädal"
+
+msgid "Weighted position"
+msgstr ""
 
 msgid ""
 "Welcome to the cutlist editor.\n"
@@ -8090,6 +8318,9 @@ msgstr "Tere tulemast..."
 
 msgid "West"
 msgstr "Lääs"
+
+msgid "West limit set"
+msgstr "Kääne piir määratud"
 
 msgid "What Day of month ?"
 msgstr "Mis kuupäev?"
@@ -8889,6 +9120,9 @@ msgstr "valmis!"
 msgid "e-Mail address"
 msgstr "e-Mail aadress"
 
+msgid "east"
+msgstr "ida"
+
 msgid "ecm time:"
 msgstr "ecm aeg:"
 
@@ -9115,6 +9349,9 @@ msgstr "vaba aja harrastused"
 msgid "length"
 msgstr "pikkus"
 
+msgid "limit ..., aborting !"
+msgstr "piir ..., katkestame!"
+
 msgid "literature"
 msgstr "kirjandus"
 
@@ -9255,6 +9492,9 @@ msgstr "kasutatud ühekihilisest kettast."
 
 msgid "off"
 msgstr "väljas"
+
+msgid "offset is"
+msgstr ""
 
 msgid "on"
 msgstr "sees"
@@ -9680,7 +9920,7 @@ msgid "using:"
 msgstr "kasutuses:"
 
 msgid "variety show"
-msgstr ""
+msgstr "varieteeprogramm"
 
 msgid "vertical"
 msgstr "vertikaalne"
@@ -9708,6 +9948,9 @@ msgstr "veesport"
 
 msgid "weekly"
 msgstr "iga nädal"
+
+msgid "west"
+msgstr "lääs"
 
 msgid "when asking question about this log"
 msgstr "küsides selle logi kohta"
@@ -9777,6 +10020,15 @@ msgstr "vahetatud"
 
 #~ msgid "Last Update:"
 #~ msgstr "Uuendatud:"
+
+#~ msgid "No sat tuner found!"
+#~ msgstr "Satituunerit ei leitud"
+
+#~ msgid "Positioner Setup"
+#~ msgstr "Positsioneeri seadistus"
+
+#~ msgid "Positioner fine movement"
+#~ msgstr "Positsioneeri täppisliigutamine"
 
 #~ msgid "Version:"
 #~ msgstr "Versioon:"
