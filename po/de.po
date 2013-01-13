@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2013-01-13 15:31+0100\n"
+"PO-Revision-Date: 2013-01-13 16:58+0100\n"
 "Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: AAF\n"
 "Language: de\n"
@@ -4481,6 +4481,10 @@ msgstr "Receiver Software-Verwaltung"
 msgid "Manual scan"
 msgstr "Manueller Suchlauf"
 
+#
+msgid "Manual Scan"
+msgstr "Manueller Suchlauf"
+
 msgid "Manual configuration"
 msgstr "Manuelle Konfiguration"
 
@@ -6646,8 +6650,22 @@ msgid "Scanning %s..."
 msgstr "Suchlauf %s..."
 
 #, python-format
-msgid "Scanning completed, %d channels found"
-msgstr "Suchlauf beendet, %d Kanäle gefunden"
+msgid "Scanning completed, %d channel found"
+msgid_plural "Scanning completed, %d channels found"
+msgstr[0] "Suchlauf beendet, %d Kanal gefunden"
+msgstr[1] "Suchlauf beendet, %d Kanäle gefunden"
+
+#, python-format
+msgid "Scanning - %d%% completed"
+msgid_plural "Scanning - %d%% completed"
+msgstr[0] "Suchlauf zu %d%% erledigt"
+msgstr[1] "Suchlauf zu %d%% erledigt"
+
+#, python-format
+msgid "%d channel found"
+msgid_plural "%d channels found"
+msgstr[0] "%d Kanal gefunden"
+msgstr[1] "%d Kanäle gefunden"
 
 msgid "Scanning failed!"
 msgstr "Suchlauf fehlgeschlagen!"
