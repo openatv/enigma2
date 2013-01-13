@@ -10,6 +10,7 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 import VideoEnhancement
 from os import path as os_path
+from enigma import getBoxType
 
 class VideoEnhancementSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
@@ -226,7 +227,10 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 			if self.digital_contour_removalEntry is not None:
 				config.pep.digital_contour_removal.setValue(0)
 			if self.scaler_sharpnessEntry is not None:
-				config.av.scaler_sharpness.setValue(13)
+				if getBoxType() == 'gbquad':
+					config.av.scaler_sharpness.setValue(5)
+				else:
+					config.av.scaler_sharpness.setValue(13)
 			if self.splitEntry is not None:
 				config.pep.split.setValue('off')
 			if self.sharpnessEntry is not None:
