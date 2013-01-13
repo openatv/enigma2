@@ -1,4 +1,4 @@
-installdir = $(pkgdatadir)/countries
+installdir = $(pkgdatadir)/skin_default/countries
 
 dist_install_DATA = \
 	ar_AE.png \
