@@ -942,9 +942,11 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		if self.zapFunc and self.key_red_choice == self.ZAP:
 			ref = self["list"].getCurrent()[1]
 			if ref:
+				currentref = self.session.nav.getCurrentlyPlayingServiceReference()
 				self.zapFunc(ref.ref)
-				config.misc.graph_mepg.save()
-				self.close(True)
+				if currentref == ref.ref:
+					config.misc.graph_mepg.save()
+					self.close(True)
 
 	def swapMode(self):
 		global listscreen
