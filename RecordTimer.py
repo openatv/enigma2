@@ -516,6 +516,7 @@ def createTimer(xml):
 		tags = None
 	descramble = int(xml.get("descramble") or "1")
 	record_ecm = int(xml.get("record_ecm") or "0")
+	isAutoTimer = int(xml.get("isAutoTimer") or "0")
 
 	name = xml.get("name").encode("utf-8")
 	#filename = xml.get("filename").encode("utf-8")
@@ -651,6 +652,7 @@ class RecordTimer(timer.Timer):
 			list.append(' justplay="' + str(int(timer.justplay)) + '"')
 			list.append(' descramble="' + str(int(timer.descramble)) + '"')
 			list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
+			list.append(' isAutoTimer="' + str(int(timer.isAutoTimer)) + '"')
 			list.append('>\n')
 
 			if config.recording.debug.getValue():
@@ -806,16 +808,20 @@ class RecordTimer(timer.Timer):
 					elif x.begin <= begin <= x.end:
 						if x.end < end: # recording first part of event
 							time_match = x.end - begin
-							type = 5
+							if not x.justplay or (x.end - (x.begin + (config.recording.margin_before.getValue() * 60))) > 1:
+								type = 5
+							elif x.justplay:
+								type = 3
 						else:			# recording whole event
 							time_match = end - begin
-							type = 2
-				if type == 2: # stop searching if a full recording is found
+							if not x.justplay:
+								type = 2
+							else:
+								type = 3
+				if type == 2 or type == 3: # stop searching if a full recording is found
 					break
 		if time_match:
-			if x.justplay == 1 and type == 5 and (x.end - (x.begin + (config.recording.margin_before.getValue() * 60))) == 1:
-				type = 3 
-			return (time_match, type, x.justplay)
+			return (time_match, type)
 		else:
 			return None
 

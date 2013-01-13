@@ -313,7 +313,8 @@ class EPGSelection(Screen, HelpableScreen):
 				self.closeRecursive = False
 				self["timeline_text"] = TimelineText()
 				self["Event"] = Event()
-				self["change_day"] = Label(_('CHANGE DAY'))
+				self["primetime"] = Label(_('PRIMETIME'))
+				self["change_bouquet"] = Label(_('CHANGE BOUQUET'))
 				self["jump"] = Label(_('JUMP 24 HOURS'))
 				self["page"] = Label(_('PAGE UP/DOWN'))
 				self.time_lines = [ ]
@@ -478,18 +479,19 @@ class EPGSelection(Screen, HelpableScreen):
 					"down":		(self.moveDown, _("Goto next channel")),
 				},-1)
 			self["cursoractions"].csel = self
-			self["inputactions"] = NumberActionMap(["NumberActions"],
-			{
-				"1": self.keyNumberGlobal,
-				"2": self.keyNumberGlobal,
-				"3": self.keyNumberGlobal,
-				"4": self.keyNumberGlobal,
-				"5": self.keyNumberGlobal,
-				"6": self.keyNumberGlobal,
-				"7": self.keyNumberGlobal,
-				"8": self.keyNumberGlobal,
-				"9": self.keyNumberGlobal,
-			}, -1)
+
+			self["inputactions"] = HelpableActionMap(self, "NumberActions",
+				{
+					"1": (self.keyNumberGlobal, _("enter number to jump to channel.")),
+					"2": (self.keyNumberGlobal, _("enter number to jump to channel.")),
+					"3": (self.keyNumberGlobal, _("enter number to jump to channel.")),
+					"4": (self.keyNumberGlobal, _("enter number to jump to channel.")),
+					"5": (self.keyNumberGlobal, _("enter number to jump to channel.")),
+					"6": (self.keyNumberGlobal, _("enter number to jump to channel.")),
+					"7": (self.keyNumberGlobal, _("enter number to jump to channel.")),
+					"8": (self.keyNumberGlobal, _("enter number to jump to channel.")),
+					"9": (self.keyNumberGlobal, _("enter number to jump to channel.")),
+				}, -1)
 			self["inputactions"].csel = self
 
 		elif self.type == EPG_TYPE_GRAPH:
@@ -516,16 +518,16 @@ class EPGSelection(Screen, HelpableScreen):
 			self["cursoractions"].csel = self
 			self["input_actions"] = HelpableActionMap(self, "NumberActions",
 				{
-					"1":		(self.key1, _("Reduce time scale")),
-					"2":		(self.key2, _("Page up")),
-					"3":		(self.key3, _("Increase time scale")),
-					"4":		(self.key4, _("page left")),
-					"5":		(self.key5, _("Jump to current time")),
-					"6":		(self.key6, _("Page right")),
-					"7":		(self.key7, _("No of items switch (increase or reduced)")),
-					"8":		(self.key8, _("Page down")),
-					"9":		(self.key9, _("Jump to prime time")),
-					"0":		(self.key0, _("Move to home of list")),
+					"1":		(self.keyNumberGlobal, _("Reduce time scale")),
+					"2":		(self.keyNumberGlobal, _("Page up")),
+					"3":		(self.keyNumberGlobal, _("Increase time scale")),
+					"4":		(self.keyNumberGlobal, _("page left")),
+					"5":		(self.keyNumberGlobal, _("Jump to current time")),
+					"6":		(self.keyNumberGlobal, _("Page right")),
+					"7":		(self.keyNumberGlobal, _("No of items switch (increase or reduced)")),
+					"8":		(self.keyNumberGlobal, _("Page down")),
+					"9":		(self.keyNumberGlobal, _("Jump to prime time")),
+					"0":		(self.keyNumberGlobal, _("Move to home of list")),
 				},-1)
 			self["input_actions"].csel = self
 
@@ -1134,68 +1136,6 @@ class EPGSelection(Screen, HelpableScreen):
 			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))
 			self.session.openWithCallback(self.finishedAdd, InstantRecordTimerEntry, newEntry, zap)
 
-	def key1(self):
-		hilf = config.epgselection.prev_time_period.getValue()
-		if hilf > 60:
-			hilf = hilf - 60
-			self["list"].setEpoch(hilf)
-			config.epgselection.prev_time_period.setValue(hilf)
-			self.moveTimeLines()
-
-	def key2(self):
-		self.prevPage()
-
-	def key3(self):
-		hilf = config.epgselection.prev_time_period.getValue()
-		if hilf < 300:
-			hilf = hilf + 60
-			self["list"].setEpoch(hilf)
-			config.epgselection.prev_time_period.setValue(hilf)
-			self.moveTimeLines()
-
-	def key4(self):
-		self.updEvent(-2)
-
-	def key5(self):
-		now = time() - int(config.epg.histminutes.getValue()) * 60
-		self.ask_time = now - now % (int(config.epgselection.roundTo.getValue()) * 60)
-		self["list"].resetOffset()
-		self["list"].fillGraphEPG(None, self.ask_time)
-		self.moveTimeLines(True)
-
-	def key6(self):
-		self.updEvent(+2)
-
-	def key7(self):
-		if config.epgselection.heightswitch.getValue():
-			config.epgselection.heightswitch.setValue(False)
-		else:
-			config.epgselection.heightswitch.setValue(True)
-		self["list"].setItemsPerPage()
-		self["list"].fillGraphEPG(None)
-		self.moveTimeLines()
-
-	def key8(self):
-		self.nextPage()
-
-	def key9(self):
-		basetime = localtime(self["list"].getTimeBase())
-		basetime = (basetime[0], basetime[1], basetime[2], int(config.epgselection.primetimehour.getValue()), int(config.epgselection.primetimemins.getValue()),0, basetime[6], basetime[7], basetime[8])
-		self.ask_time = mktime(basetime)
-		if self.ask_time + 3600 < time():
-			self.ask_time = self.ask_time + 86400
-		self["list"].resetOffset()
-		self["list"].fillGraphEPG(None, self.ask_time)
-		self.moveTimeLines(True)
-
-	def key0(self):
-		self.toTop()
-		now = time() - int(config.epg.histminutes.getValue()) * 60
-		self.ask_time = now - now % (int(config.epgselection.roundTo.getValue()) * 60)
-		self["list"].resetOffset()
-		self["list"].fillGraphEPG(None, self.ask_time)
-		self.moveTimeLines()
-
 	def OK(self):
 		if config.epgselection.OK_vixepg.getValue() == "Zap" or config.epgselection.OK_enhanced.getValue() == "Zap" or config.epgselection.OK_infobar.getValue() == "Zap" or config.epgselection.OK_multi.getValue() == "Zap":
 			self.ZapTo()
@@ -1460,8 +1400,63 @@ class EPGSelection(Screen, HelpableScreen):
 					self.close('close')
 
 	def keyNumberGlobal(self, number):
-		from Screens.InfoBarGenerics import NumberZap
-		self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
+		if self.type == EPG_TYPE_GRAPH:
+			if number == 1:
+				hilf = config.epgselection.prev_time_period.getValue()
+				if hilf > 60:
+					hilf = hilf - 60
+					self["list"].setEpoch(hilf)
+					config.epgselection.prev_time_period.setValue(hilf)
+					self.moveTimeLines()
+			elif number == 2:
+				self.prevPage()
+			elif number == 3:
+				hilf = config.epgselection.prev_time_period.getValue()
+				if hilf < 300:
+					hilf = hilf + 60
+					self["list"].setEpoch(hilf)
+					config.epgselection.prev_time_period.setValue(hilf)
+					self.moveTimeLines()
+			elif number == 4:
+				self.updEvent(-2)
+			elif number == 5:
+				now = time() - int(config.epg.histminutes.getValue()) * 60
+				self.ask_time = now - now % (int(config.epgselection.roundTo.getValue()) * 60)
+				self["list"].resetOffset()
+				self["list"].fillGraphEPG(None, self.ask_time)
+				self.moveTimeLines(True)
+			elif number == 6:
+				self.updEvent(+2)
+			elif number == 7:
+				if config.epgselection.heightswitch.getValue():
+					config.epgselection.heightswitch.setValue(False)
+				else:
+					config.epgselection.heightswitch.setValue(True)
+				self["list"].setItemsPerPage()
+				self["list"].fillGraphEPG(None)
+				self.moveTimeLines()
+			elif number == 8:
+				self.nextPage()
+			elif number == 9:
+				basetime = localtime(self["list"].getTimeBase())
+				basetime = (basetime[0], basetime[1], basetime[2], int(config.epgselection.primetimehour.getValue()), int(config.epgselection.primetimemins.getValue()),0, basetime[6], basetime[7], basetime[8])
+				self.ask_time = mktime(basetime)
+				if self.ask_time + 3600 < time():
+					self.ask_time = self.ask_time + 86400
+				self["list"].resetOffset()
+				self["list"].fillGraphEPG(None, self.ask_time)
+				self.moveTimeLines(True)
+			elif number == 0:
+				self.toTop()
+				now = time() - int(config.epg.histminutes.getValue()) * 60
+				self.ask_time = now - now % (int(config.epgselection.roundTo.getValue()) * 60)
+				self["list"].resetOffset()
+				self["list"].fillGraphEPG(None, self.ask_time)
+				self.moveTimeLines()
+
+		else:
+			from Screens.InfoBarGenerics import NumberZap
+			self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
 
 	def numberEntered(self, service = None, bouquet = None):
 		if not service is None:

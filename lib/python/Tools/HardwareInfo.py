@@ -46,4 +46,4 @@ class HardwareInfo:
 		return HardwareInfo.device_version
 
 	def has_hdmi(self):
-		return (HardwareInfo.device_name == 'dm7020hd' or HardwareInfo.device_name == 'dm800se' or HardwareInfo.device_name == 'dm500hd' or (HardwareInfo.device_name == 'dm8000' and HardwareInfo.device_version != None) or getBoxType().startswith('gb') or getBoxType().startswith('tm'))
+		return (getBoxType() == 'ebox5000' or getBoxType().startswith('et') or getBoxType().startswith('gb') or getBoxType() == 'ixussone' or getBoxType().startswith('odin') or getBoxType().startswith('tm') or getBoxType().startswith('vu') or getBoxType().startswith('xp') or getBoxType() == 'dm7020hd' or getBoxType() == 'dm800se' or getBoxType() == 'dm500hd' or (getBoxType() == 'dm8000' and HardwareInfo.device_version != None))
