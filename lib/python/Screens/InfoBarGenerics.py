@@ -1180,7 +1180,8 @@ class InfoBarMenu:
 		self.session.openWithCallback(self.mainMenuClosed, Menu, menu)
 
 	def showRFSetup(self):
-		self.session.openWithCallback(self.mainMenuClosed, Setup, 'RFmod')
+		if SystemInfo["RfModulator"]:
+			self.session.openWithCallback(self.mainMenuClosed, Setup, 'RFmod')
 
 	def mainMenuClosed(self, *val):
 		self.session.infobar = None
