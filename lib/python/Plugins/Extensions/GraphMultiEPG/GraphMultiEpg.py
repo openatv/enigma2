@@ -942,7 +942,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		if self.zapFunc and self.key_red_choice == self.ZAP:
 			ref = self["list"].getCurrent()[1]
 			if ref:
-				currentref = self.session.nav.getCurrentlyPlayingServiceReference()
+				currentref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 				self.zapFunc(ref.ref)
 				if currentref == ref.ref:
 					config.misc.graph_mepg.save()
