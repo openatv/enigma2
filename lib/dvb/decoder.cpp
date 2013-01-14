@@ -1025,13 +1025,18 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 			{
 				bool seq_end_avail = false;
 				size_t pos=0;
-				unsigned char pes_header[] = { 0x00, 0x00, 0x01, 0xE0, 0x00, 0x00, 0x80, 0x00, 0x00 };
+				unsigned char pes_header[] = { 0x00, 0x00, 0x01, 0xE0, 0x00, 0x00, 0x80, 0x80, 0x05, 0x21, 0x00, 0x01, 0x00, 0x01 };
 				unsigned char seq_end[] = { 0x00, 0x00, 0x01, 0xB7 };
 				unsigned char iframe[s.st_size];
 				unsigned char stuffing[8192];
-				int streamtype = VIDEO_STREAMTYPE_MPEG2;
+				int streamtype;
 				memset(stuffing, 0, 8192);
 				read(f, iframe, s.st_size);
+				if (iframe[0] == 0x00 && iframe[1] == 0x00 && iframe[2] == 0x00 && iframe[3] == 0x01 && (iframe[4] & 0x0f) == 0x07)
+					streamtype = VIDEO_STREAMTYPE_MPEG4_H264;
+				else
+					streamtype = VIDEO_STREAMTYPE_MPEG2;
+
 				if (ioctl(m_video_clip_fd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_MEMORY) < 0)
 					eDebug("VIDEO_SELECT_SOURCE MEMORY failed (%m)");
 				if (ioctl(m_video_clip_fd, VIDEO_SET_STREAMTYPE, streamtype) < 0)
