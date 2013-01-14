@@ -146,11 +146,11 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
-#if KEY_F5_TO_KEY_SCREEN
+#if KEY_F5_TO_KEY_ANGLE
 	if (ev->code == KEY_F5)
 	{
 		/* Technomate , which sends KEY_F5 events. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_SCREEN;
+		ev->code = KEY_ANGLE;
 		
 	}
 #endif
