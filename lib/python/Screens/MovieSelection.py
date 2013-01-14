@@ -954,9 +954,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					if self.playAsDVD(path):
 						return
 				if ext in IMAGE_EXTENSIONS:
-				        try:
-				                from Plugins.Extensions.PicturePlayer import ui
-				                # Build the list for the PicturePlayer UI
+					try:
+						from Plugins.Extensions.PicturePlayer import ui
+						# Build the list for the PicturePlayer UI
 						filelist = []
 						index = 0
 						for item in self.list.list:
@@ -964,8 +964,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 							if p == path:
 							        index = len(filelist)
 							if os.path.splitext(p)[1].lower() in IMAGE_EXTENSIONS:
-							        filelist.append(((p,False), None))
-				                self.session.open(ui.Pic_Full_View, filelist, index, path)
+							       filelist.append(((p,False), None))
+						self.session.open(ui.Pic_Full_View, filelist, index, path)
 					except Exception, ex:
 					        print "[ML] Cannot display", str(ex)
 					return
@@ -1082,7 +1082,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def configure(self):
 		self.session.openWithCallback(self.configureDone, MovieBrowserConfiguration)
 
-    	def configureDone(self, result):
+	def configureDone(self, result):
 		if result:
 			self.applyConfigSettings({\
 				"listtype": config.movielist.listtype.value,
@@ -1485,7 +1485,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		except Exception, e:
 			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 
-        def can_copy(self, item):
+	def can_copy(self, item):
 		return canCopy(item)
 	def do_copy(self):
 		item = self.getCurrentSelection()
