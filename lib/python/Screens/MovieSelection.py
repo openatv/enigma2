@@ -251,7 +251,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 			getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen),
 			getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal),
 			getConfigListEntry(_("Root directory"), config.movielist.root),
-			getConfigListEntry(_("Hide extensions"), config.movielist.hide_extensions),
+			getConfigListEntry(_("Hide known extensions"), config.movielist.hide_extensions),
 			]
 		for btn in ('red', 'green', 'yellow', 'blue', 'TV', 'Radio', 'Text'):
 			configList.append(getConfigListEntry(_(btn), userDefinedButtons[btn]))

@@ -310,7 +310,7 @@ class MovieList(GUIComponent):
 			self.list[cur_idx] = (x[0], x[1], x[2], data) #update entry in list... so next time we don't need to recalc
 			data.txt = info.getName(serviceref)
 			if config.movielist.hide_extensions.value:
-				fileName, fileExtension = os.path.splitext(info.getName(serviceref))
+				fileName, fileExtension = os.path.splitext(data.txt)
 				if fileExtension in (".dts", ".mp2", ".mp3", ".ogg", ".mpg", ".vob", ".wav", ".wave", ".m4v", ".mkv", ".avi", ".divx", ".dat", ".flac", ".flv", ".mp4", ".mov", ".m4a", ".3gp", ".3g2", ".asf", ".wmv", ".wma", ".iso"):
 					data.txt = fileName
 			data.icon = None
