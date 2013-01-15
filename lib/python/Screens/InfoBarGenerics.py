@@ -1326,7 +1326,6 @@ class Seekbar(Screen):
 		else:
 			ConfigListScreen.keyNumberGlobal(self, number)
 			
-
 from enigma import eDVBVolumecontrol
 
 class InfoBarSeek:
@@ -1338,13 +1337,6 @@ class InfoBarSeek:
 
 	def __init__(self, actionmap = "InfobarSeekActions"):
 		
-		self.paused = False
-		if not self.paused:
-			self.volctrl = eDVBVolumecontrol.getInstance()
-			self.vol = self.volctrl.getVolume()
-		
-		self.paused = False
-
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
@@ -1518,6 +1510,17 @@ class InfoBarSeek:
 		self.seekstate = self.SEEK_STATE_PLAY
 		self.__seekableStatusChanged()
 
+	def setMute(self):
+		if (eDVBVolumecontrol.getInstance().isMuted()):
+			print "mute already active"
+		else:
+			print "NO mute so turrning ON"
+			eDVBVolumecontrol.getInstance().volumeToggleMute()
+
+	def leaveMute(self):
+		if (eDVBVolumecontrol.getInstance().isMuted()):
+			eDVBVolumecontrol.getInstance().volumeToggleMute()
+			
 	def setSeekState(self, state):
 		service = self.session.nav.getCurrentService()
 
@@ -1538,32 +1541,26 @@ class InfoBarSeek:
 
 		if pauseable is not None:
 			if self.seekstate[0] and self.seekstate[3] == '||':
-#				print "resolved to PAUSE"
-				if not self.paused:
-					self.vol = self.volctrl.getVolume()
-				self.paused = True
+				print "resolved to PAUSE"
+				self.leaveMute()
 				self.activityTimer.stop()
 				pauseable.pause()
-			elif self.seekstate[0] and self.seekstate[3] == 'END':
-				self.volctrl.setVolume(int(self.vol), int(self.vol))
-				self.paused = False			  
-#				print "resolved to STOP"
+			elif self.seekstate[0] and self.seekstate[3] == 'END':		  
+				print "resolved to STOP"
+				self.leaveMute()
 				self.activityTimer.stop()
 				service.stop()
 			elif self.seekstate[1]:
-				self.paused = True
-				self.volctrl.setVolume(0,0)
-# 				print "resolved to FAST FORWARD"
+ 				print "resolved to FAST FORWARD"
+				self.setMute()
 				pauseable.setFastForward(self.seekstate[1])
 			elif self.seekstate[2]:
-				self.paused = True			  
-				self.volctrl.setVolume(0,0)
-# 				print "resolved to SLOW MOTION"
+ 				print "resolved to SLOW MOTION"
+				self.setMute()
 				pauseable.setSlowMotion(self.seekstate[2])
 			else:
-				self.volctrl.setVolume(int(self.vol), int(self.vol))
-				self.paused = False
-# 				print "resolved to PLAY"
+ 				print "resolved to PLAY"
+				self.leaveMute()
 				self.activityTimer.start(200, False)
 				pauseable.unpause()
 
