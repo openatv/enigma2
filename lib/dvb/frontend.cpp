@@ -935,7 +935,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		default: break;
 		}
 	}
-	
+
 	signalqualitydb = ret;
 	if (ret == 0x12345678) // no snr db calculation avail.. return untouched snr value..
 	{
