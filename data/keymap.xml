@@ -216,6 +216,7 @@
 		<key id="KEY_MEDIA" mapto="showMovies" flags="m" />
 		<key id="KEY_LIST" mapto="showMediaPlayer" flags="b" />
 		<key id="KEY_PROGRAM" mapto="openTimerList" flags="b" />
+		<key id="KEY_SLOW" mapto="openTimerList" flags="b" />
 		<key id="KEY_F5" mapto="openTimerList" flags="b" />
 		<key id="KEY_PROGRAM" mapto="openAutoTimerList" flags="l" />
 		<key id="KEY_SEARCH" mapto="openEPGSearch" flags="b" />
@@ -229,10 +230,12 @@
 	<map context="InfobarAudioSelectionActions">
 		<key id="KEY_AUDIO" mapto="audio_key" flags="m" />
 		<key id="KEY_YELLOW" mapto="audioSelection" flags="m" />
+		<key id="KEY_OPTION" mapto="audioSelection" flags="m" />
 	</map>
 
 	<map context="InfobarAspectSelectionActions">
 		<key id="KEY_GREEN" mapto="aspectSelection" flags="l" />
+		<key id="KEY_MODE" mapto="aspectSelection" flags="l" />
 	</map>
 
 	<map context="InfobarSubtitleSelectionActions">

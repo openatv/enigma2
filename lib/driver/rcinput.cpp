@@ -164,6 +164,24 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+#if KEY_SCREEN_TO_KEY_ANGLE
+	if (ev->code == KEY_SCREEN)
+	{
+		/* MixOs , which sends KEY_SCREEN events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_ANGLE;
+		
+	}
+#endif
+
+#if KEY_TIME_TO_KEY_SLEEP
+	if (ev->code == KEY_SLEEP)
+	{
+		/* MixOs , which sends KEY_SLEEP events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_PROGRAM;
+		
+	}
+#endif
+
 	switch (ev->value)
 	{
 	case 0:
