@@ -45,6 +45,7 @@ config.movielist.last_selected_tags = ConfigSet([], default=[])
 config.movielist.play_audio_internal = ConfigYesNo(default=True)
 config.movielist.settings_per_directory = ConfigYesNo(default=True)
 config.movielist.root = ConfigSelection(default="/media", choices=["/","/media","/media/hdd","/media/hdd/movie"])
+config.movielist.hide_extensions = ConfigYesNo(default=False)
 
 userDefinedButtons = None
 
@@ -250,6 +251,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 			getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen),
 			getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal),
 			getConfigListEntry(_("Root directory"), config.movielist.root),
+			getConfigListEntry(_("Hide known extensions"), config.movielist.hide_extensions),
 			]
 		for btn in ('red', 'green', 'yellow', 'blue', 'TV', 'Radio', 'Text'):
 			configList.append(getConfigListEntry(_(btn), userDefinedButtons[btn]))
@@ -620,11 +622,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'Text': config.movielist.btn_text,
 			}
 
-        def _callButton(self, name):
-        	if name.startswith('@'):
-        		item = self.getCurrentSelection()
-        		if isSimpleFile(item):
-	        		name = name[1:]
+	def _callButton(self, name):
+		if name.startswith('@'):
+			item = self.getCurrentSelection()
+			if isSimpleFile(item):
+				name = name[1:]
 				for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 					if name == p.name:
 						p(self.session, item[0])
@@ -954,9 +956,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					if self.playAsDVD(path):
 						return
 				if ext in IMAGE_EXTENSIONS:
-				        try:
-				                from Plugins.Extensions.PicturePlayer import ui
-				                # Build the list for the PicturePlayer UI
+					try:
+						from Plugins.Extensions.PicturePlayer import ui
+						# Build the list for the PicturePlayer UI
 						filelist = []
 						index = 0
 						for item in self.list.list:
@@ -965,7 +967,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 							        index = len(filelist)
 							if os.path.splitext(p)[1].lower() in IMAGE_EXTENSIONS:
 							        filelist.append(((p,False), None))
-				                self.session.open(ui.Pic_Full_View, filelist, index, path)
+						self.session.open(ui.Pic_Full_View, filelist, index, path)
 					except Exception, ex:
 					        print "[ML] Cannot display", str(ex)
 					return
@@ -1082,7 +1084,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def configure(self):
 		self.session.openWithCallback(self.configureDone, MovieBrowserConfiguration)
 
-    	def configureDone(self, result):
+	def configureDone(self, result):
 		if result:
 			self.applyConfigSettings({\
 				"listtype": config.movielist.listtype.value,
@@ -1425,7 +1427,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			resetMoviePlayState(current.getPath() + ".cuts", current)
 			self["list"].invalidateCurrentItem() # trigger repaint
 
-        def do_move(self):
+	def do_move(self):
 		item = self.getCurrentSelection()
 		if canMove(item):
 			current = item[0]
@@ -1485,7 +1487,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		except Exception, e:
 			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 
-        def can_copy(self, item):
+	def can_copy(self, item):
 		return canCopy(item)
 	def do_copy(self):
 		item = self.getCurrentSelection()

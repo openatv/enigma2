@@ -904,14 +904,14 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.onCreate()
 
 	def doRefresh(self, answer):
-		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		l = self["list"]
 		l.moveToService(serviceref)
 		l.setCurrentlyPlaying(serviceref)
 		self.moveTimeLines()
 
 	def onCreate(self):
-		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		l = self["list"]
 		l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.value)
 		l.fillMultiEPG(self.services, self.ask_time)
@@ -942,9 +942,11 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		if self.zapFunc and self.key_red_choice == self.ZAP:
 			ref = self["list"].getCurrent()[1]
 			if ref:
+				currentref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 				self.zapFunc(ref.ref)
-				config.misc.graph_mepg.save()
-				self.close(True)
+				if currentref == ref.ref:
+					config.misc.graph_mepg.save()
+					self.close(True)
 
 	def swapMode(self):
 		global listscreen

@@ -90,8 +90,8 @@ def moviePlayState(cutsFileName, ref, length):
 			if not length or (length<0):
 				length = cutPTS[2]
 			if length:
-			        if cutPTS[1] >= length:
-			                return 100
+				if cutPTS[1] >= length:
+					return 100
 				return (100 * cutPTS[1]) // length
 			else:
 				return 50
@@ -309,6 +309,10 @@ class MovieList(GUIComponent):
 				data.len = 0 #dont recalc movielist to speedup loading the list
 			self.list[cur_idx] = (x[0], x[1], x[2], data) #update entry in list... so next time we don't need to recalc
 			data.txt = info.getName(serviceref)
+			if config.movielist.hide_extensions.value:
+				fileName, fileExtension = os.path.splitext(data.txt)
+				if fileExtension in (".dts", ".mp2", ".mp3", ".ogg", ".mpg", ".vob", ".wav", ".wave", ".m4v", ".mkv", ".avi", ".divx", ".dat", ".flac", ".flv", ".mp4", ".mov", ".m4a", ".3gp", ".3g2", ".asf", ".wmv", ".wma", ".iso"):
+					data.txt = fileName
 			data.icon = None
 			data.part = None
 			if os.path.split(pathName)[1] in self.runningTimers:
