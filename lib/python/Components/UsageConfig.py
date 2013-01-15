@@ -337,7 +337,7 @@ def InitUsageConfig():
 		("heb", _("Hebrew")),
 		("hun", _("Hungarian")),
 		("ita", _("Italian")),
-		("lat", _("Latvian")),
+		("lav", _("Latvian")),
 		("lit", _("Lithuanian")),
 		("ltz", _("Luxembourgish")),
 		("nor", _("Norwegian")),
