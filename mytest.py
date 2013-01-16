@@ -77,7 +77,7 @@ def useSyncUsingChanged(configElement):
 		Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.getValue())
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 
-def NTPserveChanged(configElement):
+def NTPserverChanged(configElement):
 	if config.misc.NTPserver.getValue() == "pool.ntp.org":
 		return
 	print "[NTPDATE] save /etc/default/ntpdate"
