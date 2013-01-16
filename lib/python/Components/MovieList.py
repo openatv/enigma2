@@ -138,6 +138,8 @@ class MovieList(GUIComponent):
 	HIDE_DESCRIPTION = 1
 	SHOW_DESCRIPTION = 2
 
+	KNOWN_EXTENSIONS = (".dts", ".mp2", ".mp3", ".ogg", ".mpg", ".vob", ".wav", ".wave", ".m4v", ".mkv", ".avi", ".divx", ".dat", ".flac", ".flv", ".mp4", ".mov", ".m4a", ".3gp", ".3g2", ".asf", ".wmv", ".wma", ".iso", ".jpg", ".png", ".gif", ".bmp")
+
 	def __init__(self, root, list_type=None, sort_type=None, descr_state=None):
 		GUIComponent.__init__(self)
 		self.list = []
@@ -311,7 +313,7 @@ class MovieList(GUIComponent):
 			data.txt = info.getName(serviceref)
 			if config.movielist.hide_extensions.value:
 				fileName, fileExtension = os.path.splitext(data.txt)
-				if fileExtension in (".dts", ".mp2", ".mp3", ".ogg", ".mpg", ".vob", ".wav", ".wave", ".m4v", ".mkv", ".avi", ".divx", ".dat", ".flac", ".flv", ".mp4", ".mov", ".m4a", ".3gp", ".3g2", ".asf", ".wmv", ".wma", ".iso"):
+				if fileExtension in KNOWN_EXTENSIONS:
 					data.txt = fileName
 			data.icon = None
 			data.part = None
