@@ -2,8 +2,8 @@
 	<setup key="time" title="Time settings">
 		<item level="0" text="Timezone" description="Setup your timezone.">config.timezone.val</item>
 		<item level="0" text="Sync time using" description="Synchronize systemtime using transponder or internet.">config.misc.SyncTimeUsing</item>
+		<item level="0" text="NTP server" description="Configure your NTP server.">config.misc.NTPserver</item>
 		<item level="0" text="Sync NTP every (minutes)" description="Setup network time synchronization interval." requires="config.misc.SyncTimeUsing" >config.misc.useNTPminutes</item>
-		<item level="0" text="NTP server" description="Choose your NTP server.">config.misc.NTPdate</item>
 	</setup>
 	<setup key="avsetup">
 		<!-- this is just a placeholder, the Videomode plugin implements this submenu -->
@@ -25,7 +25,7 @@
 		<item level="0" text="2nd infobar" description="Enable and set the duration of the second infobar (press OK twice) that may include more information on the current service.">config.usage.show_second_infobar</item>
 		<item level="0" text="2nd Infobar timeout" description="Set the time to hide the second infobar. The bar also disappears on pressing 'OK'.">config.usage.second_infobar_timeout</item>
 		<item level="0" text="Show infobar picons" description="Option to disable picons on the Infobar">config.usage.showpicon</item>
-		<item level="0" text="Show infobar lite" description="Set the screen type you get on pressing 'OK' when the info bar shows to 2nd infobar Lite or event info.">config.usage.show_infobar_lite</item>
+		<item level="0" text="Show infobar lite *" description="Set the screen type you get on pressing 'OK' when the info bar shows to 2nd infobar Lite or event info.">config.usage.show_infobar_lite</item>
 		<item level="0" text="Show animation while busy" description="Show spinning logo when system is busy.">config.usage.show_spinner</item>
 		<item level="1" text="Show job tasks in extensions" description="With this option you can hide Job Tasks from the extension screen (short blue button press).">config.usage.jobtaksextensions</item>
 		<item level="1" text="Show positioner movement" description="Choose whether or not to show an icon when a motorized dish is moving.">config.usage.showdish</item>
