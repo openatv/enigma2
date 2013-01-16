@@ -2,7 +2,7 @@ from Screen import Screen
 from Components.Button import Button
 from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
 from Components.MenuList import MenuList
-from Components.MovieList import MovieList, resetMoviePlayState
+from Components.MovieList import MovieList, resetMoviePlayState, AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS
 from Components.DiskInfo import DiskInfo
 from Components.Pixmap import Pixmap, MultiPixmap
 from Components.Label import Label
@@ -48,12 +48,7 @@ config.movielist.root = ConfigSelection(default="/media", choices=["/","/media",
 config.movielist.hide_extensions = ConfigYesNo(default=False)
 
 userDefinedButtons = None
-
 last_selected_dest = []
-
-AUDIO_EXTENSIONS = frozenset((".mp3", ".wav", ".ogg", ".flac", ".m4a", ".mp2", ".m2a"))
-DVD_EXTENSIONS = ('.iso', '.img')
-IMAGE_EXTENSIONS = frozenset((".jpg", ".png", ".gif", ".bmp"))
 preferredTagEditor = None
 
 # this kludge is needed because ConfigSelection only takes numbers

@@ -15,6 +15,12 @@ import skin
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eServiceReference, eServiceCenter, eTimer
 
+AUDIO_EXTENSIONS = frozenset((".dts", ".mp3", ".wav", ".wave", ".ogg", ".flac", ".m4a", ".mp2", ".m2a", ".3gp", ".3g2", ".asf", ".wma",  ))
+DVD_EXTENSIONS = ('.iso', '.img')
+IMAGE_EXTENSIONS = frozenset((".jpg", ".png", ".gif", ".bmp"))
+MOVIE_EXTENSIONS = frozenset((".mpg", ".vob", ".wav", ".m4v", ".mkv", ".avi", ".divx", ".dat", ".flv", ".mp4", ".mov", ".wmv"))
+KNOWN_EXTENSIONS = MOVIE_EXTENSIONS.union(IMAGE_EXTENSIONS, DVD_EXTENSIONS, AUDIO_EXTENSIONS)
+
 cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
 
 class MovieListData:
@@ -137,8 +143,6 @@ class MovieList(GUIComponent):
 
 	HIDE_DESCRIPTION = 1
 	SHOW_DESCRIPTION = 2
-
-	KNOWN_EXTENSIONS = (".dts", ".mp2", ".mp3", ".ogg", ".mpg", ".vob", ".wav", ".wave", ".m4v", ".mkv", ".avi", ".divx", ".dat", ".flac", ".flv", ".mp4", ".mov", ".m4a", ".3gp", ".3g2", ".asf", ".wmv", ".wma", ".iso", ".jpg", ".png", ".gif", ".bmp")
 
 	def __init__(self, root, list_type=None, sort_type=None, descr_state=None):
 		GUIComponent.__init__(self)
