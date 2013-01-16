@@ -94,7 +94,8 @@ def resolveFilename(scope, base = "", path_prefix = None):
 				if pathExists(tmpfile):
 					path = tmp+config.skin.primary_skin.value[:pos+1]
 				else:
-					path = tmp + 'skin_default/'
+					#path = tmp + 'skin_default/'
+					path = tmp
 			else:
 				path = tmp
 
