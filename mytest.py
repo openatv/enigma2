@@ -45,6 +45,7 @@ config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_S
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
 config.misc.isNextPowerTimerAfterEventActionAuto = ConfigYesNo(default=False)
 config.misc.SyncTimeUsing = ConfigSelection(default = "0", choices = [("0", "Transponder Time"), ("1", _("NTP"))])
+config.misc.NTPdate = ConfigText(default = 'pool.ntp.org', fixed_size=False)
 
 config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
@@ -69,12 +70,24 @@ def useSyncUsingChanged(configElement):
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
 	else:
 		print "[Time By]: NTP"
+		cmd = '/usr/bin/ntpdate ' + config.misc.NTPdate.getValue()
 		value = False
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
 		from Components.Console import Console
 		Console = Console()
-		Console.ePopen('/usr/bin/ntpdate pool.ntp.org')
+		Console.ePopen(cmd)
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
+
+def NTPdateChanged(configElement):
+	if config.misc.NTPdate.getValue() == "pool.ntp.org":
+		return
+	print "[NTPDATE] save /etc/default/ntpdate"
+	file = "/etc/default/ntpdate"
+	f = open(file, "w")
+	f.write('NTPSERVERS="' + config.misc.NTPdate.getValue() + '"')
+	f.close()
+	os.chmod(file, 0755)
+config.misc.NTPdate.addNotifier(NTPdateChanged, immediate_feedback = False)
 
 profile("Twisted")
 try:

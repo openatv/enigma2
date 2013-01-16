@@ -31,7 +31,8 @@ class NTPSyncPoller:
 	def ntp_sync(self):
 		if config.misc.SyncTimeUsing.getValue() == "1":
 			print '[NTP]: Updating'
-			self.Console.ePopen('/usr/bin/ntpdate -s -u pool.ntp.org', self.update_schedule)
+			cmd = '/usr/bin/ntpdate -s -u ' + config.misc.NTPdate.getValue()
+			self.Console.ePopen(cmd, self.update_schedule)
 
 	def update_schedule(self, result = None, retval = None, extra_args = None):
 		nowTime = time()
