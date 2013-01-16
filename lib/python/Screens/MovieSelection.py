@@ -439,8 +439,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.movemode = False
 		self.bouquet_mark_edit = False
 
-		self.delayTimer = eTimer()
-		self.delayTimer.callback.append(self.reloadWithDelay)
 		self.feedbackTimer = None
 
 		self.numericalTextInput = NumericalTextInput.NumericalTextInput(mapping=NumericalTextInput.MAP_SEARCH_UPCASE)
@@ -1121,10 +1119,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.reload_sel = sel
 		self.reload_home = home
 		self["waitingtext"].visible = True
-		self.delayTimer.start(10, 1)
+		self.callLater(self.reloadWithDelay)
 
 	def reloadWithDelay(self):
-		self.delayTimer.stop()
 		if not os.path.isdir(config.movielist.last_videodir.value):
 			path = defaultMoviePath()
 			config.movielist.last_videodir.value = path
