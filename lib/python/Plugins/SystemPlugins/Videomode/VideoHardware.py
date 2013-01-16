@@ -48,10 +48,10 @@ class VideoHardware:
 								"60Hz":		{ 60: "1080i" },
 								"multi":	{ 50: "1080i50", 60: "1080i" } }
 
-# 	if about.getChipSetString().find('7405') != -1 or about.getChipSetString().find('7335') != -1:
-# 		rates["1080p"] =	{ "24Hz":		{ 24: "1080p24" },
-# 								"25Hz":		{ 25: "1080p25" },
-# 								"30Hz":		{ 30: "1080p30" }}
+ 	if about.getChipSetString().find('7405') != -1 or about.getChipSetString().find('7335') != -1:
+ 		rates["1080p"] =	{ "24Hz":		{ 24: "1080p24" },
+ 								"25Hz":		{ 25: "1080p25" },
+ 								"30Hz":		{ 30: "1080p30" }}
 # 	elif about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1:
 # 		rates["1080p"] =	{ 	"24Hz":		{ 24: "1080p24" },
 # 								"25Hz":		{ 25: "1080p25" },
@@ -83,7 +83,7 @@ class VideoHardware:
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	modes["DVI-PC"] = ["PC"]
 
-	if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1:
+	if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7405') != -1:
 		modes["YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		modes["DVI"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i", "1080p"])
