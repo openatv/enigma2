@@ -14,6 +14,12 @@ import skin
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceCenter, eTimer
 
+AUDIO_EXTENSIONS = frozenset((".dts", ".mp3", ".wav", ".wave", ".ogg", ".flac", ".m4a", ".mp2", ".m2a", ".3gp", ".3g2", ".asf", ".wma",  ))
+DVD_EXTENSIONS = ('.iso', '.img')
+IMAGE_EXTENSIONS = frozenset((".jpg", ".png", ".gif", ".bmp"))
+MOVIE_EXTENSIONS = frozenset((".mpg", ".vob", ".wav", ".m4v", ".mkv", ".avi", ".divx", ".dat", ".flv", ".mp4", ".mov", ".wmv"))
+KNOWN_EXTENSIONS = MOVIE_EXTENSIONS.union(IMAGE_EXTENSIONS, DVD_EXTENSIONS, AUDIO_EXTENSIONS)
+
 cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
 
 class MovieListData:
@@ -293,6 +299,10 @@ class MovieList(GUIComponent):
 			data.len = 0 #dont recalc movielist to speedup loading the list
 			self.list[cur_idx] = (x[0], x[1], x[2], data) #update entry in list... so next time we don't need to recalc
 			data.txt = info.getName(serviceref)
+			if config.movielist.hide_extensions.getValue():
+				fileName, fileExtension = os.path.splitext(data.txt)
+				if fileExtension in KNOWN_EXTENSIONS:
+					data.txt = fileName
 			data.icon = None
 			data.part = None
 			if os.path.split(pathName)[1] in self.runningTimers:

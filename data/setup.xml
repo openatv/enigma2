@@ -2,6 +2,7 @@
 	<setup key="time" title="Time settings">
 		<item level="0" text="Timezone" description="Setup your timezone.">config.timezone.val</item>
 		<item level="0" text="Sync time using" description="Synchronize systemtime using transponder or internet.">config.misc.SyncTimeUsing</item>
+		<item level="0" text="NTP server" description="Configure your NTP server.">config.misc.NTPserver</item>
 		<item level="0" text="Sync NTP every (minutes)" description="Setup network time synchronization interval." requires="config.misc.SyncTimeUsing" >config.misc.useNTPminutes</item>
 	</setup>
 	<setup key="avsetup">
