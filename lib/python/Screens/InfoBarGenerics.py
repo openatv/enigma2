@@ -1495,13 +1495,11 @@ class InfoBarTimeshift:
 		enabled = self.getSeek and self.timeshift_enabled
 		self["TimeshiftActivateActions"].setEnabled(enabled)
 		self["SeekActions"].setEnabled(enabled)
+		if not enabled:
+			self.setSeekState(self.SEEK_STATE_PLAY)
 
 	def __serviceStarted(self):
-		if self.timeshift_enabled:
-			ts = self.getTimeshift()
-			if ts:
-				ts.stopTimeshift()
-			self.pvrStateDialog.hide()
+		self.pvrStateDialog.hide()
 		self.timeshift_enabled = False
 		self.__seekableStatusChanged()
 
