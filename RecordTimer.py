@@ -378,7 +378,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if not Screens.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nSTB_BOX to standby. Do that now?"), timeout = 180)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO):
-				if abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
+				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
+					print '[Timer] Recording or Recording due is next 15 mins, not return to deepstandby'
 					return True
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
@@ -420,11 +421,15 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			wasRecTimerWakeup = False
 
 	def getNextActivation(self):
+		self.isStillRecording = False
 		if self.state == self.StateEnded or self.state == self.StateFailed:
+			if self.end > time():
+				self.isStillRecording = True
 			return self.end
-
 		next_state = self.state + 1
-
+		if next_state == self.StateEnded or next_state == self.StateFailed:
+			if self.end > time():
+				self.isStillRecording = True
 		return {self.StatePrepared: self.start_prepare,
 				self.StateRunning: self.begin,
 				self.StateEnded: self.end }[next_state]
@@ -685,6 +690,14 @@ class RecordTimer(timer.Timer):
 				continue
 			return timer.begin
 		return -1
+
+	def getStillRecording(self):
+		isStillRecording = False
+		for timer in self.timer_list:
+			if timer.isStillRecording:
+				isStillRecording = True
+				break
+		return isStillRecording
 
 	def getNextRecordingTimeOld(self):
 		now = time()
