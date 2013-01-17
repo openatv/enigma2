@@ -1401,7 +1401,7 @@ class InfoBarTimeshift:
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
-				iPlayableService.evStart: self.__serviceStarted,
+				iPlayableService.evNewProgramInfo: self.__serviceStarted,
 				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged
 			})
 
@@ -1491,22 +1491,15 @@ class InfoBarTimeshift:
 		self.activateTimeshiftEnd(False)
 
 	def __seekableStatusChanged(self):
-		enabled = False
-
-#		print "self.isSeekable", self.isSeekable()
-#		print "self.timeshift_enabled", self.timeshift_enabled
-
-		# when this service is not seekable, but timeshift
-		# is enabled, this means we can activate
-		# the timeshift
-		if not self.isSeekable() and self.timeshift_enabled:
-			enabled = True
-
-#		print "timeshift activate:", enabled
+		# when the service is already seekable so the actual recording did already startand timeshift
+		# is enabled, this means we can activate the timeshift ActivateActions and SeekActions
+		enabled = self.getSeek and self.timeshift_enabled
 		self["TimeshiftActivateActions"].setEnabled(enabled)
+		self["SeekActions"].setEnabled(enabled)
 
 	def __serviceStarted(self):
 		self.timeshift_enabled = False
+		self.pvrStateDialog.hide()
 		self.__seekableStatusChanged()
 
 from Screens.PiPSetup import PiPSetup
