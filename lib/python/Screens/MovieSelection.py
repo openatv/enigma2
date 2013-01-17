@@ -322,7 +322,6 @@ class MovieContextMenu(Screen):
 		self["key_green"] = StaticText(_("OK"))
 		menu = []
 		menu.append((_("Settings") + "...", csel.configure))
-		menu.append((_("Device mounts") + "...", csel.showDeviceMounts))
 		menu.append((_("Network mounts") + "...", csel.showNetworkMounts))
 		menu.append((_("Add bookmark"), csel.do_addbookmark))
 		menu.append((_("Create directory"), csel.do_createdir))
@@ -1794,10 +1793,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def showNetworkMounts(self):
 		import NetworkSetup
 		self.session.open(NetworkSetup.NetworkMountsMenu)
-
-	def showDeviceMounts(self):
-		import Plugins.SystemPlugins.ViX.MountManager
-		self.session.open(Plugins.SystemPlugins.ViX.MountManager.VIXDevicesPanel)
 
 	def showActionFeedback(self, text):
 		if self.feedbackTimer is None:
