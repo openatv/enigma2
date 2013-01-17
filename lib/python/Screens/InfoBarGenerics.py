@@ -1394,8 +1394,7 @@ class InfoBarTimeshift:
 				"timeshiftActivateEndAndPause": self.activateTimeshiftEndAndPause  # something like "pause key"
 			}, prio=-1) # priority over record
 
-		self.timeshift_enabled = 0
-		self.timeshift_state = 0
+		self.timeshift_enabled = False
 		self.ts_rewind_timer = eTimer()
 		self.ts_rewind_timer.callback.append(self.rewindService)
 
@@ -1421,7 +1420,7 @@ class InfoBarTimeshift:
 			print "hu, timeshift already enabled?"
 		else:
 			if not ts.startTimeshift():
-				self.timeshift_enabled = 1
+				self.timeshift_enabled = True
 
 				# we remove the "relative time" for now.
 				#self.pvrStateDialog["timeshift"].setRelative(time.time())
@@ -1454,7 +1453,7 @@ class InfoBarTimeshift:
 			return
 
 		ts.stopTimeshift()
-		self.timeshift_enabled = 0
+		self.timeshift_enabled = False
 		self.pvrStateDialog.hide()
 
 		# disable actions
