@@ -2,7 +2,7 @@ from Screen import Screen
 from Components.Button import Button
 from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
 from Components.MenuList import MenuList
-from Components.MovieList import MovieList, resetMoviePlayState
+from Components.MovieList import MovieList, resetMoviePlayState, AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS
 from Components.DiskInfo import DiskInfo
 from Tools.Trashcan import TrashInfo
 from Components.Pixmap import Pixmap, MultiPixmap
@@ -39,6 +39,10 @@ import time
 import cPickle as pickle
 
 config.movielist = ConfigSubsection()
+config.movielist.curentlyplayingservice = ConfigText()
+config.movielist.show_live_tv_in_movielist = ConfigYesNo(default=True)
+config.movielist.fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+config.movielist.itemsperpage = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 3, max = 30, wraparound = True)
 config.movielist.useslim = ConfigYesNo(default=False)
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_RECORDED)
 config.movielist.description = ConfigInteger(default=MovieList.SHOW_DESCRIPTION)
@@ -49,18 +53,10 @@ config.movielist.last_selected_tags = ConfigSet([], default=[])
 config.movielist.play_audio_internal = ConfigYesNo(default=True)
 config.movielist.settings_per_directory = ConfigYesNo(default=True)
 config.movielist.root = ConfigSelection(default="/media", choices=["/", "/media", "/media/hdd", "/media/hdd/movie"])
-config.movielist.curentlyplayingservice = ConfigText()
-config.movielist.show_live_tv_in_movielist = ConfigYesNo(default=True)
-config.movielist.fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-config.movielist.itemsperpage = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 3, max = 30, wraparound = True)
+config.movielist.hide_extensions = ConfigYesNo(default=False)
 
 userDefinedButtons = None
-
 last_selected_dest = []
-
-AUDIO_EXTENSIONS = frozenset((".mp3", ".wav", ".ogg", ".flac", ".m4a", ".mp2", ".m2a"))
-DVD_EXTENSIONS = ('.iso', '.img')
-IMAGE_EXTENSIONS = frozenset((".jpg", ".png", ".gif", ".bmp"))
 preferredTagEditor = None
 
 # this kludge is needed because ConfigSelection only takes numbers
@@ -97,7 +93,7 @@ def getPreferredTagEditor():
 	return preferredTagEditor
 
 def isTrashFolder(ref):
-	if not config.usage.movielist_trashcan.value or not ref.flags & eServiceReference.mustDescent:
+	if not config.usage.movielist_trashcan.getValue() or not ref.flags & eServiceReference.mustDescent:
 		return False
 	return os.path.realpath(ref.getPath()).endswith('.Trash') or os.path.realpath(ref.getPath()).endswith('.Trash/')
 
@@ -218,6 +214,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 			configList.append(getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen, _("Shows the icons when new/unseen, else will not show an icon.")))
 		configList.append(getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal, _("Keeps MovieList open whilst playing audio files.")))
 		configList.append(getConfigListEntry(_("Root directory"), config.movielist.root, _("Sets the root folder of movie list, to remove the '..' from benign shown in that folder.")))
+		configList.append(getConfigListEntry(_("Hide known extensions"), config.movielist.hide_extensions _("Allows you hide the extensions of known file types.")))
 		configList.append(getConfigListEntry(_("Show live tv when movie stopped"), config.movielist.show_live_tv_in_movielist, _("When set the PIG will return to live after a movie has stopped playing.")))
 		for btn in ('red', 'green', 'yellow', 'blue', 'TV', 'Radio', 'Text'):
 			configList.append(getConfigListEntry(_("Button") + " " + _(btn), userDefinedButtons[btn], _("Allows you setup the button to do what you choose.")))
@@ -438,8 +435,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.movemode = False
 		self.bouquet_mark_edit = False
 
-		self.delayTimer = eTimer()
-		self.delayTimer.callback.append(self.reloadWithDelay)
 		self.feedbackTimer = None
 
 		self.numericalTextInput = NumericalTextInput.NumericalTextInput(mapping=NumericalTextInput.MAP_SEARCH_UPCASE)
@@ -792,7 +787,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def _updateButtonTexts(self):
 		for k in ('red', 'green', 'yellow', 'blue'):
 			btn = userDefinedButtons[k]
-			self['key_' + k].setText(userDefinedActions[btn.value])
+			self['key_' + k].setText(userDefinedActions[btn.getValue()])
 
 	def updateButtons(self):
 		item = self.getCurrentSelection()
@@ -1165,7 +1160,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.applyConfigSettings({\
 				"moviesort": config.movielist.moviesort.getValue(),
 				"description": config.movielist.description.getValue(),
-				"movieoff": config.usage.on_movie_eof.value})
+				"movieoff": config.usage.on_movie_eof.getValue()})
 			self.saveLocalSettings()
 			self._updateButtonTexts()
 			self["list"].setItemsPerPage()
@@ -1195,10 +1190,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.reload_sel = sel
 		self.reload_home = home
 		self["waitingtext"].visible = True
-		self.delayTimer.start(10, 1)
+		self.callLater(self.reloadWithDelay)
 
 	def reloadWithDelay(self):
-		self.delayTimer.stop()
 		if not os.path.isdir(config.movielist.last_videodir.getValue()):
 			path = defaultMoviePath()
 			config.movielist.last_videodir.value = path
@@ -1284,7 +1278,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.showTagsMenu(tagele)
 		else:
 			self.selected_tags_ele = tagele
-			self.selected_tags = self.tags[tagele.value]
+			self.selected_tags = self.tags[tagele.getValue()]
 			self.reloadList(home = True)
 
 	def showTagsFirst(self):
