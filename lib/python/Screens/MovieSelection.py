@@ -214,7 +214,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 			configList.append(getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen, _("Shows the icons when new/unseen, else will not show an icon.")))
 		configList.append(getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal, _("Keeps MovieList open whilst playing audio files.")))
 		configList.append(getConfigListEntry(_("Root directory"), config.movielist.root, _("Sets the root folder of movie list, to remove the '..' from benign shown in that folder.")))
-		configList.append(getConfigListEntry(_("Hide known extensions"), config.movielist.hide_extensions _("Allows you hide the extensions of known file types.")))
+		configList.append(getConfigListEntry(_("Hide known extensions"), config.movielist.hide_extensions, _("Allows you hide the extensions of known file types.")))
 		configList.append(getConfigListEntry(_("Show live tv when movie stopped"), config.movielist.show_live_tv_in_movielist, _("When set the PIG will return to live after a movie has stopped playing.")))
 		for btn in ('red', 'green', 'yellow', 'blue', 'TV', 'Radio', 'Text'):
 			configList.append(getConfigListEntry(_("Button") + " " + _(btn), userDefinedButtons[btn], _("Allows you setup the button to do what you choose.")))
