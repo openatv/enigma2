@@ -240,7 +240,6 @@ AC_CONFIG_FILES([
 Makefile
 data/Makefile
 data/fonts/Makefile
-data/countries/Makefile
 data/extensions/Makefile
 data/keymaps/Makefile
 data/lcd220/Makefile
@@ -264,6 +263,7 @@ data/rc_models/vu/Makefile
 data/rc_models/vu2/Makefile
 data/rc_models/xp1000/Makefile
 data/skin_default/Makefile
+data/skin_default/countries/Makefile
 data/skin_default/menu/Makefile
 data/skin_default/icons/Makefile
 data/skin_default/buttons/Makefile
