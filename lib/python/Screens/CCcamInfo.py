@@ -31,7 +31,7 @@ import gettext
 
 VERSION = "v1.3c"
 DATE = "24.12.2009"
-CFG = "/var/etc/CCcam.cfg"
+CFG = "/etc/CCcam.cfg"
 
 #############################################################
 
