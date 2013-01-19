@@ -475,7 +475,6 @@ class EPGList(HTMLComponent, GUIComponent):
 						font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 						text = ev[1],
 						color = foreColor, color_sel = self.foreColorSelected,
-						backcolor = backColor,
 						backcolor_sel = backColorSel))
 				# recording icons
 				if rec is not None and ewidth > 23:
