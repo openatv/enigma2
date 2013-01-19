@@ -538,10 +538,10 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_MULTI:
 			self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
 				{
-					"nextBouquet":		(self.Bouquetlist, _("Show bouquet selection menu")),
-					"prevBouquet":		(self.Bouquetlist, _("Show bouquet selection menu")),
-					"nextService":		(self.nextPage, _("Move down a page")),
-					"prevService":		(self.prevPage, _("Move up a page")),
+					"nextService":		(self.Bouquetlist, _("Show bouquet selection menu")),
+					"prevService":		(self.Bouquetlist, _("Show bouquet selection menu")),
+					"nextBouquet":		(self.nextPage, _("Move down a page")),
+					"prevBouquet":		(self.prevPage, _("Move up a page")),
 					"input_date_time":	(self.enterDateTime, _("Goto specific data/time")),
 					"info":				(self.Info, _("Show detailed event info")),
 					"infolong":			(self.InfoLong, _("Show single epg for current channel")),
