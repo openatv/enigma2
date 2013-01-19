@@ -38,6 +38,7 @@ def enumPlugins(filter_start=''):
 					if description.startswith('gitAUTOINC'):
 						description = description.split(' ',1)[1]
 				yield package, version, description.strip()
+				package = None
 
 if __name__ == '__main__':
 	for p in enumPlugins('enigma'):
