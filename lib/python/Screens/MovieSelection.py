@@ -324,11 +324,16 @@ class MovieContextMenu(Screen):
 	def __init__(self, session, csel, service):
 		Screen.__init__(self, session)
 
-		self["actions"] = ActionMap(["OkCancelActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 			{
 				"ok": self.okbuttonClick,
-				"cancel": self.cancelClick
+				"cancel": self.cancelClick,
+				"yellow": csel.showNetworkSetup,
+				"blue": csel.configure
 			})
+
+		self["key_yellow"] = Button(_("Network")+"...")
+		self["key_blue"] = Button(_("Settings") + "...")
 
 		menu = []
 		if service:
@@ -352,8 +357,6 @@ class MovieContextMenu(Screen):
 
 		menu.append((_("Add bookmark"), csel.do_addbookmark))
 		menu.append((_("create directory"), csel.do_createdir))
-		menu.append((_("Network") + "...", csel.showNetworkSetup))
-		menu.append((_("Settings") + "...", csel.configure))
 		self["menu"] = MenuList(menu)
 
 	def createSummary(self):
