@@ -7,6 +7,7 @@ from Components.Sources.Boolean import Boolean
 from Components.Network import iNetwork
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from enigma import eTimer
+from Components.About import about
 from os import system
 
 class NetworkWizard(WizardLanguage, Rc):
@@ -218,6 +219,7 @@ class NetworkWizard(WizardLanguage, Rc):
 					self.afterAsyncCode()
 			else:
 				self.currStep = self.getStepWithID("checklanstatusend")
+				self.Text = self.getLanStatusMsg()
 				self.afterAsyncCode()
 
 	def AdapterSetupEndFinished(self,data):
@@ -231,15 +233,25 @@ class NetworkWizard(WizardLanguage, Rc):
 		if data is not None:
 			if data is True:
 				if status is not None:
+					wlan0 = about.getIfConfig('wlan0')
+					if wlan0.has_key('addr'):
+						text11 = _("Your IP:") + "\t" + wlan0['addr'] + "\n\n"
+						if wlan0.has_key('netmask'):
+							text11 += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
+						if wlan0.has_key('brdaddr'):
+							text11 += _("Gateway:") + "\t" + wlan0['brdaddr'] + "\n"
+						if wlan0.has_key('hwaddr'):
+							text11 += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n\n"  
 					text1 = _("Your STB_BOX is now ready to be used.\n\nYour internet connection is working now.\n\n")
 					text2 = _('Accesspoint:') + "\t" + str(status[self.selectedInterface]["accesspoint"]) + "\n"
 					text3 = _('SSID:') + "\t" + str(status[self.selectedInterface]["essid"]) + "\n"
 					text4 = _('Link quality:') + "\t" + str(status[self.selectedInterface]["quality"])+ "\n"
 					text5 = _('Signal strength:') + "\t" + str(status[self.selectedInterface]["signal"]) + "\n"
 					text6 = _('Bitrate:') + "\t" + str(status[self.selectedInterface]["bitrate"]) + "\n"
-					text7 = _('Encryption:') + " " + str(status[self.selectedInterface]["encryption"]) + "\n"
+					text7 = _('Encryption:') + "\t" + str(status[self.selectedInterface]["encryption"]) + "\n"
 					text8 = _("Please press OK to continue.")
-					infotext = text1 + text2 + text3 + text4 + text5 + text7 +"\n" + text8
+					#infotext = text1 + text2 + text3 + text4 + text5 + text7 +"\n" + text8
+					infotext = text1 + text11 + text2 + text3 + text4 + text6 + " Mbps" + text7 +"\n" + text8					
 					self.currStep = self.getStepWithID("checkWlanstatusend")
 					self.Text = infotext
 					if str(status[self.selectedInterface]["accesspoint"]) == "Not-Associated":
@@ -376,3 +388,18 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def ChoicesSelectionMoved(self):
 		pass
+	      
+	def getLanStatusMsg(self):      
+		eth0 = about.getIfConfig('eth0')
+		if eth0.has_key('addr'):
+			text11 = _("Your IP:") + "\t" + eth0['addr'] + "\n\n"
+			if eth0.has_key('netmask'):
+				text11 += _("Netmask:") + "\t" + eth0['netmask'] + "\n"
+			if eth0.has_key('brdaddr'):
+				text11 += _("Gateway:") + "\t" + eth0['brdaddr'] + "\n"
+			if eth0.has_key('hwaddr'):
+				text11 += _("MAC:") + "\t" + eth0['hwaddr'] + "\n\n"  
+		text1 = _("Your STB_BOX is now ready to be used.\n\nYour internet connection is working now.\n\n")
+		text2 = _("Please press OK to continue.")
+		return text1 + text11 +"\n" + text2
+		
