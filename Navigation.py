@@ -55,20 +55,12 @@ class Navigation:
 				f.close()
 				# as a PowerTimer WakeToStandby was actiond to it.
 				self.standbytimer = eTimer()
-				self.standbytimer.callback.append(self.gotopowerstandby)
+				self.standbytimer.callback.append(self.gotostandby)
 				self.standbytimer.start(15000, True)
 		self.SleepTimer = SleepTimer.SleepTimer()
 
 	def gotostandby(self):
-		rec_time = self.RecordTimer.getNextRecordingTime()
-		if rec_time > 0 and (rec_time - time()) < 300:
-			print "another recording starts in", rec_time - time(), "seconds... goto standby"
-			print 'RECTIMER: now entering standby'
-			from Tools import Notifications
-			Notifications.AddNotification(Screens.Standby.Standby)
-
-	def gotopowerstandby(self):
-		print 'POWERTIMER: now entering standby'
+		print 'TIMER: now entering standby'
 		from Tools import Notifications
 		Notifications.AddNotification(Screens.Standby.Standby)
 
