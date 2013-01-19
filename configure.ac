@@ -267,7 +267,6 @@ AC_CONFIG_FILES([
 Makefile
 data/Makefile
 data/fonts/Makefile
-data/countries/Makefile
 data/extensions/Makefile
 data/keymaps/Makefile
 data/lcd220/Makefile
@@ -296,6 +295,7 @@ data/rc_models/odinm7/Makefile
 data/rc_models/ixussone/Makefile
 data/rc_models/ebox5000/Makefile
 data/skin_default/Makefile
+data/skin_default/countries/Makefile
 data/skin_default/menu/Makefile
 data/skin_default/icons/Makefile
 data/skin_default/buttons/Makefile
@@ -324,9 +324,6 @@ lib/python/Components/Renderer/Makefile
 lib/python/Components/Sources/Makefile
 lib/python/Screens/Makefile
 lib/python/Plugins/Makefile
-lib/python/Plugins/DemoPlugins/Makefile
-lib/python/Plugins/DemoPlugins/TPMDemo/Makefile
-lib/python/Plugins/DemoPlugins/TestPlugin/Makefile
 lib/python/Plugins/Extensions/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile
 lib/python/Plugins/Extensions/CutListEditor/meta/Makefile

@@ -43,12 +43,6 @@ class Navigation:
 				f = open("/tmp/was_rectimer_wakeup", "w")
 				f.write('1')
 				f.close()
-				# We need to give the systemclock the chance to sync with the transponder time,
-				# before we will make the decision about whether or not we need to shutdown
-				# after the upcoming recording has completed
-# 				self.recordshutdowntimer = eTimer()
-# 				self.recordshutdowntimer.callback.append(self.checkShutdownAfterRecording)
-# 				self.recordshutdowntimer.start(15000, True)
 				# as we woke the box to record, place the box in standby.
 				self.standbytimer = eTimer()
 				self.standbytimer.callback.append(self.gotostandby)
@@ -59,8 +53,7 @@ class Navigation:
 				f = open("/tmp/was_powertimer_wakeup", "w")
 				f.write('1')
 				f.close()
-				# We need to give the system the chance to fully startup,
-				# before we initiate the standby command.
+				# as a PowerTimer WakeToStandby was actiond to it.
 				self.standbytimer = eTimer()
 				self.standbytimer.callback.append(self.gotopowerstandby)
 				self.standbytimer.start(15000, True)
