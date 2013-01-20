@@ -1395,6 +1395,7 @@ class InfoBarTimeshift:
 			}, prio=-1) # priority over record
 
 		self.timeshift_enabled = False
+		self["TimeshiftActivateActions"].setEnabled(False)
 		self.ts_rewind_timer = eTimer()
 		self.ts_rewind_timer.callback.append(self.rewindService)
 
