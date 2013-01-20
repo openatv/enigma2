@@ -94,6 +94,12 @@ def isTrashFolder(ref):
 	path = os.path.realpath(ref.getPath())
 	return path.endswith('.Trash') and path.startswith(Tools.Trashcan.getTrashFolder(path))
 
+def isInTrashFolder(ref):
+	if not config.usage.movielist_trashcan.value or not ref.flags & eServiceReference.mustDescent:
+		return False
+	path = os.path.realpath(ref.getPath())
+	return path.startswith(Tools.Trashcan.getTrashFolder(path))
+
 def isSimpleFile(item):
 	if not item:
 		return False
@@ -1607,7 +1613,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					else:
 						files += 1
 			if files or subdirs:
-				self.session.openWithCallback(self.delete, MessageBox, _("Directory contains %s and %s.") % (ngettext("%d file", "%d files", files) % files, ngettext("%d subdirectory", "%d subdirectories", subdirs) % subdirs) + '\n' + are_you_sure)
+				msg = _("Directory contains %s and %s.") % (ngettext("%d file", "%d files", files) % files, ngettext("%d subdirectory", "%d subdirectories", subdirs) % subdirs) + '\n' + are_you_sure
+				if isInTrashFolder(current):
+					# Red button to empty trashcan item or subdir
+					msg = _("Deleted items") + "\n" + msg
+					callback = self.purgeConfirmed
+				else:
+					callback = self.delete
+				self.session.openWithCallback(callback, MessageBox, msg)
 				return
 			else:
 				try:
@@ -1692,13 +1705,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def purgeAll(self):
 		recordings = self.session.nav.getRecordings()
 		next_rec_time = -1
+		msg = _("Permanently delete all recordings in the trash can?")
 		if not recordings:
 			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
 		if recordings or (next_rec_time > 0 and (next_rec_time - time.time()) < 120):
-			msg = "\n" + _("Recording(s) are in progress or coming up in few seconds!")
-		else:
-			msg = ""
-		self.session.openWithCallback(self.purgeConfirmed, MessageBox, _("Permanently delete all recordings in the trash can?") + msg)
+			msg += "\n" + _("Recording(s) are in progress or coming up in few seconds!")
+		self.session.openWithCallback(self.purgeConfirmed, MessageBox, msg)
 
 	def purgeConfirmed(self, confirmed):
 		if not confirmed:
