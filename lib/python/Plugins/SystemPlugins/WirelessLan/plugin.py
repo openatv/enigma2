@@ -386,10 +386,8 @@ def WlanStatusScreenMain(session, iface):
 def callFunction(iface):
 	iWlan.setInterface(iface)
 	i = iWlan.getWirelessInterfaces()
-	if i:
-		if iface in i or iNetwork.isWirelessInterface(iface):
-			return WlanStatusScreenMain
-		return None
+	if iface in i or iNetwork.isWirelessInterface(iface):
+		return WlanStatusScreenMain
 	return None
 
 def configStrings(iface):
