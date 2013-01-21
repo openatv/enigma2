@@ -77,6 +77,16 @@ elif [ $MODEL = "xp1000" ] ; then
 	MAINDEST=$DIRECTORY/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE
 ## TESTING THE Venton HDx Models
+elif [ $MODEL = "ixussone" ] ; then
+	TYPE=IXUSS
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="Medialink $MODEL"
+	MTDKERNEL="mtd2"
+	MAINDESTOLD=$DIRECTORY/medialink/$MODEL
+	MAINDEST=$DIRECTORY/medialink/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE
+## TESTING THE Venton HDx Models
 elif [ $MODEL = "ventonhdx" ] ; then
 	TYPE=VENTON
 	MODEL="venton-hdx"
@@ -87,7 +97,7 @@ elif [ $MODEL = "ventonhdx" ] ; then
 	MAINDEST=$DIRECTORY/venton/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_$MODEL/$DATE/venton
 elif [ $MODEL = "tmtwin" ] ; then
-	TYPE=TECHNOTWIN
+	TYPE=TECHNO
 	MODEL="tmtwinoe"
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096 -F"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
@@ -95,6 +105,24 @@ elif [ $MODEL = "tmtwin" ] ; then
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/update/$MODEL/cfe
 	EXTRA=$DIRECTORY/fullbackup_TECHNO/$DATE/update/$MODEL/cfe
+elif [ $MODEL = "tmsingle" ] ; then
+	TYPE=TECHNO
+	MODEL="tmsingle"
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096 -F"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="$MODEL"
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/update/$MODEL/cfe
+	EXTRA=$DIRECTORY/fullbackup_TECHNO/$DATE/update/$MODEL/cfe
+elif [ $MODEL = "tm2t" ] ; then
+	TYPE=TECHNO
+	MODEL="tm2toe"
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096 -F"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="$MODEL"
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/update/$MODEL/cfe
+	EXTRA=$DIRECTORY/fullbackup_TECHNO/$DATE/update/$MODEL/cfe	
 ## TESTING THE Gigablue HD 800 SE Model
 elif [ $MODEL = "gb800se" ] ; then
 	TYPE=GIGABLUE
@@ -382,7 +410,7 @@ if [ $TYPE = "VENTON" ] ; then
 	fi
 fi
 
-if [ $TYPE = "TECHNOTWIN" ] ; then
+if [ $TYPE = "TECHNO" ] ; then
 	rm -rf $MAINDEST
 	mkdir -p $MAINDEST
 	mkdir -p $EXTRA/$MODEL
@@ -508,6 +536,37 @@ if [ $TYPE = "MAXDIGITAL" ] ; then
 	fi
 fi
 
+if [ $TYPE = "IXUSS" ] ; then
+	rm -rf $MAINDEST
+	mkdir -p $MAINDEST
+	mkdir -p $EXTRA
+	mv $WORKDIR/root.$ROOTFSTYPE $MAINDEST/rootfs.bin 
+	mv $WORKDIR/vmlinux.gz $MAINDEST/kernel.bin
+	echo "rename this file to 'force' to force an update without confirmation" > $MAINDEST/noforce
+	echo $MODEL-$IMAGEVERSION > $MAINDEST/imageversion
+	cp -r $MAINDEST $EXTRA #copy the made back-up to images
+	if [ -f $MAINDEST/rootfs.bin -a -f $MAINDEST/kernel.bin -a -f $MAINDEST/imageversion -a -f $MAINDEST/noforce ] ; then
+		echo "_________________________________________________\n"
+		echo "USB Image created on:" $MAINDEST
+		echo "and there is made an extra copy on:"
+		echo $EXTRA
+		echo "_________________________________________________\n"
+		echo " "
+		echo "To restore the image: \n"
+		echo "Place the USB-flash drive in the (back) USB-port "
+		echo "and switch the Medialink off and on with the powerswitch "
+		echo "on the back of the Medialink."
+		echo "\nPlease wait...almost ready! "
+	else
+		echo "Image creation failed - "
+		echo "Probable causes could be"
+		echo "     wrong back-up destination "
+		echo "     no space left on back-up device"
+		echo "     no writing permission on back-up device"
+		echo " "
+	fi
+fi
+
 if [ $TYPE = "GIGABLUE" ] ; then
 	rm -rf $MAINDEST
 	mkdir -p $MAINDEST
@@ -607,7 +666,10 @@ if [ $DIRECTORY == /hdd ]; then
 		elif [ $TYPE = "MAXDIGITAL" ] ; then					# MaxDigital detected
 			mkdir -p $TARGET/$MODEL
 			cp -r $MAINDEST $TARGET
-		elif [ $TYPE = "TECHNOTWIN" ] ; then					# Technomate detected
+		elif [ $TYPE = "IXUSS" ] ; then					# Medialink detected
+			mkdir -p $TARGET/$MODEL
+			cp -r $MAINDEST $TARGET			
+		elif [ $TYPE = "TECHNO" ] ; then					# Technomate detected
 			mkdir -p $TARGET/update/$MODEL/cfe
 			cp -r $MAINDEST $TARGET/update/$MODEL/cfe			
 		else
