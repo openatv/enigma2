@@ -78,8 +78,6 @@ class EventViewBase:
 				"pageDown": self.pageDown,
 				"prevEvent": self.prevEvent,
 				"nextEvent": self.nextEvent,
-				"timerAdd": self.timerAdd,
-				"openSimilarList": self.openSimilarList,
 				"contextMenu": self.doContext,
 			})
 		self.onShown.append(self.onCreate)
@@ -253,6 +251,13 @@ class EventViewEPGSelect(Screen, EventViewBase):
 		self.skinName = "EventView"
 		EventViewBase.__init__(self, Event, Ref, callback, similarEPGCB)
 
+		self["epgactions1"] = ActionMap(["OkCancelActions", "EventViewActions"],
+			{
+
+				"timerAdd": self.timerAdd,
+				"openSimilarList": self.openSimilarList,
+
+			})
 		if self.isRecording:
 			self["key_green"] = Button("")
 		else:
@@ -260,13 +265,13 @@ class EventViewEPGSelect(Screen, EventViewBase):
 
 		if singleEPGCB:
 			self["key_yellow"] = Button(_("Single EPG"))
-			self["epgactions1"] = ActionMap(["EventViewEPGActions"],
+			self["epgactions2"] = ActionMap(["EventViewEPGActions"],
 				{
 					"openSingleServiceEPG": singleEPGCB,
 				})
 		if multiEPGCB:
 			self["key_blue"] = Button(_("Multi EPG"))
-			self["epgactions2"] = ActionMap(["EventViewEPGActions"],
+			self["epgactions3"] = ActionMap(["EventViewEPGActions"],
 				{
 
 					"openMultiServiceEPG": multiEPGCB,
