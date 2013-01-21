@@ -2,49 +2,53 @@ import os
 import time
 
 ECM_INFO = '/tmp/ecm.info'
+EMPTY_ECM_INFO = '','0','0','0'
 
 old_ecm_time = time.time()
 info = {}
-data = '','0','0','0'
+data = EMPTY_ECM_INFO
 
 class GetEcmInfo:
-  def pollEcmData(self):
-    global data
-    global old_ecm_time
-    global info
-    try:
-      ecm_time = os.stat(ECM_INFO).st_mtime
-    except:
-      ecm_time = old_ecm_time;
-    if ecm_time != old_ecm_time:
-      oecmi1 = info.get('ecminterval1','')
-      oecmi0 = info.get('ecminterval0','')
-      info = {}
-      info['ecminterval2'] = oecmi1
-      info['ecminterval1'] = oecmi0
-      old_ecm_time = ecm_time
-      try:	
-        ecm = open(ECM_INFO, 'rb').readlines()
-      except:
-        ecm = ''
-      for line in ecm:
-        d = line.split(':', 1)
-        if len(d) > 1:
-          info[d[0].strip()] = d[1].strip()
-      data = self.getText()
-      return True
-    info['ecminterval0'] = int(time.time()-ecm_time+0.5)
-    return False
+	def pollEcmData(self):
+		global data
+		global old_ecm_time
+		global info
+		if not os.path.isfile(ECM_INFO):
+			data = EMPTY_ECM_INFO
+			return True
+		try:
+			ecm_time = os.stat(ECM_INFO).st_mtime
+		except:
+			ecm_time = old_ecm_time
+		if ecm_time != old_ecm_time:
+			oecmi1 = info.get('ecminterval1','')
+			oecmi0 = info.get('ecminterval0','')
+			info = {}
+			info['ecminterval2'] = oecmi1
+			info['ecminterval1'] = oecmi0
+			old_ecm_time = ecm_time
+			try:
+				ecm = open(ECM_INFO, 'rb').readlines()
+			except:
+				ecm = ''
+			for line in ecm:
+				d = line.split(':', 1)
+				if len(d) > 1:
+					info[d[0].strip()] = d[1].strip()
+			data = self.getText()
+			return True
+		info['ecminterval0'] = int(time.time()-ecm_time+0.5)
+		return False
 
-  def getEcmData(self):
-    self.pollEcmData()
-    return data
+	def getEcmData(self):
+		self.pollEcmData()
+		return data
 
-  def getInfo(self, member, ifempty = ''):
-    self.pollEcmData()
-    return str(info.get(member, ifempty))
+	def getInfo(self, member, ifempty = ''):
+		self.pollEcmData()
+		return str(info.get(member, ifempty))
 
-  def getText(self):
+	def getText(self):
 		try:
 			# info is dictionary
 			using = info.get('using', '')
