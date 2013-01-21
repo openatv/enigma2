@@ -15,7 +15,8 @@ class GetEcmInfo:
 		global info
 		if not os.path.isfile(ECM_INFO):
 			data = EMPTY_ECM_INFO
-			return True
+			info = {}
+			return
 		try:
 			ecm_time = os.stat(ECM_INFO).st_mtime
 		except:
@@ -36,9 +37,9 @@ class GetEcmInfo:
 				if len(d) > 1:
 					info[d[0].strip()] = d[1].strip()
 			data = self.getText()
-			return True
+			return
 		info['ecminterval0'] = int(time.time()-ecm_time+0.5)
-		return False
+		return
 
 	def getEcmData(self):
 		self.pollEcmData()
