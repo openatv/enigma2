@@ -2,7 +2,7 @@ from Screen import Screen
 from Components.Button import Button
 from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
 from Components.MenuList import MenuList
-from Components.MovieList import MovieList, resetMoviePlayState
+from Components.MovieList import MovieList, resetMoviePlayState, AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS
 from Components.DiskInfo import DiskInfo
 from Components.Pixmap import Pixmap, MultiPixmap
 from Components.Label import Label
@@ -48,12 +48,7 @@ config.movielist.root = ConfigSelection(default="/media", choices=["/","/media",
 config.movielist.hide_extensions = ConfigYesNo(default=False)
 
 userDefinedButtons = None
-
 last_selected_dest = []
-
-AUDIO_EXTENSIONS = frozenset((".mp3", ".wav", ".ogg", ".flac", ".m4a", ".mp2", ".m2a"))
-DVD_EXTENSIONS = ('.iso', '.img')
-IMAGE_EXTENSIONS = frozenset((".jpg", ".png", ".gif", ".bmp"))
 preferredTagEditor = None
 
 # this kludge is needed because ConfigSelection only takes numbers
@@ -98,6 +93,12 @@ def isTrashFolder(ref):
 		return False
 	path = os.path.realpath(ref.getPath())
 	return path.endswith('.Trash') and path.startswith(Tools.Trashcan.getTrashFolder(path))
+
+def isInTrashFolder(ref):
+	if not config.usage.movielist_trashcan.value or not ref.flags & eServiceReference.mustDescent:
+		return False
+	path = os.path.realpath(ref.getPath())
+	return path.startswith(Tools.Trashcan.getTrashFolder(path))
 
 def isSimpleFile(item):
 	if not item:
@@ -329,11 +330,16 @@ class MovieContextMenu(Screen):
 	def __init__(self, session, csel, service):
 		Screen.__init__(self, session)
 
-		self["actions"] = ActionMap(["OkCancelActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 			{
 				"ok": self.okbuttonClick,
-				"cancel": self.cancelClick
+				"cancel": self.cancelClick,
+				"yellow": csel.showNetworkSetup,
+				"blue": csel.configure
 			})
+
+		self["key_yellow"] = Button(_("Network") + "...")
+		self["key_blue"] = Button(_("Settings") + "...")
 
 		menu = []
 		if service:
@@ -424,10 +430,11 @@ class MovieSelectionSummary(Screen):
 			self["name"].text = ""
 
 class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
-	def __init__(self, session, selectedmovie = None):
+	def __init__(self, session, selectedmovie = None, timeshiftEnabled = False):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		InfoBarBase.__init__(self) # For ServiceEventTracker
+		if not timeshiftEnabled:
+			InfoBarBase.__init__(self) # For ServiceEventTracker
 		self.initUserDefinedActions()
 		self.tags = {}
 		if selectedmovie:
@@ -439,8 +446,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.movemode = False
 		self.bouquet_mark_edit = False
 
-		self.delayTimer = eTimer()
-		self.delayTimer.callback.append(self.reloadWithDelay)
 		self.feedbackTimer = None
 
 		self.numericalTextInput = NumericalTextInput.NumericalTextInput(mapping=NumericalTextInput.MAP_SEARCH_UPCASE)
@@ -1121,10 +1126,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.reload_sel = sel
 		self.reload_home = home
 		self["waitingtext"].visible = True
-		self.delayTimer.start(10, 1)
+		self.callLater(self.reloadWithDelay)
 
 	def reloadWithDelay(self):
-		self.delayTimer.stop()
 		if not os.path.isdir(config.movielist.last_videodir.value):
 			path = defaultMoviePath()
 			config.movielist.last_videodir.value = path
@@ -1610,7 +1614,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					else:
 						files += 1
 			if files or subdirs:
-				self.session.openWithCallback(self.delete, MessageBox, _("Directory contains %s and %s.") % (ngettext("%d file", "%d files", files) % files, ngettext("%d subdirectory", "%d subdirectories", subdirs) % subdirs) + '\n' + are_you_sure)
+				msg = _("Directory contains %s and %s.") % (ngettext("%d file", "%d files", files) % files, ngettext("%d subdirectory", "%d subdirectories", subdirs) % subdirs) + '\n' + are_you_sure
+				if isInTrashFolder(current):
+					# Red button to empty trashcan item or subdir
+					msg = _("Deleted items") + "\n" + msg
+					callback = self.purgeConfirmed
+				else:
+					callback = self.delete
+				self.session.openWithCallback(callback, MessageBox, msg)
 				return
 			else:
 				try:
@@ -1695,13 +1706,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def purgeAll(self):
 		recordings = self.session.nav.getRecordings()
 		next_rec_time = -1
+		msg = _("Permanently delete all recordings in the trash can?")
 		if not recordings:
 			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
 		if recordings or (next_rec_time > 0 and (next_rec_time - time.time()) < 120):
-			msg = "\n" + _("Recording(s) are in progress or coming up in few seconds!")
-		else:
-			msg = ""
-		self.session.openWithCallback(self.purgeConfirmed, MessageBox, _("Permanently delete all recordings in the trash can?") + msg)
+			msg += "\n" + _("Recording(s) are in progress or coming up in few seconds!")
+		self.session.openWithCallback(self.purgeConfirmed, MessageBox, msg)
 
 	def purgeConfirmed(self, confirmed):
 		if not confirmed:

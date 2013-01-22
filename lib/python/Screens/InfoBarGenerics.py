@@ -1442,14 +1442,14 @@ class InfoBarTimeshift:
 				"timeshiftActivateEndAndPause": self.activateTimeshiftEndAndPause  # something like "pause key"
 			}, prio=-1) # priority over record
 
-		self.timeshift_enabled = 0
-		self.timeshift_state = 0
+		self.timeshift_enabled = False
+		self["TimeshiftActivateActions"].setEnabled(False)
 		self.ts_rewind_timer = eTimer()
 		self.ts_rewind_timer.callback.append(self.rewindService)
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
-				iPlayableService.evStart: self.__serviceStarted,
+				iPlayableService.evNewProgramInfo: self.__serviceStarted,
 				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged
 			})
 
@@ -1469,7 +1469,7 @@ class InfoBarTimeshift:
 			print "hu, timeshift already enabled?"
 		else:
 			if not ts.startTimeshift():
-				self.timeshift_enabled = 1
+				self.timeshift_enabled = True
 
 				# we remove the "relative time" for now.
 				#self.pvrStateDialog["timeshift"].setRelative(time.time())
@@ -1502,7 +1502,7 @@ class InfoBarTimeshift:
 			return
 
 		ts.stopTimeshift()
-		self.timeshift_enabled = 0
+		self.timeshift_enabled = False
 		self.pvrStateDialog.hide()
 
 		# disable actions
@@ -1539,21 +1539,16 @@ class InfoBarTimeshift:
 		self.activateTimeshiftEnd(False)
 
 	def __seekableStatusChanged(self):
-		enabled = False
-
-#		print "self.isSeekable", self.isSeekable()
-#		print "self.timeshift_enabled", self.timeshift_enabled
-
-		# when this service is not seekable, but timeshift
-		# is enabled, this means we can activate
-		# the timeshift
-		if not self.isSeekable() and self.timeshift_enabled:
-			enabled = True
-
-#		print "timeshift activate:", enabled
+		# when the service is already seekable so the actual recording did already startand timeshift
+		# is enabled, this means we can activate the timeshift ActivateActions and SeekActions
+		enabled = self.getSeek and self.timeshift_enabled
 		self["TimeshiftActivateActions"].setEnabled(enabled)
+		self["SeekActions"].setEnabled(enabled)
+		if not enabled:
+			self.setSeekState(self.SEEK_STATE_PLAY)
 
 	def __serviceStarted(self):
+		self.pvrStateDialog.hide()
 		self.timeshift_enabled = False
 		self.__seekableStatusChanged()
 

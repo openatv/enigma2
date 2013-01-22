@@ -38,21 +38,21 @@ class EventTime(Poll, Converter, object):
 		if event is None:
 			return None
 			
+		st = event.getBeginTime()
 		if self.type == self.STARTTIME:
-			return event.getBeginTime()
-		elif self.type == self.ENDTIME:
-			return event.getBeginTime() + event.getDuration()
-		elif self.type == self.DURATION:
-			return event.getDuration()
-		elif self.type == self.REMAINING:
-			now = int(time())
-			start_time = event.getBeginTime()
-			duration = event.getDuration()
-			end_time = start_time + duration
-			if start_time <= now <= end_time:
-				return (duration, end_time - now)
-			else:
-				return (duration, None)
+			return st
+
+		duration = event.getDuration()
+		if self.type == self.DURATION:
+			return duration
+		st += duration
+		if self.type == self.ENDTIME:
+			return st
+		if self.type == self.REMAINING:
+			remaining = st - int(time())
+			if remaining < 0:
+				remaining = duration
+			return (duration, remaining)
 
 	@cached
 	def getValue(self):
@@ -62,11 +62,12 @@ class EventTime(Poll, Converter, object):
 		if event is None:
 			return None
 
-		now = int(time())
-		start_time = event.getBeginTime()
+		progress = int(time()) - event.getBeginTime()
 		duration = event.getDuration()
-		if start_time <= now <= (start_time + duration) and duration > 0:
-			return (now - start_time) * 1000 / duration
+		if duration > 0 and progress >= 0:
+			if progress > duration:
+				progress = duration
+			return progress * 1000 / duration
 		else:
 			return None
 
