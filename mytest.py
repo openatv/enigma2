@@ -558,9 +558,6 @@ def runScreenTest():
 	from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime
 	#get currentTime
 	nowTime = time()
-
-	if enigma.getBoxType().startswith('gb'):
-		setRTCtime(nowTime)
 	
 	wakeupList = [
 		x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
