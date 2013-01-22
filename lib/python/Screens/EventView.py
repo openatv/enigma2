@@ -63,19 +63,13 @@ class EventViewBase:
 		self["datetime"] = Label()
 		self["channel"] = Label()
 		self["duration"] = Label()
-		self["key_red"] = Button("")
 		if similarEPGCB is not None:
+			self["key_red"] = Button("")
 			self.SimilarBroadcastTimer = eTimer()
 			self.SimilarBroadcastTimer.callback.append(self.getSimilarEvents)
 		else:
 			self.SimilarBroadcastTimer = None
 		self.key_green_choice = self.ADD_TIMER
-		if self.isRecording:
-			self["key_green"] = Button("")
-		else:
-			self["key_green"] = Button(_("Add timer"))
-		self["key_yellow"] = Button("")
-		self["key_blue"] = Button("")
 		self["actions"] = ActionMap(["OkCancelActions", "EventViewActions"],
 			{
 				"cancel": self.close,
@@ -84,8 +78,6 @@ class EventViewBase:
 				"pageDown": self.pageDown,
 				"prevEvent": self.prevEvent,
 				"nextEvent": self.nextEvent,
-				"timerAdd": self.timerAdd,
-				"openSimilarList": self.openSimilarList,
 				"contextMenu": self.doContext,
 			})
 		self.onShown.append(self.onCreate)
@@ -186,7 +178,6 @@ class EventViewBase:
 		self["summary_description"].setText(text)
 		self["datetime"].setText(event.getBeginTimeString())
 		self["duration"].setText(_("%d min")%(event.getDuration()/60))
-		self["key_red"].setText("")
 		if self.SimilarBroadcastTimer is not None:
 			self.SimilarBroadcastTimer.start(400, True)
 
@@ -245,9 +236,9 @@ class EventViewBase:
 class EventViewSimple(Screen, EventViewBase):
 	def __init__(self, session, Event, Ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None):
 		Screen.__init__(self, session)
-		data = resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")
-		data = data.replace('/ skin.xml','/skin.xml')
-		data = file(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")).read()
+		file = open(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml"))
+		data = file.read()
+		file.close()
 		if data.find('EventViewSimple') >= 0:
 			self.skinName = "EventViewSimple"
 		else:
@@ -259,10 +250,29 @@ class EventViewEPGSelect(Screen, EventViewBase):
 		Screen.__init__(self, session)
 		self.skinName = "EventView"
 		EventViewBase.__init__(self, Event, Ref, callback, similarEPGCB)
-		self["key_yellow"].setText(_("Single EPG"))
-		self["key_blue"].setText(_("Multi EPG"))
-		self["epgactions"] = ActionMap(["EventViewEPGActions"],
+
+		self["epgactions1"] = ActionMap(["OkCancelActions", "EventViewActions"],
 			{
-				"openSingleServiceEPG": singleEPGCB,
-				"openMultiServiceEPG": multiEPGCB,
+
+				"timerAdd": self.timerAdd,
+				"openSimilarList": self.openSimilarList,
+
 			})
+		if self.isRecording:
+			self["key_green"] = Button("")
+		else:
+			self["key_green"] = Button(_("Add timer"))
+
+		if singleEPGCB:
+			self["key_yellow"] = Button(_("Single EPG"))
+			self["epgactions2"] = ActionMap(["EventViewEPGActions"],
+				{
+					"openSingleServiceEPG": singleEPGCB,
+				})
+		if multiEPGCB:
+			self["key_blue"] = Button(_("Multi EPG"))
+			self["epgactions3"] = ActionMap(["EventViewEPGActions"],
+				{
+
+					"openMultiServiceEPG": multiEPGCB,
+				})
