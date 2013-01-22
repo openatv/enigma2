@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from Components.Converter.Converter import Converter
-from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr
+from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr,\
+ eServiceReference, getBestPlayableServiceReference, eServiceCenter
+ 
 from Components.Element import cached
 
 class ServiceOrbitalPosition(Converter, object):
@@ -26,6 +28,15 @@ class ServiceOrbitalPosition(Converter, object):
 		if info is None:
 			return ""
 		if ref:
+			if ref.flags & eServiceReference.isGroup:
+			  nref = getBestPlayableServiceReference(ref, \
+			   eServiceReference())
+			  if nref is None:
+			    nref = getBestPlayableServiceReference(ref, \
+			     eServiceReference(), True)
+			  if not (nref is None):
+			    ref = nref
+			    info = eServiceCenter.getInstance().info(ref)
 			transponder_info = info.getInfoObject(ref, iServiceInformation.sTransponderData)
 		else:
 			transponder_info = info.getInfoObject(iServiceInformation.sTransponderData)
