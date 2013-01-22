@@ -75,6 +75,7 @@
 	</map>
 
 	<map context="InfobarEPGActions">
+		<key id="KEY_RED" mapto="RedPressed" flags="b" />
 		<key id="KEY_I" mapto="IPressed" flags="b" />
 		<key id="KEY_INFO" mapto="InfoPressed" flags="b" />
 		<key id="KEY_INFO" mapto="showEventInfoPlugin" flags="l" />
@@ -92,7 +93,6 @@
 	</map>
 
 	<map context="InfobarExtensions">
-		<key id="KEY_RED" mapto="RedPressed" flags="b" />
 		<key id="KEY_GREEN" mapto="openTimerList" flags="b" />
 		<key id="KEY_GREEN" mapto="openAutoTimerList" flags="l" />
 		<key id="KEY_YELLOW" mapto="openEPGSearch" flags="b" />
