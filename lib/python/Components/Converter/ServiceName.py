@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Components.Converter.Converter import Converter
-from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr
+from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr,\
+ eServiceReference, getBestPlayableServiceReference
 from Components.Element import cached
 
 class ServiceName(Converter, object):
@@ -39,8 +40,15 @@ class ServiceName(Converter, object):
 			if ref is None:
 			  return \
 			   info.getInfoString(iServiceInformation.sServiceref)
-			else:
-			  return ref.toString()
+			if ref.flags & eServiceReference.isGroup:
+			  nref = getBestPlayableServiceReference(ref, \
+			   eServiceReference())
+			  if nref is None:
+			    nref = getBestPlayableServiceReference(ref, \
+			     eServiceReference(), True)
+			  if not (nref is None):
+			    ref = nref
+			return ref.toString()
 
 	text = property(getText)
 
