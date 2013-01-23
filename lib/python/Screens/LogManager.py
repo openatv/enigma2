@@ -140,21 +140,6 @@ class LogManagerPoller:
 		self.timer.startLongTimer(43200) #twice a day
 
 class LogManager(Screen):
-	skin = """<screen name="LogManager" position="center,center" size="560,400" title="Log Manager" flags="wfBorder">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="list" position="0,70" size="560,325" transparent="0" scrollbarMode="showOnDemand" />
-		<applet type="onLayoutFinish">
-			self["list"].instance.setItemHeight(25)
-		</applet>
-	</screen>"""
-
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.logtype = 'crashlogs'
@@ -451,15 +436,10 @@ class LogManager(Screen):
 		self.close()
 
 class LogManagerViewLog(Screen):
-	skin = """
-		<screen name="LogManagerViewLog" position="center,center" size="700,400" title="Log Manager" >
-			<widget name="list" position="0,0" size="700,400" font="Console;14" />
-		</screen>"""
 	def __init__(self, session, selected):
 		self.session = session
 		Screen.__init__(self, session)
 		self.setTitle(selected)
-		self.skinName = "LogManagerViewLog"
 		if path.exists(config.crash.debug_path.getValue() + selected):
 			log = file(config.crash.debug_path.getValue() + selected).read()
 		else:
@@ -478,11 +458,6 @@ class LogManagerViewLog(Screen):
 		self.close()
 
 class LogManagerFb(Screen):
-	skin = """
-		<screen name="LogManagerFb" position="center,center" size="265,430" title="">
-			<widget name="list" position="0,0" size="265,430" scrollbarMode="showOnDemand" />
-		</screen>
-		"""
 	def __init__(self, session, logpath=None):
 		if logpath is None:
 			if path.isdir(config.logmanager.path.getValue()):
@@ -492,8 +467,6 @@ class LogManagerFb(Screen):
 
 		self.session = session
 		Screen.__init__(self, session)
-		self.skin = LogManagerFb.skin
-		self.skinName = "LogManagerFb"
 
 		self["list"] = FileList(logpath, matchingPattern = "^.*")
 		self["red"] = Label(_("delete"))

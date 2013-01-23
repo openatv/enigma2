@@ -13,18 +13,7 @@ config.misc.lastrotorposition = ConfigInteger(INVALID_POSITION)
 class Dish(Screen):
 	STATE_HIDDEN = 0
 	STATE_SHOWN  = 1
-	skin = """
-		<screen name="Dish" flags="wfNoBorder" position="86,100" size="130,200" title="Dish" zPosition="1" backgroundColor="#11396D" >
-			<widget name="Dishpixmap" position="0,0"  size="130,160" zPosition="-1" pixmap="skin_default/icons/dish.png" transparent="1" alphatest="on" />
-			<widget name="turnTime"   position="5,0"   size="120,20" zPosition="1" font="Regular;20" halign="right" shadowColor="black" shadowOffset="-2,-2" transparent="1" />
-			<widget name="From"       position="5,164"  size="50,17" zPosition="1" font="Regular;17" halign="left"  shadowColor="black" shadowOffset="-2,-1" transparent="1"  />
-			<widget name="posFrom"    position="57,160" size="70,20" zPosition="1" font="Regular;20" halign="left"  shadowColor="black" shadowOffset="-2,-2" transparent="1" />
-			<widget name="Goto"       position="5,184"  size="50,17" zPosition="1" font="Regular;17" halign="left"  shadowColor="black" shadowOffset="-2,-1" transparent="1" />
-			<widget name="posGoto"    position="57,180" size="70,20" zPosition="1" font="Regular;20" halign="left"  shadowColor="black" shadowOffset="-2,-2" transparent="1" />
-		</screen>"""
-
 	def __init__(self, session):
-		self.skin = Dish.skin
 		Screen.__init__(self, session)
 		self["Dishpixmap"] = BlinkingPixmapConditional()
 		self["Dishpixmap"].onVisibilityChange.append(self.DishpixmapVisibilityChanged)
