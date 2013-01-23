@@ -95,7 +95,7 @@ class About(Screen):
 		if translator_name == "none":
 			translator_name = infomap.get("Last-Translator", "")
 
-		AboutText += _("Translation: ") + translator_name + "\n"
+		#AboutText += _("Translation: ") + translator_name + "\n"
 		
 		self["FPVersion"] = StaticText(fp_version)
 		
