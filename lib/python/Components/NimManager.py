@@ -753,11 +753,12 @@ class NimManager:
 			elif  line.startswith("Mode"):
 				# "Mode 0: DVB-T" -> ["Mode 0", "DVB-T"]
 				split = line.split(": ")
-				# "Mode 0" -> ["Mode", "0"]
-				split2 = split[0].split(" ")
-				modes = entries[current_slot].get("multi_type", {})
-				modes[split2[1]] = split[1]
-				entries[current_slot]["multi_type"] = modes
+				if len(split) > 1 and split[1]:
+					# "Mode 0" -> ["Mode", "0"]
+					split2 = split[0].split(" ")
+					modes = entries[current_slot].get("multi_type", {})
+					modes[split2[1]] = split[1]
+					entries[current_slot]["multi_type"] = modes
 			elif line.startswith("I2C_Device:"):
 				input = int(line[len("I2C_Device:") + 1:])
 				entries[current_slot]["i2c"] = input
