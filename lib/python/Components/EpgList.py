@@ -582,7 +582,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		]
 		if clock_pic is not None:
 			res.extend((
-				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.x, r3.y, 21, 21, clock_pic),
+				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.x, (r3.h/2-11), 21, 21, clock_pic),
 				(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 25, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
 			))
 		else:
@@ -602,7 +602,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		]
 		if clock_pic is not None:
 			res.extend((
-				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.x, r3.y, 21, 21, clock_pic),
+				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.x, (r3.h/2-11), 21, 21, clock_pic),
 				(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 25, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name)
 			))
 		else:
@@ -618,24 +618,24 @@ class EPGList(HTMLComponent, GUIComponent):
 		res = [ None ] # no private data needed
 		if clock_pic is not None:
 			res.extend((
-				(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w-21, r1.h, 0, RT_HALIGN_LEFT, service_name),
-				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r1.x+r1.w-16, r1.y, 21, 21, clock_pic)
+				(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w-21, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name),
+				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r1.x+r1.w-16, (r3.h/2-11), 21, 21, clock_pic)
 			))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT, service_name))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
 		if beginTime is not None:
 			if nowTime < beginTime:
 				begin = localtime(beginTime)
 				end = localtime(beginTime+duration)
 				res.extend((
 					(eListboxPythonMultiContent.TYPE_TEXT, r4.x, r4.y, r4.w, r4.h, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER, "%02d.%02d - %02d.%02d"%(begin[3],begin[4],end[3],end[4])),
-					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT, EventName)
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
 				))
 			else:
 				percent = (nowTime - beginTime) * 100 / duration
 				res.extend((
 					(eListboxPythonMultiContent.TYPE_PROGRESS, r2.x, r2.y, r2.w, r2.h, percent),
-					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT, EventName)
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
 				))
 		return res
 
