@@ -1675,8 +1675,10 @@ class MyTubePlayer(MoviePlayer):
 	def playpauseService(self):
 		print "playpauseService"
 		if self.state == self.STATE_PLAYING:
+			#print "PAUSE"
 			self.pauseService()
 		elif self.state == self.STATE_PAUSED:
+			#print "unPAUSE"
 			self.unPauseService()
 
 	def pauseService(self):
@@ -1684,10 +1686,10 @@ class MyTubePlayer(MoviePlayer):
 		if self.state == self.STATE_PLAYING:
 			self.setSeekState(self.STATE_PAUSED)
 		
-	#def unPauseService(self):
-	#	print "unPauseService"
-	#	if self.state == self.STATE_PAUSED:
-	#		self.setSeekState(self.STATE_PLAYING)
+	def unPauseService(self):
+		print "unPauseService"
+		if self.state == self.STATE_PAUSED:
+			self.setSeekState(self.STATE_PLAYING)
 
 
 	def getSeek(self):
