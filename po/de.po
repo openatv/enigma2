@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-23 15:49+0000\n"
-"PO-Revision-Date: 2012-12-24 04:52+0100\n"
+"POT-Creation-Date: 2013-01-19 12:41+0000\n"
+"PO-Revision-Date: 2013-01-23 15:01+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -350,11 +350,26 @@ msgstr "1. Infobar Timeout"
 msgid "2"
 msgstr "2"
 
+msgid "23.976"
+msgstr ""
+
+msgid "24"
+msgstr "24"
+
+msgid "25"
+msgstr "25"
+
+msgid "29.97"
+msgstr ""
+
 msgid "2X"
 msgstr "2X"
 
 msgid "3"
 msgstr "3"
+
+msgid "30"
+msgstr "30"
 
 msgid "3D Mode"
 msgstr "3D Betriebsart"
@@ -434,9 +449,6 @@ msgid ""
 msgstr ""
 "Eine Konfigurationsdatei (%s) wurde seit der Installation verändert.\n"
 "Diese Version behalten?"
-
-msgid "A demo plugin for TPM usage."
-msgstr "Ein Demo Plugin für die TPM Bedienung."
 
 msgid ""
 "A finished power timer wants to shut down\n"
@@ -729,6 +741,12 @@ msgstr "Alle Alter"
 msgid "All satellites"
 msgstr "Alle Satelliten"
 
+msgid "Allocate"
+msgstr "Reservieren"
+
+msgid "Allocate unused memory index"
+msgstr "Unbenutzen Speicher Index reservieren"
+
 msgid "Allow subtitle language to equal audio language"
 msgstr "Erlaube gleiche Sprache bei Untertitel und Ton"
 
@@ -746,6 +764,9 @@ msgstr "Regelmäßiges lesen der EPG Daten erlauben."
 
 msgid "Allows the STB_BOX to store the EPG data regularly."
 msgstr "Regelmäßiges schreiben der EPG Daten erlauben."
+
+msgid "Allows you hide the extensions of known file types."
+msgstr "Erlaubt es Erweiterungen bekannter Dateitypen zu verstecken."
 
 msgid "Allows you setup the button to do what you choose."
 msgstr "Erlaubt dir zu bestimmen was die gewählte Taste macht."
@@ -958,6 +979,12 @@ msgstr "Automatische Kapitelwechsel alle ? Minuten (0=nie)"
 
 msgid "Auto flesh"
 msgstr "Auto flesh"
+
+msgid "Auto focus"
+msgstr "Autofokus"
+
+msgid "Auto focus commencing ..."
+msgstr "Autofokus beginnt..."
 
 msgid "Auto language selection"
 msgstr "Automatische Sprachwahl"
@@ -1216,6 +1243,9 @@ msgstr "CCcam Freigabe Informationen"
 msgid "CCcam info"
 msgstr ""
 
+msgid "CHANGE BOUQUET"
+msgstr "Favoritenliste wechseln"
+
 msgid "CI assignment"
 msgstr "CI-Zuweisung"
 
@@ -1237,11 +1267,32 @@ msgstr "Vorschaubilder zwischenspeichern"
 msgid "Cached:"
 msgstr "Cache:"
 
+msgid "Calculate"
+msgstr "Berechnen"
+
+msgid "Calculate all positions"
+msgstr "Alle Positionen berechnen"
+
+msgid "Calculation complete"
+msgstr "Berechnung beendet."
+
+msgid "Calibrate"
+msgstr "Kalibrieren"
+
+msgid "Can be used for different fps between external subtitles and video."
+msgstr "Kann für unterschiedliche Frequenzen von Video und Untertitel benutzt werden."
+
 msgid "Cancel"
 msgstr "Abbrechen"
 
 msgid "Cannot delete file"
 msgstr "Kann Datei nicht löschen"
+
+msgid "Cannot determine"
+msgstr "Erfassen nicht möglich"
+
+msgid "Cannot find any signal ..., aborting !"
+msgstr "Kann kein Signal finden..., Abbruch!"
 
 msgid "Cannot move to trash can"
 msgstr "Die Datei konnte nicht in den Mülleimer verschoben werden"
@@ -1450,6 +1501,9 @@ msgstr "Müll löschen"
 msgid "Cleanup"
 msgstr "Aufräumen"
 
+msgid "Clear"
+msgstr "Löschen"
+
 msgid "Clear before scan"
 msgstr "Vor der Suche löschen"
 
@@ -1540,6 +1594,10 @@ msgstr "Configfile %s gespeichert."
 
 msgid "Configuration mode"
 msgstr "Konfigurationsmodus"
+
+#, python-format
+msgid "Configuration mode: %s"
+msgstr "Konfigurationsmodus: %s"
 
 msgid "Configure an additional delay to improve external subtitle synchronisation."
 msgstr "Konfiguriere eine zusätzliche Verzögerung um die Synchronisation mit externen Untertiteln zu verbessern."
@@ -1751,6 +1809,9 @@ msgstr "Konfiguriere welche Tunerart bevorzugt benutzt werden soll wenn der selb
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr "Konfiguriere welcher Tuner bevorzugt benutzt werden soll wenn mehr als einer verfügbar ist. Wenn 'Auto' eingestellt ist so wird zuerst der Tuner mit den wenigsten Sendern/Satelliten genommen."
 
+msgid "Configure your NTP server."
+msgstr "Deine NTP Server konfigurieren"
+
 msgid "Configure your internal LAN"
 msgstr "Internes Netzwerk konfigurieren"
 
@@ -1840,6 +1901,9 @@ msgstr "Cool TV Guide"
 
 msgid "Copy"
 msgstr "kopieren"
+
+msgid "Copying files"
+msgstr "Dateien kopieren"
 
 msgid ""
 "Could not activate Permanent-Timeshift!\n"
@@ -2104,6 +2168,9 @@ msgstr "%s gelöscht!"
 
 msgid "Deleted items"
 msgstr "Gelöschte Objekte"
+
+msgid "Deleting files"
+msgstr "Dateien löschen"
 
 msgid "Depth"
 msgstr "Tiefe"
@@ -2471,6 +2538,9 @@ msgstr "FEHLER - Suche fehlgeschlagen (%s)!"
 msgid "East"
 msgstr "Ost"
 
+msgid "East limit set"
+msgstr "Ost Grenzwert setzen"
+
 msgid "Ecm:"
 msgstr "ECM:"
 
@@ -2766,6 +2836,9 @@ msgstr "Fehlgeschlagen"
 msgid "Failed to remove old files."
 msgstr "Löschen alter Dateien fehlgeschlagen."
 
+msgid "Failed to write /tmp/positionersetup.log: "
+msgstr "Kann /tmp/positionersetup.log nicht schreiben: "
+
 #, python-format
 msgid "Fan %d"
 msgstr "Lüfter %d"
@@ -2803,6 +2876,15 @@ msgstr "Dateisystemüberprüfung"
 
 msgid "Filesystem check"
 msgstr "Dateisystemprüfung"
+
+msgid "Final position at"
+msgstr "Endposition bei"
+
+msgid "Final position at index"
+msgstr "Endposition bei Index"
+
+msgid "Fine movement"
+msgstr "Feinbewegung"
 
 msgid "Finetune"
 msgstr "Feineinst."
@@ -2987,6 +3069,12 @@ msgstr "Gehe zu 0"
 msgid "Goto :"
 msgstr "Gehe zu:"
 
+msgid "Goto X"
+msgstr "Gehe zu X"
+
+msgid "Goto index position"
+msgstr "Auf Index Position drehen"
+
 msgid "Goto next bouquet"
 msgstr "Gehe zur nächsten Favoritenliste"
 
@@ -3016,6 +3104,9 @@ msgstr "Gehe zur vorherigen Seite mit Sendungen"
 
 msgid "Goto specific data/time"
 msgstr "Gehe zum angegebenen Datum/Uhrzeit"
+
+msgid "GotoX calibration"
+msgstr "GotoX kalibrieren"
 
 msgid "GraphMultiEpg Settings"
 msgstr "GraphMultiEpg Einstellungen"
@@ -3085,6 +3176,9 @@ msgstr "Fehlermeldungen beim Umschalten unterdrücken."
 
 msgid "Hide error messages from the Common Interface module."
 msgstr "Unterdrücke Fehlermeldung von einem Common Interface Modul."
+
+msgid "Hide known extensions"
+msgstr "Bekannte Erweiterungen verstecken"
 
 msgid "Hide player"
 msgstr "Player ausblenden"
@@ -3284,6 +3378,9 @@ msgstr "Erhöhte Spannung"
 msgid "Index"
 msgstr "Index"
 
+msgid "Index allocated:"
+msgstr "Index reserviert"
+
 msgid "Info"
 msgstr "Info"
 
@@ -3317,8 +3414,17 @@ msgstr "Initialisieren"
 msgid "Initial fast forward speed"
 msgstr "Anfangsgeschwindigkeit Vorlauf"
 
+msgid "Initial lock ratio"
+msgstr "Anfangs lock ratio"
+
 msgid "Initial rewind speed"
 msgstr "Anfangsgeschwindigkeit Rücklauf"
+
+msgid "Initial signal quality"
+msgstr "Anfangssignalqualität"
+
+msgid "Initial signal quality:"
+msgstr "Anfangssignalqualität:"
 
 msgid "Initialization"
 msgstr "Initialisierung"
@@ -3446,6 +3552,9 @@ msgstr "Objekte pro Seite"
 
 msgid "Items per page for list screen"
 msgstr "Einträge pro Seite bei Liste"
+
+msgid "JUMP 24 HOURS"
+msgstr "Springe 24 Stunden"
 
 msgid "Job View"
 msgstr "Jobansicht"
@@ -3594,19 +3703,25 @@ msgid "Limit debug log size (MB)"
 msgstr "Debug Log auf (MB) beschränken"
 
 msgid "Limit east"
-msgstr "Ost-Limit"
+msgstr "Grenzwert Ost"
 
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ascii. This ensures compatibility with operating systems or file systems with limited character sets."
 msgstr "Beschränke den verwendeten Zeichensatz für Dateinamen von Aufnahmen auf 7Bit ASCII. Dies erhöht die Kompatibilität mit anderen Geräten und Betriebssystemen."
 
 msgid "Limit west"
-msgstr "West-Limit"
+msgstr "Grenzwert West"
+
+msgid "Limits cancelled"
+msgstr "Grenzwerte deaktiviert"
+
+msgid "Limits enabled"
+msgstr "Grenzwerte aktiviert"
 
 msgid "Limits off"
-msgstr "Limits ausschalten"
+msgstr "Grenzwerte ausschalten"
 
 msgid "Limits on"
-msgstr "Limits aktiviert"
+msgstr "Grenzwerte einschalten"
 
 msgid "Link Quality:"
 msgstr "Qualität vom Link:"
@@ -3664,6 +3779,9 @@ msgstr "Lokales Netzwerk"
 
 msgid "Location"
 msgstr "Zielverzeichnis"
+
+msgid "Lock ratio"
+msgstr ""
 
 msgid "Lock:"
 msgstr "Signal:"
@@ -3795,6 +3913,9 @@ msgstr "Zeige Zeit bei Wiedergabe verbleibend/verstrichen"
 msgid "Media player"
 msgstr "Media Player"
 
+msgid "Media scanner"
+msgstr "Media Scanner"
+
 msgid "Medium is not a writeable DVD!"
 msgstr "Das Medium ist keine beschreibbare DVD!"
 
@@ -3806,6 +3927,9 @@ msgstr "Speicher"
 
 msgid "Memory Information"
 msgstr "Speicherinformationen"
+
+msgid "Memory index"
+msgstr "Index Speicher"
 
 msgid "Menu"
 msgstr "Menu"
@@ -3919,11 +4043,23 @@ msgstr "An den Anfang"
 msgid "Move to other directory"
 msgstr "In anderes Verzeichnis verschieben"
 
+msgid "Move to position X"
+msgstr "Auf Position X drehen"
+
 msgid "Move up a page"
 msgstr "Seite hoch"
 
 msgid "Move west"
 msgstr "Drehen nach Westen"
+
+msgid "Moved to position 0"
+msgstr "Auf Position 0 drehen"
+
+msgid "Moved to position at index"
+msgstr "Auf Position von Index drehen"
+
+msgid "Movement"
+msgstr "Drehung"
 
 msgid "Movie List"
 msgstr "Aufnahmeliste"
@@ -3942,6 +4078,21 @@ msgstr "Film/Drama"
 
 msgid "Movielist menu"
 msgstr "Aufnahmen-Menü"
+
+msgid "Moving"
+msgstr "Drehen"
+
+msgid "Moving east ..."
+msgstr "Drehen nach Osten..."
+
+msgid "Moving files"
+msgstr "Verschiebe Dateien"
+
+msgid "Moving to position"
+msgstr "Drehen auf Position"
+
+msgid "Moving west ..."
+msgstr "Drehen nach Westen..."
 
 msgid "Multi EPG"
 msgstr "Multi-EPG"
@@ -3995,6 +4146,9 @@ msgstr "JETZT"
 
 msgid "NTP"
 msgstr "NTP"
+
+msgid "NTP server"
+msgstr "NTP (Zeit) Server"
 
 msgid "NTSC"
 msgstr "NTSC"
@@ -4148,6 +4302,9 @@ msgstr "Keine EPG-Daten gefunden. Starte unbegrenzte Aufnahme."
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
 msgstr "Spulen nicht möglich, aber mit Hilfe der Zahlen-Tasten 1/4/7/3/6/9 kann gesprungen werden!"
 
+msgid "No free index available"
+msgstr "Kein freier Index verfügbar."
+
 msgid "No free tuner!"
 msgstr "Kein freier Tuner"
 
@@ -4172,9 +4329,6 @@ msgstr "Anzahl von Elementen wechseln (erhöhen oder verringern)"
 msgid "No positioner capable frontend found."
 msgstr "Keinen rotortauglichen Tuner gefunden."
 
-msgid "No sat tuner found!"
-msgstr "Kein Satempfänger gefunden!"
-
 msgid "No satellite frontend found!!"
 msgstr "Kein Satellit-Tuner gefunden"
 
@@ -4186,6 +4340,9 @@ msgstr "Keine Sender/Anbieter ausgewählt"
 
 msgid "No standby"
 msgstr "Keine Bereitschaft"
+
+msgid "No suitable sat tuner found!"
+msgstr "Kein verwendbarer Sat Tuner gefunden!"
 
 msgid "No tags are set on these movies."
 msgstr "Keine Tags für diese Filme gesetzt."
@@ -4467,6 +4624,9 @@ msgstr "Konfigurationsdateien beim Software-Update überschreiben ?"
 msgid "Overwrite configuration files?"
 msgstr "Konfigurationsdatei überschreiben?"
 
+msgid "PAGE UP/DOWN"
+msgstr "Seite hoch/runter"
+
 msgid "PAL"
 msgstr "PAL"
 
@@ -4481,6 +4641,9 @@ msgstr "Pincode benötigt"
 
 msgid "PMT PID"
 msgstr "PMT PID"
+
+msgid "PRIMETIME"
+msgstr "PrimeTime"
 
 #, python-format
 msgid "PTS Plugin Error: %s"
@@ -4881,6 +5044,9 @@ msgstr "Hilfe Erweiterungsverwaltung"
 msgid "Plugins"
 msgstr "Erweiterungen"
 
+msgid "Polarisation"
+msgstr "Polarisation"
+
 msgid "Polarization"
 msgstr "Polarisation"
 
@@ -4917,23 +5083,14 @@ msgstr "Position beendeter Timer in der Timerliste"
 msgid "Position setup"
 msgstr "Position Einstellungen"
 
+msgid "Position stored at index"
+msgstr "Position bei Index gespeichert"
+
 msgid "Positioner"
 msgstr "Rotor"
 
-msgid "Positioner Setup"
-msgstr "Rotor Einstellungen"
-
-msgid "Positioner fine movement"
-msgstr "Rotor-Feinabstimmung"
-
-msgid "Positioner movement"
-msgstr "Rotorbewegung"
-
 msgid "Positioner setup"
 msgstr "Rotor Einstellungen"
-
-msgid "Positioner storage"
-msgstr "Positionsspeicher"
 
 msgid "Power threshold in mA"
 msgstr "Strom Schwellwert in mA"
@@ -5078,7 +5235,7 @@ msgid "Protocol"
 msgstr "Protokoll"
 
 msgid "Protocol:"
-msgstr ""
+msgstr "Protokoll:"
 
 msgid "Provider"
 msgstr "Anbieter"
@@ -5462,6 +5619,9 @@ msgstr "Romänisch"
 msgid "Root directory"
 msgstr "Hauptverzeichnis"
 
+msgid "Rotor step position:"
+msgstr "Rotor Schrittposition:"
+
 msgid "Rotor turning speed"
 msgstr "Rotor Drehgeschwindigkeit"
 
@@ -5524,6 +5684,9 @@ msgstr "Satellitenausrüstung"
 
 msgid "Satellite equipment setup"
 msgstr "Satellitenausrüstung Einstellungen"
+
+msgid "Satellite longitude:"
+msgstr "Satelliten Längengrad:"
 
 msgid "Satellites"
 msgstr "Satelliten"
@@ -5654,11 +5817,20 @@ msgstr "Suche mit EPG nach laufendem Programm"
 msgid "Search west"
 msgstr "Westlich suchen"
 
+msgid "Searching"
+msgstr "Suche"
+
+msgid "Searching east ..."
+msgstr "Östlich suchen"
+
 msgid "Searching for available updates. Please wait..."
 msgstr "Suche nach verfügbaren Updates. Bitte warten..."
 
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Suche nach neu installierten oder deinstallierten Erweiterungen. Bitte warten..."
+
+msgid "Searching west ..."
+msgstr "Westlich suchen"
 
 msgid "Secondary DNS"
 msgstr "Zweiter DNS"
@@ -5945,11 +6117,14 @@ msgstr "End-Zeit eingeben"
 msgid "Set fixed"
 msgstr "Adresse fest einstellen"
 
+msgid "Set fps for external subtitles"
+msgstr "Frequenz für externe Untertitel einstellen"
+
 msgid "Set interface as default Interface"
 msgstr "Setze Netzwerkadapter als Standardd"
 
 msgid "Set limits"
-msgstr "Limits setzen"
+msgstr "Grenzwerte setzen"
 
 msgid "Set the channel for this timer."
 msgstr "Setze den Sender für diesen Timer."
@@ -6064,6 +6239,9 @@ msgstr "Stelle ein was bei langem Druck auf die Aus-Taste passieren soll."
 
 msgid "Setup what a short press on the power button does."
 msgstr "Stelle ein was bei kurzem Druck auf die Aus-Taste passieren soll."
+
+msgid "Setup your positioner"
+msgstr "Rotor konfigurieren."
 
 msgid "Setup your satellite equipment"
 msgstr "Satelliten-Ausrüstung konfigurieren"
@@ -6327,8 +6505,14 @@ msgstr "Side by Side"
 msgid "Side by side"
 msgstr "Side by Side"
 
+msgid "Signal OK, proceeding"
+msgstr "Singal OK, setze fort"
+
 msgid "Signal Strength:"
 msgstr "Signal Stärke:"
+
+msgid "Signal quality"
+msgstr "Signalqualität"
 
 msgid "Signal strength:"
 msgstr "Signal Stärke:"
@@ -6365,6 +6549,12 @@ msgstr "Einzelnen Transponder"
 
 msgid "SingleEPG settings"
 msgstr "Sender-EPG Einstellungen"
+
+msgid "Site latitude"
+msgstr "Breitengrad"
+
+msgid "Site longitude"
+msgstr "Längengrad"
 
 msgid "Size: "
 msgstr "Größe:"
@@ -6576,6 +6766,12 @@ msgstr "Schritt nach Osten"
 msgid "Step west"
 msgstr "Schritt nach Westen"
 
+msgid "Stepped east"
+msgstr "Schritt nach Osten"
+
+msgid "Stepped west"
+msgstr "Schritt nach Westen"
+
 msgid "Stop"
 msgstr "Stopp"
 
@@ -6621,6 +6817,9 @@ msgstr "TimeShift stoppen?"
 msgid "Stopped"
 msgstr "Gestoppt"
 
+msgid "Store at index"
+msgstr "Bei Index speichern"
+
 msgid "Store position"
 msgstr "Position speichern"
 
@@ -6635,6 +6834,9 @@ msgstr "Stream Anfrage"
 
 msgid "Strict DLNA"
 msgstr ""
+
+msgid "Strongest position"
+msgstr "Stärkste Position"
 
 msgid "Subservice mode"
 msgstr "Unterkanal Modus"
@@ -6749,6 +6951,9 @@ msgstr "Symbolrate"
 
 msgid "Sync NTP every (minutes)"
 msgstr "Synchronisiere Zeit alle XX Minuten"
+
+msgid "Sync failure moving back to origin !"
+msgstr "Sync-Fehler gehe zurück zum Anfangspunkt!"
 
 msgid "Sync time using"
 msgstr "Synchronisiere Zeit mit"
@@ -7050,6 +7255,9 @@ msgstr "Es sind keine Updates verfügbar."
 msgid "There is no [webif] section in oscam.conf"
 msgstr "Es gibt keine [webif} Sektion in oscam.conf"
 
+msgid "There is no signal to lock on !"
+msgstr "Es gibt kein Signal zum einrasten!"
+
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
@@ -7251,6 +7459,13 @@ msgstr ""
 
 msgid "This test detects your configured LAN adapter."
 msgstr "Dieser Test erkennt den konfigurierten Netzwerkadapter."
+
+msgid ""
+"This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
+"Are you sure?"
+msgstr ""
+"Dies wird alle Positionen des Rotors (neu) berechnen und kann vorher gespeicherte Positionen und Optimierungen löschen!\n"
+"Sicher?"
 
 msgid "Three"
 msgstr "Drei"
@@ -7502,6 +7717,9 @@ msgstr "Dienstag"
 msgid "Tune"
 msgstr "Tunen"
 
+msgid "Tune and focus"
+msgstr "Abstimmen und einstellen"
+
 msgid "Tune failed!"
 msgstr "Tunen fehlgeschlagen!"
 
@@ -7550,6 +7768,9 @@ msgstr "Typ:"
 
 msgid "USALS"
 msgstr "USALS"
+
+msgid "USALS calibration"
+msgstr "USALS Kalibrierung"
 
 msgid "USB stick wizard"
 msgstr "USB-Stick-Assistent"
@@ -7788,11 +8009,19 @@ msgstr "Benutzername (HTTP)"
 msgid "Username:"
 msgstr "Benutzername:"
 
+#, python-format
+msgid "Using LNB %d"
+msgstr "Benutze LNB %d"
+
 msgid "Using fixed address"
 msgstr "Benutze feste Adresse"
 
 msgid "Using old profile: "
 msgstr "Benutze altes Profil:"
+
+#, python-format
+msgid "Using tuner %s"
+msgstr "Benutze Tuner %s"
 
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
 msgstr "Wenn Untertitel und die Tonspur die selbe Sprache benutzen werden Untertitel nomalerweise unterdrückt. Diese Option erlaubt es Untertitel trotzdem anzuzeigen."
@@ -7861,6 +8090,10 @@ msgstr "Bild Einstellungen"
 
 msgid "Video wizard"
 msgstr "Bild Assistent"
+
+#, python-format
+msgid "Video: %s fps"
+msgstr "Video: %s FPS"
 
 msgid "Videocodec"
 msgstr "Videocodec"
@@ -8030,6 +8263,9 @@ msgstr "Einschaltsignal vom Fernseher"
 msgid "Wakeup your STB_BOX from standby"
 msgstr "STB_BOX aus Bereitschaft einschalten"
 
+msgid "Warning: no LNB; using factory defaults."
+msgstr "Warnung: Kein LNB benutze Werkseinstellungen."
+
 msgid "Watch movies..."
 msgstr "Filme abspielen..."
 
@@ -8050,6 +8286,9 @@ msgstr "Wochentag"
 
 msgid "Weekly"
 msgstr "Wöchentlich"
+
+msgid "Weighted position"
+msgstr "Gewichtete Position"
 
 msgid ""
 "Welcome to the cutlist editor.\n"
@@ -8096,6 +8335,9 @@ msgstr "Willkommen..."
 
 msgid "West"
 msgstr "West"
+
+msgid "West limit set"
+msgstr "Westen Grenzwert setzen"
 
 msgid "What Day of month ?"
 msgstr "Welchen Tag des Monats?"
@@ -8899,6 +9141,9 @@ msgstr "erledigt!"
 msgid "e-Mail address"
 msgstr "E-Mail-Adresse"
 
+msgid "east"
+msgstr "Drehen nach Osten"
+
 msgid "ecm time:"
 msgstr "ECM Zeit:"
 
@@ -8943,6 +9188,9 @@ msgstr "Schnitt endet hier"
 
 msgid "end favourites edit"
 msgstr "Favoriteneditor beenden"
+
+msgid "enter number to jump to channel."
+msgstr "Gebe Zahl ein um uzm Sender zu springen"
 
 msgid "entertainment (10-16 year old)"
 msgstr "Unterhaltung (10-16 Jahre)"
@@ -9125,6 +9373,9 @@ msgstr "Freizeit/Hobby (allgemein)"
 msgid "length"
 msgstr "Länge"
 
+msgid "limit ..., aborting !"
+msgstr "Grenzwert..., abbruch!"
+
 msgid "literature"
 msgstr "Literatur"
 
@@ -9265,6 +9516,9 @@ msgstr "eines SINGLE-Layer-Mediums benutzt."
 
 msgid "off"
 msgstr "aus"
+
+msgid "offset is"
+msgstr "Offset ist"
 
 msgid "on"
 msgstr "an"
@@ -9719,6 +9973,9 @@ msgstr "Wassersport"
 msgid "weekly"
 msgstr "wöchentlich"
 
+msgid "west"
+msgstr "Drehen nach Westen"
+
 msgid "when asking question about this log"
 msgstr "wenn Fragen zu diesem Log gestellt werden"
 
@@ -9779,6 +10036,9 @@ msgstr "umschalten"
 msgid "zapped"
 msgstr "umgeschaltet"
 
+#~ msgid "A demo plugin for TPM usage."
+#~ msgstr "Ein Demo Plugin für die TPM Bedienung."
+
 #~ msgid "Hardware:"
 #~ msgstr "Hardware:"
 
@@ -9787,6 +10047,15 @@ msgstr "umgeschaltet"
 
 #~ msgid "Last Update:"
 #~ msgstr "Letztes Update:"
+
+#~ msgid "No sat tuner found!"
+#~ msgstr "Kein Satempfänger gefunden!"
+
+#~ msgid "Positioner Setup"
+#~ msgstr "Rotor Einstellungen"
+
+#~ msgid "Positioner fine movement"
+#~ msgstr "Rotor-Feinabstimmung"
 
 #~ msgid "Version:"
 #~ msgstr "Version:"
