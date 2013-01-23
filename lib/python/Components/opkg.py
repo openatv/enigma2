@@ -13,7 +13,7 @@ def enumFeeds():
 def enumPlugins(filter_start=''):
 	for feed in enumFeeds():
 		package = None
-		for line in open('/var/lib/opkg/%s' % feed, 'r'):
+		for line in open('/var/lib/opkg/lists/%s' % feed, 'r'):
 			if line.startswith('Package:'):
 				package = line[8:].strip()
 				version = ''
