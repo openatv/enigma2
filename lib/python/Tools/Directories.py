@@ -96,7 +96,7 @@ def resolveFilename(scope, base = "", path_prefix = None):
 				else:
 					path = tmp + 'skin_default/'
 			else:
-				path = tmp
+				path = tmp + 'skin_default/'
 
 	elif scope == SCOPE_CURRENT_PLUGIN:
 		tmp = defaultPaths[SCOPE_PLUGINS]

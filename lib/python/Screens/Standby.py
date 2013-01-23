@@ -122,7 +122,6 @@ from time import time
 from Components.Task import job_manager
 
 class QuitMainloopScreen(Screen):
-
 	def __init__(self, session, retvalue=1):
 		self.skin = """<screen name="QuitMainloopScreen" position="fill" flags="wfNoBorder">
 				<ePixmap pixmap="skin_default/icons/input_info.png" position="c-27,c-60" size="53,53" alphatest="on" />

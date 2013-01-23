@@ -1570,20 +1570,9 @@ class InfoBarRdsDecoder:
 		self.rds_display.show()
 
 class Seekbar(Screen):
-	skin = """
-	<screen position="center,40" size="560,55" title="%s" flags="wfNoBorder">
-		<widget name="cursor" position="0,15" size="8,18" pixmap="skin_default/position_arrow.png" alphatest="on" />
-		<widget source="session.CurrentService" render="PositionGauge" position="145,30" size="270,10" zPosition="2" pointer="skin_default/position_pointer.png:540,0" transparent="1" foregroundColor="#20224f">
-			<convert type="ServicePosition">Gauge</convert>
-		</widget>
-		<widget name="time" position="50,25" size="100,20" font="Regular;20" halign="left" backgroundColor="#4e5a74" transparent="1" />
-		<widget source="session.CurrentService" render="Label" position="420,25" size="90,24" font="Regular;20" halign="right" backgroundColor="#4e5a74" transparent="1">
-			<convert type="ServicePosition">Length</convert>
-		</widget>
-	</screen>""" % _("Seek")
-
 	def __init__(self, session, fwd):
 		Screen.__init__(self, session)
+		self.setTitle(_("Seek"))
 		self.session = session
 		self.fwd = fwd
 		self.percent = 0.0
