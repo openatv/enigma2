@@ -553,7 +553,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def closeScreen(self):
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
-			if self.zapFunc and (self.type == 5 and config.epgselection.preview_mode_vixepg.getValue() or self.type == 4 and (config.epgselection.preview_mode_infobar.getValue() == '1' or config.epgselection.preview_mode_infobar.getValue() == '2') or self.type == 3 and config.epgselection.preview_mode_enhanced.getValue() or self.type != 5 and self.type != 4 and self.type != 3 and config.epgselection.preview_mode.getValue()) and self.StartRef and self.StartBouquet:
+			if self.zapFunc and (self.type == EPG_TYPE_GRAPH and config.epgselection.preview_mode_vixepg.getValue() or self.type == EPG_TYPE_INFOBAR and (config.epgselection.preview_mode_infobar.getValue() == '1' or config.epgselection.preview_mode_infobar.getValue() == '2') or self.type == EPG_TYPE_ENHANCED and config.epgselection.preview_mode_enhanced.getValue() or self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_INFOBAR and self.type != EPG_TYPE_ENHANCED and config.epgselection.preview_mode.getValue()) and self.StartRef and self.StartBouquet:
 				if self.StartRef.toString().find('0:0:0:0:0:0:0:0:0') == -1:
 					self.zapFunc(None, zapback = True)
 				if self.session.pipshown:
