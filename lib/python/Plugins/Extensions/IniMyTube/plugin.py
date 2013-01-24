@@ -1635,7 +1635,7 @@ class MyTubePlayer(MoviePlayer):
 			self.handleLeave(config.plugins.mytube.general.on_movie_stop.value, error)
 		else:
 			self.playService(nextservice)
-			self.showInfobar()
+			#self.showInfobar()
 
 	def playPrevFile(self):
 		print "playPrevFile"
@@ -1644,7 +1644,7 @@ class MyTubePlayer(MoviePlayer):
 			self.handleLeave(config.plugins.mytube.general.on_movie_stop.value, error)
 		else:
 			self.playService(prevservice)
-			self.showInfobar()
+			#self.showInfobar()
 
 	def playagain(self):
 		print "playagain"
@@ -1679,15 +1679,15 @@ class MyTubePlayer(MoviePlayer):
 			self.pauseService()
 		elif self.state == self.STATE_PAUSED:
 			#print "unPAUSE"
-			self.unPauseService()
+			self.unPauseService2()
 
 	def pauseService(self):
 		print "pauseService"
 		if self.state == self.STATE_PLAYING:
 			self.setSeekState(self.STATE_PAUSED)
 		
-	def unPauseService(self):
-		print "unPauseService"
+	def unPauseService2(self):
+		print "unPauseService2"
 		if self.state == self.STATE_PAUSED:
 			self.setSeekState(self.STATE_PLAYING)
 
