@@ -404,7 +404,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.l.setItemHeight(itemHeight)
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
 
-			self.picload.setPara((self.listWidth, itemHeight - 2 * self.eventBorderWidth, 0, 0, 1, 1, "#00000000"))
+			self.picload.setPara((self.listWidth, itemHeight, 0, 0, 1, 1, "#00000000"))
 			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentEvent.png'), 0, 0, False)
 			self.nowEvPix = self.picload.getData()
 			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedCurrentEvent.png'), 0, 0, False)
@@ -430,6 +430,16 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.zapEvPix = self.picload.getData()
 			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedZapEvent.png'), 0, 0, False)
 			self.zapSelEvPix = self.picload.getData()
+
+			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/BorderTop.png'), 0, 0, False)
+			self.borderTopPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/BorderLeft.png'), 0, 0, False)
+			self.borderLeftPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/BorderBottom.png'), 0, 0, False)
+			self.borderBottomPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/BorderRight.png'), 0, 0, False)
+			self.borderRightPix = self.picload.getData()
+
 
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
 			if self.listHeight > 0:
@@ -719,6 +729,60 @@ class EPGList(HTMLComponent, GUIComponent):
 				color = serviceForeColor, color_sel = serviceForeColor,
 				backcolor = serviceBackColor, backcolor_sel = serviceBackColor))
 
+		if self.othEvPix is not None and config.epgselection.graphics_mode.getValue() == "graphics":
+			res.append(MultiContentEntryPixmapAlphaTest(
+				pos = (r2.x, r2.y),
+				size = (r2.w, r2.h),
+				png = self.othEvPix))
+		else:
+			res.append(MultiContentEntryText(
+				pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
+				size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
+				font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+				text = "",
+				color = self.foreColor, color_sel = self.foreColor,
+				backcolor = self.backColor, backcolor_sel = self.backColorSelected,
+				border_width = self.eventBorderWidth, border_color = self.borderColor))
+
+		# Borders
+		if config.epgselection.graphics_mode.getValue() == "graphics":
+			if self.borderTopPix is not None:
+				res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (r1.x, r1.y),
+						size = (r1.w, self.serviceBorderWidth),
+						png = self.borderTopPix))
+				res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (r2.x, r2.y),
+						size = (r2.w, self.eventBorderWidth),
+						png = self.borderTopPix))
+			if self.borderBottomPix is not None:
+				res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (r1.x, r1.h-self.serviceBorderWidth),
+						size = (r1.w, self.serviceBorderWidth),
+						png = self.borderBottomPix))
+				res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (r2.x, r2.h-self.eventBorderWidth),
+						size = (r2.w, self.eventBorderWidth),
+						png = self.borderBottomPix))
+			if self.borderLeftPix is not None:
+				res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (r1.x, r1.y),
+						size = (self.serviceBorderWidth, r1.h),
+						png = self.borderLeftPix))
+				res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (r2.x, r2.y),
+						size = (self.eventBorderWidth, r2.h),
+						png = self.borderLeftPix))
+			if self.borderRightPix is not None:
+				res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (r1.w-self.serviceBorderWidth, r1.x),
+						size = (self.serviceBorderWidth, r1.h),
+						png = self.borderRightPix))
+				res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (r2.x + r2.w-self.eventBorderWidth, r2.y),
+						size = (self.eventBorderWidth, r2.h),
+						png = self.borderRightPix))
+
 		# Events for service
 		backColorSel = self.backColorSelected
 		if events:
@@ -841,28 +905,35 @@ class EPGList(HTMLComponent, GUIComponent):
 						color = foreColor, color_sel = foreColorSel,
 						backcolor = backColor, backcolor_sel = backColorSel))
 
+				# event box borders
+				if config.epgselection.graphics_mode.getValue() == "graphics":
+					if self.borderTopPix is not None:
+						res.append(MultiContentEntryPixmapAlphaTest(
+								pos = (left + xpos, top),
+								size = (ewidth, self.eventBorderWidth),
+								png = self.borderTopPix))
+					if self.borderBottomPix is not None:
+						res.append(MultiContentEntryPixmapAlphaTest(
+								pos = (left + xpos, height-self.eventBorderWidth),
+								size = (ewidth, self.eventBorderWidth),
+								png = self.borderBottomPix))
+					if self.borderLeftPix is not None:
+						res.append(MultiContentEntryPixmapAlphaTest(
+								pos = (left + xpos, top),
+								size = (self.eventBorderWidth, height),
+								png = self.borderLeftPix))
+					if self.borderRightPix is not None:
+						res.append(MultiContentEntryPixmapAlphaTest(
+								pos = (left + xpos + ewidth-self.eventBorderWidth, top),
+								size = (self.eventBorderWidth, height),
+								png = self.borderRightPix))
+				
 				# recording icons
 				if rec is not None and rec[1] >0 and ewidth > 23:
 					res.append(MultiContentEntryPixmapAlphaBlend(
 						pos = (left+xpos+ewidth-22, top+height-22), size = (21, 21),
 						png = self.clocks[rec[1]],
 						backcolor_sel = backColorSel))
-		else:
-			# event box background
-			if self.othEvPix is not None and config.epgselection.graphics_mode.getValue() == "graphics":
-				res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
-					size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
-					png = self.othEvPix))
-			else:
-				res.append(MultiContentEntryText(
-					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
-					size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
-					font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-					text = "",
-					color = self.foreColor, color_sel = self.foreColor,
-					backcolor = self.backColor, backcolor_sel = self.backColorSelected,
-					border_width = self.eventBorderWidth, border_color = self.borderColor))
 		return res
 
 	def selEntry(self, dir, visible = True):
@@ -1077,18 +1148,10 @@ class TimelineText(HTMLComponent, GUIComponent):
 		rc = GUIComponent.applySkin(self, desktop, screen)
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
-		self.setBackgroundPix()
 		return rc
 
 	def setTimeLineFontsize(self):
 		self.l.setFont(0, gFont(self.timelineFontName, self.timelineFontSize + config.epgselection.tl_fontsize_vixepg.getValue()))
-
-	def setBackgroundPix(self):
-		self.picload.setPara((self.listWidth, self.listHeight, 0, 0, 1, 1, "#00000000"))
-		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/TimeLineDate.png'), 0, 0, False)
-		self.TlDate = self.picload.getData()
-		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/TimeLineTime.png'), 0, 0, False)
-		self.TlTime = self.picload.getData()
 
 	def postWidgetCreate(self, instance):
 		self.setTimeLineFontsize()
@@ -1114,6 +1177,13 @@ class TimelineText(HTMLComponent, GUIComponent):
 			num_lines = time_epoch / time_steps
 			incWidth = event_rect.width() / num_lines
 			timeStepsCalc = time_steps * 60
+
+			self.picload.setPara((service_rect.width(), self.listHeight, 0, 0, 1, 1, "#00000000"))
+			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/TimeLineDate.png'), 0, 0, False)
+			self.TlDate = self.picload.getData()
+			self.picload.setPara((event_rect.width(), self.listHeight, 0, 0, 1, 1, "#00000000"))
+			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/TimeLineTime.png'), 0, 0, False)
+			self.TlTime = self.picload.getData()
 
 			nowTime = localtime(time())
 			begTime = localtime(time_base)
@@ -1153,7 +1223,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 					border_width = self.borderWidth, border_color = self.borderColor))
 
 			res.append(MultiContentEntryText(
-				pos = (0, 0),
+				pos = (5, 0),
 				size = (service_rect.width(), self.listHeight),
 				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP,
 				text = _(datestr),
