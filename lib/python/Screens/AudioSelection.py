@@ -367,15 +367,8 @@ class SubtitleSelection(AudioSelection):
 		self.skinName = ["AudioSelection"]
 
 class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
-	skin = """
-	<screen position="50,50" size="480,255" title="Subtitle settings" backgroundColor="#7f000000" flags="wfNoBorder">
-		<widget name="config" position="5,5" size="470,225" font="Regular;18" zPosition="1" transparent="1" valign="center" />
-		<widget name="videofps" position="5,230" size="470,20" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;16" valign="center" halign="left" foregroundColor="blue"/>
-	</screen>"""
-
 	def __init__(self, session, infobar):
 		Screen.__init__(self, session)
-		self.skin = QuickSubtitlesConfigMenu.skin
 		self.infobar = infobar or self.session.infobar
 
 		self.wait = eTimer()
