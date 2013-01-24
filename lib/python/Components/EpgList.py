@@ -439,6 +439,14 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.borderBottomPix = self.picload.getData()
 			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/BorderRight.png'), 0, 0, False)
 			self.borderRightPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedBorderTop.png'), 0, 0, False)
+			self.borderSelectedTopPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedBorderLeft.png'), 0, 0, False)
+			self.borderSelectedLeftPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedBorderBottom.png'), 0, 0, False)
+			self.borderSelectedBottomPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedBorderRight.png'), 0, 0, False)
+			self.borderSelectedRightPix = self.picload.getData()
 
 
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
@@ -653,6 +661,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		r1 = self.service_rect
 		r2 = self.event_rect
 		selected = self.cur_service[0] == service
+		res = [ None ]
 
 		# Picon and Service name
 		if CompareWithAlternatives(service, self.currentlyPlaying and self.currentlyPlaying.toString()):
@@ -668,7 +677,6 @@ class EPGList(HTMLComponent, GUIComponent):
 			if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":    # bacground for service rect
 				serviceBackColor = None
 
-		res = [ None ]
 		if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":    # bacground for service rect
 			res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
@@ -805,6 +813,10 @@ class EPGList(HTMLComponent, GUIComponent):
 					alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
 
 				if selected and self.select_rect.x == xpos + left:
+					borderTopPix = self.borderSelectedTopPix
+					borderLeftPix = self.borderSelectedLeftPix
+					borderBottomPix = self.borderSelectedBottomPix
+					borderRightPix = self.borderSelectedRightPix
 					if rec is not None and rec[1] == 2:
 						foreColor = self.foreColorRecord
 						backColor = self.backColorRecord
@@ -841,42 +853,47 @@ class EPGList(HTMLComponent, GUIComponent):
 						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
 							backColor = None
 							backColorSel = None
-				elif rec is not None and rec[1] == 2:
-					foreColor = self.foreColorRecord
-					backColor = self.backColorRecord
-					foreColorSel = self.foreColorRecordSelected
-					backColorSel = self.backColorRecordSelected
-					bgpng = self.recEvPix
-					if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
-						backColor = None
-						backColorSel = None
-				elif rec is not None and rec[1] == 3:
-					foreColor = self.foreColorZap
-					backColor = self.backColorZap
-					foreColorSel = self.foreColorZapSelected
-					backColorSel = self.backColorZapSelected
-					bgpng = self.zapEvPix
-					if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
-						backColor = None
-						backColorSel = None
-				elif stime <= now and now < (stime + duration):
-					foreColor = self.foreColorNow
-					backColor = self.backColorNow
-					foreColorSel = self.foreColorNowSelected
-					backColorSel = self.backColorNowSelected
-					bgpng = self.nowEvPix
-					if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
-						backColor = None
-						backColorSel = None
 				else:
-					backColor = self.backColor
-					foreColor = self.foreColor
-					foreColorSel = self.foreColorSelected
-					backColorSel = self.backColorSelected
-					bgpng = self.othEvPix
-					if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
-						backColor = None
-						backColorSel = None
+					borderTopPix = self.borderTopPix
+					borderLeftPix = self.borderLeftPix
+					borderBottomPix = self.borderBottomPix
+					borderRightPix = self.borderRightPix
+					if rec is not None and rec[1] == 2:
+						foreColor = self.foreColorRecord
+						backColor = self.backColorRecord
+						foreColorSel = self.foreColorRecordSelected
+						backColorSel = self.backColorRecordSelected
+						bgpng = self.recEvPix
+						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
+							backColor = None
+							backColorSel = None
+					elif rec is not None and rec[1] == 3:
+						foreColor = self.foreColorZap
+						backColor = self.backColorZap
+						foreColorSel = self.foreColorZapSelected
+						backColorSel = self.backColorZapSelected
+						bgpng = self.zapEvPix
+						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
+							backColor = None
+							backColorSel = None
+					elif stime <= now and now < (stime + duration):
+						foreColor = self.foreColorNow
+						backColor = self.backColorNow
+						foreColorSel = self.foreColorNowSelected
+						backColorSel = self.backColorNowSelected
+						bgpng = self.nowEvPix
+						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
+							backColor = None
+							backColorSel = None
+					else:
+						backColor = self.backColor
+						foreColor = self.foreColor
+						foreColorSel = self.foreColorSelected
+						backColorSel = self.backColorSelected
+						bgpng = self.othEvPix
+						if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
+							backColor = None
+							backColorSel = None
 
 				# event box background
 				if bgpng is not None and config.epgselection.graphics_mode.getValue() == "graphics":
@@ -907,26 +924,26 @@ class EPGList(HTMLComponent, GUIComponent):
 
 				# event box borders
 				if config.epgselection.graphics_mode.getValue() == "graphics":
-					if self.borderTopPix is not None:
+					if borderTopPix is not None:
 						res.append(MultiContentEntryPixmapAlphaTest(
 								pos = (left + xpos, top),
 								size = (ewidth, self.eventBorderWidth),
-								png = self.borderTopPix))
-					if self.borderBottomPix is not None:
+								png = borderTopPix))
+					if borderBottomPix is not None:
 						res.append(MultiContentEntryPixmapAlphaTest(
 								pos = (left + xpos, height-self.eventBorderWidth),
 								size = (ewidth, self.eventBorderWidth),
-								png = self.borderBottomPix))
-					if self.borderLeftPix is not None:
+								png = borderBottomPix))
+					if borderLeftPix is not None:
 						res.append(MultiContentEntryPixmapAlphaTest(
 								pos = (left + xpos, top),
 								size = (self.eventBorderWidth, height),
-								png = self.borderLeftPix))
-					if self.borderRightPix is not None:
+								png = borderLeftPix))
+					if borderRightPix is not None:
 						res.append(MultiContentEntryPixmapAlphaTest(
 								pos = (left + xpos + ewidth-self.eventBorderWidth, top),
 								size = (self.eventBorderWidth, height),
-								png = self.borderRightPix))
+								png = borderRightPix))
 				
 				# recording icons
 				if rec is not None and rec[1] >0 and ewidth > 23:
