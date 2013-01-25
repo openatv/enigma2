@@ -373,7 +373,7 @@ class VideoHardware:
 				else:
 					policy2_choices.update({"auto": "bestfit"})
 				f.close()
-				policy2 = policy2_choices[config.av.policy_169.value]
+			policy2 = policy2_choices[config.av.policy_169.value]
 		elif is_auto:
 			aspect = "any"
 			policy = "bestfit"
