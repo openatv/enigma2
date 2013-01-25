@@ -1200,39 +1200,35 @@ class InfoBarEPG:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if ".DreamPlex" in `self`:
-			return
-		if config.usage.defaultEPGType.getValue() != _("Graphical EPG") and config.usage.defaultEPGType.getValue() != _("None"):
-				self.openGraphEPG()
-		else:
-			self.openSingleServiceEPG()
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if config.usage.defaultEPGType.getValue() != _("Graphical EPG") and config.usage.defaultEPGType.getValue() != _("None"):
+					self.openGraphEPG()
+			else:
+				self.openSingleServiceEPG()
 
 	def InfoPressed(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if ".DreamPlex" in `self`:
-			return
-		if getBoxType().startswith('et') or getBoxType().startswith('odin') or getBoxType().startswith('venton') or getBoxType().startswith('tm') or getBoxType().startswith('gb') or getBoxType().startswith('xp1000'):
-			self.openEventView()
-		else:
-			self.showDefaultEPG()
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if getBoxType().startswith('et') or getBoxType().startswith('odin') or getBoxType().startswith('venton') or getBoxType().startswith('tm') or getBoxType().startswith('gb') or getBoxType().startswith('xp1000'):
+				self.openEventView()
+			else:
+				self.showDefaultEPG()
 
 	def IPressed(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if ".DreamPlex" in `self`:
-			return
-		self.openEventView()
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			self.openEventView()
 
 	def EPGPressed(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if ".DreamPlex" in `self`:
-			return
-		self.openGraphEPG()
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			self.openGraphEPG()
 
 	def showEventInfoWhenNotVisible(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
