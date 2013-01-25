@@ -97,6 +97,12 @@ def isTrashFolder(ref):
 		return False
 	return os.path.realpath(ref.getPath()).endswith('.Trash') or os.path.realpath(ref.getPath()).endswith('.Trash/')
 
+def isInTrashFolder(ref):
+	if not config.usage.movielist_trashcan.getValue() or not ref.flags & eServiceReference.mustDescent:
+		return False
+	path = os.path.realpath(ref.getPath())
+	return path.startswith(Tools.Trashcan.getTrashFolder(path))
+
 def isSimpleFile(item):
 	if not item:
 		return False
