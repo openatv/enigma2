@@ -1165,6 +1165,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		rc = GUIComponent.applySkin(self, desktop, screen)
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
+		self.setBackgroundPix()
 		return rc
 
 	def setTimeLineFontsize(self):
@@ -1173,6 +1174,14 @@ class TimelineText(HTMLComponent, GUIComponent):
 	def postWidgetCreate(self, instance):
 		self.setTimeLineFontsize()
 		instance.setContent(self.l)
+
+	def setBackgroundPix(self):
+		self.picload.setPara((service_rect.width(), self.listHeight, 0, 0, 1, 1, "#00000000"))
+		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/TimeLineDate.png'), 0, 0, False)
+		self.TlDate = self.picload.getData()
+		self.picload.setPara((event_rect.width(), self.listHeight, 0, 0, 1, 1, "#00000000"))
+		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/TimeLineTime.png'), 0, 0, False)
+		self.TlTime = self.picload.getData()
 
 	def setEntries(self, l, timeline_now, time_lines, force):
 		event_rect = l.getEventRect()
@@ -1194,13 +1203,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 			num_lines = time_epoch / time_steps
 			incWidth = event_rect.width() / num_lines
 			timeStepsCalc = time_steps * 60
-
-			self.picload.setPara((service_rect.width(), self.listHeight, 0, 0, 1, 1, "#00000000"))
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/TimeLineDate.png'), 0, 0, False)
-			self.TlDate = self.picload.getData()
-			self.picload.setPara((event_rect.width(), self.listHeight, 0, 0, 1, 1, "#00000000"))
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/TimeLineTime.png'), 0, 0, False)
-			self.TlTime = self.picload.getData()
 
 			nowTime = localtime(time())
 			begTime = localtime(time_base)
