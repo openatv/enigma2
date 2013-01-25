@@ -1005,7 +1005,7 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.zapFunc:
 			self.zapSelectedService(True)
 			self.refreshTimer.start(10000)
-		if self.currch == self.prevch:
+		if not self.currch or self.currch == self.prevch:
 			self.close('close')
 
 	def keyNumberGlobal(self, number):
