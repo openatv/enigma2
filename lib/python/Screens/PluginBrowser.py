@@ -384,9 +384,19 @@ class PluginDownloadBrowser(Screen):
 				self.startIpkgListInstalled()
 		elif self.run == 1 and self.type == self.DOWNLOAD:
 			self.run = 2
-			self.startIpkgListAvailable()
+			from Components import opkg
+			pluginlist = []
+			self.pluginlist = pluginlist
+			for plugin in opkg.enumPlugins(self.PLUGIN_PREFIX):
+				if plugin[0] not in self.installedplugins:
+					pluginlist.append(plugin + (plugin[0][15:],))
+			if pluginlist:
+				self.updateList()
+				self["list"].instance.show()
+			else:
+				self["text"].setText("No new plugins found")
 		else:
-			if len(self.pluginlist) > 0:
+			if self.pluginlist:
 				self.updateList()
 				self["list"].instance.show()
 			else:
@@ -422,22 +432,20 @@ class PluginDownloadBrowser(Screen):
 			self.session.openWithCallback(self.runBootlogoRemove, MessageBox, _('You already have a bootlogo installed,\nwould you like to remove\n"%s"?') % self.remove_bootlogo_name)
 			return
 
-		for x in lines:
-			plugin = x.split(" - ", 2)
-			# 'opkg list_installed' only returns name + version, no description field
-			if len(plugin) >= 2:
-				if not plugin[0].endswith('-dev') and not plugin[0].endswith('-staticdev') and not plugin[0].endswith('-dbg') and not plugin[0].endswith('-doc') and ((not config.pluginbrowser.po.getValue() and not plugin[0].endswith('-po')) or config.pluginbrowser.po.getValue()) and ((not config.pluginbrowser.src.getValue() and not plugin[0].endswith('-src')) or config.pluginbrowser.src.getValue()):
-					if self.run == 1 and self.type == self.DOWNLOAD:
+		if self.run == 1:
+			for x in lines:
+				plugin = x.split(" - ", 2)
+				# 'opkg list_installed' only returns name + version, no description field
+				if len(plugin) >= 2:
+					if not plugin[0].endswith('-dev') and not plugin[0].endswith('-staticdev') and not plugin[0].endswith('-dbg') and not plugin[0].endswith('-doc'):
 						if plugin[0] not in self.installedplugins:
-							self.installedplugins.append(plugin[0])
-					else:
-						if plugin[0] not in self.installedplugins:
-							if len(plugin) == 2:
-								# 'opkg list_installed' does not return descriptions, append empty description
-								plugin.append('')
-							plugin.append(plugin[0][15:])
-
-							self.pluginlist.append(plugin)
+							if self.type == self.DOWNLOAD:
+								self.installedplugins.append(plugin[0])
+							else:
+								if len(plugin) == 2:
+									plugin.append('')
+								plugin.append(plugin[0][15:])
+								self.pluginlist.append(plugin)
 
 	def updateList(self):
 		list = []
