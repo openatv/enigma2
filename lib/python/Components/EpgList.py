@@ -1176,10 +1176,10 @@ class TimelineText(HTMLComponent, GUIComponent):
 		instance.setContent(self.l)
 
 	def setBackgroundPix(self):
-		self.picload.setPara((service_rect.width(), self.listHeight, 0, 0, 1, 1, "#00000000"))
+		self.picload.setPara((self.listWidth, self.listHeight, 0, 0, 1, 1, "#00000000"))
 		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/TimeLineDate.png'), 0, 0, False)
 		self.TlDate = self.picload.getData()
-		self.picload.setPara((event_rect.width(), self.listHeight, 0, 0, 1, 1, "#00000000"))
+		self.picload.setPara((self.listWidth, self.listHeight, 0, 0, 1, 1, "#00000000"))
 		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/TimeLineTime.png'), 0, 0, False)
 		self.TlTime = self.picload.getData()
 

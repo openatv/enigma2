@@ -1317,7 +1317,7 @@ class InfoBarEPG:
 			self.bouquetSel = None
 		elif self.eventView and closedScreen == self.eventView:
 			self.eventView = None
-		if ret == True:
+		if ret == True or ret == 'close':
 			dlgs=len(self.dlg_stack)
 			if dlgs > 0:
 				self.dlg_stack[dlgs-1].close(dlgs > 1)
@@ -1356,21 +1356,30 @@ class InfoBarEPG:
 	def openMultiServiceEPG(self):
 		self.EPGtype = "multi"
 		self.StartBouquet = self.servicelist.getRoot()
-		self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if isMoviePlayerInfoBar(self):
+			self.StartRef = self.lastservice
+		else:
+			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.MultiServiceEPG()
 
 	def openGraphEPG(self, reopen=False):
 		self.EPGtype = "graph"
 		if not reopen:
 			self.StartBouquet = self.servicelist.getRoot()
-			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if isMoviePlayerInfoBar(self):
+				self.StartRef = self.lastservice
+			else:
+				self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.MultiServiceEPG()
 
 	def SingleServiceEPG(self):
 		self.StartBouquet = self.servicelist.getRoot()
-		self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if isMoviePlayerInfoBar(self):
+			ref = self.lastservice
+		else:
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if ref:
+			self.StartRef = ref
 			if self.servicelist.getMutableList() is not None: # bouquet in channellist
 				current_path = self.servicelist.getRoot()
 				services = self.getBouquetServices(current_path)
