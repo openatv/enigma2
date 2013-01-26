@@ -3,6 +3,7 @@ from Components.config import config, ConfigSelection, ConfigSubDict, ConfigYesN
 
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
+import os
 from os import path
 
 try:
@@ -11,6 +12,11 @@ try:
 	file.close()
 except:
 	chipset = "unknown"
+	
+if os.path.exists('/proc/stb/info/boxtype'):
+	file = open("/proc/stb/info/boxtype", "r")
+	model = file.readline().strip()
+	file.close()
 
 # The "VideoHardware" is the interface to /proc/stb/video.
 # It generates hotplug events, and gives you the list of
@@ -133,9 +139,9 @@ class VideoHardware:
 		if self.modes.has_key("DVI-PC") and not self.getModeList("DVI-PC"):
 			print "remove DVI-PC because of not existing modes"
 			del self.modes["DVI-PC"]
-		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'odimm7':
+		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'odimm7' or model == 'ini-3000':
 			del self.modes["YPbPr"]
-		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone':
+		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or model == 'et6000':
 			del self.modes["Scart"]
 
 		self.createConfig()
