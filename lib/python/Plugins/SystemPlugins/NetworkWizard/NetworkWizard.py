@@ -233,15 +233,15 @@ class NetworkWizard(WizardLanguage, Rc):
 		if data is not None:
 			if data is True:
 				if status is not None:
-					wlan0 = about.getIfConfig('wlan0')
-					if wlan0.has_key('addr'):
-						text11 = _("Your IP:") + "\t" + wlan0['addr'] + "\n\n"
-						if wlan0.has_key('netmask'):
-							text11 += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
-						if wlan0.has_key('brdaddr'):
-							text11 += _("Gateway:") + "\t" + wlan0['brdaddr'] + "\n"
-						if wlan0.has_key('hwaddr'):
-							text11 += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n\n"  
+					#wlan0 = about.getIfConfig('wlan0')
+					#if wlan0.has_key('addr'):
+					#	text11 = _("Your IP:") + "\t" + wlan0['addr'] + "\n\n"
+					#	if wlan0.has_key('netmask'):
+					#		text11 += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
+					#	if wlan0.has_key('brdaddr'):
+					#		text11 += _("Gateway:") + "\t" + wlan0['brdaddr'] + "\n"
+					#	if wlan0.has_key('hwaddr'):
+					#		text11 += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n\n"  
 					text1 = _("Your STB_BOX is now ready to be used.\n\nYour internet connection is working now.\n\n")
 					text2 = _('Accesspoint:') + "\t" + str(status[self.selectedInterface]["accesspoint"]) + "\n"
 					text3 = _('SSID:') + "\t" + str(status[self.selectedInterface]["essid"]) + "\n"
@@ -250,8 +250,8 @@ class NetworkWizard(WizardLanguage, Rc):
 					text6 = _('Bitrate:') + "\t" + str(status[self.selectedInterface]["bitrate"]) + "\n"
 					text7 = _('Encryption:') + "\t" + str(status[self.selectedInterface]["encryption"]) + "\n"
 					text8 = _("Please press OK to continue.")
-					#infotext = text1 + text2 + text3 + text4 + text5 + text7 +"\n" + text8
-					infotext = text1 + text11 + text2 + text3 + text4 + text6 + " Mbps" + text7 +"\n" + text8					
+					infotext = text1 + text2 + text3 + text4 + text5 + text7 +"\n" + text8
+					#infotext = text1 + text11 + text2 + text3 + text4 + text6 + " Mbps" + text7 +"\n" + text8					
 					self.currStep = self.getStepWithID("checkWlanstatusend")
 					self.Text = infotext
 					if str(status[self.selectedInterface]["accesspoint"]) == "Not-Associated":
