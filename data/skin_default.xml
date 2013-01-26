@@ -1,4 +1,4 @@
-<skin>
+﻿<skin>
 	<!-- id=1 is for 132x64 LCD or OLED -->
 	<windowstyle id="1" type="skinned">
 		<color color="#000000" name="Background"/>
@@ -54,8 +54,9 @@
 		<color name="transpWhite" value="#80ffffff" />
 		<color name="background" value="#25062748" />
 		<color name="foreground" value="#ffffff" />
+		<color name="infobar-frgrnd" value="#00b3b3b3" />
+		<color name="infobar_sunken" value="#12191919" />
 	</colors>
-	<!-- Screwed Stone II skin (skin_default.xml) /Nemesis -->
 	<!-- About screen -->
 	<screen name="About" position="center,center" size="420,350" title="About">
 		<widget source="EnigmaVersion" render="Label" position="10,10" size="380,20" font="Regular;20" />
@@ -447,36 +448,30 @@ self.autoResize()
 		</widget>
 		<widget name="timeline_text" position="10,40" size="700,25" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1"/>
 		<widget name="lab1" position="25,65" size="665,378" font="Regular;24" halign="center" valign="center" backgroundColor="#000000" transparent="0" zPosition="2" />
-		<widget name="list" position="10,40" size="700,25" scrollbarMode="showNever" transparent="1" />
-		<widget name="timeline0" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-		<widget name="timeline1" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-		<widget name="timeline2" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-		<widget name="timeline3" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-		<widget name="timeline4" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-		<widget name="timeline5" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
+		<widget name="list" position="10,40" size="700,378" scrollbarMode="showNever" transparent="1" />
 		<widget name="timeline_now" position="10, 65" zPosition="2" size="19, 378" pixmap="skin_default/epg/timeline-now.png" alphatest="on" />
-		<widget source="Event" render="Label" position="10,445" size="70,26" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
+		<widget source="Event" render="Label" position="10,435" size="70,26" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText" />
 		</widget>
-		<widget source="Event" render="Label" position="88,445" size="80,26" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" shadowColor="#000000" halign="left" transparent="1">
+		<widget source="Event" render="Label" position="88,435" size="80,26" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" shadowColor="#000000" halign="left" transparent="1">
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
-		<widget source="Event" render="Label" position="165,445" size="535,26" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" halign="left">
+		<widget source="Event" render="Label" position="165,435" size="535,26" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" halign="left">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="Event" render="Label" position="30, 465" zPosition="1" size="667, 75" font="Regular;18" foregroundColor="#00dddddd" backgroundColor="#000000" shadowColor="#000000" transparent="1">
+		<widget source="Event" render="Label" position="10,465" zPosition="1" size="700,73" font="Regular;18" foregroundColor="#00dddddd" backgroundColor="#000000" shadowColor="#000000" transparent="1">
 			<convert type="EventName">ExtendedDescription</convert>
 		</widget>
-		<ePixmap pixmap="skin_default/buttons/red.png" position="70, 537" size="18,18" alphatest="blend" />
-		<widget name="key_red" position="95, 539" size="125, 26" font="Regular;18" foregroundColor="#9F1313" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="220, 537" size="18,18" alphatest="blend" />
-		<widget name="key_green" position="245, 539" size="125, 26" font="Regular;18" foregroundColor="#00389416" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="370, 537" size="18,18" alphatest="blend" />
-		<widget name="key_yellow" position="395, 539" size="125, 26" font="Regular;18" foregroundColor="#B59E01" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="520, 537" size="18,18" alphatest="blend" />
-		<widget name="key_blue" position="545, 539" size="125, 26" font="Regular;18" foregroundColor="#1E28B6" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
+		<ePixmap pixmap="skin_default/buttons/red.png" position="70, 545" size="18,18" alphatest="blend" />
+		<widget name="key_red" position="95, 549" size="125, 26" font="Regular;18" foregroundColor="#9F1313" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="220, 545" size="18,18" alphatest="blend" />
+		<widget name="key_green" position="245, 549" size="125, 26" font="Regular;18" foregroundColor="#00389416" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="370, 545" size="18,18" alphatest="blend" />
+		<widget name="key_yellow" position="395, 549" size="125, 26" font="Regular;18" foregroundColor="#B59E01" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
+		<ePixmap pixmap="skin_default/buttons/blue.png" position="520, 545" size="18,18" alphatest="blend" />
+		<widget name="key_blue" position="545, 549" size="125, 26" font="Regular;18" foregroundColor="#1E28B6" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
 	</screen>
 
 	<!-- Graphical EPG PictureInGraphcis-->
@@ -499,7 +494,7 @@ self.autoResize()
 		<widget source="Event" render="Label" position="165,47" size="535,26" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" halign="left">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="Event" render="Label" position="30,73" zPosition="1" size="375,125" font="Regular;18" foregroundColor="#00dddddd" backgroundColor="#000000" shadowColor="#000000" transparent="1" valign="top">
+		<widget source="Event" render="Label" position="10,93" zPosition="1" size="400,125" font="Regular;18" foregroundColor="#00dddddd" backgroundColor="#000000" shadowColor="#000000" transparent="1" valign="top">
 			<convert type="EventName">ExtendedDescription</convert>
 		</widget>
 		<eLabel position="413,45" size="273,154" zPosition="2" backgroundColor="#000000" foregroundColor="#000000" />
@@ -507,12 +502,6 @@ self.autoResize()
 		<widget source="session.VideoPicture" render="Pig" position="415,47" size="269,150" zPosition="3" backgroundColor="#ff000000" />
 		<widget name="timeline_text" position="10,210" size="700,25" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" />
 		<widget name="list" position="10,235" size="700,278" scrollbarMode="showNever" transparent="1" />
-		<widget name="timeline0" position="0,235" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-		<widget name="timeline1" position="0,235" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-		<widget name="timeline2" position="0,235" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-		<widget name="timeline3" position="0,235" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-		<widget name="timeline4" position="0,235" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-		<widget name="timeline5" position="0,235" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
 		<widget name="timeline_now" position="10,235" zPosition="2" size="19,278" pixmap="skin_default/epg/timeline-now.png" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/red.png" position="70, 537" size="18,18" alphatest="blend" />
 		<widget name="key_red" position="95, 539" size="125, 26" font="Regular;18" foregroundColor="#9F1313" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
@@ -1282,6 +1271,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 		<widget name="timerlist" position="0,60" size="560,350" scrollbarMode="showOnDemand" />
+		<widget name="description" position="0,355" size="560,70" zPosition="2" font="Regular;22" foregroundColor="secondFG" valign="center" halign="center" />
 	</screen>
 	<!-- Timer entry -->
 	<screen name="TimerEntry" position="center,center" size="560,440" title="Timer entry">
@@ -1293,6 +1283,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="oktext" position="140,0" zPosition="2" size="140,40" halign="center" valign="center" font="Regular;21" backgroundColor="#1f771f" transparent="1" />
 		<widget name="config" position="10,45" size="540,330" scrollbarMode="showOnDemand" />
 		<widget name="description" position="10,335" size="540,50" font="Regular;18" halign="center" valign="center"  />
+		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,300" zPosition="1" size="440,350" transparent="1" alphatest="on" />
 	</screen>
 	<!-- Timer log -->
 	<screen name="TimerLog" position="center,center" size="560,430" title="Timer log">
@@ -1802,6 +1793,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="list" render="Listbox" position="10,35" size="540,325" scrollbarMode="showOnDemand" >
 			<convert type="StringList" />
 		</widget>
+		<widget name="key" position="520,82" size="755,25" font="Regular;20" halign="center" transparent="1" valign="center" backgroundColor="background" />
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,350" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="150,350" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="300,350" size="140,40" alphatest="on" />
