@@ -405,7 +405,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def nextBouquet(self):
 		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH) and self.bouquetChangeCB:
-			if self.type == EPG_TYPE_MULTI and not config.epgselection.showbouquet_multi.getValue() or self.type == EPG_TYPE_GRAPH and not config.epgselection.showbouquet_vixepg.getValue():
+			if self.type == EPG_TYPE_MULTI and not config.epgselection.showbouquet_multi.getValue() or self.type == EPG_TYPE_GRAPH and not config.epgselection.showbouquet_pliepg.getValue():
 				self['list'].instance.moveSelectionTo(0)
 				self.bouquetChangeCB(1, self)
 				if self.type == EPG_TYPE_GRAPH:
@@ -424,7 +424,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def prevBouquet(self):
 		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH) and self.bouquetChangeCB:
-			if self.type == EPG_TYPE_MULTI and not config.epgselection.showbouquet_multi.getValue() or self.type == EPG_TYPE_GRAPH and not config.epgselection.showbouquet_vixepg.getValue():
+			if self.type == EPG_TYPE_MULTI and not config.epgselection.showbouquet_multi.getValue() or self.type == EPG_TYPE_GRAPH and not config.epgselection.showbouquet_pliepg.getValue():
 				self['list'].instance.moveSelectionTo(0)
 				self.bouquetChangeCB(-1, self)
 				if self.type == EPG_TYPE_GRAPH:
@@ -553,7 +553,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def closeScreen(self):
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
-			if self.zapFunc and (self.type == EPG_TYPE_GRAPH and config.epgselection.preview_mode_vixepg.getValue() or self.type == EPG_TYPE_INFOBAR and (config.epgselection.preview_mode_infobar.getValue() == '1' or config.epgselection.preview_mode_infobar.getValue() == '2') or self.type == EPG_TYPE_ENHANCED and config.epgselection.preview_mode_enhanced.getValue() or self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_INFOBAR and self.type != EPG_TYPE_ENHANCED and config.epgselection.preview_mode.getValue()) and self.StartRef and self.StartBouquet:
+			if self.zapFunc and (self.type == EPG_TYPE_GRAPH and config.epgselection.preview_mode_pliepg.getValue() or self.type == EPG_TYPE_INFOBAR and (config.epgselection.preview_mode_infobar.getValue() == '1' or config.epgselection.preview_mode_infobar.getValue() == '2') or self.type == EPG_TYPE_ENHANCED and config.epgselection.preview_mode_enhanced.getValue() or self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_INFOBAR and self.type != EPG_TYPE_ENHANCED and config.epgselection.preview_mode.getValue()) and self.StartRef and self.StartBouquet:
 				if self.StartRef.toString().find('0:0:0:0:0:0:0:0:0') == -1:
 					self.zapFunc(None, zapback = True)
 				if self.session.pipshown:
@@ -820,20 +820,20 @@ class EPGSelection(Screen, HelpableScreen):
 			self.session.openWithCallback(self.finishedAdd, InstantRecordTimerEntry, newEntry, zap)
 
 	def OK(self):
-		if config.epgselection.OK_vixepg.getValue() == 'Zap' or config.epgselection.OK_enhanced.getValue() == 'Zap' or config.epgselection.OK_infobar.getValue() == 'Zap' or config.epgselection.OK_multi.getValue() == 'Zap':
+		if config.epgselection.OK_pliepg.getValue() == 'Zap' or config.epgselection.OK_enhanced.getValue() == 'Zap' or config.epgselection.OK_infobar.getValue() == 'Zap' or config.epgselection.OK_multi.getValue() == 'Zap':
 			self.zapTo()
-		if config.epgselection.OK_vixepg.getValue() == 'Zap + Exit' or config.epgselection.OK_enhanced.getValue() == 'Zap + Exit' or config.epgselection.OK_infobar.getValue() == 'Zap + Exit':
+		if config.epgselection.OK_pliepg.getValue() == 'Zap + Exit' or config.epgselection.OK_enhanced.getValue() == 'Zap + Exit' or config.epgselection.OK_infobar.getValue() == 'Zap + Exit':
 			self.zap()
 
 	def OKLong(self):
-		if config.epgselection.OKLong_vixepg.getValue() == 'Zap' or config.epgselection.OKLong_enhanced.getValue() == 'Zap' or config.epgselection.OKLong_infobar.getValue() == 'Zap':
+		if config.epgselection.OKLong_pliepg.getValue() == 'Zap' or config.epgselection.OKLong_enhanced.getValue() == 'Zap' or config.epgselection.OKLong_infobar.getValue() == 'Zap':
 			self.zapTo()
 		if self.type == EPG_TYPE_GRAPH:
 			serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self['list'].setCurrentlyPlaying(serviceref)
 			self['list'].fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines(True)
-		if config.epgselection.OKLong_vixepg.getValue() == 'Zap + Exit' or config.epgselection.OKLong_enhanced.getValue() == 'Zap + Exit' or config.epgselection.OKLong_infobar.getValue() == 'Zap + Exit' or config.epgselection.OKLong_multi.getValue() == 'Zap + Exit':
+		if config.epgselection.OKLong_pliepg.getValue() == 'Zap + Exit' or config.epgselection.OKLong_enhanced.getValue() == 'Zap + Exit' or config.epgselection.OKLong_infobar.getValue() == 'Zap + Exit' or config.epgselection.OKLong_multi.getValue() == 'Zap + Exit':
 			self.zap()
 
 	def Info(self):
