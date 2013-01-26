@@ -76,7 +76,7 @@ elif [ $MODEL = "xp1000" ] ; then
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE
-## TESTING THE Venton HDx Models
+## TESTING THE Medialink Models
 elif [ $MODEL = "ixussone" ] ; then
 	TYPE=IXUSS
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
@@ -86,6 +86,16 @@ elif [ $MODEL = "ixussone" ] ; then
 	MAINDESTOLD=$DIRECTORY/medialink/$MODEL
 	MAINDEST=$DIRECTORY/medialink/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE
+## TESTING THE Mixos Models
+elif [ $MODEL = "ebox5000" ] ; then
+	TYPE=MIXOS
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="Mixos $MODEL"
+	MTDKERNEL="mtd1"
+	MAINDESTOLD=$DIRECTORY/ebox/$MODEL
+	MAINDEST=$DIRECTORY/ebox/7403/
+	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/ebox
 ## TESTING THE Venton HDx Models
 elif [ $MODEL = "ventonhdx" ] ; then
 	TYPE=VENTON
@@ -199,7 +209,7 @@ if [ $ROOTFSTYPE = "ubifs" ] ; then
 	echo " "
 	echo " "
 else 
-	echo "this will take between 2 and 4 minutes "
+	echo "this will take between 2 and 9 minutes "
 fi	
 echo " "
 echo "_________________________________________________"
@@ -567,6 +577,37 @@ if [ $TYPE = "IXUSS" ] ; then
 	fi
 fi
 
+if [ $TYPE = "MIXOS" ] ; then
+	rm -rf $MAINDEST
+	mkdir -p $MAINDEST
+	mkdir -p $EXTRA
+	mv $WORKDIR/root.$ROOTFSTYPE $MAINDEST/root_cfe_auto.bin
+	mv $WORKDIR/vmlinux.gz $MAINDEST/kernel_cfe_auto.bin
+	echo "rename this file to 'force' to force an update without confirmation" > $MAINDEST/noforce
+	echo $MODEL-$IMAGEVERSION > $MAINDEST/imageversion
+	cp -r $MAINDEST $EXTRA #copy the made back-up to images
+	if [ -f $MAINDEST/root_cfe_auto.bin -a -f $MAINDEST/kernel_cfe_auto.bin -a -f $MAINDEST/imageversion -a -f $MAINDEST/noforce ] ; then
+		echo "_________________________________________________\n"
+		echo "USB Image created on:" $MAINDEST
+		echo "and there is made an extra copy on:"
+		echo $EXTRA
+		echo "_________________________________________________\n"
+		echo " "
+		echo "To restore the image: \n"
+		echo "Place the USB-flash drive in the (back) USB-port "
+		echo "and switch the Mixos off and on with the powerswitch "
+		echo "on the back of the Mixos."
+		echo "\nPlease wait...almost ready! "
+	else
+		echo "Image creation failed - "
+		echo "Probable causes could be"
+		echo "     wrong back-up destination "
+		echo "     no space left on back-up device"
+		echo "     no writing permission on back-up device"
+		echo " "
+	fi
+fi
+
 if [ $TYPE = "GIGABLUE" ] ; then
 	rm -rf $MAINDEST
 	mkdir -p $MAINDEST
@@ -668,7 +709,10 @@ if [ $DIRECTORY == /hdd ]; then
 			cp -r $MAINDEST $TARGET
 		elif [ $TYPE = "IXUSS" ] ; then					# Medialink detected
 			mkdir -p $TARGET/$MODEL
-			cp -r $MAINDEST $TARGET			
+			cp -r $MAINDEST $TARGET
+		elif [ $TYPE = "MIXOS" ] ; then					# Mixos detected
+			mkdir -p $TARGET/ebox/7403
+			cp -r $MAINDEST $TARGET/ebox
 		elif [ $TYPE = "TECHNO" ] ; then					# Technomate detected
 			mkdir -p $TARGET/update/$MODEL/cfe
 			cp -r $MAINDEST $TARGET/update/$MODEL/cfe			

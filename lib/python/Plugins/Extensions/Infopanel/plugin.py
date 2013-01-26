@@ -149,15 +149,19 @@ def camstart(reason, **kwargs):
 		CamCheck()
 	try:
 		f = open("/proc/stb/video/alpha", "w")
-		f.write(str(config.osd.alpha.getValue()))
-		f.close()	
+		f.write(config.osd.alpha.getValue())
+		f.close()
+	except:
+		print "[Info-Panel] failed to write /proc/stb/video/alpha"
+
+	try:
 		if config.softcam.camstartMode.getValue() == "0":
 			global timerInstance
 			if timerInstance is None:
 				timerInstance = CamStart(None)
 			timerInstance.startTimer()
 	except:
-		pass
+		print "[Info-Panel] failed to run CamStart"
 
 def Plugins(**kwargs):
 	return [
