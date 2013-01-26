@@ -18,17 +18,6 @@ from os import path
 from re import search
 
 class About(Screen):
-	skin = """
-        <screen name="About" position="center,center" size="800,470" title="About">
-            <widget source="lab1" render="Label" position="29,86" size="369,35" font="Regular;30" transparent="0" zPosition="2" />
-			<widget source="lab2" render="Label" position="29,142" size="370,25" font="Regular;19" transparent="0" zPosition="2" />
-			<widget source="lab3" render="Label" position="30,187" size="369,25" font="Regular;19" transparent="0" zPosition="1" />
-			<eLabel text="OPEN SOURCE" position="410,434" size="353,28" font="Regular;22" transparent="0" zPosition="1" />
-			<eLabel text="https://github.com/openaaf" position="410,472" size="352,28" font="Regular;19" transparent="0" zPosition="1" />
-			<eLabel text="https://github.com/oe-alliance" position="409,505" size="354,28" font="Regular;19" transparent="0" zPosition="1" />
-			<widget name="AboutScrollLabel" position="27,253" size="369,310" font="Regular;20" transparent="0" zPosition="1" scrollbarMode="showOnDemand" />
-			<ePixmap position="401,177" size="420,241" pixmap="DMConcinnity-HD/menu/openaaf_info.png" transparent="1" />
-        </screen>"""
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = "AboutAAF"
@@ -174,15 +163,6 @@ class About(Screen):
 		return AboutSummary
 
 class Devices(Screen):
-	skin = """
-        <screen name="Devices" position="center,center" size="800,470" title="Devices">
-			<widget source="TunerHeader" render="Label" position="31,81" size="458,36" font="Regular;20" transparent="0" zPosition="1" />
-			<widget source="nims" render="Label" position="31,116" size="458,108" font="Regular;18" transparent="0" zPosition="1" enableWrapAround="0" />
-			<widget source="HDDHeader" render="Label" position="31,227" size="458,36" font="Regular;20" transparent="0" zPosition="1" />
-			<widget source="hdd" render="Label" position="31,260" size="458,112" font="Regular;18" transparent="0" zPosition="1" enableWrapAround="0" />
-			<widget source="MountsHeader" render="Label" position="31,374" size="458,36" font="Regular;20" transparent="0" zPosition="1" />
-			<widget source="mounts" render="Label" position="31,415" size="458,143" font="Regular;18" transparent="0" zPosition="1" enableWrapAround="0" />
-        </screen>"""
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = "DevicesAAF"
@@ -302,12 +282,6 @@ class Devices(Screen):
 		return AboutSummary
 
 class SystemMemoryInfo(Screen):
-	skin = """
-	<screen name="SystemMemoryInfo" position="center,center" size="560,400" >
-		<widget source="lab1" render="Label" position="31,88" size="458,35" font="Regular;30" transparent="0" zPosition="2" />
-		<widget source="lab2" render="Label" position="32,133" size="458,25" font="Regular;19" transparent="0" zPosition="2" />
-		<widget name="AboutScrollLabel" position="32,176" size="458,376" font="Regular;20" transparent="0" zPosition="1" scrollbarMode="showOnDemand" />
-	</screen>"""
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Memory Information"))
@@ -368,27 +342,6 @@ class SystemMemoryInfo(Screen):
 		return AboutSummary
 
 class SystemNetworkInfo(Screen):
-	skin = """
-		<screen name="SystemNetworkInfo" position="center,center" size="560,400" >
-			<widget name="AboutScrollLabel" position="29,82" size="458,197" font="Regular;20" transparent="0" zPosition="1" scrollbarMode="showOnDemand" />
-			<widget source="LabelBSSID" render="Label" position="28,292" size="200,25" valign="left" font="Regular;20" transparent="0" />
-			<widget source="LabelESSID" render="Label" position="29,329" size="200,25" valign="center" font="Regular;20" transparent="0" />
-			<widget source="LabelQuality" render="Label" position="29,367" size="200,25" valign="center" font="Regular;20" transparent="0" />
-			<widget source="LabelSignal" render="Label" position="29,405" size="200,25" valign="center" font="Regular;20" transparent="0" />
-			<widget source="LabelBitrate" render="Label" position="30,440" size="200,25" valign="center" font="Regular;20" transparent="0" />
-			<widget source="LabelEnc" render="Label" position="29,475" size="200,25" valign="center" font="Regular;20" transparent="0" />
-			<widget source="BSSID" render="Label" position="204,292" size="310,25" valign="center" font="Regular;20" transparent="0" />
-			<widget source="ESSID" render="Label" position="204,330" size="310,25" valign="center" font="Regular;20" transparent="0" />
-			<widget source="quality" render="Label" position="204,367" size="310,25" valign="center" font="Regular;20" transparent="0" />
-			<widget source="signal" render="Label" position="203,405" size="310,25" valign="center" font="Regular;20" transparent="0" />
-			<widget source="bitrate" render="Label" position="203,440" size="310,25" valign="center" font="Regular;20" transparent="0" />
-			<widget source="enc" render="Label" position="203,474" size="310,25" valign="center" font="Regular;20" transparent="0" />
-			<widget source="IFtext" render="Label" position="31,509" size="120,21" zPosition="10" font="Regular;20" halign="left" transparent="0" />
-			<widget source="IF" render="Label" position="139,508" size="375,21" zPosition="10" font="Regular;20" halign="left" transparent="0" />
-			<widget source="Statustext" render="Label" position="31,537" size="115,21" zPosition="10" font="Regular;20" halign="left" transparent="0" />
-			<widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="149,539" zPosition="10" size="15,16" transparent="0" alphatest="on" />
-		</screen>"""
-
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Network Information"))
@@ -648,16 +601,6 @@ class AboutSummary(Screen):
 
 class ViewGitLog(Screen):
 	def __init__(self, session, args = None):
-		self.skin = """
-			<screen position="center,center" size="720,540" >
-				<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-				<widget name="key_red" position="0,2" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-				<widget name="key_yellow" position="280,2" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-				<widget name="key_green" position="140,2" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-				<widget name="text" position="0,50" size="720,500" font="Regular;21" />
-			</screen>"""
 		Screen.__init__(self, session)
 		self.skinName = "SoftwareUpdateChanges"
 		self.setTitle(_("OE Changes"))

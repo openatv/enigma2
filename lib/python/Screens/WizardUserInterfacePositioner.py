@@ -15,7 +15,6 @@ class UserInterfacePositionerWizard(WizardLanguage, Rc):
 		WizardLanguage.__init__(self, session, showSteps = False, showStepSlider = False)
 		Rc.__init__(self)
 		self.skinName = "StartWizard"
-		self.skin = "StartWizard.skin"
 		self.session = session
 		Screen.setTitle(self, _("Welcome..."))
 		self.Console = Console()

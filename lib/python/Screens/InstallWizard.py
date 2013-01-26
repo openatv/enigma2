@@ -111,13 +111,7 @@ class InstallWizard(Screen, ConfigListScreen):
 
 
 class InstallWizardIpkgUpdater(Screen):
-	skin = """
-	<screen position="c-300,c-25" size="600,50" title=" ">
-		<widget source="statusbar" render="Label" position="10,5" zPosition="10" size="e-10,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-	</screen>"""
-
 	def __init__(self, session, index, info, cmd, pkg = None):
-		self.skin = InstallWizardIpkgUpdater.skin
 		Screen.__init__(self, session)
 
 		self["statusbar"] = StaticText(info)

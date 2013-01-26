@@ -18,14 +18,6 @@ from gettext import dgettext
 
 class SoftwareUpdateChanges(Screen):
 	def __init__(self, session, args = None):
-		self.skin = """
-			<screen position="center,center" size="720,540" >
-				<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-				<widget name="key_red" position="0,2" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-				<widget name="key_green" position="140,2" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-				<widget name="text" position="0,50" size="720,500" font="Regular;21" />
-			</screen>"""
 		Screen.__init__(self, session)
 		self.setTitle(_("OE Changes"))
 		if path.exists('/tmp/oe-git.log'):
@@ -111,14 +103,6 @@ class SoftwareUpdateChanges(Screen):
 		self.close(("menu", "menu"))
 
 class UpdatePlugin(Screen):
-	skin = """
-		<screen name="UpdatePlugin" position="center,center" size="550,300">
-			<widget name="activityslider" position="0,0" size="550,5"  />
-			<widget name="slider" position="0,150" size="550,30"  />
-			<widget source="package" render="Label" position="10,30" size="540,20" font="Regular;18" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="status" render="Label" position="10,180" size="540,100" font="Regular;20" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-		</screen>"""
-
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Software Update"))

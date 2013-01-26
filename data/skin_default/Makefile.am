@@ -1,4 +1,4 @@
-SUBDIRS = countries menu icons buttons GraphEPG lcd piconbg extensions
+SUBDIRS = countries menu icons buttons epg lcd piconbg extensions
 
 installdir = $(pkgdatadir)/skin_default
 

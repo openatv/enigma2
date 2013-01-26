@@ -14,7 +14,9 @@ class ClockToText(Converter, object):
 	SHORT_DATE = 8
 	LONG_DATE = 9
 	VFD = 10
-	FULL_DATE = 11
+	AS_LENGTHHOURS = 11
+	AS_LENGTHSECONDS = 12
+	FULL_DATE = 13
 
 	# add: date, date as string, weekday, ...
 	# (whatever you need!)
@@ -29,6 +31,10 @@ class ClockToText(Converter, object):
 			self.type = self.DATE
 		elif type == "AsLength":
 			self.type = self.AS_LENGTH
+		elif type == "AsLengthHours":
+			self.type = self.AS_LENGTHHOURS
+		elif type == "AsLengthSeconds":
+			self.type = self.AS_LENGTHSECONDS
 		elif type == "Timestamp":
 			self.type = self.TIMESTAMP
 		elif type == "Full":
@@ -55,11 +61,20 @@ class ClockToText(Converter, object):
 
 		# handle durations
 		if self.type == self.IN_MINUTES:
-			return ngettext(_("%d Min"), _("%d min"), (time / 60)) % (time / 60)
+			return ngettext("%d Min", "%d Mins", (time / 60)) % (time / 60)
 		elif self.type == self.AS_LENGTH:
 			if time < 0:
 				return ""
-			return "%0d:%02d" % (time / 60, time % 60)
+			return "%d:%02d" % (time / 60, time % 60)
+		elif self.type == self.AS_LENGTHHOURS:
+			if time < 0:
+				return ""
+			return "%d:%02d" % (time / 3600, time / 60 % 60)
+		elif self.type == self.AS_LENGTHSECONDS:
+			if time < 0:
+				return ""
+			return "%d:%02d:%02d" \
+			 % (time / 3600, time / 60 % 60, time % 60)
 		elif self.type == self.TIMESTAMP:
 			return str(time)
 

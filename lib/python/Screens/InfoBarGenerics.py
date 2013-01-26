@@ -1308,59 +1308,55 @@ class InfoBarEPG:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if ".DreamPlex" in `self`:
-			return
-		if config.usage.defaultEPGType.getValue() != _("Graphical EPG") and config.usage.defaultEPGType.getValue() != _("None"):
-				self.openGraphEPG()
-		else:
-			self.openSingleServiceEPG()
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if config.usage.defaultEPGType.getValue() != _("Graphical EPG") and config.usage.defaultEPGType.getValue() != _("None"):
+					self.openGraphEPG()
+			else:
+				self.openSingleServiceEPG()
 
 	def InfoPressed(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if ".DreamPlex" in `self`:
-			return
-		if getBoxType().startswith('vu'):
-			self.EPGPressed()
-		elif config.plisettings.PLIINFO_mode.getValue() == "eventview":
-			self.openEventView()
-		elif config.plisettings.PLIINFO_mode.getValue() == "epgpress":
-			self.EPGPressed()
-		elif config.plisettings.PLIINFO_mode.getValue() == "single":
-			self.openSingleServiceEPG()
-		elif config.plisettings.PLIINFO_mode.getValue() == "coolinfoguide":
-			self.showCoolInfoGuide()
-		elif config.plisettings.PLIINFO_mode.getValue() == "coolsingleguide":
-			self.showCoolSingleGuide()			
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if getBoxType().startswith('vu'):
+				self.showDefaultEPG()
+			elif config.plisettings.PLIINFO_mode.getValue() == "eventview":
+				self.openEventView()
+			elif config.plisettings.PLIINFO_mode.getValue() == "epgpress":
+				self.showDefaultEPG()
+			elif config.plisettings.PLIINFO_mode.getValue() == "single":
+				self.openSingleServiceEPG()
+			elif config.plisettings.PLIINFO_mode.getValue() == "coolinfoguide":
+				self.showCoolInfoGuide()
+			elif config.plisettings.PLIINFO_mode.getValue() == "coolsingleguide":
+				self.showCoolSingleGuide()			
 
 	def IPressed(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if ".DreamPlex" in `self`:
-			return
-		self.openEventView()
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			self.openEventView()
 
 	def EPGPressed(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if ".DreamPlex" in `self`:
-			return
-		if config.plisettings.PLIEPG_mode.getValue() == "pliepg":
-			self.openGraphEPG()
-		elif config.plisettings.PLIEPG_mode.getValue() == "multi":
-			self.openMultiServiceEPG()
-		elif config.plisettings.PLIEPG_mode.getValue() == "single":
-			self.openSingleServiceEPG()
-		elif config.plisettings.PLIEPG_mode.getValue() == "merlinepgcenter":
-			self.openMerlinEPGCenter()	
-		elif config.plisettings.PLIEPG_mode.getValue() == "cooltvguide":
-			if self.isInfo:
-				self.showCoolTVGuide()
-		elif config.plisettings.PLIEPG_mode.getValue() == "eventview":
-			self.openEventView()
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if config.plisettings.PLIEPG_mode.getValue() == "pliepg":
+				self.openGraphEPG()
+			elif config.plisettings.PLIEPG_mode.getValue() == "multi":
+				self.openMultiServiceEPG()
+			elif config.plisettings.PLIEPG_mode.getValue() == "single":
+				self.openSingleServiceEPG()
+			elif config.plisettings.PLIEPG_mode.getValue() == "merlinepgcenter":
+				self.openMerlinEPGCenter()	
+			elif config.plisettings.PLIEPG_mode.getValue() == "cooltvguide":
+				if self.isInfo:
+					self.showCoolTVGuide()
+			elif config.plisettings.PLIEPG_mode.getValue() == "eventview":
+				self.openEventView()
 
 	def showEventInfoWhenNotVisible(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
@@ -1440,13 +1436,12 @@ class InfoBarEPG:
 	def closed(self, ret=False):
 		if not self.dlg_stack:
 			return
-
 		closedScreen = self.dlg_stack.pop()
 		if self.bouquetSel and closedScreen == self.bouquetSel:
 			self.bouquetSel = None
 		elif self.eventView and closedScreen == self.eventView:
 			self.eventView = None
-		if ret == True:
+		if ret == True or ret == 'close':
 			dlgs=len(self.dlg_stack)
 			if dlgs > 0:
 				self.dlg_stack[dlgs-1].close(dlgs > 1)
@@ -1486,21 +1481,30 @@ class InfoBarEPG:
 	def openMultiServiceEPG(self):
 		self.EPGtype = "multi"
 		self.StartBouquet = self.servicelist.getRoot()
-		self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if isMoviePlayerInfoBar(self):
+			self.StartRef = self.lastservice
+		else:
+			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.MultiServiceEPG()
 
 	def openGraphEPG(self, reopen=False):
 		self.EPGtype = "graph"
 		if not reopen:
 			self.StartBouquet = self.servicelist.getRoot()
-			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if isMoviePlayerInfoBar(self):
+				self.StartRef = self.lastservice
+			else:
+				self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.MultiServiceEPG()
 
 	def SingleServiceEPG(self):
 		self.StartBouquet = self.servicelist.getRoot()
-		self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if isMoviePlayerInfoBar(self):
+			ref = self.lastservice
+		else:
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if ref:
+			self.StartRef = ref
 			if self.servicelist.getMutableList() is not None: # bouquet in channellist
 				current_path = self.servicelist.getRoot()
 				services = self.getBouquetServices(current_path)
@@ -2485,9 +2489,9 @@ class InfoBarTimeshift:
 	def __init__(self):
 		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions",
 			{
-				"timeshiftStart": (self.startTimeshift, _("Start timeshift")),	# the "yellow key"
+				"timeshiftStart": (self.startTimeshift, _("Start timeshift")),  # the "yellow key"
 				"timeshiftStartY": (self.selectYellowkeyAction, _("Yellow Key")),  # the "yellow key"
-				"timeshiftStop": (self.stopTimeshift, _("Stop timeshift")),		 # currently undefined :), probably 'TV'
+				"timeshiftStop": (self.stopTimeshift, _("Stop timeshift")),     # currently undefined :), probably 'TV'
 				"instantRecord": self.instantRecord,
 				"restartTimeshift": self.restartTimeshift
 			}, prio=1)

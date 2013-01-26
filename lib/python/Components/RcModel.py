@@ -6,7 +6,7 @@ class RcModel:
 	RCTYPE_DMM1 = 1
 	RCTYPE_DMM2 = 2
 	RCTYPE_EBOX5000 = 3	
-	RCTYPE_ET4000 = 4
+	RCTYPE_ET4x00 = 4
 	RCTYPE_ET6X00 = 5
 	RCTYPE_ET6500 = 6
 	RCTYPE_ET9X00 = 7	
@@ -77,7 +77,7 @@ class RcModel:
 				elif rc == '11' and model == 'et9000':
 					self.currentRcType = self.RCTYPE_ET9x00
 				elif rc == '13' and model == 'et4000':
-					self.currentRcType = self.RCTYPE_ET4000
+					self.currentRcType = self.RCTYPE_ET4x00
 				elif rc == '14':
 					self.currentRcType = self.RCTYPE_XP1000
 			elif model == 'ebox5000':
@@ -117,8 +117,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/dmm2/'
 		elif self.currentRcType == self.RCTYPE_EBOX5000:
 			return '/usr/share/enigma2/rc_models/ebox5000/'			
-		elif self.currentRcType == self.RCTYPE_ET4000:
-			return '/usr/share/enigma2/rc_models/et4000/'
+		elif self.currentRcType == self.RCTYPE_ET4x00:
+			return '/usr/share/enigma2/rc_models/et4x00/'
 		elif self.currentRcType == self.RCTYPE_ET6X00:
 			return '/usr/share/enigma2/rc_models/et6x00/'
 		elif self.currentRcType == self.RCTYPE_ET6500:

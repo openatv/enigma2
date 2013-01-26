@@ -20,12 +20,6 @@ class ServiceName(Converter, object):
 		else:
 			self.type = self.NAME
 
-	def getServiceInfoValue(self, info, what, ref=None):
-		v = ref and info.getInfo(ref, what) or info.getInfo(what)
-		if v != iServiceInformation.resIsString:
-			return "N/A"
-		return ref and info.getInfoString(ref, what) or info.getInfoString(what)
-
 	@cached
 	def getText(self):
 		service = self.source.service
@@ -43,17 +37,17 @@ class ServiceName(Converter, object):
 				name = info.getName()
 			return name.replace('\xc2\x86', '').replace('\xc2\x87', '')
 		elif self.type == self.PROVIDER:
-			return self.getServiceInfoValue(info, iServiceInformation.sProvider, ref)
+			return info.getInfoString(iServiceInformation.sProvider)
 		elif self.type == self.REFERENCE:
-			if str(ref) != 'None':
+			if ref is None:
+				return info.getInfoString(iServiceInformation.sServiceref)
+			else:
 				return ref.toString()
-			else:
-				return self.getServiceInfoValue(info, iServiceInformation.sServiceref, ref)
 		elif self.type == self.SID:
-			if str(ref) != 'None':
-				tmpref = ref.toString()
+			if ref is None:
+				tmpref = info.getInfoString(iServiceInformation.sServiceref)
 			else:
-				tmpref = self.getServiceInfoValue(info, iServiceInformation.sServiceref, ref)
+				tmpref = ref.toString()
 
 			if tmpref:
 				refsplit = tmpref.split(':')
