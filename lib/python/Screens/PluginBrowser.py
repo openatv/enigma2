@@ -341,6 +341,7 @@ class PluginDownloadBrowser(Screen):
 				if plugin[0] not in self.installedplugins:
 					pluginlist.append(plugin + (plugin[0][15:],))
 			if pluginlist:
+				pluginlist.sort()
 				self.updateList()
 				self["list"].instance.show()
 			else:
