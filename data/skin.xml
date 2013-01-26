@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 1.02 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
+	<!--	Skin: Default-ViX Vs 1.03 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
 	<!--	Contains derived work by MiLo -->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
@@ -188,68 +188,14 @@
 		<widget source="global.CurrentTime" render="Label" position="88,120" size="68,28"  borderColor="black" borderWidth="1" backgroundColor="transpBlack" font="Enigma;24" foregroundColor="foreground" halign="left" noWrap="1" transparent="1" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="160,120" size="400,28" borderColor="black" borderWidth="1" backgroundColor="transpBlack" font="Enigma;24" foregroundColor="foreground" halign="center" transparent="1" valign="bottom" zPosition="3">
+		<widget source="Service" render="Label" position="160,120" size="400,28" borderColor="black" borderWidth="1" backgroundColor="transpBlack" font="Enigma;24" foregroundColor="foreground" halign="center" transparent="1" valign="bottom" zPosition="3">
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="54,100" size="220,22" borderColor="black" borderWidth="1" backgroundColor="transpBlack" font="Enigma;16" noWrap="1" transparent="1" valign="bottom" zPosition="3">
 			<convert type="ClockToText">Date</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="140,160" size="60,28" zPosition="3" backgroundColor="infobarBG" font="Enigma;22" >
-			<convert type="EventTime">StartTime</convert>
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<widget source="session.CurrentService" render="Label" position="54,214" size="300,22" backgroundColor="infobarBG" font="Enigma;16" noWrap="1" foregroundColor="grey81" halign="left" valign="top" zPosition="3">
-			<convert type="CryptoInfo">VerboseInfo</convert>
-		</widget>
-		<widget source="session.CurrentService" render="Label" position="500,214" size="165,22" backgroundColor="infobarBG" font="Enigma;16" noWrap="1" foregroundColor="grey81" halign="right" valign="top" zPosition="3">
-			<convert type="ServiceOrbitalPosition"></convert>
-		</widget>
-		<widget source="session.Event_Now" render="Label" position="200,160" size="375,28" backgroundColor="infobarBG" font="Enigma;22" zPosition="3">
-			<convert type="EventName">Name</convert>
-		</widget>
-		<widget source="session.Event_Now" render="Label" position="580,160" size="85,28" backgroundColor="infobarBG" font="Enigma;22" halign="right" zPosition="3">
-			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">InMinutes</convert>
-		</widget>
-		<widget source="session.Event_Next" render="Label" position="140,186" size="60,28"  backgroundColor="infobarBG" font="Enigma;22" zPosition="3">
-			<convert type="EventTime">StartTime</convert>
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<widget source="session.Event_Next" render="Label" position="200,186" size="375,28" backgroundColor="infobarBG" font="Enigma;22" zPosition="3">
-			<convert type="EventName">Name</convert>
-		</widget>
-		<widget source="session.Event_Next" render="Label" position="580,186" size="85,28" backgroundColor="infobarBG" font="Enigma;22" halign="right" zPosition="3">
-			<convert type="EventTime">Duration</convert>
-			<convert type="ClockToText">InMinutes</convert>
-		</widget>
-		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/infobar/p_bar.png" position="55,153" size="610,3" zPosition="3">
-			<convert type="EventTime">Progress</convert>
-		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/infobar/ico_crypt_on.png" position="644,105" size="20,16"  alphatest="on" zPosition="3">
-			<convert type="ServiceInfo">IsCrypted</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/infobar/ico_txt_on.png" position="644,128" size="20,16" alphatest="on" zPosition="3">
-			<convert type="ServiceInfo">HasTelext</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/infobar/ico_dolby_on.png" position="594,128" size="20,16" alphatest="on" zPosition="3">
-			<convert type="ServiceInfo">IsMultichannel</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget source="session.CurrentService" pixmap="skin_default/infobar/ico_format_on.png" render="Pixmap" position="619,128" size="20,16" alphatest="on" zPosition="3">
-			<convert type="ServiceInfo">IsWidescreen</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget source="session.CurrentService" pixmap="skin_default/infobar/ico_sub_on.png" render="Pixmap" position="569,128" size="20,16" alphatest="on" zPosition="3">
-			<convert type="ServiceInfo">SubservicesAvailable</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="skin_default/buttons/red.png" position="548,129"  size="14,14" alphatest="on" zPosition="4">
 			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
-		<widget source="session.FrontendStatus" render="Label" position="567,100" size="66,24" borderColor="black" borderWidth="1" font="Enigma;16" foregroundColor="foreground" halign="right" transparent="1" zPosition="3">
-			<convert type="FrontendInfo">SNRdB</convert>
 		</widget>
 		<widget source="session.TunerInfo" render="Pixmap" pixmap="skin_default/infobar/nimA.png" position="54,122" size="24,24" alphatest="on" zPosition="6">
 			<convert type="TunerInfo">TunerUseMask</convert>
@@ -271,30 +217,18 @@
 			<convert type="ValueBitTest">8</convert>
 			<convert type="ConditionalShowHide"/>
 		</widget>
-		<widget source="session.CurrentService" render="PiconBg" position="53,158" size="72,55" transparent="0" alphatest="blend" zPosition="5" />
-		<widget source="session.CurrentService" render="Picon" position="54,160"	size="70,53" transparent="1" alphatest="blend"	zPosition="5">
-		<convert type="ServiceName">Reference</convert>
-		</widget>
 		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="skin_default/infobar/icon_stableupdate.png" position="55,70" size="32,32" zPosition="10" alphatest="blend" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="skin_default/infobar/icon_unstableupdate.png" position="55,70" size="32,32" zPosition="10" alphatest="blend" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
+		<widget name="list" position="140,160" size="500,70" font="Regular;20" transparent="0" zPosition="10" />
 	</screen>
 	<screen flags="wfNoBorder" name="SecondInfoBar" position="0,0" size="720,96" title="SecondInfoBar">
 		<widget source="session.CurrentService" render="Label" position="50, 20" size="600,66" backgroundColor="transpBlack" transparent="1" zPosition="1" foregroundColor="foreground" font="Regular;16" valign="top" halign="left">
 			<convert type="PliExtraInfo">All</convert>
-		</widget>		<!-- Event (now) -->
-		<widget name="list" position="205,73" size="500,40" font="Regular;20" backgroundColor="#34406f" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1"/>
-		<ePixmap pixmap="skin_default/buttons/button_red.png" position="202,130" size="15,16" alphatest="on" />
-		<widget name="key_red" position="222,130" zPosition="1" size="100,16" font="Regular;16" backgroundColor="#182946" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" halign="left" />
-		<ePixmap pixmap="skin_default/buttons/button_green.png" position="315,130" size="15,16" alphatest="on"	/>
-		<widget name="key_green" position="335,130" zPosition="1" size="100,16" font="Regular;16" backgroundColor="#182946" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" halign="left"/>
-		<ePixmap pixmap="skin_default/buttons/button_yellow.png" position="440,130" size="15,16" alphatest="on" />
-		<widget name="key_yellow" position="460,130" zPosition="1" size="100,16" font="Regular;16" backgroundColor="#182946" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" halign="left"/>
-		<ePixmap pixmap="skin_default/buttons/button_blue.png" position="545,130" zPosition="1" size="15,16" alphatest="on" />
-		<widget name="key_blue" position="565,130" zPosition="1" size="120,16" font="Regular;16" backgroundColor="#182946" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" halign="left" />
+		</widget>	
 	</screen>
 	<screen backgroundColor="transparent" flags="wfNoBorder" name="MoviePlayer" position="60,40" size="600,102" title="MoviePlayer">
 		<eLabel backgroundColor="infobarBG" position="6,44" size="588,14" zPosition="0"/>
@@ -416,27 +350,28 @@
 			<convert type="MenuEntryCompare">standby_restart_list</convert>
 			<convert type="ConditionalShowHide"/>
 		</widget>
-		<widget alphatest="on" pixmap="skin_default/menu/setup.png" position="3,53" render="Pixmap" size="128,128" source="menu" zPosition="1">
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/setup.png" position="3,53" size="128,128" alphatest="on"  zPosition="1">
 			<convert type="MenuEntryCompare">setup_selection</convert>
 			<convert type="ConditionalShowHide"/>
 		</widget>
-		<widget alphatest="on" pixmap="skin_default/menu/plugins.png" position="3,53" render="Pixmap" size="128,128" source="menu" zPosition="1">
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/plugins.png" position="3,53" size="128,128" alphatest="on" zPosition="1">
 			<convert type="MenuEntryCompare">plugin_selection</convert>
 			<convert type="ConditionalShowHide"/>
 		</widget>
-		<widget alphatest="on" pixmap="skin_default/menu/information.png" position="3,53" render="Pixmap" size="128,128" source="menu" zPosition="1">
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/information.png" position="3,53" size="128,128" alphatest="on" zPosition="1">
 			<convert type="MenuEntryCompare">info_screen</convert>
 			<convert type="ConditionalShowHide"/>
 		</widget>
-		<widget alphatest="on" pixmap="skin_default/menu/scart.png" position="3,53" render="Pixmap" size="128,128" source="menu" zPosition="1">
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/scart.png" position="3,53" size="128,128" alphatest="on" zPosition="1">
 			<convert type="MenuEntryCompare">scart_switch</convert>
 			<convert type="ConditionalShowHide"/>
 		</widget>
-		<widget alphatest="on" pixmap="skin_default/menu/timer.png" position="3,53" render="Pixmap" size="128,128" source="menu" zPosition="1">
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/timer.png" position="3,53" size="128,128" alphatest="on" zPosition="1">
 			<convert type="MenuEntryCompare">timer_edit</convert>
 			<convert type="ConditionalShowHide"/>
 		</widget>
-		<widget alphatest="on" pixmap="skin_default/menu/media_player.png" position="3,53" render="Pixmap" size="128,128" source="menu" zPosition="1">
+<!--XXXX-->
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/media_player.png" position="3,53" size="128,128" alphatest="on" zPosition="1">
 			<convert type="MenuEntryCompare">media_player</convert>
 			<convert type="ConditionalShowHide"/>
 		</widget>

@@ -328,25 +328,8 @@ self.autoResize()
 	</screen>
 	<!-- Infobar EPG -->
 	<screen name="QuickEPG" flags="wfNoBorder" position="0,380" size="720,160" title="Info bar" backgroundColor="transparent">
-		<!-- Background -->
-		<ePixmap position="0,0" zPosition="-1" size="720,160" pixmap="skin_default/info-bg.png" />
-		<ePixmap position="27,73" size="665,71" pixmap="skin_default/screws.png" alphatest="on" transparent="1" />
-		<!-- Signal Quality -->
-		<eLabel text="SNR" position="205,3" size="40,22" font="Regular;16" backgroundColor="#102e59" foregroundColor="#cccccc" shadowColor="#27384f" shadowOffset="-1,-1" transparent="1" />
-		<widget source="session.FrontendStatus" render="Label" position="242,3" size="80,22" font="Regular;16" backgroundColor="#102e59" foregroundColor="#e7e7e7" shadowColor="#27384f" shadowOffset="-1,-1" transparent="1">
-			<convert type="FrontendInfo">SNRdB</convert>
-		</widget>
-		<!-- Bit error rate -->
-		<eLabel text="BER" position="317,3" size="40,22" font="Regular;16" backgroundColor="#102e59" foregroundColor="#cccccc" shadowColor="#27384f" shadowOffset="-1,-1" transparent="1" noWrap="1" />
-		<widget source="session.FrontendStatus" render="Label" position="355,3" size="43,22" font="Regular;16" backgroundColor="#102e59" foregroundColor="#e7e7e7" shadowColor="#27384f" shadowOffset="-1,-1" transparent="1" noWrap="1">
-			<convert type="FrontendInfo">BER</convert>
-		</widget>
-		<!-- Channellogo (Picon) -->
-		<widget source="session.CurrentService" render="Picon" position="49,4" zPosition="1" size="70,53" alphatest="on">
-			<convert type="ServiceName">Reference</convert>
-		</widget>
 		<!-- Service name -->
-		<widget source="session.CurrentService" render="Label" position="130,30" size="360,27" font="Regular;21" valign="center" halign="right" noWrap="1" backgroundColor="#263c59" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1">
+		<widget source="Service" render="Label" position="130,30" size="360,27" font="Regular;21" valign="center" halign="right" noWrap="1" backgroundColor="#263c59" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<!-- Time -->
@@ -394,32 +377,6 @@ self.autoResize()
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">8</convert>
 			<convert type="ConditionalShowHide" />
-		</widget>
-		<!-- Crypt icon (encrypted service?) -->
-		<ePixmap position="563,48" zPosition="0" size="107,15" pixmap="skin_default/icons/icons_off.png" />
-		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/icons/icon_crypt.png" position="563,48" zPosition="1" size="12,16" alphatest="on">
-			<convert type="ServiceInfo">IsCrypted</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<!-- Teletext icon (is teletext available?) -->
-		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/icons/icon_txt.png" position="580,48" zPosition="1" size="26,16" alphatest="on">
-			<convert type="ServiceInfo">HasTelext</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<!-- Videoformat icon (16:9?) -->
-		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/icons/icon_format.png" position="611,48" zPosition="1" size="29,16" alphatest="on">
-			<convert type="ServiceInfo">IsWidescreen</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<!-- Audio icon (is there multichannel audio?) -->
-		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/icons/icon_dolby.png" position="645,48" zPosition="1" size="26,16" alphatest="on">
-			<convert type="ServiceInfo">IsMultichannel</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<!-- Progressbar (current event duration)-->
-		<ePixmap pixmap="skin_default/progress_bg.png" position="48,77" size="84,7" transparent="1" alphatest="on" />
-		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/progress_small.png" position="50,78" zPosition="1" size="80,5" transparent="1">
-			<convert type="EventTime">Progress</convert>
 		</widget>
 		<!-- Blinking pixmap (recording in progress?) -->
 		<ePixmap pixmap="skin_default/icons/icon_rec_off.png" position="561,21" size="34,21" />
