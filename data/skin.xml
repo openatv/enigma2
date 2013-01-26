@@ -1,11 +1,10 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<skin>
-  <!--  Skin: Default-ViX Vs 1.00 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32  -->
-  <!--  Contains derived work by MiLo -->
-  <!--  This skin is a Freeware. Everyone can modify and use it in other images.  -->
-  <!--  BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!  -->
-  <!--  Do whatever you want with this skin,but don't tell it's yours,or your idea, and leave the credentials in the "About-box" as they are  -->
-  <!--  ## Head ## -->
+﻿<skin>
+	<!--	Skin: Default-ViX Vs 1.01 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
+	<!--	Contains derived work by MiLo -->
+	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
+	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
+	<!--	Do whatever you want with this skin,but don't tell it's yours,or your idea, and leave the credentials in the "About-box" as they are	-->
+	<!--	## Head ## -->
 	<output id="0">
 		<resolution bpp="32" xres="720" yres="576"/>
 	</output>
@@ -77,41 +76,41 @@
 	<screen flags="wfNoBorder" name="Mute" position="center,50" size="45,45" title="Mute" zPosition="10">
 		<ePixmap pixmap="skin_default/infobar/mute.png" position="0,0" size="45,45"/>
 	</screen>
-	<!--  ##### InfoBars #####  -->
-	<screen flags="wfNoBorder" name="InfoBar" position="0,325" size="720,276" title="InfoBar">
-		<ePixmap alphatest="off" name="ValiOSD" pixmap="skin_default/infobar/infobar.png" position="0,0" size="720,156" zPosition="1"/>
+	<!--	##### InfoBars #####	-->
+	<screen name="InfoBar" position="0,325" size="720,276" flags="wfNoBorder" title="InfoBar">
+		<ePixmap name="ValiOSD" pixmap="skin_default/infobar/infobar.png" position="0,0" size="720,156" alphatest="off" zPosition="1"/>
 		<eLabel backgroundColor="infobarBG" position="0,156" size="720,110" zPosition="2"/>
-		<widget borderColor="black" borderWidth="1" backgroundColor="transpBlack" font="Enigma;24" foregroundColor="foreground" halign="left" noWrap="1" position="88,120" render="Label" size="68,28" source="global.CurrentTime" transparent="1" zPosition="3">
+		<widget source="global.CurrentTime" render="Label" position="88,120" size="68,28"  borderColor="black" borderWidth="1" backgroundColor="transpBlack" font="Enigma;24" foregroundColor="foreground" halign="left" noWrap="1" transparent="1" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>		
-		<widget borderColor="black" borderWidth="1" backgroundColor="transpBlack" font="Enigma;24" foregroundColor="foreground" halign="center" position="160,120" render="Label" size="400,28" source="session.CurrentService" transparent="1" valign="bottom" zPosition="3">
+		<widget source="session.CurrentService" render="Label" position="160,120" size="400,28" borderColor="black" borderWidth="1" backgroundColor="transpBlack" font="Enigma;24" foregroundColor="foreground" halign="center" transparent="1" valign="bottom" zPosition="3">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget borderColor="black" borderWidth="1" backgroundColor="transpBlack" font="Enigma;16" noWrap="1" position="54,100" render="Label" size="220,22" source="global.CurrentTime" transparent="1" valign="bottom" zPosition="3">
+		<widget source="global.CurrentTime" render="Label" position="54,100" size="220,22" borderColor="black" borderWidth="1" backgroundColor="transpBlack" font="Enigma;16" noWrap="1" transparent="1" valign="bottom" zPosition="3">
 			<convert type="ClockToText">Date</convert>
 		</widget>
-		<widget backgroundColor="infobarBG" font="Enigma;22" position="140,160" render="Label" size="60,28" source="session.Event_Now" zPosition="3">
+		<widget source="session.Event_Now" render="Label" position="140,160" size="60,28" zPosition="3" backgroundColor="infobarBG" font="Enigma;22" >
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<widget backgroundColor="infobarBG" font="Enigma;16" noWrap="1" position="54,214" foregroundColor="grey81" render="Label" size="300,22" source="session.CurrentService" halign="left" valign="top" zPosition="3">
+		<widget source="session.CurrentService" render="Label" position="54,214" size="300,22" backgroundColor="infobarBG" font="Enigma;16" noWrap="1" foregroundColor="grey81" halign="left" valign="top" zPosition="3">
 			<convert type="CryptoInfo">VerboseInfo</convert>
 		</widget>
-		<widget backgroundColor="infobarBG" font="Enigma;16" noWrap="1" position="500,214" foregroundColor="grey81" render="Label" size="165,22" source="session.CurrentService" halign="right" valign="top" zPosition="3">
+		<widget source="session.CurrentService" render="Label" position="500,214" size="165,22" backgroundColor="infobarBG" font="Enigma;16" noWrap="1" foregroundColor="grey81" halign="right" valign="top" zPosition="3">
 			<convert type="ServiceOrbitalPosition"></convert>
 		</widget>
-		<widget backgroundColor="infobarBG" font="Enigma;22" position="200,160" render="Label" size="375,28" source="session.Event_Now" zPosition="3">
+		<widget source="session.Event_Now" render="Label" position="200,160" size="375,28" backgroundColor="infobarBG" font="Enigma;22" zPosition="3">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget backgroundColor="infobarBG" font="Enigma;22" halign="right" position="580,160" render="Label" size="85,28" source="session.Event_Now" zPosition="3">
+		<widget source="session.Event_Now" render="Label" position="580,160" size="85,28" backgroundColor="infobarBG" font="Enigma;22" halign="right" zPosition="3">
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">InMinutes</convert>
 		</widget>
-		<widget backgroundColor="infobarBG" font="Enigma;22" position="140,186" render="Label" size="60,28" source="session.Event_Next" zPosition="3">
+		<widget source="session.Event_Next" render="Label" position="140,186" size="60,28"  backgroundColor="infobarBG" font="Enigma;22" zPosition="3">
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<widget backgroundColor="infobarBG" font="Enigma;22" position="200,186" render="Label" size="375,28" source="session.Event_Next" zPosition="3">
+		<widget source="session.Event_Next" render="Label" position="200,186" size="375,28" backgroundColor="infobarBG" font="Enigma;22" zPosition="3">
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget backgroundColor="infobarBG" font="Enigma;22" halign="right" position="580,186" render="Label" size="85,28" source="session.Event_Next" zPosition="3">
@@ -167,22 +166,133 @@
 			<convert type="ValueBitTest">8</convert>
 			<convert type="ConditionalShowHide"/>
 		</widget>
-    <widget source="session.CurrentService" render="PiconBg" position="53,158" size="72,55" transparent="0" alphatest="blend" zPosition="5" />
-	<widget source="session.CurrentService" render="Picon" position="54,160"  size="70,53" transparent="1" alphatest="blend"  zPosition="5">
+		<widget source="session.CurrentService" render="PiconBg" position="53,158" size="72,55" transparent="0" alphatest="blend" zPosition="5" />
+		<widget source="session.CurrentService" render="Picon" position="54,160"	size="70,53" transparent="1" alphatest="blend"	zPosition="5">
 		<convert type="ServiceName">Reference</convert>
-	</widget>
-    <widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="skin_default/infobar/icon_stableupdate.png" position="55,70" size="32,32" zPosition="10" alphatest="blend" >
-      <convert type="ConditionalShowHide">Blink</convert>
-    </widget>
-    <widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="skin_default/infobar/icon_unstableupdate.png" position="55,70" size="32,32" zPosition="10" alphatest="blend" >
-      <convert type="ConditionalShowHide">Blink</convert>
-    </widget>
+		</widget>
+		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="skin_default/infobar/icon_stableupdate.png" position="55,70" size="32,32" zPosition="10" alphatest="blend" >
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="skin_default/infobar/icon_unstableupdate.png" position="55,70" size="32,32" zPosition="10" alphatest="blend" >
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
 	</screen>
-  <screen flags="wfNoBorder" name="SecondInfoBar" position="0,0" size="720,96" title="SecondInfoBar">
-    <widget source="session.CurrentService" render="Label" position="50, 20" size="600,66" backgroundColor="transpBlack" transparent="1" zPosition="1" foregroundColor="foreground" font="Regular;16" valign="top" halign="left">
-      <convert type="PliExtraInfo">All</convert>
-    </widget>
-	</screen>	
+	<screen flags="wfNoBorder" name="SecondInfoBar" position="0,0" size="720,96" title="SecondInfoBar">
+		<widget source="session.CurrentService" render="Label" position="50, 20" size="600,66" backgroundColor="transpBlack" transparent="1" zPosition="1" foregroundColor="foreground" font="Regular;16" valign="top" halign="left">
+			<convert type="PliExtraInfo">All</convert>
+		</widget>
+	</screen>
+
+	<screen name="QuickEPG" position="0,325" size="720,276" flags="wfNoBorder" title="InfoBar">
+		<ePixmap alphatest="off" name="ValiOSD" pixmap="skin_default/infobar/infobar.png" position="0,0" size="720,156" zPosition="1"/>
+		<eLabel backgroundColor="infobarBG" position="0,156" size="720,110" zPosition="2"/>
+		<widget borderColor="black" borderWidth="1" backgroundColor="transpBlack" font="Enigma;24" foregroundColor="foreground" halign="left" noWrap="1" position="88,120" render="Label" size="68,28" source="global.CurrentTime" transparent="1" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget borderColor="black" borderWidth="1" backgroundColor="transpBlack" font="Enigma;24" foregroundColor="foreground" halign="center" position="160,120" render="Label" size="400,28" source="session.CurrentService" transparent="1" valign="bottom" zPosition="3">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget borderColor="black" borderWidth="1" backgroundColor="transpBlack" font="Enigma;16" noWrap="1" position="54,100" render="Label" size="220,22" source="global.CurrentTime" transparent="1" valign="bottom" zPosition="3">
+			<convert type="ClockToText">Date</convert>
+		</widget>
+		<widget backgroundColor="infobarBG" font="Enigma;22" position="140,160" render="Label" size="60,28" source="session.Event_Now" zPosition="3">
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget backgroundColor="infobarBG" font="Enigma;16" noWrap="1" position="54,214" foregroundColor="grey81" render="Label" size="300,22" source="session.CurrentService" halign="left" valign="top" zPosition="3">
+			<convert type="CryptoInfo">VerboseInfo</convert>
+		</widget>
+		<widget backgroundColor="infobarBG" font="Enigma;16" noWrap="1" position="500,214" foregroundColor="grey81" render="Label" size="165,22" source="session.CurrentService" halign="right" valign="top" zPosition="3">
+			<convert type="ServiceOrbitalPosition"></convert>
+		</widget>
+		<widget backgroundColor="infobarBG" font="Enigma;22" position="200,160" render="Label" size="375,28" source="session.Event_Now" zPosition="3">
+			<convert type="EventName">Name</convert>
+		</widget>
+		<widget backgroundColor="infobarBG" font="Enigma;22" halign="right" position="580,160" render="Label" size="85,28" source="session.Event_Now" zPosition="3">
+			<convert type="EventTime">Remaining</convert>
+			<convert type="RemainingToText">InMinutes</convert>
+		</widget>
+		<widget backgroundColor="infobarBG" font="Enigma;22" position="140,186" render="Label" size="60,28" source="session.Event_Next" zPosition="3">
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget backgroundColor="infobarBG" font="Enigma;22" position="200,186" render="Label" size="375,28" source="session.Event_Next" zPosition="3">
+			<convert type="EventName">Name</convert>
+		</widget>
+		<widget backgroundColor="infobarBG" font="Enigma;22" halign="right" position="580,186" render="Label" size="85,28" source="session.Event_Next" zPosition="3">
+			<convert type="EventTime">Duration</convert>
+			<convert type="ClockToText">InMinutes</convert>
+		</widget>
+		<widget pixmap="skin_default/infobar/p_bar.png" position="55,153" render="Progress" size="610,3" source="session.Event_Now" zPosition="3">
+			<convert type="EventTime">Progress</convert>
+		</widget>
+		<widget alphatest="on" pixmap="skin_default/infobar/ico_crypt_on.png" position="644,105" render="Pixmap" size="20,16" source="session.CurrentService" zPosition="3">
+			<convert type="ServiceInfo">IsCrypted</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget alphatest="on" pixmap="skin_default/infobar/ico_txt_on.png" position="644,128" render="Pixmap" size="20,16" source="session.CurrentService" zPosition="3">
+			<convert type="ServiceInfo">HasTelext</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget alphatest="on" pixmap="skin_default/infobar/ico_dolby_on.png" position="594,128" render="Pixmap" size="20,16" source="session.CurrentService" zPosition="3">
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget alphatest="on" pixmap="skin_default/infobar/ico_format_on.png" position="619,128" render="Pixmap" size="20,16" source="session.CurrentService" zPosition="3">
+			<convert type="ServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget alphatest="on" pixmap="skin_default/infobar/ico_sub_on.png" position="569,128" render="Pixmap" size="20,16" source="session.CurrentService" zPosition="3">
+			<convert type="ServiceInfo">SubservicesAvailable</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget alphatest="on" pixmap="skin_default/buttons/red.png" position="548,129" render="Pixmap" size="14,14" source="session.RecordState" zPosition="4">
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<widget borderColor="black" borderWidth="1" font="Enigma;16" foregroundColor="foreground" halign="right" position="567,100" render="Label" size="66,24" source="session.FrontendStatus" transparent="1" zPosition="3">
+			<convert type="FrontendInfo">SNRdB</convert>
+		</widget>
+		<widget alphatest="on" pixmap="skin_default/infobar/nimA.png" position="54,122" render="Pixmap" size="24,24" source="session.TunerInfo" zPosition="6">
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">1</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget alphatest="on" pixmap="skin_default/infobar/nimB.png" position="54,122" render="Pixmap" size="24,24" source="session.TunerInfo" zPosition="7">
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">2</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget alphatest="on" pixmap="skin_default/infobar/nimC.png" position="54,122" render="Pixmap" size="24,24" source="session.TunerInfo" zPosition="8">
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">4</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget alphatest="on" pixmap="skin_default/infobar/nimD.png" position="54,122" render="Pixmap" size="24,24" source="session.TunerInfo" zPosition="9">
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">8</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget source="session.CurrentService" render="PiconBg" position="53,158" size="72,55" transparent="0" alphatest="blend" zPosition="5" />
+		<widget source="session.CurrentService" render="Picon" position="54,160"	size="70,53" transparent="1" alphatest="blend"	zPosition="5">
+			<convert type="ServiceName">Reference</convert>
+		</widget>
+		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="skin_default/infobar/icon_stableupdate.png" position="55,70" size="32,32" zPosition="10" alphatest="blend" >
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="skin_default/infobar/icon_unstableupdate.png" position="55,70" size="32,32" zPosition="10" alphatest="blend" >
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<!-- Event (now) -->
+		<widget name="list" position="205,73" size="500,40" font="Regular;20" backgroundColor="#34406f" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1"/>
+		<ePixmap pixmap="skin_default/buttons/button_red.png" position="202,130" size="15,16" alphatest="on" />
+		<widget name="key_red" position="222,130" zPosition="1" size="100,16" font="Regular;16" backgroundColor="#182946" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" halign="left" />
+		<ePixmap pixmap="skin_default/buttons/button_green.png" position="315,130" size="15,16" alphatest="on"	/>
+		<widget name="key_green" position="335,130" zPosition="1" size="100,16" font="Regular;16" backgroundColor="#182946" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" halign="left"/>
+		<ePixmap pixmap="skin_default/buttons/button_yellow.png" position="440,130" size="15,16" alphatest="on" />
+		<widget name="key_yellow" position="460,130" zPosition="1" size="100,16" font="Regular;16" backgroundColor="#182946" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" halign="left"/>
+		<ePixmap pixmap="skin_default/buttons/button_blue.png" position="545,130" zPosition="1" size="15,16" alphatest="on" />
+		<widget name="key_blue" position="565,130" zPosition="1" size="120,16" font="Regular;16" backgroundColor="#182946" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" halign="left" />
+	</screen>
 	<screen backgroundColor="transparent" flags="wfNoBorder" name="MoviePlayer" position="60,40" size="600,102" title="MoviePlayer">
 		<eLabel backgroundColor="infobarBG" position="6,44" size="588,14" zPosition="0"/>
 		<ePixmap alphatest="on" pixmap="skin_default/dvr/scale.png" position="8,45" size="584,12" zPosition="1"/>
@@ -278,7 +388,7 @@
 		<widget font="Enigma;20" halign="right" name="audioLabel" noWrap="1" position="360,105" borderColor="black" borderWidth="2" size="146,24" backgroundColor="transparent" zPosition="3"/>
 		<widget font="Enigma;20" halign="right" name="subtitleLabel" noWrap="1" position="510,105" borderColor="black" borderWidth="2" size="140,24" backgroundColor="transparent" zPosition="3"/>
 	</screen>
-	<!--  ##### Menus #####  -->
+	<!--	##### Menus #####	-->
 	<screen name="Menu" position="center,center" size="300,310" title="Main menu">
 		<widget font="Enigma;22" halign="center" position="10,5" render="Label" size="280,35" source="title" valign="center"/>
 		<widget position="10,55" render="Listbox" scrollbarMode="showOnDemand" size="280,225" source="menu">
@@ -292,7 +402,7 @@
 		</widget>
 <!--<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="226,289" size="14,14" zPosition="4"/>-->
 		<eLabel backgroundColor="darkgrey" position="0,282" size="300,2" zPosition="5"/>
-    <ePixmap pixmap="skin_default/logos/vix.png" position="5,290" size="250,25" alphatest="on" />
+		<ePixmap pixmap="skin_default/logos/vix.png" position="5,290" size="250,25" alphatest="on" />
 	</screen>
 <!--	<screen backgroundColor="transBG" flags="wfNoBorder" name="menu_mainmenu" position="0,128" size="720,320" title="Main menu">-->
 	<screen backgroundColor="transBG" flags="wfNoBorder" name="menu_mainmenu" position="120,128" size="480,302" title="Main menu">
@@ -345,7 +455,7 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4"/>
-    <ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
+		<ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
 	</screen>
 	<screen backgroundColor="transBG" flags="wfNoBorder" name="menu_information" position="120,128" size="480,302" title="Main menu">
 		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
@@ -361,9 +471,9 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4"/>
-    <ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
+		<ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
 	</screen>
-  <screen backgroundColor="transBG" flags="wfNoBorder" name="menu_shutdown" position="120,128" size="480,302" title="Main menu">
+	<screen backgroundColor="transBG" flags="wfNoBorder" name="menu_shutdown" position="120,128" size="480,302" title="Main menu">
 		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
 		<ePixmap alphatest="on" pixmap="skin_default/menu/shutdown.png" position="3,53" size="128,128" zPosition="1"/>
 		<widget font="Enigma;20" position="80,10" render="Label" size="250,20" source="title" transparent="1" zPosition="1"/>
@@ -377,7 +487,7 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4"/>
-    <ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
+		<ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
 	</screen>
 	<screen backgroundColor="transBG" flags="wfNoBorder" name="menu_harddisk" position="120,128" size="480,302" title="Main menu">
 		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
@@ -393,7 +503,7 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4"/>
-    <ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
+		<ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
 	</screen>
 	<screen backgroundColor="transBG" flags="wfNoBorder" name="menu_network" position="120,128" size="480,302" title="Main menu">
 		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
@@ -409,7 +519,7 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4"/>
-    <ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
+		<ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
 	</screen>
 	<screen backgroundColor="transBG" flags="wfNoBorder" name="menu_setup" position="120,128" size="480,302" title="Main menu">
 		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
@@ -425,25 +535,25 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4"/>
-    <ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
+		<ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
 	</screen>
-  <screen name="Setup" position="120,100" size="500,400" backgroundColor="transBG" flags="wfNoBorder" title="Main menu">
-    <eLabel backgroundColor="background" position="0,0" size="500,400" zPosition="-1" />
-    <widget name="description" position="3,305" size="490,60" zPosition="10" font="Enigma;16" halign="center" valign="center" transparent="0" foregroundColor="secondFG" />
-    <widget font="Enigma;22" position="3,48" render="Label" size="490,26" source="Title" transparent="1" zPosition="1" />
-    <widget name="config" position="3,78" scrollbarMode="showOnDemand" size="490,222" source="menu" transparent="10" itemHeight="20" enableWrapAround="1" zPosition="1" />
-    <widget name="footnote" position="222,372" size="260,19" zPosition="1" font="Regular;18" transparent="1" />
-    <widget font="Enigma;18" halign="right" position="404,4" render="Label" size="55,22" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
-      <convert type="ClockToText">Default</convert>
-    </widget>
-    <ePixmap alphatest="on" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" />
-    <ePixmap alphatest="on" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" />
-    <widget source="key_red" render="Label" font="Regular;20" halign="center" position="-2,1" size="140,40" transparent="1" valign="center" zPosition="10" />
-    <widget source="key_green" render="Label" font="Regular;20" halign="center" position="140,0" size="140,40" transparent="1" valign="center" zPosition="10" />
-    <ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4" />
+	<screen name="Setup" position="120,100" size="500,400" backgroundColor="transBG" flags="wfNoBorder" title="Main menu">
+		<eLabel backgroundColor="background" position="0,0" size="500,400" zPosition="-1" />
+		<widget name="description" position="3,305" size="490,60" zPosition="10" font="Enigma;16" halign="center" valign="center" transparent="0" foregroundColor="secondFG" />
+		<widget font="Enigma;22" position="3,48" render="Label" size="490,26" source="Title" transparent="1" zPosition="1" />
+		<widget name="config" position="3,78" scrollbarMode="showOnDemand" size="490,222" source="menu" transparent="10" itemHeight="20" enableWrapAround="1" zPosition="1" />
+		<widget name="footnote" position="222,372" size="260,19" zPosition="1" font="Regular;18" transparent="1" />
+		<widget font="Enigma;18" halign="right" position="404,4" render="Label" size="55,22" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap alphatest="on" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" />
+		<ePixmap alphatest="on" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" />
+		<widget source="key_red" render="Label" font="Regular;20" halign="center" position="-2,1" size="140,40" transparent="1" valign="center" zPosition="10" />
+		<widget source="key_green" render="Label" font="Regular;20" halign="center" position="140,0" size="140,40" transparent="1" valign="center" zPosition="10" />
+		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4" />
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,300" zPosition="1" size="440,350" transparent="1" alphatest="on" />
-    <ePixmap pixmap="skin_default/logos/vix.png" position="2,372" size="220,25" alphatest="on" />
-  </screen>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,372" size="220,25" alphatest="on" />
+	</screen>
 	<screen name="menu_scan" position="120,128" size="480,302" backgroundColor="transBG" flags="wfNoBorder" title="Main menu">
 		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
 		<ePixmap alphatest="on" pixmap="skin_default/menu/information.png" position="3,53" size="128,128" zPosition="1"/>
@@ -458,7 +568,7 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4"/>
-    <ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
+		<ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
 	</screen>
 	<screen backgroundColor="transBG" flags="wfNoBorder" name="menu_system" position="120,128" size="480,302" title="Main menu">
 		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
@@ -481,7 +591,7 @@
 		<widget name="menu" position="10,10" size="340,300" scrollbarMode="showOnDemand" />
 		<ePixmap pixmap="skin_default/logos/vix.png" position="0,320" size="340,25" alphatest="on" />
 	</screen>
-	<!--  ##### Input and Output Boxes #####  -->
+	<!--	##### Input and Output Boxes #####	-->
 	<screen backgroundColor="transparent" flags="wfNoBorder" name="NumberZap" position="50,50" size="160,26" title="Channel">
 		<widget font="Enigma;22" halign="right" name="channel" noWrap="1" position="0,0" size="100,26" valign="center" zPosition="1" borderWidth="2" borderColor="black" backgroundColor="transparent" />
 		<widget font="Enigma;22" halign="left" name="number" noWrap="1" position="105,0" size="55,26" valign="center" zPosition="2" borderWidth="2" borderColor="black" backgroundColor="transparent" />
@@ -491,27 +601,27 @@
 		<widget font="Enigma;22" halign="left" name="number" noWrap="1" position="105,0" size="55,26" valign="center" zPosition="2" borderWidth="2" borderColor="black" backgroundColor="transparent" />
 	</screen> 
 	<screen name="About" position="80,80" size="540,460" title="About">
-    <widget source="lab1" render="Label" position="10,0" size="490,25" font="Regular; 22" transparent="0" zPosition="2" />
-    <widget source="lab2" render="Label" position="10,25" size="490,20" font="Regular; 18" transparent="0" zPosition="2" />
-    <widget source="lab3" render="Label" position="10,45" size="490,20" font="Regular; 18" transparent="0" zPosition="1" />
-    <widget name="AboutScrollLabel" font="Enigma;18" position="10,70" size="490,310" scrollbarMode="showOnDemand"/>
-    <ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
-    <ePixmap pixmap="skin_default/buttons/key_info.png" alphatest="on" position="260,425" size="35,25" />
+		<widget source="lab1" render="Label" position="10,0" size="490,25" font="Regular; 22" transparent="0" zPosition="2" />
+		<widget source="lab2" render="Label" position="10,25" size="490,20" font="Regular; 18" transparent="0" zPosition="2" />
+		<widget source="lab3" render="Label" position="10,45" size="490,20" font="Regular; 18" transparent="0" zPosition="1" />
+		<widget name="AboutScrollLabel" font="Enigma;18" position="10,70" size="490,310" scrollbarMode="showOnDemand"/>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/key_info.png" alphatest="on" position="260,425" size="35,25" />
 	</screen>
 		<screen name="Devices" position="80,80" size="540,460" title="Systeminfo">
 		<widget font="Regular; 20" position="10,5" render="Label" size="490,22" source="TunerHeader"/>
 		<widget font="Regular; 18" position="10,32" render="Label" size="490,100" source="nims"/>
 		<widget font="Regular; 20" position="10,150" render="Label" size="490,22" source="HDDHeader"/>
 		<widget font="Regular; 18" position="10,175" render="Label" size="490,100" source="hdd"/>
-    <widget source="MountsHeader" render="Label" position="10,300" size="490,22" font="Regular; 20" transparent="0" zPosition="1" />
-    <widget source="mounts" render="Label" position="10,325" size="490,100" font="Regular; 18" transparent="0" zPosition="1" />
-    <ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
-    <eLabel text="www.world-of-satellite.com" foregroundColor="grey" backgroundColor="background" font="Regular;22" halign="center" position="225,422" size="300,25" transparent="1" zPosition="1" />
+		<widget source="MountsHeader" render="Label" position="10,300" size="490,22" font="Regular; 20" transparent="0" zPosition="1" />
+		<widget source="mounts" render="Label" position="10,325" size="490,100" font="Regular; 18" transparent="0" zPosition="1" />
+		<ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
+		<eLabel text="www.world-of-satellite.com" foregroundColor="grey" backgroundColor="background" font="Regular;22" halign="center" position="225,422" size="300,25" transparent="1" zPosition="1" />
 	</screen>
 	<screen name="AboutReleaseNotes" position="80,80" size="540,460" title="Release Notes">
-    <widget name="list" render="Label" font="Regular;22" position="25,30" size="490,350" transparent="1" />
-    <ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
-    <eLabel text="www.world-of-satellite.com" foregroundColor="grey" backgroundColor="background" font="Regular;22" halign="center" position="225,422" size="300,25" transparent="1" zPosition="1" />
+		<widget name="list" render="Label" font="Regular;22" position="25,30" size="490,350" transparent="1" />
+		<ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
+		<eLabel text="www.world-of-satellite.com" foregroundColor="grey" backgroundColor="background" font="Regular;22" halign="center" position="225,422" size="300,25" transparent="1" zPosition="1" />
 	</screen>
 		<screen name="TranslationInfo" position="80,80" size="540,460" title="Translation">
 		<widget font="Enigma;18" position="10,5" render="Label" size="490,50" source="TranslatorName"/>
@@ -523,7 +633,6 @@
 			<convert type="ServicePosition">Remaining</convert>
 		</widget>
 	</screen>
-
 	<screen name="ServiceInfo" position="80,85" size="560,440" title="Serviceinfo">
 		<ePixmap alphatest="on" name="bg_red" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1" zPosition="1"/>
 		<ePixmap alphatest="on" name="bg_green" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1" zPosition="1"/>
@@ -534,23 +643,14 @@
 		<widget backgroundColor="#8C5900" font="Enigma;18" halign="center" name="yellow" position="280,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
 		<widget backgroundColor="#254177" font="Enigma;18" halign="center" name="blue" position="420,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
 		<widget name="infolist" position="5,40" selectionDisabled="1" size="550,390"/>
-    <ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
-    <eLabel text="www.world-of-satellite.com" foregroundColor="grey" backgroundColor="background" font="Regular;22" halign="center" position="225,422" size="300,25" transparent="1" zPosition="1" />
+		<ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
+		<eLabel text="www.world-of-satellite.com" foregroundColor="grey" backgroundColor="background" font="Regular;22" halign="center" position="225,422" size="300,25" transparent="1" zPosition="1" />
 	</screen>
-
-
-  <screen name="SystemMemoryInfo" position="80,80" size="540,460" title="Release Notes">
-    <widget name="AboutScrollLabel" render="Label" font="Regular;22" position="25,30" size="490,350" scrollbarMode="showOnDemand" transparent="1" />
-    <ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
-    <eLabel text="www.world-of-satellite.com" foregroundColor="grey" backgroundColor="background" font="Regular;22" halign="center" position="225,422" size="300,25" transparent="1" zPosition="1" />
-  </screen>
-
-<!--  <screen name="SystemNetworkInfo" position="80,80" size="540,460" title="Release Notes">
-    <widget name="AboutScrollLabel" render="Label" font="Regular;22" position="25,30" size="490,350" transparent="1" />
-    <ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
-    <eLabel text="www.world-of-satellite.com" foregroundColor="grey" backgroundColor="background" font="Regular;22" halign="center" position="225,422" size="300,25" transparent="1" zPosition="1" />
-  </screen>-->
-
+	<screen name="SystemMemoryInfo" position="80,80" size="540,460" title="Release Notes">
+		<widget name="AboutScrollLabel" render="Label" font="Regular;22" position="25,30" size="490,350" scrollbarMode="showOnDemand" transparent="1" />
+		<ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
+		<eLabel text="www.world-of-satellite.com" foregroundColor="grey" backgroundColor="background" font="Regular;22" halign="center" position="225,422" size="300,25" transparent="1" zPosition="1" />
+	</screen>
 	<!-- Plugin browser -->
 	<screen name="PluginBrowser" position="160,95" size="450,405" title="Plugin browser">
 		<ePixmap alphatest="on" pixmap="skin_default/buttons/red-big.png" position="0,0" size="200,40"/>
@@ -565,7 +665,7 @@
 		<widget font="Enigma;20" halign="center" name="text" position="0,0" size="560,430" valign="center" zPosition="1"/>
 		<widget name="list" position="10,10" scrollbarMode="showOnDemand" size="540,405" zPosition="2"/>
 	</screen>
-  <screen backgroundColor="transparent" flags="wfNoBorder" name="PVRState" position="60,102" size="80,34" zPosition="2">
+	<screen backgroundColor="transparent" flags="wfNoBorder" name="PVRState" position="60,102" size="80,34" zPosition="2">
 		<widget font="Enigma;24" halign="left" name="state" position="0,0" size="80,34" backgroundColor="transparent" borderColor="black" borderWidth="2" />
 	</screen>
 	<screen name="LocationBox" position="center,center" size="560,440">
@@ -603,7 +703,7 @@
 	<screen name="FileBrowser" position="80,85" size="560,440" title="DVD File Browser">
 		<widget name="filelist" position="5,5" scrollbarMode="showOnDemand" size="550,425"/>
 	</screen>
-	<!--  Setup  -->
+	<!--	Setup	-->
 	<screen name="Console" position="80,85" size="560,440" title="Command execution...">
 		<widget font="Enigma;18" name="text" position="5,10" size="540,410"/>
 	</screen>
@@ -654,7 +754,7 @@
 			<widget backgroundColor="#25062748" font="Regular;21" halign="center" position="0,420" render="Label" size="560,30" source="infotext" transparent="1" valign="center" zPosition="10"/>
 		</screen>
 		<screen name="UpdatePluginMenu" position="80,130" size="560,330" title="Softwaremanager...">
-      <eLabel backgroundColor="black" position="5,15" size="300,270" zPosition="1"/>
+			<eLabel backgroundColor="black" position="5,15" size="300,270" zPosition="1"/>
 			<widget position="10,20" render="Listbox" scrollbarMode="showOnDemand" size="290,260" source="menu" zPosition="2">
 				<convert type="TemplatedMultiContent">
 					{"template": [
@@ -717,7 +817,7 @@
 		<screen name="MyTubeVideoInfoScreen" flags="wfNoBorder" position="0,0" size="720,576" title="MyTubePlayerMainScreen..." >
 			<widget name="title" position="60,50" size="600,50" zPosition="5" valign="center" halign="left" font="Enigma;22" foregroundColor="white" borderColor="black" borderWidth="2" />
 			<widget name="starsbg" pixmap="~/starsbar_empty.png" position="560,220" zPosition="5" size="100,20" transparent="1" alphatest="on" />
-			<widget name="stars" pixmap="~/starsbar_filled.png" position="560,220" zPosition="6" size="100,20"  transparent="1" />
+			<widget name="stars" pixmap="~/starsbar_filled.png" position="560,220" zPosition="6" size="100,20" transparent="1" />
 			<widget source="infolist" render="Listbox" position="50,110" size="620,110" zPosition="6" scrollbarMode="showNever" selectionDisabled="1" backgroundColor="black">
 				<convert type="TemplatedMultiContent">
 				{"templates":
@@ -814,11 +914,11 @@
 			<ePixmap position="220,500" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
 			<widget name="key_red" position="220,500" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" borderColor="black" borderWidth="2" />
 		</screen>
-  <!-- ## PiP ## -->
-  <screen name="PictureInPictureZapping" flags="wfNoBorder" backgroundColor="transparent" position="300,60" size="120,26" title="PiPZap" zPosition="-1">
-	  <eLabel text="PiP-Zap" position="0,0" size="120,26" backgroundColor="transparent" transparent="1" font="Regular;22" borderColor="black" borderWidth="3" valign="center" halign="center" />
-  </screen>
-  <screen name="PiPSetup" flags="wfNoBorder" backgroundColor="transparent" position="85,85" size="550,300" zPosition="-1" >
-    <widget name="text" position="0,0" size="550,300" backgroundColor="transparent" transparent="1" font="Regular;22" borderColor="black" borderWidth="3" valign="center" halign="center" />
-  </screen>
+	<!-- ## PiP ## -->
+	<screen name="PictureInPictureZapping" flags="wfNoBorder" backgroundColor="transparent" position="300,60" size="120,26" title="PiPZap" zPosition="-1">
+		<eLabel text="PiP-Zap" position="0,0" size="120,26" backgroundColor="transparent" transparent="1" font="Regular;22" borderColor="black" borderWidth="3" valign="center" halign="center" />
+	</screen>
+	<screen name="PiPSetup" flags="wfNoBorder" backgroundColor="transparent" position="85,85" size="550,300" zPosition="-1" >
+		<widget name="text" position="0,0" size="550,300" backgroundColor="transparent" transparent="1" font="Regular;22" borderColor="black" borderWidth="3" valign="center" halign="center" />
+	</screen>
 </skin>
