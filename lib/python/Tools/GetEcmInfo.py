@@ -35,10 +35,32 @@ class GetEcmInfo:
 				file.close()
 			except:
 				ecm = ''
+			info['eEnc'] = ""
+			info['eCaid'] = ""
+			info['eSrc'] = ""
+			info['eTime'] = "0"
 			for line in ecm:
 				d = line.split(':', 1)
 				if len(d) > 1:
 					info[d[0].strip()] = d[1].strip()
+				mgcam = line.strip()
+				if line.find('ECM') != -1:
+					linetmp = mgcam.split(' ')
+					info['eEnc'] = linetmp[1]
+					info['eCaid'] = linetmp[5][2:-1]
+					continue
+				if line.find('source') != -1:
+					linetmp = mgcam.split(' ')
+					try:
+						info['eSrc'] = linetmp[4][:-1]
+						continue
+					except:
+						info['eSrc'] = linetmp[1]
+						continue
+				if line.find('msec') != -1:
+					linetmp = line.split(' ')
+					info['eTime'] = linetmp[0]
+					continue
 			data = self.getText()
 			return
 		info['ecminterval0'] = int(time.time()-ecm_time+0.5)
@@ -131,30 +153,7 @@ class GetEcmInfo:
 				source = info.get('source', None)
 				if source:
 					# MGcam
-					eEnc  = ""
-					eCaid = ""
-					eSrc = ""
-					eTime = "0"
-					for line in ecm:
-						line = line.strip()
-						if line.find('ECM') != -1:
-							linetmp = line.split(' ')
-							eEnc = linetmp[1]
-							eCaid = linetmp[5][2:-1]
-							continue
-						if line.find('source') != -1:
-							linetmp = line.split(' ')
-							try:
-								eSrc = linetmp[4][:-1]
-								continue
-							except:
-								eSrc = linetmp[1]
-								continue
-						if line.find('msec') != -1:
-							linetmp = line.split(' ')
-							eTime = linetmp[0]
-							continue
-					self.textvalue = "(%s %s %.3f @ %s)" % (eEnc,eCaid,(float(eTime)/1000),eSrc)
+					self.textvalue = "%s %s %.3f @ %s" % (info['eEnc'],info['eCaid'],(float(info['eTime'])/1000),info['eSrc'])
 				else:
 					reader = info.get('reader', '')
 					if reader:
