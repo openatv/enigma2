@@ -234,13 +234,21 @@ class EventViewBase:
 			self.session.open(EventViewContextMenu, self.currentService, self.event)
 
 class EventViewSimple(Screen, EventViewBase):
-	def __init__(self, session, Event, Ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None):
+	def __init__(self, session, Event, Ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None, skin='EventViewSimple'):
 		Screen.__init__(self, session)
-		file = open(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml"))
-		data = file.read()
-		file.close()
-		if data.find('EventViewSimple') >= 0:
-			self.skinName = "EventViewSimple"
+		if path.exists(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")):
+			file = open(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml"))
+			data = file.read()
+			file.close()
+		elif path.exists(resolveFilename(SCOPE_CURRENT_SKIN,"../skin.xml")):
+			file = open(resolveFilename(SCOPE_CURRENT_SKIN,"../skin.xml"))
+			data = file.read()
+			file.close()
+		else:
+			data = None
+
+		if data.find(skin) != -1:
+			self.skinName = skin
 		else:
 			self.skinName = "EventView"
 		EventViewBase.__init__(self, Event, Ref, callback, similarEPGCB)
