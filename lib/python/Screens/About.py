@@ -154,7 +154,8 @@ class Devices(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Device Information"))
-		self.skinName = ["SystemDevicesInfo", "About"]
+		#self.skinName = ["SystemDevicesInfo", "About"]
+		self.skinName = ["About"]
 		
 		self.AboutText = ""
 		self["AboutScrollLabel"] = ScrollLabel(self.AboutText)
@@ -277,7 +278,8 @@ class SystemMemoryInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Memory Information"))
-		self.skinName = ["SystemMemoryInfo", "About"]
+		#self.skinName = ["SystemMemoryInfo", "About"]
+		self.skinName = ["About"]
 		self["AboutScrollLabel"] = ScrollLabel()
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
@@ -338,7 +340,8 @@ class SystemNetworkInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Network Information"))
-		self.skinName = ["SystemNetworkInfo", "About"]
+		#self.skinName = ["SystemNetworkInfo", "About"]
+		self.skinName = ["About"]
 		self["LabelBSSID"] = StaticText()
 		self["LabelESSID"] = StaticText()
 		self["LabelQuality"] = StaticText()
