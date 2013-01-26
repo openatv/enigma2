@@ -417,14 +417,19 @@ class MovieSelectionSummary(Screen):
 class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def __init__(self, session, selectedmovie = None):
 		Screen.__init__(self, session)
-		data = resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")
-		data = data.replace('/ skin.xml','/skin.xml')
-		data = file(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")).read()
-		if config.movielist.useslim.getValue():
-			if data.find('MovieSelectionSlim') >= 0:
-				self.skinName = "MovieSelectionSlim"
-			else:
-				self.skinName = "MovieSelection"
+		if os.path.exists(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")):
+			file = open(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml"))
+			data = file.read()
+			file.close()
+		elif os.path.exists(resolveFilename(SCOPE_CURRENT_SKIN,"../skin.xml")):
+			file = open(resolveFilename(SCOPE_CURRENT_SKIN,"../skin.xml"))
+			data = file.read()
+			file.close()
+		else:
+			data = None
+
+		if data and config.movielist.useslim.getValue() and data.find('MovieSelectionSlim') >= 0:
+			self.skinName = "MovieSelectionSlim"
 		else:
 			self.skinName = "MovieSelection"
 
