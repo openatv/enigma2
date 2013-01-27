@@ -242,59 +242,78 @@
 	</setup>
 	<setup key="epgsingle" title="ChannelEPG settings">
 		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical.">config.epgselection.sort</item>
-		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.itemsperpage_enhanced</item>
-		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.ev_fontsize_enhanced</item>
+		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.enhanced_itemsperpage</item>
+		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.enhanced_eventfs</item>
 	</setup>
 	<setup key="epgmulti" title="MultiEPG settings">
-		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.preview_mode</item>
-		<item level="2" text="Show bouquet on launch" description="If set to 'yes' the bouquets will be shown each time you open the EPG.">config.epgselection.showbouquet_multi</item>
+		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.multi_preview_mode</item>
+		<item level="2" text="Show bouquet on launch" description="If set to 'yes' the bouquets will be shown each time you open the EPG.">config.epgselection.multi_showbouquet</item>
 		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
 		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical.">config.epgselection.sort</item>
-		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.OK_multi</item>
-		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.OKLong_multi</item>
-		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.itemsperpage_multi</item>
-		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.ev_fontsize_multi</item>
+		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.multi_ok</item>
+		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.multi_okLong</item>
+		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.multi_itemsperpage</item>
+		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.multi_eventfs</item>
 	</setup>
 	<setup key="epgenhanced" title="SingleEPG settings">
-		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.preview_mode_enhanced</item>
+		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.enhanced_preview_mode</item>
 		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
 		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical.">config.epgselection.sort</item>
-		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.OK_enhanced</item>
-		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.OKLong_enhanced</item>
-		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.itemsperpage_enhanced</item>
-		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.ev_fontsize_enhanced</item>
+		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.enhanced_ok</item>
+		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.enhanced_oklong</item>
+		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.enhanced_itemsperpage</item>
+		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.enhanced_eventfs</item>
 	</setup>
 	<setup key="epginfobar" title="InfobarEPG settings">
-		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.preview_mode_infobar</item>
+		<item level="2" text="View mode" description="This option allows you set the layout view (Text or Graphics).">config.epgselection.infobar_type_mode</item>
+		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.infobar_preview_mode</item>
 		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
 		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical.">config.epgselection.sort</item>
-		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.OK_infobar</item>
-		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.OKLong_infobar</item>
-		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.itemsperpage_infobar</item>
-		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.ev_fontsize_infobar</item>
+		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.infobar_ok</item>
+		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.infobar_oklong</item>
+		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.infobar_itemsperpage</item>
+		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_eventfs</item>
+	</setup>
+	<setup key="epginfobargraphical" title="InfobarEPG settings">
+		<item level="2" text="View mode" description="This option allows you set the layout view (Text or Graphics).">config.epgselection.infobar_type_mode</item>
+		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.infobar_preview_mode</item>
+		<item level="2" text="Service Title mode" description="Configure to show the channel names, picons, or both in the EPG.">config.epgselection.infobar_servicetitle_mode</item>
+		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.infobar_ok</item>
+		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.infobar_oklong</item>
+		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
+		<item level="2" text="Base time" description="Choose time interval to which the graphics will be rounded off.">config.epgselection.infobar_roundto</item>
+		<item level="2" text="Primetime hour" description="Set to the desired primetime (hour).">config.epgselection.infobar_primetimehour</item>
+		<item level="2" text="Primetime minute" description="Set to the desired primetime (minutes.">config.epgselection.infobar_primetimemins</item>
+		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.infobar_itemsperpage</item>
+		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_eventfs</item>
+		<item level="2" text="Service font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_servfs</item>
+		<item level="2" text="Service width" description="Configure the width allocated to the service name.">config.epgselection.infobar_servicewidth</item>
+		<item level="2" text="Picon width" description="Configure the width allocated to the picon.">config.epgselection.infobar_piconwidth</item>
+		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_timelinefs</item>
+		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.infobar_prevtimeperiod</item>
 	</setup>
 	<setup key="epggraphical" title="GraphicalEPG settings">
-		<item level="2" text="View mode" description="This option allows you set the layout view (Text or Graphics).">config.epgselection.graphics_mode</item>
-		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.preview_mode_vixepg</item>
-		<item level="2" text="Show bouquet on launch" description="If set to 'yes' the bouquets will be shown each time you open the EPG.">config.epgselection.showbouquet_vixepg</item>
-		<item level="2" text="Picture in graphics" description="If set to 'yes' shows a small TV-screen in the EPG.">config.epgselection.pictureingraphics</item>
-		<item level="2" text="Service Title mode" description="Configure to show the channel names, picons, or both in the EPG.">config.epgselection.servicetitle_mode</item>
-		<item level="2" text="Info button (short)" description="Set to what you want the button to do.">config.epgselection.Info</item>
-		<item level="2" text="Info button (long)" description="Set to what you want the button to do.">config.epgselection.InfoLong</item>
-		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.OK_vixepg</item>
-		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.OKLong_vixepg</item>
-		<item level="2" text="Channel 1 at start" description="If set to 'yes' the EPG will alway open at the first channel. If set to 'no' the EPG will open on the present channel.">config.epgselection.channel1</item>
+		<item level="2" text="View mode" description="This option allows you set the layout view (Text or Graphics).">config.epgselection.graph_type_mode</item>
+		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.graph_preview_mode</item>
+		<item level="2" text="Show bouquet on launch" description="If set to 'yes' the bouquets will be shown each time you open the EPG.">config.epgselection.graph_showbouquet</item>
+		<item level="2" text="Picture in graphics" description="If set to 'yes' shows a small TV-screen in the EPG.">config.epgselection.graph_pig</item>
+		<item level="2" text="Service Title mode" description="Configure to show the channel names, picons, or both in the EPG.">config.epgselection.graph_servicetitle_mode</item>
+		<item level="2" text="Info button (short)" description="Set to what you want the button to do.">config.epgselection.graph_info</item>
+		<item level="2" text="Info button (long)" description="Set to what you want the button to do.">config.epgselection.graph_infolong</item>
+		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.graph_ok</item>
+		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.graph_oklong</item>
+		<item level="2" text="Channel 1 at start" description="If set to 'yes' the EPG will alway open at the first channel. If set to 'no' the EPG will open on the present channel.">config.epgselection.graph_channel1</item>
 		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
-		<item level="2" text="Base time" description="Choose time interval to which the graphics will be rounded off.">config.epgselection.roundTo</item>
-		<item level="2" text="Primetime hour" description="Set to the desired primetime (hour).">config.epgselection.primetimehour</item>
-		<item level="2" text="Primetime minute" description="Set to the desired primetime (minutes.">config.epgselection.primetimemins</item>
-		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.itemsperpage_vixepg</item>
-		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.ev_fontsize_vixepg</item>
-		<item level="2" text="Service font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.serv_fontsize_vixepg</item>
-		<item level="2" text="Service width" description="Configure the width allocated to the service name.">config.epgselection.servicewidth</item>
-		<item level="2" text="Picon width" description="Configure the width allocated to the picon.">config.epgselection.piconwidth</item>
-		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.tl_fontsize_vixepg</item>
-		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.prev_time_period</item>
+		<item level="2" text="Base time" description="Choose time interval to which the graphics will be rounded off.">config.epgselection.graph_roundto</item>
+		<item level="2" text="Primetime hour" description="Set to the desired primetime (hour).">config.epgselection.graph_primetimehour</item>
+		<item level="2" text="Primetime minute" description="Set to the desired primetime (minutes.">config.epgselection.graph_primetimemins</item>
+		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.graph_itemsperpage</item>
+		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.graph_eventfs</item>
+		<item level="2" text="Service font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.graph_servfs</item>
+		<item level="2" text="Service width" description="Configure the width allocated to the service name.">config.epgselection.graph_servicewidth</item>
+		<item level="2" text="Picon width" description="Configure the width allocated to the picon.">config.epgselection.graph_piconwidth</item>
+		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.graph_timelinefs</item>
+		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.graph_prevtimeperiod</item>
 	</setup>
 	<setup key="pluginbrowsersetup" title="Settings...">
 		<item level="2" text="Show translation packages" description="If set to 'yes' it will show the 'PO' packages in browser.">config.pluginbrowser.po</item>
