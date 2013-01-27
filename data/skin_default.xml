@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 1.07 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
+	<!--	Skin: Default-ViX Vs 1.08 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
 	<!--	Contains derived work by MiLo -->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
@@ -377,6 +377,7 @@
 		<widget name="RtpText" position="50,510" size="620,29" font="Regular;21" halign="right" noWrap="1" backgroundColor="#003258" />
 		<widget name="RassLogo" pixmap="skin_default/icons/rass_logo.png" position="50,445" size="50,21" />
 	</screen>
+<!-- ##In Use??##
 	<screen name="Menu" position="center,center" size="300,310" title="Main menu">
 		<widget source="title" render="Label" position="10,5"  size="280,35" valign="center" font="Enigma;22" halign="center" />
 		<widget position="10,55" render="Listbox" scrollbarMode="showOnDemand" size="280,225" source="menu">
@@ -390,7 +391,7 @@
 		</widget>
 		<eLabel backgroundColor="darkgrey" position="0,282" size="300,2" zPosition="5"/>
 		<ePixmap pixmap="skin_default/logos/vix.png" position="5,290" size="250,25" alphatest="on" />
-	</screen>
+	</screen>-->
 	<screen name="menu_mainmenu" position="center,center" size="480,302" backgroundColor="transBG" flags="wfNoBorder" title="Main menu">
 		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
 		<widget source="title" render="Label" position="149,4" size="310,26" font="Enigma;22" transparent="1" zPosition="1"/>
@@ -584,7 +585,7 @@
 		<widget font="Enigma;22" halign="right" name="chapter" noWrap="1" position="0,0" size="100,26" valign="center" zPosition="1" borderWidth="2" borderColor="black" backgroundColor="transparent" />
 		<widget font="Enigma;22" halign="left" name="number" noWrap="1" position="105,0" size="55,26" valign="center" zPosition="2" borderWidth="2" borderColor="black" backgroundColor="transparent" />
 	</screen>
-	<screen name="About" position="center,center" size="540,460" title="About">
+	<screen name="About" position="center,center" size="540,460" title="About" flags="wfNoBorder">
 		<widget source="lab1" render="Label" position="10,0" size="490,25" font="Regular; 22" transparent="0" zPosition="2" />
 		<widget source="lab2" render="Label" position="10,25" size="490,20" font="Regular; 18" transparent="0" zPosition="2" />
 		<widget source="lab3" render="Label" position="10,45" size="490,20" font="Regular; 18" transparent="0" zPosition="1" />
@@ -592,7 +593,7 @@
 		<ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/key_info.png" alphatest="on" position="260,425" size="35,25" />
 	</screen>
-		<screen name="Devices" position="center,center" size="540,460" title="Systeminfo">
+		<screen name="Devices" position="center,center" size="540,460" title="Systeminfo" flags="wfNoBorder" >
 		<widget font="Regular; 20" position="10,5" render="Label" size="490,22" source="TunerHeader"/>
 		<widget font="Regular; 18" position="10,32" render="Label" size="490,100" source="nims"/>
 		<widget font="Regular; 20" position="10,150" render="Label" size="490,22" source="HDDHeader"/>
@@ -602,16 +603,16 @@
 		<ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
 		<eLabel text="www.world-of-satellite.com" foregroundColor="grey" backgroundColor="background" font="Regular;22" halign="center" position="225,422" size="300,25" transparent="1" zPosition="1" />
 	</screen>
-	<screen name="AboutReleaseNotes" position="center,center" size="540,460" title="Release Notes">
+	<screen name="AboutReleaseNotes" position="center,center" size="540,460" title="Release Notes" flags="wfNoBorder">
 		<widget name="list" render="Label" font="Regular;22" position="25,30" size="490,350" transparent="1" />
 		<ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
 		<eLabel text="www.world-of-satellite.com" foregroundColor="grey" backgroundColor="background" font="Regular;22" halign="center" position="225,422" size="300,25" transparent="1" zPosition="1" />
 	</screen>
-		<screen name="TranslationInfo" position="center,center" size="540,460" title="Translation">
+		<screen name="TranslationInfo" position="center,center" size="540,460" title="Translation" flags="wfNoBorder">
 		<widget font="Enigma;18" position="10,5" render="Label" size="490,50" source="TranslatorName"/>
 		<widget font="Enigma;18" position="10,55" render="Label" size="490,300" source="TranslationInfo"/>
 	</screen>
-	<screen name="ServiceInfo" position="center,center" size="560,440" title="Serviceinfo">
+	<screen name="ServiceInfo" position="center,center" size="560,440" title="Serviceinfo" flags="wfNoBorder">
 		<ePixmap alphatest="on" name="bg_red" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1" zPosition="1"/>
 		<ePixmap alphatest="on" name="bg_green" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1" zPosition="1"/>
 		<ePixmap alphatest="on" name="bg_yellow" pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" transparent="1" zPosition="1"/>
@@ -624,12 +625,12 @@
 		<ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
 		<eLabel text="www.world-of-satellite.com" foregroundColor="grey" backgroundColor="background" font="Regular;22" halign="center" position="225,422" size="300,25" transparent="1" zPosition="1" />
 	</screen>
-	<screen name="SystemMemoryInfo" position="center,center" size="540,460" title="Release Notes">
+	<screen name="SystemMemoryInfo" position="center,center" size="540,460" title="Release Notes" flags="wfNoBorder">
 		<widget name="AboutScrollLabel" render="Label" font="Regular;22" position="25,30" size="490,350" scrollbarMode="showOnDemand" transparent="1" />
 		<ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
 		<eLabel text="www.world-of-satellite.com" foregroundColor="grey" backgroundColor="background" font="Regular;22" halign="center" position="225,422" size="300,25" transparent="1" zPosition="1" />
 	</screen>
-	<screen name="SystemNetworkInfo" position="center,center" size="560,400" >
+	<screen name="SystemNetworkInfo" position="center,center" size="560,400" flags="wfNoBorder" >
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 		<widget name="AboutScrollLabel" position="10,50" size="458,75" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
@@ -660,7 +661,7 @@
 	<screen backgroundColor="transparent" flags="wfNoBorder" name="PVRState" position="60,102" size="80,34" zPosition="2">
 		<widget font="Enigma;24" halign="left" name="state" position="0,0" size="80,34" backgroundColor="transparent" borderColor="black" borderWidth="2" />
 	</screen>
-	<screen name="PluginBrowser" position="center,center" size="450,405" title="Plugin browser">
+	<screen name="PluginBrowser" position="center,center" size="450,405" title="Plugin browser" flags="wfNoBorder">
 		<ePixmap alphatest="on" pixmap="skin_default/buttons/red-big.png" position="0,0" size="200,40"/>
 		<ePixmap alphatest="on" pixmap="skin_default/buttons/green-big.png" position="200,0" size="200,40"/>
 		<widget name="key_red" font="Enigma;20" halign="center" position="0,0" size="200,40" transparent="1" valign="center" zPosition="1"/>
@@ -668,11 +669,11 @@
 			<ePixmap pixmap="skin_default/buttons/key_menu.png" position="400,10" zPosition="4" size="35,25" alphatest="on" transparent="1" />
 		<widget name="list" position="0,45" scrollbarMode="showOnDemand" size="400,355"/>
 	</screen>
-	<screen name="PluginDownloadBrowser" position="center,center" size="560,440" title="Downloadable plugins">
+	<screen name="PluginDownloadBrowser" position="center,center" size="560,440" title="Downloadable plugins" flags="wfNoBorder">
 		<widget font="Enigma;20" halign="center" name="text" position="0,0" size="560,430" valign="center" zPosition="1"/>
 		<widget name="list" position="10,10" scrollbarMode="showOnDemand" size="540,405" zPosition="2"/>
 	</screen>
-	<screen name="LocationBox" position="center,center" size="560,440">
+	<screen name="LocationBox" position="center,center" size="560,440" flags="wfNoBorder">
 		<widget alphatest="on" name="red" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1"/>
 		<widget alphatest="on" name="green" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1"/>
 		<widget alphatest="on" name="yellow" pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" transparent="1"/>
@@ -1811,15 +1812,6 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 	<screen name="LogManagerFb" position="center,center" size="265,430" title="">
 		<widget name="list" position="0,0" size="265,430" scrollbarMode="showOnDemand" />
-	</screen>
-	<screen name="ViewGitLog" position="center,center" size="720,540" >
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,2" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_yellow" position="280,2" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_green" position="140,2" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="text" position="0,50" size="720,500" font="Regular;21" />
 	</screen>
 	<screen name="AutoDiseqc" position="c-250,c-100" size="500,250" title=" ">
 		<widget source="statusbar" render="Label" position="10,5" zPosition="10" size="e-10,60" halign="center" valign="center" font="Regular;22" transparent="1" />
