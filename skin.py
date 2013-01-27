@@ -72,7 +72,7 @@ DEFAULT_SKIN = "ViX_Night_HD/skin.xml"
 # on SD hardware, ViX Night HD will not be available
 if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
 	# in that case, fallback to Magic (which is an SD skin)
-	DEFAULT_SKIN = "Magic/skin.xml"
+	DEFAULT_SKIN = "skin.xml"
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
 profile("LoadSkin")
