@@ -3,7 +3,6 @@ from Components.config import config, ConfigSelection, ConfigSubDict, ConfigYesN
 
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
-import os
 from os import path
 
 try:
@@ -12,11 +11,13 @@ try:
 	file.close()
 except:
 	chipset = "unknown"
-	
-if os.path.exists('/proc/stb/info/boxtype'):
+
+try:
 	file = open("/proc/stb/info/boxtype", "r")
 	model = file.readline().strip()
 	file.close()
+except:
+	model = "unknown"
 
 # The "VideoHardware" is the interface to /proc/stb/video.
 # It generates hotplug events, and gives you the list of
