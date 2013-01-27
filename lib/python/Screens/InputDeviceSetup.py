@@ -181,9 +181,6 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		self["key_blue"] = StaticText()
 		self["introduction"] = StaticText()
 
-		# for generating strings into .po only
-		devicenames = [_("dreambox front panel"),_("dreambox remote control (native)"),_("dreambox advanced remote control (native)"),_("dreambox ir keyboard"),_("dreambox ir mouse")]
-
 		self.createSetup()
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.cleanup)
@@ -196,17 +193,17 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 
 	def createSetup(self):
 		self.list = [ ]
-		string = _("Change repeat and delay settings?")
-		cmd = "self.enableEntry = getConfigListEntry(string, config.inputDevices." + self.inputDevice + ".enabled)"
+		label = _("Change repeat and delay settings?")
+		cmd = "self.enableEntry = getConfigListEntry(label, config.inputDevices." + self.inputDevice + ".enabled)"
 		exec (cmd)
-		string = _("Interval between keys when repeating:")
-		cmd = "self.repeatEntry = getConfigListEntry(string, config.inputDevices." + self.inputDevice + ".repeat)"
+		label = _("Interval between keys when repeating:")
+		cmd = "self.repeatEntry = getConfigListEntry(label, config.inputDevices." + self.inputDevice + ".repeat)"
 		exec (cmd)
-		string = _("Delay before key repeat starts:")
-		cmd = "self.delayEntry = getConfigListEntry(string, config.inputDevices." + self.inputDevice + ".delay)"
+		label = _("Delay before key repeat starts:")
+		cmd = "self.delayEntry = getConfigListEntry(label, config.inputDevices." + self.inputDevice + ".delay)"
 		exec (cmd)
-		string = _("Devicename:")
-		cmd = "self.nameEntry = getConfigListEntry(string, config.inputDevices." + self.inputDevice + ".name)"
+		label = _("Devicename:")
+		cmd = "self.nameEntry = getConfigListEntry(label, config.inputDevices." + self.inputDevice + ".name)"
 		exec (cmd)
 		if self.enableEntry:
 			if isinstance(self.enableEntry[1], ConfigYesNo):
@@ -234,7 +231,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 
 	def selectionChanged(self):
 		if self["config"].getCurrent() == self.enableEntry:
-			self["introduction"].setText(_("Current device: ") + _(str(iInputDevices.getDeviceAttribute(self.inputDevice, 'name'))))
+			self["introduction"].setText(_("Current device: ") + str(iInputDevices.getDeviceAttribute(self.inputDevice, 'name')) )
 		else:
 			self["introduction"].setText(_("Current value: ") + self.getCurrentValue() + _(" ms"))
 
