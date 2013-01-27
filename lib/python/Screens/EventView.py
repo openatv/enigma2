@@ -15,7 +15,8 @@ from Screens.TimerEntry import TimerEntry
 from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from Tools.BoundFunction import boundFunction
-from time import localtime
+from time import localtime, mktime, time, strftime
+from os import path
 
 class EventViewContextMenu(Screen):
 	def __init__(self, session, service, event):
@@ -80,7 +81,7 @@ class EventViewBase:
 				"nextEvent": self.nextEvent,
 				"contextMenu": self.doContext,
 			})
-		self.onShown.append(self.onCreate)
+		self.onLayoutFinish.append(self.onCreate)
 
 	def onCreate(self):
 # 		self.setService(self.currentService)
@@ -176,7 +177,14 @@ class EventViewBase:
 		text = description + extended
 		self["epg_description"].setText(text)
 		self["summary_description"].setText(text)
-		self["datetime"].setText(event.getBeginTimeString())
+		begintime = event.getBeginTimeString().split(', ')[1].split(':')
+		begindate = event.getBeginTimeString().split(', ')[0].split('.')
+		nowt = time()
+		now = localtime(nowt)
+		test = int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst)))
+		endtime = int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst))) + event.getDuration()
+		endtime = localtime(endtime)
+		self["datetime"].setText(event.getBeginTimeString() + ' - ' + strftime(_("%-H:%M"), endtime))
 		self["duration"].setText(_("%d min")%(event.getDuration()/60))
 		if self.SimilarBroadcastTimer is not None:
 			self.SimilarBroadcastTimer.start(400, True)

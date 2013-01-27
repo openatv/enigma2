@@ -1325,7 +1325,7 @@ class InfoBarEPG:
 			cnt = 0
 		else:
 			cnt = len(self.bouquets)
-		if (self.EPGtype == "multi" and config.epgselection.showbouquet_multi.getValue()) or (self.EPGtype == "graph" and config.epgselection.showbouquet_vixepg.getValue()):
+		if (self.EPGtype == "multi" and config.epgselection.multi_showbouquet.getValue()) or (self.EPGtype == "graph" and config.epgselection.graph_showbouquet.getValue()):
 			if cnt > 1: # show bouquet list
 				if withCallback:
 					self.bouquetSel = self.session.openWithCallback(self.closed, BouquetSelector, self.bouquets, self.openBouquetEPG, enableWrapAround=True)
@@ -1362,20 +1362,17 @@ class InfoBarEPG:
 		self.EPGtype = "graph"
 		if not reopen:
 			self.StartBouquet = self.servicelist.getRoot()
-			if isMoviePlayerInfoBar(self):
-				self.StartRef = self.lastservice
-			else:
-				self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.MultiServiceEPG()
 
 	def SingleServiceEPG(self):
 		self.StartBouquet = self.servicelist.getRoot()
+		self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if isMoviePlayerInfoBar(self):
 			ref = self.lastservice
 		else:
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if ref:
-			self.StartRef = ref
 			if self.servicelist.getMutableList() is not None: # bouquet in channellist
 				current_path = self.servicelist.getRoot()
 				services = self.getBouquetServices(current_path)
@@ -1400,20 +1397,29 @@ class InfoBarEPG:
 		self.serviceSel = None
 		self.reopen(ret)
 
-	def openSingleServiceEPG(self):
+	def openSingleServiceEPG(self, reopen=False):
 		self.EPGtype = "enhanced"
 		self.SingleServiceEPG()
 
-	def openInfoBarEPG(self):
+	def openInfoBarEPG(self, reopen=False):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		self.EPGtype = "infobar"
-		self.SingleServiceEPG()
+		if not reopen:
+			self.StartBouquet = self.servicelist.getRoot()
+			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if config.epgselection.infobar_type_mode.getValue() == 'single':
+			self.EPGtype = "infobar"
+			self.SingleServiceEPG()
+		else:
+			self.EPGtype = "infobargraph"
+			self.MultiServiceEPG()
 
 	def reopen(self, answer):
-		if answer == 'reopen':
+		if answer == 'reopengraph':
 			self.openGraphEPG(True)
+		elif answer == 'reopeninfobargraph' or answer == 'reopeninfobar':
+			self.openInfoBarEPG(True)
 		elif answer == 'close' and isMoviePlayerInfoBar(self):
 			self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.close()
