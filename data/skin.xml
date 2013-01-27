@@ -69,64 +69,7 @@
 	</windowstyle>	
 
 
-	<!-- Channel context menu -->
-	<!--	##### Input and Output Boxes #####	-->
-	<!-- Plugin browser -->
-	<screen name="PluginBrowser" position="160,95" size="450,405" title="Plugin browser">
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/red-big.png" position="0,0" size="200,40"/>
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/green-big.png" position="200,0" size="200,40"/>
-		<widget name="key_red" font="Enigma;20" halign="center" position="0,0" size="200,40" transparent="1" valign="center" zPosition="1"/>
-		<widget name="key_green" font="Enigma;20" halign="center" position="200,0" size="200,40" transparent="1" valign="center" zPosition="1"/>
-			<ePixmap pixmap="skin_default/buttons/key_menu.png" position="400,10" zPosition="4" size="35,25" alphatest="on" transparent="1" />
-		<widget name="list" position="0,45" scrollbarMode="showOnDemand" size="400,355"/>
-	</screen>
-	<!-- Plugin downloads -->
-	<screen name="PluginDownloadBrowser" position="80,85" size="560,440" title="Downloadable plugins">
-		<widget font="Enigma;20" halign="center" name="text" position="0,0" size="560,430" valign="center" zPosition="1"/>
-		<widget name="list" position="10,10" scrollbarMode="showOnDemand" size="540,405" zPosition="2"/>
-	</screen>
-	<screen backgroundColor="transparent" flags="wfNoBorder" name="PVRState" position="60,102" size="80,34" zPosition="2">
-		<widget font="Enigma;24" halign="left" name="state" position="0,0" size="80,34" backgroundColor="transparent" borderColor="black" borderWidth="2" />
-	</screen>
-	<screen name="LocationBox" position="center,center" size="560,440">
-		<widget alphatest="on" name="red" pixmap="skin_default/buttons/key-red.png" position="0,0" size="140,40" transparent="1"/>
-		<widget alphatest="on" name="green" pixmap="skin_default/buttons/key-green.png" position="140,0" size="140,40" transparent="1"/>
-		<widget alphatest="on" name="yellow" pixmap="skin_default/buttons/key-yellow.png" position="280,0" size="140,40" transparent="1"/>
-		<widget alphatest="on" name="blue" pixmap="skin_default/buttons/key-blue.png" position="420,0" size="140,40" transparent="1"/>
-		<widget backgroundColor="#7C1C1C" font="Enigma;18" halign="center" name="key_red" position="0,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
-		<widget backgroundColor="#266926" font="Enigma;18" halign="center" name="key_green" position="140,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
-		<widget backgroundColor="#8C5900" font="Enigma;18" halign="center" name="key_yellow" position="280,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
-		<widget backgroundColor="#254177" font="Enigma;18" halign="center" name="key_blue" position="420,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
-		<widget font="Enigma;20" name="text" position="5,38" size="550,28"/>
-		<widget font="Enigma;20" name="target" position="5,68" size="550,28" valign="center"/>
-		<widget name="filelist" position="5,100" scrollbarMode="showOnDemand" selectionDisabled="1" size="550,200" zPosition="1"/>
-		<widget font="Enigma;20" name="textbook" position="5,310" size="550,28"/>
-		<widget name="booklist" position="5,340" scrollbarMode="showOnDemand" size="550,95" zPosition="2"/>
-		<eLabel backgroundColor="darkgrey" position="5,305" size="550,2" zPosition="5"/>
-	</screen>
-	<screen name="MovieLocationBox" position="center,center" size="560,440">
-		<widget alphatest="on" name="red" pixmap="skin_default/buttons/key-red.png" position="0,0" size="140,40" transparent="1"/>
-		<widget alphatest="on" name="green" pixmap="skin_default/buttons/key-green.png" position="140,0" size="140,40" transparent="1"/>
-		<widget alphatest="on" name="yellow" pixmap="skin_default/buttons/key-yellow.png" position="280,0" size="140,40" transparent="1"/>
-		<widget alphatest="on" name="blue" pixmap="skin_default/buttons/key-blue.png" position="420,0" size="140,40" transparent="1"/>
-		<widget backgroundColor="#7C1C1C" font="Enigma;18" halign="center" name="key_red" position="0,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
-		<widget backgroundColor="#266926" font="Enigma;18" halign="center" name="key_green" position="140,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
-		<widget backgroundColor="#8C5900" font="Enigma;18" halign="center" name="key_yellow" position="280,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
-		<widget backgroundColor="#254177" font="Enigma;18" halign="center" name="key_blue" position="420,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
-		<widget font="Enigma;20" name="text" position="5,38" size="550,28"/>
-		<widget font="Enigma;20" name="target" position="5,68" size="550,28" valign="center"/>
-		<widget name="filelist" position="5,100" scrollbarMode="showOnDemand" selectionDisabled="1" size="550,200" zPosition="1"/>
-		<widget font="Enigma;20" name="textbook" position="5,310" size="550,28"/>
-		<widget name="booklist" position="5,340" scrollbarMode="showOnDemand" size="550,95" zPosition="2"/>
-		<eLabel backgroundColor="darkgrey" position="5,305" size="550,2" zPosition="5"/>
-	</screen>
-	<screen name="FileBrowser" position="80,85" size="560,440" title="DVD File Browser">
-		<widget name="filelist" position="5,5" scrollbarMode="showOnDemand" size="550,425"/>
-	</screen>
-	<!--	Setup	-->
-	<screen name="Console" position="80,85" size="560,440" title="Command execution...">
-		<widget font="Enigma;18" name="text" position="5,10" size="540,410"/>
-	</screen>
+
 	<!-- NetworkBrowser Plugin -->
 		<screen name="AutoMountManager" position="center,center" size="560,350" title="AutoMountManager">
 			<ePixmap alphatest="on" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40"/>
