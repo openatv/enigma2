@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 1.06 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
+	<!--	Skin: Default-ViX Vs 1.07 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
 	<!--	Contains derived work by MiLo -->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
@@ -715,12 +715,80 @@
 	<screen name="Console" position="center,center" size="560,430" title="Command execution...">
 		<widget name="text" position="10,10" size="540,420" font="Console;14" />
 	</screen>
-
-
-
-
-
-
+	<screen name="AutoMountManager" position="center,center" size="560,350" title="AutoMountManager">
+		<ePixmap alphatest="on" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40"/>
+		<widget backgroundColor="buttonRed" font="Enigma;20" halign="center" position="0,0" render="Label" size="140,40" source="key_red" transparent="1" valign="center" zPosition="1"/>
+		<widget position="5,50" render="Listbox" scrollbarMode="showOnDemand" size="540,300" source="config">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (0, 3), size = (480, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
+						MultiContentEntryText(pos = (10, 29), size = (480, 17), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 3 is the Description
+						MultiContentEntryPixmapAlphaTest(pos = (500, 1), size = (48, 48), png = 3), # index 4 is the pixmap
+					],
+				"fonts": [gFont("Enigma", 18),gFont("Enigma", 13)],
+				"itemHeight": 50
+				}
+			</convert>
+		</widget>
+	<ePixmap pixmap="skin_default/border/div_h.png" position="5,360" size="550,2" zPosition="2"/>
+		<widget backgroundColor="#25062748" font="Enigma;20" halign="center" position="10,370" render="Label" size="540,21" source="introduction" transparent="1" valign="center" zPosition="10"/>
+	</screen>
+	<screen name="NetworkBrowser" position="90,80" size="560,450" title="Network Neighbourhood">
+		<ePixmap alphatest="on" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40"/>
+		<ePixmap alphatest="on" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40"/>
+		<ePixmap alphatest="on" pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40"/>
+		<ePixmap alphatest="on" pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40"/>
+		<widget backgroundColor="buttonRed" font="Regular;20" halign="center" position="0,0" render="Label" size="140,40" source="key_red" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="buttonGreen" font="Regular;20" halign="center" position="140,0" render="Label" size="140,40" source="key_green" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="buttonYellow" font="Regular;20" halign="center" position="280,0" render="Label" size="140,40" source="key_yellow" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="buttonBlue" font="Regular;20" halign="center" position="420,0" render="Label" size="140,40" source="key_blue" transparent="1" valign="center" zPosition="1"/>
+		<widget position="5,50" render="Listbox" scrollbarMode="showOnDemand" size="540,350" source="list" zPosition="10">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryPixmapAlphaTest(pos = (0, 0), size = (48, 48), png = 1), # index 1 is the expandable/expanded/verticalline icon
+						MultiContentEntryText(pos = (50, 4), size = (420, 26), font=2, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the Hostname
+						MultiContentEntryText(pos = (140, 5), size = (320, 25), font=0, flags = RT_HALIGN_LEFT, text = 3), # index 3 is the sharename
+						MultiContentEntryText(pos = (140, 26), size = (320, 17), font=1, flags = RT_HALIGN_LEFT, text = 4), # index 4 is the sharedescription
+						MultiContentEntryPixmapAlphaTest(pos = (45, 0), size = (48, 48), png = 5), # index 5 is the nfs/cifs icon
+						MultiContentEntryPixmapAlphaTest(pos = (90, 0), size = (48, 48), png = 6), # index 6 is the isMounted icon
+					],
+				"fonts": [gFont("Enigma", 18),gFont("Enigma", 13),gFont("Enigma", 22)],
+				"itemHeight": 50
+				}
+			</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/border/div_h.png" position="5,410" size="550,2" zPosition="1"/>
+		<widget backgroundColor="#25062748" font="Regular;21" halign="center" position="0,420" render="Label" size="560,30" source="infotext" transparent="1" valign="center" zPosition="10"/>
+	</screen>
+	<screen name="UpdatePluginMenu" position="80,130" size="560,330" title="Softwaremanager...">
+		<eLabel backgroundColor="black" position="5,15" size="300,270" zPosition="1"/>
+		<widget position="10,20" render="Listbox" scrollbarMode="showOnDemand" size="290,260" source="menu" zPosition="2">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (2, 2), size = (290, 22), flags = RT_HALIGN_LEFT, text = 1), # index 0 is the MenuText,
+					],
+				"fonts": [gFont("Enigma", 20)],
+				"itemHeight": 26
+				}
+			</convert>
+		</widget>
+		<widget position="310,10" render="Listbox" scrollbarMode="showNever" selectionDisabled="1" size="240,300" source="menu" zPosition="2">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (2, 2), size = (240, 300), flags = RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, text = 2), # index 2 is the Description,
+					],
+				"fonts": [gFont("Enigma", 20)],
+				"itemHeight": 300
+				}
+			</convert>
+		</widget>
+	</screen>
+	<screen name="PictureInPictureZapping" flags="wfNoBorder" backgroundColor="transparent" position="300,60" size="120,26" title="PiPZap" zPosition="-1">
+		<eLabel text="PiP-Zap" position="0,0" size="120,26" backgroundColor="transparent" transparent="1" font="Regular;22" borderColor="black" borderWidth="3" valign="center" halign="center" />
+	</screen>
+	<screen name="PiPSetup" flags="wfNoBorder" backgroundColor="transparent" position="85,85" size="550,300" zPosition="-1" >
+		<widget name="text" position="0,0" size="550,300" backgroundColor="transparent" transparent="1" font="Regular;22" borderColor="black" borderWidth="3" valign="center" halign="center" />
+	</screen>
 YYY
 	<!-- Adapter setup -->
 	<screen name="AdapterSetup" position="center,center" size="560,400" title="Network setup" >
@@ -728,7 +796,6 @@ YYY
 		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
 		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 		<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-
 		<widget name="config" position="5,40" size="550,150" scrollbarMode="showOnDemand" />
 		<ePixmap pixmap="skin_default/div-h.png" position="0,195" zPosition="1" size="560,2" />
 		<widget source="DNS1text" render="Label" position="5,200" size="190,21" zPosition="1" font="Regular;19" halign="left" valign="center" backgroundColor="#25062748" transparent="1"/>
@@ -736,7 +803,6 @@ YYY
 		<widget source="DNS1" render="Label" position="400,200" size="145,21" zPosition="1" font="Regular;18" halign="right" valign="center" backgroundColor="#25062748" transparent="1"/>
 		<widget source="DNS2" render="Label" position="400,220" size="145,21" zPosition="1" font="Regular;18" halign="right" valign="center" backgroundColor="#25062748" transparent="1"/>
 		<ePixmap pixmap="skin_default/div-h.png" position="0,240" zPosition="1" size="550,2" />
-
 		<widget source="introduction" render="Label" position="50,250" size="380,20" font="Regular;20" halign="center" />
 		<widget source="IPtext" render="Label" position="100,280" size="190,21" zPosition="1" font="Regular;19" />
 		<widget source="Netmasktext" render="Label" position="100,305" size="190,21" zPosition="1" font="Regular;19" />
@@ -744,7 +810,6 @@ YYY
 		<widget source="IP" render="Label" position="300,280" size="190,21" zPosition="1" font="Regular;19" />
 		<widget source="Mask" render="Label" position="300,305" size="190,21" zPosition="1" font="Regular;19" />
 		<widget source="Gateway" render="Label" position="300,330" size="1900,21" zPosition="1" font="Regular;19" />
-
 		<ePixmap pixmap="skin_default/div-h.png" position="0,350" zPosition="1" size="560,2" />
 		<widget source="Adaptertext" render="Label" position="10,355" size="120,21" zPosition="10" font="Regular;20" halign="left" backgroundColor="#25062748" transparent="1" />
 		<widget source="Adapter" render="Label" position="120,355" size="400,21" zPosition="10" font="Regular;20" halign="left" backgroundColor="#25062748" transparent="1" />
@@ -770,7 +835,6 @@ YYY
 	<!-- Audio selection -->
 	<screen name="AudioSelection" position="center,center" size="485,330" title="Audio">
 		<widget name="config" position="50,10" size="425,110" scrollbarMode="showOnDemand" />
-		
 		<widget source="key_red" render="Pixmap" pixmap="skin_default/buttons/key_red.png" position="10,10" size="35,25" alphatest="on">
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -783,9 +847,7 @@ YYY
 		<widget source="key_blue" render="Pixmap" pixmap="skin_default/buttons/key_blue.png" position="10,85" size="35,25" alphatest="on">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		
 		<ePixmap pixmap="skin_default/div-h.png" position="10,112" zPosition="10" size="465,2" />
-
 		<widget source="streams" render="Listbox" scrollbarMode="showOnDemand" position="10,120" size="465,200" zPosition="3" transparent="1" >
 			<convert type="TemplatedMultiContent">
 				{"templates":
