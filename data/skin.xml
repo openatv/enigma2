@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 1.04 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
+	<!--	Skin: Default-ViX Vs 1.05 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
 	<!--	Contains derived work by MiLo -->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
@@ -182,7 +182,7 @@
 			<convert type="PliExtraInfo">All</convert>
 		</widget>
 	</screen>
-	<screen name="QuickEPG" position="0,325" size="720,276" flags="wfNoBorder" title="InfoBar">
+	<screen name="XXXQuickEPG" position="0,325" size="720,276" flags="wfNoBorder" title="InfoBar">
 		<ePixmap name="ValiOSD" pixmap="skin_default/infobar/infobar.png" position="0,0" size="720,156" alphatest="off" zPosition="1"/>
 		<eLabel backgroundColor="infobarBG" position="0,156" size="720,110" zPosition="2"/>
 		<widget source="global.CurrentTime" render="Label" position="88,120" size="68,28"  borderColor="black" borderWidth="1" backgroundColor="transpBlack" font="Enigma;24" foregroundColor="foreground" halign="left" noWrap="1" transparent="1" zPosition="3">
@@ -217,6 +217,10 @@
 			<convert type="ValueBitTest">8</convert>
 			<convert type="ConditionalShowHide"/>
 		</widget>
+		<widget source="Service" render="PiconBg" position="53,158" size="72,55" transparent="0" alphatest="blend" zPosition="5" />
+		<widget source="Service" render="Picon" position="54,160"	size="70,53" transparent="1" alphatest="blend"	zPosition="5">
+		<convert type="ServiceName">Reference</convert>
+		</widget>
 		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="skin_default/infobar/icon_stableupdate.png" position="55,70" size="32,32" zPosition="10" alphatest="blend" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
@@ -225,6 +229,10 @@
 		</widget>
 		<widget name="list" position="140,160" size="500,70" font="Regular;20" transparent="0" zPosition="10" />
 	</screen>
+		<widget source="Service" render="PiconBg" position="53,158" size="72,55" transparent="0" alphatest="blend" zPosition="5" />
+		<widget source="Service" render="Picon" position="54,160"	size="70,53" transparent="1" alphatest="blend"	zPosition="5">
+		<convert type="ServiceName">Reference</convert>
+		</widget>
 	<screen flags="wfNoBorder" name="SecondInfoBar" position="0,0" size="720,96" title="SecondInfoBar">
 		<widget source="session.CurrentService" render="Label" position="50, 20" size="600,66" backgroundColor="transpBlack" transparent="1" zPosition="1" foregroundColor="foreground" font="Regular;16" valign="top" halign="left">
 			<convert type="PliExtraInfo">All</convert>
