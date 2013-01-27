@@ -251,7 +251,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.cur_event = None
 			events = cur_service[2]
 			if events and len(events):
-				idx = 0
+				self.cur_event = idx = 0
 				for event in events: #iterate all events
 					if event[2] <= self.last_time and event[2]+event[3] > self.last_time:
 						self.cur_event = idx
