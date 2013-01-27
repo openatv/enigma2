@@ -50,8 +50,8 @@ class EventViewContextMenu(Screen):
 		plugin(session=self.session, service=self.service, event=self.event, eventName=self.eventname)
 
 class EventViewBase:
-	ADD_TIMER = 0
-	REMOVE_TIMER = 1
+	ADD_TIMER = 1
+	REMOVE_TIMER = 2
 
 	def __init__(self, Event, Ref, callback=None, similarEPGCB=None):
 		self.similarEPGCB = similarEPGCB
@@ -70,7 +70,6 @@ class EventViewBase:
 			self.SimilarBroadcastTimer.callback.append(self.getSimilarEvents)
 		else:
 			self.SimilarBroadcastTimer = None
-		self.key_green_choice = self.ADD_TIMER
 		self["actions"] = ActionMap(["OkCancelActions", "EventViewActions"],
 			{
 				"cancel": self.close,
@@ -197,10 +196,10 @@ class EventViewBase:
 			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
 				isRecordEvent = True
 				break
-		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
+		if isRecordEvent and self.key_green_choice and self.key_green_choice != self.REMOVE_TIMER:
 			self["key_green"].setText(_("Remove timer"))
 			self.key_green_choice = self.REMOVE_TIMER
-		elif not isRecordEvent and self.key_green_choice != self.ADD_TIMER:
+		elif not isRecordEvent and self.key_green_choice and self.key_green_choice != self.ADD_TIMER:
 			self["key_green"].setText(_("Add timer"))
 			self.key_green_choice = self.ADD_TIMER
 
@@ -260,12 +259,14 @@ class EventViewSimple(Screen, EventViewBase):
 		else:
 			self.skinName = "EventView"
 		EventViewBase.__init__(self, Event, Ref, callback, similarEPGCB)
+		self.key_green_choice = None
 
 class EventViewEPGSelect(Screen, EventViewBase):
 	def __init__(self, session, Event, Ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None):
 		Screen.__init__(self, session)
 		self.skinName = "EventView"
 		EventViewBase.__init__(self, Event, Ref, callback, similarEPGCB)
+		self.key_green_choice = self.ADD_TIMER
 
 		self["epgactions1"] = ActionMap(["OkCancelActions", "EventViewActions"],
 			{
