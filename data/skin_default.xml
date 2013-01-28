@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 1.08 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
+	<!--	Skin: Default-ViX Vs 1.09 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
 	<!--	Contains derived work by MiLo -->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
@@ -8,36 +8,6 @@
 	<output id="0">
 		<resolution bpp="32" xres="720" yres="576"/>
 	</output>
-	<colors>
-		<color name="background" value="#21090909"/>
-		<color name="transBG" value="#5A090909"/>
-		<color name="foreground" value="#00f0f0f0"/>
-		<color name="white" value="#f0f0f0"/>
-		<color name="black" value="#0f0f0f"/>
-		<color name="yellow" value="#f3ca09"/>
-		<color name="orange" value="#FCC000"/>
-		<color name="blue" value="#879cc1"/>
-		<color name="green" value="#56C856"/>
-		<color name="red" value="#ff4A3C"/>
-		<color name="grey" value="#999999"/>
-		<color name="dark" value="#294a6b"/>
-		<color name="darkgrey" value="#666666"/>
-		<color name="grey81" value="#cfcfcf"/>
-		<color name="grey90" value="#e5e5e5"/>
-		<color name="redtransparent" value="#214C0000"/>
-		<color name="greentransparent" value="#21004C00"/>
-		<color name="bluetransparent" value="#21001E4B"/>
-		<color name="yellowtransparent" value="#214B4B00"/>
-		<color name="secondFG" value="#00879ce1"/>
-		<color name="transparent" value="#ff000000"/>
-		<color name="transpBlack" value="#16000000"/>
-		<color name="transpWhite" value="#16ffffff"/>
-		<color name="buttonRed" value="#9f1313"/>
-		<color name="buttonGreen" value="#1f771f"/>
-		<color name="buttonYellow" value="#a08500"/>
-		<color name="buttonBlue" value="#18188b"/>
-		<color name="infobarBG" value="#41080808"/>
-	</colors>
 	<windowstyle id="0" type="skinned">
 		<title font="Enigma;18" offset="10,5"/>
 		<color color="#21090909" name="Background"/>
@@ -76,6 +46,34 @@
 		<font filename="valis_enigma.ttf" name="Enigma" scale="100"/>
 	</fonts>
 	<colors>
+		<color name="background" value="#21090909"/>
+		<color name="transBG" value="#5A090909"/>
+		<color name="foreground" value="#00f0f0f0"/>
+		<color name="white" value="#f0f0f0"/>
+		<color name="black" value="#0f0f0f"/>
+		<color name="yellow" value="#f3ca09"/>
+		<color name="orange" value="#FCC000"/>
+		<color name="blue" value="#879cc1"/>
+		<color name="green" value="#56C856"/>
+		<color name="red" value="#ff4A3C"/>
+		<color name="grey" value="#999999"/>
+		<color name="dark" value="#294a6b"/>
+		<color name="darkgrey" value="#666666"/>
+		<color name="grey81" value="#cfcfcf"/>
+		<color name="grey90" value="#e5e5e5"/>
+		<color name="redtransparent" value="#214C0000"/>
+		<color name="greentransparent" value="#21004C00"/>
+		<color name="bluetransparent" value="#21001E4B"/>
+		<color name="yellowtransparent" value="#214B4B00"/>
+		<color name="secondFG" value="#00879ce1"/>
+		<color name="transparent" value="#ff000000"/>
+		<color name="transpBlack" value="#16000000"/>
+		<color name="transpWhite" value="#16ffffff"/>
+		<color name="buttonRed" value="#9f1313"/>
+		<color name="buttonGreen" value="#1f771f"/>
+		<color name="buttonYellow" value="#a08500"/>
+		<color name="buttonBlue" value="#18188b"/>
+		<color name="infobarBG" value="#41080808"/>
 		<color name="white" value="#ffffff" />
 		<color name="black" value="#000000" />
 		<color name="dark" value="#25062748" />
@@ -275,138 +273,9 @@
 		<eLabel backgroundColor="darkgrey" position="0,282" size="300,2" zPosition="5"/>
 		<ePixmap pixmap="skin_default/logos/vix.png" position="5,290" size="250,25" alphatest="on" />
 	</screen>-->
-	<screen name="menu_mainmenu" position="center,center" size="480,302" backgroundColor="transBG" flags="wfNoBorder" title="Main menu">
-		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
-		<widget source="title" render="Label" position="149,4" size="310,26" font="Enigma;22" transparent="1" zPosition="1"/>
-		<widget position="149,53" render="Listbox" scrollbarMode="showOnDemand" size="310,227" source="menu" transparent="1" zPosition="1">
-			<convert type="StringList"/>
-		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/shutdown.png" position="3,53" size="128,128" alphatest="on" zPosition="1">
-			<convert type="MenuEntryCompare">standby_restart_list</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/setup.png" position="3,53" size="128,128" alphatest="on"  zPosition="1">
-			<convert type="MenuEntryCompare">setup_selection</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/plugins.png" position="3,53" size="128,128" alphatest="on" zPosition="1">
-			<convert type="MenuEntryCompare">plugin_selection</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/information.png" position="3,53" size="128,128" alphatest="on" zPosition="1">
-			<convert type="MenuEntryCompare">info_screen</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/scart.png" position="3,53" size="128,128" alphatest="on" zPosition="1">
-			<convert type="MenuEntryCompare">scart_switch</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/timer.png" position="3,53" size="128,128" alphatest="on" zPosition="1">
-			<convert type="MenuEntryCompare">timer_edit</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-<!--XXXX-->
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/media_player.png" position="3,53" size="128,128" alphatest="on" zPosition="1">
-			<convert type="MenuEntryCompare">media_player</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget alphatest="on" pixmap="skin_default/menu/dvd_player.png" position="3,53" render="Pixmap" size="128,128" source="menu" zPosition="1">
-			<convert type="MenuEntryCompare">dvd_player</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget alphatest="on" pixmap="skin_default/menu/subtitles.png" position="3,53" render="Pixmap" size="128,128" source="menu" zPosition="1">
-			<convert type="MenuEntryCompare">subtitle_selection</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget font="Enigma;18" halign="right" position="404,10" render="Label" size="55,22" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<widget alphatest="on" pixmap="skin_default/buttons/red.png" position="390,8" render="Pixmap" size="14,14" source="session.RecordState" zPosition="3">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4"/>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
-	</screen>
-	<screen backgroundColor="transBG" flags="wfNoBorder" name="menu_information" position="center,center" size="480,302" title="Main menu">
-		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
-		<ePixmap alphatest="on" pixmap="skin_default/menu/information.png" position="3,53" size="128,128" zPosition="1"/>
-		<widget font="Enigma;22" position="149,4" render="Label" size="310,26" source="title" transparent="1" zPosition="1"/>
-		<widget position="149,53" render="Listbox" scrollbarMode="showOnDemand" size="310,227" source="menu" transparent="1" zPosition="1">
-			<convert type="StringList"/>
-		</widget>
-		<widget font="Enigma;18" halign="right" position="404,4" render="Label" size="55,22" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<widget alphatest="on" pixmap="skin_default/buttons/red.png" position="390,8" render="Pixmap" size="14,14" source="session.RecordState" zPosition="3">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4"/>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
-	</screen>
-	<screen backgroundColor="transBG" flags="wfNoBorder" name="menu_shutdown" position="center,center" size="480,302" title="Main menu">
-		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
-		<ePixmap alphatest="on" pixmap="skin_default/menu/shutdown.png" position="3,53" size="128,128" zPosition="1"/>
-		<widget font="Enigma;20" position="80,10" render="Label" size="250,20" source="title" transparent="1" zPosition="1"/>
-		<widget position="200,63" render="Listbox" scrollbarMode="showOnDemand" size="250,217" source="menu" transparent="1" zPosition="1">
-			<convert type="StringList"/>
-		</widget>
-		<widget font="Enigma;18" halign="right" position="404,4" render="Label" size="55,22" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<widget alphatest="on" pixmap="skin_default/buttons/red.png" position="390,8" render="Pixmap" size="14,14" source="session.RecordState" zPosition="3">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4"/>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
-	</screen>
-	<screen backgroundColor="transBG" flags="wfNoBorder" name="menu_harddisk" position="center,center" size="480,302" title="Main menu">
-		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
-		<ePixmap alphatest="on" pixmap="skin_default/menu/hdd_on.png" position="15,80" size="90,128" zPosition="1"/>
-		<widget font="Enigma;22" position="149,4" render="Label" size="310,26" source="title" transparent="1" zPosition="1"/>
-		<widget position="149,53" render="Listbox" scrollbarMode="showOnDemand" size="310,227" source="menu" transparent="1" zPosition="1">
-			<convert type="StringList"/>
-		</widget>
-		<widget font="Enigma;18" halign="right" position="404,4" render="Label" size="55,22" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<widget alphatest="on" pixmap="skin_default/buttons/red.png" position="390,8" render="Pixmap" size="14,14" source="session.RecordState" zPosition="3">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4"/>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
-	</screen>
-	<screen backgroundColor="transBG" flags="wfNoBorder" name="menu_network" position="center,center" size="480,302" title="Main menu">
-		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
-		<ePixmap alphatest="on" pixmap="skin_default/menu/network_on.png" position="3,53" size="128,128" zPosition="1"/>
-		<widget font="Enigma;22" position="149,4" render="Label" size="310,26" source="title" transparent="1" zPosition="1"/>
-		<widget position="149,53" render="Listbox" scrollbarMode="showOnDemand" size="310,227" source="menu" transparent="1" zPosition="1">
-			<convert type="StringList"/>
-		</widget>
-		<widget font="Enigma;18" halign="right" position="404,4" render="Label" size="55,22" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<widget alphatest="on" pixmap="skin_default/buttons/red.png" position="390,8" render="Pixmap" size="14,14" source="session.RecordState" zPosition="3">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4"/>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
-	</screen>
-	<screen backgroundColor="transBG" flags="wfNoBorder" name="menu_setup" position="center,center" size="480,302" title="Main menu">
-		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
-		<ePixmap alphatest="on" pixmap="skin_default/menu/setup.png" position="3,53" size="128,128" zPosition="1"/>
-		<widget font="Enigma;22" position="149,4" render="Label" size="310,26" source="title" transparent="1" zPosition="1"/>
-		<widget position="149,53" render="Listbox" scrollbarMode="showOnDemand" size="310,227" source="menu" transparent="1" zPosition="1">
-			<convert type="StringList"/>
-		</widget>
-		<widget font="Enigma;18" halign="right" position="404,4" render="Label" size="55,22" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<widget alphatest="on" pixmap="skin_default/buttons/red.png" position="390,8" render="Pixmap" size="14,14" source="session.RecordState" zPosition="3">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4"/>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
-	</screen>
+
+<!--XXXX CleanUp from here XXXX-->
+
 	<screen name="Setup" position="center,center" size="500,400" backgroundColor="transBG" flags="wfNoBorder" title="Main menu">
 		<eLabel backgroundColor="background" position="0,0" size="500,400" zPosition="-1" />
 		<widget name="description" position="3,305" size="490,60" zPosition="10" font="Enigma;16" halign="center" valign="center" transparent="0" foregroundColor="secondFG" />
@@ -423,38 +292,6 @@
 		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4" />
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,300" zPosition="1" size="440,350" transparent="1" alphatest="on" />
 		<ePixmap pixmap="skin_default/logos/vix.png" position="2,372" size="220,25" alphatest="on" />
-	</screen>
-	<screen name="menu_scan" position="center,center" size="480,302" backgroundColor="transBG" flags="wfNoBorder" title="Main menu">
-		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
-		<ePixmap alphatest="on" pixmap="skin_default/menu/information.png" position="3,53" size="128,128" zPosition="1"/>
-		<widget font="Enigma;22" position="149,4" render="Label" size="310,26" source="title" transparent="1" zPosition="1"/>
-		<widget position="149,53" render="Listbox" scrollbarMode="showOnDemand" size="310,227" source="menu" transparent="1" zPosition="1">
-			<convert type="StringList"/>
-		</widget>
-		<widget font="Enigma;18" halign="right" position="404,4" render="Label" size="55,22" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<widget alphatest="on" pixmap="skin_default/buttons/red.png" position="390,8" render="Pixmap" size="14,14" source="session.RecordState" zPosition="3">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4"/>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
-	</screen>
-	<screen backgroundColor="transBG" flags="wfNoBorder" name="menu_system" position="center,center" size="480,302" title="Main menu">
-		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
-		<ePixmap alphatest="on" pixmap="skin_default/menu/setup.png" position="3,53" size="128,128" zPosition="1"/>
-		<widget font="Enigma;22" position="149,4" render="Label" size="310,26" source="title" transparent="1" zPosition="1"/>
-		<widget position="149,53" render="Listbox" scrollbarMode="showOnDemand" size="310,227" source="menu" transparent="1" zPosition="1">
-			<convert type="StringList"/>
-		</widget>
-		<widget font="Enigma;18" halign="right" position="404,4" render="Label" size="55,22" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<widget alphatest="on" pixmap="skin_default/buttons/red.png" position="390,8" render="Pixmap" size="14,14" source="session.RecordState" zPosition="3">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4"/>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
 	</screen>
 	<screen name="ChannelContextMenu" position="center,center" size="350,355" title="Channellist menu">
 		<widget name="menu" position="10,10" size="340,300" scrollbarMode="showOnDemand" />
