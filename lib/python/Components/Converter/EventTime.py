@@ -155,11 +155,12 @@ class EventTime(Poll, Converter, object):
 		if event is None:
 			return None
 
-		now = int(time())
-		start_time = event.getBeginTime()
+		progress = int(time()) - event.getBeginTime()
 		duration = event.getDuration()
-		if start_time <= now <= (start_time + duration) and duration > 0:
-			return (now - start_time) * 1000 / duration
+		if duration > 0 and progress >= 0:
+			if progress > duration:
+				progress = duration
+			return progress * 1000 / duration
 		else:
 			return None
 

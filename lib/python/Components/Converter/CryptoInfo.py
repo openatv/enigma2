@@ -10,6 +10,7 @@ class CryptoInfo(Poll, Converter, object):
 		Converter.__init__(self, type)
 		Poll.__init__(self)
 
+		self.type = type
 		self.active = False
 		if int(config.usage.show_cryptoinfo.getValue()) > 0:
 			self.visible = True
@@ -24,8 +25,12 @@ class CryptoInfo(Poll, Converter, object):
 	def getText(self):
 		if int(config.usage.show_cryptoinfo.getValue()) < 1:
 			self.visible = False
-			return ''
-		self.visible = True
-		data = self.ecmdata.getEcmData()
-		return data[0]
+			data = ''
+		else:
+			self.visible = True
+			if self.type == "VerboseInfo":
+				data = self.ecmdata.getEcmData()[0]
+			else:
+				data = self.ecmdata.getInfo(self.type)
+		return data
 	text = property(getText)
