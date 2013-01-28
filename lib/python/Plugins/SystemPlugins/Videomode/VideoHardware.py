@@ -361,10 +361,15 @@ class VideoHardware:
 				policy_choices.update({"auto": "bestfit"})
 			policy = policy_choices[config.av.policy_43.value]
 			policy2_choices = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit"}
-			if path.exists("/proc/stb/video/policy2_choices") and "auto" in open("/proc/stb/video/policy2_choices").readline():
-				policy2_choices.update({"auto": "auto"})
-			else:
-				policy2_choices.update({"auto": "bestfit"})
+
+			if path.exists("/proc/stb/video/policy2_choices"):
+				f = open("/proc/stb/video/policy2_choices")
+				if "auto" in f.readline():
+					policy2_choices.update({"auto": "auto"})
+				else:
+					policy2_choices.update({"auto": "bestfit"})
+				f.close()
+
 			policy2 = policy2_choices[config.av.policy_169.value]
 		elif is_auto:
 			aspect = "any"

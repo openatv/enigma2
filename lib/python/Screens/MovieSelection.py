@@ -97,6 +97,12 @@ def isTrashFolder(ref):
 		return False
 	return os.path.realpath(ref.getPath()).endswith('.Trash') or os.path.realpath(ref.getPath()).endswith('.Trash/')
 
+def isInTrashFolder(ref):
+	if not config.usage.movielist_trashcan.getValue() or not ref.flags & eServiceReference.mustDescent:
+		return False
+	path = os.path.realpath(ref.getPath())
+	return path.startswith(Tools.Trashcan.getTrashFolder(path))
+
 def isSimpleFile(item):
 	if not item:
 		return False
@@ -410,14 +416,19 @@ class MovieSelectionSummary(Screen):
 class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def __init__(self, session, selectedmovie = None):
 		Screen.__init__(self, session)
-		data = resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")
-		data = data.replace('/ skin.xml','/skin.xml')
-		data = file(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")).read()
-		if config.movielist.useslim.getValue():
-			if data.find('MovieSelectionSlim') >= 0:
-				self.skinName = "MovieSelectionSlim"
-			else:
-				self.skinName = "MovieSelection"
+		if os.path.exists(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")):
+			file = open(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml"))
+			data = file.read()
+			file.close()
+		elif os.path.exists(resolveFilename(SCOPE_CURRENT_SKIN,"../skin.xml")):
+			file = open(resolveFilename(SCOPE_CURRENT_SKIN,"../skin.xml"))
+			data = file.read()
+			file.close()
+		else:
+			data = None
+
+		if data and config.movielist.useslim.getValue() and data.find('MovieSelectionSlim') >= 0:
+			self.skinName = "MovieSelectionSlim"
 		else:
 			self.skinName = "MovieSelection"
 
@@ -1070,7 +1081,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def saveLocalSettings(self):
 		try:
 			path = os.path.join(config.movielist.last_videodir.getValue(), ".e2settings.pkl")
-			pickle.dump(self.settings, open(path, "wb"))
+			file = open(path, "wb")
+			pickle.dump(self.settings, file)
+			file.close()
 		except Exception, e:
 			print "Failed to save settings to %s: %s" % (path, e)
 		# Also set config items, in case the user has a read-only disk
@@ -1083,7 +1096,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if config.movielist.settings_per_directory.getValue():
 			try:
 				path = os.path.join(config.movielist.last_videodir.getValue(), ".e2settings.pkl")
-				updates = pickle.load(open(path, "rb"))
+				file = open(path, "rb")
+				updates = pickle.load(file)
+				file.close()
 				self.applyConfigSettings(updates)
 			except IOError, e:
 				updates = {
@@ -1203,6 +1218,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self["TrashcanSize"].update(config.movielist.last_videodir.getValue())
 		if self.reload_sel is None:
 			self.reload_sel = self.getCurrent()
+		self.loadLocalSettings()
 		self["list"].reload(self.current_ref, self.selected_tags)
 		self.updateTags()
 		title = ""

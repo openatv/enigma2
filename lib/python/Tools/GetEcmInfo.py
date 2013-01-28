@@ -1,44 +1,81 @@
 from Components.config import config
 import os
+import time
 
 ECM_INFO = '/tmp/ecm.info'
+EMPTY_ECM_INFO = _("Free To Air"),'0','0','0'
 
-old_ecm_mtime = None
-data = None
+old_ecm_time = time.time()
+info = {}
+data = EMPTY_ECM_INFO
 
 class GetEcmInfo:
-	def getEcmData(self):
-		global old_ecm_mtime
+	def pollEcmData(self):
 		global data
-		try:
-			ecm_mtime = os.stat(ECM_INFO).st_mtime
-		except:
-			ecm_mtime = None
-		if ecm_mtime != old_ecm_mtime:
-			old_ecm_mtime = ecm_mtime
-			data = self.getText()
-		if data == None:
-			return _("Free To Air"),'0','0','0'
-		return data
-
-	def getText(self):
-		try:
-			f = open(ECM_INFO, 'rb')
-			ecm = f.readlines()
-			f.close()
+		global old_ecm_time
+		global info
+		if not os.path.isfile(ECM_INFO):
+			data = EMPTY_ECM_INFO
 			info = {}
+			return
+		try:
+			ecm_time = os.stat(ECM_INFO).st_mtime
+		except:
+			ecm_time = old_ecm_time
+		if ecm_time != old_ecm_time:
+			oecmi1 = info.get('ecminterval1','')
+			oecmi0 = info.get('ecminterval0','')
+			info = {}
+			info['ecminterval2'] = oecmi1
+			info['ecminterval1'] = oecmi0
+			old_ecm_time = ecm_time
+			try:
+				file = open(ECM_INFO, 'rb')
+				ecm = file.readlines()
+				file.close()
+			except:
+				ecm = ''
+			info['eEnc'] = ""
+			info['eCaid'] = ""
+			info['eSrc'] = ""
+			info['eTime'] = "0"
 			for line in ecm:
 				d = line.split(':', 1)
 				if len(d) > 1:
 					info[d[0].strip()] = d[1].strip()
-			# info is dictionary
-		except:
-			ecm = None
-			self.textvalue = _("Free To Air")
-			decCI='0'
-			provid='0'
-			ecmpid='0'
-			return self.textvalue,decCI,provid,ecmpid
+				mgcam = line.strip()
+				if line.find('ECM') != -1:
+					linetmp = mgcam.split(' ')
+					info['eEnc'] = linetmp[1]
+					info['eCaid'] = linetmp[5][2:-1]
+					continue
+				if line.find('source') != -1:
+					linetmp = mgcam.split(' ')
+					try:
+						info['eSrc'] = linetmp[4][:-1]
+						continue
+					except:
+						info['eSrc'] = linetmp[1]
+						continue
+				if line.find('msec') != -1:
+					linetmp = line.split(' ')
+					info['eTime'] = linetmp[0]
+					continue
+			data = self.getText()
+			return
+		info['ecminterval0'] = int(time.time()-ecm_time+0.5)
+		return
+
+	def getEcmData(self):
+		self.pollEcmData()
+		return data
+
+	def getInfo(self, member, ifempty = ''):
+		self.pollEcmData()
+		return str(info.get(member, ifempty))
+
+	def getText(self):
+		# info is dictionary
 		using = info.get('using', '')
 		protocol = info.get('protocol', '')
 		if using or protocol:
@@ -116,30 +153,7 @@ class GetEcmInfo:
 				source = info.get('source', None)
 				if source:
 					# MGcam
-					eEnc  = ""
-					eCaid = ""
-					eSrc = ""
-					eTime = "0"
-					for line in ecm:
-						line = line.strip()
-						if line.find('ECM') != -1:
-							linetmp = line.split(' ')
-							eEnc = linetmp[1]
-							eCaid = linetmp[5][2:-1]
-							continue
-						if line.find('source') != -1:
-							linetmp = line.split(' ')
-							try:
-								eSrc = linetmp[4][:-1]
-								continue
-							except:
-								eSrc = linetmp[1]
-								continue
-						if line.find('msec') != -1:
-							linetmp = line.split(' ')
-							eTime = linetmp[0]
-							continue
-					self.textvalue = "(%s %s %.3f @ %s)" % (eEnc,eCaid,(float(eTime)/1000),eSrc)
+					self.textvalue = "%s %s %.3f @ %s" % (info['eEnc'],info['eCaid'],(float(info['eTime'])/1000),info['eSrc'])
 				else:
 					reader = info.get('reader', '')
 					if reader:

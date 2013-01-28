@@ -952,40 +952,39 @@ class InfoBarEPG:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if ".DreamPlex" in `self`:
-			return
-		if config.usage.defaultEPGType.getValue() != _("Graphical EPG") and config.usage.defaultEPGType.getValue() != _("None"):
-				self.openGraphEPG()
-		else:
-			self.openSingleServiceEPG()
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if config.usage.defaultEPGType.getValue() != _("Graphical EPG") and config.usage.defaultEPGType.getValue() != _("None"):
+					self.openGraphEPG()
+			else:
+				self.openSingleServiceEPG()
 
 	def InfoPressed(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if ".DreamPlex" in `self`:
-			return
-		if getBoxType().startswith('et') or getBoxType().startswith('odin') or getBoxType().startswith('venton') or getBoxType().startswith('tm') or getBoxType().startswith('gb') or getBoxType().startswith('xp1000'):
-			self.openEventView()
-		else:
-			self.showDefaultEPG()
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if getBoxType().startswith('et') or getBoxType().startswith('odin') or getBoxType().startswith('venton') or getBoxType().startswith('tm') or getBoxType().startswith('gb') or getBoxType().startswith('xp1000'):
+				self.openEventView()
+			else:
+				self.showDefaultEPG()
 
 	def IPressed(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if ".DreamPlex" in `self`:
-			return
-		self.openEventView()
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			self.openEventView()
 
 	def EPGPressed(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		#self.openGraphEPG()
+
 		if ".DreamPlex" in `self`:
 			return
 		self.openMultiServiceEPG
+		#if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+		#	self.openGraphEPG()
 
 	def showEventInfoWhenNotVisible(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
@@ -1070,7 +1069,7 @@ class InfoBarEPG:
 			self.bouquetSel = None
 		elif self.eventView and closedScreen == self.eventView:
 			self.eventView = None
-		if ret == True:
+		if ret == True or ret == 'close':
 			dlgs=len(self.dlg_stack)
 			if dlgs > 0:
 				self.dlg_stack[dlgs-1].close(dlgs > 1)
@@ -1082,7 +1081,7 @@ class InfoBarEPG:
 			cnt = 0
 		else:
 			cnt = len(self.bouquets)
-		if (self.EPGtype == "multi" and config.epgselection.showbouquet_multi.getValue()) or (self.EPGtype == "graph" and config.epgselection.showbouquet_vixepg.getValue()):
+		if (self.EPGtype == "multi" and config.epgselection.multi_showbouquet.getValue()) or (self.EPGtype == "graph" and config.epgselection.graph_showbouquet.getValue()):
 			if cnt > 1: # show bouquet list
 				if withCallback:
 					self.bouquetSel = self.session.openWithCallback(self.closed, BouquetSelector, self.bouquets, self.openBouquetEPG, enableWrapAround=True)
@@ -1109,7 +1108,10 @@ class InfoBarEPG:
 	def openMultiServiceEPG(self):
 		self.EPGtype = "multi"
 		self.StartBouquet = self.servicelist.getRoot()
-		self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if isMoviePlayerInfoBar(self):
+			self.StartRef = self.lastservice
+		else:
+			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.MultiServiceEPG()
 
 	def openGraphEPG(self, reopen=False):
@@ -1122,7 +1124,10 @@ class InfoBarEPG:
 	def SingleServiceEPG(self):
 		self.StartBouquet = self.servicelist.getRoot()
 		self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if isMoviePlayerInfoBar(self):
+			ref = self.lastservice
+		else:
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if ref:
 			if self.servicelist.getMutableList() is not None: # bouquet in channellist
 				current_path = self.servicelist.getRoot()
@@ -1148,20 +1153,29 @@ class InfoBarEPG:
 		self.serviceSel = None
 		self.reopen(ret)
 
-	def openSingleServiceEPG(self):
+	def openSingleServiceEPG(self, reopen=False):
 		self.EPGtype = "enhanced"
 		self.SingleServiceEPG()
 
-	def openInfoBarEPG(self):
+	def openInfoBarEPG(self, reopen=False):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		self.EPGtype = "infobar"
-		self.SingleServiceEPG()
+		if not reopen:
+			self.StartBouquet = self.servicelist.getRoot()
+			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if config.epgselection.infobar_type_mode.getValue() == 'single':
+			self.EPGtype = "infobar"
+			self.SingleServiceEPG()
+		else:
+			self.EPGtype = "infobargraph"
+			self.MultiServiceEPG()
 
 	def reopen(self, answer):
-		if answer == 'reopen':
+		if answer == 'reopengraph':
 			self.openGraphEPG(True)
+		elif answer == 'reopeninfobargraph' or answer == 'reopeninfobar':
+			self.openInfoBarEPG(True)
 		elif answer == 'close' and isMoviePlayerInfoBar(self):
 			self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.close()
@@ -2038,8 +2052,8 @@ class InfoBarTimeshift:
 	def __init__(self):
 		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions",
 			{
-				"timeshiftStart": (self.startTimeshift, _("Start timeshift")),	# the "yellow key"
-				"timeshiftStop": (self.stopTimeshift, _("Stop timeshift")),		 # currently undefined :), probably 'TV'
+				"timeshiftStart": (self.startTimeshift, _("Start timeshift")),  # the "yellow key"
+				"timeshiftStop": (self.stopTimeshift, _("Stop timeshift")),     # currently undefined :), probably 'TV'
 				"instantRecord": self.instantRecord,
 				"restartTimeshift": self.restartTimeshift
 			}, prio=1)
