@@ -554,24 +554,17 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.start_end_rect = Rect(xpos, 0, w-10, height)
 			self.progress_rect = Rect(xpos, 4, w-10, height-8)
 			xpos += w
-			w = width / 10 * 5;
-			self.descr_rect = Rect(xpos, 0, width, height)
+			w = width / 10 * 4.6
+			self.descr_rect = Rect(xpos, 0, w, height)
 		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			servicew = 0
 			piconw = 0
-			# servicewtmp = width / 10 * 2
 			if self.type == EPG_TYPE_GRAPH:
-				# config.epgselection.graph_servicewidth = ConfigSelectionNumber(default = servicewtmp, stepwidth = 1, min = 70, max = 500, wraparound = True)
-				# piconwtmp = 2 * height - 2 * self.serviceBorderWidth  # FIXME: could do better...
-				# config.epgselection.graph_piconwidth = ConfigSelectionNumber(default = piconwtmp, stepwidth = 1, min = 70, max = 500, wraparound = True)
 				if self.showServiceTitle:
 					servicew = config.epgselection.graph_servicewidth.getValue()
 				if self.showPicon:
 					piconw = config.epgselection.graph_piconwidth.getValue()
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
-				# config.epgselection.infobar_servicewidth = ConfigSelectionNumber(default = servicewtmp, stepwidth = 1, min = 70, max = 500, wraparound = True)
-				# piconwtmp = 2 * height - 2 * self.serviceBorderWidth  # FIXME: could do better...
-				# config.epgselection.infobar_piconwidth = ConfigSelectionNumber(default = piconwtmp, stepwidth = 1, min = 70, max = 500, wraparound = True)
 				if self.showServiceTitle:
 					servicew = config.epgselection.infobar_servicewidth.getValue()
 				if self.showPicon:
@@ -628,8 +621,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		]
 		if clock_pic is not None:
 			res.extend((
-				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.x, (r3.h/2-11), 21, 21, clock_pic),
-				(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 25, r3.y, r3.w, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
+				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-8, (r3.h/2-11), 21, 21, clock_pic),
+				(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-8, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
 			))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
@@ -648,41 +641,40 @@ class EPGList(HTMLComponent, GUIComponent):
 		]
 		if clock_pic is not None:
 			res.extend((
-				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.x, (r3.h/2-11), 21, 21, clock_pic),
-				(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 25, r3.y, r3.w, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name)
+				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-8, (r3.h/2-11), 21, 21, clock_pic),
+				(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-8, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
 			))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
 		return res
 
 	def buildMultiEntry(self, changecount, service, eventId, beginTime, duration, EventName, nowTime, service_name):
-		clock_pic = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1 = self.service_rect
 		r2 = self.progress_rect
 		r3 = self.descr_rect
 		r4 = self.start_end_rect
 		res = [ None ] # no private data needed
-		if clock_pic is not None:
-			res.extend((
-				(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w-21, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name),
-				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r1.x+r1.w-16, (r3.h/2-11), 21, 21, clock_pic)
-			))
-		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
 		if beginTime is not None:
+			rec = self.timer.isInTimer(eventId, beginTime, duration, service)
 			if nowTime < beginTime:
 				begin = localtime(beginTime)
 				end = localtime(beginTime+duration)
-				res.extend((
-					(eListboxPythonMultiContent.TYPE_TEXT, r4.x, r4.y, r4.w, r4.h, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER, "%02d.%02d - %02d.%02d"%(begin[3],begin[4],end[3],end[4])),
-					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
-				))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, r4.x, r4.y, r4.w, r4.h, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER, "%02d.%02d - %02d.%02d"%(begin[3],begin[4],end[3],end[4])))
 			else:
 				percent = (nowTime - beginTime) * 100 / duration
+				res.append((eListboxPythonMultiContent.TYPE_PROGRESS, r2.x, r2.y, r2.w, r2.h, percent))
+			if rec is not None and rec[1] >0:
+				if rec[1] == 1:
+					pos = r3.x+r3.w
+				else:
+					pos = r3.x+r3.w-10
 				res.extend((
-					(eListboxPythonMultiContent.TYPE_PROGRESS, r2.x, r2.y, r2.w, r2.h, percent),
-					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-10, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
+					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-11), 21, 21, self.clocks[rec[1]])
 				))
+			else:
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
 		return res
 
 	def buildGraphEntry(self, service, service_name, events, picon):
@@ -981,8 +973,14 @@ class EPGList(HTMLComponent, GUIComponent):
 				
 				# recording icons
 				if rec is not None and rec[1] >0 and ewidth > 23:
+					if rec[1] == 1:
+						pos = (left+xpos+ewidth-13, top+height-22)
+					elif rec[1] == 5:
+						pos = (left+xpos-8, top+height-23)
+					else:
+						pos = (left+xpos+ewidth-23, top+height-22)
 					res.append(MultiContentEntryPixmapAlphaBlend(
-						pos = (left+xpos+ewidth-22, top+height-22), size = (21, 21),
+						pos = pos, size = (21, 21),
 						png = self.clocks[rec[1]],
 						backcolor_sel = backColorSel))
 		return res
