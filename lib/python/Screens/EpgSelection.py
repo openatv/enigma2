@@ -61,15 +61,16 @@ class EPGSelection(Screen, HelpableScreen):
 			self.type = EPG_TYPE_MULTI
 		else:
 			self.type = EPG_TYPE_SIMILAR
-		self.StartBouquet = StartBouquet
-		self.StartRef = StartRef
-		self.bouquetname = bouquetname
+		if not self.type == EPG_TYPE_SINGLE:
+			self.StartBouquet = StartBouquet
+			self.StartRef = StartRef
+			self.bouquetname = bouquetname
+			self.servicelist = None
 		self.ask_time = -1
 		self.closeRecursive = False
 		self.eventviewDialog = None
 		self.eventviewWasShown = False
 		self.currch = None
-		self.servicelist = None
 		self.session.pipshown = False
 		if plugin_PiPServiceRelation_installed:
 			self.pipServiceRelation = getRelationDict()
@@ -369,6 +370,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def onCreate(self):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		title = None
 		l = self['list']
 		l.recalcEntrySize()
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
@@ -393,12 +395,14 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			if self.type == EPG_TYPE_SINGLE:
 				service = self.currentService
-				title = ServiceReference(self.StartBouquet).getServiceName()
 			elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 				service = ServiceReference(self.servicelist.getCurrentSelection())
 				title = ServiceReference(self.servicelist.getRoot()).getServiceName()
 			self['Service'].newService(service.ref)
-			title = title + ' - ' + service.getServiceName()
+			if title:
+				title = title + ' - ' + service.getServiceName()
+			else: 
+				title = service.getServiceName()
 			self.setTitle(title)
 			l.fillSingleEPG(service)
 			l.sortSingleEPG(int(config.epgselection.sort.getValue()))
@@ -632,6 +636,9 @@ class EPGSelection(Screen, HelpableScreen):
 			self.infoKeyPressed(True)
 
 	def closeScreen(self):
+		if self.type == EPG_TYPE_SINGLE:
+			self.close()
+			return
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
 			if self.zapFunc and ((self.type == EPG_TYPE_GRAPH and config.epgselection.graph_preview_mode.getValue()) or (self.type == EPG_TYPE_MULTI and config.epgselection.multi_preview_mode.getValue()) or ((self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH) and (config.epgselection.infobar_preview_mode.getValue() == '1' or config.epgselection.infobar_preview_mode.getValue() == '2')) or (self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_preview_mode.getValue())) and self.StartRef and self.StartBouquet:
 				if self.StartRef.toString().find('0:0:0:0:0:0:0:0:0') == -1:
@@ -643,10 +650,7 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			self.session.nav.playService(self.StartRef)
 		self.closeEventViewDialog()
-		if self.type == EPG_TYPE_SINGLE:
-			self.close(False)
-		else:
-			self.close(True)
+		self.close(True)
 
 	def infoKeyPressed(self, eventviewopen=False):
 		cur = self['list'].getCurrent()
@@ -749,10 +753,9 @@ class EPGSelection(Screen, HelpableScreen):
 	def OpenSingleEPG(self):
 		cur = self['list'].getCurrent()
 		event = cur[0]
-		serviceref = cur[1]
-		refstr = serviceref.ref.toString()
-		if event is not None:
-			self.session.open(SingleEPG, refstr)
+		serviceref = cur[1].ref
+		if serviceref is not None:
+			self.session.open(SingleEPG, serviceref)
 
 	def openIMDb(self):
 		try:
@@ -1257,6 +1260,6 @@ class EPGSelection(Screen, HelpableScreen):
 
 
 class SingleEPG(EPGSelection):
-	def __init__(self, session, service, zapFunc = None, bouquetChangeCB = None, serviceChangeCB = None):
-		EPGSelection.__init__(self, session, service, zapFunc, bouquetChangeCB, serviceChangeCB)
+	def __init__(self, session, service, zapFunc = None, eventid = None, bouquetChangeCB = None, serviceChangeCB = None, EPGtype = None, StartBouquet = None, StartRef = None, bouquetname = ''):
+		EPGSelection.__init__(self, session, service, EPGtype="single")
 		self.skinName = 'EPGSelection'
