@@ -345,13 +345,13 @@ class PluginDownloadBrowser(Screen):
 				self.updateList()
 				self["list"].instance.show()
 			else:
-				self["text"].setText("No new plugins found")
+				self["text"].setText(_("No new plugins found"))
 		else:
 			if self.pluginlist:
 				self.updateList()
 				self["list"].instance.show()
 			else:
-				self["text"].setText("No new plugins found")
+				self["text"].setText(_("No new plugins found"))
 
 	def dataAvail(self, str):
 		#prepend any remaining data from the previous call
