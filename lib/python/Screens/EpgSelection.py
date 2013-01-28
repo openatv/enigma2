@@ -42,6 +42,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.zapFunc = zapFunc
 		self.bouquetChangeCB = bouquetChangeCB
 		self.serviceChangeCB = serviceChangeCB
+		graphic = False
 		if EPGtype == 'single':
 			self.type = EPG_TYPE_SINGLE
 		elif EPGtype == 'infobar':
@@ -50,8 +51,12 @@ class EPGSelection(Screen, HelpableScreen):
 			self.type = EPG_TYPE_ENHANCED
 		elif EPGtype == 'graph':
 			self.type = EPG_TYPE_GRAPH
+			if config.epgselection.graph_type_mode.getValue() == "graphics":
+				graphic = True
 		elif EPGtype == 'infobargraph':
 			self.type = EPG_TYPE_INFOBARGRAPH
+			if config.epgselection.infobar_type_mode.getValue() == "graphics":
+				graphic = True
 		elif EPGtype == 'multi':
 			self.type = EPG_TYPE_MULTI
 		else:
@@ -203,7 +208,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.ask_time = self.ask_time = now - now % (int(config.epgselection.infobar_roundto.getValue()) * 60)
 			self.closeRecursive = False
 			self['lab1'] = Label(_('Wait please while gathering data...'))
-			self['timeline_text'] = TimelineText(type=self.type)
+			self['timeline_text'] = TimelineText(type=self.type,graphic=graphic)
 			self['Event'] = Event()
 			self['primetime'] = Label(_('PRIMETIME'))
 			self['change_bouquet'] = Label(_('CHANGE BOUQUET'))
@@ -296,7 +301,7 @@ class EPGSelection(Screen, HelpableScreen):
 			time_epoch=config.epgselection.infobar_prevtimeperiod.getValue()
 		else:
 			time_epoch=None
-		self['list'] = EPGList(type=self.type, selChangedCB=self.onSelectionChanged, timer=session.nav.RecordTimer, time_epoch=time_epoch, overjump_empty=config.epgselection.overjump.getValue())
+		self['list'] = EPGList(type=self.type, selChangedCB=self.onSelectionChanged, timer=session.nav.RecordTimer, time_epoch=time_epoch, overjump_empty=config.epgselection.overjump.getValue(), graphic=graphic)
 		self.refreshTimer = eTimer()
 		self.refreshTimer.timeout.get().append(self.refreshData)
 		self.listTimer = eTimer()
