@@ -637,10 +637,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.setServicelistSelection(self.StartBouquet, self.StartRef)
 		else:
 			self.session.nav.playService(self.StartRef)
-		if self.eventviewDialog:
-			self.eventviewDialog.hide()
-			del self.eventviewDialog
-			self.eventviewDialog = None
+		self.closeEventViewDialog()
 		if self.type == EPG_TYPE_SINGLE:
 			self.close(False)
 		else:
@@ -1052,8 +1049,15 @@ class EPGSelection(Screen, HelpableScreen):
 				self.servicelist.enterPath(bouquet)
 			self.servicelist.setCurrentSelection(service)
 
+	def closeEventViewDialog(self):
+		if self.eventviewDialog:
+			self.eventviewDialog.hide()
+			del self.eventviewDialog
+			self.eventviewDialog = None
+
 	def zap(self):
 		self.zapSelectedService()
+		self.closeEventViewDialog()
 		self.close(True)
 
 	def zapSelectedService(self, prev=False):
@@ -1096,6 +1100,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.zapSelectedService(True)
 			self.refreshTimer.start(2000)
 		if not self.currch or self.currch == self.prevch:
+			self.closeEventViewDialog()
 			self.close('close')
 
 	def keyNumberGlobal(self, number):
