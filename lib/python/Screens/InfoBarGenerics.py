@@ -59,6 +59,8 @@ from Screens.Menu import MainMenu, Menu, mdom
 from Screens.Setup import Setup
 import Screens.Standby
 
+AUDIO = False
+
 def isStandardInfoBar(self):
 	return ".InfoBar'>" in `self`
 
@@ -139,6 +141,7 @@ def loadResumePoints():
 
 def ToggleVideo():
 	mode = open("/proc/stb/video/policy").read()[:-1]
+	print mode
 	if mode == "letterbox":
 		f = open("/proc/stb/video/policy", "w")
 		f.write("panscan")
@@ -2778,7 +2781,10 @@ class InfoBarTimeshift:
 		elif config.plugins.infopanel_yellowkey.list.getValue() == '1':
 			self.startTimeshift()
 		else:
-			ToggleVideo()
+			global AUDIO
+			if AUDIO == False:
+				ToggleVideo()
+			AUDIO = False
 
 	def selectYellowkeyTimeshiftEndAndPause(self):
 		if config.plugins.infopanel_yellowkey.list.getValue() == '0':
@@ -4574,6 +4580,8 @@ class InfoBarAudioSelection:
 			from Screens.AudioSelection import AudioSelection
 			self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 		elif config.plugins.infopanel_yellowkey.list.getValue() == '2':
+			global AUDIO
+			AUDIO = True
 			ToggleVideo()
 		else:
 			try:
