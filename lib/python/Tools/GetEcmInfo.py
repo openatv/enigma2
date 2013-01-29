@@ -35,14 +35,14 @@ class GetEcmInfo:
 				file.close()
 			except:
 				ecm = ''
-			info['caid'] = ""
+			info['caid'] = "0"
 			info['eCaid'] = ""
 			info['eEnc'] = ""
 			info['eSrc'] = ""
 			info['eTime'] = "0"
-			info['pid'] = ""
+			info['pid'] = "0"
 			info['prov'] = ""
-			info['provid'] = ""
+			info['provid'] = "0"
 			for line in ecm:
 				d = line.split(':', 1)
 				if len(d) > 1:
