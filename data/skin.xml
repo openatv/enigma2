@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX addition Vs 1.09 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
+	<!--	Skin: Default-ViX addition Vs 1.11 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
 	<!--	Contains derived work by MiLo -->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
@@ -168,7 +168,7 @@
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
-	<screen name="menu_mainmenu" position="center,center" size="480,302" backgroundColor="transBG" flags="wfNoBorder" title="Main menu">
+<!--	<screen name="menu_mainmenu" position="center,center" size="480,302" backgroundColor="transBG" flags="wfNoBorder" title="Main menu">
 		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
 		<widget source="title" render="Label" position="149,4" size="310,26" font="Enigma;22" transparent="1" zPosition="1"/>
 		<widget position="149,53" render="Listbox" scrollbarMode="showOnDemand" size="310,227" source="menu" transparent="1" zPosition="1">
@@ -218,7 +218,7 @@
 		</widget>
 		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4"/>
 		<ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
-	</screen>
+	</screen>-->
 	<screen name="MoviePlayer" position="60,40" size="600,102" backgroundColor="transparent" flags="wfNoBorder" title="MoviePlayer">
 		<eLabel backgroundColor="infobarBG" position="6,44" size="588,14" zPosition="0"/>
 		<ePixmap alphatest="on" pixmap="skin_default/dvr/scale.png" position="8,45" size="584,12" zPosition="1"/>
