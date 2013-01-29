@@ -9,7 +9,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.PluginComponent import plugins
 from Components.MenuList import MenuList
 from Components.UsageConfig import preferredTimerPath
-from enigma import eEPGCache, eTimer, eServiceReference
+from Components.Pixmap import Pixmap
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from Screens.TimerEntry import TimerEntry
 from Plugins.Plugin import PluginDescriptor
@@ -17,6 +17,7 @@ from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from Tools.BoundFunction import boundFunction
 from time import localtime, mktime, time, strftime
 from os import path
+from enigma import eEPGCache, eTimer, eServiceReference
 
 class EventViewContextMenu(Screen):
 	def __init__(self, session, service, event):
@@ -268,6 +269,12 @@ class EventViewEPGSelect(Screen, EventViewBase):
 		EventViewBase.__init__(self, Event, Ref, callback, similarEPGCB)
 		self.key_green_choice = self.ADD_TIMER
 
+		# Background for Buttons
+		self["red"] = Pixmap()
+		self["green"] = Pixmap()
+		self["yellow"] = Pixmap()
+		self["blue"] = Pixmap()
+
 		self["epgactions1"] = ActionMap(["OkCancelActions", "EventViewActions"],
 			{
 
@@ -286,6 +293,10 @@ class EventViewEPGSelect(Screen, EventViewBase):
 				{
 					"openSingleServiceEPG": singleEPGCB,
 				})
+		else:
+			self["key_yellow"] = Button("")
+			self["yellow"].hide()
+			
 		if multiEPGCB:
 			self["key_blue"] = Button(_("Multi EPG"))
 			self["epgactions3"] = ActionMap(["EventViewEPGActions"],
@@ -293,3 +304,6 @@ class EventViewEPGSelect(Screen, EventViewBase):
 
 					"openMultiServiceEPG": multiEPGCB,
 				})
+		else:
+			self["key_blue"] = Button("")
+			self["blue"].hide()
