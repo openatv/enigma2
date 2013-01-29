@@ -12,7 +12,7 @@ from Tools.LoadPixmap import LoadPixmap
 
 from time import localtime, time, strftime
 from ServiceReference import ServiceReference
-from Tools.Directories import pathExists, resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import pathExists, resolveFilename, SCOPE_ACTIVE_SKIN
 from os import listdir, path
 
 EPG_TYPE_SINGLE = 0
@@ -80,12 +80,12 @@ class EPGList(HTMLComponent, GUIComponent):
 			assert(type == EPG_TYPE_SIMILAR)
 			self.l.setBuildFunc(self.buildSimilarEntry)
 		self.epgcache = eEPGCache.getInstance()
-		epgclock_add = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_add.png')
-		epgclock_pre = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_pre.png')
-		epgclock_rec = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock.png')
-		epgclock_zap = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_zap.png')
-		epgclock_prepost = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_prepost.png')
-		epgclock_post = resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_post.png')
+		epgclock_add = resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_add.png')
+		epgclock_pre = resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_pre.png')
+		epgclock_rec = resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock.png')
+		epgclock_zap = resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_zap.png')
+		epgclock_prepost = resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_prepost.png')
+		epgclock_post = resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_post.png')
 
 		self.clocks = [ LoadPixmap(cached=True, path=epgclock_add),
 						LoadPixmap(cached=True, path=epgclock_pre),
@@ -422,47 +422,47 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
 
 			self.picload.setPara((self.listWidth, itemHeight, 0, 0, 1, 1, "#00000000"))
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentEvent.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/CurrentEvent.png'), 0, 0, False)
 			self.nowEvPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedCurrentEvent.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedCurrentEvent.png'), 0, 0, False)
 			self.nowSelEvPix = self.picload.getData()
 
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/OtherEvent.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherEvent.png'), 0, 0, False)
 			self.othEvPix = self.picload.getData()
 
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedEvent.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedEvent.png'), 0, 0, False)
 			self.selEvPix = self.picload.getData()
 
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/OtherService.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherService.png'), 0, 0, False)
 			self.othServPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentService.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/CurrentService.png'), 0, 0, False)
 			self.nowServPix = self.picload.getData()
 
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/RecordEvent.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/RecordEvent.png'), 0, 0, False)
 			self.recEvPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedRecordEvent.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedRecordEvent.png'), 0, 0, False)
 			self.recSelEvPix = self.picload.getData()
 
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/ZapEvent.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/ZapEvent.png'), 0, 0, False)
 			self.zapEvPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedZapEvent.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedZapEvent.png'), 0, 0, False)
 			self.zapSelEvPix = self.picload.getData()
 
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/BorderTop.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderTop.png'), 0, 0, False)
 			self.borderTopPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/BorderLeft.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderLeft.png'), 0, 0, False)
 			self.borderLeftPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/BorderBottom.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderBottom.png'), 0, 0, False)
 			self.borderBottomPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/BorderRight.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderRight.png'), 0, 0, False)
 			self.borderRightPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedBorderTop.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderTop.png'), 0, 0, False)
 			self.borderSelectedTopPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedBorderLeft.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderLeft.png'), 0, 0, False)
 			self.borderSelectedLeftPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedBorderBottom.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderBottom.png'), 0, 0, False)
 			self.borderSelectedBottomPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedBorderRight.png'), 0, 0, False)
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderRight.png'), 0, 0, False)
 			self.borderSelectedRightPix = self.picload.getData()
 
 
@@ -1217,10 +1217,10 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 	def setBackgroundPix(self):
 		self.picload.setPara((self.listWidth, self.listHeight, 0, 0, 1, 1, "#00000000"))
-		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/TimeLineDate.png'), 0, 0, False)
+		self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/TimeLineDate.png'), 0, 0, False)
 		self.TlDate = self.picload.getData()
 		self.picload.setPara((self.listWidth, self.listHeight, 0, 0, 1, 1, "#00000000"))
-		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/TimeLineTime.png'), 0, 0, False)
+		self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/TimeLineTime.png'), 0, 0, False)
 		self.TlTime = self.picload.getData()
 
 	def setEntries(self, l, timeline_now, time_lines, force):

@@ -2,7 +2,7 @@ import os
 import re
 from MenuList import MenuList
 from Components.Harddisk import harddiskmanager
-from Tools.Directories import SCOPE_CURRENT_SKIN, resolveFilename, fileExists, pathExists
+from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename, fileExists, pathExists
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
 	eServiceReference, eServiceCenter, gFont
 from Tools.LoadPixmap import LoadPixmap
@@ -39,12 +39,12 @@ def FileEntryComponent(name, absolute = None, isDir = False):
 	res = [ (absolute, isDir) ]
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 35, 1, 470, 20, 0, RT_HALIGN_LEFT, name))
 	if isDir:
-		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "extensions/directory.png"))
+		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/directory.png"))
 	else:
 		extension = name.split('.')
 		extension = extension[-1].lower()
 		if EXTENSIONS.has_key(extension):
-			png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "extensions/" + EXTENSIONS[extension] + ".png"))
+			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/" + EXTENSIONS[extension] + ".png"))
 		else:
 			png = None
 	if png is not None:
@@ -270,21 +270,21 @@ def MultiFileSelectEntryComponent(name, absolute = None, isDir = False, selected
 	res = [ (absolute, isDir, selected, name) ]
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 55, 1, 470, 20, 0, RT_HALIGN_LEFT, name))
 	if isDir:
-		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "extensions/directory.png"))
+		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/directory.png"))
 	else:
 		extension = name.split('.')
 		extension = extension[-1].lower()
 		if EXTENSIONS.has_key(extension):
-			png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "extensions/" + EXTENSIONS[extension] + ".png"))
+			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/" + EXTENSIONS[extension] + ".png"))
 		else:
 			png = None
 	if png is not None:
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 30, 2, 20, 20, png))
 	if not name.startswith('<'):
 		if selected:
-			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/lock_on.png"))
+			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png"))
 		else:
-			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/lock_off.png"))
+			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png"))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 0, 25, 25, icon))
 	return res
 

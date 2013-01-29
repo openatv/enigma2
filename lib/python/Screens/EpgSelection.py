@@ -14,7 +14,7 @@ from Screens.EventView import EventViewEPGSelect, EventViewSimple
 from Screens.MessageBox import MessageBox
 from Screens.PictureInPicture import PictureInPicture
 from Screens.Setup import Setup
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from TimeDateInput import TimeDateInput
 from enigma import eServiceReference, eTimer, eServiceCenter
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
