@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX addition Vs 1.11 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
+	<!--	Skin: Default-ViX addition Vs 1.12 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
 	<!--	Contains derived work by MiLo -->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
@@ -168,57 +168,6 @@
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
-<!--	<screen name="menu_mainmenu" position="center,center" size="480,302" backgroundColor="transBG" flags="wfNoBorder" title="Main menu">
-		<eLabel backgroundColor="background" position="0,0" size="480,302" zPosition="-1"/>
-		<widget source="title" render="Label" position="149,4" size="310,26" font="Enigma;22" transparent="1" zPosition="1"/>
-		<widget position="149,53" render="Listbox" scrollbarMode="showOnDemand" size="310,227" source="menu" transparent="1" zPosition="1">
-			<convert type="StringList"/>
-		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/shutdown.png" position="3,53" size="128,128" alphatest="on" zPosition="1">
-			<convert type="MenuEntryCompare">standby_restart_list</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/setup.png" position="3,53" size="128,128" alphatest="on"  zPosition="1">
-			<convert type="MenuEntryCompare">setup_selection</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/plugins.png" position="3,53" size="128,128" alphatest="on" zPosition="1">
-			<convert type="MenuEntryCompare">plugin_selection</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/information.png" position="3,53" size="128,128" alphatest="on" zPosition="1">
-			<convert type="MenuEntryCompare">info_screen</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/scart.png" position="3,53" size="128,128" alphatest="on" zPosition="1">
-			<convert type="MenuEntryCompare">scart_switch</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/timer.png" position="3,53" size="128,128" alphatest="on" zPosition="1">
-			<convert type="MenuEntryCompare">timer_edit</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/media_player.png" position="3,53" size="128,128" alphatest="on" zPosition="1">
-			<convert type="MenuEntryCompare">media_player</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget alphatest="on" pixmap="skin_default/menu/dvd_player.png" position="3,53" render="Pixmap" size="128,128" source="menu" zPosition="1">
-			<convert type="MenuEntryCompare">dvd_player</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget alphatest="on" pixmap="skin_default/menu/subtitles.png" position="3,53" render="Pixmap" size="128,128" source="menu" zPosition="1">
-			<convert type="MenuEntryCompare">subtitle_selection</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget font="Enigma;18" halign="right" position="404,10" render="Label" size="55,22" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<widget alphatest="on" pixmap="skin_default/buttons/red.png" position="390,8" render="Pixmap" size="14,14" source="session.RecordState" zPosition="3">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4"/>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="0,280" size="340,25" alphatest="on" />
-	</screen>-->
 	<screen name="MoviePlayer" position="60,40" size="600,102" backgroundColor="transparent" flags="wfNoBorder" title="MoviePlayer">
 		<eLabel backgroundColor="infobarBG" position="6,44" size="588,14" zPosition="0"/>
 		<ePixmap alphatest="on" pixmap="skin_default/dvr/scale.png" position="8,45" size="584,12" zPosition="1"/>
@@ -235,5 +184,9 @@
 			<convert type="ServicePosition">Remaining,Negate,ShowHours</convert>
 		</widget>
 	</screen>
-
+	<screen name="PermanentClockScreen" position="0,0" size="120,30" zPosition="-1" backgroundColor="transparent" title="%s" flags="wfNoBorder">
+		<widget source="global.CurrentTime" render="Label" position="1,1" size="120,30" backgroundColor="transparent" transparent="1" zPosition="0" foregroundColor="grey" borderWidth="2" font="Regular;26" borderColor="black" valign="center" halign="center">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+	</screen>
 </skin>
