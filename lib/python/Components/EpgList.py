@@ -507,7 +507,9 @@ class EPGList(HTMLComponent, GUIComponent):
 		elif self.type == EPG_TYPE_MULTI:
 			self.l.setFont(0, gFont(self.eventFontNameMulti, self.eventFontSizeMulti + config.epgselection.multi_eventfs.getValue()))
 			self.l.setFont(1, gFont(self.eventFontNameMulti, self.eventFontSizeMulti - 4 + config.epgselection.multi_eventfs.getValue()))
-		elif self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH:
+		elif self.type == EPG_TYPE_INFOBAR:
+			self.l.setFont(0, gFont(self.eventFontNameInfobar, self.eventFontSizeInfobar + config.epgselection.infobar_eventfs.getValue()))
+		elif self.type == EPG_TYPE_INFOBARGRAPH:
 			self.l.setFont(1, gFont(self.eventFontNameInfobar, self.eventFontSizeInfobar + config.epgselection.infobar_eventfs.getValue()))
 
 	def postWidgetCreate(self, instance):
