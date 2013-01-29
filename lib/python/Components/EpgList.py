@@ -46,7 +46,7 @@ class Rect:
 		return self.w
 
 class EPGList(HTMLComponent, GUIComponent):
-	def __init__(self, type = EPG_TYPE_SINGLE, selChangedCB = None, timer = None, time_epoch = 120, overjump_empty = False):
+	def __init__(self, type = EPG_TYPE_SINGLE, selChangedCB = None, timer = None, time_epoch = 120, overjump_empty = False, graphic=False):
 		self.cur_event = None
 		self.cur_service = None
 		self.offs = 0
@@ -67,6 +67,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.onSelChanged.append(selChangedCB)
 		GUIComponent.__init__(self)
 		self.type = type
+		self.graphic = graphic
 		self.l = eListboxPythonMultiContent()
 
 		if type == EPG_TYPE_SINGLE or type == EPG_TYPE_ENHANCED or type == EPG_TYPE_INFOBAR:
@@ -502,7 +503,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		if self.type == EPG_TYPE_GRAPH:
 			self.l.setFont(1, gFont(self.eventFontNameGraph, self.eventFontSizeGraph + config.epgselection.graph_eventfs.getValue()))
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
-			self.l.setFont(1, gFont(self.eventFontNameSingle, self.eventFontSizeSingle + config.epgselection.enhanced_eventfs.getValue()))
+			self.l.setFont(0, gFont(self.eventFontNameSingle, self.eventFontSizeSingle + config.epgselection.enhanced_eventfs.getValue()))
 		elif self.type == EPG_TYPE_MULTI:
 			self.l.setFont(0, gFont(self.eventFontNameMulti, self.eventFontSizeMulti + config.epgselection.multi_eventfs.getValue()))
 			self.l.setFont(1, gFont(self.eventFontNameMulti, self.eventFontSizeMulti - 4 + config.epgselection.multi_eventfs.getValue()))
@@ -616,16 +617,16 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		res = [
 			None, # no private data needed
-			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t))
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t))
 		]
 		if clock_pic is not None:
 			res.extend((
 				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-8, (r3.h/2-11), 21, 21, clock_pic),
-				(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-8, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
+				(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-8, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
 			))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
  		return res
 
 	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
@@ -636,16 +637,16 @@ class EPGList(HTMLComponent, GUIComponent):
 		t = localtime(beginTime)
 		res = [
 			None,  # no private data needed
-			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t))
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t))
 		]
 		if clock_pic is not None:
 			res.extend((
 				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-8, (r3.h/2-11), 21, 21, clock_pic),
-				(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-8, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
+				(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-8, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
 			))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
 		return res
 
 	def buildMultiEntry(self, changecount, service, eventId, beginTime, duration, EventName, nowTime, service_name):
@@ -688,16 +689,16 @@ class EPGList(HTMLComponent, GUIComponent):
 			serviceForeColor = self.foreColorServiceNow
 			serviceBackColor = self.backColorServiceNow
 			bgpng = self.nowServPix
-			if bgpng is not None and (config.epgselection.graph_type_mode.getValue() == "graphics" or config.epgselection.infobar_type_mode.getValue() == "graphics"):    # bacground for service rect
+			if bgpng is not None and self.graphic:    # bacground for service rect
 				serviceBackColor = None
 		else:
 			serviceForeColor = self.foreColorService
 			serviceBackColor = self.backColorService
 			bgpng = self.othServPix
-			if bgpng is not None and (config.epgselection.graph_type_mode.getValue() == "graphics" or config.epgselection.infobar_type_mode.getValue() == "graphics"):    # bacground for service rect
+			if bgpng is not None and self.graphic:    # bacground for service rect
 				serviceBackColor = None
 
-		if bgpng is not None and (config.epgselection.graph_type_mode.getValue() == "graphics" or config.epgselection.infobar_type_mode.getValue() == "graphics"):    # bacground for service rect
+		if bgpng is not None and self.graphic:    # bacground for service rect
 			res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
 					size = (r1.w - 2 * self.serviceBorderWidth, r1.h - 2 * self.serviceBorderWidth),
@@ -757,7 +758,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				color = serviceForeColor, color_sel = serviceForeColor,
 				backcolor = serviceBackColor, backcolor_sel = serviceBackColor))
 
-		if self.othEvPix is not None and (config.epgselection.graph_type_mode.getValue() == "graphics" or config.epgselection.infobar_type_mode.getValue() == "graphics"):
+		if self.othEvPix is not None and self.graphic:
 			res.append(MultiContentEntryPixmapAlphaTest(
 				pos = (r2.x, r2.y),
 				size = (r2.w, r2.h),
@@ -773,7 +774,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				border_width = self.eventBorderWidth, border_color = self.borderColor))
 
 		# Borders
-		if (config.epgselection.graph_type_mode.getValue() == "graphics" or config.epgselection.infobar_type_mode.getValue() == "graphics"):
+		if self.graphic:
 			if self.borderTopPix is not None:
 				res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (r1.x, r1.y),
@@ -849,7 +850,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						foreColorSel = self.foreColorRecordSelected
 						backColorSel = self.backColorRecordSelected
 						bgpng = self.recSelEvPix
-						if bgpng is not None and (config.epgselection.graph_type_mode.getValue() == "graphics" or config.epgselection.infobar_type_mode.getValue() == "graphics"):
+						if bgpng is not None and self.graphic:
 							backColor = None
 							backColorSel = None
 					elif rec is not None and rec[1] == 3:
@@ -858,7 +859,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						foreColorSel = self.foreColorZapSelected
 						backColorSel = self.backColorZapSelected
 						bgpng = self.zapSelEvPix
-						if bgpng is not None and (config.epgselection.graph_type_mode.getValue() == "graphics" or config.epgselection.infobar_type_mode.getValue() == "graphics"):
+						if bgpng is not None and self.graphic:
 							backColor = None
 							backColorSel = None
 					elif stime <= now and now < (stime + duration):
@@ -867,7 +868,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						foreColorSel = self.foreColorNowSelected
 						backColorSel = self.backColorNowSelected
 						bgpng = self.nowSelEvPix
-						if bgpng is not None and (config.epgselection.graph_type_mode.getValue() == "graphics" or config.epgselection.infobar_type_mode.getValue() == "graphics"):
+						if bgpng is not None and self.graphic:
 							backColor = None
 							backColorSel = None
 					else:
@@ -876,7 +877,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						foreColorSel = self.foreColorSelected
 						backColorSel = self.backColorSelected
 						bgpng = self.selEvPix
-						if bgpng is not None and (config.epgselection.graph_type_mode.getValue() == "graphics" or config.epgselection.infobar_type_mode.getValue() == "graphics"):
+						if bgpng is not None and self.graphic:
 							backColor = None
 							backColorSel = None
 				else:
@@ -890,7 +891,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						foreColorSel = self.foreColorRecordSelected
 						backColorSel = self.backColorRecordSelected
 						bgpng = self.recEvPix
-						if bgpng is not None and (config.epgselection.graph_type_mode.getValue() == "graphics" or config.epgselection.infobar_type_mode.getValue() == "graphics"):
+						if bgpng is not None and self.graphic:
 							backColor = None
 							backColorSel = None
 					elif rec is not None and rec[1] == 3:
@@ -899,7 +900,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						foreColorSel = self.foreColorZapSelected
 						backColorSel = self.backColorZapSelected
 						bgpng = self.zapEvPix
-						if bgpng is not None and (config.epgselection.graph_type_mode.getValue() == "graphics" or config.epgselection.infobar_type_mode.getValue() == "graphics"):
+						if bgpng is not None and self.graphic:
 							backColor = None
 							backColorSel = None
 					elif stime <= now and now < (stime + duration):
@@ -908,7 +909,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						foreColorSel = self.foreColorNowSelected
 						backColorSel = self.backColorNowSelected
 						bgpng = self.nowEvPix
-						if bgpng is not None and (config.epgselection.graph_type_mode.getValue() == "graphics" or config.epgselection.infobar_type_mode.getValue() == "graphics"):
+						if bgpng is not None and self.graphic:
 							backColor = None
 							backColorSel = None
 					else:
@@ -917,12 +918,12 @@ class EPGList(HTMLComponent, GUIComponent):
 						foreColorSel = self.foreColorSelected
 						backColorSel = self.backColorSelected
 						bgpng = self.othEvPix
-						if bgpng is not None and (config.epgselection.graph_type_mode.getValue() == "graphics" or config.epgselection.infobar_type_mode.getValue() == "graphics"):
+						if bgpng is not None and self.graphic:
 							backColor = None
 							backColorSel = None
 
 				# event box background
-				if bgpng is not None and (config.epgselection.graph_type_mode.getValue() == "graphics" or config.epgselection.infobar_type_mode.getValue() == "graphics"):
+				if bgpng is not None and self.graphic:
 					res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (left + xpos + self.eventBorderWidth, top + self.eventBorderWidth),
 						size = (ewidth - 2 * self.eventBorderWidth, height - 2 * self.eventBorderWidth),
@@ -949,7 +950,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						backcolor = backColor, backcolor_sel = backColorSel))
 
 				# event box borders
-				if (config.epgselection.graph_type_mode.getValue() == "graphics" or config.epgselection.infobar_type_mode.getValue() == "graphics"):
+				if self.graphic:
 					if borderTopPix is not None:
 						res.append(MultiContentEntryPixmapAlphaTest(
 								pos = (left + xpos, top),
@@ -1153,9 +1154,10 @@ class EPGList(HTMLComponent, GUIComponent):
 			index += 1
 
 class TimelineText(HTMLComponent, GUIComponent):
-	def __init__(self, type = EPG_TYPE_GRAPH):
+	def __init__(self, type = EPG_TYPE_GRAPH, graphic=False):
 		GUIComponent.__init__(self)
 		self.type = type
+		self.graphic = graphic
 		self.l = eListboxPythonMultiContent()
 		self.l.setSelectionClip(eRect(0,0,0,0))
 		self.l.setItemHeight(30);
@@ -1262,7 +1264,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 			foreColor = self.foreColor
 			backColor = self.backColor
 			bgpng = self.TlDate
-			if bgpng is not None and (config.epgselection.graph_type_mode.getValue() == "graphics" or config.epgselection.infobar_type_mode.getValue() == "graphics"):
+			if bgpng is not None and self.graphic:
 				backColor = None
 				backColorSel = None
 				res.append(MultiContentEntryPixmapAlphaTest(
@@ -1289,7 +1291,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 			backColor = self.backColor
 			bgpng = self.TlTime
 			xpos = 0 # eventLeft
-			if bgpng is not None and (config.epgselection.graph_type_mode.getValue() == "graphics" or config.epgselection.infobar_type_mode.getValue() == "graphics"):
+			if bgpng is not None and self.graphic:
 				backColor = None
 				backColorSel = None
 				res.append(MultiContentEntryPixmapAlphaTest(

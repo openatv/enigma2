@@ -35,10 +35,14 @@ class GetEcmInfo:
 				file.close()
 			except:
 				ecm = ''
-			info['eEnc'] = ""
+			info['caid'] = ""
 			info['eCaid'] = ""
+			info['eEnc'] = ""
 			info['eSrc'] = ""
 			info['eTime'] = "0"
+			info['pid'] = ""
+			info['prov'] = ""
+			info['provid'] = ""
 			for line in ecm:
 				d = line.split(':', 1)
 				if len(d) > 1:
@@ -61,6 +65,13 @@ class GetEcmInfo:
 					linetmp = line.split(' ')
 					info['eTime'] = linetmp[0]
 					continue
+				if ecm[1].startswith('SysID'):
+					info['prov'] = ecm[1].strip()[6:]
+					continue
+				if 'CaID 0x' in ecm[0] and 'pid 0x' in ecm[0]:
+					info['caid'] = ecm[0][ecm[0].find('CaID 0x')+7:ecm[0].find(',')]
+					info['pid'] = ecm[0][ecm[0].find('pid 0x')+6:ecm[0].find(' =')]
+					info['provid'] = info.get('prov', '0')[:4]
 			data = self.getText()
 			return
 		info['ecminterval0'] = int(time.time()-ecm_time+0.5)
@@ -130,7 +141,9 @@ class GetEcmInfo:
 				if info['decode'] == 'Network':
 					cardid = 'id:' + info.get('prov', '')
 					try:
-						share = open('/tmp/share.info', 'rb').readlines()
+						file = open('/tmp/share.info', 'rb')
+						share = file.readlines()
+						file.close()
 						for line in share:
 							if cardid in line:
 								self.textvalue = line.strip()
@@ -141,14 +154,8 @@ class GetEcmInfo:
 						self.textvalue = decode
 				else:
 					self.textvalue = decode
-				if ecm[1].startswith('SysID'):
-					info['prov'] = ecm[1].strip()[6:]
 				if 'response' in info:
 					self.textvalue = self.textvalue + " (0.%ss)" % info['response']
-				if 'CaID 0x' in ecm[0] and 'pid 0x' in ecm[0]:
-					info['caid'] = ecm[0][ecm[0].find('CaID 0x')+7:ecm[0].find(',')]
-					info['pid'] = ecm[0][ecm[0].find('pid 0x')+6:ecm[0].find(' =')]
-					info['provid'] = info.get('prov', '0')[:4]
 			else:
 				source = info.get('source', None)
 				if source:
