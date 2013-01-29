@@ -88,11 +88,11 @@ class SkinSelector(Screen):
 					subdir = dirname[19:]
 					self.skinlist.append(subdir)
 				else:
-					subdir = "Default Skin"
+					subdir = "Magic"
 					self.skinlist.append(subdir)
 
 	def ok(self):
-		if self["SkinList"].getCurrent() == "Default Skin":
+		if self["SkinList"].getCurrent() == "Magic":
 			skinfile = "skin.xml"
 		else:
 			skinfile = self["SkinList"].getCurrent()+"/skin.xml"
@@ -104,7 +104,7 @@ class SkinSelector(Screen):
 		restartbox.setTitle(_("Restart GUI now?"))
 
 	def loadPreview(self):
-		if self["SkinList"].getCurrent() == "Default Skin":
+		if self["SkinList"].getCurrent() == "Magic":
 			pngpath = self.root+"/prev.png"
 		else:
 			pngpath = self.root+self["SkinList"].getCurrent()+"/prev.png"
