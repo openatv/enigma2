@@ -485,7 +485,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.infoKeyPressed(True)
 
 	def prevBouquet(self):
-		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH) and self.bouquetChangeCB:
+		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and self.bouquetChangeCB:
 			if self.type == EPG_TYPE_MULTI and not config.epgselection.multi_showbouquet.getValue() or self.type == EPG_TYPE_GRAPH and not config.epgselection.graph_showbouquet.getValue() or self.type == EPG_TYPE_INFOBARGRAPH:
 				self['list'].instance.moveSelectionTo(0)
 				self.bouquetChangeCB(-1, self)
