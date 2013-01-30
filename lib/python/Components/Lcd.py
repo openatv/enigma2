@@ -56,11 +56,11 @@ class IconCheckPoller:
 			devices = bus.devices
 			for dev in devices:
 				if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor > 0:
-# 						print ' '
-# 						print "Device:", dev.filename
-# 						print "  Number:", dev.deviceClass
-# 						print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
-# 						print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
+					# print ' '
+					# print "Device:", dev.filename
+					# print "  Number:", dev.deviceClass
+					# print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
+					# print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
 					USBState = 1
 		if fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.getValue() == '1':
 			f = open("/proc/stb/lcd/symbol_usb", "w")

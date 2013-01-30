@@ -5,7 +5,7 @@ from skin import parseColor, parseFont
 from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect, eSize
 from Tools.LoadPixmap import LoadPixmap
 
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 
 from Components.config import config
 
@@ -25,27 +25,27 @@ class ServiceList(HTMLComponent, GUIComponent):
 		GUIComponent.__init__(self)
 		self.l = eListboxServiceContent()
 
-		pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/folder.png"))
+		pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/folder.png"))
 		if pic:
 			self.l.setPixmap(self.l.picFolder, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/marker.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/marker.png"))
 		if pic:
 			self.l.setPixmap(self.l.picMarker, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/dvb-s.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/dvb-s.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_S, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/dvb-c.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/dvb-c.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_C, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/dvb-t.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/dvb-t.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_T, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "ico_service_group.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "ico_service_group.png"))
 		if pic:
 			self.l.setPixmap(self.l.picServiceGroup, pic)
 
@@ -93,7 +93,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 				elif attrib == "colorEventProgressbarBorderSelected":
 					self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColorSelected, parseColor(value))
 				elif attrib == "picServiceEventProgressbar":
-					pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
+					pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, value))
 					if pic:
 						self.l.setPixmap(self.l.picServiceEventProgressbar, pic)
 				elif attrib == "serviceItemHeight":

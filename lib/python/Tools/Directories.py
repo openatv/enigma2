@@ -33,6 +33,7 @@ SCOPE_CURRENT_SKIN = 12
 SCOPE_METADIR = 16
 SCOPE_CURRENT_PLUGIN = 17
 SCOPE_TIMESHIFT = 18
+SCOPE_ACTIVE_SKIN = 19
 
 PATH_CREATE = 0
 PATH_DONTCREATE = 1
@@ -80,6 +81,25 @@ def resolveFilename(scope, base = "", path_prefix = None):
 		return base
 
 	if scope == SCOPE_CURRENT_SKIN:
+		from Components.config import config
+		# allow files in the config directory to replace skin files
+		tmp = defaultPaths[SCOPE_CONFIG][0]
+		if base and pathExists(tmp + base):
+			path = tmp
+		else:
+			tmp = defaultPaths[SCOPE_SKIN][0]
+			pos = config.skin.primary_skin.value.rfind('/')
+			if pos != -1:
+				#if basefile is not available use default skin path as fallback
+				tmpfile = tmp+config.skin.primary_skin.value[:pos+1] + base
+				if pathExists(tmpfile):
+					path = tmp+config.skin.primary_skin.value[:pos+1]
+				else:
+					path = tmp
+			else:
+				path = tmp
+
+	elif scope == SCOPE_ACTIVE_SKIN:
 		from Components.config import config
 		# allow files in the config directory to replace skin files
 		tmp = defaultPaths[SCOPE_CONFIG][0]

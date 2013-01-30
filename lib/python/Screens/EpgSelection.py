@@ -14,7 +14,7 @@ from Screens.EventView import EventViewEPGSelect, EventViewSimple
 from Screens.MessageBox import MessageBox
 from Screens.PictureInPicture import PictureInPicture
 from Screens.Setup import Setup
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from TimeDateInput import TimeDateInput
 from enigma import eServiceReference, eTimer, eServiceCenter
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
@@ -485,7 +485,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.infoKeyPressed(True)
 
 	def prevBouquet(self):
-		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH) and self.bouquetChangeCB:
+		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and self.bouquetChangeCB:
 			if self.type == EPG_TYPE_MULTI and not config.epgselection.multi_showbouquet.getValue() or self.type == EPG_TYPE_GRAPH and not config.epgselection.graph_showbouquet.getValue() or self.type == EPG_TYPE_INFOBARGRAPH:
 				self['list'].instance.moveSelectionTo(0)
 				self.bouquetChangeCB(-1, self)
@@ -926,7 +926,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def OKLong(self):
 		if config.epgselection.graph_oklong.getValue() == 'Zap' or config.epgselection.enhanced_oklong.getValue() == 'Zap' or config.epgselection.infobar_oklong.getValue() == 'Zap' or config.epgselection.multi_oklong.getValue() == 'Zap':
 			self.zapTo()
-		if config.epgselection.graph_oklong.getValue() == 'Zap + Exit' or config.epgselection.enhanced_oklong.getValue() == 'Zap + Exit' or config.epgselection.infobar_oklong.getValue() == 'Zap + Exit' or config.epgselection.multi_okLong.getValue() == 'Zap + Exit':
+		if config.epgselection.graph_oklong.getValue() == 'Zap + Exit' or config.epgselection.enhanced_oklong.getValue() == 'Zap + Exit' or config.epgselection.infobar_oklong.getValue() == 'Zap + Exit' or config.epgselection.multi_oklong.getValue() == 'Zap + Exit':
 			self.zap()
 
 	def Info(self):
