@@ -1196,6 +1196,47 @@ class InfoBarEPG:
 				return plugin[1]
 		return None
 
+	def showEventInfoPlugins(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
+		if isMoviePlayerInfoBar(self):
+			self.openEventView()
+		else:
+			pluginlist = self.getEPGPluginList()
+			if pluginlist:
+				pluginlist.append((_("Select default EPG type..."), self.SelectDefaultInfoPlugin))
+				self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = pluginlist, skin_name = "EPGExtensionsList")
+			else:
+				self.openSingleServiceEPG()
+
+	def getEPGPluginList(self):
+		pluginlist = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO)]
+		if pluginlist:
+			pluginlist.append((_("Event Info"), self.openEventView))
+			pluginlist.append((_("Graphical EPG"), self.openGraphEPG))
+			pluginlist.append((_("Infobar EPG"), self.openInfoBarEPG))
+			pluginlist.append((_("Multi EPG"), self.openMultiServiceEPG))
+			pluginlist.append((_("Show EPG for current channel..."), self.openSingleServiceEPG))
+		return pluginlist
+
+	def SelectDefaultInfoPlugin(self):
+		self.session.openWithCallback(self.DefaultInfoPluginChosen, ChoiceBox, title=_("Please select a default EPG type..."), list = self.getEPGPluginList(), skin_name = "EPGExtensionsList")
+
+	def DefaultInfoPluginChosen(self, answer):
+		if answer is not None:
+			self.defaultEPGType = answer[1]
+			config.usage.defaultEPGType.value = answer[0]
+			config.usage.defaultEPGType.save()
+			configfile.save()
+
+	def runPlugin(self, plugin):
+		plugin(session = self.session, servicelist=self.servicelist)
+
+	def EventInfoPluginChosen(self, answer):
+		if answer is not None:
+			answer[1]()
+
 	def RedPressed(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
@@ -1432,44 +1473,6 @@ class InfoBarEPG:
 					break
 		else:
 			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-
-	def showEventInfoPlugins(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-		pluginlist = self.getEPGPluginList()
-		if pluginlist:
-			pluginlist.append((_("Select default EPG type..."), self.SelectDefaultInfoPlugin))
-			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = pluginlist, skin_name = "EPGExtensionsList")
-		else:
-			self.openSingleServiceEPG()
-
-	def getEPGPluginList(self):
-		pluginlist = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO)]
-		if pluginlist:
-			pluginlist.append((_("Event Info"), self.openEventView))
-			pluginlist.append((_("Graphical EPG"), self.openGraphEPG))
-			pluginlist.append((_("Infobar EPG"), self.openInfoBarEPG))
-			pluginlist.append((_("Multi EPG"), self.openMultiServiceEPG))
-			pluginlist.append((_("Show EPG for current channel..."), self.openSingleServiceEPG))
-		return pluginlist
-
-	def SelectDefaultInfoPlugin(self):
-		self.session.openWithCallback(self.DefaultInfoPluginChosen, ChoiceBox, title=_("Please select a default EPG type..."), list = self.getEPGPluginList(), skin_name = "EPGExtensionsList")
-
-	def DefaultInfoPluginChosen(self, answer):
-		if answer is not None:
-			self.defaultEPGType = answer[1]
-			config.usage.defaultEPGType.value = answer[0]
-			config.usage.defaultEPGType.save()
-			configfile.save()
-
-	def runPlugin(self, plugin):
-		plugin(session = self.session, servicelist=self.servicelist)
-
-	def EventInfoPluginChosen(self, answer):
-		if answer is not None:
-			answer[1]()
 
 	def openSimilarList(self, eventid, refstr):
 		self.session.open(EPGSelection, refstr, eventid=eventid)
