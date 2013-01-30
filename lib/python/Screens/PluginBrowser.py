@@ -16,7 +16,7 @@ from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 
 from urllib import urlopen
@@ -390,6 +390,7 @@ class PluginDownloadBrowser(Screen):
 			for plugin in opkg.enumPlugins(self.PLUGIN_PREFIX):
 				if plugin[0] not in self.installedplugins and ((not config.pluginbrowser.po.getValue() and not plugin[0].endswith('-po')) or config.pluginbrowser.po.getValue()) and ((not config.pluginbrowser.src.getValue() and not plugin[0].endswith('-src')) or config.pluginbrowser.src.getValue()):
 					pluginlist.append(plugin + (plugin[0][15:],))
+			pluginlist.sort()
 			if pluginlist:
 				self.updateList()
 				self["list"].instance.show()
@@ -446,12 +447,13 @@ class PluginDownloadBrowser(Screen):
 									plugin.append('')
 								plugin.append(plugin[0][15:])
 								self.pluginlist.append(plugin)
+			self.pluginlist.sort()
 
 	def updateList(self):
 		list = []
-		expandableIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "expandable-plugins.png"))
-		expandedIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "expanded-plugins.png"))
-		verticallineIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "verticalline-plugins.png"))
+		expandableIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "expandable-plugins.png"))
+		expandedIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "expanded-plugins.png"))
+		verticallineIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "verticalline-plugins.png"))
 
 		self.plugins = {}
 		for x in self.pluginlist:

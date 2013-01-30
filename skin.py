@@ -7,7 +7,7 @@ profile("LOAD:enigma_skin")
 from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, addFont, gRGB, eWindowStyleSkinned, getDesktop
 from Components.config import ConfigSubsection, ConfigText, config, ConfigYesNo
 from Components.Sources.Source import ObsoleteSource
-from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
+from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_ACTIVE_SKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 from Components.RcModel import rc_model
@@ -501,9 +501,13 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				render = 0
 			resolved_font = resolveFilename(SCOPE_FONTS, filename, path_prefix=path_prefix)
 			if not fileExists(resolved_font): #when font is not available look at current skin path
-				skin_path = resolveFilename(SCOPE_CURRENT_SKIN, filename)
+				skin_path = resolveFilename(SCOPE_ACTIVE_SKIN, filename)
 				if fileExists(skin_path):
 					resolved_font = skin_path
+				else:
+					skin_path = resolveFilename(SCOPE_CURRENT_SKIN, filename)
+					if fileExists(skin_path):
+						resolved_font = skin_path
 			addFont(resolved_font, name, scale, is_replacement, render)
 			#print "Font: ", resolved_font, name, scale, is_replacement
 		for alias in c.findall("alias"):
@@ -610,6 +614,9 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 		# for the one that this actually applies to.
 		getDesktop(style_id).setMargins(r)
 
+	for skininclude in skin.findall("include"):
+		loadSkin(skininclude.attrib.get("filename"))
+
 dom_screens = {}
 
 def loadSkin(name, scope = SCOPE_SKIN):
@@ -629,10 +636,9 @@ def loadSkin(name, scope = SCOPE_SKIN):
 						elem.clear()
 						continue
 					if name in dom_screens:
-						print "loadSkin: Screen already defined elsewhere:", name
-						elem.clear()
-					else:
-						dom_screens[name] = (elem, path)
+						# Clear old versions, save memory
+						dom_screens[name][0].clear()
+					dom_screens[name] = (elem, path)
 				else:
 					elem.clear()
 			else:

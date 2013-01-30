@@ -7,7 +7,7 @@ from Components.Sources.StaticText import StaticText
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 
@@ -34,7 +34,7 @@ KEY_IMAGES_SHIFT = {
 		"SPACE": "vkey_space.png",
 		}
 def VirtualKeyBoardEntryComponent(keys, selectedKey, shiftMode=False):
-	key_bg = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "vkey_bg.png"))
+	key_bg = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "vkey_bg.png"))
 	key_bg_width = key_bg.size().width()
 	if shiftMode:
 		key_images = KEY_IMAGES_SHIFT
@@ -47,7 +47,7 @@ def VirtualKeyBoardEntryComponent(keys, selectedKey, shiftMode=False):
 		width = None
 		png = key_images.get(key, None)
 		if png:
-			pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, png))
+			pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, png))
 			width = pixmap.size().width()
 			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=pixmap))
 		else:
@@ -57,7 +57,7 @@ def VirtualKeyBoardEntryComponent(keys, selectedKey, shiftMode=False):
 				MultiContentEntryText(pos=(x, 0), size=(width, 45), font=0, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER)
 			))
 		if selectedKey == count:
-			key_sel = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "vkey_sel.png"))
+			key_sel = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "vkey_sel.png"))
 			width = key_sel.size().width()
 			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=key_sel))
 		if width is not None:

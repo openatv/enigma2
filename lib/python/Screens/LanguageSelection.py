@@ -8,19 +8,17 @@ from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Language_cache import LANG_TEXT
 from enigma import eTimer
-
 from Screens.Rc import Rc
-
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_LANGUAGE
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN, SCOPE_LANGUAGE
 from Tools.LoadPixmap import LoadPixmap
 import gettext
 
 def LanguageEntryComponent(file, name, index):
-	png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/" + index + ".png"))
+	png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + index + ".png"))
 	if png == None:
-		png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/" + file + ".png"))
+		png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + file + ".png"))
 		if png == None:
-			png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/missing.png"))
+			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/missing.png"))
 	res = (index, name, png)
 	return res
 

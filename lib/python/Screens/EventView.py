@@ -13,7 +13,7 @@ from Components.Pixmap import Pixmap
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from Screens.TimerEntry import TimerEntry
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.BoundFunction import boundFunction
 from time import localtime, mktime, time, strftime
 from os import path
@@ -244,12 +244,12 @@ class EventViewBase:
 class EventViewSimple(Screen, EventViewBase):
 	def __init__(self, session, Event, Ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None, skin='EventViewSimple'):
 		Screen.__init__(self, session)
-		if path.exists(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")):
-			file = open(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml"))
+		if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN,"skin.xml")):
+			file = open(resolveFilename(SCOPE_ACTIVE_SKIN,"skin.xml"))
 			data = file.read()
 			file.close()
-		elif path.exists(resolveFilename(SCOPE_CURRENT_SKIN,"../skin.xml")):
-			file = open(resolveFilename(SCOPE_CURRENT_SKIN,"../skin.xml"))
+		elif path.exists(resolveFilename(SCOPE_ACTIVE_SKIN,"../skin.xml")):
+			file = open(resolveFilename(SCOPE_ACTIVE_SKIN,"../skin.xml"))
 			data = file.read()
 			file.close()
 		else:

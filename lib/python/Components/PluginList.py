@@ -1,6 +1,6 @@
 from MenuList import MenuList
 
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 
 from enigma import eListboxPythonMultiContent, gFont
@@ -8,7 +8,7 @@ from Tools.LoadPixmap import LoadPixmap
 
 def PluginEntryComponent(plugin, width=440):
 	if plugin.icon is None:
-		png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/plugin.png"))
+		png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/plugin.png"))
 	else:
 		png = plugin.icon
 
@@ -28,7 +28,7 @@ def PluginCategoryComponent(name, png, width=440):
 
 def PluginDownloadComponent(plugin, name, version=None, width=440):
 	if plugin.icon is None:
-		png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/plugin.png"))
+		png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/plugin.png"))
 	else:
 		png = plugin.icon
 	if version:
