@@ -1,10 +1,9 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 1.15 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
+	<!--	Skin: Default-ViX Vs 1.16 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
 	<!--	Contains derived work by MiLo -->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
 	<!--	Do whatever you want with this skin,but don't tell it's yours,or your idea, and leave the credentials in the "About-box" as they are	-->
-	<!--	## Head ## -->
 	<output id="0">
 		<resolution bpp="32" xres="720" yres="576"/>
 	</output>
@@ -257,28 +256,28 @@
 		<widget source="global.CurrentTime" render="Label" position="240,285" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="skin_default/buttons/red.png" position="226,289" size="14,14" alphatest="on" zPosition="3">
+<!--		<widget source="session.RecordState" render="Pixmap" pixmap="skin_default/buttons/red.png" position="226,289" size="14,14" alphatest="on" zPosition="3">
 			<convert type="ConditionalShowHide" />
-		</widget>
+		</widget>-->
 		<eLabel backgroundColor="darkgrey" position="0,282" size="300,2" zPosition="5"/>
 		<ePixmap pixmap="skin_default/logos/vix.png" position="5,290" size="250,25" alphatest="on" />
 	</screen>-->
 	<screen name="Setup" position="center,center" size="500,400" backgroundColor="transBG" flags="wfNoBorder" title="Main menu">
 		<eLabel backgroundColor="background" position="0,0" size="500,400" zPosition="-1" />
 		<widget name="description" position="3,305" size="490,60" zPosition="10" font="Enigma;16" halign="center" valign="center" transparent="0" foregroundColor="secondFG" />
-		<widget font="Enigma;22" position="3,48" render="Label" size="490,26" source="Title" transparent="1" zPosition="1" />
+		<widget source="Title" render="Label" position="3,48" size="490,26" font="Enigma;22" transparent="1" zPosition="1" />
 		<widget name="config" position="3,78" scrollbarMode="showOnDemand" size="490,222" source="menu" transparent="10" itemHeight="20" enableWrapAround="1" zPosition="1" />
-		<widget name="footnote" position="222,372" size="260,19" zPosition="1" font="Regular;18" transparent="1" />
-		<widget font="Enigma;18" halign="right" position="404,4" render="Label" size="55,22" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
+		<widget name="footnote" position="215,375" size="260,19" zPosition="20" font="Regular;18" transparent="1" />
+		<eLabel backgroundColor="darkgrey" position="0,370" size="500,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="445,375" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,375" size="210,25" alphatest="on" />
 		<ePixmap alphatest="on" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" />
 		<ePixmap alphatest="on" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" />
 		<widget source="key_red" render="Label" font="Regular;20" halign="center" position="-2,1" size="140,40" transparent="1" valign="center" zPosition="10" />
 		<widget source="key_green" render="Label" font="Regular;20" halign="center" position="140,0" size="140,40" transparent="1" valign="center" zPosition="10" />
-		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="390,8" size="14,14" zPosition="4" />
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,300" zPosition="1" size="440,350" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,372" size="220,25" alphatest="on" />
 	</screen>
 	<screen name="ChannelContextMenu" position="center,center" size="350,355" flags="wfNoBorder" title="Channellist menu">
 		<widget name="menu" position="10,10" size="340,300" scrollbarMode="showOnDemand" />
@@ -297,8 +296,12 @@
 		<widget source="lab2" render="Label" position="10,25" size="490,20" font="Regular; 18" transparent="0" zPosition="2" />
 		<widget source="lab3" render="Label" position="10,45" size="490,20" font="Regular; 18" transparent="0" zPosition="1" />
 		<widget name="AboutScrollLabel" font="Enigma;18" position="10,70" size="490,310" scrollbarMode="showOnDemand"/>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/key_info.png" alphatest="on" position="260,425" size="35,25" />
+		<eLabel backgroundColor="darkgrey" position="0,430" size="540,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="480,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/key_info.png" alphatest="on" position="260,433" size="35,25" />
 	</screen>
 		<screen name="Devices" position="center,center" size="540,460" title="Systeminfo" flags="wfNoBorder" >
 		<widget font="Regular; 20" position="10,5" render="Label" size="490,22" source="TunerHeader"/>
@@ -307,19 +310,25 @@
 		<widget font="Regular; 18" position="10,175" render="Label" size="490,100" source="hdd"/>
 		<widget source="MountsHeader" render="Label" position="10,300" size="490,22" font="Regular; 20" transparent="0" zPosition="1" />
 		<widget source="mounts" render="Label" position="10,325" size="490,100" font="Regular; 18" transparent="0" zPosition="1" />
-		<ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
-		<eLabel text="www.world-of-satellite.com" foregroundColor="grey" backgroundColor="background" font="Regular;22" halign="center" position="225,422" size="300,25" transparent="1" zPosition="1" />
+		<eLabel backgroundColor="darkgrey" position="0,430" size="540,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="480,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="AboutReleaseNotes" position="center,center" size="540,460" title="Release Notes" flags="wfNoBorder">
 		<widget name="list" render="Label" font="Regular;22" position="25,30" size="490,350" transparent="1" />
-		<ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
-		<eLabel text="www.world-of-satellite.com" foregroundColor="grey" backgroundColor="background" font="Regular;22" halign="center" position="225,422" size="300,25" transparent="1" zPosition="1" />
+		<eLabel backgroundColor="darkgrey" position="0,430" size="540,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="480,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 		<screen name="TranslationInfo" position="center,center" size="540,460" title="Translation" flags="wfNoBorder">
 		<widget font="Enigma;18" position="10,5" render="Label" size="490,50" source="TranslatorName"/>
 		<widget font="Enigma;18" position="10,55" render="Label" size="490,300" source="TranslationInfo"/>
 	</screen>
-	<screen name="ServiceInfo" position="center,center" size="560,440" title="Serviceinfo" flags="wfNoBorder">
+	<screen name="ServiceInfo" position="center,center" size="560,460" title="Serviceinfo" flags="wfNoBorder">
 		<ePixmap alphatest="on" name="bg_red" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1" zPosition="1"/>
 		<ePixmap alphatest="on" name="bg_green" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1" zPosition="1"/>
 		<ePixmap alphatest="on" name="bg_yellow" pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" transparent="1" zPosition="1"/>
@@ -329,18 +338,24 @@
 		<widget backgroundColor="#8C5900" font="Enigma;18" halign="center" name="yellow" position="280,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
 		<widget backgroundColor="#254177" font="Enigma;18" halign="center" name="blue" position="420,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
 		<widget name="infolist" position="5,40" selectionDisabled="1" size="550,390"/>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
-		<eLabel text="www.world-of-satellite.com" foregroundColor="grey" backgroundColor="background" font="Regular;22" halign="center" position="225,422" size="300,25" transparent="1" zPosition="1" />
+		<eLabel backgroundColor="darkgrey" position="0,430" size="540,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="480,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="SystemMemoryInfo" position="center,center" size="540,460" title="Release Notes" flags="wfNoBorder">
 		<widget name="AboutScrollLabel" render="Label" font="Regular;22" position="25,30" size="490,350" scrollbarMode="showOnDemand" transparent="1" />
-		<ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
-		<eLabel text="www.world-of-satellite.com" foregroundColor="grey" backgroundColor="background" font="Regular;22" halign="center" position="225,422" size="300,25" transparent="1" zPosition="1" />
+		<eLabel backgroundColor="darkgrey" position="0,430" size="540,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="480,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
-	<screen name="SystemNetworkInfo" position="center,center" size="560,400" flags="wfNoBorder" >
+	<screen name="SystemNetworkInfo" position="center,center" size="560,460" flags="wfNoBorder" >
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="AboutScrollLabel" position="10,50" size="458,75" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+		<widget name="AboutScrollLabel" position="10,50" size="458,275" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
 		<widget source="LabelBSSID" render="Label" position="10,130" size="200,25" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
 		<widget source="LabelESSID" render="Label" position="10,160" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
 		<widget source="LabelQuality" render="Label" position="10,190" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
@@ -358,6 +373,12 @@
 		<widget source="IF" render="Label" position="120,355" size="400,21" zPosition="10" font="Regular;20" halign="left" transparent="1" />
 		<widget source="Statustext" render="Label" position="10,375" size="115,21" zPosition="10" font="Regular;20" halign="left" transparent="1"/>
 		<widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="120,380" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
+		<eLabel backgroundColor="darkgrey" position="0,430" size="540,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="480,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
+<!--XXXX-->
 	</screen>
 	<screen name="TimeshiftState" position="50,310" size="150,60" zPosition="2" backgroundColor="transparent" flags="wfNoBorder" >
 		<widget font="Enigma;24" halign="center" name="state" position="0,0" size="150,30" backgroundColor="transparent" borderColor="black" borderWidth="2" />
