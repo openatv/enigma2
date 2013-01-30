@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 1.16 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
+	<!--	Skin: Default-ViX Vs 1.17 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
 	<!--	Contains derived work by MiLo -->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
@@ -248,40 +248,41 @@
 		<widget name="RtpText" position="50,510" size="620,29" font="Regular;21" halign="right" noWrap="1" backgroundColor="#003258" />
 		<widget name="RassLogo" pixmap="skin_default/icons/rass_logo.png" position="50,445" size="50,21" />
 	</screen>
-	<screen name="Menu" position="center,center" size="300,310" flags="wfNoBorder" title="Main menu">
-		<widget source="title" render="Label" position="10,5"  size="280,35" valign="center" font="Enigma;22" halign="center" />
-		<widget position="10,55" render="Listbox" scrollbarMode="showOnDemand" size="280,225" source="menu">
+	<screen name="Menu" position="center,center" size="560,460" flags="wfNoBorder" title="Main menu">
+		<widget source="title" render="Label" position="10,5" size="280,35" valign="center" font="Enigma;30" halign="center" />
+		<widget source="menu" render="Listbox" position="10,55" size="520,350" scrollbarMode="showOnDemand"  itemHeight="35" font="Regular;28">
 			<convert type="StringList"/>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="240,285" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-<!--		<widget source="session.RecordState" render="Pixmap" pixmap="skin_default/buttons/red.png" position="226,289" size="14,14" alphatest="on" zPosition="3">
-			<convert type="ConditionalShowHide" />
-		</widget>-->
-		<eLabel backgroundColor="darkgrey" position="0,282" size="300,2" zPosition="5"/>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="5,290" size="250,25" alphatest="on" />
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>-->
-	<screen name="Setup" position="center,center" size="500,400" backgroundColor="transBG" flags="wfNoBorder" title="Main menu">
-		<eLabel backgroundColor="background" position="0,0" size="500,400" zPosition="-1" />
-		<widget name="description" position="3,305" size="490,60" zPosition="10" font="Enigma;16" halign="center" valign="center" transparent="0" foregroundColor="secondFG" />
+	<screen name="Setup" position="center,center" size="560,460" backgroundColor="transBG" flags="wfNoBorder" title="Main menu">
+		<eLabel backgroundColor="background" position="0,0" size="560,460" zPosition="-1" />
+		<widget name="description" position="3,360" size="540,60" zPosition="10" font="Enigma;16" halign="center" valign="center" transparent="0" foregroundColor="secondFG" />
 		<widget source="Title" render="Label" position="3,48" size="490,26" font="Enigma;22" transparent="1" zPosition="1" />
-		<widget name="config" position="3,78" scrollbarMode="showOnDemand" size="490,222" source="menu" transparent="10" itemHeight="20" enableWrapAround="1" zPosition="1" />
-		<widget name="footnote" position="215,375" size="260,19" zPosition="20" font="Regular;18" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,370" size="500,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="445,375" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+		<widget name="config" position="3,80" scrollbarMode="showOnDemand" size="540,260" source="menu" transparent="10" itemHeight="20" enableWrapAround="1" zPosition="1" />
+		<widget name="footnote" position="215,435" size="260,19" zPosition="20" font="Regular;18" transparent="1" />
+		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,375" size="210,25" alphatest="on" />
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 		<ePixmap alphatest="on" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" />
 		<ePixmap alphatest="on" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" />
 		<widget source="key_red" render="Label" font="Regular;20" halign="center" position="-2,1" size="140,40" transparent="1" valign="center" zPosition="10" />
 		<widget source="key_green" render="Label" font="Regular;20" halign="center" position="140,0" size="140,40" transparent="1" valign="center" zPosition="10" />
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,300" zPosition="1" size="440,350" transparent="1" alphatest="on" />
 	</screen>
-	<screen name="ChannelContextMenu" position="center,center" size="350,355" flags="wfNoBorder" title="Channellist menu">
+	<screen name="ChannelContextMenu" position="center,center" size="350,385" flags="wfNoBorder" title="Channellist menu">
 		<widget name="menu" position="10,10" size="340,300" scrollbarMode="showOnDemand" />
-		<ePixmap pixmap="skin_default/logos/vix.png" position="0,320" size="340,25" alphatest="on" />
+		<eLabel backgroundColor="darkgrey" position="0,355" size="350,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="290,358" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,358" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="NumberZap" position="center,center" size="600,40" backgroundColor="transparent" flags="wfNoBorder">
 		<widget name="number" position="0,-200" size="130,40" backgroundColor="transparent" transparent="1" font="Regular;36" borderColor="black" borderWidth="3" valign="center" halign="right" foregroundColor="grey" />
@@ -291,19 +292,19 @@
 		<widget font="Enigma;22" halign="right" name="chapter" noWrap="1" position="0,0" size="100,26" valign="center" zPosition="1" borderWidth="2" borderColor="black" backgroundColor="transparent" />
 		<widget font="Enigma;22" halign="left" name="number" noWrap="1" position="105,0" size="55,26" valign="center" zPosition="2" borderWidth="2" borderColor="black" backgroundColor="transparent" />
 	</screen>
-	<screen name="About" position="center,center" size="540,460" title="About" flags="wfNoBorder">
+	<screen name="About" position="center,center" size="560,460" title="About" flags="wfNoBorder">
 		<widget source="lab1" render="Label" position="10,0" size="490,25" font="Regular; 22" transparent="0" zPosition="2" />
 		<widget source="lab2" render="Label" position="10,25" size="490,20" font="Regular; 18" transparent="0" zPosition="2" />
 		<widget source="lab3" render="Label" position="10,45" size="490,20" font="Regular; 18" transparent="0" zPosition="1" />
 		<widget name="AboutScrollLabel" font="Enigma;18" position="10,70" size="490,310" scrollbarMode="showOnDemand"/>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="540,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="480,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>
 		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/key_info.png" alphatest="on" position="260,433" size="35,25" />
 	</screen>
-		<screen name="Devices" position="center,center" size="540,460" title="Systeminfo" flags="wfNoBorder" >
+		<screen name="Devices" position="center,center" size="560,460" title="Systeminfo" flags="wfNoBorder" >
 		<widget font="Regular; 20" position="10,5" render="Label" size="490,22" source="TunerHeader"/>
 		<widget font="Regular; 18" position="10,32" render="Label" size="490,100" source="nims"/>
 		<widget font="Regular; 20" position="10,150" render="Label" size="490,22" source="HDDHeader"/>
@@ -311,15 +312,15 @@
 		<widget source="MountsHeader" render="Label" position="10,300" size="490,22" font="Regular; 20" transparent="0" zPosition="1" />
 		<widget source="mounts" render="Label" position="10,325" size="490,100" font="Regular; 18" transparent="0" zPosition="1" />
 		<eLabel backgroundColor="darkgrey" position="0,430" size="540,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="480,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>
 		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
-	<screen name="AboutReleaseNotes" position="center,center" size="540,460" title="Release Notes" flags="wfNoBorder">
+	<screen name="AboutReleaseNotes" position="center,center" size="560,460" title="Release Notes" flags="wfNoBorder">
 		<widget name="list" render="Label" font="Regular;22" position="25,30" size="490,350" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="540,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="480,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>
 		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
@@ -338,16 +339,16 @@
 		<widget backgroundColor="#8C5900" font="Enigma;18" halign="center" name="yellow" position="280,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
 		<widget backgroundColor="#254177" font="Enigma;18" halign="center" name="blue" position="420,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
 		<widget name="infolist" position="5,40" selectionDisabled="1" size="550,390"/>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="540,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="480,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>
 		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
-	<screen name="SystemMemoryInfo" position="center,center" size="540,460" title="Release Notes" flags="wfNoBorder">
+	<screen name="SystemMemoryInfo" position="center,center" size="560,460" title="Release Notes" flags="wfNoBorder">
 		<widget name="AboutScrollLabel" render="Label" font="Regular;22" position="25,30" size="490,350" scrollbarMode="showOnDemand" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="540,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="480,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>
 		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
@@ -373,12 +374,11 @@
 		<widget source="IF" render="Label" position="120,355" size="400,21" zPosition="10" font="Regular;20" halign="left" transparent="1" />
 		<widget source="Statustext" render="Label" position="10,375" size="115,21" zPosition="10" font="Regular;20" halign="left" transparent="1"/>
 		<widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="120,380" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="540,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="480,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>
 		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
-<!--XXXX-->
 	</screen>
 	<screen name="TimeshiftState" position="50,310" size="150,60" zPosition="2" backgroundColor="transparent" flags="wfNoBorder" >
 		<widget font="Enigma;24" halign="center" name="state" position="0,0" size="150,30" backgroundColor="transparent" borderColor="black" borderWidth="2" />
@@ -389,19 +389,29 @@
 	<screen name="PVRState" position="60,102" size="80,34" zPosition="2" backgroundColor="transparent" flags="wfNoBorder" >
 		<widget font="Enigma;24" halign="left" name="state" position="0,0" size="80,34" backgroundColor="transparent" borderColor="black" borderWidth="2" />
 	</screen>
-	<screen name="PluginBrowser" position="center,center" size="450,405" title="Plugin browser" flags="wfNoBorder">
+	<screen name="PluginBrowser" position="center,center" size="560,460" title="Plugin browser" flags="wfNoBorder">
 		<ePixmap alphatest="on" pixmap="skin_default/buttons/red-big.png" position="0,0" size="200,40"/>
 		<ePixmap alphatest="on" pixmap="skin_default/buttons/green-big.png" position="200,0" size="200,40"/>
 		<widget name="key_red" font="Enigma;20" halign="center" position="0,0" size="200,40" transparent="1" valign="center" zPosition="1"/>
 		<widget name="key_green" font="Enigma;20" halign="center" position="200,0" size="200,40" transparent="1" valign="center" zPosition="1"/>
-			<ePixmap pixmap="skin_default/buttons/key_menu.png" position="400,10" zPosition="4" size="35,25" alphatest="on" transparent="1" />
-		<widget name="list" position="0,45" scrollbarMode="showOnDemand" size="400,355"/>
+			<ePixmap pixmap="skin_default/buttons/key_menu.png" position="430,10" zPosition="4" size="35,25" alphatest="on" transparent="1" />
+		<widget name="list" position="0,45" scrollbarMode="showOnDemand" size="540,350" enableWrapAround="1" />
+		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
-	<screen name="PluginDownloadBrowser" position="center,center" size="560,440" title="Downloadable plugins" flags="wfNoBorder">
-		<widget font="Enigma;20" halign="center" name="text" position="0,0" size="560,430" valign="center" zPosition="1"/>
-		<widget name="list" position="10,10" scrollbarMode="showOnDemand" size="540,405" zPosition="2"/>
+	<screen name="PluginDownloadBrowser" position="center,center" size="560,460" title="Downloadable plugins" flags="wfNoBorder">
+		<widget font="Enigma;20" halign="center" name="text" position="0,0" size="560,380" valign="center" zPosition="1"/>
+		<widget name="list" position="10,10" scrollbarMode="showOnDemand" size="540,395" zPosition="2" enableWrapAround="1" />
+		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
-	<screen name="LocationBox" position="center,center" size="560,440" flags="wfNoBorder">
+	<screen name="LocationBox" position="center,center" size="560,460" flags="wfNoBorder">
 		<widget alphatest="on" name="red" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1"/>
 		<widget alphatest="on" name="green" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1"/>
 		<widget alphatest="on" name="yellow" pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" transparent="1"/>
@@ -412,11 +422,18 @@
 		<widget backgroundColor="#254177" font="Enigma;18" halign="center" name="key_blue" position="420,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
 		<widget font="Enigma;20" name="text" position="5,38" size="550,28"/>
 		<widget font="Enigma;20" name="target" position="5,68" size="550,28" valign="center"/>
-		<widget name="filelist" position="5,100" scrollbarMode="showOnDemand" selectionDisabled="1" size="550,200" zPosition="1"/>
+		<widget name="filelist" position="5,100" scrollbarMode="showOnDemand" selectionDisabled="1" size="550,200" zPosition="1" enableWrapAround="1" />
 		<widget font="Enigma;20" name="textbook" position="5,310" size="550,28"/>
 		<widget name="booklist" position="5,340" scrollbarMode="showOnDemand" size="550,95" zPosition="2"/>
 		<eLabel backgroundColor="darkgrey" position="5,305" size="550,2" zPosition="5"/>
+		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
+xxx
+
 	<screen name="FileBrowser" position="center,center" size="520,430" flags="wfNoBorder" title="DVD file browser" >
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
