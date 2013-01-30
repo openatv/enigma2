@@ -390,6 +390,7 @@ class PluginDownloadBrowser(Screen):
 			for plugin in opkg.enumPlugins(self.PLUGIN_PREFIX):
 				if plugin[0] not in self.installedplugins and ((not config.pluginbrowser.po.getValue() and not plugin[0].endswith('-po')) or config.pluginbrowser.po.getValue()) and ((not config.pluginbrowser.src.getValue() and not plugin[0].endswith('-src')) or config.pluginbrowser.src.getValue()):
 					pluginlist.append(plugin + (plugin[0][15:],))
+			pluginlist.sort()
 			if pluginlist:
 				self.updateList()
 				self["list"].instance.show()
@@ -446,6 +447,7 @@ class PluginDownloadBrowser(Screen):
 									plugin.append('')
 								plugin.append(plugin[0][15:])
 								self.pluginlist.append(plugin)
+			self.pluginlist.sort()
 
 	def updateList(self):
 		list = []
