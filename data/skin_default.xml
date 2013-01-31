@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 1.16 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
+	<!--	Skin: Default-ViX Vs 1.17 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
 	<!--	Contains derived work by MiLo -->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
@@ -395,29 +395,31 @@
 		<widget name="filelist" position="5,100" scrollbarMode="showOnDemand" selectionDisabled="1" size="550,200" zPosition="1" enableWrapAround="1" />
 		<widget font="Enigma;20" name="textbook" position="5,310" size="550,28"/>
 		<widget name="booklist" position="5,340" scrollbarMode="showOnDemand" size="550,95" zPosition="2"/>
-		<eLabel backgroundColor="darkgrey" position="5,305" size="550,2" zPosition="5"/>
 		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
 		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>
 		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
-xxx
-
-	<screen name="FileBrowser" position="center,center" size="520,430" flags="wfNoBorder" title="DVD file browser" >
+	<screen name="FileBrowser" position="center,center" size="560,460" flags="wfNoBorder" title="DVD file browser" >
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="filelist" position="5,50" size="510,370" scrollbarMode="showOnDemand" />
+		<widget name="filelist" position="5,50" size="540,370" scrollbarMode="showOnDemand" />
+		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="Console" position="center,center" size="560,430" title="Command execution...">
 		<widget name="text" position="10,10" size="540,420" font="Console;14" />
 	</screen>
-	<screen name="AutoMountManager" position="center,center" size="560,350" flags="wfNoBorder" title="AutoMountManager">
+	<screen name="AutoMountManager" position="center,center" size="560,460" flags="wfNoBorder" title="AutoMountManager">
 		<ePixmap alphatest="on" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40"/>
 		<widget backgroundColor="buttonRed" font="Enigma;20" halign="center" position="0,0" render="Label" size="140,40" source="key_red" transparent="1" valign="center" zPosition="1"/>
-		<widget position="5,50" render="Listbox" scrollbarMode="showOnDemand" size="540,300" source="config">
+		<widget source="config" render="Listbox" position="5,50" size="540,370" scrollbarMode="showOnDemand" >
 			<convert type="TemplatedMultiContent">
 				{"template": [
 						MultiContentEntryText(pos = (0, 3), size = (480, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -429,10 +431,15 @@ xxx
 				}
 			</convert>
 		</widget>
-	<ePixmap pixmap="skin_default/border/div_h.png" position="5,360" size="550,2" zPosition="2"/>
-		<widget backgroundColor="#25062748" font="Enigma;20" halign="center" position="10,370" render="Label" size="540,21" source="introduction" transparent="1" valign="center" zPosition="10"/>
+		<ePixmap pixmap="skin_default/border/div_h.png" position="5,395" size="560,2" zPosition="2"/>
+		<widget source="introduction" render="Label" position="10,400" size="560,21" backgroundColor="#25062748" font="Enigma;20" halign="center" transparent="1" valign="center" zPosition="10"/>
+		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
-	<screen name="NetworkBrowser" position="center,center" size="560,450" flags="wfNoBorder" title="Network Neighbourhood">
+	<screen name="NetworkBrowser" position="center,center" size="560,460" flags="wfNoBorder" title="Network Neighbourhood">
 		<ePixmap alphatest="on" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40"/>
 		<ePixmap alphatest="on" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40"/>
 		<ePixmap alphatest="on" pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40"/>
@@ -441,7 +448,7 @@ xxx
 		<widget backgroundColor="buttonGreen" font="Regular;20" halign="center" position="140,0" render="Label" size="140,40" source="key_green" transparent="1" valign="center" zPosition="1"/>
 		<widget backgroundColor="buttonYellow" font="Regular;20" halign="center" position="280,0" render="Label" size="140,40" source="key_yellow" transparent="1" valign="center" zPosition="1"/>
 		<widget backgroundColor="buttonBlue" font="Regular;20" halign="center" position="420,0" render="Label" size="140,40" source="key_blue" transparent="1" valign="center" zPosition="1"/>
-		<widget position="5,50" render="Listbox" scrollbarMode="showOnDemand" size="540,350" source="list" zPosition="10">
+		<widget source="list" render="Listbox" position="5,50" size="540,340" scrollbarMode="showOnDemand" zPosition="10">
 			<convert type="TemplatedMultiContent">
 				{"template": [
 						MultiContentEntryPixmapAlphaTest(pos = (0, 0), size = (48, 48), png = 1), # index 1 is the expandable/expanded/verticalline icon
@@ -456,12 +463,18 @@ xxx
 				}
 			</convert>
 		</widget>
-		<ePixmap pixmap="skin_default/border/div_h.png" position="5,410" size="550,2" zPosition="1"/>
-		<widget backgroundColor="#25062748" font="Regular;21" halign="center" position="0,420" render="Label" size="560,30" source="infotext" transparent="1" valign="center" zPosition="10"/>
+		<ePixmap pixmap="skin_default/border/div_h.png" position="5,395" size="560,2" zPosition="1"/>
+		<widget source="infotext" render="Label" position="0,400" size="560,30" backgroundColor="#25062748" font="Regular;21" halign="center" transparent="1" valign="center" zPosition="10"/>
+		<widget source="introduction" render="Label" position="10,380" size="540,21" backgroundColor="#25062748" font="Enigma;20" halign="center" transparent="1" valign="center" zPosition="10"/>
+		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
-	<screen name="UpdatePluginMenu" position="center,center" size="560,330" flags="wfNoBorder" title="Softwaremanager...">
+	<screen name="UpdatePluginMenu" position="center,center" size="560,460" flags="wfNoBorder" title="Softwaremanager...">
 		<eLabel backgroundColor="black" position="5,15" size="300,270" zPosition="1"/>
-		<widget position="10,20" render="Listbox" scrollbarMode="showOnDemand" size="290,260" source="menu" zPosition="2">
+		<widget source="menu" render="Listbox" position="10,20" size="290,260" scrollbarMode="showOnDemand" zPosition="2">
 			<convert type="TemplatedMultiContent">
 				{"template": [
 						MultiContentEntryText(pos = (2, 2), size = (290, 22), flags = RT_HALIGN_LEFT, text = 1), # index 0 is the MenuText,
@@ -471,7 +484,7 @@ xxx
 				}
 			</convert>
 		</widget>
-		<widget position="310,10" render="Listbox" scrollbarMode="showNever" selectionDisabled="1" size="240,300" source="menu" zPosition="2">
+		<widget source="menu" render="Listbox" position="310,10" size="240,300" scrollbarMode="showNever" selectionDisabled="1" zPosition="2">
 			<convert type="TemplatedMultiContent">
 				{"template": [
 						MultiContentEntryText(pos = (2, 2), size = (240, 300), flags = RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, text = 2), # index 2 is the Description,
@@ -481,6 +494,11 @@ xxx
 				}
 			</convert>
 		</widget>
+		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="PictureInPictureZapping" position="300,60" size="120,26" flags="wfNoBorder" backgroundColor="transparent" zPosition="-1" title="PiPZap" >
 		<eLabel text="PiP-Zap" position="0,0" size="120,26" backgroundColor="transparent" transparent="1" font="Regular;22" borderColor="black" borderWidth="3" valign="center" halign="center" />
@@ -488,6 +506,9 @@ xxx
 	<screen name="PiPSetup" flags="wfNoBorder" backgroundColor="transparent" position="85,85" size="550,300" zPosition="-1" >
 		<widget name="text" position="0,0" size="550,300" backgroundColor="transparent" transparent="1" font="Regular;22" borderColor="black" borderWidth="3" valign="center" halign="center" />
 	</screen>
+
+XXXX
+
 	<screen name="AdapterSetup" position="center,center" size="560,400" flags="wfNoBorder" title="Network setup" >
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
