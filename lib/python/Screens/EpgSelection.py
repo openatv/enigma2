@@ -1109,6 +1109,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.zapSelectedService(True)
 			self.refreshTimer.start(2000)
 		if not self.currch or self.currch == self.prevch:
+			self.zapFunc(None, False)
 			self.closeEventViewDialog()
 			self.close('close')
 
