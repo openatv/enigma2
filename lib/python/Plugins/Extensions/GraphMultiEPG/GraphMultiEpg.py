@@ -10,7 +10,6 @@ from Components.Sources.Event import Event
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.TimerList import TimerList
 from Components.Renderer.Picon import getPiconName
-from Components.Sources.ServiceEvent import ServiceEvent
 from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Screens.EventView import EventViewEPGSelect
@@ -704,7 +703,6 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.key_green_choice = self.EMPTY
 		self.key_red_choice = self.EMPTY
 		self["timeline_text"] = TimelineText()
-		self["ServiceEvent"] = ServiceEvent()
 		self["Event"] = Event()
 		self.time_lines = [ ]
 		for x in range(0, MAX_TIMELINES):
@@ -995,8 +993,6 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				self["key_red"].setText("")
 				self.key_red_choice = self.EMPTY
 			return
-
-		self["ServiceEvent"].newService(cur[1].ref)
 
 		if self.key_red_choice != self.ZAP:
 			self["key_red"].setText(_("Zap"))
