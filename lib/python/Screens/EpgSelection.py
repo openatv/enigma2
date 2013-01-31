@@ -310,6 +310,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.onCreate)
 
 	def createSetup(self):
+		self.closeEventViewDialog()
 		key = None
 		if self.type == EPG_TYPE_SINGLE:
 			key = 'epgsingle'
