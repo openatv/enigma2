@@ -1,4 +1,6 @@
-from enigma import eServiceReference, eServiceCenter
+from enigma import eServiceReference, eServiceCenter, \
+ getBestPlayableServiceReference
+import NavigationInstance
 
 class ServiceReference(eServiceReference):
 	def __init__(self, ref, reftype = eServiceReference.idInvalid, flags = 0, path = ''):
@@ -35,3 +37,26 @@ class ServiceReference(eServiceReference):
 	def isRecordable(self):
 		ref = self.ref
 		return ref.flags & eServiceReference.isGroup or (ref.type == eServiceReference.idDVB or ref.type == eServiceReference.idDVB + 0x100)
+
+def getPlayingref(ref):
+	playingref = None
+	if NavigationInstance.instance:
+		playingref = NavigationInstance.instance.\
+			getCurrentlyPlayingServiceReference()
+	if not playingref:
+		playingref = eServiceReference()
+	return playingref
+
+def isPlayableForCur(ref):
+	info = eServiceCenter.getInstance().info(ref)
+	return not not (info and info.isPlayable(ref, getPlayingref(ref)))
+
+def resolveAlternate(ref):
+	nref = None
+	if ref.flags & eServiceReference.isGroup:
+		nref \
+		 = getBestPlayableServiceReference(ref, getPlayingref(ref))
+		if not nref:
+			nref = getBestPlayableServiceReference(ref,
+			 eServiceReference(), True)
+	return nref

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from Components.Converter.Converter import Converter
-from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr,\
- eServiceReference, getBestPlayableServiceReference
+from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr
 from Components.Element import cached
+from ServiceReference import resolveAlternate
 
 class ServiceName(Converter, object):
 	NAME = 0
@@ -27,27 +27,23 @@ class ServiceName(Converter, object):
 		else: # reference
 			info = service and self.source.info
 			ref = service
-		if info is None:
+		if not info:
 			return ""
 		if self.type == self.NAME:
 			name = ref and info.getName(ref)
-			if name is None:
+			if not name:
 				name = info.getName()
 			return name.replace('\xc2\x86', '').replace('\xc2\x87', '')
 		elif self.type == self.PROVIDER:
 			return info.getInfoString(iServiceInformation.sProvider)
 		elif self.type == self.REFERENCE:
-			if ref is None:
-			  return \
-			   info.getInfoString(iServiceInformation.sServiceref)
-			if ref.flags & eServiceReference.isGroup:
-			  nref = getBestPlayableServiceReference(ref, \
-			   eServiceReference())
-			  if nref is None:
-			    nref = getBestPlayableServiceReference(ref, \
-			     eServiceReference(), True)
-			  if not (nref is None):
-			    ref = nref
+			if not ref:
+				return \
+				 info.getInfoString( \
+				  iServiceInformation.sServiceref)
+			nref = resolveAlternate(ref)
+			if nref:
+				ref = nref
 			return ref.toString()
 
 	text = property(getText)
