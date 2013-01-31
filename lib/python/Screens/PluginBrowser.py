@@ -390,12 +390,12 @@ class PluginDownloadBrowser(Screen):
 			for plugin in opkg.enumPlugins(self.PLUGIN_PREFIX):
 				if plugin[0] not in self.installedplugins and ((not config.pluginbrowser.po.getValue() and not plugin[0].endswith('-po')) or config.pluginbrowser.po.getValue()) and ((not config.pluginbrowser.src.getValue() and not plugin[0].endswith('-src')) or config.pluginbrowser.src.getValue()):
 					pluginlist.append(plugin + (plugin[0][15:],))
-			pluginlist.sort()
 			if pluginlist:
+				pluginlist.sort()
 				self.updateList()
 				self["list"].instance.show()
 			else:
-				self["text"].setText("No new plugins found")
+				self["text"].setText(_("No new plugins found"))
 		else:
 			if self.pluginlist:
 				self.updateList()
