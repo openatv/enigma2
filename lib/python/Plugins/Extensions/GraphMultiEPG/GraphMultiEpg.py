@@ -45,6 +45,15 @@ config.misc.graph_mepg.servicetitle_mode = ConfigSelection(default = "picon+serv
 	("picon+servicename", _("Picon and service name")) ])
 config.misc.graph_mepg.roundTo = ConfigSelection(default = "900", choices = [("900", _("%d minutes") % 15), ("1800", _("%d minutes") % 30), ("3600", _("%d minutes") % 60)])
 config.misc.graph_mepg.OKButton = ConfigSelection(default = "info", choices = [("info", _("Show detailed event info")), ("zap", _("Zap to selected channel"))])
+PossibleAlignmentChoices = [
+	( str(RT_HALIGN_LEFT   | RT_VALIGN_CENTER          ) , _("left")),
+	( str(RT_HALIGN_CENTER | RT_VALIGN_CENTER          ) , _("centered")),
+	( str(RT_HALIGN_RIGHT  | RT_VALIGN_CENTER          ) , _("right")),
+	( str(RT_HALIGN_LEFT   | RT_VALIGN_CENTER | RT_WRAP) , _("left, wrapped")),
+	( str(RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP) , _("centered, wrapped")),
+	( str(RT_HALIGN_RIGHT  | RT_VALIGN_CENTER | RT_WRAP) , _("right, wrapped"))]
+config.misc.graph_mepg.event_alignment = ConfigSelection(default = PossibleAlignmentChoices[0][0], choices = PossibleAlignmentChoices)
+config.misc.graph_mepg.servicename_alignment = ConfigSelection(default = PossibleAlignmentChoices[0][0], choices = PossibleAlignmentChoices)
 
 listscreen = config.misc.graph_mepg.default_mode.value
 
@@ -393,7 +402,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			elif not self.showServiceTitle:
 				# no picon so show servicename anyway in picon space
 				namefont = 1
-				namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+				namefontflag = int(config.misc.graph_mepg.servicename_alignment.value)
 				namewidth = piconWidth
 				piconWidth = 0
 		else:
@@ -401,7 +410,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		if self.showServiceTitle: # we have more space so reset parms
 			namefont = 0
-			namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+			namefontflag = int(config.misc.graph_mepg.servicename_alignment.value)
 			namewidth = r1.w - piconWidth
 
 		if self.showServiceTitle or displayPicon is None:
@@ -436,7 +445,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				foreColorSelected = foreColor = self.foreColor
 				if stime <= now and now < stime + duration:
 					backColor = self.backColorNow
-					if isPlayableForCur( ServiceReference(service).ref):
+					if isPlayableForCur(ServiceReference(service).ref):
 						foreColor = self.foreColorNow
 						foreColorSelected = self.foreColorSelected
 				else:
@@ -460,7 +469,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				else:
 					res.append(MultiContentEntryText(
 						pos = (left + xpos, top), size = (ewidth, height),
-						font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+						font = 1, flags = int(config.misc.graph_mepg.event_alignment.value),
 						text = "", color = None, color_sel = None,
 						backcolor = backColor, backcolor_sel = backColorSel,
 						border_width = self.eventBorderWidth, border_color = self.borderColor))
@@ -475,8 +484,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						pos = (evX, evY),
 						size = (evW, evH),
 						font = 1,
-						flags = RT_HALIGN_LEFT
-						 | RT_VALIGN_CENTER,
+						flags = int(config.misc.graph_mepg.event_alignment.value),
 						text = ev[1],
 						color = foreColor,
 						color_sel = foreColorSelected))
