@@ -24,10 +24,8 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from ServiceReference import ServiceReference, isPlayableForCur
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Alternatives import CompareWithAlternatives
-from enigma import eEPGCache, eListbox, ePicLoad, gFont, \
- eListboxPythonMultiContent, \
- RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP,\
- eSize, eRect, eTimer, getBestPlayableServiceReference
+from enigma import eEPGCache, eListbox, ePicLoad, gFont, eListboxPythonMultiContent, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP,\
+	eSize, eRect, eTimer, getBestPlayableServiceReference
 from GraphMultiEpgSetup import GraphMultiEpgSetup
 from time import localtime, time, strftime
 
@@ -438,11 +436,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				foreColorSelected = foreColor = self.foreColor
 				if stime <= now and now < stime + duration:
 					backColor = self.backColorNow
-					if isPlayableForCur( \
-					 ServiceReference(service).ref):
+					if isPlayableForCur( ServiceReference(service).ref):
 						foreColor = self.foreColorNow
-						foreColorSelected \
-					 	 = self.foreColorSelected
+						foreColorSelected = self.foreColorSelected
 				else:
 					backColor = self.backColor
 

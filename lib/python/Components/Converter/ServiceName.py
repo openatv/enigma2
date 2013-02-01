@@ -38,9 +38,7 @@ class ServiceName(Converter, object):
 			return info.getInfoString(iServiceInformation.sProvider)
 		elif self.type == self.REFERENCE:
 			if not ref:
-				return \
-				 info.getInfoString( \
-				  iServiceInformation.sServiceref)
+				return info.getInfoString(iServiceInformation.sServiceref)
 			nref = resolveAlternate(ref)
 			if nref:
 				ref = nref

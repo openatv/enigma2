@@ -109,8 +109,7 @@ class SkinSelector(Screen):
 			pngpath = "."
 		else:
 			pngpath = self["SkinList"].getCurrent()
-		pngpath = os.path.join(os.path.join(self.root, pngpath), \
-		 "prev.png")
+		pngpath = os.path.join(os.path.join(self.root, pngpath), "prev.png")
 
 		if not os.path.exists(pngpath):
 			pngpath = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SkinSelector/noprev.png")
