@@ -386,7 +386,7 @@ class ChannelContextMenu(Screen):
 
 class SelectionEventInfo:
 	def __init__(self):
-		self["ServiceEvent"] = ServiceEvent()
+		self["Service"] = self["ServiceEvent"] = ServiceEvent()
 		self.servicelist.connectSelChanged(self.__selectionChanged)
 		self.timer = eTimer()
 		self.timer.callback.append(self.updateEventInfo)
