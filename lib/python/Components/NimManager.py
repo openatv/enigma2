@@ -154,7 +154,7 @@ class SecConfigure:
 
 		for slot in nim_slots:
 			if slot.frontend_id is not None:
-				types = [type for type in ["DVB-T", "DVB-C", "DVB-S", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, type)]
+				types = [type for type in ["DVB-C", "DVB-T", "DVB-S", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, type)]
 				if len(types) > 1:
 					slot.multi_type = {}
 					for type in types:
@@ -759,11 +759,10 @@ class NimManager:
 			elif line.startswith("Frontend_Device:"):
 				input = int(line[len("Frontend_Device:") + 1:])
 				entries[current_slot]["frontend_device"] = input
-			elif  line.startswith("Mode"):
-				# "Mode 0: DVB-T" -> ["Mode 0", "DVB-T"]
+			elif line.startswith("Mode"):
+				# "Mode 1: DVB-T" -> ["Mode 1", "DVB-T"]
 				split = line.split(":")
 				split[1] = split[1].replace(' ','')
-				# "Mode 0" -> ["Mode", "0"]
 				split2 = split[0].split(" ")
 				modes = entries[current_slot].get("multi_type", {})
 				modes[split2[1]] = split[1]
