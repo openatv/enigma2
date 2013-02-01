@@ -1,5 +1,4 @@
-from enigma import eServiceReference, eServiceCenter, \
- getBestPlayableServiceReference
+from enigma import eServiceReference, eServiceCenter, getBestPlayableServiceReference
 import NavigationInstance
 
 class ServiceReference(eServiceReference):
@@ -41,8 +40,7 @@ class ServiceReference(eServiceReference):
 def getPlayingref(ref):
 	playingref = None
 	if NavigationInstance.instance:
-		playingref = NavigationInstance.instance.\
-			getCurrentlyPlayingServiceReference()
+		playingref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 	if not playingref:
 		playingref = eServiceReference()
 	return playingref
@@ -54,8 +52,7 @@ def isPlayableForCur(ref):
 def resolveAlternate(ref):
 	nref = None
 	if ref.flags & eServiceReference.isGroup:
-		nref \
-		 = getBestPlayableServiceReference(ref, getPlayingref(ref))
+		nref = getBestPlayableServiceReference(ref, getPlayingref(ref))
 		if not nref:
 			nref = getBestPlayableServiceReference(ref,
 			 eServiceReference(), True)
