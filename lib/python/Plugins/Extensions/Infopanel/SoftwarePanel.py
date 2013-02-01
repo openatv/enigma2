@@ -191,13 +191,14 @@ class SoftwarePanel(Screen):
 				try:
 					self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "upgradeable"))
 				except:
-					self.list.append(self.buildEntryComponent(x[0], '', 'no valid architecture, ignoring !!', "installable"))
-			if len(excludeList) > 0:
-				for x in excludeList:
-					try:
-						self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "installable"))
-					except:
-						self.list.append(self.buildEntryComponent(x[0], '', 'no valid architecture, ignoring !!', "installable"))
+					print "[SOFTWAREPANEL] " + x[0] + " no valid architecture, ignoring !!"
+#					self.list.append(self.buildEntryComponent(x[0], '', 'no valid architecture, ignoring !!', "installable"))
+#			if len(excludeList) > 0:
+#				for x in excludeList:
+#					try:
+#						self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "installable"))
+#					except:
+#						self.list.append(self.buildEntryComponent(x[0], '', 'no valid architecture, ignoring !!', "installable"))
 
 			self['list'].setList(self.list)
 
