@@ -19,6 +19,10 @@ def AddNotification(screen, *args, **kwargs):
 def AddNotificationWithCallback(fnc, screen, *args, **kwargs):
 	__AddNotification(fnc, screen, None, *args, **kwargs)
 
+def AddNotificationParentalControl(fnc, screen, *args, **kwargs):
+	RemovePopup("Parental control")
+	__AddNotification(fnc, screen, "Parental control", *args, **kwargs)
+
 def AddNotificationWithID(id, screen, *args, **kwargs):
 	__AddNotification(None, screen, id, *args, **kwargs)
 
