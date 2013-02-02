@@ -63,7 +63,7 @@ from Plugins.Extensions.Infopanel.CamStart import *
 from Plugins.Extensions.Infopanel.CamCheck import *
 from Plugins.Extensions.Infopanel.sundtek import *
 from Plugins.Extensions.Infopanel.SwapManager import Swap, SwapAutostart
-from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin
+from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
 
 def Check_Softcam():
@@ -414,7 +414,7 @@ class Infopanel(Screen, InfoBarPiP):
 		elif menu == "software-manager":
 			self.Software_Manager()
 		elif menu == "software-update":
-			self.session.open(UpdatePlugin)
+			self.session.open(SoftwarePanel)
 		elif menu == "backup-settings":
 			self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
 		elif menu == "restore-settings":

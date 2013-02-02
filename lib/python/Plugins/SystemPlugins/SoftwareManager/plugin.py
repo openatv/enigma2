@@ -21,7 +21,7 @@ from Components.Console import Console
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.SelectionList import SelectionList
 from Components.PluginComponent import plugins
-#from Components.About import about
+from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
 from Components.PackageInfo import PackageInfoHandler
 from Components.Language import language
 from Components.AVSwitch import AVSwitch
@@ -280,8 +280,7 @@ class UpdatePluginMenu(Screen):
 			currentEntry = current[0]
 			if self.menu == 0:
 				if (currentEntry == "software-update"):
-					self.session.open(UpdatePlugin, self.skin_path)
-					#self.checkTraficLight()
+					self.session.open(SoftwarePanel, self.skin_path)
 				elif (currentEntry == "software-restore"):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):
@@ -1479,7 +1478,7 @@ class UpdatePlugin(Screen):
 		if datedelay > date.today():
 			self.updating = True
 			self.activityTimer.start(100, False)
-			self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 		else:
 			print"[SOFTWAREMANAGER] Your image is to old (%s), you need to flash new !!" %getEnigmaVersionString()
 			self.session.openWithCallback(self.checkDateCallback, MessageBox, message, default = False)

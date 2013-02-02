@@ -36,6 +36,7 @@ from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
 from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin, SoftwareManagerSetup
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getOldBackupPath, getBackupFilename
 from Plugins.SystemPlugins.AutoResolution.plugin import AutoResSetupMenu
+from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
 
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, SCOPE_SKIN
 from Tools.LoadPixmap import LoadPixmap
@@ -435,7 +436,8 @@ class QuickMenu(Screen):
 			self.SatfinderMain()
 ######## Select Software Manager Menu ##############################
 		elif item[0] == _("Software Update"):
-			self.session.open(UpdatePlugin)
+			#self.session.open(UpdatePlugin)
+			self.session.open(SoftwarePanel)
 		elif item[0] == _("Complete Backup"):
 			self.session.open(ImageBackup)
 		elif item[0] == _("Backup Settings"):
