@@ -68,7 +68,9 @@ def skin_user_skinname():
 
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
+
 DEFAULT_SKIN = "DEFAULT.HD/skin.xml"
+
 # on SD hardware, ViX Night HD will not be available
 if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
 	# in that case, fallback to Magic (which is an SD skin)
@@ -615,6 +617,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 		getDesktop(style_id).setMargins(r)
 
 	for skininclude in skin.findall("include"):
+		print "[SKIN] loading include:", skininclude.attrib.get("filename")
 		loadSkin(skininclude.attrib.get("filename"))
 
 dom_screens = {}

@@ -1301,7 +1301,8 @@ class RotorNimSelection(Screen):
 		nimlist = nimmanager.getNimListOfType("DVB-S")
 		nimMenuList = []
 		for x in nimlist:
-			nimMenuList.append((nimmanager.nim_slots[x].friendly_full_description, x))
+			if len(nimmanager.getRotorSatListForNim(x)) != 0:
+				nimMenuList.append((nimmanager.nim_slots[x].friendly_full_description, x))
 
 		self["nimlist"] = MenuList(nimMenuList)
 
