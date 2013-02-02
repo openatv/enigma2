@@ -4,6 +4,7 @@ from Screens.MessageBox import MessageBox
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.Input import Input
+from Components.config import config
 from Tools.BoundFunction import boundFunction
 from Tools.Notifications import AddPopup
 from time import time
@@ -44,7 +45,10 @@ class InputBox(Screen):
 		}, -1)
 
 		if self["input"].type == Input.TEXT:
-			self.onExecBegin.append(self.setKeyboardModeAscii)
+			if config.misc.remotecontrol_text_support.getValue():
+				self.onExecBegin.append(self.setKeyboardModeNone)
+			else:
+				self.onExecBegin.append(self.setKeyboardModeAscii)
 		else:
 			self.onExecBegin.append(self.setKeyboardModeNone)
 

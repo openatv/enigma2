@@ -2,7 +2,7 @@ import os
 from Renderer import Renderer
 from enigma import ePixmap
 from Tools.Alternatives import GetWithAlternative
-from Tools.Directories import pathExists, SCOPE_CURRENT_SKIN, resolveFilename
+from Tools.Directories import pathExists, SCOPE_ACTIVE_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
 
 searchPaths = []
@@ -91,11 +91,11 @@ class LcdPicon(Renderer):
 		pngname = findLcdPicon("lcd_picon_default")
 		self.defaultpngname = None
 		if not pngname:
-			tmp = resolveFilename(SCOPE_CURRENT_SKIN, "lcd_picon_default.png")
+			tmp = resolveFilename(SCOPE_ACTIVE_SKIN, "lcd_picon_default.png")
 			if pathExists(tmp):
 				pngname = tmp
 			else:
-				pngname = resolveFilename(SCOPE_CURRENT_SKIN, "lcd_picon_default.png")
+				pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "lcd_picon_default.png")
 		if os.path.getsize(pngname):
 			self.defaultpngname = pngname
 

@@ -1,6 +1,6 @@
 from Components.Converter.Converter import Converter
 from Components.Element import cached, ElementError
-from Tools.Directories import fileExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
+from Tools.Directories import fileExists, SCOPE_SKIN_IMAGE, SCOPE_ACTIVE_SKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 
@@ -26,7 +26,7 @@ class ValueToPixmap(Converter, object):
 		if self.type == self.PATH:
 			return LoadPixmap(val)
 		if self.type == self.LANGUAGE_CODE:
-			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "countries/" + val[3:].lower() + ".png"))
+			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + val[3:].lower() + ".png"))
 			if png == None:
 				png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "countries/missing.png"))
 			return png

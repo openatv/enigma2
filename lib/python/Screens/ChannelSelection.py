@@ -34,7 +34,7 @@ profile("ChannelSelection.py 4")
 from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
 from ServiceReference import ServiceReference
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.BoundFunction import boundFunction
 from os import remove
 profile("ChannelSelection.py after imports")
@@ -1330,9 +1330,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		ChannelSelectionEPG.__init__(self)
 		SelectionEventInfo.__init__(self)
 		if config.usage.servicelist_mode.getValue() == 'simple':
-			data = resolveFilename(SCOPE_CURRENT_SKIN, 'skin.xml')
+			data = resolveFilename(SCOPE_ACTIVE_SKIN, 'skin.xml')
 			data = data.replace('/ skin.xml', '/skin.xml')
-			data = file(resolveFilename(SCOPE_CURRENT_SKIN, 'skin.xml')).read()
+			data = file(resolveFilename(SCOPE_ACTIVE_SKIN, 'skin.xml')).read()
 			if data.find('SlimChannelSelection') >= 0:
 				self.skinName = 'SlimChannelSelection'
 			else:

@@ -1,6 +1,6 @@
 from MenuList import MenuList
 from Components.ParentalControl import IMG_WHITESERVICE, IMG_WHITEBOUQUET, IMG_BLACKSERVICE, IMG_BLACKBOUQUET
-from Tools.Directories import SCOPE_CURRENT_SKIN, resolveFilename
+from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
 
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
 from Tools.LoadPixmap import LoadPixmap
@@ -8,10 +8,10 @@ from Tools.LoadPixmap import LoadPixmap
 #Now there is a list of pictures instead of one...
 entryPicture = {}
 
-entryPicture[IMG_BLACKSERVICE] = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/lock.png"))
-entryPicture[IMG_BLACKBOUQUET] = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/lockBouquet.png"))
-entryPicture[IMG_WHITESERVICE] = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/unlock.png"))
-entryPicture[IMG_WHITEBOUQUET] = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/unlockBouquet.png"))
+entryPicture[IMG_BLACKSERVICE] = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock.png"))
+entryPicture[IMG_BLACKBOUQUET] = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lockBouquet.png"))
+entryPicture[IMG_WHITESERVICE] = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/unlock.png"))
+entryPicture[IMG_WHITEBOUQUET] = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/unlockBouquet.png"))
 
 def ParentalControlEntryComponent(service, name, protectionType):
 	locked = protectionType[0]

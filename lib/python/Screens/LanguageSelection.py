@@ -11,16 +11,16 @@ from enigma import eTimer
 
 from Screens.Rc import Rc
 
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_LANGUAGE
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN, SCOPE_LANGUAGE
 from Tools.LoadPixmap import LoadPixmap
 import gettext
 
 def LanguageEntryComponent(file, name, index):
-	png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/" + index + ".png"))
+	png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + index + ".png"))
 	if png == None:
-		png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/" + file + ".png"))
+		png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + file + ".png"))
 		if png == None:
-			png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/missing.png"))
+			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/missing.png"))
 	res = (index, name, png)
 	return res
 
@@ -118,7 +118,7 @@ class LanguageSelection(Screen):
 
 	def updateList(self):
 		languageList = language.getLanguageList()
-		if not languageList: # no language available => display only german
+		if not languageList: # no language available => display only english
 			list = [ LanguageEntryComponent("en", "English (US)", "en_US") ]
 		else:
 			list = [ LanguageEntryComponent(file = x[1][2].lower(), name = x[1][0], index = x[0]) for x in languageList]

@@ -12,7 +12,7 @@ from Components.Network import iNetwork
 from Components.Console import Console
 from Plugins.Plugin import PluginDescriptor
 from os import system, path as os_path, listdir
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Tools.HardwareInfo import HardwareInfo
 from Wlan import iWlan, wpaSupplicant, iStatus, getWlanConfigName
@@ -286,7 +286,7 @@ class WlanScan(Screen):
 		self.updateAPList()
 
 	def buildEntryComponent(self, essid, bssid, encrypted, iface, maxrate, signal):
-		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "div-h.png"))
+		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
 		encryption = encrypted and _("Yes") or _("No")
 		return((essid, bssid, _("Signal: ") + str(signal), _("Max. bitrate: ") + str(maxrate), _("Encrypted: ") + encryption, _("Interface: ") + str(iface), divpng))
 
