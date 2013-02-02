@@ -1,0 +1,228 @@
+<skin>
+	<!--	Skin: Default-ViX PlugIn addition Vs 1.00	-->
+	<!--	This skin is part of the default ViX-skin; the same license applies.	-->
+
+<!--  ## PlugIns ##  -->
+	<screen name="PermanentClockScreen" position="0,0" size="120,30" zPosition="-1" backgroundColor="transparent" title="%s" flags="wfNoBorder">
+		<widget source="global.CurrentTime" render="Label" position="1,1" size="120,30" backgroundColor="transparent" transparent="1" zPosition="0" foregroundColor="grey" borderWidth="2" font="Regular;26" borderColor="black" valign="center" halign="center">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+	</screen>
+	<!-- ##CubicStreamer## -->
+	<screen name="MainWindow" position="center,center" size="560,460" title="Main menu">
+		<widget name="title" position="10,45" size="280,25" valign="center" font="Enigma;22" halign="center" />
+		<widget name="menu" position="10,50" size="540,350" scrollbarMode="showOnDemand" itemHeight="50" font="Regular;28" />
+		<ePixmap alphatest="on" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" />
+		<ePixmap alphatest="on" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" />
+		<ePixmap alphatest="on" pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" />
+		<ePixmap alphatest="on" pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" />
+		<widget name="red" render="Label" font="Regular;20" halign="center" position="-2,1" size="140,40" transparent="1" valign="center" zPosition="10" />
+		<widget name="green" render="Label" font="Regular;20" halign="center" position="140,0" size="140,40" transparent="1" valign="center" zPosition="10" />
+		<widget name="yellow" render="Label" font="Regular;20" halign="center" position="280,1" size="140,40" transparent="1" valign="center" zPosition="10" />
+		<widget name="blue" render="Label" font="Regular;20" halign="center" position="420,0" size="140,40" transparent="1" valign="center" zPosition="10" />
+		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
+	</screen>
+	<!--Mytube-->
+	<screen name="MyTubePlayerMainScreen" flags="wfNoBorder" position="0,0" size="720,576" title="MyTubePlayerMainScreen..." >
+		<widget name="config" zPosition="2" position="60,60" size="600,50" scrollbarMode="showNever" transparent="1" />
+		<widget source="feedlist" render="Listbox" position="49,110" size="628,385" zPosition="1" scrollbarMode="showOnDemand" backgroundColor="black">
+			<convert type="TemplatedMultiContent">
+			{"templates":
+				{"default": (77,[
+						MultiContentEntryPixmapAlphaTest(pos = (0, 0), size = (100, 75), png = 4), # index 4 is the thumbnail
+						MultiContentEntryText(pos = (100, 1), size = (500, 24), font=0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP| RT_WRAP, text = 1), # index 1 is the Title
+						MultiContentEntryText(pos = (100, 24), size = (300, 20), font=1, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP| RT_WRAP, text = 5), # index 5 is the Published Date
+						MultiContentEntryText(pos = (100, 46), size = (300, 20), font=1, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP| RT_WRAP, text = 6), # index 6 is the Views Count
+						MultiContentEntryText(pos = (400, 24), size = (200, 20), font=1, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP| RT_WRAP, text = 7), # index 7 is the duration
+						MultiContentEntryText(pos = (400, 46), size = (200, 20), font=1, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP| RT_WRAP, text = 8), # index 8 is the ratingcount
+					]),
+				"state": (77,[
+						MultiContentEntryText(pos = (10, 1), size = (560, 28), font=2, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP| RT_WRAP, text = 0), # index 0 is the name
+						MultiContentEntryText(pos = (10, 22), size = (560, 46), font=3, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP| RT_WRAP, text = 1), # index 2 is the description
+					])
+				},
+				"fonts": [gFont("Enigma", 20),gFont("Enigma", 16),gFont("Enigma", 24),gFont("Enigma", 18)],
+				"itemHeight": 77
+			}
+			</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/buttons/key_info.png" position="50,500" zPosition="4" size="35,25" alphatest="on" transparent="1" />
+		<ePixmap pixmap="skin_default/buttons/key_menu.png" position="50,520" zPosition="4" size="35,25" alphatest="on" transparent="1" />
+		<ePixmap position="90,500" size="100,40" zPosition="4" pixmap="~/plugin.png" alphatest="on" transparent="1" />
+		<ePixmap position="190,500" zPosition="4" size="140,40" pixmap="skin_default/buttons/key-red.png" transparent="1" alphatest="on" />
+		<ePixmap position="330,500" zPosition="4" size="140,40" pixmap="skin_default/buttons/key-green.png" transparent="1" alphatest="on" />
+		<ePixmap position="470,500" zPosition="4" size="140,40" pixmap="skin_default/buttons/key-yellow.png" transparent="1" alphatest="on" />
+		<widget name="key_red" position="190,500" zPosition="5" size="140,40" valign="center" halign="center" font="Enigma;21" transparent="1" foregroundColor="white" borderColor="black" />
+		<widget name="key_green" position="330,500" zPosition="5" size="140,40" valign="center" halign="center" font="Enigma;21" transparent="1" foregroundColor="white" borderColor="black" />
+		<widget name="key_yellow" position="470,500" zPosition="5" size="140,40" valign="center" halign="center" font="Enigma;21" transparent="1" foregroundColor="white" borderColor="black" />
+		<widget name="ButtonBlue" pixmap="skin_default/buttons/key_blue.png" position="610,510" zPosition="10" size="15,16" transparent="1" alphatest="on" />
+		<widget name="VKeyIcon" pixmap="skin_default/vkey_icon.png" position="620,495" zPosition="10" size="60,48" transparent="1" alphatest="on" />
+		<widget name="thumbnail" position="0,0" size="100,75" alphatest="on"/>
+		<widget name="HelpWindow" position="160,255" zPosition="1" size="1,1" transparent="1" alphatest="on" />
+	</screen>
+	<screen name="MyTubeVideoInfoScreen" flags="wfNoBorder" position="0,0" size="720,576" title="MyTubePlayerMainScreen..." >
+		<widget name="title" position="60,50" size="600,50" zPosition="5" valign="center" halign="left" font="Enigma;22" foregroundColor="white" borderColor="black" borderWidth="2" />
+		<widget name="starsbg" pixmap="~/starsbar_empty.png" position="560,220" zPosition="5" size="100,20" transparent="1" alphatest="on" />
+		<widget name="stars" pixmap="~/starsbar_filled.png" position="560,220" zPosition="6" size="100,20" transparent="1" />
+		<widget source="infolist" render="Listbox" position="50,110" size="620,110" zPosition="6" scrollbarMode="showNever" selectionDisabled="1" backgroundColor="black">
+			<convert type="TemplatedMultiContent">
+			{"templates":
+				{"default": (110,[
+						MultiContentEntryPixmapAlphaTest(pos = (0, 4), size = (130, 98), png = 0), # index 0 is the thumbnail
+						MultiContentEntryPixmapAlphaTest(pos = (130, 4), size = (130, 98), png = 1), # index 0 is the thumbnail
+						MultiContentEntryPixmapAlphaTest(pos = (260, 4), size = (130, 98), png = 2), # index 0 is the thumbnail
+						MultiContentEntryPixmapAlphaTest(pos = (390, 4), size = (130, 98), png = 3), # index 0 is the thumbnail
+					]),
+				"state": (110,[
+						MultiContentEntryText(pos = (10, 40), size = (550, 38), font=0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP| RT_WRAP, text = 0), # index 0 is the name
+					])
+				},
+				"fonts": [gFont("Enigma", 26)],
+				"itemHeight": 110
+			}
+			</convert>
+		</widget>
+		<widget name="author" position="60,220" size="300,24" zPosition="10" font="Enigma;20" halign="left" valign="top" />
+		<widget name="duration" position="370,220" size="190,24" zPosition="10" font="Enigma;20" halign="left" valign="top" />
+		<widget name="published" position="60,245" size="300,24" zPosition="10" font="Enigma;20" halign="left" valign="top" />
+		<widget name="views" position="370,245" size="200,24" zPosition="10" font="Enigma;20" halign="left" valign="top" />
+		<widget name="tags" position="60,270" size="600,24" zPosition="10" font="Enigma;20" halign="left" valign="top" />
+		<widget name="detailtext" position="60,300" size="610,200" zPosition="10" font="Enigma;20" halign="left" valign="top"/>
+		<ePixmap position="100,500" size="100,40" zPosition="0" pixmap="~/plugin.png" alphatest="on" />
+		<ePixmap position="220,500" zPosition="4" size="140,40" pixmap="skin_default/buttons/key-red.png" alphatest="on" />
+		<widget name="key_red" position="220,500" zPosition="5" size="140,40" valign="center" halign="center" font="Enigma;21" foregroundColor="white" transparent="1" borderColor="black" borderWidth="2" />
+		<widget name="thumbnail" position="0,0" size="130,98" alphatest="on"/> # fake entry for dynamic thumbnail resizing, currently there is no other way doing this.
+	</screen>
+	<screen name="MyTubeVideoHelpScreen" flags="wfNoBorder" position="0,0" size="720,576" title="MyTubePlayerMainScreen..." >
+		<widget name="title" position="60,50" size="600,50" zPosition="5" valign="center" halign="left" font="Enigma;21" transparent="1" foregroundColor="white" borderColor="black" borderWidth="2" />
+		<widget name="detailtext" position="60,120" size="610,370" zPosition="10" font="Enigma;21" transparent="1" halign="left" valign="top"/>
+		<ePixmap position="100,500" size="100,40" zPosition="0" pixmap="~/plugin.png" alphatest="on" transparent="1" />
+		<ePixmap position="220,500" zPosition="4" size="140,40" pixmap="skin_default/buttons/key-red.png" transparent="1" alphatest="on" />
+		<widget name="key_red" position="220,500" zPosition="5" size="140,40" valign="center" halign="center" font="Enigma;21" transparent="1" foregroundColor="white" borderColor="black" borderWidth="2" />
+	</screen>
+	<screen name="MyTubePlayer" flags="wfNoBorder" backgroundColor="transparent" position="60,40" size="600,102" title="MoviePlayer">
+		<eLabel backgroundColor="infobarBG" position="6,44" size="588,14" zPosition="0"/>
+		<ePixmap alphatest="on" pixmap="skin_default/dvr/scale.png" position="8,45" size="584,12" zPosition="1"/>
+		<widget pointer="skin_default/dvr/position_pointer.png:572,0" position="8,45" render="PositionGauge" size="584,12" source="session.CurrentService" transparent="1" zPosition="4">
+			<convert type="ServicePosition">Gauge</convert>
+		</widget>
+		<widget backgroundColor="transparent" borderColor="black" borderWidth="2" font="Enigma;22" foregroundColor="foreground" halign="center" noWrap="1" position="88,3" render="Label" size="424,36" source="session.CurrentService" transparent="1" valign="bottom" zPosition="2">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget backgroundColor="transparent" borderColor="black" borderWidth="2" font="Enigma;20" foregroundColor="foreground" halign="left" noWrap="1" position="8,5" render="Label" size="80,32" source="session.CurrentService" transparent="1" valign="bottom" zPosition="2">
+			<convert type="ServicePosition">Position,ShowHours</convert>
+		</widget>
+		<widget backgroundColor="transparent" borderColor="black" borderWidth="2" font="Enigma;20" foregroundColor="foreground" halign="right" noWrap="1" position="512,5" render="Label" size="80,32" source="session.CurrentService" transparent="1" valign="bottom" zPosition="2">
+			<convert type="ServicePosition">Remaining,Negate,ShowHours</convert>
+		</widget>
+	</screen>
+	<screen name="MyTubeSuggestionsListScreen" position="60,93" zPosition="6" size="610,160" flags="wfNoBorder" >
+		<widget source="suggestionslist" render="Listbox" position="10,5" zPosition="7" size="580,150" scrollbarMode="showOnDemand" transparent="0" backgroundColor="black" >
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (0, 0), size = (340, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+						MultiContentEntryText(pos = (350, 0), size = (180, 25), font=1, flags = RT_HALIGN_RIGHT, text = 1), # index 1 are the results
+					],
+				"fonts": [gFont("Enigma", 20),gFont("Enigma", 16)],
+				"itemHeight": 25
+				}
+			</convert>
+		</widget>
+	</screen>
+	<screen name="MyTubeHistoryScreen" position="60,93" zPosition="6" size="610,160" flags="wfNoBorder" >
+		<widget source="historylist" render="Listbox" position="10,5" zPosition="7" size="580,150" scrollbarMode="showOnDemand" backgroundColor="black" >
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (0, 0), size = (340, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+					],
+				"fonts": [gFont("Enigma", 20)],
+				"itemHeight": 25
+				}
+			</convert>
+		</widget>
+	</screen>
+	<screen name="MyTubeTasksScreen" flags="wfNoBorder" position="0,0" size="720,576" title="MyTubePlayerMainScreen..." >
+		<widget name="title" position="60,50" size="600,50" zPosition="5" valign="center" halign="left" font="Regular;21" transparent="1" foregroundColor="white" borderColor="black" borderWidth="2" />
+		<widget source="tasklist" render="Listbox" position="60,120" size="610,370" zPosition="7" scrollbarMode="showOnDemand" transparent="1" >
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (0, 0), size = (200, 25), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the name
+						MultiContentEntryText(pos = (210, 0), size = (150, 25), font=1, flags = RT_HALIGN_RIGHT, text = 2), # index 2 is the state
+						MultiContentEntryProgress(pos = (370, 0), size = (100, 25), percent = -3), # index 3 should be progress
+						MultiContentEntryText(pos = (480, 0), size = (100, 25), font=1, flags = RT_HALIGN_RIGHT, text = 4), # index 4 is the percentage
+					],
+				"fonts": [gFont("Enigma", 20),gFont("Enigma", 16)],
+				"itemHeight": 25
+				}
+			</convert>
+		</widget>
+		<ePixmap position="100,500" size="100,40" zPosition="0" pixmap="~/plugin.png" alphatest="on" transparent="1" />
+		<ePixmap position="220,500" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+		<widget name="key_red" position="220,500" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" borderColor="black" borderWidth="2" />
+	</screen>
+
+
+	<!--Yamp-->
+	<screen name="YampScreen" position="0,0" size="1280,720" flags="wfNoBorder">
+		<eLabel position="0,0" size="1280,88" backgroundColor="#00242424" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YampMusicPlayer/images/smallshadowline.png" position="0,88" size="1280,2" zPosition="2"/>
+		<widget name="title" position="85,30" size="1085,55" backgroundColor="#18101214" transparent="1" zPosition="1" font="Regular;24" valign="center" halign="left" />
+		<widget source="global.CurrentTime" render="Label" position="1070,30" size="150,55" backgroundColor="#18101214" transparent="1" zPosition="1" font="Regular;24" valign="center" halign="right">
+			<convert type="ClockToText">Format:%-H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="920,50" size="300,55" backgroundColor="#18101214" transparent="1" zPosition="1" font="Regular;16" valign="center" halign="right">
+			<convert type="ClockToText">Format:%A, %d.%m.%Y</convert>
+		</widget>
+		<widget name="leftContentTitle" position="85,97" size="560,26" backgroundColor="#00aaaaaa" zPosition="5" foregroundColor="#00000000" font="Regular;22" halign="center" />
+		<widget name="filelist" position="85,125" size="560,325" backgroundColor="#00101214" scrollbarMode="showOnDemand" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/YampMusicPlayer/images/sel.png" />
+		<widget name="dblist" position="85,125" size="560,325" backgroundColor="#00101214" selectionDisabled="1" scrollbarMode="showOnDemand" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/YampMusicPlayer/images/sel.png" />
+		<widget name="rightContentTitle" position="660,97" size="560,26" backgroundColor="#00aaaaaa" zPosition="5" foregroundColor="#00000000" font="Regular;22" halign="center" />
+		<widget name="playlist" position="660,125" size="560,325" backgroundColor="#00101214" selectionDisabled="1" scrollbarMode="showOnDemand" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/YampMusicPlayer/images/sel.png" />
+		<widget name="songtitle" position="300,460" size="560,30" foregroundColor="#00e5b243" backgroundColor="#00101214" transparent="1" font="Regular;26" valign="top" />
+		<widget source="session.CurrentService" render="Label" position="860,460" size="120,40" font="Regular;26" foregroundColor="#00e5b243" backgroundColor="#00101214" halign="right" transparent="1">
+			<convert type="ServicePosition">Length</convert>
+		</widget>
+		<eLabel position="289,500" size="700,2" backgroundColor="#00555556" />
+		<eLabel text="Artist" position="300,510" size="100,25" backgroundColor="#00101214" transparent="1" foregroundColor="#00555556" font="Regular;20" valign="top" />
+		<widget name="artist" position="400,510" size="580,25" backgroundColor="#00101214" transparent="1" font="Regular;20" valign="top" />
+		<eLabel text="Album" position="300,540" size="100,25" backgroundColor="#00101214" transparent="1" foregroundColor="#00555556" font="Regular;20" valign="top" />
+		<widget name="album" position="400,540" size="580,25" backgroundColor="#00101214" transparent="1" font="Regular;20" valign="top" />
+		<eLabel text="Year" position="300,570" size="100,25" backgroundColor="#00101214" transparent="1" foregroundColor="#00555556" font="Regular;20" valign="top" />
+		<widget name="year" position="400,570" size="180,25" backgroundColor="#00101214" transparent="1" font="Regular;20" valign="top" />
+		<eLabel text="Genre" position="580,570" size="100,25" font="Regular;20" backgroundColor="#00101214" transparent="1" foregroundColor="#00555556" valign="top"/>
+		<widget name="genre" position="690,570" size="290,25" font="Regular;20" backgroundColor="#00101214" transparent="1" valign="top"/>
+		<widget name="coverArt" pixmap="skin_default/no_coverArt.png" position="85,460" size="160,160" transparent="1" alphatest="blend" />
+		<widget source="session.CurrentService" render="Progress" position="400,607" size="480,10" backgroundColor="#00101214" borderWidth="1" borderColor="#00555556" transparent="1">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="300,600" size="60,25" backgroundColor="#00101214" transparent="1" font="Regular;22" valign="center" halign="left">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="920,600" size="60,25" backgroundColor="#00101214" transparent="1" font="Regular;22" valign="center" halign="right">
+			<convert type="ServicePosition">Remaining</convert>
+		</widget>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YampMusicPlayer/images/yamp.png" position="1015,470" size="200,100" transparent="1" alphatest="on" />
+		<widget name="repeat" pixmaps="/usr/lib/enigma2/python/Plugins/Extensions/YampMusicPlayer/images/repeat_off.png,/usr/lib/enigma2/python/Plugins/Extensions/YampMusicPlayer/images/repeat_on.png" position="1050,570" size="70,30" zPosition="2" transparent="1" alphatest="on"/>
+		<widget name="shuffle" pixmaps="/usr/lib/enigma2/python/Plugins/Extensions/YampMusicPlayer/images/shuffle_off.png,/usr/lib/enigma2/python/Plugins/Extensions/YampMusicPlayer/images/shuffle_on.png" position="1130,570" size="70,30" zPosition="2" transparent="1" alphatest="on"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YampMusicPlayer/images/smallshadowline.png" position="0,630" size="1280,2" />
+		<ePixmap pixmap="skin_default/buttons/red.png" position=" 70,645" size="30,30" alphatest="blend" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="360,645" size="30,30" alphatest="blend" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="650,645" size="30,30" alphatest="blend" />
+		<ePixmap pixmap="skin_default/buttons/blue.png" position="940,645" size="30,30" alphatest="blend" />
+		<widget name="key_red" position="110,641" size="240,44" zPosition="1" font="Regular;20" valign="center" halign="left" foregroundColor="#00555556" backgroundColor="#00000000" transparent="1" />
+		<widget name="key_green" position="400,641" size="240,44" zPosition="1" font="Regular;20" valign="center" halign="left" foregroundColor="#00555556" backgroundColor="#00000000" transparent="1" />
+		<widget name="key_yellow" position="690,641" size="240,44" zPosition="1" font="Regular;20" valign="center" halign="left" foregroundColor="#00555556" backgroundColor="#00000000" transparent="1" />
+		<widget name="key_blue" position="980,641" size="240,44" zPosition="1" font="Regular;20" valign="center" halign="left" foregroundColor="#00555556" backgroundColor="#00000000" transparent="1" />
+	</screen>
+
+<screen name="YampLCDScreen" position="0,0" size="200,20">
+		<widget name="text1" position="0,0" size="200,20" font="Regular;16"/>
+		<widget name="text3" position="0,36" size="132,14" font="Regular;10"/>
+		<widget name="text4" position="0,49" size="132,14" font="Regular;10"/>
+		</screen>
+
+</skin>
