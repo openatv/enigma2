@@ -104,7 +104,7 @@ class TimerEntry:
 			else:
 				return self.end <= time() and self.state == TimerEntry.StateWaiting and self.timerType != 3 and self.timerType != 4
 		else:
-			return self.end <= time() and self.state == TimerEntry.StateWaiting
+			return self.end <= time() and (self.state == TimerEntry.StateWaiting or self.state == TimerEntry.StateFailed)
 
 	def abort(self):
 		self.end = time()
