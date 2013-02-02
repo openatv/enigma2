@@ -468,12 +468,12 @@ class InfoBarShowHide:
 
 	def LongOKPressed(self):
 		if isinstance(self, InfoBarEPG):
-			if config.plisettings.QuickEPG_mode.getValue() == "1":
+			if config.plisettings.InfoBarEpg_mode.getValue() == "1":
 				self.openInfoBarEPG()
 
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN:
-			if config.plisettings.QuickEPG_mode.getValue() == "2":
+			if config.plisettings.InfoBarEpg_mode.getValue() == "2":
 				self.openInfoBarEPG()
 			else:
 				self.hide()
@@ -855,7 +855,7 @@ class InfoBarChannelSelection:
 			})
 
 	def LeftPressed(self):
-		if config.plisettings.QuickEPG_mode.getValue() == "3":
+		if config.plisettings.InfoBarEpg_mode.getValue() == "3":
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
 				self.secondInfoBarWasShown = False
@@ -864,7 +864,7 @@ class InfoBarChannelSelection:
 			self.zapUp()
 
 	def RightPressed(self):
-		if config.plisettings.QuickEPG_mode.getValue() == "3":
+		if config.plisettings.InfoBarEpg_mode.getValue() == "3":
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
 				self.secondInfoBarWasShown = False
