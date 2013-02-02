@@ -446,6 +446,19 @@ void eDVBTSTools::calcBegin()
 			else
 				m_futile = 1;
 		}
+		if (m_begin_valid)
+		{
+			/*
+			 * We've just calculated the begin position, which will have an effect on the
+			 * calculated length.
+			 * (when the end position had been determined before the begin position, the length
+			 * will be invalid)
+			 * So we force the end position to be (re-)calculated after the begin position has
+			 * been determined, in order to ensure m_pts_length will be corrected.
+			 */
+			 m_end_valid = 0;
+			 
+		}
 	}
 }
 
