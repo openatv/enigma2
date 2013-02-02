@@ -464,14 +464,13 @@ class PowerTimer(timer.Timer):
 			list.append(' autosleeprepeat="' + str(timer.autosleeprepeat) + '"')
 			list.append('>\n')
 
-			if config.recording.debug.getValue():
-				for time, code, msg in timer.log_entries:
-					list.append('<log')
-					list.append(' code="' + str(code) + '"')
-					list.append(' time="' + str(time) + '"')
-					list.append('>')
-					list.append(str(stringToXML(msg)))
-					list.append('</log>\n')
+			for time, code, msg in timer.log_entries:
+				list.append('<log')
+				list.append(' code="' + str(code) + '"')
+				list.append(' time="' + str(time) + '"')
+				list.append('>')
+				list.append(str(stringToXML(msg)))
+				list.append('</log>\n')
 
 			list.append('</timer>\n')
 

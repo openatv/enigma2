@@ -127,19 +127,30 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		print "[TIMER]", msg
 
 	def freespace(self):
-		try:
-			if not self.MountPath:
-				return False
-			s = os.statvfs(self.MountPath)
-			if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
-				self.log(0, "Not enough free space to record")
-				return False
-			else:
-				self.log(0, "Found enough free space to record")
-				return True
-		except:
-			self.log(0, "failed to find mount to check for free space.")
+		self.MountPath = None
+		if not self.dirname:
+			dirname = findSafeRecordPath(defaultMoviePath())
+		else:
+			dirname = findSafeRecordPath(self.dirname)
+			if dirname is None:
+				dirname = findSafeRecordPath(defaultMoviePath())
+				self.dirnameHadToFallback = True
+		if not dirname:
 			return False
+
+		self.MountPath = dirname
+		mountwriteable = os.access(dirname, os.W_OK)
+		if not mountwriteable:
+			self.log(0, ("Mount '%s' is not writeable.", dirname))
+			return False
+
+		s = os.statvfs(dirname)
+		if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
+			self.log(0, "Not enough free space to record")
+			return False
+		else:
+			self.log(0, "Found enough free space to record")
+			return True
 
 	def calculateFilename(self):
 		service_name = self.service_ref.getServiceName()
@@ -162,19 +173,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if config.recording.ascii_filenames.getValue():
 			filename = ASCIItranslit.legacyEncode(filename)
 
-
-		self.MountPath = None
-		if not self.dirname:
-			dirname = findSafeRecordPath(defaultMoviePath())
-		else:
-			dirname = findSafeRecordPath(self.dirname)
-			if dirname is None:
-				dirname = findSafeRecordPath(defaultMoviePath())
-				self.dirnameHadToFallback = True
-		if not dirname:
-			return None
-		self.MountPath = dirname
-		self.Filename = Directories.getRecordingFilename(filename, dirname)
+		self.Filename = Directories.getRecordingFilename(filename, self.MountPath)
 		self.log(0, "Filename calculated as: '%s'" % self.Filename)
 		return self.Filename
 
@@ -185,8 +184,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if not self.calculateFilename():
 				self.do_backoff()
 				self.start_prepare = time() + self.backoff
-				return False
-			if not self.freespace():
 				return False
 			rec_ref = self.service_ref and self.service_ref.ref
 			if rec_ref and rec_ref.flags & eServiceReference.isGroup:
@@ -248,6 +245,14 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.log(5, "activating state %d" % next_state)
 
 		if next_state == self.StatePrepared:
+			if not self.justplay and not self.freespace():
+				Notifications.AddPopup(text = _("Write error while recording. Disk full?\n%s") % self.name, type = MessageBox.TYPE_ERROR, timeout = 5, id = "DiskFullMessage")
+				self.failed = True
+				self.next_activation = time()
+				self.end = time() + 5
+				self.backoff = 0
+				return True
+
 			if self.tryPrepare():
 				self.log(6, "prepare ok, waiting for begin")
 				# create file to "reserve" the filename
@@ -266,11 +271,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.next_activation = self.begin
 				self.backoff = 0
 				return True
-			if not self.freespace():
-				Notifications.AddPopup(text = _("Write error while recording. Disk full?\n%s") % self.name, type = MessageBox.TYPE_ERROR, timeout = 5, id = "DiskFullMessage")
-				self.state = 4
-				self.failed = True
-				return False
 
 			self.log(7, "prepare failed")
 			if self.first_try_prepare:
@@ -362,7 +362,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					return False
 				return True
 
-		elif next_state == self.StateEnded:
+		elif next_state == self.StateEnded or next_state == self.StateFailed:
 			old_end = self.end
 			if self.setAutoincreaseEnd():
 				self.log(12, "autoincrase recording %d minute(s)" % int((self.end - old_end)/60))
@@ -374,6 +374,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					NavigationInstance.instance.stopRecordService(self.record_service)
 					self.record_service = None
 
+			NavigationInstance.instance.RecordTimer.saveTimer()
 			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and self.autostate and self.afterEvent == AFTEREVENT.AUTO):
 				if not Screens.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nSTB_BOX to standby. Do that now?"), timeout = 180)
@@ -432,7 +433,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.isStillRecording = True
 		return {self.StatePrepared: self.start_prepare,
 				self.StateRunning: self.begin,
-				self.StateEnded: self.end }[next_state]
+				self.StateEnded: self.end}[next_state]
 
 	def failureCB(self, answer):
 		if answer == True:
@@ -660,14 +661,13 @@ class RecordTimer(timer.Timer):
 			list.append(' isAutoTimer="' + str(int(timer.isAutoTimer)) + '"')
 			list.append('>\n')
 
-			if config.recording.debug.getValue():
-				for time, code, msg in timer.log_entries:
-					list.append('<log')
-					list.append(' code="' + str(code) + '"')
-					list.append(' time="' + str(time) + '"')
-					list.append('>')
-					list.append(str(stringToXML(msg)))
-					list.append('</log>\n')
+			for time, code, msg in timer.log_entries:
+				list.append('<log')
+				list.append(' code="' + str(code) + '"')
+				list.append(' time="' + str(time) + '"')
+				list.append('>')
+				list.append(str(stringToXML(msg)))
+				list.append('</log>\n')
 
 			list.append('</timer>\n')
 
