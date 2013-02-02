@@ -592,7 +592,15 @@ def InitUsageConfig():
 	config.logmanager.additionalinfo = NoSave(ConfigText(default = ""))
 	config.logmanager.sentfiles = ConfigLocations(default='')
 
-				
+	config.plisettings = ConfigSubsection()
+	config.plisettings.Subservice = ConfigYesNo(default = True)
+	config.plisettings.ColouredButtons = ConfigYesNo(default = False)
+	config.plisettings.InfoBarEpg_mode = ConfigSelection(default="3", choices = [
+					("0", _("as plugin in extended bar")),
+					("1", _("with long OK press")),
+					("2", _("with exit button")),
+					("3", _("with left/right buttons"))])
+
 	if getBoxType() == 'dm800hd' or getBoxType() == 'dm800se' or getBoxType() == 'dm500hd':				
 		config.plisettings.PLIEPG_mode = ConfigSelection(default="pliepg", choices = [
 					("pliepg", _("Show Graphical EPG")),
@@ -621,15 +629,6 @@ def InitUsageConfig():
 					("single", _("Show Single EPG")),
 					("coolsingleguide", _("Show CoolSingleGuide")),
 					("coolinfoguide", _("Show CoolInfoGuide"))])
-
-	config.plisettings = ConfigSubsection()
-	config.plisettings.Subservice = ConfigYesNo(default = True)
-	config.plisettings.ColouredButtons = ConfigYesNo(default = False)
-	config.plisettings.InfoBarEpg_mode = ConfigSelection(default="3", choices = [
-					("0", _("as plugin in extended bar")),
-					("1", _("with long OK press")),
-					("2", _("with exit button")),
-					("3", _("with left/right buttons"))])
 
 	config.epgselection = ConfigSubsection()
 	config.epgselection.sort = ConfigSelection(default="0", choices = [("0", _("Time")),("1", _("Alphanumeric"))])
