@@ -43,6 +43,13 @@ def InitUsageConfig():
 	config.usage.show_infobar_lite = ConfigYesNo(default = False)
 	config.usage.show_second_infobar = ConfigSelection(default = "1", choices = [("0", _("Off")), ("1", _("Event Info")), ("2", _("2nd Infobar INFO")), ("3", _("2nd Infobar ECM"))])
 	config.usage.second_infobar_timeout = ConfigSelection(default = "5", choices = [("0", _("No timeout"))] + choicelist)
+	def showsecondinfobarChanged(configElement):
+		if config.usage.show_second_infobar.getValue() != "INFOBAREPG":
+			SystemInfo["InfoBarEpg"] = True
+		else:
+			SystemInfo["InfoBarEpg"] = False
+	config.usage.show_second_infobar.addNotifier(showsecondinfobarChanged, immediate_feedback = True)
+
 	config.usage.show_picon_bkgrn = ConfigSelection(default = "transparent", choices = [("transparent", _("Transparent")), ("blue", _("Blue")), ("red", _("Red")), ("black", _("Black")), ("white", _("White")), ("lightgrey", _("Light Grey")), ("grey", _("Grey"))])
 	
 	config.usage.show_spinner = ConfigYesNo(default = True)
@@ -585,15 +592,7 @@ def InitUsageConfig():
 	config.logmanager.additionalinfo = NoSave(ConfigText(default = ""))
 	config.logmanager.sentfiles = ConfigLocations(default='')
 
-	config.plisettings = ConfigSubsection()
-	config.plisettings.Subservice = ConfigYesNo(default = True)
-	config.plisettings.ColouredButtons = ConfigYesNo(default = False)
-	config.plisettings.InfoBarEpg_mode = ConfigSelection(default="3", choices = [
-					("0", _("as plugin in extended bar")),
-					("1", _("with long OK press")),
-					("2", _("with exit button")),
-					("3", _("with left/right buttons"))])
-					
+				
 	if getBoxType() == 'dm800hd' or getBoxType() == 'dm800se' or getBoxType() == 'dm500hd':				
 		config.plisettings.PLIEPG_mode = ConfigSelection(default="pliepg", choices = [
 					("pliepg", _("Show Graphical EPG")),
@@ -623,59 +622,74 @@ def InitUsageConfig():
 					("coolsingleguide", _("Show CoolSingleGuide")),
 					("coolinfoguide", _("Show CoolInfoGuide"))])
 
-	config.plisettings.QuickEPG_mode = ConfigSelection(default="3", choices = [
+	config.plisettings = ConfigSubsection()
+	config.plisettings.Subservice = ConfigYesNo(default = True)
+	config.plisettings.ColouredButtons = ConfigYesNo(default = False)
+	config.plisettings.InfoBarEpg_mode = ConfigSelection(default="3", choices = [
 					("0", _("as plugin in extended bar")),
 					("1", _("with long OK press")),
 					("2", _("with exit button")),
 					("3", _("with left/right buttons"))])
 
 	config.epgselection = ConfigSubsection()
-	config.epgselection.showbouquet_pliepg = ConfigYesNo(default = False)
-	config.epgselection.showbouquet_multi = ConfigYesNo(default = False)
-	config.epgselection.preview_mode_pliepg = ConfigYesNo(default = True)
-	config.epgselection.preview_mode_enhanced = ConfigYesNo(default = True)
-	if SystemInfo.get("NumVideoDecoders", 1) > 1:
-		config.epgselection.preview_mode_infobar = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fullscreen")), ("2", _("PiP"))], default = "1")
-	else:
-		config.epgselection.preview_mode_infobar = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fullscreen"))], default = "1")
-	config.epgselection.preview_mode = ConfigYesNo(default = True)
-	config.epgselection.graphics_mode = ConfigSelection(choices = [("graphics",_("Graphics")), ("text", _("Text"))], default = "graphics")
-	config.epgselection.OK_multi = ConfigSelection(choices = [("EventView",_("EventView")),("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
-	config.epgselection.OKLong_multi= ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
-	config.epgselection.OK_pliepg = ConfigSelection(choices = [("EventView",_("EventView")),("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
-	config.epgselection.OKLong_pliepg = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
-	config.epgselection.OK_enhanced = ConfigSelection(choices = [("EventView",_("EventView")),("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
-	config.epgselection.OKLong_enhanced = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
-	config.epgselection.OK_infobar = ConfigSelection(choices = [("EventView",_("EventView")),("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
-	config.epgselection.OKLong_infobar = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
-	config.epgselection.Info = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Channel Info")
-	config.epgselection.InfoLong = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Single EPG")
-	config.epgselection.roundTo = ConfigSelection(default = "15", choices = [("15", _("%d minutes") % 15), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60)])
 	config.epgselection.sort = ConfigSelection(default="0", choices = [("0", _("Time")),("1", _("Alphanumeric"))])
-	config.epgselection.prev_time = ConfigClock(default = time())
-	config.epgselection.primetimehour = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 00, max = 23, wraparound = True)
-	config.epgselection.primetimemins = ConfigSelectionNumber(default = 00, stepwidth = 1, min = 00, max = 59, wraparound = True)
-	config.epgselection.servicetitle_mode = ConfigSelection(default = "picon+servicename", choices = [
-	("servicename", _("Service Name")),
-	("picon", _("Picon")),
-	("picon+servicename", _("Picon and Service Name")) ])
-	config.epgselection.channel1 = ConfigYesNo(default = False)
-	config.epgselection.prev_time_period = ConfigInteger(default=180, limits = (60, 300))
-	config.epgselection.serv_fontsize_pliepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-	config.epgselection.ev_fontsize_pliepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-	config.epgselection.tl_fontsize_pliepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-	config.epgselection.ev_fontsize_enhanced = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-	config.epgselection.ev_fontsize_multi = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-	config.epgselection.ev_fontsize_infobar = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-	config.epgselection.itemsperpage_pliepg = ConfigSelectionNumber(default = 8, stepwidth = 1, min = 3, max = 16, wraparound = True)
-	config.epgselection.itemsperpage_enhanced = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 12, max = 40, wraparound = True)
-	config.epgselection.itemsperpage_multi = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 12, max = 40, wraparound = True)
-	config.epgselection.itemsperpage_infobar = ConfigSelectionNumber(default = 2, stepwidth = 1, min = 2, max = 4, wraparound = True)
 	config.epgselection.overjump = ConfigYesNo(default = False)
-	config.epgselection.pictureingraphics = ConfigYesNo(default = True)
-	config.epgselection.heightswitch = NoSave(ConfigYesNo(default = False))
-	config.epgselection.servicewidth = ConfigSelectionNumber(default = 250, stepwidth = 1, min = 70, max = 500, wraparound = True)
-	config.epgselection.piconwidth = ConfigSelectionNumber(default = 100, stepwidth = 1, min = 70, max = 500, wraparound = True)
+	config.epgselection.infobar_type_mode = ConfigSelection(choices = [("graphics",_("Multi EPG")), ("single", _("Single EPG"))], default = "graphics")
+	if SystemInfo.get("NumVideoDecoders", 1) > 1:
+		config.epgselection.infobar_preview_mode = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fulscreen")), ("2", _("PiP"))], default = "1")
+	else:
+		config.epgselection.infobar_preview_mode = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fulscreen"))], default = "1")
+	config.epgselection.infobar_ok = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.epgselection.infobar_oklong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
+	config.epgselection.infobar_itemsperpage = ConfigSelectionNumber(default = 2, stepwidth = 1, min = 2, max = 4, wraparound = True)
+	if SystemInfo.get("NumVideoDecoders", 1) > 1:
+		config.epgselection.infobar_preview_mode = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fulscreen")), ("2", _("PiP"))], default = "1")
+	else:
+		config.epgselection.infobar_preview_mode = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fulscreen"))], default = "1")
+	config.epgselection.infobar_roundto = ConfigSelection(default = "15", choices = [("15", _("%d minutes") % 15), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60)])
+	config.epgselection.infobar_prevtime = ConfigClock(default = time())
+	config.epgselection.infobar_prevtimeperiod = ConfigInteger(default = 300, limits = (60, 300))
+	config.epgselection.infobar_primetimehour = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 00, max = 23, wraparound = True)
+	config.epgselection.infobar_primetimemins = ConfigSelectionNumber(default = 00, stepwidth = 1, min = 00, max = 59, wraparound = True)
+	config.epgselection.infobar_servicetitle_mode = ConfigSelection(default = "servicename", choices = [("servicename", _("Service Name")),("picon", _("Picon")),("picon+servicename", _("Picon and Service Name")) ])
+	config.epgselection.infobar_servfs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.epgselection.infobar_eventfs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.epgselection.infobar_timelinefs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.epgselection.infobar_servicewidth = ConfigSelectionNumber(default = 250, stepwidth = 1, min = 70, max = 500, wraparound = True)
+	config.epgselection.infobar_piconwidth = ConfigSelectionNumber(default = 100, stepwidth = 1, min = 70, max = 500, wraparound = True)
+	config.epgselection.enhanced_preview_mode = ConfigYesNo(default = True)
+	config.epgselection.enhanced_ok = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.epgselection.enhanced_oklong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
+	config.epgselection.enhanced_eventfs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.epgselection.enhanced_itemsperpage = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 12, max = 40, wraparound = True)
+	config.epgselection.multi_showbouquet = ConfigYesNo(default = False)
+	config.epgselection.multi_preview_mode = ConfigYesNo(default = True)
+	config.epgselection.multi_ok = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.epgselection.multi_okLong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
+	config.epgselection.multi_eventfs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.epgselection.multi_itemsperpage = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 12, max = 40, wraparound = True)
+	config.epgselection.graph_showbouquet = ConfigYesNo(default = False)
+	config.epgselection.graph_preview_mode = ConfigYesNo(default = True)
+	config.epgselection.graph_type_mode = ConfigSelection(choices = [("graphics",_("Graphics")), ("text", _("Text"))], default = "graphics")
+	config.epgselection.graph_ok = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.epgselection.graph_oklong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
+	config.epgselection.graph_info = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Channel Info")
+	config.epgselection.graph_infolong = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Single EPG")
+	config.epgselection.graph_roundto = ConfigSelection(default = "15", choices = [("15", _("%d minutes") % 15), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60)])
+	config.epgselection.graph_prevtime = ConfigClock(default = time())
+	config.epgselection.graph_prevtimeperiod = ConfigInteger(default=180, limits = (60, 300))
+	config.epgselection.graph_primetimehour = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 00, max = 23, wraparound = True)
+	config.epgselection.graph_primetimemins = ConfigSelectionNumber(default = 00, stepwidth = 1, min = 00, max = 59, wraparound = True)
+	config.epgselection.graph_servicetitle_mode = ConfigSelection(default = "picon+servicename", choices = [("servicename", _("Service Name")),("picon", _("Picon")),("picon+servicename", _("Picon and Service Name")) ])
+	config.epgselection.graph_channel1 = ConfigYesNo(default = False)
+	config.epgselection.graph_servfs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.epgselection.graph_eventfs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.epgselection.graph_timelinefs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.epgselection.graph_itemsperpage = ConfigSelectionNumber(default = 8, stepwidth = 1, min = 3, max = 16, wraparound = True)
+	config.epgselection.graph_pig = ConfigYesNo(default = True)
+	config.epgselection.graph_heightswitch = NoSave(ConfigYesNo(default = False))
+	config.epgselection.graph_servicewidth = ConfigSelectionNumber(default = 250, stepwidth = 1, min = 70, max = 500, wraparound = True)
+	config.epgselection.graph_piconwidth = ConfigSelectionNumber(default = 100, stepwidth = 1, min = 70, max = 500, wraparound = True)
 
 	config.oscaminfo = ConfigSubsection()
 	config.oscaminfo.showInExtensions = ConfigYesNo(default=False)

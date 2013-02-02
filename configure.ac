@@ -185,7 +185,7 @@ if test "$BOXTYPE" == "odinm7" -o "$BOXTYPE" == "ixussone"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 fi
 
-if test "$BOXTYPE" == "xvuduo" -o "$BOXTYPE" == "vusolo" -o "$BOXTYPE" == "vuduo2" -o "$BOXTYPE" == "vusolo2" -o "$BOXTYPE" == "vuuno" -o "$BOXTYPE" == "vuultimo"; then
+if test "$BOXTYPE" == "vuduo" -o "$BOXTYPE" == "vusolo" -o "$BOXTYPE" == "vuduo2" -o "$BOXTYPE" == "vusolo2" -o "$BOXTYPE" == "vuuno" -o "$BOXTYPE" == "vuultimo"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
@@ -196,7 +196,7 @@ if test "$BOXTYPE" == "gb800solo" -o "$BOXTYPE" == "gb800se" -o "$BOXTYPE" == "g
 	AC_DEFINE(KEY_GUIDE_TO_KEY_EPG, 1,[define when rc sends a KEY_HELP event for its KEY_EPG key])
 fi
 
-if test "$BOXTYPE" == "ventonhde" -o x"$BOXTYPE" == "ventonhdx"; then
+if test "$BOXTYPE" == "ventonhde" -o "$BOXTYPE" == "ventonhdx"; then
 	AC_DEFINE(KEY_SEARCH_TO_KEY_BOOKMARK, 1,[define when rc sends a KEY_BOOKMARK event for its KEY_SEARCH key])
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
@@ -295,14 +295,20 @@ data/rc_models/odinm7/Makefile
 data/rc_models/ixussone/Makefile
 data/rc_models/ebox5000/Makefile
 data/skin_default/Makefile
-data/skin_default/countries/Makefile
-data/skin_default/menu/Makefile
-data/skin_default/icons/Makefile
+data/skin_default/border/Makefile
 data/skin_default/buttons/Makefile
+data/skin_default/countries/Makefile
+data/skin_default/crossepg/Makefile
+data/skin_default/dvr/Makefile
 data/skin_default/epg/Makefile
-data/skin_default/lcd/Makefile
-data/skin_default/piconbg/Makefile
 data/skin_default/extensions/Makefile
+data/skin_default/icons/Makefile
+data/skin_default/infobar/Makefile
+data/skin_default/lcd/Makefile
+data/skin_default/logos/Makefile
+data/skin_default/menu/Makefile
+data/skin_default/piconbg/Makefile
+data/skin_default/window/Makefile
 include/Makefile
 lib/Makefile
 lib/actions/Makefile
