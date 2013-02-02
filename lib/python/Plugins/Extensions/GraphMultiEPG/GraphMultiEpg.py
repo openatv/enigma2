@@ -24,6 +24,7 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from ServiceReference import ServiceReference, isPlayableForCur
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Alternatives import CompareWithAlternatives
+from Tools import Notifications
 from enigma import eEPGCache, eListbox, ePicLoad, gFont, eListboxPythonMultiContent, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP,\
 	eSize, eRect, eTimer, getBestPlayableServiceReference
 from GraphMultiEpgSetup import GraphMultiEpgSetup
@@ -934,7 +935,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			if ref:
 				currentref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 				self.zapFunc(ref.ref)
-				if currentref == ref.ref:
+				if currentref and currentref == ref.ref:
+					Notifications.RemovePopup("Parental control")
 					config.misc.graph_mepg.save()
 					self.close(True)
 
