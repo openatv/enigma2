@@ -211,24 +211,24 @@ class AutoDiseqc(Screen, ConfigListScreen):
 	def tunerStatusCallback(self):
 		dict = {}
 		self.frontend.getFrontendStatus(dict)
-
-		self["tunerstatusbar"].setText(_("Tuner status %s") % (dict["tuner_state"]))
-
-		if dict["tuner_state"] == "LOCKED":
+		if dict["tuner_state"] == "TUNING":
+			self["tunerstatusbar"].setText(_("Tuner status:") + " " + _("TUNING"))
+		elif dict["tuner_state"] == "LOCKED":
+			self["tunerstatusbar"].setText(_("Tuner status:") + " " + _("ACQUIRING TSID/ONID"))
 			self.raw_channel.requestTsidOnid(self.gotTsidOnid)
-
-		if dict["tuner_state"] == "LOSTLOCK" or dict["tuner_state"] == "FAILED":
+		elif dict["tuner_state"] == "LOSTLOCK" or dict["tuner_state"] == "FAILED":
+			self["tunerstatusbar"].setText(_("Tuner status:") + " " + _("FAILED"))
 			self.tunerStopScan(False)
 			return
 
 		self.count += 1
-		if self.count > 30:
-			self.tunerStopScan(False)
+		if self.count > 15:
+			self.startStatusTimer()
 		else:
 			self.startTunerStatusTimer()
 
 	def startTunerStatusTimer(self):
-		self.tunerStatusTimer.start(1000, True)
+		self.tunerStatusTimer.start(2000, True)
 
 	def gotTsidOnid(self, tsid, onid):
 		self.tunerStatusTimer.stop()
