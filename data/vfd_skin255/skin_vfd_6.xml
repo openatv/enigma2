@@ -1,9 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <skin>
+	<windowstyle id="1" type="skinned">
+		<color color="#000000" name="Background"/>
+		<color color="#ffffff" name="LabelForeground"/>
+		<color color="#000000" name="ListboxBackground"/>
+		<color color="#ffffff" name="ListboxForeground"/>
+		<color color="#000000" name="ListboxSelectedBackground"/>
+		<color color="#ffffff" name="ListboxSelectedForeground"/>
+		<color color="#000000" name="ListboxMarkedBackground"/>
+		<color color="#ffffff" name="ListboxMarkedForeground"/>
+		<color color="#000000" name="ListboxMarkedAndSelectedBackground"/>
+		<color color="#ffffff" name="ListboxMarkedAndSelectedForeground"/>
+		<color color="#ffffff" name="WindowTitleForeground"/>
+		<color color="#000000" name="WindowTitleBackground"/>
+	</windowstyle>
 	<fonts>
 		<font filename="nmsbd.ttf" name="VFD" scale="90"/>
 	</fonts>
 	<screen name="InfoBarSummary" position="0,0" size="256,64" id="1">
-		<widget source="session.CurrentService" render="Picon" position="5,0" size="132,46" zPosition="1" path="piconlcd">
+		<widget source="session.CurrentService" render="LcdPicon" position="5,0" size="132,46" zPosition="1" >
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="5,0" size="132,46" zPosition="0" font="VFD;18" halign="center" valign="center">

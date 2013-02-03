@@ -19,7 +19,7 @@ def initLcdPiconPaths():
 def onMountpointAdded(mountpoint):
 	global searchPaths
 	try:
-		path = os.path.join(mountpoint, 'lcd_picon') + '/'
+		path = os.path.join(mountpoint, 'piconlcd') + '/'
 		if os.path.isdir(path) and path not in searchPaths:
 			for fn in os.listdir(path):
 				if fn.endswith('.png'):
@@ -31,7 +31,7 @@ def onMountpointAdded(mountpoint):
 
 def onMountpointRemoved(mountpoint):
 	global searchPaths
-	path = os.path.join(mountpoint, 'lcd_picon') + '/'
+	path = os.path.join(mountpoint, 'piconlcd') + '/'
 	try:
 		searchPaths.remove(path)
 		print "[LcdPicon] removed path:", path

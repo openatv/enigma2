@@ -1,4 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <skin>
+	<windowstyle id="1" type="skinned">
+		<color color="#000000" name="Background"/>
+		<color color="#ffffff" name="LabelForeground"/>
+		<color color="#000000" name="ListboxBackground"/>
+		<color color="#ffffff" name="ListboxForeground"/>
+		<color color="#000000" name="ListboxSelectedBackground"/>
+		<color color="#ffffff" name="ListboxSelectedForeground"/>
+		<color color="#000000" name="ListboxMarkedBackground"/>
+		<color color="#ffffff" name="ListboxMarkedForeground"/>
+		<color color="#000000" name="ListboxMarkedAndSelectedBackground"/>
+		<color color="#ffffff" name="ListboxMarkedAndSelectedForeground"/>
+		<color color="#ffffff" name="WindowTitleForeground"/>
+		<color color="#000000" name="WindowTitleBackground"/>
+	</windowstyle>
 	<fonts>
 		<font filename="analog.ttf" name="VFD" scale="100" />
 	</fonts>
@@ -11,7 +26,7 @@
 		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/lcd/rec.png" position="220,0" size="32,12" alphatest="blend">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Picon" position="126,12" size="132,46" zPosition="1" path="piconlcd">
+		<widget source="session.CurrentService" render="LcdPicon" position="126,12" size="132,46" zPosition="1" >
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="126,12" size="132,46" zPosition="0" font="VFD;18" halign="center" valign="center">
@@ -20,7 +35,7 @@
 		<widget source="global.CurrentTime" render="Label" position="0,22" size="92,32" font="VFD;34" halign="right" valign="center" transparent="1">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="94,24" zPosition="1" size="28,18" font="VFD;20" valign="center" transparent="1">
+		<widget source="global.CurrentTime" render="Label" position="94,24" zPosition="1" size="28,20" font="VFD;20" valign="center" transparent="1">
 			<convert type="ClockToText">Format:%S</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Progress" position="0,59" size="256,5" borderWidth="0">

@@ -214,6 +214,18 @@ def InitUsageConfig():
 	config.usage.swap_media_time_display_on_vfd = ConfigSelection(default = "0", choices = [("0", _("Skin Setting")), ("1", _("Mins")), ("2", _("Mins Secs")), ("3", _("Hours Mins")), ("4", _("Hours Mins Secs")), ("5", _("Percentage"))])
 	config.usage.swap_time_remaining_on_vfd = ConfigSelection(default = "0", choices = [("0", _("Remaining")), ("1", _("Elapsed")), ("2", _("Elapsed & Remaining")), ("3", _("Remaining & Elapsed"))])
 	config.usage.elapsed_time_positive_vfd = ConfigYesNo(default = False)
+	config.usage.vfd_scroll_delay = ConfigSelection(default = "10000", choices = [
+		("10000", "10 " + _("seconds")),
+		("20000", "20 " + _("seconds")),
+		("30000", "30 " + _("seconds")),
+		("60000", "1 " + _("minute")),
+		("300000", "5 " + _("minutes")),
+		("noscrolling", _("off"))])
+	config.usage.vfd_scroll_speed = ConfigSelection(default = "300", choices = [
+		("500", _("slow")),
+		("300", _("normal")),
+		("100", _("fast"))])
+	
 
 	def SpinnerOnOffChanged(configElement):
 		setSpinnerOnOff(int(configElement.getValue()))
