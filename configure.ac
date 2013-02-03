@@ -299,7 +299,6 @@ data/rc_models/ixussone/Makefile
 data/rc_models/ebox5000/Makefile
 data/skin_default/Makefile
 data/skin_default/border/Makefile
-data/skin_default/busy/Makefile
 data/skin_default/buttons/Makefile
 data/skin_default/countries/Makefile
 data/skin_default/crossepg/Makefile
