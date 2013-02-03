@@ -1,7 +1,4 @@
 <skin>
-	<!--	Skin: Default-ViX PlugIn addition Vs 1.00	-->
-	<!--	This skin is part of the default ViX-skin; the same license applies.	-->
-
 <!--  ## PlugIns ##  -->
 	<screen name="PermanentClockScreen" position="0,0" size="120,30" zPosition="-1" backgroundColor="transparent" title="%s" flags="wfNoBorder">
 		<widget source="global.CurrentTime" render="Label" position="1,1" size="120,30" backgroundColor="transparent" transparent="1" zPosition="0" foregroundColor="grey" borderWidth="2" font="Regular;26" borderColor="black" valign="center" halign="center">
@@ -24,7 +21,7 @@
 		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
+		<ePixmap pixmap="skin_default/logos/logo.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<!--Mytube-->
 	<screen name="MyTubePlayerMainScreen" flags="wfNoBorder" position="0,0" size="720,576" title="MyTubePlayerMainScreen..." >

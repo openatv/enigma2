@@ -1,4 +1,4 @@
 installdir = $(pkgdatadir)/vfd_skin
 
-dist_install_DATA = *.xml
+dist_install_DATA = *.xml *.png
 

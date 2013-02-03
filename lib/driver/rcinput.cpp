@@ -182,6 +182,21 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+#if KEY_INFO_TO_KEY_EPG
+ /* INFO to EPG Toggle , which sends KEY_INFO events. Correct this, so we do not have to place hacks in the keymaps. */
+ if (ev->code == KEY_INFO)
+ {
+  if (ev->value == 0)
+  {
+  ev->code = KEY_EPG;
+  }
+  else
+  {
+  ev->code = KEY_INFO;
+  }
+ }
+#endif
+
 	switch (ev->value)
 	{
 	case 0:

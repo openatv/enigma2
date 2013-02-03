@@ -4,24 +4,24 @@
 	</fonts>
 <!-- LCD screen InfoBar -->
 	<screen name="InfoBarSummary" position="0,0" size="256,64">
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/dolby.png" position="0,0" size="22,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_dolby.png" position="0,0" size="22,12" alphatest="blend">
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/format.png" position="18,0" size="22,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_format.png" position="18,0" size="22,12" alphatest="blend">
 			<convert type="ServiceInfo">IsWidescreen</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/txt.png" position="41,0" size="20,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_txt.png" position="41,0" size="20,12" alphatest="blend">
 			<convert type="ServiceInfo">HasTelext</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/hd.png" position="57,0" size="17,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_hd.png" position="57,0" size="17,12" alphatest="blend">
 			<convert type="ServiceInfo">VideoWidth</convert>
 			<convert type="ValueRange">721,1980</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/crypt.png" position="76,0" size="16,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_crypt.png" position="76,0" size="16,12" alphatest="blend">
 			<convert type="ServiceInfo">IsCrypted</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -29,7 +29,7 @@
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/lcd/rec.png" position="92,0" size="32,12" alphatest="blend">
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_rec.png" position="92,0" size="32,12" alphatest="blend">
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="128,0" size="127,12" font="VFD;12" halign="right">
@@ -48,19 +48,19 @@
 	</screen>
 <!-- LCD screen InfoBarMoviePlayer -->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="256,64">
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/dolby.png" position="0,0" size="22,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_dolby.png" position="0,0" size="22,12" alphatest="blend">
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/format.png" position="18,0" size="22,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_format.png" position="18,0" size="22,12" alphatest="blend">
 			<convert type="ServiceInfo">IsWidescreen</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/txt.png" position="41,0" size="20,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_txt.png" position="41,0" size="20,12" alphatest="blend">
 			<convert type="ServiceInfo">HasTelext</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/hd.png" position="57,0" size="17,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_hd.png" position="57,0" size="17,12" alphatest="blend">
 			<convert type="ServiceInfo">VideoWidth</convert>
 			<convert type="ValueRange">721,1980</convert>
 			<convert type="ConditionalShowHide" />
@@ -69,7 +69,7 @@
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/lcd/rec.png" position="92,0" size="32,12" alphatest="blend">
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_rec.png" position="92,0" size="32,12" alphatest="blend">
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="session.CurrentService" render="RollerCharLCDLong" position="0,13" size="256,20" font="VFD;20" noWrap="1" valign="top">
@@ -112,19 +112,19 @@
 	</screen>
 <!-- LCD screen (dvd player ) -->
 	<screen name="DVDSummary" position="0,0" size="256,64">
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/dolby.png" position="0,0" size="22,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_dolby.png" position="0,0" size="22,12" alphatest="blend">
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/format.png" position="18,0" size="22,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_format.png" position="18,0" size="22,12" alphatest="blend">
 			<convert type="ServiceInfo">IsWidescreen</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/txt.png" position="41,0" size="20,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_txt.png" position="41,0" size="20,12" alphatest="blend">
 			<convert type="ServiceInfo">HasTelext</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/hd.png" position="57,0" size="17,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_hd.png" position="57,0" size="17,12" alphatest="blend">
 			<convert type="ServiceInfo">VideoWidth</convert>
 			<convert type="ValueRange">721,1980</convert>
 			<convert type="ConditionalShowHide" />
@@ -133,7 +133,7 @@
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/lcd/rec.png" position="92,0" size="32,12" alphatest="blend">
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_rec.png" position="92,0" size="32,12" alphatest="blend">
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="session.CurrentService" render="RollerCharLCDLong" position="0,13" size="256,20" font="VFD;20" noWrap="1" valign="top">
@@ -154,24 +154,24 @@
 	</screen>
 <!-- LCD screen Standby -->
 	<screen name="StandbySummary" position="0,0" size="256,64">
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/dolby.png" position="0,0" size="22,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_dolby.png" position="0,0" size="22,12" alphatest="blend">
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/format.png" position="18,0" size="22,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_format.png" position="18,0" size="22,12" alphatest="blend">
 			<convert type="ServiceInfo">IsWidescreen</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/txt.png" position="41,0" size="20,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_txt.png" position="41,0" size="20,12" alphatest="blend">
 			<convert type="ServiceInfo">HasTelext</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/hd.png" position="57,0" size="17,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_hd.png" position="57,0" size="17,12" alphatest="blend">
 			<convert type="ServiceInfo">VideoWidth</convert>
 			<convert type="ValueRange">721,1980</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/lcd/crypt.png" position="76,0" size="16,12" alphatest="blend">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_crypt.png" position="76,0" size="16,12" alphatest="blend">
 			<convert type="ServiceInfo">IsCrypted</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -179,7 +179,7 @@
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/lcd/rec.png" position="92,0" size="32,12" alphatest="blend">
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/vfd_icons/vfd_icon_rec.png" position="92,0" size="32,12" alphatest="blend">
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="0,13" size="256,24" font="VFD;24" halign="center" valign="center">

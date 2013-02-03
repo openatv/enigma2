@@ -75,7 +75,7 @@ def skin_user_skinname():
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
 DEFAULT_SKIN = "DMConcinnity-HD/skin.xml"
-# on SD hardware, ViX Night HD will not be available
+# on SD hardware, DMConcinnity-HD will not be available
 if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
 	# in that case, fallback to Magic (which is an SD skin)
 	DEFAULT_SKIN = "skin.xml"
@@ -95,43 +95,20 @@ except (SkinError, IOError, AssertionError), err:
 addSkin('skin_box.xml')
 # add optional discrete second infobar
 addSkin('skin_second_infobar.xml')
+
 # Only one of these is present, compliments of AM_CONDITIONAL
-if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2':
-	config.skin.vfdskin = ConfigSelection(default = "skin_display255_no_picon.xml", choices = [("skin_display255_no_picon.xml", _("default no picon")), 
-	("skin_display255_picon.xml", _("default with picon")),
-	("skin_vfd_1.xml", _("VFD SKIN Typ 1")),
-	("skin_vfd_2.xml", _("VFD SKIN Typ 2")),
-	("skin_vfd_3.xml", _("VFD SKIN Typ 3")),
-	("skin_vfd_4.xml", _("VFD SKIN Typ 4")), 
-	("skin_vfd_5.xml", _("VFD SKIN Typ 5")),
-	("skin_vfd_6.xml", _("VFD SKIN Typ 6")),	
-	("skin_vfd_7.xml", _("VFD SKIN Typ 7"))])
-	config.skin.display_skin = ConfigNothing()
+if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2' or getBoxType() == 'gbquad' or getBoxType() == 'gb800ue':
+	config.skin.vfdskin = ConfigText(default = "vfd_skin/skin_vfd_default.xml")
 else:	
-	config.skin.display_skin = ConfigYesNo(default = False)
-	config.skin.primary_vfdskin = ConfigNothing()
-	config.skin.vfdskin = ConfigNothing()
+	config.skin.vfdskin = ConfigNothing()	
 
 display_skin_id = 1
-if fileExists('/usr/share/enigma2/vfd_skin/skin_display255_picon.xml'):
+if fileExists('/usr/share/enigma2/vfd_skin/noprev.png'):
 	if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.vfdskin.value)):
 		addSkin(config.skin.vfdskin.value, SCOPE_CONFIG)
 	else:
 		addSkin('vfd_skin/' + config.skin.vfdskin.value)
-	
-
-elif fileExists('/usr/share/enigma2/skin_display220_picon.xml'):
-	if config.skin.display_skin.getValue():
-		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display220_picon.xml')):
-			addSkin('skin_display220_picon.xml', SCOPE_CONFIG)
-		else:
-			addSkin('skin_display220_picon.xml')
-	else:
-		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display220_no_picon.xml')):
-			addSkin('skin_display220_no_picon.xml', SCOPE_CONFIG)
-		else:
-			addSkin('skin_display220_no_picon.xml')
-
+		
 if addSkin('skin_display.xml'):
 	# Color OLED DM800 / DM800SE
 	display_skin_id = 2

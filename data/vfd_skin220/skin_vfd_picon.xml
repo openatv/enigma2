@@ -31,8 +31,7 @@
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="fill">
-	
-		<widget source="session.CurrentService" render="Picon" position="0,100" zPosition="1" size="100,60" alphatest="on">
+		<widget source="session.CurrentService" render="Picon" position="0,110" zPosition="1" size="100,60" alphatest="on">
 				<convert type="ServiceName">Reference</convert>
 			</widget>
 		<widget source="session.CurrentService" render="Label" position="top" size="*,43" font="FdLcD;36" halign="center" foregroundColor="#00ffff" >
@@ -154,7 +153,7 @@
 <!-- standby -->
 	<screen name="StandbySummary" position="fill">
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="220,24" font="FdLcD;22" halign="left"  noWrap="1">
-			<convert type="ClockToText">FullDate</convert>
+			<convert type="ClockToText">Format:%d.%m.%Y</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="center,center" size="220,70" font="FdLcD;85" halign="center" valign="center" noWrap="1">
 			<convert type="ClockToText"></convert>
