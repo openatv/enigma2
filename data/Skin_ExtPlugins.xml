@@ -1,11 +1,7 @@
 <skin>
 
 <!--  ## PlugIns ##  -->
-	<screen name="PermanentClockScreen" position="0,0" size="120,30" zPosition="-1" backgroundColor="transparent" title="%s" flags="wfNoBorder">
-		<widget source="global.CurrentTime" render="Label" position="1,1" size="120,30" backgroundColor="transparent" transparent="1" zPosition="0" foregroundColor="grey" borderWidth="2" font="Regular;26" borderColor="black" valign="center" halign="center">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-	</screen>
+
 	<!-- ##CubicStreamer## -->
 	<screen name="MainWindow" position="center,center" size="560,460" title="Main menu">
 		<widget name="title" position="10,45" size="280,25" valign="center" font="Enigma;22" halign="center" />
