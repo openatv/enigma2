@@ -15,6 +15,7 @@ from Components.Slider import Slider
 from enigma import eTimer, eDVBDB
 from os import rename, path, remove
 from gettext import dgettext
+import urllib
 
 class SoftwareUpdateChanges(Screen):
 	def __init__(self, session, args = None):
@@ -62,39 +63,45 @@ class SoftwareUpdateChanges(Screen):
 		self["text"].pageDown()
 
 	def getlog(self):
-		if not path.exists('/tmp/' + self.logtype + '-git.log'):
-			import urllib
+		try:
 			sourcefile = 'http://enigma2.world-of-satellite.com/feeds/' + about.getImageVersionString() + '/' + self.logtype + '-git.log'
 			sourcefile,headers = urllib.urlretrieve(sourcefile)
 			rename(sourcefile,'/tmp/' + self.logtype + '-git.log')
-		fd = open('/tmp/' + self.logtype + '-git.log', 'r')
-		releasenotes = fd.read()
-		fd.close()
-		releasenotes = releasenotes.replace('\nopenvix: build',"\n\nopenvix: build")
-		releasenotes = releasenotes.split('\n\n')
-		ver = -1
-		releasever = ""
-		viewrelease=""
-		while not releasever.isdigit():
-			ver += 1
-			releasever = releasenotes[int(ver)].split('\n')
-			releasever = releasever[0].split(' ')
-			releasever = releasever[2].replace(':',"")
-
-		while int(releasever) > int(about.getBuildVersionString()):
-			viewrelease += releasenotes[int(ver)]+'\n\n'
-			ver += 1
-			releasever = releasenotes[int(ver)].split('\n')
-			releasever = releasever[0].split(' ')
-			releasever = releasever[2].replace(':',"")
-		self["text"].setText(viewrelease)
-		summarytext = viewrelease.split(':\n')
-		try:
-			self['title_summary'].setText(summarytext[0]+':')
-			self['text_summary'].setText(summarytext[1])
+			fd = open('/tmp/' + self.logtype + '-git.log', 'r')
+			releasenotes = fd.read()
+			fd.close()
 		except:
+			releasenotes = '404 Not Found'
+		if releasenotes.find('404 Not Found') == -1:
+			releasenotes = releasenotes.replace('\nopenvix: build',"\n\nopenvix: build")
+			releasenotes = releasenotes.split('\n\n')
+			ver = -1
+			releasever = ""
+			viewrelease=""
+			while not releasever.isdigit():
+				ver += 1
+				releasever = releasenotes[int(ver)].split('\n')
+				releasever = releasever[0].split(' ')
+				releasever = releasever[2].replace(':',"")
+
+			while int(releasever) > int(about.getBuildVersionString()):
+				viewrelease += releasenotes[int(ver)]+'\n\n'
+				ver += 1
+				releasever = releasenotes[int(ver)].split('\n')
+				releasever = releasever[0].split(' ')
+				releasever = releasever[2].replace(':',"")
+			self["text"].setText(viewrelease)
+			summarytext = viewrelease.split(':\n')
+			try:
+				self['title_summary'].setText(summarytext[0]+':')
+				self['text_summary'].setText(summarytext[1])
+			except:
+				self['title_summary'].setText("")
+				self['text_summary'].setText("")
+		else:
 			self['title_summary'].setText("")
-			self['text_summary'].setText("")
+			self['text_summary'].setText(_("Error downloading change log."))
+			self['text'].setText(_("Error downloading change log."))
 
 	def unattendedupdate(self):
 		self.close((_("Unattended upgrade without GUI and reboot system"), "cold"))
