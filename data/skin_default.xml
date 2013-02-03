@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 1.32 by Rob van der Does @www.world-of-satellite.com, based on default screen by Andyblac & Magic by Rob van der Does Vs 1.32	-->
+	<!--	Skin: Default-ViX Vs 1.33 by Rob van der Does @www.world-of-satellite.com, based on default screen by Andyblac & Magic by Rob van der Does Vs 1.32	-->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
 	<!--	Do whatever you want with this skin,but don't tell it's yours,or your idea, and leave the credentials in the "About-box" as they are	-->
@@ -1823,20 +1823,11 @@ self.autoResize()
 		<widget name="entries" position="10,50" size="540,380" scrollbarMode="showOnDemand" font="Regular;22" transparent="1" itemHeight="70" enableWrapAround="1" zPosition="1" />
 	</screen>
 	<screen name="SoftwareUpdateChanges" position="center,center" size="600,460" flags="wfNoBorder">
+		<panel name="BasicTemplate" />
 		<panel name="Red1Panel" />
 		<panel name="Green1Panel" />
 		<panel name="Yellow1Panel" />
 		<widget name="text" position="0,50" size="590,340" scrollbarMode="showOnDemand" font="Regular;16" />
-		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="490,8" size="14,14" zPosition="4" />
-		<widget font="Enigma;18" halign="right" position="504,4" render="Label" size="55,22" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="10,410" size="210,25" alphatest="on" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="600,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="VIXMenu" position="center,center" size="560,460" >
 		<panel name="BasicTemplate" />
