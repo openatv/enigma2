@@ -16,8 +16,6 @@ from os import path
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:
 	def __init__(self, nextRecordTimerAfterEventActionAuto=False, nextPowerManagerAfterEventActionAuto=False):
-		print 'nextRecordTimerAfterEventActionAuto',nextRecordTimerAfterEventActionAuto
-		print 'nextPowerManagerAfterEventActionAuto',nextPowerManagerAfterEventActionAuto
 		if NavigationInstance.instance is not None:
 			raise NavigationInstance.instance
 
@@ -192,6 +190,7 @@ class Navigation:
 
 	def shutdown(self):
 		self.RecordTimer.shutdown()
+		self.PowerTimer.shutdown()
 		self.ServiceHandler = None
 		self.pnav = None
 
