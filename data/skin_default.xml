@@ -1,6 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 1.26 by Rob van der Does @www.world-of-satellite.com, based on Magic by Rob van der Does Vs 1.32	-->
-	<!--	Contains derived work by MiLo -->
+	<!--	Skin: Default-ViX Vs 1.27 by Rob van der Does @www.world-of-satellite.com, based on default screen by Andyblac & Magic by Rob van der Does Vs 1.32	-->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
 	<!--	Do whatever you want with this skin,but don't tell it's yours,or your idea, and leave the credentials in the "About-box" as they are	-->
@@ -2395,9 +2394,9 @@ self.autoResize()
 		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 		<widget name="lab1" position="40,60" size="170,20" font="Regular; 22" halign="right" zPosition="2" transparent="0" />
-		<widget name="list" position="225,60" size="240,100" transparent="0" scrollbarMode="showOnDemand" />
-		<widget name="lab2" position="40,165" size="170,30" font="Regular; 22" halign="right" zPosition="2" transparent="0" />
-		<widget name="activecam" position="225,166" size="240,100" font="Regular; 20" halign="left" zPosition="2" transparent="0" noWrap="1" />
+		<widget name="list" position="225,60" size="240,250" transparent="0" scrollbarMode="showOnDemand" enableWrapAround="1"/>
+		<widget name="lab2" position="40,330" size="170,30" font="Regular; 22" halign="right" zPosition="2" transparent="0" />
+		<widget name="activecam" position="225,331" size="240,100" font="Regular; 20" halign="left" zPosition="2" transparent="0" foregroundColor="secondFG" noWrap="1" />
 		<applet type="onLayoutFinish">
 			self["list"].instance.setItemHeight(25)
 		</applet>
@@ -2405,12 +2404,13 @@ self.autoResize()
 		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/key_info.png" position="300,435" size="35,25" alphatest="on"/>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on"/>
 	</screen>
-<!--Need to get the png in folder
-	<screen name="VIXStartCam" position="center,center" size="560,460" title="Starting Softcam" flags="wfBorder">
-		<widget name="lab1" position="10,50" size="540,50" font="Regular; 18" zPosition="2" transparent="0" halign="center"/>
-		<widget name="connect" position="217, 0" size="64,64" zPosition="2" pixmaps="xxxViX_HD_Common/busy/busy1.png,ViX_HD_Common/busy/busy2.png,ViX_HD_Common/busy/busy3.png,ViX_HD_Common/busy/busy4.png,ViX_HD_Common/busy/busy5.png,ViX_HD_Common/busy/busy6.png,ViX_HD_Common/busy/busy7.png,ViX_HD_Common/busy/busy8.png,ViX_HD_Common/busy/busy9.png,ViX_HD_Common/busy/busy9.png,ViX_HD_Common/busy/busy10.png,ViX_HD_Common/busy/busy11.png,ViX_HD_Common/busy/busy12.png,ViX_HD_Common/busy/busy13.png,ViX_HD_Common/busy/busy14.png,ViX_HD_Common/busy/busy15.png,ViX_HD_Common/busy/busy17.png,ViX_HD_Common/busy/busy18.png,ViX_HD_Common/busy/busy19.png,ViX_HD_Common/busy/busy20.png,ViX_HD_Common/busy/busy21.png,ViX_HD_Common/busy/busy22.png,ViX_HD_Common/busy/busy23.png,ViX_HD_Common/busy/busy24.png"  transparent="1" alphatest="blend" />
+
+	<screen name="VIXStartCam" position="center,center" size="560,460" title="Starting Softcam" >
+		<widget name="connect" position="217,50" size="64,64" zPosition="2" pixmaps="/usr/share/enigma2/skin_default/busy/busy1.png,/usr/share/enigma2/skin_default/busy/busy2.png,/usr/share/enigma2/skin_default/busy/busy3.png,/usr/share/enigma2/skin_default/busy/busy4.png,/usr/share/enigma2/skin_default/busy/busy5.png,/usr/share/enigma2/skin_default/busy/busy6.png,/usr/share/enigma2/skin_default/busy/busy7.png,/usr/share/enigma2/skin_default/busy/busy8.png,/usr/share/enigma2/skin_default/busy/busy9.png,/usr/share/enigma2/skin_default/busy/busy9.png,/usr/share/enigma2/skin_default/busy/busy10.png,/usr/share/enigma2/skin_default/busy/busy11.png,/usr/share/enigma2/skin_default/busy/busy12.png,/usr/share/enigma2/skin_default/busy/busy13.png,/usr/share/enigma2/skin_default/busy/busy14.png,/usr/share/enigma2/skin_default/busy/busy15.png,/usr/share/enigma2/skin_default/busy/busy17.png,/usr/share/enigma2/skin_default/busy/busy18.png,/usr/share/enigma2/skin_default/busy/busy19.png,/usr/share/enigma2/skin_default/busy/busy20.png,/usr/share/enigma2/skin_default/busy/busy21.png,/usr/share/enigma2/skin_default/busy/busy22.png,/usr/share/enigma2/skin_default/busy/busy23.png,/usr/share/enigma2/skin_default/busy/busy24.png" transparent="1" alphatest="blend" />
+		<widget name="lab1" position="10,150" size="540,50" font="Regular;22" zPosition="1" transparent="0" halign="center"/>
 		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
 		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
@@ -2422,9 +2422,9 @@ self.autoResize()
 		</widget>
 		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
-	<screen name="VIXStopCam" position="center,center" size="484, 150" title="Stopping Softcam" flags="wfBorder">
-		<widget name="connect" position="217, 0" size="64,64" zPosition="2" pixmaps="ViX_HD_Common/busy/busy1.png,ViX_HD_Common/busy/busy2.png,ViX_HD_Common/busy/busy3.png,ViX_HD_Common/busy/busy4.png,ViX_HD_Common/busy/busy5.png,ViX_HD_Common/busy/busy6.png,ViX_HD_Common/busy/busy7.png,ViX_HD_Common/busy/busy8.png,ViX_HD_Common/busy/busy9.png,ViX_HD_Common/busy/busy9.png,ViX_HD_Common/busy/busy10.png,ViX_HD_Common/busy/busy11.png,ViX_HD_Common/busy/busy12.png,ViX_HD_Common/busy/busy13.png,ViX_HD_Common/busy/busy14.png,ViX_HD_Common/busy/busy15.png,ViX_HD_Common/busy/busy17.png,ViX_HD_Common/busy/busy18.png,ViX_HD_Common/busy/busy19.png,ViX_HD_Common/busy/busy20.png,ViX_HD_Common/busy/busy21.png,ViX_HD_Common/busy/busy22.png,ViX_HD_Common/busy/busy23.png,ViX_HD_Common/busy/busy24.png"  transparent="1" alphatest="blend" />
-		<widget name="lab1" position="10, 80" halign="center" size="460, 60" zPosition="1" font="Regular;20" valign="top" transparent="1" />
+	<screen name="VIXStopCam" position="center,center" size="560,460" title="Stopping Softcam" >
+		<widget name="connect" position="217,50" size="64,64" zPosition="2" pixmaps="/usr/share/enigma2/skin_default/busy/busy1.png,/usr/share/enigma2/skin_default/busy/busy2.png,/usr/share/enigma2/skin_default/busy/busy3.png,/usr/share/enigma2/skin_default/busy/busy4.png,/usr/share/enigma2/skin_default/busy/busy5.png,/usr/share/enigma2/skin_default/busy/busy6.png,/usr/share/enigma2/skin_default/busy/busy7.png,/usr/share/enigma2/skin_default/busy/busy8.png,/usr/share/enigma2/skin_default/busy/busy9.png,/usr/share/enigma2/skin_default/busy/busy9.png,/usr/share/enigma2/skin_default/busy/busy10.png,/usr/share/enigma2/skin_default/busy/busy11.png,/usr/share/enigma2/skin_default/busy/busy12.png,/usr/share/enigma2/skin_default/busy/busy13.png,/usr/share/enigma2/skin_default/busy/busy14.png,/usr/share/enigma2/skin_default/busy/busy15.png,/usr/share/enigma2/skin_default/busy/busy17.png,/usr/share/enigma2/skin_default/busy/busy18.png,/usr/share/enigma2/skin_default/busy/busy19.png,/usr/share/enigma2/skin_default/busy/busy20.png,/usr/share/enigma2/skin_default/busy/busy21.png,/usr/share/enigma2/skin_default/busy/busy22.png,/usr/share/enigma2/skin_default/busy/busy23.png,/usr/share/enigma2/skin_default/busy/busy24.png" transparent="1" alphatest="blend" />
+		<widget name="lab1" position="10,150" size="540,50" font="Regular;22" zPosition="1" transparent="0" halign="center"/>
 		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
 		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
