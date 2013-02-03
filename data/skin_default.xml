@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 1.28 by Rob van der Does @www.world-of-satellite.com, based on default screen by Andyblac & Magic by Rob van der Does Vs 1.32	-->
+	<!--	Skin: Default-ViX Vs 1.30 by Rob van der Does @www.world-of-satellite.com, based on default screen by Andyblac & Magic by Rob van der Does Vs 1.32	-->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
 	<!--	Do whatever you want with this skin,but don't tell it's yours,or your idea, and leave the credentials in the "About-box" as they are	-->
@@ -62,6 +62,64 @@
 		<color name="infobar_sunken" value="#12191919" />
 	</colors>
 
+	<screen name="Red1Panel">
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<widget name="key_red" font="Regular;20" halign="center" position="-2,1" size="140,40" transparent="1" valign="center" zPosition="10" />
+	</screen>
+
+	<screen name="Green1Panel">
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<widget name="key_green" font="Regular;20" halign="center" position="140,0" size="140,40" transparent="1" valign="center" zPosition="10" />
+	</screen>
+
+	<screen name="Yellow1Panel">
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+		<widget name="key_yellow" font="Regular;20" halign="center" position="280,1" size="140,40" transparent="1" valign="center" zPosition="10" />
+	</screen>
+
+	<screen name="Blue1Panel">
+		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+		<widget name="blue" font="Regular;20" halign="center" position="420,0" size="140,40" transparent="1" valign="center" zPosition="10" />
+	</screen>
+
+	<screen name="Red2Panel">
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" font="Regular;20" halign="center" position="-2,1" size="140,40" transparent="1" valign="center" zPosition="10" />
+	</screen>
+
+	<screen name="Green2Panel">
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<widget source="key_green" render="Label" font="Regular;20" halign="center" position="140,0" size="140,40" transparent="1" valign="center" zPosition="10" />
+	</screen>
+
+	<screen name="Yellow2Panel">
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+		<widget source="key_yellow" render="Label" font="Regular;20" halign="center" position="280,1" size="140,40" transparent="1" valign="center" zPosition="10" />
+	</screen>
+
+	<screen name="Blue2Panel">
+		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+		<widget source="blue" render="Label" font="Regular;20" halign="center" position="420,0" size="140,40" transparent="1" valign="center" zPosition="10" />
+	</screen>
+
+	<screen name="MenuBPanel">
+		<ePixmap pixmap="skin_default/buttons/key_menu.png" position="350,435" zPosition="4" size="35,25" alphatest="on" transparent="1" />
+	</screen>
+
+	<screen name="InfoBPanel">
+		<ePixmap pixmap="skin_default/buttons/key_info.png" position="390,435" zPosition="4" size="35,25" alphatest="on" transparent="1" />
+	</screen>
+
+	<screen name="BasicTemplate">
+		<eLabel backgroundColor="background" position="0,0" size="560,460" zPosition="-1" />
+		<widget source="title" render="Label" position="10,5" size="280,35" valign="center" font="Enigma;30" halign="center" />
+		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
+	</screen>
+
 	<screen name="PinInputTemplate" >
 		<widget name="service" position="10,10" size="480,25" font="Regular;20" />
 		<widget name="text" position="10,40" size="480,25" font="Regular;20" halign="center" />
@@ -110,6 +168,34 @@ self[&quot;list&quot;].instance.resize(eSize(*listsize))
 newwidth = wsize[0]
 self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</applet>
+	</screen>
+
+	<!-- Extra margin for wizard, never know how bad the TV is... -->
+	<screen name="WizardMarginsTemplate">
+		<panel position="left" size="10%,*" />
+		<panel position="right" size="8%,*" />
+		<panel position="top" size="8%,*" />
+		<panel position="bottom" size="10%,*" />
+	</screen>
+
+	<!-- Start Wizard -->
+	<screen name="RemoteControlTemplate">
+		<panel position="right" size="154,*">
+			<panel position="top" size="*,50"/>
+			<widget name="rc" pixmaps="skin_default/rc.png,skin_default/rcold.png" position="top" zPosition="10" size="154,500" alphatest="on"/>
+			<widget name="arrowdown" pixmap="skin_default/arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
+			<widget name="arrowdown2" pixmap="skin_default/arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
+			<widget name="arrowup" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
+			<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
+		</panel>
+	</screen>
+
+	<screen name="WizardPictureLangTemplate">
+		<panel position="left" size="110,*">
+			<panel position="top" size="*,50"/>
+			<ePixmap pixmap="skin_default/buttons/button_red.png" position="left" zPosition="0" size="15,16" alphatest="on" />
+			<widget name="languagetext" position="fill" font="Regular;18" />
+		</panel>
 	</screen>
 
 	<screen name="Volume" position="238,50" size="244,28" title="Volume" zPosition="1" flags="wfNoBorder" >
@@ -272,40 +358,22 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="RassLogo" pixmap="skin_default/icons/rass_logo.png" position="50,445" size="50,21" />
 	</screen>
 	<screen name="Menu" position="center,center" size="560,460" title="Main menu">
-		<widget source="title" render="Label" position="10,5" size="280,35" valign="center" font="Enigma;30" halign="center" />
+		<panel name="BasicTemplate" />
 		<widget source="menu" render="Listbox" position="10,55" size="520,350" scrollbarMode="showOnDemand"  itemHeight="35" font="Regular;28">
 			<convert type="StringList"/>
 		</widget>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
-	</screen>-->
+	</screen>
 	<screen name="Setup" position="center,center" size="560,460" backgroundColor="transBG" title="Main menu">
-		<eLabel backgroundColor="background" position="0,0" size="560,460" zPosition="-1" />
-		<widget name="description" position="3,360" size="540,60" zPosition="10" font="Enigma;16" halign="center" valign="center" transparent="0" foregroundColor="secondFG" />
-		<widget source="Title" render="Label" position="3,48" size="490,26" font="Enigma;22" transparent="1" zPosition="1" />
-		<widget name="config" position="3,80" scrollbarMode="showOnDemand" size="540,260" source="menu" transparent="10" itemHeight="20" enableWrapAround="1" zPosition="1" />
+		<panel name="BasicTemplate" />		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<widget name="config" position="10,45" scrollbarMode="showOnDemand" size="540,300" source="menu" transparent="10" itemHeight="20" enableWrapAround="1" zPosition="1" />
+		<widget name="description" position="3,360" size="540,33" zPosition="10" font="Enigma;16" halign="center" valign="center" transparent="0" foregroundColor="secondFG" />
 		<widget name="footnote" position="215,435" size="260,19" zPosition="20" font="Regular;18" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" />
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" />
-		<widget source="key_red" render="Label" font="Regular;20" halign="center" position="-2,1" size="140,40" transparent="1" valign="center" zPosition="10" />
-		<widget source="key_green" render="Label" font="Regular;20" halign="center" position="140,0" size="140,40" transparent="1" valign="center" zPosition="10" />
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,300" zPosition="1" size="440,350" transparent="1" alphatest="on" />
 	</screen>
 	<screen name="ChannelContextMenu" position="center,center" size="350,385" title="Channellist menu">
+		<panel name="BasicTemplate" />
 		<widget name="menu" position="10,10" size="340,300" scrollbarMode="showOnDemand" />
-		<eLabel backgroundColor="darkgrey" position="0,355" size="350,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="290,358" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,358" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="NumberZap" position="center,center" size="600,40" backgroundColor="transparent" flags="wfNoBorder">
 		<widget name="number" position="0,-200" size="130,40" backgroundColor="transparent" transparent="1" font="Regular;36" borderColor="black" borderWidth="3" valign="center" halign="right" foregroundColor="grey" />
@@ -316,37 +384,25 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget font="Enigma;22" halign="left" name="number" noWrap="1" position="105,0" size="55,26" valign="center" zPosition="2" borderWidth="2" borderColor="black" backgroundColor="transparent" />
 	</screen>
 	<screen name="About" position="center,center" size="560,460" title="About" >
+		<panel name="BasicTemplate" />
 		<widget source="lab1" render="Label" position="10,0" size="490,25" font="Regular; 22" transparent="0" zPosition="2" />
 		<widget source="lab2" render="Label" position="10,25" size="490,20" font="Regular; 18" transparent="0" zPosition="2" />
 		<widget source="lab3" render="Label" position="10,45" size="490,20" font="Regular; 18" transparent="0" zPosition="1" />
 		<widget name="AboutScrollLabel" font="Enigma;18" position="10,70" size="490,310" scrollbarMode="showOnDemand"/>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/key_info.png" alphatest="on" position="260,433" size="35,25" />
+		<panel name="InfoBPanel" />
 	</screen>
 		<screen name="Devices" position="center,center" size="560,460" title="Systeminfo" >
+		<panel name="BasicTemplate" />
 		<widget font="Regular; 20" position="10,5" render="Label" size="490,22" source="TunerHeader"/>
 		<widget font="Regular; 18" position="10,32" render="Label" size="490,100" source="nims"/>
 		<widget font="Regular; 20" position="10,150" render="Label" size="490,22" source="HDDHeader"/>
 		<widget font="Regular; 18" position="10,175" render="Label" size="490,100" source="hdd"/>
 		<widget source="MountsHeader" render="Label" position="10,300" size="490,22" font="Regular; 20" transparent="0" zPosition="1" />
 		<widget source="mounts" render="Label" position="10,325" size="490,100" font="Regular; 18" transparent="0" zPosition="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="540,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="AboutReleaseNotes" position="center,center" size="560,460" title="Release Notes" >
+		<panel name="BasicTemplate" />
 		<widget name="list" render="Label" font="Regular;22" position="25,30" size="490,350" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 		<screen name="TranslationInfo" position="center,center" size="540,460" title="Translation" >
 		<widget font="Enigma;18" position="10,5" render="Label" size="490,50" source="TranslatorName"/>
@@ -358,6 +414,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="ServiceInfo" position="center,center" size="560,460" title="Serviceinfo" >
+		<panel name="BasicTemplate" />
 		<ePixmap alphatest="on" name="bg_red" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1" zPosition="1"/>
 		<ePixmap alphatest="on" name="bg_green" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1" zPosition="1"/>
 		<ePixmap alphatest="on" name="bg_yellow" pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" transparent="1" zPosition="1"/>
@@ -367,21 +424,13 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget backgroundColor="#8C5900" font="Enigma;18" halign="center" name="yellow" position="280,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
 		<widget backgroundColor="#254177" font="Enigma;18" halign="center" name="blue" position="420,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
 		<widget name="infolist" position="5,40" selectionDisabled="1" size="550,390"/>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="SystemMemoryInfo" position="center,center" size="560,460" title="Release Notes" >
+		<panel name="BasicTemplate" />
 		<widget name="AboutScrollLabel" render="Label" font="Regular;22" position="25,30" size="490,350" scrollbarMode="showOnDemand" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="SystemNetworkInfo" position="center,center" size="560,460" >
+		<panel name="BasicTemplate" />
 		<widget name="AboutScrollLabel" position="10,50" size="458,275" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
 		<widget source="LabelBSSID" render="Label" position="10,130" size="200,25" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
 		<widget source="LabelESSID" render="Label" position="10,160" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
@@ -400,11 +449,6 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="IF" render="Label" position="120,355" size="400,21" zPosition="10" font="Regular;20" halign="left" transparent="1" />
 		<widget source="Statustext" render="Label" position="10,375" size="115,21" zPosition="10" font="Regular;20" halign="left" transparent="1"/>
 		<widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="120,380" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="TimeshiftState" position="50,310" size="150,60" zPosition="2" backgroundColor="transparent" flags="wfNoBorder" >
 		<widget font="Enigma;24" halign="center" name="state" position="0,0" size="150,30" backgroundColor="transparent" borderColor="black" borderWidth="2" />
@@ -416,65 +460,42 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget font="Enigma;24" halign="left" name="state" position="0,0" size="80,34" backgroundColor="transparent" borderColor="black" borderWidth="2" />
 	</screen>
 	<screen name="PluginBrowser" position="center,center" size="560,460" title="Plugin browser" >
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/red-big.png" position="0,0" size="200,40"/>
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/green-big.png" position="200,0" size="200,40"/>
-		<widget name="key_red" font="Enigma;20" halign="center" position="0,0" size="200,40" transparent="1" valign="center" zPosition="1"/>
-		<widget name="key_green" font="Enigma;20" halign="center" position="200,0" size="200,40" transparent="1" valign="center" zPosition="1"/>
-			<ePixmap pixmap="skin_default/buttons/key_menu.png" position="430,10" zPosition="4" size="35,25" alphatest="on" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="MenuBPanel" />
 		<widget name="list" position="0,45" scrollbarMode="showOnDemand" size="540,350" enableWrapAround="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="PluginDownloadBrowser" position="center,center" size="560,460" title="Downloadable plugins" >
+		<panel name="BasicTemplate" />
 		<widget font="Enigma;20" halign="center" name="text" position="0,0" size="560,380" valign="center" zPosition="1"/>
 		<widget name="list" position="10,10" scrollbarMode="showOnDemand" size="540,395" zPosition="2" enableWrapAround="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="LocationBox" position="center,center" size="560,460" >
-		<widget alphatest="on" name="red" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1"/>
-		<widget alphatest="on" name="green" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1"/>
-		<widget alphatest="on" name="yellow" pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" transparent="1"/>
-		<widget alphatest="on" name="blue" pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" transparent="1"/>
-		<widget backgroundColor="#7C1C1C" font="Enigma;18" halign="center" name="key_red" position="0,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
-		<widget backgroundColor="#266926" font="Enigma;18" halign="center" name="key_green" position="140,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
-		<widget backgroundColor="#8C5900" font="Enigma;18" halign="center" name="key_yellow" position="280,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
-		<widget backgroundColor="#254177" font="Enigma;18" halign="center" name="key_blue" position="420,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<widget font="Enigma;20" name="text" position="5,38" size="550,28"/>
 		<widget font="Enigma;20" name="target" position="5,68" size="550,28" valign="center"/>
 		<widget name="filelist" position="5,100" scrollbarMode="showOnDemand" selectionDisabled="1" size="550,200" zPosition="1" enableWrapAround="1" />
 		<widget font="Enigma;20" name="textbook" position="5,310" size="550,28"/>
 		<widget name="booklist" position="5,340" scrollbarMode="showOnDemand" size="550,95" zPosition="2"/>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="FileBrowser" position="center,center" size="560,460" title="DVD file browser" >
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
 		<widget name="filelist" position="5,50" size="540,370" scrollbarMode="showOnDemand" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
-	<screen name="Console" position="center,center" size="560,430" title="Command execution...">
+	<screen name="Console" position="center,center" size="560,460" title="Command execution...">
+		<panel name="BasicTemplate" />
 		<widget name="text" position="10,10" size="540,420" font="Console;14" />
 	</screen>
 	<screen name="AutoMountManager" position="center,center" size="560,460" title="AutoMountManager">
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40"/>
-		<widget backgroundColor="buttonRed" font="Enigma;20" halign="center" position="0,0" render="Label" size="140,40" source="key_red" transparent="1" valign="center" zPosition="1"/>
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
 		<widget source="config" render="Listbox" position="5,50" size="540,370" scrollbarMode="showOnDemand" >
 			<convert type="TemplatedMultiContent">
 				{"template": [
@@ -489,21 +510,13 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</widget>
 		<ePixmap pixmap="skin_default/border/div_h.png" position="5,395" size="560,2" zPosition="2"/>
 		<widget source="introduction" render="Label" position="10,400" size="560,21" backgroundColor="#25062748" font="Enigma;20" halign="center" transparent="1" valign="center" zPosition="10"/>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="NetworkBrowser" position="center,center" size="560,460" title="Network Neighbourhood">
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40"/>
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40"/>
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40"/>
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40"/>
-		<widget backgroundColor="buttonRed" font="Regular;20" halign="center" position="0,0" render="Label" size="140,40" source="key_red" transparent="1" valign="center" zPosition="1"/>
-		<widget backgroundColor="buttonGreen" font="Regular;20" halign="center" position="140,0" render="Label" size="140,40" source="key_green" transparent="1" valign="center" zPosition="1"/>
-		<widget backgroundColor="buttonYellow" font="Regular;20" halign="center" position="280,0" render="Label" size="140,40" source="key_yellow" transparent="1" valign="center" zPosition="1"/>
-		<widget backgroundColor="buttonBlue" font="Regular;20" halign="center" position="420,0" render="Label" size="140,40" source="key_blue" transparent="1" valign="center" zPosition="1"/>
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Yellow2Panel" />
+		<panel name="Blue2Panel" />
 		<widget source="list" render="Listbox" position="5,50" size="540,340" scrollbarMode="showOnDemand" zPosition="10">
 			<convert type="TemplatedMultiContent">
 				{"template": [
@@ -522,14 +535,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<ePixmap pixmap="skin_default/border/div_h.png" position="5,395" size="560,2" zPosition="1"/>
 		<widget source="infotext" render="Label" position="0,400" size="560,30" backgroundColor="#25062748" font="Regular;21" halign="center" transparent="1" valign="center" zPosition="10"/>
 		<widget source="introduction" render="Label" position="10,380" size="540,21" backgroundColor="#25062748" font="Enigma;20" halign="center" transparent="1" valign="center" zPosition="10"/>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="UpdatePluginMenu" position="center,center" size="560,460" title="Softwaremanager...">
-		<eLabel backgroundColor="black" position="5,15" size="300,270" zPosition="1"/>
+		<panel name="BasicTemplate" />
 		<widget source="menu" render="Listbox" position="10,20" size="290,260" scrollbarMode="showOnDemand" zPosition="2">
 			<convert type="TemplatedMultiContent">
 				{"template": [
@@ -550,17 +558,11 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 				}
 			</convert>
 		</widget>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="AdapterSetup" position="center,center" size="560,460" title="Network setup" >
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Blue2Panel" />
 		<widget name="config" position="5,40" size="550,150" scrollbarMode="showOnDemand" />
 		<ePixmap pixmap="skin_default/div-h.png" position="0,195" zPosition="1" size="560,2" />
 		<widget source="DNS1text" render="Label" position="5,200" size="190,21" zPosition="1" font="Regular;19" halign="left" valign="center" backgroundColor="#25062748" transparent="1"/>
@@ -583,15 +585,10 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="160,315" zPosition="1" size="1,1" transparent="1" alphatest="on" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="AdapterSetupConfiguration" position="center,center" size="560,460" title="Network configuration..." >
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
 		<widget name="menulist" position="15,55" size="540,240" zPosition="10" scrollbarMode="showOnDemand" />
 		<widget source="description" render="Label" position="15,300" size="540,60" font="Regular;19" halign="center" valign="center" foregroundColor="secondFG" transparent="1" />
 		<ePixmap pixmap="skin_default/div-h.png" position="0,370" zPosition="1" size="560,2" />
@@ -599,13 +596,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="IF" render="Label" position="120,375" size="400,21" zPosition="10" font="Regular;20" halign="left" backgroundColor="#25062748" transparent="1" />
 		<widget source="Statustext" render="Label" position="10,395" size="115,21" zPosition="10" font="Regular;20" halign="left" backgroundColor="#25062748" transparent="1"/>
 		<widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="130,400" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="AudioSelection" position="center,center" size="560,460" title="Audio">
+		<panel name="BasicTemplate" />
 		<widget name="config" position="50,10" size="500,110" scrollbarMode="showOnDemand" />
 		<widget source="key_red" render="Pixmap" pixmap="skin_default/buttons/key_red.png" position="10,10" size="35,25" alphatest="on">
 			<convert type="ConditionalShowHide" />
@@ -643,19 +636,10 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 				}
 			</convert>
 		</widget>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="Subtitles" position="center,center" size="560,460" title="Subtitle selection">
+		<panel name="BasicTemplate" />
 		<widget name="config" position="10,10" zPosition="1" size="540,275" scrollbarMode="showOnDemand" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="QuickSubtitlesConfigMenu" position="50,50" size="480,255" title="Subtitle settings" backgroundColor="#7f000000" flags="wfNoBorder">
 		<widget name="config" position="5,5" size="470,225" font="Regular;18" zPosition="1" transparent="1" valign="center" />
@@ -665,14 +649,11 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="menu" position="10,10" size="290,225" scrollbarMode="showOnDemand" />
 	</screen>
 	<screen name="ChannelSelection" position="center,center" size="560,460" title="Channel selection">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<widget name="list" position="0,40" size="560,280" scrollbarMode="showOnDemand" />
 		<ePixmap pixmap="skin_default/div-h.png" position="0,325" zPosition="1" size="560,2" />
 		<widget source="ServiceEvent" render="Label" position="10,327" zPosition="1" size="460,20" font="Regular;19" noWrap="1">
@@ -695,37 +676,20 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="ServiceEvent" render="Label" position="10,368" zPosition="1" size="540,60" font="Regular;18" foregroundColor="#cccccc">
 			<convert type="EventName">ExtendedDescription</convert>
 		</widget>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="SimpleChannelSelection" position="center,center" size="560,460" title="Channel selection">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<widget name="list" position="10,45" size="540,364" scrollbarMode="showOnDemand" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="ChannelSelectionRadio" position="center,95" size="560,460" title="Channel selection">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<widget name="list" position="10,45" size="540,252" scrollbarMode="showOnDemand" />
 		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
 		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
@@ -733,27 +697,25 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</widget>
 		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
-	<screen name="ChoiceBox" position="center,center" size="550,400" title="Input">
+	<screen name="ChoiceBox" position="center,center" size="550,460" title="Input">
+		<panel name="BasicTemplate" />
 		<widget name="text" position="top" size="*,2h" font="TextNormal" />
 		<widget name="list" position="fill" scrollbarMode="showOnDemand" />
 		<applet type="onLayoutFinish">
 self.autoResize()
 		</applet>
 	</screen>
-	<screen name="MMIDialog" position="center,center" size="450,270">
+	<screen name="MMIDialog" position="center,center" size="560,460">
+		<panel name="BasicTemplate" />
 		<widget name="title" position="10,10" size="430,25" font="Regular;23" />
 		<widget name="subtitle" position="10,35" size="430,25" font="Regular;23" />
 		<widget name="entries" position="10,70" size="430,150" scrollbarMode="showOnDemand" />
 		<widget name="bottom" position="10,230" size="430,25" font="Regular;23" />
 	</screen>
 	<screen name="CiSelection" position="center,center" size="560,460" title="Common Interface">
+		<panel name="BasicTemplate" />
 		<widget name="text" position="10,10" size="540,25" font="Regular;23" />
 		<widget name="entries" position="10,55" size="540,125" scrollbarMode="showOnDemand" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="clockDisplay" position="center,center" size="300,300" flags="wfNoBorder" >
 		<widget name="okbutton" position="10,10" size="280,40" />
@@ -800,30 +762,19 @@ self.autoResize()
 		<widget name="UnhandledKeyPixmap" pixmap="skin_default/unhandled-key.png" position="0,0" size="34,45" alphatest="on" />
 	</screen>
 	<screen name="EPGSelection" position="center,center" size="560,460" title="EPG selection">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<widget name="list" position="10,40" size="540,375" scrollbarMode="showOnDemand" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="EPGSelectionMulti" position="center,center" size="560,460" title="EPG selection">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<ePixmap pixmap="skin_default/div-h.png" position="5,70" zPosition="1" size="545,2" />
 		<widget name="now_button_sel" pixmap="skin_default/epg_now.png" position="5,50" zPosition="1" size="320,25" alphatest="on" />
 		<widget name="next_button_sel" pixmap="skin_default/epg_next.png" position="5,50" zPosition="1" size="320,25" alphatest="on" />
@@ -833,11 +784,6 @@ self.autoResize()
 		<widget name="more_text" position="216,50" zPosition="2" size="108,22" text="MORE" font="Regular;16" halign="center" valign="center" backgroundColor="background" transparent="1" />
 		<widget name="date" position="410,35" size="140,45" font="Regular;18" valign="center" halign="right" />
 		<widget name="list" position="10,75" size="540,350" scrollbarMode="showOnDemand" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="GraphicalEPG" position="center,center" size="720,576" flags="wfNoBorder" backgroundColor="#000000" >
 		<widget source="Title" render="Label" position="200,18" size="380,28" font="Regular;22" foregroundColor="#FFFFFF" backgroundColor="#000000" halign="center" transparent="1" />
@@ -912,34 +858,26 @@ self.autoResize()
 		<widget name="key_blue" position="545, 539" size="125, 26" font="Regular;18" foregroundColor="#1E28B6" backgroundColor="#000000" halign="left" valign="top" transparent="1" />
 	</screen>
 	<screen name="EventViewContextMenu" position="150,160" size="560,460" title="Event view menu" >
+		<panel name="BasicTemplate" />
 		<widget name="menu" position="10,10" size="540,350" scrollbarMode="showOnDemand" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
 		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="EventView" position="center,center" size="560,450" title="Event view">
-		<widget name="red"  pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<widget name="green"  pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<widget name="yellow"  pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<widget name="blue"  pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<widget name="epg_description" position="10,50" size="540,330" font="Regular;22" />
 		<widget name="datetime" position="10,395" size="130,25" font="Regular;22" />
 		<widget name="duration" position="140,395" size="100,25" font="Regular;22" />
 		<widget name="channel" position="240,395" size="305,25" font="Regular;22" halign="right" />
- 		<ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="InfoBarEventView" position="center,center" size="560,450" flags="wfNoBorder" title="Event view">
 		<widget name="epg_description" position="10,50" size="540,330" font="Regular;22" />
 		<widget name="datetime" position="10,395" size="130,25" font="Regular;22" />
 		<widget name="duration" position="140,395" size="100,25" font="Regular;22" />
 		<widget name="channel" position="240,395" size="305,25" font="Regular;22" halign="right" />
- 		<ePixmap pixmap="skin_default/logos/vix.png" position="10,422" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="GraphMultiEPG" position="center,center" size="560,435" flags="wfNoBorder" title="Electronic Program Guide">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
@@ -990,15 +928,11 @@ self.autoResize()
 			<convert type="EventName">ExtendedDescription</convert>
 		</widget>
 	</screen>
-	<screen name="GraphMultiEPGList" position="center,center" size="560,435" flags="wfNoBorder" title="Electronic Program Guide">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+	<screen name="GraphMultiEPGList" position="center,center" size="560,460" flags="wfNoBorder" title="Electronic Program Guide">
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<widget name="timeline_text" position="0,41" size="560,20" />
 		<widget name="list" position="0,65" size="560,365" EntryBorderColor="#071930" EntryBackgroundColor="#2f4964" EntryBackgroundColorSelected="#25688caf" scrollbarMode="showOnDemand" />
 		<widget name="timeline0" position="0,65" zPosition="1" size="1,365" pixmap="skin_default/timeline.png" />
@@ -1010,48 +944,29 @@ self.autoResize()
 		<widget name="timeline_now" position="0,64" zPosition="2" size="19,10" pixmap="skin_default/timeline-now.png" alphatest="on" />
 	</screen>
 	<screen name="VideoEnhancementSetup" position="center,center" size="560,460" backgroundColor="transBG" title="Main menu">
-		<eLabel backgroundColor="background" position="0,0" size="560,460" zPosition="-1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Yellow2Panel" />
+		<panel name="Blue2Panel" />
 		<widget name="config" position="3,55" scrollbarMode="showOnDemand" size="540,300" source="menu" transparent="10" itemHeight="20" enableWrapAround="1" zPosition="1" />
 		<widget name="description" position="3,360" size="540,60" zPosition="10" font="Enigma;20" halign="center" valign="center" transparent="0" foregroundColor="secondFG" />
 		<widget name="footnote" position="215,435" size="260,19" zPosition="20" font="Regular;18" transparent="1" />
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" />
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" />
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" />
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" />
-		<widget source="key_red" render="Label" font="Regular;20" halign="center" position="-2,1" size="140,40" transparent="1" valign="center" zPosition="10" />
-		<widget source="key_green" render="Label" font="Regular;20" halign="center" position="140,0" size="140,40" transparent="1" valign="center" zPosition="10" />
-		<widget source="key_yellow" render="Label" font="Regular;20" halign="center" position="280,1" size="140,40" transparent="1" valign="center" zPosition="10" />
-		<widget source="key_blue" render="Label" font="Regular;20" halign="center" position="420,0" size="140,40" transparent="1" valign="center" zPosition="10" />
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,300" zPosition="1" size="440,350" transparent="1" alphatest="on" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 		<screen name="VideoEnhancementPreview" position="center,center" size="560,200" title="VideoEnhancementPreview">
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" />
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" />
-		<widget source="key_red" render="Label" font="Regular;20" halign="center" position="-2,1" size="140,40" transparent="1" valign="center" zPosition="10" />
-		<widget source="key_green" render="Label" font="Regular;20" halign="center" position="140,0" size="140,40" transparent="1" valign="center" zPosition="10" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
 		<widget name="config" position="5,50" size="550,80" scrollbarMode="showOnDemand" />
 		<ePixmap pixmap="skin_default/div-h.png" position="0,130" zPosition="1" size="560,2" />
 		<widget source="introduction" render="Label" position="0,140" size="550,25" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,170" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,175" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,175" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="HarddiskSelection" position="center,center" size="560,460" >
+		<panel name="BasicTemplate" />
 		<widget name="hddlist" position="10,10" size="540,350" itemHeight="35" font="Regular;23"/>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="HarddiskSetup" position="center,center" size="560,460" >
+		<panel name="BasicTemplate" />
 		<widget name="model" position="10,10" size="540,25" font="Regular;23" />
 		<widget name="capacity" position="10,40" size="540,25" font="Regular;23" />
 		<widget name="bus" position="10,70" size="540,25" font="Regular;23" />
@@ -1059,11 +974,6 @@ self.autoResize()
 		<widget name="initializetext" position="140,110" size="140,40" zPosition="10" font="Regular;20" transparent="1" />
 		<!--widget name="initialize" pixmap="skin_default/buttons/red.png" position="140,110" size="140,40" alphatest="on" />
 		<widget name="initializetext" position="140,110" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" transparent="1" /-->
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="HarddiskWait" position="center,center" size="540,60">
 		<widget name="wait" position="20,10" size="500,25" font="Regular;23" />
@@ -1083,17 +993,14 @@ self.autoResize()
 		<widget name="input" position="10,55" size="550,25" font="Regular;20" />
 	</screen>
 	<screen name="Ipkg" position="center,center" size="550,460" title="Installing software...">
+		<panel name="BasicTemplate" />
 		<widget name="activityslider" position="10,10" size="540,5" pixmap="skin_default/progress_small.png" />
 		<widget name="package" position="10,30" size="540,20" font="Regular;18" />
 		<widget name="status" position="10,60" size="540,45" font="Regular;18" />
 		<widget name="slider" position="10,100" size="540,15" pixmap="skin_default/progress_big.png" borderWidth="2" borderColor="#cccccc" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="LanguageSelection" position="center,center" size="560,460" title="Language selection">
+		<panel name="BasicTemplate" />
 		<widget source="languages" render="Listbox" position="10,10" size="540,400" scrollbarMode="showOnDemand">
 			<convert type="TemplatedMultiContent">
 				{"template": [
@@ -1105,11 +1012,6 @@ self.autoResize()
 				}
 			</convert>
 		</widget>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="LanguageWizard" position="fill" title="Welcome..." flags="wfNoBorder">
 		<panel name="WizardMarginsTemplate"/>
@@ -1144,14 +1046,10 @@ self.autoResize()
 		<widget name="minutes" position="80,15" size="160,25" halign="right" font="Regular;23" />
 	</screen>
 	<screen name="MovieSelection" position="center,center" size="560,460" title="Select a movie">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<widget name="waitingtext" position="0,45" size="560,395" zPosition="4" font="Regular;22" halign="center" valign="center" />
 		<widget name="chosenletter" position="0,45" size="560,395" foregroundColor="yellow" font="Regular;50" halign="center" valign="center" transparent="1" zPosition="4" />
 		<widget name="list" position="10,40" size="540,375" zPosition="2" scrollbarMode="showOnDemand" />
@@ -1174,29 +1072,19 @@ self.autoResize()
 		<widget name="freeDiskSpace" position="10,425" size="540,20" font="Regular;19" valign="center" halign="right" />
 	</screen>
 	<screen name="NameserverSetup" position="center,center" size="560,460" title="Nameserver setup" >
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Yellow2Panel" />
 		<widget name="config" position="10,50" size="540,280" scrollbarMode="showOnDemand" />
 		<widget source="introduction" render="Label" position="10,350" size="540,50" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="NetworkAdapterSelection" position="center,center" size="560,460" title="Select a network adapter">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Yellow2Panel" />
+		<panel name="Blue2Panel" />
 		<widget source="list" render="Listbox" position="10,50" size="540,280" zPosition="10" scrollbarMode="showOnDemand">
 			<convert type="TemplatedMultiContent"> <!--  iface, name, description, interfacepng, defaultpng, activepng, divpng  -->
 				{"template": [
@@ -1211,19 +1099,12 @@ self.autoResize()
 			</convert>
 		</widget>
 		<widget source="introduction" render="Label" position="10,350" size="540,50" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="NetworkAdapterTest" position="center,center" size="560,460" title="Network test..." >
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Yellow2Panel" />
 		<widget name="Adaptertext" position="10,70" size="120,21" zPosition="1" font="Regular;19" foregroundColors="#8c8c93,#1cff1c" />
 		<widget name="Adapter" position="130,70" size="270,21" zPosition="1" font="Regular;19" halign="center" foregroundColors="#8c8c93,#f23d21,#1cff1c" />
 		<widget name="AdapterInfo" pixmaps="skin_default/buttons/blue.png,skin_default/buttons/blue_pressed.png" position="425,60" zPosition="1" size="140,40" transparent="1" alphatest="on" />
@@ -1253,22 +1134,14 @@ self.autoResize()
 		<widget name="EditSettings_Text" position="440,320" size="110,21" zPosition="2" font="Regular;19" transparent="1" foregroundColors="#000000,#8c8c93,#1cff1c" />
 		<widget name="InfoTextBorder" pixmap="skin_default/border_info.png" position="10,50" zPosition="20" size="550,300" alphatest="on" />
 		<widget name="InfoText" position="15,55" size="541,290" zPosition="25" font="Regular;21" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="NetworkSetup" position="center,center" size="560,460" title="Network setup">
+		<panel name="BasicTemplate" />
 		<widget name="menu" position="10,10" size="540,350" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<!-- Nim selection -->
 	<screen name="NimSelection" position="center,center" size="560,460" title="Select a tuner">
+		<panel name="BasicTemplate" />
 		<widget source="nimlist" render="Listbox" position="10,10" size="540,400" scrollbarMode="showOnDemand">
 			<convert type="TemplatedMultiContent">
 				{"template": [
@@ -1280,19 +1153,10 @@ self.autoResize()
 				}
 			</convert>
 		</widget>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="NimSetup" position="center,center" size="560,460" title="Reception settings">
+		<panel name="BasicTemplate" />
 		<widget name="config" position="10,10" size="540,410" scrollbarMode="showOnDemand" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="NumericalTextInputHelpDialog" position="190,400" zPosition="2" size="394,124" backgroundColor="#202020" flags="wfNoBorder">
 		<eLabel position="0,0" size="392,122" backgroundColor="#c0c0c0" zPosition="-1" />
@@ -1310,12 +1174,8 @@ self.autoResize()
 		<widget name="help2" position="262,92" size="130,30" font="Regular;18" halign="center" valign="center" />
 	</screen>
 	<screen name="ParentalControlEditor" position="center,center" size="560,460" title="Parental control services editor">
+		<panel name="BasicTemplate" />
 		<widget name="servicelist" position="10,10" size="540,400" scrollbarMode="showOnDemand" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="PictureInPicture" position="400,60" zPosition="-1" size="240,192" flags="wfNoBorder">
 		<widget name="video" position="0,0" size="240,135" backgroundColor="transparent" />
@@ -1333,6 +1193,7 @@ self.autoResize()
 		<panel name="PinInputTemplate" />
 	</screen>
 	<screen name="Satfinder" position="center,center" size="560,460" title="Satfinder">
+		<panel name="BasicTemplate" />
 		<widget name="introduction" position="0,0" size="0,0" font="Regular;23" />
 		<ePixmap pixmap="skin_default/icons/dish_scan.png" position="5,25" zPosition="0" size="119,110" transparent="1" alphatest="on" />
 		<widget source="Frontend" render="Label" position="190,10" zPosition="2" size="260,20" font="Regular;19" halign="center" valign="center" transparent="1">
@@ -1363,41 +1224,24 @@ self.autoResize()
 		</widget>
 		<ePixmap pixmap="skin_default/div-h.png" position="10,152" zPosition="1" size="560,2" />
 		<widget name="config" position="10,165" size="540,225" scrollbarMode="showOnDemand" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="ScanSetup" position="center,center" size="560,460" title="Service scan">
+		<panel name="BasicTemplate" />
 		<widget name="config" position="10,10" size="540,380" scrollbarMode="showOnDemand" />
 		<widget name="introduction" position="10,400" size="540,75" font="Regular;20" foregroundColor="secondFG" halign="center" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="ScanSimple" position="center,center" size="560,460" title="Service scan">
-<!--		<widget name="header" position="10,10" size="540,25" font="Regular;23" />-->
+		<panel name="BasicTemplate" />
 		<widget name="config" position="10,10" size="540,250" scrollbarMode="showOnDemand" font="Regular;22" itemHeight="35" />
 		<widget name="footer" position="10,400" size="540,20" font="Regular;22" foregroundColor="secondFG" halign="center" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="Scart" position="fill" backgroundColor="transparent" />
 	<screen name="ServiceInfoSimple" position="center,center" size="560,460" title="Service info">
+		<panel name="BasicTemplate" />
 		<widget name="infolist" position="10,45" size="540,380" selectionDisabled="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="ServiceScan" position="center,center" size="560,460" title="Service scan">
+		<panel name="BasicTemplate" />
 		<widget source="FrontendInfo" render="Pixmap" pixmap="skin_default/icons/scan-s.png" position="5,5" size="64,64" transparent="1" alphatest="on">
 			<convert type="FrontendInfo">TYPE</convert>
 			<convert type="ValueRange">0,0</convert>
@@ -1419,23 +1263,14 @@ self.autoResize()
 		<widget name="pass" position="10,80" size="400,20" font="Regular;18" />
 		<widget name="scan_progress" position="10,105" size="400,15" pixmap="skin_default/progress_big.png" borderWidth="2" borderColor="#cccccc" />
 		<widget name="servicelist" position="10,135" size="400,265" selectionDisabled="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="SkinSelector" position="center,center" size="560,460" >
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" zPosition="1" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" zPosition="2" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
 		<widget name="SkinList" position="10,60" size="265,330" scrollbarMode="showOnDemand" />
 		<widget name="Preview" position="280,50" size="270,200" alphatest="on"/>
 		<widget source="introduction" render="Label" position="0,400" size="560,30" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="secondFG" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 <!-- ##Still in use??## -->
 <!--	<screen name="SleepTimerEdit" position="center,center" size="560,460" title="Sleep Timer">
@@ -1453,36 +1288,12 @@ self.autoResize()
 		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>-->
 	<screen name="Standby" flags="wfNoBorder" position="fill" title="Standby" />
-	<!-- Extra margin for wizard, never know how bad the TV is... -->
-	<screen name="WizardMarginsTemplate">
-		<panel position="left" size="10%,*" />
-		<panel position="right" size="8%,*" />
-		<panel position="top" size="8%,*" />
-		<panel position="bottom" size="10%,*" />
-	</screen>
-	<!-- Start Wizard -->
-	<screen name="RemoteControlTemplate">
-		<panel position="right" size="154,*">
-			<panel position="top" size="*,50"/>
-			<widget name="rc" pixmaps="skin_default/rc.png,skin_default/rcold.png" position="top" zPosition="10" size="154,500" alphatest="on"/>
-			<widget name="arrowdown" pixmap="skin_default/arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-			<widget name="arrowdown2" pixmap="skin_default/arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-			<widget name="arrowup" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-			<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-		</panel>
-	</screen>
-	<screen name="WizardPictureLangTemplate">
-		<panel position="left" size="110,*">
-			<panel position="top" size="*,50"/>
-			<ePixmap pixmap="skin_default/buttons/button_red.png" position="left" zPosition="0" size="15,16" alphatest="on" />
-			<widget name="languagetext" position="fill" font="Regular;18" />
-		</panel>
-	</screen>
 	<!-- it's the same screen... -->
 	<screen name="StartWizard" position="fill" title="Welcome..." flags="wfNoBorder">
 		<panel name="DefaultWizard" />
 	</screen>
 	<screen name="SubservicesQuickzap" position="center,center" size="560,460" title="Subservices" backgroundColor="transparent">
+		<panel name="BasicTemplate" />
 		<widget source="session.RecordState" render="Pixmap" pixmap="skin_default/icons/record.png" position="450,0" zPosition="2" size="14,14" alphatest="on" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
@@ -1491,70 +1302,46 @@ self.autoResize()
 		<widget source="session.CurrentService" render="Label" position="50,20" size="420,34" font="Regular;22" backgroundColor="#33294a6b" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="SubtitleDisplay" position="fill" zPosition="-1" flags="wfNoBorder" backgroundColor="transparent" />
 	<!-- TextBox -->
 	<screen name="TextBox" position="center,center" size="560,460" title="Message...">
+		<panel name="BasicTemplate" />
 		<widget name="text" position="10,0" size="540,400" font="Regular;20" />
 		<!--widget source="text" render="Label" position="0,0" size="540,390" font="Regular;18" /-->
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<!-- Time & date input -->
 	<screen name="TimeDateInput" position="center,center" size="560,460" title="Date/time input">
+		<panel name="BasicTemplate" />
 		<widget name="cancel" pixmap="skin_default/buttons/red.png" position="10,0" size="140,40" alphatest="on" />
 		<widget name="ok" pixmap="skin_default/buttons/green.png" position="250,0" size="140,40" alphatest="on" />
 		<widget name="canceltext" position="10,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" transparent="1" />
 		<widget name="oktext" position="250,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" transparent="1" />
 		<widget name="config" position="10,40" size="540,150" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<!-- Timer edit -->
 	<screen name="TimerEdit" position="center,center" size="590,460" title="Timer edit">
+		<panel name="BasicTemplate" />
 		<widget name="description" position="10,10" size="580,40" font="Regular;25" />
 		<widget name="lbegin" position="405,102" size="103,30" font="Regular;25" foregroundColor="red" />
 		<widget name="lend" position="405,158" size="103,30" font="Regular;25" foregroundColor="green" />
 		<widget name="begin" position="508,105" size="72,35" font="Regular;25" />
 		<widget name="end" position="508,150" size="72,35" font="Regular;25" />
 		<widget name="apply" position="10,240" size="250,35" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="590,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="530,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<!-- Timer edit list -->
 	<screen name="TimerEditList" position="center,center" size="560,460" title="Timer editor">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<widget name="timerlist" position="10,45" size="540,310" scrollbarMode="showOnDemand" temHeight="70" font="Enigma;22" />
 		<widget name="description" position="0,360" size="560,40" zPosition="2" font="Regular;22" foregroundColor="secondFG" valign="center" halign="center" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<!-- Timer entry -->
 	<screen name="TimerEntry" position="center,center" size="560,460"  title="Timer entry">
+		<panel name="BasicTemplate" />
 		<widget name="cancel" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<widget name="ok" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -1564,32 +1351,20 @@ self.autoResize()
 		<widget name="config" position="10,45" size="540,300" scrollbarMode="showOnDemand" itemHeight="25" font="Enigma;22" />
 		<widget name="description" position="10,360" size="540,50" font="Regular;18" halign="center" valign="center" foregroundColor="secondFG"/>
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,300" zPosition="1" size="440,350" transparent="1" alphatest="on" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<!-- Timer log -->
 	<screen name="TimerLog" position="center,center" size="560,460" title="Timer log">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<widget name="loglist" position="0,45" size="540,250" scrollbarMode="showOnDemand" />
 		<widget name="logentry" position="0,300" size="560,130" font="Regular;20" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<!-- Timer sanity conflict -->
 	<screen name="TimerSanityConflict" position="center,center" size="560,460" title="Timer sanity error">
+		<panel name="BasicTemplate" />
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="0,120" zPosition="0" size="140,40" transparent="1" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/blue.png" position="140,120" zPosition="0" size="140,40" transparent="1" alphatest="on" />
@@ -1599,23 +1374,15 @@ self.autoResize()
 		<widget name="timer1" position="10,45" size="540,75" scrollbarMode="showNever" />
 		<widget name="timer2" position="10,165" size="540,75" scrollbarMode="showNever" />
 		<widget name="list" position="10,260" size="540,144" scrollbarMode="showOnDemand" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<!-- Timer Selection -->
 	<screen name="TimerSelection" position="center,center" size="560,460" title="Timer selection">
+		<panel name="BasicTemplate" />
 		<widget name="timerlist" position="10,45" size="540,400" scrollbarMode="showOnDemand" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<!-- JobView -->
 	<screen name="JobView" position="center,center" size="560,460" title="Job overview">
+		<panel name="BasicTemplate" />
 		<widget source="job_name" render="Label" position="10,12" size="540,60" font="Regular;28" />
 		<widget source="job_task" render="Label" position="10,90" size="540,50" font="Regular;23" />
 		<widget source="job_progress" render="Progress" position="10,162" size="540,36" borderWidth="2" backgroundColor="#254f7497" />
@@ -1642,14 +1409,10 @@ self.autoResize()
 		<widget source="backgroundable" render="FixedLabel" text="Continue in background" font="Regular;20" halign="center" valign="center" position="360,300" size="140,40" transparent="1" backgroundColor="#18188b" >
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<!-- VirtualKeyBoard -->
 	<screen name="VirtualKeyBoard" position="center,center" size="560,460" zPosition="99" title="Virtual keyboard">
+		<panel name="BasicTemplate" />
 		<ePixmap pixmap="skin_default/vkey_text.png" position="9,45" zPosition="-4" size="542,52" alphatest="on" />
 		<widget source="country" render="Pixmap" position="490,0" size="60,40" alphatest="on" borderWidth="2" borderColor="yellow" >
 			<convert type="ValueToPixmap">LanguageCode</convert>
@@ -1657,11 +1420,6 @@ self.autoResize()
 		<widget name="header" position="10,20" size="540,20" font="Regular;20" transparent="1" noWrap="1" />
 		<widget name="text" position="12,45" size="540,46" font="Regular;46" transparent="1" noWrap="1" halign="right" />
 		<widget name="list" position="10,110" size="540,225" selectionDisabled="1" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="HistoryZapSelector" position="center,center" size="350,240" flags="wfNoBorder" title="History zap...">
 		<widget source="menu" render="Listbox" position="0,10" size="350,220" scrollbarMode="showOnDemand">
@@ -1677,24 +1435,16 @@ self.autoResize()
 		</widget>
 	</screen>
 	<screen name="LogManager" position="center,center" size="560,460" title="Log Manager">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<widget name="list" position="0,70" size="560,300" transparent="0" scrollbarMode="showOnDemand" />
 		<applet type="onLayoutFinish">
 			self["list"].instance.setItemHeight(25)
 		</applet>
 		<widget name="LogsSize" position="0,400" size="560,25" font="Regular;20" foregroundColor="secondFG" transparent="0" halign="center" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="LogManagerViewLog" position="center,center" size="700,460" title="Log Manager" >
 		<widget name="list" position="5,10" size="690,450" font="Console;14" />
@@ -1711,8 +1461,7 @@ self.autoResize()
 		<widget source="statusbar" render="Label" position="10,5" zPosition="10" size="e-10,60" halign="center" valign="center" font="Regular;22" transparent="1" />
 		<widget source="tunerstatusbar" render="Label" position="10,60" zPosition="10" size="e-10,30" halign="center" valign="center" font="Regular;22" transparent="1" />
 		<widget name="config" position="10,100" size="e-10,100" scrollbarMode="showOnDemand" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="c-140,e-45" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="c-140,e-45" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<panel name="Red2Panel" />
 	</screen>
 	<screen name="Dish" flags="wfNoBorder" position="86,100" size="130,200" title="Dish" zPosition="1" backgroundColor="#11396D" >
 		<widget name="Dishpixmap" position="0,0" size="130,160" zPosition="-1" pixmap="skin_default/icons/dish.png" transparent="1" alphatest="on" />
@@ -1733,32 +1482,21 @@ self.autoResize()
 		</widget>
 	</screen>
 	<screen name="InputDeviceSetup" position="center,center" size="560,460">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Yellow2Panel" />
+		<panel name="Blue2Panel" />
 		<widget name="config" position="5,50" size="550,350" scrollbarMode="showOnDemand" />
 		<ePixmap pixmap="skin_default/div-h.png" position="0,400" zPosition="1" size="560,2" />
 		<widget source="introduction" render="Label" position="5,400" size="550,30" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="secondFG" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="InputDeviceSelection" position="center,center" size="560,460">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on"/>
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on"/>
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on"/>
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on"/>
-		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1"/>
-		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1"/>
-		<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1"/>
-		<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1"/>
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Yellow2Panel" />
+		<panel name="Blue2Panel" />
 		<widget source="list" render="Listbox" position="5,50" size="550,280" zPosition="10" scrollbarMode="showOnDemand">
 			<convert type="TemplatedMultiContent">
 			<!--  device, description, devicepng, divpng  -->
@@ -1773,11 +1511,6 @@ self.autoResize()
 		</widget>
 		<ePixmap pixmap="skin_default/div-h.png" position="0,340" zPosition="1" size="560,2"/>
 		<widget source="introduction" render="Label" position="10,350" size="540,50" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="secondFG" backgroundColor="#25062748" transparent="1"/>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="InstallWizardIpkgUpdater" position="center,center" size="600,460" title=" ">
 		<widget source="statusbar" render="Label" position="10,5" zPosition="10" size="e-10,30" halign="center" valign="center" font="Regular;22" transparent="1" />
@@ -1788,90 +1521,57 @@ self.autoResize()
 		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="NetworkMountsMenu" position="center,center" size="560,460">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
 		<widget name="menulist" position="10,55" size="540,300" zPosition="10" scrollbarMode="showOnDemand" />
 		<widget source="introduction" render="Label" position="10,360" size="540,300" font="Regular;19" halign="center" valign="center" foregroundColor="secondFG" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="NetworkServiceSetup" position="center,center" size="560,460">
+		<panel name="BasicTemplate" />
 		<widget name="lab1" position="20,90" size="150,30" font="Regular;20" valign="center" transparent="0"/>
 		<widget name="labactive" position="180,90" size="250,30" font="Regular;20" valign="center" transparent="0"/>
 		<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
 		<widget name="labstop" position="180,160" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
 		<widget name="labrun" position="180,160" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,260" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,260" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,260" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,260" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 	</screen>
 	<screen name="NetworkFtp" position="center,center" size="560,460">
+		<panel name="BasicTemplate" />
 		<widget name="lab1" position="20,30" size="300,80" font="Regular;20" valign="center" transparent="1"/>
 		<widget name="lab2" position="20,150" size="150,30" font="Regular;20" valign="center" transparent="1"/>
 		<widget name="labstop" position="170,150" size="100,30" font="Regular;20" valign="center"  halign="center" backgroundColor="red"/>
 		<widget name="labrun" position="170,150" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
-		<ePixmap pixmap="skin_default/buttons/red.png" position="20,260" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="180,260" size="140,40" alphatest="on" />
-		<widget name="key_red" position="20,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="180,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
 	</screen>
 	<screen name="NetworkNfs" position="center,center" size="560,460">
+		<panel name="BasicTemplate" />
 		<widget name="lab1" position="20,50" size="200,30" font="Regular;20" valign="center" transparent="0"/>
 		<widget name="labactive" position="220,50" size="150,30" font="Regular;20" valign="center" transparent="0"/>
 		<widget name="lab2" position="20,100" size="200,30" font="Regular;20" valign="center" transparent="0"/>
 		<widget name="labstop" position="220,100" size="100,30" font="Regular;20" valign="center"  halign="center" backgroundColor="red"/>
 		<widget name="labrun" position="220,100" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,260" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,260" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,260" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
 	</screen>
 	<screen name="NetworkOpenvpn" position="center,center" size="560,460">
+		<panel name="BasicTemplate" />
 		<widget name="lab1" position="20,90" size="150,30" font="Regular;20" valign="center" transparent="0"/>
 		<widget name="labactive" position="180,90" size="250,30" font="Regular;20" valign="center" transparent="0"/>
 		<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
 		<widget name="labstop" position="180,160" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
 		<widget name="labrun" position="180,160" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,260" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,260" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,260" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,260" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 	</screen>
-	<screen name="NetworkInadyn" position="center,center" size="590,460">
+	<screen name="NetworkInadyn" position="center,center" size="560,460">
+		<panel name="BasicTemplate" />
 		<widget name="autostart" position="10,0" size="100,24" font="Regular;20" valign="center" transparent="0" />
 		<widget name="labdisabled" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
 		<widget name="labactive" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="green" zPosition="2" />
@@ -1890,54 +1590,30 @@ self.autoResize()
 		<widget name="sactive" position="10,250" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32"  alphatest="on" />
 		<widget name="system" position="50,250" size="100,30" font="Regular;20" valign="center" transparent="1"/>
 		<widget name="labsys" position="160,250" size="310,30" font="Regular;20" valign="center" backgroundColor="#4D5375"/>
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,360" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="150,360" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="300,360" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="450,360" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="150,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="300,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="450,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="590,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 	</screen>
 	<screen name="InadynSetup" position="center,center" size="560,460">
+		<panel name="BasicTemplate" />
 		<widget name="config" position="10,10" size="540,240" scrollbarMode="showOnDemand" />
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,300" zPosition="1" size="440,350" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="130,310" size="140,40" alphatest="on" />
-		<widget name="key_red" position="130,310" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<panel name="Red1Panel" />
 		<ePixmap pixmap="skin_default/buttons/key_text.png" position="300,313" zPosition="4" size="35,25" alphatest="on" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="InadynLog" position="center,center" size="590,460">
+		<panel name="BasicTemplate" />
 		<widget name="infotext" position="10,10" size="590,410" font="Console;16" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="590,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="NetworkTelnet" position="center,center" size="560,460">
+		<panel name="BasicTemplate" />
 		<widget name="lab1" position="20,30" size="300,80" font="Regular;20" valign="center" transparent="1"/>
 		<widget name="lab2" position="20,150" size="150,30" font="Regular;20" valign="center" transparent="1"/>
 		<widget name="labstop" position="170,150" size="100,30" font="Regular;20" valign="center"  halign="center" backgroundColor="red"/>
 		<widget name="labrun" position="170,150" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
-		<ePixmap pixmap="skin_default/buttons/red.png" position="20,260" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="180,260" size="140,40" alphatest="on" />
-		<widget name="key_red" position="20,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="180,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="590,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
 	</screen>
 	<screen name="NetworkuShare" position="center,center" size="590,460">
 		<widget name="autostart" position="10,0" size="100,24" font="Regular;20" valign="center" transparent="0" />
@@ -1968,14 +1644,10 @@ self.autoResize()
 		<widget name="dlna" position="250,330" size="200,30" font="Regular;20" valign="center" transparent="1"/>
 		<widget name="dlnainactive" position="470,330" zPosition="1" pixmap="skin_default/icons/lock_off.png" size="32,32"  alphatest="on" />
 		<widget name="dlnaactive" position="470,330" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32"  alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,360" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="150,360" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="300,360" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="450,360" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="150,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="300,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="450,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<eLabel backgroundColor="darkgrey" position="0,430" size="590,2" zPosition="1"/>
 		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
@@ -1983,32 +1655,19 @@ self.autoResize()
 		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="uShareSetup" position="center,center" size="560,460">
+		<panel name="BasicTemplate" />
 		<widget name="config" position="10,10" size="420,240" scrollbarMode="showOnDemand" />
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="440,390" size="440,350" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,360" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="150,360" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="150,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
 		<ePixmap pixmap="skin_default/buttons/key_text.png" position="320,366" zPosition="4" size="35,25" alphatest="on" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="uShareSelection" position="center,center" size="560,460" zPosition="3">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Yellow2Panel" />
 		<widget name="checkList" position="5,50" size="550,350" transparent="1" scrollbarMode="showOnDemand" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="NetworkMiniDLNA" position="center,center" size="590,460">
 		<widget name="autostart" position="10,0" size="100,24" font="Regular;20" valign="center" transparent="0" />
@@ -2036,14 +1695,10 @@ self.autoResize()
 		<widget name="dlna" position="250,300" size="200,30" font="Regular;20" valign="center" transparent="1"/>
 		<widget name="dlnainactive" position="470,300" zPosition="1" pixmap="skin_default/icons/lock_off.png" size="32,32"  alphatest="on" />
 		<widget name="dlnaactive" position="470,300" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32"  alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,360" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="150,360" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="300,360" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="450,360" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="150,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="300,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="450,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<eLabel backgroundColor="darkgrey" position="0,430" size="590,2" zPosition="1"/>
 		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
@@ -2051,18 +1706,12 @@ self.autoResize()
 		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="MiniDLNASetup" position="center,center" size="560,460">
+		<panel name="BasicTemplate" />
 		<widget name="config" position="10,10" size="420,240" scrollbarMode="showOnDemand" />
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="440,390" size="440,350" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,360" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="150,360" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="150,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
 		<ePixmap pixmap="skin_default/buttons/key_text.png" position="320,366" zPosition="4" size="35,25" alphatest="on" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="PTSTimeshiftState" position="center,40" zPosition="2" size="420,70" backgroundColor="transpBlack" flags="wfNoBorder">
 		<widget name="state" position="10,3" size="80,27" font="Regular;20" halign="center" backgroundColor="transpBlack" />
@@ -2082,15 +1731,11 @@ self.autoResize()
 		<widget name="speed" position="35,47" size="80,15" font="Regular; 17" halign="left" foregroundColor="infobar-frgrnd" backgroundColor="infobar_sunken" transparent="1" zPosition="5" />
 	</screen>
 	<screen name="UpdatePlugin" position="center,center" size="560,460">
+		<panel name="BasicTemplate" />
 		<widget name="activityslider" position="10,10" size="540,5" />
 		<widget name="slider" position="10,150" size="540,30"  />
 		<widget source="package" render="Label" position="10,30" size="540,20" font="Regular;18" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 		<widget source="status" render="Label" position="10,180" size="540,100" font="Regular;20" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="UserInterfacePositioner"  position="0,0" size="e,e" backgroundColor="blue" flags="wfNoBorder">
 		<widget name="config" position="c-175,c-75" size="350,150" foregroundColor="black" backgroundColor="blue" />
@@ -2104,14 +1749,11 @@ self.autoResize()
 		<widget source="status" render="Label" position="c-300,e-190" size="600,70" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="black" backgroundColor="blue" transparent="1" />
 	</screen>
 	<screen name="CronTimers" position="center,center" size="590,460" title="Cron Manager">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,00" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_yellow" position="140,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_green" position="280,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" size="140,40" zPosition="1"  font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<widget name="lab1" position="10,100" size="100,24" font="Regular;20" valign="center" transparent="0" />
 		<widget name="labdisabled" position="110,100" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
 		<widget name="labactive" position="110,100" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="green" zPosition="2" />
@@ -2122,131 +1764,69 @@ self.autoResize()
 			<convert type="StringList" />
 		</widget>
 		<widget name="key" position="520,182" size="755,25" font="Regular;20" halign="center" transparent="1" valign="center" backgroundColor="background" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="590,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<!-- ## Autotimer ## -->
 	<screen name="AutoTimerHelp" position="center,center" size="560,460" title=" ">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,00" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget source="key_green" render="Label" position="140,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget source="key_yellow" render="Label" position="280,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget source="key_blue" render="Label" position="420,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Yellow2Panel" />
+		<panel name="Blue2Panel" />
 		<widget name="detailtext" position="10,50" scrollbarMode="showOnDemand" size="540,380" font="Enigma;18" transparent="10" itemHeight="20" enableWrapAround="1" zPosition="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="590,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="AutoTimerSettings" position="center,center" size="560,460" title=" ">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget source="key_green" render="Label" position="140,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
 		<widget name="config" position="10,50" size="540,300" scrollbarMode="showOnDemand" transparent="10" itemHeight="20" enableWrapAround="1" zPosition="1" />
 		<widget source="help" render="Label" position="10,355" size="540,70" foregroundColor="secondFG" transparent="1" valign="center" halign="center" font="Regular;20" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="590,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="AutoTimerEditor" position="center,center" size="560,460" title=" ">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,00" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget source="key_green" render="Label" position="140,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget source="key_yellow" render="Label" position="280,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget source="key_blue" render="Label" position="420,0" size="140,40" zPosition="1"  font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Yellow2Panel" />
+		<panel name="Blue2Panel" />
 		<widget name="config" position="10,50" size="540,300" scrollbarMode="showOnDemand" transparent="10" itemHeight="20" enableWrapAround="1" zPosition="1" />
 		<widget source="help" render="Label" position="10,355" size="540,70" foregroundColor="secondFG" transparent="1" valign="center" halign="center" font="Regular;20" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="590,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="AutoTimerFilterEditor" position="center,center" size="560,460" title=" ">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,00" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget source="key_green" render="Label" position="140,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget source="key_yellow" render="Label" position="280,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget source="key_blue" render="Label" position="420,0" size="140,40" zPosition="1"  font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Yellow2Panel" />
+		<panel name="Blue2Panel" />
 		<widget name="config" position="10,50" size="540,380" scrollbarMode="showOnDemand" transparent="10" itemHeight="20" enableWrapAround="1" zPosition="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="590,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="AutoTimerServiceEditor" position="center,center" size="560,460" title=" ">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,00" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget source="key_green" render="Label" position="140,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget source="key_yellow" render="Label" position="280,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget source="key_blue" render="Label" position="420,0" size="140,40" zPosition="1"  font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Yellow2Panel" />
+		<panel name="Blue2Panel" />
 		<widget name="config" position="10,50" size="540,380" scrollbarMode="showOnDemand" transparent="10" itemHeight="20" enableWrapAround="1" zPosition="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="590,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="AutoTimerImporter" position="center,center" size="560,460" title=" ">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,00" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget source="key_green" render="Label" position="140,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget source="key_yellow" render="Label" position="280,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget source="key_blue" render="Label" position="420,0" size="140,40" zPosition="1"  font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Yellow2Panel" />
+		<panel name="Blue2Panel" />
 		<widget name="list" position="10,50" size="540,380" scrollbarMode="showOnDemand" transparent="10" itemHeight="30" enableWrapAround="1" zPosition="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="590,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="AutoTimerOverview" position="center,center" size="560,460" title=" ">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,00" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget source="key_green" render="Label" position="140,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget source="key_yellow" render="Label" position="280,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget source="key_blue" render="Label" position="420,0" size="140,40" zPosition="1"  font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<ePixmap pixmap="skin_default/buttons/key_menu.png" position="300,435" zPosition="4" size="35,25" alphatest="on" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Yellow2Panel" />
+		<panel name="Blue2Panel" />
+		<panel name="MenuBPanel" />
 		<widget name="entries" position="10,50" size="540,380" scrollbarMode="showOnDemand" font="Regular;22" transparent="1" itemHeight="70" enableWrapAround="1" zPosition="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="590,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="SoftwareUpdateChanges" position="center,center" size="600,460" flags="wfNoBorder">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,2" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_yellow" position="280,2" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_green" position="140,2" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
 		<widget name="text" position="0,50" size="590,340" scrollbarMode="showOnDemand" font="Regular;16" />
 		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="490,8" size="14,14" zPosition="4" />
 		<widget font="Enigma;18" halign="right" position="504,4" render="Label" size="55,22" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
@@ -2260,8 +1840,8 @@ self.autoResize()
 		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="VIXMenu" position="center,center" size="560,460" >
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
 		<widget source="menu" render="Listbox" position="10,60" size="540,260" scrollbarMode="showOnDemand">
 			<convert type="TemplatedMultiContent">
 				{"template": [
@@ -2282,186 +1862,112 @@ self.autoResize()
 				}
 			</convert>
 		</widget>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 		</screen>
 	<screen name="VIXBackupManager" position="center,center" size="560,460">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		<ePixmap pixmap="skin_default/buttons/key_menu.png" position="0,40" size="35,25" alphatest="blend" transparent="1" zPosition="3" />
-		<ePixmap pixmap="skin_default/buttons/key_info.png" position="40,40" size="35,25" alphatest="blend" transparent="1" zPosition="3" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
+		<panel name="MenuBPanel" />
+		<panel name="InfoBPanel" />
 		<widget name="lab1" position="10,50" size="540,50" font="Regular; 18" zPosition="2" transparent="0" halign="center"/>
 		<widget name="list" position="10,105" size="540,250" scrollbarMode="showOnDemand" />
 		<widget name="backupstatus" position="10,370" size="540,30" font="Regular;20" foregroundColor="secondFG" halign="center" zPosition="5" />
 		<applet type="onLayoutFinish">
 			self["list"].instance.setItemHeight(25)
 		</applet>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="BackupSelection" position="center,center" size="560,460">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Yellow2Panel" />
 			<widget name="checkList" position="10,50" size="540,350" transparent="1" scrollbarMode="showOnDemand" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 		</screen>
 	<screen name="XtraPluginsSelection" position="center,center" size="560,460">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Yellow2Panel" />
 			<widget name="checkList" position="10,50" size="540,350" transparent="1" scrollbarMode="showOnDemand" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 		</screen>
 	<screen name="VIXBackupManagerLogView" position="center,center" size="560,460" title="Backup Log">
+		<panel name="BasicTemplate" />
 	<widget name="list" position="10,0" size="540,400" font="Regular;16" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="VIXBackupManagerMenu" position="center,center" size="560,460" backgroundColor="transBG" title=" ">
-		<eLabel backgroundColor="background" position="0,0" size="560,460" zPosition="-1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<widget name="description" position="3,360" size="540,60" zPosition="10" font="Enigma;16" halign="center" valign="center" transparent="0" foregroundColor="secondFG" />
 		<widget source="Title" render="Label" position="3,48" size="490,26" font="Enigma;22" transparent="1" zPosition="1" />
 		<widget name="config" position="3,80" scrollbarMode="showOnDemand" size="540,260" source="menu" transparent="10" itemHeight="20" enableWrapAround="1" zPosition="1" />
 		<widget name="footnote" position="215,435" size="260,19" zPosition="20" font="Regular;18" transparent="1" />
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" />
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" />
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" />
-		<ePixmap alphatest="on" pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" />
-		<widget name="key_red" font="Regular;20" halign="center" position="-2,1" size="140,40" transparent="1" valign="center" zPosition="10" />
-		<widget name="key_green" font="Regular;20" halign="center" position="140,0" size="140,40" transparent="1" valign="center" zPosition="10" />
-		<widget name="key_yellow" font="Regular;20" halign="center" position="280,1" size="140,40" transparent="1" valign="center" zPosition="10" />
-		<widget name="key_blue" font="Regular;20" halign="center" position="420,0" size="140,40" transparent="1" valign="center" zPosition="10" />
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,300" zPosition="1" size="440,350" transparent="1" alphatest="on" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
 	</screen>
 	<screen name="VIXImageManager" position="center,center" size="560,460">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		<ePixmap pixmap="skin_default/buttons/key_menu.png" position="0,40" size="35,25" alphatest="blend" transparent="1" zPosition="3" />
-		<ePixmap pixmap="skin_default/buttons/key_info.png" position="40,40" size="35,25" alphatest="blend" transparent="1" zPosition="3" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
+		<panel name="MenuBPanel" />
+		<panel name="InfoBPanel" />
 		<widget name="lab1" position="10,50" size="540,50" font="Regular; 18" zPosition="2" transparent="0" halign="center"/>
 		<widget name="list" position="10,105" size="540,250" scrollbarMode="showOnDemand" />
 		<widget name="backupstatus" position="10,370" size="540,30" font="Regular;20" foregroundColor="secondFG" halign="center" zPosition="5" />
 		<applet type="onLayoutFinish">
 			self["list"].instance.setItemHeight(25)
 		</applet>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="ImageManagerDownload" position="center,center" size="560,460">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		<ePixmap pixmap="skin_default/buttons/key_menu.png" position="0,40" size="35,25" alphatest="blend" transparent="1" zPosition="3" />
-		<ePixmap pixmap="skin_default/buttons/key_info.png" position="40,40" size="35,25" alphatest="blend" transparent="1" zPosition="3" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
+		<panel name="MenuBPanel" />
+		<panel name="InfoBPanel" />
 		<widget name="lab1" position="10,50" size="540,50" font="Regular; 18" zPosition="2" transparent="0" halign="center"/>
 		<widget name="list" position="10,105" size="540,250" scrollbarMode="showOnDemand" />
 		<applet type="onLayoutFinish">
 			self["list"].instance.setItemHeight(25)
 		</applet>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="VIXIPKInstaller" position="center,center" size="560,460">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<ePixmap pixmap="skin_default/buttons/key_menu.png" position="0,40" size="35,25" alphatest="blend" transparent="1" zPosition="3" />
-		<ePixmap pixmap="skin_default/buttons/key_info.png" position="40,40" size="35,25" alphatest="blend" transparent="1" zPosition="3" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="MenuBPanel" />
+		<panel name="InfoBPanel" />
 		<widget name="lab1" position="10,50" size="540,50" font="Regular; 18" zPosition="2" transparent="0" halign="center"/>
 		<widget name="list" position="10,105" size="540,250" scrollbarMode="showOnDemand" />
 		<applet type="onLayoutFinish">
 			self["list"].instance.setItemHeight(25)
 		</applet>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="IpkgInstaller" position="center,center" size="560,460">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<widget name="list" position="10,105" size="540,250" scrollbarMode="showOnDemand" />
 		<applet type="onLayoutFinish">
 			self["list"].instance.setItemHeight(25)
 		</applet>
 			<widget source="introduction" render="Label" position="10,360" zPosition="10" size="540,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="VIXDevicesPanel" position="center,center" size="560,460">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<widget name="lab1" position="10,50" size="540,50" font="Regular; 18" zPosition="2" transparent="0" halign="center"/>
 		<widget source="list" render="Listbox" position="10,55" size="540,395" transparent="0" scrollbarMode="showOnDemand" >
 			<convert type="TemplatedMultiContent">
@@ -2475,36 +1981,22 @@ self.autoResize()
 				}
 			</convert>
 		</widget>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="VIXDevicePanelConf" position="center,center" size="560,460" title="Choose where to mount your devices to:">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<ePixmap pixmap="skin_default/buttons/key_menu.png" position="0,40" size="35,25" alphatest="blend" transparent="1" zPosition="3" />
-		<ePixmap pixmap="skin_default/buttons/key_info.png" position="40,40" size="35,25" alphatest="blend" transparent="1" zPosition="3" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="MenuBPanel" />
+		<panel name="InfoBPanel" />
 		<widget name="config" position="3,80" scrollbarMode="showOnDemand" size="540,260" source="menu" transparent="10" itemHeight="20" enableWrapAround="1" zPosition="1" />
 		<widget name="Linconn" position="3,360" size="540,60" zPosition="10" font="Enigma;16" halign="center" valign="center" transparent="0" foregroundColor="secondFG" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="VIXSoftcamManager" position="center,center" size="560,460" title="Softcam Setup">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<widget name="lab1" position="40,60" size="170,20" font="Regular; 22" halign="right" zPosition="2" transparent="0" />
 		<widget name="list" position="225,60" size="240,250" transparent="0" scrollbarMode="showOnDemand" enableWrapAround="1"/>
 		<widget name="lab2" position="40,330" size="170,30" font="Regular; 22" halign="right" zPosition="2" transparent="0" />
@@ -2512,52 +2004,27 @@ self.autoResize()
 		<applet type="onLayoutFinish">
 			self["list"].instance.setItemHeight(25)
 		</applet>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/buttons/key_info.png" position="300,435" size="35,25" alphatest="on"/>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on"/>
+		<panel name="InfoBPanel" />
 	</screen>
-
 	<screen name="VIXStartCam" position="center,center" size="560,460" title="Starting Softcam" >
+		<panel name="BasicTemplate" />
 		<widget name="connect" position="217,50" size="64,64" zPosition="2" pixmaps="/usr/share/enigma2/skin_default/busy/busy1.png,/usr/share/enigma2/skin_default/busy/busy2.png,/usr/share/enigma2/skin_default/busy/busy3.png,/usr/share/enigma2/skin_default/busy/busy4.png,/usr/share/enigma2/skin_default/busy/busy5.png,/usr/share/enigma2/skin_default/busy/busy6.png,/usr/share/enigma2/skin_default/busy/busy7.png,/usr/share/enigma2/skin_default/busy/busy8.png,/usr/share/enigma2/skin_default/busy/busy9.png,/usr/share/enigma2/skin_default/busy/busy9.png,/usr/share/enigma2/skin_default/busy/busy10.png,/usr/share/enigma2/skin_default/busy/busy11.png,/usr/share/enigma2/skin_default/busy/busy12.png,/usr/share/enigma2/skin_default/busy/busy13.png,/usr/share/enigma2/skin_default/busy/busy14.png,/usr/share/enigma2/skin_default/busy/busy15.png,/usr/share/enigma2/skin_default/busy/busy17.png,/usr/share/enigma2/skin_default/busy/busy18.png,/usr/share/enigma2/skin_default/busy/busy19.png,/usr/share/enigma2/skin_default/busy/busy20.png,/usr/share/enigma2/skin_default/busy/busy21.png,/usr/share/enigma2/skin_default/busy/busy22.png,/usr/share/enigma2/skin_default/busy/busy23.png,/usr/share/enigma2/skin_default/busy/busy24.png" transparent="1" alphatest="blend" />
 		<widget name="lab1" position="10,150" size="540,50" font="Regular;22" zPosition="1" transparent="0" halign="center"/>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="VIXStopCam" position="center,center" size="560,460" title="Stopping Softcam" >
+		<panel name="BasicTemplate" />
 		<widget name="connect" position="217,50" size="64,64" zPosition="2" pixmaps="/usr/share/enigma2/skin_default/busy/busy1.png,/usr/share/enigma2/skin_default/busy/busy2.png,/usr/share/enigma2/skin_default/busy/busy3.png,/usr/share/enigma2/skin_default/busy/busy4.png,/usr/share/enigma2/skin_default/busy/busy5.png,/usr/share/enigma2/skin_default/busy/busy6.png,/usr/share/enigma2/skin_default/busy/busy7.png,/usr/share/enigma2/skin_default/busy/busy8.png,/usr/share/enigma2/skin_default/busy/busy9.png,/usr/share/enigma2/skin_default/busy/busy9.png,/usr/share/enigma2/skin_default/busy/busy10.png,/usr/share/enigma2/skin_default/busy/busy11.png,/usr/share/enigma2/skin_default/busy/busy12.png,/usr/share/enigma2/skin_default/busy/busy13.png,/usr/share/enigma2/skin_default/busy/busy14.png,/usr/share/enigma2/skin_default/busy/busy15.png,/usr/share/enigma2/skin_default/busy/busy17.png,/usr/share/enigma2/skin_default/busy/busy18.png,/usr/share/enigma2/skin_default/busy/busy19.png,/usr/share/enigma2/skin_default/busy/busy20.png,/usr/share/enigma2/skin_default/busy/busy21.png,/usr/share/enigma2/skin_default/busy/busy22.png,/usr/share/enigma2/skin_default/busy/busy23.png,/usr/share/enigma2/skin_default/busy/busy24.png" transparent="1" alphatest="blend" />
 		<widget name="lab1" position="10,150" size="540,50" font="Regular;22" zPosition="1" transparent="0" halign="center"/>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
-	</screen>-->
+	</screen>
 	<screen name="VIXSoftcamLog" position="center,center" size="560,460">
+		<panel name="BasicTemplate" />
 	<widget name="list" position="10,0" size="540,400" font="Regular;16" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="VIXSwap" position="center,center" size="560,460" title="Swap File Manager">
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<panel name="BasicTemplate" />
+		<panel name="Green1Panel" />
+		<panel name="Yellow1Panel" />
+		<panel name="Blue1Panel" />
 		<widget name="autostart_off" position="10,50" zPosition="1" pixmap="skin_default/icons/lock_off.png" size="32,32" alphatest="on" />
 		<widget name="autostart_on" position="10,50" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32" alphatest="on" />
 		<widget name="lab1" position="50,50" size="360,30" font="Regular;20" valign="center" transparent="1"/>
@@ -2568,10 +2035,5 @@ self.autoResize()
 		<widget name="labsize" position="160,150" size="220,30" font="Regular;20" valign="center" backgroundColor="#4D5375"/>
 		<widget name="inactive" position="160,200" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
 		<widget name="active" position="160,200" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="green"/>
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 </skin>
