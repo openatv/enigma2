@@ -3,7 +3,7 @@ from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import NumberActionMap
 from Components.Pixmap import Pixmap
-from Components.Sources.StaticText import StaticText
+from Components.Label import Label
 from Components.MenuList import MenuList
 from Plugins.Plugin import PluginDescriptor
 from Components.config import config
@@ -23,17 +23,17 @@ class VFDSkinSelector(Screen):
 		self.previewPath = ""
 		path.walk(self.root, self.find, "")
 
-		self["key_red"] = StaticText(_("Close"))
-		self["introduction"] = StaticText(_("Press OK to activate the selected skin."))
 		self.skinlist.sort()
 		self["SkinList"] = MenuList(self.skinlist)
 		self["Preview"] = Pixmap()
+		self["lab1"] = Label(_("Select skin:"))
+		self["lab2"] = Label(_("Preview:"))
+		self["lab3"] = Label(_("Select your skin and press OK to activate the selected skin."))
 
 		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "EPGSelectActions"],
 		{
 			"ok": self.ok,
 			"back": self.close,
-			"red": self.close,
 			"up": self.up,
 			"down": self.down,
 			"left": self.left,
@@ -76,7 +76,7 @@ class VFDSkinSelector(Screen):
 
 	def find(self, arg, dirname, names):
 		for x in names:
-			if x.startswith("skinvfd") and x.endswith(".xml"):
+			if x.startswith("skin_vfd") and x.endswith(".xml"):
 				if dirname <> self.root:
 					subdir = dirname[19:]
 					skinname = x
@@ -100,7 +100,10 @@ class VFDSkinSelector(Screen):
 			pngpath = pngpath.replace(".xml", "_prev.png")
 			pngpath = self.root+pngpath
 		except AttributeError:
-			pngpath = eEnv.resolve("${datadir}/enigma2/vfd_skin/noprev.png")
+			pngpath = resolveFilename("${datadir}/enigma2/vfd_skin/noprev.png")
+		
+		if not path.exists(pngpath):
+			pngpath = eEnv.resolve("${datadir}/enigma2/vfd_skin/noprev.png")		
 		if self.previewPath != pngpath:
 			self.previewPath = pngpath
 

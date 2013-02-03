@@ -98,12 +98,12 @@ addSkin('skin_second_infobar.xml')
 
 # Only one of these is present, compliments of AM_CONDITIONAL
 if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2' or getBoxType() == 'gbquad' or getBoxType() == 'gb800ue':
-	config.skin.vfdskin = ConfigText(default = "vfd_skin/skin_vfd_default.xml")
+	config.skin.vfdskin = ConfigText(default = "skin_vfd_default.xml")
 else:	
 	config.skin.vfdskin = ConfigNothing()	
 
 display_skin_id = 1
-if fileExists('/usr/share/enigma2/vfd_skin/noprev.png'):
+if fileExists('/usr/share/enigma2/vfd_skin/skin_vfd_default.xml'):
 	if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.vfdskin.value)):
 		addSkin(config.skin.vfdskin.value, SCOPE_CONFIG)
 	else:
