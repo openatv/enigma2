@@ -11,9 +11,9 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from os import path, walk
 from enigma import eEnv
 
-class VFDSkinSelector(Screen):
+class LCDSkinSelector(Screen):
 	skinlist = []
-	root = eEnv.resolve("${datadir}/enigma2/vfd_skin/")
+	root = eEnv.resolve("${datadir}/enigma2/lcd_skin/")
 
 	def __init__(self, session, args = None):
 
@@ -43,9 +43,9 @@ class VFDSkinSelector(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		tmp = config.skin.vfdskin.value
+		tmp = config.skin.lcdskin.value
 		if tmp in self.skinlist:
-			tmp = config.skin.vfdskin.value
+			tmp = config.skin.lcdskin.value
 			idx = 0
 			for skin in self.skinlist:
 				if skin == tmp:
@@ -76,7 +76,7 @@ class VFDSkinSelector(Screen):
 
 	def find(self, arg, dirname, names):
 		for x in names:
-			if x.startswith("skin_vfd") and x.endswith(".xml"):
+			if x.startswith("skin_lcd") and x.endswith(".xml"):
 				if dirname <> self.root:
 					subdir = dirname[19:]
 					skinname = x
@@ -88,9 +88,9 @@ class VFDSkinSelector(Screen):
 
 	def ok(self):
 		skinfile = self["SkinList"].getCurrent()
-		print "VFDSkinselector: Selected Skin: ", skinfile
-		config.skin.vfdskin.value = skinfile
-		config.skin.vfdskin.save()
+		print "LCDSkinselector: Selected Skin: ", skinfile
+		config.skin.lcdskin.value = skinfile
+		config.skin.lcdskin.save()
 		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
 
@@ -100,10 +100,10 @@ class VFDSkinSelector(Screen):
 			pngpath = pngpath.replace(".xml", "_prev.png")
 			pngpath = self.root+pngpath
 		except AttributeError:
-			pngpath = resolveFilename("${datadir}/enigma2/vfd_skin/noprev.png")
+			pngpath = resolveFilename("${datadir}/enigma2/lcd_skin/noprev.png")
 		
 		if not path.exists(pngpath):
-			pngpath = eEnv.resolve("${datadir}/enigma2/vfd_skin/noprev.png")		
+			pngpath = eEnv.resolve("${datadir}/enigma2/lcd_skin/noprev.png")		
 		if self.previewPath != pngpath:
 			self.previewPath = pngpath
 

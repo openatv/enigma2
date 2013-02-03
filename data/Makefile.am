@@ -38,9 +38,9 @@ dist_pkgdata_DATA += skin_display.xml
 endif
 
 if HAVE_COLORLCD220
-SUBDIRS += lcd220 vfd_skin220
+SUBDIRS += lcd220 lcd_skin220
 endif
 
 if HAVE_BWLCD255
-SUBDIRS += lcd255 vfd_skin255
+SUBDIRS += lcd255 lcd_skin255
 endif

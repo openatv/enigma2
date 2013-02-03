@@ -98,16 +98,16 @@ addSkin('skin_second_infobar.xml')
 
 # Only one of these is present, compliments of AM_CONDITIONAL
 if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2' or getBoxType() == 'gbquad' or getBoxType() == 'gb800ue':
-	config.skin.vfdskin = ConfigText(default = "skin_vfd_default.xml")
+	config.skin.lcdskin = ConfigText(default = "skin_lcd_default.xml")
 else:	
-	config.skin.vfdskin = ConfigNothing()	
+	config.skin.lcdskin = ConfigNothing()	
 
 display_skin_id = 1
-if fileExists('/usr/share/enigma2/vfd_skin/skin_vfd_default.xml'):
-	if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.vfdskin.value)):
-		addSkin(config.skin.vfdskin.value, SCOPE_CONFIG)
+if fileExists('/usr/share/enigma2/lcd_skin/skin_lcd_default.xml'):
+	if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.lcdskin.value)):
+		addSkin(config.skin.lcdskin.value, SCOPE_CONFIG)
 	else:
-		addSkin('vfd_skin/' + config.skin.vfdskin.value)
+		addSkin('lcd_skin/' + config.skin.lcdskin.value)
 		
 if addSkin('skin_display.xml'):
 	# Color OLED DM800 / DM800SE

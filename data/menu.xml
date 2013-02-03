@@ -132,7 +132,7 @@ self.session.open(RemoteControlCode)
 					<item level="2" text="uShare Setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
 				</menu>
 				<item level="0" text="Skin Setup" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector"/></item>
-				<item requires="OledDisplay" level="0" text="VFD Skin Setup" entryID="vfd_setup"><screen module="VfdSkinSelector" screen="VFDSkinSelector"/></item>
+				<item requires="OledDisplay" level="0" text="LCD Skin Setup" entryID="vfd_setup"><screen module="LcdSkinSelector" screen="LCDSkinSelector"/></item>
 			</menu>
 			<item weight="10" level="1" text="Common Interface" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
 			<item weight="15" level="0" text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>

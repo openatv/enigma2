@@ -273,8 +273,8 @@ data/extensions/Makefile
 data/keymaps/Makefile
 data/lcd220/Makefile
 data/lcd255/Makefile
-data/vfd_skin220/Makefile
-data/vfd_skin255/Makefile
+data/lcd_skin220/Makefile
+data/lcd_skin255/Makefile
 data/rc_models/Makefile
 data/rc_models/dmm0/Makefile
 data/rc_models/dmm1/Makefile
