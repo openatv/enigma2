@@ -1145,8 +1145,22 @@ void eMPEGStreamParserTS::addAccessPoint(off_t offset, pts_t pts, timespec &now,
 void eMPEGStreamParserTS::setPid(int _pid, int type)
 {
 	m_pktptr = 0;
-	m_pid = _pid;
-	m_streamtype = type;
+	/*
+	 * Currently, eMPEGStreamParserTS can only parse mpeg2 (type 0) and h264 (type 1).
+	 * Do not try to parse other stream types, which might lead to false hits,
+	 * and waste cpu time.
+	 */
+	if (type >= 0 && type <= 1)
+	{
+		m_pid = _pid;
+		m_streamtype = type;
+	}
+	else
+	{
+		/* invalidate pid */
+		m_pid = -1;
+		m_streamtype = -1;
+	}
 }
 
 int eMPEGStreamParserTS::getLastPTS(pts_t &last_pts)
