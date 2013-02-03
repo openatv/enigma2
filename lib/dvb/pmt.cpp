@@ -49,9 +49,9 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 	channel->getState(state);
 
 	if ((m_last_channel_state != iDVBChannel::state_ok)
-		&& (state == iDVBChannel::state_ok) && (!m_demux))
+		&& (state == iDVBChannel::state_ok))
 	{
-		if (m_channel)
+		if (!m_demux && m_channel)
 		{
 			if (m_pvr_demux_tmp)
 			{
