@@ -1197,8 +1197,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		<widget name="filelist" position="5,50" size="510,370" scrollbarMode="showOnDemand" />
 	</screen>
-		</screen>
-		<screen name="LCDSkinSelector" position="center,center" size="700,350" title="LCD Skin-Selector" >
+	<screen name="LCDSkinSelector" position="center,center" size="700,350" title="LCD Skin-Selector" >
 		<widget name="lab1" position="50,30" size="200,26" zPosition="1"  font="Regular;22" halign="left" transparent="1" />
 		<widget name="lab2" position="380,30" size="200,26" zPosition="1" font="Regular;22" halign="left" transparent="1" />
 		<widget name="SkinList" position="50,80" size="270,300" scrollbarMode="showOnDemand" />
