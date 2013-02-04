@@ -248,20 +248,15 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			})
 
 	def __onShow(self):
-		self.shown = True
 		self.mediaPlayerInfoBar.hide()
-		self.mediaPlayerInfoBar.shown = False
 
 	def __onHide(self):
-		self.shown = False
 		self.mediaPlayerInfoBar.show()
 		self.hideMediaPlayerInfoBar.start(5000, True)
-		self.mediaPlayerInfoBar.shown = True
 
 	def timerHideMediaPlayerInfoBar(self):
 		self.hideMediaPlayerInfoBar.stop()
 		self.mediaPlayerInfoBar.hide()
-		self.mediaPlayerInfoBar.shown = False
 
 	def doNothing(self):
 		pass
