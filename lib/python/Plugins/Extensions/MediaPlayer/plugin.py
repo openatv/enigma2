@@ -519,10 +519,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				elif self.mediaPlayerInfoBar.shown:
 					self.mediaPlayerInfoBar.hide()
 					self.hideMediaPlayerInfoBar.stop()
-					self.mediaPlayerInfoBar.shown = False
 				else:
 					self.mediaPlayerInfoBar.show()
-					self.mediaPlayerInfoBar.shown = True
 			else:
 				self.changeEntry(self.playlist.getSelectionIndex())
 
