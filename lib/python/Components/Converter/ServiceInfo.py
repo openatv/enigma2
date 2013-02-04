@@ -23,6 +23,7 @@ class ServiceInfo(Converter, object):
 	HAS_HBBTV = 17
 	AUDIOTRACKS_AVAILABLE = 18
 	SUBTITLES_AVAILABLE = 19
+	EDITMODE = 20
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -47,6 +48,7 @@ class ServiceInfo(Converter, object):
 				"HasHBBTV": (self.HAS_HBBTV, (iPlayableService.evUpdatedInfo,iPlayableService.evHBBTVInfo,)),
 				"AudioTracksAvailable": (self.AUDIOTRACKS_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
 				"SubtitlesAvailable": (self.SUBTITLES_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
+				"Editmode": (self.EDITMODE, (iPlayableService.evUpdatedInfo,)),
 			}[type]
 
 	def getServiceInfoString(self, info, what, convert = lambda x: "%d" % x):
@@ -98,6 +100,9 @@ class ServiceInfo(Converter, object):
 			if subtitlelist:
 				return len(subtitlelist) > 0
 			return False
+		elif self.type == self.EDITMODE:
+			return hasattr(self.source, "editmode") and not not self.source.editmode
+		return False
 
 	boolean = property(getBoolean)
 	
