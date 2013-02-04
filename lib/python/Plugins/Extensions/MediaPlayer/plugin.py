@@ -87,6 +87,12 @@ class MediaPixmap(Pixmap):
 		self.coverArtFileName = "/tmp/.id3coverart"
 		self.picload.startDecode(self.coverArtFileName)
 
+class MediaPlayerInfoBar(Screen):
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skinName = "MoviePlayer"
+
 class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport, HelpableScreen):
 	ALLOW_SUSPEND = True
 	ENABLE_RESUME_SUPPORT = True
@@ -201,8 +207,12 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 		InfoBarSeek.__init__(self, actionmap = "MediaPlayerSeekActions")
 
+		self.mediaPlayerInfoBar = self.session.instantiateDialog(MediaPlayerInfoBar)
+
 		self.onClose.append(self.delMPTimer)
 		self.onClose.append(self.__onClose)
+		self.onShow.append(self.__onShow)
+		self.onHide.append(self.__onHide)
 
 		self.righttimer = False
 		self.rightKeyTimer = eTimer()
@@ -211,6 +221,9 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.lefttimer = False
 		self.leftKeyTimer = eTimer()
 		self.leftKeyTimer.callback.append(self.leftTimerFire)
+
+		self.hideMediaPlayerInfoBar = eTimer()
+		self.hideMediaPlayerInfoBar.callback.append(self.timerHideMediaPlayerInfoBar)
 
 		self.currList = "filelist"
 		self.isAudioCD = False
@@ -233,6 +246,22 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				iPlayableService.evUser+12: self.__evPluginError,
 				iPlayableService.evUser+13: self["coverArt"].embeddedCoverArt
 			})
+
+	def __onShow(self):
+		self.shown = True
+		self.mediaPlayerInfoBar.hide()
+		self.mediaPlayerInfoBar.shown = False
+
+	def __onHide(self):
+		self.shown = False
+		self.mediaPlayerInfoBar.show()
+		self.hideMediaPlayerInfoBar.start(5000, True)
+		self.mediaPlayerInfoBar.shown = True
+
+	def timerHideMediaPlayerInfoBar(self):
+		self.hideMediaPlayerInfoBar.stop()
+		self.mediaPlayerInfoBar.hide()
+		self.mediaPlayerInfoBar.shown = False
 
 	def doNothing(self):
 		pass
@@ -270,6 +299,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			self.show()
 
 	def __onClose(self):
+		self.mediaPlayerInfoBar.doClose()
 		self.session.nav.playService(self.oldService)
 
 	def __evUpdatedInfo(self):
@@ -489,7 +519,14 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 		if self.currList == "playlist":
 			if self.playlist.getCurrentIndex() == self.playlist.getSelectionIndex():
-				self.hide()
+				if self.shown:
+					self.hide()
+				elif self.mediaPlayerInfoBar.shown:
+					self.mediaPlayerInfoBar.hide()
+					self.mediaPlayerInfoBar.shown = False
+				else:
+					self.mediaPlayerInfoBar.show()
+					self.mediaPlayerInfoBar.shown = True
 			else:
 				self.changeEntry(self.playlist.getSelectionIndex())
 
