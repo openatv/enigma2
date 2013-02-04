@@ -1,5 +1,5 @@
 <skin>
-	<!--	Skin: Default-ViX PlugIn addition Vs 1.03 	-->
+	<!--	Skin: Default-ViX PlugIn addition Vs 1.04 	-->
 	<!--	This skin is part of the default ViX-skin; the same license applies.	-->
 
 	<screen name="Red1Panel">
@@ -228,7 +228,6 @@
 		<widget name="config" position="10,50" size="540,300" scrollbarMode="showOnDemand" transparent="1" itemHeight="30" font="Enigma;22" enableWrapAround="1" zPosition="1" />
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,300" zPosition="1" size="440,350" transparent="1" alphatest="on" />
 	</screen>
-
 <!-- ## IMDB ##-->
 	<screen name="IMDB" position="center,center" size="560,460" title="nternet Movie Database Details Plugin">
 		<panel name="BasicTemplate" />
@@ -248,7 +247,6 @@
 		<widget name="starsbg" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/IMDb/starsbar_empty.png" position="340,50" zPosition="0" size="210,21" transparent="1" alphatest="on" />
 		<widget name="stars" position="340,50" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/IMDb/starsbar_filled.png" transparent="1" />
 	</screen>
-
 	<screen name="IMDbSetup" position="center,center" size="560,460" title=" ">
 		<panel name="BasicTemplate" />
 		<panel name="Red2Panel" />
@@ -256,5 +254,11 @@
 		<widget name="config" position="10,45" size="540,310" scrollbarMode="showOnDemand" transparent="10" font="Enigma;22" itemHeight="30" enableWrapAround="1" zPosition="1" />
 		<widget source="help" render="Label" position="10,360" size="540,60" zPosition="1" font="Enigma;20" halign="center" valign="center" transparent="0" foregroundColor="secondFG" />
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,150" zPosition="1" size="440,350" transparent="1" alphatest="on" />
+	</screen>
+<!-- ## RecordInfoNar ##-->
+	<screen name="RecInfoBar" title="Records Info" flags="wfNoBorder" position="50,50" size="300,20" backgroundColor="infobarBG" zPosition="5" >
+		<widget name="chNum"   position="0,0"   size="40,20"  zPosition="1" font="Regular;18" halign="right" transparent="1" />
+		<widget name="chName"  position="50,0"  size="160,20" zPosition="1" font="Regular;18" halign="left"  transparent="1" />
+		<widget name="timelen" position="210,0" size="60,20"  zPosition="1" font="Regular;18" halign="right" transparent="1" />
 	</screen>
 </skin>
