@@ -120,7 +120,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.resetState()
 
 	def __repr__(self):
-		return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s)" % (self.name, ctime(self.begin), self.service_ref, self.justplay)
+		if not self.disabled:
+			return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s)" % (self.name, ctime(self.begin), self.service_ref, self.justplay)
+		else:
+			return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s, Disabled)" % (self.name, ctime(self.begin), self.service_ref, self.justplay)
 
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
@@ -448,7 +451,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.start_prepare = self.begin - self.prepare_time
 		self.backoff = 0
 
-		if int(old_prepare) != int(self.start_prepare):
+		if int(old_prepare) >0 and int(old_prepare) != int(self.start_prepare):
 			self.log(15, "record time changed, start prepare is now: %s" % ctime(self.start_prepare))
 
 	def gotRecordEvent(self, record, event):
