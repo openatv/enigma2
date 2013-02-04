@@ -198,7 +198,7 @@ class QuickMenu(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Customise",_("Setup Enigma2"),_("Customise enigma2 personal settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("OSD settings",_("Settings..."),_("Setup your OSD")))
 		self.sublist.append(QuickSubMenuEntryComponent("Button Setup",_("Button Setup"),_("Setup your remote buttons")))
-		if SystemInfo["FrontpanelDisplay"]:
+		if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
 			self.sublist.append(QuickSubMenuEntryComponent("Display Settings",_("Display Setup"),_("Setup your display")))
 		if SystemInfo["OledDisplay"]:
 			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Setup",_("Skin Setup"),_("Setup your LCD")))
