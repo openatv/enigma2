@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 1.33 by Rob van der Does @www.world-of-satellite.com, based on default screen by Andyblac & Magic by Rob van der Does Vs 1.32	-->
+	<!--	Skin: Default-ViX Vs 1.34 by Rob van der Does @www.world-of-satellite.com, based on default screen by Andyblac & Magic by Rob van der Does Vs 1.32	-->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
 	<!--	Do whatever you want with this skin,but don't tell it's yours,or your idea, and leave the credentials in the "About-box" as they are	-->
@@ -79,7 +79,7 @@
 
 	<screen name="Blue1Panel">
 		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="blue" font="Regular;20" halign="center" position="420,0" size="140,40" transparent="1" valign="center" zPosition="10" />
+		<widget name="key_blue" font="Regular;20" halign="center" position="420,0" size="140,40" transparent="1" valign="center" zPosition="10" />
 	</screen>
 
 	<screen name="Red2Panel">
@@ -99,7 +99,7 @@
 
 	<screen name="Blue2Panel">
 		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget source="blue" render="Label" font="Regular;20" halign="center" position="420,0" size="140,40" transparent="1" valign="center" zPosition="10" />
+		<widget source="key_blue" render="Label" font="Regular;20" halign="center" position="420,0" size="140,40" transparent="1" valign="center" zPosition="10" />
 	</screen>
 
 	<screen name="MenuBPanel">
@@ -857,7 +857,7 @@ self.autoResize()
 		<ePixmap pixmap="skin_default/buttons/blue.png" position="520, 537" size="18,18" alphatest="blend" />
 		<widget name="key_blue" position="545, 539" size="125, 26" font="Regular;18" foregroundColor="#1E28B6" backgroundColor="#000000" halign="left" valign="top" transparent="1" />
 	</screen>
-	<screen name="EventViewContextMenu" position="150,160" size="560,460" title="Event view menu" >
+	<screen name="EventViewContextMenu" position="center,center" size="560,460" title="Event view menu" >
 		<panel name="BasicTemplate" />
 		<widget name="menu" position="10,10" size="540,350" scrollbarMode="showOnDemand" />
 	</screen>
