@@ -1,5 +1,5 @@
 from enigma import eDVBResourceManager
-from Tools.Directories import fileExists
+from Tools.Directories import fileExists, resolveFilename, SCOPE_SKIN
 from Tools.HardwareInfo import HardwareInfo
 
 SystemInfo = { }
@@ -29,3 +29,4 @@ SystemInfo["NumFrontpanelLEDs"] = countFrontpanelLEDs()
 SystemInfo["FrontpanelDisplay"] = fileExists("/dev/dbox/oled0") or fileExists("/dev/dbox/lcd0")
 SystemInfo["FrontpanelDisplayGrayscale"] = fileExists("/dev/dbox/oled0")
 SystemInfo["DeepstandbySupport"] = HardwareInfo().get_device_name() != "dm800"
+SystemInfo["OledDisplay"] = fileExists(resolveFilename(SCOPE_SKIN, 'lcd_skin/skin_lcd_default.xml'))

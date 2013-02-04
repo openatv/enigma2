@@ -33,6 +33,7 @@
 			</menu>
 			<menu weight="5" level="0" text="System" entryID="system_selection">
 				<id val="system" />
+				<item requires="OledDisplay" level="0" text="LCD Skin Setup" entryID="vfd_setup"><screen module="LcdSkinSelector" screen="LCDSkinSelector"/></item>
 				<item level="0" entryID="usage_setup"><setup id="usage" /></item>
 				<item level="0" entryID="user_interface"><setup id="userinterface" /></item>
 				<item level="0" entryID="epg_settings"><setup id="epgsettings" /></item>

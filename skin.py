@@ -87,8 +87,20 @@ except (SkinError, IOError, AssertionError), err:
 addSkin('skin_box.xml')
 # add optional discrete second infobar
 addSkin('skin_second_infobar.xml')
+
 # Only one of these is present, compliments of AM_CONDITIONAL
+if getBoxType() == 'gbquad' or getBoxType() == 'gb800ue':
+	config.skin.lcdskin = ConfigText(default = "skin_lcd_default.xml")
+else:	
+	config.skin.lcdskin = ConfigNothing()	
+
 display_skin_id = 1
+if fileExists('/usr/share/enigma2/lcd_skin/skin_lcd_default.xml'):
+	if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.lcdskin.value)):
+		addSkin(config.skin.lcdskin.value, SCOPE_CONFIG)
+	else:
+		addSkin('lcd_skin/' + config.skin.lcdskin.value)
+		
 addSkin('skin_display.xml')
 if addSkin('skin_display96.xml'):
 	# Color OLED

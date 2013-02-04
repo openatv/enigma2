@@ -88,6 +88,15 @@ if test x"$withcolorlcd" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_COLORLCD, test x"$withcolorlcd" != xno)
 
+AC_ARG_WITH(colorlcd220,
+	AC_HELP_STRING([--with-colorlcd220], [use 220x176 16bpp color display, yes or no]),
+	[[withcolorlcd220=$withval]],
+	[[withcolorlcd220=no]]
+)
+if test x"$withcolorlcd220" != xno ; then
+	AC_DEFINE(HAVE_COLORLCD220, 1,[Define when using a 220x176 color display device])
+fi
+AM_CONDITIONAL(HAVE_COLORLCD220, test x"$withcolorlcd220" != xno)
 
 AC_ARG_WITH(oldpvr,
 	AC_HELP_STRING([--with-oldpvr], [use /dev/misc/pvr instead of /dev/dvb/adapterX/dvrX, yes or no]),
@@ -184,6 +193,8 @@ data/fonts/Makefile
 data/countries/Makefile
 data/extensions/Makefile
 data/keymaps/Makefile
+data/lcd220/Makefile
+data/lcd_skin220/Makefile
 data/rc_models/Makefile
 data/rc_models/et4x00/Makefile
 data/rc_models/et6x00/Makefile
