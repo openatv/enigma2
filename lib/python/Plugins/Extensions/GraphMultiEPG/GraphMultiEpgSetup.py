@@ -55,6 +55,8 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Service title mode"), config.misc.graph_mepg.servicetitle_mode))
 		self.list.append(getConfigListEntry(_("Round start time on"), config.misc.graph_mepg.roundTo))
 		self.list.append(getConfigListEntry(_("Function of OK button"), config.misc.graph_mepg.OKButton))
+		self.list.append(getConfigListEntry(_("Alignment of service names"), config.misc.graph_mepg.servicename_alignment))
+		self.list.append(getConfigListEntry(_("Alignment of events"), config.misc.graph_mepg.event_alignment))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)

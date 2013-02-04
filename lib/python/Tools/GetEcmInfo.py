@@ -7,6 +7,7 @@ EMPTY_ECM_INFO = _("Free To Air"),'0','0','0'
 
 old_ecm_time = time.time()
 info = {}
+ecm = ''
 data = EMPTY_ECM_INFO
 
 class GetEcmInfo:
@@ -14,14 +15,14 @@ class GetEcmInfo:
 		global data
 		global old_ecm_time
 		global info
-		if not os.path.isfile(ECM_INFO):
-			data = EMPTY_ECM_INFO
-			info = {}
-			return
+		global ecm
 		try:
 			ecm_time = os.stat(ECM_INFO).st_mtime
 		except:
 			ecm_time = old_ecm_time
+			data = EMPTY_ECM_INFO
+			info = {}
+			ecm = ''
 		if ecm_time != old_ecm_time:
 			oecmi1 = info.get('ecminterval1','')
 			oecmi0 = info.get('ecminterval0','')
@@ -73,9 +74,8 @@ class GetEcmInfo:
 					info['pid'] = ecm[0][ecm[0].find('pid 0x')+6:ecm[0].find(' =')]
 					info['provid'] = info.get('prov', '0')[:4]
 			data = self.getText()
-			return
-		info['ecminterval0'] = int(time.time()-ecm_time+0.5)
-		return
+		else:
+			info['ecminterval0'] = int(time.time()-ecm_time+0.5)
 
 	def getEcmData(self):
 		self.pollEcmData()

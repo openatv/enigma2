@@ -55,6 +55,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			self.end = self.begin
 
 		self.dontSave = False
+		self.disabled = disabled
 		self.timer = None
 		self.__record_service = None
 		self.start_prepare = 0
@@ -79,7 +80,10 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			TIMERTYPE.REBOOT: "reboot",
 			TIMERTYPE.RESTART: "restart"
 			}[self.timerType]
-		return "PowerTimerEntry(type=%s, begin=%s)" % (timertype, ctime(self.begin))
+		if not self.disabled:
+			return "PowerTimerEntry(type=%s, begin=%s)" % (timertype, ctime(self.begin))
+		else:
+			return "PowerTimerEntry(type=%s, begin=%s Disabled)" % (timertype, ctime(self.begin))
 
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
@@ -221,6 +225,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 
 		elif next_state == self.StateEnded:
 			old_end = self.end
+			NavigationInstance.instance.PowerTimer.saveTimer()
 			if self.afterEvent == AFTEREVENT.STANDBY:
 				if not Screens.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished powertimer wants to set your\nSTB_BOX to standby. Do that now?"), timeout = 180)
@@ -247,7 +252,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		else:
 			new_end = entry.begin -30
 
-		dummyentry = PowerTimerEntry(self.begin, new_end, afterEvent = self.afterEvent, timerType = self.timerType)
+		dummyentry = PowerTimerEntry(self.begin, new_end, disabled=True, afterEvent = self.afterEvent, timerType = self.timerType)
 		dummyentry.disabled = self.disabled
 		timersanitycheck = TimerSanityCheck(NavigationInstance.instance.PowerManager.timer_list, dummyentry)
 		if not timersanitycheck.check():

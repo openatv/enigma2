@@ -1,5 +1,5 @@
 <skin>
-	<!--	Skin: Default-ViX PlugIn addition Vs 1.00	-->
+	<!--	Skin: Default-ViX PlugIn addition Vs 1.02	-->
 	<!--	This skin is part of the default ViX-skin; the same license applies.	-->
 
 <!--  ## PlugIns ##  -->
@@ -164,6 +164,35 @@
 		<ePixmap position="220,500" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
 		<widget name="key_red" position="220,500" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" borderColor="black" borderWidth="2" />
 	</screen>
-
-
+<!-- ## RemoteTimer ##-->
+	<screen name="RemoteTimerScreen" position="center,center" size="560,460" title="Remote-Timer digest">
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,00" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="0,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget source="key_green" render="Label" position="140,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<widget source="key_yellow" render="Label" position="280,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<widget source="key_blue" render="Label" position="420,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<widget name="timerlist" position="10,50" size="540,350" scrollbarMode="showOnDemand" transparent="1" font="Enigma;22" itemHeight="50" enableWrapAround="1" zPosition="1" />
+		<widget name="text" position="10,405" size="540,25" foregroundColor="secondFG" transparent="1" valign="center" halign="center" font="Regular;20" />
+		<eLabel backgroundColor="darkgrey" position="0,430" size="590,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
+	</screen>
+	<screen name="RemoteTimerSetup" position="center,center" size="560,460" title="Settings">
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="0,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget source="key_green" render="Label" position="140,0" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<widget name="config" position="10,50" size="540,300" scrollbarMode="showOnDemand" transparent="1" itemHeight="30" font="Enigma;22" enableWrapAround="1" zPosition="1" />
+		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,300" zPosition="1" size="440,350" transparent="1" alphatest="on" />
+		<eLabel backgroundColor="darkgrey" position="0,430" size="590,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/logos/vix.png" position="2,435" size="210,25" alphatest="on" />
+	</screen>
 </skin>

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-11 04:34+0000\n"
+"POT-Creation-Date: 2013-02-01 14:55+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -125,6 +125,9 @@ msgstr " (TV)"
 msgid " and"
 msgstr "ja"
 
+msgid "%-H:%M"
+msgstr "%-H:%M"
+
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
@@ -134,9 +137,6 @@ msgstr "%2d:%02d"
 #, python-format
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
-
-msgid "%A %d %B"
-msgstr "%A %d %B"
 
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
@@ -239,15 +239,15 @@ msgid_plural "%d wireless networks found!"
 msgstr[0] "%d Wifi võrk leitud!"
 msgstr[1] "%d Wifi võrku leitud!"
 
-msgid "%d-%m"
-msgstr "%d-%m"
-
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
 #. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
 msgid "%k:%M %e/%m"
 msgstr "%k:%M %e/%m"
+
+msgid "%s"
+msgstr "%s"
 
 #, python-format
 msgid "%s (%s)\n"
@@ -446,9 +446,6 @@ msgid ""
 msgstr ""
 "Seadistusfaili (%s) on pärast algpaigaldust muudetud.\n"
 "Kas tahad säilitada oma versiooni?"
-
-msgid "A demo plugin for TPM usage."
-msgstr "Demo laiendus TPM kasutamiseks."
 
 msgid ""
 "A finished power timer wants to shut down\n"
@@ -742,10 +739,10 @@ msgid "All satellites"
 msgstr "Kõik satelliidid"
 
 msgid "Allocate"
-msgstr ""
+msgstr "Jaota"
 
 msgid "Allocate unused memory index"
-msgstr ""
+msgstr "Jaota vaba mäluindeks"
 
 msgid "Allow subtitle language to equal audio language"
 msgstr "Luba subtiitrid heli keele valiku järgi"
@@ -765,8 +762,11 @@ msgstr "Võimaldab vastuvõtjal regulaarselt lugeda salvestatud EPG andmeid."
 msgid "Allows the STB_BOX to store the EPG data regularly."
 msgstr "Võimaldab vastuvõtjal regulaarselt salvestada EPG andmeid."
 
+msgid "Allows you hide the extensions of known file types."
+msgstr "Võimaldab peita tuntud failitüüpide laiendid."
+
 msgid "Allows you setup the button to do what you choose."
-msgstr "Võimaldab valida nupu toime."
+msgstr "Võimaldab valida nupu toimingu."
 
 msgid "Allows you to choose the Picons to be displayed on the frontpanel."
 msgstr "Võimaldab kanalilogode näitamise esipaneelil."
@@ -978,16 +978,19 @@ msgid "Auto flesh"
 msgstr "Ihutooni esiletoomine"
 
 msgid "Auto focus"
-msgstr "Ihutooni esiletoomine"
+msgstr "Autofookus"
 
 msgid "Auto focus commencing ..."
-msgstr ""
+msgstr "Autofookus algab..."
 
 msgid "Auto language selection"
 msgstr "Automaatsed keele valikud"
 
 msgid "Auto scart switching"
 msgstr "Autom. SCART ümberlülitus"
+
+msgid "AutoMountManager"
+msgstr "Automaatne haakimine"
 
 msgid "Automatic"
 msgstr "Automaatne"
@@ -1033,9 +1036,6 @@ msgstr "BA"
 
 msgid "BB"
 msgstr "BB"
-
-msgid "BER"
-msgstr "BER"
 
 msgid "BER:"
 msgstr "BER:"
@@ -1182,9 +1182,6 @@ msgstr "Vastu võetud baidid:"
 
 msgid "Bytes sent:"
 msgstr "Saadetud baidid:"
-
-msgid "C"
-msgstr "C"
 
 msgid "C-Band"
 msgstr "C-sagedusala"
@@ -1349,7 +1346,7 @@ msgid "Channel"
 msgstr "Kanal"
 
 msgid "Channel +/- button mode"
-msgstr "+/-nuppude toime"
+msgstr "Channel +/-nuppude toiming"
 
 msgid "Channel 1 at start"
 msgstr "Käivitus kanalil 1"
@@ -1806,6 +1803,9 @@ msgstr "Määra, millist tuunerit eelistatakse, kui sama kanal on saadaval mitme
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr "Määra, millist tuunerit eelistatakse, kui saadaval on rohkem kui üks tuuner. Valikul 'automaatne' annab süsteem eelistuse tuunerile, millel on kõige vähem kanaleid/satelliite."
 
+msgid "Configure your NTP server."
+msgstr "NTP serveri seadistamine."
+
 msgid "Configure your internal LAN"
 msgstr "Seadista sisemine LAN võrk"
 
@@ -2027,9 +2027,6 @@ msgstr "Määra lõikekohad..."
 
 msgid "Czech"
 msgstr "Tšehhi"
-
-msgid "D"
-msgstr "D"
 
 msgid "DHCP"
 msgstr "DHCP"
@@ -2733,7 +2730,7 @@ msgid "Execution finished!!"
 msgstr "Käivitus lõppenud!!"
 
 msgid "Execution progress:"
-msgstr "Käivituse progress:"
+msgstr "Käivituse edenemine:"
 
 msgid "Exif"
 msgstr "Välju"
@@ -3067,7 +3064,7 @@ msgid "Goto X"
 msgstr "Goto X"
 
 msgid "Goto index position"
-msgstr ""
+msgstr "Mine indeksisse"
 
 msgid "Goto next bouquet"
 msgstr "Liigu järgmisele lemmiknimekirjale"
@@ -3170,6 +3167,9 @@ msgstr "Peida kanalivahetuse veateated"
 
 msgid "Hide error messages from the Common Interface module."
 msgstr "Peida CI mooduli veateated."
+
+msgid "Hide known extensions"
+msgstr "Peida tuntud laiendid"
 
 msgid "Hide player"
 msgstr "Peida mängija"
@@ -3370,19 +3370,19 @@ msgid "Index"
 msgstr "Indeks"
 
 msgid "Index allocated:"
-msgstr ""
+msgstr "Indeks jaotatud::"
 
 msgid "Info"
 msgstr "Andmed"
-
-msgid "Info bar"
-msgstr "Inforiba"
 
 msgid "Info button (long)"
 msgstr "Info nupp (pikk)"
 
 msgid "Info button (short)"
 msgstr "Info nupp (lühike)"
+
+msgid "InfoBar"
+msgstr "Inforiba"
 
 msgid "InfoBar EPG"
 msgstr "Inforiba EPG"
@@ -3406,7 +3406,7 @@ msgid "Initial fast forward speed"
 msgstr "Edasikerimise algkiirus"
 
 msgid "Initial lock ratio"
-msgstr ""
+msgstr "Algne lukustussuhe"
 
 msgid "Initial rewind speed"
 msgstr "Tagasikerimise algkiirus"
@@ -3772,7 +3772,7 @@ msgid "Location"
 msgstr "Asukoht"
 
 msgid "Lock ratio"
-msgstr ""
+msgstr "Lukusta suhe"
 
 msgid "Lock:"
 msgstr "Lukus:"
@@ -3906,6 +3906,9 @@ msgstr "Meediamängija"
 
 msgid "Media scanner"
 msgstr "Meediaskanner"
+
+msgid "MediaPlayer"
+msgstr "Meediamängija"
 
 msgid "Medium is not a writeable DVD!"
 msgstr "DVD ketas ei ole kirjutatav!"
@@ -4067,8 +4070,8 @@ msgstr "Filmi valik"
 msgid "Movie/Drama"
 msgstr "Film/draama"
 
-msgid "Movielist menu"
-msgstr "Filmilisti menüü"
+msgid "MoviePlayer"
+msgstr "Filmimängija"
 
 msgid "Moving"
 msgstr "Liigutamine"
@@ -4109,6 +4112,9 @@ msgstr "Muusika/ballett/tants"
 msgid "Mute"
 msgstr "Vaikus"
 
+msgid "MyTubePlayerMainScreen..."
+msgstr "MyTube mängija..."
+
 msgid "N/A"
 msgstr "Ei ole kasutusel"
 
@@ -4135,6 +4141,9 @@ msgstr "PRAEGU"
 
 msgid "NTP"
 msgstr "NTP"
+
+msgid "NTP server"
+msgstr "NTP server"
 
 msgid "NTSC"
 msgstr "NTSC"
@@ -4175,6 +4184,9 @@ msgstr "Võrgu ID"
 
 msgid "Network Information"
 msgstr "Võrgumaski teave"
+
+msgid "Network Neighbourhood"
+msgstr "Võrgunaabrus"
 
 msgid "Network Servers:"
 msgstr "Võrguserverid:"
@@ -4306,6 +4318,9 @@ msgstr "Võrgu ühendus pole saadaval."
 
 msgid "No networks found"
 msgstr "Võrke ei leitud"
+
+msgid "No new plugins found"
+msgstr "Uusi laiendusi ei leitud"
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Pole, mida vahetada (suurendada või vähendada)"
@@ -4481,9 +4496,6 @@ msgstr "Uuendusi ei ole"
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Hetkel"
-
-msgid "Now playing"
-msgstr "Hetkel esitatakse"
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Nüüd suurenda kontrastsuse seadmise abil pildi tausta heledust nii palju kui võimalik, aga veendu, et sa näed siiski erinevust kahe kõige heledama varjundi vahel. Kui see on tehtud, vajuta OK."
@@ -4751,8 +4763,14 @@ msgstr "Telefoninumber"
 msgid "PiP"
 msgstr "PiP"
 
-msgid "PiP setup"
+msgid "PiP-Zap"
+msgstr "PiP-kanalivahetus"
+
+msgid "PiPSetup"
 msgstr "PiP seaded"
+
+msgid "PiPZap"
+msgstr "PiP-kanalivahetus"
 
 msgid "Picon"
 msgstr "Kanalilogo"
@@ -5266,9 +5284,6 @@ msgstr "RF-väljund"
 msgid "RGB"
 msgstr "RGB"
 
-msgid "Radio"
-msgstr "Raadio"
-
 msgid "Random"
 msgstr "Juhuslik"
 
@@ -5389,6 +5404,9 @@ msgstr "Suhteline"
 
 msgid "Release"
 msgstr "Stabiilne väljalase"
+
+msgid "Release Notes"
+msgstr "Väljalasketeade"
 
 msgid "Reload"
 msgstr "Lae uuesti"
@@ -5634,9 +5652,6 @@ msgstr "SID"
 msgid "SINGLE LAYER DVD"
 msgstr "ÜHEKIHILINE DVD"
 
-msgid "SNR"
-msgstr "SNR"
-
 msgid "SNR:"
 msgstr "SNR:"
 
@@ -5814,6 +5829,9 @@ msgstr "Otsin uusi paigaldatud või kustutatud pakette. Oota..."
 msgid "Searching west ..."
 msgstr "Otsitakse läände..."
 
+msgid "SecondInfoBar"
+msgstr "Teine inforiba"
+
 msgid "Secondary DNS"
 msgstr "Teine nimeserver"
 
@@ -5959,10 +5977,10 @@ msgid "Select video mode"
 msgstr "Vali videorežiim"
 
 msgid "Select what you want the Channel +/- button to activate:"
-msgstr "Vali Channel +/- nupu toime:"
+msgstr "Vali Channel +/- nupu toiming"
 
 msgid "Select what you want the TV button to activate:"
-msgstr "Vali TV nupu toime:"
+msgstr "Vali TV nupu toiming"
 
 msgid "Select wireless network"
 msgstr "Vali WiFi võrk"
@@ -6081,6 +6099,9 @@ msgstr ""
 msgid "Service width"
 msgstr "Kanalinime laius"
 
+msgid "Serviceinfo"
+msgstr "Kanali andmed"
+
 msgid "Services"
 msgstr "Kanalid"
 
@@ -6181,7 +6202,7 @@ msgid "Set to the desired primetime (minutes."
 msgstr "Määra tippajaks (minutid)."
 
 msgid "Set to what you want the button to do."
-msgstr "Määra nupu toime."
+msgstr "Määra nupu toiming."
 
 msgid "Set voltage and 22KHz"
 msgstr "Määra pinge ja 22KHz"
@@ -6275,7 +6296,7 @@ msgid "Show EPG for current channel..."
 msgstr "Näita käesoleva saate kava..."
 
 msgid "Show Games show"
-msgstr ""
+msgstr "Viktoriin"
 
 msgid "Show Log"
 msgstr "Näita logi"
@@ -6620,6 +6641,9 @@ msgstr "Tarkvara uuendamine"
 msgid "Softwaremanager information"
 msgstr "Tarkvarahalduri andmed"
 
+msgid "Softwaremanager..."
+msgstr "Tarkvarahaldur..."
+
 msgid "Some plugins are not available:\n"
 msgstr "Mõned laiendused pole saadaval:\n"
 
@@ -6749,10 +6773,10 @@ msgid "Step west"
 msgstr "Samm läände"
 
 msgid "Stepped east"
-msgstr ""
+msgstr "Samm itta"
 
 msgid "Stepped west"
-msgstr ""
+msgstr "Samm läände"
 
 msgid "Stop"
 msgstr "Peata"
@@ -6953,6 +6977,9 @@ msgstr "Temperatuur: %s"
 msgid "System: "
 msgstr "Süsteem: "
 
+msgid "Systeminfo"
+msgstr "Süsteemi andmed"
+
 msgid "TB"
 msgstr "TB"
 
@@ -6967,7 +6994,7 @@ msgid "TSID"
 msgstr "TSID"
 
 msgid "TV button mode"
-msgstr "TV nupu toime"
+msgstr "TV nupu toiming"
 
 msgid "TV physical address report"
 msgstr "TV füüsilise aadressi raport"
@@ -7449,6 +7476,8 @@ msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
+"See arvutab (uuesti) kõik mootori positsioonid ning võib kustutada varem salvestatud positsioonid ja peenhäälestuse!\n"
+"Kas oled kindel?"
 
 msgid "Three"
 msgstr "Kolm"
@@ -8078,6 +8107,9 @@ msgstr "Video abimees"
 msgid "Video: %s fps"
 msgstr "Video: %s fps"
 
+msgid "VideoEnhancementPreview"
+msgstr "Pildi paranduste eelvaade"
+
 msgid "Videocodec"
 msgstr "Videokoodek"
 
@@ -8161,6 +8193,9 @@ msgstr "Virtuaalklahvistik"
 
 msgid "Virtuosso Image Xtreme"
 msgstr "Virtuosso Image Xtreme"
+
+msgid "Vol"
+msgstr "Helitugevus"
 
 msgid "Voltage mode"
 msgstr "Pinge valik"
@@ -8271,7 +8306,7 @@ msgid "Weekly"
 msgstr "Iga nädal"
 
 msgid "Weighted position"
-msgstr ""
+msgstr "Kaalutud positsioon"
 
 msgid ""
 "Welcome to the cutlist editor.\n"
@@ -9168,6 +9203,9 @@ msgstr "lõpeta lõige siin"
 msgid "end favourites edit"
 msgstr "salvesta muudatused ja välju"
 
+msgid "enter number to jump to channel."
+msgstr "kanalile minekuks sisesta number."
+
 msgid "entertainment (10-16 year old)"
 msgstr "meelelahutus (10-16 aastastele)"
 
@@ -9494,7 +9532,7 @@ msgid "off"
 msgstr "väljas"
 
 msgid "offset is"
-msgstr ""
+msgstr "nihe on"
 
 msgid "on"
 msgstr "sees"
@@ -9758,7 +9796,7 @@ msgid "show transponder info"
 msgstr "näita transponderi infot"
 
 msgid "show/game show (general)"
-msgstr ""
+msgstr "show/viktoriin"
 
 msgid "shuffle"
 msgstr "segatud"
@@ -10012,6 +10050,24 @@ msgstr "kanalivahetus"
 msgid "zapped"
 msgstr "vahetatud"
 
+#~ msgid "%A %d %B"
+#~ msgstr "%A %d %B"
+
+#~ msgid "%d-%m"
+#~ msgstr "%d-%m"
+
+#~ msgid "A demo plugin for TPM usage."
+#~ msgstr "Demo laiendus TPM kasutamiseks."
+
+#~ msgid "BER"
+#~ msgstr "BER"
+
+#~ msgid "C"
+#~ msgstr "C"
+
+#~ msgid "D"
+#~ msgstr "D"
+
 #~ msgid "Hardware:"
 #~ msgstr "Vastuvõtja:"
 
@@ -10021,14 +10077,26 @@ msgstr "vahetatud"
 #~ msgid "Last Update:"
 #~ msgstr "Uuendatud:"
 
+#~ msgid "Movielist menu"
+#~ msgstr "Filmilisti menüü"
+
 #~ msgid "No sat tuner found!"
 #~ msgstr "Satituunerit ei leitud"
+
+#~ msgid "Now playing"
+#~ msgstr "Hetkel esitatakse"
 
 #~ msgid "Positioner Setup"
 #~ msgstr "Positsioneeri seadistus"
 
 #~ msgid "Positioner fine movement"
 #~ msgstr "Positsioneeri täppisliigutamine"
+
+#~ msgid "Radio"
+#~ msgstr "Raadio"
+
+#~ msgid "SNR"
+#~ msgstr "SNR"
 
 #~ msgid "Version:"
 #~ msgstr "Versioon:"

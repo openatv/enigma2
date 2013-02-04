@@ -14,13 +14,13 @@ class AutoDiseqc(Screen, ConfigListScreen):
 	]
 
 	sat_frequencies = [
-		# astra 282 bbc
-		( 10773, 22000, \
+		# astra 282 skyone
+		( 10802, 22200, \
 		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_5_6, \
-		eDVBFrontendParametersSatellite.Inversion_Off, 282, \
-		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
-		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
-		2045, 2, "Astra 2 28.2e"),
+		eDVBFrontendParametersSatellite.Inversion_Unknown, 282, \
+		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_QPSK, \
+		eDVBFrontendParametersSatellite.RollOff_alpha_0_35, eDVBFrontendParametersSatellite.Pilot_Unknown, \
+		2047, 2, "Astra 2 28.2e"),
 
 		# astra 235 astra ses
 		( 12168, 27500, \
@@ -211,24 +211,24 @@ class AutoDiseqc(Screen, ConfigListScreen):
 	def tunerStatusCallback(self):
 		dict = {}
 		self.frontend.getFrontendStatus(dict)
-
-		self["tunerstatusbar"].setText(_("Tuner status %s") % (dict["tuner_state"]))
-
-		if dict["tuner_state"] == "LOCKED":
+		if dict["tuner_state"] == "TUNING":
+			self["tunerstatusbar"].setText(_("Tuner status:") + " " + _("TUNING"))
+		elif dict["tuner_state"] == "LOCKED":
+			self["tunerstatusbar"].setText(_("Tuner status:") + " " + _("ACQUIRING TSID/ONID"))
 			self.raw_channel.requestTsidOnid(self.gotTsidOnid)
-
-		if dict["tuner_state"] == "LOSTLOCK" or dict["tuner_state"] == "FAILED":
+		elif dict["tuner_state"] == "LOSTLOCK" or dict["tuner_state"] == "FAILED":
+			self["tunerstatusbar"].setText(_("Tuner status:") + " " + _("FAILED"))
 			self.tunerStopScan(False)
 			return
 
 		self.count += 1
-		if self.count > 10:
-			self.tunerStopScan(False)
+		if self.count > 15:
+			self.startStatusTimer()
 		else:
 			self.startTunerStatusTimer()
 
 	def startTunerStatusTimer(self):
-		self.tunerStatusTimer.start(1000, True)
+		self.tunerStatusTimer.start(2000, True)
 
 	def gotTsidOnid(self, tsid, onid):
 		self.tunerStatusTimer.stop()
