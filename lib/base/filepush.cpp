@@ -133,15 +133,16 @@ void eFilePushThread::thread()
 						continue;
 				}
 			}
-			
+
+			if (m_stop)
+				break;
+
 				/* in stream_mode, we are sending EOF events 
 				   over and over until somebody responds.
 				   
 				   in stream_mode, think of evtEOF as "buffer underrun occurred". */
 			sendEvent(evtEOF);
 
-			if (m_stop)
-				break;
 			if (m_stream_mode)
 			{
 				eDebug("reached EOF, but we are in stream mode. delaying 1 second.");

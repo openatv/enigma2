@@ -99,7 +99,7 @@ class ParentalControl:
 			if self.serviceLevel.has_key(service):
 				levelNeeded = self.serviceLevel[service]
 			pinList = self.getPinList()[:levelNeeded + 1]
-			Notifications.AddNotificationWithCallback(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry = config.ParentalControl.retries.servicepin, pinList = pinList, service = ServiceReference(ref).getServiceName(), title = _("this service is protected by a parental control pin"), windowTitle = _("Parental control"))
+			Notifications.AddNotificationParentalControl(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry = config.ParentalControl.retries.servicepin, pinList = pinList, service = ServiceReference(ref).getServiceName(), title = _("this service is protected by a parental control pin"), windowTitle = _("Parental control"))
 			return False
 		else:
 			return True
