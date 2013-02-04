@@ -637,6 +637,9 @@ class EPGSelection(Screen, HelpableScreen):
 			self.infoKeyPressed(True)
 
 	def closeScreen(self):
+		if self.type == None:
+			self.close()
+			return
 		if self.type == EPG_TYPE_SINGLE:
 			self.close()
 			return
