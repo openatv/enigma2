@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 0.01 by Rob van der Does @www.world-of-satellite.com,  based on Magic-EHD Vs 1.91.54	-->
+	<!--	Skin: Default-ViX Vs 0.02 by Rob van der Does @www.world-of-satellite.com,  based on Magic-EHD Vs 1.91.54	-->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
 	<!--	Do whatever you want with this skin,but don't tell it's yours,or your idea, and leave the credentials in the "About-box" as they are	-->
@@ -760,7 +760,7 @@
 	<screen name="About" position="0,0" size="1280,720" flags="wfNoBorder">
 		<panel name="BasicTemplate"/>
 		<panel name="InfoBPanel" />
-		<eLabel text="= Release notes" position="1050,682" size="220,26" font="Regular;22" halign="left" transparent="1" zPosition="1" foregroundColor="grey" />
+		<eLabel text="Release notes = " position="980,687" size="220,26" font="Regular;22" halign="right" transparent="1" zPosition="1" foregroundColor="grey" />
 		<widget source="lab1" render="Label" position="10,455" size="500,25" font="Regular;24" transparent="0" zPosition="2" foregroundColor="secondFG" halign="center" />
 		<widget source="lab2" render="Label" position="10,480" size="500,20" font="Crs; 20" transparent="0" zPosition="2" foregroundColor="grey" halign="center" />
 		<widget source="lab3" render="Label" position="10,500" size="500,20" font="Crs; 20" transparent="0" zPosition="1" foregroundColor="grey" halign="center" />
