@@ -9,6 +9,8 @@ from Components.PluginComponent import plugins
 from Components.MenuList import MenuList
 from Components.TimerList import TimerList
 from Components.UsageConfig import preferredTimerPath
+from Components.Sources.ServiceEvent import ServiceEvent
+from Components.Sources.Event import Event
 from enigma import eEPGCache, eTimer, eServiceReference
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry
@@ -52,12 +54,14 @@ class EventViewBase:
 	ADD_TIMER = 0
 	REMOVE_TIMER = 1
 	
-	def __init__(self, Event, Ref, callback=None, similarEPGCB=None):
+	def __init__(self, event, Ref, callback=None, similarEPGCB=None):
 		self.similarEPGCB = similarEPGCB
 		self.cbFunc = callback
 		self.currentService=Ref
 		self.isRecording = (not Ref.ref.flags & eServiceReference.isGroup) and Ref.ref.getPath()
-		self.event = Event
+		self.event = event
+		self["Service"] = ServiceEvent()
+		self["Event"] = Event()
 		self["epg_description"] = ScrollLabel()
 		self["datetime"] = Label()
 		self["channel"] = Label()
@@ -149,10 +153,11 @@ class EventViewBase:
 
 	def setService(self, service):
 		self.currentService=service
+		self["Service"].newService(service.ref)
 		if self.isRecording:
 			self["channel"].setText(_("Recording"))
 		else:
-			name = self.currentService.getServiceName()
+			name = service.getServiceName()
 			if name is not None:
 				self["channel"].setText(name)
 			else:
@@ -168,6 +173,7 @@ class EventViewBase:
 
 	def setEvent(self, event):
 		self.event = event
+		self["Event"].newEvent(event)
 		if event is None:
 			return
 		text = event.getEventName()
