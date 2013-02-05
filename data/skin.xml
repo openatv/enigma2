@@ -89,26 +89,24 @@
 		<color name="WindowTitleForeground" color="foreground" />
 		<color name="WindowTitleBackground" color="background" />
 		<borderset name="bsWindow">
-			<pixmap filename="/usr/share/enigma2/skin_default/window/oben_links.png" pos="bpTopLeft" />
-			<pixmap filename="/usr/share/enigma2/skin_default/window/oben.png" pos="bpTop" />
-			<pixmap filename="/usr/share/enigma2/skin_default/window/oben_rechts.png" pos="bpTopRight" />
-			<pixmap filename="/usr/share/enigma2/skin_default/window/links.png" pos="bpLeft" />
-			<pixmap filename="/usr/share/enigma2/skin_default/window/rechts.png" pos="bpRight" />
-			<pixmap filename="/usr/share/enigma2/skin_default/window/unten_links.png" pos="bpBottomLeft" />
-			<pixmap filename="/usr/share/enigma2/skin_default/window/unten.png" pos="bpBottom" />
-			<pixmap filename="/usr/share/enigma2/skin_default/window/unten_rechts.png" pos="bpBottomRight" />
+			<pixmap filename="skin_default/window/oben_links.png" pos="bpTopLeft" />
+			<pixmap filename="skin_default/window/oben.png" pos="bpTop" />
+			<pixmap filename="skin_default/window/oben_rechts.png" pos="bpTopRight" />
+			<pixmap filename="skin_default/window/links.png" pos="bpLeft" />
+			<pixmap filename="skin_default/window/rechts.png" pos="bpRight" />
+			<pixmap filename="skin_default/window/unten_links.png" pos="bpBottomLeft" />
+			<pixmap filename="skin_default/window/unten.png" pos="bpBottom" />
+			<pixmap filename="skin_default/window/unten_rechts.png" pos="bpBottomRight" />
 		</borderset>
 		<borderset name="bsListboxEntry">
-			<pixmap filename="/usr/share/enigma2/skin_default/border/line.png" pos="bpTop" />
-			<pixmap filename="/usr/share/enigma2/skin_default/border/line.png" pos="bpBottom" />
+			<pixmap filename="skin_default/border/line.png" pos="bpTop" />
+			<pixmap filename="skin_default/border/line.png" pos="bpBottom" />
 		</borderset>
 	</windowstyle>
 
-
-
 	<!--	## InfoBars ## -->
 	<screen name="InfoBar" position="0,510" size="1280,400" backgroundColor="transparent" flags="wfNoBorder">
-		<ePixmap alphatest="off" pixmap="/usr/share/enigma2/skin_default/infobar/hd.png" position="0,-7" size="1280,220" zPosition="-1" />
+		<ePixmap alphatest="off" pixmap="skin_default/infobar/hd.png" position="0,-7" size="1280,220" zPosition="-1" />
 		<widget source="session.CurrentService" render="PiconBg" position="44,44" size="102,62" transparent="0" alphatest="blend" zPosition="1" />
 		<widget source="session.CurrentService" render="Picon" position="45,45" size="100,60" alphatest="blend" backgroundColor="secondBG" transparent="1" zPosition="1">
 			<convert type="ServiceName">Reference</convert>
@@ -145,17 +143,14 @@
 			<convert type="EventTime">Duration</convert>
 			<convert type="ClockToText">InMinutes</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Progress" pixmap="/usr/share/enigma2/skin_default/infobar/pbar.png" position="180,103" size="840,8" backgroundColor="un33333a" transparent="0" zPosition="2" borderWidth="0">
+		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/infobar/pbar.png" position="180,103" size="840,8" backgroundColor="un33333a" transparent="0" zPosition="2" borderWidth="0">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="/usr/share/enigma2/skin_default/icons/icon_stableupdate.png" position="5,45" size="32,32" zPosition="10" alphatest="blend" >
+		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="skin_default/icons/icon_stableupdate.png" position="5,45" size="32,32" zPosition="10" alphatest="blend" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="/usr/share/enigma2/skin_default/icons/icon_unstableupdate.png" position="5,45" size="32,32" zPosition="10" alphatest="blend" >
+		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="skin_default/icons/icon_unstableupdate.png" position="5,45" size="32,32" zPosition="10" alphatest="blend" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
-
-
-
 </skin>
