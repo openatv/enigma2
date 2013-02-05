@@ -539,16 +539,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		esize = self.l.getItemSize()
 		width = esize.width()
 		height = esize.height()
-
-		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_INFOBAR:
-			if self.type == EPG_TYPE_INFOBAR:
-				fontwdith = config.epgselection.infobar_eventfs.getValue()
-			else:
-				fontwdith = config.epgselection.enhanced_eventfs.getValue()
-			self.weekday_rect = Rect(0, 0, float(width / 100) * (10 + (fontwdith / 2)) , height)
-			self.datetime_rect = Rect(self.weekday_rect.width(), 0, float(width / 100) * (25 + fontwdith), height)
-			self.descr_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width(), 0, float(width / 100) * (70 + fontwdith), height)
-		elif self.type == EPG_TYPE_MULTI:
+		if self.type == EPG_TYPE_MULTI:
 			xpos = 0;
 			w = width / 10 * 3;
 			self.service_rect = Rect(xpos, 0, w-10, height)
@@ -580,11 +571,10 @@ class EPGList(HTMLComponent, GUIComponent):
 			if piconWidth > w - 2 * self.serviceBorderWidth:
 				piconWidth = w - 2 * self.serviceBorderWidth
 			self.picon_size = eSize(piconWidth, piconHeight)
-		else: # EPG_TYPE_SIMILAR
-			fontwdith = config.epgselection.enhanced_eventfs.getValue()
-			self.weekday_rect = Rect(0, 0, float(width / 100) * (10 + (fontwdith / 2)) , height)
-			self.datetime_rect = Rect(self.weekday_rect.width(), 0, float(width / 100) * (25 + fontwdith), height)
-			self.service_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width(), 0, float(width / 100) * (70 + fontwdith), height)
+		else:
+			self.weekday_rect = Rect(0, 0, float(width * 10) / 100, height)
+			self.datetime_rect = Rect(self.weekday_rect.width(), 0, float(width * 25) / 100, height)
+			self.descr_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width(), 0, float(width * 62) / 100, height)
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
@@ -616,7 +606,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		r2 = self.datetime_rect
 		r3 = self.descr_rect
 		t = localtime(beginTime)
-
 		res = [
 			None, # no private data needed
 			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
@@ -624,8 +613,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		]
 		if clock_pic is not None:
 			res.extend((
-				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-8, (r3.h/2-11), 21, 21, clock_pic),
-				(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-8, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
+				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, clock_pic),
+				(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-21, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
 			))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
