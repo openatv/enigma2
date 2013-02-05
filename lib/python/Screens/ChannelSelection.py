@@ -18,6 +18,7 @@ profile("ChannelSelection.py 2.1")
 from Components.Sources.RdsDecoder import RdsDecoder
 profile("ChannelSelection.py 2.2")
 from Components.Sources.ServiceEvent import ServiceEvent
+from Components.Sources.Event import Event
 profile("ChannelSelection.py 2.3")
 from Components.Input import Input
 profile("ChannelSelection.py 3")
@@ -388,6 +389,7 @@ class ChannelContextMenu(Screen):
 class SelectionEventInfo:
 	def __init__(self):
 		self["Service"] = self["ServiceEvent"] = ServiceEvent()
+		self["Event"] = Event()
 		self.servicelist.connectSelChanged(self.__selectionChanged)
 		self.timer = eTimer()
 		self.timer.callback.append(self.updateEventInfo)
@@ -399,7 +401,9 @@ class SelectionEventInfo:
 
 	def updateEventInfo(self):
 		cur = self.getCurrentSelection()
-		self["ServiceEvent"].newService(cur)
+		service = self["Service"]
+		service.newService(cur)
+		self["Event"].newEvent(service.event)
 
 class ChannelSelectionEPG:
 	def __init__(self):
