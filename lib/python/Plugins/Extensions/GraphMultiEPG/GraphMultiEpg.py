@@ -717,7 +717,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.key_green_choice = self.EMPTY
 		self.key_red_choice = self.EMPTY
 		self["timeline_text"] = TimelineText()
-		self["ServiceEvent"] = ServiceEvent()
+		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
 		self.time_lines = [ ]
 		for x in range(0, MAX_TIMELINES):
@@ -1011,7 +1011,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			return
 
 		servicerefref = cur[1].ref
-		self["ServiceEvent"].newService(servicerefref)
+		self["Service"].newService(servicerefref)
 
 		if self.key_red_choice != self.ZAP:
 			self["key_red"].setText(_("Zap"))
