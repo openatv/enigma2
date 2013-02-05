@@ -5,7 +5,7 @@ import os
 
 profile("LOAD:enigma_skin")
 from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, addFont, gRGB, eWindowStyleSkinned, getDesktop, getBoxType
-from Components.config import ConfigSubsection, ConfigText, config
+from Components.config import ConfigSubsection, ConfigText, config, ConfigNothing
 from Components.Converter.Converter import Converter
 from Components.Sources.Source import Source, ObsoleteSource
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
@@ -234,7 +234,7 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 				skinAttributes.append((attrib, value.encode("utf-8")))
 	if pos is not None:
 		pos, size = context.parse(pos, size, font)
-	        skinAttributes.append(('position', pos))
+		skinAttributes.append(('position', pos))
 	if size is not None:
 		skinAttributes.append(('size', size))
 
@@ -482,8 +482,8 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			addFont(resolved_font, name, scale, is_replacement, render)
 			#print "Font: ", resolved_font, name, scale, is_replacement
 		for alias in c.findall("alias"):
-		        get = alias.attrib.get
-		        try:
+			get = alias.attrib.get
+			try:
 				name = get("name")
 				font = get("font")
 				size = int(get("size"))
@@ -656,7 +656,7 @@ class SizeTuple(tuple):
 
 class SkinContext:
 	def __init__(self, parent=None, pos=None, size=None, font=None):
-	        if parent is not None:
+		if parent is not None:
 			if pos is not None:
 				pos, size = parent.parse(pos, size, font)
 				self.x, self.y = pos
@@ -667,26 +667,26 @@ class SkinContext:
 				self.w = None
 				self.h = None
 	def __str__(self):
-	        return "Context (%s,%s)+(%s,%s) " % (self.x, self.y, self.w, self.h)
+		return "Context (%s,%s)+(%s,%s) " % (self.x, self.y, self.w, self.h)
 	def parse(self, pos, size, font):
-	        if pos == "fill":
-	                pos = (self.x, self.y)
-	                size = (self.w, self.h)
-	                self.w = 0
-	                self.h = 0
+		if pos == "fill":
+			pos = (self.x, self.y)
+			size = (self.w, self.h)
+			self.w = 0
+			self.h = 0
 		else:
 			w,h = size.split(',')
 			w = parseCoordinate(w, self.w, 0, font)
 			h = parseCoordinate(h, self.h, 0, font)
 			if pos == "bottom":
-			        pos = (self.x, self.y + self.h - h)
-			        size = (self.w, h)
-			        self.h -= h
+				pos = (self.x, self.y + self.h - h)
+				size = (self.w, h)
+				self.h -= h
 			elif pos == "top":
-			        pos = (self.x, self.y)
-			        size = (self.w, h)
-			        self.h -= h
-			        self.y += h
+				pos = (self.x, self.y)
+				size = (self.w, h)
+				self.h -= h
+				self.y += h
 			elif pos == "left":
 				pos = (self.x, self.y)
 				size = (w, self.h)
@@ -705,19 +705,19 @@ class SkinContext:
 class SkinContextStack(SkinContext):
 	# A context that stacks things instead of aligning them
 	def parse(self, pos, size, font):
-	        if pos == "fill":
-	                pos = (self.x, self.y)
-	                size = (self.w, self.h)
+		if pos == "fill":
+			pos = (self.x, self.y)
+			size = (self.w, self.h)
 		else:
 			w,h = size.split(',')
 			w = parseCoordinate(w, self.w, 0, font)
 			h = parseCoordinate(h, self.h, 0, font)
 			if pos == "bottom":
-			        pos = (self.x, self.y + self.h - h)
-			        size = (self.w, h)
+				pos = (self.x, self.y + self.h - h)
+				size = (self.w, h)
 			elif pos == "top":
-			        pos = (self.x, self.y)
-			        size = (self.w, h)
+				pos = (self.x, self.y)
+				size = (self.w, h)
 			elif pos == "left":
 				pos = (self.x, self.y)
 				size = (w, self.h)
@@ -899,15 +899,15 @@ def readSkin(screen, skin, names, desktop):
 		screen.additionalWidgets.append(w)
 
 	def process_screen(widget, context):
-	        for w in widget.getchildren():
-	                p = processors.get(w.tag, process_none)
+		for w in widget.getchildren():
+			p = processors.get(w.tag, process_none)
 			try:
-		                p(w, context)
+				p(w, context)
 			except SkinError, e:
 				print "[Skin] SKIN ERROR in screen '%s' widget '%s':" % (name, w.tag), e
 
 	def process_panel(widget, context):
-	        n = widget.attrib.get('name')
+		n = widget.attrib.get('name')
 		if n:
 			try:
 				s = dom_screens[n]
@@ -919,7 +919,7 @@ def readSkin(screen, skin, names, desktop):
 		if layout == 'stack':
 			cc = SkinContextStack
 		else:
-		        cc = SkinContext
+			cc = SkinContext
 		try:
 			c = cc(context, widget.attrib.get('position'), widget.attrib.get('size'), widget.attrib.get('font'))
 		except Exception, ex:
@@ -927,12 +927,12 @@ def readSkin(screen, skin, names, desktop):
 		process_screen(widget, c)
 
 	processors = {
-	        None: process_none,
-	        "widget": process_widget,
-	        "applet": process_applet,
-	        "eLabel": process_elabel,
-	        "ePixmap": process_epixmap,
-	        "panel": process_panel
+			None: process_none,
+			"widget": process_widget,
+			"applet": process_applet,
+			"eLabel": process_elabel,
+			"ePixmap": process_epixmap,
+			"panel": process_panel
 	}
 
 	try:
