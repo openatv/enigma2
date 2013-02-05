@@ -31,9 +31,14 @@ def dump(x, i=0):
 class SkinError(Exception):
 	def __init__(self, message):
 		self.msg = message
-
 	def __str__(self):
 		return "{%s}: %s. Please contact the skin's author!" % (config.skin.primary_skin.getValue(), self.msg)
+
+class DisplaySkinError(Exception):
+	def __init__(self, message):
+		self.msg = message
+	def __str__(self):
+		return "{%s}: %s. Please contact the skin's author!" % (config.skin.display_skin.getValue(), self.msg)
 
 dom_skins = [ ]
 
@@ -69,11 +74,14 @@ def skin_user_skinname():
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
 DEFAULT_SKIN = "ViX-Night-HD/skin.xml"
-# on SD hardware, ViX Night HD will not be available
 if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
 	# in that case, fallback to Magic (which is an SD skin)
 	DEFAULT_SKIN = "skin.xml"
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
+
+DEFAULT_DISPLAY_SKIN = "skin_display.xml"
+config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
+config.skin.display_skin_picon = ConfigYesNo(default = False)
 
 profile("LoadSkin")
 try:
@@ -89,36 +97,24 @@ except (SkinError, IOError, AssertionError), err:
 addSkin('skin_box.xml')
 # add optional discrete second infobar
 addSkin('skin_second_infobar.xml')
-# Only one of these is present, compliments of AM_CONDITIONAL
-config.skin.display_skin = ConfigYesNo(default = False)
 display_skin_id = 1
-if fileExists('/usr/share/enigma2/skin_display255_picon.xml'):
-	if config.skin.display_skin.getValue():
-		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display255_picon.xml')):
-			addSkin('skin_display255_picon.xml', SCOPE_CONFIG)
-		else:
-			addSkin('skin_display255_picon.xml')
+try:
+	if not addSkin(os.path.join('display', config.skin.display_skin.getValue())):
+		raise DisplaySkinError, "display skin not found"
+except Exception, err:
+	print "SKIN ERROR:", err
+	skin = DEFAULT_DISPLAY_SKIN
+	if config.skin.display_skin.getValue() == skin:
+		skin = 'skin_display.xml'
+	print "defaulting to standard display skin...", skin
+	config.skin.display_skin.value = skin
+	skin = os.path.join('display', skin)
+	if not config.skin.display_skin_picon.getValue():
+		addSkin(skin)
 	else:
-		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display255_no_picon.xml')):
-			addSkin('skin_display255_no_picon.xml', SCOPE_CONFIG)
-		else:
-			addSkin('skin_display255_no_picon.xml')
-elif fileExists('/usr/share/enigma2/skin_display220_picon.xml'):
-	if config.skin.display_skin.getValue():
-		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display220_picon.xml')):
-			addSkin('skin_display220_picon.xml', SCOPE_CONFIG)
-		else:
-			addSkin('skin_display220_picon.xml')
-	else:
-		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display220_no_picon.xml')):
-			addSkin('skin_display220_no_picon.xml', SCOPE_CONFIG)
-		else:
-			addSkin('skin_display220_no_picon.xml')
+		addSkin(skin.replace('display.xml','display_picon.xml'))
+	del skin
 
-if addSkin('skin_display96.xml'):
-	# Color OLED
-	display_skin_id = 2
-addSkin('skin_text.xml')
 addSkin('skin_subtitles.xml')
 
 try:
