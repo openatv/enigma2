@@ -99,6 +99,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			weekday = int(strftime("%u", localtime(self.timer.begin))) - 1
 			day[weekday] = 1
 
+		autosleepinstandbyonly = self.timer.autosleepinstandbyonly
 		autosleepdelay = self.timer.autosleepdelay
 		autosleeprepeat = self.timer.autosleeprepeat
 
@@ -113,6 +114,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
 		self.timerrntry_autosleepdelay = ConfigInteger(default=autosleepdelay, limits = (10, 300))
 		self.timerentry_autosleeprepeat = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = autosleeprepeat)
+		self.timerrntry_autosleepinstandbyonly = ConfigSelection(choices = [("yes",_("Yes")), ("no", _("No"))],default=autosleepinstandbyonly)
 
 		self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
 		self.timerentry_starttime = ConfigClock(default = self.timer.begin)
@@ -134,6 +136,8 @@ class TimerEntry(Screen, ConfigListScreen):
 
 
 		if self.timerentry_timertype.getValue() == "autostandby" or self.timerentry_timertype.getValue() == "autodeepstandby":
+			if self.timerentry_timertype.getValue() == "autodeepstandby":
+				self.list.append(getConfigListEntry(_("Only active when in standby"), self.timerrntry_autosleepinstandbyonly))
 			self.list.append(getConfigListEntry(_("Sleep delay"), self.timerrntry_autosleepdelay))
 			self.list.append(getConfigListEntry(_("Repeat type"), self.timerentry_autosleeprepeat))
 			self.timerTypeEntry = getConfigListEntry(_("Repeat type"), self.timerentry_type)
@@ -247,6 +251,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		if self.timerentry_timertype.getValue() == "autostandby" or self.timerentry_timertype.getValue() == "autodeepstandby":
 			self.timer.begin = int(time()) + 10
 			self.timer.end = self.timer.begin
+			self.timer.autosleepinstandbyonly = self.timerrntry_autosleepinstandbyonly.getValue()
 			self.timer.autosleepdelay = self.timerrntry_autosleepdelay.getValue()
 			self.timer.autosleeprepeat = self.timerentry_autosleeprepeat.getValue()
 		if self.timerentry_type.getValue() == "repeated":
