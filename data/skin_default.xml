@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 1.36 by Rob van der Does @www.world-of-satellite.com, based on default screen by Andyblac & Magic by Rob van der Does Vs 1.32	-->
+	<!--	Skin: Default-ViX Vs 1.37 by Rob van der Does @www.world-of-satellite.com, based on default screen by Andyblac & Magic by Rob van der Does Vs 1.32	-->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
 	<!--	Do whatever you want with this skin,but don't tell it's yours,or your idea, and leave the credentials in the "About-box" as they are	-->
@@ -795,17 +795,17 @@ self.autoResize()
 		</widget>
 		<widget name="timeline_text" position="10,40" size="700,25" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1"/>
 		<widget name="lab1" position="25,65" size="665,378" font="Regular;24" halign="center" valign="center" backgroundColor="#000000" transparent="0" zPosition="2" />
-		<widget name="list" position="10,40" size="700,378" scrollbarMode="showNever" transparent="1" />
-		<widget name="timeline_now" position="10, 65" zPosition="2" size="19, 378" pixmap="skin_default/epg/timeline-now.png" alphatest="on" />
-		<widget source="Event" render="Label" position="10,435" size="70,26" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" halign="right" transparent="1">
+		<widget name="list" position="10,65" size="700,378" scrollbarMode="showNever" transparent="1" />
+		<widget name="timeline_now" position="10,65" zPosition="2" size="19, 378" pixmap="skin_default/epg/timeline-now.png" alphatest="on" />
+		<widget source="Event" render="Label" position="10,439" size="70,24" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" halign="right" transparent="1">
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText" />
 		</widget>
-		<widget source="Event" render="Label" position="88,435" size="80,26" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" halign="left" transparent="1">
+		<widget source="Event" render="Label" position="88,439" size="80,24" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" halign="left" transparent="1">
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
-		<widget source="Event" render="Label" position="165,435" size="535,26" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" halign="left">
+		<widget source="Event" render="Label" position="165,439" size="535,24" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" halign="left">
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="Event" render="Label" position="10,465" zPosition="1" size="700,73" font="Regular;18" foregroundColor="#00dddddd" backgroundColor="#000000" transparent="1">
@@ -839,12 +839,12 @@ self.autoResize()
 		<widget source="Event" render="Label" position="165,47" size="535,26" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" halign="left">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="Event" render="Label" position="10,93" zPosition="1" size="400,125" font="Regular;18" foregroundColor="#00dddddd" backgroundColor="#000000" transparent="1" valign="top">
+		<widget source="Event" render="Label" position="10,78" zPosition="1" size="420,125" font="Regular;18" foregroundColor="#00dddddd" backgroundColor="#000000" transparent="1" valign="top">
 			<convert type="EventName">ExtendedDescription</convert>
 		</widget>
 		<eLabel position="413,45" size="273,154" zPosition="2" backgroundColor="#000000" foregroundColor="#000000" />
 		<widget name="lab1" position="25,235" size="665,278" font="Regular;24" halign="center" valign="center" backgroundColor="#000000" transparent="0" zPosition="2" />
-		<widget source="session.VideoPicture" render="Pig" position="415,47" size="269,150" zPosition="3" backgroundColor="#ff000000" />
+		<widget source="session.VideoPicture" render="Pig" position="450,47" size="269,150" zPosition="3" backgroundColor="#ff000000" />
 		<widget name="timeline_text" position="10,210" size="700,25" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" />
 		<widget name="list" position="10,235" size="700,278" scrollbarMode="showNever" transparent="1" />
 		<widget name="timeline_now" position="10,235" zPosition="2" size="19,278" pixmap="skin_default/epg/timeline-now.png" alphatest="on" />
