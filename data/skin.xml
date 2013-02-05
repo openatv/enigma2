@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX addition Vs 1.17	-->
+	<!--	Skin: Default-ViX addition Vs 1.18	-->
 	<!--	This skin is part of the default ViX-skin; the same license applies.	-->
 	<output id="0">
 		<resolution bpp="32" xres="720" yres="576"/>
@@ -179,5 +179,12 @@
 		<widget backgroundColor="transparent" borderColor="black" borderWidth="2" font="Enigma;20" foregroundColor="foreground" halign="right" noWrap="1" position="512,5" render="Label" size="80,32" source="session.CurrentService" transparent="1" valign="bottom" zPosition="2">
 			<convert type="ServicePosition">Remaining,Negate,ShowHours</convert>
 		</widget>
+	</screen>
+
+	<screen name="InfoBarEventView" position="center,50" size="660,250" title=" ">
+		<widget name="datetime" position="10,10" size="150,25" font="Regular;22" />
+		<widget name="duration" position="165,10" size="100,25" font="Regular;22" />
+		<widget name="channel" position="275,10" size="380,25" font="Regular;22" halign="right" />
+		<widget name="epg_description" position="10,45" size="640,200" font="Regular;22" />
 	</screen>
 </skin>
