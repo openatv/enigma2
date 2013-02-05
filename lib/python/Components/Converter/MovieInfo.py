@@ -26,25 +26,24 @@ class MovieInfo(Converter, object):
 	def getText(self):
 		service = self.source.service
 		info = self.source.info
+		event = self.source.event
 		if info and service:
 			if self.type == self.MOVIE_SHORT_DESCRIPTION:
-				if (self.source.service.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
+				if (service.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
 					# Short description for Directory is the full path
-					return self.source.service.getPath()  
-				event = self.source.event
-				if event:
-					descr = info.getInfoString(service, iServiceInformation.sDescription)
-					if descr == "":
-						return event.getShortDescription()
-					else:
-						return descr
+					return service.getPath()
+				return (info.getInfoString(service, iServiceInformation.sDescription)
+				    or (event and event.getShortDescription())
+				    or service.getPath())
 			elif self.type == self.MOVIE_META_DESCRIPTION:
-				return info.getInfoString(service, iServiceInformation.sDescription)
+				return ((event and (event.getExtendedDescription() or event.getShortDescription()))
+				    or info.getInfoString(service, iServiceInformation.sDescription)
+				    or service.getPath())
 			elif self.type == self.MOVIE_REC_SERVICE_NAME:
 				rec_ref_str = info.getInfoString(service, iServiceInformation.sServiceref)
 				return ServiceReference(rec_ref_str).getServiceName()
 			elif self.type == self.MOVIE_REC_FILESIZE:
-				if (self.source.service.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
+				if (service.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
 					return _("Directory")
 				filesize = info.getInfoObject(service, iServiceInformation.sFileSize)
 				if filesize is not None:
