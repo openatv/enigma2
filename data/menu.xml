@@ -56,8 +56,12 @@
 					  <item level="2" text="3D setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="UserInterfacePositioner" screen="OSD3DSetupScreen"/></item>
 				  </menu>
 				  <item weight="4" level="0" entryID="usage_setup"><setup id="usage" /></item>
-				  <item weight="5" entryID="lcd_setup" requires="Display"><setup level="1" id="lcd" /></item>
-				  <menu weight="6" level="0" text="Network advanced settings" entryID="network_menu" endtext="•••>">
+				  <menu level="0" text="Display" entryID="display_selection" requires="Display">
+					  <id val="display" />
+					  <item level="0" entryID="displaysetup"><setup id="display" /></item>
+					  <item level="0" text="Skin setup" entryID="lcd_skin_setup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
+				  </menu>
+				<menu weight="6" level="0" text="Network advanced settings" entryID="network_menu" endtext="•••>">
 					  <id val="network2" />
 					  <item level="0" text="Device setup" entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
 					  <item level="1" text="Mounts setup" entryID="netmounts_setup"><screen module="NetworkSetup" screen="NetworkMountsMenu"/></item>
