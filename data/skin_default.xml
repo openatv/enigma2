@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 1.34 by Rob van der Does @www.world-of-satellite.com, based on default screen by Andyblac & Magic by Rob van der Does Vs 1.32	-->
+	<!--	Skin: Default-ViX Vs 1.36 by Rob van der Does @www.world-of-satellite.com, based on default screen by Andyblac & Magic by Rob van der Does Vs 1.32	-->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
 	<!--	Do whatever you want with this skin,but don't tell it's yours,or your idea, and leave the credentials in the "About-box" as they are	-->
@@ -861,24 +861,29 @@ self.autoResize()
 		<panel name="BasicTemplate" />
 		<widget name="menu" position="10,10" size="540,350" scrollbarMode="showOnDemand" />
 	</screen>
-	<screen name="EventView" position="center,center" size="560,450" title="Event view">
+	<screen name="EventView" position="center,center" size="560,460" title="Event view">
 		<panel name="BasicTemplate" />
-		<panel name="Red1Panel" />
-		<panel name="Green1Panel" />
-		<panel name="Yellow1Panel" />
-		<panel name="Blue1Panel" />
+		<widget name="red"  pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<widget name="green"  pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<widget name="yellow"  pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+		<widget name="blue"  pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 		<widget name="epg_description" position="10,50" size="540,330" font="Regular;22" />
 		<widget name="datetime" position="10,395" size="130,25" font="Regular;22" />
 		<widget name="duration" position="140,395" size="100,25" font="Regular;22" />
 		<widget name="channel" position="240,395" size="305,25" font="Regular;22" halign="right" />
 	</screen>
-	<screen name="InfoBarEventView" position="center,center" size="560,450" flags="wfNoBorder" title="Event view">
-		<widget name="epg_description" position="10,50" size="540,330" font="Regular;22" />
-		<widget name="datetime" position="10,395" size="130,25" font="Regular;22" />
-		<widget name="duration" position="140,395" size="100,25" font="Regular;22" />
-		<widget name="channel" position="240,395" size="305,25" font="Regular;22" halign="right" />
-	</screen>
-	<screen name="GraphMultiEPG" position="center,center" size="560,435" flags="wfNoBorder" title="Electronic Program Guide">
+<!--## For reasons unknown Enigma does't adhere to this screen; I now moved it into the skin-file and it works! ## -->
+<!--	<screen name="InfoBarEventView" position="center,50" size="660,250" title=" ">
+		<widget name="datetime" position="10,10" size="150,25" font="Regular;22" />
+		<widget name="duration" position="165,10" size="100,25" font="Regular;22" />
+		<widget name="channel" position="275,10" size="380,25" font="Regular;22" halign="right" />
+		<widget name="epg_description" position="10,45" size="640,200" font="Regular;22" />
+	</screen>-->
+	<screen name="GraphMultiEPG" position="center,center" size="560,460" flags="wfNoBorder" title="Electronic Program Guide">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
