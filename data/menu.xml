@@ -47,7 +47,7 @@
 				<item level="0" entryID="usage_setup"><setup id="usage" /></item>
 				<menu level="0" text="Display" entryID="display_selection" requires="Display">
 					<id val="display" />
-					<item level="0" entryID="displaysetup"><setup id="display" /></item>
+					<item level="0" entryID="display_setup"><setup id="display" /></item>
 					<item level="0" text="Skin setup" entryID="lcd_skin_setup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
 				</menu>
 				<menu level="2" text="EPG" entryID="epg_menu">
@@ -81,6 +81,7 @@ self.session.openWithCallback(msgClosed, EpgLoadMsg)
 					<item level="2" entryID="setup_epgmulti"><setup id="epgmulti" /></item>
 					<item level="2" entryID="setup_epgenhanced"><setup id="epgenhanced" /></item>
 					<item level="2" entryID="setup_epginfobar"><setup id="epginfobar" /></item>
+					<item level="2" entryID="setup_epginfobargraphical"><setup id="epginfobargraphical" /></item>
 					<item level="2" entryID="setup_epggraphical"><setup id="epggraphical" /></item>
 				</menu>
 				<menu level="0" text="Harddisk" entryID="hardisk_selection" requires="Harddisk">
