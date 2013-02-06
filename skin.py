@@ -226,7 +226,7 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 		if attrib not in ignore:
 			if attrib in filenames:
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix)
-				if not fileExists(pngfile): #when image is not available look at current skin path
+				if not fileExists(pngfile):
 					pngfile = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
 				value = pngfile
 			# Bit of a hack this, really. When a window has a flag (e.g. wfNoBorder)
@@ -342,7 +342,7 @@ class AttributeParser:
 					"orRightToLeft": (self.guiObject.orHorizontal, True),
 				}[value])
 		except KeyError:
-			print "oprientation must be either orVertical or orHorizontal!"
+			print "oprientation must be either orVertical or orHorizontal!, not %s. Please contact the skin's author!" % (value)
 	def valign(self, value):
 		try:
 			self.guiObject.setVAlign(
@@ -351,7 +351,7 @@ class AttributeParser:
 					"bottom": self.guiObject.alignBottom
 				}[value])
 		except KeyError:
-			print "valign must be either top, center or bottom!"
+			print "valign must be either top, center or bottom!, not %s. Please contact the skin's author!" % (value)
 	def halign(self, value):
 		try:
 			self.guiObject.setHAlign(
@@ -361,7 +361,7 @@ class AttributeParser:
 					"block": self.guiObject.alignBlock
 				}[value])
 		except KeyError:
-			print "halign must be either left, center, right or block!"
+			print "halign must be either left, center, right or block!, not %s. Please contact the skin's author!" % (value)
 	def textOffset(self, value):
 		x, y = value.split(',')
 		self.guiObject.setTextOffset(ePoint(int(x) * self.scale[0][0] / self.scale[0][1], int(y) * self.scale[1][0] / self.scale[1][1]))
@@ -576,7 +576,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				filename = get_attr("filename")
 				if filename and bpName:
 					pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
-					if not fileExists(pngfile): #when image is not available look at current skin path
+					if not fileExists(pngfile):
 						pngfile = resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)
 					png = loadPixmap(pngfile, desktop)
 					style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
