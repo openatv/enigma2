@@ -1220,7 +1220,8 @@ class ChannelSelectionBase(Screen):
 		self.servicelist.moveToPrevMarker()
 
 	def gotoCurrentServiceOrProvider(self, ref):
-		if ref.toString().find(_("Providers")) != -1:
+		str = ref.toString()
+		if str.find(_("Providers")) != -1:
 			service = self.session.nav.getCurrentService()
 			if service:
 				info = service.info()
@@ -1229,7 +1230,7 @@ class ChannelSelectionBase(Screen):
 					op = int(self.session.nav.getCurrentlyPlayingServiceOrGroup().toString().split(':')[6][:-4] or "0",16)
 					refstr = '1:7:0:0:0:0:0:0:0:0:(provider == \"%s\") && (satellitePosition == %s) && %s ORDER BY name:%s'%(provider,op,self.service_types[self.service_types.rfind(':')+1:],provider)
 					self.servicelist.setCurrent(eServiceReference(refstr))
-		else:
+		elif not 'FROM BOUQUET "userbouquet.' in str:
 			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
 HISTORYSIZE = 20
