@@ -108,10 +108,11 @@ class LCD:
 		return eDBoxLCD.getInstance().isOled()
 
 	def setMode(self, value):
-		print 'setLCDMode',value
-		f = open("/proc/stb/lcd/show_symbols", "w")
-		f.write(value)
-		f.close()
+		if fileExists("/proc/stb/lcd/show_symbols"):
+			print 'setLCDMode',value
+			f = open("/proc/stb/lcd/show_symbols", "w")
+			f.write(value)
+			f.close()
 		if config.lcd.mode.getValue() == "0":
 			if fileExists("/proc/stb/lcd/symbol_hdd"):
 				f = open("/proc/stb/lcd/symbol_hdd", "w")
