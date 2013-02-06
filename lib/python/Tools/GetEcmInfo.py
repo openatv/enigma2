@@ -50,6 +50,7 @@ class GetEcmInfo:
 		return str(info.get(member, ifempty))
 
 	def getText(self):
+		global ecm
 		try:
 			# info is dictionary
 			using = info.get('using', '')
