@@ -1,41 +1,8 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 0.05 by Rob van der Does @www.world-of-satellite.com,  based on Magic-EHD Vs 1.91.54	-->
+	<!--	Skin: Default-ViX Vs 0.07 by Rob van der Does @www.world-of-satellite.com,  based on Magic-EHD Vs 1.91.54	-->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
 	<!--	Do whatever you want with this skin,but don't tell it's yours,or your idea, and leave the credentials in the "About-box" as they are	-->
-<!--## Head ##-->
-
-<!-- Will see if this is required or wanted ##
-	<include filename="Skin_ExtPlugins.xml" />-->
-	<include filename="CommonSkin.xml"/>
-
- <!-- Templates -->
-
-	<screen name="RemoteControlTemplate">
-		<panel position="right" size="154,*">
-			<panel position="top" size="*,50"/>
-			<widget name="rc" pixmaps="skin_default/rc.png,skin_default/rcold.png" position="top" zPosition="10" size="154,500" alphatest="on"/>
-			<widget name="arrowdown" pixmap="skin_default/arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-			<widget name="arrowdown2" pixmap="skin_default/arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-			<widget name="arrowup" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-			<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-		</panel>
-	</screen>
-
-	<screen name="WizardPictureLangTemplate">
-		<panel position="left" size="110,*">
-			<panel position="top" size="*,50"/>
-			<ePixmap pixmap="skin_default/buttons/button_red.png" position="left" zPosition="0" size="15,16" alphatest="on" />
-			<widget name="languagetext" position="fill" font="Regular;18" />
-		</panel>
-	</screen>
-
-	<screen name="WizardMarginsTemplate">
-		<panel position="left" size="10%,*" />
-		<panel position="right" size="8%,*" />
-		<panel position="top" size="8%,*" />
-		<panel position="bottom" size="10%,*" />
-	</screen>
 
 	<!--	## Volume ## -->
   <screen name="Volume" title="Volume" position="45,245" size="35,230" backgroundColor="transpBlack" zPosition="1" flags="wfNoBorder">
@@ -2179,13 +2146,13 @@
 		<widget name="lab1" position="560,133" halign="center" size="503,60" zPosition="1" font="Regular;20" valign="top" transparent="0" />
 	</screen>
 	<!-- ##TunerSetUp## -->
-	<screen name="AutoDiseqc" position="fill" title=" ">
-		<widget source="statusbar" render="Label" position="10,100" zPosition="10" size="e-10,60" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget source="tunerstatusbar" render="Label" position="10,115" zPosition="10" size="e-10,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget name="config" position="10,100" size="e-10,100" scrollbarMode="showOnDemand" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="c-140,e-50" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="c-140,e-50" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-	</screen>
+ <screen name="AutoDiseqc" position="fill" title=" ">
+  <widget source="statusbar" render="Label" position="10,100" zPosition="10" size="e-10,60" halign="center" valign="center" font="Regular;24" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+  <widget source="tunerstatusbar" render="Label" position="10,175" zPosition="10" size="e-10,30" halign="center" valign="center" font="Regular;24" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+  <widget name="config" position="10,100" size="e-10,195" scrollbarMode="showOnDemand" />
+  <ePixmap pixmap="skin_default/buttons/red.png" position="c-140,e-50" size="140,40" alphatest="on" />
+  <widget source="key_red" render="Label" position="c-140,e-50" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+ </screen>
 	<screen name="NimSelection" position="0,0" size="1280,720" flags="wfNoBorder">
 		<panel name="BasicTemplate"/>
 		<panel name="Red2Panel" />
