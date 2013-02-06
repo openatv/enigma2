@@ -101,11 +101,11 @@ class MultiPixmap(Pixmap):
 						self.pixmaps.append(loadPixmap(pngfile, desktop))
 					if not pixmap:
 						pixmap = resolveFilename(SCOPE_ACTIVE_SKIN, pixmaps[0], path_prefix=skin_path_prefix)
-						if not fileExists(pngfile):
+						if not fileExists(pixmap):
 							pixmap = resolveFilename(SCOPE_SKIN_IMAGE, pixmaps[0], path_prefix=skin_path_prefix)
 				elif attrib == "pixmap":
 					pixmap = resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix)
-					if not fileExists(pngfile):
+					if not fileExists(pixmap):
 						pixmap = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
 				else:
 					attribs.append((attrib,value))
