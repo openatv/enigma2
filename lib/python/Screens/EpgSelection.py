@@ -412,13 +412,9 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def moveUp(self):
 		self['list'].moveTo(self['list'].instance.moveUp)
-		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
-			self.infoKeyPressed(True)
 
 	def moveDown(self):
 		self['list'].moveTo(self['list'].instance.moveDown)
-		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
-			self.infoKeyPressed(True)
 
 	def updEvent(self, dir, visible = True):
 		ret = self['list'].selEntry(dir, visible)
@@ -427,39 +423,27 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def nextPage(self):
 		self['list'].moveTo(self['list'].instance.pageDown)
-		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
-			self.infoKeyPressed(True)
 
 	def prevPage(self):
 		self['list'].moveTo(self['list'].instance.pageUp)
-		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
-			self.infoKeyPressed(True)
 
 	def toTop(self):
 		self['list'].moveTo(self['list'].instance.moveTop)
-		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
-			self.infoKeyPressed(True)
 
 	def toEnd(self):
 		self['list'].moveTo(self['list'].instance.moveEnd)
-		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
-			self.infoKeyPressed(True)
 
 	def leftPressed(self):
 		if self.type == EPG_TYPE_MULTI:
 			self['list'].updateMultiEPG(-1)
 		else:
 			self.updEvent(-1)
-			if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
-				self.infoKeyPressed(True)
 
 	def rightPressed(self):
 		if self.type == EPG_TYPE_MULTI:
 			self['list'].updateMultiEPG(1)
 		else:
 			self.updEvent(+1)
-			if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
-				self.infoKeyPressed(True)
 
 	def nextBouquet(self):
 		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and self.bouquetChangeCB:
@@ -482,8 +466,6 @@ class EPGSelection(Screen, HelpableScreen):
 		elif (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR) and config.usage.multibouquet.getValue():
 			self.servicelist.nextBouquet()
 			self.onCreate()
-		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
-			self.infoKeyPressed(True)
 
 	def prevBouquet(self):
 		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and self.bouquetChangeCB:
@@ -506,8 +488,6 @@ class EPGSelection(Screen, HelpableScreen):
 		elif (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR) and config.usage.multibouquet.getValue():
 			self.servicelist.prevBouquet()
 			self.onCreate()
-		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
-			self.infoKeyPressed(True)
 
 	def nextService(self):
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
@@ -554,8 +534,6 @@ class EPGSelection(Screen, HelpableScreen):
 					self.updEvent(+2)
 		elif self.serviceChangeCB:
 			self.serviceChangeCB(1, self)
-		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
-			self.infoKeyPressed(True)
 
 	def prevService(self):
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
@@ -602,8 +580,6 @@ class EPGSelection(Screen, HelpableScreen):
 					self.updEvent(-2)
 		elif self.serviceChangeCB:
 			self.serviceChangeCB(-1, self)
-		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
-			self.infoKeyPressed(True)
 
 	def enterDateTime(self):
 		global mepg_config_initialized
@@ -679,38 +655,45 @@ class EPGSelection(Screen, HelpableScreen):
 					self.eventviewDialog.show()
 
 	def redButtonPressed(self):
+		self.closeEventViewDialog()
 		if not self.longbuttonpressed:
 			self.openIMDb()
 		else:
 			self.longbuttonpressed = False
 
 	def redlongButtonPressed(self):
+		self.closeEventViewDialog()
 		self.longbuttonpressed = True
 		self.sortEpg()
 
 	def greenButtonPressed(self):
+		self.closeEventViewDialog()
 		if not self.longbuttonpressed:
 			self.timerAdd()
 		else:
 			self.longbuttonpressed = False
 
 	def greenlongButtonPressed(self):
+		self.closeEventViewDialog()
 		self.longbuttonpressed = True
 		self.showAutoTimerList()
 
 	def yellowButtonPressed(self):
+		self.closeEventViewDialog()
 		if not self.longbuttonpressed:
 			self.openEPGSearch()
 		else:
 			self.longbuttonpressed = False
 
 	def blueButtonPressed(self):
+		self.closeEventViewDialog()
 		if not self.longbuttonpressed:
 			self.addAutoTimer()
 		else:
 			self.longbuttonpressed = False
 
 	def bluelongButtonPressed(self):
+		self.closeEventViewDialog()
 		self.longbuttonpressed = True
 		self.showAutoTimerList()
 
@@ -934,15 +917,19 @@ class EPGSelection(Screen, HelpableScreen):
 			self.zap()
 
 	def Info(self):
-		if config.epgselection.graph_info.getValue() == 'Channel Info':
+		if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.getValue() == 'Channel Info'):
 			self.infoKeyPressed()
-		if config.epgselection.graph_info.getValue() == 'Single EPG':
+		elif (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.getValue() == 'Single EPG'):
 			self.OpenSingleEPG()
+		else:
+			self.infoKeyPressed()
 
 	def InfoLong(self):
-		if config.epgselection.graph_infolong.getValue() == 'Channel Info':
+		if self.type == EPG_TYPE_GRAPH and config.epgselection.graph_infolong.getValue() == 'Channel Info':
 			self.infoKeyPressed()
-		if config.epgselection.graph_infolong.getValue() == 'Single EPG':
+		elif self.type == EPG_TYPE_GRAPH and config.epgselection.graph_infolong.getValue() == 'Single EPG':
+			self.OpenSingleEPG()
+		else:
 			self.OpenSingleEPG()
 
 	def applyButtonState(self, state):
@@ -1030,6 +1017,8 @@ class EPGSelection(Screen, HelpableScreen):
 		elif not isRecordEvent and self.key_green_choice != self.ADD_TIMER:
 			self['key_green'].setText(_('Add Timer'))
 			self.key_green_choice = self.ADD_TIMER
+		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
+			self.infoKeyPressed(True)
 
 	def moveTimeLines(self, force = False):
 		self.updateTimelineTimer.start((60 - int(time()) % 60) * 1000)
@@ -1112,7 +1101,10 @@ class EPGSelection(Screen, HelpableScreen):
 			self.zapSelectedService(True)
 			self.refreshTimer.start(2000)
 		if not self.currch or self.currch == self.prevch:
-			self.zapFunc(None, False)
+			try:
+				self.zapFunc(None, False)
+			except:
+				pass
 			self.closeEventViewDialog()
 			self.close('close')
 
