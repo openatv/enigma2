@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 0.04 by Rob van der Does @www.world-of-satellite.com,  based on Magic-EHD Vs 1.91.54	-->
+	<!--	Skin: Default-ViX Vs 0.05 by Rob van der Does @www.world-of-satellite.com,  based on Magic-EHD Vs 1.91.54	-->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
 	<!--	Do whatever you want with this skin,but don't tell it's yours,or your idea, and leave the credentials in the "About-box" as they are	-->
@@ -7,6 +7,7 @@
 
 <!-- Will see if this is required or wanted ##
 	<include filename="Skin_ExtPlugins.xml" />-->
+	<include filename="CommonSkin.xml"/>
 
  <!-- Templates -->
 
@@ -34,190 +35,6 @@
 		<panel position="right" size="8%,*" />
 		<panel position="top" size="8%,*" />
 		<panel position="bottom" size="10%,*" />
-	</screen>
-
-	<screen name="BasicTemplate">
-		<ePixmap pixmap="skin_default/border/top2_bg.png" position="0,0" size="1280,75" />
-		<ePixmap pixmap="skin_default/border/bottom_bg.png" position="0,675" size="1280,2" />
-		<widget source="Title" render="Label" foregroundColor="grey"	position="15,15" size="700, 55" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;25" valign="center" />
-		<widget source="global.CurrentTime" render="Label" backgroundColor="secondBG" font="Regular;26" halign="right" position="1015,15" size="250,28" transparent="1" foregroundColor="grey" zPosition="1">
-			<convert type="ClockToText">Format:%-H:%M</convert>
-		</widget>
-		<widget source="global.CurrentTime" render="Label" backgroundColor="secondBG" font="Regular;20" halign="right" position="1015,45" size="250,25" transparent="1" foregroundColor="grey" zPosition="1">
-			<convert type="ClockToText">Date</convert>
-		</widget>
-		<widget source="session.VideoPicture" render="Pig" position="0,77" size="482,273" backgroundColor="transparent" zPosition="1" />
-		<widget source="session.CurrentService" render="Label" position="5,80" size="477,20" backgroundColor="background" transparent="1" zPosition="1" foregroundColor="secondFG" borderWidth="2" noWrap="1" font="Regular;19" borderColor="black" valign="center" halign="center">
-			<convert type="ServiceName">Name</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="25,650" size="300,25" alphatest="on" />
-	</screen>
-
-	<screen name="BasicTemplate2">
-		<ePixmap pixmap="skin_default/border/top2_bg.png" position="0,0" size="1280,75" />
-		<ePixmap pixmap="skin_default/border/bottom_bg.png" position="0,675" size="1280,2" />
-		<widget source="Title" render="Label" foregroundColor="grey"	position="15,15" size="700, 55" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;25" valign="center" />
-		<widget source="global.CurrentTime" render="Label" backgroundColor="secondBG" font="Regular;26" halign="right" position="1015,15" size="250,28" transparent="1" foregroundColor="grey" zPosition="1">
-			<convert type="ClockToText">Format:%-H:%M</convert>
-		</widget>
-		<widget source="global.CurrentTime" render="Label" backgroundColor="secondBG" font="Regular;20" halign="right" position="1015,45" size="250,25" transparent="1" foregroundColor="grey" zPosition="1">
-			<convert type="ClockToText">Date</convert>
-		</widget>
-		<widget source="session.VideoPicture" render="Pig" position="0,77" size="482,273" backgroundColor="transparent" zPosition="1" />
-		<widget source="session.CurrentService" render="Label" position="5,85" size="477,20" backgroundColor="background" transparent="1" zPosition="1" foregroundColor="secondFG" borderWidth="2" noWrap="1" font="Regular;19" borderColor="black" valign="center" halign="center">
-			<convert type="ServiceName">Name</convert>
-		</widget>
-	</screen>
-
-	<screen name="BasicTemplate3">
-		<ePixmap pixmap="skin_default/border/top2_bg.png" position="0,0" size="1280,75" />
-		<ePixmap pixmap="skin_default/border/bottom_bg.png" position="0,675" size="1280,2" />
-		<widget source="Title" render="Label" foregroundColor="grey"	position="15,15" size="700, 55" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;25" valign="center" />
-		<widget source="global.CurrentTime" render="Label" backgroundColor="secondBG" font="Regular;26" halign="right" position="1015,15" size="250,28" transparent="1" foregroundColor="grey" zPosition="1">
-			<convert type="ClockToText">Format:%-H:%M</convert>
-		</widget>
-		<widget source="global.CurrentTime" render="Label" backgroundColor="secondBG" font="Regular;20" halign="right" position="1015,45" size="250,25" transparent="1" foregroundColor="grey" zPosition="1">
-			<convert type="ClockToText">Date</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/vix.png" position="25,650" size="300,25" alphatest="on" />
-	</screen>
-
-	<screen name="RedBPanel">
-		<ePixmap pixmap="skin_default/buttons/big-red.png" position="15,682" size="284,40 " zPosition="0" alphatest="blend" />
-	</screen>
-
-	<screen name="RedT1Panel">
-		<widget name="key_red" position="15,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
-	</screen>
-
-	<screen name="RedT2Panel">
-		<widget source="key_red" render="Label" position="15,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
-	</screen>
-
-	<screen name="GreenBPanel">
-		<ePixmap pixmap="skin_default/buttons/big-green.png" position="305,682" size="284,40 " zPosition="0" alphatest="blend" />
-	</screen>
-
-	<screen name="GreenT1Panel">
-		<widget name="key_green" position="305,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
-	</screen>
-
-	<screen name="GreenT2Panel">
-		<widget source="key_green" render="Label" position="305,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
-	</screen>
-
-	<screen name="YellowBPanel">
-		<ePixmap pixmap="skin_default/buttons/big-yellow.png" position="595,682" size="284,40 " zPosition="0" alphatest="blend" />
-	</screen>
-
-	<screen name="YellowT1Panel">
-		<widget name="key_yellow" position="595,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
-	</screen>
-
-	<screen name="YellowT2Panel">
-		<widget source="key_yellow" render="Label" position="595,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
-	</screen>
-
-	<screen name="BlueBPanel">
-		<ePixmap pixmap="skin_default/buttons/big-blue.png" position="890,682" size="284,40 " zPosition="0" alphatest="blend" />
-	</screen>
-
-	<screen name="BlueT1Panel">
-		<widget name="key_blue" position="890,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
-	</screen>
-
-	<screen name="BlueT2Panel">
-		<widget source="key_blue" render="Label" position="890,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
-	</screen>
-
-	<screen name="MenuBPanel">
-		<ePixmap pixmap="skin_default/buttons/key_menu.png" alphatest="on" position="1175,687"	size="35,25" />
-	</screen>
-
-	<screen name="InfoBPanel">
-		<ePixmap pixmap="skin_default/buttons/key_info.png" alphatest="on" position="1215,687" size="35,25" />
-	</screen>
-
-	<screen name="TextBPanel">
-		<ePixmap pixmap="skin_default/buttons/key_text.png" alphatest="on" position="1250,687" size="35,25" />
-	</screen>
-
-	<screen name="Red1Panel">
-		<ePixmap pixmap="skin_default/buttons/big-red.png" position="15,682" size="284,40" zPosition="0" alphatest="blend" />
-		<widget name="key_red" position="15,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
-	</screen>
-
-	<screen name="Green1Panel">
-		<ePixmap pixmap="skin_default/buttons/big-green.png" position="305,682" size="284,40 " zPosition="0" alphatest="blend" />
-		<widget name="key_green" position="305,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
-	</screen>
-
-	<screen name="Yellow1Panel">
-		<ePixmap pixmap="skin_default/buttons/big-yellow.png" position="595,682" size="284,40 " zPosition="0" alphatest="blend" />
-		<widget name="key_yellow" position="595,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
-	</screen>
-
-	<screen name="Blue1Panel">
-		<ePixmap pixmap="skin_default/buttons/big-blue.png" position="890,682" size="284,40 " zPosition="0" alphatest="blend" />
-		<widget name="key_blue" position="890,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
-	</screen>
-
-	<screen name="Red2Panel">
-		<ePixmap pixmap="skin_default/buttons/big-red.png" position="15,682" size="284,40 " zPosition="0" alphatest="blend" />
-		<widget source="key_red" render="Label" position="15,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" font="Regular;22" halign="center" transparent="1" zPosition="1" />
-	</screen>
-
-	<screen name="Green2Panel">
-		<ePixmap pixmap="skin_default/buttons/big-green.png" position="305,682" size="284,40 " zPosition="0" alphatest="blend" />
-		<widget source="key_green" render="Label" position="305,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" font="Regular;22" halign="center" transparent="1" zPosition="1" />
-	</screen>
-
-	<screen name="Yellow2Panel">
-		<ePixmap pixmap="skin_default/buttons/big-yellow.png" position="595,682" size="284,40 " zPosition="0" alphatest="blend" />
-		<widget source="key_yellow" render="Label" position="595,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" font="Regular;22" halign="center" transparent="1" zPosition="1" />
-	</screen>
-
-	<screen name="Blue2Panel">
-		<ePixmap pixmap="skin_default/buttons/big-blue.png" position="890,682" size="284,40 " zPosition="0" alphatest="blend" />
-		<widget source="key_blue" render="Label" position="890,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" font="Regular;22" halign="center" transparent="1" zPosition="1" />
-	</screen>
-
-	<screen name="Player">
-		<widget source="session.CurrentService" render="Label" position="240,0" size="780,49" backgroundColor="transparent" zPosition="1" foregroundColor="foreground" borderWidth="2" font="Regular;24" borderColor="black" valign="center" halign="center">
-			<convert type="ServiceName">Name</convert>
-		</widget>
-		<eLabel backgroundColor="infobarBG" position="120,49" size="1040,14" zPosition="0"/>
-		<widget name="statusicon" position="5,54" size="20,20" pixmaps="skin_default/icons/play.png,skin_default/icons/pause.png,skin_default/icons/stop.png,skin_default/icons/forward.png,skin_default/icons/backward.png,skin_default/icons/slow.png" zPosition="5" alphatest="on" />
-		<widget name="speed" position="30,54" size="80,15" font="Regular; 17" halign="left" backgroundColor="transparent" foregroundColor="foreground" borderWidth="2" borderColor="black" transparent="1" zPosition="5" />
-		<ePixmap pixmap="skin_default/dvr/scale1024.png" position="128,54" size="1024,4" zPosition="1" />
-		<widget source="session.CurrentService" render="PositionGauge" position="128,50" size="1024,12" transparent="1" zPosition="4" pointer="skin_default/dvr/position_pointer1024.png:1012,0">
-			<convert type="ServicePosition">Gauge</convert>
-		</widget>
-		<widget source="session.CurrentService" render="Label" position="40,13" size="200,25" backgroundColor="transparent" zPosition="4" foregroundColor="foreground" borderWidth="2" font="Regular;22" borderColor="black" valign="center" halign="left">
-			<convert type="ServicePosition">Position</convert>
-		</widget>
-		<widget source="session.CurrentService" render="Label" position="1025,13" size="120,25" backgroundColor="transparent" transparent="1" zPosition="4" foregroundColor="foreground" borderWidth="2" font="Regular;22" borderColor="black" valign="center" halign="left">
-			<convert type="ServicePosition">Remaining</convert>
-		</widget>
-		<widget source="session.CurrentService" render="Label" position="1145,13" size="120,25" backgroundColor="transparent" transparent="1" zPosition="4" foregroundColor="foreground" borderWidth="2" font="Regular;22" borderColor="black" valign="center" halign="left">
-			<convert type="ServicePosition">Length</convert>
-		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/infobar/ico_dolby_on.png" position="986,63" size="60,24" zPosition="2" alphatest="on">
-			<convert type="ServiceInfo">IsMultichannel</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/infobar/ico_hd_on.png" position="1048,63" size="40,21" zPosition="4" alphatest="on">
-			<convert type="ServiceInfo">VideoWidth</convert>
-			<convert type="ValueRange">800,2000</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/infobar/ico_format_on.png" position="1090,63" size="40,21" zPosition="2" alphatest="on">
-			<convert type="ServiceInfo">IsWidescreen</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="skin_default/buttons/rec.png" position="1132,63" size="20,20" zPosition="3" alphatest="on">
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
 	</screen>
 
 	<!--	## Volume ## -->
