@@ -914,15 +914,19 @@ class EPGSelection(Screen, HelpableScreen):
 			self.zap()
 
 	def Info(self):
-		if config.epgselection.graph_info.getValue() == 'Channel Info':
+		if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.getValue() == 'Channel Info'):
 			self.infoKeyPressed()
-		if config.epgselection.graph_info.getValue() == 'Single EPG':
+		elif (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.getValue() == 'Single EPG'):
 			self.OpenSingleEPG()
+		else:
+			self.infoKeyPressed()
 
 	def InfoLong(self):
-		if config.epgselection.graph_infolong.getValue() == 'Channel Info':
+		if self.type == EPG_TYPE_GRAPH and config.epgselection.graph_infolong.getValue() == 'Channel Info':
 			self.infoKeyPressed()
-		if config.epgselection.graph_infolong.getValue() == 'Single EPG':
+		elif self.type == EPG_TYPE_GRAPH and config.epgselection.graph_infolong.getValue() == 'Single EPG':
+			self.OpenSingleEPG()
+		else:
 			self.OpenSingleEPG()
 
 	def applyButtonState(self, state):
