@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 0.12 by Rob van der Does @www.world-of-satellite.com,  based on Magic-EHD Vs 1.91.54	-->
+	<!--	Skin: Default-ViX Vs 0.13 by Rob van der Does @www.world-of-satellite.com,  based on Magic-EHD Vs 1.91.54	-->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
 	<!--	Do whatever you want with this skin,but don't tell it's yours,or your idea, and leave the credentials in the "About-box" as they are	-->
@@ -940,7 +940,7 @@
 		<widget source="session.CurrentService" render="Label" position="280,5" size="120,27" font="Regular;20" halign="right" backgroundColor="transparent" foregroundColor="foreground" borderWidth="2" borderColor="black">
 			<convert type="ServicePosition">Length</convert>
 		</widget>
-		<widget name="PTSSeekPointer" position="0,30" zPosition="3" size="19,17" pixmap="epg/timeline-now.png" alphatest="on" />
+		<widget name="PTSSeekPointer" position="0,30" zPosition="3" size="19,20" pixmap="epg/timeline-now.png" alphatest="on" />
 		<ePixmap position="15,33" size="390,15" zPosition="1" pixmap="slider_back.png" alphatest="on"/>
 		<widget source="session.CurrentService" render="Progress" position="15,33" size="390,15" zPosition="2" pixmap="slider.png" transparent="1">
 			<convert type="ServicePosition">Position</convert>
@@ -2750,8 +2750,52 @@
 		<widget name="config" position="520,80" size="755,588" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" font="Regular;22" itemHeight="28" transparent="1" foregroundColor="grey" enableWrapAround="1" />
 		<widget source="text" render="Label" position="5,379" size="477,264" zPosition="2" font="Regular;22" foregroundColor="secondFG" valign="center" halign="center" />
 	</screen>
-
-
+	<screen flags="wfNoBorder" name="FPGAUpgrade" position="0,0" size="1280,720" >
+		<panel name="BasicTemplate"/>
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Blue2Panel" />
+		<widget name="file_list" position="490,80" size="785,588" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" font="Regular;22" itemHeight="28" transparent="1" foregroundColor="grey" enableWrapAround="1" />
+		<widget source="status" render="Label" position="10,370" zPosition="1" size="477,200" font="Regular;22" halign="center" valign="center" transparent="1" foregroundColor="secondFG" />
+	</screen>
+	<screen flags="wfNoBorder" name="OpenWebifConfig" position="0,0" size="1280,720" >
+		<panel name="BasicTemplate"/>
+		<panel name="Red1Panel" />
+		<panel name="Green1Panel" />
+		<widget name="lab1" position="520,82" halign="center" size="755,60" zPosition="1" font="Regular;24" valign="top" transparent="1" />
+		<widget name="config" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" font="Regular;22" position="520,150" size="740,510" transparent="1" />
+	</screen>
+	<!-- ##Picture-Player## -->
+	<screen name="picshow" position="0,0" size="1280,720" flags="wfNoBorder">
+		<panel name="BasicTemplate2"/>
+		<panel name="Red2Panel" />
+		<panel name="Green2Panel" />
+		<panel name="Yellow2Panel" />
+		<panel name="Blue2Panel" />
+		<widget name="label" position="15,385" size="290,280" transparent="1" font="Regular;20" />
+		<widget name="thn" position="15,99" size="290,280" alphatest="on" />
+		<widget name="filelist" position="490,80" size="785,588" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" font="Regular;22" itemHeight="28" transparent="1" foregroundColor="grey" enableWrapAround="1" />
+	</screen>
+	<screen name="Pic_Exif" position="0,0" size="1280,720" flags="wfNoBorder">
+		<panel name="BasicTemplate"/>
+		<panel name="Red2Panel" />
+		<widget source="menu" render="Listbox" position="520,82" size="755,583" selectionDisabled="1" transparent="1" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" >
+			<convert type="TemplatedMultiContent">
+				{"template": [	MultiContentEntryText(pos = (5,7),size = (350,30),flags = RT_HALIGN_LEFT,text = 0),
+				MultiContentEntryText(pos = (360,7),size = (390,30),flags = RT_HALIGN_LEFT,text = 1)],
+				"fonts": [gFont("Regular",20)],
+				"itemHeight": 35 }
+			</convert>
+		</widget>
+	</screen>
+	<screen name="Pic_Full_View" position="fill" flags="wfNoBorder">
+		<eLabel position="0,0" zPosition="0" size="1280,720" backgroundColor="secondBG" />
+		<widget name="pic" position="fill" zPosition="1" alphatest="on" />
+		<eLabel position="25,15" size="30,25" zPosition="2" backgroundColor="secondBG" transparent="1" />
+		<widget name="point" position="27,17" size="21,21" zPosition="3" pixmap="skin_default/icons/epgclock.png" alphatest="on" />
+		<widget name="play_icon" position="30,20" size="16,16" zPosition="3" pixmap="skin_default/icons/ico_mp_play.png" alphatest="on" />
+		<widget source="file" render="Label" position="70,15" size="600,25" zPosition="3" font="Regular;22" halign="left" noWrap="1" transparent="1" foregroundColor="foreground" backgroundColor="secondBG"/>
+	</screen>
 	<!-- ## IMDB Plugin ## -->
 	<screen name="IMDB" position="0,0" size="1280,720" flags="wfNoBorder">
 		<panel name="BasicTemplate"/>
