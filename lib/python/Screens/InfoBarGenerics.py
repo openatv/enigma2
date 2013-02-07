@@ -2047,6 +2047,17 @@ class InfoBarRedButton:
 			for x in self.onRedButtonActivation:
 				x()
 
+class InfoBarTimerButton:
+	def __init__(self):
+		self["TimerButtonActions"] = HelpableActionMap(self, "InfobarTimerButtonActions",
+			{
+				"timerSelection": (self.timerSelection, _("Timer selection...")),
+			})
+
+	def timerSelection(self):
+		from Screens.TimerEdit import TimerEditList
+		self.session.open(TimerEditList)
+
 class InfoBarAdditionalInfo:
 	def __init__(self):
 
