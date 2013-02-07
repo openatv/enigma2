@@ -1,7 +1,6 @@
 from Tools.Profile import profile
 
 from Screen import Screen
-import Screens.InfoBar
 from Components.Button import Button
 from Components.ServiceList import ServiceList
 from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
@@ -1439,8 +1438,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	#called from infoBar and channelSelected
 	def zap(self, enable_pipzap = False, preview_zap = False):
-		if Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zap, enable_pipzap, preview_zap)):
-			return
 		nref = self.getCurrentSelection()
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
