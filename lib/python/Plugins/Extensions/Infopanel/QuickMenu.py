@@ -29,7 +29,6 @@ from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
 from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
 from Plugins.SystemPlugins.Videomode.plugin import VideoSetup
 from Plugins.SystemPlugins.Videomode.VideoHardware import video_hw
-from Plugins.SystemPlugins.VideoEnhancement.plugin import VideoEnhancementSetup
 from Plugins.Extensions.Infopanel.RestartNetwork import RestartNetwork
 from Plugins.Extensions.Infopanel.MountManager import HddMount
 from Plugins.Extensions.Infopanel.SoftcamPanel import *
@@ -56,6 +55,12 @@ if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AudioSync"):
 	AUDIOSYNC = True
 else:
 	AUDIOSYNC = False
+
+if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/VideoEnhancement/plugin.pyo"):
+	from Plugins.SystemPlugins.VideoEnhancement.plugin import VideoEnhancementSetup
+	VIDEOENH = True
+else:
+	VIDEOENH = False
 
 def isFileSystemSupported(filesystem):
 	try:
@@ -257,7 +262,7 @@ class QuickMenu(Screen):
 		if AUDIOSYNC == True:
 			self.sublist.append(QuickSubMenuEntryComponent("Audio Sync",_("Setup Audio Sync"),_("Setup Audio Sync settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("Auto Language",_("Auto Language Selection"),_("Select your Language for Audio/Subtitles")))
-		if os_path.exists("/proc/stb/vmpeg/0/pep_apply"):
+		if os_path.exists("/proc/stb/vmpeg/0/pep_apply") and VIDEOENH == True:
 			self.sublist.append(QuickSubMenuEntryComponent("VideoEnhancement",_("VideoEnhancement Setup"),_("VideoEnhancement Setup")))
 		self.sublist.append(QuickSubMenuEntryComponent("AutoResolution",_("AutoResolution Setup"),_("Automatically change resolution")))
 
