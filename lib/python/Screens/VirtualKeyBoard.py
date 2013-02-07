@@ -18,23 +18,23 @@ class VirtualKeyBoardList(MenuList):
 		self.l.setItemHeight(45)
 
 KEY_IMAGES =  {
-		"BACKSPACE": "vkey_backspace.png",
-		"CLEAR": "vkey_clr.png",
-		"EXIT": "vkey_esc.png",
-		"OK": "vkey_ok.png",
-		"SHIFT": "vkey_shift.png",
-		"SPACE": "vkey_space.png",
+		"BACKSPACE": "buttons/vkey_backspace.png",
+		"CLEAR": "buttons/vkey_clr.png",
+		"EXIT": "buttons/vkey_esc.png",
+		"OK": "buttons/vkey_ok.png",
+		"SHIFT": "buttons/vkey_shift.png",
+		"SPACE": "buttons/vkey_space.png",
 		}
 KEY_IMAGES_SHIFT = {
-		"BACKSPACE": "vkey_backspace.png",
-		"CLEAR": "vkey_clr.png",
-		"EXIT": "vkey_esc.png",
-		"OK": "vkey_ok.png",
-		"SHIFT": "vkey_shift_sel.png",
-		"SPACE": "vkey_space.png",
+		"BACKSPACE": "buttons/vkey_backspace.png",
+		"CLEAR": "buttons/vkey_clr.png",
+		"EXIT": "buttons/vkey_esc.png",
+		"OK": "buttons/vkey_ok.png",
+		"SHIFT": "buttons/vkey_shift_sel.png",
+		"SPACE": "buttons/vkey_space.png",
 		}
 def VirtualKeyBoardEntryComponent(keys, selectedKey, shiftMode=False):
-	key_bg = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "vkey_bg.png"))
+	key_bg = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_bg.png"))
 	key_bg_width = key_bg.size().width()
 	if shiftMode:
 		key_images = KEY_IMAGES_SHIFT
@@ -57,7 +57,7 @@ def VirtualKeyBoardEntryComponent(keys, selectedKey, shiftMode=False):
 				MultiContentEntryText(pos=(x, 0), size=(width, 45), font=0, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER)
 			))
 		if selectedKey == count:
-			key_sel = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "vkey_sel.png"))
+			key_sel = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_sel.png"))
 			width = key_sel.size().width()
 			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=key_sel))
 		if width is not None:
