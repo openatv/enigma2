@@ -1,4 +1,3 @@
 installdir = $(pkgdatadir)/skin_default/spinner
 
-dist_install_DATA = \
-	*.png
+dist_install_DATA = *.png
