@@ -2538,7 +2538,7 @@ void eDVBServicePlay::updateTimeshiftPids()
 			if (timing_pid == -1)
 			{
 				timing_pid = i->pid;
-				timing_pid_type = i->type;
+				timing_pid_type = -1;
 			}
 			pids_to_record.insert(i->pid);
 		}

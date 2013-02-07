@@ -18,6 +18,7 @@ profile("ChannelSelection.py 2.1")
 from Components.Sources.RdsDecoder import RdsDecoder
 profile("ChannelSelection.py 2.2")
 from Components.Sources.ServiceEvent import ServiceEvent
+from Components.Sources.Event import Event
 profile("ChannelSelection.py 2.3")
 from Components.Input import Input
 profile("ChannelSelection.py 3")
@@ -372,6 +373,7 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def showAlternativeServices(self):
+		self["Service"].editmode = True
 		self.csel.enterPath(self.csel.getCurrentSelection())
 		self.close()
 
@@ -387,6 +389,7 @@ class ChannelContextMenu(Screen):
 class SelectionEventInfo:
 	def __init__(self):
 		self["Service"] = self["ServiceEvent"] = ServiceEvent()
+		self["Event"] = Event()
 		self.servicelist.connectSelChanged(self.__selectionChanged)
 		self.timer = eTimer()
 		self.timer.callback.append(self.updateEventInfo)
@@ -398,7 +401,9 @@ class SelectionEventInfo:
 
 	def updateEventInfo(self):
 		cur = self.getCurrentSelection()
-		self["ServiceEvent"].newService(cur)
+		service = self["Service"]
+		service.newService(cur)
+		self["Event"].newEvent(service.event)
 
 class ChannelSelectionEPG:
 	def __init__(self):
@@ -659,6 +664,7 @@ class ChannelSelectionEdit:
 		for x in self.__marked:
 			self.servicelist.addMarked(eServiceReference(x))
 		self.showAllServices()
+		self["Service"].editmode = True
 
 	def endMarkedEdit(self, abort):
 		if not abort and self.mutableList is not None:
@@ -745,6 +751,7 @@ class ChannelSelectionEdit:
 			pos = self.saved_title.find(')')
 			new_title = self.saved_title[:pos+1] + ' ' + _("[move mode]") + self.saved_title[pos+1:]
 			self.setTitle(new_title);
+		self["Service"].editmode = True
 
 	def handleEditCancel(self):
 		if self.movemode: #movemode active?
@@ -1220,7 +1227,8 @@ class ChannelSelectionBase(Screen):
 		self.servicelist.moveToPrevMarker()
 
 	def gotoCurrentServiceOrProvider(self, ref):
-		if ref.toString().find(_("Providers")) != -1:
+		str = ref.toString()
+		if str.find(_("Providers")) != -1:
 			service = self.session.nav.getCurrentService()
 			if service:
 				info = service.info()
@@ -1229,7 +1237,7 @@ class ChannelSelectionBase(Screen):
 					op = int(self.session.nav.getCurrentlyPlayingServiceOrGroup().toString().split(':')[6][:-4] or "0",16)
 					refstr = '1:7:0:0:0:0:0:0:0:0:(provider == \"%s\") && (satellitePosition == %s) && %s ORDER BY name:%s'%(provider,op,self.service_types[self.service_types.rfind(':')+1:],provider)
 					self.servicelist.setCurrent(eServiceReference(refstr))
-		else:
+		elif not 'FROM BOUQUET "userbouquet.' in str:
 			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
 HISTORYSIZE = 20
