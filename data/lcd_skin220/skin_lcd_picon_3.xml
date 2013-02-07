@@ -21,7 +21,7 @@
 
 <!-- template -->
 	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="110,135" size="100,50" font="FdLcD;50" halign="right" valign="bottom" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="95,135" size="120,50" font="FdLcD;50" halign="right" valign="bottom" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
@@ -34,28 +34,28 @@
 		<widget source="session.Event_Now" render="Label" position="0,80" size="220,55" font="FdLcD;22" halign="center" >
 			<convert type="EventName">Name</convert>
 		</widget>
-		<eLabel text="TUNER:" position="0,150" size="80,25" halign="Left" font="FdLcD;20" />
-		<widget source="session.FrontendInfo" render="FixedLabel" position="80,150" size="20,20" text="A" foregroundColor="#04B404" font="FdLcD;20" halign="center" >
+		<eLabel text="TUNER:" position="0,150" size="75,25" halign="Left" font="FdLcD;20" />
+		<widget source="session.FrontendInfo" render="FixedLabel" position="75,143" size="20,30" text="A" foregroundColor="#04B404" font="FdLcD;30" halign="center" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">0,0</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="80,150" size="20,20" text="B" foregroundColor="#04B404" font="FdLcD;20" halign="center" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="75,143" size="20,30" text="B" foregroundColor="#04B404" font="FdLcD;30" halign="center" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">1,1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="80,150" size="20,20" text="C" foregroundColor="#04B404" font="FdLcD;20" halign="center" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="75,143" size="20,30" text="C" foregroundColor="#04B404" font="FdLcD;30" halign="center" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">2,2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="80,150" size="20,20" text="D" foregroundColor="#04B404" font="FdLcD;20" halign="center" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="75,143" size="20,30" text="D" foregroundColor="#04B404" font="FdLcD;30" halign="center" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">3,3</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="0,150" size="110,25" halign="Left" foregroundColor="#ff0000" font="FdLcD;20" zPosition="1" noWrap="1" >
+		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="0,120" size="110,25" halign="Left" foregroundColor="#ff0000" font="FdLcD;20" zPosition="1" noWrap="1" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<panel name="SummaryClockPanel" />
