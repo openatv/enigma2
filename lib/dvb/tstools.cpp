@@ -488,14 +488,15 @@ void eDVBTSTools::calcEnd()
 	}
 	
 	int maxiter = 10;
-	
-	m_offset_end = m_last_filelength;
 
 	if (!m_end_valid)
 	{
-		if (m_streaminfo.getLastFrame(m_offset_end, m_pts_end) == 0)
+		off_t offset = m_offset_end = m_last_filelength;
+		pts_t pts = m_pts_end;
+		if (m_streaminfo.getLastFrame(offset, pts) == 0)
 		{
-			m_pts_length = m_pts_end;
+			m_offset_end = offset;
+			m_pts_length = m_pts_end = pts;
 			end = m_offset_end;
 			if (m_streaminfo.fixupPTS(end, m_pts_length) != 0)
 			{
@@ -519,16 +520,15 @@ void eDVBTSTools::calcEnd()
 				if (m_offset_end < 0)
 					m_offset_end = 0;
 
-					/* restore offset if getpts fails */
-				off_t off = m_offset_end;
-
-				if (!getPTS(m_offset_end, m_pts_end))
+				offset = m_offset_end;
+				pts = m_pts_end;
+				if (!getPTS(offset, pts))
 				{
+					offset = m_offset_end;
+					m_pts_end = pts;
 					m_pts_length = pts_diff(m_pts_begin, m_pts_end);
 					m_end_valid = 1;
 				}
-				else
-					m_offset_end = off;
 
 				if (!m_offset_end)
 				{
