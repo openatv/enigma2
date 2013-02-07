@@ -1411,7 +1411,7 @@ class InfoBarTimeshift:
 			print "hu, timeshift already enabled?"
 		else:
 			if not ts.startTimeshift():
-				self.timeshift_enabled = self.check_timeshift = True
+				self.timeshift_enabled = True
 
 				# we remove the "relative time" for now.
 				#self.pvrStateDialog["timeshift"].setRelative(time.time())
@@ -1493,18 +1493,6 @@ class InfoBarTimeshift:
 		self.pvrStateDialog.hide()
 		self.timeshift_enabled = False
 		self.__seekableStatusChanged()
-
-	def checkTimeshiftRunning(self, returnFunction, answer = None):
-		if self.timeshift_enabled and self.check_timeshift:
-			Notifications.AddNotificationWithCallback(boundFunction(self.checkTimeshiftRunning,returnFunction), MessageBox, _("Abort Timeshift?"))
-			self.check_timeshift = False
-			return True
-		elif answer:
-			returnFunction()
-		elif answer is not None:
-			self.check_timeshift = self.timeshift_enabled
-			self.servicelist.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
-		return False
 
 from Screens.PiPSetup import PiPSetup
 
