@@ -99,7 +99,7 @@ class GetEcmInfo:
 						info['caid'] = info['caid'][2:]
 						info['pid'] = info['pid'][2:]
 						info['provid'] = info['prov'][2:]
-						time = " ?"
+						time = ""
 						for line in ecm:
 							if line.find('msec') != -1:
 								line = line.split(' ')
