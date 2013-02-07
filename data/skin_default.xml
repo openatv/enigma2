@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 0.09 by Rob van der Does @www.world-of-satellite.com,  based on Magic-EHD Vs 1.91.54	-->
+	<!--	Skin: Default-ViX Vs 0.10 by Rob van der Does @www.world-of-satellite.com,  based on Magic-EHD Vs 1.91.54	-->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
 	<!--	Do whatever you want with this skin,but don't tell it's yours,or your idea, and leave the credentials in the "About-box" as they are	-->
@@ -2328,28 +2328,7 @@
 		<panel name="BasicTemplate"/>
 		<widget name="config" font="Regular;22" position="520,82" size="755,583" transparent="1" />
 	</screen>
-
 	<!-- Start Wizards -->
-		<screen name="XXXNetworkWizard" position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" >
-			<widget name="text" position="153,40" size="340,300" font="Regular;22" />
-			<widget source="list" render="Listbox" position="53,340" size="440,180" scrollbarMode="showOnDemand" >
-				<convert type="StringList" />
-			</widget>
-			<widget name="config" position="53,340" zPosition="1" size="440,180" transparent="1" scrollbarMode="showOnDemand" />
-			<ePixmap pixmap="buttons/button_red.png" position="40,225" zPosition="0" size="15,16" transparent="1" alphatest="on" />
-			<widget name="languagetext" position="55,225" size="95,30" font="Regular;18" />
-			<widget name="wizard" pixmap="wizard.png" position="40,50" zPosition="10" size="110,174" alphatest="on" />
-			<widget name="rc" pixmaps="rc.png,rcold.png" position="500,50" zPosition="10" size="154,500" alphatest="on" />
-			<widget name="arrowdown" pixmap="arrowdown.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
-			<widget name="arrowdown2" pixmap="arrowdown.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
-			<widget name="arrowup" pixmap="arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
-			<widget name="arrowup2" pixmap="arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
-			<widget source="VKeyIcon" render="Pixmap" pixmap="buttons/key_text.png" position="40,260" zPosition="0" size="35,25" transparent="1" alphatest="on" >
-				<convert type="ConditionalShowHide" />
-			</widget>
-			<widget name="HelpWindow" pixmap="buttons/key_text.png" position="125,170" zPosition="1" size="1,1" transparent="1" alphatest="on" />
-		</screen>"""
-
 		<screen name="ImageWizard" position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" >
 			<widget name="text" position="153,40" size="340,330" font="Regular;22" />
 			<widget source="list" render="Listbox" position="43,340" size="490,180" scrollbarMode="showOnDemand" >
@@ -2365,7 +2344,6 @@
 			<widget name="arrowup" pixmap="arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
 			<widget name="arrowup2" pixmap="arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
 		</screen>
-
 	<screen name="DefaultWizard" position="fill" title="Welcome..." flags="wfNoBorder" >
 		<panel name="WizardMarginsTemplate"/>
 		<panel name="WizardPictureLangTemplate"/>
@@ -2382,7 +2360,6 @@
 			</panel>
 		</panel>
 	</screen>
-
 	<screen name="LanguageWizard" position="fill" title="Welcome..." flags="wfNoBorder">
 		<panel name="WizardMarginsTemplate"/>
 		<panel position="left" size="110,*">
@@ -2410,16 +2387,9 @@
 	<screen name="StartWizard" position="fill" title="Welcome..." flags="wfNoBorder">
 		<panel name="DefaultWizard" />
 	</screen>
-
 	<screen name="InstallWizardIpkgUpdater" position="fill" title="Checking for updates... ">
 		<widget source="statusbar" render="Label" position="fill" font="Regular;23" valign="center" halign="center" />
 	</screen>
-
-
-	<screen name="XXXInstallWizardIpkgUpdater" position="c-300,c-25" size="600,50" title=" ">
-		<widget source="statusbar" render="Label" position="10,5" zPosition="10" size="e-10,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-	</screen>
-
 	<!-- ##Wizards## -->
 	<screen name="NetworkWizard" position="0,0" size="1280,720" flags="wfNoBorder">
 		<panel name="BasicTemplate2"/>
@@ -2435,20 +2405,6 @@
 		<widget name="arrowup" pixmap="arrowup.png" position="-100,-100" size="37,70" zPosition="11" alphatest="on" />
 		<widget name="arrowup2" pixmap="arrowup.png" position="-100,-100" size="37,70" zPosition="11" alphatest="on" />
 		<widget name="HelpWindow" pixmap="buttons/key_text.png" position="125,170" zPosition="1" size="1,1" transparent="1" alphatest="on" />
-	</screen>
-	<screen name="XXXDefaultWizard" position="0,0" size="1280,720" flags="wfNoBorder">
-		<panel name="BasicTemplate"/>
-		<widget name="text" position="880,101" size="340,270" font="Regular;23" />
-		<widget source="list" render="Listbox" position="780,405" size="440,200" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" >
-			<convert type="StringList" />
-		</widget>
-		<widget name="languagetext" position="774,228" size="95,30" font="Regular;18" />
-		<widget name="config" position="60,405" size="440,200" transparent="1" zPosition="1" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" />
-		<widget name="wizard" pixmap="wizard.png" position="60,50" size="110,174" transparent="1" zPosition="10" alphatest="on" />
-		<widget name="rc" pixmap="rc.png" position="557,135" size="154,471" transparent="1" zPosition="10" alphatest="on" />
-		<widget name="arrowdown" pixmap="arrowdown.png" position="-100,-100" size="37,70" transparent="1" zPosition="11" alphatest="on" />
-		<widget name="arrowup" pixmap="arrowup.png" position="-100,-100" size="37,70" transparent="1" zPosition="11" alphatest="on" />
-		<widget name="arrowup2" pixmap="arrowup.png" position="-100,-100" size="37,70" transparent="1" zPosition="11" alphatest="on" />
 	</screen>
 	<screen name="DefaultSatLists" position="0,0" size="1280,720" flags="wfNoBorder">
 		<panel name="BasicTemplate"/>
@@ -2479,27 +2435,6 @@
 		<widget name="arrowup2" pixmap="arrowup.png" position="-100,-100" size="37,70" transparent="1" zPosition="11" alphatest="on" />
 		<widget source="session.VideoPicture" backgroundColor="transparent" position="-5,-5" render="Pig" size="5,5" zPosition="1" />
 	</screen>
-	<screen name="XXXLanguageWizard" position="0,0" size="1280,720" flags="wfNoBorder">
-		<panel name="BasicTemplate"/>
-		<widget source="languages" render="Listbox" position="520,82" size="400,583" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" >
-			<convert type="TemplatedMultiContent">
-				{"template": [
-						MultiContentEntryText(pos = (80,10),size = (200,50),flags = RT_HALIGN_LEFT,text = 1),# index 1 is the language name,
-						MultiContentEntryPixmap(pos = (10,5),size = (60,40),png = 2),# index 2 is the pixmap
-					],
-				 "fonts": [gFont("Regular",20)],
-				 "itemHeight": 50
-				}
-			</convert>
-		</widget>
-		<widget name="wizard" pixmap="wizard.png" position="329,410" size="110,174" zPosition="10" alphatest="on" />
-		<widget name="rc" position="1065,98" size="154,500" zPosition="10" pixmaps="rc.png,rcold.png" alphatest="on" />
-		<widget name="arrowdown" pixmap="arrowdown.png" position="-100,-100" size="37,70" zPosition="11" alphatest="on" />
-		<widget name="arrowdown2" pixmap="arrowdown.png" position="-100,-100" size="37,70" zPosition="11" alphatest="on" />
-		<widget name="arrowup" pixmap="arrowup.png" position="-100,-100" size="37,70" zPosition="11" alphatest="on" />
-		<widget name="arrowup2" pixmap="arrowup.png" position="-100,-100" size="37,70" zPosition="11" alphatest="on" />
-		<widget source="session.VideoPicture" backgroundColor="transparent" position="-5,-5" render="Pig" size="5,5" zPosition="1" />
-	</screen>
 	<screen name="HelpMenu" position="0,0" size="1280,720" flags="wfNoBorder">
 		<panel name="BasicTemplate"/>
 		<widget name="list" position="490,80" size="785,588" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" font="Regular;22" itemHeight="28" transparent="1" foregroundColor="grey" enableWrapAround="1" />
@@ -2509,39 +2444,6 @@
 		<widget name="arrowup" pixmap="arrowup.png" position="-100,-100" size="37,70" zPosition="11" alphatest="on" />
 		<widget name="arrowup2" pixmap="arrowup.png" position="-100,-100" size="37,70" zPosition="11" alphatest="on" />
 		<widget name="long_key" position="123,482" size="350,50" foregroundColor="yellow" font="Regular;25" halign="right" />
-	</screen>
-	<screen name="XXXVideoWizard" position="0,0" size="1280,720" flags="wfNoBorder">
-		<panel name="BasicTemplate"/>
-		<widget name="text" position="726,98" size="340,270" font="Regular;23" />
-		<widget source="list" render="Listbox" position="771,415" size="290,200" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" >
-			<convert type="StringList" />
-		</widget>
-		<widget name="config" position="50,414" size="440,200" transparent="1" zPosition="1" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" />
-		<widget name="wizard" pixmap="wizard.png" position="548,106" size="110,174" transparent="1" zPosition="10" alphatest="on" />
-		<widget name="languagetext" position="598,328" size="95,30" font="Regular;18" />
-		<widget name="portpic" pixmap="%s" position="549,410" size="150,150" transparent="1" zPosition="10" alphatest="on" />
-		<widget name="rc" position="1094,97" size="154,500" transparent="1" zPosition="10" pixmaps="rc.png,rcold.png" alphatest="on" />
-		<widget name="arrowdown" pixmap="arrowdown.png" position="517,288" size="37,70" transparent="1" zPosition="11" alphatest="on" />
-		<widget name="arrowdown2" pixmap="arrowdown.png" position="517,288" size="37,70" transparent="1" zPosition="11" alphatest="on" />
-		<widget name="arrowup" pixmap="arrowup.png" position="-100,-100" size="37,70" transparent="1" zPosition="11" alphatest="on" />
-		<widget name="arrowup2" pixmap="arrowup.png" position="-100,-100" size="37,70" transparent="1" zPosition="11" alphatest="on" />
-	</screen>
-	<screen name="XXXImageWizard" position="0,0" size="1280,720" flags="wfNoBorder">
-		<panel name="BasicTemplate"/>
-		<widget name="text" position="727,102" size="340,330" font="Regular;22" />
-		<widget source="list" render="Listbox" position="576,441" size="490,180" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" >
-			<convert type="StringList" />
-		</widget>
-		<widget name="config" position="58,437" size="440,180" transparent="1" zPosition="1" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" />
-		<ePixmap pixmap="buttons/button_red.png" position="559,324" size="15,16" transparent="1" zPosition="0" alphatest="on" />
-		<widget name="languagetext" position="615,321" size="95,30" font="Regular;18" />
-		<widget name="wizard" pixmap="wizard.png" position="541,110" size="110,174" zPosition="10" alphatest="on" />
-		<widget name="rc" position="1082,99" size="154,500" zPosition="10" pixmaps="rc.png,rcold.png" alphatest="on" />
-		<widget name="arrowdown" pixmap="arrowdown.png" position="-100,-100" size="37,70" zPosition="11" alphatest="on" />
-		<widget name="arrowdown2" pixmap="arrowdown.png" position="-100,-100" size="37,70" zPosition="11" alphatest="on" />
-		<widget name="arrowup" pixmap="arrowup.png" position="-100,-100" size="37,70" zPosition="11" alphatest="on" />
-		<widget name="arrowup2" pixmap="arrowup.png" position="-100,-100" size="37,70" zPosition="11" alphatest="on" />
-		<widget source="session.VideoPicture" backgroundColor="transparent" position="-5,-5" render="Pig" size="5,5" zPosition="1" />
 	</screen>
 	<screen name="TutorialWizard" position="0,0" size="1280,720" flags="wfNoBorder">
 		<ePixmap pixmap="border/top2_bg.png" position="0,0" size="1280,75" />
@@ -2559,32 +2461,6 @@
 		<widget name="arrowup2" pixmap="arrowup.png" position="-100,-100" size="37,70" zPosition="11" alphatest="on" />
 		<widget name="text" position="740,120" size="480,240" backgroundColor="background" transparent="1" font="Regular;23" />
 		<widget name="list" position="550,380" size="660,150" zPosition="1" />
-		<widget source="session.VideoPicture" backgroundColor="transparent" position="-5,-5" render="Pig" size="5,5" zPosition="1" />
-		<ePixmap pixmap="logos/vix.png" position="25,650" size="300,25" alphatest="on" />
-	</screen>
-	<screen name="XXXStartWizard" position="0,0" size="1280,720" flags="wfNoBorder">
-		<ePixmap pixmap="border/top2_bg.png" position="0,0" size="1280,75" />
-		<ePixmap pixmap="border/bottom_bg.png" position="0,675" size="1280,2" />
-		<widget source="Title" foregroundColor="grey" render="Label" position="15,15" size="700,55" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;25" halign="left" valign="center" />
-		<widget source="global.CurrentTime" render="Label" backgroundColor="secondBG" font="Regular;26" halign="right" position="1015,15" size="250,28" transparent="1" foregroundColor="grey" zPosition="1">
-			<convert type="ClockToText">Format:%-H:%M</convert>
-		</widget>
-		<widget source="global.CurrentTime" render="Label" backgroundColor="secondBG" font="Regular;20" halign="right" position="1015,45" size="250,25" transparent="1" foregroundColor="grey" zPosition="1">
-			<convert type="ClockToText">Date</convert>
-		</widget>
-		<widget name="rc" position="170,105" size="154,500" zPosition="10" pixmaps="rc.png,rcold.png" alphatest="on" />
-		<widget name="arrowdown" pixmap="arrowdown.png" position="-100,-100" size="37,70" zPosition="11" alphatest="on" />
-		<widget name="arrowdown2" pixmap="arrowdown.png" position="-100,-100" size="37,70" zPosition="11" alphatest="on" />
-		<widget name="arrowup" pixmap="arrowup.png" position="-100,-100" size="37,70" zPosition="11" alphatest="on" />
-		<widget name="arrowup2" pixmap="arrowup.png" position="-100,-100" size="37,70" zPosition="11" alphatest="on" />
-		<widget name="wizard" pixmap="wizard.png" position="550,120" size="110,174" zPosition="10" transparent="1" alphatest="on" />
-		<panel name="RedBPanel" />
-		<widget name="languagetext" position="50,682" size="220,26" backgroundColor="background" transparent="1" font="Regular;21" />
-		<widget name="text" position="740,120" size="400,210" backgroundColor="background" transparent="1" font="Regular;23" />
-		<widget source="list" render="Listbox" position="550,360" size="660,200" zPosition="1" transparent="1" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" >
-			<convert type="StringList" />
-		</widget>
-		<widget name="config" position="590,360" size="600,200" zPosition="2" transparent="1" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" />
 		<widget source="session.VideoPicture" backgroundColor="transparent" position="-5,-5" render="Pig" size="5,5" zPosition="1" />
 		<ePixmap pixmap="logos/vix.png" position="25,650" size="300,25" alphatest="on" />
 	</screen>
