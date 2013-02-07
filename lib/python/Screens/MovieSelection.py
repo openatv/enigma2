@@ -417,7 +417,7 @@ class MovieSelectionSummary(Screen):
 class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def __init__(self, session, selectedmovie = None):
 		Screen.__init__(self, session)
-		if data and config.movielist.useslim.getValue():
+		if config.movielist.useslim.getValue():
 			self.skinName = ["MovieSelectionSlim","MovieSelection"]
 		else:
 			self.skinName = "MovieSelection"
