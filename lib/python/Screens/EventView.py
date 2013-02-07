@@ -63,6 +63,7 @@ class EventViewBase:
 		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
 		self["epg_description"] = ScrollLabel()
+		self["FullDescription"] = ScrollLabel()
 		self["datetime"] = Label()
 		self["channel"] = Label()
 		self["duration"] = Label()
@@ -179,15 +180,20 @@ class EventViewBase:
 		text = event.getEventName()
 		short = event.getShortDescription()
 		ext = event.getExtendedDescription()
-		if short and short != text:
-			text += '\n\n' + short
-		if ext:
-			if text:
-				text += '\n\n'
-			text += ext
+		if short == text:
+			short = ""
+		if short and ext:
+			ext = short + "\n\n" + ext
+		elif short:
+			ext = short
+
+		if text and ext:
+			text += "\n\n"
+		text += ext
 
 		self.setTitle(event.getEventName())
 		self["epg_description"].setText(text)
+		self["FullDescription"].setText(ext)
 		self["datetime"].setText(event.getBeginTimeString())
 		self["duration"].setText(_("%d min")%(event.getDuration()/60))
 		self["key_red"].setText("")
@@ -212,9 +218,11 @@ class EventViewBase:
 
 	def pageUp(self):
 		self["epg_description"].pageUp()
+		self["FullDescription"].pageUp()
 
 	def pageDown(self):
 		self["epg_description"].pageDown()
+		self["FullDescription"].pageDown()
 
 	def getSimilarEvents(self):
 		# search similar broadcastings
@@ -225,14 +233,15 @@ class EventViewBase:
 		epgcache = eEPGCache.getInstance()
 		ret = epgcache.search(('NB', 100, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, id))
 		if ret is not None:
-			descr = self["epg_description"]
-			text = descr.getText()
-			text += '\n\n' + _('Similar broadcasts:')
+			text = '\n\n' + _('Similar broadcasts:')
 			ret.sort(self.sort_func)
 			for x in ret:
 				t = localtime(x[1])
 				text += '\n%d.%d.%d, %2d:%02d  -  %s'%(t[2], t[1], t[0], t[3], t[4], x[0])
-			descr.setText(text)
+			descr = self["epg_description"]
+			descr.setText(descr.getText()+text)
+			descr = self["FullDescription"]
+			descr.setText(descr.getText()+text)
 			self["key_red"].setText(_("Similar"))
 
 	def openSimilarList(self):
