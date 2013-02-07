@@ -35,7 +35,6 @@ from Plugins.Extensions.Infopanel.SoftcamPanel import *
 from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
 from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin, SoftwareManagerSetup
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getOldBackupPath, getBackupFilename
-from Plugins.SystemPlugins.AutoResolution.plugin import AutoResSetupMenu
 from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
 
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, SCOPE_SKIN
@@ -61,6 +60,12 @@ if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/VideoEnhancement/p
 	VIDEOENH = True
 else:
 	VIDEOENH = False
+
+if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/AutoResolution/plugin.pyo"):
+	from Plugins.SystemPlugins.AutoResolution.plugin import AutoResSetupMenu
+	AUTORES = True
+else:
+	AUTORES = False
 
 def isFileSystemSupported(filesystem):
 	try:
@@ -264,7 +269,8 @@ class QuickMenu(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Auto Language",_("Auto Language Selection"),_("Select your Language for Audio/Subtitles")))
 		if os_path.exists("/proc/stb/vmpeg/0/pep_apply") and VIDEOENH == True:
 			self.sublist.append(QuickSubMenuEntryComponent("VideoEnhancement",_("VideoEnhancement Setup"),_("VideoEnhancement Setup")))
-		self.sublist.append(QuickSubMenuEntryComponent("AutoResolution",_("AutoResolution Setup"),_("Automatically change resolution")))
+		if AUTORES == True:
+			self.sublist.append(QuickSubMenuEntryComponent("AutoResolution",_("AutoResolution Setup"),_("Automatically change resolution")))
 
 		self["sublist"].l.setList(self.sublist)
 
