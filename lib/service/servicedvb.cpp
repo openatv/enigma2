@@ -1646,8 +1646,7 @@ RESULT eDVBServicePlay::subServices(ePtr<iSubserviceList> &ptr)
 RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 {
 	ptr = 0;
-	if (m_have_video_pid &&  // HACK !!! FIXMEE !! temporary no timeshift on radio services !!
-		(m_timeshift_enabled || !m_is_pvr))
+	if (m_timeshift_enabled || !m_is_pvr)
 	{
 		if (!m_timeshift_enabled)
 		{
