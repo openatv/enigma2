@@ -21,6 +21,7 @@ from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
+import Screens.InfoBar
 
 from Tools import NumericalTextInput
 from Tools.Directories import resolveFilename, SCOPE_HDD
@@ -907,7 +908,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				if ext in AUDIO_EXTENSIONS:
 					self.callLater(self.preview)
 
-	def preview(self):
+	def preview(self, answer = True):
+		if not answer or Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(self.preview):
+			return
 		current = self.getCurrent()
 		if current is not None:
 			path = current.getPath()

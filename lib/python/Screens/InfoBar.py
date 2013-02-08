@@ -1,4 +1,5 @@
 from Tools.Profile import profile
+from Tools.BoundFunction import boundFunction
 
 # workaround for required config entry dependencies.
 import Screens.MovieSelection
@@ -121,7 +122,9 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef, timeshiftEnabled = self.timeshift_enabled)
 
-	def movieSelected(self, service):
+	def movieSelected(self, service, answer = True):
+		if not answer or self.checkTimeshiftRunning(boundFunction(self.movieSelected, service)):
+			return
 		ref = self.lastservice
 		del self.lastservice
 		if service is None:
