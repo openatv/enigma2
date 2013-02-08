@@ -1495,13 +1495,14 @@ class InfoBarTimeshift:
 		self.__seekableStatusChanged()
 
 	def checkTimeshiftRunning(self, returnFunction, answer = None):
-		if answer is None and self.timeshift_enabled and self.check_timeshift:
-			self.session.openWithCallback(boundFunction(self.checkTimeshiftRunning, returnFunction), MessageBox, _("Abort Timeshift?"), simple = True)
-			self.check_timeshift = False
-			return True
-		elif answer is None:
-			return False
+		if answer is None:
+			if self.timeshift_enabled and self.check_timeshift:
+				self.session.openWithCallback(boundFunction(self.checkTimeshiftRunning, returnFunction), MessageBox, _("Abort Timeshift?"), simple = True)
+				return True
+			else:
+				return False
 		elif answer:
+			self.check_timeshift = False
 			boundFunction(returnFunction, True)()
 		else:
 			self.check_timeshift = self.timeshift_enabled
