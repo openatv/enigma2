@@ -1,6 +1,7 @@
 from Tools.Profile import profile
 
 from Screen import Screen
+import Screens.InfoBar
 from Components.Button import Button
 from Components.ServiceList import ServiceList
 from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
@@ -1436,6 +1437,14 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.setTitle(title)
 		self.buildTitleString()
 
+	def timeshiftCheckReply(self, enable_pipzap, preview_zap, answer):
+		if answer:
+			self.zap(enable_pipzap, preview_zap)
+		else:
+			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
+		if not preview_zap:
+			self.hide()
+
 	#called from infoBar and channelSelected
 	def zap(self, enable_pipzap = False, preview_zap = False):
 		nref = self.getCurrentSelection()
@@ -1446,6 +1455,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					# XXX: Make sure we set an invalid ref
 					self.session.pip.playService(None)
 		else:
+			if Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.timeshiftCheckReply, enable_pipzap, preview_zap)):
+				return
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if ref is None or ref != nref:
 				self.new_service_played = True
