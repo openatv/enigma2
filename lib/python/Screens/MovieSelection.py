@@ -909,14 +909,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					self.callLater(self.preview)
 
 	def preview(self, answer = True):
-		if not answer or Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(self.preview):
-			return
 		current = self.getCurrent()
 		if current is not None:
 			path = current.getPath()
 			if current.flags & eServiceReference.mustDescent:
 				self.gotFilename(path)
 			else:
+				if not answer or Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(self.preview):
+					return
 				playInBackground = self.list.playInBackground
 				if playInBackground:
 					self.list.playInBackground = None
@@ -940,12 +940,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.list.playInBackground = None
 			self.session.nav.stopService()
 
-	def itemSelected(self):
+	def itemSelected(self, answer = True):
 		current = self.getCurrent()
 		if current is not None:
 			path = current.getPath()
 			if current.flags & eServiceReference.mustDescent:
 				if path.endswith("VIDEO_TS/") or os.path.exists(os.path.join(path, 'VIDEO_TS.IFO')):
+					if not answer or Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(self.itemSelected):
+						return
 					if self.playAsDVD(path):
 						return
 				self.gotFilename(path)
@@ -960,9 +962,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					self.list.playInBackground = None
 					self.callLater(self.itemSelected)
 					return
-				if ext in DVD_EXTENSIONS:
-					if self.playAsDVD(path):
-						return
 				if ext in IMAGE_EXTENSIONS:
 					try:
 						from Plugins.Extensions.PicturePlayer import ui
@@ -979,6 +978,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					except Exception, ex:
 					        print "[ML] Cannot display", str(ex)
 					return
+				if not answer or Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(self.itemSelected):
+					return
+				if ext in DVD_EXTENSIONS:
+					if self.playAsDVD(path):
+						return
 				self.movieSelected()
 
 	# Note: DVDBurn overrides this method, hence the itemSelected indirection.
