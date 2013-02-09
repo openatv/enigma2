@@ -672,7 +672,7 @@ static ePyObject lookupColor(ePyObject color, ePyObject data)
 	unsigned int icolor = PyInt_AsUnsignedLongMask(color);
 
 		/* check if we have the "magic" template color */
-	if ((icolor & 0xFF000000) == 0xFF000000)
+	if (data && (icolor & 0xFF000000) == 0xFF000000)
 	{
 		int index = icolor & 0xFFFFFF;
 		if (PyTuple_GetItem(data, index) == Py_None)
