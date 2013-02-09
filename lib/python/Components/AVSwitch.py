@@ -152,6 +152,46 @@ def InitAVSwitch():
 	iAVSwitch.setInput("ENCODER") # init on startup
 	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
 
+	
+	try:
+		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")
+		can_edidchecking = f.read().strip().split(" ")
+		f.close()
+	except:
+		can_edidchecking = False
+
+	SystemInfo["Canedidchecking"] = can_edidchecking
+
+	if can_edidchecking:
+		def setEDIDBypass(configElement):
+			f = open("/proc/stb/hdmi/bypass_edid_checking", "w")
+			f.write(configElement.value)
+			f.close()
+		config.av.bypass_edid_checking = ConfigSelection(choices={
+				"00000000": _("off"),
+				"00000001": _("on")},
+				default = "00000000")
+		config.av.bypass_edid_checking.addNotifier(setEDIDBypass)
+		
+		
+	try:
+		f = open("/proc/stb/audio/3d_surround_choices", "r")
+		can_3dsurround = f.read().strip().split(" ")
+		f.close()
+	except:
+		can_3dsurround = False
+
+	SystemInfo["Can3DSurround"] = can_3dsurround
+
+	if can_3dsurround:
+		def set3DSurround(configElement):
+			f = open("/proc/stb/audio/3d_surround", "w")
+			f.write(configElement.value)
+			f.close()
+		choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
+		config.av.surround_3d = ConfigSelection(choices = choice_list, default = "none")
+		config.av.surround_3d.addNotifier(set3DSurround)	
+			
 	try:
 		f = open("/proc/stb/audio/ac3_choices", "r")
 		file = f.read()[:-1]

@@ -109,7 +109,13 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.list.extend((
 				getConfigListEntry(_("General AC3 delay"), config.av.generalAC3delay, _("This option configures the general audio delay of Dolby Digital sound tracks.")),
 				getConfigListEntry(_("General PCM delay"), config.av.generalPCMdelay, _("This option configures the general audio delay of stereo sound tracks."))
-			))
+				))
+
+			if SystemInfo["Can3DSurround"]:
+				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d,_("This option configures you can enable 3D Surround Sound.")))
+
+			if SystemInfo["Canedidchecking"]:
+				self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking,_("This option configures you can Bypass HDMI EDID check")))
 
 #		if SystemInfo["CanChangeOsdAlpha"]:
 #			self.list.append(getConfigListEntry(_("OSD transparency"), config.av.osd_alpha, _("This option configures the transparency of the OSD.")))
