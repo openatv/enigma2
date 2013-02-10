@@ -179,6 +179,8 @@ class EventViewBase:
 		self["epg_description"].setText(text)
 		self["summary_description"].setText(text)
 		beginTimeString = event.getBeginTimeString()
+		if not beginTimeString:
+			return
 		if beginTimeString.find(', ') > -1:
 			begintime = beginTimeString.split(', ')[1].split(':')
 			begindate = beginTimeString.split(', ')[0].split('.')
