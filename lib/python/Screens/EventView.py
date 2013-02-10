@@ -178,8 +178,13 @@ class EventViewBase:
 		text = description + extended
 		self["epg_description"].setText(text)
 		self["summary_description"].setText(text)
-		begintime = event.getBeginTimeString().split(', ')[1].split(':')
-		begindate = event.getBeginTimeString().split(', ')[0].split('.')
+		beginTimeString = event.getBeginTimeString()
+		if beginTimeString.find(', ') > -1:
+			begintime = beginTimeString.split(', ')[1].split(':')
+			begindate = beginTimeString.split(', ')[0].split('.')
+		else:
+			begintime = beginTimeString.split(' ')[1].split(':')
+			begindate = beginTimeString.split(' ')[0].split('.')
 		nowt = time()
 		now = localtime(nowt)
 		test = int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst)))
