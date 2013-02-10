@@ -7,6 +7,7 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
 from Screens.ChoiceBox import ChoiceBox
+from Screens.InfoBar import InfoBar
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport
 from Components.ActionMap import NumberActionMap, HelpableActionMap
 from Components.Label import Label
@@ -20,6 +21,7 @@ from Components.AVSwitch import AVSwitch
 from Components.Harddisk import harddiskmanager
 from Components.config import config
 from Tools.Directories import fileExists, pathExists, resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_CURRENT_SKIN
+from Tools.BoundFunction import boundFunction
 from settings import MediaPlayerSettings
 import random
 
@@ -998,8 +1000,11 @@ class MediaPlayerLCDScreen(Screen):
 		elif line == 4:
 			self["text4"].setText(text)
 
-def main(session, **kwargs):
-	session.open(MediaPlayer)
+def main(session, answer = True, **kwargs):
+	if not answer or InfoBar.instance.checkTimeshiftRunning(boundFunction(main, session)):
+		return
+	if answer:
+		session.open(MediaPlayer)
 
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu" and config.mediaplayer.onMainMenu.getValue():
