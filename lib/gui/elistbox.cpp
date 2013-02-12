@@ -602,6 +602,16 @@ void eListbox::setForegroundColorSelected(gRGB &col)
 	m_style.m_foreground_color_selected_set = 1;
 }
 
+void eListbox::setBorderColor(const gRGB &col)
+{
+	m_style.m_border_color = col;
+}
+
+void eListbox::setBorderWidth(int size)
+{
+	m_style.m_border_size = size;
+}
+
 void eListbox::setBackgroundPicture(ePtr<gPixmap> &pm)
 {
 	m_style.m_background = pm;
