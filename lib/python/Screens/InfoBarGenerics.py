@@ -1428,17 +1428,12 @@ class InfoBarTimeshift:
 			else:
 				print "timeshift failed"
 
-	def stopTimeshift(self):
-		self.checkTimeshiftRunning(self.stopTimeshiftConfirmed)
-
-	def stopTimeshiftConfirmed(self, confirmed):
-		if not confirmed:
+	def stopTimeshift(self, answer = True):
+		if not answer or self.checkTimeshiftRunning(self.stopTimeshift):
 			return
-
 		ts = self.getTimeshift()
 		if ts is None:
 			return
-
 		ts.stopTimeshift()
 		self.timeshift_enabled = False
 		self.pvrStateDialog.hide()
