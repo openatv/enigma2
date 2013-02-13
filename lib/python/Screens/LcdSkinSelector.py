@@ -10,19 +10,8 @@ from Components.config import config
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from os import path, walk
 from enigma import eEnv
-from skin import *
-import os
 
 class LCDSkinSelector(Screen):
-	skin = """
-		<screen name="LCDSkinSelector" position="center,center" size="700,400" title="LCD Skin-Selector" transparent="0">
-			<widget name="lab1" position="50,30" size="250,26" zPosition="1" foregroundColor="#FFE500" font="Regular;22" halign="left" />
-			<widget name="lab2" position="380,30" size="250,26" zPosition="1" foregroundColor="#FFE500" font="Regular;22" halign="left" />
-			<widget name="SkinList" render="Listbox" position="50,60" size="270,200" zPosition="1" enableWrapAround="1" scrollbarMode="showOnDemand" />
-			<widget name="Preview" position="380,65" size="280,210" zPosition="1" backgroundColor="background" transparent="0" alphatest="on" />
-			<widget name="lab3" position="0,307" halign="center" size="700,26" zPosition="1" foregroundColor="#FFE500" font="Regular;22" />
-		</screen>"""
-
 	skinlist = []
 	root = eEnv.resolve("${datadir}/enigma2/lcd_skin/")
 
