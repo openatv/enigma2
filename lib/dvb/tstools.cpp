@@ -377,6 +377,20 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 				offset = l->second;
 				offset += ((pts - l->first) * (pts_t)bitrate) / 8ULL / 90000ULL;
 				offset -= offset % 188;
+				if (offset > m_offset_end)
+				{
+					/*
+					 * NOTE: the bitrate calculation can be way off, especially when the pts difference is small.
+					 * So the calculated offset might be far ahead of the end of the file.
+					 * When that happens, avoid poisoning our sample list (m_samples) with an invalid value,
+					 * which could eventually cause (timeshift) playback to be stopped.
+					 * Because the file could be growing (timeshift), instead of returning the currently known end
+					 * of file offset, we return an offset 1MB ahead of the end of the file.
+					 * This allows jumping to the live point of the timeshift, for instance.
+					 */
+					offset = m_offset_end + 1024 * 1024;
+					return 0;
+				}
 				
 				p = pts;
 				
