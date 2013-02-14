@@ -591,7 +591,7 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_GRAPH:
 			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.epgselection.graph_prevtime)
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
-			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.epgselection.infograph_prevtime)
+			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.epgselection.infobar_prevtime)
 
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:
