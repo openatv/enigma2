@@ -376,7 +376,7 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def showAlternativeServices(self):
-		self["Service"].editmode = True
+		self.csel["Service"].editmode = True
 		self.csel.enterPath(self.csel.getCurrentSelection())
 		self.close()
 
