@@ -51,7 +51,7 @@ class EventTime(Poll, Converter, object):
 		if self.type == self.REMAINING:
 			remaining = st - int(time())
 			if remaining < 0:
-				remaining = duration
+				remaining = 0
 			return (duration, remaining)
 
 	@cached
