@@ -40,13 +40,6 @@ void eSlider::setBorderColor(const gRGB &color)
 	invalidate();
 }
 
-void eSlider::setForegroundColor(const gRGB &color)
-{
-	m_foreground_color=color;
-	m_have_foreground_color=true;
-	invalidate();
-}
-
 int eSlider::event(int event, void *data, void *data2)
 {
 	switch (event)
@@ -70,11 +63,7 @@ int eSlider::event(int event, void *data, void *data2)
 		}
 
 		if (!m_pixmap)
-		{
-			if (m_have_foreground_color)
-				painter.setForegroundColor(m_foreground_color);
 			painter.fill(m_currently_filled);
-		}
 		else
 			painter.blit(m_pixmap, ePoint(0, 0), m_currently_filled.extends, isTransparent() ? gPainter::BT_ALPHATEST : 0);
 
