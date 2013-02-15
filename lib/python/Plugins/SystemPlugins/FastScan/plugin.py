@@ -156,6 +156,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 		{
 			"ok": self.keyGo,
+			"save": self.keyGo,
 			"cancel": self.keyCancel,
 			"menu": self.closeRecursive,
 		}, -2)
