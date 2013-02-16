@@ -878,48 +878,73 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="RassLogo" pixmap="skin_default/icons/rass_logo.png" position="50,445" size="50,21" />
 	</screen>
 	<!-- Satfinder -->
-	<screen name="Satfinder" position="center,center" size="520,400" title="Satfinder">
+	<screen name="Satfinder" position="center,center" size="520,450" title="Satfinder">
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<eLabel text="Cancel" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<eLabel text="Scan" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		<widget name="introduction" position="0,0" size="0,0" font="Regular;23" />
-		<ePixmap pixmap="skin_default/icons/dish_scan.png" position="5,25" zPosition="0" size="119,110" transparent="1" alphatest="on" />
-		<widget source="Frontend" render="Label" position="190,10" zPosition="2" size="260,20" font="Regular;19" halign="center" valign="center" transparent="1">
+
+		<ePixmap pixmap="skin_default/icons/dish_scan.png" position="5,75" zPosition="0" size="119,110" transparent="1" alphatest="on" />
+		<widget source="Frontend" render="Label" position="190,60" zPosition="2" size="260,20" font="Regular;19" halign="center" valign="center" transparent="1">
 			<convert type="FrontendInfo">SNRdB</convert>
 		</widget>
-		<eLabel name="snr" text="SNR:" position="120,35" size="60,22" font="Regular;21" halign="right" transparent="1" />
-		<widget source="Frontend" render="Progress" position="190,35" size="260,20" pixmap="skin_default/bar_snr.png" borderWidth="2" borderColor="#cccccc">
+		<eLabel name="snr" text="SNR:" position="120,85" size="60,22" font="Regular;21" halign="right" transparent="1" />
+		<widget source="Frontend" render="Progress" position="190,85" size="260,20" pixmap="skin_default/bar_snr.png" borderWidth="2" borderColor="#cccccc">
 			<convert type="FrontendInfo">SNR</convert>
 		</widget>
-		<widget source="Frontend" render="Label" position="460,35" size="60,22" font="Regular;21">
+		<widget source="Frontend" render="Label" position="460,85" size="60,22" font="Regular;21">
 			<convert type="FrontendInfo">SNR</convert>
 		</widget>
-		<eLabel name="ber" text="BER:" position="120,60" size="60,22" font="Regular;21" halign="right" transparent="1" />
-		<widget source="Frontend" render="Progress" position="190,60" size="260,20" pixmap="skin_default/bar_ber.png" borderWidth="2" borderColor="#cccccc">
+		<eLabel name="ber" text="BER:" position="120,110" size="60,22" font="Regular;21" halign="right" transparent="1" />
+		<widget source="Frontend" render="Progress" position="190,110" size="260,20" pixmap="skin_default/bar_ber.png" borderWidth="2" borderColor="#cccccc">
 			<convert type="FrontendInfo">BER</convert>
 		</widget>
-		<widget source="Frontend" render="Label" position="460,60" size="60,22" font="Regular;21">
+		<widget source="Frontend" render="Label" position="460,110" size="60,22" font="Regular;21">
 			<convert type="FrontendInfo">BER</convert>
 		</widget>
-		<eLabel name="lock" text="Lock:" position="120,115" size="60,22" font="Regular;21" halign="right" />
-		<widget source="Frontend" render="Pixmap" pixmap="skin_default/icons/lock_on.png" position="190,110" zPosition="1" size="38,31" alphatest="on">
+		<eLabel name="lock" text="Lock:" position="120,165" size="60,22" font="Regular;21" halign="right" />
+		<widget source="Frontend" render="Pixmap" pixmap="skin_default/icons/lock_on.png" position="190,160" zPosition="1" size="38,31" alphatest="on">
 			<convert type="FrontendInfo">LOCK</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="Frontend" render="Pixmap" pixmap="skin_default/icons/lock_off.png" position="190,110" zPosition="1" size="38,31" alphatest="on">
+		<widget source="Frontend" render="Pixmap" pixmap="skin_default/icons/lock_off.png" position="190,160" zPosition="1" size="38,31" alphatest="on">
 			<convert type="FrontendInfo">LOCK</convert>
 			<convert type="ConditionalShowHide">Invert</convert>
 		</widget>
-		<ePixmap pixmap="skin_default/div-h.png" position="10,152" zPosition="1" size="500,2" />
-		<widget name="config" position="10,165" size="500,225" scrollbarMode="showOnDemand" />
+		<ePixmap pixmap="skin_default/div-h.png" position="10,202" zPosition="1" size="500,2" />
+		<widget name="config" position="10,205" size="500,225" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Scan setup -->
-	<screen name="ScanSetup" position="center,center" size="520,450" title="Service scan">
-		<widget name="config" position="10,10" size="500,350" scrollbarMode="showOnDemand" />
-		<widget name="introduction" position="10,365" size="500,75" font="Regular;20" halign="center" />
+	<screen name="ScanSetup" position="center,center" size="520,450" title="Manual scan">
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<eLabel text="Cancel" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<eLabel text="Scan" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+
+		<widget name="config" position="10,50" size="500,400" scrollbarMode="showOnDemand" />
+		<widget name="introduction" position="0,0" size="0,0" />
 	</screen>
 	<!-- Scan simple -->
-	<screen name="ScanSimple" position="center,center" size="420,350" title="Service scan">
-		<widget name="header" position="10,10" size="400,25" font="Regular;23" />
-		<widget name="config" position="10,55" size="400,250" scrollbarMode="showOnDemand" />
-		<widget name="footer" position="10,310" size="400,20" font="Regular;20" halign="center" />
+	<screen name="ScanSimple" position="center,center" size="420,350" title="Automatic scan">
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<eLabel text="Cancel" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<eLabel text="Scan" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+
+		<widget name="header" position="0,0" size="0,0" font="Regular;23" />
+		<widget name="config" position="10,50" size="400,300" scrollbarMode="showOnDemand" />
+		<widget name="footer" position="0,0" size="0,0" />
+	</screen>
+	<!-- Fast Scan -->
+	<screen name="FastScanScreen" position="center,center" size="520,350" title="Fast Scan">
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<eLabel text="Cancel" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<eLabel text="Scan" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+
+		<widget name="config" position="10,50" size="500,300" scrollbarMode="showOnDemand" />
+		<widget name="introduction" position="0,0" size="0,0" />
 	</screen>
 	<!-- Scart -->
 	<screen name="Scart" position="fill" backgroundColor="transparent" />

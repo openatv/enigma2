@@ -60,7 +60,8 @@ struct eListboxStyle
 {
 	ePtr<gPixmap> m_background, m_selection;
 	int m_transparent_background;
-	gRGB m_background_color, m_background_color_selected, m_foreground_color, m_foreground_color_selected;
+	gRGB m_background_color, m_background_color_selected,
+	 m_foreground_color, m_foreground_color_selected, m_border_color;
 	int m_background_color_set, m_foreground_color_set, m_background_color_selected_set, m_foreground_color_selected_set;
 		/*
 			{m_transparent_background m_background_color_set m_background}
@@ -80,7 +81,7 @@ struct eListboxStyle
 		alignBottom=alignRight,
 		alignBlock
 	};
-	int m_valign, m_halign;
+	int m_valign, m_halign, m_border_size;
 	ePtr<gFont> m_font;
 	ePoint m_text_offset;
 };
@@ -138,6 +139,8 @@ public:
 	void setBackgroundColorSelected(gRGB &col);
 	void setForegroundColor(gRGB &col);
 	void setForegroundColorSelected(gRGB &col);
+	void setBorderColor(const gRGB &col);
+	void setBorderWidth(int size);
 	void setBackgroundPicture(ePtr<gPixmap> &pixmap);
 	void setSelectionPicture(ePtr<gPixmap> &pixmap);
 	void setSliderPicture(ePtr<gPixmap> &pm);
