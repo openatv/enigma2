@@ -1152,10 +1152,32 @@ class ChannelSelectionBase(Screen):
 						self.enterPath(self.bouquet_root)
 
 	def keyNumberGlobal(self, number):
-		unichar = self.numericalTextInput.getKey(number)
-		charstr = unichar.encode("utf-8")
-		if len(charstr) == 1:
-			self.servicelist.moveToChar(charstr[0])
+		if self.isBasePathEqual(self.bouquet_root):
+			self.BouqetNumberActions(number)
+		else:
+			unichar = self.numericalTextInput.getKey(number)
+			charstr = unichar.encode("utf-8")
+			if len(charstr) == 1:
+				self.servicelist.moveToChar(charstr[0])
+
+	def BouqetNumberActions(self, number):
+		if number == 1: #Set focus on current playing service when available in current userbouquet
+			currentSelectedService = self.servicelist.getCurrent()
+			currentPlayingService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			self.servicelist.setCurrent(currentPlayingService)
+			if self.servicelist.getCurrent() != currentPlayingService:
+				self.servicelist.setCurrent(currentSelectedService)
+		elif number == 2: #set focus on service available from history in current userbouquet
+			currentSelectedService = self.servicelist.getCurrent()
+			root = self.getRoot()
+			service = None
+			for path in self.history:
+				if len(path) > 2 and path[1] == root:
+					service = path[2]
+			if service:
+				self.setCurrentSelection(service)
+				if self.servicelist.getCurrent() != service:
+					self.servicelist.setCurrent(currentSelectedService)
 
 	def keyAsciiCode(self):
 		unichar = unichr(getPrevAsciiCode())
