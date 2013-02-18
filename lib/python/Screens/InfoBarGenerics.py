@@ -3,7 +3,7 @@ from Screens.ChannelSelection import ChannelSelection, BouquetSelector, SilentBo
 
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
-from Components.Harddisk import harddiskmanager
+from Components.Harddisk import harddiskmanager, findMountPoint
 from Components.Input import Input
 from Components.Label import Label
 from Components.PluginComponent import plugins
@@ -50,7 +50,7 @@ from time import time, localtime, strftime
 from bisect import insort
 from random import randint
 
-import os
+import os, cPickle
 
 # hack alert!
 from Screens.Menu import MainMenu, Menu, mdom
@@ -81,15 +81,13 @@ def setResumePoint(session):
 				else:
 					l = None
 				resumePointCache[key] = [lru, pos[1], l]
-				print '[ResumePionts] length', len(resumePointCache)
-				if len(resumePointCache) > 50:
-					candidate = key
-					for k, v in resumePointCache.items():
-						if v[0] < lru:
-							candidate = k
-					del resumePointCache[candidate]
-#				print '[ResumePionts] test',(lru - resumePointCacheLast)
-#				if lru - resumePointCacheLast > 3600:
+				for k, v in resumePointCache.items():
+					if v[0] < lru:
+						candidate = k
+						filepath = os.path.realpath(candidate.split(':')[-1])
+						mountpoint = findMountPoint(filepath)
+						if os.path.ismount(mountpoint) and not os.path.exists(filepath):
+							del resumePointCache[candidate]
 				saveResumePoints()
 
 def delResumePoint(ref):
@@ -98,8 +96,7 @@ def delResumePoint(ref):
 		del resumePointCache[ref.toString()]
 	except KeyError:
 		pass
-#	if int(time()) - resumePointCacheLast > 3600:
-		saveResumePoints()
+	saveResumePoints()
 
 def getResumePoint(session):
 	global resumePointCache
@@ -113,9 +110,7 @@ def getResumePoint(session):
 			return None
 
 def saveResumePoints():
-	print '[ResumePionts] saving'
 	global resumePointCache, resumePointCacheLast
-	import cPickle
 	try:
 		f = open('/etc/enigma2/resumepoints.pkl', 'wb')
 		cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
@@ -125,7 +120,6 @@ def saveResumePoints():
 	resumePointCacheLast = int(time())
 
 def loadResumePoints():
-	import cPickle
 	try:
 		file = open('/etc/enigma2/resumepoints.pkl', 'rb')
 		PickleFile = cPickle.load(file)
@@ -135,6 +129,10 @@ def loadResumePoints():
 		print "[InfoBar] Failed to load resumepoints:", ex
 		return {}
 
+def updateresumePointCache():
+	global resumePointCache
+	resumePointCache = loadResumePoints()
+	
 resumePointCache = loadResumePoints()
 resumePointCacheLast = int(time())
 
