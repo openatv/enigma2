@@ -1472,12 +1472,10 @@ class InfoBarTimeshift:
 		self.activateTimeshiftEnd(False)
 
 	def __seekableStatusChanged(self):
-		# when the service is already seekable so the actual recording did already startand timeshift
-		# is enabled, this means we can activate the timeshift ActivateActions and SeekActions
-		enabled = self.getSeek and self.timeshift_enabled
-		self["TimeshiftActivateActions"].setEnabled(enabled)
-		self["SeekActions"].setEnabled(enabled)
-		if not enabled:
+		self["TimeshiftActivateActions"].setEnabled(not self.isSeekable() and self.timeshift_enabled)
+		state = self.getSeek() is not None and self.timeshift_enabled
+		self["SeekActions"].setEnabled(state)
+		if not state:
 			self.setSeekState(self.SEEK_STATE_PLAY)
 
 	def __serviceStarted(self):
