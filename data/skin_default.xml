@@ -379,7 +379,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget font="Enigma;22" halign="right" name="chapter" noWrap="1" position="0,0" size="100,26" valign="center" zPosition="1" borderWidth="2" borderColor="black" backgroundColor="transparent" />
 		<widget font="Enigma;22" halign="left" name="number" noWrap="1" position="105,0" size="55,26" valign="center" zPosition="2" borderWidth="2" borderColor="black" backgroundColor="transparent" />
 	</screen>
-	<screen name="About" position="center,center" size="560,460" title="About" >
+	<screen name="AboutAAF" position="center,center" size="560,460" title="About" >
 		<panel name="BasicTemplate" />
 		<widget source="lab1" render="Label" position="10,0" size="490,25" font="Regular; 22" transparent="0" zPosition="2" />
 		<widget source="lab2" render="Label" position="10,25" size="490,20" font="Regular; 18" transparent="0" zPosition="2" />
@@ -387,7 +387,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="AboutScrollLabel" font="Enigma;18" position="10,70" size="490,310" scrollbarMode="showOnDemand"/>
 		<panel name="InfoBPanel" />
 	</screen>
-		<screen name="Devices" position="center,center" size="560,460" title="Systeminfo" >
+		<screen name="DevicesAAF" position="center,center" size="560,460" title="Systeminfo" >
 		<panel name="BasicTemplate" />
 		<widget font="Regular; 20" position="10,5" render="Label" size="490,22" source="TunerHeader"/>
 		<widget font="Regular; 18" position="10,32" render="Label" size="490,100" source="nims"/>
@@ -421,11 +421,11 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget backgroundColor="#254177" font="Enigma;18" halign="center" name="blue" position="420,0" size="140,40" transparent="1" valign="center" zPosition="2"/>
 		<widget name="infolist" position="5,40" selectionDisabled="1" size="550,390"/>
 	</screen>
-	<screen name="SystemMemoryInfo" position="center,center" size="560,460" title="Release Notes" >
+	<screen name="SystemMemoryInfoAAF" position="center,center" size="560,460" title="Release Notes" >
 		<panel name="BasicTemplate" />
 		<widget name="AboutScrollLabel" render="Label" font="Regular;22" position="25,30" size="490,350" scrollbarMode="showOnDemand" transparent="1" />
 	</screen>
-	<screen name="SystemNetworkInfo" position="center,center" size="560,460" >
+	<screen name="SystemNetworkInfoAAF" position="center,center" size="560,460" >
 		<panel name="BasicTemplate" />
 		<widget name="AboutScrollLabel" position="10,50" size="458,275" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
 		<widget source="LabelBSSID" render="Label" position="10,130" size="200,25" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
@@ -1814,7 +1814,7 @@ self.autoResize()
 		<panel name="MenuBPanel" />
 		<widget name="entries" position="10,50" size="540,380" scrollbarMode="showOnDemand" font="Regular;22" transparent="1" itemHeight="70" enableWrapAround="1" zPosition="1" />
 	</screen>
-	<screen name="SoftwareUpdateChanges" position="center,center" size="600,460" flags="wfNoBorder">
+	<screen name="SoftwareUpdateChangesAAF" position="center,center" size="600,460" flags="wfNoBorder">
 		<panel name="Red1Panel" />
 		<panel name="Green1Panel" />
 		<panel name="Yellow1Panel" />
