@@ -385,40 +385,33 @@ class SystemNetworkInfo(Screen):
 			})
 
 	def createscreen(self):
-		AboutText = ""
+		self.AboutText = ""
 		self.iface = "eth0"
 		eth0 = about.getIfConfig('eth0')
 		if eth0.has_key('addr'):
-			AboutText += _("IP:") + "\t" + eth0['addr'] + "\n"
+			self.AboutText += _("IP:") + "\t" + eth0['addr'] + "\n"
 			if eth0.has_key('netmask'):
-				AboutText += _("Netmask:") + "\t" + eth0['netmask'] + "\n"
+				self.AboutText += _("Netmask:") + "\t" + eth0['netmask'] + "\n"
 			if eth0.has_key('hwaddr'):
-				AboutText += _("MAC:") + "\t" + eth0['hwaddr'] + "\n"
+				self.AboutText += _("MAC:") + "\t" + eth0['hwaddr'] + "\n"
 			self.iface = 'eth0'
 
 		wlan0 = about.getIfConfig('wlan0')
 		if wlan0.has_key('addr'):
-			AboutText += _("IP:") + "\t" + wlan0['addr'] + "\n"
+			self.AboutText += _("IP:") + "\t" + wlan0['addr'] + "\n"
 			if wlan0.has_key('netmask'):
-				AboutText += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
+				self.AboutText += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
 			if wlan0.has_key('hwaddr'):
-				AboutText += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n"
+				self.AboutText += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n"
 			self.iface = 'wlan0'
 
-			self["LabelBSSID"].setText(_('Accesspoint:'))
-			self["LabelESSID"].setText(_('SSID:'))
-			self["LabelQuality"].setText(_('Link Quality:'))
-			self["LabelSignal"].setText(_('Signal Strength:'))
-			self["LabelBitrate"].setText(_('Bitrate:'))
-			self["LabelEnc"].setText(_('Encryption:'))
-
 		rx_bytes, tx_bytes = about.getIfTransferredData(self.iface)
-		AboutText += "\n" + _("Bytes received:") + "\t" + rx_bytes + "\n"
-		AboutText += _("Bytes sent:") + "\t" + tx_bytes + "\n"
+		self.AboutText += "\n" + _("Bytes received:") + "\t" + rx_bytes + "\n"
+		self.AboutText += _("Bytes sent:") + "\t" + tx_bytes + "\n"
 
 		hostname = file('/proc/sys/kernel/hostname').read()
-		AboutText += "\n" + _("Hostname:") + "\t" + hostname + "\n"
-		self["AboutScrollLabel"] = ScrollLabel(AboutText)
+		self.AboutText += "\n" + _("Hostname:") + "\t" + hostname + "\n"
+		self["AboutScrollLabel"] = ScrollLabel(self.AboutText)
 
 	def cleanup(self):
 		if self.iStatus:
@@ -444,24 +437,24 @@ class SystemNetworkInfo(Screen):
 						else:
 							accesspoint = status[self.iface]["accesspoint"]
 						if self.has_key("BSSID"):
-							self["BSSID"].setText(accesspoint)
+							self.AboutText += _('Accesspoint:') + '\t' + accesspoint + '\n'
 						if self.has_key("ESSID"):
-							self["ESSID"].setText(essid)
+							self.AboutText += _('SSID:') + '\t' + essid + '\n'
 
 						quality = status[self.iface]["quality"]
 						if self.has_key("quality"):
-							self["quality"].setText(quality)
+							self.AboutText += _('Link Quality:') + '\t' + quality + '\n'
 
 						if status[self.iface]["bitrate"] == '0':
 							bitrate = _("Unsupported")
 						else:
 							bitrate = str(status[self.iface]["bitrate"]) + " Mb/s"
 						if self.has_key("bitrate"):
-							self["bitrate"].setText(bitrate)
+							self.AboutText += _('Bitrate:') + '\t' + bitrate + '\n'
 
 						signal = status[self.iface]["signal"]
 						if self.has_key("signal"):
-							self["signal"].setText(signal)
+							self.AboutText += _('Signal Strength:') + '\t' + signal + '\n'
 
 						if status[self.iface]["encryption"] == "off":
 							if accesspoint == "Not-Associated":
@@ -471,7 +464,7 @@ class SystemNetworkInfo(Screen):
 						else:
 							encryption = _("Enabled")
 						if self.has_key("enc"):
-							self["enc"].setText(encryption)
+							self.AboutText += _('Encryption:') + '\t' + encryption + '\n'
 
 						if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] == False:
 							self.LinkState = False
@@ -480,6 +473,7 @@ class SystemNetworkInfo(Screen):
 						else:
 							self.LinkState = True
 							iNetwork.checkNetworkState(self.checkNetworkCB)
+						self["AboutScrollLabel"].setText(self.AboutText)
 
 	def exit(self):
 		self.close(True)
@@ -488,15 +482,6 @@ class SystemNetworkInfo(Screen):
 		self["IFtext"].setText(_("Network:"))
 		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 		self["Statustext"].setText(_("Link:"))
-		if self.iface == 'wlan0':
-			wait_txt = _("Please wait...")
-			self["BSSID"].setText(wait_txt)
-			self["ESSID"].setText(wait_txt)
-			self["quality"].setText(wait_txt)
-			self["signal"].setText(wait_txt)
-			self["bitrate"].setText(wait_txt)
-			self["enc"].setText(wait_txt)
-
 		if iNetwork.isWirelessInterface(self.iface):
 			try:
 				self.iStatus.getDataForInterface(self.iface,self.getInfoCB)
