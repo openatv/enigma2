@@ -1397,7 +1397,7 @@ class InfoBarTimeshift:
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
-				iPlayableService.evNewProgramInfo: self.__serviceStarted,
+				iPlayableService.evStart: self.__serviceStarted,
 				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged
 			})
 
