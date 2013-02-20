@@ -425,26 +425,26 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<panel name="BasicTemplate" />
 		<widget name="AboutScrollLabel" render="Label" font="Regular;22" position="25,30" size="490,350" scrollbarMode="showOnDemand" transparent="1" />
 	</screen>
-	<screen name="SystemNetworkInfoAAF" position="center,center" size="560,460" >
-		<panel name="BasicTemplate" />
-		<widget name="AboutScrollLabel" position="10,50" size="458,275" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-		<widget source="LabelBSSID" render="Label" position="10,130" size="200,25" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-		<widget source="LabelESSID" render="Label" position="10,160" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-		<widget source="LabelQuality" render="Label" position="10,190" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-		<widget source="LabelSignal" render="Label" position="10,220" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-		<widget source="LabelBitrate" render="Label" position="10,250" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-		<widget source="LabelEnc" render="Label" position="10,280" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-		<widget source="BSSID" render="Label" position="161,130" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-		<widget source="ESSID" render="Label" position="161,160" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-		<widget source="quality" render="Label" position="161,190" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-		<widget source="signal" render="Label" position="161,220" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-		<widget source="bitrate" render="Label" position="161,250" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-		<widget source="enc" render="Label" position="161,280" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-		<ePixmap pixmap="skin_default/div-h.png" position="0,350" zPosition="1" size="560,2" />
-		<widget source="IFtext" render="Label" position="10,355" size="120,21" zPosition="10" font="Regular;20" halign="left" transparent="1" />
-		<widget source="IF" render="Label" position="120,355" size="400,21" zPosition="10" font="Regular;20" halign="left" transparent="1" />
-		<widget source="Statustext" render="Label" position="10,375" size="115,21" zPosition="10" font="Regular;20" halign="left" transparent="1"/>
-		<widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="120,380" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
+	    <screen name="SystemNetworkInfoAAF" position="center,35" size="560,530" >
+            <panel name="BasicTemplate" />
+            <widget name="AboutScrollLabel" position="10,10" size="458,275" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+            <widget source="LabelBSSID" render="Label" position="10,260" size="200,25" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+            <widget source="LabelESSID" render="Label" position="10,290" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+            <widget source="LabelQuality" render="Label" position="10,320" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+            <widget source="LabelSignal" render="Label" position="10,350" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+            <widget source="LabelBitrate" render="Label" position="10,380" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+            <widget source="LabelEnc" render="Label" position="10,410" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+            <widget source="BSSID" render="Label" position="250,260" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+            <widget source="ESSID" render="Label" position="250,290" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+            <widget source="quality" render="Label" position="250,320" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+            <widget source="signal" render="Label" position="250,350" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+            <widget source="bitrate" render="Label" position="250,380" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+            <widget source="enc" render="Label" position="250,410" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+            <ePixmap pixmap="skin_default/div-h.png" position="0,258" zPosition="1" size="560,2" />
+            <widget source="IFtext" render="Label" position="10,485" size="120,21" zPosition="10" font="Regular;20" halign="left" transparent="1" />
+            <widget source="IF" render="Label" position="120,485" size="400,21" zPosition="10" font="Regular;20" halign="left" transparent="1" />
+            <widget source="Statustext" render="Label" position="10,505" size="115,21" zPosition="10" font="Regular;20" halign="left" transparent="1"/>
+            <widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="120,505" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
 	</screen>
 	<screen name="TimeshiftState" position="50,310" size="150,60" zPosition="2" backgroundColor="transparent" flags="wfNoBorder" >
 		<widget font="Enigma;24" halign="center" name="state" position="0,0" size="150,30" backgroundColor="transparent" borderColor="black" borderWidth="2" />
