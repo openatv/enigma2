@@ -471,6 +471,18 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					# load palette (not yet implemented)
 					pass
 
+	for skininclude in skin.findall("include"):
+		filename = skininclude.attrib.get("filename")
+		if filename:
+			skinfile = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
+			if not fileExists(skinfile):
+				skinfile = resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)
+			print "[SKIN] loading include:", skinfile
+			try:
+				loadSkin(skinfile)
+			except Exception, err:
+				print "not loading user skin: ", err
+				
 	for c in skin.findall("colors"):
 		for color in c.findall("color"):
 			get_attr = color.attrib.get
@@ -615,10 +627,6 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 		# the "desktop" parameter is hardcoded to the UI screen, so we must ask
 		# for the one that this actually applies to.
 		getDesktop(style_id).setMargins(r)
-
-	for skininclude in skin.findall("include"):
-		print "[SKIN] loading include:", skininclude.attrib.get("filename")
-		loadSkin(skininclude.attrib.get("filename"))
 
 dom_screens = {}
 
