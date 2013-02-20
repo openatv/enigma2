@@ -492,6 +492,12 @@ class EPGList(HTMLComponent, GUIComponent):
 					res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (left + xpos + ewidth - 22, top + height - 22), size = (21, 21),
 						png = self.clocks[rec[1]] ) )
+		else:
+			if selected and self.selEvPix:
+				res.append(MultiContentEntryPixmapAlphaTest(
+					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
+					size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
+					png = self.selEvPix))
 		return res
 
 	def selEntry(self, dir, visible = True):
