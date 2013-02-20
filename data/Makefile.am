@@ -8,7 +8,6 @@ dist_pkgdata_DATA = \
 	black.mvi \
 	rcpositions.xml \
 	setup.xml \
-	CommonSkin.xml \
 	skin_default.xml \
 	skin_subtitles.xml \
 	skin.xml \
