@@ -769,6 +769,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.updateTimelineTimer.callback.append(self.moveTimeLines)
 		self.updateTimelineTimer.start(60 * 1000)
 		self.onLayoutFinish.append(self.onCreate)
+		self.previousref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 
 	def prevPage(self):
 		self["list"].moveTo(eListbox.pageUp)
@@ -924,12 +925,13 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		if self.zapFunc and self.key_red_choice == self.ZAP:
 			ref = self["list"].getCurrent()[1]
 			if ref:
-				currentref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 				self.zapFunc(ref.ref)
-				if currentref and currentref == ref.ref:
-					Notifications.RemovePopup("Parental control")
+				if self.previousref and self.previousref == ref.ref:
 					config.misc.graph_mepg.save()
 					self.close(True)
+				self.previousref = ref.ref
+				self["list"].setCurrentlyPlaying(ref.ref)
+				self["list"].l.invalidate()
 
 	def swapMode(self):
 		global listscreen
