@@ -49,20 +49,6 @@
 		<color name="white" value="#00ffffff" />
 		<color name="yellow" value="#00bab329" />
 	</colors>
-	<fonts>
-		<font filename="fonts/Roboto-Bold.ttf" name="Regular" scale="95" />
-		<font filename="fonts/Roboto-BoldItalic.ttf" name="Italic" scale="95" />
-		<font filename="fonts/Roboto-Black.ttf" name="Bold" scale="95" />
-		<font filename="fonts/Roboto-BlackItalic.ttf" name="Boldit" scale="95" />
-		<font filename="/usr/share/fonts/nmsbd.ttf" name="Subtitlefont" scale="90" />
-		<font filename="/usr/share/fonts/lcd.ttf" name="LCD" scale="100" />
-		<font filename="/usr/share/fonts/ae_AlMateen.ttf" name="Replacement" scale="90" replacement="1" />
-		<font filename="/usr/share/fonts/tuxtxt.ttf" name="Console" scale="100" />
-		<!-- Aliases that should be present -->
-		<alias name="Body" font="Regular" size="20" height="25" />
-		<alias name="ChoiceList" font="Regular" size="20" height="25" />
-		<alias name="TextNormal" font="Regular" size="20" height="24" />
-	</fonts>
 	<windowstyle type="skinned" id="0">
 		<title offset="25,15" font="Italic;24" />
 		<color name="Background" color="window-bg" />
@@ -88,4 +74,18 @@
 			<pixmap pos="bpBottomRight" filename="screens/b_br.png" />
 		</borderset>
 	</windowstyle>
+	<fonts>
+		<font filename="/usr/share/fonts/Roboto-Bold.ttf" name="Regular" scale="95" />
+		<font filename="/usr/share/fonts/Roboto-BoldItalic.ttf" name="Italic" scale="95" />
+		<font filename="/usr/share/fonts/Roboto-Black.ttf" name="Bold" scale="95" />
+		<font filename="/usr/share/fonts/Roboto-BlackItalic.ttf" name="Boldit" scale="95" />
+		<font filename="/usr/share/fonts/nmsbd.ttf" name="Subtitlefont" scale="90" />
+		<font filename="/usr/share/fonts/lcd.ttf" name="LCD" scale="100" />
+		<font filename="/usr/share/fonts/ae_AlMateen.ttf" name="Replacement" scale="90" replacement="1" />
+		<font filename="/usr/share/fonts/tuxtxt.ttf" name="Console" scale="100" />
+		<!-- Aliases that should be present -->
+		<alias name="Body" font="Regular" size="20" height="25" />
+		<alias name="ChoiceList" font="Regular" size="20" height="25" />
+		<alias name="TextNormal" font="Regular" size="20" height="24" />
+	</fonts>
 </skin>
