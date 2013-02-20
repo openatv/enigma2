@@ -379,6 +379,10 @@ class InfoBarNumberZap:
 			else:
 				self.servicelist.recallPrevService()
 		else:
+			if self.has_key("TimeshiftActions") and self.timeshift_enabled:
+				ts = self.getTimeshift()
+				if ts and ts.isTimeshiftActive():
+					return
 			self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
 
 	def numberEntered(self, service = None, bouquet = None):
