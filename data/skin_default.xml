@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 0.03 by Andy Blackburn. @www.world-of-satellite.com,  based on ViX Night	-->
+	<!--	Skin: Default-ViX Vs 0.04 by Andy Blackburn. @www.world-of-satellite.com,  based on ViX Night	-->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
 	<!--	Do whatever you want with this skin,but don't tell it's yours,or your idea, and leave the credentials in the "About-box" as they are	-->
@@ -613,6 +613,40 @@
 		<widget name="key_yellow" position="325,150" size="130,25" font="Regular;20" foregroundColor="infobar-frgrnd" backgroundColor="infobar_collab_back" transparent="1" zPosition="1" />
 		<ePixmap pixmap="buttons/blue.png" position="490,150" size="25,25" alphatest="blend" />
 		<widget name="key_blue" position="525,150" size="130,25" font="Regular;20" foregroundColor="infobar-frgrnd" backgroundColor="infobar_collab_back" transparent="1" zPosition="1" />
+	</screen>
+	<screen name="DVDPlayer" flags="wfNoBorder" position="center,e-200" size="750,190" backgroundColor="transparent">
+		<ePixmap position="0,0" zPosition="-1" size="750,190" pixmap="infobar/movie_infobar-bg.png" />
+		<ePixmap pixmap="icons/clock.png" position="580,12" zPosition="1" size="20,20" alphatest="blend" />
+		<widget source="global.CurrentTime" render="Label" position="598,14" zPosition="1" size="59,20" font="Regular;21" foregroundColor="infobar-frgrnd" halign="right" backgroundColor="infobar-bkgrnd" transparent="1" noWrap="1" valign="top">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="658,17" zPosition="1" size="35,18" font="Regular;17" valign="top" backgroundColor="infobar-bkgrnd" foregroundColor="infobar-frgrnd" transparent="1" noWrap="1">
+			<convert type="ClockToText">Format::%S</convert>
+		</widget>
+		<ePixmap pixmap="icons/ico_event.png" position="85,15" zPosition="1" size="15,10" alphatest="on" />
+		<widget source="session.CurrentService" render="Label" position="110,10" size="300,20" font="Italic;20" backgroundColor="infobar-bkgrnd" transparent="1" noWrap="1" foregroundColor="infobar_service_frgrnd">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget name="chapterLabel" position="110,32" size="360,20" font="Regular;18" foregroundColor="infobar-frgrnd" backgroundColor="infobar-bkgrnd" transparent="1" />
+		<ePixmap pixmap="icons/icon_dolby.png" position="480,52" zPosition="1" size="26,16" alphatest="on" />
+		<widget name="audioLabel" position="510,50" size="130,22" font="Regular;18" backgroundColor="infobar_sunken" transparent="1" foregroundColor="infobar-frgrnd" />
+		<widget source="session.CurrentService" render="Pixmap" pixmap="icons/icon_txt.png" position="330,52" zPosition="1" size="26,16" alphatest="blend">
+			<convert type="ServiceInfo">HasTelext</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget name="subtitleLabel" position="350,50" size="130,22" font="Regular;18" backgroundColor="infobar_sunken" transparent="1" foregroundColor="#00263c59" />
+		<widget name="anglePix" pixmap="icons/ico_view.png" position="160,50" size="26,16" alphatest="on" />
+		<widget name="angleLabel" position="190,48" size="130,22" font="Regular;18" backgroundColor="infobar_sunken" transparent="1" foregroundColor="#00263c59" />
+		<widget source="session.CurrentService" render="Label" position="80,115" size="100,24" font="Italic;18" halign="left" valign="center" foregroundColor="infobar_service_frgrnd" backgroundColor="infobar_sunken" transparent="1">
+			<convert type="ServicePosition">Position,ShowHours</convert>
+		</widget>
+		<ePixmap position="80,90" size="563,18" pixmap="icons/Mediaplayerbar_gray.png" alphatest="blend" />
+		<widget source="session.CurrentService" render="PositionGauge" position="80,83" size="563,25" zPosition="2" pointer="icons/Mediaplayerbar_purple.png:563,0" transparent="1">
+			<convert type="ServicePosition">Gauge</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="540,115" size="95,20" font="Regular;18" halign="right" valign="center" foregroundColor="infobar-frgrnd" backgroundColor="infobar_sunken" transparent="1">
+			<convert type="ServicePosition">Remaining,Negate,ShowHours</convert>
+		</widget>
 	</screen>
 	<screen name="RadioInfoBar" flags="wfNoBorder" position="center,e-172" size="843,162" backgroundColor="transparent">
 		<ePixmap position="0,0" zPosition="-1" size="843,162" pixmap="infobar/radio-infobar-bg.png" />
