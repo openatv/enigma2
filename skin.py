@@ -226,7 +226,9 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 		if attrib not in ignore:
 			if attrib in filenames:
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix)
-				if not fileExists(pngfile):
+				if pngfile.find(':') != -1 and not fileExists(pngfile.split(':')[0]):
+					pngfile = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
+				elif pngfile.find(':') == -1 and not fileExists(pngfile):
 					pngfile = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
 				value = pngfile
 			# Bit of a hack this, really. When a window has a flag (e.g. wfNoBorder)
