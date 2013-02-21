@@ -264,16 +264,6 @@ data/rc_models/tm/Makefile
 data/rc_models/vu/Makefile
 data/rc_models/vu2/Makefile
 data/rc_models/xp1000/Makefile
-data/skin_default/Makefile
-data/skin_default/buttons/Makefile
-data/skin_default/countries/Makefile
-data/skin_default/epg/Makefile
-data/skin_default/extensions/Makefile
-data/skin_default/icons/Makefile
-data/skin_default/infobar/Makefile
-data/skin_default/piconbg/Makefile
-data/skin_default/screens/Makefile
-data/skin_default/spinner/Makefile
 include/Makefile
 lib/Makefile
 lib/base/eenv.cpp
