@@ -1551,22 +1551,21 @@ class NetworkAfp(Screen):
 		self.my_afp_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.AfpStartStop, 'yellow': self.activateAfp})
 		self.service_name = 'task-base-appletalk netatalk'
-		self.InstallCheck()
+		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
-		print 'INSTALL CHECK STARTED',self.service_name
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
-		print 'INSTALL CHECK FINISHED',str
-		if not str:
+		if str.find('Collected errors') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("A background update check is is progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif not str:
 			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
 			self.feedscheck.setTitle(_('Checking Feeds'))
 			cmd1 = "opkg update"
 			self.CheckConsole = Console()
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
-			print 'INSTALL ALREADY INSTALLED'
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
@@ -1578,12 +1577,9 @@ class NetworkAfp(Screen):
 			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nReady to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 
 	def InstallPackage(self, val):
-		print 'INSTALL QUESTION FINISHED',val
 		if val:
-			print 'INSTALLING: ABOUT TO START',self.service_name
 			self.doInstall(self.installComplete, self.service_name)
 		else:
-			print 'INSTALL NO'
 			self.feedscheck.close()
 			self.close()
 
@@ -1592,10 +1588,8 @@ class NetworkAfp(Screen):
 		self.close()
 
 	def doInstall(self, callback, pkgname):
-		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Installing Service'))
-		print 'INSTALLING: STARTED',pkgname
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
@@ -1772,22 +1766,21 @@ class NetworkNfs(Screen):
 		self.my_nfs_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.NfsStartStop, 'yellow': self.Nfsset})
 		self.service_name = 'task-base-nfs'
-		self.InstallCheck()
+		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
-		print 'INSTALL CHECK STARTED',self.service_name
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
-		print 'INSTALL CHECK FINISHED',str
-		if not str:
+		if str.find('Collected errors') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("A background update check is is progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif not str:
 			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
 			self.feedscheck.setTitle(_('Checking Feeds'))
 			cmd1 = "opkg update"
 			self.CheckConsole = Console()
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
-			print 'INSTALL ALREADY INSTALLED'
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
@@ -1799,12 +1792,9 @@ class NetworkNfs(Screen):
 			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nReady to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 
 	def InstallPackage(self, val):
-		print 'INSTALL QUESTION FINISHED',val
 		if val:
-			print 'INSTALLING: ABOUT TO START',self.service_name
 			self.doInstall(self.installComplete, self.service_name)
 		else:
-			print 'INSTALL NO'
 			self.feedscheck.close()
 			self.close()
 
@@ -1813,11 +1803,8 @@ class NetworkNfs(Screen):
 		self.close()
 
 	def doInstall(self, callback, pkgname):
-		print 'INSTALLING: DISABLING REMOTE'
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Installing Service'))
-		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
-		print 'INSTALLING: STARTED',pkgname
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
@@ -1916,13 +1903,15 @@ class NetworkOpenvpn(Screen):
 		self.my_vpn_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.VpnStartStop, 'yellow': self.activateVpn, 'blue': self.Vpnshowlog})
 		self.service_name = 'openvpn'
-		self.InstallCheck()
+		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
-		if not str:
+		if str.find('Collected errors') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("A background update check is is progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif not str:
 			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
 			self.feedscheck.setTitle(_('Checking Feeds'))
 			cmd1 = "opkg update"
@@ -2074,13 +2063,15 @@ class NetworkSamba(Screen):
 		self.my_Samba_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.SambaStartStop, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
 		self.service_name = 'task-base-smbfs'
-		self.InstallCheck()
+		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
-		if not str:
+		if str.find('Collected errors') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("A background update check is is progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif not str:
 			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
 			self.feedscheck.setTitle(_('Checking Feeds'))
 			cmd1 = "opkg update"
@@ -2342,13 +2333,15 @@ class NetworkInadyn(Screen):
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.setupinadyn, 'back': self.close, 'menu': self.setupinadyn, 'red': self.UninstallCheck, 'green': self.InadynStartStop, 'yellow': self.autostart, 'blue': self.inaLog})
 		self.Console = Console()
 		self.service_name = 'inadyn-mt'
-		self.InstallCheck()
+		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
-		if not str:
+		if str.find('Collected errors') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("A background update check is is progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif not str:
 			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
 			self.feedscheck.setTitle(_('Checking Feeds'))
 			cmd1 = "opkg update"
@@ -2689,13 +2682,15 @@ class NetworkuShare(Screen):
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.setupushare, 'back': self.close, 'menu': self.setupushare, 'red': self.UninstallCheck, 'green': self.uShareStartStop, 'yellow': self.autostart, 'blue': self.ushareLog})
 		self.Console = Console()
 		self.service_name = 'ushare'
-		self.InstallCheck()
+		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
-		if not str:
+		if str.find('Collected errors') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("A background update check is is progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif not str:
 			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
 			self.feedscheck.setTitle(_('Checking Feeds'))
 			cmd1 = "opkg update"
@@ -3175,13 +3170,15 @@ class NetworkMiniDLNA(Screen):
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.setupminidlna, 'back': self.close, 'menu': self.setupminidlna, 'red': self.UninstallCheck, 'green': self.MiniDLNAStartStop, 'yellow': self.autostart, 'blue': self.minidlnaLog})
 		self.Console = Console()
 		self.service_name = 'minidlna'
-		self.InstallCheck()
+		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
-		if not str:
+		if str.find('Collected errors') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("A background update check is is progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif not str:
 			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
 			self.feedscheck.setTitle(_('Checking Feeds'))
 			cmd1 = "opkg update"
