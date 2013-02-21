@@ -98,7 +98,8 @@ class MultiPixmap(Pixmap):
 						pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, p, path_prefix=skin_path_prefix)
 						if not fileExists(pngfile):
 							pngfile = resolveFilename(SCOPE_SKIN_IMAGE, p, path_prefix=skin_path_prefix)
-						self.pixmaps.append(loadPixmap(pngfile, desktop))
+						if path.exists(pngfile):
+							self.pixmaps.append(loadPixmap(pngfile, desktop))
 					if not pixmap:
 						pixmap = resolveFilename(SCOPE_ACTIVE_SKIN, pixmaps[0], path_prefix=skin_path_prefix)
 						if not fileExists(pixmap):
