@@ -2541,10 +2541,10 @@ class InfoBarInactivity:
 		self.inactivityTimer.stop()
 		if answer == None and not Screens.Standby.inStandby:
 			if int(config.usage.inactivity_timer.value) < 0:
-				message = _("Your receiver will shutdown due to inactivity\nDo you want to abort this")
+				message = _("Your receiver will shutdown due to inactivity\nDo you want to abort this?")
 			else:
-				message = _("Your receiver will got to standby due to inactivity\nDo you want to abort this")
-			self.session.openWithCallback(self.inactiveTimeout, MessageBox, message, MessageBox.TYPE_YESNO, timeout=60, default=False, simple = True)
+				message = _("Your receiver will got to standby due to inactivity\nDo you want to abort this?")
+			self.session.openWithCallback(self.inactiveTimeout, MessageBox, message, MessageBox.TYPE_YESNO, timeout=60, simple = True)
 		elif answer:
 			print "[InfoBarInactivity] abort"
 			self.restartInactiveTimer()
