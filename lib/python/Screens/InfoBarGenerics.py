@@ -2531,7 +2531,7 @@ class InfoBarInactivity:
 			self.restartInactiveTimer()
 
 	def restartInactiveTimer(self):
-		time = int(config.usage.inactivity_timer.value)
+		time = abs(int(config.usage.inactivity_timer.value))
 		if time:
 			self.inactivityTimer.startLongTimer(time)
 		else:
@@ -2540,21 +2540,21 @@ class InfoBarInactivity:
 	def inactiveTimeout(self, answer = None):
 		self.inactivityTimer.stop()
 		if answer == None and not Screens.Standby.inStandby:
-			if config.usage.inactivity_action.value == "shutdown":
+			if int(config.usage.inactivity_timer.value) < 0:
 				message = _("Your receiver will shutdown due to inactivity\nDo you want to abort this")
 			else:
 				message = _("Your receiver will got to standby due to inactivity\nDo you want to abort this")
 			self.session.openWithCallback(self.inactiveTimeout, MessageBox, message, MessageBox.TYPE_YESNO, timeout=60, default=False, simple = True)
 		elif answer:
-			print "[InfoBarInactivityTimer] abort"
+			print "[InfoBarInactivity] abort"
 			self.restartInactiveTimer()
-		elif config.usage.inactivity_action.value == "shutdown":
+		elif int(config.usage.inactivity_timer.value) < 0:
 			if Screens.Standby.inStandby:
-				print "[InfoBarInactivityTimer] already in standby now shut down"
+				print "[InfoBarInactivity] already in standby now shut down"
 				RecordTimerEntry.TryQuitMainloop(True)
 			elif not Screens.Standby.inTryQuitMainloop:
-				print "[InfoBarInactivityTimer] goto shutdown"
+				print "[InfoBarInactivity] goto shutdown"
 				self.session.open(Screens.Standby.TryQuitMainloop, 1)
 		elif not Screens.Standby.inStandby:
-			print "[InfoBarInactivityTimer] goto standby"
+			print "[InfoBarInactivity] goto standby"
 			self.session.open(Screens.Standby.Standby)
