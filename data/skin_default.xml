@@ -1,5 +1,5 @@
 ﻿<skin>
-	<!--	Skin: Default-ViX Vs 0.02 by Andy Blackburn. @www.world-of-satellite.com,  based on ViX Night	-->
+	<!--	Skin: Default-ViX Vs 0.03 by Andy Blackburn. @www.world-of-satellite.com,  based on ViX Night	-->
 	<!--	This skin is a Freeware. Everyone can modify and use it in other images.	-->
 	<!--	BUT DO NOT REMOVE OR CHANGE THIS HEADER !!!	-->
 	<!--	Do whatever you want with this skin,but don't tell it's yours,or your idea, and leave the credentials in the "About-box" as they are	-->
@@ -206,8 +206,6 @@
 	<screen name="Setup" position="center,center" size="560,550" flags="wfBorder">
 		<panel name="MenuRed4Panel" />
 		<panel name="MenuGreen4Panel" />
-		<panel name="MenuYellow4Panel" />
-		<panel name="MenuBlue4Panel" />
 		<widget name="HelpWindow" pixmap="buttons/vkey_icon.png" position="450,510" zPosition="1" size="1,1" transparent="1" alphatest="on" />
 		<widget source="VKeyIcon" render="Pixmap" pixmap="buttons/key_text.png" position="0,500" zPosition="1" size="35,25" transparent="1" alphatest="on" >
 			<convert type="ConditionalShowHide" />
@@ -601,9 +599,9 @@
 		<widget source="session.CurrentService" render="Label" position="90,120" size="200,24" font="Italic;18" foregroundColor="infobar-frgrnd" backgroundColor="infobar_sunken" transparent="1" halign="left" valign="center">
 			<convert type="ServicePosition">Position</convert>
 		</widget>
-		<ePixmap position="90,100" size="563,18" pixmap="icons/Mediaplayerbar_gray.png" alphatest="blend" />
-		<ePixmap position="85,100" size="5,18" pixmap="icons/Mediaplayerbar_purple.png" alphatest="blend" />
-		<widget source="session.CurrentService" render="PositionGauge" position="89,93" size="563,25" zPosition="2" pointer="icons/Mediaplayerbar_purple.png:563,0" transparent="1">
+		<ePixmap position="90,100" size="563,18" pixmap="infobar/Mediaplayerbar_gray.png" alphatest="blend" />
+		<ePixmap position="85,100" size="5,18" pixmap="infobar/Mediaplayerbar_purple.png" alphatest="blend" />
+		<widget source="session.CurrentService" render="PositionGauge" position="89,93" size="563,25" zPosition="2" pointer="infobar/Mediaplayerbar_purple.png:563,0" transparent="1">
 			<convert type="ServicePosition">Gauge</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="455,120" size="200,20" font="Regular;18" halign="right" valign="center" foregroundColor="infobar-frgrnd" backgroundColor="infobar_sunken" transparent="1">
@@ -895,7 +893,7 @@
 		<widget name="genretext" position="774,600" size="74,22" font="Regular;20" valign="top" transparent="1" />
 		<widget name="genre" position="854,600" size="150,22" font="Regular;20" valign="top" transparent="1" />
 		<ePixmap pixmap="icons/Mediaplayerbar_gray.png" zPosition="2" position="650,635" size="563,18" alphatest="blend" />
-		<widget name="PositionGauge" position="650,633" size="963,18" pointer="icons/Mediaplayerbar_purple.png:563,0" seek_pointer="icons/Mediaplayerbar_purple.png:563,0" zPosition="3" transparent="1" />
+		<widget name="PositionGauge" position="650,633" size="963,18" pointer="infobar/Mediaplayerbar_purple.png:563,0" seek_pointer="infobar/Mediaplayerbar_purple.png:563,0" zPosition="3" transparent="1" />
 		<widget name="repeat" position="1190,620" size="23,20" pixmaps="icons/ico_noreplay.png,icons/ico_replay.png" transparent="1" alphatest="blend" />
 		<widget source="session.CurrentService" render="Label" position="650,654" size="120,18" foregroundColor="#009f40ca" font="Italic;18" halign="left" valign="center" transparent="1">
 			<convert type="ServicePosition">Position</convert>
@@ -1691,7 +1689,7 @@ self.autoResize()
 	</screen>
 	<screen name="PluginBrowser" position="center,center" size="560,550" flags="wfBorder">
 		<widget name="list" position="0,0" size="560,533" itemHeight="49" foregroundColor="window-fg" backgroundColor="window-bg" transparent="0" scrollbarMode="showOnDemand" enableWrapAround="1" />
-		<ePixmap pixmap="buttons/key_menu.png" position="470,663" size="35,25" alphatest="blend" transparent="1" />
+		<ePixmap pixmap="buttons/key_menu.png" position="e-35,e-32" size="35,25" alphatest="blend" transparent="1" />
 		<panel name="MenuRed1Panel" />
 		<panel name="MenuGreen1Panel" />
 	</screen>
@@ -1727,6 +1725,39 @@ self.autoResize()
 		<widget name="RassLogo" pixmap="icons/rass_logo.png" position="100,585" size="50,21" />
 		<widget name="RadioText" position="100,620" size="1080,30" font="Regular;24" noWrap="1" backgroundColor="transpBlack" />
 		<widget name="RtpText" position="100,650" size="1080,30" font="Regular;24" halign="right" noWrap="1" backgroundColor="transpBlack" />
+	</screen>
+	<!-- Satfinder -->
+	<screen name="Satfinder" position="center,center" size="520,400" title="Satfinder">
+		<widget name="introduction" position="0,0" size="0,0" font="Regular;23" />
+		<ePixmap pixmap="skin_default/icons/dish_scan.png" position="5,25" zPosition="0" size="119,110" transparent="1" alphatest="on" />
+		<widget source="Frontend" render="Label" position="190,10" zPosition="2" size="260,20" font="Regular;19" halign="center" valign="center" transparent="1">
+			<convert type="FrontendInfo">SNRdB</convert>
+		</widget>
+		<eLabel name="snr" text="SNR:" position="120,35" size="60,22" font="Regular;21" halign="right" transparent="1" />
+		<widget source="Frontend" render="Progress" position="190,35" size="260,20" pixmap="skin_default/bar_snr.png" borderWidth="2" borderColor="#cccccc">
+			<convert type="FrontendInfo">SNR</convert>
+		</widget>
+		<widget source="Frontend" render="Label" position="460,35" size="60,22" font="Regular;21">
+			<convert type="FrontendInfo">SNR</convert>
+		</widget>
+		<eLabel name="ber" text="BER:" position="120,60" size="60,22" font="Regular;21" halign="right" transparent="1" />
+		<widget source="Frontend" render="Progress" position="190,60" size="260,20" pixmap="skin_default/bar_ber.png" borderWidth="2" borderColor="#cccccc">
+			<convert type="FrontendInfo">BER</convert>
+		</widget>
+		<widget source="Frontend" render="Label" position="460,60" size="60,22" font="Regular;21">
+			<convert type="FrontendInfo">BER</convert>
+		</widget>
+		<eLabel name="lock" text="Lock:" position="120,115" size="60,22" font="Regular;21" halign="right" />
+		<widget source="Frontend" render="Pixmap" pixmap="skin_default/icons/lock_on.png" position="190,110" zPosition="1" size="38,31" alphatest="on">
+			<convert type="FrontendInfo">LOCK</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="Frontend" render="Pixmap" pixmap="skin_default/icons/lock_off.png" position="190,110" zPosition="1" size="38,31" alphatest="on">
+			<convert type="FrontendInfo">LOCK</convert>
+			<convert type="ConditionalShowHide">Invert</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/div-h.png" position="10,152" zPosition="1" size="500,2" />
+		<widget name="config" position="10,165" size="500,225" scrollbarMode="showOnDemand" />
 	</screen>
 	<screen name="ScanSetup" position="center,center" size="560,550" flags="wfBorder">
 		<widget name="config" position="0,0" size="560,350" foregroundColor="window-fg" backgroundColor="window-bg" transparent="0" enableWrapAround="1" scrollbarMode="showOnDemand" />
@@ -2597,9 +2628,9 @@ self.autoResize()
 		<widget source="session.CurrentService" render="Label" position="280,5" size="120,27" font="Regular;20" halign="right" foregroundColor="white" backgroundColor="transpBlack">
 			<convert type="ServicePosition">Length</convert>
 		</widget>
-		<widget name="PTSSeekPointer" position="0,30" zPosition="3" size="19,20" pixmap="/usr/share/enigma2/skin_default/timeline-now.png" alphatest="on" />
-		<ePixmap position="15,33" size="390,15" zPosition="1" pixmap="/usr/share/enigma2/skin_default/slider_back.png" alphatest="on"/>
-		   <widget source="session.CurrentService" render="Progress" position="15,33" size="390,15" zPosition="2" pixmap="/usr/share/enigma2/skin_default/slider.png" transparent="1">
+		<widget name="PTSSeekPointer" position="0,30" zPosition="3" size="19,20" pixmap="epg/timeline-now.png" alphatest="on" />
+		<ePixmap position="15,33" size="390,15" zPosition="1" pixmap="slider_back.png" alphatest="on"/>
+		   <widget source="session.CurrentService" render="Progress" position="15,33" size="390,15" zPosition="2" pixmap="slider.png" transparent="1">
 			<convert type="ServicePosition">Position</convert>
 		</widget>
 		<widget name="eventname" position="60,49" zPosition="4" size="320,20" font="Regular;18" halign="center" backgroundColor="transpBlack" />
@@ -2663,11 +2694,18 @@ self.autoResize()
 			self["list"].instance.setItemHeight(25)
 		</applet>
 	</screen>
-	<screen name="BackupSelection" position="center,center" size="560,400" >
-		<panel name="MenuRed3Panel" />
-		<panel name="MenuGreen3Panel" />
-		<panel name="MenuYellow3Panel" />
-		<widget name="checkList" position="5,50" size="550,250" transparent="1" scrollbarMode="showOnDemand" />
+	<screen name="VIXBackupManagerMenu" position="center,center" size="560,550" flags="wfBorder">
+		<panel name="MenuRed4Panel" />
+		<panel name="MenuGreen4Panel" />
+		<panel name="MenuYellow4Panel" />
+		<panel name="MenuBlue4Panel" />
+		<widget name="HelpWindow" pixmap="buttons/vkey_icon.png" position="450,510" zPosition="1" size="1,1" transparent="1" alphatest="on" />
+		<widget source="VKeyIcon" render="Pixmap" pixmap="buttons/key_text.png" position="0,500" zPosition="1" size="35,25" transparent="1" alphatest="on" >
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget name="footnote" position="0,50" size="300,20" zPosition="1" font="Regular;20" halign="left" transparent="1" valign="top" />
+		<widget name="config" position="0,90" size="560,375"   transparent="0" enableWrapAround="1" scrollbarMode="showOnDemand" />
+		<widget name="description" position="0,e-75" size="560,75" font="Regular;18" halign="center" valign="top" transparent="0" zPosition="1" />
 	</screen>
 	<screen name="BackupSelection" position="center,center" size="560,400" >
 		<panel name="MenuRed3Panel" />
@@ -2727,11 +2765,9 @@ self.autoResize()
 			self["list"].instance.setItemHeight(25)
 		</applet>
 	</screen>
-	<screen name="VIXImageManager" position="center,center" size="560,400" title="Image Manager" flags="wfBorder" >
+	<screen name="ImageManagerDownload" position="center,center" size="560,400" title="Image Manager" flags="wfBorder" >
 		<panel name="MenuRed3Panel" />
 		<panel name="MenuGreen3Panel" />
-		<panel name="MenuYellow3Panel" />
-		<panel name="MenuBlue3Panel" />
 		<widget name="lab1" position="0,50" size="560,50" font="Regular; 18" zPosition="2" transparent="0" halign="center"/>
 		<widget name="list" position="10,105" size="540,260" scrollbarMode="showOnDemand" />
 		<applet type="onLayoutFinish">
