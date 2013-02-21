@@ -39,6 +39,7 @@ from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInform
 from time import time, localtime, strftime
 from os import stat as os_stat
 from bisect import insort
+from sys import maxint
 
 from RecordTimer import RecordTimerEntry, RecordTimer, findSafeRecordPath
 
@@ -128,8 +129,8 @@ class InfoBarUnhandledKey:
 		self.checkUnusedTimer = eTimer()
 		self.checkUnusedTimer.callback.append(self.checkUnused)
 		self.onLayoutFinish.append(self.unhandledKeyDialog.hide)
-		eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.actionA) #highest prio
-		eActionMap.getInstance().bindAction('', 0x7FFFFFFF, self.actionB) #lowest prio
+		eActionMap.getInstance().bindAction('', -maxint -1, self.actionA) #highest prio
+		eActionMap.getInstance().bindAction('', maxint, self.actionB) #lowest prio
 		self.flags = (1<<1)
 		self.uflags = 0
 
@@ -2523,7 +2524,6 @@ class InfoBarInactivity:
 		self.inactivityTimer = eTimer()
 		self.inactivityTimer.callback.append(self.inactiveTimeout)
 		self.restartInactiveTimer()
-		from sys import maxint
 		eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
 
 	def keypress(self, key, flag):
