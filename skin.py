@@ -258,7 +258,7 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 
 def morphRcImagePath(value):
 	if rc_model.rcIsDefault() is False:
-		if value == '/usr/share/enigma2/skin_default/rc.png' or value == '/usr/share/enigma2/skin_default/rcold.png':
+		if value.find('rc.png') != -1 or value.find('oldrc.png') != -1:
 			value = rc_model.getRcLocation() + 'rc.png'
 	return value
 
