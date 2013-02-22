@@ -87,12 +87,13 @@ class EventTime(Poll, Converter, object):
 			return st
 
 		if self.type == self.REMAINING or self.type == self.REMAINING_VFD or self.type == self.ELAPSED or self.type == self.ELAPSED_VFD:
-			remaining = st - int(time())
+			now = int(time())
+			remaining = st - now
 			if remaining < 0:
 				remaining = 0
 			start_time = event.getBeginTime()
 			end_time = start_time + duration
-			elapsed = int(time() - start_time
+			elapsed = now - start_time
 			if start_time <= now <= end_time:
 				if self.type == self.REMAINING and config.usage.swap_time_remaining_on_osd.getValue() == "0":
 					return (duration, remaining)
