@@ -87,8 +87,8 @@ conn.appClosed.append(pppdClosed)
 class ModemSetup(Screen):
 	skin = """
 		<screen position="180,100" size="320,300" title="Modem" >
-		<ePixmap pixmap="skin_default/buttons/green.png" position="10,10" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="160,10" size="140,40" alphatest="on" />
+		<ePixmap pixmap="buttons/green.png" position="10,10" size="140,40" alphatest="on" />
+		<ePixmap pixmap="buttons/red.png" position="160,10" size="140,40" alphatest="on" />
 		<widget name="key_green" position="10,10" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 		<widget name="key_red" position="160,10" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		<widget name="list" position="10,60" size="300,120" />
