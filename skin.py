@@ -99,8 +99,12 @@ addSkin('skin_box.xml')
 addSkin('skin_second_infobar.xml')
 display_skin_id = 1
 try:
-	if not addSkin(os.path.join('display', config.skin.display_skin.getValue())):
-		raise DisplaySkinError, "display skin not found"
+	if not config.skin.display_skin_picon.getValue():
+		if not addSkin(os.path.join('display', config.skin.display_skin.getValue())):
+			raise DisplaySkinError, "display skin not found"
+	else:
+		if not addSkin(os.path.join('display', config.skin.display_skin.getValue().replace('display.xml','display_picon.xml'))):
+			raise DisplaySkinError, "display skin not found"
 except Exception, err:
 	print "SKIN ERROR:", err
 	skin = DEFAULT_DISPLAY_SKIN
