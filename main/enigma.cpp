@@ -198,7 +198,7 @@ int main(int argc, char **argv)
 		{
 			char filename[64];
 			std::string rfilename;
-			snprintf(filename, sizeof(filename), "${datadir}/enigma2/skin_default/spinner/wait%d.png", i + 1);
+			snprintf(filename, sizeof(filename), "${datadir}/enigma2/spinner/wait%d.png", i + 1);
 			rfilename = eEnv::resolve(filename);
 			loadPNG(wait[i], rfilename.c_str());
 			
