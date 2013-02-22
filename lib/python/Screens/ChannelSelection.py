@@ -1,6 +1,8 @@
 from Tools.Profile import profile
 
 from Screen import Screen
+import Screens.InfoBar
+import Components.ParentalControl
 from Components.Button import Button
 from Components.config import configfile, config
 from Components.ServiceList import ServiceList
@@ -21,6 +23,7 @@ profile("ChannelSelection.py 2.1")
 from Components.Sources.RdsDecoder import RdsDecoder
 profile("ChannelSelection.py 2.2")
 from Components.Sources.ServiceEvent import ServiceEvent
+from Components.Sources.Event import Event
 profile("ChannelSelection.py 2.3")
 from Components.Input import Input
 profile("ChannelSelection.py 3")
@@ -36,6 +39,7 @@ from Screens.RdsDisplay import RassInteractive
 from ServiceReference import ServiceReference
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.BoundFunction import boundFunction
+from Tools import Notifications
 from os import remove
 profile("ChannelSelection.py after imports")
 
@@ -380,6 +384,7 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def showAlternativeServices(self):
+		self.csel["Service"].editmode = True
 		self.csel.enterPath(self.csel.getCurrentSelection())
 		self.close()
 
@@ -394,7 +399,8 @@ class ChannelContextMenu(Screen):
 
 class SelectionEventInfo:
 	def __init__(self):
-		self["ServiceEvent"] = ServiceEvent()
+		self["Service"] = self["ServiceEvent"] = ServiceEvent()
+		self["Event"] = Event()
 		self.servicelist.connectSelChanged(self.__selectionChanged)
 		self.timer = eTimer()
 		self.timer.callback.append(self.updateEventInfo)
@@ -406,7 +412,9 @@ class SelectionEventInfo:
 
 	def updateEventInfo(self):
 		cur = self.getCurrentSelection()
-		self["ServiceEvent"].newService(cur)
+		service = self["Service"]
+		service.newService(cur)
+		self["Event"].newEvent(service.event)
 
 def parseEvent(list):
 	list = list[0]
@@ -717,6 +725,7 @@ class ChannelSelectionEdit:
 		for x in self.__marked:
 			self.servicelist.addMarked(eServiceReference(x))
 		self.showAllServices()
+		self["Service"].editmode = True
 
 	def endMarkedEdit(self, abort):
 		if not abort and self.mutableList is not None:
@@ -803,6 +812,7 @@ class ChannelSelectionEdit:
 			pos = self.saved_title.find(')')
 			new_title = self.saved_title[:pos+1] + ' ' + _("[move mode]") + self.saved_title[pos+1:]
 			self.setTitle(new_title)
+		self["Service"].editmode = True
 
 	def handleEditCancel(self):
 		if self.movemode: #movemode active?
@@ -1223,10 +1233,32 @@ class ChannelSelectionBase(Screen):
 						self.enterPath(self.bouquet_root)
 
 	def keyNumberGlobal(self, number):
-		unichar = self.numericalTextInput.getKey(number)
-		charstr = unichar.encode('utf-8')
-		if len(charstr) == 1:
-			self.servicelist.moveToChar(charstr[0])
+		if self.isBasePathEqual(self.bouquet_root):
+			self.BouqetNumberActions(number)
+		else:
+			unichar = self.numericalTextInput.getKey(number)
+			charstr = unichar.encode("utf-8")
+			if len(charstr) == 1:
+				self.servicelist.moveToChar(charstr[0])
+
+	def BouqetNumberActions(self, number):
+		if number == 1: #Set focus on current playing service when available in current userbouquet
+			currentSelectedService = self.servicelist.getCurrent()
+			currentPlayingService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			self.servicelist.setCurrent(currentPlayingService)
+			if self.servicelist.getCurrent() != currentPlayingService:
+				self.servicelist.setCurrent(currentSelectedService)
+		elif number == 2: #set focus on service available from history in current userbouquet
+			currentSelectedService = self.servicelist.getCurrent()
+			root = self.getRoot()
+			service = None
+			for path in self.history:
+				if len(path) > 2 and path[1] == root:
+					service = path[2]
+			if service:
+				self.setCurrentSelection(service)
+				if self.servicelist.getCurrent() != service:
+					self.servicelist.setCurrent(currentSelectedService)
 
 	def keyAsciiCode(self):
 		unichar = unichr(getPrevAsciiCode())
@@ -1294,7 +1326,8 @@ class ChannelSelectionBase(Screen):
 		self.servicelist.moveToPrevMarker()
 
 	def gotoCurrentServiceOrProvider(self, ref):
-		if ref.toString().find(_('Providers')) != -1:
+		str = ref.toString()
+		if str.find(_("Providers")) != -1:
 			service = self.session.nav.getCurrentService()
 			if service:
 				info = service.info()
@@ -1303,7 +1336,7 @@ class ChannelSelectionBase(Screen):
 					op = int(self.session.nav.getCurrentlyPlayingServiceOrGroup().toString().split(':')[6][:-4] or "0",16)
 					refstr = '1:7:0:0:0:0:0:0:0:0:(provider == \"%s\") && (satellitePosition == %s) && %s ORDER BY name:%s'%(provider,op,self.service_types[self.service_types.rfind(':')+1:],provider)
 					self.servicelist.setCurrent(eServiceReference(refstr))
-		else:
+		elif not self.isBasePathEqual(self.bouquet_root):
 			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
 HISTORYSIZE = 20
@@ -1506,16 +1539,29 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.setTitle(title)
 		self.buildTitleString()
 
+	def timeshiftCheckReply(self, enable_pipzap, preview_zap, answer):
+		if answer:
+			self.zap(enable_pipzap, preview_zap)
+		else:
+			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
+		if not preview_zap:
+			self.hide()
+
 	#called from infoBar and channelSelected
-	def zap(self, enable_pipzap = False, preview_zap = False):
+	def zap(self, enable_pipzap = False, preview_zap = False, checkParentalControl = True, ref = None):
 		nref = self.getCurrentSelection()
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
-			if ref is None or ref != nref:
-				if not self.session.pip.playService(nref):
-					# XXX: Make sure we set an invalid ref
-					self.session.pip.playService(None)
+			if not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, checkParentalControl = False)):
+				if ref is None or ref != nref:
+					if not self.session.pip.playService(nref):
+						# XXX: Make sure we set an invalid ref
+						self.session.pip.playService(None)
+			else:
+				self.setCurrentSelection(ref)
 		else:
+			if Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.timeshiftCheckReply, enable_pipzap, preview_zap)):
+				return
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if ref is None or ref != nref:
 				self.new_service_played = True
@@ -1526,15 +1572,12 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				config.servicelist.lastmode.save()
 				if self.startServiceRef is None or nref != self.startServiceRef:
 					self.addToHistory(nref)
-
-				# Yes, we might double-check this, but we need to re-select pipservice if pipzap is active
-				# and we just wanted to zap in mainwindow once
-				# XXX: do we really want this? this also resets the service when zapping from context menu
-				#      which is irritating
 				if self.dopipzap:
-					# This unfortunately won't work with subservices
 					self.setCurrentSelection(self.session.pip.getCurrentService())
 				self.revertMode = None
+			else:
+				Notifications.RemovePopup("Parental control")
+				self.setCurrentSelection(nref)
 
 	def newServicePlayed(self):
 		ret = self.new_service_played

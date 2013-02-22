@@ -379,8 +379,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 					text = "",
 					color = serviceForeColor, color_sel = serviceForeColor,
-					backcolor = serviceBackColor, backcolor_sel = serviceBackColor,
-					border_width = self.serviceBorderWidth, border_color = self.borderColorService) )
+					backcolor = serviceBackColor, backcolor_sel = serviceBackColor) )
 
 		displayPicon = None
 		if self.showPicon:
@@ -472,8 +471,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						pos = (left + xpos, top), size = (ewidth, height),
 						font = 1, flags = int(config.misc.graph_mepg.event_alignment.value),
 						text = "", color = None, color_sel = None,
-						backcolor = backColor, backcolor_sel = backColorSel,
-						border_width = self.eventBorderWidth, border_color = self.borderColor))
+						backcolor = backColor, backcolor_sel = backColorSel))
 
 				# event text
 				evX = left + xpos + self.eventBorderWidth + self.eventNamePadding
@@ -494,6 +492,12 @@ class EPGList(HTMLComponent, GUIComponent):
 					res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (left + xpos + ewidth - 22, top + height - 22), size = (21, 21),
 						png = self.clocks[rec[1]] ) )
+		else:
+			if selected and self.selEvPix:
+				res.append(MultiContentEntryPixmapAlphaTest(
+					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
+					size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
+					png = self.selEvPix))
 		return res
 
 	def selEntry(self, dir, visible = True):
@@ -605,9 +609,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.l.setSelectionClip(eRect(0, 0, 0, 0))
 		self.l.setItemHeight(25);
 		self.foreColor = 0xffc000
-		self.borderColor = 0x000000
 		self.backColor = 0x000000
-		self.borderWidth = 1
 		self.time_base = 0
 		self.time_epoch = 0
 		self.font = gFont("Regular", 20)
@@ -620,14 +622,10 @@ class TimelineText(HTMLComponent, GUIComponent):
 			for (attrib, value) in self.skinAttributes:
 				if   attrib == "foregroundColor":
 					self.foreColor = parseColor(value).argb()
-				elif attrib == "borderColor":
-					self.borderColor = parseColor(value).argb()
 				elif attrib == "backgroundColor":
 					self.backColor = parseColor(value).argb()
 				elif attrib == "font":
 					self.font = parseFont(value,  ((1, 1), (1, 1)) )
-				elif attrib == "borderWidth":
-					self.borderWidth = int(value)
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
@@ -666,8 +664,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 					font = 0, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER,
 					text = strftime("%H:%M", localtime( time_base + x*timeStepsCalc )),
 					color = self.foreColor, color_sel = self.foreColor,
-					backcolor = self.backColor, backcolor_sel = self.backColor,
-					border_width = self.borderWidth, border_color = self.borderColor) )
+					backcolor = self.backColor, backcolor_sel = self.backColor) )
 				line = time_lines[x]
 				old_pos = line.position
 				line.setPosition(xpos + eventLeft, old_pos[1])
@@ -717,7 +714,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.key_green_choice = self.EMPTY
 		self.key_red_choice = self.EMPTY
 		self["timeline_text"] = TimelineText()
-		self["ServiceEvent"] = ServiceEvent()
+		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
 		self.time_lines = [ ]
 		for x in range(0, MAX_TIMELINES):
@@ -778,6 +775,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.updateTimelineTimer.callback.append(self.moveTimeLines)
 		self.updateTimelineTimer.start(60 * 1000)
 		self.onLayoutFinish.append(self.onCreate)
+		self.previousref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 
 	def prevPage(self):
 		self["list"].moveTo(eListbox.pageUp)
@@ -933,12 +931,13 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		if self.zapFunc and self.key_red_choice == self.ZAP:
 			ref = self["list"].getCurrent()[1]
 			if ref:
-				currentref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 				self.zapFunc(ref.ref)
-				if currentref and currentref == ref.ref:
-					Notifications.RemovePopup("Parental control")
+				if self.previousref and self.previousref == ref.ref:
 					config.misc.graph_mepg.save()
 					self.close(True)
+				self.previousref = ref.ref
+				self["list"].setCurrentlyPlaying(ref.ref)
+				self["list"].l.invalidate()
 
 	def swapMode(self):
 		global listscreen
@@ -1011,7 +1010,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			return
 
 		servicerefref = cur[1].ref
-		self["ServiceEvent"].newService(servicerefref)
+		self["Service"].newService(servicerefref)
 
 		if self.key_red_choice != self.ZAP:
 			self["key_red"].setText(_("Zap"))

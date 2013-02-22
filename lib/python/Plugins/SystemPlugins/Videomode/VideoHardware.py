@@ -356,23 +356,9 @@ class VideoHardware:
 				aspect = "16:9"
 			else:
 				aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.value]
-			policy_choices = {"pillarbox": "panscan", "panscan": "letterbox", "nonlinear": "nonlinear", "scale": "bestfit"}
-			if path.exists("/proc/stb/video/policy_choices"):
-				f = open("/proc/stb/video/policy_choices")
-				if "auto" in f.readline():
-					policy_choices.update({"auto": "auto"})
-				else:
-					policy_choices.update({"auto": "bestfit"})
-				f.close()
+			policy_choices = {"pillarbox": "panscan", "panscan": "letterbox", "nonlinear": "nonlinear", "scale": "bestfit", "auto": "bestfit"}
 			policy = policy_choices[config.av.policy_43.value]
-			policy2_choices = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit"}
-			if path.exists("/proc/stb/video/policy2_choices"):
-				f = open("/proc/stb/video/policy2_choices")
-				if "auto" in f.readline():
-					policy2_choices.update({"auto": "auto"})
-				else:
-					policy2_choices.update({"auto": "bestfit"})
-				f.close()
+			policy2_choices = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit", "auto": "bestfit"}
 			policy2 = policy2_choices[config.av.policy_169.value]
 		elif is_auto:
 			aspect = "any"

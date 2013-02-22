@@ -233,6 +233,7 @@
 		<item level="2" text="Maximum space used (MB):" description="If logs are using the set maximum space used the eldest will be deleted.">config.crash.sizeloglimit</item>
 	</setup>
 	<setup key="timeshift" title="Timeshift settings">
+		<item level="1" text="Show warning when timeshift is stopped" description="When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift.">config.usage.check_timeshift</item>
 		<item level="1" text="Permanent Timeshift enable" description="Enable or disable Permanent Timeshift. When activated, you can wind back until the time you zapped to a channel, and you can make recordings in retrospect.">config.timeshift.enabled</item>
 		<item level="2" text="Permanent Timeshift max events" description="Set the maximum number of events (programs) that timeshift may handle." requires="config.timeshift.enabled">config.timeshift.maxevents</item>
 		<item level="2" text="Permanent Timeshift max length" description="Set the maximum length a timeshift file may be." requires="config.timeshift.enabled">config.timeshift.maxlength</item>

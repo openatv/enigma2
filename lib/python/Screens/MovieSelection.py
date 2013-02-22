@@ -23,6 +23,7 @@ from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
+import Screens.InfoBar
 
 from Tools import NumericalTextInput
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_ACTIVE_SKIN
@@ -941,13 +942,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if config.movielist.show_live_tv_in_movielist.getValue():
 			self.LivePlayTimer.start(100)
 
-	def preview(self):
+	def preview(self, answer = True):
 		current = self.getCurrent()
 		if current is not None:
 			path = current.getPath()
 			if current.flags & eServiceReference.mustDescent:
 				self.gotFilename(path)
 			else:
+				if not answer or Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(self.preview):
+					return
 				playInBackground = self.list.playInBackground
 				playInForeground = self.list.playInForeground
 				if playInBackground:
@@ -1011,12 +1014,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				self.LivePlayTimer.start(100)
 			self.filePlayingTimer.start(100)
 
-	def itemSelected(self):
+	def itemSelected(self, answer = True):
 		current = self.getCurrent()
 		if current is not None:
 			path = current.getPath()
 			if current.flags & eServiceReference.mustDescent:
 				if path.endswith("VIDEO_TS/") or os.path.exists(os.path.join(path, 'VIDEO_TS.IFO')):
+					if not answer or Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(self.itemSelected):
+						return
 					if self.playAsDVD(path):
 						return
 				self.gotFilename(path)
@@ -1031,9 +1036,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					self.list.playInBackground = None
 					self.callLater(self.itemSelected)
 					return
-				if ext in DVD_EXTENSIONS:
-					if self.playAsDVD(path):
-						return
 				if ext in IMAGE_EXTENSIONS:
 					try:
 						from Plugins.Extensions.PicturePlayer import ui
@@ -1050,6 +1052,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					except Exception, ex:
 						print "[ML] Cannot display", str(ex)
 					return
+				if not answer or Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(self.itemSelected):
+					return
+				if ext in DVD_EXTENSIONS:
+					if self.playAsDVD(path):
+						return
 				self.movieSelected()
 
 	# Note: DVDBurn overrides this method, hence the itemSelected indirection.
