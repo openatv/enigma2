@@ -49,8 +49,8 @@ eHdmiCEC::eHdmiCEC()
 	fixedAddress = false;
 	physicalAddress[0] = 0x10;
 	physicalAddress[1] = 0x00;
-	logicalAddress = 3;
-	deviceType = 3;
+	logicalAddress = 1;
+	deviceType = 1; /* default: recorder */
 #ifdef DREAMBOX
 	hdmiFd = ::open("/dev/misc/hdmi_cec0", O_RDWR | O_NONBLOCK);
 #else
@@ -109,8 +109,26 @@ void eHdmiCEC::getAddressInfo()
 		if (::ioctl(hdmiFd, 1, &addressinfo) >= 0)
 		{
 			hasdata = true;
-			/* we do not get the correct device type, use 3 (STB) */
-			addressinfo.type = 3;
+			/* we do not get the device type, check the logical address to determine the type */
+			switch (addressinfo.logical)
+			{
+			case 0x1:
+			case 0x2:
+			case 0x9:
+				addressinfo.type = 1; /* recorder */
+				break;
+			case 0x3:
+			case 0x6:
+			case 0x7:
+			case 0xa:
+				addressinfo.type = 3; /* tuner */
+				break;
+			case 0x4:
+			case 0x8:
+			case 0xb:
+				addressinfo.type = 4; /* playback */
+				break;
+			}
 		}
 #else
 		struct
