@@ -92,46 +92,6 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	ALLOW_SUSPEND = Screen.SUSPEND_PAUSES
 	ENABLE_RESUME_SUPPORT = True
 
-	skin = """
-	<screen name="DVDPlayer" flags="wfNoBorder" position="0,380" size="720,160" title="Info bar" backgroundColor="transparent" >
-		<!-- Background -->
-		<ePixmap position="0,0" zPosition="-2" size="720,160" pixmap="skin_default/info-bg_mp.png" alphatest="off" />
-		<ePixmap position="29,40" zPosition="0" size="665,104" pixmap="skin_default/screws_mp.png" alphatest="on" transparent="1" />
-		<!-- colorbuttons -->
-		<ePixmap position="48,70" zPosition="0" size="108,13" pixmap="skin_default/icons/mp_buttons.png" alphatest="on" />
-		<!-- Servicename -->
-		<ePixmap pixmap="skin_default/icons/icon_event.png" position="207,78" zPosition="1" size="15,10" alphatest="on" />
-		<widget source="session.CurrentService" render="Label" position="230,73" size="300,22" font="Regular;20" backgroundColor="#263c59" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" noWrap="1">
-			<convert type="ServiceName">Name</convert>
-		</widget>
-		<!-- Chapter info -->
-		<widget name="chapterLabel" position="230,96" size="360,22" font="Regular;20" foregroundColor="#c3c3c9" backgroundColor="#263c59" transparent="1" />
-		<!-- Audio track info -->
-		<ePixmap pixmap="skin_default/icons/icon_dolby.png" position="540,60" zPosition="1" size="26,16" alphatest="on"/>
-		<widget name="audioLabel" position="570,60" size="130,22" font="Regular;18" backgroundColor="#263c59" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" />
-		<!-- Subtitle track info -->
-		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/icons/icon_txt.png" position="540,83" zPosition="1" size="26,16" alphatest="on" >
-			<convert type="ServiceInfo">HasTelext</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget name="subtitleLabel" position="570,83" size="130,22" font="Regular;18" backgroundColor="#263c59" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" />
-		<!-- Angle info -->
-		<widget name="anglePix" pixmap="skin_default/icons/icon_view.png" position="540,106" size="26,16" alphatest="on" />
-		<widget name="angleLabel" position="570,106" size="130,22" font="Regular;18" backgroundColor="#263c59" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" />
-		<!-- Elapsed time -->
-		<widget source="session.CurrentService" render="Label" position="205,129" size="100,20" font="Regular;18" halign="center" valign="center" backgroundColor="#06224f" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" >
-			<convert type="ServicePosition">Position,ShowHours</convert>
-		</widget>
-		<!-- Progressbar (movie position)-->
-		<widget source="session.CurrentService" render="PositionGauge" position="300,133" size="270,10" zPosition="2" pointer="skin_default/position_pointer.png:540,0" transparent="1" >
-			<convert type="ServicePosition">Gauge</convert>
-		</widget>
-		<!-- Remaining time -->
-		<widget source="session.CurrentService" render="Label" position="576,129" size="100,20" font="Regular;18" halign="center" valign="center" backgroundColor="#06224f" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" >
-			<convert type="ServicePosition">Remaining,Negate,ShowHours</convert>
-		</widget>
-	</screen>"""
-
 	def save_infobar_seek_config(self):
 		self.saved_config_speeds_forward = config.seek.speeds_forward.getValue()
 		self.saved_config_speeds_backward = config.seek.speeds_backward.getValue()
