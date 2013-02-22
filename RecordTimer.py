@@ -82,7 +82,7 @@ wasRecTimerWakeup = False
 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry, object):
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = True, record_ecm = True, isAutoTimer = False):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = 'notset', record_ecm = 'notset', isAutoTimer = False):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers == True:
 			if self.begin < time() - 1209600:
@@ -112,8 +112,21 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.autoincrease = False
 		self.autoincreasetime = 3600 * 24 # 1 day
 		self.tags = tags or []
-		self.descramble = descramble
-		self.record_ecm = record_ecm
+
+		if descramble == 'notset' and record_ecm == 'notset':
+			if config.recording.ecm_data.getValue() == 'descrambled+ecm':
+				self.descramble = True
+				self.record_ecm = True
+			elif config.recording.ecm_data.getValue() == 'scrambled+ecm':
+				self.descramble = False
+				self.record_ecm = True
+			elif config.recording.ecm_data.getValue() == 'normal':
+				self.descramble = True
+				self.record_ecm = False
+		else:
+			self.descramble = descramble
+			self.record_ecm = record_ecm
+
 		self.isAutoTimer = isAutoTimer
 
 		self.log_entries = []
