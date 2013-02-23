@@ -167,10 +167,11 @@ class EventViewBase:
 			return 1
 
 	def setEvent(self, event):
-		self.event = event
-		self["Event"].newEvent(event)
-		if event is None:
+		if event is None or not hasattr(event, 'getEventName'):
 			return
+
+		self["Event"].newEvent(event)
+		self.event = event
 		text = event.getEventName()
 		self.setTitle(text)
 
@@ -264,7 +265,7 @@ class EventViewSimple(Screen, EventViewBase):
 	def __init__(self, session, event, ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None, skin='EventViewSimple'):
 		Screen.__init__(self, session)
 		self.skinName = [skin,"EventView"]
-		EventViewBase.__init__(self, Event, ref, callback, similarEPGCB)
+		EventViewBase.__init__(self, event, ref, callback, similarEPGCB)
 		self.key_green_choice = None
 
 class EventViewEPGSelect(Screen, EventViewBase):
