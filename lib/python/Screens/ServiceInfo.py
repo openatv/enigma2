@@ -85,10 +85,10 @@ class ServiceInfo(Screen):
 			self.feinfo = None
 		else:
 			self.type = TYPE_SERVICE_INFO
-			self["red"] = Label(_("Service"))
-			self["green"] = Label(_("PIDs"))
-			self["yellow"] = Label(_("Multiplex"))
-			self["blue"] = Label(_("Tuner status"))
+			self["key_red"] = self["red"] = Label(_("Service"))
+			self["key_green"] = self["green"] = Label(_("PIDs"))
+			self["key_yellow"] = self["yellow"] = Label(_("Multiplex"))
+			self["key_blue"] = self["blue"] = Label(_("Tuner status"))
 			service = session.nav.getCurrentService()
 			if service is not None:
 				self.info = service.info()
