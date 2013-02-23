@@ -7,6 +7,6 @@ dist_install_DATA = \
 	md_khmurabi_10.ttf \
 	nmsbd.ttf
 	
-if HAVE_GBQUAD
+if GBQUAD
 dist_install_DATA += Daconi-digital-Bold.ttf Daconi-digital-watch.ttf nmsbd2.ttf Verdana_R.ttf
 endif

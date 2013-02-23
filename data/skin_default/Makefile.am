@@ -4,10 +4,10 @@ installdir = $(pkgdatadir)/skin_default
 
 dist_install_DATA = *.png
 
-if HAVE_GIGABLUE
+if GIGABLUE
 SUBDIRS += spinner16
 endif
 
-if HAVE_GBQUAD
+if GBQUAD
 SUBDIRS += spinner32
 endif
