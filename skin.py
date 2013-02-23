@@ -7,7 +7,7 @@ profile("LOAD:enigma_skin")
 from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, addFont, gRGB, eWindowStyleSkinned, getDesktop
 from Components.config import ConfigSubsection, ConfigText, config, ConfigYesNo
 from Components.Sources.Source import ObsoleteSource
-from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_ACTIVE_SKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
+from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_ACTIVE_SKIN, SCOPE_ACTIVE_LCDSKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 from Components.RcModel import rc_model
@@ -230,10 +230,12 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 		if attrib not in ignore:
 			if attrib in filenames:
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix)
-				if pngfile.find(':') != -1 and not fileExists(pngfile.split(':')[0]):
-					pngfile = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
-				elif pngfile.find(':') == -1 and not fileExists(pngfile):
-					pngfile = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
+				if fileExists(resolveFilename(SCOPE_ACTIVE_LCDSKIN, value, path_prefix=skin_path_prefix)):
+					pngfile = resolveFilename(SCOPE_ACTIVE_LCDSKIN, value, path_prefix=skin_path_prefix)
+				elif resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix).find(':') != -1 and fileExists(resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix).split(':')[0]):
+					pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix).split(':')[0]
+				elif resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix).find(':') == -1 and fileExists(resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix)):
+					pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix)
 				value = pngfile
 			# Bit of a hack this, really. When a window has a flag (e.g. wfNoBorder)
 			# it needs to be set at least before the size is set, in order for the
@@ -518,13 +520,11 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				render = 0
 			resolved_font = resolveFilename(SCOPE_FONTS, filename, path_prefix=path_prefix)
 			if not fileExists(resolved_font): #when font is not available look at current skin path
-				skin_path = resolveFilename(SCOPE_ACTIVE_SKIN, filename)
-				if fileExists(skin_path):
-					resolved_font = skin_path
-				else:
-					skin_path = resolveFilename(SCOPE_CURRENT_SKIN, filename)
-					if fileExists(skin_path):
-						resolved_font = skin_path
+				resolved_font = resolveFilename(SCOPE_ACTIVE_SKIN, filename)
+				if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, filename)):
+					resolved_font = resolveFilename(SCOPE_CURRENT_SKIN, filename)
+				elif fileExists(resolveFilename(SCOPE_ACTIVE_LCDSKIN, filename)):
+					resolved_font = resolveFilename(SCOPE_ACTIVE_LCDSKIN, filename)
 			addFont(resolved_font, name, scale, is_replacement, render)
 			#print "Font: ", resolved_font, name, scale, is_replacement
 		for alias in c.findall("alias"):
@@ -594,7 +594,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				filename = get_attr("filename")
 				if filename and bpName:
 					pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
-					if not fileExists(pngfile):
+					if fileExists(resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)):
 						pngfile = resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)
 					png = loadPixmap(pngfile, desktop)
 					style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
