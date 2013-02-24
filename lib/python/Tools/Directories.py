@@ -115,15 +115,19 @@ def resolveFilename(scope, base = "", path_prefix = None):
 			pos = config.skin.primary_skin.value.rfind('/')
 			if pos != -1:
 				tmpfile = tmp+config.skin.primary_skin.value[:pos+1] + base
-				if pathExists(tmpfile):
+				if pathExists(tmpfile) or (tmpfile.find(':') != -1 and pathExists(tmpfile.split(':')[0])):
 					path = tmp+config.skin.primary_skin.value[:pos+1]
+				elif pathExists(tmp + base) or (base.find(':') != -1 and pathExists(tmp + base.split(':')[0])):
+					path = tmp
 				else:
 					if tmp.find('skin_default') == -1:
 						path = tmp + 'skin_default/'
 					else:
 						path = tmp
 			else:
-				if tmp.find('skin_default') == -1:
+				if pathExists(tmp + base):
+					path = tmp
+				elif tmp.find('skin_default') == -1:
 					path = tmp + 'skin_default/'
 				else:
 					path = tmp
