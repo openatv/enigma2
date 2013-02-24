@@ -232,8 +232,6 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix)
 				if fileExists(resolveFilename(SCOPE_ACTIVE_LCDSKIN, value, path_prefix=skin_path_prefix)):
 					pngfile = resolveFilename(SCOPE_ACTIVE_LCDSKIN, value, path_prefix=skin_path_prefix)
-				elif (resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix).find(':') != -1 and fileExists(resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix).split(':')[0])) or (resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix).find(':') == -1 and fileExists(resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix))):
-					pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix)
 				value = pngfile
 			# Bit of a hack this, really. When a window has a flag (e.g. wfNoBorder)
 			# it needs to be set at least before the size is set, in order for the
