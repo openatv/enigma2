@@ -572,7 +572,10 @@ class InfoBarShowHide:
 			self.startHideTimer()
 		elif (config.usage.show_second_infobar.getValue() == "1" or isMoviePlayerInfoBar(self)) and not self.EventViewIsShown:
 			self.hide()
-			self.openEventView()
+			try:
+				self.openEventView()
+			except:
+				pass
 			self.EventViewIsShown = True
 			self.hideTimer.stop()
 
