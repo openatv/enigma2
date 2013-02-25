@@ -17,10 +17,10 @@ class SABnzbdSetupScreen(Screen):
 			<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="labstop" position="180,160" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
 			<widget name="labrun" position="180,160" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,260" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,260" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,260" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/red.png" position="0,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/green.png" position="140,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/yellow.png" position="280,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/blue.png" position="420,260" size="140,40" alphatest="on" />
 			<widget name="key_red" position="0,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 			<widget name="key_green" position="140,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 			<widget name="key_yellow" position="280,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />

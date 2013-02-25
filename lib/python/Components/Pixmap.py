@@ -3,7 +3,7 @@ from GUIComponent import GUIComponent
 
 from enigma import ePixmap, eTimer
 
-from Tools.Directories import resolveFilename, fileExists, SCOPE_SKIN_IMAGE, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, fileExists, SCOPE_SKIN_IMAGE, SCOPE_ACTIVE_SKIN, SCOPE_ACTIVE_LCDSKIN
 from os import path
 from skin import loadPixmap
 
@@ -96,17 +96,24 @@ class MultiPixmap(Pixmap):
 					pixmaps = value.split(',')
 					for p in pixmaps:
 						pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, p, path_prefix=skin_path_prefix)
-						if not fileExists(pngfile):
+						if fileExists(resolveFilename(SCOPE_SKIN_IMAGE, p, path_prefix=skin_path_prefix)):
 							pngfile = resolveFilename(SCOPE_SKIN_IMAGE, p, path_prefix=skin_path_prefix)
-						self.pixmaps.append(loadPixmap(pngfile, desktop))
+						elif fileExists(resolveFilename(SCOPE_ACTIVE_LCDSKIN, p, path_prefix=skin_path_prefix)):
+							pngfile = resolveFilename(SCOPE_ACTIVE_LCDSKIN, p, path_prefix=skin_path_prefix)
+						if path.exists(pngfile):
+							self.pixmaps.append(loadPixmap(pngfile, desktop))
 					if not pixmap:
 						pixmap = resolveFilename(SCOPE_ACTIVE_SKIN, pixmaps[0], path_prefix=skin_path_prefix)
-						if not fileExists(pixmap):
+						if fileExists(resolveFilename(SCOPE_SKIN_IMAGE, pixmaps[0], path_prefix=skin_path_prefix)):
 							pixmap = resolveFilename(SCOPE_SKIN_IMAGE, pixmaps[0], path_prefix=skin_path_prefix)
+						elif fileExists(resolveFilename(SCOPE_ACTIVE_LCDSKIN, pixmaps[0], path_prefix=skin_path_prefix)):
+							pixmap = resolveFilename(SCOPE_ACTIVE_LCDSKIN, pixmaps[0], path_prefix=skin_path_prefix)
 				elif attrib == "pixmap":
 					pixmap = resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix)
-					if not fileExists(pixmap):
+					if fileExists(resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)):
 						pixmap = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
+					elif fileExists(resolveFilename(SCOPE_ACTIVE_LCDSKIN, value, path_prefix=skin_path_prefix)):
+						pixmap = resolveFilename(SCOPE_ACTIVE_LCDSKIN, value, path_prefix=skin_path_prefix)
 				else:
 					attribs.append((attrib,value))
 			if pixmap:

@@ -377,6 +377,20 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 				offset = l->second;
 				offset += ((pts - l->first) * (pts_t)bitrate) / 8ULL / 90000ULL;
 				offset -= offset % 188;
+				if (offset > m_offset_end)
+				{
+					/*
+					 * NOTE: the bitrate calculation can be way off, especially when the pts difference is small.
+					 * So the calculated offset might be far ahead of the end of the file.
+					 * When that happens, avoid poisoning our sample list (m_samples) with an invalid value,
+					 * which could eventually cause (timeshift) playback to be stopped.
+					 * Because the file could be growing (timeshift), instead of returning the currently known end
+					 * of file offset, we return an offset 1MB ahead of the end of the file.
+					 * This allows jumping to the live point of the timeshift, for instance.
+					 */
+					offset = m_offset_end + 1024 * 1024;
+					return 0;
+				}
 				
 				p = pts;
 				
@@ -488,14 +502,15 @@ void eDVBTSTools::calcEnd()
 	}
 	
 	int maxiter = 10;
-	
-	m_offset_end = m_last_filelength;
 
 	if (!m_end_valid)
 	{
-		if (m_streaminfo.getLastFrame(m_offset_end, m_pts_end) == 0)
+		off_t offset = m_offset_end = m_last_filelength;
+		pts_t pts = m_pts_end;
+		if (m_streaminfo.getLastFrame(offset, pts) == 0)
 		{
-			m_pts_length = m_pts_end;
+			m_offset_end = offset;
+			m_pts_length = m_pts_end = pts;
 			end = m_offset_end;
 			if (m_streaminfo.fixupPTS(end, m_pts_length) != 0)
 			{
@@ -519,16 +534,15 @@ void eDVBTSTools::calcEnd()
 				if (m_offset_end < 0)
 					m_offset_end = 0;
 
-					/* restore offset if getpts fails */
-				off_t off = m_offset_end;
-
-				if (!getPTS(m_offset_end, m_pts_end))
+				offset = m_offset_end;
+				pts = m_pts_end;
+				if (!getPTS(offset, pts))
 				{
+					offset = m_offset_end;
+					m_pts_end = pts;
 					m_pts_length = pts_diff(m_pts_begin, m_pts_end);
 					m_end_valid = 1;
 				}
-				else
-					m_offset_end = off;
 
 				if (!m_offset_end)
 				{

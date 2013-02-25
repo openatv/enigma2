@@ -552,7 +552,6 @@ class CCcamInfoMain(Screen):
 	<screen position="center,center" size="500,450" title="CCcam Info" >
 		<widget name="menu" position="0,0" size="500,450" scrollbarMode="showOnDemand" />
 	</screen>"""
-
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("CCcam Info"))
@@ -972,11 +971,6 @@ class CCcamInfoMain(Screen):
 #############################################################
 
 class CCcamInfoEcmInfoSelection(Screen):
-	skin = """
-	<screen position="center,center" size="500,420" title="CCcam Info" >
-		<widget name="list" position="0,0" size="500,420" scrollbarMode="showOnDemand" />
-	</screen>"""
-
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("CCcam ECM Info"))
@@ -995,11 +989,6 @@ class CCcamInfoEcmInfoSelection(Screen):
 #############################################################
 
 class CCcamInfoInfoScreen(Screen):
-	skin = """
-	<screen position="center,center" size="500,420" title="CCcam Info" >
-		<widget name="text" position="0,0" size="500,420" font="Regular;20" />
-	</screen>"""
-
 	def __init__(self, session, info, set_title):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, set_title)
@@ -1018,17 +1007,6 @@ class CCcamInfoInfoScreen(Screen):
 #############################################################
 
 class CCcamShareViewMenu(Screen, HelpableScreen):
-	skin = """
-	<screen position="center,center" size="560,430" title="CCcam Info" >
-		<widget name="list" position="0,0" size="560,320" scrollbarMode="showOnDemand" />
-		<eLabel text="" position="10,322" size="540,2" font="Regular;14" backgroundColor="#ffffff" />
-		<widget name="uphops" position="10,340" size="260,25" font="Regular;20" />
-		<widget name="cards" position="290,340" size="260,25" halign="right" font="Regular;20" />
-		<widget name="providers" position="10,370" size="260,25" font="Regular;20" />
-		<widget name="reshare" position="290,370" size="260,25" halign="right" font="Regular;20" />
-		<widget name="title" position="0,400" size="560,20" halign="center" font="Regular;20" />
-	</screen>"""
-
 	def __init__(self, session, url):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
@@ -1350,13 +1328,6 @@ class CCcamShareViewMenu(Screen, HelpableScreen):
 #############################################################
 
 class CCcamInfoSubMenu(Screen):
-	skin = """
-	<screen position="center,center" size="500,420" title="CCcam Info" >
-		<widget name="list" position="0,0" size="500,250" scrollbarMode="showOnDemand" />
-		<eLabel text="" position="10,252" size="480,2" font="Regular;14" backgroundColor="#ffffff" />
-		<widget name="info" position="0,255" size="500,165" font="Regular;16" transparent="1" />
-	</screen>"""
-
 	def __init__(self, session, list, infoList, set_title):
 		Screen.__init__(self, session)
 		self.session = session
@@ -1395,13 +1366,6 @@ class CCcamInfoSubMenu(Screen):
 #############################################################
 
 class CCcamInfoServerMenu(Screen):
-	skin = """
-	<screen position="center,center" size="500,420" title="CCcam Info" >
-		<widget name="list" position="0,0" size="500,250" scrollbarMode="showOnDemand" />
-		<eLabel text="" position="10,252" size="480,2" font="Regular;14" backgroundColor="#ffffff" />
-		<widget name="info" position="0,255" size="500,165" font="Regular;16" transparent="1" />
-	</screen>"""
-
 	def __init__(self, session, infoList, url):
 		Screen.__init__(self, session)
 		self.session = session
@@ -1460,11 +1424,6 @@ class CCcamInfoRemoteBox:
 #############################################################
 
 class CCcamInfoConfigMenu(ConfigListScreen, Screen):
-	skin = """
-	<screen position="center,center" size="560,150" title="CCcam Info">
-		<widget name="config" position="0,0" size="560,150" scrollbarMode="showOnDemand" />
-	</screen>"""
-
 	def __init__(self, session, profile):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("CCcam Info Setup"))
@@ -1492,19 +1451,6 @@ class CCcamInfoConfigMenu(ConfigListScreen, Screen):
 #############################################################
 
 class CCcamInfoRemoteBoxMenu(Screen):
-	skin = """
-	<screen position="center,center" size="560,420" title="CCcam Info" >
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" transparent="1" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="list" position="0,50" size="560,360" scrollbarMode="showOnDemand" />
-	</screen>"""
-
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
@@ -1626,19 +1572,6 @@ class CCcamInfoRemoteBoxMenu(Screen):
 #############################################################
 
 class CCcamInfoShareInfo(Screen):
-	skin = """
-	<screen position="center,center" size="560,420" title="CCcam Info" >
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" transparent="1" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="list" position="0,50" size="560,360" scrollbarMode="showOnDemand" />
-	</screen>"""
-
 	def __init__(self, session, hostname, url):
 		Screen.__init__(self, session)
 		self.session = session
@@ -1789,19 +1722,6 @@ class CCcamInfoShareInfo(Screen):
 #############################################################
 
 class CCcamInfoConfigSwitcher(Screen):
-	skin = """
-	<screen position="center,center" size="560,420" title="CCcam Info" >
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" transparent="1" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="list" position="0,50" size="560,360" scrollbarMode="showOnDemand" />
-	</screen>"""
-
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
@@ -1916,18 +1836,6 @@ class CCcamInfoConfigSwitcher(Screen):
 #############################################################
 
 class CCcamInfoMenuConfig(Screen):
-	skin = """
-	<screen position="center,center" size="560,420" title="CCcam Info" >
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" transparent="1" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="list" position="0,50" size="560,360" scrollbarMode="showOnDemand" />
-	</screen>"""
-
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session

@@ -153,7 +153,7 @@ from Components.Task import job_manager
 class QuitMainloopScreen(Screen):
 	def __init__(self, session, retvalue=1):
 		self.skin = """<screen name="QuitMainloopScreen" position="fill" flags="wfNoBorder">
-				<ePixmap pixmap="skin_default/icons/input_info.png" position="c-27,c-60" size="53,53" alphatest="on" />
+				<ePixmap pixmap="icons/input_info.png" position="c-27,c-60" size="53,53" alphatest="on" />
 				<widget name="text" position="center,c+5" size="720,100" font="Regular;22" halign="center" />
 			</screen>"""
 		Screen.__init__(self, session)
@@ -203,7 +203,7 @@ class TryQuitMainloop(MessageBox):
 				44: _("Really upgrade the front panel and reboot now?")}.get(retvalue),
 			if text:
 				MessageBox.__init__(self, session, reason+text, type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
-				self.skinName = "MessageBox"
+				self.skinName = "MessageBoxSimple"
 				session.nav.record_event.append(self.getRecordEvent)
 				self.connected = True
 				self.onShow.append(self.__onShow)
