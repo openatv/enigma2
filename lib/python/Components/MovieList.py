@@ -173,6 +173,7 @@ class MovieList(GUIComponent):
 		self.iconTrash = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/trashcan.png"))
 		self.runningTimers = {}
 		self.updateRecordings()
+		self.updatePlayPosCache()
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
@@ -207,6 +208,10 @@ class MovieList(GUIComponent):
 		self._playInForeground = value
 
 	playInForeground = property(get_playInForeground, set_playInForeground)
+
+	def updatePlayPosCache(self):
+		from Screens.InfoBarGenerics import updateresumePointCache
+		updateresumePointCache()
 
 	def updateRecordings(self, timer=None):
 		if timer is not None:

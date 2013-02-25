@@ -749,21 +749,6 @@ class EPGList(HTMLComponent, GUIComponent):
 				color = serviceForeColor, color_sel = serviceForeColor,
 				backcolor = serviceBackColor, backcolor_sel = serviceBackColor))
 
-		if self.othEvPix is not None and self.graphic:
-			res.append(MultiContentEntryPixmapAlphaTest(
-				pos = (r2.x, r2.y),
-				size = (r2.w, r2.h),
-				png = self.othEvPix))
-		else:
-			res.append(MultiContentEntryText(
-				pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
-				size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
-				font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-				text = "",
-				color = self.foreColor, color_sel = self.foreColor,
-				backcolor = self.backColor, backcolor_sel = self.backColorSelected,
-				border_width = self.eventBorderWidth, border_color = self.borderColor))
-
 		# Borders
 		if self.graphic:
 			if self.borderTopPix is not None:
@@ -975,6 +960,27 @@ class EPGList(HTMLComponent, GUIComponent):
 						pos = pos, size = (21, 21),
 						png = self.clocks[rec[1]],
 						backcolor_sel = backColorSel))
+		else:
+			if self.graphic:
+				if not selected and self.othEvPix:
+					res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (r2.x, r2.y),
+						size = (r2.w, r2.h),
+						png = self.othEvPix))
+				elif selected and self.selEvPix:
+					res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
+						size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
+						png = self.selEvPix))
+			else:
+				res.append(MultiContentEntryText(
+					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
+					size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
+					font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+					text = "",
+					color = self.foreColor, color_sel = self.foreColor,
+					backcolor = self.backColor, backcolor_sel = self.backColorSelected,
+					border_width = self.eventBorderWidth, border_color = self.borderColor))
 		return res
 
 	def selEntry(self, dir, visible = True):

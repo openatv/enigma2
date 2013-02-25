@@ -144,6 +144,9 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 	bool validitem = (m_list && cursorValid());
 	eListboxStyle *local_style = 0;
 	bool cursorValid = this->cursorValid();
+	ePoint text_offset = offset;
+	gRGB border_color;
+	int border_size = 0;
 
 		/* get local listbox style, if present */
 	if (m_listbox)
@@ -151,6 +154,8 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 
 	if (local_style)
 	{
+		border_size = local_style->m_border_size;
+		border_color = local_style->m_border_color;
 		fnt = local_style->m_font;
 		if (selected)
 		{
@@ -244,7 +249,8 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 					flags |= gPainter::RT_HALIGN_BLOCK;
 			}
 
-			painter.renderText(eRect(text_offset, m_itemsize), string, flags);
+			painter.renderText(eRect(text_offset, m_itemsize),
+			 string, flags, border_color, border_size);
 		}
 
 		if (selected && (!local_style || !local_style->m_selection))
@@ -307,6 +313,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 	eRect itemrect(offset, m_itemsize);
 	eListboxStyle *local_style = 0;
 	bool cursorValid = this->cursorValid();
+	gRGB border_color;
+	int border_size = 0;
 
 	painter.clip(itemrect);
 	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
@@ -317,6 +325,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 
 	if (local_style)
 	{
+		border_size = local_style->m_border_size;
+		border_color = local_style->m_border_color;
 		fnt = local_style->m_font;
 		if (selected)
 		{
@@ -386,7 +396,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			text = PyTuple_GET_ITEM(item, 0);
 			text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
 			const char *string = (text && PyString_Check(text)) ? PyString_AsString(text) : "<not-a-string>";
-			painter.renderText(eRect(offset, m_itemsize), string, gPainter::RT_HALIGN_LEFT);
+			painter.renderText(eRect(offset, m_itemsize), string,
+			 gPainter::RT_HALIGN_LEFT, border_color, border_size);
 			Py_XDECREF(text);
 
 				/* when we have no label, align value to the left. (FIXME:
@@ -426,7 +437,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						ePyObject pvalue = PyTuple_GET_ITEM(value, 1);
 						const char *value = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
 						painter.setFont(fnt2);
-						painter.renderText(eRect(offset, m_itemsize), value, value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT);
+						painter.renderText(eRect(offset, m_itemsize), value, value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT,
+						 border_color, border_size);
 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "slider"))
@@ -672,7 +684,7 @@ static ePyObject lookupColor(ePyObject color, ePyObject data)
 	unsigned int icolor = PyInt_AsUnsignedLongMask(color);
 
 		/* check if we have the "magic" template color */
-	if ((icolor & 0xFF000000) == 0xFF000000)
+	if (data && (icolor & 0xFF000000) == 0xFF000000)
 	{
 		int index = icolor & 0xFFFFFF;
 		if (PyTuple_GetItem(data, index) == Py_None)
@@ -692,12 +704,19 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 	eListboxStyle *local_style = 0;
 	eRect sel_clip(m_selection_clip);
 	bool cursorValid = this->cursorValid();
+	gRGB border_color;
+	int border_size = 0;
+
 	if (sel_clip.valid())
 		sel_clip.moveBy(offset);
 
 		/* get local listbox style, if present */
 	if (m_listbox)
+	{
 		local_style = m_listbox->getLocalStyle();
+		border_size = local_style->m_border_size;
+		border_color = local_style->m_border_color;
+	}
 
 	painter.clip(itemregion);
 	clearRegion(painter, style, local_style, ePyObject(), ePyObject(), ePyObject(), ePyObject(), selected, itemregion, sel_clip, offset, cursorValid);
@@ -863,7 +882,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 
 				painter.setFont(m_font[fnt]);
-				painter.renderText(rect, string, flags);
+				painter.renderText(rect, string, flags,
+				 border_color, border_size);
 				painter.clippop();
 
 				// draw border

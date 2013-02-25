@@ -113,7 +113,7 @@ class SkinSelectorBase:
 
 class SkinSelector(Screen, SkinSelectorBase):
 	SKINXML = "skin.xml"
-	DEFAULTSKIN = "Magic HD"
+	DEFAULTSKIN = "< Default >"
 
 	skinlist = []
 	root = os.path.join(eEnv.resolve("${datadir}"),"enigma2")

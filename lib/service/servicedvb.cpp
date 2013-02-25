@@ -998,6 +998,7 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_timeshift_enabled(0),
 	m_timeshift_active(0),
 	m_timeshift_changed(0),
+	m_save_timeshift(0),
 	m_timeshift_fd(-1),
 	m_skipmode(0),
 	m_fastforward(0),
@@ -1650,8 +1651,7 @@ RESULT eDVBServicePlay::subServices(ePtr<iSubserviceList> &ptr)
 RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 {
 	ptr = 0;
-	if (m_have_video_pid &&  // HACK !!! FIXMEE !! temporary no timeshift on radio services !!
-		(m_timeshift_enabled || !m_is_pvr))
+	if (m_timeshift_enabled || !m_is_pvr)
 	{
 		if (!m_timeshift_enabled)
 		{
@@ -2382,15 +2382,38 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 		fileout << "0";
 	}
 
-	eDebug("remove timeshift file");
-	eBackgroundFileEraser::getInstance()->erase(m_timeshift_file);
-	eBackgroundFileEraser::getInstance()->erase(m_timeshift_file + ".sc");
+	if (!m_save_timeshift)
+	{
+		eDebug("remove timeshift files");
+		eBackgroundFileEraser::getInstance()->erase(m_timeshift_file);
+		eBackgroundFileEraser::getInstance()->erase(m_timeshift_file + ".sc");
+	}
+	else
+	{
+		eDebug("timeshift files not deleted");
+		m_save_timeshift = 0;
+	}
 	return 0;
 }
 
 int eDVBServicePlay::isTimeshiftActive()
 {
 	return m_timeshift_enabled && m_timeshift_active;
+}
+
+int eDVBServicePlay::isTimeshiftEnabled()
+{
+        return m_timeshift_enabled;
+}
+
+RESULT eDVBServicePlay::saveTimeshiftFile()
+{
+	if (!m_timeshift_enabled)
+                return -1;
+
+	m_save_timeshift = 1;
+
+	return 0;
 }
 
 RESULT eDVBServicePlay::activateTimeshift()
@@ -2405,6 +2428,14 @@ RESULT eDVBServicePlay::activateTimeshift()
 	}
 
 	return -2;
+}
+
+std::string eDVBServicePlay::getTimeshiftFilename()
+{
+	if (m_timeshift_enabled)
+		return m_timeshift_file;
+	else
+		return "";
 }
 
 PyObject *eDVBServicePlay::getCutList()
@@ -2509,7 +2540,7 @@ void eDVBServicePlay::updateTimeshiftPids()
 			if (timing_pid == -1)
 			{
 				timing_pid = i->pid;
-				timing_pid_type = i->type;
+				timing_pid_type = -1;
 			}
 			pids_to_record.insert(i->pid);
 		}

@@ -7,7 +7,7 @@ profile("LOAD:enigma_skin")
 from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, addFont, gRGB, eWindowStyleSkinned, getDesktop
 from Components.config import ConfigSubsection, ConfigText, config, ConfigYesNo
 from Components.Sources.Source import ObsoleteSource
-from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_ACTIVE_SKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
+from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_ACTIVE_SKIN, SCOPE_ACTIVE_LCDSKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 from Components.RcModel import rc_model
@@ -101,8 +101,12 @@ addSkin('skin_box.xml')
 addSkin('skin_second_infobar.xml')
 display_skin_id = 1
 try:
-	if not addSkin(os.path.join('display', config.skin.display_skin.getValue())):
-		raise DisplaySkinError, "display skin not found"
+	if not config.skin.display_skin_picon.getValue():
+		if not addSkin(os.path.join('display', config.skin.display_skin.getValue())):
+			raise DisplaySkinError, "display skin not found"
+	else:
+		if not addSkin(os.path.join('display', config.skin.display_skin.getValue().replace('display.xml','display_picon.xml'))):
+			raise DisplaySkinError, "display skin not found"
 except Exception, err:
 	print "SKIN ERROR:", err
 	skin = DEFAULT_DISPLAY_SKIN
@@ -228,8 +232,8 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 		if attrib not in ignore:
 			if attrib in filenames:
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix)
-				if not fileExists(pngfile):
-					pngfile = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
+				if fileExists(resolveFilename(SCOPE_ACTIVE_LCDSKIN, value, path_prefix=skin_path_prefix)):
+					pngfile = resolveFilename(SCOPE_ACTIVE_LCDSKIN, value, path_prefix=skin_path_prefix)
 				value = pngfile
 			# Bit of a hack this, really. When a window has a flag (e.g. wfNoBorder)
 			# it needs to be set at least before the size is set, in order for the
@@ -254,7 +258,7 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 
 def morphRcImagePath(value):
 	if rc_model.rcIsDefault() is False:
-		if value == '/usr/share/enigma2/skin_default/rc.png' or value == '/usr/share/enigma2/skin_default/rcold.png':
+		if value.find('rc.png') != -1 or value.find('oldrc.png') != -1:
 			value = rc_model.getRcLocation() + 'rc.png'
 	return value
 
@@ -473,6 +477,18 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					# load palette (not yet implemented)
 					pass
 
+	for skininclude in skin.findall("include"):
+		filename = skininclude.attrib.get("filename")
+		if filename:
+			skinfile = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
+			if not fileExists(skinfile):
+				skinfile = resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)
+			print "[SKIN] loading include:", skinfile
+			try:
+				loadSkin(skinfile)
+			except Exception, err:
+				print "not loading user skin: ", err
+				
 	for c in skin.findall("colors"):
 		for color in c.findall("color"):
 			get_attr = color.attrib.get
@@ -502,13 +518,11 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				render = 0
 			resolved_font = resolveFilename(SCOPE_FONTS, filename, path_prefix=path_prefix)
 			if not fileExists(resolved_font): #when font is not available look at current skin path
-				skin_path = resolveFilename(SCOPE_ACTIVE_SKIN, filename)
-				if fileExists(skin_path):
-					resolved_font = skin_path
-				else:
-					skin_path = resolveFilename(SCOPE_CURRENT_SKIN, filename)
-					if fileExists(skin_path):
-						resolved_font = skin_path
+				resolved_font = resolveFilename(SCOPE_ACTIVE_SKIN, filename)
+				if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, filename)):
+					resolved_font = resolveFilename(SCOPE_CURRENT_SKIN, filename)
+				elif fileExists(resolveFilename(SCOPE_ACTIVE_LCDSKIN, filename)):
+					resolved_font = resolveFilename(SCOPE_ACTIVE_LCDSKIN, filename)
 			addFont(resolved_font, name, scale, is_replacement, render)
 			#print "Font: ", resolved_font, name, scale, is_replacement
 		for alias in c.findall("alias"):
@@ -578,7 +592,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				filename = get_attr("filename")
 				if filename and bpName:
 					pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
-					if not fileExists(pngfile):
+					if fileExists(resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)):
 						pngfile = resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)
 					png = loadPixmap(pngfile, desktop)
 					style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
@@ -617,10 +631,6 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 		# the "desktop" parameter is hardcoded to the UI screen, so we must ask
 		# for the one that this actually applies to.
 		getDesktop(style_id).setMargins(r)
-
-	for skininclude in skin.findall("include"):
-		print "[SKIN] loading include:", skininclude.attrib.get("filename")
-		loadSkin(skininclude.attrib.get("filename"))
 
 dom_screens = {}
 
