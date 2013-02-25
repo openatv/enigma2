@@ -16,7 +16,6 @@ from Components.TuneTest import Tuner
 
 class Satfinder(ScanSetup):
 	def __init__(self, session, feid):
-		Screen.setTitle(self, _("Satfinder"))
 		self.initcomplete = False
 		self.feid = feid
 		self.oldref = None
@@ -28,6 +27,7 @@ class Satfinder(ScanSetup):
 		del service
 
 		ScanSetup.__init__(self, session)
+		self.setTitle(_("Satfinder"))
 
 		self["introduction"].setText(_("Press OK to scan"))
 		self["Frontend"] = FrontendStatus(frontend_source = lambda : self.frontend, update_interval = 100)
