@@ -68,11 +68,11 @@ class VideoSetup(Screen, ConfigListScreen):
 		# if we have modes for this port:
 		if config.av.videoport.getValue() in config.av.videomode:
 			# add mode- and rate-selection:
-			self.list.append(getConfigListEntry(pgettext("Video output mode", "Mode"), config.av.videomode[config.av.videoport.value], _("This option configures the video output mode (or resolution).")))
-			if config.av.videomode[config.av.videoport.value].getValue() == 'PC':
-				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("This option configures the screen resolution in PC output mode.")))
+			self.list.append(getConfigListEntry(pgettext("Video output mode", "Mode"), config.av.videomode[config.av.videoport.getValue()], _("This option configures the video output mode (or resolution).")))
+			if config.av.videomode[config.av.videoport.getValue()].getValue() == 'PC':
+				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.getValue()].getValue()], _("This option configures the screen resolution in PC output mode.")))
 			else:
-				self.list.append(getConfigListEntry(_("Refresh rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("Configure the refresh rate of the screen.")))
+				self.list.append(getConfigListEntry(_("Refresh rate"), config.av.videorate[config.av.videomode[config.av.videoport.getValue()].getValue()], _("Configure the refresh rate of the screen.")))
 
 		port = config.av.videoport.getValue()
 		if port not in config.av.videomode:
@@ -111,6 +111,12 @@ class VideoSetup(Screen, ConfigListScreen):
 				getConfigListEntry(_("General PCM delay"), config.av.generalPCMdelay, _("This option configures the general audio delay of stereo sound tracks."))
 			))
 
+			if SystemInfo["Can3DSurround"]:
+				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d,_("This option configures you can enable 3D Surround Sound.")))
+
+			if SystemInfo["Canedidchecking"]:
+				self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking,_("This option configures you can Bypass HDMI EDID check")))
+
 #		if SystemInfo["CanChangeOsdAlpha"]:
 #			self.list.append(getConfigListEntry(_("OSD transparency"), config.av.osd_alpha, _("This option configures the transparency of the OSD.")))
 
@@ -132,9 +138,9 @@ class VideoSetup(Screen, ConfigListScreen):
 
 	def confirm(self, confirmed):
 		if not confirmed:
-			config.av.videoport.value = self.last_good[0]
-			config.av.videomode[self.last_good[0]].value = self.last_good[1]
-			config.av.videorate[self.last_good[1]].value = self.last_good[2]
+			config.av.videoport.setValue(self.last_good[0])
+			config.av.videomode[self.last_good[0]].setValue(self.last_good[1])
+			config.av.videorate[self.last_good[1]].setValue(self.last_good[2])
 			self.hw.setMode(*self.last_good)
 		else:
 			self.keySave()

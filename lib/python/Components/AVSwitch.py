@@ -102,6 +102,7 @@ def InitAVSwitch():
 		if "auto" in f.readline():
 			# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 			policy2_choices.update({"auto": _("Auto")})
+		f.close()	
 	config.av.policy_169 = ConfigSelection(choices=policy2_choices, default = "letterbox")
 	policy_choices = {
 	# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
@@ -129,15 +130,15 @@ def InitAVSwitch():
 
 	def setColorFormat(configElement):
 		map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
-		iAVSwitch.setColorFormat(map[configElement.value])
+		iAVSwitch.setColorFormat(map[configElement.getValue()])
 
 	def setAspectRatio(configElement):
 		map = {"4_3_letterbox": 0, "4_3_panscan": 1, "16_9": 2, "16_9_always": 3, "16_10_letterbox": 4, "16_10_panscan": 5, "16_9_letterbox" : 6}
-		iAVSwitch.setAspectRatio(map[configElement.value])
+		iAVSwitch.setAspectRatio(map[configElement.getValue()])
 
 	def setSystem(configElement):
 		map = {"pal": 0, "ntsc": 1, "multinorm" : 2}
-		iAVSwitch.setSystem(map[configElement.value])
+		iAVSwitch.setSystem(map[configElement.getValue()])
 
 	def setWSS(configElement):
 		iAVSwitch.setAspectWSS()
@@ -151,6 +152,47 @@ def InitAVSwitch():
 	iAVSwitch.setInput("ENCODER") # init on startup
 	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
 
+	try:
+		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")
+		can_edidchecking = f.read().strip().split(" ")
+		f.close()
+	except:
+		can_edidchecking = False
+
+	SystemInfo["Canedidchecking"] = can_edidchecking
+
+	if can_edidchecking:
+		def setEDIDBypass(configElement):
+			try:
+				f = open("/proc/stb/hdmi/bypass_edid_checking", "w")
+				f.write(configElement.value)
+				f.close()
+			except:
+				pass
+		config.av.bypass_edid_checking = ConfigSelection(choices={
+				"00000000": _("off"),
+				"00000001": _("on")},
+				default = "00000000")
+		config.av.bypass_edid_checking.addNotifier(setEDIDBypass)
+
+	try:
+		f = open("/proc/stb/audio/3d_surround_choices", "r")
+		can_3dsurround = f.read().strip().split(" ")
+		f.close()
+	except:
+		can_3dsurround = False
+
+	SystemInfo["Can3DSurround"] = can_3dsurround
+
+	if can_3dsurround:
+		def set3DSurround(configElement):
+			f = open("/proc/stb/audio/3d_surround", "w")
+			f.write(configElement.value)
+			f.close()
+		choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
+		config.av.surround_3d = ConfigSelection(choices = choice_list, default = "none")
+		config.av.surround_3d.addNotifier(set3DSurround)	
+			
 	try:
 		f = open("/proc/stb/audio/ac3_choices", "r")
 		file = f.read()[:-1]
@@ -183,7 +225,7 @@ def InitAVSwitch():
 				print "couldn't write pep_scaler_sharpness"
 
 		if getBoxType() == 'gbquad':
-			config.av.scaler_sharpness = ConfigSlider(default=0, limits=(0,26))
+			config.av.scaler_sharpness = ConfigSlider(default=5, limits=(0,26))
 		else:
 			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
 		config.av.scaler_sharpness.addNotifier(setScaler_sharpness)
