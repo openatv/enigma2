@@ -399,7 +399,12 @@ class NetworkWizard(WizardLanguage, Rc):
 				text11 += _("Gateway:") + "\t" + eth0['brdaddr'] + "\n"
 			if eth0.has_key('hwaddr'):
 				text11 += _("MAC:") + "\t" + eth0['hwaddr'] + "\n\n"  
-		text1 = _("Your STB_BOX is now ready to be used.\n\nYour internet connection is working now.\n\n")
-		text2 = _("Please press OK to continue.")
-		return text1 + text11 +"\n" + text2
+		try:
+			text1 = _("Your STB_BOX is now ready to be used.\n\nYour internet connection is working now.\n\n")
+			text2 = _("Please press OK to continue.")
+			return text1 + text11 +"\n" + text2
+		except:
+			text1 = _("Your STB_BOX is now ready to be used.\n\nYour internet connection is not working now.\n\n")
+			text2 = _("Please press OK to continue.")
+			return text1 + "\n" + text2
 		
