@@ -1,3 +1,3 @@
-installdir = $(pkgdatadir)/display/spinner
+installdir = $(pkgdatadir)/spinner
 dist_install_DATA = *.png
 
