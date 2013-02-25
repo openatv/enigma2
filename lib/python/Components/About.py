@@ -163,5 +163,38 @@ def getChipSetString():
 	except IOError:
 		return "unavailable"
 
+def getCPUString():
+	try:
+		file = open('/proc/cpuinfo', 'r')
+		lines = file.readlines()
+		for x in lines:
+			splitted = x.split(': ')
+			if len(splitted) > 1:
+				splitted[1] = splitted[1].replace('\n','')
+				if splitted[0].startswith("system type"):
+					system = splitted[1].split(' ')[0]
+		file.close()
+		return system 
+	except IOError:
+		return "unavailable"
+
+def getCpuCoresString():
+	try:
+		file = open('/proc/cpuinfo', 'r')
+		lines = file.readlines()
+		for x in lines:
+			splitted = x.split(': ')
+			if len(splitted) > 1:
+				splitted[1] = splitted[1].replace('\n','')
+				if splitted[0].startswith("processor"):
+					if int(splitted[1]) > 0:
+						cores = 2
+					else:
+						cores = 1
+		file.close()
+		return cores
+	except IOError:
+		return "unavailable"
+
 # For modules that do "from About import about"
 about = sys.modules[__name__]
