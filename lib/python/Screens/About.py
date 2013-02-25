@@ -92,18 +92,21 @@ class About(Screen):
 			model = getBoxType()
 
 		if model:
-			AboutText += _("Model: %s") % model + "\n"
+			AboutText += _("Model:\t%s") % model + "\n"
 
 		if path.exists('/proc/stb/info/chipset'):
-			AboutText += _("Chipset: BCM%s") % about.getChipSetString().lower().replace('\n','').replace('bcm','') + "\n"
+			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString().lower().replace('\n','').replace('bcm','') + "\n"
 
-		AboutText += _("Kernel: %s") % about.getKernelVersionString() + "\n"
-		AboutText += _("Drivers: %s") % about.getDriversString() + "\n"
+		AboutText += _("CPU:\t%s") % about.getCPUString() + "\n"
+		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
+
+		AboutText += _("Kernel:\t%s") % about.getKernelVersionString() + "\n"
+		AboutText += _("Drivers:\t%s") % about.getDriversString() + "\n"
 		# self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
-		# AboutText += _("Image: %s") % about.getImageTypeString() + "\n"
-		AboutText += _("Version: %s") % about.getImageVersionString() + "\n"
-		AboutText += _("Build: %s") % about.getBuildVersionString() + "\n"
-		AboutText += _("Last update: %s") % about.getLastUpdateString() + "\n\n"
+		# AboutText += _("Image:\t%s") % about.getImageTypeString() + "\n"
+		AboutText += _("Version:\t%s") % about.getImageVersionString() + "\n"
+		AboutText += _("Build:\t%s") % about.getBuildVersionString() + "\n"
+		AboutText += _("Last update:\t%s") % about.getLastUpdateString() + "\n\n"
 
 		fp_version = getFPVersion()
 		if fp_version is None:
