@@ -2598,9 +2598,10 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 	def KeyText(self):
 		sel = self['config'].getCurrent()
 		if sel:
-			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-				if self["config"].getCurrent()[1].help_window.instance is not None:
-					self["config"].getCurrent()[1].help_window.hide()
+			if not (sel[0] == _("Time Update in Minutes") + ':'):
+				if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+					if self["config"].getCurrent()[1].help_window.instance is not None:
+						self["config"].getCurrent()[1].help_window.hide()
 			self.vkvar = sel[0]
 			if self.vkvar == _("Username") + ':' or self.vkvar == _("Password") + ':' or self.vkvar == _("Alias") + ':' or self.vkvar == _("System") + ':':
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
