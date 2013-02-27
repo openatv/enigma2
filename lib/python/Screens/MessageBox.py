@@ -12,7 +12,7 @@ class MessageBox(Screen):
 	TYPE_WARNING = 2
 	TYPE_ERROR = 3
 
-	def __init__(self, session, text, type = TYPE_YESNO, timeout = -1, close_on_any_key = False, default = True, enable_input = True, msgBoxID = None, picon = None, simple = False):
+	def __init__(self, session, text, type = TYPE_YESNO, timeout = -1, close_on_any_key = False, default = True, enable_input = True, msgBoxID = None, picon = None, simple = False, list = []):
 		self.type = type
 		Screen.__init__(self, session)
 
@@ -21,7 +21,7 @@ class MessageBox(Screen):
 		
 		self.msgBoxID = msgBoxID
 
- 		self["text"] = Label(text)
+		self["text"] = Label(text)
 		self["Text"] = StaticText(text)
 		self["selectedChoice"] = StaticText()
 
@@ -34,7 +34,6 @@ class MessageBox(Screen):
 		self.timerRunning = False
 		self.initTimeout(timeout)
 
-		self.list = []
 		picon = picon or type
 		if picon != self.TYPE_ERROR:
 			self["ErrorPixmap"].hide()
@@ -44,10 +43,14 @@ class MessageBox(Screen):
 			self["InfoPixmap"].hide()
 
 		if type == self.TYPE_YESNO:
-			if default == True:
-				self.list = [ (_("yes"), 0), (_("no"), 1) ]
+			if list:
+				self.list = list
+			elif default == True:
+				self.list = [ (_("yes"), True), (_("no"), False) ]
 			else:
-				self.list = [ (_("no"), 1), (_("yes"), 0) ]
+				self.list = [ (_("no"), False), (_("yes"), True) ]
+		else:
+			self.list = []
 		
 		self["list"] = MenuList(self.list)
 		if self.list:
@@ -119,8 +122,8 @@ class MessageBox(Screen):
 		self.close(False)
 
 	def ok(self):
-		if self.type == self.TYPE_YESNO:
-			self.close(self["list"].getCurrent()[1] == 0)
+		if self.list:
+			self.close(self["list"].getCurrent()[1])
 		else:
 			self.close(True)
 
