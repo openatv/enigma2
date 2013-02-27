@@ -654,7 +654,7 @@ class InfoBarNumberZap:
 	def keyNumberGlobal(self, number):
 		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable() and number == 0:
 			InfoBarTimeshiftState._mayShow(self)
-			self.pvrStateDialog["PTSSeekPointer"].setPosition(self.pts_seekpointer_MaxX/2, self.pvrStateDialog["PTSSeekPointer"].position[1])
+			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width()-4)/2, self.pvrStateDialog["PTSSeekPointer"].position[1])
 			if self.seekstate != self.SEEK_STATE_PLAY:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 			self.ptsSeekPointerOK()
@@ -866,7 +866,7 @@ class InfoBarChannelSelection:
 			self.secondInfoBarWasShown = False
 		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable():
 			InfoBarTimeshiftState._mayShow(self)
-			self.pvrStateDialog["PTSSeekPointer"].setPosition(self.pts_seekpointer_MinX, self.pvrStateDialog["PTSSeekPointer"].position[1])
+			self.pvrStateDialog["PTSSeekPointer"].setPosition(int(self.pvrStateDialog["PTSSeekBack"].instance.position().x())+8, self.pvrStateDialog["PTSSeekPointer"].position[1])
 			if self.seekstate != self.SEEK_STATE_PLAY:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 			self.ptsSeekPointerOK()
@@ -883,7 +883,7 @@ class InfoBarChannelSelection:
 			self.secondInfoBarWasShown = False
 		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable():
 			InfoBarTimeshiftState._mayShow(self)
-			self.pvrStateDialog["PTSSeekPointer"].setPosition(self.pts_seekpointer_MaxX, self.pvrStateDialog["PTSSeekPointer"].position[1])
+			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width()-4), self.pvrStateDialog["PTSSeekPointer"].position[1])
 			if self.seekstate != self.SEEK_STATE_PLAY:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 			self.ptsSeekPointerOK()
@@ -2343,8 +2343,6 @@ class InfoBarTimeshift:
 		self.pts_curevent_eventid = None
 
 		# Init PTS Infobar
-		self.pts_seekpointer_MinX = 8
-		self.pts_seekpointer_MaxX = 396 # make sure you can divide this through 2
 
 	def getTimeshift(self):
 		service = self.session.nav.getCurrentService()
@@ -3202,8 +3200,8 @@ class InfoBarTimeshift:
 				return
 
 			cur_pos = self.pvrStateDialog["PTSSeekPointer"].position
-			jumptox = int(cur_pos[0]) - int(self.pts_seekpointer_MinX)
-			jumptoperc = round((jumptox / 400.0) * 100, 0)
+			jumptox = int(cur_pos[0]) - (int(self.pvrStateDialog["PTSSeekBack"].instance.position().x())+8)
+			jumptoperc = round((jumptox / float(self.pvrStateDialog["PTSSeekBack"].instance.size().width())) * 100, 0)
 			jumptotime = int((length / 100) * jumptoperc)
 			jumptodiff = position - jumptotime
 
@@ -3225,7 +3223,7 @@ class InfoBarTimeshift:
 
 	def ptsSeekPointerReset(self):
 		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled:
-			self.pvrStateDialog["PTSSeekPointer"].setPosition(self.pts_seekpointer_MinX,self.pvrStateDialog["PTSSeekPointer"].position[1])
+			self.pvrStateDialog["PTSSeekPointer"].setPosition(int(self.pvrStateDialog["PTSSeekBack"].instance.position().x())+8,self.pvrStateDialog["PTSSeekPointer"].position[1])
 
 	def ptsSeekPointerSetCurrentPos(self):
 		if not self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" or not self.timeshift_enabled or not self.isSeekable():
@@ -3235,24 +3233,23 @@ class InfoBarTimeshift:
 		length = self.ptsGetLength()
 
 		if length >= 1:
-			tpixels = int((float(int((position*100)/length))/100)*400)
-			self.pvrStateDialog["PTSSeekPointer"].setPosition(self.pts_seekpointer_MinX+tpixels, self.pvrStateDialog["PTSSeekPointer"].position[1])
+			tpixels = int((float(int((position*100)/length))/100)*self.pvrStateDialog["PTSSeekBack"].instance.size().width())
+			self.pvrStateDialog["PTSSeekPointer"].setPosition(int(self.pvrStateDialog["PTSSeekBack"].instance.position().x())+8+tpixels, self.pvrStateDialog["PTSSeekPointer"].position[1])
 
 	def ptsMoveSeekPointer(self, direction=None):
 		if direction is None or self.pts_pvrStateDialog != "Screens.PVRState.PTSTimeshiftState":
 			return
-
 		isvalidjump = False
 		cur_pos = self.pvrStateDialog["PTSSeekPointer"].position
 		self.doShow()
 
 		if direction == "left":
-			minmaxval = self.pts_seekpointer_MinX
+			minmaxval = int(self.pvrStateDialog["PTSSeekBack"].instance.position().x())+8
 			movepixels = -15
 			if cur_pos[0]+movepixels > minmaxval:
 				isvalidjump = True
 		elif direction == "right":
-			minmaxval = self.pts_seekpointer_MaxX
+			minmaxval = int(self.pvrStateDialog["PTSSeekBack"].instance.size().width()*0.96)
 			movepixels = 15
 			if cur_pos[0]+movepixels < minmaxval:
 				isvalidjump = True
