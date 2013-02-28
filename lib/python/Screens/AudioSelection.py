@@ -135,6 +135,18 @@ class AudioSelection(Screen, ConfigListScreen):
 				conflist.append(('',))
 				self["key_green"].setBoolean(False)
 
+			if SystemInfo["Can3DSurround"]:
+				surround_choicelist = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
+				self.settings.surround_3d = ConfigSelection(choices = surround_choicelist, default = config.av.surround_3d.getValue())
+				self.settings.surround_3d.addNotifier(self.change3DSurround, initial_call = False)
+				conflist.append(getConfigListEntry(_("3D Surround"), self.settings.surround_3d))
+				self["key_blue"].setBoolean(True)
+			
+			edid_bypass_choicelist = [("00000000", _("off")), ("00000001", _("on"))]
+			self.settings.edid_bypass = ConfigSelection(choices = edid_bypass_choicelist, default = config.av.bypass_edid_checking.getValue())
+			self.settings.edid_bypass.addNotifier(self.changeEDIDBypass, initial_call = False)
+			conflist.append(getConfigListEntry(_("Bypass HDMI EDID Check"), self.settings.edid_bypass))
+
 			if subtitlelist:
 				self["key_yellow"].setBoolean(True)
 				conflist.append(getConfigListEntry(_("To subtitle selection"), self.settings.menupage))
@@ -252,6 +264,16 @@ class AudioSelection(Screen, ConfigListScreen):
 			if subtitles:
 				self.infobar.subtitles_enabled = True
 				self.infobar.selected_subtitle = subtitles
+
+	def changeEDIDBypass(self, edid_bypass):
+		if edid_bypass.getValue():
+			config.av.bypass_edid_checking.value = edid_bypass.getValue()
+		config.av.bypass_edid_checking.save()
+
+	def change3DSurround(self, surround_3d):
+		if surround_3d.getValue():
+			config.av.surround_3d.value = surround_3d.getValue()
+		config.av.surround_3d.save()
 
 	def changeAC3Downmix(self, downmix):
 		if downmix.getValue() == True:
