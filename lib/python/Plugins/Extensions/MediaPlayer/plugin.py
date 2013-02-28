@@ -263,25 +263,31 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 	def createSummary(self):
 		return MediaPlayerLCDScreen
 
-	def exit(self):
-		self.playlistIOInternal.clear()
-		for x in self.playlist.list:
-			self.playlistIOInternal.addService(ServiceReference(x[0]))
-		if self.savePlaylistOnExit:
+	def exit(self, answer = None):
+		if answer is None:
+			if self.mediaPlayerInfoBar.shown:
+				self.timerHideMediaPlayerInfoBar()
+			else:
+				self.session.openWithCallback(self.exit, MessageBox, _("Exit media player?"), simple = not self.shown)
+		elif answer:
+			self.playlistIOInternal.clear()
+			for x in self.playlist.list:
+				self.playlistIOInternal.addService(ServiceReference(x[0]))
+			if self.savePlaylistOnExit:
+				try:
+					self.playlistIOInternal.save(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
+				except IOError:
+					print "couldn't save playlist.e2pls"
+			if config.mediaplayer.saveDirOnExit.getValue():
+				config.mediaplayer.defaultDir.setValue(self.filelist.getCurrentDirectory())
+				config.mediaplayer.defaultDir.save()
 			try:
-				self.playlistIOInternal.save(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
-			except IOError:
-				print "couldn't save playlist.e2pls"
-		if config.mediaplayer.saveDirOnExit.getValue():
-			config.mediaplayer.defaultDir.setValue(self.filelist.getCurrentDirectory())
-			config.mediaplayer.defaultDir.save()
-		try:
-			from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
-			hotplugNotifier.remove(self.hotplugCB)
-		except:
-			pass
-		del self["coverArt"].picload
-		self.close()
+				from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
+				hotplugNotifier.remove(self.hotplugCB)
+			except:
+				pass
+			del self["coverArt"].picload
+			self.close()
 
 	def checkSkipShowHideLock(self):
 		self.updatedSeekState()
