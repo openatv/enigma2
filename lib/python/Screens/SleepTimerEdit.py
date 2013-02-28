@@ -43,29 +43,31 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 		self.setTitle(self.setup_title)
 
 	def ok(self):
-		sleepTimer = config.usage.sleep_timer.value
-		message = None
-		if sleepTimer == "event_shutdown":
-			sleepTimer = -self.currentEventTime()
-		elif sleepTimer == "event_standby":
-			sleepTimer = self.currentEventTime()
-		else:
-			sleepTimer = int(sleepTimer)
-		if sleepTimer:
-			if sleepTimer < 0:
-				message = _("And will shutdown your receiver over ")
-			else:
-				message = _("And will put your receiver in standby over ")
-			m = abs(sleepTimer / 60)
-			message = _("The sleep timer has been activated.") + "\n" + message + ngettext("%d minute", "%d minutes", m) % m
-			InfoBar.instance.setSleepTimer(sleepTimer)
-		else:
-			message = _("The sleep timer has been disabled.")
-			InfoBar.instance.setSleepTimer(0)
-		AddPopup(message, type = MessageBox.TYPE_INFO, timeout = 5)
 		config.usage.sleep_timer.save()
 		config.usage.inactivity_timer.save()
-		self.close(True)
+		if self.getCurrentEntry() == _("Sleeptimer"):
+			sleepTimer = config.usage.sleep_timer.value
+			message = None
+			if sleepTimer == "event_shutdown":
+				sleepTimer = -self.currentEventTime()
+			elif sleepTimer == "event_standby":
+				sleepTimer = self.currentEventTime()
+			else:
+				sleepTimer = int(sleepTimer)
+			if sleepTimer:
+				if sleepTimer < 0:
+					message = _("And will shutdown your receiver over ")
+				else:
+					message = _("And will put your receiver in standby over ")
+				m = abs(sleepTimer / 60)
+				message = _("The sleep timer has been activated.") + "\n" + message + ngettext("%d minute", "%d minutes", m) % m
+				InfoBar.instance.setSleepTimer(sleepTimer)
+			else:
+				message = _("The sleep timer has been disabled.")
+				InfoBar.instance.setSleepTimer(0)
+			AddPopup(message, type = MessageBox.TYPE_INFO, timeout = 5)
+			self.close(True)
+		self.close()
 
 	def cancel(self):
 		self.close()
