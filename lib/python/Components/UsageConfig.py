@@ -88,14 +88,31 @@ def InitUsageConfig():
 		("shutdown", _("Immediate shutdown")),
 		("standby", _("Standby")) ] )
 
-	choicelist = [("0", "Do nothing")]
-	for i in range(-3600, -21601, -3600):
-		h = -i / 3600
-		choicelist.append(("%d" % i, "Shutdown in " + ngettext("%d hour", "%d hours", h) % h))
-	for i in range(3600, 21601, 3600):
-		h = i / 3600
-		choicelist.append(("%d" % i, "Standby in " + ngettext("%d hour", "%d hours", h) % h))
+	choicelist = []
+	for i in range(-21600, 21601, 3600):
+		h = abs(i / 3600)
+		h = ngettext("%d hour", "%d hours", h) % h
+		if i < 0:
+			choicelist.append(("%d" % i, _("Shutdown in ") + h))
+		elif i > 0:
+			choicelist.append(("%d" % i, _("Standby in ") + h))
+		else:
+			choicelist.append(("0", "Do nothing"))
 	config.usage.inactivity_timer = ConfigSelection(default = "0", choices = choicelist)
+
+	choicelist = []
+	for i in range(-7200, 7201, 900):
+		m = abs(i / 60)
+		m = ngettext("%d minute", "%d minutes", m) % m
+		if i < 0:
+			choicelist.append(("%d" % i, _("Shutdown in ") + m))
+		elif i > 0:
+			choicelist.append(("%d" % i, _("Standby in ") + m))
+		else:
+			choicelist.append(("event_shutdown", _("Shutdown after current event")))
+			choicelist.append(("0", "Disabled"))
+			choicelist.append(("event_standby", _("Standby after current event")))
+	config.usage.sleep_timer = ConfigSelection(default = "0", choices = choicelist)
 
 	config.usage.check_timeshift = ConfigYesNo(default = True)
 
