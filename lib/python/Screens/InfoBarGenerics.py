@@ -1121,24 +1121,27 @@ class InfoBarEPG:
 		self.MultiServiceEPG()
 
 	def SingleServiceEPG(self):
-		self.StartBouquet = self.servicelist.getRoot()
-		self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if isMoviePlayerInfoBar(self):
-			ref = self.lastservice
-		else:
-			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if ref:
-			if self.servicelist.getMutableList() is not None: # bouquet in channellist
-				current_path = self.servicelist.getRoot()
-				services = self.getBouquetServices(current_path)
-				self.serviceSel = SimpleServicelist(services)
-				if self.serviceSel.selectService(ref):
-					self.epg_bouquet = current_path
-					self.session.openWithCallback(self.SingleServiceEPGClosed,EPGSelection, self.servicelist, zapFunc=self.zapToService, serviceChangeCB = self.changeServiceCB, EPGtype=self.EPGtype, StartBouquet=self.StartBouquet, StartRef=self.StartRef, bouquetname=ServiceReference(self.servicelist.getRoot()).getServiceName())
-				else:
-					self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref)
-			else:
-				self.session.open(EPGSelection, ref)
+		try:
+		      self.StartBouquet = self.servicelist.getRoot()
+		      self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		      if isMoviePlayerInfoBar(self):
+			      ref = self.lastservice
+		      else:
+			      ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		      if ref:
+			      if self.servicelist.getMutableList() is not None: # bouquet in channellist
+				      current_path = self.servicelist.getRoot()
+				      services = self.getBouquetServices(current_path)
+				      self.serviceSel = SimpleServicelist(services)
+				      if self.serviceSel.selectService(ref):
+					      self.epg_bouquet = current_path
+					      self.session.openWithCallback(self.SingleServiceEPGClosed,EPGSelection, self.servicelist, zapFunc=self.zapToService, serviceChangeCB = self.changeServiceCB, EPGtype=self.EPGtype, StartBouquet=self.StartBouquet, StartRef=self.StartRef, bouquetname=ServiceReference(self.servicelist.getRoot()).getServiceName())
+				      else:
+					      self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref)
+			      else:
+				      self.session.open(EPGSelection, ref)
+		except:
+			pass
 
 	def changeServiceCB(self, direction, epg):
 		if self.serviceSel:
