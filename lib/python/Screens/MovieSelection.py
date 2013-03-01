@@ -1821,7 +1821,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def hideActionFeedback(self):
 		self.diskinfo.update()
-		self.trashinfo.update(current.getPath())
+		current = self.getCurrent()
+		if current is not None:
+			self.trashinfo.update(current.getPath())
 
 	def can_gohome(self, item):
 		return True
