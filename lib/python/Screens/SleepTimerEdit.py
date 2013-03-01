@@ -13,7 +13,7 @@ from time import time
 class SleepTimerEdit(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skinName = ["SleepTimerSetup", "Setup" ]
+		self.skinName = ["SleepTimerSetup", "Setup"]
 		self.setup_title = _("SleepTimer Configuration")
 		self.onChangedEntry = [ ]
 
@@ -24,7 +24,7 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 		self.list = []
 		self.list.append(getConfigListEntry(_("Sleeptimer"),
 			config.usage.sleep_timer,
-			_("Configure the duration in minutes and action (shut down or standby) for the sleeptimer.")))
+			_("Configure the duration in minutes and action (shut down or standby) for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer")))
 		self.list.append(getConfigListEntry(_("Action when receiver is not controlled"),
 			config.usage.inactivity_timer,
 			_("Configure the duration in hours and action (shut down or standby) when the receiver is not controlled.")))
