@@ -2352,9 +2352,9 @@ class InfoBarTimeshift:
 		self.service_changed = 1
 		self.pts_delay_timer.stop()
 		self.pts_service_changed = True
-		self.pvrStateDialog.hide()
-		self.timeshift_enabled = False
-		self.__seekableStatusChanged()
+		# self.pvrStateDialog.hide()
+		# self.timeshift_enabled = False
+		# self.__seekableStatusChanged()
 
 	def __evEnd(self):
 		self.service_changed = 0
@@ -2376,11 +2376,18 @@ class InfoBarTimeshift:
 			self.pts_seektoprevfile = True
 			self.ptsSetNextPlaybackFile("pts_livebuffer.%s" % (preptsfile))
 
-			self.setSeekState(self.SEEK_STATE_PAUSE)
-			if self.seekstate != self.SEEK_STATE_PLAY:
-				self.setSeekState(self.SEEK_STATE_PLAY)
-			self.doSeek(-1)
-			self.seekFwd()
+			if self.seekstate[3].startswith('<<'):
+				# self.setSeekState(self.SEEK_STATE_PAUSE)
+				# if self.seekstate != self.SEEK_STATE_PLAY:
+				# 	self.setSeekState(self.SEEK_STATE_PLAY)
+				self.doSeek(-10)
+				self.seekBack()
+			else:
+				self.setSeekState(self.SEEK_STATE_PAUSE)
+				if self.seekstate != self.SEEK_STATE_PLAY:
+					self.setSeekState(self.SEEK_STATE_PLAY)
+				self.doSeek(-1)
+				self.seekFwd()
 
 	def __evInfoChanged(self):
 		if self.service_changed:
@@ -2496,8 +2503,14 @@ class InfoBarTimeshift:
 		if self.pts_eventcount > 1 and self.isSeekable() and pts_setnextfile:
 			self.ptsSetNextPlaybackFile("pts_livebuffer.%s" % (self.pts_eventcount))
 
+		# Do not switch back to LiveTV while timeshifting
+		if self.isSeekable():
+			switchToLive = False
+		else:
+			switchToLive = True
+
 		# (Re)start Timeshift now
-		self.stopTimeshift(True)
+		self.stopTimeshift(True, switchToLive)
 		ts = self.getTimeshift()
 		if ts and not ts.startTimeshift():
 			if (getBoxType() == 'vuuno' or getBoxType() == 'vuduo') and os.path.exists("/proc/stb/lcd/symbol_timeshift"):
@@ -2552,30 +2565,35 @@ class InfoBarTimeshift:
 				else:
 					print "timeshift failed"
 
-	def stopTimeshift(self, answer = True):
-		if not answer or self.checkTimeshiftRunning(self.stopTimeshift):
-			return
+	def stopTimeshift(self, answer=True, switchToLive=True):
 
-		# Jump Back to Live TV
-		if config.timeshift.enabled.getValue() and self.timeshift_enabled:
-			if self.isSeekable():
-				self.pts_switchtolive = True
-				self.ptsSetNextPlaybackFile("")
-				self.setSeekState(self.SEEK_STATE_PAUSE)
-				if self.seekstate != self.SEEK_STATE_PLAY:
-					self.setSeekState(self.SEEK_STATE_PLAY)
-				self.doSeek(-1) # seek 1 gop before end
-				self.seekFwd() # seekFwd to switch to live TV
-				return 1
-			return 0
+		if switchToLive:
+			if not answer or self.checkTimeshiftRunning(self.stopTimeshift):
+				return
+
+			# Jump Back to Live TV
+			if config.timeshift.enabled.getValue() and self.timeshift_enabled:
+				if self.isSeekable():
+					self.pts_switchtolive = True
+					self.ptsSetNextPlaybackFile("")
+					self.setSeekState(self.SEEK_STATE_PAUSE)
+					if self.seekstate != self.SEEK_STATE_PLAY:
+						self.setSeekState(self.SEEK_STATE_PLAY)
+					self.doSeek(-1) # seek 1 gop before end
+					self.seekFwd() # seekFwd to switch to live TV
+					return 1
 
 		was_enabled = self.timeshift_enabled
 		ts = self.getTimeshift()
 		if ts is None:
 			return
-		ts.stopTimeshift()
+		try:
+			ts.stopTimeshift(switchToLive)
+		except:
+			ts.stopTimeshift()
+
 		self.timeshift_enabled = False
-		self.pvrStateDialog.hide()
+		# self.pvrStateDialog.hide()
 
 		# disable actions
 		self.__seekableStatusChanged()
@@ -3381,7 +3399,7 @@ class InfoBarTimeshift:
 			if self.isSeekable():
 				Notifications.AddNotification(MessageBox,_("Record started! Stopping timeshift now ..."), MessageBox.TYPE_INFO, timeout=5)
 
-			self.stopTimeshiftConfirmed(True, False)
+			self.stopTimeshift(True, False)
 
 		# Restart Timeshift when all records stopped
 		if timer.state == TimerEntry.StateEnded and not self.timeshift_enabled and not self.pts_record_running:
