@@ -73,11 +73,10 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 			if self["config"].isChanged():
 				self.session.openWithCallback(self.cancel, MessageBox, _("Really close without saving settings?"))
 			else:
-				answer = True
+				self.close()
 		elif answer:
-			if self["config"].isChanged():
-				for x in self["config"].list:
-					x[1].cancel()
+			for x in self["config"].list:
+				x[1].cancel()
 			self.close()
 
 	def getCurrentEntry(self):
