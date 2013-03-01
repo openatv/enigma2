@@ -532,6 +532,16 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.offs -= 1
 					self.fillMultiEPG(None) # refill
 					return True
+			elif dir == +3: #next day
+				self.offs += 60 * 24 / self.time_epoch
+				self.fillMultiEPG(None) # refill
+				return True
+			elif dir == -3: #prev day
+				self.offs -= 60 * 24 / self.time_epoch
+				if self.offs < 0:
+					self.offs = 0;
+				self.fillMultiEPG(None) # refill
+				return True
 		if cur_service and valid_event:
 			entry = entries[self.cur_event] #(event_id, event_title, begin_time, duration)
 			time_base = self.time_base + self.offs*self.time_epoch * 60
@@ -751,7 +761,9 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				"prevBouquet": (self.prevBouquet,    _("Show bouquet selection menu")),
 				"nextService": (self.nextPressed,    _("Goto next page of events")),
 				"prevService": (self.prevPressed,    _("Goto previous page of events")),
-				"preview":     (self.preview,        _("Preview selected channel"))
+				"preview":     (self.preview,        _("Preview selected channel")),
+				"nextDay":     (self.nextDay,        _("Goto next day of events")),
+				"prevDay":     (self.prevDay,        _("Goto previous day of events"))
 			}, -1)
 		self["epgactions"].csel = self
 
@@ -800,6 +812,12 @@ class GraphMultiEPG(Screen, HelpableScreen):
 
 	def rightPressed(self):
 		self.updEvent(+1)
+
+	def prevDay(self):
+		self.updEvent(-3)
+
+	def nextDay(self):
+		self.updEvent(+3)
 
 	def updEvent(self, dir, visible = True):
 		ret = self["list"].selEntry(dir, visible)
