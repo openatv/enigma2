@@ -814,7 +814,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				"3":     (self.key3,         _("Set time window to 3 hours")),
 				"4":     (self.key4,         _("Set time window to 4 hours")),
 				"5":     (self.key5,         _("Set time window to 5 hours")),
-				"6":     (self.key6,         _("Set time window to 5 hours")),
+				"6":     (self.key6,         _("Set time window to 6 hours")),
 				"7":     (self.prevPage,     _("Go to previous page of service")),
 				"9":     (self.nextPage,     _("Go to next page of service")),
 				"8":     (self.toTop,        _("Go to first service")),
