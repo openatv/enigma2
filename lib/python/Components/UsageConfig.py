@@ -135,15 +135,6 @@ def InitUsageConfig():
 		("shutdown", _("Immediate shutdown")),
 		("standby", _("Standby")) ] )
 
-	choicelist = [("0", "Do nothing")]
-	for i in range(-3600, -21601, -3600):
-		h = -i / 3600
-		choicelist.append(("%d" % i, "Shutdown in " + ngettext("%d hour", "%d hours", h) % h))
-	for i in range(3600, 21601, 3600):
-		h = i / 3600
-		choicelist.append(("%d" % i, "Standby in " + ngettext("%d hour", "%d hours", h) % h))
-	config.usage.inactivity_timer = ConfigSelection(default = "0", choices = choicelist)
-
 	config.usage.check_timeshift = ConfigYesNo(default = True)
 
 	config.usage.alternatives_priority = ConfigSelection(default = "0", choices = [

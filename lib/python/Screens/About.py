@@ -23,13 +23,16 @@ class About(Screen):
 		Screen.setTitle(self, _("Image Information"))
 		self.populate()
 
+		self["key_green"] = Button(_("Translations"))
+
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
-				'log': self.showAboutReleaseNotes,
+				"log": self.showAboutReleaseNotes,
 				"up": self["AboutScrollLabel"].pageUp,
-				"down": self["AboutScrollLabel"].pageDown
+				"down": self["AboutScrollLabel"].pageDown,
+				"green": self.showTranslationInfo,
 			})
 
 	def populate(self):
@@ -102,7 +105,6 @@ class About(Screen):
 
 		AboutText += _("Kernel:\t%s") % about.getKernelVersionString() + "\n"
 		AboutText += _("Drivers:\t%s") % about.getDriversString() + "\n"
-		# self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
 		# AboutText += _("Image:\t%s") % about.getImageTypeString() + "\n"
 		AboutText += _("Version:\t%s") % about.getImageVersionString() + "\n"
 		AboutText += _("Build:\t%s") % about.getBuildVersionString() + "\n"
@@ -128,32 +130,10 @@ class About(Screen):
 			mark = str('\xc2\xb0')
 			AboutText += _("System temperature: %s") % tempinfo.replace('\n','') + mark + "C\n\n"
 
-		AboutText += _("Translation:") + "\n"
-
-		# don't remove the string out of the _(), or it can't be "translated" anymore.
-		# TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
-		info = _("TRANSLATOR_INFO")
-
-		if info == _("TRANSLATOR_INFO"):
-			info = ""
-
-		infolines = _("").split("\n")
-		infomap = {}
-		for x in infolines:
-			l = x.split(': ')
-			if len(l) != 2:
-				continue
-			(type, value) = l
-			infomap[type] = value
-
-		translator_name = infomap.get("Language-Team", "none")
-		if translator_name == "none":
-			translator_name = infomap.get("Last-Translator", "")
-
-		AboutText += translator_name + "\n\n"
-		AboutText += info
-
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
+
+	def showTranslationInfo(self):
+		self.session.open(TranslationInfo)
 
 	def showAboutReleaseNotes(self):
 		self.session.open(ViewGitLog)
@@ -667,3 +647,38 @@ class ViewGitLog(Screen):
 	def closeRecursive(self):
 		self.close((_("Cancel"), ""))
 
+class TranslationInfo(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Translation Information"))
+		# don't remove the string out of the _(), or it can't be "translated" anymore.
+
+		# TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+		info = _("TRANSLATOR_INFO")
+
+		if info == "TRANSLATOR_INFO":
+			info = ""
+
+		infolines = _("").split("\n")
+		infomap = {}
+		for x in infolines:
+			l = x.split(': ')
+			if len(l) != 2:
+				continue
+			(type, value) = l
+			infomap[type] = value
+		print infomap
+
+		self["TranslationInfo"] = StaticText(info)
+
+		translator_name = infomap.get("Language-Team", "none")
+		if translator_name == "none":
+			translator_name = infomap.get("Last-Translator", "")
+
+		self["TranslatorName"] = StaticText(translator_name)
+
+		self["actions"] = ActionMap(["SetupActions"],
+			{
+				"cancel": self.close,
+				"ok": self.close,
+			})
