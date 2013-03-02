@@ -57,6 +57,7 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Function of OK button"), config.misc.graph_mepg.OKButton))
 		self.list.append(getConfigListEntry(_("Alignment of service names"), config.misc.graph_mepg.servicename_alignment))
 		self.list.append(getConfigListEntry(_("Alignment of events"), config.misc.graph_mepg.event_alignment))
+		self.list.append(getConfigListEntry(_("Center time-labels and remove date"), config.misc.graph_mepg.center_timeline))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
