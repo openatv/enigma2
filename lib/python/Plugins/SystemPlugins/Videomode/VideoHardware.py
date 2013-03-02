@@ -92,6 +92,12 @@ class VideoHardware:
 		modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i"])
 
+	if getBoxType().startswith('vu'):
+		if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1:
+			modes["Scart-YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
+		else:
+			modes["Scart-YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
+
 	def getOutputAspect(self):
 		ret = (16,9)
 		port = config.av.videoport.getValue()
@@ -131,7 +137,7 @@ class VideoHardware:
 		if self.modes.has_key("DVI-PC") and not self.getModeList("DVI-PC"):
 			print "remove DVI-PC because of not existing modes"
 			del self.modes["DVI-PC"]
-		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'odimm7' or getBoxType() == 'ini-3000' or getBoxType() == 'vusolo2':
+		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'odimm7' or getBoxType() == 'ini-3000' or getBoxType() == 'vusolo' or getBoxType() == 'vusolo2':
 			del self.modes["YPbPr"]
 		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'et6000':
 			del self.modes["Scart"]
