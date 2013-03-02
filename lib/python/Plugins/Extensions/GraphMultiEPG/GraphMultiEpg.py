@@ -371,7 +371,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		if CompareWithAlternatives(service, self.currentlyPlaying and self.currentlyPlaying.toString()):
 			serviceForeColor = self.foreColorServiceSelected
 			serviceBackColor = self.backColorServiceSelected
-			bgpng = self.curSerPix
+			bgpng = self.curSerPix or self.nowEvPix
 			currentservice = True
 		else:
 			serviceForeColor = self.foreColorService
@@ -474,7 +474,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				elif stime <= now and now < stime + duration:
 					bgpng = self.nowEvPix
 				elif currentservice:
-					bgpng = self.curSerPix
+					bgpng = self.curSerPix or self.othEvPix
 					backColor = self.backColorServiceSelected
 				else:
 					bgpng = self.othEvPix
@@ -884,7 +884,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.updEpoch(300)
 
 	def key6(self):
-		self.updEpoch(300)
+		self.updEpoch(360)
 
 	def nextBouquet(self):
 		if self.bouquetChangeCB:
