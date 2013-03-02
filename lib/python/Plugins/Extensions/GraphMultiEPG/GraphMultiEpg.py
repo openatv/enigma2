@@ -40,6 +40,7 @@ config.misc.graph_mepg.items_per_page = ConfigSelectionNumber(min = 3, max = 40,
 config.misc.graph_mepg.items_per_page_listscreen = ConfigSelectionNumber(min = 3, max = 60, stepwidth = 1, default = 12, wraparound = True)
 config.misc.graph_mepg.default_mode = ConfigYesNo(default = False)
 config.misc.graph_mepg.overjump = ConfigYesNo(default = True)
+config.misc.graph_mepg.center_timeline = ConfigYesNo(default = False)
 config.misc.graph_mepg.servicetitle_mode = ConfigSelection(default = "picon+servicename", choices = [
 	("servicename", _("Service name")),
 	("picon", _("Picon")),
@@ -645,6 +646,12 @@ class TimelineText(HTMLComponent, GUIComponent):
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
 
+	def setDateFormat(self, value):
+		if "servicename" in value:
+			self.datefmt = _("%A %d %B")
+		elif "picon" in value:
+			self.datefmt = _("%d-%m")
+
 	def setEntries(self, l, timeline_now, time_lines, force):
 		event_rect = l.getEventRect()
 		time_epoch = l.getTimeEpoch()
@@ -663,15 +670,29 @@ class TimelineText(HTMLComponent, GUIComponent):
 			itemHeight = self.l.getItemSize().height()
 			time_steps = 60 if time_epoch > 180 else 30
 			num_lines = time_epoch / time_steps
-			incWidth = event_rect.width() / num_lines
 			timeStepsCalc = time_steps * 60
+			incWidth = event_rect.width() / num_lines
+			if int(config.misc.graph_mepg.center_timeline.value):
+				tlMove = incWidth / 2
+				tlFlags = RT_HALIGN_CENTER | RT_VALIGN_CENTER
+			else:
+				tlMove = 0
+				tlFlags = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+
+				res.append( MultiContentEntryText(
+					pos = (0, 0),
+					size = (service_rect.width(), itemHeight),
+					font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+					text = strftime(self.datefmt, localtime(time_base)),
+					color = self.foreColor, color_sel = self.foreColor,
+					backcolor = self.backColor, backcolor_sel = self.backColor) )
 
 			xpos = 0 # eventLeft
 			for x in range(0, num_lines):
 				res.append( MultiContentEntryText(
-					pos = (service_rect.width() + xpos-incWidth/2, 0),
+					pos = (service_rect.width() + xpos-tlMove, 0),
 					size = (incWidth, itemHeight),
-					font = 0, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER,
+					font = 0, flags = tlFlags,
 					text = strftime("%H:%M", localtime( time_base + x*timeStepsCalc )),
 					color = self.foreColor, color_sel = self.foreColor,
 					backcolor = self.backColor, backcolor_sel = self.backColor) )
@@ -880,6 +901,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.value)
 		now = time() - config.epg.histminutes.getValue() * 60
 		self.ask_time = now - now % int(config.misc.graph_mepg.roundTo.getValue())
+		self["timeline_text"].setDateFormat(config.misc.graph_mepg.servicetitle_mode.value)
 		l.fillMultiEPG(None, self.ask_time)
 		self.moveTimeLines(True)
 		
@@ -922,6 +944,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		l = self["list"]
 		l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.value)
+		self["timeline_text"].setDateFormat(config.misc.graph_mepg.servicetitle_mode.value)
 		l.fillMultiEPG(self.services, self.ask_time)
 		l.moveToService(serviceref)
 		l.setCurrentlyPlaying(serviceref)
