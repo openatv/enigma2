@@ -6,7 +6,6 @@ from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWak
 from time import time
 import RecordTimer
 import PowerTimer
-import SleepTimer
 import Screens.Standby
 import NavigationInstance
 import ServiceReference
@@ -55,7 +54,6 @@ class Navigation:
 				self.standbytimer = eTimer()
 				self.standbytimer.callback.append(self.gotostandby)
 				self.standbytimer.start(15000, True)
-		self.SleepTimer = SleepTimer.SleepTimer()
 
 	def gotostandby(self):
 		print 'TIMER: now entering standby'

@@ -4,7 +4,7 @@ ACLOCAL_AMFLAGS = -I m4
 
 installdir = $(pkglibdir)/python
 install_PYTHON = upgrade.py \
-	Navigation.py NavigationInstance.py RecordTimer.py PowerTimer.py SleepTimer.py ServiceReference.py \
+	Navigation.py NavigationInstance.py RecordTimer.py PowerTimer.py ServiceReference.py \
 	keyids.py keymapparser.py mytest.py skin.py timer.py GlobalActions.py \
 	e2reactor.py
 

@@ -92,6 +92,12 @@ class VideoHardware:
 		modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i"])
 
+	if getBoxType().startswith('vu'):
+		if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1:
+			modes["Scart-YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
+		else:
+			modes["Scart-YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
+
 	def getOutputAspect(self):
 		ret = (16,9)
 		port = config.av.videoport.getValue()
@@ -106,7 +112,7 @@ class VideoHardware:
 				if force_widescreen:
 					pass
 				else:
-					aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.value]
+					aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.getValue()]
 					if aspect == "16:10":
 						ret = (16,10)
 			elif is_auto:
@@ -131,10 +137,10 @@ class VideoHardware:
 		if self.modes.has_key("DVI-PC") and not self.getModeList("DVI-PC"):
 			print "remove DVI-PC because of not existing modes"
 			del self.modes["DVI-PC"]
-		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'et6x00':
-			del self.modes["Scart"]
-		if getBoxType() == 'tm2t' or getBoxType() == 'tmsingle':
+		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'odimm7' or getBoxType() == 'ini-3000' or getBoxType() == 'vusolo' or getBoxType() == 'vusolo2':
 			del self.modes["YPbPr"]
+		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'et6000':
+			del self.modes["Scart"]
 
 		self.createConfig()
 		self.readPreferredModes()
@@ -190,7 +196,7 @@ class VideoHardware:
 	def setMode(self, port, mode, rate, force = None):
 		print "setMode - port:", port, "mode:", mode, "rate:", rate
 
-		config.av.videoport.value = port		# [iq]
+		config.av.videoport.setValue(port)		# [iq]
 
 		# we can ignore "port"
 		self.current_mode = mode
@@ -232,13 +238,13 @@ class VideoHardware:
 
 	def saveMode(self, port, mode, rate):
 		print "saveMode", port, mode, rate
-		config.av.videoport.value = port
+		config.av.videoport.setValue(port)
 		config.av.videoport.save()
 		if port in config.av.videomode:
-			config.av.videomode[port].value = mode
+			config.av.videomode[port].setValue(mode)
 			config.av.videomode[port].save()
 		if mode in config.av.videorate:
-			config.av.videorate[mode].value = rate
+			config.av.videorate[mode].setValue(rate)
 			config.av.videorate[mode].save()
 
 	def isPortAvailable(self, port):
@@ -296,8 +302,8 @@ class VideoHardware:
 
 # tmtwin [
 		def setColorFormatAsPort(configElement):
-			if configElement.value == "YPbPr":
-				config.av.colorformat.value = "cvbs"
+			if configElement.getValue() == "YPbPr":
+				config.av.colorformat.setValue("cvbs")
 		config.av.videoport.addNotifier(setColorFormatAsPort)
 # ]
 
@@ -377,7 +383,7 @@ class VideoHardware:
 			policy = "bestfit"
 		else:
 			aspect = "4:3"
-			policy = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit", "auto": "bestfit"}[config.av.policy_169.value]
+			policy = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit", "auto": "bestfit"}[config.av.policy_169.getValue()]
 
 		if not config.av.wss.getValue():
 			wss = "auto(4:3_off)"
