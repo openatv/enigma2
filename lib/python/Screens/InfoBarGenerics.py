@@ -1044,9 +1044,12 @@ class InfoBarChannelSelection:
 				self.session.execDialog(self.servicelist)
 
 	def openServiceList(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
+		try:
+			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+				self.secondInfoBarScreen.hide()
+				self.secondInfoBarWasShown = False
+		except:
+			pass
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="openServiceList")
 		elif self.timeshift_enabled and self.isSeekable():
