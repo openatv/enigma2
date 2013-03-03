@@ -1815,12 +1815,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.diskinfo.setText(text)
 
 	def hideActionFeedback(self):
-		print "[ML] hide feedback"
 		self.diskinfo.update()
-		item = self.getCurrentSelection()
-		current = item[0]
-		self.diskinfo.update()
-		self.trashinfo.update(current.getPath())
+		current = self.getCurrent()
+		if current is not None:
+			self.trashinfo.update(current.getPath())
 
 	def can_gohome(self, item):
 		return True

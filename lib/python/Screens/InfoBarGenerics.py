@@ -424,7 +424,7 @@ class InfoBarNumberZap:
 	def keyNumberGlobal(self, number):
 		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable() and number == 0:
 			InfoBarTimeshiftState._mayShow(self)
-			self.pvrStateDialog["PTSSeekPointer"].setPosition(self.pts_seekpointer_MaxX/2, self.pvrStateDialog["PTSSeekPointer"].position[1])
+			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width()-4)/2, self.pvrStateDialog["PTSSeekPointer"].position[1])
 			if self.seekstate != self.SEEK_STATE_PLAY:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 			self.ptsSeekPointerOK()
@@ -617,7 +617,7 @@ class InfoBarChannelSelection:
 			self.secondInfoBarWasShown = False
 		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable():
 			InfoBarTimeshiftState._mayShow(self)
-			self.pvrStateDialog["PTSSeekPointer"].setPosition(self.pts_seekpointer_MinX, self.pvrStateDialog["PTSSeekPointer"].position[1])
+			self.pvrStateDialog["PTSSeekPointer"].setPosition(int(self.pvrStateDialog["PTSSeekBack"].instance.position().x())+8, self.pvrStateDialog["PTSSeekPointer"].position[1])
 			if self.seekstate != self.SEEK_STATE_PLAY:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 			self.ptsSeekPointerOK()
@@ -634,7 +634,7 @@ class InfoBarChannelSelection:
 			self.secondInfoBarWasShown = False
 		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable():
 			InfoBarTimeshiftState._mayShow(self)
-			self.pvrStateDialog["PTSSeekPointer"].setPosition(self.pts_seekpointer_MaxX, self.pvrStateDialog["PTSSeekPointer"].position[1])
+			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width()-4), self.pvrStateDialog["PTSSeekPointer"].position[1])
 			if self.seekstate != self.SEEK_STATE_PLAY:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 			self.ptsSeekPointerOK()
@@ -2121,8 +2121,6 @@ class InfoBarTimeshift:
 		self.pts_curevent_eventid = None
 
 		# Init PTS Infobar
-		self.pts_seekpointer_MinX = 8
-		self.pts_seekpointer_MaxX = 396 # make sure you can divide this through 2
 
 	def getTimeshift(self):
 		service = self.session.nav.getCurrentService()
@@ -2132,9 +2130,9 @@ class InfoBarTimeshift:
 		self.service_changed = 1
 		self.pts_delay_timer.stop()
 		self.pts_service_changed = True
-		self.pvrStateDialog.hide()
-		self.timeshift_enabled = False
-		self.__seekableStatusChanged()
+		# self.pvrStateDialog.hide()
+		# self.timeshift_enabled = False
+		# self.__seekableStatusChanged()
 
 	def __evEnd(self):
 		self.service_changed = 0
@@ -2156,11 +2154,18 @@ class InfoBarTimeshift:
 			self.pts_seektoprevfile = True
 			self.ptsSetNextPlaybackFile("pts_livebuffer.%s" % (preptsfile))
 
-			self.setSeekState(self.SEEK_STATE_PAUSE)
-			if self.seekstate != self.SEEK_STATE_PLAY:
-				self.setSeekState(self.SEEK_STATE_PLAY)
-			self.doSeek(-1)
-			self.seekFwd()
+			if self.seekstate[3].startswith('<<'):
+				# self.setSeekState(self.SEEK_STATE_PAUSE)
+				# if self.seekstate != self.SEEK_STATE_PLAY:
+				# 	self.setSeekState(self.SEEK_STATE_PLAY)
+				self.doSeek(-10)
+				self.seekBack()
+			else:
+				self.setSeekState(self.SEEK_STATE_PAUSE)
+				if self.seekstate != self.SEEK_STATE_PLAY:
+					self.setSeekState(self.SEEK_STATE_PLAY)
+				self.doSeek(-1)
+				self.seekFwd()
 
 	def __evInfoChanged(self):
 		if self.service_changed:
@@ -2276,8 +2281,14 @@ class InfoBarTimeshift:
 		if self.pts_eventcount > 1 and self.isSeekable() and pts_setnextfile:
 			self.ptsSetNextPlaybackFile("pts_livebuffer.%s" % (self.pts_eventcount))
 
+		# Do not switch back to LiveTV while timeshifting
+		if self.isSeekable():
+			switchToLive = False
+		else:
+			switchToLive = True
+
 		# (Re)start Timeshift now
-		self.stopTimeshift(True)
+		self.stopTimeshift(True, switchToLive)
 		ts = self.getTimeshift()
 		if ts and not ts.startTimeshift():
 			if (getBoxType() == 'vuuno' or getBoxType() == 'vuduo') and os.path.exists("/proc/stb/lcd/symbol_timeshift"):
@@ -2336,30 +2347,35 @@ class InfoBarTimeshift:
 				else:
 					print "timeshift failed"
 
-	def stopTimeshift(self, answer = True):
-		if not answer or self.checkTimeshiftRunning(self.stopTimeshift):
-			return
+	def stopTimeshift(self, answer=True, switchToLive=True):
 
-		# Jump Back to Live TV
-		if config.timeshift.enabled.getValue() and self.timeshift_enabled:
-			if self.isSeekable():
-				self.pts_switchtolive = True
-				self.ptsSetNextPlaybackFile("")
-				self.setSeekState(self.SEEK_STATE_PAUSE)
-				if self.seekstate != self.SEEK_STATE_PLAY:
-					self.setSeekState(self.SEEK_STATE_PLAY)
-				self.doSeek(-1) # seek 1 gop before end
-				self.seekFwd() # seekFwd to switch to live TV
-				return 1
-			return 0
+		if switchToLive:
+			if not answer or self.checkTimeshiftRunning(self.stopTimeshift):
+				return
+
+			# Jump Back to Live TV
+			if config.timeshift.enabled.getValue() and self.timeshift_enabled:
+				if self.isSeekable():
+					self.pts_switchtolive = True
+					self.ptsSetNextPlaybackFile("")
+					self.setSeekState(self.SEEK_STATE_PAUSE)
+					if self.seekstate != self.SEEK_STATE_PLAY:
+						self.setSeekState(self.SEEK_STATE_PLAY)
+					self.doSeek(-1) # seek 1 gop before end
+					self.seekFwd() # seekFwd to switch to live TV
+					return 1
 
 		was_enabled = self.timeshift_enabled
 		ts = self.getTimeshift()
 		if ts is None:
 			return
-		ts.stopTimeshift()
+		try:
+			ts.stopTimeshift(switchToLive)
+		except:
+			ts.stopTimeshift()
+
 		self.timeshift_enabled = False
-		self.pvrStateDialog.hide()
+		# self.pvrStateDialog.hide()
 
 		# disable actions
 		self.__seekableStatusChanged()
@@ -2984,8 +3000,8 @@ class InfoBarTimeshift:
 				return
 
 			cur_pos = self.pvrStateDialog["PTSSeekPointer"].position
-			jumptox = int(cur_pos[0]) - int(self.pts_seekpointer_MinX)
-			jumptoperc = round((jumptox / 400.0) * 100, 0)
+			jumptox = int(cur_pos[0]) - (int(self.pvrStateDialog["PTSSeekBack"].instance.position().x())+8)
+			jumptoperc = round((jumptox / float(self.pvrStateDialog["PTSSeekBack"].instance.size().width())) * 100, 0)
 			jumptotime = int((length / 100) * jumptoperc)
 			jumptodiff = position - jumptotime
 
@@ -3007,7 +3023,7 @@ class InfoBarTimeshift:
 
 	def ptsSeekPointerReset(self):
 		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled:
-			self.pvrStateDialog["PTSSeekPointer"].setPosition(self.pts_seekpointer_MinX,self.pvrStateDialog["PTSSeekPointer"].position[1])
+			self.pvrStateDialog["PTSSeekPointer"].setPosition(int(self.pvrStateDialog["PTSSeekBack"].instance.position().x())+8,self.pvrStateDialog["PTSSeekPointer"].position[1])
 
 	def ptsSeekPointerSetCurrentPos(self):
 		if not self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" or not self.timeshift_enabled or not self.isSeekable():
@@ -3017,24 +3033,23 @@ class InfoBarTimeshift:
 		length = self.ptsGetLength()
 
 		if length >= 1:
-			tpixels = int((float(int((position*100)/length))/100)*400)
-			self.pvrStateDialog["PTSSeekPointer"].setPosition(self.pts_seekpointer_MinX+tpixels, self.pvrStateDialog["PTSSeekPointer"].position[1])
+			tpixels = int((float(int((position*100)/length))/100)*self.pvrStateDialog["PTSSeekBack"].instance.size().width())
+			self.pvrStateDialog["PTSSeekPointer"].setPosition(int(self.pvrStateDialog["PTSSeekBack"].instance.position().x())+8+tpixels, self.pvrStateDialog["PTSSeekPointer"].position[1])
 
 	def ptsMoveSeekPointer(self, direction=None):
 		if direction is None or self.pts_pvrStateDialog != "Screens.PVRState.PTSTimeshiftState":
 			return
-
 		isvalidjump = False
 		cur_pos = self.pvrStateDialog["PTSSeekPointer"].position
 		self.doShow()
 
 		if direction == "left":
-			minmaxval = self.pts_seekpointer_MinX
+			minmaxval = int(self.pvrStateDialog["PTSSeekBack"].instance.position().x())+8
 			movepixels = -15
 			if cur_pos[0]+movepixels > minmaxval:
 				isvalidjump = True
 		elif direction == "right":
-			minmaxval = self.pts_seekpointer_MaxX
+			minmaxval = int(self.pvrStateDialog["PTSSeekBack"].instance.size().width()*0.96)
 			movepixels = 15
 			if cur_pos[0]+movepixels < minmaxval:
 				isvalidjump = True
@@ -3166,7 +3181,7 @@ class InfoBarTimeshift:
 			if self.isSeekable():
 				Notifications.AddNotification(MessageBox,_("Record started! Stopping timeshift now ..."), MessageBox.TYPE_INFO, timeout=5)
 
-			self.stopTimeshiftConfirmed(True, False)
+			self.stopTimeshift(True, False)
 
 		# Restart Timeshift when all records stopped
 		if timer.state == TimerEntry.StateEnded and not self.timeshift_enabled and not self.pts_record_running:

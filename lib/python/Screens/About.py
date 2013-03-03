@@ -36,8 +36,14 @@ def get_ip_address(ifname):
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+<<<<<<< HEAD
 
 		AboutText = _("Hardware: ") + about.getHardwareTypeString() + "\n"
+		if path.exists('/proc/stb/info/chipset'):
+			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString().lower().replace('\n','').replace('bcm','') + "\n"
+
+		AboutText += _("CPU:\t%s") % about.getCPUString() + "\n"
+		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
 		AboutText += _("Drivers: ") + about.getDriversVersionString() + "\n"
 		AboutText += _("Image: ") + about.getImageTypeString() + "\n"
 		AboutText += _("Kernel Version: ") + about.getKernelVersionString() + "\n"
@@ -46,7 +52,7 @@ class About(Screen):
 		self["EnigmaVersion"] = StaticText(EnigmaVersion)
 		AboutText += EnigmaVersion + "\n"
 
-		ImageVersion = _("Last Upgrade: ") + about.getImageVersionString()
+		ImageVersion = _("Last Upgrade: ") + about.getLastUpdateString()
 		self["ImageVersion"] = StaticText(ImageVersion)
 		AboutText += ImageVersion + "\n"
 
@@ -73,7 +79,6 @@ class About(Screen):
 			AboutText += _("System Temperature:") + " " + tempinfo.replace('\n','') + mark + "C\n\n"
 
 		self["TranslationHeader"] = StaticText(_("Translation:"))
-
 
 		# don't remove the string out of the _(), or it can't be "translated" anymore.
 		# TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)

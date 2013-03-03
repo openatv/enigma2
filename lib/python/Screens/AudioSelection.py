@@ -23,7 +23,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self["streams"] = List([])
 		self["key_red"] = Boolean(False)
 		self["key_green"] = Boolean(False)
-		self["key_yellow"] = Boolean(True)
+		self["key_yellow"] = Boolean(False)
 		self["key_blue"] = Boolean(False)
 
 		ConfigListScreen.__init__(self, [])
@@ -162,6 +162,17 @@ class AudioSelection(Screen, ConfigListScreen):
 				if len(Plugins) > 1:
 					print "plugin(s) installed but not displayed in the dialog box:", Plugins[1:]
 
+			if SystemInfo["Can3DSurround"]:
+				surround_choicelist = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
+				self.settings.surround_3d = ConfigSelection(choices = surround_choicelist, default = config.av.surround_3d.getValue())
+				self.settings.surround_3d.addNotifier(self.change3DSurround, initial_call = False)
+				conflist.append(getConfigListEntry(_("3D Surround"), self.settings.surround_3d))
+			
+			edid_bypass_choicelist = [("00000000", _("off")), ("00000001", _("on"))]
+			self.settings.edid_bypass = ConfigSelection(choices = edid_bypass_choicelist, default = config.av.bypass_edid_checking.getValue())
+			self.settings.edid_bypass.addNotifier(self.changeEDIDBypass, initial_call = False)
+			conflist.append(getConfigListEntry(_("Bypass HDMI EDID Check"), self.settings.edid_bypass))
+
 		elif self.settings.menupage.getValue() == PAGE_SUBTITLES:
 
 			self.setTitle(_("Subtitle selection"))
@@ -253,6 +264,16 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.infobar.subtitles_enabled = True
 				self.infobar.selected_subtitle = subtitles
 
+	def changeEDIDBypass(self, edid_bypass):
+		if edid_bypass.getValue():
+			config.av.bypass_edid_checking.value = edid_bypass.getValue()
+		config.av.bypass_edid_checking.save()
+
+	def change3DSurround(self, surround_3d):
+		if surround_3d.getValue():
+			config.av.surround_3d.value = surround_3d.getValue()
+		config.av.surround_3d.save()
+
 	def changeAC3Downmix(self, downmix):
 		if downmix.getValue() == True:
 			config.av.downmix_ac3.value = True
@@ -278,7 +299,7 @@ class AudioSelection(Screen, ConfigListScreen):
 
 	def keyRight(self, config = False):
 		if config or self.focus == FOCUS_CONFIG:
-			if self["config"].getCurrentIndex() < 3:
+			if self["config"].getCurrentIndex() < 3 or self["config"].getCurrentIndex() in (4, 5):
 				ConfigListScreen.keyRight(self)
 			elif self["config"].getCurrentIndex() == 3:
 				if self.settings.menupage.getValue() == PAGE_AUDIO and hasattr(self, "plugincallfunc"):

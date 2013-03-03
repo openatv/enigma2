@@ -182,7 +182,7 @@ class EventViewBase:
 			short = ""
 
 		if short and extended:
-			extended = short + '\n\n' + extended
+			extended = short + '\n' + extended
 		elif short:
 			extended = short
 
