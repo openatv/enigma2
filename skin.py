@@ -267,6 +267,8 @@ class AttributeParser:
 				print "[Skin] Attribute not implemented:", attrib, "value:", value
 			except SkinError, ex:
 				print "[Skin] Error:", ex
+	def conditional(self, value):
+		pass
 	def position(self, value):
 		if isinstance(value, tuple):
 			self.guiObject.move(ePoint(*value))
@@ -891,6 +893,9 @@ def readSkin(screen, skin, names, desktop):
 
 	def process_screen(widget, context):
 	        for w in widget.getchildren():
+			conditional = w.attrib.get('conditional')
+			if conditional and not [i for i in conditional.split(",") if i in screen.keys()]:
+				continue
 	                p = processors.get(w.tag, process_none)
 			try:
 		                p(w, context)
