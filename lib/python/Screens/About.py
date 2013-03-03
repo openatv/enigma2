@@ -36,14 +36,13 @@ def get_ip_address(ifname):
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-<<<<<<< HEAD
 
 		AboutText = _("Hardware: ") + about.getHardwareTypeString() + "\n"
 		if path.exists('/proc/stb/info/chipset'):
-			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString().lower().replace('\n','').replace('bcm','') + "\n"
+			AboutText += _("Chipset: BCM%s") % about.getChipSetString().lower().replace('\n','').replace('bcm','') + "\n"
 
-		AboutText += _("CPU:\t%s") % about.getCPUString() + "\n"
-		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
+		AboutText += _("CPU: %s") % about.getCPUString() + "\n"
+		AboutText += _("Cores: %s") % about.getCpuCoresString() + "\n"
 		AboutText += _("Drivers: ") + about.getDriversVersionString() + "\n"
 		AboutText += _("Image: ") + about.getImageTypeString() + "\n"
 		AboutText += _("Kernel Version: ") + about.getKernelVersionString() + "\n"
