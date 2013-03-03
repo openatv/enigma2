@@ -918,7 +918,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	}
 	else if (!strcmp(m_description, "BCM7356 DVB-S2 NIM (internal)")) // VU+ Solo2
 	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1595) - 0.2700) * 100);
+		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1800) - 1.0000) * 100);
 	}
 	else if (!strcmp(m_description, "Genpix"))
 	{
