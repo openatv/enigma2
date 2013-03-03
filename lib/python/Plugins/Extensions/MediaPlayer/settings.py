@@ -6,6 +6,9 @@ from Components.MediaPlayer import PlayList
 from Components.config import config, getConfigListEntry, ConfigSubsection, configfile, ConfigText, ConfigYesNo, ConfigDirectory
 from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap
+from Components.Pixmap import Pixmap,MultiPixmap
+from Screens.VirtualKeyBoard import VirtualKeyBoard
+from Components.Sources.Boolean import Boolean
 
 config.mediaplayer = ConfigSubsection()
 config.mediaplayer.repeat = ConfigYesNo(default=False)
@@ -67,6 +70,9 @@ class MediaPlayerSettings(Screen,ConfigListScreen):
 		self.skinName = ["MediaPlayerSettings", "Setup" ]
 		self.setup_title = _("Edit settings")
 		self.onChangedEntry = [ ]
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
