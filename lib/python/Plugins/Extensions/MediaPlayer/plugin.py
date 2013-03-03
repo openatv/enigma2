@@ -7,7 +7,6 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
 from Screens.ChoiceBox import ChoiceBox
-from Screens.InfoBar import InfoBar
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport
 from Components.ActionMap import NumberActionMap, HelpableActionMap
 from Components.Label import Label
@@ -21,10 +20,30 @@ from Components.AVSwitch import AVSwitch
 from Components.Harddisk import harddiskmanager
 from Components.config import config
 from Tools.Directories import fileExists, pathExists, resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_CURRENT_SKIN
-from Tools.BoundFunction import boundFunction
 from settings import MediaPlayerSettings
+from Screens.InfoBar import MoviePlayer
 import random
 
+
+class ExMoviePlayer(MoviePlayer):
+	def __init__(self, session, service):
+		self.session = session
+		MoviePlayer.__init__(self, session, service)
+		self.skinName = "MoviePlayer"
+		MoviePlayer.WithoutStopClose = True
+
+	def doEofInternal(self, playing):
+		self.leavePlayer()
+			
+	def leavePlayer(self):
+		list = ((_("Yes"), "y"), (_("No"), "n"),)
+		self.session.openWithCallback(self.cbDoExit, ChoiceBox, title=_("Stop playing this movie?"), list = list)
+
+	def cbDoExit(self, answer):
+		answer = answer and answer[1]
+		if answer == "y":
+			self.close()
+			
 class MyPlayList(PlayList):
 	def __init__(self):
 		PlayList.__init__(self)
@@ -89,12 +108,6 @@ class MediaPixmap(Pixmap):
 		self.coverArtFileName = "/tmp/.id3coverart"
 		self.picload.startDecode(self.coverArtFileName)
 
-class MediaPlayerInfoBar(Screen):
-
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.skinName = "MoviePlayer"
-
 class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport, HelpableScreen):
 	ALLOW_SUSPEND = True
 	ENABLE_RESUME_SUPPORT = True
@@ -125,6 +138,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.is_closing = False
 		self.delname = ""
 		self.playlistname = ""
+
 		self["playlist"] = self.playlist
 
 		self["PositionGauge"] = ServicePositionGauge(self.session.nav)
@@ -209,11 +223,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 		InfoBarSeek.__init__(self, actionmap = "MediaPlayerSeekActions")
 
-		self.mediaPlayerInfoBar = self.session.instantiateDialog(MediaPlayerInfoBar)
-
 		self.onClose.append(self.delMPTimer)
 		self.onClose.append(self.__onClose)
-		self.onShow.append(self.timerHideMediaPlayerInfoBar)
 
 		self.righttimer = False
 		self.rightKeyTimer = eTimer()
@@ -222,9 +233,6 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.lefttimer = False
 		self.leftKeyTimer = eTimer()
 		self.leftKeyTimer.callback.append(self.leftTimerFire)
-
-		self.hideMediaPlayerInfoBar = eTimer()
-		self.hideMediaPlayerInfoBar.callback.append(self.timerHideMediaPlayerInfoBar)
 
 		self.currList = "filelist"
 		self.isAudioCD = False
@@ -248,46 +256,31 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				iPlayableService.evUser+13: self["coverArt"].embeddedCoverArt
 			})
 
-	def hideAndInfoBar(self):
-		self.hide()
-		self.mediaPlayerInfoBar.show()
-		self.hideMediaPlayerInfoBar.start(5000, True)
-
-	def timerHideMediaPlayerInfoBar(self):
-		self.hideMediaPlayerInfoBar.stop()
-		self.mediaPlayerInfoBar.hide()
-
 	def doNothing(self):
 		pass
 
 	def createSummary(self):
 		return MediaPlayerLCDScreen
 
-	def exit(self, answer = None):
-		if answer is None:
-			if self.mediaPlayerInfoBar.shown:
-				self.timerHideMediaPlayerInfoBar()
-			else:
-				self.session.openWithCallback(self.exit, MessageBox, _("Exit media player?"), simple = not self.shown)
-		elif answer:
-			self.playlistIOInternal.clear()
-			for x in self.playlist.list:
-				self.playlistIOInternal.addService(ServiceReference(x[0]))
-			if self.savePlaylistOnExit:
-				try:
-					self.playlistIOInternal.save(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
-				except IOError:
-					print "couldn't save playlist.e2pls"
-			if config.mediaplayer.saveDirOnExit.getValue():
-				config.mediaplayer.defaultDir.setValue(self.filelist.getCurrentDirectory())
-				config.mediaplayer.defaultDir.save()
+	def exit(self):
+		self.playlistIOInternal.clear()
+		for x in self.playlist.list:
+			self.playlistIOInternal.addService(ServiceReference(x[0]))
+		if self.savePlaylistOnExit:
 			try:
-				from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
-				hotplugNotifier.remove(self.hotplugCB)
-			except:
-				pass
-			del self["coverArt"].picload
-			self.close()
+				self.playlistIOInternal.save(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
+			except IOError:
+				print "couldn't save playlist.e2pls"
+		if config.mediaplayer.saveDirOnExit.getValue():
+			config.mediaplayer.defaultDir.setValue(self.filelist.getCurrentDirectory())
+			config.mediaplayer.defaultDir.save()
+		try:
+			from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
+			hotplugNotifier.remove(self.hotplugCB)
+		except:
+			pass
+		del self["coverArt"].picload
+		self.close()
 
 	def checkSkipShowHideLock(self):
 		self.updatedSeekState()
@@ -299,7 +292,6 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			self.show()
 
 	def __onClose(self):
-		self.mediaPlayerInfoBar.doClose()
 		self.session.nav.playService(self.oldService)
 
 	def __evUpdatedInfo(self):
@@ -314,13 +306,13 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		currPlay = self.session.nav.getCurrentService()
 		sTagAudioCodec = currPlay.info().getInfoString(iServiceInformation.sTagAudioCodec)
 		print "[__evAudioDecodeError] audio-codec %s can't be decoded by hardware" % (sTagAudioCodec)
-		self.session.open(MessageBox, _("This receiver cannot decode %s streams!") % sTagAudioCodec, type = MessageBox.TYPE_INFO,timeout = 20 )
+		self.session.open(MessageBox, _("This STB_BOX cannot decode %s streams!") % sTagAudioCodec, type = MessageBox.TYPE_INFO,timeout = 20 )
 
 	def __evVideoDecodeError(self):
 		currPlay = self.session.nav.getCurrentService()
 		sTagVideoCodec = currPlay.info().getInfoString(iServiceInformation.sTagVideoCodec)
 		print "[__evVideoDecodeError] video-codec %s can't be decoded by hardware" % (sTagVideoCodec)
-		self.session.open(MessageBox, _("This receiver cannot decode %s streams!") % sTagVideoCodec, type = MessageBox.TYPE_INFO,timeout = 20 )
+		self.session.open(MessageBox, _("This STB_BOX cannot decode %s streams!") % sTagVideoCodec, type = MessageBox.TYPE_INFO,timeout = 20 )
 
 	def __evPluginError(self):
 		currPlay = self.session.nav.getCurrentService()
@@ -433,7 +425,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.show()
 
 	def hideAfterResume(self):
-		self.hideAndInfoBar()
+		self.hide()
 
 	def getIdentifier(self, ref):
 		if self.isAudioCD:
@@ -519,13 +511,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 		if self.currList == "playlist":
 			if self.playlist.getCurrentIndex() == self.playlist.getSelectionIndex():
-				if self.shown:
-					self.hideAndInfoBar()
-				elif self.mediaPlayerInfoBar.shown:
-					self.mediaPlayerInfoBar.hide()
-					self.hideMediaPlayerInfoBar.stop()
-				else:
-					self.mediaPlayerInfoBar.show()
+				self.hide()
 			else:
 				self.changeEntry(self.playlist.getSelectionIndex())
 
@@ -574,7 +560,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		elif choice[1] == "clear":
 			self.clear_playlist()
 		elif choice[1] == "hide":
-			self.hideAndInfoBar()
+			self.hide()
 		elif choice[1] == "saveplaylist":
 			self.save_playlist()
 		elif choice[1] == "loadplaylist":
@@ -872,46 +858,54 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			needsInfoUpdate = False
 			currref = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()]
 			if self.session.nav.getCurrentlyPlayingServiceReference() is None or currref != self.session.nav.getCurrentlyPlayingServiceReference():
-				self.session.nav.playService(self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()])
-				info = eServiceCenter.getInstance().info(currref)
-				description = info and info.getInfoString(currref, iServiceInformation.sDescription) or ""
-				self["title"].setText(description)
-				# display just playing musik on LCD
-				idx = self.playlist.getCurrentIndex()
-				currref = self.playlist.getServiceRefList()[idx]
-				text = self.getIdentifier(currref)
-				ext = os.path.splitext(text)[1].lower()
-				text = ">"+text
-				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead 
-				if ext not in audio_extensions and not self.isAudioCD:
-					self.hideAndInfoBar()
-				else:
-					needsInfoUpdate = True
-				self.summaries.setText(text,1)
+			      idx = self.playlist.getCurrentIndex()
+			      currref = self.playlist.getServiceRefList()[idx]
+			      text = self.getIdentifier(currref)
+			      ext = os.path.splitext(text)[1].lower()
+			      if ext not in audio_extensions and not self.isAudioCD:
+				    movie = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()]
+				    self.session.openWithCallback(self.stopEntry, ExMoviePlayer, movie)				
+			      else:
+				    self.session.nav.playService(self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()])
+				    info = eServiceCenter.getInstance().info(currref)
+				    description = info and info.getInfoString(currref, iServiceInformation.sDescription) or ""
+				    self["title"].setText(description)
+				    # display just playing musik on LCD
+				    idx = self.playlist.getCurrentIndex()
+				    currref = self.playlist.getServiceRefList()[idx]
+				    text = self.getIdentifier(currref)
+				    ext = os.path.splitext(text)[1].lower()
+				    text = ">"+text
+				    # FIXME: the information if the service contains video (and we should hide our window) should com from the service instead 
+				    if ext not in audio_extensions and not self.isAudioCD:
+					    self.hide()
+				    else:
+					    needsInfoUpdate = True
+				    self.summaries.setText(text,1)
 
-				# get the next two entries
-				idx += 1
-				if idx < len(self.playlist):
-					currref = self.playlist.getServiceRefList()[idx]
-					text = self.getIdentifier(currref)
-					self.summaries.setText(text,3)
-				else:
-					self.summaries.setText(" ",3)
+				    # get the next two entries
+				    idx += 1
+				    if idx < len(self.playlist):
+					    currref = self.playlist.getServiceRefList()[idx]
+					    text = self.getIdentifier(currref)
+					    self.summaries.setText(text,3)
+				    else:
+					    self.summaries.setText(" ",3)
 
-				idx += 1
-				if idx < len(self.playlist):
-					currref = self.playlist.getServiceRefList()[idx]
-					text = self.getIdentifier(currref)
-					self.summaries.setText(text,4)
-				else:
-					self.summaries.setText(" ",4)
+				    idx += 1
+				    if idx < len(self.playlist):
+					    currref = self.playlist.getServiceRefList()[idx]
+					    text = self.getIdentifier(currref)
+					    self.summaries.setText(text,4)
+				    else:
+					    self.summaries.setText(" ",4)
 			else:
 				idx = self.playlist.getCurrentIndex()
 				currref = self.playlist.getServiceRefList()[idx]
 				text = currref.getPath()
 				ext = os.path.splitext(text)[1].lower()
 				if ext not in audio_extensions and not self.isAudioCD:
-					self.hideAndInfoBar()
+					self.hide()
 				else:
 					needsInfoUpdate = True
 
@@ -938,7 +932,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		if self.seekstate == self.SEEK_STATE_PAUSE:
 			self.show()
 		else:
-			self.hideAndInfoBar()
+			self.hide()
 
 	def stopEntry(self):
 		self.playlist.stopFile()
@@ -970,6 +964,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				self.cdAudioTrackFiles = []
 				if self.isAudioCD:
 					self.clear_playlist()
+
 
 class MediaPlayerLCDScreen(Screen):
 	skin = (
@@ -1003,15 +998,12 @@ class MediaPlayerLCDScreen(Screen):
 		elif line == 4:
 			self["text4"].setText(text)
 
-def main(session, answer = True, **kwargs):
-	if not answer or InfoBar.instance.checkTimeshiftRunning(boundFunction(main, session)):
-		return
-	if answer:
-		session.open(MediaPlayer)
+def main(session, **kwargs):
+	session.open(MediaPlayer)
 
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu" and config.mediaplayer.onMainMenu.getValue():
-		return [(_("Media player"), main, "media_player", 1)]
+		return [(_("Media Player"), main, "media_player", 1)]
 	return []
 
 def filescan_open(list, session, **kwargs):
@@ -1103,6 +1095,6 @@ from Plugins.Plugin import PluginDescriptor
 def Plugins(**kwargs):
 	return [
 		#PluginDescriptor(name = _("Media player"), description = _("Play back media files"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc = main),
-		PluginDescriptor(name = _("Media player"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
-		PluginDescriptor(name = _("Media player"), description = _("Play back media files"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu)
+		PluginDescriptor(name = _("Media Player"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
+		PluginDescriptor(name = _("Media Player"), description = _("Play back media files"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu)
 	]
