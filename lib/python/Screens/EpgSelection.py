@@ -297,7 +297,7 @@ class EPGSelection(Screen, HelpableScreen):
 				}, -1)
 			self['cursoractions'].csel = self
 		if self.type == EPG_TYPE_GRAPH:
-			time_epoch=config.epgselection.prev_time_period.getValue()
+			time_epoch=config.epgselection.graph_prevtimeperiod.getValue()
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
 			time_epoch=config.epgselection.infobar_prevtimeperiod.getValue()
 		else:
@@ -337,7 +337,7 @@ class EPGSelection(Screen, HelpableScreen):
 			now = time() - int(config.epg.histminutes.getValue()) * 60
 			l.setOverjump_Empty(config.epgselection.overjump.getValue())
 			if self.type == EPG_TYPE_GRAPH:
-				l.setEpoch(config.epgselection.prev_time_period.getValue())
+				l.setEpoch(config.epgselection.graph_prevtimeperiod.getValue())
 				l.setShowServiceMode(config.epgselection.graph_servicetitle_mode.getValue())
 				self.ask_time = now - now % (int(config.epgselection.graph_roundto.getValue()) * 60)
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
@@ -514,7 +514,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.nextService()
 		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			if self.type == EPG_TYPE_GRAPH:
-				timeperiod = config.epgselection.prev_time_period.getValue()
+				timeperiod = config.epgselection.graph_prevtimeperiod.getValue()
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
 				timeperiod = config.epgselection.infobar_prevtimeperiod.getValue()
 			if timeperiod == 60:
@@ -560,7 +560,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.prevService()
 		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			if self.type == EPG_TYPE_GRAPH:
-				timeperiod = config.epgselection.prev_time_period.getValue()
+				timeperiod = config.epgselection.graph_prevtimeperiod.getValue()
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
 				timeperiod = config.epgselection.infobar_prevtimeperiod.getValue()
 			if timeperiod == 60:
@@ -1111,20 +1111,20 @@ class EPGSelection(Screen, HelpableScreen):
 	def keyNumberGlobal(self, number):
 		if self.type == EPG_TYPE_GRAPH:
 			if number == 1:
-				timeperiod = config.epgselection.prev_time_period.getValue()
+				timeperiod = config.epgselection.graph_prevtimeperiod.getValue()
 				if timeperiod > 60:
 					timeperiod = timeperiod - 60
 					self['list'].setEpoch(timeperiod)
-					config.epgselection.prev_time_period.setValue(timeperiod)
+					config.epgselection.graph_prevtimeperiod.setValue(timeperiod)
 					self.moveTimeLines()
 			elif number == 2:
 				self.prevPage()
 			elif number == 3:
-				timeperiod = config.epgselection.prev_time_period.getValue()
+				timeperiod = config.epgselection.graph_prevtimeperiod.getValue()
 				if timeperiod < 300:
 					timeperiod = timeperiod + 60
 					self['list'].setEpoch(timeperiod)
-					config.epgselection.prev_time_period.setValue(timeperiod)
+					config.epgselection.graph_prevtimeperiod.setValue(timeperiod)
 					self.moveTimeLines()
 			elif number == 4:
 				self.updEvent(-2)
