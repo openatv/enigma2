@@ -1434,10 +1434,12 @@ class InfoBarTimeshift:
 				print "timeshift failed"
 
 	def stopTimeshift(self, answer = True):
-		if not answer or self.checkTimeshiftRunning(self.stopTimeshift):
-			return
+		if not self.timeshift_enabled:
+			return 0
 		ts = self.getTimeshift()
 		if ts is None:
+			return 0
+		if not answer or self.checkTimeshiftRunning(self.stopTimeshift):
 			return
 		ts.stopTimeshift()
 		self.timeshift_enabled = False
