@@ -81,7 +81,6 @@ config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
 DEFAULT_DISPLAY_SKIN = "skin_display.xml"
 config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
-config.skin.display_skin_picon = ConfigYesNo(default = False)
 
 profile("LoadSkin")
 try:
@@ -99,12 +98,8 @@ addSkin('skin_box.xml')
 addSkin('skin_second_infobar.xml')
 display_skin_id = 1
 try:
-	if not config.skin.display_skin_picon.getValue():
-		if not addSkin(os.path.join('display', config.skin.display_skin.getValue())):
-			raise DisplaySkinError, "display skin not found"
-	else:
-		if not addSkin(os.path.join('display', config.skin.display_skin.getValue().replace('display.xml','display_picon.xml'))):
-			raise DisplaySkinError, "display skin not found"
+	if not addSkin(os.path.join('display', config.skin.display_skin.getValue())):
+		raise DisplaySkinError, "display skin not found"
 except Exception, err:
 	print "SKIN ERROR:", err
 	skin = DEFAULT_DISPLAY_SKIN
@@ -113,10 +108,7 @@ except Exception, err:
 	print "defaulting to standard display skin...", skin
 	config.skin.display_skin.value = skin
 	skin = os.path.join('display', skin)
-	if not config.skin.display_skin_picon.getValue():
-		addSkin(skin)
-	else:
-		addSkin(skin.replace('display.xml','display_picon.xml'))
+	addSkin(skin)
 	del skin
 
 addSkin('skin_subtitles.xml')

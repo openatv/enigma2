@@ -6,7 +6,7 @@ from Components.ActionMap import NumberActionMap
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
-from Components.config import config
+from Components.config import config, configfile
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from enigma import eEnv
 import os
@@ -15,8 +15,10 @@ class SkinSelectorBase:
 	def __init__(self, session, args = None):
 		self.skinlist = []
 		self.previewPath = ""
-		if os.path.exists(os.path.join(self.root, self.SKINXML)):
+		if self.PICONSKINXML and os.path.exists(os.path.join(self.root, self.SKINXML)):
 			self.skinlist.append(self.DEFAULTSKIN)
+		if self.PICONSKINXML and os.path.exists(os.path.join(self.root, self.PICONSKINXML)):
+			self.skinlist.append(self.PICONDEFAULTSKIN)
 		for root, dirs, files in os.walk(self.root, followlinks=True):
 			for subdir in dirs:
 				dir = os.path.join(root,subdir)
@@ -62,13 +64,18 @@ class SkinSelectorBase:
 	def ok(self):
 		if self["SkinList"].getCurrent() == self.DEFAULTSKIN:
 			skinfile = ""
+			skinfile = os.path.join(skinfile, self.SKINXML)
+		elif self["SkinList"].getCurrent() == self.PICONDEFAULTSKIN:
+			skinfile = ""
+			skinfile = os.path.join(skinfile, self.PICONSKINXML)
 		else:
 			skinfile = self["SkinList"].getCurrent()
-		skinfile = os.path.join(skinfile, self.SKINXML)
+			skinfile = os.path.join(skinfile, self.SKINXML)
 
 		print "Skinselector: Selected Skin: "+self.root+skinfile
 		self.config.value = skinfile
 		self.config.save()
+		configfile.save()
 		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
 
@@ -93,7 +100,7 @@ class SkinSelectorBase:
 		aboutbox.setTitle(_("About..."))
 
 	def loadPreview(self):
-		if self["SkinList"].getCurrent() == self.DEFAULTSKIN:
+		if self["SkinList"].getCurrent() == self.DEFAULTSKIN or self["SkinList"].getCurrent() == self.PICONDEFAULTSKIN:
 			pngpath = "."
 		else:
 			pngpath = self["SkinList"].getCurrent()
@@ -114,6 +121,8 @@ class SkinSelectorBase:
 class SkinSelector(Screen, SkinSelectorBase):
 	SKINXML = "skin.xml"
 	DEFAULTSKIN = "< Default >"
+	PICONSKINXML = None
+	PICONDEFAULTSKIN = None
 
 	skinlist = []
 	root = os.path.join(eEnv.resolve("${datadir}"),"enigma2")
@@ -128,9 +137,11 @@ class SkinSelector(Screen, SkinSelectorBase):
 class LcdSkinSelector(Screen, SkinSelectorBase):
 	SKINXML = "skin_display.xml"
 	DEFAULTSKIN = "< Default >"
+	PICONSKINXML = "skin_display_picon.xml"
+	PICONDEFAULTSKIN = "< Default with Picon >"
 
 	skinlist = []
-	root = os.path.join(eEnv.resolve("${datadir}"),"enigma2/display")
+	root = os.path.join(eEnv.resolve("${datadir}"),"enigma2/display/")
 
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
