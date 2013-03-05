@@ -27,72 +27,72 @@
 	</screen>
 
 	<screen name="SummaryIconsPanel">
-		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="display/update.png" position="165,0" size="14,12" >
+		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update.png" position="165,0" size="14,12" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="display/update.png" position="165,0" size="14,12" >
+		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="update.png" position="165,0" size="14,12" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 <!--
-		<widget source="session.CurrentService" render="Pixmap" pixmap="display/crypt.png" position="185,0"  size="10,12">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="crypt.png" position="185,0"  size="10,12">
 			<convert type="ServiceInfo">IsCrypted</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="display/txt.png" position="198,0" size="14,12">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="txt.png" position="198,0" size="14,12">
 			<convert type="ServiceInfo">HasTelext</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
  -->
-		<widget source="session.RecordState" render="Pixmap" pixmap="display/rec.png" position="180,0"  size="32,12">
+		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png" position="180,0"  size="32,12">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="display/hd.png" position="215,0" size="21,12">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="hd.png" position="215,0" size="21,12">
 			<convert type="ServiceInfo">VideoWidth</convert>
 			<convert type="ValueRange">721,1980</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="display/dolby.png" position="239,0" size="16,12">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="dolby.png" position="239,0" size="16,12">
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
 	<screen name="SummaryTunerStatusPanel">
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="display/tuner-a.png" position="216,15" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-a.png" position="216,15" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="display/tuner-b.png" position="226,15" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-b.png" position="226,15" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="display/tuner-c.png" position="235,15" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-c.png" position="235,15" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">4</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="display/tuner-d.png" position="246,15" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-d.png" position="246,15" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">8</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="display/tuner-a-act.png" position="216,15" size="9,15">
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-a-act.png" position="216,15" size="9,15">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">0,0</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="display/tuner-b-act.png" position="226,15" size="9,15">
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-b-act.png" position="226,15" size="9,15">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">1,1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="display/tuner-c-act.png" position="236,15" size="9,15">
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-c-act.png" position="236,15" size="9,15">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">2,2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="display/tuner-d-act.png" position="246,15" size="9,15">
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-d-act.png" position="246,15" size="9,15">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">3,3</convert>
 			<convert type="ConditionalShowHide" />
@@ -143,7 +143,7 @@
 
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="255,64">
-		<widget name="statusicon_summary" position="0,0" zPosition="3" size="23,20" pixmaps="/usr/share/enigma2/display/play.png,/usr/share/enigma2/display/pause.png,/usr/share/enigma2/display/stop.png,/usr/share/enigma2/display/forward.png,/usr/share/enigma2/display/backward.png,/usr/share/enigma2/display/slow.png" />
+		<widget name="statusicon_summary" position="0,0" zPosition="3" size="23,20" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" />
 		<widget source="speed_summary" render="Label" position="30,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
 		<widget source="session.CurrentService" render="Label" position="0,21" size="255,20" font="FdLcD;17" halign="left" noWrap="1">
 			<convert type="ServiceName">Name</convert>
@@ -242,28 +242,28 @@
 		<widget source="global.CurrentTime" render="Label" position="0,22" size="120,45" font="FdLcD;46" halign="left" noWrap="1">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="display/update.png" position="241,0" size="14,12">
+		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="update.png" position="241,0" size="14,12">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="display/rec.png" position="223,52"  size="32,12">
+		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png" position="223,52"  size="32,12">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="display/tuner-a.png" position="188,50" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-a.png" position="188,50" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="display/tuner-b.png" position="197,50" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-b.png" position="197,50" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="display/tuner-c.png" position="206,50" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-c.png" position="206,50" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">4</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="display/tuner-d.png" position="215,50" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-d.png" position="215,50" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">8</convert>
 			<convert type="ConditionalShowHide" />
