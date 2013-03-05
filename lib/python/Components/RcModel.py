@@ -100,7 +100,7 @@ class RcModel:
 			elif model == 'odinm7':
 				self.currentRcType = self.RCTYPE_ODINM7
 			elif model.startswith('Ixuss'):
-				if getBoxType() == 'ixusssone':
+				if getBoxType() == 'ixussone':
 					self.currentRcType = self.RCTYPE_IXUSSONE
 				elif getBoxType() == 'ixusszero':
 					self.currentRcType = self.RCTYPE_IXUSSZERO
