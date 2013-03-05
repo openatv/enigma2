@@ -352,8 +352,8 @@ class EPGSelection(Screen, HelpableScreen):
 				self.close('reopeninfobargraph')
 		else:
 			l.recalcEntrySize()
-			l.sortSingleEPG(int(config.epgselection.sort.getValue()))
 			if self.type == EPG_TYPE_INFOBAR:
+				l.sortSingleEPG(int(config.epgselection.sort.getValue()))
 				self.close('reopeninfobar')
 
 	def togglePIG(self):
