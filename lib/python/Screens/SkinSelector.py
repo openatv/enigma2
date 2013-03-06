@@ -100,11 +100,15 @@ class SkinSelectorBase:
 		aboutbox.setTitle(_("About..."))
 
 	def loadPreview(self):
-		if self["SkinList"].getCurrent() == self.DEFAULTSKIN or self["SkinList"].getCurrent() == self.PICONDEFAULTSKIN:
+		if self["SkinList"].getCurrent() == self.DEFAULTSKIN:
 			pngpath = "."
+			pngpath = os.path.join(os.path.join(self.root, pngpath), "prev.png")
+		elif self["SkinList"].getCurrent() == self.PICONDEFAULTSKIN:
+			pngpath = "."
+			pngpath = os.path.join(os.path.join(self.root, pngpath), "piconprev.png")
 		else:
 			pngpath = self["SkinList"].getCurrent()
-		pngpath = os.path.join(os.path.join(self.root, pngpath), "prev.png")
+			pngpath = os.path.join(os.path.join(self.root, pngpath), "prev.png")
 
 		if not os.path.exists(pngpath):
 			pngpath = resolveFilename(SCOPE_ACTIVE_SKIN, "noprev.png")
