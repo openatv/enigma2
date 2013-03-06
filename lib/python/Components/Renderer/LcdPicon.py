@@ -4,6 +4,8 @@ from enigma import ePixmap
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import pathExists, SCOPE_ACTIVE_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
+from PIL import Image
+from enigma import getBoxType
 
 searchPaths = []
 lastLcdPiconPath = None
@@ -19,7 +21,10 @@ def initLcdPiconPaths():
 def onMountpointAdded(mountpoint):
 	global searchPaths
 	try:
-		path = os.path.join(mountpoint, 'lcd_picon') + '/'
+		if getBoxType() == 'vuultimo':
+			path = os.path.join(mountpoint, 'lcd_picon') + '/'
+		else:
+			path = os.path.join(mountpoint, 'picon') + '/'
 		if os.path.isdir(path) and path not in searchPaths:
 			for fn in os.listdir(path):
 				if fn.endswith('.png'):
@@ -31,7 +36,10 @@ def onMountpointAdded(mountpoint):
 
 def onMountpointRemoved(mountpoint):
 	global searchPaths
-	path = os.path.join(mountpoint, 'lcd_picon') + '/'
+	if getBoxType() == 'vuultimo':
+		path = os.path.join(mountpoint, 'lcd_picon') + '/'
+	else:
+		path = os.path.join(mountpoint, 'picon') + '/'
 	try:
 		searchPaths.remove(path)
 		print "[LcdPicon] removed path:", path
@@ -83,19 +91,39 @@ def getLcdPiconName(serviceName):
 			pngname = findLcdPicon('_'.join(fields))
 	return pngname
 
+def resizePicon(pngname, size):
+	try:
+		im = Image.open(pngname)
+		im.resize((size[0],size[1])).save("/tmp/picon.png")
+		pngname = "/tmp/picon.png"
+	except:
+		print"[PiconRes] error resizePicon"
+		pass
+	return pngname
+
 class LcdPicon(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
+		self.piconsize = (0,0)
 		self.pngname = ""
 		self.lastPath = None
-		pngname = findLcdPicon("lcd_picon_default")
+		if getBoxType() == 'vuultimo':
+			pngname = findLcdPicon("lcd_picon_default")
+		else:
+			pngname = findLcdPicon("picon_default")
 		self.defaultpngname = None
 		if not pngname:
-			tmp = resolveFilename(SCOPE_ACTIVE_SKIN, "lcd_picon_default.png")
+			if getBoxType() == 'vuultimo':
+				tmp = resolveFilename(SCOPE_ACTIVE_SKIN, "lcd_picon_default.png")
+			else:
+				tmp = resolveFilename(SCOPE_ACTIVE_SKIN, "picon_default.png")
 			if pathExists(tmp):
 				pngname = tmp
 			else:
-				pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "lcd_picon_default.png")
+				if getBoxType() == 'vuultimo':
+					pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "lcd_picon_default.png")
+				else:
+					pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "picon_default.png")
 		if os.path.getsize(pngname):
 			self.defaultpngname = pngname
 
@@ -113,6 +141,8 @@ class LcdPicon(Renderer):
 			if attrib == "path":
 				self.addPath(value)
 				attribs.remove((attrib,value))
+			elif attrib == "size":
+				self.piconsize = value
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 
@@ -126,12 +156,12 @@ class LcdPicon(Renderer):
 			pngname = ""
 			if what[0] != self.CHANGED_CLEAR:
 				pngname = getLcdPiconName(self.source.text)
-			if not pngname: # no lcd_picon for service found
+			if not pngname: # no picon for service found
 				pngname = self.defaultpngname
 			if self.pngname != pngname:
 				if pngname:
 					self.instance.setScale(1)
-					self.instance.setPixmapFromFile(pngname)
+					self.instance.setPixmapFromFile(resizePicon(pngname, self.piconsize))
 					self.instance.show()
 				else:
 					self.instance.hide()
