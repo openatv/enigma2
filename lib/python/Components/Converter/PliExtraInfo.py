@@ -295,8 +295,10 @@ class PliExtraInfo(Poll, Converter, object):
 		if xres == -1:
 			return ""
 		yres = info.getInfo(iServiceInformation.sVideoHeight)
-		mode = ("i", "p", "")[info.getInfo(iServiceInformation.sProgressive)]
+		mode = ("i", "p", "", " ")[info.getInfo(iServiceInformation.sProgressive)]
 		fps  = str((info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
+		if fps <= 0:
+			fps = ""
 		return str(xres) + "x" + str(yres) + mode + fps
 
 	def createVideoCodec(self, info):
