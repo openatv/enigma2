@@ -103,7 +103,7 @@
 		<widget source="parent.Service" render="Label" position="0,0" size="170,22" font="FdLcD;18" halign="left" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="parent.Service" render="LcdPicon" position="0,0" size="110,40" >
+		<widget source="parent.Service" render="LcdPicon" position="0,0" size="170,40" >
             <convert type="ServiceName">Reference</convert>
         </widget>
 		<widget source="parent.Event" render="Label" position="0,48" size="190,20" font="FdLcD;15" halign="left" noWrap="1">
@@ -123,7 +123,7 @@
 		<widget source="session.CurrentService" render="Label" position="0,0" size="170,22" font="FdLcD;18" halign="left" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.CurrentService" render="LcdPicon" position="0,0" size="110,40" backgroundColor="#ff000000">
+		<widget source="session.CurrentService" render="LcdPicon" position="0,0" size="170,40" backgroundColor="#ff000000">
             <convert type="ServiceName">Reference</convert>
         </widget>
 		<widget source="session.Event_Now" render="Label" position="0,48" size="190,20" font="FdLcD;15" halign="left" noWrap="1">
@@ -187,7 +187,7 @@
 		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="170,22" font="FdLcD;18" halign="left" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="LcdPicon" position="0,0" size="110,40" backgroundColor="#ff000000">
+		<widget source="parent.ServiceEvent" render="LcdPicon" position="0,0" size="170,40" backgroundColor="#ff000000">
             <convert type="ServiceName">Reference</convert>
         </widget>
 		<widget source="parent.ServiceEvent" render="Label" position="0,48" size="190,20" font="FdLcD;15" halign="left" noWrap="1">
