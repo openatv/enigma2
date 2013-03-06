@@ -1500,9 +1500,9 @@ class InfoBarTimeshift:
 				return False
 		elif answer:
 			self.check_timeshift = False
-			boundFunction(returnFunction, True)()
+			returnFunction(True)
 		else:
-			boundFunction(returnFunction, False)()
+			returnFunction(False)
 
 from Screens.PiPSetup import PiPSetup
 
