@@ -37,14 +37,13 @@ class RemainingToText(Converter, object):
 		if self.type == self.PROGRESS \
 		 or self.type == self.WITH_SECONDSPROGRESS:
 			tsecs = duration - tsecs
-			if tsecs < 0:
-				tsecs = -tsecs
-				prefix = "-"
-		elif tsecs > duration:
-			tsecs = duration
-
-		if self.type == self.NO_SECONDS:
+		if tsecs < 0:
+			tsecs = -tsecs
+			prefix = "-"
+		elif self.type == self.NO_SECONDS:
 			tsecs += 59
+		if tsecs > duration:
+			tsecs = duration
 
 		seconds = tsecs % 60
 		minutes = tsecs / 60 % 60

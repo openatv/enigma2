@@ -548,14 +548,18 @@ self.autoResize()
 from enigma import eSize, ePoint
 
 orgwidth = self.instance.size().width()
+orgheight = self.instance.size().height()
 orgpos = self.instance.position()
 textsize = self[&quot;text&quot;].getSize()
+lenlist = len(self.list)*25
+if (lenlist &gt; 125):
+	lenlist = 125
 
 # y size still must be fixed in font stuff...
 textsize = (textsize[0] + 50, textsize[1] + 50)
 offset = 0
 if self.type == self.TYPE_YESNO:
-	offset = 60
+	offset = lenlist+10
 wsizex = textsize[0] + 60
 wsizey = textsize[1] + offset
 if (280 &gt; wsizex):
@@ -570,13 +574,13 @@ self.instance.resize(eSize(*wsize))
 self[&quot;text&quot;].instance.resize(eSize(*textsize))
 
 # move list
-listsize = (wsizex, 50)
+listsize = (wsizex, lenlist)
 self[&quot;list&quot;].instance.move(ePoint(0, textsize[1]))
 self[&quot;list&quot;].instance.resize(eSize(*listsize))
 
 # center window
 newwidth = wsize[0]
-self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
+self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y() + (orgheight - wsizey)/2))
 		</applet>
 	</screen>
 	<screen name="MessageBox" position="center,center" size="600,10" title="Message">
@@ -1017,22 +1021,6 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="Preview" position="310,50" size="280,210" alphatest="on"/>
 		<ePixmap pixmap="skin_default/div-h.png" position="20,360" zPosition="1" size="600,2" />
 		<widget source="introduction" render="Label" position="0,370" size="560,30" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-	</screen>
-	<!-- Sleeptimer edit -->
-	<screen name="SleepTimerEdit" position="center,center" size="500,240" title="Sleep timer">
-		<widget name="current_status" position="40,40" size="400,30" valign="center" font="Regular;20" />
-		<widget name="red" pixmap="skin_default/buttons/button_red.png" position="10,88" size="12,12" alphatest="on" />
-		<widget name="green" pixmap="skin_default/buttons/button_green.png" position="10,128" size="12,12" alphatest="on" />
-		<widget name="yellow" pixmap="skin_default/buttons/button_yellow.png" position="10,168" size="12,12" alphatest="on" />
-		<widget name="blue" pixmap="skin_default/buttons/button_blue.png" position="10,208" size="12,12" alphatest="on" />
-		<widget name="red_text" position="40,80" size="400,30" valign="center" font="Regular;20" />
-		<widget name="green_text" position="40,120" size="400,30" valign="center" font="Regular;20" />
-		<widget name="yellow_text" position="40,160" size="400,30" valign="center" font="Regular;20" />
-		<widget name="blue_text" position="40,200" size="450,30" valign="center" font="Regular;20" />
-		<widget name="pretext" position="15,10" size="235,25" font="Regular;19" />
-		<widget name="input" position="260,10" size="40,25" font="Regular;19" />
-		<widget name="aftertext" position="305,10" size="100,25" font="Regular;19" />
-		<ePixmap pixmap="skin_default/sleeptimer.png" position="390,17" size="90,125" alphatest="on" />
 	</screen>
 	<!-- Standby mode -->
 	<screen name="Standby" flags="wfNoBorder" position="fill" title="Standby" />

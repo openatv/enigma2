@@ -49,10 +49,7 @@ class EventTime(Poll, Converter, object):
 		if self.type == self.ENDTIME:
 			return st
 		if self.type == self.REMAINING:
-			remaining = st - int(time())
-			if remaining < 0:
-				remaining = 0
-			return (duration, remaining)
+			return (duration, st - int(time()))
 
 	@cached
 	def getValue(self):

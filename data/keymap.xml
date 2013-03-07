@@ -370,6 +370,7 @@
 	<map context="InfobarTimeshiftActions">
 		<device name="dreambox remote control (native)">
 			<key id="KEY_YELLOW" mapto="timeshiftStart" flags="b" />
+			<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
 		</device>
 		<device name="dreambox ir keyboard">
 			<key id="KEY_YELLOW" mapto="timeshiftStart" flags="m" />
@@ -525,6 +526,9 @@
 		<key id="KEY_NEXT" mapto="nextService" flags="m" />
 		<key id="KEY_PREVIOUS" mapto="prevService" flags="m" />
 		<key id="KEY_PROGRAM" mapto="timerAdd" flags="m" />
+		<key id="KEY_TV" mapto="preview" flags="m" />
+		<key id="KEY_REWIND" mapto="prevDay" flags="m" />
+		<key id="KEY_FASTFORWARD" mapto="nextDay" flags="m" />
 	</map>
 
 	<map context="EventViewActions">
