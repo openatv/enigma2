@@ -317,7 +317,7 @@ class MovieContextMenu(Screen):
 		self['footnote'] = Label("")
 		self["status"] = StaticText()
 
-		self["actions"] = ActionMap(["OkCancelActions"],
+		self["actions"] = ActionMap(["OkCancelActions", 'ColorActions'],
 			{
 				"red": self.cancelClick,
 				"green": self.okbuttonClick,
