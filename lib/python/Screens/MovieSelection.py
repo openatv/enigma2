@@ -1176,6 +1176,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self["list"].setItemsPerPage()
 			self["list"].setFontsize()
 			self.reloadList()
+			self.updateDescription()
 
 	def getTagDescription(self, tag):
 		# TODO: access the tag database
