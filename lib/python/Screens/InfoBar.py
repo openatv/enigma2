@@ -205,14 +205,16 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		setResumePoint(self.session)
 		self.handleLeave(config.usage.on_movie_stop.value)
 
-	def leavePlayerOnExit(self, answer = None):
+	def leavePlayerOnExit(self):
+		if self.shown:
+			self.hide()
+		else:
+			self.session.openWithCallback(self.leavePlayerOnExitCallback, MessageBox, _("Exit movie player?"), simple=True)
+
+	def leavePlayerOnExitCallback(self, answer):
 		if answer == True:
 			setResumePoint(self.session)
 			self.handleLeave("quit")
-		elif self.shown:
-			self.hide()
-		elif answer is None:
-			self.session.openWithCallback(self.leavePlayerOnExit, MessageBox, _("Exit movie player?"), MessageBox.TYPE_YESNO, simple = True)
 
 	def deleteConfirmed(self, answer):
 		if answer:

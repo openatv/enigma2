@@ -1390,7 +1390,6 @@ class InfoBarTimeshift:
 			}, prio=-1) # priority over record
 
 		self.timeshift_enabled = False
-		self.check_timeshift = True
 
 		self["TimeshiftActivateActions"].setEnabled(False)
 		self.ts_rewind_timer = eTimer()
@@ -1433,20 +1432,22 @@ class InfoBarTimeshift:
 			else:
 				print "timeshift failed"
 
-	def stopTimeshift(self, answer = True):
+	def stopTimeshift(self):
 		if not self.timeshift_enabled:
 			return 0
 		ts = self.getTimeshift()
 		if ts is None:
 			return 0
-		if not answer or self.checkTimeshiftRunning(self.stopTimeshift):
-			return
-		ts.stopTimeshift()
-		self.timeshift_enabled = False
-		self.pvrStateDialog.hide()
+		self.checkTimeshiftRunning(boundFunction(self.stopTimeshiftcheckTimeshiftRunningCallback, ts))
 
-		# disable actions
-		self.__seekableStatusChanged()
+	def stopTimeshiftcheckTimeshiftRunningCallback(self, ts, answer):
+		if answer:
+			ts.stopTimeshift()
+			self.timeshift_enabled = False
+			self.pvrStateDialog.hide()
+
+			# disable actions
+			self.__seekableStatusChanged()
 
 	# activates timeshift, and seeks to (almost) the end
 	def activateTimeshiftEnd(self, back = True):
@@ -1490,19 +1491,11 @@ class InfoBarTimeshift:
 		self.timeshift_enabled = False
 		self.__seekableStatusChanged()
 
-	def checkTimeshiftRunning(self, returnFunction, answer = None):
-		if answer is None:
-			if self.timeshift_enabled and self.check_timeshift and config.usage.check_timeshift.value:
-				self.session.openWithCallback(boundFunction(self.checkTimeshiftRunning, returnFunction), MessageBox, _("Stop timeshift?"), simple = True)
-				return True
-			else:
-				self.check_timeshift = True
-				return False
-		elif answer:
-			self.check_timeshift = False
-			returnFunction(True)
+	def checkTimeshiftRunning(self, returnFunction):
+		if self.timeshift_enabled and config.usage.check_timeshift.value:
+			self.session.openWithCallback(returnFunction, MessageBox, _("Stop timeshift?"), simple = True)
 		else:
-			returnFunction(False)
+			returnFunction(True)
 
 from Screens.PiPSetup import PiPSetup
 
@@ -2542,17 +2535,19 @@ class InfoBarPowersaver:
 		else:
 			self.inactivityTimer.stop()
 
-	def inactivityTimeout(self, answer = None):
+	def inactivityTimeout(self):
 		if Screens.Standby.inStandby:
-			answer = True
-		if answer is None:
+			self.inactivityTimeoutCallback(True)
+		else:
 			if int(config.usage.inactivity_timer.value) < 0:
 				message = _("Your receiver will shutdown due to inactivity.")
 			else:
 				message = _("Your receiver will got to standby due to inactivity.")
 			message += "\n" + _("Do you want this?")
-			self.session.openWithCallback(self.inactivityTimeout, MessageBox, message, timeout=60, simple = True)	
-		elif answer:
+			self.session.openWithCallback(self.inactivityTimeoutCallback, MessageBox, message, timeout=60, simple = True)	
+
+	def inactivityTimeoutCallback(self, answer):
+		if answer:
 			self.goShutdownOrStandby(int(config.usage.inactivity_timer.value))
 		else:
 			print "[InfoBarPowersaver] abort"
@@ -2565,18 +2560,20 @@ class InfoBarPowersaver:
 			self.sleepTimer.stop()
 		self.sleepTimerSetting = time
 
-	def sleepTimerTimeout(self, answer = None):
+	def sleepTimerTimeout(self):
 		if Screens.Standby.inStandby:
-			answer = True
-		if answer is None:
+			self.sleepTimerTimeoutCallback(True)
+		else:
 			list = [ (_("Yes"), True), (_("Extend sleeptimer 15 minutes"), "extend"), (_("No"), False) ]
 			if self.sleepTimerSetting < 0:
 				message = _("Your receiver will shutdown due to the sleeptimer.")
 			elif self.sleepTimerSetting > 0:
 				message = _("Your receiver will got to stand by due to the sleeptimer.")
 			message += "\n" + _("Do you want this?")
-			self.session.openWithCallback(self.sleepTimerTimeout, MessageBox, message, timeout=60, simple = True, list = list)	
-		elif answer == "extend":
+			self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=60, simple = True, list = list)	
+
+	def sleepTimerTimeoutCallback(self, answer):
+		if answer == "extend":
 			print "[InfoBarPowersaver] extend sleeptimer"
 			if self.sleepTimerSetting < 0:
 				self.setSleepTimer(-900)
