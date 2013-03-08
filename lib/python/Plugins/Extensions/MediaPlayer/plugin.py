@@ -263,13 +263,14 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 	def createSummary(self):
 		return MediaPlayerLCDScreen
 
-	def exit(self, answer = None):
-		if answer is None:
-			if self.mediaPlayerInfoBar.shown:
-				self.timerHideMediaPlayerInfoBar()
-			else:
-				self.session.openWithCallback(self.exit, MessageBox, _("Exit media player?"), simple = not self.shown)
-		elif answer:
+	def exit(self):
+		if self.mediaPlayerInfoBar.shown:
+			self.timerHideMediaPlayerInfoBar()
+		else:
+			self.session.openWithCallback(self.exitCallback, MessageBox, _("Exit media player?"), simple = not self.shown)
+
+	def exitCallback(self, answer):
+		if answer:
 			self.playlistIOInternal.clear()
 			for x in self.playlist.list:
 				self.playlistIOInternal.addService(ServiceReference(x[0]))
@@ -1003,11 +1004,12 @@ class MediaPlayerLCDScreen(Screen):
 		elif line == 4:
 			self["text4"].setText(text)
 
-def main(session, answer = True, **kwargs):
-	if not answer or InfoBar.instance.checkTimeshiftRunning(boundFunction(main, session)):
-		return
+def mainCheckTimeshiftCallback(session, answer):
 	if answer:
 		session.open(MediaPlayer)
+
+def main(session, **kwargs):
+	InfoBar.instance.checkTimeshiftRunning(boundFunction(mainCheckTimeshiftCallback, session))
 
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu" and config.mediaplayer.onMainMenu.getValue():
