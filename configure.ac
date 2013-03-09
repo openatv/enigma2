@@ -86,8 +86,8 @@ AM_CONDITIONAL(VENTONHDX, test "$BOXTYPE" == ventonhdx)
 AM_CONDITIONAL(VENTONHDE, test "$BOXTYPE" == ventonhde)
 AM_CONDITIONAL(XP1000, test "$BOXTYPE" == xp1000)
 AM_CONDITIONAL(IXUSSONE, test "$BOXTYPE" == ixussone)
-AM_CONDITIONAL(IXUSZERO, test "$BOXTYPE" == ixusszero)
-AM_CONDITIONAL(IXUSDUO, test "$BOXTYPE" == ixussduo)
+AM_CONDITIONAL(IXUSSZERO, test "$BOXTYPE" == ixusszero)
+AM_CONDITIONAL(IXUSSDUO, test "$BOXTYPE" == ixussduo)
 AM_CONDITIONAL(HAVE_COLORLCD128, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm7020HD)
 AM_CONDITIONAL(HAVE_COLORLCD96, test "$BOXTYPE" == dm800 -o "$BOXTYPE" == dm800se)
 
@@ -297,6 +297,7 @@ data/rc_models/vu2/Makefile
 data/rc_models/xp1000/Makefile
 data/rc_models/odinm7/Makefile
 data/rc_models/ixussone/Makefile
+data/rc_models/ixusszero/Makefile
 data/rc_models/ebox5000/Makefile
 data/skin_default/Makefile
 data/skin_default/border/Makefile

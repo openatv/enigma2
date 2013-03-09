@@ -164,9 +164,12 @@ def InitAVSwitch():
 
 	if can_edidchecking:
 		def setEDIDBypass(configElement):
-			f = open("/proc/stb/hdmi/bypass_edid_checking", "w")
-			f.write(configElement.value)
-			f.close()
+			try:
+				f = open("/proc/stb/hdmi/bypass_edid_checking", "w")
+				f.write(configElement.value)
+				f.close()
+			except:
+				pass
 		config.av.bypass_edid_checking = ConfigSelection(choices={
 				"00000000": _("off"),
 				"00000001": _("on")},
@@ -224,7 +227,7 @@ def InitAVSwitch():
 				print "couldn't write pep_scaler_sharpness"
 
 		if getBoxType() == 'gbquad':
-			config.av.scaler_sharpness = ConfigSlider(default=5, limits=(0,26))
+			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
 		else:
 			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
 		config.av.scaler_sharpness.addNotifier(setScaler_sharpness)

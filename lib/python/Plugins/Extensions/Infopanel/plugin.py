@@ -149,7 +149,7 @@ def camstart(reason, **kwargs):
 		CamCheck()
 	try:
 		f = open("/proc/stb/video/alpha", "w")
-		f.write(config.osd.alpha.getValue())
+		f.write(str(config.osd.alpha.getValue()))
 		f.close()
 	except:
 		print "[Info-Panel] failed to write /proc/stb/video/alpha"
