@@ -20,6 +20,7 @@ from re import search
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.skinName = "AboutOE"
 		Screen.setTitle(self, _("Image Information"))
 		self.populate()
 
