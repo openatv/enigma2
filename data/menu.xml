@@ -85,6 +85,7 @@ def msgClosed(ret):
 self.session.openWithCallback(msgClosed, EpgSaveMsg)
 </code>
 						</item>
+					</menu>
 						<item level="0" entryID="loadepgcache" text="Load EPG">
 <code>
 from Components.EpgLoadSave import EpgLoadMsg
@@ -154,7 +155,7 @@ def msgClosed(ret):
 self.session.openWithCallback(msgClosed, FactoryReset)
 </code>
 			</item>
-		</menu>
+	</menu>
 		<menu text="Standby / Restart" entryID="standby_restart_list">
 			<id val="shutdown" />
 			<item text="Deep Standby" requires="DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
