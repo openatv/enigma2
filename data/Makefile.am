@@ -21,7 +21,7 @@ if HAVE_TEXTLCD
 SUBDIRS += displaytext
 endif
 
-if HAVE_COLORLCD96
+if HAVE_COLORLCD
 SUBDIRS += display96
 endif
 

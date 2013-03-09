@@ -88,8 +88,7 @@ AM_CONDITIONAL(XP1000, test "$BOXTYPE" == xp1000)
 AM_CONDITIONAL(IXUSSONE, test "$BOXTYPE" == ixussone)
 AM_CONDITIONAL(IXUSSZERO, test "$BOXTYPE" == ixusszero)
 AM_CONDITIONAL(IXUSSDUO, test "$BOXTYPE" == ixussduo)
-AM_CONDITIONAL(HAVE_COLORLCD128, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm7020HD)
-AM_CONDITIONAL(HAVE_COLORLCD96, test "$BOXTYPE" == dm800 -o "$BOXTYPE" == dm800se)
+AM_CONDITIONAL(HAVE_COLORLCD, test "$BOXTYPE" == dm800 -o "$BOXTYPE" == dm800se)
 
 if test `echo "$BOXTYPE" | cut -b 1-2` == "dm"; then
 	AC_DEFINE(DREAMBOX, 1, [Dreambox hardware])
