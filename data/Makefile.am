@@ -1,4 +1,4 @@
-SUBDIRS = fonts extensions keymaps skin_default rc_models
+SUBDIRS = fonts extensions keymaps rc_models
 
 dist_pkgdata_DATA = \
 	encoding.conf \
@@ -6,14 +6,10 @@ dist_pkgdata_DATA = \
 	keymap.ntr \
 	keymap.u80 \
 	menu.xml \
-	prev.png \
 	black.mvi \
 	rcpositions.xml \
 	setup.xml \
-	CommonSkin.xml \
-	skin_default.xml \
 	skin_subtitles.xml \
-	skin.xml \
 	startwizard.xml \
 	userinterfacepositionerwizard.xml \
 	freesat.t1 \

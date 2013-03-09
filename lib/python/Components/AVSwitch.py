@@ -22,7 +22,7 @@ class AVSwitch:
 		valstr = config.av.aspectratio.getValue()
 		if valstr in ("4_3_letterbox", "4_3_panscan"): # 4:3
 			return (4,3)
-		elif valstr == "16_9": # auto ... 4:3 or 16:9.getValue()
+		elif valstr == "16_9": # auto ... 4:3 or 16:9
 			try:
 				aspect_str = open("/proc/stb/vmpeg/0/aspect", "r").read()
 				if aspect_str == "1": # 4:3
@@ -152,7 +152,6 @@ def InitAVSwitch():
 	iAVSwitch.setInput("ENCODER") # init on startup
 	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
 
-	
 	try:
 		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")
 		can_edidchecking = f.read().strip().split(" ")
@@ -175,8 +174,9 @@ def InitAVSwitch():
 				"00000001": _("on")},
 				default = "00000000")
 		config.av.bypass_edid_checking.addNotifier(setEDIDBypass)
-		
-		
+	else:
+		config.av.bypass_edid_checking = ConfigNothing()
+
 	try:
 		f = open("/proc/stb/audio/3d_surround_choices", "r")
 		can_3dsurround = f.read().strip().split(" ")
@@ -193,8 +193,10 @@ def InitAVSwitch():
 			f.close()
 		choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
 		config.av.surround_3d = ConfigSelection(choices = choice_list, default = "none")
-		config.av.surround_3d.addNotifier(set3DSurround)	
-			
+		config.av.surround_3d.addNotifier(set3DSurround)
+	else:
+		config.av.surround_3d = ConfigNothing()
+
 	try:
 		f = open("/proc/stb/audio/ac3_choices", "r")
 		file = f.read()[:-1]

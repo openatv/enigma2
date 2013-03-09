@@ -80,7 +80,6 @@ def skin_user_skinname():
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
 DEFAULT_SKIN = "DMConcinnity-HD/skin.xml"
-# on SD hardware, DMConcinnity-HD will not be available
 if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
 	# in that case, fallback to Magic (which is an SD skin)
 	DEFAULT_SKIN = "skin.xml"
@@ -88,7 +87,6 @@ config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
 DEFAULT_DISPLAY_SKIN = "skin_display.xml"
 config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
-config.skin.display_skin_picon = ConfigYesNo(default = False)
 
 profile("LoadSkin")
 try:
@@ -118,11 +116,7 @@ except Exception, err:
 	print "defaulting to standard display skin...", skin
 	config.skin.display_skin.value = skin
 	skin = os.path.join('display', skin)
-	if not config.skin.display_skin_picon.getValue():
-		addSkin(skin)
-	else:
-		addSkin(skin.replace('display.xml','display_picon.xml'))
-
+	addSkin(skin)
 	del skin
 
 # Add Skin for Display
@@ -242,9 +236,8 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 		if attrib not in ignore:
 			if attrib in filenames:
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix)
-				if not fileExists(pngfile):
-					pngfile = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
-				value = pngfile
+				if fileExists(resolveFilename(SCOPE_ACTIVE_LCDSKIN, value, path_prefix=skin_path_prefix)):
+					pngfile = resolveFilename(SCOPE_ACTIVE_LCDSKIN, value, path_prefix=skin_path_prefix)
 			# Bit of a hack this, really. When a window has a flag (e.g. wfNoBorder)
 			# it needs to be set at least before the size is set, in order for the
 			# window dimensions to be calculated correctly in all situations.
@@ -379,7 +372,7 @@ class AttributeParser:
 					"block": self.guiObject.alignBlock
 				}[value])
 		except KeyError:
-			print "valign must be either top, center or bottom!, not %s. Please contact the skin's author!" % (value)
+			print "halign must be either left, center, right or block!, not %s. Please contact the skin's author!" % (value)
 	def textOffset(self, value):
 		x, y = value.split(',')
 		self.guiObject.setTextOffset(ePoint(int(x) * self.scale[0][0] / self.scale[0][1], int(y) * self.scale[1][0] / self.scale[1][1]))
@@ -489,6 +482,18 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					# load palette (not yet implemented)
 					pass
 
+	for skininclude in skin.findall("include"):
+		filename = skininclude.attrib.get("filename")
+		if filename:
+			skinfile = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
+			if not fileExists(skinfile):
+				skinfile = resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)
+			print "[SKIN] loading include:", skinfile
+			try:
+				loadSkin(skinfile)
+			except Exception, err:
+				print "not loading user skin: ", err
+
 	for c in skin.findall("colors"):
 		for color in c.findall("color"):
 			get_attr = color.attrib.get
@@ -518,13 +523,11 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				render = 0
 			resolved_font = resolveFilename(SCOPE_FONTS, filename, path_prefix=path_prefix)
 			if not fileExists(resolved_font): #when font is not available look at current skin path
-				skin_path = resolveFilename(SCOPE_ACTIVE_SKIN, filename)
-				if fileExists(skin_path):
-					resolved_font = skin_path
-				else:
-					skin_path = resolveFilename(SCOPE_CURRENT_SKIN, filename)
-					if fileExists(skin_path):
-						resolved_font = skin_path
+				resolved_font = resolveFilename(SCOPE_ACTIVE_SKIN, filename)
+				if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, filename)):
+					resolved_font = resolveFilename(SCOPE_CURRENT_SKIN, filename)
+				elif fileExists(resolveFilename(SCOPE_ACTIVE_LCDSKIN, filename)):
+					resolved_font = resolveFilename(SCOPE_ACTIVE_LCDSKIN, filename)
 			addFont(resolved_font, name, scale, is_replacement, render)
 			#print "Font: ", resolved_font, name, scale, is_replacement
 		for alias in c.findall("alias"):
@@ -594,7 +597,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				filename = get_attr("filename")
 				if filename and bpName:
 					pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
-					if not fileExists(pngfile):
+					if fileExists(resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)):
 						pngfile = resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)
 					png = loadPixmap(pngfile, desktop)
 					style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
@@ -633,10 +636,6 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 		# the "desktop" parameter is hardcoded to the UI screen, so we must ask
 		# for the one that this actually applies to.
 		getDesktop(style_id).setMargins(r)
-
-	for skininclude in skin.findall("include"):
-		print "[SKIN] loading include:", skininclude.attrib.get("filename")
-		loadSkin(skininclude.attrib.get("filename"))
 
 dom_screens = {}
 

@@ -10,6 +10,8 @@ from Components.PluginComponent import plugins
 from Components.MenuList import MenuList
 from Components.UsageConfig import preferredTimerPath
 from Components.Pixmap import Pixmap
+from Components.Sources.ServiceEvent import ServiceEvent
+from Components.Sources.Event import Event
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from Screens.TimerEntry import TimerEntry
 from Plugins.Plugin import PluginDescriptor
@@ -54,13 +56,16 @@ class EventViewBase:
 	ADD_TIMER = 1
 	REMOVE_TIMER = 2
 
-	def __init__(self, Event, Ref, callback=None, similarEPGCB=None):
+	def __init__(self, event, ref, callback=None, similarEPGCB=None):
 		self.similarEPGCB = similarEPGCB
 		self.cbFunc = callback
-		self.currentService = Ref
-		self.isRecording = (not Ref.ref.flags & eServiceReference.isGroup) and Ref.ref.getPath()
-		self.event = Event
+		self.currentService = ref
+		self.isRecording = (not ref.ref.flags & eServiceReference.isGroup) and ref.ref.getPath()
+		self.event = event
+		self["Service"] = ServiceEvent()
+		self["Event"] = Event()
 		self["epg_description"] = ScrollLabel()
+		self["FullDescription"] = ScrollLabel()
 		self["summary_description"] = StaticText()
 		self["datetime"] = Label()
 		self["channel"] = Label()
@@ -85,7 +90,7 @@ class EventViewBase:
 		self.onLayoutFinish.append(self.onCreate)
 
 	def onCreate(self):
-# 		self.setService(self.currentService)
+		self.setService(self.currentService)
 		self.setEvent(self.event)
 
 	def prevEvent(self):
@@ -144,10 +149,11 @@ class EventViewBase:
 
 	def setService(self, service):
 		self.currentService=service
+		self["Service"].newService(service.ref)
 		if self.isRecording:
 			self["channel"].setText(_("Recording"))
 		else:
-			name = self.currentService.getServiceName()
+			name = service.getServiceName()
 			if name is not None:
 				self["channel"].setText(name)
 			else:
@@ -162,23 +168,35 @@ class EventViewBase:
 			return 1
 
 	def setEvent(self, event):
-		self.event = event
-		if event is None:
+		if event is None or not hasattr(event, 'getEventName'):
 			return
-		try:
-			self["channel"].setText(event.getEventName())
-			self.setTitle(event.getEventName())
-		except:
-			pass
-		text = ""
-		description = event.getShortDescription()
+
+		self["Event"].newEvent(event)
+		self.event = event
+		text = event.getEventName()
+		self.setTitle(text)
+
+		short = event.getShortDescription()
 		extended = event.getExtendedDescription()
-		if description and extended:
-			description += '\n'
-		text = description + extended
+
+		if short == text:
+			short = ""
+
+		if short and extended:
+			extended = short + '\n' + extended
+		elif short:
+			extended = short
+
+		if text and extended:
+			text += "\n\n"
+		text += extended
 		self["epg_description"].setText(text)
-		self["summary_description"].setText(text)
+		self["FullDescription"].setText(extended)
+
+		self["summary_description"].setText(extended)
+
 		beginTimeString = event.getBeginTimeString()
+
 		if not beginTimeString:
 			return
 		if beginTimeString.find(', ') > -1:
@@ -215,9 +233,11 @@ class EventViewBase:
 
 	def pageUp(self):
 		self["epg_description"].pageUp()
+		self["FullDescription"].pageUp()
 
 	def pageDown(self):
 		self["epg_description"].pageDown()
+		self["FullDescription"].pageDown()
 
 	def getSimilarEvents(self):
 		# search similar broadcastings
@@ -228,14 +248,15 @@ class EventViewBase:
 		epgcache = eEPGCache.getInstance()
 		ret = epgcache.search(('NB', 100, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, id))
 		if ret is not None:
-			descr = self["epg_description"]
-			text = descr.getText()
-			text += '\n\n' + _('Similar broadcasts:')
+			text = '\n\n' + _('Similar broadcasts:')
 			ret.sort(self.sort_func)
 			for x in ret:
 				t = localtime(x[1])
 				text += '\n%d.%d.%d, %2d:%02d  -  %s'%(t[2], t[1], t[0], t[3], t[4], x[0])
-			descr.setText(text)
+			descr = self["epg_description"]
+			descr.setText(descr.getText()+text)
+			descr = self["FullDescription"]
+			descr.setText(descr.getText()+text)
 			self["key_red"].setText(_("Similar"))
 
 	def openSimilarList(self):
@@ -250,17 +271,17 @@ class EventViewBase:
 			self.session.open(EventViewContextMenu, self.currentService, self.event)
 
 class EventViewSimple(Screen, EventViewBase):
-	def __init__(self, session, Event, Ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None, skin='EventViewSimple'):
+	def __init__(self, session, event, ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None, skin='EventViewSimple'):
 		Screen.__init__(self, session)
 		self.skinName = [skin,"EventView"]
-		EventViewBase.__init__(self, Event, Ref, callback, similarEPGCB)
+		EventViewBase.__init__(self, event, ref, callback, similarEPGCB)
 		self.key_green_choice = None
 
 class EventViewEPGSelect(Screen, EventViewBase):
-	def __init__(self, session, Event, Ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None):
+	def __init__(self, session, event, ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None):
 		Screen.__init__(self, session)
 		self.skinName = "EventView"
-		EventViewBase.__init__(self, Event, Ref, callback, similarEPGCB)
+		EventViewBase.__init__(self, event, ref, callback, similarEPGCB)
 		self.key_green_choice = self.ADD_TIMER
 
 		# Background for Buttons

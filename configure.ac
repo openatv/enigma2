@@ -274,6 +274,7 @@ data/extensions/Makefile
 data/keymaps/Makefile
 data/displaytext/Makefile
 data/display96/Makefile
+data/display128/Makefile
 data/display220/Makefile
 data/display255/Makefile
 data/rc_models/Makefile
@@ -299,19 +300,6 @@ data/rc_models/odinm7/Makefile
 data/rc_models/ixussone/Makefile
 data/rc_models/ixusszero/Makefile
 data/rc_models/ebox5000/Makefile
-data/skin_default/Makefile
-data/skin_default/border/Makefile
-data/skin_default/buttons/Makefile
-data/skin_default/countries/Makefile
-data/skin_default/crossepg/Makefile
-data/skin_default/dvr/Makefile
-data/skin_default/epg/Makefile
-data/skin_default/extensions/Makefile
-data/skin_default/icons/Makefile
-data/skin_default/infobar/Makefile
-data/skin_default/logos/Makefile
-data/skin_default/piconbg/Makefile
-data/skin_default/window/Makefile
 include/Makefile
 lib/Makefile
 lib/actions/Makefile

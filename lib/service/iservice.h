@@ -616,8 +616,11 @@ public:
 	virtual RESULT setNextPlaybackFile(const char *fn)=0; // not needed by our internal timeshift.. but external plugin...
 
 	virtual int isTimeshiftActive()=0;
+	virtual int isTimeshiftEnabled()=0;
 			/* this essentially seeks to the relative end of the timeshift buffer */
 	virtual RESULT activateTimeshift()=0;
+	virtual RESULT saveTimeshiftFile()=0;
+	virtual std::string getTimeshiftFilename()=0;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iTimeshiftService>, iTimeshiftServicePtr);
 

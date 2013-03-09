@@ -16,9 +16,6 @@ def test_timer(repeat = 0, timer_start = 3600, timer_length = 1000, sim_length =
 	print "old mwt:", t.MaxWaitTime
 	t.MaxWaitTime = 86400 * 1000
 	
-	# hack:
-	NavigationInstance.instance.SleepTimer.MaxWaitTime = 86400 * 1000
-
 	t.processed_timers = [ ]
 	t.timer_list = [ ]
 

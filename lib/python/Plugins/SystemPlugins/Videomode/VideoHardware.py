@@ -1,16 +1,10 @@
 from enigma import eTimer, getBoxType
 from Components.config import config, ConfigSelection, ConfigSubDict, ConfigYesNo
+from Components.About import about
 
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
 from os import path
-
-try:
-	file = open("/proc/stb/info/chipset", "r")
-	chipset = file.readline().strip()
-	file.close()
-except:
-	chipset = "unknown"
 
 try:
 	file = open("/proc/stb/info/boxtype", "r")
@@ -44,7 +38,7 @@ class VideoHardware:
 
 	rates["576p"] =			{ "50Hz": 	{ 50: "576p" } }
 
-	if chipset.find('7335') != -1 or chipset.find('7358') != -1 or chipset.find('7356') != -1 or chipset.find('7405') != -1:
+	if about.getChipSetString().find('7335') != -1 or about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7405') != -1:
 		rates["720p"] =			{ "24Hz": 	{ 24: "720p24" },
 									"25Hz": 	{ 25: "720p25" },
 									"30Hz": 	{ 30: "720p30" },
@@ -60,12 +54,12 @@ class VideoHardware:
 								"60Hz":		{ 60: "1080i" },
 								"multi":	{ 50: "1080i50", 60: "1080i" } }
 
-	if chipset.find('7405') != -1 or chipset.find('7335') != -1:
+	if about.getChipSetString().find('7405') != -1 or about.getChipSetString().find('7335') != -1:
 		rates["1080p"] =		{ "24Hz":		{ 24: "1080p24" },
 									"25Hz":		{ 25: "1080p25" },
 									"30Hz":		{ 30: "1080p30" }}
 
-	elif chipset.find('7358') != -1 or chipset.find('7356') != -1:
+	elif about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1:
 		rates["1080p"] =		{ 	"24Hz":		{ 24: "1080p24" },
 									"25Hz":		{ 25: "1080p25" },
 									"30Hz":		{ 30: "1080p30" },
@@ -92,7 +86,7 @@ class VideoHardware:
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	modes["DVI-PC"] = ["PC"]
 
-	if  chipset.find('7335') != -1 or chipset.find('7358') != -1 or chipset.find('7356') != -1 or chipset.find('7405') != -1:
+	if  about.getChipSetString().find('7335') != -1 or about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7405') != -1:
 		modes["YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		modes["DVI"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i", "1080p"])
@@ -100,6 +94,12 @@ class VideoHardware:
 		modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
 		modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i"])
+
+	if getBoxType().startswith('vu'):
+		if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1:
+			modes["Scart-YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
+		else:
+			modes["Scart-YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
 
 	def getOutputAspect(self):
 		ret = (16,9)
@@ -140,7 +140,7 @@ class VideoHardware:
 		if self.modes.has_key("DVI-PC") and not self.getModeList("DVI-PC"):
 			print "remove DVI-PC because of not existing modes"
 			del self.modes["DVI-PC"]
-		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'odimm7' or model == 'ini-3000' or model == 'vusolo2':
+		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'odimm7' or model == 'ini-3000' or getBoxType() == 'vusolo2':
 			del self.modes["YPbPr"]
 		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000':
 			del self.modes["Scart"]

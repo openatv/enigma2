@@ -250,6 +250,7 @@
 	</setup>
 	<setup key="timeshift" title="Timeshift settings">
 		<item level="1" text="Timeshift Enable" description="Enable or disable Timeshift. When activated, you can use Timeshift">config.timeshift.pauzekeyenabled</item>
+		<item level="1" text="Show warning when timeshift is stopped" description="When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift.">config.usage.check_timeshift</item>
 		<item level="1" text="Permanent Timeshift enable" description="Enable or disable Permanent Timeshift. When activated, you can wind back until the time you zapped to a channel, and you can make recordings in retrospect.">config.timeshift.enabled</item>
 		<item level="2" text="Permanent Timeshift max events" description="Set the maximum number of events (programs) that timeshift may handle." requires="config.timeshift.enabled">config.timeshift.maxevents</item>
 		<item level="2" text="Permanent Timeshift max length" description="Set the maximum length a timeshift file may be." requires="config.timeshift.enabled">config.timeshift.maxlength</item>
@@ -292,7 +293,7 @@
 		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.infobar_itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_eventfs</item>
 	</setup>
-	<setup key="epginfobargraphical" title="InfobarEPG settings">
+	<setup key="epginfobargraphical" title="Graphical InfobarEPG settings">
 		<item level="2" text="View mode" description="This option allows you set the layout view (Text or Graphics).">config.epgselection.infobar_type_mode</item>
 		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.infobar_preview_mode</item>
 		<item level="2" text="Service Title mode" description="Configure to show the channel names, picons, or both in the EPG.">config.epgselection.infobar_servicetitle_mode</item>

@@ -36,7 +36,7 @@ class Standby2(Screen):
 		Screen.__init__(self, session)
 		self.skinName = "Standby"
 		self.avswitch = AVSwitch()
-		
+
 		print "enter standby"
 
 		self["actions"] = ActionMap( [ "StandbyActions" ],
@@ -79,7 +79,7 @@ class Standby2(Screen):
 			self.paused_service.unPauseService()
 		self.session.screen["Standby"].boolean = False
 		globalActionMap.setEnabled(True)
-		
+
 	def __onFirstExecBegin(self):
 		global inStandby
 		inStandby = self
@@ -105,7 +105,8 @@ class Standby(Standby2):
 			Screens.InfoBar.InfoBar.saveTimeshiftActions(Screens.InfoBar.InfoBar.instance, postaction="standby")
 
 class StandbySummary(Screen):
-	skin = """<screen position="0,0" size="132,64">
+	skin = """
+	<screen position="0,0" size="132,64">
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="132,64" font="Regular;40" halign="center">
 			<convert type="ClockToText" />
 		</widget>
@@ -123,7 +124,7 @@ from Components.Task import job_manager
 class QuitMainloopScreen(Screen):
 	def __init__(self, session, retvalue=1):
 		self.skin = """<screen name="QuitMainloopScreen" position="fill" flags="wfNoBorder">
-			<ePixmap pixmap="skin_default/icons/input_info.png" position="c-27,c-60" size="53,53" alphatest="on" />
+			<ePixmap pixmap="icons/input_info.png" position="c-27,c-60" size="53,53" alphatest="on" />
 			<widget name="text" position="center,c+5" size="720,100" font="Regular;22" halign="center" />
 		</screen>"""
 		Screen.__init__(self, session)
@@ -148,7 +149,6 @@ class TryQuitMainloop(MessageBox):
 		self.connected = False
 		reason = ""
 		next_rec_time = -1
-
 		if not recordings:
 			next_rec_time = session.nav.RecordTimer.getNextRecordingTime()
 		if jobs:
@@ -176,7 +176,7 @@ class TryQuitMainloop(MessageBox):
 				44: _("Really upgrade the front panel and reboot now?")}.get(retvalue)
 			if text:
 				MessageBox.__init__(self, session, reason+text, type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
-				self.skinName = "MessageBox"
+				self.skinName = "MessageBoxSimple"
 				session.nav.record_event.append(self.getRecordEvent)
 				self.connected = True
 				self.onShow.append(self.__onShow)
@@ -209,7 +209,7 @@ class TryQuitMainloop(MessageBox):
 		if value:
 			self.hide()
 			if self.retval == 1:
-				config.misc.DeepStandby.setValue(True)
+				config.misc.DeepStandby.value = True
 			self.session.nav.stopService()
 			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
 			self.quitScreen.show()

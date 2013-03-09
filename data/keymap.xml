@@ -35,6 +35,7 @@
 	</map>
 
 	<map context="SetupActions">
+		<key id="KEY_INFO" mapto="info" flags="m" />
 		<key id="KEY_MENU" mapto="menu" flags="m" />
 		<key id="KEY_ENTER" mapto="ok" flags="m" />
 		<key id="KEY_OK" mapto="ok" flags="m" />
@@ -250,6 +251,10 @@
 
 	<map context="InfobarRedButtonActions">
 		<key id="KEY_RED" mapto="activateRedButton" flags="l" />
+	</map>
+
+	<map context="InfobarTimerButtonActions">
+			<key id="KEY_PROGRAM" mapto="timerSelection" flags="m" />
 	</map>
 
 	<map context="InfobarPiPActions">

@@ -7,6 +7,7 @@ from Components.NimManager import nimmanager, getConfigSatlist
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Tools.HardwareInfo import HardwareInfo
+from Screens.InfoBar import InfoBar
 from Screens.MessageBox import MessageBox
 from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable, eConsoleAppContainer, eDVBResourceManager
 
@@ -304,6 +305,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions", "ColorActions"],
 		{
 			"ok": self.keyGo,
+			"save": self.keyGo,
 			"cancel": self.keyCancel,
 			"red": self.keyCancel,
 			"green": self.keyGo,
@@ -729,8 +731,11 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def addTerTransponder(self, tlist, *args, **kwargs):
 		tlist.append(buildTerTransponder(*args, **kwargs))
 
-	def keyGo(self):
-		if self.scan_nims.getValue() == "":
+	def keyGo(self, answer = True):
+		InfoBarInstance = InfoBar.instance
+		if not answer or (InfoBarInstance and InfoBarInstance.checkTimeshiftRunning(self.keyGo)):
+			return
+		if self.scan_nims.value == "":
 			return
 		tlist = []
 		flags = None
@@ -892,6 +897,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self["actions"] = ActionMap(["SetupActions", "MenuActions", "ColorActions"],
 		{
 			"ok": self.keyGo,
+			"save": self.keyGo,
 			"cancel": self.keyCancel,
 			"menu": self.doCloseRecursive,
 			"red": self.keyCancel,
@@ -952,7 +958,10 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.finished_cb = finished_cb
 		self.keyGo()
 
-	def keyGo(self):
+	def keyGo(self, answer = True):
+		InfoBarInstance = InfoBar.instance
+		if not answer or (InfoBarInstance and InfoBarInstance.checkTimeshiftRunning(self.keyGo)):
+			return
 		self.scanList = []
 		self.known_networks = set()
 		self.nim_iter=0

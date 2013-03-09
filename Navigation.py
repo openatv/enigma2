@@ -6,7 +6,6 @@ from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWak
 from time import time
 import RecordTimer
 import PowerTimer
-import SleepTimer
 import Screens.Standby
 import NavigationInstance
 import ServiceReference
@@ -55,7 +54,6 @@ class Navigation:
 				self.standbytimer = eTimer()
 				self.standbytimer.callback.append(self.gotostandby)
 				self.standbytimer.start(15000, True)
-		self.SleepTimer = SleepTimer.SleepTimer()
 
 	def gotostandby(self):
 		print 'TIMER: now entering standby'
@@ -107,6 +105,7 @@ class Navigation:
 		if ref is None:
 			self.stopService()
 			return 0
+		InfoBarInstance = InfoBar.instance
 		if not checkParentalControl or parentalControl.isServicePlayable(ref, boundFunction(self.playService, checkParentalControl = False)):
 			if ref.flags & eServiceReference.isGroup:
 				if not oldref:
@@ -125,7 +124,6 @@ class Navigation:
 				self.pnav.stopService()
 				self.currentlyPlayingServiceReference = playref
 				self.currentlyPlayingServiceOrGroup = ref
-				InfoBarInstance = InfoBar.instance
 				if InfoBarInstance is not None:
 					InfoBarInstance.servicelist.servicelist.setCurrent(ref)
 				if self.pnav.playService(playref):
@@ -133,8 +131,8 @@ class Navigation:
 					self.currentlyPlayingServiceReference = None
 					self.currentlyPlayingServiceOrGroup = None
 				return 0
-		else:
-			self.stopService()
+		elif oldref:
+			InfoBarInstance.servicelist.servicelist.setCurrent(oldref)
 		return 1
 
 	def getCurrentlyPlayingServiceReference(self):

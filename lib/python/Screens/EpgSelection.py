@@ -352,8 +352,8 @@ class EPGSelection(Screen, HelpableScreen):
 				self.close('reopeninfobargraph')
 		else:
 			l.recalcEntrySize()
-			l.sortSingleEPG(int(config.epgselection.sort.getValue()))
 			if self.type == EPG_TYPE_INFOBAR:
+				l.sortSingleEPG(int(config.epgselection.sort.getValue()))
 				self.close('reopeninfobar')
 
 	def togglePIG(self):
@@ -591,7 +591,7 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_GRAPH:
 			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.epgselection.graph_prevtime)
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
-			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.epgselection.infograph_prevtime)
+			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.epgselection.infobar_prevtime)
 
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:

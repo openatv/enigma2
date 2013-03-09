@@ -8,7 +8,8 @@ class ServiceName(Converter, object):
 	NAME = 0
 	PROVIDER = 1
 	REFERENCE = 2
-	SID = 3
+	EDITREFERENCE = 3
+	SID = 4
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -16,6 +17,8 @@ class ServiceName(Converter, object):
 			self.type = self.PROVIDER
 		elif type == "Reference":
 			self.type = self.REFERENCE
+		elif type == "EditReference":
+			self.type = self.EDITREFERENCE
 		elif type == "Sid":
 			self.type = self.SID
 		else:
@@ -30,7 +33,7 @@ class ServiceName(Converter, object):
 		else: # reference
 			info = service and self.source.info
 			ref = service
-		if info is None:
+		if not info:
 			return ""
 		if self.type == self.NAME:
 			name = ref and info.getName(ref)
@@ -39,8 +42,8 @@ class ServiceName(Converter, object):
 			return name.replace('\xc2\x86', '').replace('\xc2\x87', '')
 		elif self.type == self.PROVIDER:
 			return info.getInfoString(iServiceInformation.sProvider)
-		elif self.type == self.REFERENCE:
-			if ref is None:
+		elif self.type == self.REFERENCE or self.type == self.EDITREFERENCE and hasattr(self.source, "editmode") and self.source.editmode:
+			if not ref:
 				return info.getInfoString(iServiceInformation.sServiceref)
 			else:
 				nref = resolveAlternate(ref)
