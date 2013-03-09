@@ -1348,20 +1348,22 @@ class InfoBarEPG:
 				self.openBouquetEPG(root, withCallback)
 
 	def openMultiServiceEPG(self):
-		self.EPGtype = "multi"
-		self.StartBouquet = self.servicelist.getRoot()
-		if isMoviePlayerInfoBar(self):
-			self.StartRef = self.lastservice
-		else:
-			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		self.MultiServiceEPG()
+		if self.servicelist:
+			self.EPGtype = "multi"
+			self.StartBouquet = self.servicelist.getRoot()
+			if isMoviePlayerInfoBar(self):
+				self.StartRef = self.lastservice
+			else:
+				self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			self.MultiServiceEPG()
 
 	def openGraphEPG(self, reopen=False):
 		self.EPGtype = "graph"
-		if not reopen:
-			self.StartBouquet = self.servicelist.getRoot()
-			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		self.MultiServiceEPG()
+		if self.servicelist:
+			if not reopen:
+				self.StartBouquet = self.servicelist.getRoot()
+				self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			self.MultiServiceEPG()
 
 	def SingleServiceEPG(self):
 		self.StartBouquet = self.servicelist.getRoot()
@@ -1396,22 +1398,24 @@ class InfoBarEPG:
 		self.reopen(ret)
 
 	def openSingleServiceEPG(self, reopen=False):
-		self.EPGtype = "enhanced"
-		self.SingleServiceEPG()
+		if self.servicelist:
+			self.EPGtype = "enhanced"
+			self.SingleServiceEPG()
 
 	def openInfoBarEPG(self, reopen=False):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if not reopen:
-			self.StartBouquet = self.servicelist.getRoot()
-			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if config.epgselection.infobar_type_mode.getValue() == 'single':
-			self.EPGtype = "infobar"
-			self.SingleServiceEPG()
-		else:
-			self.EPGtype = "infobargraph"
-			self.MultiServiceEPG()
+		if self.servicelist:
+			if not reopen:
+				self.StartBouquet = self.servicelist.getRoot()
+				self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if config.epgselection.infobar_type_mode.getValue() == 'single':
+				self.EPGtype = "infobar"
+				self.SingleServiceEPG()
+			else:
+				self.EPGtype = "infobargraph"
+				self.MultiServiceEPG()
 
 	def reopen(self, answer):
 		if answer == 'reopengraph':
