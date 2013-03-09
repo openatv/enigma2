@@ -59,6 +59,9 @@ class About(Screen):
 		elif getBoxType() == 'vuduo2':
 			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
 			model = "Vu+ Duo" + chr(178)
+		elif getBoxType() == 'et4x00':
+			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
+			model = "Xtrend ET4x00 Series"			
 		elif getBoxType() == 'et5x00':
 			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
 			model = "Xtrend ET5x00 Series"
@@ -68,6 +71,9 @@ class About(Screen):
 		elif getBoxType() == 'et9x00':
 			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
 			model = "Xtrend ET9x00 Series"
+		elif getBoxType() == 'odinm7':
+			self["lab3"] = StaticText(_("Support at") + " www.odin-support.co.uk")
+			model = "Odin M7"			
 		elif getBoxType() == 'odinm9':
 			self["lab3"] = StaticText(_("Support at") + " www.odin-support.co.uk")
 			model = "Odin M9"
@@ -85,12 +91,30 @@ class About(Screen):
 			model = "Venton Unibox HDe"
 		elif getBoxType() == 'ixussone':
 			model = "Ixuss One"
+		elif getBoxType() == 'ixusszero':
+			model = "Ixuss Zero"
+		elif getBoxType() == 'ixussduo':
+			model = "Ixuss Duo"			
 		elif getBoxType() == 'tmtwin':
 			model = "Technomate Twin"
 		elif getBoxType() == 'tm2t':
 			model = "Technomate 2T"
 		elif getBoxType() == 'tmsingle':
 			model = "Technomate Single"
+		elif getBoxType() == 'xp1000':
+			model = "MK Digital XP1000"
+		elif getBoxType() == 'ebox5000':
+			model = "MixOS F5"
+		elif getBoxType() == 'dm500hd':
+			model = "DREAMBOX DM500HD"
+		elif getBoxType() == 'dm800':
+			model = "DREAMBOX DM800HD"
+		elif getBoxType() == 'dm800se':
+			model = "DREAMBOX DM800se"
+		elif getBoxType() == 'dm7020hd':
+			model = "DREAMBOX DM7020HD"
+		elif getBoxType() == 'dm8000':
+			model = "DREAMBOX DM8000HD"
 		else:
 			model = getBoxType()
 
@@ -530,12 +554,16 @@ class AboutSummary(Screen):
 			model = "Vu+ Duo"
 		elif getBoxType() == 'vuduo2':
 			model = "Vu+ Duo" + chr(178)
+		elif getBoxType() == 'et4x00':
+			model = "Xtrend ET4x00 Series"
 		elif getBoxType() == 'et5x00':
 			model = "Xtrend ET5x00 Series"
 		elif getBoxType() == 'et6x00':
 			model = "Xtrend ET6x00 Series"
 		elif getBoxType() == 'et9x00':
 			model = "Xtrend ET9x00 Series"
+		elif getBoxType() == 'odinm7':
+			model = "Odin M7"
 		elif getBoxType() == 'odinm9':
 			model = "Odin M9"
 		elif getBoxType() == 'gb800solo':
@@ -552,12 +580,30 @@ class AboutSummary(Screen):
 			model = "Venton Unibox HDe"
 		elif getBoxType() == 'ixussone':
 			model = "Ixuss One"
+		elif getBoxType() == 'ixusszero':
+			model = "Ixuss Zero"
+		elif getBoxType() == 'ixussduo':
+			model = "Ixuss Duo"
 		elif getBoxType() == 'tmtwin':
 			model = "Technomate Twin"
 		elif getBoxType() == 'tm2t':
 			model = "Technomate 2T"
 		elif getBoxType() == 'tmsingle':
 			model = "Technomate Single"
+		elif getBoxType() == 'xp1000':
+			model = "MK Digital XP1000"
+		elif getBoxType() == 'ebox5000':
+			model = "MixOS F5"
+		elif getBoxType() == 'dm500hd':
+			model = "DREAMBOX DM500HD"
+		elif getBoxType() == 'dm800':
+			model = "DREAMBOX DM800HD"
+		elif getBoxType() == 'dm800se':
+			model = "DREAMBOX DM800se"
+		elif getBoxType() == 'dm7020hd':
+			model = "DREAMBOX DM7020HD"
+		elif getBoxType() == 'dm8000':
+			model = "DREAMBOX DM8000HD"
 		else:
 			model = getBoxType()
 
@@ -612,12 +658,12 @@ class ViewGitLog(Screen):
 
 	def changelogtype(self):
 		if self.logtype == 'oe':
-			self["key_yellow"].setText(_("Show E2 Log"))
-			self.setTitle(_("OE Changes"))
-			self.logtype = 'e2'
-		else:
 			self["key_yellow"].setText(_("Show OE Log"))
 			self.setTitle(_("Enimga2 Changes"))
+			self.logtype = 'e2'
+		else:
+			self["key_yellow"].setText(_("Show E2 Log"))
+			self.setTitle(_("OE Changes"))
 			self.logtype = 'oe'
 		self.getlog()
 
