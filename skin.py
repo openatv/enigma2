@@ -37,9 +37,14 @@ def dump(x, i=0):
 class SkinError(Exception):
 	def __init__(self, message):
 		self.msg = message
-
 	def __str__(self):
 		return "{%s}: %s. Please contact the skin's author!" % (config.skin.primary_skin.getValue(), self.msg)
+
+class DisplaySkinError(Exception):
+	def __init__(self, message):
+		self.msg = message
+	def __str__(self):
+		return "{%s}: %s. Please contact the skin's author!" % (config.skin.display_skin.getValue(), self.msg)
 
 dom_skins = [ ]
 
@@ -56,7 +61,7 @@ def addSkin(name, scope = SCOPE_SKIN):
 
 # get own skin_user_skinname.xml file, if exist
 def skin_user_skinname():
-	name = "skin_user_" + config.skin.primary_skin.getValue()[:config.skin.primary_skin.getValue().rfind('/')] + ".xml"
+	name = "skin_user_" + config.skin.primary_skin.value[:config.skin.primary_skin.value.rfind('/')] + ".xml"
 	filename = resolveFilename(SCOPE_CONFIG, name)
 	if fileExists(filename):
 		return name
@@ -81,6 +86,10 @@ if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
 	DEFAULT_SKIN = "skin.xml"
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
+DEFAULT_DISPLAY_SKIN = "skin_display.xml"
+config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
+config.skin.display_skin_picon = ConfigYesNo(default = False)
+
 profile("LoadSkin")
 try:
 	name = skin_user_skinname()
@@ -95,31 +104,26 @@ except (SkinError, IOError, AssertionError), err:
 addSkin('skin_box.xml')
 # add optional discrete second infobar
 addSkin('skin_second_infobar.xml')
-
-# Only one of these is present, compliments of AM_CONDITIONAL
-if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2' or getBoxType() == 'gbquad' or getBoxType() == 'gb800ue':
-	config.skin.lcdskin = ConfigText(default = "skin_lcd_default.xml")
-else:	
-	config.skin.lcdskin = ConfigNothing()	
-
 display_skin_id = 1
-if fileExists('/usr/share/enigma2/lcd_skin/skin_lcd_default.xml'):
-	if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.lcdskin.value)):
-		addSkin(config.skin.lcdskin.value, SCOPE_CONFIG)
-	else:
-		addSkin('lcd_skin/' + config.skin.lcdskin.value)
-		
-if addSkin('skin_display.xml'):
-	# Color OLED DM800 / DM800SE
+if getBoxType().startswith('dm'):
 	display_skin_id = 2
+try:
+	if not addSkin(os.path.join('display', config.skin.display_skin.getValue())):
+		raise DisplaySkinError, "display skin not found"
+except Exception, err:
+	print "SKIN ERROR:", err
+	skin = DEFAULT_DISPLAY_SKIN
+	if config.skin.display_skin.getValue() == skin:
+		skin = 'skin_display.xml'
+	print "defaulting to standard display skin...", skin
+	config.skin.display_skin.value = skin
+	skin = os.path.join('display', skin)
+	if not config.skin.display_skin_picon.getValue():
+		addSkin(skin)
+	else:
+		addSkin(skin.replace('display.xml','display_picon.xml'))
 
-if addSkin('skin_display96.xml'):
-	# Color OLED
-	display_skin_id = 2	
-
-if addSkin('skin_display128.xml'):
-	# Color OLED DM7020HD / DM8000
-	display_skin_id = 2	
+	del skin
 
 # Add Skin for Display
 try:
@@ -138,7 +142,7 @@ except Exception, err:
 	if config.skin.primary_skin.getValue() == skin:
 		skin = 'skin.xml'
 	print "defaulting to standard skin...", skin
-	config.skin.primary_skin.setValue(skin)
+	config.skin.primary_skin.value = skin
 	addSkin(skin)
 	del skin
 
@@ -164,9 +168,9 @@ def parseCoordinate(s, e, size=0, font=None):
 			if s[-1] is '%':
 				val += e * int(s[:-1]) / 100
 			elif s[-1] is 'w':
-			        val += fonts[font][3] * int(s[:-1])
+				val += fonts[font][3] * int(s[:-1])
 			elif s[-1] is 'h':
-			        val += fonts[font][2] * int(s[:-1])
+				val += fonts[font][2] * int(s[:-1])
 			else:
 				val += int(s)
 	if val < 0:
@@ -237,7 +241,10 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 	for attrib, value in node.items():
 		if attrib not in ignore:
 			if attrib in filenames:
-				value = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
+				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix)
+				if not fileExists(pngfile):
+					pngfile = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
+				value = pngfile
 			# Bit of a hack this, really. When a window has a flag (e.g. wfNoBorder)
 			# it needs to be set at least before the size is set, in order for the
 			# window dimensions to be calculated correctly in all situations.
@@ -353,7 +360,7 @@ class AttributeParser:
 					"orRightToLeft": (self.guiObject.orHorizontal, True),
 				}[value])
 		except KeyError:
-			print "oprientation must be either orVertical or orHorizontal!"
+			print "oprientation must be either orVertical or orHorizontal!, not %s. Please contact the skin's author!" % (value)
 	def valign(self, value):
 		try:
 			self.guiObject.setVAlign(
@@ -362,7 +369,7 @@ class AttributeParser:
 					"bottom": self.guiObject.alignBottom
 				}[value])
 		except KeyError:
-			print "valign must be either top, center or bottom!"
+			print "valign must be either top, center or bottom!, not %s. Please contact the skin's author!" % (value)
 	def halign(self, value):
 		try:
 			self.guiObject.setHAlign(
@@ -372,7 +379,7 @@ class AttributeParser:
 					"block": self.guiObject.alignBlock
 				}[value])
 		except KeyError:
-			print "halign must be either left, center, right or block!"
+			print "valign must be either top, center or bottom!, not %s. Please contact the skin's author!" % (value)
 	def textOffset(self, value):
 		x, y = value.split(',')
 		self.guiObject.setTextOffset(ePoint(int(x) * self.scale[0][0] / self.scale[0][1], int(y) * self.scale[1][0] / self.scale[1][1]))
@@ -586,7 +593,10 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				bpName = get_attr("pos")
 				filename = get_attr("filename")
 				if filename and bpName:
-					png = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix), desktop)
+					pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
+					if not fileExists(pngfile):
+						pngfile = resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)
+					png = loadPixmap(pngfile, desktop)
 					style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
 				#print "  borderset:", bpName, filename
 		for color in windowstyle.findall("color"):

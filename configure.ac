@@ -86,9 +86,10 @@ AM_CONDITIONAL(VENTONHDX, test "$BOXTYPE" == ventonhdx)
 AM_CONDITIONAL(VENTONHDE, test "$BOXTYPE" == ventonhde)
 AM_CONDITIONAL(XP1000, test "$BOXTYPE" == xp1000)
 AM_CONDITIONAL(IXUSSONE, test "$BOXTYPE" == ixussone)
-AM_CONDITIONAL(HAVE_DISPLAY128, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm7020HD)
-AM_CONDITIONAL(HAVE_DISPLAY96, test "$BOXTYPE" == gb800xx )
-AM_CONDITIONAL(HAVE_DISPLAYDM, test "$BOXTYPE" == dm800 -o "$BOXTYPE" == dm800se)
+AM_CONDITIONAL(IXUSZERO, test "$BOXTYPE" == ixusszero)
+AM_CONDITIONAL(IXUSDUO, test "$BOXTYPE" == ixussduo)
+AM_CONDITIONAL(HAVE_COLORLCD128, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm7020HD)
+AM_CONDITIONAL(HAVE_COLORLCD96, test "$BOXTYPE" == dm800 -o "$BOXTYPE" == dm800se)
 
 if test `echo "$BOXTYPE" | cut -b 1-2` == "dm"; then
 	AC_DEFINE(DREAMBOX, 1, [Dreambox hardware])
@@ -181,7 +182,7 @@ if test "$BOXTYPE" == "odinm9"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 fi
 
-if test "$BOXTYPE" == "odinm7" -o "$BOXTYPE" == "ixussone"; then
+if test "$BOXTYPE" == "odinm7" -o "$BOXTYPE" == "ixussone" -o "$BOXTYPE" == "ixusszero" -o "$BOXTYPE" == "ixussduo"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 fi
 
@@ -271,10 +272,10 @@ data/Makefile
 data/fonts/Makefile
 data/extensions/Makefile
 data/keymaps/Makefile
-data/lcd220/Makefile
-data/lcd255/Makefile
-data/lcd_skin220/Makefile
-data/lcd_skin255/Makefile
+data/displaytext/Makefile
+data/display96/Makefile
+data/display220/Makefile
+data/display255/Makefile
 data/rc_models/Makefile
 data/rc_models/dmm0/Makefile
 data/rc_models/dmm1/Makefile
@@ -307,9 +308,7 @@ data/skin_default/epg/Makefile
 data/skin_default/extensions/Makefile
 data/skin_default/icons/Makefile
 data/skin_default/infobar/Makefile
-data/skin_default/lcd/Makefile
 data/skin_default/logos/Makefile
-data/skin_default/menu/Makefile
 data/skin_default/piconbg/Makefile
 data/skin_default/window/Makefile
 include/Makefile

@@ -10,10 +10,10 @@ dist_pkgdata_DATA = \
 	black.mvi \
 	rcpositions.xml \
 	setup.xml \
+	CommonSkin.xml \
 	skin_default.xml \
 	skin_subtitles.xml \
 	skin.xml \
-	Skin_ExtPlugins.xml \
 	startwizard.xml \
 	userinterfacepositionerwizard.xml \
 	freesat.t1 \
@@ -22,25 +22,21 @@ dist_pkgdata_DATA = \
 	hd-testcard.mvi
 
 if HAVE_TEXTLCD
-dist_pkgdata_DATA += skin_text.xml skin_text_clock.xml
+SUBDIRS += displaytext
 endif
 
-if HAVE_DISPLAY96
-dist_pkgdata_DATA += skin_display96.xml
+if HAVE_COLORLCD96
+SUBDIRS += display96
 endif
 
-if HAVE_DISPLAY128
-dist_pkgdata_DATA += skin_display128.xml
-endif
-
-if HAVE_DISPLAYDM
-dist_pkgdata_DATA += skin_display.xml
+if HAVE_COLORLCD128
+SUBDIRS += display128
 endif
 
 if HAVE_COLORLCD220
-SUBDIRS += lcd220 lcd_skin220
+SUBDIRS += display220
 endif
 
 if HAVE_BWLCD255
-SUBDIRS += lcd255 lcd_skin255
+SUBDIRS += display255
 endif

@@ -45,7 +45,7 @@ class TIMERTYPE:
 
 # please do not translate log messages
 class PowerTimerEntry(timer.TimerEntry, object):
-	def __init__(self, begin, end, disabled = False, afterEvent = AFTEREVENT.NONE, timerType = TIMERTYPE.WAKEUP, checkOldTimers = False, autosleepdelay = 60, autosleeprepeat = "once"):
+	def __init__(self, begin, end, disabled = False, afterEvent = AFTEREVENT.NONE, timerType = TIMERTYPE.WAKEUP, checkOldTimers = False):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers == True:
 			if self.begin < time() - 1209600:
@@ -55,6 +55,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			self.end = self.begin
 
 		self.dontSave = False
+		self.disabled = disabled
 		self.timer = None
 		self.__record_service = None
 		self.start_prepare = 0
@@ -62,8 +63,9 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		self.afterEvent = afterEvent
 		self.autoincrease = False
 		self.autoincreasetime = 3600 * 24 # 1 day
-		self.autosleepdelay = autosleepdelay
-		self.autosleeprepeat = autosleeprepeat
+		self.autosleepinstandbyonly = 'no'
+		self.autosleepdelay = 60
+		self.autosleeprepeat = 'once'
 
 		self.log_entries = []
 		self.resetState()
@@ -79,7 +81,10 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			TIMERTYPE.REBOOT: "reboot",
 			TIMERTYPE.RESTART: "restart"
 			}[self.timerType]
-		return "PowerTimerEntry(type=%s, begin=%s)" % (timertype, ctime(self.begin))
+		if not self.disabled:
+			return "PowerTimerEntry(type=%s, begin=%s)" % (timertype, ctime(self.begin))
+		else:
+			return "PowerTimerEntry(type=%s, begin=%s Disabled)" % (timertype, ctime(self.begin))
 
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
@@ -150,7 +155,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						self.end = self.begin
 
 			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
-				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
+				if (NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or (self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby):
 					self.do_backoff()
 					# retry
 					self.begin = time() + self.backoff
@@ -221,6 +226,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 
 		elif next_state == self.StateEnded:
 			old_end = self.end
+			NavigationInstance.instance.PowerTimer.saveTimer()
 			if self.afterEvent == AFTEREVENT.STANDBY:
 				if not Screens.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished powertimer wants to set your\nSTB_BOX to standby. Do that now?"), timeout = 180)
@@ -247,7 +253,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		else:
 			new_end = entry.begin -30
 
-		dummyentry = PowerTimerEntry(self.begin, new_end, afterEvent = self.afterEvent, timerType = self.timerType)
+		dummyentry = PowerTimerEntry(self.begin, new_end, disabled=True, afterEvent = self.afterEvent, timerType = self.timerType)
 		dummyentry.disabled = self.disabled
 		timersanitycheck = TimerSanityCheck(NavigationInstance.instance.PowerManager.timer_list, dummyentry)
 		if not timersanitycheck.check():
@@ -335,11 +341,13 @@ def createTimer(xml):
 		"standby": AFTEREVENT.STANDBY,
 		"deepstandby": AFTEREVENT.DEEPSTANDBY
 		}[afterevent]
+	autosleepinstandbyonly = str(xml.get("autosleepinstandbyonly") or "no")
 	autosleepdelay = str(xml.get("autosleepdelay") or "0")
 	autosleeprepeat = str(xml.get("autosleeprepeat") or "once")
 
 	entry = PowerTimerEntry(begin, end, disabled, afterevent, timertype)
 	entry.repeated = int(repeated)
+	entry.autosleepinstandbyonly = autosleepinstandbyonly
 	entry.autosleepdelay = int(autosleepdelay)
 	entry.autosleeprepeat = autosleeprepeat
 
@@ -460,6 +468,7 @@ class PowerTimer(timer.Timer):
 				AFTEREVENT.DEEPSTANDBY: "deepstandby"
 				}[timer.afterEvent])) + '"')
 			list.append(' disabled="' + str(int(timer.disabled)) + '"')
+			list.append(' autosleepinstandbyonly="' + str(timer.autosleepinstandbyonly) + '"')
 			list.append(' autosleepdelay="' + str(timer.autosleepdelay) + '"')
 			list.append(' autosleeprepeat="' + str(timer.autosleeprepeat) + '"')
 			list.append('>\n')

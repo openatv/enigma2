@@ -14,13 +14,13 @@ class AutoDiseqc(Screen, ConfigListScreen):
 	]
 
 	sat_frequencies = [
-		# astra 282 skyone
-		( 10802, 22200, \
-		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_5_6, \
-		eDVBFrontendParametersSatellite.Inversion_Unknown, 282, \
-		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_QPSK, \
-		eDVBFrontendParametersSatellite.RollOff_alpha_0_35, eDVBFrontendParametersSatellite.Pilot_Unknown, \
-		2047, 2, "Astra 2 28.2e"),
+		# astra 282 S4C
+		( 12051, 27500, \
+		eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.FEC_2_3, \
+		eDVBFrontendParametersSatellite.Inversion_Off, 282, \
+		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
+		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
+		2018, 2, "Astra 2 28.2e"),
 
 		# astra 235 astra ses
 		( 12168, 27500, \

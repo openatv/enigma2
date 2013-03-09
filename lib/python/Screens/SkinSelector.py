@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-# (c) 2006 Stephan Reichholf
-# This Software is Free, use it where you want, when you want for whatever you want and modify it if you want but don't remove my copyright!
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
@@ -9,22 +7,22 @@ from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
 from Components.config import config
-from os import path
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from enigma import eEnv
+import os
 
-class SkinSelector(Screen):
-	# for i18n:
-	# _("Choose your Skin")
-	skinlist = []
-	root = eEnv.resolve("${datadir}/enigma2/")
-
+class SkinSelectorBase:
 	def __init__(self, session, args = None):
-		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Skin setup"))
-
 		self.skinlist = []
 		self.previewPath = ""
-		path.walk(self.root, self.find, "")
+		if os.path.exists(os.path.join(self.root, self.SKINXML)):
+			self.skinlist.append(self.DEFAULTSKIN)
+		for root, dirs, files in os.walk(self.root, followlinks=True):
+			for subdir in dirs:
+				dir = os.path.join(root,subdir)
+				if os.path.exists(os.path.join(dir,self.SKINXML)):
+					self.skinlist.append(subdir)
+			dirs = []
 
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Save"))
@@ -33,7 +31,7 @@ class SkinSelector(Screen):
 		self["Preview"] = Pixmap()
 		self.skinlist.sort()
 
-		self["actions"] = NumberActionMap(["SetupActions","WizardActions", "ColorActions"],
+		self["actions"] = NumberActionMap(["SetupActions", "DirectionActions", "TimerEditActions", "ColorActions"],
 		{
 			"ok": self.ok,
 			"cancel": self.close,
@@ -43,15 +41,15 @@ class SkinSelector(Screen):
 			"down": self.down,
 			"left": self.left,
 			"right": self.right,
-			"info": self.info,
+			"log": self.info,
 		}, -1)
 
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		tmp = config.skin.primary_skin.getValue().find('/skin.xml')
+		tmp = self.config.value.find("/"+self.SKINXML)
 		if tmp != -1:
-			tmp = config.skin.primary_skin.getValue()[:tmp]
+			tmp = self.config.value[:tmp]
 			idx = 0
 			for skin in self.skinlist:
 				if skin == tmp:
@@ -60,6 +58,19 @@ class SkinSelector(Screen):
 			if idx < len(self.skinlist):
 				self["SkinList"].moveToIndex(idx)
 		self.loadPreview()
+
+	def ok(self):
+		if self["SkinList"].getCurrent() == self.DEFAULTSKIN:
+			skinfile = ""
+		else:
+			skinfile = self["SkinList"].getCurrent()
+		skinfile = os.path.join(skinfile, self.SKINXML)
+
+		print "Skinselector: Selected Skin: "+self.root+skinfile
+		self.config.value = skinfile
+		self.config.save()
+		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
+		restartbox.setTitle(_("Restart GUI now?"))
 
 	def up(self):
 		self["SkinList"].up()
@@ -81,36 +92,15 @@ class SkinSelector(Screen):
 		aboutbox = self.session.open(MessageBox,_("Enigma2 skin selector"), MessageBox.TYPE_INFO)
 		aboutbox.setTitle(_("About..."))
 
-	def find(self, arg, dirname, names):
-		for x in names:
-			if x == "skin.xml":
-				if dirname != self.root:
-					subdir = dirname[19:]
-					self.skinlist.append(subdir)
-				else:
-					subdir = "Magic"
-					self.skinlist.append(subdir)
-
-	def ok(self):
-		if self["SkinList"].getCurrent() == "Magic":
-			skinfile = "skin.xml"
-		else:
-			skinfile = self["SkinList"].getCurrent()+"/skin.xml"
-
-		print "Skinselector: Selected Skin: "+self.root+skinfile
-		config.skin.primary_skin.setValue(skinfile)
-		config.skin.primary_skin.save()
-		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
-		restartbox.setTitle(_("Restart GUI now?"))
-
 	def loadPreview(self):
-		if self["SkinList"].getCurrent() == "Magic":
-			pngpath = self.root+"/prev.png"
+		if self["SkinList"].getCurrent() == self.DEFAULTSKIN:
+			pngpath = "."
 		else:
-			pngpath = self.root+self["SkinList"].getCurrent()+"/prev.png"
+			pngpath = self["SkinList"].getCurrent()
+		pngpath = os.path.join(os.path.join(self.root, pngpath), "prev.png")
 
-		if not path.exists(pngpath):
-			pngpath = "/usr/share/enigma2/skin_default/noprev.png"
+		if not os.path.exists(pngpath):
+			pngpath = resolveFilename(SCOPE_ACTIVE_SKIN, "noprev.png")
 
 		if self.previewPath != pngpath:
 			self.previewPath = pngpath
@@ -120,3 +110,31 @@ class SkinSelector(Screen):
 	def restartGUI(self, answer):
 		if answer is True:
 			self.session.open(TryQuitMainloop, 3)
+
+class SkinSelector(Screen, SkinSelectorBase):
+	SKINXML = "skin.xml"
+	DEFAULTSKIN = "Magic HD"
+
+	skinlist = []
+	root = os.path.join(eEnv.resolve("${datadir}"),"enigma2")
+
+	def __init__(self, session, args = None):
+		Screen.__init__(self, session)
+		SkinSelectorBase.__init__(self, args)
+		Screen.setTitle(self, _("Skin setup"))
+		self.skinName = "SkinSelector"
+		self.config = config.skin.primary_skin
+
+class LcdSkinSelector(Screen, SkinSelectorBase):
+	SKINXML = "skin_display.xml"
+	DEFAULTSKIN = "< Default >"
+
+	skinlist = []
+	root = os.path.join(eEnv.resolve("${datadir}"),"enigma2/display")
+
+	def __init__(self, session, args = None):
+		Screen.__init__(self, session)
+		SkinSelectorBase.__init__(self, args)
+		Screen.setTitle(self, _("Skin setup"))
+		self.skinName = "SkinSelector"
+		self.config = config.skin.display_skin

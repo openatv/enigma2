@@ -2,6 +2,7 @@
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr
 from Components.Element import cached
+from ServiceReference import resolveAlternate
 
 class ServiceName(Converter, object):
 	NAME = 0
@@ -42,6 +43,9 @@ class ServiceName(Converter, object):
 			if ref is None:
 				return info.getInfoString(iServiceInformation.sServiceref)
 			else:
+				nref = resolveAlternate(ref)
+				if nref:
+					ref = nref
 				return ref.toString()
 		elif self.type == self.SID:
 			if ref is None:
