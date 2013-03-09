@@ -49,7 +49,8 @@
 				<menu level="0" text="Display" entryID="display_selection" requires="Display">
 					<id val="display" />
 					<item level="0" entryID="display_setup"><setup id="display" /></item>
-					<item level="0" text="Skin setup" entryID="lcd_skin_setup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>				
+					<item level="0" text="Skin setup" entryID="lcd_skin_setup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
+				</menu>
 				<item level="0" text="Timeshift settings" entryID="timshift_setup"><screen module="Timershift" screen="TimeshiftSettings" /></item>
 				<item level="0" text="Recording settings" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings" /></item>
 				<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
@@ -85,7 +86,6 @@ def msgClosed(ret):
 self.session.openWithCallback(msgClosed, EpgSaveMsg)
 </code>
 						</item>
-					</menu>
 						<item level="0" entryID="loadepgcache" text="Load EPG">
 <code>
 from Components.EpgLoadSave import EpgLoadMsg
