@@ -64,9 +64,9 @@ class FanControl:
 			fan = ConfigSubsection()
 			fan.vlt = ConfigSlider(default = 15, increment = 5, limits = (0, 255))
 			if getBoxType() == 'tm2t':
-				fan.pwm = ConfigSlider(default = 100, increment = 5, limits = (0, 255))
+				fan.pwm = ConfigSlider(default = 150, increment = 5, limits = (0, 255))
 			if getBoxType() == 'tmsingle':
-				fan.pwm = ConfigSlider(default = 80, increment = 5, limits = (0, 255))
+				fan.pwm = ConfigSlider(default = 100, increment = 5, limits = (0, 255))
 			else:
 				fan.pwm = ConfigSlider(default = 1, increment = 5, limits = (0, 255))
 			fan.vlt_standby = ConfigSlider(default = 5, increment = 5, limits = (0, 255))

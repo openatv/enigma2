@@ -207,7 +207,7 @@ class PluginDownloadBrowser(Screen):
 		if os.path.isfile('/usr/bin/opkg'):
 			self.ipkg = '/usr/bin/opkg'
 			self.ipkg_install = self.ipkg + ' install --force-overwrite'
-			self.ipkg_remove =  self.ipkg + ' remove --autoremove'
+			self.ipkg_remove =  self.ipkg + ' remove --autoremove --force-depends'
 		else:
 			self.ipkg = 'ipkg'
 			self.ipkg_install = 'ipkg install --force-overwrite -force-defaults'
@@ -312,7 +312,7 @@ class PluginDownloadBrowser(Screen):
 						self.postInstallCall = Picon.initPiconPaths
 						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install picons on"), list=candidates)
 					return
-				elif self["list"].l.getCurrentSelection()[0].name.startswith("lcdpicons-"):
+				elif self["list"].l.getCurrentSelection()[0].name.startswith("display-picon"):
 					supported_filesystems = frozenset(('vfat','ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
 					candidates = []
 					import Components.Harddisk
