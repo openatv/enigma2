@@ -304,9 +304,6 @@ lib/python/Plugins/Extensions/SocketMMI/meta/Makefile
 lib/python/Plugins/Extensions/SocketMMI/src/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
-lib/python/Plugins/Extensions/nStreamPlayer/Makefile
-lib/python/Plugins/Extensions/nStreamPlayer/img/Makefile
-lib/python/Plugins/Extensions/nStreamPlayer/picon35x35/Makefile
 lib/python/Plugins/Extensions/IniMyTube/Makefile
 lib/python/Plugins/Extensions/IPTVStreams/Makefile
 lib/python/Plugins/Extensions/IPTVStreams/url/Makefile
