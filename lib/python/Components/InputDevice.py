@@ -1,3 +1,4 @@
+from enigma import getBoxType
 from config import config, ConfigSlider, ConfigSubsection, ConfigYesNo, ConfigText, ConfigInteger
 from os import listdir, open as os_open, close as os_close, write as os_write, O_RDWR, O_NONBLOCK
 from Tools.Directories import pathExists
@@ -172,7 +173,10 @@ class InitInputDevices:
 	def setupConfigEntries(self,device):
 		cmd = "config.inputDevices." + device + " = ConfigSubsection()"
 		exec (cmd)
-		cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = False)"
+		if getBoxType() == 'dm800':
+			cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = True)"
+		else:
+			cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = False)"		
 		exec (cmd)
 		cmd = "config.inputDevices." + device + ".enabled.addNotifier(self.inputDevicesEnabledChanged,config.inputDevices." + device + ".enabled)"
 		exec (cmd)
