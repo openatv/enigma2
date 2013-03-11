@@ -109,9 +109,8 @@ class RcModel:
 			if model == 'ultimo':
 				self.currentRcType = self.RCTYPE_VU2
 			else:
-				self.currentRcType = self.RCTYPE_VU		
-
-
+				self.currentRcType = self.RCTYPE_VU
+		
 	def getRcLocation(self):
 		if self.currentRcType == self.RCTYPE_DMM:
 			return '/usr/share/enigma2/rc_models/dmm0/'
