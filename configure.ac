@@ -55,6 +55,30 @@ AC_ARG_WITH(boxtype,
 AC_SUBST(BOXTYPE)
 AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
 
+AC_ARG_WITH(distro,
+	[  --with-distro=NAME distro name [[openvix,openaaf,...]]],
+	[DISTRO="$withval"],[DISTRO="openvix"])
+AC_SUBST(DISTRO)
+AC_DEFINE_UNQUOTED(DISTRO,"$DISTRO",[distro name])
+
+AC_ARG_WITH(imageversion,
+	[  --with-imageversion=NAME version number [[3.0]]],
+	[IMAGEVERSION="$withval"],[IMAGEVERSION=""])
+AC_SUBST(IMAGEVERSION)
+AC_DEFINE_UNQUOTED(IMAGEVERSION,"$IMAGEVERSION",[version number])
+
+AC_ARG_WITH(imagebuild,
+	[  --with-imagebuild=NAME build number [[628]]],
+	[IMAGEBUILD="$withval"],[IMAGEBUILD=""])
+AC_SUBST(IMAGEBUILD)
+AC_DEFINE_UNQUOTED(IMAGEBUILD,"$IMAGEBUILD",[build number])
+
+AC_ARG_WITH(driverdate,
+	[  --with-driverdate=NAME driver date [[628]]],
+	[DRIVERDATE="$withval"],[DRIVERDATE=""])
+AC_SUBST(DRIVERDATE)
+AC_DEFINE_UNQUOTED(DRIVERDATE,"$DRIVERDATE",[driver date])
+
 AM_CONDITIONAL(DREAMBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "dm")
 AM_CONDITIONAL(VUPLUS, test `echo "$BOXTYPE" | cut -b 1-2` == "vu")
 AM_CONDITIONAL(XTREND, test `echo "$BOXTYPE" | cut -b 1-2` == "et")
