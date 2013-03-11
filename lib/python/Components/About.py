@@ -1,10 +1,10 @@
 from Tools.Directories import resolveFilename, SCOPE_SYSETC
 from Tools.HardwareInfo import HardwareInfo
 from os import path
-import sys
+import sys, enigma
 
 def getVersionString():
-	return getImageVersionString()
+	return engima.getImageVersionString()
 
 def getImageVersionString():
 	return engima.getImageVersionString()
