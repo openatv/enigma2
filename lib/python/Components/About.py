@@ -4,15 +4,13 @@ from os import path
 import sys, enigma
 
 def getVersionString():
-	return engima.getImageVersionString()
+	return enigma.getImageVersionString()
 
 def getImageVersionString():
-	return engima.getImageVersionString()
+	return enigma.getImageVersionString()
 
 def getEnigmaVersionString():
-	import enigma
-	enigma_version = enigma.getEnigmaVersionString()
-	return enigma_version
+	return enigma.getEnigmaVersionString()
 
 def getKernelVersionString():
 	try:
