@@ -7,18 +7,7 @@ def getVersionString():
 	return getImageVersionString()
 
 def getImageVersionString():
-	try:
-		version = 'n/a'
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "version":
-				version = splitted[1].replace('\n','')
-		file.close()
-		return version
-	except IOError:
-		return "unavailable"
+	return engima.getImageVersionString()
 
 def getEnigmaVersionString():
 	import enigma
