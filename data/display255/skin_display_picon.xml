@@ -109,7 +109,7 @@
 		<widget source="parent.Event" render="Label" position="0,48" size="190,20" font="FdLcD;15" halign="left" noWrap="1">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="parent.Event" render="Label" position="140,14" size="70,35" font="FdLcD;15" halign="left" valign="bottom">
+		<widget source="parent.Event" render="Label" position="140,41" size="70,17" font="FdLcD;15" halign="left" valign="bottom">
 			<convert type="EventTime">VFDRemaining</convert>
 			<convert type="RemainingToText">VFDNoSeconds</convert>
 		</widget>
@@ -129,7 +129,7 @@
 		<widget source="session.Event_Now" render="Label" position="0,48" size="190,20" font="FdLcD;15" halign="left" noWrap="1">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="140,14" size="70,35" font="FdLcD;15" halign="left" valign="bottom">
+		<widget source="session.Event_Now" render="Label" position="140,41" size="70,17" font="FdLcD;15" halign="left" valign="bottom">
 			<convert type="EventTime">VFDRemaining</convert>
 			<convert type="RemainingToText">VFDNoSeconds</convert>
 		</widget>
@@ -193,7 +193,7 @@
 		<widget source="parent.ServiceEvent" render="Label" position="0,48" size="190,20" font="FdLcD;15" halign="left" noWrap="1">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="140,14" size="70,35" font="FdLcD;15" halign="left" valign="bottom">
+		<widget source="parent.ServiceEvent" render="Label" position="140,41" size="70,17" font="FdLcD;15" halign="left" valign="bottom">
 			<convert type="EventTime">VFDRemaining</convert>
 			<convert type="RemainingToText">VFDNoSeconds</convert>
 		</widget>
