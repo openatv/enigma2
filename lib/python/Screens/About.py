@@ -101,6 +101,12 @@ class About(Screen):
 			model = "Technomate 2T"
 		elif getBoxType() == 'tmsingle':
 			model = "Technomate Single"
+		elif getBoxType() == 'iqonios100hd':
+			model = "iqon IOS 100HD"
+		elif getBoxType() == 'iqonios200hd':
+			model = "iqon IOS 200HD"
+		elif getBoxType() == 'iqonios300hd':
+			model = "iqon IOS 300HD"
 		elif getBoxType() == 'xp1000':
 			model = "MK Digital XP1000"
 		elif getBoxType() == 'ebox5000':
