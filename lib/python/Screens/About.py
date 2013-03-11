@@ -7,7 +7,7 @@ from Components.NimManager import nimmanager
 from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
-from enigma import eTimer, getBoxType
+from enigma import eTimer, getBoxType, getImageVersionString, getBuildVersionString, getDriverDateString, getEnigmaVersionString
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
@@ -133,12 +133,18 @@ class About(Screen):
 		AboutText += _("CPU:\t%s") % about.getCPUString() + "\n"
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
 
+		AboutText += _("Version:\t%s") % getImageVersionString() + "\n"
+		AboutText += _("Build:\t%s") % getBuildVersionString() + "\n"
 		AboutText += _("Kernel:\t%s") % about.getKernelVersionString() + "\n"
-		AboutText += _("Drivers:\t%s") % about.getDriversString() + "\n"
-		# AboutText += _("Image:\t%s") % about.getImageTypeString() + "\n"
-		AboutText += _("Version:\t%s") % about.getImageVersionString() + "\n"
-		AboutText += _("Build:\t%s") % about.getBuildVersionString() + "\n"
-		AboutText += _("Last update:\t%s") % about.getLastUpdateString() + "\n\n"
+		
+		string = getDriverDateString()
+		year = string[0:4]
+		month = string[4:6]
+		day = string[6:8]
+		driversdate = '-'.join((year, month, day))
+		AboutText += _("Drivers:\t%s") % driversdate + "\n"
+
+		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n\n"
 
 		fp_version = getFPVersion()
 		if fp_version is None:

@@ -1,28 +1,10 @@
 from Tools.Directories import resolveFilename, SCOPE_SYSETC
 from Tools.HardwareInfo import HardwareInfo
 from os import path
-import sys
+import sys, enigma
 
 def getVersionString():
-	return getImageVersionString()
-
-def getImageVersionString():
-	try:
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "version":
-				version = splitted[1].replace('\n','')
-		file.close()
-		return version
-	except IOError:
-		return "unavailable"
-
-def getEnigmaVersionString():
-	import enigma
-	enigma_version = enigma.getEnigmaVersionString()
-	return enigma_version
+	return engima.getImageVersionString()
 
 def getKernelVersionString():
 	try:
@@ -32,42 +14,6 @@ def getKernelVersionString():
 		return kernelversion
 	except:
 		return _("unknown")
-
-def getBuildVersionString():
-	try:
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "build":
-				version = splitted[1].replace('\n','')
-		file.close()
-		return version
-	except IOError:
-		return "unavailable"
-
-def getLastUpdateString():
-	try:
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "date":
-				#YYYY MM DD hh mm
-				#2005 11 29 01 16
-				string = splitted[1].replace('\n','')
-				year = string[0:4]
-				month = string[4:6]
-				day = string[6:8]
-				date = '-'.join((year, month, day))
-				hour = string[8:10]
-				minute = string[10:12]
-				time = ':'.join((hour, minute))
-				lastupdated = ' '.join((date, time))
-		file.close()
-		return lastupdated
-	except IOError:
-		return "unavailable"
 
 def getDriversString():
 	try:
