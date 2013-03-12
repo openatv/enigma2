@@ -87,7 +87,7 @@ from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
 self.session.open(HdmiCECSetupScreen)
 </code>
 				  </item>
-				  <item weight="8" level="1" entryID="onlineupdate_setup" endtext="&gt;&lt;"><setup id="softwareupdate"/></item>
+				  <!-- <item weight="8" level="1" entryID="onlineupdate_setup" endtext="&gt;&lt;"><setup id="softwareupdate"/></item>-->
 				  <menu weight="9" level="2" text="EPG advanced settings" entryID="epg_menu" endtext="•••>">
 					<id val="epg" />
 					<item level="0" entryID="epg_setup"><setup id="epgsettings" /></item>
