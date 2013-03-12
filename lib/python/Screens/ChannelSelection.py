@@ -1456,6 +1456,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	#called from infoBar and channelSelected
 	def zap(self, enable_pipzap = False, preview_zap = False, checkParentalControl = True, ref = None):
+		self.curRoot = self.startRoot
 		nref = self.getCurrentSelection()
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
@@ -1465,6 +1466,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 						# XXX: Make sure we set an invalid ref
 						self.session.pip.playService(None)
 			else:
+				self.setStartRoot(self.curRoot)
 				self.setCurrentSelection(ref)
 		else:
 			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref))
@@ -1488,6 +1490,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				Notifications.RemovePopup("Parental control")
 				self.setCurrentSelection(nref)
 		else:
+			self.setStartRoot(self.curRoot)
 			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		if not preview_zap:
 			self.hide()
@@ -1642,13 +1645,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def zapBack(self):
 		if self.startServiceRef and self.session.nav.getCurrentlyPlayingServiceOrGroup() != self.startServiceRef:
-			if self.startRoot:
-				self.clearPath()
-				self.recallBouquetMode()
-				if self.bouquet_root:
-					self.enterPath(self.bouquet_root)
-				self.enterPath(self.startRoot)
-				self.saveRoot()
+			self.setStartRoot(self.startRoot)
 			self.new_service_played = True
 			self.session.nav.playService(self.startServiceRef)
 			self.saveChannel(self.startServiceRef)
@@ -1657,6 +1654,15 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if self.dopipzap:
 			# This unfortunately won't work with subservices
 			self.setCurrentSelection(self.session.pip.getCurrentService())
+
+	def setStartRoot(self, root):
+		if root:
+			self.clearPath()
+			self.recallBouquetMode()
+			if self.bouquet_root:
+				self.enterPath(self.bouquet_root)
+			self.enterPath(root)
+			self.saveRoot()
 
 class RadioInfoBar(Screen):
 	def __init__(self, session):
