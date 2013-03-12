@@ -18,6 +18,14 @@ from gettext import dgettext
 import urllib
 
 class UpdatePlugin(Screen):
+	skin = """
+		<screen name="UpdatePlugin" position="center,center" size="550,300">
+			<widget name="activityslider" position="0,0" size="550,5"  />
+			<widget name="slider" position="0,150" size="550,30"  />
+			<widget source="package" render="Label" position="10,30" size="540,20" font="Regular;18" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="status" render="Label" position="10,180" size="540,100" font="Regular;20" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
+		</screen>"""
+		
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Software Update"))
