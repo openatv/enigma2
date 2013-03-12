@@ -1457,6 +1457,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	#called from infoBar and channelSelected
 	def zap(self, enable_pipzap = False, preview_zap = False, checkParentalControl = True, ref = None):
 		self.curRoot = self.startRoot
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		nref = self.getCurrentSelection()
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
@@ -1468,15 +1469,13 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			else:
 				self.setStartRoot(self.curRoot)
 				self.setCurrentSelection(ref)
-		else:
+		elif ref is None or ref != nref:
 			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref))
 
 	def zapCheckTimeshiftCallback(self, enable_pipzap, preview_zap, nref, answer):
 		if answer:
-			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			if ref is None or ref != nref:
-				self.new_service_played = True
-				self.session.nav.playService(nref)
+			self.new_service_played = True
+			self.session.nav.playService(nref)
 			if not preview_zap:
 				self.saveRoot()
 				self.saveChannel(nref)
@@ -1494,7 +1493,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		if not preview_zap:
 			self.hide()
-
 
 	def newServicePlayed(self):
 		ret = self.new_service_played
@@ -1662,6 +1660,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if self.bouquet_root:
 				self.enterPath(self.bouquet_root)
 			self.enterPath(root)
+			self.startRoot = None
 			self.saveRoot()
 
 class RadioInfoBar(Screen):
