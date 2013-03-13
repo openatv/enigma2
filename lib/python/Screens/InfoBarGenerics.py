@@ -431,9 +431,9 @@ class InfoBarNumberZap:
 				if self.servicelist.bouquet_root != bouquet:
 					self.servicelist.enterPath(self.servicelist.bouquet_root)
 				self.servicelist.enterPath(bouquet)
-				self.servicelist.startRoot = None
 			self.servicelist.setCurrentSelection(service) #select the service in servicelist
 			self.servicelist.zap(enable_pipzap = True)
+			self.servicelist.startRoot = None
 
 	def zapToNumber(self, number):
 		service, bouquet = self.searchNumber(number)
