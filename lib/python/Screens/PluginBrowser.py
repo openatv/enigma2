@@ -1,6 +1,7 @@
 from Screens.Screen import Screen
 from Components.Language import language
-from enigma import eConsoleAppContainer, eDVBDB
+from enigma import eConsoleAppContainer, eDVBDB, getImageVersionString
+
 
 from Components.About import about
 from Components.ActionMap import ActionMap
@@ -330,7 +331,7 @@ class PluginDownloadBrowser(Screen):
 			currentTimeoutDefault = socket.getdefaulttimeout()
 			socket.setdefaulttimeout(3)
 			try:
-				config.softwareupdate.updateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + about.getImageVersionString() + "/status").read())
+				config.softwareupdate.updateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + getImageVersionString() + "/status").read())
 			except:
 				config.softwareupdate.updateisunstable.setValue(1)
 			socket.setdefaulttimeout(currentTimeoutDefault)

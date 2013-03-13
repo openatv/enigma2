@@ -14,7 +14,7 @@ from Screens.TaskView import JobView
 from Tools.Directories import fileExists
 from Tools.HardwareInfo import HardwareInfo
 from os import system
-from enigma import eConsoleAppContainer, quitMainloop, eEnv
+from enigma import eConsoleAppContainer, quitMainloop, eEnv, getImageVersionString
 from Components.About import about
 
 class md5Postcondition(Condition):
@@ -100,7 +100,7 @@ class NFIFlash(Screen):
 		self["filelist"] = self.filelist
 		self["infolabel"] = StaticText()
 
-		self["status"] = StaticText(_("Please select an NFI file and press green key to flash!") + '\n' + _("currently installed image: %s") % (about.getImageVersionString()))
+		self["status"] = StaticText(_("Please select an NFI file and press green key to flash!") + '\n' + _("currently installed image: %s") % (getImageVersionString()))
 		self.job = None
 
 		self["shortcuts"] = ActionMap(["OkCancelActions", "ColorActions", "ShortcutActions", "DirectionActions"],
