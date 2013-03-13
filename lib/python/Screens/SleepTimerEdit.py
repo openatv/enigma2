@@ -6,7 +6,6 @@ from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.config import config, getConfigListEntry
-from Tools.Notifications import AddPopup
 from enigma import eEPGCache
 from time import time
 
@@ -53,18 +52,7 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 				sleepTimer = self.currentEventTime()
 			else:
 				sleepTimer = int(sleepTimer)
-			if sleepTimer:
-				if sleepTimer < 0:
-					message = _("And will shutdown your receiver over ")
-				else:
-					message = _("And will put your receiver in standby over ")
-				m = abs(sleepTimer / 60)
-				message = _("The sleep timer has been activated.") + "\n" + message + ngettext("%d minute", "%d minutes", m) % m
-				InfoBar.instance.setSleepTimer(sleepTimer)
-			else:
-				message = _("The sleep timer has been disabled.")
-				InfoBar.instance.setSleepTimer(0)
-			AddPopup(message, type = MessageBox.TYPE_INFO, timeout = 5)
+			InfoBar.instance.setSleepTimer(sleepTimer)
 			self.close(True)
 		self.close()
 
