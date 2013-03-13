@@ -1348,7 +1348,7 @@ class InfoBarEPG:
 				self.openBouquetEPG(root, withCallback)
 
 	def openMultiServiceEPG(self):
-		if self.servicelist is None
+		if self.servicelist is None:
 			return
 		self.EPGtype = "multi"
 		self.StartBouquet = self.servicelist.getRoot()
@@ -1359,7 +1359,7 @@ class InfoBarEPG:
 		self.MultiServiceEPG()
 
 	def openGraphEPG(self, reopen=False):
-		if self.servicelist is None
+		if self.servicelist is None:
 			return
 		self.EPGtype = "graph"
 		if not reopen:
@@ -1368,13 +1368,13 @@ class InfoBarEPG:
 		self.MultiServiceEPG()
 
 	def openSingleServiceEPG(self, reopen=False):
-		if self.servicelist is None
+		if self.servicelist is None:
 			return
 		self.EPGtype = "enhanced"
 		self.SingleServiceEPG()
 
 	def openInfoBarEPG(self, reopen=False):
-		if self.servicelist is None
+		if self.servicelist is None:
 			return
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
@@ -1390,7 +1390,7 @@ class InfoBarEPG:
 			self.MultiServiceEPG()
 
 	def showCoolTVGuide(self):
-		if self.servicelist is None
+		if self.servicelist is None:
 			return
 		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
@@ -1468,7 +1468,7 @@ class InfoBarEPG:
 		self.EPGPressed()
 
 	def openEventView(self, simple=False):
-		if self.servicelist is None
+		if self.servicelist is None:
 			return
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
