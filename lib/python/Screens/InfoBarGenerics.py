@@ -1485,22 +1485,57 @@ class InfoBarEPG:
 				self.openBouquetEPG(root, withCallback)
 
 	def openMultiServiceEPG(self):
-		if self.servicelist:
-			self.EPGtype = "multi"
-			self.StartBouquet = self.servicelist.getRoot()
-			if isMoviePlayerInfoBar(self):
-				self.StartRef = self.lastservice
-			else:
-				self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			self.MultiServiceEPG()
+		if self.servicelist is None:
+			return
+		self.EPGtype = "multi"
+		self.StartBouquet = self.servicelist.getRoot()
+		if isMoviePlayerInfoBar(self):
+			self.StartRef = self.lastservice
+		else:
+			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.MultiServiceEPG()
 
 	def openGraphEPG(self, reopen=False):
+		if self.servicelist is None:
+			return
 		self.EPGtype = "graph"
-		if self.servicelist:
-			if not reopen:
-				self.StartBouquet = self.servicelist.getRoot()
-				self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if not reopen:
+			self.StartBouquet = self.servicelist.getRoot()
+			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.MultiServiceEPG()
+
+	def openSingleServiceEPG(self, reopen=False):
+		if self.servicelist is None:
+			return
+		self.EPGtype = "enhanced"
+		self.SingleServiceEPG()
+
+	def openInfoBarEPG(self, reopen=False):
+		if self.servicelist is None:
+			return
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
+		if not reopen:
+			self.StartBouquet = self.servicelist.getRoot()
+			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if config.epgselection.infobar_type_mode.getValue() == 'single':
+			self.EPGtype = "infobar"
+			self.SingleServiceEPG()
+		else:
+			self.EPGtype = "infobargraph"
 			self.MultiServiceEPG()
+
+	def showCoolTVGuide(self):
+		if self.servicelist is None:
+			return
+		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Cool TV Guide"):
+					self.runPlugin(plugin)
+					break
+		else:
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def SingleServiceEPG(self):
 		self.StartBouquet = self.servicelist.getRoot()
@@ -1534,26 +1569,6 @@ class InfoBarEPG:
 		self.serviceSel = None
 		self.reopen(ret)
 
-	def openSingleServiceEPG(self, reopen=False):
-		if self.servicelist:
-			self.EPGtype = "enhanced"
-			self.SingleServiceEPG()
-
-	def openInfoBarEPG(self, reopen=False):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-		if self.servicelist:
-			if not reopen:
-				self.StartBouquet = self.servicelist.getRoot()
-				self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			if config.epgselection.infobar_type_mode.getValue() == 'single':
-				self.EPGtype = "infobar"
-				self.SingleServiceEPG()
-			else:
-				self.EPGtype = "infobargraph"
-				self.MultiServiceEPG()
-
 	def reopen(self, answer):
 		if answer == 'reopengraph':
 			self.openGraphEPG(True)
@@ -1564,24 +1579,19 @@ class InfoBarEPG:
 			self.close()
 
 	def openMerlinEPGCenter(self):
+		if self.servicelist is None:
+			return
 		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPGCenter/plugin.pyo"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("Merlin EPG Center"):
 					self.runPlugin(plugin)
 					break
 		else:
-			self.session.open(MessageBox, _("The Merlin EPG Center plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )		
-		
-	def showCoolTVGuide(self):
-		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
-			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				if plugin.name == _("Cool TV Guide"):
-					self.runPlugin(plugin)
-					break
-		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-	
+			self.session.open(MessageBox, _("The Merlin EPG Center plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
 	def showCoolInfoGuide(self):
+		if self.servicelist is None:
+			return
 		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/CoolInfoGuide.pyo"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("Cool Info Guide"):
@@ -1591,6 +1601,8 @@ class InfoBarEPG:
 			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 	
 	def showCoolSingleGuide(self):
+		if self.servicelist is None:
+			return	
 		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/CoolSingleGuide.pyo"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("Cool Single Guide"):
@@ -1628,6 +1640,8 @@ class InfoBarEPG:
 		self.EPGPressed()
 
 	def openEventView(self, simple=False):
+		if self.servicelist is None:
+			return
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False

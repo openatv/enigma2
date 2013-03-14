@@ -20,12 +20,11 @@ from re import search
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skinName = "AboutOE"
 		Screen.setTitle(self, _("Image Information"))
+		self.skinName = "AboutOE"
 		self.populate()
 
 		self["key_green"] = Button(_("Translations"))
-
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
 			{
 				"cancel": self.close,
@@ -538,7 +537,7 @@ class SystemNetworkInfo(Screen):
 class AboutSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
-		self["selected"] = StaticText("ViX:" + about.getImageVersionString())
+		self["selected"] = StaticText("AAF:" + getImageVersionString())
 
 		AboutText = ""
 		model = None
@@ -621,11 +620,17 @@ class AboutSummary(Screen):
 			chipset = open('/proc/stb/info/chipset', 'r').read()
 			AboutText += _("Chipset: BCM%s") % chipset.replace('\n','') + "\n"
 
+		AboutText += _("Version: %s") % getImageVersionString() + "\n"
+		AboutText += _("Build: %s") % getBuildVersionString() + "\n"
 		AboutText += _("Kernel: %s") % about.getKernelVersionString() + "\n"
-		AboutText += _("Drivers: %s") % about.getDriversString() + "\n"
-		AboutText += _("Version: %s") % about.getImageVersionString() + "\n"
-		AboutText += _("Build: %s") % about.getBuildVersionString() + "\n"
-		AboutText += _("Last update: %s") % about.getLastUpdateString() + "\n\n"
+
+		string = getDriverDateString()
+		year = string[0:4]
+		month = string[4:6]
+		day = string[6:8]
+		driversdate = '-'.join((year, month, day))
+		AboutText += _("Drivers: %s") % driversdate + "\n"
+		AboutText += _("Last update: %s") % getEnigmaVersionString() + "\n\n"
 
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value'):

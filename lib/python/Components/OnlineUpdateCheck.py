@@ -3,7 +3,7 @@ from Components.Ipkg import IpkgComponent
 from Components.About import about
 from Components.config import config
 from time import time
-from enigma import eTimer
+from enigma import eTimer, getImageVersionString
 
 def OnlineUpdateCheck(session=None, **kwargs):
 	global onlineupdatecheckpoller
@@ -62,7 +62,7 @@ class OnlineUpdateCheckPoller:
 					socket.setdefaulttimeout(3)
 					config.softwareupdate.updatefound.setValue(True)
 					try:
-						config.softwareupdate.updateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + about.getImageVersionString() + "/status").read())
+						config.softwareupdate.updateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + getImageVersionString() + "/status").read())
 					except:
 						config.softwareupdate.updateisunstable.setValue(1)
 					socket.setdefaulttimeout(currentTimeoutDefault)
