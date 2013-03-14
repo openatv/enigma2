@@ -10,6 +10,10 @@ from skin import loadPixmap
 class Pixmap(GUIComponent):
 	GUI_WIDGET = ePixmap
 
+	def getSize(self):
+		s = self.instance.size()
+		return (s.width(), s.height())
+
 class PixmapConditional(ConditionalWidget, Pixmap):
 	def __init__(self, withTimer = True):
 		ConditionalWidget.__init__(self)
