@@ -3548,6 +3548,10 @@ class InfoBarPiP:
 			slist.togglePipzap()
 
 	def showPiP(self):
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		xres = str(info.getInfo(iServiceInformation.sVideoWidth))
+		
 		if self.session.pipshown:
 			slist = self.servicelist
 			if slist and slist.dopipzap:
@@ -3555,15 +3559,18 @@ class InfoBarPiP:
 			del self.session.pip
 			self.session.pipshown = False
 		else:
-			self.session.pip = self.session.instantiateDialog(PictureInPicture)
-			self.session.pip.show()
-			newservice = self.servicelist.servicelist.getCurrent()
-			if self.session.pip.playService(newservice):
-				self.session.pipshown = True
-				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+			if int(xres) <= 720:
+				self.session.pip = self.session.instantiateDialog(PictureInPicture)
+				self.session.pip.show()
+				newservice = self.servicelist.servicelist.getCurrent()
+				if self.session.pip.playService(newservice):
+					self.session.pipshown = True
+					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+				else:
+					self.session.pipshown = False
+					del self.session.pip
 			else:
-				self.session.pipshown = False
-				del self.session.pip
+				self.session.open(MessageBox, _("Your STB_BOX does not support PiP HD"), type = MessageBox.TYPE_INFO,timeout = 5 )
 
 	def swapPiP(self):
 		swapservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
