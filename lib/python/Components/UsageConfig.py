@@ -114,6 +114,16 @@ def InitUsageConfig():
 			choicelist.append(("event_standby", _("Standby after current event")))
 	config.usage.sleep_timer = ConfigSelection(default = "0", choices = choicelist)
 
+	choicelist = []
+	for i in range(0, 3601, 300):
+		m = abs(i / 60)
+		m = ngettext("%d minute", "%d minutes", m) % m
+		if i:
+			choicelist.append(("%d" % i, m))
+		else:
+			choicelist.append(("0", "Disabled"))
+	config.usage.screen_saver = ConfigSelection(default = "0", choices = choicelist)
+
 	config.usage.check_timeshift = ConfigYesNo(default = True)
 
 	config.usage.alternatives_priority = ConfigSelection(default = "0", choices = [
