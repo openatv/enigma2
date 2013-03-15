@@ -27,6 +27,9 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Action when receiver is not controlled"),
 			config.usage.inactivity_timer,
 			_("Configure the duration in hours and action (shut down or standby) when the receiver is not controlled.")))
+		self.list.append(getConfigListEntry(_("Screensaver"),
+			config.usage.screen_saver,
+			_("Configure the duration in minutes for the screensaver")))
 
 		ConfigListScreen.__init__(self, self.list, session = session)
 		
