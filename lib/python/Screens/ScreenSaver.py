@@ -56,6 +56,7 @@ class Screensaver(Screen):
 	def keypress(self, key, flag):
 		if flag == 1:
 			eActionMap.getInstance().unbindAction('', self.keypress)
+			TimerStart()
 			self.close()
 
 	def doMovePicture(self):
