@@ -4,6 +4,7 @@
 
 #include <lib/base/eerror.h>
 #include <lib/base/filepush.h>
+#include <lib/base/wrappers.h>
 #include <lib/dvb/cahandler.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
@@ -303,7 +304,7 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 
 	if (file >= 0)
 	{
-		int len = read(file, name, sizeof(name) - 1);
+		int len = singleRead(file, name, sizeof(name) - 1);
 		if (len >= 0)
 		{
 			name[len] = 0;
@@ -469,79 +470,6 @@ eDVBUsbAdapter::~eDVBUsbAdapter()
 	}
 }
 
-int eDVBUsbAdapter::select(int maxfd, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout)
-{
-	int retval;
-	fd_set rset, wset, xset;
-	struct timeval interval;
-	timerclear(&interval);
-
-	/* make a backup of all fd_set's and timeval struct */
-	if (readfds) rset = *readfds;
-	if (writefds) wset = *writefds;
-	if (exceptfds) xset = *exceptfds;
-	if (timeout) interval = *timeout;
-
-	while (1)
-	{
-		retval = ::select(maxfd, readfds, writefds, exceptfds, timeout);
-
-		if (retval < 0)
-		{
-			/* restore the backup before we continue */
-			if (readfds) *readfds = rset;
-			if (writefds) *writefds = wset;
-			if (exceptfds) *exceptfds = xset;
-			if (timeout) *timeout = interval;
-			if (errno == EINTR) continue;
-			break;
-		}
-		break;
-	}
-	return retval;
-}
-
-ssize_t eDVBUsbAdapter::writeAll(int fd, const void *buf, size_t count)
-{
-	ssize_t retval;
-	char *ptr = (char*)buf;
-	size_t handledcount = 0;
-	if (fd < 0) return -1;
-	while (handledcount < count)
-	{
-		retval = ::write(fd, &ptr[handledcount], count - handledcount);
-
-		if (retval == 0) return -1;
-		if (retval < 0)
-		{
-			if (errno == EINTR) continue;
-			return retval;
-		}
-		handledcount += retval;
-	}
-	return handledcount;
-}
-
-ssize_t eDVBUsbAdapter::read(int fd, void *buf, size_t count)
-{
-	ssize_t retval;
-	char *ptr = (char*)buf;
-	size_t handledcount = 0;
-	if (fd < 0) return -1;
-	while (handledcount < count)
-	{
-		retval = ::read(fd, &ptr[handledcount], count - handledcount);
-		if (retval < 0)
-		{
-			if (errno == EINTR) continue;
-			return retval;
-		}
-		handledcount += retval;
-		break; /* one read only */
-	}
-	return handledcount;
-}
-
 void *eDVBUsbAdapter::threadproc(void *arg)
 {
 	eDVBUsbAdapter *user = (eDVBUsbAdapter*)arg;
@@ -571,7 +499,7 @@ void *eDVBUsbAdapter::vtunerPump()
 		FD_SET(vtunerFd, &xset);
 		FD_SET(demuxFd, &rset);
 		FD_SET(pipeFd[0], &rset);
-		if (select(maxfd + 1, &rset, NULL, &xset, NULL) > 0)
+		if (Select(maxfd + 1, &rset, NULL, &xset, NULL) > 0)
 		{
 			if (FD_ISSET(vtunerFd, &xset))
 			{
@@ -631,7 +559,7 @@ void *eDVBUsbAdapter::vtunerPump()
 			}
 			if (FD_ISSET(demuxFd, &rset))
 			{
-				int size = read(demuxFd, buffer, sizeof(buffer));
+				int size = singleRead(demuxFd, buffer, sizeof(buffer));
 				if (writeAll(vtunerFd, buffer, size) <= 0)
 				{
 					break;
