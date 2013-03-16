@@ -49,6 +49,7 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 	def ok(self):
 		config.usage.sleep_timer.save()
 		config.usage.inactivity_timer.save()
+		config.usage.screen_saver.save()
 		if self.getCurrentEntry() == _("Sleeptimer"):
 			sleepTimer = config.usage.sleep_timer.value
 			if sleepTimer == "event_shutdown":
