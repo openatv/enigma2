@@ -1,6 +1,7 @@
 #include <lib/base/cfile.h>
 #include <lib/base/ebase.h>
 #include <lib/base/eerror.h>
+#include <lib/base/wrappers.h>
 #include <lib/dvb/decoder.h>
 #include <lib/components/tuxtxtapp.h>
 #include <linux/dvb/audio.h>
@@ -1050,13 +1051,13 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 				while(pos <= (s.st_size-4) && !(seq_end_avail = (!iframe[pos] && !iframe[pos+1] && iframe[pos+2] == 1 && iframe[pos+3] == 0xB7)))
 					++pos;
 				if ((iframe[3] >> 4) != 0xE) // no pes header
-					write(m_video_clip_fd, pes_header, sizeof(pes_header));
+					writeAll(m_video_clip_fd, pes_header, sizeof(pes_header));
 				else
 					iframe[4] = iframe[5] = 0x00;
-				write(m_video_clip_fd, iframe, s.st_size);
+				writeAll(m_video_clip_fd, iframe, s.st_size);
 				if (!seq_end_avail)
 					write(m_video_clip_fd, seq_end, sizeof(seq_end));
-				write(m_video_clip_fd, stuffing, 8192);
+				writeAll(m_video_clip_fd, stuffing, 8192);
 				m_showSinglePicTimer->start(150, true);
 			}
 			close(f);
