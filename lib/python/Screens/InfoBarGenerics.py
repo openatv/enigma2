@@ -30,14 +30,15 @@ from Screens.TimeDateInput import TimeDateInput
 from Screens.UnhandledKey import UnhandledKey
 from ServiceReference import ServiceReference, isPlayableForCur
 
-from Tools import Notifications
-from Tools.Directories import fileExists
+from Tools import Notifications, ASCIItranslit
+from Tools.Directories import fileExists, getRecordingFilename, moveFiles
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, \
 	iPlayableService, eServiceReference, eEPGCache, eActionMap
 
 from time import time, localtime, strftime
 from os import stat as os_stat
+from os import rename as os_rename
 from bisect import insort
 from sys import maxint
 
@@ -1397,6 +1398,10 @@ class InfoBarTimeshift:
 			}, prio=-1) # priority over record
 
 		self.timeshift_enabled = False
+		self.save_timeshift_file = False
+		self.save_timeshift_in_movie_dir = False
+		self.current_timeshift_filename = ""
+		self.new_timeshift_filename = ""
 
 		self["TimeshiftActivateActions"].setEnabled(False)
 		self.ts_rewind_timer = eTimer()
@@ -1405,7 +1410,8 @@ class InfoBarTimeshift:
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evStart: self.__serviceStarted,
-				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged
+				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
+				iPlayableService.evEnd: self.__serviceEnd
 			})
 
 	def getTimeshift(self):
@@ -1436,6 +1442,10 @@ class InfoBarTimeshift:
 				# enable the "TimeshiftEnableActions", which will override
 				# the startTimeshift actions
 				self.__seekableStatusChanged()
+
+				# get current timeshift filename and calculate new
+				self.current_timeshift_filename = ts.getTimeshiftFilename()
+				self.new_timeshift_filename = self.generateNewTimeshiftFileName()
 			else:
 				print "timeshift failed"
 
@@ -1449,8 +1459,10 @@ class InfoBarTimeshift:
 
 	def stopTimeshiftcheckTimeshiftRunningCallback(self, ts, answer):
 		if answer:
+			self.saveTimeshiftFiles()
 			ts.stopTimeshift()
 			self.timeshift_enabled = False
+			self.save_timeshift_file = False
 			self.pvrStateDialog.hide()
 
 			# disable actions
@@ -1480,6 +1492,33 @@ class InfoBarTimeshift:
 	def rewindService(self):
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
 
+	# generates only filename without path
+	def generateNewTimeshiftFileName(self):
+		name = "timeshift record"
+		info = { }
+		self.getProgramInfoAndEvent(info, name)
+
+		serviceref = info["serviceref"]
+
+		service_name = ""
+		if isinstance(serviceref, eServiceReference):
+			service_name = ServiceReference(serviceref).getServiceName()
+		begin_date = strftime("%Y%m%d %H%M", localtime(time()))
+		filename = begin_date + " - " + service_name
+
+		if config.recording.filename_composition.value == "short":
+			filename = strftime("%Y%m%d", localtime(time())) + " - " + info["name"]
+		elif config.recording.filename_composition.value == "long":
+			filename += " - " + info["name"] + " - " + info["description"]
+		else:
+			filename += " - " + info["name"] # standard
+
+		if config.recording.ascii_filenames.value:
+			filename = ASCIItranslit.legacyEncode(filename)
+
+                print "New timeshift filename: ", filename
+		return filename
+
 	# same as activateTimeshiftEnd, but pauses afterwards.
 	def activateTimeshiftEndAndPause(self):
 		print "activateTimeshiftEndAndPause"
@@ -1496,6 +1535,10 @@ class InfoBarTimeshift:
 	def __serviceStarted(self):
 		self.pvrStateDialog.hide()
 		self.timeshift_enabled = False
+		self.save_timeshift_file = False
+		self.save_timeshift_in_movie_dir = False
+		self.current_timeshift_filename = ""
+		self.new_timeshift_filename = ""
 		self.__seekableStatusChanged()
 
 	def checkTimeshiftRunning(self, returnFunction):
@@ -1503,6 +1546,28 @@ class InfoBarTimeshift:
 			self.session.openWithCallback(returnFunction, MessageBox, _("Stop timeshift?"), simple = True)
 		else:
 			returnFunction(True)
+
+	# renames/moves timeshift files if requested
+	def __serviceEnd(self):
+		self.saveTimeshiftFiles()
+
+	def saveTimeshiftFiles(self):
+		if self.timeshift_enabled and self.save_timeshift_file and self.current_timeshift_filename != "" and self.new_timeshift_filename != "":
+			if config.usage.timeshift_path.value is not None and not self.save_timeshift_in_movie_dir:
+				dirname = config.usage.timeshift_path.value
+			else:
+				dirname = defaultMoviePath()
+			filename = getRecordingFilename(self.new_timeshift_filename, dirname) + ".ts"
+
+			fileList = []
+			fileList.append((self.current_timeshift_filename, filename))
+			if fileExists(self.current_timeshift_filename + ".sc"):
+				fileList.append((self.current_timeshift_filename + ".sc", filename + ".sc"))
+			if fileExists(self.current_timeshift_filename + ".cuts"):
+				fileList.append((self.current_timeshift_filename + ".cuts", filename + ".cuts"))
+
+			moveFiles(fileList)
+
 
 from Screens.PiPSetup import PiPSetup
 
@@ -1734,35 +1799,46 @@ class InfoBarInstantRecord:
 			self.session.nav.RecordTimer.removeEntry(self.recording[entry])
 			self.recording.remove(self.recording[entry])
 
-	def startInstantRecording(self, limitEvent = False):
-		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+	def getProgramInfoAndEvent(self, info, name):
+		info["serviceref"] = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 
 		# try to get event info
 		event = None
 		try:
 			service = self.session.nav.getCurrentService()
 			epg = eEPGCache.getInstance()
-			event = epg.lookupEventTime(serviceref, -1, 0)
+			event = epg.lookupEventTime(info["serviceref"], -1, 0)
 			if event is None:
-				info = service.info()
-				ev = info.getEvent(0)
-				event = ev
+				event = service.info().getEvent(0)
 		except:
 			pass
 
-		begin = int(time())
-		end = begin + 3600	# dummy
-		name = "instant record"
-		description = ""
-		eventid = None
+		info["event"] = event
+		info["name"]  = name
+		info["description"] = ""
+		info["eventid"] = None
 
 		if event is not None:
 			curEvent = parseEvent(event)
-			name = curEvent[2]
-			description = curEvent[3]
-			eventid = curEvent[4]
+			info["name"] = curEvent[2]
+			info["description"] = curEvent[3]
+			info["eventid"] = curEvent[4]
+			info["end"] = curEvent[1]
+
+
+	def startInstantRecording(self, limitEvent = False):
+		begin = int(time())
+		end = begin + 3600      # dummy
+		name = "instant record"
+		info = { }
+
+		self.getProgramInfoAndEvent(info, name)
+		serviceref = info["serviceref"]
+		event = info["event"]
+
+		if event is not None:
 			if limitEvent:
-				end = curEvent[1]
+				end = info["end"]
 		else:
 			if limitEvent:
 				self.session.open(MessageBox, _("No event info found, recording indefinitely."), MessageBox.TYPE_INFO)
@@ -1770,7 +1846,7 @@ class InfoBarInstantRecord:
 		if isinstance(serviceref, eServiceReference):
 			serviceref = ServiceReference(serviceref)
 
-		recording = RecordTimerEntry(serviceref, begin, end, name, description, eventid, dirname = preferredInstantRecordPath())
+		recording = RecordTimerEntry(serviceref, begin, end, info["name"], info["description"], info["eventid"], dirname = preferredInstantRecordPath())
 		recording.dontSave = True
 
 		if event is None or limitEvent == False:
@@ -1836,6 +1912,13 @@ class InfoBarInstantRecord:
 				self.changeDuration(len(self.recording)-1)
 			elif answer[1] == "manualendtime":
 				self.setEndtime(len(self.recording)-1)
+		elif answer[1] in ("timeshift", "timeshift_movie"):
+			ts = self.getTimeshift()
+			if ts is not None:
+				ts.saveTimeshiftFile()
+				self.save_timeshift_file = True
+				if answer[1] == "timeshift_movie":
+					self.save_timeshift_in_movie_dir = True
 		print "after:\n", self.recording
 
 	def setEndtime(self, entry):
@@ -1890,6 +1973,9 @@ class InfoBarInstantRecord:
 		else:
 			title=_("Start recording?")
 			list = common + ((_("Do not record"), "no"),)
+		if self.timeshift_enabled:
+			list = list + ((_("Save timeshift file"), "timeshift"),
+			(_("Save timeshift file in movie directory"), "timeshift_movie"))
 		self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox,title=title,list=list)
 
 from Tools.ISO639 import LanguageCodes
