@@ -32,6 +32,7 @@ config.pluginfilter.pli = ConfigYesNo(default = False)
 config.pluginfilter.security = ConfigYesNo(default = True)
 config.pluginfilter.settings = ConfigYesNo(default = True)
 config.pluginfilter.skins = ConfigYesNo(default = True)
+config.pluginfilter.display = ConfigYesNo(default = True)
 config.pluginfilter.softcams = ConfigYesNo(default = True)
 config.pluginfilter.systemplugins = ConfigYesNo(default = True)
 config.pluginfilter.vix = ConfigYesNo(default = False)
@@ -232,6 +233,8 @@ class PluginDownloadBrowser(Screen):
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'settings')
 		if config.pluginfilter.skins.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'skins')
+		if config.pluginfilter.display.getValue():
+			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'display')
 		if config.pluginfilter.softcams.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'softcams')
 		if config.pluginfilter.systemplugins.getValue():
@@ -564,6 +567,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("systemplugins"), config.pluginfilter.systemplugins, _("This allows you to show systemplugins modules in downloads")))
 		self.list.append(getConfigListEntry(_("softcams"), config.pluginfilter.softcams, _("This allows you to show softcams modules in downloads")))
 		self.list.append(getConfigListEntry(_("skins"), config.pluginfilter.skins, _("This allows you to show skins modules in downloads")))
+		self.list.append(getConfigListEntry(_("display"), config.pluginfilter.skins, _("This allows you to show lcd skins in downloads")))
 		self.list.append(getConfigListEntry(_("picons"), config.pluginfilter.picons, _("This allows you to show picons modules in downloads")))
 		self.list.append(getConfigListEntry(_("settings"), config.pluginfilter.settings, _("This allows you to show settings modules in downloads")))
 		self.list.append(getConfigListEntry(_("m2k"), config.pluginfilter.m2k, _("This allows you to show m2k modules in downloads")))
