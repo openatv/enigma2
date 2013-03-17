@@ -44,10 +44,12 @@ class Screensaver(Screen):
 
 	def LayoutFinished(self):
 		picturesize = self["picture"].getSize()
-		self.posx = self.posy = 0
-		self.movex = self.movey = 1
 		self.maxx = self.instance.size().width() - picturesize[0]
 		self.maxy = self.instance.size().height() - picturesize[1]
+		import random
+		self.posx = random.randint(1,self.maxx)
+		self.posy = random.randint(1,self.maxy)
+		self.movex = self.movey = 1
 		self.moveLogoTimer.start(50)
 				
 	def keypress(self, key, flag):
