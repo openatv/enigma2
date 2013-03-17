@@ -15,6 +15,7 @@ from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 
 from Screen import Screen
+from Screens import ScreenSaver
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Dish import Dish
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
@@ -191,6 +192,8 @@ class InfoBarShowHide:
 
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
+		self.onExecBegin.append(self.__onExecBegin)
+		self.onExecEnd.append(self.__onExecEnd)
 
 		self.onShowHideNotifiers = []
 
@@ -203,6 +206,12 @@ class InfoBarShowHide:
 	def __layoutFinished(self):
 		if self.secondInfoBarScreen:
 			self.secondInfoBarScreen.hide()
+
+	def __onExecBegin(self):
+		ScreenSaver.TimerStart(self.seekstate[0])
+
+	def __onExecEnd(self):
+		ScreenSaver.TimerStart(True)
 
 	def keyHide(self):
 		if self.__state == self.STATE_SHOWN:
@@ -1104,11 +1113,7 @@ class InfoBarSeek:
 
 		self.checkSkipShowHideLock()
 
-		from Screens import ScreenSaver
-		if state[0]:
-			ScreenSaver.TimerStart()
-		else:
-			ScreenSaver.TimerStop()
+		ScreenSaver.TimerStart(state[0] or not self.execing)
 
 		return True
 
@@ -1516,7 +1521,7 @@ class InfoBarTimeshift:
 		if config.recording.ascii_filenames.value:
 			filename = ASCIItranslit.legacyEncode(filename)
 
-                print "New timeshift filename: ", filename
+		print "New timeshift filename: ", filename
 		return filename
 
 	# same as activateTimeshiftEnd, but pauses afterwards.
