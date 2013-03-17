@@ -112,7 +112,7 @@ def InitUsageConfig():
 			choicelist.append(("event_shutdown", _("Shutdown after current event")))
 			choicelist.append(("0", "Disabled"))
 			choicelist.append(("event_standby", _("Standby after current event")))
-	config.usage.sleep_timer = ConfigSelection(default = "0", choices = choicelist)
+	config.usage.sleep_timer = ConfigSelection(default = "300", choices = choicelist)
 
 	choicelist = []
 	for i in range(0, 3601, 300):
