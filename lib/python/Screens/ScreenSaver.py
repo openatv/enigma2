@@ -12,17 +12,14 @@ def screensaverTimeout():
 Timer = eTimer()
 Timer.callback.append(screensaverTimeout)
 
-def TimerStart():
+def TimerStart(flag):
 	time = int(config.usage.screen_saver.value)
-	print "[Screensaver] Timer start", time
-	if time:
+	if time and flag:
+		print "[Screensaver] Timer start", time
 		Timer.startLongTimer(time)
 	else:
+		print "[Screensaver] Timer stop"
 		Timer.stop()
-	
-def TimerStop():
-	print "[Screensaver] Timer stop"
-	Timer.stop()
 	
 class Screensaver(Screen):
 	def __init__(self, session):
@@ -56,7 +53,7 @@ class Screensaver(Screen):
 	def keypress(self, key, flag):
 		if flag == 1:
 			eActionMap.getInstance().unbindAction('', self.keypress)
-			TimerStart()
+			TimerStart(True)
 			self.close()
 
 	def doMovePicture(self):
