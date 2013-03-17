@@ -122,7 +122,7 @@ def InitUsageConfig():
 			choicelist.append(("%d" % i, m))
 		else:
 			choicelist.append(("0", "Disabled"))
-	config.usage.screen_saver = ConfigSelection(default = "0", choices = choicelist)
+	config.usage.screen_saver = ConfigSelection(default = "300", choices = choicelist)
 
 	config.usage.check_timeshift = ConfigYesNo(default = True)
 
