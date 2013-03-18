@@ -1,4 +1,5 @@
 import Screens.InfoBar
+from Screens import Standby
 from Screens.Screen import Screen
 from Components.config import config
 from Components.ServiceEventTracker import ServiceEventTracker
@@ -10,7 +11,7 @@ import os
 inScreenSaver = False
 
 def screensaverTimeout():
-	if not inScreenSaver:
+	if not inScreenSaver and not Standby.inStandby and not Standby.inTryQuitMainloop:
 		InfoBarInstance = Screens.InfoBar.InfoBar.instance
 		if InfoBarInstance:
 			InfoBarInstance.session.open(Screensaver)
