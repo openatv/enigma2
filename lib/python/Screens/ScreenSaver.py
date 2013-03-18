@@ -7,10 +7,13 @@ from Components.Pixmap import Pixmap
 from enigma import ePoint, eTimer, eActionMap, iPlayableService
 import os
 
+inScreenSaver = False
+
 def screensaverTimeout():
-	InfoBarInstance = Screens.InfoBar.InfoBar.instance
-	if InfoBarInstance:
-		InfoBarInstance.session.open(Screensaver)
+	if not inScreenSaver:
+		InfoBarInstance = Screens.InfoBar.InfoBar.instance
+		if InfoBarInstance:
+			InfoBarInstance.session.open(Screensaver)
 
 ScreenSaverTimer = eTimer()
 ScreenSaverTimer.callback.append(screensaverTimeout)
@@ -26,7 +29,7 @@ def TimerStart(flag):
 				flag = ref[2] == "2" or os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
 	if time and flag:
 		print "[Screensaver] Timer start", time
-		ScreenSaverTimer.startLongTimer(time)
+		ScreenSaverTimer.startLongTimer(5)#time)
 	else:
 		print "[Screensaver] Timer stop"
 		ScreenSaverTimer.stop()
@@ -42,6 +45,9 @@ class Screensaver(Screen):
 
 		Screen.__init__(self, session)
 		
+		global inScreenSaver
+		inScreenSaver = True
+
 		self.moveLogoTimer = eTimer()
 		self.moveLogoTimer.callback.append(self.doMovePicture)
 		self.onClose.append(self.__onClose)
@@ -70,6 +76,8 @@ class Screensaver(Screen):
 
 	def __onClose(self):
 		eActionMap.getInstance().unbindAction('', self.keypress)
+		global inScreenSaver
+		inScreenSaver = False
 
 	def keypress(self, key, flag):
 		if flag == 1:
