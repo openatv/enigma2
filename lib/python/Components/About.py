@@ -3,6 +3,7 @@ from Tools.HardwareInfo import HardwareInfo
 from os import path
 import sys
 import os
+import time
 
 def getVersionString():
 	return getImageVersionString()

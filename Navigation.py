@@ -35,7 +35,7 @@ class Navigation:
 		self.RecordTimer = RecordTimer.RecordTimer()
 		self.PowerTimer = PowerTimer.PowerTimer()
 		if getFPWasTimerWakeup():
-			if nextRecordTimerAfterEventActionAuto:
+			if nextRecordTimerAfterEventActionAuto and abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
 				print 'RECTIMER: wakeup to standby detected.'
 				f = open("/tmp/was_rectimer_wakeup", "w")
 				f.write('1')
@@ -45,7 +45,7 @@ class Navigation:
 				self.standbytimer.callback.append(self.gotostandby)
 				self.standbytimer.start(15000, True)
 
-			elif nextPowerManagerAfterEventActionAuto:
+			elif nextPowerManagerAfterEventActionAuto and abs(self.PowerTimer.getNextPowerManagerTime()) <= 60:
 				print 'POWERTIMER: wakeup to standby detected.'
 				f = open("/tmp/was_powertimer_wakeup", "w")
 				f.write('1')
