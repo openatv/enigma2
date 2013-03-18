@@ -27,9 +27,11 @@ def TimerStart(flag):
 			if ref:
 				ref = ref.toString().split(":")
 				flag = ref[2] == "2" or os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
+				if flag and ScreenSaverTimer.isActive():
+					return
 	if time and flag:
 		print "[Screensaver] Timer start", time
-		ScreenSaverTimer.startLongTimer(5)#time)
+		ScreenSaverTimer.startLongTimer(time)
 	else:
 		print "[Screensaver] Timer stop"
 		ScreenSaverTimer.stop()
