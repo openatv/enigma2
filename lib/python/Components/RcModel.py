@@ -17,14 +17,15 @@ class RcModel:
 	RCTYPE_INI5000 = 12
 	RCTYPE_INI5000R = 13
 	RCTYPE_INI7000 = 14
-	RCTYPE_IXUSSONE = 15
-	RCTYPE_IXUSSZERO = 16
-	RCTYPE_ODINM7 = 17
-	RCTYPE_ODINM9 = 18	
-	RCTYPE_TM = 19
-	RCTYPE_VU = 20	
-	RCTYPE_VU2 = 21
-	RCTYPE_XP1000 = 22
+	RCTYPE_IQON = 15	
+	RCTYPE_IXUSSONE = 16
+	RCTYPE_IXUSSZERO = 17
+	RCTYPE_ODINM7 = 18
+	RCTYPE_ODINM9 = 19	
+	RCTYPE_TM = 20
+	RCTYPE_VU = 21	
+	RCTYPE_VU2 = 22
+	RCTYPE_XP1000 = 23
 
 
 	def __init__(self):
@@ -47,6 +48,8 @@ class RcModel:
 			model = self.readFile('/proc/stb/info/hwmodel')
 			if model == 'tmtwinoe' or model == 'tm2toe' or model == 'tmsingle':
 				self.currentRcType = self.RCTYPE_TM
+			elif model == 'ios100hd' or model == 'ios200hd' or model == 'ios300hd':
+				self.currentRcType = self.RCTYPE_IQON
 		elif getBoxType() == 'dm8000':
 				self.currentRcType = self.RCTYPE_DMM
 		elif getBoxType() == 'dm7020hd':
@@ -146,8 +149,10 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/odinm9/'
 		elif self.currentRcType == self.RCTYPE_ODINM7:
 			return '/usr/share/enigma2/rc_models/odinm7/'
+		elif self.currentRcType == self.RCTYPE_IQON:
+			return '/usr/share/enigma2/rc_models/iqon/'
 		elif self.currentRcType == self.RCTYPE_IXUSSONE:
-			return '/usr/share/enigma2/rc_models/ixussone/'
+			return '/usr/share/enigma2/rc_models/ixussone/'			
 		elif self.currentRcType == self.RCTYPE_IXUSSZERO:
 			return '/usr/share/enigma2/rc_models/ixusszero/'
 		elif self.currentRcType == self.RCTYPE_TM:

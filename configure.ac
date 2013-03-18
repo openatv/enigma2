@@ -338,6 +338,7 @@ data/rc_models/odinm7/Makefile
 data/rc_models/ixussone/Makefile
 data/rc_models/ixusszero/Makefile
 data/rc_models/ebox5000/Makefile
+data/rc_models/iqon/Makefile
 include/Makefile
 lib/Makefile
 lib/actions/Makefile
