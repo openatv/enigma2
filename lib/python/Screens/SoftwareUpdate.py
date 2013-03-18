@@ -13,6 +13,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
 from enigma import eTimer, eDVBDB
+
 from os import rename, path, remove
 from gettext import dgettext
 import urllib

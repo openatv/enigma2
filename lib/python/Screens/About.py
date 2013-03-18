@@ -44,7 +44,7 @@ class About(Screen):
 		AboutText += _("CPU: %s") % about.getCPUString() + "\n"
 		AboutText += _("Cores: %s") % about.getCpuCoresString() + "\n"
 		AboutText += _("Drivers: ") + about.getDriversVersionString() + "\n"
-		AboutText += _("Image: ") + about.getImageTypeString() + "\n"
+		AboutText += _("Image: ") + about.getImageVersionString() + "\n"
 		AboutText += _("Kernel Version: ") + about.getKernelVersionString() + "\n"
 		
 		EnigmaVersion = _("GUI: ") + about.getEnigmaVersionString()
@@ -344,8 +344,8 @@ class SystemNetworkInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Network Information"))
-		#self.skinName = ["SystemNetworkInfo", "About"]
-		self.skinName = ["About"]
+		self.skinName = ["SystemNetworkInfo", "About"]
+		#self.skinName = ["About"]
 		self["LabelBSSID"] = StaticText()
 		self["LabelESSID"] = StaticText()
 		self["LabelQuality"] = StaticText()

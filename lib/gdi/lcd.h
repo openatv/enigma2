@@ -10,6 +10,11 @@
 #define LCD_BRIGHTNESS_MIN 0
 #define LCD_BRIGHTNESS_MAX 255
 
+#define LED_BRIGHTNESS_NORMAL 0x10
+#define LED_BRIGHTNESS_DEEPSTANDBY 0x11
+#define LED_BLINKING_TIME 0x12
+#define LED_SET_DEFAULT 0x13
+	
 class eLCD
 {
 #ifdef SWIG
@@ -62,6 +67,9 @@ public:
 	int setLCDBrightness(int brightness);
 	void setInverted( unsigned char );
 	void setFlipped(bool);
+	void setLEDNormalState(int value);
+	void setLEDDeepStandby(int value);
+	void setLEDBlinkingTime(int value);
 	bool isOled() const { return !!is_oled; }
 	void update();
 };
