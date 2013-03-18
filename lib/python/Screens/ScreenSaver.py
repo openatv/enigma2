@@ -1,25 +1,35 @@
 import Screens.InfoBar
 from Screens.Screen import Screen
 from Components.config import config
+from Components.ServiceEventTracker import ServiceEventTracker
+from Components.MovieList import AUDIO_EXTENSIONS
 from Components.Pixmap import Pixmap
-from enigma import ePoint, eTimer, eActionMap
+from enigma import ePoint, eTimer, eActionMap, iPlayableService
+import os
 
 def screensaverTimeout():
 	InfoBarInstance = Screens.InfoBar.InfoBar.instance
 	if InfoBarInstance:
 		InfoBarInstance.session.open(Screensaver)
 
-Timer = eTimer()
-Timer.callback.append(screensaverTimeout)
+ScreenSaverTimer = eTimer()
+ScreenSaverTimer.callback.append(screensaverTimeout)
 
 def TimerStart(flag):
 	time = int(config.usage.screen_saver.value)
+	if not flag:
+		InfoBarInstance = Screens.InfoBar.InfoBar.instance
+		if InfoBarInstance:
+			ref = InfoBarInstance.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if ref:
+				ref = ref.toString().split(":")
+				flag = ref[2] == "2" or os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
 	if time and flag:
 		print "[Screensaver] Timer start", time
-		Timer.startLongTimer(time)
+		ScreenSaverTimer.startLongTimer(time)
 	else:
 		print "[Screensaver] Timer stop"
-		Timer.stop()
+		ScreenSaverTimer.stop()
 	
 class Screensaver(Screen):
 	def __init__(self, session):
@@ -34,10 +44,16 @@ class Screensaver(Screen):
 		
 		self.moveLogoTimer = eTimer()
 		self.moveLogoTimer.callback.append(self.doMovePicture)
+		self.onClose.append(self.__onClose)
 
 		#Do use any key to get quit from the Screensaver
 		eActionMap.getInstance().bindAction('', 0, self.keypress)
 		
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evStart: self.close,
+			})
+
 		self["picture"] = Pixmap()
 		
 		self.onLayoutFinish.append(self.LayoutFinished)
@@ -51,10 +67,12 @@ class Screensaver(Screen):
 		self.posy = random.randint(1,self.maxy)
 		self.movex = self.movey = 1
 		self.moveLogoTimer.start(50)
-				
+
+	def __onClose(self):
+		eActionMap.getInstance().unbindAction('', self.keypress)
+
 	def keypress(self, key, flag):
 		if flag == 1:
-			eActionMap.getInstance().unbindAction('', self.keypress)
 			TimerStart(True)
 			self.close()
 
