@@ -7,6 +7,7 @@ from Components.MovieList import AUDIO_EXTENSIONS
 from Components.Pixmap import Pixmap
 from enigma import ePoint, eTimer, eActionMap, iPlayableService
 import os
+from sys import maxint
 
 inScreenSaver = False
 
@@ -28,14 +29,16 @@ def TimerStart(flag):
 			if ref:
 				ref = ref.toString().split(":")
 				flag = ref[2] == "2" or os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
-				if flag and ScreenSaverTimer.isActive():
-					return
 	if time and flag:
-		print "[Screensaver] Timer start", time
-		ScreenSaverTimer.startLongTimer(time)
+		ScreenSaverTimer.startLongTimer(5)#time)
 	else:
-		print "[Screensaver] Timer stop"
 		ScreenSaverTimer.stop()
+
+def keypress(key, flag):
+	if flag == 1 and ScreenSaverTimer.isActive():
+		TimerStart(True)
+
+eActionMap.getInstance().bindAction('', -maxint - 1, keypress)
 	
 class Screensaver(Screen):
 	def __init__(self, session):
