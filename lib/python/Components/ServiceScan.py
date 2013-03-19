@@ -134,6 +134,7 @@ class ServiceScan:
 		self.network = network
 		self.run = 0
 		self.lcd_summary = lcd_summary
+		self.firstrun = True
 
 	def doRun(self):
 		self.scan = eComponentScan()
@@ -159,6 +160,10 @@ class ServiceScan:
 		self.updatePass()
 		self.scan.statusChanged.get().append(self.scanStatusChanged)
 		self.scan.newService.get().append(self.newService)
+		if not self.firstrun:
+			self.state = self.Done
+			return
+		self.firstrun = False
 		self.servicelist.clear()
 		self.state = self.Running
 		err = self.scan.start(self.feid, self.flags, self.networkid)
