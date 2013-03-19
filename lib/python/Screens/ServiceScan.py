@@ -1,5 +1,4 @@
 from Screen import Screen
-from Screens import ScreenSaver
 from Components.ServiceScan import ServiceScan as CScan
 from Components.ProgressBar import ProgressBar
 from Components.Label import Label
@@ -46,10 +45,9 @@ class ServiceScan(Screen):
 							if channels:
 								self.session.postScanService = channels[0]
 								self.currentServiceList.addToHistory(channels[0])
-			self.cancel()
+			self.close()
 
 	def cancel(self):
-		ScreenSaver.TimerStart(True)
 		self.close()
 
 	def __init__(self, session, scanList):
@@ -69,7 +67,6 @@ class ServiceScan(Screen):
 			self.currentInfobar = None
 
 		self.session.nav.stopService()
-		ScreenSaver.TimerStart(False)
 
 		self["scan_progress"] = ProgressBar()
 		self["scan_state"] = Label(_("scan state"))
