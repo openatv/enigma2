@@ -211,7 +211,7 @@ class InfoBarShowHide:
 		ScreenSaver.TimerStart(self.seekstate[0])
 
 	def __onExecEnd(self):
-		ScreenSaver.TimerStart(True)
+		ScreenSaver.ScreenSaverTimer.stop()
 
 	def keyHide(self):
 		if self.__state == self.STATE_SHOWN:
