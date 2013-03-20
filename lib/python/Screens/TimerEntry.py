@@ -52,6 +52,7 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def createConfig(self):
 			justplay = self.timer.justplay
+			always_zap = self.timer.always_zap
 
 			afterevent = {
 				AFTEREVENT.NONE: "nothing",
@@ -102,7 +103,9 @@ class TimerEntry(Screen, ConfigListScreen):
 				weekday = int(strftime("%u", localtime(self.timer.begin))) - 1
 				day[weekday] = 1
 
-			self.timerentry_justplay = ConfigSelection(choices = [("zap", _("zap")), ("record", _("record"))], default = {0: "record", 1: "zap"}[justplay])
+			self.timerentry_justplay = ConfigSelection(choices = [
+				("zap", _("zap")), ("record", _("record")), ("zap+record", _("zap and record"))],
+				default = {0: "record", 1: "zap", 2: "zap+record"}[justplay + 2*always_zap])
 			if SystemInfo["DeepstandbySupport"]:
 				shutdownString = _("go to deep standby")
 			else:
@@ -294,6 +297,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timer.name = self.timerentry_name.value
 		self.timer.description = self.timerentry_description.value
 		self.timer.justplay = self.timerentry_justplay.value == "zap"
+		self.timer.always_zap = self.timerentry_justplay.value == "zap+record"
 		if self.timerentry_justplay.value == "zap":
 			if not self.timerentry_showendtime.value:
 				self.timerentry_endtime.value = self.timerentry_starttime.value
