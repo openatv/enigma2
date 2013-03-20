@@ -122,7 +122,7 @@ def InitUsageConfig():
 			m = abs(i / 60)
 			m = ngettext("%d minute", "%d minutes", m) % m
 		choicelist.append(("%d" % i, m))
-	config.usage.screen_saver = ConfigSelection(default = "300", choices = choicelist)
+	config.usage.screen_saver = ConfigSelection(default = "0", choices = choicelist)
 
 	config.usage.check_timeshift = ConfigYesNo(default = True)
 
