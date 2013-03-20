@@ -201,14 +201,16 @@ class InfoBarShowHide:
 		if isStandardInfoBar(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
 			self.secondInfoBarScreen.show()
+		self.screensaver = self.session.instantiateDialog(ScreenSaver.Screensaver)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
 	def __layoutFinished(self):
 		if self.secondInfoBarScreen:
 			self.secondInfoBarScreen.hide()
+		self.screensaver.hide()
 
 	def __onExecBegin(self):
-		ScreenSaver.TimerStart(self.seekstate[0])
+		ScreenSaver.TimerStart(self)
 
 	def __onExecEnd(self):
 		ScreenSaver.ScreenSaverTimer.stop()
@@ -1113,7 +1115,7 @@ class InfoBarSeek:
 
 		self.checkSkipShowHideLock()
 
-		ScreenSaver.TimerStart(state[0])
+		ScreenSaver.TimerStart(self)
 
 		return True
 

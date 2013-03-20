@@ -1,4 +1,3 @@
-import Screens.InfoBar
 from Screens import Standby
 from Screens.Screen import Screen
 from Components.config import config
@@ -7,35 +6,45 @@ from Components.MovieList import AUDIO_EXTENSIONS
 from Components.Pixmap import Pixmap
 from enigma import ePoint, eTimer, eActionMap, iPlayableService
 import os
+from sys import maxint
 
-inScreenSaver = False
+currentInfobar = None
 
 def screensaverTimeout():
-	if not inScreenSaver and not Standby.inStandby and not Standby.inTryQuitMainloop:
-		InfoBarInstance = Screens.InfoBar.InfoBar.instance
-		if InfoBarInstance:
-			InfoBarInstance.session.open(Screensaver)
+	if not Standby.inStandby and not Standby.inTryQuitMainloop and currentInfobar and hasattr(currentInfobar, "screensaver"):
+		if hasattr(currentInfobar, "pvrStateDialog"):
+			currentInfobar.pvrStateDialog.hide()
+		currentInfobar.screensaver.show()
 
 ScreenSaverTimer = eTimer()
 ScreenSaverTimer.callback.append(screensaverTimeout)
 
-def TimerStart(flag):
+def TimerStart(self):
+	global currentInfobar
+	currentInfobar = self
 	time = int(config.usage.screen_saver.value)
+	flag = self.seekstate[0]
 	if not flag:
-		InfoBarInstance = Screens.InfoBar.InfoBar.instance
-		if InfoBarInstance:
-			ref = InfoBarInstance.session.nav.getCurrentlyPlayingServiceOrGroup()
-			if ref:
-				ref = ref.toString().split(":")
-				flag = ref[2] == "2" or os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
+		ref = currentInfobar.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if ref:
+			ref = ref.toString().split(":")
+			flag = ref[2] == "2" or os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
 	if time and flag:
 		ScreenSaverTimer.startLongTimer(time)
 	else:
 		ScreenSaverTimer.stop()
 
+def keypress(key, flag):
+	if flag == 1 and currentInfobar and hasattr(currentInfobar, "screensaver") and currentInfobar.screensaver.shown:
+		currentInfobar.screensaver.hide()
+		if currentInfobar.execing:
+			TimerStart(currentInfobar)
+
+eActionMap.getInstance().bindAction('', -maxint - 1, keypress)
+
 class Screensaver(Screen):
 	def __init__(self, session):
-		
+
 		self.skin = """
 			<screen name="Screensaver" position="fill" flags="wfNoBorder">
 				<eLabel position="fill" backgroundColor="#54111112" zPosition="0"/>
@@ -44,19 +53,14 @@ class Screensaver(Screen):
 
 		Screen.__init__(self, session)
 		
-		global inScreenSaver
-		inScreenSaver = True
-
 		self.moveLogoTimer = eTimer()
 		self.moveLogoTimer.callback.append(self.doMovePicture)
-		self.onClose.append(self.__onClose)
+		self.onShow.append(self.__onShow)
+		self.onHide.append(self.__onHide)
 
-		#Do use any key to get quit from the Screensaver
-		eActionMap.getInstance().bindAction('', 0, self.keypress)
-		
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
-				iPlayableService.evStart: self.close,
+				iPlayableService.evStart: self.hide
 			})
 
 		self["picture"] = Pixmap()
@@ -71,17 +75,12 @@ class Screensaver(Screen):
 		self.posx = random.randint(1,self.maxx)
 		self.posy = random.randint(1,self.maxy)
 		self.movex = self.movey = 1
+
+	def __onHide(self):
+		self.moveLogoTimer.stop()
+
+	def __onShow(self):
 		self.moveLogoTimer.start(50)
-
-	def __onClose(self):
-		eActionMap.getInstance().unbindAction('', self.keypress)
-		global inScreenSaver
-		inScreenSaver = False
-
-	def keypress(self, key, flag):
-		if flag == 1:
-			TimerStart(True)
-			self.close()
 
 	def doMovePicture(self):
 			if self.posx > self.maxx or self.posx < 0:
