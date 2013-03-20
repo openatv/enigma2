@@ -1,46 +1,7 @@
-from Screens import Standby
 from Screens.Screen import Screen
-from Components.config import config
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.MovieList import AUDIO_EXTENSIONS
 from Components.Pixmap import Pixmap
-from enigma import ePoint, eTimer, eActionMap, iPlayableService
-import os
-from sys import maxint
-
-currentInfobar = None
-
-def screensaverTimeout():
-	if not Standby.inStandby and not Standby.inTryQuitMainloop and currentInfobar and hasattr(currentInfobar, "screensaver"):
-		if hasattr(currentInfobar, "pvrStateDialog"):
-			currentInfobar.pvrStateDialog.hide()
-		currentInfobar.screensaver.show()
-
-ScreenSaverTimer = eTimer()
-ScreenSaverTimer.callback.append(screensaverTimeout)
-
-def TimerStart(self):
-	global currentInfobar
-	currentInfobar = self
-	time = int(config.usage.screen_saver.value)
-	flag = self.seekstate[0]
-	if not flag:
-		ref = currentInfobar.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if ref:
-			ref = ref.toString().split(":")
-			flag = ref[2] == "2" or os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
-	if time and flag:
-		ScreenSaverTimer.startLongTimer(time)
-	else:
-		ScreenSaverTimer.stop()
-
-def keypress(key, flag):
-	if flag == 1 and currentInfobar and hasattr(currentInfobar, "screensaver") and currentInfobar.screensaver.shown:
-		currentInfobar.screensaver.hide()
-		if currentInfobar.execing:
-			TimerStart(currentInfobar)
-
-eActionMap.getInstance().bindAction('', -maxint - 1, keypress)
+from enigma import ePoint, eTimer, iPlayableService
 
 class Screensaver(Screen):
 	def __init__(self, session):

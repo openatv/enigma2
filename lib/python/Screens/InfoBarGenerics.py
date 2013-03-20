@@ -5,6 +5,7 @@ from Components.ActionMap import NumberActionMap
 from Components.Harddisk import harddiskmanager
 from Components.Input import Input
 from Components.Label import Label
+from Components.MovieList import AUDIO_EXTENSIONS
 from Components.PluginComponent import plugins
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
@@ -16,6 +17,7 @@ from Plugins.Plugin import PluginDescriptor
 
 from Screen import Screen
 from Screens import ScreenSaver
+from Screens import Standby
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Dish import Dish
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
@@ -40,6 +42,7 @@ from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInform
 from time import time, localtime, strftime
 from os import stat as os_stat
 from os import rename as os_rename
+import os
 from bisect import insort
 from sys import maxint
 
@@ -189,6 +192,8 @@ class InfoBarShowHide:
 		self.hideTimer = eTimer()
 		self.hideTimer.callback.append(self.doTimerHide)
 		self.hideTimer.start(5000, True)
+		self.screenSaverTimer = eTimer()
+		self.screenSaverTimer.callback.append(self.screensaverTimeout)
 
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
@@ -210,10 +215,23 @@ class InfoBarShowHide:
 		self.screensaver.hide()
 
 	def __onExecBegin(self):
-		ScreenSaver.TimerStart(self)
+		self.ScreenSaverTimerStart()
 
 	def __onExecEnd(self):
-		ScreenSaver.ScreenSaverTimer.stop()
+		self.screenSaverTimer.stop()
+
+	def __onShow(self):
+		self.__state = self.STATE_SHOWN
+		for x in self.onShowHideNotifiers:
+			x(True)
+		self.startHideTimer()
+
+	def __onHide(self):
+		self.__state = self.STATE_HIDDEN
+		if self.secondInfoBarScreen:
+			self.secondInfoBarScreen.hide()
+		for x in self.onShowHideNotifiers:
+			x(False)
 
 	def keyHide(self):
 		if self.__state == self.STATE_SHOWN:
@@ -235,12 +253,6 @@ class InfoBarShowHide:
 			if config.usage.show_infobar_on_zap.value:
 				self.doShow()
 
-	def __onShow(self):
-		self.__state = self.STATE_SHOWN
-		for x in self.onShowHideNotifiers:
-			x(True)
-		self.startHideTimer()
-
 	def startHideTimer(self):
 		if self.__state == self.STATE_SHOWN and not self.__locked:
 			self.hideTimer.stop()
@@ -250,13 +262,6 @@ class InfoBarShowHide:
 				idx = config.usage.infobar_timeout.index
 			if idx:
 				self.hideTimer.start(idx*1000, True)
-
-	def __onHide(self):
-		self.__state = self.STATE_HIDDEN
-		if self.secondInfoBarScreen:
-			self.secondInfoBarScreen.hide()
-		for x in self.onShowHideNotifiers:
-			x(False)
 
 	def doShow(self):
 		self.show()
@@ -299,6 +304,33 @@ class InfoBarShowHide:
 #	def startHide(self):
 #		self.instance.m_animation.startMoveAnimation(ePoint(0, 380), ePoint(0, 600), 100)
 #		self.__state = self.STATE_HIDDEN
+
+	def ScreenSaverTimerStart(self):
+		time = int(config.usage.screen_saver.value)
+		flag = self.seekstate[0]
+		if not flag:
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if ref:
+				ref = ref.toString().split(":")
+				flag = ref[2] == "2" or os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
+		if time and flag:
+			self.screenSaverTimer.startLongTimer(time)
+		else:
+			self.screenSaverTimer.stop()
+
+	def screensaverTimeout(self):
+		if self.execing and not Standby.inStandby and not Standby.inTryQuitMainloop:
+			self.hide()
+			if hasattr(self, "pvrStateDialog"):
+				self.pvrStateDialog.hide()
+			self.screensaver.show()
+			eActionMap.getInstance().bindAction('', -maxint - 1, self.keypressScreenSaver)
+
+	def keypressScreenSaver(self,key, flag):
+		if flag == 1:
+			self.screensaver.hide()
+			self.ScreenSaverTimerStart()
+			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
 
 class NumberZap(Screen):
 	def quit(self):
@@ -1115,7 +1147,8 @@ class InfoBarSeek:
 
 		self.checkSkipShowHideLock()
 
-		ScreenSaver.TimerStart(self)
+		if hasattr(self, "ScreenSaverTimerStart"):
+			self.ScreenSaverTimerStart()
 
 		return True
 
