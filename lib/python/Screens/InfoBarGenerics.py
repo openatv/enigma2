@@ -160,13 +160,58 @@ class InfoBarUnhandledKey:
 			self.unhandledKeyDialog.show()
 			self.hideUnhandledKeySymbolTimer.start(2000, True)
 
+class InfoBarScreenSaver:
+	def __init__(self):
+		self.onExecBegin.append(self.__onExecBegin)
+		self.onExecEnd.append(self.__onExecEnd)
+		self.screenSaverTimer = eTimer()
+		self.screenSaverTimer.callback.append(self.screensaverTimeout)
+		self.screensaver = self.session.instantiateDialog(ScreenSaver.Screensaver)
+		self.onLayoutFinish.append(self.__layoutFinished)
+
+	def __layoutFinished(self):
+		self.screensaver.hide()
+
+	def __onExecBegin(self):
+		self.ScreenSaverTimerStart()
+
+	def __onExecEnd(self):
+		self.screenSaverTimer.stop()
+
+	def ScreenSaverTimerStart(self):
+		time = int(config.usage.screen_saver.value)
+		flag = self.seekstate[0]
+		if not flag:
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if ref:
+				ref = ref.toString().split(":")
+				flag = ref[2] == "2" or os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
+		if time and flag:
+			self.screenSaverTimer.startLongTimer(time)
+		else:
+			self.screenSaverTimer.stop()
+
+	def screensaverTimeout(self):
+		if self.execing and not Standby.inStandby and not Standby.inTryQuitMainloop:
+			self.hide()
+			if hasattr(self, "pvrStateDialog"):
+				self.pvrStateDialog.hide()
+			self.screensaver.show()
+			eActionMap.getInstance().bindAction('', -maxint - 1, self.keypressScreenSaver)
+
+	def keypressScreenSaver(self,key, flag):
+		if flag == 1:
+			self.screensaver.hide()
+			self.ScreenSaverTimerStart()
+			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
+
 class SecondInfoBar(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skin = None
 
-class InfoBarShowHide:
+class InfoBarShowHide(InfoBarScreenSaver):
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
 	fancy animations. """
 	STATE_HIDDEN = 0
@@ -186,19 +231,16 @@ class InfoBarShowHide:
 				iPlayableService.evStart: self.serviceStarted,
 			})
 
+		InfoBarScreenSaver.__init__(self)
 		self.__state = self.STATE_SHOWN
 		self.__locked = 0
 
 		self.hideTimer = eTimer()
 		self.hideTimer.callback.append(self.doTimerHide)
 		self.hideTimer.start(5000, True)
-		self.screenSaverTimer = eTimer()
-		self.screenSaverTimer.callback.append(self.screensaverTimeout)
 
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
-		self.onExecBegin.append(self.__onExecBegin)
-		self.onExecEnd.append(self.__onExecEnd)
 
 		self.onShowHideNotifiers = []
 
@@ -206,19 +248,12 @@ class InfoBarShowHide:
 		if isStandardInfoBar(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
 			self.secondInfoBarScreen.show()
-		self.screensaver = self.session.instantiateDialog(ScreenSaver.Screensaver)
+
 		self.onLayoutFinish.append(self.__layoutFinished)
 
 	def __layoutFinished(self):
 		if self.secondInfoBarScreen:
 			self.secondInfoBarScreen.hide()
-		self.screensaver.hide()
-
-	def __onExecBegin(self):
-		self.ScreenSaverTimerStart()
-
-	def __onExecEnd(self):
-		self.screenSaverTimer.stop()
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
@@ -304,33 +339,6 @@ class InfoBarShowHide:
 #	def startHide(self):
 #		self.instance.m_animation.startMoveAnimation(ePoint(0, 380), ePoint(0, 600), 100)
 #		self.__state = self.STATE_HIDDEN
-
-	def ScreenSaverTimerStart(self):
-		time = int(config.usage.screen_saver.value)
-		flag = self.seekstate[0]
-		if not flag:
-			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			if ref:
-				ref = ref.toString().split(":")
-				flag = ref[2] == "2" or os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
-		if time and flag:
-			self.screenSaverTimer.startLongTimer(time)
-		else:
-			self.screenSaverTimer.stop()
-
-	def screensaverTimeout(self):
-		if self.execing and not Standby.inStandby and not Standby.inTryQuitMainloop:
-			self.hide()
-			if hasattr(self, "pvrStateDialog"):
-				self.pvrStateDialog.hide()
-			self.screensaver.show()
-			eActionMap.getInstance().bindAction('', -maxint - 1, self.keypressScreenSaver)
-
-	def keypressScreenSaver(self,key, flag):
-		if flag == 1:
-			self.screensaver.hide()
-			self.ScreenSaverTimerStart()
-			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
 
 class NumberZap(Screen):
 	def quit(self):
