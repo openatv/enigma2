@@ -11,6 +11,7 @@ from Components.Sources.Event import Event
 from Components.UsageConfig import preferredTimerPath
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
+from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.PictureInPicture import PictureInPicture
 from Screens.Setup import Setup
@@ -65,6 +66,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.StartRef = StartRef
 			self.servicelist = None
 		self.longbuttonpressed = False
+		self.ChoiceBoxDialog = None
 		self.ask_time = -1
 		self.closeRecursive = False
 		self.eventviewDialog = None
@@ -102,7 +104,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self['colouractions'].csel = self
 		self['recordingactions'] = HelpableActionMap(self, 'InfobarInstantRecord', 
 			{
-				'ShortRecord': (self.doRecordTimer, _('Add a record timer for current event')),
+				'ShortRecord': (self.RecordTimerQuestion, _('Add a record timer for current event')),
 				'LongRecord': (self.doZapTimer, _('Add a zap timer for current event'))
 			}, -1)
 		self['recordingactions'].csel = self
@@ -910,12 +912,6 @@ class EPGSelection(Screen, HelpableScreen):
 			autopoller = None
 			autotimer = None
 
-	def removeTimer(self, timer):
-		timer.afterEvent = AFTEREVENT.NONE
-		self.session.nav.RecordTimer.removeEntry(timer)
-		self['key_green'].setText(_('Add Timer'))
-		self.key_green_choice = self.ADD_TIMER
-
 	def timerAdd(self):
 		cur = self['list'].getCurrent()
 		event = cur[0]
@@ -925,9 +921,10 @@ class EPGSelection(Screen, HelpableScreen):
 		eventid = event.getEventId()
 		refstr = serviceref.ref.toString()
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret: not ret or self.removeTimer(timer)
-				self.session.openWithCallback(cb_func, MessageBox, _('Do you really want to delete %s?') % event.getEventName())
+				cb_func = lambda ret: self.removeTimer(timer)
+				menu = [(_("Yes"), 'CALLFUNC', cb_func), (_("No"), 'CALLFUNC', self.ChoiceBoxCB, self.ChoiceBoxNull)]
+				self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=_('Do you really want to remove the timer for %s?') % event.getEventName(), list=menu)
+				self.showChoiceBoxDialog()
 				break
 		else:
 			newEntry = RecordTimerEntry(serviceref, checkOldTimers=True, dirname=preferredTimerPath(), *parseEvent(event))
@@ -949,12 +946,26 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			self['key_green'].setText(_('Add Timer'))
 			self.key_green_choice = self.ADD_TIMER
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self['list'].fillGraphEPG(None, self.ask_time)
+			self.moveTimeLines()
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
 
-	def doRecordTimer(self):
-		zap = 0
+	def removeTimer(self, timer):
+		print 'removeTimer'
+		timer.afterEvent = AFTEREVENT.NONE
+		self.session.nav.RecordTimer.removeEntry(timer)
+		self['key_green'].setText(_('Add Timer'))
+		self.key_green_choice = self.ADD_TIMER
+		self.closeChoiceBoxDialog()
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self['list'].fillGraphEPG(None, self.ask_time)
+			self.moveTimeLines()
+
+	def RecordTimerQuestion(self):
+		timerfound = False
 		cur = self['list'].getCurrent()
 		event = cur[0]
 		serviceref = cur[1]
@@ -964,15 +975,47 @@ class EPGSelection(Screen, HelpableScreen):
 		refstr = serviceref.ref.toString()
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret: not ret or self.removeTimer(timer)
-				self.session.openWithCallback(cb_func, MessageBox, _('Do you really want to delete %s?') % event.getEventName())
+				cb_func = lambda ret: self.removeTimer(timer)
+				menu = [(_("Yes"), 'CALLFUNC', cb_func), (_("No"), 'CALLFUNC', self.ChoiceBoxCB, self.ChoiceBoxNull)]
+				self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=_('Do you really want to remove the timer for %s?') % event.getEventName(), list=menu)
+				self.showChoiceBoxDialog()
 				break
 		else:
-			newEntry = RecordTimerEntry(serviceref, checkOldTimers=True, *parseEvent(event))
-			self.session.openWithCallback(self.finishedAdd, InstantRecordTimerEntry, newEntry, zap)
+			menu = [(_("Recond once"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordTimer), (_("Add AutoTimer"), 'CALLFUNC', self.ChoiceBoxCB, self.addAutoTimer)]
+			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title="%s?" % event.getEventName(), list=menu)
+			self.showChoiceBoxDialog()
+
+	def ChoiceBoxNull(self):
+		return
+
+	def ChoiceBoxCB(self, choice):
+		if choice[3]:
+			try:
+				choice[3]()
+			except:
+				choice[3]
+		self.closeChoiceBoxDialog()
+
+	def showChoiceBoxDialog(self):
+		self.ChoiceBoxDialog.show()
+		self.ChoiceBoxDialog['actions'].execBegin()
+		self['okactions'].setEnabled(False)
+		self['epgcursoractions'].setEnabled(False)
+
+	def closeChoiceBoxDialog(self):
+		if self.ChoiceBoxDialog:
+			self.ChoiceBoxDialog['actions'].execEnd()
+			self.session.deleteDialog(self.ChoiceBoxDialog)
+		self['okactions'].setEnabled(True)
+		self['epgcursoractions'].setEnabled(True)
+
+	def doRecordTimer(self):
+		self.doInstantTimer(0)
 
 	def doZapTimer(self):
-		zap = 1
+		self.doInstantTimer(1)
+
+	def doInstantTimer(self, zap):
 		cur = self['list'].getCurrent()
 		event = cur[0]
 		serviceref = cur[1]
@@ -980,14 +1023,10 @@ class EPGSelection(Screen, HelpableScreen):
 			return
 		eventid = event.getEventId()
 		refstr = serviceref.ref.toString()
-		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret: not ret or self.removeTimer(timer)
-				self.session.openWithCallback(cb_func, MessageBox, _('Do you really want to delete %s?') % event.getEventName())
-				break
-		else:
-			newEntry = RecordTimerEntry(serviceref, checkOldTimers=True, *parseEvent(event))
-			self.session.openWithCallback(self.finishedAdd, InstantRecordTimerEntry, newEntry, zap)
+		newEntry = RecordTimerEntry(serviceref, checkOldTimers=True, *parseEvent(event))
+		self.InstantRecordDialog = self.session.instantiateDialog(InstantRecordTimerEntry, newEntry, zap)
+		retval = [True, self.InstantRecordDialog.retval()]
+		self.session.deleteDialogWithCallback(self.finishedAdd, self.InstantRecordDialog, retval)
 
 	def OK(self):
 		if config.epgselection.graph_ok.getValue() == 'Zap' or config.epgselection.enhanced_ok.getValue() == 'Zap' or config.epgselection.infobar_ok.getValue() == 'Zap' or config.epgselection.multi_ok.getValue() == 'Zap':
