@@ -365,8 +365,8 @@ def moveFiles(fileList):
 		except OSError, e:
 			if e.errno == 18:
 				print "[Directories] cannot rename across devices, trying slow move"
-				import Screens.CopyFiles
-				Screens.CopyFiles.moveFiles(fileList, item[0])
+				import Tools.CopyFiles
+				Tools.CopyFiles.moveFiles(fileList, item[0])
 				print "[Directories] Moving in background..."
 			else:
 				raise
