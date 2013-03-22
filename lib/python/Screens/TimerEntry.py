@@ -553,7 +553,9 @@ class InstantRecordTimerEntry(TimerEntry):
 			self.timer.end = self.timer.begin + (config.recording.margin_before.getValue() * 60) + 1
 		self.timer.resetRepeated()
 		self.saveTimer()
-		self.close((True, self.timer))
+
+	def retval(self):
+		return self.timer
 
 	def saveTimer(self):
 		self.session.nav.RecordTimer.saveTimer()
