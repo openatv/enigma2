@@ -176,6 +176,9 @@ class InfoBarScreenSaver:
 		self.ScreenSaverTimerStart()
 
 	def __onExecEnd(self):
+		if self.screensaver.shown:
+			self.screensaver.hide()
+			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
 		self.screenSaverTimer.stop()
 
 	def ScreenSaverTimerStart(self):
@@ -201,11 +204,9 @@ class InfoBarScreenSaver:
 
 	def keypressScreenSaver(self, key, flag):
 		if flag == 1:
-			if hasattr(self, "screensaver"):
-				self.screensaver.hide()
-				self.ScreenSaverTimerStart()
-				if self.execing:
-					self.show()
+			self.screensaver.hide()
+			self.show()
+			self.ScreenSaverTimerStart()
 			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
 
 class SecondInfoBar(Screen):
