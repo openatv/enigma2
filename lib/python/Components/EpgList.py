@@ -1381,6 +1381,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		self.bouquetFontName = "Regular"
 		self.bouquetFontSize = 20
 
+		self.itemHeight = 31
 		self.listHeight = None
 		self.listWidth = None
 
@@ -1409,6 +1410,8 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 					print 'self.borderColor',self.borderColor
 				elif attrib == "borderWidth":
 					self.BorderWidth = int(value)
+				elif attrib == "itemHeight":
+					self.itemHeight = int(value)
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
@@ -1453,10 +1456,9 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 			self.instance.moveSelection(dir)
 
 	def setItemsPerPage(self):
-			itemHeight = 31
-			self.l.setItemHeight(itemHeight)
+			self.l.setItemHeight(self.itemHeight)
 
-			self.picload.setPara((self.listWidth, itemHeight, 0, 0, 1, 1, "#00000000"))
+			self.picload.setPara((self.listWidth, self.itemHeight, 0, 0, 1, 1, "#00000000"))
 			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherEvent.png'), 0, 0, False)
 			self.othPix = self.picload.getData()
 			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedCurrentEvent.png'), 0, 0, False)
