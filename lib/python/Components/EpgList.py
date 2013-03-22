@@ -250,12 +250,6 @@ class EPGList(HTMLComponent, GUIComponent):
 			return self.l.getCurrentSelection()[0]
 		return 0
 
-	def moveUp(self):
-		self.instance.moveSelection(self.instance.moveUp)
-
-	def moveDown(self):
-		self.instance.moveSelection(self.instance.moveDown)
-
 	def isSelectable(self, service, service_name, events, picon):
 		return (events and len(events) and True) or False
 
@@ -534,6 +528,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		else:
 			instance.selectionChanged.get().remove(self.selectionChanged)
 			instance.setContent(None)
+
+	def selectionEnabled(self, enabled):
+		if self.instance is not None:
+			self.instance.setSelectionEnable(enabled)
 
 	def recalcEntrySize(self):
 		esize = self.l.getItemSize()
@@ -1037,7 +1035,6 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.list.sort(key=lambda x: x[2])
 		self.l.setList(self.list)
 		self.selectionChanged()
-		print time() - t
 
 	def fillSingleEPG(self, service):
 		test = [ 'RIBDT', (service.ref.toString(), 0, -1, -1) ]
@@ -1333,3 +1330,258 @@ class TimelineText(HTMLComponent, GUIComponent):
 			timeline_now.visible = True
 		else:
 			timeline_now.visible = False
+
+class EPGBouquetList(HTMLComponent, GUIComponent):
+	def __init__(self, graphic=False):
+		GUIComponent.__init__(self)
+		self.graphic = graphic
+		self.l = eListboxPythonMultiContent()
+		self.l.setBuildFunc(self.buildEntry)
+
+		self.onSelChanged = [ ]
+
+		self.picload = ePicLoad()
+
+		self.foreColor = 0xffffff
+		self.foreColorSelected = 0xffffff
+		self.backColor = 0x2D455E
+		self.backColorSelected = 0xd69600
+
+		self.borderColor = 0xC0C0C0
+		self.BorderWidth = 1
+
+		self.bouquetFontName = "Regular"
+		self.bouquetFontSize = 20
+
+		self.listHeight = None
+		self.listWidth = None
+
+		self.bouquetNamePadding = 3
+		self.bouquetNameAlign = 'left'
+		self.bouquetNameWrap = 'no'
+
+	def applySkin(self, desktop, screen):
+		if self.skinAttributes is not None:
+			attribs = [ ]
+			for (attrib, value) in self.skinAttributes:
+				if attrib == "font":
+					font = parseFont(value, ((1,1),(1,1)) )
+					self.bouquetFontName = font.family
+					self.bouquetFontSize = font.pointSize
+				elif attrib == "foregroundColor":
+					self.foreColor = parseColor(value).argb()
+				elif attrib == "backgroundColor":
+					self.backColor = parseColor(value).argb()
+				elif attrib == "foregroundColorSelected":
+					self.foreColorSelected = parseColor(value).argb()
+				elif attrib == "backgroundColorSelected":
+					self.backColorSelected = parseColor(value).argb()
+				elif attrib == "borderColor":
+					self.borderColor = parseColor(value).argb()
+					print 'self.borderColor',self.borderColor
+				elif attrib == "borderWidth":
+					self.BorderWidth = int(value)
+				else:
+					attribs.append((attrib,value))
+			self.skinAttributes = attribs
+		rc = GUIComponent.applySkin(self, desktop, screen)
+		self.listHeight = self.instance.size().height()
+		self.listWidth = self.instance.size().width()
+		self.setItemsPerPage()
+		return rc
+
+	GUI_WIDGET = eListbox
+
+	def getCurrentBouquet(self):
+		return self.l.getCurrentSelection()[0]
+
+	def getCurrentBouquetService(self):
+		return self.l.getCurrentSelection()[1]
+
+	def selectionChanged(self):
+		for x in self.onSelChanged:
+			if x is not None:
+				x()
+
+	def getIndexFromService(self, serviceref):
+		if serviceref is not None:
+			for x in range(len(self.bouquetslist)):
+				if CompareWithAlternatives(self.bouquetslist[x][1].toString(), serviceref.toString()):
+					return x
+		return None
+
+	def moveToService(self, serviceref):
+		newIdx = self.getIndexFromService(serviceref)
+		if newIdx is None:
+			newIdx = 0
+		self.setCurrentIndex(newIdx)
+
+	def setCurrentIndex(self, index):
+		if self.instance is not None:
+			self.instance.moveSelectionTo(index)
+
+	def moveTo(self, dir):
+		if self.instance is not None:
+			self.instance.moveSelection(dir)
+
+	def setItemsPerPage(self):
+			itemHeight = 31
+			self.l.setItemHeight(itemHeight)
+
+			self.picload.setPara((self.listWidth, itemHeight, 0, 0, 1, 1, "#00000000"))
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherEvent.png'), 0, 0, False)
+			self.othPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedCurrentEvent.png'), 0, 0, False)
+			self.selPix = self.picload.getData()
+			
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderTop.png'), 0, 0, False)
+			self.borderTopPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderLeft.png'), 0, 0, False)
+			self.borderLeftPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderBottom.png'), 0, 0, False)
+			self.borderBottomPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderRight.png'), 0, 0, False)
+			self.borderRightPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderTop.png'), 0, 0, False)
+			self.borderSelectedTopPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderLeft.png'), 0, 0, False)
+			self.borderSelectedLeftPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderBottom.png'), 0, 0, False)
+			self.borderSelectedBottomPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderRight.png'), 0, 0, False)
+			self.borderSelectedRightPix = self.picload.getData()
+
+	def setBouquetFontsize(self):
+		self.l.setFont(0, gFont(self.bouquetFontName, self.bouquetFontSize))
+
+	def postWidgetCreate(self, instance):
+		self.l.setSelectableFunc(True)
+		instance.setWrapAround(True)
+		instance.selectionChanged.get().append(self.selectionChanged)
+		instance.setContent(self.l)
+		# self.l.setSelectionClip(eRect(0,0,0,0), False)
+		self.setBouquetFontsize()
+
+	def preWidgetRemove(self, instance):
+		instance.selectionChanged.get().append(self.selectionChanged)
+		instance.setContent(None)
+
+	def selectionEnabled(self, enabled):
+		if self.instance is not None:
+			self.instance.setSelectionEnable(enabled)
+
+	def recalcEntrySize(self):
+		esize = self.l.getItemSize()
+		width = esize.width()
+		height = esize.height()
+		self.bouquet_rect = Rect(0, 0, width, height)
+
+	def getBouquetRect(self):
+		rc = self.bouquet_rect
+		return Rect( rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height() )
+
+	def buildEntry(self, name, func):
+		r1 = self.bouquet_rect
+		left = r1.x
+		top = r1.y
+		# width = (len(name)+5)*8
+		width = r1.w
+		height = r1.h
+		selected = self.CurrentBouquet == func
+
+		if self.bouquetNameAlign.lower() == 'left':
+			if self.bouquetNameWrap.lower() == 'yes':
+				alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
+			else:
+				alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+		else:
+			if self.bouquetNameWrap.lower() == 'yes':
+				alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
+			else:
+				alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
+
+		res = [ None ]
+
+		if selected:
+			borderTopPix = self.borderSelectedTopPix
+			borderLeftPix = self.borderSelectedLeftPix
+			borderBottomPix = self.borderSelectedBottomPix
+			borderRightPix = self.borderSelectedRightPix
+			foreColor = self.foreColor
+			backColor = self.backColor
+			foreColorSel = self.foreColorSelected
+			backColorSel = self.backColorSelected
+			bgpng = self.selPix
+			if bgpng is not None and self.graphic:
+				backColor = None
+				backColorSel = None
+		else:
+			borderTopPix = self.borderTopPix
+			borderLeftPix = self.borderLeftPix
+			borderBottomPix = self.borderBottomPix
+			borderRightPix = self.borderRightPix
+			backColor = self.backColor
+			foreColor = self.foreColor
+			foreColorSel = self.foreColorSelected
+			backColorSel = self.backColorSelected
+			bgpng = self.othPix
+			if bgpng is not None and self.graphic:
+				backColor = None
+				backColorSel = None
+
+		# box background
+		if bgpng is not None and self.graphic:
+			res.append(MultiContentEntryPixmapAlphaTest(
+				pos = (left + self.BorderWidth, top + self.BorderWidth),
+				size = (width - 2 * self.BorderWidth, height - 2 * self.BorderWidth),
+				png = bgpng))
+		else:
+			res.append(MultiContentEntryText(
+				pos = (left , top), size = (width, height),
+				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+				text = "", color = None, color_sel = None,
+				backcolor = backColor, backcolor_sel = backColorSel,
+				border_width = self.BorderWidth, border_color = self.borderColor))
+
+		evX = left + self.BorderWidth + self.bouquetNamePadding
+		evY = top + self.BorderWidth
+		evW = width - 2 * (self.BorderWidth + self.bouquetNamePadding)
+		evH = height - 2 * self.BorderWidth
+
+		res.append(MultiContentEntryText(
+			pos = (evX, evY), size = (evW, evH),
+			font = 0, flags = alignnment,
+			text = name,
+			color = foreColor, color_sel = foreColorSel,
+			backcolor = backColor, backcolor_sel = backColorSel))
+
+		# Borders
+		if self.graphic:
+			if self.borderTopPix is not None:
+				res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (left, r1.y),
+						size = (r1.w, self.BorderWidth),
+						png = self.borderTopPix))
+			if self.borderBottomPix is not None:
+				res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (left, r1.h-self.BorderWidth),
+						size = (r1.w, self.BorderWidth),
+						png = self.borderBottomPix))
+			if self.borderLeftPix is not None:
+				res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (left, r1.y),
+						size = (self.BorderWidth, r1.h),
+						png = self.borderLeftPix))
+			if self.borderRightPix is not None:
+				res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (r1.w-self.BorderWidth, left),
+						size = (self.BorderWidth, r1.h),
+						png = self.borderRightPix))
+
+		return res
+
+	def fillBouquetList(self, bouquets):
+		self.bouquetslist = bouquets
+		self.l.setList(self.bouquetslist)
+		self.selectionChanged()
+		self.CurrentBouquet = self.getCurrentBouquetService()

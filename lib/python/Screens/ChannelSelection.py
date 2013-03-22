@@ -77,6 +77,16 @@ class BouquetSelector(Screen):
 		self.close(False)
 
 
+class EpgBouquetSelector(BouquetSelector):
+	def __init__(self, session, bouquets, selectedFunc, enableWrapAround=False):
+		BouquetSelector.__init__(self, session, bouquets, selectedFunc, enableWrapAround=False)
+		self.skinName = "BouquetSelector"
+		self.bouquets=bouquets
+
+	def okbuttonClick(self):
+		self.selectedFunc(self.getCurrent(),self.bouquets)
+
+
 class SilentBouquetSelector:
 	def __init__(self, bouquets, enableWrapAround=False, current=0):
 		self.bouquets = [b[1] for b in bouquets]
