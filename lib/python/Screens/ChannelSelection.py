@@ -1549,16 +1549,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.setTitle(title)
 		self.buildTitleString()
 
-	def timeshiftCheckReply(self, enable_pipzap, preview_zap, answer):
-		if answer:
-			self.zap(enable_pipzap, preview_zap)
-		else:
-			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
-		if not preview_zap:
-			self.hide()
-
 	#called from infoBar and channelSelected
 	def zap(self, enable_pipzap = False, preview_zap = False, checkParentalControl = True, ref = None):
+		self.curRoot = self.startRoot
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		nref = self.getCurrentSelection()
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
@@ -1568,14 +1562,15 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 						# XXX: Make sure we set an invalid ref
 						self.session.pip.playService(None)
 			else:
+				self.setStartRoot(self.curRoot)
 				self.setCurrentSelection(ref)
-		else:
-			if Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.timeshiftCheckReply, enable_pipzap, preview_zap)):
-				return
-			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			if ref is None or ref != nref:
-				self.new_service_played = True
-				self.session.nav.playService(nref)
+		elif ref is None or ref != nref:
+			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref))
+
+	def zapCheckTimeshiftCallback(self, enable_pipzap, preview_zap, nref, answer):
+		if answer:
+			self.new_service_played = True
+			self.session.nav.playService(nref)
 			if not preview_zap:
 				self.saveRoot()
 				self.saveChannel(nref)
@@ -1588,6 +1583,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			else:
 				Notifications.RemovePopup("Parental control")
 				self.setCurrentSelection(nref)
+		else:
+			self.setStartRoot(self.curRoot)
+			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
+		if not preview_zap:
+			self.hide()
 
 	def newServicePlayed(self):
 		ret = self.new_service_played
@@ -1733,11 +1733,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				lastservice = eServiceReference(self.lastservice.getValue())
 				if lastservice.valid() and self.getCurrentSelection() != lastservice:
 					self.setCurrentSelection(lastservice)
-		elif self.revertMode == MODE_TV:
-			self.setModeTv()
-		elif self.revertMode == MODE_RADIO:
-			self.setModeRadio()
-		self.revertMode = None
 		self.asciiOff()
 		if config.usage.servicelistpreview_mode.getValue():
 			self.zapBack()
@@ -1745,13 +1740,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def zapBack(self):
 		if self.startServiceRef and self.session.nav.getCurrentlyPlayingServiceOrGroup() != self.startServiceRef:
-			if self.startRoot:
-				self.clearPath()
-				self.recallBouquetMode()
-				if self.bouquet_root:
-					self.enterPath(self.bouquet_root)
-				self.enterPath(self.startRoot)
-				self.saveRoot()
+			self.setStartRoot(self.startRoot)
 			self.new_service_played = True
 			self.session.nav.playService(self.startServiceRef)
 			self.saveChannel(self.startServiceRef)
@@ -1761,6 +1750,20 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			# This unfortunately won't work with subservices
 			self.setCurrentSelection(self.session.pip.getCurrentService())
 
+	def setStartRoot(self, root):
+		if root:
+			if self.revertMode == MODE_TV:
+				self.setModeTv()
+			elif self.revertMode == MODE_RADIO:
+				self.setModeRadio()
+			self.revertMode = None
+			self.clearPath()
+			self.recallBouquetMode()
+			if self.bouquet_root:
+				self.enterPath(self.bouquet_root)
+			self.enterPath(root)
+			self.startRoot = None
+			self.saveRoot()
 
 class RadioInfoBar(Screen):
 	def __init__(self, session):

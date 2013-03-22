@@ -26,6 +26,7 @@ class Screen(dict, GUISkin):
 		self.onClose = [ ]
 		self.onFirstExecBegin = [ ]
 		self.onExecBegin = [ ]
+		self.onExecEnd = [ ]
 		self.onShown = [ ]
 
 		self.onShow = [ ]
@@ -105,6 +106,8 @@ class Screen(dict, GUISkin):
 #		assert self.session != None, "execEnd on non-execing screen!"
 #		self.session = None
 		self.execing = False
+		for x in self.onExecEnd:
+			x()
 
 	# never call this directly - it will be called from the session!
 	def doClose(self):

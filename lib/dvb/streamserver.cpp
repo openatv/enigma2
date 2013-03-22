@@ -5,6 +5,7 @@
 #include <lib/base/eerror.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
+#include <lib/base/wrappers.h>
 
 #include <lib/dvb/streamserver.h>
 
