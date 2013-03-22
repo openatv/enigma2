@@ -854,7 +854,6 @@ class EPGSelection(Screen, HelpableScreen):
 				name = event.getEventName()
 			except:
 				name = ''
-
 			self.session.open(EPGSearch, name, False)
 		except ImportError:
 			self.session.open(MessageBox, _('The EPGSearch plugin is not installed!\nPlease install it.'), type=MessageBox.TYPE_INFO, timeout=10)
@@ -868,6 +867,20 @@ class EPGSelection(Screen, HelpableScreen):
 				return
 			serviceref = cur[1]
 			addAutotimerFromEvent(self.session, evt=event, service=serviceref)
+			self.refreshTimer.start(3000)
+		except ImportError:
+			self.session.open(MessageBox, _('The AutoTimer plugin is not installed!\nPlease install it.'), type=MessageBox.TYPE_INFO, timeout=10)
+
+	def addAutoTimerSilent(self):
+		try:
+			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEventSilent
+			cur = self['list'].getCurrent()
+			event = cur[0]
+			if not event:
+				return
+			serviceref = cur[1]
+			addAutotimerFromEventSilent(self.session, evt=event, service=serviceref)
+			self.refreshTimer.start(3000)
 		except ImportError:
 			self.session.open(MessageBox, _('The AutoTimer plugin is not installed!\nPlease install it.'), type=MessageBox.TYPE_INFO, timeout=10)
 
@@ -981,7 +994,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.showChoiceBoxDialog()
 				break
 		else:
-			menu = [(_("Recond once"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordTimer), (_("Add AutoTimer"), 'CALLFUNC', self.ChoiceBoxCB, self.addAutoTimer)]
+			menu = [(_("Recond once"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordTimer), (_("Add AutoTimer"), 'CALLFUNC', self.ChoiceBoxCB, self.addAutoTimerSilent)]
 			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title="%s?" % event.getEventName(), list=menu)
 			self.showChoiceBoxDialog()
 
