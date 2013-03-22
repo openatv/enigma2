@@ -11,6 +11,7 @@ from Tools.Alternatives import CompareWithAlternatives
 from Tools.LoadPixmap import LoadPixmap
 
 from time import localtime, time, strftime
+from Components.config import config
 from ServiceReference import ServiceReference
 from Tools.Directories import pathExists, resolveFilename, SCOPE_ACTIVE_SKIN
 from os import listdir, path
@@ -650,21 +651,31 @@ class EPGList(HTMLComponent, GUIComponent):
 			if nowTime < beginTime:
 				begin = localtime(beginTime)
 				end = localtime(beginTime+duration)
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, r4.x, r4.y, r4.w, r4.h, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER, "%02d.%02d - %02d.%02d"%(begin[3],begin[4],end[3],end[4])))
+				res.extend((
+					(eListboxPythonMultiContent.TYPE_TEXT, r4.x, r4.y, r4.w, r4.h, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER, "%02d.%02d - %02d.%02d"%(begin[3],begin[4],end[3],end[4])),
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, 80, r3.h, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, _("%d min") % (duration / 60))
+				))
 			else:
 				percent = (nowTime - beginTime) * 100 / duration
-				res.append((eListboxPythonMultiContent.TYPE_PROGRESS, r2.x, r2.y, r2.w, r2.h, percent))
+				prefix = "+"
+				remaining = ((beginTime+duration) - int(time())) / 60
+				if remaining <= 0:
+					prefix = ""
+				res.extend((
+					(eListboxPythonMultiContent.TYPE_PROGRESS, r2.x, r2.y, r2.w, r2.h, percent),
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, 80, r3.h, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, _("%s%d min") % (prefix, remaining))
+				))
 			if rec is not None and rec[1] >0:
 				if rec[1] == 1:
 					pos = r3.x+r3.w
 				else:
 					pos = r3.x+r3.w-10
 				res.extend((
-					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-10, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w-110, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
 					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-11), 21, 21, self.clocks[rec[1]])
 				))
 			else:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w-100, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
 		return res
 
 	def buildGraphEntry(self, service, service_name, events, picon):
@@ -1025,6 +1036,14 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.selectionChanged()
 		return False
 
+	def queryEPG(self, list, buildFunc=None):
+		if self.epgcache is not None:
+			if buildFunc is not None:
+				return self.epgcache.lookupEvent(list, buildFunc)
+			else:
+				return self.epgcache.lookupEvent(list)
+		return [ ]
+
 	def fillSimilarList(self, refstr, event_id):
 		# search similar broadcastings
 		t = time()
@@ -1037,22 +1056,31 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.selectionChanged()
 
 	def fillSingleEPG(self, service):
-		test = [ 'RIBDT', (service.ref.toString(), 0, -1, -1) ]
-		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
+		t = time()
+		epg_time = t - config.epg.histminutes.getValue()*60
+		test = [ 'RIBDT', (service.ref.toString(), 0, epg_time, -1) ]
+		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
+		if t != epg_time:
+			idx = 0
+			for x in self.list:
+				idx += 1
+				if t < x[2]+x[3]:
+					break
+			self.instance.moveSelectionTo(idx-1)
 		self.selectionChanged()
 
 	def fillMultiEPG(self, services, stime=None):
 		test = [ (service.ref.toString(), 0, stime) for service in services ]
 		test.insert(0, 'X0RIBDTCn')
-		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
+		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
 		self.selectionChanged()
 
 	def updateMultiEPG(self, direction):
 		test = [ x[3] and (x[1], direction, x[3]) or (x[1], direction, 0) for x in self.list ]
 		test.insert(0, 'XRIBDTCn')
-		epg_data = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
+		epg_data = self.queryEPG(test)
 		cnt = 0
 		for x in epg_data:
 			changecount = self.list[cnt][0] + direction
@@ -1079,7 +1107,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			piconIdx = 0
 
 		test.insert(0, 'XRnITBD') #return record, service ref, service name, event id, event title, begin time, duration
-		epg_data = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
+		epg_data = self.queryEPG(test)
 		self.list = [ ]
 		tmp_list = None
 		service = ""
