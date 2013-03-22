@@ -229,6 +229,23 @@ class EPGSelection(Screen, HelpableScreen):
 			self.updateTimelineTimer = eTimer()
 			self.updateTimelineTimer.callback.append(self.moveTimeLines)
 			self.updateTimelineTimer.start(60000)
+			self['bouquetcursoractions'] = HelpableActionMap(self, 'DirectionActions', 
+				{
+					'left': (self.leftPressed, _('Goto previous event')),
+					'right': (self.rightPressed, _('Goto next event')),
+					'up': (self.moveBouquetUp, _('Goto previous channel')),
+					'down': (self.moveBouquetDown, _('Goto next channel'))
+				}, -1)
+			self['bouquetcursoractions'].csel = self
+			self["bouquetcursoractions"].setEnabled(False)
+			self['bouquetokactions'] = HelpableActionMap(self, 'OkCancelActions',
+				{
+					'cancel': (self.closeScreen, _('Exit EPG')),
+					'OK': (self.BouquetOK, _('Zap to channel (setup in menu)')),
+				}, -1)
+			self['bouquetokactions'].csel = self
+			self["bouquetokactions"].setEnabled(False)
+
 			self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', 
 				{
 					'nextService': (self.nextService, _('Jump forward 24 hours')),
@@ -251,21 +268,6 @@ class EPGSelection(Screen, HelpableScreen):
 					'down': (self.moveDown, _('Goto next channel'))
 				}, -1)
 			self['epgcursoractions'].csel = self
-			self['bouquetcursoractions'] = HelpableActionMap(self, 'DirectionActions', 
-				{
-					'left': (self.leftPressed, _('Goto previous event')),
-					'right': (self.rightPressed, _('Goto next event')),
-					'up': (self.moveBouquetUp, _('Goto previous channel')),
-					'down': (self.moveBouquetDown, _('Goto next channel'))
-				}, -1)
-			self['bouquetcursoractions'].csel = self
-			self['bouquetokactions'] = HelpableActionMap(self, 'OkCancelActions',
-				{
-					'cancel': (self.closeScreen, _('Exit EPG')),
-					'OK': (self.BouquetOK, _('Zap to channel (setup in menu)')),
-				}, -1)
-			self['bouquetokactions'].csel = self
-			self["bouquetokactions"].setEnabled(False)
 
 			self['input_actions'] = HelpableNumberActionMap(self, 'NumberActions', 
 				{
@@ -299,6 +301,23 @@ class EPGSelection(Screen, HelpableScreen):
 			self['more_text'] = Label()
 			self['date'] = Label()
 			self.bouquetlist_active = False
+			self['bouquetcursoractions'] = HelpableActionMap(self, 'DirectionActions', 
+				{
+					'left': (self.leftPressed, _('Goto previous event')),
+					'right': (self.rightPressed, _('Goto next event')),
+					'up': (self.moveBouquetUp, _('Goto previous channel')),
+					'down': (self.moveBouquetDown, _('Goto next channel'))
+				}, -1)
+			self['bouquetcursoractions'].csel = self
+			self["bouquetcursoractions"].setEnabled(False)
+			self['bouquetokactions'] = HelpableActionMap(self, 'OkCancelActions',
+				{
+					'cancel': (self.closeScreen, _('Exit EPG')),
+					'OK': (self.BouquetOK, _('Zap to channel (setup in menu)')),
+				}, -1)
+			self['bouquetokactions'].csel = self
+			self["bouquetokactions"].setEnabled(False)
+
 			self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', 
 				{
 					'nextService': (self.nextPage, _('Move down a page')),
@@ -320,21 +339,6 @@ class EPGSelection(Screen, HelpableScreen):
 					'down': (self.moveDown, _('Goto next channel'))
 				}, -1)
 			self['epgcursoractions'].csel = self
-			self['bouquetcursoractions'] = HelpableActionMap(self, 'DirectionActions', 
-				{
-					'left': (self.leftPressed, _('Goto previous event')),
-					'right': (self.rightPressed, _('Goto next event')),
-					'up': (self.moveBouquetUp, _('Goto previous channel')),
-					'down': (self.moveBouquetDown, _('Goto next channel'))
-				}, -1)
-			self['bouquetcursoractions'].csel = self
-			self['bouquetokactions'] = HelpableActionMap(self, 'OkCancelActions',
-				{
-					'cancel': (self.closeScreen, _('Exit EPG')),
-					'OK': (self.BouquetOK, _('Zap to channel (setup in menu)')),
-				}, -1)
-			self['bouquetokactions'].csel = self
-			self["bouquetokactions"].setEnabled(False)
 
 		if self.type == EPG_TYPE_GRAPH:
 			time_epoch=config.epgselection.graph_prevtimeperiod.getValue()
