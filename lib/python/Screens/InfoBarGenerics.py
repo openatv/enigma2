@@ -1145,11 +1145,17 @@ class InfoBarSeek:
 				print "resolved to PAUSE"
 				pauseable.pause()
 			elif self.seekstate[1]:
-				print "resolved to FAST FORWARD"
-				pauseable.setFastForward(self.seekstate[1])
+				if not pauseable.setFastForward(self.seekstate[1]):
+					print "resolved to FAST FORWARD"
+				else:
+					self.seekstate = self.SEEK_STATE_PLAY
+					print "FAST FORWARD not possible: resolved to PLAY"
 			elif self.seekstate[2]:
-				print "resolved to SLOW MOTION"
-				pauseable.setSlowMotion(self.seekstate[2])
+				if not pauseable.setSlowMotion(self.seekstate[2]):
+					print "resolved to SLOW MOTION"
+				else:
+					self.seekstate = self.SEEK_STATE_PAUSE
+					print "SLOW MOTION not possible: resolved to PAUSE"
 			else:
 				print "resolved to PLAY"
 				pauseable.unpause()
