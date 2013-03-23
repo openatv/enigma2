@@ -1242,7 +1242,7 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 				continue;
 			}
 
-			int off=(area.width()-linelength)*256/(spacemode?numspaces:(num-1));
+			int off=(area.width()-linelength)*256/(numspaces?numspaces:(num-1));
 			int curoff=0;
 			while (begin != end)
 			{
