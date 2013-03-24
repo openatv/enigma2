@@ -1,6 +1,6 @@
 from Screen import Screen
 from Screens.HelpMenu import HelpableScreen
-from Components.ActionMap import NumberActionMap, HelpableActionMap, HelpableNumberActionMap
+from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.Button import Button
 from Components.config import config, configfile, ConfigClock
 from Components.EpgList import EPGList, EPGBouquetList, TimelineText, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH, EPG_TYPE_GRAPH, MAX_TIMELINES
@@ -17,7 +17,7 @@ from Screens.PictureInPicture import PictureInPicture
 from Screens.Setup import Setup
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from TimeDateInput import TimeDateInput
-from enigma import eServiceReference, eTimer, eServiceCenter
+from enigma import eServiceReference, eTimer, eServiceCenter, ePoint
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry, InstantRecordTimerEntry
 from ServiceReference import ServiceReference
@@ -91,6 +91,11 @@ class EPGSelection(Screen, HelpableScreen):
 				'OKLong': (self.OKLong, _('Zap to channel and close (setup in menu)'))
 			}, -1)
 		self['okactions'].csel = self
+		self['dialogactions'] = HelpableActionMap(self, 'OkCancelActions',
+			{
+				'cancel': (self.closeChoiceBoxDialog, _('Exit EPG')),
+			}, -1)
+		self['dialogactions'].csel = self
 		self['colouractions'] = HelpableActionMap(self, 'ColorActions', 
 			{
 				'red': (self.redButtonPressed, _('IMDB search for current event')),
@@ -179,7 +184,7 @@ class EPGSelection(Screen, HelpableScreen):
 						'down': (self.moveDown, _('Goto next channel'))
 					}, -1)
 				self['epgcursoractions'].csel = self
-			self['inputactions'] = HelpableNumberActionMap(self, 'NumberActions', 
+			self['input_actions'] = HelpableNumberActionMap(self, 'NumberActions', 
 				{
 					'1': (self.keyNumberGlobal, _('enter number to jump to channel.')),
 					'2': (self.keyNumberGlobal, _('enter number to jump to channel.')),
@@ -191,7 +196,7 @@ class EPGSelection(Screen, HelpableScreen):
 					'8': (self.keyNumberGlobal, _('enter number to jump to channel.')),
 					'9': (self.keyNumberGlobal, _('enter number to jump to channel.'))
 				}, -1)
-			self['inputactions'].csel = self
+			self['input_actions'].csel = self
 			self.list = []
 			self.servicelist = service
 			self.currentService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -998,7 +1003,10 @@ class EPGSelection(Screen, HelpableScreen):
 				break
 		else:
 			menu = [(_("Record once"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordTimer), (_("Add AutoTimer"), 'CALLFUNC', self.ChoiceBoxCB, self.addAutoTimerSilent)]
-			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title="%s?" % event.getEventName(), list=menu)
+			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title="%s?" % event.getEventName(), list=menu, skin_name="RecordTimerQuestion")
+			serviceref = eServiceReference(str(self['list'].getCurrent()[1]))
+			posy = self['list'].getSelectionPosition(serviceref)
+			self.ChoiceBoxDialog.instance.move(ePoint(posy[0]-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+posy[1]))
 			self.showChoiceBoxDialog()
 
 	def ChoiceBoxNull(self):
@@ -1013,17 +1021,29 @@ class EPGSelection(Screen, HelpableScreen):
 		self.closeChoiceBoxDialog()
 
 	def showChoiceBoxDialog(self):
+		self['dialogactions'].execBegin()
 		self.ChoiceBoxDialog.show()
 		self.ChoiceBoxDialog['actions'].execBegin()
-		self['okactions'].setEnabled(False)
-		self['epgcursoractions'].setEnabled(False)
+		self['okactions'].execEnd()
+		self['epgcursoractions'].execEnd()
+		self['colouractions'].execEnd()
+		self['recordingactions'].execEnd()
+		self['epgactions'].execEnd()
+		if self.has_key('input_actions'):
+			self['input_actions'].execEnd()
 
 	def closeChoiceBoxDialog(self):
+		self['dialogactions'].execEnd()
 		if self.ChoiceBoxDialog:
 			self.ChoiceBoxDialog['actions'].execEnd()
 			self.session.deleteDialog(self.ChoiceBoxDialog)
-		self['okactions'].setEnabled(True)
-		self['epgcursoractions'].setEnabled(True)
+		self['okactions'].execBegin()
+		self['epgcursoractions'].execBegin()
+		self['colouractions'].execBegin()
+		self['recordingactions'].execBegin()
+		self['epgactions'].execBegin()
+		if self.has_key('input_actions'):
+			self['input_actions'].execBegin()
 
 	def doRecordTimer(self):
 		self.doInstantTimer(0)
