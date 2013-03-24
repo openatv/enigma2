@@ -415,6 +415,9 @@ class EPGList(HTMLComponent, GUIComponent):
 					itemHeight = 54 # some default (270/5)
 			self.l.setItemHeight(itemHeight)
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			self.listHeight = self.instance.size().height()
+			self.listWidth = self.instance.size().width()
+			self.itemHeight = itemHeight
 
 			self.picload.setPara((self.listWidth, itemHeight, 0, 0, 1, 1, "#00000000"))
 			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/CurrentEvent.png'), 0, 0, False)
@@ -470,6 +473,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				itemHeight = 25
 			self.l.setItemHeight(itemHeight)
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			self.listHeight = self.instance.size().height()
+			self.listWidth = self.instance.size().width()
+			self.itemHeight = itemHeight
 		elif self.type == EPG_TYPE_MULTI:
 			if self.listHeight > 0:
 				itemHeight = self.listHeight / config.epgselection.multi_itemsperpage.getValue()
@@ -479,14 +485,21 @@ class EPGList(HTMLComponent, GUIComponent):
 				itemHeight = 25
 			self.l.setItemHeight(itemHeight)
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			self.listHeight = self.instance.size().height()
+			self.listWidth = self.instance.size().width()
+			self.itemHeight = itemHeight
 		elif self.type == EPG_TYPE_INFOBAR:
 			if self.listHeight > 0:
-				itemHeight = float(self.listHeight / config.epgselection.infobar_itemsperpage.getValue())
+				itemHeight = self.listHeight / config.epgselection.infobar_itemsperpage.getValue()
 			else:
 				itemHeight = 32
 			if itemHeight < 25:
 				itemHeight = 20
 			self.l.setItemHeight(int(itemHeight))
+			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			self.listHeight = self.instance.size().height()
+			self.listWidth = self.instance.size().width()
+			self.itemHeight = itemHeight
 
 	def setServiceFontsize(self):
 		if self.type == EPG_TYPE_GRAPH:
@@ -991,6 +1004,39 @@ class EPGList(HTMLComponent, GUIComponent):
 					backcolor = self.backColor, backcolor_sel = self.backColorSelected,
 					border_width = self.eventBorderWidth, border_color = self.borderColor))
 		return res
+
+	def getSelectionPosition(self,serviceref):
+		if self.type == EPG_TYPE_GRAPH:
+			indx = int(self.getIndexFromService(serviceref))
+			selx = self.select_rect.x+self.select_rect.w
+			while indx+1 > config.epgselection.graph_itemsperpage.getValue():
+				indx = indx - config.epgselection.graph_itemsperpage.getValue()
+		elif self.type == EPG_TYPE_INFOBARGRAPH:
+			indx = int(self.getIndexFromService(serviceref))
+			selx = self.select_rect.x+self.select_rect.w
+			while indx+1 > config.epgselection.infobar_itemsperpage.getValue():
+				indx = indx - config.epgselection.infobar_itemsperpage.getValue()
+		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
+			indx = int(self.l.getCurrentSelectionIndex())
+			selx = self.listWidth
+			while indx+1 > config.epgselection.enhanced_itemsperpage.getValue():
+				indx = indx - config.epgselection.enhanced_itemsperpage.getValue()
+		elif self.type == EPG_TYPE_MULTI:
+			indx = int(self.l.getCurrentSelectionIndex())
+			selx = self.listWidth
+			while indx+1 > config.epgselection.multi_itemsperpage.getValue():
+				indx = indx - config.epgselection.multi_itemsperpage.getValue()
+		elif self.type == EPG_TYPE_INFOBAR:
+			indx = int(self.l.getCurrentSelectionIndex())
+			selx = self.listWidth
+			while indx+1 > config.epgselection.infobar_itemsperpage.getValue():
+				indx = indx - config.epgselection.infobar_itemsperpage.getValue()
+		pos = self.instance.position().y()
+		sely = int(pos)+(int(self.itemHeight)*int(indx))
+		temp = int(self.instance.position().y())+int(self.listHeight)
+		if int(sely) >= temp:
+			sely = int(sely) - int(self.listHeight)
+		return (int(selx), int(sely))
 
 	def selEntry(self, dir, visible = True):
 		cur_service = self.cur_service    #(service, service_name, events, picon)
