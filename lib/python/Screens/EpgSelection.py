@@ -723,7 +723,8 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.session.pipshown:
 			self.session.pipshown = False
 			del self.session.pip
-		self.setServicelistSelection(self.StartBouquet, self.StartRef)
+		if not self.type == EPG_TYPE_SINGLE:
+			self.setServicelistSelection(self.StartBouquet, self.StartRef)
 		self.closeEventViewDialog()
 		self.close(True)
 
