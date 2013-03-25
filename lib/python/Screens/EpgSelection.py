@@ -943,6 +943,7 @@ class EPGSelection(Screen, HelpableScreen):
 		eventid = event.getEventId()
 		refstr = serviceref.ref.toString()
 		for timer in self.session.nav.RecordTimer.timer_list:
+			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
 				cb_func = lambda ret: self.removeTimer(timer)
 				menu = [(_("Yes"), 'CALLFUNC', cb_func), (_("No"), 'CALLFUNC', self.ChoiceBoxCB, self.ChoiceBoxNull)]
 				self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=_('Do you really want to remove the timer for %s?') % event.getEventName(), list=menu)
