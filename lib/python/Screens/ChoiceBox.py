@@ -43,7 +43,6 @@ class ChoiceBox(Screen):
 		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions"],
 		{
 			"ok": self.go,
-			"back": self.cancel,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -62,6 +61,11 @@ class ChoiceBox(Screen):
 			"down": self.down,
 			"left": self.left,
 			"right": self.right
+		}, -1)
+
+		self["cancelaction"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions"],
+		{
+			"back": self.cancel,
 		}, -1)
 
 	def autoResize(self):
