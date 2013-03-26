@@ -84,6 +84,20 @@ class EPGSelection(Screen, HelpableScreen):
 		self['key_green'] = Button(_('Add Timer'))
 		self['key_yellow'] = Button(_('EPG Search'))
 		self['key_blue'] = Button(_('Add AutoTimer'))
+		self['dialogactions'] = HelpableActionMap(self, 'OkCancelActions',
+			{
+				'cancel': (self.closeChoiceBoxDialog, _('Exit EPG')),
+			}, -1)
+		self['dialogactions'].csel = self
+		self['dialogactions'].execEnd()
+
+		self['bouquetokactions'] = HelpableActionMap(self, 'OkCancelActions',
+			{
+				'OK': (self.BouquetOK, _('Chnage to bouquet')),
+			}, -1)
+		self['bouquetokactions'].csel = self
+		self['bouquetokactions'].execEnd()
+
 		self['okactions'] = HelpableActionMap(self, 'OkCancelActions',
 			{
 				'cancel': (self.closeScreen, _('Exit EPG')),
@@ -91,11 +105,7 @@ class EPGSelection(Screen, HelpableScreen):
 				'OKLong': (self.OKLong, _('Zap to channel and close (setup in menu)'))
 			}, -1)
 		self['okactions'].csel = self
-		self['dialogactions'] = HelpableActionMap(self, 'OkCancelActions',
-			{
-				'cancel': (self.closeChoiceBoxDialog, _('Exit EPG')),
-			}, -1)
-		self['dialogactions'].csel = self
+		self['okactions'].execBegin()
 		self['colouractions'] = HelpableActionMap(self, 'ColorActions', 
 			{
 				'red': (self.redButtonPressed, _('IMDB search for current event')),
@@ -243,13 +253,15 @@ class EPGSelection(Screen, HelpableScreen):
 				}, -1)
 			self['bouquetcursoractions'].csel = self
 			self["bouquetcursoractions"].setEnabled(False)
-			self['bouquetokactions'] = HelpableActionMap(self, 'OkCancelActions',
+
+			self['epgcursoractions'] = HelpableActionMap(self, 'DirectionActions', 
 				{
-					'cancel': (self.closeScreen, _('Exit EPG')),
-					'OK': (self.BouquetOK, _('Zap to channel (setup in menu)')),
+					'left': (self.leftPressed, _('Goto previous event')),
+					'right': (self.rightPressed, _('Goto next event')),
+					'up': (self.moveUp, _('Goto previous channel')),
+					'down': (self.moveDown, _('Goto next channel'))
 				}, -1)
-			self['bouquetokactions'].csel = self
-			self["bouquetokactions"].setEnabled(False)
+			self['epgcursoractions'].csel = self
 
 			self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', 
 				{
@@ -265,14 +277,6 @@ class EPGSelection(Screen, HelpableScreen):
 					'menu': (self.createSetup, _('Setup menu'))
 				}, -1)
 			self['epgactions'].csel = self
-			self['epgcursoractions'] = HelpableActionMap(self, 'DirectionActions', 
-				{
-					'left': (self.leftPressed, _('Goto previous event')),
-					'right': (self.rightPressed, _('Goto next event')),
-					'up': (self.moveUp, _('Goto previous channel')),
-					'down': (self.moveDown, _('Goto next channel'))
-				}, -1)
-			self['epgcursoractions'].csel = self
 
 			self['input_actions'] = HelpableNumberActionMap(self, 'NumberActions', 
 				{
@@ -289,8 +293,6 @@ class EPGSelection(Screen, HelpableScreen):
 				}, -1)
 			self['input_actions'].csel = self
 
-			self["bouquetcursoractions"].setEnabled(False)
-			self["epgcursoractions"].setEnabled(True)
 		elif self.type == EPG_TYPE_MULTI:
 			self.skinName = 'EPGSelectionMulti'
 			self['bouquetlist'] = EPGBouquetList(graphic=graphic)
@@ -314,14 +316,16 @@ class EPGSelection(Screen, HelpableScreen):
 					'down': (self.moveBouquetDown, _('Goto next channel'))
 				}, -1)
 			self['bouquetcursoractions'].csel = self
-			self["bouquetcursoractions"].setEnabled(False)
-			self['bouquetokactions'] = HelpableActionMap(self, 'OkCancelActions',
+			self['bouquetcursoractions'].setEnabled(False)
+
+			self['epgcursoractions'] = HelpableActionMap(self, 'DirectionActions', 
 				{
-					'cancel': (self.closeScreen, _('Exit EPG')),
-					'OK': (self.BouquetOK, _('Zap to channel (setup in menu)')),
+					'left': (self.leftPressed, _('Goto previous event')),
+					'right': (self.rightPressed, _('Goto next event')),
+					'up': (self.moveUp, _('Goto previous channel')),
+					'down': (self.moveDown, _('Goto next channel'))
 				}, -1)
-			self['bouquetokactions'].csel = self
-			self["bouquetokactions"].setEnabled(False)
+			self['epgcursoractions'].csel = self
 
 			self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', 
 				{
@@ -336,15 +340,6 @@ class EPGSelection(Screen, HelpableScreen):
 					'menu': (self.createSetup, _('Setup menu'))
 				}, -1)
 			self['epgactions'].csel = self
-			self['epgcursoractions'] = HelpableActionMap(self, 'DirectionActions', 
-				{
-					'left': (self.leftPressed, _('Goto previous event')),
-					'right': (self.rightPressed, _('Goto next event')),
-					'up': (self.moveUp, _('Goto previous channel')),
-					'down': (self.moveDown, _('Goto next channel'))
-				}, -1)
-			self['epgcursoractions'].csel = self
-
 		if self.type == EPG_TYPE_GRAPH:
 			time_epoch=config.epgselection.graph_prevtimeperiod.getValue()
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
@@ -517,7 +512,6 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			self.updEvent(+1)
 
-
 	def Bouquetlist(self):
 		if not self.bouquetlist_active:
 			self.BouquetlistShow()
@@ -525,18 +519,21 @@ class EPGSelection(Screen, HelpableScreen):
 			self.BouquetlistHide()
 
 	def BouquetlistShow(self):
-		self['bouquetlist'].show()
-		self["bouquetokactions"].setEnabled(True)
-		self["okactions"].setEnabled(False)
-		self["bouquetcursoractions"].setEnabled(True)
+		self.curindex = self['bouquetlist'].l.getCurrentSelectionIndex()
 		self["epgcursoractions"].setEnabled(False)
+		self["okactions"].execEnd()
+		self['bouquetlist'].show()
+		self['bouquetokactions'].execBegin()
+		self["bouquetcursoractions"].setEnabled(True)
 		self.bouquetlist_active = True
 
-	def BouquetlistHide(self):
-		self['bouquetlist'].hide()
-		self["bouquetokactions"].setEnabled(False)
-		self["okactions"].setEnabled(True)
+	def BouquetlistHide(self, cancel=True):
+		self['bouquetokactions'].execEnd()
 		self["bouquetcursoractions"].setEnabled(False)
+		self['bouquetlist'].hide()
+		if cancel:
+			self['bouquetlist'].setCurrentIndex(self.curindex)
+		self["okactions"].execBegin()
 		self["epgcursoractions"].setEnabled(True)
 		self.bouquetlist_active = False
 
@@ -548,7 +545,6 @@ class EPGSelection(Screen, HelpableScreen):
 			return self.servicelist.getRoot()
 
 	def BouquetOK(self):
-		self.BouquetlistHide()
 		now = time() - int(config.epg.histminutes.getValue()) * 60
 		self.services = self.getBouquetServices(self.getCurrentBouquet())
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
@@ -563,6 +559,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self['list'].fillMultiEPG(self.services, self.ask_time)
 		self['list'].instance.moveSelectionTo(0)
 		self.setTitle(self['bouquetlist'].getCurrentBouquet())
+		self.BouquetlistHide(False)
 
 	def moveBouquetUp(self):
 		self['bouquetlist'].moveTo(self['bouquetlist'].instance.moveUp)
@@ -976,7 +973,6 @@ class EPGSelection(Screen, HelpableScreen):
 		self.finishedAdd(answer)
 
 	def removeTimer(self, timer):
-		print 'removeTimer'
 		timer.afterEvent = AFTEREVENT.NONE
 		self.session.nav.RecordTimer.removeEntry(timer)
 		self['key_green'].setText(_('Add Timer'))
@@ -987,7 +983,6 @@ class EPGSelection(Screen, HelpableScreen):
 			self.moveTimeLines()
 
 	def RecordTimerQuestion(self):
-		timerfound = False
 		cur = self['list'].getCurrent()
 		event = cur[0]
 		serviceref = cur[1]
@@ -1022,29 +1017,29 @@ class EPGSelection(Screen, HelpableScreen):
 		self.closeChoiceBoxDialog()
 
 	def showChoiceBoxDialog(self):
+		self['okactions'].setEnabled(False)
+		self['epgcursoractions'].setEnabled(False)
+		self['colouractions'].setEnabled(False)
+		self['recordingactions'].setEnabled(False)
+		self['epgactions'].setEnabled(False)
 		self['dialogactions'].execBegin()
-		self.ChoiceBoxDialog.show()
 		self.ChoiceBoxDialog['actions'].execBegin()
-		self['okactions'].execEnd()
-		self['epgcursoractions'].execEnd()
-		self['colouractions'].execEnd()
-		self['recordingactions'].execEnd()
-		self['epgactions'].execEnd()
+		self.ChoiceBoxDialog.show()
 		if self.has_key('input_actions'):
-			self['input_actions'].execEnd()
+			self['input_actions'].setEnabled(False)
 
 	def closeChoiceBoxDialog(self):
 		self['dialogactions'].execEnd()
 		if self.ChoiceBoxDialog:
 			self.ChoiceBoxDialog['actions'].execEnd()
 			self.session.deleteDialog(self.ChoiceBoxDialog)
-		self['okactions'].execBegin()
-		self['epgcursoractions'].execBegin()
-		self['colouractions'].execBegin()
-		self['recordingactions'].execBegin()
-		self['epgactions'].execBegin()
+		self['okactions'].setEnabled(True)
+		self['epgcursoractions'].setEnabled(True)
+		self['colouractions'].setEnabled(True)
+		self['recordingactions'].setEnabled(True)
+		self['epgactions'].setEnabled(True)
 		if self.has_key('input_actions'):
-			self['input_actions'].execBegin()
+			self['input_actions'].setEnabled(True)
 
 	def doRecordTimer(self):
 		self.doInstantTimer(0)
