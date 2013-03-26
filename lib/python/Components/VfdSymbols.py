@@ -10,13 +10,16 @@ from Components.SystemInfo import SystemInfo
 POLLTIME = 5 # seconds
 
 def SymbolsCheck(session, **kwargs):
-		global symbolspoller
+		global symbolspoller, POLLTIME
+		if getBoxType() == 'ixussone':
+			POLLTIME = 1
 		symbolspoller = SymbolsCheckPoller(session)
 		symbolspoller.start()
 
 class SymbolsCheckPoller:
 	def __init__(self, session):
 		self.session = session
+		self.blink = False
 		self.timer = eTimer()
 		self.onClose = []
 		self.__event_tracker = ServiceEventTracker(screen=self,eventmap=
@@ -61,13 +64,19 @@ class SymbolsCheckPoller:
 			else:
 				open("/proc/stb/lcd/symbol_circle", "w").write("0")
 		elif getBoxType() == 'ebox5000':
-	
 			recordings = len(NavigationInstance.instance.getRecordings())
-
 			if recordings > 0:
 				open("/proc/stb/lcd/symbol_recording", "w").write("1")
 			else:
-				open("/proc/stb/lcd/symbol_recording", "w").write("0")		
+				open("/proc/stb/lcd/symbol_recording", "w").write("0")
+		elif getBoxType() == 'ixussone':
+			recordings = len(NavigationInstance.instance.getRecordings())
+			self.blink = not self.blink
+			if recordings > 0 and self.blink:
+				open("/proc/stb/lcd/powerled", "w").write("1")
+			else:
+				open("/proc/stb/lcd/powerled", "w").write("0")
+
 		else:
 			if not fileExists("/proc/stb/lcd/symbol_recording") or not fileExists("/proc/stb/lcd/symbol_record_1") or not fileExists("/proc/stb/lcd/symbol_record_2"):
 				return
