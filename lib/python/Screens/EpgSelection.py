@@ -714,6 +714,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def closeScreen(self):
 		if self.type == EPG_TYPE_SINGLE:
 			self.close()
+			return
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
 			if self.zapFunc and ((self.type == EPG_TYPE_GRAPH and config.epgselection.graph_preview_mode.getValue()) or (self.type == EPG_TYPE_MULTI and config.epgselection.multi_preview_mode.getValue()) or ((self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH) and (config.epgselection.infobar_preview_mode.getValue() == '1' or config.epgselection.infobar_preview_mode.getValue() == '2')) or (self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_preview_mode.getValue())) and self.StartRef and self.StartBouquet:
 				if self.StartRef.toString().find('0:0:0:0:0:0:0:0:0') == -1:
@@ -723,8 +724,6 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.session.pipshown:
 			self.session.pipshown = False
 			del self.session.pip
-		if not self.type == EPG_TYPE_SINGLE:
-			self.setServicelistSelection(self.StartBouquet, self.StartRef)
 		self.closeEventViewDialog()
 		self.close(True)
 
