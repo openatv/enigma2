@@ -1564,8 +1564,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			else:
 				self.setStartRoot(self.curRoot)
 				self.setCurrentSelection(ref)
-		elif ref is None or ref != nref:
-			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref))
+				return
+		Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref))
 
 	def zapCheckTimeshiftCallback(self, enable_pipzap, preview_zap, nref, answer):
 		if answer:
