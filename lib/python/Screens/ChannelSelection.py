@@ -512,6 +512,8 @@ class ChannelSelectionEPG:
 
 	def showChoiceBoxDialog(self):
 		self['actions'].setEnabled(False)
+		self['recordingactions'].setEnabled(False)
+		self['ChannelSelectEPGActions'].setEnabled(False)
 		self['dialogactions'].execBegin()
 		self.ChoiceBoxDialog['actions'].execBegin()
 		self.ChoiceBoxDialog['cancelaction'].execEnd()
@@ -524,6 +526,8 @@ class ChannelSelectionEPG:
 			self.ChoiceBoxDialog['actions'].execEnd()
 			self.session.deleteDialog(self.ChoiceBoxDialog)
 		self['actions'].setEnabled(True)
+		self['recordingactions'].setEnabled(True)
+		self['ChannelSelectEPGActions'].setEnabled(True)
 
 
 	def doRecordCurrentTimer(self):
