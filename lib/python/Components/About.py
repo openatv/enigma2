@@ -5,6 +5,9 @@ import socket, fcntl, struct
 def getVersionString():
 	return getImageVersionString()
 
+def getEnigmaVersionString():
+	return getImageVersionString()
+	
 def getKernelVersionString():
 	try:
 		f = open("/proc/version","r")
