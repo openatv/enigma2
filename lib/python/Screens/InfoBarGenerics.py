@@ -1841,11 +1841,17 @@ class InfoBarSeek:
 				self.activityTimer.stop()
 				service.stop()
 			elif self.seekstate[1]:
-#				print "resolved to FAST FORWARD"
-				pauseable.setFastForward(self.seekstate[1])
+				if not pauseable.setFastForward(self.seekstate[1]):
+					print "resolved to FAST FORWARD"
+				else:
+					self.seekstate = self.SEEK_STATE_PLAY
+					print "FAST FORWARD not possible: resolved to PLAY"
 			elif self.seekstate[2]:
-#				print "resolved to SLOW MOTION"
-				pauseable.setSlowMotion(self.seekstate[2])
+				if not pauseable.setSlowMotion(self.seekstate[2]):
+					print "resolved to SLOW MOTION"
+				else:
+					self.seekstate = self.SEEK_STATE_PAUSE
+					print "SLOW MOTION not possible: resolved to PAUSE"
 			else:
 #				print "resolved to PLAY"
 				self.activityTimer.start(200, False)
@@ -4415,6 +4421,50 @@ class InfoBarTimerButton:
 	def timerSelection(self):
 		from Screens.TimerEdit import TimerEditList
 		self.session.open(TimerEditList)
+
+class InfoBarVmodeButton:
+	def __init__(self):
+		self["VmodeButtonActions"] = HelpableActionMap(self, "InfobarVmodeButtonActions",
+			{
+				"vmodeSelection": (self.vmodeSelection, _("Letterbox zoom")),
+			})
+
+	def vmodeSelection(self):
+		self.session.open(VideoMode)
+
+class VideoMode(Screen):
+	def __init__(self,session):
+		Screen.__init__(self, session)
+		self["videomode"] = Label()
+
+		self["actions"] = NumberActionMap( [ "InfobarVmodeButtonActions" ],
+			{
+				"vmodeSelection": self.selectVMode
+			})
+
+		self.Timer = eTimer()
+		self.Timer.callback.append(self.quit)
+		self.selectVMode()
+
+	def selectVMode(self):
+		policy = config.av.policy_43
+		if self.isWideScreen():
+			policy = config.av.policy_169
+		idx = policy.choices.index(policy.value)
+		idx = (idx + 1) % len(policy.choices)
+		policy.value = policy.choices[idx]
+		self["videomode"].setText(policy.value)
+		self.Timer.start(1000, True)
+
+	def isWideScreen(self):
+		from Components.Converter.ServiceInfo import WIDESCREEN
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		return info.getInfo(iServiceInformation.sAspect) in WIDESCREEN
+
+	def quit(self):
+		self.Timer.stop()
+		self.close()
 
 class InfoBarAdditionalInfo:
 	def __init__(self):
