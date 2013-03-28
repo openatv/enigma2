@@ -8,6 +8,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.Event import Event
+from Components.Sources.StaticText import StaticText
 from Components.UsageConfig import preferredTimerPath
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
@@ -77,6 +78,14 @@ class EPGSelection(Screen, HelpableScreen):
 			self.pipServiceRelation = getRelationDict()
 		else:
 			self.pipServiceRelation = {}
+		self.zapnumberstarted = False
+		self.NumberZapTimer = eTimer()
+		self.NumberZapTimer.callback.append(self.dozumberzap)
+		self.NumberZapField = None
+		self.CurrBouquet = None
+		self.CurrService = None
+		self["number"] = Label()
+		self["number"].hide()
 		self['Service'] = ServiceEvent()
 		self['Event'] = Event()
 		self.key_green_choice = self.EMPTY
@@ -574,6 +583,8 @@ class EPGSelection(Screen, HelpableScreen):
 			self.moveBouquetDown()
 			self.BouquetOK()
 		elif (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR) and config.usage.multibouquet.getValue():
+			self.CurrBouquet = self.servicelist.getCurrentSelection()
+			self.CurrService = self.servicelist.getRoot()
 			self.servicelist.nextBouquet()
 			self.onCreate()
 
@@ -582,11 +593,15 @@ class EPGSelection(Screen, HelpableScreen):
 			self.moveBouquetUp()
 			self.BouquetOK()
 		elif (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR) and config.usage.multibouquet.getValue():
+			self.CurrBouquet = self.servicelist.getCurrentSelection()
+			self.CurrService = self.servicelist.getRoot()
 			self.servicelist.prevBouquet()
 			self.onCreate()
 
 	def nextService(self):
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+			self.CurrBouquet = self.servicelist.getCurrentSelection()
+			self.CurrService = self.servicelist.getRoot()
 			self['list'].instance.moveSelectionTo(0)
 			if self.servicelist.inBouquet():
 				prev = self.servicelist.getCurrentSelection()
@@ -633,6 +648,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def prevService(self):
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+			self.CurrBouquet = self.servicelist.getCurrentSelection()
+			self.CurrService = self.servicelist.getRoot()
 			self['list'].instance.moveSelectionTo(0)
 			if self.servicelist.inBouquet():
 				prev = self.servicelist.getCurrentSelection()
@@ -712,6 +729,8 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.type == EPG_TYPE_SINGLE:
 			self.close()
 			return # stop and do not continue.
+		if self.CurrBouquet and self.CurrService and (self.CurrBouquet != self.StartBouquet or self.CurrService != self.StartRef):
+			self.zapToNumber(self.StartRef, self.StartBouquet)
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
 			if self.zapFunc and ((self.type == EPG_TYPE_GRAPH and config.epgselection.graph_preview_mode.getValue()) or (self.type == EPG_TYPE_MULTI and config.epgselection.multi_preview_mode.getValue()) or ((self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH) and (config.epgselection.infobar_preview_mode.getValue() == '1' or config.epgselection.infobar_preview_mode.getValue() == '2')) or (self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_preview_mode.getValue())) and self.StartRef and self.StartBouquet:
 				if self.StartRef.toString().find('0:0:0:0:0:0:0:0:0') == -1:
@@ -1061,16 +1080,22 @@ class EPGSelection(Screen, HelpableScreen):
 		self.session.deleteDialogWithCallback(self.finishedAdd, self.InstantRecordDialog, retval)
 
 	def OK(self):
-		if config.epgselection.graph_ok.getValue() == 'Zap' or config.epgselection.enhanced_ok.getValue() == 'Zap' or config.epgselection.infobar_ok.getValue() == 'Zap' or config.epgselection.multi_ok.getValue() == 'Zap':
-			self.zapTo()
-		if config.epgselection.graph_ok.getValue() == 'Zap + Exit' or config.epgselection.enhanced_ok.getValue() == 'Zap + Exit' or config.epgselection.infobar_ok.getValue() == 'Zap + Exit' or config.epgselection.multi_ok.getValue() == 'Zap + Exit':
-			self.zap()
+		if self.zapnumberstarted:
+			self.dozumberzap()
+		else:
+			if config.epgselection.graph_ok.getValue() == 'Zap' or config.epgselection.enhanced_ok.getValue() == 'Zap' or config.epgselection.infobar_ok.getValue() == 'Zap' or config.epgselection.multi_ok.getValue() == 'Zap':
+				self.zapTo()
+			if config.epgselection.graph_ok.getValue() == 'Zap + Exit' or config.epgselection.enhanced_ok.getValue() == 'Zap + Exit' or config.epgselection.infobar_ok.getValue() == 'Zap + Exit' or config.epgselection.multi_ok.getValue() == 'Zap + Exit':
+				self.zap()
 
 	def OKLong(self):
-		if config.epgselection.graph_oklong.getValue() == 'Zap' or config.epgselection.enhanced_oklong.getValue() == 'Zap' or config.epgselection.infobar_oklong.getValue() == 'Zap' or config.epgselection.multi_oklong.getValue() == 'Zap':
-			self.zapTo()
-		if config.epgselection.graph_oklong.getValue() == 'Zap + Exit' or config.epgselection.enhanced_oklong.getValue() == 'Zap + Exit' or config.epgselection.infobar_oklong.getValue() == 'Zap + Exit' or config.epgselection.multi_oklong.getValue() == 'Zap + Exit':
-			self.zap()
+		if self.zapnumberstarted:
+			self.dozumberzap()
+		else:
+			if config.epgselection.graph_oklong.getValue() == 'Zap' or config.epgselection.enhanced_oklong.getValue() == 'Zap' or config.epgselection.infobar_oklong.getValue() == 'Zap' or config.epgselection.multi_oklong.getValue() == 'Zap':
+				self.zapTo()
+			if config.epgselection.graph_oklong.getValue() == 'Zap + Exit' or config.epgselection.enhanced_oklong.getValue() == 'Zap + Exit' or config.epgselection.infobar_oklong.getValue() == 'Zap + Exit' or config.epgselection.multi_oklong.getValue() == 'Zap + Exit':
+				self.zap()
 
 	def Info(self):
 		if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.getValue() == 'Channel Info'):
@@ -1369,8 +1394,26 @@ class EPGSelection(Screen, HelpableScreen):
 				self['list'].fillGraphEPG(None, self.ask_time)
 				self.moveTimeLines()
 		else:
-			from Screens.InfoBarGenerics import NumberZap
-			self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
+			self.zapnumberstarted = True
+			self.NumberZapTimer.start(5000, True)
+			if not self.NumberZapField:
+				self.NumberZapField = str(number)
+			else:
+				self.NumberZapField = self.NumberZapField + str(number)
+			self.handleServiceName()
+			self["number"].setText(self.zaptoservicename+'\n'+self.NumberZapField)
+			self["number"].show()
+			if len(self.NumberZapField) >= 4:
+				self.dozumberzap()
+
+	def dozumberzap(self):
+		self.zapnumberstarted = False
+		self.numberEntered(self.service, self.bouquet)
+
+	def handleServiceName(self):
+		if self.searchNumber:
+			self.service, self.bouquet = self.searchNumber(int(self.NumberZapField))
+			self.zaptoservicename = ServiceReference(self.service).getServiceName()
 
 	def numberEntered(self, service = None, bouquet = None):
 		if service is not None:
@@ -1412,6 +1455,10 @@ class EPGSelection(Screen, HelpableScreen):
 		return (service, bouquet)
 
 	def zapToNumber(self, service, bouquet):
+		self["number"].hide()
+		self.NumberZapField = None
+		self.CurrBouquet = bouquet
+		self.CurrService = service
 		if service is not None:
 			self.setServicelistSelection(bouquet, service)
 		self.onCreate()
