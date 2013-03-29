@@ -2297,6 +2297,7 @@ class InfoBarTimeshift:
 		self["TimeshiftActivateActions"].setEnabled(False)
 		self["TimeshiftSeekPointerActions"].setEnabled(False)
 
+		self.switchToLive = True
 		self.timeshift_enabled = False
 		self.save_timeshift_file = False
 		self.save_timeshift_in_movie_dir = False
@@ -2425,17 +2426,15 @@ class InfoBarTimeshift:
 					print "timeshift failed"
 
 	def stopTimeshift(self):
-		if self.switchToLive:
-			if config.timeshift.enabled.getValue():
-				if self.isSeekable():
-					self.pts_switchtolive = True
-					self.ptsSetNextPlaybackFile("")
-					self.setSeekState(self.SEEK_STATE_PAUSE)
-					if self.seekstate != self.SEEK_STATE_PLAY:
-						self.setSeekState(self.SEEK_STATE_PLAY)
-					self.doSeek(-1) # seek 1 gop before end
-					self.seekFwd() # seekFwd to switch to live TV
-					return 1
+		if config.timeshift.enabled.getValue() and self.switchToLive and self.isSeekable():
+			self.pts_switchtolive = True
+			self.ptsSetNextPlaybackFile("")
+			self.setSeekState(self.SEEK_STATE_PAUSE)
+			if self.seekstate != self.SEEK_STATE_PLAY:
+				self.setSeekState(self.SEEK_STATE_PLAY)
+			self.doSeek(-1) # seek 1 gop before end
+			self.seekFwd() # seekFwd to switch to live TV
+			return 1
 
 		if not self.timeshift_enabled:
 			return 0
@@ -2576,7 +2575,7 @@ class InfoBarTimeshift:
 		# self.__seekableStatusChanged()
 
 	def checkTimeshiftRunning(self, returnFunction):
-		if self.isSeekable() and self.timeshift_enabled and self.check_timeshift and config.usage.check_timeshift.getValue():
+		if self.isSeekable() and self.timeshift_enabled and config.usage.check_timeshift.getValue():
 			self.session.openWithCallback(returnFunction, MessageBox, _("You seem to be in timeshift, Do you want to leave timeshift ?"), simple = True)
 		else:
 			returnFunction(True)
