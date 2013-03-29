@@ -993,6 +993,15 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self['list'].fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines()
+		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+			if self.type == EPG_TYPE_SINGLE:
+				service = self.currentService
+			elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+				service = ServiceReference(self.servicelist.getCurrentSelection())
+			index = self['list'].getCurrentIndex()
+			self['list'].fillSingleEPG(service)
+			self['list'].sortSingleEPG(int(config.epgselection.sort.getValue()))
+			self['list'].setCurrentIndex(index)
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
@@ -1006,6 +1015,15 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self['list'].fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines()
+		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+			if self.type == EPG_TYPE_SINGLE:
+				service = self.currentService
+			elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+				service = ServiceReference(self.servicelist.getCurrentSelection())
+			index = self['list'].getCurrentIndex()
+			self['list'].fillSingleEPG(service)
+			self['list'].sortSingleEPG(int(config.epgselection.sort.getValue()))
+			self['list'].setCurrentIndex(index)
 
 	def RecordTimerQuestion(self):
 		cur = self['list'].getCurrent()
