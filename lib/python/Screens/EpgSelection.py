@@ -100,13 +100,6 @@ class EPGSelection(Screen, HelpableScreen):
 		self['dialogactions'].csel = self
 		self['dialogactions'].execEnd()
 
-		self['bouquetokactions'] = HelpableActionMap(self, 'OkCancelActions',
-			{
-				'OK': (self.BouquetOK, _('Chnage to bouquet')),
-			}, -1)
-		self['bouquetokactions'].csel = self
-		self['bouquetokactions'].execEnd()
-
 		self['okactions'] = HelpableActionMap(self, 'OkCancelActions',
 			{
 				'cancel': (self.closeScreen, _('Exit EPG')),
@@ -114,7 +107,6 @@ class EPGSelection(Screen, HelpableScreen):
 				'OKLong': (self.OKLong, _('Zap to channel and close (setup in menu)'))
 			}, -1)
 		self['okactions'].csel = self
-		self['okactions'].execBegin()
 		self['colouractions'] = HelpableActionMap(self, 'ColorActions', 
 			{
 				'red': (self.redButtonPressed, _('IMDB search for current event')),
@@ -253,6 +245,13 @@ class EPGSelection(Screen, HelpableScreen):
 			self.updateTimelineTimer = eTimer()
 			self.updateTimelineTimer.callback.append(self.moveTimeLines)
 			self.updateTimelineTimer.start(60000)
+			self['bouquetokactions'] = HelpableActionMap(self, 'OkCancelActions',
+				{
+					'OK': (self.BouquetOK, _('Chnage to bouquet')),
+				}, -1)
+			self['bouquetokactions'].csel = self
+			self["bouquetokactions"].setEnabled(False)
+
 			self['bouquetcursoractions'] = HelpableActionMap(self, 'DirectionActions', 
 				{
 					'left': (self.leftPressed, _('Goto previous event')),
@@ -317,6 +316,13 @@ class EPGSelection(Screen, HelpableScreen):
 			self['more_text'] = Label()
 			self['date'] = Label()
 			self.bouquetlist_active = False
+			self['bouquetokactions'] = HelpableActionMap(self, 'OkCancelActions',
+				{
+					'OK': (self.BouquetOK, _('Chnage to bouquet')),
+				}, -1)
+			self['bouquetokactions'].csel = self
+			self["bouquetokactions"].setEnabled(False)
+
 			self['bouquetcursoractions'] = HelpableActionMap(self, 'DirectionActions', 
 				{
 					'left': (self.leftPressed, _('Goto previous event')),
@@ -530,19 +536,19 @@ class EPGSelection(Screen, HelpableScreen):
 	def BouquetlistShow(self):
 		self.curindex = self['bouquetlist'].l.getCurrentSelectionIndex()
 		self["epgcursoractions"].setEnabled(False)
-		self["okactions"].execEnd()
+		self["okactions"].setEnabled(False)
 		self['bouquetlist'].show()
-		self['bouquetokactions'].execBegin()
+		self["bouquetokactions"].setEnabled(True)
 		self["bouquetcursoractions"].setEnabled(True)
 		self.bouquetlist_active = True
 
 	def BouquetlistHide(self, cancel=True):
-		self['bouquetokactions'].execEnd()
+		self["bouquetokactions"].setEnabled(False)
 		self["bouquetcursoractions"].setEnabled(False)
 		self['bouquetlist'].hide()
 		if cancel:
 			self['bouquetlist'].setCurrentIndex(self.curindex)
-		self["okactions"].execBegin()
+		self["okactions"].setEnabled(True)
 		self["epgcursoractions"].setEnabled(True)
 		self.bouquetlist_active = False
 
