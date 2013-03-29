@@ -1192,6 +1192,10 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y() + (or
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
+	<!-- VideoMode -->
+	<screen name="VideoMode" position="center,center" size="250,60" title="VideoMode">
+		<widget name="videomode" position="10,10" size="230,40" font="Regular;23" halign="left" />
+	</screen>
 	<!-- VirtualKeyBoard -->
 	<screen name="VirtualKeyBoard" position="center,center" size="560,350" zPosition="99" title="Virtual keyboard">
 		<ePixmap pixmap="skin_default/vkey_text.png" position="9,45" zPosition="-4" size="542,52" alphatest="on" />

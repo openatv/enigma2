@@ -5,6 +5,7 @@ from Components.ActionMap import NumberActionMap
 from Components.Harddisk import harddiskmanager
 from Components.Input import Input
 from Components.Label import Label
+from Components.MovieList import AUDIO_EXTENSIONS
 from Components.PluginComponent import plugins
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
@@ -15,6 +16,8 @@ from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 
 from Screen import Screen
+from Screens import ScreenSaver
+from Screens import Standby
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Dish import Dish
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
@@ -30,14 +33,16 @@ from Screens.TimeDateInput import TimeDateInput
 from Screens.UnhandledKey import UnhandledKey
 from ServiceReference import ServiceReference, isPlayableForCur
 
-from Tools import Notifications
-from Tools.Directories import fileExists
+from Tools import Notifications, ASCIItranslit
+from Tools.Directories import fileExists, getRecordingFilename, moveFiles
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, \
 	iPlayableService, eServiceReference, eEPGCache, eActionMap
 
 from time import time, localtime, strftime
 from os import stat as os_stat
+from os import rename as os_rename
+import os
 from bisect import insort
 from sys import maxint
 
@@ -155,13 +160,62 @@ class InfoBarUnhandledKey:
 			self.unhandledKeyDialog.show()
 			self.hideUnhandledKeySymbolTimer.start(2000, True)
 
+class InfoBarScreenSaver:
+	def __init__(self):
+		self.onExecBegin.append(self.__onExecBegin)
+		self.onExecEnd.append(self.__onExecEnd)
+		self.screenSaverTimer = eTimer()
+		self.screenSaverTimer.callback.append(self.screensaverTimeout)
+		self.screensaver = self.session.instantiateDialog(ScreenSaver.Screensaver)
+		self.onLayoutFinish.append(self.__layoutFinished)
+
+	def __layoutFinished(self):
+		self.screensaver.hide()
+
+	def __onExecBegin(self):
+		self.ScreenSaverTimerStart()
+
+	def __onExecEnd(self):
+		if self.screensaver.shown:
+			self.screensaver.hide()
+			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
+		self.screenSaverTimer.stop()
+
+	def ScreenSaverTimerStart(self):
+		time = int(config.usage.screen_saver.value)
+		flag = self.seekstate[0]
+		if not flag:
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if ref:
+				ref = ref.toString().split(":")
+				flag = ref[2] == "2" or os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
+		if time and flag:
+			self.screenSaverTimer.startLongTimer(time)
+		else:
+			self.screenSaverTimer.stop()
+
+	def screensaverTimeout(self):
+		if self.execing and not Standby.inStandby and not Standby.inTryQuitMainloop:
+			self.hide()
+			if hasattr(self, "pvrStateDialog"):
+				self.pvrStateDialog.hide()
+			self.screensaver.show()
+			eActionMap.getInstance().bindAction('', -maxint - 1, self.keypressScreenSaver)
+
+	def keypressScreenSaver(self, key, flag):
+		if flag == 1:
+			self.screensaver.hide()
+			self.show()
+			self.ScreenSaverTimerStart()
+			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
+
 class SecondInfoBar(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skin = None
 
-class InfoBarShowHide:
+class InfoBarShowHide(InfoBarScreenSaver):
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
 	fancy animations. """
 	STATE_HIDDEN = 0
@@ -181,6 +235,7 @@ class InfoBarShowHide:
 				iPlayableService.evStart: self.serviceStarted,
 			})
 
+		InfoBarScreenSaver.__init__(self)
 		self.__state = self.STATE_SHOWN
 		self.__locked = 0
 
@@ -197,11 +252,25 @@ class InfoBarShowHide:
 		if isStandardInfoBar(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
 			self.secondInfoBarScreen.show()
+
 		self.onLayoutFinish.append(self.__layoutFinished)
 
 	def __layoutFinished(self):
 		if self.secondInfoBarScreen:
 			self.secondInfoBarScreen.hide()
+
+	def __onShow(self):
+		self.__state = self.STATE_SHOWN
+		for x in self.onShowHideNotifiers:
+			x(True)
+		self.startHideTimer()
+
+	def __onHide(self):
+		self.__state = self.STATE_HIDDEN
+		if self.secondInfoBarScreen:
+			self.secondInfoBarScreen.hide()
+		for x in self.onShowHideNotifiers:
+			x(False)
 
 	def keyHide(self):
 		if self.__state == self.STATE_SHOWN:
@@ -223,12 +292,6 @@ class InfoBarShowHide:
 			if config.usage.show_infobar_on_zap.value:
 				self.doShow()
 
-	def __onShow(self):
-		self.__state = self.STATE_SHOWN
-		for x in self.onShowHideNotifiers:
-			x(True)
-		self.startHideTimer()
-
 	def startHideTimer(self):
 		if self.__state == self.STATE_SHOWN and not self.__locked:
 			self.hideTimer.stop()
@@ -238,13 +301,6 @@ class InfoBarShowHide:
 				idx = config.usage.infobar_timeout.index
 			if idx:
 				self.hideTimer.start(idx*1000, True)
-
-	def __onHide(self):
-		self.__state = self.STATE_HIDDEN
-		if self.secondInfoBarScreen:
-			self.secondInfoBarScreen.hide()
-		for x in self.onShowHideNotifiers:
-			x(False)
 
 	def doShow(self):
 		self.show()
@@ -1137,11 +1193,17 @@ class InfoBarSeek:
 				print "resolved to PAUSE"
 				pauseable.pause()
 			elif self.seekstate[1]:
-				print "resolved to FAST FORWARD"
-				pauseable.setFastForward(self.seekstate[1])
+				if not pauseable.setFastForward(self.seekstate[1]):
+					print "resolved to FAST FORWARD"
+				else:
+					self.seekstate = self.SEEK_STATE_PLAY
+					print "FAST FORWARD not possible: resolved to PLAY"
 			elif self.seekstate[2]:
-				print "resolved to SLOW MOTION"
-				pauseable.setSlowMotion(self.seekstate[2])
+				if not pauseable.setSlowMotion(self.seekstate[2]):
+					print "resolved to SLOW MOTION"
+				else:
+					self.seekstate = self.SEEK_STATE_PAUSE
+					print "SLOW MOTION not possible: resolved to PAUSE"
 			else:
 				print "resolved to PLAY"
 				pauseable.unpause()
@@ -1150,6 +1212,9 @@ class InfoBarSeek:
 			c(self.seekstate)
 
 		self.checkSkipShowHideLock()
+
+		if hasattr(self, "ScreenSaverTimerStart"):
+			self.ScreenSaverTimerStart()
 
 		return True
 
@@ -1439,6 +1504,10 @@ class InfoBarTimeshift:
 			}, prio=-1) # priority over record
 
 		self.timeshift_enabled = False
+		self.save_timeshift_file = False
+		self.save_timeshift_in_movie_dir = False
+		self.current_timeshift_filename = ""
+		self.new_timeshift_filename = ""
 
 		self["TimeshiftActivateActions"].setEnabled(False)
 		self.ts_rewind_timer = eTimer()
@@ -1447,7 +1516,8 @@ class InfoBarTimeshift:
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evStart: self.__serviceStarted,
-				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged
+				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
+				iPlayableService.evEnd: self.__serviceEnd
 			})
 
 	def getTimeshift(self):
@@ -1478,6 +1548,10 @@ class InfoBarTimeshift:
 				# enable the "TimeshiftEnableActions", which will override
 				# the startTimeshift actions
 				self.__seekableStatusChanged()
+
+				# get current timeshift filename and calculate new
+				self.current_timeshift_filename = ts.getTimeshiftFilename()
+				self.new_timeshift_filename = self.generateNewTimeshiftFileName()
 			else:
 				print "timeshift failed"
 
@@ -1491,8 +1565,10 @@ class InfoBarTimeshift:
 
 	def stopTimeshiftcheckTimeshiftRunningCallback(self, ts, answer):
 		if answer:
+			self.saveTimeshiftFiles()
 			ts.stopTimeshift()
 			self.timeshift_enabled = False
+			self.save_timeshift_file = False
 			self.pvrStateDialog.hide()
 
 			# disable actions
@@ -1522,6 +1598,33 @@ class InfoBarTimeshift:
 	def rewindService(self):
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
 
+	# generates only filename without path
+	def generateNewTimeshiftFileName(self):
+		name = "timeshift record"
+		info = { }
+		self.getProgramInfoAndEvent(info, name)
+
+		serviceref = info["serviceref"]
+
+		service_name = ""
+		if isinstance(serviceref, eServiceReference):
+			service_name = ServiceReference(serviceref).getServiceName()
+		begin_date = strftime("%Y%m%d %H%M", localtime(time()))
+		filename = begin_date + " - " + service_name
+
+		if config.recording.filename_composition.value == "short":
+			filename = strftime("%Y%m%d", localtime(time())) + " - " + info["name"]
+		elif config.recording.filename_composition.value == "long":
+			filename += " - " + info["name"] + " - " + info["description"]
+		else:
+			filename += " - " + info["name"] # standard
+
+		if config.recording.ascii_filenames.value:
+			filename = ASCIItranslit.legacyEncode(filename)
+
+		print "New timeshift filename: ", filename
+		return filename
+
 	# same as activateTimeshiftEnd, but pauses afterwards.
 	def activateTimeshiftEndAndPause(self):
 		print "activateTimeshiftEndAndPause"
@@ -1538,6 +1641,10 @@ class InfoBarTimeshift:
 	def __serviceStarted(self):
 		self.pvrStateDialog.hide()
 		self.timeshift_enabled = False
+		self.save_timeshift_file = False
+		self.save_timeshift_in_movie_dir = False
+		self.current_timeshift_filename = ""
+		self.new_timeshift_filename = ""
 		self.__seekableStatusChanged()
 
 	def checkTimeshiftRunning(self, returnFunction):
@@ -1545,6 +1652,28 @@ class InfoBarTimeshift:
 			self.session.openWithCallback(returnFunction, MessageBox, _("Stop timeshift?"), simple = True)
 		else:
 			returnFunction(True)
+
+	# renames/moves timeshift files if requested
+	def __serviceEnd(self):
+		self.saveTimeshiftFiles()
+
+	def saveTimeshiftFiles(self):
+		if self.timeshift_enabled and self.save_timeshift_file and self.current_timeshift_filename != "" and self.new_timeshift_filename != "":
+			if config.usage.timeshift_path.value is not None and not self.save_timeshift_in_movie_dir:
+				dirname = config.usage.timeshift_path.value
+			else:
+				dirname = defaultMoviePath()
+			filename = getRecordingFilename(self.new_timeshift_filename, dirname) + ".ts"
+
+			fileList = []
+			fileList.append((self.current_timeshift_filename, filename))
+			if fileExists(self.current_timeshift_filename + ".sc"):
+				fileList.append((self.current_timeshift_filename + ".sc", filename + ".sc"))
+			if fileExists(self.current_timeshift_filename + ".cuts"):
+				fileList.append((self.current_timeshift_filename + ".cuts", filename + ".cuts"))
+
+			moveFiles(fileList)
+
 
 from Screens.PiPSetup import PiPSetup
 
@@ -1776,35 +1905,46 @@ class InfoBarInstantRecord:
 			self.session.nav.RecordTimer.removeEntry(self.recording[entry])
 			self.recording.remove(self.recording[entry])
 
-	def startInstantRecording(self, limitEvent = False):
-		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+	def getProgramInfoAndEvent(self, info, name):
+		info["serviceref"] = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 
 		# try to get event info
 		event = None
 		try:
 			service = self.session.nav.getCurrentService()
 			epg = eEPGCache.getInstance()
-			event = epg.lookupEventTime(serviceref, -1, 0)
+			event = epg.lookupEventTime(info["serviceref"], -1, 0)
 			if event is None:
-				info = service.info()
-				ev = info.getEvent(0)
-				event = ev
+				event = service.info().getEvent(0)
 		except:
 			pass
 
-		begin = int(time())
-		end = begin + 3600	# dummy
-		name = "instant record"
-		description = ""
-		eventid = None
+		info["event"] = event
+		info["name"]  = name
+		info["description"] = ""
+		info["eventid"] = None
 
 		if event is not None:
 			curEvent = parseEvent(event)
-			name = curEvent[2]
-			description = curEvent[3]
-			eventid = curEvent[4]
+			info["name"] = curEvent[2]
+			info["description"] = curEvent[3]
+			info["eventid"] = curEvent[4]
+			info["end"] = curEvent[1]
+
+
+	def startInstantRecording(self, limitEvent = False):
+		begin = int(time())
+		end = begin + 3600      # dummy
+		name = "instant record"
+		info = { }
+
+		self.getProgramInfoAndEvent(info, name)
+		serviceref = info["serviceref"]
+		event = info["event"]
+
+		if event is not None:
 			if limitEvent:
-				end = curEvent[1]
+				end = info["end"]
 		else:
 			if limitEvent:
 				self.session.open(MessageBox, _("No event info found, recording indefinitely."), MessageBox.TYPE_INFO)
@@ -1812,7 +1952,7 @@ class InfoBarInstantRecord:
 		if isinstance(serviceref, eServiceReference):
 			serviceref = ServiceReference(serviceref)
 
-		recording = RecordTimerEntry(serviceref, begin, end, name, description, eventid, dirname = preferredInstantRecordPath())
+		recording = RecordTimerEntry(serviceref, begin, end, info["name"], info["description"], info["eventid"], dirname = preferredInstantRecordPath())
 		recording.dontSave = True
 
 		if event is None or limitEvent == False:
@@ -1878,6 +2018,13 @@ class InfoBarInstantRecord:
 				self.changeDuration(len(self.recording)-1)
 			elif answer[1] == "manualendtime":
 				self.setEndtime(len(self.recording)-1)
+		elif answer[1] in ("timeshift", "timeshift_movie"):
+			ts = self.getTimeshift()
+			if ts is not None:
+				ts.saveTimeshiftFile()
+				self.save_timeshift_file = True
+				if answer[1] == "timeshift_movie":
+					self.save_timeshift_in_movie_dir = True
 		print "after:\n", self.recording
 
 	def setEndtime(self, entry):
@@ -1932,6 +2079,9 @@ class InfoBarInstantRecord:
 		else:
 			title=_("Start recording?")
 			list = common + ((_("Do not record"), "no"),)
+		if self.timeshift_enabled:
+			list = list + ((_("Save timeshift file"), "timeshift"),
+			(_("Save timeshift file in movie directory"), "timeshift_movie"))
 		self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox,title=title,list=list)
 
 from Tools.ISO639 import LanguageCodes
@@ -2109,6 +2259,50 @@ class InfoBarTimerButton:
 	def timerSelection(self):
 		from Screens.TimerEdit import TimerEditList
 		self.session.open(TimerEditList)
+
+class InfoBarVmodeButton:
+	def __init__(self):
+		self["VmodeButtonActions"] = HelpableActionMap(self, "InfobarVmodeButtonActions",
+			{
+				"vmodeSelection": (self.vmodeSelection, _("Letterbox zoom")),
+			})
+
+	def vmodeSelection(self):
+		self.session.open(VideoMode)
+
+class VideoMode(Screen):
+	def __init__(self,session):
+		Screen.__init__(self, session)
+		self["videomode"] = Label()
+
+		self["actions"] = NumberActionMap( [ "InfobarVmodeButtonActions" ],
+			{
+				"vmodeSelection": self.selectVMode
+			})
+
+		self.Timer = eTimer()
+		self.Timer.callback.append(self.quit)
+		self.selectVMode()
+
+	def selectVMode(self):
+		policy = config.av.policy_43
+		if self.isWideScreen():
+			policy = config.av.policy_169
+		idx = policy.choices.index(policy.value)
+		idx = (idx + 1) % len(policy.choices)
+		policy.value = policy.choices[idx]
+		self["videomode"].setText(policy.value)
+		self.Timer.start(1000, True)
+
+	def isWideScreen(self):
+		from Components.Converter.ServiceInfo import WIDESCREEN
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		return info.getInfo(iServiceInformation.sAspect) in WIDESCREEN
+
+	def quit(self):
+		self.Timer.stop()
+		self.close()
 
 class InfoBarAdditionalInfo:
 	def __init__(self):

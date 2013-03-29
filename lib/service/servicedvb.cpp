@@ -1407,13 +1407,16 @@ RESULT eDVBServicePlay::pause(ePtr<iPauseableService> &ptr)
 
 RESULT eDVBServicePlay::setSlowMotion(int ratio)
 {
+	int ret = 0;
 	ASSERT(ratio); /* The API changed: instead of calling setSlowMotion(0), call play! */
 	eDebug("eDVBServicePlay::setSlowMotion(%d)", ratio);
 	setFastForward_internal(0);
 	if (m_decoder)
 	{
-		m_slowmotion = ratio;
-		return m_decoder->setSlowMotion(ratio);
+		ret = m_decoder->setSlowMotion(ratio);
+		if (!ret)
+			m_slowmotion = ratio;
+		return ret;
 	}
 	else
 		return -1;

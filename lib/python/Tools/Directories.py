@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-from os import mkdir, rmdir, system, walk, stat as os_stat, listdir, readlink, makedirs, error as os_error, symlink, access, F_OK, R_OK, W_OK
+from os import mkdir, rmdir, system, walk, stat as os_stat, listdir, readlink, makedirs, error as os_error, symlink, access, F_OK, R_OK, W_OK, rename as os_rename
 from stat import S_IMODE
 from re import compile
 from enigma import eEnv
@@ -289,6 +289,32 @@ def copytree(src, dst, symlinks=False):
 			utime(dst, (st.st_atime, st.st_mtime))
 	except:
 		print "copy stats for", src, "failed!"
+
+# Renames files or if source and destination are on different devices moves them in background
+# input list of (source, destination)
+def moveFiles(fileList):
+	movedList = []
+	try:
+		try:
+			for item in fileList:
+				os_rename(item[0], item[1])
+				movedList.append(item)
+		except OSError, e:
+			if e.errno == 18:
+				print "[Directories] cannot rename across devices, trying slow move"
+				import Screens.CopyFiles
+				Screens.CopyFiles.moveFiles(fileList, item[0])
+				print "[Directories] Moving in background..."
+			else:
+				raise
+	except Exception, e:
+		print "[Directories] Failed move:", e
+		for item in movedList:
+			try:
+				os_rename(item[1], item[0])
+			except:
+				print "[Directories] Failed to undo move:", item
+				raise
 
 def getSize(path, pattern=".*"):
 	path_size = 0
