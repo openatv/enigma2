@@ -1513,18 +1513,34 @@ class InfoBarTimeshift:
 		ts = self.getTimeshift()
 		if ts is None:
 			return 0
-		self.checkTimeshiftRunning(boundFunction(self.stopTimeshiftcheckTimeshiftRunningCallback, ts))
+		self.checkTimeshiftRunning(None)
 
-	def stopTimeshiftcheckTimeshiftRunningCallback(self, ts, answer):
-		if answer:
-			self.saveTimeshiftFiles()
+	def stopTimeshiftcheckTimeshiftRunningCallback(self, callbackFunction, answer):
+		if answer == "continue":
+			if callbackFunction is not None:
+				callbackFunction(False)
+			return
+
+		if answer == "save":
+			self.save_timeshift_file = True
+		elif answer == "save_movie":
+			self.save_timeshift_file = True
+			self.save_timeshift_in_movie_dir = True
+
+		self.saveTimeshiftFiles()
+		ts = self.getTimeshift()
+		if ts is not None:
 			ts.stopTimeshift()
-			self.timeshift_enabled = False
-			self.save_timeshift_file = False
-			self.pvrStateDialog.hide()
+		self.timeshift_enabled = False
+		self.save_timeshift_file = False
+		self.pvrStateDialog.hide()
 
-			# disable actions
-			self.__seekableStatusChanged()
+		# disable actions
+		self.__seekableStatusChanged()
+
+		# call callback function
+		if callbackFunction is not None:
+			callbackFunction(True)
 
 	# activates timeshift, and seeks to (almost) the end
 	def activateTimeshiftEnd(self, back = True):
@@ -1601,7 +1617,13 @@ class InfoBarTimeshift:
 
 	def checkTimeshiftRunning(self, returnFunction):
 		if self.timeshift_enabled and config.usage.check_timeshift.value:
-			self.session.openWithCallback(returnFunction, MessageBox, _("Stop timeshift?"), simple = True)
+			message = _("Stop timeshift?")
+			if not self.save_timeshift_file:
+				choise = [(_("yes"), "stop"), (_("no"), "continue"), (_("Yes and save"), "save"), (_("Yes and save in movie dir"), "save_movie")]
+			else:
+				choise = [(_("yes"), "stop"), (_("no"), "continue")]
+				message += "\n" + _("Reminder, you have chosen to save timeshift file.")
+			self.session.openWithCallback(boundFunction(self.stopTimeshiftcheckTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choise)
 		else:
 			returnFunction(True)
 
