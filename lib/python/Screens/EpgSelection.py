@@ -120,8 +120,8 @@ class EPGSelection(Screen, HelpableScreen):
 		self['colouractions'].csel = self
 		self['recordingactions'] = HelpableActionMap(self, 'InfobarInstantRecord', 
 			{
-				'ShortRecord': (self.RecordTimerQuestion, _('Add a record timer for current event')),
-				'LongRecord': (self.doZapTimer, _('Add a zap timer for current event'))
+				'ShortRecord': (self.recButtonPressed, _('Add a record timer for current event')),
+				'LongRecord': (self.reclongButtonPressed, _('Add a zap timer for current event'))
 			}, -1)
 		self['recordingactions'].csel = self
 		if self.type == EPG_TYPE_SIMILAR:
@@ -1047,6 +1047,16 @@ class EPGSelection(Screen, HelpableScreen):
 			posy = self['list'].getSelectionPosition(serviceref)
 			self.ChoiceBoxDialog.instance.move(ePoint(posy[0]-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+posy[1]))
 			self.showChoiceBoxDialog()
+
+	def recButtonPressed(self):
+		if not self.longbuttonpressed:
+			self.RecordTimerQuestion()
+		else:
+			self.longbuttonpressed = False
+
+	def reclongButtonPressed(self):
+		self.longbuttonpressed = True
+		self.doZapTimer()
 
 	def ChoiceBoxNull(self):
 		return
