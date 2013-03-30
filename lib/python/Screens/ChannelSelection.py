@@ -1649,10 +1649,12 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					if not self.session.pip.playService(nref):
 						# XXX: Make sure we set an invalid ref
 						self.session.pip.playService(None)
+					else:
+						self.setCurrentSelection(self.session.pip.getCurrentService())
 			else:
 				self.setStartRoot(self.curRoot)
 				self.setCurrentSelection(ref)
-				return
+			return
 		Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref))
 
 	def zapCheckTimeshiftCallback(self, enable_pipzap, preview_zap, nref, answer):
