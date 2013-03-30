@@ -93,12 +93,12 @@ class EPGSelection(Screen, HelpableScreen):
 		self['key_green'] = Button(_('Add Timer'))
 		self['key_yellow'] = Button(_('EPG Search'))
 		self['key_blue'] = Button(_('Add AutoTimer'))
-		self['dialogactions'] = HelpableActionMap(self, 'OkCancelActions',
+		self['dialogactions'] = HelpableActionMap(self, 'WizardActions',
 			{
-				'cancel': (self.closeChoiceBoxDialog, _('Exit EPG')),
+				'back': (self.closeChoiceBoxDialog, _('Close dialog')),
 			}, -1)
 		self['dialogactions'].csel = self
-		self['dialogactions'].execEnd()
+		self["dialogactions"].setEnabled(False)
 
 		self['okactions'] = HelpableActionMap(self, 'OkCancelActions',
 			{
@@ -247,6 +247,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.updateTimelineTimer.start(60000)
 			self['bouquetokactions'] = HelpableActionMap(self, 'OkCancelActions',
 				{
+					'cancel': (self.BouquetlistHide, _('Close bouquet list.')),
 					'OK': (self.BouquetOK, _('Chnage to bouquet')),
 				}, -1)
 			self['bouquetokactions'].csel = self
@@ -1075,14 +1076,14 @@ class EPGSelection(Screen, HelpableScreen):
 		self['colouractions'].setEnabled(False)
 		self['recordingactions'].setEnabled(False)
 		self['epgactions'].setEnabled(False)
-		self['dialogactions'].execBegin()
+		self["dialogactions"].setEnabled(True)
 		self.ChoiceBoxDialog['actions'].execBegin()
 		self.ChoiceBoxDialog.show()
 		if self.has_key('input_actions'):
 			self['input_actions'].setEnabled(False)
 
 	def closeChoiceBoxDialog(self):
-		self['dialogactions'].execEnd()
+		self["dialogactions"].setEnabled(False)
 		if self.ChoiceBoxDialog:
 			self.ChoiceBoxDialog['actions'].execEnd()
 			self.session.deleteDialog(self.ChoiceBoxDialog)
