@@ -6,7 +6,6 @@ from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
 from enigma import eDVBVolumecontrol
 import Screens.InfoBar
-from os import path
 
 inStandby = None
 
@@ -39,35 +38,7 @@ class Standby2(Screen):
 		self.avswitch = AVSwitch()
 
 		print "enter standby"
-		# Venton series	new vfd
-		if open("/proc/stb/info/boxtype").read().strip() == "ini-7012":
-			if path.exists("/proc/stb/lcd/symbol_scrambled"):
-				open("/proc/stb/lcd/symbol_scrambled", "w").write("0")
-		
-			if path.exists("/proc/stb/lcd/symbol_1080p"):
-				open("/proc/stb/lcd/symbol_1080p", "w").write("0")
-				
-			if path.exists("/proc/stb/lcd/symbol_1080i"):
-				open("/proc/stb/lcd/symbol_1080i", "w").write("0")
-			  
-			if path.exists("/proc/stb/lcd/symbol_720p"):
-				open("/proc/stb/lcd/symbol_720p", "w").write("0")
-			  
-			if path.exists("/proc/stb/lcd/symbol_576i"):
-				open("/proc/stb/lcd/symbol_576i", "w").write("0")
-			  
-			if path.exists("/proc/stb/lcd/symbol_576p"): 
-				open("/proc/stb/lcd/symbol_576p", "w").write("0")
-			
-			if path.exists("/proc/stb/lcd/symbol_hd"): 
-				open("/proc/stb/lcd/symbol_hd", "w").write("0")  
 
-			if path.exists("/proc/stb/lcd/symbol_dolby_audio"): 
-				open("/proc/stb/lcd/symbol_dolby_audio", "w").write("0") 
-
-			if path.exists("/proc/stb/lcd/symbol_mp3"): 
-				open("/proc/stb/lcd/symbol_mp3", "w").write("0") 
-				
 		self["actions"] = ActionMap( [ "StandbyActions" ],
 		{
 			"power": self.Power,
@@ -163,8 +134,7 @@ class QuitMainloopScreen(Screen):
 			3: _("The user interface of your STB_BOX is restarting"),
 			4: _("Your frontprocessor will be upgraded\nPlease wait until your STB_BOX reboots\nThis may take a few minutes"),
 			5: _("The user interface of your STB_BOX is restarting\ndue to an error in mytest.py"),
-			42: _("Unattended upgrade in progress\nPlease wait until your STB_BOX reboots\nThis may take a few minutes"),
-			44: _("Your front panel will be upgraded\nThis may take a few minutes")}.get(retvalue)
+			42: _("Unattended upgrade in progress\nPlease wait until your STB_BOX reboots\nThis may take a few minutes") }.get(retvalue)
 		self["text"] = Label(text)
 
 inTryQuitMainloop = False
@@ -199,8 +169,7 @@ class TryQuitMainloop(MessageBox):
 				2: _("Really reboot now?"),
 				3: _("Really restart now?"),
 				4: _("Really upgrade the frontprocessor and reboot now?"),
-				42: _("Really upgrade your STB_BOX and reboot now?"),
-				44: _("Really upgrade the front panel and reboot now?")}.get(retvalue),
+				42: _("Really upgrade your STB_BOX and reboot now?") }.get(retvalue)
 			if text:
 				MessageBox.__init__(self, session, reason+text, type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
 				self.skinName = "MessageBoxSimple"

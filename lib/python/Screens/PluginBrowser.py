@@ -1,6 +1,7 @@
 from Screens.Screen import Screen
 from Components.Language import language
-from enigma import eConsoleAppContainer, eDVBDB
+from enigma import eConsoleAppContainer, eDVBDB, getImageVersionString
+
 
 from Components.About import about
 from Components.ActionMap import ActionMap
@@ -330,13 +331,13 @@ class PluginDownloadBrowser(Screen):
 			currentTimeoutDefault = socket.getdefaulttimeout()
 			socket.setdefaulttimeout(3)
 			try:
-				config.softwareupdate.updateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + about.getImageVersionString() + "/status").read())
+				config.softwareupdate.updateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + getImageVersionString() + "/status").read())
 			except:
 				config.softwareupdate.updateisunstable.setValue(1)
 			socket.setdefaulttimeout(currentTimeoutDefault)
 
 			if config.softwareupdate.updateisunstable.getValue() == '1' and config.softwareupdate.updatebeta.getValue():
-				self["text"].setText(_("Downloading plugin information. Please wait..."))
+				self["text"].setText(_("WARNING: feeds maybe unstable.") + '\n' + _("Downloading plugin information. Please wait..."))
 				self.container.execute(self.ipkg + " update")
 			elif config.softwareupdate.updateisunstable.getValue() == '1' and not config.softwareupdate.updatebeta.getValue():
 				self["text"].setText(_("Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in online update setup."))

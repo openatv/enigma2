@@ -60,9 +60,8 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 			{
 			"yellow": (self.setDefaultInterface, [_("Set interface as default Interface"),_("* Only available if more than one interface is active.")] ),
 			})
-		
-		self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getInstalledAdapters()]
-		#self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
+
+		self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
 
 		if not self.adapters:
 			self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getConfiguredAdapters()]
@@ -384,40 +383,20 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self["key_green"] = StaticText(_("Save"))
 		self["key_blue"] = StaticText(_("Edit DNS"))
 
-		self["VKeyIcon"] = Pixmap()
-		self["VKeyIcon"].hide()
-		self["HelpText"] = Label(_("Please to press button TXT to open Virtual keyboard"))
-		self["HelpText"].hide()
-		
-		
+		self["VKeyIcon"] = Boolean(False)
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 
-		self["config"].onSelectionChanged.append(self.selectionChanged)
-
-	def selectionChanged(self):
-		current = self["config"].getCurrent()
-		if current == self.wlanSSID or current == self.encryptionKey:
-			self["VKeyIcon"].show()
-			self["HelpText"].show()
-		else:
-			self["VKeyIcon"].hide()
-			self["HelpText"].hide()
-				
 	def layoutFinished(self):
 		self["DNS1"].setText(self.primaryDNS.getText())
 		self["DNS2"].setText(self.secondaryDNS.getText())
-		try:
-			if self.ipConfigEntry.getText() is not None:
-				if self.ipConfigEntry.getText() == "0.0.0.0":
-					self["IP"].setText(_("N/A"))
-				else:
-					self["IP"].setText(self.ipConfigEntry.getText())
-			else:
+		if self.ipConfigEntry.getText() is not None:
+			if self.ipConfigEntry.getText() == "0.0.0.0":
 				self["IP"].setText(_("N/A"))
-		except:
+			else:
+				self["IP"].setText(self.ipConfigEntry.getText())
+		else:
 			self["IP"].setText(_("N/A"))
-			
 		if self.netmaskConfigEntry.getText() is not None:
 			if self.netmaskConfigEntry.getText() == "0.0.0.0":
 				self["Mask"].setText(_("N/A"))
@@ -459,7 +438,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.encryptionlist.append(("WEP", _("WEP")))
 			self.encryptionlist.append(("WPA", _("WPA")))
 			self.encryptionlist.append(("WPA/WPA2", _("WPA or WPA2")))
-			self.encryptionlist.append(("WPA/WPA2", _("WPA2")))
+			self.encryptionlist.append(("WPA2", _("WPA2")))
 			self.weplist = []
 			self.weplist.append("ASCII")
 			self.weplist.append("HEX")
@@ -530,7 +509,6 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 							self.list.append(self.encryptionKey)
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
-		self["config"].onSelectionChanged.append(self.selectionChanged)
 
 	def KeyBlue(self):
 		self.session.openWithCallback(self.NameserverSetupClosed, NameserverSetup)
@@ -1456,7 +1434,6 @@ class NetworkMountsMenu(Screen,HelpableScreen):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		Screen.setTitle(self, _("Mounts Setup"))
-		self.skinName = ["NetworkMountsMenu", "AdapterSetupConfiguration"]
 		self.session = session
 		self.onChangedEntry = [ ]
 		self.mainmenu = self.genMainMenu()
@@ -2598,10 +2575,9 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 	def KeyText(self):
 		sel = self['config'].getCurrent()
 		if sel:
-			if not (sel[0] == _("Time Update in Minutes") + ':'):
-				if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-					if self["config"].getCurrent()[1].help_window.instance is not None:
-						self["config"].getCurrent()[1].help_window.hide()
+			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+				if self["config"].getCurrent()[1].help_window.instance is not None:
+					self["config"].getCurrent()[1].help_window.hide()
 			self.vkvar = sel[0]
 			if self.vkvar == _("Username") + ':' or self.vkvar == _("Password") + ':' or self.vkvar == _("Alias") + ':' or self.vkvar == _("System") + ':':
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
