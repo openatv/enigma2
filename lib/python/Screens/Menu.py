@@ -13,7 +13,12 @@ import xml.etree.cElementTree
 
 from Screens.Setup import Setup, getSetupTitle
 
-mainmenu = _("Main menu")
+#		<item text="TV-Mode">self.setModeTV()</item>
+#		<item text="Radio-Mode">self.setModeRadio()</item>
+#		<item text="File-Mode">self.setModeFile()</item>
+#			<item text="Sleep Timer"></item>
+mainmenu = _("Main Menu")
+menutitle_string = ""
 
 # read the menu
 file = open(resolveFilename(SCOPE_SKIN, 'menu.xml'), 'r')
@@ -31,13 +36,13 @@ class MenuUpdater:
 	def __init__(self):
 		self.updatedMenuItems = {}
 
-	def addMenuItem(self, id, pos, text, module, screen, weight):
+	def addMenuItem(self, id, pos, text, module, screen, weight, endtext = '>'):
 		if not self.updatedMenuAvailable(id):
 			self.updatedMenuItems[id] = []
-		self.updatedMenuItems[id].append([text, pos, module, screen, weight])
+		self.updatedMenuItems[id].append([text, pos, module, screen, weight, endtext])
 
-	def delMenuItem(self, id, pos, text, module, screen, weight):
-		self.updatedMenuItems[id].remove([text, pos, module, screen, weight])
+	def delMenuItem(self, id, pos, text, module, screen, weight, endtext = '>'):
+		self.updatedMenuItems[id].remove([text, pos, module, screen, weight, endtext])
 
 	def updatedMenuAvailable(self, id):
 		return self.updatedMenuItems.has_key(id)
@@ -94,13 +99,14 @@ class Menu(Screen):
 		MenuTitle = _(node.get("text", "??").encode("UTF-8"))
 		entryID = node.get("entryID", "undefined")
 		weight = node.get("weight", 50)
+		end_text = node.get("endtext", ">").encode('UTF-8')
 		x = node.get("flushConfigOnClose")
 		if x:
 			a = boundFunction(self.session.openWithCallback, self.menuClosedWithConfigFlush, Menu, node)
 		else:
 			a = boundFunction(self.session.openWithCallback, self.menuClosed, Menu, node)
 		#TODO add check if !empty(node.childNodes)
-		destList.append((MenuTitle, a, entryID, weight))
+		destList.append((MenuTitle, a, entryID, weight, end_text))
 
 	def menuClosedWithConfigFlush(self, *res):
 		configfile.save()
@@ -121,6 +127,7 @@ class Menu(Screen):
 		item_text = node.get("text", "").encode("UTF-8")
 		entryID = node.get("entryID", "undefined")
 		weight = node.get("weight", 50)
+		end_text = node.get('endtext', '>').encode('UTF-8')
 		for x in node:
 			if x.tag == 'screen':
 				module = x.get("module")
@@ -140,10 +147,10 @@ class Menu(Screen):
 				args = x.text or ""
 				screen += ", " + args
 
-				destList.append((_(item_text or "??"), boundFunction(self.runScreen, (module, screen)), entryID, weight))
+				destList.append((_(item_text or "??"), boundFunction(self.runScreen, (module, screen)), entryID, weight, end_text))
 				return
 			elif x.tag == 'code':
-				destList.append((_(item_text or "??"), boundFunction(self.execText, x.text), entryID, weight))
+				destList.append((_(item_text or "??"), boundFunction(self.execText, x.text), entryID, weight, end_text))
 				return
 			elif x.tag == 'setup':
 				id = x.get("id")
@@ -151,16 +158,17 @@ class Menu(Screen):
 					item_text = _(getSetupTitle(id))
 				else:
 					item_text = _(item_text)
-				destList.append((item_text, boundFunction(self.openSetup, id), entryID, weight))
+				destList.append((item_text, boundFunction(self.openSetup, id), entryID, weight, end_text))
 				return
-		destList.append((item_text, self.nothing, entryID, weight))
+		destList.append((item_text, self.nothing, entryID, weight, end_text))
 
 
-	def __init__(self, session, parent):
+	def __init__(self, session, parent, endtext = '>'):
 		Screen.__init__(self, session)
 
 		list = []
-
+		self.endtext = endtext
+		
 		menuID = None
 		for x in parent:						#walk through the actual nodelist
 			if not x.tag:
@@ -175,6 +183,7 @@ class Menu(Screen):
 				count += 1
 			elif x.tag == "id":
 				menuID = x.get("val")
+				self.endtext = str(x.get('endtext', '>'))
 				count = 0
 
 			if menuID is not None:
@@ -182,7 +191,7 @@ class Menu(Screen):
 				if menuupdater.updatedMenuAvailable(menuID):
 					for x in menuupdater.getUpdatedMenu(menuID):
 						if x[1] == count:
-							list.append((x[0], boundFunction(self.runScreen, (x[2], x[3] + ", ")), x[4]))
+							list.append((x[0], boundFunction(self.runScreen, (x[2], x[3] + ", ")), x[4], '>'))
 							count += 1
 
 		if menuID is not None:
@@ -194,7 +203,7 @@ class Menu(Screen):
 					if x[2] == plugin_menuid:
 						list.remove(x)
 						break
-				list.append((l[0], boundFunction(l[1], self.session), l[2], l[3] or 50))
+				list.append((l[0], boundFunction(l[1], self.session), l[2], l[3] or 50, ">"))
 
 		# for the skin: first try a menu_<menuID>, then Menu
 		self.skinName = [ ]
@@ -230,7 +239,14 @@ class Menu(Screen):
 		a = a and _(a)
 		if a is None:
 			a = _(parent.get("text", "").encode("UTF-8"))
+		global menutitle_string
+		if _(a) == _("Main menu"):
+		  menutitle_string += a 
+		else:
+		  menutitle_string += " ---> " + a
+		#self["title"] = StaticText(menutitle_string)
 		self["title"] = StaticText(a)
+
 		Screen.setTitle(self, a)
 		self.menu_title = a
 
@@ -244,9 +260,11 @@ class Menu(Screen):
 			self.okbuttonClick()
 
 	def closeNonRecursive(self):
+		menutitle_string = ""
 		self.close(False)
 
 	def closeRecursive(self):
+		menutitle_string = ""
 		self.close(True)
 
 	def createSummary(self):
@@ -257,4 +275,6 @@ class MainMenu(Menu):
 
 	def __init__(self, *x):
 		self.skinName = "Menu"
+		global menutitle_string
+		menutitle_string = ""
 		Menu.__init__(self, *x)
