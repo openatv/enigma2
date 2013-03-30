@@ -329,7 +329,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.hideTimer.start(idx*1000, True)
 		elif (self.secondInfoBarScreen and self.secondInfoBarScreen.shown) or ((not config.usage.show_second_infobar.getValue() or isMoviePlayerInfoBar(self))):
 			self.hideTimer.stop()
-			idx = config.usage.show_second_infobar.index
+			idx = config.usage.second_infobar_timeout.index
 			if idx:
 				self.hideTimer.start(idx*1000, True)
 		elif self.pvrStateDialog:
