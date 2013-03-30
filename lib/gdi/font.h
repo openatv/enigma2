@@ -92,6 +92,7 @@ public:
 #define GS_SOFTHYPHEN 16
 #define GS_HYPHEN   32
 #define GS_COLORCHANGE 64
+#define GS_LF 128
 #define GS_CANBREAK (GS_ISSPACE|GS_SOFTHYPHEN|GS_HYPHEN)
 
 struct pGlyph

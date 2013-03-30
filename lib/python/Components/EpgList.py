@@ -11,6 +11,7 @@ from Tools.Alternatives import CompareWithAlternatives
 from Tools.LoadPixmap import LoadPixmap
 
 from time import localtime, time, strftime
+from Components.config import config
 from ServiceReference import ServiceReference
 from Tools.Directories import pathExists, resolveFilename, SCOPE_ACTIVE_SKIN
 from os import listdir, path
@@ -250,12 +251,6 @@ class EPGList(HTMLComponent, GUIComponent):
 			return self.l.getCurrentSelection()[0]
 		return 0
 
-	def moveUp(self):
-		self.instance.moveSelection(self.instance.moveUp)
-
-	def moveDown(self):
-		self.instance.moveSelection(self.instance.moveDown)
-
 	def isSelectable(self, service, service_name, events, picon):
 		return (events and len(events) and True) or False
 
@@ -420,6 +415,9 @@ class EPGList(HTMLComponent, GUIComponent):
 					itemHeight = 54 # some default (270/5)
 			self.l.setItemHeight(itemHeight)
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			self.listHeight = self.instance.size().height()
+			self.listWidth = self.instance.size().width()
+			self.itemHeight = itemHeight
 
 			self.picload.setPara((self.listWidth, itemHeight, 0, 0, 1, 1, "#00000000"))
 			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/CurrentEvent.png'), 0, 0, False)
@@ -475,6 +473,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				itemHeight = 25
 			self.l.setItemHeight(itemHeight)
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			self.listHeight = self.instance.size().height()
+			self.listWidth = self.instance.size().width()
+			self.itemHeight = itemHeight
 		elif self.type == EPG_TYPE_MULTI:
 			if self.listHeight > 0:
 				itemHeight = self.listHeight / config.epgselection.multi_itemsperpage.getValue()
@@ -484,14 +485,21 @@ class EPGList(HTMLComponent, GUIComponent):
 				itemHeight = 25
 			self.l.setItemHeight(itemHeight)
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			self.listHeight = self.instance.size().height()
+			self.listWidth = self.instance.size().width()
+			self.itemHeight = itemHeight
 		elif self.type == EPG_TYPE_INFOBAR:
 			if self.listHeight > 0:
-				itemHeight = float(self.listHeight / config.epgselection.infobar_itemsperpage.getValue())
+				itemHeight = self.listHeight / config.epgselection.infobar_itemsperpage.getValue()
 			else:
 				itemHeight = 32
 			if itemHeight < 25:
 				itemHeight = 20
 			self.l.setItemHeight(int(itemHeight))
+			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			self.listHeight = self.instance.size().height()
+			self.listWidth = self.instance.size().width()
+			self.itemHeight = itemHeight
 
 	def setServiceFontsize(self):
 		if self.type == EPG_TYPE_GRAPH:
@@ -534,6 +542,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		else:
 			instance.selectionChanged.get().remove(self.selectionChanged)
 			instance.setContent(None)
+
+	def selectionEnabled(self, enabled):
+		if self.instance is not None:
+			self.instance.setSelectionEnable(enabled)
 
 	def recalcEntrySize(self):
 		esize = self.l.getItemSize()
@@ -652,21 +664,31 @@ class EPGList(HTMLComponent, GUIComponent):
 			if nowTime < beginTime:
 				begin = localtime(beginTime)
 				end = localtime(beginTime+duration)
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, r4.x, r4.y, r4.w, r4.h, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER, "%02d.%02d - %02d.%02d"%(begin[3],begin[4],end[3],end[4])))
+				res.extend((
+					(eListboxPythonMultiContent.TYPE_TEXT, r4.x, r4.y, r4.w, r4.h, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER, "%02d.%02d - %02d.%02d"%(begin[3],begin[4],end[3],end[4])),
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, 80, r3.h, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, _("%d min") % (duration / 60))
+				))
 			else:
 				percent = (nowTime - beginTime) * 100 / duration
-				res.append((eListboxPythonMultiContent.TYPE_PROGRESS, r2.x, r2.y, r2.w, r2.h, percent))
+				prefix = "+"
+				remaining = ((beginTime+duration) - int(time())) / 60
+				if remaining <= 0:
+					prefix = ""
+				res.extend((
+					(eListboxPythonMultiContent.TYPE_PROGRESS, r2.x, r2.y, r2.w, r2.h, percent),
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, 80, r3.h, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, _("%s%d min") % (prefix, remaining))
+				))
 			if rec is not None and rec[1] >0:
 				if rec[1] == 1:
 					pos = r3.x+r3.w
 				else:
 					pos = r3.x+r3.w-10
 				res.extend((
-					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-10, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w-110, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
 					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-11), 21, 21, self.clocks[rec[1]])
 				))
 			else:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w-100, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
 		return res
 
 	def buildGraphEntry(self, service, service_name, events, picon):
@@ -983,6 +1005,39 @@ class EPGList(HTMLComponent, GUIComponent):
 					border_width = self.eventBorderWidth, border_color = self.borderColor))
 		return res
 
+	def getSelectionPosition(self,serviceref):
+		if self.type == EPG_TYPE_GRAPH:
+			indx = int(self.getIndexFromService(serviceref))
+			selx = self.select_rect.x+self.select_rect.w
+			while indx+1 > config.epgselection.graph_itemsperpage.getValue():
+				indx = indx - config.epgselection.graph_itemsperpage.getValue()
+		elif self.type == EPG_TYPE_INFOBARGRAPH:
+			indx = int(self.getIndexFromService(serviceref))
+			selx = self.select_rect.x+self.select_rect.w
+			while indx+1 > config.epgselection.infobar_itemsperpage.getValue():
+				indx = indx - config.epgselection.infobar_itemsperpage.getValue()
+		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
+			indx = int(self.l.getCurrentSelectionIndex())
+			selx = self.listWidth
+			while indx+1 > config.epgselection.enhanced_itemsperpage.getValue():
+				indx = indx - config.epgselection.enhanced_itemsperpage.getValue()
+		elif self.type == EPG_TYPE_MULTI:
+			indx = int(self.l.getCurrentSelectionIndex())
+			selx = self.listWidth
+			while indx+1 > config.epgselection.multi_itemsperpage.getValue():
+				indx = indx - config.epgselection.multi_itemsperpage.getValue()
+		elif self.type == EPG_TYPE_INFOBAR:
+			indx = int(self.l.getCurrentSelectionIndex())
+			selx = self.listWidth
+			while indx+1 > config.epgselection.infobar_itemsperpage.getValue():
+				indx = indx - config.epgselection.infobar_itemsperpage.getValue()
+		pos = self.instance.position().y()
+		sely = int(pos)+(int(self.itemHeight)*int(indx))
+		temp = int(self.instance.position().y())+int(self.listHeight)
+		if int(sely) >= temp:
+			sely = int(sely) - int(self.listHeight)
+		return (int(selx), int(sely))
+
 	def selEntry(self, dir, visible = True):
 		cur_service = self.cur_service    #(service, service_name, events, picon)
 		self.recalcEntrySize()
@@ -1027,6 +1082,14 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.selectionChanged()
 		return False
 
+	def queryEPG(self, list, buildFunc=None):
+		if self.epgcache is not None:
+			if buildFunc is not None:
+				return self.epgcache.lookupEvent(list, buildFunc)
+			else:
+				return self.epgcache.lookupEvent(list)
+		return [ ]
+
 	def fillSimilarList(self, refstr, event_id):
 		# search similar broadcastings
 		t = time()
@@ -1037,25 +1100,33 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.list.sort(key=lambda x: x[2])
 		self.l.setList(self.list)
 		self.selectionChanged()
-		print time() - t
 
 	def fillSingleEPG(self, service):
-		test = [ 'RIBDT', (service.ref.toString(), 0, -1, -1) ]
-		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
+		t = time()
+		epg_time = t - config.epg.histminutes.getValue()*60
+		test = [ 'RIBDT', (service.ref.toString(), 0, epg_time, -1) ]
+		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
+		if t != epg_time:
+			idx = 0
+			for x in self.list:
+				idx += 1
+				if t < x[2]+x[3]:
+					break
+			self.instance.moveSelectionTo(idx-1)
 		self.selectionChanged()
 
 	def fillMultiEPG(self, services, stime=None):
 		test = [ (service.ref.toString(), 0, stime) for service in services ]
 		test.insert(0, 'X0RIBDTCn')
-		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
+		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
 		self.selectionChanged()
 
 	def updateMultiEPG(self, direction):
 		test = [ x[3] and (x[1], direction, x[3]) or (x[1], direction, 0) for x in self.list ]
 		test.insert(0, 'XRIBDTCn')
-		epg_data = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
+		epg_data = self.queryEPG(test)
 		cnt = 0
 		for x in epg_data:
 			changecount = self.list[cnt][0] + direction
@@ -1082,7 +1153,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			piconIdx = 0
 
 		test.insert(0, 'XRnITBD') #return record, service ref, service name, event id, event title, begin time, duration
-		epg_data = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
+		epg_data = self.queryEPG(test)
 		self.list = [ ]
 		tmp_list = None
 		service = ""
@@ -1333,3 +1404,260 @@ class TimelineText(HTMLComponent, GUIComponent):
 			timeline_now.visible = True
 		else:
 			timeline_now.visible = False
+
+class EPGBouquetList(HTMLComponent, GUIComponent):
+	def __init__(self, graphic=False):
+		GUIComponent.__init__(self)
+		self.graphic = graphic
+		self.l = eListboxPythonMultiContent()
+		self.l.setBuildFunc(self.buildEntry)
+
+		self.onSelChanged = [ ]
+
+		self.picload = ePicLoad()
+
+		self.foreColor = 0xffffff
+		self.foreColorSelected = 0xffffff
+		self.backColor = 0x2D455E
+		self.backColorSelected = 0xd69600
+
+		self.borderColor = 0xC0C0C0
+		self.BorderWidth = 1
+
+		self.bouquetFontName = "Regular"
+		self.bouquetFontSize = 20
+
+		self.itemHeight = 31
+		self.listHeight = None
+		self.listWidth = None
+
+		self.bouquetNamePadding = 3
+		self.bouquetNameAlign = 'left'
+		self.bouquetNameWrap = 'no'
+
+	def applySkin(self, desktop, screen):
+		if self.skinAttributes is not None:
+			attribs = [ ]
+			for (attrib, value) in self.skinAttributes:
+				if attrib == "font":
+					font = parseFont(value, ((1,1),(1,1)) )
+					self.bouquetFontName = font.family
+					self.bouquetFontSize = font.pointSize
+				elif attrib == "foregroundColor":
+					self.foreColor = parseColor(value).argb()
+				elif attrib == "backgroundColor":
+					self.backColor = parseColor(value).argb()
+				elif attrib == "foregroundColorSelected":
+					self.foreColorSelected = parseColor(value).argb()
+				elif attrib == "backgroundColorSelected":
+					self.backColorSelected = parseColor(value).argb()
+				elif attrib == "borderColor":
+					self.borderColor = parseColor(value).argb()
+					print 'self.borderColor',self.borderColor
+				elif attrib == "borderWidth":
+					self.BorderWidth = int(value)
+				elif attrib == "itemHeight":
+					self.itemHeight = int(value)
+				else:
+					attribs.append((attrib,value))
+			self.skinAttributes = attribs
+		rc = GUIComponent.applySkin(self, desktop, screen)
+		self.listHeight = self.instance.size().height()
+		self.listWidth = self.instance.size().width()
+		self.setItemsPerPage()
+		return rc
+
+	GUI_WIDGET = eListbox
+
+	def getCurrentBouquet(self):
+		return self.l.getCurrentSelection()[0]
+
+	def getCurrentBouquetService(self):
+		return self.l.getCurrentSelection()[1]
+
+	def selectionChanged(self):
+		for x in self.onSelChanged:
+			if x is not None:
+				x()
+
+	def getIndexFromService(self, serviceref):
+		if serviceref is not None:
+			for x in range(len(self.bouquetslist)):
+				if CompareWithAlternatives(self.bouquetslist[x][1].toString(), serviceref.toString()):
+					return x
+		return None
+
+	def moveToService(self, serviceref):
+		newIdx = self.getIndexFromService(serviceref)
+		if newIdx is None:
+			newIdx = 0
+		self.setCurrentIndex(newIdx)
+
+	def setCurrentIndex(self, index):
+		if self.instance is not None:
+			self.instance.moveSelectionTo(index)
+
+	def moveTo(self, dir):
+		if self.instance is not None:
+			self.instance.moveSelection(dir)
+
+	def setItemsPerPage(self):
+			self.l.setItemHeight(self.itemHeight)
+
+			self.picload.setPara((self.listWidth, self.itemHeight, 0, 0, 1, 1, "#00000000"))
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherEvent.png'), 0, 0, False)
+			self.othPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedCurrentEvent.png'), 0, 0, False)
+			self.selPix = self.picload.getData()
+			
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderTop.png'), 0, 0, False)
+			self.borderTopPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderLeft.png'), 0, 0, False)
+			self.borderLeftPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderBottom.png'), 0, 0, False)
+			self.borderBottomPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderRight.png'), 0, 0, False)
+			self.borderRightPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderTop.png'), 0, 0, False)
+			self.borderSelectedTopPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderLeft.png'), 0, 0, False)
+			self.borderSelectedLeftPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderBottom.png'), 0, 0, False)
+			self.borderSelectedBottomPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderRight.png'), 0, 0, False)
+			self.borderSelectedRightPix = self.picload.getData()
+
+	def setBouquetFontsize(self):
+		self.l.setFont(0, gFont(self.bouquetFontName, self.bouquetFontSize))
+
+	def postWidgetCreate(self, instance):
+		self.l.setSelectableFunc(True)
+		instance.setWrapAround(True)
+		instance.selectionChanged.get().append(self.selectionChanged)
+		instance.setContent(self.l)
+		# self.l.setSelectionClip(eRect(0,0,0,0), False)
+		self.setBouquetFontsize()
+
+	def preWidgetRemove(self, instance):
+		instance.selectionChanged.get().append(self.selectionChanged)
+		instance.setContent(None)
+
+	def selectionEnabled(self, enabled):
+		if self.instance is not None:
+			self.instance.setSelectionEnable(enabled)
+
+	def recalcEntrySize(self):
+		esize = self.l.getItemSize()
+		width = esize.width()
+		height = esize.height()
+		self.bouquet_rect = Rect(0, 0, width, height)
+
+	def getBouquetRect(self):
+		rc = self.bouquet_rect
+		return Rect( rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height() )
+
+	def buildEntry(self, name, func):
+		r1 = self.bouquet_rect
+		left = r1.x
+		top = r1.y
+		# width = (len(name)+5)*8
+		width = r1.w
+		height = r1.h
+		selected = self.CurrentBouquet == func
+
+		if self.bouquetNameAlign.lower() == 'left':
+			if self.bouquetNameWrap.lower() == 'yes':
+				alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
+			else:
+				alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+		else:
+			if self.bouquetNameWrap.lower() == 'yes':
+				alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
+			else:
+				alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
+
+		res = [ None ]
+
+		if selected:
+			borderTopPix = self.borderSelectedTopPix
+			borderLeftPix = self.borderSelectedLeftPix
+			borderBottomPix = self.borderSelectedBottomPix
+			borderRightPix = self.borderSelectedRightPix
+			foreColor = self.foreColor
+			backColor = self.backColor
+			foreColorSel = self.foreColorSelected
+			backColorSel = self.backColorSelected
+			bgpng = self.selPix
+			if bgpng is not None and self.graphic:
+				backColor = None
+				backColorSel = None
+		else:
+			borderTopPix = self.borderTopPix
+			borderLeftPix = self.borderLeftPix
+			borderBottomPix = self.borderBottomPix
+			borderRightPix = self.borderRightPix
+			backColor = self.backColor
+			foreColor = self.foreColor
+			foreColorSel = self.foreColorSelected
+			backColorSel = self.backColorSelected
+			bgpng = self.othPix
+			if bgpng is not None and self.graphic:
+				backColor = None
+				backColorSel = None
+
+		# box background
+		if bgpng is not None and self.graphic:
+			res.append(MultiContentEntryPixmapAlphaTest(
+				pos = (left + self.BorderWidth, top + self.BorderWidth),
+				size = (width - 2 * self.BorderWidth, height - 2 * self.BorderWidth),
+				png = bgpng))
+		else:
+			res.append(MultiContentEntryText(
+				pos = (left , top), size = (width, height),
+				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+				text = "", color = None, color_sel = None,
+				backcolor = backColor, backcolor_sel = backColorSel,
+				border_width = self.BorderWidth, border_color = self.borderColor))
+
+		evX = left + self.BorderWidth + self.bouquetNamePadding
+		evY = top + self.BorderWidth
+		evW = width - 2 * (self.BorderWidth + self.bouquetNamePadding)
+		evH = height - 2 * self.BorderWidth
+
+		res.append(MultiContentEntryText(
+			pos = (evX, evY), size = (evW, evH),
+			font = 0, flags = alignnment,
+			text = name,
+			color = foreColor, color_sel = foreColorSel,
+			backcolor = backColor, backcolor_sel = backColorSel))
+
+		# Borders
+		if self.graphic:
+			if self.borderTopPix is not None:
+				res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (left, r1.y),
+						size = (r1.w, self.BorderWidth),
+						png = self.borderTopPix))
+			if self.borderBottomPix is not None:
+				res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (left, r1.h-self.BorderWidth),
+						size = (r1.w, self.BorderWidth),
+						png = self.borderBottomPix))
+			if self.borderLeftPix is not None:
+				res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (left, r1.y),
+						size = (self.BorderWidth, r1.h),
+						png = self.borderLeftPix))
+			if self.borderRightPix is not None:
+				res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (r1.w-self.BorderWidth, left),
+						size = (self.BorderWidth, r1.h),
+						png = self.borderRightPix))
+
+		return res
+
+	def fillBouquetList(self, bouquets):
+		self.bouquetslist = bouquets
+		self.l.setList(self.bouquetslist)
+		self.selectionChanged()
+		self.CurrentBouquet = self.getCurrentBouquetService()
