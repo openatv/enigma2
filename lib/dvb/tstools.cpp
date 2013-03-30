@@ -807,6 +807,9 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 		}
 	}
 
+	/* make sure we've ended up in the right direction, ignore the result if we didn't */
+	if ((direction >= 0 && start < _offset) || (direction < 0 && start > _offset)) return -1;
+
 	len = offset - start;
 	_offset = start;
 	if (direction < 0)

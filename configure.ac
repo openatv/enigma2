@@ -289,6 +289,7 @@ data/rc_models/Makefile
 data/rc_models/dmm0/Makefile
 data/rc_models/dmm1/Makefile
 data/rc_models/dmm2/Makefile
+data/rc_models/ebox5000/Makefile
 data/rc_models/et4x00/Makefile
 data/rc_models/et6x00/Makefile
 data/rc_models/et6500/Makefile
@@ -296,7 +297,11 @@ data/rc_models/et9500/Makefile
 data/rc_models/et9x00/Makefile
 data/rc_models/gb/Makefile
 data/rc_models/inix000/Makefile
-data/rc_models/odin/Makefile
+data/rc_models/iqon/Makefile
+data/rc_models/ixussone/Makefile
+data/rc_models/ixusszero/Makefile
+data/rc_models/odinm7/Makefile
+data/rc_models/odinm9/Makefile
 data/rc_models/tm/Makefile
 data/rc_models/vu/Makefile
 data/rc_models/vu2/Makefile

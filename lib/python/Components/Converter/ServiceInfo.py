@@ -3,6 +3,8 @@ from enigma import iServiceInformation, iPlayableService
 from Components.Element import cached
 from Tools.Transponder import ConvertToHumanReadable
 
+WIDESCREEN = [3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10]
+
 class ServiceInfo(Converter, object):
 	HAS_TELETEXT = 0
 	IS_MULTICHANNEL = 1
@@ -88,7 +90,7 @@ class ServiceInfo(Converter, object):
 		elif self.type == self.IS_CRYPTED:
 			return info.getInfo(iServiceInformation.sIsCrypted) == 1
 		elif self.type == self.IS_WIDESCREEN:
-			return info.getInfo(iServiceInformation.sAspect) in (3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10)
+			return info.getInfo(iServiceInformation.sAspect) in WIDESCREEN
 		elif self.type == self.SUBSERVICES_AVAILABLE:
 			subservices = service.subServices()
 			return subservices and subservices.getNumberOfSubservices() > 0

@@ -1,7 +1,7 @@
 installdir = $(pkglibdir)/python/Tools
 
 install_PYTHON = \
-	CopyFiles.py FuzzyDate.py XMLTools.py LXMLTools.py Directories.py NumericalTextInput.py \
+	TimeShift.py CopyFiles.py FuzzyDate.py XMLTools.py LXMLTools.py Directories.py NumericalTextInput.py \
 	KeyBindings.py BoundFunction.py ISO639.py Notifications.py __init__.py \
 	RedirectOutput.py StbHardware.py Import.py Event.py CList.py \
 	LoadPixmap.py Profile.py HardwareInfo.py Transponder.py ASCIItranslit.py \

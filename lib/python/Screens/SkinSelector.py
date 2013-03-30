@@ -15,7 +15,7 @@ class SkinSelectorBase:
 	def __init__(self, session, args = None):
 		self.skinlist = []
 		self.previewPath = ""
-		if self.PICONSKINXML and os.path.exists(os.path.join(self.root, self.SKINXML)):
+		if self.SKINXML and os.path.exists(os.path.join(self.root, self.SKINXML)):
 			self.skinlist.append(self.DEFAULTSKIN)
 		if self.PICONSKINXML and os.path.exists(os.path.join(self.root, self.PICONSKINXML)):
 			self.skinlist.append(self.PICONDEFAULTSKIN)

@@ -82,7 +82,7 @@ wasRecTimerWakeup = False
 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry, object):
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = 'notset', record_ecm = 'notset', isAutoTimer = False):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = 'notset', record_ecm = 'notset', isAutoTimer = False, always_zap = False):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers == True:
 			if self.begin < time() - 1209600:
@@ -106,6 +106,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.__record_service = None
 		self.start_prepare = 0
 		self.justplay = justplay
+		self.always_zap = always_zap
 		self.afterEvent = afterEvent
 		self.dirname = dirname
 		self.dirnameHadToFallback = False
@@ -269,6 +270,21 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.backoff = 0
 				return True
 
+			if self.always_zap:
+				if Screens.Standby.inStandby:
+					#set service to zap after standby
+					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
+					Screens.Standby.inStandby.paused_service = None
+					#wakeup standby
+					Screens.Standby.inStandby.Power()
+					self.log(5, "wakeup and zap to recording service")
+				else:
+					cur_zap_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
+					if cur_zap_ref and not cur_zap_ref.getPath():# we do not zap away if it is no live service
+						Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_INFO, timeout=20)
+						self.failureCB(True)
+						self.log(5, "zap to recording service")
+
 			if self.tryPrepare():
 				self.log(6, "prepare ok, waiting for begin")
 				# create file to "reserve" the filename
@@ -326,6 +342,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.log(11, "wakeup and zap")
 					#set service to zap after standby
 					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
+					Screens.Standby.inStandby.paused_service = None
 					#wakeup standby
 					Screens.Standby.inStandby.Power()
 				else:
@@ -514,6 +531,7 @@ def createTimer(xml):
 	repeated = xml.get("repeated").encode("utf-8")
 	disabled = long(xml.get("disabled") or "0")
 	justplay = long(xml.get("justplay") or "0")
+	always_zap = long(xml.get("always_zap") or "0")
 	afterevent = str(xml.get("afterevent") or "nothing")
 	afterevent = {
 		"nothing": AFTEREVENT.NONE,
@@ -542,7 +560,7 @@ def createTimer(xml):
 
 	name = xml.get("name").encode("utf-8")
 	#filename = xml.get("filename").encode("utf-8")
-	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm)
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm, always_zap = always_zap)
 	entry.repeated = int(repeated)
 
 	for l in xml.findall("log"):
@@ -672,6 +690,7 @@ class RecordTimer(timer.Timer):
 				list.append(' tags="' + str(stringToXML(' '.join(timer.tags))) + '"')
 			list.append(' disabled="' + str(int(timer.disabled)) + '"')
 			list.append(' justplay="' + str(int(timer.justplay)) + '"')
+			list.append(' always_zap="' + str(int(timer.always_zap)) + '"')
 			list.append(' descramble="' + str(int(timer.descramble)) + '"')
 			list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
 			list.append(' isAutoTimer="' + str(int(timer.isAutoTimer)) + '"')
