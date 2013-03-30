@@ -125,7 +125,6 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.is_closing = False
 		self.delname = ""
 		self.playlistname = ""
-
 		self["playlist"] = self.playlist
 
 		self["PositionGauge"] = ServicePositionGauge(self.session.nav)
@@ -869,7 +868,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			if len(self.playlist) > 0:
 				self.changeEntry(0)
 
-	def playEntry(self):
+	def playEntry(self, audio_extensions = frozenset((".mp2", ".mp3", ".wav", ".ogg", ".flac", ".m4a"))):
 		if len(self.playlist.getServiceRefList()):
 			needsInfoUpdate = False
 			currref = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()]
