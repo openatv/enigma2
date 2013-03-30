@@ -6,7 +6,7 @@
 ###############################################################################
 #
 #!/bin/sh
-VERSION="Version 9.1 MOD"
+VERSION="Version 9.2 MOD"
 START=$(date +%s)
 
 ##DECLARATION OF VARIABLES
@@ -77,12 +77,12 @@ elif [ $MODEL = "xp1000" ] ; then
 	MAINDEST=$DIRECTORY/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE
 ## TESTING THE Medialink Models
-elif [ $MODEL = "ixussone" ] ; then
+elif [ $MODEL = "ixussone" ] || [ $MODEL = "ixusszero" ] || [ $MODEL = "ixussduo" ]; then
 	TYPE=IXUSS
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
 	SHOWNAME="Medialink $MODEL"
-	MTDKERNEL="mtd2"
+	MTDKERNEL="mtd1"
 	MAINDESTOLD=$DIRECTORY/medialink/$MODEL
 	MAINDEST=$DIRECTORY/medialink/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE
@@ -132,7 +132,34 @@ elif [ $MODEL = "tm2t" ] ; then
 	SHOWNAME="$MODEL"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/update/$MODEL/cfe
-	EXTRA=$DIRECTORY/fullbackup_TECHNO/$DATE/update/$MODEL/cfe	
+	EXTRA=$DIRECTORY/fullbackup_TECHNO/$DATE/update/$MODEL/cfe
+elif [ $MODEL = "iqonios100hd" ] ; then
+	TYPE=IQON
+	MODEL="ios100"
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096 -F"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="$MODEL"
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/update/$MODEL/cfe
+	EXTRA=$DIRECTORY/fullbackup_IQON/$DATE/update/$MODEL/cfe
+elif [ $MODEL = "iqonios200hd" ] ; then
+	TYPE=IQON
+	MODEL="ios200"
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096 -F"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="$MODEL"
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/update/$MODEL/cfe
+	EXTRA=$DIRECTORY/fullbackup_IQON/$DATE/update/$MODEL/cfe	
+elif [ $MODEL = "iqonios300hd" ] ; then
+	TYPE=IQON
+	MODEL="ios300"
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096 -F"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="$MODEL"
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/update/$MODEL/cfe
+	EXTRA=$DIRECTORY/fullbackup_IQON/$DATE/update/$MODEL/cfe	
 ## TESTING THE Gigablue HD 800 SE Model
 elif [ $MODEL = "gb800se" ] ; then
 	TYPE=GIGABLUE
@@ -451,6 +478,37 @@ if [ $TYPE = "TECHNO" ] ; then
 	fi
 fi
 
+if [ $TYPE = "IQON" ] ; then
+	rm -rf $MAINDEST
+	mkdir -p $MAINDEST
+	mkdir -p $EXTRA/$MODEL
+	mv $WORKDIR/root.ubifs $MAINDEST/oe_rootfs.bin
+	mv $WORKDIR/vmlinux.gz $MAINDEST/oe_kernel.bin
+	echo ${MODEL}-$IMAGEVERSION > $MAINDEST/imageversion
+	cp -r $MAINDEST $EXTRA #copy the made back-up to images
+	if [ -f $MAINDEST/oe_rootfs.bin -a -f $MAINDEST/oe_kernel.bin -a -f $MAINDEST/imageversion] ; then
+		echo "_________________________________________________\n"
+		echo "USB Image created on:" $MAINDEST
+		echo "and there is made an extra copy on:"
+		echo $EXTRA
+		echo "_________________________________________________\n"
+		echo " "
+		echo "To restore the image: \n"
+		echo "Place the USB-flash drive in the (front) USB-port "
+		echo "and switch the Iqon off and on with the powerswitch "
+		echo "on the back of the Iqon. Follow the instructions "
+		echo "on the front-display.\n"
+		echo "\nPlease wait...almost ready! "
+	else
+		echo "Image creation failed - "
+		echo "Probable causes could be"
+		echo "     wrong back-up destination "
+		echo "     no space left on back-up device"
+		echo "     no writing permission on back-up device"
+		echo " "
+	fi
+fi
+
 if [ $TYPE = "ODINM9" ] ; then
 	rm -rf $MAINDEST
 	mkdir -p $MAINDEST
@@ -714,6 +772,9 @@ if [ $DIRECTORY == /hdd ]; then
 			mkdir -p $TARGET/ebox/7403
 			cp -r $MAINDEST $TARGET/ebox
 		elif [ $TYPE = "TECHNO" ] ; then					# Technomate detected
+			mkdir -p $TARGET/update/$MODEL/cfe
+			cp -r $MAINDEST $TARGET/update/$MODEL/cfe
+		elif [ $TYPE = "IQON" ] ; then					# Iqon detected
 			mkdir -p $TARGET/update/$MODEL/cfe
 			cp -r $MAINDEST $TARGET/update/$MODEL/cfe			
 		else
