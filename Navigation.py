@@ -45,7 +45,7 @@ class Navigation:
 				self.standbytimer.callback.append(self.gotostandby)
 				self.standbytimer.start(15000, True)
 
-			elif nextPowerManagerAfterEventActionAuto and abs(self.PowerTimer.getNextPowerManagerTime()) <= 60:
+			elif nextPowerManagerAfterEventActionAuto:
 				print 'POWERTIMER: wakeup to standby detected.'
 				f = open("/tmp/was_powertimer_wakeup", "w")
 				f.write('1')
