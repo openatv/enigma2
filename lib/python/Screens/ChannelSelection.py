@@ -428,22 +428,26 @@ class SelectionEventInfo:
 		self["Event"].newEvent(service.event)
 
 def parseCurentEvent(list):
-	list = list[0]
-	begin = list[2] - (config.recording.margin_before.getValue() * 60)
-	end = list[2] + list[3] + (config.recording.margin_after.getValue() * 60)
-	name = list[1]
-	description = list[5]
-	eit = list[0]
-	return (begin, end, name, description, eit)
+	if len(list) >= 0:
+		list = list[0]
+		begin = list[2] - (config.recording.margin_before.getValue() * 60)
+		end = list[2] + list[3] + (config.recording.margin_after.getValue() * 60)
+		name = list[1]
+		description = list[5]
+		eit = list[0]
+		return (begin, end, name, description, eit)
+	return False
 
 def parseNextEvent(list):
-	list = list[1]
-	begin = list[2] - (config.recording.margin_before.getValue() * 60)
-	end = list[2] + list[3] + (config.recording.margin_after.getValue() * 60)
-	name = list[1]
-	description = list[5]
-	eit = list[0]
-	return (begin, end, name, description, eit)
+	if len(list) > 0:
+		list = list[1]
+		begin = list[2] - (config.recording.margin_before.getValue() * 60)
+		end = list[2] + list[3] + (config.recording.margin_after.getValue() * 60)
+		name = list[1]
+		description = list[5]
+		eit = list[0]
+		return (begin, end, name, description, eit)
+	return False
 
 class ChannelSelectionEPG:
 	def __init__(self):
@@ -552,6 +556,8 @@ class ChannelSelectionEPG:
 		if eventid is None:
 			return
 		newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.list))
+		if not newEntry:
+			return
 		self.InstantRecordDialog = self.session.instantiateDialog(InstantRecordTimerEntry, newEntry, zap)
 		retval = [True, self.InstantRecordDialog.retval()]
 		self.session.deleteDialogWithCallback(self.finishedAdd, self.InstantRecordDialog, retval)
