@@ -43,7 +43,7 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 	else 
 	{
 		hostname = uri.substr(7, uri.length() - 7);
-		uri = "";
+		uri = "/";
 	}
 	int authenticationindex = hostname.find("@");
 	if (authenticationindex > 0)
@@ -127,15 +127,16 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 					/* assume we'll get a playlist, some text file containing a stream url */
 					playlist = true;
 				}
+				continue;
 			}
 		}
-		else if (playlist && !strncmp(linebuf, "http://", 7))
+		if (playlist && !strncmp(linebuf, "http://", 7))
 		{
 			newurl = linebuf;
 			eDebug("%s: playlist entry: %s", __FUNCTION__, newurl.c_str());
 			break;
 		}
-		else if (statuscode == 302 && !strncmp(linebuf, "Location: ", 10))
+		if (statuscode == 302 && strncmp(linebuf, "Location: ", 10) == 0)
 		{
 			newurl = &linebuf[10];
 			eDebug("%s: redirecting to: %s", __FUNCTION__, newurl.c_str());
