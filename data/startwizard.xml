@@ -96,7 +96,10 @@ self.condition = nimmanager.somethingConnected() and config.misc.networkwizard.h
 self["tunera"].hide()  
 self["tunerb"].hide()  
 self["tunerc"].hide()  
-self["tunerd"].hide()  
+self["tunerd"].hide()
+self.hideRc()
+self["red"].hide()
+self["languagetext"].hide()
 self.clearSelectedKeys()
 self.selectKey("LEFT")
 self.selectKey("RIGHT")
@@ -109,13 +112,18 @@ self.selectKey("RIGHT")
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected()
 			</condition>
+			<code>
+self.hideRc()
+self["red"].hide()
+self["languagetext"].hide()
+			</code>
 			<list>
-				<listentry caption="No, scan later manually" step="end" />
+				<listentry caption="No, scan later manually" step="expert" />
 				<listentry caption="Yes, do an automatic scan now" step="scan" />
 				<listentry caption="Yes, do a manual scan now" step="manualscan" />
 			</list>
 		</step>
-		<step id="scan" nextstep="end">
+		<step id="scan" nextstep="expert">
 			<condition>
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected()
@@ -138,9 +146,13 @@ self.condition = nimmanager.somethingConnected()
 			</condition>
 			<text value="Do you want to do another manual service scan?" />
 			<list>
-				<listentry caption="No, scan later manually" step="end" />
+				<listentry caption="No, scan later manually" step="expert" />
 				<listentry caption="Yes, do another manual scan now" step="manualscan" />
 			</list>
+		</step>
+		<step id="expert">
+			<text value="Your STB_BOX offers three levels of configuration options:\n\nSimple - We suggest this level if this is your first contact with a STB_BOX.\nIntermediate - This level enables you to change some more options, mainly the graphical user interface and the behaviour of your STB_BOX.\nExpert - This gives you full control over all available settings of your STB_BOX.\n\nWarning: Higher levels may lead to increased usage complexity." />
+			<list type="config" configelement="config.usage.setup_level" />
 		</step>
 		<step id="end" laststep="true">
 			<condition>
