@@ -66,11 +66,27 @@ if VENTON
 SUBDIRS = ini3000 ini5000 ini5000r ini7000
 endif
 
-if VUSOLO VUSOLO2 VUUNO VUDUO
+if VUSOLO
 SUBDIRS = vu
 endif
 
-if VUULTIMO VUDUO
+if VUSOLO2
+SUBDIRS = vu
+endif
+
+if VUUNO
+SUBDIRS = vu
+endif
+
+if VUDUO
+SUBDIRS = vu
+endif
+
+if VUULTIMO
+SUBDIRS = vu2
+endif
+
+if VUDUO2
 SUBDIRS = vu2
 endif
 
