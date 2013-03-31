@@ -980,10 +980,13 @@ class EPGSelection(Screen, HelpableScreen):
 				service = self.currentService
 			elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 				service = ServiceReference(self.servicelist.getCurrentSelection())
-			index = self['list'].getCurrentIndex()
-			self['list'].fillSingleEPG(service)
-			self['list'].sortSingleEPG(int(config.epgselection.sort.getValue()))
-			self['list'].setCurrentIndex(index)
+			try:
+				index = self['list'].getCurrentIndex()
+				self['list'].fillSingleEPG(service)
+				self['list'].sortSingleEPG(int(config.epgselection.sort.getValue()))
+				self['list'].setCurrentIndex(index)
+			except:
+				pass
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
@@ -1002,10 +1005,13 @@ class EPGSelection(Screen, HelpableScreen):
 				service = self.currentService
 			elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 				service = ServiceReference(self.servicelist.getCurrentSelection())
-			index = self['list'].getCurrentIndex()
-			self['list'].fillSingleEPG(service)
-			self['list'].sortSingleEPG(int(config.epgselection.sort.getValue()))
-			self['list'].setCurrentIndex(index)
+			try:
+				index = self['list'].getCurrentIndex()
+				self['list'].fillSingleEPG(service)
+				self['list'].sortSingleEPG(int(config.epgselection.sort.getValue()))
+				self['list'].setCurrentIndex(index)
+			except:
+				pass
 
 	def RecordTimerQuestion(self):
 		cur = self['list'].getCurrent()
