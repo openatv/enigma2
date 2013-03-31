@@ -890,7 +890,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 	def genMainMenu(self):
 		menu = []
-		menu.append((_("Adapter settings"), "edit"))
+		menu.append((_("Network settings/info"), "edit"))
 		menu.append((_("Nameserver settings"), "dns"))
 		menu.append((_("Network test"), "test"))
 		menu.append((_("Restart network"), "lanrestart"))

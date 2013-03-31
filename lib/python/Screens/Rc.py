@@ -10,7 +10,13 @@ config.misc.rcused = ConfigInteger(default = 1)
 class Rc:
 	def __init__(self):
 		self["rc"] = MultiPixmap()
+
 		self['red'] = MovingPixmap()
+		self['tunera'] = MovingPixmap()
+		self['tunerb'] = MovingPixmap()
+		self['tunerc'] = MovingPixmap()
+		self['tunerd'] = MovingPixmap()
+
 		self["arrowdown"] = MovingPixmap()
 		self["arrowdown2"] = MovingPixmap()
 		self["arrowup"] = MovingPixmap()
@@ -42,15 +48,15 @@ class Rc:
 		else:
 			rc = self.rcs[2]
 			
-		#if rc.has_key('RED'):
-		#	rcpos = self['rc'].getPosition()
-		#	pos = rc['RED']
-		#	self['red'].moveTo(rcpos[0] + pos[0] - 313, rcpos[1] + pos[1] - 15, 1)
-		#	self['red'].startMoving()
-		#	self['red'].show()
-		#	if self.has_key('languagetext'):
-		#	    self['languagetext'].instance.move(ePoint(rcpos[0] + pos[0] - 313, rcpos[1] + pos[1] + 50))
-		#	    self['languagetext'].show()
+		if rc.has_key('RED'):
+			rcpos = self['rc'].getPosition()
+			pos = rc['RED']
+			self['red'].moveTo(rcpos[0] + pos[0] - 313, rcpos[1] + pos[1] - 15, 1)
+			self['red'].startMoving()
+			self['red'].show()
+			if self.has_key('languagetext'):
+			    self['languagetext'].instance.move(ePoint(rcpos[0] + pos[0] - 313, rcpos[1] + pos[1] + 50))
+			    self['languagetext'].show()
                 
 	def readPositions(self):
 		if self.isDefaultRc:
