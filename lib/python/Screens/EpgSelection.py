@@ -388,32 +388,13 @@ class EPGSelection(Screen, HelpableScreen):
 			self.session.openWithCallback(self.onSetupClose, Setup, key)
 
 	def onSetupClose(self, test = None):
-		l = self['list']
-		l.setItemsPerPage()
-		l.setEventFontsize()
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-			l.setServiceFontsize()
-			self['timeline_text'].setTimeLineFontsize()
-			now = time() - int(config.epg.histminutes.getValue()) * 60
-			l.setOverjump_Empty(config.epgselection.overjump.getValue())
-			if self.type == EPG_TYPE_GRAPH:
-				l.setEpoch(config.epgselection.graph_prevtimeperiod.getValue())
-				l.setShowServiceMode(config.epgselection.graph_servicetitle_mode.getValue())
-				self.ask_time = now - now % (int(config.epgselection.graph_roundto.getValue()) * 60)
-			elif self.type == EPG_TYPE_INFOBARGRAPH:
-				l.setEpoch(config.epgselection.infobar_prevtimeperiod.getValue())
-				l.setShowServiceMode(config.epgselection.infobar_servicetitle_mode.getValue())
-				self.ask_time = now - now % (int(config.epgselection.infobar_roundto.getValue()) * 60)
-			l.fillGraphEPG(None, self.ask_time)
-			self.moveTimeLines()
 			if self.type == EPG_TYPE_GRAPH:
 				self.close('reopengraph')
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
 				self.close('reopeninfobargraph')
 		else:
-			l.recalcEntrySize()
 			if self.type == EPG_TYPE_INFOBAR:
-				l.sortSingleEPG(int(config.epgselection.sort.getValue()))
 				self.close('reopeninfobar')
 
 	def togglePIG(self):
