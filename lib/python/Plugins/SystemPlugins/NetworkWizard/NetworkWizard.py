@@ -5,40 +5,23 @@ from Screens.MessageBox import MessageBox
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from Components.Sources.Boolean import Boolean
 from Components.Network import iNetwork
+from Components.config import config, ConfigSubsection, ConfigBoolean
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from enigma import eTimer
 from Components.About import about
 from os import system
 
+config.misc.networkwizard = ConfigSubsection()
+config.misc.networkwizard.hasnetwork = ConfigBoolean(default = False)
+
 class NetworkWizard(WizardLanguage, Rc):
-	skin = """
-		<screen position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" >
-			<widget name="text" position="153,40" size="340,300" font="Regular;22" />
-			<widget source="list" render="Listbox" position="53,340" size="440,180" scrollbarMode="showOnDemand" >
-				<convert type="StringList" />
-			</widget>
-			<widget name="config" position="53,340" zPosition="1" size="440,180" transparent="1" scrollbarMode="showOnDemand" />
-			<ePixmap pixmap="buttons/button_red.png" position="40,225" zPosition="0" size="15,16" transparent="1" alphatest="on" />
-			<widget name="languagetext" position="55,225" size="95,30" font="Regular;18" />
-			<widget name="wizard" pixmap="/wizard.png" position="40,50" zPosition="10" size="110,174" alphatest="on" />
-			<widget name="rc" pixmaps="rc.png,rcold.png" position="500,50" zPosition="10" size="154,500" alphatest="on" />
-			<widget name="arrowdown" pixmap="arrowdown.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
-			<widget name="arrowdown2" pixmap="arrowdown.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
-			<widget name="arrowup" pixmap="arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
-			<widget name="arrowup2" pixmap="arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
-			<widget source="VKeyIcon" render="Pixmap" pixmap="buttons/key_text.png" position="40,260" zPosition="0" size="35,25" transparent="1" alphatest="on" >
-				<convert type="ConditionalShowHide" />
-			</widget>
-			<widget name="HelpWindow" pixmap="buttons/key_text.png" position="125,170" zPosition="1" size="1,1" transparent="1" alphatest="on" />
-		</screen>"""
 	def __init__(self, session, interface = None):
 		self.xmlfile = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")
 		WizardLanguage.__init__(self, session, showSteps = False, showStepSlider = False)
 		Rc.__init__(self)
 		self.session = session
 		self["wizard"] = Pixmap()
-		self["HelpWindow"] = Pixmap()
-		self["HelpWindow"].hide()
+
 		self["VKeyIcon"] = Boolean(False)
 
 		self.InstalledInterfaceCount = None
@@ -225,33 +208,39 @@ class NetworkWizard(WizardLanguage, Rc):
 	def AdapterSetupEndFinished(self,data):
 		if data <= 2:
 			self.InterfaceState = True
+			config.misc.networkwizard.hasnetwork.value = True
+			config.misc.networkwizard.save()
 		else:
 			self.InterfaceState = False
+			config.misc.networkwizard.hasnetwork.value = False
+			config.misc.networkwizard.save()
 		self.AdapterRef.close(True)
 
 	def checkWlanStateCB(self,data,status):
 		if data is not None:
 			if data is True:
 				if status is not None:
-					#wlan0 = about.getIfConfig('wlan0')
-					#if wlan0.has_key('addr'):
-					#	text11 = _("Your IP:") + "\t" + wlan0['addr'] + "\n\n"
-					#	if wlan0.has_key('netmask'):
-					#		text11 += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
-					#	if wlan0.has_key('brdaddr'):
-					#		text11 += _("Gateway:") + "\t" + wlan0['brdaddr'] + "\n"
-					#	if wlan0.has_key('hwaddr'):
-					#		text11 += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n\n"  
+					wlan0 = about.getIfConfig('wlan0')
+					if wlan0.has_key('addr'):
+						text11 = _("Your IP:") + "\t" + wlan0['addr'] + "\n\n"
+						if wlan0.has_key('netmask'):
+							text11 += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
+						if wlan0.has_key('brdaddr'):
+							text11 += _("Gateway:") + "\t" + wlan0['brdaddr'] + "\n"
+						if wlan0.has_key('hwaddr'):
+							text11 += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n\n"  
 					text1 = _("Your STB_BOX is now ready to be used.\n\nYour internet connection is working now.\n\n")
 					text2 = _('Accesspoint:') + "\t" + str(status[self.selectedInterface]["accesspoint"]) + "\n"
 					text3 = _('SSID:') + "\t" + str(status[self.selectedInterface]["essid"]) + "\n"
 					text4 = _('Link quality:') + "\t" + str(status[self.selectedInterface]["quality"])+ "\n"
 					text5 = _('Signal strength:') + "\t" + str(status[self.selectedInterface]["signal"]) + "\n"
-					text6 = _('Bitrate:') + "\t" + str(status[self.selectedInterface]["bitrate"]) + "\n"
+					text6 = _('Bitrate:') + "\t" + str(status[self.selectedInterface]["bitrate"]) + " Mbps\n"
 					text7 = _('Encryption:') + "\t" + str(status[self.selectedInterface]["encryption"]) + "\n"
 					text8 = _("Please press OK to continue.")
-					infotext = text1 + text2 + text3 + text4 + text5 + text7 +"\n" + text8
-					#infotext = text1 + text11 + text2 + text3 + text4 + text6 + " Mbps" + text7 +"\n" + text8					
+					try:
+						infotext = text1 + text11 + text2 + text3 + text4 + text6 + text7 + "\n" + text8
+					except:
+						infotext = text1 + text2 + text3 + text4 + text6 + text7 + "\n" + text8
 					self.currStep = self.getStepWithID("checkWlanstatusend")
 					self.Text = infotext
 					if str(status[self.selectedInterface]["accesspoint"]) == "Not-Associated":
@@ -398,7 +387,7 @@ class NetworkWizard(WizardLanguage, Rc):
 			if eth0.has_key('brdaddr'):
 				text11 += _("Gateway:") + "\t" + eth0['brdaddr'] + "\n"
 			if eth0.has_key('hwaddr'):
-				text11 += _("MAC:") + "\t" + eth0['hwaddr'] + "\n\n"  
+				text11 += _("MAC:") + "\t" + eth0['hwaddr'] + "\n"  
 		try:
 			text1 = _("Your STB_BOX is now ready to be used.\n\nYour internet connection is working now.\n\n")
 			text2 = _("Please press OK to continue.")
@@ -406,5 +395,6 @@ class NetworkWizard(WizardLanguage, Rc):
 		except:
 			text1 = _("Your STB_BOX is now ready to be used.\n\nYour internet connection is not working now.\n\n")
 			text2 = _("Please press OK to continue.")
-			return text1 + "\n" + text2
+			return text1 + "\n" + text2		
+
 		

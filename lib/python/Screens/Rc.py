@@ -10,13 +10,11 @@ config.misc.rcused = ConfigInteger(default = 1)
 class Rc:
 	def __init__(self):
 		self["rc"] = MultiPixmap()
-
 		self['red'] = MovingPixmap()
 		self['tunera'] = MovingPixmap()
 		self['tunerb'] = MovingPixmap()
 		self['tunerc'] = MovingPixmap()
 		self['tunerd'] = MovingPixmap()
-
 		self["arrowdown"] = MovingPixmap()
 		self["arrowdown2"] = MovingPixmap()
 		self["arrowup"] = MovingPixmap()
@@ -31,8 +29,8 @@ class Rc:
 		self.selectpics.append((self.rcheighthalf, ["arrowdown", "arrowdown2"], (-18,-70)))
 		self.selectpics.append((self.rcheight, ["arrowup", "arrowup2"], (-18,0)))
 		self['red'].hide()
-		#if self.has_key('languagetext'):
-		#    self['languagetext'].hide()
+		if self.has_key('languagetext'):
+		    self['languagetext'].hide()
 		self.readPositions()
 		self.clearSelectedKeys()
 		self.onShown.append(self.initRc)
