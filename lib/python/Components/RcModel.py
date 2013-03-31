@@ -71,6 +71,8 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_ET4X00
 		elif getBoxType().startswith('gb'):
 			self.currentRcType = self.RCTYPE_GB
+		elif getBoxType().startswith('iqon'):
+			self.currentRcType = self.RCTYPE_IQON
 		elif getBoxType() == 'ixussone':
 			self.currentRcType = self.RCTYPE_IXUSSONE
 		elif getBoxType() == 'ixusszero':
@@ -134,6 +136,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/ini5000r/'
 		elif self.currentRcType == self.RCTYPE_INI7000:
 			return '/usr/share/enigma2/rc_models/ini7000/'
+		elif self.currentRcType == self.RCTYPE_IQON:
+			return '/usr/share/enigma2/rc_models/iqon/'
 		elif self.currentRcType == self.RCTYPE_IXUSSONE:
 			return '/usr/share/enigma2/rc_models/ixussone/'
 		elif self.currentRcType == self.RCTYPE_IXUSSZERO:
