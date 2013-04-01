@@ -481,14 +481,14 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.start_prepare = self.begin - self.prepare_time
 		self.backoff = 0
 
-		if int(old_prepare) >0 and int(old_prepare) != int(self.start_prepare):
+		if int(old_prepare) > 60 and int(old_prepare) != int(self.start_prepare):
 			self.log(15, "record time changed, start prepare is now: %s" % ctime(self.start_prepare))
 
 	def gotRecordEvent(self, record, event):
 		# TODO: this is not working (never true), please fix. (comparing two swig wrapped ePtrs)
 		if self.__record_service.__deref__() != record.__deref__():
 			return
-		self.log(16, "record event %d" % event)
+		# self.log(16, "record event %d" % event)
 		if event == iRecordableService.evRecordWriteError:
 			print "WRITE ERROR on recording, disk full?"
 			# show notification. the 'id' will make sure that it will be

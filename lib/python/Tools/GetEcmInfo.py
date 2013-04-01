@@ -44,7 +44,9 @@ class GetEcmInfo:
 			info['pid'] = "0"
 			info['prov'] = ""
 			info['provid'] = "0"
+			print 'ECM DATA:',ecm
 			for line in ecm:
+				print 'ECM LINE:',line
 				d = line.split(':', 1)
 				if len(d) > 1:
 					info[d[0].strip()] = d[1].strip()
@@ -66,7 +68,7 @@ class GetEcmInfo:
 					linetmp = line.split(' ')
 					info['eTime'] = linetmp[0]
 					continue
-				if ecm[1].startswith('SysID'):
+				if len(ecm) > 0 and ecm[1].startswith('SysID'):
 					info['prov'] = ecm[1].strip()[6:]
 					continue
 				if 'CaID 0x' in ecm[0] and 'pid 0x' in ecm[0]:
