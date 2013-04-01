@@ -70,9 +70,9 @@ self.session.openWithCallback(msgClosed, EpgLoadMsg)
 				<id val="system" />
 				<!--<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>-->
 				  <!--<item text="Keyboard"><setup id="keyboard" /></item>-->
-				<!--<menu weight="0" level="0" text="A/V settings" entryID="av_setup" endtext="•••>">
-				  <id val="av" />
-				</menu>-->
+				<menu weight="0" level="0" text="A/V setup" entryID="av_setup" endtext="•••>">
+					<id val="av" />
+				</menu>
 				<item weight="1" level="0" text="Language setup" entryID="language_setup"><screen module="LanguageSelection" /></item>
 				<item weight="2" level="0" entryID="timezone_setup"><setup id="time"/></item>
 				<item weight="3" level="0" text="Network setup" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
