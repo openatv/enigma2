@@ -32,8 +32,9 @@ public:
 	virtual RESULT start() = 0;
 	virtual RESULT addPID(int pid) = 0;
 	virtual RESULT removePID(int pid) = 0;
-	
-	virtual RESULT setTimingPID(int pid, int type) = 0;
+
+	enum timing_pid_type { none = -1, video_pid, audio_pid };
+	virtual RESULT setTimingPID(int pid, timing_pid_type pidtype, int streamtype) = 0;
 	
 	virtual RESULT setTargetFD(int fd) = 0;
 		/* for saving additional meta data. */
