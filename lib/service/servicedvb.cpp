@@ -2607,7 +2607,14 @@ void eDVBServicePlay::resetTimeshift(int start)
 
 ePtr<iTsSource> eDVBServicePlay::createTsSource(eServiceReferenceDVB &ref, int packetsize)
 {
-	if (m_is_stream)
+	/*
+	 * NOTE: we cannot use our m_is_stream status, instead we check the reference again.
+	 * It could be that createTsSource is called to start a timeshift on a stream,
+	 * in which case the ref passed here no longer is a url, but a timeshift file instead.
+	 * (but m_is_stream would still be set, because of the ref which was passed to our
+	 * constructor)
+	 */
+	if (ref.path.substr(0, 7) == "http://")
 	{
 		eHttpStream *f = new eHttpStream();
 		f->open(ref.path.c_str());
