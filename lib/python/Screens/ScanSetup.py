@@ -957,7 +957,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		if InfoBarInstance:
 			InfoBarInstance.checkTimeshiftRunning(self.keyGoCheckTimeshiftCallback)
 		else:
-			InfoBarInstance.checkTimeshiftRunning(True)
+			self.keyGoCheckTimeshiftCallback(True)
 
 	def keyGoCheckTimeshiftCallback(self, answer):
 		if answer:
