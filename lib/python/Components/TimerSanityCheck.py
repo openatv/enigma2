@@ -118,7 +118,7 @@ class TimerSanityCheck:
 			weeks = (interval_end - offset_0) / 604800
 			if ((interval_end - offset_0) % 604800):
 				weeks += 1
-			for cnt in range(weeks):
+			for cnt in range(int(weeks)):
 				for event in self.rep_eventlist:
 					if event[1] == -1: # -1 is the identifier of the changed timer
 						event_begin = self.newtimer.begin
