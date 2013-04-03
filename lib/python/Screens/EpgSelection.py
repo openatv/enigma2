@@ -474,6 +474,20 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			l.fillSimilarList(self.currentService, self.eventid)
 
+	def refreshlist(self):
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self['list'].fillGraphEPG(None, self.ask_time)
+			self.moveTimeLines()
+		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+			if self.type == EPG_TYPE_SINGLE:
+				service = self.currentService
+			elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+				service = ServiceReference(self.servicelist.getCurrentSelection())
+			index = self['list'].getCurrentIndex()
+			self['list'].fillSingleEPG(service)
+			self['list'].sortSingleEPG(int(config.epgselection.sort.getValue()))
+			self['list'].setCurrentIndex(index)
+
 	def moveUp(self):
 		self['list'].moveTo(self['list'].instance.moveUp)
 
@@ -972,21 +986,10 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			self['key_green'].setText(_('Add Timer'))
 			self.key_green_choice = self.ADD_TIMER
-		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-			self['list'].fillGraphEPG(None, self.ask_time)
-			self.moveTimeLines()
-		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
-			if self.type == EPG_TYPE_SINGLE:
-				service = self.currentService
-			elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
-				service = ServiceReference(self.servicelist.getCurrentSelection())
-			try:
-				index = self['list'].getCurrentIndex()
-				self['list'].fillSingleEPG(service)
-				self['list'].sortSingleEPG(int(config.epgselection.sort.getValue()))
-				self['list'].setCurrentIndex(index)
-			except:
-				pass
+		try:
+			self.refreshlist()
+		except:
+			pass
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
@@ -997,21 +1000,10 @@ class EPGSelection(Screen, HelpableScreen):
 		self['key_green'].setText(_('Add Timer'))
 		self.key_green_choice = self.ADD_TIMER
 		self.closeChoiceBoxDialog()
-		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-			self['list'].fillGraphEPG(None, self.ask_time)
-			self.moveTimeLines()
-		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
-			if self.type == EPG_TYPE_SINGLE:
-				service = self.currentService
-			elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
-				service = ServiceReference(self.servicelist.getCurrentSelection())
-			try:
-				index = self['list'].getCurrentIndex()
-				self['list'].fillSingleEPG(service)
-				self['list'].sortSingleEPG(int(config.epgselection.sort.getValue()))
-				self['list'].setCurrentIndex(index)
-			except:
-				pass
+		try:
+			self.refreshlist()
+		except:
+			pass
 
 	def RecordTimerQuestion(self):
 		cur = self['list'].getCurrent()
