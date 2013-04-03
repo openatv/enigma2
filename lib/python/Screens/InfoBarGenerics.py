@@ -2741,7 +2741,7 @@ class InfoBarPowersaver:
 					endtime = endtime[0]*3600 + endtime[1]*60
 					if curtime > endtime:
 						endtime += 24*3600
-					self.inactivityTimer.startLongTimer(endtime - curtime)
+					self.inactivityTimer.startLongTimer(endtime - curtime + 60)
 					return
 		if Screens.Standby.inStandby:
 			self.inactivityTimeoutCallback(True)
