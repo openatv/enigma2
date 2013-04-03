@@ -27,6 +27,15 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Action when receiver is not controlled"),
 			config.usage.inactivity_timer,
 			_("Configure the duration in hours and action (shut down or standby) when the receiver is not controlled.")))
+		self.list.append(getConfigListEntry(_("Specify timeframe ignoring action when receiver is not controlled"),
+			config.usage.inactivity_timer_blocktime,
+			_("When enabled you can specify a start and end time were the configured duration in hours and action when receiver is not controlled are ignored")))
+		self.list.append(getConfigListEntry(_("Timeframe start"),
+			config.usage.inactivity_timer_blocktime_begin,
+			_("Specify the start time were the configured duration in hours and action when receiver is not controlled are ignored")))
+		self.list.append(getConfigListEntry(_("Timeframe end"),
+			config.usage.inactivity_timer_blocktime_end,
+			_("Specify the end time were the configured duration in hours and action when receiver is not controlled are ignored")))
 
 		ConfigListScreen.__init__(self, self.list, session = session)
 		
@@ -46,6 +55,9 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 	def ok(self):
 		config.usage.sleep_timer.save()
 		config.usage.inactivity_timer.save()
+		config.usage.inactivity_timer_blocktime.save()
+		config.usage.inactivity_timer_blocktime_begin.save()
+		config.usage.inactivity_timer_blocktime_end.save()
 		if self.getCurrentEntry() == _("Sleeptimer"):
 			sleepTimer = config.usage.sleep_timer.value
 			if sleepTimer == "event_shutdown":
