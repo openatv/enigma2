@@ -1,6 +1,32 @@
 <wizard>
         <step id="welcome">
-                <text value="If you want to connect your STB_BOX to the Internet, this wizard will guide you through the basic network setup of your STB_BOX.\n\nPlease select the network interface that you want to use for your internet connection.\n\nPlease press OK to continue." />
+                <text value="Welcome.\n\nIf you want to connect your STB_BOX to the Internet, this wizard will guide you through the basic network setup of your STB_BOX.\n\nPress OK to start configuring your network" />
+                <displaytext value="Network Wizard" />
+	        <code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+                </code>
+		<code pos="after" async="yes">
+self.verifyFirstRun()
+		</code>
+        </step>
+        <step id="alreadyConfiguredInterface">
+                <text value="Your STB_BOX is now ready to use.\n\nYour internet connection is working now.\n\nPlease press OK to continue." />
+                <displaytext value="Please follow the instructions on the TV" />
+		<list type="dynamic" source="prepareAlreadyConfiguredInterfaceSelection" onselect="AlreadyConfiguredInterfaceSelectionMade" />
+                <code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+self.selectKey("UP")
+self.selectKey("DOWN")
+self["text"].setText(self.Text)
+                </code>
+                <code pos="after">
+self.selectInterface()
+                </code> 
+        </step>
+        <step id="selectinterface">
+                <text value="Please select the network interface that you want to use for your internet connection.\n\nPlease press OK to continue." />
                 <displaytext value="Select interface" />
                 <list type="dynamic" source="listInterfaces" evaluation="InterfaceSelectionMade" onselect="InterfaceSelectionMoved" />
                 <code>
@@ -27,19 +53,7 @@ self.selectKey("RIGHT")
                 </code>
                 <code pos="after" async="yes">
 self.AdapterSetupEnd(self.selectedInterface)
-                </code>                 
-        </step>
-        <step id="confdns" nextstep="checklanstatusend">
-                <text value="Please configure or verify your Nameservers by filling out the required values.\nWhen you are ready press OK to continue." />
-                <displaytext value="Configure nameservers" />
-                <config screen="NameserverSetup" module="NetworkSetup" type="ConfigList" />
-                <code>
-self.clearSelectedKeys()
-self.selectKey("OK")
-                </code>
-                <code pos="after" async="yes">
-self.checkNetwork()
-                </code>
+                </code>               
         </step>
         <step id="checklanstatusend" nextstep="end">
 		<condition>
@@ -49,8 +63,8 @@ self.condition = (self.InterfaceState == True )
                 <displaytext value="Please follow the instructions on the TV" />
                 <code>
 self.clearSelectedKeys()
-self["text"].setText(self.Text)
 self.selectKey("OK")
+self["text"].setText(self.Text)
                 </code>
                 <code pos="after">
 currStep = self.numSteps                                
@@ -76,7 +90,6 @@ self.selectKey("DOWN")
                         <listentry caption="Exit network wizard" step="end" />
                 </list>
         </step>
-
         <step id="asknetworktype">
 		<condition>
 self.condition = (self.isInterfaceUp == True and self.WlanPluginInstalled == True)
@@ -195,13 +208,11 @@ self.selectKey("DOWN")
                         <listentry caption="Exit network wizard" step="end" />
                 </list>
         </step>
-
         <step id="end">
                 <text value="Thank you for using the wizard.\nPlease press OK to continue." />
                 <code>
 self.clearSelectedKeys()
 self.selectKey("OK")
-self.close()
                 </code>
         </step>
 </wizard>
