@@ -1,5 +1,5 @@
 from Components.Harddisk import harddiskmanager
-from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, ConfigSelectionNumber
+from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, ConfigSelectionNumber, ConfigClock
 from Tools.Directories import resolveFilename, SCOPE_HDD
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
 from enigma import Misc_Options, eEnv;
@@ -9,6 +9,7 @@ from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
 import os
 import enigma
+import time
 
 def InitUsageConfig():
 	config.usage = ConfigSubsection();
@@ -99,6 +100,9 @@ def InitUsageConfig():
 		else:
 			choicelist.append(("0", "Do nothing"))
 	config.usage.inactivity_timer = ConfigSelection(default = "0", choices = choicelist)
+	config.usage.inactivity_timer_blocktime = ConfigYesNo(default = True)
+	config.usage.inactivity_timer_blocktime_begin = ConfigClock(default = time.mktime((0, 0, 0, 6, 0, 0, 0, 0, 0)))
+	config.usage.inactivity_timer_blocktime_end = ConfigClock(default = time.mktime((0, 0, 0, 23, 0, 0, 0, 0, 0)))
 
 	choicelist = []
 	for i in range(-7200, 7201, 900):
