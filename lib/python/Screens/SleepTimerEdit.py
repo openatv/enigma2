@@ -14,7 +14,11 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 		Screen.__init__(self, session)
 
 		self["current_status"] = Label()
-		self.is_active = self.session.nav.SleepTimer.isActive()
+		try:
+			self.is_active = self.session.nav.SleepTimer.isActive()
+		except:
+			self.close()
+			return
 		if self.is_active:
 			config.SleepTimer.defaulttime.setValue(self.session.nav.SleepTimer.getCurrentSleepTime())
 		else:
