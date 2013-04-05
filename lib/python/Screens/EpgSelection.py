@@ -1293,7 +1293,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self['list'].setCurrentlyPlaying(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
 	def zapTo(self):
-		if self.session.nav.getCurrentlyPlayingServiceOrGroup().toString().find('0:0:0:0:0:0:0:0:0') != -1:
+		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString().find('0:0:0:0:0:0:0:0:0') != -1:
 			from Screens.InfoBarGenerics import setResumePoint
 			setResumePoint(self.session)
 		if self.zapFunc:
