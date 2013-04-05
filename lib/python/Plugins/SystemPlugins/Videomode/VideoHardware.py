@@ -302,12 +302,10 @@ class VideoHardware:
 				config.av.videorate[mode] = ConfigSelection(choices = rates)
 		config.av.videoport = ConfigSelection(choices = lst)
 
-# tmtwin [
 		def setColorFormatAsPort(configElement):
-			if configElement.getValue() == "YPbPr":
-				config.av.colorformat.setValue("cvbs")
+			if configElement.getValue() == "YPbPr" or configElement.getValue() == "Scart-YPbPr":
+				config.av.colorformat.setValue("yuv")
 		config.av.videoport.addNotifier(setColorFormatAsPort)
-# ]
 
 	def setConfiguredMode(self):
 		port = config.av.videoport.getValue()
