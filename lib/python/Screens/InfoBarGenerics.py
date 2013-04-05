@@ -1619,11 +1619,11 @@ class InfoBarTimeshift:
 		if self.timeshift_enabled and config.usage.check_timeshift.value:
 			message = _("Stop timeshift?")
 			if not self.save_timeshift_file:
-				choice = [(_("yes"), "stop"), (_("no"), "continue"), (_("Yes and save"), "save"), (_("Yes and save in movie dir"), "save_movie")]
+				choise = [(_("yes"), "stop"), (_("no"), "continue"), (_("Yes and save"), "save"), (_("Yes and save in movie dir"), "save_movie")]
 			else:
-				choice = [(_("yes"), "stop"), (_("no"), "continue")]
+				choise = [(_("yes"), "stop"), (_("no"), "continue")]
 				message += "\n" + _("Reminder, you have chosen to save timeshift file.")
-			self.session.openWithCallback(boundFunction(self.stopTimeshiftcheckTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice)
+			self.session.openWithCallback(boundFunction(self.stopTimeshiftcheckTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choise)
 		else:
 			returnFunction(True)
 
