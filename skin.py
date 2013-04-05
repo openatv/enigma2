@@ -13,6 +13,8 @@ from Tools.LoadPixmap import LoadPixmap
 from Components.RcModel import rc_model
 
 colorNames = {}
+switchPixmap = dict()
+
 # Predefined fonts, typically used in built-in screens and for components like
 # the movie list and so.
 fonts = {
@@ -75,11 +77,14 @@ def skin_user_skinname():
 config.skin = ConfigSubsection()
 
 # on SD hardware, ViX Night HD will not be available
-DEFAULT_SKIN = "DEFAULT.HD/skin.xml"
+DEFAULT_SKIN = "easy-skin-hd/skin.xml"
 if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
 	# in that case, fallback to Magic (which is an SD skin)
 	DEFAULT_SKIN = "skin.xml"
+
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
+config.skin.x = ConfigText(default='1280')
+config.skin.y = ConfigText(default='720')
 
 DEFAULT_DISPLAY_SKIN = "skin_display.xml"
 config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
@@ -452,18 +457,21 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				if xres:
 					xres = int(xres)
 				else:
-					xres = 720
+					xres = 1280
 				yres = get_attr("yres")
 				if yres:
 					yres = int(yres)
 				else:
-					yres = 576
+					yres = 720
 				bpp = get_attr("bpp")
 				if bpp:
 					bpp = int(bpp)
 				else:
 					bpp = 32
 				#print "Resolution:", xres,yres,bpp
+				config.skin.x.value = str(xres)
+				config.skin.y.value = str(yres)
+				config.skin.save()
 				from enigma import gMainDC
 				gMainDC.getInstance().setResolution(xres, yres)
 				desktop.resize(eSize(xres, yres))
@@ -482,7 +490,22 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				loadSkin(skinfile)
 			except Exception, err:
 				print "not loading user skin: ", err
-				
+
+	for c in skin.findall('switchpixmap'):
+	    for pixmap in c.findall('pixmap'):
+		get_attr = pixmap.attrib.get
+		name = get_attr('name')
+		filename = get_attr('filename')
+		if name and filename:
+		    resolved_png = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
+		    print resolved_png
+		    if fileExists(resolved_png):
+			switchPixmap[name] = resolved_png
+		    else:
+			raise SkinError('need filename, got', filename)
+		else:
+		    raise SkinError('need filename and name, got %s %s' % (name, filename))
+	      
 	for c in skin.findall("colors"):
 		for color in c.findall("color"):
 			get_attr = color.attrib.get

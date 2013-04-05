@@ -29,8 +29,8 @@ class Rc:
 		self.selectpics.append((self.rcheighthalf, ["arrowdown", "arrowdown2"], (-18,-70)))
 		self.selectpics.append((self.rcheight, ["arrowup", "arrowup2"], (-18,0)))
 		self['red'].hide()
-		#if self.has_key('languagetext'):
-		#    self['languagetext'].hide()
+		if self.has_key('languagetext'):
+		    self['languagetext'].hide()
 		self.readPositions()
 		self.clearSelectedKeys()
 		self.onShown.append(self.initRc)
@@ -46,15 +46,15 @@ class Rc:
 		else:
 			rc = self.rcs[2]
 			
-		#if rc.has_key('RED'):
-		#	rcpos = self['rc'].getPosition()
-		#	pos = rc['RED']
-		#	self['red'].moveTo(rcpos[0] + pos[0] - 313, rcpos[1] + pos[1] - 15, 1)
-		#	self['red'].startMoving()
-		#	self['red'].show()
-		#	if self.has_key('languagetext'):
-		#	    self['languagetext'].instance.move(ePoint(rcpos[0] + pos[0] - 313, rcpos[1] + pos[1] + 50))
-		#	    self['languagetext'].show()
+		if rc.has_key('RED'):
+			rcpos = self['rc'].getPosition()
+			pos = rc['RED']
+			self['red'].moveTo(rcpos[0] + pos[0] - 313, rcpos[1] + pos[1] - 15, 1)
+			self['red'].startMoving()
+			self['red'].show()
+			if self.has_key('languagetext'):
+			    self['languagetext'].instance.move(ePoint(rcpos[0] + pos[0] - 313, rcpos[1] + pos[1] + 50))
+			    self['languagetext'].show()
                 
 	def readPositions(self):
 		if self.isDefaultRc:
