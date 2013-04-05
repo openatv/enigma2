@@ -2732,17 +2732,17 @@ class InfoBarPowersaver:
 	def inactivityTimeout(self):
 		if config.usage.inactivity_timer_blocktime.value:
 			curtime = localtime(time())
-			if curtime.tm_year != "1970":
-				curtime = (curtime.tm_hour, curtime.tm_min)
+			if curtime.tm_year != "1970": #check if the current time is valid
+				curtime = (curtime.tm_hour, curtime.tm_min, curtime.tm_sec)
 				begintime = tuple(config.usage.inactivity_timer_blocktime_begin.value)
 				endtime = tuple(config.usage.inactivity_timer_blocktime_end.value)
-				if begintime <= endtime and (curtime > begintime and curtime <= endtime) or begintime > endtime and (curtime > begintime or curtime <= endtime):
-					curtime = curtime[0]*3600 + curtime[1]*60
-					endtime = endtime[0]*3600 + endtime[1]*60
-					if curtime > endtime:
-						endtime += 24*3600
-					self.inactivityTimer.startLongTimer(endtime - curtime + 60)
-					return
+				if begintime <= endtime and (curtime >= begintime and curtime < endtime) or begintime > endtime and (curtime >= begintime or curtime < endtime):
+					duration = (endtime[0]*3600 + endtime[1]*60) - (curtime[0]*3600 + curtime[1]*60 + curtime[2])
+					if duration:
+						if duration < 0:
+							duration += 24*3600
+						self.inactivityTimer.startLongTimer(duration)
+						return
 		if Screens.Standby.inStandby:
 			self.inactivityTimeoutCallback(True)
 		else:
