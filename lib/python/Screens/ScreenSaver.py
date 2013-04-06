@@ -1,7 +1,9 @@
 from Screens.Screen import Screen
+from Components.MovieList import AUDIO_EXTENSIONS
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Pixmap import Pixmap
 from enigma import ePoint, eTimer, iPlayableService
+import os
 
 class Screensaver(Screen):
 	def __init__(self, session):
@@ -21,7 +23,7 @@ class Screensaver(Screen):
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
-				iPlayableService.evStart: self.hide
+				iPlayableService.evStart: self.serviceStarted
 			})
 
 		self["picture"] = Pixmap()
@@ -42,6 +44,14 @@ class Screensaver(Screen):
 
 	def __onShow(self):
 		self.moveLogoTimer.start(50)
+
+	def serviceStarted(self):
+		if self.shown:
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if ref:
+				ref = ref.toString().split(":")
+				if not os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS:
+					self.hide()
 
 	def doMovePicture(self):
 			if self.posx > self.maxx or self.posx < 0:
