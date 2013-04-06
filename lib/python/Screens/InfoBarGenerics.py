@@ -1510,9 +1510,10 @@ class InfoBarTimeshift:
 
 	def stopTimeshift(self):
 		ts = self.getTimeshift()
-		if ts is None or ts.isTimeshiftEnabled():
+		if ts and ts.isTimeshiftEnabled():
+			self.checkTimeshiftRunning(boundFunction(self.stopTimeshiftcheckTimeshiftRunningCallback, ts))
+		else:
 			return 0
-		self.checkTimeshiftRunning(boundFunction(self.stopTimeshiftcheckTimeshiftRunningCallback, ts))
 
 	def stopTimeshiftcheckTimeshiftRunningCallback(self, ts, answer):
 		if answer:
