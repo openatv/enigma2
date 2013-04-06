@@ -37,10 +37,10 @@ class About(Screen):
 
 	def populate(self):
 		self["lab1"] = StaticText(_("openAAF"))
-		self["lab2"] = StaticText(_("By AAF Image Team"))
+		self["lab2"] = StaticText(_("By openAAF Image Team"))
 		model = None
 		AboutText = ""
-		self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
+		self["lab3"] = StaticText(_("Support at") + " www.openaaf.com")
 		if getBoxType() == 'vuuno':
 			model = "Vu+ Uno"
 		elif getBoxType() == 'vuultimo':
@@ -288,7 +288,7 @@ class SystemMemoryInfo(Screen):
 		Screen.setTitle(self, _("Memory Information"))
 		self.skinName = ["SystemMemoryInfo", "About"]
 		self["lab1"] = StaticText(_("openAAF"))
-		self["lab2"] = StaticText(_("By AAF Image Team"))
+		self["lab2"] = StaticText(_("By openAAF Image Team"))
 		self["AboutScrollLabel"] = ScrollLabel()
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
@@ -537,7 +537,7 @@ class SystemNetworkInfo(Screen):
 class AboutSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
-		self["selected"] = StaticText("AAF:" + getImageVersionString())
+		self["selected"] = StaticText("openAAF:" + getImageVersionString())
 
 		AboutText = ""
 		model = None
