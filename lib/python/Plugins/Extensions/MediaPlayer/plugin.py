@@ -430,7 +430,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		self.updateCurrentInfo()
 
 	def showAfterSeek(self):
-		pass
+		if not self.shown:
+			self.hideAndInfoBar()
 
 	def showAfterCuesheetOperation(self):
 		self.show()
