@@ -1519,7 +1519,6 @@ class InfoBarTimeshift:
 		if answer:
 			self.saveTimeshiftFiles()
 			ts.stopTimeshift()
-			self.timeshift_enabled = False
 			self.save_timeshift_file = False
 			self.pvrStateDialog.hide()
 
@@ -1601,9 +1600,14 @@ class InfoBarTimeshift:
 
 	def checkTimeshiftRunning(self, returnFunction):
 		if self.timeshift_enabled and config.usage.check_timeshift.value:
-			self.session.openWithCallback(returnFunction, MessageBox, _("Stop timeshift?"), simple = True)
+			self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, _("Stop timeshift?"), simple = True)
 		else:
-			returnFunction(True)
+			self.checkTimeshiftRunningCallback(returnFunction, True)
+
+	def checkTimeshiftRunningCallback(self, returnFunction, answer):
+		if answer:
+			self.timeshift_enabled = False
+		returnFunction(answer)
 
 	# renames/moves timeshift files if requested
 	def __serviceEnd(self):
