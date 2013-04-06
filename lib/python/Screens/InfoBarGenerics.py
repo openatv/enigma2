@@ -436,7 +436,7 @@ class InfoBarNumberZap:
 			else:
 				self.servicelist.recallPrevService()
 		else:
-			if self.has_key("TimeshiftActions") and self.timeshift_enabled:
+			if self.has_key("TimeshiftActions") and self.timeshiftEnabled():
 				ts = self.getTimeshift()
 				if ts and ts.isTimeshiftActive():
 					return
@@ -1103,7 +1103,7 @@ class InfoBarSeek:
 		return seek
 
 	def isSeekable(self):
-		if self.getSeek() is None or (isStandardInfoBar(self) and not self.timeshift_enabled):
+		if self.getSeek() is None or (isStandardInfoBar(self) and not self.timeshiftEnabled()):
 			return False
 		return True
 
@@ -1393,7 +1393,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		self.__hideTimer.callback.append(self.__hideTimeshiftState)
 
 	def _mayShow(self):
-		if self.execing and self.timeshift_enabled:
+		if self.execing and self.timeshiftEnabled():
 			self.pvrStateDialog.show()
 			if self.seekstate == self.SEEK_STATE_PLAY and not self.shown:
 				self.__hideTimer.start(5*1000, True)
@@ -1455,7 +1455,6 @@ class InfoBarTimeshift:
 				"timeshiftActivateEndAndPause": self.activateTimeshiftEndAndPause  # something like "pause key"
 			}, prio=-1) # priority over record
 
-		self.timeshift_enabled = False
 		self.save_timeshift_file = False
 		self.save_timeshift_in_movie_dir = False
 		self.current_timeshift_filename = ""
@@ -1476,6 +1475,10 @@ class InfoBarTimeshift:
 		service = self.session.nav.getCurrentService()
 		return service and service.timeshift()
 
+	def timeshiftEnabled(self):
+		ts = self.getTimeshift()
+		return ts and ts.isTimeshiftEnabled()
+
 	def startTimeshift(self):
 		print "enable timeshift"
 		ts = self.getTimeshift()
@@ -1484,12 +1487,10 @@ class InfoBarTimeshift:
 			print "no ts interface"
 			return 0
 
-		if self.timeshift_enabled:
+		if ts.isTimeshiftEnabled():
 			print "hu, timeshift already enabled?"
 		else:
 			if not ts.startTimeshift():
-				self.timeshift_enabled = True
-
 				# we remove the "relative time" for now.
 				#self.pvrStateDialog["timeshift"].setRelative(time.time())
 
@@ -1508,10 +1509,8 @@ class InfoBarTimeshift:
 				print "timeshift failed"
 
 	def stopTimeshift(self):
-		if not self.timeshift_enabled:
-			return 0
 		ts = self.getTimeshift()
-		if ts is None:
+		if ts is None or ts.isTimeshiftEnabled():
 			return 0
 		self.checkTimeshiftRunning(boundFunction(self.stopTimeshiftcheckTimeshiftRunningCallback, ts))
 
@@ -1583,15 +1582,14 @@ class InfoBarTimeshift:
 		self.activateTimeshiftEnd(False)
 
 	def __seekableStatusChanged(self):
-		self["TimeshiftActivateActions"].setEnabled(not self.isSeekable() and self.timeshift_enabled)
-		state = self.getSeek() is not None and self.timeshift_enabled
+		self["TimeshiftActivateActions"].setEnabled(not self.isSeekable() and self.timeshiftEnabled())
+		state = self.getSeek() is not None and self.timeshiftEnabled()
 		self["SeekActions"].setEnabled(state)
 		if not state:
 			self.setSeekState(self.SEEK_STATE_PLAY)
 
 	def __serviceStarted(self):
 		self.pvrStateDialog.hide()
-		self.timeshift_enabled = False
 		self.save_timeshift_file = False
 		self.save_timeshift_in_movie_dir = False
 		self.current_timeshift_filename = ""
@@ -1599,23 +1597,17 @@ class InfoBarTimeshift:
 		self.__seekableStatusChanged()
 
 	def checkTimeshiftRunning(self, returnFunction):
-		if self.timeshift_enabled and config.usage.check_timeshift.value:
-			self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, _("Stop timeshift?"), simple = True)
+		if self.timeshiftEnabled() and config.usage.check_timeshift.value:
+			self.session.openWithCallback(returnFunction, MessageBox, _("Stop timeshift?"), simple = True)
 		else:
-			self.timeshift_enabled = False
 			returnFunction(True)
-
-	def checkTimeshiftRunningCallback(self, returnFunction, answer):
-		if answer:
-			self.timeshift_enabled = False
-		returnFunction(answer)
 
 	# renames/moves timeshift files if requested
 	def __serviceEnd(self):
 		self.saveTimeshiftFiles()
 
 	def saveTimeshiftFiles(self):
-		if self.timeshift_enabled and self.save_timeshift_file and self.current_timeshift_filename != "" and self.new_timeshift_filename != "":
+		if self.timeshiftEnabled() and self.save_timeshift_file and self.current_timeshift_filename != "" and self.new_timeshift_filename != "":
 			if config.usage.timeshift_path.value is not None and not self.save_timeshift_in_movie_dir:
 				dirname = config.usage.timeshift_path.value
 			else:
@@ -2036,7 +2028,7 @@ class InfoBarInstantRecord:
 		else:
 			title=_("Start recording?")
 			list = common + ((_("Do not record"), "no"),)
-		if self.timeshift_enabled:
+		if self.timeshiftEnabled():
 			list = list + ((_("Save timeshift file"), "timeshift"),
 			(_("Save timeshift file in movie directory"), "timeshift_movie"))
 		self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox,title=title,list=list)
