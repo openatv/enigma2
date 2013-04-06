@@ -14,6 +14,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap,MultiPixmap
 from Components.FileList import FileList
 from Components.MediaPlayer import PlayList
+from Components.MovieList import AUDIO_EXTENSIONS
 from Components.ServicePosition import ServicePositionGauge
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Playlist import PlaylistIOInternal, PlaylistIOM3U, PlaylistIOPLS
@@ -869,7 +870,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			if len(self.playlist) > 0:
 				self.changeEntry(0)
 	
-	def playEntry(self, audio_extensions = frozenset((".mp2", ".mp3", ".wav", ".ogg", ".flac", ".m4a"))):
+	def playEntry(self):
 		if len(self.playlist.getServiceRefList()):
 			needsInfoUpdate = False
 			currref = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()]
@@ -885,7 +886,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				ext = os.path.splitext(text)[1].lower()
 				text = ">"+text
 				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead 
-				if ext not in audio_extensions and not self.isAudioCD:
+				if ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
 					self.hideAndInfoBar()
 				else:
 					needsInfoUpdate = True
@@ -912,7 +913,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				currref = self.playlist.getServiceRefList()[idx]
 				text = currref.getPath()
 				ext = os.path.splitext(text)[1].lower()
-				if ext not in audio_extensions and not self.isAudioCD:
+				if ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
 					self.hideAndInfoBar()
 				else:
 					needsInfoUpdate = True
