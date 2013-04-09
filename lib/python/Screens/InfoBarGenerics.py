@@ -3538,7 +3538,8 @@ class InfoBarTimeshift:
 			if self.isSeekable():
 				Notifications.AddNotification(MessageBox,_("Record started! Stopping timeshift now ..."), MessageBox.TYPE_INFO, timeout=5)
 
-			self.stopTimeshift(True, False)
+			self.switchToLive = True
+			self.stopTimeshift()
 
 		# Restart Timeshift when all records stopped
 		if timer.state == TimerEntry.StateEnded and not self.timeshift_enabled and not self.pts_record_running:
