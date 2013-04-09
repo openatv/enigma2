@@ -117,7 +117,7 @@ class SoftwarePanel(Screen):
 		currentTimeoutDefault = socket.getdefaulttimeout()
 		socket.setdefaulttimeout(3)
 		try:
-			urlopenAAF = "http://mipsel-ipk-update.aaf-board.com/Ampel/index.php"
+			urlopenAAF = "http://ampel.openaaf.com/Ampel/index.php"
 			d = urlopen(urlopenAAF)
 			tmpStatus = d.read()
 			if 'rot.png' in tmpStatus:
