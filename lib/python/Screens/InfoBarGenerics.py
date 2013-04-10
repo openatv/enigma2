@@ -1588,6 +1588,7 @@ class InfoBarTimeshift:
 		self["SeekActions"].setEnabled(state)
 		if not state:
 			self.setSeekState(self.SEEK_STATE_PLAY)
+		self.setSubtitlesEnable()
 
 	def __serviceStarted(self):
 		self.pvrStateDialog.hide()
@@ -2633,12 +2634,8 @@ class InfoBarSubtitleSupport(object):
 		subtitle = self.getCurrentServiceSubtitle()
 		cachedsubtitle = subtitle.getCachedSubtitle()
 		if subtitle and cachedsubtitle:
-			if self.__selected_subtitle and self.__subtitles_enabled and cachedsubtitle != self.__selected_subtitle:
-				subtitle.disableSubtitles(self.subtitle_window.instance)
-				self.subtitle_window.hide()
-				self.__subtitles_enabled = False
 			self.setSelectedSubtitle(cachedsubtitle)
-			self.setSubtitlesEnable(True)
+			self.setSubtitlesEnable()
 
 	def getCurrentServiceSubtitle(self):
 		service = self.session.nav.getCurrentService()
@@ -2647,15 +2644,17 @@ class InfoBarSubtitleSupport(object):
 	def setSubtitlesEnable(self, enable=True):
 		subtitle = self.getCurrentServiceSubtitle()
 		if enable:
-			if self.__selected_subtitle:
-				if subtitle and not self.__subtitles_enabled:
-					subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
+			if subtitle and self.__selected_subtitle:
+				if self.__subtitles_enabled:
+					subtitle.disableSubtitles(self.subtitle_window.instance)
+				else:
 					self.subtitle_window.show()
 					self.__subtitles_enabled = True
+				subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
 		else:
 			if subtitle and self.__subtitles_enabled:
 				subtitle.disableSubtitles(self.subtitle_window.instance)
-			self.__selected_subtitle = False
+			self.__selected_subtitle = None
 			self.__subtitles_enabled = False
 			self.subtitle_window.hide()
 
