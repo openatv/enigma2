@@ -117,8 +117,8 @@ class SoftwarePanel(Screen):
 		currentTimeoutDefault = socket.getdefaulttimeout()
 		socket.setdefaulttimeout(3)
 		try:
-			urlopenAAF = "http://ampel.openaaf.com/Ampel/index.php"
-			d = urlopen(urlopenAAF)
+			urlopenATV = "http://ampel.opena.tv/Ampel/index.php"
+			d = urlopen(urlopenATV)
 			tmpStatus = d.read()
 			if 'rot.png' in tmpStatus:
 				self['a_off'].hide()
