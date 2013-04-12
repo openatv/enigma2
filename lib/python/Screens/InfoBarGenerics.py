@@ -1588,7 +1588,7 @@ class InfoBarTimeshift:
 		self["SeekActions"].setEnabled(state)
 		if not state:
 			self.setSeekState(self.SEEK_STATE_PLAY)
-		self.setSubtitlesEnable()
+		self.enableSubtitle()
 
 	def __serviceStarted(self):
 		self.pvrStateDialog.hide()
@@ -2606,61 +2606,48 @@ class InfoBarSubtitleSupport(object):
 				"subtitleSelection": (self.subtitleSelection, _("Subtitle selection...")),
 			})
 
+		self.selected_subtitle = None
 		self.subtitle_window = self.session.instantiateDialog(SubtitleDisplay)
-		self.__subtitles_enabled = False
+		self.subtitle_window.hide()
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evEnd: self.__serviceStopped,
 				iPlayableService.evUpdatedInfo: self.__updatedInfo
 			})
-		self.__selected_subtitle = None
-
-	def subtitleSelection(self):
-		service = self.session.nav.getCurrentService()
-		subtitle = service and service.subtitle()
-		subtitlelist = subtitle and subtitle.getSubtitleList()
-		if self.__subtitles_enabled or subtitlelist and len(subtitlelist)>0:
-			from Screens.AudioSelection import SubtitleSelection
-			self.session.open(SubtitleSelection, self)
-
-	def __serviceStopped(self):
-		if self.__subtitles_enabled:
-			self.subtitle_window.hide()
-			self.__subtitles_enabled = False
-			self.__selected_subtitle = None
-
-	def __updatedInfo(self):
-		subtitle = self.getCurrentServiceSubtitle()
-		cachedsubtitle = subtitle.getCachedSubtitle()
-		if subtitle and cachedsubtitle:
-			self.setSelectedSubtitle(cachedsubtitle)
-			self.setSubtitlesEnable()
 
 	def getCurrentServiceSubtitle(self):
 		service = self.session.nav.getCurrentService()
 		return service and service.subtitle()
 
-	def setSubtitlesEnable(self, enable=True):
+	def subtitleSelection(self):
 		subtitle = self.getCurrentServiceSubtitle()
-		if enable:
-			if subtitle and self.__selected_subtitle:
-				if not self.__subtitles_enabled:
-					self.subtitle_window.show()
-					self.__subtitles_enabled = True
-				subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
+		subtitlelist = subtitle and subtitle.getSubtitleList()
+		if self.selected_subtitle or subtitlelist and len(subtitlelist)>0:
+			from Screens.AudioSelection import SubtitleSelection
+			self.session.open(SubtitleSelection, self)
+
+	def __serviceStopped(self):
+		self.selected_subtitle = None
+		self.subtitle_window.hide()
+
+	def __updatedInfo(self):
+		subtitle = self.getCurrentServiceSubtitle()
+		cachedsubtitle = subtitle.getCachedSubtitle()
+		if cachedsubtitle:
+			self.enableSubtitle(cachedsubtitle)
+
+	def enableSubtitle(self, selectedSubtitle=False):
+		subtitle = self.getCurrentServiceSubtitle()
+		if selectedSubtitle != False:
+			self.selected_subtitle = selectedSubtitle
+		if subtitle and self.selected_subtitle:
+			subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
+			self.subtitle_window.show()
 		else:
-			if subtitle and self.__subtitles_enabled:
+			if subtitle and selectedSubtitle != False:
 				subtitle.disableSubtitles(self.subtitle_window.instance)
-			self.__selected_subtitle = None
-			self.__subtitles_enabled = False
 			self.subtitle_window.hide()
-
-	def setSelectedSubtitle(self, subtitle):
-		self.__selected_subtitle = subtitle
-
-	subtitles_enabled = property(lambda self: self.__subtitles_enabled, setSubtitlesEnable)
-	selected_subtitle = property(lambda self: self.__selected_subtitle, setSelectedSubtitle)
 
 class InfoBarServiceErrorPopupSupport:
 	def __init__(self):
