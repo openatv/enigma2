@@ -1505,7 +1505,7 @@ class UpdatePlugin(Screen):
 		# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
 		# run in parallel to the package update.
 		try:
-			urlopenATV = "http://ampel.opena.tv/Ampel/index.php"
+			urlopenATV = "http://ampel.mynonpublic.com/Ampel/index.php"
 			d = urlopen(urlopenATV)
 			tmpStatus = d.read()
 			if (os.path.exists("/etc/.beta") and 'rot.png' in tmpStatus) or 'gelb.png' in tmpStatus:
