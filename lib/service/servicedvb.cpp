@@ -553,17 +553,31 @@ static int reindex_work(const std::string& filename)
 	eMPEGStreamParserTS parser; /* Missing packetsize, should be determined from stream? */
 
 	{
+		unsigned int i;
+		bool timingpidset = false;
 		eDVBTSTools tstools;
 		tstools.openFile(filename.c_str(), 1);
-		int pcr_pid;
-		err = tstools.findPMT(NULL, NULL, &pcr_pid);
+		eDVBPMTParser::program program;
+		err = tstools.findPMT(program);
 		if (err)
 		{
 			eDebug("reindex - Failed to find PMT");
 			return err;
 		}
-		eDebug("reindex: pcr_pid=0x%x", pcr_pid);
-		parser.setPid(pcr_pid, iDVBTSRecorder::video_pid, -1); /* -1 = automatic MPEG2/h264 detection */
+		for (i = 0; i < program.videoStreams.size(); i++)
+		{
+			if (timingpidset) break;
+			eDebug("reindex: video pid=0x%x", program.videoStreams[i].pid);
+			parser.setPid(program.videoStreams[i].pid, iDVBTSRecorder::video_pid, program.videoStreams[i].type);
+			timingpidset = true;
+		}
+		for (i = 0; i < program.audioStreams.size(); i++)
+		{
+			if (timingpidset) break;
+			eDebug("reindex: audio pid=0x%x", program.audioStreams[i].pid);
+			parser.setPid(program.audioStreams[i].pid, iDVBTSRecorder::audio_pid, program.audioStreams[i].type);
+			timingpidset = true;
+		}
 	}
 
 	parser.startSave(filename);

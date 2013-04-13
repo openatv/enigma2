@@ -751,11 +751,12 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 				tstools.setSource(source, NULL);
 			if (b)
 			{
-				int service_id;
-				if (!tstools.findPMT(&m_pmt_pid, &service_id, NULL))
+				eDVBPMTParser::program program;
+				if (!tstools.findPMT(program))
 				{
-					eDebug("PMT pid found on pid %04x, service id %d", m_pmt_pid, service_id);
-					m_reference.setServiceID(service_id);
+					m_pmt_pid = program.pmtPid;
+					eDebug("PMT pid found on pid %04x, service id %d", m_pmt_pid, program.serviceId);
+					m_reference.setServiceID(program.serviceId);
 				}
 			}
 			else
