@@ -203,7 +203,10 @@ class EventViewBase:
 			begintime = beginTimeString.split(', ')[1].split(':')
 			begindate = beginTimeString.split(', ')[0].split('.')
 		else:
-			begintime = beginTimeString.split(' ')[1].split(':')
+			if len(beginTimeString.split(' ')) > 1:
+				begintime = beginTimeString.split(' ')[1].split(':')
+			else:
+				return
 			begindate = beginTimeString.split(' ')[0].split('.')
 		nowt = time()
 		now = localtime(nowt)
@@ -214,7 +217,7 @@ class EventViewBase:
 		self["duration"].setText(_("%d min")%(event.getDuration()/60))
 		if self.SimilarBroadcastTimer is not None:
 			self.SimilarBroadcastTimer.start(400, True)
-
+			
 		serviceref = self.currentService
 		eventid = self.event.getEventId()
 		refstr = serviceref.ref.toString()
