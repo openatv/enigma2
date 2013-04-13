@@ -9,10 +9,8 @@
 #include <lib/dvb/idemux.h>
 #include <lib/dvb/esection.h>
 #include <lib/dvb/cahandler.h>
+#include <lib/dvb/pmtparse.h>
 #include <lib/python/python.h>
-#include <dvbsi++/program_map_section.h>
-#include <dvbsi++/program_association_section.h>
-#include <dvbsi++/application_information_section.h>
 
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -43,7 +41,7 @@ class OCSection : public LongCrcSection
 		void *getData() { return data; }
 };
 
-class eDVBServicePMTHandler: public Object
+class eDVBServicePMTHandler: public eDVBPMTParser
 {
 #ifndef SWIG
 	friend class eDVBCAService;
@@ -55,7 +53,6 @@ class eDVBServicePMTHandler: public Object
 	bool doDescramble;
 	ePtr<eDVBScan> m_dvb_scan; // for sdt scan
 
-	eAUTable<eTable<ProgramMapSection> > m_PMT;
 	eAUTable<eTable<ProgramAssociationSection> > m_PAT;
 	eAUTable<eTable<ApplicationInformationSection> > m_AIT;
 	eAUTable<eTable<OCSection> > m_OC;
@@ -119,75 +116,6 @@ public:
 	};
 #ifndef SWIG
 	Signal1<void,int> serviceEvent;
-
-	struct videoStream
-	{
-		int pid;
-		int component_tag;
-		enum { vtMPEG2, vtMPEG4_H264, vtMPEG1, vtMPEG4_Part2, vtVC1, vtVC1_SM };
-		int type;
-	};
-	
-	struct audioStream
-	{
-		int pid,
-		rdsPid; // hack for some radio services which transmit radiotext on different pid (i.e. harmony fm, HIT RADIO FFH, ...)
-		enum { atMPEG, atAC3, atDTS, atAAC, atAACHE, atLPCM, atDTSHD, atDDP };
-		int type; // mpeg2, ac3, dts, ...
-		
-		int component_tag;
-		std::string language_code; /* iso-639, if available. */
-	};
-
-	struct subtitleStream
-	{
-		int pid;
-		int subtitling_type;  	/*  see ETSI EN 300 468 table 26 component_type
-									when stream_content is 0x03
-									0x10..0x13, 0x20..0x23 is used for dvb subtitles
-									0x01 is used for teletext subtitles */
-		union
-		{
-			int composition_page_id;  // used for dvb subtitles
-			int teletext_page_number;  // used for teletext subtitles
-		};
-		union
-		{
-			int ancillary_page_id;  // used for dvb subtitles
-			int teletext_magazine_number;  // used for teletext subtitles
-		};
-		std::string language_code;
-		bool operator<(const subtitleStream &s) const
-		{
-			if (pid != s.pid)
-				return pid < s.pid;
-			if (teletext_page_number != s.teletext_page_number)
-				return teletext_page_number < s.teletext_page_number;
-			return teletext_magazine_number < s.teletext_magazine_number;
-		}
-	};
-
-	struct program
-	{
-		struct capid_pair
-		{
-			uint16_t caid;
-			int capid;
-			bool operator< (const struct capid_pair &t) const { return t.caid < caid; }
-		};
-		std::vector<videoStream> videoStreams;
-		std::vector<audioStream> audioStreams;
-		int defaultAudioStream;
-		std::vector<subtitleStream> subtitleStreams;
-		int defaultSubtitleStream;
-		std::list<capid_pair> caids;
-		int pcrPid;
-		int pmtPid;
-		int textPid;
-		int aitPid;
-		bool isCrypted() { return !caids.empty(); }
-		PyObject *createPythonObject();
-	};
 
 	int getProgramInfo(program &program);
 	int getDataDemux(ePtr<iDVBDemux> &demux);
