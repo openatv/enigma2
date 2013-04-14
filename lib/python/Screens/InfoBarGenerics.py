@@ -1588,7 +1588,7 @@ class InfoBarTimeshift:
 		self["SeekActions"].setEnabled(state)
 		if not state:
 			self.setSeekState(self.SEEK_STATE_PLAY)
-		self.enableSubtitle()
+			self.restartSubtitle()
 
 	def __serviceStarted(self):
 		self.pvrStateDialog.hide()
@@ -2637,17 +2637,20 @@ class InfoBarSubtitleSupport(object):
 		if cachedsubtitle:
 			self.enableSubtitle(cachedsubtitle)
 
-	def enableSubtitle(self, selectedSubtitle=False):
+	def enableSubtitle(self, selectedSubtitle):
 		subtitle = self.getCurrentServiceSubtitle()
-		if selectedSubtitle != False:
-			self.selected_subtitle = selectedSubtitle
+		self.selected_subtitle = selectedSubtitle
 		if subtitle and self.selected_subtitle:
 			subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
 			self.subtitle_window.show()
 		else:
-			if subtitle and selectedSubtitle != False:
+			if subtitle:
 				subtitle.disableSubtitles(self.subtitle_window.instance)
 			self.subtitle_window.hide()
+
+	def restartSubtitle(self):
+		if self.selected_subtitle:
+			self.enableSubtitle(self.selected_subtitle)
 
 class InfoBarServiceErrorPopupSupport:
 	def __init__(self):
