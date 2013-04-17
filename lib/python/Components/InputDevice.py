@@ -174,7 +174,7 @@ class InitInputDevices:
 		cmd = "config.inputDevices." + device + " = ConfigSubsection()"
 		exec (cmd)
 		if getBoxType() == 'dm800' or getBoxType() == 'odinm9' or getBoxType() == 'odinm7':
-			cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = True)"
+			cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = False)"
 		else:
 			cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = False)"		
 		exec (cmd)
