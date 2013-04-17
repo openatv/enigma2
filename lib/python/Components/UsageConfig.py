@@ -25,6 +25,9 @@ def InitUsageConfig():
 	config.usage.hide_number_markers = ConfigYesNo(default = False)
 	config.usage.hide_number_markers.addNotifier(refreshServiceList)
 
+	config.usage.servicetype_icon_mode = ConfigSelection(default = None, choices = [("0", _("None")), ("1", _("Left from servicename")), ("2",_("Right from servicename"))])  
+	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
+
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
 	
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)

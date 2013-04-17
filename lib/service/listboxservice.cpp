@@ -271,7 +271,7 @@ void eListboxServiceContent::sort()
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
-	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_itemheight(25), m_hide_number_marker(false)
+	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_itemheight(25), m_hide_number_marker(false), m_servicetype_icon_mode(0)
 {
 	memset(m_color_set, 0, sizeof(m_color_set));
 	cursorHome();
@@ -496,6 +496,11 @@ void eListboxServiceContent::setHideNumberMarker(bool doHide)
 	m_hide_number_marker = doHide;
 }
 
+void eListboxServiceContent::setServiceTypeIconMode(int mode)
+{
+	m_servicetype_icon_mode = mode;
+}
+
 void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
 	painter.clip(eRect(offset, m_itemsize));
@@ -601,7 +606,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		int xoffset=0;  // used as offset when painting the folder/marker symbol or the serviceevent progress
 		time_t now = time(0);
 
-		for (int e = 0; e != celElements; ++e)
+		for (int e = 0; e != celServiceTypePixmap; ++e)
 		{
 			if (m_element_font[e])
 			{
@@ -685,6 +690,34 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					m_element_position[celServiceInfo].setTop(area.top());
 					m_element_position[celServiceInfo].setWidth(area.width() - (bbox.width() + 8 + xoffs));
 					m_element_position[celServiceInfo].setHeight(area.height());
+
+					if (m_servicetype_icon_mode && isPlayable)
+					{
+						int orbpos = m_cursor->getUnsignedData(4) >> 16;
+						const char *filename = ref.path.c_str();
+						ePtr<gPixmap> &pixmap =
+							(m_cursor->flags & eServiceReference::isGroup) ? m_pixmaps[picServiceGroup] :
+							(strstr(filename, "://")) ? m_pixmaps[picStream] :
+							(orbpos == 0xFFFF) ? m_pixmaps[picDVB_C] :
+							(orbpos == 0xEEEE) ? m_pixmaps[picDVB_T] : m_pixmaps[picDVB_S];
+						if (pixmap)
+						{
+							eSize pixmap_size = pixmap->size();
+							eRect area = m_element_position[celServiceInfo];
+							int correction = (area.height() - pixmap_size.height()) / 2;
+							m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
+							m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
+							if (m_servicetype_icon_mode == 1)
+							{
+								area = m_element_position[celServiceName];
+								xoffs += pixmap_size.width() + 8;
+							}
+							area.moveBy(offset);
+							painter.clip(area);
+							painter.blit(pixmap, offset+ePoint(area.left(), correction), area, gPainter::BT_ALPHATEST);
+							painter.clippop();
+						}
+					}
 				}
 
 				if (flags & gPainter::RT_HALIGN_RIGHT)
@@ -702,48 +735,19 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 
 				painter.renderPara(para, offset+ePoint(xoffs, yoffs));
 			}
-			else if (e == celServiceTypePixmap || e == celFolderPixmap || (e == celMarkerPixmap && !(m_cursor->flags & eServiceReference::isNumberedMarker)))
+			else if ((e == celFolderPixmap && m_cursor->flags & eServiceReference::isDirectory) || 
+				(e == celMarkerPixmap && m_cursor->flags & eServiceReference::isMarker && 
+				!(m_cursor->flags & eServiceReference::isNumberedMarker)))
 			{
-				int orbpos = m_cursor->getUnsignedData(4) >> 16;
 				ePtr<gPixmap> &pixmap =
-					(e == celFolderPixmap) ? m_pixmaps[picFolder] :
-					(e == celMarkerPixmap) ? m_pixmaps[picMarker] :
-					(m_cursor->flags & eServiceReference::isGroup) ? m_pixmaps[picServiceGroup] :
-					(orbpos == 0xFFFF) ? m_pixmaps[picDVB_C] :
-					(orbpos == 0xEEEE) ? m_pixmaps[picDVB_T] : m_pixmaps[picDVB_S];
+					(e == celFolderPixmap) ? m_pixmaps[picFolder] : m_pixmaps[picMarker];
 				if (pixmap)
 				{
 					eSize pixmap_size = pixmap->size();
-					int p = celServiceInfo;
-					if (e == celFolderPixmap)
-						p = celServiceName;
-					else if (e == celMarkerPixmap)
-						p = celServiceNumber;
-					eRect area = m_element_position[p];
+					eRect area = m_element_position[e == celFolderPixmap ? celServiceName: celServiceNumber];
 					int correction = (area.height() - pixmap_size.height()) / 2;
-
-					if (isPlayable)
-					{
-						if (e != celServiceTypePixmap)
-							continue;
-						m_element_position[celServiceInfo] = area;
-						m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
-						m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
-					}
-					else if (m_cursor->flags & eServiceReference::isDirectory)
-					{
-						if (e != celFolderPixmap)
-							continue;
+					if (e == celFolderPixmap)
 						xoffset = pixmap_size.width() + 8;
-					}
-					else if (m_cursor->flags & eServiceReference::isMarker)
-					{
-						if (e != celMarkerPixmap)
-							continue;
-					}
-					else
-						eFatal("unknown service type in listboxservice");
-
 					area.moveBy(offset);
 					painter.clip(area);
 					painter.blit(pixmap, offset+ePoint(area.left(), correction), area, gPainter::BT_ALPHATEST);

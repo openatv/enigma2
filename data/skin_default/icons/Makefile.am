@@ -20,6 +20,11 @@ dist_install_DATA = \
 	ico_mp_play.png \
 	ico_mp_rewind.png \
 	ico_mp_stop.png \
+	ico_dvb_c-fs8.png \
+	ico_dvb_s-fs8.png \
+	ico_dvb_t-fs8.png \
+	ico_service_group-fs8.png \
+	ico_stream-fs8.png \
 	icon_crypt.png \
 	icon_dolby.png \
 	icon_event.png \
