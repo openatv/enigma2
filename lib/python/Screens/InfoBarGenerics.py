@@ -1600,16 +1600,30 @@ class InfoBarTimeshift:
 
 	def checkTimeshiftRunning(self, returnFunction):
 		if self.timeshiftEnabled() and config.usage.check_timeshift.value:
-			self.session.openWithCallback(returnFunction, MessageBox, _("Stop timeshift?"), simple = True)
+			message = _("Stop timeshift?")
+			if not self.save_timeshift_file:
+				choice = [(_("yes"), "stop"), (_("no"), "continue"), (_("Yes and save"), "save"), (_("Yes and save in movie dir"), "save_movie")]
+			else:
+				choice = [(_("yes"), "stop"), (_("no"), "continue")]
+				message += "\n" + _("Reminder, you have chosen to save timeshift file.")
+			self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice)
 		else:
 			returnFunction(True)
+
+	def checkTimeshiftRunningCallback(self, returnFunction, answer):
+		if "movie" in answer:
+			self.save_timeshift_in_movie_dir = True
+		if "save" in answer:
+			self.save_timeshift_file = True
+			self.saveTimeshiftFiles()
+		returnFunction(answer != "continue")
 
 	# renames/moves timeshift files if requested
 	def __serviceEnd(self):
 		self.saveTimeshiftFiles()
 
 	def saveTimeshiftFiles(self):
-		if self.timeshiftEnabled() and self.save_timeshift_file and self.current_timeshift_filename != "" and self.new_timeshift_filename != "":
+		if self.save_timeshift_file and self.current_timeshift_filename != "" and self.new_timeshift_filename != "":
 			if config.usage.timeshift_path.value is not None and not self.save_timeshift_in_movie_dir:
 				dirname = config.usage.timeshift_path.value
 			else:
