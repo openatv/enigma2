@@ -198,7 +198,6 @@ void eDVBServicePMTHandler::PATready(int)
 			ProgramAssociationConstIterator program;
 			for (program = pat.getPrograms()->begin(); pmtpid == -1 && program != pat.getPrograms()->end(); ++program)
 			{
-				++cnt;
 				if (eServiceID((*program)->getProgramNumber()) == m_reference.getServiceID())
 					pmtpid = (*program)->getProgramMapPid();
 				if (++cnt == 1 && pmtpid_single == -1 && pmtpid == -1)
