@@ -97,11 +97,23 @@ class eAUTable: public eAUGTable
 	ePtr<Table> current, next;		// current is READY AND ERRORFREE, next is not yet ready
 	int first;
 	ePtr<iDVBDemux> m_demux;
+	ePtr<iDVBSectionReader> m_reader;
 	eMainloop *ml;
 
 	/* needed to detect broken table version handling (seen on some m2ts files) */
 	struct timespec m_prev_table_update;
 	int m_table_cnt;
+
+	void begin(eMainloop *m)
+	{
+		m_table_cnt = 0;
+		ml = m;
+		first= 1;
+		current = 0;
+		next = new Table();
+		CONNECT(next->tableReady, eAUTable::slotTableReady);
+	}
+
 public:
 
 	eAUTable()
@@ -117,18 +129,24 @@ public:
 	{
 		current = next = 0;
 		m_demux = 0;
+		m_reader = 0;
 	}
 
 	int begin(eMainloop *m, const eDVBTableSpec &spec, ePtr<iDVBDemux> demux)
 	{
-		m_table_cnt = 0;
-		ml = m;
+		begin(m);
 		m_demux = demux;
-		first= 1;
-		current = 0;
-		next = new Table();
-		CONNECT(next->tableReady, eAUTable::slotTableReady);
+		m_reader = 0;
 		next->start(demux, spec);
+		return 0;
+	}
+
+	int begin(eMainloop *m, const eDVBTableSpec &spec, ePtr<iDVBSectionReader> reader)
+	{
+		begin(m);
+		m_demux = 0;
+		m_reader = reader;
+		next->start(reader, spec);
 		return 0;
 	}
 
@@ -221,7 +239,14 @@ public:
 			next = new Table();
 			CONNECT(next->tableReady, eAUTable::slotTableReady);
 			spec.flags &= ~(eDVBTableSpec::tfAnyVersion|eDVBTableSpec::tfThisVersion|eDVBTableSpec::tfHaveTimeout);
-			next->eGTable::start(m_demux, spec);
+			if (m_demux)
+			{
+				next->eGTable::start(m_demux, spec);
+			}
+			else if (m_reader)
+			{
+				next->eGTable::start(m_reader, spec);
+			}
 		}
 	}
 };
