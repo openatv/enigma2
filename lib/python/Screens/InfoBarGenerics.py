@@ -2434,13 +2434,8 @@ class InfoBarTimeshift:
 
 	def stopTimeshiftcheckTimeshiftRunningCallback(self, answer):
 		if config.timeshift.enabled.getValue() and self.switchToLive and self.isSeekable():
-			self.pts_switchtolive = True
 			self.ptsSetNextPlaybackFile("")
-			self.setSeekState(self.SEEK_STATE_PAUSE)
-			if self.seekstate != self.SEEK_STATE_PLAY:
-				self.setSeekState(self.SEEK_STATE_PLAY)
-			self.doSeek(-1) # seek 1 gop before end
-			self.seekFwd() # seekFwd to switch to live TV
+			self.doSeek(3600 * 24 * 90000)
 			return 1
 
 		was_enabled = False
@@ -2449,12 +2444,8 @@ class InfoBarTimeshift:
 			was_enabled = ts.isTimeshiftEnabled()
 		if answer and ts:
 			if config.timeshift.enabled.getValue():
-				try:
-					ts.stopTimeshift(self.switchToLive)
-				except:
-					ts.stopTimeshift()
-				if self.was_enabled and not self.timeshift_enabled:
-					self.timeshift_enabled = False
+				ts.stopTimeshift(self.switchToLive)
+				if was_enabled and not self.timeshiftEnabled():
 					self.pts_LengthCheck_timer.stop()
 			else:
 				ts.stopTimeshift()
@@ -2533,20 +2524,6 @@ class InfoBarTimeshift:
 		self["SeekActions"].setEnabled(state)
 
 		if config.timeshift.enabled.getValue():
-			self["TimeshiftActivateActions"].setEnabled(True)
-			self["TimeshiftActions"].setEnabled(False)
-			if self.timeshift_enabled and self.isSeekable():
-				self["TimeshiftActivateActions"].setEnabled(False)
-				self["TimeshiftActions"].setEnabled(True)
-				self["SeekActions"].setEnabled(True)
-			elif self.timeshift_enabled and not self.isSeekable():
-				self["SeekActions"].setEnabled(False)
-		else:
-			self["TimeshiftActivateActions"].setEnabled(not self.isSeekable() and self.timeshift_enabled)
-			state = self.getSeek() is not None and self.timeshift_enabled
-			self["SeekActions"].setEnabled(state)
-			if not state:
-				self.setSeekState(self.SEEK_STATE_PLAY)
 			self["TimeshiftActions"].setEnabled(state)
 		if not state:
 			self.setSeekState(self.SEEK_STATE_PLAY)
@@ -2641,19 +2618,7 @@ class InfoBarTimeshift:
 		if fileExists("%spts_livebuffer.%s" % (config.usage.timeshift_path.getValue(), preptsfile), 'r') and preptsfile != self.pts_eventcount:
 			self.pts_seektoprevfile = True
 			self.ptsSetNextPlaybackFile("pts_livebuffer.%s" % (preptsfile))
-
-			if self.seekstate[3].startswith('<<'):
-				# self.setSeekState(self.SEEK_STATE_PAUSE)
-				# if self.seekstate != self.SEEK_STATE_PLAY:
-				# 	self.setSeekState(self.SEEK_STATE_PLAY)
-				self.doSeek(-10)
-				self.seekBack()
-			else:
-				self.setSeekState(self.SEEK_STATE_PAUSE)
-				if self.seekstate != self.SEEK_STATE_PLAY:
-					self.setSeekState(self.SEEK_STATE_PLAY)
-				self.doSeek(-1)
-				self.seekFwd()
+			self.doSeek(3600 * 24 * 90000)
 
 	def __evInfoChanged(self):
 		if self.service_changed:
@@ -2744,7 +2709,7 @@ class InfoBarTimeshift:
 			self.switchToLive = True
 
 		# (Re)start Timeshift now
-		self.stopTimeshift()
+		self.stopTimeshiftcheckTimeshiftRunningCallback(True)
 		ts = self.getTimeshift()
 		if ts and not ts.startTimeshift():
 			if (getBoxType() == 'vuuno' or getBoxType() == 'vuduo') and os.path.exists("/proc/stb/lcd/symbol_timeshift"):
@@ -3060,7 +3025,7 @@ class InfoBarTimeshift:
 							self.BgFileEraser.erase("%s%s.meta" % (config.usage.timeshift_path.getValue(),filename))
 							self.BgFileEraser.erase("%s%s.eit" % (config.usage.timeshift_path.getValue(),filename))
 		except:
-			print "PTS: IO-Error while cleaning Timeshift Folder ..."
+			print "[TimeShift] IO-Error while cleaning Timeshift Folder ..."
 
 	def ptsGetEventInfo(self):
 		event = None
@@ -3501,11 +3466,7 @@ class InfoBarTimeshift:
 		ts = self.getTimeshift()
 		if ts is None:
 			return
-
-		try:
-			ts.setNextPlaybackFile("%s%s" % (config.usage.timeshift_path.getValue(),nexttsfile))
-		except:
-			print "[TimeShift] setNextPlaybackFile() not supported by OE. Enigma2 too old !?"
+		ts.setNextPlaybackFile("%s%s" % (config.usage.timeshift_path.getValue(),nexttsfile))
 
 	def ptsSeekBackHack(self):
 		if not config.timeshift.enabled.getValue() or not self.timeshiftEnabled():
