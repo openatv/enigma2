@@ -439,7 +439,7 @@ class PluginDownloadBrowser(Screen):
 				plugin = x.split(" - ", 2)
 				# 'opkg list_installed' only returns name + version, no description field
 				if len(plugin) >= 2:
-					if not plugin[0].endswith('-dev') and not plugin[0].endswith('-staticdev') and not plugin[0].endswith('-dbg') and not plugin[0].endswith('-doc'):
+					if not plugin[0].endswith('-dev') and not plugin[0].endswith('-staticdev') and not plugin[0].endswith('-dbg') and not plugin[0].endswith('-doc') and not plugin[0].endswith('-src'):
 						if plugin[0] not in self.installedplugins:
 							if self.type == self.DOWNLOAD and ((not config.pluginbrowser.po.getValue() and not plugin[0].endswith('-po')) or config.pluginbrowser.po.getValue()) and ((not config.pluginbrowser.src.getValue() and not plugin[0].endswith('-src')) or config.pluginbrowser.src.getValue()):
 								self.installedplugins.append(plugin[0])
