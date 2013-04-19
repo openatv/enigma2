@@ -364,10 +364,10 @@ class EPGSelection(Screen, HelpableScreen):
 			time_epoch=None
 		self['list'] = EPGList(type=self.type, selChangedCB=self.onSelectionChanged, timer=session.nav.RecordTimer, time_epoch=time_epoch, overjump_empty=config.epgselection.overjump.getValue(), graphic=graphic)
 		self.refreshTimer = eTimer()
-		self.refreshTimer.timeout.get().append(self.refreshData)
+		self.refreshTimer.timeout.get().append(self.refreshlist)
 		self.listTimer = eTimer()
 		self.listTimer.timeout.get().append(self.hidewaitingtext)
-		self.onLayoutFinish.append(self.onCreate)
+		self.onFirstExecBegin.append(self.onCreate)
 
 	def createSetup(self):
 		self.closeEventViewDialog()
@@ -426,25 +426,24 @@ class EPGSelection(Screen, HelpableScreen):
 	def onCreate(self):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		title = None
-		l = self['list']
-		l.recalcEntrySize()
+		self['list'].recalcEntrySize()
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self['bouquetlist'].recalcEntrySize()
 			self['bouquetlist'].fillBouquetList(self.bouquets)
 			self['bouquetlist'].moveToService(self.StartBouquet)
 			self['bouquetlist'].fillBouquetList(self.bouquets)
 			self.services = self.getBouquetServices(self.StartBouquet)
-			l.fillGraphEPG(self.services, self.ask_time)
-			l.moveToService(serviceref)
-			l.setCurrentlyPlaying(serviceref)
+			self['list'].fillGraphEPG(self.services, self.ask_time)
+			self['list'].moveToService(serviceref)
+			self['list'].setCurrentlyPlaying(serviceref)
 			self.setTitle(self['bouquetlist'].getCurrentBouquet())
 			if self.type == EPG_TYPE_GRAPH:
-				l.setShowServiceMode(config.epgselection.graph_servicetitle_mode.getValue())
+				self['list'].setShowServiceMode(config.epgselection.graph_servicetitle_mode.getValue())
 				self.moveTimeLines()
 				if config.epgselection.graph_channel1.getValue():
-					l.instance.moveSelectionTo(0)
+					self['list'].instance.moveSelectionTo(0)
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
-				l.setShowServiceMode(config.epgselection.infobar_servicetitle_mode.getValue())
+				self['list'].setShowServiceMode(config.epgselection.infobar_servicetitle_mode.getValue())
 				self.moveTimeLines()
 			self.listTimer.start(10)
 		elif self.type == EPG_TYPE_MULTI:
@@ -453,9 +452,9 @@ class EPGSelection(Screen, HelpableScreen):
 			self['bouquetlist'].moveToService(self.StartBouquet)
 			self['bouquetlist'].fillBouquetList(self.bouquets)
 			self.services = self.getBouquetServices(self.StartBouquet)
-			l.fillMultiEPG(self.services, self.ask_time)
-			l.moveToService(serviceref)
-			l.setCurrentlyPlaying(serviceref)
+			self['list'].fillMultiEPG(self.services, self.ask_time)
+			self['list'].moveToService(serviceref)
+			self['list'].setCurrentlyPlaying(serviceref)
 			self.setTitle(self['bouquetlist'].getCurrentBouquet())
 		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			if self.type == EPG_TYPE_SINGLE:
@@ -469,15 +468,18 @@ class EPGSelection(Screen, HelpableScreen):
 			else: 
 				title = service.getServiceName()
 			self.setTitle(title)
-			l.fillSingleEPG(service)
-			l.sortSingleEPG(int(config.epgselection.sort.getValue()))
+			self['list'].fillSingleEPG(service)
+			self['list'].sortSingleEPG(int(config.epgselection.sort.getValue()))
 		else:
-			l.fillSimilarList(self.currentService, self.eventid)
+			self['list'].fillSimilarList(self.currentService, self.eventid)
 
 	def refreshlist(self):
+		self.refreshTimer.stop()
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self['list'].fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines()
+		elif self.type == EPG_TYPE_MULTI:
+			self['list'].fillMultiEPG(self.services, self.ask_time)
 		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			if self.type == EPG_TYPE_SINGLE:
 				service = self.currentService
@@ -841,7 +843,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.infoKeyPressed()
 
 	def sortEpg(self):
-		if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
+		if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			if config.epgselection.sort.getValue() == '0':
 				config.epgselection.sort.setValue('1')
 			else:
@@ -1219,19 +1221,6 @@ class EPGSelection(Screen, HelpableScreen):
 		self.updateTimelineTimer.start((60 - int(time()) % 60) * 1000)
 		self['timeline_text'].setEntries(self['list'], self['timeline_now'], self.time_lines, force)
 		self['list'].l.invalidate()
-
-	def refreshData(self, force = False):
-		self.refreshTimer.stop()
-		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-			self['list'].fillGraphEPG(None, self.ask_time)
-		elif self.type == EPG_TYPE_MULTI:
-			self['list'].fillMultiEPG(self.services, self.ask_time)
-		elif self.type == EPG_TYPE_SINGLE:
-			service = self.currentService
-			self['list'].fillSingleEPG(service)
-		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
-			service = ServiceReference(self.servicelist.getCurrentSelection())
-			self['list'].fillSingleEPG(service)
 
 	def isPlayable(self):
 		current = ServiceReference(self.servicelist.getCurrentSelection())
