@@ -87,7 +87,7 @@ class RcModel:
 			self.currentRcType = self.RCTYPE_TM
 		elif getBoxType().startswith('venton'):
 			model = self.readFile('/proc/stb/info/boxtype')
-			if model == 'ini-1000' or model == 'ini-1000RU' or model == 'ini-1000SV'::
+			if model == 'ini-1000' or model == 'ini-1000RU' or model == 'ini-1000SV':
 				self.currentRcType = self.RCTYPE_INI1000
 			elif model == 'ini-3000':
 				self.currentRcType = self.RCTYPE_INI3000
