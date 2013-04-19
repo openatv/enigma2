@@ -1466,8 +1466,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.setServicelistSelection(bouquet, service)
 		self.onCreate()
 
-
 class SingleEPG(EPGSelection):
 	def __init__(self, session, service, EPGtype="single"):
-		EPGSelection.__init__(self, session, service, EPGtype)
+		EPGSelection.__init__(self, session, service=service, EPGtype=EPGtype)
 		self.skinName = 'EPGSelection'
