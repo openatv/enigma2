@@ -215,7 +215,7 @@ class InfoBarScreenSaver:
 			self.screenSaverTimer.stop()
 
 	def screensaverTimeout(self):
-		if self.execing and not Standby.inStandby and not Standby.inTryQuitMainloop:
+		if self.execing and not Screens.Standby.inStandby and not Screens.Standby.inTryQuitMainloop:
 			self.hide()
 			if hasattr(self, "pvrStateDialog"):
 				self.pvrStateDialog.hide()
