@@ -1611,6 +1611,7 @@ class InfoBarTimeshift:
 			ts = self.getTimeshift()
 			if ts:
 				ts.saveTimeshiftFile()
+				del ts
 		self.saveTimeshiftFiles()
 		returnFunction(answer != "continue")
 
