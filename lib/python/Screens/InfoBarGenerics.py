@@ -1604,16 +1604,18 @@ class InfoBarTimeshift:
 			returnFunction(True)
 
 	def checkTimeshiftRunningCallback(self, returnFunction, answer):
-		if "movie" in answer:
-			self.save_timeshift_in_movie_dir = True
-		if "save" in answer:
-			self.save_timeshift_file = True
-			ts = self.getTimeshift()
-			if ts:
-				ts.saveTimeshiftFile()
-				del ts
-		self.saveTimeshiftFiles()
-		returnFunction(answer != "continue")
+		if answer:
+			if "movie" in answer:
+				self.save_timeshift_in_movie_dir = True
+			if "save" in answer:
+				self.save_timeshift_file = True
+				ts = self.getTimeshift()
+				if ts:
+					ts.saveTimeshiftFile()
+					del ts
+			if "continue" not in answer:
+				self.saveTimeshiftFiles()
+		returnFunction(answer and answer != "continue")
 
 	# renames/moves timeshift files if requested
 	def __serviceEnd(self):
