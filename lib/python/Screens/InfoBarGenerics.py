@@ -1455,14 +1455,10 @@ class InfoBarTimeshift:
 				"timeshiftActivateEndAndPause": self.activateTimeshiftEndAndPause  # something like "pause key"
 			}, prio=-1) # priority over record
 
-		self.save_timeshift_file = False
-		self.save_timeshift_in_movie_dir = False
-		self.current_timeshift_filename = None
-		self.new_timeshift_filename = None
-
 		self["TimeshiftActivateActions"].setEnabled(False)
 		self.ts_rewind_timer = eTimer()
 		self.ts_rewind_timer.callback.append(self.rewindService)
+		self.save_timeshift_file = False
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -1513,15 +1509,14 @@ class InfoBarTimeshift:
 	def stopTimeshift(self):
 		ts = self.getTimeshift()
 		if ts and ts.isTimeshiftEnabled():
-			self.checkTimeshiftRunning(boundFunction(self.stopTimeshiftcheckTimeshiftRunningCallback, ts))
+			self.checkTimeshiftRunning(self.stopTimeshiftcheckTimeshiftRunningCallback)
 		else:
 			return 0
 
-	def stopTimeshiftcheckTimeshiftRunningCallback(self, ts, answer):
-		if answer:
-			self.saveTimeshiftFiles()
+	def stopTimeshiftcheckTimeshiftRunningCallback(self, answer):
+		ts = self.getTimeshift()
+		if answer and ts:
 			ts.stopTimeshift()
-			self.save_timeshift_file = False
 			self.pvrStateDialog.hide()
 
 			# disable actions
@@ -1594,10 +1589,6 @@ class InfoBarTimeshift:
 
 	def __serviceStarted(self):
 		self.pvrStateDialog.hide()
-		self.save_timeshift_file = False
-		self.save_timeshift_in_movie_dir = False
-		self.current_timeshift_filename = None
-		self.new_timeshift_filename = None
 		self.__seekableStatusChanged()
 
 	def checkTimeshiftRunning(self, returnFunction):
@@ -1617,7 +1608,10 @@ class InfoBarTimeshift:
 			self.save_timeshift_in_movie_dir = True
 		if "save" in answer:
 			self.save_timeshift_file = True
-			self.saveTimeshiftFiles()
+			ts = self.getTimeshift()
+			if ts:
+				ts.saveTimeshiftFile()
+		self.saveTimeshiftFiles()
 		returnFunction(answer != "continue")
 
 	# renames/moves timeshift files if requested
@@ -1640,6 +1634,7 @@ class InfoBarTimeshift:
 				fileList.append((self.current_timeshift_filename + ".cuts", filename + ".cuts"))
 
 			moveFiles(fileList)
+			self.save_timeshift_file = False
 
 from Screens.PiPSetup import PiPSetup
 
@@ -1984,12 +1979,12 @@ class InfoBarInstantRecord:
 				self.changeDuration(len(self.recording)-1)
 			elif answer[1] == "manualendtime":
 				self.setEndtime(len(self.recording)-1)
-		elif answer[1] in ("timeshift", "timeshift_movie"):
+		elif "timeshift" in answer[1]:
 			ts = self.getTimeshift()
-			if ts is not None:
+			if ts:
 				ts.saveTimeshiftFile()
 				self.save_timeshift_file = True
-				if answer[1] == "timeshift_movie":
+				if "movie" in answer[1]:
 					self.save_timeshift_in_movie_dir = True
 		print "after:\n", self.recording
 
