@@ -533,7 +533,7 @@ def runScreenTest():
 	if enigma.getBoxType() == 'gb800se' or enigma.getBoxType() == 'gb800solo':
 		from enigma import evfd, eConsoleAppContainer
 		try:
-			cmd = 'vfdctl "    openaaf starting e2"; vfdctl -a'
+			cmd = 'vfdctl "    openatv starting e2"'
 			container = eConsoleAppContainer()
 			container.execute(cmd)
 		except:

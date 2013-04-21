@@ -9,7 +9,7 @@ class PowerLost(Screen):
 		self.showMessageBox()
 
 	def showMessageBox(self):
-		message = _("Your STB_Box was not shutdown properly.\n\n"
+		message = _("Your STB_BOX was not shutdown properly.\n\n"
 					"Do you want to put it in %s?") % config.usage.shutdownNOK_action.getValue()
 		self.session.openWithCallback(self.MsgBoxClosed, MessageBox, message, MessageBox.TYPE_YESNO, timeout = 60, default = True)
 

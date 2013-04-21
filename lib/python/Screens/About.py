@@ -36,11 +36,11 @@ class About(Screen):
 			})
 
 	def populate(self):
-		self["lab1"] = StaticText(_("openAAF"))
-		self["lab2"] = StaticText(_("By AAF Image Team"))
+		self["lab1"] = StaticText(_("openATV"))
+		self["lab2"] = StaticText(_("By openATV Image Team"))
 		model = None
 		AboutText = ""
-		self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
+		self["lab3"] = StaticText(_("Support at") + " www.opena.tv")
 		if getBoxType() == 'vuuno':
 			model = "Vu+ Uno"
 		elif getBoxType() == 'vuultimo':
@@ -287,8 +287,8 @@ class SystemMemoryInfo(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Memory Information"))
 		self.skinName = ["SystemMemoryInfo", "About"]
-		self["lab1"] = StaticText(_("openAAF"))
-		self["lab2"] = StaticText(_("By AAF Image Team"))
+		self["lab1"] = StaticText(_("openATV"))
+		self["lab2"] = StaticText(_("By openATV Image Team"))
 		self["AboutScrollLabel"] = ScrollLabel()
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
@@ -537,7 +537,7 @@ class SystemNetworkInfo(Screen):
 class AboutSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
-		self["selected"] = StaticText("AAF:" + getImageVersionString())
+		self["selected"] = StaticText("openATV:" + getImageVersionString())
 
 		AboutText = ""
 		model = None
@@ -689,7 +689,7 @@ class ViewGitLog(Screen):
 		fd = open('/etc/' + self.logtype + '-git.log', 'r')
 		releasenotes = fd.read()
 		fd.close()
-		releasenotes = releasenotes.replace('\nopenaaf: build',"\n\nopenaaf: build")
+		releasenotes = releasenotes.replace('\nopenatv: build',"\n\nopenatv: build")
 		self["text"].setText(releasenotes)
 		summarytext = releasenotes
 		try:
