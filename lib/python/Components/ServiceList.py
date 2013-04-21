@@ -33,19 +33,23 @@ class ServiceList(HTMLComponent, GUIComponent):
 		if pic:
 			self.l.setPixmap(self.l.picMarker, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/dvb-s.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/ico_dvb-s.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_S, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/dvb-c.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/ico_dvb-c.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_C, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/dvb-t.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/ico_dvb-t.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_T, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "ico_service_group.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/ico_stream.png"))
+		if pic:
+			self.l.setPixmap(self.l.picStream, pic)
+
+		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/ico_service_group.png"))
 		if pic:
 			self.l.setPixmap(self.l.picServiceGroup, pic)
 
@@ -310,5 +314,4 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
 		if "perc" in config.usage.show_event_progress_in_servicelist.getValue():
 			self.l.setElementFont(self.l.celServiceEventProgressbar, self.ServiceInfoFont)
-
-
+		self.l.setServiceTypeIconMode(int(config.usage.servicetype_icon_mode.getValue()))
