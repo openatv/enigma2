@@ -1153,7 +1153,7 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 				}
 				if (freq && sr)
 				{
-                                        freq /= 1000;
+					freq /= 1000;
 					tuple = PyTuple_New(7);
 					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(1));
 					PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(freq));
