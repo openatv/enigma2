@@ -43,26 +43,44 @@ class LogManagerPoller:
 	"""Automatically Poll LogManager"""
 	def __init__(self):
 		# Init Timer
-		self.timer = eTimer()
+		self.TrimTimer = eTimer()
+		self.TrashTimer = eTimer()
 
 	def start(self):
-		if self.debug_check not in self.timer.callback:
-			self.timer.callback.append(self.debug_check)
-		self.timer.startLongTimer(0)
+		if self.TrimTimerJob not in self.TrimTimer.callback:
+			self.TrimTimer.callback.append(self.TrimTimerJob)
+		if self.TrashTimerJob not in self.TrashTimer.callback:
+			self.TrashTimer.callback.append(self.TrashTimerJob)
+		self.TrimTimer.startLongTimer(0)
+		self.TrashTimer.startLongTimer(0)
 
 	def stop(self):
-		if self.version_check in self.timer.callback:
-			self.timer.callback.remove(self.debug_check)
-		self.timer.stop()
+		if self.TrimTimerJob in self.TrimTimer.callback:
+			self.TrimTimer.callback.remove(self.TrimTimerJob)
+		if self.TrashTimerJob in self.TrashTimer.callback:
+			self.TrashTimer.callback.remove(self.TrashTimerJob)
+		self.TrimTimer.stop()
+		self.TrashTimer.stop()
 
-	def debug_check(self):
-		print '[LogManager] Poll Started'
-		Components.Task.job_manager.AddJob(self.createCheckJob())
+	def TrimTimerJob(self):
+		print '[LogManager] Trim Poll Started'
+		Components.Task.job_manager.AddJob(self.createTrimJob())
 
-	def createCheckJob(self):
+	def TrashTimerJob(self):
+		print '[LogManager] Trash Poll Started'
+		Components.Task.job_manager.AddJob(self.createTrashJob())
+
+	def createTrimJob(self):
 		job = Components.Task.Job(_("LogManager"))
 		task = Components.Task.PythonTask(job, _("Checking Logs..."))
-		task.work = self.JobStart
+		task.work = self.JobTrim
+		task.weighting = 1
+		return job
+
+	def createTrashJob(self):
+		job = Components.Task.Job(_("LogManager"))
+		task = Components.Task.PythonTask(job, _("Checking Logs..."))
+		task.work = self.JobTrash
 		task.weighting = 1
 		return job
 
@@ -70,7 +88,7 @@ class LogManagerPoller:
 		ctimeLimit = ctimeLimit
 		allowedBytes = allowedBytes
 
-	def JobStart(self):
+	def JobTrim(self):
 		filename = ""
 		for filename in glob(config.crash.debug_path.getValue() + '*.log'):
 			if path.getsize(filename) > (config.crash.debugloglimit.getValue() * 1024 * 1024):
@@ -81,7 +99,9 @@ class LogManagerPoller:
 				fh.write(data)
 				fh.truncate()
 				fh.close()
+		self.TrimTimer.startLongTimer(3600) #once an hour
 
+	def JobTrash(self):
 		ctimeLimit = time() - (config.crash.daysloglimit.getValue() * 3600 * 24)
 		allowedBytes = 1024*1024 * int(config.crash.sizeloglimit.getValue())
 
@@ -136,8 +156,7 @@ class LogManagerPoller:
 						eBackgroundFileEraser.getInstance().erase(fn)
 						bytesToRemove -= st_size
 						size -= st_size
-
-		self.timer.startLongTimer(43200) #twice a day
+		self.TrashTimer.startLongTimer(43200) #twice a day
 
 class LogManager(Screen):
 	def __init__(self, session):
