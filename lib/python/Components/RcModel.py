@@ -145,16 +145,16 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/ini5000r/'
 		elif self.currentRcType == self.RCTYPE_INI7000:
 			return '/usr/share/enigma2/rc_models/ini7000/'
-		elif self.currentRcType == self.RCTYPE_ODINM9:
-			return '/usr/share/enigma2/rc_models/odinm9/'
-		elif self.currentRcType == self.RCTYPE_ODINM7:
-			return '/usr/share/enigma2/rc_models/odinm7/'
 		elif self.currentRcType == self.RCTYPE_IQON:
 			return '/usr/share/enigma2/rc_models/iqon/'
 		elif self.currentRcType == self.RCTYPE_IXUSSONE:
 			return '/usr/share/enigma2/rc_models/ixussone/'
 		elif self.currentRcType == self.RCTYPE_IXUSSZERO:
 			return '/usr/share/enigma2/rc_models/ixusszero/'
+		elif self.currentRcType == self.RCTYPE_ODINM9:
+			return '/usr/share/enigma2/rc_models/odinm9/'
+		elif self.currentRcType == self.RCTYPE_ODINM7:
+			return '/usr/share/enigma2/rc_models/odinm7/'
 		elif self.currentRcType == self.RCTYPE_TM:
 			return '/usr/share/enigma2/rc_models/tm/'
 		elif self.currentRcType == self.RCTYPE_VU:
@@ -163,4 +163,5 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/vu2/'
 		elif self.currentRcType == self.RCTYPE_XP1000:
 			return '/usr/share/enigma2/rc_models/xp1000/'
+
 rc_model = RcModel()

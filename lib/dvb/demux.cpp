@@ -386,7 +386,7 @@ class eDVBRecordFileThread: public eFilePushThreadRecorder
 public:
 	eDVBRecordFileThread(int packetsize, int bufferCount);
 	~eDVBRecordFileThread();
-	void setTimingPID(int pid, int type);
+	void setTimingPID(int pid, iDVBTSRecorder::timing_pid_type pidtype, int streamtype);
 	void startSaveMetaInformation(const std::string &filename);
 	void stopSaveMetaInformation();
 	int getLastPTS(pts_t &pts);
@@ -452,9 +452,9 @@ eDVBRecordFileThread::~eDVBRecordFileThread()
 	::munmap(m_allocated_buffer, m_aio.size() * m_buffersize);
 }
 
-void eDVBRecordFileThread::setTimingPID(int pid, int type)
+void eDVBRecordFileThread::setTimingPID(int pid, iDVBTSRecorder::timing_pid_type pidtype, int streamtype)
 {
-	m_ts_parser.setPid(pid, type);
+	m_ts_parser.setPid(pid, pidtype, streamtype);
 }
 
 void eDVBRecordFileThread::startSaveMetaInformation(const std::string &filename)
@@ -808,9 +808,9 @@ RESULT eDVBTSRecorder::removePID(int pid)
 	return 0;
 }
 
-RESULT eDVBTSRecorder::setTimingPID(int pid, int type)
+RESULT eDVBTSRecorder::setTimingPID(int pid, timing_pid_type pidtype, int streamtype)
 {
-	m_thread->setTimingPID(pid, type);
+	m_thread->setTimingPID(pid, pidtype, streamtype);
 	return 0;
 }
 

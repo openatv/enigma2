@@ -34,8 +34,9 @@ libenigma_dvb_a_SOURCES = \
 	teletext.cpp \
 	tstools.cpp \
 	volume.cpp \
-	streamserver.cpp
-
+	streamserver.cpp \
+	pmtparse.cpp
+	
 dvbincludedir = $(pkgincludedir)/lib/dvb
 dvbinclude_HEADERS = \
 	cablescan.h \
@@ -69,4 +70,5 @@ dvbinclude_HEADERS = \
 	teletext.h \
 	tstools.h \
 	volume.h \
-	streamserver.h
+	streamserver.h \
+	pmtparse.h

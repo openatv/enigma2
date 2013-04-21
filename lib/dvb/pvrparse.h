@@ -2,6 +2,7 @@
 #define __include_lib_dvb_pvrparse_h
 
 #include <lib/dvb/idvb.h>
+#include <lib/dvb/idemux.h>
 #include <map>
 #include <set>
 #include <deque>
@@ -115,7 +116,7 @@ class eMPEGStreamParserTS: public eMPEGStreamInformationWriter
 public:
 	eMPEGStreamParserTS(int packetsize = 188);
 	void parseData(off_t offset, const void *data, unsigned int len);
-	void setPid(int pid, int streamtype);
+	void setPid(int pid, iDVBTSRecorder::timing_pid_type pidtype, int streamtype);
 	int getLastPTS(pts_t &last_pts);
 	void enableAccessPoints(bool enable) { m_enable_accesspoints = enable; }
 private:

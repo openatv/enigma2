@@ -1,5 +1,5 @@
 from Components.Harddisk import harddiskmanager
-from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber, ConfigNumber
+from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv, getBoxType
 from Components.NimManager import nimmanager
@@ -21,15 +21,18 @@ def InitUsageConfig():
 
 	config.usage.alternative_number_mode = ConfigYesNo(default = False)
 	def alternativeNumberModeChange(configElement):
-		enigma.eDVBDB.getInstance().setNumberingMode(configElement.getValue())
+		enigma.eDVBDB.getInstance().setNumberingMode(configElement.value)
 		refreshServiceList()
 	config.usage.alternative_number_mode.addNotifier(alternativeNumberModeChange)
+
+	config.usage.servicetype_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])  
+	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
 
 	config.usage.panicbutton = ConfigYesNo(default = False)
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
 	config.usage.showpicon = ConfigYesNo(default = True)
 	config.usage.show_dvdplayer = ConfigYesNo(default = False)
-	
+
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 
@@ -51,7 +54,7 @@ def InitUsageConfig():
 	config.usage.show_second_infobar.addNotifier(showsecondinfobarChanged, immediate_feedback = True)
 
 	config.usage.show_picon_bkgrn = ConfigSelection(default = "transparent", choices = [("transparent", _("Transparent")), ("blue", _("Blue")), ("red", _("Red")), ("black", _("Black")), ("white", _("White")), ("lightgrey", _("Light Grey")), ("grey", _("Grey"))])
-	
+
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
 	config.usage.sort_settings = ConfigYesNo(default = False)
@@ -204,9 +207,9 @@ def InitUsageConfig():
 	config.usage.show_channel_numbers_in_servicelist.addNotifier(refreshServiceList)
 
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
-	
+
 	config.usage.blinking_rec_symbol_during_recording = ConfigYesNo(default = False)
-	
+
 	config.usage.show_message_when_recording_starts = ConfigYesNo(default = True)
 
 	config.usage.load_length_of_movies_in_moviellist = ConfigYesNo(default = True)
@@ -241,19 +244,19 @@ def InitUsageConfig():
 	
 
 	def SpinnerOnOffChanged(configElement):
-		setSpinnerOnOff(int(configElement.getValue()))
+		setSpinnerOnOff(int(configElement.value))
 	config.usage.show_spinner.addNotifier(SpinnerOnOffChanged)
 
 	def EnableTtCachingChanged(configElement):
-		setEnableTtCachingOnOff(int(configElement.getValue()))
+		setEnableTtCachingOnOff(int(configElement.value))
 	config.usage.enable_tt_caching.addNotifier(EnableTtCachingChanged)
 
 	def TunerTypePriorityOrderChanged(configElement):
-		setTunerTypePriorityOrder(int(configElement.getValue()))
+		setTunerTypePriorityOrder(int(configElement.value))
 	config.usage.alternatives_priority.addNotifier(TunerTypePriorityOrderChanged, immediate_feedback=False)
 
 	def PreferredTunerChanged(configElement):
-		setPreferredTuner(int(configElement.getValue()))
+		setPreferredTuner(int(configElement.value))
 	config.usage.frontend_priority.addNotifier(PreferredTunerChanged)
 
 	config.usage.hide_zap_errors = ConfigYesNo(default = True)
@@ -345,13 +348,13 @@ def InitUsageConfig():
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
-			hdd[1].setIdleTime(int(configElement.getValue()),config.usage.hdd_timer.getValue())
+			hdd[1].setIdleTime(int(configElement.value))
 	config.usage.hdd_standby.addNotifier(setHDDStandby, immediate_feedback=False)
 
 	def set12VOutput(configElement):
-		if configElement.getValue() == "on":
+		if configElement.value == "on":
 			enigma.Misc_Options.getInstance().set_12V_output(1)
-		elif configElement.getValue() == "off":
+		elif configElement.value == "off":
 			enigma.Misc_Options.getInstance().set_12V_output(0)
 	config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
 
@@ -428,19 +431,20 @@ def InitUsageConfig():
 		if not os.path.exists(config.crash.debug_path.getValue()):
 			os.mkdir(config.crash.debug_path.getValue(),0755)
 	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback = False)
+
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "end", choices = [("beginning", _("at beginning")), ("end", _("at end"))])
 
 	def updateEnterForward(configElement):
-		if not configElement.getValue():
-			configElement.setValue([2])
-		updateChoices(config.seek.enter_forward, configElement.getValue())
+		if not configElement.value:
+			configElement.value = [2]
+		updateChoices(config.seek.enter_forward, configElement.value)
 
 	config.seek.speeds_forward.addNotifier(updateEnterForward, immediate_feedback = False)
 
 	def updateEnterBackward(configElement):
-		if not configElement.getValue():
-			configElement.getValue([2])
-		updateChoices(config.seek.enter_backward, configElement.getValue())
+		if not configElement.value:
+			configElement.value = [2]
+		updateChoices(config.seek.enter_backward, configElement.value)
 
 	config.seek.speeds_backward.addNotifier(updateEnterBackward, immediate_feedback = False)
 
@@ -569,12 +573,12 @@ def InitUsageConfig():
 		("tur Audio_TUR", _("Turkish"))]
 
 	def setEpgLanguage(configElement):
-		enigma.eServiceEvent.setEPGLanguage(configElement.getValue())
+		enigma.eServiceEvent.setEPGLanguage(configElement.value)
 	config.autolanguage.audio_epglanguage = ConfigSelection(audio_language_choices[:1] + audio_language_choices [2:], default="---")
 	config.autolanguage.audio_epglanguage.addNotifier(setEpgLanguage)
 
 	def setEpgLanguageAlternative(configElement):
-		enigma.eServiceEvent.setEPGLanguageAlternative(configElement.getValue())
+		enigma.eServiceEvent.setEPGLanguageAlternative(configElement.value)
 	config.autolanguage.audio_epglanguage_alternative = ConfigSelection(audio_language_choices[:1] + audio_language_choices [2:], default="---")
 	config.autolanguage.audio_epglanguage_alternative.addNotifier(setEpgLanguageAlternative)
 
@@ -760,7 +764,7 @@ def updateChoices(sel, choices):
 
 def preferredPath(path):
 	if config.usage.setup_level.index < 2 or path == "<default>":
-		return None  # config.usage.default_path.value, but delay lookup until usage
+		return None  # config.usage.default_path.getValue(), but delay lookup until usage
 	elif path == "<current>":
 		return config.movielist.last_videodir.getValue()
 	elif path == "<timer>":

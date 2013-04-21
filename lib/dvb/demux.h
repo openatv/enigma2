@@ -99,7 +99,7 @@ public:
 	RESULT addPID(int pid);
 	RESULT removePID(int pid);
 	
-	RESULT setTimingPID(int pid, int type);
+	RESULT setTimingPID(int pid, timing_pid_type pidtype, int streamtype);
 	
 	RESULT setTargetFD(int fd);
 	RESULT setTargetFilename(const std::string& filename);
