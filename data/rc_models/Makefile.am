@@ -22,19 +22,15 @@ if EBOX5000
 SUBDIRS = ebox5000
 endif
 
-if ET4X00
-SUBDIRS = et4x00
-endif
-
-if ET6X00
-SUBDIRS = et6x00 et6500
-endif
-
-if ET9X00
-SUBDIRS = et9x00 et9500
+if XTREND
+SUBDIRS = et4x00 et6x00 et6500 et9x00 et9500
 endif
 
 if GIGABLUE
+SUBDIRS = gb
+endif
+
+if GBQUAD
 SUBDIRS = gb
 endif
 
@@ -47,6 +43,10 @@ SUBDIRS = ixussone
 endif
 
 if IXUSSZERO
+SUBDIRS = ixusszero
+endif
+
+if IXUSSDUO
 SUBDIRS = ixusszero
 endif
 
