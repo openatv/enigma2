@@ -478,7 +478,7 @@ class Harddisk:
 		configsettings = readFile('/etc/enigma2/settings')
 		if "config.usage.hdd_timer" in configsettings:
 			self.hdd_timer = True
-		self.setIdleTime(self.max_idle_time, self.hdd_timer) # kick the idle polling loop
+		self.setIdleTime(self.max_idle_time) # kick the idle polling loop
 
 	def runIdle(self):
 		if not self.max_idle_time:
@@ -506,26 +506,8 @@ class Harddisk:
 		else:
 			Console().ePopen(("hdparm", "hdparm", "-y", self.disk_path))
 			
-	def setIdleTime(self, idle, hddtimer):
-		# use hardwaretimer if asked to
-		if hddtimer:
-			if self.timer:
-				self.timer.stop()
-			idle_parm = 0
-			# calculate the complicated timeout needed by hdparm
-			if idle <= 1200:
-				idle_parm = idle / 5
-			else:
-				# values between 20 and 30 minutes are treated as 30 minutes
-				if idle < 1800: 
-					idle = 1800
-				idle_parm = 240 + idle / 1800
-				if idle_parm > 251:
-					idle_parm = 251
-			# don't support timeouts of more than 5.5 hours
-			os.system("hdparm -S " + `idle_parm` + ' ' + self.disk_path)
-			return
-		self.max_idle_time = idle # make it by hand
+	def setIdleTime(self, idle):
+		self.max_idle_time = idle
 		if self.idle_running:
 			if not idle:
 				self.timer.stop()
