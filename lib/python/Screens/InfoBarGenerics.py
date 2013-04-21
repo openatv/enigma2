@@ -511,7 +511,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.standardInfoBar = True
 		self.secondInfoBarWasShown = False
 		self.EventViewIsShown = False
-		self.pvrStateDialog = None
+		#self.pvrStateDialog = None
 
 	def SwitchSecondInfoBarScreen(self):
 		if self.lastSecondInfoBar == config.usage.show_second_infobar.getValue():
@@ -1890,7 +1890,7 @@ class InfoBarSeek:
 		self["SeekActions"] = InfoBarSeekActionMap(self, actionmap,
 			{
 				"playpauseService": self.playpauseService,
-				"pauseService": (self.pauseServiceYellow, _("Pause playback")),
+				"pauseService": (self.pauseService, _("Pause playback")),
 				"unPauseService": (self.unPauseService, _("Continue playback")),
 
 				"seekFwd": (self.seekFwd, _("Seek forward")),
@@ -1905,7 +1905,7 @@ class InfoBarSeek:
 		self["SeekActionsPTS"] = InfoBarSeekActionMap(self, "InfobarSeekActionsPTS",
 			{
 				"playpauseService": self.playpauseService,
-				"pauseService": (self.pauseServiceYellow, _("pause")),
+				"pauseService": (self.pauseService, _("pause")),
 				"unPauseService": (self.unPauseService, _("continue")),
 
 				"seekFwd": (self.seekFwd, _("skip forward")),
@@ -1995,15 +1995,6 @@ class InfoBarSeek:
 	def __seekableStatusChanged(self):
 #		print "seekable status changed!"
 		if not self.isSeekable():
-			SystemInfo["SeekStatePlay"] = False
-			if os.path.exists("/proc/stb/lcd/symbol_hdd"):
-				f = open("/proc/stb/lcd/symbol_hdd", "w")
-				f.write("0")
-				f.close()				
-			if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):	
-				f = open("/proc/stb/lcd/symbol_hddprogress", "w")
-				f.write("0")
-				f.close()				
 #			print "not seekable, return to play"
 			self["SeekActions"].setEnabled(False)
 			self.setSeekState(self.SEEK_STATE_PLAY)
@@ -2016,26 +2007,22 @@ class InfoBarSeek:
 
 	def doActivityTimer(self):
 		if self.isSeekable():
-			self.activity += 4
+			self.activity += 16
 			hdd = 1
-			SystemInfo["SeekStatePlay"] = True
 			if self.activity >= 100:
 				self.activity = 0
-			if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
-				if os.path.exists("/proc/stb/lcd/symbol_hdd"):
-					if config.lcd.hdd.getValue() == "1":
-						file = open("/proc/stb/lcd/symbol_hdd", "w")
-						file.write('%d' % int(hdd))
-						file.close()
-				if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
-					if config.lcd.hdd.getValue() == "1":
-						file = open("/proc/stb/lcd/symbol_hddprogress", "w")
-						file.write('%d' % int(self.activity))
-						file.close()
 		else:
 			self.activityTimer.stop()
 			self.activity = 0
 			hdd = 0
+		if os.path.exists("/proc/stb/lcd/symbol_hdd"):
+			file = open("/proc/stb/lcd/symbol_hdd", "w")
+			file.write('%d' % int(hdd))
+			file.close()
+		if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
+			file = open("/proc/stb/lcd/symbol_hddprogress", "w")
+			file.write('%d' % int(self.activity))
+			file.close()
 
 	def __serviceStarted(self):
 		self.fast_winding_hint_message_showed = False
@@ -2098,12 +2085,10 @@ class InfoBarSeek:
 
 	def playpauseService(self):
 		if self.seekstate == self.SEEK_STATE_PLAY:
-			SystemInfo["SeekStatePlay"] = False
 			self.pauseService()
 		else:
 			if self.seekstate == self.SEEK_STATE_PAUSE:
 				if config.seek.on_pause.getValue() == "play":
-					SystemInfo["SeekStatePlay"] = True
 					self.unPauseService()
 				elif config.seek.on_pause.getValue() == "step":
 					self.doSeekRelative(1)
@@ -2111,23 +2096,12 @@ class InfoBarSeek:
 					self.setSeekState(self.lastseekstate)
 					self.lastseekstate = self.SEEK_STATE_PLAY
 			else:
-				SystemInfo["SeekStatePlay"] = True
 				self.unPauseService()
 
 	def pauseService(self):
 		if self.seekstate != self.SEEK_STATE_EOF:
 			self.lastseekstate = self.seekstate
 		self.setSeekState(self.SEEK_STATE_PAUSE)
-
-	def pauseServiceYellow(self):
-		if config.plugins.infopanel_yellowkey.list.getValue() == '0':
-			self.audioSelection()
-		elif config.plugins.infopanel_yellowkey.list.getValue() == '2':
-			ToggleVideo()
-		else:
-			if self.seekstate != self.SEEK_STATE_EOF:
-				self.lastseekstate = self.seekstate
-			self.setSeekState(self.SEEK_STATE_PAUSE)
 
 	def unPauseService(self):
 		if self.seekstate == self.SEEK_STATE_PLAY:
