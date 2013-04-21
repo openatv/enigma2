@@ -1031,7 +1031,7 @@ class InfoBarChannelSelection:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshiftEnabled() and self.isSeekable():
+		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshiftEnabled() and self.isSeekable():
 			InfoBarTimeshiftState._mayShow(self)
 			self.pvrStateDialog["PTSSeekPointer"].setPosition(int(self.pvrStateDialog["PTSSeekBack"].instance.position().x())+8, self.pvrStateDialog["PTSSeekPointer"].position[1])
 			if self.seekstate != self.SEEK_STATE_PLAY:
