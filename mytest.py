@@ -259,6 +259,12 @@ class Session:
 		screen.hide()
 		screen.doClose()
 
+	def deleteDialogWithCallback(self, callback, screen, *retval):
+		screen.hide()
+		screen.doClose()
+		if callback is not None:
+			callback(*retval)
+
 	def instantiateSummaryDialog(self, screen, **kwargs):
 		self.pushSummary()
 		summary = screen.createSummary() or SimpleSummary

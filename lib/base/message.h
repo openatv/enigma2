@@ -7,6 +7,7 @@
 #include <lib/python/swig.h>
 #include <unistd.h>
 #include <lib/base/elock.h>
+#include <lib/base/wrappers.h>
 
 
 /**
@@ -46,15 +47,8 @@ class eFixedMessagePump: public Object
 	eSingleLock lock;
 	void do_recv(int)
 	{
-		int res;
-		while (1)
-		{
-			char byte = 0;
-			res = ::read(m_pipe[0], &byte, sizeof(byte));
-			if (res < 0 && errno == EINTR) continue;
-			break;
-		}
-		if (res <= 0) return;
+		char byte;
+		if (singleRead(m_pipe[0], &byte, sizeof(byte)) <= 0) return;
 
 		lock.lock();
 		if (!m_queue.empty())
@@ -84,13 +78,8 @@ public:
 			eSingleLocker s(lock);
 			m_queue.push(msg);
 		}
-		while (1)
-		{
-			char byte = 0;
-			int res = ::write(m_pipe[1], &byte, sizeof(byte));
-			if (res < 0 && errno == EINTR) continue;
-			break;
-		}
+		char byte = 0;
+		writeAll(m_pipe[1], &byte, sizeof(byte));
 	}
 	eFixedMessagePump(eMainloop *context, int mt)
 	{

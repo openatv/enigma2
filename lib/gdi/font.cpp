@@ -749,6 +749,17 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 
 		if (!(rflags&RS_DIRECT))
 		{
+			/* detect linefeeds and set flag GS_LF for the last glyph in this line */
+			if ((i + 1) != uc_visual.end())
+			{
+				unsigned long c = *(i + 1);
+				if (c == '\n' || c == 0x8A || c == 0xE08A /* linefeed */
+					|| (c == '\\' && (i + 2) != uc_visual.end() && *(i + 2) == 'n')) /* escaped linefeed */
+				{
+					flags |= GS_LF;
+				}
+			}
+
 			switch (chr)
 			{
 			case '\\':
@@ -1213,21 +1224,30 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 		}
 		case dirBlock:
 		{
-			if (end == glyphs.end())		// letzte zeile linksbuendig lassen
+			if (end == glyphs.end())
+			{
+				/* last line, use left alignment */
 				continue;
-			int spacemode;
-			if (numspaces)
-				spacemode=1;
-			else
-				spacemode=0;
-			if ((!spacemode) && (num<2))
-				break;
-			int off=(area.width()-linelength)*256/(spacemode?numspaces:(num-1));
+			}
+
+			if (!numspaces)
+			{
+				/* no spaces, use left alignment */
+				continue;
+			}
+
+			if (last->flags & GS_LF)
+			{
+				/* line ends with a linefeed, use left alignment */
+				continue;
+			}
+
+			int off=(area.width()-linelength)*256/(numspaces?numspaces:(num-1));
 			int curoff=0;
 			while (begin != end)
 			{
 				int doadd=0;
-				if ((!spacemode) || (begin->flags&GS_ISSPACE))
+				if (begin->flags & GS_ISSPACE)
 					doadd=1;
 				begin->x+=curoff>>8;
 				begin->bbox.moveBy(curoff>>8,0);

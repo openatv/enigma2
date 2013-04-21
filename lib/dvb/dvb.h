@@ -149,10 +149,6 @@ private:
 	static void *threadproc(void *arg);
 	void *vtunerPump();
 
-	int select(int maxfd, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout);
-	ssize_t writeAll(int fd, const void *buf, size_t count);
-	ssize_t read(int fd, void *buf, size_t count);
-
 public:
 	eDVBUsbAdapter(int nr);
 	~eDVBUsbAdapter();
