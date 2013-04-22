@@ -416,14 +416,15 @@ class MovieSelectionSummary(Screen):
 			self["name"].text = ""
 
 class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
-	def __init__(self, session, selectedmovie = None):
+	def __init__(self, session, selectedmovie = None, timeshiftEnabled = False):
 		Screen.__init__(self, session)
 		if config.movielist.useslim.getValue():
 			self.skinName = ["MovieSelectionSlim","MovieSelection"]
 		else:
 			self.skinName = "MovieSelection"
 		HelpableScreen.__init__(self)
-		InfoBarBase.__init__(self) # For ServiceEventTracker
+		if not timeshiftEnabled:
+			InfoBarBase.__init__(self) # For ServiceEventTracker
 		self.initUserDefinedActions()
 		self.tags = {}
 		if selectedmovie:
