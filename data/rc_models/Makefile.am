@@ -1,21 +1,5 @@
-if DM8000
-SUBDIRS = dmm0
-endif
-
-if DM7020HD
-SUBDIRS = dmm1
-endif
-
-if DM800
-SUBDIRS = dmm2
-endif
-
-if DM800SE
-SUBDIRS = dmm2
-endif
-
-if DM800HD
-SUBDIRS = dmm2
+if DREAMBOX
+SUBDIRS = dmm0 dmm1 dmm2
 endif
 
 if EBOX5000
