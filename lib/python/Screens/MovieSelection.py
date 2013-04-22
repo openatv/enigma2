@@ -43,7 +43,7 @@ config.movielist = ConfigSubsection()
 config.movielist.curentlyplayingservice = ConfigText()
 config.movielist.show_live_tv_in_movielist = ConfigYesNo(default=True)
 config.movielist.fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-config.movielist.itemsperpage = ConfigSelectionNumber(default = 15, stepwidth = 1, min = 3, max = 30, wraparound = True)
+config.movielist.itemsperpage = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 3, max = 30, wraparound = True)
 config.movielist.useslim = ConfigYesNo(default=False)
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_RECORDED)
 config.movielist.description = ConfigInteger(default=MovieList.SHOW_DESCRIPTION)
@@ -1158,7 +1158,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		from Screens.InfoBar import InfoBar
 		infobar = InfoBar.instance
 		if self.session.nav.getCurrentlyPlayingServiceReference():
-			if not infobar.timeshift_enabled and self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') == -1:
+			if not infobar.timeshiftEnabled() and self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') == -1:
 				self.session.nav.stopService()
 		self.close(None)
 
