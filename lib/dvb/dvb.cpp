@@ -2048,7 +2048,7 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 		m_pvr_thread = 0;
 	}
 
-	if (!source->valid())
+	if (!source->valid() && !source->isStream())
 	{
 		eDebug("PVR source is not valid!");
 		return -ENOENT;
@@ -2091,8 +2091,7 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 
 	m_pvr_thread = new eDVBChannelFilePush(m_source->getPacketSize());
 	m_pvr_thread->enablePVRCommit(1);
-	/* If the source specifies a length, it's a file. If not, it's a stream */
-	m_pvr_thread->setStreamMode(m_source->length() <= 0);
+	m_pvr_thread->setStreamMode(m_source->isStream());
 	m_pvr_thread->setScatterGather(this);
 
 	m_event(this, evtPreStart);
