@@ -1,4 +1,4 @@
-installdir = $(pkgdatadir)/rc_models/ini3
+installdir = $(pkgdatadir)/rc_models/ini2
 
 dist_install_DATA = \
 	rc.png \
