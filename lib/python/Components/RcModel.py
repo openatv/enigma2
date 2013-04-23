@@ -1,4 +1,5 @@
 from enigma import getBoxType
+from Tools.StbHardware import getFPVersion
 import os
 
 class RcModel:
@@ -12,20 +13,18 @@ class RcModel:
 	RCTYPE_ET9X00 = 7	
 	RCTYPE_ET9500 = 8
 	RCTYPE_GB = 9
-	RCTYPE_INI1000 = 10
-	RCTYPE_INI3000 = 11
-	RCTYPE_INI5000 = 12
-	RCTYPE_INI5000R = 13
-	RCTYPE_INI7000 = 14
-	RCTYPE_IQON = 15	
-	RCTYPE_IXUSSONE = 16
-	RCTYPE_IXUSSZERO = 17
-	RCTYPE_ODINM7 = 18
-	RCTYPE_ODINM9 = 19	
-	RCTYPE_TM = 20
-	RCTYPE_VU = 21	
-	RCTYPE_VU2 = 22
-	RCTYPE_XP1000 = 23
+	RCTYPE_INI0 = 10
+	RCTYPE_INI1 = 11
+	RCTYPE_INI2 = 12
+	RCTYPE_IQON = 13	
+	RCTYPE_IXUSSONE = 14
+	RCTYPE_IXUSSZERO = 15
+	RCTYPE_ODINM7 = 16
+	RCTYPE_ODINM9 = 17	
+	RCTYPE_TM = 18
+	RCTYPE_VU = 19	
+	RCTYPE_VU2 = 20
+	RCTYPE_XP1000 = 21
 
 
 	def __init__(self):
@@ -88,16 +87,16 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_EBOX5000					
 			elif model == 'gigablue':
 				self.currentRcType = self.RCTYPE_GB
-			elif model == 'ini-1000':
-				self.currentRcType = self.RCTYPE_INI1000
 			elif model == 'ini-3000':
-				self.currentRcType = self.RCTYPE_INI3000
-			elif model == 'ini-5000':
-				self.currentRcType = self.RCTYPE_INI5000
-			elif model == 'ini-5000R':
-				self.currentRcType = self.RCTYPE_INI5000R
-			elif model == 'ini-7000' or model == 'ini-7012':
-				self.currentRcType = self.RCTYPE_INI7000
+				fp_version = str(getFPVersion())	
+				if fp_version.startswith('1'):
+					self.currentRcType = self.RCTYPE_INI0				
+				else:
+					self.currentRcType = self.RCTYPE_INI2
+			elif model == 'ini-5000' or model == 'ini-7000' or model == 'ini-7012':
+				self.currentRcType = self.RCTYPE_INI1
+			elif model == 'ini-1000' or model == 'ini-5000R':
+				self.currentRcType = self.RCTYPE_INI2
 			elif model == 'odinm9':
 				self.currentRcType = self.RCTYPE_ODINM9
 			elif model == 'odinm7':
@@ -135,16 +134,12 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/et9500/'
 		elif self.currentRcType == self.RCTYPE_GB:
 			return '/usr/share/enigma2/rc_models/gb/'
-		elif self.currentRcType == self.RCTYPE_INI1000:
-			return '/usr/share/enigma2/rc_models/ini7000/'
-		elif self.currentRcType == self.RCTYPE_INI3000:
-			return '/usr/share/enigma2/rc_models/ini3000/'
-		elif self.currentRcType == self.RCTYPE_INI5000:
-			return '/usr/share/enigma2/rc_models/ini5000/'
-		elif self.currentRcType == self.RCTYPE_INI5000R:
-			return '/usr/share/enigma2/rc_models/ini5000r/'
-		elif self.currentRcType == self.RCTYPE_INI7000:
-			return '/usr/share/enigma2/rc_models/ini7000/'
+		elif self.currentRcType == self.RCTYPE_INI0:
+			return '/usr/share/enigma2/rc_models/ini0/'
+		elif self.currentRcType == self.RCTYPE_INI1:
+			return '/usr/share/enigma2/rc_models/ini1/'
+		elif self.currentRcType == self.RCTYPE_INI2:
+			return '/usr/share/enigma2/rc_models/ini2/'
 		elif self.currentRcType == self.RCTYPE_IQON:
 			return '/usr/share/enigma2/rc_models/iqon/'
 		elif self.currentRcType == self.RCTYPE_IXUSSONE:

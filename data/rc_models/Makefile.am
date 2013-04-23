@@ -47,7 +47,7 @@ SUBDIRS = tm
 endif
 
 if VENTON
-SUBDIRS = ini3000 ini5000 ini5000r ini7000
+SUBDIRS = ini0 ini1 ini2
 endif
 
 if VUSOLO
