@@ -74,11 +74,6 @@ class IconCheckPoller:
 		self.timer.startLongTimer(30)
 
 class LCD:
-	LED_IOCTL_BRIGHTNESS_NORMAL = 0X10
-	LED_IOCTL_BRIGHTNESS_DEEPSTANDBY = 0X11
-	LED_IOCTL_BLINKING_TIME = 0X12
-	LED_IOCTL_SET_DEFAULT = 0X13
-
 	def __init__(self):
 		pass
 
@@ -171,26 +166,14 @@ class LCD:
 			f.write(str(value))
 			f.close()
 
-	def setNormalstate(self, value):
-		if fileExists("/dev/dbox/oled0"):
-			print 'setLEDNormal',value
-			led_fd = open("/dev/dbox/oled0",'rw')
-			fcntl.ioctl(led_fd, self.LED_IOCTL_BRIGHTNESS_NORMAL, value)
-			led_fd.close()
+	def setLEDNormalState(self, value):
+		eDBoxLCD.getInstance().setLED(value, 0)
 
-	def setDeepStandby(self, value):
-		if fileExists("/dev/dbox/oled0"):
-			print 'setLEDSeepStandby',value
-			led_fd = open("/dev/dbox/oled0",'rw')
-			fcntl.ioctl(led_fd, self.LED_IOCTL_BRIGHTNESS_DEEPSTANDBY, value)
-			led_fd.close()
+	def setLEDDeepStandbyState(self, value):
+		eDBoxLCD.getInstance().setLED(value, 1)
 
-	def setBlinkingtime(self, value):
-		if fileExists("/dev/dbox/oled"):
-			print 'setBlinking',value
-			led_fd = open("/dev/dbox/oled0",'rw')
-			fcntl.ioctl(led_fd, self.LED_IOCTL_BLINKING_TIME, value)
-			led_fd.close()
+	def setLEDBlinkingTime(self, value):
+		eDBoxLCD.getInstance().setLED(value, 2)
 
 def leaveStandby():
 	config.lcd.bright.apply()
@@ -249,13 +232,13 @@ def InitLcd():
 			f.close()		
 
 		def setLEDnormalstate(configElement):
-			ilcd.setNormalstate(configElement.getValue());
+			ilcd.setLEDNormalState(configElement.value);
 
 		def setLEDdeepstandby(configElement):
-			ilcd.setDeepStandby(configElement.getValue());
+			ilcd.setLEDDeepStandbyState(configElement.value);
 
 		def setLEDblinkingtime(configElement):
-			ilcd.setBlinkingtime(configElement.getValue());
+			ilcd.setLEDBlinkingTime(configElement.value);
 
 		standby_default = 0
 
