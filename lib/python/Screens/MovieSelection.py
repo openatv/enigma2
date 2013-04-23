@@ -1160,7 +1160,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		from Screens.InfoBar import InfoBar
 		infobar = InfoBar.instance
 		if self.session.nav.getCurrentlyPlayingServiceReference():
-			if not infobar.timeshift_enabled and self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') == -1:
+			if not infobar.timeshiftEnabled() and self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') == -1:
 				self.session.nav.stopService()
 		self.close(None)
 
