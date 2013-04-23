@@ -24,7 +24,7 @@ def InitSetupDevices():
 
 	config.osd = ConfigSubsection();
 	
-	if open("/proc/stb/info/boxtype").read().strip() == "ini-5000R":
+	if open("/proc/stb/info/boxtype").read().strip() == "ini-5000ru":
 		config.osd.language = ConfigText(default = "ru_RU");
 	elif open("/proc/stb/info/boxtype").read().strip() == "ini-1000ru":
 		config.osd.language = ConfigText(default = "ru_RU");
