@@ -134,20 +134,11 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
-#if KEY_ZOOM_TO_KEY_SCREEN
-	if (ev->code == KEY_ZOOM)
-	{
-		/* Venton rc has a a Key LAN and send KEY_OPTION. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_SCREEN;
-		
-	}
-#endif
-
-#if KEY_VIDEO_TO_KEY_VMODE
+#if KEY_VIDEO_TO_KEY_MODE
 	if (ev->code == KEY_VIDEO)
 	{
 		/* Venton rc has a a Key Format and send KEY_Video. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_VMODE;
+		ev->code = KEY_MODE;
 		
 	}
 #endif
@@ -205,6 +196,15 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* MixOs , which sends KEY_SCREEN events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_ANGLE;
+		
+	}
+#endif
+
+#if KEY_ZOOM_TO_KEY_SCREEN
+	if (ev->code == KEY_ZOOM)
+	{
+		/* Venton rc has a a Key LAN and send KEY_OPTION. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_SCREEN;
 		
 	}
 #endif
