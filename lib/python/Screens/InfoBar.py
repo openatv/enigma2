@@ -70,6 +70,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"showPiP": (self.showPiP, _("Open Pip...")),
 				"showSetup": (self.showSetup, _("Show setup...")),
 				"showFormat": (self.showFormat, _("Show Format Setup...")),
+				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),				
 			}, prio=2)
 
 		self["key_red"] = Label()
@@ -319,7 +320,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		from Screens.HarddiskSetup import HarddiskSelection
 		self.session.open(HarddiskSelection)
 		
-	def showWWW(self):
+	def showPORTAL(self):
 		try:
 			from Plugins.Extensions.mediaportal.plugin import haupt_Screen
 			self.session.open(haupt_Screen)
@@ -367,6 +368,10 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			no_plugin = False
 		except Exception, e:
 			self.session.open(MessageBox, _("The VideoMode plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			
+	def showPluginBrowser(self):
+		from Screens.PluginBrowser import PluginBrowser
+		self.session.open(PluginBrowser)
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		InfoBarMenu, InfoBarEPG, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,

@@ -98,6 +98,15 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+#if KEY_BOOKMARKS_TO_KEY_DIRECTORY
+	if (ev->code == KEY_BOOKMARKS)
+	{
+		/* Venton ini2 remote has a KEY_BOOKMARKS key we need KEY_DIRECTORY. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_DIRECTORY;
+		
+	}
+#endif
+
 #if KEY_MEDIA_TO_KEY_BOOKMARKS
 	if (ev->code == KEY_MEDIA)
 	{
@@ -116,7 +125,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
-#if KEY_KEY_OPTION_TO_KEY_PC
+#if KEY_OPTION_TO_KEY_PC
 	if (ev->code == KEY_OPTION)
 	{
 		/* Venton rc has a a Key LAN and send KEY_OPTION. Correct this, so we do not have to place hacks in the keymaps. */
@@ -134,11 +143,11 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
-#if KEY_VIDEO_TO_KEY_MODE
+#if KEY_VIDEO_TO_KEY_VMODE
 	if (ev->code == KEY_VIDEO)
 	{
 		/* Venton rc has a a Key Format and send KEY_Video. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_MODE;
+		ev->code = KEY_VMODE;
 		
 	}
 #endif
