@@ -65,7 +65,11 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"openSleepTimer": (self.openPowerTimerList, _("Show the Sleep Timer...")),
 				'ZoomInOut': (self.ZoomInOut, _('Zoom In/Out TV...')),
 				'ZoomOff': (self.ZoomOff, _('Zoom Off...')),
-				'HarddiskSetup': (self.HarddiskSetup, _('Select HDD')),				
+				'HarddiskSetup': (self.HarddiskSetup, _('Select HDD')),	
+				"showWWW": (self.showPORTAL, _("Open MediaPortal...")),
+				"showPiP": (self.showPiP, _("Open Pip...")),
+				"showSetup": (self.showSetup, _("Show setup...")),
+				"showFormat": (self.showFormat, _("Show Format Setup...")),
 			}, prio=2)
 
 		self["key_red"] = Label()
@@ -314,6 +318,55 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def HarddiskSetup(self):
 		from Screens.HarddiskSetup import HarddiskSelection
 		self.session.open(HarddiskSelection)
+		
+	def showWWW(self):
+		try:
+			from Plugins.Extensions.mediaportal.plugin import haupt_Screen
+			self.session.open(haupt_Screen)
+			no_plugin = False
+		except Exception, e:
+			self.session.open(MessageBox, _("The MediaPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			
+	def showPiP(self):
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		xres = str(info.getInfo(enigma.iServiceInformation.sVideoWidth))
+		slist = self.servicelist
+		
+		if self.session.pipshown:
+			if slist and slist.dopipzap:
+				slist.togglePipzap()
+			del self.session.pip
+			self.session.pipshown = False
+		else:
+			if int(xres) <= 720:
+				from Screens.PictureInPicture import PictureInPicture
+				self.session.pip = self.session.instantiateDialog(PictureInPicture)
+				self.session.pip.show()
+				self.session.pipshown = True
+				self.session.pip.playService(slist.getCurrentSelection())
+			else:
+				self.session.open(MessageBox, _("Your STB_BOX does not support PiP HD"), type = MessageBox.TYPE_INFO,timeout = 5 )
+				
+	def showSetup(self):
+		from Screens.Menu import MainMenu, mdom
+		root = mdom.getroot()
+		for x in root.findall("menu"):
+			y = x.find("id")
+			if y is not None:
+				id = y.get("val")
+				if id and id == "setup":
+					self.session.infobar = self
+					self.session.open(MainMenu, x)
+					return
+
+	def showFormat(self):
+		try:
+			from Plugins.SystemPlugins.Videomode.plugin import videoSetupMain
+			self.session.instantiateDialog(videoSetupMain)
+			no_plugin = False
+		except Exception, e:
+			self.session.open(MessageBox, _("The VideoMode plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		InfoBarMenu, InfoBarEPG, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,

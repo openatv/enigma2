@@ -98,23 +98,50 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
-#if KEY_SEARCH_TO_KEY_BOOKMARK
-	if (ev->code == KEY_SEARCH)
+#if KEY_MEDIA_TO_KEY_BOOKMARKS
+	if (ev->code == KEY_MEDIA)
 	{
-		/* Venton HD3 rc has a KEY_WWW key, which sends KEY_SEARCH events. Correct this, so we do not have to place hacks in the keymaps. */
+		/* Venton ini2 remote has a KEY_MEDIA key we need KEY_Bookmark. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_BOOKMARKS;
 		
 	}
 #endif
 
-#if KEY_RECORD_TO_KEY_EPG
-	if (ev->code == KEY_RECORD)
+#if KEY_SEARCH_TO_KEY_WWW
+	if (ev->code == KEY_SEARCH)
 	{
-		/* Venton HD1 rc has a no KEY_RECORD key, which sends KEY_RECORD events. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_EPG;
+		/* Venton rc has a a Key WWW and send KEY_SEARCH. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_WWW;
 		
 	}
-#endif	
+#endif
+
+#if KEY_KEY_OPTION_TO_KEY_PC
+	if (ev->code == KEY_OPTION)
+	{
+		/* Venton rc has a a Key LAN and send KEY_OPTION. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_PC;
+		
+	}
+#endif
+
+#if KEY_ZOOM_TO_KEY_SCREEN
+	if (ev->code == KEY_ZOOM)
+	{
+		/* Venton rc has a a Key LAN and send KEY_OPTION. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_SCREEN;
+		
+	}
+#endif
+
+#if KEY_VIDEO_TO_KEY_MODE
+	if (ev->code == KEY_VIDEO)
+	{
+		/* Venton rc has a a Key Format and send KEY_Video. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_MODE;
+		
+	}
+#endif
 	
 
 #if KEY_GUIDE_TO_KEY_EPG
