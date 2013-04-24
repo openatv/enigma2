@@ -34,7 +34,7 @@ class ChoiceBox(Screen):
 					self["text"] = Label(title)
 			else:
 				self["text"] = Label(title)
-		else:
+		elif text:
 			self["text"] = Label(_(text))
 		self.list = []
 		self.summarylist = []
