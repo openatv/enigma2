@@ -6,19 +6,36 @@ from Components.Sources.StaticText import StaticText
 import enigma
 
 class ChoiceBox(Screen):
-	def __init__(self, session, title = "", list = [], keys = None, selection = 0, skin_name = []):
+	def __init__(self, session, title = "", text = "", list = [], keys = None, selection = 0, skin_name = []):
 		Screen.__init__(self, session)
 
 		if isinstance(skin_name, str):
 			skin_name = [skin_name]
 		self.skinName = skin_name + ["ChoiceBox"]
+		self["text"] = Label()
 		if title:
 			title = _(title)
-		if len(title) < 55 and title.find('\n') == -1:
-			Screen.setTitle(self, title)
-			self["text"] = Label("")
+			if len(title) < 55 and title.find('\n') == -1:
+				Screen.setTitle(self, title)
+			elif title.find('\n') != -1:
+				temptext = title.split('\n')
+				if len(temptext[0]) < 55:
+					Screen.setTitle(self, temptext[0])
+					count = 2
+					labeltext = ""
+					while len(temptext) >= count:
+						if labeltext:
+							labeltext = labeltext + '\n'
+						labeltext = labeltext + temptext[count-1]
+						count += 1
+						print 'count',count
+					self["text"].setText(labeltext)
+				else:
+					self["text"] = Label(title)
+			else:
+				self["text"] = Label(title)
 		else:
-			self["text"] = Label(title)
+			self["text"] = Label(_(text))
 		self.list = []
 		self.summarylist = []
 		if keys is None:
@@ -82,6 +99,8 @@ class ChoiceBox(Screen):
 			self["list"].instance.resize(enigma.eSize(*listsize))
 		else:
 			textsize = self["text"].getSize()
+			if textsize[0] < textsize[1]:
+				textsize = (textsize[1],textsize[0]+10)
 			if textsize[0] > 520:
 				textsize = (textsize[0], textsize[1]+25)
 			else:
@@ -89,7 +108,7 @@ class ChoiceBox(Screen):
 			listsize = (textsize[0], 25*count)
 			# resize label
 			self["text"].instance.resize(enigma.eSize(*textsize))
-			self["text"].instance.move(enigma.ePoint(0, 0))
+			self["text"].instance.move(enigma.ePoint(10, 10))
 			# move list
 			self["list"].instance.move(enigma.ePoint(0, textsize[1]))
 			self["list"].instance.resize(enigma.eSize(*listsize))
