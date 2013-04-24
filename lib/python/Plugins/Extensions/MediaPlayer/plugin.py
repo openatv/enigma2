@@ -179,8 +179,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				"menu": (self.showMenu, _("Menu")),
 				"skipListbegin": (self.skip_listbegin, _("Jump to beginning of list")),
 				"skipListend": (self.skip_listend, _("Jump to end of list")),
-				"prevBouquet": (self.switchToPlayList, _("Switch to playlist")),
-				"nextBouquet": (self.switchToFileList, _("Switch to filelist")),
+				"prevBouquet": (self.switchLists, _("Switch between filelist/playlist")),
+				"nextBouquet": (self.switchLists, _("Switch between filelist/playlist")),
 				"delete": (self.deletePlaylistEntry, _("Delete playlist entry")),
 				"shift_stop": (self.clear_playlist, _("Clear playlist")),
 				"shift_record": (self.playlist.PlayListShuffle, _("Shuffle playlist")),
@@ -407,6 +407,12 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		self.rightKeyTimer.stop()
 		self.righttimer = False
 		self.switchToPlayList()
+
+	def switchLists(self):
+		if self.currList == "filelist":
+			self.switchToPlayList()
+			return
+		self.switchToFileList()
 
 	def switchToFileList(self):
 		self.currList = "filelist"
