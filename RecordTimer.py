@@ -135,9 +135,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def __repr__(self):
 		if not self.disabled:
-			return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s)" % (self.name, ctime(self.begin), self.service_ref, self.justplay)
+			return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s, isAutoTimer=%s)" % (self.name, ctime(self.begin), self.service_ref, self.justplay, self.isAutoTimer)
 		else:
-			return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s, Disabled)" % (self.name, ctime(self.begin), self.service_ref, self.justplay)
+			return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s, isAutoTimer=%s, Disabled)" % (self.name, ctime(self.begin), self.service_ref, self.justplay, self.isAutoTimer)
 
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
@@ -560,7 +560,7 @@ def createTimer(xml):
 
 	name = xml.get("name").encode("utf-8")
 	#filename = xml.get("filename").encode("utf-8")
-	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm, always_zap = always_zap)
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm, isAutoTimer = isAutoTimer, always_zap = always_zap)
 	entry.repeated = int(repeated)
 
 	for l in xml.findall("log"):
@@ -788,6 +788,7 @@ class RecordTimer(timer.Timer):
 		bt = None
 		end = begin + duration
 		refstr = str(service)
+		isAutoTimer = None
 		for x in self.timer_list:
 			check = x.service_ref.ref.toString() == refstr
 			if not check:
@@ -845,6 +846,8 @@ class RecordTimer(timer.Timer):
 							else:			# recording whole event
 								time_match = (end2 - begin2) * 60
 								type = 2
+								if x.isAutoTimer:
+									isAutoTimer = 6
 				else:
 					if begin < x.begin <= end:
 						if x.end < end: # recording within event
@@ -864,12 +867,14 @@ class RecordTimer(timer.Timer):
 							time_match = end - begin
 							if not x.justplay:
 								type = 2
+								if x.isAutoTimer:
+									isAutoTimer = 6
 							else:
 								type = 3
 				if type == 2 or type == 3: # stop searching if a full recording is found
 					break
 		if time_match:
-			return (time_match, type)
+			return (time_match, type, isAutoTimer)
 		else:
 			return None
 
