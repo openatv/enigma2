@@ -608,6 +608,15 @@ class EPGList(HTMLComponent, GUIComponent):
 		xpos, width = self.calcEntryPosAndWidthHelper(ev_start, ev_duration, time_base, time_base + time_epoch * 60, event_rect.width())
 		return xpos + event_rect.left(), width
 
+	def getPixmapForEntry(self, service, eventId, beginTime, duration):
+		if not beginTime:
+			return None
+		rec = self.timer.isInTimer(eventId, beginTime, duration, service)
+		if rec is not None:
+			return self.clocks[rec[1]]
+		else:
+			return None
+
 	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
 		rec = self.timer.isInTimer(eventId, beginTime, duration, service)
 		r1 = self.weekday_rect
