@@ -511,7 +511,11 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.standardInfoBar = True
 		self.secondInfoBarWasShown = False
 		self.EventViewIsShown = False
-		#self.pvrStateDialog = None
+		try:
+			if self.pvrStateDialog:
+				pass
+		except:
+			self.pvrStateDialog = None
 
 	def SwitchSecondInfoBarScreen(self):
 		if self.lastSecondInfoBar == config.usage.show_second_infobar.getValue():
