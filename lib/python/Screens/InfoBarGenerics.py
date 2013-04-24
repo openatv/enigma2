@@ -1974,6 +1974,9 @@ class InfoBarInstantRecord:
 				self.setEndtime(0)
 			else:
 				self.session.openWithCallback(self.setEndtime, TimerSelection, list)
+		elif answer[1] == "timer":
+			import TimerEdit
+			self.session.open(TimerEdit.TimerEditList)
 		elif answer[1] == "stop":
 			self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
 		elif answer[1] in ( "indefinitely" , "manualduration", "manualendtime", "event"):
@@ -2021,6 +2024,19 @@ class InfoBarInstantRecord:
 			entry.end = int(time()) + 60 * int(value)
 			self.session.nav.RecordTimer.timeChanged(entry)
 
+	def isTimerRecordRunning(self):
+		identical = timers = 0
+		for timer in self.session.nav.RecordTimer.timer_list:
+			if timer.isRunning() and not timer.justplay:
+				timers += 1
+				if self.recording:
+					for x in self.recording:
+						if x.isRunning() and x == timer:
+							identical += 1
+		if timers > identical:
+			return True
+		return False
+
 	def instantRecord(self):
 		pirr = preferredInstantRecordPath()
 		if not findSafeRecordPath(pirr) and not findSafeRecordPath(defaultMoviePath()):
@@ -2038,11 +2054,16 @@ class InfoBarInstantRecord:
 			title =_("A recording is currently running.\nWhat do you want to do?")
 			list = ((_("Stop recording"), "stop"),) + common + \
 			((_("Change recording (duration)"), "changeduration"),
-			(_("Change recording (endtime)"), "changeendtime"),
-			(_("Do nothing"), "no"),)
+			(_("Change recording (endtime)"), "changeendtime"),)
+			if self.isTimerRecordRunning():
+				list += ((_("Stop timer recording"), "timer"),)
+			list += ((_("Do nothing"), "no"),)
 		else:
 			title=_("Start recording?")
-			list = common + ((_("Do not record"), "no"),)
+			list = common
+			if self.isTimerRecordRunning():
+				list += ((_("Stop timer recording"), "timer"),)
+			list += ((_("Do not record"), "no"),)
 		if self.timeshiftEnabled():
 			list = list + ((_("Save timeshift file"), "timeshift"),
 			(_("Save timeshift file in movie directory"), "timeshift_movie"))
