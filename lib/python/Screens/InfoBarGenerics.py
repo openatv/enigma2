@@ -2033,9 +2033,7 @@ class InfoBarInstantRecord:
 					for x in self.recording:
 						if x.isRunning() and x == timer:
 							identical += 1
-		if timers > identical:
-			return True
-		return False
+		return timers > identical
 
 	def instantRecord(self):
 		pirr = preferredInstantRecordPath()
