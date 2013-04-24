@@ -87,13 +87,15 @@ class EPGList(HTMLComponent, GUIComponent):
 		epgclock_zap = resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_zap.png')
 		epgclock_prepost = resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_prepost.png')
 		epgclock_post = resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_post.png')
+		epgclock_at = resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_autotimer.png')
 
 		self.clocks = [ LoadPixmap(cached=True, path=epgclock_add),
 						LoadPixmap(cached=True, path=epgclock_pre),
 						LoadPixmap(cached=True, path=epgclock_rec),
 						LoadPixmap(cached=True, path=epgclock_zap),
 						LoadPixmap(cached=True, path=epgclock_prepost),
-						LoadPixmap(cached=True, path=epgclock_post) ]
+						LoadPixmap(cached=True, path=epgclock_post),
+						LoadPixmap(cached=True, path=epgclock_at) ]
 
 		self.nowEvPix = None
 		self.nowSelEvPix = None
@@ -606,17 +608,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		xpos, width = self.calcEntryPosAndWidthHelper(ev_start, ev_duration, time_base, time_base + time_epoch * 60, event_rect.width())
 		return xpos + event_rect.left(), width
 
-	def getPixmapForEntry(self, service, eventId, beginTime, duration):
-		if not beginTime:
-			return None
-		rec = self.timer.isInTimer(eventId, beginTime, duration, service)
-		if rec is not None:
-			return self.clocks[rec[1]]
-		else:
-			return None
-
 	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
-		clock_pic = self.getPixmapForEntry(service, eventId, beginTime, duration)
+		rec = self.timer.isInTimer(eventId, beginTime, duration, service)
 		r1 = self.weekday_rect
 		r2 = self.datetime_rect
 		r3 = self.descr_rect
@@ -626,17 +619,24 @@ class EPGList(HTMLComponent, GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t))
 		]
-		if clock_pic is not None:
-			res.extend((
-				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, clock_pic),
-				(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-21, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
-			))
+		if rec and rec[1] is not None:
+			if rec[2] is not None:
+				res.extend((
+					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[rec[1]]),
+					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-42, (r3.h/2-11), 21, 21, self.clocks[rec[2]]),
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-42, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
+					))
+			else:
+				res.extend((
+					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[rec[1]]),
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-21, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
+					))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
  		return res
 
 	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
-		clock_pic = self.getPixmapForEntry(service, eventId, beginTime, duration)
+		rec = self.timer.isInTimer(eventId, beginTime, duration, service)
 		r1 = self.weekday_rect
 		r2 = self.datetime_rect
 		r3 = self.descr_rect
@@ -646,13 +646,18 @@ class EPGList(HTMLComponent, GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t))
 		]
-		if clock_pic is not None:
-			res.extend((
-				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-8, (r3.h/2-11), 21, 21, clock_pic),
-				(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-8, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name)
-			))
-		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
+		if rec and rec[1] is not None:
+			if rec[2] is not None:
+				res.extend((
+					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-8, (r3.h/2-11), 21, 21, self.clocks[rec[1]]),
+					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-29, (r3.h/2-11), 21, 21, self.clocks[rec[1]]),
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-29, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name)
+				))
+			else:
+				res.extend((
+					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-8, (r3.h/2-11), 21, 21, self.clocks[rec[1]]),
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-8, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name)
+				))
 		return res
 
 	def buildMultiEntry(self, changecount, service, eventId, beginTime, duration, EventName, nowTime, service_name):
@@ -686,10 +691,17 @@ class EPGList(HTMLComponent, GUIComponent):
 					pos = r3.x+r3.w
 				else:
 					pos = r3.x+r3.w-10
-				res.extend((
-					(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w-110, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
-					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-11), 21, 21, self.clocks[rec[1]])
-				))
+				if rec[2] is not None:
+					res.extend((
+						(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w-131, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
+						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-11), 21, 21, self.clocks[rec[1]]),
+						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-22, (r3.h/2-11), 21, 21, self.clocks[rec[2]])
+					))
+				else:
+					res.extend((
+						(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w-110, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
+						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-11), 21, 21, self.clocks[rec[1]])
+					))
 			else:
 				res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w-100, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
 		return res
@@ -985,6 +997,11 @@ class EPGList(HTMLComponent, GUIComponent):
 						pos = pos, size = (21, 21),
 						png = self.clocks[rec[1]],
 						backcolor_sel = backColorSel))
+					if rec[2]:
+						res.append(MultiContentEntryPixmapAlphaBlend(
+							pos = (pos[0]-22,pos[1]), size = (21, 21),
+							png = self.clocks[rec[2]],
+							backcolor_sel = backColorSel))
 		else:
 			if self.graphic:
 				if not selected and self.othEvPix:
