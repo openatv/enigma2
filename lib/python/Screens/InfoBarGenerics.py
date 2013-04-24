@@ -4102,6 +4102,9 @@ class InfoBarInstantRecord:
 				self.setEndtime(0)
 			else:
 				self.session.openWithCallback(self.setEndtime, TimerSelection, list)
+		elif answer[1] == "timer":
+			import TimerEdit
+			self.session.open(TimerEdit.TimerEditList)
 		elif answer[1] == "stop":
 			self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
 		elif answer[1] in ( "indefinitely" , "manualduration", "manualendtime", "event"):
@@ -4170,6 +4173,17 @@ class InfoBarInstantRecord:
 			entry.end = int(time())
 		self.session.nav.RecordTimer.timeChanged(entry)
 
+	def isTimerRecordRunning(self):
+		identical = timers = 0
+		for timer in self.session.nav.RecordTimer.timer_list:
+			if timer.isRunning() and not timer.justplay:
+				timers += 1
+				if self.recording:
+					for x in self.recording:
+						if x.isRunning() and x == timer:
+							identical += 1
+		return timers > identical
+
 	def instantRecord(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
@@ -4196,10 +4210,14 @@ class InfoBarInstantRecord:
 			list = ((_("Stop recording"), "stop"),) + common + \
 			((_("Change recording (duration)"), "changeduration"),
 			(_("Change recording (endtime)"), "changeendtime"),)
+			if self.isTimerRecordRunning():
+				list += ((_("Stop timer recording"), "timer"),)
 		else:
 			title=_("Start recording?")
 			list = common
 
+			if self.isTimerRecordRunning():
+				list += ((_("Stop timer recording"), "timer"),)
 		if config.timeshift.enabled.getValue() and self.timeshiftEnabled():
 			list = list + timeshiftcommon
 		elif not config.timeshift.enabled.getValue() and self.timeshiftEnabled():
