@@ -329,25 +329,18 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.session.open(MessageBox, _("The MediaPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			
 	def showPiP(self):
-		service = self.session.nav.getCurrentService()
-		info = service and service.info()
-		xres = str(info.getInfo(enigma.iServiceInformation.sVideoWidth))
 		slist = self.servicelist
-		
 		if self.session.pipshown:
 			if slist and slist.dopipzap:
 				slist.togglePipzap()
 			del self.session.pip
 			self.session.pipshown = False
 		else:
-			if int(xres) <= 720:
-				from Screens.PictureInPicture import PictureInPicture
-				self.session.pip = self.session.instantiateDialog(PictureInPicture)
-				self.session.pip.show()
-				self.session.pipshown = True
-				self.session.pip.playService(slist.getCurrentSelection())
-			else:
-				self.session.open(MessageBox, _("Your STB_BOX does not support PiP HD"), type = MessageBox.TYPE_INFO,timeout = 5 )
+			from Screens.PictureInPicture import PictureInPicture
+			self.session.pip = self.session.instantiateDialog(PictureInPicture)
+			self.session.pip.show()
+			self.session.pipshown = True
+			self.session.pip.playService(slist.getCurrentSelection())
 				
 	def showSetup(self):
 		from Screens.Menu import MainMenu, mdom
