@@ -34,7 +34,9 @@ class Navigation:
 		self.currentlyPlayingService = None
 		self.RecordTimer = RecordTimer.RecordTimer()
 		self.PowerTimer = PowerTimer.PowerTimer()
+		self.__wasTimerWakeup = False
 		if getFPWasTimerWakeup():
+			self.__wasTimerWakeup = True
 			if nextRecordTimerAfterEventActionAuto and abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
 				print 'RECTIMER: wakeup to standby detected.'
 				f = open("/tmp/was_rectimer_wakeup", "w")
@@ -55,15 +57,13 @@ class Navigation:
 				self.standbytimer.callback.append(self.gotostandby)
 				self.standbytimer.start(15000, True)
 
+	def wasTimerWakeup(self):
+		return self.__wasTimerWakeup
+
 	def gotostandby(self):
 		print 'TIMER: now entering standby'
 		from Tools import Notifications
 		Notifications.AddNotification(Screens.Standby.Standby)
-
-# 	def checkShutdownAfterRecording(self):
-# 		if len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
-# 			if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
-# 				RecordTimer.RecordTimerEntry.TryQuitMainloop(False) # start shutdown handling
 
 	def dispatchEvent(self, i):
 		for x in self.event:
