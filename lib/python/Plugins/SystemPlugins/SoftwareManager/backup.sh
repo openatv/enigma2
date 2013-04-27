@@ -106,6 +106,17 @@ elif [ $MODEL = "ventonhdx" ] ; then
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/venton/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_$MODEL/$DATE/venton
+## TESTING THE Venton HDe Models
+elif [ $MODEL = "ventonhde" ] ; then
+	TYPE=VENTON
+	MODEL="venton-hde"
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="$MODEL"
+	MTDKERNEL="mtd2"	
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/venton/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_$MODEL/$DATE/venton	
 elif [ $MODEL = "tmtwin" ] ; then
 	TYPE=TECHNO
 	MODEL="tmtwinoe"
