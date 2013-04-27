@@ -1,6 +1,7 @@
 from Screens.Screen import Screen
-from Components.ConfigList import ConfigListScreen
+from Components.ConfigList import ConfigListScreen, ConfigList
 from Components.ActionMap import ActionMap
+from Components.Sources.FrontendStatus import FrontendStatus
 from Components.Sources.StaticText import StaticText
 from Components.config import config, configfile, getConfigListEntry
 from Components.NimManager import nimmanager, InitNimManager
@@ -14,13 +15,13 @@ class AutoDiseqc(Screen, ConfigListScreen):
 	]
 
 	sat_frequencies = [
-		# astra 282 S4C
-		( 12051, 27500, \
-		eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.FEC_2_3, \
-		eDVBFrontendParametersSatellite.Inversion_Off, 282, \
+		# astra 192 zdf
+		( 11953, 27500, \
+		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_3_4, \
+		eDVBFrontendParametersSatellite.Inversion_Off, 192, \
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
 		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
-		2018, 2, "Astra 2 28.2e"),
+		1079, 1, "Astra 1 19.2e"),
 
 		# astra 235 astra ses
 		( 12168, 27500, \
@@ -30,13 +31,13 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
 		3224, 3, "Astra 3 23.5e"),
 
-		# astra 192 zdf
-		( 11953, 27500, \
-		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_3_4, \
-		eDVBFrontendParametersSatellite.Inversion_Off, 192, \
+		# astra 282 bbc
+		( 10773, 22000, \
+		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_5_6, \
+		eDVBFrontendParametersSatellite.Inversion_Off, 282, \
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
 		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
-		1079, 1, "Astra 1 19.2e"),
+		2045, 2, "Astra 2 28.2e"),
 
 		# hotbird 130 rai
 		( 10992, 27500, \
@@ -62,6 +63,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 	SAT_TABLE_NAME = 12
 
 	def __init__(self, session, feid, nr_of_ports, simple_tone, simple_sat_change):
+		self.skin = AutoDiseqc.skin
 		Screen.__init__(self, session)
 
 		self["statusbar"] = StaticText(" ")
@@ -73,9 +75,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
-		self["key_red"] = StaticText(" ")
-		self["key_green"] = StaticText(" ")
-		Screen.setTitle(self, _("AutoDiseqc"))
+		self["key_red"] = StaticText(_("Abort"))
 
 		self.index = 0
 		self.port_index = 0
@@ -97,13 +97,12 @@ class AutoDiseqc(Screen, ConfigListScreen):
 
 		self["actions"] = ActionMap(["SetupActions"],
 		{
-			"ok": self.keySave,
-			"save": self.keySave,
 			"cancel": self.keyCancel,
 		}, -2)
 
 		self.count = 0
 		self.state = 0
+		self.abort = False
 
 		self.statusTimer = eTimer()
 		self.statusTimer.callback.append(self.statusCallback)
@@ -111,15 +110,8 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		self.tunerStatusTimer.callback.append(self.tunerStatusCallback)
 		self.startStatusTimer()
 
-	def keySave(self):
-		if self.state == 99 and len(self.found_sats) > 0:
-			self.setupSave()
-			self.close(True)
-
 	def keyCancel(self):
-		if self.state == 99:
-			self.setupClear()
-			self.close(False)
+		self.abort = True
 
 	def keyOK(self):
 		return
@@ -144,25 +136,25 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		if self.state == 0:
 			if self.port_index == 0:
 				self.clearNimEntries()
-				config.Nims[self.feid].diseqcA.setValue("%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS]))
+				config.Nims[self.feid].diseqcA.value = "%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
 			elif self.port_index == 1:
 				self.clearNimEntries()
-				config.Nims[self.feid].diseqcB.setValue("%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS]))
+				config.Nims[self.feid].diseqcB.value = "%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
 			elif self.port_index == 2:
 				self.clearNimEntries()
-				config.Nims[self.feid].diseqcC.setValue("%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS]))
+				config.Nims[self.feid].diseqcC.value = "%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
 			elif self.port_index == 3:
 				self.clearNimEntries()
-				config.Nims[self.feid].diseqcD.setValue("%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS]))
+				config.Nims[self.feid].diseqcD.value = "%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
 
 			if self.nr_of_ports == 4:
-				config.Nims[self.feid].diseqcMode.setValue("diseqc_a_b_c_d")
+				config.Nims[self.feid].diseqcMode.value = "diseqc_a_b_c_d"
 			elif self.nr_of_ports == 2:
-				config.Nims[self.feid].diseqcMode.setValue("diseqc_a_b")
+				config.Nims[self.feid].diseqcMode.value = "diseqc_a_b"
 			else:
-				config.Nims[self.feid].diseqcMode.setValue("single")
+				config.Nims[self.feid].diseqcMode.value = "single"
 
-			config.Nims[self.feid].configMode.setValue("simple")
+			config.Nims[self.feid].configMode.value = "simple"
 			config.Nims[self.feid].simpleDiSEqCSetVoltageTone = self.simple_tone
 			config.Nims[self.feid].simpleDiSEqCOnlyOnSatChange = self.simple_sat_change
 
@@ -189,24 +181,17 @@ class AutoDiseqc(Screen, ConfigListScreen):
 	def startStatusTimer(self):
 		self.statusTimer.start(100, True)
 
-	def setupConfig(self):
-		self["statusbar"].setText(_("Automatic configuration is finished"))
-		self["tunerstatusbar"].setText(_("Found %d position(s) of %d total") % (len(self.found_sats), self.nr_of_ports))
-		self["key_red"].setText(_("Wrong"))
-		if len(self.found_sats) > 0:
-			self["key_green"].setText(_("Correct"))
-
 	def setupSave(self):
 		self.clearNimEntries()
 		for x in self.found_sats:
 			if x[0] == "A":
-				config.Nims[self.feid].diseqcA.setValue("%d" % (x[1]))
+				config.Nims[self.feid].diseqcA.value = "%d" % (x[1])
 			elif x[0] == "B":
-				config.Nims[self.feid].diseqcB.setValue("%d" % (x[1]))
+				config.Nims[self.feid].diseqcB.value = "%d" % (x[1])
 			elif x[0] == "C":
-				config.Nims[self.feid].diseqcC.setValue("%d" % (x[1]))
+				config.Nims[self.feid].diseqcC.value = "%d" % (x[1])
 			elif x[0] == "D":
-				config.Nims[self.feid].diseqcD.setValue("%d" % (x[1]))
+				config.Nims[self.feid].diseqcD.value = "%d" % (x[1])
 		self.saveAndReloadNimConfig()
 
 	def setupClear(self):
@@ -214,10 +199,10 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		self.saveAndReloadNimConfig()
 
 	def clearNimEntries(self):
-		config.Nims[self.feid].diseqcA.setValue("3601")
-		config.Nims[self.feid].diseqcB.setValue("3601")
-		config.Nims[self.feid].diseqcC.setValue("3601")
-		config.Nims[self.feid].diseqcD.setValue("3601")
+		config.Nims[self.feid].diseqcA.value = "3601"
+		config.Nims[self.feid].diseqcB.value = "3601"
+		config.Nims[self.feid].diseqcC.value = "3601"
+		config.Nims[self.feid].diseqcD.value = "3601"
 
 	def saveAndReloadNimConfig(self):
 		config.Nims[self.feid].save()
@@ -228,24 +213,24 @@ class AutoDiseqc(Screen, ConfigListScreen):
 	def tunerStatusCallback(self):
 		dict = {}
 		self.frontend.getFrontendStatus(dict)
-		if dict["tuner_state"] == "TUNING":
-			self["tunerstatusbar"].setText(_("Tuner status:") + " " + _("TUNING"))
-		elif dict["tuner_state"] == "LOCKED":
-			self["tunerstatusbar"].setText(_("Tuner status:") + " " + _("ACQUIRING TSID/ONID"))
+
+		self["tunerstatusbar"].setText(_("Tuner status %s") % (dict["tuner_state"]))
+
+		if dict["tuner_state"] == "LOCKED":
 			self.raw_channel.requestTsidOnid(self.gotTsidOnid)
-		elif dict["tuner_state"] == "LOSTLOCK" or dict["tuner_state"] == "FAILED":
-			self["tunerstatusbar"].setText(_("Tuner status:") + " " + _("FAILED"))
+
+		if dict["tuner_state"] == "LOSTLOCK" or dict["tuner_state"] == "FAILED":
 			self.tunerStopScan(False)
 			return
 
 		self.count += 1
-		if self.count > 15:
-			self.startStatusTimer()
+		if self.count > 10:
+			self.tunerStopScan(False)
 		else:
 			self.startTunerStatusTimer()
 
 	def startTunerStatusTimer(self):
-		self.tunerStatusTimer.start(2000, True)
+		self.tunerStatusTimer.start(1000, True)
 
 	def gotTsidOnid(self, tsid, onid):
 		self.tunerStatusTimer.stop()
@@ -255,6 +240,10 @@ class AutoDiseqc(Screen, ConfigListScreen):
 			self.tunerStopScan(False)
 
 	def tunerStopScan(self, result):
+		if self.abort:
+			self.setupClear()
+			self.close(False)
+			return
 		if result:
 			self.found_sats.append((self.diseqc_ports[self.port_index], self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS], self.sat_frequencies[self.index][self.SAT_TABLE_NAME]))
 			self.index = 0
@@ -272,8 +261,9 @@ class AutoDiseqc(Screen, ConfigListScreen):
 			self["config"].l.setList(self.list)
 
 		if self.nr_of_ports == self.port_index:
-			self.setupConfig()
 			self.state = 99
+			self.setupSave()
+			self.close(len(self.found_sats) > 0)
 			return
 
 		for x in self.found_sats:
