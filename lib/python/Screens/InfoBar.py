@@ -67,7 +67,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				'ZoomOff': (self.ZoomOff, _('Zoom Off...')),
 				'HarddiskSetup': (self.HarddiskSetup, _('Select HDD')),	
 				"showWWW": (self.showPORTAL, _("Open MediaPortal...")),
-				"showPiP": (self.showPiP, _("Open Pip...")),
 				"showSetup": (self.showSetup, _("Show setup...")),
 				"showFormat": (self.showFormat, _("Show Format Setup...")),
 				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),				
@@ -328,20 +327,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		except Exception, e:
 			self.session.open(MessageBox, _("The MediaPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			
-	def showPiP(self):
-		slist = self.servicelist
-		if self.session.pipshown:
-			if slist and slist.dopipzap:
-				slist.togglePipzap()
-			del self.session.pip
-			self.session.pipshown = False
-		else:
-			from Screens.PictureInPicture import PictureInPicture
-			self.session.pip = self.session.instantiateDialog(PictureInPicture)
-			self.session.pip.show()
-			self.session.pipshown = True
-			self.session.pip.playService(slist.getCurrentSelection())
-				
 	def showSetup(self):
 		from Screens.Menu import MainMenu, mdom
 		root = mdom.getroot()
