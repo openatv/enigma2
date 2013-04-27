@@ -252,17 +252,13 @@ class AudioSelection(Screen, ConfigListScreen):
 
 	def subtitlesEnabled(self):
 		try:
-			return self.infobar.subtitles_enabled
+			return self.infobar.subtitle_window.shown
 		except:
 			return False
 
-	def enableSubtitle(self, subtitles):
-		if self.infobar.selected_subtitle != subtitles:
-			self.infobar.subtitles_enabled = False
-			self.infobar.selected_subtitle = subtitles
-			if subtitles:
-				self.infobar.subtitles_enabled = True
-				self.infobar.selected_subtitle = subtitles
+	def enableSubtitle(self, subtitle):
+		if self.infobar.selected_subtitle != subtitle:
+			self.infobar.enableSubtitle(subtitle)
 
 	def changeEDIDBypass(self, edid_bypass):
 		if edid_bypass.getValue():

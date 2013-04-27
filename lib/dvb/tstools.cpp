@@ -1,4 +1,5 @@
 #include <lib/dvb/tstools.h>
+#include <lib/dvb/specs.h>
 #include <lib/base/eerror.h>
 #include <lib/base/cachedtssource.h>
 #include <unistd.h>
@@ -8,6 +9,48 @@
 
 static const int m_maxrange = 256*1024;
 
+DEFINE_REF(eTSFileSectionReader);
+
+eTSFileSectionReader::eTSFileSectionReader(eMainloop *context)
+{
+	sectionSize = 0;
+}
+
+eTSFileSectionReader::~eTSFileSectionReader()
+{
+}
+
+void eTSFileSectionReader::data(unsigned char *packet, unsigned int size)
+{
+	if (sectionSize + size <= sizeof(sectionData))
+	{
+		memcpy(&sectionData[sectionSize], packet, size);
+		sectionSize += size;
+	}
+	if (sectionSize >= 3 + ((sectionData[1] & 0x0f) << 8) + sectionData[2])
+	{
+		sectionSize = 0;
+		read(sectionData);
+	}
+}
+
+RESULT eTSFileSectionReader::start(const eDVBSectionFilterMask &mask)
+{
+	sectionSize = 0;
+	return 0;
+}
+
+RESULT eTSFileSectionReader::stop()
+{
+	sectionSize = 0;
+	return 0;
+}
+
+RESULT eTSFileSectionReader::connectRead(const Slot1<void,const __u8*> &r, ePtr<eConnection> &conn)
+{
+	conn = new eConnection(this, read.connect(r));
+	return 0;
+}
 
 eDVBTSTools::eDVBTSTools():
 	m_pid(-1),
@@ -655,8 +698,13 @@ int eDVBTSTools::takeSample(off_t off, pts_t &p)
 	return -1;
 }
 
-int eDVBTSTools::findPMT(int *pmt_pid, int *service_id, int* pcr_pid)
+int eDVBTSTools::findPMT(eDVBPMTParser::program &program)
 {
+	int pmtpid = -1;
+	ePtr<iDVBSectionReader> sectionreader;
+
+	eDVBPMTParser::clearProgramInfo(program);
+
 		/* FIXME: this will be factored out soon! */
 	if (!m_source || !m_source->valid())
 	{
@@ -665,6 +713,7 @@ int eDVBTSTools::findPMT(int *pmt_pid, int *service_id, int* pcr_pid)
 	}
 
 	off_t position=0;
+	m_pmtready = false;
 
 	for (int attempts_left = (5*1024*1024)/188; attempts_left != 0; --attempts_left)
 	{
@@ -690,7 +739,7 @@ int eDVBTSTools::findPMT(int *pmt_pid, int *service_id, int* pcr_pid)
 			continue;
 		}
 		
-		if (!(packet[1] & 0x40)) /* pusi */
+		if (pmtpid < 0 && !(packet[1] & 0x40)) /* pusi */
 			continue;
 		
 			/* ok, now we have a PES header or section header*/
@@ -704,22 +753,31 @@ int eDVBTSTools::findPMT(int *pmt_pid, int *service_id, int* pcr_pid)
 			sec = packet + packet[4] + 4 + 1;
 		} else
 			sec = packet + 4;
-		
-		if (sec[0])	/* table pointer, assumed to be 0 */
-			continue;
 
-		if (sec[1] == 0x02) /* program map section */
+		if (pmtpid < 0)
 		{
-			if (pmt_pid)
-				*pmt_pid = ((packet[1] << 8) | packet[2]) & 0x1FFF;
-			if (service_id)
-				*service_id = (sec[4] << 8) | sec[5];
-			if (pcr_pid)
-				*pcr_pid = ((sec[9] << 8) | sec[10]) & 0x1FFF; /* 13-bits */
+			if (sec[0]) /* table pointer, assumed to be 0 */
+				continue;
+			if (sec[1] == 0x02) /* program map section */
+			{
+				pmtpid = ((packet[1] << 8) | packet[2]) & 0x1FFF;
+				int sid = (sec[4] << 8) | sec[5];
+				sectionreader = new eTSFileSectionReader(eApp);
+				m_PMT.begin(eApp, eDVBPMTSpec(pmtpid, sid), sectionreader);
+				((eTSFileSectionReader*)(iDVBSectionReader*)sectionreader)->data(&sec[1], 188 - (sec + 1 - packet));
+			}
+		}
+		else if (pmtpid == ((packet[1] << 8) | packet[2]) & 0x1FFF)
+		{
+			((eTSFileSectionReader*)(iDVBSectionReader*)sectionreader)->data(sec, 188 - (sec - packet));
+		}
+		if (m_pmtready)
+		{
+			program = m_program;
 			return 0;
 		}
 	}
-	
+	m_PMT.stop();
 	return -1;
 }
 
@@ -872,4 +930,16 @@ int eDVBTSTools::findNextPicture(off_t &offset, size_t &len, int &distance, int 
 //	eDebug("in total, we moved %d frames", nr_frames);
 
 	return 0;
+}
+
+void eDVBTSTools::PMTready(int error)
+{
+	if (!error)
+	{
+		if (getProgramInfo(m_program) >= 0)
+		{
+			m_PMT.stop();
+			m_pmtready = true;
+		}
+	}
 }
