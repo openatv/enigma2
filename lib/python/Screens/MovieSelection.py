@@ -43,7 +43,7 @@ config.movielist = ConfigSubsection()
 config.movielist.curentlyplayingservice = ConfigText()
 config.movielist.show_live_tv_in_movielist = ConfigYesNo(default=True)
 config.movielist.fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-config.movielist.itemsperpage = ConfigSelectionNumber(default = 15, stepwidth = 1, min = 3, max = 30, wraparound = True)
+config.movielist.itemsperpage = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 3, max = 30, wraparound = True)
 config.movielist.useslim = ConfigYesNo(default=False)
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_RECORDED)
 config.movielist.description = ConfigInteger(default=MovieList.SHOW_DESCRIPTION)
@@ -329,6 +329,7 @@ class MovieContextMenu(Screen):
 		self["key_green"] = StaticText(_("OK"))
 		menu = []
 		menu.append((_("Settings") + "...", csel.configure))
+		menu.append((_("Device mounts") + "...", csel.showDeviceMounts))
 		menu.append((_("Network mounts") + "...", csel.showNetworkMounts))
 		menu.append((_("Add bookmark"), csel.do_addbookmark))
 		menu.append((_("Create directory"), csel.do_createdir))
@@ -415,14 +416,15 @@ class MovieSelectionSummary(Screen):
 			self["name"].text = ""
 
 class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
-	def __init__(self, session, selectedmovie = None):
+	def __init__(self, session, selectedmovie = None, timeshiftEnabled = False):
 		Screen.__init__(self, session)
 		if config.movielist.useslim.getValue():
 			self.skinName = ["MovieSelectionSlim","MovieSelection"]
 		else:
 			self.skinName = "MovieSelection"
 		HelpableScreen.__init__(self)
-		InfoBarBase.__init__(self) # For ServiceEventTracker
+		if not timeshiftEnabled:
+			InfoBarBase.__init__(self) # For ServiceEventTracker
 		self.initUserDefinedActions()
 		self.tags = {}
 		if selectedmovie:
@@ -1158,7 +1160,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		from Screens.InfoBar import InfoBar
 		infobar = InfoBar.instance
 		if self.session.nav.getCurrentlyPlayingServiceReference():
-			if not infobar.timeshift_enabled and self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') == -1:
+			if not infobar.timeshiftEnabled and self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') == -1:
 				self.session.nav.stopService()
 		self.close(None)
 
@@ -1809,6 +1811,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def showNetworkMounts(self):
 		import NetworkSetup
 		self.session.open(NetworkSetup.NetworkMountsMenu)
+
+	def showDeviceMounts(self):
+		import Plugins.SystemPlugins.ViX.MountManager
+		self.session.open(Plugins.SystemPlugins.ViX.MountManager.VIXDevicesPanel)
 
 	def showActionFeedback(self, text):
 		if self.feedbackTimer is None:

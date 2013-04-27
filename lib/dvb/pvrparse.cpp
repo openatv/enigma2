@@ -1142,18 +1142,19 @@ void eMPEGStreamParserTS::addAccessPoint(off_t offset, pts_t pts, timespec &now,
 	m_last_access_point = now;
 }
 
-void eMPEGStreamParserTS::setPid(int _pid, int type)
+void eMPEGStreamParserTS::setPid(int _pid, iDVBTSRecorder::timing_pid_type pidtype, int streamtype)
 {
 	m_pktptr = 0;
 	/*
-	 * Currently, eMPEGStreamParserTS can only parse mpeg2 (type 0) and h264 (type 1).
-	 * Do not try to parse other stream types, which might lead to false hits,
+	 * Currently, eMPEGStreamParserTS can only parse video, mpeg2 (streamtype 0) and h264 (streamtype 1).
+	 * Also, streamtype -1 should be accepted, which will cause the streamtype to be autodetected.
+	 * Do not try to parse audio pids, which might lead to false hits,
 	 * and waste cpu time.
 	 */
-	if (type >= 0 && type <= 1)
+	if (pidtype == iDVBTSRecorder::video_pid && streamtype < 2)
 	{
 		m_pid = _pid;
-		m_streamtype = type;
+		m_streamtype = streamtype;
 	}
 	else
 	{
