@@ -125,6 +125,24 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+#if KEY_POWER2_TO_KEY_WWW
+	if (ev->code == KEY_POWER2)
+	{
+		/* Venton rc has a a Key WWW and send KEY_POWER2. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_WWW;
+		
+	}
+#endif
+
+#if KEY_DIRECTORY_TO_KEY_FILE
+	if (ev->code == KEY_DIRECTORY)
+	{
+		/* Venton rc has a a KEY_DIRECTORY and send KEY_FILE. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_FILE;
+		
+	}
+#endif
+
 #if KEY_OPTION_TO_KEY_PC
 	if (ev->code == KEY_OPTION)
 	{
