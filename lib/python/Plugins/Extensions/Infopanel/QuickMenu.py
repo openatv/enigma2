@@ -67,6 +67,12 @@ if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/AutoResolution/plu
 else:
 	AUTORES = False
 
+if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
+	from Plugins.Extensions.dFlash.plugin import dFlash
+	DFLASH = True
+else:
+	DFLASH = False
+
 def isFileSystemSupported(filesystem):
 	try:
 		for fs in open('/proc/filesystems', 'r'):
@@ -455,7 +461,10 @@ class QuickMenu(Screen):
 			#self.session.open(UpdatePlugin)
 			self.session.open(SoftwarePanel)
 		elif item[0] == _("Complete Backup"):
-			self.session.open(ImageBackup)
+			if DFLASH == True:
+				self.session.open(dFlash)
+			else:
+				self.session.open(ImageBackup)
 		elif item[0] == _("Backup Settings"):
 			self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
 		elif item[0] == _("Restore Settings"):
