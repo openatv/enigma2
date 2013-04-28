@@ -939,7 +939,7 @@ class InfoBarChannelSelection:
 		elif config.usage.historymode.getValue() == "0":
 			self.servicelist.historyBack()
 		else:
-			self.historyZap(-1)
+			self.servicelist.historyZap(-1)
 
 	def historyNext(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
@@ -956,43 +956,7 @@ class InfoBarChannelSelection:
 		elif config.usage.historymode.getValue() == "0":
 			self.servicelist.historyNext()
 		else:
-			self.historyZap(+1)
-
-	def historyClear(self):
-		if self and self.servicelist:
-			for i in range(0, len(self.servicelist.history)-1):
-				del self.servicelist.history[0]
-			self.servicelist.history_pos = len(self.servicelist.history)-1
-			return True
-		return False
-
-	def historyZap(self, direction):
-		hlen = len(self.servicelist.history)
-		if hlen < 1: return
-		mark = self.servicelist.history_pos
-		selpos = self.servicelist.history_pos + direction
-		if selpos < 0: selpos = 0
-		if selpos > hlen-1: selpos = hlen-1
-		serviceHandler = eServiceCenter.getInstance()
-		historylist = [ ]
-		for x in self.servicelist.history:
-			info = serviceHandler.info(x[-1])
-			if info: historylist.append((info.getName(x[-1]), x[-1]))
-		self.session.openWithCallback(self.historyMenuClosed, HistoryZapSelector, historylist, selpos, mark, invert_items=True, redirect_buttons=True, wrap_around=True)
-
-	def historyMenuClosed(self, retval):
-		if not retval: return
-		hlen = len(self.servicelist.history)
-		pos = 0
-		for x in self.servicelist.history:
-			if x[-1] == retval: break
-			pos += 1
-		if pos < hlen and pos != self.servicelist.history_pos:
-			tmp = self.servicelist.history[pos]
-			self.servicelist.history.append(tmp)
-			del self.servicelist.history[pos]
-			self.servicelist.history_pos = hlen-1
-			self.servicelist.setHistoryPath()
+			self.servicelist.historyZap(+1)
 
 	def switchChannelUp(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
@@ -4961,65 +4925,3 @@ class InfoBarZoom:
 		f = open("/proc/stb/vmpeg/0/zoomrate", "w")
 		f.write(str(0))
 		f.close()
-
-class HistoryZapSelector(Screen):
-	def __init__(self, session, items=[], sel_item=0, mark_item=0, invert_items=False, redirect_buttons=False, wrap_around=True):
-		Screen.__init__(self, session)
-		self.redirectButton = redirect_buttons
-		self.invertItems = invert_items
-		if self.invertItems:
-			self.currentPos = len(items) - sel_item - 1
-		else:
-			self.currentPos = sel_item
-		self["actions"] = ActionMap(["OkCancelActions", "InfobarCueSheetActions"],
-			{
-				"ok": self.okbuttonClick,
-				"cancel": self.cancelClick,
-				"jumpPreviousMark": self.prev,
-				"jumpNextMark": self.next,
-				"toggleMark": self.okbuttonClick,
-			})
-		self.setTitle(_("History zap..."))
-		self.list = []
-		cnt = 0
-		for x in items:
-			if self.invertItems:
-				self.list.insert(0, (x[1], cnt == mark_item and "»" or "", x[0]))
-			else:
-				self.list.append((x[1], cnt == mark_item and "»" or "", x[0]))
-			cnt += 1
-		self["menu"] = List(self.list, enableWrapAround=wrap_around)
-		self.onShown.append(self.__onShown)
-
-	def __onShown(self):
-		self["menu"].index = self.currentPos
-
-	def prev(self):
-		if self.redirectButton:
-			self.down()
-		else:
-			self.up()
-
-	def next(self):
-		if self.redirectButton:
-			self.up()
-		else:
-			self.down()
-
-	def up(self):
-		self["menu"].selectPrevious()
-
-	def down(self):
-		self["menu"].selectNext()
-
-	def getCurrent(self):
-		cur = self["menu"].current
-		return cur and cur[0]
-
-	def okbuttonClick(self):
-		self.close(self.getCurrent())
-
-	def cancelClick(self):
-		self.close(None)
-
-
