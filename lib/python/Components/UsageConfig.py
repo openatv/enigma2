@@ -145,7 +145,7 @@ def InitUsageConfig():
 		("show_menu", _("Show shutdown menu")),
 		("shutdown", _("Immediate shutdown")),
 		("standby", _("Standby")) ] )
-
+		
 	choicelist = [("0", "Disabled")]
 	for i in (5, 30, 60, 300, 600, 900, 1200, 1800, 2700, 3600):
 		if i < 60:
@@ -383,8 +383,6 @@ def InitUsageConfig():
 	config.timeshift = ConfigSubsection()
 	config.timeshift.pauzekeyenabled = ConfigYesNo(default = True)
 	config.timeshift.enabled = ConfigYesNo(default = False)
-	config.timeshift.maxevents = ConfigSelectionNumber(min = 1, max = 99, stepwidth = 1, default = 5, wraparound = True)
-	config.timeshift.maxlength = ConfigSelectionNumber(min = 30, max = 999, stepwidth = 10, default = 360, wraparound = True)
 	config.timeshift.startdelay = ConfigSelectionNumber(min = 5, max = 60, stepwidth = 1, default = 5, wraparound = True)
 	config.timeshift.showinfobar = ConfigYesNo(default = True)
 	config.timeshift.stopwhilerecording = ConfigYesNo(default = False)

@@ -236,8 +236,10 @@
 	</map>
 
 	<map context="InfobarAudioSelectionActions">
+		<device name="dreambox advanced remote control (native)">
+			<key id="KEY_YELLOW" mapto="audioSelection" flags="m" />
+		</device>
 		<key id="KEY_AUDIO" mapto="audio_key" flags="m" />
-		<key id="KEY_YELLOW" mapto="audioSelection" flags="m" />
 		<key id="KEY_OPTION" mapto="audioSelection" flags="m" />
 	</map>
 
@@ -327,19 +329,19 @@
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_PREVIOUSSONG" mapto="seekBack" flags="b" />
 			<key id="KEY_NEXTSONG" mapto="seekFwd" flags="b" />
-			<key id="KEY_PREVIOUSSONG" mapto="seekBackManual" flags="l" />
-			<key id="KEY_NEXTSONG" mapto="seekFwdManual" flags="l" />
+			<key id="KEY_PREVIOUSSONG" mapto="SeekbarBack" flags="l" />
+			<key id="KEY_NEXTSONG" mapto="SeekbarFwd" flags="l" />
 		</device>
-
-		<key id="KEY_YELLOW" mapto="pauseService" flags="b" />
-		<key id="KEY_GREEN" mapto="unPauseService" flags="b" />
-		<key id="KEY_RED" mapto="seekBack" flags="b" />
-		<key id="KEY_BLUE" mapto="seekFwd" flags="b" />
-		<key id="KEY_RED" mapto="seekBackManual" flags="l" />
-		<key id="KEY_BLUE" mapto="seekFwdManual" flags="l" />
-
+		<device name="dreambox remote control (native)">
+			<key id="KEY_YELLOW" mapto="pauseService" flags="b" />
+			<key id="KEY_GREEN" mapto="playpauseService" flags="b" />
+			<key id="KEY_RED" mapto="seekBack" flags="b" />
+			<key id="KEY_BLUE" mapto="seekFwd" flags="b" />
+			<key id="KEY_RED" mapto="SeekbarBack" flags="l" />
+			<key id="KEY_BLUE" mapto="SeekbarFwd" flags="l" />
+		</device>
 		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m" />
-		<key id="KEY_PAUSE" mapto="playpauseService" flags="m" />
+		<key id="KEY_PAUSE" mapto="pauseService" flags="m" />
 		<key id="KEY_PLAY" mapto="playpauseService" flags="m" />
 		<key id="KEY_REWIND" mapto="seekBack" flags="b" />
 		<key id="KEY_FASTFORWARD" mapto="seekFwd" flags="b" />
@@ -434,6 +436,8 @@
 		<key id="KEY_STOP" mapto="timeshiftStop" flags="m" />
 		<key id="KEY_TIME" mapto="timeshiftStart" flags="m" />
 		<key id="KEY_RECORD" mapto="instantRecord" flags="m" />
+		<key id="KEY_PREVIOUS" mapto="jumpPreviousFile" flags="m" />
+		<key id="KEY_NEXT" mapto="jumpNextFile" flags="m" />
 		<key id="KEY_STOP" mapto="instantRecord" flags="l" />
 	</map>
 
@@ -566,6 +570,9 @@
 		<key id="KEY_I" mapto="info" flags="b"/>
 		<key id="KEY_INFO" mapto="info" flags="b"/>
 		<key id="KEY_INFO" mapto="infolong" flags="l"/>
+		<key id="KEY_EPG" mapto="epg" flags="b"/>
+		<key id="KEY_TV" mapto="tv" flags="b"/>
+		<key id="KEY_TV" mapto="tvlong" flags="l"/>
 	</map>
 
 	<map context="EventViewActions">

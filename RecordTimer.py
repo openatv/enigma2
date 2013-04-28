@@ -713,7 +713,6 @@ class RecordTimer(timer.Timer):
 			file.write(x)
 		file.flush()
 
-		import os
 		os.fsync(file.fileno())
 		file.close()
 		os.rename(self.Filename + ".writing", self.Filename)

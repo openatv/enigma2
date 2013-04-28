@@ -63,7 +63,6 @@ class AutoDiseqc(Screen, ConfigListScreen):
 	SAT_TABLE_NAME = 12
 
 	def __init__(self, session, feid, nr_of_ports, simple_tone, simple_sat_change):
-		self.skin = AutoDiseqc.skin
 		Screen.__init__(self, session)
 
 		self["statusbar"] = StaticText(" ")
