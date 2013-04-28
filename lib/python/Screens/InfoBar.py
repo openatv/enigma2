@@ -221,8 +221,9 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		self["key_blue"] = Label()
 		self["key_green"] = Label()
 
-		self["state"] = Label(text="")
-		self["speed"] = Label(text="")
+		self["eventname"] = Label()
+		self["state"] = Label()
+		self["speed"] = Label()
 		self["statusicon"] = MultiPixmap()
 
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
