@@ -366,6 +366,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		Screen.__init__(self, session)
 		InfoBarAspectSelection.__init__(self)
 		InfoBarAudioSelection.__init__(self)
+		self.pts_pvrStateDialog = ""
 
 		self["key_yellow"] = Label()
 		self["key_blue"] = Label()
