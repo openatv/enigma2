@@ -2066,17 +2066,16 @@ class InfoBarPVRState:
 			self.startHideTimer()
 
 	def __playStateChanged(self, state):
-		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState":
-			try:
-				print '!!!!! __playStateChanged'
-				print '!!!!! self.pts_currplaying:',self.pts_currplaying
-				readmetafile = open("%spts_livebuffer.%s.meta" % (config.usage.timeshift_path.getValue(),self.pts_currplaying), "r")
-				servicerefname = readmetafile.readline()[0:-1]
-				eventname = readmetafile.readline()[0:-1]
-				readmetafile.close()
-				self.pvrStateDialog["eventname"].setText(eventname)
-			except Exception, errormsg:
-				self.pvrStateDialog["eventname"].setText("")
+		try:
+			print '!!!!! __playStateChanged'
+			print '!!!!! self.pts_currplaying:',self.pts_currplaying
+			readmetafile = open("%spts_livebuffer.%s.meta" % (config.usage.timeshift_path.getValue(),self.pts_currplaying), "r")
+			servicerefname = readmetafile.readline()[0:-1]
+			eventname = readmetafile.readline()[0:-1]
+			readmetafile.close()
+			self.pvrStateDialog["eventname"].setText(eventname)
+		except Exception, errormsg:
+			self.pvrStateDialog["eventname"].setText("")
 
 		playstateString = state[3]
 		state_summary = playstateString
