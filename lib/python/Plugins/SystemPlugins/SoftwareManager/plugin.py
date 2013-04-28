@@ -44,6 +44,12 @@ from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScr
 from SoftwareTools import iSoftwareTools
 import os
 
+if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
+	from Plugins.Extensions.dFlash.plugin import dFlash
+	DFLASH = True
+else:
+	DFLASH = False
+
 config.plugins.configurationbackup = ConfigSubsection()
 if getBoxType() == "odinm9" :
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
@@ -286,7 +292,10 @@ class UpdatePluginMenu(Screen):
 				elif (currentEntry == "install-extensions"):
 					self.session.open(PluginManager, self.skin_path)
 				elif (currentEntry == "backup-image"):
-					self.session.open(ImageBackup)
+					if DFLASH == True:
+						self.session.open(dFlash)
+					else:
+						self.session.open(ImageBackup)
 				elif (currentEntry == "system-backup"):
 					self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
 				elif (currentEntry == "system-restore"):
