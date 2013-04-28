@@ -234,8 +234,6 @@
 	<setup key="timeshift" title="Timeshift settings">
 		<item level="1" text="Show warning when timeshift is stopped" description="When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift.">config.usage.check_timeshift</item>
 		<item level="1" text="Permanent Timeshift enable" description="Enable or disable Permanent Timeshift. When activated, you can wind back until the time you zapped to a channel, and you can make recordings in retrospect.">config.timeshift.enabled</item>
-		<item level="2" text="Permanent Timeshift max events" description="Set the maximum number of events (programs) that timeshift may handle." requires="config.timeshift.enabled">config.timeshift.maxevents</item>
-		<item level="2" text="Permanent Timeshift max length" description="Set the maximum length a timeshift file may be." requires="config.timeshift.enabled">config.timeshift.maxlength</item>
 		<item level="2" text="Permanent Timeshift start delay" description="Timeshift will only start when the start delay time has passed. This prevents numurous very short files when zapping." requires="config.timeshift.enabled">config.timeshift.startdelay</item>
 		<item level="2" text="Timeshift-save action on zap" description="Select if timeshift must continue when set to record." requires="config.timeshift.enabled">config.timeshift.favoriteSaveAction</item>
 		<item level="2" text="Stop timeshift while recording?" description="Set what the required action must be when zapping while a timeshift has been set as recording." requires="config.timeshift.enabled">config.timeshift.stopwhilerecording</item>
