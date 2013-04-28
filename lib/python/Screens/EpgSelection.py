@@ -197,6 +197,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self['epgcursoractions'].csel = self
 			self['input_actions'] = HelpableNumberActionMap(self, 'NumberActions', 
 				{
+					'0': (self.keyNumberGlobal, _('enter number to jump to channel.')),
 					'1': (self.keyNumberGlobal, _('enter number to jump to channel.')),
 					'2': (self.keyNumberGlobal, _('enter number to jump to channel.')),
 					'3': (self.keyNumberGlobal, _('enter number to jump to channel.')),
