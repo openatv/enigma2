@@ -51,8 +51,8 @@ public:
 		celFolderPixmap,
 		celServiceEventProgressbar,
 		celServiceName,
-		celServiceTypePixmap,
 		celServiceInfo, // "now" event
+		celServiceTypePixmap,
 		celElements
 	};
 
@@ -60,6 +60,7 @@ public:
 		picDVB_S,
 		picDVB_T,
 		picDVB_C,
+		picStream,
 		picServiceGroup,
 		picFolder,
 		picMarker,
@@ -78,6 +79,7 @@ public:
 	int getItemHeight() { return m_itemheight; }
 	void setItemHeight(int height);
 	void setHideNumberMarker(bool doHide);
+	void setServiceTypeIconMode(int mode);
 
 	enum {
 		markedForeground,
@@ -150,6 +152,7 @@ private:
 
 	int m_itemheight;
 	bool m_hide_number_marker;
+	int m_servicetype_icon_mode;
 };
 
 #endif

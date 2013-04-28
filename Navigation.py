@@ -30,7 +30,9 @@ class Navigation:
 		self.currentlyPlayingServiceOrGroup = None
 		self.currentlyPlayingService = None
 		self.RecordTimer = RecordTimer.RecordTimer()
+		self.__wasTimerWakeup = False
 		if getFPWasTimerWakeup():
+			self.__wasTimerWakeup = True
 			if nextRecordTimerAfterEventActionAuto:
 				# We need to give the system the chance to fully startup, 
 				# before we initiate the standby command.
@@ -43,6 +45,9 @@ class Navigation:
 				self.recordshutdowntimer = eTimer()
 				self.recordshutdowntimer.callback.append(self.checkShutdownAfterRecording)
 				self.recordshutdowntimer.start(30000, True)
+
+	def wasTimerWakeup(self):
+		return self.__wasTimerWakeup
 
 	def gotostandby(self):
 		from Tools import Notifications

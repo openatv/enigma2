@@ -436,7 +436,7 @@ class InfoBarNumberZap:
 			else:
 				self.servicelist.recallPrevService()
 		else:
-			if self.has_key("TimeshiftActions") and self.timeshift_enabled:
+			if self.has_key("TimeshiftActions") and self.timeshiftEnabled():
 				ts = self.getTimeshift()
 				if ts and ts.isTimeshiftActive():
 					return
@@ -1151,7 +1151,7 @@ class InfoBarSeek:
 		return seek
 
 	def isSeekable(self):
-		if self.getSeek() is None or (isStandardInfoBar(self) and not self.timeshift_enabled):
+		if self.getSeek() is None or (isStandardInfoBar(self) and not self.timeshiftEnabled()):
 			return False
 		return True
 
@@ -1441,7 +1441,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		self.__hideTimer.callback.append(self.__hideTimeshiftState)
 
 	def _mayShow(self):
-		if self.execing and self.timeshift_enabled:
+		if self.execing and self.timeshiftEnabled():
 			self.pvrStateDialog.show()
 			if self.seekstate == self.SEEK_STATE_PLAY and not self.shown:
 				self.__hideTimer.start(5*1000, True)
@@ -1503,15 +1503,10 @@ class InfoBarTimeshift:
 				"timeshiftActivateEndAndPause": self.activateTimeshiftEndAndPause  # something like "pause key"
 			}, prio=-1) # priority over record
 
-		self.timeshift_enabled = False
-		self.save_timeshift_file = False
-		self.save_timeshift_in_movie_dir = False
-		self.current_timeshift_filename = ""
-		self.new_timeshift_filename = ""
-
 		self["TimeshiftActivateActions"].setEnabled(False)
 		self.ts_rewind_timer = eTimer()
 		self.ts_rewind_timer.callback.append(self.rewindService)
+		self.save_timeshift_file = False
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -1524,6 +1519,10 @@ class InfoBarTimeshift:
 		service = self.session.nav.getCurrentService()
 		return service and service.timeshift()
 
+	def timeshiftEnabled(self):
+		ts = self.getTimeshift()
+		return ts and ts.isTimeshiftEnabled()
+
 	def startTimeshift(self):
 		print "enable timeshift"
 		ts = self.getTimeshift()
@@ -1532,12 +1531,10 @@ class InfoBarTimeshift:
 			print "no ts interface"
 			return 0
 
-		if self.timeshift_enabled:
+		if ts.isTimeshiftEnabled():
 			print "hu, timeshift already enabled?"
 		else:
 			if not ts.startTimeshift():
-				self.timeshift_enabled = True
-
 				# we remove the "relative time" for now.
 				#self.pvrStateDialog["timeshift"].setRelative(time.time())
 
@@ -1550,25 +1547,24 @@ class InfoBarTimeshift:
 				self.__seekableStatusChanged()
 
 				# get current timeshift filename and calculate new
+				self.save_timeshift_file = False
+				self.save_timeshift_in_movie_dir = False
 				self.current_timeshift_filename = ts.getTimeshiftFilename()
 				self.new_timeshift_filename = self.generateNewTimeshiftFileName()
 			else:
 				print "timeshift failed"
 
 	def stopTimeshift(self):
-		if not self.timeshift_enabled:
-			return 0
 		ts = self.getTimeshift()
-		if ts is None:
+		if ts and ts.isTimeshiftEnabled():
+			self.checkTimeshiftRunning(self.stopTimeshiftcheckTimeshiftRunningCallback)
+		else:
 			return 0
-		self.checkTimeshiftRunning(boundFunction(self.stopTimeshiftcheckTimeshiftRunningCallback, ts))
 
-	def stopTimeshiftcheckTimeshiftRunningCallback(self, ts, answer):
-		if answer:
-			self.saveTimeshiftFiles()
+	def stopTimeshiftcheckTimeshiftRunningCallback(self, answer):
+		ts = self.getTimeshift()
+		if answer and ts:
 			ts.stopTimeshift()
-			self.timeshift_enabled = False
-			self.save_timeshift_file = False
 			self.pvrStateDialog.hide()
 
 			# disable actions
@@ -1632,34 +1628,50 @@ class InfoBarTimeshift:
 		self.activateTimeshiftEnd(False)
 
 	def __seekableStatusChanged(self):
-		self["TimeshiftActivateActions"].setEnabled(not self.isSeekable() and self.timeshift_enabled)
-		state = self.getSeek() is not None and self.timeshift_enabled
+		self["TimeshiftActivateActions"].setEnabled(not self.isSeekable() and self.timeshiftEnabled())
+		state = self.getSeek() is not None and self.timeshiftEnabled()
 		self["SeekActions"].setEnabled(state)
 		if not state:
 			self.setSeekState(self.SEEK_STATE_PLAY)
+			self.restartSubtitle()
 
 	def __serviceStarted(self):
 		self.pvrStateDialog.hide()
-		self.timeshift_enabled = False
-		self.save_timeshift_file = False
-		self.save_timeshift_in_movie_dir = False
-		self.current_timeshift_filename = ""
-		self.new_timeshift_filename = ""
 		self.__seekableStatusChanged()
 
 	def checkTimeshiftRunning(self, returnFunction):
-		if self.timeshift_enabled and config.usage.check_timeshift.value:
-			self.session.openWithCallback(returnFunction, MessageBox, _("Stop timeshift?"), simple = True)
+		if self.timeshiftEnabled() and config.usage.check_timeshift.value:
+			message = _("Stop timeshift?")
+			if not self.save_timeshift_file:
+				choice = [(_("yes"), "stop"), (_("no"), "continue"), (_("Yes and save"), "save"), (_("Yes and save in movie dir"), "save_movie")]
+			else:
+				choice = [(_("yes"), "stop"), (_("no"), "continue")]
+				message += "\n" + _("Reminder, you have chosen to save timeshift file.")
+			self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice)
 		else:
 			returnFunction(True)
+
+	def checkTimeshiftRunningCallback(self, returnFunction, answer):
+		if answer:
+			if "movie" in answer:
+				self.save_timeshift_in_movie_dir = True
+			if "save" in answer:
+				self.save_timeshift_file = True
+				ts = self.getTimeshift()
+				if ts:
+					ts.saveTimeshiftFile()
+					del ts
+			if "continue" not in answer:
+				self.saveTimeshiftFiles()
+		returnFunction(answer and answer != "continue")
 
 	# renames/moves timeshift files if requested
 	def __serviceEnd(self):
 		self.saveTimeshiftFiles()
 
 	def saveTimeshiftFiles(self):
-		if self.timeshift_enabled and self.save_timeshift_file and self.current_timeshift_filename != "" and self.new_timeshift_filename != "":
-			if config.usage.timeshift_path.value is not None and not self.save_timeshift_in_movie_dir:
+		if self.save_timeshift_file and self.current_timeshift_filename and self.new_timeshift_filename:
+			if config.usage.timeshift_path.value and not self.save_timeshift_in_movie_dir:
 				dirname = config.usage.timeshift_path.value
 			else:
 				dirname = defaultMoviePath()
@@ -1673,7 +1685,7 @@ class InfoBarTimeshift:
 				fileList.append((self.current_timeshift_filename + ".cuts", filename + ".cuts"))
 
 			moveFiles(fileList)
-
+			self.save_timeshift_file = False
 
 from Screens.PiPSetup import PiPSetup
 
@@ -2010,6 +2022,9 @@ class InfoBarInstantRecord:
 				self.setEndtime(0)
 			else:
 				self.session.openWithCallback(self.setEndtime, TimerSelection, list)
+		elif answer[1] == "timer":
+			import TimerEdit
+			self.session.open(TimerEdit.TimerEditList)
 		elif answer[1] == "stop":
 			self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
 		elif answer[1] in ( "indefinitely" , "manualduration", "manualendtime", "event"):
@@ -2018,12 +2033,12 @@ class InfoBarInstantRecord:
 				self.changeDuration(len(self.recording)-1)
 			elif answer[1] == "manualendtime":
 				self.setEndtime(len(self.recording)-1)
-		elif answer[1] in ("timeshift", "timeshift_movie"):
+		elif "timeshift" in answer[1]:
 			ts = self.getTimeshift()
-			if ts is not None:
+			if ts:
 				ts.saveTimeshiftFile()
 				self.save_timeshift_file = True
-				if answer[1] == "timeshift_movie":
+				if "movie" in answer[1]:
 					self.save_timeshift_in_movie_dir = True
 		print "after:\n", self.recording
 
@@ -2057,6 +2072,17 @@ class InfoBarInstantRecord:
 			entry.end = int(time()) + 60 * int(value)
 			self.session.nav.RecordTimer.timeChanged(entry)
 
+	def isTimerRecordRunning(self):
+		identical = timers = 0
+		for timer in self.session.nav.RecordTimer.timer_list:
+			if timer.isRunning() and not timer.justplay:
+				timers += 1
+				if self.recording:
+					for x in self.recording:
+						if x.isRunning() and x == timer:
+							identical += 1
+		return timers > identical
+
 	def instantRecord(self):
 		pirr = preferredInstantRecordPath()
 		if not findSafeRecordPath(pirr) and not findSafeRecordPath(defaultMoviePath()):
@@ -2074,12 +2100,17 @@ class InfoBarInstantRecord:
 			title =_("A recording is currently running.\nWhat do you want to do?")
 			list = ((_("Stop recording"), "stop"),) + common + \
 			((_("Change recording (duration)"), "changeduration"),
-			(_("Change recording (endtime)"), "changeendtime"),
-			(_("Do nothing"), "no"),)
+			(_("Change recording (endtime)"), "changeendtime"),)
+			if self.isTimerRecordRunning():
+				list += ((_("Stop timer recording"), "timer"),)
+			list += ((_("Do nothing"), "no"),)
 		else:
 			title=_("Start recording?")
-			list = common + ((_("Do not record"), "no"),)
-		if self.timeshift_enabled:
+			list = common
+			if self.isTimerRecordRunning():
+				list += ((_("Stop timer recording"), "timer"),)
+			list += ((_("Do not record"), "no"),)
+		if self.timeshiftEnabled():
 			list = list + ((_("Save timeshift file"), "timeshift"),
 			(_("Save timeshift file in movie directory"), "timeshift_movie"))
 		self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox,title=title,list=list)
@@ -2655,65 +2686,51 @@ class InfoBarSubtitleSupport(object):
 				"subtitleSelection": (self.subtitleSelection, _("Subtitle selection...")),
 			})
 
+		self.selected_subtitle = None
 		self.subtitle_window = self.session.instantiateDialog(SubtitleDisplay)
-		self.__subtitles_enabled = False
+		self.subtitle_window.hide()
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evEnd: self.__serviceStopped,
 				iPlayableService.evUpdatedInfo: self.__updatedInfo
 			})
-		self.__selected_subtitle = None
-
-	def subtitleSelection(self):
-		service = self.session.nav.getCurrentService()
-		subtitle = service and service.subtitle()
-		subtitlelist = subtitle and subtitle.getSubtitleList()
-		if self.__subtitles_enabled or subtitlelist and len(subtitlelist)>0:
-			from Screens.AudioSelection import SubtitleSelection
-			self.session.open(SubtitleSelection, self)
-
-	def __serviceStopped(self):
-		if self.__subtitles_enabled:
-			self.subtitle_window.hide()
-			self.__subtitles_enabled = False
-			self.__selected_subtitle = None
-
-	def __updatedInfo(self):
-		subtitle = self.getCurrentServiceSubtitle()
-		cachedsubtitle = subtitle.getCachedSubtitle()
-		if subtitle and cachedsubtitle:
-			if self.__selected_subtitle and self.__subtitles_enabled and cachedsubtitle != self.__selected_subtitle:
-				subtitle.disableSubtitles(self.subtitle_window.instance)
-				self.subtitle_window.hide()
-				self.__subtitles_enabled = False
-			self.setSelectedSubtitle(cachedsubtitle)
-			self.setSubtitlesEnable(True)
 
 	def getCurrentServiceSubtitle(self):
 		service = self.session.nav.getCurrentService()
 		return service and service.subtitle()
 
-	def setSubtitlesEnable(self, enable=True):
+	def subtitleSelection(self):
 		subtitle = self.getCurrentServiceSubtitle()
-		if enable:
-			if self.__selected_subtitle:
-				if subtitle and not self.__subtitles_enabled:
-					subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
-					self.subtitle_window.show()
-					self.__subtitles_enabled = True
+		subtitlelist = subtitle and subtitle.getSubtitleList()
+		if self.selected_subtitle or subtitlelist and len(subtitlelist)>0:
+			from Screens.AudioSelection import SubtitleSelection
+			self.session.open(SubtitleSelection, self)
+
+	def __serviceStopped(self):
+		self.selected_subtitle = None
+		self.subtitle_window.hide()
+
+	def __updatedInfo(self):
+		subtitle = self.getCurrentServiceSubtitle()
+		cachedsubtitle = subtitle.getCachedSubtitle()
+		if cachedsubtitle:
+			self.enableSubtitle(cachedsubtitle)
+
+	def enableSubtitle(self, selectedSubtitle):
+		subtitle = self.getCurrentServiceSubtitle()
+		self.selected_subtitle = selectedSubtitle
+		if subtitle and self.selected_subtitle:
+			subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
+			self.subtitle_window.show()
 		else:
-			if subtitle and self.__subtitles_enabled:
+			if subtitle:
 				subtitle.disableSubtitles(self.subtitle_window.instance)
-			self.__selected_subtitle = False
-			self.__subtitles_enabled = False
 			self.subtitle_window.hide()
 
-	def setSelectedSubtitle(self, subtitle):
-		self.__selected_subtitle = subtitle
-
-	subtitles_enabled = property(lambda self: self.__subtitles_enabled, setSubtitlesEnable)
-	selected_subtitle = property(lambda self: self.__selected_subtitle, setSelectedSubtitle)
+	def restartSubtitle(self):
+		if self.selected_subtitle:
+			self.enableSubtitle(self.selected_subtitle)
 
 class InfoBarServiceErrorPopupSupport:
 	def __init__(self):
@@ -2778,6 +2795,19 @@ class InfoBarPowersaver:
 			self.inactivityTimer.stop()
 
 	def inactivityTimeout(self):
+		if config.usage.inactivity_timer_blocktime.value:
+			curtime = localtime(time())
+			if curtime.tm_year != "1970": #check if the current time is valid
+				curtime = (curtime.tm_hour, curtime.tm_min, curtime.tm_sec)
+				begintime = tuple(config.usage.inactivity_timer_blocktime_begin.value)
+				endtime = tuple(config.usage.inactivity_timer_blocktime_end.value)
+				if begintime <= endtime and (curtime >= begintime and curtime < endtime) or begintime > endtime and (curtime >= begintime or curtime < endtime):
+					duration = (endtime[0]*3600 + endtime[1]*60) - (curtime[0]*3600 + curtime[1]*60 + curtime[2])
+					if duration:
+						if duration < 0:
+							duration += 24*3600
+						self.inactivityTimer.startLongTimer(duration)
+						return
 		if Screens.Standby.inStandby:
 			self.inactivityTimeoutCallback(True)
 		else:

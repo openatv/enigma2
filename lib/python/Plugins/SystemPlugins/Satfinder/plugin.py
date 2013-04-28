@@ -39,6 +39,7 @@ class Satfinder(ScanSetup):
 		}, -3)
 
 		self.initcomplete = True
+		self.oldref = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.onClose.append(self.__onClose)
 		self.onShow.append(self.__onShow)
 
@@ -59,15 +60,14 @@ class Satfinder(ScanSetup):
 		return False
 
 	def __onShow(self):
-		if not self.openFrontend():
-			self.oldref = self.session.nav.getCurrentlyPlayingServiceReference()
+		if self.oldref is not None:
 			self.session.nav.stopService() # try to disable foreground service
-			if not self.openFrontend():
-				if self.session.pipshown: # try to disable pip
-					self.session.pipshown = False
-					del self.session.pip
-					if not self.openFrontend():
-						self.frontend = None # in normal case this should not happen
+		if not self.openFrontend():
+			if self.session.pipshown: # try to disable pip
+				self.session.pipshown = False
+				del self.session.pip
+				if not self.openFrontend():
+					self.frontend = None # in normal case this should not happen
 		self.tuner = Tuner(self.frontend)
 		self.retune(None)
 

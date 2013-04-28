@@ -20,7 +20,7 @@ def enumPlugins(filter_start=''):
 					package = line.split(":",1)[1].strip()
 					version = ''
 					description = ''
-					if package.startswith(filter_start) and not package.endswith('-dev') and not package.endswith('-staticdev') and not package.endswith('-dbg') and not package.endswith('-doc'):
+					if package.startswith(filter_start) and not package.endswith('-dev') and not package.endswith('-staticdev') and not package.endswith('-dbg') and not package.endswith('-doc') and not package.endswith('-src'):
 						continue
 					package = None
 				if package is None:

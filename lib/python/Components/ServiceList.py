@@ -33,19 +33,23 @@ class ServiceList(HTMLComponent, GUIComponent):
 		if pic:
 			self.l.setPixmap(self.l.picMarker, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "ico_dvb_s-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/ico_dvb_s-fs8.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_S, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "ico_dvb_c-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/ico_dvb_c-fs8.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_C, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "ico_dvb_t-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/ico_dvb_t-fs8.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_T, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "ico_service_group-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/ico_stream-fs8.png"))
+		if pic:
+			self.l.setPixmap(self.l.picStream, pic)
+
+		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/ico_service_group-fs8.png"))
 		if pic:
 			self.l.setPixmap(self.l.picServiceGroup, pic)
 
@@ -277,5 +281,4 @@ class ServiceList(HTMLComponent, GUIComponent):
 		if "perc" in config.usage.show_event_progress_in_servicelist.value:
 			self.l.setElementFont(self.l.celServiceEventProgressbar, self.ServiceInfoFont)
 		self.l.setHideNumberMarker(config.usage.hide_number_markers.value)
-
-
+		self.l.setServiceTypeIconMode(int(config.usage.servicetype_icon_mode.value))
