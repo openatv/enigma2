@@ -1730,6 +1730,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.delhistpoint = self.history_pos+1
 
 	def historyNext(self):
+		self.delhistpoint = None
 		hlen = len(self.history)
 		if hlen > 1 and self.history_pos < hlen - 1:
 			self.history_pos += 1
