@@ -1,3 +1,3 @@
-installdir = $(datadir)/pic
+installdir = $(pkglibdir)/python/Plugins/Extensions/MovieBrowser/pic
 
-dist_install_DATA = *.png
+install_DATA = *.png
