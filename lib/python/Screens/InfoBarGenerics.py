@@ -2316,17 +2316,6 @@ class InfoBarPVRState:
 			self.startHideTimer()
 
 	def __playStateChanged(self, state):
-		try:
-			print '!!!!! __playStateChanged'
-			print '!!!!! self.pts_currplaying:',self.pts_currplaying
-			readmetafile = open("%spts_livebuffer.%s.meta" % (config.usage.timeshift_path.getValue(),self.pts_currplaying), "r")
-			servicerefname = readmetafile.readline()[0:-1]
-			eventname = readmetafile.readline()[0:-1]
-			readmetafile.close()
-			self.pvrStateDialog["eventname"].setText(eventname)
-		except Exception, errormsg:
-			self.pvrStateDialog["eventname"].setText("")
-
 		playstateString = state[3]
 		state_summary = playstateString
 		self.pvrStateDialog["state"].setText(playstateString)
@@ -2399,6 +2388,7 @@ class InfoBarPVRState:
 class InfoBarTimeshiftState(InfoBarPVRState):
 	def __init__(self):
 		InfoBarPVRState.__init__(self, screen=TimeshiftState, force_show = True)
+		self.onPlayStateChanged.append(self.__timeshiftEventName)
 		self.onHide.append(self.__hideTimeshiftState)
 
 	def _mayShow(self):
@@ -2454,6 +2444,18 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 				self["TimeshiftActivateActions"].setEnabled(True)
 				self["SeekActions"].setEnabled(False)
 		self.pvrStateDialog.hide()
+
+	def __timeshiftEventName(self,state):
+		try:
+			print '!!!!! __timeshiftEventName'
+			print '!!!!! self.pts_currplaying:',self.pts_currplaying
+			readmetafile = open("%spts_livebuffer.%s.meta" % (config.usage.timeshift_path.getValue(),self.pts_currplaying), "r")
+			servicerefname = readmetafile.readline()[0:-1]
+			eventname = readmetafile.readline()[0:-1]
+			readmetafile.close()
+			self.pvrStateDialog["eventname"].setText(eventname)
+		except Exception, errormsg:
+			self.pvrStateDialog["eventname"].setText("")
 
 class InfoBarShowMovies:
 
@@ -2530,6 +2532,7 @@ class InfoBarTimeshift:
 		self["TimeshiftActions"].setEnabled(False)
 		self["TimeshiftActivateActions"].setEnabled(False)
 		self["TimeshiftSeekPointerActions"].setEnabled(False)
+		self["TimeshiftFileActions"].setEnabled(False)
 
 		self.switchToLive = True
 		self.ts_rewind_timer = eTimer()
@@ -2661,6 +2664,8 @@ class InfoBarTimeshift:
 
 	def stopTimeshift(self):
 		ts = self.getTimeshift()
+		if config.timeshift.enabled.getValue() and self.isSeekable():
+			self.switchToLive = True
 		if ts and ts.isTimeshiftEnabled():
 			self.checkTimeshiftRunning(self.stopTimeshiftcheckTimeshiftRunningCallback)
 		else:
@@ -2668,6 +2673,7 @@ class InfoBarTimeshift:
 
 	def stopTimeshiftcheckTimeshiftRunningCallback(self, answer):
 		if answer and config.timeshift.enabled.getValue() and self.switchToLive and self.isSeekable():
+			self.pts_nextplaying = 0
 			self.pts_switchtolive = True
 			self.setSeekState(self.SEEK_STATE_PLAY)
 			self.ptsSetNextPlaybackFile("")
@@ -3818,7 +3824,7 @@ class InfoBarTimeshift:
 				Notifications.AddNotification(MessageBox,_("Record started! Stopping timeshift now ..."), MessageBox.TYPE_INFO, timeout=5)
 
 			self.switchToLive = True
-			self.stopTimeshift()
+			self.stopTimeshiftcheckTimeshiftRunningCallback(True)
 
 		# Restart Timeshift when all records stopped
 		if timer.state == TimerEntry.StateEnded and not self.timeshiftEnabled() and not self.pts_record_running:
