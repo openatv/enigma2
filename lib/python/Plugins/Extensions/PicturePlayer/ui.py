@@ -21,7 +21,7 @@ config.pic.framesize = ConfigInteger(default=30, limits=(5, 99))
 config.pic.slidetime = ConfigInteger(default=10, limits=(1, 60))
 config.pic.resize = ConfigSelection(default="1", choices = [("0", _("simple")), ("1", _("better"))])
 config.pic.cache = ConfigEnableDisable(default=True)
-config.pic.lastDir = ConfigText(default=resolveFilename(SCOPE_MEDIA))
+config.pic.lastDir = ConfigText(default=resolveFilename(SCOPE_MEDIA, "/photos"))
 config.pic.infoline = ConfigEnableDisable(default=True)
 config.pic.loop = ConfigEnableDisable(default=True)
 config.pic.bgcolor = ConfigSelection(default="#00000000", choices = [("#00000000", _("black")),("#009eb9ff", _("blue")),("#00ff5a51", _("red")), ("#00ffe875", _("yellow")), ("#0038FF48", _("green"))])
@@ -50,22 +50,22 @@ class picshow(Screen):
 		{
 			"cancel": self.KeyExit,
 			"red": self.KeyExit,
-			"green": self.KeyGreen,
+			#"green": self.KeyGreen,
 			"yellow": self.KeyYellow,
-			"blue": self.KeyBlue,
+			#"blue": self.KeyBlue,
 			"ok": self.KeyOk
 		}, -1)
 
-		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Thumbnails"))
+		#self["key_red"] = StaticText(_("Close"))
+		#self["key_green"] = StaticText(_("Thumbnails"))
 		self["key_yellow"] = StaticText("")
-		self["key_blue"] = StaticText(_("Setup"))
+		#self["key_blue"] = StaticText(_("Setup"))
 		self["label"] = StaticText("")
 		self["thn"] = Pixmap()
 
 		currDir = config.pic.lastDir.getValue()
 		if not pathExists(currDir):
-			currDir = "/"
+			currDir = "/media/hdd/"
 
 		self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(jpeg|jpg|jpe|png|bmp|gif)")
 		self["filelist"] = self.filelist
@@ -87,7 +87,7 @@ class picshow(Screen):
 
 		text = picInfo.split('\n',1)
 		self["label"].setText(text[1])
-		self["key_yellow"].setText(_("Exif"))
+		self["key_yellow"].setText(_("Exif Info"))
 
 	def showThumb(self):
 		if not self.filelist.canDescent():
@@ -109,6 +109,7 @@ class picshow(Screen):
 
 	def KeyYellow(self):
 		if not self.filelist.canDescent():
+			print self.filelist.getCurrentDirectory() + self.filelist.getFilename()
 			self.session.open(Pic_Exif, self.picload.getInfo(self.filelist.getCurrentDirectory() + self.filelist.getFilename()))
 
 	def KeyBlue(self):
