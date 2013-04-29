@@ -2530,7 +2530,15 @@ class ItemList(MenuList):
 
 
 class infoScreenMP3Browser(Screen):
-    skin = '\n\t\t\t\t<screen position="center,center" size="425,425" backgroundColor="#FFFFFF" title="MP3 Browser Key Assignment" >\n\t\t\t\t\t<widget name="info" position="0,0" size="425,425" zPosition="1"/>\n\t\t\t\t\t<widget name="greenbutton" position="10,7" size="18,18" alphatest="blend" zPosition="3" />\n\t\t\t\t\t<widget name="yellowbutton" position="10,28" size="18,18" alphatest="blend" zPosition="3" />\n\t\t\t\t\t<widget name="redbutton" position="10,49" size="18,18" alphatest="blend" zPosition="3" />\n\t\t\t\t\t<widget name="bluebutton" position="10,70" size="18,18" alphatest="blend" zPosition="3" />\n\t\t\t\t\t<widget name="label" position="10,5" size="415,420" font="Regular;18" foregroundColor="#6B6B6B" backgroundColor="#FFFFFF" transparent="1" zPosition="2" />\n\t\t\t\t\t<widget name="donate" position="0,72" size="425,350" font="Regular;18" foregroundColor="#6B6B6B" backgroundColor="#FFFFFF" halign="center" valign="center" transparent="1" zPosition="2" />\n\t\t\t\t</screen>'
+    skin = '''<screen position="center,center" size="425,425" backgroundColor="#FFFFFF" title="MP3 Browser Key Assignment" >
+	      <widget name="info" position="0,0" size="425,425" zPosition="1"/>
+	      <widget name="greenbutton" position="10,7" size="18,18" alphatest="blend" zPosition="3" />
+	      <widget name="yellowbutton" position="10,28" size="18,18" alphatest="blend" zPosition="3" />
+	      <widget name="redbutton" position="10,49" size="18,18" alphatest="blend" zPosition="3" />
+	      <widget name="bluebutton" position="10,70" size="18,18" alphatest="blend" zPosition="3" />
+	      <widget name="label" position="10,5" size="415,420" font="Regular;18" foregroundColor="#6B6B6B" backgroundColor="#FFFFFF" transparent="1" zPosition="2" />
+	      <widget name="donate" position="0,72" size="425,350" font="Regular;18" foregroundColor="#6B6B6B" backgroundColor="#FFFFFF" halign="center" valign="center" transparent="1" zPosition="2" />
+	      </screen>'''
 
     def __init__(self, session):
         self.skin = infoScreenMP3Browser.skin
@@ -2555,27 +2563,6 @@ class infoScreenMP3Browser(Screen):
         self.showYellowButton()
         self.showRedButton()
         self.showBlueButton()
-        self.makeVersionTimer = eTimer()
-        self.makeVersionTimer.callback.append(self.download(self.link, self.checkVersion))
-        self.makeVersionTimer.start(500, True)
-
-    def checkVersion(self, output):
-        version = search('<img alt="Version (.*?)"', output)
-        if version is not None:
-            version = version.group(1)
-            if version != self.version:
-                if self.lang == 'de':
-                    self.session.open(MessageBox, '\nwww.kashmir-plugins.de\n\nEine neue Plugin Version ist verf\xc3\xbcgbar:\nMP3 Browser Version %s' % version, MessageBox.TYPE_INFO, timeout=10)
-                elif self.lang == 'es':
-                    self.session.open(MessageBox, '\nwww.kashmir-plugins.de\n\nUna nueva version del plugin esta disponible:\nMP3 Browser version %s' % version, MessageBox.TYPE_INFO, timeout=10)
-                else:
-                    self.session.open(MessageBox, '\nwww.kashmir-plugins.de\n\nA new plugin version is available:\nMP3 Browser version %s' % version, MessageBox.TYPE_INFO, timeout=10)
-            elif self.lang == 'de':
-                self.session.open(MessageBox, '\nwww.kashmir-plugins.de\n\nIhre MP3 Browser Version %s ist aktuell.' % self.version, MessageBox.TYPE_INFO, timeout=10)
-            elif self.lang == 'es':
-                self.session.open(MessageBox, '\nwww.kashmir-plugins.de\n\nSu MP3 Browser version %s esta actualizada.' % self.version, MessageBox.TYPE_INFO, timeout=10)
-            else:
-                self.session.open(MessageBox, '\nwww.kashmir-plugins.de\n\nYour MP3 Browser version %s is up to date.' % self.version, MessageBox.TYPE_INFO, timeout=10)
 
     def download(self, link, name):
         getPage(link).addCallback(name).addErrback(self.downloadError)
@@ -2621,12 +2608,6 @@ class infoScreenMP3Browser(Screen):
                 PNG = loadPic(png, 425, 425, 3, 0, 0, 1)
                 if PNG != None:
                     self['info'].instance.setPixmap(PNG)
-            if self.lang == 'de':
-                self['donate'].setText('www.kashmir-plugins.de\n\nGef\xc3\xa4llt Ihnen das Plugin?\nM\xc3\xb6chten Sie etwas spenden?\nGehen Sie dazu bitte wie folgt vor:\n\n\n\n1. Melden Sie sich bei PayPal an\n2. Klicken Sie auf: Geld senden\n3. Adresse: paypal@kashmir-plugins.de\n4. Betrag: 5 Euro\n5. Weiter\n6. Geld senden\nDanke!')
-            elif self.lang == 'es':
-                self['donate'].setText('www.kashmir-plugins.de\n\nTe gusta el plugin?\nQuieres donar algo?\nPara ello, proceda de la siguiente manera:\n\n\n\n1. Registrese en PayPal\n2. Haga clic en: Enviar dinero\n3. Correo: paypal@kashmir-plugins.de\n4. Importe: 5 Euro\n5. Continuar\n6. Envie dinero\nGracias!')
-            else:
-                self['donate'].setText('www.kashmir-plugins.de\n\nDo you like the plugin?\nDo you want to donate something?\nTo do so, please proceed as follows:\n\n\n\n1. Sign up for PayPal\n2. Click on: Send Money\n3. Address: paypal@kashmir-plugins.de\n4. Amount: 5 Euro\n5. Continue\n6. Send Money\nThank you!')
         else:
             self.close()
 
@@ -2653,6 +2634,8 @@ class mp3BrowserConfig(ConfigListScreen, Screen):
         list.append(getConfigListEntry(_('Play in Background:'), config.plugins.mp3browser.background))
         list.append(getConfigListEntry(_('Reset Database:'), config.plugins.mp3browser.reset))
         ConfigListScreen.__init__(self, list, on_change=self.UpdateComponents)
+        self['key_red'] = Label(_('Cancel'))
+        self['key_green'] = Label(_('Save'))           
         self['actions'] = ActionMap(['SetupActions', 'ColorActions'], {'ok': self.save,
          'cancel': self.cancel,
          'red': self.cancel,
