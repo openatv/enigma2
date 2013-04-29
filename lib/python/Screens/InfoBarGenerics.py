@@ -2408,6 +2408,8 @@ class InfoBarTimeshift:
 
 	def stopTimeshift(self):
 		ts = self.getTimeshift()
+		if config.timeshift.enabled.getValue() and self.isSeekable():
+			self.switchToLive = True
 		if ts and ts.isTimeshiftEnabled():
 			self.checkTimeshiftRunning(self.stopTimeshiftcheckTimeshiftRunningCallback)
 		else:
@@ -2415,6 +2417,7 @@ class InfoBarTimeshift:
 
 	def stopTimeshiftcheckTimeshiftRunningCallback(self, answer):
 		if answer and config.timeshift.enabled.getValue() and self.switchToLive and self.isSeekable():
+			self.pts_nextplaying = 0
 			self.pts_switchtolive = True
 			self.setSeekState(self.SEEK_STATE_PLAY)
 			self.ptsSetNextPlaybackFile("")
@@ -3516,7 +3519,7 @@ class InfoBarTimeshift:
 				Notifications.AddNotification(MessageBox,_("Record started! Stopping timeshift now ..."), MessageBox.TYPE_INFO, timeout=5)
 
 			self.switchToLive = True
-			self.stopTimeshift()
+			self.stopTimeshiftcheckTimeshiftRunningCallback(True)
 
 		# Restart Timeshift when all records stopped
 		if timer.state == TimerEntry.StateEnded and not self.timeshiftEnabled() and not self.pts_record_running:
