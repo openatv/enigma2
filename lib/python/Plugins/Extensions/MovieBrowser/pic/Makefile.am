@@ -1,2 +1,3 @@
-dist_pkgdata_DATA = \
-	*.png
+installdir = $(datadir)/pic
+
+dist_install_DATA = *.png
