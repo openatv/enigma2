@@ -2066,17 +2066,6 @@ class InfoBarPVRState:
 			self.startHideTimer()
 
 	def __playStateChanged(self, state):
-		try:
-			print '!!!!! __playStateChanged'
-			print '!!!!! self.pts_currplaying:',self.pts_currplaying
-			readmetafile = open("%spts_livebuffer.%s.meta" % (config.usage.timeshift_path.getValue(),self.pts_currplaying), "r")
-			servicerefname = readmetafile.readline()[0:-1]
-			eventname = readmetafile.readline()[0:-1]
-			readmetafile.close()
-			self.pvrStateDialog["eventname"].setText(eventname)
-		except Exception, errormsg:
-			self.pvrStateDialog["eventname"].setText("")
-
 		playstateString = state[3]
 		state_summary = playstateString
 		self.pvrStateDialog["state"].setText(playstateString)
@@ -2149,6 +2138,7 @@ class InfoBarPVRState:
 class InfoBarTimeshiftState(InfoBarPVRState):
 	def __init__(self):
 		InfoBarPVRState.__init__(self, screen=TimeshiftState, force_show = True)
+		self.onPlayStateChanged.append(self.__timeshiftEventName)
 		self.onHide.append(self.__hideTimeshiftState)
 
 	def _mayShow(self):
@@ -2204,6 +2194,18 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 				self["TimeshiftActivateActions"].setEnabled(True)
 				self["SeekActions"].setEnabled(False)
 		self.pvrStateDialog.hide()
+
+	def __timeshiftEventName(self,state):
+		try:
+			print '!!!!! __timeshiftEventName'
+			print '!!!!! self.pts_currplaying:',self.pts_currplaying
+			readmetafile = open("%spts_livebuffer.%s.meta" % (config.usage.timeshift_path.getValue(),self.pts_currplaying), "r")
+			servicerefname = readmetafile.readline()[0:-1]
+			eventname = readmetafile.readline()[0:-1]
+			readmetafile.close()
+			self.pvrStateDialog["eventname"].setText(eventname)
+		except Exception, errormsg:
+			self.pvrStateDialog["eventname"].setText("")
 
 class InfoBarShowMovies:
 
@@ -2277,6 +2279,7 @@ class InfoBarTimeshift:
 		self["TimeshiftActions"].setEnabled(False)
 		self["TimeshiftActivateActions"].setEnabled(False)
 		self["TimeshiftSeekPointerActions"].setEnabled(False)
+		self["TimeshiftFileActions"].setEnabled(False)
 
 		self.switchToLive = True
 		self.ts_rewind_timer = eTimer()
