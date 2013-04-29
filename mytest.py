@@ -538,7 +538,13 @@ def runScreenTest():
 			container.execute(cmd)
 		except:
 			evfd.getInstance().vfd_write_string("-E2-")
-		evfd.getInstance().vfd_led(str(1)) 	
+		evfd.getInstance().vfd_led(str(1))
+		
+	if enigma.getBoxType() == 'odinm7':
+		f = open("/dev/dbox/oled0", "w")
+		f.write('-E2-')
+		f.close()
+		
 
 	print config.usage.shutdownOK.getValue()
 	print config.usage.shutdownNOK_action.getValue()
