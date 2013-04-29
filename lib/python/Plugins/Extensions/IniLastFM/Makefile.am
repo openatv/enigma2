@@ -1,3 +1,3 @@
 installdir = $(pkglibdir)/python/Plugins/Extensions/LastFM
 
-install_PYTHON = *.py *.png
+install_PYTHON = *.py
