@@ -1797,12 +1797,14 @@ class MyTubePlayer(MoviePlayer):
 def MyTubeMain(session, **kwargs):
 	session.open(MyTubePlayerMainScreen)
 
+def menu(menuid, **kwargs):
+    if menuid == 'id_mainmenu_movies':
+        return [(_('You Tube'), MyTubeMain, 'id_mainmenu_movies_youtube', 50)]
+    return []
+
 
 def Plugins(path, **kwargs):
 	global plugin_path
-	plugin_path = path
-	return PluginDescriptor(
-		name=_("My TubePlayer"),
-		description=_("Play MyTube movies"),
-		where = [ PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU ],
-		icon = "plugin.png", fnc = MyTubeMain)
+	plugin_path = path  
+	list = [PluginDescriptor(where=PluginDescriptor.WHERE_MENU, fnc=menu)]
+	return list

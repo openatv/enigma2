@@ -1,5 +1,5 @@
 from Components.Harddisk import harddiskmanager
-from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
+from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber, ConfigNumber
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv
 from Components.NimManager import nimmanager
@@ -24,9 +24,6 @@ def InitUsageConfig():
 	config.usage.alternative_number_mode.addNotifier(alternativeNumberModeChange)
 
 	config.usage.panicbutton = ConfigYesNo(default = False)
-	config.usage.servicetype_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])  
-	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
-
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
 
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
@@ -163,7 +160,7 @@ def InitUsageConfig():
 	config.usage.servicenum_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.usage.servicename_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.usage.serviceinfo_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-	config.usage.serviceitems_per_page = ConfigSelectionNumber(default = 16, stepwidth = 1, min = 3, max = 40, wraparound = True)
+	config.usage.serviceitems_per_page = ConfigSelectionNumber(default = 10, stepwidth = 1, min = 3, max = 40, wraparound = True)
 	config.usage.show_servicelist = ConfigYesNo(default = True)
 	config.usage.servicelist_mode = ConfigSelection(default = "standard", choices = [
 		("standard", _("Standard")),

@@ -1,7 +1,7 @@
 installdir = $(pkglibdir)/python/Screens
 
 install_PYTHON = \
-	CronTimer.py Recordings.py Timershift.py CCcamInfo.py OScamInfo.py SkinSelector.py \
+	GeneralMenu.py FileManager.py CronTimer.py Recordings.py Timershift.py CCcamInfo.py OScamInfo.py SkinSelector.py \
 	UserInterfacePositioner.py WizardUserInterfacePositioner.py PowerTimerEntry.py PowerTimerEdit.py \
 	AudioSelection.py ChannelSelection.py ClockDisplay.py ConfigMenu.py InfoBar.py \
 	Menu.py	MessageBox.py Screen.py ServiceScan.py TimerEdit.py \
