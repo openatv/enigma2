@@ -349,6 +349,11 @@ lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
 lib/python/Plugins/Extensions/IniMyTube/Makefile
 lib/python/Plugins/Extensions/IPTVStreams/Makefile
 lib/python/Plugins/Extensions/IPTVStreams/url/Makefile
+lib/python/Plugins/Extensions/MP3Browser/Makefile
+lib/python/Plugins/Extensions/MP3Browser/pic/Makefile
+lib/python/Plugins/Extensions/MovieBrowser/Makefile
+lib/python/Plugins/Extensions/MovieBrowser/pic/Makefile
+lib/python/Plugins/Extensions/ZapHistoryBrowser/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/meta/Makefile
