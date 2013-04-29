@@ -353,7 +353,9 @@ lib/python/Plugins/Extensions/MP3Browser/Makefile
 lib/python/Plugins/Extensions/MP3Browser/pic/Makefile
 lib/python/Plugins/Extensions/MovieBrowser/Makefile
 lib/python/Plugins/Extensions/MovieBrowser/pic/Makefile
-lib/python/Plugins/Extensions/ZapHistoryBrowser/Makefile
+lib/python/Plugins/Extensions/IniZapHistoryBrowser/Makefile
+lib/python/Plugins/Extensions/IniLastFM/Makefile
+lib/python/Plugins/Extensions/IniSHOUTcast/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/meta/Makefile
