@@ -15,7 +15,7 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 	 m_stream_mode(0),
 	 m_blocksize(blocksize),
 	 m_buffersize(buffersize),
-	 m_buffer(malloc(buffersize)),
+	 m_buffer((unsigned char *)malloc(buffersize)),
 	 m_messagepump(eApp, 0)
 {
 	if (m_buffer == NULL)
