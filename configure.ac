@@ -356,6 +356,13 @@ lib/python/Plugins/Extensions/MovieBrowser/pic/Makefile
 lib/python/Plugins/Extensions/IniZapHistoryBrowser/Makefile
 lib/python/Plugins/Extensions/IniLastFM/Makefile
 lib/python/Plugins/Extensions/IniSHOUTcast/Makefile
+lib/python/Plugins/Extensions/AccuWeather/Makefile
+lib/python/Plugins/Extensions/AccuWeather/acuwheathericons/Makefile
+lib/python/Plugins/Extensions/AccuWeather/image/Makefile
+lib/python/Plugins/Extensions/AccuWeather/locale/Makefile
+lib/python/Plugins/Extensions/AccuWeather/locale/es/Makefile
+lib/python/Plugins/Extensions/AccuWeather/locale/es/LC_MESSAGES/Makefile
+lib/python/Plugins/Extensions/AccuWeather/wheathericons/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/meta/Makefile
