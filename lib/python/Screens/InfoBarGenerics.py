@@ -2148,7 +2148,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		else:
 			self["TimeshiftActivateActions"].setEnabled(False)
 			self["TimeshiftActions"].setEnabled(True)
-		if self.execing and self.timeshiftEnabled() and self.isSeekable():
+		if self.execing and self.timeshiftEnabled() and self.isSeekable() and self._InfoBarShowHide__state == self.STATE_SHOWN:
 			if config.timeshift.enabled.getValue():
 				self["TimeshiftActivateActions"].setEnabled(False)
 				self["TimeshiftActions"].setEnabled(True)
