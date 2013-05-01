@@ -6,7 +6,7 @@ from Components.Sources.StaticText import StaticText
 import enigma
 
 class ChoiceBox(Screen):
-	def __init__(self, session, title = "", text = "", list = [], keys = None, selection = 0, skin_name = []):
+	def __init__(self, session, title = "", list = [], keys = None, selection = 0, skin_name = [], text = ""):
 		Screen.__init__(self, session)
 
 		if isinstance(skin_name, str):
