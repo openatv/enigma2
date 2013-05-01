@@ -5,8 +5,7 @@ from Screens.Menu import UserMenu, UserMenuID
 from Screens.PluginBrowser import PluginBrowser
 from Screens.TimerEdit import TimerEditList
 from Screens.InfoBar import InfoBar
-from Screens.InfoBarGenerics import HistoryZapSelector
-from Screens.ChannelSelection import ChannelSelection
+from Screens.ChannelSelection import ChannelSelection, HistoryZapSelector
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.FileManager import FileManager
