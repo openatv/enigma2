@@ -43,7 +43,7 @@ def profile(id):
 			else:
 				perc = PERCENTAGE_START
 			try:
-				if getBoxType() == "odinm7":
+				if getBoxType() == "odinm7" or getBoxType() == "gb800se" or getBoxType() == "gb800solo":
 					f = open("/dev/dbox/oled0", "w")
 					f.write("%d" % perc)
 				elif getBoxType() == "ebox5000"::
