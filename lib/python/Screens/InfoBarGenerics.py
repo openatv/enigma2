@@ -215,7 +215,7 @@ class InfoBarScreenSaver:
 			self.screenSaverTimer.stop()
 
 	def screensaverTimeout(self):
-		if self.execing and not Standby.inStandby and not Standby.inTryQuitMainloop:
+		if self.execing and not Screens.Standby.inStandby and not Screens.Standby.inTryQuitMainloop:
 			self.hide()
 			if hasattr(self, "pvrStateDialog"):
 				self.pvrStateDialog.hide()
@@ -485,7 +485,7 @@ class InfoBarNumberZap:
 			})
 
 	def keyNumberGlobal(self, number):
-		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable() and number == 0:
+		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshiftEnabled() and self.isSeekable() and number == 0:
 			InfoBarTimeshiftState._mayShow(self)
 			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width()-4)/2, self.pvrStateDialog["PTSSeekPointer"].position[1])
 			if self.seekstate != self.SEEK_STATE_PLAY:
@@ -496,7 +496,7 @@ class InfoBarNumberZap:
 		if self.pts_blockZap_timer.isActive():
 			return
 
-		if self.save_current_timeshift and self.timeshift_enabled:
+		if self.save_current_timeshift and self.timeshiftEnabled():
 			InfoBarTimeshift.saveTimeshiftActions(self)
 			return
 
@@ -536,7 +536,7 @@ class InfoBarNumberZap:
 				else:
 					self.servicelist.recallPrevService()
 		else:
-			if self.has_key("TimeshiftActions") and self.timeshift_enabled:
+			if self.has_key("TimeshiftActions") and self.timeshiftEnabled():
 				ts = self.getTimeshift()
 				if ts and ts.isTimeshiftActive():
 					return
@@ -666,7 +666,7 @@ class InfoBarChannelSelection:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if self.save_current_timeshift and self.timeshift_enabled:
+		if self.save_current_timeshift and self.timeshiftEnabled():
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="showRadioChannelList")
 		else:
 			self.servicelist.setModeRadio()
@@ -679,13 +679,13 @@ class InfoBarChannelSelection:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable():
+		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshiftEnabled() and self.isSeekable():
 			InfoBarTimeshiftState._mayShow(self)
 			self.pvrStateDialog["PTSSeekPointer"].setPosition(int(self.pvrStateDialog["PTSSeekBack"].instance.position().x())+8, self.pvrStateDialog["PTSSeekPointer"].position[1])
 			if self.seekstate != self.SEEK_STATE_PLAY:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 			self.ptsSeekPointerOK()
-		elif self.save_current_timeshift and self.timeshift_enabled:
+		elif self.save_current_timeshift and self.timeshiftEnabled():
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="historyBack")
 		elif config.usage.historymode.getValue() == "0":
 			self.servicelist.historyBack()
@@ -696,13 +696,13 @@ class InfoBarChannelSelection:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable():
+		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshiftEnabled() and self.isSeekable():
 			InfoBarTimeshiftState._mayShow(self)
 			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width()-4), self.pvrStateDialog["PTSSeekPointer"].position[1])
 			if self.seekstate != self.SEEK_STATE_PLAY:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 			self.ptsSeekPointerOK()
-		elif self.save_current_timeshift and self.timeshift_enabled:
+		elif self.save_current_timeshift and self.timeshiftEnabled():
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="historyNext")
 		elif config.usage.historymode.getValue() == "0":
 			self.servicelist.historyNext()
@@ -713,7 +713,7 @@ class InfoBarChannelSelection:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if self.save_current_timeshift and self.timeshift_enabled:
+		if self.save_current_timeshift and self.timeshiftEnabled():
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelUp")
 		else:
 			if not config.usage.show_bouquetalways.getValue():
@@ -727,7 +727,7 @@ class InfoBarChannelSelection:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if self.save_current_timeshift and self.timeshift_enabled:
+		if self.save_current_timeshift and self.timeshiftEnabled():
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelDown")
 		else:
 			if not config.usage.show_bouquetalways.getValue():
@@ -741,13 +741,13 @@ class InfoBarChannelSelection:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if self.save_current_timeshift and self.timeshift_enabled:
+		if self.save_current_timeshift and self.timeshiftEnabled():
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="openServiceList")
 		else:
 			self.session.execDialog(self.servicelist)
 
 	def openSatellites(self):
-		if self.save_current_timeshift and self.timeshift_enabled:
+		if self.save_current_timeshift and self.timeshiftEnabled():
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="openSatellites")
 		else:
 			self.servicelist.showSatellites()
@@ -757,7 +757,7 @@ class InfoBarChannelSelection:
 		if self.pts_blockZap_timer.isActive():
 			return
 
-		if self.save_current_timeshift and self.timeshift_enabled:
+		if self.save_current_timeshift and self.timeshiftEnabled():
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="zapUp")
 		else:
 			if self.servicelist.inBouquet():
@@ -780,7 +780,7 @@ class InfoBarChannelSelection:
 		if self.pts_blockZap_timer.isActive():
 			return
 
-		if self.save_current_timeshift and self.timeshift_enabled:
+		if self.save_current_timeshift and self.timeshiftEnabled():
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="zapDown")
 		else:
 			if self.servicelist.inBouquet():
@@ -811,18 +811,11 @@ class InfoBarMenu:
 				"toggleAspectRatio": (self.toggleAspectRatio, _("Toggle aspect ratio...")),
 			})
 		self.session.infobar = None
-		self.generalmenu = None
 
 	def mainMenu(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		#if config.usage.linexmenu.value:
-		from GeneralMenu import GeneralMenu
-		if self.generalmenu is None:
-		    self.generalmenu = self.session.instantiateDialog(GeneralMenu)
-		self.session.execDialog(self.generalmenu)
-		return
 		print "loading mainmenu XML..."
 		menu = mdom.getroot()
 		assert menu.tag == "menu", "root element in menu must be 'menu'!"
@@ -1502,7 +1495,7 @@ class InfoBarSeek:
 		return seek
 
 	def isSeekable(self):
-		if self.getSeek() is None or (isStandardInfoBar(self) and not self.timeshift_enabled):
+		if self.getSeek() is None or (isStandardInfoBar(self) and not self.timeshiftEnabled()):
 			return False
 		return True
 
@@ -1930,7 +1923,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		else:
 			self["TimeshiftActivateActions"].setEnabled(False)
 			self["TimeshiftActions"].setEnabled(True)
-		if self.execing and self.timeshift_enabled and self.isSeekable():
+		if self.execing and self.timeshiftEnabled() and self.isSeekable():
 			if config.timeshift.enabled.getValue():
 				self["TimeshiftActivateActions"].setEnabled(False)
 				self["TimeshiftActions"].setEnabled(True)
@@ -1945,7 +1938,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 			self.pvrStateDialog.show()
 			self.startHideTimer()
 
-		elif self.execing and self.timeshift_enabled and not self.isSeekable():
+		elif self.execing and self.timeshiftEnabled() and not self.isSeekable():
 			if config.timeshift.enabled.getValue():
 				self["SeekActions"].setEnabled(False)
 				self["SeekActionsPTS"].setEnabled(False)
@@ -1961,18 +1954,18 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 			self["TimeshiftActions"].setEnabled(False)
 			self["SeekActionsPTS"].setEnabled(False)
 			self["TimeshiftSeekPointerActions"].setEnabled(False)
-			if self.timeshift_enabled and self.isSeekable():
+			if self.timeshiftEnabled() and self.isSeekable():
 				self["TimeshiftActivateActions"].setEnabled(False)
 				self["TimeshiftActions"].setEnabled(True)
 				self["SeekActions"].setEnabled(True)
-			elif self.timeshift_enabled and not self.isSeekable():
+			elif self.timeshiftEnabled() and not self.isSeekable():
 				self["SeekActions"].setEnabled(False)
 		else:
 			self["TimeshiftActivateActions"].setEnabled(False)
 			self["TimeshiftActions"].setEnabled(True)
-			if self.timeshift_enabled and self.isSeekable():
+			if self.timeshiftEnabled() and self.isSeekable():
 				self["SeekActions"].setEnabled(True)
-			elif self.timeshift_enabled and not self.isSeekable():
+			elif self.timeshiftEnabled() and not self.isSeekable():
 				self["TimeshiftActivateActions"].setEnabled(True)
 				self["SeekActions"].setEnabled(False)
 		self.pvrStateDialog.hide()
@@ -3914,7 +3907,7 @@ class InfoBarInstantRecord:
 		list = list + ((_("Do not record"), "no"),)
 		self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox,title=title,list=list)
 		return
-	      
+
 class InfoBarAudioSelection:
 	def __init__(self):
 		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions",
@@ -4517,68 +4510,52 @@ class InfoBarSubtitleSupport(object):
 				"subtitleSelection": (self.subtitleSelection, _("Subtitle selection...")),
 			})
 
+		self.selected_subtitle = None
 		self.subtitle_window = self.session.instantiateDialog(SubtitleDisplay)
-		self.__subtitles_enabled = False
+		self.subtitle_window.hide()
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evEnd: self.__serviceStopped,
 				iPlayableService.evUpdatedInfo: self.__updatedInfo
 			})
-		self.__selected_subtitle = None
-
-	def subtitleSelection(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-		service = self.session.nav.getCurrentService()
-		subtitle = service and service.subtitle()
-		subtitlelist = subtitle and subtitle.getSubtitleList()
-		if self.__subtitles_enabled or subtitlelist and len(subtitlelist)>0:
-			from Screens.AudioSelection import SubtitleSelection
-			self.session.open(SubtitleSelection, self)
-
-	def __serviceStopped(self):
-		if self.__subtitles_enabled:
-			self.subtitle_window.hide()
-			self.__subtitles_enabled = False
-			self.__selected_subtitle = None
-
-	def __updatedInfo(self):
-		subtitle = self.getCurrentServiceSubtitle()
-		cachedsubtitle = subtitle.getCachedSubtitle()
-		if subtitle and cachedsubtitle:
-			if self.__selected_subtitle and self.__subtitles_enabled and cachedsubtitle != self.__selected_subtitle:
-				subtitle.disableSubtitles(self.subtitle_window.instance)
-				self.subtitle_window.hide()
-				self.__subtitles_enabled = False
-			self.setSelectedSubtitle(cachedsubtitle)
-			self.setSubtitlesEnable(True)
 
 	def getCurrentServiceSubtitle(self):
 		service = self.session.nav.getCurrentService()
 		return service and service.subtitle()
 
-	def setSubtitlesEnable(self, enable=True):
+	def subtitleSelection(self):
+		service = self.session.nav.getCurrentService()
+		subtitle = service and service.subtitle()
+		subtitlelist = subtitle and subtitle.getSubtitleList()
+		if self.selected_subtitle or subtitlelist and len(subtitlelist)>0:
+			from Screens.AudioSelection import SubtitleSelection
+			self.session.open(SubtitleSelection, self)
+
+	def __serviceStopped(self):
+		self.selected_subtitle = None
+		self.subtitle_window.hide()
+
+	def __updatedInfo(self):
 		subtitle = self.getCurrentServiceSubtitle()
-		if enable:
-			if self.__selected_subtitle:
-				if subtitle and not self.__subtitles_enabled:
-					subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
-					self.subtitle_window.show()
-					self.__subtitles_enabled = True
+		cachedsubtitle = subtitle.getCachedSubtitle()
+		if cachedsubtitle:
+			self.enableSubtitle(cachedsubtitle)
+
+	def enableSubtitle(self, selectedSubtitle):
+		subtitle = self.getCurrentServiceSubtitle()
+		self.selected_subtitle = selectedSubtitle
+		if subtitle and self.selected_subtitle:
+			subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
+			self.subtitle_window.show()
 		else:
-			if subtitle and self.__subtitles_enabled:
+			if subtitle:
 				subtitle.disableSubtitles(self.subtitle_window.instance)
-			self.__selected_subtitle = False
-			self.__subtitles_enabled = False
 			self.subtitle_window.hide()
 
-	def setSelectedSubtitle(self, subtitle):
-		self.__selected_subtitle = subtitle
-
-	subtitles_enabled = property(lambda self: self.__subtitles_enabled, setSubtitlesEnable)
-	selected_subtitle = property(lambda self: self.__selected_subtitle, setSelectedSubtitle)
+	def restartSubtitle(self):
+		if self.selected_subtitle:
+			self.enableSubtitle(self.selected_subtitle)
 
 class InfoBarServiceErrorPopupSupport:
 	def __init__(self):
