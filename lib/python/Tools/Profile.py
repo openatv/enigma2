@@ -1,12 +1,13 @@
 # the implementation here is a bit crappy.
 import time
 from Directories import resolveFilename, SCOPE_CONFIG
+from enigma import getBoxType
 
 PERCENTAGE_START = 50
 PERCENTAGE_END = 100
 
 profile_start = time.time()
-
+ 
 profile_data = {}
 total_time = 1
 profile_file = None
@@ -42,7 +43,10 @@ def profile(id):
 			else:
 				perc = PERCENTAGE_START
 			try:
-				f = open("/proc/progress", "w")
+				if getBoxType() == "odinm7":
+					f = open("/dev/dbox/oled0", "w")
+				else:
+					f = open("/proc/progress", "w")
 				f.write("%d \n" % perc)
 				f.close()
 			except IOError:
