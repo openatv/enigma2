@@ -1,5 +1,5 @@
 SUBDIRS = acuwheathericons image locale wheathericons
 
-installdir = $(pkglibdir)/python/Plugins/Extensions/AccWeather
+installdir = $(pkglibdir)/python/Plugins/Extensions/AccuWeather
 
 install_PYTHON = *.py
