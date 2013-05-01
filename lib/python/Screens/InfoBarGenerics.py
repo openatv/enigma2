@@ -811,6 +811,7 @@ class InfoBarMenu:
 				"toggleAspectRatio": (self.toggleAspectRatio, _("Toggle aspect ratio...")),
 			})
 		self.session.infobar = None
+		self.generalmenu = None
 
 	def mainMenu(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
