@@ -233,7 +233,7 @@ class mp3Browser(Screen):
          '9': self.filterGenre,
          '0': self.gotoEnd,
          'displayHelp': self.infoScreen}, -1)
-	cmd = "mkdir /usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db/"
+	cmd = "mkdir /usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db/;mkdir /usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db/cache"
 	os.system(cmd) 
         self.updatefile = '/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db/update'
         self.database = '/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db/database'
