@@ -340,8 +340,8 @@ class movieBrowserBackdrop(Screen):
          '9': self.filterGenre,
          '0': self.gotoEnd,
          'displayHelp': self.infoScreen}, -1)
-	cmd = "mkdir /usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/"
-	os.system(cmd)	 
+	cmd = "mkdir /usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/;mkdir /usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/cache"
+	os.system(cmd)
         self.updatefile = '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/update'
         self.blacklist = '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/blacklist'
         self.database = '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/database'
