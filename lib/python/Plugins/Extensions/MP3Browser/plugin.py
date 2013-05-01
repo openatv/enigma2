@@ -49,8 +49,8 @@ config.plugins.mp3browser.sortorder = ConfigSelection(default='artist', choices=
  ('date_reverse', _('File Creation Date Descending')),
  ('folder', _('MP3 Folder Ascending')),
  ('folder_reverse', _('MP3 Folder Descending'))])
-config.plugins.mp3browser.background = ConfigSelection(default='no', choices=[('no', _('No')), ('yes', _('Yes'))])
-config.plugins.mp3browser.language = ConfigSelection(default='de', choices=[('de', _('Deutsch')), ('en', _('English')), ('es', _('Espanol'))])
+config.plugins.mp3browser.background = ConfigSelection(default='yes', choices=[('no', _('No')), ('yes', _('Yes'))])
+config.plugins.mp3browser.language = ConfigSelection(default='en', choices=[('de', _('Deutsch')), ('en', _('English')), ('es', _('Espanol'))])
 config.plugins.mp3browser.reset = ConfigSelection(default='no', choices=[('no', _('No')), ('yes', _('Yes'))])
 config.plugins.mp3browser.color = ConfigSelection(default='#00C3461B', choices=[('#00F0A30A', _('Amber')),
  ('#00825A2C', _('Brown')),
