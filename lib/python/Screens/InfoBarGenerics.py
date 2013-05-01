@@ -816,6 +816,11 @@ class InfoBarMenu:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
+		from GeneralMenu import GeneralMenu
+		if self.generalmenu is None:
+			self.generalmenu = self.session.instantiateDialog(GeneralMenu)
+		self.session.execDialog(self.generalmenu)
+		return
 		print "loading mainmenu XML..."
 		menu = mdom.getroot()
 		assert menu.tag == "menu", "root element in menu must be 'menu'!"
