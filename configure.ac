@@ -314,7 +314,6 @@ lib/python/Plugins/SystemPlugins/Videomode/Makefile
 lib/python/Plugins/SystemPlugins/Videomode/meta/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/meta/Makefile
-lib/python/Plugins/SystemPlugins/VFDGiga/Makefile
 lib/python/Plugins/SystemPlugins/3GModemManager/Makefile
 lib/python/Plugins/SystemPlugins/3GModemManager/meta/Makefile
 lib/python/Plugins/SystemPlugins/3GModemManager/script/Makefile
