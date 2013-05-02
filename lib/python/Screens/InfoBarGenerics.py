@@ -2325,6 +2325,12 @@ class InfoBarNotifications:
 
 			if cb is not None:
 				dlg = self.session.openWithCallback(cb, n[1], *n[2], **n[3])
+			elif not notifications and n[3].has_key("close_on_any_key") and n[3]["close_on_any_key"]:
+				dlg = self.session.instantiateDialog(n[1], *n[2], **n[3])
+				self.hide()
+				dlg.show()
+				self.notificationDialog = dlg
+				eActionMap.getInstance().bindAction('', -maxint - 1, self.keypressNotification)
 			else:
 				dlg = self.session.open(n[1], *n[2], **n[3])
 
@@ -2332,6 +2338,12 @@ class InfoBarNotifications:
 			d = (n[4], dlg)
 			Notifications.current_notifications.append(d)
 			dlg.onClose.append(boundFunction(self.__notificationClosed, d))
+
+	def keypressNotification(self, key, flag):
+		if flag == 1:
+			self.session.deleteDialog(self.notificationDialog)
+			del self.notificationDialog
+			eActionMap.getInstance().unbindAction('', self.keypressNotification)
 
 	def __notificationClosed(self, d):
 		Notifications.current_notifications.remove(d)
