@@ -768,6 +768,9 @@ class RecordTimer(timer.Timer):
 							check = True
 							break
 			if check:
+				timer_end = x.end
+				if x.justplay and (timer_end - x.begin) <= 1:
+					timer_end += 60
 				if x.repeated != 0:
 					if bt is None:
 						bt = localtime(begin)
@@ -777,7 +780,7 @@ class RecordTimer(timer.Timer):
 						end2   = et.tm_wday * 1440 + et.tm_hour * 60 + et.tm_min
 					if x.repeated & (1 << bday):
 						xbt = localtime(x.begin)
-						xet = localtime(x.end)
+						xet = localtime(timer_end)
 						xbegin = bday * 1440 + xbt.tm_hour * 60 + xbt.tm_min
 						xend   = bday * 1440 + xet.tm_hour * 60 + xet.tm_min
 						if xend < xbegin:
@@ -798,15 +801,15 @@ class RecordTimer(timer.Timer):
 								type = 2
 				else:
 					if begin < x.begin <= end:
-						if x.end < end: # recording within event
-							time_match = x.end - x.begin
+						if timer_end < end: # recording within event
+							time_match = timer_end - x.begin
 							type = 3
 						else:           # recording last part of event
 							time_match = end - x.begin
 							type = 1
-					elif x.begin <= begin <= x.end:
-						if x.end < end: # recording first part of event
-							time_match = x.end - begin
+					elif x.begin <= begin <= timer_end:
+						if timer_end < end: # recording first part of event
+							time_match = timer_end - begin
 							type = 4
 						else:           # recording whole event
 							time_match = end - begin
