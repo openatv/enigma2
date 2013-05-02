@@ -4,6 +4,8 @@ if [ `cat /etc/hostname | cut -c 1-5`=="gb800" ]; then
 	echo 'Gigablue' > /proc/stb/info/model
 fi 
 
+rm -rf /dev/dbox/oled0
+
 prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
