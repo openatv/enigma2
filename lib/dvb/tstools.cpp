@@ -27,7 +27,7 @@ void eTSFileSectionReader::data(unsigned char *packet, unsigned int size)
 		memcpy(&sectionData[sectionSize], packet, size);
 		sectionSize += size;
 	}
-	if (sectionSize >= 3 + ((sectionData[1] & 0x0f) << 8) + sectionData[2])
+	if (sectionSize >= (unsigned int)(3 + ((sectionData[1] & 0x0f) << 8) + sectionData[2]))
 	{
 		sectionSize = 0;
 		read(sectionData);
@@ -638,7 +638,7 @@ void eDVBTSTools::takeSamples()
 
 	calcBeginAndEnd();
 	if (!(m_begin_valid && m_end_valid))
-		return -1;
+		return;
 	
 	int nr_samples = 30;
 	off_t bytes_per_sample = (m_offset_end - m_offset_begin) / (long long)nr_samples;
@@ -767,7 +767,7 @@ int eDVBTSTools::findPMT(eDVBPMTParser::program &program)
 				((eTSFileSectionReader*)(iDVBSectionReader*)sectionreader)->data(&sec[1], 188 - (sec + 1 - packet));
 			}
 		}
-		else if (pmtpid == ((packet[1] << 8) | packet[2]) & 0x1FFF)
+		else if (pmtpid == (((packet[1] << 8) | packet[2]) & 0x1FFF))
 		{
 			((eTSFileSectionReader*)(iDVBSectionReader*)sectionreader)->data(sec, 188 - (sec - packet));
 		}
