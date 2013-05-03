@@ -2325,7 +2325,7 @@ class InfoBarNotifications:
 
 			if cb is not None:
 				dlg = self.session.openWithCallback(cb, n[1], *n[2], **n[3])
-			elif not notifications and n[3].has_key("close_on_any_key") and n[3]["close_on_any_key"]:
+			elif not Notifications.current_notifications and n[4] == "ZapError":#n[3].has_key("close_on_any_key") and n[3]["close_on_any_key"]:
 				dlg = self.session.instantiateDialog(n[1], *n[2], **n[3])
 				self.hide()
 				dlg.show()
@@ -2339,11 +2339,15 @@ class InfoBarNotifications:
 			Notifications.current_notifications.append(d)
 			dlg.onClose.append(boundFunction(self.__notificationClosed, d))
 
-	def keypressNotification(self, key, flag):
-		if flag == 1:
+	def closeNotificationInstantiateDialog(self):
+		if hasattr(self, "notificationDialog"):
 			self.session.deleteDialog(self.notificationDialog)
 			del self.notificationDialog
 			eActionMap.getInstance().unbindAction('', self.keypressNotification)
+
+	def keypressNotification(self, key, flag):
+		if flag == 1:
+			self.closeNotificationInstantiateDialog()
 
 	def __notificationClosed(self, d):
 		Notifications.current_notifications.remove(d)
@@ -2701,11 +2705,13 @@ class InfoBarServiceErrorPopupSupport:
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evTuneFailed: self.__tuneFailed,
+				iPlayableService.evTunedIn: self.__serviceStarted,
 				iPlayableService.evStart: self.__serviceStarted
 			})
 		self.__serviceStarted()
 
 	def __serviceStarted(self):
+		self.closeNotificationInstantiateDialog()
 		self.last_error = None
 		Notifications.RemovePopup(id = "ZapError")
 
@@ -2733,10 +2739,9 @@ class InfoBarServiceErrorPopupSupport:
 				eDVBServicePMTHandler.eventMisconfiguration: _("Service unavailable!\nCheck tuner configuration!"),
 			}.get(error) #this returns None when the key not exist in the dict
 
-			if error is not None:
+			if error:
+				self.closeNotificationInstantiateDialog()
 				Notifications.AddPopup(text = error, type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapError")
-			else:
-				Notifications.RemovePopup(id = "ZapError")
 
 class InfoBarPowersaver:
 	def __init__(self):
