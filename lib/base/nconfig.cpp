@@ -31,7 +31,7 @@ int eConfigManager::getConfigIntValue(const char *key, int defaultvalue)
 bool eConfigManager::getConfigBoolValue(const char *key, bool defaultvalue) 
 {
 	std::string value = getConfigValue(key);
-	if (value == "True") return true;
-	if (value == "False") return false;
+	if (value == "True" || value == "true") return true;
+	if (value == "False" || value == "false") return false;
 	return defaultvalue;
 }
