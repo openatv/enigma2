@@ -3630,12 +3630,10 @@ class InfoBarExtensions:
 			from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
-			autopoller = AutoPoller()
-			autotimer = AutoTimer()
-			global autotimer
-			global autopoller
+			self.autopoller = AutoPoller()
+			self.autotimer = AutoTimer()
 			try:
-				autotimer.readXml()
+				self.autotimer.readXml()
 			except SyntaxError as se:
 				self.session.open(
 					MessageBox,
@@ -3646,39 +3644,37 @@ class InfoBarExtensions:
 				return
 
 			# Do not run in background while editing, this might screw things up
-			if autopoller is not None:
-				autopoller.stop()
+			if self.autopoller is not None:
+				self.autopoller.stop()
 
 			from Plugins.Extensions.AutoTimer.AutoTimerOverview import AutoTimerOverview
 			self.session.openWithCallback(
 				self.editCallback,
 				AutoTimerOverview,
-				autotimer
+				self.autotimer
 			)
 		else:
 			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def editCallback(self, session):
-		global autotimer
-		global autopoller
 		# XXX: canceling of GUI (Overview) won't affect config values which might have been changed - is this intended?
 		# Don't parse EPG if editing was canceled
 		if session is not None:
 			# Save xml
-			autotimer.writeXml()
+			self.autotimer.writeXml()
 			# Poll EPGCache
-			autotimer.parseEPG()
+			self.autotimer.parseEPG()
 
 		# Start autopoller again if wanted
 		if config.plugins.autotimer.autopoll.getValue():
-			if autopoller is None:
+			if self.autopoller is None:
 				from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
-				autopoller = AutoPoller()
-			autopoller.start()
+				self.autopoller = AutoPoller()
+			self.autopoller.start()
 		# Remove instance if not running in background
 		else:
-			autopoller = None
-			autotimer = None
+			self.autopoller = None
+			self.autotimer = None
 
 	def showEPGSearch(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
