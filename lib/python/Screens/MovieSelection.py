@@ -43,7 +43,7 @@ config.movielist = ConfigSubsection()
 config.movielist.curentlyplayingservice = ConfigText()
 config.movielist.show_live_tv_in_movielist = ConfigYesNo(default=True)
 config.movielist.fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-config.movielist.itemsperpage = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 3, max = 30, wraparound = True)
+config.movielist.itemsperpage = ConfigSelectionNumber(default = 15, stepwidth = 1, min = 3, max = 30, wraparound = True)
 config.movielist.useslim = ConfigYesNo(default=False)
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_RECORDED)
 config.movielist.description = ConfigInteger(default=MovieList.SHOW_DESCRIPTION)
@@ -329,7 +329,6 @@ class MovieContextMenu(Screen):
 		self["key_green"] = StaticText(_("OK"))
 		menu = []
 		menu.append((_("Settings") + "...", csel.configure))
-		menu.append((_("Device mounts") + "...", csel.showDeviceMounts))
 		menu.append((_("Network mounts") + "...", csel.showNetworkMounts))
 		menu.append((_("Add bookmark"), csel.do_addbookmark))
 		menu.append((_("Create directory"), csel.do_createdir))
@@ -1811,10 +1810,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def showNetworkMounts(self):
 		import NetworkSetup
 		self.session.open(NetworkSetup.NetworkMountsMenu)
-
-	def showDeviceMounts(self):
-		import Plugins.SystemPlugins.ViX.MountManager
-		self.session.open(Plugins.SystemPlugins.ViX.MountManager.VIXDevicesPanel)
 
 	def showActionFeedback(self, text):
 		if self.feedbackTimer is None:
