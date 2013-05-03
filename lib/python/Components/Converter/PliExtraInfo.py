@@ -163,13 +163,13 @@ class PliExtraInfo(Poll, Converter, object):
 	def createFEC(self, fedata):
 		fec = fedata.get("fec_inner")
 		if fec:
-			return fec
+			return str(fec)
 		return ""
 
 	def createModulation(self, fedata):
 		modulation = fedata.get("modulation")
 		if modulation:
-			return modulation
+			return str(modulation)
 		return ""
 
 	def createTunerType(self, feraw):
