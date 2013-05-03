@@ -280,6 +280,12 @@ std::string iStaticServiceInformation::getInfoString(const eServiceReference &re
 	return "";
 }
 
+ePtr<iServiceInfoContainer> iStaticServiceInformation::getInfoObject(int w)
+{
+	ePtr<iServiceInfoContainer> retval;
+	return retval;
+}
+
 ePtr<iDVBTransponderData> iStaticServiceInformation::getTransponderData(const eServiceReference &ref)
 {
 	ePtr<iDVBTransponderData> retval;
@@ -309,6 +315,12 @@ int iServiceInformation::getInfo(int w)
 std::string iServiceInformation::getInfoString(int w)
 {
 	return "";
+}
+
+ePtr<iServiceInfoContainer> iServiceInformation::getInfoObject(int w)
+{
+	ePtr<iServiceInfoContainer> retval;
+	return retval;
 }
 
 ePtr<iDVBTransponderData> iServiceInformation::getTransponderData()

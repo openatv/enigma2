@@ -64,6 +64,30 @@ public:
 	int getBufferSize() const;
 };
 
+class eServiceMP3InfoContainer: public iServiceInfoContainer
+{
+	DECLARE_REF(eServiceMP3InfoContainer);
+
+	double doubleValue;
+	GstBuffer *bufferValue;
+
+	unsigned char *bufferData;
+	unsigned int bufferSize;
+#if GST_VERSION_MAJOR >= 1
+	GstMapInfo map;
+#endif
+
+public:
+	eServiceMP3InfoContainer();
+	~eServiceMP3InfoContainer();
+
+	double getDouble(unsigned int index) const;
+	unsigned char *getBuffer(unsigned int &size) const;
+
+	void setDouble(double value);
+	void setBuffer(GstBuffer *buffer);
+};
+
 typedef struct _GstElement GstElement;
 
 typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG, atFLAC, atWMA } audiotype_t;
@@ -122,7 +146,7 @@ public:
 	RESULT getName(std::string &name);
 	int getInfo(int w);
 	std::string getInfoString(int w);
-	PyObject *getInfoObject(int w);
+	ePtr<iServiceInfoContainer> getInfoObject(int w);
 
 		// iAudioTrackSelection	
 	int getNumberOfTracks();

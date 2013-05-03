@@ -239,6 +239,15 @@ typedef long long pts_t;
 class eServiceEvent;
 class iDVBTransponderData;
 
+class iServiceInfoContainer: public iObject
+{
+public:
+	virtual int getInteger(unsigned int index) const { return 0; }
+	virtual std::string getString(unsigned int index) const { return ""; }
+	virtual double getDouble(unsigned int index) const { return 0.0; }
+	virtual unsigned char *getBuffer(unsigned int &size) const { return NULL; }
+};
+
 class iStaticServiceInformation: public iObject
 {
 #ifdef SWIG
@@ -256,7 +265,7 @@ public:
 
 	virtual int getInfo(const eServiceReference &ref, int w);
 	virtual std::string getInfoString(const eServiceReference &ref,int w);
-	void getInfoObject() {}
+	virtual ePtr<iServiceInfoContainer> getInfoObject(int w);
 	virtual ePtr<iDVBTransponderData> getTransponderData(const eServiceReference &ref);
 	virtual long long getFileSize(const eServiceReference &ref);
 
@@ -408,7 +417,7 @@ public:
 
 	virtual int getInfo(int w);
 	virtual std::string getInfoString(int w);
-	void getInfoObject() {}
+	virtual ePtr<iServiceInfoContainer> getInfoObject(int w);
 	virtual ePtr<iDVBTransponderData> getTransponderData();
 	virtual long long getFileSize();
 
