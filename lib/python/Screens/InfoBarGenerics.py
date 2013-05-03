@@ -1724,11 +1724,13 @@ class InfoBarSeek:
 		return True
 
 	def __seekableStatusChanged(self):
-		if not self.isSeekable():
+		if (isStandardInfoBar(self) and self.timeshiftEnabled()):
+			pass
+		elif not self.isSeekable():
 #			print "not seekable, return to play"
 			self["SeekActions"].setEnabled(False)
 			self.setSeekState(self.SEEK_STATE_PLAY)
-		elif (isStandardInfoBar(self) and not self.timeshiftEnabled()) or isMoviePlayerInfoBar(self):
+		else:
 #			print "seekable"
 			self["SeekActions"].setEnabled(True)
 			self.activityTimer.start(200, False)
