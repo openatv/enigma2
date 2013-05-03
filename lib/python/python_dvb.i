@@ -8,21 +8,30 @@ void getFrontendStatus(ePyObject dest)
 {
 	ePtr<iDVBFrontendStatus> status;
 	self->getFrontendStatus(status);
-	frontendStatusToDict(dest, status);
+	if (status)
+	{
+		frontendStatusToDict(dest, status);
+	}
 }
 
 void getTransponderData(ePyObject dest, bool original)
 {
 	ePtr<iDVBTransponderData> data;
 	self->getTransponderData(data, original);
-	transponderDataToDict(dest, data);
+	if (data)
+	{
+		transponderDataToDict(dest, data);
+	}
 }
 
 void getFrontendData(ePyObject dest)
 {
 	ePtr<iDVBFrontendData> data;
 	self->getFrontendData(data);
-	frontendDataToDict(dest, data);
+	if (data)
+	{
+		frontendDataToDict(dest, data);
+	}
 }
 };
 
