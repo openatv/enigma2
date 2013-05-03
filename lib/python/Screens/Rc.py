@@ -29,7 +29,7 @@ class Rc:
 		self.onShown.append(self.initRc)
 
 	def initRc(self):
-		if getBoxType() == 'ventonhdx':
+		if getBoxType() == 'ventonhdx' or getBoxType().startswith('miracle'):
 			self["rc"].setPixmapNum(config.misc.rcused.getValue())
 		else:
 			if self.isDefaultRc:
