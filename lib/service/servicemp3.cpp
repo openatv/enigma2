@@ -251,6 +251,42 @@ long long eStaticServiceMP3Info::getFileSize(const eServiceReference &ref)
 	return 0;
 }
 
+DEFINE_REF(eStreamBufferInfo)
+
+eStreamBufferInfo::eStreamBufferInfo(int percentage, int inputrate, int outputrate, int space, int size)
+: bufferPercentage(percentage),
+	inputRate(inputrate),
+	outputRate(outputrate),
+	bufferSpace(space),
+	bufferSize(size)
+{
+}
+
+int eStreamBufferInfo::getBufferPercentage() const
+{
+	return bufferPercentage;
+}
+
+int eStreamBufferInfo::getAverageInputRate() const
+{
+	return inputRate;
+}
+
+int eStreamBufferInfo::getAverageOutputRate() const
+{
+	return outputRate;
+}
+
+int eStreamBufferInfo::getBufferSpace() const
+{
+	return bufferSpace;
+}
+
+int eStreamBufferInfo::getBufferSize() const
+{
+	return bufferSize;
+}
+
 // eServiceMP3
 int eServiceMP3::ac3_delay = 0,
     eServiceMP3::pcm_delay = 0;
@@ -2188,15 +2224,9 @@ RESULT eServiceMP3::streamed(ePtr<iStreamedService> &ptr)
 	return 0;
 }
 
-PyObject *eServiceMP3::getBufferCharge()
+ePtr<iStreamBufferInfo> eServiceMP3::getBufferCharge()
 {
-	ePyObject tuple = PyTuple_New(5);
-	PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(m_bufferInfo.bufferPercent));
-	PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(m_bufferInfo.avgInRate));
-	PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(m_bufferInfo.avgOutRate));
-	PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(m_bufferInfo.bufferingLeft));
-	PyTuple_SET_ITEM(tuple, 4, PyInt_FromLong(m_buffer_size));
-	return tuple;
+	return new eStreamBufferInfo(m_bufferInfo.bufferPercent, m_bufferInfo.avgInRate, m_bufferInfo.avgOutRate, m_bufferInfo.bufferingLeft, m_buffer_size);
 }
 
 int eServiceMP3::setBufferSize(int size)
