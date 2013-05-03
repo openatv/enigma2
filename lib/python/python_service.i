@@ -14,7 +14,10 @@ PyObject *getInfoObject(int w)
 			if (ret)
 			{
 				ePtr<iDVBTransponderData> data = self->getTransponderData();
-				transponderDataToDict(ret, data);
+				if (data)
+				{
+					transponderDataToDict(ret, data);
+				}
 			}
 			return ret;
 		}
@@ -45,7 +48,10 @@ PyObject *getStreamingData()
 	if (ret)
 	{
 		ePtr<iStreamData> data = self->getStreamingData();
-		streamingDataToDict(ret, data);
+		if (data)
+		{
+			streamingDataToDict(ret, data);
+		}
 	}
 	return ret;
 }
@@ -60,7 +66,10 @@ PyObject *getFrontendData()
 	if (ret)
 	{
 		ePtr<iDVBFrontendData> data = self->getFrontendData();
-		frontendDataToDict(ret, data);
+		if (data)
+		{
+			frontendDataToDict(ret, data);
+		}
 	}
 	return ret;
 }
@@ -71,7 +80,10 @@ PyObject *getFrontendStatus()
 	if (ret)
 	{
 		ePtr<iDVBFrontendStatus> status = self->getFrontendStatus();
-		frontendStatusToDict(ret, status);
+		if (status)
+		{
+			frontendStatusToDict(ret, status);
+		}
 	}
 	return ret;
 }
@@ -82,7 +94,10 @@ PyObject *getTransponderData(bool original)
 	if (ret)
 	{
 		ePtr<iDVBTransponderData> data = self->getTransponderData(original);
-		transponderDataToDict(ret, data);
+		if (data)
+		{
+			transponderDataToDict(ret, data);
+		}
 	}
 	return ret;
 }
@@ -93,11 +108,20 @@ PyObject *getAll(bool original)
 	if (ret)
 	{
 		ePtr<iDVBFrontendData> data = self->getFrontendData();
-		frontendDataToDict(ret, data);
+		if (data)
+		{
+			frontendDataToDict(ret, data);
+		}
 		ePtr<iDVBFrontendStatus> status = self->getFrontendStatus();
-		frontendStatusToDict(ret, status);
+		if (status)
+		{
+			frontendStatusToDict(ret, status);
+		}
 		ePtr<iDVBTransponderData> tpdata = self->getTransponderData(original);
-		transponderDataToDict(ret, tpdata);
+		if (tpdata)
+		{
+			transponderDataToDict(ret, tpdata);
+		}
 	}
 	return ret;
 }
@@ -115,11 +139,14 @@ PyObject *getBufferCharge()
 	if (tuple)
 	{
 		ePtr<iStreamBufferInfo> info = self->getBufferCharge();
-		PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(info->getBufferPercentage()));
-		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(info->getAverageInputRate()));
-		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(info->getAverageOutputRate()));
-		PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(info->getBufferSpace()));
-		PyTuple_SET_ITEM(tuple, 4, PyInt_FromLong(info->getBufferSize()));
+		if (info)
+		{
+			PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(info->getBufferPercentage()));
+			PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(info->getAverageInputRate()));
+			PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(info->getAverageOutputRate()));
+			PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(info->getBufferSpace()));
+			PyTuple_SET_ITEM(tuple, 4, PyInt_FromLong(info->getBufferSize()));
+		}
 	}
 	return tuple;
 }
