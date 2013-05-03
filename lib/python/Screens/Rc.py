@@ -3,18 +3,13 @@ from Tools.Directories import resolveFilename, SCOPE_SKIN
 from xml.etree.ElementTree import ElementTree
 from Components.config import config, ConfigInteger
 from Components.RcModel import rc_model
-from enigma import ePoint
+from enigma import getBoxType
 
 config.misc.rcused = ConfigInteger(default = 1)
 
 class Rc:
 	def __init__(self):
 		self["rc"] = MultiPixmap()
-		self['red'] = MovingPixmap()
-		self['tunera'] = MovingPixmap()
-		self['tunerb'] = MovingPixmap()
-		self['tunerc'] = MovingPixmap()
-		self['tunerd'] = MovingPixmap()
 		self["arrowdown"] = MovingPixmap()
 		self["arrowdown2"] = MovingPixmap()
 		self["arrowup"] = MovingPixmap()
@@ -28,19 +23,24 @@ class Rc:
 		self.selectpics = []
 		self.selectpics.append((self.rcheighthalf, ["arrowdown", "arrowdown2"], (-18,-70)))
 		self.selectpics.append((self.rcheight, ["arrowup", "arrowup2"], (-18,0)))
+
 		self['red'].hide()
 		if self.has_key('languagetext'):
 		    self['languagetext'].hide()
+
 		self.readPositions()
 		self.clearSelectedKeys()
 		self.onShown.append(self.initRc)
 
 	def initRc(self):
-		if self.isDefaultRc:
+		if getBoxType() == 'ventonhdx' or getBoxType().startswith('miracle'):
 			self["rc"].setPixmapNum(config.misc.rcused.getValue())
 		else:
-			self["rc"].setPixmapNum(0)
-		
+			if self.isDefaultRc:
+				self["rc"].setPixmapNum(config.misc.rcused.getValue())
+			else:
+				self["rc"].setPixmapNum(0)
+				
 		if self.isDefaultRc:
 			rc = self.rcs[config.misc.rcused.value]
 		else:
@@ -55,7 +55,7 @@ class Rc:
 			if self.has_key('languagetext'):
 			    self['languagetext'].instance.move(ePoint(rcpos[0] + pos[0] - 313, rcpos[1] + pos[1] + 50))
 			    self['languagetext'].show()
-                
+			    
 	def readPositions(self):
 		if self.isDefaultRc:
 			target = resolveFilename(SCOPE_SKIN, "rcpositions.xml")
@@ -87,9 +87,13 @@ class Rc:
 
 	def selectKey(self, key):
 		if self.isDefaultRc:
-			rc = self.rcs[config.misc.rcused.value]
+			rc = self.rcs[config.misc.rcused.getValue()]
 		else:
-			rc = self.rcs[2]
+			try:
+				rc = self.rcs[2]
+			except:
+				rc = self.rcs[config.misc.rcused.getValue()]
+
 		if rc.has_key(key):
 			rcpos = self["rc"].getPosition()
 			pos = rc[key]
