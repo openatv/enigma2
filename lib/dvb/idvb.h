@@ -444,10 +444,6 @@ public:
 
 class iDVBFrontendStatus:  public iDVBFrontend_ENUMS, public iObject
 {
-#ifdef SWIG
-	iDVBFrontendStatus();
-	~iDVBFrontendStatus();
-#endif
 public:
 	virtual int getState() const = 0;
 	virtual std::string getStateDescription() const = 0;
@@ -458,14 +454,9 @@ public:
 	virtual int getSNRdB() const = 0;
 	virtual int getSignalPower() const = 0;
 };
-SWIG_TEMPLATE_TYPEDEF(ePtr<iDVBFrontendStatus>, iDVBFrontendStatusPtr);
 
 class iDVBTransponderData: public iObject
 {
-#ifdef SWIG
-	iDVBTransponderData();
-	~iDVBTransponderData();
-#endif
 public:
 	virtual std::string getTunerType() const = 0;
 	virtual int getInversion() const = 0;
@@ -486,19 +477,13 @@ public:
 	virtual int getGuardInterval() const = 0;
 	virtual int getHierarchyInformation() const = 0;
 };
-SWIG_TEMPLATE_TYPEDEF(ePtr<iDVBTransponderData>, iDVBTransponderDataPtr);
 
 class iDVBFrontendData: public iDVBFrontend_ENUMS, public iObject
 {
-#ifdef SWIG
-	iDVBFrontendData();
-	~iDVBFrontendData();
-#endif
 public:
 	virtual int getNumber() const = 0;
 	virtual std::string getTypeDescription() const = 0;
 };
-SWIG_TEMPLATE_TYPEDEF(ePtr<iDVBFrontendData>, iDVBFrontendDataPtr);
 
 class iDVBFrontend: public iDVBFrontend_ENUMS, public iObject
 {

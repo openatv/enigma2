@@ -760,10 +760,6 @@ SWIG_TEMPLATE_TYPEDEF(ePtr<iServiceOfflineOperations>, iServiceOfflineOperations
 
 class iStreamData: public iObject
 {
-#ifdef SWIG
-	iStreamData();
-	~iStreamData();
-#endif
 public:
 	virtual SWIG_VOID(RESULT) getAllPids(std::vector<int> &result) const = 0;
 	virtual SWIG_VOID(RESULT) getVideoPids(std::vector<int> &result) const = 0;
@@ -777,7 +773,6 @@ public:
 	virtual SWIG_VOID(RESULT) getAdapterId(int &result) const = 0;
 	virtual SWIG_VOID(RESULT) getDemuxId(int &result) const = 0;
 };
-SWIG_TEMPLATE_TYPEDEF(ePtr<iStreamData>, iStreamDataPtr);
 
 class iStreamableService: public iObject
 {
