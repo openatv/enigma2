@@ -108,7 +108,27 @@ PyObject *getAll(bool original)
 %ignore iFrontendInformation::getTransponderData;
 %ignore iFrontendInformation::getAll;
 
+%extend iStreamedService {
+PyObject *getBufferCharge()
+{
+	ePyObject tuple = PyTuple_New(5);
+	if (tuple)
+	{
+		ePtr<iStreamBufferInfo> info = self->getBufferCharge();
+		PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(info->getBufferPercentage()));
+		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(info->getAverageInputRate()));
+		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(info->getAverageOutputRate()));
+		PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(info->getBufferSpace()));
+		PyTuple_SET_ITEM(tuple, 4, PyInt_FromLong(info->getBufferSize()));
+	}
+	return tuple;
+}
+};
+
+%ignore iStreamedService::getBufferCharge;
+
 %ignore iStreamData;
 %ignore iDVBFrontendStatus;
 %ignore iDVBTransponderData;
 %ignore iDVBFrontendData;
+%ignore iStreamBufferInfo;

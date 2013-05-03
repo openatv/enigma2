@@ -790,7 +790,16 @@ public:
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iStreamableService>, iStreamableServicePtr);
 
-SWIG_IGNORE(iStreamedService);
+class iStreamBufferInfo: public iObject
+{
+public:
+	virtual int getBufferPercentage() const = 0;
+	virtual int getAverageInputRate() const = 0;
+	virtual int getAverageOutputRate() const = 0;
+	virtual int getBufferSpace() const = 0;
+	virtual int getBufferSize() const = 0;
+};
+
 class iStreamedService: public iObject
 {
 #ifdef SWIG
@@ -798,7 +807,7 @@ class iStreamedService: public iObject
 	~iStreamedService();
 #endif
 public:
-	virtual PyObject *getBufferCharge()=0;
+	virtual ePtr<iStreamBufferInfo> getBufferCharge()=0;
 	virtual int setBufferSize(int size)=0;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iStreamedService>, iStreamedServicePtr);
