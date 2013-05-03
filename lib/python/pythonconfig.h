@@ -7,13 +7,13 @@
 class ePythonConfigQuery : public eConfigManager
 {
 	static ePyObject m_queryFunc;
-	ePythonConfigQuery() {}
-	~ePythonConfigQuery() {}
 #ifndef SWIG
 	RESULT getConfigValue(const char *key, std::string &value);
 	std::string getConfig(const char *key);
 #endif
 public:
+	ePythonConfigQuery() {}
+	~ePythonConfigQuery() {}
 	static void setQueryFunc(SWIG_PYOBJECT(ePyObject) func);
 };
 
