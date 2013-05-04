@@ -1924,6 +1924,11 @@ ePtr<iDVBTransponderData> eDVBServicePlay::getTransponderData()
 	return eStaticServiceDVBInformation().getTransponderData(m_reference);
 }
 
+void eDVBServicePlay::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids)
+{
+	m_service_handler.getCaIds(caids, ecmpids);
+}
+
 int eDVBServicePlay::getNumberOfTracks()
 {
 	eDVBServicePMTHandler::program program;
