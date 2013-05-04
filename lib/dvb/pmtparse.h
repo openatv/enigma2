@@ -94,6 +94,8 @@ public:
 	class eStreamData : public iStreamData
 	{
 		DECLARE_REF(eStreamData);
+		std::vector<int> caIds;
+		std::vector<int> ecmPids;
 		std::vector<int> videoStreams;
 		std::vector<int> audioStreams;
 		std::vector<int> subtitleStreams;
@@ -112,6 +114,7 @@ public:
 		RESULT getServiceId(int &result) const;
 		RESULT getAdapterId(int &result) const;
 		RESULT getDemuxId(int &result) const;
+		RESULT getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids) const;
 	};
 
 	virtual int getProgramInfo(program &program);
