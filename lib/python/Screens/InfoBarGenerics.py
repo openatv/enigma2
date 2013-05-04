@@ -1098,6 +1098,10 @@ class InfoBarMenu:
 		self.session.infobar = None
 
 
+class InfoBarSimpleEventView:
+	def __init__(self):
+		pass
+
 class SimpleServicelist:
 	def __init__(self, services):
 		self.services = services
@@ -2043,7 +2047,7 @@ class InfoBarPVRState:
 		return InfoBarMoviePlayerSummary
 
 	def _mayShow(self):
-		if "MoviePlayer'>" in str(self) and not config.usage.movieplayer_pvrstate.getValue():
+		if self.has_key("state") and not config.usage.movieplayer_pvrstate.getValue():
 			self["state"].setText("")
 			self["statusicon"].setPixmapNum(6)
 			self["speed"].setText("")
@@ -2060,7 +2064,7 @@ class InfoBarPVRState:
 			self.pvrStateDialog["speed"].setText("")
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 0
-			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.getValue():
+			if self.has_key("state") and config.usage.movieplayer_pvrstate.getValue():
 				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(0)
 				self["speed"].setText("")
@@ -2069,7 +2073,7 @@ class InfoBarPVRState:
 			self.pvrStateDialog["speed"].setText("")
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 1
-			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.getValue():
+			if self.has_key("state") and config.usage.movieplayer_pvrstate.getValue():
 				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(1)
 				self["speed"].setText("")
@@ -2078,7 +2082,7 @@ class InfoBarPVRState:
 			self.pvrStateDialog["speed"].setText("")
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 2
-			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.getValue():
+			if self.has_key("state") and config.usage.movieplayer_pvrstate.getValue():
 				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(2)
 				self["speed"].setText("")
@@ -2088,7 +2092,7 @@ class InfoBarPVRState:
 			self.pvrStateDialog["speed"].setText(speed[1])
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 3
-			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.getValue():
+			if self.has_key("state") and config.usage.movieplayer_pvrstate.getValue():
 				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(3)
 				self["speed"].setText(speed[1])
@@ -2098,7 +2102,7 @@ class InfoBarPVRState:
 			self.pvrStateDialog["speed"].setText(speed[1])
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 4
-			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.getValue():
+			if self.has_key("state") and config.usage.movieplayer_pvrstate.getValue():
 				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(4)
 				self["speed"].setText(speed[1])
@@ -2107,7 +2111,7 @@ class InfoBarPVRState:
 			self.pvrStateDialog["speed"].setText(playstateString)
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 5
-			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.getValue():
+			if self.has_key("state") and config.usage.movieplayer_pvrstate.getValue():
 				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(5)
 				self["speed"].setText(playstateString)
