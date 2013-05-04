@@ -95,6 +95,24 @@ PyObject *getInfoObject(int w)
 %extend iStaticServiceInformation {
 PyObject *getInfoObject(const eServiceReference &ref, int w)
 {
+	switch (w)
+	{
+		case iServiceInformation::sTransponderData:
+		{
+			ePyObject ret = PyDict_New();
+			if (ret)
+			{
+				ePtr<iDVBTransponderData> data = self->getTransponderData(ref);
+				if (data)
+				{
+					transponderDataToDict(ret, data);
+				}
+			}
+			return ret;
+		}
+		case iServiceInformation::sFileSize:
+			return PyLong_FromLongLong(self->getInfo(ref, iServiceInformation::sFileSize));
+	}
 	Py_INCREF(Py_None);
 	return Py_None;
 }
