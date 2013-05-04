@@ -145,7 +145,7 @@ PyObject *getInfoObject(const eServiceReference &ref, int w)
 			return ret;
 		}
 		case iServiceInformation::sFileSize:
-			return PyLong_FromLongLong(self->getInfo(ref, iServiceInformation::sFileSize));
+			return PyLong_FromLongLong(self->getFileSize(ref));
 	}
 	Py_INCREF(Py_None);
 	return Py_None;
