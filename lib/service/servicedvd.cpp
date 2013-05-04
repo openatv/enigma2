@@ -85,13 +85,13 @@ DEFINE_REF(eServiceDVDInfoContainer);
 
 int eServiceDVDInfoContainer::getInteger(unsigned int index) const
 {
-	if (index < integerValues.size()) return -1;
+	if (index >= integerValues.size()) return -1;
 	return integerValues[index];
 }
 
 std::string eServiceDVDInfoContainer::getString(unsigned int index) const
 {
-	if (index < stringValues.size()) return "";
+	if (index >= stringValues.size()) return "";
 	return stringValues[index];
 }
 
@@ -620,6 +620,7 @@ ePtr<iServiceInfoContainer> eServiceDVD::getInfoObject(int w)
 {
 	eServiceDVDInfoContainer *container = new eServiceDVDInfoContainer;
 	ePtr<iServiceInfoContainer> retval = container;
+	eDebug("eServiceDVD::getInfoObject %d", w);
 	switch (w)
 	{
 		case sUser + 6:
