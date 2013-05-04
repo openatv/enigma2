@@ -11,10 +11,7 @@ class PVRState(Screen):
 		self["speed"] = Label()
 		self["statusicon"] = MultiPixmap()
 
-class TimeshiftState(PVRState):
-	pass
-
-class PTSTimeshiftState(Screen):
+class TimeshiftState(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self["eventname"] = Label()
