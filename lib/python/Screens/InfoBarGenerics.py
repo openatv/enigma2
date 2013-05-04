@@ -2323,9 +2323,12 @@ class InfoBarNotifications:
 				n[3]["onSessionOpenCallback"]()
 				del n[3]["onSessionOpenCallback"]
 
-			if cb is not None:
+			if cb:
 				dlg = self.session.openWithCallback(cb, n[1], *n[2], **n[3])
-			elif not Notifications.current_notifications and n[4] == "ZapError":#n[3].has_key("close_on_any_key") and n[3]["close_on_any_key"]:
+			elif not Notifications.current_notifications and n[4] == "ZapError":
+				if n[3].has_key("timeout"):
+					del n[3]["timeout"]
+				n[3]["enable_input"] = False
 				dlg = self.session.instantiateDialog(n[1], *n[2], **n[3])
 				self.hide()
 				dlg.show()
