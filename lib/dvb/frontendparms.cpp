@@ -261,7 +261,7 @@ int eDVBSatelliteTransponderData::getModulation() const
 {
 	if (originalValues) return transponderParameters.modulation;
 
-	switch (dtvProperties[1].u.data)
+	switch (eDVBTransponderData::getModulation())
 	{
 	default: eDebug("got unsupported modulation from frontend! report as QPSK!");
 	case QPSK: return eDVBFrontendParametersSatellite::Modulation_QPSK;
