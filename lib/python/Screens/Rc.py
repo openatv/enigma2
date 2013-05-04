@@ -29,13 +29,10 @@ class Rc:
 		self.onShown.append(self.initRc)
 
 	def initRc(self):
-		if getBoxType() == 'ventonhdx' or getBoxType().startswith('miracle'):
+		if self.isDefaultRc:
 			self["rc"].setPixmapNum(config.misc.rcused.getValue())
 		else:
-			if self.isDefaultRc:
-				self["rc"].setPixmapNum(config.misc.rcused.getValue())
-			else:
-				self["rc"].setPixmapNum(0)
+			self["rc"].setPixmapNum(0)
 
 	def readPositions(self):
 		if self.isDefaultRc:
