@@ -4,33 +4,36 @@
 %}
 
 %extend iDVBFrontend {
-void getFrontendStatus(ePyObject dest)
+void getFrontendStatus(PyObject *dest)
 {
+	ePyObject ret = dest;
 	ePtr<iDVBFrontendStatus> status;
 	self->getFrontendStatus(status);
 	if (status)
 	{
-		frontendStatusToDict(dest, status);
+		frontendStatusToDict(ret, status);
 	}
 }
 
-void getTransponderData(ePyObject dest, bool original)
+void getTransponderData(PyObject *dest, bool original)
 {
+	ePyObject ret = dest;
 	ePtr<iDVBTransponderData> data;
 	self->getTransponderData(data, original);
 	if (data)
 	{
-		transponderDataToDict(dest, data);
+		transponderDataToDict(ret, data);
 	}
 }
 
-void getFrontendData(ePyObject dest)
+void getFrontendData(PyObject *dest)
 {
+	ePyObject ret = dest;
 	ePtr<iDVBFrontendData> data;
 	self->getFrontendData(data);
 	if (data)
 	{
-		frontendDataToDict(dest, data);
+		frontendDataToDict(ret, data);
 	}
 }
 };
