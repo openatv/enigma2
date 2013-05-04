@@ -438,6 +438,11 @@ eDVBPMTParser::eStreamData::eStreamData(eDVBPMTParser::program &program)
 	adapterId = program.adapterId;
 	demuxId = program.demuxId;
 	serviceId = program.serviceId;
+	for (std::list<eDVBPMTParser::program::capid_pair>::const_iterator it(program.caids.begin()); it != program.caids.end(); ++it)
+	{
+		caIds.push_back(it->caid);
+		ecmPids.push_back(it->capid);
+	}
 }
 
 RESULT eDVBPMTParser::eStreamData::getAllPids(std::vector<int> &result) const
@@ -526,5 +531,15 @@ RESULT eDVBPMTParser::eStreamData::getAdapterId(int &result) const
 RESULT eDVBPMTParser::eStreamData::getDemuxId(int &result) const
 {
 	result = demuxId;
+	return 0;
+}
+
+RESULT eDVBPMTParser::eStreamData::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids) const
+{
+	for (unsigned int i = 0; i < caIds.size(), i < ecmPids.size(); i++)
+	{
+		caids.push_back(caIds[i]);
+		ecmpids.push_back(ecmPids[i]);
+	}
 	return 0;
 }

@@ -781,6 +781,7 @@ public:
 	virtual SWIG_VOID(RESULT) getServiceId(int &result) const = 0;
 	virtual SWIG_VOID(RESULT) getAdapterId(int &result) const = 0;
 	virtual SWIG_VOID(RESULT) getDemuxId(int &result) const = 0;
+	virtual SWIG_VOID(RESULT) getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids) const = 0;
 };
 
 class iStreamableService: public iObject
