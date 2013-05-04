@@ -33,13 +33,10 @@ class Rc:
 		self.onShown.append(self.initRc)
 
 	def initRc(self):
-		if getBoxType() == 'ventonhdx' or getBoxType().startswith('miracle'):
+		if self.isDefaultRc:
 			self["rc"].setPixmapNum(config.misc.rcused.getValue())
 		else:
-			if self.isDefaultRc:
-				self["rc"].setPixmapNum(config.misc.rcused.getValue())
-			else:
-				self["rc"].setPixmapNum(0)
+			self["rc"].setPixmapNum(0)
 				
 		if self.isDefaultRc:
 			rc = self.rcs[config.misc.rcused.value]
@@ -55,7 +52,7 @@ class Rc:
 			if self.has_key('languagetext'):
 			    self['languagetext'].instance.move(ePoint(rcpos[0] + pos[0] - 313, rcpos[1] + pos[1] + 50))
 			    self['languagetext'].show()
-			    
+
 	def readPositions(self):
 		if self.isDefaultRc:
 			target = resolveFilename(SCOPE_SKIN, "rcpositions.xml")
