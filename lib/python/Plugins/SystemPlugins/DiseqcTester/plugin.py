@@ -514,7 +514,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		self.addProgressListItem(self.currentlyTestedIndex)
 		
 		if self.fillTransponderList():
-			self.run(checkPIDs = True)
+			self.run()
 		else:
 			self.running = False
 			self["progress_list"].setIndex(0)
@@ -538,7 +538,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		self.addProgressListItem(self.currentlyTestedIndex)
 		
 		if self.fillTransponderList():
-			self.run(True)
+			self.run()
 
 	def keyCancel(self):
 		self.close()
