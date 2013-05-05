@@ -133,6 +133,14 @@ def InitUsageConfig():
 
 	config.usage.check_timeshift = ConfigYesNo(default = True)
 
+	choicelist = [("0", "Disabled")]
+	for i in (2, 3, 4, 5, 10, 20, 30):
+		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
+	for i in (60, 120, 300):
+		m = i / 60
+		choicelist.append(("%d" % i, ngettext("%d minute", "%d minutes", m) % m))
+	config.usage.timeshift_start_delay = ConfigSelection(default = "0", choices = choicelist)
+
 	config.usage.alternatives_priority = ConfigSelection(default = "0", choices = [
 		("0", "DVB-S/-C/-T"),
 		("1", "DVB-S/-T/-C"),
