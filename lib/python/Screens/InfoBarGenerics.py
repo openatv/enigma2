@@ -1468,7 +1468,10 @@ class InfoBarTimeshift:
 		self["TimeshiftActivateActions"].setEnabled(False)
 		self.ts_rewind_timer = eTimer()
 		self.ts_rewind_timer.callback.append(self.rewindService)
+		self.ts_start_delay_timer = eTimer()
+		self.ts_start_delay_timer.callback.append(self.startTimeshiftWithoutPause)
 		self.save_timeshift_file = False
+		self.timeshift_was_activated = False
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -1485,11 +1488,12 @@ class InfoBarTimeshift:
 		ts = self.getTimeshift()
 		return ts and ts.isTimeshiftEnabled()
 
-	def startTimeshift(self):
+	def startTimeshift(self, pauseService = True):
 		print "enable timeshift"
 		ts = self.getTimeshift()
 		if ts is None:
-			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, simple = True)
+			if not pauseService and not int(config.usage.timeshift_start_delay.value):
+				self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, simple = True)
 			print "no ts interface"
 			return 0
 
@@ -1500,9 +1504,10 @@ class InfoBarTimeshift:
 				# we remove the "relative time" for now.
 				#self.pvrStateDialog["timeshift"].setRelative(time.time())
 
-				# PAUSE.
-				#self.setSeekState(self.SEEK_STATE_PAUSE)
-				self.activateTimeshiftEnd(False)
+				if pauseService:
+					# PAUSE.
+					#self.setSeekState(self.SEEK_STATE_PAUSE)
+					self.activateTimeshiftEnd(False)
 
 				# enable the "TimeshiftEnableActions", which will override
 				# the startTimeshift actions
@@ -1515,6 +1520,9 @@ class InfoBarTimeshift:
 				self.new_timeshift_filename = self.generateNewTimeshiftFileName()
 			else:
 				print "timeshift failed"
+
+	def startTimeshiftWithoutPause(self):
+		self.startTimeshift(False)
 
 	def stopTimeshift(self):
 		ts = self.getTimeshift()
@@ -1550,6 +1558,7 @@ class InfoBarTimeshift:
 			seekable = self.getSeek()
 			if seekable is not None:
 				seekable.seekTo(-90000) # seek approx. 1 sec before end
+			self.timeshift_was_activated = True
 		if back:
 			self.ts_rewind_timer.start(200, 1)
 
@@ -1600,9 +1609,13 @@ class InfoBarTimeshift:
 	def __serviceStarted(self):
 		self.pvrStateDialog.hide()
 		self.__seekableStatusChanged()
+		if self.ts_start_delay_timer.isActive():
+			self.ts_start_delay_timer.stop()
+		if int(config.usage.timeshift_start_delay.value):
+			self.ts_start_delay_timer.start(int(config.usage.timeshift_start_delay.value) * 1000, True)
 
 	def checkTimeshiftRunning(self, returnFunction):
-		if self.timeshiftEnabled() and config.usage.check_timeshift.value:
+		if self.timeshiftEnabled() and config.usage.check_timeshift.value and self.timeshift_was_activated:
 			message = _("Stop timeshift?")
 			if not self.save_timeshift_file:
 				choice = [(_("yes"), "stop"), (_("no"), "continue"), (_("Yes and save"), "save"), (_("Yes and save in movie dir"), "save_movie")]
@@ -1630,6 +1643,7 @@ class InfoBarTimeshift:
 	# renames/moves timeshift files if requested
 	def __serviceEnd(self):
 		self.saveTimeshiftFiles()
+		self.timeshift_was_activated = False
 
 	def saveTimeshiftFiles(self):
 		if self.save_timeshift_file and self.current_timeshift_filename and self.new_timeshift_filename:
