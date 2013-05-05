@@ -140,9 +140,9 @@ class VideoHardware:
 		if self.modes.has_key("DVI-PC") and not self.getModeList("DVI-PC"):
 			print "remove DVI-PC because of not existing modes"
 			del self.modes["DVI-PC"]
-		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'iqonios300hd' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'odimm7' or model == 'ini-3000' or getBoxType() == 'vusolo2':
+		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'iqonios300hd' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'odimm7' or model == 'ini-3000' or getBoxType() == 'vusolo2' or getBoxType() == 'e3hd':
 			del self.modes["YPbPr"]
-		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000':
+		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000' or getBoxType() == 'e3hd':
 			del self.modes["Scart"]
 
 		self.createConfig()

@@ -66,7 +66,18 @@ elif [ $MODEL = "odinm7" ] ; then
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/en2
 	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_odinm7/$DATE	
+	EXTRA=$DIRECTORY/fullbackup_odinm7/$DATE
+## TESTING THE E3 HD Model	
+elif [ $MODEL = "e3hd" ] ; then
+	TYPE=E3HD
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="$MODEL"
+	MTDKERNEL="mtd2"
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/e3hd
+	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_e3hd/$DATE		
 elif [ $MODEL = "xp1000" ] ; then
 	TYPE=MAXDIGITAL
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
@@ -584,6 +595,37 @@ if [ $TYPE = "ODINM7" ] ; then
 	fi
 fi
 
+if [ $TYPE = "E3HD" ] ; then
+	rm -rf $MAINDEST
+	mkdir -p $MAINDEST
+	mkdir -p $EXTRA
+	mv $WORKDIR/root.$ROOTFSTYPE $MAINDEST/rootfs.bin 
+	mv $WORKDIR/vmlinux.gz $MAINDEST/kernel.bin
+	echo "rename this file to 'force' to force an update without confirmation" > $MAINDEST/noforce;
+	echo $MODEL-$IMAGEVERSION > $MAINDEST/imageversion
+	cp -r $MAINDEST $EXTRA #copy the made back-up to images
+	if [ -f $MAINDEST/rootfs.bin -a -f $MAINDEST/kernel.bin -a -f $MAINDEST/imageversion -a -f $MAINDEST/noforce ] ; then
+		echo "_________________________________________________\n"
+		echo "USB Image created on:" $MAINDEST
+		echo "and there is made an extra copy on:"
+		echo $EXTRA
+		echo "_________________________________________________\n"
+		echo " "
+		echo "To restore the image: \n"
+		echo "Place the USB-flash drive in the (front) USB-port "
+		echo "and switch the E3 HD off and on with the powerswitch "
+		echo "on the back of the E3 HD. And Press Power Button."
+		echo "\nPlease wait...almost ready! "
+	else
+		echo "Image creation failed - "
+		echo "Probable causes could be"
+		echo "     wrong back-up destination "
+		echo "     no space left on back-up device"
+		echo "     no writing permission on back-up device"
+		echo " "
+	fi
+fi
+
 if [ $TYPE = "MAXDIGITAL" ] ; then
 	rm -rf $MAINDEST
 	mkdir -p $MAINDEST
@@ -602,8 +644,8 @@ if [ $TYPE = "MAXDIGITAL" ] ; then
 		echo " "
 		echo "To restore the image: \n"
 		echo "Place the USB-flash drive in the (back) USB-port "
-		echo "and switch the MaxDigital off and on with the powerswitch "
-		echo "on the back of the MaxDigital."
+		echo "and switch the XP1000 off and on with the powerswitch "
+		echo "on the back of the XP1000."
 		echo "\nPlease wait...almost ready! "
 	else
 		echo "Image creation failed - "
@@ -772,7 +814,10 @@ if [ $DIRECTORY == /hdd ]; then
 			cp -r $MAINDEST $TARGET/
 		elif [ $TYPE = "ODINM7" ] ; then					# Odin M7 detected
 			#mkdir -p $TARGET
-			cp -r $MAINDEST $TARGET/		
+			cp -r $MAINDEST $TARGET/
+		elif [ $TYPE = "E3HD" ] ; then					# E3 HD detected
+			#mkdir -p $TARGET
+			cp -r $MAINDEST $TARGET/			
 		elif [ $TYPE = "MAXDIGITAL" ] ; then					# MaxDigital detected
 			mkdir -p $TARGET/$MODEL
 			cp -r $MAINDEST $TARGET

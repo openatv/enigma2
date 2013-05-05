@@ -92,6 +92,7 @@ AM_CONDITIONAL(DM7020HD, test "$BOXTYPE" == dm7020hd)
 AM_CONDITIONAL(DM800, test "$BOXTYPE" == dm800)
 AM_CONDITIONAL(DM800SE, test "$BOXTYPE" == dm800se)
 AM_CONDITIONAL(DM800HD, test "$BOXTYPE" == dm800hd)
+AM_CONDITIONAL(E3HD, test "$BOXTYPE" == e3hd)
 AM_CONDITIONAL(EBOX5000, test "$BOXTYPE" == ebox5000)
 AM_CONDITIONAL(ET4X00, test "$BOXTYPE" == et4x00)
 AM_CONDITIONAL(ET5X00, test "$BOXTYPE" == et5x00)
@@ -239,7 +240,7 @@ if test "$BOXTYPE" == "ixussone" -o "$BOXTYPE" == "ixusszero" -o "$BOXTYPE" == "
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 fi
 
-if test "$BOXTYPE" == "odinm7"; then
+if test "$BOXTYPE" == "odinm7 -o "$BOXTYPE" == "e3hd"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 	AC_DEFINE(KEY_POWER2_TO_KEY_WWW, 1,[define when rc sends a KEY_POWER2 event for its KEY_WWW key])
 	AC_DEFINE(KEY_DIRECTORY_TO_KEY_FILE, 1,[define when rc sends a KEY_DIRECTORY event for its KEY_FILE key])		
@@ -345,6 +346,7 @@ data/rc_models/Makefile
 data/rc_models/dmm0/Makefile
 data/rc_models/dmm1/Makefile
 data/rc_models/dmm2/Makefile
+data/rc_models/e3hd/Makefile
 data/rc_models/ebox5000/Makefile
 data/rc_models/et4x00/Makefile
 data/rc_models/et6x00/Makefile
