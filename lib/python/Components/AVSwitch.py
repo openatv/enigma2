@@ -155,7 +155,10 @@ def InitAVSwitch():
 	config.av.wss.addNotifier(setWSS)
 
 	iAVSwitch.setInput("ENCODER") # init on startup
-	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
+	if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000' or getBoxType() == 'e3hd':
+		SystemInfo["ScartSwitch"] = False
+	else:
+		SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
 
 	try:
 		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")
