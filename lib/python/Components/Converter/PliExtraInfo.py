@@ -145,13 +145,21 @@ class PliExtraInfo(Poll, Converter, object):
 	def createFrequency(self, fedata):
 		frequency = fedata.get("frequency")
 		if frequency:
-			return str(frequency / 1000)
+			if fedata.get("tuner_type") == _("Terrestrial"):
+				return str(int(frequency / 1000000 + 0.5) * 1000)
+			else:
+				return str(int(frequency / 1000 + 0.5))
 		return ""
 
 	def createSymbolRate(self, fedata):
-		symbolrate = fedata.get("symbol_rate")
-		if symbolrate:
-			return str(symbolrate / 1000)
+		if fedata.get("tuner_type") == _("Terrestrial"):
+			bandwidth = fedata.get("bandwidth")
+			if bandwidth:
+				return bandwidth
+		else:
+			symbolrate = fedata.get("symbol_rate")
+			if symbolrate:
+				return str(symbolrate / 1000)
 		return ""
 
 	def createPolarization(self, fedata):
@@ -167,9 +175,14 @@ class PliExtraInfo(Poll, Converter, object):
 		return ""
 
 	def createModulation(self, fedata):
-		modulation = fedata.get("modulation")
-		if modulation:
-			return str(modulation)
+		if fedata.get("tuner_type") == _("Terrestrial"):
+			constellation = fedata.get("constellation")
+			if constellation:
+				return constellation
+		else:
+			modulation = fedata.get("modulation")
+			if modulation:
+				return modulation
 		return ""
 
 	def createTunerType(self, feraw):
