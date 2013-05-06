@@ -4,6 +4,13 @@ from enigma import eAVSwitch, getDesktop, getBoxType
 from SystemInfo import SystemInfo
 import os
 
+try:
+	file = open("/proc/stb/info/boxtype", "r")
+	model = file.readline().strip()
+	file.close()
+except:
+	model = "unknown"
+
 class AVSwitch:
 	def setInput(self, input):
 		INPUT = { "ENCODER": 0, "SCART": 1, "AUX": 2 }
@@ -156,9 +163,11 @@ def InitAVSwitch():
 
 	iAVSwitch.setInput("ENCODER") # init on startup
 	if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000' or getBoxType() == 'e3hd':
-		SystemInfo["ScartSwitch"] = False
+		detected = False
 	else:
-		SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
+		detected = eAVSwitch.getInstance().haveScartSwitch()
+	
+	SystemInfo["ScartSwitch"] = detected
 
 	try:
 		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")
