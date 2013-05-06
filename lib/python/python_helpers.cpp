@@ -83,7 +83,8 @@ void transponderDataToDict(ePyObject &dest, ePtr<iDVBTransponderData> data)
 		int value;
 		PutToDict(dest, "tuner_type", data->getTunerType().c_str());
 		PutToDict(dest, "frequency", data->getFrequency());
-		PutToDict(dest, "symbol_rate", data->getSymbolRate());
+		value = data->getSymbolRate();
+		if (value > 0) PutToDict(dest, "symbol_rate", value);
 		value = data->getOrbitalPosition();
 		if (value >= 0) PutToDict(dest, "orbital_position", value);
 		value = data->getInversion();
