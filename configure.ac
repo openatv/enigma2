@@ -366,6 +366,7 @@ lib/python/Plugins/Extensions/AccuWeather/locale/Makefile
 lib/python/Plugins/Extensions/AccuWeather/locale/es/Makefile
 lib/python/Plugins/Extensions/AccuWeather/locale/es/LC_MESSAGES/Makefile
 lib/python/Plugins/Extensions/AccuWeather/wheathericons/Makefile
+lib/python/Plugins/Extensions/GmailReader/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/meta/Makefile
