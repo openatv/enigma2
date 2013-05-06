@@ -41,6 +41,7 @@ public:
 	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate) { return 1; }
 	int getInfo(const eServiceReference &ref, int w);
 	std::string getInfoString(const eServiceReference &ref,int w);
+	long long getFileSize(const eServiceReference &ref);
 };
 
 DEFINE_REF(eStaticServiceM2TSInformation);
@@ -134,6 +135,11 @@ std::string eStaticServiceM2TSInformation::getInfoString(const eServiceReference
 	default:
 		return "";
 	}
+}
+
+long long eStaticServiceM2TSInformation::getFileSize(const eServiceReference &ref)
+{
+	return m_parser.m_filesize;
 }
 
 RESULT eStaticServiceM2TSInformation::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &evt, time_t start_time)
