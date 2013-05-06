@@ -217,14 +217,14 @@ int main(int argc, char **argv)
 				break;
 			}
 		}
-		/*if (i)
+		if (i)
 			my_dc->setSpinner(eRect(ePoint(608, 328), wait[0]->size()), wait, i);
 		else
-			my_dc->setSpinner(eRect(608, 328, 0, 0), wait, 1);*/
-		if (i)
+			my_dc->setSpinner(eRect(608, 328, 0, 0), wait, 1);
+		/*if (i)
 			my_dc->setSpinner(eRect(ePoint(25, 25), wait[0]->size()), wait, i);
 		else
-			my_dc->setSpinner(eRect(25, 25, 0, 0), wait, 1);
+			my_dc->setSpinner(eRect(25, 25, 0, 0), wait, 1);*/
 	}
 	
 	gRC::getInstance()->setSpinnerDC(my_dc);
