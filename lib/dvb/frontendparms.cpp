@@ -108,17 +108,17 @@ int eDVBTransponderData::getProperty(unsigned int cmd) const
 
 int eDVBTransponderData::getInversion() const
 {
-	return getProperty(DTV_INVERSION);
+	return -1;
 }
 
 unsigned int eDVBTransponderData::getFrequency() const
 {
-	return getProperty(DTV_FREQUENCY);
+	return 0;
 }
 
 unsigned int eDVBTransponderData::getSymbolRate() const
 {
-	return getProperty(DTV_SYMBOL_RATE);
+	return 0;
 }
 
 int eDVBTransponderData::getOrbitalPosition() const
@@ -128,12 +128,12 @@ int eDVBTransponderData::getOrbitalPosition() const
 
 int eDVBTransponderData::getFecInner() const
 {
-	return getProperty(DTV_INNER_FEC);
+	return -1;
 }
 
 int eDVBTransponderData::getModulation() const
 {
-	return getProperty(DTV_MODULATION);
+	return -1;
 }
 
 int eDVBTransponderData::getPolarization() const
@@ -143,52 +143,52 @@ int eDVBTransponderData::getPolarization() const
 
 int eDVBTransponderData::getRolloff() const
 {
-	return getProperty(DTV_ROLLOFF);
+	return -1;
 }
 
 int eDVBTransponderData::getPilot() const
 {
-	return getProperty(DTV_PILOT);
+	return -1;
 }
 
 int eDVBTransponderData::getSystem() const
 {
-	return getProperty(DTV_DELIVERY_SYSTEM);
+	return -1;
 }
 
 int eDVBTransponderData::getBandwidth() const
 {
-	return getProperty(DTV_BANDWIDTH_HZ);
+	return -1;
 }
 
 int eDVBTransponderData::getCodeRateLp() const
 {
-	return getProperty(DTV_CODE_RATE_LP);
+	return -1;
 }
 
 int eDVBTransponderData::getCodeRateHp() const
 {
-	return getProperty(DTV_CODE_RATE_HP);
+	return -1;
 }
 
 int eDVBTransponderData::getConstellation() const
 {
-	return getProperty(DTV_MODULATION);
+	return -1;
 }
 
 int eDVBTransponderData::getTransmissionMode() const
 {
-	return getProperty(DTV_TRANSMISSION_MODE);
+	return -1;
 }
 
 int eDVBTransponderData::getGuardInterval() const
 {
-	return getProperty(DTV_GUARD_INTERVAL);
+	return -1;
 }
 
 int eDVBTransponderData::getHierarchyInformation() const
 {
-	return getProperty(DTV_HIERARCHY);
+	return -1;
 }
 
 DEFINE_REF(eDVBSatelliteTransponderData);
@@ -207,7 +207,7 @@ int eDVBSatelliteTransponderData::getInversion() const
 {
 	if (originalValues) return transponderParameters.inversion;
 
-	switch (eDVBTransponderData::getInversion())
+	switch (getProperty(DTV_INVERSION))
 	{
 	case INVERSION_OFF: return eDVBFrontendParametersSatellite::Inversion_Off;
 	case INVERSION_ON: return eDVBFrontendParametersSatellite::Inversion_On;
@@ -220,14 +220,14 @@ unsigned int eDVBSatelliteTransponderData::getFrequency() const
 {
 	if (originalValues) return transponderParameters.frequency;
 
-	return eDVBTransponderData::getFrequency() + frequencyOffset;
+	return getProperty(DTV_FREQUENCY) + frequencyOffset;
 }
 
 unsigned int eDVBSatelliteTransponderData::getSymbolRate() const
 {
 	if (originalValues) return transponderParameters.symbol_rate;
 
-	return eDVBTransponderData::getSymbolRate();
+	return getProperty(DTV_SYMBOL_RATE);
 }
 
 int eDVBSatelliteTransponderData::getOrbitalPosition() const
@@ -239,7 +239,7 @@ int eDVBSatelliteTransponderData::getFecInner() const
 {
 	if (originalValues) return transponderParameters.fec;
 
-	switch (eDVBTransponderData::getFecInner())
+	switch (getProperty(DTV_INNER_FEC))
 	{
 	case FEC_1_2: return eDVBFrontendParametersSatellite::FEC_1_2;
 	case FEC_2_3: return eDVBFrontendParametersSatellite::FEC_2_3;
@@ -261,7 +261,7 @@ int eDVBSatelliteTransponderData::getModulation() const
 {
 	if (originalValues) return transponderParameters.modulation;
 
-	switch (eDVBTransponderData::getModulation())
+	switch (getProperty(DTV_MODULATION))
 	{
 	default: eDebug("got unsupported modulation from frontend! report as QPSK!");
 	case QPSK: return eDVBFrontendParametersSatellite::Modulation_QPSK;
@@ -278,7 +278,7 @@ int eDVBSatelliteTransponderData::getRolloff() const
 {
 	if (originalValues) return transponderParameters.rolloff;
 
-	switch (eDVBTransponderData::getRolloff())
+	switch (getProperty(DTV_ROLLOFF))
 	{
 	case ROLLOFF_20: return eDVBFrontendParametersSatellite::RollOff_alpha_0_20;
 	case ROLLOFF_25: return eDVBFrontendParametersSatellite::RollOff_alpha_0_25;
@@ -292,7 +292,7 @@ int eDVBSatelliteTransponderData::getPilot() const
 {
 	if (originalValues) return transponderParameters.pilot;
 
-	switch (eDVBTransponderData::getPilot())
+	switch (getProperty(DTV_PILOT))
 	{
 	case PILOT_OFF: return eDVBFrontendParametersSatellite::Pilot_Off;
 	case PILOT_ON: return eDVBFrontendParametersSatellite::Pilot_On;
@@ -305,7 +305,7 @@ int eDVBSatelliteTransponderData::getSystem() const
 {
 	if (originalValues) return transponderParameters.system;
 
-	switch (eDVBTransponderData::getSystem())
+	switch (getProperty(DTV_DELIVERY_SYSTEM))
 	{
 	default: eDebug("got unsupported system from frontend! report as DVBS!");
 	case SYS_DVBS: return eDVBFrontendParametersSatellite::System_DVB_S;
@@ -329,7 +329,7 @@ int eDVBCableTransponderData::getInversion() const
 {
 	if (originalValues) return transponderParameters.inversion;
 
-	switch (eDVBTransponderData::getInversion())
+	switch (getProperty(DTV_INVERSION))
 	{
 	case INVERSION_OFF: return eDVBFrontendParametersCable::Inversion_Off;
 	case INVERSION_ON: return eDVBFrontendParametersCable::Inversion_On;
@@ -342,21 +342,21 @@ unsigned int eDVBCableTransponderData::getFrequency() const
 {
 	if (originalValues) return transponderParameters.frequency;
 
-	return eDVBTransponderData::getFrequency() / 1000;
+	return getProperty(DTV_FREQUENCY) / 1000;
 }
 
 unsigned int eDVBCableTransponderData::getSymbolRate() const
 {
 	if (originalValues) return transponderParameters.symbol_rate;
 
-	return eDVBTransponderData::getSymbolRate();
+	return getProperty(DTV_SYMBOL_RATE);
 }
 
 int eDVBCableTransponderData::getFecInner() const
 {
 	if (originalValues) return transponderParameters.fec_inner;
 
-	switch (eDVBTransponderData::getFecInner())
+	switch (getProperty(DTV_INNER_FEC))
 	{
 	case FEC_NONE: return eDVBFrontendParametersCable::FEC_None;
 	case FEC_1_2: return eDVBFrontendParametersCable::FEC_1_2;
@@ -375,7 +375,7 @@ int eDVBCableTransponderData::getModulation() const
 {
 	if (originalValues) return transponderParameters.modulation;
 
-	switch (eDVBTransponderData::getModulation())
+	switch (getProperty(DTV_MODULATION))
 	{
 	case QAM_16: return eDVBFrontendParametersCable::Modulation_QAM16;
 	case QAM_32: return eDVBFrontendParametersCable::Modulation_QAM32;
@@ -392,7 +392,7 @@ int eDVBCableTransponderData::getSystem() const
 	if (originalValues) return transponderParameters.system;
 
 #ifdef SYS_DVBC_ANNEX_C
-	switch (eDVBTransponderData::getSystem())
+	switch (getProperty(DTV_DELIVERY_SYSTEM))
 	{
 	default:
 	case SYS_DVBC_ANNEX_A: return eDVBFrontendParametersCable::System_DVB_C_ANNEX_A;
@@ -419,7 +419,7 @@ int eDVBTerrestrialTransponderData::getInversion() const
 {
 	if (originalValues) return transponderParameters.inversion;
 
-	switch (eDVBTransponderData::getInversion())
+	switch (getProperty(DTV_INVERSION))
 	{
 	case INVERSION_OFF: return eDVBFrontendParametersTerrestrial::Inversion_Off;
 	case INVERSION_ON: return eDVBFrontendParametersTerrestrial::Inversion_On;
@@ -432,21 +432,21 @@ unsigned int eDVBTerrestrialTransponderData::getFrequency() const
 {
 	if (originalValues) return transponderParameters.frequency;
 
-	return eDVBTransponderData::getFrequency();
+	return getProperty(DTV_FREQUENCY);
 }
 
 int eDVBTerrestrialTransponderData::getBandwidth() const
 {
 	if (originalValues) return transponderParameters.bandwidth;
 
-	return eDVBTransponderData::getBandwidth();
+	return getProperty(DTV_BANDWIDTH_HZ);
 }
 
 int eDVBTerrestrialTransponderData::getCodeRateLp() const
 {
 	if (originalValues) return transponderParameters.code_rate_LP;
 
-	switch (eDVBTransponderData::getCodeRateLp())
+	switch (getProperty(DTV_CODE_RATE_LP))
 	{
 	case FEC_1_2: return eDVBFrontendParametersTerrestrial::FEC_1_2;
 	case FEC_2_3: return eDVBFrontendParametersTerrestrial::FEC_2_3;
@@ -462,7 +462,7 @@ int eDVBTerrestrialTransponderData::getCodeRateHp() const
 {
 	if (originalValues) return transponderParameters.code_rate_HP;
 
-	switch (eDVBTransponderData::getCodeRateHp())
+	switch (getProperty(DTV_CODE_RATE_HP))
 	{
 	case FEC_1_2: return eDVBFrontendParametersTerrestrial::FEC_1_2;
 	case FEC_2_3: return eDVBFrontendParametersTerrestrial::FEC_2_3;
@@ -478,7 +478,7 @@ int eDVBTerrestrialTransponderData::getConstellation() const
 {
 	if (originalValues) return transponderParameters.modulation;
 
-	switch (eDVBTransponderData::getConstellation())
+	switch (getProperty(DTV_MODULATION))
 	{
 	case QPSK: return eDVBFrontendParametersTerrestrial::Modulation_QPSK;
 	case QAM_16: return eDVBFrontendParametersTerrestrial::Modulation_QAM16;
@@ -493,7 +493,7 @@ int eDVBTerrestrialTransponderData::getTransmissionMode() const
 {
 	if (originalValues) return transponderParameters.transmission_mode;
 
-	switch (eDVBTransponderData::getTransmissionMode())
+	switch (getProperty(DTV_TRANSMISSION_MODE))
 	{
 	case TRANSMISSION_MODE_2K: return eDVBFrontendParametersTerrestrial::TransmissionMode_2k;
 	case TRANSMISSION_MODE_8K: return eDVBFrontendParametersTerrestrial::TransmissionMode_8k;
@@ -506,7 +506,7 @@ int eDVBTerrestrialTransponderData::getGuardInterval() const
 {
 	if (originalValues) return transponderParameters.guard_interval;
 
-	switch (eDVBTransponderData::getGuardInterval())
+	switch (getProperty(DTV_GUARD_INTERVAL))
 	{
 	case GUARD_INTERVAL_1_32: return eDVBFrontendParametersTerrestrial::GuardInterval_1_32;
 	case GUARD_INTERVAL_1_16: return eDVBFrontendParametersTerrestrial::GuardInterval_1_16;
@@ -521,7 +521,7 @@ int eDVBTerrestrialTransponderData::getHierarchyInformation() const
 {
 	if (originalValues) return transponderParameters.hierarchy;
 
-	switch (eDVBTransponderData::getHierarchyInformation())
+	switch (getProperty(DTV_HIERARCHY))
 	{
 	case HIERARCHY_NONE: return eDVBFrontendParametersTerrestrial::Hierarchy_None;
 	case HIERARCHY_1: return eDVBFrontendParametersTerrestrial::Hierarchy_1;
@@ -536,7 +536,7 @@ int eDVBTerrestrialTransponderData::getSystem() const
 {
 	if (originalValues) return transponderParameters.system;
 
-	switch (eDVBTransponderData::getSystem())
+	switch (getProperty(DTV_DELIVERY_SYSTEM))
 	{
 	default:
 	case SYS_DVBT: return eDVBFrontendParametersTerrestrial::System_DVB_T;
@@ -560,7 +560,7 @@ int eDVBATSCTransponderData::getInversion() const
 {
 	if (originalValues) return transponderParameters.inversion;
 
-	switch (eDVBTransponderData::getInversion())
+	switch (getProperty(DTV_INVERSION))
 	{
 	case INVERSION_OFF: return eDVBFrontendParametersATSC::Inversion_Off;
 	case INVERSION_ON: return eDVBFrontendParametersATSC::Inversion_On;
@@ -573,14 +573,14 @@ unsigned int eDVBATSCTransponderData::getFrequency() const
 {
 	if (originalValues) return transponderParameters.frequency;
 
-	return eDVBTransponderData::getFrequency() / 1000;
+	return getProperty(DTV_FREQUENCY);
 }
 
 int eDVBATSCTransponderData::getModulation() const
 {
 	if (originalValues) return transponderParameters.modulation;
 
-	switch (eDVBTransponderData::getModulation())
+	switch (getProperty(DTV_MODULATION))
 	{
 	case QAM_16: return eDVBFrontendParametersATSC::Modulation_QAM16;
 	case QAM_32: return eDVBFrontendParametersATSC::Modulation_QAM32;
@@ -598,7 +598,7 @@ int eDVBATSCTransponderData::getSystem() const
 {
 	if (originalValues) return transponderParameters.system;
 
-	switch (eDVBTransponderData::getSystem())
+	switch (getProperty(DTV_DELIVERY_SYSTEM))
 	{
 	default:
 	case SYS_ATSC: return eDVBFrontendParametersATSC::System_ATSC;
