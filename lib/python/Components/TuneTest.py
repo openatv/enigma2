@@ -87,7 +87,7 @@ class TuneTest:
 			print "2nd choice"
 			if dict["tuner_state"] == "LOCKED":
 				print "acquiring TSID/ONID"
-				self.raw_channel.receivedTsidOnid.append(self.gotTsidOnid)
+				self.raw_channel.receivedTsidOnid.get().append(self.gotTsidOnid)
 				self.raw_channel.requestTsidOnid()
 				self.pidStatus = self.INTERNAL_PID_STATUS_WAITING
 			else:
