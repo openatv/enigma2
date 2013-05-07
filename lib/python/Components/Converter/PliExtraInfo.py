@@ -138,21 +138,21 @@ class PliExtraInfo(Poll, Converter, object):
 		return "Pids:%04d:%04d:%04d:%05d" % (vpid, apid, pcrpid, sidpid)
 
 	def createTransponderInfo(self, fedata, feraw):
-		return addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata)) \
-			+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + addspace(self.createModulation(fedata)) \
+		return addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(feraw)) + addspace(self.createPolarization(fedata)) \
+			+ addspace(self.createSymbolRate(fedata, feraw)) + addspace(self.createFEC(fedata, feraw)) + addspace(self.createModulation(fedata)) \
 			+ self.createOrbPos(feraw)
 		
-	def createFrequency(self, fedata):
-		frequency = fedata.get("frequency")
+	def createFrequency(self, feraw):
+		frequency = feraw.get("frequency")
 		if frequency:
-			if fedata.get("tuner_type") == _("Terrestrial"):
+			if "DVB-T" in feraw.get("tuner_type"):
 				return str(int(frequency / 1000000 + 0.5) * 1000)
 			else:
 				return str(int(frequency / 1000 + 0.5))
 		return ""
 
-	def createSymbolRate(self, fedata):
-		if fedata.get("tuner_type") == _("Terrestrial"):
+	def createSymbolRate(self, fedata, feraw):
+		if "DVB-T" in feraw.get("tuner_type"):
 			bandwidth = fedata.get("bandwidth")
 			if bandwidth:
 				return bandwidth
@@ -168,10 +168,16 @@ class PliExtraInfo(Poll, Converter, object):
 			return polarization
 		return ""
 
-	def createFEC(self, fedata):
-		fec = fedata.get("fec_inner")
-		if fec:
-			return str(fec)
+	def createFEC(self, fedata, feraw):
+		if "DVB-T" in feraw.get("tuner_type"):
+			code_rate_lp = fedata.get("code_rate_lp")
+			code_rate_hp = fedata.get("code_rate_hp")
+			if code_rate_lp and code_rate_hp:
+				return code_rate_lp + "-" + code_rate_hp
+		else:
+			fec = fedata.get("fec_inner")
+			if fec:
+				return fec
 		return ""
 
 	def createModulation(self, fedata):
@@ -271,24 +277,24 @@ class PliExtraInfo(Poll, Converter, object):
 				+ addspace(self.createCryptoSpecial(info)) + addspace(self.createVideoCodec(info)) + self.createResolution(info)
 
 		if self.type == "ServiceInfo":	
-			return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata)) \
-			+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + addspace(self.createModulation(fedata)) + addspace(self.createOrbPos(feraw)) \
+			return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(feraw)) + addspace(self.createPolarization(fedata)) \
+			+ addspace(self.createSymbolRate(fedata, feraw)) + addspace(self.createFEC(fedata, feraw)) + addspace(self.createModulation(fedata)) + addspace(self.createOrbPos(feraw)) \
 			+ addspace(self.createVideoCodec(info)) + self.createResolution(info)
 
 		if self.type == "TransponderInfo":	
 			return self.createTransponderInfo(fedata,feraw)
 
 		if self.type == "TransponderFrequency":
-			return self.createFrequency(fedata)
+			return self.createFrequency(feraw)
 
 		if self.type == "TransponderSymbolRate":
-			return self.createSymbolRate(fedata)
+			return self.createSymbolRate(fedata, feraw)
 
 		if self.type == "TransponderPolarization":
 			return self.createPolarization(fedata)
 
 		if self.type == "TransponderFEC":
-			return self.createFEC(fedata)
+			return self.createFEC(fedata, feraw)
 
 		if self.type == "TransponderModulation":
 			return self.createModulation(fedata)
