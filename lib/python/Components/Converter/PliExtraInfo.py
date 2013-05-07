@@ -324,7 +324,7 @@ class PliExtraInfo(Poll, Converter, object):
 		frequency = feraw.get("frequency")
 		if frequency:
 			if "DVB-T" in feraw.get("tuner_type"):
-				return str(int(frequency / 1000000 + 0.5) * 1000)
+				return str(int(frequency / 1000000 + 0.5))
 			else:
 				return str(int(frequency / 1000 + 0.5))
 		return ""
