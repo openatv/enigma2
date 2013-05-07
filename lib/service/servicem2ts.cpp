@@ -41,7 +41,7 @@ public:
 	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate) { return 1; }
 	int getInfo(const eServiceReference &ref, int w);
 	std::string getInfoString(const eServiceReference &ref,int w);
-	PyObject *getInfoObject(const eServiceReference &r, int what);
+	long long getFileSize(const eServiceReference &ref);
 };
 
 DEFINE_REF(eStaticServiceM2TSInformation);
@@ -137,15 +137,9 @@ std::string eStaticServiceM2TSInformation::getInfoString(const eServiceReference
 	}
 }
 
-PyObject *eStaticServiceM2TSInformation::getInfoObject(const eServiceReference &r, int what)
+long long eStaticServiceM2TSInformation::getFileSize(const eServiceReference &ref)
 {
-	switch (what)
-	{
-	case iServiceInformation::sFileSize:
-		return PyLong_FromLongLong(m_parser.m_filesize);
-	default:
-		Py_RETURN_NONE;
-	}
+	return m_parser.m_filesize;
 }
 
 RESULT eStaticServiceM2TSInformation::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &evt, time_t start_time)

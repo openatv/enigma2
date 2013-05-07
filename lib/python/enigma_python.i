@@ -41,7 +41,6 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
 #include <lib/base/etpm.h>
-#include <lib/base/nconfig.h>
 #include <lib/base/message.h>
 #include <lib/driver/rc.h>
 #include <lib/driver/rcinput_swig.h>
@@ -73,6 +72,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gui/evideo.h>
 #include <lib/gui/ecanvas.h>
 #include <lib/python/connections.h>
+#include <lib/python/pythonconfig.h>
 #include <lib/gui/elistbox.h>
 #include <lib/gui/elistboxcontent.h>
 #include <lib/gui/esubtitle.h>
@@ -108,6 +108,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb_ci/dvbci.h>
 #include <lib/dvb_ci/dvbci_ui.h>
 #include <lib/python/python.h>
+#include <lib/python/python_helpers.h>
 #include <lib/gdi/picload.h>
 %}
 
@@ -147,6 +148,11 @@ typedef long time_t;
 %include <lib/base/eenv.h>
 %include <lib/base/eerror.h>
 
+%include <lib/python/python_dvb.i>
+%include <lib/python/python_service.i>
+%include <lib/python/python_pmt.i>
+%include <lib/python/python_pcore.i>
+
 %immutable eSocketNotifier::activated;
 %include <lib/base/ebase.h>
 %include <lib/base/smartptr.h>
@@ -183,9 +189,9 @@ typedef long time_t;
 %immutable iCryptoInfo::decodetime;
 %immutable iCryptoInfo::usedcardid;
 %immutable eTuxtxtApp::appClosed;
+%immutable iDVBChannel::receivedTsidOnid;
 %include <lib/base/message.h>
 %include <lib/base/etpm.h>
-%include <lib/base/nconfig.h>
 %include <lib/driver/rc.h>
 %include <lib/driver/rcinput_swig.h>
 %include <lib/gdi/fb.h>
@@ -247,6 +253,7 @@ typedef long time_t;
 %include <lib/dvb_ci/dvbci_ui.h>
 %include <lib/dvb/db.h>
 %include <lib/python/python.h>
+%include <lib/python/pythonconfig.h>
 %include <lib/gdi/picload.h>
 /**************  eptr  **************/
 
@@ -423,3 +430,6 @@ extern const char *getImageVersionString();
 extern const char *getBuildVersionString();
 extern const char *getDriverDateString();
 extern void dump_malloc_stats(void);
+
+%include <lib/python/python_console.i>
+%include <lib/python/python_base.i>

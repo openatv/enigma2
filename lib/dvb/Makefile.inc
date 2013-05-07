@@ -14,6 +14,7 @@ dvb_libenigma_dvb_a_SOURCES = \
 	dvb/esection.cpp \
 	dvb/fastscan.cpp \
 	dvb/frontend.cpp \
+	dvb/frontendparms.cpp \
 	dvb/metaparser.cpp \
 	dvb/pesparse.cpp \
 	dvb/pmt.cpp \

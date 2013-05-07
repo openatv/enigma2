@@ -15,6 +15,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 #  | <start, end>              <state>  |
 #
 	def buildTimerEntry(self, timer, processed):
+		height = self.l.getItemSize().height()
 		width = self.l.getItemSize().width()
 		res = [ None ]
 		x = (2*width) // 3
@@ -76,6 +77,10 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 25, 126, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
 		if icon:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 2, 20, 20, icon))
+
+		line = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, height-2, width, 2, line))
+
 		return res
 
 	def __init__(self, list):

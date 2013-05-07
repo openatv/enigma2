@@ -671,7 +671,17 @@ PyObject *eDVBResourceManager::setFrontendSlotInformations(ePyObject list)
 		int pos=0;
 		while (pos < PyList_Size(list)) {
 			ePyObject obj = PyList_GET_ITEM(list, pos++);
-			if (!i->m_frontend->setSlotInfo(obj))
+			ePyObject Id, Descr, Enabled, IsDVBS2, frontendId;
+			if (!PyTuple_Check(obj) || PyTuple_Size(obj) != 5)
+				continue;
+			Id = PyTuple_GET_ITEM(obj, 0);
+			Descr = PyTuple_GET_ITEM(obj, 1);
+			Enabled = PyTuple_GET_ITEM(obj, 2);
+			IsDVBS2 = PyTuple_GET_ITEM(obj, 3);
+			frontendId = PyTuple_GET_ITEM(obj, 4);
+			if (!PyInt_Check(Id) || !PyString_Check(Descr) || !PyBool_Check(Enabled) || !PyBool_Check(IsDVBS2) || !PyInt_Check(frontendId))
+				continue;
+			if (!i->m_frontend->setSlotInfo(PyInt_AsLong(Id), PyString_AS_STRING(Descr), Enabled == Py_True, IsDVBS2 == Py_True, PyInt_AsLong(frontendId)))
 				continue;
 			++assigned;
 			break;
@@ -686,7 +696,17 @@ PyObject *eDVBResourceManager::setFrontendSlotInformations(ePyObject list)
 		int pos=0;
 		while (pos < PyList_Size(list)) {
 			ePyObject obj = PyList_GET_ITEM(list, pos++);
-			if (!i->m_frontend->setSlotInfo(obj))
+			ePyObject Id, Descr, Enabled, IsDVBS2, frontendId;
+			if (!PyTuple_Check(obj) || PyTuple_Size(obj) != 5)
+				continue;
+			Id = PyTuple_GET_ITEM(obj, 0);
+			Descr = PyTuple_GET_ITEM(obj, 1);
+			Enabled = PyTuple_GET_ITEM(obj, 2);
+			IsDVBS2 = PyTuple_GET_ITEM(obj, 3);
+			frontendId = PyTuple_GET_ITEM(obj, 4);
+			if (!PyInt_Check(Id) || !PyString_Check(Descr) || !PyBool_Check(Enabled) || !PyBool_Check(IsDVBS2) || !PyInt_Check(frontendId))
+				continue;
+			if (!i->m_frontend->setSlotInfo(PyInt_AsLong(Id), PyString_AS_STRING(Descr), Enabled == Py_True, IsDVBS2 == Py_True, PyInt_AsLong(frontendId)))
 				continue;
 			break;
 		}
@@ -1917,31 +1937,17 @@ RESULT eDVBChannel::setCIRouting(const eDVBCIRouting &routing)
 
 void eDVBChannel::SDTready(int result)
 {
-	ePyObject args = PyTuple_New(2), ret;
-	bool ok=false;
+	int tsid = -1, onid = -1;
 	if (!result)
 	{
 		for (std::vector<ServiceDescriptionSection*>::const_iterator i = m_SDT->getSections().begin(); i != m_SDT->getSections().end(); ++i)
 		{
-			ok = true;
-			PyTuple_SET_ITEM(args, 0, PyInt_FromLong((*i)->getTransportStreamId()));
-			PyTuple_SET_ITEM(args, 1, PyInt_FromLong((*i)->getOriginalNetworkId()));
+			tsid = (*i)->getTransportStreamId();
+			onid = (*i)->getOriginalNetworkId();
 			break;
 		}
 	}
-	if (!ok)
-	{
-		PyTuple_SET_ITEM(args, 0, Py_None);
-		PyTuple_SET_ITEM(args, 1, Py_None);
-		Py_INCREF(Py_None);
-		Py_INCREF(Py_None);
-	}
-	ret = PyObject_CallObject(m_tsid_onid_callback, args);
-	if (ret)
-		Py_DECREF(ret);
-	Py_DECREF(args);
-	Py_DECREF(m_tsid_onid_callback);
-	m_tsid_onid_callback = ePyObject();
+	/* emit */ receivedTsidOnid(tsid, onid);
 	m_tsid_onid_demux = 0;
 	m_SDT = 0;
 }
@@ -1958,25 +1964,20 @@ int eDVBChannel::reserveDemux()
 	return -1;
 }
 
-RESULT eDVBChannel::requestTsidOnid(ePyObject callback)
+RESULT eDVBChannel::requestTsidOnid()
 {
-	if (PyCallable_Check(callback))
+	if (!getDemux(m_tsid_onid_demux, 0))
 	{
-		if (!getDemux(m_tsid_onid_demux, 0))
+		m_SDT = new eTable<ServiceDescriptionSection>;
+		CONNECT(m_SDT->tableReady, eDVBChannel::SDTready);
+		if (m_SDT->start(m_tsid_onid_demux, eDVBSDTSpec()))
 		{
-			m_SDT = new eTable<ServiceDescriptionSection>;
-			CONNECT(m_SDT->tableReady, eDVBChannel::SDTready);
-			if (m_SDT->start(m_tsid_onid_demux, eDVBSDTSpec()))
-			{
-				m_tsid_onid_demux = 0;
-				m_SDT = 0;
-			}
-			else
-			{
-				Py_INCREF(callback);
-				m_tsid_onid_callback = callback;
-				return 0;
-			}
+			m_tsid_onid_demux = 0;
+			m_SDT = 0;
+		}
+		else
+		{
+			return 0;
 		}
 	}
 	return -1;
