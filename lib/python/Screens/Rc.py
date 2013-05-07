@@ -3,7 +3,7 @@ from Tools.Directories import resolveFilename, SCOPE_SKIN
 from xml.etree.ElementTree import ElementTree
 from Components.config import config, ConfigInteger
 from Components.RcModel import rc_model
-from enigma import getBoxType
+from enigma import getBoxType, ePoint
 
 config.misc.rcused = ConfigInteger(default = 1)
 
@@ -14,6 +14,7 @@ class Rc:
 		self["arrowdown2"] = MovingPixmap()
 		self["arrowup"] = MovingPixmap()
 		self["arrowup2"] = MovingPixmap()
+		self['red'] = MovingPixmap()
 
 		config.misc.rcused = ConfigInteger(default = 1)
 		self.isDefaultRc = rc_model.rcIsDefault()
