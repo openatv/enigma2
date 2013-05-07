@@ -75,10 +75,9 @@ protected:
 public:
 		// iFrontendInformation
 	int getFrontendInfo(int w);
-	PyObject *getFrontendData();
-	PyObject *getFrontendStatus();
-	PyObject *getTransponderData(bool);
-	PyObject *getAll(bool original); // a sum of getFrontendData/Status/TransponderData
+	ePtr<iDVBFrontendData> getFrontendData();
+	ePtr<iDVBFrontendStatus> getFrontendStatus();
+	ePtr<iDVBTransponderData> getTransponderData(bool);
 };
 
 class eSubtitleWidget;
@@ -135,7 +134,8 @@ public:
 	RESULT getEvent(ePtr<eServiceEvent> &evt, int nownext);
 	int getInfo(int w);
 	std::string getInfoString(int w);
-	PyObject *getInfoObject(int w);
+	ePtr<iDVBTransponderData> getTransponderData();
+	void getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids);
 
 		// iAudioTrackSelection	
 	int getNumberOfTracks();
@@ -186,7 +186,7 @@ public:
 	
 		// iStreamableService
 	RESULT stream(ePtr<iStreamableService> &ptr);
-	PyObject *getStreamingData();
+	ePtr<iStreamData> getStreamingData();
 
 protected:
 	friend class eServiceFactoryDVB;

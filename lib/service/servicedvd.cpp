@@ -81,6 +81,31 @@ RESULT eServiceFactoryDVD::offlineOperations(const eServiceReference &, ePtr<iSe
 	return -1;
 }
 
+DEFINE_REF(eServiceDVDInfoContainer);
+
+int eServiceDVDInfoContainer::getInteger(unsigned int index) const
+{
+	if (index >= integerValues.size()) return -1;
+	return integerValues[index];
+}
+
+std::string eServiceDVDInfoContainer::getString(unsigned int index) const
+{
+	if (index >= stringValues.size()) return "";
+	return stringValues[index];
+}
+
+void eServiceDVDInfoContainer::addInteger(int value)
+{
+	integerValues.push_back(value);
+}
+
+void eServiceDVDInfoContainer::addString(const char *value)
+{
+	stringValues.push_back(value);
+}
+
+
 // eServiceDVD
 
 DEFINE_REF(eServiceDVD);
@@ -103,8 +128,8 @@ eServiceDVD::eServiceDVD(eServiceReference ref):
 	ddvd_set_dvd_path(m_ddvdconfig, ref.path.c_str());
 	ddvd_set_ac3thru(m_ddvdconfig, 0);
 
-	std::string ddvd_language;
-	if (!ePythonConfigQuery::getConfigValue("config.osd.language", ddvd_language))
+	std::string ddvd_language = eConfigManager::getConfigValue("config.osd.language");
+	if (ddvd_language != "")
 		ddvd_set_language(m_ddvdconfig, (ddvd_language.substr(0,2)).c_str());
 
 	int fd = open("/proc/stb/video/aspect", O_RDONLY);
@@ -591,71 +616,68 @@ std::string eServiceDVD::getInfoString(int w)
 	return "";
 }
 
-PyObject *eServiceDVD::getInfoObject(int w)
+ePtr<iServiceInfoContainer> eServiceDVD::getInfoObject(int w)
 {
-	switch(w)
+	eServiceDVDInfoContainer *container = new eServiceDVDInfoContainer;
+	ePtr<iServiceInfoContainer> retval = container;
+	eDebug("eServiceDVD::getInfoObject %d", w);
+	switch (w)
 	{
-		case sUser+6:
+		case sUser + 6:
 		{
-			ePyObject tuple = PyTuple_New(3);
 			int audio_id,audio_type;
 			uint16_t audio_lang;
 			ddvd_get_last_audio(m_ddvdconfig, &audio_id, &audio_lang, &audio_type);
-			char audio_string[3]={audio_lang >> 8, audio_lang, 0};
-			PyTuple_SetItem(tuple, 0, PyInt_FromLong(audio_id+1));
-			PyTuple_SetItem(tuple, 1, PyString_FromString(audio_string));
-			switch(audio_type)
+			char audio_string[3] = {audio_lang >> 8, audio_lang, 0};
+			container->addInteger(audio_id + 1);
+			container->addString(audio_string);
+			switch (audio_type)
 			{
-				case DDVD_MPEG:
-					PyTuple_SetItem(tuple, 2, PyString_FromString("MPEG"));
-					break;
-				case DDVD_AC3:
-					PyTuple_SetItem(tuple, 2, PyString_FromString("AC3"));
-					break;
-				case DDVD_DTS:
-					PyTuple_SetItem(tuple, 2, PyString_FromString("DTS"));
-					break;
-				case DDVD_LPCM:
-					PyTuple_SetItem(tuple, 2, PyString_FromString("LPCM"));
-					break;
-				default:
-					PyTuple_SetItem(tuple, 2, PyString_FromString(""));
+			case DDVD_MPEG:
+				container->addString("MPEG");
+				break;
+			case DDVD_AC3:
+				container->addString("AC3");
+				break;
+			case DDVD_DTS:
+				container->addString("DTS");
+				break;
+			case DDVD_LPCM:
+				container->addString("LPCM");
+				break;
 			}
-			return tuple;
+			break;
 		}
-		case sUser+7:
+		case sUser + 7:
 		{
-			ePyObject tuple = PyTuple_New(2);
 			int spu_id;
 			uint16_t spu_lang;
 			ddvd_get_last_spu(m_ddvdconfig, &spu_id, &spu_lang);
-			char spu_string[3]={spu_lang >> 8, spu_lang, 0};
+			char spu_string[3] = {spu_lang >> 8, spu_lang, 0};
 			if (spu_id == -1)
 			{
-				PyTuple_SetItem(tuple, 0, PyInt_FromLong(0));
-				PyTuple_SetItem(tuple, 1, PyString_FromString(""));
+				container->addInteger(0);
+				container->addString("");
 			}
 			else
 			{
-				PyTuple_SetItem(tuple, 0, PyInt_FromLong(spu_id+1));
-				PyTuple_SetItem(tuple, 1, PyString_FromString(spu_string));
-			}				
-			return tuple;
+				container->addInteger(spu_id + 1);
+				container->addString(spu_string);
+			}
+			break;
 		}
-		case sUser+8:
+		case sUser + 8:
 		{
-			ePyObject tuple = PyTuple_New(2);
 			int current, num;
 			ddvd_get_angle_info(m_ddvdconfig, &current, &num);
-			PyTuple_SetItem(tuple, 0, PyInt_FromLong(current));
-			PyTuple_SetItem(tuple, 1, PyInt_FromLong(num));
-
-			return tuple;
+			container->addInteger(current);
+			container->addInteger(num);
+			break;
 		}
 		default:
 			eDebug("unhandled getInfoObject(%d)", w);
 	}
-	Py_RETURN_NONE;
+	return retval;
 }
 
 RESULT eServiceDVD::enableSubtitles(eWidget *parent, ePyObject tuple)

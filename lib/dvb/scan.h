@@ -52,7 +52,7 @@ class eDVBScan: public Object, public iObject
 	int m_ready, m_ready_all;
 
 	std::map<eDVBChannelID, ePtr<iDVBFrontendParameters> > m_new_channels;
-	std::map<eDVBChannelID, ePyObjectWrapper> m_tuner_data; // data read from tuner for every new channel
+	std::map<eDVBChannelID, int> m_tuner_data; // frequency read from tuner for every new channel
 
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> > m_new_services;
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator m_last_service;
@@ -93,8 +93,6 @@ class eDVBScan: public Object, public iObject
 	int m_networkid;
 	bool m_usePAT;
 	bool m_scan_debug;
-	ePyObject m_additional_tsid_onid_check_func;
-	bool m_show_add_tsid_onid_check_failed_msg;
 public:
 	eDVBScan(iDVBChannel *channel, bool usePAT=true, bool debug=true );
 	~eDVBScan();

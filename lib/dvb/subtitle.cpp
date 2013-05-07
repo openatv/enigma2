@@ -51,8 +51,7 @@ static int extract_pts(pts_t &pts, __u8 *pkt)
 
 void eDVBSubtitleParser::subtitle_process_line(subtitle_region *region, subtitle_region_object *object, int line, __u8 *data, int len)
 {
-	std::string configvalue;
-	bool subcentered = (ePythonConfigQuery::getConfigValue("config.subtitles.dvb_subtitles_centered", configvalue) >= 0 && configvalue == "True");
+	bool subcentered = eConfigManager::getConfigBoolValue("config.subtitles.dvb_subtitles_centered");
 	int x = subcentered ? (region->width - len) /2 : object->object_horizontal_position;
 	int y = object->object_vertical_position + line;
 	if (x + len > region->width)
@@ -1176,13 +1175,8 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 					break;
 			}
 
-			std::string configvalue;
-			int bcktrans = 0;
-			if (!ePythonConfigQuery::getConfigValue("config.subtitles.dvb_subtitles_backtrans", configvalue))
-			{
-				bcktrans = atoi(configvalue.c_str());
-			}
-			bool yellow = (ePythonConfigQuery::getConfigValue("config.subtitles.dvb_subtitles_yellow", configvalue) >= 0 && configvalue == "True");
+			int bcktrans = eConfigManager::getConfigIntValue("config.subtitles.dvb_subtitles_backtrans");
+			bool yellow = eConfigManager::getConfigBoolValue("config.subtitles.dvb_subtitles_yellow");
 
 			for (int i=0; i<clut_size; ++i)
 			{

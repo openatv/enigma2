@@ -5,7 +5,6 @@
 
 #include <linux/dvb/frontend.h>
 #include <linux/dvb/video.h>
-#include <lib/dvb/frontendparms.h>
 #include <lib/base/object.h>
 #include <lib/base/ebase.h>
 #include <lib/base/elock.h>
@@ -305,7 +304,7 @@ public:
 	RESULT getName(const eServiceReference &ref, std::string &name);
 	RESULT getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr, time_t start_time);
 	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate=false);
-	PyObject *getInfoObject(const eServiceReference &ref, int);  // implemented in lib/service/servicedvb.h
+	ePtr<iDVBTransponderData> getTransponderData(const eServiceReference &ref);
 
 		/* for filtering: */
 	int checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQuery &query);
@@ -385,6 +384,11 @@ public:
 
 #endif  // SWIG
 
+class eDVBFrontendParametersSatellite;
+class eDVBFrontendParametersCable;
+class eDVBFrontendParametersTerrestrial;
+class eDVBFrontendParametersATSC;
+
 class iDVBFrontendParameters: public iObject
 {
 #ifdef SWIG
@@ -438,7 +442,49 @@ public:
 	enum { voltageOff, voltage13, voltage18, voltage13_5, voltage18_5 };
 };
 
-SWIG_IGNORE(iDVBFrontend);
+class iDVBFrontendStatus:  public iDVBFrontend_ENUMS, public iObject
+{
+public:
+	virtual int getState() const = 0;
+	virtual std::string getStateDescription() const = 0;
+	virtual int getLocked() const = 0;
+	virtual int getSynced() const = 0;
+	virtual int getBER() const = 0;
+	virtual int getSNR() const = 0;
+	virtual int getSNRdB() const = 0;
+	virtual int getSignalPower() const = 0;
+};
+
+class iDVBTransponderData: public iObject
+{
+public:
+	virtual std::string getTunerType() const = 0;
+	virtual int getInversion() const = 0;
+	virtual unsigned int getFrequency() const = 0;
+	virtual unsigned int getSymbolRate() const = 0;
+	virtual int getOrbitalPosition() const = 0;
+	virtual int getFecInner() const = 0;
+	virtual int getModulation() const = 0;
+	virtual int getPolarization() const = 0;
+	virtual int getRolloff() const = 0;
+	virtual int getPilot() const = 0;
+	virtual int getSystem() const = 0;
+	virtual int getBandwidth() const = 0;
+	virtual int getCodeRateLp() const = 0;
+	virtual int getCodeRateHp() const = 0;
+	virtual int getConstellation() const = 0;
+	virtual int getTransmissionMode() const = 0;
+	virtual int getGuardInterval() const = 0;
+	virtual int getHierarchyInformation() const = 0;
+};
+
+class iDVBFrontendData: public iDVBFrontend_ENUMS, public iObject
+{
+public:
+	virtual int getNumber() const = 0;
+	virtual std::string getTypeDescription() const = 0;
+};
+
 class iDVBFrontend: public iDVBFrontend_ENUMS, public iObject
 {
 public:
@@ -458,9 +504,9 @@ public:
 	virtual RESULT setSecSequence(eSecCommandList &list)=0;
 #endif
 	virtual int readFrontendData(int type)=0;
-	virtual void getFrontendStatus(SWIG_PYOBJECT(ePyObject) dest)=0;
-	virtual void getTransponderData(SWIG_PYOBJECT(ePyObject) dest, bool original)=0;
-	virtual void getFrontendData(SWIG_PYOBJECT(ePyObject) dest)=0;
+	virtual void getFrontendStatus(ePtr<iDVBFrontendStatus> &dest)=0;
+	virtual void getTransponderData(ePtr<iDVBTransponderData> &dest, bool original)=0;
+	virtual void getFrontendData(ePtr<iDVBFrontendData> &dest)=0;
 #ifndef SWIG
 	virtual RESULT getData(int num, long &data)=0;
 	virtual RESULT setData(int num, long val)=0;
@@ -492,7 +538,8 @@ class iDVBChannel: public iObject
 public:
 		/* direct frontend access for raw channels and/or status inquiries. */
 	virtual SWIG_VOID(RESULT) getFrontend(ePtr<iDVBFrontend> &SWIG_OUTPUT)=0;
-	virtual RESULT requestTsidOnid(SWIG_PYOBJECT(ePyObject) callback) { return -1; }
+	virtual RESULT requestTsidOnid() { return -1; }
+	PSignal2<void, int, int> receivedTsidOnid;
 	virtual int reserveDemux() { return -1; }
 #ifndef SWIG
 	enum
