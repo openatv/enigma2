@@ -42,7 +42,50 @@ public:
 	int getLength(const eServiceReference &ref);
 	int getInfo(const eServiceReference &ref, int w);
 	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate) { return 1; }
-	PyObject* getInfoObject(const eServiceReference &ref, int w);
+	long long getFileSize(const eServiceReference &ref);
+};
+
+class eStreamBufferInfo: public iStreamBufferInfo
+{
+	DECLARE_REF(eStreamBufferInfo);
+	int bufferPercentage;
+	int inputRate;
+	int outputRate;
+	int bufferSpace;
+	int bufferSize;
+
+public:
+	eStreamBufferInfo(int percentage, int inputrate, int outputrate, int space, int size);
+
+	int getBufferPercentage() const;
+	int getAverageInputRate() const;
+	int getAverageOutputRate() const;
+	int getBufferSpace() const;
+	int getBufferSize() const;
+};
+
+class eServiceMP3InfoContainer: public iServiceInfoContainer
+{
+	DECLARE_REF(eServiceMP3InfoContainer);
+
+	double doubleValue;
+	GstBuffer *bufferValue;
+
+	unsigned char *bufferData;
+	unsigned int bufferSize;
+#if GST_VERSION_MAJOR >= 1
+	GstMapInfo map;
+#endif
+
+public:
+	eServiceMP3InfoContainer();
+	~eServiceMP3InfoContainer();
+
+	double getDouble(unsigned int index) const;
+	unsigned char *getBuffer(unsigned int &size) const;
+
+	void setDouble(double value);
+	void setBuffer(GstBuffer *buffer);
 };
 
 typedef struct _GstElement GstElement;
@@ -103,7 +146,7 @@ public:
 	RESULT getName(std::string &name);
 	int getInfo(int w);
 	std::string getInfoString(int w);
-	PyObject *getInfoObject(int w);
+	ePtr<iServiceInfoContainer> getInfoObject(int w);
 
 		// iAudioTrackSelection	
 	int getNumberOfTracks();
@@ -123,7 +166,7 @@ public:
 
 		// iStreamedService
 	RESULT streamed(ePtr<iStreamedService> &ptr);
-	PyObject *getBufferCharge();
+	ePtr<iStreamBufferInfo> getBufferCharge();
 	int setBufferSize(int size);
 
 		// iAudioDelay

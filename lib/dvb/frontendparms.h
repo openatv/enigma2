@@ -1,11 +1,16 @@
 #ifndef __lib_dvb_frontendparms_h
 #define __lib_dvb_frontendparms_h
 
-#include <lib/python/swig.h>
+#include <vector>
 
-class SatelliteDeliverySystemDescriptor;
-class CableDeliverySystemDescriptor;
-class TerrestrialDeliverySystemDescriptor;
+#include <dvbsi++/satellite_delivery_system_descriptor.h>
+#include <dvbsi++/cable_delivery_system_descriptor.h>
+#include <dvbsi++/terrestrial_delivery_system_descriptor.h>
+
+#include <lib/python/swig.h>
+#include <lib/dvb/idvb.h>
+
+#include <linux/dvb/frontend.h>
 
 struct eDVBFrontendParametersSatellite
 {
@@ -151,5 +156,150 @@ struct eDVBFrontendParametersATSC
 	int modulation, inversion, system;
 };
 SWIG_ALLOW_OUTPUT_SIMPLE(eDVBFrontendParametersATSC);
+
+#ifndef SWIG
+
+class eDVBFrontend;
+
+class eDVBFrontendStatus : public iDVBFrontendStatus
+{
+	DECLARE_REF(eDVBFrontendStatus);
+
+	ePtr<eDVBFrontend> frontend;
+
+public:
+	eDVBFrontendStatus(ePtr<eDVBFrontend> &fe);
+
+	int getState() const;
+	std::string getStateDescription() const;
+	int getLocked() const;
+	int getSynced() const;
+	int getBER() const;
+	int getSNR() const;
+	int getSNRdB() const;
+	int getSignalPower() const;
+};
+
+class eDVBTransponderData : public iDVBTransponderData
+{
+protected:
+	std::vector<struct dtv_property> dtvProperties;
+	bool originalValues;
+	int getProperty(unsigned int cmd) const;
+
+public:
+	eDVBTransponderData(struct dtv_property *dtvproperties, unsigned int propertycount, bool original);
+
+	int getInversion() const;
+	unsigned int getFrequency() const;
+	unsigned int getSymbolRate() const;
+	int getOrbitalPosition() const;
+	int getFecInner() const;
+	int getModulation() const;
+	int getPolarization() const;
+	int getRolloff() const;
+	int getPilot() const;
+	int getSystem() const;
+	int getBandwidth() const;
+	int getCodeRateLp() const;
+	int getCodeRateHp() const;
+	int getConstellation() const;
+	int getTransmissionMode() const;
+	int getGuardInterval() const;
+	int getHierarchyInformation() const;
+};
+
+class eDVBSatelliteTransponderData : public eDVBTransponderData
+{
+	DECLARE_REF(eDVBSatelliteTransponderData);
+
+	eDVBFrontendParametersSatellite transponderParameters;
+	int frequencyOffset;
+
+public:
+	eDVBSatelliteTransponderData(struct dtv_property *dtvproperties, unsigned int propertycount, eDVBFrontendParametersSatellite &transponderparms, int frequencyoffset, bool original);
+
+	std::string getTunerType() const;
+	int getInversion() const;
+	unsigned int getFrequency() const;
+	unsigned int getSymbolRate() const;
+	int getOrbitalPosition() const;
+	int getFecInner() const;
+	int getModulation() const;
+	int getPolarization() const;
+	int getRolloff() const;
+	int getPilot() const;
+	int getSystem() const;
+};
+
+class eDVBCableTransponderData : public eDVBTransponderData
+{
+	DECLARE_REF(eDVBCableTransponderData);
+
+	eDVBFrontendParametersCable transponderParameters;
+
+public:
+	eDVBCableTransponderData(struct dtv_property *dtvproperties, unsigned int propertycount, eDVBFrontendParametersCable &transponderparms, bool original);
+
+	std::string getTunerType() const;
+	int getInversion() const;
+	unsigned int getFrequency() const;
+	unsigned int getSymbolRate() const;
+	int getFecInner() const;
+	int getModulation() const;
+	int getSystem() const;
+};
+
+class eDVBTerrestrialTransponderData : public eDVBTransponderData
+{
+	DECLARE_REF(eDVBTerrestrialTransponderData);
+
+	eDVBFrontendParametersTerrestrial transponderParameters;
+
+public:
+	eDVBTerrestrialTransponderData(struct dtv_property *dtvproperties, unsigned int propertycount, eDVBFrontendParametersTerrestrial &transponderparms, bool original);
+
+	std::string getTunerType() const;
+	int getInversion() const;
+	unsigned int getFrequency() const;
+	int getBandwidth() const;
+	int getCodeRateLp() const;
+	int getCodeRateHp() const;
+	int getConstellation() const;
+	int getTransmissionMode() const;
+	int getGuardInterval() const;
+	int getHierarchyInformation() const;
+	int getSystem() const;
+};
+
+class eDVBATSCTransponderData : public eDVBTransponderData
+{
+	DECLARE_REF(eDVBATSCTransponderData);
+
+	eDVBFrontendParametersATSC transponderParameters;
+
+public:
+	eDVBATSCTransponderData(struct dtv_property *dtvproperties, unsigned int propertycount, eDVBFrontendParametersATSC &transponderparms, bool original);
+
+	std::string getTunerType() const;
+	int getInversion() const;
+	unsigned int getFrequency() const;
+	int getModulation() const;
+	int getSystem() const;
+};
+
+class eDVBFrontendData : public iDVBFrontendData
+{
+	DECLARE_REF(eDVBFrontendData);
+
+	ePtr<eDVBFrontend> frontend;
+
+public:
+	eDVBFrontendData(ePtr<eDVBFrontend> &fe);
+
+	int getNumber() const;
+	std::string getTypeDescription() const;
+};
+#endif
 
 #endif

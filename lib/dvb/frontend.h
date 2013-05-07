@@ -3,6 +3,7 @@
 
 #include <map>
 #include <lib/dvb/idvb.h>
+#include <lib/dvb/frontendparms.h>
 
 class eDVBFrontendParameters: public iDVBFrontendParameters
 {
@@ -137,14 +138,14 @@ public:
 	RESULT setData(int num, long val);
 
 	int readFrontendData(int type); // iFrontendInformation_ENUMS
-	void getFrontendStatus(ePyObject dest);
-	void getTransponderData(ePyObject dest, bool original);
-	void getFrontendData(ePyObject dest);
+	void getFrontendStatus(ePtr<iDVBFrontendStatus> &dest);
+	void getTransponderData(ePtr<iDVBTransponderData> &dest, bool original);
+	void getFrontendData(ePtr<iDVBFrontendData> &dest);
 
 	int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm);
 	int getDVBID() { return m_dvbid; }
 	int getSlotID() { return m_slotid; }
-	bool setSlotInfo(ePyObject obj); // get a tuple (slotid, slotdescr)
+	bool setSlotInfo(int id, const char *descr, bool enabled, bool isDVBS2, int frontendid);
 	static void setTypePriorityOrder(int val) { PriorityOrder = val; }
 	static int getTypePriorityOrder() { return PriorityOrder; }
 	static void setPreferredFrontend(int index) { PreferredFrontendIndex = index; }
@@ -160,10 +161,5 @@ public:
 };
 
 #endif // SWIG
-
-void PutToDict(ePyObject &dict, const char*key, long value);
-void PutSatelliteDataToDict(ePyObject &dict, iDVBFrontendParameters *feparm);
-void PutTerrestrialDataToDict(ePyObject &dict, iDVBFrontendParameters *feparm);
-void PutCableDataToDict(ePyObject &dict, iDVBFrontendParameters *feparm);
 
 #endif

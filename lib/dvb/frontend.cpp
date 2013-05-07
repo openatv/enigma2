@@ -12,12 +12,6 @@
 #define I2C_SLAVE_FORCE	0x0706
 #endif
 
-#include <linux/dvb/frontend.h>
-
-#include <dvbsi++/satellite_delivery_system_descriptor.h>
-#include <dvbsi++/cable_delivery_system_descriptor.h>
-#include <dvbsi++/terrestrial_delivery_system_descriptor.h>
-
 #define eDebugNoSimulate(x...) \
 	do { \
 		if (!m_simulate) \
@@ -1042,628 +1036,115 @@ int eDVBFrontend::readFrontendData(int type)
 			}
 			return (FE_HAS_SYNC | FE_HAS_LOCK);
 		}
+		case iFrontendInformation_ENUMS::frequency:
+		{
+			struct dtv_property p;
+			struct dtv_properties cmdseq;
+			oparm.getSystem(type);
+			cmdseq.props = &p;
+			cmdseq.num = 1;
+			p.cmd = DTV_FREQUENCY;
+			if (ioctl(m_fd, FE_GET_PROPERTY, &cmdseq) < 0)
+			{
+				return 0;
+			}
+			return p.u.data + m_data[FREQ_OFFSET];
+		}
 	}
 	return 0;
 }
 
-void PutToDict(ePyObject &dict, const char*key, long value)
+void eDVBFrontend::getFrontendStatus(ePtr<iDVBFrontendStatus> &dest)
 {
-	ePyObject item = PyInt_FromLong(value);
-	if (item)
+	ePtr<eDVBFrontend> fe = this;
+	dest = new eDVBFrontendStatus(fe);
+}
+
+void eDVBFrontend::getTransponderData(ePtr<iDVBTransponderData> &dest, bool original)
+{
+	int type = -1;
+	struct dtv_property p[16];
+	struct dtv_properties cmdseq;
+	oparm.getSystem(type);
+	cmdseq.props = p;
+	cmdseq.num = 0;
+	if (m_simulate || m_fd == -1 || original)
 	{
-		if (PyDict_SetItemString(dict, key, item))
-			eDebug("put %s to dict failed", key);
-		Py_DECREF(item);
+		original = true;
 	}
 	else
-		eDebug("could not create PyObject for %s", key);
-}
-
-void PutToDict(ePyObject &dict, const char*key, ePyObject item)
-{
-	if (item)
 	{
-		if (PyDict_SetItemString(dict, key, item))
-			eDebug("put %s to dict failed", key);
-		Py_DECREF(item);
-	}
-	else
-		eDebug("invalid PyObject for %s", key);
-}
-
-void PutToDict(ePyObject &dict, const char*key, const char *value)
-{
-	ePyObject item = PyString_FromString(value);
-	if (item)
-	{
-		if (PyDict_SetItemString(dict, key, item))
-			eDebug("put %s to dict failed", key);
-		Py_DECREF(item);
-	}
-	else
-		eDebug("could not create PyObject for %s", key);
-}
-
-void PutSatelliteDataToDict(ePyObject &dict, iDVBFrontendParameters *oparm)
-{
-	if (oparm)
-	{
-		eDVBFrontendParametersSatellite feparm;
-		oparm->getDVBS(feparm);
-
-		PutToDict(dict, "tuner_type", "DVB-S");
-		PutToDict(dict, "frequency", feparm.frequency);
-		PutToDict(dict, "symbol_rate", feparm.symbol_rate);
-		PutToDict(dict, "orbital_position", feparm.orbital_position);
-		PutToDict(dict, "inversion", feparm.inversion);
-		PutToDict(dict, "fec_inner", feparm.fec);
-		PutToDict(dict, "modulation", feparm.modulation);
-		PutToDict(dict, "polarization", feparm.polarisation);
-		if (feparm.system == eDVBFrontendParametersSatellite::System_DVB_S2)
+		p[cmdseq.num++].cmd = DTV_DELIVERY_SYSTEM;
+		p[cmdseq.num++].cmd = DTV_FREQUENCY;
+		p[cmdseq.num++].cmd = DTV_INVERSION;
+		p[cmdseq.num++].cmd = DTV_MODULATION;
+		if (type == feSatellite)
 		{
-			PutToDict(dict, "rolloff", feparm.rolloff);
-			PutToDict(dict, "pilot", feparm.pilot);
+			p[cmdseq.num++].cmd = DTV_SYMBOL_RATE;
+			p[cmdseq.num++].cmd = DTV_INNER_FEC;
+			p[cmdseq.num++].cmd = DTV_ROLLOFF;
+			p[cmdseq.num++].cmd = DTV_PILOT;
 		}
-		PutToDict(dict, "system", feparm.system);
-	}
-}
-
-void PutTerrestrialDataToDict(ePyObject &dict, iDVBFrontendParameters *oparm)
-{
-	if (oparm)
-	{
-		eDVBFrontendParametersTerrestrial feparm;
-		oparm->getDVBT(feparm);
-
-		PutToDict(dict, "tuner_type", "DVB-T");
-		PutToDict(dict, "frequency", feparm.frequency);
-		PutToDict(dict, "bandwidth", feparm.bandwidth);
-		PutToDict(dict, "code_rate_lp", feparm.code_rate_LP);
-		PutToDict(dict, "code_rate_hp", feparm.code_rate_HP);
-		PutToDict(dict, "constellation", feparm.modulation);
-		PutToDict(dict, "transmission_mode", feparm.transmission_mode);
-		PutToDict(dict, "guard_interval", feparm.guard_interval);
-		PutToDict(dict, "hierarchy_information", feparm.hierarchy);
-		PutToDict(dict, "inversion", feparm.inversion);
-		PutToDict(dict, "system", feparm.system);
-		PutToDict(dict, "plp_id", feparm.plpid);
-	}
-}
-
-void PutCableDataToDict(ePyObject &dict, iDVBFrontendParameters *oparm)
-{
-	if (oparm)
-	{
-		eDVBFrontendParametersCable feparm;
-		oparm->getDVBC(feparm);
-
-		PutToDict(dict, "tuner_type", "DVB-C");
-		PutToDict(dict, "frequency", feparm.frequency);
-		PutToDict(dict, "symbol_rate", feparm.symbol_rate);
-		PutToDict(dict, "modulation", feparm.modulation);
-		PutToDict(dict, "inversion", feparm.inversion);
-		PutToDict(dict, "fec_inner", feparm.fec_inner);
-		PutToDict(dict, "system", feparm.system);
-	}
-}
-
-void PutATSCDataToDict(ePyObject &dict, eDVBFrontendParameters *oparm)
-{
-	if (oparm)
-	{
-		eDVBFrontendParametersATSC feparm;
-		oparm->getATSC(feparm);
-
-		PutToDict(dict, "tuner_type", "ATSC");
-		PutToDict(dict, "frequency", feparm.frequency);
-		PutToDict(dict, "modulation", feparm.modulation);
-		PutToDict(dict, "inversion", feparm.inversion);
-		PutToDict(dict, "system", feparm.system);
-	}
-}
-
-static void fillDictWithSatelliteData(ePyObject dict, struct dtv_property *p, unsigned int propertycount, long freq_offset, eDVBFrontendParameters &oparm)
-{
-	long tmp = 0;
-	long system = eDVBFrontendParametersSatellite::System_DVB_S;
-	eDVBFrontendParametersSatellite parm;
-	oparm.getDVBS(parm);
-
-	PutToDict(dict, "orbital_position", parm.orbital_position);
-	PutToDict(dict, "polarization", parm.polarisation);
-
-	for (unsigned int i = 0; i < propertycount; i++)
-	{
-		switch (p[i].cmd)
+		else if (type == feCable)
 		{
-		case DTV_FREQUENCY:
-			PutToDict(dict, "frequency", p[i].u.data + freq_offset);
-			break;
-		case DTV_SYMBOL_RATE:
-			PutToDict(dict, "symbol_rate", p[i].u.data);
-			break;
-		case DTV_INNER_FEC:
-			switch (p[i].u.data)
-			{
-				case FEC_1_2: tmp = eDVBFrontendParametersSatellite::FEC_1_2; break;
-				case FEC_2_3: tmp = eDVBFrontendParametersSatellite::FEC_2_3; break;
-				case FEC_3_4: tmp = eDVBFrontendParametersSatellite::FEC_3_4; break;
-				case FEC_3_5: tmp = eDVBFrontendParametersSatellite::FEC_3_5; break;
-				case FEC_4_5: tmp = eDVBFrontendParametersSatellite::FEC_4_5; break;
-				case FEC_5_6: tmp = eDVBFrontendParametersSatellite::FEC_5_6; break;
-				case FEC_6_7: tmp = eDVBFrontendParametersSatellite::FEC_6_7; break;
-				case FEC_7_8: tmp = eDVBFrontendParametersSatellite::FEC_7_8; break;
-				case FEC_8_9: tmp = eDVBFrontendParametersSatellite::FEC_8_9; break;
-				case FEC_9_10: tmp = eDVBFrontendParametersSatellite::FEC_9_10; break;
-				case FEC_NONE: tmp = eDVBFrontendParametersSatellite::FEC_None; break;
-				default: eDebug("got unsupported FEC from frontend! report as FEC_AUTO!\n");
-				case FEC_AUTO: tmp = eDVBFrontendParametersSatellite::FEC_Auto; break;
-			}
-			PutToDict(dict, "fec_inner", tmp);
-			break;
-		case DTV_INVERSION:
-			switch (p[i].u.data)
-			{
-				case INVERSION_OFF: tmp = eDVBFrontendParametersSatellite::Inversion_Off; break;
-				case INVERSION_ON: tmp = eDVBFrontendParametersSatellite::Inversion_On; break;
-				default: eDebug("got unsupported inversion from frontend! report as INVERSION_AUTO!\n");
-				case INVERSION_AUTO: tmp = eDVBFrontendParametersSatellite::Inversion_Unknown; break;
-			}
-			PutToDict(dict, "inversion", tmp);
-			break;
-		case DTV_DELIVERY_SYSTEM:
-			switch (p[i].u.data)
-			{
-				default: eDebug("got unsupported system from frontend! report as DVBS!");
-				case SYS_DVBS: tmp = eDVBFrontendParametersSatellite::System_DVB_S; break;
-				case SYS_DVBS2: tmp = eDVBFrontendParametersSatellite::System_DVB_S2; break;
-			}
-			PutToDict(dict, "system", tmp);
-			system = tmp;
-			break;
-		case DTV_MODULATION:
-			switch (p[i].u.data)
-			{
-				default: eDebug("got unsupported modulation from frontend! report as QPSK!");
-				case QPSK: tmp = eDVBFrontendParametersSatellite::Modulation_QPSK; break;
-				case PSK_8: tmp = eDVBFrontendParametersSatellite::Modulation_8PSK; break;
-			}
-			PutToDict(dict, "modulation", tmp);
-			break;
-		case DTV_ROLLOFF:
-			if (system == eDVBFrontendParametersSatellite::System_DVB_S2)
-			{
-				switch (p[i].u.data)
-				{
-					case ROLLOFF_20: tmp = eDVBFrontendParametersSatellite::RollOff_alpha_0_20; break;
-					case ROLLOFF_25: tmp = eDVBFrontendParametersSatellite::RollOff_alpha_0_25; break;
-					case ROLLOFF_35: tmp = eDVBFrontendParametersSatellite::RollOff_alpha_0_35; break;
-					default:
-					case ROLLOFF_AUTO: tmp = eDVBFrontendParametersSatellite::RollOff_auto; break;
-				}
-				PutToDict(dict, "rolloff", tmp);
-			}
-			break;
-		case DTV_PILOT:
-			if (system == eDVBFrontendParametersSatellite::System_DVB_S2)
-			{
-				switch (p[i].u.data)
-				{
-					case PILOT_OFF: tmp = eDVBFrontendParametersSatellite::Pilot_Off; break;
-					case PILOT_ON: tmp = eDVBFrontendParametersSatellite::Pilot_On; break;
-					default:
-					case PILOT_AUTO: tmp = eDVBFrontendParametersSatellite::Pilot_Unknown; break;
-				}
-				PutToDict(dict, "pilot", tmp);
-			}
-			break;
+			p[cmdseq.num++].cmd = DTV_SYMBOL_RATE;
+			p[cmdseq.num++].cmd = DTV_INNER_FEC;
 		}
-	}
-}
-
-static void fillDictWithCableData(ePyObject dict, struct dtv_property *p, unsigned int propertycount)
-{
-	long tmp = 0;
-	for (unsigned int i = 0; i < propertycount; i++)
-	{
-		switch (p[i].cmd)
+		else if (type == feTerrestrial)
 		{
-		case DTV_FREQUENCY:
-			PutToDict(dict, "frequency", p[i].u.data / 1000);
-			break;
-		case DTV_SYMBOL_RATE:
-			PutToDict(dict, "symbol_rate", p[i].u.data);
-			break;
-		case DTV_INNER_FEC:
-			switch (p[i].u.data)
-			{
-				case FEC_NONE: tmp = eDVBFrontendParametersCable::FEC_None; break;
-				case FEC_1_2: tmp = eDVBFrontendParametersCable::FEC_1_2; break;
-				case FEC_2_3: tmp = eDVBFrontendParametersCable::FEC_2_3; break;
-				case FEC_3_4: tmp = eDVBFrontendParametersCable::FEC_3_4; break;
-				case FEC_5_6: tmp = eDVBFrontendParametersCable::FEC_5_6; break;
-				case FEC_6_7: tmp = eDVBFrontendParametersCable::FEC_6_7; break;
-				case FEC_7_8: tmp = eDVBFrontendParametersCable::FEC_7_8; break;
-				case FEC_8_9: tmp = eDVBFrontendParametersCable::FEC_7_8; break;
-				default:
-				case FEC_AUTO: tmp = eDVBFrontendParametersCable::FEC_Auto; break;
-			}
-			PutToDict(dict, "fec_inner", tmp);
-			break;
-		case DTV_MODULATION:
-			switch (p[i].u.data)
-			{
-				case QAM_16: tmp = eDVBFrontendParametersCable::Modulation_QAM16; break;
-				case QAM_32: tmp = eDVBFrontendParametersCable::Modulation_QAM32; break;
-				case QAM_64: tmp = eDVBFrontendParametersCable::Modulation_QAM64; break;
-				case QAM_128: tmp = eDVBFrontendParametersCable::Modulation_QAM128; break;
-				case QAM_256: tmp = eDVBFrontendParametersCable::Modulation_QAM256; break;
-				default:
-				case QAM_AUTO:   tmp = eDVBFrontendParametersCable::Modulation_Auto; break;
-			}
-			PutToDict(dict, "modulation", tmp);
-			break;
-		case DTV_INVERSION:
-			switch (p[i].u.data)
-			{
-				case INVERSION_OFF: tmp = eDVBFrontendParametersCable::Inversion_Off; break;
-				case INVERSION_ON: tmp = eDVBFrontendParametersCable::Inversion_On; break;
-				case INVERSION_AUTO: tmp = eDVBFrontendParametersCable::Inversion_Unknown; break;
-			}
-			PutToDict(dict, "inversion", tmp);
-			break;
-		case DTV_DELIVERY_SYSTEM:
-#ifdef SYS_DVBC_ANNEX_C
-			switch (p[i].u.data)
-			{
-				case SYS_DVBC_ANNEX_A: tmp = eDVBFrontendParametersCable::System_DVB_C_ANNEX_A; break;
-				case SYS_DVBC_ANNEX_C: tmp = eDVBFrontendParametersCable::System_DVB_C_ANNEX_C; break;
-			}
-#else
-			tmp = eDVBFrontendParametersCable::System_DVB_C_ANNEX_A;
-#endif
-			PutToDict(dict, "system", tmp);
-			break;
+			p[cmdseq.num++].cmd = DTV_BANDWIDTH_HZ;
+			p[cmdseq.num++].cmd = DTV_CODE_RATE_HP;
+			p[cmdseq.num++].cmd = DTV_CODE_RATE_LP;
+			p[cmdseq.num++].cmd = DTV_TRANSMISSION_MODE;
+			p[cmdseq.num++].cmd = DTV_GUARD_INTERVAL;
+			p[cmdseq.num++].cmd = DTV_HIERARCHY;
 		}
-	}
-}
-
-static void fillDictWithTerrestrialData(ePyObject dict, struct dtv_property *p, unsigned int propertycount)
-{
-	long tmp = 0;
-	for (unsigned int i = 0; i < propertycount; i++)
-	{
-		switch (p[i].cmd)
+		else if (type == feATSC)
 		{
-			case DTV_FREQUENCY:
-				PutToDict(dict, "frequency", p[i].u.data);
-				break;
-			case DTV_SYMBOL_RATE:
-				PutToDict(dict, "symbol_rate", p[i].u.data);
-				break;
-			case DTV_BANDWIDTH_HZ:
-				PutToDict(dict, "bandwidth", p[i].u.data);
-				break;
-			case DTV_CODE_RATE_LP:
-				switch (p[i].u.data)
-				{
-					case FEC_1_2: tmp = eDVBFrontendParametersTerrestrial::FEC_1_2; break;
-					case FEC_2_3: tmp = eDVBFrontendParametersTerrestrial::FEC_2_3; break;
-					case FEC_3_4: tmp = eDVBFrontendParametersTerrestrial::FEC_3_4; break;
-					case FEC_5_6: tmp = eDVBFrontendParametersTerrestrial::FEC_5_6; break;
-					case FEC_7_8: tmp = eDVBFrontendParametersTerrestrial::FEC_7_8; break;
-					default:
-					case FEC_AUTO: tmp = eDVBFrontendParametersTerrestrial::FEC_Auto; break;
-				}
-				PutToDict(dict, "code_rate_lp", tmp);
-				break;
-			case DTV_CODE_RATE_HP:
-				switch (p[i].u.data)
-				{
-					case FEC_1_2: tmp = eDVBFrontendParametersTerrestrial::FEC_1_2; break;
-					case FEC_2_3: tmp = eDVBFrontendParametersTerrestrial::FEC_2_3; break;
-					case FEC_3_4: tmp = eDVBFrontendParametersTerrestrial::FEC_3_4; break;
-					case FEC_5_6: tmp = eDVBFrontendParametersTerrestrial::FEC_5_6; break;
-					case FEC_7_8: tmp = eDVBFrontendParametersTerrestrial::FEC_7_8; break;
-					default:
-					case FEC_AUTO: tmp = eDVBFrontendParametersTerrestrial::FEC_Auto; break;
-				}
-				PutToDict(dict, "code_rate_hp", tmp);
-				break;
-			case DTV_MODULATION:
-				switch (p[i].u.data)
-				{
-					case QPSK: tmp = eDVBFrontendParametersTerrestrial::Modulation_QPSK; break;
-					case QAM_16: tmp = eDVBFrontendParametersTerrestrial::Modulation_QAM16; break;
-					case QAM_64: tmp = eDVBFrontendParametersTerrestrial::Modulation_QAM64; break;
-					case QAM_256: tmp = eDVBFrontendParametersTerrestrial::Modulation_QAM256; break;
-					default:
-					case QAM_AUTO: tmp = eDVBFrontendParametersTerrestrial::Modulation_Auto; break;
-				}
-				PutToDict(dict, "constellation", tmp);
-				break;
-			case DTV_TRANSMISSION_MODE:
-				switch (p[i].u.data)
-				{
-					case TRANSMISSION_MODE_2K: tmp = eDVBFrontendParametersTerrestrial::TransmissionMode_2k; break;
-					case TRANSMISSION_MODE_8K: tmp = eDVBFrontendParametersTerrestrial::TransmissionMode_8k; break;
-					default:
-					case TRANSMISSION_MODE_AUTO: tmp = eDVBFrontendParametersTerrestrial::TransmissionMode_Auto; break;
-				}
-				PutToDict(dict, "transmission_mode", tmp);
-				break;
-			case DTV_GUARD_INTERVAL:
-				switch (p[i].u.data)
-				{
-					case GUARD_INTERVAL_1_32: tmp = eDVBFrontendParametersTerrestrial::GuardInterval_1_32; break;
-					case GUARD_INTERVAL_1_16: tmp = eDVBFrontendParametersTerrestrial::GuardInterval_1_16; break;
-					case GUARD_INTERVAL_1_8: tmp = eDVBFrontendParametersTerrestrial::GuardInterval_1_8; break;
-					case GUARD_INTERVAL_1_4: tmp = eDVBFrontendParametersTerrestrial::GuardInterval_1_4; break;
-					default:
-					case GUARD_INTERVAL_AUTO: tmp = eDVBFrontendParametersTerrestrial::GuardInterval_Auto; break;
-				}
-				PutToDict(dict, "guard_interval", tmp);
-				break;
-			case DTV_HIERARCHY:
-				switch (p[i].u.data)
-				{
-					case HIERARCHY_NONE: tmp = eDVBFrontendParametersTerrestrial::Hierarchy_None; break;
-					case HIERARCHY_1: tmp = eDVBFrontendParametersTerrestrial::Hierarchy_1; break;
-					case HIERARCHY_2: tmp = eDVBFrontendParametersTerrestrial::Hierarchy_2; break;
-					case HIERARCHY_4: tmp = eDVBFrontendParametersTerrestrial::Hierarchy_4; break;
-					default:
-					case HIERARCHY_AUTO: tmp = eDVBFrontendParametersTerrestrial::Hierarchy_Auto; break;
-				}
-				PutToDict(dict, "hierarchy_information", tmp);
-				break;
-			case DTV_INVERSION:
-				switch (p[i].u.data)
-				{
-					case INVERSION_OFF: tmp = eDVBFrontendParametersTerrestrial::Inversion_Off; break;
-					case INVERSION_ON: tmp = eDVBFrontendParametersTerrestrial::Inversion_On; break;
-					case INVERSION_AUTO: tmp = eDVBFrontendParametersTerrestrial::Inversion_Unknown; break;
-				}
-				PutToDict(dict, "inversion", tmp);
-				break;
-			case DTV_DELIVERY_SYSTEM:
-				switch (p[i].u.data)
-				{
-					default:
-					case SYS_DVBT: tmp = eDVBFrontendParametersTerrestrial::System_DVB_T; break;
-					case SYS_DVBT2: tmp = eDVBFrontendParametersTerrestrial::System_DVB_T2; break;
-				}
-				PutToDict(dict, "system", tmp);
-				break;
 		}
-	}
-}
-
-static void fillDictWithATSCData(ePyObject dict, struct dtv_property *p, unsigned int propertycount)
-{
-	long tmp = 0;
-	for (unsigned int i = 0; i < propertycount; i++)
-	{
-		switch (p[i].cmd)
+		if (ioctl(m_fd, FE_GET_PROPERTY, &cmdseq) < 0)
 		{
-			case DTV_FREQUENCY:
-				PutToDict(dict, "frequency", p[i].u.data / 1000);
-				break;
-			case DTV_MODULATION:
-				switch (p[i].u.data)
-				{
-					case QAM_16: tmp = eDVBFrontendParametersATSC::Modulation_QAM16; break;
-					case QAM_32: tmp = eDVBFrontendParametersATSC::Modulation_QAM32; break;
-					case QAM_64: tmp = eDVBFrontendParametersATSC::Modulation_QAM64; break;
-					case QAM_128: tmp = eDVBFrontendParametersATSC::Modulation_QAM128; break;
-					case QAM_256: tmp = eDVBFrontendParametersATSC::Modulation_QAM256; break;
-					default:
-					case QAM_AUTO:   tmp = eDVBFrontendParametersATSC::Modulation_Auto; break;
-					case VSB_8:   tmp = eDVBFrontendParametersATSC::Modulation_VSB_8; break;
-					case VSB_16:   tmp = eDVBFrontendParametersATSC::Modulation_VSB_16; break;
-				}
-				PutToDict(dict, "modulation", tmp);
-				break;
-			case DTV_INVERSION:
-				switch (p[i].u.data)
-				{
-					case INVERSION_OFF: tmp = eDVBFrontendParametersATSC::Inversion_Off; break;
-					case INVERSION_ON: tmp = eDVBFrontendParametersATSC::Inversion_On; break;
-					case INVERSION_AUTO: tmp = eDVBFrontendParametersATSC::Inversion_Unknown; break;
-				}
-				PutToDict(dict, "inversion", tmp);
-				break;
-			case DTV_DELIVERY_SYSTEM:
-				switch (p[i].u.data)
-				{
-					case SYS_ATSC: tmp = eDVBFrontendParametersATSC::System_ATSC; break;
-					case SYS_DVBC_ANNEX_B: tmp = eDVBFrontendParametersATSC::System_DVB_C_ANNEX_B; break;
-				}
-				PutToDict(dict, "system", tmp);
-				break;
-		}
-	}
-}
-
-void eDVBFrontend::getFrontendStatus(ePyObject dest)
-{
-	if (dest && PyDict_Check(dest))
-	{
-		int status = 0;
-		int acg = 0;
-		int ber = 0;
-		int signalquality = 0;
-		int signalqualitydb = 0;
-		const char *tmp = "UNKNOWN";
-		switch (m_state)
-		{
-			case stateIdle:
-				tmp="IDLE";
-				break;
-			case stateTuning:
-				tmp="TUNING";
-				break;
-			case stateFailed:
-				tmp="FAILED";
-				break;
-			case stateLock:
-				tmp="LOCKED";
-				break;
-			case stateLostLock:
-				tmp="LOSTLOCK";
-				break;
-			default:
-				break;
-		}
-		if (m_state != stateTuning)
-		{
-			int snr = 0;
-			/* we are not tuning, get the remaining tunerstatus info */
-			status = readFrontendData(iFrontendInformation_ENUMS::frontendStatus);
-			snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
-			calculateSignalQuality(snr, signalquality, signalqualitydb);
-			acg = readFrontendData(iFrontendInformation_ENUMS::signalPower);
-			ber = readFrontendData(iFrontendInformation_ENUMS::bitErrorRate);
-		}
-		PutToDict(dest, "tuner_state", tmp);
-		PutToDict(dest, "tuner_locked", !!(status & FE_HAS_LOCK));
-		PutToDict(dest, "tuner_synced", !!(status & FE_HAS_SYNC));
-		PutToDict(dest, "tuner_bit_error_rate", ber);
-		PutToDict(dest, "tuner_signal_quality", signalquality);
-		if (signalqualitydb == 0x12345678) /* not yet supported */
-		{
-			ePyObject obj = Py_None;
-			Py_INCREF(obj);
-			PutToDict(dest, "tuner_signal_quality_db", obj);
-		}
-		else
-		{
-			PutToDict(dest, "tuner_signal_quality_db", signalqualitydb);
-		}
-		PutToDict(dest, "tuner_signal_power", acg);
-	}
-}
-
-void eDVBFrontend::getTransponderData(ePyObject dest, bool original)
-{
-	if (dest && PyDict_Check(dest))
-	{
-		int type = -1;
-		struct dtv_property p[16];
-		struct dtv_properties cmdseq;
-		oparm.getSystem(type);
-		cmdseq.props = p;
-		cmdseq.num = 0;
-		if (m_simulate || m_fd == -1 || original)
-		{
+			eDebug("FE_GET_PROPERTY failed (%m)");
 			original = true;
 		}
-		else
+	}
+	switch (type)
+	{
+	case feSatellite:
 		{
-			p[cmdseq.num++].cmd = DTV_DELIVERY_SYSTEM;
-			p[cmdseq.num++].cmd = DTV_FREQUENCY;
-			p[cmdseq.num++].cmd = DTV_INVERSION;
-			p[cmdseq.num++].cmd = DTV_MODULATION;
-			if (type == feSatellite)
-			{
-				p[cmdseq.num++].cmd = DTV_SYMBOL_RATE;
-				p[cmdseq.num++].cmd = DTV_INNER_FEC;
-				p[cmdseq.num++].cmd = DTV_ROLLOFF;
-				p[cmdseq.num++].cmd = DTV_PILOT;
-			}
-			else if (type == feCable)
-			{
-				p[cmdseq.num++].cmd = DTV_SYMBOL_RATE;
-				p[cmdseq.num++].cmd = DTV_INNER_FEC;
-			}
-			else if (type == feTerrestrial)
-			{
-				p[cmdseq.num++].cmd = DTV_BANDWIDTH_HZ;
-				p[cmdseq.num++].cmd = DTV_CODE_RATE_HP;
-				p[cmdseq.num++].cmd = DTV_CODE_RATE_LP;
-				p[cmdseq.num++].cmd = DTV_TRANSMISSION_MODE;
-				p[cmdseq.num++].cmd = DTV_GUARD_INTERVAL;
-				p[cmdseq.num++].cmd = DTV_HIERARCHY;
-			}
-			else if (type == feATSC)
-			{
-			}
-			if (ioctl(m_fd, FE_GET_PROPERTY, &cmdseq) < 0)
-			{
-				eDebug("FE_GET_PROPERTY failed (%m)");
-				original = true;
-			}
+			eDVBFrontendParametersSatellite s;
+			oparm.getDVBS(s);
+			dest = new eDVBSatelliteTransponderData(cmdseq.props, cmdseq.num, s, m_data[FREQ_OFFSET], original);
+			break;
 		}
-		if (original)
+	case feCable:
 		{
-			switch (type)
-			{
-				case feSatellite:
-					PutSatelliteDataToDict(dest, &oparm);
-					break;
-				case feCable:
-					PutCableDataToDict(dest, &oparm);
-					break;
-				case feTerrestrial:
-					PutTerrestrialDataToDict(dest, &oparm);
-					break;
-				case feATSC:
-					PutATSCDataToDict(dest, &oparm);
-					break;
-			}
+			eDVBFrontendParametersCable c;
+			oparm.getDVBC(c);
+			dest = new eDVBCableTransponderData(cmdseq.props, cmdseq.num, c, original);
+			break;
 		}
-		else
+	case feTerrestrial:
 		{
-			switch (type)
-			{
-				case feSatellite:
-					fillDictWithSatelliteData(dest, cmdseq.props, cmdseq.num, m_data[FREQ_OFFSET], oparm);
-					break;
-				case feCable:
-					fillDictWithCableData(dest, cmdseq.props, cmdseq.num);
-					break;
-				case feTerrestrial:
-					fillDictWithTerrestrialData(dest, cmdseq.props, cmdseq.num);
-					break;
-				case feATSC:
-					fillDictWithATSCData(dest, cmdseq.props, cmdseq.num);
-					break;
-			}
+			eDVBFrontendParametersTerrestrial t;
+			oparm.getDVBT(t);
+			dest = new eDVBTerrestrialTransponderData(cmdseq.props, cmdseq.num, t, original);
+			break;
+		}
+	case feATSC:
+		{
+			eDVBFrontendParametersATSC a;
+			oparm.getATSC(a);
+			dest = new eDVBATSCTransponderData(cmdseq.props, cmdseq.num, a, original);
+			break;
 		}
 	}
 }
 
-void eDVBFrontend::getFrontendData(ePyObject dest)
+void eDVBFrontend::getFrontendData(ePtr<iDVBFrontendData> &dest)
 {
-	if (dest && PyDict_Check(dest))
-	{
-		const char *tmp=0;
-		PutToDict(dest, "tuner_number", m_slotid);
-		if (supportsDeliverySystem(SYS_DVBS, true) || supportsDeliverySystem(SYS_DVBS2, true))
-		{
-			tmp = "DVB-S";
-		}
-#ifdef SYS_DVBC_ANNEX_A
-		else if (supportsDeliverySystem(SYS_DVBC_ANNEX_A, true) || supportsDeliverySystem(SYS_DVBC_ANNEX_C, true))
-#else
-		else if (supportsDeliverySystem(SYS_DVBC_ANNEX_AC, true))
-#endif
-		{
-			tmp = "DVB-C";
-		}
-		else if (supportsDeliverySystem(SYS_DVBT, true) || supportsDeliverySystem(SYS_DVBT2, true))
-		{
-			tmp = "DVB-T";
-		}
-		else if (supportsDeliverySystem(SYS_ATSC, true) || supportsDeliverySystem(SYS_DVBC_ANNEX_B, true))
-		{
-			tmp = "ATSC-T";
-		}
-		else
-		{
-			tmp = "UNKNOWN";
-		}
-		PutToDict(dest, "tuner_type", tmp);
-	}
+	ePtr<eDVBFrontend> fe = this;
+	dest = new eDVBFrontendData(fe);
 }
 
 #ifndef FP_IOCTL_GET_ID
@@ -2568,12 +2049,10 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		if (res)
 			goto tune_error;
 
-		std::string enable_5V;
 		char configStr[255];
 		snprintf(configStr, 255, "config.Nims.%d.terrestrial_5V", m_slotid);
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT, timeout) );
-		ePythonConfigQuery::getConfigValue(configStr, enable_5V);
-		if (enable_5V == "True")
+		if (eConfigManager::getConfigBoolValue(configStr))
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
 		else
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltageOff) );
@@ -2887,41 +2366,27 @@ void eDVBFrontend::setDeliverySystemWhitelist(const std::vector<fe_delivery_syst
 	}
 }
 
-bool eDVBFrontend::setSlotInfo(ePyObject obj)
+bool eDVBFrontend::setSlotInfo(int id, const char *descr, bool enabled, bool isDVBS2, int frontendid)
 {
-	ePyObject Id, Descr, Enabled, IsDVBS2, frontendId;
-	if (!PyTuple_Check(obj) || PyTuple_Size(obj) != 5)
-		goto arg_error;
-	Id = PyTuple_GET_ITEM(obj, 0);
-	Descr = PyTuple_GET_ITEM(obj, 1);
-	Enabled = PyTuple_GET_ITEM(obj, 2);
-	IsDVBS2 = PyTuple_GET_ITEM(obj, 3);
-	frontendId = PyTuple_GET_ITEM(obj, 4);
-	m_slotid = PyInt_AsLong(Id);
-	if (!PyInt_Check(Id) || !PyString_Check(Descr) || !PyBool_Check(Enabled) || !PyBool_Check(IsDVBS2) || !PyInt_Check(frontendId))
-		goto arg_error;
-	strcpy(m_description, PyString_AS_STRING(Descr));
-	if (PyInt_AsLong(frontendId) == -1 || PyInt_AsLong(frontendId) != m_dvbid) {
-//		eDebugNoSimulate("skip slotinfo for slotid %d, descr %s",
-//			m_slotid, m_description);
+	if (frontendid < 0 || frontendid != m_dvbid) 
+	{
 		return false;
 	}
-	m_enabled = Enabled == Py_True;
+	m_slotid = id;
+	m_enabled = enabled;
+	strncpy(m_description, descr, sizeof(m_description));
+
 	// HACK.. the rotor workaround is neede for all NIMs with LNBP21 voltage regulator...
 	m_need_rotor_workaround = !!strstr(m_description, "Alps BSBE1") ||
 		!!strstr(m_description, "Alps BSBE2") ||
 		!!strstr(m_description, "Alps -S") ||
 		!!strstr(m_description, "BCM4501");
-	if (IsDVBS2 == Py_True)
+	if (isDVBS2)
 	{
 		/* HACK for legacy dvb api without DELSYS support */
 		m_delsys[SYS_DVBS2] = true;
 	}
 	eDebugNoSimulate("setSlotInfo for dvb frontend %d to slotid %d, descr %s, need rotorworkaround %s, enabled %s, DVB-S2 %s",
-		m_dvbid, m_slotid, m_description, m_need_rotor_workaround ? "Yes" : "No", m_enabled ? "Yes" : "No", (IsDVBS2 == Py_True) ? "Yes" : "No" );
+		m_dvbid, m_slotid, m_description, m_need_rotor_workaround ? "Yes" : "No", m_enabled ? "Yes" : "No", isDVBS2 ? "Yes" : "No" );
 	return true;
-arg_error:
-	PyErr_SetString(PyExc_StandardError,
-		"eDVBFrontend::setSlotInfo must get a tuple with first param slotid, second param slot description and third param enabled boolean");
-	return false;
 }

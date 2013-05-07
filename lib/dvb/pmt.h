@@ -120,7 +120,7 @@ public:
 	int getProgramInfo(program &program);
 	int getDataDemux(ePtr<iDVBDemux> &demux);
 	int getDecodeDemux(ePtr<iDVBDemux> &demux);
-	PyObject *getCaIds(bool pair=false); // caid / ecmpid pair
+	void getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids);
 	
 	int getPVRChannel(ePtr<iDVBPVRChannel> &pvr_channel);
 	int getServiceReference(eServiceReferenceDVB &service) { service = m_reference; return 0; }

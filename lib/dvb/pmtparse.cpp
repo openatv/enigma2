@@ -30,6 +30,8 @@ void eDVBPMTParser::clearProgramInfo(program &program)
 	program.aitPid = -1;
 	program.dsmccPid = -1;
 	program.serviceId = -1;
+	program.adapterId = -1;
+	program.demuxId = -1;
 
 	program.defaultAudioStream = 0;
 	program.defaultSubtitleStream = -1;
@@ -417,4 +419,127 @@ int eDVBPMTParser::getProgramInfo(program &program)
 		ret = 0;
 	}
 	return ret;
+}
+
+DEFINE_REF(eDVBPMTParser::eStreamData);
+
+eDVBPMTParser::eStreamData::eStreamData(eDVBPMTParser::program &program)
+{
+	for (std::vector<eDVBPMTParser::videoStream>::const_iterator i(program.videoStreams.begin()); i != program.videoStreams.end(); ++i)
+		videoStreams.push_back(i->pid);
+	for (std::vector<eDVBPMTParser::audioStream>::const_iterator i(program.audioStreams.begin()); i != program.audioStreams.end(); ++i)
+		audioStreams.push_back(i->pid);
+	for (std::vector<eDVBPMTParser::subtitleStream>::const_iterator i(program.subtitleStreams.begin()); i != program.subtitleStreams.end(); ++i)
+		subtitleStreams.push_back(i->pid);
+	pcrPid = program.pcrPid;
+	pmtPid = program.pmtPid;
+	textPid = program.textPid;
+	aitPid = program.aitPid;
+	adapterId = program.adapterId;
+	demuxId = program.demuxId;
+	serviceId = program.serviceId;
+	for (std::list<eDVBPMTParser::program::capid_pair>::const_iterator it(program.caids.begin()); it != program.caids.end(); ++it)
+	{
+		caIds.push_back(it->caid);
+		ecmPids.push_back(it->capid);
+	}
+}
+
+RESULT eDVBPMTParser::eStreamData::getAllPids(std::vector<int> &result) const
+{
+	int pid;
+	getVideoPids(result);
+	getAudioPids(result);
+	getSubtitlePids(result);
+	if (getPcrPid(pid) >= 0) result.push_back(pid);
+	if (getPatPid(pid) >= 0) result.push_back(pid);
+	if (getPmtPid(pid) >= 0) result.push_back(pid);
+	if (getTxtPid(pid) >= 0) result.push_back(pid);
+	if (getAitPid(pid) >= 0) result.push_back(pid);
+	return 0;
+}
+
+RESULT eDVBPMTParser::eStreamData::getVideoPids(std::vector<int> &result) const
+{
+	for (unsigned int i = 0; i < videoStreams.size(); i++)
+	{
+		result.push_back(videoStreams[i]);
+	}
+	return 0;
+}
+
+RESULT eDVBPMTParser::eStreamData::getAudioPids(std::vector<int> &result) const
+{
+	for (unsigned int i = 0; i < audioStreams.size(); i++)
+	{
+		result.push_back(audioStreams[i]);
+	}
+	return 0;
+}
+
+RESULT eDVBPMTParser::eStreamData::getSubtitlePids(std::vector<int> &result) const
+{
+	for (unsigned int i = 0; i < subtitleStreams.size(); i++)
+	{
+		result.push_back(subtitleStreams[i]);
+	}
+	return 0;
+}
+
+RESULT eDVBPMTParser::eStreamData::getPmtPid(int &result) const
+{
+	result = pmtPid;
+	return 0;
+}
+
+RESULT eDVBPMTParser::eStreamData::getPatPid(int &result) const
+{
+	result = 0;
+	return 0;
+}
+
+RESULT eDVBPMTParser::eStreamData::getPcrPid(int &result) const
+{
+	result = pcrPid;
+	return 0;
+}
+
+RESULT eDVBPMTParser::eStreamData::getTxtPid(int &result) const
+{
+	result = textPid;
+	return 0;
+}
+
+RESULT eDVBPMTParser::eStreamData::getAitPid(int &result) const
+{
+	result = aitPid;
+	return 0;
+}
+
+RESULT eDVBPMTParser::eStreamData::getServiceId(int &result) const
+{
+	result = serviceId;
+	return 0;
+}
+
+RESULT eDVBPMTParser::eStreamData::getAdapterId(int &result) const
+{
+	result = adapterId;
+	return 0;
+}
+
+RESULT eDVBPMTParser::eStreamData::getDemuxId(int &result) const
+{
+	result = demuxId;
+	return 0;
+}
+
+RESULT eDVBPMTParser::eStreamData::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids) const
+{
+	for (unsigned int i = 0; i < caIds.size(), i < ecmPids.size(); i++)
+	{
+		caids.push_back(caIds[i]);
+		ecmpids.push_back(ecmPids[i]);
+	}
+	return 0;
 }
