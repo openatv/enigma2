@@ -5,6 +5,7 @@ from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
 from enigma import eDVBVolumecontrol
+from Tools import Notifications
 import Screens.InfoBar
 
 inStandby = None
@@ -91,18 +92,23 @@ class Standby2(Screen):
 
 class Standby(Standby2):
 	def __init__(self, session):
-		if Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.ptsGetSaveTimeshiftStatus(Screens.InfoBar.InfoBar.instance):
+		if Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.ptsGetTimeshiftStatus(Screens.InfoBar.InfoBar.instance):
 			self.skin = """<screen position="0,0" size="0,0"/>"""
 			Screen.__init__(self, session)
 			self.onFirstExecBegin.append(self.showMessageBox)
 			self.onHide.append(self.close)
 		else:
 			Standby2.__init__(self, session)
-			self.skinName = "Standby"
 
 	def showMessageBox(self):
-		if Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance:
-			Screens.InfoBar.InfoBar.saveTimeshiftActions(Screens.InfoBar.InfoBar.instance, postaction="standby")
+		Screens.InfoBar.InfoBar.checkTimeshiftRunning(Screens.InfoBar.InfoBar.instance, self.showMessageBoxcallback)
+
+	def showMessageBoxcallback(self, answer):
+		if answer:
+			self.onClose.append(self.doStandby)
+
+	def doStandby(self):
+			Notifications.AddNotification(Screens.Standby.Standby2)
 
 class StandbySummary(Screen):
 	skin = """
@@ -145,6 +151,7 @@ class TryQuitMainloop(MessageBox):
 		self.ptsmainloopvalue = retvalue
 		recordings = session.nav.getRecordings()
 		jobs = len(job_manager.getPendingJobs())
+		inTimeshift = Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.ptsGetTimeshiftStatus(Screens.InfoBar.InfoBar.instance)
 		self.connected = False
 		reason = ""
 		next_rec_time = -1
@@ -157,6 +164,8 @@ class TryQuitMainloop(MessageBox):
 				reason += "%s: %s (%d%%)\n" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
 			else:
 				reason += (_("%d jobs are running in the background!") % jobs) + '\n'
+		if inTimeshift:
+			reason = _("You seem to be in timeshift!") + '\n'
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			default_yes = False
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
