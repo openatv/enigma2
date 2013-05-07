@@ -158,7 +158,7 @@ def getgmail():
 
 class  Gmailfeedsscrn(Screen):
 	skin = """
-		<screen position="center,center" size="920,520" title="Gmail Reader" >
+		<screen position="center,center" size="920,520" title="GMail Reader" >
 		<widget name="menu" position="0,0" size="920,500" scrollbarMode="showOnDemand" transparent="1" zPosition="2" />
 		<widget name="info" position="150,50" zPosition="4" size="620,300" font="Regular;24" foregroundColor="#ffffff" transparent="1" halign="center" valign="center" />
 		</screen>"""
@@ -351,8 +351,8 @@ def main(session, **kwargs):
        
 def Plugins(**kwargs):
 	return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),
-		PluginDescriptor(name="Gmail Reader", description="Gmail Reader", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main),
-                PluginDescriptor(name="Gmail Reader", description="Gmail Reader", where = PluginDescriptor.WHERE_PLUGINMENU, icon="gmail.png", fnc=main)]
+		PluginDescriptor(name="GMail Reader", description="GMail Reader", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main),
+                PluginDescriptor(name="GMail Reader", description="GMail Reader", where = PluginDescriptor.WHERE_PLUGINMENU, icon="gmail.png", fnc=main)]
 	
 class gmailnotifier(Screen):
     skin = """<screen name="gmailnotifier" position="40,40" size="200,200" title=""  flags="wfNoBorder" >  
@@ -470,7 +470,7 @@ def comparecounts():
 	msgstr=netcount   
 
 class Gmailbodyviewer(Screen):
-	skin = """<screen name="Gmailbodyviewer" position="center,center" size="920,600" title="Gmail Reader - View E-mail"  >
+	skin = """<screen name="Gmailbodyviewer" position="center,center" size="920,600" title="GMail Reader - View E-mail"  >
 			<widget name="titel" position="20,0" zPosition="1" size="880,30" font="Regular;20" transparent="1"  backgroundColor="#00000000" foregroundColor="yellow" valign="center" halign="left" />
 			<widget name="author" position="20,60" size="600,30" transparent="1" halign="left" font="Regular;20" foregroundColor="yellow"/>
 			<widget name="tdate" position="620,60" size="300,30" transparent="1" halign="left" font="Regular;20" foregroundColor="yellow"/>
@@ -509,7 +509,7 @@ class Gmailbodyviewer(Screen):
         def updatetitle(self):
 		txt="Fetching email body,please wait..."
 		self["text"].setText(txt)
-		self.setTitle("Gmail Reader")
+		self.setTitle("GMail Reader")
 		
         def getemailinfo(self,msg): 
                 self._email = msg

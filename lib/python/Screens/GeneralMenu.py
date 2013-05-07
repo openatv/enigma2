@@ -1023,32 +1023,23 @@ class GeneralMenu(Screen):
         if menuID is None:
             for l in plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU):
                 if isinstance(l.iconstr, str):
-                    menuitem = [l.name,
-                     '/'.join((l.path, l.iconstr)),
-                     boundFunction(self.runPlugin, (l, None)),
-                     l.weight]
+			menuitem = [l.name,'/'.join((l.path, l.iconstr)),boundFunction(self.runPlugin, (l, None)),l.weight]
                 else:
-                    menuitem = [l.name,
-                     '',
-                     boundFunction(self.runPlugin, (l, None)),
-                     l.weight]
-                list.append(tuple(menuitem))
-
+			menuitem = [l.name,'',boundFunction(self.runPlugin, (l, None)),l.weight]
+		if l.name == _("Front Panel Update") or l.name == _("CrossEPG Downloader") or l.name == _("OpenWebif") or l.name == _("Software management"):
+			print "Skip =>", l.name
+		else:
+			list.append(tuple(menuitem))
         else:
             for l in plugins.getPluginsForMenu(menuID):
                 if len(l) > 5:
-                    menuitem = [l[0],
-                     l[2],
-                     boundFunction(self.runPlugin, (l[1], l[6])),
-                     l[3] or 50]
+                    menuitem = [l[0],l[2],boundFunction(self.runPlugin, (l[1], l[6])),l[3] or 50]
                 else:
-                    menuitem = [l[0],
-                     l[2],
-                     boundFunction(self.runPlugin, (l[1], None)),
-                     l[3] or 50]
-                list.append(tuple(menuitem))
-
-         
+                    menuitem = [l[0],l[2],boundFunction(self.runPlugin, (l[1], None)),l[3] or 50]
+		if l[0] == _("Front Panel Update") or l[0] == _("CrossEPG Downloader") or l[0] == _("OpenWebif") or l[0] == _("Software management"):                 
+			print "Skip =>" , l.name
+		else:
+			list.append(tuple(menuitem))
         try:
             list.sort(key=lambda x: int(x[3]))
         except:
