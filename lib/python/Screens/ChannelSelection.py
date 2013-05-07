@@ -593,6 +593,7 @@ class ChannelSelectionEdit:
 				pos2 = self.bouquet_rootstr.find("FROM BOUQUET")
 				if pos1 != -1 and pos2 != -1 and str1[pos1:] == self.bouquet_rootstr[pos2:]:
 					self.servicelist.addService(new_bouquet_ref)
+					self.servicelist.resetRoot()
 			else:
 				print "add", str, "to bouquets failed"
 		else:
