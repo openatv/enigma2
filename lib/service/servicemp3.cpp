@@ -222,9 +222,18 @@ int eStaticServiceMP3Info::getInfo(const eServiceReference &ref, int w)
 	case iServiceInformation::sTimeCreate:
 		{
 			struct stat s;
-			if(stat(ref.path.c_str(), &s) == 0)
+			if (stat(ref.path.c_str(), &s) == 0)
 			{
 				return s.st_mtime;
+			}
+		}
+		break;
+	case iServiceInformation::sFileSize:
+		{
+			struct stat s;
+			if (stat(ref.path.c_str(), &s) == 0)
+			{
+				return s.st_size;
 			}
 		}
 		break;
@@ -232,21 +241,101 @@ int eStaticServiceMP3Info::getInfo(const eServiceReference &ref, int w)
 	return iServiceInformation::resNA;
 }
 
-PyObject* eStaticServiceMP3Info::getInfoObject(const eServiceReference &ref, int w)
+long long eStaticServiceMP3Info::getFileSize(const eServiceReference &ref)
 {
-	switch(w)
+	struct stat s;
+	if (stat(ref.path.c_str(), &s) == 0)
 	{
-	case iServiceInformation::sFileSize:
-		{
-			struct stat s;
-			if(stat(ref.path.c_str(), &s) == 0)
-			{
-				return PyLong_FromLongLong(s.st_size);
-			}
-		}
-		break;
+		return s.st_size;
 	}
-	Py_RETURN_NONE;
+	return 0;
+}
+
+DEFINE_REF(eStreamBufferInfo)
+
+eStreamBufferInfo::eStreamBufferInfo(int percentage, int inputrate, int outputrate, int space, int size)
+: bufferPercentage(percentage),
+	inputRate(inputrate),
+	outputRate(outputrate),
+	bufferSpace(space),
+	bufferSize(size)
+{
+}
+
+int eStreamBufferInfo::getBufferPercentage() const
+{
+	return bufferPercentage;
+}
+
+int eStreamBufferInfo::getAverageInputRate() const
+{
+	return inputRate;
+}
+
+int eStreamBufferInfo::getAverageOutputRate() const
+{
+	return outputRate;
+}
+
+int eStreamBufferInfo::getBufferSpace() const
+{
+	return bufferSpace;
+}
+
+int eStreamBufferInfo::getBufferSize() const
+{
+	return bufferSize;
+}
+
+DEFINE_REF(eServiceMP3InfoContainer);
+
+eServiceMP3InfoContainer::eServiceMP3InfoContainer()
+: doubleValue(0.0), bufferValue(NULL), bufferData(NULL), bufferSize(0)
+{
+}
+
+eServiceMP3InfoContainer::~eServiceMP3InfoContainer()
+{
+	if (bufferValue)
+	{
+#if GST_VERSION_MAJOR >= 1
+		gst_buffer_unmap(bufferValue, &map);
+#endif
+		gst_buffer_unref(bufferValue);
+		bufferValue = NULL;
+		bufferData = NULL;
+		bufferSize = 0;
+	}
+}
+
+double eServiceMP3InfoContainer::getDouble(unsigned int index) const
+{
+	return doubleValue;
+}
+
+unsigned char *eServiceMP3InfoContainer::getBuffer(unsigned int &size) const
+{
+	size = bufferSize;
+	return bufferData;
+}
+
+void eServiceMP3InfoContainer::setDouble(double value)
+{
+	doubleValue = value;
+}
+
+void eServiceMP3InfoContainer::setBuffer(GstBuffer *buffer)
+{
+	bufferValue = buffer;
+	gst_buffer_ref(bufferValue);
+#if GST_VERSION_MAJOR < 1
+	bufferData = GST_BUFFER_DATA(bufferValue);
+	bufferSize = GST_BUFFER_SIZE(bufferValue);
+#else
+	gst_buffer_map(bufferValue, &map, GST_MAP_READ);
+	bufferData = map.data;
+	bufferSize = map.size;
+#endif
 }
 
 // eServiceMP3
@@ -346,12 +435,11 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3::sourceTimeout);
 
 		std::string config_str;
-		if( ePythonConfigQuery::getConfigValue("config.mediaplayer.useAlternateUserAgent", config_str) == 0 )
+		if (eConfigManager::getConfigBoolValue("config.mediaplayer.useAlternateUserAgent"))
 		{
-			if ( config_str == "True" )
-				ePythonConfigQuery::getConfigValue("config.mediaplayer.alternateUserAgent", m_useragent);
+			m_useragent = eConfigManager::getConfigValue("config.mediaplayer.alternateUserAgent");
 		}
-		if ( m_useragent.length() == 0 )
+		if (m_useragent.empty())
 			m_useragent = "Enigma2 Mediaplayer";
 
 		if (strstr(filename, " buffer=1"))
@@ -1016,8 +1104,10 @@ std::string eServiceMP3::getInfoString(int w)
 	return "";
 }
 
-PyObject *eServiceMP3::getInfoObject(int w)
+ePtr<iServiceInfoContainer> eServiceMP3::getInfoObject(int w)
 {
+	eServiceMP3InfoContainer *container = new eServiceMP3InfoContainer;
+	ePtr<iServiceInfoContainer> retval = container;
 	const gchar *tag = 0;
 	bool isBuffer = false;
 	switch (w)
@@ -1063,36 +1153,19 @@ PyObject *eServiceMP3::getInfoObject(int w)
 			const GValue *gv_buffer = gst_tag_list_get_value_index(m_stream_tags, tag, 0);
 			if ( gv_buffer )
 			{
-				PyObject *retval = NULL;
-				guint8 *data;
-				gsize size;
 				GstBuffer *buffer;
 				buffer = gst_value_get_buffer (gv_buffer);
-#if GST_VERSION_MAJOR < 1
-				data = GST_BUFFER_DATA(buffer);
-				size = GST_BUFFER_SIZE(buffer);
-#else
-				GstMapInfo map;
-				gst_buffer_map(buffer, &map, GST_MAP_READ);
-				data = map.data;
-				size = map.size;
-#endif
-				retval = PyBuffer_FromMemory(data, size);
-#if GST_VERSION_MAJOR >= 1
-				gst_buffer_unmap(buffer, &map);
-#endif
-				return retval;
+				container->setBuffer(buffer);
 			}
 		}
 		else
 		{
 			gdouble value = 0.0;
 			gst_tag_list_get_double(m_stream_tags, tag, &value);
-			return PyFloat_FromDouble(value);
+			container->setDouble(value);
 		}
 	}
-
-	Py_RETURN_NONE;
+	return retval;
 }
 
 RESULT eServiceMP3::audioChannel(ePtr<iAudioChannelSelection> &ptr)
@@ -1983,14 +2056,8 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 		{
 			if ( m_subtitleStreams[m_currentSubtitleStream].type < stVOB )
 			{
-				int delay = 0;
-				std::string configvalue;
-				if(ePythonConfigQuery::getConfigValue("config.subtitles.pango_subtitles_delay", configvalue)==0)
-					delay = atoi(configvalue.c_str());
-
-				int subtitle_fps = 1; // = original
-				if(ePythonConfigQuery::getConfigValue("config.subtitles.pango_subtitles_fps", configvalue)==0)
-					subtitle_fps = atoi(configvalue.c_str());
+				int delay = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_delay");
+				int subtitle_fps = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_fps");
 
 				double convert_fps = 1.0;
 				if (subtitle_fps > 1 && m_framerate > 0)
@@ -2193,15 +2260,9 @@ RESULT eServiceMP3::streamed(ePtr<iStreamedService> &ptr)
 	return 0;
 }
 
-PyObject *eServiceMP3::getBufferCharge()
+ePtr<iStreamBufferInfo> eServiceMP3::getBufferCharge()
 {
-	ePyObject tuple = PyTuple_New(5);
-	PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(m_bufferInfo.bufferPercent));
-	PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(m_bufferInfo.avgInRate));
-	PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(m_bufferInfo.avgOutRate));
-	PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(m_bufferInfo.bufferingLeft));
-	PyTuple_SET_ITEM(tuple, 4, PyInt_FromLong(m_buffer_size));
-	return tuple;
+	return new eStreamBufferInfo(m_bufferInfo.bufferPercent, m_bufferInfo.avgInRate, m_bufferInfo.avgOutRate, m_bufferInfo.bufferingLeft, m_buffer_size);
 }
 
 int eServiceMP3::setBufferSize(int size)
@@ -2237,9 +2298,7 @@ void eServiceMP3::setAC3Delay(int delay)
 		 */
 		if (videoSink)
 		{
-			std::string config_delay;
-			if(ePythonConfigQuery::getConfigValue("config.av.generalAC3delay", config_delay) == 0)
-				config_delay_int += atoi(config_delay.c_str());
+			config_delay_int += eConfigManager::getConfigIntValue("config.av.generalAC3delay");
 		}
 		else
 		{
@@ -2270,9 +2329,7 @@ void eServiceMP3::setPCMDelay(int delay)
 		 */
 		if (videoSink)
 		{
-			std::string config_delay;
-			if(ePythonConfigQuery::getConfigValue("config.av.generalPCMdelay", config_delay) == 0)
-				config_delay_int += atoi(config_delay.c_str());
+			config_delay_int += eConfigManager::getConfigIntValue("config.av.generalPCMdelay");
 		}
 		else
 		{

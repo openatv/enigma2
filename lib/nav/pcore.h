@@ -22,7 +22,7 @@ public:
 
 	SWIG_VOID(RESULT) recordService(const eServiceReference &ref, ePtr<iRecordableService> &SWIG_OUTPUT, bool simulate);
 	RESULT stopRecordService(ePtr<iRecordableService> &service);
-	PyObject *getRecordings(bool simulate=false);
+	void getRecordings(std::vector<ePtr<iRecordableService> > &recordings, bool simulate=false);
 
 private:
 	ePtr<eNavigation> m_core;

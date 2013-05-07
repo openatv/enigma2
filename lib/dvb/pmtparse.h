@@ -86,8 +86,35 @@ public:
 		int aitPid;
 		int dsmccPid;
 		int serviceId;
+		int adapterId;
+		int demuxId;
 		bool isCrypted() { return !caids.empty(); }
-		PyObject *createPythonObject();
+	};
+
+	class eStreamData : public iStreamData
+	{
+		DECLARE_REF(eStreamData);
+		std::vector<int> caIds;
+		std::vector<int> ecmPids;
+		std::vector<int> videoStreams;
+		std::vector<int> audioStreams;
+		std::vector<int> subtitleStreams;
+		int pcrPid, pmtPid, textPid, aitPid, serviceId, adapterId, demuxId;
+	public:
+		eStreamData(struct program &program);
+		RESULT getAllPids(std::vector<int> &result) const;
+		RESULT getVideoPids(std::vector<int> &result) const;
+		RESULT getAudioPids(std::vector<int> &result) const;
+		RESULT getSubtitlePids(std::vector<int> &result) const;
+		RESULT getPmtPid(int &result) const;
+		RESULT getPatPid(int &result) const;
+		RESULT getPcrPid(int &result) const;
+		RESULT getTxtPid(int &result) const;
+		RESULT getAitPid(int &result) const;
+		RESULT getServiceId(int &result) const;
+		RESULT getAdapterId(int &result) const;
+		RESULT getDemuxId(int &result) const;
+		RESULT getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids) const;
 	};
 
 	virtual int getProgramInfo(program &program);
