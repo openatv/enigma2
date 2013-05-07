@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2013-05-06 21:59+0100\n"
+"PO-Revision-Date: 2013-05-07 22:07+0100\n"
 "Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -194,8 +194,8 @@ msgid "Updates Available:"
 msgstr "Verfügbare Updates:"
 
 #
-msgid " wireless networks found!"
-msgstr "Drahtlos-Netzwerke gefunden!"
+msgid "%s , found!"
+msgstr "%s WLAN-Netzwerke gefunden!"
 
 #
 msgid "%H:%M"
@@ -358,8 +358,11 @@ msgid "1"
 msgstr "1"
 
 #
-msgid "1 wireless network found!"
-msgstr "1 Drahtlosnetzwerk gefunden!"
+#, python-format
+msgid "%d wireless network found!"
+msgid_plural "%d wireless networks found!"
+msgstr[0] "%d WLAN Netzwerk gefunden!"
+msgstr[1] "%d WLAN Netzwerke gefunden!"
 
 #
 msgid "1.0"
@@ -731,7 +734,7 @@ msgstr "Über..."
 
 #
 msgid "Accesspoint:"
-msgstr "Access Point:"
+msgstr "Access Point MAC:"
 
 msgid "Action"
 msgstr "Aktion"
@@ -1714,7 +1717,10 @@ msgstr "Tuner auswählen"
 
 #
 msgid "Choose a wireless network"
-msgstr "Drahtlosnetzwerk auswählen"
+msgstr "WLAN-Netzwerk auswählen"
+
+msgid "Choose a Wireless Network"
+msgstr "WLAN-Netzwerk auswählen"
 
 #
 msgid "Chose backup files"
@@ -2076,7 +2082,7 @@ msgstr ""
 
 #
 msgid "Configure your wireless LAN again"
-msgstr "Drahtlosnetzwerk erneut konfigurieren"
+msgstr "WLAN Netzwerk erneut konfigurieren"
 
 #
 msgid "Configuring"
@@ -2092,7 +2098,7 @@ msgstr "Verbinden"
 
 #
 msgid "Connect to a Wireless Network"
-msgstr "Mit Drahtlosnetzwerk verbinden"
+msgstr "Mit WLAN Netzwerk verbinden"
 
 msgid "Connected clients"
 msgstr "Verbundene Clients"
@@ -3125,6 +3131,10 @@ msgstr "Verschlüsselung"
 
 #
 msgid "Encryption Key"
+msgstr "WLAN-Sicherheitsschlüssel"
+
+#
+msgid "Encryption key"
 msgstr "WLAN-Sicherheitsschlüssel"
 
 #
@@ -4249,6 +4259,9 @@ msgstr "Partitionstabelle löschen"
 msgid "LAN Adapter"
 msgstr "LAN-Adapter"
 
+msgid "LAN adapter"
+msgstr "LAN-Adapter"
+
 msgid "LAN connection"
 msgstr "LAN-Verbindung"
 
@@ -4350,6 +4363,10 @@ msgid "Link Quality:"
 msgstr "Verbindungs-Qualität:"
 
 #
+msgid "Link quality:"
+msgstr "Verbindungs-Qualität:"
+
+#
 msgid "Link:"
 msgstr "Verbindung:"
 
@@ -4384,6 +4401,9 @@ msgstr "Laden/Speichern"
 
 #
 msgid "Local Network"
+msgstr "Lokales Netzwerk"
+
+msgid "Local network"
 msgstr "Lokales Netzwerk"
 
 msgid "Local box"
@@ -4815,8 +4835,8 @@ msgstr "Netzwerk:"
 msgid "NetworkWizard"
 msgstr "Netzwerk-Assistent"
 
-msgid "Networkname (SSID)"
-msgstr "Netzwerknamen (SSID)"
+msgid "Network name (SSID)"
+msgstr "Netzwerkname (SSID)"
 
 #
 msgid "New"
@@ -4991,7 +5011,7 @@ msgstr ""
 "Wenn Sie 'NEIN' wählen, bleibt der Senderschutz deaktiviert!"
 
 msgid "No wireless networks found! Searching..."
-msgstr "Keine Drahtlosnetzwerke gefunden! Suche..."
+msgstr "Keine WLAN-Netzwerke gefunden! Suche..."
 
 #
 msgid ""
@@ -5667,7 +5687,7 @@ msgid ""
 "\n"
 "Please press OK to continue."
 msgstr ""
-"Drahtlos-Netzwerk zum verbinden auswählen.\n"
+"WLAN-Netzwerk zum verbinden auswählen.\n"
 "\n"
 "OK drücken zum fortfahren."
 
@@ -6841,7 +6861,7 @@ msgid "Select what you want the TV button to activate:"
 msgstr "Wählen Sie was die TV Taste bewirken soll:"
 
 msgid "Select wireless network"
-msgstr "Drahtlos-Netzwerk auswählen"
+msgstr "WLAN-Netzwerk auswählen"
 
 msgid "Select your provider, and press OK to start the scan"
 msgstr "Wählen Sie den Anbieter und drücken OK um den Suchlauf zu starten"
@@ -7281,6 +7301,9 @@ msgstr "Zeige grafischen EPG"
 msgid "Show Info"
 msgstr "Zeige Infos"
 
+msgid "Show info"
+msgstr "Zeige Infos"
+
 msgid "Show Log"
 msgstr "Zeige Log"
 
@@ -7393,6 +7416,9 @@ msgstr "Nebeneinander"
 
 #
 msgid "Signal Strength:"
+msgstr "Signalstärke:"
+
+msgid "Signal strength:"
 msgstr "Signalstärke:"
 
 #
@@ -9645,16 +9671,16 @@ msgstr "Wireless-LAN"
 
 #
 msgid "Wireless Network"
-msgstr "Drahtlos-Netzwerk"
+msgstr "WLAN-Netzwerk"
 
 msgid "Wireless network connection setup"
-msgstr "Einstellungen drahtlose Netzwerkverbindung"
+msgstr "Einstellungen WLAN Netzwerkverbindung"
 
 msgid "Wireless network connection setup."
-msgstr "Einstellungen drahtlose Netzwerkverbindung."
+msgstr "Einstellungen WLAN Netzwerkverbindung."
 
 msgid "Wireless network state"
-msgstr "Status Drahtlosnetzwerk"
+msgstr "WLAN Netzwerk Status"
 
 msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
@@ -10087,7 +10113,7 @@ msgid ""
 "\n"
 "Please choose what you want to do next."
 msgstr ""
-"Ihre Drahtlos-Internetverbindung konnte nicht gestartet werden!\n"
+"Ihre WLAN-Internetverbindung konnte nicht gestartet werden!\n"
 "Ist Ihr USB WLAN-Stick korrekt angeschlossen?\n"
 "\n"
 "Bitte wählen Sie eine Option zum Fortfahren."
@@ -11471,7 +11497,7 @@ msgid "width"
 msgstr "Breite"
 
 msgid "wireless network interface"
-msgstr "Schnittstelle Drahtlosnetzwerk"
+msgstr "WLAN Interface"
 
 msgid "with exit button"
 msgstr "Mit EXIT-Taster"
@@ -14416,3 +14442,6 @@ msgstr "Nächste Sendung aufnehmen"
 
 msgid "Record once"
 msgstr "Einmal aufnehmen"
+
+msgid "Network Adapter Selection"
+msgstr "Netzwerk Adapter Auswahl"
