@@ -747,7 +747,7 @@ class PliExtraInfo(Poll, Converter, object):
 		if self.type == "TransponderInfo2line":
 			return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(fedata)) +  addspace(self.createTransponderName(feraw)) + '\n'\
 			+ self.createFrequency(fedata) + addspace(" MHz") + addspace(self.createPolarization(fedata))\
-			+ addspace(self.createSymbolRate(fedata)) + self.createModulation(fedata) + '-' + addspace(self.createFEC(fedata))
+			+ addspace(self.createSymbolRate(fedata, feraw)) + self.createModulation(fedata) + '-' + addspace(self.createFEC(fedata, feraw))
 
 		if self.type == "TransponderInfo":
 			return self.createTransponderInfo(fedata,feraw)
