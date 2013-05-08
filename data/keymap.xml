@@ -83,10 +83,10 @@
 	<map context="InfobarEPGActions">
 		<key id="KEY_INFO" mapto="showEventInfo" flags="b" />
 		<key id="KEY_INFO" mapto="showEventInfoPlugin" flags="l" />
-		<key id="KEY_EPG" mapto="showEventInfo" flags="b" />
+		<key id="KEY_EPG" mapto="showEventInfoSingleEPG" flags="b" />
 		<key id="KEY_EPG" mapto="showEventInfoPlugin" flags="l" />
 	</map>
-	
+
 	<map context="InfobarInstantRecord">
 		<key id="KEY_RECORD" mapto="instantRecord" flags="m" />
 		<device name="dreambox remote control (native)">
