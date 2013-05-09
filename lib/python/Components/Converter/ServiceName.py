@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Components.Converter.Converter import Converter
+from Components.config import config
 from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr
 from Components.Element import cached
 from ServiceReference import resolveAlternate
@@ -33,10 +34,19 @@ class ServiceName(Converter, object):
 		if not info:
 			return ""
 		if self.type == self.NAME:
-			name = ref and info.getName(ref)
-			if name is None:
-				name = info.getName()
-			return name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+			if config.usage.show_infobar_channel_number.getValue():
+				name = ref and info.getName(ref)
+				numservice = self.source.serviceref
+				num = numservice and numservice.getChannelNum() or None
+				print 'service.getChannelNum()',numservice.getChannelNum()
+				if name is None:
+					name = info.getName()
+				return str(num) + '   ' + name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+			else:
+				name = ref and info.getName(ref)
+				if name is None:
+					name = info.getName()
+				return name.replace('\xc2\x86', '').replace('\xc2\x87', '')
 		elif self.type == self.PROVIDER:
 			return info.getInfoString(iServiceInformation.sProvider)
 		elif self.type == self.REFERENCE or self.type == self.EDITREFERENCE and hasattr(self.source, "editmode") and self.source.editmode:
