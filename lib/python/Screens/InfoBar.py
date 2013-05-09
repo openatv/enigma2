@@ -454,7 +454,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 	def showMovies(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if ref.toString().find(':0:/') == -1:
+		if ref and ref.toString().find(':0:/') == -1:
 			self.playingservice = ref # movie list may change the currently playing
 		else:
 			self.playingservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.getValue())
