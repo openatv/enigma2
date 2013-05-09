@@ -3319,7 +3319,7 @@ class InfoBarTimeshift:
 				self.pts_pathchecked = True
 				return True
 			else:
-				Notifications.AddNotification(MessageBox, _("Could not activate Permanent-Timeshift!\nTimeshift-Path does not exist"), MessageBox.TYPE_ERROR, timeout=15)
+				# Notifications.AddNotification(MessageBox, _("Could not activate Permanent-Timeshift!\nTimeshift-Path does not exist"), MessageBox.TYPE_ERROR, timeout=15)
 				if self.pts_delay_timer.isActive():
 					self.pts_delay_timer.stop()
 				if self.pts_cleanUp_timer.isActive():
