@@ -1264,10 +1264,6 @@ class InfoBarSimpleEventView:
 			self.toggleShow()
 			return 1
 
-class InfoBarSimpleEventView:
-	def __init__(self):
-		pass
-
 class SimpleServicelist:
 	def __init__(self, services):
 		self.services = services
