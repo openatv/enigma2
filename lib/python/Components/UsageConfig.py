@@ -437,6 +437,7 @@ def InitUsageConfig():
 	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback = False)
 
 	SystemInfo["ZapMode"] = os.path.exists("/proc/stb/video/zapmode") or os.path.exists("/proc/stb/video/zapping_mode")
+	if SystemInfo["ZapMode"]:
 		if os.path.exists("/proc/stb/video/zapping_mode"):
 			zapfile = "/proc/stb/video/zapping_mode"
 		else:
