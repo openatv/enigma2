@@ -437,13 +437,11 @@ def InitUsageConfig():
 	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback = False)
 
 	SystemInfo["ZapMode"] = os.path.exists("/proc/stb/video/zapmode") or os.path.exists("/proc/stb/video/zapping_mode")
-	if os.path.exists("/proc/stb/video/zapping_mode"):
-		zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen"))]
-		zapfile = "/proc/stb/video/zapping_mode"
-	else:
+		if os.path.exists("/proc/stb/video/zapping_mode"):
+			zapfile = "/proc/stb/video/zapping_mode"
+		else:
+			zapfile = "/proc/stb/video/zapmode"
 		zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))]
-		zapfile = "/proc/stb/video/zapmode"
-	if SystemInfo["ZapMode"]:
 		def setZapmode(el):
 			try:
 				file = open(zapfile, "w")
