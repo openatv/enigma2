@@ -15,8 +15,12 @@ from ServiceReference import ServiceReference
 from Screens.TimerEntry import TimerEntry, TimerLog
 from Tools.BoundFunction import boundFunction
 from Tools.FuzzyDate import FuzzyTime
-from time import time
+from Tools.Directories import resolveFilename, SCOPE_HDD
+from time import time, localtime
 from timer import TimerEntry as RealTimerEntry
+from enigma import eServiceCenter
+import Tools.CopyFiles
+import os
 
 class TimerEditList(Screen):
 	EMPTY = 0
@@ -222,6 +226,7 @@ class TimerEditList(Screen):
 			return cmp(x[0].begin, y[0].begin)
 
 		list = self.list
+		print list
 		del list[:]
 		list.extend([(timer, False) for timer in self.session.nav.RecordTimer.timer_list])
 		list.extend([(timer, True) for timer in self.session.nav.RecordTimer.processed_timers])
@@ -251,10 +256,56 @@ class TimerEditList(Screen):
 
 	def removeTimerQuestion(self):
 		cur = self["timerlist"].getCurrent()
+		service = str(cur.service_ref.getServiceName())
+		t = localtime(cur.begin)
+		f = str(t.tm_year) + str(t.tm_mon).zfill(2) + str(t.tm_mday).zfill(2) + " " + str(t.tm_hour).zfill(2) + str(t.tm_min).zfill(2) + " - " + service + " - " + cur.name
+		f = f.replace(':','_')
+		f = f.replace(',','_')
+		f = f.replace('/','_')
+
 		if not cur:
 			return
 
-		self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete %s?") % (cur.name), default = False)
+		onhdd = False
+		self.moviename = f
+		path = resolveFilename(SCOPE_HDD)
+		files = os.listdir(path)
+		for file in files:
+			if file.startswith(f):
+				onhdd = True
+				break
+
+		if onhdd:
+			message = (_("Do you really want to delete %s?") % (cur.name))
+			choices = [(_("No"), "no"),
+					(_("Yes, delete from Timerlist"), "yes"),
+					(_("Yes, delete from Timerlist and delete recording"), "yesremove")]
+			self.session.openWithCallback(self.startDelete, ChoiceBox, title=message, list=choices)
+		else:
+			self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete %s?") % (cur.name), default = False)
+
+	def startDelete(self, answer):
+		if not answer or not answer[1]:
+			self.close()
+			return
+		if answer[1] == 'no':
+			return
+		elif answer[1] == 'yes':
+			self.removeTimer(True)
+		elif answer[1] == 'yesremove':
+			if config.EMC.movie_trashcan_enable.getValue():
+				trashpath = config.EMC.movie_trashcan_path.getValue()
+				self.MoveToTrash(trashpath)
+			elif config.usage.movielist_trashcan.getValue():
+				trashpath = resolveFilename(SCOPE_HDD) + '.Trash'
+				self.MoveToTrash(trashpath)
+			else:
+				self.session.openWithCallback(self.callbackRemoveRecording, MessageBox, _("Do you really want to delete the recording?"), default = False)
+
+	def callbackRemoveRecording(self, answer):
+		if not answer:
+			return
+		self.delete()
 
 	def removeTimer(self, result):
 		if not result:
@@ -268,6 +319,34 @@ class TimerEditList(Screen):
 			self.refill()
 			self.updateState()
 
+	def MoveToTrash(self, trashpath):
+		self.removeTimer(True)
+		moviepath = os.path.normpath(resolveFilename(SCOPE_HDD))
+		movedList =[]
+		files = os.listdir(moviepath)
+		for file in files:
+			if file.startswith(self.moviename):
+				movedList.append((os.path.join(moviepath, file), os.path.join(trashpath, file)))
+		Tools.CopyFiles.moveFiles(movedList, None)
+
+	def delete(self):
+		item = self["timerlist"].getCurrent()
+		if item is None:
+			return # huh?
+		name = item.name
+		service = str(item.service_ref.getServiceName())
+		t = localtime(item.begin)
+		f = str(t.tm_year) + str(t.tm_mon).zfill(2) + str(t.tm_mday).zfill(2) + " " + str(t.tm_hour).zfill(2) + str(t.tm_min).zfill(2) + " - " + service + " - " + name
+		f = f.replace(':','_')
+		f = f.replace(',','_')
+		f = f.replace('/','_')
+		path = resolveFilename(SCOPE_HDD)
+		self.removeTimer(True)
+		from enigma import eBackgroundFileEraser
+		files = os.listdir(path)
+		for file in files:
+			if file.startswith(f):
+				eBackgroundFileEraser.getInstance().erase(os.path.realpath(path + file))
 
 	def refill(self):
 		oldsize = len(self.list)
