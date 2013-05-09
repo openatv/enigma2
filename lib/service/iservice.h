@@ -7,6 +7,7 @@
 #include <string>
 #include <connection.h>
 #include <list>
+#include <vector>
 
 class eServiceEvent;
 
@@ -236,8 +237,17 @@ typedef long long pts_t;
 	   Hide the result only if there is another way to check for failure! */
 
 class eServiceEvent;
+class iDVBTransponderData;
 
-SWIG_IGNORE(iStaticServiceInformation);
+class iServiceInfoContainer: public iObject
+{
+public:
+	virtual int getInteger(unsigned int index) const { return 0; }
+	virtual std::string getString(unsigned int index) const { return ""; }
+	virtual double getDouble(unsigned int index) const { return 0.0; }
+	virtual unsigned char *getBuffer(unsigned int &size) const { return NULL; }
+};
+
 class iStaticServiceInformation: public iObject
 {
 #ifdef SWIG
@@ -255,7 +265,9 @@ public:
 
 	virtual int getInfo(const eServiceReference &ref, int w);
 	virtual std::string getInfoString(const eServiceReference &ref,int w);
-	virtual PyObject *getInfoObject(const eServiceReference &ref, int w);
+	virtual ePtr<iServiceInfoContainer> getInfoObject(int w);
+	virtual ePtr<iDVBTransponderData> getTransponderData(const eServiceReference &ref);
+	virtual long long getFileSize(const eServiceReference &ref);
 
 	virtual int setInfo(const eServiceReference &ref, int w, int v);
 	virtual int setInfoString(const eServiceReference &ref, int w, const char *v);
@@ -393,7 +405,6 @@ we like to write iServiceInformation.sVideoType.
 So until swig have no Solution for this Problem we call in lib/python/Makefile.am a python script named
 enigma_py_patcher.py to remove the "_ENUMS" strings in enigma.py at all needed locations. */
 
-SWIG_IGNORE(iServiceInformation);
 class iServiceInformation: public iServiceInformation_ENUMS, public iObject
 {
 #ifdef SWIG
@@ -406,7 +417,10 @@ public:
 
 	virtual int getInfo(int w);
 	virtual std::string getInfoString(int w);
-	virtual PyObject *getInfoObject(int w);
+	virtual ePtr<iServiceInfoContainer> getInfoObject(int w);
+	virtual ePtr<iDVBTransponderData> getTransponderData();
+	virtual void getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids);
+	virtual long long getFileSize();
 
 	virtual int setInfo(int w, int v);
 	virtual int setInfoString(int w, const char *v);
@@ -430,10 +444,14 @@ public:
 		signalQualitydB,
 		frontendStatus,
 		snrValue,
+		frequency,
 	};
 };
 
-SWIG_IGNORE(iFrontendInformation);
+class iDVBFrontendData;
+class iDVBFrontendStatus;
+class iDVBTransponderData;
+
 class iFrontendInformation: public iFrontendInformation_ENUMS, public iObject
 {
 #ifdef SWIG
@@ -442,10 +460,10 @@ class iFrontendInformation: public iFrontendInformation_ENUMS, public iObject
 #endif
 public:
 	virtual int getFrontendInfo(int w)=0;
-	virtual PyObject *getFrontendData()=0;
-	virtual PyObject *getFrontendStatus()=0;
-	virtual PyObject *getTransponderData(bool original)=0;
-	virtual PyObject *getAll(bool original)=0; // a sum of getFrontendData/Status/TransponderData
+	virtual ePtr<iDVBFrontendData> getFrontendData()=0;
+	virtual ePtr<iDVBFrontendStatus> getFrontendStatus()=0;
+	virtual ePtr<iDVBTransponderData> getTransponderData(bool original)=0;
+	void getAll() {}
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iFrontendInformation>, iFrontendInformationPtr);
 
@@ -750,7 +768,23 @@ public:
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iServiceOfflineOperations>, iServiceOfflineOperationsPtr);
 
-SWIG_IGNORE(iStreamableService);
+class iStreamData: public iObject
+{
+public:
+	virtual SWIG_VOID(RESULT) getAllPids(std::vector<int> &result) const = 0;
+	virtual SWIG_VOID(RESULT) getVideoPids(std::vector<int> &result) const = 0;
+	virtual SWIG_VOID(RESULT) getAudioPids(std::vector<int> &result) const = 0;
+	virtual SWIG_VOID(RESULT) getSubtitlePids(std::vector<int> &result) const = 0;
+	virtual SWIG_VOID(RESULT) getPmtPid(int &result) const = 0;
+	virtual SWIG_VOID(RESULT) getPatPid(int &result) const = 0;
+	virtual SWIG_VOID(RESULT) getPcrPid(int &result) const = 0;
+	virtual SWIG_VOID(RESULT) getTxtPid(int &result) const = 0;
+	virtual SWIG_VOID(RESULT) getServiceId(int &result) const = 0;
+	virtual SWIG_VOID(RESULT) getAdapterId(int &result) const = 0;
+	virtual SWIG_VOID(RESULT) getDemuxId(int &result) const = 0;
+	virtual SWIG_VOID(RESULT) getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids) const = 0;
+};
+
 class iStreamableService: public iObject
 {
 #ifdef SWIG
@@ -758,18 +792,20 @@ class iStreamableService: public iObject
 	~iStreamableService();
 #endif
 public:
-		/* returns a dict:
-			{ "demux": <n>,
-			  "pids": [(x,type),(y,type),(z,type),..],
-			  ...
-			}
-			with type being "video", "audio", "pmt", "pat"...
-		*/
-	virtual PyObject *getStreamingData()=0;
+	virtual ePtr<iStreamData> getStreamingData() = 0;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iStreamableService>, iStreamableServicePtr);
 
-SWIG_IGNORE(iStreamedService);
+class iStreamBufferInfo: public iObject
+{
+public:
+	virtual int getBufferPercentage() const = 0;
+	virtual int getAverageInputRate() const = 0;
+	virtual int getAverageOutputRate() const = 0;
+	virtual int getBufferSpace() const = 0;
+	virtual int getBufferSize() const = 0;
+};
+
 class iStreamedService: public iObject
 {
 #ifdef SWIG
@@ -777,7 +813,7 @@ class iStreamedService: public iObject
 	~iStreamedService();
 #endif
 public:
-	virtual PyObject *getBufferCharge()=0;
+	virtual ePtr<iStreamBufferInfo> getBufferCharge()=0;
 	virtual int setBufferSize(int size)=0;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iStreamedService>, iStreamedServicePtr);

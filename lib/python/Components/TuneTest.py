@@ -63,7 +63,7 @@ class TuneTest:
 		
 	def gotTsidOnid(self, tsid, onid):
 		print "******** got tsid, onid:", tsid, onid
-		if tsid is not None and onid is not None:
+		if tsid is not -1 and onid is not -1:
 			self.pidStatus = self.INTERNAL_PID_STATUS_SUCCESSFUL
 			self.tsid = tsid
 			self.onid = onid
@@ -87,7 +87,8 @@ class TuneTest:
 			print "2nd choice"
 			if dict["tuner_state"] == "LOCKED":
 				print "acquiring TSID/ONID"
-				self.raw_channel.requestTsidOnid(self.gotTsidOnid)
+				self.raw_channel.receivedTsidOnid.get().append(self.gotTsidOnid)
+				self.raw_channel.requestTsidOnid()
 				self.pidStatus = self.INTERNAL_PID_STATUS_WAITING
 			else:
 				self.pidStatus = self.INTERNAL_PID_STATUS_FAILED

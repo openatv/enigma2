@@ -1,35 +1,37 @@
 #include <lib/base/nconfig.h>
-#include <lib/python/python.h>
 
-ePyObject ePythonConfigQuery::m_queryFunc;
+eConfigManager *eConfigManager::instance = NULL;
 
-void ePythonConfigQuery::setQueryFunc(ePyObject queryFunc)
-{
-	if (m_queryFunc)
-		Py_DECREF(m_queryFunc);
-	m_queryFunc = queryFunc;
-	if (m_queryFunc)
-		Py_INCREF(m_queryFunc);
+eConfigManager::eConfigManager() 
+{ 
+	instance = this; 
 }
 
-RESULT ePythonConfigQuery::getConfigValue(const char *key, std::string &value)
+eConfigManager::~eConfigManager() 
+{ 
+	instance = NULL; 
+}
+
+eConfigManager *eConfigManager::getInstance() 
+{ 
+	return instance; 
+}
+
+std::string eConfigManager::getConfigValue(const char *key) 
 {
-	if (key && PyCallable_Check(m_queryFunc))
-	{
-		ePyObject pArgs = PyTuple_New(1);
-		PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(key));
-		ePyObject pRet = PyObject_CallObject(m_queryFunc, pArgs);
-		Py_DECREF(pArgs);
-		if (pRet)
-		{
-			if (PyString_Check(pRet))
-			{
-				value.assign(PyString_AS_STRING(pRet));
-				Py_DECREF(pRet);
-				return 0;
-			}
-			Py_DECREF(pRet);
-		}
-	}
-	return -1;
+	return instance ? instance->getConfig(key) : "";
+}
+
+int eConfigManager::getConfigIntValue(const char *key, int defaultvalue) 
+{
+	std::string value = getConfigValue(key);
+	return (value != "") ? atoi(value.c_str()) : defaultvalue;
+}
+
+bool eConfigManager::getConfigBoolValue(const char *key, bool defaultvalue) 
+{
+	std::string value = getConfigValue(key);
+	if (value == "True" || value == "true") return true;
+	if (value == "False" || value == "false") return false;
+	return defaultvalue;
 }

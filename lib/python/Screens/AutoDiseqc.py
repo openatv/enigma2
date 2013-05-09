@@ -226,7 +226,8 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		self["tunerstatusbar"].setText(_("Tuner status %s") % (dict["tuner_state"]))
 
 		if dict["tuner_state"] == "LOCKED":
-			self.raw_channel.requestTsidOnid(self.gotTsidOnid)
+			self.raw_channel.receivedTsidOnid.get().append(self.gotTsidOnid)
+			self.raw_channel.requestTsidOnid()
 
 		if dict["tuner_state"] == "LOSTLOCK" or dict["tuner_state"] == "FAILED":
 			self.tunerStopScan(False)

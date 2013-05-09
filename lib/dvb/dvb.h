@@ -297,7 +297,7 @@ public:
 
 	int getUseCount() { return m_use_count; }
 
-	RESULT requestTsidOnid(ePyObject callback);
+	RESULT requestTsidOnid();
 	int reserveDemux();
 private:
 	ePtr<eDVBAllocatedFrontend> m_frontend;
@@ -343,7 +343,6 @@ private:
 	void ReleaseUse();
 
 		/* for tsid/onid read */
-	ePyObject m_tsid_onid_callback;
 	ePtr<iDVBDemux> m_tsid_onid_demux;
 	ePtr<eTable<ServiceDescriptionSection> > m_SDT;
 	void SDTready(int err);

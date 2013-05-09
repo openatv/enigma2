@@ -314,42 +314,18 @@ void eDVBServicePMTHandler::OCready(int error)
 	m_OC.stop();
 }
 
-PyObject *eDVBServicePMTHandler::getCaIds(bool pair)
+void eDVBServicePMTHandler::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids)
 {
-	ePyObject ret;
-
 	program prog;
 
-	if ( !getProgramInfo(prog) )
+	if (!getProgramInfo(prog))
 	{
-		if (pair)
+		for (std::list<program::capid_pair>::iterator it = prog.caids.begin(); it != prog.caids.end(); ++it)
 		{
-			int cnt=prog.caids.size();
-			if (cnt)
-			{
-				ret=PyList_New(cnt);
-				std::list<program::capid_pair>::iterator it(prog.caids.begin());
-				while(cnt--)
-				{
-					ePyObject tuple = PyTuple_New(2);
-					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(it->caid));
-					PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong((it++)->capid));
-					PyList_SET_ITEM(ret, cnt, tuple);
-				}
-			}
-		}
-		else
-		{
-			std::set<program::capid_pair> set(prog.caids.begin(), prog.caids.end());
-			std::set<program::capid_pair>::iterator it(set.begin());
-			int cnt=set.size();
-			ret=PyList_New(cnt);
-			while(cnt--)
-				PyList_SET_ITEM(ret, cnt, PyInt_FromLong((it++)->caid));
+			caids.push_back(it->caid);
+			ecmpids.push_back(it->capid);
 		}
 	}
-
-	return ret ? (PyObject*)ret : (PyObject*)PyList_New(0);
 }
 
 int eDVBServicePMTHandler::getProgramInfo(program &program)
@@ -360,6 +336,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 	int cached_vpid = -1;
 	int cached_tpid = -1;
 	int ret = -1;
+	uint8_t adapter, demux;
 
 	if (m_have_cached_program)
 	{
@@ -388,13 +365,17 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 
 		std::string configvalue;
 		std::vector<std::string> autoaudio_languages;
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.audio_autoselect1", configvalue) && configvalue != "None")
+		configvalue = eConfigManager::getConfigValue("config.autolanguage.audio_autoselect1");
+		if (configvalue != "" && configvalue != "None")
 			autoaudio_languages.push_back(configvalue);
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.audio_autoselect2", configvalue) && configvalue != "None")
+		configvalue = eConfigManager::getConfigValue("config.autolanguage.audio_autoselect2");
+		if (configvalue != "" && configvalue != "None")
 			autoaudio_languages.push_back(configvalue);
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.audio_autoselect3", configvalue) && configvalue != "None")
+		configvalue = eConfigManager::getConfigValue("config.autolanguage.audio_autoselect3");
+		if (configvalue != "" && configvalue != "None")
 			autoaudio_languages.push_back(configvalue);
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.audio_autoselect4", configvalue) && configvalue != "None")
+		configvalue = eConfigManager::getConfigValue("config.autolanguage.audio_autoselect4");
+		if (configvalue != "" && configvalue != "None")
 			autoaudio_languages.push_back(configvalue);
 
 		int autosub_txt_normal = -1;
@@ -404,13 +385,17 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		int autosub_level =4;
 
 		std::vector<std::string> autosub_languages;
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_autoselect1", configvalue) && configvalue != "None")
+		configvalue = eConfigManager::getConfigValue("config.autolanguage.subtitle_autoselect1");
+		if (configvalue != "" && configvalue != "None")
 			autosub_languages.push_back(configvalue);
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_autoselect2", configvalue) && configvalue != "None")
+		configvalue = eConfigManager::getConfigValue("config.autolanguage.subtitle_autoselect2");
+		if (configvalue != "" && configvalue != "None")
 			autosub_languages.push_back(configvalue);
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_autoselect3", configvalue) && configvalue != "None")
+		configvalue = eConfigManager::getConfigValue("config.autolanguage.subtitle_autoselect3");
+		if (configvalue != "" && configvalue != "None")
 			autosub_languages.push_back(configvalue);
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_autoselect4", configvalue) && configvalue != "None")
+		configvalue = eConfigManager::getConfigValue("config.autolanguage.subtitle_autoselect4");
+		if (configvalue != "" && configvalue != "None")
 			autosub_languages.push_back(configvalue);
 
 		m_dsmcc_pid = program.dsmccPid;
@@ -494,13 +479,8 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 			}
 		}
 
-		bool defaultac3 = false;
-		bool useaudio_cache = false;
-
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.audio_defaultac3", configvalue))
-			defaultac3 = configvalue == "True";
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.audio_usecache", configvalue))
-			useaudio_cache = configvalue == "True";
+		bool defaultac3 = eConfigManager::getConfigBoolValue("config.autolanguage.audio_defaultac3");
+		bool useaudio_cache = eConfigManager::getConfigBoolValue("config.autolanguage.audio_usecache");
 
 		if (useaudio_cache && audio_cached != -1)
 			program.defaultAudioStream = audio_cached;
@@ -521,19 +501,10 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 				program.defaultAudioStream = autoaudio_ac3;
 		}
 
-		bool allow_hearingimpaired = false;
-		bool default_hearingimpaired = false;
-		bool defaultdvb = false;
-		int equallanguagemask = false;
-
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_hearingimpaired", configvalue))
-			allow_hearingimpaired = configvalue == "True";
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_defaultimpaired", configvalue))
-			default_hearingimpaired = configvalue == "True";
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_defaultdvb", configvalue))
-			defaultdvb = configvalue == "True";
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.equal_languages", configvalue))
-			equallanguagemask = atoi(configvalue.c_str());
+		bool allow_hearingimpaired = eConfigManager::getConfigBoolValue("config.autolanguage.subtitle_hearingimpaired");
+		bool default_hearingimpaired = eConfigManager::getConfigBoolValue("config.autolanguage.subtitle_defaultimpaired");
+		bool defaultdvb = eConfigManager::getConfigBoolValue("config.autolanguage.subtitle_defaultdvb");
+		int equallanguagemask = eConfigManager::getConfigIntValue("config.autolanguage.equal_languages");
 
 		if (defaultdvb)
 		{
@@ -622,6 +593,14 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		}
 		if ( cnt )
 			ret = 0;
+	}
+
+	if (m_demux)
+	{
+		m_demux->getCAAdapterID(adapter);
+		program.adapterId = adapter;
+		m_demux->getCADemuxID(demux);
+		program.demuxId = demux;
 	}
 
 	m_cached_program = program;
@@ -788,9 +767,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 			if (ref.path.empty())
 			{
 				m_dvb_scan = new eDVBScan(m_channel, true, false);
-				std::string disable_background_scan;
-				if (ePythonConfigQuery::getConfigValue("config.misc.disable_background_scan", disable_background_scan) < 0
-					|| disable_background_scan != "True")
+				if (!eConfigManager::getConfigBoolValue("config.misc.disable_background_scan"))
 				{
 					/*
 					 * not starting a dvb scan triggers what appears to be a
@@ -822,9 +799,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 
 			if (m_service_type == offline) 
 			{
-				std::string delay;
-				ePythonConfigQuery::getConfigValue("config.recording.offline_decode_delay", delay);
-				m_pvr_channel->setOfflineDecodeMode(atoi(delay.c_str()));
+				m_pvr_channel->setOfflineDecodeMode(eConfigManager::getConfigIntValue("config.recording.offline_decode_delay"));
 			}
 		}
 	}
@@ -871,55 +846,4 @@ void eDVBServicePMTHandler::free()
 	m_channel = 0;
 	m_pvr_channel = 0;
 	m_demux = 0;
-}
-
-static PyObject *createTuple(int pid, const char *type)
-{
-	PyObject *r = PyTuple_New(2);
-	PyTuple_SET_ITEM(r, 0, PyInt_FromLong(pid));
-	PyTuple_SET_ITEM(r, 1, PyString_FromString(type));
-	return r;
-}
-
-static inline void PyList_AppendSteal(PyObject *list, PyObject *item)
-{
-	PyList_Append(list, item);
-	Py_DECREF(item);
-}
-
-extern void PutToDict(ePyObject &dict, const char*key, ePyObject item); // defined in dvb/frontend.cpp
-
-PyObject *eDVBServicePMTHandler::program::createPythonObject()
-{
-	ePyObject r = PyDict_New();
-	ePyObject l = PyList_New(0);
-
-	PyList_AppendSteal(l, createTuple(0, "pat"));
-
-	if (pmtPid != -1)
-		PyList_AppendSteal(l, createTuple(pmtPid, "pmt"));
-
-	for (std::vector<eDVBServicePMTHandler::videoStream>::const_iterator
-			i(videoStreams.begin()); 
-			i != videoStreams.end(); ++i)
-		PyList_AppendSteal(l, createTuple(i->pid, "video"));
-
-	for (std::vector<eDVBServicePMTHandler::audioStream>::const_iterator
-			i(audioStreams.begin()); 
-			i != audioStreams.end(); ++i)
-		PyList_AppendSteal(l, createTuple(i->pid, "audio"));
-
-	for (std::vector<eDVBServicePMTHandler::subtitleStream>::const_iterator
-			i(subtitleStreams.begin());
-			i != subtitleStreams.end(); ++i)
-		PyList_AppendSteal(l, createTuple(i->pid, "subtitle"));
-
-	PyList_AppendSteal(l, createTuple(pcrPid, "pcr"));
-
-	if (textPid != -1)
-		PyList_AppendSteal(l, createTuple(textPid, "text"));
-
-	PutToDict(r, "pids", l);
-
-	return r;
 }

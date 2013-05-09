@@ -41,21 +41,21 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 		self.list = []
 		self.list.append(getConfigListEntry(_("Sleeptimer"),
 			config.usage.sleep_timer,
-			_("Configure the duration in minutes and action (shut down or standby) for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer")))
-		self.list.append(getConfigListEntry(_("Action when receiver is not controlled"),
+			_("Configure the duration in minutes and action, which could be shut down or standby, for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer")))
+		self.list.append(getConfigListEntry(_("Inactivity Sleeptimer"),
 			config.usage.inactivity_timer,
-			_("Configure the duration in hours and action (shut down or standby) when the receiver is not controlled.")))
+			_("Configure the duration in hours and action, which could be shut down or standby, when the receiver is not controlled.")))
 		if int(config.usage.inactivity_timer.value):
-			self.list.append(getConfigListEntry(_("Specify timeframe ignoring action when receiver is not controlled"),
+			self.list.append(getConfigListEntry(_("Specify timeframe to ignore inactivity sleeptimer"),
 				config.usage.inactivity_timer_blocktime,
-				_("When enabled you can specify a start and end time were the configured duration in hours and action when receiver is not controlled are ignored")))
+				_("When enabled you can specify a timeframe were the inactivity sleeptimer is ignored")))
 			if config.usage.inactivity_timer_blocktime.value:
-				self.list.append(getConfigListEntry(_("Timeframe start"),
+				self.list.append(getConfigListEntry(_("Start time to ignore inactivity sleeptimer"),
 					config.usage.inactivity_timer_blocktime_begin,
-					_("Specify the start time were the configured duration in hours and action when receiver is not controlled are ignored")))
-				self.list.append(getConfigListEntry(_("Timeframe end"),
+					_("Specify the start time when the inactivity sleeptimer should be ignored")))
+				self.list.append(getConfigListEntry(_("End time to ignore inactivity sleeptimer"),
 					config.usage.inactivity_timer_blocktime_end,
-					_("Specify the end time were the configured duration in hours and action when receiver is not controlled are ignored")))
+					_("Specify the end time until the inactivity sleeptimer should be ignored")))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
