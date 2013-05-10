@@ -2435,6 +2435,7 @@ class InfoBarTimeshift:
 			}, prio=1)
 		self["TimeshiftActivateActions"] = ActionMap(["InfobarTimeshiftActivateActions"],
 			{
+				"timeshiftActivateEndR": self.selectRedkeyTimeshiftEnd, # something like "rewind key"
 				"timeshiftActivateEnd": self.activateTimeshiftEnd, # something like "rewind key"
 				"timeshiftActivateEndAndPause": self.activateTimeshiftEndAndPause,  # something like "pause key"
 				"timeshiftActivateEndAndPauseY": self.selectYellowkeyTimeshiftEndAndPause  # something like "pause key"
@@ -2832,6 +2833,55 @@ class InfoBarTimeshift:
 		self["TimeshiftActions"].setEnabled(True)
 		if config.timeshift.enabled.getValue():
 			self.activatePermanentTimeshift()
+
+	def selectYellowkeyAction(self):
+		if config.plugins.infopanel_yellowkey.list.getValue() == '0':
+			self.audioSelection()
+		elif config.plugins.infopanel_yellowkey.list.getValue() == '1':
+			self.startTimeshift()
+		else:
+			global AUDIO
+			if AUDIO == False:
+				ToggleVideo()
+			AUDIO = False
+
+	def selectYellowkeyTimeshiftEndAndPause(self):
+		if config.plugins.infopanel_yellowkey.list.getValue() == '0':
+			self.audioSelection()
+		elif config.plugins.infopanel_yellowkey.list.getValue() == '2':
+			ToggleVideo()
+		else:
+			self.activateTimeshiftEndAndPause()
+
+	def selectRedkeyTimeshiftEnd(self, back = True):
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/WebBrowser/browser.pyo") is True:
+			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			if info and info.getInfoString(iServiceInformation.sHBBTVUrl) != "":
+				for x in self.onHBBTVActivation:
+					x()
+					
+			elif config.plugins.infopanel_redpanel.enabled.getValue() == True:
+				try:
+					from Plugins.Extensions.Infopanel.plugin import Infopanel
+					self.session.open(Infopanel, services = self.servicelist)
+				except:
+					pass
+			else:
+				self.activateTimeshiftEnd()		
+		
+		elif config.plugins.infopanel_redpanel.enabled.getValue() == True:
+			try:
+				from Plugins.Extensions.Infopanel.plugin import Infopanel
+				self.session.open(Infopanel, services = self.servicelist)
+			except:
+				pass
+		else:
+			self.activateTimeshiftEnd()
+
+	def audioSelection(self):
+		from Screens.AudioSelection import AudioSelection
+		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 
 	def activatePermanentTimeshift(self):
 		self.createTimeshiftFolder()
