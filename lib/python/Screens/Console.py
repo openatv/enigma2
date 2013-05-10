@@ -33,14 +33,14 @@ class Console(Screen):
 		self.container.dataAvail.append(self.dataAvail)
 		self.onLayoutFinish.append(self.startRun) # dont start before gui is finished
 
-	def yellow(self)
+	def yellow(self):
 		print 'Yellow pressed'
 		if self.Shown == True:
 				self.hide()
 				self.Shown = False
 		else:
 				self.show()
-				self.Shown() = True
+				self.Shown = True
 				
 	def updateTitle(self):
 		self.setTitle(self.newtitle)
