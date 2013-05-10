@@ -69,9 +69,8 @@ static void addToLogbuffer(int level, const std::string &log)
 
 static const std::string getConfigString(const std::string &key, const std::string &defaultValue)
 {
-	std::string value;
+	std::string value = eConfigManager::getConfigValue(key.c_str());
 
-	ePythonConfigQuery::getConfigValue(key.c_str(), value);
 	//we get at least the default value if python is still alive
 	if (!value.empty())
 		return value;

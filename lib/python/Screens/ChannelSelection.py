@@ -757,6 +757,7 @@ class ChannelSelectionEdit:
 				pos2 = self.bouquet_rootstr.find("FROM BOUQUET")
 				if pos1 != -1 and pos2 != -1 and str1[pos1:] == self.bouquet_rootstr[pos2:]:
 					self.servicelist.addService(new_bouquet_ref)
+					self.servicelist.resetRoot()
 			else:
 				print "add", str, "to bouquets failed"
 		else:
@@ -1469,13 +1470,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		ChannelSelectionEPG.__init__(self)
 		SelectionEventInfo.__init__(self)
 		if config.usage.servicelist_mode.getValue() == 'simple':
-			data = resolveFilename(SCOPE_ACTIVE_SKIN, 'skin.xml')
-			data = data.replace('/ skin.xml', '/skin.xml')
-			data = file(resolveFilename(SCOPE_ACTIVE_SKIN, 'skin.xml')).read()
-			if data.find('SlimChannelSelection') >= 0:
-				self.skinName = 'SlimChannelSelection'
-			else:
-				self.skinName = 'SimpleChannelSelection'
+			self.skinName = ["SlimChannelSelection","SimpleChannelSelection","ChannelSelection"]
+		else:
+			self.skinName = "ChannelSelection"
 
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{

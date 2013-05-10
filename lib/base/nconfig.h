@@ -1,18 +1,24 @@
 #ifndef __lib_base_nconfig_h_
 #define __lib_base_nconfig_h_
 
-#include <lib/python/python.h>
+#include <string>
+#include <stdbool.h>
 
-class ePythonConfigQuery
+class eConfigManager
 {
-	static ePyObject m_queryFunc;
-	ePythonConfigQuery() {}
-	~ePythonConfigQuery() {}
+protected:
+	static eConfigManager *instance;
+	static eConfigManager *getInstance();
+
+	virtual std::string getConfig(const char *key) = 0;
+
 public:
-	static void setQueryFunc(SWIG_PYOBJECT(ePyObject) func);
-#ifndef SWIG
-	static RESULT getConfigValue(const char *key, std::string &value);
-#endif
+	eConfigManager();
+	virtual ~eConfigManager();
+
+	static std::string getConfigValue(const char *key);
+	static int getConfigIntValue(const char *key, int defaultvalue = 0);
+	static bool getConfigBoolValue(const char *key, bool defaultvalue = false);
 };
 
-#endif // __lib_base_nconfig_h_
+#endif /* __lib_base_nconfig_h_ */

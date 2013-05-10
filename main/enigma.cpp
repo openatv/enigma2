@@ -27,6 +27,7 @@
 #include <lib/gui/evideo.h>
 #include <lib/python/connections.h>
 #include <lib/python/python.h>
+#include <lib/python/pythonconfig.h>
 
 #include "bsod.h"
 #include "version_info.h"
@@ -97,6 +98,7 @@ void keyEvent(const eRCKey &key)
 class eMain: public eApplication, public Object
 {
 	eInit init;
+	ePythonConfigQuery config;
 
 	ePtr<eDVBDB> m_dvbdb;
 	ePtr<eDVBResourceManager> m_mgr;

@@ -29,7 +29,7 @@ public:
 	RESULT subServices(ePtr<iSubserviceList> &ptr);
 
 		// iStreamableService
-	PyObject *getStreamingData();
+	ePtr<iStreamData> getStreamingData();
 
 		// iSubserviceList
 	int getNumberOfSubservices();
