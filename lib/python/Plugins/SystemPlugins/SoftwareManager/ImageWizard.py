@@ -2,6 +2,7 @@ from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Wizard import wizardManager
 from Screens.Rc import Rc
+from Screens.Screen import Screen
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.PluginComponent import plugins
