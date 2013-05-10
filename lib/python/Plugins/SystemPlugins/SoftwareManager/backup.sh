@@ -1,6 +1,6 @@
 #################################################################
 # FULL BACKUP UTILITY FOR ENIGMA2, SUPPORTS ALL GIGABLUE MODELS #
-#  									   	        	            #
+#								#
 #            MAKES A FULLBACKUP READY FOR FLASHING.             #
 #################################################################
 #
@@ -80,7 +80,7 @@ echo "$VERSION"
 echo "_________________________________________________"
 echo "Please be patient, a backup will now be made,"
 if [ $ROOTFSTYPE = "ubifs" ] ; then
-	echo "because of the used filesystem the back-up"
+	echo "because of the used filesystem the backup"
 	echo "will take about 5-12 minutes for this system"
 	echo " "
 	echo " "
@@ -194,7 +194,7 @@ if [ $TYPE = "GIGABLUE" ] ; then
 		echo "Probable causes could be"
 		echo "     wrong back-up destination "
 		echo "     no space left on back-up device"
-		echo "     no writing permission on back-up device"
+		echo "     no writing permission on backup device"
 		echo " "
 	fi
 fi
@@ -216,7 +216,7 @@ if [ $DIRECTORY == /hdd ]; then
 		echo
 		echo "There is a valid USB-flash drive detected in one "
 		echo "of the USB-ports, therefor an extra copy of the "
-		echo "back-up image will now be copied to that USB- "
+		echo "backup image will now be copied to that USB- "
 		echo "flash drive. "
 		echo "This only takes about 15 seconds"
 		echo
