@@ -1,6 +1,5 @@
 #################################################################
 # FULL BACKUP UTILITY FOR ENIGMA2, SUPPORTS ALL GIGABLUE MODELS #
-#																#
 #            MAKES A FULLBACKUP READY FOR FLASHING.             #
 #################################################################
 #
