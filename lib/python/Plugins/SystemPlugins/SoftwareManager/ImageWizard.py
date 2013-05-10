@@ -9,7 +9,7 @@ from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from os import popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
-from enigma import eEnv
+from enigma import eEnv, getBoxType
 
 from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigText, ConfigLocations, ConfigBoolean
 from Components.Harddisk import harddiskmanager
@@ -33,26 +33,26 @@ def checkConfigBackup():
 			if x[1].endswith('/'):
 				fullbackupfile =  x[1] + 'backup_' + box + '/' + backupfile
 				if fileExists(fullbackupfile):
-					config.plugins.configurationbackup.backuplocation.setValue(str(x[1])
+					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
 					config.plugins.configurationbackup.backuplocation.save()
 					config.plugins.configurationbackup.save()
 					return x
 				fullbackupfile = x[1] + '/backup/' + backupfile
 				if fileExists(fullbackupfile):
-					config.plugins.configurationbackup.backuplocation.setValue(str(x[1])
+					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
 					config.plugins.configurationbackup.backuplocation.save()
 					config.plugins.configurationbackup.save()
 					return x
 			else:
 				fullbackupfile =  x[1] + '/backup_' + box + '/' + backupfile
 				if fileExists(fullbackupfile):
-					config.plugins.configurationbackup.backuplocation.setValue(str(x[1])
+					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
 					config.plugins.configurationbackup.backuplocation.save()
 					config.plugins.configurationbackup.save()
 					return x
 				fullbackupfile = x[1] + '/backup/' + backupfile
 				if fileExists(fullbackupfile):
-					config.plugins.configurationbackup.backuplocation.setValue(str(x[1])
+					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
 					config.plugins.configurationbackup.backuplocation.save()
 					config.plugins.configurationbackup.save()
 					return x					
@@ -101,7 +101,7 @@ class ImageWizard(WizardLanguage, Rc):
 		Rc.__init__(self)
 		self.session = session
 		self["wizard"] = Pixmap()
-		Screen.setTitle(self, _("Welcome...")
+		Screen.setTitle(self, _("Welcome…"))
 		self.selectedDevice = None
 		
 	def markDone(self):
