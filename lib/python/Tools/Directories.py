@@ -32,6 +32,8 @@ SCOPE_PLAYLIST = 11
 SCOPE_CURRENT_SKIN = 12
 SCOPE_METADIR = 16
 SCOPE_CURRENT_PLUGIN = 17
+SCOPE_TIMESHIFT = 18
+SCOPE_ACTIVE_SKIN = 19
 
 PATH_CREATE = 0
 PATH_DONTCREATE = 1
@@ -63,7 +65,8 @@ PATH_MOVE = 3 # move the fallback dir to the basedir (can be used for changes in
 fallbackPaths = {
 		SCOPE_CONFIG: [("/home/root/", FILE_MOVE),
 					   (eEnv.resolve("${datadir}/enigma2/defaults/"), FILE_COPY)],
-		SCOPE_HDD: [("/hdd/movies", PATH_MOVE)]
+		SCOPE_HDD: [("/hdd/movies", PATH_MOVE)],
+		SCOPE_TIMESHIFT: [("/hdd/timeshift", PATH_MOVE)]
 	}
 
 def resolveFilename(scope, base = "", path_prefix = None):
@@ -94,6 +97,36 @@ def resolveFilename(scope, base = "", path_prefix = None):
 					path = tmp
 			else:
 				path = tmp
+
+	elif scope == SCOPE_ACTIVE_SKIN:
+		from Components.config import config
+		# allow files in the config directory to replace skin files
+		tmp = defaultPaths[SCOPE_CONFIG][0]
+		if base and pathExists(tmp + base):
+			path = tmp
+		elif base and pathExists(defaultPaths[SCOPE_SKIN][0] + base):
+			path = defaultPaths[SCOPE_SKIN][0]
+		else:
+				tmp = defaultPaths[SCOPE_SKIN][0]
+				pos = config.skin.primary_skin.value.rfind('/')
+				if pos != -1:
+					tmpfile = tmp+config.skin.primary_skin.value[:pos+1] + base
+					if pathExists(tmpfile) or (tmpfile.find(':') != -1 and pathExists(tmpfile.split(':')[0])):
+						path = tmp+config.skin.primary_skin.value[:pos+1]
+					elif pathExists(tmp + base) or (base.find(':') != -1 and pathExists(tmp + base.split(':')[0])):
+						path = tmp
+					else:
+						if tmp.find('skin_default') == -1:
+							path = tmp + 'skin_default/'
+						else:
+							path = tmp
+				else:
+					if pathExists(tmp + base):
+						path = tmp
+					elif tmp.find('skin_default') == -1:
+						path = tmp + 'skin_default/'
+					else:
+						path = tmp
 
 	elif scope == SCOPE_CURRENT_PLUGIN:
 		tmp = defaultPaths[SCOPE_PLUGINS]
