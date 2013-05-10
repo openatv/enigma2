@@ -20,33 +20,46 @@ config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media
 config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
 
 
-backupfile = "settingsbackup.tar.gz"
+backupfile = "enigma2settingsbackup.tar.gz"
 
 def checkConfigBackup():
 	parts = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
+	box = getBoxType()
 	for x in parts:
 		if x[1] == '/':
 			parts.remove(x)
 	if len(parts):
 		for x in parts:
 			if x[1].endswith('/'):
-				fullbackupfile =  x[1] + 'backup/' + backupfile
+				fullbackupfile =  x[1] + 'backup_' + box + '/' + backupfile
 				if fileExists(fullbackupfile):
-					config.plugins.configurationbackup.backuplocation.value = str(x[1])
+					config.plugins.configurationbackup.backuplocation.setValue(str(x[1])
+					config.plugins.configurationbackup.backuplocation.save()
+					config.plugins.configurationbackup.save()
+					return x
+				fullbackupfile = x[1] + '/backup/' + backupfile
+				if fileExists(fullbackupfile):
+					config.plugins.configurationbackup.backuplocation.setValue(str(x[1])
 					config.plugins.configurationbackup.backuplocation.save()
 					config.plugins.configurationbackup.save()
 					return x
 			else:
-				fullbackupfile =  x[1] + '/backup/' + backupfile
+				fullbackupfile =  x[1] + '/backup_' + box + '/' + backupfile
 				if fileExists(fullbackupfile):
-					config.plugins.configurationbackup.backuplocation.value = str(x[1])
+					config.plugins.configurationbackup.backuplocation.setValue(str(x[1])
 					config.plugins.configurationbackup.backuplocation.save()
 					config.plugins.configurationbackup.save()
 					return x
+				fullbackupfile = x[1] + '/backup/' + backupfile
+				if fileExists(fullbackupfile):
+					config.plugins.configurationbackup.backuplocation.setValue(str(x[1])
+					config.plugins.configurationbackup.backuplocation.save()
+					config.plugins.configurationbackup.save()
+					return x					
 		return None		
 
 def checkBackupFile():
-	backuplocation = config.plugins.configurationbackup.backuplocation.value
+	backuplocation = config.plugins.configurationbackup.backuplocation.getValue()
 	if backuplocation.endswith('/'):
 		fullbackupfile =  backuplocation + 'backup/' + backupfile
 		if fileExists(fullbackupfile):
@@ -88,6 +101,7 @@ class ImageWizard(WizardLanguage, Rc):
 		Rc.__init__(self)
 		self.session = session
 		self["wizard"] = Pixmap()
+		Screen.setTitle(self, _("Welcome...")
 		self.selectedDevice = None
 		
 	def markDone(self):

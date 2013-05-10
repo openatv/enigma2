@@ -11,6 +11,7 @@ from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_MET
 from Tools.HardwareInfo import HardwareInfo
 from time import time
 
+from enigma import getImageVersionString
 
 class SoftwareTools(PackageInfoHandler):
 	lastDownloadDate = None
