@@ -1,6 +1,6 @@
 #################################################################
 # FULL BACKUP UTILITY FOR ENIGMA2, SUPPORTS ALL GIGABLUE MODELS #
-#								#
+#																#
 #            MAKES A FULLBACKUP READY FOR FLASHING.             #
 #################################################################
 #
@@ -27,7 +27,8 @@ MTDKERNEL="mtd1"
 
 ## TESTING WHICH KIND OF SATELLITE RECEIVER IS USED
 ## TESTING THE Gigablue HD 800 SE Model
-elif [ $MODEL = "gb800se" ] ; then
+MODEL=$( cat /etc/model )
+if [ $MODEL = "gb800se" ] ; then
 	TYPE=GIGABLUE
 	MODEL="se"
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
