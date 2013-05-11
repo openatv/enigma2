@@ -34,7 +34,7 @@ class ServiceName(Converter, object):
 		if not info:
 			return ""
 		if self.type == self.NAME:
-			if config.usage.show_infobar_channel_number.getValue():
+			if config.usage.show_infobar_channel_number.getValue() and hasattr(self.source, "serviceref"):
 				name = ref and info.getName(ref)
 				numservice = self.source.serviceref
 				num = numservice and numservice.getChannelNum() or None
