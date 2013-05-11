@@ -1,5 +1,4 @@
 from Components.VariableText import VariableText
-from Components.config import config
 from enigma import eLabel, iPlayableService
 from Renderer import Renderer
 
@@ -11,8 +10,6 @@ class ChannelNumber(Renderer, VariableText):
 	GUI_WIDGET = eLabel
 
 	def changed(self, what):
-		if not config.usage.show_infobar_channel_number.getValue():
-			return
 		global text
 		if what[0] != self.CHANGED_SPECIFIC:
 			return
