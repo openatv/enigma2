@@ -2550,6 +2550,10 @@ class InfoBarTimeshift:
 		return ts and ts.isTimeshiftEnabled()
 
 	def startTimeshift(self):
+		if not config.timeshift.pauzekeyenabled.value:
+			print "Timeshift is disabled !!"
+			return 0
+
 		ts = self.getTimeshift()
 		if ts is None:
 			# self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
