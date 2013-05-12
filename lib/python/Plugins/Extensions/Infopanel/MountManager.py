@@ -430,7 +430,8 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		('/media/hdd3', '/media/hdd3'),
 		('/media/usb', '/media/usb'),
 		('/media/usb2', '/media/usb2'),
-		('/media/usb3', '/media/usb3')]))
+		('/media/usb3', '/media/usb3'),
+		('/usr', '/usr')]))
 		if dtype == 'Linux':
 			dtype = 'ext3'
 		else:
