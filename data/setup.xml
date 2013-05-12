@@ -18,7 +18,7 @@
 		<item level="2" text="Include ECM in http streams" description="ECM data will be included in the stream. This enables a client receiver to decode it.">config.streaming.stream_ecm</item>
 		<item level="2" text="Descramble http streams" description="Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available).">config.streaming.descramble</item>
 		<!--item level="2" text="Enable Startup Bootvideo" description="You can Enable or Disable the Startup Bootvideo.">config.misc.bootvideo</item-->
-		<item level="1" text="After PowerLost" description="Select what should be done when the STB_Box was shutdown incorrectly, or after the Power was lost.">config.usage.shutdownNOK_action</item>
+		<item level="1" text="After PowerLost" description="Select what should be done when the STB_BOX was shutdown incorrectly, or after the Power was lost.">config.usage.shutdownNOK_action</item>
 	</setup>
 	<setup key="userinterface" title="Settings...">
 		<item level="0" text="1st Infobar timeout" description="Set the time to hide the infobar.">config.usage.infobar_timeout</item>
