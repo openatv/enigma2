@@ -116,9 +116,15 @@ class ServiceInfo(Converter, object):
 			return ""
 
 		if self.type == self.XRES:
-			return self.getServiceInfoString(info, iServiceInformation.sVideoWidth)
+			ret = self.getServiceInfoString(info, iServiceInformation.sVideoWidth)
+			if ret != "65535":
+				return ret
+			return ""	
 		elif self.type == self.YRES:
-			return self.getServiceInfoString(info, iServiceInformation.sVideoHeight)
+			ret = self.getServiceInfoString(info, iServiceInformation.sVideoHeight)
+			if ret != "65535":
+				return ret
+			return ""
 		elif self.type == self.APID:
 			return self.getServiceInfoString(info, iServiceInformation.sAudioPID)
 		elif self.type == self.VPID:
