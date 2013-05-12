@@ -26,6 +26,10 @@ if ET4X00
 SUBDIRS = et4x00
 endif
 
+if ET5X00
+SUBDIRS = et6x00
+endif
+
 if ET6X00
 SUBDIRS = et6x00 et6500
 endif
