@@ -1,6 +1,6 @@
 import os
 from Renderer import Renderer
-from enigma import ePixmap
+from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import pathExists, SCOPE_ACTIVE_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
@@ -86,6 +86,9 @@ def getPiconName(serviceName):
 class Picon(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
+		self.PicLoad = ePicLoad()
+		self.PicLoad.PictureData.get().append(self.updatePicon)
+		self.piconsize = (0,0)
 		self.pngname = ""
 		self.lastPath = None
 		pngname = findPicon("picon_default")
@@ -111,6 +114,8 @@ class Picon(Renderer):
 			if attrib == "path":
 				self.addPath(value)
 				attribs.remove((attrib,value))
+			elif attrib == "size":
+				self.piconsize = value
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 
@@ -118,6 +123,12 @@ class Picon(Renderer):
 
 	def postWidgetCreate(self, instance):
 		self.changed((self.CHANGED_DEFAULT,))
+
+	def updatePicon(self, picInfo=None):
+		ptr = self.PicLoad.getData()
+		if ptr != None:
+			self.instance.setPixmap(ptr.__deref__())
+			self.instance.show()
 
 	def changed(self, what):
 		if self.instance:
@@ -128,9 +139,8 @@ class Picon(Renderer):
 				pngname = self.defaultpngname
 			if self.pngname != pngname:
 				if pngname:
-					self.instance.setScale(1)
-					self.instance.setPixmapFromFile(pngname)
-					self.instance.show()
+					self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#00000000"))
+					self.PicLoad.startDecode(pngname)
 				else:
 					self.instance.hide()
 				self.pngname = pngname
