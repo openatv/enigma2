@@ -60,6 +60,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.showPicon = False
 		self.showServiceTitle = True
 		self.picload = ePicLoad()
+		self.picloadpicon = ePicLoad()
 
 		self.overjump_empty = overjump_empty
 		self.timer = timer
@@ -588,6 +589,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			if piconWidth > w - 2 * self.serviceBorderWidth:
 				piconWidth = w - 2 * self.serviceBorderWidth
 			self.picon_size = eSize(piconWidth, piconHeight)
+			if piconWidth > 0:
+				self.picloadpicon.setPara((piconWidth, piconHeight, 0, 0, 1, 1, "#00000000"))
 		else:
 			self.weekday_rect = Rect(0, 0, float(width * 10) / 100, height)
 			self.datetime_rect = Rect(self.weekday_rect.width(), 0, float(width * 25) / 100, height)
@@ -759,9 +762,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			piconWidth = self.picon_size.width()
 			piconHeight = self.picon_size.height()
 			if picon != "":
-				self.picload.setPara((piconWidth, piconHeight, 0, 0, 1, 1, "#00000000"))
-				self.picload.startDecode(picon, 0, 0, False)
-				displayPicon = self.picload.getData()
+				self.picloadpicon.startDecode(picon, 0, 0, False)
+				displayPicon = self.picloadpicon.getData()
 			if displayPicon is not None:
 				res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
@@ -1314,7 +1316,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.picload.setPara((self.listWidth, self.listHeight, 0, 0, 1, 1, "#00000000"))
 		self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/TimeLineDate.png'), 0, 0, False)
 		self.TlDate = self.picload.getData()
-		self.picload.setPara((self.listWidth, self.listHeight, 0, 0, 1, 1, "#00000000"))
 		self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/TimeLineTime.png'), 0, 0, False)
 		self.TlTime = self.picload.getData()
 
