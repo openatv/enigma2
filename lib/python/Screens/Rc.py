@@ -38,11 +38,6 @@ class Rc:
 			self["rc"].setPixmapNum(config.misc.rcused.getValue())
 		else:
 			self["rc"].setPixmapNum(0)
-				
-		if self.isDefaultRc:
-			rc = self.rcs[config.misc.rcused.value]
-		else:
-			rc = self.rcs[2]
 			
 		if rc.has_key('RED'):
 			rcpos = self['rc'].getPosition()
