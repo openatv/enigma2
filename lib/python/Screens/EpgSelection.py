@@ -367,8 +367,10 @@ class EPGSelection(Screen, HelpableScreen):
 		self.refreshTimer = eTimer()
 		self.refreshTimer.timeout.get().append(self.refreshlist)
 		self.listTimer = eTimer()
-		self.listTimer.timeout.get().append(self.hidewaitingtext)
-		self.onFirstExecBegin.append(self.onCreate)
+		self.listTimer.callback.append(self.hidewaitingtext)
+		self.createTimer = eTimer()
+		self.createTimer.callback.append(self.onCreate)
+		self.onFirstExecBegin.append(self.onFirstExecute)
 
 	def createSetup(self):
 		self.closeEventViewDialog()
@@ -424,7 +426,11 @@ class EPGSelection(Screen, HelpableScreen):
 				services.append(ServiceReference(service))
 		return services
 
+	def onFirstExecute(self):
+		self.createTimer.start(50)
+
 	def onCreate(self):
+		self.createTimer.stop()
 		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		title = None
 		self['list'].recalcEntrySize()
