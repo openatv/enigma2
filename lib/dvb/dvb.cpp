@@ -266,7 +266,6 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 {
 	int file;
 	char type[8];
-	struct dmx_pes_filter_params filter;
 	struct dvb_frontend_info fe_info;
 	int frontend = -1;
 	char filename[256];
@@ -378,17 +377,6 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 
 	eDebug("linking adapter%d/frontend0 to vtuner%d", nr, vtunerid);
 
-	filter.input = DMX_IN_FRONTEND;
-	filter.flags = 0;
-	filter.pid = 0;
-	filter.output = DMX_OUT_TSDEMUX_TAP;
-	filter.pes_type = DMX_PES_OTHER;
-
-#define DEMUX_BUFFER_SIZE (8 * ((188 / 4) * 4096)) /* 1.5MB */
-	ioctl(demuxFd, DMX_SET_BUFFER_SIZE, DEMUX_BUFFER_SIZE);
-	ioctl(demuxFd, DMX_SET_PES_FILTER, &filter);
-	ioctl(demuxFd, DMX_START);
-
 	switch (fe_info.type)
 	{
 	case FE_QPSK:
@@ -478,6 +466,7 @@ void *eDVBUsbAdapter::threadproc(void *arg)
 
 void *eDVBUsbAdapter::vtunerPump()
 {
+	int pidcount = 0;
 	if (vtunerFd < 0 || demuxFd < 0 || pipeFd[0] < 0) return NULL;
 
 #define MSG_PIDLIST         14
@@ -487,6 +476,9 @@ void *eDVBUsbAdapter::vtunerPump()
 		unsigned short int pidlist[30];
 		unsigned char pad[64]; /* nobody knows the much data the driver will try to copy into our struct, add some padding to be sure */
 	};
+
+#define DEMUX_BUFFER_SIZE (8 * ((188 / 4) * 4096)) /* 1.5MB */
+	ioctl(demuxFd, DMX_SET_BUFFER_SIZE, DEMUX_BUFFER_SIZE);
 
 	while (running)
 	{
@@ -504,6 +496,7 @@ void *eDVBUsbAdapter::vtunerPump()
 			if (FD_ISSET(vtunerFd, &xset))
 			{
 				int i, j;
+				int count = 0;
 				struct vtuner_message message;
 				memset(message.pidlist, 0xff, sizeof(message.pidlist));
 				::ioctl(vtunerFd, VTUNER_GET_MESSAGE, &message);
@@ -527,7 +520,16 @@ void *eDVBUsbAdapter::vtunerPump()
 
 						if (found) continue;
 
-						::ioctl(demuxFd, DMX_REMOVE_PID, &pidList[i]);
+						if (pidcount > 1)
+						{
+							::ioctl(demuxFd, DMX_REMOVE_PID, &pidList[i]);
+							pidcount--;
+						}
+						else if (pidcount == 1)
+						{
+							::ioctl(demuxFd, DMX_STOP);
+							pidcount = 0;
+						}
 					}
 
 					/* add new pids */
@@ -546,7 +548,25 @@ void *eDVBUsbAdapter::vtunerPump()
 
 						if (found) continue;
 
-						::ioctl(demuxFd, DMX_ADD_PID, &message.pidlist[i]);
+						if (pidcount)
+						{
+							::ioctl(demuxFd, DMX_ADD_PID, &message.pidlist[i]);
+							pidcount++;
+						}
+						else
+						{
+							struct dmx_pes_filter_params filter;
+							filter.input = DMX_IN_FRONTEND;
+							filter.flags = 0;
+							filter.pid = message.pidlist[i];
+							filter.output = DMX_OUT_TSDEMUX_TAP;
+							filter.pes_type = DMX_PES_OTHER;
+							if (ioctl(demuxFd, DMX_SET_PES_FILTER, &filter) >= 0
+									&& ioctl(demuxFd, DMX_START) >= 0)
+							{
+								pidcount = 1;
+							}
+						}
 					}
 
 					/* copy pids */
