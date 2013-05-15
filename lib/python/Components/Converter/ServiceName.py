@@ -7,9 +7,10 @@ from ServiceReference import resolveAlternate
 
 class ServiceName(Converter, object):
 	NAME = 0
-	PROVIDER = 1
-	REFERENCE = 2
-	EDITREFERENCE = 3
+	NAME_ONLY = 2
+	PROVIDER = 3
+	REFERENCE = 4
+	EDITREFERENCE = 4
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -19,6 +20,8 @@ class ServiceName(Converter, object):
 			self.type = self.REFERENCE
 		elif type == "EditReference":
 			self.type = self.EDITREFERENCE
+		elif type == "NameOnly":
+			self.type = self.NAME_ONLY
 		else:
 			self.type = self.NAME
 
@@ -33,9 +36,9 @@ class ServiceName(Converter, object):
 			ref = service
 		if not info:
 			return ""
-		if self.type == self.NAME:
+		if self.type == self.NAME or self.type == self.NAME_ONLY:
 			from Screens.InfoBar import InfoBar
-			if config.usage.show_infobar_channel_number.getValue() and hasattr(self.source, "serviceref") and ".InfoBar'>" in `InfoBar.instance`:
+			if self.type != self.NAME_ONLY and config.usage.show_infobar_channel_number.getValue() and hasattr(self.source, "serviceref") and ".InfoBar'>" in `InfoBar.instance`:
 				name = ref and info.getName(ref)
 				numservice = self.source.serviceref
 				num = numservice and numservice.getChannelNum() or None
