@@ -118,7 +118,7 @@
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="255,64">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="170,22" font="FdLcD;18" halign="left" noWrap="1">
-			<convert type="ServiceName">Name</convert>
+			<convert type="ServiceName">NameOnly</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="0,21" size="255,20" font="FdLcD;17" halign="left" noWrap="1">
 			<convert type="EventName">Name</convert>
