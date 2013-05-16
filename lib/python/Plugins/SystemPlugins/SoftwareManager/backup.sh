@@ -107,6 +107,16 @@ elif [ $MODEL = "ebox5000" ] ; then
 	MAINDESTOLD=$DIRECTORY/ebox/$MODEL
 	MAINDEST=$DIRECTORY/ebox/7403/
 	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/ebox
+## TESTING THE Mixos Models
+elif [ $MODEL = "ebox7358" ] ; then
+	TYPE=MIXOS2
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="Mixos $MODEL"
+	MTDKERNEL="mtd2"
+	MAINDESTOLD=$DIRECTORY/ebox/$MODEL
+	MAINDEST=$DIRECTORY/ebox/7358/
+	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/ebox	
 ## TESTING THE Venton HDx Models
 elif [ $MODEL = "ventonhdx" ] ; then
 	TYPE=VENTON
@@ -719,6 +729,38 @@ if [ $TYPE = "MIXOS" ] ; then
 	fi
 fi
 
+if [ $TYPE = "MIXOS2" ] ; then
+	rm -rf $MAINDEST
+	mkdir -p $MAINDEST
+	mkdir -p $EXTRA
+	mv $WORKDIR/root.$ROOTFSTYPE $MAINDEST/root_cfe_auto.bin
+	mv $WORKDIR/vmlinux.gz $MAINDEST/kernel_cfe_auto.bin
+	echo "rename this file to 'force' to force an update without confirmation" > $MAINDEST/noforce
+	echo $MODEL-$IMAGEVERSION > $MAINDEST/imageversion
+	cp -r $MAINDEST $EXTRA #copy the made back-up to images
+	if [ -f $MAINDEST/root_cfe_auto.bin -a -f $MAINDEST/kernel_cfe_auto.bin -a -f $MAINDEST/imageversion -a -f $MAINDEST/noforce ] ; then
+		echo "_________________________________________________\n"
+		echo "USB Image created on:" $MAINDEST
+		echo "and there is made an extra copy on:"
+		echo $EXTRA
+		echo "_________________________________________________\n"
+		echo " "
+		echo "To restore the image: \n"
+		echo "Place the USB-flash drive in the (back) USB-port "
+		echo "and switch the Mixos off and on with the powerswitch "
+		echo "on the back of the Mixos."
+		echo "Press the Blue Key on your Remote and follow the Instructions."
+		echo "\nPlease wait...almost ready! "
+	else
+		echo "Image creation failed - "
+		echo "Probable causes could be"
+		echo "     wrong back-up destination "
+		echo "     no space left on back-up device"
+		echo "     no writing permission on back-up device"
+		echo " "
+	fi
+fi
+
 if [ $TYPE = "GIGABLUE" ] ; then
 	rm -rf $MAINDEST
 	mkdir -p $MAINDEST
@@ -826,6 +868,8 @@ if [ $DIRECTORY == /hdd ]; then
 			cp -r $MAINDEST $TARGET
 		elif [ $TYPE = "MIXOS" ] ; then					# Mixos detected
 			mkdir -p $TARGET/ebox/7403
+		elif [ $TYPE = "MIXOS2" ] ; then					# Mixos2 detected
+			mkdir -p $TARGET/ebox/7358			
 			cp -r $MAINDEST $TARGET/ebox
 		elif [ $TYPE = "TECHNO" ] ; then					# Technomate detected
 			mkdir -p $TARGET/update/$MODEL/cfe
