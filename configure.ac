@@ -87,6 +87,7 @@ AM_CONDITIONAL(IQON, test `echo "$BOXTYPE" | cut -b 1-4` == "iqon")
 AM_CONDITIONAL(GIGABLUE, test `echo "$BOXTYPE" | cut -b 1-5` == "gb800")
 AM_CONDITIONAL(ODIN, test `echo "$BOXTYPE" | cut -b 1-4` == "odin")
 AM_CONDITIONAL(VENTON, test `echo "$BOXTYPE" | cut -b 1-6` == "venton")
+AM_CONDITIONAL(EBOX, test `echo "$BOXTYPE" | cut -b 1-4` == "ebox")
 AM_CONDITIONAL(DM8000, test "$BOXTYPE" == dm8000)
 AM_CONDITIONAL(DM7020HD, test "$BOXTYPE" == dm7020hd)
 AM_CONDITIONAL(DM800, test "$BOXTYPE" == dm800)
@@ -94,6 +95,7 @@ AM_CONDITIONAL(DM800SE, test "$BOXTYPE" == dm800se)
 AM_CONDITIONAL(DM800HD, test "$BOXTYPE" == dm800hd)
 AM_CONDITIONAL(E3HD, test "$BOXTYPE" == e3hd)
 AM_CONDITIONAL(EBOX5000, test "$BOXTYPE" == ebox5000)
+AM_CONDITIONAL(EBOX7358, test "$BOXTYPE" == ebox7358)
 AM_CONDITIONAL(ET4X00, test "$BOXTYPE" == et4x00)
 AM_CONDITIONAL(ET5X00, test "$BOXTYPE" == et5x00)
 AM_CONDITIONAL(ET6X00, test "$BOXTYPE" == et6x00)
@@ -220,7 +222,7 @@ if test x"$witholdpvr" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_OLDPVR, test x"$witholdpvr" != xno)
 
-if test "$BOXTYPE" == "ebox5000" ; then
+if test "$BOXTYPE" == "ebox5000" -o "$BOXTYPE" == "ebox7358"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 	AC_DEFINE(FORCE_NO_FILL_ACCELERATION, 1,[define when the framebuffer acceleration does not have fill support])
 	AC_DEFINE(KEY_SCREEN_TO_KEY_ANGLE, 1,[define when rc sends a KEY_SCREEN event for its KEY_ANGLE key])

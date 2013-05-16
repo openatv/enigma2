@@ -6,7 +6,7 @@ if E3HD
 SUBDIRS = e3hd
 endif
 
-if EBOX5000
+if EBOX
 SUBDIRS = ebox5000
 endif
 
