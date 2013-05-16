@@ -2,7 +2,6 @@
 #define __servicemp3_h
 
 #include <lib/base/message.h>
-#include <lib/base/elock.h>
 #include <lib/service/iservice.h>
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/subtitle.h>
@@ -313,7 +312,6 @@ private:
 	typedef std::pair<uint32_t, subtitle_page_t> subtitle_pages_map_pair_t;
 	subtitle_pages_map_t m_subtitle_pages;
 	ePtr<eTimer> m_subtitle_sync_timer;
-	eSingleLock m_subtitle_lock;
 	
 	ePtr<eTimer> m_streamingsrc_timeout;
 	pts_t m_prev_decoder_time;
