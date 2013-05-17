@@ -454,14 +454,14 @@ class Harddisk:
 	# any access has been made to the disc. If there has been no access over a specifed time,
 	# we set the hdd into standby.
 	def readStats(self):
-		try:
+		if os.path.exists("/sys/block/%s/stat" % self.device):
 			f = open("/sys/block/%s/stat" % self.device)
 			l = f.read()
 			f.close()
-		except IOError:
+			data = l.split(None,5)
+			return (int(data[0]), int(data[4]))
+		else:
 			return -1,-1
-		data = l.split(None,5)
-		return (int(data[0]), int(data[4]))
 
 	def startIdle(self):
 		from enigma import eTimer
@@ -629,8 +629,12 @@ class HarddiskManager:
 		is_cdrom = False
 		partitions = []
 		try:
-			removable = bool(int(readFile(devpath + "/removable")))
-			dev = int(readFile(devpath + "/dev").split(':')[0])
+			if os.path.exists(devpath + "/removable"):
+				removable = bool(int(readFile(devpath + "/removable")))
+			if os.path.exists(devpath + "/dev"):
+				dev = int(readFile(devpath + "/dev").split(':')[0])
+			else:
+				dev = None
 			if dev in (1, 7, 31, 253): # ram, loop, mtdblock, romblock
 				blacklisted = True
 			if blockdev[0:2] == 'sr':
@@ -643,7 +647,7 @@ class HarddiskManager:
 				except IOError:
 					error = True
 			# check for partitions
-			if not is_cdrom:
+			if not is_cdrom and os.path.exists(devpath):
 				for partition in os.listdir(devpath):
 					if partition[0:len(blockdev)] != blockdev:
 						continue
@@ -655,7 +659,8 @@ class HarddiskManager:
 		# check for medium
 		medium_found = True
 		try:
-			open("/dev/" + blockdev).close()
+			if os.path.exists("/dev/" + blockdev):
+				open("/dev/" + blockdev).close()
 		except IOError, err:
 			if err.errno == 159: # no medium present
 				medium_found = False
