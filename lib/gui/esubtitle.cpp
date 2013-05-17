@@ -155,15 +155,31 @@ void eSubtitleWidget::setPage(const ePangoSubtitlePage &p)
 {
 	int elements, element, startY, width, height, size_per_element;
 	int lowerborder;
+	bool rewrap;
 
 	m_pango_page = p;
 	m_pango_page_ok = 1;
 	invalidate(m_visible_region); // invalidate old visible regions
 	m_visible_region.rects.clear();
 
+	rewrap = eConfigManager::getConfigBoolValue("config.subtitles.subtitle_rewrap");
 	lowerborder = eConfigManager::getConfigIntValue("config.subtitles.subtitle_position", 50);
 
 	elements = m_pango_page.m_elements.size();
+
+	if(rewrap)
+	{
+		std::string::iterator it;
+
+		for (element = 0; element < elements; element++)
+		{
+			std::string& line = m_pango_page.m_elements[element].m_pango_line;
+
+			for (it = line.begin(); it != line.end(); it++)
+				if((*it) == '\n')
+					*it = ' ';
+		}
+	}
 
 	if (elements > 1)
 		startY = size().height() / 2;
