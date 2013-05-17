@@ -1467,6 +1467,8 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		self.borderColor = 0xC0C0C0
 		self.BorderWidth = 1
 
+		self.graphicsloaded = False
+
 		self.bouquetFontName = "Regular"
 		self.bouquetFontSize = 20
 
@@ -1676,7 +1678,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		return res
 
 	def fillBouquetList(self, bouquets):
-		if self.graphic:
+		if self.graphic and not self.graphicsloaded:
 			self.picload.setPara((self.listWidth, self.itemHeight, 0, 0, 1, 1, "#00000000"))
 			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherEvent.png'), 0, 0, False)
 			self.othPix = self.picload.getData()
@@ -1699,6 +1701,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 			self.borderSelectedBottomPix = self.picload.getData()
 			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderRight.png'), 0, 0, False)
 			self.borderSelectedRightPix = self.picload.getData()
+			self.graphicsloaded = True
 		self.bouquetslist = bouquets
 		self.l.setList(self.bouquetslist)
 		self.selectionChanged()
