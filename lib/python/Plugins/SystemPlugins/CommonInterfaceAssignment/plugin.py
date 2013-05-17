@@ -238,7 +238,7 @@ class CIconfigMenu(Screen):
 
 	def saveXML(self):
 		try:
-			fp = file(self.filename, 'w')
+			fp = open(self.filename, 'w')
 			fp.write("<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n")
 			fp.write("<ci>\n")
 			fp.write("\t<slot>\n")
@@ -269,7 +269,9 @@ class CIconfigMenu(Screen):
 			return Len > 0 and definitions[Len-1].text or default
 
 		try:
-			tree = ci_parse(self.filename).getroot()
+			fp = opens(self.filename, 'r')
+			tree = ci_parse(fp).getroot()
+			fp.close()
 			self.read_services=[]
 			self.read_providers=[]
 			self.usingcaid=[]
@@ -576,7 +578,12 @@ def activate_all(session):
 				print "[CI_Activate_Config_CI%d] no config file found" %ci
 
 			try:
-				tree = ci_parse(filename).getroot()
+				if not os_path.exists(self.filename):
+					return
+
+				fp = open(filename, 'r')
+				tree = ci_parse(fp).getroot()
+				fp.close()
 				read_services=[]
 				read_providers=[]
 				usingcaid=[]

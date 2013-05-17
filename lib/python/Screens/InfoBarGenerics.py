@@ -2124,13 +2124,13 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		self.pvrStateDialog.hide()
 
 	def __timeshiftEventName(self,state):
-		try:
+		if os.path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.getValue(),self.pts_currplaying)):
 			readmetafile = open("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.getValue(),self.pts_currplaying), "r")
 			servicerefname = readmetafile.readline()[0:-1]
 			eventname = readmetafile.readline()[0:-1]
 			readmetafile.close()
 			self.pvrStateDialog["eventname"].setText(eventname)
-		except Exception, errormsg:
+		else:
 			self.pvrStateDialog["eventname"].setText("")
 
 class InfoBarShowMovies:
@@ -2837,6 +2837,7 @@ class InfoBarTimeshift:
 							readmetafile = open("%s.ts.meta" % (fullname), "r")
 							servicerefname = readmetafile.readline()[0:-1]
 							eventname = readmetafile.readline()[0:-1]
+							readmetafile.close()
 						else:
 							eventname = ""
 
@@ -2908,35 +2909,32 @@ class InfoBarTimeshift:
 		if self.session.nav.RecordTimer.isRecording() or SystemInfo.get("NumFrontpanelLEDs", 0) == 0:
 			return
 
-		try:
-			if action == "start":
-				if os.path.exists("/proc/stb/fp/led_set_pattern"):
-					f = open("/proc/stb/fp/led_set_pattern", "w")
-					f.write("0xa7fccf7a")
-					f.close()
-				elif os.path.exists("/proc/stb/fp/led0_pattern"):
-					f = open("/proc/stb/fp/led0_pattern", "w")
-					f.write("0x55555555")
-					f.close()
-				if os.path.exists("/proc/stb/fp/led_pattern_speed"):
-					f = open("/proc/stb/fp/led_pattern_speed", "w")
-					f.write("20")
-					f.close()
-				elif os.path.exists("/proc/stb/fp/led_set_speed"):
-					f = open("/proc/stb/fp/led_set_speed", "w")
-					f.write("20")
-					f.close()
-			elif action == "stop":
-				if os.path.exists("/proc/stb/fp/led_set_pattern"):
-					f = open("/proc/stb/fp/led_set_pattern", "w")
-					f.write("0")
-					f.close()
-				elif os.path.exists("/proc/stb/fp/led0_pattern"):
-					f = open("/proc/stb/fp/led0_pattern", "w")
-					f.write("0")
-					f.close()
-		except Exception, errormsg:
-			print "[Timeshift] %s" % (errormsg)
+		if action == "start":
+			if os.path.exists("/proc/stb/fp/led_set_pattern"):
+				f = open("/proc/stb/fp/led_set_pattern", "w")
+				f.write("0xa7fccf7a")
+				f.close()
+			elif os.path.exists("/proc/stb/fp/led0_pattern"):
+				f = open("/proc/stb/fp/led0_pattern", "w")
+				f.write("0x55555555")
+				f.close()
+			if os.path.exists("/proc/stb/fp/led_pattern_speed"):
+				f = open("/proc/stb/fp/led_pattern_speed", "w")
+				f.write("20")
+				f.close()
+			elif os.path.exists("/proc/stb/fp/led_set_speed"):
+				f = open("/proc/stb/fp/led_set_speed", "w")
+				f.write("20")
+				f.close()
+		elif action == "stop":
+			if os.path.exists("/proc/stb/fp/led_set_pattern"):
+				f = open("/proc/stb/fp/led_set_pattern", "w")
+				f.write("0")
+				f.close()
+			elif os.path.exists("/proc/stb/fp/led0_pattern"):
+				f = open("/proc/stb/fp/led0_pattern", "w")
+				f.write("0")
+				f.close()
 
 	def ptsCreateHardlink(self):
 		print 'ptsCreateHardlink'
@@ -3067,6 +3065,7 @@ class InfoBarTimeshift:
 				readmetafile = open(filename+".meta", "r")
 				servicerefname = readmetafile.readline()[0:-1]
 				eventname = readmetafile.readline()[0:-1]
+				readmetafile.close()
 			else:
 				eventname = ""
 			JobManager.AddJob(CreateAPSCFilesJob(self, "/usr/lib/enigma2/python/Components/createapscfiles \"%s\"" % (filename), eventname))
