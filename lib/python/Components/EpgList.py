@@ -1137,7 +1137,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.selectionChanged()
 
 	def fillGraphEPG(self, services, stime = None):
-		print '!!!GRAPHIC',self.graphic
 		if (self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and self.graphic and not self.graphicsloaded:
 			self.picload.setPara((self.listWidth, self.itemHeight, 0, 0, 1, 1, "#00000000"))
 			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/CurrentEvent.png'), 0, 0, False)
@@ -1498,7 +1497,6 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 					self.backColorSelected = parseColor(value).argb()
 				elif attrib == "borderColor":
 					self.borderColor = parseColor(value).argb()
-					print 'self.borderColor',self.borderColor
 				elif attrib == "borderWidth":
 					self.BorderWidth = int(value)
 				elif attrib == "itemHeight":
@@ -1519,6 +1517,9 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 
 	def getCurrentBouquetService(self):
 		return self.l.getCurrentSelection()[1]
+
+	def setCurrentBouquet(self, CurrentBouquetService):
+		self.CurrentBouquetService = CurrentBouquetService
 
 	def selectionChanged(self):
 		for x in self.onSelChanged:
@@ -1582,7 +1583,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		# width = (len(name)+5)*8
 		width = r1.w
 		height = r1.h
-		selected = self.CurrentBouquet == func
+		selected = self.CurrentBouquetService == func
 
 		if self.bouquetNameAlign.lower() == 'left':
 			if self.bouquetNameWrap.lower() == 'yes':
@@ -1705,4 +1706,4 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		self.bouquetslist = bouquets
 		self.l.setList(self.bouquetslist)
 		self.selectionChanged()
-		self.CurrentBouquet = self.getCurrentBouquetService()
+		self.CurrentBouquetService = self.getCurrentBouquetService()
