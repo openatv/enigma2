@@ -436,14 +436,14 @@ class EPGSelection(Screen, HelpableScreen):
 		title = None
 		self['list'].recalcEntrySize()
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-			self['bouquetlist'].recalcEntrySize()
-			self['bouquetlist'].fillBouquetList(self.bouquets)
-			self['bouquetlist'].moveToService(self.StartBouquet)
-			self['bouquetlist'].fillBouquetList(self.bouquets)
 			self.services = self.getBouquetServices(self.StartBouquet)
 			self['list'].fillGraphEPG(self.services, self.ask_time)
 			self['list'].moveToService(serviceref)
 			self['list'].setCurrentlyPlaying(serviceref)
+			self['bouquetlist'].recalcEntrySize()
+			self['bouquetlist'].fillBouquetList(self.bouquets)
+			self['bouquetlist'].moveToService(self.StartBouquet)
+			self['bouquetlist'].setCurrentBouquet(self.StartBouquet	)
 			self.setTitle(self['bouquetlist'].getCurrentBouquet())
 			if self.type == EPG_TYPE_GRAPH:
 				self['list'].setShowServiceMode(config.epgselection.graph_servicetitle_mode.getValue())
