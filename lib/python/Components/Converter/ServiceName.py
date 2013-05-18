@@ -37,8 +37,7 @@ class ServiceName(Converter, object):
 		if not info:
 			return ""
 		if self.type == self.NAME or self.type == self.NAME_ONLY:
-			from Screens.InfoBar import InfoBar
-			if self.type != self.NAME_ONLY and config.usage.show_infobar_channel_number.getValue() and hasattr(self.source, "serviceref") and ".InfoBar'>" in `InfoBar.instance`:
+			if self.type != self.NAME_ONLY and config.usage.show_infobar_channel_number.getValue() and hasattr(self.source, "serviceref") and self.source.serviceref.toString().find('0:0:0:0:0:0:0:0:0') == -1:
 				name = ref and info.getName(ref)
 				numservice = self.source.serviceref
 				num = numservice and numservice.getChannelNum() or None
