@@ -476,7 +476,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	def __init__(self):
 		self["ShowHideActions"] = ActionMap( ["InfobarShowHideActions"] ,
 			{
-				"toggleShow": self.toggleShow,
+				"toggleShow": self.OkPressed,
 				"LongOKPressed": self.LongOKPressed,
 				"hide": self.keyHide,
 			}, 1) # lower prio to make it possible to override ok and cancel..
@@ -517,6 +517,12 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				pass
 		except:
 			self.pvrStateDialog = None
+
+	def OkPressed(self):
+		if config.usage.okbutton_mode.getValue() == "0":
+			self.toggleShow()
+		elif config.usage.okbutton_mode.getValue() == "1":
+			self.openServiceList()
 
 	def SwitchSecondInfoBarScreen(self):
 		if self.lastSecondInfoBar == config.usage.show_second_infobar.getValue():
@@ -945,8 +951,8 @@ class InfoBarChannelSelection:
 
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
-				"switchChannelUp": (self.switchChannelUp, _("Open service list and select previous channel")),
-				"switchChannelDown": (self.switchChannelDown, _("Open service list and select next channel")),
+				"switchChannelUp": (self.UpPressed, _("Open service list and select previous channel")),
+				"switchChannelDown": (self.DownPressed, _("Open service list and select next channel")),
 				"zapUp": (self.zapUp, _("Switch to previous channel")),
 				"zapDown": (self.zapDown, _("Switch next channel")),
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
@@ -976,6 +982,18 @@ class InfoBarChannelSelection:
 			self.openInfoBarEPG()
 		else:
 			self.zapDown()
+
+	def UpPressed(self):
+		if config.usage.updownbutton_mode.getValue() == "0":
+			self.zapDown()
+		elif config.usage.updownbutton_mode.getValue() == "1":
+			self.switchChannelUp()
+
+	def DownPressed(self):
+		if config.usage.updownbutton_mode.getValue() == "0":
+			self.zapUp()
+		elif config.usage.updownbutton_mode.getValue() == "1":
+			self.switchChannelDown()
 
 	def ChannelPlusPressed(self):
 		if config.usage.channelbutton_mode.getValue() == "0":
