@@ -74,6 +74,9 @@ case $ret in
 	42)
 		python /usr/lib/enigma2/python/upgrade.pyo
 		;;
+	43)
+		init 1
+		;;
 	*)
 		;;
 esac
