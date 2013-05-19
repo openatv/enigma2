@@ -2427,11 +2427,11 @@ class InfoBarTimeshift:
 				print 'TEST2'
 				if self.save_current_timeshift:
 					print 'TEST3'
-					message = _("The Timeshift recording was not saved yet!\nWhat do you want to do now with the timeshift file?")
-					choice = [(_("Yes, but save timeshift as movie and stop recording"), "savetimeshift"), \
-					(_("Yes, but save timeshift as movie and continue recording"), "savetimeshiftandrecord"), \
-					(_("Yes, but don't save timeshift as movie"), "noSave"), \
-					(_("No"), "no")]
+					message = _("You have chosen to save the current timeshift event, but the event has not yet finished\nWhat do you want to do ?")
+					choice = [(_("Save timeshift as movie and stop recording"), "savetimeshift"), \
+					(_("Save timeshift as movie and continue recording"), "savetimeshiftandrecord"), \
+					(_("Cancel save timeshift as movie"), "noSave"), \
+					(_("Nothing, just leave this menu"), "no")]
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice)
 				else:
 					print 'TEST4'
