@@ -13,8 +13,8 @@ public:
 	PSignal1<void, int> m_event;
 	PSignal2<void, ePtr<iRecordableService>&, int> m_record_event;
 
-	pNavigation();
-	
+	pNavigation(int decoder = 0);
+
 	RESULT playService(const eServiceReference &service);
 	RESULT stopService();
 	RESULT pause(int p);
