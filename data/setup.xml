@@ -233,8 +233,7 @@
 		<item level="2" text="Maximum space used (MB):" description="If logs are using the set maximum space used the eldest will be deleted.">config.crash.sizeloglimit</item>
 	</setup>
 	<setup key="timeshift" title="Timeshift settings">
-		<item level="1" text="Permanent Timeshift enable" description="Enable or disable Permanent Timeshift. When enabled, timeshift will be activated automactically, allowing to rewind at any time.">config.timeshift.enabled</item>
-		<item level="2" text="Permanent Timeshift start delay" description="Timeshift will only start when the start delay time has passed. This prevents numurous very short files when zapping." requires="config.timeshift.enabled">config.timeshift.startdelay</item>
+		<item level="1" text="Automatically start timeshift after" description="When enabled, timeshift starts automatically in background after specified time.">config.timeshift.startdelay</item>
 		<item level="1" text="Show warning when timeshift is stopped" description="When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift.">config.usage.check_timeshift</item>
 		<item level="2" text="Timeshift-save action on zap" description="Select if timeshift must continue when set to record.">config.timeshift.favoriteSaveAction</item>
 		<item level="2" text="Stop timeshift while recording?" description="Stop's timeshift being used if a recording is in progress. (adviseable for usb sticks)">config.timeshift.stopwhilerecording</item>
