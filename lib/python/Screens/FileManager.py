@@ -142,7 +142,7 @@ class FileManagerConfig(ConfigListScreen,Screen):
         ConfigListScreen.__init__(self, self.list)
         self["key_red"] = Label(_("Save"))
         self["key_green"] = Label(_("Cancel"))
-        self["setupActions"] = ActionMap(["EGActions", "OkCancelActions","WizardActions"],
+        self["setupActions"] = ActionMap(["SetupActions", "OkCancelActions","WizardActions"],
         {
             "green": self.cancel,
             "red": self.save,
@@ -606,6 +606,7 @@ class FileManager(Screen):
             self.SOURCELIST.descent()
             if self.SOURCELIST.getCurrentDirectory(): #??? when is it none
                 self.setTitle(self.SOURCELIST.getCurrentDirectory())
+		print self.SOURCELIST.getCurrentDirectory()
         else:
             self.onFileAction()
 
@@ -669,11 +670,11 @@ class FileManager(Screen):
 			self["list_right"].refresh()
 
 		if config.plugins.filemanager.sort_by.value == 'name':
-			print "[EG-FileManager] Sorting Lists by Name"
+			print "[FileManager] Sorting Lists by Name"
 			self["list_left"].sortName()
 			self["list_right"].sortName()
 		else:
-			print "[EG-FileManager] Sorting Lists by Date"
+			print "[FileManager] Sorting Lists by Date"
 			self["list_left"].sortDate()
 			self["list_right"].sortDate()
 

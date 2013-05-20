@@ -857,7 +857,15 @@ class GeneralMenu(Screen):
 		from Components.Harddisk import harddiskmanager
 		for r in harddiskmanager.getMountedPartitions(onlyhotplug = False):
 		    menuitem = [r.tabbedDescription().split('\t')[0], r.mountpoint, boundFunction(self.openFileManager, r.mountpoint), i+10]
-		    if not r.tabbedDescription().split('\t')[0] == _("Internal Flash"): #skin FLASH on Source List
+		    if r.tabbedDescription().split('\t')[0] == _("Internal Flash") or r.tabbedDescription().split('\t')[0] == _("DLNA"): #skin FLASH on Source List
+			print "[MENU] Skip source: Internal Flash and DLNA"
+		    else:
+			list.append(tuple(menuitem))
+		deviceList = [ name for name in os.listdir("/media/upnp/") if os.path.isdir(os.path.join("/media/upnp/", name)) ]
+		deviceList.sort()
+		for d in deviceList:
+			if d[0] in ('.', '_'): continue
+			menuitem = [(_(d)), d, boundFunction(self.openFileManager, "/media/upnp/"+d+"/"), i+10] 
 			list.append(tuple(menuitem))
 	if SystemInfo.get('ScartMenu', True):
 		     menuitem = [(_('Scart')), 'mainmenu_source_scart', boundFunction(self.openScart),1]  
