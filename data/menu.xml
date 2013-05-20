@@ -159,11 +159,6 @@ self.session.open(movieBrowserConfig)
 			</item>
 			<menu weight="5" level="0" text="System" entryID="id_mainmenu_tasks_setup_system" endtext="•••>">
 				<id val="id_mainmenu_tasks_setup_system" />
-				<!--<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>-->
-				  <!--<item text="Keyboard"><setup id="keyboard" /></item>-->
-				<menu weight="0" level="0" text="A/V setup" entryID="av_setup" endtext="•••>">
-					<id val="av" />
-				</menu>
 				<item weight="1" level="0" text="Language setup" entryID="language_setup"><screen module="LanguageSelection" /></item>
 				<item weight="2" level="0" entryID="timezone_setup"><setup id="time"/></item>
 				<item weight="16" level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
@@ -210,7 +205,7 @@ from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
 self.session.open(HdmiCECSetupScreen)
 </code>
 				  </item>
-				  <item weight="8" level="1" entryID="onlineupdate_setup" endtext="&gt;&lt;"><setup id="softwareupdate"/></item>  
+				  <!--<item weight="8" level="1" entryID="onlineupdate_setup" endtext="&gt;&lt;"><setup id="softwareupdate"/></item>--> 
 				  <!--<item weight="6" level="0" text="VCR scart" entryID="scart_switch" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>-->
 				</menu>
 			</menu>

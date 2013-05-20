@@ -234,10 +234,10 @@ def videoSetupMain(session, **kwargs):
 	session.open(VideoSetup, video_hw)
 
 def startSetup(menuid):
-	if menuid != "av":
+	if menuid != "id_mainmenu_tasks_setup_system":
 		return [ ]
 
-	return [(_("A/V settings"), videoSetupMain, "av_setup", 40)]
+	return [(_("A/V settings"), videoSetupMain, "av_setup", 0)]
 
 def VideoWizard(*args, **kwargs):
 	from VideoWizard import VideoWizard
