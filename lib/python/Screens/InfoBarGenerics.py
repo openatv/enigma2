@@ -1906,13 +1906,13 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		self.pvrStateDialog.hide()
 
 	def __timeshiftEventName(self,state):
-		try:
+		if os.path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.getValue(),self.pts_currplaying)):
 			readmetafile = open("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.getValue(),self.pts_currplaying), "r")
 			servicerefname = readmetafile.readline()[0:-1]
 			eventname = readmetafile.readline()[0:-1]
 			readmetafile.close()
 			self.pvrStateDialog["eventname"].setText(eventname)
-		except Exception, errormsg:
+		else:
 			self.pvrStateDialog["eventname"].setText("")
 
 class InfoBarShowMovies:
@@ -2097,12 +2097,12 @@ class InfoBarTimeshift:
 		ts = self.getTimeshift()
 		if ts and ts.isTimeshiftEnabled():
 			print 'TEST1'
-			if config.timeshift.enabled.getValue() and self.isSeekable():
+			if int(config.timeshift.startdelay.getValue()) and self.isSeekable():
 				print 'TEST2'
 				self.switchToLive = True
 				self.ptsStop = True
 				self.checkTimeshiftRunning(self.stopTimeshiftcheckTimeshiftRunningCallback)
-			elif not config.timeshift.enabled.getValue():
+			elif not int(config.timeshift.startdelay.getValue()):
 				print 'TEST2b'
 				self.checkTimeshiftRunning(self.stopTimeshiftcheckTimeshiftRunningCallback)
 			else:
@@ -2115,7 +2115,7 @@ class InfoBarTimeshift:
 	def stopTimeshiftcheckTimeshiftRunningCallback(self, answer):
 		print 'stopTimeshiftcheckTimeshiftRunningCallback'
 		print ' answer', answer
-		if answer and config.timeshift.enabled.getValue() and self.switchToLive and self.isSeekable():
+		if answer and int(config.timeshift.startdelay.getValue()) and self.switchToLive and self.isSeekable():
 			print 'TEST4'
 			self.ptsStop = False
 			self.pts_nextplaying = 0
@@ -2133,7 +2133,7 @@ class InfoBarTimeshift:
 			was_enabled = ts.isTimeshiftEnabled()
 		if answer and ts:
 			print 'TEST6'
-			if config.timeshift.enabled.getValue():
+			if int(config.timeshift.startdelay.getValue()):
 				print 'TEST7'
 				ts.stopTimeshift(self.switchToLive)
 			else:
@@ -2173,7 +2173,7 @@ class InfoBarTimeshift:
 
 	def __seekableStatusChanged(self):
 		print '__seekableStatusChanged'
-		self["TimeshiftActivateActions"].setEnabled(not self.isSeekable() and self.timeshiftEnabled() and config.timeshift.enabled.getValue())
+		self["TimeshiftActivateActions"].setEnabled(not self.isSeekable() and self.timeshiftEnabled() and int(config.timeshift.startdelay.getValue()))
 		state = self.getSeek() is not None and self.timeshiftEnabled()
 		self["SeekActionsPTS"].setEnabled(state)
 		self["TimeshiftFileActions"].setEnabled(state)
@@ -2184,7 +2184,7 @@ class InfoBarTimeshift:
 
 		if self.timeshiftEnabled() and not self.isSeekable():
 			self.ptsSeekPointerReset()
-			if config.timeshift.enabled.getValue():
+			if int(config.timeshift.startdelay.getValue()):
 				if self.pts_starttime <= (time()-5):
 					self.pts_blockZap_timer.start(3000, True)
 			self.pts_currplaying = self.pts_eventcount
@@ -2209,11 +2209,11 @@ class InfoBarTimeshift:
 				print 'TEST2'
 				if self.save_current_timeshift:
 					print 'TEST3'
-					message = _("The Timeshift recording was not saved yet!\nWhat do you want to do now with the timeshift file?")
-					choice = [(_("Yes, but save timeshift as movie and stop recording"), "savetimeshift"), \
-					(_("Yes, but save timeshift as movie and continue recording"), "savetimeshiftandrecord"), \
-					(_("Yes, but don't save timeshift as movie"), "noSave"), \
-					(_("No"), "no")]
+					message = _("You have chosen to save the current timeshift event, but the event has not yet finished\nWhat do you want to do ?")
+					choice = [(_("Save timeshift as movie and stop recording"), "savetimeshift"), \
+					(_("Save timeshift as movie and continue recording"), "savetimeshiftandrecord"), \
+					(_("Cancel save timeshift as movie"), "noSave"), \
+					(_("Nothing, just leave this menu"), "no")]
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice)
 				else:
 					print 'TEST4'
@@ -2314,7 +2314,7 @@ class InfoBarTimeshift:
 
 	def __evEventInfoChanged(self):
 		print '__evEventInfoChanged'
-		# if not config.timeshift.enabled.getValue():
+		# if not int(config.timeshift.startdelay.getValue()):
 		# 	return
 
 		# Get Current Event Info
@@ -2340,7 +2340,7 @@ class InfoBarTimeshift:
 
 			# Restarting active timers after zap ...
 			if self.pts_delay_timer.isActive() and not self.timeshiftEnabled():
-				self.pts_delay_timer.start(config.timeshift.startdelay.getValue() * 1000, True)
+				self.pts_delay_timer.start(int(config.timeshift.startdelay.getValue()) * 1000, True)
 			if self.pts_cleanUp_timer.isActive() and not self.timeshiftEnabled():
 				print 'BBBBBBBBBBBBBBBBBBBBB'
 				self.pts_cleanUp_timer.start(3000, True)
@@ -2350,7 +2350,7 @@ class InfoBarTimeshift:
 				if not self.timeshiftEnabled() or old_begin_time != self.pts_begintime or old_begin_time == 0:
 					if self.pts_service_changed:
 						self.pts_service_changed = False
-						self.pts_delay_timer.start(config.timeshift.startdelay.getValue() * 1000, True)
+						self.pts_delay_timer.start(int(config.timeshift.startdelay.getValue()) * 1000, True)
 					else:
 						self.pts_delay_timer.start(1000, True)
 
@@ -2361,7 +2361,7 @@ class InfoBarTimeshift:
 
 	def autostartPermanentTimeshift(self):
 		self["TimeshiftActions"].setEnabled(True)
-		if config.timeshift.enabled.getValue():
+		if int(config.timeshift.startdelay.getValue()):
 			self.activatePermanentTimeshift()
 
 	def activatePermanentTimeshift(self):
@@ -2619,6 +2619,7 @@ class InfoBarTimeshift:
 							readmetafile = open("%s.ts.meta" % (fullname), "r")
 							servicerefname = readmetafile.readline()[0:-1]
 							eventname = readmetafile.readline()[0:-1]
+							readmetafile.close()
 						else:
 							eventname = ""
 
@@ -2690,35 +2691,32 @@ class InfoBarTimeshift:
 		if self.session.nav.RecordTimer.isRecording() or SystemInfo.get("NumFrontpanelLEDs", 0) == 0:
 			return
 
-		try:
-			if action == "start":
-				if os.path.exists("/proc/stb/fp/led_set_pattern"):
-					f = open("/proc/stb/fp/led_set_pattern", "w")
-					f.write("0xa7fccf7a")
-					f.close()
-				elif os.path.exists("/proc/stb/fp/led0_pattern"):
-					f = open("/proc/stb/fp/led0_pattern", "w")
-					f.write("0x55555555")
-					f.close()
-				if os.path.exists("/proc/stb/fp/led_pattern_speed"):
-					f = open("/proc/stb/fp/led_pattern_speed", "w")
-					f.write("20")
-					f.close()
-				elif os.path.exists("/proc/stb/fp/led_set_speed"):
-					f = open("/proc/stb/fp/led_set_speed", "w")
-					f.write("20")
-					f.close()
-			elif action == "stop":
-				if os.path.exists("/proc/stb/fp/led_set_pattern"):
-					f = open("/proc/stb/fp/led_set_pattern", "w")
-					f.write("0")
-					f.close()
-				elif os.path.exists("/proc/stb/fp/led0_pattern"):
-					f = open("/proc/stb/fp/led0_pattern", "w")
-					f.write("0")
-					f.close()
-		except Exception, errormsg:
-			print "[Timeshift] %s" % (errormsg)
+		if action == "start":
+			if os.path.exists("/proc/stb/fp/led_set_pattern"):
+				f = open("/proc/stb/fp/led_set_pattern", "w")
+				f.write("0xa7fccf7a")
+				f.close()
+			elif os.path.exists("/proc/stb/fp/led0_pattern"):
+				f = open("/proc/stb/fp/led0_pattern", "w")
+				f.write("0x55555555")
+				f.close()
+			if os.path.exists("/proc/stb/fp/led_pattern_speed"):
+				f = open("/proc/stb/fp/led_pattern_speed", "w")
+				f.write("20")
+				f.close()
+			elif os.path.exists("/proc/stb/fp/led_set_speed"):
+				f = open("/proc/stb/fp/led_set_speed", "w")
+				f.write("20")
+				f.close()
+		elif action == "stop":
+			if os.path.exists("/proc/stb/fp/led_set_pattern"):
+				f = open("/proc/stb/fp/led_set_pattern", "w")
+				f.write("0")
+				f.close()
+			elif os.path.exists("/proc/stb/fp/led0_pattern"):
+				f = open("/proc/stb/fp/led0_pattern", "w")
+				f.write("0")
+				f.close()
 
 	def ptsCreateHardlink(self):
 		print 'ptsCreateHardlink'
@@ -2849,6 +2847,7 @@ class InfoBarTimeshift:
 				readmetafile = open(filename+".meta", "r")
 				servicerefname = readmetafile.readline()[0:-1]
 				eventname = readmetafile.readline()[0:-1]
+				readmetafile.close()
 			else:
 				eventname = ""
 			JobManager.AddJob(CreateAPSCFilesJob(self, "/usr/lib/enigma2/python/Components/createapscfiles \"%s\"" % (filename), eventname))

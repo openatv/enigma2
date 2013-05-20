@@ -88,6 +88,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self["number"].hide()
 		self['Service'] = ServiceEvent()
 		self['Event'] = Event()
+		self['lab1'] = Label(_('Please wait while gathering data...'))
 		self.key_green_choice = self.EMPTY
 		self['key_red'] = Button(_('IMDb Search'))
 		self['key_green'] = Button(_('Add Timer'))
@@ -227,7 +228,6 @@ class EPGSelection(Screen, HelpableScreen):
 				self.ask_time = self.ask_time = now - now % (int(config.epgselection.infobar_roundto.getValue()) * 60)
 			self.closeRecursive = False
 			self.bouquetlist_active = False
-			self['lab1'] = Label(_('Wait please while gathering data...'))
 			self['bouquetlist'] = EPGBouquetList(graphic=graphic)
 			self['bouquetlist'].hide()
 			self['timeline_text'] = TimelineText(type=self.type,graphic=graphic)
@@ -367,8 +367,10 @@ class EPGSelection(Screen, HelpableScreen):
 		self.refreshTimer = eTimer()
 		self.refreshTimer.timeout.get().append(self.refreshlist)
 		self.listTimer = eTimer()
-		self.listTimer.timeout.get().append(self.hidewaitingtext)
-		self.onFirstExecBegin.append(self.onCreate)
+		self.listTimer.callback.append(self.hidewaitingtext)
+		self.createTimer = eTimer()
+		self.createTimer.callback.append(self.onCreate)
+		self.onLayoutFinish.append(self.LayoutFinish)
 
 	def createSetup(self):
 		self.closeEventViewDialog()
@@ -424,19 +426,24 @@ class EPGSelection(Screen, HelpableScreen):
 				services.append(ServiceReference(service))
 		return services
 
+	def LayoutFinish(self):
+		self['lab1'].show()
+		self.createTimer.start(800)
+
 	def onCreate(self):
+		self.createTimer.stop()
 		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		title = None
 		self['list'].recalcEntrySize()
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-			self['bouquetlist'].recalcEntrySize()
-			self['bouquetlist'].fillBouquetList(self.bouquets)
-			self['bouquetlist'].moveToService(self.StartBouquet)
-			self['bouquetlist'].fillBouquetList(self.bouquets)
 			self.services = self.getBouquetServices(self.StartBouquet)
 			self['list'].fillGraphEPG(self.services, self.ask_time)
 			self['list'].moveToService(serviceref)
 			self['list'].setCurrentlyPlaying(serviceref)
+			self['bouquetlist'].recalcEntrySize()
+			self['bouquetlist'].fillBouquetList(self.bouquets)
+			self['bouquetlist'].moveToService(self.StartBouquet)
+			self['bouquetlist'].setCurrentBouquet(self.StartBouquet	)
 			self.setTitle(self['bouquetlist'].getCurrentBouquet())
 			if self.type == EPG_TYPE_GRAPH:
 				self['list'].setShowServiceMode(config.epgselection.graph_servicetitle_mode.getValue())
@@ -446,7 +453,6 @@ class EPGSelection(Screen, HelpableScreen):
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
 				self['list'].setShowServiceMode(config.epgselection.infobar_servicetitle_mode.getValue())
 				self.moveTimeLines()
-			self.listTimer.start(10)
 		elif self.type == EPG_TYPE_MULTI:
 			self['bouquetlist'].recalcEntrySize()
 			self['bouquetlist'].fillBouquetList(self.bouquets)
@@ -473,6 +479,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self['list'].sortSingleEPG(int(config.epgselection.sort.getValue()))
 		else:
 			self['list'].fillSimilarList(self.currentService, self.eventid)
+		self.listTimer.start(10)
 
 	def refreshlist(self):
 		self.refreshTimer.stop()

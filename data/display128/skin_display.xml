@@ -31,12 +31,11 @@
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="fill">
-	
 		<widget source="session.CurrentService" render="Picon" position="0,100" zPosition="1" size="100,60" alphatest="on">
 				<convert type="ServiceName">Reference</convert>
 			</widget>
 		<widget source="session.CurrentService" render="Label" position="top" size="*,43" font="FdLcD;21" halign="center" foregroundColor="#ffff7f" >
-			<convert type="ServiceName">Name</convert>
+			<convert type="ServiceName">NameOnly</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="top" size="*,41" font="FdLcD;20" halign="center" >
 			<convert type="EventName">Name</convert>
@@ -85,7 +84,7 @@
 		</widget>
 		<panel position="bottom" size="*,24" name="SummaryClockPanel">
 			<widget source="session.CurrentService" render="Label" position="4,0" size="42,12" font="FdLcD;12" halign="left" noWrap="1">
-				<convert type="ServicePosition">Position</convert>
+				<convert type="ServicePosition">VFDPosition</convert>
 			</widget>
 		</panel>
 	</screen>

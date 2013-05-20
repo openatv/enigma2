@@ -10,6 +10,7 @@
 class eNavigation: public iObject, public Object
 {
 	DECLARE_REF(eNavigation);
+	int m_decoder;
 	ePtr<iServiceHandler> m_servicehandler;
 
 	ePtr<iPlayableService> m_runningService;
@@ -36,7 +37,7 @@ public:
 	void getRecordings(std::vector<ePtr<iRecordableService> > &recordings, bool simulate=false);
 	
 	RESULT pause(int p);
-	eNavigation(iServiceHandler *serviceHandler);
+	eNavigation(iServiceHandler *serviceHandler, int decoder = 0);
 	virtual ~eNavigation();
 };
 
