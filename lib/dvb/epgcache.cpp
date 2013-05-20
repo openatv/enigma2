@@ -2080,6 +2080,7 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, eP
 	singleLock s(cache_lock);
 	const eventData *data=0;
 	RESULT ret = lookupEventTime(service, t, data, direction);
+	result = NULL;
 	if ( !ret && data )
 	{
 		Event ev((uint8_t*)data->get());
@@ -2137,6 +2138,7 @@ RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, 
 	singleLock s(cache_lock);
 	const eventData *data=0;
 	RESULT ret = lookupEventId(service, event_id, data);
+	result = NULL;
 	if ( !ret && data )
 	{
 		Event ev((uint8_t*)data->get());

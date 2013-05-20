@@ -30,6 +30,7 @@ RESULT eNavigation::playService(const eServiceReference &service)
 	RESULT res = m_servicehandler->play(service, m_runningService);
 	if (m_runningService)
 	{
+		m_runningService->setTarget(m_decoder);
 		m_runningService->connectEvent(slot(*this, &eNavigation::serviceEvent), m_service_event_conn);
 		res = m_runningService->start();
 	}
@@ -145,10 +146,11 @@ RESULT eNavigation::pause(int dop)
 		return p->unpause();
 }
 
-eNavigation::eNavigation(iServiceHandler *serviceHandler)
+eNavigation::eNavigation(iServiceHandler *serviceHandler, int decoder)
 {
 	ASSERT(serviceHandler);
 	m_servicehandler = serviceHandler;
+	m_decoder = decoder;
 }
 
 eNavigation::~eNavigation()
