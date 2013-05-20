@@ -152,11 +152,11 @@ def InitAVSwitch():
 	iAVSwitch.setInput("ENCODER") # init on startup
 	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
 
-	try:
+	if os.path.exists("/proc/stb/hdmi/bypass_edid_checking"):
 		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")
 		can_edidchecking = f.read().strip().split(" ")
 		f.close()
-	except:
+	else:
 		can_edidchecking = False
 
 	SystemInfo["Canedidchecking"] = can_edidchecking
@@ -177,11 +177,11 @@ def InitAVSwitch():
 	else:
 		config.av.bypass_edid_checking = ConfigNothing()
 
-	try:
+	if os.path.exists("/proc/stb/audio/3d_surround_choices"):
 		f = open("/proc/stb/audio/3d_surround_choices", "r")
 		can_3dsurround = f.read().strip().split(" ")
 		f.close()
-	except:
+	else:
 		can_3dsurround = False
 
 	SystemInfo["Can3DSurround"] = can_3dsurround

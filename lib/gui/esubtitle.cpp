@@ -153,33 +153,58 @@ void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 
 void eSubtitleWidget::setPage(const ePangoSubtitlePage &p)
 {
+	int elements, element, startY, width, height, size_per_element;
+	int lowerborder;
+	bool rewrap;
+
 	m_pango_page = p;
 	m_pango_page_ok = 1;
 	invalidate(m_visible_region); // invalidate old visible regions
 	m_visible_region.rects.clear();
 
-	int elements = m_pango_page.m_elements.size();
-	if (elements)
+	rewrap = eConfigManager::getConfigBoolValue("config.subtitles.subtitle_rewrap");
+	lowerborder = eConfigManager::getConfigIntValue("config.subtitles.subtitle_position", 50);
+
+	elements = m_pango_page.m_elements.size();
+
+	if(rewrap)
 	{
-		int startY = elements > 1
-			? size().height() / 2
-			: size().height() / 3 * 2;
-		int width = size().width() - startX * 2;
-		int height = size().height() - startY;
-		int size_per_element = height / (elements ? elements : 1);
-		for (int i=0; i<elements; ++i)
+		std::string::iterator it;
+
+		for (element = 0; element < elements; element++)
 		{
-			eRect &area = m_pango_page.m_elements[i].m_area;
-			area.setLeft(startX);
-			int lowerborder = eConfigManager::getConfigIntValue("config.subtitles.subtitle_position", 50);
-			area.setTop(size_per_element * i + startY - lowerborder);
-			area.setWidth(width);
-			area.setHeight(size_per_element);
-			m_visible_region |= area;
+			std::string& line = m_pango_page.m_elements[element].m_pango_line;
+
+			for (it = line.begin(); it != line.end(); it++)
+				if((*it) == '\n')
+					*it = ' ';
 		}
 	}
-	int timeout_ms = m_pango_page.m_timeout;
-	m_hide_subtitles_timer->start(timeout_ms, true);
+
+	if (elements > 1)
+		startY = size().height() / 2;
+	else
+		startY = size().height() / 3 * 2;
+
+	width = size().width() - startX * 2;
+	height = size().height() - startY;
+
+	if (elements != 0)
+		size_per_element = height / elements;
+	else
+		size_per_element = height;
+
+	for (element = 0; element < elements; element++)
+	{
+		eRect& area = m_pango_page.m_elements[element].m_area;
+		area.setLeft(startX);
+		area.setTop(size_per_element * element + startY - lowerborder);
+		area.setWidth(width);
+		area.setHeight(size_per_element);
+		m_visible_region |= area;
+	}
+
+	m_hide_subtitles_timer->start(m_pango_page.m_timeout, true);
 	invalidate(m_visible_region); // invalidate new regions
 }
 

@@ -12,6 +12,19 @@ if [ -x @bindir@/showiframe ]; then
 	fi
 fi
 
+# Some EGAMI Scripts
+
+[ -e /bin/emud ] && /bin/emud &
+
+tar xzf /etc/var.tar.gz -C /
+
+[ -e /scripts/syslogd_script.sh ] && /scripts/syslogd_script.sh restart
+[ -e /scripts/httpd_script.sh ] && /scripts/httpd_script.sh start
+[ -e /scripts/swap_script.sh ] && /scripts/swap_script.sh start
+[ -e /scripts/pcscd_script.sh ] && /scripts/pcscd_script.sh start
+[ -e /scripts/dev_mount_script.sh ] && /scripts/dev_mount_script.sh
+
+
 # hook to execute scripts always before enigma2 start
 if [ -x @bindir@/enigma2_pre_start.sh ]; then
 	@bindir@/enigma2_pre_start.sh
@@ -74,10 +87,13 @@ case $ret in
 	42)
 		python /usr/lib/enigma2/python/upgrade.pyo
 		;;
+	43)
+		init 1
+		;;
 	44)
 		# little hack but it will be fixed soon in drivers
 		/usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi && echo fpupload > /dev/dbox/oled0 && sleep 3 && cat /tmp/micom.bin > /dev/mcu && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi && sleep 200000
-		;;		
+		;;
 	*)
 		;;
 esac
