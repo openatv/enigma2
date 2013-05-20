@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-13 20:49+0100\n"
-"PO-Revision-Date: 2013-05-19 16:20+0100\n"
+"POT-Creation-Date: 2013-05-19 23:44+0100\n"
+"PO-Revision-Date: 2013-05-20 08:24+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1262,6 +1262,9 @@ msgstr "Kann für unterschiedliche Frequenzen von Video und Untertitel benutzt w
 
 msgid "Cancel"
 msgstr "Abbrechen"
+
+msgid "Cancel save timeshift as movie"
+msgstr "Film speichern abbrechen"
 
 msgid "Cannot delete file"
 msgstr "Kann Datei nicht löschen"
@@ -4456,6 +4459,9 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr "Keine Aktualisierungen"
 
+msgid "Nothing, just leave this menu"
+msgstr "Nicht, nur das Menü verlassen"
+
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Jetzt"
@@ -4945,6 +4951,9 @@ msgstr "Bitte warten (Pakete werden aktualisiert)"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Bitte warte, die Netzwerk-Konfiguration wird aktiviert."
 
+msgid "Please wait while gathering data..."
+msgstr "Bitte warten während ich Daten zusammenstelle..."
+
 msgid "Please wait while scanning is in progress..."
 msgstr "Bitte warte, der Suchvorgang läuft."
 
@@ -5261,6 +5270,9 @@ msgstr "Den Unterkanal-Schnellumschalter wirklich beenden?"
 msgid "Really reboot now?"
 msgstr "Trotzdem neu booten?"
 
+msgid "Really reflash your STB_BOX and reboot now?"
+msgstr "Die STB_BOX wirklich flashen und neu starten?"
+
 msgid "Really restart now?"
 msgstr "Trotzdem neu starten?"
 
@@ -5327,6 +5339,15 @@ msgstr "Zeitskala verkleinern"
 
 msgid "Reenter new PIN"
 msgstr "Neuen PIN erneut eingeben"
+
+msgid ""
+"Reflash in progress\n"
+"Please wait until your STB_BOX reboots\n"
+"This may take a few minutes"
+msgstr ""
+"Flash wird durchgeführt.\n"
+"Bitte warten Sie, bis Ihre STB_BOX automatisch neu startet.\n"
+"Dies könnte einige Minuten in Anspruch nehmen."
 
 msgid "Refresh every (in hours)"
 msgstr "Alle x Stunden erneuern"
@@ -5657,6 +5678,12 @@ msgstr "Automatisch speichern alle x Stunden"
 
 msgid "Save playlist"
 msgstr "Wiedergabeliste speichern"
+
+msgid "Save timeshift as movie and continue recording"
+msgstr "TimeShift als Film speichern und Aufnahme fortsetzen"
+
+msgid "Save timeshift as movie and stop recording"
+msgstr "TimeShift als Film speichern und Aufnahme beenden"
 
 msgid "Saving EPG Cache..."
 msgstr "EPG Cache wird gespeichert ..."
@@ -6561,7 +6588,7 @@ msgid "Sorry uShare Config is Missing"
 msgstr "Entschuldigung Konfiguration für uShare fehlt"
 
 #, python-format
-msgid "Entschuldigung %s has not been installed!"
+msgid "Sorry, %s has not been installed!"
 msgstr "Entschuldigung %s wurde nicht installiert!"
 
 msgid "Sorry, no backups found!"
@@ -7015,13 +7042,6 @@ msgstr "Der PIN Code wurde erfolgreich geändert."
 
 msgid "The PIN codes you entered are different."
 msgstr "Die eingegebenen PIN Codes sind unterschiedlich."
-
-msgid ""
-"The Timeshift recording was not saved yet!\n"
-"What do you want to do now with the timeshift file?"
-msgstr ""
-"Die Timeshiftdatei wurde noch nicht gesichert!\n"
-"Was soll mit der Datei geschehen?"
 
 msgid ""
 "The USB stick was prepared to be bootable.\n"
@@ -7684,15 +7704,6 @@ msgstr "USALS Kalibrierung"
 msgid "USB stick wizard"
 msgstr "USB-Stick-Assistent"
 
-msgid ""
-"Unattended upgrade in progress\n"
-"Please wait until your STB_BOX reboots\n"
-"This may take a few minutes"
-msgstr ""
-"Stille Aktualisierung wird durchgeführt.\n"
-"Bitte warten Sie, bis Ihre STB_BOX automatisch neu startet.\n"
-"Dies könnte einige Minuten in Anspruch nehmen."
-
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr "Stille Aktualisierung ohne Benutzeroberfläche (automatischer Neustart)"
 
@@ -7764,6 +7775,15 @@ msgstr "Upgrade und STB_BOX neu starten"
 
 msgid "Upgrade finished."
 msgstr "Upgrade beendet."
+
+msgid ""
+"Upgrade in progress\n"
+"Please wait until your STB_BOX reboots\n"
+"This may take a few minutes"
+msgstr ""
+"Aktualisierung wird durchgeführt.\n"
+"Bitte warten Sie, bis Ihre STB_BOX automatisch neu startet.\n"
+"Dies könnte einige Minuten in Anspruch nehmen."
 
 msgid "Upgrading"
 msgstr "Aktualisiere"
@@ -8130,9 +8150,6 @@ msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS bei 4:3"
-
-msgid "Wait please while gathering data..."
-msgstr "Bitte warten während ich Daten zusammenstelle..."
 
 msgid "Wait please while scanning for devices..."
 msgstr "Bitte warten während ich nach Geräten suche..."
@@ -8549,6 +8566,13 @@ msgstr "Du möchtest einen bootfähigen USB-Stick zum Flashen von NFI-Images ers
 
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Du hast dich entschlossen, deine Einstellungen wiederherzustellen. Enigma2 wird nach der Wiederherstellung neu starten. Bitte drücke OK um mit der Wiederherstellung zu beginnen."
+
+msgid ""
+"You have chosen to save the current timeshift event, but the event has not yet finished\n"
+"What do you want to do ?"
+msgstr ""
+"Es wurde gewählt die aktuelle Sendung zu speichern aber die Sendung läuft noch.\n"
+"Was soll gemacht werden?"
 
 msgid ""
 "You have not setup your user info in the setup screen\n"
@@ -10230,6 +10254,13 @@ msgstr "umgeschaltet"
 
 #~ msgid "Stop timeshift?"
 #~ msgstr "TimeShift stoppen?"
+
+#~ msgid ""
+#~ "The Timeshift recording was not saved yet!\n"
+#~ "What do you want to do now with the timeshift file?"
+#~ msgstr ""
+#~ "Die Timeshiftdatei wurde noch nicht gesichert!\n"
+#~ "Was soll mit der Datei geschehen?"
 
 #~ msgid "The sleep timer has been activated."
 #~ msgstr "Der Ausschalt-Timer wurde aktiviert"
