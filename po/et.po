@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-29 22:11+0100\n"
+"POT-Creation-Date: 2013-05-20 00:05+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -252,7 +252,7 @@ msgstr "%s (%s)\n"
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
-msgstr "%s ei ole enam kasutuses. Kas kustutad?"
+msgstr "%s ei ole enam kasutuses. Kas kustutad selle?"
 
 #, python-format
 msgid "%s updated package available"
@@ -315,19 +315,19 @@ msgid "16:10"
 msgstr "16:10"
 
 msgid "16:10 Letterbox"
-msgstr "16:10 Letterbox"
+msgstr "16:10 letterbox"
 
 msgid "16:10 PanScan"
-msgstr "16:10 PanScan"
+msgstr "16:10 panscan"
 
 msgid "16:9"
 msgstr "16:9"
 
 msgid "16:9 Letterbox"
-msgstr "16:9 Letterbox"
+msgstr "16:9 letterbox"
 
 msgid "16:9 always"
-msgstr "16:9 alati"
+msgstr "alati 16:9"
 
 msgid "18 V"
 msgstr "18 V"
@@ -360,7 +360,7 @@ msgid "3D Mode"
 msgstr "3D režiim"
 
 msgid "3D Surround"
-msgstr "3D surround"
+msgstr "3D heli"
 
 msgid "3D setup"
 msgstr "3D seaded"
@@ -375,10 +375,10 @@ msgid "4:3"
 msgstr "4:3"
 
 msgid "4:3 Letterbox"
-msgstr "4:3 Letterbox"
+msgstr "4:3 letterbox"
 
 msgid "4:3 PanScan"
-msgstr "4:3 PanScan"
+msgstr "4:3 panscan"
 
 msgid "4X"
 msgstr "4X"
@@ -424,29 +424,29 @@ msgid ""
 "A finished power timer wants to shut down\n"
 "your STB_BOX. Shutdown now?"
 msgstr ""
-"Salvestuse lõpetanud toitetaimer soovib STB_BOX\n"
-"välja lülitada. Kas nõustud?"
+"Toitetaimer on lõpetanud ja\n"
+"STB_BOX lülitatakse välja. Kas nõustud?"
 
 msgid ""
 "A finished powertimer wants to set your\n"
 "STB_BOX to standby. Do that now?"
 msgstr ""
-"Lõpetanud toitetaimer soovib panna\n"
-"STB_BOX ooterežiimi. Kas nõustud?"
+"Toitetaimer on lõpetanud ja\n"
+"STB_BOX viiakse ooterežiimi. Kas nõustud?"
 
 msgid ""
 "A finished record timer wants to set your\n"
 "STB_BOX to standby. Do that now?"
 msgstr ""
-"Lõpetanud salvestuse taimer soovib panna\n"
-"STB_BOX ooterežiimi. Kas nõustud?"
+"Taimeriga salvestus on lõpetatud ja\n"
+"STB_BOX viiakse ooterežiimi. Kas nõustud?"
 
 msgid ""
 "A finished record timer wants to shut down\n"
 "your STB_BOX. Shutdown now?"
 msgstr ""
-"Salvestuse lõpetanud taimer soovib STB_BOX\n"
-"välja lülitada. Kas nõustud?"
+"Taimeriga salvestus on lõpetatud ja\n"
+"STB_BOX lülitatakse välja. Kas nõustud?"
 
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Graafiline saatekava kõigile kanalitele lemmiknimekirjas"
@@ -463,17 +463,17 @@ msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
-"Hetkel salvestatakse.\n"
+"Toimub salvestamine.\n"
 "Mida soovid teha?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
-msgstr "Hetkel salvestatakse. Peata salvestamine enne kui üritad muuta positsioneeri sätteid."
+msgstr "Toimub salvestamine. Enne positsioneeri häälestamist peata salvestamine."
 
 msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Hetkel salvestatakse. Peata salvestamine enne kanaliotsingu alustamist."
+msgstr "Toimub salvestamine. Peata salvestamine enne kanaliotsingu alustamist."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
-msgstr "Hetkel salvestatakse. Peata salvestamine enne satiotsija käivitamist."
+msgstr "Toimub salvestamine. Peata salvestamine enne satiotsija käivitamist."
 
 msgid "A repeating timer or just once?"
 msgstr "Kas korduv taimer või ainult üks kord?"
@@ -509,7 +509,7 @@ msgstr ""
 "lülitada. Kas nõustud?"
 
 msgid "A small overview of the available icon states and actions."
-msgstr "Kasutatavate ikoonide seisundite ja tegevuste lühiülevaade."
+msgstr "Saadaolevate ikoonide ja tegevuste lühiülevaade."
 
 msgid ""
 "A timer failed to record!\n"
@@ -528,7 +528,7 @@ msgid "AB"
 msgstr "AB"
 
 msgid "ACQUIRING TSID/ONID"
-msgstr "TSID/ONID OMANDAMINE"
+msgstr "TSID/ONID SAAMINE"
 
 msgid "AFP Setup"
 msgstr "AFP seaded"
@@ -547,7 +547,7 @@ msgid "About"
 msgstr "Info"
 
 msgid "About..."
-msgstr "Teave..."
+msgstr "Vastuvõtjast..."
 
 msgid "Accesspoint:"
 msgstr "Tugijaam:"
@@ -595,7 +595,7 @@ msgid "Add Timer"
 msgstr "Lisa taimer"
 
 msgid "Add a auto timer for current event"
-msgstr "Lisa käesolevale saatele autotaimer"
+msgstr "Lisa autotaimer käesolevale saatele"
 
 msgid "Add a mark"
 msgstr "Lisa marker"
@@ -679,7 +679,7 @@ msgid "Adjust 3D settings"
 msgstr "Kohanda 3D seadeid"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
-msgstr "Sea värvuse sätted nii, et kõik värvivarjundid oleks eristatavad ja paistaks nii küllastatuna kui võimalik. Kui oled tulemusega rahul, vajuta OK video peenhäälestuse sulgemiseks või kasuta numbrinuppe teiste testipiltide valikuks."
+msgstr "Kohanda värvuse sätted nii, et kõik värvivarjundid oleks eristatavad ja paistaks nii küllastatuna kui võimalik. Kui oled tulemusega rahul, vajuta OK video peenhäälestuse sulgemiseks või kasuta numbrinuppe teiste testipiltide valikuks."
 
 msgid "Advanced options"
 msgstr "Lisavalikud"
@@ -778,7 +778,7 @@ msgid "Alpha"
 msgstr "Tähestik"
 
 msgid "Alphanumeric"
-msgstr "Tähestikujärjekord"
+msgstr "Tähtnumbriline"
 
 msgid "Alternative"
 msgstr "Alternatiivne"
@@ -1059,7 +1059,7 @@ msgid "Begin time"
 msgstr "Algusaeg"
 
 msgid "Behavior of 'pause' when paused"
-msgstr "'Paus' nupu toiming"
+msgstr "'Paus' nupu toiming pausi ajal"
 
 msgid "Behavior of 0 key in PiP-mode"
 msgstr "'0' nupu toiming PiP režiimis"
@@ -1155,7 +1155,7 @@ msgid "Bypass HDMI EDID Check"
 msgstr "HDMI EDID kontrolli eiramine"
 
 msgid "Bytes received:"
-msgstr "Vastu võetud baidid:"
+msgstr "Saadud baidid:"
 
 msgid "Bytes sent:"
 msgstr "Saadetud baidid:"
@@ -1260,6 +1260,9 @@ msgstr "Saab kasutada väliste subtiitrite ja video erineva fps korral."
 msgid "Cancel"
 msgstr "Tühista"
 
+msgid "Cancel save timeshift as movie"
+msgstr "Ära salvesta ajanihke faile"
+
 msgid "Cannot delete file"
 msgstr "Faili ei saa kustutada"
 
@@ -1267,7 +1270,7 @@ msgid "Cannot determine"
 msgstr "Ei saa määrata"
 
 msgid "Cannot find any signal ..., aborting !"
-msgstr "Mingit signaali ei leita..., katkestame!"
+msgstr "Mingit signaali ei leita, katkestame!"
 
 msgid "Cannot move to trash can"
 msgstr "Prügikasti saatmine ei ole võimalik"
@@ -1429,9 +1432,8 @@ msgstr "Kiibistik:\tBCM%s"
 msgid "Chipset: BCM%s"
 msgstr "Kiibistik: BCM%s"
 
-#, fuzzy
 msgid "Chnage to bouquet"
-msgstr "Lisa lemmiknimekirja"
+msgstr "Vaheta lemmiknimekirja"
 
 msgid "Choose Bouquet"
 msgstr "Vali lemmiknimekiri"
@@ -1616,7 +1618,7 @@ msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Vali selle LNB jaoks õige DiSEqC režiim."
 
 msgid "Configure the IP address."
-msgstr "Määra IP aaddress."
+msgstr "Määra IP aadress."
 
 msgid "Configure the amount of time that will be presented."
 msgstr "Määra saatekavas kuvatava aja hulk minutites."
@@ -1898,13 +1900,6 @@ msgstr "Failide kopeerimine"
 msgid "Cores:\t%s"
 msgstr "Tuumad:\t%s"
 
-msgid ""
-"Could not activate Permanent-Timeshift!\n"
-"Timeshift-Path does not exist"
-msgstr ""
-"Pideva ajanihke käivitamine nurjus!\n"
-"Määratud asukohta ei eksisteeri"
-
 msgid "Could not connect to STB_BOX .NFI image feed server:"
 msgstr "Ei saa ühendust STB_BOX tarkvara serveriga:"
 
@@ -1949,14 +1944,14 @@ msgid "Creating AP and SC Files"
 msgstr "AP ja SC Files loomine"
 
 msgid "Creating Hardlink to Timeshift file failed!"
-msgstr "Ajanihke failile hardlingi loomine nurjus!"
+msgstr "Ajanihke failile püsiviida loomine nurjus!"
 
 #, python-format
 msgid "Creating directory %s failed."
-msgstr "Kausta loomine %s nurjus."
+msgstr "Kataloogi %s loomine nurjus."
 
 msgid "Creating filesystem"
-msgstr "Failisüsteemi loominr"
+msgstr "Failisüsteemi loomine"
 
 msgid "Creating partition"
 msgstr "Partitsiooni loomine"
@@ -2001,7 +1996,7 @@ msgid "Currently installed image"
 msgstr "Hetkel paigaldatud tarkvara"
 
 msgid "Custom"
-msgstr "Kohandamine"
+msgstr "Kohandatud"
 
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "'1'/'3'-klahvide ülehüppe kohandatud pikkus"
@@ -2106,7 +2101,7 @@ msgid "Default movie location"
 msgstr "Salvestuste tavaasukoht"
 
 msgid "Default recording type"
-msgstr "Salvestuse laad"
+msgstr "Salvestamise laad"
 
 msgid "Default settings"
 msgstr "Vaikeväärtused"
@@ -2434,9 +2429,6 @@ msgstr "Kas uuendad paketi:\n"
 msgid "Don't save"
 msgstr "Ära salvesta"
 
-msgid "Don't save Timeshift as Movie"
-msgstr "Ära salveta ajanihke faile"
-
 msgid "Don't stop current event but disable coming events"
 msgstr "Ära peata toimuvat salvestust, aga keela tulevad"
 
@@ -2501,7 +2493,7 @@ msgid "ECM-Time"
 msgstr "ECM aeg"
 
 msgid "EPG"
-msgstr "Saatekava"
+msgstr "Saatekava "
 
 msgid "EPG Cache Check"
 msgstr "EPG vahemälu kontroll"
@@ -2522,7 +2514,7 @@ msgid "EPG location"
 msgstr "EPG faili asukoht"
 
 msgid "EPG settings"
-msgstr "Saatekava seaded"
+msgstr "EPG seaded"
 
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
@@ -2606,8 +2598,8 @@ msgstr "Luba freesat EPG"
 msgid "Enable multiple bouquets"
 msgstr "Luba lemmiknimekirjad"
 
-msgid "Enable or disable Permanent Timeshift. When activated, you can wind back until the time you zapped to a channel, and you can make recordings in retrospect."
-msgstr "Luba või keela pidev ajanihe. Lubamisel saad kerida tagasi kanalivahetushetkeni ja luua tagasivaates salvestusi."
+msgid "Enable or disable Permanent Timeshift. When enabled, timeshift will be activated automactically, allowing to rewind at any time."
+msgstr "Luba või keela pidev ajanihe. Lubamisel käivitatakse ajanihe automaatselt. See võimaldab kerida tagasi igal ajahetkel."
 
 msgid "Enable panic button"
 msgstr "Luba paanika nupp"
@@ -2646,10 +2638,10 @@ msgid "English"
 msgstr "Inglise"
 
 msgid "Enigma2 skin selector"
-msgstr "Enigma2 välimuse valik"
+msgstr "Enigma2 teema valik"
 
 msgid "Enimga2 Changes"
-msgstr "Enimga2 muudatused"
+msgstr "Enigma2 muudatused"
 
 msgid "Enter main menu..."
 msgstr "Mine peamenüüsse..."
@@ -2676,7 +2668,7 @@ msgid "Error code"
 msgstr "Veakood"
 
 msgid "Error downloading change log."
-msgstr "Vig muudatuslogi hankimisel."
+msgstr "Viga muudatuslogi hankimisel."
 
 msgid "Error executing plugin"
 msgstr "Viga laienduse käivitamisel"
@@ -2822,9 +2814,6 @@ msgstr "Algseadistus"
 
 msgid "Failed"
 msgstr "Nurjus"
-
-msgid "Failed to remove old files."
-msgstr "Vanade failide kustutamine nurjus."
 
 msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "/tmp/positionersetup.logi loomine nurjus: "
@@ -3062,7 +3051,7 @@ msgid "Goto X"
 msgstr "Goto X"
 
 msgid "Goto index position"
-msgstr "Mine indeksisse"
+msgstr "Mine asukohta indeksis"
 
 msgid "Goto next bouquet"
 msgstr "Liigu järgmisele lemmiknimekirjale"
@@ -3212,7 +3201,7 @@ msgid "Hold till locked"
 msgstr "Hoia pilti lukustamiseni"
 
 msgid "Home"
-msgstr "Kodu"
+msgstr "Avaleht"
 
 msgid "Hops:"
 msgstr ""
@@ -3280,9 +3269,6 @@ msgstr "Jõudeaeg:"
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Kui logidele lubatud suurim kettaruum on täis, kustutakse kõige vanemad."
 
-msgid "If set to 'yes' a special seekbar is available during timeshift."
-msgstr "Määrates 'jah', on ajanihke ajal kasutuses otsiriba"
-
 msgid "If set to 'yes' channels without EPG will not be shown."
 msgstr "Määrates 'jah', ei näidata kanaleid, millel puudub saatekava."
 
@@ -3304,6 +3290,9 @@ msgstr "Määrates 'jah', näidatakse saatekava avamisel alati lemmiknimekirju."
 msgid "If set to 'yes' the channel list will be shown after switching between radio and TV modes."
 msgstr "Määrates 'jah', näidatakse TV ja raadio režiimi vahetudes kanalinimekirja."
 
+msgid "If set to 'yes' the channel number will be displayed in the infobar."
+msgstr "Määrates 'jah', näidatakse inforibal kanalinumbrit."
+
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
 msgstr "Määrates 'jah', näidatakse uue saate algamisel inforiba."
 
@@ -3315,6 +3304,9 @@ msgstr "Määrates 'jah', näidatakse saatekavas kanali eelvaadet."
 
 msgid "If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at."
 msgstr "Määrates 'jah', näidatakse kanalinimekirjas eelvaadet. Vajuta 'OK' valitud kanali eelvaatluseks, vajuta uuesti 'OK' nimekirja sulgemiseks ja antud kanalile minekuks. Vajutades 'EXIT' lähed tagasi kanalile, millelt alustasid."
+
+msgid "If set to 'yes', allows you use the seekbar to jump to a point within the event."
+msgstr "Määrates 'jah', saad kasutada saates soovitud kohani liikumiseks otsiriba."
 
 msgid "If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
 msgstr "Määrates 'jah', näidatakse edasi/tagasi kerimisel inforiba."
@@ -3558,7 +3550,7 @@ msgid "Jump back 24 hours"
 msgstr "Hüppa 24 tundi tagasi"
 
 msgid "Jump first press in channel selection*"
-msgstr "Esimesel vajutusel kanalinimekirjas*"
+msgstr "Valik esimesel vajutusel*"
 
 msgid "Jump forward 24 hours"
 msgstr "Hüppa 24 tundi edasi"
@@ -3696,9 +3688,8 @@ msgstr "Vaba aeg ja hobid"
 msgid "Letterbox"
 msgstr "Letterbox"
 
-#, fuzzy
 msgid "Letterbox zoom"
-msgstr "Letterbox"
+msgstr ""
 
 msgid "Light Grey"
 msgstr "Helehall"
@@ -4096,7 +4087,7 @@ msgid "Multiple service support"
 msgstr "Mitme programmi tugi"
 
 msgid "Multiplex"
-msgstr "Multiplex"
+msgstr "Multipleks"
 
 msgid "Multisat"
 msgstr "Mitu satelliiti"
@@ -4276,13 +4267,13 @@ msgid "No free tuner!"
 msgstr "Pole vaba tuunerit!"
 
 msgid "No httpport defined in oscam.conf. This value is required!"
-msgstr ""
+msgstr "Oscam.conf failis on 'httpport' määramata. See väärtus on kohustuslik!"
 
 msgid "No httppwd defined in oscam.conf"
-msgstr ""
+msgstr "Oscam.conf failis on 'httppwd' määramata."
 
 msgid "No httpuser defined in oscam.conf"
-msgstr ""
+msgstr "Oscam.conf failis on 'httpuser' määramata."
 
 msgid "No network connection available."
 msgstr "Võrgu ühendus pole saadaval."
@@ -4461,6 +4452,9 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr "Uuendusi ei ole"
 
+msgid "Nothing, just leave this menu"
+msgstr "Mitte midagi, välju sellest menüüst"
+
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Hetkel"
@@ -4608,10 +4602,6 @@ msgstr "PMT PID"
 
 msgid "PRIMETIME"
 msgstr "TIPPAEG"
-
-#, python-format
-msgid "PTS Plugin Error: %s"
-msgstr "PTS (pidev ajanihe) viga: %s"
 
 msgid "Package list update"
 msgstr "Paketinimekirja uuendus"
@@ -4954,6 +4944,9 @@ msgstr "Oota (pakettide uuendamine)"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Oota kuni võrguseaded aktiveeritakse..."
 
+msgid "Please wait while gathering data..."
+msgstr "Oota andmete kogumist..."
+
 msgid "Please wait while scanning is in progress..."
 msgstr "Oota otsingú lõppemist..."
 
@@ -5270,6 +5263,9 @@ msgstr "Väljuda alamkanalite valikust?"
 msgid "Really reboot now?"
 msgstr "Taaskäivitad vastuvõtja?"
 
+msgid "Really reflash your STB_BOX and reboot now?"
+msgstr "Paigaldad tarkvaratõmmise taaskäivitad STB_BOX?"
+
 msgid "Really restart now?"
 msgstr "Taaskäivitad vastuvõtja?"
 
@@ -5337,6 +5333,15 @@ msgstr "Vähenda ajavahemikku"
 msgid "Reenter new PIN"
 msgstr "Korda uut PIN-i"
 
+msgid ""
+"Reflash in progress\n"
+"Please wait until your STB_BOX reboots\n"
+"This may take a few minutes"
+msgstr ""
+"Toimub uuendamine\n"
+"Oota STB_BOX taaskäivitumist\n"
+"Selleks võib kuluda mõni minut"
+
 msgid "Refresh every (in hours)"
 msgstr "Värskenda iga  (tund)"
 
@@ -5372,9 +5377,6 @@ msgstr "Jäänud & möödunud"
 
 msgid "Remember service PIN"
 msgstr "Mäleta kanali PIN-i"
-
-msgid "Reminder, you have chosen to save timeshift file."
-msgstr "Meeldetuletus. Soovisid ajanihke faili salvestada."
 
 msgid "Remote box"
 msgstr "Kauge vastuvõtja"
@@ -5505,7 +5507,7 @@ msgid "Restart network"
 msgstr "Taaskäivita võrk "
 
 msgid "Restart test"
-msgstr "Taaskäivituse test"
+msgstr "Taaskäivita test"
 
 msgid "Restart your network connection and interfaces.\n"
 msgstr "Taaskäivita võrgu ühendus ja adapter.\n"
@@ -5546,7 +5548,7 @@ msgid "Return to movie list"
 msgstr "Tagasi filmilisti"
 
 msgid "Return to previous service"
-msgstr "Tagasi eelmisele kanalile"
+msgstr "Tagasi vaadatud kanalile"
 
 msgid "Rewind speeds"
 msgstr "Tagasikerimise kiirused"
@@ -5656,12 +5658,6 @@ msgstr "Salvesta"
 msgid "Save EPG"
 msgstr "Salvesta EPG"
 
-msgid "Save Timeshift as Movie and continue recording"
-msgstr "Salvesta ajanihe filmina ja jätka salvestamist"
-
-msgid "Save Timeshift as Movie and stop recording"
-msgstr "Salvesta ajanihe filmina ja lõpeta salvestamine"
-
 msgid "Save and record"
 msgstr "Salvesta"
 
@@ -5674,11 +5670,11 @@ msgstr "Salvesta iga (tundides)"
 msgid "Save playlist"
 msgstr "Salvesta esitusloend"
 
-msgid "Save timeshift file"
-msgstr "Salvesta ajanihke failid"
+msgid "Save timeshift as movie and continue recording"
+msgstr "Salvesta ajanihe filmina ja jätka salvestamist"
 
-msgid "Save timeshift file in movie directory"
-msgstr "Salvesta ajanihke failid salvestuskataloogi"
+msgid "Save timeshift as movie and stop recording"
+msgstr "Salvesta ajanihe filmina ja lõpeta salvestamine"
 
 msgid "Saving EPG Cache..."
 msgstr "EPG salvestamine..."
@@ -5969,7 +5965,7 @@ msgid "Service Information"
 msgstr "Kanali andmed"
 
 msgid "Service Name"
-msgstr "Kanalinimi"
+msgstr "Kanali nimi"
 
 msgid "Service Title mode"
 msgstr "Kanalinime kuju"
@@ -5990,27 +5986,27 @@ msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
 msgstr ""
-"Valitud kanalit ei leitud!\n"
-"(Timeout PMT lugemisel)"
+"Kehtetu kanal!\n"
+"(PMT lugemise aegumine)"
 
 msgid "Service name"
-msgstr "Kanalinimi"
+msgstr "Kanali nimi"
 
 msgid "Service name font size"
-msgstr "Kanali nime tähesuurus"
+msgstr "Kanalinime tähesuurus"
 
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
-"Valitud kanalit ei leitud!\n"
+"Kanalit ei leitud!\n"
 "(SID ei leitud PAT-st)"
 
 msgid "Service number font size"
-msgstr "Kanali numbri tähesuurus"
+msgstr "Kanalinumbri tähesuurus"
 
 msgid "Service reference"
-msgstr "Kanali viitenumber"
+msgstr "Viitenumber"
 
 msgid "Service scan"
 msgstr "Kanaliotsing"
@@ -6132,9 +6128,6 @@ msgstr "Määra nupu toiming."
 
 msgid "Set voltage and 22KHz"
 msgstr "Määra pinge ja 22KHz"
-
-msgid "Set what the required action must be when zapping while a timeshift has been set as recording."
-msgstr "Määra vastuvõtja käitumine ajanihke ajal kanalit vahetades, juhul kui ajanihe on määratud salvestuseks."
 
 msgid "Sets the root folder of movie list, to remove the '..' from benign shown in that folder."
 msgstr "Määrab filmilistile juurkataloogi, et eemaldada '..' kataloogi nimest."
@@ -6271,6 +6264,9 @@ msgstr "Näita käivitamisel lemmiknimekirju"
 
 msgid "Show bouquet selection menu"
 msgstr "Näita lemmiknimekirja menüüd"
+
+msgid "Show channel number in infobar"
+msgstr "Näita inforibal kanalinumbreid"
 
 msgid "Show channel numbers in channel selection"
 msgstr "Näita lemmiknimekirjas kanalinumbreid"
@@ -6737,6 +6733,9 @@ msgstr "Peata ajanihe"
 msgid "Stop timeshift while recording?"
 msgstr "Peata ajanihe salvestamise ajaks?"
 
+msgid "Stop's timeshift being used if a recording is in progress. (adviseable for usb sticks)"
+msgstr "Peatab ajanihke salvestuse ajaks. Soovitatav, kui kasutatakse usb pulka."
+
 msgid "Stopped"
 msgstr "Peatatud"
 
@@ -7036,13 +7035,6 @@ msgid "The PIN codes you entered are different."
 msgstr "Sisestatud PIN koodid on erinevad."
 
 msgid ""
-"The Timeshift record was not saved yet!\n"
-"What do you want to do now with the timeshift file?"
-msgstr ""
-"Ajanihke failid ei ole veel salvestatud!\n"
-"Mida soovid nendega teha?"
-
-msgid ""
 "The USB stick was prepared to be bootable.\n"
 "Now you can download an NFI image file!"
 msgstr ""
@@ -7192,7 +7184,7 @@ msgstr ""
 "Kas soovid kindlasti jätkata?"
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
-msgstr "DVD RW ketas on formaaditud.Uuesti formaatimisel kustutatakse kõik, mis plaadile kirjutatud."
+msgstr "DVD RW ketas on juba vormindatud. Uuesti vormindamisel kustutatakse kõik, mis plaadile kirjutatud."
 
 #, python-format
 msgid "This STB_BOX cannot decode %s streams!"
@@ -7316,7 +7308,7 @@ msgid "This option sets the scaler sharpness, used when stretching picture from 
 msgstr "See valik määrab skaleerija teravuse 4:3 > 16:9 pildi venitamisel."
 
 msgid "This option sets the surpression of false digital contours, that are the result of a limited number of discrete values."
-msgstr ""
+msgstr "See valik keelab summutab digitaalsed võltskontuurid, mis on vähese diskreetsete väärtuste tagajärjeks."
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "See valik määrab pildi teravuse ülesskaleerimisel."
@@ -7650,7 +7642,7 @@ msgid "Tune"
 msgstr "Häälesta"
 
 msgid "Tune and focus"
-msgstr ""
+msgstr "Häälesta ja sea fookusesse"
 
 msgid "Tune failed!"
 msgstr "Häälestus nurjus!"
@@ -7705,15 +7697,6 @@ msgstr "USALS kalibreerimine"
 
 msgid "USB stick wizard"
 msgstr "USB-mälupulk"
-
-msgid ""
-"Unattended upgrade in progress\n"
-"Please wait until your STB_BOX reboots\n"
-"This may take a few minutes"
-msgstr ""
-"Toimub automatiseeritud uuendamine\n"
-"Oota STB_BOX taaskäivitumist\n"
-"Selleks võib kuluda mõni minut"
 
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr "Automatiseeritud uuendamine ja taaskäivitus"
@@ -7787,6 +7770,15 @@ msgstr "Uuenda ja taaskäivita süsteem"
 msgid "Upgrade finished."
 msgstr "Uuendamine tehtud."
 
+msgid ""
+"Upgrade in progress\n"
+"Please wait until your STB_BOX reboots\n"
+"This may take a few minutes"
+msgstr ""
+"Toimub uuendamine\n"
+"Oota STB_BOX taaskäivitumist\n"
+"Selleks võib kuluda mõni minut"
+
 msgid "Upgrading"
 msgstr "Uuendan"
 
@@ -7819,9 +7811,6 @@ msgstr "MHW EPG kasutamine, kui see on saadaval."
 
 msgid "Use Netmed EPG information when it is available."
 msgstr "Netmed EPG kasutamine, kui see on saadaval."
-
-msgid "Use PTS seekbar while timeshifting?"
-msgstr "Näita ajanihke ajal PTS otsiriba?"
 
 msgid "Use TV remote control"
 msgstr "Kasuta TV pulti"
@@ -7900,6 +7889,9 @@ msgstr "Kas kasutad neid seadeid"
 
 msgid "Use this video enhancement settings?"
 msgstr "Kasutad neid pildiparanduse seadeid?"
+
+msgid "Use timeshift seekbar while timeshifting?"
+msgstr "Näita ajanihke ajal PTS otsiriba?"
 
 msgid "Use trash can in movielist"
 msgstr "Kasuta filmilistis prügikasti"
@@ -7990,10 +7982,10 @@ msgid "Video enhancement setup"
 msgstr "Pildi paranduste sätted"
 
 msgid "Video fine tuning"
-msgstr "Video peenhäälestus"
+msgstr "Pildi peenhäälestus"
 
 msgid "Video fine-tuning"
-msgstr "Video peenhäälestus"
+msgstr "Pildi peenhäälestus"
 
 msgid ""
 "Video input selection\n"
@@ -8025,13 +8017,13 @@ msgid "Video: %s fps"
 msgstr "Video: %s fps"
 
 msgid "Videocodec"
-msgstr "Video koodek"
+msgstr "Koodek"
 
 msgid "Videoformat"
-msgstr "Video formaat"
+msgstr "Kuvasuhe"
 
 msgid "Videosize"
-msgstr "Video suurus"
+msgstr "Resolutsioon"
 
 msgid "View"
 msgstr "Vaata"
@@ -8152,9 +8144,6 @@ msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS 4:3 -ga"
-
-msgid "Wait please while gathering data..."
-msgstr "Oota andmete kogumist..."
 
 msgid "Wait please while scanning for devices..."
 msgstr "Oota andmekandjate tuvastamist..."
@@ -8399,7 +8388,7 @@ msgid "Where do you want to backup your settings?"
 msgstr "Kuhu teha varukoopia seadistustest?"
 
 msgid "Where should the recording be saved?"
-msgstr "Kuhu salvetatakse?"
+msgstr "Kuhu salvestatakse?"
 
 msgid "Where to save temporary timeshift recordings?"
 msgstr "Kuhu salvestada ajanihke sisu?"
@@ -8469,12 +8458,6 @@ msgstr "Kollased välised subtiitrid"
 msgid "Yes"
 msgstr "Jah"
 
-msgid "Yes and save"
-msgstr "Jah ja salvesta"
-
-msgid "Yes and save in movie dir"
-msgstr "Jah ja salvesta see filmikataloogi"
-
 msgid "Yes to all"
 msgstr "Kõigile JAH"
 
@@ -8486,6 +8469,15 @@ msgstr "Jah, kustuta see salvestus"
 
 msgid "Yes, backup my settings!"
 msgstr "Jah, tee seadistustest varukoopia!"
+
+msgid "Yes, but don't save timeshift as movie"
+msgstr "Jah, kuid ära salvesta ajanihke faile"
+
+msgid "Yes, but save timeshift as movie and continue recording"
+msgstr "Jah, kuid salvesta ajanihe filmina ja jätka salvestamist"
+
+msgid "Yes, but save timeshift as movie and stop recording"
+msgstr "Jah, kuid salvesta ajanihe filmina ja lõpeta salvestamine"
 
 msgid "Yes, do a manual scan now"
 msgstr "Jah, tee nüüd käsiotsing"
@@ -8571,6 +8563,13 @@ msgid "You have chosen to restore your settings. Enigma2 will restart after rest
 msgstr "Oled otsustanud seadistused taastada. Enigma2 taaskäivitub pärast taastamist. Vajuta nüüd OK taastamise alustamiseks."
 
 msgid ""
+"You have chosen to save the current timeshift event, but the event has not yet finished\n"
+"What do you want to do ?"
+msgstr ""
+"Otsustasid selle saate ajanihke failid salvestada, aga saade ei ole veel lõppenud\n"
+"Mida soovid teha?"
+
+msgid ""
 "You have not setup your user info in the setup screen\n"
 "Press MENU, and enter your info, then try again"
 msgstr ""
@@ -8593,6 +8592,9 @@ msgid ""
 msgstr ""
 "Nüüd on vaja ühendada STB_BOX arvutiga. Kui on vaja abi, siis vaata : http://www.dm7025.de.\n"
 "STB_BOX on nüüd peatatud.Kui on täidetud uuendamise juhised veebilehelt, siis uus tarkvara palub taastada seadeid."
+
+msgid "You seem to be in timeshift!"
+msgstr "Ajanihe on kasutusel!"
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr "Ajanihe on kasutusel. Kas peatad selle?"
@@ -9478,9 +9480,6 @@ msgstr "leht vasakule"
 msgid "pass"
 msgstr "lubatud"
 
-msgid "pause"
-msgstr "paus"
-
 msgid "performing arts"
 msgstr "lavakunst"
 
@@ -9689,7 +9688,7 @@ msgid "show cards with uphop 9"
 msgstr ""
 
 msgid "show event details"
-msgstr "näita detailsemat infot"
+msgstr "näita üksikasju"
 
 msgid "show mediaplayer on mainmenu"
 msgstr "näita meediaesitajat peamenüüs"
@@ -10030,11 +10029,17 @@ msgstr "vahetatud"
 #~ msgid "BER:"
 #~ msgstr "BER:"
 
+#~ msgid "Backup Log"
+#~ msgstr "Varukoopia logi"
+
 #~ msgid "C"
 #~ msgstr "C"
 
 #~ msgid "Channellist menu"
 #~ msgstr "Kanalinimekirja menüü"
+
+#~ msgid "Choose where to mount your devices to:"
+#~ msgstr "Määra, kuhu riistvara haakida:"
 
 #~ msgid "Command execution..."
 #~ msgstr "Käskude täitmine..."
@@ -10042,8 +10047,18 @@ msgstr "vahetatud"
 #~ msgid "Continue in background"
 #~ msgstr "Jätka taustal"
 
+#~ msgid ""
+#~ "Could not activate Permanent-Timeshift!\n"
+#~ "Timeshift-Path does not exist"
+#~ msgstr ""
+#~ "Pideva ajanihke käivitamine nurjus!\n"
+#~ "Määratud asukohta ei eksisteeri"
+
 #~ msgid "D"
 #~ msgstr "D"
+
+#~ msgid "DVD File Browser"
+#~ msgstr "DVD faililehitseja"
 
 #~ msgid "Date/time input"
 #~ msgstr "Aeg/kuupäev"
@@ -10069,14 +10084,23 @@ msgstr "vahetatud"
 #~ msgid "Experimental"
 #~ msgstr "Eksperimentaalne"
 
+#~ msgid "Failed to remove old files."
+#~ msgstr "Vanade failide kustutamine nurjus."
+
 #~ msgid "Hardware:"
 #~ msgstr "Vastuvõtja:"
+
+#~ msgid "If set to 'yes' a special seekbar is available during timeshift."
+#~ msgstr "Määrates 'jah', on ajanihke ajal kasutuses otsiriba"
 
 #~ msgid "Image:"
 #~ msgstr "Tarkvara:"
 
 #~ msgid "Index"
 #~ msgstr "Indeks"
+
+#~ msgid "Info bar"
+#~ msgstr "Inforiba"
 
 #~ msgid "InfoBar"
 #~ msgstr "Inforiba"
@@ -10154,6 +10178,9 @@ msgstr "vahetatud"
 #~ msgid "PIN code needed"
 #~ msgstr "Vajalik on pin-kood"
 
+#~ msgid "PTS Plugin Error: %s"
+#~ msgstr "PTS (pidev ajanihe) viga: %s"
+
 #~ msgid "Parental control services editor"
 #~ msgstr "Lapseluku kanali muutmine"
 
@@ -10196,11 +10223,23 @@ msgstr "vahetatud"
 #~ msgid "Release Notes"
 #~ msgstr "Väljalasketeade"
 
+#~ msgid "Reminder, you have chosen to save timeshift file."
+#~ msgstr "Meeldetuletus. Soovisid ajanihke faili salvestada."
+
+#~ msgid "Remote-Timer digest"
+#~ msgstr "Kaugtaimeri ülevaade"
+
 #~ msgid "SNR"
 #~ msgstr "SNR"
 
 #~ msgid "SNR:"
 #~ msgstr "SNR:"
+
+#~ msgid "Save timeshift file"
+#~ msgstr "Salvesta ajanihke failid"
+
+#~ msgid "Save timeshift file in movie directory"
+#~ msgstr "Salvesta ajanihke failid salvestuskataloogi"
 
 #~ msgid "SecondInfoBar"
 #~ msgstr "Teine inforiba"
@@ -10236,6 +10275,13 @@ msgstr "vahetatud"
 #~ "Set the maximum number of events (programs) that timeshift may handle."
 #~ msgstr "Määra ajanihkele suurim lubatud saadete arv."
 
+#~ msgid ""
+#~ "Set what the required action must be when zapping while a timeshift has "
+#~ "been set as recording."
+#~ msgstr ""
+#~ "Määra vastuvõtja käitumine ajanihke ajal kanalit vahetades, juhul kui "
+#~ "ajanihe on määratud salvestuseks."
+
 #~ msgid "Setup what a long press on the power button does."
 #~ msgstr "Seadista, mida toitenupu pikk vajutus teeb."
 
@@ -10251,14 +10297,34 @@ msgstr "vahetatud"
 #~ msgid "Sleep Timer"
 #~ msgstr "Unetaimer"
 
+#~ msgid "Softcam Setup"
+#~ msgstr "EMU seaded"
+
 #~ msgid "Softwaremanager..."
 #~ msgstr "Tarkvarahaldur..."
+
+#~ msgid "Starting Softcam"
+#~ msgstr "EMU käivitamine"
 
 #~ msgid "Stop timeshift?"
 #~ msgstr "Ajanihe peatatakse?"
 
+#~ msgid "Stopping Softcam"
+#~ msgstr "EMU peatamine"
+
+#~ msgid "Swap File Manager"
+#~ msgstr "Saale haldur"
+
 #~ msgid "Systeminfo"
 #~ msgstr "Süsteemi andmed"
+
+#, fuzzy
+#~ msgid ""
+#~ "The Timeshift record was not saved yet!\n"
+#~ "What do you want to do now with the timeshift file?"
+#~ msgstr ""
+#~ "Ajanihke failid ei ole veel salvestatud!\n"
+#~ "Mida soovid nendega teha?"
 
 #~ msgid "The sleep timer has been activated."
 #~ msgstr "Unetaimer on aktiveeritud."
@@ -10305,41 +10371,23 @@ msgstr "vahetatud"
 #~ msgid "Welcome..."
 #~ msgstr "Tere tulemast..."
 
+#~ msgid "Yes and save"
+#~ msgstr "Jah ja salvesta"
+
+#~ msgid "Yes and save in movie dir"
+#~ msgstr "Jah ja salvesta see filmikataloogi"
+
 #~ msgid "config menu"
 #~ msgstr "seadete menüü"
 
 #~ msgid "help..."
 #~ msgstr "abi..."
 
+#~ msgid "pause"
+#~ msgstr "paus"
+
 #~ msgid "play from next mark or playlist entry"
 #~ msgstr "esita järgmisest märgist või valikust"
 
 #~ msgid "play from previous mark or playlist entry"
 #~ msgstr "esita eelmisest märgist"
-
-#~ msgid "Backup Log"
-#~ msgstr "Varukoopia logi"
-
-#~ msgid "Choose where to mount your devices to:"
-#~ msgstr "Määra, kuhu riistvara haakida:"
-
-#~ msgid "Remote-Timer digest"
-#~ msgstr "Kaugtaimeri ülevaade"
-
-#~ msgid "Softcam Setup"
-#~ msgstr "EMU seaded"
-
-#~ msgid "Starting Softcam"
-#~ msgstr "EMU käivitamine"
-
-#~ msgid "Stopping Softcam"
-#~ msgstr "EMU peatamine"
-
-#~ msgid "Swap File Manager"
-#~ msgstr "Saale haldur"
-
-#~ msgid "DVD File Browser"
-#~ msgstr "DVD faililehitseja"
-
-#~ msgid "Info bar"
-#~ msgstr "Inforiba"
