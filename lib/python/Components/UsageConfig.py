@@ -117,7 +117,7 @@ def InitUsageConfig():
 		("playlistquit", _("Play next (return to previous service)")), ("loop", _("Continues play (loop)"))])
 	config.usage.next_movie_msg = ConfigYesNo(default = True)
 
-	config.usage.setup_level = ConfigSelection(default = "expert", choices = [
+	config.usage.setup_level = ConfigSelection(default = "intermediate", choices = [
 		("simple", _("Simple")),
 		("intermediate", _("Intermediate")),
 		("expert", _("Expert")) ])
