@@ -48,6 +48,28 @@ elif [ $MODEL = "gb800ue" ]; then
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue
+## TESTING THE Gigablue HD 800 UE Plus Models
+elif [ $MODEL = "gb800ueplus" ]; then
+	TYPE=GIGABLUE
+	MODEL="ueplus"
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="GigaBlue $MODEL"
+	MTDKERNEL="mtd2"
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/gigablue/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue
+## TESTING THE Gigablue HD 800 SE Plus Models
+elif [ $MODEL = "gb800seplus" ]; then
+	TYPE=GIGABLUE
+	MODEL="seplus"
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="GigaBlue $MODEL"
+	MTDKERNEL="mtd2"
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/gigablue/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue	
 ## TESTING THE Gigablue HD 800 Solo Model
 elif [ $MODEL = "gb800solo" ] ; then
 	TYPE=GIGABLUE
