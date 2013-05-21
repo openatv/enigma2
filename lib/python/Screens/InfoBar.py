@@ -207,16 +207,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.session.open(PluginBrowser)
 		
 	def showSetup(self):
-		from Screens.Menu import MainMenu, mdom
-		root = mdom.getroot()
-		for x in root.findall("menu"):
-			y = x.find("id")
-			if y is not None:
-				id = y.get("val")
-				if id and id == "setup":
-					self.session.infobar = self
-					self.session.open(MainMenu, x)
-					return
+		from Screens.GeneralSetup import GeneralSetup
+		self.session.open(GeneralSetup)
 
 	def showLanSetup(self):
 		from Screens.NetworkSetup import NetworkAdapterSelection
