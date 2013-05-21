@@ -343,7 +343,7 @@ int eServiceMP3::ac3_delay = 0,
     eServiceMP3::pcm_delay = 0;
 
 eServiceMP3::eServiceMP3(eServiceReference ref)
-	:m_ref(ref), m_pump(eApp, 1), m_subtitle_lock(false)
+	:m_ref(ref), m_pump(eApp, 1)
 {
 	m_subtitle_sync_timer = eTimer::create(eApp);
 	m_streamingsrc_timeout = 0;
@@ -2074,10 +2074,7 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 
 				start_ms = ((buf_pos / 1000000ULL) * convert_fps) + delay;
 				end_ms = start_ms + (duration_ns / 1000000ULL);
-				{
-					eSingleLocker lock(m_subtitle_lock);
-					m_subtitle_pages.insert(subtitle_pages_map_pair_t(end_ms, subtitle_page_t(start_ms, end_ms, (const char *)line)));
-				}
+				m_subtitle_pages.insert(subtitle_pages_map_pair_t(end_ms, subtitle_page_t(start_ms, end_ms, (const char *)line)));
 				m_subtitle_sync_timer->start(1, true);
 			}
 			else
@@ -2093,8 +2090,6 @@ void eServiceMP3::pushSubtitles()
 	pts_t running_pts = 0;
 	int32_t next_timer = 0, decoder_ms, start_ms, end_ms, diff_start_ms, diff_end_ms;
 	subtitle_pages_map_t::iterator current;
-	std::vector<ePangoSubtitlePageElement>::iterator element;
-	eSingleLocker lock(m_subtitle_lock);
 
 	// wait until clock is stable
 
@@ -2145,20 +2140,20 @@ void eServiceMP3::pushSubtitles()
 		diff_start_ms = start_ms - decoder_ms;
 		diff_end_ms = end_ms - decoder_ms;
 
-#if 1
+#if 0
 		eDebug("*** next subtitle: decoder: %d, start: %d, end: %d, duration_ms: %d, diff_start: %d, diff_end: %d : %s",
 			decoder_ms, start_ms, end_ms, end_ms - start_ms, diff_start_ms, diff_end_ms, current->second.text.c_str());
 #endif
 
 		if (diff_end_ms < 0)
 		{
-			eDebug("*** current sub has already ended, skip: %d\n", diff_end_ms);
+			//eDebug("*** current sub has already ended, skip: %d\n", diff_end_ms);
 			continue;
 		}
 
 		if (diff_start_ms > 20)
 		{
-			eDebug("*** current sub in the future, start timer, %d\n", diff_start_ms);
+			//eDebug("*** current sub in the future, start timer, %d\n", diff_start_ms);
 			next_timer = diff_start_ms;
 			goto exit;
 		}
@@ -2167,7 +2162,7 @@ void eServiceMP3::pushSubtitles()
 
 		if (m_subtitle_widget)
 		{
-			eDebug("*** current sub actual, show!");
+			//eDebug("*** current sub actual, show!");
 
 			ePangoSubtitlePage pango_page;
 			gRGB rgbcol(0xD0,0xD0,0xD0);
@@ -2180,7 +2175,7 @@ void eServiceMP3::pushSubtitles()
 			m_subtitle_widget->show();
 		}
 
-		eDebug("*** no next sub scheduled, check NEXT subtitle");
+		//eDebug("*** no next sub scheduled, check NEXT subtitle");
 	}
 
 	// no more subs in cache, fall through
@@ -2188,7 +2183,7 @@ void eServiceMP3::pushSubtitles()
 exit:
 	if (next_timer == 0)
 	{
-		eDebug("*** next timer = 0, set default timer!");
+		//eDebug("*** next timer = 0, set default timer!");
 		next_timer = 1000;
 	}
 
@@ -2216,10 +2211,7 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 	{
 		g_object_set (G_OBJECT (m_gst_playbin), "current-text", -1, NULL);
 		m_subtitle_sync_timer->stop();
-		{
-			eSingleLocker lock(m_subtitle_lock);
-			m_subtitle_pages.clear();
-		}
+		m_subtitle_pages.clear();
 		m_prev_decoder_time = -1;
 		m_decoder_time_valid_state = 0;
 		m_currentSubtitleStream = pid;
@@ -2256,10 +2248,7 @@ RESULT eServiceMP3::disableSubtitles(eWidget *parent)
 	m_cachedSubtitleStream = m_currentSubtitleStream;
 	g_object_set (G_OBJECT (m_gst_playbin), "current-text", m_currentSubtitleStream, NULL);
 	m_subtitle_sync_timer->stop();
-	{
-		eSingleLocker lock(m_subtitle_lock);
-		m_subtitle_pages.clear();
-	}
+	m_subtitle_pages.clear();
 	m_prev_decoder_time = -1;
 	m_decoder_time_valid_state = 0;
 	delete m_subtitle_widget;
