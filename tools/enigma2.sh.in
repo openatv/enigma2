@@ -12,19 +12,6 @@ if [ -x @bindir@/showiframe ]; then
 	fi
 fi
 
-# Some EGAMI Scripts
-
-[ -e /bin/emud ] && /bin/emud &
-
-tar xzf /etc/var.tar.gz -C /
-
-[ -e /scripts/syslogd_script.sh ] && /scripts/syslogd_script.sh restart
-[ -e /scripts/httpd_script.sh ] && /scripts/httpd_script.sh start
-[ -e /scripts/swap_script.sh ] && /scripts/swap_script.sh start
-[ -e /scripts/pcscd_script.sh ] && /scripts/pcscd_script.sh start
-[ -e /scripts/dev_mount_script.sh ] && /scripts/dev_mount_script.sh
-
-
 # hook to execute scripts always before enigma2 start
 if [ -x @bindir@/enigma2_pre_start.sh ]; then
 	@bindir@/enigma2_pre_start.sh
