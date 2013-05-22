@@ -14,8 +14,8 @@ from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVB
 def buildTerTransponder(frequency,
 		inversion=2, bandwidth = 7000000, fechigh = 6, feclow = 6,
 		modulation = 2, transmission = 2, guard = 4,
-		hierarchy = 4, system = 0, plpid = 0):
-#	print "freq", frequency, "inv", inversion, "bw", bandwidth, "fech", fechigh, "fecl", feclow, "mod", modulation, "tm", transmission, "guard", guard, "hierarchy", hierarchy
+		hierarchy = 4, system = 0, plpid=0):
+	print "freq", frequency, "inv", inversion, "bw", bandwidth, "fech", fechigh, "fecl", feclow, "mod", modulation, "tm", transmission, "guard", guard, "hierarchy", hierarchy, "plpid", plpid
 	parm = eDVBFrontendParametersTerrestrial()
 	parm.frequency = frequency
 	parm.inversion = inversion
@@ -423,6 +423,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.list.append(getConfigListEntry(_("Transmission mode"), self.scan_ter.transmission))
 				self.list.append(getConfigListEntry(_("Guard interval"), self.scan_ter.guard))
 				self.list.append(getConfigListEntry(_("Hierarchy info"), self.scan_ter.hierarchy))
+				self.list.append(getConfigListEntry(_("Plp ID"), self.scan_ter.plpid))
 		self.list.append(getConfigListEntry(_("Network scan"), self.scan_networkScan))
 		self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
 		self.list.append(getConfigListEntry(_("Only free scan"), self.scan_onlyfree))
@@ -472,7 +473,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			"transmission_mode" : eDVBFrontendParametersTerrestrial.TransmissionMode_Auto,
 			"guard_interval" : eDVBFrontendParametersTerrestrial.GuardInterval_Auto,
 			"hierarchy": eDVBFrontendParametersTerrestrial.Hierarchy_Auto,
-			"system": eDVBFrontendParametersTerrestrial.System_DVB_T }
+			"system": eDVBFrontendParametersTerrestrial.System_DVB_T,
+			"plp_id": 0}
 
 		if frontendData is not None:
 			ttype = frontendData.get("tuner_type", "UNKNOWN")
@@ -508,6 +510,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				defaultTer["guard_interval"] = frontendData.get("guard_interval", eDVBFrontendParametersTerrestrial.GuardInterval_Auto)
 				defaultTer["hierarchy"] = frontendData.get("hierarchy_information", eDVBFrontendParametersTerrestrial.Hierarchy_Auto)
 				defaultTer["system"] = frontendData.get("system", eDVBFrontendParametersTerrestrial.System_DVB_T)
+				defaultTer["plp_id"] = frontendData.get("plp_id", 0)
 
 		self.scan_sat = ConfigSubsection()
 		self.scan_cab = ConfigSubsection()
@@ -676,7 +679,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.scan_ter.system = ConfigSelection(default = defaultTer["system"], choices = [
 			(eDVBFrontendParametersTerrestrial.System_DVB_T, _("DVB-T")),
 			(eDVBFrontendParametersTerrestrial.System_DVB_T2, _("DVB-T2"))])
-
+		self.scan_ter.plpid = ConfigSelection(default = defaultTer["plp_id"], choices = [(0, _("0")), (1, _("1")), (2, _("2")), (3, _("3")), (4, _("4"))])
+		
 		self.scan_scansat = {}
 		for sat in nimmanager.satList:
 			#print sat[1]
@@ -817,7 +821,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 						modulation = self.scan_ter.modulation.getValue(),
 						transmission = self.scan_ter.transmission.getValue(),
 						guard = self.scan_ter.guard.getValue(),
-						hierarchy = self.scan_ter.hierarchy.getValue())
+						hierarchy = self.scan_ter.hierarchy.getValue(),
+						plpid  = self.scan_ter.plpid.getValue())
 				removeAll = False
 			elif self.scan_typeterrestrial.getValue() == "complete":
 				getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(index_to_scan))
