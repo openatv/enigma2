@@ -368,6 +368,13 @@ lib/python/Plugins/Extensions/AccuWeather/locale/es/LC_MESSAGES/Makefile
 lib/python/Plugins/Extensions/AccuWeather/wheathericons/Makefile
 lib/python/Plugins/Extensions/GmailReader/Makefile
 lib/python/Plugins/Extensions/IniHbbTV/Makefile
+lib/python/Plugins/Extensions/AirPlayer/Makefile
+lib/python/Plugins/Extensions/AirPlayer/lib/Makefile
+lib/python/Plugins/Extensions/AirPlayer/lib/biplist/Makefile
+lib/python/Plugins/Extensions/AirPlayer/mediabackends/Makefile
+lib/python/Plugins/Extensions/AirPlayer/Skins/Makefile
+lib/python/Plugins/Extensions/AirPlayer/Skins/Classic/Makefile
+lib/python/Plugins/Extensions/AirPlayer/Skins/Classic/1280x720/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/meta/Makefile
