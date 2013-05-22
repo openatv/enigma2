@@ -57,7 +57,7 @@ config.plugins.airplayer.validationKey = ConfigText(default='', fixed_size=False
 config.plugins.airplayer.stopTVOnPicture = ConfigYesNo(default=True)
 config.plugins.airplayer.allowiOSVolumeControl = ConfigYesNo(default=True)
 config.plugins.airplayer.showStartUpInfo = ConfigYesNo(default=False)
-config.plugins.airplayer.useProxyIfPossible = ConfigYesNo(default=True)
+config.plugins.airplayer.useProxyIfPossible = ConfigYesNo(default=False)
 config.plugins.airplayer.allowWakeupFromStandby = ConfigYesNo(default=True)
 config.plugins.airplayer.screensaverEnabled = ConfigYesNo(default=True)
 config.plugins.airplayer.autoUpdate = ConfigYesNo(default=False)
