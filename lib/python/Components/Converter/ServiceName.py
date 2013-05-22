@@ -43,7 +43,10 @@ class ServiceName(Converter, object):
 				num = numservice and numservice.getChannelNum() or None
 				if name is None:
 					name = info.getName()
-				return str(num) + '   ' + name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+				if num is not None:
+					return str(num) + '   ' + name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+				else:
+					return name.replace('\xc2\x86', '').replace('\xc2\x87', '')
 			else:
 				name = ref and info.getName(ref)
 				if name is None:
