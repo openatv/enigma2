@@ -5,7 +5,7 @@ SUBDIRS = SoftwareManager PositionerSetup Satfinder \
 	CommonInterfaceAssignment \
 	FastScan HdmiCEC VideoClippingSetup \
 	VideoEnhancement WirelessLan NetworkWizard \
-	SABnzbdSetup IniFanSetup CableScan
+	SABnzbdSetup IniFanSetup
 
 if XTREND
 SUBDIRS += SatelliteEquipmentControl DiseqcTester
