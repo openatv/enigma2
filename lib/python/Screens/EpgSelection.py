@@ -1,5 +1,6 @@
 from Screen import Screen
 from Screens.HelpMenu import HelpableScreen
+from Components.About import about
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.Button import Button
 from Components.config import config, configfile, ConfigClock
@@ -37,7 +38,7 @@ class EPGSelection(Screen, HelpableScreen):
 	REMOVE_TIMER = 2
 	ZAP = 1
 
-	def __init__(self, session, service = None, zapFunc = None, eventid = None, bouquetChangeCB=None, serviceChangeCB = None, EPGtype = None, StartBouquet = None, StartRef = None, bouquets=None):
+	def __init__(self, session, service = None, zapFunc = None, eventid = None, bouquetChangeCB=None, serviceChangeCB = None, EPGtype = None, StartBouquet = None, StartRef = None, bouquets = None):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.zapFunc = zapFunc
@@ -368,9 +369,12 @@ class EPGSelection(Screen, HelpableScreen):
 		self.refreshTimer.timeout.get().append(self.refreshlist)
 		self.listTimer = eTimer()
 		self.listTimer.callback.append(self.hidewaitingtext)
-		self.createTimer = eTimer()
-		self.createTimer.callback.append(self.onCreate)
-		self.onLayoutFinish.append(self.LayoutFinish)
+		if about.getCPUString() != 'BCM7346B2':
+			self.createTimer = eTimer()
+			self.createTimer.callback.append(self.onCreate)
+			self.onLayoutFinish.append(self.LayoutFinish)
+		else:
+			self.onLayoutFinish.append(self.onCreate)
 
 	def createSetup(self):
 		self.closeEventViewDialog()
@@ -431,7 +435,8 @@ class EPGSelection(Screen, HelpableScreen):
 		self.createTimer.start(800)
 
 	def onCreate(self):
-		self.createTimer.stop()
+		if about.getCPUString() != 'BCM7346B2':
+			self.createTimer.stop()
 		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		title = None
 		self['list'].recalcEntrySize()
