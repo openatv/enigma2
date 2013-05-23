@@ -78,10 +78,10 @@ public:
 	RESULT setFastForward(int ratio);
 
 		// iSubtitleOutput
-	RESULT enableSubtitles(eWidget *parent, SWIG_PYOBJECT(ePyObject) entry);
-	RESULT disableSubtitles(eWidget *parent);
-	PyObject *getSubtitleList();
-	PyObject *getCachedSubtitle();
+	RESULT enableSubtitles(iSubtitleUser *user, SubtitleTrack &track);
+	RESULT disableSubtitles();
+	RESULT getSubtitleList(std::vector<SubtitleTrack> &sublist);
+	RESULT getCachedSubtitle(SubtitleTrack &track);
 
 		// iSeekableService
 	RESULT getLength(pts_t &len);
@@ -129,7 +129,7 @@ private:
 
 	struct ddvd *m_ddvdconfig;
 	ePtr<gPixmap> m_pixmap;
-	eSubtitleWidget *m_subtitle_widget;
+	iSubtitleUser *m_subtitle_widget;
 
 	enum
 	{
