@@ -236,6 +236,15 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+#if KEY_LIST_TO_KEY_PVR
+	if (ev->code == KEY_LIST)
+	{
+		/* HDx , which sends KEY_LIST events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_PVR;
+		
+	}
+#endif
+
 #if KEY_INFO_TO_KEY_EPG
  /* INFO to EPG Toggle , which sends KEY_INFO events. Correct this, so we do not have to place hacks in the keymaps. */
  if (ev->code == KEY_INFO)
