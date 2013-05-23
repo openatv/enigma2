@@ -147,8 +147,12 @@ class Picon(Renderer):
 				pngname = self.nopicon
 			if self.pngname != pngname:
 				if pngname:
-					self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#00000000"))
-					self.PicLoad.startDecode(pngname)
+					if getBoxType().startswith("venton"):
+						self.instance.setPixmapFromFile(pngname)
+						self.instance.show()
+					else:	
+						self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#00000000"))
+						self.PicLoad.startDecode(pngname)
 				else:
 					self.instance.hide()
 				self.pngname = pngname
