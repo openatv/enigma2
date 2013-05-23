@@ -31,7 +31,7 @@ typedef enum
 	GST_PLAY_FLAG_NATIVE_AUDIO  = 0x00000020,
 	GST_PLAY_FLAG_NATIVE_VIDEO  = 0x00000040,
 	GST_PLAY_FLAG_DOWNLOAD      = 0x00000080,
-	GST_PLAY_FLAG_BUFFERING     = 0x000000100
+	GST_PLAY_FLAG_BUFFERING     = 0x00000100
 } GstPlayFlags;
 
 // eServiceFactoryMP3
@@ -743,7 +743,6 @@ RESULT eServiceMP3::seekTo(pts_t to)
 
 	if (m_gst_playbin)
 	{
-		m_subtitle_pages.clear();
 		m_prev_decoder_time = -1;
 		m_decoder_time_valid_state = 0;
 		ret = seekToImpl(to);
@@ -789,7 +788,6 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 		}
 	}
 
-	m_subtitle_pages.clear();
 	m_prev_decoder_time = -1;
 	m_decoder_time_valid_state = 0;
 	return 0;
@@ -2041,6 +2039,8 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 
 void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 {
+	uint32_t start_ms, end_ms;
+
 	if (buffer && m_currentSubtitleStream >= 0 && m_currentSubtitleStream < (int)m_subtitleStreams.size())
 	{
 		gint64 buf_pos = GST_BUFFER_TIMESTAMP(buffer);
@@ -2064,22 +2064,18 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 					convert_fps = subtitle_fps / (double)m_framerate;
 
 				unsigned char line[len+1];
-				SubtitlePage page;
 #if GST_VERSION_MAJOR < 1
 				memcpy(line, GST_BUFFER_DATA(buffer), len);
 #else
 				gst_buffer_extract(buffer, 0, line, len);
 #endif
 				line[len] = 0;
-				eDebug("got new text subtitle @ buf_pos = %lld ns (in pts=%lld): '%s' ", buf_pos, buf_pos/11111, line);
-				gRGB rgbcol(0xD0,0xD0,0xD0);
-				page.type = SubtitlePage::Pango;
-				page.pango_page.m_elements.push_back(ePangoSubtitlePageElement(rgbcol, (const char*)line));
-				page.pango_page.m_show_pts = buf_pos / 11111L * convert_fps + delay;
-				page.pango_page.m_timeout = duration_ns / 1000000;
-				m_subtitle_pages.push_back(page);
-				if (m_subtitle_pages.size()==1)
-					pushSubtitles();
+				eDebug("got new text subtitle @ buf_pos = %lld ns (in pts=%lld), dur=%lld: '%s' ", buf_pos, buf_pos/11111, duration_ns, line);
+
+				start_ms = ((buf_pos / 1000000ULL) * convert_fps) + delay;
+				end_ms = start_ms + (duration_ns / 1000000ULL);
+				m_subtitle_pages.insert(subtitle_pages_map_pair_t(end_ms, subtitle_page_t(start_ms, end_ms, (const char *)line)));
+				m_subtitle_sync_timer->start(1, true);
 			}
 			else
 			{
@@ -2091,57 +2087,109 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 
 void eServiceMP3::pushSubtitles()
 {
-	while ( !m_subtitle_pages.empty() )
+	pts_t running_pts = 0;
+	int32_t next_timer = 0, decoder_ms, start_ms, end_ms, diff_start_ms, diff_end_ms;
+	subtitle_pages_map_t::iterator current;
+
+	// wait until clock is stable
+
+	if (getPlayPosition(running_pts) < 0)
+		m_decoder_time_valid_state = 0;
+
+	if (m_decoder_time_valid_state < 4)
 	{
-		SubtitlePage &frontpage = m_subtitle_pages.front();
-		pts_t running_pts = 0;
-		gint64 diff_ms = 0;
-		gint64 show_pts = 0;
+		m_decoder_time_valid_state++;
 
-		if (getPlayPosition(running_pts) < 0)
-		{
+		if (m_prev_decoder_time == running_pts)
 			m_decoder_time_valid_state = 0;
-		}
-		if (m_decoder_time_valid_state < 4) {
-			++m_decoder_time_valid_state;
-			if (m_prev_decoder_time == running_pts)
-				m_decoder_time_valid_state = 0;
-			if (m_decoder_time_valid_state < 4) {
-				m_subtitle_sync_timer->start(50, true);
-				m_prev_decoder_time = running_pts;
-				break;
-			}
+
+		if (m_decoder_time_valid_state < 4)
+		{
+			//eDebug("*** push subtitles, waiting for clock to stabilise");
+			m_prev_decoder_time = running_pts;
+			next_timer = 50;
+			goto exit;
 		}
 
-		if (frontpage.type == SubtitlePage::Pango)
-			show_pts = frontpage.pango_page.m_show_pts;
-
-		diff_ms = ( show_pts - running_pts ) / 90;
-		eDebug("check subtitle: decoder: %lld, show_pts: %lld, diff: %lld ms", running_pts/90, show_pts/90, diff_ms);
-
-		if ( diff_ms < -100 )
-		{
-			eDebug("subtitle too late... drop");
-			m_subtitle_pages.pop_front();
-		}
-		else if ( diff_ms > 20 )
-		{
-			eDebug("start timer, %lldms", diff_ms);
-			m_subtitle_sync_timer->start(diff_ms, true);
-			break;
-		}
-		else // immediate show
-		{
-			if ( m_subtitle_widget )
-			{
-				eDebug("show!\n");
-				if ( frontpage.type == SubtitlePage::Pango)
-					m_subtitle_widget->setPage(frontpage.pango_page);
-				m_subtitle_widget->show();
-			}
-			m_subtitle_pages.pop_front();
-		}
+		//eDebug("*** push subtitles, clock stable");
 	}
+
+	decoder_ms = running_pts / 90;
+
+#if 0
+		eDebug("\n*** all subs: ");
+
+		for (current = m_subtitle_pages.begin(); current != m_subtitle_pages.end(); current++)
+		{
+			start_ms = current->second.start_ms;
+			end_ms = current->second.end_ms;
+			diff_start_ms = start_ms - decoder_ms;
+			diff_end_ms = end_ms - decoder_ms;
+
+			eDebug("    start: %d, end: %d, diff_start: %d, diff_end: %d: %s",
+					start_ms, end_ms, diff_start_ms, diff_end_ms, current->second.text.c_str());
+		}
+
+		eDebug("\n\n");
+#endif
+
+	for (current = m_subtitle_pages.lower_bound(decoder_ms); current != m_subtitle_pages.end(); current++)
+	{
+		start_ms = current->second.start_ms;
+		end_ms = current->second.end_ms;
+		diff_start_ms = start_ms - decoder_ms;
+		diff_end_ms = end_ms - decoder_ms;
+
+#if 0
+		eDebug("*** next subtitle: decoder: %d, start: %d, end: %d, duration_ms: %d, diff_start: %d, diff_end: %d : %s",
+			decoder_ms, start_ms, end_ms, end_ms - start_ms, diff_start_ms, diff_end_ms, current->second.text.c_str());
+#endif
+
+		if (diff_end_ms < 0)
+		{
+			//eDebug("*** current sub has already ended, skip: %d\n", diff_end_ms);
+			continue;
+		}
+
+		if (diff_start_ms > 20)
+		{
+			//eDebug("*** current sub in the future, start timer, %d\n", diff_start_ms);
+			next_timer = diff_start_ms;
+			goto exit;
+		}
+
+		// showtime
+
+		if (m_subtitle_widget)
+		{
+			//eDebug("*** current sub actual, show!");
+
+			ePangoSubtitlePage pango_page;
+			gRGB rgbcol(0xD0,0xD0,0xD0);
+
+			pango_page.m_elements.push_back(ePangoSubtitlePageElement(rgbcol, current->second.text.c_str()));
+			pango_page.m_show_pts = start_ms * 90;			// actually completely unused by widget!
+			pango_page.m_timeout = end_ms - decoder_ms;		// take late start into account
+
+			m_subtitle_widget->setPage(pango_page);
+			m_subtitle_widget->show();
+		}
+
+		//eDebug("*** no next sub scheduled, check NEXT subtitle");
+	}
+
+	// no more subs in cache, fall through
+
+exit:
+	if (next_timer == 0)
+	{
+		//eDebug("*** next timer = 0, set default timer!");
+		next_timer = 1000;
+	}
+
+	m_subtitle_sync_timer->start(next_timer, true);
+
+	eDebug("\n\n");
 }
 
 RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
@@ -2162,6 +2210,7 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 	if (m_currentSubtitleStream != pid)
 	{
 		g_object_set (G_OBJECT (m_gst_playbin), "current-text", -1, NULL);
+		m_subtitle_sync_timer->stop();
 		m_subtitle_pages.clear();
 		m_prev_decoder_time = -1;
 		m_decoder_time_valid_state = 0;
@@ -2198,6 +2247,7 @@ RESULT eServiceMP3::disableSubtitles(eWidget *parent)
 	m_currentSubtitleStream = -1;
 	m_cachedSubtitleStream = m_currentSubtitleStream;
 	g_object_set (G_OBJECT (m_gst_playbin), "current-text", m_currentSubtitleStream, NULL);
+	m_subtitle_sync_timer->stop();
 	m_subtitle_pages.clear();
 	m_prev_decoder_time = -1;
 	m_decoder_time_valid_state = 0;

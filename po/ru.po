@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-29 22:11+0100\n"
-"PO-Revision-Date: 2013-05-05 13:51+0100\n"
+"POT-Creation-Date: 2013-05-20 15:00+0100\n"
+"PO-Revision-Date: 2013-05-22 16:21+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: RU locale edited by Sowa\n"
 "Language: ru_RU\n"
@@ -12,6 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.5.5\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
 "\n"
@@ -46,14 +47,14 @@ msgid ""
 "Manage extensions or plugins for your STB_BOX"
 msgstr ""
 "\n"
-"Управление расширениями и плагинами для STB_BOX"
+"Управление расширениями и плагинами STB_BOX"
 
 msgid ""
 "\n"
 "Online update of your STB_BOX software."
 msgstr ""
 "\n"
-"Онлайн обновление прошивки STB_BOX"
+"Онлайн обновление ПО STB_BOX"
 
 msgid ""
 "\n"
@@ -67,14 +68,14 @@ msgid ""
 "Restore your STB_BOX settings."
 msgstr ""
 "\n"
-"Восстановить настройки STB_BOX"
+"Восстановление настроек STB_BOX"
 
 msgid ""
 "\n"
 "Restore your STB_BOX with a new firmware."
 msgstr ""
 "\n"
-"Восстановить STB_BOX с новой прошивкой"
+"Восстановление STB_BOX новой прошивкой"
 
 msgid ""
 "\n"
@@ -187,9 +188,9 @@ msgstr[2] "%d мин"
 #, python-format
 msgid "%d channel found"
 msgid_plural "%d channels found"
-msgstr[0] "%d сервис найден!"
-msgstr[1] "%d сервиса найдено!"
-msgstr[2] "%d сервисов найдено!"
+msgstr[0] "%d канал найден!"
+msgstr[1] "%d канала найдено!"
+msgstr[2] "%d каналов найдено!"
 
 #, python-format
 msgid "%d hour"
@@ -215,7 +216,7 @@ msgstr "%d кБ"
 
 #, python-format
 msgid "%d min"
-msgstr "%d минут"
+msgstr "%d мин"
 
 #, python-format
 msgid "%d minute"
@@ -239,7 +240,7 @@ msgstr[2] "%d секунд"
 msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
 msgstr[0] "%d беспроводная сеть найдена!"
-msgstr[1] "%d беспроводных сети найдено!"
+msgstr[1] "%d беспроводные сети найдено!"
 msgstr[2] "%d беспроводных сетей найдено!"
 
 msgid "%d-%m"
@@ -250,7 +251,7 @@ msgstr "%d.%B %Y"
 
 #. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
 msgid "%k:%M %e/%m"
-msgstr "%k:%M %e/%m"
+msgstr "%k:%M %e.%m"
 
 #, python-format
 msgid "%s (%s)\n"
@@ -259,14 +260,14 @@ msgstr "%s (%s)\n"
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
-msgstr "% sспутник давно не используется. Удалить его?"
+msgstr "%s спутник больше не используется. Удалить его?"
 
 #, python-format
 msgid "%s updated package available"
 msgid_plural "%s updated packages available"
-msgstr[0] "%s обновленный пакет найден"
-msgstr[1] "%s обновленных пакета найдено"
-msgstr[2] "%s обновленных пакетов найдено"
+msgstr[0] "%s пакет доступен для обновления"
+msgstr[1] "%s пакета доступно для обновления"
+msgstr[2] "%s пакетов доступно для обновления"
 
 #, python-format
 msgid "%s%d min"
@@ -287,13 +288,13 @@ msgid "(Show only reader:"
 msgstr "(Показать только ридер:"
 
 msgid "(ZAP)"
-msgstr "(Перекл.)"
+msgstr "(Перейти)"
 
 msgid "(empty)"
 msgstr "(пусто)"
 
 msgid "(show optional DVD audio menu)"
-msgstr "(показать опционально аудио меню DVD)"
+msgstr "(опционально, показать аудио меню DVD)"
 
 msgid "* = Restart Required"
 msgstr "* Требуется перезапуск"
@@ -323,19 +324,19 @@ msgid "16:10"
 msgstr "16:10"
 
 msgid "16:10 Letterbox"
-msgstr "16:10 Letterbox"
+msgstr "Режим прямоугльника 16:10"
 
 msgid "16:10 PanScan"
-msgstr "16:10 PanScan"
+msgstr "16:10 Панорама"
 
 msgid "16:9"
 msgstr "16:9"
 
 msgid "16:9 Letterbox"
-msgstr "16:9 Letterbox"
+msgstr "Режим прямоугльника 16:9"
 
 msgid "16:9 always"
-msgstr "Постоянно 16:9"
+msgstr "Всегда 16:9"
 
 msgid "18 V"
 msgstr "18V"
@@ -344,7 +345,7 @@ msgid "1X"
 msgstr "1X"
 
 msgid "1st Infobar timeout"
-msgstr "Показ 1-й инфопанели"
+msgstr "Время показа 1-й инфопанели"
 
 msgid "23.976"
 msgstr "23.976"
@@ -383,10 +384,10 @@ msgid "4:3"
 msgstr "4:3"
 
 msgid "4:3 Letterbox"
-msgstr "4:3 Letterbox"
+msgstr "Режим прямоугльника 4:3"
 
 msgid "4:3 PanScan"
-msgstr "4:3 PanScan"
+msgstr "4:3 Панорама"
 
 msgid "4X"
 msgstr "4X"
@@ -401,7 +402,7 @@ msgid "<Last timer location>"
 msgstr "<Расположение последней записи>"
 
 msgid "<unknown>"
-msgstr "<неизвестно>"
+msgstr "<неизвестный>"
 
 msgid "??"
 msgstr "??"
@@ -457,14 +458,14 @@ msgstr ""
 "в режим полного ожидания. Сделать это сейчас?"
 
 msgid "A graphical EPG for all services of an specific bouquet"
-msgstr "Графический телегид для всех сервисов в букете"
+msgstr "Графический телегид для всех каналов в букете"
 
 #, python-format
 msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
-"Запись начата:\n"
+"Время начала записи:\n"
 "%s"
 
 msgid ""
@@ -517,14 +518,14 @@ msgstr ""
 "в режим полного ожидания. Сделать это сейчас?"
 
 msgid "A small overview of the available icon states and actions."
-msgstr "Небольшой обзор доступных иконок и действий"
+msgstr "Небольшой обзор доступных состояний иконок и действий"
 
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
 msgstr ""
 "Таймер прервал запись!\n"
-"Отключить TV и повторить снова?\n"
+"Отключить ТВ и повторить снова?\n"
 
 msgid "A/V settings"
 msgstr "Настройки Звука/Видео"
@@ -576,13 +577,13 @@ msgid "Activate Picture in Picture"
 msgstr "Включить картинку в картинке"
 
 msgid "Activate current configuration"
-msgstr "активировать текущие настройки"
+msgstr "Активировать текущие настройки"
 
 msgid "Activate network settings"
 msgstr "Применить настройки сети"
 
 msgid "Activate the configured network settings."
-msgstr "Применить настроенные параметры сети."
+msgstr "Применить заданные параметры сети."
 
 msgid "Active"
 msgstr "Активный"
@@ -597,7 +598,7 @@ msgid "Add"
 msgstr "Добавить"
 
 msgid "Add AutoTimer"
-msgstr "Добавить АвтоТаймер"
+msgstr "Добавить АТ"
 
 msgid "Add Timer"
 msgstr "Добавить Таймер"
@@ -609,7 +610,7 @@ msgid "Add a mark"
 msgstr "Добавить метку"
 
 msgid "Add a nameserver entry"
-msgstr "добавить DNS сервер"
+msgstr "Добавить DNS сервер"
 
 msgid "Add a new title"
 msgstr "Добавить новое название"
@@ -627,19 +628,19 @@ msgid "Add a zap timer for next event"
 msgstr "Добавить Таймер для следующего события (переключить)"
 
 msgid "Add bookmark"
-msgstr "добавить закладку"
+msgstr "Добавить закладку"
 
 msgid "Add directory to playlist"
-msgstr "добавить каталог в список воспроизведения"
+msgstr "Добавить каталог в список воспроизведения"
 
 msgid "Add file to playlist"
-msgstr "добавить файл в список воспроизведения"
+msgstr "Добавить файл в список воспроизведения"
 
 msgid "Add files to playlist"
-msgstr "добавить файлы в список воспроизведения"
+msgstr "Добавить файлы в список воспроизведения"
 
 msgid "Add provider"
-msgstr "добавить провайдера"
+msgstr "Добавить провайдера"
 
 msgid "Add recording (enter recording duration)"
 msgstr "Добавить запись (введите продолжительность записи)"
@@ -654,7 +655,7 @@ msgid "Add recording (stop after current event)"
 msgstr "Добавить запись (стоп после текущего события)"
 
 msgid "Add service"
-msgstr "добавить сервис"
+msgstr "Добавить канал"
 
 msgid "Add timer"
 msgstr "Добавить таймер"
@@ -687,10 +688,10 @@ msgid "Adjust 3D settings"
 msgstr "Регулировка настроек 3D"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
-msgstr "Настройте параметры цвета так, чтобы все оттенки цветов были видны максимально, насколько это возможно. Если вы довольны результатом, нажмите кнопку ОК для закрытия видео настроек, или используйте цифровые клавиши для выбора других тестовых экранов."
+msgstr "Настройте параметры цвета так, чтобы все оттенки цветов были максимально видны, насколько это возможно. Если вы довольны результатом, нажмите кнопку ОК для закрытия видео настроек, или используйте цифровые клавиши для выбора других тестовых экранов."
 
 msgid "Advanced options"
-msgstr "Дополнительные настройки"
+msgstr "Расширенные настройки"
 
 msgid "Advanced restore"
 msgstr "Расширенное восстановление"
@@ -720,10 +721,10 @@ msgid "Alignment of events"
 msgstr "Расположение событий"
 
 msgid "Alignment of service names"
-msgstr "Расположение имен сервисов"
+msgstr "Расположение имен каналов"
 
 msgid "All"
-msgstr "Всё"
+msgstr "Все"
 
 msgid "All ages"
 msgstr "Все возрасты"
@@ -732,7 +733,7 @@ msgid "All satellites"
 msgstr "Все спутники"
 
 msgid "Allocate"
-msgstr "Захвачен"
+msgstr "Выделить"
 
 msgid "Allocate unused memory index"
 msgstr "Определение не зайдествованных индексов"
@@ -789,7 +790,7 @@ msgid "Alphanumeric"
 msgstr "Буквенно-цифровой"
 
 msgid "Alternative"
-msgstr "Альтернативный"
+msgstr "Альтернативы"
 
 msgid "Alternative numbering mode"
 msgstr "Альтернативный режим нумерации"
@@ -905,7 +906,7 @@ msgid "Assigned CAIds:"
 msgstr "Назначен CAIds:"
 
 msgid "Assigned services/provider:"
-msgstr "Назначены сервисы/провайдеры:"
+msgstr "Назначены каналы/провайдеры:"
 
 msgid "At End:"
 msgstr "В конец:"
@@ -993,6 +994,9 @@ msgstr "Автосканирование"
 
 msgid "Automatic setting backup"
 msgstr "Автосохранение настроек"
+
+msgid "Automatically start timeshift after"
+msgstr "Автоматическое начало сдвига во времени после"
 
 msgid "Automatically update Client/Server View?"
 msgstr "Просмотр автообновления Клиент/Сервер?"
@@ -1268,6 +1272,9 @@ msgstr "Может использоваться для различных час
 msgid "Cancel"
 msgstr "Отмена"
 
+msgid "Cancel save timeshift as movie"
+msgstr "Не сохранять сдвиг времени как видеозапись"
+
 msgid "Cannot delete file"
 msgstr "Не удаётся удалить файл!"
 
@@ -1320,10 +1327,10 @@ msgid "Change repeat and delay settings?"
 msgstr "Измененить настройки повтора и задержки?"
 
 msgid "Change service PIN"
-msgstr "Изменить PIN сервиса"
+msgstr "Изменить PIN канала"
 
 msgid "Change service PINs"
-msgstr "Изменить PINs сервиса"
+msgstr "Изменить PIN-ы каналов"
 
 msgid "Change setup PIN"
 msgstr "Изменить настройки PIN"
@@ -1605,7 +1612,7 @@ msgid "Configure how recording filenames are constructed."
 msgstr "Настройка метода построения имен файлов записей."
 
 msgid "Configure if and how service type icons will be shown."
-msgstr "Настроить, какие и если будут показаны иконки типов сервисов."
+msgstr "Настроить, какие и если будут показаны иконки типов каналов."
 
 msgid "Configure interface"
 msgstr "Настройка интерфейса"
@@ -1787,8 +1794,11 @@ msgstr "Настройте тип иконки - индикатора состо
 msgid "Configure the vertical position of the subtitles, measured from the bottom of the screen."
 msgstr "Настройка вертикального положения субтитров, измерение от нижней части экрана."
 
+msgid "Configure the width allocated to the picon."
+msgstr "Настройте ширину места отведенного под пикон."
+
 msgid "Configure the width allocated to the service name."
-msgstr "Настройте ширину места отведенного под наименование сервиса."
+msgstr "Настройте ширину места отведенного под наименование канала."
 
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Выберите отображение в EPG - названия каналов, пиконы или всё вместе"
@@ -1902,13 +1912,6 @@ msgstr "Копирование файлов"
 msgid "Cores:\t%s"
 msgstr "Ядер:\t%s"
 
-msgid ""
-"Could not activate Permanent-Timeshift!\n"
-"Timeshift-Path does not exist"
-msgstr ""
-"Невозможно акивировать постоянный сдвиг времени!\n"
-"не указано конечное расположение"
-
 msgid "Could not connect to STB_BOX .NFI image feed server:"
 msgstr "Не удалось подключить STB_BOX к серверу прошивок ресивера:"
 
@@ -1931,7 +1934,7 @@ msgstr "Не удалось выполнить запись из-за конфл
 
 #, python-format
 msgid "Could not record due to invalid service %s"
-msgstr "Не удалось выполнить запись из-за неверного сервиса %s"
+msgstr "Не удалось выполнить запись из-за неверного канала %s"
 
 #, python-format
 msgid "Could not save configfile %s!"
@@ -2441,9 +2444,6 @@ msgstr "Вы желаете обновить пакет:\n"
 msgid "Don't save"
 msgstr "Не сохранять"
 
-msgid "Don't save Timeshift as Movie"
-msgstr "Не сохранять сдвиг времени как видеозапись"
-
 msgid "Don't stop current event but disable coming events"
 msgstr "Не останавливать текущее событие, но отключить ближайшие события"
 
@@ -2558,7 +2558,7 @@ msgid "Edit chapters of current title"
 msgstr "Редактировать главы текущего заголовка"
 
 msgid "Edit services list"
-msgstr "Редактировать список сервисов"
+msgstr "Редактировать список каналов"
 
 msgid "Edit settings"
 msgstr "Изменить настройки"
@@ -2596,9 +2596,6 @@ msgstr "Включить 5V для антенны"
 msgid "Enable EIT EPG"
 msgstr "Включить EIT EPG"
 
-msgid "Enable frozen check ?"
-msgstr "Включить прверку на 'замораживание'?"
-
 msgid "Enable MHW EPG"
 msgstr "Включить MHW EPG"
 
@@ -2616,9 +2613,6 @@ msgstr "Включить Freesat EPG"
 
 msgid "Enable multiple bouquets"
 msgstr "Включить мультибукеты"
-
-msgid "Enable or disable Permanent Timeshift. When activated, you can wind back until the time you zapped to a channel, and you can make recordings in retrospect."
-msgstr "Включение или отключение постоянного сдвига времени. При включении вы не пропустите ничего из трансляции, а так же сможете делать отложенные записи."
 
 msgid "Enable panic button"
 msgstr "Включить тревожную кнопку"
@@ -2669,7 +2663,7 @@ msgid "Enter pin code"
 msgstr "Введите pin код"
 
 msgid "Enter the service pin"
-msgstr "Введите pin-код для сервиса"
+msgstr "Введите pin-код для канала"
 
 msgid "Enter your email address to send a copy of the log to."
 msgstr "Введите свой адрес электронной почты для отправки копии отчёта."
@@ -2834,9 +2828,6 @@ msgstr "Заводские настройки"
 msgid "Failed"
 msgstr "Неудачно"
 
-msgid "Failed to remove old files."
-msgstr "Не удалось удалить старые файлы"
-
 msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "Не удалось записать /tmp/positionersetup.log:"
 
@@ -2978,9 +2969,6 @@ msgstr "Из:"
 msgid "Frontprocessor version: %d"
 msgstr "Версия фронтпроцессора: %d"
 
-msgid "Frozen check interval"
-msgstr "Интервал проверки (мин)"
-
 msgid "Ftpd service type: Vsftpd server"
 msgstr "Тип Ftpd сервиса: Vsftpd сервер"
 
@@ -3043,22 +3031,22 @@ msgid "Go to first movie or top of list"
 msgstr "Переход к первой записи или в верхнюю часть списка"
 
 msgid "Go to first service"
-msgstr "Перейти к первому сервису"
+msgstr "Перейти к первому каналу"
 
 msgid "Go to last service"
-msgstr "Перейти к последнему сервису"
+msgstr "Перейти к последнему каналу"
 
 msgid "Go to next event"
 msgstr "Перейти к следующему событию"
 
 msgid "Go to next page of service"
-msgstr "Перейти на следующую страницу сервиса"
+msgstr "Перейти на следующую страницу канала"
 
 msgid "Go to previous event"
 msgstr "Перейти к предыдущему событию"
 
 msgid "Go to previous page of service"
-msgstr "Перейти к предыдущей странице сервиса"
+msgstr "Перейти к предыдущей странице канала"
 
 msgid "Go up the list"
 msgstr "Переход вверх по списку"
@@ -3294,9 +3282,6 @@ msgstr "Время простоя:"
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Если отчёты об ошибках полностью заполнят выделенное место, старые отчёты будут удалены"
 
-msgid "If set to 'yes' a special seekbar is available during timeshift."
-msgstr "Если выбрано 'Да', то шкала поиска будет доступна при использовании сдвига времени."
-
 msgid "If set to 'yes' channels without EPG will not be shown."
 msgstr "Если выбрано 'Да', то каналы без EPG не будут отображены."
 
@@ -3318,6 +3303,9 @@ msgstr "Если выбрано 'Да', то список букетов буд�
 msgid "If set to 'yes' the channel list will be shown after switching between radio and TV modes."
 msgstr "Если выбрано 'Да', то список каналов будет показан после переключения между режимами Радио и ТВ."
 
+msgid "If set to 'yes' the channel number will be displayed in the infobar."
+msgstr "Если выбрано 'Да', то инфопанель будет отображаться при смене текущего события."
+
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
 msgstr "Если выбрано 'Да', то инфопанель будет отображаться при смене текущего события."
 
@@ -3329,6 +3317,9 @@ msgstr "Если выбрано 'Да', то просмотр каналов б�
 
 msgid "If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at."
 msgstr "Если выбрано 'Да', то вы можете просматривать каналы, не закрывая список. Нажмите 'OK', чтобы просмотреть выбранный канал, нажмите повторно 'OK', чтобы переключиться на этот канал, нажмите на 'EXIT' для возврата на текущий канал."
+
+msgid "If set to 'yes', allows you use the seekbar to jump to a point within the event."
+msgstr "Если установлено значение «Да», позволяет использовать поиск для перехода на точку внутри события."
 
 msgid "If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
 msgstr "Если выбрано 'Да', то инфопанель будет отображаться при быстрой перемотке вперед или назад во время воспроизведения."
@@ -3701,7 +3692,7 @@ msgid "Left"
 msgstr "Лево"
 
 msgid "Left from servicename"
-msgstr "Слева от наимен. сервиса"
+msgstr "Слева от наимен. канала"
 
 msgid "Leisure hobbies"
 msgstr "отдых, хобби"
@@ -3750,7 +3741,7 @@ msgid "Link quality:"
 msgstr "Качество соединения:"
 
 msgid "Link:"
-msgstr "Ссылка:"
+msgstr "Подключен:"
 
 msgid "Linked titles with a DVD menu"
 msgstr "Связанные заголовки с меню DVD"
@@ -4317,7 +4308,7 @@ msgid "No satellite frontend found!!"
 msgstr "Не найден спутниковый интерфейс!"
 
 msgid "No service"
-msgstr "Нет сервисов"
+msgstr "Нет каналов"
 
 msgid "No services/providers selected"
 msgstr "Не выбраны Сервисы/Провайдеры"
@@ -4359,8 +4350,8 @@ msgid ""
 "When you say 'No' here the service protection stay disabled!"
 msgstr ""
 "Не найден валидный PIN!\n"
-"Вы хотите изменить PIN сервиса сейчас?\n"
-"Если вы ответите 'НЕТ', то защита сервиса \n"
+"Вы хотите изменить PIN канала сейчас?\n"
+"Если вы ответите 'НЕТ', то защита канала \n"
 "не будет включена!"
 
 msgid ""
@@ -4477,6 +4468,9 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr "Нет файлов для обновления"
 
+msgid "Nothing, just leave this menu"
+msgstr "Ничего, просто выйти из этого меню"
+
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Сейчас:"
@@ -4563,13 +4557,13 @@ msgid "Open satellites list"
 msgstr "Открыть список спутников"
 
 msgid "Open service list"
-msgstr "Открыть список сервисов"
+msgstr "Открыть список каналов"
 
 msgid "Open service list and select next channel"
-msgstr "Открыть список сервисов и выбрать несколько"
+msgstr "Открыть список каналов и выбрать несколько"
 
 msgid "Open service list and select previous channel"
-msgstr "Открыть список сервисов и выбрать предидущий"
+msgstr "Открыть список каналов и выбрать предидущий"
 
 msgid "Open the movie list"
 msgstr "Открыть список фильмов"
@@ -4624,10 +4618,6 @@ msgstr "PMT PID"
 
 msgid "PRIMETIME"
 msgstr "ПРАЙИМТАЙМ"
-
-#, python-format
-msgid "PTS Plugin Error: %s"
-msgstr "PTS ошибка плагина: %s"
 
 msgid "Package list update"
 msgstr "Обновление списка пакетов"
@@ -4717,12 +4707,6 @@ msgstr "Выполните настройки резервного копиро�
 msgid "Perform an online update check in the background"
 msgstr "Выполнять онлайн проверки обновлений в фоновом режиме"
 
-msgid "Permanent Timeshift enable"
-msgstr "Включить постоянный Timeshift"
-
-msgid "Permanent Timeshift start delay"
-msgstr "Задержка старта постоянного Timeshift"
-
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Окончательно удалять записи в Корзину?"
 
@@ -4742,10 +4726,10 @@ msgid "Picon"
 msgstr "Пикон"
 
 msgid "Picon and Service Name"
-msgstr "Пикон и имя сервиса"
+msgstr "Пикон и имя канала"
 
 msgid "Picon and service name"
-msgstr "Пикон и имя сервиса"
+msgstr "Пикон и имя канала"
 
 msgid "Picon width"
 msgstr "Ширина Пикон"
@@ -4803,7 +4787,7 @@ msgid "Play next (return to movie list)"
 msgstr "Воспроизвести следующее (вернуться к списку записей)"
 
 msgid "Play next (return to previous service)"
-msgstr "Воспроизвести следующее (вернуться к предыдущему сервису)"
+msgstr "Воспроизвести следующее (вернуться к предыдущему каналу)"
 
 msgid "Play previous"
 msgstr "Воспроизвести предыдущий"
@@ -4970,6 +4954,9 @@ msgstr "Пожалуйста подождите (обновление пакет
 msgid "Please wait for activation of your network configuration..."
 msgstr "Подождите, применяются ваши сетевые настройки..."
 
+msgid "Please wait while gathering data..."
+msgstr "Пожалуйста, подождите, идёт сбор данных..."
+
 msgid "Please wait while scanning is in progress..."
 msgstr "Пожалуйста, подождите, идет сканирование..."
 
@@ -5085,7 +5072,7 @@ msgid "Prefer AC3 track"
 msgstr "Предпочтение AC3"
 
 msgid "Prefer audio track stored by service"
-msgstr "Сохранить предпочтение выбора аудиопотока для сервиса"
+msgstr "Сохранить предпочтение выбора аудиопотока для канала"
 
 msgid "Prefer graphical DVB subtitles"
 msgstr "Предпочтение  DVB субтитрам"
@@ -5094,7 +5081,7 @@ msgid "Prefer subtitles for hearing impaired"
 msgstr "Предпочтение субтитрам для слабослышащих"
 
 msgid "Prefer subtitles stored by service"
-msgstr "Предпочиаемые субтитры сохраняются для сервиса"
+msgstr "Предпочиаемые субтитры сохраняются для канала"
 
 msgid "Preferred tuner"
 msgstr "Предпочитаемый тюнер"
@@ -5191,7 +5178,7 @@ msgid "Properties of current title"
 msgstr "Свойства текущего заголовка"
 
 msgid "Protect services"
-msgstr "Защитить сервисы"
+msgstr "Защитить каналы"
 
 msgid "Protect setup"
 msgstr "Настройка защиты"
@@ -5286,6 +5273,9 @@ msgstr "Действительно выйти из подсервиса быст
 msgid "Really reboot now?"
 msgstr "Действительно перезагрузить сейчас?"
 
+msgid "Really reflash your STB_BOX and reboot now?"
+msgstr "Действительно обновить ПО STB_BOX и перезагрузить сейчас?"
+
 msgid "Really restart now?"
 msgstr "Действительно перезапустить сейчас?"
 
@@ -5353,6 +5343,15 @@ msgstr "Уменьшение масштаба времени"
 msgid "Reenter new PIN"
 msgstr "Повторный ввод нового PIN"
 
+msgid ""
+"Reflash in progress\n"
+"Please wait until your STB_BOX reboots\n"
+"This may take a few minutes"
+msgstr ""
+"Идёт процесс автоматического обновления\n"
+"Пожалуйста, дождитесь перезагрузки STB_BOX\n"
+"Это может занять несколько минут"
+
 msgid "Refresh every (in hours)"
 msgstr "Обновлять каждые (часов)"
 
@@ -5378,7 +5377,7 @@ msgid "Reloading EPG Cache..."
 msgstr "Обновление кэша EPG..."
 
 msgid "Reloading bouquets and services..."
-msgstr "Обновление букетов и сервисов..."
+msgstr "Обновление букетов и каналов..."
 
 msgid "Remaining"
 msgstr "Осталось"
@@ -5387,10 +5386,7 @@ msgid "Remaining & Elapsed"
 msgstr "Осталось / Прошло"
 
 msgid "Remember service PIN"
-msgstr "Сохранить PIN сервиса"
-
-msgid "Reminder, you have chosen to save timeshift file."
-msgstr "Напоминаем, Вы выбрали режим сохранения файла TimeShift."
+msgstr "Сохранить PIN канала"
 
 msgid "Remote box"
 msgstr "Удалённый ресивер"
@@ -5405,7 +5401,7 @@ msgid "Remove Confirmation"
 msgstr "Подтверждение удаления"
 
 msgid "Remove Service"
-msgstr "Удалить сервис"
+msgstr "Удалить канал"
 
 msgid "Remove a mark"
 msgstr "Удалить метку"
@@ -5441,7 +5437,7 @@ msgid "Removing"
 msgstr "Удаление"
 
 msgid "Removing Service"
-msgstr "Удаление сервиса"
+msgstr "Удаление канала"
 
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
@@ -5562,7 +5558,7 @@ msgid "Return to movie list"
 msgstr "Вернуться к списку записей"
 
 msgid "Return to previous service"
-msgstr "Вернуться к предыдущему сервису"
+msgstr "Вернуться к предыдущему каналу"
 
 msgid "Rewind speeds"
 msgstr "Скорость перемотки назад"
@@ -5574,7 +5570,7 @@ msgid "Right"
 msgstr "Правый"
 
 msgid "Right from servicename"
-msgstr "Справа от имени сервиса"
+msgstr "Справа от имени канала"
 
 msgid "Roll-off"
 msgstr "Обкатка"
@@ -5672,12 +5668,6 @@ msgstr "Сохранить"
 msgid "Save EPG"
 msgstr "Сохранить EPG"
 
-msgid "Save Timeshift as Movie and continue recording"
-msgstr "Сохранить сдвиг времени как видеофайл и продолжить запись"
-
-msgid "Save Timeshift as Movie and stop recording"
-msgstr "Сохранить сдвиг времени как видеофайл и остановить запись"
-
 msgid "Save and record"
 msgstr "Сохранить и записать"
 
@@ -5690,11 +5680,11 @@ msgstr "Сохранять каждые (в часах)"
 msgid "Save playlist"
 msgstr "сохранить плейлист"
 
-msgid "Save timeshift file"
-msgstr "Сохранение файлов сдвига времени"
+msgid "Save timeshift as movie and continue recording"
+msgstr "Сохранить сдвиг времени как видеофайл и продолжить запись"
 
-msgid "Save timeshift file in movie directory"
-msgstr "Сохранить файл сдвиг времени в каталог фильмов"
+msgid "Save timeshift as movie and stop recording"
+msgstr "Сохранить сдвиг времени как видеофайл и остановить запись"
 
 msgid "Saving EPG Cache..."
 msgstr "Сохранение кэша EPG..."
@@ -5909,7 +5899,7 @@ msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Выберите кнопки активации панели поиска (длительное нажатие Влево/Вправо или кнопки перемотки)."
 
 msgid "Select service to add..."
-msgstr "Выбор сервиса для добавления..."
+msgstr "Выбор канала для добавления..."
 
 msgid "Select target folder"
 msgstr "Выбор каталога назначения"
@@ -5984,16 +5974,16 @@ msgid "Service"
 msgstr "О канале"
 
 msgid "Service Information"
-msgstr "О сервисе"
+msgstr "О канале"
 
 msgid "Service Name"
-msgstr "Имя сервиса"
+msgstr "Имя канала"
 
 msgid "Service Title mode"
-msgstr "Режим имён сервисов"
+msgstr "Режим имён каналов"
 
 msgid "Service font size"
-msgstr "Размер шрифта сервиса"
+msgstr "Размер шрифта канала"
 
 msgid "Service has been added to the favourites."
 msgstr "Сервис добавлен в избранное."
@@ -6012,7 +6002,7 @@ msgstr ""
 "(Таймаут чтения PMT)"
 
 msgid "Service name"
-msgstr "Имя сервиса"
+msgstr "Имя канала"
 
 msgid "Service name font size"
 msgstr "Размер шрифта имени канала"
@@ -6028,16 +6018,16 @@ msgid "Service number font size"
 msgstr "Размер шрифта номера канала"
 
 msgid "Service reference"
-msgstr "Ссылка сервиса"
+msgstr "Ссылка канала"
 
 msgid "Service scan"
-msgstr "Поиск сервисов"
+msgstr "Поиск каналов"
 
 msgid "Service searching"
-msgstr "Поиск сервисов"
+msgstr "Поиск каналов"
 
 msgid "Service title mode"
-msgstr "Режим имён сервисов"
+msgstr "Режим имён каналов"
 
 msgid ""
 "Service unavailable!\n"
@@ -6047,7 +6037,7 @@ msgstr ""
 "Проверьте настройки тюнера!"
 
 msgid "Service width"
-msgstr "Ширина под имя сервиса"
+msgstr "Ширина под имя канала"
 
 msgid "Services"
 msgstr "Сервисы"
@@ -6150,9 +6140,6 @@ msgstr "Установите желаемое действие на кнопку
 
 msgid "Set voltage and 22KHz"
 msgstr "Установка напряжения и 22 кГц"
-
-msgid "Set what the required action must be when zapping while a timeshift has been set as recording."
-msgstr "Установите необходимые действия при переключении во время работы сдвига времени"
 
 msgid "Sets the root folder of movie list, to remove the '..' from benign shown in that folder."
 msgstr "Устанавливает основной каталог для видеозаписей (Корзина для удалённых файлов также здесь)"
@@ -6290,6 +6277,9 @@ msgstr "Показывать список букетов при запуске"
 msgid "Show bouquet selection menu"
 msgstr "Показать меню выбора букетов"
 
+msgid "Show channel number in infobar"
+msgstr "Отображать номер канала в инфо-баре"
+
 msgid "Show channel numbers in channel selection"
 msgstr "Отображать номер канала в списке"
 
@@ -6372,10 +6362,10 @@ msgid "Show second infobar"
 msgstr "Показывать второй инфо-бар"
 
 msgid "Show service type icons"
-msgstr "Показать иконку типа сервиса"
+msgstr "Показать иконку типа канала"
 
 msgid "Show services beginning with"
-msgstr "Показать сервисы начинающиеся с"
+msgstr "Показать каналы начинающиеся с"
 
 msgid "Show shutdown menu"
 msgstr "Показать Меню выключения"
@@ -6513,7 +6503,7 @@ msgid "Skins"
 msgstr "Скины"
 
 msgid "Skip empty services"
-msgstr "Пропуск пустых сервисов (где нет EPG)"
+msgstr "Пропуск пустых каналов (где нет EPG)"
 
 msgid "Skip internet connection check (disables automatic package installation)"
 msgstr "Пропустить проверку в интернет (отключает автоматическую установку пакетов)"
@@ -6755,6 +6745,9 @@ msgstr "Остановить TimeShift"
 msgid "Stop timeshift while recording?"
 msgstr "Остановить сдвиг времени во время записи?"
 
+msgid "Stop's timeshift being used if a recording is in progress. (adviseable for usb sticks)"
+msgstr "Использовать останов сдвига времени, если идет запись. (рекомендуется для USB-флэшь)"
+
 msgid "Stopped"
 msgstr "Остановка"
 
@@ -6846,7 +6839,7 @@ msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "Переключить проценты/децибелы SNR"
 
 msgid "Swap services"
-msgstr "Обмен сервисов"
+msgstr "Обмен каналов"
 
 msgid "Swedish"
 msgstr "Шведский"
@@ -7052,13 +7045,6 @@ msgstr "PIN успешно изменён!"
 
 msgid "The PIN codes you entered are different."
 msgstr "PIN коды не совпадают!"
-
-msgid ""
-"The Timeshift record was not saved yet!\n"
-"What do you want to do now with the timeshift file?"
-msgstr ""
-"Записываемый файл сдвига времени ещё не сохранён!\n"
-"Что вы хотите с теперь с ним сделать?"
 
 msgid ""
 "The USB stick was prepared to be bootable.\n"
@@ -7535,9 +7521,6 @@ msgstr "Установки сдвига времени (Timeshift)"
 msgid "Timeshift will get saved at end of event!"
 msgstr "Файл сдвига времени будет сохранён по окончании события"
 
-msgid "Timeshift will only start when the start delay time has passed. This prevents numurous very short files when zapping."
-msgstr "Timeshift начнется только, по истечении времени задержки. Это предотвращает создание большого количества очень коротких файлов при переключении."
-
 msgid "Timeshift-save action on zap"
 msgstr "Timeshift-сохранить действие при переключении."
 
@@ -7726,15 +7709,6 @@ msgstr "Калибровка USALS"
 msgid "USB stick wizard"
 msgstr "Мастер USB"
 
-msgid ""
-"Unattended upgrade in progress\n"
-"Please wait until your STB_BOX reboots\n"
-"This may take a few minutes"
-msgstr ""
-"Идёт процесс автоматического обновления\n"
-"Пожалуйста, дождитесь перезагрузки STB_BOX\n"
-"Это может занять несколько минут"
-
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr "Автоматическое обновление без графического интерфейса и перезагрузки системы"
 
@@ -7808,6 +7782,15 @@ msgstr "Модернизация и перезагрузка системы"
 msgid "Upgrade finished."
 msgstr "Модернизация завершена"
 
+msgid ""
+"Upgrade in progress\n"
+"Please wait until your STB_BOX reboots\n"
+"This may take a few minutes"
+msgstr ""
+"Идёт процесс автоматического обновления\n"
+"Пожалуйста, дождитесь перезагрузки STB_BOX\n"
+"Это может занять несколько минут"
+
 msgid "Upgrading"
 msgstr "Модернизация"
 
@@ -7840,9 +7823,6 @@ msgstr "Испольовать информацию MWH в EPG, когда он�
 
 msgid "Use Netmed EPG information when it is available."
 msgstr "Испольовать информацию Netmed в EPG, когда она доступна."
-
-msgid "Use PTS seekbar while timeshifting?"
-msgstr "Использовать PTS панель поиска при работе сдвига времени?"
 
 msgid "Use TV remote control"
 msgstr "Использовать пульт управления ТВ"
@@ -7921,6 +7901,9 @@ msgstr "Использовать эти настройки?"
 
 msgid "Use this video enhancement settings?"
 msgstr "Использовать эти настройки улучшения изображения?"
+
+msgid "Use timeshift seekbar while timeshifting?"
+msgstr "Использовать панель поиска при работе сдвига времени?"
 
 msgid "Use trash can in movielist"
 msgstr "Использовать корзину для списка фильмов"
@@ -8174,9 +8157,6 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS в 4:3"
 
-msgid "Wait please while gathering data..."
-msgstr "Пожалуйста, подождите, идёт сбор данных..."
-
 msgid "Wait please while scanning for devices..."
 msgstr "Пожалуйста, подождите, идёт сканирование устройств..."
 
@@ -8379,6 +8359,9 @@ msgstr "Если эта функция включена, ресивер буде
 msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "Если эта функция включена, приемник будет выбрать AC3 дорожку (если доступно)."
 
+msgid "When enabled, timeshift starts automatically in background after specified time."
+msgstr "Если активно, сдвиг во времени начинается автоматически, в фоновом режиме, после указанного времени."
+
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Если эта функция включена, то используется DHCP для IP конфигурации."
 
@@ -8404,7 +8387,7 @@ msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stre
 msgstr "Когда содержание имеет соотношение сторон 4:3, выбрать, следует ли масштабировать/растянуть картинку."
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
-msgstr "При сканировании сервисов система, как правило, сохраняет любые изменения на транспондерах. Выбирайте 'да', если вы абсолютно уверены, что вы делаете."
+msgstr "При сканировании каналов система, как правило, сохраняет любые изменения на транспондерах. Выбирайте 'да', если вы абсолютно уверены, что вы делаете."
 
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
@@ -8493,12 +8476,6 @@ msgstr "Желтые внешние субтитры"
 msgid "Yes"
 msgstr "Да"
 
-msgid "Yes and save"
-msgstr "Да и сохранить"
-
-msgid "Yes and save in movie dir"
-msgstr "Да, и сохранить в каталог фильмов"
-
 msgid "Yes to all"
 msgstr "Да для всех"
 
@@ -8510,6 +8487,15 @@ msgstr "Да, удалить эту запись"
 
 msgid "Yes, backup my settings!"
 msgstr "Да, сохранить мои настройки!"
+
+msgid "Yes, but don't save timeshift as movie"
+msgstr "Не сохранять сдвиг времени как видеозапись"
+
+msgid "Yes, but save timeshift as movie and continue recording"
+msgstr "Сохранить сдвиг времени как видеофайл и продолжить запись"
+
+msgid "Yes, but save timeshift as movie and stop recording"
+msgstr "Сохранить сдвиг времени как видеофайл и остановить запись"
 
 msgid "Yes, do a manual scan now"
 msgstr "Да, выполнить ручной поиск"
@@ -8595,6 +8581,13 @@ msgid "You have chosen to restore your settings. Enigma2 will restart after rest
 msgstr "Вы выбрали восстановление настроек. Энигма будет перезапущена сразу после восстановления. Нажмите ОК для восстановления."
 
 msgid ""
+"You have chosen to save the current timeshift event, but the event has not yet finished\n"
+"What do you want to do ?"
+msgstr ""
+"Вы выбрали для сохранения сдвиг времени текущего событие, но событие еще не закончено\n"
+"Что вы хотите сделать?"
+
+msgid ""
 "You have not setup your user info in the setup screen\n"
 "Press MENU, and enter your info, then try again"
 msgstr ""
@@ -8617,6 +8610,9 @@ msgid ""
 msgstr ""
 "Вам потребуется компьютер, подсоединенный а Вашему STB_BOX. Если вам необходимы дополнительные инструкции, пожалуйста, посетите сайт http://GiClub.tv.\n"
 "Ваш STB_BOX должен быть остановлен. После выполнения Вами инструкций по обновлению с сайта, новое ПО запросит восстановление Ваших установок. "
+
+msgid "You seem to be in timeshift!"
+msgstr "Кажется, вы режиме TimeShift!"
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr "Вы, кажется, в TimeShift, Вы хотите оставить TimeShift?"
@@ -8789,16 +8785,16 @@ msgid "Zap + Exit"
 msgstr "Переключение + Выход"
 
 msgid "Zap back to previously tuned service?"
-msgstr "Переключить на предыдущий настроенный сервис?"
+msgstr "Переключить на предыдущий настроенный канал?"
 
 msgid "Zap back to service before positioner setup?"
-msgstr "Переключить на предыдущий сервис до начала настройки позиционера?"
+msgstr "Переключить на предыдущий канал до начала настройки позиционера?"
 
 msgid "Zap back to service before satfinder?"
-msgstr "Вернуться к предыдущему сервису до поиска спутника?"
+msgstr "Вернуться к предыдущему каналу до поиска спутника?"
 
 msgid "Zap back to service before tuner setup?"
-msgstr "Вернуться к предыдущему сервису до начала настройки тюнера?"
+msgstr "Вернуться к предыдущему каналу до начала настройки тюнера?"
 
 msgid "Zap focus to Picture in Picture"
 msgstr "Переключить центр Картинки в картинке"
@@ -8846,10 +8842,10 @@ msgid "[move mode]"
 msgstr "[режим перемещения]"
 
 msgid "a gui to assign services/providers to common interface modules"
-msgstr "Выбор сервисов/провайдеров для добавления в CI модули"
+msgstr "Выбор каналов/провайдеров для добавления в CI модули"
 
 msgid "a gui to assign services/providers/caids to common interface modules"
-msgstr "Выбор сервисов/провайдеров/caids для добавления в CI модули"
+msgstr "Выбор каналов/провайдеров/caids для добавления в CI модули"
 
 msgid "abort alternatives edit"
 msgstr "отменить редактирование альтернатив"
@@ -8879,10 +8875,10 @@ msgid "add marker"
 msgstr "добавить маркер"
 
 msgid "add service to bouquet"
-msgstr "добавить сервис к букету"
+msgstr "добавить канал к букету"
 
 msgid "add service to favourites"
-msgstr "добавить сервис к избранному"
+msgstr "добавить канал к избранному"
 
 msgid "add to parental protection"
 msgstr "добавить к родительскому контролю"
@@ -9502,9 +9498,6 @@ msgstr "страница влево"
 msgid "pass"
 msgstr "передать"
 
-msgid "pause"
-msgstr "пауза"
-
 msgid "performing arts"
 msgstr "исполнительские виды искусства"
 
@@ -9656,10 +9649,10 @@ msgid "serious/classical/religious/historical movie/drama"
 msgstr "серьёзное/классическое/религиозное/исторический/драма"
 
 msgid "service PIN"
-msgstr "PIN сервиса"
+msgstr "PIN канала"
 
 msgid "set as startup service"
-msgstr "использовать как начальный сервис после загрузки"
+msgstr "использовать как начальный канал после загрузки"
 
 msgid "setup PIN"
 msgstr "установить PIN"
@@ -9794,7 +9787,7 @@ msgid "stereo"
 msgstr "стерео"
 
 msgid "stop using as startup service"
-msgstr "не использовать как начальный сервис после загрузки"
+msgstr "не использовать как начальный канал после загрузки"
 
 msgid "switch to bookmarks"
 msgstr "переключить на закладки"
@@ -9833,7 +9826,7 @@ msgid "this recording"
 msgstr "записано"
 
 msgid "this service is protected by a parental control pin"
-msgstr "этот сервис защищен PIN-кодом родительского контроля"
+msgstr "этот канал защищен PIN-кодом родительского контроля"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "время переключения, разделы, аудио, информация субтитров"
@@ -9875,7 +9868,7 @@ msgid "unknown"
 msgstr "неизвестный"
 
 msgid "unknown service"
-msgstr "неизвестный сервис"
+msgstr "неизвестный канал"
 
 msgid "unpublished"
 msgstr "неопубликованный"
@@ -10049,6 +10042,13 @@ msgstr "переключено"
 #~ msgid "Continue in background"
 #~ msgstr "Продолжить в фоновом режиме"
 
+#~ msgid ""
+#~ "Could not activate Permanent-Timeshift!\n"
+#~ "Timeshift-Path does not exist"
+#~ msgstr ""
+#~ "Невозможно акивировать постоянный сдвиг времени!\n"
+#~ "не указано конечное расположение"
+
 #~ msgid "D"
 #~ msgstr "D"
 
@@ -10066,6 +10066,18 @@ msgstr "переключено"
 #~ msgid "EPG selection"
 #~ msgstr "Выбор EPG"
 
+#~ msgid "Enable frozen check ?"
+#~ msgstr "Включить прверку на 'замораживание'?"
+
+#~ msgid ""
+#~ "Enable or disable Permanent Timeshift. When activated, you can wind back "
+#~ "until the time you zapped to a channel, and you can make recordings in "
+#~ "retrospect."
+#~ msgstr ""
+#~ "Включение или отключение постоянного сдвига времени. При включении вы не "
+#~ "пропустите ничего из трансляции, а так же сможете делать отложенные "
+#~ "записи."
+
 #~ msgid "Enable timer"
 #~ msgstr "Включить таймер"
 
@@ -10080,8 +10092,19 @@ msgstr "переключено"
 #~ msgid "Experimental"
 #~ msgstr "Пробный"
 
+#~ msgid "Failed to remove old files."
+#~ msgstr "Не удалось удалить старые файлы"
+
+#~ msgid "Frozen check interval"
+#~ msgstr "Интервал проверки (мин)"
+
 #~ msgid "Hardware:"
 #~ msgstr "Оборудование:"
+
+#~ msgid "If set to 'yes' a special seekbar is available during timeshift."
+#~ msgstr ""
+#~ "Если выбрано 'Да', то шкала поиска будет доступна при использовании "
+#~ "сдвига времени."
 
 #~ msgid "Image:"
 #~ msgstr "Прошивка:"
@@ -10162,9 +10185,18 @@ msgstr "переключено"
 #~ msgid "PIN code needed"
 #~ msgstr "Требуется pin код"
 
+#~ msgid "PTS Plugin Error: %s"
+#~ msgstr "PTS ошибка плагина: %s"
+
 #, fuzzy
 #~ msgid "Parental control services editor"
-#~ msgstr "Редактор сервисов родительского контроля"
+#~ msgstr "Редактор каналов родительского контроля"
+
+#~ msgid "Permanent Timeshift enable"
+#~ msgstr "Включить постоянный Timeshift"
+
+#~ msgid "Permanent Timeshift start delay"
+#~ msgstr "Задержка старта постоянного Timeshift"
 
 #, fuzzy
 #~ msgid "PiP setup"
@@ -10192,11 +10224,20 @@ msgstr "переключено"
 #~ msgid "Release"
 #~ msgstr "Версия"
 
+#~ msgid "Reminder, you have chosen to save timeshift file."
+#~ msgstr "Напоминаем, Вы выбрали режим сохранения файла TimeShift."
+
 #~ msgid "SNR"
 #~ msgstr "SNR"
 
 #~ msgid "SNR:"
 #~ msgstr "SNR:"
+
+#~ msgid "Save timeshift file"
+#~ msgstr "Сохранение файлов сдвига времени"
+
+#~ msgid "Save timeshift file in movie directory"
+#~ msgstr "Сохранить файл сдвиг времени в каталог фильмов"
 
 #~ msgid "Select HDD"
 #~ msgstr "Выбор HDD"
@@ -10222,7 +10263,7 @@ msgstr "переключено"
 
 #, fuzzy
 #~ msgid "Service info"
-#~ msgstr "Информация о сервисе"
+#~ msgstr "Информация о канале"
 
 #~ msgid "Set the maximum length a timeshift file may be."
 #~ msgstr "Установите максимально возможный размер файла сдвига времени."
@@ -10232,6 +10273,13 @@ msgstr "переключено"
 #~ msgstr ""
 #~ "Установите максимальное количество событий (программ) для файла сдвига "
 #~ "времени."
+
+#~ msgid ""
+#~ "Set what the required action must be when zapping while a timeshift has "
+#~ "been set as recording."
+#~ msgstr ""
+#~ "Установите необходимые действия при переключении во время работы сдвига "
+#~ "времени"
 
 #~ msgid "Setup what a long press on the power button does."
 #~ msgstr "Настройка действия при длительном нажатии на кнопку питания"
@@ -10244,6 +10292,13 @@ msgstr "переключено"
 
 #~ msgid "Sleep Timer"
 #~ msgstr "Таймер сна"
+
+#~ msgid ""
+#~ "The Timeshift record was not saved yet!\n"
+#~ "What do you want to do now with the timeshift file?"
+#~ msgstr ""
+#~ "Записываемый файл сдвига времени ещё не сохранён!\n"
+#~ "Что вы хотите с теперь с ним сделать?"
 
 #~ msgid "The sleep timer has been activated."
 #~ msgstr "Таймер сна активирован."
@@ -10261,6 +10316,14 @@ msgstr "переключено"
 
 #~ msgid "Timer status:"
 #~ msgstr "Состояние таймера:"
+
+#~ msgid ""
+#~ "Timeshift will only start when the start delay time has passed. This "
+#~ "prevents numurous very short files when zapping."
+#~ msgstr ""
+#~ "Timeshift начнется только, по истечении времени задержки. Это "
+#~ "предотвращает создание большого количества очень коротких файлов при "
+#~ "переключении."
 
 #~ msgid "Translation:"
 #~ msgstr "Перевод:"
@@ -10281,11 +10344,20 @@ msgstr "переключено"
 #~ msgid "Welcome..."
 #~ msgstr "Добро пожаловать..."
 
+#~ msgid "Yes and save"
+#~ msgstr "Да и сохранить"
+
+#~ msgid "Yes and save in movie dir"
+#~ msgstr "Да, и сохранить в каталог фильмов"
+
 #~ msgid "config menu"
 #~ msgstr "меню конфигурации"
 
 #~ msgid "help..."
 #~ msgstr "помощь..."
+
+#~ msgid "pause"
+#~ msgstr "пауза"
 
 #~ msgid "play from next mark or playlist entry"
 #~ msgstr "воспроизвести, начиная со следующей метки или записи в плейлисте"

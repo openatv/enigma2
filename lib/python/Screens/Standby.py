@@ -142,6 +142,7 @@ class QuitMainloopScreen(Screen):
 			4: _("Your frontprocessor will be upgraded\nPlease wait until your STB_BOX reboots\nThis may take a few minutes"),
 			5: _("The user interface of your STB_BOX is restarting\ndue to an error in mytest.py"),
 			42: _("Unattended upgrade in progress\nPlease wait until your STB_BOX reboots\nThis may take a few minutes"),
+			43: _("Reflash in progress\nPlease wait until your STB_BOX reboots\nThis may take a few minutes"),			
 			44: _("Your front panel will be upgraded\nThis may take a few minutes")}.get(retvalue)
 		self["text"] = Label(text)
 
@@ -183,6 +184,7 @@ class TryQuitMainloop(MessageBox):
 				3: _("Really restart now?"),
 				4: _("Really upgrade the frontprocessor and reboot now?"),
 				42: _("Really upgrade your STB_BOX and reboot now?"),
+				43: _("Really reflash your STB_BOX and reboot now?"),				
 				44: _("Really upgrade the front panel and reboot now?")}.get(retvalue)
 			if text:
 				MessageBox.__init__(self, session, reason+text, type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)

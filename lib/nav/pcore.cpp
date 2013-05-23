@@ -5,13 +5,13 @@
 
 DEFINE_REF(pNavigation);
 
-pNavigation::pNavigation()
+pNavigation::pNavigation(int decoder)
 {
 	ePtr<iServiceHandler> service_center;
 	eServiceCenter::getInstance(service_center);
 
 	ASSERT(service_center);
-	m_core = new eNavigation(service_center);
+	m_core = new eNavigation(service_center, decoder);
 	
 	m_core->connectEvent(slot(*this, &pNavigation::navEvent), m_nav_event_connection);
 	m_core->connectRecordEvent(slot(*this, &pNavigation::navRecordEvent), m_nav_record_event_connection);

@@ -11,6 +11,7 @@ class ServiceName(Converter, object):
 	REFERENCE = 2
 	EDITREFERENCE = 3
 	SID = 4
+	NAME_ONLY = 5	
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -20,6 +21,8 @@ class ServiceName(Converter, object):
 			self.type = self.REFERENCE
 		elif type == "EditReference":
 			self.type = self.EDITREFERENCE
+		elif type == "NameOnly":
+			self.type = self.NAME_ONLY
 		elif type == "Sid":
 			self.type = self.SID
 		else:
@@ -36,15 +39,17 @@ class ServiceName(Converter, object):
 			ref = service
 		if not info:
 			return ""
-		if self.type == self.NAME:
-			if config.usage.show_infobar_channel_number.getValue() and hasattr(self.source, "serviceref"):
+		if self.type == self.NAME or self.type == self.NAME_ONLY:
+			if self.type != self.NAME_ONLY and config.usage.show_infobar_channel_number.getValue() and hasattr(self.source, "serviceref") and self.source.serviceref.toString().find('0:0:0:0:0:0:0:0:0') == -1:
 				name = ref and info.getName(ref)
 				numservice = self.source.serviceref
 				num = numservice and numservice.getChannelNum() or None
-				print 'service.getChannelNum()',numservice.getChannelNum()
 				if name is None:
 					name = info.getName()
-				return str(num) + '   ' + name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+				if num is not None:
+					return str(num) + '   ' + name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+				else:
+					return name.replace('\xc2\x86', '').replace('\xc2\x87', '')
 			else:
 				name = ref and info.getName(ref)
 				if name is None:
