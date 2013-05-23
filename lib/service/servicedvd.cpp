@@ -369,7 +369,7 @@ eServiceDVD::~eServiceDVD()
 	kill();
 	saveCuesheet();
 	ddvd_close(m_ddvdconfig);
-	disableSubtitles(0);
+	disableSubtitles();
 }
 
 RESULT eServiceDVD::connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
@@ -680,32 +680,23 @@ ePtr<iServiceInfoContainer> eServiceDVD::getInfoObject(int w)
 	return retval;
 }
 
-RESULT eServiceDVD::enableSubtitles(eWidget *parent, ePyObject tuple)
+RESULT eServiceDVD::enableSubtitles(iSubtitleUser *user, SubtitleTrack &track)
 {
-	delete m_subtitle_widget;
 	eSize size = eSize(720, 576);
 
-	m_subtitle_widget = new eSubtitleWidget(parent);
-	m_subtitle_widget->resize(parent->size());
+	if (m_subtitle_widget) m_subtitle_widget->destroy();
+	m_subtitle_widget = user;
 
 	int pid = -1;
 
-	if ( tuple != Py_None )
-	{		
-		ePyObject entry;
-		int tuplesize = PyTuple_Size(tuple);
-		if (!PyTuple_Check(tuple))
-			goto error_out;
-		if (tuplesize < 1)
-			goto error_out;
-		entry = PyTuple_GET_ITEM(tuple, 1);
-		if (!PyInt_Check(entry))
-			goto error_out;
-		pid = PyInt_AsLong(entry)-1;
+	if (track.pid >= 0)
+	{
+		pid = track.pid - 1;
 
 		ddvd_set_spu(m_ddvdconfig, pid);
 		m_event(this, evUser+7);
 	}
+
 	eDebug("eServiceDVD::enableSubtitles %i", pid);
 
 	if (!m_pixmap)
@@ -720,50 +711,42 @@ RESULT eServiceDVD::enableSubtitles(eWidget *parent, ePyObject tuple)
 		run(); // start the thread
 	}
 
-	m_subtitle_widget->setZPosition(-1);
-	m_subtitle_widget->show();
-
 	return 0;
-
-error_out:
-	return -1;
 }
 
-RESULT eServiceDVD::disableSubtitles(eWidget */*parent*/)
+RESULT eServiceDVD::disableSubtitles()
 {
-	delete m_subtitle_widget;
+	if (m_subtitle_widget) m_subtitle_widget->destroy();
 	m_subtitle_widget = 0;
 	return 0;
 }
 
-PyObject *eServiceDVD::getSubtitleList()
+RESULT eServiceDVD::getSubtitleList(std::vector<struct SubtitleTrack> &subtitlelist)
 {
-	ePyObject l = PyList_New(0);
 	unsigned int spu_count = 0;
 	ddvd_get_spu_count(m_ddvdconfig, &spu_count);
 
 	for ( unsigned int spu_id = 0; spu_id < spu_count; spu_id++ )
 	{
+		struct SubtitleTrack track;
 		uint16_t spu_lang;
 		ddvd_get_spu_byid(m_ddvdconfig, spu_id, &spu_lang);
 		char spu_string[3]={spu_lang >> 8, spu_lang, 0};
 
-		ePyObject tuple = PyTuple_New(5);
-		PyTuple_SetItem(tuple, 0, PyInt_FromLong(2));
-		PyTuple_SetItem(tuple, 1, PyInt_FromLong(spu_id+1));
-		PyTuple_SetItem(tuple, 2, PyInt_FromLong(5));
-		PyTuple_SetItem(tuple, 3, PyInt_FromLong(0));
-		PyTuple_SetItem(tuple, 4, PyString_FromString(spu_string));
-		PyList_Append(l, tuple);
-		Py_DECREF(tuple);
+		track.type = 2;
+		track.pid = spu_id + 1;
+		track.page_number = 5;
+		track.magazine_number = 0;
+		track.language_code = spu_string;
+		subtitlelist.push_back(track);
 	}
-	return l;
+	return 0;
 }
 
-PyObject *eServiceDVD::getCachedSubtitle()
+RESULT eServiceDVD::getCachedSubtitle(struct SubtitleTrack &track)
 {
 	eDebug("eServiceDVD::getCachedSubtitle nyi");
-	Py_RETURN_NONE;
+	return -1;
 }
 
 RESULT eServiceDVD::getLength(pts_t &len)
