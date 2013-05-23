@@ -321,7 +321,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		
 	def showPORTAL(self):
 		try:
-			from Plugins.Extensions.Mediaportal.plugin import haupt_Screen
+			from Plugins.Extensions.MediaPortal.plugin import haupt_Screen
 			self.session.open(haupt_Screen)
 			no_plugin = False
 		except Exception, e:
