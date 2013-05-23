@@ -103,7 +103,7 @@ ConsoleView_Skin = """
        		  	</screen>"""
 
 PicViewer_Skin="""
-			<screen name="PicViewer" flags="wfNoBorder" position="0,0" size="1280,720" title="EGAMIPicViewer" backgroundColor="#00121214">
+			<screen name="PicViewer" flags="wfNoBorder" position="0,0" size="1280,720" title="PicViewer" backgroundColor="#00121214">
 					<widget name="Picture" position="0,0" size="1280,720" zPosition="1" alphatest="on" />
 			</screen>"""
 			
