@@ -104,6 +104,9 @@ class AutoDiseqc(Screen, ConfigListScreen):
 					if not self.openFrontend():
 						self.frontend = None
 
+		if self.raw_channel:
+			self.raw_channel.receivedTsidOnid.get().append(self.gotTsidOnid)
+
 		self["actions"] = ActionMap(["SetupActions"],
 		{
 			"cancel": self.keyCancel,
@@ -118,6 +121,11 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		self.tunerStatusTimer = eTimer()
 		self.tunerStatusTimer.callback.append(self.tunerStatusCallback)
 		self.startStatusTimer()
+		self.onClose.append(self.__onClose)
+
+	def __onClose(self):
+		if self.raw_channel:
+			self.raw_channel.receivedTsidOnid.get().remove(self.gotTsidOnid)
 
 	def keyCancel(self):
 		self.abort = True
@@ -226,7 +234,6 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		self["tunerstatusbar"].setText(_("Tuner status %s") % (dict["tuner_state"]))
 
 		if dict["tuner_state"] == "LOCKED":
-			self.raw_channel.receivedTsidOnid.get().append(self.gotTsidOnid)
 			self.raw_channel.requestTsidOnid()
 
 		if dict["tuner_state"] == "LOSTLOCK" or dict["tuner_state"] == "FAILED":
