@@ -98,7 +98,7 @@ elif [ $MODEL = "ixussone" ] || [ $MODEL = "ixusszero" ] || [ $MODEL = "ixussduo
 	MAINDEST=$DIRECTORY/medialink/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE
 ## TESTING THE Mixos Models
-elif [ $MODEL = "ebox5000" ] ; then
+elif [ $MODEL = "ebox5000" ] || [ $MODEL = "ebox5100" ]; then
 	TYPE=MIXOS
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"

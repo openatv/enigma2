@@ -96,9 +96,11 @@ class About(Screen):
 		elif getBoxType() == 'iqonios300hd':
 			model = "iqon IOS 300HD"
 		elif getBoxType() == 'xp1000':
-			model = "MK Digital XP1000"
+			model = "XP1000"
 		elif getBoxType() == 'ebox5000':
 			model = "MixOS F5"
+		elif getBoxType() == 'ebox5100':
+			model = "MixOS miniF5"			
 		elif getBoxType() == 'dm500hd':
 			model = "DREAMBOX DM500HD"
 		elif getBoxType() == 'dm800':
@@ -597,9 +599,11 @@ class AboutSummary(Screen):
 		elif getBoxType() == 'iqonios300hd':
 			model = "iqon IOS 300HD"			
 		elif getBoxType() == 'xp1000':
-			model = "MK Digital XP1000"
+			model = "XP1000"
 		elif getBoxType() == 'ebox5000':
 			model = "MixOS F5"
+		elif getBoxType() == 'ebox5100':
+			model = "MixOS miniF5"			
 		elif getBoxType() == 'dm500hd':
 			model = "DREAMBOX DM500HD"
 		elif getBoxType() == 'dm800':
