@@ -2725,6 +2725,7 @@ class InfoBarSubtitleSupport(object):
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evStart: self.__serviceStarted,
+				iPlayableService.evEnd: self.__serviceStarted,
 				iPlayableService.evUpdatedInfo: self.__updatedInfo
 			})
 
@@ -2740,8 +2741,9 @@ class InfoBarSubtitleSupport(object):
 			self.session.open(SubtitleSelection, self)
 
 	def __serviceStarted(self):
-		self.selected_subtitle = None
-		self.subtitle_window.hide()
+		if self.selected_subtitle:
+			self.selected_subtitle = None
+			self.subtitle_window.hide()
 
 	def __updatedInfo(self):
 		if not self.selected_subtitle:
