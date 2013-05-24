@@ -119,6 +119,7 @@ class CableTransponderSearchSupport:
 				self.setCableTransponderSearchResult(None)
 		self.cable_search_container = None
 		self.cable_search_session = None
+		self.symbol_rates = None
 		self.__tlist = None
 		self.cableTransponderSearchFinished()
 
@@ -166,7 +167,10 @@ class CableTransponderSearchSupport:
 					parm.fec_inner = fec[data[3]]
 					parm.modulation = qam[data[4]]
 					parm.inversion = inv[data[5]]
-					self.__tlist.append(parm)
++					for sr in self.symbol_rates:
++						if sr == parm.symbol_rate:
++							self.__tlist.append(parm)
++							break
 				tmpstr = _("Try to find used transponders in cable network.. please wait...")
 				tmpstr += "\n\n"
 				tmpstr += data[1]
@@ -189,6 +193,7 @@ class CableTransponderSearchSupport:
 		self.cable_search_container = eConsoleAppContainer()
 		self.cable_search_container.appClosed.append(self.cableTransponderSearchClosed)
 		self.cable_search_container.dataAvail.append(self.getCableTransponderData)
+		self.symbol_rates = [ ]
 		cableConfig = config.Nims[nim_idx].cable
 		tunername = nimmanager.getNimName(nim_idx)
 		try:
@@ -259,16 +264,20 @@ class CableTransponderSearchSupport:
 			cmd += " --mod 256"
 		if cableConfig.scan_sr_6900.value:
 			cmd += " --sr 6900000"
+			self.symbol_rates.append(6900000)
 		if cableConfig.scan_sr_6875.value:
 			cmd += " --sr 6875000"
+			self.symbol_rates.append(6875000)
 		if cableConfig.scan_sr_ext1.value > 450:
 			cmd += " --sr "
 			cmd += str(cableConfig.scan_sr_ext1.value)
 			cmd += "000"
+			self.symbol_rates.append(cableConfig.scan_sr_ext1.value * 1000)
 		if cableConfig.scan_sr_ext2.value > 450:
 			cmd += " --sr "
 			cmd += str(cableConfig.scan_sr_ext2.value)
 			cmd += "000"
+			self.symbol_rates.append(cableConfig.scan_sr_ext2.value * 1000)
 		print "TDA1002x CMD is", cmd
 
 		self.cable_search_container.execute(cmd)
