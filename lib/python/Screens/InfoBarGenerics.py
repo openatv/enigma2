@@ -2724,8 +2724,8 @@ class InfoBarSubtitleSupport(object):
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
-				iPlayableService.evStart: self.__serviceStarted,
-				iPlayableService.evEnd: self.__serviceStarted,
+				iPlayableService.evStart: self.__serviceChanged,
+				iPlayableService.evEnd: self.__serviceChanged,
 				iPlayableService.evUpdatedInfo: self.__updatedInfo
 			})
 
@@ -2740,7 +2740,7 @@ class InfoBarSubtitleSupport(object):
 			from Screens.AudioSelection import SubtitleSelection
 			self.session.open(SubtitleSelection, self)
 
-	def __serviceStarted(self):
+	def __serviceChanged(self):
 		if self.selected_subtitle:
 			self.selected_subtitle = None
 			self.subtitle_window.hide()
