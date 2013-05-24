@@ -2744,10 +2744,11 @@ class InfoBarSubtitleSupport(object):
 		self.subtitle_window.hide()
 
 	def __updatedInfo(self):
-		subtitle = self.getCurrentServiceSubtitle()
-		cachedsubtitle = subtitle.getCachedSubtitle()
-		if cachedsubtitle:
-			self.enableSubtitle(cachedsubtitle)
+		if not self.selected_subtitle:
+			subtitle = self.getCurrentServiceSubtitle()
+			cachedsubtitle = subtitle.getCachedSubtitle()
+			if cachedsubtitle:
+				self.enableSubtitle(cachedsubtitle)
 
 	def enableSubtitle(self, selectedSubtitle):
 		subtitle = self.getCurrentServiceSubtitle()
