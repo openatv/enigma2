@@ -55,7 +55,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),
 				"showSetup": (self.showSetup, _("Show setup...")),
-				"showPiP": (self.showPiP, _("Open Pip...")),
 				"showWWW": (self.showWWW, _("Open WebBrowser...")),
 				"showLanSetup": (self.showLanSetup, _("Show LAN Setup...")),
 				"showFormat": (self.showFormat, _("Show Format Setup...")),
@@ -213,27 +212,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def showLanSetup(self):
 		from Screens.NetworkSetup import NetworkAdapterSelection
 		self.session.open(NetworkAdapterSelection)
-					
-	def showPiP(self):
-		service = self.session.nav.getCurrentService()
-		info = service and service.info()
-		xres = str(info.getInfo(enigma.iServiceInformation.sVideoWidth))
-		slist = self.servicelist
-		
-		if self.session.pipshown:
-			if slist and slist.dopipzap:
-				slist.togglePipzap()
-			del self.session.pip
-			self.session.pipshown = False
-		else:
-			if int(xres) <= 720:
-				from Screens.PictureInPicture import PictureInPicture
-				self.session.pip = self.session.instantiateDialog(PictureInPicture)
-				self.session.pip.show()
-				self.session.pipshown = True
-				self.session.pip.playService(slist.getCurrentSelection())
-			else:
-				self.session.open(MessageBox, _("Your STB_BOX does not support PiP HD"), type = MessageBox.TYPE_INFO,timeout = 5 )
 			
 	def showWWW(self):
 		try:
