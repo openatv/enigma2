@@ -167,10 +167,10 @@ class CableTransponderSearchSupport:
 					parm.fec_inner = fec[data[3]]
 					parm.modulation = qam[data[4]]
 					parm.inversion = inv[data[5]]
-+					for sr in self.symbol_rates:
-+						if sr == parm.symbol_rate:
-+							self.__tlist.append(parm)
-+							break
+					for sr in self.symbol_rates:
+						if sr == parm.symbol_rate:
+							self.__tlist.append(parm)
+							break
 				tmpstr = _("Try to find used transponders in cable network.. please wait...")
 				tmpstr += "\n\n"
 				tmpstr += data[1]
