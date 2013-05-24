@@ -1466,6 +1466,8 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		self.borderColor = 0xC0C0C0
 		self.BorderWidth = 1
 
+		self.othPix = None
+		self.selPix = None
 		self.graphicsloaded = False
 
 		self.bouquetFontName = "Regular"
