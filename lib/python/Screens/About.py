@@ -89,6 +89,8 @@ class About(Screen):
 			model = "Technomate 2T"
 		elif getBoxType() == 'tmsingle':
 			model = "Technomate Single"
+		elif getBoxType() == 'tmnano':
+			model = "Technomate Nono OE"
 		elif getBoxType() == 'iqonios100hd':
 			model = "iqon IOS 100HD"
 		elif getBoxType() == 'iqonios200hd':
@@ -100,7 +102,7 @@ class About(Screen):
 		elif getBoxType() == 'ebox5000':
 			model = "MixOS F5"
 		elif getBoxType() == 'ebox5100':
-			model = "MixOS miniF5"			
+			model = "MixOS F5mini"
 		elif getBoxType() == 'dm500hd':
 			model = "DREAMBOX DM500HD"
 		elif getBoxType() == 'dm800':
@@ -592,6 +594,8 @@ class AboutSummary(Screen):
 			model = "Technomate 2T"
 		elif getBoxType() == 'tmsingle':
 			model = "Technomate Single"
+		elif getBoxType() == 'tmnano':
+			model = "Technomate Nano OE"
 		elif getBoxType() == 'iqonios100hd':
 			model = "iqon IOS 100HD"
 		elif getBoxType() == 'iqonios200hd':
@@ -603,7 +607,7 @@ class AboutSummary(Screen):
 		elif getBoxType() == 'ebox5000':
 			model = "MixOS F5"
 		elif getBoxType() == 'ebox5100':
-			model = "MixOS miniF5"			
+			model = "MixOS F5mini"
 		elif getBoxType() == 'dm500hd':
 			model = "DREAMBOX DM500HD"
 		elif getBoxType() == 'dm800':
