@@ -3021,7 +3021,6 @@ RESULT eDVBServicePlay::getCachedSubtitle(struct SubtitleTrack &track)
 {
 	if (m_dvb_service)
 	{
-		struct SubtitleTrack track;
 		eDVBServicePMTHandler::program program;
 		eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 		if (!h.getProgramInfo(program))
