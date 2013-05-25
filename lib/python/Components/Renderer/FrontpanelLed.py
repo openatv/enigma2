@@ -29,7 +29,7 @@ class FrontpanelLed(Element):
 				f = open("/proc/stb/fp/led_set_speed", "w")
 				f.write("%d" % speed)
 				f.close()
-			if path.exists("/proc/stb/fp/led_set_pattern"):
+			if path.exists("/proc/stb/fp/led_pattern_speed"):
 				f = open("/proc/stb/fp/led_pattern_speed", "w")
 				f.write("%d" % speed)
 				f.close()
