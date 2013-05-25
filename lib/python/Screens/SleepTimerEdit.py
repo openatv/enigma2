@@ -48,7 +48,7 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 		if int(config.usage.inactivity_timer.value):
 			self.list.append(getConfigListEntry(_("Specify timeframe to ignore inactivity sleeptimer"),
 				config.usage.inactivity_timer_blocktime,
-				_("When enabled you can specify a timeframe were the inactivity sleeptimer is ignored")))
+				_("When enabled you can specify a timeframe were the inactivity sleeptimer is ignored. Not the detection is disabled during this timeframe but the inactivity timeout is disabled")))
 			if config.usage.inactivity_timer_blocktime.value:
 				self.list.append(getConfigListEntry(_("Start time to ignore inactivity sleeptimer"),
 					config.usage.inactivity_timer_blocktime_begin,
@@ -56,6 +56,10 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 				self.list.append(getConfigListEntry(_("End time to ignore inactivity sleeptimer"),
 					config.usage.inactivity_timer_blocktime_end,
 					_("Specify the end time until the inactivity sleeptimer should be ignored")))
+		self.list.append(getConfigListEntry(_("Shutdown when in Standby"),
+			config.usage.standby_to_shutdown_timer,
+			_("Configure the duration when the receiver should go to shut down in case the receiver is in standby mode.")))
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -65,6 +69,7 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 		config.usage.inactivity_timer_blocktime.save()
 		config.usage.inactivity_timer_blocktime_begin.save()
 		config.usage.inactivity_timer_blocktime_end.save()
+		config.usage.standby_to_shutdown_timer.save()
 		if self.getCurrentEntry() == _("Sleeptimer"):
 			sleepTimer = config.usage.sleep_timer.value
 			if sleepTimer == "event_shutdown":

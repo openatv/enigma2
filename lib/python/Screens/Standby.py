@@ -3,8 +3,9 @@ from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
+from Tools import Notifications
 from GlobalActions import globalActionMap
-from enigma import eDVBVolumecontrol
+from enigma import eDVBVolumecontrol, eTimer
 
 inStandby = None
 
@@ -65,6 +66,13 @@ class Standby(Screen):
 			self.avswitch.setInput("SCART")
 		else:
 			self.avswitch.setInput("AUX")
+
+		gotoShutdownTime = int(config.usage.standby_to_shutdown_timer.value)
+		if gotoShutdownTime:
+			self.standbyTimeoutTimer = eTimer()
+			self.standbyTimeoutTimer.callback.append(self.standbyTimeout)
+			self.standbyTimeoutTimer.startLongTimer(gotoShutdownTime)
+
 		self.onFirstExecBegin.append(self.__onFirstExecBegin)
 		self.onClose.append(self.__onClose)
 
@@ -77,6 +85,7 @@ class Standby(Screen):
 			self.paused_service.unPauseService()
 		self.session.screen["Standby"].boolean = False
 		globalActionMap.setEnabled(True)
+		Notifications.RemovePopup(id = "RecordTimerQuitMainloop")
 
 	def __onFirstExecBegin(self):
 		global inStandby
@@ -86,6 +95,10 @@ class Standby(Screen):
 
 	def createSummary(self):
 		return StandbySummary
+
+	def standbyTimeout(self):
+		from RecordTimer import RecordTimerEntry
+		RecordTimerEntry.TryQuitMainloop(True)
 
 class StandbySummary(Screen):
 	skin = """
