@@ -669,17 +669,42 @@ public:
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iCueSheet>, iCueSheetPtr);
 
-class eWidget;
 class PyList;
 
-SWIG_IGNORE(iSubtitleOutput);
+class eDVBTeletextSubtitlePage;
+class eDVBSubtitlePage;
+struct ePangoSubtitlePage;
+class eRect;
+struct gRegion;
+struct gPixmap;
+
+SWIG_IGNORE(iSubtitleUser);
+class iSubtitleUser
+{
+public:
+	virtual void setPage(const eDVBTeletextSubtitlePage &p) = 0;
+	virtual void setPage(const eDVBSubtitlePage &p) = 0;
+	virtual void setPage(const ePangoSubtitlePage &p) = 0;
+	virtual void setPixmap(ePtr<gPixmap> &pixmap, gRegion changed, eRect dest) = 0;
+	virtual void destroy() = 0;
+};
+
 class iSubtitleOutput: public iObject
 {
 public:
-	virtual RESULT enableSubtitles(eWidget *parent, SWIG_PYOBJECT(ePyObject) entry)=0;
-	virtual RESULT disableSubtitles(eWidget *parent)=0;
-	virtual PyObject *getSubtitleList()=0;
-	virtual PyObject *getCachedSubtitle()=0;
+	struct SubtitleTrack
+	{
+		int type;
+		int pid;
+		int page_number;
+		int magazine_number;
+		std::string language_code;
+	};
+
+	virtual RESULT enableSubtitles(iSubtitleUser *user, SubtitleTrack &track) = 0;
+	virtual RESULT disableSubtitles() = 0;
+	virtual RESULT getCachedSubtitle(SubtitleTrack &track) = 0;
+	virtual RESULT getSubtitleList(std::vector<SubtitleTrack> &subtitlelist) = 0;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iSubtitleOutput>, iSubtitleOutputPtr);
 
