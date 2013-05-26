@@ -40,7 +40,7 @@ struct eVobSubtitlePage
 class eDVBTeletextSubtitlePage;
 class eDVBSubtitlePage;
 
-class eSubtitleWidget: public eWidget, public Object
+class eSubtitleWidget: public eWidget, public iSubtitleUser, public Object
 {
 public:
 	eSubtitleWidget(eWidget *parent);
@@ -50,6 +50,7 @@ public:
 	void setPage(const ePangoSubtitlePage &p);
 	void clearPage();
 	void setPixmap(ePtr<gPixmap> &pixmap, gRegion changed, eRect dest = eRect(0, 0, 720, 576));
+	void destroy() { delete this; }
 
 	typedef enum { Subtitle_TTX, Subtitle_Regular, Subtitle_Bold, Subtitle_Italic, Subtitle_MAX } subfont_t;
 	struct eSubtitleStyle

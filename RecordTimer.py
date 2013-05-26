@@ -222,7 +222,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if evt:
 					self.description = evt.getShortDescription()
 					if self.description == "":
-						description = evt.getExtendedDescription()
+						self.description = evt.getExtendedDescription()
 					event_id = evt.getEventId()
 				else:
 					event_id = -1
