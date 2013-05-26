@@ -46,7 +46,7 @@ class RcModel:
 	def readRcTypeFromProc(self):
 		if os.path.exists('/proc/stb/info/hwmodel'):
 			model = self.readFile('/proc/stb/info/hwmodel')
-			if model == 'tmtwinoe' or model == 'tm2toe' or model == 'tmsingle':
+			if model == 'tmtwinoe' or model == 'tm2toe' or model == 'tmsingle' or model == 'tmnanooe':
 				self.currentRcType = self.RCTYPE_TM
 			elif model == 'ios100hd' or model == 'ios200hd' or model == 'ios300hd':
 				self.currentRcType = self.RCTYPE_IQON

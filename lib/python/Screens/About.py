@@ -90,7 +90,7 @@ class About(Screen):
 		elif getBoxType() == 'tmsingle':
 			model = "Technomate Single"
 		elif getBoxType() == 'tmnano':
-			model = "Technomate Nono OE"
+			model = "Technomate Nano OE"
 		elif getBoxType() == 'iqonios100hd':
 			model = "iqon IOS 100HD"
 		elif getBoxType() == 'iqonios200hd':
