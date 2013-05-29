@@ -100,6 +100,7 @@
 		<key id="KEY_YELLOW" mapto="openIMDB" flags="l" />
 		<key id="KEY_BLUE" mapto="showPluginBrowser" flags="l" />
 		<key id="KEY_BLUE" mapto="extensions" flags="b" />
+		<key id="KEY_BOOKMARKS" mapto="showPluginBrowser" flags="mr" />
 		<key id="KEY_PROGRAM" mapto="openTimerList" flags="b" />
 		<key id="KEY_PROGRAM" mapto="openAutoTimerList" flags="l" />
 		<key id="KEY_SEARCH" mapto="openEPGSearch" flags="b" />
@@ -181,6 +182,8 @@
 	<map context="InfobarMenuActions">
 		<key id="KEY_MENU" mapto="mainMenu" flags="mr" />
 		<key id="KEY_SPACE" mapto="mainMenu" flags="mr" />
+		<key id="KEY_SETUP" mapto="showSystemSetup" flags="mr" />
+		<key id="KEY_OPTION" mapto="showNetworkSetup" flags="mr" />
 		<key id="KEY_F1" mapto="showNetworkSetup" flags="mr" />
 		<key id="KEY_F5" mapto="showRFmod" flags="b" />
 		<key id="KEY_F5" mapto="toggleAspectRatio" flags="l" />
@@ -206,9 +209,12 @@
 		<key id="KEY_RADIO" mapto="openBouquetList" flags="l" />
 		<key id="KEY_TV" mapto="showTv" flags="b" />
 		<key id="KEY_TV" mapto="openBouquetList" flags="l" />
+		<key id="KEY_PROG1" mapto="openBouquetList" flags="m" />
+		<key id="KEY_PROG2" mapto="openBouquetList" flags="m" />
 		<key id="KEY_FILE" mapto="showMovies" flags="m" />
 		<key id="KEY_MEDIA" mapto="showMovies" flags="m" />
-		<key id="KEY_LIST" mapto="showMovies" flags="b" />
+		<key id="KEY_LIST" mapto="showMovies" flags="m" />
+		<key id="KEY_PVR" mapto="showMovies" flags="m" />
 		<key id="KEY_TEXT" mapto="showText" flags="m" />
 	</map>
 
