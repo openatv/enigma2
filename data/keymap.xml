@@ -82,7 +82,7 @@
 		<key id="KEY_INFO" mapto="showSingleEPG" flags="b" />
 		<key id="KEY_INFO" mapto="showEventInfoPlugin" flags="l" />
 		<key id="KEY_EPG" mapto="EPGPressed" flags="b" />
-		<key id="KEY_EPG" mapto="showEventInfoPlugin" flags="l" />
+		<key id="KEY_EPG" mapto="showEventGuidePlugin" flags="l" />
 	</map>
 
 	<map context="InfobarInstantRecord">
@@ -173,6 +173,8 @@
 	<map context="InfobarMenuActions">
 		<key id="KEY_MENU" mapto="mainMenu" flags="mr" />
 		<key id="KEY_SPACE" mapto="mainMenu" flags="mr" />
+		<key id="KEY_SETUP" mapto="showSystemSetup" flags="mr" />
+		<key id="KEY_OPTION" mapto="showNetworkSetup" flags="mr" />
 		<key id="KEY_F1" mapto="showNetworkSetup" flags="mr" />
 		<key id="KEY_F5" mapto="showRFmod" flags="b" />
 		<key id="KEY_F5" mapto="toggleAspectRatio" flags="l" />
@@ -195,6 +197,8 @@
 		<key id="KEY_PVR" mapto="showMovies" flags="m" />
 		<key id="KEY_RADIO" mapto="showRadio" flags="m" />
 		<key id="KEY_TV" mapto="showTv" flags="m" />
+		<key id="KEY_PROG1" mapto="openBouquetList" flags="m" />
+		<key id="KEY_PROG2" mapto="openBouquetList" flags="m" />
 		<key id="KEY_TEXT" mapto="showText" flags="m" />
 		<key id="KEY_FILE" mapto="showMovies" flags="m" />
 		<key id="KEY_MEDIA" mapto="showMediaPlayer" flags="m" />
