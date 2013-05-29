@@ -6,6 +6,7 @@ from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
 class PiconBg(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
+		self.pngname = ""
 
 	GUI_WIDGET = ePixmap
 
@@ -14,10 +15,14 @@ class PiconBg(Renderer):
 
 	def changed(self, what):
 		if self.instance:
-			pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "piconbg/"+config.usage.show_picon_bkgrn.getValue() + ".png")
-			if pngname:
-				self.instance.setScale(1)
-				self.instance.setPixmapFromFile(pngname)
-				self.instance.show()
-			else:
-				self.instance.hide()
+			pngname = ""
+			if what[0] == 1 or what[0] == 3:
+				pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "piconbg/"+config.usage.show_picon_bkgrn.getValue() + ".png")
+				if self.pngname != pngname:
+					if pngname:
+						self.instance.setScale(1)
+						self.instance.setPixmapFromFile(pngname)
+						self.instance.show()
+					else:
+						self.instance.hide()
+					self.pngname = pngname
