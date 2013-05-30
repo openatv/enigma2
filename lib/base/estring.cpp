@@ -712,7 +712,10 @@ std::string replace_all(const std::string &in, const std::string &entity, const 
 	std::string out = in;
 	std::string::size_type loc = 0;
 	while (( loc = out.find(entity, loc)) != std::string::npos )
-	out.replace(loc, entity.length(), symbol);
+	{
+		out.replace(loc, entity.length(), symbol);
+		loc += symbol.length();
+	}
 	return out;
 }
 
