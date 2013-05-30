@@ -130,7 +130,8 @@ int main(int argc, char **argv)
 	printf("Distro:  %s\n", DISTRO);
 	printf("Version: %s\n", IMAGEVERSION);
 	printf("Build:   %s\n", IMAGEBUILD);
-	printf("Machine: %s\n", BOXTYPE);
+	printf("Brand:   %s\n", MACHINE_BRAND);
+	printf("Machine: %s\n", MACHINE_NAME);
 	printf("Drivers: %s\n", DRIVERDATE);
 
 #ifdef MEMLEAK_CHECK
@@ -326,6 +327,16 @@ const char *getEnigmaVersionString()
 const char *getDistro()
 {
 	return DISTRO;
+}
+
+const char *getMachineBrand()
+{
+	return MACHINE_BRAND;
+}
+
+const char *getMachineName()
+{
+	return MACHINE_NAME;
 }
 
 const char *getImageVersionString()
