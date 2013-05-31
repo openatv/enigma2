@@ -4,7 +4,6 @@ from Screens.Volume import Volume
 from Screens.Mute import Mute
 from GlobalActions import globalActionMap
 from config import config, ConfigSubsection, ConfigInteger
-from Components.HdmiCec import HdmiCec
 
 profile("VolumeControl")
 #TODO .. move this to a own .py file
@@ -43,11 +42,9 @@ class VolumeControl:
 		config.audio.volume.save()
 
 	def volUp(self):
-		if HdmiCec.instance.volumeForwardingEnabled: return
 		self.setVolume(+1)
 
 	def volDown(self):
-		if HdmiCec.instance.volumeForwardingEnabled: return
 		self.setVolume(-1)
 
 	def setVolume(self, direction):
@@ -74,7 +71,6 @@ class VolumeControl:
 		self.volumeDialog.hide()
 
 	def volMute(self, showMuteSymbol=True, force=False):
-		if HdmiCec.instance.volumeForwardingEnabled: return
 		vol = self.volctrl.getVolume()
 		if vol or force:
 			self.volctrl.volumeToggleMute()
