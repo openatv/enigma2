@@ -1987,6 +1987,7 @@ class InfoBarInstantRecord:
 		simulTimerList = self.session.nav.RecordTimer.record(recording)
 
 		if simulTimerList is None:	# no conflict
+			recording.autoincrease = False
 			self.recording.append(recording)
 		else:
 			if len(simulTimerList) > 1: # with other recording
