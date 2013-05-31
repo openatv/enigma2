@@ -8,7 +8,7 @@ from Components.Slider import Slider
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigList
 from Components.Sources.List import List
-from enigma import eTimer, eEnv
+from enigma import eTimer, eEnv, getMachineBrand, getMachineName
 
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
@@ -70,9 +70,9 @@ class Wizard(Screen):
 				if attrs.has_key('laststep'):
 					self.wizard[self.lastStep]["laststep"] = str(attrs.get('laststep'))
 			elif (name == "text"):
-				self.wizard[self.lastStep]["text"] = str(attrs.get('value')).replace("\\n", "\n")
+				self.wizard[self.lastStep]["text"] = str(attrs.get('value')).replace("\\n", "\n").replace("STB_BOX","%s %s" % (getMachineBrand(), getMachineName()))
 			elif (name == "displaytext"):
-				self.wizard[self.lastStep]["displaytext"] = str(attrs.get('value')).replace("\\n", "\n")
+				self.wizard[self.lastStep]["displaytext"] = str(attrs.get('value')).replace("\\n", "\n").replace("STB_BOX","%s %s" % (getMachineBrand(), getMachineName()))
 			elif (name == "list"):
 				if (attrs.has_key('type')):
 					if attrs["type"] == "dynamic":
