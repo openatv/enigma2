@@ -19,7 +19,7 @@ from Components.Task import Task, Job, job_manager, Condition
 from Tools.Directories import fileExists, isMount, resolveFilename, SCOPE_HDD, SCOPE_MEDIA
 from Tools.HardwareInfo import HardwareInfo
 from Tools.Downloader import downloadWithProgress
-from enigma import eConsoleAppContainer, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eTimer, getImageVersionString
+from enigma import eConsoleAppContainer, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eTimer, getImageVersionString, getMachineBrand, getMachineName
 from os import system, path, access, stat, remove, W_OK, R_OK
 from twisted.web import client
 from twisted.internet import reactor, defer
@@ -631,7 +631,7 @@ class NFIDownload(Screen):
 			self.showHint()
 
 	def showHint(self, ret=None):
-		self.session.open(MessageBox, _("To update your STB_BOX firmware, please follow these steps:\n1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard."), type = MessageBox.TYPE_INFO)
+		self.session.open(MessageBox, _("To update your %s %s firmware, please follow these steps:\n1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard.") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO)
 		self.umountCallback = self.keyRed
 		self.umount()
 
@@ -643,7 +643,7 @@ class NFIDownload(Screen):
 		self.feedDownloader16.getList(self.gotFeed, self.feed_failed)
 
 	def feed_failed(self, message=""):
-		self["status"].text = _("Could not connect to STB_BOX .NFI image feed server:") + "\n" + str(message) + "\n" + _("Please check your network settings!")
+		self["status"].text = _("Could not connect to %s %s .NFI image feed server:") % (getMachineBrand(), getMachineName()) + "\n" + str(message) + "\n" + _("Please check your network settings!")
 
 	def gotFeed(self, feedlist, OE_vers):
 		print "[gotFeed]", OE_vers
@@ -690,10 +690,10 @@ class NFIDownload(Screen):
 
 	def askStartWizard(self):
 		self.branch = STICK_WIZARD
-		message = _("""This plugin creates a USB stick which can be used to update the firmware of your STB_BOX without the need for a network or WLAN connection.
+		message = _("""This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.
 First, a USB stick needs to be prepared so that it becomes bootable.
 In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.
-If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!""")
+If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!""") % (getMachineBrand(), getMachineName())
 		self.session.openWithCallback(self.wizardDeviceBrowserClosed, DeviceBrowser, None, message, showDirectories=True, showMountpoints=True, inhibitMounts=["/","/autofs/sr0/","/autofs/sda1/","/media/hdd/","/media/net/",self.usbmountpoint,"/media/dvd/"])
 
 	def wizardDeviceBrowserClosed(self, path):

@@ -3,6 +3,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.config import config, configfile, getConfigListEntry
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
+from enigma import getMachineBrand, getMachineName
 from os import path
 if path.exists("/dev/hdmi_cec"):
 	import Components.HdmiCec
@@ -67,8 +68,8 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Handle wakeup from TV"), config.hdmicec.handle_tv_wakeup))
 			self.list.append(getConfigListEntry(_("Wakeup signal from TV"), config.hdmicec.tv_wakeup_detection))
 			self.list.append(getConfigListEntry(_("Forward volume keys"), config.hdmicec.volume_forwarding))
-			self.list.append(getConfigListEntry(_("Put your STB_BOX in standby"), config.hdmicec.control_receiver_standby))
-			self.list.append(getConfigListEntry(_("Wakeup your STB_BOX from standby"), config.hdmicec.control_receiver_wakeup))
+			self.list.append(getConfigListEntry(_("Put your %s %s in standby") % (getMachineBrand(), getMachineName()), config.hdmicec.control_receiver_standby))
+			self.list.append(getConfigListEntry(_("Wakeup your %s %s from standby") % (getMachineBrand(), getMachineName()), config.hdmicec.control_receiver_wakeup))
 			self.list.append(getConfigListEntry(_("Minimum send interval"), config.hdmicec.minimum_send_interval))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)

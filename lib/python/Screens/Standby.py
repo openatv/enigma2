@@ -4,7 +4,7 @@ from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
-from enigma import eDVBVolumecontrol
+from enigma import eDVBVolumecontrol, getMachineBrand, getMachineName
 from Tools import Notifications
 import Screens.InfoBar
 
@@ -135,13 +135,13 @@ class QuitMainloopScreen(Screen):
 			</screen>"""
 		Screen.__init__(self, session)
 		from Components.Label import Label
-		text = { 1: _("Your STB_BOX is shutting down"),
-			2: _("Your STB_BOX is rebooting"),
-			3: _("The user interface of your STB_BOX is restarting"),
-			4: _("Your frontprocessor will be upgraded\nPlease wait until your STB_BOX reboots\nThis may take a few minutes"),
-			5: _("The user interface of your STB_BOX is restarting\ndue to an error in mytest.py"),
-			42: _("Upgrade in progress\nPlease wait until your STB_BOX reboots\nThis may take a few minutes"),
-			43: _("Reflash in progress\nPlease wait until your STB_BOX reboots\nThis may take a few minutes") }.get(retvalue)
+		text = { 1: _("Your %s %s is shutting down") % (getMachineBrand(), getMachineName()),
+			2: _("Your %s %s is rebooting") % (getMachineBrand(), getMachineName()),
+			3: _("The user interface of your %s %s is restarting") % (getMachineBrand(), getMachineName()),
+			4: _("Your frontprocessor will be upgraded\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
+			5: _("The user interface of your %s %s is restarting\ndue to an error in mytest.py") % (getMachineBrand(), getMachineName()),
+			42: _("Upgrade in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
+			43: _("Reflash in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()) }.get(retvalue)
 		self["text"] = Label(text)
 
 inTryQuitMainloop = False
@@ -179,8 +179,8 @@ class TryQuitMainloop(MessageBox):
 				2: _("Really reboot now?"),
 				3: _("Really restart now?"),
 				4: _("Really upgrade the frontprocessor and reboot now?"),
-				42: _("Really upgrade your STB_BOX and reboot now?"),
-				43: _("Really reflash your STB_BOX and reboot now?") }.get(retvalue)
+				42: _("Really upgrade your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
+				43: _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()) }.get(retvalue)
 			if text:
 				MessageBox.__init__(self, session, reason+text, type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
 				self.skinName = "MessageBoxSimple"
