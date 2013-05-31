@@ -6,7 +6,7 @@ from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from Components.Sources.Boolean import Boolean
 from Components.Network import iNetwork
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from enigma import eTimer
+from enigma import eTimer, getMachineBrand, getMachineName
 from os import system
 
 class NetworkWizard(WizardLanguage, Rc):
@@ -231,7 +231,7 @@ class NetworkWizard(WizardLanguage, Rc):
 		if data is not None:
 			if data is True:
 				if status is not None:
-					text1 = _("Your STB_BOX is now ready to be used.\n\nYour internet connection is working now.\n\n")
+					text1 = _("Your %s %s is now ready to be used.\n\nYour internet connection is working now.\n\n") % (getMachineBrand(), getMachineName())
 					text2 = _('Accesspoint:') + "\t" + str(status[self.selectedInterface]["accesspoint"]) + "\n"
 					text3 = _('SSID:') + "\t" + str(status[self.selectedInterface]["essid"]) + "\n"
 					text4 = _('Link quality:') + "\t" + str(status[self.selectedInterface]["quality"])+ "\n"
