@@ -663,7 +663,7 @@ class PositionerSetup(Screen):
 		self.MAX_LOW_RATE_ADAPTER_COUNT = setLowRateAdapterCount(self.symbolrate)
 		transponderdata = ConvertToHumanReadable(self.tuner.getTransponderData(), "DVB-S")
 		self["frequency_value"].setText(str(transponderdata.get("frequency") / 1000))
-		self["symbolrate_value"].setText(str(transponderdata.get("symbol_rate") / 1000))
+		self["symbolrate_value"].setText(str(self.symbolrate))
 		self["fec_value"].setText(str(transponderdata.get("fec_inner")))
 		self["polarisation"].setText(str(transponderdata.get("polarization")))
 	
