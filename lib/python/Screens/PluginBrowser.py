@@ -138,9 +138,9 @@ class PluginBrowser(Screen):
 		self.checkWarnings()
 
 	def openExtensionmanager(self):
-		if fileExists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/ViX/SoftwareManager.py")):
+		if fileExists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/plugin.py")):
 			try:
-				from Plugins.SystemPlugins.ViX.SoftwareManager import PluginManager
+				from Plugins.SystemPlugins.SoftwareManager.plugin import PluginManager
 			except ImportError:
 				self.session.open(MessageBox, _("The software management extension is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
