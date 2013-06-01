@@ -898,7 +898,11 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (snr * 100) >> 8;
 	}
-	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL2108) (DVB-S2)")) // VU+Ultimo DVB-S2 NIM
+	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL2108)")) // VU+Ultimo/Uno DVB-S2 NIM
+	{
+		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1600) + 0.2100) * 100);
+	}
+	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL6222)")) // Vu+ DVB-S2 Dual NIM
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1600) + 0.2100) * 100);
 	}
@@ -906,13 +910,13 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1244) + 2.5079) * 100);
 	}
-	else if (!strcmp(m_description, "BCM7346 (internal)")) // MaxDigital XP1000
-	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1880) + 0.1959) * 100);
-	}
 	else if (!strcmp(m_description, "BCM7356 DVB-S2 NIM (internal)")) // VU+ Solo2
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1800) - 1.0000) * 100);
+	}
+	else if (!strcmp(m_description, "BCM7346 (internal)")) // MaxDigital XP1000
+	{
+		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1880) + 0.1959) * 100);
 	}
 	else if (!strcmp(m_description, "Genpix"))
 	{
