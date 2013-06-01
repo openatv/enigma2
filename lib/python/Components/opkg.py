@@ -18,7 +18,8 @@ def enumPlugins(filter_start=''):
 	for feed in enumFeeds():
 		package = None
 		try:
-			for line in open('/var/lib/opkg/lists/%s' % feed, 'r'):
+			file = open('/var/lib/opkg/lists/%s' % feed, 'r')
+			for line in file:
 				if line.startswith('Package:'):
 					package = line.split(":",1)[1].strip()
 					version = ''
@@ -44,6 +45,7 @@ def enumPlugins(filter_start=''):
 							description = description.split(' ',1)[1]
 					yield package, version, description.strip()
 					package = None
+			file.close()
 		except IOError:
 			pass
 
