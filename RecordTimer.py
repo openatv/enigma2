@@ -107,7 +107,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# other timers start in a few seconds
 			RecordTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
 			# send normal notification for the case the user leave the standby now..
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
+			Notifications.AddNotificationWithID("RecordTimerQuitMainloop", Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
 #################################################################
 
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = True, record_ecm = False, always_zap = False):
@@ -218,7 +218,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if evt:
 					self.description = evt.getShortDescription()
 					if self.description == "":
-						description = evt.getExtendedDescription()
+						self.description = evt.getExtendedDescription()
 					event_id = evt.getEventId()
 				else:
 					event_id = -1
