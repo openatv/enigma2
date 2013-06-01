@@ -84,7 +84,10 @@ class SoftwareUpdateChanges(Screen):
 				ver += 1
 				releasever = releasenotes[int(ver)].split('\n')
 				releasever = releasever[0].split(' ')
-				releasever = releasever[2].replace(':',"")
+				if len(releasever) > 2:
+					releasever = releasever[2].replace(':',"")
+				else:
+					releasever = releasever[0].replace(':',"")
 
 			while int(releasever) > int(getBuildVersionString()):
 				viewrelease += releasenotes[int(ver)]+'\n\n'
