@@ -1,30 +1,3 @@
-import __builtin__
-openfiles = set()
-oldfile = __builtin__.file
-openlist = []
-class newfile(oldfile):
-    def __init__(self, *args):
-        self.x = args[0]
-        print "### OPENING %s ###" % str(self.x)
-        openlist.append(str(self.x))
-        oldfile.__init__(self, *args)
-        openfiles.add(self)
-
-    def close(self):
-        print "### CLOSING %s ###" % str(self.x)
-        openlist.remove(str(self.x))
-        print 'FILES:',openlist
-        oldfile.close(self)
-        openfiles.remove(self)
-oldopen = __builtin__.open
-def newopen(*args):
-    return newfile(*args)
-__builtin__.file = newfile
-__builtin__.open = newopen
-
-def printOpenFiles():
-    print "### %d OPEN FILES: [%s]" % (len(openfiles), ", ".join(f.x for f in openfiles))
-
 import sys, os
 if os.path.isfile("/usr/lib/enigma2/python/enigma.zip"):
 	sys.path.append("/usr/lib/enigma2/python/enigma.zip")
