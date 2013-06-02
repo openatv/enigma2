@@ -47,6 +47,7 @@ from timer import TimerEntry
 from Tools import ASCIItranslit, Notifications
 from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT
 from Tools.TimeShift import CopyTimeshiftJob, MergeTimeshiftJob, CreateAPSCFilesJob
+from Tools.KeyBindings import getKeyDescription
 
 from enigma import getBoxType, eBackgroundFileEraser, eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, getBoxType
 
@@ -161,7 +162,7 @@ class InfoBarUnhandledKey:
 
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
-		print 'KEY:', key
+		print 'KEY: %s %s' % (key,getKeyDescription(key)[0])
 		self.unhandledKeyDialog.hide()
 		if (key != 352 and key != 407 and key != 412) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
