@@ -162,7 +162,10 @@ class InfoBarUnhandledKey:
 
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
-		print 'KEY: %s %s' % (key,getKeyDescription(key)[0])
+		try:
+			print 'KEY: %s %s' % (key,getKeyDescription(key)[0])
+		except:
+			print 'KEY: %s' % key
 		self.unhandledKeyDialog.hide()
 		if (key != 352 and key != 407 and key != 412) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
