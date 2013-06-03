@@ -316,17 +316,14 @@ class PliExtraInfo(Poll, Converter, object):
 		return "Pids:%04d:%04d:%04d:%05d" % (vpid, apid, pcrpid, sidpid)
 
 	def createTransponderInfo(self, fedata, feraw):
-		return addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(feraw)) + addspace(self.createPolarization(fedata)) \
+		return addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata)) \
 			+ addspace(self.createSymbolRate(fedata, feraw)) + addspace(self.createFEC(fedata, feraw)) + addspace(self.createModulation(fedata)) \
 			+ self.createOrbPos(feraw)
 
 	def createFrequency(self, feraw):
 		frequency = feraw.get("frequency")
 		if frequency:
-			if "DVB-T" in feraw.get("tuner_type"):
-				return str(int(frequency / 1000000 + 0.5))
-			else:
-				return str(int(frequency / 1000 + 0.5))
+			return str(frequency)
 		return ""
 
 	def createSymbolRate(self, fedata, feraw):
@@ -337,7 +334,7 @@ class PliExtraInfo(Poll, Converter, object):
 		else:
 			symbolrate = fedata.get("symbol_rate")
 			if symbolrate:
-				return str(symbolrate / 1000)
+				return str(symbolrate)
 		return ""
 
 	def createPolarization(self, fedata):
@@ -746,7 +743,7 @@ class PliExtraInfo(Poll, Converter, object):
 
 		if self.type == "TransponderInfo2line":
 			return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(fedata)) +  addspace(self.createTransponderName(feraw)) + '\n'\
-			+ self.createFrequency(fedata) + addspace(" MHz") + addspace(self.createPolarization(fedata))\
+			+ addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
 			+ addspace(self.createSymbolRate(fedata, feraw)) + self.createModulation(fedata) + '-' + addspace(self.createFEC(fedata, feraw))
 
 		if self.type == "TransponderInfo":
