@@ -522,7 +522,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		if config.usage.okbutton_mode.getValue() == "0":
 			self.toggleShow()
 		elif config.usage.okbutton_mode.getValue() == "1":
-			self.openServiceList()
+			try:
+				self.openServiceList()
+			except:
+				self.toggleShow()
 
 	def SwitchSecondInfoBarScreen(self):
 		if self.lastSecondInfoBar == config.usage.show_second_infobar.getValue():
