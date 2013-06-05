@@ -639,6 +639,7 @@ public:
 	virtual RESULT activateTimeshift()=0;
 	virtual RESULT saveTimeshiftFile()=0;
 	virtual std::string getTimeshiftFilename()=0;
+	virtual void switchToLive()=0;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iTimeshiftService>, iTimeshiftServicePtr);
 

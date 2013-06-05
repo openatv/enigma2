@@ -1564,7 +1564,10 @@ class InfoBarTimeshift:
 	def stopTimeshift(self):
 		ts = self.getTimeshift()
 		if ts and ts.isTimeshiftEnabled():
-			self.checkTimeshiftRunning(self.stopTimeshiftcheckTimeshiftRunningCallback)
+			if int(config.usage.timeshift_start_delay.value):
+				ts.switchToLive()
+			else:
+				self.checkTimeshiftRunning(self.stopTimeshiftcheckTimeshiftRunningCallback)
 		else:
 			return 0
 
