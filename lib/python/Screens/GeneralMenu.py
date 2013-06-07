@@ -325,7 +325,7 @@ class GeneralMenu(Screen):
          (_('TV'), 'id_mainmenu_tv', boundFunction(self.openChannelSelection)),
          (_('Movies'), 'id_mainmenu_movies', boundFunction(self.openMovieBrowserAll)),
          (_('Sources'), 'id_mainmenu_source', boundFunction(self.openMediaScanner)),
-         (_('Tasks'), 'id_mainmenu_tasks', boundFunction(self.openMenuID, 'id_mainmenu_tasks', _('Tasks')))]
+         (_('Power'), 'id_mainmenu_tasks', boundFunction(self.openMenuID, 'id_mainmenu_tasks_power', _('Power')))]
         self.pos = {}
         self.pos['id_mainmenu_plugins'] = [(12, 120),
          (190, 120),
@@ -843,8 +843,7 @@ class GeneralMenu(Screen):
  
         subentrys['id_mainmenu_source'] = self.getSubEntry('id_mainmenu_source', self.getScart(None, []))
       
-        subentrys['id_mainmenu_tasks'] = self.getSubEntry('id_mainmenu_tasks', [(_('Power'), 'mainmenu_tasks_power', boundFunction(self.openMenuID, 'id_mainmenu_tasks_power', _('Power')), 10), 
-          (_('Information'),'mainmenu_tasks_info', boundFunction(self.openMenuID, 'id_mainmenu_tasks_info', _('Information')), 20), 
+        subentrys['id_mainmenu_tasks'] = self.getSubEntry('id_mainmenu_tasks', [(_('Information'),'mainmenu_tasks_info', boundFunction(self.openMenuID, 'id_mainmenu_tasks_info', _('Information')), 20), 
           (_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openGeneralSetup), 30)])
         return subentrys
 
