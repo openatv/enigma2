@@ -251,13 +251,13 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Samba",_("Setup Samba"),_("Setup Samba")))
 		self.sublist.append(QuickSubMenuEntryComponent("NFS",_("Setup NFS"),_("Setup NFS")))
 		self.sublist.append(QuickSubMenuEntryComponent("FTP",_("Setup FTP"),_("Setup FTP")))
-		self.sublist.append(QuickSubMenuEntryComponent("AFP",_("Setup AFP"),_("Setup AFP")))
-		self.sublist.append(QuickSubMenuEntryComponent("OpenVPN",_("Setup OpenVPN"),_("Setup OpenVPN")))
-		self.sublist.append(QuickSubMenuEntryComponent("MiniDLNA",_("Setup MiniDLNA"),_("Setup MiniDLNA")))
-		self.sublist.append(QuickSubMenuEntryComponent("Inadyn",_("Setup Inadyn"),_("Setup Inadyn")))
-		self.sublist.append(QuickSubMenuEntryComponent("SABnzbd",_("Setup SABnzbd"),_("Setup SABnzbd")))
-		self.sublist.append(QuickSubMenuEntryComponent("uShare",_("Setup uShare"),_("Setup uShare")))
-		self.sublist.append(QuickSubMenuEntryComponent("Telnet",_("Setup Telnet"),_("Setup Telnet")))
+		#self.sublist.append(QuickSubMenuEntryComponent("AFP",_("Setup AFP"),_("Setup AFP")))
+		#self.sublist.append(QuickSubMenuEntryComponent("OpenVPN",_("Setup OpenVPN"),_("Setup OpenVPN")))
+		self.sublist.append(QuickSubMenuEntryComponent("DLNA Server",_("Setup MiniDLNA"),_("Setup MiniDLNA")))
+		self.sublist.append(QuickSubMenuEntryComponent("DYN-DNS",_("Setup Inadyn"),_("Setup Inadyn")))
+		#self.sublist.append(QuickSubMenuEntryComponent("SABnzbd",_("Setup SABnzbd"),_("Setup SABnzbd")))
+		#self.sublist.append(QuickSubMenuEntryComponent("uShare",_("Setup uShare"),_("Setup uShare")))
+		#self.sublist.append(QuickSubMenuEntryComponent("Telnet",_("Setup Telnet"),_("Setup Telnet")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Mount Settings Menu ##############################
@@ -375,7 +375,7 @@ class GeneralSetup(Screen):
 		elif item[0] == _("Plugins"):
 			self.Qplugin()
 ######## Select Tuner Setup Menu ##############################
-		elif item[0] == _("Harddisk"):
+		elif item[0] == _("Storage"):
 			self.Qharddisk()
 		self["sublist"].selectionEnabled(0)
 
@@ -531,7 +531,7 @@ class GeneralSetup(Screen):
 			self.session.open(PluginDownloadBrowser, 1)
 		elif item[0] == _("Plugin Filter"):
 			self.session.open(PluginFilter)
-		elif item[0] == _("IPK Installer"):
+		elif item[0] == _("Package Installer"):
 			try:
 				from Plugins.Extensions.MediaScanner.plugin import main
 				main(self.session)
