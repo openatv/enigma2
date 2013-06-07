@@ -770,8 +770,6 @@ class InfoBarMenu:
 		self["MenuActions"] = HelpableActionMap(self, "InfobarMenuActions",
 			{
 				"mainMenu": (self.mainMenu, _("Enter main menu...")),
-				"showNetworkSetup": (self.showNetworkMounts, _("Show network mounts ...")),
-				"showSystemSetup": (self.showSystemMenu, _("Show network mounts ...")),
 				"showRFmod": (self.showRFSetup, _("Show RFmod setup...")),
 				"toggleAspectRatio": (self.toggleAspectRatio, _("Toggle aspect ratio...")),
 			})
@@ -810,31 +808,6 @@ class InfoBarMenu:
 			config.av.aspect.value = "auto"
 		config.av.aspect.save()
 		self.session.open(MessageBox, _("AV aspect is %s." % ASPECT_MSG[config.av.aspect.getValue()]), MessageBox.TYPE_INFO, timeout=5)
-
-	def showSystemMenu(self):
-		menulist = mdom.getroot().findall('menu')
-		for item in menulist:
-			if item.attrib['entryID'] == 'setup_selection':
-				menulist = item.findall('menu')
-				for item in menulist:
-					if item.attrib['entryID'] == 'system_selection':
-						menu = item
-		assert menu.tag == "menu", "root element in menu must be 'menu'!"
-		self.session.openWithCallback(self.mainMenuClosed, Menu, menu)
-
-	def showNetworkMounts(self):
-		menulist = mdom.getroot().findall('menu')
-		for item in menulist:
-			if item.attrib['entryID'] == 'setup_selection':
-				menulist = item.findall('menu')
-				for item in menulist:
-					if item.attrib['entryID'] == 'system_selection':
-						menulist = item.findall('menu')
-						for item in menulist:
-							if item.attrib['entryID'] == 'network_menu':
-								menu = item
-		assert menu.tag == "menu", "root element in menu must be 'menu'!"
-		self.session.openWithCallback(self.mainMenuClosed, Menu, menu)
 
 	def showRFSetup(self):
 		self.session.openWithCallback(self.mainMenuClosed, Setup, 'RFmod')

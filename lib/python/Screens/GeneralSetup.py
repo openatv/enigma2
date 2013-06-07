@@ -197,7 +197,7 @@ class GeneralSetup(Screen):
 		#self.list.append(GeneralSetupEntryComponent("Mounts",_("Mount Setup"),_("Setup your mounts for network")))
 		self.list.append(GeneralSetupEntryComponent("Network",_("Setup your local network"),_("Setup your local network. For Wlan you need to boot with a USB-Wlan stick"), ">"))
 		self.list.append(GeneralSetupEntryComponent("AV Setup",_("Setup Videomode"),_("Setup your Video Mode, Video Output and other Video Settings"), ">"))
-		self.list.append(GeneralSetupEntryComponent("Tuner Setup",_("Setup Tuner"),_("Setup your Tuner and search for channels"), ">"))
+		self.list.append(GeneralSetupEntryComponent("Antena Setup",_("Setup Tuner"),_("Setup your Tuner and search for channels"), ">"))
 		self.list.append(GeneralSetupEntryComponent("TV",_("Setup basic TV options"),_("Setup Your TV options"), ">"))
 		self.list.append(GeneralSetupEntryComponent("Media",_("Setup Pictures / music / movies"),_("Setup picture, music and movie player"), ">"))
 		self.list.append(GeneralSetupEntryComponent("Plugins",_("Download plugins"),_("Shows available pluigns. Here you can download and install them"), ">"))
@@ -233,7 +233,7 @@ class GeneralSetup(Screen):
 ######## Network Menu ##############################
 	def Qnetwork(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Network Wizard",_("Configure your Network"),_("Use the Networkwizard to configure your Network. The wizard will help you to setup your network")))
+		#self.sublist.append(QuickSubMenuEntryComponent("Network Wizard",_("Configure your Network"),_("Use the Networkwizard to configure your Network. The wizard will help you to setup your network")))
 		if len(self.adapters) > 1: # show only adapter selection if more as 1 adapter is installed
 			self.sublist.append(QuickSubMenuEntryComponent("Network Adapter Selection",_("Select Lan/Wlan"),_("Setup your network interface. If no Wlan stick is used, you only can select Lan")))
 		if not self.activeInterface == None: # show only if there is already a adapter up
@@ -366,7 +366,7 @@ class GeneralSetup(Screen):
 		elif item[0] == _("AV Setup"):
 			self.Qavsetup()
 ######## Select Tuner Setup Menu ##############################
-		elif item[0] == _("Tuner Setup"):
+		elif item[0] == _("Antena Setup"):
 			self.Qtuner()
 ######## Select Software Manager Menu ##############################
 		elif item[0] == _("Software Manager"):
