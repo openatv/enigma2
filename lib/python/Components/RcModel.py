@@ -17,15 +17,16 @@ class RcModel:
 	RCTYPE_INI0 = 11
 	RCTYPE_INI1 = 12
 	RCTYPE_INI2 = 13
-	RCTYPE_IQON = 14	
-	RCTYPE_IXUSSONE = 15
-	RCTYPE_IXUSSZERO = 16
-	RCTYPE_ODINM7 = 17
-	RCTYPE_ODINM9 = 18	
-	RCTYPE_TM = 19
-	RCTYPE_VU = 20	
-	RCTYPE_VU2 = 21
-	RCTYPE_XP1000 = 22
+	RCTYPE_INI3 = 14	
+	RCTYPE_IQON = 15	
+	RCTYPE_IXUSSONE = 16
+	RCTYPE_IXUSSZERO = 17
+	RCTYPE_ODINM7 = 18
+	RCTYPE_ODINM9 = 19	
+	RCTYPE_TM = 20
+	RCTYPE_VU = 21	
+	RCTYPE_VU2 = 22
+	RCTYPE_XP1000 = 23
 
 
 	def __init__(self):
@@ -98,6 +99,8 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_INI1
 			elif model == 'ini-1000' or model == 'ini-5000R':
 				self.currentRcType = self.RCTYPE_INI2
+			elif model == 'ini-5000sv':
+				self.currentRcType = self.RCTYPE_INI3			
 			elif model == 'e3hd':
 				self.currentRcType = self.RCTYPE_E3HD		
 			elif model == 'odinm9':
@@ -145,6 +148,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/ini1/'
 		elif self.currentRcType == self.RCTYPE_INI2:
 			return '/usr/share/enigma2/rc_models/ini2/'
+		elif self.currentRcType == self.RCTYPE_INI2:
+			return '/usr/share/enigma2/rc_models/ini3/'
 		elif self.currentRcType == self.RCTYPE_IQON:
 			return '/usr/share/enigma2/rc_models/iqon/'
 		elif self.currentRcType == self.RCTYPE_IXUSSONE:
