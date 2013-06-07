@@ -822,20 +822,24 @@ class GeneralMenu(Screen):
         
         subentrys['id_mainmenu_photos'] = self.getSubEntry('id_mainmenu_photos', [(_('Albums'),'mainmenu_photos_albums',boundFunction(self.openPicturePlayerAlbum),30),
          (_('Slideshow'),'mainmenu_photos_playlists',boundFunction(self.openPicturePlayerSlideshow), 40),
-         (_('Thumbnails'),'mainmenu_photos_bouquets',boundFunction(self.openPicturePlayerThumb),50),
-         (_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openPicturePlayerSetup), 100)])
+         (_('Thumbnails'),'mainmenu_photos_bouquets',boundFunction(self.openPicturePlayerThumb),50)
+         #,(_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openPicturePlayerSetup), 100)
+         ])
           
-        subentrys['id_mainmenu_music'] = self.getSubEntry('id_mainmenu_music', [(_('Albums'), 'mainmenu_music_playlists', boundFunction(self.openMp3Browser), 50),
-         (_('Setup'), 'mainmenu_music_setup', boundFunction(self.openMediaPlayerSetup), 100)])
+        subentrys['id_mainmenu_music'] = self.getSubEntry('id_mainmenu_music', [(_('Albums'), 'mainmenu_music_playlists', boundFunction(self.openMp3Browser), 50)
+         #,(_('Setup'), 'mainmenu_music_setup', boundFunction(self.openMediaPlayerSetup), 100)
+         ])
 
         subentrys['id_mainmenu_tv'] = self.getSubEntry('id_mainmenu_tv', [(_('Live Radio'), 'mainmenu_tv_live_radio', boundFunction(self.openLiveRadio), 60),
         (_('Scheduler'),'mainmenu_tv_timer',boundFunction(self.openDialog, TimerEditList),70),
-        (_('Recorded TV'),'mainmenu_tv_recorded', boundFunction(self.openRecordings),80),
-        (_('Setup'), 'mainmenu_tv_setup', boundFunction(self.notReadyMessage), 100)])
+        (_('Recorded TV'),'mainmenu_tv_recorded', boundFunction(self.openRecordings),80)
+        #,(_('Setup'), 'mainmenu_tv_setup', boundFunction(self.notReadyMessage), 100)
+        ])
 
         subentrys['id_mainmenu_movies'] = self.getSubEntry('id_mainmenu_movies', [(_('TV Shows'), 'mainmenu_movies_tvshows', boundFunction(self.openMovieBrowserMovies), 30),
-         (_('TV Serials'), 'mainmenu_movies_tvserials', boundFunction(self.openMovieBrowserSeries), 40),
-         (_('Setup'), 'mainmenu_movies_setup', boundFunction(self.openMovieBrowserSetup),100)])
+         (_('TV Serials'), 'mainmenu_movies_tvserials', boundFunction(self.openMovieBrowserSeries), 40)
+         #,(_('Setup'), 'mainmenu_movies_setup', boundFunction(self.openMovieBrowserSetup),100)
+         ])
  
         subentrys['id_mainmenu_source'] = self.getSubEntry('id_mainmenu_source', self.getScart(None, []))
       
