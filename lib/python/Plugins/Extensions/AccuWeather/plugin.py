@@ -237,11 +237,12 @@ def download(item):
 
 
 def main(session, **kwargs):
-        config.plugins.AccuWeatherPlugin.default.value = 1
-        config.plugins.AccuWeatherPlugin.default.save()
-        config.plugins.AccuWeatherPlugin.save()
-        session.open(ForecaWeatherPlugin)
-
+        #config.plugins.AccuWeatherPlugin.default.value = 1
+        #config.plugins.AccuWeatherPlugin.default.save()
+        #config.plugins.AccuWeatherPlugin.save()
+        #session.open(ForecaWeatherPlugin)
+	from xbmc import MeteoMain
+	session.open(MeteoMain)
 
 def Plugins(**kwargs):
     list = [PluginDescriptor(name=_('Weather Info'), description=_('Weather info Plugin'), where=[PluginDescriptor.WHERE_PLUGINMENU], fnc=main)]

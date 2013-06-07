@@ -366,6 +366,8 @@ lib/python/Plugins/Extensions/AccuWeather/locale/Makefile
 lib/python/Plugins/Extensions/AccuWeather/locale/es/Makefile
 lib/python/Plugins/Extensions/AccuWeather/locale/es/LC_MESSAGES/Makefile
 lib/python/Plugins/Extensions/AccuWeather/wheathericons/Makefile
+lib/python/Plugins/Extensions/AccuWeather/xbmcweather/Makefile
+lib/python/Plugins/Extensions/AccuWeather/xbmcweather/small/Makefile
 lib/python/Plugins/Extensions/GmailReader/Makefile
 lib/python/Plugins/Extensions/IniHbbTV/Makefile
 lib/python/Plugins/Extensions/AirPlayer/Makefile

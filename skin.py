@@ -498,7 +498,6 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 		filename = get_attr('filename')
 		if name and filename:
 		    resolved_png = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
-		    print resolved_png
 		    if fileExists(resolved_png):
 			switchPixmap[name] = resolved_png
 		    else:

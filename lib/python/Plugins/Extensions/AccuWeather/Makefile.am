@@ -1,4 +1,4 @@
-SUBDIRS = acuwheathericons image locale wheathericons
+SUBDIRS = acuwheathericons image locale wheathericons xbmcweather
 
 installdir = $(pkglibdir)/python/Plugins/Extensions/AccuWeather
 
