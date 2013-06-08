@@ -12,7 +12,7 @@ from Components.Ipkg import IpkgComponent
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
-from enigma import eTimer, eDVBDB
+from enigma import eTimer, eDVBDB, getImageVersionString, getBuildVersionString, getMachineBrand, getMachineName
 
 from os import rename, path, remove
 from gettext import dgettext
@@ -62,7 +62,9 @@ class UpdatePlugin(Screen):
 		self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
-		if result.find('wget returned 1') != -1 or result.find('wget returned 255') != -1 or result.find('404 Not Found') != -1:
+		if result.find('bad address') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif result.find('wget returned 1') != -1 or result.find('wget returned 255') != -1 or result.find('404 Not Found') != -1:
 			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find('bad address') != -1:
 			self.session.openWithCallback(self.close, MessageBox, _("Your STB_BOX is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
@@ -144,6 +146,7 @@ class UpdatePlugin(Screen):
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = len(self.ipkg.getFetchedList())
+
 				if self.total_packages:
 					message = _("Do you want to update your STB_BOX?") + "\n"
 					message = message + "(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
@@ -174,11 +177,11 @@ class UpdatePlugin(Screen):
 			else:
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
-				error = _("Your STB_BOX might be unusable now. Please consult the manual for further assistance before rebooting your STB_BOX.")
+				error = _("Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s.") % (getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName())
 				if self.packages == 0:
 					error = _("No updates available. Please try again later.")
 				if self.updating:
-					error = _("Update failed. Your STB_BOX does not have a working internet connection.")
+					error = _("Update failed. Your %s %s does not have a working internet connection.") % (getMachineBrand(), getMachineName())
 				self.status.setText(_("Error") +  " - " + error)
 		elif event == IpkgComponent.EVENT_LISTITEM:
 			if 'enigma2-plugin-settings-' in param[0] and self.channellist_only > 0:

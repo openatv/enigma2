@@ -3,6 +3,7 @@ from Components.config import config, ConfigSubsection, ConfigInteger, ConfigTex
 import DVDTitle
 import xml.dom.minidom
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
+from enigma import getMachineBrand, getMachineName
 
 class ConfigColor(ConfigSequence):
 	def __init__(self, default = [128,128,128]):
@@ -31,7 +32,7 @@ class DVDProject:
 		self.target = None
 		self.settings = ConfigSubsection()
 		self.settings.name = ConfigText(fixed_size = False, visible_width = 40)
-		self.settings.authormode = ConfigSelection(choices = [("menu_linked", _("Linked titles with a DVD menu")), ("just_linked", _("Direct playback of linked titles without menu")), ("menu_seperate", _("Seperate titles with a main menu")), ("data_ts", _("STB_BOX format data DVD (HDTV compatible)"))])
+		self.settings.authormode = ConfigSelection(choices = [("menu_linked", _("Linked titles with a DVD menu")), ("just_linked", _("Direct playback of linked titles without menu")), ("menu_seperate", _("Seperate titles with a main menu")), ("data_ts", _("%s %s format data DVD (HDTV compatible)") % (getMachineBrand(), getMachineName()))])
 		self.settings.titlesetmode = ConfigSelection(choices = [("single", _("Simple titleset (compatibility for legacy players)")), ("multi", _("Complex (allows mixing audio tracks and aspects)"))], default="multi")
 		self.settings.output = ConfigSelection(choices = [("iso", _("Create DVD-ISO")), ("dvd", _("Burn DVD"))])
 		self.settings.isopath = ConfigText(fixed_size = False, visible_width = 40)

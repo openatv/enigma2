@@ -7,6 +7,7 @@ from Components.PluginComponent import plugins
 from Components.ActionMap import ActionMap
 from Tools.Directories import fileExists
 from Plugins.Plugin import PluginDescriptor
+from enigma import getMachineBrand, getMachineName
 import time
 
 class SABnzbdSetupScreen(Screen):
@@ -55,7 +56,7 @@ class SABnzbdSetupScreen(Screen):
 
 	def InstalldataAvail(self, str, retval, extra_args):
 		if not str:
-			restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service.\n\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
+			restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of service.\n\nDo you want to install now ?') % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
 		else:
 			self.updateService()
@@ -82,7 +83,7 @@ class SABnzbdSetupScreen(Screen):
 
 	def UninstalldataAvail(self, str, retval, extra_args):
 		if str:
-			restartbox = self.session.openWithCallback(self.RemovePackage,MessageBox,_('Your STB_BOX will be restarted after the removal of service\nDo you want to remove now ?'), MessageBox.TYPE_YESNO)
+			restartbox = self.session.openWithCallback(self.RemovePackage,MessageBox,_('Your %s %s will be restarted after the removal of service\nDo you want to remove now ?') % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_('Ready to remove "%s" ?') % self.service_name)
 		else:
 			self.updateService()
