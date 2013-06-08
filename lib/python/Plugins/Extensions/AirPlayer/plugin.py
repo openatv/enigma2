@@ -45,7 +45,7 @@ defaultMediaBackend = getDefaultMediaBackend()
 defaultDelayAudioPlayback = getDefaultDelayAudioPlayback()
 config.plugins.airplayer.startuptype = ConfigYesNo(default=True)
 config.plugins.airplayer.name = ConfigText(default='STB AirPlayer', fixed_size=False)
-config.plugins.airplayer.path = ConfigText(default='/hdd/', fixed_size=False)
+config.plugins.airplayer.path = ConfigText(default='/tmp/', fixed_size=False)
 config.plugins.airplayer.audioBackend = ConfigSelection(default=defaultMediaBackend, choices={'proxy': _('proxy'),
  'alsa': _('ALSA')})
 config.plugins.airplayer.setSeekOnStart = ConfigYesNo(default=True)
@@ -172,8 +172,8 @@ class AP_ConfigScreen(Screen, ConfigListScreen):
          getConfigListEntry(_('Allow volume-control from iOS device'), config.plugins.airplayer.allowiOSVolumeControl, _('Allow Volume-Control from iOS Device')),
          #getConfigListEntry(_('Show startup info'), config.plugins.airplayer.showStartUpInfo, _('Show StartUp Info')),
          getConfigListEntry(_('Use built-In Proxy'), config.plugins.airplayer.useProxyIfPossible, _('Use Built-in Proxy')),
-         getConfigListEntry(_('Start playback on MB cached'), config.plugins.airplayer.cacheMbBeforePlayback, _('Start Playback on percent cached')),
-         getConfigListEntry(_('Start live-Stream on MB cached'), config.plugins.airplayer.cacheMbBeforeLivePlayback, _('Start Live-Stream on seconds cached')),
+         #getConfigListEntry(_('Start playback on MB cached'), config.plugins.airplayer.cacheMbBeforePlayback, _('Start Playback on percent cached')),
+         #getConfigListEntry(_('Start live-Stream on MB cached'), config.plugins.airplayer.cacheMbBeforeLivePlayback, _('Start Live-Stream on seconds cached')),
          getConfigListEntry(_('Allow wakeup from standby'), config.plugins.airplayer.allowWakeupFromStandby, _('Allow wakeup from Standby')),
          getConfigListEntry(_('Enable screensaver'), config.plugins.airplayer.screensaverEnabled, _('Enable screensaver')),
          #getConfigListEntry(_('Check for updates on startup'), config.plugins.airplayer.autoUpdate, _('Check for updates on startup')),
