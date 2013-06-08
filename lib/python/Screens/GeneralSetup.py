@@ -101,8 +101,8 @@ class GeneralSetup(Screen):
 
 		self["key_red"] = Label(_("Exit"))
 		self["key_green"] = Label(_("System Info"))
-		self["key_yellow"] = Label(_(""))
-		self["key_blue"] = Label()
+		self["key_yellow"] = Label(_("Service Info"))
+		self["key_blue"] = Label(_("Memory Info"))
 		self["description"] = Label()
 
 		self.menu = 0
@@ -132,6 +132,7 @@ class GeneralSetup(Screen):
 			"red": self.keyred,
 			"green": self.keygreen,
 			"yellow": self.keyyellow,
+			"blue": self.keyblue,
 			})
 
 		self.MainQmenu()
@@ -185,8 +186,13 @@ class GeneralSetup(Screen):
 		self.session.open(About)
 
 	def keyyellow(self):
-		self.session.open(GeneralSetupDevices)
+		from Screens.ServiceInfo import ServiceInfo
+		self.session.open(ServiceInfo)
 
+	def keyblue(self):
+		from Screens.About import Devices
+		self.session.open(Devices)
+		
 ######## Main Menu ##############################
 	def MainQmenu(self):
 		self.menu = 0
@@ -409,9 +415,9 @@ class GeneralSetup(Screen):
 			self.session.open(NetworkAfp)
 		elif item[0] == _("OpenVPN"):
 			self.session.open(NetworkOpenvpn)
-		elif item[0] == _("MiniDLNA"):
+		elif item[0] == _("DLNA Server"):
 			self.session.open(NetworkMiniDLNA)
-		elif item[0] == _("Inadyn"):
+		elif item[0] == _("DYN-DNS"):
 			self.session.open(NetworkInadyn)
 		elif item[0] == _("SABnzbd"):
 			self.session.open(NetworkSABnzbd)
@@ -664,4 +670,5 @@ class GeneralSetupSubList(MenuList):
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setFont(1, gFont("Regular", 14))
 		self.l.setItemHeight(50)
+
 		
