@@ -210,6 +210,7 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Channel selection",_("Channel selection configuration"),_("Setup your Channel selection configuration")))
 		self.sublist.append(QuickSubMenuEntryComponent("Recording settings",_("Recording Setup"),_("Setup your recording config")))
 		self.sublist.append(QuickSubMenuEntryComponent("Timeshift settings",_("Timeshift Setup"),_("Setup your timeshift config")))
+		self.sublist.append(QuickSubMenuEntryComponent("Subtitles settings",_("Subtitles Setup"),_("Setup subtitles behaviour")))
 		self.sublist.append(QuickSubMenuEntryComponent("EPG settings",_("EPG Setup"),_("Setup your EPG config")))
 		self.sublist.append(QuickSubMenuEntryComponent("Common Interface",_("Common Interface configuration"),_("Active/reset and manage your CI")))
 		self.sublist.append(QuickSubMenuEntryComponent("Parental Control",_("Lock/unlock channels"),_("Setup parental control lock")))
@@ -442,6 +443,8 @@ class GeneralSetup(Screen):
 			self.openSetup("recording")
 		elif item[0] == _("Timeshift settings"):
 			self.openSetup("timeshift")
+		elif item[0] == _("Subtitles settings"):
+			self.openSetup("subtitlesetup")
 		elif item[0] == _("EPG settings"):
 			self.openSetup("epgsettings")
 		elif item[0] == _("Common Interface"):

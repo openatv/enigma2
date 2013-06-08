@@ -182,20 +182,43 @@ class GeneralMenuSummary(Screen):
 
 class GeneralMenu(Screen):
     skin = '''
-	<screen position="0,0" size="1280,720" flags="wfNoBorder" name="GeneralMenu">
-		<!--widget position="0,100" size="1280,200" name="list_ext" selectionDisabled="1" transparent="1" /-->
+	<screen position="0,150" size="1280,570" flags="wfNoBorder" name="GeneralMenu">
+<!--		<widget position="0,100" size="1280,200" name="list_ext" selectionDisabled="1" transparent="1" />-->
 		
-		<widget name="frame" position="12,95" size="170,220" zPosition="1" alphatest="on" />
+<!--		<widget name="frame" position="12,95" size="170,220" zPosition="1" alphatest="on" />
 		
-		<widget position="40,55" size="1200,25" name="title" font="Regular;22"  zPosition="2" transparent="1" foregroundColors="#555555,#999999" />
+		<widget position="40,25" size="1200,25" name="title" font="Regular;22"  zPosition="2" transparent="1" foregroundColors="#555555,#999999" />-->
 
-		<widget position="22,130" size="150,150" source="id_mainmenu_plugins_tumb_ext_0" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="200,130" size="150,150" source="id_mainmenu_plugins_tumb_ext_1" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="378,130" size="150,150" source="id_mainmenu_plugins_tumb_ext_2" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="556,130" size="150,150" source="id_mainmenu_plugins_tumb_ext_3" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="734,130" size="150,150" source="id_mainmenu_plugins_tumb_ext_4" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="912,130" size="150,150" source="id_mainmenu_plugins_tumb_ext_5" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="1090,130" size="150,150" source="id_mainmenu_plugins_tumb_ext_6" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
+		<widget position="22,20" size="150,150" source="id_mainmenu_plugins_tumb_ext_0" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
+		<widget position="200,20" size="150,150" source="id_mainmenu_plugins_tumb_ext_1" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
+		<widget position="378,20" size="150,150" source="id_mainmenu_plugins_tumb_ext_2" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
+		<widget position="556,20" size="150,150" source="id_mainmenu_plugins_tumb_ext_3" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
+		<widget position="734,20" size="150,150" source="id_mainmenu_plugins_tumb_ext_4" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
+		<widget position="912,20" size="150,150" source="id_mainmenu_plugins_tumb_ext_5" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
+		<widget position="1090,20" size="150,150" source="id_mainmenu_plugins_tumb_ext_6" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
+		
+		<widget position="0,10" size="1280,180" source="id_mainmenu_ext" render="Micon" path="easy-skin-hd/gmenu/" alphatest="on" zPosition="2" transparent="1" />
+		<widget position="0,210" size="1280,76" name="list" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
+		
+		<widget position="15,290" size="250,250" name="list_sub_0" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
+		<widget position="265,290" size="250,250" name="list_sub_1" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
+		<widget position="515,290" size="250,250" name="list_sub_2" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
+		<widget position="765,290" size="250,250" name="list_sub_3" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
+		<widget position="1015,290" size="250,250" name="list_sub_4" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
+		
+		<widget position="122,280" size="35,10" name="up_sub_0" pixmap="easy-skin-hd/gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
+		<widget position="372,280" size="35,10" name="up_sub_1" pixmap="easy-skin-hd/gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
+		<widget position="622,280" size="35,10" name="up_sub_2" pixmap="easy-skin-hd/gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
+		<widget position="872,280" size="35,10" name="up_sub_3" pixmap="easy-skin-hd/gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
+		<widget position="1122,290" size="35,10" name="up_sub_4" pixmap="easy-skin-hd/gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
+		
+		<widget position="122,540" size="35,10" name="down_sub_0" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
+		<widget position="372,540" size="35,10" name="down_sub_1" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
+		<widget position="622,540" size="35,10" name="down_sub_2" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
+		<widget position="872,540" size="35,10" name="down_sub_3" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
+		<widget position="1122,540" size="35,10" name="down_sub_4" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
+		
+		
 <!--
 		<widget position="22,130" size="150,150" source="id_mainmenu_photos_tumb_ext_0" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_photo_bg.png" alphatest="on" zPosition="2" transparent="1" >
 			<convert type="MediaDate" >Cover,Photo</convert>
@@ -287,27 +310,6 @@ class GeneralMenu(Screen):
 		<widget position="912,130" size="150,150" source="id_mainmenu_tasks_tumb_ext_5" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_tasks_bg.png" path="easy-skin-hd/gmenu/" alphatest="on" zPosition="2" transparent="1" />
 		<widget position="1090,130" size="150,150" source="id_mainmenu_tasks_tumb_ext_6" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_tasks_bg.png" path="easy-skin-hd/gmenu/" alphatest="on" zPosition="2" transparent="1" />
 -->		
-		<widget position="0,120" size="1280,180" source="id_mainmenu_ext" render="Micon" path="easy-skin-hd/gmenu/" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="0,320" size="1280,76" name="list" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
-		
-		<widget position="15,400" size="250,250" name="list_sub_0" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
-		<widget position="265,400" size="250,250" name="list_sub_1" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
-		<widget position="515,400" size="250,250" name="list_sub_2" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
-		<widget position="765,400" size="250,250" name="list_sub_3" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
-		<widget position="1015,400" size="250,250" name="list_sub_4" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
-		
-		<widget position="122,390" size="35,10" name="up_sub_0" pixmap="easy-skin-hd/gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
-		<widget position="372,390" size="35,10" name="up_sub_1" pixmap="easy-skin-hd/gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
-		<widget position="622,390" size="35,10" name="up_sub_2" pixmap="easy-skin-hd/gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
-		<widget position="872,390" size="35,10" name="up_sub_3" pixmap="easy-skin-hd/gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
-		<widget position="1122,400" size="35,10" name="up_sub_4" pixmap="easy-skin-hd/gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
-		
-		<widget position="122,650" size="35,10" name="down_sub_0" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
-		<widget position="372,650" size="35,10" name="down_sub_1" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
-		<widget position="622,650" size="35,10" name="down_sub_2" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
-		<widget position="872,650" size="35,10" name="down_sub_3" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
-		<widget position="1122,650" size="35,10" name="down_sub_4" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
-		
 	</screen>'''    
 
     ALLOW_SUSPEND = True
@@ -549,7 +551,7 @@ class GeneralMenu(Screen):
     def getExtEntry(self, menuID):
         self.subentrys = self.getSubEntrys()
         ret_list = []
-        if menuID == 'id_mainmenu_plugins':
+        if menuID == 'id_mainmenu_plugins2':
             wight = 100
             countitems = 0
             for x in self.subentrys['id_mainmenu_plugins']:
@@ -568,7 +570,7 @@ class GeneralMenu(Screen):
                 countitems += 1
                 wight += 1
    
-        elif menuID == 'id_mainmenu_tasks':
+        elif menuID == 'id_mainmenu_tasks2':
             wight = 100
             countitems = 0
             for x in self.subentrys['id_mainmenu_tasks']:
