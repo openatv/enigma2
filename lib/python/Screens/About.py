@@ -8,7 +8,7 @@ from Components.About import about
 from Components.config import config
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
-from enigma import eTimer, getBoxType
+from enigma import eTimer, getBoxType, getMachineBrand, getMachineName, getImageVersionString, getBuildVersionString, getDriverDateString, getEnigmaVersionString
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork

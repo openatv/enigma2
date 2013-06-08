@@ -8,8 +8,9 @@ from Components.Sources.StaticText import StaticText
 from Components.Network import iNetwork
 from Components.config import config, ConfigSubsection, ConfigBoolean
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from enigma import eTimer
 from Components.About import about
+from enigma import eTimer, getMachineBrand, getMachineName
+
 from os import system
 
 config.misc.networkwizard = ConfigSubsection()
@@ -347,7 +348,7 @@ class NetworkWizard(WizardLanguage, Rc):
 							text11 += _("Gateway:") + "\t" + wlan0['brdaddr'] + "\n"
 						if wlan0.has_key('hwaddr'):
 							text11 += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n\n"  
-					text1 = _("Your STB_BOX is now ready to be used.\n\nYour internet connection is working now.\n\n")
+					text1 = _("Your %s %s is now ready to be used.\n\nYour internet connection is working now.\n\n") % (getMachineBrand(), getMachineName())
 					text2 = _('Accesspoint:') + "\t" + str(status[self.selectedInterface]["accesspoint"]) + "\n"
 					text3 = _('SSID:') + "\t" + str(status[self.selectedInterface]["essid"]) + "\n"
 					text4 = _('Link quality:') + "\t" + str(status[self.selectedInterface]["quality"])+ "\n"

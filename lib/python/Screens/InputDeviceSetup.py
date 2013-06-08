@@ -9,6 +9,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
+from enigma import getMachineBrand, getMachineName
 
 class InputDeviceSelection(Screen, HelpableScreen):
 	def __init__(self, session):
@@ -140,7 +141,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		self["introduction"] = StaticText()
 
 		# for generating strings into .po only
-		devicenames = [_("STB_BOX front panel"),_("STB_BOX front panel"),_("STB_BOX remote control (native)"),_("STB_BOX advanced remote control (native)"),_("STB_BOX ir keyboard"),_("STB_BOX ir mouse")]
+		devicenames = [_("%s %s front panel") % (getMachineBrand(), getMachineName()),_("%s %s front panel") % (getMachineBrand(), getMachineName()),_("%s %s remote control (native)") % (getMachineBrand(), getMachineName()),_("%s %s advanced remote control (native)") % (getMachineBrand(), getMachineName()),_("%s %s ir keyboard") % (getMachineBrand(), getMachineName()),_("%s %s ir mouse") % (getMachineBrand(), getMachineName())]
 
 		self.createSetup()
 		self.onLayoutFinish.append(self.layoutFinished)
