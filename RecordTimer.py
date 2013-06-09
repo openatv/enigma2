@@ -408,7 +408,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.record_service = None
 
 			NavigationInstance.instance.RecordTimer.saveTimer()
-			wasTimerWakeup = NavigationInstance.instance.wasTimerWakeup()
+			wasTimerWakeup = NavigationInstance.instance.wasRecTimerWakeup()
 			if self.afterEvent == AFTEREVENT.STANDBY or (not wasTimerWakeup and self.autostate and self.afterEvent == AFTEREVENT.AUTO):
 				if not Screens.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nSTB_BOX to standby. Do that now?"), timeout = 180)
