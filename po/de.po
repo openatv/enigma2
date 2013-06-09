@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-05-31 18:07+0100\n"
+"POT-Creation-Date: 2013-06-08 18:08+0100\n"
+"PO-Revision-Date: 2013-06-09 10:14+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -28,12 +28,13 @@ msgstr ""
 "\n"
 "Nachdem OK gedrückt wurde, bitte warten!"
 
+#, python-format
 msgid ""
 "\n"
-"Backup your STB_BOX settings."
+"Backup your %s %s settings."
 msgstr ""
 "\n"
-"Sichern der STB_BOX Einstellungen."
+"Sichern der %s %s Einstellungen."
 
 msgid ""
 "\n"
@@ -42,19 +43,21 @@ msgstr ""
 "\n"
 "Upgrade Quell-Adresse bearbeiten."
 
+#, python-format
 msgid ""
 "\n"
-"Manage extensions or plugins for your STB_BOX"
+"Manage extensions or plugins for your %s %s"
 msgstr ""
 "\n"
-"Verwaltung der Erweiterungen und Plugins der STB_BOX"
+"Verwaltung der Erweiterungen und Plugins der %s %s"
 
+#, python-format
 msgid ""
 "\n"
-"Online update of your STB_BOX software."
+"Online update of your %s %s software."
 msgstr ""
 "\n"
-"Online Aktualisierung der STB_BOX Firmware."
+"Online Aktualisierung der %s %s Firmware."
 
 msgid ""
 "\n"
@@ -63,19 +66,21 @@ msgstr ""
 "\n"
 "Drücke OK auf der Fernbedienung, um fortzufahren."
 
+#, python-format
 msgid ""
 "\n"
-"Restore your STB_BOX settings."
+"Restore your %s %s settings."
 msgstr ""
 "\n"
-"Wiederherstellen der STB_BOX Einstellungen."
+"Wiederherstellen der %s %s Einstellungen."
 
+#, python-format
 msgid ""
 "\n"
-"Restore your STB_BOX with a new firmware."
+"Restore your %s %s with a new firmware."
 msgstr ""
 "\n"
-"Wiederherstellen der STB_BOX mit einer neuen Firmware."
+"Wiederherstellen der %s %s mit einer neuen Firmware."
 
 msgid ""
 "\n"
@@ -245,6 +250,34 @@ msgstr "%d.%B %Y"
 #. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
 msgid "%k:%M %e/%m"
 msgstr "%k:%M %e/%m"
+
+#, python-format
+msgid "%s %s advanced remote control (native)"
+msgstr "%s %s erweiterte Fernbedienung (native)"
+
+#, python-format
+msgid "%s %s format data DVD (HDTV compatible)"
+msgstr "Daten-DVD im %s %s Format (HDTV-kompatibel)"
+
+#, python-format
+msgid "%s %s front panel"
+msgstr "%s %s Frontpaneel"
+
+#, python-format
+msgid "%s %s ir keyboard"
+msgstr "%s %s IR Tastatur"
+
+#, python-format
+msgid "%s %s ir mouse"
+msgstr "%s %s IR Maus"
+
+#, python-format
+msgid "%s %s remote control (native)"
+msgstr "%s %s Fernbedienung (native)"
+
+#, python-format
+msgid "%s %s software because updates are available."
+msgstr "%s %s Software, da Aktualisierungen verfügbar sind."
 
 #, python-format
 msgid "%s (%s)\n"
@@ -425,32 +458,60 @@ msgstr ""
 "Eine Konfigurationsdatei (%s) wurde seit der Installation verändert.\n"
 "Diese Version behalten?"
 
+#, python-format
 msgid ""
 "A finished power timer wants to shut down\n"
-"your STB_BOX. Shutdown now?"
+"your %s %s. Shutdown now?"
 msgstr ""
-"Ein Powertimer will die STB_BOX ausschalten.\n"
+"Ein Powertimer will die %s %s ausschalten.\n"
 "Jetzt ausschalten?"
 
+#, python-format
+msgid ""
+"A finished powertimer wants to reboot your %s %s.\n"
+"Do that now?"
+msgstr ""
+"Ein Powertimer will die %s %s neu starten.\n"
+"Jetzt neu starten?"
+
+msgid ""
+"A finished powertimer wants to restart the user interface.\n"
+"Do that now?"
+msgstr ""
+"Ein Powertimer will die Benutzeroberfläche der %s %s neu starten.\n"
+"\n"
+"Jetzt neu starten?"
+
+#, python-format
 msgid ""
 "A finished powertimer wants to set your\n"
-"STB_BOX to standby. Do that now?"
+"%s %s to standby. Do that now?"
 msgstr ""
-"Ein Powertimer will die STB_BOX in Bereitschaft schalten.\n"
+"Ein Powertimer will die %s %s in Bereitschaft schalten.\n"
 "Jetzt ausführen?"
 
+#, python-format
+msgid ""
+"A finished powertimer wants to shutdown your %s %s.\n"
+"Do that now?"
+msgstr ""
+"Ein Powertimer will die %s %s ausschalten.\n"
+"Jetzt ausschalten?"
+
+#, python-format
 msgid ""
 "A finished record timer wants to set your\n"
-"STB_BOX to standby. Do that now?"
+"%s %s to standby. Do that now?"
 msgstr ""
-"Ein Aufnahmetimer will die STB_BOX in Bereitschaft schalten.\n"
+"Ein Aufnahmetimer will die %s %s in Bereitschaft schalten.\n"
 "Jetzt ausführen?"
 
+#, python-format
 msgid ""
 "A finished record timer wants to shut down\n"
-"your STB_BOX. Shutdown now?"
+"your %s %s. Shutdown now?"
 msgstr ""
-"Ein Aufnahmetimer will die STB_BOX ausschalten.\n"
+"Ein Aufnahmetimer will die %s %s ausschalten.\n"
 "Jetzt ausschalten?"
 
 msgid "A graphical EPG for all services of an specific bouquet"
@@ -510,18 +571,20 @@ msgstr ""
 "\n"
 "Die zweite Netzwerkverbindung deaktivieren?"
 
+#, python-format
 msgid ""
 "A sleep timer wants to set your\n"
-"STB_BOX to standby. Do that now?"
+"%s %s to standby. Do that now?"
 msgstr ""
-"Ein Ausschalttimer möchte die STB_BOX\n"
+"Ein Ausschalttimer möchte die %s %s\n"
 "in Bereitschaft schalten. Jetzt in Bereitschaft gehen?"
 
+#, python-format
 msgid ""
 "A sleep timer wants to shut down\n"
-"your STB_BOX. Shutdown now?"
+"your %s %s. Shutdown now?"
 msgstr ""
-"Ein Ausschalttimer möchte die STB_BOX ausschalten.\n"
+"Ein Ausschalttimer möchte die %s %s ausschalten.\n"
 "Jetzt ausschalten?"
 
 msgid "A small overview of the available icon states and actions."
@@ -916,8 +979,9 @@ msgstr ""
 msgid "Are you sure you want to send this log:\n"
 msgstr "Bist Du sicher das diese Log Datei gesendet werden soll:\n"
 
-msgid "Are you sure you want to update your STB_BOX?"
-msgstr "Sicher das die STB_BOX aktualisiert werden soll?"
+#, python-format
+msgid "Are you sure you want to update your %s %s ?"
+msgstr "Sicher das die %s %s aktualisiert werden soll?"
 
 msgid "Artist"
 msgstr "Künstler"
@@ -1023,6 +1087,9 @@ msgstr "Automatische Suche"
 
 msgid "Automatic setting backup"
 msgstr "Automatische Einstellungs-Sicherung"
+
+msgid "Automatically start timeshift after"
+msgstr "TimeShift automatisch starten nach"
 
 msgid "Automatically update Client/Server View?"
 msgstr "Anzeige von Klienten/Server automatisch aktualisieren?"
@@ -2047,10 +2114,10 @@ msgstr "Dateien kopieren"
 msgid "Cores:\t%s"
 msgstr "Kerne:\t%s"
 
-msgid "Could not connect to STB_BOX .NFI image feed server:"
+#, python-format
+msgid "Could not connect to %s %s .NFI image feed server:"
 msgstr ""
-"Verbindung zur STB_BOX .NFI Image Feed Server konnte nicht hergestellt "
-"werden:"
+"Verbindung zum %s %s NFI Image Feed Server konnte nicht hergestellt werden:"
 
 msgid "Could not find installed channel list."
 msgstr "Kann keine installierte Senderliste finden."
@@ -2558,8 +2625,9 @@ msgstr "Die DVD im Laufwerk abspielen?"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Vor dem Brennen eine Vorschau der DVD ansehen?"
 
-msgid "Do you want to reboot your STB_BOX?"
-msgstr "Die STB_BOX neu starten?"
+#, python-format
+msgid "Do you want to reboot your %s %s"
+msgstr "Die %s %s neu starten?"
 
 msgid "Do you want to reboot your receiver?"
 msgstr "Soll die STB_BOX neu gestartet werden?"
@@ -2580,8 +2648,13 @@ msgstr ""
 "Willst Du alles gewählten Dateien senden:\n"
 "(Wähle 'Nein' um nur die gerade gewählte Datei zu senden.)"
 
-msgid "Do you want to update your STB_BOX?"
-msgstr "Die STB_BOX aktualisieren?"
+#, python-format
+msgid "Do you want to update your %s %s ?"
+msgstr "Die %s %s aktualisieren?"
+
+#, python-format
+msgid "Do you want to update your %s ?"
+msgstr "Die %s aktualisieren?"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Das Paket aktualisieren:\n"
@@ -2711,11 +2784,13 @@ msgstr "Senderliste bearbeiten"
 msgid "Edit settings"
 msgstr "Einstellungen bearbeiten"
 
-msgid "Edit the Nameserver configuration of your STB_BOX.\n"
-msgstr "Bearbeite die DNS Einstellungen der STB_BOX.\n"
+#, python-format
+msgid "Edit the Nameserver configuration of your %s %s.\n"
+msgstr "Bearbeite die DNS Einstellungen der %s %s.\n"
 
-msgid "Edit the network configuration of your STB_BOX.\n"
-msgstr "Bearbeite die Netzwerk-Konfiguration der STB_BOX.\n"
+#, python-format
+msgid "Edit the network configuration of your %s %s.\n"
+msgstr "Bearbeite die Netzwerk-Konfiguration der %s %s.\n"
 
 msgid "Edit title"
 msgstr "Titel schneiden"
@@ -2761,13 +2836,6 @@ msgstr "Freesat EPG aktivieren"
 
 msgid "Enable multiple bouquets"
 msgstr "Mehrere Favoritenlisten erlauben"
-
-msgid ""
-"Enable or disable Permanent Timeshift. When enabled, timeshift will be "
-"activated automactically, allowing to rewind at any time."
-msgstr ""
-"Permanentes TimeShift aktivieren oder deaktivieren. Wenn aktiviert wird "
-"Timeshift automatisch aktiviert und erlaubt ein Spulen zu jeder Zeit."
 
 msgid "Enable panic button"
 msgstr "Paniktaste aktivieren"
@@ -4087,8 +4155,9 @@ msgstr "Aus dieser Markierung nur eine Markierung machen"
 msgid "Manage extensions"
 msgstr "Erweiterungen verwalten"
 
-msgid "Manage your STB_BOX's software"
-msgstr "Verwaltung der Software der STB_BOX."
+#, python-format
+msgid "Manage your %s %s's software"
+msgstr "Verwaltung der Software der %s %s."
 
 msgid "Manual Scan"
 msgstr "Manuelle Suche"
@@ -4196,8 +4265,8 @@ msgid "Mode"
 msgstr "Modus [Video Ausgang]"
 
 #, python-format
-msgid "Model:\t%s"
-msgstr "Modell:\t%s"
+msgid "Model:\t%s %s\n"
+msgstr "Modell:\t%s %s\n"
 
 msgid "Model: "
 msgstr "Modell:"
@@ -4963,12 +5032,6 @@ msgstr ""
 msgid "Perform an online update check in the background"
 msgstr "Hintergrundsuche nach Updates"
 
-msgid "Permanent Timeshift enable"
-msgstr "Aktiviere permanenten TimeShift"
-
-msgid "Permanent Timeshift start delay"
-msgstr "Permanenter TimeShift Startverzögerung"
-
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Alle Aufnahmen im Mülleimer löschen?"
 
@@ -5489,8 +5552,9 @@ msgstr "Anbieter:"
 msgid "Put TV in standby"
 msgstr "Fernseher in Bereitschaft versetzen"
 
-msgid "Put your STB_BOX in standby"
-msgstr "A/V-Receiver in Bereitschaft versetzen"
+#, python-format
+msgid "Put your %s %s in standby"
+msgstr "%s %s in Bereitschaft versetzen"
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python Frontend für /tmp/mmi.socket"
@@ -5549,8 +5613,9 @@ msgstr "Den Unterkanal-Schnellumschalter wirklich beenden?"
 msgid "Really reboot now?"
 msgstr "Trotzdem neu booten?"
 
-msgid "Really reflash your STB_BOX and reboot now?"
-msgstr "Die STB_BOX wirklich flashen und neu starten?"
+#, python-format
+msgid "Really reflash your %s %s and reboot now?"
+msgstr "Die %s %s wirklich flashen und neu starten?"
 
 msgid "Really restart now?"
 msgstr "Trotzdem neu starten?"
@@ -5561,8 +5626,9 @@ msgstr "Trotzdem ausschalten?"
 msgid "Really upgrade the frontprocessor and reboot now?"
 msgstr "Den Frontprozessor wirklich aktualisieren und neu starten?"
 
-msgid "Really upgrade your STB_BOX and reboot now?"
-msgstr "Die STB_BOX wirklich aktualisieren und neu starten?"
+#, python-format
+msgid "Really upgrade your %s %s and reboot now?"
+msgstr "Die %s %s wirklich aktualisieren und neu starten?"
 
 msgid "Reboot"
 msgstr "Neustart"
@@ -5619,13 +5685,14 @@ msgstr "Zeitskala verkleinern"
 msgid "Reenter new PIN"
 msgstr "Neuen PIN erneut eingeben"
 
+#, python-format
 msgid ""
 "Reflash in progress\n"
-"Please wait until your STB_BOX reboots\n"
+"Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
 "Flash wird durchgeführt.\n"
-"Bitte warten bis die STB_BOX automatisch neu startet.\n"
+"Bitte warten bis die %s %s automatisch neu startet.\n"
 "Dies könnte einige Minuten in Anspruch nehmen."
 
 msgid "Refresh every (in hours)"
@@ -6709,9 +6776,6 @@ msgstr "Zeige Status-Icons in der Filmliste"
 msgid "Show tag menu"
 msgstr "Zeige Tag-Menü"
 
-msgid "Show the infomation on current event."
-msgstr "Zeige Informationen des aktuellen Programms."
-
 msgid "Show the list of AutoTimers."
 msgstr "Zeige Liste von AutoTimern..."
 
@@ -7303,8 +7367,9 @@ msgstr "Teste DiSEqC Einstellungen"
 msgid "Test mode"
 msgstr "Testmodus"
 
-msgid "Test the network configuration of your STB_BOX.\n"
-msgstr "Überprüfe die Netzwerk-Konfiguration der STB_BOX\n"
+#, python-format
+msgid "Test the network configuration of your %s %s.\n"
+msgstr "Überprüfe die Netzwerk-Konfiguration der %s %s\n"
 
 msgid "Test type"
 msgstr "Testtyp"
@@ -7347,14 +7412,15 @@ msgstr ""
 "Das Plugin CoolTVGuide ist nicht installiert!\n"
 "Bitte installieren."
 
+#, python-format
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a STB_BOX format data DVD (which will not play in stand-alone DVD "
+"create a %s %s format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
 "Der DVD-Standard unterstützt keine H.264 (HDTV) Videos. Soll stattdessen "
-"eine Daten-DVD im STB_BOX-Format (die nicht in einem herkömmlichen DVD-"
-"Player abspielbar ist) erstellt werden?"
+"eine Daten-DVD im %s %s Format (die nicht in einem herkömmlichen DVD-Player "
+"abspielbar ist) erstellt werden?"
 
 msgid ""
 "The EPGSearch plugin is not installed!\n"
@@ -7484,14 +7550,16 @@ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
 "Die Timer-Datei (timers.xml) ist kaputt und konnte nicht geladen werden."
 
-msgid "The user interface of your STB_BOX is restarting"
-msgstr "Die Benutzeroberfläche der STB_BOX startet neu"
+#, python-format
+msgid "The user interface of your %s %s is restarting"
+msgstr "Die Benutzeroberfläche der %s %s startet neu"
 
+#, python-format
 msgid ""
-"The user interface of your STB_BOX is restarting\n"
+"The user interface of your %s %s is restarting\n"
 "due to an error in mytest.py"
 msgstr ""
-"Die Benutzeroberfläche der STB_BOX startet\n"
+"Die Benutzeroberfläche der %s %s startet\n"
 "wegen eines Fehler in mytest.py neu"
 
 msgid ""
@@ -7552,16 +7620,16 @@ msgstr ""
 "der gewählten Partition vorhanden ist.\n"
 "Wirklich fortfahren?"
 
+#, python-format
+msgid "This %s %s cannot decode %s streams!"
+msgstr "Diese %s %s kann %s Streams nicht dekodieren!"
+
 msgid ""
 "This DVD RW medium is already formatted - reformatting will erase all "
 "content on the disc."
 msgstr ""
 "Dieses wieder beschreibbare Medium ist bereits formatiert - durch eine "
 "Neuformatierung wird der gesamte Inhalt gelöscht"
-
-#, python-format
-msgid "This STB_BOX cannot decode %s streams!"
-msgstr "Diese STB_BOX kann %s Streams nicht dekodieren!"
 
 msgid ""
 "This allows you change the font size relative to skin size, so 1 increases "
@@ -7762,17 +7830,18 @@ msgstr ""
 "Diese Option bestimmt die Scalerschärfe. Dieser Punkt wirkt sich aus wenn "
 "ein Bild vergrößert werden muss."
 
+#, python-format
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your STB_BOX without the need for a network or WLAN connection.\n"
+"your %s %s without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
 "If you already have a prepared bootable USB stick, please insert it now. "
 "Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
-"Dieses Plugin erzeugt einen USB-Stick, mit dessen Hilfe die Firmware der "
-"STB_BOX aktualisiert werden kann, ohne dass dafür eine Netzwerk- oder WLAN-"
+"Dieses Plugin erzeugt einen USB-Stick, mit dessen Hilfe die Firmware der %s "
+"%s aktualisiert werden kann, ohne dass dafür eine Netzwerk- oder WLAN-"
 "Verbindung notwendig ist. Zuerst muss ein USB-Stick vorbereitet und "
 "bootfähig gemacht werden. Im nächsten Schritt kann eine NFI-Imagedatei vom "
 "Update-Server heruntergeladen und auf diesem Stick gespeichert werden.Wenn "
@@ -7971,13 +8040,6 @@ msgstr "TimeShift Einstellungen"
 msgid "Timeshift will get saved at end of event!"
 msgstr "TimeShift wird am Ende der Sendung gesichert."
 
-msgid ""
-"Timeshift will only start when the start delay time has passed. This "
-"prevents numurous very short files when zapping."
-msgstr ""
-"TimeShift startet nur wenn die eingestellte Verzögerung vergangen ist. "
-"Dieses verhindert viele kleine Dateien beim Zappen."
-
 msgid "Timeshift-save action on zap"
 msgstr "TimeShift Speicheraktion beim Umschalten"
 
@@ -7999,18 +8061,20 @@ msgstr "Zur Ton Auswahl"
 msgid "To subtitle selection"
 msgstr "Zur Untertitel Auswahl"
 
+#, python-format
 msgid ""
-"To update your STB_BOX firmware, please follow these steps:\n"
+"To update your %s %s firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable "
 "USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed "
 "for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-"Um die Firmware zu aktualisieren bitte folgende Schritte durchführen:\n"
-"1) STB_BOX hinten mit dem Schalter ausschalten und den USB-Stick vorne rein "
+"Um die Firmware der %s %s zu aktualisieren bitte folgende Schritte "
+"durchführen:\n"
+"1) Box hinten mit dem Schalter ausschalten und den USB-Stick vorne rein "
 "stecken.\n"
-"2) STB_BOX einschalten und die '-' Taste am Gerät drücken.\n"
+"2) Box einschalten und die '-' Taste am Gerät drücken.\n"
 "3) Auf Neustart warten und den Anweisungen des Assistenten folgen."
 
 msgid "Today"
@@ -8224,9 +8288,9 @@ msgid_plural "Update completed, %d packages were installed."
 msgstr[0] "Update vollendet, %d Paket aktualisiert."
 msgstr[1] "Update vollendet, %d Pakete aktualisiert."
 
-msgid ""
-"Update failed. Your STB_BOX does not have a working internet connection."
-msgstr "Update fehlgeschlagen. Deine STB_BOX hat keine Internetverbindung"
+#, python-format
+msgid "Update failed. Your %s %s does not have a working internet connection."
+msgstr "Update fehlgeschlagen. Deine %s %s hat keine Internetverbindung"
 
 msgid "Update interval (in seconds)"
 msgstr "Update Zeitintervall x Sekunden"
@@ -8243,13 +8307,14 @@ msgstr "Upgrade und STB_BOX neu starten"
 msgid "Upgrade finished."
 msgstr "Upgrade beendet."
 
+#, python-format
 msgid ""
 "Upgrade in progress\n"
-"Please wait until your STB_BOX reboots\n"
+"Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
 "Aktualisierung wird durchgeführt.\n"
-"Bitte warten bis die STB_BOX automatisch neu startet.\n"
+"Bitte warten bis die %s %s automatisch neu startet.\n"
 "Dies könnte einige Minuten in Anspruch nehmen."
 
 msgid "Upgrading"
@@ -8596,27 +8661,6 @@ msgstr "Virtuosso Image Xtreme"
 msgid "Voltage mode"
 msgstr "Spannungs-Modus"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX erweiterte Fernbedienung (native)"
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "Daten-DVD im STB_BOX Format (HDTV-kompatibel)"
-
-msgid "STB_BOX front panel"
-msgstr "STB_BOX Frontpaneel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX IR Tastatur"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX IR Maus"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX Fernbedienung (native)"
-
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX Software, da Aktualisierungen verfügbar sind."
-
 msgid "W"
 msgstr "W"
 
@@ -8668,8 +8712,9 @@ msgstr "Fernseher aus Bereitschaft einschalten"
 msgid "Wakeup signal from TV"
 msgstr "Einschaltsignal vom Fernseher"
 
-msgid "Wakeup your STB_BOX from standby"
-msgstr "STB_BOX aus Bereitschaft einschalten"
+#, python-format
+msgid "Wakeup your %s %s from standby"
+msgstr "%s %s aus Bereitschaft einschalten"
 
 msgid "Warning: no LNB; using factory defaults."
 msgstr "Warnung: Kein LNB benutze Werkseinstellungen."
@@ -8939,6 +8984,12 @@ msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr ""
 "Wenn auf 'Ja' gestellt so wird die STB_BOX AC3 Ton benutzen wenn verfügbar."
 
+msgid ""
+"When enabled, timeshift starts automatically in background after specified "
+"time."
+msgstr ""
+"Wenn aktiviert startet TimeShift automatisch nach der angegebenen Zeit."
+
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Wenn aktiviert benutzt der Receiver DHCP zur Netzwerkkonfiguration."
 
@@ -8995,17 +9046,18 @@ msgstr ""
 "Änderungen und speichert sie. Nur 'Nein' einstellen wenn Du weißt was Du "
 "tust."
 
+#, python-format
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your STB_BOX will restart automatically!\n"
+"After completion of factory reset, your %s %s will restart automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
 "Wenn Du die Werkseinstellungen wiederherstellst, gehen sämtliche "
 "Konfigurationsdateien verloren\n"
 "(einschließlich Senderliste, Tuner-Konfiguration...)\n"
-"Nach der Wiederherstellung wird die STB_BOX automatisch neu starten\n"
+"Nach der Wiederherstellung wird die %s %s automatisch neu starten\n"
 "\n"
 "Werkseinstellungen wirklich wiederherstellen?"
 
@@ -9172,8 +9224,9 @@ msgstr "Du kannst die Liste zeitlich oder alphanumerisch sortiert haben."
 msgid "You can install this plugin."
 msgstr "Du kannst diese Erweiterung installieren."
 
-msgid "You can only burn STB_BOX recordings!"
-msgstr "Nur STB_BOX-Aufnahmen können gebrannt werden!"
+#, python-format
+msgid "You can only burn %s %s recordings!"
+msgstr "Nur %s %s Aufnahmen können gebrannt werden!"
 
 msgid "You can remove this plugin."
 msgstr "Du kannst diese Erweiterung deinstallieren."
@@ -9261,27 +9314,71 @@ msgstr "TimeShift scheint aktiv zu sein. Bitte TimeShift stoppen."
 msgid "You system does not support ext4"
 msgstr "Ihr System unterstützt nicht das ext4 Dateisystem"
 
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr ""
-"Deine STB_BOX wird neu Starten wenn Du OK auf der Fernbedienung drückst."
-
+#, python-format
 msgid ""
-"Your STB_BOX is not connected to the internet, please check your network "
+"Your %s %s is not connected to the internet, please check your network "
 "settings and try again."
 msgstr ""
-"Die STB_BOX ist nicht mit dem Internet verbunden. Bitte überprüfe die "
+"Die %s %s ist nicht mit dem Internet verbunden. Bitte überprüfe die "
 "Netzwerkeinstellungen und versuche es erneut."
 
+#, python-format
 msgid ""
-"Your STB_BOX is now ready to be used.\n"
+"Your %s %s is now ready to be used.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
 msgstr ""
-"Die STB_BOX kann jetzt verwendet werden.\n"
+"Die %s %s kann jetzt verwendet werden.\n"
 "\n"
 "Die Internetverbindung funktioniert nun.\n"
 "\n"
+
+#, python-format
+msgid "Your %s %s is rebooting"
+msgstr "Deine %s %s startet neu"
+
+#, python-format
+msgid "Your %s %s is shutting down"
+msgstr "Deine %s %s schaltet sich aus"
+
+#, python-format
+msgid ""
+"Your %s %s might be unusable now. Please consult the manual for further "
+"assistance before rebooting your %s %s."
+msgstr ""
+"Die %s %s könnte jetzt unbenutzbar sein. Bitte im Handbuch nach Hinweisen "
+"suchen bevor die %s %s neu gestartet wird."
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the installation of service\n"
+"Ready to install \"%s\" ?"
+msgstr ""
+"Die %s %s wird neu gestartet wenn der Service installiert ist.\n"
+"Bereit \"%s\" zu installieren?"
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the installation of service.\n"
+"\n"
+"Do you want to install now ?"
+msgstr ""
+"Deine %s %s wird nach installieren des Services neu gestartet\n"
+"\n"
+"Service jetzt installieren?"
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now ?"
+msgstr ""
+"Deine %s %s wird nach entfernen des Services neu gestartet\n"
+"Service jetzt entfernen?"
+
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr ""
+"Deine STB_BOX wird neu Starten wenn Du OK auf der Fernbedienung drückst."
 
 msgid ""
 "Your STB_BOX is now ready to use.\n"
@@ -9296,74 +9393,8 @@ msgstr ""
 "\n"
 "Drücke OK zum Fortfahren."
 
-msgid "Your STB_BOX is rebooting"
-msgstr "Deine STB_BOX startet neu"
-
-msgid "Your STB_BOX is shutting down"
-msgstr "Deine STB_BOX schaltet sich aus"
-
 msgid "Your STB_BOX is shutting down. Please stand by..."
 msgstr "Ihre STB_BOX schaltet sich nun aus. Bitte warte einen Moment..."
-
-msgid ""
-"Your STB_BOX might be unusable now. Please consult the manual for further "
-"assistance before rebooting your STB_BOX."
-msgstr ""
-"Die STB_BOX könnte jetzt unbenutzbar sein. Bitte im Handbuch nach Hinweisen "
-"suchen bevor die STB_BOX neu gestartet wird."
-
-msgid ""
-"Your STB_BOX wants to reboot your STB_BOX.\n"
-"Do that now?"
-msgstr ""
-"Die STB_BOX möchte jetzt neu starten.\n"
-"Jetzt neu starten?"
-
-msgid ""
-"Your STB_BOX wants to restart the user interface.\n"
-"Do that now?"
-msgstr ""
-"Deine STB_BOX möchte die Benutzeroberfläche neu starten.\n"
-"\n"
-"Jetzt neu starten?"
-
-msgid ""
-"Your STB_BOX wants to set your STB_BOX to standby.\n"
-"Do that now?"
-msgstr ""
-"Die STB_BOX möchte jetzt in Bereitschaft schalten.\n"
-"Jetzt in Bereitschaft schalten?"
-
-msgid ""
-"Your STB_BOX wants to shut down your STB_BOX.\n"
-"Do that now?"
-msgstr ""
-"Die STB_BOX möchte jetzt ausschalten.\n"
-"Jetzt ausschalten?"
-
-#, python-format
-msgid ""
-"Your STB_BOX will be restarted after the installation of service\n"
-"Ready to install \"%s\" ?"
-msgstr ""
-"Die STB_BOX wird neu gestartet wenn der Service installiert ist.\n"
-"Bereit \"%s\" zu installieren?"
-
-msgid ""
-"Your STB_BOX will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-"Deine STB_BOX wird nach installieren des Services neu gestartet\n"
-"\n"
-"Service jetzt installieren?"
-
-msgid ""
-"Your STB_BOX will be restarted after the removal of service\n"
-"Do you want to remove now ?"
-msgstr ""
-"Deine STB_BOX wird nach entfernen des Services neu gestartet\n"
-"Service jetzt entfernen?"
 
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
@@ -9397,13 +9428,14 @@ msgstr ""
 "Ihre Frontprozessor-Firmware muss aktualisiert werden.\n"
 "Drücke OK, um das Upgrade zu starten."
 
+#, python-format
 msgid ""
 "Your frontprocessor will be upgraded\n"
-"Please wait until your STB_BOX reboots\n"
+"Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
 "Der Frontprozessor wird jetzt aktualisiert\n"
-"Bitte warten bis die STB_BOX neu startet\n"
+"Bitte warten bis die %s %s neu startet\n"
 "Es dauert einige Minuten"
 
 msgid ""
@@ -10744,6 +10776,13 @@ msgstr "umgeschaltet"
 #~ msgid "EPG selection"
 #~ msgstr "EPG-Auswahl"
 
+#~ msgid ""
+#~ "Enable or disable Permanent Timeshift. When enabled, timeshift will be "
+#~ "activated automactically, allowing to rewind at any time."
+#~ msgstr ""
+#~ "Permanentes TimeShift aktivieren oder deaktivieren. Wenn aktiviert wird "
+#~ "Timeshift automatisch aktiviert und erlaubt ein Spulen zu jeder Zeit."
+
 #~ msgid "Enable timer"
 #~ msgstr "Timer aktivieren"
 
@@ -10841,11 +10880,17 @@ msgstr "umgeschaltet"
 #~ msgid "Parental control services editor"
 #~ msgstr "Jugendschutz-Sendereditor"
 
+#~ msgid "Permanent Timeshift enable"
+#~ msgstr "Aktiviere permanenten TimeShift"
+
 #~ msgid "Permanent Timeshift max events"
 #~ msgstr "Permanenter TimeShift max. Sendungen"
 
 #~ msgid "Permanent Timeshift max length"
 #~ msgstr "Permanenter TimeShift max. Länge"
+
+#~ msgid "Permanent Timeshift start delay"
+#~ msgstr "Permanenter TimeShift Startverzögerung"
 
 #~ msgid "PiP setup"
 #~ msgstr "PiP Einstellung"
@@ -10932,6 +10977,9 @@ msgstr "umgeschaltet"
 #~ msgid "Show Picons *"
 #~ msgstr "Zeige PIcons*"
 
+#~ msgid "Show the infomation on current event."
+#~ msgstr "Zeige Informationen des aktuellen Programms."
+
 #~ msgid "Shutdown in (mins)"
 #~ msgstr "Ausschalten in (Min)"
 
@@ -10963,6 +11011,13 @@ msgstr "umgeschaltet"
 #~ msgid "Timer status:"
 #~ msgstr "Timer-Status:"
 
+#~ msgid ""
+#~ "Timeshift will only start when the start delay time has passed. This "
+#~ "prevents numurous very short files when zapping."
+#~ msgstr ""
+#~ "TimeShift startet nur wenn die eingestellte Verzögerung vergangen ist. "
+#~ "Dieses verhindert viele kleine Dateien beim Zappen."
+
 #~ msgid "Translation:"
 #~ msgstr "Übersetzung:"
 
@@ -10992,6 +11047,27 @@ msgstr "umgeschaltet"
 
 #~ msgid "Yes and save in movie dir"
 #~ msgstr "Ja und im Filmverzeichnis speichern"
+
+#~ msgid ""
+#~ "Your STB_BOX wants to reboot your STB_BOX.\n"
+#~ "Do that now?"
+#~ msgstr ""
+#~ "Die STB_BOX möchte jetzt neu starten.\n"
+#~ "Jetzt neu starten?"
+
+#~ msgid ""
+#~ "Your STB_BOX wants to set your STB_BOX to standby.\n"
+#~ "Do that now?"
+#~ msgstr ""
+#~ "Die STB_BOX möchte jetzt in Bereitschaft schalten.\n"
+#~ "Jetzt in Bereitschaft schalten?"
+
+#~ msgid ""
+#~ "Your STB_BOX wants to shut down your STB_BOX.\n"
+#~ "Do that now?"
+#~ msgstr ""
+#~ "Die STB_BOX möchte jetzt ausschalten.\n"
+#~ "Jetzt ausschalten?"
 
 #~ msgid "config menu"
 #~ msgstr "Konfigurationsmenü"
