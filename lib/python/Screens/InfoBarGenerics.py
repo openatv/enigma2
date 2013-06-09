@@ -167,7 +167,7 @@ class InfoBarUnhandledKey:
 		except:
 			print 'KEY: %s' % key
 		self.unhandledKeyDialog.hide()
-		if (key != 352 and key != 407 and key != 412) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
 		if flag != 4:
@@ -177,6 +177,12 @@ class InfoBarUnhandledKey:
 			if flag == 1: # break
 				self.checkUnusedTimer.start(0, True)
 		return 0
+
+	def closeSIB(self, key):
+		if key >= 12 and key != 352 and key != 402 and key != 403 and key != 407 and key != 412 :
+			return True
+		else:
+			return False
 
 	#this function is only called when no other action has handled this key
 	def actionB(self, key, flag):
