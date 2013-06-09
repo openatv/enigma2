@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-20 00:05+0100\n"
+"POT-Creation-Date: 2013-06-09 17:05+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -27,12 +27,11 @@ msgstr ""
 "\n"
 "Vajuta OK ja oota!"
 
+#, fuzzy, python-format
 msgid ""
 "\n"
-"Backup your STB_BOX settings."
-msgstr ""
-"\n"
-"STB_BOX seadete varundamine."
+"Backup your %s %s settings."
+msgstr "Seadistuste varundamine"
 
 msgid ""
 "\n"
@@ -41,16 +40,18 @@ msgstr ""
 "\n"
 "Muuda uuenduste allika aadressi."
 
+#, fuzzy, python-format
 msgid ""
 "\n"
-"Manage extensions or plugins for your STB_BOX"
+"Manage extensions or plugins for your %s %s"
 msgstr ""
 "\n"
 "Halda STB_BOX laiendusi"
 
+#, fuzzy, python-format
 msgid ""
 "\n"
-"Online update of your STB_BOX software."
+"Online update of your %s %s software."
 msgstr ""
 "\n"
 "STB_BOX tarkvara uuendamine."
@@ -62,16 +63,16 @@ msgstr ""
 "\n"
 "Jätkamiseks vajuta OK."
 
+#, fuzzy, python-format
 msgid ""
 "\n"
-"Restore your STB_BOX settings."
-msgstr ""
-"\n"
-"STB_BOX seadistuste taastamine."
+"Restore your %s %s settings."
+msgstr "Seadistuste taastamine"
 
+#, fuzzy, python-format
 msgid ""
 "\n"
-"Restore your STB_BOX with a new firmware."
+"Restore your %s %s with a new firmware."
 msgstr ""
 "\n"
 "STB_BOX taastamine uue püsivaraga."
@@ -244,6 +245,34 @@ msgstr "%d.%B %Y"
 #. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
 msgid "%k:%M %e/%m"
 msgstr "%k:%M %e/%m"
+
+#, fuzzy, python-format
+msgid "%s %s advanced remote control (native)"
+msgstr "STB_BOX täpsem pult (algupärane)"
+
+#, fuzzy, python-format
+msgid "%s %s format data DVD (HDTV compatible)"
+msgstr "STB_BOX vormingus data DVD"
+
+#, python-format
+msgid "%s %s front panel"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "%s %s ir keyboard"
+msgstr "Virtuaalklahvistik"
+
+#, python-format
+msgid "%s %s ir mouse"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "%s %s remote control (native)"
+msgstr "STB_BOX pult (algupärane)"
+
+#, fuzzy, python-format
+msgid "%s %s software because updates are available."
+msgstr "STB_BOX tarkvara, sest uuendused on saadaval."
 
 #, python-format
 msgid "%s (%s)\n"
@@ -420,30 +449,58 @@ msgstr ""
 "Seadistusfaili (%s) on pärast algpaigaldust muudetud.\n"
 "Kas tahad säilitada oma versiooni?"
 
+#, fuzzy, python-format
 msgid ""
 "A finished power timer wants to shut down\n"
-"your STB_BOX. Shutdown now?"
+"your %s %s. Shutdown now?"
 msgstr ""
 "Toitetaimer on lõpetanud ja\n"
 "STB_BOX lülitatakse välja. Kas nõustud?"
 
+#, fuzzy, python-format
 msgid ""
-"A finished powertimer wants to set your\n"
-"STB_BOX to standby. Do that now?"
+"A finished powertimer wants to reboot your %s %s.\n"
+"Do that now?"
 msgstr ""
 "Toitetaimer on lõpetanud ja\n"
 "STB_BOX viiakse ooterežiimi. Kas nõustud?"
 
+#, fuzzy
+msgid ""
+"A finished powertimer wants to restart the user interface.\n"
+"Do that now?"
+msgstr ""
+"STB_BOX vjab kasutajaliidese taaskäivitamist.\n"
+"Kas teed seda kohe?"
+
+#, fuzzy, python-format
+msgid ""
+"A finished powertimer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Toitetaimer on lõpetanud ja\n"
+"STB_BOX viiakse ooterežiimi. Kas nõustud?"
+
+#, fuzzy, python-format
+msgid ""
+"A finished powertimer wants to shutdown your %s %s.\n"
+"Do that now?"
+msgstr ""
+"Toitetaimer on lõpetanud ja\n"
+"STB_BOX lülitatakse välja. Kas nõustud?"
+
+#, fuzzy, python-format
 msgid ""
 "A finished record timer wants to set your\n"
-"STB_BOX to standby. Do that now?"
+"%s %s to standby. Do that now?"
 msgstr ""
 "Taimeriga salvestus on lõpetatud ja\n"
 "STB_BOX viiakse ooterežiimi. Kas nõustud?"
 
+#, fuzzy, python-format
 msgid ""
 "A finished record timer wants to shut down\n"
-"your STB_BOX. Shutdown now?"
+"your %s %s. Shutdown now?"
 msgstr ""
 "Taimeriga salvestus on lõpetatud ja\n"
 "STB_BOX lülitatakse välja. Kas nõustud?"
@@ -494,16 +551,18 @@ msgstr ""
 "\n"
 "Kas keelata teine võrguliides?"
 
+#, fuzzy, python-format
 msgid ""
 "A sleep timer wants to set your\n"
-"STB_BOX to standby. Do that now?"
+"%s %s to standby. Do that now?"
 msgstr ""
 "Unetaimer soovib panna STB_BOX\n"
 "ooterežiimi. Kas nõustud?"
 
+#, fuzzy, python-format
 msgid ""
 "A sleep timer wants to shut down\n"
-"your STB_BOX. Shutdown now?"
+"your %s %s. Shutdown now?"
 msgstr ""
 "Unetaimer soovib STB_BOX välja\n"
 "lülitada. Kas nõustud?"
@@ -878,7 +937,8 @@ msgstr "Kas salvestad EPG andmed:\n"
 msgid "Are you sure you want to send this log:\n"
 msgstr "Kas saadad logi:\n"
 
-msgid "Are you sure you want to update your STB_BOX?"
+#, fuzzy, python-format
+msgid "Are you sure you want to update your %s %s ?"
 msgstr "Kas uuendad STB_BOX tarkvara?"
 
 msgid "Artist"
@@ -985,6 +1045,9 @@ msgstr "Automaatotsing"
 
 msgid "Automatic setting backup"
 msgstr "Automaatne varukoopia loomine seadistustest"
+
+msgid "Automatically start timeshift after"
+msgstr ""
 
 msgid "Automatically update Client/Server View?"
 msgstr "Automaatne kliendi/serveri vaate uuendamine?"
@@ -1900,7 +1963,8 @@ msgstr "Failide kopeerimine"
 msgid "Cores:\t%s"
 msgstr "Tuumad:\t%s"
 
-msgid "Could not connect to STB_BOX .NFI image feed server:"
+#, fuzzy, python-format
+msgid "Could not connect to %s %s .NFI image feed server:"
 msgstr "Ei saa ühendust STB_BOX tarkvara serveriga:"
 
 msgid "Could not find installed channel list."
@@ -2398,8 +2462,9 @@ msgstr "Soovid panna DVD mängima?"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Soovid plaadi eelvaadet ka, enne kirjutamise alustamist?"
 
-msgid "Do you want to reboot your STB_BOX?"
-msgstr "Soovid STB_BOX uuesti käivitada?"
+#, fuzzy, python-format
+msgid "Do you want to reboot your %s %s"
+msgstr "Kas taaskäivitad vastuvõtja?"
 
 msgid "Do you want to reboot your receiver?"
 msgstr "Kas taaskäivitad vastuvõtja?"
@@ -2420,8 +2485,13 @@ msgstr ""
 "Kas saadad kõik valitud failid:\n"
 "(vali 'Ei', kui saadad ainult hetkel valitud faili.)"
 
-msgid "Do you want to update your STB_BOX?"
-msgstr "Kas uuendad STB_BOX tarkvara?"
+#, fuzzy, python-format
+msgid "Do you want to update your %s %s ?"
+msgstr "Kas taastad seaded?"
+
+#, fuzzy, python-format
+msgid "Do you want to update your %s ?"
+msgstr "Kas taastad seaded?"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Kas uuendad paketi:\n"
@@ -2547,10 +2617,12 @@ msgstr "Muuda kanalinimekirja"
 msgid "Edit settings"
 msgstr "Muuda seadeid"
 
-msgid "Edit the Nameserver configuration of your STB_BOX.\n"
+#, fuzzy, python-format
+msgid "Edit the Nameserver configuration of your %s %s.\n"
 msgstr "Muuda STB_BOX nimeserveri seadeid.\n"
 
-msgid "Edit the network configuration of your STB_BOX.\n"
+#, fuzzy, python-format
+msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Muuda STB_BOX võrguseadeid.\n"
 
 msgid "Edit title"
@@ -2597,9 +2669,6 @@ msgstr "Luba freesat EPG"
 
 msgid "Enable multiple bouquets"
 msgstr "Luba lemmiknimekirjad"
-
-msgid "Enable or disable Permanent Timeshift. When enabled, timeshift will be activated automactically, allowing to rewind at any time."
-msgstr "Luba või keela pidev ajanihe. Lubamisel käivitatakse ajanihe automaatselt. See võimaldab kerida tagasi igal ajahetkel."
 
 msgid "Enable panic button"
 msgstr "Luba paanika nupp"
@@ -3850,7 +3919,8 @@ msgstr "Tee see märk lihtsalt märgiks"
 msgid "Manage extensions"
 msgstr "Laienduste haldamine"
 
-msgid "Manage your STB_BOX's software"
+#, fuzzy, python-format
+msgid "Manage your %s %s's software"
 msgstr "Halda STB_BOX tarkvara"
 
 msgid "Manual Scan"
@@ -3958,8 +4028,8 @@ msgctxt "Video output mode"
 msgid "Mode"
 msgstr "Režiim"
 
-#, python-format
-msgid "Model:\t%s"
+#, fuzzy, python-format
+msgid "Model:\t%s %s\n"
 msgstr "Mudel:\t%s"
 
 msgid "Model: "
@@ -4691,12 +4761,6 @@ msgstr "Loo seadistustest varukoopia. Enne uuendamist on see väga soovitatav."
 msgid "Perform an online update check in the background"
 msgstr "Otsi taustal uuendusi"
 
-msgid "Permanent Timeshift enable"
-msgstr "Pideva ajanihke lubamine"
-
-msgid "Permanent Timeshift start delay"
-msgstr " Pideva ajanihke käivitumise viiteaeg"
-
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Kustutad lõplikult kõik failid prügikastist?"
 
@@ -5203,8 +5267,9 @@ msgstr "Levitajad: "
 msgid "Put TV in standby"
 msgstr "Lülita TV välja"
 
-msgid "Put your STB_BOX in standby"
-msgstr "Pane STB_BOX ooterežiimi"
+#, fuzzy, python-format
+msgid "Put your %s %s in standby"
+msgstr "Lülita TV välja"
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Pythoni programm /tmp/mmi.socket jaoks"
@@ -5263,7 +5328,8 @@ msgstr "Väljuda alamkanalite valikust?"
 msgid "Really reboot now?"
 msgstr "Taaskäivitad vastuvõtja?"
 
-msgid "Really reflash your STB_BOX and reboot now?"
+#, fuzzy, python-format
+msgid "Really reflash your %s %s and reboot now?"
 msgstr "Paigaldad tarkvaratõmmise taaskäivitad STB_BOX?"
 
 msgid "Really restart now?"
@@ -5275,8 +5341,9 @@ msgstr "Lülitad vastuvõtja välja?"
 msgid "Really upgrade the frontprocessor and reboot now?"
 msgstr "Uuendad esiprotsessori ja taaskäivitad vastuvõtja?"
 
-msgid "Really upgrade your STB_BOX and reboot now?"
-msgstr "Uuendad ja taaskäivitad STB_BOX?"
+#, fuzzy, python-format
+msgid "Really upgrade your %s %s and reboot now?"
+msgstr "Uuendad esiprotsessori ja taaskäivitad vastuvõtja?"
 
 msgid "Reboot"
 msgstr "Taaskäivitus"
@@ -5333,9 +5400,10 @@ msgstr "Vähenda ajavahemikku"
 msgid "Reenter new PIN"
 msgstr "Korda uut PIN-i"
 
+#, fuzzy, python-format
 msgid ""
 "Reflash in progress\n"
-"Please wait until your STB_BOX reboots\n"
+"Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
 "Toimub uuendamine\n"
@@ -6370,9 +6438,6 @@ msgstr "Oleku tähistus filmilistis"
 msgid "Show tag menu"
 msgstr "Näita märksõnade menüüd"
 
-msgid "Show the infomation on current event."
-msgstr "Näita käesoleva saate teavet."
-
 msgid "Show the list of AutoTimers."
 msgstr "Näita autotaimeriloendit."
 
@@ -6954,7 +7019,8 @@ msgstr "Testi DiSEqC seadeid"
 msgid "Test mode"
 msgstr "Testpilt"
 
-msgid "Test the network configuration of your STB_BOX.\n"
+#, fuzzy, python-format
+msgid "Test the network configuration of your %s %s.\n"
 msgstr "Testi STB_BOX kohtvõrgu seadeid.\n"
 
 msgid "Test type"
@@ -6997,7 +7063,8 @@ msgstr ""
 "Cool TV Guide ei ole paigaldatud!\n"
 "Paigalda see."
 
-msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a STB_BOX format data DVD (which will not play in stand-alone DVD players) instead?"
+#, fuzzy, python-format
+msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a %s %s format data DVD (which will not play in stand-alone DVD players) instead?"
 msgstr "DVD standard ei toeta H.264 (HDTV) video voogesitust. Kas soovite luua Vu+ Ultimo vormingus andmete (data) DVD, mida teised DVD mängijad ei mängi?"
 
 msgid ""
@@ -7013,6 +7080,12 @@ msgid ""
 msgstr ""
 "Ajanihkeks valitud andmekandja ei toeta hardlinke.\n"
 "Vorminda see EXT2 või EXT3 formaati!"
+
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr "STB_BOX loeb salvestatud EPG andmeid iga (tund)."
+
+msgid "The STB_BOX stores the EPG data every (hours)."
+msgstr "STB_BOX salvestab EPG andmed iga (tund)."
 
 msgid ""
 "The IMDb plugin is not installed!\n"
@@ -7040,12 +7113,6 @@ msgid ""
 msgstr ""
 "USB pulk oli ette valmistatud käivitatavana.\n"
 "Nüüd saad NFI tarkvara faili alla laadida!"
-
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr "STB_BOX loeb salvestatud EPG andmeid iga (tund)."
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr "STB_BOX salvestab EPG andmed iga (tund)."
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Varundamine nurjus. Vali uus varukoopia asukoht."
@@ -7123,11 +7190,13 @@ msgstr "Taimerite fail (pm_timers.xml) on rikutud ja seda ei saa laadida."
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Taimerite fail (timers.xml) on rikutud ja seda ei saa laadida."
 
-msgid "The user interface of your STB_BOX is restarting"
+#, fuzzy, python-format
+msgid "The user interface of your %s %s is restarting"
 msgstr "STB_BOX kasutajaliides taaskäivitub"
 
+#, fuzzy, python-format
 msgid ""
-"The user interface of your STB_BOX is restarting\n"
+"The user interface of your %s %s is restarting\n"
 "due to an error in mytest.py"
 msgstr ""
 "STB_BOX kasutajaliides taaskäivitub\n"
@@ -7183,12 +7252,12 @@ msgstr ""
 "Kõvakettal pole piisavalt vaba ruumi.\n"
 "Kas soovid kindlasti jätkata?"
 
+#, fuzzy, python-format
+msgid "This %s %s cannot decode %s streams!"
+msgstr "STB_BOX ei suuda dekodeerida %s voogesitust!"
+
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "DVD RW ketas on juba vormindatud. Uuesti vormindamisel kustutatakse kõik, mis plaadile kirjutatud."
-
-#, python-format
-msgid "This STB_BOX cannot decode %s streams!"
-msgstr "STB_BOX ei suuda dekodeerida %s voogesitust!"
 
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr "Siin saab muuta tähesuurust suhtes teemaga. 1 suurendab ja -1 vähendab"
@@ -7313,8 +7382,9 @@ msgstr "See valik keelab summutab digitaalsed võltskontuurid, mis on vähese di
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "See valik määrab pildi teravuse ülesskaleerimisel."
 
+#, fuzzy, python-format
 msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your STB_BOX without the need for a network or WLAN connection.\n"
+"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
 "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
@@ -7507,9 +7577,6 @@ msgstr "Ajanihke seaded"
 msgid "Timeshift will get saved at end of event!"
 msgstr "Ajanihe salvestatakse saate lõppedes!"
 
-msgid "Timeshift will only start when the start delay time has passed. This prevents numurous very short files when zapping."
-msgstr "Ajanihet alustatakse alles pärast ooteaja möödumist. Nii välditakse kanalite vahetusel paljude väga lühikest failide tekkimist."
-
 msgid "Timeshift-save action on zap"
 msgstr "Ajanihke failide saatus kanalivahetusel"
 
@@ -7531,8 +7598,9 @@ msgstr "Heli valik"
 msgid "To subtitle selection"
 msgstr "Subtiitrite valik"
 
+#, fuzzy, python-format
 msgid ""
-"To update your STB_BOX firmware, please follow these steps:\n"
+"To update your %s %s firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
@@ -7752,7 +7820,8 @@ msgid_plural "Update completed, %d packages were installed."
 msgstr[0] "Uuendamine tehtud, paigaldati %d pakett."
 msgstr[1] "Uuendamine tehtud, paigaldati %d paketti."
 
-msgid "Update failed. Your STB_BOX does not have a working internet connection."
+#, fuzzy, python-format
+msgid "Update failed. Your %s %s does not have a working internet connection."
 msgstr "Uuendamine nurjus. Vastuvõtjal puudub internetiühendus."
 
 msgid "Update interval (in seconds)"
@@ -7770,9 +7839,10 @@ msgstr "Uuenda ja taaskäivita süsteem"
 msgid "Upgrade finished."
 msgstr "Uuendamine tehtud."
 
+#, fuzzy, python-format
 msgid ""
 "Upgrade in progress\n"
-"Please wait until your STB_BOX reboots\n"
+"Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
 "Toimub uuendamine\n"
@@ -8100,27 +8170,6 @@ msgstr "Virtuosso Image Xtreme"
 msgid "Voltage mode"
 msgstr "Pinge valik"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX täpsem pult (algupärane)"
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX vormingus data DVD"
-
-msgid "STB_BOX front panel"
-msgstr "STB_BOX esipaneel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX infrapuna klaviatuur"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX infrapuna hiir"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX pult (algupärane)"
-
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX tarkvara, sest uuendused on saadaval."
-
 msgid "W"
 msgstr "W"
 
@@ -8172,8 +8221,9 @@ msgstr "Käivita TV"
 msgid "Wakeup signal from TV"
 msgstr "Äratussignaal TV-st"
 
-msgid "Wakeup your STB_BOX from standby"
-msgstr "Käivita STB_BOX "
+#, fuzzy, python-format
+msgid "Wakeup your %s %s from standby"
+msgstr "Käivita TV"
 
 msgid "Warning: no LNB; using factory defaults."
 msgstr "Hoiatus: LNB puudub; kautatakse algseadeid."
@@ -8344,6 +8394,9 @@ msgstr "Määrates 'jah', kasutab vastuvõtja automaatselt varem valitud subtiit
 msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "Määrates 'jah', kasutab vastuvõtja (võimaluse korral) AC3 heli."
 
+msgid "When enabled, timeshift starts automatically in background after specified time."
+msgstr ""
+
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Määrates 'jah', kasutatakse IP aadressi määramiseks DHCP-d."
 
@@ -8371,10 +8424,11 @@ msgstr "Määra, kas 4:3 sisuga pilti tuleb skaleerida/venitatada."
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Olles häälestatud kanalile, uurib süsteem tavaliselt transponderi muudatusi ja salvestab need. Määra 'ei' ainult juhul, kui oled täiesti kindel, et tead, mida teed."
 
+#, fuzzy, python-format
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your STB_BOX will restart automatically!\n"
+"After completion of factory reset, your %s %s will restart automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
@@ -8538,7 +8592,8 @@ msgstr "Nimekirja saab järjestada aja või tähestiku järgi."
 msgid "You can install this plugin."
 msgstr "Selle laienduse saab paigaldada."
 
-msgid "You can only burn STB_BOX recordings!"
+#, fuzzy, python-format
+msgid "You can only burn %s %s recordings!"
 msgstr "Plaadile saab kirjutada ainult STB_BOX salvestusi!"
 
 msgid "You can remove this plugin."
@@ -8602,14 +8657,13 @@ msgstr "Ajanihe on kasutusel. Kas peatad selle?"
 msgid "You system does not support ext4"
 msgstr "Vastuvõtja ei toeta ext4"
 
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Vastuvõtja taaskäivitub pärast puldil OK vajutamist."
-
-msgid "Your STB_BOX is not connected to the internet, please check your network settings and try again."
+#, fuzzy, python-format
+msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
 msgstr "Internetiühendust pole. Kontrolli võrgu seadeid ja ürita uuesti."
 
+#, fuzzy, python-format
 msgid ""
-"Your STB_BOX is now ready to be used.\n"
+"Your %s %s is now ready to be used.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
@@ -8618,6 +8672,44 @@ msgstr ""
 "\n"
 "Internetiühendus töötab.\n"
 "\n"
+
+#, fuzzy, python-format
+msgid "Your %s %s is rebooting"
+msgstr "STB_BOX taaskäivitub"
+
+#, fuzzy, python-format
+msgid "Your %s %s is shutting down"
+msgstr "STB_BOX lülitub välja"
+
+#, fuzzy, python-format
+msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
+msgstr "STB_BOX võib olla nüüd kasutuskõlbmatu. Uuri juhendit täiendava abi leidmiseks enne STB_BOX taaskäivitamist."
+
+#, fuzzy, python-format
+msgid ""
+"Your %s %s will be restarted after the installation of service\n"
+"Ready to install \"%s\" ?"
+msgstr ""
+"Pärast teenuse paigaldamist STB_BOX taaskäivitub\n"
+"Kas paigaldad \"%s\"?"
+
+#, fuzzy, python-format
+msgid ""
+"Your %s %s will be restarted after the installation of service.\n"
+"\n"
+"Do you want to install now ?"
+msgstr ""
+"Pärast teenuse paigaldamist STB_BOX taaskäivitub.\n"
+"\n"
+"Kas paigaldad?"
+
+#, fuzzy, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now ?"
+msgstr ""
+"STB_BOX taaskäivitub pärast teenuse eemaldamist\n"
+"Kas eemaldad?"
 
 msgid ""
 "Your STB_BOX is now ready to use.\n"
@@ -8632,69 +8724,11 @@ msgstr ""
 "\n"
 "Jätkamiseks vajuta OK."
 
-msgid "Your STB_BOX is rebooting"
-msgstr "STB_BOX taaskäivitub"
-
-msgid "Your STB_BOX is shutting down"
-msgstr "STB_BOX lülitub välja"
-
 msgid "Your STB_BOX is shutting down. Please stand by..."
 msgstr "STB_BOX lülitub välja. Oota..."
 
-msgid "Your STB_BOX might be unusable now. Please consult the manual for further assistance before rebooting your STB_BOX."
-msgstr "STB_BOX võib olla nüüd kasutuskõlbmatu. Uuri juhendit täiendava abi leidmiseks enne STB_BOX taaskäivitamist."
-
-msgid ""
-"Your STB_BOX wants to reboot your STB_BOX.\n"
-"Do that now?"
-msgstr ""
-"STB_BOX tuleks taaskäivitada.\n"
-"Kas teed seda kohe?"
-
-msgid ""
-"Your STB_BOX wants to restart the user interface.\n"
-"Do that now?"
-msgstr ""
-"STB_BOX vjab kasutajaliidese taaskäivitamist.\n"
-"Kas teed seda kohe?"
-
-msgid ""
-"Your STB_BOX wants to set your STB_BOX to standby.\n"
-"Do that now?"
-msgstr ""
-"Unetaimer soovib panna STB_BOX ooterežiimi\n"
-"Kas teed seda kohe?"
-
-msgid ""
-"Your STB_BOX wants to shut down your STB_BOX.\n"
-"Do that now?"
-msgstr ""
-"Unetaimer soovib STB_BOX välja lülitada.\n"
-"Kas teed seda kohe?"
-
-#, python-format
-msgid ""
-"Your STB_BOX will be restarted after the installation of service\n"
-"Ready to install \"%s\" ?"
-msgstr ""
-"Pärast teenuse paigaldamist STB_BOX taaskäivitub\n"
-"Kas paigaldad \"%s\"?"
-
-msgid ""
-"Your STB_BOX will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-"Pärast teenuse paigaldamist STB_BOX taaskäivitub.\n"
-"\n"
-"Kas paigaldad?"
-
-msgid ""
-"Your STB_BOX will be restarted after the removal of service\n"
-"Do you want to remove now ?"
-msgstr ""
-"STB_BOX taaskäivitub pärast teenuse eemaldamist\n"
-"Kas eemaldad?"
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr "Vastuvõtja taaskäivitub pärast puldil OK vajutamist."
 
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr "Turvakoopia valmis. Me informeerime edasistest uuenduste käigust."
@@ -8720,9 +8754,10 @@ msgstr ""
 "Frontprotsessori püsivara tuleb uuendada.\n"
 "Vajuta OK uuendamiseks."
 
+#, fuzzy, python-format
 msgid ""
 "Your frontprocessor will be upgraded\n"
-"Please wait until your STB_BOX reboots\n"
+"Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
 "Esiprotsessorit uuendatakse\n"
@@ -9965,12 +10000,24 @@ msgstr "vahetatud"
 
 #~ msgid ""
 #~ "\n"
-#~ "An Input/output error usually indicates a corrupted filesystem! Please "
-#~ "check the filesystem of your timeshift-device!"
+#~ "An Input/output error usually indicates a corrupted filesystem! Please check the filesystem of your timeshift-device!"
 #~ msgstr ""
 #~ "\n"
-#~ "Sisendi/väljundi viga osutab tavaliselt rikutud failisüsteemile! "
-#~ "Kontrolli ajanihke jaoks kasutatava andmekandja failisüsteemi!"
+#~ "Sisendi/väljundi viga osutab tavaliselt rikutud failisüsteemile! Kontrolli ajanihke jaoks kasutatava andmekandja failisüsteemi!"
+
+#~ msgid ""
+#~ "\n"
+#~ "Backup your STB_BOX settings."
+#~ msgstr ""
+#~ "\n"
+#~ "STB_BOX seadete varundamine."
+
+#~ msgid ""
+#~ "\n"
+#~ "Restore your STB_BOX settings."
+#~ msgstr ""
+#~ "\n"
+#~ "STB_BOX seadistuste taastamine."
 
 #~ msgid "%s"
 #~ msgstr "%s"
@@ -10066,11 +10113,20 @@ msgstr "vahetatud"
 #~ msgid "Dish"
 #~ msgstr "Antenn"
 
+#~ msgid "Do you want to reboot your STB_BOX?"
+#~ msgstr "Soovid STB_BOX uuesti käivitada?"
+
+#~ msgid "Do you want to update your STB_BOX?"
+#~ msgstr "Kas uuendad STB_BOX tarkvara?"
+
 #~ msgid "Downloadable plugins"
 #~ msgstr "Saadaolevad laiendused"
 
 #~ msgid "EPG selection"
 #~ msgstr "Saatekava"
+
+#~ msgid "Enable or disable Permanent Timeshift. When enabled, timeshift will be activated automactically, allowing to rewind at any time."
+#~ msgstr "Luba või keela pidev ajanihe. Lubamisel käivitatakse ajanihe automaatselt. See võimaldab kerida tagasi igal ajahetkel."
 
 #~ msgid "Enable timer"
 #~ msgstr "Luba taimer"
@@ -10086,6 +10142,15 @@ msgstr "vahetatud"
 
 #~ msgid "Failed to remove old files."
 #~ msgstr "Vanade failide kustutamine nurjus."
+
+#~ msgid "STB_BOX front panel"
+#~ msgstr "STB_BOX esipaneel"
+
+#~ msgid "STB_BOX ir keyboard"
+#~ msgstr "STB_BOX infrapuna klaviatuur"
+
+#~ msgid "STB_BOX ir mouse"
+#~ msgstr "STB_BOX infrapuna hiir"
 
 #~ msgid "Hardware:"
 #~ msgstr "Vastuvõtja:"
@@ -10184,11 +10249,17 @@ msgstr "vahetatud"
 #~ msgid "Parental control services editor"
 #~ msgstr "Lapseluku kanali muutmine"
 
+#~ msgid "Permanent Timeshift enable"
+#~ msgstr "Pideva ajanihke lubamine"
+
 #~ msgid "Permanent Timeshift max events"
 #~ msgstr "Pideva ajanihke suurim lubatud saadete arv"
 
 #~ msgid "Permanent Timeshift max length"
 #~ msgstr "Pideva ajanihke suurim kestus"
+
+#~ msgid "Permanent Timeshift start delay"
+#~ msgstr " Pideva ajanihke käivitumise viiteaeg"
 
 #~ msgid "PiP-Zap"
 #~ msgstr "PiP-kanalivahetus"
@@ -10208,8 +10279,14 @@ msgstr "vahetatud"
 #~ msgid "Positioner fine movement"
 #~ msgstr "Positsioneeri täppisliigutamine"
 
+#~ msgid "Put your STB_BOX in standby"
+#~ msgstr "Pane STB_BOX ooterežiimi"
+
 #~ msgid "Radio"
 #~ msgstr "Raadio"
+
+#~ msgid "Really upgrade your STB_BOX and reboot now?"
+#~ msgstr "Uuendad ja taaskäivitad STB_BOX?"
 
 #~ msgid "Rec"
 #~ msgstr "Salv."
@@ -10271,16 +10348,11 @@ msgstr "vahetatud"
 #~ msgid "Set the maximum length a timeshift file may be."
 #~ msgstr "Määra ajanihke suurim lubatud pikkus."
 
-#~ msgid ""
-#~ "Set the maximum number of events (programs) that timeshift may handle."
+#~ msgid "Set the maximum number of events (programs) that timeshift may handle."
 #~ msgstr "Määra ajanihkele suurim lubatud saadete arv."
 
-#~ msgid ""
-#~ "Set what the required action must be when zapping while a timeshift has "
-#~ "been set as recording."
-#~ msgstr ""
-#~ "Määra vastuvõtja käitumine ajanihke ajal kanalit vahetades, juhul kui "
-#~ "ajanihe on määratud salvestuseks."
+#~ msgid "Set what the required action must be when zapping while a timeshift has been set as recording."
+#~ msgstr "Määra vastuvõtja käitumine ajanihke ajal kanalit vahetades, juhul kui ajanihe on määratud salvestuseks."
 
 #~ msgid "Setup what a long press on the power button does."
 #~ msgstr "Seadista, mida toitenupu pikk vajutus teeb."
@@ -10290,6 +10362,9 @@ msgstr "vahetatud"
 
 #~ msgid "Show Picons *"
 #~ msgstr "Näita kanalilogosi *"
+
+#~ msgid "Show the infomation on current event."
+#~ msgstr "Näita käesoleva saate teavet."
 
 #~ msgid "Shutdown in (mins)"
 #~ msgstr "Lülita välja (min)"
@@ -10341,6 +10416,9 @@ msgstr "vahetatud"
 #~ msgid "Timer status:"
 #~ msgstr "Taimeri olek:"
 
+#~ msgid "Timeshift will only start when the start delay time has passed. This prevents numurous very short files when zapping."
+#~ msgstr "Ajanihet alustatakse alles pärast ooteaja möödumist. Nii välditakse kanalite vahetusel paljude väga lühikest failide tekkimist."
+
 #~ msgid "Translation:"
 #~ msgstr "Tõlge:"
 
@@ -10359,14 +10437,14 @@ msgstr "vahetatud"
 #~ msgid "VideoEnhancementPreview"
 #~ msgstr "Pildi paranduste eelvaade"
 
-#~ msgid "Virtual keyboard"
-#~ msgstr "Virtuaalklahvistik"
-
 #~ msgid "Vol"
 #~ msgstr "Helitugevus"
 
 #~ msgid "Volume"
 #~ msgstr "Helitugevus"
+
+#~ msgid "Wakeup your STB_BOX from standby"
+#~ msgstr "Käivita STB_BOX "
 
 #~ msgid "Welcome..."
 #~ msgstr "Tere tulemast..."
@@ -10376,6 +10454,27 @@ msgstr "vahetatud"
 
 #~ msgid "Yes and save in movie dir"
 #~ msgstr "Jah ja salvesta see filmikataloogi"
+
+#~ msgid ""
+#~ "Your STB_BOX wants to reboot your STB_BOX.\n"
+#~ "Do that now?"
+#~ msgstr ""
+#~ "STB_BOX tuleks taaskäivitada.\n"
+#~ "Kas teed seda kohe?"
+
+#~ msgid ""
+#~ "Your STB_BOX wants to set your STB_BOX to standby.\n"
+#~ "Do that now?"
+#~ msgstr ""
+#~ "Unetaimer soovib panna STB_BOX ooterežiimi\n"
+#~ "Kas teed seda kohe?"
+
+#~ msgid ""
+#~ "Your STB_BOX wants to shut down your STB_BOX.\n"
+#~ "Do that now?"
+#~ msgstr ""
+#~ "Unetaimer soovib STB_BOX välja lülitada.\n"
+#~ "Kas teed seda kohe?"
 
 #~ msgid "config menu"
 #~ msgstr "seadete menüü"

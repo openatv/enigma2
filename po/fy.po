@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-03 15:00+0000\n"
+"POT-Creation-Date: 2013-06-09 17:05+0100\n"
 "PO-Revision-Date: 2012-12-09 02:01+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: gerrit <fy@li.org>\n"
@@ -30,16 +30,12 @@ msgid ""
 "After pressing OK, please wait!"
 msgstr ""
 
-msgid ""
-"\n"
-"An Input/output error usually indicates a corrupted filesystem! Please check the filesystem of your timeshift-device!"
-msgstr ""
-
 #
+#, fuzzy, python-format
 msgid ""
 "\n"
-"Backup your STB_BOX settings."
-msgstr ""
+"Backup your %s %s settings."
+msgstr "Ja, myn ynstellingen extra bewarje"
 
 #
 msgid ""
@@ -47,16 +43,16 @@ msgid ""
 "Edit the upgrade source address."
 msgstr ""
 
-#
+#, python-format
 msgid ""
 "\n"
-"Manage extensions or plugins for your STB_BOX"
+"Manage extensions or plugins for your %s %s"
 msgstr ""
 
-#
+#, python-format
 msgid ""
 "\n"
-"Online update of your STB_BOX software."
+"Online update of your %s %s software."
 msgstr ""
 
 #
@@ -66,15 +62,16 @@ msgid ""
 msgstr ""
 
 #
+#, fuzzy, python-format
 msgid ""
 "\n"
-"Restore your STB_BOX settings."
-msgstr ""
+"Restore your %s %s settings."
+msgstr "Wolle jo jo ynstellingen wêrom sette ?"
 
-#
+#, python-format
 msgid ""
 "\n"
-"Restore your STB_BOX with a new firmware."
+"Restore your %s %s with a new firmware."
 msgstr ""
 
 #
@@ -113,6 +110,11 @@ msgstr ""
 
 msgid " and"
 msgstr ""
+
+#
+#, fuzzy
+msgid "%-H:%M"
+msgstr "%H:%M"
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -245,6 +247,37 @@ msgstr "%d.%B %Y"
 msgid "%k:%M %e/%m"
 msgstr ""
 
+#, python-format
+msgid "%s %s advanced remote control (native)"
+msgstr ""
+
+#
+#, fuzzy, python-format
+msgid "%s %s format data DVD (HDTV compatible)"
+msgstr "STB_BOX yndieling data DVD (HDTV geskikt)"
+
+#, python-format
+msgid "%s %s front panel"
+msgstr ""
+
+#
+#, fuzzy, python-format
+msgid "%s %s ir keyboard"
+msgstr "Virtueel Toetseboerd"
+
+#, python-format
+msgid "%s %s ir mouse"
+msgstr ""
+
+#
+#, fuzzy, python-format
+msgid "%s %s remote control (native)"
+msgstr "Druk OK op of ôfstandsbestjinning om fierder te gean."
+
+#, python-format
+msgid "%s %s software because updates are available."
+msgstr ""
+
 #
 #, python-format
 msgid "%s (%s)\n"
@@ -260,6 +293,11 @@ msgid "%s updated package available"
 msgid_plural "%s updated packages available"
 msgstr[0] ""
 msgstr[1] ""
+
+#
+#, fuzzy, python-format
+msgid "%s%d min"
+msgstr "%d min"
 
 #, python-format
 msgid "%s/%s: %s"
@@ -295,14 +333,6 @@ msgid "* Only available if more than one interface is active."
 msgstr "* Allinne beskikber by meer dan ien aktieve ynterfaces"
 
 #
-msgid "0"
-msgstr "0"
-
-#
-msgid "1"
-msgstr "1"
-
-#
 msgid "1.0"
 msgstr "1.0"
 
@@ -316,6 +346,11 @@ msgstr "1.2"
 
 #
 msgid "12V output"
+msgstr "12V útgong"
+
+#
+#, fuzzy
+msgid "12V output."
 msgstr "12V útgong"
 
 #
@@ -356,19 +391,37 @@ msgstr ""
 msgid "1st Infobar timeout"
 msgstr ""
 
+msgid "23.976"
+msgstr ""
+
 #
-msgid "2"
+#, fuzzy
+msgid "24"
 msgstr "2"
+
+#
+#, fuzzy
+msgid "25"
+msgstr "2"
+
+msgid "29.97"
+msgstr ""
 
 msgid "2X"
 msgstr ""
 
 #
-msgid "3"
-msgstr "3"
+#, fuzzy
+msgid "30"
+msgstr "0"
 
 msgid "3D Mode"
 msgstr ""
+
+#
+#, fuzzy
+msgid "3D Surround"
+msgstr "Lûd"
 
 msgid "3D setup"
 msgstr ""
@@ -378,10 +431,6 @@ msgstr ""
 
 msgid "3d mode"
 msgstr ""
-
-#
-msgid "4"
-msgstr "4"
 
 #
 msgid "4:3"
@@ -397,26 +446,6 @@ msgstr "4:3 PanScan"
 
 msgid "4X"
 msgstr ""
-
-#
-msgid "5"
-msgstr "5"
-
-#
-msgid "6"
-msgstr "6"
-
-#
-msgid "7"
-msgstr "7"
-
-#
-msgid "8"
-msgstr "8"
-
-#
-msgid "9"
-msgstr "9"
 
 #
 msgid "<Current movielist location>"
@@ -460,39 +489,65 @@ msgstr ""
 "In konfiguraasje triem (%s) wie feroare nei ynstalaasje.\n"
 "Wolle jo jo ferzje hâlde ?"
 
-msgid "A demo plugin for TPM usage."
-msgstr ""
-
 #
-#, fuzzy
+#, fuzzy, python-format
 msgid ""
 "A finished power timer wants to shut down\n"
-"your STB_BOX. Shutdown now?"
+"your %s %s. Shutdown now?"
 msgstr ""
 "In tiidsbarren wol de STB_BOX\n"
 "útskeakelje... No útskeakelje ?"
 
 #
+#, fuzzy, python-format
+msgid ""
+"A finished powertimer wants to reboot your %s %s.\n"
+"Do that now?"
+msgstr ""
+"In tiidsbarren wol de STB_BOX yn sliipstand\n"
+"skeakelje... No nei de sliipstand ?"
+
+#
 #, fuzzy
 msgid ""
-"A finished powertimer wants to set your\n"
-"STB_BOX to standby. Do that now?"
+"A finished powertimer wants to restart the user interface.\n"
+"Do that now?"
 msgstr ""
 "In tiidsbarren wol de STB_BOX yn sliipstand\n"
 "skeakelje... No nei de sliipstand ?"
 
 #
+#, fuzzy, python-format
+msgid ""
+"A finished powertimer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"In tiidsbarren wol de STB_BOX yn sliipstand\n"
+"skeakelje... No nei de sliipstand ?"
+
+#
+#, fuzzy, python-format
+msgid ""
+"A finished powertimer wants to shutdown your %s %s.\n"
+"Do that now?"
+msgstr ""
+"In tiidsbarren wol de STB_BOX\n"
+"útskeakelje... No útskeakelje ?"
+
+#
+#, fuzzy, python-format
 msgid ""
 "A finished record timer wants to set your\n"
-"STB_BOX to standby. Do that now?"
+"%s %s to standby. Do that now?"
 msgstr ""
 "In tiidsbarren wol de STB_BOX yn sliipstand\n"
 "skeakelje... No nei de sliipstand ?"
 
 #
+#, fuzzy, python-format
 msgid ""
 "A finished record timer wants to shut down\n"
-"your STB_BOX. Shutdown now?"
+"your %s %s. Shutdown now?"
 msgstr ""
 "In tiidsbarren wol de STB_BOX\n"
 "útskeakelje... No útskeakelje ?"
@@ -526,6 +581,9 @@ msgstr ""
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Opnimmen is dwaande. Stopje it opnimmen earst, foar jo de satfyner brûke."
 
+msgid "A repeating timer or just once?"
+msgstr ""
+
 #
 #, python-format
 msgid "A required tool (%s) was not found."
@@ -543,17 +601,19 @@ msgid ""
 msgstr ""
 
 #
+#, fuzzy, python-format
 msgid ""
 "A sleep timer wants to set your\n"
-"STB_BOX to standby. Do that now?"
+"%s %s to standby. Do that now?"
 msgstr ""
 "In sliiptiidsbarren wol de STB_BOX yn paraatstand sette\n"
 "Dit no dwaan ?"
 
 #
+#, fuzzy, python-format
 msgid ""
 "A sleep timer wants to shut down\n"
-"your STB_BOX. Shutdown now?"
+"your %s %s. Shutdown now?"
 msgstr ""
 "In sliiptiidsbarren wol de STB_BOX útskeakelje\n"
 "No útskeakelje ?"
@@ -581,6 +641,9 @@ msgstr "AA"
 msgid "AB"
 msgstr "AB"
 
+msgid "ACQUIRING TSID/ONID"
+msgstr ""
+
 msgid "AFP Setup"
 msgstr ""
 
@@ -605,9 +668,6 @@ msgstr "Oer...."
 
 #
 msgid "Accesspoint:"
-msgstr ""
-
-msgid "Action"
 msgstr ""
 
 msgid "Action on long powerbutton press"
@@ -674,11 +734,21 @@ msgstr "In nammeserver tafoegje"
 msgid "Add a new title"
 msgstr "In nije titel tafoegje"
 
+#
+#, fuzzy
+msgid "Add a record timer"
+msgstr "In tiidsbarren tafoegje"
+
 msgid "Add a record timer for current event"
 msgstr ""
 
 msgid "Add a zap timer for current event"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Add a zap timer for next event"
+msgstr "Nei it folgende menu item gean"
 
 #
 #, fuzzy
@@ -790,6 +860,12 @@ msgstr "Album"
 msgid "Alias"
 msgstr ""
 
+msgid "Alignment of events"
+msgstr ""
+
+msgid "Alignment of service names"
+msgstr ""
+
 #
 msgid "All"
 msgstr "Alles"
@@ -798,6 +874,12 @@ msgid "All ages"
 msgstr ""
 
 msgid "All satellites"
+msgstr ""
+
+msgid "Allocate"
+msgstr ""
+
+msgid "Allocate unused memory index"
 msgstr ""
 
 msgid "Allow subtitle language to equal audio language"
@@ -818,10 +900,10 @@ msgstr ""
 msgid "Allows the STB_BOX to store the EPG data regularly."
 msgstr ""
 
-msgid "Allows you setup the button to do what you choose."
+msgid "Allows you hide the extensions of known file types."
 msgstr ""
 
-msgid "Allows you to choose the Picons to be displayed on the frontpanel."
+msgid "Allows you setup the button to do what you choose."
 msgstr ""
 
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
@@ -952,17 +1034,16 @@ msgstr ""
 msgid "Are you sure you want to send this log:\n"
 msgstr ""
 
-msgid "Are you sure you want to update your STB_BOX?"
-msgstr ""
+#
+#, fuzzy, python-format
+msgid "Are you sure you want to update your %s %s ?"
+msgstr "Wolle jo wier %s ferwiderje?"
 
 #
 msgid "Artist"
 msgstr "Artyst"
 
 msgid "Arts/Culture"
-msgstr ""
-
-msgid "Ask before shutdown"
 msgstr ""
 
 #
@@ -983,10 +1064,6 @@ msgstr ""
 
 msgid "Attach a file"
 msgstr ""
-
-#
-msgid "Audio"
-msgstr "Lûd"
 
 msgid "Audio PID"
 msgstr ""
@@ -1047,6 +1124,12 @@ msgstr "Haadstik automatysk eltse ? minuten splitse (0=nea)"
 msgid "Auto flesh"
 msgstr ""
 
+msgid "Auto focus"
+msgstr ""
+
+msgid "Auto focus commencing ..."
+msgstr ""
+
 msgid "Auto language selection"
 msgstr ""
 
@@ -1075,6 +1158,9 @@ msgid "Automatic scan"
 msgstr ""
 
 msgid "Automatic setting backup"
+msgstr ""
+
+msgid "Automatically start timeshift after"
 msgstr ""
 
 msgid "Automatically update Client/Server View?"
@@ -1106,14 +1192,6 @@ msgid "BB"
 msgstr "BB"
 
 #
-msgid "BER"
-msgstr "BER"
-
-#
-msgid "BER:"
-msgstr "BER:"
-
-#
 msgid "Back"
 msgstr "Werom"
 
@@ -1135,6 +1213,9 @@ msgstr ""
 msgid "Background delete speed"
 msgstr ""
 
+msgid "Backup Manager"
+msgstr ""
+
 msgid "Backup completed."
 msgstr ""
 
@@ -1148,9 +1229,6 @@ msgstr ""
 
 #
 msgid "Backup system settings"
-msgstr ""
-
-msgid "Backup Manager"
 msgstr ""
 
 #
@@ -1239,7 +1317,12 @@ msgstr ""
 msgid "Buffers:"
 msgstr ""
 
-msgid "Build:"
+#, python-format
+msgid "Build:\t%s"
+msgstr ""
+
+#, python-format
+msgid "Build: %s"
 msgstr ""
 
 msgid "Bulgarian"
@@ -1276,15 +1359,14 @@ msgstr ""
 msgid "By Team ViX"
 msgstr ""
 
+msgid "Bypass HDMI EDID Check"
+msgstr ""
+
 msgid "Bytes received:"
 msgstr ""
 
 msgid "Bytes sent:"
 msgstr ""
-
-#
-msgid "C"
-msgstr "C"
 
 #
 msgid "C-Band"
@@ -1337,8 +1419,15 @@ msgstr ""
 msgid "CCcam info"
 msgstr ""
 
+msgid "CHANGE BOUQUET"
+msgstr ""
+
 #
 msgid "CI assignment"
+msgstr ""
+
+#, python-format
+msgid "CPU:\t%s"
 msgstr ""
 
 #
@@ -1363,11 +1452,35 @@ msgstr "Cache Plaatsjes"
 msgid "Cached:"
 msgstr ""
 
+msgid "Calculate"
+msgstr ""
+
+msgid "Calculate all positions"
+msgstr ""
+
+msgid "Calculation complete"
+msgstr ""
+
+msgid "Calibrate"
+msgstr ""
+
+msgid "Can be used for different fps between external subtitles and video."
+msgstr ""
+
 #
 msgid "Cancel"
 msgstr "Ôfbrekke"
 
+msgid "Cancel save timeshift as movie"
+msgstr ""
+
 msgid "Cannot delete file"
+msgstr ""
+
+msgid "Cannot determine"
+msgstr ""
+
+msgid "Cannot find any signal ..., aborting !"
 msgstr ""
 
 msgid "Cannot move to trash can"
@@ -1393,6 +1506,9 @@ msgid "Cardserial"
 msgstr ""
 
 msgid "Center DVB subtitles"
+msgstr ""
+
+msgid "Center time-labels and remove date"
 msgstr ""
 
 #
@@ -1486,10 +1602,6 @@ msgid "ChannelEPG settings"
 msgstr "Kanaal seleksje"
 
 #
-msgid "Channellist menu"
-msgstr "Kanaal-lyst menu"
-
-#
 msgid "Chap."
 msgstr "Haads."
 
@@ -1540,7 +1652,26 @@ msgstr ""
 msgid "Children/Youth"
 msgstr ""
 
+#, python-format
+msgid "Chipset:\tBCM%s"
+msgstr ""
+
+#, python-format
+msgid "Chipset: BCM%s"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Chnage to bouquet"
+msgstr "Oan in boeket tafoegje"
+
 msgid "Choose Bouquet"
+msgstr ""
+
+msgid "Choose a tag for easy finding a recording."
+msgstr ""
+
+msgid "Choose between Daily, Weekly, Weekdays or self defined."
 msgstr ""
 
 msgid "Choose the location for crash and debuglogs."
@@ -1570,6 +1701,9 @@ msgstr ""
 msgid "Choose which tuner to configure."
 msgstr ""
 
+msgid "Chose between record and ZAP."
+msgstr ""
+
 #
 msgid "Circular left"
 msgstr ""
@@ -1584,6 +1718,11 @@ msgstr ""
 #
 msgid "Cleanup"
 msgstr "Opskjinje"
+
+#
+#, fuzzy
+msgid "Clear"
+msgstr "Log wiskje"
 
 #
 msgid "Clear before scan"
@@ -1607,6 +1746,14 @@ msgstr ""
 #
 msgid "Close"
 msgstr "Slúte"
+
+#
+#, fuzzy
+msgid "Close bouquet list."
+msgstr "bewurkjen boeket út"
+
+msgid "Close dialog"
+msgstr ""
 
 #
 msgid "Close title selection"
@@ -1646,10 +1793,6 @@ msgstr "Kleur formaat"
 #, fuzzy
 msgid "Command To Run"
 msgstr "Kommando folgoarde"
-
-#
-msgid "Command execution..."
-msgstr "Kommando útfiere"
 
 #
 msgid "Command order"
@@ -1702,10 +1845,24 @@ msgstr ""
 msgid "Configuration mode"
 msgstr ""
 
+#
+#, fuzzy, python-format
+msgid "Configuration mode: %s"
+msgstr "Oan it ynstellen"
+
+msgid "Configure an additional delay to improve external subtitle synchronisation."
+msgstr ""
+
+msgid "Configure an additional delay to improve subtitle synchronisation."
+msgstr ""
+
 msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
 msgstr ""
 
 msgid "Configure how recording filenames are constructed."
+msgstr ""
+
+msgid "Configure if and how service type icons will be shown."
 msgstr ""
 
 #
@@ -1761,6 +1918,9 @@ msgstr ""
 msgid "Configure the contrast level of the front panel display."
 msgstr ""
 
+msgid "Configure the duration in minutes for the screensaver."
+msgstr ""
+
 msgid "Configure the first audio language (highest priority)."
 msgstr ""
 
@@ -1783,6 +1943,9 @@ msgid "Configure the function of a long press on the power button."
 msgstr ""
 
 msgid "Configure the function of a short press on the power button."
+msgstr ""
+
+msgid "Configure the function of the <  > buttons."
 msgstr ""
 
 msgid "Configure the gateway."
@@ -1905,6 +2068,9 @@ msgstr ""
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr ""
 
+msgid "Configure your NTP server."
+msgstr ""
+
 #
 msgid "Configure your internal LAN"
 msgstr ""
@@ -1968,10 +2134,6 @@ msgstr "Ynhald past net op in DVD !"
 msgid "Continue"
 msgstr ""
 
-#
-msgid "Continue in background"
-msgstr "Fjierder gean yn 'e eftergrûn"
-
 msgid "Continue playback"
 msgstr ""
 
@@ -2010,14 +2172,18 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-msgid ""
-"Could not activate Permanent-Timeshift!\n"
-"Timeshift-Path does not exist"
+#
+#, fuzzy
+msgid "Copying files"
+msgstr "Bestânsysteem neisjen"
+
+#, python-format
+msgid "Cores:\t%s"
 msgstr ""
 
 #
-#, fuzzy
-msgid "Could not connect to STB_BOX .NFI image feed server:"
+#, fuzzy, python-format
+msgid "Could not connect to %s %s .NFI image feed server:"
 msgstr "Kin net ferbine mei STB_BOX .NFI Image feed server:"
 
 msgid "Could not find installed channel list."
@@ -2166,9 +2332,8 @@ msgstr "Kniplyst bewurker..."
 msgid "Czech"
 msgstr "Tsjechysk"
 
-#
-msgid "D"
-msgstr "D"
+msgid "DAC"
+msgstr ""
 
 #
 msgid "DHCP"
@@ -2245,11 +2410,6 @@ msgstr "Deensk"
 msgid "Date"
 msgstr "Datum"
 
-#
-#, fuzzy
-msgid "Date/time input"
-msgstr "Tiid / Dei ynjefte"
-
 msgid "Debug Logs"
 msgstr ""
 
@@ -2270,6 +2430,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Default recording type"
+msgstr "dit opnimmen"
+
+#
+#, fuzzy
 msgid "Default settings"
 msgstr "Wyzigje ynstellingen"
 
@@ -2277,6 +2442,12 @@ msgid "Defaults"
 msgstr ""
 
 msgid "Delay before key repeat starts:"
+msgstr ""
+
+msgid "Delay for external subtitles"
+msgstr ""
+
+msgid "Delay:"
 msgstr ""
 
 #
@@ -2328,7 +2499,15 @@ msgstr ""
 msgid "Deleted items"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Deleting files"
+msgstr "triem ferwiderje"
+
 msgid "Depth"
+msgstr ""
+
+msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
 msgstr ""
 
 msgid "Descramble http streams"
@@ -2442,11 +2621,10 @@ msgstr "Utskeakele"
 msgid "Disconnect"
 msgstr ""
 
-#
-msgid "Dish"
-msgstr "Panne"
-
 msgid "Disk space to reserve for recordings (in GB)"
+msgstr ""
+
+msgid "Display"
 msgstr ""
 
 #
@@ -2465,9 +2643,6 @@ msgid "Display and userinterface"
 msgstr ""
 
 msgid "Display message before playing next movie"
-msgstr ""
-
-msgid "Display settings"
 msgstr ""
 
 msgid "Display the EIT now/next eventdata in infobar."
@@ -2543,6 +2718,11 @@ msgid "Do you really want to remove the plugin \"%s\"?"
 msgstr "Wolle jo wier de plugin \"%s\" ferwiderje ?"
 
 #
+#, fuzzy, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Wolle jo wier de plugin \"%s\" ferwiderje ?"
+
+#
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "Wolle jo echt boekmerk fan %s ferwiderje ?"
@@ -2594,8 +2774,9 @@ msgid "Do you want to preview this DVD before burning?"
 msgstr "Wolle jo de DVD besjen foar it brânen ?"
 
 #
-msgid "Do you want to reboot your STB_BOX?"
-msgstr ""
+#, fuzzy, python-format
+msgid "Do you want to reboot your %s %s"
+msgstr "Wolle jo jo ynstellingen wêrom sette ?"
 
 msgid "Do you want to reboot your receiver?"
 msgstr ""
@@ -2618,17 +2799,20 @@ msgid ""
 msgstr ""
 
 #
-msgid "Do you want to update your STB_BOX?"
-msgstr ""
+#, fuzzy, python-format
+msgid "Do you want to update your %s %s ?"
+msgstr "Wolle jo jo ynstellingen wêrom sette ?"
+
+#
+#, fuzzy, python-format
+msgid "Do you want to update your %s ?"
+msgstr "Wolle jo jo ynstellingen wêrom sette ?"
 
 #
 msgid "Do you want to upgrade the package:\n"
 msgstr ""
 
 msgid "Don't save"
-msgstr ""
-
-msgid "Don't save Timeshift as Movie"
 msgstr ""
 
 #
@@ -2658,10 +2842,6 @@ msgid "Download plugins"
 msgstr ""
 
 #
-msgid "Downloadable plugins"
-msgstr "Binnen te heljen ynstekkers"
-
-#
 msgid "Downloading"
 msgstr "Binnenheljen fan"
 
@@ -2669,7 +2849,12 @@ msgstr "Binnenheljen fan"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Binnenheljen fan ynstekker ynformaasje..."
 
-msgid "Drivers:"
+#, python-format
+msgid "Drivers:\t%s"
+msgstr ""
+
+#, python-format
+msgid "Drivers: %s"
 msgstr ""
 
 #
@@ -2723,11 +2908,6 @@ msgstr ""
 msgid "EPG location"
 msgstr ""
 
-#
-#, fuzzy
-msgid "EPG selection"
-msgstr "EPG Seleksje"
-
 msgid "EPG settings"
 msgstr ""
 
@@ -2739,6 +2919,9 @@ msgstr "Flater - Sykjen mislearre (%s)!"
 #
 msgid "East"
 msgstr "East"
+
+msgid "East limit set"
+msgstr ""
 
 msgid "Ecm:"
 msgstr ""
@@ -2768,11 +2951,13 @@ msgid "Edit settings"
 msgstr "Wyzigje ynstellingen"
 
 #
-msgid "Edit the Nameserver configuration of your STB_BOX.\n"
+#, fuzzy, python-format
+msgid "Edit the Nameserver configuration of your %s %s.\n"
 msgstr "Bewrukje de nammeserver ynstellingen fan de STB_BOX.\n"
 
 #
-msgid "Edit the network configuration of your STB_BOX.\n"
+#, fuzzy, python-format
+msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Bewurkje de netwurk ynstellingen fan de STB_BOX.\n"
 
 #
@@ -2826,9 +3011,6 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "Mear boeketten sjen litte"
 
-msgid "Enable or disable Permanent Timeshift. When activated, you can wind back until the time you zapped to a channel, and you can make recordings in retrospect."
-msgstr ""
-
 msgid "Enable panic button"
 msgstr ""
 
@@ -2838,10 +3020,6 @@ msgstr "Alderlik tasjoch ynskeakelje"
 
 msgid "Enable teletext caching"
 msgstr ""
-
-#
-msgid "Enable timer"
-msgstr "Tiidsjtoering ynskeakelje"
 
 #
 msgid "Enabled"
@@ -2914,6 +3092,9 @@ msgstr "Flater"
 msgid "Error code"
 msgstr ""
 
+msgid "Error downloading change log."
+msgstr ""
+
 #
 msgid "Error executing plugin"
 msgstr "Flater by útfieren fan ynstekker"
@@ -2952,16 +3133,6 @@ msgstr ""
 msgid "Event font size (relative to skin size)"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Event view"
-msgstr "Barren oersjoch"
-
-#
-#, fuzzy
-msgid "Event view menu"
-msgstr "Barren oersjoch"
-
 msgid "Everywhere"
 msgstr ""
 
@@ -2999,6 +3170,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Exit media player?"
+msgstr "mediaspieler ferlitte"
+
+#
+#, fuzzy
 msgid "Exit mediaplayer"
 msgstr "mediaspieler ferlitte"
 
@@ -3029,9 +3205,6 @@ msgstr ""
 #
 msgid "Exit the wizard"
 msgstr "De gucheler ofslúte"
-
-msgid "Experimental"
-msgstr ""
 
 #
 msgid "Expert"
@@ -3074,6 +3247,15 @@ msgstr "Utwreidingen"
 msgid "Extensions management"
 msgstr ""
 
+msgid "External"
+msgstr ""
+
+msgid "External (CF)"
+msgstr ""
+
+msgid "FAILED"
+msgstr ""
+
 #
 msgid "FEC"
 msgstr "FEC"
@@ -3095,7 +3277,7 @@ msgstr "Fabryks ynstellingen"
 msgid "Failed"
 msgstr "mislearre"
 
-msgid "Failed to remove old files."
+msgid "Failed to write /tmp/positionersetup.log: "
 msgstr ""
 
 #
@@ -3139,6 +3321,19 @@ msgstr ""
 
 msgid "Filesystem check"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Final position at"
+msgstr "Gjin nei posysje"
+
+msgid "Final position at index"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Fine movement"
+msgstr "Rotor beweching sjen litte"
 
 #
 msgid "Finetune"
@@ -3255,6 +3450,9 @@ msgstr ""
 msgid "Full transparency"
 msgstr ""
 
+msgid "Fulscreen"
+msgstr ""
+
 msgid "Function of OK button"
 msgstr ""
 
@@ -3303,29 +3501,6 @@ msgstr ""
 #
 msgid "Getting plugin information. Please wait..."
 msgstr "Binnenhelje fan ynstekker ynformaasje...."
-
-msgid "STB_BOX advanced remote control (native)"
-msgstr ""
-
-#
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX yndieling data DVD (HDTV geskikt)"
-
-msgid "STB_BOX front panel"
-msgstr ""
-
-msgid "STB_BOX ir keyboard"
-msgstr ""
-
-msgid "STB_BOX ir mouse"
-msgstr ""
-
-msgid "STB_BOX remote control (native)"
-msgstr ""
-
-#
-msgid "STB_BOX software because updates are available."
-msgstr ""
 
 msgid "Go down the list"
 msgstr ""
@@ -3379,11 +3554,26 @@ msgstr "Gjin nei 0"
 msgid "Goto :"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Goto X"
+msgstr "Gjin nei 0"
+
+#
+#, fuzzy
+msgid "Goto index position"
+msgstr "Gjin nei posysje"
+
 msgid "Goto next bouquet"
 msgstr ""
 
 msgid "Goto next channel"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Goto next day of events"
+msgstr "Nei it folgende menu item gean"
 
 msgid "Goto next event"
 msgstr ""
@@ -3401,6 +3591,11 @@ msgstr ""
 msgid "Goto previous channel"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Goto previous day of events"
+msgstr "Nei it foarige menu item "
+
 msgid "Goto previous event"
 msgstr ""
 
@@ -3410,11 +3605,21 @@ msgstr ""
 msgid "Goto specific data/time"
 msgstr ""
 
+#
+#, fuzzy
+msgid "GotoX calibration"
+msgstr "Gjin nei posysje"
+
 msgid "GraphMultiEpg Settings"
 msgstr ""
 
 msgid "Graphical EPG"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Graphical InfobarEPG settings"
+msgstr "Grafyske Multi EPG"
 
 #
 msgid "Graphical Multi EPG"
@@ -3444,6 +3649,9 @@ msgstr ""
 msgid "HD list"
 msgstr ""
 
+msgid "HDMI"
+msgstr ""
+
 msgid "HDMI CEC"
 msgstr ""
 
@@ -3470,13 +3678,13 @@ msgstr "Hurde skiif yn sliipstand nei"
 msgid "Harddisk"
 msgstr "Hurde skiif"
 
-msgid "Hardware:"
-msgstr ""
-
 msgid "Hebrew"
 msgstr ""
 
 msgid "Height"
+msgstr ""
+
+msgid "Helps setting up your dish"
 msgstr ""
 
 msgid "Hidden network"
@@ -3490,6 +3698,11 @@ msgstr ""
 
 msgid "Hide error messages from the Common Interface module."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Hide known extensions"
+msgstr "lit útbreidingen sjen..."
 
 #
 #, fuzzy
@@ -3509,6 +3722,12 @@ msgstr "Hiërarchie Ynformaasje"
 
 #
 msgid "High bitrate support"
+msgstr ""
+
+msgid "History buttons mode"
+msgstr ""
+
+msgid "History zap..."
 msgstr ""
 
 msgid "Hold screen"
@@ -3594,10 +3813,13 @@ msgstr ""
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr ""
 
-msgid "If set to 'yes' a special seekbar is available during timeshift."
+msgid "If set to 'yes' channels without EPG will not be shown."
 msgstr ""
 
-msgid "If set to 'yes' channels without EPG will not be shown."
+msgid "If set to 'yes' it will show the 'PO' packages in browser."
+msgstr ""
+
+msgid "If set to 'yes' it will show the 'SRC' packages in browser."
 msgstr ""
 
 msgid "If set to 'yes' shows a small TV-screen in the EPG."
@@ -3612,6 +3834,9 @@ msgstr ""
 msgid "If set to 'yes' the channel list will be shown after switching between radio and TV modes."
 msgstr ""
 
+msgid "If set to 'yes' the channel number will be displayed in the infobar."
+msgstr ""
+
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
 msgstr ""
 
@@ -3622,6 +3847,9 @@ msgid "If set to 'yes' you can preview channels in the EPG list."
 msgstr ""
 
 msgid "If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at."
+msgstr ""
+
+msgid "If set to 'yes', allows you use the seekbar to jump to a point within the event."
 msgstr ""
 
 msgid "If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
@@ -3651,9 +3879,6 @@ msgstr ""
 "Binne jo tefreden mei it resultaat, druk OK"
 
 msgid "Image Information"
-msgstr ""
-
-msgid "Image:"
 msgstr ""
 
 msgid "Image Manager"
@@ -3698,18 +3923,12 @@ msgstr ""
 msgid "Increased voltage"
 msgstr "Ferheeche spanning"
 
-#
-msgid "Index"
-msgstr "Yndex"
+msgid "Index allocated:"
+msgstr ""
 
 #
 msgid "Info"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Info bar"
-msgstr "Ynfobalke"
 
 msgid "Info button (long)"
 msgstr ""
@@ -3746,7 +3965,18 @@ msgstr "Initialisearje"
 msgid "Initial fast forward speed"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Initial lock ratio"
+msgstr "Plak net tastien"
+
 msgid "Initial rewind speed"
+msgstr ""
+
+msgid "Initial signal quality"
+msgstr ""
+
+msgid "Initial signal quality:"
 msgstr ""
 
 #
@@ -3821,11 +4051,6 @@ msgid "Installing Service"
 msgstr ""
 
 #
-#, fuzzy
-msgid "Installing software..."
-msgstr "Software oan it ynstallearjen..."
-
-#
 msgid "Instant record location"
 msgstr ""
 
@@ -3852,6 +4077,11 @@ msgstr ""
 #
 msgid "Intermediate"
 msgstr "Yntermediate"
+
+#
+#, fuzzy
+msgid "Internal"
+msgstr "Ynterne Flash"
 
 #
 #, fuzzy
@@ -3901,13 +4131,11 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
-#
-msgid "Job View"
-msgstr "Opdracht oansjoch"
+msgid "JUMP 24 HOURS"
+msgstr ""
 
 #
-#, fuzzy
-msgid "Job overview"
+msgid "Job View"
 msgstr "Opdracht oansjoch"
 
 msgid "Jump back 24 hours"
@@ -3948,10 +4176,20 @@ msgstr ""
 msgid "Just scale"
 msgstr "Alinne skale"
 
+#
+#, fuzzy
+msgid "Just zap"
+msgstr "Alinne skale"
+
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr ""
 
-msgid "Kernel:"
+#, python-format
+msgid "Kernel:\t%s"
+msgstr ""
+
+#, python-format
+msgid "Kernel: %s"
 msgstr ""
 
 #
@@ -4013,9 +4251,6 @@ msgstr "Taal Kieze"
 msgid "Last Req."
 msgstr ""
 
-msgid "Last Update:"
-msgstr ""
-
 #
 msgid "Last config"
 msgstr ""
@@ -4025,8 +4260,13 @@ msgid "Last speed"
 msgstr "Lêste faasje"
 
 #
-#, fuzzy
-msgid "Last update:"
+#, fuzzy, python-format
+msgid "Last update:\t%s"
+msgstr "Bywurkje pakketlyst  "
+
+#
+#, fuzzy, python-format
+msgid "Last update: %s"
 msgstr "Bywurkje pakketlyst  "
 
 msgid "Last used share: "
@@ -4053,12 +4293,22 @@ msgstr "DVD Spieler ôfslúte ?"
 msgid "Left"
 msgstr "Links"
 
+#
+#, fuzzy
+msgid "Left from servicename"
+msgstr "Kanaal sykje"
+
 msgid "Leisure hobbies"
 msgstr ""
 
 #
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
+msgstr "Letterbox"
+
+#
+#, fuzzy
+msgid "Letterbox zoom"
 msgstr "Letterbox"
 
 msgid "Light Grey"
@@ -4080,6 +4330,16 @@ msgstr ""
 #
 msgid "Limit west"
 msgstr "Limyt west"
+
+#
+#, fuzzy
+msgid "Limits cancelled"
+msgstr "Limyt oan"
+
+#
+#, fuzzy
+msgid "Limits enabled"
+msgstr "Limyt oan"
 
 #
 msgid "Limits off"
@@ -4161,8 +4421,9 @@ msgid "Location"
 msgstr "Doel"
 
 #
-msgid "Lock:"
-msgstr "Slot:"
+#, fuzzy
+msgid "Lock ratio"
+msgstr "Doel"
 
 msgid "Log Manager"
 msgstr ""
@@ -4217,10 +4478,6 @@ msgid "MB"
 msgstr ""
 
 #
-msgid "MORE"
-msgstr "MEER"
-
-#
 msgid "Main menu"
 msgstr "Haad menu"
 
@@ -4247,8 +4504,8 @@ msgstr "Meitsje dit in gewoan markeer punt"
 msgid "Manage extensions"
 msgstr ""
 
-#
-msgid "Manage your STB_BOX's software"
+#, python-format
+msgid "Manage your %s %s's software"
 msgstr ""
 
 #
@@ -4291,11 +4548,6 @@ msgstr ""
 msgid "Maxdown: "
 msgstr ""
 
-msgid ""
-"Maximum Timeshift length per Event reached!\n"
-"Restarting Timeshift now ..."
-msgstr ""
-
 msgid "Maximum no of days:"
 msgstr ""
 
@@ -4307,6 +4559,11 @@ msgstr ""
 
 #
 msgid "Media player"
+msgstr "Media Spieler"
+
+#
+#, fuzzy
+msgid "Media scanner"
 msgstr "Media Spieler"
 
 #
@@ -4323,6 +4580,9 @@ msgstr ""
 msgid "Memory Information"
 msgstr ""
 
+msgid "Memory index"
+msgstr ""
+
 #
 msgid "Menu"
 msgstr "Menu"
@@ -4331,14 +4591,6 @@ msgid "Menu config"
 msgstr ""
 
 msgid "Merging Timeshift files"
-msgstr ""
-
-#
-msgid "Message"
-msgstr "Berjocht"
-
-#
-msgid "Message..."
 msgstr ""
 
 msgid "MiniDLNA Log"
@@ -4375,7 +4627,17 @@ msgid "Mode"
 msgstr ""
 
 #
+#, fuzzy, python-format
+msgid "Model:\t%s %s\n"
+msgstr "Model: "
+
+#
 msgid "Model: "
+msgstr "Model: "
+
+#
+#, fuzzy, python-format
+msgid "Model: %s"
 msgstr "Model: "
 
 #
@@ -4447,12 +4709,32 @@ msgstr ""
 msgid "Move to other directory"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Move to position X"
+msgstr "Gjin nei posysje"
+
 msgid "Move up a page"
 msgstr ""
 
 #
 msgid "Move west"
 msgstr "Draai nei west"
+
+#
+#, fuzzy
+msgid "Moved to position 0"
+msgstr "Gjin nei posysje"
+
+#
+#, fuzzy
+msgid "Moved to position at index"
+msgstr "Gjin nei posysje"
+
+#
+#, fuzzy
+msgid "Movement"
+msgstr "Draai nei east"
 
 msgid "Movie List"
 msgstr ""
@@ -4472,9 +4754,26 @@ msgstr "Tiidsbarren seleksje"
 msgid "Movie/Drama"
 msgstr ""
 
+msgid "Moving"
+msgstr ""
+
 #
-msgid "Movielist menu"
-msgstr "Filmlyst menu"
+#, fuzzy
+msgid "Moving east ..."
+msgstr "Draai nei east"
+
+msgid "Moving files"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Moving to position"
+msgstr "Gjin nei posysje"
+
+#
+#, fuzzy
+msgid "Moving west ..."
+msgstr "Draai nei west"
 
 #
 msgid "Multi EPG"
@@ -4504,16 +4803,8 @@ msgid "Music/Ballet/Dance"
 msgstr ""
 
 #
-msgid "Mute"
-msgstr "Mute"
-
-#
 msgid "N/A"
 msgstr "Net oanwêzig"
-
-#
-msgid "NEXT"
-msgstr "Folgende"
 
 msgid "NFI image flashing"
 msgstr ""
@@ -4531,12 +4822,13 @@ msgstr ""
 msgid "NIM"
 msgstr ""
 
-#
-msgid "NOW"
-msgstr "No"
-
 msgid "NTP"
 msgstr ""
+
+#
+#, fuzzy
+msgid "NTP server"
+msgstr "Nammeserver"
 
 #
 msgid "NTSC"
@@ -4561,11 +4853,6 @@ msgstr "Nammeserver %d"
 #
 msgid "Nameserver settings"
 msgstr "Nammeserver ynstellingen"
-
-#
-#, fuzzy
-msgid "Nameserver setup"
-msgstr "Nammeserver Ynstellingen"
 
 msgid "Namespace"
 msgstr ""
@@ -4599,11 +4886,6 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Network configuration..."
-msgstr "Netwurk configuraasje"
-
-#
-#, fuzzy
 msgid "Network mounts"
 msgstr "Netwurk test"
 
@@ -4621,10 +4903,6 @@ msgstr "Netwurk ynstellingen"
 #
 msgid "Network test"
 msgstr "Netwurk test"
-
-#
-msgid "Network test..."
-msgstr "Netwurk test..."
 
 msgid "Network test: "
 msgstr ""
@@ -4722,6 +5000,9 @@ msgstr "Gjin barren ynfo fûn, giit foar altiid troch mei opnimmen.."
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
 msgstr ""
 
+msgid "No free index available"
+msgstr ""
+
 #
 msgid "No free tuner!"
 msgstr "Gjin tuner oer"
@@ -4743,6 +5024,9 @@ msgstr ""
 msgid "No networks found"
 msgstr ""
 
+msgid "No new plugins found"
+msgstr ""
+
 msgid "No of items switch (increase or reduced)"
 msgstr ""
 
@@ -4750,12 +5034,14 @@ msgstr ""
 msgid "No positioner capable frontend found."
 msgstr "Gjin posysjesyker foarein fûn."
 
-msgid "No sat tuner found!"
-msgstr ""
-
 #
 msgid "No satellite frontend found!!"
 msgstr "Gjin sattelyt foarein fûn."
+
+#
+#, fuzzy
+msgid "No service"
+msgstr "Kanaal ynfo"
 
 msgid "No services/providers selected"
 msgstr ""
@@ -4764,6 +5050,9 @@ msgstr ""
 #, fuzzy
 msgid "No standby"
 msgstr "gjin paraatstand"
+
+msgid "No suitable sat tuner found!"
+msgstr ""
 
 #
 msgid "No tags are set on these movies."
@@ -4845,11 +5134,6 @@ msgstr ""
 
 #
 msgid "No, but restart from begin"
-msgstr "Nee, mar start fanôf it begjin"
-
-#
-#, fuzzy
-msgid "No, but restart from beginning"
 msgstr "Nee, mar start fanôf it begjin"
 
 #
@@ -4935,14 +5219,12 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr ""
 
+msgid "Nothing, just leave this menu"
+msgstr ""
+
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Now playing"
-msgstr "No oan it ôfspieljen"
 
 #
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
@@ -5019,6 +5301,9 @@ msgstr ""
 msgid "OnlineVersionCheck"
 msgstr ""
 
+msgid "Only active when in standby"
+msgstr ""
+
 #
 msgid "Only extensions."
 msgstr ""
@@ -5076,6 +5361,9 @@ msgstr ""
 msgid "Overwrite configuration files?"
 msgstr ""
 
+msgid "PAGE UP/DOWN"
+msgstr ""
+
 #
 msgid "PAL"
 msgstr "PAL"
@@ -5087,16 +5375,10 @@ msgstr ""
 msgid "PIDs"
 msgstr "PIDs"
 
-#
-#, fuzzy
-msgid "PIN code needed"
-msgstr "Pinkode is needich"
-
 msgid "PMT PID"
 msgstr ""
 
-#, python-format
-msgid "PTS Plugin Error: %s"
+msgid "PRIMETIME"
 msgstr ""
 
 #
@@ -5140,11 +5422,6 @@ msgstr "Alderlik tasjoch"
 
 msgid "Parental control editor"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Parental control services editor"
-msgstr "Alderlik tasjoch bewurker"
 
 #
 msgid "Parental control setup"
@@ -5208,18 +5485,6 @@ msgstr ""
 msgid "Perform an online update check in the background"
 msgstr ""
 
-msgid "Permanent Timeshift enable"
-msgstr ""
-
-msgid "Permanent Timeshift max events"
-msgstr ""
-
-msgid "Permanent Timeshift max length"
-msgstr ""
-
-msgid "Permanent Timeshift start delay"
-msgstr ""
-
 msgid "Permanently delete all recordings in the trash can?"
 msgstr ""
 
@@ -5233,10 +5498,8 @@ msgstr ""
 msgid "Phone number"
 msgstr ""
 
-#
-#, fuzzy
-msgid "PiP setup"
-msgstr "PIP Ynstellingen"
+msgid "PiP"
+msgstr ""
 
 msgid "Picon"
 msgstr ""
@@ -5514,6 +5777,11 @@ msgid "Please wait for activation of your network configuration..."
 msgstr "Wachtsje op it aktief wurden fan de netwurk konfiguraasje"
 
 #
+#, fuzzy
+msgid "Please wait while gathering data..."
+msgstr "Wachtsje oant it netwurk opnei start is..."
+
+#
 msgid "Please wait while scanning is in progress..."
 msgstr ""
 
@@ -5547,10 +5815,6 @@ msgstr "Lyst wurd laden..."
 msgid "Plugin Browser"
 msgstr ""
 
-#
-msgid "Plugin browser"
-msgstr "Ynstekker browser"
-
 msgid "Plugin details"
 msgstr ""
 
@@ -5565,6 +5829,11 @@ msgstr ""
 #
 msgid "Plugins"
 msgstr "Ynstekkers"
+
+#
+#, fuzzy
+msgid "Polarisation"
+msgstr "Polarisaasje"
 
 #
 msgid "Polarization"
@@ -5612,24 +5881,17 @@ msgid "Position setup"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Position stored at index"
+msgstr "Rotor ynstellingen"
+
+#
 msgid "Positioner"
 msgstr "Rotor"
-
-msgid "Positioner Setup"
-msgstr ""
-
-msgid "Positioner fine movement"
-msgstr ""
-
-msgid "Positioner movement"
-msgstr ""
 
 #
 msgid "Positioner setup"
 msgstr "Rotor ynstellingen"
-
-msgid "Positioner storage"
-msgstr ""
 
 #
 msgid "Power threshold in mA"
@@ -5832,7 +6094,8 @@ msgstr ""
 msgid "Put TV in standby"
 msgstr ""
 
-msgid "Put your STB_BOX in standby"
+#, python-format
+msgid "Put your %s %s in standby"
 msgstr ""
 
 #
@@ -5858,10 +6121,6 @@ msgstr "RF Ynstellingen"
 #
 msgid "RGB"
 msgstr "RGB"
-
-#
-msgid "Radio"
-msgstr "Radio"
 
 #
 msgid "Random"
@@ -5908,6 +6167,11 @@ msgid "Really reboot now?"
 msgstr "Wier no kompleet opnei starte ?"
 
 #
+#, fuzzy, python-format
+msgid "Really reflash your %s %s and reboot now?"
+msgstr "Wier no kompleet opnei starte ?"
+
+#
 msgid "Really restart now?"
 msgstr "Wier no nei starte ?"
 
@@ -5918,23 +6182,32 @@ msgstr "Wier no kompleet útskeakelje ?"
 msgid "Really upgrade the frontprocessor and reboot now?"
 msgstr ""
 
-msgid "Really upgrade your STB_BOX and reboot now?"
-msgstr ""
+#
+#, fuzzy, python-format
+msgid "Really upgrade your %s %s and reboot now?"
+msgstr "Wier no kompleet opnei starte ?"
 
 #
 msgid "Reboot"
 msgstr "kompleet nei starte"
 
-msgid "Rec"
-msgstr ""
+#
+msgid "Record"
+msgstr "Opnimme"
 
 #
 #, fuzzy
-msgid "Reception settings"
-msgstr "Untfangst Ynstellingen"
+msgid "Record next"
+msgstr "Opnimme"
 
 #
-msgid "Record"
+#, fuzzy
+msgid "Record now"
+msgstr "Opnimme"
+
+#
+#, fuzzy
+msgid "Record once"
 msgstr "Opnimme"
 
 msgid "Record started! Stopping timeshift now ..."
@@ -5982,6 +6255,13 @@ msgstr ""
 msgid "Reenter new PIN"
 msgstr ""
 
+#, python-format
+msgid ""
+"Reflash in progress\n"
+"Please wait until your %s %s reboots\n"
+"This may take a few minutes"
+msgstr ""
+
 msgid "Refresh every (in hours)"
 msgstr ""
 
@@ -5996,9 +6276,6 @@ msgid "Regard deep standby as standby"
 msgstr ""
 
 msgid "Relative"
-msgstr ""
-
-msgid "Release"
 msgstr ""
 
 #
@@ -6021,9 +6298,6 @@ msgid "Remaining & Elapsed"
 msgstr ""
 
 msgid "Remember service PIN"
-msgstr ""
-
-msgid "Remember the settings for each folder"
 msgstr ""
 
 msgid "Remote box"
@@ -6253,6 +6527,9 @@ msgstr ""
 msgid "Right"
 msgstr "Rjochts"
 
+msgid "Right from servicename"
+msgstr ""
+
 msgid "Roll-off"
 msgstr ""
 
@@ -6261,6 +6538,11 @@ msgstr ""
 
 msgid "Root directory"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Rotor step position:"
+msgstr "Posysje opslaan"
 
 #
 msgid "Rotor turning speed"
@@ -6296,13 +6578,8 @@ msgstr ""
 msgid "SINGLE LAYER DVD"
 msgstr ""
 
-#
-msgid "SNR"
-msgstr "SNR"
-
-#
-msgid "SNR:"
-msgstr "SNR:"
+msgid "SPDIF"
+msgstr ""
 
 #
 msgid "SSID:"
@@ -6340,6 +6617,11 @@ msgid "Satellite equipment setup"
 msgstr "Satellyt ynstellingen"
 
 #
+#, fuzzy
+msgid "Satellite longitude:"
+msgstr "Satellyt ynstellingen"
+
+#
 msgid "Satellites"
 msgstr "Satellyten"
 
@@ -6366,12 +6648,6 @@ msgstr "Opslaan"
 msgid "Save EPG"
 msgstr ""
 
-msgid "Save Timeshift as Movie and continue recording"
-msgstr ""
-
-msgid "Save Timeshift as Movie and stop recording"
-msgstr ""
-
 msgid "Save and record"
 msgstr ""
 
@@ -6385,6 +6661,12 @@ msgstr ""
 #, fuzzy
 msgid "Save playlist"
 msgstr "ofspiellyst opslaan"
+
+msgid "Save timeshift as movie and continue recording"
+msgstr ""
+
+msgid "Save timeshift as movie and stop recording"
+msgstr ""
 
 msgid "Saving EPG Cache..."
 msgstr ""
@@ -6487,12 +6769,27 @@ msgid "Search west"
 msgstr "Sykje west"
 
 #
+#, fuzzy
+msgid "Searching"
+msgstr "Sykje east"
+
+#
+#, fuzzy
+msgid "Searching east ..."
+msgstr "Sykje east"
+
+#
 msgid "Searching for available updates. Please wait..."
 msgstr ""
 
 #
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Searching west ..."
+msgstr "Sykje west"
 
 #
 msgid "Secondary DNS"
@@ -6528,34 +6825,6 @@ msgstr ""
 #, fuzzy
 msgid "Select CAId"
 msgstr "Kies hurde skiif"
-
-#
-msgid "Select HDD"
-msgstr "Kies hurde skiif"
-
-#
-#, fuzzy
-msgid "Select a bouquet"
-msgstr "Kies in film"
-
-#
-msgid "Select a movie"
-msgstr "Kies in film"
-
-#
-#, fuzzy
-msgid "Select a network adapter"
-msgstr "Kies Netwurk Adapter"
-
-#
-#, fuzzy
-msgid "Select a skin"
-msgstr "Kies in film"
-
-#
-#, fuzzy
-msgid "Select a tuner"
-msgstr "Kies in film"
 
 #
 #, fuzzy
@@ -6762,11 +7031,6 @@ msgstr "Kanaal is tafoege oan favorieten."
 msgid "Service has been added to the selected bouquet."
 msgstr "Kanaal is tafoege oan selektearre bouquet."
 
-#
-#, fuzzy
-msgid "Service info"
-msgstr "Kanaal ynformaasje"
-
 msgid "Service info font size"
 msgstr ""
 
@@ -6844,11 +7108,20 @@ msgstr "Eintiid"
 msgid "Set fixed"
 msgstr ""
 
+msgid "Set fps for external subtitles"
+msgstr ""
+
 #
 msgid "Set interface as default Interface"
 msgstr "Set ynterface as standerd ynterface"
 
 msgid "Set limits"
+msgstr ""
+
+msgid "Set the channel for this timer."
+msgstr ""
+
+msgid "Set the date the timer must start."
 msgstr ""
 
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
@@ -6866,16 +7139,22 @@ msgstr ""
 msgid "Set the default sorting method."
 msgstr ""
 
+msgid "Set the description of the recording."
+msgstr ""
+
 msgid "Set the jump-size of the seekbar."
 msgstr ""
 
-msgid "Set the maximum length a timeshift file may be."
-msgstr ""
-
-msgid "Set the maximum number of events (programs) that timeshift may handle."
+msgid "Set the name the recording will get."
 msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
+msgstr ""
+
+msgid "Set the time the timer must start."
+msgstr ""
+
+msgid "Set the time the timer must stop."
 msgstr ""
 
 msgid "Set the time to hide the infobar."
@@ -6899,6 +7178,9 @@ msgstr ""
 msgid "Set time window to 5 hours"
 msgstr ""
 
+msgid "Set time window to 6 hours"
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr ""
 
@@ -6909,9 +7191,6 @@ msgid "Set to what you want the button to do."
 msgstr ""
 
 msgid "Set voltage and 22KHz"
-msgstr ""
-
-msgid "Set what the required action must be when zapping while a timeshift has been set as recording."
 msgstr ""
 
 msgid "Sets the root folder of movie list, to remove the '..' from benign shown in that folder."
@@ -6943,11 +7222,10 @@ msgstr ""
 msgid "Setup the interval to check for online updates. (in hours)"
 msgstr ""
 
-msgid "Setup what a long press on the power button does."
-msgstr ""
-
-msgid "Setup what a short press on the power button does."
-msgstr ""
+#
+#, fuzzy
+msgid "Setup your positioner"
+msgstr "Posysje opslaan"
 
 #
 #, fuzzy
@@ -7023,9 +7301,6 @@ msgstr ""
 msgid "Show PVR status in MoviePlayer infobar"
 msgstr ""
 
-msgid "Show Picons *"
-msgstr ""
-
 msgid "Show RFmod setup..."
 msgstr ""
 
@@ -7063,6 +7338,11 @@ msgstr ""
 
 msgid "Show bouquet selection menu"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Show channel number in infobar"
+msgstr "transponder ynfo sjen litte"
 
 msgid "Show channel numbers in channel selection"
 msgstr ""
@@ -7130,6 +7410,11 @@ msgstr ""
 msgid "Show live tv when movie stopped"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Show menu"
+msgstr "label menu sjen litte"
+
 msgid "Show message when recording starts"
 msgstr ""
 
@@ -7149,10 +7434,18 @@ msgstr ""
 msgid "Show positioner movement"
 msgstr "Rotor beweching sjen litte"
 
+msgid "Show screensaver"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Show second infobar"
 msgstr "transponder ynfo sjen litte"
+
+#
+#, fuzzy
+msgid "Show service type icons"
+msgstr "Kanalen sjen litte beginnent mei"
 
 #
 msgid "Show services beginning with"
@@ -7166,6 +7459,9 @@ msgstr "útskeakel menu sjen litte"
 msgid "Show single epg for current channel"
 msgstr ""
 
+msgid "Show source packages"
+msgstr ""
+
 msgid "Show status icons in movielist"
 msgstr ""
 
@@ -7173,9 +7469,6 @@ msgstr ""
 #, fuzzy
 msgid "Show tag menu"
 msgstr "label menu sjen litte"
-
-msgid "Show the infomation on current event."
-msgstr ""
 
 msgid "Show the list of AutoTimers."
 msgstr ""
@@ -7203,8 +7496,16 @@ msgstr ""
 msgid "Show time remaining/elapsed"
 msgstr ""
 
+msgid "Show translation packages"
+msgstr ""
+
 msgid "Show transponder remaining/elapsed as"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Show warning when timeshift is stopped"
+msgstr "Gedrach wannear in film stoppe is"
 
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr ""
@@ -7225,17 +7526,20 @@ msgstr "meitsje willekeurige ôfspiellyst"
 msgid "Shutdown"
 msgstr ""
 
-msgid "Shutdown in (mins)"
-msgstr ""
-
 msgid "Side by Side"
 msgstr ""
 
 msgid "Side by side"
 msgstr ""
 
+msgid "Signal OK, proceeding"
+msgstr ""
+
 #
 msgid "Signal Strength:"
+msgstr ""
+
+msgid "Signal quality"
 msgstr ""
 
 msgid "Signal strength:"
@@ -7287,6 +7591,16 @@ msgstr "Ien transponder"
 msgid "SingleEPG settings"
 msgstr "Wyzigje ynstellingen"
 
+#
+#, fuzzy
+msgid "Site latitude"
+msgstr "Bridtegraad"
+
+#
+#, fuzzy
+msgid "Site longitude"
+msgstr "Lingtegraad"
+
 msgid "Size: "
 msgstr ""
 
@@ -7307,10 +7621,6 @@ msgstr "Befeilich kanalen"
 
 msgid "Skip internet connection check (disables automatic package installation)"
 msgstr ""
-
-#
-msgid "Sleep Timer"
-msgstr "Tiidstjoering"
 
 #
 #, fuzzy
@@ -7535,6 +7845,16 @@ msgid "Step west"
 msgstr "Stap nei west"
 
 #
+#, fuzzy
+msgid "Stepped east"
+msgstr "Stap nei east"
+
+#
+#, fuzzy
+msgid "Stepped west"
+msgstr "Stap nei west"
+
+#
 msgid "Stop"
 msgstr "Stop"
 
@@ -7578,17 +7898,27 @@ msgstr ""
 msgid "Stop testing plane after # successful transponders"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Stop timer recording"
+msgstr "dit opnimmen"
+
 msgid "Stop timeshift"
 msgstr ""
 
 msgid "Stop timeshift while recording?"
 msgstr ""
 
-msgid "Stop timeshift?"
+msgid "Stop's timeshift being used if a recording is in progress. (adviseable for usb sticks)"
 msgstr ""
 
 msgid "Stopped"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Store at index"
+msgstr "Posysje opslaan"
 
 #
 msgid "Store position"
@@ -7607,6 +7937,11 @@ msgstr ""
 msgid "Strict DLNA"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Strongest position"
+msgstr "Posysje opslaan"
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -7614,10 +7949,18 @@ msgstr ""
 msgid "Subservices"
 msgstr "UnderSender"
 
+#
+#, fuzzy
+msgid "Subtitle Quickmenu"
+msgstr "Undertitel seleksje"
+
 msgid "Subtitle alignment"
 msgstr ""
 
 msgid "Subtitle border width"
+msgstr ""
+
+msgid "Subtitle delay when timing is bad"
 msgstr ""
 
 msgid "Subtitle delay when timing lacks"
@@ -7684,6 +8027,11 @@ msgstr "Zweeds"
 msgid "Switch TV to correct input"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Switch between filelist/playlist"
+msgstr "skeakelje nei triemlyst"
+
 msgid "Switch between normal mode and list mode"
 msgstr ""
 
@@ -7732,6 +8080,9 @@ msgstr ""
 msgid "Sync NTP every (minutes)"
 msgstr ""
 
+msgid "Sync failure moving back to origin !"
+msgstr ""
+
 msgid "Sync time using"
 msgstr ""
 
@@ -7742,7 +8093,8 @@ msgstr ""
 msgid "System"
 msgstr "Systeem"
 
-msgid "System temperature:"
+#, python-format
+msgid "System temperature: %s"
 msgstr ""
 
 msgid "System: "
@@ -7761,6 +8113,9 @@ msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS triem is te grut foar ISO 9660 level 1!"
 
 msgid "TSID"
+msgstr ""
+
+msgid "TUNING"
 msgstr ""
 
 msgid "TV button mode"
@@ -7813,7 +8168,8 @@ msgid "Test mode"
 msgstr "Test moadus"
 
 #
-msgid "Test the network configuration of your STB_BOX.\n"
+#, fuzzy, python-format
+msgid "Test the network configuration of your %s %s.\n"
 msgstr "Test de netwurk konfiguraasje fan de STB_BOX.\n"
 
 #
@@ -7854,7 +8210,8 @@ msgid ""
 msgstr ""
 
 #
-msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a STB_BOX format data DVD (which will not play in stand-alone DVD players) instead?"
+#, fuzzy, python-format
+msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a %s %s format data DVD (which will not play in stand-alone DVD players) instead?"
 msgstr "De DVD standert kin gjin H.264 (HDTV) fideo streams an. Wolle jo dan in Vu+ Ultimo formaat data DVD meitsje ? Tink der om, dizze kin net in gewoane DVD spielers ôfspiele wurde !"
 
 msgid ""
@@ -7887,11 +8244,6 @@ msgid "The PIN code has been changed successfully."
 msgstr ""
 
 msgid "The PIN codes you entered are different."
-msgstr ""
-
-msgid ""
-"The Timeshift record was not saved yet!\n"
-"What do you want to do now with the timeshift file?"
 msgstr ""
 
 msgid ""
@@ -7938,6 +8290,9 @@ msgstr ""
 msgid "The following files were found..."
 msgstr ""
 
+msgid "The loopthrough setting is wrong."
+msgstr ""
+
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
 
@@ -7965,14 +8320,6 @@ msgid "The results have been written to %s."
 msgstr ""
 
 #
-msgid "The sleep timer has been activated."
-msgstr "De sliep tiid klok is aktiveert."
-
-#
-msgid "The sleep timer has been disabled."
-msgstr "De sliep tiid klok is útskeakele"
-
-#
 #, fuzzy
 msgid ""
 "The software management extension is not installed!\n"
@@ -7990,11 +8337,13 @@ msgstr "De tiidsbarrenlyst is korrupt en koe net laden wurde."
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "De tiidsbarrenlyst is korrupt en koe net laden wurde."
 
-msgid "The user interface of your STB_BOX is restarting"
+#, python-format
+msgid "The user interface of your %s %s is restarting"
 msgstr ""
 
+#, python-format
 msgid ""
-"The user interface of your STB_BOX is restarting\n"
+"The user interface of your %s %s is restarting\n"
 "due to an error in mytest.py"
 msgstr ""
 
@@ -8043,6 +8392,9 @@ msgstr ""
 msgid "There is no [webif] section in oscam.conf"
 msgstr ""
 
+msgid "There is no signal to lock on !"
+msgstr ""
+
 #
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -8051,13 +8403,13 @@ msgstr ""
 "Blikber is der net genôch rûmte op de koazen partysje.\n"
 "Wolle jo trochgean ?"
 
+#, python-format
+msgid "This %s %s cannot decode %s streams!"
+msgstr ""
+
 #
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Dit DVD RW medium is al formattearre. Wer opnei dwaan sil alle gegevens op disk wiskje."
-
-#, python-format
-msgid "This STB_BOX cannot decode %s streams!"
-msgstr ""
 
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr ""
@@ -8131,6 +8483,12 @@ msgstr ""
 msgid "This option configures the video output mode (or resolution)."
 msgstr ""
 
+msgid "This option configures you can Bypass HDMI EDID check"
+msgstr ""
+
+msgid "This option configures you can enable 3D Surround Sound."
+msgstr ""
+
 msgid "This option lets you adjust the 3D depth"
 msgstr ""
 
@@ -8176,8 +8534,9 @@ msgstr ""
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr ""
 
+#, python-format
 msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your STB_BOX without the need for a network or WLAN connection.\n"
+"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
 "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
@@ -8252,6 +8611,11 @@ msgstr ""
 msgid "This test detects your configured LAN adapter."
 msgstr "Dizze test syket nei de ynstelde LAN-Adapter"
 
+msgid ""
+"This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
+"Are you sure?"
+msgstr ""
+
 #
 msgid "Three"
 msgstr "Trije"
@@ -8303,16 +8667,6 @@ msgid "Timer List"
 msgstr ""
 
 #
-#, fuzzy
-msgid "Timer edit"
-msgstr "Tiidsbarren bewurkje"
-
-#
-#, fuzzy
-msgid "Timer editor"
-msgstr "Tiidsbarren bewurker"
-
-#
 msgid "Timer entry"
 msgstr "Tiidsbarren item"
 
@@ -8360,8 +8714,9 @@ msgid "Timer selection"
 msgstr "Tiidsbarren seleksje"
 
 #
-msgid "Timer status:"
-msgstr "Tiidsbarren status:"
+#, fuzzy
+msgid "Timer selection..."
+msgstr "Tiidsbarren seleksje"
 
 #
 #, fuzzy
@@ -8401,9 +8756,6 @@ msgstr ""
 msgid "Timeshift will get saved at end of event!"
 msgstr ""
 
-msgid "Timeshift will only start when the start delay time has passed. This prevents numurous very short files when zapping."
-msgstr ""
-
 msgid "Timeshift-save action on zap"
 msgstr ""
 
@@ -8429,8 +8781,9 @@ msgstr ""
 msgid "To subtitle selection"
 msgstr ""
 
+#, python-format
 msgid ""
-"To update your STB_BOX firmware, please follow these steps:\n"
+"To update your %s %s firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
@@ -8447,6 +8800,9 @@ msgid "Toggle a cut mark at the current position"
 msgstr ""
 
 msgid "Toggle aspect ratio..."
+msgstr ""
+
+msgid "Toggle between bouquet/epg lists"
 msgstr ""
 
 msgid "Tone amplitude"
@@ -8496,12 +8852,14 @@ msgid "Track"
 msgstr "Nummer"
 
 #
-msgid "Translation"
-msgstr "Oersetting"
+#, fuzzy
+msgid "Translation Information"
+msgstr "Ynformaasje"
 
 #
-msgid "Translation:"
-msgstr "Oersetting:"
+#, fuzzy
+msgid "Translations"
+msgstr "Oersetting"
 
 #
 msgid "Transmission mode"
@@ -8550,6 +8908,11 @@ msgid "Tune"
 msgstr "Ofstimme"
 
 #
+#, fuzzy
+msgid "Tune and focus"
+msgstr "Tuner status"
+
+#
 msgid "Tune failed!"
 msgstr "Ofstimme mislearre !"
 
@@ -8571,9 +8934,10 @@ msgstr ""
 msgid "Tuner status"
 msgstr "Tuner status"
 
-#, python-format
-msgid "Tuner status %s"
-msgstr ""
+#
+#, fuzzy
+msgid "Tuner status:"
+msgstr "Tuner status"
 
 #
 msgid "Tuner type"
@@ -8608,15 +8972,12 @@ msgstr ""
 msgid "USALS"
 msgstr "USALS"
 
+msgid "USALS calibration"
+msgstr ""
+
 #
 msgid "USB stick wizard"
 msgstr "USB stick gûcheler"
-
-msgid ""
-"Unattended upgrade in progress\n"
-"Please wait until your STB_BOX reboots\n"
-"This may take a few minutes"
-msgstr ""
 
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr ""
@@ -8637,10 +8998,6 @@ msgid "Undo uninstall"
 msgstr ""
 
 msgid "Unencrypted"
-msgstr ""
-
-#
-msgid "UnhandledKey"
 msgstr ""
 
 #
@@ -8685,7 +9042,8 @@ msgid_plural "Update completed, %d packages were installed."
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Update failed. Your STB_BOX does not have a working internet connection."
+#, python-format
+msgid "Update failed. Your %s %s does not have a working internet connection."
 msgstr ""
 
 msgid "Update interval (in seconds)"
@@ -8704,6 +9062,13 @@ msgstr ""
 
 #
 msgid "Upgrade finished."
+msgstr ""
+
+#, python-format
+msgid ""
+"Upgrade in progress\n"
+"Please wait until your %s %s reboots\n"
+"This may take a few minutes"
 msgstr ""
 
 #
@@ -8742,9 +9107,6 @@ msgstr ""
 msgid "Use Netmed EPG information when it is available."
 msgstr ""
 
-msgid "Use PTS seekbar while timeshifting?"
-msgstr ""
-
 msgid "Use TV remote control"
 msgstr ""
 
@@ -8765,6 +9127,9 @@ msgid "Use fastscan channel names"
 msgstr ""
 
 msgid "Use fastscan channel numbering"
+msgstr ""
+
+msgid "Use individual settings for each directory"
 msgstr ""
 
 #
@@ -8830,8 +9195,7 @@ msgstr ""
 msgid "Use this video enhancement settings?"
 msgstr ""
 
-#
-msgid "Use time of currently running service"
+msgid "Use timeshift seekbar while timeshifting?"
 msgstr ""
 
 msgid "Use trash can in movielist"
@@ -8872,10 +9236,18 @@ msgstr ""
 msgid "Username:"
 msgstr ""
 
+#, python-format
+msgid "Using LNB %d"
+msgstr ""
+
 msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
+msgstr ""
+
+#, python-format
+msgid "Using tuner %s"
 msgstr ""
 
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
@@ -8889,11 +9261,18 @@ msgstr "VCR scart"
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (yntro fan film)"
 
-msgid "Version:"
-msgstr ""
+#
+#, fuzzy, python-format
+msgid "Version:\t%s"
+msgstr "Nije ferzje:"
 
 msgid "Version: "
 msgstr ""
+
+#
+#, fuzzy, python-format
+msgid "Version: %s"
+msgstr "Nije ferzje:"
 
 #
 msgid "Vertical"
@@ -8948,6 +9327,10 @@ msgid "Video setup"
 msgstr ""
 
 msgid "Video wizard"
+msgstr ""
+
+#, python-format
+msgid "Video: %s fps"
 msgstr ""
 
 msgid "Videocodec"
@@ -9047,21 +9430,12 @@ msgstr ""
 msgid "View video CD..."
 msgstr ""
 
-#
-#, fuzzy
-msgid "Virtual keyboard"
-msgstr "Virtueel Toetseboerd"
-
 msgid "Virtuosso Image Xtreme"
 msgstr ""
 
 #
 msgid "Voltage mode"
 msgstr "Spanning mode"
-
-#
-msgid "Volume"
-msgstr "Lûdsterkte"
 
 #
 msgid "W"
@@ -9093,9 +9467,6 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS by 4:3"
 
-msgid "Wait please while gathering data..."
-msgstr ""
-
 msgid "Wait please while scanning for devices..."
 msgstr ""
 
@@ -9126,7 +9497,12 @@ msgstr ""
 msgid "Wakeup signal from TV"
 msgstr ""
 
-msgid "Wakeup your STB_BOX from standby"
+#
+#, fuzzy, python-format
+msgid "Wakeup your %s %s from standby"
+msgstr "gean nei paraatstand"
+
+msgid "Warning: no LNB; using factory defaults."
 msgstr ""
 
 #
@@ -9158,6 +9534,11 @@ msgstr "Wiekdei"
 #, fuzzy
 msgid "Weekly"
 msgstr "wikeliks"
+
+#
+#, fuzzy
+msgid "Weighted position"
+msgstr "Opsleine posysje"
 
 #
 #, fuzzy
@@ -9196,17 +9577,19 @@ msgid ""
 msgstr ""
 
 #
-msgid "Welcome..."
-msgstr "Wolkom..."
-
-#
 msgid "West"
 msgstr "West"
+
+msgid "West limit set"
+msgstr ""
 
 msgid "What Day of month ?"
 msgstr ""
 
 msgid "What Day of week ?"
+msgstr ""
+
+msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
 msgstr ""
 
 #
@@ -9229,6 +9612,9 @@ msgid "When enabled, a popup message will be shown when a recording starts."
 msgstr ""
 
 msgid "When enabled, a recording is allowed to interrupt live tv, when there are no free tuners."
+msgstr ""
+
+msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
 msgstr ""
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
@@ -9294,6 +9680,9 @@ msgstr ""
 msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr ""
 
+msgid "When enabled, timeshift starts automatically in background after specified time."
+msgstr ""
+
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr ""
 
@@ -9321,11 +9710,11 @@ msgstr ""
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr ""
 
-#
+#, python-format
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your STB_BOX will restart automatically!\n"
+"After completion of factory reset, your %s %s will restart automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
@@ -9333,6 +9722,9 @@ msgstr ""
 #
 msgid "Where do you want to backup your settings?"
 msgstr "Wêr wolle jo de gegevens opslaan?"
+
+msgid "Where should the recording be saved?"
+msgstr ""
 
 #
 msgid "Where to save temporary timeshift recordings?"
@@ -9427,6 +9819,17 @@ msgid "Yes, backup my settings!"
 msgstr "Ja, myn ynstellingen extra bewarje"
 
 #
+#, fuzzy
+msgid "Yes, but don't save timeshift as movie"
+msgstr "Ja, en ferwiderje dizze film"
+
+msgid "Yes, but save timeshift as movie and continue recording"
+msgstr ""
+
+msgid "Yes, but save timeshift as movie and stop recording"
+msgstr ""
+
+#
 msgid "Yes, do a manual scan now"
 msgstr "Ja, no hânmatig sykje"
 
@@ -9488,8 +9891,8 @@ msgstr ""
 msgid "You can install this plugin."
 msgstr ""
 
-#
-msgid "You can only burn STB_BOX recordings!"
+#, python-format
+msgid "You can only burn %s %s recordings!"
 msgstr ""
 
 #
@@ -9519,6 +9922,11 @@ msgid "You have chosen to restore your settings. Enigma2 will restart after rest
 msgstr ""
 
 msgid ""
+"You have chosen to save the current timeshift event, but the event has not yet finished\n"
+"What do you want to do ?"
+msgstr ""
+
+msgid ""
 "You have not setup your user info in the setup screen\n"
 "Press MENU, and enter your info, then try again"
 msgstr ""
@@ -9542,20 +9950,56 @@ msgstr ""
 "De moat in PC oan de STB_BOX ansluten weze. Foar mear ynstruktiessjoch op de webside http://www.dm7025.de.\n"
 "Jo STB_BOX sil no stopje. Nei it bywurkjen neffens de webside, de neie software sil jo freegje om de oarspronkelike ynstellingen werom te setten."
 
+msgid "You seem to be in timeshift!"
+msgstr ""
+
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr ""
 
 msgid "You system does not support ext4"
 msgstr ""
 
-msgid "Your STB_BOX is not connected to the internet, please check your network settings and try again."
+#, python-format
+msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
 msgstr ""
 
+#, python-format
 msgid ""
-"Your STB_BOX is now ready to be used.\n"
+"Your %s %s is now ready to be used.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
+msgstr ""
+
+#, python-format
+msgid "Your %s %s is rebooting"
+msgstr ""
+
+#, python-format
+msgid "Your %s %s is shutting down"
+msgstr ""
+
+#, python-format
+msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the installation of service\n"
+"Ready to install \"%s\" ?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the installation of service.\n"
+"\n"
+"Do you want to install now ?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now ?"
 msgstr ""
 
 #
@@ -9567,67 +10011,9 @@ msgid ""
 "Please press OK to continue."
 msgstr ""
 
-msgid "Your STB_BOX is rebooting"
-msgstr ""
-
-msgid "Your STB_BOX is shutting down"
-msgstr ""
-
 #
 msgid "Your STB_BOX is shutting down. Please stand by..."
 msgstr "Jo STB_BOX wurd no ôfsluten. Eefkes wachtsje..."
-
-msgid "Your STB_BOX might be unusable now. Please consult the manual for further assistance before rebooting your STB_BOX."
-msgstr ""
-
-#
-#, fuzzy
-msgid ""
-"Your STB_BOX wants to reboot your STB_BOX.\n"
-"Do that now?"
-msgstr ""
-"In sliiptiidsbarren wol de STB_BOX yn paraatstand sette\n"
-"Dit no dwaan ?"
-
-msgid ""
-"Your STB_BOX wants to restart the user interface.\n"
-"Do that now?"
-msgstr ""
-
-#
-#, fuzzy
-msgid ""
-"Your STB_BOX wants to set your STB_BOX to standby.\n"
-"Do that now?"
-msgstr ""
-"In sliiptiidsbarren wol de STB_BOX yn paraatstand sette\n"
-"Dit no dwaan ?"
-
-#
-#, fuzzy
-msgid ""
-"Your STB_BOX wants to shut down your STB_BOX.\n"
-"Do that now?"
-msgstr ""
-"In sliiptiidsbarren wol de STB_BOX útskeakelje\n"
-"No útskeakelje ?"
-
-#, python-format
-msgid ""
-"Your STB_BOX will be restarted after the installation of service\n"
-"Ready to install \"%s\" ?"
-msgstr ""
-
-msgid ""
-"Your STB_BOX will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-
-msgid ""
-"Your STB_BOX will be restarted after the removal of service\n"
-"Do you want to remove now ?"
-msgstr ""
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
@@ -9658,9 +10044,10 @@ msgstr ""
 "Jo foarprocessor software moat bywurke wurde\n"
 "Druk Ok om te begjinnen."
 
+#, python-format
 msgid ""
 "Your frontprocessor will be upgraded\n"
-"Please wait until your STB_BOX reboots\n"
+"Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
 
@@ -9936,6 +10323,14 @@ msgid "center"
 msgstr ""
 
 #
+#, fuzzy
+msgid "centered"
+msgstr "Yntermediate"
+
+msgid "centered, wrapped"
+msgstr ""
+
+#
 msgid "chapters"
 msgstr "Haadstikken"
 
@@ -9959,10 +10354,6 @@ msgstr ""
 #
 msgid "complex"
 msgstr "complex"
-
-#
-msgid "config menu"
-msgstr "konfiguraasje menu"
 
 #
 msgid "confirmed"
@@ -10054,6 +10445,11 @@ msgstr "Klear!"
 msgid "e-Mail address"
 msgstr ""
 
+#
+#, fuzzy
+msgid "east"
+msgstr "Draai nei east"
+
 msgid "ecm time:"
 msgstr ""
 
@@ -10109,6 +10505,9 @@ msgstr "stop stik hjirre"
 #
 msgid "end favourites edit"
 msgstr "bewurkjen favoriet út"
+
+msgid "enter number to jump to channel."
+msgstr ""
 
 msgid "entertainment (10-16 year old)"
 msgstr ""
@@ -10249,10 +10648,6 @@ msgstr ""
 msgid "height"
 msgstr ""
 
-#
-msgid "help..."
-msgstr "help..."
-
 msgid "hops:"
 msgstr ""
 
@@ -10306,12 +10701,18 @@ msgstr "film ôfspieljen ferlitte..."
 msgid "left"
 msgstr "links"
 
+msgid "left, wrapped"
+msgstr ""
+
 msgid "leisure hobbies (general)"
 msgstr ""
 
 #
 msgid "length"
 msgstr "lengte"
+
+msgid "limit ..., aborting !"
+msgstr ""
 
 msgid "literature"
 msgstr ""
@@ -10479,6 +10880,9 @@ msgstr "fan in SINGLE layer medium brûkt"
 msgid "off"
 msgstr "uit"
 
+msgid "offset is"
+msgstr ""
+
 #
 msgid "on"
 msgstr "oan"
@@ -10514,10 +10918,6 @@ msgstr ""
 msgid "pass"
 msgstr "trochgean"
 
-#
-msgid "pause"
-msgstr "pause"
-
 msgid "performing arts"
 msgstr ""
 
@@ -10526,14 +10926,6 @@ msgstr ""
 
 msgid "play as picture in picture"
 msgstr ""
-
-#
-msgid "play from next mark or playlist entry"
-msgstr "Spielje fanôf it folgende punt of ôfspiellyst rigele"
-
-#
-msgid "play from previous mark or playlist entry"
-msgstr "Spielje fanôf it foarige punt of ôfspiellyst rigele"
 
 msgid "play in mainwindow"
 msgstr ""
@@ -10652,6 +11044,9 @@ msgstr "werom spile nei it foarige haadstik"
 #
 msgid "right"
 msgstr "rjochts"
+
+msgid "right, wrapped"
+msgstr ""
 
 msgid "rock/pop"
 msgstr ""
@@ -11009,6 +11404,11 @@ msgstr ""
 msgid "weekly"
 msgstr "wikeliks"
 
+#
+#, fuzzy
+msgid "west"
+msgstr "Draai nei west"
+
 msgid "when asking question about this log"
 msgstr ""
 
@@ -11070,6 +11470,331 @@ msgid "zap"
 msgstr "knip"
 
 #
+#, fuzzy
+msgid "zap and record"
+msgstr "opnimme"
+
+#
 msgid "zapped"
 msgstr "knipt"
 
+#
+#~ msgid "1"
+#~ msgstr "1"
+
+#
+#~ msgid "3"
+#~ msgstr "3"
+
+#
+#~ msgid "4"
+#~ msgstr "4"
+
+#
+#~ msgid "5"
+#~ msgstr "5"
+
+#
+#~ msgid "6"
+#~ msgstr "6"
+
+#
+#~ msgid "7"
+#~ msgstr "7"
+
+#
+#~ msgid "8"
+#~ msgstr "8"
+
+#
+#~ msgid "9"
+#~ msgstr "9"
+
+#
+#~ msgid "Audio"
+#~ msgstr "Lûd"
+
+#
+#~ msgid "BER"
+#~ msgstr "BER"
+
+#
+#~ msgid "BER:"
+#~ msgstr "BER:"
+
+#
+#~ msgid "C"
+#~ msgstr "C"
+
+#
+#~ msgid "Channellist menu"
+#~ msgstr "Kanaal-lyst menu"
+
+#
+#~ msgid "Command execution..."
+#~ msgstr "Kommando útfiere"
+
+#
+#~ msgid "Continue in background"
+#~ msgstr "Fjierder gean yn 'e eftergrûn"
+
+#
+#~ msgid "D"
+#~ msgstr "D"
+
+#
+#, fuzzy
+#~ msgid "Date/time input"
+#~ msgstr "Tiid / Dei ynjefte"
+
+#
+#~ msgid "Dish"
+#~ msgstr "Panne"
+
+#
+#~ msgid "Downloadable plugins"
+#~ msgstr "Binnen te heljen ynstekkers"
+
+#
+#, fuzzy
+#~ msgid "EPG selection"
+#~ msgstr "EPG Seleksje"
+
+#
+#~ msgid "Enable timer"
+#~ msgstr "Tiidsjtoering ynskeakelje"
+
+#
+#, fuzzy
+#~ msgid "Event view"
+#~ msgstr "Barren oersjoch"
+
+#
+#, fuzzy
+#~ msgid "Event view menu"
+#~ msgstr "Barren oersjoch"
+
+#
+#~ msgid "Index"
+#~ msgstr "Yndex"
+
+#
+#, fuzzy
+#~ msgid "Info bar"
+#~ msgstr "Ynfobalke"
+
+#
+#, fuzzy
+#~ msgid "Installing software..."
+#~ msgstr "Software oan it ynstallearjen..."
+
+#
+#, fuzzy
+#~ msgid "Job overview"
+#~ msgstr "Opdracht oansjoch"
+
+#
+#~ msgid "Lock:"
+#~ msgstr "Slot:"
+
+#
+#~ msgid "MORE"
+#~ msgstr "MEER"
+
+#
+#~ msgid "Message"
+#~ msgstr "Berjocht"
+
+#
+#~ msgid "Movielist menu"
+#~ msgstr "Filmlyst menu"
+
+#
+#~ msgid "Mute"
+#~ msgstr "Mute"
+
+#
+#~ msgid "NEXT"
+#~ msgstr "Folgende"
+
+#
+#~ msgid "NOW"
+#~ msgstr "No"
+
+#
+#, fuzzy
+#~ msgid "Nameserver setup"
+#~ msgstr "Nammeserver Ynstellingen"
+
+#
+#, fuzzy
+#~ msgid "Network configuration..."
+#~ msgstr "Netwurk configuraasje"
+
+#
+#~ msgid "Network test..."
+#~ msgstr "Netwurk test..."
+
+#
+#, fuzzy
+#~ msgid "No, but restart from beginning"
+#~ msgstr "Nee, mar start fanôf it begjin"
+
+#
+#, fuzzy
+#~ msgid "Now playing"
+#~ msgstr "No oan it ôfspieljen"
+
+#
+#, fuzzy
+#~ msgid "PIN code needed"
+#~ msgstr "Pinkode is needich"
+
+#
+#, fuzzy
+#~ msgid "Parental control services editor"
+#~ msgstr "Alderlik tasjoch bewurker"
+
+#
+#, fuzzy
+#~ msgid "PiP setup"
+#~ msgstr "PIP Ynstellingen"
+
+#
+#~ msgid "Plugin browser"
+#~ msgstr "Ynstekker browser"
+
+#
+#~ msgid "Radio"
+#~ msgstr "Radio"
+
+#
+#, fuzzy
+#~ msgid "Reception settings"
+#~ msgstr "Untfangst Ynstellingen"
+
+#
+#~ msgid "SNR"
+#~ msgstr "SNR"
+
+#
+#~ msgid "SNR:"
+#~ msgstr "SNR:"
+
+#
+#~ msgid "Select HDD"
+#~ msgstr "Kies hurde skiif"
+
+#
+#, fuzzy
+#~ msgid "Select a bouquet"
+#~ msgstr "Kies in film"
+
+#
+#~ msgid "Select a movie"
+#~ msgstr "Kies in film"
+
+#
+#, fuzzy
+#~ msgid "Select a network adapter"
+#~ msgstr "Kies Netwurk Adapter"
+
+#
+#, fuzzy
+#~ msgid "Select a skin"
+#~ msgstr "Kies in film"
+
+#
+#, fuzzy
+#~ msgid "Select a tuner"
+#~ msgstr "Kies in film"
+
+#
+#, fuzzy
+#~ msgid "Service info"
+#~ msgstr "Kanaal ynformaasje"
+
+#
+#~ msgid "Sleep Timer"
+#~ msgstr "Tiidstjoering"
+
+#
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "De sliep tiid klok is aktiveert."
+
+#
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "De sliep tiid klok is útskeakele"
+
+#
+#, fuzzy
+#~ msgid "Timer edit"
+#~ msgstr "Tiidsbarren bewurkje"
+
+#
+#, fuzzy
+#~ msgid "Timer editor"
+#~ msgstr "Tiidsbarren bewurker"
+
+#
+#~ msgid "Timer status:"
+#~ msgstr "Tiidsbarren status:"
+
+#
+#~ msgid "Translation:"
+#~ msgstr "Oersetting:"
+
+#
+#~ msgid "Volume"
+#~ msgstr "Lûdsterkte"
+
+#
+#~ msgid "Welcome..."
+#~ msgstr "Wolkom..."
+
+#
+#, fuzzy
+#~ msgid ""
+#~ "Your STB_BOX wants to reboot your STB_BOX.\n"
+#~ "Do that now?"
+#~ msgstr ""
+#~ "In sliiptiidsbarren wol de STB_BOX yn paraatstand sette\n"
+#~ "Dit no dwaan ?"
+
+#
+#, fuzzy
+#~ msgid ""
+#~ "Your STB_BOX wants to set your STB_BOX to standby.\n"
+#~ "Do that now?"
+#~ msgstr ""
+#~ "In sliiptiidsbarren wol de STB_BOX yn paraatstand sette\n"
+#~ "Dit no dwaan ?"
+
+#
+#, fuzzy
+#~ msgid ""
+#~ "Your STB_BOX wants to shut down your STB_BOX.\n"
+#~ "Do that now?"
+#~ msgstr ""
+#~ "In sliiptiidsbarren wol de STB_BOX útskeakelje\n"
+#~ "No útskeakelje ?"
+
+#
+#~ msgid "config menu"
+#~ msgstr "konfiguraasje menu"
+
+#
+#~ msgid "help..."
+#~ msgstr "help..."
+
+#
+#~ msgid "pause"
+#~ msgstr "pause"
+
+#
+#~ msgid "play from next mark or playlist entry"
+#~ msgstr "Spielje fanôf it folgende punt of ôfspiellyst rigele"
+
+#
+#~ msgid "play from previous mark or playlist entry"
+#~ msgstr "Spielje fanôf it foarige punt of ôfspiellyst rigele"
