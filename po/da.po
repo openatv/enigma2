@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-03 15:00+0000\n"
+"POT-Creation-Date: 2013-06-09 17:05+0100\n"
 "PO-Revision-Date: 2012-12-09 02:03+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: None <tbt_dk@hotmail.com>\n"
@@ -30,18 +30,12 @@ msgstr ""
 "\n"
 "Efter tryk på OK, vent venligst!"
 
-msgid ""
-"\n"
-"An Input/output error usually indicates a corrupted filesystem! Please check the filesystem of your timeshift-device!"
-msgstr ""
-
 #
+#, fuzzy, python-format
 msgid ""
 "\n"
-"Backup your STB_BOX settings."
-msgstr ""
-"\n"
-"Lav backup af din STB_BOX opsætning."
+"Backup your %s %s settings."
+msgstr "Lav backup af systemindstillinger"
 
 #
 msgid ""
@@ -52,17 +46,19 @@ msgstr ""
 "Rediger kildeadressen til opgradering."
 
 #
+#, fuzzy, python-format
 msgid ""
 "\n"
-"Manage extensions or plugins for your STB_BOX"
+"Manage extensions or plugins for your %s %s"
 msgstr ""
 "\n"
 "Håndter udvidelser eller plugins til din STB_BOX"
 
 #
+#, fuzzy, python-format
 msgid ""
 "\n"
-"Online update of your STB_BOX software."
+"Online update of your %s %s software."
 msgstr ""
 "\n"
 "Online opdatering_ ikke for Ferrari Bokse!."
@@ -76,17 +72,17 @@ msgstr ""
 "Tryk OK på din fjernbetjening for at fortsætte."
 
 #
+#, fuzzy, python-format
 msgid ""
 "\n"
-"Restore your STB_BOX settings."
-msgstr ""
-"\n"
-"Gendan din STB_BOX opsætning."
+"Restore your %s %s settings."
+msgstr "Gendan system opsætning"
 
 #
+#, fuzzy, python-format
 msgid ""
 "\n"
-"Restore your STB_BOX with a new firmware."
+"Restore your %s %s with a new firmware."
 msgstr ""
 "\n"
 "Gendan din STB_BOX med ny firmware."
@@ -136,6 +132,11 @@ msgstr ""
 
 msgid " and"
 msgstr ""
+
+#
+#, fuzzy
+msgid "%-H:%M"
+msgstr "%T:%M"
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -268,6 +269,37 @@ msgstr "%d.%B %Y"
 msgid "%k:%M %e/%m"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "%s %s advanced remote control (native)"
+msgstr "STB_BOX avanceret fjernbetjening (native)"
+
+#
+#, fuzzy, python-format
+msgid "%s %s format data DVD (HDTV compatible)"
+msgstr "STB_BOX format data DVD (HDTV kompatibel)"
+
+#, python-format
+msgid "%s %s front panel"
+msgstr ""
+
+#
+#, fuzzy, python-format
+msgid "%s %s ir keyboard"
+msgstr "Virtuelt tastatur"
+
+#, python-format
+msgid "%s %s ir mouse"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "%s %s remote control (native)"
+msgstr "STB_BOX fjernbetjening (native)"
+
+#
+#, fuzzy, python-format
+msgid "%s %s software because updates are available."
+msgstr "STB_BOX software fordi der er tilgængelige opdateringer."
+
 #
 #, python-format
 msgid "%s (%s)\n"
@@ -283,6 +315,11 @@ msgid "%s updated package available"
 msgid_plural "%s updated packages available"
 msgstr[0] ""
 msgstr[1] ""
+
+#
+#, fuzzy, python-format
+msgid "%s%d min"
+msgstr "%d min"
 
 #, python-format
 msgid "%s/%s: %s"
@@ -316,14 +353,6 @@ msgid "* Only available if more than one interface is active."
 msgstr "* Kun tilgængelig hvis mere end et interface er aktivt."
 
 #
-msgid "0"
-msgstr "0"
-
-#
-msgid "1"
-msgstr "1"
-
-#
 msgid "1.0"
 msgstr "1.0"
 
@@ -336,6 +365,10 @@ msgid "1.2"
 msgstr "1.2"
 
 msgid "12V output"
+msgstr "12V udgang"
+
+#, fuzzy
+msgid "12V output."
 msgstr "12V udgang"
 
 #
@@ -372,19 +405,37 @@ msgstr ""
 msgid "1st Infobar timeout"
 msgstr ""
 
+msgid "23.976"
+msgstr ""
+
 #
-msgid "2"
+#, fuzzy
+msgid "24"
 msgstr "2"
+
+#
+#, fuzzy
+msgid "25"
+msgstr "2"
+
+msgid "29.97"
+msgstr ""
 
 msgid "2X"
 msgstr ""
 
 #
-msgid "3"
-msgstr "3"
+#, fuzzy
+msgid "30"
+msgstr "0"
 
 msgid "3D Mode"
 msgstr ""
+
+#
+#, fuzzy
+msgid "3D Surround"
+msgstr "Lyd"
 
 msgid "3D setup"
 msgstr ""
@@ -394,10 +445,6 @@ msgstr ""
 
 msgid "3d mode"
 msgstr ""
-
-#
-msgid "4"
-msgstr "4"
 
 #
 msgid "4:3"
@@ -411,26 +458,6 @@ msgstr "4:3 Panscan"
 
 msgid "4X"
 msgstr ""
-
-#
-msgid "5"
-msgstr "5"
-
-#
-msgid "6"
-msgstr "6"
-
-#
-msgid "7"
-msgstr "7"
-
-#
-msgid "8"
-msgstr "8"
-
-#
-msgid "9"
-msgstr "9"
 
 msgid "<Current movielist location>"
 msgstr "<Nuværende filmliste placering>"
@@ -473,35 +500,61 @@ msgstr ""
 "En konfigurationsfil (%s) er ændret siden installation.\n"
 "Vil du beholde denne version?"
 
-msgid "A demo plugin for TPM usage."
-msgstr "En demo udvidelse til brug for TPM"
-
-#, fuzzy
+#, fuzzy, python-format
 msgid ""
 "A finished power timer wants to shut down\n"
-"your STB_BOX. Shutdown now?"
+"your %s %s. Shutdown now?"
 msgstr ""
 "En afsluttet optagelsestimer vil gerne slukke\n"
 "din STB_BOX. Slukke nu?"
 
+#, fuzzy, python-format
+msgid ""
+"A finished powertimer wants to reboot your %s %s.\n"
+"Do that now?"
+msgstr ""
+"En afsluttet optagelsestimer vil gerne sætte din\n"
+"STB_BOX til standby.Vil du gøre det nu?"
+
+#
 #, fuzzy
 msgid ""
+"A finished powertimer wants to restart the user interface.\n"
+"Do that now?"
+msgstr ""
+"Din STB_BOX er nu klar til brug.\n"
+"\n"
+"Din internetforbindelse fungerer nu.\n"
+"\n"
+
+#, fuzzy, python-format
+msgid ""
 "A finished powertimer wants to set your\n"
-"STB_BOX to standby. Do that now?"
+"%s %s to standby. Do that now?"
 msgstr ""
 "En afsluttet optagelsestimer vil gerne sætte din\n"
 "STB_BOX til standby.Vil du gøre det nu?"
 
+#, fuzzy, python-format
+msgid ""
+"A finished powertimer wants to shutdown your %s %s.\n"
+"Do that now?"
+msgstr ""
+"En afsluttet optagelsestimer vil gerne slukke\n"
+"din STB_BOX. Slukke nu?"
+
+#, fuzzy, python-format
 msgid ""
 "A finished record timer wants to set your\n"
-"STB_BOX to standby. Do that now?"
+"%s %s to standby. Do that now?"
 msgstr ""
 "En afsluttet optagelsestimer vil gerne sætte din\n"
 "STB_BOX til standby.Vil du gøre det nu?"
 
+#, fuzzy, python-format
 msgid ""
 "A finished record timer wants to shut down\n"
-"your STB_BOX. Shutdown now?"
+"your %s %s. Shutdown now?"
 msgstr ""
 "En afsluttet optagelsestimer vil gerne slukke\n"
 "din STB_BOX. Slukke nu?"
@@ -535,6 +588,9 @@ msgstr "En optagelse er igang. Stop, venligst denne optagelse før du begynder k
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "En optagelse er igang. Stop, venligst denne optagelse før start af Satfinder."
 
+msgid "A repeating timer or just once?"
+msgstr ""
+
 #
 #, python-format
 msgid "A required tool (%s) was not found."
@@ -555,17 +611,19 @@ msgstr ""
 "Vil du deaktivere den anden netværksenhed?"
 
 #
+#, fuzzy, python-format
 msgid ""
 "A sleep timer wants to set your\n"
-"STB_BOX to standby. Do that now?"
+"%s %s to standby. Do that now?"
 msgstr ""
 "En sleep timer vil gerne sætte din\n"
 "STB_BOX til standby. Vil du gøre det nu?"
 
 #
+#, fuzzy, python-format
 msgid ""
 "A sleep timer wants to shut down\n"
-"your STB_BOX. Shutdown now?"
+"your %s %s. Shutdown now?"
 msgstr ""
 "En sleep timer vil gerne slukke\n"
 "din STB_BOX. Slukke nu?"
@@ -593,6 +651,9 @@ msgstr "AA"
 msgid "AB"
 msgstr "AB"
 
+msgid "ACQUIRING TSID/ONID"
+msgstr ""
+
 msgid "AFP Setup"
 msgstr ""
 
@@ -618,9 +679,6 @@ msgstr "Om..."
 #
 msgid "Accesspoint:"
 msgstr "Accesspoint:"
-
-msgid "Action"
-msgstr ""
 
 msgid "Action on long powerbutton press"
 msgstr ""
@@ -686,11 +744,20 @@ msgstr "tilføj en navneserver angivelse"
 msgid "Add a new title"
 msgstr "Tilføj en ny titel"
 
+#
+#, fuzzy
+msgid "Add a record timer"
+msgstr "Tilføj timer"
+
 msgid "Add a record timer for current event"
 msgstr ""
 
 msgid "Add a zap timer for current event"
 msgstr ""
+
+#, fuzzy
+msgid "Add a zap timer for next event"
+msgstr "Tilføj/Fjern timer for dette program"
 
 #
 #, fuzzy
@@ -811,6 +878,13 @@ msgstr "Album"
 msgid "Alias"
 msgstr ""
 
+#, fuzzy
+msgid "Alignment of events"
+msgstr "Gå til næste side af udsendelse"
+
+msgid "Alignment of service names"
+msgstr ""
+
 #
 msgid "All"
 msgstr "Alle"
@@ -819,6 +893,12 @@ msgid "All ages"
 msgstr ""
 
 msgid "All satellites"
+msgstr ""
+
+msgid "Allocate"
+msgstr ""
+
+msgid "Allocate unused memory index"
 msgstr ""
 
 msgid "Allow subtitle language to equal audio language"
@@ -839,10 +919,10 @@ msgstr ""
 msgid "Allows the STB_BOX to store the EPG data regularly."
 msgstr ""
 
-msgid "Allows you setup the button to do what you choose."
+msgid "Allows you hide the extensions of known file types."
 msgstr ""
 
-msgid "Allows you to choose the Picons to be displayed on the frontpanel."
+msgid "Allows you setup the button to do what you choose."
 msgstr ""
 
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
@@ -973,17 +1053,16 @@ msgstr ""
 msgid "Are you sure you want to send this log:\n"
 msgstr ""
 
-msgid "Are you sure you want to update your STB_BOX?"
-msgstr ""
+#
+#, fuzzy, python-format
+msgid "Are you sure you want to update your %s %s ?"
+msgstr "Bekræft at du vil afslutte denne hjælper?"
 
 #
 msgid "Artist"
 msgstr "Kunstner"
 
 msgid "Arts/Culture"
-msgstr ""
-
-msgid "Ask before shutdown"
 msgstr ""
 
 #
@@ -1008,10 +1087,6 @@ msgstr ""
 
 msgid "Attach a file"
 msgstr ""
-
-#
-msgid "Audio"
-msgstr "Lyd"
 
 msgid "Audio PID"
 msgstr "Lyd PID"
@@ -1072,6 +1147,14 @@ msgstr "Auto kapitel oprettelse hvert ? minut (0=aldrig) "
 msgid "Auto flesh"
 msgstr "Auto flash"
 
+#
+#, fuzzy
+msgid "Auto focus"
+msgstr "Auto flash"
+
+msgid "Auto focus commencing ..."
+msgstr ""
+
 msgid "Auto language selection"
 msgstr ""
 
@@ -1100,6 +1183,9 @@ msgid "Automatic scan"
 msgstr ""
 
 msgid "Automatic setting backup"
+msgstr ""
+
+msgid "Automatically start timeshift after"
 msgstr ""
 
 msgid "Automatically update Client/Server View?"
@@ -1131,14 +1217,6 @@ msgid "BB"
 msgstr "BB"
 
 #
-msgid "BER"
-msgstr "BER"
-
-#
-msgid "BER:"
-msgstr "BER:"
-
-#
 msgid "Back"
 msgstr "Tilbage"
 
@@ -1160,6 +1238,9 @@ msgstr "Baggrund slet option"
 msgid "Background delete speed"
 msgstr "Baggrund opdateringshastighed"
 
+msgid "Backup Manager"
+msgstr ""
+
 msgid "Backup completed."
 msgstr ""
 
@@ -1174,9 +1255,6 @@ msgstr "Backup afvikles..."
 #
 msgid "Backup system settings"
 msgstr "Lav backup af systemindstillinger"
-
-msgid "Backup Manager"
-msgstr ""
 
 #
 msgid "Band"
@@ -1264,7 +1342,12 @@ msgstr ""
 msgid "Buffers:"
 msgstr ""
 
-msgid "Build:"
+#, python-format
+msgid "Build:\t%s"
+msgstr ""
+
+#, python-format
+msgid "Build: %s"
 msgstr ""
 
 msgid "Bulgarian"
@@ -1301,15 +1384,14 @@ msgstr ""
 msgid "By Team ViX"
 msgstr ""
 
+msgid "Bypass HDMI EDID Check"
+msgstr ""
+
 msgid "Bytes received:"
 msgstr ""
 
 msgid "Bytes sent:"
 msgstr ""
-
-#
-msgid "C"
-msgstr "C"
 
 #
 msgid "C-Band"
@@ -1362,9 +1444,16 @@ msgstr ""
 msgid "CCcam info"
 msgstr ""
 
+msgid "CHANGE BOUQUET"
+msgstr ""
+
 #
 msgid "CI assignment"
 msgstr "CI  tildeling"
+
+#, python-format
+msgid "CPU:\t%s"
+msgstr ""
 
 #
 msgid "CVBS"
@@ -1388,11 +1477,35 @@ msgstr "Hente Oversigt"
 msgid "Cached:"
 msgstr ""
 
+msgid "Calculate"
+msgstr ""
+
+msgid "Calculate all positions"
+msgstr ""
+
+msgid "Calculation complete"
+msgstr ""
+
+msgid "Calibrate"
+msgstr ""
+
+msgid "Can be used for different fps between external subtitles and video."
+msgstr ""
+
 #
 msgid "Cancel"
 msgstr "Fortryd"
 
+msgid "Cancel save timeshift as movie"
+msgstr ""
+
 msgid "Cannot delete file"
+msgstr ""
+
+msgid "Cannot determine"
+msgstr ""
+
+msgid "Cannot find any signal ..., aborting !"
 msgstr ""
 
 msgid "Cannot move to trash can"
@@ -1418,6 +1531,9 @@ msgid "Cardserial"
 msgstr ""
 
 msgid "Center DVB subtitles"
+msgstr ""
+
+msgid "Center time-labels and remove date"
 msgstr ""
 
 #
@@ -1510,10 +1626,6 @@ msgid "ChannelEPG settings"
 msgstr "Kanal Vælger"
 
 #
-msgid "Channellist menu"
-msgstr "Kanalliste Menu"
-
-#
 msgid "Chap."
 msgstr "Kap."
 
@@ -1564,7 +1676,26 @@ msgstr ""
 msgid "Children/Youth"
 msgstr ""
 
+#, python-format
+msgid "Chipset:\tBCM%s"
+msgstr ""
+
+#, python-format
+msgid "Chipset: BCM%s"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Chnage to bouquet"
+msgstr "Tilføj til pakke..."
+
 msgid "Choose Bouquet"
+msgstr ""
+
+msgid "Choose a tag for easy finding a recording."
+msgstr ""
+
+msgid "Choose between Daily, Weekly, Weekdays or self defined."
 msgstr ""
 
 msgid "Choose the location for crash and debuglogs."
@@ -1594,6 +1725,9 @@ msgstr ""
 msgid "Choose which tuner to configure."
 msgstr ""
 
+msgid "Chose between record and ZAP."
+msgstr ""
+
 #
 msgid "Circular left"
 msgstr "Venstre-cirkulær"
@@ -1608,6 +1742,11 @@ msgstr ""
 #
 msgid "Cleanup"
 msgstr "Oprydning"
+
+#
+#, fuzzy
+msgid "Clear"
+msgstr "Slet log"
 
 #
 msgid "Clear before scan"
@@ -1631,6 +1770,14 @@ msgstr ""
 #
 msgid "Close"
 msgstr "Afslut"
+
+#
+#, fuzzy
+msgid "Close bouquet list."
+msgstr "Edit pakkeliste"
+
+msgid "Close dialog"
+msgstr ""
 
 #
 msgid "Close title selection"
@@ -1670,10 +1817,6 @@ msgstr "Farve Format"
 #, fuzzy
 msgid "Command To Run"
 msgstr "Kommando rækkefølge"
-
-#
-msgid "Command execution..."
-msgstr "Kommando udføres..."
 
 #
 msgid "Command order"
@@ -1726,10 +1869,24 @@ msgstr ""
 msgid "Configuration mode"
 msgstr ""
 
+#
+#, fuzzy, python-format
+msgid "Configuration mode: %s"
+msgstr "Konfigurerer"
+
+msgid "Configure an additional delay to improve external subtitle synchronisation."
+msgstr ""
+
+msgid "Configure an additional delay to improve subtitle synchronisation."
+msgstr ""
+
 msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
 msgstr ""
 
 msgid "Configure how recording filenames are constructed."
+msgstr ""
+
+msgid "Configure if and how service type icons will be shown."
 msgstr ""
 
 #
@@ -1785,6 +1942,9 @@ msgstr ""
 msgid "Configure the contrast level of the front panel display."
 msgstr ""
 
+msgid "Configure the duration in minutes for the screensaver."
+msgstr ""
+
 msgid "Configure the first audio language (highest priority)."
 msgstr ""
 
@@ -1807,6 +1967,9 @@ msgid "Configure the function of a long press on the power button."
 msgstr ""
 
 msgid "Configure the function of a short press on the power button."
+msgstr ""
+
+msgid "Configure the function of the <  > buttons."
 msgstr ""
 
 msgid "Configure the gateway."
@@ -1930,6 +2093,11 @@ msgid "Configure which tuner will be preferred, when more than one tuner is avai
 msgstr ""
 
 #
+#, fuzzy
+msgid "Configure your NTP server."
+msgstr "Opsætning af navneservere"
+
+#
 msgid "Configure your internal LAN"
 msgstr "Konfigurer dit interne LAN"
 
@@ -1993,10 +2161,6 @@ msgstr "Indholdet kan ikke være på DVD'en!"
 msgid "Continue"
 msgstr "Fortsæt"
 
-#
-msgid "Continue in background"
-msgstr "Fortsæt i baggrunden"
-
 msgid "Continue playback"
 msgstr ""
 
@@ -2037,14 +2201,17 @@ msgstr ""
 msgid "Copy"
 msgstr "Kopier"
 
-msgid ""
-"Could not activate Permanent-Timeshift!\n"
-"Timeshift-Path does not exist"
+#, fuzzy
+msgid "Copying files"
+msgstr "Lange filnavne"
+
+#, python-format
+msgid "Cores:\t%s"
 msgstr ""
 
 #
-#, fuzzy
-msgid "Could not connect to STB_BOX .NFI image feed server:"
+#, fuzzy, python-format
+msgid "Could not connect to %s %s .NFI image feed server:"
 msgstr "Kunne ikke forbinde til STB_BOX .NFI image feed serveren:"
 
 msgid "Could not find installed channel list."
@@ -2193,9 +2360,8 @@ msgstr "Klipliste editor..."
 msgid "Czech"
 msgstr "Tjekkisk"
 
-#
-msgid "D"
-msgstr "D"
+msgid "DAC"
+msgstr ""
 
 #
 msgid "DHCP"
@@ -2272,11 +2438,6 @@ msgstr "Dansk"
 msgid "Date"
 msgstr "Dato"
 
-#
-#, fuzzy
-msgid "Date/time input"
-msgstr "Tid/Dato input"
-
 msgid "Debug Logs"
 msgstr ""
 
@@ -2295,6 +2456,10 @@ msgstr "Standard"
 msgid "Default movie location"
 msgstr "Standardplacering af film"
 
+#, fuzzy
+msgid "Default recording type"
+msgstr "Optagelsestype"
+
 #
 #, fuzzy
 msgid "Default settings"
@@ -2305,6 +2470,13 @@ msgstr ""
 
 msgid "Delay before key repeat starts:"
 msgstr "Forsinkelse på gentag tastetryk"
+
+#, fuzzy
+msgid "Delay for external subtitles"
+msgstr "Forsinkelse på gentag tastetryk"
+
+msgid "Delay:"
+msgstr ""
 
 #
 msgid "Delete"
@@ -2355,8 +2527,16 @@ msgstr ""
 msgid "Deleted items"
 msgstr "Slettede"
 
+#
+#, fuzzy
+msgid "Deleting files"
+msgstr "slet fil"
+
 msgid "Depth"
 msgstr "Dybde"
+
+msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgstr ""
 
 msgid "Descramble http streams"
 msgstr ""
@@ -2469,12 +2649,11 @@ msgstr "Afbrudt"
 msgid "Disconnect"
 msgstr "Afbryd"
 
-#
-msgid "Dish"
-msgstr "Parabol"
-
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Plads der skal reseveres til optagelser (I GB)"
+
+msgid "Display"
+msgstr ""
 
 #
 msgid "Display 16:9 content as"
@@ -2494,9 +2673,6 @@ msgid "Display and userinterface"
 msgstr "Visning og bruger interface"
 
 msgid "Display message before playing next movie"
-msgstr ""
-
-msgid "Display settings"
 msgstr ""
 
 msgid "Display the EIT now/next eventdata in infobar."
@@ -2576,6 +2752,11 @@ msgid "Do you really want to remove the plugin \"%s\"?"
 msgstr ""
 
 #
+#, fuzzy, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Vil du virkelig slette %s?"
+
+#
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "Vil du virkelig fjerne dit bogmærke af %s?"
@@ -2627,8 +2808,9 @@ msgid "Do you want to preview this DVD before burning?"
 msgstr "Vil du gennemse denne DVD inden brænding?"
 
 #
-msgid "Do you want to reboot your STB_BOX?"
-msgstr "Vil du genstarte din STB_BOX?"
+#, fuzzy, python-format
+msgid "Do you want to reboot your %s %s"
+msgstr "Vil du genskabe dine indstillinger?"
 
 msgid "Do you want to reboot your receiver?"
 msgstr ""
@@ -2651,17 +2833,20 @@ msgid ""
 msgstr ""
 
 #
-msgid "Do you want to update your STB_BOX?"
-msgstr "Vil du opdatere din STB_BOX?"
+#, fuzzy, python-format
+msgid "Do you want to update your %s %s ?"
+msgstr "Vil du genskabe dine indstillinger?"
+
+#
+#, fuzzy, python-format
+msgid "Do you want to update your %s ?"
+msgstr "Vil du genskabe dine indstillinger?"
 
 #
 msgid "Do you want to upgrade the package:\n"
 msgstr "Vil du opgradere pakken:\n"
 
 msgid "Don't save"
-msgstr ""
-
-msgid "Don't save Timeshift as Movie"
 msgstr ""
 
 #
@@ -2692,10 +2877,6 @@ msgid "Download plugins"
 msgstr ""
 
 #
-msgid "Downloadable plugins"
-msgstr "Plugins der kan hentes"
-
-#
 msgid "Downloading"
 msgstr "Henter"
 
@@ -2703,7 +2884,12 @@ msgstr "Henter"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Henter plugin informationer. Vent venligst..."
 
-msgid "Drivers:"
+#, python-format
+msgid "Drivers:\t%s"
+msgstr ""
+
+#, python-format
+msgid "Drivers: %s"
 msgstr ""
 
 #
@@ -2757,11 +2943,6 @@ msgstr "EPG Sprog valg 2"
 msgid "EPG location"
 msgstr ""
 
-#
-#, fuzzy
-msgid "EPG selection"
-msgstr "EPG Valg"
-
 msgid "EPG settings"
 msgstr ""
 
@@ -2773,6 +2954,9 @@ msgstr "FEJL - kan ikke søge (%s)!"
 #
 msgid "East"
 msgstr "Øst"
+
+msgid "East limit set"
+msgstr ""
 
 msgid "Ecm:"
 msgstr ""
@@ -2802,11 +2986,13 @@ msgid "Edit settings"
 msgstr "Ændre indstillinger"
 
 #
-msgid "Edit the Nameserver configuration of your STB_BOX.\n"
+#, fuzzy, python-format
+msgid "Edit the Nameserver configuration of your %s %s.\n"
 msgstr "Ændre Navneserver konfiguration på din STB_BOX.\n"
 
 #
-msgid "Edit the network configuration of your STB_BOX.\n"
+#, fuzzy, python-format
+msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Ændre din netværks konfiguration på  Dreamboxen.\n"
 
 #
@@ -2860,9 +3046,6 @@ msgstr "Aktiver Freesat EPG"
 msgid "Enable multiple bouquets"
 msgstr "Aktivere multi pakker"
 
-msgid "Enable or disable Permanent Timeshift. When activated, you can wind back until the time you zapped to a channel, and you can make recordings in retrospect."
-msgstr ""
-
 msgid "Enable panic button"
 msgstr ""
 
@@ -2872,10 +3055,6 @@ msgstr "Aktivere forældre kontrol?"
 
 msgid "Enable teletext caching"
 msgstr "Aktiver teletekst lagring"
-
-#
-msgid "Enable timer"
-msgstr "Aktiver timer"
 
 #
 msgid "Enabled"
@@ -2948,6 +3127,9 @@ msgstr "Fejl"
 msgid "Error code"
 msgstr "Fejlkode"
 
+msgid "Error downloading change log."
+msgstr ""
+
 #
 msgid "Error executing plugin"
 msgstr "Fejl ved kørsel af plugin"
@@ -2987,15 +3169,6 @@ msgstr ""
 msgid "Event font size (relative to skin size)"
 msgstr "Begivendhed Font (relativ til skin)"
 
-#
-#, fuzzy
-msgid "Event view"
-msgstr "Programoversigt"
-
-#, fuzzy
-msgid "Event view menu"
-msgstr "Programoversigt menu"
-
 msgid "Everywhere"
 msgstr "Over det hele"
 
@@ -3033,6 +3206,11 @@ msgstr "Afslut enhedsvalg"
 
 #
 #, fuzzy
+msgid "Exit media player?"
+msgstr "luk medieafspiller"
+
+#
+#, fuzzy
 msgid "Exit mediaplayer"
 msgstr "luk medieafspiller"
 
@@ -3063,9 +3241,6 @@ msgstr "Afbryd netværkshjælper"
 #
 msgid "Exit the wizard"
 msgstr "Afslut guiden"
-
-msgid "Experimental"
-msgstr ""
 
 #
 msgid "Expert"
@@ -3108,6 +3283,15 @@ msgstr "Ekstra menu"
 msgid "Extensions management"
 msgstr "Håndtering af udvidelser"
 
+msgid "External"
+msgstr ""
+
+msgid "External (CF)"
+msgstr ""
+
+msgid "FAILED"
+msgstr ""
+
 #
 msgid "FEC"
 msgstr "FEC"
@@ -3129,7 +3313,7 @@ msgstr "Gendan fabriksindstilling"
 msgid "Failed"
 msgstr "Fejlet"
 
-msgid "Failed to remove old files."
+msgid "Failed to write /tmp/positionersetup.log: "
 msgstr ""
 
 #
@@ -3173,6 +3357,19 @@ msgstr "Kontroller filsystem"
 
 msgid "Filesystem check"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Final position at"
+msgstr "Gå til position"
+
+msgid "Final position at index"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Fine movement"
+msgstr "Vis motor bevægelse"
 
 #
 msgid "Finetune"
@@ -3291,6 +3488,10 @@ msgstr ""
 msgid "Full transparency"
 msgstr "fuld transparent"
 
+#, fuzzy
+msgid "Fulscreen"
+msgstr "frys skærm"
+
 msgid "Function of OK button"
 msgstr ""
 
@@ -3340,29 +3541,6 @@ msgstr ""
 msgid "Getting plugin information. Please wait..."
 msgstr "Henter plugin information. Vent venligst..."
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX avanceret fjernbetjening (native)"
-
-#
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX format data DVD (HDTV kompatibel)"
-
-msgid "STB_BOX front panel"
-msgstr ""
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX ir tastatur"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX ir mus"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX fjernbetjening (native)"
-
-#
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX software fordi der er tilgængelige opdateringer."
-
 msgid "Go down the list"
 msgstr "Gå ned af listen"
 
@@ -3409,11 +3587,25 @@ msgstr "Gå til 0"
 msgid "Goto :"
 msgstr "Gå til :"
 
+#
+#, fuzzy
+msgid "Goto X"
+msgstr "Gå til 0"
+
+#
+#, fuzzy
+msgid "Goto index position"
+msgstr "Gå til position"
+
 msgid "Goto next bouquet"
 msgstr ""
 
 msgid "Goto next channel"
 msgstr ""
+
+#, fuzzy
+msgid "Goto next day of events"
+msgstr "Gå til næste side af udsendelse"
 
 msgid "Goto next event"
 msgstr "Gå til næste udsendelse"
@@ -3431,6 +3623,10 @@ msgstr ""
 msgid "Goto previous channel"
 msgstr ""
 
+#, fuzzy
+msgid "Goto previous day of events"
+msgstr "Gå til forrige side af udsendelser"
+
 msgid "Goto previous event"
 msgstr "Gå til forrige udsendelse"
 
@@ -3440,11 +3636,21 @@ msgstr "Gå til forrige side af udsendelser"
 msgid "Goto specific data/time"
 msgstr "Gå til specifik dato/tid"
 
+#
+#, fuzzy
+msgid "GotoX calibration"
+msgstr "Gå til position"
+
 msgid "GraphMultiEpg Settings"
 msgstr ""
 
 msgid "Graphical EPG"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Graphical InfobarEPG settings"
+msgstr "Grafisk multi EPG"
 
 #
 msgid "Graphical Multi EPG"
@@ -3474,6 +3680,9 @@ msgstr ""
 msgid "HD list"
 msgstr "HD Liste"
 
+msgid "HDMI"
+msgstr ""
+
 msgid "HDMI CEC"
 msgstr ""
 
@@ -3500,13 +3709,13 @@ msgstr "Harddisk slumre efter:"
 msgid "Harddisk"
 msgstr "Harddisk..."
 
-msgid "Hardware:"
-msgstr ""
-
 msgid "Hebrew"
 msgstr "Hebraisk"
 
 msgid "Height"
+msgstr ""
+
+msgid "Helps setting up your dish"
 msgstr ""
 
 msgid "Hidden network"
@@ -3520,6 +3729,11 @@ msgstr ""
 
 msgid "Hide error messages from the Common Interface module."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Hide known extensions"
+msgstr "se udvidelser..."
 
 #
 #, fuzzy
@@ -3540,6 +3754,12 @@ msgstr "Hieraki information"
 #
 msgid "High bitrate support"
 msgstr "Høj bitrate understøtning"
+
+msgid "History buttons mode"
+msgstr ""
+
+msgid "History zap..."
+msgstr ""
 
 msgid "Hold screen"
 msgstr "frys skærm"
@@ -3624,10 +3844,13 @@ msgstr ""
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr ""
 
-msgid "If set to 'yes' a special seekbar is available during timeshift."
+msgid "If set to 'yes' channels without EPG will not be shown."
 msgstr ""
 
-msgid "If set to 'yes' channels without EPG will not be shown."
+msgid "If set to 'yes' it will show the 'PO' packages in browser."
+msgstr ""
+
+msgid "If set to 'yes' it will show the 'SRC' packages in browser."
 msgstr ""
 
 msgid "If set to 'yes' shows a small TV-screen in the EPG."
@@ -3642,6 +3865,9 @@ msgstr ""
 msgid "If set to 'yes' the channel list will be shown after switching between radio and TV modes."
 msgstr ""
 
+msgid "If set to 'yes' the channel number will be displayed in the infobar."
+msgstr ""
+
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
 msgstr ""
 
@@ -3652,6 +3878,9 @@ msgid "If set to 'yes' you can preview channels in the EPG list."
 msgstr ""
 
 msgid "If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at."
+msgstr ""
+
+msgid "If set to 'yes', allows you use the seekbar to jump to a point within the event."
 msgstr ""
 
 msgid "If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
@@ -3681,9 +3910,6 @@ msgstr ""
 "Hvis du er tilfreds med resultatet, tryk OK."
 
 msgid "Image Information"
-msgstr ""
-
-msgid "Image:"
 msgstr ""
 
 msgid "Image Manager"
@@ -3728,18 +3954,12 @@ msgstr ""
 msgid "Increased voltage"
 msgstr "Øget spænding"
 
-#
-msgid "Index"
-msgstr "Oversigt"
+msgid "Index allocated:"
+msgstr ""
 
 #
 msgid "Info"
 msgstr "Info"
-
-#
-#, fuzzy
-msgid "Info bar"
-msgstr "InfoBjælke"
 
 msgid "Info button (long)"
 msgstr ""
@@ -3776,8 +3996,21 @@ msgstr "Initialiser"
 msgid "Initial fast forward speed"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Initial lock ratio"
+msgstr "Ugyldig placering"
+
 msgid "Initial rewind speed"
 msgstr ""
+
+msgid "Initial signal quality"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Initial signal quality:"
+msgstr "Link kvalitet:"
 
 #
 msgid "Initialization"
@@ -3851,11 +4084,6 @@ msgid "Installing Service"
 msgstr ""
 
 #
-#, fuzzy
-msgid "Installing software..."
-msgstr "Installerer software..."
-
-#
 msgid "Instant record location"
 msgstr "Umiddelbar optagelsesplacering"
 
@@ -3882,6 +4110,11 @@ msgstr "Interface: "
 #
 msgid "Intermediate"
 msgstr "Normal"
+
+#
+#, fuzzy
+msgid "Internal"
+msgstr "Intern Flash"
 
 #
 #, fuzzy
@@ -3933,13 +4166,11 @@ msgstr "Emner pr side"
 msgid "Items per page for list screen"
 msgstr "Emner pr side"
 
-#
-msgid "Job View"
-msgstr "Job oversigt"
+msgid "JUMP 24 HOURS"
+msgstr ""
 
 #
-#, fuzzy
-msgid "Job overview"
+msgid "Job View"
 msgstr "Job oversigt"
 
 msgid "Jump back 24 hours"
@@ -3980,10 +4211,20 @@ msgstr ""
 msgid "Just scale"
 msgstr "Fyld billede helt ud"
 
+#
+#, fuzzy
+msgid "Just zap"
+msgstr "Fyld billede helt ud"
+
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr ""
 
-msgid "Kernel:"
+#, python-format
+msgid "Kernel:\t%s"
+msgstr ""
+
+#, python-format
+msgid "Kernel: %s"
 msgstr ""
 
 #
@@ -4045,9 +4286,6 @@ msgstr "Valg af sprog"
 msgid "Last Req."
 msgstr ""
 
-msgid "Last Update:"
-msgstr ""
-
 #
 msgid "Last config"
 msgstr "Seneste opsætning"
@@ -4057,8 +4295,13 @@ msgid "Last speed"
 msgstr "Sidste hastighed"
 
 #
-#, fuzzy
-msgid "Last update:"
+#, fuzzy, python-format
+msgid "Last update:\t%s"
+msgstr "Pakke liste opdatering"
+
+#
+#, fuzzy, python-format
+msgid "Last update: %s"
 msgstr "Pakke liste opdatering"
 
 msgid "Last used share: "
@@ -4085,12 +4328,21 @@ msgstr "Forlade DVD afspiller?"
 msgid "Left"
 msgstr "Venstre"
 
+#, fuzzy
+msgid "Left from servicename"
+msgstr "Enhedsnavn"
+
 msgid "Leisure hobbies"
 msgstr ""
 
 #
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
+msgstr "Sorte striber i top og bund af billede"
+
+#
+#, fuzzy
+msgid "Letterbox zoom"
 msgstr "Sorte striber i top og bund af billede"
 
 msgid "Light Grey"
@@ -4112,6 +4364,16 @@ msgstr ""
 #
 msgid "Limit west"
 msgstr "Vest begrænsning"
+
+#
+#, fuzzy
+msgid "Limits cancelled"
+msgstr "Begrænsning til"
+
+#
+#, fuzzy
+msgid "Limits enabled"
+msgstr "Begrænsning til"
 
 #
 msgid "Limits off"
@@ -4195,8 +4457,9 @@ msgid "Location"
 msgstr "Placering"
 
 #
-msgid "Lock:"
-msgstr "Lås:"
+#, fuzzy
+msgid "Lock ratio"
+msgstr "Placering"
 
 msgid "Log Manager"
 msgstr ""
@@ -4251,10 +4514,6 @@ msgid "MB"
 msgstr ""
 
 #
-msgid "MORE"
-msgstr "MERE"
-
-#
 msgid "Main menu"
 msgstr "Hovedmenu"
 
@@ -4282,7 +4541,8 @@ msgid "Manage extensions"
 msgstr "Håndter udvidelser"
 
 #
-msgid "Manage your STB_BOX's software"
+#, fuzzy, python-format
+msgid "Manage your %s %s's software"
 msgstr "Styring af din modtagers software"
 
 #
@@ -4327,11 +4587,6 @@ msgstr ""
 msgid "Maxdown: "
 msgstr ""
 
-msgid ""
-"Maximum Timeshift length per Event reached!\n"
-"Restarting Timeshift now ..."
-msgstr ""
-
 msgid "Maximum no of days:"
 msgstr ""
 
@@ -4343,6 +4598,11 @@ msgstr ""
 
 #
 msgid "Media player"
+msgstr "Medie afspiller"
+
+#
+#, fuzzy
+msgid "Media scanner"
 msgstr "Medie afspiller"
 
 #
@@ -4359,6 +4619,10 @@ msgstr "Hukommelse"
 msgid "Memory Information"
 msgstr ""
 
+#, fuzzy
+msgid "Memory index"
+msgstr "Hukommelse"
+
 #
 msgid "Menu"
 msgstr "Menu"
@@ -4368,14 +4632,6 @@ msgstr ""
 
 msgid "Merging Timeshift files"
 msgstr ""
-
-#
-msgid "Message"
-msgstr "Besked"
-
-#
-msgid "Message..."
-msgstr "Besked..."
 
 msgid "MiniDLNA Log"
 msgstr ""
@@ -4412,7 +4668,17 @@ msgid "Mode"
 msgstr ""
 
 #
+#, fuzzy, python-format
+msgid "Model:\t%s %s\n"
+msgstr "Model:"
+
+#
 msgid "Model: "
+msgstr "Model:"
+
+#
+#, fuzzy, python-format
+msgid "Model: %s"
 msgstr "Model:"
 
 #
@@ -4484,12 +4750,32 @@ msgstr ""
 msgid "Move to other directory"
 msgstr "Flyt til anden mappe"
 
+#
+#, fuzzy
+msgid "Move to position X"
+msgstr "Gå til position"
+
 msgid "Move up a page"
 msgstr ""
 
 #
 msgid "Move west"
 msgstr "Drej mod vest"
+
+#
+#, fuzzy
+msgid "Moved to position 0"
+msgstr "Gå til position"
+
+#
+#, fuzzy
+msgid "Moved to position at index"
+msgstr "Gå til position"
+
+#
+#, fuzzy
+msgid "Movement"
+msgstr "Drej mod øst"
 
 msgid "Movie List"
 msgstr ""
@@ -4510,8 +4796,28 @@ msgid "Movie/Drama"
 msgstr ""
 
 #
-msgid "Movielist menu"
-msgstr "Filmliste menu"
+#, fuzzy
+msgid "Moving"
+msgstr "Sletter"
+
+#
+#, fuzzy
+msgid "Moving east ..."
+msgstr "Drej mod øst"
+
+#, fuzzy
+msgid "Moving files"
+msgstr "Lange filnavne"
+
+#
+#, fuzzy
+msgid "Moving to position"
+msgstr "Gå til position"
+
+#
+#, fuzzy
+msgid "Moving west ..."
+msgstr "Drej mod vest"
 
 #
 msgid "Multi EPG"
@@ -4541,16 +4847,8 @@ msgid "Music/Ballet/Dance"
 msgstr ""
 
 #
-msgid "Mute"
-msgstr "Lyd fra"
-
-#
 msgid "N/A"
 msgstr "Ikke tilgængelig"
-
-#
-msgid "NEXT"
-msgstr "NÆSTE"
 
 #
 #, fuzzy
@@ -4570,12 +4868,13 @@ msgstr ""
 msgid "NIM"
 msgstr ""
 
-#
-msgid "NOW"
-msgstr "NU"
-
 msgid "NTP"
 msgstr ""
+
+#
+#, fuzzy
+msgid "NTP server"
+msgstr "Navneserver"
 
 #
 msgid "NTSC"
@@ -4600,11 +4899,6 @@ msgstr "Navneserver %d"
 #
 msgid "Nameserver settings"
 msgstr "Navneserver indstillinger"
-
-#
-#, fuzzy
-msgid "Nameserver setup"
-msgstr "Navneserver opsætning"
 
 msgid "Namespace"
 msgstr ""
@@ -4638,11 +4932,6 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Network configuration..."
-msgstr "Netværks opsætning..."
-
-#
-#, fuzzy
 msgid "Network mounts"
 msgstr "Netværks test"
 
@@ -4661,10 +4950,6 @@ msgstr "Netværks opsætning"
 #
 msgid "Network test"
 msgstr "Netværks test"
-
-#
-msgid "Network test..."
-msgstr "Netværks test..."
 
 msgid "Network test: "
 msgstr "Netværkstes:"
@@ -4766,6 +5051,11 @@ msgid "No fast winding possible yet.. but you can use the number buttons to skip
 msgstr "Endnu ingen hurtigspoling.. men du kan benytte tal-knapperne til at springe frem/tilbage! "
 
 #
+#, fuzzy
+msgid "No free index available"
+msgstr "Ingen tilgængelig beskrivelse."
+
+#
 msgid "No free tuner!"
 msgstr "Ingen fri tuner!"
 
@@ -4786,6 +5076,11 @@ msgstr "Ingen tilgængelig netværksforbindelse."
 msgid "No networks found"
 msgstr "Ingen fundne netværk"
 
+#
+#, fuzzy
+msgid "No new plugins found"
+msgstr "Ingen fundne netværk"
+
 msgid "No of items switch (increase or reduced)"
 msgstr ""
 
@@ -4793,12 +5088,14 @@ msgstr ""
 msgid "No positioner capable frontend found."
 msgstr "Ingen brugbar motor frontend fundet."
 
-msgid "No sat tuner found!"
-msgstr "Ingen sattuner fundet"
-
 #
 msgid "No satellite frontend found!!"
 msgstr "Ingen satellit frontend fundet!!"
+
+#
+#, fuzzy
+msgid "No service"
+msgstr "tilføj kanal"
 
 #
 #, fuzzy
@@ -4809,6 +5106,10 @@ msgstr "ingen kanaler/udbydere er valgt"
 #, fuzzy
 msgid "No standby"
 msgstr "ingen standby"
+
+#, fuzzy
+msgid "No suitable sat tuner found!"
+msgstr "Ingen kabeltuner fundet"
 
 #
 msgid "No tags are set on these movies."
@@ -4891,11 +5192,6 @@ msgstr ""
 
 #
 msgid "No, but restart from begin"
-msgstr "Nej, men genstart fra begyndelse"
-
-#
-#, fuzzy
-msgid "No, but restart from beginning"
 msgstr "Nej, men genstart fra begyndelse"
 
 #
@@ -4982,14 +5278,12 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr "Intet at opgradere"
 
+msgid "Nothing, just leave this menu"
+msgstr ""
+
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Now playing"
-msgstr "Nu Afspilles"
 
 #
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
@@ -5066,6 +5360,9 @@ msgstr ""
 msgid "OnlineVersionCheck"
 msgstr ""
 
+msgid "Only active when in standby"
+msgstr ""
+
 #
 msgid "Only extensions."
 msgstr "Kun udvidelser."
@@ -5123,6 +5420,9 @@ msgstr "Overskriv konfigurationsfilerne under softwareopdateringen?"
 msgid "Overwrite configuration files?"
 msgstr ""
 
+msgid "PAGE UP/DOWN"
+msgstr ""
+
 #
 msgid "PAL"
 msgstr "PAL"
@@ -5134,16 +5434,10 @@ msgstr ""
 msgid "PIDs"
 msgstr "PIDs"
 
-#
-#, fuzzy
-msgid "PIN code needed"
-msgstr "Pin kode nødvendig"
-
 msgid "PMT PID"
 msgstr ""
 
-#, python-format
-msgid "PTS Plugin Error: %s"
+msgid "PRIMETIME"
 msgstr ""
 
 #
@@ -5187,11 +5481,6 @@ msgstr "Forældre Kontrol"
 
 msgid "Parental control editor"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Parental control services editor"
-msgstr "Forældrekontrol kanalredigering"
 
 #
 msgid "Parental control setup"
@@ -5255,18 +5544,6 @@ msgstr ""
 msgid "Perform an online update check in the background"
 msgstr ""
 
-msgid "Permanent Timeshift enable"
-msgstr ""
-
-msgid "Permanent Timeshift max events"
-msgstr ""
-
-msgid "Permanent Timeshift max length"
-msgstr ""
-
-msgid "Permanent Timeshift start delay"
-msgstr ""
-
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Slet alle optagelser i papirkurven permanent?"
 
@@ -5280,10 +5557,9 @@ msgstr ""
 msgid "Phone number"
 msgstr "Telefonnummer"
 
-#
 #, fuzzy
-msgid "PiP setup"
-msgstr "BiB opsætning"
+msgid "PiP"
+msgstr " (BiB) "
 
 msgid "Picon"
 msgstr ""
@@ -5576,6 +5852,11 @@ msgid "Please wait for activation of your network configuration..."
 msgstr "Vent venligt på aktivering af din netværks opsætning..."
 
 #
+#, fuzzy
+msgid "Please wait while gathering data..."
+msgstr "Vent venligst mens vi tester dit netværk..."
+
+#
 msgid "Please wait while scanning is in progress..."
 msgstr "Vent venligst mens skanningsprocessen er i gang...."
 
@@ -5609,10 +5890,6 @@ msgstr "Vent venligst... Henter liste..."
 msgid "Plugin Browser"
 msgstr ""
 
-#
-msgid "Plugin browser"
-msgstr "Plugin menu"
-
 msgid "Plugin details"
 msgstr ""
 
@@ -5627,6 +5904,11 @@ msgstr "Hjælp til plugin styring"
 #
 msgid "Plugins"
 msgstr "Plugins"
+
+#
+#, fuzzy
+msgid "Polarisation"
+msgstr "Polarisation"
 
 #
 msgid "Polarization"
@@ -5674,24 +5956,17 @@ msgid "Position setup"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Position stored at index"
+msgstr "Motor Opsætning"
+
+#
 msgid "Positioner"
 msgstr "Motor"
-
-msgid "Positioner Setup"
-msgstr ""
-
-msgid "Positioner fine movement"
-msgstr ""
-
-msgid "Positioner movement"
-msgstr ""
 
 #
 msgid "Positioner setup"
 msgstr "Motor Opsætning"
-
-msgid "Positioner storage"
-msgstr ""
 
 #
 msgid "Power threshold in mA"
@@ -5900,8 +6175,9 @@ msgstr ""
 msgid "Put TV in standby"
 msgstr "Sæt TV i standby"
 
-msgid "Put your STB_BOX in standby"
-msgstr "Sæt Reciever i standby"
+#, fuzzy, python-format
+msgid "Put your %s %s in standby"
+msgstr "Sæt TV i standby"
 
 #
 msgid "Python frontend for /tmp/mmi.socket"
@@ -5926,10 +6202,6 @@ msgstr "RF Udgang"
 #
 msgid "RGB"
 msgstr "RGB"
-
-#
-msgid "Radio"
-msgstr "Radio"
 
 #
 msgid "Random"
@@ -5975,6 +6247,10 @@ msgstr "Vil du afslutte underkanals hurtigskift?"
 msgid "Really reboot now?"
 msgstr "Virkelig reboote nu?"
 
+#, fuzzy, python-format
+msgid "Really reflash your %s %s and reboot now?"
+msgstr "Opdater frontprocessor og genstart nu?"
+
 #
 msgid "Really restart now?"
 msgstr "Virkelig genstarte nu?"
@@ -5986,23 +6262,31 @@ msgstr "Virkelig slukke nu?"
 msgid "Really upgrade the frontprocessor and reboot now?"
 msgstr "Opdater frontprocessor og genstart nu?"
 
-msgid "Really upgrade your STB_BOX and reboot now?"
-msgstr ""
+#, fuzzy, python-format
+msgid "Really upgrade your %s %s and reboot now?"
+msgstr "Opdater frontprocessor og genstart nu?"
 
 #
 msgid "Reboot"
 msgstr "Genstart"
 
-msgid "Rec"
-msgstr "Optag"
+#
+msgid "Record"
+msgstr "Optage"
 
 #
 #, fuzzy
-msgid "Reception settings"
-msgstr "Modtage Indstillinger"
+msgid "Record next"
+msgstr "Optage"
 
 #
-msgid "Record"
+#, fuzzy
+msgid "Record now"
+msgstr "Optage"
+
+#
+#, fuzzy
+msgid "Record once"
 msgstr "Optage"
 
 msgid "Record started! Stopping timeshift now ..."
@@ -6050,6 +6334,16 @@ msgstr ""
 msgid "Reenter new PIN"
 msgstr "Skriv PIN igen"
 
+#, fuzzy, python-format
+msgid ""
+"Reflash in progress\n"
+"Please wait until your %s %s reboots\n"
+"This may take a few minutes"
+msgstr ""
+"Uovervåget opgradering i gang\n"
+"Vent venligst til din modtager genstarter\n"
+"Dette kan vare flere minutter"
+
 msgid "Refresh every (in hours)"
 msgstr ""
 
@@ -6066,9 +6360,6 @@ msgstr "Opfat dyb standby som standby"
 #, fuzzy
 msgid "Relative"
 msgstr "relativ"
-
-msgid "Release"
-msgstr ""
 
 #
 msgid "Reload"
@@ -6093,10 +6384,6 @@ msgstr ""
 
 msgid "Remember service PIN"
 msgstr "Husk kanal PIN"
-
-#, fuzzy
-msgid "Remember the settings for each folder"
-msgstr "Husk indstiller for alle mapper"
 
 msgid "Remote box"
 msgstr ""
@@ -6325,6 +6612,9 @@ msgstr "Genindlæs tekstv undertekser"
 msgid "Right"
 msgstr "Højre"
 
+msgid "Right from servicename"
+msgstr ""
+
 msgid "Roll-off"
 msgstr "Rul-af"
 
@@ -6333,6 +6623,11 @@ msgstr ""
 
 msgid "Root directory"
 msgstr "root mappe"
+
+#
+#, fuzzy
+msgid "Rotor step position:"
+msgstr "Gemme position"
 
 #
 msgid "Rotor turning speed"
@@ -6368,13 +6663,8 @@ msgstr ""
 msgid "SINGLE LAYER DVD"
 msgstr "DVD-R"
 
-#
-msgid "SNR"
-msgstr "SNR"
-
-#
-msgid "SNR:"
-msgstr "SNR:"
+msgid "SPDIF"
+msgstr ""
 
 #
 msgid "SSID:"
@@ -6412,6 +6702,11 @@ msgid "Satellite equipment setup"
 msgstr "Sat udstyrs kontrol"
 
 #
+#, fuzzy
+msgid "Satellite longitude:"
+msgstr "Sat udstyrs kontrol"
+
+#
 msgid "Satellites"
 msgstr "Satellitter"
 
@@ -6438,12 +6733,6 @@ msgstr "Gem"
 msgid "Save EPG"
 msgstr ""
 
-msgid "Save Timeshift as Movie and continue recording"
-msgstr ""
-
-msgid "Save Timeshift as Movie and stop recording"
-msgstr ""
-
 msgid "Save and record"
 msgstr ""
 
@@ -6457,6 +6746,12 @@ msgstr ""
 #, fuzzy
 msgid "Save playlist"
 msgstr "gem spilleliste"
+
+msgid "Save timeshift as movie and continue recording"
+msgstr ""
+
+msgid "Save timeshift as movie and stop recording"
+msgstr ""
 
 msgid "Saving EPG Cache..."
 msgstr ""
@@ -6560,6 +6855,15 @@ msgstr ""
 msgid "Search west"
 msgstr "Søg Vest"
 
+#, fuzzy
+msgid "Searching"
+msgstr "Hieraki info"
+
+#
+#, fuzzy
+msgid "Searching east ..."
+msgstr "Søg Øst"
+
 #
 msgid "Searching for available updates. Please wait..."
 msgstr "Søger efter tilgængelige opdateringer. Vent venligst..."
@@ -6567,6 +6871,11 @@ msgstr "Søger efter tilgængelige opdateringer. Vent venligst..."
 #
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Søger efter nyinstallerede eller fjernede pakker. Vent venligst..."
+
+#
+#, fuzzy
+msgid "Searching west ..."
+msgstr "Søg Vest"
 
 #
 msgid "Secondary DNS"
@@ -6602,34 +6911,6 @@ msgstr "Vælg"
 #, fuzzy
 msgid "Select CAId"
 msgstr "vælg CAId"
-
-#
-msgid "Select HDD"
-msgstr "Vælg Filsystem"
-
-#
-#, fuzzy
-msgid "Select a bouquet"
-msgstr "Vælg en film"
-
-#
-msgid "Select a movie"
-msgstr "Vælg en film"
-
-#
-#, fuzzy
-msgid "Select a network adapter"
-msgstr "Vælg Netværks Adapter"
-
-#
-#, fuzzy
-msgid "Select a skin"
-msgstr "Vælg en film"
-
-#
-#, fuzzy
-msgid "Select a tuner"
-msgstr "Vælg en film"
 
 #
 #, fuzzy
@@ -6836,11 +7117,6 @@ msgstr "Kanal er nu tilføjet favoritter."
 msgid "Service has been added to the selected bouquet."
 msgstr "Kanal er tilføjet den valgte pakke."
 
-#
-#, fuzzy
-msgid "Service info"
-msgstr "Kanalinfo"
-
 msgid "Service info font size"
 msgstr ""
 
@@ -6919,11 +7195,20 @@ msgstr "Sæt slut tid"
 msgid "Set fixed"
 msgstr "Sæt fast"
 
+msgid "Set fps for external subtitles"
+msgstr ""
+
 #
 msgid "Set interface as default Interface"
 msgstr "Sætter interfacet om standard interface"
 
 msgid "Set limits"
+msgstr ""
+
+msgid "Set the channel for this timer."
+msgstr ""
+
+msgid "Set the date the timer must start."
 msgstr ""
 
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
@@ -6941,16 +7226,23 @@ msgstr ""
 msgid "Set the default sorting method."
 msgstr ""
 
+#, fuzzy
+msgid "Set the description of the recording."
+msgstr "Type af optagelsesnavne"
+
 msgid "Set the jump-size of the seekbar."
 msgstr ""
 
-msgid "Set the maximum length a timeshift file may be."
-msgstr ""
-
-msgid "Set the maximum number of events (programs) that timeshift may handle."
+msgid "Set the name the recording will get."
 msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
+msgstr ""
+
+msgid "Set the time the timer must start."
+msgstr ""
+
+msgid "Set the time the timer must stop."
 msgstr ""
 
 msgid "Set the time to hide the infobar."
@@ -6974,6 +7266,10 @@ msgstr "udsættelse 4 timer"
 msgid "Set time window to 5 hours"
 msgstr "udsættelse 5 timer"
 
+#, fuzzy
+msgid "Set time window to 6 hours"
+msgstr "udsættelse 2 timer"
+
 msgid "Set to the desired primetime (hour)."
 msgstr ""
 
@@ -6984,9 +7280,6 @@ msgid "Set to what you want the button to do."
 msgstr ""
 
 msgid "Set voltage and 22KHz"
-msgstr ""
-
-msgid "Set what the required action must be when zapping while a timeshift has been set as recording."
 msgstr ""
 
 msgid "Sets the root folder of movie list, to remove the '..' from benign shown in that folder."
@@ -7018,11 +7311,9 @@ msgstr ""
 msgid "Setup the interval to check for online updates. (in hours)"
 msgstr ""
 
-msgid "Setup what a long press on the power button does."
-msgstr ""
-
-msgid "Setup what a short press on the power button does."
-msgstr ""
+#, fuzzy
+msgid "Setup your positioner"
+msgstr "Opsætningsmenu"
 
 #
 #, fuzzy
@@ -7099,9 +7390,6 @@ msgstr ""
 msgid "Show PVR status in MoviePlayer infobar"
 msgstr ""
 
-msgid "Show Picons *"
-msgstr ""
-
 msgid "Show RFmod setup..."
 msgstr ""
 
@@ -7139,6 +7427,10 @@ msgstr ""
 
 msgid "Show bouquet selection menu"
 msgstr "Vis kanalistevalg menu"
+
+#, fuzzy
+msgid "Show channel number in infobar"
+msgstr "Vis kanalnumre i kanalvælger"
 
 msgid "Show channel numbers in channel selection"
 msgstr "Vis kanalnumre i kanalvælger"
@@ -7206,6 +7498,11 @@ msgstr ""
 msgid "Show live tv when movie stopped"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Show menu"
+msgstr "vis mærke menu"
+
 msgid "Show message when recording starts"
 msgstr ""
 
@@ -7225,9 +7522,17 @@ msgstr ""
 msgid "Show positioner movement"
 msgstr "Vis motor bevægelse"
 
+msgid "Show screensaver"
+msgstr ""
+
 #, fuzzy
 msgid "Show second infobar"
 msgstr "Vis krypteringsinfo i infobar"
+
+#
+#, fuzzy
+msgid "Show service type icons"
+msgstr "Vis kanaler begyndende med"
 
 #
 msgid "Show services beginning with"
@@ -7241,6 +7546,9 @@ msgstr "vis afbryder menu"
 msgid "Show single epg for current channel"
 msgstr ""
 
+msgid "Show source packages"
+msgstr ""
+
 msgid "Show status icons in movielist"
 msgstr ""
 
@@ -7248,9 +7556,6 @@ msgstr ""
 #, fuzzy
 msgid "Show tag menu"
 msgstr "vis mærke menu"
-
-msgid "Show the infomation on current event."
-msgstr ""
 
 msgid "Show the list of AutoTimers."
 msgstr ""
@@ -7278,8 +7583,17 @@ msgstr ""
 msgid "Show time remaining/elapsed"
 msgstr ""
 
+#, fuzzy
+msgid "Show translation packages"
+msgstr "Vis animation når optaget"
+
 msgid "Show transponder remaining/elapsed as"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Show warning when timeshift is stopped"
+msgstr "Opførsel når en film stoppes"
 
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr ""
@@ -7300,9 +7614,6 @@ msgstr "tilfældig spilleliste"
 msgid "Shutdown"
 msgstr "Afslut"
 
-msgid "Shutdown in (mins)"
-msgstr ""
-
 msgid "Side by Side"
 msgstr "Side ved side"
 
@@ -7310,9 +7621,17 @@ msgstr "Side ved side"
 msgid "Side by side"
 msgstr "Side ved side"
 
+msgid "Signal OK, proceeding"
+msgstr ""
+
 #
 msgid "Signal Strength:"
 msgstr "Signal styrke:"
+
+#
+#, fuzzy
+msgid "Signal quality"
+msgstr "Link kvalitet:"
 
 #
 #, fuzzy
@@ -7365,6 +7684,16 @@ msgstr "Enkelt transponder"
 msgid "SingleEPG settings"
 msgstr "Ændre indstillinger"
 
+#
+#, fuzzy
+msgid "Site latitude"
+msgstr "Breddegrad"
+
+#
+#, fuzzy
+msgid "Site longitude"
+msgstr "Længdegrad"
+
 msgid "Size: "
 msgstr ""
 
@@ -7384,10 +7713,6 @@ msgstr "Drop tomme kanaler"
 
 msgid "Skip internet connection check (disables automatic package installation)"
 msgstr ""
-
-#
-msgid "Sleep Timer"
-msgstr "Sleep Timer"
 
 #
 #, fuzzy
@@ -7611,6 +7936,16 @@ msgid "Step west"
 msgstr "Drej mod Vest"
 
 #
+#, fuzzy
+msgid "Stepped east"
+msgstr "Drej mod Øst"
+
+#
+#, fuzzy
+msgid "Stepped west"
+msgstr "Drej mod Vest"
+
+#
 msgid "Stop"
 msgstr "Stop"
 
@@ -7654,17 +7989,26 @@ msgstr "Stop afprøvning af flade efter # fejlende transpondere"
 msgid "Stop testing plane after # successful transponders"
 msgstr "Stop afprøvning af flade efter # fungerende transpondere"
 
+#, fuzzy
+msgid "Stop timer recording"
+msgstr "Stop optagelse"
+
 msgid "Stop timeshift"
 msgstr ""
 
 msgid "Stop timeshift while recording?"
 msgstr ""
 
-msgid "Stop timeshift?"
+msgid "Stop's timeshift being used if a recording is in progress. (adviseable for usb sticks)"
 msgstr ""
 
 msgid "Stopped"
 msgstr "Stoppet"
+
+#
+#, fuzzy
+msgid "Store at index"
+msgstr "Gemme position"
 
 #
 msgid "Store position"
@@ -7683,6 +8027,11 @@ msgstr ""
 msgid "Strict DLNA"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Strongest position"
+msgstr "Gemme position"
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -7690,11 +8039,20 @@ msgstr ""
 msgid "Subservices"
 msgstr "Underkanaler"
 
+#
+#, fuzzy
+msgid "Subtitle Quickmenu"
+msgstr "Undertekst vælger"
+
 msgid "Subtitle alignment"
 msgstr ""
 
 msgid "Subtitle border width"
 msgstr ""
+
+#, fuzzy
+msgid "Subtitle delay when timing is bad"
+msgstr "Tekstforsinkelse når timing mangler"
 
 msgid "Subtitle delay when timing lacks"
 msgstr "Tekstforsinkelse når timing mangler"
@@ -7760,6 +8118,11 @@ msgstr "Svensk"
 msgid "Switch TV to correct input"
 msgstr "Skift TV til rette indput"
 
+#
+#, fuzzy
+msgid "Switch between filelist/playlist"
+msgstr "skift til filliste"
+
 msgid "Switch between normal mode and list mode"
 msgstr ""
 
@@ -7808,6 +8171,9 @@ msgstr ""
 msgid "Sync NTP every (minutes)"
 msgstr ""
 
+msgid "Sync failure moving back to origin !"
+msgstr ""
+
 msgid "Sync time using"
 msgstr ""
 
@@ -7818,7 +8184,8 @@ msgstr ""
 msgid "System"
 msgstr "System"
 
-msgid "System temperature:"
+#, python-format
+msgid "System temperature: %s"
 msgstr ""
 
 msgid "System: "
@@ -7844,6 +8211,9 @@ msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS filen er for stor til ISO9660 level 1!"
 
 msgid "TSID"
+msgstr ""
+
+msgid "TUNING"
 msgstr ""
 
 msgid "TV button mode"
@@ -7896,7 +8266,8 @@ msgid "Test mode"
 msgstr "Test type"
 
 #
-msgid "Test the network configuration of your STB_BOX.\n"
+#, fuzzy, python-format
+msgid "Test the network configuration of your %s %s.\n"
 msgstr "Test netværks konfiguration på din STB_BOX.\n"
 
 #
@@ -7939,7 +8310,8 @@ msgid ""
 msgstr ""
 
 #
-msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a STB_BOX format data DVD (which will not play in stand-alone DVD players) instead?"
+#, fuzzy, python-format
+msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a %s %s format data DVD (which will not play in stand-alone DVD players) instead?"
 msgstr "DVD standarderne understøtter ikke H.264 (HDTV) video streams. Vil du i stedet oprette en STB_BOX format DVD (som ikke kan afspilles i en almindelig DVD afspiller)? "
 
 msgid ""
@@ -7973,11 +8345,6 @@ msgstr "PIN koden er ændret med succes."
 
 msgid "The PIN codes you entered are different."
 msgstr "PIN koderne du tastede er ikke ens."
-
-msgid ""
-"The Timeshift record was not saved yet!\n"
-"What do you want to do now with the timeshift file?"
-msgstr ""
 
 msgid ""
 "The USB stick was prepared to be bootable.\n"
@@ -8027,6 +8394,9 @@ msgstr ""
 msgid "The following files were found..."
 msgstr "Følgende filer fandtes..."
 
+msgid "The loopthrough setting is wrong."
+msgstr ""
+
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
 
@@ -8054,14 +8424,6 @@ msgid "The results have been written to %s."
 msgstr "Resultaterne skal skrives til %s."
 
 #
-msgid "The sleep timer has been activated."
-msgstr "Sleep timeren er blevet aktiveret."
-
-#
-msgid "The sleep timer has been disabled."
-msgstr "Sleep timeren er ikke aktiveret."
-
-#
 #, fuzzy
 msgid ""
 "The software management extension is not installed!\n"
@@ -8079,13 +8441,13 @@ msgstr "Timer filen (timers.xml) er korrupt og kan ikke bruges."
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Timer filen (timers.xml) er korrupt og kan ikke bruges."
 
-#, fuzzy
-msgid "The user interface of your STB_BOX is restarting"
+#, fuzzy, python-format
+msgid "The user interface of your %s %s is restarting"
 msgstr "Brugerinterfacet på din modtager genstarter"
 
-#, fuzzy
+#, fuzzy, python-format
 msgid ""
-"The user interface of your STB_BOX is restarting\n"
+"The user interface of your %s %s is restarting\n"
 "due to an error in mytest.py"
 msgstr ""
 "Brugerinterfacet på din modtager genstarter\n"
@@ -8138,6 +8500,9 @@ msgstr "Ingen tilgængelige opdateringer."
 msgid "There is no [webif] section in oscam.conf"
 msgstr ""
 
+msgid "There is no signal to lock on !"
+msgstr ""
+
 #
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -8147,13 +8512,13 @@ msgstr ""
 "Vil du virkelig fortsætte?"
 
 #
-msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
-msgstr "Denne DVD RW er allerede formatteret - reformattering vil slette alt indhold på disken."
+#, fuzzy, python-format
+msgid "This %s %s cannot decode %s streams!"
+msgstr "Dreamboxen kan ikke afkode %s streams!"
 
 #
-#, fuzzy, python-format
-msgid "This STB_BOX cannot decode %s streams!"
-msgstr "Dreamboxen kan ikke afkode %s streams!"
+msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
+msgstr "Denne DVD RW er allerede formatteret - reformattering vil slette alt indhold på disken."
 
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr ""
@@ -8227,6 +8592,12 @@ msgstr ""
 msgid "This option configures the video output mode (or resolution)."
 msgstr ""
 
+msgid "This option configures you can Bypass HDMI EDID check"
+msgstr ""
+
+msgid "This option configures you can enable 3D Surround Sound."
+msgstr ""
+
 msgid "This option lets you adjust the 3D depth"
 msgstr ""
 
@@ -8272,8 +8643,9 @@ msgstr ""
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr ""
 
+#, python-format
 msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your STB_BOX without the need for a network or WLAN connection.\n"
+"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
 "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
@@ -8348,6 +8720,11 @@ msgstr ""
 msgid "This test detects your configured LAN adapter."
 msgstr "Denne test finder din konfigurerede LAN-Adapter."
 
+msgid ""
+"This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
+"Are you sure?"
+msgstr ""
+
 #
 msgid "Three"
 msgstr "Tre"
@@ -8398,16 +8775,6 @@ msgid "Timer List"
 msgstr ""
 
 #
-#, fuzzy
-msgid "Timer edit"
-msgstr "Timer redigering"
-
-#
-#, fuzzy
-msgid "Timer editor"
-msgstr "Timer redigering"
-
-#
 msgid "Timer entry"
 msgstr "Indstil timer"
 
@@ -8454,8 +8821,9 @@ msgid "Timer selection"
 msgstr "Timer valg"
 
 #
-msgid "Timer status:"
-msgstr "Timer status:"
+#, fuzzy
+msgid "Timer selection..."
+msgstr "Timer valg"
 
 #
 #, fuzzy
@@ -8495,9 +8863,6 @@ msgstr ""
 msgid "Timeshift will get saved at end of event!"
 msgstr ""
 
-msgid "Timeshift will only start when the start delay time has passed. This prevents numurous very short files when zapping."
-msgstr ""
-
 msgid "Timeshift-save action on zap"
 msgstr ""
 
@@ -8523,8 +8888,9 @@ msgstr "Til lyd valg"
 msgid "To subtitle selection"
 msgstr "Til undertekst valg"
 
+#, python-format
 msgid ""
-"To update your STB_BOX firmware, please follow these steps:\n"
+"To update your %s %s firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
@@ -8541,6 +8907,9 @@ msgid "Toggle a cut mark at the current position"
 msgstr ""
 
 msgid "Toggle aspect ratio..."
+msgstr ""
+
+msgid "Toggle between bouquet/epg lists"
 msgstr ""
 
 msgid "Tone amplitude"
@@ -8590,12 +8959,14 @@ msgid "Track"
 msgstr "Spor"
 
 #
-msgid "Translation"
-msgstr "Sprog info"
+#, fuzzy
+msgid "Translation Information"
+msgstr "Information"
 
 #
-msgid "Translation:"
-msgstr "Oversætter:"
+#, fuzzy
+msgid "Translations"
+msgstr "Sprog info"
 
 #
 msgid "Transmission mode"
@@ -8644,6 +9015,11 @@ msgid "Tune"
 msgstr "Tune"
 
 #
+#, fuzzy
+msgid "Tune and focus"
+msgstr "Tuner status"
+
+#
 msgid "Tune failed!"
 msgstr "Tuning fejlede!"
 
@@ -8665,9 +9041,10 @@ msgstr ""
 msgid "Tuner status"
 msgstr "Tuner status"
 
-#, python-format
-msgid "Tuner status %s"
-msgstr ""
+#
+#, fuzzy
+msgid "Tuner status:"
+msgstr "Tuner status"
 
 #
 msgid "Tuner type"
@@ -8702,18 +9079,12 @@ msgstr ""
 msgid "USALS"
 msgstr "USALS"
 
+msgid "USALS calibration"
+msgstr ""
+
 #
 msgid "USB stick wizard"
 msgstr "USB stick assistenten"
-
-msgid ""
-"Unattended upgrade in progress\n"
-"Please wait until your STB_BOX reboots\n"
-"This may take a few minutes"
-msgstr ""
-"Uovervåget opgradering i gang\n"
-"Vent venligst til din modtager genstarter\n"
-"Dette kan vare flere minutter"
 
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr "Uovervåget opdatering uden GUI og genstart"
@@ -8735,10 +9106,6 @@ msgstr "Fortryd afinstallering"
 
 msgid "Unencrypted"
 msgstr "Ikke krypteret"
-
-#
-msgid "UnhandledKey"
-msgstr "Uhåndteret nøgle"
 
 #
 msgid "Unicable"
@@ -8783,8 +9150,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #
-#, fuzzy
-msgid "Update failed. Your STB_BOX does not have a working internet connection."
+#, fuzzy, python-format
+msgid "Update failed. Your %s %s does not have a working internet connection."
 msgstr ""
 "Din STB_BOX er nu klar til brug.\n"
 "\n"
@@ -8809,6 +9176,16 @@ msgstr ""
 #
 msgid "Upgrade finished."
 msgstr "Opgradering afsluttet"
+
+#, fuzzy, python-format
+msgid ""
+"Upgrade in progress\n"
+"Please wait until your %s %s reboots\n"
+"This may take a few minutes"
+msgstr ""
+"Uovervåget opgradering i gang\n"
+"Vent venligst til din modtager genstarter\n"
+"Dette kan vare flere minutter"
 
 #
 msgid "Upgrading"
@@ -8846,9 +9223,6 @@ msgstr ""
 msgid "Use Netmed EPG information when it is available."
 msgstr ""
 
-msgid "Use PTS seekbar while timeshifting?"
-msgstr ""
-
 msgid "Use TV remote control"
 msgstr "Brug TV fjernbetjening"
 
@@ -8870,6 +9244,10 @@ msgstr "Brug hurtigsøgning kanalnavne"
 
 msgid "Use fastscan channel numbering"
 msgstr "Brug hurtigsøgning kanalnumre"
+
+#, fuzzy
+msgid "Use individual settings for each directory"
+msgstr "Husk indstiller for alle mapper"
 
 #
 #, fuzzy
@@ -8934,9 +9312,8 @@ msgstr ""
 msgid "Use this video enhancement settings?"
 msgstr "Anvend denne opsætning af videoforbedring?"
 
-#
-msgid "Use time of currently running service"
-msgstr "Benyt tiden på den aktuelt benyttede kanal"
+msgid "Use timeshift seekbar while timeshifting?"
+msgstr ""
 
 msgid "Use trash can in movielist"
 msgstr ""
@@ -8976,10 +9353,18 @@ msgstr ""
 msgid "Username:"
 msgstr ""
 
+#, python-format
+msgid "Using LNB %d"
+msgstr ""
+
 msgid "Using fixed address"
 msgstr "Brug fast adresse"
 
 msgid "Using old profile: "
+msgstr ""
+
+#, python-format
+msgid "Using tuner %s"
 msgstr ""
 
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
@@ -8993,11 +9378,18 @@ msgstr "Scart / Video"
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
 
-msgid "Version:"
-msgstr ""
+#
+#, fuzzy, python-format
+msgid "Version:\t%s"
+msgstr "Ny Version:"
 
 msgid "Version: "
 msgstr ""
+
+#
+#, fuzzy, python-format
+msgid "Version: %s"
+msgstr "Ny Version:"
 
 #
 msgid "Vertical"
@@ -9052,6 +9444,10 @@ msgid "Video setup"
 msgstr ""
 
 msgid "Video wizard"
+msgstr ""
+
+#, python-format
+msgid "Video: %s fps"
 msgstr ""
 
 msgid "Videocodec"
@@ -9155,21 +9551,12 @@ msgstr ""
 msgid "View video CD..."
 msgstr "Vis video CD"
 
-#
-#, fuzzy
-msgid "Virtual keyboard"
-msgstr "Virtuelt tastatur"
-
 msgid "Virtuosso Image Xtreme"
 msgstr ""
 
 #
 msgid "Voltage mode"
 msgstr "Spændings type"
-
-#
-msgid "Volume"
-msgstr "Lydstyrke"
 
 #
 msgid "W"
@@ -9200,9 +9587,6 @@ msgstr "WPA2"
 #
 msgid "WSS on 4:3"
 msgstr "WSS på 4:3"
-
-msgid "Wait please while gathering data..."
-msgstr ""
 
 msgid "Wait please while scanning for devices..."
 msgstr ""
@@ -9236,8 +9620,12 @@ msgstr "Væk TV fra Standby"
 msgid "Wakeup signal from TV"
 msgstr "Vågn op signal fra TV"
 
-msgid "Wakeup your STB_BOX from standby"
-msgstr "Væk modtager fra Stanbdy"
+#, fuzzy, python-format
+msgid "Wakeup your %s %s from standby"
+msgstr "Væk TV fra Standby"
+
+msgid "Warning: no LNB; using factory defaults."
+msgstr ""
 
 #
 #, fuzzy
@@ -9268,6 +9656,11 @@ msgstr "Ugedag"
 #, fuzzy
 msgid "Weekly"
 msgstr "ugentlig"
+
+#
+#, fuzzy
+msgid "Weighted position"
+msgstr "Gemt position"
 
 #
 #, fuzzy
@@ -9318,17 +9711,19 @@ msgstr ""
 "Tryk OK for at starte opsætningen af dit netværk"
 
 #
-msgid "Welcome..."
-msgstr "Velkommen..."
-
-#
 msgid "West"
 msgstr "Vest"
+
+msgid "West limit set"
+msgstr ""
 
 msgid "What Day of month ?"
 msgstr ""
 
 msgid "What Day of week ?"
+msgstr ""
+
+msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
 msgstr ""
 
 #
@@ -9351,6 +9746,9 @@ msgid "When enabled, a popup message will be shown when a recording starts."
 msgstr ""
 
 msgid "When enabled, a recording is allowed to interrupt live tv, when there are no free tuners."
+msgstr ""
+
+msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
 msgstr ""
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
@@ -9416,6 +9814,9 @@ msgstr ""
 msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr ""
 
+msgid "When enabled, timeshift starts automatically in background after specified time."
+msgstr ""
+
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr ""
 
@@ -9444,10 +9845,11 @@ msgid "When tuned to a service the system will normally scan the transponder for
 msgstr ""
 
 #
+#, fuzzy, python-format
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your STB_BOX will restart automatically!\n"
+"After completion of factory reset, your %s %s will restart automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
@@ -9460,6 +9862,9 @@ msgstr ""
 #
 msgid "Where do you want to backup your settings?"
 msgstr "Hvor vil du lave en kopi af dine indstillinger?"
+
+msgid "Where should the recording be saved?"
+msgstr ""
 
 #
 msgid "Where to save temporary timeshift recordings?"
@@ -9553,6 +9958,17 @@ msgid "Yes, backup my settings!"
 msgstr "Ja, start kopiering af mine indstillinger!"
 
 #
+#, fuzzy
+msgid "Yes, but don't save timeshift as movie"
+msgstr "Ja, og slet denne film"
+
+msgid "Yes, but save timeshift as movie and continue recording"
+msgstr ""
+
+msgid "Yes, but save timeshift as movie and stop recording"
+msgstr ""
+
+#
 msgid "Yes, do a manual scan now"
 msgstr "Ja, start en manuel søgning nu"
 
@@ -9615,7 +10031,8 @@ msgid "You can install this plugin."
 msgstr "Du kan installere dette plugin"
 
 #
-msgid "You can only burn STB_BOX recordings!"
+#, fuzzy, python-format
+msgid "You can only burn %s %s recordings!"
 msgstr "Du kan kun brænde Dreamboxoptagelser!"
 
 #
@@ -9645,6 +10062,11 @@ msgid "You have chosen to restore your settings. Enigma2 will restart after rest
 msgstr "Du har valgt at gendanne dine indstillinger. Enigma2 vil genstarte efter gendannelsen. Tryk venligst på OK for at starte gendannelsen nu."
 
 msgid ""
+"You have chosen to save the current timeshift event, but the event has not yet finished\n"
+"What do you want to do ?"
+msgstr ""
+
+msgid ""
 "You have not setup your user info in the setup screen\n"
 "Press MENU, and enter your info, then try again"
 msgstr ""
@@ -9668,19 +10090,23 @@ msgstr ""
 "Du skal have en PC forbundet til din STB_BOX. Hvis du mangler yderligere Informationer, så gå til websiden http://www.dm7025.de.\n"
 "Din STB_BOX bliver slukket nu. Efter du har udført opdateringen Instruktioner fra websiden, vil den nye firmware vil bede dig om at geninstallere, dine indstillinger."
 
+msgid "You seem to be in timeshift!"
+msgstr ""
+
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr ""
 
 msgid "You system does not support ext4"
 msgstr "Dit system understøtter ikke ext4"
 
-msgid "Your STB_BOX is not connected to the internet, please check your network settings and try again."
+#, python-format
+msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
 msgstr ""
 
 #
-#, fuzzy
+#, fuzzy, python-format
 msgid ""
-"Your STB_BOX is now ready to be used.\n"
+"Your %s %s is now ready to be used.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
@@ -9689,6 +10115,37 @@ msgstr ""
 "\n"
 "Din internetforbindelse fungerer nu.\n"
 "\n"
+
+#, python-format
+msgid "Your %s %s is rebooting"
+msgstr ""
+
+#, python-format
+msgid "Your %s %s is shutting down"
+msgstr ""
+
+#, python-format
+msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the installation of service\n"
+"Ready to install \"%s\" ?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the installation of service.\n"
+"\n"
+"Do you want to install now ?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now ?"
+msgstr ""
 
 #
 msgid ""
@@ -9704,71 +10161,9 @@ msgstr ""
 "\n"
 "Tryk OK for at fortsætte."
 
-msgid "Your STB_BOX is rebooting"
-msgstr ""
-
-msgid "Your STB_BOX is shutting down"
-msgstr ""
-
 #
 msgid "Your STB_BOX is shutting down. Please stand by..."
 msgstr "Din STB_BOX slukker nu. Vent venligst..."
-
-msgid "Your STB_BOX might be unusable now. Please consult the manual for further assistance before rebooting your STB_BOX."
-msgstr ""
-
-#
-#, fuzzy
-msgid ""
-"Your STB_BOX wants to reboot your STB_BOX.\n"
-"Do that now?"
-msgstr "Vil du genstarte din STB_BOX?"
-
-#
-#, fuzzy
-msgid ""
-"Your STB_BOX wants to restart the user interface.\n"
-"Do that now?"
-msgstr ""
-"Din STB_BOX er nu klar til brug.\n"
-"\n"
-"Din internetforbindelse fungerer nu.\n"
-"\n"
-
-#
-#, fuzzy
-msgid ""
-"Your STB_BOX wants to set your STB_BOX to standby.\n"
-"Do that now?"
-msgstr ""
-"En sleep timer vil gerne sætte din\n"
-"STB_BOX til standby. Vil du gøre det nu?"
-
-#
-#, fuzzy
-msgid ""
-"Your STB_BOX wants to shut down your STB_BOX.\n"
-"Do that now?"
-msgstr ""
-"En sleep timer vil gerne slukke\n"
-"din STB_BOX. Slukke nu?"
-
-#, python-format
-msgid ""
-"Your STB_BOX will be restarted after the installation of service\n"
-"Ready to install \"%s\" ?"
-msgstr ""
-
-msgid ""
-"Your STB_BOX will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-
-msgid ""
-"Your STB_BOX will be restarted after the removal of service\n"
-"Do you want to remove now ?"
-msgstr ""
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
@@ -9799,9 +10194,10 @@ msgstr ""
 "Din frontprocessor skal opdateres.\n"
 "Tryk OK for at starte opdateringen."
 
+#, fuzzy, python-format
 msgid ""
 "Your frontprocessor will be upgraded\n"
-"Please wait until your STB_BOX reboots\n"
+"Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
 "din frontprocessor bliver opdateret\n"
@@ -10085,6 +10481,13 @@ msgstr ""
 msgid "center"
 msgstr "centrer"
 
+#, fuzzy
+msgid "centered"
+msgstr "centrer"
+
+msgid "centered, wrapped"
+msgstr ""
+
 #
 msgid "chapters"
 msgstr "kapitler"
@@ -10109,10 +10512,6 @@ msgstr ""
 #
 msgid "complex"
 msgstr "komplex"
-
-#
-msgid "config menu"
-msgstr "konfigurationsmenu"
 
 #
 msgid "confirmed"
@@ -10204,6 +10603,11 @@ msgstr "færdig!"
 msgid "e-Mail address"
 msgstr ""
 
+#
+#, fuzzy
+msgid "east"
+msgstr "Drej mod øst"
+
 msgid "ecm time:"
 msgstr ""
 
@@ -10259,6 +10663,9 @@ msgstr "afslut klip her"
 #
 msgid "end favourites edit"
 msgstr "afslut favoritredigering"
+
+msgid "enter number to jump to channel."
+msgstr ""
 
 msgid "entertainment (10-16 year old)"
 msgstr ""
@@ -10399,10 +10806,6 @@ msgstr ""
 msgid "height"
 msgstr "højde"
 
-#
-msgid "help..."
-msgstr "hjælp..."
-
 msgid "hops:"
 msgstr ""
 
@@ -10456,12 +10859,18 @@ msgstr "forlad film afspiller..."
 msgid "left"
 msgstr "venstre"
 
+msgid "left, wrapped"
+msgstr ""
+
 msgid "leisure hobbies (general)"
 msgstr ""
 
 #
 msgid "length"
 msgstr "længde"
+
+msgid "limit ..., aborting !"
+msgstr ""
 
 msgid "literature"
 msgstr ""
@@ -10629,6 +11038,9 @@ msgstr "af et ENKELT lags media anvendt."
 msgid "off"
 msgstr "fra"
 
+msgid "offset is"
+msgstr ""
+
 #
 msgid "on"
 msgstr "til"
@@ -10664,10 +11076,6 @@ msgstr ""
 msgid "pass"
 msgstr "OK"
 
-#
-msgid "pause"
-msgstr "pause"
-
 msgid "performing arts"
 msgstr ""
 
@@ -10676,14 +11084,6 @@ msgstr ""
 
 msgid "play as picture in picture"
 msgstr "afspil som Billede i Billede"
-
-#
-msgid "play from next mark or playlist entry"
-msgstr "afspil fra næste mærke eller spilleliste indgang"
-
-#
-msgid "play from previous mark or playlist entry"
-msgstr "afspil fra forrige mærke eller spilleliste indgang"
 
 msgid "play in mainwindow"
 msgstr "afspil i hovedvindue"
@@ -10803,6 +11203,9 @@ msgstr "kør tilbage til forrige kapitel"
 #
 msgid "right"
 msgstr "højre"
+
+msgid "right, wrapped"
+msgstr ""
 
 msgid "rock/pop"
 msgstr ""
@@ -11159,6 +11562,11 @@ msgstr ""
 msgid "weekly"
 msgstr "ugentlig"
 
+#
+#, fuzzy
+msgid "west"
+msgstr "Drej mod vest"
+
 msgid "when asking question about this log"
 msgstr ""
 
@@ -11220,6 +11628,385 @@ msgid "zap"
 msgstr "skift"
 
 #
+#, fuzzy
+msgid "zap and record"
+msgstr "optage"
+
+#
 msgid "zapped"
 msgstr "skiftet"
 
+#
+#~ msgid ""
+#~ "\n"
+#~ "Backup your STB_BOX settings."
+#~ msgstr ""
+#~ "\n"
+#~ "Lav backup af din STB_BOX opsætning."
+
+#
+#~ msgid ""
+#~ "\n"
+#~ "Restore your STB_BOX settings."
+#~ msgstr ""
+#~ "\n"
+#~ "Gendan din STB_BOX opsætning."
+
+#
+#~ msgid "1"
+#~ msgstr "1"
+
+#
+#~ msgid "3"
+#~ msgstr "3"
+
+#
+#~ msgid "4"
+#~ msgstr "4"
+
+#
+#~ msgid "5"
+#~ msgstr "5"
+
+#
+#~ msgid "6"
+#~ msgstr "6"
+
+#
+#~ msgid "7"
+#~ msgstr "7"
+
+#
+#~ msgid "8"
+#~ msgstr "8"
+
+#
+#~ msgid "9"
+#~ msgstr "9"
+
+#~ msgid "A demo plugin for TPM usage."
+#~ msgstr "En demo udvidelse til brug for TPM"
+
+#
+#~ msgid "Audio"
+#~ msgstr "Lyd"
+
+#
+#~ msgid "BER"
+#~ msgstr "BER"
+
+#
+#~ msgid "BER:"
+#~ msgstr "BER:"
+
+#
+#~ msgid "C"
+#~ msgstr "C"
+
+#
+#~ msgid "Channellist menu"
+#~ msgstr "Kanalliste Menu"
+
+#
+#~ msgid "Command execution..."
+#~ msgstr "Kommando udføres..."
+
+#
+#~ msgid "Continue in background"
+#~ msgstr "Fortsæt i baggrunden"
+
+#
+#~ msgid "D"
+#~ msgstr "D"
+
+#
+#, fuzzy
+#~ msgid "Date/time input"
+#~ msgstr "Tid/Dato input"
+
+#
+#~ msgid "Dish"
+#~ msgstr "Parabol"
+
+#
+#~ msgid "Do you want to reboot your STB_BOX?"
+#~ msgstr "Vil du genstarte din STB_BOX?"
+
+#
+#~ msgid "Do you want to update your STB_BOX?"
+#~ msgstr "Vil du opdatere din STB_BOX?"
+
+#
+#~ msgid "Downloadable plugins"
+#~ msgstr "Plugins der kan hentes"
+
+#
+#, fuzzy
+#~ msgid "EPG selection"
+#~ msgstr "EPG Valg"
+
+#
+#~ msgid "Enable timer"
+#~ msgstr "Aktiver timer"
+
+#
+#, fuzzy
+#~ msgid "Event view"
+#~ msgstr "Programoversigt"
+
+#, fuzzy
+#~ msgid "Event view menu"
+#~ msgstr "Programoversigt menu"
+
+#~ msgid "STB_BOX ir keyboard"
+#~ msgstr "STB_BOX ir tastatur"
+
+#~ msgid "STB_BOX ir mouse"
+#~ msgstr "STB_BOX ir mus"
+
+#
+#~ msgid "Index"
+#~ msgstr "Oversigt"
+
+#
+#, fuzzy
+#~ msgid "Info bar"
+#~ msgstr "InfoBjælke"
+
+#
+#, fuzzy
+#~ msgid "Installing software..."
+#~ msgstr "Installerer software..."
+
+#
+#, fuzzy
+#~ msgid "Job overview"
+#~ msgstr "Job oversigt"
+
+#
+#~ msgid "Lock:"
+#~ msgstr "Lås:"
+
+#
+#~ msgid "MORE"
+#~ msgstr "MERE"
+
+#
+#~ msgid "Message"
+#~ msgstr "Besked"
+
+#
+#~ msgid "Message..."
+#~ msgstr "Besked..."
+
+#
+#~ msgid "Movielist menu"
+#~ msgstr "Filmliste menu"
+
+#
+#~ msgid "Mute"
+#~ msgstr "Lyd fra"
+
+#
+#~ msgid "NEXT"
+#~ msgstr "NÆSTE"
+
+#
+#~ msgid "NOW"
+#~ msgstr "NU"
+
+#
+#, fuzzy
+#~ msgid "Nameserver setup"
+#~ msgstr "Navneserver opsætning"
+
+#
+#, fuzzy
+#~ msgid "Network configuration..."
+#~ msgstr "Netværks opsætning..."
+
+#
+#~ msgid "Network test..."
+#~ msgstr "Netværks test..."
+
+#~ msgid "No sat tuner found!"
+#~ msgstr "Ingen sattuner fundet"
+
+#
+#, fuzzy
+#~ msgid "No, but restart from beginning"
+#~ msgstr "Nej, men genstart fra begyndelse"
+
+#
+#, fuzzy
+#~ msgid "Now playing"
+#~ msgstr "Nu Afspilles"
+
+#
+#, fuzzy
+#~ msgid "PIN code needed"
+#~ msgstr "Pin kode nødvendig"
+
+#
+#, fuzzy
+#~ msgid "Parental control services editor"
+#~ msgstr "Forældrekontrol kanalredigering"
+
+#
+#, fuzzy
+#~ msgid "PiP setup"
+#~ msgstr "BiB opsætning"
+
+#
+#~ msgid "Plugin browser"
+#~ msgstr "Plugin menu"
+
+#~ msgid "Put your STB_BOX in standby"
+#~ msgstr "Sæt Reciever i standby"
+
+#
+#~ msgid "Radio"
+#~ msgstr "Radio"
+
+#~ msgid "Rec"
+#~ msgstr "Optag"
+
+#
+#, fuzzy
+#~ msgid "Reception settings"
+#~ msgstr "Modtage Indstillinger"
+
+#
+#~ msgid "SNR"
+#~ msgstr "SNR"
+
+#
+#~ msgid "SNR:"
+#~ msgstr "SNR:"
+
+#
+#~ msgid "Select HDD"
+#~ msgstr "Vælg Filsystem"
+
+#
+#, fuzzy
+#~ msgid "Select a bouquet"
+#~ msgstr "Vælg en film"
+
+#
+#~ msgid "Select a movie"
+#~ msgstr "Vælg en film"
+
+#
+#, fuzzy
+#~ msgid "Select a network adapter"
+#~ msgstr "Vælg Netværks Adapter"
+
+#
+#, fuzzy
+#~ msgid "Select a skin"
+#~ msgstr "Vælg en film"
+
+#
+#, fuzzy
+#~ msgid "Select a tuner"
+#~ msgstr "Vælg en film"
+
+#
+#, fuzzy
+#~ msgid "Service info"
+#~ msgstr "Kanalinfo"
+
+#
+#~ msgid "Sleep Timer"
+#~ msgstr "Sleep Timer"
+
+#
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Sleep timeren er blevet aktiveret."
+
+#
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Sleep timeren er ikke aktiveret."
+
+#
+#, fuzzy
+#~ msgid "Timer edit"
+#~ msgstr "Timer redigering"
+
+#
+#, fuzzy
+#~ msgid "Timer editor"
+#~ msgstr "Timer redigering"
+
+#
+#~ msgid "Timer status:"
+#~ msgstr "Timer status:"
+
+#
+#~ msgid "Translation:"
+#~ msgstr "Oversætter:"
+
+#
+#~ msgid "UnhandledKey"
+#~ msgstr "Uhåndteret nøgle"
+
+#
+#~ msgid "Use time of currently running service"
+#~ msgstr "Benyt tiden på den aktuelt benyttede kanal"
+
+#
+#~ msgid "Volume"
+#~ msgstr "Lydstyrke"
+
+#~ msgid "Wakeup your STB_BOX from standby"
+#~ msgstr "Væk modtager fra Stanbdy"
+
+#
+#~ msgid "Welcome..."
+#~ msgstr "Velkommen..."
+
+#
+#, fuzzy
+#~ msgid ""
+#~ "Your STB_BOX wants to reboot your STB_BOX.\n"
+#~ "Do that now?"
+#~ msgstr "Vil du genstarte din STB_BOX?"
+
+#
+#, fuzzy
+#~ msgid ""
+#~ "Your STB_BOX wants to set your STB_BOX to standby.\n"
+#~ "Do that now?"
+#~ msgstr ""
+#~ "En sleep timer vil gerne sætte din\n"
+#~ "STB_BOX til standby. Vil du gøre det nu?"
+
+#
+#, fuzzy
+#~ msgid ""
+#~ "Your STB_BOX wants to shut down your STB_BOX.\n"
+#~ "Do that now?"
+#~ msgstr ""
+#~ "En sleep timer vil gerne slukke\n"
+#~ "din STB_BOX. Slukke nu?"
+
+#
+#~ msgid "config menu"
+#~ msgstr "konfigurationsmenu"
+
+#
+#~ msgid "help..."
+#~ msgstr "hjælp..."
+
+#
+#~ msgid "pause"
+#~ msgstr "pause"
+
+#
+#~ msgid "play from next mark or playlist entry"
+#~ msgstr "afspil fra næste mærke eller spilleliste indgang"
+
+#
+#~ msgid "play from previous mark or playlist entry"
+#~ msgstr "afspil fra forrige mærke eller spilleliste indgang"

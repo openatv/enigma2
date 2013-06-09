@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-01 13:50+0100\n"
+"POT-Creation-Date: 2013-06-09 17:05+0100\n"
 "PO-Revision-Date: 2013-06-02 22:34+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: RU locale edited by Sowa\n"
@@ -7102,6 +7102,12 @@ msgstr ""
 "Файловая система носителя для сдвига времени не поддерживает жёсткие ссылки.\n"
 "Убедитесь, что она отформатирована в EXT2 или EXT3!"
 
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr "STB_BOX считывает сохранённые данные EPG каждые (час)"
+
+msgid "The STB_BOX stores the EPG data every (hours)."
+msgstr "STB_BOX сохраяет данные EPG каждые (час)"
+
 msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
@@ -7128,12 +7134,6 @@ msgid ""
 msgstr ""
 "Загрузочная USB флешка готова.\n"
 "Теперь вы можете загрузить файл прошивки *.NFI!"
-
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr "STB_BOX считывает сохранённые данные EPG каждые (час)"
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr "STB_BOX сохраяет данные EPG каждые (час)"
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Сохранение не выполнено. Выберите правильное расположение. "
@@ -8738,9 +8738,6 @@ msgstr ""
 "%s %s будет перезапущен после удаления сервиса\n"
 "Вы хотите удалить сейчас?"
 
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Ресивер будет перезапущен после нажатия кнопки OK на пульте ДУ"
-
 msgid ""
 "Your STB_BOX is now ready to use.\n"
 "\n"
@@ -8758,6 +8755,9 @@ msgid "Your STB_BOX is shutting down. Please stand by..."
 msgstr ""
 "STB_BOX переводится в полный режим ожидания.\n"
 "Пожалуйста, ожидайте..."
+
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr "Ресивер будет перезапущен после нажатия кнопки OK на пульте ДУ"
 
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr "Резервная копия создана. Теперь мы продолжим процесс обновления. "
@@ -10027,4 +10027,3 @@ msgstr "переключить и записать"
 
 msgid "zapped"
 msgstr "переключено"
-
