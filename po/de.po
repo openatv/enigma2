@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-09 17:05+0100\n"
+"POT-Creation-Date: 2013-06-10 11:20+0100\n"
 "PO-Revision-Date: 2013-06-09 10:14+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
@@ -805,10 +805,12 @@ msgstr "Instabile (ungetestete) Updates erlauben"
 msgid "Allows more detailed to be in the crash log"
 msgstr "Erweiterte Informationen im Crash-Log eintragen"
 
-msgid "Allows the STB_BOX to read the stored EPG data regularly."
+#, fuzzy
+msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Regelmäßiges lesen der EPG Daten erlauben."
 
-msgid "Allows the STB_BOX to store the EPG data regularly."
+#, fuzzy
+msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "Regelmäßiges schreiben der EPG Daten erlauben."
 
 msgid "Allows you hide the extensions of known file types."
@@ -927,14 +929,14 @@ msgstr ""
 "Sicher das Folgendes wiederhergestellt werden soll?\n"
 "Backup:%s\n"
 "\n"
-"Deine STB_BOX wird neu gestartet wenn das Backup wiederhergestellt wurde."
+"Deine %s %s wird neu gestartet wenn das Backup wiederhergestellt wurde."
 
 msgid ""
 "Are you sure you want to restore the backup?\n"
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
 "Sicher das dieses Backup wiederhergestellt werden soll?\n"
-"Deine STB_BOX wird neu gestartet wenn das Backup wiederhergestellt wurde."
+"Deine %s %s wird neu gestartet wenn das Backup wiederhergestellt wurde."
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Bist Du sicher das die EPG Daten an diesen Ort gespeichert werden sollen:\n"
@@ -1515,11 +1517,13 @@ msgstr "Wähle zwischen täglich, wöchentlich, wochentags oder benutzerdefinier
 msgid "Choose the location for crash and debuglogs."
 msgstr "Wähle den Speicherort für Crash- und Debug-Logs"
 
-msgid "Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time."
-msgstr "Wähle einen Ort wo die EPG Daten gespeichert werden wenn die STB_BOX ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein."
+#, fuzzy
+msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
+msgstr "Wähle einen Ort wo die EPG Daten gespeichert werden wenn die %s %s ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein."
 
-msgid "Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes."
-msgstr "Wähle den Dateinamen für die EPG-Daten wenn die STB_BOX ausgeschaltet wird. Das kann nützlich sein wenn mehrere Boxen verwendet werden."
+#, fuzzy
+msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
+msgstr "Wähle den Dateinamen für die EPG-Daten wenn die %s %s ausgeschaltet wird. Das kann nützlich sein wenn mehrere Boxen verwendet werden."
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Wähle das Zeitraster auf das die Grafiken gerundet werden."
@@ -2471,7 +2475,7 @@ msgid "Do you want to reboot your %s %s"
 msgstr "Die %s %s neu starten?"
 
 msgid "Do you want to reboot your receiver?"
-msgstr "Soll die STB_BOX neu gestartet werden?"
+msgstr "Soll die %s %s neu gestartet werden?"
 
 msgid "Do you want to remove the package:\n"
 msgstr "Das Paket deinstallieren:\n"
@@ -3844,7 +3848,7 @@ msgid "Load/Save"
 msgstr "Laden/Speichern"
 
 msgid "Local box"
-msgstr "Lokale STB_BOX"
+msgstr "Lokale %s %s"
 
 msgid "Local network"
 msgstr "Lokales Netzwerk"
@@ -4179,7 +4183,7 @@ msgstr "NFI Image Flashing"
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
 "NFI Image Flashen beendet.\n"
-"Drücke Gelb um die STB_BOX neu zu starten!"
+"Drücke Gelb um die %s %s neu zu starten!"
 
 msgid "NFS Setup"
 msgstr "NFS Einstellungen"
@@ -4457,8 +4461,9 @@ msgstr "Nein, aber von Anfang an neu beginnen"
 msgid "No, do nothing."
 msgstr "Nein, nichts tun"
 
-msgid "No, just start my STB_BOX"
-msgstr "Nein, nur die STB_BOX starten"
+#, fuzzy
+msgid "No, just start my %s %s"
+msgstr "Nein, nur die %s %s starten"
 
 msgid "No, never"
 msgstr "Nein, niemals"
@@ -4593,7 +4598,7 @@ msgid "On end of movie"
 msgstr "Am Ende eines Films"
 
 msgid "On reaching the end of a file during playback, you can choose the box's behavior."
-msgstr "Am Ende einer Filmwiedergabe kann das Verhalten der STB_BOX bestimmt werden"
+msgstr "Am Ende einer Filmwiedergabe kann das Verhalten der %s %s bestimmt werden"
 
 msgid "Once per day"
 msgstr "Einmal am Tag"
@@ -4891,7 +4896,7 @@ msgstr ""
 "Drücke OK zum Fortfahren"
 
 msgid "Please connect your receiver to the internet"
-msgstr "Bitte die STB_BOX mit dem Internet verbinden"
+msgstr "Bitte die %s %s mit dem Internet verbinden"
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Bitte keine Werte ändern, falls Du nicht weißt, was Du machst!"
@@ -5589,7 +5594,7 @@ msgid "Restart test"
 msgstr "Test wiederholen"
 
 msgid "Restart your network connection and interfaces.\n"
-msgstr "Neustart der Netzwerk-Konfiguration der STB_BOX.\n"
+msgstr "Neustart der Netzwerk-Konfiguration der %s %s.\n"
 
 msgid "Restore"
 msgstr "Wiederherstellung"
@@ -7053,12 +7058,13 @@ msgstr ""
 "Vielen Dank, dass Du den Assistenten benutzt hast.\n"
 "Drücke OK zum Fortfahren."
 
+#, fuzzy
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
-"Please press OK to start using your STB_BOX."
+"Thank you for using the wizard. Your %s %s is now ready to use.\n"
+"Please press OK to start using your %s %s."
 msgstr ""
-"Danke für die Benutzung des Assistenten. Die STB_BOX ist jetzt einsatzbereit.\n"
-"Drücke OK um die STB_BOX jetzt zu benutzen."
+"Danke für die Benutzung des Assistenten. Die %s %s ist jetzt einsatzbereit.\n"
+"Drücke OK um die %s %s jetzt zu benutzen."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -7092,12 +7098,6 @@ msgstr ""
 "Das Dateisystem vom TimeShift-Verzeichnis unterstützt keine Hardlinks.\n"
 "Stelle sicher das es mit EXT2/3/4 formatiert ist!"
 
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr "Die STB_BOX liest die EPG Daten alle x Stunden."
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr "Die STB_BOX speichert die EPG alle x Stunden."
-
 msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
@@ -7117,6 +7117,14 @@ msgstr "Der PIN Code wurde erfolgreich geändert."
 
 msgid "The PIN codes you entered are different."
 msgstr "Die eingegebenen PIN Codes sind unterschiedlich."
+
+#, fuzzy
+msgid "The %s %s reads the stored EPG data every (hours)."
+msgstr "Die %s %s liest die EPG Daten alle x Stunden."
+
+#, fuzzy
+msgid "The %s %s stores the EPG data every (hours)."
+msgstr "Die %s %s speichert die EPG alle x Stunden."
 
 msgid ""
 "The USB stick was prepared to be bootable.\n"
@@ -7842,7 +7850,7 @@ msgid "Updating software catalog"
 msgstr "Softwarekatalog wird aktualisiert."
 
 msgid "Upgrade and reboot system"
-msgstr "Upgrade und STB_BOX neu starten"
+msgstr "Upgrade und %s %s neu starten"
 
 msgid "Upgrade finished."
 msgstr "Upgrade beendet."
@@ -8273,31 +8281,34 @@ msgstr ""
 "\n"
 "Dann spule zum Ende des Bereiches, drücke OK und wähle 'Schnitt beenden' - fertig."
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your STB_BOX by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+#, fuzzy
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
 msgstr "Willkommen im Image-Upgrade-Assistenten. Der Assistent wird bei der Aktualisierung der Firmware helfen. Mit diesem Assistenten können die aktuellen Einstellungen gesichert werden und es gibt eine kleine Einweisung wie die Firmware aktualisiert werden kann."
 
+#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will guide you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
 "Willkommen.\n"
 "\n"
-"Wenn die STB_BOX mit dem Internet verbunden werden soll so hilft dieser Assistent bei den Grundeinstellungen für das Netzwerk.\n"
+"Wenn die %s %s mit dem Internet verbunden werden soll so hilft dieser Assistent bei den Grundeinstellungen für das Netzwerk.\n"
 "\n"
 "Drücke OK um die Netzwerk Einstellungen vorzunehmen."
 
+#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your %s %s.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Willkommen.\n"
 "\n"
-"Dieser Start-Assistent führt durch die Grundeinstellungen der STB_BOX.\n"
+"Dieser Start-Assistent führt durch die Grundeinstellungen der %s %s.\n"
 "Drücke OK um zum nächsten Schritt zu gelangen."
 
 msgid "West"
@@ -8313,7 +8324,7 @@ msgid "What Day of week ?"
 msgstr "Welchen Tag der Woche?"
 
 msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
-msgstr "Was soll am Ende des Timer geschehen? 'Auto' schickt die STB_BOX in den Zustand den sie hatte als der Timer startete. 'Nichts machen', 'In Bereitschaft gehen', 'Ausschalten' machen genau das was sie sagen."
+msgstr "Was soll am Ende des Timer geschehen? 'Auto' schickt die %s %s in den Zustand den sie hatte als der Timer startete. 'Nichts machen', 'In Bereitschaft gehen', 'Ausschalten' machen genau das was sie sagen."
 
 msgid "What do you want to scan?"
 msgstr "Was durchsuchen?"
@@ -8367,7 +8378,7 @@ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instea
 msgstr "Wenn aktiviert werden grafische DVB Untertitel in Gelb statt der Originalfarbe dargestellt."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
-msgstr "Benutze Strommessung um zu erkennen wenn der Rotor gestoppt ist (wenn es die STB_BOX unterstützt)"
+msgstr "Benutze Strommessung um zu erkennen wenn der Rotor gestoppt ist (wenn es die %s %s unterstützt)"
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "Wenn aktiviert springt man mit '0' zum ersten Sender der ersten Favoritenliste und die Sendervergangenheit wird gelöscht."
@@ -8400,7 +8411,7 @@ msgid "When enabled, the receiver will automatically use the subtitles which you
 msgstr "Wenn aktiviert benutzt der Receiver die Untertitel die schon früher benutzen worden sind."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
-msgstr "Wenn auf 'Ja' gestellt so wird die STB_BOX AC3 Ton benutzen wenn verfügbar."
+msgstr "Wenn auf 'Ja' gestellt so wird die %s %s AC3 Ton benutzen wenn verfügbar."
 
 msgid "When enabled, timeshift starts automatically in background after specified time."
 msgstr "Wenn aktiviert startet TimeShift automatisch nach der angegebenen Zeit."
@@ -8409,7 +8420,7 @@ msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Wenn aktiviert benutzt der Receiver DHCP zur Netzwerkkonfiguration."
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
-msgstr "Wenn auf 'Ja' gestellt so wird die STB_BOX Aktivitäten am SCART-Eingang erkennen."
+msgstr "Wenn auf 'Ja' gestellt so wird die %s %s Aktivitäten am SCART-Eingang erkennen."
 
 msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
 msgstr "Wenn hier ein Wert ungleich 0 steht startet eine Aufnahme um diese Anzahl Minuten früher als es die Informationen aus dem EPG besagen."
@@ -8430,7 +8441,7 @@ msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stre
 msgstr "Wenn der Bildinhalt ein Aspect/Ratio von 4:3 hat wähle ob das Bild skaliert/gestreckt werden soll."
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
-msgstr "Wenn ein Sender eingestellt ist durchsucht die STB_BOX den Transponder nach Änderungen und speichert sie. Nur 'Nein' einstellen wenn Du weißt was Du tust."
+msgstr "Wenn ein Sender eingestellt ist durchsucht die %s %s den Transponder nach Änderungen und speichert sie. Nur 'Nein' einstellen wenn Du weißt was Du tust."
 
 #, python-format
 msgid ""
@@ -8588,7 +8599,7 @@ msgid "You can cancel the removal."
 msgstr "Das Löschen kann abgebrochen werden."
 
 msgid "You can continue watching TV etc. while this is running."
-msgstr "Der Vorgang findet im Hintergrund statt, die STB_BOX kann  ganz normal weiter genutzt werden."
+msgstr "Der Vorgang findet im Hintergrund statt, die %s %s kann  ganz normal weiter genutzt werden."
 
 msgid "You can disable Telnet Server and use ssh to login."
 msgstr "Du kannst Telnet deaktivieren und SSH benutzen."
@@ -8648,12 +8659,13 @@ msgstr "Du hast keine Logs zum Verschicken gewählt."
 msgid "You have to wait %s!"
 msgstr "Du musst %s warten!"
 
+#, fuzzy
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further instructions, please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Ein PC muss mit der STB_BOX verbunden sein.Für weiterführende Informationen besuche die Webseite http://www.dm7025.de.\n"
-"Die STB_BOX wird nun ausgeschaltet. Nachdem das Update wie auf der Webseite beschrieben durchgeführt wurde, wird die neue Firmware fragen, ob die Einstellungen wiederhergestellt werden sollen."
+"Ein PC muss mit der %s %s verbunden sein.Für weiterführende Informationen besuche die Webseite http://www.dm7025.de.\n"
+"Die %s %s wird nun ausgeschaltet. Nachdem das Update wie auf der Webseite beschrieben durchgeführt wurde, wird die neue Firmware fragen, ob die Einstellungen wiederhergestellt werden sollen."
 
 msgid "You seem to be in timeshift!"
 msgstr "TimeShift scheint aktiv zu sein. "
@@ -8718,27 +8730,29 @@ msgstr ""
 "Deine %s %s wird nach entfernen des Services neu gestartet\n"
 "Service jetzt entfernen?"
 
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr "Deine %s %s wird neu Starten wenn Du OK auf der Fernbedienung drückst."
+
+#, fuzzy
 msgid ""
-"Your STB_BOX is now ready to use.\n"
+"Your %s %s is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
-"Ihre STB_BOX ist nun konfiguriert.\n"
+"Ihre %s %s ist nun konfiguriert.\n"
 "\n"
 "Ihre Internetverbindung funktioniert nun.\n"
 "\n"
 "Drücke OK zum Fortfahren."
 
-msgid "Your STB_BOX is shutting down. Please stand by..."
-msgstr "Ihre STB_BOX schaltet sich nun aus. Bitte warte einen Moment..."
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Deine STB_BOX wird neu Starten wenn Du OK auf der Fernbedienung drückst."
+#, fuzzy
+msgid "Your %s %s is shutting down. Please stand by..."
+msgstr "Ihre %s %s schaltet sich nun aus. Bitte warte einen Moment..."
 
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-msgstr "Die Sicherung ist geglückt. Die STB_BOX wird nun den weiteren Aktualisierungs-Prozess erklären."
+msgstr "Die Sicherung ist geglückt. Die %s %s wird nun den weiteren Aktualisierungs-Prozess erklären."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "Die Zusammenstellung überschreitet die Größe eines einfachen Mediums, es wird ein Dual-Layer-Rohling benötigt!"
@@ -8786,10 +8800,10 @@ msgid "Your network configuration has been activated."
 msgstr "Ihre Netzwerk-Konfiguration wurde aktiviert."
 
 msgid "Your receiver does not have an internet connection"
-msgstr "Deine STB_BOX hat keine Internetverbindung"
+msgstr "Deine %s %s hat keine Internetverbindung"
 
 msgid "Your receiver is not connected to the internet"
-msgstr "Deine STB_BOX ist nicht mit dem Internet verbunden"
+msgstr "Deine %s %s ist nicht mit dem Internet verbunden"
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -9560,7 +9574,7 @@ msgid "provider:"
 msgstr "Anbieter:"
 
 msgid "reboot system"
-msgstr "STB_BOX neu starten"
+msgstr "%s %s neu starten"
 
 msgid "record"
 msgstr "aufnehmen"
@@ -10008,388 +10022,3 @@ msgstr "umschalten und aufnehmen"
 
 msgid "zapped"
 msgstr "umgeschaltet"
-
-#~ msgid ""
-#~ "\n"
-#~ "An Input/output error usually indicates a corrupted filesystem! Please check the filesystem of your timeshift-device!"
-#~ msgstr ""
-#~ "\n"
-#~ "Ein Ein-/Ausgabefehler deutet oft auf ein defektes Dateisystem hin! Bitte das Timeshift-Verzeichnis überprüfen!"
-
-#~ msgid "0"
-#~ msgstr "0"
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgid "9"
-#~ msgstr "9"
-
-#~ msgid "A demo plugin for TPM usage."
-#~ msgstr "Ein Demo Plugin für die TPM Bedienung."
-
-#~ msgid "Action"
-#~ msgstr "Aktion"
-
-#~ msgid "Allows you to choose the Picons to be displayed on the frontpanel."
-#~ msgstr "Diese Option bestimmt ob PIcons für das Display am Gerät angezeigt werden sollen."
-
-#~ msgid "Ask before shutdown"
-#~ msgstr "Vor Ausschalten fragen"
-
-#~ msgid "Audio"
-#~ msgstr "Ton"
-
-#~ msgid "BER"
-#~ msgstr "BER"
-
-#~ msgid "BER:"
-#~ msgstr "BER:"
-
-#~ msgid "C"
-#~ msgstr "C"
-
-#~ msgid "Channellist menu"
-#~ msgstr "Senderlisten-Menü"
-
-#~ msgid "Command execution..."
-#~ msgstr "Befehl wird ausgeführt..."
-
-#~ msgid "Continue in background"
-#~ msgstr "Im Hintergrund fortsetzen"
-
-#~ msgid ""
-#~ "Could not activate Permanent-Timeshift!\n"
-#~ "Timeshift-Path does not exist"
-#~ msgstr ""
-#~ "Kann permanenten Timeshift nicht aktivieren!\n"
-#~ "Verzeichnis für Timeshift existiert nicht"
-
-#~ msgid "D"
-#~ msgstr "D"
-
-#~ msgid "Date/time input"
-#~ msgstr "Datum/Zeit Eingabe"
-
-#~ msgid "Dish"
-#~ msgstr "Schüssel"
-
-#~ msgid "Downloadable plugins"
-#~ msgstr "Herunterladbare Erweiterungen"
-
-#~ msgid "EPG selection"
-#~ msgstr "EPG-Auswahl"
-
-#~ msgid "Enable or disable Permanent Timeshift. When enabled, timeshift will be activated automactically, allowing to rewind at any time."
-#~ msgstr "Permanentes TimeShift aktivieren oder deaktivieren. Wenn aktiviert wird Timeshift automatisch aktiviert und erlaubt ein Spulen zu jeder Zeit."
-
-#~ msgid "Enable timer"
-#~ msgstr "Timer aktivieren"
-
-#~ msgid "Event view"
-#~ msgstr "Sendungsinformation"
-
-#~ msgid "Event view menu"
-#~ msgstr "Sendungsinformation Menü"
-
-#~ msgid "Experimental"
-#~ msgstr "Experimentell"
-
-#~ msgid "Failed to remove old files."
-#~ msgstr "Löschen alter Dateien fehlgeschlagen."
-
-#~ msgid "Hardware:"
-#~ msgstr "Hardware:"
-
-#~ msgid "If set to 'yes' a special seekbar is available during timeshift."
-#~ msgstr "Mit 'JA' ist eine spezielle Seekbar während Timeshift verfügbar."
-
-#~ msgid "Image:"
-#~ msgstr "Image:"
-
-#~ msgid "Index"
-#~ msgstr "Index"
-
-#~ msgid "Info bar"
-#~ msgstr "Infobar"
-
-#~ msgid "Installing software..."
-#~ msgstr "Installiere Software..."
-
-#~ msgid "Job overview"
-#~ msgstr "Jobübersicht"
-
-#~ msgid "Last Update:"
-#~ msgstr "Letztes Update:"
-
-#~ msgid "Lock:"
-#~ msgstr "Signal:"
-
-#~ msgid "MORE"
-#~ msgstr "MEHR"
-
-#~ msgid ""
-#~ "Maximum Timeshift length per Event reached!\n"
-#~ "Restarting Timeshift now ..."
-#~ msgstr ""
-#~ "Maximallänge für Timeshift erreicht!\n"
-#~ "Timeshift wird jetzt neu gestartet ..."
-
-#~ msgid "Message"
-#~ msgstr "Nachricht"
-
-#~ msgid "Message..."
-#~ msgstr "Nachricht..."
-
-#~ msgid "Movielist menu"
-#~ msgstr "Aufnahmen-Menü"
-
-#~ msgid "Mute"
-#~ msgstr "Stummschaltung"
-
-#~ msgid "NEXT"
-#~ msgstr "NÄCHSTE"
-
-#~ msgid "NOW"
-#~ msgstr "JETZT"
-
-#~ msgid "Nameserver setup"
-#~ msgstr "DNS Einstellungen"
-
-#~ msgid "Network configuration..."
-#~ msgstr "Netzwerk-Konfiguration"
-
-#~ msgid "Network test..."
-#~ msgstr "Netzwerk Test..."
-
-#~ msgid "No sat tuner found!"
-#~ msgstr "Kein Satempfänger gefunden!"
-
-#~ msgid "No, but restart from beginning"
-#~ msgstr "Nein, aber von Anfang an neu beginnen"
-
-#~ msgid "Now playing"
-#~ msgstr "Jetzt läuft"
-
-#~ msgid "PIN code needed"
-#~ msgstr "Pincode benötigt"
-
-#~ msgid "PTS Plugin Error: %s"
-#~ msgstr "PTS Plugi Fehler:%s"
-
-#~ msgid "Parental control services editor"
-#~ msgstr "Jugendschutz-Sendereditor"
-
-#~ msgid "Permanent Timeshift enable"
-#~ msgstr "Aktiviere permanenten TimeShift"
-
-#~ msgid "Permanent Timeshift max events"
-#~ msgstr "Permanenter TimeShift max. Sendungen"
-
-#~ msgid "Permanent Timeshift max length"
-#~ msgstr "Permanenter TimeShift max. Länge"
-
-#~ msgid "Permanent Timeshift start delay"
-#~ msgstr "Permanenter TimeShift Startverzögerung"
-
-#~ msgid "PiP setup"
-#~ msgstr "PiP Einstellung"
-
-#~ msgid "Plugin browser"
-#~ msgstr "Erweiterungen"
-
-#~ msgid "Positioner Setup"
-#~ msgstr "Rotor Einstellungen"
-
-#~ msgid "Positioner fine movement"
-#~ msgstr "Rotor-Feinabstimmung"
-
-#~ msgid "Radio"
-#~ msgstr "Radio"
-
-#~ msgid "Rec"
-#~ msgstr "Rec"
-
-#~ msgid "Reception settings"
-#~ msgstr "Empfangseinstellungen"
-
-#~ msgid "Release"
-#~ msgstr "Release"
-
-#~ msgid "Reminder, you have chosen to save timeshift file."
-#~ msgstr "Erinnerung! Du hast gewählt die Timeshift-Datei zu speichern."
-
-#~ msgid "SNR"
-#~ msgstr "SNR"
-
-#~ msgid "SNR:"
-#~ msgstr "SNR:"
-
-#~ msgid "Save timeshift file"
-#~ msgstr "Speichere Timeshift-Datei"
-
-#~ msgid "Save timeshift file in movie directory"
-#~ msgstr "Speichere Timeshift-Aufnahmen im Film-Verzeichnis"
-
-#~ msgid "Select HDD"
-#~ msgstr "Festplattenauswahl"
-
-#~ msgid "Select a bouquet"
-#~ msgstr "Wähle Favoritenliste"
-
-#~ msgid "Select a movie"
-#~ msgstr "Filmauswahl"
-
-#~ msgid "Select a network adapter"
-#~ msgstr "Netzwerkadapter wählen"
-
-#~ msgid "Select a skin"
-#~ msgstr "Wähle einen Skin"
-
-#~ msgid "Select a tuner"
-#~ msgstr "Wähle einen Tuner"
-
-#~ msgid "Service info"
-#~ msgstr "Sender Info"
-
-#~ msgid "Set the maximum length a timeshift file may be."
-#~ msgstr "Wähle die Maximallänge von Timeshift Dateien."
-
-#~ msgid "Set the maximum number of events (programs) that timeshift may handle."
-#~ msgstr "Wähle die maximale Anzahl von Sendungen die Timeshift verarbeiten können soll."
-
-#~ msgid "Set what the required action must be when zapping while a timeshift has been set as recording."
-#~ msgstr "Wähle die Reaktion beim Umschalten wenn Timeshift zu einer Aufnahme gemacht wurde."
-
-#~ msgid "Setup what a long press on the power button does."
-#~ msgstr "Stelle ein was bei langem Druck auf die Aus-Taste passieren soll."
-
-#~ msgid "Setup what a short press on the power button does."
-#~ msgstr "Stelle ein was bei kurzem Druck auf die Aus-Taste passieren soll."
-
-#~ msgid "Show Picons *"
-#~ msgstr "Zeige PIcons*"
-
-#~ msgid "Show the infomation on current event."
-#~ msgstr "Zeige Informationen des aktuellen Programms."
-
-#~ msgid "Shutdown in (mins)"
-#~ msgstr "Ausschalten in (Min)"
-
-#~ msgid "Sleep Timer"
-#~ msgstr "Ausschalt-Timer"
-
-#~ msgid "Stop timeshift?"
-#~ msgstr "TimeShift stoppen?"
-
-#~ msgid ""
-#~ "The Timeshift recording was not saved yet!\n"
-#~ "What do you want to do now with the timeshift file?"
-#~ msgstr ""
-#~ "Die Timeshiftdatei wurde noch nicht gesichert!\n"
-#~ "Was soll mit der Datei geschehen?"
-
-#~ msgid "The sleep timer has been activated."
-#~ msgstr "Der Ausschalt-Timer wurde aktiviert"
-
-#~ msgid "The sleep timer has been disabled."
-#~ msgstr "Der Ausschalt-Timer wurde deaktiviert"
-
-#~ msgid "Timer edit"
-#~ msgstr "Timer bearbeiten"
-
-#~ msgid "Timer editor"
-#~ msgstr "Timer-Editor"
-
-#~ msgid "Timer status:"
-#~ msgstr "Timer-Status:"
-
-#~ msgid "Timeshift will only start when the start delay time has passed. This prevents numurous very short files when zapping."
-#~ msgstr "TimeShift startet nur wenn die eingestellte Verzögerung vergangen ist. Dieses verhindert viele kleine Dateien beim Zappen."
-
-#~ msgid "Translation:"
-#~ msgstr "Übersetzung:"
-
-#~ msgid "Tuner status %s"
-#~ msgstr "Tuner Status %s"
-
-#~ msgid "UnhandledKey"
-#~ msgstr "UnhandledKey"
-
-#~ msgid "Use time of currently running service"
-#~ msgstr "Benutze Zeit vom aktuell laufenden Programm"
-
-#~ msgid "Version:"
-#~ msgstr "Version:"
-
-#~ msgid "Virtual keyboard"
-#~ msgstr "Virtuelle Tastatur"
-
-#~ msgid "Volume"
-#~ msgstr "Lautstärke"
-
-#~ msgid "Welcome..."
-#~ msgstr "Willkommen..."
-
-#~ msgid "Yes and save"
-#~ msgstr "Ja und speichern"
-
-#~ msgid "Yes and save in movie dir"
-#~ msgstr "Ja und im Filmverzeichnis speichern"
-
-#~ msgid ""
-#~ "Your STB_BOX wants to reboot your STB_BOX.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "Die STB_BOX möchte jetzt neu starten.\n"
-#~ "Jetzt neu starten?"
-
-#~ msgid ""
-#~ "Your STB_BOX wants to set your STB_BOX to standby.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "Die STB_BOX möchte jetzt in Bereitschaft schalten.\n"
-#~ "Jetzt in Bereitschaft schalten?"
-
-#~ msgid ""
-#~ "Your STB_BOX wants to shut down your STB_BOX.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "Die STB_BOX möchte jetzt ausschalten.\n"
-#~ "Jetzt ausschalten?"
-
-#~ msgid "config menu"
-#~ msgstr "Konfigurationsmenü"
-
-#~ msgid "help..."
-#~ msgstr "Hilfe..."
-
-#~ msgid "pause"
-#~ msgstr "Pause"
-
-#~ msgid "play from next mark or playlist entry"
-#~ msgstr "Wiedergabe ab der nächsten Markierung/Listeneintrag"
-
-#~ msgid "play from previous mark or playlist entry"
-#~ msgstr "Wiedergabe ab der letzten Markierung/Listeneintrag"

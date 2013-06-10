@@ -491,7 +491,7 @@ msgid ""
 "A finished power timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"En avluttet timer ønsker å slå av din STB_BOX.\n"
+"En avluttet timer ønsker å slå av din %s %s.\n"
 "Skal den slås av nå ?"
 
 #
@@ -500,7 +500,7 @@ msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
 "Do that now?"
 msgstr ""
-"En avluttet timer ønsker å sett din STB_BOX\n"
+"En avluttet timer ønsker å sett din %s %s\n"
 "i standby. Skal det gjøres nå ?"
 
 #
@@ -509,7 +509,7 @@ msgid ""
 "A finished powertimer wants to restart the user interface.\n"
 "Do that now?"
 msgstr ""
-"En avluttet timer ønsker å sett din STB_BOX\n"
+"En avluttet timer ønsker å sett din %s %s\n"
 "i standby. Skal det gjøres nå ?"
 
 #
@@ -518,7 +518,7 @@ msgid ""
 "A finished powertimer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"En avluttet timer ønsker å sett din STB_BOX\n"
+"En avluttet timer ønsker å sett din %s %s\n"
 "i standby. Skal det gjøres nå ?"
 
 #
@@ -527,7 +527,7 @@ msgid ""
 "A finished powertimer wants to shutdown your %s %s.\n"
 "Do that now?"
 msgstr ""
-"En avluttet timer ønsker å slå av din STB_BOX.\n"
+"En avluttet timer ønsker å slå av din %s %s.\n"
 "Skal den slås av nå ?"
 
 #
@@ -536,7 +536,7 @@ msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"En avluttet timer ønsker å sett din STB_BOX\n"
+"En avluttet timer ønsker å sett din %s %s\n"
 "i standby. Skal det gjøres nå ?"
 
 #
@@ -545,7 +545,7 @@ msgid ""
 "A finished record timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"En avluttet timer ønsker å slå av din STB_BOX.\n"
+"En avluttet timer ønsker å slå av din %s %s.\n"
 "Skal den slås av nå ?"
 
 #
@@ -603,7 +603,7 @@ msgid ""
 "%s %s to standby. Do that now?"
 msgstr ""
 "En sleeptimer ønsker å sette din\n"
-"STB_BOX i standby. Skal det gjøres nå?"
+"%s %s i standby. Skal det gjøres nå?"
 
 #
 #, fuzzy, python-format
@@ -612,7 +612,7 @@ msgid ""
 "your %s %s. Shutdown now?"
 msgstr ""
 "En sleeptimer ønsker å slå av din\n"
-"STB_BOX. Slå av nå?"
+"%s %s. Slå av nå?"
 
 #
 msgid "A small overview of the available icon states and actions."
@@ -888,10 +888,10 @@ msgstr ""
 msgid "Allows more detailed to be in the crash log"
 msgstr ""
 
-msgid "Allows the STB_BOX to read the stored EPG data regularly."
+msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr ""
 
-msgid "Allows the STB_BOX to store the EPG data regularly."
+msgid "Allows the %s %s to store the EPG data regularly."
 msgstr ""
 
 msgid "Allows you hide the extensions of known file types."
@@ -1660,10 +1660,10 @@ msgstr ""
 msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
-msgid "Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time."
+msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
 msgstr ""
 
-msgid "Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes."
+msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -2932,12 +2932,12 @@ msgstr "Endre instillinger"
 #
 #, fuzzy, python-format
 msgid "Edit the Nameserver configuration of your %s %s.\n"
-msgstr "Endre navneserver konfigurasjon for din STB_BOX.\n"
+msgstr "Endre navneserver konfigurasjon for din %s %s.\n"
 
 #
 #, fuzzy, python-format
 msgid "Edit the network configuration of your %s %s.\n"
-msgstr "Endre nettverk konfigurasjon for din STB_BOX.\n"
+msgstr "Endre nettverk konfigurasjon for din %s %s.\n"
 
 #
 msgid "Edit title"
@@ -5110,8 +5110,8 @@ msgid "No, do nothing."
 msgstr "Nei, gjør ingenting"
 
 #
-msgid "No, just start my STB_BOX"
-msgstr "Nei, bare start min STB_BOX"
+msgid "No, just start my %s %s"
+msgstr "Nei, bare start min %s %s"
 
 msgid "No, never"
 msgstr ""
@@ -8129,7 +8129,7 @@ msgstr "Testmodus"
 #
 #, fuzzy, python-format
 msgid "Test the network configuration of your %s %s.\n"
-msgstr "Test nettverkskonfigurasjonen for din STB_BOX.\n"
+msgstr "Test nettverkskonfigurasjonen for din %s %s.\n"
 
 #
 #, fuzzy
@@ -8152,8 +8152,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
-"Please press OK to start using your STB_BOX."
+"Thank you for using the wizard. Your %s %s is now ready to use.\n"
+"Please press OK to start using your %s %s."
 msgstr ""
 
 msgid ""
@@ -8180,10 +8180,10 @@ msgid ""
 "Make sure it is formatted in EXT2 or EXT3!"
 msgstr ""
 
-msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr ""
 
-msgid "The STB_BOX stores the EPG data every (hours)."
+msgid "The %s %s stores the EPG data every (hours)."
 msgstr ""
 
 msgid ""
@@ -9482,14 +9482,14 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your STB_BOX by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
 msgstr "Velkommen til Image-Oppgraderings-Guiden. Guiden vil assistere deg i oppgradering av firmware ved å gi deg en backupmulighet. Du kan med denne guiden lagre de aktuelle innstillinger og en kort forklaring om hvordanoppgradere din firmware."
 
 #
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will guide you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -9497,7 +9497,7 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your %s %s.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 
@@ -9867,11 +9867,11 @@ msgstr "Du må vente %s!"
 
 #
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further instructions, please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
 "Du trenger en PC koblet til din DB. Trenger du videre informasjonvennligst gå til Websiden http://www.dm7025.de.\n"
-"Din STB_BOX vil nå bli stoppet. Etter du har gjennomførtoppdaterings- instruksjonene fra websiden, vil din nye firmware spørre deg om å legg inn igjen innstillingene."
+"Din %s %s vil nå bli stoppet. Etter du har gjennomførtoppdaterings- instruksjonene fra websiden, vil din nye firmware spørre deg om å legg inn igjen innstillingene."
 
 msgid "You seem to be in timeshift!"
 msgstr ""
@@ -9927,7 +9927,7 @@ msgstr ""
 
 #
 msgid ""
-"Your STB_BOX is now ready to use.\n"
+"Your %s %s is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
@@ -9935,15 +9935,15 @@ msgid ""
 msgstr ""
 
 #
-msgid "Your STB_BOX is shutting down. Please stand by..."
-msgstr "Din STB_BOX slår seg av. Vennligst vent..."
+msgid "Your %s %s is shutting down. Please stand by..."
+msgstr "Din %s %s slår seg av. Vennligst vent..."
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
 
 #
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-msgstr "Din backup var OK. STB_BOXen vil nå fortelle deg den videre gangen i oppdaterings-prosessen."
+msgstr "Din backup var OK. %s %sen vil nå fortelle deg den videre gangen i oppdaterings-prosessen."
 
 #
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
@@ -11400,308 +11400,3 @@ msgstr "spill inn"
 #
 msgid "zapped"
 msgstr "zapped"
-
-#
-#~ msgid "1"
-#~ msgstr "1"
-
-#
-#~ msgid "3"
-#~ msgstr "3"
-
-#
-#~ msgid "4"
-#~ msgstr "4"
-
-#
-#~ msgid "5"
-#~ msgstr "5"
-
-#
-#~ msgid "6"
-#~ msgstr "6"
-
-#
-#~ msgid "7"
-#~ msgstr "7"
-
-#
-#~ msgid "8"
-#~ msgstr "8"
-
-#
-#~ msgid "9"
-#~ msgstr "9"
-
-#
-#~ msgid "Audio"
-#~ msgstr "Lyd"
-
-#
-#~ msgid "BER"
-#~ msgstr "BER"
-
-#
-#~ msgid "BER:"
-#~ msgstr "BER:"
-
-#
-#~ msgid "Channellist menu"
-#~ msgstr "Kanalliste-meny"
-
-#
-#~ msgid "Command execution..."
-#~ msgstr "Kommando utføres..."
-
-#
-#, fuzzy
-#~ msgid "Date/time input"
-#~ msgstr "Tid/Dato Input"
-
-#
-#~ msgid "Dish"
-#~ msgstr "Parabol"
-
-#
-#~ msgid "Downloadable plugins"
-#~ msgstr "Nedlastbare plugins"
-
-#
-#, fuzzy
-#~ msgid "EPG selection"
-#~ msgstr "EPG Valg"
-
-#
-#, fuzzy
-#~ msgid "Event view"
-#~ msgstr "Programoversikt"
-
-#
-#, fuzzy
-#~ msgid "Event view menu"
-#~ msgstr "Programoversikt"
-
-#
-#~ msgid "Index"
-#~ msgstr "Indeks"
-
-#
-#, fuzzy
-#~ msgid "Info bar"
-#~ msgstr "InfoBar"
-
-#
-#, fuzzy
-#~ msgid "Installing software..."
-#~ msgstr "Installerer Software"
-
-#
-#, fuzzy
-#~ msgid "Job overview"
-#~ msgstr "Job oversikt"
-
-#
-#~ msgid "Lock:"
-#~ msgstr "Lås:"
-
-#
-#~ msgid "MORE"
-#~ msgstr "MER"
-
-#
-#~ msgid "Message"
-#~ msgstr "Melding"
-
-#
-#~ msgid "Movielist menu"
-#~ msgstr "Filmliste Meny"
-
-#
-#~ msgid "Mute"
-#~ msgstr "Mute"
-
-#
-#~ msgid "NEXT"
-#~ msgstr "NESTE"
-
-#
-#~ msgid "NOW"
-#~ msgstr "NÅ"
-
-#
-#, fuzzy
-#~ msgid "Nameserver setup"
-#~ msgstr "Navneserver Oppsett"
-
-#
-#, fuzzy
-#~ msgid "Network configuration..."
-#~ msgstr "Nettverkskonfigurasjon"
-
-#
-#~ msgid "Network test..."
-#~ msgstr "Nettverks test..."
-
-#
-#, fuzzy
-#~ msgid "No, but restart from beginning"
-#~ msgstr "Nei, men start fra begynnelsen"
-
-#
-#, fuzzy
-#~ msgid "Now playing"
-#~ msgstr "Nå avspilles"
-
-#
-#, fuzzy
-#~ msgid "PIN code needed"
-#~ msgstr "Pin kode nødvendig"
-
-#
-#, fuzzy
-#~ msgid "Parental control services editor"
-#~ msgstr "Foreldrekontroll kanal Editor"
-
-#
-#, fuzzy
-#~ msgid "PiP setup"
-#~ msgstr "BiB Oppsett"
-
-#
-#~ msgid "Plugin browser"
-#~ msgstr "Plugin Meny"
-
-#
-#~ msgid "Radio"
-#~ msgstr "Radio"
-
-#
-#, fuzzy
-#~ msgid "Reception settings"
-#~ msgstr "Mottakings Innstillinger"
-
-#
-#~ msgid "SNR"
-#~ msgstr "SNR"
-
-#
-#~ msgid "SNR:"
-#~ msgstr "SNR:"
-
-#
-#~ msgid "Select HDD"
-#~ msgstr "Velg harddisk"
-
-#
-#, fuzzy
-#~ msgid "Select a bouquet"
-#~ msgstr "Velg film"
-
-#
-#~ msgid "Select a movie"
-#~ msgstr "Velg film"
-
-#
-#, fuzzy
-#~ msgid "Select a network adapter"
-#~ msgstr "Velg Nettverksadapter"
-
-#
-#, fuzzy
-#~ msgid "Select a skin"
-#~ msgstr "Velg film"
-
-#
-#, fuzzy
-#~ msgid "Select a tuner"
-#~ msgstr "Velg film"
-
-#
-#, fuzzy
-#~ msgid "Service info"
-#~ msgstr "Kanalinfo"
-
-#
-#~ msgid "Sleep Timer"
-#~ msgstr "Sleep Timer"
-
-#
-#~ msgid "The sleep timer has been activated."
-#~ msgstr "Sleep timeren har blitt aktivert"
-
-#
-#~ msgid "The sleep timer has been disabled."
-#~ msgstr "Sleep timeren har blitt deaktivert"
-
-#
-#, fuzzy
-#~ msgid "Timer edit"
-#~ msgstr "Timereditering"
-
-#
-#, fuzzy
-#~ msgid "Timer editor"
-#~ msgstr "Timer-editor"
-
-#
-#~ msgid "Timer status:"
-#~ msgstr "Timer status:"
-
-#
-#~ msgid "Translation:"
-#~ msgstr "Oversetting:"
-
-#
-#~ msgid "Volume"
-#~ msgstr "Volum"
-
-#
-#~ msgid "Welcome..."
-#~ msgstr "Velkommen..."
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to reboot your STB_BOX.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "En sleeptimer ønsker å sette din\n"
-#~ "STB_BOX i standby. Skal det gjøres nå?"
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to set your STB_BOX to standby.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "En sleeptimer ønsker å sette din\n"
-#~ "STB_BOX i standby. Skal det gjøres nå?"
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to shut down your STB_BOX.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "En sleeptimer ønsker å slå av din\n"
-#~ "STB_BOX. Slå av nå?"
-
-#
-#~ msgid "config menu"
-#~ msgstr "Konfigurasjonsmeny"
-
-#
-#~ msgid "help..."
-#~ msgstr "Hjelp..."
-
-#
-#~ msgid "pause"
-#~ msgstr "pause"
-
-#
-#~ msgid "play from next mark or playlist entry"
-#~ msgstr "spill av fra neste markering eller post i spillisten"
-
-#
-#~ msgid "play from previous mark or playlist entry"
-#~ msgstr "spill av fra forrige markering eller post i spillisten"

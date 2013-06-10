@@ -298,7 +298,7 @@ msgstr "Jatka painamalla OK-näppäintä."
 
 #, fuzzy, python-format
 msgid "%s %s software because updates are available."
-msgstr "STB_BOXin ohjelmistoa koska päivityksiä on saatavilla."
+msgstr "%s %sin ohjelmistoa koska päivityksiä on saatavilla."
 
 #, python-format
 msgid "%s (%s)\n"
@@ -509,7 +509,7 @@ msgid ""
 "your %s %s. Shutdown now?"
 msgstr ""
 "Juuri päättynyt ajastus haluaa sammuttaa\n"
-"STB_BOXin virransäästötilaan. Sammutetaanko nyt?"
+"%s %sin virransäästötilaan. Sammutetaanko nyt?"
 
 #
 #, fuzzy, python-format
@@ -518,14 +518,14 @@ msgid ""
 "Do that now?"
 msgstr ""
 "Juuri päättynyt ajastus haluaa sammuttaa\n"
-"STB_BOXin valmiustilaan. Sammutetaanko nyt?"
+"%s %sin valmiustilaan. Sammutetaanko nyt?"
 
 #, fuzzy
 msgid ""
 "A finished powertimer wants to restart the user interface.\n"
 "Do that now?"
 msgstr ""
-"STB_BOX on nyt valmis käyttöön.\n"
+"%s %s on nyt valmis käyttöön.\n"
 "\n"
 "Verkkoyhteys toimii.\n"
 "\n"
@@ -537,7 +537,7 @@ msgid ""
 "%s %s to standby. Do that now?"
 msgstr ""
 "Juuri päättynyt ajastus haluaa sammuttaa\n"
-"STB_BOXin valmiustilaan. Sammutetaanko nyt?"
+"%s %sin valmiustilaan. Sammutetaanko nyt?"
 
 #
 #, fuzzy, python-format
@@ -546,7 +546,7 @@ msgid ""
 "Do that now?"
 msgstr ""
 "Juuri päättynyt ajastus haluaa sammuttaa\n"
-"STB_BOXin virransäästötilaan. Sammutetaanko nyt?"
+"%s %sin virransäästötilaan. Sammutetaanko nyt?"
 
 #
 #, fuzzy, python-format
@@ -555,7 +555,7 @@ msgid ""
 "%s %s to standby. Do that now?"
 msgstr ""
 "Juuri päättynyt ajastus haluaa sammuttaa\n"
-"STB_BOXin valmiustilaan. Sammutetaanko nyt?"
+"%s %sin valmiustilaan. Sammutetaanko nyt?"
 
 #
 #, fuzzy, python-format
@@ -564,7 +564,7 @@ msgid ""
 "your %s %s. Shutdown now?"
 msgstr ""
 "Juuri päättynyt ajastus haluaa sammuttaa\n"
-"STB_BOXin virransäästötilaan. Sammutetaanko nyt?"
+"%s %sin virransäästötilaan. Sammutetaanko nyt?"
 
 #
 msgid "A graphical EPG for all services of an specific bouquet"
@@ -636,7 +636,7 @@ msgid ""
 "your %s %s. Shutdown now?"
 msgstr ""
 "Uniajastimeen asetettu aika on kulunut umpeen.\n"
-"Sammutetaanko STB_BOX virransäästötilaa?"
+"Sammutetaanko %s %s virransäästötilaa?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Kuvaus kuvakkeiden tiloista ja toiminnoista."
@@ -923,10 +923,10 @@ msgstr ""
 msgid "Allows more detailed to be in the crash log"
 msgstr ""
 
-msgid "Allows the STB_BOX to read the stored EPG data regularly."
+msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr ""
 
-msgid "Allows the STB_BOX to store the EPG data regularly."
+msgid "Allows the %s %s to store the EPG data regularly."
 msgstr ""
 
 msgid "Allows you hide the extensions of known file types."
@@ -1705,10 +1705,10 @@ msgstr ""
 msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
-msgid "Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time."
+msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
 msgstr ""
 
-msgid "Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes."
+msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -3491,7 +3491,7 @@ msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to restart the GUI now?"
 msgstr ""
-"Teema vaihtuu vasta kun STB_BOXin\n"
+"Teema vaihtuu vasta kun %s %sin\n"
 "käyttöliittymä on käynnistetty uudelleen.\n"
 "Haluatko käynnistää käyttöliittymän\n"
 "uudelleen nyt?"
@@ -5066,12 +5066,12 @@ msgstr ""
 #
 msgid "No positioner capable frontend found."
 msgstr ""
-"STB_BOXissasi ei ole satelliittiviritintä,\n"
+"%s %sissasi ei ole satelliittiviritintä,\n"
 "joka hallitsisi kääntömoottorin ohjauksen."
 
 #
 msgid "No satellite frontend found!!"
-msgstr "STB_BOXissasi ei ole satelliittiviritintä."
+msgstr "%s %sissasi ei ole satelliittiviritintä."
 
 #
 #, fuzzy
@@ -5179,8 +5179,8 @@ msgid "No, do nothing."
 msgstr "Ei, älä tee mitään."
 
 #
-msgid "No, just start my STB_BOX"
-msgstr "Ei, käynnistä vain STB_BOX"
+msgid "No, just start my %s %s"
+msgstr "Ei, käynnistä vain %s %s"
 
 msgid "No, never"
 msgstr "Ei koskaan"
@@ -8252,8 +8252,8 @@ msgstr ""
 "Jatka painamalla OK-näppäintä."
 
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
-"Please press OK to start using your STB_BOX."
+"Thank you for using the wizard. Your %s %s is now ready to use.\n"
+"Please press OK to start using your %s %s."
 msgstr ""
 
 msgid ""
@@ -8269,7 +8269,7 @@ msgstr ""
 #
 #, fuzzy, python-format
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a %s %s format data DVD (which will not play in stand-alone DVD players) instead?"
-msgstr "DVD-standardi ei tue H.264 (HDTV) videota. Haluatko luoda STB_BOXin omassa formaatissa olevan data-DVD:n? Levy ei toistu normaaleissa DVD-soittimissa."
+msgstr "DVD-standardi ei tue H.264 (HDTV) videota. Haluatko luoda %s %sin omassa formaatissa olevan data-DVD:n? Levy ei toistu normaaleissa DVD-soittimissa."
 
 msgid ""
 "The EPGSearch plugin is not installed!\n"
@@ -8281,10 +8281,10 @@ msgid ""
 "Make sure it is formatted in EXT2 or EXT3!"
 msgstr ""
 
-msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr ""
 
-msgid "The STB_BOX stores the EPG data every (hours)."
+msgid "The %s %s stores the EPG data every (hours)."
 msgstr ""
 
 msgid ""
@@ -8467,7 +8467,7 @@ msgstr ""
 #
 #, fuzzy, python-format
 msgid "This %s %s cannot decode %s streams!"
-msgstr "Tämä STB_BOX ei pysty purkamaan %s lähteitä!"
+msgstr "Tämä %s %s ei pysty purkamaan %s lähteitä!"
 
 #
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
@@ -8603,7 +8603,7 @@ msgid ""
 "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
 "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
-"Tämä lisäosa luo USB-muistitikun jolla STB_BOXin ohjelmisto voidaan päivittää ilman verkkoyhteyttä. \n"
+"Tämä lisäosa luo USB-muistitikun jolla %s %sin ohjelmisto voidaan päivittää ilman verkkoyhteyttä. \n"
 "Aluksi USB-muistitikku pitää alustaa jotta siitä tulee automaattisesti käynnistyvä.\n"
 "Seuraavaksi NFI-tiedosto voidaan ladata päivityspalvelimelta ja tallentaa USB-muistitikulle.\n"
 "Jos olet jo tehnyt automaattisesti käynnistyvän USB-muistitikun, kytke se nyt. Muussa tapauksessa kytke vähintään 64MB:n kokoinen USB-muistitikku."
@@ -9108,7 +9108,7 @@ msgstr[1] ""
 #, fuzzy, python-format
 msgid "Update failed. Your %s %s does not have a working internet connection."
 msgstr ""
-"STB_BOX on nyt valmis käyttöön.\n"
+"%s %s on nyt valmis käyttöön.\n"
 "\n"
 "Verkkoyhteys toimii.\n"
 "\n"
@@ -9628,20 +9628,20 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your STB_BOX by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
 msgstr "Tervetuloa ohjelmiston päivitysavustajaan. Avustaja opastaa ohjelmiston päivityksessä ja varmuuskopioinnissa sekä asetusten palauttamisessa päivityksen jälkeen."
 
 #
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will guide you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
 "Tervetuloa.\n"
 "\n"
-"Jos haluat yhdistää STB_BOXin verkkoon, auttaa tämä avustaja määrittämään STB_BOX in lähiverhon perusasetukset.\n"
+"Jos haluat yhdistää %s %sin verkkoon, auttaa tämä avustaja määrittämään %s %s in lähiverhon perusasetukset.\n"
 "\n"
 "Siirry seuraavaan vaiheeseen painamalla OK-nappia."
 
@@ -9650,12 +9650,12 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your %s %s.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Tervetuloa.\n"
 "\n"
-"Jos haluat yhdistää STB_BOXin verkkoon, auttaa tämä avustaja määrittämään STB_BOX in lähiverhon perusasetukset.\n"
+"Jos haluat yhdistää %s %sin verkkoon, auttaa tämä avustaja määrittämään %s %s in lähiverhon perusasetukset.\n"
 "\n"
 "Siirry seuraavaan vaiheeseen painamalla OK-nappia."
 
@@ -9981,7 +9981,7 @@ msgstr "Voit asentaa tämän lisäosan."
 
 #, fuzzy, python-format
 msgid "You can only burn %s %s recordings!"
-msgstr "Voit polttaa vain STB_BOXin tallenteita!"
+msgstr "Voit polttaa vain %s %sin tallenteita!"
 
 #
 msgid "You can remove this plugin."
@@ -10032,8 +10032,8 @@ msgstr "Sinun täytyy odottaa %s!"
 
 #
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further instructions, please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
 "Tarvitse PC:n, joka on yhdistetty Dreamboksiin. Katso lisätietoja http://www.dm7025.de.\n"
 "Dreamboksisi sammutetaan nyt. Kun olet tehnyt päivitystoimenpiteet sivuston mukaisesti, uusi ohjelmaversio pyytää sinua palauttamaan asetukset."
@@ -10058,7 +10058,7 @@ msgid ""
 "Your internet connection is working now.\n"
 "\n"
 msgstr ""
-"STB_BOX on nyt valmis käyttöön.\n"
+"%s %s on nyt valmis käyttöön.\n"
 "\n"
 "Verkkoyhteys toimii.\n"
 "\n"
@@ -10096,20 +10096,20 @@ msgstr ""
 
 #
 msgid ""
-"Your STB_BOX is now ready to use.\n"
+"Your %s %s is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
-"STB_BOX on nyt valmis käyttöön.\n"
+"%s %s on nyt valmis käyttöön.\n"
 "\n"
 "Lähiverkkoyhteys toimii.\n"
 "\n"
 "Jatka painamalla OK-näppäintä."
 
 #
-msgid "Your STB_BOX is shutting down. Please stand by..."
+msgid "Your %s %s is shutting down. Please stand by..."
 msgstr "Laite sammutetaan. Odota..."
 
 msgid "Your STB will restart after pressing OK on your remote control."
@@ -11579,348 +11579,3 @@ msgstr "tallennus"
 #
 msgid "zapped"
 msgstr "vaihdettu"
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Backup your STB_BOX settings."
-#~ msgstr ""
-#~ "\n"
-#~ "Varmuuskopioi asetukset."
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Restore your STB_BOX settings."
-#~ msgstr ""
-#~ "\n"
-#~ "Palauta asetukset varmuuskopiosta."
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgid "9"
-#~ msgstr "9"
-
-#~ msgid "A demo plugin for TPM usage."
-#~ msgstr "Demo-lisäosa TPM:n käyttöön"
-
-#
-#~ msgid "Audio"
-#~ msgstr "Ääni"
-
-#~ msgid "BER"
-#~ msgstr "BER"
-
-#
-#~ msgid "BER:"
-#~ msgstr "BER:"
-
-#~ msgid "C"
-#~ msgstr "C"
-
-#
-#~ msgid "Channellist menu"
-#~ msgstr "Kanavalistan muokkaus"
-
-#
-#~ msgid "Command execution..."
-#~ msgstr "Komennon suoritus..."
-
-#
-#~ msgid "Continue in background"
-#~ msgstr "Jatka taustalla"
-
-#~ msgid "D"
-#~ msgstr "D"
-
-#
-#, fuzzy
-#~ msgid "Date/time input"
-#~ msgstr "Aika/Päivä"
-
-#
-#~ msgid "Dish"
-#~ msgstr "Antenni"
-
-#
-#~ msgid "Do you want to reboot your STB_BOX?"
-#~ msgstr "Haluatko käynnistää STB_BOXin uudelleen?"
-
-#
-#~ msgid "Do you want to update your STB_BOX?"
-#~ msgstr "Haluatko päivittää STB_BOXisi?"
-
-#
-#~ msgid "Downloadable plugins"
-#~ msgstr "Ladattavia lisäosia"
-
-#
-#, fuzzy
-#~ msgid "EPG selection"
-#~ msgstr "Ohjelman valinta"
-
-#
-#~ msgid "Enable timer"
-#~ msgstr "Ajastin päälle"
-
-#
-#, fuzzy
-#~ msgid "Event view"
-#~ msgstr "Ohjelmatiedot"
-
-#
-#, fuzzy
-#~ msgid "Event view menu"
-#~ msgstr "Ohjelmatiedot"
-
-#
-#~ msgid "Index"
-#~ msgstr "Indeksi"
-
-#
-#, fuzzy
-#~ msgid "Info bar"
-#~ msgstr "Tietopalkki"
-
-#
-#, fuzzy
-#~ msgid "Installing software..."
-#~ msgstr "Asennetaan ohjelmistoa..."
-
-#
-#, fuzzy
-#~ msgid "Job overview"
-#~ msgstr "Työnäkymä"
-
-#
-#~ msgid "Lock:"
-#~ msgstr "Lukit."
-
-#
-#~ msgid "MORE"
-#~ msgstr "LISÄÄ"
-
-#
-#~ msgid "Message"
-#~ msgstr "Viesti"
-
-#
-#~ msgid "Message..."
-#~ msgstr "Viesti..."
-
-#
-#~ msgid "Movielist menu"
-#~ msgstr "Tallenneluettelon valikko"
-
-#
-#~ msgid "Mute"
-#~ msgstr "Mykistä"
-
-#
-#~ msgid "NEXT"
-#~ msgstr "SEURAAVA"
-
-#
-#~ msgid "NOW"
-#~ msgstr "NYT"
-
-#
-#, fuzzy
-#~ msgid "Nameserver setup"
-#~ msgstr "Nimipalvelimen asetukset"
-
-#
-#, fuzzy
-#~ msgid "Network configuration..."
-#~ msgstr "Verkon asetukset"
-
-#
-#~ msgid "Network test..."
-#~ msgstr "Lähiverkon testi..."
-
-#
-#, fuzzy
-#~ msgid "No, but restart from beginning"
-#~ msgstr "Ei, aloita alusta"
-
-#
-#, fuzzy
-#~ msgid "Now playing"
-#~ msgstr "Toistetaan"
-
-#
-#, fuzzy
-#~ msgid "PIN code needed"
-#~ msgstr "Tarvitaan tunnusluku"
-
-#
-#, fuzzy
-#~ msgid "Parental control services editor"
-#~ msgstr "Lapsilukon kanavaeditori"
-
-#
-#, fuzzy
-#~ msgid "PiP setup"
-#~ msgstr "PiP-kuvan asetukset"
-
-#
-#~ msgid "Plugin browser"
-#~ msgstr "Asennetut Plugin-lisäosat"
-
-#~ msgid "Radio"
-#~ msgstr "Radio"
-
-#
-#, fuzzy
-#~ msgid "Reception settings"
-#~ msgstr "Virittimen asetukset"
-
-#
-#~ msgid "SNR"
-#~ msgstr "SNR"
-
-#
-#~ msgid "SNR:"
-#~ msgstr "SNR:"
-
-#
-#~ msgid "Select HDD"
-#~ msgstr "Valitse kiintolevy"
-
-#
-#, fuzzy
-#~ msgid "Select a bouquet"
-#~ msgstr "Tallennetut ohjelmat"
-
-#
-#~ msgid "Select a movie"
-#~ msgstr "Tallennetut ohjelmat"
-
-#
-#, fuzzy
-#~ msgid "Select a network adapter"
-#~ msgstr "Valitse verkkosovitin"
-
-#
-#, fuzzy
-#~ msgid "Select a skin"
-#~ msgstr "Tallennetut ohjelmat"
-
-#
-#, fuzzy
-#~ msgid "Select a tuner"
-#~ msgstr "Tallennetut ohjelmat"
-
-#
-#, fuzzy
-#~ msgid "Service info"
-#~ msgstr "Kanavatiedot"
-
-#
-#~ msgid "Sleep Timer"
-#~ msgstr "Uniajastin"
-
-#
-#~ msgid "The sleep timer has been activated."
-#~ msgstr "Uniajastin on kytketty päälle."
-
-#
-#~ msgid "The sleep timer has been disabled."
-#~ msgstr "Uniajastin on kytketty pois päältä."
-
-#
-#, fuzzy
-#~ msgid "Timer edit"
-#~ msgstr "Ajastuksen muokkaus"
-
-#
-#, fuzzy
-#~ msgid "Timer editor"
-#~ msgstr "Ajastetut ohjelmat"
-
-#
-#~ msgid "Timer status:"
-#~ msgstr "Ajastimen tila:"
-
-#
-#~ msgid "Translation:"
-#~ msgstr "Käännös:"
-
-#~ msgid "UnhandledKey"
-#~ msgstr "TuntematonNäppäin"
-
-#
-#~ msgid "Use time of currently running service"
-#~ msgstr "käytä katseltavan kanavan aikaa"
-
-#
-#~ msgid "Volume"
-#~ msgstr "Äänenvoimakkuus"
-
-#
-#~ msgid "Welcome..."
-#~ msgstr "Tervetuloa..."
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to reboot your STB_BOX.\n"
-#~ "Do that now?"
-#~ msgstr "Haluatko käynnistää STB_BOXin uudelleen?"
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to set your STB_BOX to standby.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "Uniajastimeen asetettu aika on kulunut umpeen.\n"
-#~ "Siirrytäänkö valmiustilaan?"
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to shut down your STB_BOX.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "Uniajastimeen asetettu aika on kulunut umpeen.\n"
-#~ "Sammutetaanko STB_BOX virransäästötilaa?"
-
-#
-#~ msgid "config menu"
-#~ msgstr "Asetusvalikko"
-
-#
-#~ msgid "help..."
-#~ msgstr "apua..."
-
-#
-#~ msgid "pause"
-#~ msgstr "tauko"
-
-#
-#~ msgid "play from next mark or playlist entry"
-#~ msgstr "toista seuraavasta merkistä tai valinnasta"
-
-#
-#~ msgid "play from previous mark or playlist entry"
-#~ msgstr "toista edellisestä merkistä tai valinnasta"

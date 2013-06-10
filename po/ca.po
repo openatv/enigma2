@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-09 17:05+0100\n"
+"POT-Creation-Date: 2013-06-10 11:20+0100\n"
 "PO-Revision-Date: 2012-12-09 02:03+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
@@ -492,7 +492,7 @@ msgid ""
 "your %s %s. Shutdown now?"
 msgstr ""
 "Una gravació acabada pretén apagar\n"
-"la STB_BOX ara. Vols apagar-la?"
+"la %s %s ara. Vols apagar-la?"
 
 #
 #, fuzzy, python-format
@@ -501,7 +501,7 @@ msgid ""
 "Do that now?"
 msgstr ""
 "Una gravació acabada pretén posar\n"
-"la STB_BOX en repòs. Vols fer-ho ara?"
+"la %s %s en repòs. Vols fer-ho ara?"
 
 #
 #, fuzzy
@@ -510,7 +510,7 @@ msgid ""
 "Do that now?"
 msgstr ""
 "Una gravació acabada pretén posar\n"
-"la STB_BOX en repòs. Vols fer-ho ara?"
+"la %s %s en repòs. Vols fer-ho ara?"
 
 #
 #, fuzzy, python-format
@@ -519,7 +519,7 @@ msgid ""
 "%s %s to standby. Do that now?"
 msgstr ""
 "Una gravació acabada pretén posar\n"
-"la STB_BOX en repòs. Vols fer-ho ara?"
+"la %s %s en repòs. Vols fer-ho ara?"
 
 #
 #, fuzzy, python-format
@@ -528,7 +528,7 @@ msgid ""
 "Do that now?"
 msgstr ""
 "Una gravació acabada pretén apagar\n"
-"la STB_BOX ara. Vols apagar-la?"
+"la %s %s ara. Vols apagar-la?"
 
 #
 #, fuzzy, python-format
@@ -537,7 +537,7 @@ msgid ""
 "%s %s to standby. Do that now?"
 msgstr ""
 "Una gravació acabada pretén posar\n"
-"la STB_BOX en repòs. Vols fer-ho ara?"
+"la %s %s en repòs. Vols fer-ho ara?"
 
 #
 #, fuzzy, python-format
@@ -546,7 +546,7 @@ msgid ""
 "your %s %s. Shutdown now?"
 msgstr ""
 "Una gravació acabada pretén apagar\n"
-"la STB_BOX ara. Vols apagar-la?"
+"la %s %s ara. Vols apagar-la?"
 
 #
 msgid "A graphical EPG for all services of an specific bouquet"
@@ -603,7 +603,7 @@ msgid ""
 "%s %s to standby. Do that now?"
 msgstr ""
 "Una programació d'apagada vol posar\n"
-"la STB_BOX en repòs. Vols fer-ho ara?"
+"la %s %s en repòs. Vols fer-ho ara?"
 
 #
 #, fuzzy, python-format
@@ -612,7 +612,7 @@ msgid ""
 "your %s %s. Shutdown now?"
 msgstr ""
 "Una programació d'apagada vol apagar\n"
-"la STB_BOX ara mateix. Vols fer-ho?"
+"la %s %s ara mateix. Vols fer-ho?"
 
 #
 msgid "A small overview of the available icon states and actions."
@@ -888,10 +888,10 @@ msgstr ""
 msgid "Allows more detailed to be in the crash log"
 msgstr ""
 
-msgid "Allows the STB_BOX to read the stored EPG data regularly."
+msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr ""
 
-msgid "Allows the STB_BOX to store the EPG data regularly."
+msgid "Allows the %s %s to store the EPG data regularly."
 msgstr ""
 
 msgid "Allows you hide the extensions of known file types."
@@ -1658,10 +1658,10 @@ msgstr ""
 msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
-msgid "Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time."
+msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
 msgstr ""
 
-msgid "Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes."
+msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -5062,8 +5062,9 @@ msgid "No, do nothing."
 msgstr "No, no cal."
 
 #
-msgid "No, just start my STB_BOX"
-msgstr "No, només arrenca la STB_BOX"
+#, fuzzy
+msgid "No, just start my %s %s"
+msgstr "No, només arrenca la %s %s"
 
 msgid "No, never"
 msgstr ""
@@ -8082,8 +8083,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
-"Please press OK to start using your STB_BOX."
+"Thank you for using the wizard. Your %s %s is now ready to use.\n"
+"Please press OK to start using your %s %s."
 msgstr ""
 
 msgid ""
@@ -8110,12 +8111,6 @@ msgid ""
 "Make sure it is formatted in EXT2 or EXT3!"
 msgstr ""
 
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr ""
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr ""
-
 msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
@@ -8130,6 +8125,12 @@ msgid "The PIN code has been changed successfully."
 msgstr ""
 
 msgid "The PIN codes you entered are different."
+msgstr ""
+
+msgid "The %s %s reads the stored EPG data every (hours)."
+msgstr ""
+
+msgid "The %s %s stores the EPG data every (hours)."
 msgstr ""
 
 msgid ""
@@ -9385,14 +9386,13 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your STB_BOX by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "Benvingut a l'assistent per a l'actualització de la imatge. Aquest t'ajudarà a actualitzar el firmware de la STB_BOX, donant-te la possibilitat de fer una còpia de seguretat de la configuració actual, i amb una petita explicació sobre com actualitzar-ne el firmware."
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgstr "Benvingut a l'assistent per a l'actualització de la imatge. Aquest t'ajudarà a actualitzar el firmware de la %s %s, donant-te la possibilitat de fer una còpia de seguretat de la configuració actual, i amb una petita explicació sobre com actualitzar-ne el firmware."
 
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will guide you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -9400,7 +9400,7 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your %s %s.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 
@@ -9767,12 +9767,13 @@ msgid "You have to wait %s!"
 msgstr ""
 
 #
+#, fuzzy
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further instructions, please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Et caldrà un PC connectat a la STB_BOX. Si necesites més instruccions, consulta la pàgina web http://www.dm7025.de.\n"
-"Ara s'apagarà la STB_BOX. Després d'haver fer l'actualització segons les instruccions de la web,  el nou firmware et demanarà actualitzar la configuració."
+"Et caldrà un PC connectat a la %s %s. Si necesites més instruccions, consulta la pàgina web http://www.dm7025.de.\n"
+"Ara s'apagarà la %s %s. Després d'haver fer l'actualització segons les instruccions de la web,  el nou firmware et demanarà actualitzar la configuració."
 
 msgid "You seem to be in timeshift!"
 msgstr ""
@@ -9826,9 +9827,11 @@ msgid ""
 "Do you want to remove now ?"
 msgstr ""
 
-#
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr ""
+
 msgid ""
-"Your STB_BOX is now ready to use.\n"
+"Your %s %s is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
@@ -9836,11 +9839,9 @@ msgid ""
 msgstr ""
 
 #
-msgid "Your STB_BOX is shutting down. Please stand by..."
-msgstr "La STB_BOX s'està reiniciant. Espera un moment..."
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr ""
+#, fuzzy
+msgid "Your %s %s is shutting down. Please stand by..."
+msgstr "La %s %s s'està reiniciant. Espera un moment..."
 
 #
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
@@ -11299,249 +11300,3 @@ msgstr "gravar"
 #
 msgid "zapped"
 msgstr "zappejat"
-
-#
-#~ msgid "1"
-#~ msgstr "1"
-
-#
-#~ msgid "3"
-#~ msgstr "3"
-
-#
-#~ msgid "4"
-#~ msgstr "4"
-
-#
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#
-#~ msgid "7"
-#~ msgstr "7"
-
-#
-#~ msgid "8"
-#~ msgstr "8"
-
-#
-#~ msgid "9"
-#~ msgstr "9"
-
-#
-#~ msgid "Audio"
-#~ msgstr "So"
-
-#
-#~ msgid "BER:"
-#~ msgstr "BER:"
-
-#
-#~ msgid "Channellist menu"
-#~ msgstr "Menú de llista de canals"
-
-#
-#, fuzzy
-#~ msgid "Date/time input"
-#~ msgstr "Entrada Hora/Data"
-
-#
-#~ msgid "Dish"
-#~ msgstr "Antena"
-
-#
-#~ msgid "Downloadable plugins"
-#~ msgstr "Plugins descarregables"
-
-#
-#, fuzzy
-#~ msgid "EPG selection"
-#~ msgstr "Selecció EPG"
-
-#
-#, fuzzy
-#~ msgid "Event view"
-#~ msgstr "Veure programes"
-
-#
-#, fuzzy
-#~ msgid "Event view menu"
-#~ msgstr "Veure programes"
-
-#
-#~ msgid "Index"
-#~ msgstr "Índex"
-
-#
-#, fuzzy
-#~ msgid "Info bar"
-#~ msgstr "Barra d'informació"
-
-#
-#, fuzzy
-#~ msgid "Installing software..."
-#~ msgstr "Instal·lant programari..."
-
-#
-#~ msgid "MORE"
-#~ msgstr "MÉS"
-
-#
-#~ msgid "Message"
-#~ msgstr "Missatge"
-
-#
-#~ msgid "Mute"
-#~ msgstr "Silenci"
-
-#
-#~ msgid "NEXT"
-#~ msgstr "SEGÜENT"
-
-#
-#~ msgid "NOW"
-#~ msgstr "ARA"
-
-#
-#, fuzzy
-#~ msgid "Nameserver setup"
-#~ msgstr "Configuració dels DNS"
-
-#
-#, fuzzy
-#~ msgid "Network configuration..."
-#~ msgstr "Configuració del sintonitzador"
-
-#
-#, fuzzy
-#~ msgid "Now playing"
-#~ msgstr "Reproduint"
-
-#
-#, fuzzy
-#~ msgid "PIN code needed"
-#~ msgstr "Cal un codi pin"
-
-#
-#, fuzzy
-#~ msgid "Parental control services editor"
-#~ msgstr "Editor dels canals del control parental"
-
-#
-#, fuzzy
-#~ msgid "PiP setup"
-#~ msgstr "Configuració PiP"
-
-#
-#~ msgid "Plugin browser"
-#~ msgstr "Plugin navegador"
-
-#
-#, fuzzy
-#~ msgid "Reception settings"
-#~ msgstr "Configuració de recepció"
-
-#
-#~ msgid "Select HDD"
-#~ msgstr "Seleccionar disc dur"
-
-#
-#, fuzzy
-#~ msgid "Select a bouquet"
-#~ msgstr "Seleccionar una pel·lícula"
-
-#
-#~ msgid "Select a movie"
-#~ msgstr "Seleccionar una pel·lícula"
-
-#
-#, fuzzy
-#~ msgid "Select a network adapter"
-#~ msgstr "Selecciona interfície de xarxa"
-
-#
-#, fuzzy
-#~ msgid "Select a skin"
-#~ msgstr "Seleccionar una pel·lícula"
-
-#
-#, fuzzy
-#~ msgid "Select a tuner"
-#~ msgstr "Seleccionar una pel·lícula"
-
-#
-#, fuzzy
-#~ msgid "Service info"
-#~ msgstr "Info del canal"
-
-#
-#~ msgid "Sleep Timer"
-#~ msgstr "Programació d'apagada"
-
-#
-#~ msgid "The sleep timer has been activated."
-#~ msgstr "S'ha activat la programació d'aturada."
-
-#
-#~ msgid "The sleep timer has been disabled."
-#~ msgstr "S'ha desactivat la programació d'aturada."
-
-#
-#, fuzzy
-#~ msgid "Timer edit"
-#~ msgstr "Editar hora"
-
-#
-#, fuzzy
-#~ msgid "Timer editor"
-#~ msgstr "Editor de programacions"
-
-#
-#~ msgid "Timer status:"
-#~ msgstr "Estat de la programació:"
-
-#
-#~ msgid "Volume"
-#~ msgstr "Volum"
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to reboot your STB_BOX.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "Una programació d'apagada vol posar\n"
-#~ "la STB_BOX en repòs. Vols fer-ho ara?"
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to set your STB_BOX to standby.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "Una programació d'apagada vol posar\n"
-#~ "la STB_BOX en repòs. Vols fer-ho ara?"
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to shut down your STB_BOX.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "Una programació d'apagada vol apagar\n"
-#~ "la STB_BOX ara mateix. Vols fer-ho?"
-
-#
-#~ msgid "config menu"
-#~ msgstr "menú configuració"
-
-#
-#~ msgid "help..."
-#~ msgstr "ajuda..."
-
-#
-#~ msgid "pause"
-#~ msgstr "pausa"

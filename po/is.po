@@ -82,7 +82,7 @@ msgid ""
 "Restore your %s %s with a new firmware."
 msgstr ""
 "\n"
-"Setja inn nýtt stýrikerfi í STB_BOXið þitt."
+"Setja inn nýtt stýrikerfi í %s %sið þitt."
 
 #
 msgid ""
@@ -272,7 +272,7 @@ msgstr ""
 #
 #, fuzzy, python-format
 msgid "%s %s format data DVD (HDTV compatible)"
-msgstr "STB_BOX gagna formaður DVD diskur (HDTV samhæfður)"
+msgstr "%s %s gagna formaður DVD diskur (HDTV samhæfður)"
 
 #, python-format
 msgid "%s %s front panel"
@@ -295,7 +295,7 @@ msgstr "Ýttu á OK á fjarstýringunni til að halda áfram."
 #
 #, fuzzy, python-format
 msgid "%s %s software because updates are available."
-msgstr "Hugbúnaður uppfærslur eru tiltækar fyrir STB_BOXið."
+msgstr "Hugbúnaður uppfærslur eru tiltækar fyrir %s %sið."
 
 #
 #, python-format
@@ -508,7 +508,7 @@ msgid ""
 "A finished power timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"Tímastilling vill slökkva á STB_BOXinu.\n"
+"Tímastilling vill slökkva á %s %sinu.\n"
 "Viltu gera það núna?"
 
 #
@@ -517,7 +517,7 @@ msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
 "Do that now?"
 msgstr ""
-"Tímastilling vill setja STB_BOXið í\n"
+"Tímastilling vill setja %s %sið í\n"
 "biðstöðu. Viltu gera það núna?"
 
 #, fuzzy
@@ -525,7 +525,7 @@ msgid ""
 "A finished powertimer wants to restart the user interface.\n"
 "Do that now?"
 msgstr ""
-"STB_BOXið þitt er nú tilbúið til notkunar.\n"
+"%s %sið þitt er nú tilbúið til notkunar.\n"
 "\n"
 "Veraldarvefs tengingin er virk núna.\n"
 "\n"
@@ -536,7 +536,7 @@ msgid ""
 "A finished powertimer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Tímastilling vill setja STB_BOXið í\n"
+"Tímastilling vill setja %s %sið í\n"
 "biðstöðu. Viltu gera það núna?"
 
 #
@@ -545,7 +545,7 @@ msgid ""
 "A finished powertimer wants to shutdown your %s %s.\n"
 "Do that now?"
 msgstr ""
-"Tímastilling vill slökkva á STB_BOXinu.\n"
+"Tímastilling vill slökkva á %s %sinu.\n"
 "Viltu gera það núna?"
 
 #
@@ -554,7 +554,7 @@ msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Tímastilling vill setja STB_BOXið í\n"
+"Tímastilling vill setja %s %sið í\n"
 "biðstöðu. Viltu gera það núna?"
 
 #
@@ -563,7 +563,7 @@ msgid ""
 "A finished record timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"Tímastilling vill slökkva á STB_BOXinu.\n"
+"Tímastilling vill slökkva á %s %sinu.\n"
 "Viltu gera það núna?"
 
 #
@@ -621,7 +621,7 @@ msgid ""
 "A sleep timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Tímastilling vill setja STB_BOXið í\n"
+"Tímastilling vill setja %s %sið í\n"
 "biðstöðu. Viltu gera það núna?"
 
 #
@@ -630,7 +630,7 @@ msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"Tímastilling vill slökkva á STB_BOXinu.\n"
+"Tímastilling vill slökkva á %s %sinu.\n"
 "Viltu gera það núna?"
 
 #
@@ -900,10 +900,10 @@ msgstr ""
 msgid "Allows more detailed to be in the crash log"
 msgstr ""
 
-msgid "Allows the STB_BOX to read the stored EPG data regularly."
+msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr ""
 
-msgid "Allows the STB_BOX to store the EPG data regularly."
+msgid "Allows the %s %s to store the EPG data regularly."
 msgstr ""
 
 msgid "Allows you hide the extensions of known file types."
@@ -1620,10 +1620,10 @@ msgstr ""
 msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
-msgid "Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time."
+msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
 msgstr ""
 
-msgid "Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes."
+msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -2087,7 +2087,7 @@ msgstr ""
 
 #, fuzzy, python-format
 msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "Gat ekki tengt við STB_BOX .NFI stýrikerfis vefþjón:"
+msgstr "Gat ekki tengt við %s %s .NFI stýrikerfis vefþjón:"
 
 msgid "Could not find installed channel list."
 msgstr ""
@@ -2829,12 +2829,12 @@ msgstr "Breyta stillingum"
 #
 #, fuzzy, python-format
 msgid "Edit the Nameserver configuration of your %s %s.\n"
-msgstr "Breyta nafnaþjóns stillingum STB_BOXins.\n"
+msgstr "Breyta nafnaþjóns stillingum %s %sins.\n"
 
 #
 #, fuzzy, python-format
 msgid "Edit the network configuration of your %s %s.\n"
-msgstr "Breyta stillingum netkorts í STB_BOXinu.\n"
+msgstr "Breyta stillingum netkorts í %s %sinu.\n"
 
 #
 msgid "Edit title"
@@ -3875,7 +3875,7 @@ msgid "Install lcd picons on"
 msgstr ""
 
 msgid "Install local extension"
-msgstr "Setja inn viðbót af STB_BOXi"
+msgstr "Setja inn viðbót af %s %si"
 
 #
 msgid "Install or remove finished."
@@ -4991,8 +4991,8 @@ msgid "No, do nothing."
 msgstr "Nei, ekki gera neitt."
 
 #
-msgid "No, just start my STB_BOX"
-msgstr "Nei, ræstu bara STB_BOXið mitt"
+msgid "No, just start my %s %s"
+msgstr "Nei, ræstu bara %s %sið mitt"
 
 msgid "No, never"
 msgstr "Nei, aldrei"
@@ -8012,7 +8012,7 @@ msgstr "Prufu hamur"
 #
 #, fuzzy, python-format
 msgid "Test the network configuration of your %s %s.\n"
-msgstr "Prófa stillingar netkorts í STB_BOXinu.\n"
+msgstr "Prófa stillingar netkorts í %s %sinu.\n"
 
 #
 #, fuzzy
@@ -8039,8 +8039,8 @@ msgstr ""
 "Ýttu á OK til að halda áfram."
 
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
-"Please press OK to start using your STB_BOX."
+"Thank you for using the wizard. Your %s %s is now ready to use.\n"
+"Please press OK to start using your %s %s."
 msgstr ""
 
 msgid ""
@@ -8067,10 +8067,10 @@ msgid ""
 "Make sure it is formatted in EXT2 or EXT3!"
 msgstr ""
 
-msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr ""
 
-msgid "The STB_BOX stores the EPG data every (hours)."
+msgid "The %s %s stores the EPG data every (hours)."
 msgstr ""
 
 msgid ""
@@ -8254,7 +8254,7 @@ msgstr ""
 #
 #, fuzzy, python-format
 msgid "This %s %s cannot decode %s streams!"
-msgstr "Þetta STB_BOX getur ekki afrugað %s strauma!"
+msgstr "Þetta %s %s getur ekki afrugað %s strauma!"
 
 #
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
@@ -8390,7 +8390,7 @@ msgid ""
 "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
 "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
-"Þetta íforrit útbýr USB staut sem er hægt að nota til að uppfæta stýrikerfið í STB_BOXinu án þess að nota tölvu.\n"
+"Þetta íforrit útbýr USB staut sem er hægt að nota til að uppfæta stýrikerfið í %s %sinu án þess að nota tölvu.\n"
 "Fyrst þarf að undirbúa USB stautinn þannig að hægt verði að ræsa frá honum.\n"
 "Næst þarf að hlaða niður NFI stýrikerfi frá uppfærslu vefþjóni sem er vistað á USB stautnum.\n"
 "Ef þú hefur nú þegar útbúið USB staut þá skaltu setja það í núna. Annars skaltu setja USB staut sem er minnst 64MB sem er hægt að nota!"
@@ -8887,7 +8887,7 @@ msgstr[1] ""
 #, fuzzy, python-format
 msgid "Update failed. Your %s %s does not have a working internet connection."
 msgstr ""
-"STB_BOXið þitt er nú tilbúið til notkunar.\n"
+"%s %sið þitt er nú tilbúið til notkunar.\n"
 "\n"
 "Veraldarvefs tengingin er virk núna.\n"
 "\n"
@@ -9401,19 +9401,19 @@ msgstr ""
 "Farðu þá að enda þess og ýttu á OK, veldu 'enda klippingu'. Það er allt og sumt."
 
 #, fuzzy
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your STB_BOX by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "Velkominn til stýrikerfis uppfærslu ráðgjafann. Ráðgjafinn aðstoðar þig við að uppfæra stýrikerfi STB_BOXins með því að sjá um afritun af þínum stillingum og sýnir svo hverning uppfærslan fer fram."
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgstr "Velkominn til stýrikerfis uppfærslu ráðgjafann. Ráðgjafinn aðstoðar þig við að uppfæra stýrikerfi %s %sins með því að sjá um afritun af þínum stillingum og sýnir svo hverning uppfærslan fer fram."
 
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will guide you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
 "Velkomin (n).\n"
 "\n"
-"Ef þú vilt tengja STB_BOXið við veraldarvefinn þá getur þessi ráðgjafi hjálpað þér að setja upp grunnstillingar til þess.\n"
+"Ef þú vilt tengja %s %sið við veraldarvefinn þá getur þessi ráðgjafi hjálpað þér að setja upp grunnstillingar til þess.\n"
 "\n"
 "Ýttu á OK til að byrja stillingar á netkortinu"
 
@@ -9421,12 +9421,12 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your %s %s.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Velkomin (n).\n"
 "\n"
-"Ef þú vilt tengja STB_BOXið við veraldarvefinn þá getur þessi ráðgjafi hjálpað þér að setja upp grunnstillingar til þess.\n"
+"Ef þú vilt tengja %s %sið við veraldarvefinn þá getur þessi ráðgjafi hjálpað þér að setja upp grunnstillingar til þess.\n"
 "\n"
 "Ýttu á OK til að byrja stillingar á netkortinu"
 
@@ -9749,7 +9749,7 @@ msgstr "Þú getur sett inn þetta íforrit."
 
 #, fuzzy, python-format
 msgid "You can only burn %s %s recordings!"
-msgstr "Þú getur bara brennt STB_BOX upptökur!"
+msgstr "Þú getur bara brennt %s %s upptökur!"
 
 msgid "You can remove this plugin."
 msgstr "Þú getur tekið út þetta íforrit."
@@ -9799,11 +9799,11 @@ msgstr "Þú þarf að bíða %s!"
 
 #
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further instructions, please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Þú þarft að hafa tölvu tengda við STB_BOXið. Ef þú þarft nánari upplýsingar þá skoðaðu síðuna http://www.dm7025.de.\n"
-"STB_BOXið verður núna stoppað. Eftir að þú hefur uppfært samkvæmt leiðbeinungunum á síðunni þá mun nýja stýrikerfið biðja þig um að setja aftur inn afritið."
+"Þú þarft að hafa tölvu tengda við %s %sið. Ef þú þarft nánari upplýsingar þá skoðaðu síðuna http://www.dm7025.de.\n"
+"%s %sið verður núna stoppað. Eftir að þú hefur uppfært samkvæmt leiðbeinungunum á síðunni þá mun nýja stýrikerfið biðja þig um að setja aftur inn afritið."
 
 msgid "You seem to be in timeshift!"
 msgstr ""
@@ -9825,7 +9825,7 @@ msgid ""
 "Your internet connection is working now.\n"
 "\n"
 msgstr ""
-"STB_BOXið þitt er nú tilbúið til notkunar.\n"
+"%s %sið þitt er nú tilbúið til notkunar.\n"
 "\n"
 "Veraldarvefs tengingin er virk núna.\n"
 "\n"
@@ -9863,21 +9863,21 @@ msgstr ""
 
 #
 msgid ""
-"Your STB_BOX is now ready to use.\n"
+"Your %s %s is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
-"STB_BOXið þitt er tilbúið til notkunar.\n"
+"%s %sið þitt er tilbúið til notkunar.\n"
 "\n"
 "Veraldarvefs tengingu er komið á.\n"
 "\n"
 "Ýttu á OK til að halda áfram."
 
 #
-msgid "Your STB_BOX is shutting down. Please stand by..."
-msgstr "STB_BOXið er að slökkva á sér. Vinsamlega bíðið..."
+msgid "Your %s %s is shutting down. Please stand by..."
+msgstr "%s %sið er að slökkva á sér. Vinsamlega bíðið..."
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
@@ -11331,348 +11331,3 @@ msgstr "taka upp"
 #
 msgid "zapped"
 msgstr "stokkið"
-
-#~ msgid ""
-#~ "\n"
-#~ "Backup your STB_BOX settings."
-#~ msgstr ""
-#~ "\n"
-#~ "Taka afrit af stillingum."
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Restore your STB_BOX settings."
-#~ msgstr ""
-#~ "\n"
-#~ "Setja inn þínar stillingar aftur."
-
-#
-#~ msgid "1"
-#~ msgstr "1"
-
-#
-#~ msgid "3"
-#~ msgstr "3"
-
-#
-#~ msgid "4"
-#~ msgstr "4"
-
-#
-#~ msgid "5"
-#~ msgstr "5"
-
-#
-#~ msgid "6"
-#~ msgstr "6"
-
-#
-#~ msgid "7"
-#~ msgstr "7"
-
-#
-#~ msgid "8"
-#~ msgstr "8"
-
-#
-#~ msgid "9"
-#~ msgstr "9"
-
-#~ msgid "A demo plugin for TPM usage."
-#~ msgstr "Íforrits sýnishorn."
-
-#~ msgid "Audio"
-#~ msgstr "Hljóð"
-
-#~ msgid "BER"
-#~ msgstr "BER"
-
-#~ msgid "BER:"
-#~ msgstr "BER:"
-
-#~ msgid "C"
-#~ msgstr "C"
-
-#~ msgid "Channellist menu"
-#~ msgstr "Valmynd rásalista"
-
-#~ msgid "Command execution..."
-#~ msgstr "Keyrsla skipunar..."
-
-#~ msgid "Continue in background"
-#~ msgstr "Halda áfram í bakgrunni"
-
-#~ msgid "D"
-#~ msgstr "D"
-
-#
-#, fuzzy
-#~ msgid "Date/time input"
-#~ msgstr "Tíma/Dags Innsláttur"
-
-#
-#~ msgid "Dish"
-#~ msgstr "Diskur"
-
-#
-#~ msgid "Do you want to reboot your STB_BOX?"
-#~ msgstr "Viltu endurræsa STB_BOXinu?"
-
-#
-#~ msgid "Do you want to update your STB_BOX?"
-#~ msgstr "Viltu uppfæra STB_BOXið þitt?"
-
-#~ msgid "Downloadable plugins"
-#~ msgstr "Niðurhalanleg íforrit"
-
-#
-#, fuzzy
-#~ msgid "EPG selection"
-#~ msgstr "EPG val"
-
-#
-#~ msgid "Enable timer"
-#~ msgstr "Virkja tímastillingu"
-
-#
-#, fuzzy
-#~ msgid "Event view"
-#~ msgstr "Skoða atriði"
-
-#
-#, fuzzy
-#~ msgid "Event view menu"
-#~ msgstr "Skoða atriði"
-
-#
-#~ msgid "Index"
-#~ msgstr "Yfirlit"
-
-#
-#, fuzzy
-#~ msgid "Info bar"
-#~ msgstr "Upplýsingar"
-
-#, fuzzy
-#~ msgid "Installing software..."
-#~ msgstr "Set inn hugbúnað..."
-
-#
-#, fuzzy
-#~ msgid "Job overview"
-#~ msgstr "Skoða vinnslu"
-
-#
-#~ msgid "Lock:"
-#~ msgstr "Lás:"
-
-#
-#~ msgid "MORE"
-#~ msgstr "MEIRA"
-
-#
-#~ msgid "Message"
-#~ msgstr "Skilaboð"
-
-#
-#~ msgid "Message..."
-#~ msgstr "Skilaboð..."
-
-#
-#~ msgid "Movielist menu"
-#~ msgstr "Bíómynda valmynd"
-
-#
-#~ msgid "Mute"
-#~ msgstr "Hljóð Af"
-
-#
-#~ msgid "NEXT"
-#~ msgstr "NÆST"
-
-#
-#~ msgid "NOW"
-#~ msgstr "NÚNA"
-
-#
-#, fuzzy
-#~ msgid "Nameserver setup"
-#~ msgstr "Uppsetning nafnaþjóns"
-
-#
-#, fuzzy
-#~ msgid "Network configuration..."
-#~ msgstr "Stilling nettengingar..."
-
-#
-#~ msgid "Network test..."
-#~ msgstr "Prufa nettengingu..."
-
-#
-#, fuzzy
-#~ msgid "No, but restart from beginning"
-#~ msgstr "Nei, en byrja frá byrjun"
-
-#
-#, fuzzy
-#~ msgid "Now playing"
-#~ msgstr "Spila núna"
-
-#
-#, fuzzy
-#~ msgid "PIN code needed"
-#~ msgstr "Kóða vantar"
-
-#
-#, fuzzy
-#~ msgid "Parental control services editor"
-#~ msgstr "Forritun foreldrakóða á rásir"
-
-#
-#, fuzzy
-#~ msgid "PiP setup"
-#~ msgstr "Uppsetning Mynd í Mynd"
-
-#~ msgid "Plugin browser"
-#~ msgstr "Íforrita leit"
-
-#
-#~ msgid "Radio"
-#~ msgstr "Útvarp"
-
-#
-#, fuzzy
-#~ msgid "Reception settings"
-#~ msgstr "Stilling móttöku"
-
-#
-#~ msgid "SNR"
-#~ msgstr "SNR"
-
-#
-#~ msgid "SNR:"
-#~ msgstr "SNR:"
-
-#
-#~ msgid "Select HDD"
-#~ msgstr "Veldu harðadisk"
-
-#
-#, fuzzy
-#~ msgid "Select a bouquet"
-#~ msgstr "Veldu mynd"
-
-#
-#~ msgid "Select a movie"
-#~ msgstr "Veldu mynd"
-
-#
-#, fuzzy
-#~ msgid "Select a network adapter"
-#~ msgstr "Veldu Netkort"
-
-#
-#, fuzzy
-#~ msgid "Select a skin"
-#~ msgstr "Veldu mynd"
-
-#
-#, fuzzy
-#~ msgid "Select a tuner"
-#~ msgstr "Veldu mynd"
-
-#
-#, fuzzy
-#~ msgid "Service info"
-#~ msgstr "Upplýsingar"
-
-#
-#~ msgid "Sleep Timer"
-#~ msgstr "Tímastilling"
-
-#
-#~ msgid "The sleep timer has been activated."
-#~ msgstr "Tíma stilling fyrir svefn er virk."
-
-#
-#~ msgid "The sleep timer has been disabled."
-#~ msgstr "Tímastilling til að slökkva er óvirkur."
-
-#
-#, fuzzy
-#~ msgid "Timer edit"
-#~ msgstr "Breyta Tímastillingu"
-
-#
-#, fuzzy
-#~ msgid "Timer editor"
-#~ msgstr "Breyta Tímastillingum"
-
-#
-#~ msgid "Timer status:"
-#~ msgstr "Tíma staða:"
-
-#
-#~ msgid "Translation:"
-#~ msgstr "Þýðing:"
-
-#~ msgid "UnhandledKey"
-#~ msgstr "Ónotaður"
-
-#
-#~ msgid "Use time of currently running service"
-#~ msgstr "Nota tíma nú keyrandi þjónustu"
-
-#
-#~ msgid "Volume"
-#~ msgstr "Styrkur"
-
-#
-#~ msgid "Welcome..."
-#~ msgstr "Velkomin(n)..."
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to reboot your STB_BOX.\n"
-#~ "Do that now?"
-#~ msgstr "Viltu endurræsa STB_BOXinu?"
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to set your STB_BOX to standby.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "Tímastilling vill setja STB_BOXið í\n"
-#~ "biðstöðu. Viltu gera það núna?"
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to shut down your STB_BOX.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "Tímastilling vill slökkva á STB_BOXinu.\n"
-#~ "Viltu gera það núna?"
-
-#
-#~ msgid "config menu"
-#~ msgstr "stillinga valmynd"
-
-#
-#~ msgid "help..."
-#~ msgstr "hjálp..."
-
-#
-#~ msgid "pause"
-#~ msgstr "pása"
-
-#
-#~ msgid "play from next mark or playlist entry"
-#~ msgstr "spila frá næsta merki eða atriði úr spilunarlista"
-
-#
-#~ msgid "play from previous mark or playlist entry"
-#~ msgstr "spila frá fyrra merki eða atriði úr spilunarlista"
