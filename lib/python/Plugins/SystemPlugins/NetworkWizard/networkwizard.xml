@@ -1,6 +1,6 @@
 <wizard>
         <step id="welcome">
-                <text value="Welcome.\n\nIf you want to connect your STB_BOX to the Internet, this wizard will guide you through the basic network setup of your STB_BOX.\n\nPress OK to start configuring your network" />
+                <text value="Welcome.\n\nIf you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n\nPress OK to start configuring your network" />
                 <displaytext value="Network wizard" />
 	        <code>
 self.clearSelectedKeys()
@@ -57,7 +57,7 @@ self.checkNetwork()
 		<condition>
 self.condition = (self.InterfaceState == True )
 		</condition>
-                <text value="Your STB_BOX is now ready to use.\n\nYour internet connection is working now.\n\nPlease press OK to continue." />
+                <text value="Your %s %s is now ready to use.\n\nYour internet connection is working now.\n\nPlease press OK to continue." />
                 <displaytext value="Please follow the instructions on the TV" />
                 <code>
 self.clearSelectedKeys()
@@ -175,7 +175,7 @@ self.AdapterSetupEnd(self.selectedInterface)
 		<condition>
 self.condition = (self.InterfaceState == True )
 		</condition>
-                <text value="Your STB_BOX is now ready to use.\n\nYour internet connection is working now.\n\nPlease press OK to continue." />
+                <text value="Your %s %s is now ready to use.\n\nYour internet connection is working now.\n\nPlease press OK to continue." />
                 <displaytext value="Please follow the instructions on the TV" />
                 <code>
 self.clearSelectedKeys()

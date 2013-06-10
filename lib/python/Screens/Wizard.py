@@ -70,9 +70,9 @@ class Wizard(Screen):
 				if attrs.has_key('laststep'):
 					self.wizard[self.lastStep]["laststep"] = str(attrs.get('laststep'))
 			elif (name == "text"):
-				self.wizard[self.lastStep]["text"] = str(attrs.get('value')).replace("\\n", "\n").replace("STB_BOX","%s %s" % (getMachineBrand(), getMachineName()))
+				self.wizard[self.lastStep]["text"] = str(attrs.get('value')).replace("\\n", "\n").replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
 			elif (name == "displaytext"):
-				self.wizard[self.lastStep]["displaytext"] = str(attrs.get('value')).replace("\\n", "\n").replace("STB_BOX","%s %s" % (getMachineBrand(), getMachineName()))
+				self.wizard[self.lastStep]["displaytext"] = str(attrs.get('value')).replace("\\n", "\n").replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
 			elif (name == "list"):
 				if (attrs.has_key('type')):
 					if attrs["type"] == "dynamic":
