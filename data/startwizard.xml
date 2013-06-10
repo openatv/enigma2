@@ -1,7 +1,7 @@
 <wizard>
 		<step id="start" nextstep="introduction">
-			<text value="Welcome.\n\nThis start wizard will guide you through the basic setup of your STB_BOX.\nPress the OK button on your remote control to move to the next step." />
-			<displaytext value="Welcome.\n\nThis start wizard will guide you through the basic setup of your STB_BOX.\nPress the OK button on your remote control to move to the next step." />
+			<text value="Welcome.\n\nThis start wizard will guide you through the basic setup of your %s %s.\nPress the OK button on your remote control to move to the next step." />
+			<displaytext value="Welcome.\n\nThis start wizard will guide you through the basic setup of your %s %s.\nPress the OK button on your remote control to move to the next step." />
 			<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
@@ -178,8 +178,8 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 		</step>
 <!--
 		<step id="finisheddefaultsatlists">
-			<text value="Do you want to enable the parental control feature on your STB_BOX?" />
-			<displaytext value="Do you want to enable the parental control feature on your STB_BOX?" />
+			<text value="Do you want to enable the parental control feature on your %s %s?" />
+			<displaytext value="Do you want to enable the parental control feature on your %s %s?" />
 			<list>
 				<listentry caption="No" step="end" />
 				<listentry caption="Yes" step="parentalsetup" />
@@ -221,16 +221,16 @@ config.ParentalControl.servicepinactive.save()
 config.ParentalControl.setuppin.value = config.ParentalControl.servicepin[0].value
 config.ParentalControl.setuppin.save()
 			</code>
-			<text value="After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that." />
-			<displaytext value="After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that." />
+			<text value="After the start wizard is completed, you need to protect single services. Refer to your %s %s's manual on how to do that." />
+			<displaytext value="After the start wizard is completed, you need to protect single services. Refer to your %s %s's manual on how to do that." />
 		</step>
 -->
 		<step id="end" laststep="true">
 			<condition>
 self.condition = self.isLastWizard
 			</condition>
-			<text value="Thank you for using the wizard. Your STB_BOX is now ready to use.\nPlease press OK to start using your STB_BOX." />
-			<displaytext value="Thank you for using the wizard. Your STB_BOX is now ready to use.\nPlease press OK to start using your STB_BOX." />
+			<text value="Thank you for using the wizard. Your %s %s is now ready to use.\nPlease press OK to start using your %s %s." />
+			<displaytext value="Thank you for using the wizard. Your %s %s is now ready to use.\nPlease press OK to start using your %s %s." />
 			<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
