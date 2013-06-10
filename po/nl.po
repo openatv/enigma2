@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-25 13:57+0100\n"
-"PO-Revision-Date: 2013-05-25 13:11+0100\n"
+"POT-Creation-Date: 2013-06-09 17:05+0100\n"
+"PO-Revision-Date: 2013-06-10 16:04+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -29,12 +29,13 @@ msgstr ""
 "\n"
 "Druk op OK en een ogenblik geduld."
 
+#, python-format
 msgid ""
 "\n"
-"Backup your STB_BOX settings."
+"Backup your %s %s settings."
 msgstr ""
 "\n"
-"Maak een back-up van uw instellingen."
+"Maak een backup van de instellingen van uw %s %s."
 
 msgid ""
 "\n"
@@ -43,19 +44,21 @@ msgstr ""
 "\n"
 "Wijzig het upgrade bron adres."
 
+#, python-format
 msgid ""
 "\n"
-"Manage extensions or plugins for your STB_BOX"
+"Manage extensions or plugins for your %s %s"
 msgstr ""
 "\n"
-"Beheer extensies en plugins voor uw STB_BOX."
+"Beheer extensies en plugins voor uw %s %s."
 
+#, python-format
 msgid ""
 "\n"
-"Online update of your STB_BOX software."
+"Online update of your %s %s software."
 msgstr ""
 "\n"
-"Online bijwerken van uw STB_BOX software."
+"Online bijwerken van uw %s %s software."
 
 msgid ""
 "\n"
@@ -64,19 +67,21 @@ msgstr ""
 "\n"
 "Druk op OK om door te gaan."
 
+#, python-format
 msgid ""
 "\n"
-"Restore your STB_BOX settings."
+"Restore your %s %s settings."
 msgstr ""
 "\n"
-"Zet de instellingen voor uw STB_BOX terug."
+"De instellingen van uw %s %s terugplaatsen."
 
+#, python-format
 msgid ""
 "\n"
-"Restore your STB_BOX with a new firmware."
+"Restore your %s %s with a new firmware."
 msgstr ""
 "\n"
-"Plaats nieuwe firmware inl uw STB_BOX."
+"Plaats nieuwe firmware inl uw %s %s."
 
 msgid ""
 "\n"
@@ -246,6 +251,34 @@ msgstr "%d-%m-%Y"
 #. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
 msgid "%k:%M %e/%m"
 msgstr "%k:%M %e/%m"
+
+#, python-format
+msgid "%s %s advanced remote control (native)"
+msgstr "%s %s geavanceerde AB"
+
+#, python-format
+msgid "%s %s format data DVD (HDTV compatible)"
+msgstr "%s %s format data DVD (HDTV compatible)"
+
+#, python-format
+msgid "%s %s front panel"
+msgstr "%s %s frontpaneel"
+
+#, python-format
+msgid "%s %s ir keyboard"
+msgstr "%s %s ir toetsenbord"
+
+#, python-format
+msgid "%s %s ir mouse"
+msgstr "%s %s ir muis"
+
+#, python-format
+msgid "%s %s remote control (native)"
+msgstr "%s %s AB"
+
+#, python-format
+msgid "%s %s software because updates are available."
+msgstr "%s %s software want er zijn updates beschikbaar."
 
 #, python-format
 msgid "%s (%s)\n"
@@ -422,33 +455,60 @@ msgstr ""
 "Een configuratiebestand (%s) is sinds de installatie gewijzigd.\n"
 "Wilt u uw versie behouden?"
 
+#, python-format
 msgid ""
 "A finished power timer wants to shut down\n"
-"your STB_BOX. Shutdown now?"
+"your %s %s. Shutdown now?"
 msgstr ""
 "Een afgewerkte timer wil uw\n"
-"STB_BOX uitschakelen. Wilt u dat nu doen?"
+"%s %s uitschakelen. Wilt u dat nu doen?"
 
+#, python-format
+msgid ""
+"A finished powertimer wants to reboot your %s %s.\n"
+"Do that now?"
+msgstr ""
+"Een afgewerkte timer wil uw %s %s\n"
+"in standby zetten. Dat nu doen?"
+
+msgid ""
+"A finished powertimer wants to restart the user interface.\n"
+"Do that now?"
+msgstr ""
+"Een timer wil de gebruikersinterface van uw %s %s herstarten.\n"
+"Dat nu doen?"
+
+#, python-format
 msgid ""
 "A finished powertimer wants to set your\n"
-"STB_BOX to standby. Do that now?"
+"%s %s to standby. Do that now?"
 msgstr ""
-"Een afgewerkte timer wil uw STB_BOX\n"
+"Een afgewerkte timer wil uw %s %s\n"
 "in standby zetten. Dat nu doen?"
 
+#, python-format
 msgid ""
-"A finished record timer wants to set your\n"
-"STB_BOX to standby. Do that now?"
-msgstr ""
-"Een afgewerkte timer wil uw STB_BOX\n"
-"in standby zetten. Dat nu doen?"
-
-msgid ""
-"A finished record timer wants to shut down\n"
-"your STB_BOX. Shutdown now?"
+"A finished powertimer wants to shutdown your %s %s.\n"
+"Do that now?"
 msgstr ""
 "Een afgewerkte timer wil uw\n"
-"STB_BOX uitschakelen. Dat nu doen?"
+"%s %s uitschakelen. Wilt u dat nu doen?"
+
+#, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Een afgewerkte timer wil uw %s %s\n"
+"in standby zetten. Dat nu doen?"
+
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Een afgewerkte timer wil uw\n"
+"%s %s uitschakelen. Dat nu doen?"
 
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Grafische EPG voor alle zenders uit een specifieke favorietenlijst"
@@ -497,19 +557,21 @@ msgstr ""
 "\n"
 "Wilt u de tweede netwerk interface uitschakelen?"
 
+#, python-format
 msgid ""
 "A sleep timer wants to set your\n"
-"STB_BOX to standby. Do that now?"
+"%s %s to standby. Do that now?"
 msgstr ""
 "Een slaap-timer wil uw\n"
-"STB_BOX in standby zetten. Dat nu doen?"
+"%s %s in standby zetten. Dat nu doen?"
 
+#, python-format
 msgid ""
 "A sleep timer wants to shut down\n"
-"your STB_BOX. Shutdown now?"
+"your %s %s. Shutdown now?"
 msgstr ""
 "Een slaap-timer wil uw\n"
-"STB_BOX uitschakelen. Dat nu doen?"
+"%s %s uitschakelen. Dat nu doen?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Een klein overzicht van gebruikte icon-statussen en acties."
@@ -746,11 +808,11 @@ msgstr "Accepteer niet geteste updates"
 msgid "Allows more detailed to be in the crash log"
 msgstr "Geeft de mogelijkheid meer details in een crashlog op te nemen."
 
-msgid "Allows the STB_BOX to read the stored EPG data regularly."
-msgstr "Laat de STB_BOX regelmatig de opgeslagen EPG-data lezen."
+msgid "Allows the %s %s to read the stored EPG data regularly."
+msgstr "Laat de %s %s regelmatig de opgeslagen EPG-data lezen."
 
-msgid "Allows the STB_BOX to store the EPG data regularly."
-msgstr "Laat de STB_BOX de EPG data regelmatig opslaan."
+msgid "Allows the %s %s to store the EPG data regularly."
+msgstr "Laat de %s %s de EPG data regelmatig opslaan."
 
 msgid "Allows you hide the extensions of known file types."
 msgstr "Geeft de mogelijkheid bekende extensies niet te tonen."
@@ -762,7 +824,7 @@ msgid "Allows you to enable the debug log. They contain very detailed informatio
 msgstr "Geeft de mogelijkheid debug-logs te activeren. Deze bevatten zeer gedetailleerde informatie over alles wat het systeem doet."
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
-msgstr "Geeft u de mogelijkheid on iconen weer te geven op het scherm van uw Vu+ Ultimo."
+msgstr "Geeft u de mogelijkheid on iconen weer te geven op het frontpaneel."
 
 msgid "Allows you to send a copy of the log to yourself."
 msgstr "Maakt het mogelijk een kopie van de logs naar uzelf te sturen."
@@ -838,13 +900,12 @@ msgstr "Weet u zeker dat u alle geselecteerde logs wilt verwijderen:\n"
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Weet u zeker dat u dit log wilt verwijderen:\n"
 
-#, fuzzy
 msgid ""
 "Are you sure you want to delete this:\n"
 " "
 msgstr ""
-"Weet u zeker dat u dit log wilt verwijderen:\n"
-"\n"
+"Weet u zeker dat u dit wilt verwijderen:\n"
+" "
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Wilt u deze wizard afsluiten?"
@@ -869,14 +930,14 @@ msgstr ""
 "Weet u zeker dat u de volgende\n"
 "backup wilt terugplaatsen:\n"
 "%s\n"
-"Uw STB_BOX zal herstarten nadat de beackup is teruggeplaatst!"
+"Uw ontvanger zal herstarten nadat de backup is teruggeplaatst!"
 
 msgid ""
 "Are you sure you want to restore the backup?\n"
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
 "Weet u zeker dat u de backup wilt terugplaatsen?\n"
-"Uw STB_BOX zal herstarten als het proces gereed is."
+"Uw ontvangerzal herstarten als het proces gereed is."
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Weet u zeker dat u de EPG Cache wilt opslaan in:\n"
@@ -884,8 +945,9 @@ msgstr "Weet u zeker dat u de EPG Cache wilt opslaan in:\n"
 msgid "Are you sure you want to send this log:\n"
 msgstr "Weet u zeker dat u dit log wilt versturen:\n"
 
-msgid "Are you sure you want to update your STB_BOX?"
-msgstr "Weet u zeker dat u uw STB_BOX wilt updaten?"
+#, python-format
+msgid "Are you sure you want to update your %s %s ?"
+msgstr "Weet u zeker dat u uw %s %s wilt updaten?"
 
 msgid "Artist"
 msgstr "Artiest"
@@ -991,6 +1053,9 @@ msgstr "Automatische scan"
 
 msgid "Automatic setting backup"
 msgstr "Automatische settingsbackup"
+
+msgid "Automatically start timeshift after"
+msgstr "Timeshift automatisch starten na"
 
 msgid "Automatically update Client/Server View?"
 msgstr "Automatisch Klant/Server overzicht updaten??"
@@ -1267,6 +1332,9 @@ msgstr "Kan worden gebruikt voor verschillen in fps tussen externe ondertitels."
 msgid "Cancel"
 msgstr "Annuleren"
 
+msgid "Cancel save timeshift as movie"
+msgstr "Annuleer het opslaan van timeshift als opname."
+
 msgid "Cannot delete file"
 msgstr "Kan bestand niet wissen"
 
@@ -1451,11 +1519,11 @@ msgstr "Kies tussen Dagelijks, Wekelijks, Werkdagen of eigen keuze."
 msgid "Choose the location for crash and debuglogs."
 msgstr "Kies waar u crash- en debuglogs wilt opslaan."
 
-msgid "Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time."
-msgstr "Kies de locatie waar uw STB_BOX de EPG-data moet opslaan als wordt afgesloten. De locatie moet tijdens het booten beschikbaar zijn."
+msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
+msgstr "Kies de locatie waar uw %s %s de EPG-data moet opslaan als wordt afgesloten. De locatie moet tijdens het booten beschikbaar zijn."
 
-msgid "Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes."
-msgstr "Kies de naam van het bestand waarin uw STB_BOX de EPG-data moet opslaan als wordt afgesloten. Dit kan handig zijn om ondersheid te maken tussen de bestanden van verschillende ontvangers."
+msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
+msgstr "Kies de naam van het bestand waarin uw %s %s de EPG-data moet opslaan als wordt afgesloten. Dit kan handig zijn om ondersheid te maken tussen de bestanden van verschillende ontvangers."
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Kies het tijdsinterval waarop de grafische indeling wordt afgerond."
@@ -1904,15 +1972,9 @@ msgstr "Kopieert bestanden"
 msgid "Cores:\t%s"
 msgstr "Cores:\t%s"
 
-msgid ""
-"Could not activate Permanent-Timeshift!\n"
-"Timeshift-Path does not exist"
-msgstr ""
-"Kon Permanent-Timeshift niet activeren!\n"
-"Timeshift-Pad bestaat niet"
-
-msgid "Could not connect to STB_BOX .NFI image feed server:"
-msgstr "Kon geen verbinding maken met de STB_BOX.NFI feed Server:"
+#, python-format
+msgid "Could not connect to %s %s .NFI image feed server:"
+msgstr "Kon geen verbinding maken met de %s %s.NFI feed Server:"
 
 msgid "Could not find installed channel list."
 msgstr "Kon geen geïnstalleerde kanaallijst vinden."
@@ -2411,11 +2473,12 @@ msgstr "Wilt u de DVD in de speler afspelen?"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Wilt u de DVD bekijken alvorens te schrijven?"
 
-msgid "Do you want to reboot your STB_BOX?"
-msgstr "Wilt u uw STB_BOX opnieuw opstarten?"
+#, python-format
+msgid "Do you want to reboot your %s %s"
+msgstr "Wilt u uw %s %s opnieuw opstarten?"
 
 msgid "Do you want to reboot your receiver?"
-msgstr "Wilt u uw STB_BOX opnieuw opstarten?"
+msgstr "Wilt u uw %s %s opnieuw opstarten?"
 
 msgid "Do you want to remove the package:\n"
 msgstr "Wilt u het volgende pakket verwijderen:\n"
@@ -2433,17 +2496,19 @@ msgstr ""
 "Wilt u alle geselecteerde bestanden versturen:\n"
 "(kies 'Nee' om aleen het nu geselecteerde bestand te versturen)"
 
-msgid "Do you want to update your STB_BOX?"
-msgstr "Wilt u uw STB_BOX updaten?"
+#, python-format
+msgid "Do you want to update your %s %s ?"
+msgstr "Wilt u uw %s %s updaten?"
+
+#, python-format
+msgid "Do you want to update your %s ?"
+msgstr "Wilt u uw %s updaten?"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Wilt u een upgrade van het volgende pakket:\n"
 
 msgid "Don't save"
 msgstr "Niet opslaan"
-
-msgid "Don't save Timeshift as Movie"
-msgstr "Sla Timeshift niet als opname op"
 
 msgid "Don't stop current event but disable coming events"
 msgstr "Huidige timer niet stoppen, maar toekomstige timers uitschakelen"
@@ -2563,11 +2628,13 @@ msgstr "Wijzig zenderlijst"
 msgid "Edit settings"
 msgstr "Instellingen wijzigen"
 
-msgid "Edit the Nameserver configuration of your STB_BOX.\n"
-msgstr "Pas de naamserver-configuratie van uw STB_BOX aan.\n"
+#, python-format
+msgid "Edit the Nameserver configuration of your %s %s.\n"
+msgstr "Pas de naamserver-configuratie van uw %s %s aan.\n"
 
-msgid "Edit the network configuration of your STB_BOX.\n"
-msgstr "Bewerk de netwerkinstellingen van uw STB_BOX.\n"
+#, python-format
+msgid "Edit the network configuration of your %s %s.\n"
+msgstr "Bewerk de netwerkinstellingen van uw %s %s.\n"
 
 msgid "Edit title"
 msgstr "Wijzig titel"
@@ -2613,9 +2680,6 @@ msgstr "Freesat EPG inschakelen"
 
 msgid "Enable multiple bouquets"
 msgstr "Meerdere favorietenlijsten toestaan"
-
-msgid "Enable or disable Permanent Timeshift. When activated, you can wind back until the time you zapped to a channel, and you can make recordings in retrospect."
-msgstr "Activeer of de-activeer Permanent Timeshift. Als PTS geactiveerd is, kunt u een programma terugspoelen tot het tijdstip dat u naar het kanaal bent gezapt. Bovendien kunt u achteraf nog een opname van een programma maken."
 
 msgid "Enable panic button"
 msgstr "Panic button gebruiken"
@@ -2832,9 +2896,6 @@ msgstr "Fabrieksinstellingen"
 
 msgid "Failed"
 msgstr "Mislukt"
-
-msgid "Failed to remove old files."
-msgstr "Verwijderen van oude bestanden is mislukt."
 
 msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "Mislukt te schrijven naar /tmp/positionersetup.log: "
@@ -3292,9 +3353,6 @@ msgstr "Tijd werkloos"
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Maximale ruimte die de logs in beslag mogen nemen. Als dat overschreden wordt,worden de oudste het eerste verwijderd."
 
-msgid "If set to 'yes' a special seekbar is available during timeshift."
-msgstr "Indie 'ja' is gekozen, is er tijdens timeshift een speciale 'seekbar' beschikbaar. Deze maakt het gemakelijk naar een ander afspeeltijdstip te navigeren."
-
 msgid "If set to 'yes' channels without EPG will not be shown."
 msgstr "Indien u 'ja' kiest, zullen kanalen zonder EPG niet getoond worden."
 
@@ -3316,6 +3374,9 @@ msgstr "Als u hier voor 'ja' kiest, zullen bij het openen van de EPG altijd de f
 msgid "If set to 'yes' the channel list will be shown after switching between radio and TV modes."
 msgstr "Als u hier voor 'ja' kiest, zal altijd de kanaallijst worden getoond bij het gaan van TV naar radio en omgekeerd."
 
+msgid "If set to 'yes' the channel number will be displayed in the infobar."
+msgstr "Als u hier voor 'ja' kiest, zal het kanaalnummer in de informatiebalk worden getoond."
+
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
 msgstr "Als u hier voor 'ja' kiest, zal de informatiebalk worden getoond als er een nieuw programma start."
 
@@ -3328,11 +3389,14 @@ msgstr "Als u hier voor 'ja' kiest, ziet u het kanaal in een klein schermpje in 
 msgid "If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at."
 msgstr "Als u hier voor 'ja' kiest, ziet u het kanaal in een klein schermpje in de kanaallijst. Als u op 'OK' drukt, wordt het gekozen kanaal daar getoond; als u een tweede maal op 'OK' drukt, gaat u daadwerkelijk naar dat kanaal. Drukt u op 'Exit', dan gaat u terug naar het kanaal waar u vandaan kwam."
 
+msgid "If set to 'yes', allows you use the seekbar to jump to a point within the event."
+msgstr "Indien 'ja' is gekozen, kan de seekbar springen naar een punt binnen dit programma."
+
 msgid "If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
 msgstr "Als u hier voor 'ja' kiest, wordt de informatiebalk getoond als u snel of langzaam achteruit of vooruit spoelt of pauzeert."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
-msgstr "Als de tekst te lang is voor het schermpje van uw STB_BOX, zal het (aantal keren) worden herhaald:"
+msgstr "Als de tekst te lang is voor het schermpje van uw %s %s, zal het (aantal keren) worden herhaald:"
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -3647,7 +3711,7 @@ msgid "LED brightness during deep standby."
 msgstr "LED helderheid tijdens deep sleep."
 
 msgid "LED brightness during normal operations."
-msgstr "LED helderheid tijdens gebruik van uw STB_BOX."
+msgstr "LED helderheid tijdens gebruik van uw %s %s."
 
 msgid "LED brightness during standby."
 msgstr "LED helderheid tijdens standby."
@@ -3872,8 +3936,9 @@ msgstr "Universele markering"
 msgid "Manage extensions"
 msgstr "Beheer van extensies"
 
-msgid "Manage your STB_BOX's software"
-msgstr "Beheer uw STB_BOX software"
+#, python-format
+msgid "Manage your %s %s's software"
+msgstr "Beheer de software van uw %s %s"
 
 msgid "Manual Scan"
 msgstr "Handmatig zoeken"
@@ -3907,13 +3972,6 @@ msgstr "Maxdown -"
 
 msgid "Maxdown: "
 msgstr "Maxdown: "
-
-msgid ""
-"Maximum Timeshift length per Event reached!\n"
-"Restarting Timeshift now ..."
-msgstr ""
-"Maximum timeshift lengte per programma bereikt!\n"
-"Timeshift wordt nu herstart....."
 
 msgid "Maximum no of days:"
 msgstr "Maximum aantal dagen:"
@@ -3988,8 +4046,8 @@ msgid "Mode"
 msgstr "Modus"
 
 #, python-format
-msgid "Model:\t%s"
-msgstr "Model:\t%s"
+msgid "Model:\t%s %s\n"
+msgstr "Model:\t%s %s\n"
 
 msgid "Model: "
 msgstr "Model: "
@@ -4407,8 +4465,8 @@ msgstr "Nee, vanaf begin herstarten"
 msgid "No, do nothing."
 msgstr "nee, geen actie."
 
-msgid "No, just start my STB_BOX"
-msgstr "Nee, uitsluitend STB_BOX starten"
+msgid "No, just start my %s %s"
+msgstr "Nee, uitsluitend %s %s starten"
 
 msgid "No, never"
 msgstr "Nee, nooit"
@@ -4480,6 +4538,9 @@ msgstr ""
 
 msgid "Nothing to upgrade"
 msgstr "Geen upgrades beschikbaar"
+
+msgid "Nothing, just leave this menu"
+msgstr "Niets, alleen dit menu verlaten"
 
 msgctxt "now/next: 'now' event label"
 msgid "Now"
@@ -4631,10 +4692,6 @@ msgstr "PMT PID"
 msgid "PRIMETIME"
 msgstr "PRIMETIME"
 
-#, python-format
-msgid "PTS Plugin Error: %s"
-msgstr "PTS Plugin fout: %s"
-
 msgid "Package list update"
 msgstr "Pakketlijst vernieuwen"
 
@@ -4722,18 +4779,6 @@ msgstr "Maak een settingsback-up; het maken van een back-up alvorens te updaten 
 
 msgid "Perform an online update check in the background"
 msgstr "Controleer op de achtergrond op updates "
-
-msgid "Permanent Timeshift enable"
-msgstr "Permanent Timeshift Inschakelen"
-
-msgid "Permanent Timeshift max events"
-msgstr "Permanent Timeshift max. aantal events"
-
-msgid "Permanent Timeshift max length"
-msgstr "Permanent Timeshift max. lengte"
-
-msgid "Permanent Timeshift start delay"
-msgstr "Permanent Timeshift start vertraging"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Alle bestanden in de prullenbak nu permanent verwijderen?"
@@ -4982,6 +5027,9 @@ msgstr "Even wachten (bezig met upgraden)"
 
 msgid "Please wait for activation of your network configuration..."
 msgstr "Een ogenblikje geduld terwijl we uw netwerk activeren..."
+
+msgid "Please wait while gathering data..."
+msgstr "Wacht op het verzamelen van data..."
 
 msgid "Please wait while scanning is in progress..."
 msgstr "Een ogenblikje geduld, zoeken is bezig..."
@@ -5239,8 +5287,9 @@ msgstr "Providers: "
 msgid "Put TV in standby"
 msgstr "Zet TV in standby"
 
-msgid "Put your STB_BOX in standby"
-msgstr "Zet uw STB_BOX in standby"
+#, python-format
+msgid "Put your %s %s in standby"
+msgstr "Zet uw %s %s in standby."
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend voor /tmp/mmi.socket"
@@ -5299,6 +5348,10 @@ msgstr "Subzenders snelzap verlaten?"
 msgid "Really reboot now?"
 msgstr "Nu herstarten?"
 
+#, python-format
+msgid "Really reflash your %s %s and reboot now?"
+msgstr "Uw %s %s echt flashen en herstarten?"
+
 msgid "Really restart now?"
 msgstr "Nu herstarten?"
 
@@ -5308,8 +5361,9 @@ msgstr "Nu uitschakelen?"
 msgid "Really upgrade the frontprocessor and reboot now?"
 msgstr "De frontprocessor nu bijwerken en opneiuw opstarten?"
 
-msgid "Really upgrade your STB_BOX and reboot now?"
-msgstr "Uw STB_BOX echt upgraden en herstarten?"
+#, python-format
+msgid "Really upgrade your %s %s and reboot now?"
+msgstr "Uw %s %s echt upgraden en herstarten?"
 
 msgid "Reboot"
 msgstr "Herstarten"
@@ -5366,6 +5420,16 @@ msgstr "Verklein tijdschaal"
 msgid "Reenter new PIN"
 msgstr "Voer nieuwe pincode nogmaals in"
 
+#, python-format
+msgid ""
+"Reflash in progress\n"
+"Please wait until your %s %s reboots\n"
+"This may take a few minutes"
+msgstr ""
+"Flashen is bezig.\n"
+"Wacht tot uw %s %s weer is opgestart.\n"
+"Dit kan een paar minuten duren."
+
 msgid "Refresh every (in hours)"
 msgstr "Ververs elke X uur"
 
@@ -5401,9 +5465,6 @@ msgstr "Resterend en verstreken"
 
 msgid "Remember service PIN"
 msgstr "Onthoud zender pincode"
-
-msgid "Reminder, you have chosen to save timeshift file."
-msgstr "Herinnering: u hebt gekozen het timeshift bestand op te slaan."
 
 msgid "Remote box"
 msgstr "Remote box"
@@ -5688,12 +5749,6 @@ msgstr "Opslaan"
 msgid "Save EPG"
 msgstr "Sla EPG op"
 
-msgid "Save Timeshift as Movie and continue recording"
-msgstr "Bewaar Timeshift als Opname en ga door met opnemen"
-
-msgid "Save Timeshift as Movie and stop recording"
-msgstr "Bewaar Timeshift als Opname en stop opname"
-
 msgid "Save and record"
 msgstr "Bewaar en sla op"
 
@@ -5706,11 +5761,11 @@ msgstr "Sla elke X uur op"
 msgid "Save playlist"
 msgstr "Afspeellijst opslaan "
 
-msgid "Save timeshift file"
-msgstr "Bewaar timeshift bestand"
+msgid "Save timeshift as movie and continue recording"
+msgstr "Bewaar timeshift als opname en ga door met opnemen."
 
-msgid "Save timeshift file in movie directory"
-msgstr "Bewaar Timeshift als opname in movie-map"
+msgid "Save timeshift as movie and stop recording"
+msgstr "Bewaar timeshift als opname en stop opname."
 
 msgid "Saving EPG Cache..."
 msgstr "Bezig EPG Cache op te slaan..."
@@ -6120,17 +6175,11 @@ msgstr "Kies de beschrijving van de opname."
 msgid "Set the jump-size of the seekbar."
 msgstr "Stel hier de grootte van de tijdsprong van de 'seekbar' in."
 
-msgid "Set the maximum length a timeshift file may be."
-msgstr "Geef de maximale tijdsduur aan die een timeshift bestand mag krijgen."
-
-msgid "Set the maximum number of events (programs) that timeshift may handle."
-msgstr "Stel het maximale aantal events (programma's) in dat timeshift mag behandelen."
-
 msgid "Set the name the recording will get."
 msgstr "Geef de naam die de opname krijgt."
 
 msgid "Set the scrolling speed of text on the front display."
-msgstr "Stel de rol snelheid op het schermpje van uw STB_BOX in."
+msgstr "Stel de rol snelheid op het schermpje van uw %s %s in."
 
 msgid "Set the time the timer must start."
 msgstr "Stel de tijd in waarop de timer moet starten."
@@ -6174,9 +6223,6 @@ msgstr "Kies wat een toets moet doen."
 msgid "Set voltage and 22KHz"
 msgstr "Voltage en 22KHz instellen"
 
-msgid "Set what the required action must be when zapping while a timeshift has been set as recording."
-msgstr "Hier bepaalt u wat er moet gebeuren als u gaat zappen terwijl er een timeshift als opname loopt."
-
 msgid "Sets the root folder of movie list, to remove the '..' from benign shown in that folder."
 msgstr "Stelt de root-locatie van de opnamelijst in, om '..' niet te tonen. "
 
@@ -6202,7 +6248,7 @@ msgid "Setup network time synchronization interval."
 msgstr "Stel het netwerk synchronisatie interval in."
 
 msgid "Setup the interval to check for online updates. (in hours)"
-msgstr "Hier stelt u het tijdsinterval in waarmee uw STB_BOX naar updates zoekt (in uren; '0' betekent dat er niet gezocht wordt)."
+msgstr "Hier stelt u het tijdsinterval in waarmee uw %s %s naar updates zoekt (in uren; '0' betekent dat er niet gezocht wordt)."
 
 msgid "Setup your positioner"
 msgstr "Positioner instellen"
@@ -6314,6 +6360,9 @@ msgstr "Toon favorieten na opstarten"
 msgid "Show bouquet selection menu"
 msgstr "Toon menu 'favorieten selectie'"
 
+msgid "Show channel number in infobar"
+msgstr "Toon kanaalnummers in informatiebalk."
+
 msgid "Show channel numbers in channel selection"
 msgstr "Toon kanaalnummers in kanaallijst"
 
@@ -6416,9 +6465,6 @@ msgstr "Laat status-iconen zien in movielijst"
 
 msgid "Show tag menu"
 msgstr "Markeringsmenu weergeven"
-
-msgid "Show the infomation on current event."
-msgstr "Toon informatie van het huidige programma."
 
 msgid "Show the list of AutoTimers."
 msgstr "Toon AutoTimers"
@@ -6781,6 +6827,9 @@ msgstr "Timeshift annuleren"
 msgid "Stop timeshift while recording?"
 msgstr "Stop Timeshift tijdens opname?"
 
+msgid "Stop's timeshift being used if a recording is in progress. (adviseable for usb sticks)"
+msgstr "Stopt timeshift als een opname loopt (zinvol voor USB-sticks)."
+
 msgid "Stopped"
 msgstr "Gestopt"
 
@@ -7003,8 +7052,9 @@ msgstr "Test DiSEqC instellingen"
 msgid "Test mode"
 msgstr "Test modus"
 
-msgid "Test the network configuration of your STB_BOX.\n"
-msgstr "Test de netwerkconfiguratie van uw STB_BOX.\n"
+#, python-format
+msgid "Test the network configuration of your %s %s.\n"
+msgstr "Test de netwerkconfiguratie van uw %s %s.\n"
 
 msgid "Test type"
 msgstr "Test type"
@@ -7026,11 +7076,11 @@ msgstr ""
 "Druk op OK om verder te gaan."
 
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
-"Please press OK to start using your STB_BOX."
+"Thank you for using the wizard. Your %s %s is now ready to use.\n"
+"Please press OK to start using your %s %s."
 msgstr ""
-"Uw STB_BOX is nu gereed voor gebruik.\n"
-"Druk op 'OK'om uw STB_BOX in gebruik te nemen."
+"Uw %s %s is nu gereed voor gebruik.\n"
+"Druk op 'OK'om uw %s %s in gebruik te nemen."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -7046,8 +7096,9 @@ msgstr ""
 "De Cool TV Guide plugin is niet geïnstalleerd!\n"
 "Installeer die aub."
 
-msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a STB_BOX format data DVD (which will not play in stand-alone DVD players) instead?"
-msgstr "De DVD standaard ondersteunt geen H.264 (HDTV) video. Wil je een STB_BOX formaat data DVD maken (deze speelt niet af in een DVD speler) ?"
+#, python-format
+msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a %s %s format data DVD (which will not play in stand-alone DVD players) instead?"
+msgstr "De DVD standaard ondersteunt geen H.264 (HDTV) video. Wilt u een %s %s formaat data DVD maken (deze speelt niet af in een DVD speler) ?"
 
 msgid ""
 "The EPGSearch plugin is not installed!\n"
@@ -7062,6 +7113,12 @@ msgid ""
 msgstr ""
 "Het bestandssyteem van uw Timeshift-Device ondersteunt geen hardlinks.\n"
 "Formatteer die in EXT2 or EXT3!"
+
+msgid "The %s %s reads the stored EPG data every (hours)."
+msgstr "Uw %s %s leest de opgelsagen EPG-data elke (uur)."
+
+msgid "The %s %s stores the EPG data every (hours)."
+msgstr "Uw %s %s slaat de EPG-data elke (uur) op."
 
 msgid ""
 "The IMDb plugin is not installed!\n"
@@ -7084,24 +7141,11 @@ msgid "The PIN codes you entered are different."
 msgstr "De ingevoerde pincodes komen niet overeen."
 
 msgid ""
-"The Timeshift record was not saved yet!\n"
-"What do you want to do now with the timeshift file?"
-msgstr ""
-"Het Timeshift bestand is nog niet opgeslagen!\n"
-"Wat wilt u nu met het bestand doen?"
-
-msgid ""
 "The USB stick was prepared to be bootable.\n"
 "Now you can download an NFI image file!"
 msgstr ""
 "De USB-stick was voorbereid om op te starten.\n"
 "Nu kunt nu een NFI-bestand downloaden!"
-
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr "Uw STB_BOX leest de opgelsagen EPG-data elke (uur)."
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr "Uw STB_BOX slaat de EPG-data elke (uur) op."
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Back-up is mislukt. Kies een andere back-up locatie a.u.b."
@@ -7180,14 +7224,16 @@ msgstr "Het timer bestand (pm-timer.xml) is beschadigd en kan niet worden gelade
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Het timer bestand (timer.xml) is beschadigd en kan niet worden geladen."
 
-msgid "The user interface of your STB_BOX is restarting"
-msgstr "De gebruikersinterface van uw STB_BOX wordt herstart"
+#, python-format
+msgid "The user interface of your %s %s is restarting"
+msgstr "De gebruikersinterface van uw %s %s wordt herstart"
 
+#, python-format
 msgid ""
-"The user interface of your STB_BOX is restarting\n"
+"The user interface of your %s %s is restarting\n"
 "due to an error in mytest.py"
 msgstr ""
-"De gebruikersinterface van uw STB_BOX wordt herstart\n"
+"De gebruikersinterface van uw %s %s wordt herstart\n"
 "vanwege een fout in mytest.py"
 
 msgid ""
@@ -7238,12 +7284,12 @@ msgstr ""
 "Er is mogelijk niet genoeg ruimte vrij op de geselecteerde partitie.\n"
 "Weet u zeker dat u wilt doorgaan?"
 
+#, python-format
+msgid "This %s %s cannot decode %s streams!"
+msgstr "Deze %s %s kan %s streams niet decoderen!"
+
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Dit DVD-RW medium is reeds geformatteerd - herformatteren zal alles wissen op deze disk."
-
-#, python-format
-msgid "This STB_BOX cannot decode %s streams!"
-msgstr "De STB_BOX kan %s streams niet decoderen!"
 
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr "Hier stelt u de lettergrootte in t.o.v. de waarde die in de skin staat. Dus '1' vergroot die met 1 puntgrootte en '-1' verkleint die met 1 puntgrootte."
@@ -7368,13 +7414,14 @@ msgstr "Hiermee stelt u de onderdrukking in van valse digitale contouren, die he
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Hiermee stelt u de beeldscherpte in als het beeld moet worden opgeschaald."
 
+#, python-format
 msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your STB_BOX without the need for a network or WLAN connection.\n"
+"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
 "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
-"Deze plugin creëert een USB-stick die kan worden gebruikt om de software van uw STB_BOX te updaten zonder dat u een LAN of WLAN verbinding nodig heeft.\n"
+"Deze plugin creëert een USB-stick die kan worden gebruikt om de software van uw %s %s te updaten zonder dat u een LAN of WLAN verbinding nodig heeft.\n"
 "Eerst moet de stick bootaable gemaakt worden.\n"
 "In de volgende stap kan een BFI-bestand worden gedownload van de update server en op de stick worden opgeslagen.\n"
 "Als u al een geschikte stick heeft, kunt u die nu inpluggen. Anders een stick met minimaal 64MB gebruiken!"
@@ -7562,9 +7609,6 @@ msgstr "Timeshift instellingen"
 msgid "Timeshift will get saved at end of event!"
 msgstr "Timeshift zal na afloop van het event worden opgeslagen!"
 
-msgid "Timeshift will only start when the start delay time has passed. This prevents numurous very short files when zapping."
-msgstr "Timeshift zal pas beginnen na de ingestelde vertraging. Dit voorkomt een grote hoeveelheid korte opnames tijdens zappen"
-
 msgid "Timeshift-save action on zap"
 msgstr "Timeshift-save actie bij zappen"
 
@@ -7586,13 +7630,14 @@ msgstr "Naar audioselectie"
 msgid "To subtitle selection"
 msgstr "Naar ondertitel selectie"
 
+#, python-format
 msgid ""
-"To update your STB_BOX firmware, please follow these steps:\n"
+"To update your %s %s firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-"Om de firmware van uw STB_BOX te upgraden, voert u de volgende stappen uit:\n"
+"Om de firmware van uw %s %s te upgraden, voert u de volgende stappen uit:\n"
 "1) Schakel uw box uit met de schakelaar en zorg dat er een bootable USB stick is ingeplugd.\n"
 "2) Schakel de box in en houdt de DOWN-toets op het front paneel 10 seconden ingedrukt .\n"
 "3) Wacht op het opstarten en volg de instructies van de wizard."
@@ -7757,15 +7802,6 @@ msgstr "USALS kalibratie"
 msgid "USB stick wizard"
 msgstr "USB-stick wizard"
 
-msgid ""
-"Unattended upgrade in progress\n"
-"Please wait until your STB_BOX reboots\n"
-"This may take a few minutes"
-msgstr ""
-"Upgrade van uw STB_BOX is bezig.\n"
-"Wacht tot uw STB_BOX weer is opgestart.\n"
-"Dit kan een paar minuten duren."
-
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr "Upgrade uitvoeren en vervolgens systeem herstarten"
 
@@ -7822,8 +7858,9 @@ msgid_plural "Update completed, %d packages were installed."
 msgstr[0] "Update gereed, %d pakket geïnstalleerd."
 msgstr[1] "Update gereed, %d pakketten geïnstalleerd."
 
-msgid "Update failed. Your STB_BOX does not have a working internet connection."
-msgstr "Update is mislukt. Uw STB_BOX heeft geen werkende internet verbinding"
+#, python-format
+msgid "Update failed. Your %s %s does not have a working internet connection."
+msgstr "Update is mislukt. Uw %s %s heeft geen werkende internet verbinding"
 
 msgid "Update interval (in seconds)"
 msgstr "Update interval (in secondes)"
@@ -7840,6 +7877,16 @@ msgstr "Upgrade en herstart system"
 
 msgid "Upgrade finished."
 msgstr "Upgrade voltooid."
+
+#, python-format
+msgid ""
+"Upgrade in progress\n"
+"Please wait until your %s %s reboots\n"
+"This may take a few minutes"
+msgstr ""
+"Upgrade is bezig.\n"
+"Wacht tot uw %s %s weer is opgestart.\n"
+"Dit kan een paar minuten duren."
 
 msgid "Upgrading"
 msgstr "Bezig met update"
@@ -7873,9 +7920,6 @@ msgstr "Gebruik MHW EPG informatie indien beschikbaar."
 
 msgid "Use Netmed EPG information when it is available."
 msgstr "Gebruik Netmed EPG informatie indien beschikbaar."
-
-msgid "Use PTS seekbar while timeshifting?"
-msgstr "Gebruik PTS seekbar tijdens timeshift?"
 
 msgid "Use TV remote control"
 msgstr "Gebruik de afstandsbediening van de TV"
@@ -7954,6 +7998,9 @@ msgstr "Deze settings gebruiken?"
 
 msgid "Use this video enhancement settings?"
 msgstr "Gebruik deze videoverbetering instellingen?"
+
+msgid "Use timeshift seekbar while timeshifting?"
+msgstr "Gebruik timeshift seekbar tijdens timeshift?"
 
 msgid "Use trash can in movielist"
 msgstr "Gebruik de prullenbak in movielijst"
@@ -8162,27 +8209,6 @@ msgstr "Virtuosso Image Xtreme"
 msgid "Voltage mode"
 msgstr "Spanningsmodus"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX geavanceerde AB"
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX format data DVD (HDTV compatible)"
-
-msgid "STB_BOX front panel"
-msgstr "STB_BOX voorpaneel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX IR-toetsenbord"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX IR-muis"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX AB"
-
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX software want er zijn updates beschikbaar."
-
 msgid "W"
 msgstr "W"
 
@@ -8206,9 +8232,6 @@ msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS bij 4:3"
-
-msgid "Wait please while gathering data..."
-msgstr "Wacht op het verzamelen van data..."
 
 msgid "Wait please while scanning for devices..."
 msgstr "Apparaten worden gescand..."
@@ -8237,8 +8260,9 @@ msgstr "Wakeup TV vanuit standby"
 msgid "Wakeup signal from TV"
 msgstr "Wakeup signaal van TV"
 
-msgid "Wakeup your STB_BOX from standby"
-msgstr "Ontwaakt STB_BOX vanuit standby"
+#, python-format
+msgid "Wakeup your %s %s from standby"
+msgstr "Uw %s %s vanuit standby wakker maken."
 
 msgid "Warning: no LNB; using factory defaults."
 msgstr "Waarschuwing: geen LNB; gebruikt fabrieksinstellingen."
@@ -8280,31 +8304,31 @@ msgstr ""
 "\n"
 "Ga naar het einde, druk op OK, selecteer 'end cut'. Eenvoudiger kan niet."
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your STB_BOX by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "Welkom bij de software update wizard. De wizard biedt u hulp bij het vernieuwen van de software in uw STB_BOX door het maken van een back-up van uw huidige instellingen en geeft u een korte uitleg over dit proces."
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgstr "Welkom bij de software update wizard. De wizard biedt u hulp bij het vernieuwen van de software in uw %s %s door het maken van een back-up van uw huidige instellingen en geeft u een korte uitleg over dit proces."
 
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will guide you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
 "Welkom.\n"
 "\n"
-"Deze wizard zal u helpen uw STB_BOX met het internet te verbinden.\n"
+"Deze wizard zal u helpen uw %s %s met het internet te verbinden.\n"
 "\n"
 "druk op 'OK' om te beginnen met het configureren."
 
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your %s %s.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Welkom.\n"
 "\n"
-"Deze wizard zal u helpen de basisinstellingen voor uw STB_BOX te maken.\n"
+"Deze wizard zal u helpen de basisinstellingen voor uw %s %s te maken.\n"
 "Druk op 'OK' voor de volgende stap."
 
 msgid "West"
@@ -8350,7 +8374,7 @@ msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr "Indien gekozen begint de kanaalnummering voor elk bouquet met '1'."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
-msgstr "Als het beeld een verhouding heeft van 4;3, kan het beeld worden uitgerekt om het gehele scherm te vullen."
+msgstr "Als het beeld een verhouding heeft van 4:3 kan het beeld worden uitgerekt om het gehele scherm te vullen."
 
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Indien ingeschakeld zal worden doorgegaan naar de volgende favorietenlijst als de laatste zender van de huidige lijst bereikt is."
@@ -8401,13 +8425,16 @@ msgid "When enabled, the original line breaks will be removed from the teletext 
 msgstr "Indien geactiveerd worden de regeleindes van de teletekst ondertitels verwijderd."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
-msgstr "Indien ingeschakeld zal uw STB_BOX automatisch eerder gemaakte audiokeuzes weer maken."
+msgstr "Indien ingeschakeld zal uw %s %s automatisch eerder gemaakte audiokeuzes weer maken."
 
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
-msgstr "Indien ingeschakeld zal uw STB_BOX automatisch eerder gemaakte ondertitelkeuzes weer maken."
+msgstr "Indien ingeschakeld zal uw %s %s automatisch eerder gemaakte ondertitelkeuzes weer maken."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "Indien 'Ja' is gekozen, zal AC3 geluid worden doorgegeven (indien beschikbaar)."
+
+msgid "When enabled, timeshift starts automatically in background after specified time."
+msgstr "Indien ingeschakeld, start timeshift automatisch op de achtergrond na de ingestelde tijd."
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Indien ingeschakeld wordt DHCP gebruikt voor de IP-configuratie."
@@ -8434,19 +8461,20 @@ msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stre
 msgstr "Als het beeld een verhouding heeft van 4;3, kan het beeld worden uitgerekt of geschaald."
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
-msgstr "Als uw STB_BOX op een kanaal is afgestemd, wordt normaal gesproken de gehele transponder gescand op veranderingen. Schakel dit alleen uit, als u zeker bent van wat u doet. "
+msgstr "Als uw %s %s op een kanaal is afgestemd, wordt normaal gesproken de gehele transponder gescand op veranderingen. Schakel dit alleen uit, als u zeker bent van wat u doet. "
 
+#, python-format
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your STB_BOX will restart automatically!\n"
+"After completion of factory reset, your %s %s will restart automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
 "Wanneer u terug gaat naar de fabrieksinstellingen, verliest u\n"
 "alle gegevens van uw configuratie.\n"
 "(inclusief favorietenlijsten, zenders, satellietdata, etc ...)\n"
-"Na voltooiing van de fabrieksinstellingen, zal uw STB_BOX automatisch herstarten!\n"
+"Na voltooiing van de fabrieksinstellingen, zal uw %s %s automatisch herstarten!\n"
 "\n"
 "Werkelijk uitvoeren?"
 
@@ -8524,12 +8552,6 @@ msgstr "Gele externe ondertitels"
 msgid "Yes"
 msgstr "Ja"
 
-msgid "Yes and save"
-msgstr "Ja en sla op"
-
-msgid "Yes and save in movie dir"
-msgstr "Ja en sla op in movie folder"
-
 msgid "Yes to all"
 msgstr "Ja op alles"
 
@@ -8541,6 +8563,15 @@ msgstr "Ja en verwijder dit bestand"
 
 msgid "Yes, backup my settings!"
 msgstr "Ja, mijn instellingen opslaan!"
+
+msgid "Yes, but don't save timeshift as movie"
+msgstr "Ja, maar sla timeshift niet op als opname."
+
+msgid "Yes, but save timeshift as movie and continue recording"
+msgstr "Ja, maar bewaar timeshift als opname en ga door met opnemen"
+
+msgid "Yes, but save timeshift as movie and stop recording"
+msgstr "Ja, maar bewaar timeshift als opname en stop opname."
 
 msgid "Yes, do a manual scan now"
 msgstr "Ja, voer nu de handmatige zoekfunctie uit"
@@ -8601,8 +8632,9 @@ msgid "You can install this plugin."
 msgstr "Deze plugin kunt u installeren."
 
 #
-msgid "You can only burn STB_BOX recordings!"
-msgstr "U kunt alleen STB_BOX opnames schrijven!"
+#, python-format
+msgid "You can only burn %s %s recordings!"
+msgstr "U kunt alleen %s %s opnames schrijven!"
 
 msgid "You can remove this plugin."
 msgstr "Deze plugin kunt u verwijderen."
@@ -8626,6 +8658,13 @@ msgid "You have chosen to restore your settings. Enigma2 will restart after rest
 msgstr "U heeft gekozen om uw instellingen te herstellen. Enigma2 zal herstarten na het herstel. Druk op OK om te beginnen met het herstel."
 
 msgid ""
+"You have chosen to save the current timeshift event, but the event has not yet finished\n"
+"What do you want to do ?"
+msgstr ""
+"U wilt de huidige timeshift opslaan, maar het programma is nog niet afgelopen.\n"
+"Wat wilt u doen?"
+
+msgid ""
 "You have not setup your user info in the setup screen\n"
 "Press MENU, and enter your info, then try again"
 msgstr ""
@@ -8643,11 +8682,14 @@ msgid "You have to wait %s!"
 msgstr "Wacht op %s!"
 
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further instructions, please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"U moet uw PC met uw STB_BOX verbinden. Voor meer informatie verwijzen wij u naar de website http://www.dm7025.de.\n"
-"De STB_BOX word nu uitgeschakeld. Indien u deze aanwijzingen nauwgezet volgt, zal de STB_BOX u na de update vragen of u uw instellingen terug wilt plaatsen."
+"U moet uw PC met uw %s %s verbinden. Voor meer informatie verwijzen wij u naar de website http://www.dm7025.de.\n"
+"De %s %s word nu uitgeschakeld. Indien u deze aanwijzingen nauwgezet volgt, zal de %s %s u na de update vragen of u uw instellingen terug wilt plaatsen."
+
+msgid "You seem to be in timeshift!"
+msgstr "U zit in timeshift!"
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr "U bent in timeshift modus, stop timeshift eerst a.u.b"
@@ -8655,99 +8697,78 @@ msgstr "U bent in timeshift modus, stop timeshift eerst a.u.b"
 msgid "You system does not support ext4"
 msgstr "Uw systeem ondersteunt geen ext4"
 
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Als u op OK drukt zal uw STB_BOX opnieuw opstarten."
+#, python-format
+msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
+msgstr "Uw %s %s is niet met het internet verbonden. Controleer uw netwerkinstellingen en probeer het opnieuw."
 
-msgid "Your STB_BOX is not connected to the internet, please check your network settings and try again."
-msgstr "Uw STB_BOX is niet met het internet verbonden. Controleer uw netwerkinstellingen en probeer het opnieuw."
-
+#, python-format
 msgid ""
-"Your STB_BOX is now ready to be used.\n"
+"Your %s %s is now ready to be used.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
 msgstr ""
-"Uw STB_BOX is nu gereed voor gebruik.\n"
+"Uw %s %s is nu gereed voor gebruik.\n"
 "\n"
 "Uw internetverbinding werkt.\n"
 "\n"
 
+#, python-format
+msgid "Your %s %s is rebooting"
+msgstr "Uw %s %s wordt opnieuw gestart."
+
+#, python-format
+msgid "Your %s %s is shutting down"
+msgstr "Uw %s %s is aan het afsluiten."
+
+#, python-format
+msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
+msgstr "Uw %s %s kan nu onbruikbaar zijn geworden. Raadpleeg voordat uw uw %s %s herstart de handleiding."
+
+#, python-format
 msgid ""
-"Your STB_BOX is now ready to use.\n"
+"Your %s %s will be restarted after the installation of service\n"
+"Ready to install \"%s\" ?"
+msgstr ""
+"Uw %s %s zal worden herstart na de installatie\n"
+"Gereed om \"%s\" te installeren?"
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the installation of service.\n"
+"\n"
+"Do you want to install now ?"
+msgstr ""
+"Uw %s %s zal na het installeren van de service opnieuw worden gestart\n"
+"\n"
+"Wilt u nu installeren?"
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now ?"
+msgstr ""
+"Uw %s %s zal na het verwijderen van de service opnieuw worden gestart\n"
+"Wilt u nu verwijderen?"
+
+msgid ""
+"Your %s %s is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
-"Uw STB_BOX is nu gereed voor gebruik.\n"
+"Uw %s %s is nu gereed voor gebruik.\n"
 "\n"
 "Uw internet verbinding werkt.\n"
 "\n"
 "Druk op OK om door te gaan."
 
-msgid "Your STB_BOX is rebooting"
-msgstr "Uw STB_BOX wordt opnieuw gestart."
+msgid "Your %s %s is shutting down. Please stand by..."
+msgstr "Uw %s %s wordt nu afgesloten. Een ogenblik a.u.b..."
 
-msgid "Your STB_BOX is shutting down"
-msgstr "Uw STB_BOX is aan het afsluiten."
-
-msgid "Your STB_BOX is shutting down. Please stand by..."
-msgstr "Uw STB_BOX wordt nu afgesloten. Een ogenblik a.u.b..."
-
-msgid "Your STB_BOX might be unusable now. Please consult the manual for further assistance before rebooting your STB_BOX."
-msgstr "Uw STB_BOX kan nu onbruikbaar zijn geworden. Raadpleeg voordat uw uw Vu+ Ultimo herstart de handleiding."
-
-msgid ""
-"Your STB_BOX wants to reboot your STB_BOX.\n"
-"Do that now?"
-msgstr ""
-"Een timer wil uwSTB_BOX herstarten.\n"
-"Dat nu doen?"
-
-msgid ""
-"Your STB_BOX wants to restart the user interface.\n"
-"Do that now?"
-msgstr ""
-"Een timer wil de gebruikersinterface van uwSTB_BOX herstarten.\n"
-"Dat nu doen?"
-
-msgid ""
-"Your STB_BOX wants to set your STB_BOX to standby.\n"
-"Do that now?"
-msgstr ""
-"Een timer wil uwSTB_BOX in standby zetten.\n"
-"Dat nu doen?"
-
-msgid ""
-"Your STB_BOX wants to shut down your STB_BOX.\n"
-"Do that now?"
-msgstr ""
-"Een timer wil uwSTB_BOX uitschakelen.\n"
-"Dat nu doen?"
-
-#, python-format
-msgid ""
-"Your STB_BOX will be restarted after the installation of service\n"
-"Ready to install \"%s\" ?"
-msgstr ""
-"Uw STB_BOX zal worden herstart na de installatie\n"
-"Gereed om \"%s\" te installeren?"
-
-msgid ""
-"Your STB_BOX will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-"Uw STB_BOX zal na het installeren van de service opnieuw worden gestart\n"
-"\n"
-"Wilt u nu installeren?"
-
-msgid ""
-"Your STB_BOX will be restarted after the removal of service\n"
-"Do you want to remove now ?"
-msgstr ""
-"Uw STB_BOX zal na het verwijderen van de service opnieuw worden gestart\n"
-"Wilt u nu verwijderen?"
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr "Als u op OK drukt zal uw %s %s opnieuw opstarten."
 
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr "De back-up is geslaagd. U krijgt nu een korte uitleg over het vervolg van het update proces."
@@ -8774,13 +8795,14 @@ msgstr ""
 "De firmware voor de frontprocessor moet bijgewerkt worden.\n"
 "Druk op OK om dit proces te starten."
 
+#, python-format
 msgid ""
 "Your frontprocessor will be upgraded\n"
-"Please wait until your STB_BOX reboots\n"
+"Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
 "Uw frontprocessor zal worden geupgrade\n"
-"Wacht tot uw STB_BOX automatisch herstart is\n"
+"Wacht tot uw %s %s automatisch herstart is\n"
 "Dit kan een paar minuten duren."
 
 msgid ""
@@ -8798,7 +8820,7 @@ msgid "Your network configuration has been activated."
 msgstr "Configuratie van uw netwerk is geactiveerd."
 
 msgid "Your receiver does not have an internet connection"
-msgstr "Uw STB_BOX heeft geen internet verbinding"
+msgstr "Uw %s %s heeft geen internet verbinding"
 
 msgid "Your receiver is not connected to the internet"
 msgstr "Uw ontvanger heeft geen internet verbinding."
@@ -8810,7 +8832,7 @@ msgid ""
 "Please choose what you want to do next."
 msgstr ""
 "Uw draadloze LAN internetverbinding kan niet gestart worden!\n"
-"Heeft u de USB WLAN Stick in de STB_BOX geplaatst?\n"
+"Heeft u de USB WLAN Stick in de %s %s geplaatst?\n"
 "\n"
 "Kies wat u nu wilt doen."
 
@@ -9535,9 +9557,6 @@ msgstr "Pagina links"
 msgid "pass"
 msgstr "passage"
 
-msgid "pause"
-msgstr "pause"
-
 msgid "performing arts"
 msgstr "Uitvoerende kunst"
 
@@ -10021,354 +10040,3 @@ msgstr "zap en neem op"
 msgid "zapped"
 msgstr "zapte"
 
-#~ msgid ""
-#~ "\n"
-#~ "An Input/output error usually indicates a corrupted filesystem! Please check the filesystem of your timeshift-device!"
-#~ msgstr ""
-#~ "\n"
-#~ "Een Input/output fout is meestal een teken dat het filesystem corrupt is! Controloeer het filesystem van uw timeshift-partitie!"
-
-#~ msgid "%s"
-#~ msgstr "%s"
-
-#~ msgid "0"
-#~ msgstr "0"
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgid "9"
-#~ msgstr "9"
-
-#~ msgid "A demo plugin for TPM usage."
-#~ msgstr "Een demo plugin voor TPM gebruik."
-
-#~ msgid "Action"
-#~ msgstr "Aktie"
-
-#~ msgid "Allows you to choose the Picons to be displayed on the frontpanel."
-#~ msgstr "Geeft u de mogelijkheid on Picons weer te geven op het scherm van uw Vu+ Ultimo."
-
-#~ msgid "Ask before shutdown"
-#~ msgstr "Vraag alvorens af te sluiten"
-
-#~ msgid "Audio"
-#~ msgstr "Audio"
-
-#~ msgid "AutoMountManager"
-#~ msgstr "AutoMountManager"
-
-#~ msgid "BER"
-#~ msgstr "BER"
-
-#~ msgid "BER:"
-#~ msgstr "BER:"
-
-#~ msgid "Backup Log"
-#~ msgstr "Backup Log"
-
-#~ msgid "C"
-#~ msgstr "C"
-
-#~ msgid "Channellist menu"
-#~ msgstr "Zenderlijst menu"
-
-#~ msgid "Command execution..."
-#~ msgstr "Commando uitvoeren..."
-
-#~ msgid "Continue in background"
-#~ msgstr "Ga verder op de achtergrond"
-
-#~ msgid "D"
-#~ msgstr "D"
-
-#~ msgid "Date/time input"
-#~ msgstr "Dag/tijd instellen"
-
-#~ msgid "Dish"
-#~ msgstr "Schotel"
-
-#~ msgid "Downloadable plugins"
-#~ msgstr "Beschikbare plugins"
-
-#~ msgid "EPG selection"
-#~ msgstr "EPG selectie"
-
-#~ msgid "Enable timer"
-#~ msgstr "Timer activeren"
-
-#~ msgid "Event view"
-#~ msgstr "Programma-overzicht"
-
-#~ msgid "Event view menu"
-#~ msgstr "Programma-overzicht menu"
-
-#~ msgid "Experimental"
-#~ msgstr "Experimenteel"
-
-#~ msgid "Hardware:"
-#~ msgstr "Hardware:"
-
-#~ msgid "Image:"
-#~ msgstr "Image:"
-
-#~ msgid "Index"
-#~ msgstr "Index"
-
-#~ msgid "InfoBar"
-#~ msgstr "Informatiebalk"
-
-#~ msgid "Installing software..."
-#~ msgstr "Software wordt geïnstalleerd..."
-
-#~ msgid "Job overview"
-#~ msgstr "Takenoverzicht"
-
-#~ msgid "Last Update:"
-#~ msgstr "Laatste update:"
-
-#~ msgid "Lock:"
-#~ msgstr "Lock:"
-
-#~ msgid "MORE"
-#~ msgstr "MEER"
-
-#~ msgid "MediaPlayer"
-#~ msgstr "Mediaspeler"
-
-#~ msgid "Message"
-#~ msgstr "Bericht"
-
-#~ msgid "Message..."
-#~ msgstr "Boodschap..."
-
-#~ msgid "MoviePlayer"
-#~ msgstr "MoviePlayer"
-
-#~ msgid "Movielist menu"
-#~ msgstr "Opnamelijst menu"
-
-#~ msgid "Mute"
-#~ msgstr "Geluid uit"
-
-#~ msgid "NEXT"
-#~ msgstr "VOLGENDE"
-
-#~ msgid "NOW"
-#~ msgstr "NU"
-
-#~ msgid "Nameserver setup"
-#~ msgstr "Nameserver instellingen"
-
-#, fuzzy
-#~ msgid "Network Neighbourhood"
-#~ msgstr "Netwerk wizard"
-
-#~ msgid "Network configuration..."
-#~ msgstr "Netwerk configuratie..."
-
-#~ msgid "Network test..."
-#~ msgstr "Netwerk test..."
-
-#~ msgid "No sat tuner found!"
-#~ msgstr "Geen vrije tuner"
-
-#~ msgid "No, but restart from beginning"
-#~ msgstr "Nee, vanaf begin herstarten"
-
-#~ msgid "Now playing"
-#~ msgstr "Speelt nu"
-
-#~ msgid "PIN code needed"
-#~ msgstr "PIN-code benodigd"
-
-#~ msgid "Parental control services editor"
-#~ msgstr "Zender-kinderslot editor"
-
-#~ msgid "PiP-Zap"
-#~ msgstr "PiP-Zap"
-
-#~ msgid "PiPSetup"
-#~ msgstr "PiP Instellingen"
-
-#~ msgid "PiPZap"
-#~ msgstr "PiPZap"
-
-#~ msgid "Plugin browser"
-#~ msgstr "Applicatiebrowser"
-
-#~ msgid "Positioner Setup"
-#~ msgstr "Motorinstellingen"
-
-#~ msgid "Positioner fine movement"
-#~ msgstr "Rotor fijnafstelling"
-
-#~ msgid "Radio"
-#~ msgstr "Radio"
-
-#~ msgid "Rec"
-#~ msgstr "Rec"
-
-#~ msgid "Reception settings"
-#~ msgstr "Ontvangstinstellingen"
-
-#~ msgid "Release"
-#~ msgstr "Release"
-
-#~ msgid "Release Notes"
-#~ msgstr "Release notes"
-
-#, fuzzy
-#~ msgid "Remote-Timer digest"
-#~ msgstr "PowerTimer List"
-
-#~ msgid "SNR"
-#~ msgstr "SNR"
-
-#~ msgid "SNR:"
-#~ msgstr "SNR:"
-
-#, fuzzy
-#~ msgid "SecondInfoBar"
-#~ msgstr "Toon tweede informatiebalk"
-
-#~ msgid "Select HDD"
-#~ msgstr "Kies harde schijf"
-
-#~ msgid "Select a bouquet"
-#~ msgstr "Kies een favorietenlijst"
-
-#~ msgid "Select a movie"
-#~ msgstr "Kies een opname"
-
-#~ msgid "Select a network adapter"
-#~ msgstr "Netwerkadapter kiezen"
-
-#~ msgid "Select a skin"
-#~ msgstr "Kies een skin"
-
-#~ msgid "Select a tuner"
-#~ msgstr "Kies een tuner"
-
-#~ msgid "Service info"
-#~ msgstr "Kanaalinfo"
-
-#~ msgid "Serviceinfo"
-#~ msgstr "Kanaalinfo"
-
-#~ msgid "Setup what a long press on the power button does."
-#~ msgstr "Stel in wat een lange druk op de aan/uit toets moet doen."
-
-#~ msgid "Setup what a short press on the power button does."
-#~ msgstr "Stel in wat een korte druk op de aan/uit toets moet doen."
-
-#~ msgid "Show Picons *"
-#~ msgstr "Toon picons *"
-
-#~ msgid "Shutdown in (mins)"
-#~ msgstr "Afsluiten over (mins)"
-
-#~ msgid "Sleep Timer"
-#~ msgstr "Slaaptimer"
-
-#, fuzzy
-#~ msgid "Softcam Setup"
-#~ msgstr "Samba instellingen"
-
-#
-#, fuzzy
-#~ msgid "Softwaremanager..."
-#~ msgstr "Softwarebeheer"
-
-#, fuzzy
-#~ msgid "Starting Softcam"
-#~ msgstr "Start op"
-
-#~ msgid "Stop timeshift?"
-#~ msgstr "Timeshift annuleren?"
-
-#, fuzzy
-#~ msgid "Swap File Manager"
-#~ msgstr "Image Manager"
-
-#~ msgid "Systeminfo"
-#~ msgstr "Systeminfo"
-
-#~ msgid "The sleep timer has been activated."
-#~ msgstr "De slaaptimer is geactiveerd."
-
-#~ msgid "The sleep timer has been disabled."
-#~ msgstr "De slaaptimer is uitgeschakeld."
-
-#~ msgid "Timer edit"
-#~ msgstr "Timer bewerken"
-
-#~ msgid "Timer editor"
-#~ msgstr "Timer bewerken"
-
-#~ msgid "Timer status:"
-#~ msgstr "Timer status:"
-
-#~ msgid "Translation:"
-#~ msgstr "Vertaling:"
-
-#~ msgid "Tuner status %s"
-#~ msgstr "Tuner status %s"
-
-#~ msgid "UnhandledKey"
-#~ msgstr "Niet ondersteunde toets"
-
-#~ msgid "Use time of currently running service"
-#~ msgstr "Gebruik de tijd van de huidige zender"
-
-#~ msgid "Version:"
-#~ msgstr "Versie:"
-
-#, fuzzy
-#~ msgid "VideoEnhancementPreview"
-#~ msgstr "Videoverbetering preview"
-
-#~ msgid "Virtual keyboard"
-#~ msgstr "Virtueel toetsenbord"
-
-#~ msgid "Vol"
-#~ msgstr "Vol"
-
-#~ msgid "Volume"
-#~ msgstr "Volume"
-
-#~ msgid "Welcome..."
-#~ msgstr "Welkom..."
-
-#~ msgid "config menu"
-#~ msgstr "configuratiemenu"
-
-#~ msgid "help..."
-#~ msgstr "Help..."
-
-#~ msgid "play from next mark or playlist entry"
-#~ msgstr "Afspelen vanaf volgend markeerpunt of afspeellijst"
-
-#~ msgid "play from previous mark or playlist entry"
-#~ msgstr "Afspelen vanaf vorig markeerpunt of afspeellijst"

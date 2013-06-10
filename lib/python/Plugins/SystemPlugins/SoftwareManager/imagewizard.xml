@@ -8,7 +8,7 @@ self.condition = (self.backuppath is not None and config.misc.firstrun.getValue(
 		<text value="Do you want to restore your settings?" />
 		<list>
 			<listentry caption="Yes, restore the settings now" step="restore" />
-			<listentry caption="No, just start my STB_BOX" step="end" />
+			<listentry caption="No, just start my %s %s" step="end" />
 		</list>
 		<code>
 self.clearSelectedKeys()
@@ -17,7 +17,7 @@ self.selectKey("OK")
 	</step>
 
 	<step id="welcome">
-		<text value="Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your STB_BOX by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware." />
+		<text value="Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware." />
 		<list>
 			<listentry caption="OK, guide me through the upgrade process" step="backupquestion" />
 			<listentry caption="Exit the wizard" step="end" />
@@ -78,7 +78,7 @@ self.condition = (self.backuppath is False)
 	</step>
 
 	<step id="upgrade">
-		<text value="You need a PC connected to your STB_BOX. If you need further instructions, please visit the website http://www.dm7025.de.\nYour STB_BOX will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings." />
+		<text value="You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\nYour %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings." />
 		<list>
 			<listentry caption="Yes, perform a shutdown now." step="shutdown" />
 			<listentry caption="No, do nothing." step="end" />
@@ -90,7 +90,7 @@ self.condition = (self.backuppath is False)
 from enigma import quitMainloop
 quitMainloop(1)
 		</code>
-		<text value="Your STB_BOX is shutting down. Please stand by..." />
+		<text value="Your %s %s is shutting down. Please stand by..." />
 	</step>
 
 	<step id="end" laststep="true">
