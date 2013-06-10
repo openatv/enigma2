@@ -52,7 +52,7 @@ from RecordTimer import RecordTimerEntry, RecordTimer, findSafeRecordPath
 from Menu import MainMenu, mdom
 
 def isStandardInfoBar(self):
-	return ".InfoBar'>" in `self`
+	return self.__class__.__name__ == "InfoBar"
 
 def setResumePoint(session):
 	global resumePointCache, resumePointCacheLast

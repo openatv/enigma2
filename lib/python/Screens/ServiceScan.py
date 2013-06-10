@@ -33,7 +33,7 @@ class ServiceScan(Screen):
 	def ok(self):
 		print "ok"
 		if self["scan"].isDone():
-			if `self.currentInfobar`.endswith(".InfoBar'>"):
+			if self.currentInfobar.__class__.__name__ == "InfoBar":
 				if self.currentServiceList is not None:
 					self.currentServiceList.setTvMode()
 					bouquets = self.currentServiceList.getBouquetList()
