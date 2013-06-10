@@ -292,7 +292,7 @@ msgstr " על השלט על מנת להמשיך OK לחץ  "
 
 #, fuzzy, python-format
 msgid "%s %s software because updates are available."
-msgstr "STB_BOX software because updates are available."
+msgstr "%s %s software because updates are available."
 
 #, python-format
 msgid "%s (%s)\n"
@@ -508,7 +508,7 @@ msgid ""
 "A finished powertimer wants to restart the user interface.\n"
 "Do that now?"
 msgstr ""
-"Your STB_BOX is now ready to use.\n"
+"Your %s %s is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
@@ -881,10 +881,10 @@ msgstr ""
 msgid "Allows more detailed to be in the crash log"
 msgstr ""
 
-msgid "Allows the STB_BOX to read the stored EPG data regularly."
+msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr ""
 
-msgid "Allows the STB_BOX to store the EPG data regularly."
+msgid "Allows the %s %s to store the EPG data regularly."
 msgstr ""
 
 msgid "Allows you hide the extensions of known file types."
@@ -1625,10 +1625,10 @@ msgstr ""
 msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
-msgid "Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time."
+msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
 msgstr ""
 
-msgid "Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes."
+msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -2095,7 +2095,7 @@ msgstr ""
 #
 #, fuzzy, python-format
 msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "Could not connect to STB_BOX .NFI Image Feed Server:"
+msgstr "Could not connect to %s %s .NFI Image Feed Server:"
 
 msgid "Could not find installed channel list."
 msgstr ""
@@ -4824,7 +4824,7 @@ msgid "No, do nothing."
 msgstr ".לא, לא לעשות כלום"
 
 #
-msgid "No, just start my STB_BOX"
+msgid "No, just start my %s %s"
 msgstr ".לא, רק הפעל את הדרימבוקס"
 
 msgid "No, never"
@@ -7656,7 +7656,7 @@ msgstr "Test mode"
 
 #, fuzzy, python-format
 msgid "Test the network configuration of your %s %s.\n"
-msgstr "Test the network configuration of your STB_BOX.\n"
+msgstr "Test the network configuration of your %s %s.\n"
 
 #
 #, fuzzy
@@ -7681,8 +7681,8 @@ msgstr ""
 "Please press OK to continue."
 
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
-"Please press OK to start using your STB_BOX."
+"Thank you for using the wizard. Your %s %s is now ready to use.\n"
+"Please press OK to start using your %s %s."
 msgstr ""
 
 msgid ""
@@ -7697,7 +7697,7 @@ msgstr ""
 
 #, fuzzy, python-format
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a %s %s format data DVD (which will not play in stand-alone DVD players) instead?"
-msgstr "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a STB_BOX format data DVD (which will not play in stand-alone DVD players) instead?"
+msgstr "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a %s %s format data DVD (which will not play in stand-alone DVD players) instead?"
 
 msgid ""
 "The EPGSearch plugin is not installed!\n"
@@ -7709,10 +7709,10 @@ msgid ""
 "Make sure it is formatted in EXT2 or EXT3!"
 msgstr ""
 
-msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr ""
 
-msgid "The STB_BOX stores the EPG data every (hours)."
+msgid "The %s %s stores the EPG data every (hours)."
 msgstr ""
 
 msgid ""
@@ -8498,7 +8498,7 @@ msgstr[1] ""
 #, fuzzy, python-format
 msgid "Update failed. Your %s %s does not have a working internet connection."
 msgstr ""
-"Your STB_BOX is now ready to use.\n"
+"Your %s %s is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
@@ -8983,14 +8983,14 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your STB_BOX by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your STB_BOX by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgstr "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
 
 #
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will guide you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -8998,7 +8998,7 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your %s %s.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 
@@ -9148,7 +9148,7 @@ msgid ""
 msgstr ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your STB_BOX will restart automatically!\n"
+"After completion of factory reset, your %s %s will restart automatically!\n"
 "\n"
 "Really do a factory reset?"
 
@@ -9306,7 +9306,7 @@ msgstr "You can install this plugin."
 
 #, fuzzy, python-format
 msgid "You can only burn %s %s recordings!"
-msgstr "You can only burn STB_BOX recordings!"
+msgstr "You can only burn %s %s recordings!"
 
 msgid "You can remove this plugin."
 msgstr "You can remove this plugin."
@@ -9352,11 +9352,11 @@ msgid "You have to wait %s!"
 msgstr "You have to wait %s!"
 
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further instructions, please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"You need a PC connected to your STB_BOX. If you need further instructions, please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 
 msgid "You seem to be in timeshift!"
 msgstr ""
@@ -9378,7 +9378,7 @@ msgid ""
 "Your internet connection is working now.\n"
 "\n"
 msgstr ""
-"Your STB_BOX is now ready to use.\n"
+"Your %s %s is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
@@ -9415,20 +9415,20 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Your STB_BOX is now ready to use.\n"
+"Your %s %s is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
-"Your STB_BOX is now ready to use.\n"
+"Your %s %s is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
 "Please press OK to continue."
 
-msgid "Your STB_BOX is shutting down. Please stand by..."
-msgstr "Your STB_BOX is shutting down. Please stand by..."
+msgid "Your %s %s is shutting down. Please stand by..."
+msgstr "Your %s %s is shutting down. Please stand by..."
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
@@ -10758,310 +10758,3 @@ msgstr "הקלט"
 
 msgid "zapped"
 msgstr "זופזפ"
-
-#~ msgid ""
-#~ "\n"
-#~ "Backup your STB_BOX settings."
-#~ msgstr ""
-#~ "\n"
-#~ "גבה את הגדרות הדרימבוקס"
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Restore your STB_BOX settings."
-#~ msgstr ""
-#~ "\n"
-#~ "שיחזור הגדרות הדרימבוקס שלך"
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgid "9"
-#~ msgstr "9"
-
-#~ msgid "A demo plugin for TPM usage."
-#~ msgstr "A demo plugin for TPM usage."
-
-#
-#~ msgid "Audio"
-#~ msgstr "קול"
-
-#
-#~ msgid "BER"
-#~ msgstr "BER"
-
-#
-#~ msgid "BER:"
-#~ msgstr "BER:"
-
-#~ msgid "C"
-#~ msgstr "C"
-
-#~ msgid "Channellist menu"
-#~ msgstr "תפריט רשימת הערוצים"
-
-#~ msgid "Command execution..."
-#~ msgstr "...הרצת פקודה"
-
-#~ msgid "Continue in background"
-#~ msgstr "המשך ברקע"
-
-#~ msgid "D"
-#~ msgstr "D"
-
-#
-#~ msgid "Dish"
-#~ msgstr "Dish"
-
-#~ msgid "Do you want to reboot your STB_BOX?"
-#~ msgstr "?האם ברצונך לאתחל את הדרימבוקס"
-
-#
-#~ msgid "Do you want to update your STB_BOX?"
-#~ msgstr "?האם ברצונך לעדכן את הדרימבוקס"
-
-#~ msgid "Downloadable plugins"
-#~ msgstr "פלאגינים להורדה"
-
-#
-#, fuzzy
-#~ msgid "EPG selection"
-#~ msgstr "EPG בחירת"
-
-#
-#~ msgid "Enable timer"
-#~ msgstr "אפשר טיימר"
-
-#
-#, fuzzy
-#~ msgid "Event view"
-#~ msgstr "Eventview"
-
-#
-#, fuzzy
-#~ msgid "Event view menu"
-#~ msgstr "Eventview"
-
-#~ msgid "Index"
-#~ msgstr "אינדקס"
-
-#
-#, fuzzy
-#~ msgid "Info bar"
-#~ msgstr "InfoBar"
-
-#, fuzzy
-#~ msgid "Installing software..."
-#~ msgstr "...מתקין תוכנה"
-
-#~ msgid "MORE"
-#~ msgstr "עוד"
-
-#
-#~ msgid "Message"
-#~ msgstr "הודעה"
-
-#~ msgid "Message..."
-#~ msgstr "...הודעה"
-
-#~ msgid "Movielist menu"
-#~ msgstr "תפריט רשימת הסרטים"
-
-#~ msgid "Mute"
-#~ msgstr "השתק"
-
-#
-#~ msgid "NEXT"
-#~ msgstr "הבא"
-
-#~ msgid "NOW"
-#~ msgstr "עכשיו"
-
-#, fuzzy
-#~ msgid "Nameserver setup"
-#~ msgstr "Nameserver Setup"
-
-#, fuzzy
-#~ msgid "Network configuration..."
-#~ msgstr "...הגדרת רשת"
-
-#~ msgid "Network test..."
-#~ msgstr "Network test..."
-
-#, fuzzy
-#~ msgid "No, but restart from beginning"
-#~ msgstr "לא, אך התחל מחדש"
-
-#
-#, fuzzy
-#~ msgid "Now playing"
-#~ msgstr "כעת מתנגן"
-
-#, fuzzy
-#~ msgid "PIN code needed"
-#~ msgstr "קוד נדרש"
-
-#, fuzzy
-#~ msgid "Parental control services editor"
-#~ msgstr "בקרת הורים, עריכת שירותים"
-
-#, fuzzy
-#~ msgid "PiP setup"
-#~ msgstr "הגדרת תמונה בתוך תמונה"
-
-#
-#~ msgid "Plugin browser"
-#~ msgstr "סייר הפלאגינים"
-
-#~ msgid "Positioner fine movement"
-#~ msgstr "Positioner fine movement"
-
-#~ msgid "Radio"
-#~ msgstr "רדיו"
-
-#
-#, fuzzy
-#~ msgid "Reception settings"
-#~ msgstr "Reception Settings"
-
-#
-#~ msgid "SNR"
-#~ msgstr "SNR"
-
-#
-#~ msgid "SNR:"
-#~ msgstr "SNR:"
-
-#
-#~ msgid "Select HDD"
-#~ msgstr "Select HDD"
-
-#
-#, fuzzy
-#~ msgid "Select a bouquet"
-#~ msgstr "Select a movie"
-
-#
-#~ msgid "Select a movie"
-#~ msgstr "Select a movie"
-
-#, fuzzy
-#~ msgid "Select a network adapter"
-#~ msgstr "Select Network Adapter"
-
-#
-#, fuzzy
-#~ msgid "Select a skin"
-#~ msgstr "Select a movie"
-
-#
-#, fuzzy
-#~ msgid "Select a tuner"
-#~ msgstr "Select a movie"
-
-#
-#, fuzzy
-#~ msgid "Service info"
-#~ msgstr "Serviceinfo"
-
-#
-#~ msgid "Sleep Timer"
-#~ msgstr "טיימר שינה"
-
-#
-#~ msgid "The sleep timer has been activated."
-#~ msgstr ".טיימר השינה הופעל"
-
-#
-#~ msgid "The sleep timer has been disabled."
-#~ msgstr ".טיימר השינה בוטל"
-
-#
-#, fuzzy
-#~ msgid "Timer edit"
-#~ msgstr "עריכת טיימר"
-
-#
-#, fuzzy
-#~ msgid "Timer editor"
-#~ msgstr "עורך הטיימר"
-
-#
-#~ msgid "Timer status:"
-#~ msgstr "סטטוס הטיימר:"
-
-#
-#~ msgid "Translation:"
-#~ msgstr "תרגום:"
-
-#
-#~ msgid "Use time of currently running service"
-#~ msgstr "Use time of currently running service"
-
-#
-#~ msgid "Volume"
-#~ msgstr "Volume"
-
-#
-#~ msgid "Welcome..."
-#~ msgstr "...ברוך הבא"
-
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to reboot your STB_BOX.\n"
-#~ "Do that now?"
-#~ msgstr "?האם ברצונך לאתחל את הדרימבוקס"
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to set your STB_BOX to standby.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "טיימר למצב שינה מעוניין להעביר את\n"
-#~ "?הדרימבוקס למצב המתנה. מעוניין"
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to shut down your STB_BOX.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "טיימר למצב שינה מעוניין לכבות את\n"
-#~ "?הדרימבוקס. מעוניין"
-
-#
-#~ msgid "config menu"
-#~ msgstr "תפריט הגדרות"
-
-#~ msgid "help..."
-#~ msgstr "...עזרה"
-
-#~ msgid "pause"
-#~ msgstr "pause"
-
-#~ msgid "play from next mark or playlist entry"
-#~ msgstr "play from next mark or playlist entry"
-
-#
-#~ msgid "play from previous mark or playlist entry"
-#~ msgstr "play from previous mark or playlist entry"

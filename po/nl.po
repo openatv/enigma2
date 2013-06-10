@@ -808,10 +808,10 @@ msgstr "Accepteer niet geteste updates"
 msgid "Allows more detailed to be in the crash log"
 msgstr "Geeft de mogelijkheid meer details in een crashlog op te nemen."
 
-msgid "Allows the STB_BOX to read the stored EPG data regularly."
+msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Laat de %s %s regelmatig de opgeslagen EPG-data lezen."
 
-msgid "Allows the STB_BOX to store the EPG data regularly."
+msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "Laat de %s %s de EPG data regelmatig opslaan."
 
 msgid "Allows you hide the extensions of known file types."
@@ -1519,10 +1519,10 @@ msgstr "Kies tussen Dagelijks, Wekelijks, Werkdagen of eigen keuze."
 msgid "Choose the location for crash and debuglogs."
 msgstr "Kies waar u crash- en debuglogs wilt opslaan."
 
-msgid "Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time."
+msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
 msgstr "Kies de locatie waar uw %s %s de EPG-data moet opslaan als wordt afgesloten. De locatie moet tijdens het booten beschikbaar zijn."
 
-msgid "Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes."
+msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "Kies de naam van het bestand waarin uw %s %s de EPG-data moet opslaan als wordt afgesloten. Dit kan handig zijn om ondersheid te maken tussen de bestanden van verschillende ontvangers."
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -4465,7 +4465,7 @@ msgstr "Nee, vanaf begin herstarten"
 msgid "No, do nothing."
 msgstr "nee, geen actie."
 
-msgid "No, just start my STB_BOX"
+msgid "No, just start my %s %s"
 msgstr "Nee, uitsluitend %s %s starten"
 
 msgid "No, never"
@@ -7076,7 +7076,7 @@ msgstr ""
 "Druk op OK om verder te gaan."
 
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
+"Thank you for using the wizard. Your %s %s is now ready to use.\n"
 "Please press OK to start using your %s %s."
 msgstr ""
 "Uw %s %s is nu gereed voor gebruik.\n"
@@ -7114,10 +7114,10 @@ msgstr ""
 "Het bestandssyteem van uw Timeshift-Device ondersteunt geen hardlinks.\n"
 "Formatteer die in EXT2 or EXT3!"
 
-msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr "Uw %s %s leest de opgelsagen EPG-data elke (uur)."
 
-msgid "The STB_BOX stores the EPG data every (hours)."
+msgid "The %s %s stores the EPG data every (hours)."
 msgstr "Uw %s %s slaat de EPG-data elke (uur) op."
 
 msgid ""
@@ -8304,13 +8304,13 @@ msgstr ""
 "\n"
 "Ga naar het einde, druk op OK, selecteer 'end cut'. Eenvoudiger kan niet."
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your STB_BOX by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
 msgstr "Welkom bij de software update wizard. De wizard biedt u hulp bij het vernieuwen van de software in uw %s %s door het maken van een back-up van uw huidige instellingen en geeft u een korte uitleg over dit proces."
 
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will guide you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -8323,7 +8323,7 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your %s %s.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Welkom.\n"
@@ -8682,7 +8682,7 @@ msgid "You have to wait %s!"
 msgstr "Wacht op %s!"
 
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
 "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
 "U moet uw PC met uw %s %s verbinden. Voor meer informatie verwijzen wij u naar de website http://www.dm7025.de.\n"
@@ -8752,7 +8752,7 @@ msgstr ""
 "Wilt u nu verwijderen?"
 
 msgid ""
-"Your STB_BOX is now ready to use.\n"
+"Your %s %s is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
@@ -8764,7 +8764,7 @@ msgstr ""
 "\n"
 "Druk op OK om door te gaan."
 
-msgid "Your STB_BOX is shutting down. Please stand by..."
+msgid "Your %s %s is shutting down. Please stand by..."
 msgstr "Uw %s %s wordt nu afgesloten. Een ogenblik a.u.b..."
 
 msgid "Your STB will restart after pressing OK on your remote control."
@@ -10039,489 +10039,3 @@ msgstr "zap en neem op"
 
 msgid "zapped"
 msgstr "zapte"
-
-#~ msgid ""
-#~ "\n"
-#~ "An Input/output error usually indicates a corrupted filesystem! Please check the filesystem of your timeshift-device!"
-#~ msgstr ""
-#~ "\n"
-#~ "Een Input/output fout is meestal een teken dat het filesystem corrupt is! Controloeer het filesystem van uw timeshift-partitie!"
-
-#~ msgid ""
-#~ "\n"
-#~ "Backup your STB_BOX settings."
-#~ msgstr ""
-#~ "\n"
-#~ "Maak een back-up van uw instellingen."
-
-#~ msgid ""
-#~ "\n"
-#~ "Restore your STB_BOX settings."
-#~ msgstr ""
-#~ "\n"
-#~ "Zet de instellingen voor uw %s %s terug."
-
-#~ msgid "%s"
-#~ msgstr "%s"
-
-#~ msgid "0"
-#~ msgstr "0"
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgid "9"
-#~ msgstr "9"
-
-#~ msgid "A demo plugin for TPM usage."
-#~ msgstr "Een demo plugin voor TPM gebruik."
-
-#~ msgid "Action"
-#~ msgstr "Aktie"
-
-#~ msgid "Allows you to choose the Picons to be displayed on the frontpanel."
-#~ msgstr "Geeft u de mogelijkheid on Picons weer te geven op het scherm van uw Vu+ Ultimo."
-
-#~ msgid "Ask before shutdown"
-#~ msgstr "Vraag alvorens af te sluiten"
-
-#~ msgid "Audio"
-#~ msgstr "Audio"
-
-#~ msgid "AutoMountManager"
-#~ msgstr "AutoMountManager"
-
-#~ msgid "BER"
-#~ msgstr "BER"
-
-#~ msgid "BER:"
-#~ msgstr "BER:"
-
-#~ msgid "Backup Log"
-#~ msgstr "Backup Log"
-
-#~ msgid "C"
-#~ msgstr "C"
-
-#~ msgid "Channellist menu"
-#~ msgstr "Zenderlijst menu"
-
-#~ msgid "Command execution..."
-#~ msgstr "Commando uitvoeren..."
-
-#~ msgid "Continue in background"
-#~ msgstr "Ga verder op de achtergrond"
-
-#~ msgid ""
-#~ "Could not activate Permanent-Timeshift!\n"
-#~ "Timeshift-Path does not exist"
-#~ msgstr ""
-#~ "Kon Permanent-Timeshift niet activeren!\n"
-#~ "Timeshift-Pad bestaat niet"
-
-#~ msgid "D"
-#~ msgstr "D"
-
-#~ msgid "Date/time input"
-#~ msgstr "Dag/tijd instellen"
-
-#~ msgid "Dish"
-#~ msgstr "Schotel"
-
-#~ msgid "Do you want to reboot your STB_BOX?"
-#~ msgstr "Wilt u uw %s %s opnieuw opstarten?"
-
-#~ msgid "Do you want to update your STB_BOX?"
-#~ msgstr "Wilt u uw %s %s updaten?"
-
-#~ msgid "Downloadable plugins"
-#~ msgstr "Beschikbare plugins"
-
-#~ msgid "EPG selection"
-#~ msgstr "EPG selectie"
-
-#~ msgid "Enable or disable Permanent Timeshift. When activated, you can wind back until the time you zapped to a channel, and you can make recordings in retrospect."
-#~ msgstr "Activeer of de-activeer Permanent Timeshift. Als PTS geactiveerd is, kunt u een programma terugspoelen tot het tijdstip dat u naar het kanaal bent gezapt. Bovendien kunt u achteraf nog een opname van een programma maken."
-
-#~ msgid "Enable timer"
-#~ msgstr "Timer activeren"
-
-#~ msgid "Event view"
-#~ msgstr "Programma-overzicht"
-
-#~ msgid "Event view menu"
-#~ msgstr "Programma-overzicht menu"
-
-#~ msgid "Experimental"
-#~ msgstr "Experimenteel"
-
-#~ msgid "Failed to remove old files."
-#~ msgstr "Verwijderen van oude bestanden is mislukt."
-
-#~ msgid "STB_BOX front panel"
-#~ msgstr "%s %s voorpaneel"
-
-#~ msgid "STB_BOX ir keyboard"
-#~ msgstr "%s %s IR-toetsenbord"
-
-#~ msgid "STB_BOX ir mouse"
-#~ msgstr "%s %s IR-muis"
-
-#~ msgid "Hardware:"
-#~ msgstr "Hardware:"
-
-#~ msgid "If set to 'yes' a special seekbar is available during timeshift."
-#~ msgstr "Indie 'ja' is gekozen, is er tijdens timeshift een speciale 'seekbar' beschikbaar. Deze maakt het gemakelijk naar een ander afspeeltijdstip te navigeren."
-
-#~ msgid "Image:"
-#~ msgstr "Image:"
-
-#~ msgid "Index"
-#~ msgstr "Index"
-
-#~ msgid "InfoBar"
-#~ msgstr "Informatiebalk"
-
-#~ msgid "Installing software..."
-#~ msgstr "Software wordt geïnstalleerd..."
-
-#~ msgid "Job overview"
-#~ msgstr "Takenoverzicht"
-
-#~ msgid "Last Update:"
-#~ msgstr "Laatste update:"
-
-#~ msgid "Lock:"
-#~ msgstr "Lock:"
-
-#~ msgid "MORE"
-#~ msgstr "MEER"
-
-#~ msgid ""
-#~ "Maximum Timeshift length per Event reached!\n"
-#~ "Restarting Timeshift now ..."
-#~ msgstr ""
-#~ "Maximum timeshift lengte per programma bereikt!\n"
-#~ "Timeshift wordt nu herstart....."
-
-#~ msgid "MediaPlayer"
-#~ msgstr "Mediaspeler"
-
-#~ msgid "Message"
-#~ msgstr "Bericht"
-
-#~ msgid "Message..."
-#~ msgstr "Boodschap..."
-
-#~ msgid "MoviePlayer"
-#~ msgstr "MoviePlayer"
-
-#~ msgid "Movielist menu"
-#~ msgstr "Opnamelijst menu"
-
-#~ msgid "Mute"
-#~ msgstr "Geluid uit"
-
-#~ msgid "NEXT"
-#~ msgstr "VOLGENDE"
-
-#~ msgid "NOW"
-#~ msgstr "NU"
-
-#~ msgid "Nameserver setup"
-#~ msgstr "Nameserver instellingen"
-
-#, fuzzy
-#~ msgid "Network Neighbourhood"
-#~ msgstr "Netwerk wizard"
-
-#~ msgid "Network configuration..."
-#~ msgstr "Netwerk configuratie..."
-
-#~ msgid "Network test..."
-#~ msgstr "Netwerk test..."
-
-#~ msgid "No sat tuner found!"
-#~ msgstr "Geen vrije tuner"
-
-#~ msgid "No, but restart from beginning"
-#~ msgstr "Nee, vanaf begin herstarten"
-
-#~ msgid "Now playing"
-#~ msgstr "Speelt nu"
-
-#~ msgid "PIN code needed"
-#~ msgstr "PIN-code benodigd"
-
-#~ msgid "PTS Plugin Error: %s"
-#~ msgstr "PTS Plugin fout: %s"
-
-#~ msgid "Parental control services editor"
-#~ msgstr "Zender-kinderslot editor"
-
-#~ msgid "Permanent Timeshift enable"
-#~ msgstr "Permanent Timeshift Inschakelen"
-
-#~ msgid "Permanent Timeshift max events"
-#~ msgstr "Permanent Timeshift max. aantal events"
-
-#~ msgid "Permanent Timeshift max length"
-#~ msgstr "Permanent Timeshift max. lengte"
-
-#~ msgid "Permanent Timeshift start delay"
-#~ msgstr "Permanent Timeshift start vertraging"
-
-#~ msgid "PiP-Zap"
-#~ msgstr "PiP-Zap"
-
-#~ msgid "PiPSetup"
-#~ msgstr "PiP Instellingen"
-
-#~ msgid "PiPZap"
-#~ msgstr "PiPZap"
-
-#~ msgid "Plugin browser"
-#~ msgstr "Applicatiebrowser"
-
-#~ msgid "Positioner Setup"
-#~ msgstr "Motorinstellingen"
-
-#~ msgid "Positioner fine movement"
-#~ msgstr "Rotor fijnafstelling"
-
-#~ msgid "Put your STB_BOX in standby"
-#~ msgstr "Zet uw %s %s in standby"
-
-#~ msgid "Radio"
-#~ msgstr "Radio"
-
-#~ msgid "Really upgrade your STB_BOX and reboot now?"
-#~ msgstr "Uw %s %s echt upgraden en herstarten?"
-
-#~ msgid "Rec"
-#~ msgstr "Rec"
-
-#~ msgid "Reception settings"
-#~ msgstr "Ontvangstinstellingen"
-
-#~ msgid "Release"
-#~ msgstr "Release"
-
-#~ msgid "Release Notes"
-#~ msgstr "Release notes"
-
-#~ msgid "Reminder, you have chosen to save timeshift file."
-#~ msgstr "Herinnering: u hebt gekozen het timeshift bestand op te slaan."
-
-#, fuzzy
-#~ msgid "Remote-Timer digest"
-#~ msgstr "PowerTimer List"
-
-#~ msgid "SNR"
-#~ msgstr "SNR"
-
-#~ msgid "SNR:"
-#~ msgstr "SNR:"
-
-#~ msgid "Save timeshift file"
-#~ msgstr "Bewaar timeshift bestand"
-
-#~ msgid "Save timeshift file in movie directory"
-#~ msgstr "Bewaar Timeshift als opname in movie-map"
-
-#, fuzzy
-#~ msgid "SecondInfoBar"
-#~ msgstr "Toon tweede informatiebalk"
-
-#~ msgid "Select HDD"
-#~ msgstr "Kies harde schijf"
-
-#~ msgid "Select a bouquet"
-#~ msgstr "Kies een favorietenlijst"
-
-#~ msgid "Select a movie"
-#~ msgstr "Kies een opname"
-
-#~ msgid "Select a network adapter"
-#~ msgstr "Netwerkadapter kiezen"
-
-#~ msgid "Select a skin"
-#~ msgstr "Kies een skin"
-
-#~ msgid "Select a tuner"
-#~ msgstr "Kies een tuner"
-
-#~ msgid "Service info"
-#~ msgstr "Kanaalinfo"
-
-#~ msgid "Serviceinfo"
-#~ msgstr "Kanaalinfo"
-
-#~ msgid "Set the maximum length a timeshift file may be."
-#~ msgstr "Geef de maximale tijdsduur aan die een timeshift bestand mag krijgen."
-
-#~ msgid "Set the maximum number of events (programs) that timeshift may handle."
-#~ msgstr "Stel het maximale aantal events (programma's) in dat timeshift mag behandelen."
-
-#~ msgid "Set what the required action must be when zapping while a timeshift has been set as recording."
-#~ msgstr "Hier bepaalt u wat er moet gebeuren als u gaat zappen terwijl er een timeshift als opname loopt."
-
-#~ msgid "Setup what a long press on the power button does."
-#~ msgstr "Stel in wat een lange druk op de aan/uit toets moet doen."
-
-#~ msgid "Setup what a short press on the power button does."
-#~ msgstr "Stel in wat een korte druk op de aan/uit toets moet doen."
-
-#~ msgid "Show Picons *"
-#~ msgstr "Toon picons *"
-
-#~ msgid "Show the infomation on current event."
-#~ msgstr "Toon informatie van het huidige programma."
-
-#~ msgid "Shutdown in (mins)"
-#~ msgstr "Afsluiten over (mins)"
-
-#~ msgid "Sleep Timer"
-#~ msgstr "Slaaptimer"
-
-#, fuzzy
-#~ msgid "Softcam Setup"
-#~ msgstr "Samba instellingen"
-
-#
-#, fuzzy
-#~ msgid "Softwaremanager..."
-#~ msgstr "Softwarebeheer"
-
-#, fuzzy
-#~ msgid "Starting Softcam"
-#~ msgstr "Start op"
-
-#~ msgid "Stop timeshift?"
-#~ msgstr "Timeshift annuleren?"
-
-#, fuzzy
-#~ msgid "Swap File Manager"
-#~ msgstr "Image Manager"
-
-#~ msgid "Systeminfo"
-#~ msgstr "Systeminfo"
-
-#~ msgid ""
-#~ "The Timeshift record was not saved yet!\n"
-#~ "What do you want to do now with the timeshift file?"
-#~ msgstr ""
-#~ "Het Timeshift bestand is nog niet opgeslagen!\n"
-#~ "Wat wilt u nu met het bestand doen?"
-
-#~ msgid "The sleep timer has been activated."
-#~ msgstr "De slaaptimer is geactiveerd."
-
-#~ msgid "The sleep timer has been disabled."
-#~ msgstr "De slaaptimer is uitgeschakeld."
-
-#~ msgid "Timer edit"
-#~ msgstr "Timer bewerken"
-
-#~ msgid "Timer editor"
-#~ msgstr "Timer bewerken"
-
-#~ msgid "Timer status:"
-#~ msgstr "Timer status:"
-
-#~ msgid "Timeshift will only start when the start delay time has passed. This prevents numurous very short files when zapping."
-#~ msgstr "Timeshift zal pas beginnen na de ingestelde vertraging. Dit voorkomt een grote hoeveelheid korte opnames tijdens zappen"
-
-#~ msgid "Translation:"
-#~ msgstr "Vertaling:"
-
-#~ msgid "Tuner status %s"
-#~ msgstr "Tuner status %s"
-
-#~ msgid "UnhandledKey"
-#~ msgstr "Niet ondersteunde toets"
-
-#~ msgid "Use time of currently running service"
-#~ msgstr "Gebruik de tijd van de huidige zender"
-
-#~ msgid "Version:"
-#~ msgstr "Versie:"
-
-#, fuzzy
-#~ msgid "VideoEnhancementPreview"
-#~ msgstr "Videoverbetering preview"
-
-#~ msgid "Vol"
-#~ msgstr "Vol"
-
-#~ msgid "Volume"
-#~ msgstr "Volume"
-
-#~ msgid "Wakeup your STB_BOX from standby"
-#~ msgstr "Ontwaakt %s %s vanuit standby"
-
-#~ msgid "Welcome..."
-#~ msgstr "Welkom..."
-
-#~ msgid "Yes and save"
-#~ msgstr "Ja en sla op"
-
-#~ msgid "Yes and save in movie dir"
-#~ msgstr "Ja en sla op in movie folder"
-
-#~ msgid ""
-#~ "Your STB_BOX wants to reboot your STB_BOX.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "Een timer wil uw%s %s herstarten.\n"
-#~ "Dat nu doen?"
-
-#~ msgid ""
-#~ "Your STB_BOX wants to set your STB_BOX to standby.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "Een timer wil uw%s %s in standby zetten.\n"
-#~ "Dat nu doen?"
-
-#~ msgid ""
-#~ "Your STB_BOX wants to shut down your STB_BOX.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "Een timer wil uw%s %s uitschakelen.\n"
-#~ "Dat nu doen?"
-
-#~ msgid "config menu"
-#~ msgstr "configuratiemenu"
-
-#~ msgid "help..."
-#~ msgstr "Help..."
-
-#~ msgid "pause"
-#~ msgstr "pause"
-
-#~ msgid "play from next mark or playlist entry"
-#~ msgstr "Afspelen vanaf volgend markeerpunt of afspeellijst"
-
-#~ msgid "play from previous mark or playlist entry"
-#~ msgstr "Afspelen vanaf vorig markeerpunt of afspeellijst"

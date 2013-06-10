@@ -910,10 +910,10 @@ msgstr ""
 msgid "Allows more detailed to be in the crash log"
 msgstr ""
 
-msgid "Allows the STB_BOX to read the stored EPG data regularly."
+msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr ""
 
-msgid "Allows the STB_BOX to store the EPG data regularly."
+msgid "Allows the %s %s to store the EPG data regularly."
 msgstr ""
 
 msgid "Allows you hide the extensions of known file types."
@@ -1654,10 +1654,10 @@ msgstr ""
 msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
-msgid "Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time."
+msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
 msgstr ""
 
-msgid "Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes."
+msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -4861,7 +4861,7 @@ msgid "No, do nothing."
 msgstr "لا ، لا تفعل شيئ"
 
 #
-msgid "No, just start my STB_BOX"
+msgid "No, just start my %s %s"
 msgstr "لا ، فقط قم بتشغيل الدريم بوكس"
 
 msgid "No, never"
@@ -7727,8 +7727,8 @@ msgstr ""
 "من فضلك أضغط موافق للاستمرار ."
 
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
-"Please press OK to start using your STB_BOX."
+"Thank you for using the wizard. Your %s %s is now ready to use.\n"
+"Please press OK to start using your %s %s."
 msgstr ""
 
 msgid ""
@@ -7755,10 +7755,10 @@ msgid ""
 "Make sure it is formatted in EXT2 or EXT3!"
 msgstr ""
 
-msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr ""
 
-msgid "The STB_BOX stores the EPG data every (hours)."
+msgid "The %s %s stores the EPG data every (hours)."
 msgstr ""
 
 msgid ""
@@ -9033,14 +9033,14 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your STB_BOX by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
 msgstr "مرحبا بك فى نافذة ترقية الصوره. هذه النافذه ستساعدك فى ترقية البرنامج التشغبلى للدريم بوكس بواسطة توفير وسيلة عمل نسخه إحتياطيه  للاعدادات الحاليه وشرح مبسط لطريقة ترقية البرنامج التشغيلى ."
 
 #
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will guide you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -9048,7 +9048,7 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your %s %s.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 
@@ -9402,8 +9402,8 @@ msgid "You have to wait %s!"
 msgstr "يجب أن تنتظر %s !"
 
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further instructions, please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
 "تحتاج الى كومبيوتر متصل بالدريم بوكس، لمزيد من الارشادات نرجو زيارة الموقعhttp://www.dm7025.de \n"
 "سوف يتم الان إغلاق الدريم بوكس.بعد النتهاء من تنفيذ تعليمات التحديث من صفحة الانترنت سوف يتم سؤالك إذا كنت تريد إستعادة الاعدادات."
@@ -9465,7 +9465,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Your STB_BOX is now ready to use.\n"
+"Your %s %s is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
@@ -9477,7 +9477,7 @@ msgstr ""
 "\n"
 "أضغط موافق للاستمرار."
 
-msgid "Your STB_BOX is shutting down. Please stand by..."
+msgid "Your %s %s is shutting down. Please stand by..."
 msgstr "يتم الان إغلاق الدريم بوكس. من فضلك كن مستعدا..."
 
 msgid "Your STB will restart after pressing OK on your remote control."
@@ -10814,300 +10814,3 @@ msgstr "تسجيل"
 
 msgid "zapped"
 msgstr "تم الانتقال"
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Backup your STB_BOX settings."
-#~ msgstr ""
-#~ "\n"
-#~ "عمل نسخه إحتياطيه  للاعدادات"
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Restore your STB_BOX settings."
-#~ msgstr ""
-#~ "\n"
-#~ "إستعادة إعدادات الدريم بوكس"
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgid "9"
-#~ msgstr "9"
-
-#
-#~ msgid "Audio"
-#~ msgstr "صوت"
-
-#~ msgid "C"
-#~ msgstr "سى"
-
-#~ msgid "Channellist menu"
-#~ msgstr "قائمة لائحة القنوات"
-
-#~ msgid "Command execution..."
-#~ msgstr "تنفيذ الأمر..."
-
-#~ msgid "Continue in background"
-#~ msgstr "استمر فى الخلفيه"
-
-#~ msgid "D"
-#~ msgstr "د"
-
-#
-#~ msgid "Dish"
-#~ msgstr "طبق الاستقبال"
-
-#~ msgid "Do you want to reboot your STB_BOX?"
-#~ msgstr "هل تريد إعادة تشغيل الدريم بوكس ؟"
-
-#
-#~ msgid "Do you want to update your STB_BOX?"
-#~ msgstr "هل تريد تحديث الدريم بوكس"
-
-#~ msgid "Downloadable plugins"
-#~ msgstr "بلج إنز متاحه للتحميل"
-
-#
-#, fuzzy
-#~ msgid "EPG selection"
-#~ msgstr "إختيار EPG"
-
-#
-#~ msgid "Enable timer"
-#~ msgstr "تفعيل المؤقت"
-
-#
-#, fuzzy
-#~ msgid "Event view"
-#~ msgstr "مشاهده الحدث"
-
-#
-#, fuzzy
-#~ msgid "Event view menu"
-#~ msgstr "مشاهده الحدث"
-
-#~ msgid "Index"
-#~ msgstr "فهرس"
-
-#
-#, fuzzy
-#~ msgid "Info bar"
-#~ msgstr "شريط المعلومات"
-
-#, fuzzy
-#~ msgid "Installing software..."
-#~ msgstr "تثبيت برمجيات"
-
-#~ msgid "MORE"
-#~ msgstr "المزيـد"
-
-#
-#~ msgid "Message"
-#~ msgstr "رسـاله"
-
-#~ msgid "Message..."
-#~ msgstr "رساله..."
-
-#~ msgid "Movielist menu"
-#~ msgstr "قائمة سجل الافلام"
-
-#~ msgid "Mute"
-#~ msgstr "كتم الصوت"
-
-#
-#~ msgid "NEXT"
-#~ msgstr "التالى"
-
-#~ msgid "NOW"
-#~ msgstr "الان"
-
-#, fuzzy
-#~ msgid "Nameserver setup"
-#~ msgstr "ضبط أسم الخادم"
-
-#, fuzzy
-#~ msgid "Network configuration..."
-#~ msgstr "تكوين الشبكه"
-
-#~ msgid "Network test..."
-#~ msgstr "اختبار الشبكه ..."
-
-#, fuzzy
-#~ msgid "No, but restart from beginning"
-#~ msgstr "لا، لكن أعد التشغيل من البدايه"
-
-#
-#, fuzzy
-#~ msgid "Now playing"
-#~ msgstr "الان يعرض"
-
-#, fuzzy
-#~ msgid "PIN code needed"
-#~ msgstr "مطلوب رقم سرى"
-
-#, fuzzy
-#~ msgid "Parental control services editor"
-#~ msgstr "محرر خدمات التحكم الأبوى"
-
-#, fuzzy
-#~ msgid "PiP setup"
-#~ msgstr "ضبط صوره داخل صوره"
-
-#
-#~ msgid "Plugin browser"
-#~ msgstr "متصفح البلج إنز"
-
-#~ msgid "Positioner fine movement"
-#~ msgstr "التحريك الدقيق للموتور"
-
-#~ msgid "Radio"
-#~ msgstr "راديو"
-
-#
-#, fuzzy
-#~ msgid "Reception settings"
-#~ msgstr "إعدادات الاستقبال"
-
-#
-#~ msgid "SNR"
-#~ msgstr "SNR"
-
-#
-#~ msgid "SNR:"
-#~ msgstr "SNR:"
-
-#
-#~ msgid "Select HDD"
-#~ msgstr "اختار القرص الصلب"
-
-#
-#, fuzzy
-#~ msgid "Select a bouquet"
-#~ msgstr "اختار الفيلم"
-
-#
-#~ msgid "Select a movie"
-#~ msgstr "اختار الفيلم"
-
-#, fuzzy
-#~ msgid "Select a network adapter"
-#~ msgstr "أختار محول الشبكه"
-
-#
-#, fuzzy
-#~ msgid "Select a skin"
-#~ msgstr "اختار الفيلم"
-
-#
-#, fuzzy
-#~ msgid "Select a tuner"
-#~ msgstr "اختار الفيلم"
-
-#
-#, fuzzy
-#~ msgid "Service info"
-#~ msgstr "معلومات القناه"
-
-#
-#~ msgid "Sleep Timer"
-#~ msgstr "مؤقت النوم"
-
-#
-#~ msgid "The sleep timer has been activated."
-#~ msgstr "تم تنشيط مؤقت النوم"
-
-#
-#~ msgid "The sleep timer has been disabled."
-#~ msgstr "تم تعطيل مؤقت النوم"
-
-#
-#, fuzzy
-#~ msgid "Timer edit"
-#~ msgstr "تحرير المؤقت"
-
-#
-#, fuzzy
-#~ msgid "Timer editor"
-#~ msgstr "تحرير المؤقت"
-
-#
-#~ msgid "Timer status:"
-#~ msgstr "حالة المؤقت:"
-
-#
-#~ msgid "Translation:"
-#~ msgstr "ترجمه:"
-
-#
-#~ msgid "Use time of currently running service"
-#~ msgstr "استخدم وقت القناه المعروضه حاليا"
-
-#
-#~ msgid "Volume"
-#~ msgstr "درجه الصوت"
-
-#
-#~ msgid "Welcome..."
-#~ msgstr "مرحبا..."
-
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to reboot your STB_BOX.\n"
-#~ "Do that now?"
-#~ msgstr "هل تريد إعادة تشغيل الدريم بوكس ؟"
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to set your STB_BOX to standby.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "مؤقت النوم يريد نقل\n"
-#~ "الدريم بوكس الى وضع الاستعداد. هل توافق ؟"
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "Your STB_BOX wants to shut down your STB_BOX.\n"
-#~ "Do that now?"
-#~ msgstr ""
-#~ "مؤقت النوم يريد إغلاف\n"
-#~ "الدريم بوكس . هل توافق ؟"
-
-#
-#~ msgid "config menu"
-#~ msgstr "قائمه الضبط"
-
-#~ msgid "help..."
-#~ msgstr "مساعده..."
-
-#~ msgid "pause"
-#~ msgstr "وقف مؤقت"
-
-#~ msgid "play from next mark or playlist entry"
-#~ msgstr "أعرض من العلامه التاليه أو من قائمة العرض"
-
-#
-#~ msgid "play from previous mark or playlist entry"
-#~ msgstr "عرض من العلامه السابقه أو من مدخل قائمة العرض"
