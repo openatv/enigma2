@@ -9,7 +9,7 @@ from Components.Sources.StaticText import StaticText
 from Components.Label import Label
 from Components.Sources.Boolean import Boolean
 
-from enigma import eEnv
+from enigma import eEnv, getMachineBrand, getMachineName
 
 import xml.etree.cElementTree
 
@@ -249,7 +249,9 @@ class Setup(ConfigListScreen, Screen):
 					continue
 
 				item_text = _(x.get("text", "??").encode("UTF-8"))
+				item_text = item_text.replace("STB_BOX","%s %s" % (getMachineBrand(), getMachineName()))
 				item_description = _(x.get("description", " ").encode("UTF-8"))
+				item_description = item_description.replace("STB_BOX","%s %s" % (getMachineBrand(), getMachineName()))
 				b = eval(x.text or "")
 				if b == "":
 					continue

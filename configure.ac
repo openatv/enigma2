@@ -61,6 +61,18 @@ AC_ARG_WITH(distro,
 AC_SUBST(DISTRO)
 AC_DEFINE_UNQUOTED(DISTRO,"$DISTRO",[distro name])
 
+AC_ARG_WITH(machinebrand,
+	[  --with-machinebrand=NAME brand name [[Vu,Xtrend,...]]],
+	[MACHINE_BRAND="$withval"],[MACHINE_BRAND="Vu+"])
+AC_SUBST(MACHINE_BRAND)
+AC_DEFINE_UNQUOTED(MACHINE_BRAND,"$MACHINE_BRAND",[machine brand])
+
+AC_ARG_WITH(machinename,
+	[  --with-machinename=NAME machine name [[Solo,Ultimo,...]]],
+	[MACHINE_NAME="$withval"],[MACHINE_NAME="Ultimo"])
+AC_SUBST(MACHINE_NAME)
+AC_DEFINE_UNQUOTED(MACHINE_NAME,"$MACHINE_NAME",[machine name])
+
 AC_ARG_WITH(imageversion,
 	[  --with-imageversion=NAME version number [[2.0]]],
 	[IMAGEVERSION="$withval"],[IMAGEVERSION=""])

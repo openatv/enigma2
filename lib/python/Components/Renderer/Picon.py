@@ -152,7 +152,7 @@ class Picon(Renderer):
 					self.instance.setPixmapFromFile(pngname)
 					self.instance.show()
 					#else:	
-					#	self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#00000000"))
+					#	self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#FF000000"))
 					#	self.PicLoad.startDecode(pngname)
 				else:
 					self.instance.hide()

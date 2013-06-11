@@ -1,7 +1,6 @@
-import struct
-import os
+import struct, os, time
 from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText
-from enigma import eHdmiCEC, eRCInput
+from enigma import eHdmiCEC, eActionMap
 from Tools.StbHardware import getFPWasTimerWakeup
 from enigma import eTimer
 from Tools.Directories import fileExists
@@ -53,8 +52,9 @@ class HdmiCec:
 
 		self.volumeForwardingEnabled = False
 		self.volumeForwardingDestination = 0
-		eRCInput.getInstance().pyKeyEvent.get().append(self.keyEvent)
+		eActionMap.getInstance().bindAction('', -0x7FFFFFF, self.keyEvent)
 		config.hdmicec.volume_forwarding.addNotifier(self.configVolumeForwarding)
+		config.hdmicec.enabled.addNotifier(self.configVolumeForwarding)
 		if config.hdmicec.handle_deepstandby_events.getValue():
 			if not getFPWasTimerWakeup():
 				self.wakeupMessages()
@@ -68,7 +68,7 @@ class HdmiCec:
 
 	def setFixedPhysicalAddress(self, address):
 		if address != config.hdmicec.fixed_physical_address.getValue():
-			config.hdmicec.fixed_physical_address.setValue(address)
+			config.hdmicec.fixed_physical_address.value = address
 			config.hdmicec.fixed_physical_address.save()
 		hexstring = address[0] + address[2] + address[4] + address[6]
 		eHdmiCEC.getInstance().setFixedPhysicalAddress(int(float.fromhex(hexstring)))
@@ -130,10 +130,10 @@ class HdmiCec:
 				cmd = 0x44
 				data = str(struct.pack('B', 0x6c))
 			if cmd:
-				if config.hdmicec.minimum_send_interval.value != "0":
+				if config.hdmicec.minimum_send_interval.getValue() != "0":
 					self.queue.append((address, cmd, data))
 					if not self.wait.isActive():
-						self.wait.start(int(config.hdmicec.minimum_send_interval.value), True)
+						self.wait.start(int(config.hdmicec.minimum_send_interval.getValue()), True)
 				else:
 					eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
 
@@ -141,7 +141,7 @@ class HdmiCec:
 		if len(self.queue):
 			(address, cmd, data) = self.queue.pop(0)
 			eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
-			self.wait.start(int(config.hdmicec.minimum_send_interval.value), True)
+			self.wait.start(int(config.hdmicec.minimum_send_interval.getValue()), True)
 
 	def sendMessages(self, address, messages):
 		for message in messages:
@@ -275,7 +275,7 @@ class HdmiCec:
 					self.wakeup()
 
 	def configVolumeForwarding(self, configElement):
-		if configElement.getValue():
+		if config.hdmicec.enabled.getValue() and config.hdmicec.volume_forwarding.getValue():
 			self.volumeForwardingEnabled = True
 			self.sendMessage(0x05, 'givesystemaudiostatus')
 		else:
@@ -285,7 +285,6 @@ class HdmiCec:
 		if not self.volumeForwardingEnabled: return
 		cmd = 0
 		data = ''
-		print "keyEvent hdmi: %d %d"%(keyCode, keyEvent)
 		if keyEvent == 0:
 			if keyCode == 115:
 				cmd = 0x44
@@ -303,11 +302,17 @@ class HdmiCec:
 			if keyCode == 114:
 				cmd = 0x44
 				data = str(struct.pack('B', 0x42))
+			if keyCode == 113:
+				cmd = 0x44
+				data = str(struct.pack('B', 0x43))
 		if keyEvent == 1:
 			if keyCode == 115 or keyCode == 114 or keyCode == 113:
 				cmd = 0x45
 		if cmd:
 			eHdmiCEC.getInstance().sendMessage(self.volumeForwardingDestination, cmd, data, len(data))
+			return 1
+		else:
+			return 0
 			
 	def sethdmipreemphasis(self):
 		try:
@@ -320,6 +325,6 @@ class HdmiCec:
 				file.write('off')
 				file.close()
 		except:
-			return		
+			return
 
 hdmi_cec = HdmiCec()
