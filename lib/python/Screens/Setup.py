@@ -249,9 +249,9 @@ class Setup(ConfigListScreen, Screen):
 					continue
 
 				item_text = _(x.get("text", "??").encode("UTF-8"))
-				item_text = item_text.replace("STB_BOX","%s %s" % (getMachineBrand(), getMachineName()))
+				item_text = item_text.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
 				item_description = _(x.get("description", " ").encode("UTF-8"))
-				item_description = item_description.replace("STB_BOX","%s %s" % (getMachineBrand(), getMachineName()))
+				item_description = item_description.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
 				b = eval(x.text or "")
 				if b == "":
 					continue

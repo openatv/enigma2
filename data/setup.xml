@@ -18,7 +18,7 @@
 		<item level="2" text="Include ECM in http streams" description="ECM data will be included in the stream. This enables a client receiver to decode it.">config.streaming.stream_ecm</item>
 		<item level="2" text="Descramble http streams" description="Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available).">config.streaming.descramble</item>
 		<!--item level="2" text="Enable Startup Bootvideo" description="You can Enable or Disable the Startup Bootvideo.">config.misc.bootvideo</item-->
-		<item level="1" text="After PowerLost" description="Select what should be done when the STB_BOX was shutdown incorrectly, or after the Power was lost.">config.usage.shutdownNOK_action</item>
+		<item level="1" text="After PowerLost" description="Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost.">config.usage.shutdownNOK_action</item>
 	</setup>
 	<setup key="userinterface" title="Settings...">
 		<item level="0" text="1st Infobar timeout" description="Set the time to hide the infobar.">config.usage.infobar_timeout</item>
@@ -74,12 +74,12 @@
 		<item level="1" text="Zap mode" requires="ZapMode" description="Setup how to control the channel changing.">config.misc.zapmode</item>
 	</setup>
 	<setup key="epgsettings" title="EPG settings">
-		<item level="2" text="EPG location" description="Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time.">config.misc.epgcachepath</item>
-		<item level="2" text="EPG filename" description="Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes.">config.misc.epgcachefilename</item>
-		<item level="2" text="Automatic refresh" description="Allows the STB_BOX to read the stored EPG data regularly.">config.epg.cacheloadsched</item>
-		<item level="2" text="Refresh every (in hours)" requires="config.epg.cacheloadsched" description="The STB_BOX reads the stored EPG data every (hours).">config.epg.cacheloadtimer</item>
-		<item level="2" text="Automatic save" description="Allows the STB_BOX to store the EPG data regularly.">config.epg.cachesavesched</item>
-		<item level="2" text="Save every (in hours)" requires="config.epg.cachesavesched" description="The STB_BOX stores the EPG data every (hours).">config.epg.cachesavetimer</item>
+		<item level="2" text="EPG location" description="Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time.">config.misc.epgcachepath</item>
+		<item level="2" text="EPG filename" description="Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes.">config.misc.epgcachefilename</item>
+		<item level="2" text="Automatic refresh" description="Allows the %s %s to read the stored EPG data regularly.">config.epg.cacheloadsched</item>
+		<item level="2" text="Refresh every (in hours)" requires="config.epg.cacheloadsched" description="The %s %s reads the stored EPG data every (hours).">config.epg.cacheloadtimer</item>
+		<item level="2" text="Automatic save" description="Allows the %s %s to store the EPG data regularly.">config.epg.cachesavesched</item>
+		<item level="2" text="Save every (in hours)" requires="config.epg.cachesavesched" description="The %s %s stores the EPG data every (hours).">config.epg.cachesavetimer</item>
 		<item level="2" text="Show EIT now/next in infobar" description="Display the EIT now/next eventdata in infobar.">config.usage.show_eit_nownext</item>
 		<item level="2" text="Enable EIT EPG" description="Use EIT EPG information when it is available.">config.epg.eit</item>
 		<item level="2" text="Enable MHW EPG" description="Use MHW EPG information when it is available.">config.epg.mhw</item>
