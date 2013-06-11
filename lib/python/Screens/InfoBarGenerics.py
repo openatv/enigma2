@@ -1926,7 +1926,13 @@ class InfoBarInstantRecord:
 			{
 				"instantRecord": (self.instantRecord, _("Instant recording...")),
 			})
-		self.recording = []
+		if isStandardInfoBar(self):
+			self.recording = []
+		else:
+			from Screens.InfoBar import InfoBar
+			InfoBarInstance = InfoBar.instance
+			if InfoBarInstance:
+				self.recording = InfoBarInstance.recording
 
 	def stopCurrentRecording(self, entry = -1):
 		if entry is not None and entry != -1:
