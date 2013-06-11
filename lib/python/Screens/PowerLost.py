@@ -2,6 +2,7 @@ from Screen import Screen
 from MessageBox import MessageBox
 from Components.config import config
 import Screens.Standby
+from enigma import getMachineBrand, getMachineName
 
 class PowerLost(Screen):
 	def __init__(self, session):
@@ -9,8 +10,8 @@ class PowerLost(Screen):
 		self.showMessageBox()
 
 	def showMessageBox(self):
-		message = _("Your STB_BOX was not shutdown properly.\n\n"
-					"Do you want to put it in %s?") % config.usage.shutdownNOK_action.getValue()
+		message = _("Your %s %s was not shutdown properly.\n\n"
+					"Do you want to put it in %s?") % (getMachineBrand(), getMachineName(), config.usage.shutdownNOK_action.getValue())
 		self.session.openWithCallback(self.MsgBoxClosed, MessageBox, message, MessageBox.TYPE_YESNO, timeout = 60, default = True)
 
 	def MsgBoxClosed(self, ret):
