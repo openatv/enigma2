@@ -8,6 +8,7 @@ from Components.DreamInfoHandler import DreamInfoHandler
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from os import system as os_system, path as os_path, mkdir
+from enigma import getMachineBrand, getMachineName
 
 config.misc.defaultchosen = ConfigBoolean(default = False)
 
@@ -38,7 +39,7 @@ class DefaultWizard(WizardLanguage, DreamInfoHandler):
 	def statusCallback(self, status, progress):
 		print "statusCallback:", status, progress
 		if status == DreamInfoHandler.STATUS_DONE:
-			self["text"].setText(_("The installation of the default settings is finished. You can now continue configuring your STB_BOX by pressing the OK button on the remote control."))
+			self["text"].setText(_("The installation of the default settings is finished. You can now continue configuring your %s %s by pressing the OK button on the remote control.") % (getMachineBrand(), getMachineName()))
 			self.markDone()
 			self.disableKeys = False
 

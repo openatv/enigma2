@@ -1,5 +1,5 @@
 
-from enigma import eListboxPythonMultiContent, gFont, eEnv
+from enigma import eListboxPythonMultiContent, gFont, eEnv, getMachineBrand, getMachineName
 
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -474,7 +474,7 @@ class QuickMenu(Screen):
 			self.backupfile = getBackupFilename()
 			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 			if os_path.exists(self.fullbackupfilename):
-				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your STB_BOX backup?\nSTB will restart after the restore"))
+				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % (getMachineBrand(), getMachineName()))
 			else:
 				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout = 10)
 		elif item[0] == _("Select Backup files"):

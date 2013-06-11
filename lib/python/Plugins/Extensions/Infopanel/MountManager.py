@@ -2,7 +2,7 @@
 from . import _
 
 from Screens.Screen import Screen
-from enigma import eTimer
+from enigma import eTimer, getMachineBrand, getMachineName
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
 from Components.ActionMap import ActionMap
@@ -319,7 +319,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("Choose where to mount your devices to:"))
 		self['key_green'] = Label(_("Save"))
 		self['key_red'] = Label(_("Cancel"))
-		self['Linconn'] = Label(_("Wait please while scanning your STB_BOX devices..."))
+		self['Linconn'] = Label(_("Wait please while scanning your %s %s devices...") % (getMachineBrand(), getMachineName()))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'green': self.saveMypoints, 'red': self.close, 'back': self.close})
 		self.updateList()
 
@@ -457,9 +457,9 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		ybox.setTitle(_("Please wait."))
 
 	def delay(self, val):
-		message = _("Changes need a system restart to take effect.\nRestart your STB_BOX now?")
+		message = _("Changes need a system restart to take effect.\nRestart your %s %s now?") % (getMachineBrand(), getMachineName())
 		ybox = self.session.openWithCallback(self.restartBox, MessageBox, message, MessageBox.TYPE_YESNO)
-		ybox.setTitle(_("Restart STB_BOX."))
+		ybox.setTitle(_("Restart %s %s.") % (getMachineBrand(), getMachineName()))
 
 	def add_fstab(self, result = None, retval = None, extra_args = None):
 		self.device = extra_args[0]
