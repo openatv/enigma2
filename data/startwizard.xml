@@ -21,8 +21,8 @@ self.selectKey("DOWN")
 			</code>
 		</step>
 		<step id="network" >
-			<text value="Please connect your receiver to the internet" />
-			<displaytext value="Please connect your receiver to the internet" />
+			<text value="Please connect your %s %s to the internet" />
+			<displaytext value="Please connect your %s %s to the internet" />
 			<list>
 				<listentry caption="Check the internet connection" step="update" />
 				<listentry caption="Skip internet connection check (disables automatic package installation)" step="nima" />
@@ -46,8 +46,8 @@ self.selectKey("OK")
 			<condition>
 self.condition = not config.misc.installwizard.ipkgloaded.getValue()
 			</condition>
-			<text value="Your receiver does not have an internet connection" />
-			<displaytext value="Your receiver is not connected to the internet" />
+			<text value="Your %s %s does not have an internet connection" />
+			<displaytext value="Your %s %s is not connected to the internet" />
 			<list>
 				<listentry caption="Check the internet connection again" step="update" />
 				<listentry caption="Skip internet connection check (disables automatic package installation)" step="nima" />
