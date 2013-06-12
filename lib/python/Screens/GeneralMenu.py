@@ -843,8 +843,9 @@ class GeneralMenu(Screen):
          ])
 
         subentrys['id_mainmenu_tv'] = self.getSubEntry('id_mainmenu_tv', [(_('Live Radio'), 'mainmenu_tv_live_radio', boundFunction(self.openLiveRadio), 60),
-        (_('Scheduler'),'mainmenu_tv_timer',boundFunction(self.openDialog, TimerEditList),70),
-        (_('Recorded TV'),'mainmenu_tv_recorded', boundFunction(self.openRecordings),80)
+        (_('Timers'),'mainmenu_tv_timer',boundFunction(self.openDialog, TimerEditList),70),
+        (_('Recorded TV'),'mainmenu_tv_recorded', boundFunction(self.openRecordings),80),
+         (_('Program Guide'),'mainmenu_tv_timer',boundFunction(self.openProgramGuide),90)
         #,(_('Setup'), 'mainmenu_tv_setup', boundFunction(self.notReadyMessage), 100)
         ])
 
@@ -923,6 +924,10 @@ class GeneralMenu(Screen):
     def openRecordings(self):
 	InfoBar.instance.showMovies()
 
+    def openProgramGuide(self):
+#      	if InfoBar.instance.servicelist is None:
+	InfoBar.instance.openMultiServiceEPG()
+	
     # Photos
     def openPicturePlayer(self):
 	from Plugins.Extensions.PicturePlayer.ui import picshow
