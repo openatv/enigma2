@@ -327,7 +327,7 @@ class GeneralMenu(Screen):
          (_('TV'), 'id_mainmenu_tv', boundFunction(self.openChannelSelection)),
          (_('Movies'), 'id_mainmenu_movies', boundFunction(self.openMovieBrowserAll)),
          (_('Sources'), 'id_mainmenu_source', boundFunction(self.openMediaScanner)),
-         (_('Power'), 'id_mainmenu_tasks', boundFunction(self.openMenuID, 'id_mainmenu_tasks_power', _('Power')))]
+         (_('Setup'), 'id_mainmenu_tasks', boundFunction(self.openGeneralSetup))]
         self.pos = {}
         self.pos['id_mainmenu_plugins'] = [(12, 120),
          (190, 120),
@@ -492,6 +492,7 @@ class GeneralMenu(Screen):
         self['down_sub_4'].hide()
         self['frame'] = MovingPixmap()
         self['frame'].hide()
+        
         self['actions'] = ActionMap(['OkCancelActions', 'DirectionActions'], {'ok': self.keyOK,
          'cancel': self.hideMenuIfServiceRunning,
          'up': self.up,
@@ -570,7 +571,7 @@ class GeneralMenu(Screen):
                 countitems += 1
                 wight += 1
    
-        elif menuID == 'id_mainmenu_tasks2':
+        elif menuID == 'id_mainmenu_tasks':
             wight = 100
             countitems = 0
             for x in self.subentrys['id_mainmenu_tasks']:
@@ -593,6 +594,9 @@ class GeneralMenu(Screen):
       
     def left(self):
         selectedSubEntry = self.selectedSubEntry[self.selectedEntryID]
+        print "ID---------------------------------"
+        print self.selectedEntryID
+        print "ID---------------------------------"        
         if selectedSubEntry == -2:
             if len(gmenu_extentrys[self.selectedEntryID]) > 0:
                 self.selectedExtEntry[self.selectedEntryID] -= 1
@@ -631,6 +635,9 @@ class GeneralMenu(Screen):
 
     def right(self):
         selectedSubEntry = self.selectedSubEntry[self.selectedEntryID]
+        print "ID---------------------------------"
+        print self.selectedEntryID
+        print "ID---------------------------------"          
         if selectedSubEntry == -2:
             if len(gmenu_extentrys[self.selectedEntryID]) > 0:
                 self.selectedExtEntry[self.selectedEntryID] += 1
@@ -730,11 +737,14 @@ class GeneralMenu(Screen):
                     if subcount >= self.startSubEntry[x[1]] and subcount < self.startSubEntry[x[1]] + 5:
                         if count == self.selectedEntry:
                             sublist.append(GeneralSubMenuEntryComponent(y[0], enableEntry=True, selectedEntry=selectedSubEntry == subcount))
+                            self['list_sub_' + str(count - self.startEntry)].show() ## for show only current sublist
                         else:
                             sublist.append(GeneralSubMenuEntryComponent(y[0], enableEntry=False, selectedEntry=False))
+                            self['list_sub_' + str(count - self.startEntry)].hide() ## for show only current sublist
                     subcount += 1
 
                 self['list_sub_' + str(count - self.startEntry)].setList(sublist)
+
                 if count == self.selectedEntry and selectedSubEntry > -1 and len(sublist) > 0:
                     self['list_sub_' + str(count - self.startEntry)].selectionEnabled(1)
                     self['list_sub_' + str(count - self.startEntry)].moveToIndex(selectedSubEntry - self.startSubEntry[x[1]])
@@ -846,7 +856,9 @@ class GeneralMenu(Screen):
         subentrys['id_mainmenu_source'] = self.getSubEntry('id_mainmenu_source', self.getScart(None, []))
       
         subentrys['id_mainmenu_tasks'] = self.getSubEntry('id_mainmenu_tasks', [#(_('Information'),'mainmenu_tasks_info', boundFunction(self.openMenuID, 'id_mainmenu_tasks_info', _('Information')), 20), 
-          (_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openGeneralSetup), 30)])
+	  (_('Power'),'mainmenu_tasks_power', boundFunction(self.openMenuID, 'id_mainmenu_tasks_power', _('Power')),20),
+          #(_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openGeneralSetup), 30)
+          ])
         return subentrys
 
     def openGeneralSetup(self):
@@ -876,9 +888,9 @@ class GeneralMenu(Screen):
 			if d[0] in ('.', '_'): continue
 			menuitem = [(_(d)), d, boundFunction(self.openFileManager, "/media/upnp/"+d+"/"), i+10] 
 			list.append(tuple(menuitem))
-	if SystemInfo.get('ScartMenu', True):
-		     menuitem = [(_('Scart')), 'mainmenu_source_scart', boundFunction(self.openScart),1]  
-		     list.append(tuple(menuitem))
+	#if SystemInfo.get('ScartMenu', True):
+	#	     menuitem = [(_('Scart')), 'mainmenu_source_scart', boundFunction(self.openScart),1]  
+	#	     list.append(tuple(menuitem))
 	return list
 
 

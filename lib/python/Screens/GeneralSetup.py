@@ -235,6 +235,7 @@ class GeneralSetup(Screen):
 		if SystemInfo["LcdDisplay"]:
 			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Setup",_("Skin Setup"),_("Setup your LCD")))
 		self.sublist.append(QuickSubMenuEntryComponent("HDMI-CEC",_("Consumer Electronics Control"),_("Control up to ten CEC-enabled devices connected through HDMI")))
+		self.sublist.append(QuickSubMenuEntryComponent("Factory Reset",_("Load default"),_("Reset all settings to defaults one")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Network Menu ##############################
@@ -442,6 +443,16 @@ class GeneralSetup(Screen):
 		elif item[0] == _("HDMI-CEC"):
 			from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
 			self.session.open(HdmiCECSetupScreen)  
+		elif item[0] == _("Factory Reset"):
+			from Screens.FactoryReset import FactoryReset
+			def msgClosed(ret):
+				if ret:
+					from os import system, _exit
+					system("rm -R /etc/enigma2")
+					system("cp -R /usr/share/enigma2/defaults /etc/enigma2")
+					system("/usr/bin/showiframe /usr/share/backdrop.mvi")
+					_exit(0)
+			self.session.openWithCallback(msgClosed, FactoryReset)  
 ######## Select TV Setup Menu ##############################
 		elif item[0] == _("Channel selection"):
 			self.openSetup("channelselection")
