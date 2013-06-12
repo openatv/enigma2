@@ -70,9 +70,9 @@ class Wizard(Screen):
 				if attrs.has_key('laststep'):
 					self.wizard[self.lastStep]["laststep"] = str(attrs.get('laststep'))
 			elif (name == "text"):
-				self.wizard[self.lastStep]["text"] = str(attrs.get('value')).replace("\\n", "\n").replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
+				self.wizard[self.lastStep]["text"] = str(attrs.get('value')).replace("\\n", "\n")
 			elif (name == "displaytext"):
-				self.wizard[self.lastStep]["displaytext"] = str(attrs.get('value')).replace("\\n", "\n").replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
+				self.wizard[self.lastStep]["displaytext"] = str(attrs.get('value')).replace("\\n", "\n")
 			elif (name == "list"):
 				if (attrs.has_key('type')):
 					if attrs["type"] == "dynamic":
@@ -460,10 +460,10 @@ class Wizard(Screen):
 		text = self.getTranslation(self.wizard[self.currStep]["text"])
 		if text.find("[timeout]") != -1:
 			text = text.replace("[timeout]", str(self.timeoutCounter))
-			self["text"].setText(text)
+			self["text"].setText(text.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName())))
 		else:
 			if firstset:
-				self["text"].setText(text)
+				self["text"].setText(text.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName())))
 
 	def updateValues(self):
 # 		print "Updating values in step " + str(self.currStep)
