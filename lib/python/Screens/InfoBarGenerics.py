@@ -65,10 +65,10 @@ from Screens.Setup import Setup
 import Screens.Standby
 
 def isStandardInfoBar(self):
-	return ".InfoBar'>" in `self`
+	return self.__class__.__name__ == "InfoBar"
 
 def isMoviePlayerInfoBar(self):
-	return ".MoviePlayer" in `self`
+	return self.__class__.__name__ == "MoviePlayer"
 
 def setResumePoint(session):
 	global resumePointCache, resumePointCacheLast
@@ -2020,7 +2020,7 @@ class InfoBarPVRState:
 			self["state"].setText("")
 			self["statusicon"].setPixmapNum(6)
 			self["speed"].setText("")
-		if self.execing and self.seekstate != self.SEEK_STATE_EOF and not config.usage.movieplayer_pvrstate.getValue():
+		if self.shown and self.seekstate != self.SEEK_STATE_EOF and not config.usage.movieplayer_pvrstate.getValue():
 			self.pvrStateDialog.show()
 			self.startHideTimer()
 
@@ -2101,16 +2101,12 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		self.onHide.append(self.__hideTimeshiftState)
 
 	def _mayShow(self):
-		if self.execing and self.timeshiftEnabled() and self.isSeekable() and self._InfoBarShowHide__state == self.STATE_SHOWN:
+		if self.shown and self.timeshiftEnabled() and self.isSeekable():
 			InfoBarTimeshift.ptsSeekPointerSetCurrentPos(self)
 			if config.timeshift.showinfobar.getValue():
 				self["TimeshiftSeekPointerActions"].setEnabled(True)
 			self.pvrStateDialog.show()
 			self.startHideTimer()
-
-		elif self.execing and self.timeshiftEnabled() and not self.isSeekable():
-			self["TimeshiftSeekPointerActions"].setEnabled(False)
-			self.pvrStateDialog.hide()
 
 	def __hideTimeshiftState(self):
 		self["TimeshiftSeekPointerActions"].setEnabled(False)
@@ -3778,7 +3774,13 @@ class InfoBarInstantRecord:
 			{
 				"instantRecord": (self.instantRecord, _("Instant recording...")),
 			})
-		self.recording = []
+		if isStandardInfoBar(self):
+			self.recording = []
+		else:
+			from Screens.InfoBar import InfoBar
+			InfoBarInstance = InfoBar.instance
+			if InfoBarInstance:
+				self.recording = InfoBarInstance.recording
 
 	def stopCurrentRecording(self, entry = -1):
 		if entry is not None and entry != -1:
@@ -3980,19 +3982,23 @@ class InfoBarInstantRecord:
 						 "\n" + _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
 			return
 
-		common =((_("Add recording (stop after current event)"), "event"),
-		(_("Add recording (indefinitely)"), "indefinitely"),
-		(_("Add recording (enter recording duration)"), "manualduration"),
-		(_("Add recording (enter recording endtime)"), "manualendtime"),)
+		if isStandardInfoBar(self):
+			common = ((_("Add recording (stop after current event)"), "event"),
+				(_("Add recording (indefinitely)"), "indefinitely"),
+				(_("Add recording (enter recording duration)"), "manualduration"),
+				(_("Add recording (enter recording endtime)"), "manualendtime"),)
 
-		timeshiftcommon = ((_("Timeshift save recording (stop after current event)"), "savetimeshift"),
-		(_("Timeshift save recording (Select event)"), "savetimeshiftEvent"),)
+			timeshiftcommon = ((_("Timeshift save recording (stop after current event)"), "savetimeshift"),
+				(_("Timeshift save recording (Select event)"), "savetimeshiftEvent"),)
+		else:
+			common = ()
+			timeshiftcommon = ()
 
 		if self.isInstantRecordRunning():
 			title =_("A recording is currently running.\nWhat do you want to do?")
 			list = ((_("Stop recording"), "stop"),) + common + \
-			((_("Change recording (duration)"), "changeduration"),
-			(_("Change recording (endtime)"), "changeendtime"),)
+				((_("Change recording (duration)"), "changeduration"),
+				(_("Change recording (endtime)"), "changeendtime"),)
 			if self.isTimerRecordRunning():
 				list += ((_("Stop timer recording"), "timer"),)
 		else:
@@ -4001,12 +4007,16 @@ class InfoBarInstantRecord:
 
 			if self.isTimerRecordRunning():
 				list += ((_("Stop timer recording"), "timer"),)
-		if self.timeshiftEnabled():
+		if isStandardInfoBar(self) and self.timeshiftEnabled():
 			list = list + timeshiftcommon
 
-		list = list + ((_("Do not record"), "no"),)
-		self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox,title=title,list=list)
-		return
+		if isStandardInfoBar(self):
+			list = list + ((_("Do not record"), "no"),)
+
+		if list:
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox,title=title,list=list)
+		else:
+			return 0
 
 class InfoBarAudioSelection:
 	def __init__(self):
