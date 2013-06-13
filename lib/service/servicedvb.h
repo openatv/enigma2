@@ -164,6 +164,7 @@ public:
 	RESULT setNextPlaybackFile(const char *fn);
 	RESULT saveTimeshiftFile();
 	std::string getTimeshiftFilename();
+	void switchToLive();
 
 		// iCueSheet
 	PyObject *getCutList();
@@ -230,7 +231,6 @@ protected:
 	std::set<int> m_pids_active;
 
 	void updateTimeshiftPids();
-	void switchToLive();
 
 	void resetTimeshift(int start);
 	void switchToTimeshift();

@@ -352,7 +352,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.session.open(PluginBrowser)
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
-		InfoBarMenu, InfoBarEPG, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
+		InfoBarMenu, InfoBarEPG, \
+		InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView,
 		InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin, InfoBarAspectSelection,
 		InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarResolutionSelection, InfoBarZoom):
@@ -386,7 +387,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		self.allowPiP = True
 
 		for x in HelpableScreen, InfoBarShowHide, InfoBarMenu, InfoBarEPG, \
-				InfoBarBase, InfoBarSeek, InfoBarShowMovies, \
+				InfoBarBase, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord  \
 				InfoBarAudioSelection, InfoBarNotifications, InfoBarSimpleEventView, \
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
 				InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, \
