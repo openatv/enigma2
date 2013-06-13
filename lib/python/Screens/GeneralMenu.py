@@ -925,8 +925,8 @@ class GeneralMenu(Screen):
 	InfoBar.instance.showMovies()
 
     def openProgramGuide(self):
-#      	if InfoBar.instance.servicelist is None:
-	InfoBar.instance.openMultiServiceEPG()
+	#InfoBar.instance.openMultiServiceEPG()
+	InfoBar.instance.openGraphEPG()
 	
     # Photos
     def openPicturePlayer(self):
