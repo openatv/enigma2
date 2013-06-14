@@ -2373,7 +2373,6 @@ class InfoBarTimeshift:
 			# Delete Timeshift Records on zap
 			self.pts_eventcount = 0
 			print 'AAAAAAAAAAAAAAAAAAAAAA'
-			print 'TIME:', time()
 			# self.pts_cleanUp_timer.start(1000, True)
 
 	def __evEventInfoChanged(self):
@@ -2645,8 +2644,6 @@ class InfoBarTimeshift:
 			filelist.sort()
 
 			for filename in filelist:
-				print os.path.splitext(filename)
-				print 'LEN',len(os.path.splitext(filename))
 				if filename.startswith("pts_livebuffer") and not os.path.splitext(filename)[1]:
 					print "TRUE"
 					statinfo = os.stat("%s%s" % (config.usage.timeshift_path.getValue(),filename))
@@ -2937,11 +2934,7 @@ class InfoBarTimeshift:
 	def ptsCreateHardlink(self):
 		print 'ptsCreateHardlink'
 		for filename in os.listdir(config.usage.timeshift_path.getValue()):
-
-			print os.path.splitext(filename)
-			print 'LEN',len(os.path.splitext(filename))
 			# if filename.startswith("timeshift") and not os.path.splitext(filename)[1]:
-
 			if filename.startswith("timeshift") and not filename.endswith(".sc") and not filename.endswith(".del") and not filename.endswith(".copy"):
 				if os.path.exists("%spts_livebuffer_%s.eit" % (config.usage.timeshift_path.getValue(),self.pts_eventcount)):
 					self.BgFileEraser.erase("%spts_livebuffer_%s.eit" % (config.usage.timeshift_path.getValue(),self.pts_eventcount))
@@ -2951,7 +2944,6 @@ class InfoBarTimeshift:
 					self.BgFileEraser.erase("%spts_livebuffer_%s" % (config.usage.timeshift_path.getValue(),self.pts_eventcount))
 				if os.path.exists("%spts_livebuffer_%s.sc" % (config.usage.timeshift_path.getValue(),self.pts_eventcount)):
 					self.BgFileEraser.erase("%spts_livebuffer_%s.sc" % (config.usage.timeshift_path.getValue(),self.pts_eventcount))
-
 				try:
 					# Create link to pts_livebuffer file
 					os.link("%s%s" % (config.usage.timeshift_path.getValue(),filename), "%spts_livebuffer_%s" % (config.usage.timeshift_path.getValue(),self.pts_eventcount))
