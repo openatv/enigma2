@@ -466,7 +466,7 @@ def InitUsageConfig():
 	config.subtitles.subtitle_fontsize  = ConfigSelection(choices = ["16", "18", "20", "22", "24", "26", "28", "30", "32", "34", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54"], default = "34")
 
 	subtitle_delay_choicelist = []
-	for i in range(-900000, 945000, 45000):
+	for i in range(-900000, 1845000, 45000):
 		if i == 0:
 			subtitle_delay_choicelist.append(("0", _("No delay")))
 		else:
@@ -604,7 +604,7 @@ def InitUsageConfig():
 		config.epgselection.infobar_preview_mode = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fulscreen"))], default = "1")
 	config.epgselection.infobar_roundto = ConfigSelection(default = "15", choices = [("15", _("%d minutes") % 15), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60)])
 	config.epgselection.infobar_prevtime = ConfigClock(default = time())
-	config.epgselection.infobar_prevtimeperiod = ConfigInteger(default = 300, limits = (60, 300))
+	config.epgselection.infobar_prevtimeperiod = ConfigSelection(default = "300", choices = [("60", _("%d minutes") % 60), ("120", _("%d minutes") % 120), ("180", _("%d minutes") % 180), ("240", _("%d minutes") % 240), ("300", _("%d minutes") % 300)])
 	config.epgselection.infobar_primetimehour = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 00, max = 23, wraparound = True)
 	config.epgselection.infobar_primetimemins = ConfigSelectionNumber(default = 00, stepwidth = 1, min = 00, max = 59, wraparound = True)
 	config.epgselection.infobar_servicetitle_mode = ConfigSelection(default = "servicename", choices = [("servicename", _("Service Name")),("picon", _("Picon")),("picon+servicename", _("Picon and Service Name")) ])
@@ -633,7 +633,7 @@ def InitUsageConfig():
 	config.epgselection.graph_infolong = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Single EPG")
 	config.epgselection.graph_roundto = ConfigSelection(default = "15", choices = [("15", _("%d minutes") % 15), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60)])
 	config.epgselection.graph_prevtime = ConfigClock(default = time())
-	config.epgselection.graph_prevtimeperiod = ConfigInteger(default=180, limits = (60, 300))
+	config.epgselection.graph_prevtimeperiod = ConfigSelection(default = "180", choices = [("60", _("%d minutes") % 60), ("120", _("%d minutes") % 120), ("180", _("%d minutes") % 180), ("240", _("%d minutes") % 240), ("300", _("%d minutes") % 300)])
 	config.epgselection.graph_primetimehour = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 00, max = 23, wraparound = True)
 	config.epgselection.graph_primetimemins = ConfigSelectionNumber(default = 00, stepwidth = 1, min = 00, max = 59, wraparound = True)
 	config.epgselection.graph_servicetitle_mode = ConfigSelection(default = "picon+servicename", choices = [("servicename", _("Service Name")),("picon", _("Picon")),("picon+servicename", _("Picon and Service Name")) ])

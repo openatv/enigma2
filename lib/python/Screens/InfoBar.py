@@ -231,7 +231,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			
 			
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
-		InfoBarMenu, InfoBarEPG, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
+		InfoBarMenu, InfoBarEPG, \
+		InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
 		InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
 		InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarZoom):
@@ -262,7 +263,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		self.allowPiP = True
 
 		for x in HelpableScreen, InfoBarShowHide, InfoBarMenu, InfoBarEPG, \
-				InfoBarBase, InfoBarSeek, InfoBarShowMovies, \
+				InfoBarBase, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord \
 				InfoBarAudioSelection, InfoBarNotifications, \
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
 				InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, \
