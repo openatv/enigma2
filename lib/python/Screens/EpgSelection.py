@@ -1264,9 +1264,9 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def zapSelectedService(self, prev=False):
 		if self.session.pipshown:
-			self.prevch = str(self.session.pip.getCurrentService().toString())
+			self.prevch = self.session.pip.getCurrentService() and str(self.session.pip.getCurrentService().toString()) or None
 		else:
-			self.prevch = str(self.session.nav.getCurrentlyPlayingServiceReference().toString())
+			self.prevch = self.session.nav.getCurrentlyPlayingServiceReference() and str(self.session.nav.getCurrentlyPlayingServiceReference().toString()) or None
 		lst = self["list"]
 		count = lst.getCurrentChangeCount()
 		if count == 0:
