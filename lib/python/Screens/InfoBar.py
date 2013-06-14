@@ -387,7 +387,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		self.allowPiP = True
 
 		for x in HelpableScreen, InfoBarShowHide, InfoBarMenu, InfoBarEPG, \
-				InfoBarBase, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord  \
+				InfoBarBase, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord,  \
 				InfoBarAudioSelection, InfoBarNotifications, InfoBarSimpleEventView, \
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
 				InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, \
