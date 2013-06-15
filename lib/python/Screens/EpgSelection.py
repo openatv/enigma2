@@ -359,9 +359,9 @@ class EPGSelection(Screen, HelpableScreen):
 				}, -1)
 			self['epgactions'].csel = self
 		if self.type == EPG_TYPE_GRAPH:
-			time_epoch=config.epgselection.graph_prevtimeperiod.getValue()
+			time_epoch=int(config.epgselection.graph_prevtimeperiod.getValue())
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
-			time_epoch=config.epgselection.infobar_prevtimeperiod.getValue()
+			time_epoch=int(config.epgselection.infobar_prevtimeperiod.getValue())
 		else:
 			time_epoch=None
 		self['list'] = EPGList(type=self.type, selChangedCB=self.onSelectionChanged, timer=session.nav.RecordTimer, time_epoch=time_epoch, overjump_empty=config.epgselection.overjump.getValue(), graphic=graphic)
@@ -642,9 +642,9 @@ class EPGSelection(Screen, HelpableScreen):
 				self.nextService()
 		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			if self.type == EPG_TYPE_GRAPH:
-				timeperiod = config.epgselection.graph_prevtimeperiod.getValue()
+				timeperiod = int(config.epgselection.graph_prevtimeperiod.getValue())
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
-				timeperiod = config.epgselection.infobar_prevtimeperiod.getValue()
+				timeperiod = int(config.epgselection.infobar_prevtimeperiod.getValue())
 			if timeperiod == 60:
 				for i in range(24):
 					self.updEvent(+2)
@@ -690,9 +690,9 @@ class EPGSelection(Screen, HelpableScreen):
 				self.prevService()
 		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			if self.type == EPG_TYPE_GRAPH:
-				timeperiod = config.epgselection.graph_prevtimeperiod.getValue()
+				timeperiod = int(config.epgselection.graph_prevtimeperiod.getValue())
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
-				timeperiod = config.epgselection.infobar_prevtimeperiod.getValue()
+				timeperiod = int(config.epgselection.infobar_prevtimeperiod.getValue())
 			if timeperiod == 60:
 				for i in range(24):
 					self.updEvent(-2)
@@ -1267,9 +1267,9 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def zapSelectedService(self, prev=False):
 		if self.session.pipshown:
-			self.prevch = str(self.session.pip.getCurrentService().toString())
+			self.prevch = self.session.pip.getCurrentService() and str(self.session.pip.getCurrentService().toString()) or None
 		else:
-			self.prevch = str(self.session.nav.getCurrentlyPlayingServiceReference().toString())
+			self.prevch = self.session.nav.getCurrentlyPlayingServiceReference() and str(self.session.nav.getCurrentlyPlayingServiceReference().toString()) or None
 		lst = self["list"]
 		count = lst.getCurrentChangeCount()
 		if count == 0:
@@ -1291,10 +1291,10 @@ class EPGSelection(Screen, HelpableScreen):
 						self.zapFunc(ref.ref, bouquet = self.getCurrentBouquet(), preview = False)
 						return
 					self.session.pip.playService(service)
-					self.currch = str(self.session.pip.getCurrentService().toString())
+					self.currch = self.session.pip.getCurrentService() and str(self.session.pip.getCurrentService().toString())
 				else:
 					self.zapFunc(ref.ref, bouquet = self.getCurrentBouquet(), preview = prev)
-					self.currch = str(self.session.nav.getCurrentlyPlayingServiceReference().toString())
+					self.currch = self.session.nav.getCurrentlyPlayingServiceReference() and str(self.session.nav.getCurrentlyPlayingServiceReference().toString())
 				self['list'].setCurrentlyPlaying(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
 	def zapTo(self):
@@ -1316,7 +1316,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def keyNumberGlobal(self, number):
 		if self.type == EPG_TYPE_GRAPH:
 			if number == 1:
-				timeperiod = config.epgselection.graph_prevtimeperiod.getValue()
+				timeperiod = int(config.epgselection.graph_prevtimeperiod.getValue())
 				if timeperiod > 60:
 					timeperiod = timeperiod - 60
 					self['list'].setEpoch(timeperiod)
@@ -1325,7 +1325,7 @@ class EPGSelection(Screen, HelpableScreen):
 			elif number == 2:
 				self.prevPage()
 			elif number == 3:
-				timeperiod = config.epgselection.graph_prevtimeperiod.getValue()
+				timeperiod = int(config.epgselection.graph_prevtimeperiod.getValue())
 				if timeperiod < 300:
 					timeperiod = timeperiod + 60
 					self['list'].setEpoch(timeperiod)
@@ -1369,7 +1369,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.moveTimeLines()
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
 			if number == 1:
-				timeperiod = config.epgselection.infobar_prevtimeperiod.getValue()
+				timeperiod = int(config.epgselection.infobar_prevtimeperiod.getValue())
 				if timeperiod > 60:
 					timeperiod = timeperiod - 60
 					self['list'].setEpoch(timeperiod)
@@ -1378,7 +1378,7 @@ class EPGSelection(Screen, HelpableScreen):
 			elif number == 2:
 				self.prevPage()
 			elif number == 3:
-				timeperiod = config.epgselection.infobar_prevtimeperiod.getValue()
+				timeperiod = int(config.epgselection.infobar_prevtimeperiod.getValue())
 				if timeperiod < 300:
 					timeperiod = timeperiod + 60
 					self['list'].setEpoch(timeperiod)
