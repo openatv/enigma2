@@ -130,7 +130,6 @@ class eLock
 	pthread_mutex_t mutex;
 	pthread_cond_t cond;
 
-	int pid;
 	int counter, max;
 public:
 	void lock(int res=100);
