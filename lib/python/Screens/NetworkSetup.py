@@ -2115,6 +2115,7 @@ class NetworkSamba(Screen):
 		self.SambaStartStop()
 
 	def UninstallCheck(self):
+		self.service_name = self.service_name + ' task-base-smbfs-client'
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
 
 	def RemovedataAvail(self, str, retval, extra_args):
