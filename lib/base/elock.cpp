@@ -27,7 +27,6 @@ eLock::eLock(int max): max(max)
 	pthread_mutex_init(&mutex, 0);
 	pthread_cond_init(&cond, 0);
 	counter=0;
-	pid=-1;
 }
 
 eLock::~eLock()
