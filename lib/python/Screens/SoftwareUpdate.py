@@ -328,7 +328,7 @@ class UpdatePlugin(Screen):
 			if config.softwareupdate.updateisunstable.getValue() == '1':
 				message = _("The current update maybe unstable") + "\n" + _("Are you sure you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(%s " % self.total_packages + _("Packages") + ")"
 			elif config.softwareupdate.updateisunstable.getValue() == '0':
-				message = _("Do you want to update your %s ?") % (getMachineBrand(), getMachineName()) + "\n(%s " % self.total_packages + _("Packages") + ")"
+				message = _("Do you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(%s " % self.total_packages + _("Packages") + ")"
 			choices = [(_("View the changes"), "changes"),
 				(_("Upgrade and reboot system"), "cold")]
 			if not self.SettingsBackupDone and not config.softwareupdate.autosettingsbackup.getValue() and config.backupmanager.backuplocation.getValue():
