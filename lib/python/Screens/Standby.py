@@ -3,8 +3,10 @@ from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
+from Tools import Notifications
 from GlobalActions import globalActionMap
-from enigma import eDVBVolumecontrol
+import RecordTimer
+from enigma import eDVBVolumecontrol, eTimer
 from os import path
 import Screens.InfoBar
 
@@ -37,7 +39,7 @@ class Standby2(Screen):
 		Screen.__init__(self, session)
 		self.skinName = "Standby"
 		self.avswitch = AVSwitch()
-		
+
 		print "enter standby"
 
 		self["actions"] = ActionMap( [ "StandbyActions" ],
@@ -68,6 +70,13 @@ class Standby2(Screen):
 			self.avswitch.setInput("SCART")
 		else:
 			self.avswitch.setInput("AUX")
+
+		gotoShutdownTime = int(config.usage.standby_to_shutdown_timer.value)
+		if gotoShutdownTime:
+			self.standbyTimeoutTimer = eTimer()
+			self.standbyTimeoutTimer.callback.append(self.standbyTimeout)
+			self.standbyTimeoutTimer.startLongTimer(gotoShutdownTime)
+
 		self.onFirstExecBegin.append(self.__onFirstExecBegin)
 		self.onClose.append(self.__onClose)
 
@@ -80,7 +89,10 @@ class Standby2(Screen):
 			self.paused_service.unPauseService()
 		self.session.screen["Standby"].boolean = False
 		globalActionMap.setEnabled(True)
-		
+		if RecordTimer.RecordTimerEntry.receiveRecordEvents:
+			Notifications.RemovePopup(id = "RecordTimerQuitMainloop")
+			RecordTimer.RecordTimerEntry.stopTryQuitMainloop()
+
 	def __onFirstExecBegin(self):
 		global inStandby
 		inStandby = self
@@ -89,6 +101,10 @@ class Standby2(Screen):
 
 	def createSummary(self):
 		return StandbySummary
+
+	def standbyTimeout(self):
+		from RecordTimer import RecordTimerEntry
+		RecordTimerEntry.TryQuitMainloop(True)
 
 class Standby(Standby2):
 	def __init__(self, session):
