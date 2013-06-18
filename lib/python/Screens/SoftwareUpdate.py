@@ -366,7 +366,7 @@ class UpdatePlugin(Screen):
 		Components.Task.job_manager.AddJob(self.BackupFiles.createBackupJob())
 		Components.Task.job_manager.in_background = False
 		for job in Components.Task.job_manager.getPendingJobs():
-			if job.name == dgettext('ViX', 'Backup Manager'):
+			if job.name == dgettext('vix', 'Backup Manager'):
 				break
 		self.showJobView(job)
 
@@ -377,7 +377,7 @@ class UpdatePlugin(Screen):
 		Components.Task.job_manager.AddJob(self.ImageBackup.createBackupJob())
 		Components.Task.job_manager.in_background = False
 		for job in Components.Task.job_manager.getPendingJobs():
-			if job.name == dgettext('ViX', 'Image Manager'):
+			if job.name == dgettext('vix', 'Image Manager'):
 				break
 		self.showJobView(job)
 
@@ -392,9 +392,9 @@ class UpdatePlugin(Screen):
 			self.close()
 
 	def showJobView(self, job):
-		if job.name == dgettext('ViX', 'Image Manager'):
+		if job.name == dgettext('vix', 'Image Manager'):
 			self.ImageBackupDone = True
-		elif job.name == dgettext('ViX', 'Backup Manager'):
+		elif job.name == dgettext('vix', 'Backup Manager'):
 			self.SettingsBackupDone = True
 		from Screens.TaskView import JobView
 		Components.Task.job_manager.in_background = False
