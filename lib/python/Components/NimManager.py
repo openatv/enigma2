@@ -776,8 +776,6 @@ class NimManager:
 				entries[current_slot]["isempty"] = True
 		nimfile.close()
 
-		from os import path
-
 		for id, entry in entries.items():
 			if not (entry.has_key("name") and entry.has_key("type")):
 				entry["name"] =  _("N/A")
@@ -1403,7 +1401,7 @@ def InitNimManager(nimmgr):
 	def toneAmplitudeChanged(configElement):
 		fe_id = configElement.fe_id
 		slot_id = configElement.slot_id
-		if nimmgr.nim_slots[slot_id].description == 'Alps BSBE2':
+		if path.exists("/proc/stb/frontend/%d/tone_amplitude" % fe_id):
 			f = open("/proc/stb/frontend/%d/tone_amplitude" %(fe_id), "w")
 			f.write(configElement.value)
 			f.close()
@@ -1540,8 +1538,7 @@ def InitNimManager(nimmgr):
 	def tunerTypeChanged(nimmgr, configElement):
 		fe_id = configElement.fe_id
 		eDVBResourceManager.getInstance().setFrontendType(nimmgr.nim_slots[fe_id].frontend_id, nimmgr.nim_slots[fe_id].getType())
-		import os
-		if os.path.exists("/proc/stb/frontend/%d/mode" % fe_id):
+		if path.exists("/proc/stb/frontend/%d/mode" % fe_id):
 			cur_type = int(open("/proc/stb/frontend/%d/mode" % (fe_id), "r").read())
 			if cur_type != int(configElement.value):
 				print "tunerTypeChanged feid %d from %d to mode %d" % (fe_id, cur_type, int(configElement.value))

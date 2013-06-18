@@ -14,6 +14,7 @@ from Screens.AutoDiseqc import AutoDiseqc
 
 from time import mktime, localtime
 from datetime import datetime
+from os import path
 
 class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def createSimpleSetup(self, list, mode):
@@ -150,7 +151,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					currSat = self.nimConfig.advanced.sat[cur_orb_pos]
 					self.fillListWithAdvancedSatEntrys(currSat)
 				self.have_advanced = True
-			if self.nim.description == "Alps BSBE2" and config.usage.setup_level.index >= 2: # expert
+			if path.exists("/proc/stb/frontend/%d/tone_amplitude" % self.nim.slot) and config.usage.setup_level.index >= 2: # expert
 				self.list.append(getConfigListEntry(_("Tone amplitude"), self.nimConfig.toneAmplitude))
 		elif self.nim.isCompatible("DVB-C"):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.configMode)
