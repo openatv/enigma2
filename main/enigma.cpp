@@ -131,6 +131,29 @@ int main(int argc, char **argv)
 	printf("Version: %s\n", IMAGEVERSION);
 	printf("Build:   %s\n", IMAGEBUILD);
 	printf("Brand:   %s\n", MACHINE_BRAND);
+		
+	// hack way to not change all in code
+	if(strcmp(BOXTYPE, "sezamhdx") == 0) 
+	{
+	  BOXTYPE="ventonhdx";
+	}
+	else if(strcmp(BOXTYPE, "sezamhde") == 0) 
+	{
+	  BOXTYPE="ventonhde";
+	}
+	else if(strcmp(BOXTYPE, "inihdx") == 0) 
+	{
+	  BOXTYPE="ventonhdx";
+	}  
+	else if(strcmp(BOXTYPE, "inihde") == 0) 
+	{
+	  BOXTYPE="ventonhde";
+	} 
+	else if(strcmp(BOXTYPE, "ini9000") == 0) 
+	{
+	  BOXTYPE="ventonhdx";
+	}
+	printf("Boxtype: %s\n", BOXTYPE);
 	printf("Machine: %s\n", MACHINE_NAME);
 	printf("Drivers: %s\n", DRIVERDATE);
 
