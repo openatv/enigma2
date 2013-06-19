@@ -96,7 +96,7 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_INI2
 			elif model == 'ini-5000' or model == 'ini-7000' or model == 'ini-7012':
 				self.currentRcType = self.RCTYPE_INI1
-			elif model == 'ini-1000' or model == 'ini-1000ru' or model == 'ini-5000ru':
+			elif model == 'ini-1000' or model == 'ini-1000ru' or model == 'ini-5000ru' or model == 'ini-9000':
 				self.currentRcType = self.RCTYPE_INI2
 			elif model == 'ini-1000sv' or model == 'ini-5000sv':
 				self.currentRcType = self.RCTYPE_INI3
