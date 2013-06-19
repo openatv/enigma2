@@ -86,23 +86,23 @@ class RcModel:
 				elif rc == '14':
 					self.currentRcType = self.RCTYPE_XP1000
 			elif model == 'ebox5000' or model == 'ebox5100' or model == 'ebox7358':
-				self.currentRcType = self.RCTYPE_EBOX5000					
+				self.currentRcType = self.RCTYPE_EBOX5000
 			elif model == 'gigablue':
 				self.currentRcType = self.RCTYPE_GB
 			elif model == 'ini-3000':
-				fp_version = str(getFPVersion())	
+				fp_version = str(getFPVersion())
 				if fp_version.startswith('1'):
-					self.currentRcType = self.RCTYPE_INI0				
+					self.currentRcType = self.RCTYPE_INI0
 				else:
 					self.currentRcType = self.RCTYPE_INI2
 			elif model == 'ini-5000' or model == 'ini-7000' or model == 'ini-7012':
 				self.currentRcType = self.RCTYPE_INI1
-			elif model == 'ini-1000' or model == 'ini-5000R':
+			elif model == 'ini-1000' or model == 'ini-1000ru' or model == 'ini-5000ru' or model== 'ini-9000':
 				self.currentRcType = self.RCTYPE_INI2
-			elif model == 'ini-5000sv':
-				self.currentRcType = self.RCTYPE_INI3			
+			elif model == 'ini-1000sv' or model == 'ini-5000sv':
+				self.currentRcType = self.RCTYPE_INI3
 			elif model == 'e3hd':
-				self.currentRcType = self.RCTYPE_E3HD		
+				self.currentRcType = self.RCTYPE_E3HD
 			elif model == 'odinm9':
 				self.currentRcType = self.RCTYPE_ODINM9
 			elif model == 'odinm7':
@@ -148,7 +148,7 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/ini1/'
 		elif self.currentRcType == self.RCTYPE_INI2:
 			return '/usr/share/enigma2/rc_models/ini2/'
-		elif self.currentRcType == self.RCTYPE_INI2:
+		elif self.currentRcType == self.RCTYPE_INI3:
 			return '/usr/share/enigma2/rc_models/ini3/'
 		elif self.currentRcType == self.RCTYPE_IQON:
 			return '/usr/share/enigma2/rc_models/iqon/'
