@@ -100,9 +100,9 @@ class GeneralSetup(Screen):
 		Screen.setTitle(self, _("Setup"))
 
 		self["key_red"] = Label(_("Exit"))
-		self["key_green"] = Label(_("System Info"))
-		self["key_yellow"] = Label(_("Service Info"))
-		self["key_blue"] = Label(_("Memory Info"))
+		#self["key_green"] = Label(_("System Info"))
+		#self["key_yellow"] = Label(_("Service Info"))
+		#self["key_blue"] = Label(_("Memory Info"))
 		self["description"] = Label()
 
 		self.menu = 0
@@ -130,9 +130,9 @@ class GeneralSetup(Screen):
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
 			"red": self.keyred,
-			"green": self.keygreen,
-			"yellow": self.keyyellow,
-			"blue": self.keyblue,
+			#"green": self.keygreen,
+			#"yellow": self.keyyellow,
+			#"blue": self.keyblue,
 			})
 
 		self.MainQmenu()
