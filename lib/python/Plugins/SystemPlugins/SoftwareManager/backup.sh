@@ -210,6 +210,10 @@ if [ $TYPE = "GIGABLUE" ] ; then
 		echo "Place the USB-flash drive in the USB-port "
 		echo "and power off the Gigablue. "
 		echo "and power on the Gigablue. "
+		echo "\nFor UE and QUAD you have to copy:"
+		echo "\nlcdsplash.bin, lcdwaitkey.bin, lcdwarning.bin "
+		echo "and splash.bin into: "
+		echo "\n/gigablue/ue/ or /gigablue/quad/"
 		echo "\nPlease wait...almost ready! "
 	else
 		echo "Image creation failed - "
