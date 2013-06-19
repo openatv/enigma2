@@ -66,9 +66,9 @@ if TECHNOMATE
 SUBDIRS = tm
 endif
 
-if VENTON
+#if VENTON
 SUBDIRS = ini0 ini1 ini2 ini3
-endif
+#endif
 
 if VUSOLO
 SUBDIRS = vu
