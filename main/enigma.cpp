@@ -382,6 +382,10 @@ const char *getBoxType()
 	{
 	  return "ventonhdx";
 	}
+	else if(strcmp(BOXTYPE, "xpeedlx") == 0) 
+	{
+	  return "ventonhde";
+	} 	
 	else
 	{
 	  return BOXTYPE;
