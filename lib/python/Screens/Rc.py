@@ -36,9 +36,14 @@ class Rc:
 	def initRc(self):
 		if self.isDefaultRc:
 			self["rc"].setPixmapNum(config.misc.rcused.getValue())
+			rc = self.rcs[int(config.misc.rcused.getValue())]
 		else:
 			self["rc"].setPixmapNum(0)
-		rc = self.rcs[int(config.misc.rcused.getValue())]
+			try:
+				rc = self.rcs[2]
+			except:
+				rc = self.rcs[config.misc.rcused.getValue()]
+				
 		if rc.has_key('RED'):
 			rcpos = self['rc'].getPosition()
 			pos = rc['RED']
