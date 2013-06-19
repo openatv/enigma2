@@ -15,7 +15,7 @@ IMAGEVERSION=`date +%Y%m%d`
 if grep rootfs /proc/mounts | grep ubifs > /dev/null; then # TESTING FOR UBIFS
 	ROOTFSTYPE=ubifs
 else
-	ROOTFSTYPE=jffs2									    # NO UBIFS THEN JFFS2
+	ROOTFSTYPE=jffs2  # NO UBIFS THEN JFFS2
 fi
 MKFS=/usr/sbin/mkfs.$ROOTFSTYPE
 UBINIZE=/usr/sbin/ubinize
@@ -97,7 +97,7 @@ else
 	exit 0
 fi
 
-echo "Back-up Tool for a $SHOWNAME" | tr  a-z A-Z
+echo "Back-up Tool for $SHOWNAME" | tr  a-z A-Z
 echo "$VERSION"
 echo "_________________________________________________"
 echo "Please be patient, a backup will now be made,"
@@ -243,7 +243,7 @@ if [ $DIRECTORY == /hdd ]; then
 		echo "This only takes about 15 seconds"
 		echo
 		
-		if [ $TYPE = "GIGABLUE" ] ; then				# Gigablue detected
+		if [ $TYPE = "GIGABLUE" ] ; then	# Gigablue detected
 			mkdir -p $TARGET/gigablue/$MODEL
 			cp -r $MAINDEST $TARGET/gigablue/
 
