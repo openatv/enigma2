@@ -137,7 +137,7 @@ class eInputDeviceInit
 {
 	struct element
 	{
-		public
+		public:
 			char* filename;
 			eRCInputEventDriver* driver;
 			eRCDeviceInputDev* device;
