@@ -69,7 +69,7 @@ elif [ $MODEL = "gb800seplus" ]; then
 	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue	
+	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue
 ## TESTING THE Gigablue HD 800 Solo Model
 elif [ $MODEL = "gb800solo" ] ; then
 	TYPE=GIGABLUE
