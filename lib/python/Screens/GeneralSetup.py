@@ -225,7 +225,7 @@ class GeneralSetup(Screen):
 ######## System Setup Menu ##############################
 	def Qsystem(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("AV Setup",_("Setup Videomode"),_("Setup your Video Mode, Video Output and other Video Settings"), ">"))		
+		self.sublist.append(QuickSubMenuEntryComponent("AV Setup",_("Setup Videomode"),_("Setup your Video Mode, Video Output and other Video Settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("Customize",_("Setup GUI"),_("Customize UI personal settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("OSD settings",_("Settings..."),_("Setup your OSD")))
 		self.sublist.append(QuickSubMenuEntryComponent("Language Settings",_("Setup Your language"),_("Setup menu language")))
@@ -426,6 +426,9 @@ class GeneralSetup(Screen):
 			self.session.open(NetworkuShare)
 		elif item[0] == _("Telnet"):
 			self.session.open(NetworkTelnet)
+######## Select AV Setup Menu ##############################
+		elif item[0] == _("AV Setup"):
+			self.Qavsetup()
 ######## Select System Setup Menu ##############################
 		elif item[0] == _("Customize"):
 			self.openSetup("usage")
