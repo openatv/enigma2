@@ -16,8 +16,12 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 	 m_blocksize(blocksize),
 	 m_buffersize(buffersize),
 	 m_buffer((unsigned char *)malloc(buffersize)),
-	 m_messagepump(eApp, 0)
+	 m_messagepump(eApp, 0),
+	 m_run_state(0)
 {
+	pthread_mutex_init(&m_run_mutex, 0);
+	pthread_cond_init(&m_run_cond, 0);
+	
 	if (m_buffer == NULL)
 		eFatal("Failed to allocate %d bytes", buffersize);
 	CONNECT(m_messagepump.recv_msg, eFilePushThread::recvEvent);
@@ -25,6 +29,8 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 
 eFilePushThread::~eFilePushThread()
 {
+	pthread_cond_destroy(&m_run_cond);
+	pthread_mutex_destroy(&m_run_mutex);
 	free(m_buffer);
 }
 
@@ -32,24 +38,29 @@ static void signal_handler(int x)
 {
 }
 
-void eFilePushThread::thread()
+static void ignore_but_report_signals()
 {
-	int eofcount = 0;
-	setIoPrio(prio_class, prio);
-	int buf_end = 0;
-
-	size_t bytes_read = 0;
-	off_t current_span_offset = 0;
-	size_t current_span_remaining = 0;
-	eDebug("FILEPUSH THREAD START");
-	
-		/* we set the signal to not restart syscalls, so we can detect our signal. */
+	/* we set the signal to not restart syscalls, so we can detect our signal. */
 	struct sigaction act;
 	act.sa_handler = signal_handler; // no, SIG_IGN doesn't do it. we want to receive the -EINTR
 	act.sa_flags = 0;
 	sigaction(SIGUSR1, &act, 0);
-	
-	hasStarted();
+}
+
+void eFilePushThread::thread()
+{
+	ignore_but_report_signals();
+	hasStarted(); /* "start()" blocks until we get here */
+	setIoPrio(prio_class, prio);
+	eDebug("FILEPUSH THREAD START");
+
+	do
+	{
+	int eofcount = 0;
+	int buf_end = 0;
+	size_t bytes_read = 0;
+	off_t current_span_offset = 0;
+	size_t current_span_remaining = 0;
 
 	while (!m_stop)
 	{
@@ -191,6 +202,19 @@ void eFilePushThread::thread()
 		}
 	}
 	sendEvent(evtStopped);
+
+	pthread_mutex_lock(&m_run_mutex);
+	m_run_state = 0;
+	pthread_cond_signal(&m_run_cond); /* Tell them we're here */
+	while (m_stop == 2) {
+		eDebug("FILEPUSH THREAD PAUSED");
+		pthread_cond_wait(&m_run_cond, &m_run_mutex);
+	}
+	if (m_stop == 0)
+		m_run_state = 1;
+	pthread_mutex_unlock(&m_run_mutex);
+	
+	} while (m_stop == 0);
 	eDebug("FILEPUSH THREAD STOP");
 }
 
@@ -199,7 +223,9 @@ void eFilePushThread::start(ePtr<iTsSource> &source, int fd_dest)
 	m_source = source;
 	m_fd_dest = fd_dest;
 	m_current_position = 0;
-	resume();
+	m_run_state = 1;
+	m_stop = 0;
+	run();
 }
 
 void eFilePushThread::stop()
@@ -207,23 +233,46 @@ void eFilePushThread::stop()
 		/* if we aren't running, don't bother stopping. */
 	if (!sync())
 		return;
-
 	m_stop = 1;
-
 	eDebug("eFilePushThread stopping thread");
+	pthread_cond_signal(&m_run_cond); /* Break out of pause if needed */
 	sendSignal(SIGUSR1);
-	kill(0);
+	kill(0); /* Kill means join actually */
 }
 
 void eFilePushThread::pause()
 {
-	stop();
+	if (!sync())
+	{
+		eWarning("eFilePushThread::pause called while not running");
+		return;
+	}
+	/* Set thread into a paused state by setting m_stop to 2 and wait
+	 * for the thread to acknowledge that */
+	pthread_mutex_lock(&m_run_mutex);
+	m_stop = 2;
+	sendSignal(SIGUSR1);
+	pthread_cond_signal(&m_run_cond); /* Trigger if in weird state */
+	while (m_run_state) {
+		eDebug("FILEPUSH waiting for pause");
+		pthread_cond_wait(&m_run_cond, &m_run_mutex);
+	}
+	pthread_mutex_unlock(&m_run_mutex);
 }
 
 void eFilePushThread::resume()
 {
+	if (!sync())
+	{
+		eWarning("eFilePushThread::resume called while not running");
+		return;
+	}
+	/* Resume the paused thread by resetting the flag and
+	 * signal the thread to release it */
+	pthread_mutex_lock(&m_run_mutex);
 	m_stop = 0;
-	run();
+	pthread_cond_signal(&m_run_cond); /* Tell we're ready to resume */
+	pthread_mutex_unlock(&m_run_mutex);
 }
 
 void eFilePushThread::enablePVRCommit(int s)

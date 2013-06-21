@@ -198,16 +198,15 @@ class GeneralSetup(Screen):
 		self.menu = 0
 		self.list = []
 		self.oldlist = []
-		self.list.append(GeneralSetupEntryComponent("Software Manager",_("Update/Backup/Restore your box"),_("Update/Backup your firmware, Backup/Restore settings"), ">"))
 		self.list.append(GeneralSetupEntryComponent("System",_("System Setup"),_("Setup your System"), ">"))
 		#self.list.append(GeneralSetupEntryComponent("Mounts",_("Mount Setup"),_("Setup your mounts for network")))
 		self.list.append(GeneralSetupEntryComponent("Network",_("Setup your local network"),_("Setup your local network. For Wlan you need to boot with a USB-Wlan stick"), ">"))
-		self.list.append(GeneralSetupEntryComponent("AV Setup",_("Setup Videomode"),_("Setup your Video Mode, Video Output and other Video Settings"), ">"))
 		self.list.append(GeneralSetupEntryComponent("Antena Setup",_("Setup Tuner"),_("Setup your Tuner and search for channels"), ">"))
 		self.list.append(GeneralSetupEntryComponent("TV",_("Setup basic TV options"),_("Setup Your TV options"), ">"))
 		self.list.append(GeneralSetupEntryComponent("Media",_("Setup Pictures / music / movies"),_("Setup picture, music and movie player"), ">"))
 		self.list.append(GeneralSetupEntryComponent("Plugins",_("Download plugins"),_("Shows available pluigns. Here you can download and install them"), ">"))
 		self.list.append(GeneralSetupEntryComponent("Storage",_("Harddisk Setup"),_("Setup your Harddisk"), ">"))
+		self.list.append(GeneralSetupEntryComponent("Software Manager",_("Update/Backup/Restore your box"),_("Update/Backup your firmware, Backup/Restore settings"), ">"))		
 		self["list"].l.setList(self.list)
 
 ######## TV Setup Menu ##############################
@@ -226,6 +225,7 @@ class GeneralSetup(Screen):
 ######## System Setup Menu ##############################
 	def Qsystem(self):
 		self.sublist = []
+		self.list.append(GeneralSetupEntryComponent("AV Setup",_("Setup Videomode"),_("Setup your Video Mode, Video Output and other Video Settings"), ">"))		
 		self.sublist.append(QuickSubMenuEntryComponent("Customize",_("Setup GUI"),_("Customize UI personal settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("OSD settings",_("Settings..."),_("Setup your OSD")))
 		self.sublist.append(QuickSubMenuEntryComponent("Language Settings",_("Setup Your language"),_("Setup menu language")))
