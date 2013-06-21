@@ -454,16 +454,16 @@ class Wizard(Screen):
 		return False
 
 	def getTranslation(self, text):
-		return _(text)
+		return _(text).replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
 
 	def updateText(self, firstset = False):
 		text = self.getTranslation(self.wizard[self.currStep]["text"])
 		if text.find("[timeout]") != -1:
 			text = text.replace("[timeout]", str(self.timeoutCounter))
-			self["text"].setText(text.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName())))
+			self["text"].setText(text)
 		else:
 			if firstset:
-				self["text"].setText(text.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName())))
+				self["text"].setText(text)
 
 	def updateValues(self):
 # 		print "Updating values in step " + str(self.currStep)
@@ -496,7 +496,7 @@ class Wizard(Screen):
 				self.updateValues()
 		else:
 			if self.wizard[self.currStep].has_key("displaytext"):
-				displaytext = self.wizard[self.currStep]["displaytext"]
+				displaytext = self.getTranslation(self.wizard[self.currStep]["displaytext"])
 # 				print "set LCD text"
 				for x in self.lcdCallbacks:
 					x(displaytext)
@@ -516,7 +516,7 @@ class Wizard(Screen):
 # 			print "wizard text", self.getTranslation(self.wizard[self.currStep]["text"])
 			self.updateText(firstset = True)
 			if self.wizard[self.currStep].has_key("displaytext"):
-				displaytext = self.wizard[self.currStep]["displaytext"]
+				displaytext = self.getTranslation(self.wizard[self.currStep]["displaytext"])
 # 				print "set LCD text"
 				for x in self.lcdCallbacks:
 					x(displaytext)

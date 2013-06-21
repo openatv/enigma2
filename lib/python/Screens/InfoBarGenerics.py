@@ -318,7 +318,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.showPiP()
 		else:
 			self.hide()
-			if self.pvrStateDialog:
+			if hasattr(self, "pvrStateDialog"):
 				self.pvrStateDialog.hide()
 
 
@@ -346,7 +346,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			idx = config.usage.second_infobar_timeout.index
 			if idx:
 				self.hideTimer.start(idx*1000, True)
-		elif self.pvrStateDialog:
+		elif hasattr(self, "pvrStateDialog"):
 			self.hideTimer.stop()
 			idx = config.usage.infobar_timeout.index
 			if idx:
@@ -360,7 +360,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.hideTimer.stop()
 		if self.__state == self.STATE_SHOWN:
 			self.hide()
-			if self.pvrStateDialog:
+			if hasattr(self, "pvrStateDialog"):
 				self.pvrStateDialog.hide()
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
@@ -372,7 +372,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				pass
 
 			self.EventViewIsShown = False
-		elif self.pvrStateDialog:
+		elif hasattr(self, "pvrStateDialog"):
 			self.pvrStateDialog.hide()
 
 	def toggleShow(self):
