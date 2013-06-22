@@ -641,25 +641,7 @@ class EPGSelection(Screen, HelpableScreen):
 			else:
 				self.nextService()
 		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-			if self.type == EPG_TYPE_GRAPH:
-				timeperiod = int(config.epgselection.graph_prevtimeperiod.getValue())
-			elif self.type == EPG_TYPE_INFOBARGRAPH:
-				timeperiod = int(config.epgselection.infobar_prevtimeperiod.getValue())
-			if timeperiod == 60:
-				for i in range(24):
-					self.updEvent(+2)
-			if timeperiod == 120:
-				for i in range(12):
-					self.updEvent(+2)
-			if timeperiod == 180:
-				for i in range(8):
-					self.updEvent(+2)
-			if timeperiod == 240:
-				for i in range(6):
-					self.updEvent(+2)
-			if timeperiod == 300:
-				for i in range(4):
-					self.updEvent(+2)
+			self.updEvent(+24)
 		elif self.serviceChangeCB:
 			self.serviceChangeCB(1, self)
 
@@ -689,25 +671,7 @@ class EPGSelection(Screen, HelpableScreen):
 			else:
 				self.prevService()
 		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-			if self.type == EPG_TYPE_GRAPH:
-				timeperiod = int(config.epgselection.graph_prevtimeperiod.getValue())
-			elif self.type == EPG_TYPE_INFOBARGRAPH:
-				timeperiod = int(config.epgselection.infobar_prevtimeperiod.getValue())
-			if timeperiod == 60:
-				for i in range(24):
-					self.updEvent(-2)
-			if timeperiod == 120:
-				for i in range(12):
-					self.updEvent(-2)
-			if timeperiod == 180:
-				for i in range(8):
-					self.updEvent(-2)
-			if timeperiod == 240:
-				for i in range(6):
-					self.updEvent(-2)
-			if timeperiod == 300:
-				for i in range(4):
-					self.updEvent(-2)
+			self.updEvent(-24)
 		elif self.serviceChangeCB:
 			self.serviceChangeCB(-1, self)
 
