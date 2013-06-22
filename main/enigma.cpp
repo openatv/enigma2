@@ -128,14 +128,6 @@ int exit_code;
 
 int main(int argc, char **argv)
 {
-	printf("Distro:  %s\n", DISTRO);
-	printf("Version: %s\n", IMAGEVERSION);
-	printf("Build:   %s\n", IMAGEBUILD);
-	printf("Brand:   %s\n", MACHINE_BRAND);
-	printf("Boxtype: %s\n", BOXTYPE);
-	printf("Machine: %s\n", MACHINE_NAME);
-	printf("Drivers: %s\n", DRIVERDATE);
-
 #ifdef MEMLEAK_CHECK
 	atexit(DumpUnfreed);
 #endif
@@ -143,6 +135,14 @@ int main(int argc, char **argv)
 #ifdef OBJECT_DEBUG
 	atexit(object_dump);
 #endif
+
+	printf("Distro:  %s\n", DISTRO);
+	printf("Version: %s\n", IMAGEVERSION);
+	printf("Build:   %s\n", IMAGEBUILD);
+	printf("Brand:   %s\n", MACHINE_BRAND);
+	printf("Boxtype: %s\n", BOXTYPE);
+	printf("Machine: %s\n", MACHINE_NAME);
+	printf("Drivers: %s\n", DRIVERDATE);
 
 	gst_init(&argc, &argv);
 
