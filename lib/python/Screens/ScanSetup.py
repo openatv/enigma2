@@ -410,6 +410,11 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.scan_networkScan.value = True
 		elif nim.isCompatible("DVB-T"):
 			if self.scan_typeterrestrial.value == "single_transponder":
+				if nim.isCompatible("DVB-T2"):
+					self.systemEntry = getConfigListEntry(_('System'), self.scan_ter.system)
+					self.list.append(self.systemEntry)
+				else:
+					self.scan_ter.system.value = eDVBFrontendParametersTerrestrial.System_DVB_T
 				self.list.append(getConfigListEntry(_("Frequency"), self.scan_ter.frequency))
 				self.list.append(getConfigListEntry(_("Inversion"), self.scan_ter.inversion))
 				self.list.append(getConfigListEntry(_("Bandwidth"), self.scan_ter.bandwidth))
@@ -419,6 +424,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.list.append(getConfigListEntry(_("Transmission mode"), self.scan_ter.transmission))
 				self.list.append(getConfigListEntry(_("Guard interval"), self.scan_ter.guard))
 				self.list.append(getConfigListEntry(_("Hierarchy info"), self.scan_ter.hierarchy))
+				if self.scan_ter.system.value == eDVBFrontendParametersTerrestrial.System_DVB_T2:
+					self.list.append(getConfigListEntry(_('PLP ID'), self.scan_ter.plp_id))
 		self.list.append(getConfigListEntry(_("Network scan"), self.scan_networkScan))
 		self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
 		self.list.append(getConfigListEntry(_("Only free scan"), self.scan_onlyfree))
@@ -468,7 +475,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				"transmission_mode" : eDVBFrontendParametersTerrestrial.TransmissionMode_Auto,
 				"guard_interval" : eDVBFrontendParametersTerrestrial.GuardInterval_Auto,
 				"hierarchy": eDVBFrontendParametersTerrestrial.Hierarchy_Auto,
-				"system": eDVBFrontendParametersTerrestrial.System_DVB_T }
+				"system": eDVBFrontendParametersTerrestrial.System_DVB_T,
+				"plp_id": 0 }
 
 			if frontendData is not None:
 				ttype = frontendData.get("tuner_type", "UNKNOWN")
@@ -672,6 +680,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.scan_ter.system = ConfigSelection(default = defaultTer["system"], choices = [
 				(eDVBFrontendParametersTerrestrial.System_DVB_T, _("DVB-T")),
 				(eDVBFrontendParametersTerrestrial.System_DVB_T2, _("DVB-T2"))])
+			self.scan_ter.plp_id = ConfigInteger(default = defaultTer["plp_id"], limits = (0, 255))
 
 			self.scan_scansat = {}
 			for sat in nimmanager.satList:
@@ -813,7 +822,9 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 						modulation = self.scan_ter.modulation.value,
 						transmission = self.scan_ter.transmission.value,
 						guard = self.scan_ter.guard.value,
-						hierarchy = self.scan_ter.hierarchy.value)
+						hierarchy = self.scan_ter.hierarchy.value,
+						system = self.scan_ter.system.value,
+						plpid = self.scan_ter.plp_id.value)
 				removeAll = False
 			elif self.scan_typeterrestrial.value == "complete":
 				getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(index_to_scan))
