@@ -4136,7 +4136,7 @@ class InfoBarINFOpanel:
 		isHBBTV = None
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/WebBrowser/browser.pyo"):
 			isWEBBROWSER = True
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/HbbTV/plugin.pyo") and getBoxType().startswith('vu') or getBoxType().startswith('venton') or getBoxType().startswith('gb') or getBoxType().startswith('odin') or getBoxType().startswith('ebox'):
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/HbbTV/plugin.pyo"):
 			isHBBTV = True
 
 		if isWEBBROWSER or isHBBTV:
