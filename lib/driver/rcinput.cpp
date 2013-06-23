@@ -117,11 +117,11 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
-#if KEY_HOME_TO_KEY_VIDEO
+#if KEY_HOME_TO_KEY_RADIO
 	if (ev->code == KEY_HOME)
 	{
-		/* AZBOX rc has no KEY_VIDEO key, we use KEY_HOME which sends KEY_VIDEO events. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_VIDEO;
+		/* AZBOX rc has no KEY_RADIO key, we use KEY_HOME which sends KEY_RADIO events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_RADIO;
 		
 	}
 #endif
