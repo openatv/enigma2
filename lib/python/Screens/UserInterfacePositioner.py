@@ -160,7 +160,10 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		self.selectionChanged()
 		
 	def selectionChanged(self):
-		self["status"].setText(self["config"].getCurrent()[2])
+		if getBoxType().startswith('azbox'):
+			pass
+		else:
+			self["status"].setText(self["config"].getCurrent()[2])
 
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))

@@ -3,30 +3,32 @@ from Tools.StbHardware import getFPVersion
 import os
 
 class RcModel:
-	RCTYPE_DMM = 0
-	RCTYPE_DMM1 = 1
-	RCTYPE_DMM2 = 2
-	RCTYPE_E3HD = 3	
-	RCTYPE_EBOX5000 = 4	
-	RCTYPE_ET4X00 = 5
-	RCTYPE_ET6X00 = 6
-	RCTYPE_ET6500 = 7
-	RCTYPE_ET9X00 = 8	
-	RCTYPE_ET9500 = 9
-	RCTYPE_GB = 10
-	RCTYPE_INI0 = 11
-	RCTYPE_INI1 = 12
-	RCTYPE_INI2 = 13
-	RCTYPE_INI3 = 14	
-	RCTYPE_IQON = 15	
-	RCTYPE_IXUSSONE = 16
-	RCTYPE_IXUSSZERO = 17
-	RCTYPE_ODINM7 = 18
-	RCTYPE_ODINM9 = 19	
-	RCTYPE_TM = 20
-	RCTYPE_VU = 21	
-	RCTYPE_VU2 = 22
-	RCTYPE_XP1000 = 23
+	RCTYPE_AZBOXHD = 0
+	RCTYPE_AZBOXME = 1
+	RCTYPE_DMM = 2
+	RCTYPE_DMM1 = 3
+	RCTYPE_DMM2 = 4
+	RCTYPE_E3HD = 5	
+	RCTYPE_EBOX5000 = 6	
+	RCTYPE_ET4X00 = 7
+	RCTYPE_ET6X00 = 8
+	RCTYPE_ET6500 = 9
+	RCTYPE_ET9X00 = 10	
+	RCTYPE_ET9500 = 11
+	RCTYPE_GB = 12
+	RCTYPE_INI0 = 13
+	RCTYPE_INI1 = 14
+	RCTYPE_INI2 = 15
+	RCTYPE_INI3 = 16	
+	RCTYPE_IQON = 17	
+	RCTYPE_IXUSSONE = 18
+	RCTYPE_IXUSSZERO = 19
+	RCTYPE_ODINM7 = 20
+	RCTYPE_ODINM9 = 21	
+	RCTYPE_TM = 22
+	RCTYPE_VU = 23	
+	RCTYPE_VU2 = 24
+	RCTYPE_XP1000 = 25
 
 
 	def __init__(self):
@@ -45,7 +47,15 @@ class RcModel:
 		return out.split()[0]
 
 	def readRcTypeFromProc(self):
-		if os.path.exists('/proc/stb/info/hwmodel'):
+		if os.path.exists('/proc/stb/info/azmodel'):
+			f = open("/proc/stb/info/model",'r')
+			model = f.readline().strip()
+			f.close()
+			if model == "elite" or model == "premium" or model == "premium+" or model == "ultra":
+				self.currentRcType = self.RCTYPE_AZBOXHD
+			elif model == "me" or model == "minime":
+				self.currentRcType = self.RCTYPE_AZBOXME
+		elif os.path.exists('/proc/stb/info/hwmodel'):
 			model = self.readFile('/proc/stb/info/hwmodel')
 			if model == 'tmtwinoe' or model == 'tm2toe' or model == 'tmsingle' or model == 'tmnanooe':
 				self.currentRcType = self.RCTYPE_TM
@@ -120,7 +130,11 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_VU
 		
 	def getRcLocation(self):
-		if self.currentRcType == self.RCTYPE_DMM:
+		if self.currentRcType == self.RCTYPE_AZBOXHD:
+			return '/usr/share/enigma2/rc_models/azboxhd/'
+		elif self.currentRcType == self.RCTYPE_AZBOXME:
+			return '/usr/share/enigma2/rc_models/azboxme/'	
+		elif self.currentRcType == self.RCTYPE_DMM:
 			return '/usr/share/enigma2/rc_models/dmm0/'
 		elif self.currentRcType == self.RCTYPE_DMM1:
 			return '/usr/share/enigma2/rc_models/dmm1/'

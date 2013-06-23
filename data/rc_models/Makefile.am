@@ -1,4 +1,8 @@
 if DREAMBOX
+SUBDIRS = azboxme azboxhd
+endif
+
+if DREAMBOX
 SUBDIRS = dmm0 dmm1 dmm2
 endif
 
