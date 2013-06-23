@@ -612,7 +612,7 @@ class Network:
 			if os.path.isdir(self.sysfsPath(iface) + '/wireless'):
 				return True
 		except:
-			system("rm /etc/enigma2/settings;killall enigma2")
+			os.system("rm /etc/enigma2/settings;killall enigma2")
 
 		# r871x_usb_drv on kernel 2.6.12 is not identifiable over /sys/class/net/'ifacename'/wireless so look also inside /proc/net/wireless
 		device = re.compile('[a-z]{2,}[0-9]*:')
