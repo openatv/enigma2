@@ -1,4 +1,4 @@
-if DREAMBOX
+if AZBOX
 SUBDIRS = azboxme azboxhd
 endif
 
