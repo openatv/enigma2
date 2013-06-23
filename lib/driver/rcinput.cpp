@@ -16,23 +16,22 @@
 void eRCDeviceInputDev::handleCode(long rccode)
 {
 	struct input_event *ev = (struct input_event *)rccode;
-	if (ev->type!=EV_KEY)
-		return;
 
-	if (ev->type!=EV_KEY)
+	if (ev->type != EV_KEY)
 		return;
 
 	int km = iskeyboard ? input->getKeyboardMode() : eRCInput::kmNone;
 
 	switch (ev->code)
 	{
-	case KEY_LEFTSHIFT:
-	case KEY_RIGHTSHIFT:
-		shiftState = ev->value;
-		break;
-	case KEY_CAPSLOCK:
-		if (ev->value == 1) capsState = !capsState;
-		break;
+		case KEY_LEFTSHIFT:
+		case KEY_RIGHTSHIFT:
+			shiftState = ev->value;
+			break;
+		case KEY_CAPSLOCK:
+			if (ev->value == 1)
+				capsState = !capsState;
+			break;
 	}
 
 	if (km == eRCInput::kmAll)
@@ -42,6 +41,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		bool ignore = false;
 		bool ascii = (ev->code > 0 && ev->code < 61);
+
 		switch (ev->code)
 		{
 			case KEY_LEFTCTRL:
@@ -65,7 +65,10 @@ void eRCDeviceInputDev::handleCode(long rccode)
 			default:
 				break;
 		}
-		if (ignore) return;
+
+		if (ignore)
+			return;
+
 		if (ascii)
 		{
 			if (ev->value)
@@ -78,9 +81,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 					ke.kb_index = ev->code;
 					::ioctl(consoleFd, KDGKBENT, &ke);
 					if (ke.kb_value)
-					{
-						/* emit */ input->keyPressed(eRCKey(this, ke.kb_value & 0xff, eRCKey::flagAscii));
-					}
+						input->keyPressed(eRCKey(this, ke.kb_value & 0xff, eRCKey::flagAscii)); /* emit */ 
 				}
 			}
 			return;
@@ -100,22 +101,22 @@ void eRCDeviceInputDev::handleCode(long rccode)
 
 	switch (ev->value)
 	{
-	case 0:
-		/*emit*/ input->keyPressed(eRCKey(this, ev->code, eRCKey::flagBreak));
-		break;
-	case 1:
-		/*emit*/ input->keyPressed(eRCKey(this, ev->code, 0));
-		break;
-	case 2:
-		/*emit*/ input->keyPressed(eRCKey(this, ev->code, eRCKey::flagRepeat));
-		break;
+		case 0:
+			input->keyPressed(eRCKey(this, ev->code, eRCKey::flagBreak)); /*emit*/ 
+			break;
+		case 1:
+			input->keyPressed(eRCKey(this, ev->code, 0)); /*emit*/ 
+			break;
+		case 2:
+			input->keyPressed(eRCKey(this, ev->code, eRCKey::flagRepeat)); /*emit*/ 
+			break;
 	}
 }
 
 eRCDeviceInputDev::eRCDeviceInputDev(eRCInputEventDriver *driver, int consolefd)
-	:eRCDevice(driver->getDeviceName(), driver), iskeyboard(driver->isKeyboard()),
-	ismouse(driver->isPointerDevice()),
-	consoleFd(consolefd), shiftState(false), capsState(false)
+	:	eRCDevice(driver->getDeviceName(), driver), iskeyboard(driver->isKeyboard()),
+		ismouse(driver->isPointerDevice()),
+		consoleFd(consolefd), shiftState(false), capsState(false)
 {
 	setExclusive(true);
 	eDebug("Input device \"%s\" is a %s", id.c_str(), iskeyboard ? "keyboard" : (ismouse ? "mouse" : "remotecontrol"));
@@ -134,23 +135,26 @@ const char *eRCDeviceInputDev::getDescription() const
 
 class eInputDeviceInit
 {
-	struct element {
-		char* filename;
-		eRCInputEventDriver* driver;
-		eRCDeviceInputDev* device;
-		element(const char* fn, eRCInputEventDriver* drv, eRCDeviceInputDev* dev):
-			filename(strdup(fn)),
-			driver(drv),
-			device(dev)
-		{}
-		~element()
-		{
-			delete device;
-			delete driver;
-			free(filename);
-		}
-	private:
-		element(const element& other); /* no copy */
+	struct element
+	{
+		public:
+			char* filename;
+			eRCInputEventDriver* driver;
+			eRCDeviceInputDev* device;
+			element(const char* fn, eRCInputEventDriver* drv, eRCDeviceInputDev* dev):
+				filename(strdup(fn)),
+				driver(drv),
+				device(dev)
+			{
+			}
+			~element()
+			{
+				delete device;
+				delete driver;
+				free(filename);
+			}
+		private:
+			element(const element& other); /* no copy */
 	};
 	typedef std::vector<element*> itemlist;
 	std::vector<element*> items;
@@ -174,16 +178,11 @@ public:
 	
 	~eInputDeviceInit()
 	{
-		for (itemlist::iterator it = items.begin();
-		     it != items.end();
-		     ++it)
-		{
+		for (itemlist::iterator it = items.begin(); it != items.end(); ++it)
 			delete *it;
-		}
+
 		if (consoleFd >= 0)
-		{
 			::close(consoleFd);
-		}
 	}
 
 	void add(const char* filename)
@@ -194,9 +193,7 @@ public:
 
 	void remove(const char* filename)
 	{
-		for (itemlist::iterator it = items.begin();
-		     it != items.end();
-		     ++it)
+		for (itemlist::iterator it = items.begin(); it != items.end(); ++it)
 		{
 			if (strcmp((*it)->filename, filename) == 0)
 			{
