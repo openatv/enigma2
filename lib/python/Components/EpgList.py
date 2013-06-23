@@ -1060,6 +1060,10 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.offs -= 1
 					self.fillGraphEPG(None) # refill
 					return True
+				elif self.time_base > time():
+					self.time_base -= self.time_epoch * 60
+					self.fillGraphEPG(None) # refill
+					return True
 			elif dir == +2: #next page
 				self.offs += 1
 				self.fillGraphEPG(None) # refill
@@ -1069,9 +1073,26 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.offs -= 1
 					self.fillGraphEPG(None) # refill
 					return True
+			elif dir == +24:
+				self.time_base += 86400
+				self.fillGraphEPG(None, self.time_base) # refill
+				return True
+			elif dir == -24:
+				now = time() - int(config.epg.histminutes.getValue()) * 60
+				if self.type == EPG_TYPE_GRAPH:
+					if (self.time_base - 86400) >= now - now % (int(config.epgselection.graph_roundto.getValue()) * 60):
+						self.time_base -= 86400
+						self.fillGraphEPG(None, self.time_base) # refill
+						return True
+				elif self.type == EPG_TYPE_INFOBARGRAPH:
+					if (self.time_base - 86400) >= now - now % (int(config.epgselection.infobar_roundto.getValue()) * 60):
+						self.time_base -= 86400
+						self.fillGraphEPG(None, self.time_base) # refill
+						return True
+
 		if cur_service and valid_event and (self.cur_event+1 <= len(entries)):
 			entry = entries[self.cur_event] #(event_id, event_title, begin_time, duration)
-			time_base = self.time_base + self.offs*self.time_epoch * 60
+			time_base = self.time_base + self.offs * self.time_epoch * 60
 			xpos, width = self.calcEntryPosAndWidth(self.event_rect, time_base, self.time_epoch, entry[2], entry[3])
 			self.select_rect = Rect(xpos ,0, width, self.event_rect.height)
 			self.l.setSelectionClip(eRect(xpos, 0, width, self.event_rect.h), visible and update)
