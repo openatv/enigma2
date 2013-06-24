@@ -620,7 +620,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		if self.__state == self.STATE_SHOWN:
 			self.hide()
 			if hasattr(self, "pvrStateDialog"):
-				self.pvrStateDialog.hide()
+				try:
+					self.pvrStateDialog.hide()
+				except:
+					pass	
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
@@ -631,7 +634,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				pass
 			self.EventViewIsShown = False
 		elif hasattr(self, "pvrStateDialog"):
-			self.pvrStateDialog.hide()
+			try:		
+				self.pvrStateDialog.hide()
+			except:
+				pass
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
