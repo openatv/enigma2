@@ -632,7 +632,7 @@ def InitUsageConfig():
 					("2", _("with exit button")),
 					("3", _("with left/right buttons"))])
 
-	if getBoxType() == 'dm800' or getBoxType() == 'dm800se' or getBoxType() == 'dm500hd':				
+	if getBoxType() == 'dm800' or getBoxType() == 'dm800se' or getBoxType() == 'dm500hd' or getBoxType() == 'azboxhd':				
 		config.plisettings.PLIEPG_mode = ConfigSelection(default="pliepg", choices = [
 					("pliepg", _("Show Graphical EPG")),
 					("single", _("Show Single EPG")),
