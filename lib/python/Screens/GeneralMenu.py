@@ -325,7 +325,7 @@ class GeneralMenu(Screen):
          (_('Photos'), 'id_mainmenu_photos', boundFunction(self.openPicturePlayer)),
          (_('Music'), 'id_mainmenu_music', boundFunction(self.openMediaPlayer)),
          (_('TV'), 'id_mainmenu_tv', boundFunction(self.openChannelSelection)),
-         (_('Movies'), 'id_mainmenu_movies', boundFunction(self.openMovieBrowserAll)),
+         (_('Videos'), 'id_mainmenu_movies', boundFunction(self.openMovieBrowserAll)),
          (_('Sources'), 'id_mainmenu_source', boundFunction(self.openMediaScanner)),
          (_('Setup'), 'id_mainmenu_tasks', boundFunction(self.openGeneralSetup))]
         self.pos = {}
@@ -594,9 +594,9 @@ class GeneralMenu(Screen):
       
     def left(self):
         selectedSubEntry = self.selectedSubEntry[self.selectedEntryID]
-        print "ID---------------------------------"
-        print self.selectedEntryID
-        print "ID---------------------------------"        
+        #print "ID---------------------------------"
+        #print self.selectedEntryID
+        #print "ID---------------------------------"        
         if selectedSubEntry == -2:
             if len(gmenu_extentrys[self.selectedEntryID]) > 0:
                 self.selectedExtEntry[self.selectedEntryID] -= 1
@@ -635,9 +635,9 @@ class GeneralMenu(Screen):
 
     def right(self):
         selectedSubEntry = self.selectedSubEntry[self.selectedEntryID]
-        print "ID---------------------------------"
-        print self.selectedEntryID
-        print "ID---------------------------------"          
+        #print "ID---------------------------------"
+        #print self.selectedEntryID
+        #print "ID---------------------------------"          
         if selectedSubEntry == -2:
             if len(gmenu_extentrys[self.selectedEntryID]) > 0:
                 self.selectedExtEntry[self.selectedEntryID] += 1
@@ -748,8 +748,8 @@ class GeneralMenu(Screen):
                 if count == self.selectedEntry and selectedSubEntry > -1 and len(sublist) > 0:
                     self['list_sub_' + str(count - self.startEntry)].selectionEnabled(1)
                     self['list_sub_' + str(count - self.startEntry)].moveToIndex(selectedSubEntry - self.startSubEntry[x[1]])
-                    print '[LINE MENU] start sub entry:', str(self.startSubEntry[x[1]])
-                    print '[LINE MENU] select sub entry:', str(selectedSubEntry - self.startSubEntry[x[1]])
+                    #print '[LINE MENU] start sub entry:', str(self.startSubEntry[x[1]])
+                    #print '[LINE MENU] select sub entry:', str(selectedSubEntry - self.startSubEntry[x[1]])
                 else:
                     self['list_sub_' + str(count - self.startEntry)].selectionEnabled(0)
                 if self.startSubEntry[x[1]] > 0:
@@ -844,13 +844,15 @@ class GeneralMenu(Screen):
 
         subentrys['id_mainmenu_tv'] = self.getSubEntry('id_mainmenu_tv', [(_('Live Radio'), 'mainmenu_tv_live_radio', boundFunction(self.openLiveRadio), 60),
         (_('Timers'),'mainmenu_tv_timer',boundFunction(self.openDialog, TimerEditList),70),
-        (_('Recorded TV'),'mainmenu_tv_recorded', boundFunction(self.openRecordings),80),
+      
          (_('Program Guide'),'mainmenu_tv_timer',boundFunction(self.openProgramGuide),90)
         #,(_('Setup'), 'mainmenu_tv_setup', boundFunction(self.notReadyMessage), 100)
         ])
 
         subentrys['id_mainmenu_movies'] = self.getSubEntry('id_mainmenu_movies', [(_('TV Shows'), 'mainmenu_movies_tvshows', boundFunction(self.openMovieBrowserMovies), 30),
-         (_('TV Serials'), 'mainmenu_movies_tvserials', boundFunction(self.openMovieBrowserSeries), 40)
+         (_('TV Serials'), 'mainmenu_movies_tvserials', boundFunction(self.openMovieBrowserSeries), 40),
+         (_('Recordings'),'mainmenu_tv_recorded', boundFunction(self.openRecordings),50),
+         (_('Media Portal'),'mainmenu_tv_recorded', boundFunction(self.openMediaPortal),60)
          #,(_('Setup'), 'mainmenu_movies_setup', boundFunction(self.openMovieBrowserSetup),100)
          ])
  
@@ -1032,6 +1034,10 @@ class GeneralMenu(Screen):
 	self.session.open(MediaPlayerSettings, self)
 
     # Movies
+    def openMediaPortal(self):
+	from Plugins.Extensions.MediaPortal.plugin import haupt_Screen
+	self.session.open(haupt_Screen)
+	
     def openMovieBrowserAll(self):
  	from Plugins.Extensions.MovieBrowser.plugin import movieBrowserBackdrop
 	self.session.open(movieBrowserBackdrop, 0, ":::", ":::")
@@ -1060,7 +1066,7 @@ class GeneralMenu(Screen):
 			menuitem = [l.name,'/'.join((l.path, l.iconstr)),boundFunction(self.runPlugin, (l, None)),l.weight]
                 else:
 			menuitem = [l.name,'',boundFunction(self.runPlugin, (l, None)),l.weight]
-		if l.name == _("Front Panel Update") or l.name == _("CrossEPG Downloader") or l.name == _("OpenWebif") or l.name == _("Software management"):
+		if l.name == _("Front Panel Update") or l.name == _("CrossEPG Downloader") or l.name == _("OpenWebif") or l.name == _("Software management") or l.name == _("MediaPortal"):
 			print "Skip =>", l.name
 		else:
 			list.append(tuple(menuitem))
@@ -1070,7 +1076,7 @@ class GeneralMenu(Screen):
                     menuitem = [l[0],l[2],boundFunction(self.runPlugin, (l[1], l[6])),l[3] or 50]
                 else:
                     menuitem = [l[0],l[2],boundFunction(self.runPlugin, (l[1], None)),l[3] or 50]
-		if l[0] == _("Front Panel Update") or l[0] == _("CrossEPG Downloader") or l[0] == _("OpenWebif") or l[0] == _("Software management"):                 
+		if l[0] == _("Front Panel Update") or l[0] == _("CrossEPG Downloader") or l[0] == _("OpenWebif") or l[0] == _("Software management") or l[0] == _("MediaPortal"):                 
 			print "Skip =>" , l.name
 		else:
 			list.append(tuple(menuitem))
