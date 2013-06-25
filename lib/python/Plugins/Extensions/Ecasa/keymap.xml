@@ -1,0 +1,33 @@
+<keymap>
+	<map context="EcasaOverviewActions">
+		<key id="KEY_UP" mapto="up" flags="m"/>
+		<key id="KEY_DOWN" mapto="down" flags="m"/>
+		<key id="KEY_LEFT" mapto="left" flags="m"/>
+		<key id="KEY_RIGHT" mapto="right" flags="m"/>
+		<key id="KEY_NEXT" mapto="nextPage" flags="m"/>
+		<key id="KEY_FORWARD" mapto="nextPage" flags="m"/>
+		<key id="KEY_PREVIOUS" mapto="prevPage" flags="m"/>
+		<key id="KEY_BACK" mapto="prevPage" flags="m"/>
+		<key id="KEY_OK" mapto="select" flags="m"/>
+		<key id="KEY_RED" mapto="red" flags="m"/>
+		<key id="KEY_EXIT" mapto="exit" flags="m"/>
+		<key id="KEY_GREEN" mapto="albums" flags="m"/>
+		<key id="KEY_BLUE" mapto="blue" flags="m"/>
+		<key id="KEY_YELLOW" mapto="search" flags="m"/>
+		<key id="KEY_MENU" mapto="contextMenu" flags="m"/>
+	</map>
+	<map context="EcasaPictureActions">
+		<key id="KEY_INFO" mapto="info" flags="m"/>
+		<key id="KEY_EXIT" mapto="exit" flags="m"/>
+		<key id="KEY_RED" mapto="exit" flags="m"/>
+		<key id="KEY_MENU" mapto="contextMenu" flags="m"/>
+	</map>
+	<map context="EcasaAlbumviewActions">
+		<key id="KEY_OK" mapto="select" flags="m"/>
+		<key id="KEY_RED" mapto="exit" flags="m"/>
+		<key id="KEY_EXIT" mapto="exit" flags="m"/>
+		<key id="KEY_BLUE" mapto="history" flags="m"/>
+		<key id="KEY_YELLOW" mapto="users" flags="m"/>
+		<key id="KEY_MENU" mapto="contextMenu" flags="m"/>
+	</map>
+</keymap>
