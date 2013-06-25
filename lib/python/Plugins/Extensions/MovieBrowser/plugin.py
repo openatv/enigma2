@@ -1,5 +1,7 @@
+# 2013.06.25 13:29:48 CEST
+#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/MovieBrowser.py
 from Components.ActionMap import ActionMap
-from Components.config import config, configfile, ConfigDirectory, ConfigSubsection, ConfigSelection, getConfigListEntry
+from Components.config import config, configfile, ConfigDirectory, ConfigSlider, ConfigSubsection, ConfigSelection, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.FileList import FileList
 from Components.Label import Label
@@ -13,7 +15,7 @@ from enigma import eListboxPythonMultiContent, eConsoleAppContainer, ePoint, eSe
 from Plugins.Plugin import PluginDescriptor
 from re import findall, search, split, sub
 from Screens.ChannelSelection import ChannelSelection
-from Screens.InfoBar import MoviePlayer
+from Screens.InfoBar import MoviePlayer as OrgMoviePlayer
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -26,10 +28,10 @@ import os, re, statvfs, socket, sys, time, urllib
 from os import system, walk
 config.plugins.moviebrowser = ConfigSubsection()
 config.plugins.moviebrowser.style = ConfigSelection(default='backdrop', choices=[('backdrop', _('Backdrop')), ('posterwall', _('Posterwall'))])
-config.plugins.moviebrowser.moviefolder = ConfigDirectory(default='/media/hdd/')
+config.plugins.moviebrowser.moviefolder = ConfigDirectory(default='/media/')
 config.plugins.moviebrowser.cachefolder = ConfigSelection(default='/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/cache', choices=[('/media/usb/moviebrowser/cache', _('/media/usb')), ('/media/hdd/moviebrowser/cache', _('/media/hdd')), ('/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/cache', _('Default'))])
-config.plugins.moviebrowser.database = ConfigSelection(default='imdb', choices=[('tmdb', _('TMDb')), ('imdb', _('IMDb')), ('tvdb', _('TheTVDb'))])
-config.plugins.moviebrowser.language = ConfigSelection(default='en', choices=[('de', _('Deutsch')),
+config.plugins.moviebrowser.database = ConfigSelection(default='tmdb', choices=[('tmdb', _('TMDb')), ('imdb', _('IMDb')), ('tvdb', _('TheTVDb'))])
+config.plugins.moviebrowser.language = ConfigSelection(default='de', choices=[('de', _('Deutsch')),
  ('en', _('English')),
  ('es', _('Espanol')),
  ('ru', _('P\xd1\x83\xd1\x81\xd1\x81\xd0\xba\xd0\xb8\xd0\xb9'))])
@@ -40,7 +42,7 @@ else:
     config.plugins.moviebrowser.plugin_size = ConfigSelection(default='normal', choices=[('full', _('Plugin Full')), ('normal', _('Plugin Normal'))])
 config.plugins.moviebrowser.filter = ConfigSelection(default=':::', choices=[(':::', _('Movies + Series')), (':::Movie:::', _('Movies')), (':::Series:::', _('Series'))])
 config.plugins.moviebrowser.backdrops = ConfigSelection(default='show', choices=[('show', _('Show')), ('hide', _('Hide'))])
-config.plugins.moviebrowser.plotfull = ConfigSelection(default='show', choices=[('show', _('Show')), ('hide', _('Hide'))])
+config.plugins.moviebrowser.plotfull = ConfigSelection(default='hide', choices=[('show', _('Show')), ('hide', _('Hide'))])
 config.plugins.moviebrowser.plotfont = ConfigSelection(default='normal', choices=[('normal', _('Normal')), ('small', _('Small'))])
 config.plugins.moviebrowser.sortorder = ConfigSelection(default='name', choices=[('name', _('Movie Title A-Z')),
  ('name_reverse', _('Movie Title Z-A')),
@@ -54,27 +56,30 @@ config.plugins.moviebrowser.sortorder = ConfigSelection(default='name', choices=
  ('folder_reverse', _('Movie Folder Descending'))])
 config.plugins.moviebrowser.reset = ConfigSelection(default='no', choices=[('no', _('No')), ('yes', _('Yes'))])
 config.plugins.moviebrowser.menu = ConfigSelection(default='no', choices=[('no', _('No')), ('yes', _('Yes'))])
+config.plugins.moviebrowser.showtv = ConfigSelection(default='show', choices=[('show', _('Show')), ('hide', _('Hide'))])
+config.plugins.moviebrowser.m1v = ConfigSelection(default='no', choices=[('no', _('No')), ('yes', _('Yes'))])
+config.plugins.moviebrowser.transparency = ConfigSlider(default=200, limits=(0, 255))
 config.plugins.moviebrowser.color = ConfigSelection(default='#007895BC', choices=[('#007895BC', _('Default')),
  ('#00F0A30A', _('Amber')),
  ('#00825A2C', _('Brown')),
  ('#000050EF', _('Cobalt')),
- ('#00911d10', _('Crimson')),
+ ('#00911D10', _('Crimson')),
  ('#001BA1E2', _('Cyan')),
  ('#00008A00', _('Emerald')),
- ('#0070ad11', _('Green')),
+ ('#0070AD11', _('Green')),
  ('#006A00FF', _('Indigo')),
  ('#00A4C400', _('Lime')),
- ('#00a61d4d', _('Magenta')),
+ ('#00A61D4D', _('Magenta')),
  ('#0076608A', _('Mauve')),
  ('#006D8764', _('Olive')),
- ('#00c3461b', _('Orange')),
+ ('#00C3461B', _('Orange')),
  ('#00F472D0', _('Pink')),
  ('#00E51400', _('Red')),
  ('#007A3B3F', _('Sienna')),
  ('#00647687', _('Steel')),
- ('#00149baf', _('Teal')),
- ('#006c0aab', _('Violet')),
- ('#00bf9217', _('Yellow'))])
+ ('#00149BAF', _('Teal')),
+ ('#006C0AAB', _('Violet')),
+ ('#00BF9217', _('Yellow'))])
 
 def applySkinVars(skin, dict):
     for key in dict.keys():
@@ -92,106 +97,23 @@ def transHTML(text):
     text = text.replace('&Uuml;', 'Ue').replace('&Auml;', 'Ae').replace('&Ouml;', 'Oe').replace('&#034;', '"').replace('&#34;', '"').replace('&#38;', 'und').replace('&#039;', "'").replace('&#39;', "'").replace('&#133;', '...').replace('&#196;', '\xc3\x83\xe2\x80\x9e').replace('&#214;', '\xc3\x83-').replace('&#220;', '\xc3\x83\xc5\x93').replace('&#223;', '\xc3\x83\xc5\xb8').replace('&#228;', '\xc3\x83\xc2\xa4').replace('&#246;', '\xc3\x83\xc2\xb6').replace('&#252;', '\xc3\x83\xc2\xbc')
     return text
 
+class MoviePlayer(OrgMoviePlayer):
+	def __init__(self, session, service):
+		self.session = session
+		OrgMoviePlayer.__init__(self, session, service)
+		self.skinName = "MoviePlayer"
+		OrgMoviePlayer.WithoutStopClose = True
 
+	def doEofInternal(self, playing):
+		self.leavePlayer()
+			
+	def leavePlayer(self):
+		self.close()
+		
 class movieBrowserBackdrop(Screen):
-    skin = '''<screen position="center,center" size="1024,576" flags="wfNoBorder" title="  " >
-				<widget name="backdrop" position="0,0" size="1024,576" alphatest="on" transparent="0" zPosition="1" />
-				<widget name="infoback" position="15,15" size="460,400" alphatest="blend" transparent="1" zPosition="2" />
-				<widget name="plotfullback" position="549,15" size="460,400" alphatest="blend" transparent="1" zPosition="2" />
+    skin = '\n\t\t\t<screen position="center,center" size="1024,576" flags="wfNoBorder" title="  " >\n\t\t\t\t<widget name="backdrop" position="0,0" size="1024,576" alphatest="on" transparent="0" zPosition="1" />\n\t\t\t\t<widget name="infoback" position="15,15" size="460,400" alphatest="blend" transparent="1" zPosition="2" />\n\t\t\t\t<widget name="plotfullback" position="549,15" size="460,400" alphatest="blend" transparent="1" zPosition="2" />\n\n\t\t\t\t<widget name="name" position="25,16" size="440,55" font="Regular;24" foregroundColor="#FFFFFF" valign="center" transparent="1" zPosition="3" />\n\t\t\t\t<eLabel text="Rating:" position="25,70" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="4" />\n\t\t\t\t<widget name="ratings" position="25,100" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings.png" borderWidth="0" orientation="orHorizontal" transparent="1" zPosition="5" />\n\t\t\t\t<widget name="ratingsback" position="25,100" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings_back.png" alphatest="on" zPosition="6" />\n\t\t\t\t<widget name="ratingtext" position="245,100" size="40,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="7" />\n\t\t\t\t<eLabel text="Director:" position="25,140" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="8" />\n\t\t\t\t<widget name="director" position="25,170" size="285,50" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="9" />\n\t\t\t\t<eLabel text="Country:" position="320,140" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="10" />\n\t\t\t\t<widget name="country" position="320,170" size="125,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="11" />\n\t\t\t\t<eLabel text="Actors:" position="25,210" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="12" />\n\t\t\t\t<widget name="actors" position="25,240" size="285,95" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="13" />\n\t\t\t\t<eLabel text="Year:" position="320,210" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="14" />\n\t\t\t\t<widget name="year" position="320,240" size="125,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="15" />\n\t\t\t\t<eLabel text="Runtime:" position="320,280" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="16" />\n\t\t\t\t<widget name="runtime" position="320,310" size="125,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="17" />\n\t\t\t\t<eLabel text="Genres:" position="25,350" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="18" />\n\t\t\t\t<widget name="genres" position="25,380" size="440,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="19" />\n\t\t\t\t<widget name="plotfull" position="559,22" size="440,390" font="{font}" foregroundColor="#FFFFFF" transparent="1" zPosition="20" />\n\t\t\t\t<widget name="eposter" position="25,50" size="440,330" alphatest="on" transparent="1" zPosition="21" />\n\n\t\t\t\t<widget name="poster0" position="-42,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back0" position="-42,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />\n\t\t\t\t<widget name="poster1" position="55,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back1" position="55,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />\n\t\t\t\t<widget name="poster2" position="152,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back2" position="152,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />\n\t\t\t\t<widget name="poster3" position="249,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back3" position="249,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />\n\t\t\t\t<widget name="poster4" position="346,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back4" position="346,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />\n\t\t\t\t<widget name="poster5" position="443,352" size="138,207" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster6" position="586,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back6" position="586,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />\n\t\t\t\t<widget name="poster7" position="683,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back7" position="683,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />\n\t\t\t\t<widget name="poster8" position="780,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back8" position="780,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />\n\t\t\t\t<widget name="poster9" position="877,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back9" position="877,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />\n\t\t\t\t<widget name="poster10" position="974,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back10" position="974,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />\n\t\t\t</screen>'
+    skinHD = '\n\t\t\t<screen position="center,center" size="1280,720" flags="wfNoBorder" title="  " >\n\t\t\t\t<widget name="backdrop" position="0,0" size="1280,720" alphatest="on" transparent="0" zPosition="1" />\n\t\t\t\t<widget name="infoback" position="25,25" size="525,430" alphatest="blend" transparent="1" zPosition="2" />\n\t\t\t\t<widget name="plotfullback" position="730,25" size="525,430" alphatest="blend" transparent="1" zPosition="2" />\n\n\t\t\t\t<widget name="name" position="40,30" size="495,70" font="Regular;28" foregroundColor="#FFFFFF" valign="center" transparent="1" zPosition="3" />\n\t\t\t\t<eLabel text="Rating:" position="40,100" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="4" />\n\t\t\t\t<widget name="ratings" position="40,130" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings.png" borderWidth="0" orientation="orHorizontal" transparent="1" zPosition="5" />\n\t\t\t\t<widget name="ratingsback" position="40,130" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings_back.png" alphatest="on" zPosition="6" />\n\t\t\t\t<widget name="ratingtext" position="260,130" size="50,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="7" />\n\t\t\t\t<eLabel text="Director:" position="40,170" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="8" />\n\t\t\t\t<widget name="director" position="40,200" size="320,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="9" />\n\t\t\t\t<eLabel text="Country:" position="370,170" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="10" />\n\t\t\t\t<widget name="country" position="370,200" size="125,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="11" />\n\t\t\t\t<eLabel text="Actors:" position="40,240" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="12" />\n\t\t\t\t<widget name="actors" position="40,270" size="320,102" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="13" />\n\t\t\t\t<eLabel text="Year:" position="370,240" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="14" />\n\t\t\t\t<widget name="year" position="370,270" size="125,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="15" />\n\t\t\t\t<eLabel text="Runtime:" position="370,310" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="16" />\n\t\t\t\t<widget name="runtime" position="370,340" size="125,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="17" />\n\t\t\t\t<eLabel text="Genres:" position="40,380" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="18" />\n\t\t\t\t<widget name="genres" position="40,410" size="500,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="19" />\n\t\t\t\t<widget name="plotfull" position="745,40" size="495,393" font="{font}" foregroundColor="#FFFFFF" transparent="1" zPosition="20" />\n\t\t\t\t<widget name="eposter" position="37,53" size="500,375" alphatest="on" transparent="1" zPosition="21" />\n\n\t\t\t\t<widget name="poster0" position="-65,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back0" position="-65,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />\n\t\t\t\t<widget name="poster1" position="40,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back1" position="40,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />\n\t\t\t\t<widget name="poster2" position="145,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back2" position="145,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />\n\t\t\t\t<widget name="poster3" position="250,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back3" position="250,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />\n\t\t\t\t<widget name="poster4" position="355,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back4" position="355,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />\n\t\t\t\t<widget name="poster5" position="460,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back5" position="460,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />\n\t\t\t\t<widget name="poster6" position="565,455" size="150,225" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster7" position="720,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back7" position="720,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />\n\t\t\t\t<widget name="poster8" position="825,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back8" position="825,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />\n\t\t\t\t<widget name="poster9" position="930,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back9" position="930,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />\n\t\t\t\t<widget name="poster10" position="1035,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back10" position="1035,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />\n\t\t\t\t<widget name="poster11" position="1140,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back11" position="1140,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />\n\t\t\t\t<widget name="poster12" position="1245,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />\n\t\t\t\t<widget name="poster_back12" position="1245,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />\n\t\t\t</screen>'
 
-				<widget name="name" position="25,16" size="440,55" font="Regular;24" foregroundColor="#FFFFFF" valign="center" transparent="1" zPosition="3" />
-				<eLabel text="Rating:" position="25,70" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="4" />
-				<widget name="ratings" position="25,100" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings.png" borderWidth="0" orientation="orHorizontal" transparent="1" zPosition="5" />
-				<widget name="ratingsback" position="25,100" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings_back.png" alphatest="on" zPosition="6" />
-				<widget name="ratingtext" position="245,100" size="40,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="7" />
-				<eLabel text="Director:" position="25,140" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="8" />
-				<widget name="director" position="25,170" size="285,50" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="9" />
-				<eLabel text="Country:" position="320,140" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="10" />
-				<widget name="country" position="320,170" size="125,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="11" />
-				<eLabel text="Actors:" position="25,210" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="12" />
-				<widget name="actors" position="25,240" size="285,95" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="13" />
-				<eLabel text="Year:" position="320,210" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="14" />
-				<widget name="year" position="320,240" size="125,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="15" />
-				<eLabel text="Runtime:" position="320,280" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="16" />
-				<widget name="runtime" position="320,310" size="125,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="17" />
-				<eLabel text="Genres:" position="25,350" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="18" />
-				<widget name="genres" position="25,380" size="440,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="19" />
-				<widget name="plotfull" position="559,22" size="440,390" font="{font}" foregroundColor="#FFFFFF" transparent="1" zPosition="20" />
-				<widget name="eposter" position="25,50" size="440,330" alphatest="on" transparent="1" zPosition="21" />
-
-				<widget name="poster0" position="-42,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back0" position="-42,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />
-				<widget name="poster1" position="55,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back1" position="55,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />
-				<widget name="poster2" position="152,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back2" position="152,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />
-				<widget name="poster3" position="249,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back3" position="249,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />
-				<widget name="poster4" position="346,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back4" position="346,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />
-				<widget name="poster5" position="443,352" size="138,207" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster6" position="586,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back6" position="586,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />
-				<widget name="poster7" position="683,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back7" position="683,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />
-				<widget name="poster8" position="780,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back8" position="780,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />
-				<widget name="poster9" position="877,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back9" position="877,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />
-				<widget name="poster10" position="974,426" size="92,138" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back10" position="974,426" size="92,138" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_back.png" />
-			</screen>'''
-    skinHD = '''<screen position="center,center" size="1280,720" flags="wfNoBorder" title="  " >
-				<widget name="backdrop" position="0,0" size="1280,720" alphatest="on" transparent="0" zPosition="1" />
-				<widget name="infoback" position="25,25" size="525,430" alphatest="blend" transparent="1" zPosition="2" />
-				<widget name="plotfullback" position="730,25" size="525,430" alphatest="blend" transparent="1" zPosition="2" />
-
-				<widget name="name" position="40,30" size="495,70" font="Regular;28" foregroundColor="#FFFFFF" valign="center" transparent="1" zPosition="3" />
-				<eLabel text="Rating:" position="40,100" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="4" />
-				<widget name="ratings" position="40,130" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings.png" borderWidth="0" orientation="orHorizontal" transparent="1" zPosition="5" />
-				<widget name="ratingsback" position="40,130" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings_back.png" alphatest="on" zPosition="6" />
-				<widget name="ratingtext" position="260,130" size="50,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="7" />
-				<eLabel text="Director:" position="40,170" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="8" />
-				<widget name="director" position="40,200" size="320,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="9" />
-				<eLabel text="Country:" position="370,170" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="10" />
-				<widget name="country" position="370,200" size="125,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="11" />
-				<eLabel text="Actors:" position="40,240" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="12" />
-				<widget name="actors" position="40,270" size="320,102" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="13" />
-				<eLabel text="Year:" position="370,240" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="14" />
-				<widget name="year" position="370,270" size="125,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="15" />
-				<eLabel text="Runtime:" position="370,310" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="16" />
-				<widget name="runtime" position="370,340" size="125,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="17" />
-				<eLabel text="Genres:" position="40,380" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="18" />
-				<widget name="genres" position="40,410" size="500,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="19" />
-				<widget name="plotfull" position="745,40" size="495,393" font="{font}" foregroundColor="#FFFFFF" transparent="1" zPosition="20" />
-				<widget name="eposter" position="37,53" size="500,375" alphatest="on" transparent="1" zPosition="21" />
-
-				<widget name="poster0" position="-65,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back0" position="-65,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />
-				<widget name="poster1" position="40,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back1" position="40,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />
-				<widget name="poster2" position="145,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back2" position="145,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />
-				<widget name="poster3" position="250,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back3" position="250,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />
-				<widget name="poster4" position="355,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back4" position="355,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />
-				<widget name="poster5" position="460,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back5" position="460,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />
-				<widget name="poster6" position="565,455" size="150,225" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster7" position="720,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back7" position="720,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />
-				<widget name="poster8" position="825,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back8" position="825,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />
-				<widget name="poster9" position="930,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back9" position="930,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />
-				<widget name="poster10" position="1035,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back10" position="1035,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />
-				<widget name="poster11" position="1140,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back11" position="1140,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />
-				<widget name="poster12" position="1245,535" size="100,150" zPosition="21" transparent="1" alphatest="on" />
-				<widget name="poster_back12" position="1245,535" size="100,150" zPosition="22" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />
-			</screen>'''
     def __init__(self, session, index, content, filter):
         if config.plugins.moviebrowser.plugin_size.value == 'full':
             self.xd = False
@@ -214,6 +136,7 @@ class movieBrowserBackdrop(Screen):
              'font': font}
             self.skin = applySkinVars(movieBrowserBackdrop.skin, self.dict)
         Screen.__init__(self, session)
+        self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
         self.hideflag = True
         self.ready = False
         self.renew = False
@@ -313,6 +236,7 @@ class movieBrowserBackdrop(Screen):
          'InfobarMovieListActions',
          'InfobarTeletextActions',
          'MovieSelectionActions',
+         'MoviePlayerActions',
          'NumberActions'], {'ok': self.ok,
          'cancel': self.exit,
          'right': self.rightDown,
@@ -324,30 +248,39 @@ class movieBrowserBackdrop(Screen):
          'red': self.deleteMovie,
          'yellow': self.renewIMDb,
          'green': self.renewTMDb,
-         'blue': self.hideScreen,
+         #'blue': self.hideScreen,
          'contextMenu': self.config,
          'showEventInfo': self.togglePlotFull,
-         'startTeletext': self.toggleBackdrops,
+         'startTeletext': self.editDatabase,
+         'leavePlayer': self.toggleBackdrops,
          'movieList': self.updateDatabase,
          '1': self.showMovies,
          '2': self.switchView,
          '3': self.showPath,
          '4': self.filterSeasons,
          '5': self.toogleContent,
-         '6': self.wikipedia,
+         #'6': self.wikipedia,
          '7': self.filterDirector,
          '8': self.filterActor,
          '9': self.filterGenre,
          '0': self.gotoEnd,
-         'displayHelp': self.infoScreen}, -1)
+         #'displayHelp': self.infoScreen
+         }, -1)
 	cmd = "mkdir /usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/;mkdir /usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/cache"
-	os.system(cmd)
+	os.system(cmd) 
         self.updatefile = '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/update'
         self.blacklist = '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/blacklist'
         self.database = '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/database'
         self.onLayoutFinish.append(self.onLayoutFinished)
 
     def onLayoutFinished(self):
+        if config.plugins.moviebrowser.showtv.value == 'hide':
+            self.session.nav.stopService()
+        if config.plugins.moviebrowser.m1v.value == 'yes':
+            self.session.nav.stopService()
+            f = open('/proc/stb/video/alpha', 'w')
+            f.write('%i' % config.plugins.moviebrowser.transparency.value)
+            f.close()
         if self.xd == False:
             self.infoBackPNG = '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/info_backHD.png'
             InfoBack = loadPic(self.infoBackPNG, 525, 430, 3, 0, 0, 1)
@@ -372,9 +305,9 @@ class movieBrowserBackdrop(Screen):
 
     def openInfo(self):
         if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/reset'):
-            self.session.openWithCallback(self.reset_return, MessageBox, _('\nThe Movie Browser Database will be build now.\n\nDepending on the number of your movies this can take several minutes.\n\nBuild Movie Browser Database now?'), MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.reset_return, MessageBox, _('\nThe Movie Browser Database will be build now.\nDepending on the number of your movies this can take several minutes.\n\nBuild Movie Browser Database now?'), MessageBox.TYPE_YESNO)
         else:
-            self.session.openWithCallback(self.first_return, MessageBox, _('\nBefore the Movie Browser Database will be build for the first time, you should check your Movie Folder setting and change the Cache Folder to a hard drive disk or an sub stick.'), MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.first_return, MessageBox, _('\nBefore the Movie Browser Database will be build for the first time,\nyou should check your Movie Folder setting and change the\nCache Folder to a hard drive disk for faster access or to an sub stick.'), MessageBox.TYPE_YESNO)
 
     def first_return(self, answer):
         if answer is True:
@@ -557,17 +490,20 @@ class movieBrowserBackdrop(Screen):
                 for root, dirs, files in os.walk(folder, topdown=False):
                     for name in files:
                         filename = os.path.join(root, name)
-                        allfiles = allfiles + filename
+                        filedate = os.path.getctime(filename)
+                        allfiles = allfiles + str(filedate)
 
                 data = open(self.database).read()
                 for line in data.split('\n'):
                     movieline = line.split(':::')
                     try:
-                        movie = movieline[1]
+                        moviefolder = movieline[1]
+                        moviedate = movieline[2]
                     except IndexError:
-                        movie = ''
+                        moviefolder = ''
+                        moviedate = ''
 
-                    if search(config.plugins.moviebrowser.moviefolder.value, movie) is not None and search(movie, allfiles) is None:
+                    if search(config.plugins.moviebrowser.moviefolder.value, moviefolder) is not None and search(moviedate, allfiles) is None:
                         self.orphaned += 1
                         data = data.replace(line + '\n', '')
 
@@ -588,7 +524,9 @@ class movieBrowserBackdrop(Screen):
             folder = config.plugins.moviebrowser.moviefolder.value
             for root, dirs, files in os.walk(folder, topdown=False):
                 for name in files:
-                    if search(name, alldata) is None:
+                    movie = sub('\\(', '.', name)
+                    movie = sub('\\)', '.', movie)
+                    if search(movie, alldata) is None:
                         if name.endswith('.ts') or name.endswith('.avi') or name.endswith('.divx') or name.endswith('.flv') or name.endswith('.iso') or name.endswith('.ISO') or name.endswith('.m2ts') or name.endswith('.mov') or name.endswith('.mp4') or name.endswith('.mpg') or name.endswith('.mpeg') or name.endswith('.mkv') or name.endswith('.vob'):
                             filename = os.path.join(root, name)
                             self.movielist.append(filename)
@@ -1414,6 +1352,8 @@ class movieBrowserBackdrop(Screen):
 
             data = open(self.database).read()
             movie = self.movielist[self.index]
+            movie = sub('\\(', '.', movie)
+            movie = sub('\\)', '.', movie)
             if search(movie, data) is not None:
                 for line in data.split('\n'):
                     if search(movie, line) is not None:
@@ -1501,6 +1441,7 @@ class movieBrowserBackdrop(Screen):
                 filename = self.movielist[self.index]
                 if filename.endswith('.ts'):
                     sref = eServiceReference('1:0:0:0:0:0:0:0:0:0:' + filename)
+                    sref.setName(self.namelist[self.index])
                     self.session.open(MoviePlayer, sref)
                 elif filename.endswith('.iso') or filename.endswith('.ISO'):
                     if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/DVDPlayer/'):
@@ -1510,6 +1451,7 @@ class movieBrowserBackdrop(Screen):
                         self.session.open(MessageBox, _('DVD Player Plugin not installed.'), MessageBox.TYPE_ERROR)
                 else:
                     sref = eServiceReference('4097:0:0:0:0:0:0:0:0:0:' + filename)
+                    sref.setName(self.namelist[self.index])
                     self.session.open(MoviePlayer, sref)
             except IndexError:
                 pass
@@ -1963,7 +1905,22 @@ class movieBrowserBackdrop(Screen):
             backdrop = sub('http://cf2.imgobject.com/t/p/w1280', '', backdropurl)
             backdrop = sub('http://www.thetvdb.com/banners/fanart/original', '', backdrop)
             backdrop = config.plugins.moviebrowser.cachefolder.value + backdrop
-            if fileExists(backdrop):
+            if config.plugins.moviebrowser.m1v.value == 'yes':
+                backdrop_m1v = backdrop.replace('.jpg', '.m1v')
+                if fileExists(backdrop_m1v):
+                    self['backdrop'].hide()
+                    os.system("/usr/bin/showiframe '%s'" % backdrop_m1v)
+                elif fileExists(backdrop):
+                    if self.xd == False:
+                        Backdrop = loadPic(backdrop, 1280, 720, 3, 0, 0, 1)
+                    else:
+                        Backdrop = loadPic(backdrop, 1024, 576, 3, 0, 0, 1)
+                    if Backdrop != None:
+                        self['backdrop'].instance.setPixmap(Backdrop)
+                        self['backdrop'].show()
+                else:
+                    getPage(backdropurl).addCallback(self.getBackdrop, backdrop, index).addErrback(self.downloadError)
+            elif fileExists(backdrop):
                 if self.xd == False:
                     Backdrop = loadPic(backdrop, 1280, 720, 3, 0, 0, 1)
                 else:
@@ -2482,22 +2439,14 @@ class movieBrowserBackdrop(Screen):
                     self.posterindex = 6
                 self.makeMovies(self.filter)
 
+    def editDatabase(self):
+        if self.ready == True:
+            self.session.openWithCallback(self.makeMovies, movieDatabase)
+
     def wikipedia(self):
         if self.ready == True:
             if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/Wikipedia/plugin.pyo'):
-                name = self.namelist[self.index]
-                name = name + 'FIN'
-                name = sub(' - .[Ss][0-9]+[Ee][0-9]+.*?FIN', '', name)
-                name = sub('FIN', '', name)
-                if config.plugins.moviebrowser.language.value == 'de':
-                    from Plugins.Extensions.Wikipedia.plugin import wikiSearch
-                    self.session.open(wikiSearch, name)
-                elif config.plugins.moviebrowser.language.value == 'es':
-                    from Plugins.Extensions.Wikipedia.plugin import wikiSearch_es
-                    self.session.open(wikiSearch_es, name)
-                else:
-                    from Plugins.Extensions.Wikipedia.plugin import wikiSearch_en
-                    self.session.open(wikiSearch_en, name)
+                self.session.open(searchWikipedia, self.namelist[self.index], self.infolist[self.index][2], self.infolist[self.index][3])
             else:
                 self.session.open(MessageBox, _('\nThe Wikipedia plugin could not be found.\n\nPlease download and install the plugin from:\nwww.kashmir-plugins.de'), MessageBox.TYPE_INFO)
                 return
@@ -2524,18 +2473,51 @@ class movieBrowserBackdrop(Screen):
             servicelist = self.session.instantiateDialog(ChannelSelection)
             self.session.execDialog(servicelist)
 
-    def infoScreen(self):
-        self.session.open(infoScreenMovieBrowser)
-
     def hideScreen(self):
         if self.hideflag == True:
             self.hideflag = False
-            self.hide()
+            count = 40
+            if config.plugins.moviebrowser.m1v.value == 'yes':
+                while count > 0:
+                    count -= 1
+                    f = open('/proc/stb/video/alpha', 'w')
+                    f.write('%i' % (config.plugins.moviebrowser.transparency.value * count / 40))
+                    f.close()
+
+            else:
+                while count > 0:
+                    count -= 1
+                    f = open('/proc/stb/video/alpha', 'w')
+                    f.write('%i' % (config.av.osd_alpha.value * count / 40))
+                    f.close()
+
         else:
             self.hideflag = True
-            self.show()
+            count = 0
+            if config.plugins.moviebrowser.m1v.value == 'yes':
+                while count < 40:
+                    count += 1
+                    f = open('/proc/stb/video/alpha', 'w')
+                    f.write('%i' % (config.plugins.moviebrowser.transparency.value * count / 40))
+                    f.close()
+
+            else:
+                while count < 40:
+                    count += 1
+                    f = open('/proc/stb/video/alpha', 'w')
+                    f.write('%i' % (config.av.osd_alpha.value * count / 40))
+                    f.close()
 
     def exit(self):
+        if config.plugins.moviebrowser.showtv.value == 'hide' or config.plugins.moviebrowser.m1v.value == 'yes':
+            f = open('/proc/stb/video/alpha', 'w')
+            f.write('%i' % config.av.osd_alpha.value)
+            f.close()
+            self.session.nav.playService(self.oldService)
+        if self.hideflag == False:
+            f = open('/proc/stb/video/alpha', 'w')
+            f.write('%i' % config.av.osd_alpha.value)
+            f.close()
         self.close()
 
 
@@ -2580,79 +2562,8 @@ class movieBrowserPosterwall(Screen):
             skincontent += '<widget name="poster' + str(x) + '" position="' + str(posX) + ',' + str(posY) + '" size="' + str(self.picX) + ',' + str(self.picY) + '" zPosition="10" transparent="1" alphatest="on" />'
             skincontent += '<widget name="poster_back' + str(x) + '" position="' + str(posX) + ',' + str(posY) + '" size="' + str(self.picX) + ',' + str(self.picY) + '" zPosition="11" transparent="1" alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/poster_backHD.png" />'
 
-        skin = '''<screen position="center,center" size="1024,576" flags="wfNoBorder" title="  " >
-						<widget name="backdrop" position="0,0" size="1024,576" alphatest="on" transparent="0" zPosition="1" />
-						<widget name="infoback" position="5,500" size="1014,71" alphatest="blend" transparent="1" zPosition="2" />
-
-						<widget name="ratings" position="15,524" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings.png" borderWidth="0" orientation="orHorizontal" transparent="1" zPosition="3" />
-						<widget name="ratingsback" position="15,524" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings_back.png" alphatest="on" zPosition="4" />
-						<widget name="ratingtext" position="235,500" size="40,71" font="Regular;24" foregroundColor="#FFFFFF" valign="center" transparent="1" zPosition="5" />
-						<widget name="name" position="285,500" size="454,71" font="Regular;26" foregroundColor="#FFFFFF" halign="center" valign="center" transparent="1" zPosition="6" />
-						<widget name="runtime" position="764,500" size="120,71" font="Regular;24" foregroundColor="#FFFFFF" halign="right" valign="center" transparent="1" zPosition="7" />
-						<widget name="country" position="889,500" size="55,71" font="Regular;24" foregroundColor="#FFFFFF" halign="right" valign="center" transparent="1" zPosition="8" />
-						<widget name="year" position="949,500" size="60,71" font="Regular;24" foregroundColor="#FFFFFF" halign="right" valign="center" transparent="1" zPosition="9" />
-
-						<widget name="2infoback" position="15,15" size="460,400" alphatest="blend" transparent="1" zPosition="12" />
-						<widget name="2name" position="25,16" size="440,55" font="Regular;24" foregroundColor="#FFFFFF" valign="center" transparent="1" zPosition="13" />
-						<widget name="2Rating" position="25,70" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="14" />
-						<widget name="2ratings" position="25,100" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings.png" borderWidth="0" orientation="orHorizontal" transparent="1" zPosition="15" />
-						<widget name="2ratingsback" position="25,100" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings_back.png" alphatest="on" zPosition="16" />
-						<widget name="2ratingtext" position="245,100" size="40,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="17" />
-						<widget name="2Director" position="25,140" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="18" />
-						<widget name="2director" position="25,170" size="285,50" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="19" />
-						<widget name="2Country" position="320,140" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="20" />
-						<widget name="2country" position="320,170" size="125,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="21" />
-						<widget name="2Actors" position="25,210" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="22" />
-						<widget name="2actors" position="25,240" size="285,95" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="23" />
-						<widget name="2Year" position="320,210" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="24" />
-						<widget name="2year" position="320,240" size="125,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="25" />
-						<widget name="2Runtime" position="320,280" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="26" />
-						<widget name="2runtime" position="320,310" size="125,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="27" />
-						<widget name="2Genres" position="25,350" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="28" />
-						<widget name="2genres" position="25,380" size="440,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="29" />
-
-						<widget name="plotfullback" position="549,15" size="460,400" alphatest="blend" transparent="1" zPosition="30" />
-						<widget name="plotfull" position="559,22" size="440,390" font="{font}" foregroundColor="#FFFFFF" transparent="1" zPosition="31" />
-						<widget name="eposter" position="25,50" size="440,330" alphatest="on" transparent="1" zPosition="32" />
-
-						<widget name="frame" position="5,-5" size="126,180" zPosition="12" alphatest="on" />"
-						''' + skincontent + '\n\t\t\t\t\t</screen>'
-        skinHD = '''<screen position="center,center" size="1280,720" flags="wfNoBorder" title="  " >
-						<widget name="backdrop" position="0,0" size="1280,720" alphatest="on" transparent="0" zPosition="1" />
-						<widget name="infoback" position="5,620" size="1270,95" alphatest="blend" transparent="1" zPosition="2" />
-
-						<widget name="ratings" position="25,657" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings.png" borderWidth="0" orientation="orHorizontal" transparent="1" zPosition="3" />
-						<widget name="ratingsback" position="25,657" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings_back.png" alphatest="on" zPosition="4" />
-						<widget name="ratingtext" position="245,620" size="40,95" font="Regular;26" foregroundColor="#FFFFFF" valign="center" transparent="1" zPosition="5" />
-						<widget name="name" position="295,620" size="690,95" font="Regular;28" foregroundColor="#FFFFFF" valign="center" halign="center" transparent="1" zPosition="6" />
-						<widget name="runtime" position="1000,620" size="120,95" font="Regular;26" foregroundColor="#FFFFFF" halign="right" valign="center" transparent="1" zPosition="7" />
-						<widget name="country" position="1125,620" size="60,95" font="Regular;26" foregroundColor="#FFFFFF" halign="right" valign="center" transparent="1" zPosition="8" />
-						<widget name="year" position="1190,620" size="65,95" font="Regular;26" foregroundColor="#FFFFFF" halign="right" valign="center" transparent="1" zPosition="9" />
-
-						<widget name="2infoback" position="25,25" size="525,430" alphatest="blend" transparent="1" zPosition="12" />
-						<widget name="2name" position="40,30" size="495,70" font="Regular;28" foregroundColor="#FFFFFF" valign="center" transparent="1" zPosition="13" />
-						<widget name="2Rating" position="40,100" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="14" />
-						<widget name="2ratings" position="40,130" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings.png" borderWidth="0" orientation="orHorizontal" transparent="1" zPosition="15" />
-						<widget name="2ratingsback" position="40,130" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings_back.png" alphatest="on" zPosition="16" />
-						<widget name="2ratingtext" position="260,130" size="50,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="17" />
-						<widget name="2Director" position="40,170" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="18" />
-						<widget name="2director" position="40,200" size="320,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="19" />
-						<widget name="2Country" position="370,170" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="20" />
-						<widget name="2country" position="370,200" size="125,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="21" />
-						<widget name="2Actors" position="40,240" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="22" />
-						<widget name="2actors" position="40,270" size="320,102" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="23" />
-						<widget name="2Year" position="370,240" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="24" />
-						<widget name="2year" position="370,270" size="125,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="25" />
-						<widget name="2Runtime" position="370,310" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="26" />
-						<widget name="2runtime" position="370,340" size="125,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="27" />
-						<widget name="2Genres" position="40,380" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="28" />
-						<widget name="2genres" position="40,410" size="500,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="29" />
-
-						<widget name="plotfullback" position="730,25" size="525,430" alphatest="blend" transparent="1" zPosition="30" />
-						<widget name="plotfull" position="745,40" size="495,393" font="{font}" foregroundColor="#FFFFFF" transparent="1" zPosition="31" />
-						<widget name="eposter" position="37,53" size="500,375" alphatest="on" transparent="1" zPosition="32" />
-
-						<widget name="frame" position="11,-5" size="153,220" zPosition="12" alphatest="on" />"''' + skincontent + '\n\t\t\t\t\t</screen>'
+        skin = '\n\t\t\t\t\t<screen position="center,center" size="1024,576" flags="wfNoBorder" title="  " >\n\t\t\t\t\t\t<widget name="backdrop" position="0,0" size="1024,576" alphatest="on" transparent="0" zPosition="1" />\n\t\t\t\t\t\t<widget name="infoback" position="5,500" size="1014,71" alphatest="blend" transparent="1" zPosition="2" />\n\n\t\t\t\t\t\t<widget name="ratings" position="15,524" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings.png" borderWidth="0" orientation="orHorizontal" transparent="1" zPosition="3" />\n\t\t\t\t\t\t<widget name="ratingsback" position="15,524" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings_back.png" alphatest="on" zPosition="4" />\n\t\t\t\t\t\t<widget name="ratingtext" position="235,500" size="40,71" font="Regular;24" foregroundColor="#FFFFFF" valign="center" transparent="1" zPosition="5" />\n\t\t\t\t\t\t<widget name="name" position="285,500" size="454,71" font="Regular;26" foregroundColor="#FFFFFF" halign="center" valign="center" transparent="1" zPosition="6" />\n\t\t\t\t\t\t<widget name="runtime" position="764,500" size="120,71" font="Regular;24" foregroundColor="#FFFFFF" halign="right" valign="center" transparent="1" zPosition="7" />\n\t\t\t\t\t\t<widget name="country" position="889,500" size="55,71" font="Regular;24" foregroundColor="#FFFFFF" halign="right" valign="center" transparent="1" zPosition="8" />\n\t\t\t\t\t\t<widget name="year" position="949,500" size="60,71" font="Regular;24" foregroundColor="#FFFFFF" halign="right" valign="center" transparent="1" zPosition="9" />\n\n\t\t\t\t\t\t<widget name="2infoback" position="15,15" size="460,400" alphatest="blend" transparent="1" zPosition="12" />\n\t\t\t\t\t\t<widget name="2name" position="25,16" size="440,55" font="Regular;24" foregroundColor="#FFFFFF" valign="center" transparent="1" zPosition="13" />\n\t\t\t\t\t\t<widget name="2Rating" position="25,70" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="14" />\n\t\t\t\t\t\t<widget name="2ratings" position="25,100" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings.png" borderWidth="0" orientation="orHorizontal" transparent="1" zPosition="15" />\n\t\t\t\t\t\t<widget name="2ratingsback" position="25,100" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings_back.png" alphatest="on" zPosition="16" />\n\t\t\t\t\t\t<widget name="2ratingtext" position="245,100" size="40,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="17" />\n\t\t\t\t\t\t<widget name="2Director" position="25,140" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="18" />\n\t\t\t\t\t\t<widget name="2director" position="25,170" size="285,50" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="19" />\n\t\t\t\t\t\t<widget name="2Country" position="320,140" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="20" />\n\t\t\t\t\t\t<widget name="2country" position="320,170" size="125,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="21" />\n\t\t\t\t\t\t<widget name="2Actors" position="25,210" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="22" />\n\t\t\t\t\t\t<widget name="2actors" position="25,240" size="285,95" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="23" />\n\t\t\t\t\t\t<widget name="2Year" position="320,210" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="24" />\n\t\t\t\t\t\t<widget name="2year" position="320,240" size="125,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="25" />\n\t\t\t\t\t\t<widget name="2Runtime" position="320,280" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="26" />\n\t\t\t\t\t\t<widget name="2runtime" position="320,310" size="125,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="27" />\n\t\t\t\t\t\t<widget name="2Genres" position="25,350" size="125,25" font="Regular;20" halign="left" foregroundColor="{color}" transparent="1" zPosition="28" />\n\t\t\t\t\t\t<widget name="2genres" position="25,380" size="440,25" font="Regular;20" foregroundColor="#FFFFFF" transparent="1" zPosition="29" />\n\n\t\t\t\t\t\t<widget name="plotfullback" position="549,15" size="460,400" alphatest="blend" transparent="1" zPosition="30" />\n\t\t\t\t\t\t<widget name="plotfull" position="559,22" size="440,390" font="{font}" foregroundColor="#FFFFFF" transparent="1" zPosition="31" />\n\t\t\t\t\t\t<widget name="eposter" position="25,50" size="440,330" alphatest="on" transparent="1" zPosition="32" />\n\n\t\t\t\t\t\t<widget name="frame" position="5,-5" size="126,180" zPosition="12" alphatest="on" />"\n\t\t\t\t\t\t' + skincontent + '\n\t\t\t\t\t</screen>'
+        skinHD = '\n\t\t\t\t\t<screen position="center,center" size="1280,720" flags="wfNoBorder" title="  " >\n\t\t\t\t\t\t<widget name="backdrop" position="0,0" size="1280,720" alphatest="on" transparent="0" zPosition="1" />\n\t\t\t\t\t\t<widget name="infoback" position="5,620" size="1270,95" alphatest="blend" transparent="1" zPosition="2" />\n\n\t\t\t\t\t\t<widget name="ratings" position="25,657" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings.png" borderWidth="0" orientation="orHorizontal" transparent="1" zPosition="3" />\n\t\t\t\t\t\t<widget name="ratingsback" position="25,657" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings_back.png" alphatest="on" zPosition="4" />\n\t\t\t\t\t\t<widget name="ratingtext" position="245,620" size="40,95" font="Regular;26" foregroundColor="#FFFFFF" valign="center" transparent="1" zPosition="5" />\n\t\t\t\t\t\t<widget name="name" position="295,620" size="690,95" font="Regular;28" foregroundColor="#FFFFFF" valign="center" halign="center" transparent="1" zPosition="6" />\n\t\t\t\t\t\t<widget name="runtime" position="1000,620" size="120,95" font="Regular;26" foregroundColor="#FFFFFF" halign="right" valign="center" transparent="1" zPosition="7" />\n\t\t\t\t\t\t<widget name="country" position="1125,620" size="60,95" font="Regular;26" foregroundColor="#FFFFFF" halign="right" valign="center" transparent="1" zPosition="8" />\n\t\t\t\t\t\t<widget name="year" position="1190,620" size="65,95" font="Regular;26" foregroundColor="#FFFFFF" halign="right" valign="center" transparent="1" zPosition="9" />\n\n\t\t\t\t\t\t<widget name="2infoback" position="25,25" size="525,430" alphatest="blend" transparent="1" zPosition="12" />\n\t\t\t\t\t\t<widget name="2name" position="40,30" size="495,70" font="Regular;28" foregroundColor="#FFFFFF" valign="center" transparent="1" zPosition="13" />\n\t\t\t\t\t\t<widget name="2Rating" position="40,100" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="14" />\n\t\t\t\t\t\t<widget name="2ratings" position="40,130" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings.png" borderWidth="0" orientation="orHorizontal" transparent="1" zPosition="15" />\n\t\t\t\t\t\t<widget name="2ratingsback" position="40,130" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/ratings_back.png" alphatest="on" zPosition="16" />\n\t\t\t\t\t\t<widget name="2ratingtext" position="260,130" size="50,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="17" />\n\t\t\t\t\t\t<widget name="2Director" position="40,170" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="18" />\n\t\t\t\t\t\t<widget name="2director" position="40,200" size="320,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="19" />\n\t\t\t\t\t\t<widget name="2Country" position="370,170" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="20" />\n\t\t\t\t\t\t<widget name="2country" position="370,200" size="125,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="21" />\n\t\t\t\t\t\t<widget name="2Actors" position="40,240" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="22" />\n\t\t\t\t\t\t<widget name="2actors" position="40,270" size="320,102" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="23" />\n\t\t\t\t\t\t<widget name="2Year" position="370,240" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="24" />\n\t\t\t\t\t\t<widget name="2year" position="370,270" size="125,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="25" />\n\t\t\t\t\t\t<widget name="2Runtime" position="370,310" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="26" />\n\t\t\t\t\t\t<widget name="2runtime" position="370,340" size="125,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="27" />\n\t\t\t\t\t\t<widget name="2Genres" position="40,380" size="125,28" font="Regular;22" halign="left" foregroundColor="{color}" transparent="1" zPosition="28" />\n\t\t\t\t\t\t<widget name="2genres" position="40,410" size="500,28" font="Regular;22" foregroundColor="#FFFFFF" transparent="1" zPosition="29" />\n\n\t\t\t\t\t\t<widget name="plotfullback" position="730,25" size="525,430" alphatest="blend" transparent="1" zPosition="30" />\n\t\t\t\t\t\t<widget name="plotfull" position="745,40" size="495,393" font="{font}" foregroundColor="#FFFFFF" transparent="1" zPosition="31" />\n\t\t\t\t\t\t<widget name="eposter" position="37,53" size="500,375" alphatest="on" transparent="1" zPosition="32" />\n\n\t\t\t\t\t\t<widget name="frame" position="11,-5" size="153,220" zPosition="12" alphatest="on" />"\n\t\t\t\t\t\t' + skincontent + '\n\t\t\t\t\t</screen>'
         if self.xd == False:
             color = config.plugins.moviebrowser.color.value
             if config.plugins.moviebrowser.plotfont.value == 'normal':
@@ -2672,6 +2583,7 @@ class movieBrowserPosterwall(Screen):
              'font': font}
             self.skin = applySkinVars(skin, self.dict)
         Screen.__init__(self, session)
+        self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
         self.hideflag = True
         self.ready = False
         self.renew = False
@@ -2767,6 +2679,7 @@ class movieBrowserPosterwall(Screen):
          'InfobarMovieListActions',
          'InfobarTeletextActions',
          'MovieSelectionActions',
+         'MoviePlayerActions',
          'NumberActions'], {'ok': self.ok,
          'cancel': self.exit,
          'right': self.rightDown,
@@ -2778,28 +2691,39 @@ class movieBrowserPosterwall(Screen):
          'red': self.deleteMovie,
          'yellow': self.renewIMDb,
          'green': self.renewTMDb,
-         'blue': self.hideScreen,
+         #'blue': self.hideScreen,
          'contextMenu': self.config,
          'showEventInfo': self.toggleInfoFull,
-         'startTeletext': self.toggleBackdrops,
+         'startTeletext': self.editDatabase,
+         'leavePlayer': self.toggleBackdrops,
          'movieList': self.updateDatabase,
          '1': self.showMovies,
          '2': self.switchView,
          '3': self.showPath,
          '4': self.filterSeasons,
          '5': self.toogleContent,
-         '6': self.wikipedia,
+         #'6': self.wikipedia,
          '7': self.filterDirector,
          '8': self.filterActor,
          '9': self.filterGenre,
          '0': self.gotoEnd,
-         'displayHelp': self.infoScreen}, -1)
+         #'displayHelp': self.infoScreen
+         }, -1)
+	cmd = "mkdir /usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/;mkdir /usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/cache"
+	os.system(cmd) 
         self.updatefile = '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/update'
         self.blacklist = '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/blacklist'
         self.database = '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/database'
         self.onLayoutFinish.append(self.onLayoutFinished)
 
     def onLayoutFinished(self):
+        if config.plugins.moviebrowser.showtv.value == 'hide':
+            self.session.nav.stopService()
+        if config.plugins.moviebrowser.m1v.value == 'yes':
+            self.session.nav.stopService()
+            f = open('/proc/stb/video/alpha', 'w')
+            f.write('%i' % config.plugins.moviebrowser.transparency.value)
+            f.close()
         if self.xd == False:
             self.infoBackPNG = '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/info_backHD.png'
             self.infosmallBackPNG = '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/info_small_backHD.png'
@@ -2826,9 +2750,9 @@ class movieBrowserPosterwall(Screen):
 
     def openInfo(self):
         if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/reset'):
-            self.session.openWithCallback(self.reset_return, MessageBox, _('\nThe Movie Browser Database will be build now.\n\nDepending on the number of your movies this can take several minutes.\n\nBuild Movie Browser Database now?'), MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.reset_return, MessageBox, _('\nThe Movie Browser Database will be build now.\nDepending on the number of your movies this can take several minutes.\n\nBuild Movie Browser Database now?'), MessageBox.TYPE_YESNO)
         else:
-            self.session.openWithCallback(self.first_return, MessageBox, _('\nBefore the Movie Browser Database will be build for the first time, you should check your Movie Folder setting and change the Cache Folder to a hard drive disk or an sub stick.'), MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.first_return, MessageBox, _('\nBefore the Movie Browser Database will be build for the first time,\nyou should check your Movie Folder setting and change the\nCache Folder to a hard drive disk for faster access or to an sub stick.'), MessageBox.TYPE_YESNO)
 
     def first_return(self, answer):
         if answer is True:
@@ -3024,20 +2948,24 @@ class movieBrowserPosterwall(Screen):
                 for root, dirs, files in os.walk(folder, topdown=False):
                     for name in files:
                         filename = os.path.join(root, name)
-                        allfiles = allfiles + filename
+                        filedate = os.path.getctime(filename)
+                        allfiles = allfiles + str(filedate)
 
                 data = open(self.database).read()
                 for line in data.split('\n'):
                     movieline = line.split(':::')
                     try:
-                        movie = movieline[1]
+                        moviefolder = movieline[1]
+                        moviedate = movieline[2]
                     except IndexError:
-                        movie = ''
+                        moviefolder = ''
+                        moviedate = ''
 
-                    if search(config.plugins.moviebrowser.moviefolder.value, movie) is not None and search(movie, allfiles) is None:
+                    if search(config.plugins.moviebrowser.moviefolder.value, moviefolder) is not None and search(moviedate, allfiles) is None:
                         self.orphaned += 1
                         data = data.replace(line + '\n', '')
 
+                os.rename(self.database, self.database + '-backup')
                 f = open(self.database, 'w')
                 f.write(data)
                 f.close()
@@ -3054,7 +2982,9 @@ class movieBrowserPosterwall(Screen):
             folder = config.plugins.moviebrowser.moviefolder.value
             for root, dirs, files in os.walk(folder, topdown=False):
                 for name in files:
-                    if search(name, alldata) is None:
+                    movie = sub('\\(', '.', name)
+                    movie = sub('\\)', '.', movie)
+                    if search(movie, alldata) is None:
                         if name.endswith('.ts') or name.endswith('.avi') or name.endswith('.divx') or name.endswith('.flv') or name.endswith('.iso') or name.endswith('.ISO') or name.endswith('.m2ts') or name.endswith('.mov') or name.endswith('.mp4') or name.endswith('.mpg') or name.endswith('.mpeg') or name.endswith('.mkv') or name.endswith('.vob'):
                             filename = os.path.join(root, name)
                             self.movielist.append(filename)
@@ -3880,6 +3810,8 @@ class movieBrowserPosterwall(Screen):
 
             data = open(self.database).read()
             movie = self.movielist[self.index]
+            movie = sub('\\(', '.', movie)
+            movie = sub('\\)', '.', movie)
             if search(movie, data) is not None:
                 for line in data.split('\n'):
                     if search(movie, line) is not None:
@@ -3966,6 +3898,7 @@ class movieBrowserPosterwall(Screen):
                 filename = self.movielist[self.index]
                 if filename.endswith('.ts'):
                     sref = eServiceReference('1:0:0:0:0:0:0:0:0:0:' + filename)
+                    sref.setName(self.namelist[self.index])
                     self.session.open(MoviePlayer, sref)
                 elif filename.endswith('.iso') or filename.endswith('.ISO'):
                     if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/DVDPlayer/'):
@@ -3975,6 +3908,7 @@ class movieBrowserPosterwall(Screen):
                         self.session.open(MessageBox, _('DVD Player Plugin not installed.'), MessageBox.TYPE_ERROR)
                 else:
                     sref = eServiceReference('4097:0:0:0:0:0:0:0:0:0:' + filename)
+                    sref.setName(self.namelist[self.index])
                     self.session.open(MoviePlayer, sref)
             except IndexError:
                 pass
@@ -4399,7 +4333,22 @@ class movieBrowserPosterwall(Screen):
             backdrop = sub('http://cf2.imgobject.com/t/p/w1280', '', backdropurl)
             backdrop = sub('http://www.thetvdb.com/banners/fanart/original', '', backdrop)
             backdrop = config.plugins.moviebrowser.cachefolder.value + backdrop
-            if fileExists(backdrop):
+            if config.plugins.moviebrowser.m1v.value == 'yes':
+                backdrop_m1v = backdrop.replace('.jpg', '.m1v')
+                if fileExists(backdrop_m1v):
+                    self['backdrop'].hide()
+                    os.system("/usr/bin/showiframe '%s'" % backdrop_m1v)
+                elif fileExists(backdrop):
+                    if self.xd == False:
+                        Backdrop = loadPic(backdrop, 1280, 720, 3, 0, 0, 1)
+                    else:
+                        Backdrop = loadPic(backdrop, 1024, 576, 3, 0, 0, 1)
+                    if Backdrop != None:
+                        self['backdrop'].instance.setPixmap(Backdrop)
+                        self['backdrop'].show()
+                else:
+                    getPage(backdropurl).addCallback(self.getBackdrop, backdrop, index).addErrback(self.downloadError)
+            elif fileExists(backdrop):
                 if self.xd == False:
                     Backdrop = loadPic(backdrop, 1280, 720, 3, 0, 0, 1)
                 else:
@@ -5188,22 +5137,14 @@ class movieBrowserPosterwall(Screen):
                 self.pagemax = 1
                 self.makeMovies(self.filter)
 
+    def editDatabase(self):
+        if self.ready == True:
+            self.session.openWithCallback(self.makeMovies, movieDatabase)
+
     def wikipedia(self):
         if self.ready == True:
             if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/Wikipedia/plugin.pyo'):
-                name = self.namelist[self.index]
-                name = name + 'FIN'
-                name = sub(' - .[Ss][0-9]+[Ee][0-9]+.*?FIN', '', name)
-                name = sub('FIN', '', name)
-                if config.plugins.moviebrowser.language.value == 'de':
-                    from Plugins.Extensions.Wikipedia.plugin import wikiSearch
-                    self.session.open(wikiSearch, name)
-                elif config.plugins.moviebrowser.language.value == 'es':
-                    from Plugins.Extensions.Wikipedia.plugin import wikiSearch_es
-                    self.session.open(wikiSearch_es, name)
-                else:
-                    from Plugins.Extensions.Wikipedia.plugin import wikiSearch_en
-                    self.session.open(wikiSearch_en, name)
+                self.session.open(searchWikipedia, self.namelist[self.index], self.infolist[self.index][2], self.infolist[self.index][3])
             else:
                 self.session.open(MessageBox, _('\nThe Wikipedia plugin could not be found.\n\nPlease download and install the plugin from:\nwww.kashmir-plugins.de'), MessageBox.TYPE_INFO)
                 return
@@ -5230,19 +5171,311 @@ class movieBrowserPosterwall(Screen):
             servicelist = self.session.instantiateDialog(ChannelSelection)
             self.session.execDialog(servicelist)
 
-    def infoScreen(self):
-        self.session.open(infoScreenMovieBrowser)
+    def hideScreen(self):
+        if self.hideflag == True:
+            self.hideflag = False
+            count = 40
+            if config.plugins.moviebrowser.m1v.value == 'yes':
+                while count > 0:
+                    count -= 1
+                    f = open('/proc/stb/video/alpha', 'w')
+                    f.write('%i' % (config.plugins.moviebrowser.transparency.value * count / 40))
+                    f.close()
+
+            else:
+                while count > 0:
+                    count -= 1
+                    f = open('/proc/stb/video/alpha', 'w')
+                    f.write('%i' % (config.av.osd_alpha.value * count / 40))
+                    f.close()
+
+        else:
+            self.hideflag = True
+            count = 0
+            if config.plugins.moviebrowser.m1v.value == 'yes':
+                while count < 40:
+                    count += 1
+                    f = open('/proc/stb/video/alpha', 'w')
+                    f.write('%i' % (config.plugins.moviebrowser.transparency.value * count / 40))
+                    f.close()
+
+            else:
+                while count < 40:
+                    count += 1
+                    f = open('/proc/stb/video/alpha', 'w')
+                    f.write('%i' % (config.av.osd_alpha.value * count / 40))
+                    f.close()
+
+    def exit(self):
+        if config.plugins.moviebrowser.showtv.value == 'hide' or config.plugins.moviebrowser.m1v.value == 'yes':
+            f = open('/proc/stb/video/alpha', 'w')
+            f.write('%i' % config.av.osd_alpha.value)
+            f.close()
+            self.session.nav.playService(self.oldService)
+        if self.hideflag == False:
+            f = open('/proc/stb/video/alpha', 'w')
+            f.write('%i' % config.av.osd_alpha.value)
+            f.close()
+        self.close()
+
+
+class movieDatabase(Screen):
+    skin = '\n\t\t\t<screen position="center,center" size="730,523" title=" ">\n\t\t\t\t<ePixmap position="0,0" size="730,28" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/logo.png" zPosition="1"/>\n\t\t\t\t<widget name="list" position="10,38" size="710,475" scrollbarMode="showOnDemand" zPosition="1" />\n\t\t\t\t<widget name="list2" position="10,38" size="710,475" scrollbarMode="showOnDemand" zPosition="1" />\n\t\t\t</screen>'
+
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        self.hideflag = True
+        self.ready = False
+        self.index = 0
+        self['list'] = MenuList([])
+        self['list2'] = MenuList([])
+        self.actlist = 'list'
+        self['actions'] = ActionMap(['OkCancelActions',
+         'DirectionActions',
+         'ColorActions',
+         'ChannelSelectBaseActions',
+         'HelpActions',
+         'NumberActions'], {'ok': self.ok,
+         'cancel': self.exit,
+         'right': self.rightDown,
+         'left': self.leftUp,
+         'down': self.down,
+         'up': self.up,
+         'nextBouquet': self.zap,
+         'prevBouquet': self.zap,
+         #'red': self.infoScreen,
+         #'yellow': self.infoScreen,
+         #'green': self.infoScreen,
+         #'blue': self.hideScreen,
+         '0': self.gotoEnd,
+         #'displayHelp': self.infoScreen
+         }, -1)
+        self.database = '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/database'
+        self.onLayoutFinish.append(self.makeList)
+
+    def makeList(self):
+        self.namelist = []
+        self.datelist = []
+        self.runtimelist = []
+        self.ratinglist = []
+        self.directorlist = []
+        self.actorslist = []
+        self.genreslist = []
+        self.yearlist = []
+        self.countrylist = []
+        self.posterlist = []
+        self.backdroplist = []
+        self.list = []
+        if fileExists(self.database):
+            f = open(self.database, 'r')
+            for line in f:
+                movieline = line.split(':::')
+                try:
+                    name = movieline[0]
+                except IndexError:
+                    name = ' '
+
+                try:
+                    date = movieline[2]
+                except IndexError:
+                    date = ' '
+
+                try:
+                    runtime = movieline[3]
+                except IndexError:
+                    runtime = ' '
+
+                try:
+                    rating = movieline[4]
+                except IndexError:
+                    rating = ' '
+
+                try:
+                    director = movieline[5]
+                except IndexError:
+                    director = ' '
+
+                try:
+                    actors = movieline[6]
+                except IndexError:
+                    actors = ' '
+
+                try:
+                    genres = movieline[7]
+                except IndexError:
+                    genres = ' '
+
+                try:
+                    year = movieline[8]
+                except IndexError:
+                    year = ' '
+
+                try:
+                    country = movieline[9]
+                except IndexError:
+                    country = ' '
+
+                try:
+                    poster = movieline[11]
+                except IndexError:
+                    poster = 'http://cf2.imgobject.com/t/p/w154' + '/default_poster.png'
+
+                try:
+                    backdrop = movieline[12]
+                except IndexError:
+                    backdrop = 'http://cf2.imgobject.com/t/p/w1280' + '/default_backdrop.png'
+
+                self.namelist.append(name)
+                self.datelist.append(date)
+                self.runtimelist.append(runtime)
+                self.ratinglist.append(rating)
+                self.directorlist.append(director)
+                self.actorslist.append(actors)
+                self.genreslist.append(genres)
+                self.yearlist.append(year)
+                self.countrylist.append(country)
+                self.posterlist.append(poster)
+                self.backdroplist.append(backdrop)
+                self.list.append(name)
+                self['list'].l.setList(self.list)
+                self['list'].moveToIndex(self.index)
+                self.selectList()
+                self.ready = True
+                totalMovies = len(self.list)
+                if os.path.exists(config.plugins.moviebrowser.moviefolder.value):
+                    movieFolder = os.statvfs(config.plugins.moviebrowser.moviefolder.value)
+                    freeSize = movieFolder[statvfs.F_BSIZE] * movieFolder[statvfs.F_BFREE] / 1024 / 1024 / 1024
+                    title = 'Database Editor: %s Movies (Movie Folder: %s GB free)' % (str(totalMovies), str(freeSize))
+                    self.setTitle(title)
+                else:
+                    title = 'Database Editor: %s Movies (Movie Folder: offline)' % str(totalMovies)
+                    self.setTitle(title)
+
+    def makeList2(self):
+        self.list2 = []
+        self.list2.append('Movie: ' + self.namelist[self.index])
+        self.list2.append('Rating: ' + self.ratinglist[self.index])
+        self.list2.append('Director: ' + self.directorlist[self.index])
+        self.list2.append('Country: ' + self.countrylist[self.index])
+        self.list2.append('Actors: ' + self.actorslist[self.index])
+        self.list2.append('Year: ' + self.yearlist[self.index])
+        self.list2.append('Runtime: ' + self.runtimelist[self.index])
+        self.list2.append('Genres: ' + self.genreslist[self.index])
+        self.list2.append('Poster: ' + self.posterlist[self.index])
+        self.list2.append('Backdrop: ' + self.backdroplist[self.index])
+        self['list2'].l.setList(self.list2)
+        self.selectList2()
+
+    def ok(self):
+        if self.ready == True:
+            if self.actlist == 'list':
+                self.index = self['list'].getSelectedIndex()
+                self.date = self.datelist[self.index]
+                self.makeList2()
+            elif self.actlist == 'list2':
+                index = self['list2'].getSelectedIndex()
+                if index == 0:
+                    self.data = self.namelist[self.index]
+                elif index == 1:
+                    self.data = self.ratinglist[self.index]
+                elif index == 2:
+                    self.data = self.directorlist[self.index]
+                elif index == 3:
+                    self.data = self.countrylist[self.index]
+                elif index == 4:
+                    self.data = self.actorslist[self.index]
+                elif index == 5:
+                    self.data = self.yearlist[self.index]
+                elif index == 6:
+                    self.data = self.runtimelist[self.index]
+                elif index == 7:
+                    self.data = self.genreslist[self.index]
+                elif index == 8:
+                    self.data = self.posterlist[self.index]
+                elif index == 9:
+                    self.data = self.backdroplist[self.index]
+                self.session.openWithCallback(self.changeData, VirtualKeyBoard, title='Database Editor:', text=self.data)
+
+    def changeData(self, newdata):
+        if newdata and newdata != '' and newdata != self.data:
+            newdata = ':::' + newdata + ':::'
+            olddata = ':::' + self.data + ':::'
+            database = open(self.database).read()
+            for line in database.split('\n'):
+                if search(self.date, line) is not None:
+                    newline = line.replace(olddata, newdata)
+                    database = database.replace(line, newline)
+
+            f = open(self.database + '.new', 'w')
+            f.write(database)
+            f.close()
+            os.rename(self.database, self.database + '-backup')
+            os.rename(self.database + '.new', self.database)
+            self.makeList()
+            self.makeList2()
+
+    def selectList(self):
+        self.actlist = 'list'
+        self['list'].show()
+        self['list2'].hide()
+        self['list'].selectionEnabled(1)
+        self['list2'].selectionEnabled(0)
+
+    def selectList2(self):
+        self.actlist = 'list2'
+        self['list'].hide()
+        self['list2'].show()
+        self['list'].selectionEnabled(0)
+        self['list2'].selectionEnabled(1)
+
+    def up(self):
+        self[self.actlist].up()
+
+    def down(self):
+        self[self.actlist].down()
+
+    def leftUp(self):
+        self[self.actlist].pageUp()
+
+    def rightDown(self):
+        self[self.actlist].pageDown()
+
+    def gotoEnd(self):
+        end = len(self.list) - 1
+        self['list'].moveToIndex(end)
+
+    def zap(self):
+        servicelist = self.session.instantiateDialog(ChannelSelection)
+        self.session.execDialog(servicelist)
 
     def hideScreen(self):
         if self.hideflag == True:
             self.hideflag = False
-            self.hide()
+            count = 40
+            while count > 0:
+                count -= 1
+                f = open('/proc/stb/video/alpha', 'w')
+                f.write('%i' % (config.av.osd_alpha.value * count / 40))
+                f.close()
+
         else:
             self.hideflag = True
-            self.show()
+            count = 0
+            while count < 40:
+                count += 1
+                f = open('/proc/stb/video/alpha', 'w')
+                f.write('%i' % (config.av.osd_alpha.value * count / 40))
+                f.close()
 
     def exit(self):
-        self.close()
+        if self.hideflag == False:
+            f = open('/proc/stb/video/alpha', 'w')
+            f.write('%i' % config.av.osd_alpha.value)
+            f.close()
+        if self.actlist == 'list':
+            self.close(':::')
+        elif self.actlist == 'list2':
+            self.selectList()
 
 
 class moviesList(Screen):
@@ -5283,11 +5516,12 @@ class moviesList(Screen):
          'up': self.up,
          'nextBouquet': self.zap,
          'prevBouquet': self.zap,
-         'red': self.infoScreen,
-         'yellow': self.infoScreen,
-         'blue': self.hideScreen,
+         #'red': self.infoScreen,
+         #'yellow': self.infoScreen,
+         #'blue': self.hideScreen,
          '0': self.gotoEnd,
-         'displayHelp': self.infoScreen}, -1)
+         #'displayHelp': self.infoScreen
+         }, -1)
         self.onLayoutFinish.append(self.onLayoutFinished)
 
     def onLayoutFinished(self):
@@ -5752,18 +5986,30 @@ class moviesList(Screen):
         servicelist = self.session.instantiateDialog(ChannelSelection)
         self.session.execDialog(servicelist)
 
-    def infoScreen(self):
-        self.session.open(infoScreenMovieBrowser)
-
     def hideScreen(self):
         if self.hideflag == True:
             self.hideflag = False
-            self.hide()
+            count = 40
+            while count > 0:
+                count -= 1
+                f = open('/proc/stb/video/alpha', 'w')
+                f.write('%i' % (config.av.osd_alpha.value * count / 40))
+                f.close()
+
         else:
             self.hideflag = True
-            self.show()
+            count = 0
+            while count < 40:
+                count += 1
+                f = open('/proc/stb/video/alpha', 'w')
+                f.write('%i' % (config.av.osd_alpha.value * count / 40))
+                f.close()
 
     def exit(self):
+        if self.hideflag == False:
+            f = open('/proc/stb/video/alpha', 'w')
+            f.write('%i' % config.av.osd_alpha.value)
+            f.close()
         if fileExists(self.poster1):
             os.remove(self.poster1)
         if fileExists(self.poster2):
@@ -5797,15 +6043,16 @@ class filterList(Screen):
          'up': self.up,
          'nextBouquet': self.zap,
          'prevBouquet': self.zap,
-         'red': self.infoScreen,
-         'yellow': self.infoScreen,
-         'green': self.infoScreen,
-         'blue': self.hideScreen,
+         #'red': self.infoScreen,
+         #'yellow': self.infoScreen,
+         #'green': self.infoScreen,
+         #'blue': self.hideScreen,
          '7': self.resetFilter,
          '8': self.resetFilter,
          '9': self.resetFilter,
          '0': self.gotoEnd,
-         'displayHelp': self.infoScreen}, -1)
+         #'displayHelp': self.infoScreen
+         }, -1)
         self.onLayoutFinish.append(self.onLayoutFinished)
 
     def onLayoutFinished(self):
@@ -5832,18 +6079,30 @@ class filterList(Screen):
         servicelist = self.session.instantiateDialog(ChannelSelection)
         self.session.execDialog(servicelist)
 
-    def infoScreen(self):
-        self.session.open(infoScreenMovieBrowser)
-
     def hideScreen(self):
         if self.hideflag == True:
             self.hideflag = False
-            self.hide()
+            count = 40
+            while count > 0:
+                count -= 1
+                f = open('/proc/stb/video/alpha', 'w')
+                f.write('%i' % (config.av.osd_alpha.value * count / 40))
+                f.close()
+
         else:
             self.hideflag = True
-            self.show()
+            count = 0
+            while count < 40:
+                count += 1
+                f = open('/proc/stb/video/alpha', 'w')
+                f.write('%i' % (config.av.osd_alpha.value * count / 40))
+                f.close()
 
     def exit(self):
+        if self.hideflag == False:
+            f = open('/proc/stb/video/alpha', 'w')
+            f.write('%i' % config.av.osd_alpha.value)
+            f.close()
         self.close(':::')
 
 
@@ -5866,13 +6125,14 @@ class filterSeasonList(Screen):
          'up': self.up,
          'nextBouquet': self.zap,
          'prevBouquet': self.zap,
-         'red': self.infoScreen,
-         'yellow': self.infoScreen,
-         'green': self.infoScreen,
-         'blue': self.hideScreen,
+         #'red': self.infoScreen,
+         #'yellow': self.infoScreen,
+         #'green': self.infoScreen,
+         #'blue': self.hideScreen,
          '4': self.resetFilter,
          '0': self.gotoEnd,
-         'displayHelp': self.infoScreen}, -1)
+         #'displayHelp': self.infoScreen
+         }, -1)
         self.onLayoutFinish.append(self.onLayoutFinished)
 
     def onLayoutFinished(self):
@@ -5910,18 +6170,30 @@ class filterSeasonList(Screen):
         servicelist = self.session.instantiateDialog(ChannelSelection)
         self.session.execDialog(servicelist)
 
-    def infoScreen(self):
-        self.session.open(infoScreenMovieBrowser)
-
     def hideScreen(self):
         if self.hideflag == True:
             self.hideflag = False
-            self.hide()
+            count = 40
+            while count > 0:
+                count -= 1
+                f = open('/proc/stb/video/alpha', 'w')
+                f.write('%i' % (config.av.osd_alpha.value * count / 40))
+                f.close()
+
         else:
             self.hideflag = True
-            self.show()
+            count = 0
+            while count < 40:
+                count += 1
+                f = open('/proc/stb/video/alpha', 'w')
+                f.write('%i' % (config.av.osd_alpha.value * count / 40))
+                f.close()
 
     def exit(self):
+        if self.hideflag == False:
+            f = open('/proc/stb/video/alpha', 'w')
+            f.write('%i' % config.av.osd_alpha.value)
+            f.close()
         self.close(':::Series:::')
 
 
@@ -5946,12 +6218,13 @@ class allMovieList(Screen):
          'up': self.up,
          'nextBouquet': self.zap,
          'prevBouquet': self.zap,
-         'red': self.infoScreen,
-         'yellow': self.infoScreen,
-         'green': self.infoScreen,
-         'blue': self.hideScreen,
+         #'red': self.infoScreen,
+         #'yellow': self.infoScreen,
+         #'green': self.infoScreen,
+         #'blue': self.hideScreen,
          '0': self.gotoEnd,
-         'displayHelp': self.infoScreen}, -1)
+         #'displayHelp': self.infoScreen
+         }, -1)
         self.onLayoutFinish.append(self.onLayoutFinished)
 
     def onLayoutFinished(self):
@@ -5999,141 +6272,150 @@ class allMovieList(Screen):
         servicelist = self.session.instantiateDialog(ChannelSelection)
         self.session.execDialog(servicelist)
 
-    def infoScreen(self):
-        self.session.open(infoScreenMovieBrowser)
-
     def hideScreen(self):
         if self.hideflag == True:
             self.hideflag = False
-            self.hide()
+            count = 40
+            while count > 0:
+                count -= 1
+                f = open('/proc/stb/video/alpha', 'w')
+                f.write('%i' % (config.av.osd_alpha.value * count / 40))
+                f.close()
+
         else:
             self.hideflag = True
-            self.show()
+            count = 0
+            while count < 40:
+                count += 1
+                f = open('/proc/stb/video/alpha', 'w')
+                f.write('%i' % (config.av.osd_alpha.value * count / 40))
+                f.close()
 
     def exit(self):
+        if self.hideflag == False:
+            f = open('/proc/stb/video/alpha', 'w')
+            f.write('%i' % config.av.osd_alpha.value)
+            f.close()
         index = self['list'].getSelectedIndex()
         self.close(index)
 
 
-class ItemList(MenuList):
+class searchWikipedia(Screen):
+    skin = '\n\t\t\t<screen position="center,center" size="550,295" title="Wikipedia - Search for Movie, Director or Actor">\n\t\t\t\t<ePixmap position="0,0" size="550,50" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/Wikipedia/pic/wiki.png" zPosition="1"/>\n\t\t\t\t<widget name="list" position="10,60" size="530,225" scrollbarMode="showOnDemand" zPosition="1" />\n\t\t\t</screen>'
 
+    def __init__(self, session, movie, director, actors):
+        Screen.__init__(self, session)
+        self.hideflag = True
+        self.movie = movie
+        self.director = director
+        self.actors = actors
+        self.list = []
+        self['list'] = MenuList([])
+        self['actions'] = ActionMap(['OkCancelActions',
+         'DirectionActions',
+         'ColorActions',
+         'ChannelSelectBaseActions',
+         'HelpActions',
+         'NumberActions'], {'ok': self.ok,
+         'cancel': self.exit,
+         'down': self.down,
+         'up': self.up,
+         'nextBouquet': self.zap,
+         'prevBouquet': self.zap,
+         #'red': self.infoScreen,
+         #'yellow': self.infoScreen,
+         #'green': self.infoScreen,
+         #'blue': self.hideScreen,
+         '0': self.gotoEnd,
+         #'displayHelp': self.infoScreen
+         }, -1)
+        self.onLayoutFinish.append(self.onLayoutFinished)
+
+    def onLayoutFinished(self):
+        self.list.append('Movie: ' + self.movie)
+        self.list.append('Director: ' + self.director)
+        self.actor = [ i for i in self.actors.split(', ') ]
+        idx = 0
+        for x in self.actor:
+            idx += 1
+
+        for i in range(idx):
+            self.list.append('Actor: ' + self.actor[i])
+
+        self['list'].l.setList(self.list)
+
+    def ok(self):
+        index = self['list'].getSelectedIndex()
+        if index == 0:
+            name = self.movie
+        elif index == 1:
+            name = self.director
+        elif index == 2:
+            name = self.actor[0]
+        elif index == 3:
+            name = self.actor[1]
+        elif index == 4:
+            name = self.actor[2]
+        elif index == 5:
+            name = self.actor[3]
+        elif index == 6:
+            name = self.actor[4]
+        elif index == 7:
+            name = self.actor[5]
+        elif index == 8:
+            name = self.actor[6]
+
+    def down(self):
+        self['list'].down()
+
+    def up(self):
+        self['list'].up()
+
+    def gotoEnd(self):
+        end = len(self.list) - 1
+        self['list'].moveToIndex(end)
+
+    def zap(self):
+        servicelist = self.session.instantiateDialog(ChannelSelection)
+        self.session.execDialog(servicelist)
+
+    def hideScreen(self):
+        if self.hideflag == True:
+            self.hideflag = False
+            count = 40
+            while count > 0:
+                count -= 1
+                f = open('/proc/stb/video/alpha', 'w')
+                f.write('%i' % (config.av.osd_alpha.value * count / 40))
+                f.close()
+
+        else:
+            self.hideflag = True
+            count = 0
+            while count < 40:
+                count += 1
+                f = open('/proc/stb/video/alpha', 'w')
+                f.write('%i' % (config.av.osd_alpha.value * count / 40))
+                f.close()
+
+    def exit(self):
+        if self.hideflag == False:
+            f = open('/proc/stb/video/alpha', 'w')
+            f.write('%i' % config.av.osd_alpha.value)
+            f.close()
+        self.close()
+
+
+class ItemList(MenuList):
     def __init__(self, items, enableWrapAround = True):
         MenuList.__init__(self, items, enableWrapAround, eListboxPythonMultiContent)
         self.l.setFont(24, gFont('Regular', 24))
         self.l.setFont(22, gFont('Regular', 22))
         self.l.setFont(20, gFont('Regular', 20))
 
-
-class infoScreenMovieBrowser(Screen):
-    skin = '''<screen position="center,center" size="425,425" backgroundColor="#FFFFFF" title="Movie Browser 1.8rc2" >
-					<widget name="info" position="0,0" size="425,425" zPosition="1"/>
-					<widget name="yellowbutton" position="10,39" size="18,18" alphatest="blend" zPosition="3" />
-					<widget name="greenbutton" position="10,60" size="18,18" alphatest="blend" zPosition="3" />
-					<widget name="redbutton" position="10,81" size="18,18" alphatest="blend" zPosition="3" />
-					<widget name="bluebutton" position="10,102" size="18,18" alphatest="blend" zPosition="3" />
-					<widget name="label" position="10,10" size="415,25" font="Regular;18" foregroundColor="#6B6B6B" backgroundColor="#FFFFFF" halign="center" transparent="1" zPosition="2" />
-					<widget name="label2" position="10,38" size="415,380" font="Regular;18" foregroundColor="#6B6B6B" backgroundColor="#FFFFFF" transparent="1" zPosition="2" />
-					<widget name="donate" position="0,72" size="425,350" font="Regular;18" foregroundColor="#6B6B6B" backgroundColor="#FFFFFF" halign="center" valign="center" transparent="1" zPosition="2" />
-				</screen>'''
-
-    def __init__(self, session):
-        self.skin = infoScreenMovieBrowser.skin
-        Screen.__init__(self, session)
-        self.first = True
-        self.version = '1.8rc2'
-        self.link = 'http://sites.google.com/site/kashmirplugins/home/movie-browser'
-        self.lang = language.getLanguage()[:2]
-        if self.lang == 'de':
-            self['label'] = Label('Tastenbelegung')
-            self['label2'] = Label('     : suche Infos auf IMDb / TheTVDb\n     : suche Infos auf TMDb / TheTVDb\n     : l\xc3\xb6sche oder blacklist Film Datei\n     : Plugin aus- / einblenden\nVideo/PVR/Filelist Taste: Update Database\nInfo/EPG Taste: Infos ein- / ausblenden\nText Taste: Backdrops ein- / ausblenden\n\nTaste 1: Liste aller Filme einblenden\nTaste 2: wechsel Posterwall / Backdrop\nTaste 3: zeige Pfad zur Film Datei\nTaste 4: filtere Liste nach Serien Staffeln\nTaste 5: wechsel Filme / Serien Ansicht\nTaste 6: Wikipedia Information\nTaste 7: filtere Liste nach Director\nTaste 8: filtere Liste nach Actor\nTaste 9: filtere Liste nach Genre\nTaste 0: gehe an das Ende der Liste')
-        elif self.lang == 'es':
-            self['label'] = Label('Asignacion de la tecla')
-            self['label2'] = Label('     : buscar infos en IMDb / TheTVDb\n     : buscar infos en TMDb / TheTVDb\n     : borrar o blacklist archivo de movie\n     : ocultar / mostrar plugin\nVideo/PVR/Filelist Boton: Actualizar Database\nInfo/EPG Boton: ocultar / mostrar info\nText Boton: ocultar / mostrar backdrops\n\nBoton 1: mostrar lista de todas las movies\nBoton 2: cambiar Posterwall / Backdrop\nBoton 3: mostrar ruta de archivo de movie\nBoton 4: filtro lista de Series Episodio\nBoton 6: Wikipedia informacion\nBoton 5: cambiar Movies / Series vista\nBoton 7: filtro lista de Director\nBoton 8: filtro lista de Actor\nBoton 9: filtro lista de Genre\nBoton 0: ir al final de la lista')
-        else:
-            self['label'] = Label('Key Assignment')
-            self['label2'] = Label('     : search infos on IMDb / TheTVDb\n     : search infos on TMDb / TheTVDb\n     : delete or blacklist selected movie file\n     : toggle hide / show plugin\nVideo/PVR/Filelist Button: Update Database\nInfo/EPG Button: toggle show / hide infos\nText Button: toggle show / hide backdrops\n\nButton 1: show list of all movies\nButton 2: toggle Posterwall / Backdrop\nButton 3: show path to movie file\nButton 4: filter list for Series Seasons\nButton 5: toggle Movies / Series view\nButton 6: Wikipedia information\nButton 7: filter list for Director\nButton 8: filter list for Actor\nButton 9: filter list for Genre\nButton 0: go to end of list')
-        self['donate'] = Label()
-        self['info'] = Pixmap()
-        self['yellowbutton'] = Pixmap()
-        self['greenbutton'] = Pixmap()
-        self['redbutton'] = Pixmap()
-        self['bluebutton'] = Pixmap()
-        self['actions'] = ActionMap(['OkCancelActions'], {'ok': self.exit,
-         'cancel': self.exit}, -1)
-        self.onLayoutFinish.append(self.makeCheck)
-
-    def makeCheck(self):
-        self.showYellowButton()
-        self.showGreenButton()
-        self.showRedButton()
-        self.showBlueButton()
-
-    def download(self, link, name):
-        getPage(link).addCallback(name).addErrback(self.downloadError)
-
-    def downloadError(self, output):
-        pass
-
-    def showYellowButton(self):
-        currPic = loadPic('/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/yellow.png', 18, 18, 3, 0, 0, 1)
-        if currPic != None:
-            self['yellowbutton'].instance.setPixmap(currPic)
-            self['yellowbutton'].show()
-
-    def showGreenButton(self):
-        currPic = loadPic('/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/green.png', 18, 18, 3, 0, 0, 1)
-        if currPic != None:
-            self['greenbutton'].instance.setPixmap(currPic)
-            self['greenbutton'].show()
-
-    def showRedButton(self):
-        currPic = loadPic('/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/red.png', 18, 18, 3, 0, 0, 1)
-        if currPic != None:
-            self['redbutton'].instance.setPixmap(currPic)
-            self['redbutton'].show()
-
-    def showBlueButton(self):
-        currPic = loadPic('/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/blue.png', 18, 18, 3, 0, 0, 1)
-        if currPic != None:
-            self['bluebutton'].instance.setPixmap(currPic)
-            self['bluebutton'].show()
-
-    def exit(self):
-        if self.first == True:
-            self.first = False
-            self['label'].hide()
-            self['label2'].hide()
-            self['yellowbutton'].hide()
-            self['greenbutton'].hide()
-            self['redbutton'].hide()
-            self['bluebutton'].hide()
-            png = '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/info.png'
-            if fileExists(png):
-                PNG = loadPic(png, 425, 425, 3, 0, 0, 1)
-                if PNG != None:
-                    self['info'].instance.setPixmap(PNG)
-            if self.lang == 'de':
-                self['donate'].setText('www.kashmir-plugins.de\n\nGef\xc3\xa4llt Ihnen das Plugin?\nM\xc3\xb6chten Sie etwas spenden?\nGehen Sie dazu bitte wie folgt vor:\n\n\n\n1. Melden Sie sich bei PayPal an\n2. Klicken Sie auf: Geld senden\n3. Adresse: paypal@kashmir-plugins.de\n4. Betrag: 5 Euro\n5. Weiter\n6. Geld senden\nDanke!')
-            elif self.lang == 'es':
-                self['donate'].setText('www.kashmir-plugins.de\n\nTe gusta el plugin?\nQuieres donar algo?\nPara ello, proceda de la siguiente manera:\n\n\n\n1. Registrese en PayPal\n2. Haga clic en: Enviar dinero\n3. Correo: paypal@kashmir-plugins.de\n4. Importe: 5 Euro\n5. Continuar\n6. Envie dinero\nGracias!')
-            else:
-                self['donate'].setText('www.kashmir-plugins.de\n\nDo you like the plugin?\nDo you want to donate something?\nTo do so, please proceed as follows:\n\n\n\n1. Sign up for PayPal\n2. Click on: Send Money\n3. Address: paypal@kashmir-plugins.de\n4. Amount: 5 Euro\n5. Continue\n6. Send Money\nThank you!')
-        else:
-            self.close()
-
-
 class movieBrowserConfig(ConfigListScreen, Screen):
-    skin = '''<screen position="center,center" size="530,500" backgroundColor="#20000000" title="Movie Browser Setup">
-				<ePixmap position="-100,0" size="630,28" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/logo.png" alphatest="blend" zPosition="1" />
-				<ePixmap position="9,37" size="512,1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/seperator.png" alphatest="off" zPosition="1" />
-				<widget name="config" position="9,38" size="512,125" itemHeight="25" scrollbarMode="showOnDemand" zPosition="1" />
-				<ePixmap position="9,164" size="512,1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/seperator.png" alphatest="off" zPosition="1" />
-				<eLabel position="150,173" size="125,20" font="Regular;18" halign="left" text="Save" transparent="1" zPosition="1" />
-				<eLabel position="365,173" size="125,20" font="Regular;18" halign="left" text="Cancel" transparent="1" zPosition="1" />
-				<ePixmap position="125,174" size="18,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/green.png" alphatest="blend" zPosition="1" />
-				<ePixmap position="340,174" size="18,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/red.png" alphatest="blend" zPosition="1" />
-				<widget name="plugin" position="9,203" size="512,288" alphatest="blend" zPosition="1" />
-			</screen>'''
+    skin = '\n\t\t\t<screen position="center,center" size="530,500" backgroundColor="#20000000" title="Movie Browser Setup">\n\t\t\t\t<ePixmap position="-100,0" size="630,28" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/logo.png" alphatest="blend" zPosition="1" />\n\t\t\t\t<ePixmap position="9,37" size="512,1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/seperator.png" alphatest="off" zPosition="1" />\n\t\t\t\t<widget name="config" position="9,38" size="512,125" itemHeight="25" scrollbarMode="showOnDemand" zPosition="1" />\n\t\t\t\t<ePixmap position="9,164" size="512,1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/seperator.png" alphatest="off" zPosition="1" />\n\t\t\t\t<eLabel position="150,173" size="125,20" font="Regular;18" halign="left" text="Save" transparent="1" zPosition="1" />\n\t\t\t\t<eLabel position="365,173" size="125,20" font="Regular;18" halign="left" text="Cancel" transparent="1" zPosition="1" />\n\t\t\t\t<ePixmap position="125,174" size="18,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/green.png" alphatest="blend" zPosition="1" />\n\t\t\t\t<ePixmap position="340,174" size="18,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/red.png" alphatest="blend" zPosition="1" />\n\t\t\t\t<widget name="plugin" position="9,203" size="512,288" alphatest="blend" zPosition="1" />\n\t\t\t</screen>'
+
     def __init__(self, session):
         Screen.__init__(self, session)
         self['plugin'] = Pixmap()
@@ -6145,21 +6427,24 @@ class movieBrowserConfig(ConfigListScreen, Screen):
         list.append(getConfigListEntry(_('Plugin Style:'), config.plugins.moviebrowser.style))
         self.foldername = getConfigListEntry(_('Movie Folder:'), config.plugins.moviebrowser.moviefolder)
         list.append(self.foldername)
-        list.append(getConfigListEntry(_('Cache Folder:'), config.plugins.moviebrowser.cachefolder))
+        #list.append(getConfigListEntry(_('Cache Folder:'), config.plugins.moviebrowser.cachefolder))
         list.append(getConfigListEntry(_('Default Database:'), config.plugins.moviebrowser.database))
         list.append(getConfigListEntry(_('TMDb/TheTVDb Language:'), config.plugins.moviebrowser.language))
+        #list.append(getConfigListEntry(_('Plugin Size:'), config.plugins.moviebrowser.plugin_size))
         list.append(getConfigListEntry(_('Show Content:'), config.plugins.moviebrowser.filter))
-        list.append(getConfigListEntry(_('Show Backdrops:'), config.plugins.moviebrowser.backdrops))
-        list.append(getConfigListEntry(_('Show Plot Full:'), config.plugins.moviebrowser.plotfull))
-        list.append(getConfigListEntry(_('Plot Full Font Size:'), config.plugins.moviebrowser.plotfont))
-        list.append(getConfigListEntry(_('Headline Color:'), config.plugins.moviebrowser.color))
+        #list.append(getConfigListEntry(_('Show Backdrops:'), config.plugins.moviebrowser.backdrops))
+        #list.append(getConfigListEntry(_('Show Plot Full:'), config.plugins.moviebrowser.plotfull))
+        #list.append(getConfigListEntry(_('Plot Full Font Size:'), config.plugins.moviebrowser.plotfont))
+        #list.append(getConfigListEntry(_('Headline Color:'), config.plugins.moviebrowser.color))
         list.append(getConfigListEntry(_('Sort Order:'), config.plugins.moviebrowser.sortorder))
-        list.append(getConfigListEntry(_('Plugin Size:'), config.plugins.moviebrowser.plugin_size))
-        list.append(getConfigListEntry(_('Reset Database:'), config.plugins.moviebrowser.reset))
+        #list.append(getConfigListEntry(_('Support m1v Backdrops:'), config.plugins.moviebrowser.m1v))
+        #list.append(getConfigListEntry(_('m1v Transparency:'), config.plugins.moviebrowser.transparency))
+        #list.append(getConfigListEntry(_('Show TV on Plugin Start:'), config.plugins.moviebrowser.showtv))
         #list.append(getConfigListEntry(_('Show Plugin in Main Menu:'), config.plugins.moviebrowser.menu))
+        list.append(getConfigListEntry(_('Reset Database:'), config.plugins.moviebrowser.reset))
         ConfigListScreen.__init__(self, list, on_change=self.UpdateComponents)
         self['key_red'] = Label(_('Cancel'))
-        self['key_green'] = Label(_('Save'))        
+        self['key_green'] = Label(_('Save'))          
         self['actions'] = ActionMap(['SetupActions', 'ColorActions'], {'ok': self.save,
          'cancel': self.cancel,
          'red': self.cancel,
@@ -6185,33 +6470,34 @@ class movieBrowserConfig(ConfigListScreen, Screen):
         if self.ready == True:
             self.ready = False
             if config.plugins.moviebrowser.sortorder.value != self.sortorder:
-                f = open(self.database, 'r')
-                lines = f.readlines()
-                f.close()
-                if config.plugins.moviebrowser.sortorder.value == 'name':
-                    lines.sort(key=lambda line: line.split(':::')[0].replace('Der ', '').replace('Die ', '').replace('Das ', '').replace('The ', '').lower())
-                elif config.plugins.moviebrowser.sortorder.value == 'name_reverse':
-                    lines.sort(key=lambda line: line.split(':::')[0].replace('Der ', '').replace('Die ', '').replace('Das ', '').replace('The ', '').lower(), reverse=True)
-                elif config.plugins.moviebrowser.sortorder.value == 'rating':
-                    lines.sort(key=lambda line: line.split(':::')[4])
-                elif config.plugins.moviebrowser.sortorder.value == 'rating_reverse':
-                    lines.sort(key=lambda line: line.split(':::')[4], reverse=True)
-                elif config.plugins.moviebrowser.sortorder.value == 'year':
-                    lines.sort(key=lambda line: line.split(':::')[8])
-                elif config.plugins.moviebrowser.sortorder.value == 'year_reverse':
-                    lines.sort(key=lambda line: line.split(':::')[8], reverse=True)
-                elif config.plugins.moviebrowser.sortorder.value == 'date':
-                    lines.sort(key=lambda line: line.split(':::')[2])
-                elif config.plugins.moviebrowser.sortorder.value == 'date_reverse':
-                    lines.sort(key=lambda line: line.split(':::')[2], reverse=True)
-                elif config.plugins.moviebrowser.sortorder.value == 'folder':
-                    lines.sort(key=lambda line: line.split(':::')[1])
-                elif config.plugins.moviebrowser.sortorder.value == 'folder_reverse':
-                    lines.sort(key=lambda line: line.split(':::')[1], reverse=True)
-                fsorted = open(self.database + '.sorted', 'w')
-                fsorted.writelines(lines)
-                fsorted.close()
-                os.rename(self.database + '.sorted', self.database)
+                if fileExists(self.database):
+                    f = open(self.database, 'r')
+                    lines = f.readlines()
+                    f.close()
+                    if config.plugins.moviebrowser.sortorder.value == 'name':
+                        lines.sort(key=lambda line: line.split(':::')[0].replace('Der ', '').replace('Die ', '').replace('Das ', '').replace('The ', '').lower())
+                    elif config.plugins.moviebrowser.sortorder.value == 'name_reverse':
+                        lines.sort(key=lambda line: line.split(':::')[0].replace('Der ', '').replace('Die ', '').replace('Das ', '').replace('The ', '').lower(), reverse=True)
+                    elif config.plugins.moviebrowser.sortorder.value == 'rating':
+                        lines.sort(key=lambda line: line.split(':::')[4])
+                    elif config.plugins.moviebrowser.sortorder.value == 'rating_reverse':
+                        lines.sort(key=lambda line: line.split(':::')[4], reverse=True)
+                    elif config.plugins.moviebrowser.sortorder.value == 'year':
+                        lines.sort(key=lambda line: line.split(':::')[8])
+                    elif config.plugins.moviebrowser.sortorder.value == 'year_reverse':
+                        lines.sort(key=lambda line: line.split(':::')[8], reverse=True)
+                    elif config.plugins.moviebrowser.sortorder.value == 'date':
+                        lines.sort(key=lambda line: line.split(':::')[2])
+                    elif config.plugins.moviebrowser.sortorder.value == 'date_reverse':
+                        lines.sort(key=lambda line: line.split(':::')[2], reverse=True)
+                    elif config.plugins.moviebrowser.sortorder.value == 'folder':
+                        lines.sort(key=lambda line: line.split(':::')[1])
+                    elif config.plugins.moviebrowser.sortorder.value == 'folder_reverse':
+                        lines.sort(key=lambda line: line.split(':::')[1], reverse=True)
+                    fsorted = open(self.database + '.sorted', 'w')
+                    fsorted.writelines(lines)
+                    fsorted.close()
+                    os.rename(self.database + '.sorted', self.database)
             if config.plugins.moviebrowser.reset.value == 'yes':
                 if fileExists(self.database):
                     os.rename(self.database, self.database + '-backup')
@@ -6256,17 +6542,8 @@ class movieBrowserConfig(ConfigListScreen, Screen):
 
 
 class FolderSelection(Screen):
-    skin = '''<screen position="center,center" size="530,500" backgroundColor="#20000000" title="Movie Browser Setup">
-				<ePixmap position="-100,0" size="630,28" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/logo.png" alphatest="blend" zPosition="1" />
-				<ePixmap position="9,37" size="512,1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/seperator.png" alphatest="off" zPosition="1" />
-				<widget name="folderlist" position="9,38" size="512,125" itemHeight="25" scrollbarMode="showOnDemand" zPosition="1" />
-				<ePixmap position="9,164" size="512,1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/seperator.png" alphatest="off" zPosition="1" />
-				<eLabel position="150,173" size="125,20" font="Regular;18" halign="left" text="Save" transparent="1" zPosition="1" />
-				<eLabel position="365,173" size="125,20" font="Regular;18" halign="left" text="Cancel" transparent="1" zPosition="1" />
-				<ePixmap position="125,174" size="18,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/green.png" alphatest="blend" zPosition="1" />
-				<ePixmap position="340,174" size="18,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/red.png" alphatest="blend" zPosition="1" />
-				<widget name="plugin" position="9,203" size="512,288" alphatest="blend" zPosition="1" />
-			</screen>'''
+    skin = '\n\t\t\t<screen position="center,center" size="530,500" backgroundColor="#20000000" title="Movie Browser Setup">\n\t\t\t\t<ePixmap position="-100,0" size="630,28" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/logo.png" alphatest="blend" zPosition="1" />\n\t\t\t\t<ePixmap position="9,37" size="512,1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/seperator.png" alphatest="off" zPosition="1" />\n\t\t\t\t<widget name="folderlist" position="9,38" size="512,125" itemHeight="25" scrollbarMode="showOnDemand" zPosition="1" />\n\t\t\t\t<ePixmap position="9,164" size="512,1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/seperator.png" alphatest="off" zPosition="1" />\n\t\t\t\t<eLabel position="150,173" size="125,20" font="Regular;18" halign="left" text="Save" transparent="1" zPosition="1" />\n\t\t\t\t<eLabel position="365,173" size="125,20" font="Regular;18" halign="left" text="Cancel" transparent="1" zPosition="1" />\n\t\t\t\t<ePixmap position="125,174" size="18,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/green.png" alphatest="blend" zPosition="1" />\n\t\t\t\t<ePixmap position="340,174" size="18,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/pic/red.png" alphatest="blend" zPosition="1" />\n\t\t\t\t<widget name="plugin" position="9,203" size="512,288" alphatest="blend" zPosition="1" />\n\t\t\t</screen>'
+
     def __init__(self, session, folder):
         Screen.__init__(self, session)
         self['plugin'] = Pixmap()
@@ -6319,5 +6596,21 @@ class FolderSelection(Screen):
         self.close(None)
 
 
+def main(session, **kwargs):
+    if config.plugins.moviebrowser.style.value == 'backdrop':
+        session.open(movieBrowserBackdrop, 0, config.plugins.moviebrowser.filter.value, config.plugins.moviebrowser.filter.value)
+    elif config.plugins.moviebrowser.style.value == 'posterwall':
+        session.open(movieBrowserPosterwall, 0, config.plugins.moviebrowser.filter.value, config.plugins.moviebrowser.filter.value)
+
+
+def menu(menuid, **kwargs):
+    if menuid == 'mainmenu':
+        return [(_('Movie Browser'),
+          main,
+          'moviebrowser',
+          42)]
+    return []
+
+
 def Plugins(**kwargs):
-       return []
+        return []
