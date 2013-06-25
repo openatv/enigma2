@@ -43,7 +43,7 @@ def getDefaultDelayAudioPlayback():
 
 defaultMediaBackend = getDefaultMediaBackend()
 defaultDelayAudioPlayback = getDefaultDelayAudioPlayback()
-config.plugins.airplayer.startuptype = ConfigYesNo(default=True)
+config.plugins.airplayer.startuptype = ConfigYesNo(default=False)
 config.plugins.airplayer.name = ConfigText(default='STB AirPlayer', fixed_size=False)
 config.plugins.airplayer.path = ConfigText(default='/tmp/', fixed_size=False)
 config.plugins.airplayer.audioBackend = ConfigSelection(default=defaultMediaBackend, choices={'proxy': _('proxy'),
@@ -164,20 +164,20 @@ class AP_ConfigScreen(Screen, ConfigListScreen):
          getConfigListEntry(_('Interface'), config.plugins.airplayer.interface, _('Which interface should be used for the airport service?')),
          getConfigListEntry(_('Service name'), config.plugins.airplayer.name, _('Which name should be used to identify the device with active airport service?')),
          #getConfigListEntry(_('Skin'), config.plugins.airplayer.skin, _('Skin')),
-         getConfigListEntry(_('Path'), config.plugins.airplayer.path, _('Path for the temp files.')),
-         getConfigListEntry(_('Play Audio-Stream via'), config.plugins.airplayer.audioBackend, _('Play Audio-Stream via')),
+         #getConfigListEntry(_('Path'), config.plugins.airplayer.path, _('Path for the temp files.')),
+         #getConfigListEntry(_('Play Audio-Stream via'), config.plugins.airplayer.audioBackend, _('Play Audio-Stream via')),
          getConfigListEntry(_('Set start position'), config.plugins.airplayer.setSeekOnStart, _('Set Start Position of stream')),
          getConfigListEntry(_('Stop TV while displaying pictures'), config.plugins.airplayer.stopTVOnPicture, _('Stop TV while displaying Pictures')),
          #getConfigListEntry(_('Premium-Key'), config.plugins.airplayer.premiuimKey, _('Premium Key')),
          getConfigListEntry(_('Allow volume-control from iOS device'), config.plugins.airplayer.allowiOSVolumeControl, _('Allow Volume-Control from iOS Device')),
          #getConfigListEntry(_('Show startup info'), config.plugins.airplayer.showStartUpInfo, _('Show StartUp Info')),
-         getConfigListEntry(_('Use built-In Proxy'), config.plugins.airplayer.useProxyIfPossible, _('Use Built-in Proxy')),
+         #getConfigListEntry(_('Use built-In Proxy'), config.plugins.airplayer.useProxyIfPossible, _('Use Built-in Proxy')),
          #getConfigListEntry(_('Start playback on MB cached'), config.plugins.airplayer.cacheMbBeforePlayback, _('Start Playback on percent cached')),
          #getConfigListEntry(_('Start live-Stream on MB cached'), config.plugins.airplayer.cacheMbBeforeLivePlayback, _('Start Live-Stream on seconds cached')),
          getConfigListEntry(_('Allow wakeup from standby'), config.plugins.airplayer.allowWakeupFromStandby, _('Allow wakeup from Standby')),
          getConfigListEntry(_('Enable screensaver'), config.plugins.airplayer.screensaverEnabled, _('Enable screensaver')),
          #getConfigListEntry(_('Check for updates on startup'), config.plugins.airplayer.autoUpdate, _('Check for updates on startup')),
-         getConfigListEntry(_('Async start of Audioplayer (Workaround)'), config.plugins.airplayer.delayAudioPlayback, _('Async start of Audioplayer (Workaround)'))], session=session, on_change=self._changed)
+         #getConfigListEntry(_('Async start of Audioplayer (Workaround)'), config.plugins.airplayer.delayAudioPlayback, _('Async start of Audioplayer (Workaround)'))], session=session, on_change=self._changed)
         self._session = session
         self._hasChanged = False
         self['key_red'] = StaticText(_('Cancel'))
