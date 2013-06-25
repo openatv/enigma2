@@ -138,6 +138,26 @@ class HddMount(Screen):
 				device2 = device.replace('4', '')
 		except:
 			device2 = ''
+		try:
+			if device.find('5') > 0:
+				device2 = device.replace('5', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('6') > 0:
+				device2 = device.replace('6', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('7') > 0:
+				device2 = device.replace('7', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('8') > 0:
+				device2 = device.replace('8', '')
+		except:
+			device2 = ''
 		devicetype = path.realpath('/sys/block/' + device2 + '/device')
 		d2 = device
 		name = 'USB: '
