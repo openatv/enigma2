@@ -177,7 +177,8 @@ class AP_ConfigScreen(Screen, ConfigListScreen):
          getConfigListEntry(_('Allow wakeup from standby'), config.plugins.airplayer.allowWakeupFromStandby, _('Allow wakeup from Standby')),
          getConfigListEntry(_('Enable screensaver'), config.plugins.airplayer.screensaverEnabled, _('Enable screensaver')),
          #getConfigListEntry(_('Check for updates on startup'), config.plugins.airplayer.autoUpdate, _('Check for updates on startup')),
-         #getConfigListEntry(_('Async start of Audioplayer (Workaround)'), config.plugins.airplayer.delayAudioPlayback, _('Async start of Audioplayer (Workaround)'))], session=session, on_change=self._changed)
+         #getConfigListEntry(_('Async start of Audioplayer (Workaround)'), config.plugins.airplayer.delayAudioPlayback, _('Async start of Audioplayer (Workaround)'))
+         ], session=session, on_change=self._changed)
         self._session = session
         self._hasChanged = False
         self['key_red'] = StaticText(_('Cancel'))
