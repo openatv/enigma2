@@ -834,7 +834,8 @@ class GeneralMenu(Screen):
         
         subentrys['id_mainmenu_photos'] = self.getSubEntry('id_mainmenu_photos', [(_('Albums'),'mainmenu_photos_albums',boundFunction(self.openPicturePlayerAlbum),30),
          (_('Slideshow'),'mainmenu_photos_playlists',boundFunction(self.openPicturePlayerSlideshow), 40),
-         (_('Thumbnails'),'mainmenu_photos_bouquets',boundFunction(self.openPicturePlayerThumb),50)
+         (_('Thumbnails'),'mainmenu_photos_bouquets',boundFunction(self.openPicturePlayerThumb),50),
+          (_('Flickr'),'mainmenu_photos_playlists',boundFunction(self.openFlickr), 60)
          #,(_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openPicturePlayerSetup), 100)
          ])
           
@@ -849,8 +850,9 @@ class GeneralMenu(Screen):
         #,(_('Setup'), 'mainmenu_tv_setup', boundFunction(self.notReadyMessage), 100)
         ])
 
-        subentrys['id_mainmenu_movies'] = self.getSubEntry('id_mainmenu_movies', [(_('TV Shows'), 'mainmenu_movies_tvshows', boundFunction(self.openMovieBrowserMovies), 30),
-         (_('TV Serials'), 'mainmenu_movies_tvserials', boundFunction(self.openMovieBrowserSeries), 40),
+        subentrys['id_mainmenu_movies'] = self.getSubEntry('id_mainmenu_movies', [
+	  #(_('TV Shows'), 'mainmenu_movies_tvshows', boundFunction(self.openMovieBrowserMovies), 30),
+        # (_('TV Serials'), 'mainmenu_movies_tvserials', boundFunction(self.openMovieBrowserSeries), 40),
          (_('Recordings'),'mainmenu_tv_recorded', boundFunction(self.openRecordings),50),
          (_('Media Portal'),'mainmenu_tv_recorded', boundFunction(self.openMediaPortal),60)
          #,(_('Setup'), 'mainmenu_movies_setup', boundFunction(self.openMovieBrowserSetup),100)
@@ -1020,6 +1022,10 @@ class GeneralMenu(Screen):
 	from Plugins.Extensions.PicturePlayer.ui import Pic_Setup
 	self.session.open(Pic_Setup)
 
+    def openFlickr(self):
+      	from Plugins.Extensions.Ecasa.EcasaGui import EcasaOverview
+	self.session.open(EcasaOverview)
+	
     # Music
     def openMediaPlayer(self):
  	from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
