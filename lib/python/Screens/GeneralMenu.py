@@ -832,9 +832,10 @@ class GeneralMenu(Screen):
         subentrys = {}
         subentrys['id_mainmenu_plugins'] = self.getSubEntry(None, [])
         
-        subentrys['id_mainmenu_photos'] = self.getSubEntry('id_mainmenu_photos', [(_('Albums'),'mainmenu_photos_albums',boundFunction(self.openPicturePlayerAlbum),30),
-         (_('Slideshow'),'mainmenu_photos_playlists',boundFunction(self.openPicturePlayerSlideshow), 40),
-         (_('Thumbnails'),'mainmenu_photos_bouquets',boundFunction(self.openPicturePlayerThumb),50),
+        subentrys['id_mainmenu_photos'] = self.getSubEntry('id_mainmenu_photos', [
+	 #(_('Albums'),'mainmenu_photos_albums',boundFunction(self.openPicturePlayerAlbum),30),
+         #(_('Slideshow'),'mainmenu_photos_playlists',boundFunction(self.openPicturePlayerSlideshow), 40),
+         #(_('Thumbnails'),'mainmenu_photos_bouquets',boundFunction(self.openPicturePlayerThumb),50),
           (_('Flickr'),'mainmenu_photos_playlists',boundFunction(self.openFlickr), 60)
          #,(_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openPicturePlayerSetup), 100)
          ])
@@ -1023,7 +1024,7 @@ class GeneralMenu(Screen):
 	self.session.open(Pic_Setup)
 
     def openFlickr(self):
-      	from Plugins.Extensions.Ecasa.EcasaGui import EcasaOverview
+      	from Plugins.Extensions.IniEcasa.EcasaGui import EcasaOverview
 	self.session.open(EcasaOverview)
 	
     # Music
