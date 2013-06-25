@@ -18,10 +18,10 @@ def getScale():
 
 config.pic = ConfigSubsection()
 config.pic.framesize = ConfigInteger(default=30, limits=(5, 99))
-config.pic.slidetime = ConfigInteger(default=10, limits=(1, 60))
+config.pic.slidetime = ConfigInteger(default=5, limits=(1, 60))
 config.pic.resize = ConfigSelection(default="1", choices = [("0", _("simple")), ("1", _("better"))])
 config.pic.cache = ConfigEnableDisable(default=True)
-config.pic.lastDir = ConfigText(default=resolveFilename(SCOPE_MEDIA, "/photos"))
+config.pic.lastDir = ConfigText(default=resolveFilename(SCOPE_MEDIA))
 config.pic.infoline = ConfigEnableDisable(default=True)
 config.pic.loop = ConfigEnableDisable(default=True)
 config.pic.bgcolor = ConfigSelection(default="#00000000", choices = [("#00000000", _("black")),("#009eb9ff", _("blue")),("#00ff5a51", _("red")), ("#00ffe875", _("yellow")), ("#0038FF48", _("green"))])
@@ -50,24 +50,24 @@ class picshow(Screen):
 		{
 			"cancel": self.KeyExit,
 			"red": self.KeyExit,
-			#"green": self.KeyGreen,
+			"green": self.KeyGreen,
 			"yellow": self.KeyYellow,
-			#"blue": self.KeyBlue,
+			"blue": self.KeyBlue,
 			"ok": self.KeyOk
 		}, -1)
 
-		#self["key_red"] = StaticText(_("Close"))
-		#self["key_green"] = StaticText(_("Thumbnails"))
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("Thumbnails"))
 		self["key_yellow"] = StaticText("")
-		#self["key_blue"] = StaticText(_("Setup"))
+		self["key_blue"] = StaticText(_("Slideshow"))
 		self["label"] = StaticText("")
 		self["thn"] = Pixmap()
 
-		currDir = config.pic.lastDir.getValue()
-		if not pathExists(currDir):
-			currDir = "/media/hdd/"
+		#currDir = config.pic.lastDir.getValue()
+		#if not pathExists(currDir):
+		#	currDir = "/"
 
-		self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(jpeg|jpg|jpe|png|bmp|gif)")
+		self.filelist = FileList(None, matchingPattern = "(?i)^.*\.(jpeg|jpg|jpe|png|bmp|gif)")
 		self["filelist"] = self.filelist
 		self["filelist"].onSelectionChanged.append(self.selectionChanged)
 
@@ -87,7 +87,7 @@ class picshow(Screen):
 
 		text = picInfo.split('\n',1)
 		self["label"].setText(text[1])
-		self["key_yellow"].setText(_("Exif Info"))
+		self["key_yellow"].setText(_("Informations"))
 
 	def showThumb(self):
 		if not self.filelist.canDescent():
@@ -109,11 +109,13 @@ class picshow(Screen):
 
 	def KeyYellow(self):
 		if not self.filelist.canDescent():
-			print self.filelist.getCurrentDirectory() + self.filelist.getFilename()
 			self.session.open(Pic_Exif, self.picload.getInfo(self.filelist.getCurrentDirectory() + self.filelist.getFilename()))
 
 	def KeyBlue(self):
-		self.session.openWithCallback(self.setConf ,Pic_Setup)
+		if self.filelist.canDescent():
+			self.filelist.descent()
+		else:
+			self.session.openWithCallback(self.callbackView, Pic_Full_View, self.filelist.getFileList(), self.filelist.getSelectionIndex(), self.filelist.getCurrentDirectory())
 
 	def KeyOk(self):
 		if self.filelist.canDescent():
@@ -504,6 +506,8 @@ class Pic_Full_View(Screen):
 
 		if self.maxentry >= 0:
 			self.onLayoutFinish.append(self.setPicloadConf)
+			
+		self.PlayPause()
 
 	def setPicloadConf(self):
 		sc = getScale()
