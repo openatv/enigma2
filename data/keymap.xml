@@ -372,12 +372,10 @@
 			<key id="KEY_PREVIOUSSONG" mapto="SeekbarBack" flags="l" />
 			<key id="KEY_NEXTSONG" mapto="SeekbarFwd" flags="l" />
 		</device>
-		<device name="dreambox remote control (native)">
-			<key id="KEY_RED" mapto="seekBack" flags="b" />
-			<key id="KEY_BLUE" mapto="seekFwd" flags="b" />
-			<key id="KEY_RED" mapto="SeekbarBack" flags="l" />
-			<key id="KEY_BLUE" mapto="SeekbarFwd" flags="l" />
-		</device>
+		<key id="KEY_RED" mapto="seekBack" flags="b" />
+		<key id="KEY_BLUE" mapto="seekFwd" flags="b" />
+		<key id="KEY_RED" mapto="SeekbarBack" flags="l" />
+		<key id="KEY_BLUE" mapto="SeekbarFwd" flags="l" />
 
 		<key id="KEY_REWIND" mapto="seekBack" flags="b" />
 		<key id="KEY_FASTFORWARD" mapto="seekFwd" flags="b" />
@@ -693,7 +691,9 @@
 			<key id="KEY_PREVIOUSSONG" mapto="previous" flags="m" />
 			<key id="KEY_NEXTSONG" mapto="next" flags="m" />
 		</device>
-
+		
+		<key id="KEY_YELLOW" mapto="pause" flags="m" />
+		<key id="KEY_GREEN" mapto="play" flags="m" />
 		<key id="KEY_PLAYPAUSE" mapto="play" flags="m" />
 		<key id="KEY_PAUSE" mapto="pause" flags="m" />
 		<key id="KEY_PLAY" mapto="play" flags="m" />

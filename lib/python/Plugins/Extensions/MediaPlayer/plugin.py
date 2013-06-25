@@ -521,6 +521,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				self.hide()
 			else:
 				self.changeEntry(self.playlist.getSelectionIndex())
+		self.switchToPlayList()
 
 	def showMenu(self):
 		menu = []
