@@ -141,7 +141,7 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self["highlight"].instance.setPixmapFromFile(resolveFilename(SCOPE_PLUGINS, "Extensions/Ecasa/highlighted.png"))
+		self["highlight"].instance.setPixmapFromFile(resolveFilename(SCOPE_PLUGINS, "Extensions/IniEcasa/highlighted.png"))
 		self["highlight"].hide()
 
 		size = self['image0'].instance.size()
