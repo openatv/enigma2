@@ -688,9 +688,10 @@ class RestartNetwork(Screen):
 def GeneralSetupEntryComponent(name, description, long_description = None, endtext=">", width=540):
 	return [
 		_(name),
-		MultiContentEntryText(pos=(20, 5), size=(width-120, 25), font=0, text = _(name)),
-		MultiContentEntryText(pos=(20, 26), size=(width-120, 17), font=1, text = _(description)),
-		MultiContentEntryText(pos=(355, 15), size=(35, 35), text = ">"),
+		MultiContentEntryText(pos=(20, 10), size=(width-120, 35), font=0, text = _(name)),
+		#MultiContentEntryText(pos=(20, 26), size=(width-120, 17), font=1, text = _(description)),
+		MultiContentEntryText(pos=(20, 26), size=(0,0), font=1, text = _(description)),		
+		MultiContentEntryText(pos=(350, 10), size=(35, 35), text = ">"),
 		_(long_description),
 	]
 
@@ -705,7 +706,7 @@ def QuickSubMenuEntryComponent(name, description, long_description = None, width
 class GeneralSetupList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 20))
+		self.l.setFont(0, gFont("Regular", 28))
 		self.l.setFont(1, gFont("Regular", 14))
 		self.l.setItemHeight(50)
 
