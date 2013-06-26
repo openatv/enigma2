@@ -38,6 +38,7 @@ class Screensaver(Screen):
 		self.posx = random.randint(1,self.maxx)
 		self.posy = random.randint(1,self.maxy)
 		self.movex = self.movey = 1
+		self["picture"].instance.move(ePoint(self.posx, self.posy))
 
 	def __onHide(self):
 		self.moveLogoTimer.stop()
