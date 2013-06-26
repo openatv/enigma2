@@ -827,8 +827,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 						transmission = self.scan_ter.transmission.getValue(),
 						guard = self.scan_ter.guard.getValue(),
 						hierarchy = self.scan_ter.hierarchy.getValue(),
-						system = self.scan_ter.system..getValue(),
-						plpid = self.scan_ter.plp_id..getValue())
+						system = self.scan_ter.system.getValue(),
+						plpid = self.scan_ter.plp_id.getValue())
 				removeAll = False
 			elif self.scan_typeterrestrial.getValue() == "complete":
 				getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(index_to_scan))
