@@ -69,7 +69,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"showWWW": (self.showPORTAL, _("Open MediaPortal...")),
 				"showSetup": (self.showSetup, _("Show setup...")),
 				"showFormat": (self.showFormat, _("Show Format Setup...")),
-				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),				
+				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),
+				"showBoxPortal": (self.showBoxPortal, _("Show Box Portal...")),
 			}, prio=2)
 
 		self["key_red"] = Label()
@@ -170,7 +171,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.showTvChannelList(True)
 			self.servicelist.showFavourites()
 	def showTvButton(self):
-		if enigma.getBoxType().startswith('gb') or enigma.getBoxType().startswith('azbox'):
+		if enigma.getBoxType().startswith('gb'):
 			self.toogleTvRadio()
 		elif enigma.getBoxType() == 'ventonhdx':
 			self.showMovies()
@@ -188,7 +189,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.showTvChannelList(True)
 
 	def showRadioButton(self):
-		if enigma.getBoxType().startswith('gb') or enigma.getBoxType() == 'ventonhdx' or enigma.getBoxType().startswith('azbox'):
+		if enigma.getBoxType().startswith('gb') or enigma.getBoxType() == 'ventonhdx':
 			self.toogleTvRadio()
 		else:
 			self.showRadio()
@@ -350,6 +351,10 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def showPluginBrowser(self):
 		from Screens.PluginBrowser import PluginBrowser
 		self.session.open(PluginBrowser)
+		
+	def showBoxPortal(self):
+		from Screens.BoxPortal import BoxPortal
+		self.session.open(BoxPortal)	
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		InfoBarMenu, InfoBarEPG, \

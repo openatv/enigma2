@@ -20,7 +20,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	if (ev->type != EV_KEY)
 		return;
 		
-	eDebug("%x %x %x", ev->value, ev->code, ev->type);
+	/*eDebug("%x %x %x", ev->value, ev->code, ev->type);*/
 
 	int km = iskeyboard ? input->getKeyboardMode() : eRCInput::kmNone;
 
@@ -117,11 +117,11 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
-#if KEY_HOME_TO_KEY_RADIO
+#if KEY_HOME_TO_KEY_OPEN
 	if (ev->code == KEY_HOME)
 	{
-		/* AZBOX rc has no KEY_RADIO key, we use KEY_HOME which sends KEY_RADIO events. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_RADIO;
+		/* AZBOX rc has no radio/tv/pvr key, we use KEY_HOME which sends KEY_OPEN events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_OPEN;
 		
 	}
 #endif
