@@ -248,25 +248,25 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 				self.saveAll()
 				self.close()
 			else:
-				if config.timeshift.enabled.getValue():
+				if int(config.timeshift.startdelay.getValue()) > 0:
 					self.session.open(
 						MessageBox,
 						_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.getValue(),
 						type = MessageBox.TYPE_ERROR
 						)
 				else:
-					config.timeshift.enabled.setValue(False)
+					config.timeshift.startdelay.setValue(0)
 					self.saveAll()
 					self.close()
 		else:
-			if config.timeshift.enabled.getValue():
+			if int(config.timeshift.startdelay.getValue()) > 0:
 				self.session.open(
 					MessageBox,
 					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.getValue(),
 					type = MessageBox.TYPE_ERROR
 					)
 			else:
-				config.timeshift.enabled.setValue(False)
+				config.timeshift.startdelay.setValue(0)
 				self.saveAll()
 				self.close()
 

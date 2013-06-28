@@ -122,7 +122,10 @@ class CleanTrashTask(Components.Task.PythonTask):
 		f = open('/proc/mounts', 'r')
 		for line in f.readlines():
 			parts = line.strip().split()
-			mounts.append(parts[1])
+			if config.usage.movielist_trashcan_network_clean.getValue() and parts[1].startswith('/media/net'):
+				mounts.append(parts[1])
+			elif not parts[1].startswith('/media/net'):
+				mounts.append(parts[1])
 		f.close()
 
  		for mount in mounts:
