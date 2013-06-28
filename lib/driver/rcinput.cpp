@@ -20,7 +20,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	if (ev->type != EV_KEY)
 		return;
 		
-	/*eDebug("%x %x %x", ev->value, ev->code, ev->type);*/
+	eDebug("%x %x %x", ev->value, ev->code, ev->type);
 
 	int km = iskeyboard ? input->getKeyboardMode() : eRCInput::kmNone;
 
