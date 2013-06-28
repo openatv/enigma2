@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-09 17:05+0100\n"
+"POT-Creation-Date: 2013-06-26 22:40+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -27,11 +27,13 @@ msgstr ""
 "\n"
 "Vajuta OK ja oota!"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "Backup your %s %s settings."
-msgstr "Seadistuste varundamine"
+msgstr ""
+"\n"
+"%s %s seadistuste varundamine."
 
 msgid ""
 "\n"
@@ -40,7 +42,7 @@ msgstr ""
 "\n"
 "Muuda uuenduste allika aadressi."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "Manage extensions or plugins for your %s %s"
@@ -48,7 +50,7 @@ msgstr ""
 "\n"
 "Halda %s %s laiendusi"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "Online update of your %s %s software."
@@ -63,13 +65,15 @@ msgstr ""
 "\n"
 "Jätkamiseks vajuta OK."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "Restore your %s %s settings."
-msgstr "Seadistuste taastamine"
+msgstr ""
+"\n"
+"%s %s seadistuste taastamine."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "Restore your %s %s with a new firmware."
@@ -246,31 +250,31 @@ msgstr "%d.%B %Y"
 msgid "%k:%M %e/%m"
 msgstr "%k:%M %e/%m"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s %s advanced remote control (native)"
 msgstr "%s %s täpsem pult (algupärane)"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s %s format data DVD (HDTV compatible)"
-msgstr "%s %s vormingus data DVD"
+msgstr "%s %s vormingus DVD"
 
 #, python-format
 msgid "%s %s front panel"
-msgstr ""
+msgstr "%s %s esipaneel"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s %s ir keyboard"
-msgstr "Virtuaalklahvistik"
+msgstr "%s %s infrapuna klaviatuur"
 
 #, python-format
 msgid "%s %s ir mouse"
-msgstr ""
+msgstr "%s %s infrapuna hiir"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s %s remote control (native)"
 msgstr "%s %s pult (algupärane)"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s %s software because updates are available."
 msgstr "%s %s tarkvara, sest uuendused on saadaval."
 
@@ -449,7 +453,7 @@ msgstr ""
 "Seadistusfaili (%s) on pärast algpaigaldust muudetud.\n"
 "Kas tahad säilitada oma versiooni?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A finished power timer wants to shut down\n"
 "your %s %s. Shutdown now?"
@@ -457,7 +461,7 @@ msgstr ""
 "Toitetaimer on lõpetanud ja\n"
 "%s %s lülitatakse välja. Kas nõustud?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
 "Do that now?"
@@ -465,15 +469,14 @@ msgstr ""
 "Toitetaimer on lõpetanud ja\n"
 "%s %s viiakse ooterežiimi. Kas nõustud?"
 
-#, fuzzy
 msgid ""
 "A finished powertimer wants to restart the user interface.\n"
 "Do that now?"
 msgstr ""
-"%s %s vjab kasutajaliidese taaskäivitamist.\n"
+"Toitetaimer on lõpetanud ja soovib %s %s kasutajaliidese taaskäivitamist.\n"
 "Kas teed seda kohe?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A finished powertimer wants to set your\n"
 "%s %s to standby. Do that now?"
@@ -481,7 +484,7 @@ msgstr ""
 "Toitetaimer on lõpetanud ja\n"
 "%s %s viiakse ooterežiimi. Kas nõustud?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A finished powertimer wants to shutdown your %s %s.\n"
 "Do that now?"
@@ -489,7 +492,7 @@ msgstr ""
 "Toitetaimer on lõpetanud ja\n"
 "%s %s lülitatakse välja. Kas nõustud?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
@@ -497,7 +500,7 @@ msgstr ""
 "Taimeriga salvestus on lõpetatud ja\n"
 "%s %s viiakse ooterežiimi. Kas nõustud?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A finished record timer wants to shut down\n"
 "your %s %s. Shutdown now?"
@@ -551,7 +554,7 @@ msgstr ""
 "\n"
 "Kas keelata teine võrguliides?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A sleep timer wants to set your\n"
 "%s %s to standby. Do that now?"
@@ -559,7 +562,7 @@ msgstr ""
 "Unetaimer soovib panna %s %s\n"
 "ooterežiimi. Kas nõustud?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
@@ -575,7 +578,7 @@ msgid ""
 "Disable TV and try again?\n"
 msgstr ""
 "Taimeriga salvestus nurjus!\n"
-"Keela TV ja proovi uuesti?\n"
+"Keelad TV ja proovid uuesti?\n"
 
 msgid "A/V settings"
 msgstr "Heli ja pildi seaded"
@@ -801,10 +804,10 @@ msgid "Allows more detailed to be in the crash log"
 msgstr "Võimaldab rohkemate üksikasjadega vealogide loomise"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
-msgstr "Võimaldab vastuvõtjal regulaarselt lugeda salvestatud EPG andmeid."
+msgstr "%s %s saab regulaarselt lugeda salvestatud EPG andmeid."
 
 msgid "Allows the %s %s to store the EPG data regularly."
-msgstr "Võimaldab vastuvõtjal regulaarselt salvestada EPG andmeid."
+msgstr "%s %s saab regulaarselt salvestada EPG andmeid."
 
 msgid "Allows you hide the extensions of known file types."
 msgstr "Võimaldab peita tuntud failitüüpide laiendid."
@@ -937,7 +940,7 @@ msgstr "Kas salvestad EPG andmed:\n"
 msgid "Are you sure you want to send this log:\n"
 msgstr "Kas saadad logi:\n"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Are you sure you want to update your %s %s ?"
 msgstr "Kas uuendad %s %s tarkvara?"
 
@@ -1047,7 +1050,10 @@ msgid "Automatic setting backup"
 msgstr "Automaatne varukoopia loomine seadistustest"
 
 msgid "Automatically start timeshift after"
-msgstr ""
+msgstr "Käivita ajanihe automaatselt pärast"
+
+msgid "Automatically turn on external subtitles"
+msgstr "Väliste subtiitrite automaatne käivitamine"
 
 msgid "Automatically update Client/Server View?"
 msgstr "Automaatne kliendi/serveri vaate uuendamine?"
@@ -1249,7 +1255,7 @@ msgid ""
 "This plugin shows you the status of your CCcam."
 msgstr ""
 "CCcam Info %s\n"
-"by AliAbdul %s\n"
+"autoriks AliAbdul %s\n"
 "\n"
 "See laiendus näitab CCcam olekut."
 
@@ -1297,7 +1303,7 @@ msgid "Cable"
 msgstr "Kaabel (DVB-C)"
 
 msgid "Cable Scan"
-msgstr "Kaabel TV otsing"
+msgstr "Kaabel-TV otsing"
 
 msgid "Cache thumbnails"
 msgstr "Salvesta pisipildid"
@@ -1408,7 +1414,7 @@ msgid "Channel List"
 msgstr "Kanalinimekiri"
 
 msgid "Channel list context menu"
-msgstr "Kanalinimekirja kontekstmenüü"
+msgstr "Kanalinimekirja menüü"
 
 msgid "Channel list on mode change"
 msgstr "Kanalinimekiri TV ja raadiorežiimi vahetusel"
@@ -1502,7 +1508,7 @@ msgid "Choose Bouquet"
 msgstr "Vali lemmiknimekiri"
 
 msgid "Choose a tag for easy finding a recording."
-msgstr "Vali salvestuse lihtsaks leidmiseks märksõna."
+msgstr "Vali salvestise lihtsaks leidmiseks märksõna."
 
 msgid "Choose between Daily, Weekly, Weekdays or self defined."
 msgstr "Vali kas kord päevas, kord nädalas, tööpäevadel või kasutaja määratud."
@@ -1637,7 +1643,7 @@ msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "Täielik (lubab heliribade miksimist)"
 
 msgid "Composition of the recording filenames"
-msgstr "Salvestuse nimede kuju"
+msgstr "Salvestuste nimekuju"
 
 #, python-format
 msgid "Configfile %s saved."
@@ -1963,7 +1969,7 @@ msgstr "Failide kopeerimine"
 msgid "Cores:\t%s"
 msgstr "Tuumad:\t%s"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Could not connect to %s %s .NFI image feed server:"
 msgstr "Ei saa ühendust %s %s tarkvara serveriga:"
 
@@ -2462,9 +2468,9 @@ msgstr "Soovid panna DVD mängima?"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Soovid plaadi eelvaadet ka, enne kirjutamise alustamist?"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Do you want to reboot your %s %s"
-msgstr "Kas taaskäivitad vastuvõtja?"
+msgstr "Soovid %s %s taaskäivitada?"
 
 msgid "Do you want to reboot your receiver?"
 msgstr "Kas taaskäivitad vastuvõtja?"
@@ -2485,13 +2491,9 @@ msgstr ""
 "Kas saadad kõik valitud failid:\n"
 "(vali 'Ei', kui saadad ainult hetkel valitud faili.)"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Do you want to update your %s %s ?"
-msgstr "Kas taastad seaded?"
-
-#, fuzzy, python-format
-msgid "Do you want to update your %s ?"
-msgstr "Kas taastad seaded?"
+msgstr "Kas uuendad %s %s tarkvara?"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Kas uuendad paketi:\n"
@@ -2594,7 +2596,7 @@ msgid "East"
 msgstr "Ida"
 
 msgid "East limit set"
-msgstr "Eda piir on määratud"
+msgstr "Ida piir on määratud"
 
 msgid "Ecm:"
 msgstr "Ecm:"
@@ -2617,11 +2619,11 @@ msgstr "Muuda kanalinimekirja"
 msgid "Edit settings"
 msgstr "Muuda seadeid"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Edit the Nameserver configuration of your %s %s.\n"
 msgstr "Muuda %s %s nimeserveri seadeid.\n"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Muuda %s %s võrguseadeid.\n"
 
@@ -3729,7 +3731,7 @@ msgid "Last update: %s"
 msgstr "Uuendatud: %s"
 
 msgid "Last used share: "
-msgstr ""
+msgstr "Viimati kasutatud: "
 
 msgctxt "third event: 'third' event label"
 msgid "Later"
@@ -3919,7 +3921,7 @@ msgstr "Tee see märk lihtsalt märgiks"
 msgid "Manage extensions"
 msgstr "Laienduste haldamine"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Manage your %s %s's software"
 msgstr "Halda %s %s tarkvara"
 
@@ -3948,13 +3950,13 @@ msgid "Max. bitrate: "
 msgstr "Max. bitikiirus: "
 
 msgid "Maxdown +"
-msgstr ""
+msgstr "Maks.alla +"
 
 msgid "Maxdown -"
-msgstr ""
+msgstr "Maks.alla -"
 
 msgid "Maxdown: "
-msgstr ""
+msgstr "Maks.alla: "
 
 msgid "Maximum no of days:"
 msgstr "Suurim lubatud päevade arv:"
@@ -4028,9 +4030,9 @@ msgctxt "Video output mode"
 msgid "Mode"
 msgstr "Režiim"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Model:\t%s %s\n"
-msgstr "Mudel:\t%s"
+msgstr "Mudel:\t%s %s\n"
 
 msgid "Model: "
 msgstr "Tüüp: "
@@ -4667,6 +4669,9 @@ msgstr "PCR PID"
 msgid "PIDs"
 msgstr "PIDd"
 
+msgid "PLP ID"
+msgstr ""
+
 msgid "PMT PID"
 msgstr "PMT PID"
 
@@ -4948,7 +4953,7 @@ msgid "Please select tag to filter..."
 msgstr "Vali otsingusõna..."
 
 msgid "Please select the movie path..."
-msgstr "Vali salvestuse asukoht..."
+msgstr "Vali salvestise asukoht..."
 
 msgid ""
 "Please select the network interface that you want to use for your internet connection.\n"
@@ -5267,9 +5272,9 @@ msgstr "Levitajad: "
 msgid "Put TV in standby"
 msgstr "Lülita TV välja"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Put your %s %s in standby"
-msgstr "Lülita TV välja"
+msgstr "Vii %s %s ooterežiimi"
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Pythoni programm /tmp/mmi.socket jaoks"
@@ -5328,7 +5333,7 @@ msgstr "Väljuda alamkanalite valikust?"
 msgid "Really reboot now?"
 msgstr "Taaskäivitad vastuvõtja?"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Really reflash your %s %s and reboot now?"
 msgstr "Paigaldad tarkvaratõmmise taaskäivitad %s %s?"
 
@@ -5341,9 +5346,9 @@ msgstr "Lülitad vastuvõtja välja?"
 msgid "Really upgrade the frontprocessor and reboot now?"
 msgstr "Uuendad esiprotsessori ja taaskäivitad vastuvõtja?"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Really upgrade your %s %s and reboot now?"
-msgstr "Uuendad esiprotsessori ja taaskäivitad vastuvõtja?"
+msgstr "Uuendad ja taaskäivitad %s %s?"
 
 msgid "Reboot"
 msgstr "Taaskäivitus"
@@ -5400,7 +5405,7 @@ msgstr "Vähenda ajavahemikku"
 msgid "Reenter new PIN"
 msgstr "Korda uut PIN-i"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Reflash in progress\n"
 "Please wait until your %s %s reboots\n"
@@ -5928,7 +5933,7 @@ msgid "Select if you want the Subservice mode to be activated."
 msgstr "Määra 'jah', kui soovid aktiveerida alamkanalite režiimi."
 
 msgid "Select if you want to use the ViX coloured Buttons (set to 'no' if you want to use (Multi) Quick Button)."
-msgstr "Vali, kui soovid kasutada ViX värvinuppe (määra 'ei', kui kasutad MultiQuickButtonit)."
+msgstr "'Jah', kui soovid kasutada ViX värvinuppe (määra 'ei', kui kasutad MultiQuickButtonit)."
 
 msgid "Select input device"
 msgstr "Vali sisendseade"
@@ -6814,7 +6819,7 @@ msgid "Stored position"
 msgstr "Salvestatud asukoht"
 
 msgid "Stream"
-msgstr "Voogesitus"
+msgstr "IPTV"
 
 msgid "Stream request"
 msgstr "Striimi päring"
@@ -6987,7 +6992,7 @@ msgid "TXT PID"
 msgstr "TXT PID"
 
 msgid "Table of contents for collection"
-msgstr "Valiku sisu"
+msgstr "Valimiku sisu"
 
 msgid "Tags"
 msgstr "Sildid"
@@ -7019,7 +7024,7 @@ msgstr "Testi DiSEqC seadeid"
 msgid "Test mode"
 msgstr "Testpilt"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Test the network configuration of your %s %s.\n"
 msgstr "Testi %s %s kohtvõrgu seadeid.\n"
 
@@ -7049,6 +7054,12 @@ msgstr ""
 "Täname, et kasutasid abimeest. %s %s on nüüd kasutamiseks valmis.\n"
 "%s %s käikuvõtmiseks vajuta OK."
 
+msgid "The %s %s reads the stored EPG data every (hours)."
+msgstr "%s %s loeb salvestatud EPG andmeid iga (tund)."
+
+msgid "The %s %s stores the EPG data every (hours)."
+msgstr "%s %s salvestab EPG andmed iga (tund)."
+
 msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
@@ -7063,9 +7074,9 @@ msgstr ""
 "Cool TV Guide ei ole paigaldatud!\n"
 "Paigalda see."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a %s %s format data DVD (which will not play in stand-alone DVD players) instead?"
-msgstr "DVD standard ei toeta H.264 (HDTV) video voogesitust. Kas soovite luua Vu+ Ultimo vormingus andmete (data) DVD, mida teised DVD mängijad ei mängi?"
+msgstr "DVD standard ei toeta H.264 (HDTV) video voogesitust. Kas soovid luua %s %s vormingus andme DVD, mida teised DVD mängijad ei mängi?"
 
 msgid ""
 "The EPGSearch plugin is not installed!\n"
@@ -7080,12 +7091,6 @@ msgid ""
 msgstr ""
 "Ajanihkeks valitud andmekandja ei toeta hardlinke.\n"
 "Vorminda see EXT2 või EXT3 formaati!"
-
-msgid "The %s %s reads the stored EPG data every (hours)."
-msgstr "%s %s loeb salvestatud EPG andmeid iga (tund)."
-
-msgid "The %s %s stores the EPG data every (hours)."
-msgstr "%s %s salvestab EPG andmed iga (tund)."
 
 msgid ""
 "The IMDb plugin is not installed!\n"
@@ -7190,11 +7195,11 @@ msgstr "Taimerite fail (pm_timers.xml) on rikutud ja seda ei saa laadida."
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Taimerite fail (timers.xml) on rikutud ja seda ei saa laadida."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The user interface of your %s %s is restarting"
 msgstr "%s %s kasutajaliides taaskäivitub"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The user interface of your %s %s is restarting\n"
 "due to an error in mytest.py"
@@ -7252,7 +7257,7 @@ msgstr ""
 "Kõvakettal pole piisavalt vaba ruumi.\n"
 "Kas soovid kindlasti jätkata?"
 
-#, fuzzy, python-format
+#, python-format
 msgid "This %s %s cannot decode %s streams!"
 msgstr "%s %s ei suuda dekodeerida %s voogesitust!"
 
@@ -7382,7 +7387,7 @@ msgstr "See valik keelab summutab digitaalsed võltskontuurid, mis on vähese di
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "See valik määrab pildi teravuse ülesskaleerimisel."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
@@ -7598,7 +7603,7 @@ msgstr "Heli valik"
 msgid "To subtitle selection"
 msgstr "Subtiitrite valik"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "To update your %s %s firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
@@ -7820,9 +7825,9 @@ msgid_plural "Update completed, %d packages were installed."
 msgstr[0] "Uuendamine tehtud, paigaldati %d pakett."
 msgstr[1] "Uuendamine tehtud, paigaldati %d paketti."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Update failed. Your %s %s does not have a working internet connection."
-msgstr "Uuendamine nurjus. Vastuvõtjal puudub internetiühendus."
+msgstr "Uuendamine nurjus. %s %s ei oma internetiühendust."
 
 msgid "Update interval (in seconds)"
 msgstr "Uuendamise vahemik (sekundites)"
@@ -7839,7 +7844,7 @@ msgstr "Uuenda ja taaskäivita süsteem"
 msgid "Upgrade finished."
 msgstr "Uuendamine tehtud."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Upgrade in progress\n"
 "Please wait until your %s %s reboots\n"
@@ -8221,18 +8226,18 @@ msgstr "Käivita TV"
 msgid "Wakeup signal from TV"
 msgstr "Äratussignaal TV-st"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Wakeup your %s %s from standby"
-msgstr "Käivita TV"
+msgstr "Käivita %s %s ooterežiimist"
 
 msgid "Warning: no LNB; using factory defaults."
-msgstr "Hoiatus: LNB puudub; kautatakse algseadeid."
+msgstr "Hoiatus: LNB puudub; kasutatakse algseadeid."
 
 msgid "Watch movies..."
-msgstr "Vaata salvestusi..."
+msgstr "Vaata salvestisi..."
 
 msgid "Watch recordings..."
-msgstr "Vaata salvestusi..."
+msgstr "Vaata salvestisi..."
 
 msgid "Web Interface"
 msgstr "Veebiliides"
@@ -8346,6 +8351,9 @@ msgstr "Määrates 'jah', ei kustutata salvestusi silmapilkselt, vaid liigutatak
 msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
 msgstr "Määrates 'jah', kuvatakse välised subtiitrid (meedia failidel) kollasena."
 
+msgid "When enabled, external subtitles will be always turned on for playback movie."
+msgstr "Määrates 'jah', käivitatakse välised subtiitrid alati koos filmiga."
+
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
 msgstr "Määrates 'jah', eelistatakse mõlema olemasolul DVB subtiitreid teleteksti omadele."
 
@@ -8371,7 +8379,7 @@ msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Määrates 'jah', lubatakse vaegkuuljate subtiitrite kasutamine."
 
 msgid "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
-msgstr "Määrates 'jah',  eelistatakse mõlema olemasolul vaegkuuljate subtiitreid tavalistele."
+msgstr "Määrates 'jah', eelistatakse mõlema olemasolul vaegkuuljate subtiitreid tavalistele."
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr "Määrates 'jah', puhverdadakse teleteksti lehed, võimaldamaks kiiremat ligipääsu."
@@ -8395,7 +8403,7 @@ msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "Määrates 'jah', kasutab vastuvõtja (võimaluse korral) AC3 heli."
 
 msgid "When enabled, timeshift starts automatically in background after specified time."
-msgstr ""
+msgstr "Määrates 'jah', käivitub ajanihe automaatselt pärast määratud aja täitumist."
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Määrates 'jah', kasutatakse IP aadressi määramiseks DHCP-d."
@@ -8424,7 +8432,7 @@ msgstr "Määra, kas 4:3 sisuga pilti tuleb skaleerida/venitatada."
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Olles häälestatud kanalile, uurib süsteem tavaliselt transponderi muudatusi ja salvestab need. Määra 'ei' ainult juhul, kui oled täiesti kindel, et tead, mida teed."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
@@ -8592,7 +8600,7 @@ msgstr "Nimekirja saab järjestada aja või tähestiku järgi."
 msgid "You can install this plugin."
 msgstr "Selle laienduse saab paigaldada."
 
-#, fuzzy, python-format
+#, python-format
 msgid "You can only burn %s %s recordings!"
 msgstr "Plaadile saab kirjutada ainult %s %s salvestusi!"
 
@@ -8657,11 +8665,11 @@ msgstr "Ajanihe on kasutusel. Kas peatad selle?"
 msgid "You system does not support ext4"
 msgstr "Vastuvõtja ei toeta ext4"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
-msgstr "Internetiühendust pole. Kontrolli võrgu seadeid ja ürita uuesti."
+msgstr "%s %s ei ole ühendatud internetti. Kontrolli võrgu seadeid ja ürita uuesti."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your %s %s is now ready to be used.\n"
 "\n"
@@ -8672,44 +8680,6 @@ msgstr ""
 "\n"
 "Internetiühendus töötab.\n"
 "\n"
-
-#, fuzzy, python-format
-msgid "Your %s %s is rebooting"
-msgstr "%s %s taaskäivitub"
-
-#, fuzzy, python-format
-msgid "Your %s %s is shutting down"
-msgstr "%s %s lülitub välja"
-
-#, fuzzy, python-format
-msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "%s %s võib olla nüüd kasutuskõlbmatu. Uuri juhendit täiendava abi leidmiseks enne %s %s taaskäivitamist."
-
-#, fuzzy, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install \"%s\" ?"
-msgstr ""
-"Pärast teenuse paigaldamist %s %s taaskäivitub\n"
-"Kas paigaldad \"%s\"?"
-
-#, fuzzy, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-"Pärast teenuse paigaldamist %s %s taaskäivitub.\n"
-"\n"
-"Kas paigaldad?"
-
-#, fuzzy, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now ?"
-msgstr ""
-"%s %s taaskäivitub pärast teenuse eemaldamist\n"
-"Kas eemaldad?"
 
 msgid ""
 "Your %s %s is now ready to use.\n"
@@ -8724,8 +8694,46 @@ msgstr ""
 "\n"
 "Jätkamiseks vajuta OK."
 
+#, python-format
+msgid "Your %s %s is rebooting"
+msgstr "%s %s taaskäivitub"
+
+#, python-format
+msgid "Your %s %s is shutting down"
+msgstr "%s %s lülitub välja"
+
 msgid "Your %s %s is shutting down. Please stand by..."
 msgstr "%s %s lülitub välja. Oota..."
+
+#, python-format
+msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
+msgstr "%s %s võib olla nüüd kasutuskõlbmatu. Uuri juhendit täiendava abi leidmiseks enne %s %s taaskäivitamist."
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the installation of service\n"
+"Ready to install \"%s\" ?"
+msgstr ""
+"Pärast teenuse paigaldamist %s %s taaskäivitub\n"
+"Kas paigaldad \"%s\"?"
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the installation of service.\n"
+"\n"
+"Do you want to install now ?"
+msgstr ""
+"Pärast teenuse paigaldamist %s %s taaskäivitub.\n"
+"\n"
+"Kas paigaldad?"
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now ?"
+msgstr ""
+"%s %s taaskäivitub pärast teenuse eemaldamist\n"
+"Kas eemaldad?"
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "Vastuvõtja taaskäivitub pärast puldil OK vajutamist."
@@ -8754,7 +8762,7 @@ msgstr ""
 "Frontprotsessori püsivara tuleb uuendada.\n"
 "Vajuta OK uuendamiseks."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your frontprocessor will be upgraded\n"
 "Please wait until your %s %s reboots\n"
@@ -9997,3 +10005,6 @@ msgstr "mine kanalile ja salvesta"
 
 msgid "zapped"
 msgstr "vahetatud"
+
+#~ msgid "Do you want to update your %s ?"
+#~ msgstr "Kas uuendad %s tarkvara?"
