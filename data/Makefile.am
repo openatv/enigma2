@@ -35,3 +35,7 @@ endif
 if HAVE_BWLCD255
 SUBDIRS += display255
 endif
+
+if HAVE_BWLCD140
+SUBDIRS += display140
+endif
