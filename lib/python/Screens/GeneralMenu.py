@@ -324,7 +324,7 @@ class GeneralMenu(Screen):
         self.entrys = [(_('Plugins'), 'id_mainmenu_plugins', boundFunction(self.openDialog, PluginBrowser)),
          (_('Photos'), 'id_mainmenu_photos', boundFunction(self.openPicturePlayer)),
          (_('Music'), 'id_mainmenu_music', boundFunction(self.openMediaPlayer)),
-         (_('TV'), 'id_mainmenu_tv', boundFunction(self.openChannelSelection)),
+         (_('TV / RADIO'), 'id_mainmenu_tv', boundFunction(self.openChannelSelection)),
          (_('Videos'), 'id_mainmenu_movies', boundFunction(self.openMovieBrowserAll)),
          (_('Sources'), 'id_mainmenu_source', boundFunction(self.openMediaScanner)),
          (_('Setup'), 'id_mainmenu_tasks', boundFunction(self.openGeneralSetup))]
@@ -844,10 +844,10 @@ class GeneralMenu(Screen):
          #,(_('Setup'), 'mainmenu_music_setup', boundFunction(self.openMediaPlayerSetup), 100)
          ])
 
-        subentrys['id_mainmenu_tv'] = self.getSubEntry('id_mainmenu_tv', [(_('Live Radio'), 'mainmenu_tv_live_radio', boundFunction(self.openLiveRadio), 60),
-        (_('Timers'),'mainmenu_tv_timer',boundFunction(self.openDialog, TimerEditList),70),
-      
-         (_('Program Guide'),'mainmenu_tv_timer',boundFunction(self.openProgramGuide),90)
+        subentrys['id_mainmenu_tv'] = self.getSubEntry('id_mainmenu_tv', [
+	#(_('Live Radio'), 'mainmenu_tv_live_radio', boundFunction(self.openLiveRadio), 60),
+        (_('Timers'),'mainmenu_tv_timer',boundFunction(self.openDialog, TimerEditList),60),
+         (_('Program Guide'),'mainmenu_tv_timer',boundFunction(self.openProgramGuide),70)
         #,(_('Setup'), 'mainmenu_tv_setup', boundFunction(self.notReadyMessage), 100)
         ])
 
