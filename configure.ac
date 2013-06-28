@@ -380,6 +380,7 @@ data/display255/Makefile
 data/rc_models/Makefile
 data/rc_models/azboxhd/Makefile
 data/rc_models/azboxme/Makefile
+data/rc_models/azboxelite/Makefile
 data/rc_models/dmm0/Makefile
 data/rc_models/dmm1/Makefile
 data/rc_models/dmm2/Makefile

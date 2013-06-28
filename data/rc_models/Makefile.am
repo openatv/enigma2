@@ -1,5 +1,5 @@
 if AZBOX
-SUBDIRS = azboxme azboxhd
+SUBDIRS = azboxme azboxhd azboxelite
 endif
 
 if DREAMBOX

@@ -4,31 +4,32 @@ import os
 
 class RcModel:
 	RCTYPE_AZBOXHD = 0
-	RCTYPE_AZBOXME = 1
-	RCTYPE_DMM = 2
-	RCTYPE_DMM1 = 3
-	RCTYPE_DMM2 = 4
-	RCTYPE_E3HD = 5	
-	RCTYPE_EBOX5000 = 6	
-	RCTYPE_ET4X00 = 7
-	RCTYPE_ET6X00 = 8
-	RCTYPE_ET6500 = 9
-	RCTYPE_ET9X00 = 10	
-	RCTYPE_ET9500 = 11
-	RCTYPE_GB = 12
-	RCTYPE_INI0 = 13
-	RCTYPE_INI1 = 14
-	RCTYPE_INI2 = 15
-	RCTYPE_INI3 = 16	
-	RCTYPE_IQON = 17	
-	RCTYPE_IXUSSONE = 18
-	RCTYPE_IXUSSZERO = 19
-	RCTYPE_ODINM7 = 20
-	RCTYPE_ODINM9 = 21	
-	RCTYPE_TM = 22
-	RCTYPE_VU = 23	
-	RCTYPE_VU2 = 24
-	RCTYPE_XP1000 = 25
+	RCTYPE_AZBOXELITE = 1
+	RCTYPE_AZBOXME = 2
+	RCTYPE_DMM = 3
+	RCTYPE_DMM1 = 4
+	RCTYPE_DMM2 = 5
+	RCTYPE_E3HD = 6	
+	RCTYPE_EBOX5000 = 7	
+	RCTYPE_ET4X00 = 8
+	RCTYPE_ET6X00 = 9
+	RCTYPE_ET6500 = 10
+	RCTYPE_ET9X00 = 11	
+	RCTYPE_ET9500 = 12
+	RCTYPE_GB = 13
+	RCTYPE_INI0 = 14
+	RCTYPE_INI1 = 15
+	RCTYPE_INI2 = 16
+	RCTYPE_INI3 = 17	
+	RCTYPE_IQON = 18	
+	RCTYPE_IXUSSONE = 19
+	RCTYPE_IXUSSZERO = 20
+	RCTYPE_ODINM7 = 21
+	RCTYPE_ODINM9 = 22	
+	RCTYPE_TM = 23
+	RCTYPE_VU = 24	
+	RCTYPE_VU2 = 25
+	RCTYPE_XP1000 = 26
 
 
 	def __init__(self):
@@ -51,8 +52,10 @@ class RcModel:
 			f = open("/proc/stb/info/model",'r')
 			model = f.readline().strip()
 			f.close()
-			if model == "elite" or model == "premium" or model == "premium+" or model == "ultra":
+			if model == "premium" or model == "premium+":
 				self.currentRcType = self.RCTYPE_AZBOXHD
+			elif model == "elite" or model == "ultra":
+				self.currentRcType = self.RCTYPE_AZBOXELITE
 			elif model == "me" or model == "minime":
 				self.currentRcType = self.RCTYPE_AZBOXME
 		elif os.path.exists('/proc/stb/info/hwmodel'):
@@ -132,6 +135,8 @@ class RcModel:
 	def getRcLocation(self):
 		if self.currentRcType == self.RCTYPE_AZBOXHD:
 			return '/usr/share/enigma2/rc_models/azboxhd/'
+		elif self.currentRcType == self.RCTYPE_AZBOXELITE:
+			return '/usr/share/enigma2/rc_models/azboxelite/'
 		elif self.currentRcType == self.RCTYPE_AZBOXME:
 			return '/usr/share/enigma2/rc_models/azboxme/'	
 		elif self.currentRcType == self.RCTYPE_DMM:
