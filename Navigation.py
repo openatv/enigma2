@@ -34,10 +34,33 @@ class Navigation:
 		self.currentlyPlayingService = None
 		self.RecordTimer = RecordTimer.RecordTimer()
 		self.PowerTimer = PowerTimer.PowerTimer()
+		self.nextRecordTimerAfterEventActionAuto = nextRecordTimerAfterEventActionAuto
 		self.__wasTimerWakeup = False
 		self.__wasRecTimerWakeup = False
 		self.__wasPowerTimerWakeup = False
-		if getFPWasTimerWakeup():
+		self.syncCount = 0
+
+		wasTimerWakeup = getFPWasTimerWakeup()
+		if not wasTimerWakeup and path.exists("/etc/enigma2/deeprecord"): #work-around for boxes where driver not sent was_timer_wakeup signal to e2
+			print"[NAVIGATION] getNextRecordingTime= %s" % self.RecordTimer.getNextRecordingTime()
+			print"[NAVIGATION] current Time=%s" % time()
+			print"[NAVIGATION] timediff=%s" % abs(self.RecordTimer.getNextRecordingTime() - time())
+
+			if time() <= 31536000: # check for NTP-time sync, if no sync, wait for transponder time
+				self.timesynctimer = eTimer()
+				self.timesynctimer.callback.append(self.TimeSynctimer)
+				self.timesynctimer.start(5000, True)
+				print"[NAVIGATION] wait for time sync"
+				
+			elif abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360: # if there is a recording sheduled in the next 5 mins, set the wasTimerWakeup flag
+				wasTimerWakeup = True
+				f = open("/tmp/was_timer_wakeup_workaround.txt", "w")
+				file = f.write(str(wasTimerWakeup))
+				f.close()
+
+		print"[NAVIGATION] wasTimerWakeup = %s" % wasTimerWakeup
+
+		if wasTimerWakeup:
 			self.__wasTimerWakeup = True
 			if nextRecordTimerAfterEventActionAuto and abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
 				self.__wasRecTimerWakeup = True
@@ -69,6 +92,21 @@ class Navigation:
 
 	def wasPowerTimerWakeup(self):
 		return self.__wasPowerTimerWakeup
+
+	def TimeSynctimer(self):
+		self.syncCount += 1
+		if self.nextRecordTimerAfterEventActionAuto and abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
+			self.__wasRecTimerWakeup = True
+			print 'RECTIMER: wakeup to standby detected.'
+			f = open("/tmp/was_rectimer_wakeup", "w")
+			f.write('1')
+			f.close()
+			self.gotostandby()
+		else:
+			if self.syncCount <= 24: # max 2 mins)
+				self.timesynctimer.start(5000, True)
+
+		print"[NAVIGATION] wasTimerWakeup after time sync = %s, sync time = %s sec." % (self.__wasRecTimerWakeup, self.syncCount * 5)
 
 	def gotostandby(self):
 		print 'TIMER: now entering standby'
