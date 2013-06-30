@@ -41,7 +41,7 @@ class Navigation:
 		self.syncCount = 0
 
 		wasTimerWakeup = getFPWasTimerWakeup()
-		if not wasTimerWakeup and path.exists("/etc/enigma2/deeprecord"): #work-around for boxes where driver not sent was_timer_wakeup signal to e2
+		if not wasTimerWakeup and config.workaround.deeprecord.getValue(): #work-around for boxes where driver not sent was_timer_wakeup signal to e2
 			print"[NAVIGATION] getNextRecordingTime= %s" % self.RecordTimer.getNextRecordingTime()
 			print"[NAVIGATION] current Time=%s" % time()
 			print"[NAVIGATION] timediff=%s" % abs(self.RecordTimer.getNextRecordingTime() - time())

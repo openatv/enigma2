@@ -208,6 +208,10 @@
 		<item level="0" text="Show HDD progress" description="Disable the HDD Process on VFD">config.lcd.hdd</item>
 		<item level="0" text="Show on Display" description="Disable all VFD Symbols">config.vfd.show</item>
 	</setup>
+	<setup key="specialfeatures" title="Special Features">
+		<item level="0" text="BlueSwitch: Blue-Short/Blue-Long" description="Switch Blue-Short (QuickMenu) with Blue-Long (Extensions)">config.workaround.blueswitch</item>
+		<item level="0" text="Use work-around for recordings from deep-standby" description="Check if there is a recording started in the next 5 mins (at bootup), then put your box in standby.">config.workaround.deeprecord</item>
+	</setup>
 	<setup key="satconfig" title="Satellite dish setup">
 		<item text="Tuner slot" description="Choose which tuner to configure.">config.sat.tunerslot</item>
 		<item text="Configuration mode" description="Configure the tuner mode.">config.sat.configmode</item>

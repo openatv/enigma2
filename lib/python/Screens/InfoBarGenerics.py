@@ -3720,7 +3720,7 @@ class InfoBarExtensions:
 		self.addExtension(extension = self.getRestartNetwork, type = InfoBarExtensions.EXTENSION_LIST)
 
 	def bluekey_ex(self):
-		if os.path.exists("/etc/enigma2/blueswitch"):
+		if config.workaround.blueswitch.getValue() == "1":
 			self.quickmenuStart()
 		else:
 			self.showExtensionSelection()
@@ -4193,7 +4193,7 @@ class InfoBarQuickMenu:
 				})
 
 	def bluekey_qm(self):
-		if os.path.exists("/etc/enigma2/blueswitch"):
+		if config.workaround.blueswitch.getValue() == "1":
 			self.showExtensionSelection()
 		else:
 			self.quickmenuStart()			
