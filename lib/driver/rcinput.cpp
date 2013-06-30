@@ -89,6 +89,15 @@ void eRCDeviceInputDev::handleCode(long rccode)
 			return;
 		}
 	}
+	
+#if KEY_VIDEO_TO_KEY_EPG
+	if (ev->code == KEY_VIDEO)
+	{
+		/* AZBOX rc has a KEY_EPG key, which sends KEY_VIDEO events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_EPG;
+		
+	}
+#endif	
 
 #if KEY_VIDEO_TO_KEY_SUBTITLE
 	if (ev->code == KEY_VIDEO)
