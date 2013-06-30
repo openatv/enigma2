@@ -272,7 +272,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def openEPGSearch(self):
 		try:
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				if plugin.name == _("EPGSearch"):
+				if plugin.name == _("EPGSearch") or plugin.name == _("search EPG..."):
 					self.runPlugin(plugin)
 					break
 		except Exception, e:
