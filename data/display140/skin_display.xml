@@ -123,13 +123,13 @@
 		<widget source="session.Event_Now" render="Label" position="0,17" size="255,18" font="FdLcD;15" halign="left" noWrap="1">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Progress" position="0,43" size="140,5" borderWidth="1">
+		<!-- <widget source="session.Event_Now" render="Progress" position="0,43" size="140,5" borderWidth="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="0,51" size="140,18" font="FdLcD;15" halign="left" valign="bottom" noWrap="1">
 			<convert type="EventTime">VFDRemaining</convert>
 			<convert type="RemainingToText">VFDNoSeconds</convert>
-		</widget>
+		</widget> -->
 		<panel name="SummaryIconsPanel" />
 		<!-- <panel name="SummaryTunerStatusPanel" /> -->
 		<!-- <panel name="SummaryClockPanel" /> -->
@@ -137,15 +137,15 @@
 
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="140,32">
-		<widget name="statusicon_summary" position="0,0" zPosition="3" size="23,20" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" />
-		<widget source="speed_summary" render="Label" position="30,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
-		<widget source="session.CurrentService" render="Label" position="0,21" size="255,20" font="FdLcD;17" halign="left" noWrap="1">
+		<widget name="statusicon_summary" position="0,0" size="11,10" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" zPosition="3" />
+		<widget source="speed_summary" render="Label" position="15,0" size="16,16" font="FdLcD;15" halign="left" valign="bottom" noWrap="1" zPosition="3" />
+		<widget source="session.CurrentService" render="Label" position="0,12" size="255,20" font="FdLcD;17" halign="left" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Progress" position="0,43" size="140,5" borderWidth="1">
+		<!-- <widget source="session.CurrentService" render="Progress" position="0,33" size="140,5" borderWidth="1">
 			<convert type="ServicePosition">VFDPosition</convert>
-		</widget>
-		<widget source="session.CurrentService" render="Label" position="0,51" size="140,18" font="FdLcD;17" halign="left" valign="bottom" noWrap="1">
+		</widget> -->
+		<widget source="session.CurrentService" render="Label" position="0,0" size="120,16" font="FdLcD;17" halign="right" valign="bottom" noWrap="1">
 			<convert type="ServicePosition">VFDPosition</convert>
 		</widget>
 		<panel name="SummaryIconsPanel" />
