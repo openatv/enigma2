@@ -100,7 +100,7 @@ public:
 	{
 		pthread_mutex_unlock(&m_lock);
 	}
-	operator pthread_mutex_t() { return m_lock; }
+	operator pthread_mutex_t&() { return m_lock; }
 };
 
 class eCondition
@@ -126,7 +126,7 @@ public:
 	{
 		pthread_cond_wait(&m_cond, &mutex);
 	}
-	operator pthread_cond_t() { return m_cond; }
+	operator pthread_cond_t&() { return m_cond; }
 };
 
 class eSingleLocker

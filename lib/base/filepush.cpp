@@ -19,9 +19,6 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 	 m_messagepump(eApp, 0),
 	 m_run_state(0)
 {
-	pthread_mutex_init(&m_run_mutex, 0);
-	pthread_cond_init(&m_run_cond, 0);
-	
 	if (m_buffer == NULL)
 		eFatal("Failed to allocate %d bytes", buffersize);
 	CONNECT(m_messagepump.recv_msg, eFilePushThread::recvEvent);
@@ -29,8 +26,6 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 
 eFilePushThread::~eFilePushThread()
 {
-	pthread_cond_destroy(&m_run_cond);
-	pthread_mutex_destroy(&m_run_mutex);
 	free(m_buffer);
 }
 
@@ -203,16 +198,17 @@ void eFilePushThread::thread()
 	}
 	sendEvent(evtStopped);
 
-	pthread_mutex_lock(&m_run_mutex);
-	m_run_state = 0;
-	pthread_cond_signal(&m_run_cond); /* Tell them we're here */
-	while (m_stop == 2) {
-		eDebug("FILEPUSH THREAD PAUSED");
-		pthread_cond_wait(&m_run_cond, &m_run_mutex);
+	{ /* mutex lock scope */
+		eSingleLocker lock(m_run_mutex);
+		m_run_state = 0;
+		m_run_cond.signal(); /* Tell them we're here */
+		while (m_stop == 2) {
+			eDebug("FILEPUSH THREAD PAUSED");
+			m_run_cond.wait(m_run_mutex);
+		}
+		if (m_stop == 0)
+			m_run_state = 1;
 	}
-	if (m_stop == 0)
-		m_run_state = 1;
-	pthread_mutex_unlock(&m_run_mutex);
 	
 	} while (m_stop == 0);
 	eDebug("FILEPUSH THREAD STOP");
@@ -235,7 +231,7 @@ void eFilePushThread::stop()
 		return;
 	m_stop = 1;
 	eDebug("eFilePushThread stopping thread");
-	pthread_cond_signal(&m_run_cond); /* Break out of pause if needed */
+	m_run_cond.signal(); /* Break out of pause if needed */
 	sendSignal(SIGUSR1);
 	kill(0); /* Kill means join actually */
 }
@@ -249,15 +245,14 @@ void eFilePushThread::pause()
 	}
 	/* Set thread into a paused state by setting m_stop to 2 and wait
 	 * for the thread to acknowledge that */
-	pthread_mutex_lock(&m_run_mutex);
+	eSingleLocker lock(m_run_mutex);
 	m_stop = 2;
 	sendSignal(SIGUSR1);
-	pthread_cond_signal(&m_run_cond); /* Trigger if in weird state */
+	m_run_cond.signal(); /* Trigger if in weird state */
 	while (m_run_state) {
 		eDebug("FILEPUSH waiting for pause");
-		pthread_cond_wait(&m_run_cond, &m_run_mutex);
+		m_run_cond.wait(m_run_mutex);
 	}
-	pthread_mutex_unlock(&m_run_mutex);
 }
 
 void eFilePushThread::resume()
@@ -269,10 +264,9 @@ void eFilePushThread::resume()
 	}
 	/* Resume the paused thread by resetting the flag and
 	 * signal the thread to release it */
-	pthread_mutex_lock(&m_run_mutex);
+	eSingleLocker lock(m_run_mutex);
 	m_stop = 0;
-	pthread_cond_signal(&m_run_cond); /* Tell we're ready to resume */
-	pthread_mutex_unlock(&m_run_mutex);
+	m_run_cond.signal(); /* Tell we're ready to resume */
 }
 
 void eFilePushThread::enablePVRCommit(int s)
