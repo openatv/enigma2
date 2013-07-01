@@ -79,22 +79,14 @@ public:
 
 class eSingleLock
 {
-	friend class eSingleLocker;
+protected:
 	pthread_mutex_t m_lock;
-	eSingleLock(eSingleLock &);
+private:
+	eSingleLock(const eSingleLock &);
 public:
-	eSingleLock(bool recursive=false)
+	eSingleLock()
 	{
-		if (recursive)
-		{
-			pthread_mutexattr_t attr;
-			pthread_mutexattr_init(&attr);
-			pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
-			pthread_mutex_init(&m_lock, &attr);
-			pthread_mutexattr_destroy(&attr);
-		}
-		else
-			pthread_mutex_init(&m_lock, 0);
+		pthread_mutex_init(&m_lock, 0);
 	}
 	~eSingleLock()
 	{
@@ -108,20 +100,48 @@ public:
 	{
 		pthread_mutex_unlock(&m_lock);
 	}
+	operator pthread_mutex_t&() { return m_lock; }
+};
+
+class eCondition
+{
+private:
+	eCondition(const eCondition&);
+protected:
+	pthread_cond_t m_cond;
+public:
+	eCondition()
+	{
+		pthread_cond_init(&m_cond, 0);
+	}
+	~eCondition()
+	{
+		pthread_cond_destroy(&m_cond);
+	}
+	void signal()
+	{
+		pthread_cond_signal(&m_cond);
+	}
+	void wait(pthread_mutex_t& mutex)
+	{
+		pthread_cond_wait(&m_cond, &mutex);
+	}
+	operator pthread_cond_t&() { return m_cond; }
 };
 
 class eSingleLocker
 {
+protected:
 	eSingleLock &m_lock;
 public:
 	eSingleLocker(eSingleLock &m)
 		: m_lock(m)
 	{
-		pthread_mutex_lock(&m_lock.m_lock);
+		m_lock.lock();
 	}
 	~eSingleLocker()
 	{
-		pthread_mutex_unlock(&m_lock.m_lock);
+		m_lock.unlock();
 	}
 };
 
