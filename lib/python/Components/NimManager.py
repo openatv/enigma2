@@ -155,7 +155,7 @@ class SecConfigure:
 		try:
 			for slot in nim_slots:
 				if slot.frontend_id is not None:
-					types = [type for type in ["DVB-T", "DVB-C", "DVB-S", "DVB-T2", "DVB-S2", "ATSC"]  if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, type)]
+					types = [type for type in ["DVB-C", "DVB-T2", "DVB-T", "DVB-S2", "DVB-S", "ATSC"]  if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, type)]
 					if "DVB-T2" in types:
 						# DVB-T2 implies DVB-T support
 						types.remove("DVB-T")
