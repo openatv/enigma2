@@ -163,7 +163,7 @@ RESULT eStaticServiceM2TSInformation::getEvent(const eServiceReference &ref, ePt
 DEFINE_REF(eM2TSFile);
 
 eM2TSFile::eM2TSFile(const char *filename):
-	m_lock(false),
+	m_lock(),
 	m_sync_offset(0),
 	m_fd(::open(filename, O_RDONLY | O_LARGEFILE)),
 	m_current_offset(0),
