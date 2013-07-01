@@ -3,7 +3,8 @@ from Tools.BoundFunction import boundFunction
 
 # workaround for required config entry dependencies.
 import Screens.MovieSelection
-
+from Components.PluginComponent import plugins
+from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
@@ -189,7 +190,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.showTvChannelList(True)
 
 	def showRadioButton(self):
-		if enigma.getBoxType().startswith('gb') or enigma.getBoxType() == 'ventonhdx':
+		if enigma.getBoxType().startswith('gb') or enigma.getBoxType() == 'ventonhdx' or enigma.getBoxType().startswith('azbox'):
 			self.toogleTvRadio()
 		else:
 			self.showRadio()
@@ -272,7 +273,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def openEPGSearch(self):
 		try:
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				if plugin.name == _("EPGSearch") or plugin.name == _("search EPG..."):
+				if plugin.name == _("EPGSearch") or plugin.name == _("search EPG...") or plugin.name == "Durchsuche EPG...":
 					self.runPlugin(plugin)
 					break
 		except Exception, e:

@@ -89,6 +89,15 @@ void eRCDeviceInputDev::handleCode(long rccode)
 			return;
 		}
 	}
+
+#if KEY_TV_TO_KEY_MODE
+	if (ev->code == KEY_TV)
+	{
+		/* AZBOX rc has a KEY_MODE key, which sends KEY_TV events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_MODE;
+		
+	}
+#endif	
 	
 #if KEY_VIDEO_TO_KEY_EPG
 	if (ev->code == KEY_VIDEO)
