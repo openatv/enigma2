@@ -89,6 +89,24 @@ void eRCDeviceInputDev::handleCode(long rccode)
 			return;
 		}
 	}
+	
+#if KEY_TEXT_TO_KEY_AUDIO
+	if (ev->code == KEY_AUDIO)
+	{
+		/* AZBOX rc has a KEY aux key, which sends KEY_TEXT events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_TEXT;
+		
+	}
+#endif		
+	
+#if KEY_AUDIO_TO_KEY_TEXT
+	if (ev->code == KEY_AUDIO)
+	{
+		/* AZBOX rc has a KEY Check key, which sends KEY_AUDIO events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_TEXT;
+		
+	}
+#endif	
 
 #if KEY_TV_TO_KEY_MODE
 	if (ev->code == KEY_TV)
