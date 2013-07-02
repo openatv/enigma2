@@ -330,7 +330,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			old_service = self.cur_service  #(service, service_name, events, picon)
 			events = self.cur_service[2]
 			refstr = self.cur_service[0]
-			if self.cur_event is None or not events or not len(events):
+			if self.cur_event is None or not events or self.cur_event > len(events):
 				return (None, ServiceReference(refstr))
 			event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
 			eventid = event[0]
