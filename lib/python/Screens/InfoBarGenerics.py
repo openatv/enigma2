@@ -4770,15 +4770,18 @@ class InfoBarResolutionSelection:
 		f.close()		
 		f = open("/proc/stb/vmpeg/0/yres", "r")
 		yresString = f.read()
-		f.close()			
-		try:
-			f = open("/proc/stb/vmpeg/0/framerate", "r")
-			fpsString = f.read()
-			f.close()			
-			
-		except:
-			print"[InfoBarResolutionSelection] Error open /proc/stb/vmpeg/0/framerate !!"
+		f.close()
+		if getBoxType().startswith('azbox'):
 			fpsString = '50000'
+		else:	
+			try:
+				f = open("/proc/stb/vmpeg/0/framerate", "r")
+				fpsString = f.read()
+				f.close()
+			except:
+				print"[InfoBarResolutionSelection] Error open /proc/stb/vmpeg/0/framerate !!"
+				fpsString = '50000'
+		
 		xres = int(xresString, 16)
 		yres = int(yresString, 16)
 		fps = int(fpsString)
