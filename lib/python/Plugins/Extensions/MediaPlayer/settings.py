@@ -12,7 +12,7 @@ from Components.Sources.Boolean import Boolean
 
 config.mediaplayer = ConfigSubsection()
 config.mediaplayer.repeat = ConfigYesNo(default=False)
-config.mediaplayer.savePlaylistOnExit = ConfigYesNo(default=True)
+config.mediaplayer.savePlaylistOnExit = ConfigYesNo(default=False)
 config.mediaplayer.saveDirOnExit = ConfigYesNo(default=False)
 config.mediaplayer.defaultDir = ConfigDirectory()
 config.mediaplayer.useAlternateUserAgent = ConfigYesNo(default=False)

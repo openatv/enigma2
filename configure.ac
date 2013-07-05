@@ -405,6 +405,8 @@ lib/python/Plugins/Extensions/AirPlayer/Skins/Classic/Makefile
 lib/python/Plugins/Extensions/AirPlayer/Skins/Classic/1280x720/Makefile
 lib/python/Plugins/Extensions/IniEcasa/Makefile
 lib/python/Plugins/Extensions/IniWebcamViewer/Makefile
+lib/python/Plugins/Extensions/GoogleNews/Makefile
+lib/python/Plugins/Extensions/GoogleNews/images/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/meta/Makefile
