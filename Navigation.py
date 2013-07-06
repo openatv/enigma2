@@ -11,6 +11,7 @@ import NavigationInstance
 import ServiceReference
 from Screens.InfoBar import InfoBar, MoviePlayer
 from os import path
+from enigma import getBoxType
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:
@@ -41,6 +42,12 @@ class Navigation:
 		self.syncCount = 0
 
 		wasTimerWakeup = getFPWasTimerWakeup()
+		thisBox = getBoxType()
+		if thisBox == 'gbquad' or thisBox == 'xp1000' or thisBox == 'ixussone' or thisBox.startswith("tm") or thisBox.startswith("ios") or thisBox.startswith("azbox"):
+			config.workaround.deeprecord.setValue(True)
+			config.workaround.deeprecord.save()
+			config.save()
+			print"[NAVIGATION] USE DEEPSTAND-WORKAROUND FOR THIS BOXTYPE (%s) !!" %thisBox
 		if not wasTimerWakeup and config.workaround.deeprecord.getValue(): #work-around for boxes where driver not sent was_timer_wakeup signal to e2
 			print"[NAVIGATION] getNextRecordingTime= %s" % self.RecordTimer.getNextRecordingTime()
 			print"[NAVIGATION] current Time=%s" % time()
