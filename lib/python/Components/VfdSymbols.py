@@ -11,7 +11,7 @@ POLLTIME = 5 # seconds
 
 def SymbolsCheck(session, **kwargs):
 		global symbolspoller, POLLTIME
-		if getBoxType() == 'ixussone':
+		if getBoxType() == 'ixussone' or getBoxType() == 'ixusszero':
 			POLLTIME = 1
 		symbolspoller = SymbolsCheckPoller(session)
 		symbolspoller.start()
@@ -69,7 +69,7 @@ class SymbolsCheckPoller:
 				open("/proc/stb/lcd/symbol_recording", "w").write("1")
 			else:
 				open("/proc/stb/lcd/symbol_recording", "w").write("0")
-		elif getBoxType() == 'ixussone':
+		elif getBoxType() == 'ixussone' or getBoxType() == 'ixusszero':
 			recordings = len(NavigationInstance.instance.getRecordings())
 			self.blink = not self.blink
 			if recordings > 0 and self.blink:

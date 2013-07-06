@@ -515,7 +515,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 
-	if enigma.getBoxType() == 'odinm9' or enigma.getBoxType() == 'ventonhdx' or enigma.getBoxType() == 'ebox5000' or enigma.getBoxType() == 'ixussone':
+	if enigma.getBoxType() == 'odinm9' or enigma.getBoxType() == 'ventonhdx' or enigma.getBoxType() == 'ebox5000' or enigma.getBoxType() == 'ixussone' or enigma.getBoxType() == 'ixusszero':
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
