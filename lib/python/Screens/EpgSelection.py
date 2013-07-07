@@ -415,6 +415,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def hidewaitingtext(self):
 		self.listTimer.stop()
+		if self.type == EPG_TYPE_MULTI:
+			self['list'].moveToService(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		self['lab1'].hide()
 
 	def getBouquetServices(self, bouquet):
@@ -465,7 +467,6 @@ class EPGSelection(Screen, HelpableScreen):
 			self['bouquetlist'].fillBouquetList(self.bouquets)
 			self.services = self.getBouquetServices(self.StartBouquet)
 			self['list'].fillMultiEPG(self.services, self.ask_time)
-			self['list'].moveToService(serviceref)
 			self['list'].setCurrentlyPlaying(serviceref)
 			self.setTitle(self['bouquetlist'].getCurrentBouquet())
 		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
