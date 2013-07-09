@@ -14,8 +14,8 @@ from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVB
 def buildTerTransponder(frequency,
 		inversion=2, bandwidth = 7000000, fechigh = 6, feclow = 6,
 		modulation = 2, transmission = 2, guard = 4,
-		hierarchy = 4, system = 0, plpid=0):
-	print "freq", frequency, "inv", inversion, "bw", bandwidth, "fech", fechigh, "fecl", feclow, "mod", modulation, "tm", transmission, "guard", guard, "hierarchy", hierarchy, "plpid", plpid
+		hierarchy = 4, system = 0, plpid = 0):
+#	print "freq", frequency, "inv", inversion, "bw", bandwidth, "fech", fechigh, "fecl", feclow, "mod", modulation, "tm", transmission, "guard", guard, "hierarchy", hierarchy
 	parm = eDVBFrontendParametersTerrestrial()
 	parm.frequency = frequency
 	parm.inversion = inversion
@@ -516,7 +516,6 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				defaultTer["guard_interval"] = frontendData.get("guard_interval", eDVBFrontendParametersTerrestrial.GuardInterval_Auto)
 				defaultTer["hierarchy"] = frontendData.get("hierarchy_information", eDVBFrontendParametersTerrestrial.Hierarchy_Auto)
 				defaultTer["system"] = frontendData.get("system", eDVBFrontendParametersTerrestrial.System_DVB_T)
-				defaultTer["plp_id"] = frontendData.get("plp_id", 0)
 
 		self.scan_sat = ConfigSubsection()
 		self.scan_cab = ConfigSubsection()

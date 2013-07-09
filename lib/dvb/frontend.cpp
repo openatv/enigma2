@@ -1846,10 +1846,12 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 			cmdseq.num++;
 
 			p[cmdseq.num].cmd = DTV_BANDWIDTH_HZ, p[cmdseq.num].u.data = parm.bandwidth, cmdseq.num++;
-			//if (system == SYS_DVBT2)
-			//{
-			p[cmdseq.num].cmd = DTV_DVBT2_PLP_ID, p[cmdseq.num].u.data = parm.plpid, cmdseq.num++;
-			//}
+			if (system == SYS_DVBT2)
+			{
+				// test for new comming driver
+				puts("DVB-T2 SCAN");
+				p[cmdseq.num].cmd = DTV_DVBT2_PLP_ID, p[cmdseq.num].u.data = parm.plpid, cmdseq.num++;
+			}
 		}
 		else if (type == iDVBFrontend::feATSC)
 		{
