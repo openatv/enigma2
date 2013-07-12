@@ -106,7 +106,10 @@ class VideoSetup(Screen, ConfigListScreen):
 			))
 			
 			if SystemInfo["Can3DSurround"]:
-				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d,_("This option configures you can enable 3D Surround Sound.")))			
+				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d,_("This option configures you can enable 3D Surround Sound.")))
+
+			if SystemInfo["CanAutoVolume"]:
+				self.list.append(getConfigListEntry(_("Audio Auto Volume Level"), config.av.autovolume,_("This option configures you can set Auto Volume Level.")))				
 
 		if SystemInfo["CanChangeOsdAlpha"]:
 			self.list.append(getConfigListEntry(_("OSD transparency"), config.av.osd_alpha, _("Configure the transparency of the OSD.")))
