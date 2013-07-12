@@ -148,6 +148,26 @@ def InitAVSwitch():
 
 	iAVSwitch.setInput("ENCODER") # init on startup
 	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
+	
+	if os.path.exists("/proc/stb/audio/3d_surround_choices"):
+		f = open("/proc/stb/audio/3d_surround_choices", "r")
+		can_3dsurround = f.read().strip().split(" ")
+		f.close()
+	else:
+		can_3dsurround = False
+
+	SystemInfo["Can3DSurround"] = can_3dsurround
+
+	if can_3dsurround:
+		def set3DSurround(configElement):
+			f = open("/proc/stb/audio/3d_surround", "w")
+			f.write(configElement.value)
+			f.close()
+		choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
+		config.av.surround_3d = ConfigSelection(choices = choice_list, default = "none")
+		config.av.surround_3d.addNotifier(set3DSurround)
+	else:
+		config.av.surround_3d = ConfigNothing()
 
 	try:
 		can_downmix = open("/proc/stb/audio/ac3_choices", "r").read()[:-1].find("downmix") != -1
