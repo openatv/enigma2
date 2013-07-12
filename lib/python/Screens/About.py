@@ -282,8 +282,7 @@ class SystemMemoryInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Memory Information"))
-		#self.skinName = ["SystemMemoryInfo", "About"]
-		self.skinName = ["About"]
+		self.skinName = ["SystemMemoryInfo", "About"]
 		self["AboutScrollLabel"] = ScrollLabel()
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],

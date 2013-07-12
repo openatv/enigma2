@@ -226,7 +226,7 @@ class GeneralSetup(Screen):
 	def Qsystem(self):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("AV Setup",_("Setup Videomode"),_("Setup your Video Mode, Video Output and other Video Settings")))
-		self.sublist.append(QuickSubMenuEntryComponent("Customize",_("Setup GUI"),_("Customize UI personal settings")))
+		self.sublist.append(QuickSubMenuEntryComponent("GUI Setup",_("Setup GUI"),_("Customize UI personal settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("OSD settings",_("Settings..."),_("Setup your OSD")))
 		self.sublist.append(QuickSubMenuEntryComponent("Language Settings",_("Setup Your language"),_("Setup menu language")))
 		self.sublist.append(QuickSubMenuEntryComponent("Time Settings",_("Time Settings"),_("Setup date and time")))
@@ -323,7 +323,7 @@ class GeneralSetup(Screen):
 ######## Plugins Menu ##############################
 	def Qplugin(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Plugin Browser",_("Open the Plugin Browser"),_("Shows Plugins Browser. Here you can setup installed Plugin")))
+		self.sublist.append(QuickSubMenuEntryComponent("Browser Plugin",_("Open the Plugin Browser"),_("Shows Plugins Browser. Here you can setup installed Plugin")))
 		self.sublist.append(QuickSubMenuEntryComponent("Download Plugins",_("Download and install Plugins"),_("Shows available plugins. Here you can download and install them")))
 		self.sublist.append(QuickSubMenuEntryComponent("Remove Plugins",_("Delete Plugins"),_("Delete and unstall Plugins. This will remove the Plugin from your box")))
 		#self.sublist.append(QuickSubMenuEntryComponent("Plugin Filter",_("Setup Plugin filter"),_("Setup Plugin filter. Here you can select which Plugins are showed in the PluginBrowser")))
@@ -334,7 +334,7 @@ class GeneralSetup(Screen):
 	def Qharddisk(self):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Harddisk Setup",_("Harddisk Setup"),_("Setup your Harddisk")))
-		self.sublist.append(QuickSubMenuEntryComponent("Initialization",_("Format HDD"),_("Format your Harddisk")))
+		self.sublist.append(QuickSubMenuEntryComponent("Format and Initialize",_("Format HDD"),_("Format your Harddisk")))
 		self.sublist.append(QuickSubMenuEntryComponent("Filesystem Check",_("Check HDD"),_("Filesystem check your Harddisk")))
 		if isFileSystemSupported("ext4"):
 			self.sublist.append(QuickSubMenuEntryComponent("Convert ext3 to ext4",_("Convert filesystem ext3 to ext4"),_("Convert filesystem ext3 to ext4")))
@@ -430,7 +430,7 @@ class GeneralSetup(Screen):
 		elif item[0] == _("AV Setup"):
 			self.Qavsetup()
 ######## Select System Setup Menu ##############################
-		elif item[0] == _("Customize"):
+		elif item[0] == _("GUI Setup"):
 			self.openSetup("usage")
 		elif item[0] == _("Time Settings"):
 			self.openSetup("time")
@@ -546,7 +546,7 @@ class GeneralSetup(Screen):
 		#elif item[0] == _("Software Manager Setup"):
 		#	self.session.open(SoftwareManagerSetup)
 ######## Select PluginDownloadBrowser Menu ##############################
-		elif item[0] == _("Plugin Browser"):
+		elif item[0] == _("Browser Plugin"):
 			self.session.open(PluginBrowser)
 		elif item[0] == _("Download Plugins"):
 			self.session.open(PluginDownloadBrowser, 0)
@@ -563,7 +563,7 @@ class GeneralSetup(Screen):
 ######## Select Harddisk Menu ############################################
 		elif item[0] == _("Harddisk Setup"):
 			self.openSetup("harddisk")
-		elif item[0] == _("Initialization"):
+		elif item[0] == _("Format and Initialize"):
 			self.session.open(HarddiskSelection)
 		elif item[0] == _("Filesystem Check"):
 			self.session.open(HarddiskFsckSelection)
@@ -690,7 +690,7 @@ def GeneralSetupEntryComponent(name, description, long_description = None, endte
 		_(name),
 		MultiContentEntryText(pos=(20, 10), size=(width-120, 35), font=0, text = _(name)),
 		#MultiContentEntryText(pos=(20, 26), size=(width-120, 17), font=1, text = _(description)),
-		MultiContentEntryText(pos=(20, 26), size=(0,0), font=1, text = _(description)),		
+		MultiContentEntryText(pos=(20, 26), size=(0,0), font=1, text = _(description)),
 		MultiContentEntryText(pos=(350, 10), size=(35, 35), text = ">"),
 		_(long_description),
 	]
@@ -698,8 +698,10 @@ def GeneralSetupEntryComponent(name, description, long_description = None, endte
 def QuickSubMenuEntryComponent(name, description, long_description = None, width=540):
 	return [
 		_(name),
-		MultiContentEntryText(pos=(20, 5), size=(width-10, 25), font=0, text = _(name)),
-		MultiContentEntryText(pos=(20, 26), size=(width-10, 17), font=1, text = _(description)),
+		#MultiContentEntryText(pos=(20, 5), size=(width-10, 25), font=0, text = _(name)),
+		MultiContentEntryText(pos=(20, 15), size=(width-10, 25), font=0, text = _(name)),		
+		#MultiContentEntryText(pos=(20, 26), size=(width-10, 17), font=1, text = _(description)),
+		MultiContentEntryText(pos=(20, 26), size=(0, 0), font=1, text = _(description)),
 		_(long_description),
 	]
 
