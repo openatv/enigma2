@@ -162,7 +162,7 @@ def GeneralSubMenuEntryComponent(entry, enableEntry = False, selectedEntry = Fal
 
 
 class GeneralMenuSummary(Screen):
-    skin = ('\n\t<screen name="GeneralMenuSummary" position="0,0" size="132,64" id="1">\n\t\t<widget name="mTitle" position="6,0" size="120,32" font="RegularLCD;14" halign="center" valign="center" />\n\t\t<widget name="mMenu" position="6,32" size="145,32" autoScroll="1" font="RegularLCD;16" halign="center" valign="top" />\n\t</screen>', '\n\t<screen name="GeneralMenuSummary" position="0,0" size="96,64" id="2">\n\t\t<widget name="mTitle" position="0,0" size="96,32" font="RegularLCD;15" halign="center" valign="center" />\n\t\t<widget name="mMenu" position="0,32" size="96,32" autoScroll="1" font="RegularLCD;16" halign="center" valign="top" />\n\t</screen>\n\t')
+    skin = ('\n\t<screen name="GeneralMenuSummary" position="0,0" size="132,64" id="1">\n\t\t<widget name="mTitle" position="6,0" size="120,32" font="LCD;14" halign="center" valign="center" />\n\t\t<widget name="mMenu" position="6,32" size="145,32" autoScroll="1" font="LCD;16" halign="center" valign="top" />\n\t</screen>', '\n\t<screen name="GeneralMenuSummary" position="0,0" size="96,64" id="2">\n\t\t<widget name="mTitle" position="0,0" size="96,32" font="LCD;15" halign="center" valign="center" />\n\t\t<widget name="mMenu" position="0,32" size="96,32" autoScroll="1" font="LCD;16" halign="center" valign="top" />\n\t</screen>\n\t')
 
     def __init__(self, session, parent):
         Screen.__init__(self, session)
@@ -185,9 +185,9 @@ class GeneralMenu(Screen):
 	<screen position="0,150" size="1280,570" flags="wfNoBorder" name="GeneralMenu">
 <!--		<widget position="0,100" size="1280,200" name="list_ext" selectionDisabled="1" transparent="1" />-->
 		
-<!--		<widget name="frame" position="12,95" size="170,220" zPosition="1" alphatest="on" />
+		<widget name="frame" position="12,95" size="170,220" zPosition="1" alphatest="on" />
 		
-		<widget position="40,25" size="1200,25" name="title" font="Regular;22"  zPosition="2" transparent="1" foregroundColors="#555555,#999999" />-->
+		<widget position="40,25" size="1200,25" name="title" font="Regular;22"  zPosition="2" transparent="1" foregroundColors="#555555,#999999" />
 
 		<widget position="22,20" size="150,150" source="id_mainmenu_plugins_tumb_ext_0" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
 		<widget position="200,20" size="150,150" source="id_mainmenu_plugins_tumb_ext_1" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
