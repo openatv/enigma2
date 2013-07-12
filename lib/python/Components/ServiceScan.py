@@ -34,7 +34,7 @@ class ServiceScan:
 				percentage = self.scan.getProgress()
 				#TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
 				message = ngettext("Scanning - %d%% completed", "Scanning - %d%% completed", percentage) % percentage
-				message += ", "
+				message += ".\n"
 				#TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 				message += ngettext("%d channel found", "%d channels found", result) % result
 				self.text.setText(message)
@@ -110,7 +110,7 @@ class ServiceScan:
 
 		if self.state == self.Done:
 			result = self.foundServices + self.scan.getNumServices()
-			self.text.setText(ngettext("Scanning completed, %d channel found", "Scanning completed, %d channels found", result) % result)
+			self.text.setText(ngettext("Scanning completed.\n%d channel found", "Scanning completed.\n%d channels found", result) % result)
 
 		if self.state == self.Error:
 			self.text.setText(_("ERROR - failed to scan (%s)!") % (self.Errors[self.errorcode]) )
