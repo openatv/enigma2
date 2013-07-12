@@ -13,6 +13,7 @@ from Screens.InfoBarGenerics import InfoBarNotifications
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.MenuList import MenuList
+from Components.Sources.List import List
 from Components.FileList import EXTENSIONS
 from Components.AVSwitch import AVSwitch
 ## configmenu
@@ -462,7 +463,7 @@ class WebcamViewer(Screen, InfoBarNotifications):
 		Screen.__init__(self, session)
 		InfoBarNotifications.__init__(self)
 
-		self.filelist = MenuList(self.getMenuData())
+		self.filelist = List(self.getMenuData())
 		self["menu"] = self.filelist
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
 			{
@@ -475,8 +476,8 @@ class WebcamViewer(Screen, InfoBarNotifications):
 		self.setTitle(myname + ": " + self.menutitle)
 
 	def go(self):
-		selected = self["menu"].l.getCurrentSelection()[1]
-		menuitemtitle = self["menu"].l.getCurrentSelection()[0]
+		selected = self["menu"].getCurrent()[1]
+		menuitemtitle = self["menu"].getCurrent()[0]
 		type = selected[0]
 		data = selected[1]
 		if menuitemtitle.startswith("webcam.travel"):
