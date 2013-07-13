@@ -14,7 +14,8 @@ dist_pkgdata_DATA = \
 	freesat.t2 \
 	unicable.xml \
 	hd-testcard.mvi \
-	distro-logo.png
+	distro-logo.png \
+	distro-lcd-logo.png
 
 if HAVE_TEXTLCD
 SUBDIRS += displaytext
