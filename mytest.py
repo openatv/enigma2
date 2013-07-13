@@ -1,3 +1,14 @@
+from fcntl import ioctl
+led_fd = open("/dev/lcd2",'rw')
+ioctl(led_fd, 0x10, 25)
+led_fd.close()
+
+from pngutil import png_util
+pngutil = png_util.PNGUtil()
+pngutilconnect = pngutil.connect()
+if pngutilconnect:
+	pngutil.send("/usr/share/enigma2/distro-lcd-logo.png")
+
 import sys, os
 if os.path.isfile("/usr/lib/enigma2/python/enigma.zip"):
 	sys.path.append("/usr/lib/enigma2/python/enigma.zip")
