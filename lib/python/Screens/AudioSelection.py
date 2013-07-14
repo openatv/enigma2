@@ -39,10 +39,13 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.cached_subtitle_checked = False
 		self.__selected_subtitle = None
 
-		self["actions"] = NumberActionMap(["ColorActions", "SetupActions", "DirectionActions", "MenuActions"],
+		self["actions"] = NumberActionMap(["ColorActions", "SetupActions", "DirectionActions", "MenuActions",
+			"InfobarAudioSelectionActions", "InfobarSubtitleSelectionActions"],
 		{
 			"red": self.keyRed,
 			"green": self.keyGreen,
+			"subtitleSelection": self.keyYellow,
+			"audioSelection": self.keyYellow,
 			"yellow": self.keyYellow,
 			"blue": self.keyBlue,
 			"ok": self.keyOk,
