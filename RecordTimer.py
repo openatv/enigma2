@@ -409,14 +409,18 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			wasRecTimerWakeup = False
 
 	def getNextActivation(self):
-		if self.state == self.StateEnded:
+		self.isStillRecording = False
+		if self.state == self.StateEnded or self.state == self.StateFailed:
+			if self.end > time():
+				self.isStillRecording = True
 			return self.end
-		
 		next_state = self.state + 1
-		
-		return {self.StatePrepared: self.start_prepare, 
-				self.StateRunning: self.begin, 
-				self.StateEnded: self.end }[next_state]
+		if next_state == self.StateEnded or next_state == self.StateFailed:
+			if self.end > time():
+				self.isStillRecording = True
+		return {self.StatePrepared: self.start_prepare,
+				self.StateRunning: self.begin,
+				self.StateEnded: self.end}[next_state]
 
 	def failureCB(self, answer):
 		if answer == True:

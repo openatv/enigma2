@@ -8,6 +8,7 @@ class TimerEntry:
 	StatePrepared = 1
 	StateRunning  = 2
 	StateEnded    = 3
+	StateFailed   = 4
 
 	def __init__(self, begin, end):
 		self.begin = begin
@@ -92,7 +93,9 @@ class TimerEntry:
 
 	# check if a timer entry must be skipped
 	def shouldSkip(self):
-		return self.end <= time() and self.state == TimerEntry.StateWaiting
+		if self.disabled:
+			return True
+		return self.end <= time() and (self.state == TimerEntry.StateWaiting or self.state == TimerEntry.StateFailed)
 
 	def abort(self):
 		self.end = time()

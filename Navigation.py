@@ -57,18 +57,16 @@ class Navigation:
 
 		if wasTimerWakeup:
 			self.__wasTimerWakeup = True
-			if nextRecordTimerAfterEventActionAuto:
-				# We need to give the system the chance to fully startup, 
-				# before we initiate the standby command.
+			if nextRecordTimerAfterEventActionAuto and abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
+				self.__wasRecTimerWakeup = True
+				print 'RECTIMER: wakeup to standby detected.'
+				f = open("/tmp/was_rectimer_wakeup", "w")
+				f.write('1')
+				f.close()
+				# as we woke the box to record, place the box in standby.
 				self.standbytimer = eTimer()
 				self.standbytimer.callback.append(self.gotostandby)
-				self.standbytimer.start(25000, True)
-				# We need to give the systemclock the chance to sync with the transponder time,
-				# before we will make the decision about whether or not we need to shutdown
-				# after the upcoming recording has completed
-				self.recordshutdowntimer = eTimer()
-				self.recordshutdowntimer.callback.append(self.checkShutdownAfterRecording)
-				self.recordshutdowntimer.start(30000, True)
+				self.standbytimer.start(15000, True)
 
 	def wasTimerWakeup(self):
 		return self.__wasTimerWakeup
