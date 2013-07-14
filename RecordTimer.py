@@ -67,6 +67,8 @@ def findSafeRecordPath(dirname):
 			return None
 	return dirname
 
+wasRecTimerWakeup = False
+
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry, object):
 ######### the following static methods and members are only in use when the box is in (soft) standby
@@ -310,6 +312,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.log(8, "currently no service running... so we dont need to stop it")
 			return False
 		elif next_state == self.StateRunning:
+			global wasRecTimerWakeup
+			if os.path.exists("/tmp/was_rectimer_wakeup") and not wasRecTimerWakeup:
+				wasRecTimerWakeup = int(open("/tmp/was_rectimer_wakeup", "r").read()) and True or False
+				os.remove("/tmp/was_rectimer_wakeup")
+
+			self.autostate = Screens.Standby.inStandby
+
 			# if this timer has been cancelled, just go to "end" state.
 			if self.cancelled:
 				return True
@@ -352,13 +361,17 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if not self.justplay:
 				NavigationInstance.instance.stopRecordService(self.record_service)
 				self.record_service = None
-			if self.afterEvent == AFTEREVENT.STANDBY:
+			NavigationInstance.instance.RecordTimer.saveTimer()
+			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and self.autostate and self.afterEvent == AFTEREVENT.AUTO):
 				if not Screens.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nreceiver to standby. Do that now?"), timeout = 20)
-			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
+			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO):
+				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
+					print '[Timer] Recording or Recording due is next 15 mins, not return to deepstandby'
+					return True
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
-						RecordTimerEntry.TryQuitMainloop() # start shutdown handling without screen
+						quitMainloop(1)
 					else:
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour receiver. Shutdown now?"), timeout = 20)
 			return True
@@ -391,6 +404,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	def sendTryQuitMainloopNotification(self, answer):
 		if answer:
 			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
+		else:
+			global wasRecTimerWakeup
+			wasRecTimerWakeup = False
 
 	def getNextActivation(self):
 		if self.state == self.StateEnded:
@@ -691,6 +707,14 @@ class RecordTimer(timer.Timer):
 				continue
 			return timer.begin
 		return -1
+
+	def getStillRecording(self):
+		isStillRecording = False
+		for timer in self.timer_list:
+			if timer.isStillRecording:
+				isStillRecording = True
+				break
+		return isStillRecording
 
 	def getNextRecordingTime(self):
 		now = time()

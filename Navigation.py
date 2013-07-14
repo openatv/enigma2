@@ -30,8 +30,32 @@ class Navigation:
 		self.currentlyPlayingServiceOrGroup = None
 		self.currentlyPlayingService = None
 		self.RecordTimer = RecordTimer.RecordTimer()
+		self.nextRecordTimerAfterEventActionAuto = nextRecordTimerAfterEventActionAuto
 		self.__wasTimerWakeup = False
-		if getFPWasTimerWakeup():
+		self.__wasRecTimerWakeup = False
+		self.syncCount = 0
+
+		wasTimerWakeup = getFPWasTimerWakeup()
+		if not wasTimerWakeup: #work-around for boxes where driver not sent was_timer_wakeup signal to e2
+			print"[NAVIGATION] getNextRecordingTime= %s" % self.RecordTimer.getNextRecordingTime()
+			print"[NAVIGATION] current Time=%s" % time()
+			print"[NAVIGATION] timediff=%s" % abs(self.RecordTimer.getNextRecordingTime() - time())
+
+			if time() <= 31536000: # check for NTP-time sync, if no sync, wait for transponder time
+				self.timesynctimer = eTimer()
+				self.timesynctimer.callback.append(self.TimeSynctimer)
+				self.timesynctimer.start(5000, True)
+				print"[NAVIGATION] wait for time sync"
+				
+			elif abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360: # if there is a recording sheduled in the next 5 mins, set the wasTimerWakeup flag
+				wasTimerWakeup = True
+				f = open("/tmp/was_timer_wakeup_workaround.txt", "w")
+				file = f.write(str(wasTimerWakeup))
+				f.close()
+
+		print"[NAVIGATION] wasTimerWakeup = %s" % wasTimerWakeup
+
+		if wasTimerWakeup:
 			self.__wasTimerWakeup = True
 			if nextRecordTimerAfterEventActionAuto:
 				# We need to give the system the chance to fully startup, 
@@ -48,6 +72,29 @@ class Navigation:
 
 	def wasTimerWakeup(self):
 		return self.__wasTimerWakeup
+
+	def wasRecTimerWakeup(self):
+		return self.__wasRecTimerWakeup
+
+	def TimeSynctimer(self):
+		self.syncCount += 1
+		if self.nextRecordTimerAfterEventActionAuto and abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
+			self.__wasRecTimerWakeup = True
+			print 'RECTIMER: wakeup to standby detected.'
+			print"[NAVIGATION] [work-around] getNextRecordingTime= %s" % self.RecordTimer.getNextRecordingTime()
+			print"[NAVIGATION] [work-around] current Time=%s" % time()
+			print"[NAVIGATION] [work-around] timediff=%s" % abs(self.RecordTimer.getNextRecordingTime() - time())
+			f = open("/tmp/was_rectimer_wakeup", "w")
+			f.write('1')
+			f.close()
+			self.gotostandby()
+		else:
+			if self.syncCount <= 24 and time() <= 31536000: # max 2 mins or when time is in sync
+				self.timesynctimer.start(5000, True)
+			else:
+				print"[NAVIGATION] [work-around] No Recordings found, end work-around"
+
+		print"[NAVIGATION] [work-around] wasTimerWakeup after time sync = %s, sync time = %s sec." % (self.__wasRecTimerWakeup, self.syncCount * 5)
 
 	def gotostandby(self):
 		from Tools import Notifications
