@@ -1615,10 +1615,13 @@ class UpdatePlugin(Screen):
 					return
 				if self.total_packages and self.TraficCheck and self.TraficResult:
 					#message = _("Do you want to update your %s %s?") % (getMachineBrand(), getMachineName()) + "                 \n(%s " % self.total_packages + _("Packages") + ")"
-					if config.plugins.softwaremanager.updatetype.getValue() == "cold":
-						self.startActualUpgrade("cold")
-					#	choices = [(_("Show new Packages"), "show"), (_("Unattended upgrade without GUI and reboot system"), "cold"), (_("Cancel"), "")]
-					else:
+					try:
+						if config.plugins.softwaremanager.updatetype.getValue() == "cold":
+							self.startActualUpgrade("cold")
+						#	choices = [(_("Show new Packages"), "show"), (_("Unattended upgrade without GUI and reboot system"), "cold"), (_("Cancel"), "")]
+						else:
+							self.startActualUpgrade("hot")
+					except:
 						self.startActualUpgrade("hot")
 					#	choices = [(_("Show new Packages"), "show"), (_("Upgrade and ask to reboot"), "hot"), (_("Cancel"), "")]
 					#self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
