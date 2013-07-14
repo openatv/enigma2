@@ -1,6 +1,6 @@
 <wizard>
 		<step id="start" nextstep="introduction">
-			<text value="Welcome.\n\nThis start wizard will guide you through the basic setup of your STB_BOX.\nPress the OK button on your remote control to move to the next step." />
+			<text value="Welcome.\n\nThis start wizard will guide you through the basic setup of your Receiver.\nPress the OK button on your remote control to move to the next step." />
 			<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
@@ -158,7 +158,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 			</list>
 		</step>
 		<step id="finisheddefaultsatlists">
-			<text value="Do you want to enable the parental control feature on your STB_BOX?" />
+			<text value="Do you want to enable the parental control feature on your Receiver?" />
 			<list>
 				<listentry caption="No" step="end" />
 				<listentry caption="Yes" step="parentalsetup" />
@@ -198,13 +198,13 @@ config.ParentalControl.servicepinactive.save()
 config.ParentalControl.setuppin.value = config.ParentalControl.servicepin[0].value
 config.ParentalControl.setuppin.save()
 			</code>
-			<text value="After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that." />
+			<text value="After the start wizard is completed, you need to protect single services. Refer to your Receiver's manual on how to do that." />
 		</step>
 		<step id="end" laststep="true">
 			<condition>
 self.condition = self.isLastWizard
 			</condition>
-			<text value="Thank you for using the wizard. Your STB_BOX is now ready to use.\nPlease press OK to start using your STB_BOX." />
+			<text value="Thank you for using the wizard. Your Receiver is now ready to use.\nPlease press OK to start using your Receiver." />
 			<code>
 self.clearSelectedKeys()
 self.selectKey("OK")

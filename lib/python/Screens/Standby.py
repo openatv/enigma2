@@ -136,8 +136,8 @@ class QuitMainloopScreen(Screen):
 		</screen>"""
 		Screen.__init__(self, session)
 		from Components.Label import Label
-		text = { 1: _("Your STB_BOX is shutting down"),
-			2: _("Your STB_BOX is rebooting"),
+		text = { 1: _("Your Receiver is shutting down"),
+			2: _("Your Receiver is rebooting"),
 			3: _("The User Interface of your receiver is restarting"),
 			4: _("Your frontprocessor will be upgraded\nPlease wait until your receiver reboots\nThis may take a few minutes"),
 			5: _("The User Interface of your receiver is restarting\ndue to an error in mytest.py"),
@@ -178,7 +178,7 @@ class TryQuitMainloop(MessageBox):
 				2: _("Really reboot now?"),
 				3: _("Really restart now?"),
 				4: _("Really upgrade the frontprocessor and reboot now?"),
-				42: _("Really upgrade your STB_BOX and reboot now?") }.get(retvalue)
+				42: _("Really upgrade your Receiver and reboot now?") }.get(retvalue)
 			if text:
 				MessageBox.__init__(self, session, reason+text, type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
 				self.skinName = "MessageBoxSimple"

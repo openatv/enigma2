@@ -146,12 +146,12 @@ class UpdatePluginMenu(Screen):
 		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.getValue() )
 		if self.menu == 0:
 			print "building menu entries"
-			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your STB_BOX" ) + self.oktext, None))
-			self.list.append(("software-update", _("Software update"), _("\nOnline update of your STB_BOX software." ) + self.oktext, None))
-			self.list.append(("software-restore", _("Software restore"), _("\nRestore your STB_BOX with a new firmware." ) + self.oktext, None))
-			self.list.append(("backup-image", _("Backup Image"), _("\nBackup your running STB_BOX image to HDD or USB." ) + self.oktext, None))
-			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your STB_BOX settings." ) + self.oktext + "\n\n" + self.infotext, None))
-			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your STB_BOX settings." ) + self.oktext, None))
+			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your Receiver" ) + self.oktext, None))
+			self.list.append(("software-update", _("Software update"), _("\nOnline update of your Receiver software." ) + self.oktext, None))
+			self.list.append(("software-restore", _("Software restore"), _("\nRestore your Receiver with a new firmware." ) + self.oktext, None))
+			self.list.append(("backup-image", _("Backup Image"), _("\nBackup your running Receiver image to HDD or USB." ) + self.oktext, None))
+			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your Receiver settings." ) + self.oktext + "\n\n" + self.infotext, None))
+			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your Receiver settings." ) + self.oktext, None))
 			self.list.append(("ipkg-install", _("Install local extension"),  _("\nScan for local extensions and install them." ) + self.oktext, None))
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
 				if p.__call__.has_key("SoftwareSupported"):
@@ -1098,7 +1098,7 @@ class PluginManagerInfo(Screen):
 				elif cmd == 2:
 					info = args['package']
 				else:
-					info = _("STB_BOX software because updates are available.")
+					info = _("Receiver software because updates are available.")
 
 				self.list.append(self.buildEntryComponent(action,info))
 			self['list'].setList(self.list)
@@ -1466,7 +1466,7 @@ class UpdatePlugin(Screen):
 		imageDate = date(int(tmpdate[0:4]), int(tmpdate[5:7]), int(tmpdate[8:10]))
 		datedelay = imageDate +  timedelta(days=30)
 		message = _("Your image is out of date!\n\n"
-						"After such a long time, there is a risk that your STB_BOX will not\n"
+						"After such a long time, there is a risk that your Receiver will not\n"
 						"boot after online-update, or will show disfunction in running Image.\n\n"
 						"A new flash will increase the stability\n\n"
 						"An online update is done at your own risk !!\n\n\n"
@@ -1531,7 +1531,7 @@ class UpdatePlugin(Screen):
 	#	else:
 	#		if doUpdate:
 				# Ask for Update, 
-	#			message += _("Do you want to update your STB_BOX?")+"\n"+_("After pressing OK, please wait!")
+	#			message += _("Do you want to update your Receiver?")+"\n"+_("After pressing OK, please wait!")
 	#			self.session.openWithCallback(self.runUpgrade, MessageBox, message, default = default, picon = picon)
 	#		else:
 				# Don't Update RED LIGHT !!
@@ -1607,7 +1607,7 @@ class UpdatePlugin(Screen):
 				#	self.checkTraficLight()
 				#	return
 				if self.total_packages and self.TraficCheck and self.TraficResult:
-					message = _("Do you want to update your STB_BOX?") + "                 \n(%s " % self.total_packages + _("Packages") + ")"
+					message = _("Do you want to update your Receiver?") + "                 \n(%s " % self.total_packages + _("Packages") + ")"
 					if config.plugins.softwaremanager.updatetype.getValue() == "cold":
 						choices = [(_("Show new Packages"), "show"), (_("Unattended upgrade without GUI and reboot system"), "cold"), (_("Cancel"), "")]
 					else:
@@ -1624,11 +1624,11 @@ class UpdatePlugin(Screen):
 			else:
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
-				error = _("your STB_BOX might be unusable now. Please consult the manual for further assistance before rebooting your STB_BOX.")
+				error = _("your Receiver might be unusable now. Please consult the manual for further assistance before rebooting your Receiver.")
 				if self.packages == 0:
 					error = _("No packages were upgraded yet. So you can check your network and try again.")
 				if self.updating:
-					error = _("Your STB_BOX isn't connected to the internet properly. Please check it and try again.")
+					error = _("Your Receiver isn't connected to the internet properly. Please check it and try again.")
 				self.status.setText(_("Error") +  " - " + error)
 		#print event, "-", param
 		pass
@@ -1652,7 +1652,7 @@ class UpdatePlugin(Screen):
 	def exit(self):
 		if not self.ipkg.isRunning():
 			if self.packages != 0 and self.error == 0:
-				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your STB_BOX?"))
+				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your Receiver?"))
 			else:
 				self.close()
 		else:
@@ -2395,9 +2395,9 @@ def Plugins(path, **kwargs):
 	global plugin_path
 	plugin_path = path
 	list = [
-		PluginDescriptor(name=_("Software management"), description=_("Manage your STB_BOX's software"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup),
+		PluginDescriptor(name=_("Software management"), description=_("Manage your Receiver's software"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup),
 		PluginDescriptor(name=_("Ipkg"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)
 	]
 	if config.usage.setup_level.index >= 2: # expert+
-		list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your STB_BOX's software"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc=UpgradeMain))
+		list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your Receiver's software"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc=UpgradeMain))
 	return list
