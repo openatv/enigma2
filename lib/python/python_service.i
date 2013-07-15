@@ -157,16 +157,15 @@ PyObject *getInfoObject(const eServiceReference &ref, int w)
 %extend iStreamableService {
 PyObject *getStreamingData()
 {
-	ePyObject ret = PyDict_New();
-	if (ret)
+	ePtr<iStreamData> data = self->getStreamingData();
+	if (data)
 	{
-		ePtr<iStreamData> data = self->getStreamingData();
-		if (data)
-		{
-			streamingDataToDict(ret, data);
-		}
+		ePyObject ret = PyDict_New();
+		streamingDataToDict(ret, data);
+		return ret;
 	}
-	return ret;
+	Py_INCREF(Py_None);
+	return Py_None;
 }
 };
 
