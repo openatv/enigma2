@@ -1,11 +1,12 @@
 from Screens.Wizard import Wizard
 from Components.Label import Label
 from Components.Language import language
+from os import system
 
 class WizardLanguage(Wizard):
 	def __init__(self, session, showSteps = True, showStepSlider = True, showList = True, showConfig = True):
 		Wizard.__init__(self, session, showSteps, showStepSlider, showList, showConfig)
-
+		system("showiframe /usr/share/enigma2/black.mvi")
 		self["languagetext"] = Label()
 		self.updateLanguageDescription()
 
