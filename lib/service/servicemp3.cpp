@@ -357,6 +357,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_ignore_buffering_messages = 0;
 	m_is_live = false;
 	m_use_prefillbuffer = false;
+	m_extra_headers = "";
 	m_download_buffer_path = "";
 	m_prev_decoder_time = -1;
 	m_decoder_time_valid_state = 0;
@@ -441,7 +442,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		}
 		if (m_useragent.empty())
 			m_useragent = "Enigma2 Mediaplayer";
-
+		m_extra_headers = eConfigManager::getConfigValue("config.mediaplayer.extraHeaders");
 		if (strstr(filename, " buffer=1"))
 		{
 			m_use_prefillbuffer = true;
@@ -496,7 +497,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		flags &= ~GST_PLAY_FLAG_SOFT_VOLUME;
 		if ( m_sourceinfo.is_streaming )
 		{
-			g_signal_connect (G_OBJECT (m_gst_playbin), "notify::source", G_CALLBACK (gstHTTPSourceSetAgent), this);
+			g_signal_connect (G_OBJECT (m_gst_playbin), "notify::source", G_CALLBACK (playbinNotifySource), this);
 			if (m_download_buffer_path != "")
 			{
 				/* use progressive download buffering */
@@ -1834,17 +1835,65 @@ GstBusSyncReply eServiceMP3::gstBusSyncHandler(GstBus *bus, GstMessage *message,
 	return GST_BUS_DROP;
 }
 
-void eServiceMP3::gstHTTPSourceSetAgent(GObject *object, GParamSpec *unused, gpointer user_data)
+void eServiceMP3::playbinNotifySource(GObject *object, GParamSpec *unused, gpointer user_data)
 {
-	eServiceMP3 *_this = (eServiceMP3*)user_data;
+	char header[2000];
+	char name[2000];
+	char value[2000];
+	gchar *p_start;
+	gchar *p_end;
+	gchar *p_start_h;
+	gchar *p_end_h;
+	gchar *extra_headers;
+	int len_headers = 0;
+	GValue headerValue;
 	GstElement *source = NULL;
-	g_object_get(_this->m_gst_playbin, "source", &source, NULL);
+	eServiceMP3 *_this = (eServiceMP3*)user_data;
+	g_object_get(object, "source", &source, NULL);
 	if (source)
 	{
-		GObjectClass *klass = G_OBJECT_GET_CLASS(source);
-		if (g_object_class_find_property(klass, "user-agent"))
-		{
+		if (g_object_class_find_property(G_OBJECT_GET_CLASS(source), "user-agent") != 0 && _this->m_useragent != "")
 			g_object_set(G_OBJECT(source), "user-agent", _this->m_useragent.c_str(), NULL);
+		if (g_object_class_find_property(G_OBJECT_GET_CLASS(source), "extra-headers") != 0 && _this->m_extra_headers != "")
+		{
+			GstStructure *extras = gst_structure_empty_new("extras");
+			extra_headers = g_strdup(_this->m_extra_headers.c_str());
+			len_headers = strlen(extra_headers);
+			for (p_start_h = extra_headers; *p_start_h != '\0'; p_start_h++)
+			{
+				p_end_h = strchr(p_start_h, '|');
+				if (p_end_h != NULL)
+				{
+					*p_end_h='\0';
+					strcpy(header, p_start_h);
+				}
+				else
+				{
+					strcpy(header,p_start_h);
+					p_end_h = &extra_headers[len_headers-1];
+					extra_headers[len_headers]='\0';
+				}
+				p_start=header;
+				p_end=strchr(header,':');
+				if (p_end != NULL)
+				{
+					*p_end = '\0';
+					strcpy(name,header);
+					p_end++;
+					strcpy(value,p_end);
+					g_print("setting extra-header '%s:%s'\n",name,value);
+					memset(&headerValue, 0, sizeof(GValue));
+					g_value_init(&headerValue, G_TYPE_STRING);
+					g_value_set_string(&headerValue,value);
+					gst_structure_set_value(extras, header, &headerValue);
+				}
+				else g_print("Invalid header format %s",header);
+				p_start_h = p_end_h;
+			}
+			if (gst_structure_n_fields(extras) > 0)
+				g_object_set(G_OBJECT(source), "extra-headers", extras, NULL);
+			gst_structure_free(extras);
+			g_free(extra_headers);
 		}
 		gst_object_unref(source);
 	}
