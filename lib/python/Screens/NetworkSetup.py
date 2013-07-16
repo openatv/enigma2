@@ -7,6 +7,7 @@ from Components.Network import iNetwork
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
+from Components.SystemInfo import SystemInfo
 from Components.Label import Label, MultiColorLabel
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap, MultiPixmap
@@ -468,6 +469,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.secondaryDNS = NoSave(ConfigIP(default=nameserver[1]))
 
 	def createSetup(self):
+		self.wolstartvalue = config.network.wol.getValue()
 		self.list = []
 		self.InterfaceEntry = getConfigListEntry(_("Use interface"), self.activateInterfaceEntry)
 
@@ -482,6 +484,9 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				self.list.append(self.gatewayEntry)
 				if self.hasGatewayConfigEntry.getValue():
 					self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
+			if SystemInfo["WOL"]:
+				self.wakeonlan = getConfigListEntry(_('Use WOL'), config.network.wol)
+				self.list.append(self.wakeonlan)
 
 			self.extended = None
 			self.configStrings = None
@@ -534,13 +539,14 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def keySave(self):
 		self.hideInputHelp()
-		if self["config"].isChanged():
+		if self["config"].isChanged() or (self.wolstartvalue != config.network.wol.getValue()):
 			self.session.openWithCallback(self.keySaveConfirm, MessageBox, (_("Are you sure you want to activate this network configuration?\n\n") + self.oktext ) )
 		else:
 			if self.finished_cb:
 				self.finished_cb()
 			else:
 				self.close('cancel')
+		config.network.save()
 
 	def keySaveConfirm(self, ret = False):
 		if (ret == True):
@@ -631,6 +637,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def keyCancelConfirm(self, result):
 		if not result:
 			return
+		config.network.wol.setValue(self.wolstartvalue)	
 		if self.oldInterfaceState is False:
 			iNetwork.deactivateInterface(self.iface,self.keyCancelCB)
 		else:
@@ -638,7 +645,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def keyCancel(self):
 		self.hideInputHelp()
-		if self["config"].isChanged():
+		if self["config"].isChanged() or (self.wolstartvalue != config.network.wol.getValue()):
 			self.session.openWithCallback(self.keyCancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
 		else:
 			self.close('cancel')
