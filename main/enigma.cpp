@@ -353,7 +353,7 @@ const char *getMachineBrand()
 		{
 			return "Miraclebox";
 		}
-		else if((strcmp(boxtype_name, "ini-1000ru\n") == 0) || (strcmp(boxtype_name, "ini-5000ru\n") == 0))
+		else if((strcmp(boxtype_name, "ini-1000ru\n") == 0) || (strcmp(boxtype_name, "ini-5000ru\n") == 0) || (strcmp(boxtype_name, "ini-9000ru\n") == 0))
 		{
 			return "Sezam";
 		}
@@ -419,6 +419,10 @@ const char *getMachineName()
 		else if(strcmp(boxtype_name, "ini-5000ru\n") == 0) 
 		{
 			return "HD-5000";
+		}
+		else if(strcmp(boxtype_name, "ini-9000ru\n") == 0) 
+		{
+			return "HD-9000";
 		}
 		else if(strcmp(boxtype_name, "ini-1000de\n") == 0) 
 		{
