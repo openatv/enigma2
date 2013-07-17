@@ -594,37 +594,7 @@ class GeneralSetup(Screen):
 				self.activeInterface = x[1]
 				return
 
-from Components.Network import iNetwork
-from Screens.MessageBox import MessageBox
-from Screens.Screen import Screen
-from Components.Label import Label
-
-class RestartNetwork(Screen):
-    def __init__(self, session):
-        Screen.__init__(self, session)
-        skin = """
-            <screen name="RestartNetwork" position="center,center" size="600,100" title="Restart Network Adapter">
-            <widget name="label" position="10,30" size="500,50" halign="center" font="Regular;20" transparent="1" foregroundColor="white" />
-            </screen> """
-        self.skin = skin
-        self["label"] = Label(_("Please wait while your network is restarting..."))
-        self.onShown.append(self.setWindowTitle)
-        self.onLayoutFinish.append(self.restartLan)
-
-    def setWindowTitle(self):
-        self.setTitle(_("Restart Network Adapter"))
-
-    def restartLan(self):
-        iNetwork.restartNetwork(self.restartLanDataAvail)
-  
-    def restartLanDataAvail(self, data):
-        if data is True:
-            iNetwork.getInterfaces(self.getInterfacesDataAvail)
-
-    def getInterfacesDataAvail(self, data):
-        self.close()
-        
-        
+    
 ######## TUNER TOOLS #######################
 	def PositionerMain(self):
 		nimList = nimmanager.getNimListOfType("DVB-S")
@@ -665,7 +635,7 @@ class RestartNetwork(Screen):
 				else:
 					self.session.open(SatNimSelection)
 
-		
+		    
 ######## SOFTWARE MANAGER TOOLS #######################
 	def backupfiles_choosen(self, ret):
 		config.plugins.configurationbackup.backupdirs.save()
@@ -684,6 +654,36 @@ class RestartNetwork(Screen):
 			self.session.open(RestoreScreen, runRestore = True)
 
 
+from Components.Network import iNetwork
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Components.Label import Label
+
+class RestartNetwork(Screen):
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        skin = """
+            <screen name="RestartNetwork" position="center,center" size="600,100" title="Restart Network Adapter">
+            <widget name="label" position="10,30" size="500,50" halign="center" font="Regular;20" transparent="1" foregroundColor="white" />
+            </screen> """
+        self.skin = skin
+        self["label"] = Label(_("Please wait while your network is restarting..."))
+        self.onShown.append(self.setWindowTitle)
+        self.onLayoutFinish.append(self.restartLan)
+
+    def setWindowTitle(self):
+        self.setTitle(_("Restart Network Adapter"))
+
+    def restartLan(self):
+        iNetwork.restartNetwork(self.restartLanDataAvail)
+  
+    def restartLanDataAvail(self, data):
+        if data is True:
+            iNetwork.getInterfaces(self.getInterfacesDataAvail)
+
+    def getInterfacesDataAvail(self, data):
+        self.close()
+        
 ######## Create MENULIST format #######################
 def GeneralSetupEntryComponent(name, description, long_description = None, endtext=">", width=540):
 	return [
