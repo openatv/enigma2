@@ -241,7 +241,7 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 			<item level="1" text="Service" entryID="mainmenu_tasks_info_service"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
 		</menu>
 		<menu weight="20" level="0" entryID="mainmenu_tasks_power" text="Standby / Restart" endtext="&gt;&lt;">
-			<id val="id_mainmenu_tasks_power" default=">"/>
+			<id val="shutdown" default=">"/>
 			<item level="0" text="Sleep Timer" entryID="mainmenu_tasks_power_sleeptimer" endtext="•••>"><screen module="PowerTimerEdit" screen="PowerTimerEditList" /></item>
 			<item level="0" text="Standby" entryID="mainmenu_tasks_power_standby"><screen module="Standby" screen="Standby"/></item>
 			<item level="0" text="Shutdown" entryID="mainmenu_tasks_power_shutdown"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
