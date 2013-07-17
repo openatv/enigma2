@@ -17,14 +17,12 @@ class WOL:
 
 def Init():
 	if SystemInfo["WOL"]:
-		def setWOLmode(configElement):
-			iwol.setWolState(configElement.value);
+		def setWOLmode(value):
+			iwol.setWolState(config.network.wol.value);
 		iwol = WOL()
 		config.network.wol = ConfigSelection([("disable", _("No")), ("enable", _("Yes"))], default = "disable")
-		config.network.wol.addNotifier(setWOLmode, immediate_feedback=True);
-		config.network.wol.apply = lambda : setWOLmode(config.network.wol)
+		config.misc.DeepStandby.addNotifier(setWOLmode, initial_call=False)
 	else:
 		def doNothing():
 			pass
 		config.network.wol = ConfigNothing()
-		config.network.wol.apply = lambda : doNothing()
