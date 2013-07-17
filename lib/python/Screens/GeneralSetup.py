@@ -463,9 +463,13 @@ class GeneralSetup(Screen):
 		elif item[0] == _("Channel selection"):
 			self.openSetup("channelselection")
 		elif item[0] == _("Recording settings"):
-			self.openSetup("recording")
+			from Screens.Recordings import RecordingSettings
+			self.session.open(RecordingSettings)
+			#self.openSetup("recording")
 		elif item[0] == _("Timeshift settings"):
-			self.openSetup("timeshift")
+			from Screens.Timeshift import TimeshiftSettings
+			self.session.open(TimeshiftSettings)
+			#self.openSetup("timeshift")
 		elif item[0] == _("Subtitles settings"):
 			self.openSetup("subtitlesetup")
 		elif item[0] == _("EPG settings"):
