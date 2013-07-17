@@ -359,7 +359,7 @@ const char *getMachineBrand()
 		}
 		else if((strcmp(boxtype_name, "ini-1000de\n") == 0))
 		{
-			return "GM";
+			return "GI";
 		}		
 		else if((strcmp(boxtype_name, "xp1000s\n") == 0))
 		{
