@@ -227,7 +227,8 @@ class GeneralSetup(Screen):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("AV Setup",_("Setup Videomode"),_("Setup your Video Mode, Video Output and other Video Settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("GUI Setup",_("Setup GUI"),_("Customize UI personal settings")))
-		self.sublist.append(QuickSubMenuEntryComponent("OSD settings",_("Settings..."),_("Setup your OSD")))
+		self.sublist.append(QuickSubMenuEntryComponent("OSD Settings",_("Settings..."),_("Setup your OSD")))
+		self.sublist.append(QuickSubMenuEntryComponent("Buttons Settings",_("Buttons..."),_("Setup your Buttons")))
 		self.sublist.append(QuickSubMenuEntryComponent("Language Settings",_("Setup Your language"),_("Setup menu language")))
 		self.sublist.append(QuickSubMenuEntryComponent("Time Settings",_("Time Settings"),_("Setup date and time")))
 		if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
@@ -441,8 +442,10 @@ class GeneralSetup(Screen):
 			self.openSetup("display")
 		elif item[0] == _("LCD Skin Setup"):
 			self.session.open(LcdSkinSelector)
-		elif item[0] == _("OSD settings"):
+		elif item[0] == _("OSD Settings"):
 			self.openSetup("userinterface")
+		elif item[0] == _("Buttons Settings"):
+			self.openSetup("remotesetup")
 		elif item[0] == _("HDMI-CEC"):
 			from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
 			self.session.open(HdmiCECSetupScreen)  
