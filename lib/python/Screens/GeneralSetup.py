@@ -541,7 +541,7 @@ class GeneralSetup(Screen):
 		elif item[0] == _("Restore Settings"):
 			self.backuppath = getBackupPath()
 			if not path.isdir(self.backuppath):
-				self.backuppath = getOldBackupPath()
+				self.backuppath = getBackupPath()
 			self.backupfile = getBackupFilename()
 			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 			if os_path.exists(self.fullbackupfilename):
