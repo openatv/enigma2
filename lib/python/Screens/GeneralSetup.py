@@ -467,7 +467,7 @@ class GeneralSetup(Screen):
 			self.session.open(RecordingSettings)
 			#self.openSetup("recording")
 		elif item[0] == _("Timeshift settings"):
-			from Screens.Timeshift import TimeshiftSettings
+			from Screens.Timershift import TimeshiftSettings
 			self.session.open(TimeshiftSettings)
 			#self.openSetup("timeshift")
 		elif item[0] == _("Subtitles settings"):
