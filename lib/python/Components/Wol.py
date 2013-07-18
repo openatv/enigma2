@@ -1,7 +1,6 @@
 from config import config, ConfigSubsection, ConfigSelection, ConfigNothing
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
-from os import system
 
 class WOL:
 	def __init__(self):
@@ -13,7 +12,6 @@ class WOL:
 		f.write(value)
 		f.close()
 		enable = value == 'enable' and True or False
-		system("ethtool -s eth0 wol %s" % (enable and "g" or "d"))
 
 def Init():
 	if SystemInfo["WOL"]:
