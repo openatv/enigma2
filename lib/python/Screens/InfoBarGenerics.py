@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Screens.ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector, EpgBouquetSelector
 
+from Components.About import about
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
 from Components.Harddisk import harddiskmanager, findMountPoint
@@ -3448,29 +3449,29 @@ class InfoBarPiP:
 			slist.togglePipzap()
 
 	def showPiP(self):
-		service = self.session.nav.getCurrentService()
-		info = service and service.info()
-		xres = str(info.getInfo(iServiceInformation.sVideoWidth))
-		
-		if self.session.pipshown:
-			slist = self.servicelist
-			if slist and slist.dopipzap:
-				slist.togglePipzap()
-			del self.session.pip
-			self.session.pipshown = False
-		else:
-			if int(xres) <= 720:
-				self.session.pip = self.session.instantiateDialog(PictureInPicture)
-				self.session.pip.show()
-				newservice = self.servicelist.servicelist.getCurrent()
-				if self.session.pip.playService(newservice):
-					self.session.pipshown = True
-					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-				else:
-					self.session.pipshown = False
-					del self.session.pip
+		try:
+			service = self.session.nav.getCurrentService()
+			if self.session.pipshown:
+				slist = self.servicelist
+				if slist and slist.dopipzap:
+					slist.togglePipzap()
+				del self.session.pip
+				self.session.pipshown = False
 			else:
-				self.session.open(MessageBox, _("Your STB_BOX does not support PiP HD"), type = MessageBox.TYPE_INFO,timeout = 5 )
+				if about.getCPUString() == 'BCM7346B2' or about.getCPUString() == 'BCM7425B2':
+					self.session.pip = self.session.instantiateDialog(PictureInPicture)
+					self.session.pip.show()
+					newservice = self.servicelist.servicelist.getCurrent()
+					if self.session.pip.playService(newservice):
+						self.session.pipshown = True
+						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+					else:
+						self.session.pipshown = False
+						del self.session.pip
+				else:
+					self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
+		except:
+			pass
 
 	def swapPiP(self):
 		swapservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
