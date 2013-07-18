@@ -86,7 +86,16 @@ config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 config.skin.x = ConfigText(default='1280')
 config.skin.y = ConfigText(default='720')
 
-DEFAULT_DISPLAY_SKIN = "skin_display.xml"
+if (os.path.isfile("/proc/stb/info/boxtype")): 
+	f = open("/proc/stb/info/boxtype", "r")
+	model = f.read().strip()
+	f.close()
+	
+if model == 'ini-1000de':
+	DEFAULT_DISPLAY_SKIN = "skin_led.xml"
+else:
+	DEFAULT_DISPLAY_SKIN = "skin_display.xml"
+
 config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
 
 profile("LoadSkin")
