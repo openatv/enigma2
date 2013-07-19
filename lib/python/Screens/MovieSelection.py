@@ -416,6 +416,9 @@ class MovieSelectionSummary(Screen):
 			self["name"].text = ""
 
 class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
+	# SUSPEND_PAUSES actually means "please call my pauseService()"
+	ALLOW_SUSPEND = Screen.SUSPEND_PAUSES
+
 	def __init__(self, session, selectedmovie = None, timeshiftEnabled = False):
 		Screen.__init__(self, session)
 		if config.movielist.useslim.getValue():
@@ -770,6 +773,16 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self["Service"].newService(None)
 			self["DescriptionBorder"].hide()
 			self["list"].instance.resize(eSize(self.listWidth, self.listHeight))
+
+	def pauseService(self):
+		# Called when pressing Power button (go to standby)
+		self.playbackStop()
+		self.session.nav.stopService()
+
+	def unPauseService(self):
+		# When returning from standby. It might have been a while, so
+		# reload the list.
+		self.reloadList()
 
 	def can_delete(self, item):
 		if not item:

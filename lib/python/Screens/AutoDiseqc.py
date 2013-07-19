@@ -171,6 +171,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 			InitNimManager(nimmanager)
 
 			self.tuner = Tuner(self.frontend)
+			self.raw_channel.requestTsidOnid()
 			self.tuner.tune(self.sat_frequencies[self.index])
 
 			self["statusbar"].setText(_("Checking tuner %d\nDiSEqC port %s for %s") % (self.feid, self.diseqc_ports[self.port_index], self.sat_frequencies[self.index][self.SAT_TABLE_NAME]))
@@ -223,7 +224,6 @@ class AutoDiseqc(Screen, ConfigListScreen):
 			self["tunerstatusbar"].setText(_("Tuner status:") + " " + _("TUNING"))
 		elif dict["tuner_state"] == "LOCKED":
 			self["tunerstatusbar"].setText(_("Tuner status:") + " " + _("ACQUIRING TSID/ONID"))
-			self.raw_channel.requestTsidOnid()
 
 		elif dict["tuner_state"] == "LOSTLOCK" or dict["tuner_state"] == "FAILED":
 			self["tunerstatusbar"].setText(_("Tuner status:") + " " + _("FAILED"))
