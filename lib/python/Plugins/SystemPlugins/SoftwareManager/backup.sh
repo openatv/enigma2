@@ -6,7 +6,7 @@
 ###############################################################################
 #
 #!/bin/sh
-VERSION="Version 9.2 MOD"
+VERSION="Version 1.0 openATV"
 START=$(date +%s)
 
 ##DECLARATION OF VARIABLES
@@ -62,7 +62,7 @@ elif [ $MODEL = "odinm7" ] ; then
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
 	SHOWNAME="ODIN $MODEL"
-	MTDKERNEL="mtd2"
+	MTDKERNEL="mtd3"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/en2
 	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
