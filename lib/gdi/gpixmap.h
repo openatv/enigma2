@@ -132,17 +132,21 @@ struct gLookup
 	void build(int size, const gPalette &pal, const gRGB &start, const gRGB &end);
 };
 
-struct gSurface
+struct gUnmanagedSurface
 {
-	int type;
 	int x, y, bpp, bypp, stride;
 	gPalette clut;
-	
 	void *data;
 	int data_phys;
-	int offset; // only for backbuffers
+	int offset; // only for backbuffers (TODO: get rid of it then!)
+	
+	gUnmanagedSurface();
+	gUnmanagedSurface(eSize size, int bpp);
+};
 
-	gSurface();
+struct gSurface: gUnmanagedSurface
+{
+	gSurface(): gUnmanagedSurface() {}
 	gSurface(eSize size, int bpp, int accel);
 	~gSurface();
 };
@@ -163,10 +167,10 @@ public:
 		blitScale=4
 	};
 
-	gPixmap(gSurface *surface);
+	gPixmap(gUnmanagedSurface *surface);
 	gPixmap(eSize, int bpp, int accel = 0);
 
-	gSurface *surface;
+	gUnmanagedSurface *surface;
 	
 	eLock contentlock;
 	int final;

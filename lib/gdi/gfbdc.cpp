@@ -106,7 +106,7 @@ void gFBDC::exec(const gOpcode *o)
 	{
 		if (m_enable_double_buffering)
 		{
-			gSurface s(surface);
+			gUnmanagedSurface s(surface);
 			surface = surface_back;
 			surface_back = s;
 
@@ -178,7 +178,6 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 
 	fb->SetMode(m_xres, m_yres, m_bpp);
 
-	surface.type = 0;
 	surface.x = m_xres;
 	surface.y = m_yres;
 	surface.bpp = m_bpp;
@@ -194,7 +193,6 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 	if (fb->getNumPages() > 1)
 	{
 		m_enable_double_buffering = 1;
-		surface_back.type = 0;
 		surface_back.x = m_xres;
 		surface_back.y = m_yres;
 		surface_back.bpp = m_bpp;
@@ -203,7 +201,6 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 		surface_back.offset = surface.y;
 		surface_back.data = fb->lfb + fb_size;
 		surface_back.data_phys = surface.data_phys + fb_size;
-
 		fb_size *= 2;
 	} else
 		m_enable_double_buffering = 0;
