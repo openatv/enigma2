@@ -67,11 +67,6 @@ gAccel::~gAccel()
 	instance = 0;
 }
 
-gAccel *gAccel::getInstance()
-{
-	return instance;
-}
- 
 void gAccel::setAccelMemorySpace(void *addr, int phys_addr, int size)
 {
 	if (m_accel_allocation)

@@ -8,7 +8,7 @@ class ePoint;
 class gAccel
 {
 public:
-	static gAccel* getInstance();
+	static gAccel* getInstance() { return instance; }
 	gAccel();
 	~gAccel(); 
 	
