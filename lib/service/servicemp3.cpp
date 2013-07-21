@@ -1837,63 +1837,59 @@ GstBusSyncReply eServiceMP3::gstBusSyncHandler(GstBus *bus, GstMessage *message,
 
 void eServiceMP3::playbinNotifySource(GObject *object, GParamSpec *unused, gpointer user_data)
 {
-	char header[2000];
-	char name[2000];
-	char value[2000];
-	gchar *p_start;
-	gchar *p_end;
-	gchar *p_start_h;
-	gchar *p_end_h;
-	gchar *extra_headers;
-	int len_headers = 0;
-	GValue headerValue;
 	GstElement *source = NULL;
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
 	g_object_get(object, "source", &source, NULL);
 	if (source)
 	{
-		if (g_object_class_find_property(G_OBJECT_GET_CLASS(source), "user-agent") != 0 && _this->m_useragent != "")
+		if (g_object_class_find_property(G_OBJECT_GET_CLASS(source), "user-agent") != 0 && !_this->m_useragent.empty())
+		{
 			g_object_set(G_OBJECT(source), "user-agent", _this->m_useragent.c_str(), NULL);
-		if (g_object_class_find_property(G_OBJECT_GET_CLASS(source), "extra-headers") != 0 && _this->m_extra_headers != "")
+		}
+		if (g_object_class_find_property(G_OBJECT_GET_CLASS(source), "extra-headers") != 0 && !_this->m_extra_headers.empty())
 		{
 			GstStructure *extras = gst_structure_empty_new("extras");
-			extra_headers = g_strdup(_this->m_extra_headers.c_str());
-			len_headers = strlen(extra_headers);
-			for (p_start_h = extra_headers; *p_start_h != '\0'; p_start_h++)
+			size_t pos = 0;
+			while (pos != std::string::npos)
 			{
-				p_end_h = strchr(p_start_h, '|');
-				if (p_end_h != NULL)
+				std::string name, value;
+				size_t start = pos;
+				size_t len = std::string::npos;
+				pos = _this->m_extra_headers.find(':', pos);
+				if (pos != std::string::npos)
 				{
-					*p_end_h='\0';
-					strcpy(header, p_start_h);
+					len = pos - start;
+					pos++;
+					name = _this->m_extra_headers.substr(start, len);
+					start = pos;
+					len = std::string::npos;
+					pos = _this->m_extra_headers.find('|', pos);
+					if (pos != std::string::npos)
+					{
+						len = pos - start;
+						pos++;
+					}
+					value = _this->m_extra_headers.substr(start, len);
+				}
+				if (!name.empty() && !value.empty())
+				{
+					GValue header;
+					eDebug("setting extra-header '%s:%s'", name.c_str(), value.c_str());
+					g_value_init(&header, G_TYPE_STRING);
+					g_value_set_string(&header, value.c_str());
+					gst_structure_set_value(extras, name.c_str(), &header);
 				}
 				else
 				{
-					strcpy(header,p_start_h);
-					p_end_h = &extra_headers[len_headers-1];
-					extra_headers[len_headers]='\0';
+					eDebug("Invalid header format %s", _this->m_extra_headers.c_str());
+					break;
 				}
-				p_start=header;
-				p_end=strchr(header,':');
-				if (p_end != NULL)
-				{
-					*p_end = '\0';
-					strcpy(name,header);
-					p_end++;
-					strcpy(value,p_end);
-					g_print("setting extra-header '%s:%s'\n",name,value);
-					memset(&headerValue, 0, sizeof(GValue));
-					g_value_init(&headerValue, G_TYPE_STRING);
-					g_value_set_string(&headerValue,value);
-					gst_structure_set_value(extras, header, &headerValue);
-				}
-				else g_print("Invalid header format %s",header);
-				p_start_h = p_end_h;
 			}
 			if (gst_structure_n_fields(extras) > 0)
+			{
 				g_object_set(G_OBJECT(source), "extra-headers", extras, NULL);
+			}
 			gst_structure_free(extras);
-			g_free(extra_headers);
 		}
 		gst_object_unref(source);
 	}
