@@ -113,6 +113,7 @@ class PositionerSetup(Screen):
 			self.advanced = True
 			self.advancedconfig = config.Nims[self.feid].advanced
 			self.advancedsats = self.advancedconfig.sat
+			self.availablesats = map(lambda x: x[0], nimmanager.getRotorSatListForNim(self.feid))
 		else:
 			self.advanced = False
 
@@ -282,6 +283,22 @@ class PositionerSetup(Screen):
 		self.sitelat = PositionerSetup.orbital2metric(self.sitelat, self.latitudeOrientation)
 		self.sitelon = PositionerSetup.orbital2metric(self.sitelon, self.longitudeOrientation)
 
+	def getLNBfromConfig(self, orb_pos):
+		lnb = None
+		if orb_pos in self.availablesats:
+			lnbnum = int(self.advancedsats[orb_pos].lnb.value)
+			if not lnbnum:
+				for allsats in range(3601, 3604):
+					lnbnum = int(self.advancedsats[allsats].lnb.value)
+					if lnbnum:
+						break
+			if lnbnum:
+				self.printMsg(_("Using LNB %d") % lnbnum)
+				lnb = self.advancedconfig.lnb[lnbnum]
+		if not lnb:
+			self.logMsg(_("Warning: no LNB; using factory defaults."), timeout = 4)
+		return lnb
+
 	def createConfig(self):
 		rotorposition = 1
 		orb_pos = 0
@@ -304,21 +321,9 @@ class PositionerSetup(Screen):
 			self.frontend.getFrontendData(fe_data)
 			self.frontend.getTransponderData(fe_data, True)
 			orb_pos = fe_data.get("orbital_position", None)
-			lnb = None
-			if orb_pos in self.advancedsats:
+			if orb_pos in self.availablesats:
 				rotorposition = int(self.advancedsats[orb_pos].rotorposition.value)
-				lnbnum = int(self.advancedsats[orb_pos].lnb.value)
-				if not lnbnum:
-					for allsats in range(3601, 3604):
-						lnbnum = int(self.advancedsats[allsats].lnb.value)
-						if lnbnum:
-							break
-				if lnbnum:
-					self.printMsg(_("Using LNB %d") % lnbnum)
-					lnb = self.advancedconfig.lnb[lnbnum]
-			if not lnb:
-				self.logMsg(_("Warning: no LNB; using factory defaults."))
-			self.setLNB(lnb)
+			self.setLNB(self.getLNBfromConfig(orb_pos))
 		self.positioner_tune = ConfigNothing()
 		self.positioner_move = ConfigNothing()
 		self.positioner_finemove = ConfigNothing()
@@ -542,8 +547,8 @@ class PositionerSetup(Screen):
 			if self.advanced:
 				self.printMsg(_("Allocate unused memory index"))
 				indices = []
-				for sat in nimmanager.getRotorSatListForNim(self.feid):
-					indices.append(int(self.advancedsats[sat[0]].rotorposition.value))
+				for sat in self.availablesats:
+					indices.append(int(self.advancedsats[sat].rotorposition.value))
 				index = 1
 				for i in sorted(indices):
 					if i != index:
@@ -591,14 +596,10 @@ class PositionerSetup(Screen):
 		self.orbitalposition.value = [int(m[0] / 10), m[0] % 10]
 		self.orientation.value = m[1]
 		if self.advanced:
-			if orb_pos in self.advancedsats:
+			if orb_pos in self.availablesats:
 				rotorposition = int(self.advancedsats[orb_pos].rotorposition.value)
 				self.positioner_storage.value = rotorposition
-				lnbnum = int(self.advancedsats[orb_pos].lnb.value)
-				lnb = self.advancedconfig.lnb[lnbnum]
-			else:
-				lnb = None
-			self.setLNB(lnb)
+			self.setLNB(self.getLNBfromConfig(orb_pos))
 
 	def isLocked(self):
 		return self.frontendStatus.get("tuner_locked", 0) == 1
@@ -662,10 +663,30 @@ class PositionerSetup(Screen):
 		self.polarisation = tp[2]
 		self.MAX_LOW_RATE_ADAPTER_COUNT = setLowRateAdapterCount(self.symbolrate)
 		transponderdata = ConvertToHumanReadable(self.tuner.getTransponderData(), "DVB-S")
-		self["frequency_value"].setText(str(transponderdata.get("frequency") / 1000))
-		self["symbolrate_value"].setText(str(self.symbolrate))
-		self["fec_value"].setText(str(transponderdata.get("fec_inner")))
-		self["polarisation"].setText(str(transponderdata.get("polarization")))
+		frequency = transponderdata.get("frequency")
+		if frequency:
+			frequency_text = str(frequency / 1000)
+		else:
+			frequency_text = ""
+		self["frequency_value"].setText(frequency_text)
+		symbolrate = transponderdata.get("symbol_rate")
+		if symbolrate:
+			symbolrate_text = str(symbolrate / 1000)
+		else:
+			symbolrate_text = ""
+		self["symbolrate_value"].setText(symbolrate_text)
+		fec_inner = transponderdata.get("fec_inner")
+		if fec_inner:
+			fec_text = str(fec_inner)
+		else:
+			fec_text = ""
+		self["fec_value"].setText(fec_text)
+		polarisation = transponderdata.get("polarization")
+		if polarisation:
+			polarisation_text = str(polarisation)
+		else:
+			polarisation_text = ""
+		self["polarisation"].setText(polarisation_text)
 	
 	@staticmethod
 	def rotorCmd2Step(rotorCmd, stepsize):
@@ -1301,7 +1322,8 @@ class RotorNimSelection(Screen):
 		nimlist = nimmanager.getNimListOfType("DVB-S")
 		nimMenuList = []
 		for x in nimlist:
-			nimMenuList.append((nimmanager.nim_slots[x].friendly_full_description, x))
+			if len(nimmanager.getRotorSatListForNim(x)) != 0:
+				nimMenuList.append((nimmanager.nim_slots[x].friendly_full_description, x))
 
 		self["nimlist"] = MenuList(nimMenuList)
 

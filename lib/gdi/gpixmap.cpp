@@ -33,50 +33,46 @@ void gLookup::build(int _size, const gPalette &pal, const gRGB &start, const gRG
 		return;
 	lookup=new gColor[size];
 	
-	for (int i=0; i<size; i++)
+	lookup[0] = pal.findColor(start);
+	
+	const int rsize = end.r - start.r;
+	const int gsize = end.g - start.g;
+	const int bsize = end.b - start.b;
+	const int asize = end.a - start.a;
+	const int size_1 = size - 1;
+
+	for (int i=1; i<size; i++)
 	{
 		gRGB col;
-		if (i)
-		{
-			int rdiff=-start.r+end.r;
-			int gdiff=-start.g+end.g;
-			int bdiff=-start.b+end.b;
-			int adiff=-start.a+end.a;
-			rdiff*=i; rdiff/=(size-1);
-			gdiff*=i; gdiff/=(size-1);
-			bdiff*=i; bdiff/=(size-1);
-			adiff*=i; adiff/=(size-1);
-			col.r=start.r+rdiff;
-			col.g=start.g+gdiff;
-			col.b=start.b+bdiff;
-			col.a=start.a+adiff;
-		} else
-			col=start;
-		lookup[i]=pal.findColor(col);
+		int rdiff = (rsize * i) / size_1;
+		int gdiff = (gsize * i) / size_1;
+		int bdiff = (bsize * i) / size_1;
+		int adiff = (asize * i) / size_1;
+		col.r = start.r + rdiff;
+		col.g = start.g + gdiff;
+		col.b = start.b + bdiff;
+		col.a = start.a + adiff;
+		lookup[i] = pal.findColor(col);
 	}
 }
 
-gSurface::gSurface()
+gUnmanagedSurface::gUnmanagedSurface():
+	x(0), y(0), bpp(0), bypp(0), stride(0),
+	data(0),
+	data_phys(0),
+	offset(0)
 {
-	x = 0;
-	y = 0;
-	bpp = 0;
-	bypp = 0;
-	stride = 0;
-	data = 0;
-	data_phys = 0;
-	clut.colors = 0;
-	clut.data = 0;
-	type = 0;
 }
 
-gSurface::gSurface(eSize size, int _bpp, int accel)
+gUnmanagedSurface::gUnmanagedSurface(eSize size, int _bpp):
+	x(size.width()),
+	y(size.height()),
+	bpp(_bpp),
+	data(0),
+	data_phys(0),
+	offset(0)
 {
-	x = size.width();
-	y = size.height();
-	bpp = _bpp;
-
-	switch (bpp)
+	switch (_bpp)
 	{
 	case 8:
 		bypp = 1;
@@ -92,12 +88,15 @@ gSurface::gSurface(eSize size, int _bpp, int accel)
 	default:
 		bypp = (bpp+7)/8;
 	}
-
 	stride = x*bypp;
-	
-	data = 0;
-	data_phys = 0;
-	
+
+	clut.colors = 0;
+	clut.data = 0;
+}
+
+gSurface::gSurface(eSize size, int _bpp, int accel):
+	gUnmanagedSurface(size, _bpp)
+{
 	if (accel)
 	{
 		if (gAccel::getInstance())
@@ -111,27 +110,18 @@ gSurface::gSurface(eSize size, int _bpp, int accel)
 		else
 			eDebug("no accel available");
 	}
-	
-	clut.colors = 0;
-	clut.data = 0;
-
 	if (!data)
 		data = new unsigned char [y * stride];
-	
-	type = 1;
 }
 
 gSurface::~gSurface()
 {
-	if (type)
-	{
-		if (data_phys)
-			gAccel::getInstance()->accelFree(data_phys);
-		else
-			delete [] (unsigned char*)data;
-
+	if (data_phys)
+		gAccel::getInstance()->accelFree(data_phys);
+	else if (data)
+		delete [] (unsigned char*)data;
+	if (clut.data)
 		delete [] clut.data;
-	}
 }
 
 gPixmap *gPixmap::lock()
@@ -846,10 +836,10 @@ DEFINE_REF(gPixmap);
 gPixmap::~gPixmap()
 {
 	if (must_delete_surface)
-		delete surface;
+		delete (gSurface*)surface;
 }
 
-gPixmap::gPixmap(gSurface *surface)
+gPixmap::gPixmap(gUnmanagedSurface *surface)
 	:surface(surface), must_delete_surface(false)
 {
 }
