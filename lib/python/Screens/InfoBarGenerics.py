@@ -751,7 +751,7 @@ class InfoBarNumberZap:
 				if config.usage.panicbutton.getValue():
 					self.servicelist.history_tv = []
 					self.servicelist.history_radio = []
-					self.servicelist.history = self.history_tv
+					self.servicelist.history = self.servicelist.history_tv
 					self.servicelist.history_pos = 0
 					if config.usage.multibouquet.getValue():
 						bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
