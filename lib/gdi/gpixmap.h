@@ -149,6 +149,9 @@ struct gSurface: gUnmanagedSurface
 	gSurface(): gUnmanagedSurface() {}
 	gSurface(eSize size, int bpp, int accel);
 	~gSurface();
+private:
+	gSurface(const gSurface&); /* Copying managed gSurface is not allowed */
+	gSurface& operator =(const gSurface&);
 };
 #endif
 
