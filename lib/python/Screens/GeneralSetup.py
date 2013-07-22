@@ -303,6 +303,8 @@ class GeneralSetup(Screen):
 			self.sublist.append(QuickSubMenuEntryComponent("VideoEnhancement",_("VideoEnhancement Setup"),_("VideoEnhancement Setup")))
 		if AUTORES == True:
 			self.sublist.append(QuickSubMenuEntryComponent("AutoResolution",_("AutoResolution Setup"),_("Automatically change resolution")))
+		self.sublist.append(QuickSubMenuEntryComponent("OSD Position",_("Adjust OSD Size"),_("Adjust OSD Size")))
+		self.sublist.append(QuickSubMenuEntryComponent("OSD 3D Setup",_("3D Setup side by side"),_("3D Setup side by side")))
 
 		self["sublist"].l.setList(self.sublist)
 
@@ -524,6 +526,12 @@ class GeneralSetup(Screen):
 			self.session.open(VideoEnhancementSetup)
 		elif item[0] == _("AutoResolution"):
 			self.session.open(AutoResSetupMenu)
+		elif item[0] == _("OSD Position"):
+			from Screens.UserInterfacePositioner import UserInterfacePositioner
+			self.session.open(UserInterfacePositioner)
+		elif item[0] == _("OSD 3D Setup"):
+			from Screens.UserInterfacePositioner import OSD3DSetupScreen
+			self.session.open(OSD3DSetupScreen)
 ######## Select TUNER Setup Menu ##############################
 		elif item[0] == _("Tuner Configuration"):
 			self.session.open(NimSelection)
