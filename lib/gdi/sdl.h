@@ -12,7 +12,7 @@ private:
 	SDL_Surface *m_screen;
 	void exec(const gOpcode *opcode);
 
-	gSurface m_surface;
+	gUnmanagedSurface m_surface;
 
 	eFixedMessagePump<SDL_Event> m_pump;
 	void keyEvent(const SDL_Event &event);

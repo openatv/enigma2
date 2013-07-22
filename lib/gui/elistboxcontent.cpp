@@ -380,6 +380,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 		ePyObject item = PyList_GET_ITEM(m_list, m_cursor); // borrowed reference!
 		ePyObject text, value;
 		painter.setFont(fnt);
+		int valueWidth(0);
 
 		if (selected && local_style && local_style->m_selection)
 			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHATEST);
@@ -395,14 +396,14 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 				/* handle left part. get item from tuple, convert to string, display. */
 			text = PyTuple_GET_ITEM(item, 0);
 			text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
-			const char *string = (text && PyString_Check(text)) ? PyString_AsString(text) : "<not-a-string>";
-			painter.renderText(eRect(offset, m_itemsize), string,
-			 gPainter::RT_HALIGN_LEFT, border_color, border_size);
+			const char *configitemstring = (text && PyString_Check(text)) ? PyString_AsString(text) : "<not-a-string>";
 			Py_XDECREF(text);
+			eSize itemsize = eSize(m_itemsize.width()-10, m_itemsize.height());
+			ePoint textoffset = ePoint(offset.x()+5, offset.y());
 
 				/* when we have no label, align value to the left. (FIXME:
 				   don't we want to specifiy this individually?) */
-			int value_alignment_left = !*string;
+			int value_alignment_left = !*configitemstring;
 
 				/* now, handle the value. get 2nd part from tuple*/
 			if (PyTuple_Size(item) >= 2) // when no 2nd entry is in tuple this is a non selectable entry without config part
@@ -436,9 +437,16 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 					{
 						ePyObject pvalue = PyTuple_GET_ITEM(value, 1);
 						const char *value = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
+						eRect tmp = eRect(textoffset, itemsize);
+						eTextPara *para = new eTextPara(tmp);
+						para->setFont(fnt2);
+						para->renderString(value);
+						valueWidth = para->getBoundBox().width();
+
 						painter.setFont(fnt2);
-						painter.renderText(eRect(offset, m_itemsize), value, value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT,
-						 border_color, border_size);
+						painter.renderText(eRect(textoffset, itemsize), value, (value_alignment_left ?
+							gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT) |
+							gPainter::RT_VALIGN_CENTER, border_color, border_size);
 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "slider"))
@@ -451,23 +459,22 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						int size = (pvalue && PyInt_Check(psize)) ? PyInt_AsLong(psize) : 100;
 
 							/* calc. slider length */
-						int width = (m_itemsize.width() - m_seperation) * value / size;
-						int height = m_itemsize.height();
-
+						valueWidth = (itemsize.width() - m_seperation) * value / size;
+						int height = itemsize.height();
 
 							/* draw slider */
 						//painter.fill(eRect(offset.x() + m_seperation, offset.y(), width, height));
 						//hack - make it customizable
-						painter.fill(eRect(offset.x() + m_seperation, offset.y() + 5, width, height-10));
+						painter.fill(eRect(textoffset.x() + m_seperation, offset.y() + 5, valueWidth, height-10));
 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "mtext"))
 					{
 						ePyObject pvalue = PyTuple_GET_ITEM(value, 1);
 						const char *text = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
-						ePtr<eTextPara> para = new eTextPara(eRect(offset, m_itemsize));
+						ePtr<eTextPara> para = new eTextPara(eRect(textoffset, itemsize));
 						para->setFont(fnt2);
-						para->renderString(text, 0);
+						para->renderString(text, gPainter::RT_VALIGN_CENTER);
 						para->realign(value_alignment_left ? eTextPara::dirLeft : eTextPara::dirRight);
 						int glyphs = para->size();
 
@@ -493,7 +500,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 							else
 							{
 								if (last+1 != num && last != -1) {
-									bbox = eRect(left, offset.y(), right-left, m_itemsize.height());
+									bbox = eRect(left, textoffset.y(), right-left,
+										itemsize.height());
 									painter.fill(bbox);
 								}
 								para->setGlyphFlag(num, GS_INVERT);
@@ -503,22 +511,28 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 								right = bbox.left() + bbox.width();
 								last = num;
 							}
-								/* entry is borrowed */
+							/* entry is borrowed */
 						}
 						if (last != -1) {
-							bbox = eRect(left, offset.y(), right-left, m_itemsize.height());
+							bbox = eRect(left, textoffset.y(), right-left, itemsize.height());
 							painter.fill(bbox);
 						}
 						painter.renderPara(para, ePoint(0, 0));
-							/* pvalue is borrowed */
-							/* plist is 0 or borrowed */
+						/* pvalue is borrowed */
+						/* plist is 0 or borrowed */
 					}
 				}
-					/* type is borrowed */
+				/* type is borrowed */
 			} else if (value)
 				eWarning("eListboxPythonConfigContent: second value of tuple is not a tuple.");
 			if (value)
 				Py_DECREF(value);
+
+			valueWidth = valueWidth + 10;
+			if (valueWidth > itemsize.width()) { valueWidth = itemsize.width(); }
+			painter.setFont(fnt);
+			painter.renderText(eRect(textoffset, eSize (itemsize.width()-valueWidth,itemsize.height())),
+				configitemstring, gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER, border_color, border_size);
 		}
 
 		if (selected && (!local_style || !local_style->m_selection))
