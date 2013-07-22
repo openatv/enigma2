@@ -335,6 +335,7 @@ data/rc_models/ini0/Makefile
 data/rc_models/ini1/Makefile
 data/rc_models/ini2/Makefile
 data/rc_models/ini3/Makefile
+data/rc_models/ini4/Makefile
 data/rc_models/iqon/Makefile
 data/rc_models/ixussone/Makefile
 data/rc_models/ixusszero/Makefile
