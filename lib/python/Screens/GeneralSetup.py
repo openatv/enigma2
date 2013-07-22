@@ -68,6 +68,12 @@ if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
 else:
 	DFLASH = False
 
+if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Blindscan/plugin.pyo"):
+	from Plugins.SystemPlugins.Blindscan.plugin import Blindscan
+	BLINDSCAN = True
+else:
+	BLINDSCAN = False
+	
 def isFileSystemSupported(filesystem):
 	try:
 		for fs in open('/proc/filesystems', 'r'):
@@ -307,6 +313,8 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Positioner Setup",_("Setup rotor"),_("Setup your positioner for your satellite system")))
 		self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan",_("Service Searching"),_("Automatic scan for services")))
 		self.sublist.append(QuickSubMenuEntryComponent("Manual Scan",_("Service Searching"),_("Manual scan for services")))
+		if BLINDSCAN == True:
+			self.sublist.append(QuickSubMenuEntryComponent("Blind Scan",_("Blind Searching"),_("Blind scan for services")))  
 		self.sublist.append(QuickSubMenuEntryComponent("Sat Finder",_("Search Sats"),_("Search Sats, check signal and lock")))
 		self["sublist"].l.setList(self.sublist)
 
@@ -525,6 +533,8 @@ class GeneralSetup(Screen):
 			self.session.open(ScanSimple)
 		elif item[0] == _("Manual Scan"):
 			self.session.open(ScanSetup)
+		elif item[0] == _("Blind Scan"):
+			self.session.open(Blindscan)
 		elif item[0] == _("Sat Finder"):
 			self.SatfinderMain()
 ######## Select Software Manager Menu ##############################
