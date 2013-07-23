@@ -67,11 +67,6 @@ gAccel::~gAccel()
 	instance = 0;
 }
 
-gAccel *gAccel::getInstance()
-{
-	return instance;
-}
- 
 void gAccel::setAccelMemorySpace(void *addr, int phys_addr, int size)
 {
 	if (m_accel_allocation)
@@ -101,7 +96,7 @@ bool gAccel::hasAlphaBlendingSupport()
 #endif
 }
 
-int gAccel::blit(gSurface *dst, const gSurface *src, const eRect &p, const eRect &area, int flags)
+int gAccel::blit(gUnmanagedSurface *dst, const gUnmanagedSurface *src, const eRect &p, const eRect &area, int flags)
 {
 #ifdef ATI_ACCEL
 	ati_accel_blit(
@@ -143,7 +138,7 @@ int gAccel::blit(gSurface *dst, const gSurface *src, const eRect &p, const eRect
 	return -1;
 }
 
-int gAccel::fill(gSurface *dst, const eRect &area, unsigned long col)
+int gAccel::fill(gUnmanagedSurface *dst, const eRect &area, unsigned long col)
 {
 #ifdef FORCE_NO_FILL_ACCELERATION
 	return -1;
