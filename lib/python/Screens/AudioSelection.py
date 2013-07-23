@@ -40,6 +40,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		{
 			"red": self.keyRed,
 			"green": self.keyGreen,
+			"yellow": self.keyYellow,
 			"subtitleSelection": self.keyYellow,
 			"audioSelection": self.keyYellow,
 			"blue": self.keyBlue,
