@@ -304,7 +304,8 @@ class GeneralSetup(Screen):
 		if AUTORES == True:
 			self.sublist.append(QuickSubMenuEntryComponent("AutoResolution",_("AutoResolution Setup"),_("Automatically change resolution")))
 		self.sublist.append(QuickSubMenuEntryComponent("OSD Position",_("Adjust OSD Size"),_("Adjust OSD Size")))
-		self.sublist.append(QuickSubMenuEntryComponent("OSD 3D Setup",_("3D Setup side by side"),_("3D Setup side by side")))
+		if SystemInfo["CanChange3DOsd"]:
+			self.sublist.append(QuickSubMenuEntryComponent("OSD 3D Setup",_("3D Setup side by side"),_("3D Setup side by side")))
 
 		self["sublist"].l.setList(self.sublist)
 
