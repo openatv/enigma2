@@ -129,8 +129,8 @@ AM_CONDITIONAL(VUSOLO, test "$BOXTYPE" == vusolo)
 AM_CONDITIONAL(VUDUO, test "$BOXTYPE" == vuduo)
 AM_CONDITIONAL(VUSOLO2, test "$BOXTYPE" == vusolo2)
 AM_CONDITIONAL(VUDUO2, test "$BOXTYPE" == vuduo2)
-AM_CONDITIONAL(VENTONHDX, test "$BOXTYPE" == ventonhdx -o "$BOXTYPE" -o inihdp -o "$BOXTYPE" == inihdx)
-AM_CONDITIONAL(VENTONHDE, test "$BOXTYPE" == ventonhde -o "$BOXTYPE" -o inihde)
+AM_CONDITIONAL(VENTONHDX, test "$BOXTYPE" == ventonhdx -o "$BOXTYPE" == inihdp -o "$BOXTYPE" == inihdx)
+AM_CONDITIONAL(VENTONHDE, test "$BOXTYPE" == ventonhde -o "$BOXTYPE" == inihde)
 AM_CONDITIONAL(XP1000, test "$BOXTYPE" == xp1000)
 
 if test `echo "$BOXTYPE" | cut -b 1-2` == "dm"; then
