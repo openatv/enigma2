@@ -411,7 +411,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and self.autostate and self.afterEvent == AFTEREVENT.AUTO):
 				if not Screens.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
-			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO):
+			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
 				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
 					print '[Timer] Recording or Recording due is next 15 mins, not return to deepstandby'
 					return True
@@ -419,7 +419,17 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					if Screens.Standby.inStandby: # in standby
 						quitMainloop(1)
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName()), timeout = 180)
+						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName()), default = True, timeout = 180)
+			elif wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO:
+				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
+					print '[Timer] Recording or Recording due is next 15 mins, not return to deepstandby'
+					return True
+				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+					if Screens.Standby.inStandby: # in standby
+						quitMainloop(1)
+					else:
+						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName()), default = False, timeout = 180)
+
 			return True
 
 	def setAutoincreaseEnd(self, entry = None):
