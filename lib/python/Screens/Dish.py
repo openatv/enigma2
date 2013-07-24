@@ -134,12 +134,22 @@ class Dish(Screen):
 				mrt = 3600 - mrt
 			if (mrt % 10):
 				mrt += 10
-			#mrt = (mrt * 2000) / 10000 + 3	# 0.5° per second
+			( turningspeedH, turningspeedV ) = self.getTurningSpeed()
 			if pol in (1, 3):	# vertical
-				mrt = (mrt * 1000) / 10000 + 3	# 1.0° per second
-			else:	# horizontal
-				mrt = (mrt * 667) / 10000 + 3	# 1.5° per second
-		return mrt
+				mrt = (mrt * 1000 / turningspeedV ) / 10000
+			else:			# horizontal
+				mrt = (mrt * 1000 / turningspeedH ) / 10000
+		return mrt + 3
+
+	def getTurningSpeed(self):
+		tuner_number = self.currentTunerInfo().get("tuner_number")
+		nim = config.Nims[tuner_number]
+		return (nim.turningspeedH.float, nim.turningspeedV.float)
+
+	def currentTunerInfo(self):
+		service = self.session.nav.getCurrentService()
+		feinfo = service and service.frontendInfo()
+		return feinfo and feinfo.getFrontendData()
 
 	def OrbToStr(self, orbpos):
 		if orbpos == INVALID_POSITION:
@@ -151,4 +161,4 @@ class Dish(Screen):
 
 	def FormatTurnTime(self, time):
 		t = abs(time)
-		return "%s%02d:%02d:%02d" % (time < 0 and "- " or "", t/3600%24, t/60%60, t%60)
+		return "%s%02d:%02d" % (time < 0 and "- " or "", t/60%60, t%60)
