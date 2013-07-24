@@ -44,7 +44,10 @@ class SymbolsCheckPoller:
 
 	def __evUpdatedInfo(self):
 		self.service = self.session.nav.getCurrentService()
-		if open("/proc/stb/info/boxtype").read().strip() == "ini-7012":
+		f = open("/proc/stb/info/boxtype", 'r')
+		model = f.read().strip()
+		f.close()
+		if model == "ini-7012":
 			self.Resolution()
 			self.Audio()
 		self.Subtitle()
@@ -55,11 +58,19 @@ class SymbolsCheckPoller:
 		if fileExists("/proc/stb/lcd/symbol_circle") or fileExists("/proc/stb/lcd/symbol_record"):
 			recordings = len(NavigationInstance.instance.getRecordings())
 			if recordings > 0:
-				open("/proc/stb/lcd/symbol_circle", "w").write("3")
-				open("/proc/stb/lcd/symbol_record", "w").write("1")
+				f = open("/proc/stb/lcd/symbol_circle", "w")
+				f.write("3")
+				f.close()
+				f= open("/proc/stb/lcd/symbol_record", "w")
+				f.write("1")
+				f.close()
 			else:
-				open("/proc/stb/lcd/symbol_circle", "w").write("0")
-				open("/proc/stb/lcd/symbol_record", "w").write("0")
+				f = open("/proc/stb/lcd/symbol_circle", "w")
+				f.write("0")
+				f.close()
+				f =open("/proc/stb/lcd/symbol_record", "w")
+				f.write("0")
+				f.close()
 		else:
 			if not fileExists("/proc/stb/lcd/symbol_recording") or not fileExists("/proc/stb/lcd/symbol_record_1") or not fileExists("/proc/stb/lcd/symbol_record_2"):
 				return
@@ -67,18 +78,33 @@ class SymbolsCheckPoller:
 			recordings = len(NavigationInstance.instance.getRecordings())
 		
 			if recordings > 0:
-				open("/proc/stb/lcd/symbol_recording", "w").write("1")
+				f = open("/proc/stb/lcd/symbol_recording", "w")
+				f.write("1")
+				f.close()
 				if recordings == 1:
-					open("/proc/stb/lcd/symbol_record_1", "w").write("1")
-					open("/proc/stb/lcd/symbol_record_2", "w").write("0")
+					f = open("/proc/stb/lcd/symbol_record_1", "w")
+					f.write("1")
+					f.close()
+					f = open("/proc/stb/lcd/symbol_record_2", "w")
+					f.write("0")
+					f.close()
 				elif recordings >= 2:
-					open("/proc/stb/lcd/symbol_record_1", "w").write("1")
-					open("/proc/stb/lcd/symbol_record_2", "w").write("1")
+					f = open("/proc/stb/lcd/symbol_record_1", "w")
+					f.write("1")
+					f.close()
+					f =open("/proc/stb/lcd/symbol_record_2", "w")
+					f.write("1")
+					f.close()
 			else:
-				open("/proc/stb/lcd/symbol_recording", "w").write("0")
-				open("/proc/stb/lcd/symbol_record_1", "w").write("0")
-				open("/proc/stb/lcd/symbol_record_2", "w").write("0")
-
+				f = open("/proc/stb/lcd/symbol_recording", "w")
+				f.write("0")
+				f.close()
+				f = open("/proc/stb/lcd/symbol_record_1", "w")
+				f.write("0")
+				f.close()
+				f = open("/proc/stb/lcd/symbol_record_2", "w")
+				f.write("0")
+				f.close()
 
 	def Subtitle(self):
 		if not fileExists("/proc/stb/lcd/symbol_smartcard") or not fileExists("/proc/stb/lcd/symbol_subtitle"):
@@ -91,17 +117,27 @@ class SymbolsCheckPoller:
 			subtitles = len(subtitlelist)
 			if fileExists("/proc/stb/lcd/symbol_subtitle"):
 				if subtitles > 0:
-					open("/proc/stb/lcd/symbol_subtitle", "w").write("1")
+					f = open("/proc/stb/lcd/symbol_subtitle", "w")
+					f.write("1")
+					f.close()
 				else:
-					open("/proc/stb/lcd/symbol_subtitle", "w").write("0")
+					f = open("/proc/stb/lcd/symbol_subtitle", "w")
+					f.write("0")
+					f.close()
 			else:
 				if subtitles > 0:
-					open("/proc/stb/lcd/symbol_smartcard", "w").write("1")
+					f = open("/proc/stb/lcd/symbol_smartcard", "w")
+					f.write("1")
+					f.close()
 				else:
-					open("/proc/stb/lcd/symbol_smartcard", "w").write("0")
+					f = open("/proc/stb/lcd/symbol_smartcard", "w")
+					f.write("0")
+					f.close()
 		else:
-			open("/proc/stb/lcd/symbol_smartcard", "w").write("0")
-
+			f = open("/proc/stb/lcd/symbol_smartcard", "w")
+			f.write("0")
+			f.close()
+			
 	def ParentalControl(self):
 		if not fileExists("/proc/stb/lcd/symbol_parent_rating"):
 			return
@@ -110,11 +146,17 @@ class SymbolsCheckPoller:
 
 		if service:
 			if parentalControl.getProtectionLevel(service.toCompareString()) == -1:
-				open("/proc/stb/lcd/symbol_parent_rating", "w").write("0")
+				f = open("/proc/stb/lcd/symbol_parent_rating", "w")
+				f.write("0")
+				f.close()
 			else:
-				open("/proc/stb/lcd/symbol_parent_rating", "w").write("1")
+				f = open("/proc/stb/lcd/symbol_parent_rating", "w")
+				f.write("1")
+				f.close()
 		else:
-			open("/proc/stb/lcd/symbol_parent_rating", "w").write("0")
+			f = open("/proc/stb/lcd/symbol_parent_rating", "w")
+			f.write("0")
+			f.close()
 			
 	def Resolution(self):
 		if not fileExists("/proc/stb/lcd/symbol_1080i") or not fileExists("/proc/stb/lcd/symbol_720p") or not fileExists("/proc/stb/lcd/symbol_576i") or not fileExists("/proc/stb/lcd/symbol_hd"):
@@ -128,23 +170,47 @@ class SymbolsCheckPoller:
 
 		if videosize == 65535 or videosize == -1:
 			# lets clear all symbols before turn on which are needed
-			open("/proc/stb/lcd/symbol_1080p", "w").write("0")
-			open("/proc/stb/lcd/symbol_1080i", "w").write("0")
-			open("/proc/stb/lcd/symbol_720p", "w").write("0")
-			open("/proc/stb/lcd/symbol_576p", "w").write("0")
-			open("/proc/stb/lcd/symbol_576i", "w").write("0")
-			open("/proc/stb/lcd/symbol_hd", "w").write("0")
+			f = open("/proc/stb/lcd/symbol_1080p", "w")
+			f.write("0")
+			f.close()
+			f = open("/proc/stb/lcd/symbol_1080i", "w")
+			f.write("0")
+			f.close()
+			f = open("/proc/stb/lcd/symbol_720p", "w")
+			f.write("0")
+			f.close()
+			f = open("/proc/stb/lcd/symbol_576p", "w")
+			f.write("0")
+			f.close()
+			f = open("/proc/stb/lcd/symbol_576i", "w")
+			f.write("0")
+			f.close()
+			f = open("/proc/stb/lcd/symbol_hd", "w")
+			f.write("0")
+			f.close()
 			return ""
 		
 		if videosize >= 1280:
-			open("/proc/stb/lcd/symbol_1080i", "w").write("1")
-			open("/proc/stb/lcd/symbol_hd", "w").write("1")
+			f = open("/proc/stb/lcd/symbol_1080i", "w")
+			f.write("1")
+			f.close()
+			f = open("/proc/stb/lcd/symbol_hd", "w")
+			f.write("1")
+			f.close()
 		elif videosize < 1280 and videosize > 720:
-			open("/proc/stb/lcd/symbol_720p", "w").write("1")
-			open("/proc/stb/lcd/symbol_hd", "w").write("1")
+			f = open("/proc/stb/lcd/symbol_720p", "w")
+			f.write("1")
+			f.close()
+			f = open("/proc/stb/lcd/symbol_hd", "w")
+			f.write("1")
+			f.close()
 		elif videosize <= 720:
-			open("/proc/stb/lcd/symbol_576i", "w").write("1")
-			open("/proc/stb/lcd/symbol_hd", "w").write("0")
+			f = open("/proc/stb/lcd/symbol_576i", "w")
+			f.write("1")
+			f.close()
+			f = open("/proc/stb/lcd/symbol_hd", "w")
+			f.write("0")
+			f.close()
 
 	def Audio(self):
 		if not fileExists("/proc/stb/lcd/symbol_dolby_audio"):
@@ -158,8 +224,12 @@ class SymbolsCheckPoller:
 				i = audio.getTrackInfo(idx)
 				description = i.getDescription();
 				if "AC3" in description or "AC-3" in description or "DTS" in description:
-					open("/proc/stb/lcd/symbol_dolby_audio", "w").write("1")
+					f = open("/proc/stb/lcd/symbol_dolby_audio", "w")
+					f.write("1")
+					f.close()
 					return
 				idx += 1	
-		open("/proc/stb/lcd/symbol_dolby_audio", "w").write("0")
+		f = open("/proc/stb/lcd/symbol_dolby_audio", "w")
+		f.write("0")
+		f.close()
 		
