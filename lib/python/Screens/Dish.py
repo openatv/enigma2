@@ -18,13 +18,14 @@ class Dish(Screen):
 	STATE_HIDDEN = 0
 	STATE_SHOWN  = 1
 	skin = """
-		<screen name="Dish" flags="wfNoBorder" position="86,100" size="130,200" title="Dish" zPosition="1" backgroundColor="#11396D" >
+		<screen name="Dish" flags="wfNoBorder" position="86,100" size="130,220" title="Dish" zPosition="1" backgroundColor="#11396D" >
 			<widget name="Dishpixmap" position="0,0"  size="130,160" zPosition="-1" pixmap="skin_default/icons/dish.png" transparent="1" alphatest="on" />
 			<widget name="turnTime"   position="5,0"   size="120,20" zPosition="1" font="Regular;20" halign="right" shadowColor="black" shadowOffset="-2,-2" transparent="1" />
 			<widget name="From"       position="5,164"  size="50,17" zPosition="1" font="Regular;17" halign="left"  shadowColor="black" shadowOffset="-2,-1" transparent="1"  />
 			<widget name="posFrom"    position="57,160" size="70,20" zPosition="1" font="Regular;20" halign="left"  shadowColor="black" shadowOffset="-2,-2" transparent="1" />
 			<widget name="Goto"       position="5,184"  size="50,17" zPosition="1" font="Regular;17" halign="left"  shadowColor="black" shadowOffset="-2,-1" transparent="1" />
 			<widget name="posGoto"    position="57,180" size="70,20" zPosition="1" font="Regular;20" halign="left"  shadowColor="black" shadowOffset="-2,-2" transparent="1" />
+			<widget name="tunerName"  position="5,204"  size="120,17" zPosition="1" font="Regular;17" halign="left" shadowColor="black" shadowOffset="-2,-2" transparent="1" />
 		</screen>"""
 
 	def __init__(self, session):
@@ -37,6 +38,7 @@ class Dish(Screen):
 		self["posGoto"] = Label("")
 		self["From"] = Label (_("From :"))
 		self["Goto"] = Label (_("Goto :"))
+		self["tunerName"] = Label("")
 
 		self.rotorTimer = eTimer()
 		self.rotorTimer.callback.append(self.updateRotorMovingState)
@@ -90,6 +92,7 @@ class Dish(Screen):
 		self["posFrom"].setText(self.OrbToStr(prev_rotor_pos))
 		self["posGoto"].setText(self.OrbToStr(self.rotor_pos))
 		self["turnTime"].setText(self.FormatTurnTime(self.turn_time))
+		self["tunerName"].setText(self.getTunerName())
 
 		self.turnTimer.start(1000, False)
 
@@ -142,14 +145,24 @@ class Dish(Screen):
 		return mrt + 3
 
 	def getTurningSpeed(self):
-		tuner_number = self.currentTunerInfo().get("tuner_number")
-		nim = config.Nims[tuner_number]
+		nim = config.Nims[self.getCurrentTuner()]
 		return (nim.turningspeedH.float, nim.turningspeedV.float)
+
+	def getCurrentTuner(self):
+		return self.currentTunerInfo().get("tuner_number")
 
 	def currentTunerInfo(self):
 		service = self.session.nav.getCurrentService()
 		feinfo = service and service.frontendInfo()
 		return feinfo and feinfo.getFrontendData()
+
+	def getTunerName(self):
+		from Components.NimManager import nimmanager
+		nims = nimmanager.nimList()
+		nr = self.getCurrentTuner()
+		if nr < 4:
+			return "".join(nims[nr].split(':')[:1])
+		return " ".join((_("Tuner"),str(nr)))
 
 	def OrbToStr(self, orbpos):
 		if orbpos == INVALID_POSITION:
