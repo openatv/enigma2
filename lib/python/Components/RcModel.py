@@ -66,7 +66,7 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_IQON
 		elif getBoxType() == 'dm8000':
 				self.currentRcType = self.RCTYPE_DMM
-		elif getBoxType() == 'dm7020hd' or getBoxType() == 'dm800sev2' or getBoxType() == 'dm500hdv2':
+		elif getBoxType() == 'dm7020hd' or getBoxType() == 'dm7020hdv2' or getBoxType() == 'dm800sev2' or getBoxType() == 'dm500hdv2':
 				self.currentRcType = self.RCTYPE_DMM2
 		elif getBoxType() == 'dm800' or getBoxType() == 'dm800se' or getBoxType() == 'dm500hd':
 				self.currentRcType = self.RCTYPE_DMM1

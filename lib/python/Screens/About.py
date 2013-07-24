@@ -534,12 +534,18 @@ class AboutSummary(Screen):
 			model = "MixOS F5mini"
 		elif getBoxType() == 'dm500hd':
 			model = "DREAMBOX DM500HD"
+		elif getBoxType() == 'dm500hdv2':
+			model = "DREAMBOX DM500HDV2"
 		elif getBoxType() == 'dm800':
 			model = "DREAMBOX DM800HD"
 		elif getBoxType() == 'dm800se':
 			model = "DREAMBOX DM800se"
+		elif getBoxType() == 'dm800sev2':
+			model = "DREAMBOX DM800seV2"
 		elif getBoxType() == 'dm7020hd':
 			model = "DREAMBOX DM7020HD"
+		elif getBoxType() == 'dm7020hdv2':
+			model = "DREAMBOX DM7020HDV2"
 		elif getBoxType() == 'dm8000':
 			model = "DREAMBOX DM8000HD"
 		else:
