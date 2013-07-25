@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-09 17:05+0100\n"
+"POT-Creation-Date: 2013-07-25 09:57+0200\n"
 "PO-Revision-Date: 2012-12-09 02:04+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: CÜNEYT OCAKLILAR <ocaklilar@gmail.com>\n"
@@ -1195,6 +1195,10 @@ msgstr ""
 msgid "Automatically start timeshift after"
 msgstr ""
 
+#, fuzzy
+msgid "Automatically turn on external subtitles"
+msgstr "Tuş tekrar öncesi gecikme süresi:"
+
 msgid "Automatically update Client/Server View?"
 msgstr "İstemci/Sunucu izlemesini otomatik güncelle?"
 
@@ -1623,9 +1627,10 @@ msgstr "Kanal önizleme kipi"
 msgid "Channel selection"
 msgstr "Kanal Seçimi"
 
+#
 #, fuzzy
-msgid "Channel selection configuration"
-msgstr "El ile yapılandırma"
+msgid "Channel selection settings"
+msgstr "Derleme ayarları"
 
 #
 msgid "Channel:"
@@ -1745,6 +1750,10 @@ msgstr "Dairesel sola"
 #
 msgid "Circular right"
 msgstr "Dairesel sağa"
+
+#, fuzzy
+msgid "Clean network trash can's"
+msgstr "Çöp sepetine taşınamadı"
 
 msgid "Cleaning Trashes"
 msgstr "Çöpler boşaltılıyor"
@@ -2859,11 +2868,6 @@ msgstr ""
 #
 #, fuzzy, python-format
 msgid "Do you want to update your %s %s ?"
-msgstr "Ayarlarınızı geri yüklemek istiyor musunuz?"
-
-#
-#, fuzzy, python-format
-msgid "Do you want to update your %s ?"
 msgstr "Ayarlarınızı geri yüklemek istiyor musunuz?"
 
 #
@@ -5459,6 +5463,9 @@ msgstr "PCR PID"
 msgid "PIDs"
 msgstr "PID"
 
+msgid "PLP ID"
+msgstr ""
+
 msgid "PMT PID"
 msgstr "PMT PID"
 
@@ -6493,6 +6500,11 @@ msgstr "Adı bununla değiştir:"
 #, python-format
 msgid "Renamed %s!"
 msgstr "Ad değiştirildi %s!"
+
+#
+#, fuzzy
+msgid "Repeat"
+msgstr "Tekrarlar"
 
 msgid "Repeat Display Message"
 msgstr "Mesaj görüntülemeyi tekrarla"
@@ -8312,6 +8324,12 @@ msgid ""
 "Please press OK to start using your %s %s."
 msgstr ""
 
+msgid "The %s %s reads the stored EPG data every (hours)."
+msgstr "%s %s saklanmış EPG bilgisini her (saat) okur."
+
+msgid "The %s %s stores the EPG data every (hours)."
+msgstr "%s %s EPG bilgisini her (saat) saklar."
+
 msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
@@ -8342,12 +8360,6 @@ msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
 msgstr ""
-
-msgid "The %s %s reads the stored EPG data every (hours)."
-msgstr "%s %s saklanmış EPG bilgisini her (saat) okur."
-
-msgid "The %s %s stores the EPG data every (hours)."
-msgstr "%s %s EPG bilgisini her (saat) saklar."
 
 msgid ""
 "The IMDb plugin is not installed!\n"
@@ -9268,6 +9280,9 @@ msgstr ""
 msgid "Use ViaSat EPG information when it is available."
 msgstr ""
 
+msgid "Use WOL"
+msgstr ""
+
 #
 msgid "Use a gateway"
 msgstr "Ağ geçidi kullan"
@@ -9801,6 +9816,9 @@ msgstr ""
 msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
 msgstr ""
 
+msgid "When enabled, external subtitles will be always turned on for playback movie."
+msgstr ""
+
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
 msgstr ""
 
@@ -9814,6 +9832,9 @@ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instea
 msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
+msgstr ""
+
+msgid "When enabled, network trash can's are probed for cleaning."
 msgstr ""
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
@@ -10162,6 +10183,20 @@ msgstr ""
 "Internet bağlantınız çalışıyor.\n"
 "\n"
 
+#
+msgid ""
+"Your %s %s is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"%s %s kullanımınız için hazır.\n"
+"\n"
+"Internet bağlantınız çalışıyor.\n"
+"\n"
+"Lütfen devam etmek için OK'a basın."
+
 #, fuzzy, python-format
 msgid "Your %s %s is rebooting"
 msgstr "%s %s başlıyor"
@@ -10169,6 +10204,10 @@ msgstr "%s %s başlıyor"
 #, fuzzy, python-format
 msgid "Your %s %s is shutting down"
 msgstr "%s %s kapanıyor"
+
+#
+msgid "Your %s %s is shutting down. Please stand by..."
+msgstr "%s %s kapatılıyor. Lütfen bekleyin..."
 
 #, python-format
 msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
@@ -10192,24 +10231,6 @@ msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
 msgstr ""
-
-#
-msgid ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"%s %s kullanımınız için hazır.\n"
-"\n"
-"Internet bağlantınız çalışıyor.\n"
-"\n"
-"Lütfen devam etmek için OK'a basın."
-
-#
-msgid "Your %s %s is shutting down. Please stand by..."
-msgstr "%s %s kapatılıyor. Lütfen bekleyin..."
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "OK'a bastığınızda alıcınız yeniden başlayacak."
@@ -11681,3 +11702,12 @@ msgstr "Sakla ve kaydet"
 #
 msgid "zapped"
 msgstr "zapped"
+
+#, fuzzy
+#~ msgid "Channel selection configuration"
+#~ msgstr "El ile yapılandırma"
+
+#
+#, fuzzy
+#~ msgid "Do you want to update your %s ?"
+#~ msgstr "Ayarlarınızı geri yüklemek istiyor musunuz?"

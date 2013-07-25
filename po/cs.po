@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ims\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-09 17:05+0100\n"
+"POT-Creation-Date: 2013-07-25 09:57+0200\n"
 "PO-Revision-Date: 2012-12-09 02:03+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: jerry00 <jerry00@quick.cz>\n"
@@ -1271,6 +1271,11 @@ msgid "Automatically start timeshift after"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Automatically turn on external subtitles"
+msgstr "Zpoždění před opakováním:"
+
+#
 msgid "Automatically update Client/Server View?"
 msgstr "Auto aktualizovat zobrazení Klient/Server?"
 
@@ -1760,8 +1765,8 @@ msgstr "Výběr programu"
 
 #
 #, fuzzy
-msgid "Channel selection configuration"
-msgstr "Ruční konfigurace"
+msgid "Channel selection settings"
+msgstr "Nastavení kompilace"
 
 #
 msgid "Channel:"
@@ -1893,6 +1898,11 @@ msgstr "Kruhová levá"
 #
 msgid "Circular right"
 msgstr "Kruhová pravá"
+
+#
+#, fuzzy
+msgid "Clean network trash can's"
+msgstr "Nelze přesunout do koše"
 
 #
 msgid "Cleaning Trashes"
@@ -3090,11 +3100,6 @@ msgstr ""
 #
 #, fuzzy, python-format
 msgid "Do you want to update your %s %s ?"
-msgstr "Chcete obnovit Vaše nastavení?"
-
-#
-#, fuzzy, python-format
-msgid "Do you want to update your %s ?"
 msgstr "Chcete obnovit Vaše nastavení?"
 
 #
@@ -5979,6 +5984,9 @@ msgstr "PCR Pid"
 msgid "PIDs"
 msgstr "Přehled PID"
 
+msgid "PLP ID"
+msgstr ""
+
 #
 msgid "PMT PID"
 msgstr "PMT Pid"
@@ -7100,6 +7108,11 @@ msgstr "Přejmenuj na:"
 #, python-format
 msgid "Renamed %s!"
 msgstr "Přejmenováno %s!"
+
+#
+#, fuzzy
+msgid "Repeat"
+msgstr "Opakování"
 
 #
 msgid "Repeat Display Message"
@@ -9134,6 +9147,14 @@ msgid ""
 msgstr ""
 
 #
+msgid "The %s %s reads the stored EPG data every (hours)."
+msgstr "%s %s načte uložená data EPG každých (hodin)."
+
+#
+msgid "The %s %s stores the EPG data every (hours)."
+msgstr "%s %s uloží data EPG každých (hodin)."
+
+#
 msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
@@ -9169,14 +9190,6 @@ msgid ""
 msgstr ""
 "Souborový systém Timeshift jednotky nepodporuje hardlinky.\n"
 "Zkontrolujte, zda je ve formátu EXT2 nebo EXT3!"
-
-#
-msgid "The %s %s reads the stored EPG data every (hours)."
-msgstr "%s %s načte uložená data EPG každých (hodin)."
-
-#
-msgid "The %s %s stores the EPG data every (hours)."
-msgstr "%s %s uloží data EPG každých (hodin)."
 
 #
 msgid ""
@@ -10192,6 +10205,9 @@ msgstr "Použít barevná tlačítka Vix *"
 msgid "Use ViaSat EPG information when it is available."
 msgstr ""
 
+msgid "Use WOL"
+msgstr ""
+
 #
 msgid "Use a gateway"
 msgstr "Použít bránu (gateway)"
@@ -10769,6 +10785,9 @@ msgstr ""
 msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
 msgstr ""
 
+msgid "When enabled, external subtitles will be always turned on for playback movie."
+msgstr ""
+
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
 msgstr ""
 
@@ -10782,6 +10801,9 @@ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instea
 msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
+msgstr ""
+
+msgid "When enabled, network trash can's are probed for cleaning."
 msgstr ""
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
@@ -11157,6 +11179,20 @@ msgstr ""
 "\n"
 
 #
+msgid ""
+"Your %s %s is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Váš %s %s je připraven k použití.\n"
+"\n"
+"Internetové připojení je funkční.\n"
+"\n"
+"Stiskněte OK a pokračujte."
+
+#
 #, fuzzy, python-format
 msgid "Your %s %s is rebooting"
 msgstr "Váš %s %s se restartuje "
@@ -11165,6 +11201,10 @@ msgstr "Váš %s %s se restartuje "
 #, fuzzy, python-format
 msgid "Your %s %s is shutting down"
 msgstr "Váš %s %s se vypíná"
+
+#
+msgid "Your %s %s is shutting down. Please stand by..."
+msgstr "Váš %s %s se vypíná. Chviličku..."
 
 #, python-format
 msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
@@ -11195,24 +11235,6 @@ msgid ""
 msgstr ""
 "Váš %s %s se po odebrání služby restartuje\n"
 "Chcete odebrat nyní ?"
-
-#
-msgid ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Váš %s %s je připraven k použití.\n"
-"\n"
-"Internetové připojení je funkční.\n"
-"\n"
-"Stiskněte OK a pokračujte."
-
-#
-msgid "Your %s %s is shutting down. Please stand by..."
-msgstr "Váš %s %s se vypíná. Chviličku..."
 
 #
 msgid "Your STB will restart after pressing OK on your remote control."
@@ -12789,3 +12811,13 @@ msgstr "Ulož a nahraj"
 #
 msgid "zapped"
 msgstr "přepnutý"
+
+#
+#, fuzzy
+#~ msgid "Channel selection configuration"
+#~ msgstr "Ruční konfigurace"
+
+#
+#, fuzzy
+#~ msgid "Do you want to update your %s ?"
+#~ msgstr "Chcete obnovit Vaše nastavení?"

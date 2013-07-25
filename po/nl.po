@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-09 17:05+0100\n"
+"POT-Creation-Date: 2013-07-25 09:57+0200\n"
 "PO-Revision-Date: 2013-06-10 16:04+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
@@ -1057,6 +1057,10 @@ msgstr "Automatische settingsbackup"
 msgid "Automatically start timeshift after"
 msgstr "Timeshift automatisch starten na"
 
+#, fuzzy
+msgid "Automatically turn on external subtitles"
+msgstr "Gele externe ondertitels"
+
 msgid "Automatically update Client/Server View?"
 msgstr "Automatisch Klant/Server overzicht updaten??"
 
@@ -1440,8 +1444,9 @@ msgstr "Kanaal preview modus"
 msgid "Channel selection"
 msgstr "Zenderkeuze"
 
-msgid "Channel selection configuration"
-msgstr "Kanaallijst instellingen"
+#, fuzzy
+msgid "Channel selection settings"
+msgstr "Instellingen verzameling"
 
 msgid "Channel:"
 msgstr "Zender:"
@@ -1551,6 +1556,10 @@ msgstr "Circulaire links"
 
 msgid "Circular right"
 msgstr "Circulaire rechts"
+
+#, fuzzy
+msgid "Clean network trash can's"
+msgstr "Kan bestanden niet naar de prullenbak verplaatsen"
 
 msgid "Cleaning Trashes"
 msgstr "maakt prullenbakken leeg "
@@ -2499,10 +2508,6 @@ msgstr ""
 #, python-format
 msgid "Do you want to update your %s %s ?"
 msgstr "Wilt u uw %s %s updaten?"
-
-#, python-format
-msgid "Do you want to update your %s ?"
-msgstr "Wilt u uw %s updaten?"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Wilt u een upgrade van het volgende pakket:\n"
@@ -4686,6 +4691,9 @@ msgstr "PCR PID"
 msgid "PIDs"
 msgstr "PIDs"
 
+msgid "PLP ID"
+msgstr ""
+
 msgid "PMT PID"
 msgstr "PMT PID"
 
@@ -5536,6 +5544,10 @@ msgstr "Hernoem in:"
 #, python-format
 msgid "Renamed %s!"
 msgstr "Hernoemd in %s!"
+
+#, fuzzy
+msgid "Repeat"
+msgstr "Herhalingen"
 
 msgid "Repeat Display Message"
 msgstr "Herhaal OSD-bericht"
@@ -7082,6 +7094,12 @@ msgstr ""
 "Uw %s %s is nu gereed voor gebruik.\n"
 "Druk op 'OK'om uw %s %s in gebruik te nemen."
 
+msgid "The %s %s reads the stored EPG data every (hours)."
+msgstr "Uw %s %s leest de opgelsagen EPG-data elke (uur)."
+
+msgid "The %s %s stores the EPG data every (hours)."
+msgstr "Uw %s %s slaat de EPG-data elke (uur) op."
+
 msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
@@ -7113,12 +7131,6 @@ msgid ""
 msgstr ""
 "Het bestandssyteem van uw Timeshift-Device ondersteunt geen hardlinks.\n"
 "Formatteer die in EXT2 or EXT3!"
-
-msgid "The %s %s reads the stored EPG data every (hours)."
-msgstr "Uw %s %s leest de opgelsagen EPG-data elke (uur)."
-
-msgid "The %s %s stores the EPG data every (hours)."
-msgstr "Uw %s %s slaat de EPG-data elke (uur) op."
 
 msgid ""
 "The IMDb plugin is not installed!\n"
@@ -7933,6 +7945,9 @@ msgstr "Gebruik ViX kleurtoetsen *"
 msgid "Use ViaSat EPG information when it is available."
 msgstr "Gebruik ViaSat EPG informatie indien beschikbaar."
 
+msgid "Use WOL"
+msgstr ""
+
 msgid "Use a gateway"
 msgstr "Gateway gebruiken"
 
@@ -8385,6 +8400,10 @@ msgstr "Indien ingeschakeld zullen opnames die verwijderd worden naar de prullen
 msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
 msgstr "Indien geactiveerd, zullen externe ondertitles (in media bestanden) in geel worden vertoond, in plaats van in de originele kleur."
 
+#, fuzzy
+msgid "When enabled, external subtitles will be always turned on for playback movie."
+msgstr "Indien geactiveerd worden teletekst ondertitels op de originele positie getoond."
+
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
 msgstr "Indien geactiveerd, zullen grafische DVB-ondertitels de voorkeur hebben boven teletekst ondertitels (indien beide beschikbaar zijn)."
 
@@ -8399,6 +8418,9 @@ msgstr "Indien geactiveerd worden grafische DVB-ondertitels vertoond in geel in 
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Indien ingeschakeld zal de motor het stroomverbruik benutten om te bepalen of een motor gestopt is (als de tuners dat ondersteunen)."
+
+msgid "When enabled, network trash can's are probed for cleaning."
+msgstr ""
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "Indien geactiveerd zapt '0' naar het eerste kanaal van het eerste bouquet en wordt de zap-historie verwijderd."
@@ -8713,6 +8735,19 @@ msgstr ""
 "Uw internetverbinding werkt.\n"
 "\n"
 
+msgid ""
+"Your %s %s is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Uw %s %s is nu gereed voor gebruik.\n"
+"\n"
+"Uw internet verbinding werkt.\n"
+"\n"
+"Druk op OK om door te gaan."
+
 #, python-format
 msgid "Your %s %s is rebooting"
 msgstr "Uw %s %s wordt opnieuw gestart."
@@ -8720,6 +8755,9 @@ msgstr "Uw %s %s wordt opnieuw gestart."
 #, python-format
 msgid "Your %s %s is shutting down"
 msgstr "Uw %s %s is aan het afsluiten."
+
+msgid "Your %s %s is shutting down. Please stand by..."
+msgstr "Uw %s %s wordt nu afgesloten. Een ogenblik a.u.b..."
 
 #, python-format
 msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
@@ -8750,22 +8788,6 @@ msgid ""
 msgstr ""
 "Uw %s %s zal na het verwijderen van de service opnieuw worden gestart\n"
 "Wilt u nu verwijderen?"
-
-msgid ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Uw %s %s is nu gereed voor gebruik.\n"
-"\n"
-"Uw internet verbinding werkt.\n"
-"\n"
-"Druk op OK om door te gaan."
-
-msgid "Your %s %s is shutting down. Please stand by..."
-msgstr "Uw %s %s wordt nu afgesloten. Een ogenblik a.u.b..."
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "Als u op OK drukt zal uw %s %s opnieuw opstarten."
@@ -10040,3 +10062,8 @@ msgstr "zap en neem op"
 msgid "zapped"
 msgstr "zapte"
 
+#~ msgid "Channel selection configuration"
+#~ msgstr "Kanaallijst instellingen"
+
+#~ msgid "Do you want to update your %s ?"
+#~ msgstr "Wilt u uw %s updaten?"

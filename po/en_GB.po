@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-09 17:05+0100\n"
-"PO-Revision-Date: 2013-06-09 21:42+0100\n"
+"POT-Creation-Date: 2013-07-25 09:57+0200\n"
+"PO-Revision-Date: 2013-07-25 11:32+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: ViX\n"
 "Language: en_GB\n"
@@ -1060,6 +1060,9 @@ msgstr "Automatic setting backup"
 msgid "Automatically start timeshift after"
 msgstr "Automatically start timeshift after"
 
+msgid "Automatically turn on external subtitles"
+msgstr "Automatically turn on external subtitles"
+
 msgid "Automatically update Client/Server View?"
 msgstr "Automatically update Client/Server View?"
 
@@ -1442,8 +1445,8 @@ msgstr "Channel preview mode"
 msgid "Channel selection"
 msgstr "Channel selection"
 
-msgid "Channel selection configuration"
-msgstr "Channel selection configuration"
+msgid "Channel selection settings"
+msgstr "Channel selection settings"
 
 msgid "Channel:"
 msgstr "Channel:"
@@ -1553,6 +1556,9 @@ msgstr "Circular left"
 
 msgid "Circular right"
 msgstr "Circular right"
+
+msgid "Clean network trash can's"
+msgstr "Clean network trash can's"
 
 msgid "Cleaning Trashes"
 msgstr "Cleaning Trashes"
@@ -2499,10 +2505,6 @@ msgstr ""
 #, python-format
 msgid "Do you want to update your %s %s ?"
 msgstr "Do you want to update your %s %s ?"
-
-#, python-format
-msgid "Do you want to update your %s ?"
-msgstr "Do you want to update your %s ?"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Do you want to upgrade the package:\n"
@@ -4678,6 +4680,9 @@ msgstr "PCR PID"
 msgid "PIDs"
 msgstr "PIDs"
 
+msgid "PLP ID"
+msgstr "PLP ID"
+
 msgid "PMT PID"
 msgstr "PMT PID"
 
@@ -5527,6 +5532,9 @@ msgstr "Rename to:"
 #, python-format
 msgid "Renamed %s!"
 msgstr "Renamed %s!"
+
+msgid "Repeat"
+msgstr "Repeat"
 
 msgid "Repeat Display Message"
 msgstr "Repeat Display Message"
@@ -7060,6 +7068,12 @@ msgstr ""
 "Thank you for using the wizard. Your %s %s is now ready to use.\n"
 "Please press OK to start using your %s %s."
 
+msgid "The %s %s reads the stored EPG data every (hours)."
+msgstr "The %s %s reads the stored EPG data every (hours)."
+
+msgid "The %s %s stores the EPG data every (hours)."
+msgstr "The %s %s stores the EPG data every (hours)."
+
 msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
@@ -7091,12 +7105,6 @@ msgid ""
 msgstr ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
-
-msgid "The %s %s reads the stored EPG data every (hours)."
-msgstr "The %s %s reads the stored EPG data every (hours)."
-
-msgid "The %s %s stores the EPG data every (hours)."
-msgstr "The %s %s stores the EPG data every (hours)."
 
 msgid ""
 "The IMDb plugin is not installed!\n"
@@ -7905,6 +7913,9 @@ msgstr "Use ViX coloured Buttons *"
 msgid "Use ViaSat EPG information when it is available."
 msgstr "Use ViaSat EPG information when it is available."
 
+msgid "Use WOL"
+msgstr "Use WOL"
+
 msgid "Use a gateway"
 msgstr "Use a gateway"
 
@@ -8357,6 +8368,9 @@ msgstr "When enabled, deleted recordings are moved to the trash can, instead of 
 msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
 msgstr "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
 
+msgid "When enabled, external subtitles will be always turned on for playback movie."
+msgstr "When enabled, external subtitles will be always turned on for playback movie."
+
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
 msgstr "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
 
@@ -8371,6 +8385,9 @@ msgstr "When enabled, graphical DVB subtitles will be displayed in yellow, inste
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
+
+msgid "When enabled, network trash can's are probed for cleaning."
+msgstr "When enabled, network trash can's are probed for cleaning."
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
@@ -8684,6 +8701,19 @@ msgstr ""
 "Your internet connection is working now.\n"
 "\n"
 
+msgid ""
+"Your %s %s is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Your %s %s is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+
 #, python-format
 msgid "Your %s %s is rebooting"
 msgstr "Your %s %s is rebooting"
@@ -8691,6 +8721,9 @@ msgstr "Your %s %s is rebooting"
 #, python-format
 msgid "Your %s %s is shutting down"
 msgstr "Your %s %s is shutting down"
+
+msgid "Your %s %s is shutting down. Please stand by..."
+msgstr "Your %s %s is shutting down. Please stand by..."
 
 #, python-format
 msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
@@ -8721,22 +8754,6 @@ msgid ""
 msgstr ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
-
-msgid ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-
-msgid "Your %s %s is shutting down. Please stand by..."
-msgstr "Your %s %s is shutting down. Please stand by..."
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "Your STB will restart after pressing OK on your remote control."
