@@ -1,4 +1,4 @@
-﻿from Screen import Screen
+from Screen import Screen
 from Screens.Setup import getConfigMenuItem, Setup
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ActionMap import NumberActionMap
