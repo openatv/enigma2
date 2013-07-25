@@ -60,11 +60,12 @@ class ServiceScan:
 							network = sat_name
 						else:
 							network = ("%s %d.%d %s") % (sat_name, orb_pos / 10, orb_pos % 10, h)
-						tp_text = ("%s %s %d%c / %d / %s") %( { tp.System_DVB_S : "DVB-S",
-							tp.System_DVB_S2 : "DVB-S2" }.get(tp.system, ""),
-							{ tp.Modulation_Auto : "Auto", tp.Modulation_QPSK : "QPSK",
-								tp.Modulation_8PSK : "8PSK", tp.Modulation_QAM16 : "QAM16" }.get(tp.modulation, ""),
-							tp.frequency/1000,
+						tp_text = { tp.System_DVB_S : "DVB-S", tp.System_DVB_S2 : "DVB-S2" }.get(tp.system, "")
+						if tp_text == "DVB-S2":
+							tp_text = ("%s %s") % ( tp_text,
+								{ tp.Modulation_Auto : "Auto", tp.Modulation_QPSK : "QPSK",
+									tp.Modulation_8PSK : "8PSK", tp.Modulation_QAM16 : "QAM16" }.get(tp.modulation, ""))
+						tp_text = ("%s %d%c / %d / %s") % ( tp_text, tp.frequency/1000,
 							{ tp.Polarisation_Horizontal : 'H', tp.Polarisation_Vertical : 'V', tp.Polarisation_CircularLeft : 'L',
 								tp.Polarisation_CircularRight : 'R' }.get(tp.polarisation, ' '),
 							tp.symbol_rate/1000,

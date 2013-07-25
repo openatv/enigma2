@@ -219,7 +219,7 @@ void bsodFatal(const char *component)
 			xml.open("software");
 			xml.cDataFromCmd("enigma2software", "opkg list-installed 'enigma2*'");
 			if(access("/proc/stb/info/boxtype", F_OK) != -1) {
-				xml.cDataFromCmd("xtrendsoftware", "opkg list-installed 'et-*'");
+				xml.cDataFromCmd("xtrendsoftware", "opkg list-installed 'et*'");
 			}
 			else if (access("/proc/stb/info/vumodel", F_OK) != -1) {
 				xml.cDataFromCmd("vuplussoftware", "opkg list-installed 'vuplus*'");
@@ -227,6 +227,30 @@ void bsodFatal(const char *component)
 			else if (access("/proc/stb/info/model", F_OK) != -1) {
 				xml.cDataFromCmd("dreamboxsoftware", "opkg list-installed 'dream*'");
 			}
+			else if (access("/proc/stb/info/azmodel", F_OK) != -1) {
+				xml.cDataFromCmd("azboxboxsoftware", "opkg list-installed 'az*'");
+			}
+			else if (access("/proc/stb/info/gbmodel", F_OK) != -1) {
+				xml.cDataFromCmd("gigabluesoftware", "opkg list-installed 'gb*'");
+			}
+			else if (access("/proc/stb/info/hwmodel", F_OK) != -1) {
+				xml.cDataFromCmd("technomatesoftware", "opkg list-installed 'tm*'");
+			}
+			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
+				xml.cDataFromCmd("ventonsoftware", "opkg list-installed 'ini*'");
+			}
+			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
+				xml.cDataFromCmd("maxdigitalsoftware", "opkg list-installed 'xp*'");
+			}			
+			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
+				xml.cDataFromCmd("odinsoftware", "opkg list-installed 'odin*'");
+			}		
+			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
+				xml.cDataFromCmd("eboxsoftware", "opkg list-installed 'ebox*'");
+			}	
+			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
+				xml.cDataFromCmd("medialinksoftware", "opkg list-installed 'ixuss*'");
+			}				
 			xml.cDataFromCmd("gstreamersoftware", "opkg list-installed 'gst*'");
 			xml.close();
 		}
