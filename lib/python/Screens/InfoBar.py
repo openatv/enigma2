@@ -222,7 +222,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 	def leavePlayerConfirmed(self, answer):
 		answer = answer and answer[1]
-
+		if answer is None:
+			return
 		if answer in ("quitanddelete", "quitanddeleteconfirmed"):
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			serviceHandler = enigma.eServiceCenter.getInstance()
