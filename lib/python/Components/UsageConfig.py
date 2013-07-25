@@ -23,6 +23,8 @@ def InitUsageConfig():
 		refreshServiceList()
 	config.usage.alternative_number_mode.addNotifier(alternativeNumberModeChange)
 
+	config.usage.servicetype_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])  
+	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
 	config.usage.panicbutton = ConfigYesNo(default = False)
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
 
