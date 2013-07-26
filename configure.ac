@@ -143,7 +143,8 @@ AM_CONDITIONAL(VUDUO, test "$BOXTYPE" == vuduo)
 AM_CONDITIONAL(VUSOLO2, test "$BOXTYPE" == vusolo2)
 AM_CONDITIONAL(VUDUO2, test "$BOXTYPE" == vuduo2)
 AM_CONDITIONAL(VENTONHDX, test "$BOXTYPE" == ventonhdx)
-AM_CONDITIONAL(VENTONHDE, test "$BOXTYPE" == ventonhde)
+AM_CONDITIONAL(INIHDE, test "$BOXTYPE" == inihde)
+AM_CONDITIONAL(INIHDP, test "$BOXTYPE" == inihdp)
 AM_CONDITIONAL(XP1000, test "$BOXTYPE" == xp1000)
 AM_CONDITIONAL(HAVE_COLORLCD2, test "$BOXTYPE" == dm800se)
 AM_CONDITIONAL(HAVE_COLORLCD1, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800 -o "$BOXTYPE" == dm7020hd -o "$BOXTYPE" == dm7020hdv2)
@@ -317,7 +318,7 @@ if test "$BOXTYPE" == "gb800solo" -o "$BOXTYPE" == "gb800se" -o "$BOXTYPE" == "g
 	AC_DEFINE(KEY_GUIDE_TO_KEY_EPG, 1,[define when rc sends a KEY_HELP event for its KEY_EPG key])
 fi
 
-if test "$BOXTYPE" == "ventonhde" -o "$BOXTYPE" == "ventonhdx"; then
+if test "$BOXTYPE" == "inihde" -o "$BOXTYPE" == "ventonhdx"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 	AC_DEFINE(KEY_MEDIA_TO_KEY_BOOKMARKS, 1,[define when rc sends a KEY_MEDIA event for its KEY_BOOKMARKS key])
