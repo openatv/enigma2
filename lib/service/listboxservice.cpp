@@ -1,10 +1,14 @@
 #include <lib/service/listboxservice.h>
 #include <lib/service/service.h>
 #include <lib/gdi/font.h>
+#include <lib/gdi/epng.h>
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/pmt.h>
 #include <lib/python/connections.h>
+#include <lib/python/python.h>
 #include <lib/dvb/db.h>
+
+ePyObject eListboxServiceContent::m_GetPiconNameFunc;
 
 void eListboxServiceContent::addService(const eServiceReference &service, bool beforeCurrent)
 {
@@ -501,6 +505,16 @@ void eListboxServiceContent::setServiceTypeIconMode(int mode)
 	m_servicetype_icon_mode = mode;
 }
 
+
+void eListboxServiceContent::setGetPiconNameFunc(ePyObject func)
+{
+	if (m_GetPiconNameFunc)
+		Py_DECREF(m_GetPiconNameFunc);
+	m_GetPiconNameFunc = func;
+	if (m_GetPiconNameFunc)
+		Py_INCREF(m_GetPiconNameFunc);
+}
+
 void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
 	painter.clip(eRect(offset, m_itemsize));
@@ -691,6 +705,41 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					m_element_position[celServiceInfo].setWidth(area.width() - (bbox.width() + 8 + xoffs));
 					m_element_position[celServiceInfo].setHeight(area.height());
 
+					//picon stuff
+					if (m_visual_mode == visModeComplex && PyCallable_Check(m_GetPiconNameFunc))
+					{
+						ePyObject pArgs = PyTuple_New(1);
+						PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(ref.toString().c_str()));
+						ePyObject pRet = PyObject_CallObject(m_GetPiconNameFunc, pArgs);
+						Py_DECREF(pArgs);
+						if (pRet)
+						{
+							if (PyString_Check(pRet))
+							{
+								std::string piconFilename = PyString_AS_STRING(pRet);
+								if (!piconFilename.empty())
+								{
+									ePtr<gPixmap> piconPixmap;
+									loadPNG(piconPixmap, piconFilename.c_str(), 1);
+									if (piconPixmap)
+									{
+										eRect area = m_element_position[celServiceInfo];
+										m_element_position[celServiceInfo].setLeft(area.left() + area.height()*2);
+										m_element_position[celServiceInfo].setWidth(area.width() - area.height()*2);
+										area = m_element_position[celServiceName];
+										xoffs += area.height()*2;
+										area.moveBy(offset);
+										painter.clip(area);
+										painter.blitScale(piconPixmap, eRect(offset.x()+ area.left(), area.top(), area.height()*2, area.height()), area, gPainter::BT_ALPHATEST);
+										painter.clippop();
+									}
+								}
+							}
+							Py_DECREF(pRet);
+						}
+					}
+
+					//service type marker stuff
 					if (m_servicetype_icon_mode && isPlayable)
 					{
 						int orbpos = m_cursor->getUnsignedData(4) >> 16;
@@ -707,6 +756,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							int correction = (area.height() - pixmap_size.height()) / 2;
 							m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
 							m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
+							int oldoffs = xoffs;
 							if (m_servicetype_icon_mode == 1)
 							{
 								area = m_element_position[celServiceName];
@@ -714,7 +764,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							}
 							area.moveBy(offset);
 							painter.clip(area);
-							painter.blit(pixmap, offset+ePoint(area.left(), correction), area, gPainter::BT_ALPHATEST);
+							painter.blit(pixmap, offset+ePoint(area.left() + oldoffs, correction), area, gPainter::BT_ALPHATEST);
 							painter.clippop();
 						}
 					}
