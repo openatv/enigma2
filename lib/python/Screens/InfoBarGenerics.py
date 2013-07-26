@@ -1216,7 +1216,7 @@ class InfoBarEPG:
 
 	def InfoPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
-			if getBoxType().startswith('et') or getBoxType().startswith('odin') or getBoxType().startswith('venton') or getBoxType().startswith('tm') or getBoxType().startswith('gb') or getBoxType().startswith('xp1000'):
+			if getBoxType().startswith('et') or getBoxType().startswith('odin') or getBoxType().startswith('venton') or getBoxType().startswith('ini') or getBoxType().startswith('tm') or getBoxType().startswith('gb') or getBoxType().startswith('xp1000'):
 				self.openEventView()
 			else:
 				self.showDefaultEPG()
