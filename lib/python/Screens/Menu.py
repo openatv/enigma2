@@ -77,6 +77,11 @@ class Menu(Screen):
 	def nothing(self): #dummy
 		pass
 
+	def gotoStandby(self, *res):
+		from Screens.Standby import Standby2
+		self.session.open(Standby2)
+		self.close(True)
+
 	def openDialog(self, *dialog):				# in every layer needed
 		self.session.openWithCallback(self.menuClosed, *dialog)
 

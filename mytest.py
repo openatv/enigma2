@@ -410,9 +410,13 @@ class PowerKey:
 				file = f.read()
 				f.close()
 				wasRecTimerWakeup = int(file) and True or False
-			if self.session.nav.RecordTimer.isRecTimerWakeup() or wasRecTimerWakeup:
+			if self.session.nav.RecordTimer.isRecTimerWakeup() or wasRecTimerWakeup or self.session.nav.RecordTimer.isRecording():
 				print "PowerOff (timer wakewup) - Recording in progress or a timer about to activate, entering standby!"
-				self.standby()
+				for timer in self.session.nav.RecordTimer.timer_list:
+					timer.afterEvent = 2
+					break
+				from Screens.MessageBox import MessageBox
+				self.session.openWithCallback(self.gotoStandby,MessageBox,_("PowerOff while Recording in progress!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, timeout = 10)
 			else:
 				print "PowerOff - Now!"
 				self.session.open(Screens.Standby.TryQuitMainloop, 1)
@@ -450,6 +454,9 @@ class PowerKey:
 	def powerup(self):
 		if self.standbyblocked == 0:
 			self.doAction(action = config.usage.on_short_powerpress.getValue())
+
+	def gotoStandby(self, ret):
+		self.standby()
 
 	def standby(self):
 		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:
