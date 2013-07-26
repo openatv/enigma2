@@ -164,8 +164,8 @@ int main(int argc, char **argv)
 	gLCDDC::getInstance(my_lcd_dc);
 
 
-		/* ok, this is currently hardcoded for arabic. */
-			/* some characters are wrong in the regular font, force them to use the replacement font */
+	/* ok, this is currently hardcoded for arabic. */
+	/* some characters are wrong in the regular font, force them to use the replacement font */
 	for (int i = 0x60c; i <= 0x66d; ++i)
 		eTextPara::forceReplacementGlyph(i);
 	eTextPara::forceReplacementGlyph(0xfdf2);
@@ -240,7 +240,7 @@ int main(int argc, char **argv)
 	/* start at full size */
 	eVideoWidget::setFullsize(true);
 
-//	python.execute("mytest", "__main__");
+	// python.execute("mytest", "__main__");
 	python.execFile(eEnv::resolve("${libdir}/enigma2/python/mytest.py").c_str());
 
 	/* restore both decoders to full size */
@@ -353,6 +353,10 @@ const char *getMachineBrand()
 		{
 			return "Sezam";
 		}
+		else if((strcmp(boxtype_name, "ini-1000de\n") == 0))
+		{
+			return "GM";
+		}		
 		else if((strcmp(boxtype_name, "xp1000s\n") == 0))
 		{
 			return "Octagon";
@@ -412,6 +416,10 @@ const char *getMachineName()
 		{
 			return "HD-5000";
 		}
+		else if(strcmp(boxtype_name, "ini-1000de\n") == 0) 
+		{
+			return "XpeedLX";
+		}		
 		else if(strcmp(boxtype_name, "xp1000s\n") == 0) 
 		{
 			return "SF8 HD";
