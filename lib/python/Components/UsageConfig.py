@@ -28,6 +28,9 @@ def InitUsageConfig():
 	config.usage.servicetype_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])  
 	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
 
+	config.usage.service_icon_enable = ConfigYesNo(default = False)
+	config.usage.service_icon_enable.addNotifier(refreshServiceList)
+
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
 	
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
