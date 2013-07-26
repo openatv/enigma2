@@ -505,7 +505,6 @@ void eListboxServiceContent::setServiceTypeIconMode(int mode)
 	m_servicetype_icon_mode = mode;
 }
 
-
 void eListboxServiceContent::setGetPiconNameFunc(ePyObject func)
 {
 	if (m_GetPiconNameFunc)
@@ -706,8 +705,13 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					m_element_position[celServiceInfo].setHeight(area.height());
 
 					//picon stuff
-					if (m_visual_mode == visModeComplex && PyCallable_Check(m_GetPiconNameFunc))
+					if (isPlayable && PyCallable_Check(m_GetPiconNameFunc))
 					{
+						eRect area = m_element_position[celServiceInfo];
+						m_element_position[celServiceInfo].setLeft(area.left() + area.height()*2);
+						m_element_position[celServiceInfo].setWidth(area.width() - area.height()*2);
+						area = m_element_position[celServiceName];
+						xoffs += area.height()*2;
 						ePyObject pArgs = PyTuple_New(1);
 						PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(ref.toString().c_str()));
 						ePyObject pRet = PyObject_CallObject(m_GetPiconNameFunc, pArgs);
@@ -723,11 +727,6 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 									loadPNG(piconPixmap, piconFilename.c_str(), 1);
 									if (piconPixmap)
 									{
-										eRect area = m_element_position[celServiceInfo];
-										m_element_position[celServiceInfo].setLeft(area.left() + area.height()*2);
-										m_element_position[celServiceInfo].setWidth(area.width() - area.height()*2);
-										area = m_element_position[celServiceName];
-										xoffs += area.height()*2;
 										area.moveBy(offset);
 										painter.clip(area);
 										painter.blitScale(piconPixmap, eRect(offset.x()+ area.left(), area.top(), area.height()*2, area.height()), area, gPainter::BT_ALPHATEST);
