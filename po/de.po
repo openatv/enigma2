@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2013-07-22 00:46+0100\n"
+"PO-Revision-Date: 2013-07-26 20:45+0100\n"
 "Last-Translator: mike99 <mike99@gmx.net>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -11199,6 +11199,9 @@ msgstr "Service-PIN"
 msgid "set as startup service"
 msgstr "Kanal als Startkanal auswählen"
 
+msgid "stop using as startup service"
+msgstr "Kanal als Startkanal entfernen"
+
 msgid "setup PIN"
 msgstr "Setup-PIN"
 
@@ -11368,9 +11371,6 @@ msgstr "Aufnahme anhalten"
 #
 msgid "stop timeshift"
 msgstr "Timeshift beenden"
-
-msgid "stop using as startup service"
-msgstr "Kanal als Startkanal entfernen"
 
 #
 msgid "swap PiP and main picture"
@@ -14500,13 +14500,13 @@ msgstr ""
 "optional Timeshift stoppen oder fortführen."
 
 msgid "Yes, but save timeshift as movie and stop recording"
-msgstr "Ja, Timeshift als Aufnahme speichern und stoppen"
+msgstr "Ja, als Aufnahme speichern und stoppen"
 
 msgid "Yes, but save timeshift as movie and continue recording"
-msgstr "Ja, Timeshift als Aufnahme speichern und weiter aufnehmen"
+msgstr "Ja, als Aufnahme speichern und weiter aufnehmen"
 
 msgid "Yes, but don't save timeshift as movie"
-msgstr "Ja, Timeshift nicht als Aufnahme speichern"
+msgstr "Ja, nicht als Aufnahme speichern"
 
 msgid "Stop timer recording"
 msgstr "Timer Aufnahme beenden"
@@ -14576,11 +14576,11 @@ msgstr ""
 
 #
 msgid "Reload Services"
-msgstr "Serviceliste aktualisieren"
+msgstr "Kanallisten aktualisieren"
 
 #
 msgid "The servicelist is reloaded."
-msgstr "Die Serviceliste wurde aktualisiert."
+msgstr "Die Kanallisten wurden aktualisiert."
 
 #
 msgid "Left from servicename"
@@ -14589,3 +14589,12 @@ msgstr "Links vom Servicenamen"
 #
 msgid "Right from servicename"
 msgstr "Rechts vom Servicenamen"
+
+#
+msgid ""
+"PowerOff while Recording in progress!\n"
+"Entering standby, after recording the box will shutdown."
+msgstr ""
+"Es läuft noch eine Aufnahme, Receiver wird bis zum Ende der\n"
+"\n"
+"Aufnahme in den Stby versetzt und danach heruntergefahren."
