@@ -7,6 +7,7 @@ from Tools.LoadPixmap import LoadPixmap
 
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 
+from Components.Renderer.Picon import getPiconName
 from Components.config import config
 
 def refreshServiceList(configElement = None):
@@ -253,6 +254,11 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setItemHeight(self.ItemHeight)
 		self.l.setVisualMode(eListboxServiceContent.visModeComplex)
 		
+		if config.usage.service_icon_enable.value:
+			self.l.setGetPiconNameFunc(getPiconName)
+		else:
+			self.l.setGetPiconNameFunc(None)
+
 		progressBarWidth = 52
 		rowWidth = self.instance.size().width() - 30 #scrollbar is fixed 20 + 10 Extra marge
 
