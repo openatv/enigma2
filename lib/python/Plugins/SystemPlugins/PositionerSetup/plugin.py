@@ -139,6 +139,7 @@ class PositionerSetup(Screen):
 					del session.pip
 					if not self.openFrontend():
 						self.frontend = None # in normal case this should not happen
+						del self.raw_channel
 
 		self.frontendStatus = { }
 		self.diseqc = Diseqc(self.frontend)
@@ -270,6 +271,7 @@ class PositionerSetup(Screen):
 			self.sitelat = lnb.latitude.float
 			self.latitudeOrientation = lnb.latitudeOrientation.value
 			self.tuningstepsize = lnb.tuningstepsize.float
+			self.rotorPositions = lnb.rotorPositions.value
 			self.turningspeedH = lnb.turningspeedH.float
 			self.turningspeedV = lnb.turningspeedV.float
 		except: # some reasonable defaults from NimManager
@@ -278,6 +280,7 @@ class PositionerSetup(Screen):
 			self.sitelat = 50.767
 			self.latitudeOrientation = 'north'
 			self.tuningstepsize = 0.36
+			self.rotorPositions = 49
 			self.turningspeedH = 2.3
 			self.turningspeedV = 1.7
 		self.sitelat = PositionerSetup.orbital2metric(self.sitelat, self.latitudeOrientation)
@@ -313,6 +316,7 @@ class PositionerSetup(Screen):
 			self.sitelat = PositionerSetup.orbital2metric(self.sitelat, self.latitudeOrientation)
 			self.sitelon = PositionerSetup.orbital2metric(self.sitelon, self.longitudeOrientation)
 			self.tuningstepsize = nim.tuningstepsize.float
+			self.rotorPositions = nim.rotorPositions.value
 			self.turningspeedH = nim.turningspeedH.float
 			self.turningspeedV = nim.turningspeedV.float
 		else:	# it is advanced
@@ -328,7 +332,8 @@ class PositionerSetup(Screen):
 		self.positioner_move = ConfigNothing()
 		self.positioner_finemove = ConfigNothing()
 		self.positioner_limits = ConfigNothing()
-		self.positioner_storage = ConfigInteger(default = rotorposition, limits = (1, 99))
+		self.positioner_storage = ConfigInteger(default = rotorposition, limits = (1, self.rotorPositions))
+		self.allocatedIndices = []
 		m = PositionerSetup.satposition2metric(orb_pos)
 		self.orbitalposition = ConfigFloat(default = [int(m[0] / 10), m[0] % 10], limits = [(0,180),(0,9)])
 		self.orientation = ConfigSelection([("east", _("East")), ("west", _("West"))], m[1])
@@ -546,19 +551,26 @@ class PositionerSetup(Screen):
 		elif entry == "storage":
 			if self.advanced:
 				self.printMsg(_("Allocate unused memory index"))
-				indices = []
-				for sat in self.availablesats:
-					indices.append(int(self.advancedsats[sat].rotorposition.value))
-				index = 1
-				for i in sorted(indices):
-					if i != index:
+				while(True):
+					if not len(self.allocatedIndices):
+						for sat in self.availablesats:
+							self.allocatedIndices.append(int(self.advancedsats[sat].rotorposition.value))
+						if len(self.allocatedIndices) == self.rotorPositions:
+							self.statusMsg(_("No free index available"), timeout = self.STATUS_MSG_TIMEOUT)
+							break
+					index = 1
+					for i in sorted(self.allocatedIndices):
+						if i != index:
+							break
+						index += 1
+					if index <= self.rotorPositions:
+						self.positioner_storage.value = index
+						self["list"].invalidateCurrent()
+						self.allocatedIndices.append(index)
+						self.statusMsg((_("Index allocated:") + " %2d") % index, timeout = self.STATUS_MSG_TIMEOUT)
 						break
-					index += 1
-				if index <= 99:
-					self.positioner_storage.value = index
-					self.statusMsg((_("Index allocated:") + " %2d") % index, timeout = self.STATUS_MSG_TIMEOUT)
-				else:
-					self.statusMsg(_("No free index available"), timeout = self.STATUS_MSG_TIMEOUT)
+					else:
+						self.allocatedIndices = []
 
 	def recalcConfirmed(self, yesno):
 		if yesno:
@@ -599,6 +611,7 @@ class PositionerSetup(Screen):
 			if orb_pos in self.availablesats:
 				rotorposition = int(self.advancedsats[orb_pos].rotorposition.value)
 				self.positioner_storage.value = rotorposition
+				self.allocatedIndices = []
 			self.setLNB(self.getLNBfromConfig(orb_pos))
 
 	def isLocked(self):
