@@ -162,16 +162,24 @@ int gAccel::fill(gUnmanagedSurface *dst, const eRect &area, unsigned long col)
 	return -1;
 }
 
-int gAccel::accelAlloc(void *&addr, int &phys_addr, int size)
+int gAccel::accelAlloc(gUnmanagedSurface* surface)
 {
-	if ((!size) || (!m_accel_allocation))
+	if (!m_accel_allocation)
 	{
-		eDebug("size: %d, alloc %p", size, m_accel_allocation);
-		addr = 0;
-		phys_addr = 0;
+		eDebug("m_accel_allocation not set");
 		return -1;
 	}
-	
+	int stride = (surface->stride + 63) & ~63;
+	int size = stride * surface->y;
+	if (!size)
+	{
+		eDebug("accelAlloc called with size 0");
+		return -2;
+	}
+	if (surface->bpp == 8)
+		size += 256 * 4;
+
+/*
 	int used = 0, free = 0, s = 0;
 	for (int i=0; i < m_accel_size; ++i)
 	{
@@ -185,7 +193,8 @@ int gAccel::accelAlloc(void *&addr, int &phys_addr, int size)
 			s += m_accel_allocation[i];
 		}
 	}
-	//eDebug("accel memstat: alloc=%d B used=%d kB, free %d kB, s %d kB", size, used * 4, free * 4, s * 4);
+	eDebug("accel memstat: alloc=%d B used=%d kB, free %d kB, s %d kB", size, used * 4, free * 4, s * 4);
+*/
 
 	size += 4095;
 	size >>= 12;
@@ -200,17 +209,19 @@ int gAccel::accelAlloc(void *&addr, int &phys_addr, int size)
 			m_accel_allocation[i] = size;
 			for (a=1; a<size; ++a)
 				m_accel_allocation[i+a] = -1;
-			addr = ((unsigned char*)m_accel_addr) + (i << 12);
-			phys_addr = m_accel_phys_addr + (i << 12);
+			surface->data = ((unsigned char*)m_accel_addr) + (i << 12);
+			surface->data_phys = m_accel_phys_addr + (i << 12);
+			surface->stride = stride;
 			return 0;
 		}
 	}
 	eDebug("accel alloc failed\n");
-	return -1;
+	return -3;
 }
 
-void gAccel::accelFree(int phys_addr)
+void gAccel::accelFree(gUnmanagedSurface* surface)
 {
+	int phys_addr = surface->data_phys;
 	phys_addr -= m_accel_phys_addr;
 	phys_addr >>= 12;
 	
