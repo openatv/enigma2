@@ -12,7 +12,7 @@ from Components.Ipkg import IpkgComponent
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
-from enigma import eTimer, eDVBDB, getImageVersionString, getBuildVersionString, getMachineBrand, getMachineName
+from enigma import eTimer, eDVBDB, getImageVersionString, getBuildVersionString, getMachineBrand, getMachineName, getBoxType
 
 
 from os import rename, path, remove
@@ -69,7 +69,7 @@ class SoftwareUpdateChanges(Screen):
 	def getlog(self):
 		global ocram
 		try:
-			sourcefile = 'http://enigma2.world-of-satellite.com/feeds/' + getImageVersionString() + '/' + self.logtype + '-git.log'
+			sourcefile = 'http://enigma2.world-of-satellite.com/feeds/' + getImageVersionString() + '/' + getBoxType() + '/'  + self.logtype + '-git.log'
 			sourcefile,headers = urllib.urlretrieve(sourcefile)
 			rename(sourcefile,'/tmp/' + self.logtype + '-git.log')
 			fd = open('/tmp/' + self.logtype + '-git.log', 'r')
