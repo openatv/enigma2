@@ -80,8 +80,9 @@ class Dish(Screen):
 				self.hide()
 
 	def turnTimerLoop(self):
-		self.turn_time -= 1
-		self["turnTime"].setText(self.FormatTurnTime(self.turn_time))
+		if self.total_time:
+			self.turn_time -= 1
+			self["turnTime"].setText(self.FormatTurnTime(self.turn_time))
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
@@ -93,10 +94,13 @@ class Dish(Screen):
 
 		self["posFrom"].setText(self.OrbToStr(prev_rotor_pos))
 		self["posGoto"].setText(self.OrbToStr(self.rotor_pos))
-		self["turnTime"].setText(self.FormatTurnTime(self.turn_time))
 		self["tunerName"].setText(self.getTunerName())
-		self["turnSpeed"].setText(str(self.getTurningSpeed(self.cur_polar)) + chr(176) + _("/s"))
-
+		if self.total_time == 0:
+			self["turnTime"].setText("")
+			self["turnSpeed"].setText("")
+		else:
+			self["turnTime"].setText(self.FormatTurnTime(self.turn_time))
+			self["turnSpeed"].setText(str(self.getTurningSpeed(self.cur_polar)) + chr(176) + _("/s"))
 		self.turnTimer.start(1000, False)
 
 	def __onHide(self):
@@ -140,8 +144,8 @@ class Dish(Screen):
 				mrt = 3600 - mrt
 			if (mrt % 10):
 				mrt += 10
-			mrt = (mrt * 1000 / self.getTurningSpeed(pol) ) / 10000
-		return mrt + 3
+			mrt = (mrt * 1000 / self.getTurningSpeed(pol) ) / 10000 + 3
+		return mrt
 
 	def getTurningSpeed(self, pol=0):
 		tuner = self.getCurrentTuner()
