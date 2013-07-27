@@ -1005,7 +1005,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	if (m_filepara->bits == 8)
 	{
 		result=new gPixmap(eSize(m_filepara->max_x, m_filepara->max_y), 8);
-		gSurface *surface = result->surface;
+		gUnmanagedSurface *surface = result->surface;
 		surface->clut.data = m_filepara->palette;
 		surface->clut.colors = m_filepara->palette_size;
 		surface->clut.start=0;
@@ -1064,7 +1064,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	else
 	{
 		result=new gPixmap(eSize(m_filepara->max_x, m_filepara->max_y), 32);
-		gSurface *surface = result->surface;
+		gUnmanagedSurface *surface = result->surface;
 		int o_y=0, u_y=0, v_x=0, h_x=0;
 
 		unsigned char *tmp_buffer=((unsigned char *)(surface->data));

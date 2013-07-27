@@ -18,8 +18,8 @@ public:
 	int blit(gUnmanagedSurface *dst, const gUnmanagedSurface *src, const eRect &p, const eRect &area, int flags);
 	int fill(gUnmanagedSurface *dst, const eRect &area, unsigned long col);
 	
-	int accelAlloc(void *&addr, int &phys_addr, int size);
-	void accelFree(int phys_addr);
+	int accelAlloc(gUnmanagedSurface* surface);
+	void accelFree(gUnmanagedSurface* surface);
 private:
 	void *m_accel_addr;
 	int m_accel_phys_addr;
