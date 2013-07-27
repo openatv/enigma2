@@ -84,6 +84,7 @@ dist_install_DATA = \
 	rass_page4.png \
 	record.png \
 	redx.png \
+	rep.png \
 	repeat_off.png \
 	repeat_on.png \
 	scan-c.png \
