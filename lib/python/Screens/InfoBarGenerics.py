@@ -3179,7 +3179,7 @@ class InfoBarTimeshift:
 
 	def ptsCleanTimeshiftFolder(self):
 		print '!!!!!!!!!!!!!!!!!!!!! ptsCleanTimeshiftFolder'
-		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True:
+		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True or not os.path.exists(config.usage.timeshift_path.getValue()):
 			return
 
 		for filename in os.listdir(config.usage.timeshift_path.getValue()):
