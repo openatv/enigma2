@@ -418,7 +418,7 @@ class PowerKey:
 						print "Set after-event for recording %s to DEEP-STANDBY." % timer.name
 						timer.afterEvent = 2
 						if timer.end > lastrecordEnd:
-							lastrecordEnd = timer.end
+							lastrecordEnd = timer.end + 900
 				from Screens.MessageBox import MessageBox
 				self.session.openWithCallback(self.gotoStandby,MessageBox,_("PowerOff while Recording in progress!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, timeout = 10)
 			else:
