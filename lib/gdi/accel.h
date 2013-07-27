@@ -1,6 +1,8 @@
 #ifndef __lib_gdi_accel_h
 #define __lib_gdi_accel_h
 
+#include <base/elock.h>
+
 struct gUnmanagedSurface;
 class eRect;
 class ePoint;
@@ -12,6 +14,7 @@ public:
 	gAccel();
 	~gAccel(); 
 	
+	void releaseAccelMemorySpace();
 	void setAccelMemorySpace(void *addr, int phys_addr, int size);
 
 	bool hasAlphaBlendingSupport();
@@ -21,10 +24,11 @@ public:
 	int accelAlloc(gUnmanagedSurface* surface);
 	void accelFree(gUnmanagedSurface* surface);
 private:
+	eSingleLock m_allocation_lock;
 	void *m_accel_addr;
 	int m_accel_phys_addr;
 	int m_accel_size; // in blocks
-	int *m_accel_allocation;
+	gUnmanagedSurface **m_accel_allocation;
 	int m_bcm_accel_state;
 	
 	static gAccel *instance;
