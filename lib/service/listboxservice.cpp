@@ -704,67 +704,71 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					m_element_position[celServiceInfo].setWidth(area.width() - (bbox.width() + 8 + xoffs));
 					m_element_position[celServiceInfo].setHeight(area.height());
 
-					//picon stuff
-					if (isPlayable && PyCallable_Check(m_GetPiconNameFunc))
+					if (isPlayable)
 					{
-						eRect area = m_element_position[celServiceInfo];
-						m_element_position[celServiceInfo].setLeft(area.left() + area.height()*2);
-						m_element_position[celServiceInfo].setWidth(area.width() - area.height()*2);
-						area = m_element_position[celServiceName];
-						xoffs += area.height()*2;
-						ePyObject pArgs = PyTuple_New(1);
-						PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(ref.toString().c_str()));
-						ePyObject pRet = PyObject_CallObject(m_GetPiconNameFunc, pArgs);
-						Py_DECREF(pArgs);
-						if (pRet)
+						//picon stuff
+						if (PyCallable_Check(m_GetPiconNameFunc))
 						{
-							if (PyString_Check(pRet))
+							eRect area = m_element_position[celServiceInfo];
+							m_element_position[celServiceInfo].setLeft(area.left() + area.height()*2 + 8);
+							m_element_position[celServiceInfo].setWidth(area.width() - area.height()*2 - 8);
+							area = m_element_position[celServiceName];
+							xoffs += area.height()*2 + 8;
+							ePyObject pArgs = PyTuple_New(1);
+							PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(ref.toString().c_str()));
+							ePyObject pRet = PyObject_CallObject(m_GetPiconNameFunc, pArgs);
+							Py_DECREF(pArgs);
+							if (pRet)
 							{
-								std::string piconFilename = PyString_AS_STRING(pRet);
-								if (!piconFilename.empty())
+								if (PyString_Check(pRet))
 								{
-									ePtr<gPixmap> piconPixmap;
-									loadPNG(piconPixmap, piconFilename.c_str(), 1);
-									if (piconPixmap)
+									std::string piconFilename = PyString_AS_STRING(pRet);
+									if (!piconFilename.empty())
 									{
-										area.moveBy(offset);
-										painter.clip(area);
-										painter.blitScale(piconPixmap, eRect(offset.x()+ area.left(), area.top(), area.height()*2, area.height()), area, gPainter::BT_ALPHATEST);
-										painter.clippop();
+										ePtr<gPixmap> piconPixmap;
+										loadPNG(piconPixmap, piconFilename.c_str(), 1);
+										if (piconPixmap)
+										{
+											area.moveBy(offset);
+											painter.clip(area);
+											painter.blitScale(piconPixmap, eRect(offset.x()+ area.left(), area.top(), area.height()*2, area.height()), area, gPainter::BT_ALPHABLEND);
+											painter.clippop();
+										}
 									}
 								}
+								Py_DECREF(pRet);
 							}
-							Py_DECREF(pRet);
 						}
-					}
 
-					//service type marker stuff
-					if (m_servicetype_icon_mode && isPlayable)
-					{
-						int orbpos = m_cursor->getUnsignedData(4) >> 16;
-						const char *filename = ref.path.c_str();
-						ePtr<gPixmap> &pixmap =
-							(m_cursor->flags & eServiceReference::isGroup) ? m_pixmaps[picServiceGroup] :
-							(strstr(filename, "://")) ? m_pixmaps[picStream] :
-							(orbpos == 0xFFFF) ? m_pixmaps[picDVB_C] :
-							(orbpos == 0xEEEE) ? m_pixmaps[picDVB_T] : m_pixmaps[picDVB_S];
-						if (pixmap)
+						//service type marker stuff
+						if (m_servicetype_icon_mode)
 						{
-							eSize pixmap_size = pixmap->size();
-							eRect area = m_element_position[celServiceInfo];
-							int correction = (area.height() - pixmap_size.height()) / 2;
-							m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
-							m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
-							int oldoffs = xoffs;
-							if (m_servicetype_icon_mode == 1)
+							int orbpos = m_cursor->getUnsignedData(4) >> 16;
+							const char *filename = ref.path.c_str();
+							ePtr<gPixmap> &pixmap =
+								(m_cursor->flags & eServiceReference::isGroup) ? m_pixmaps[picServiceGroup] :
+								(strstr(filename, "://")) ? m_pixmaps[picStream] :
+								(orbpos == 0xFFFF) ? m_pixmaps[picDVB_C] :
+								(orbpos == 0xEEEE) ? m_pixmaps[picDVB_T] : m_pixmaps[picDVB_S];
+							if (pixmap)
 							{
-								area = m_element_position[celServiceName];
-								xoffs += pixmap_size.width() + 8;
+								eSize pixmap_size = pixmap->size();
+								eRect area = m_element_position[celServiceInfo];
+								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
+								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
+								int offs = 0;
+								if (m_servicetype_icon_mode == 1)
+								{
+									area = m_element_position[celServiceName];
+									offs = xoffs;
+									xoffs += pixmap_size.width() + 8;
+								}
+								int correction = (area.height() - pixmap_size.height()) / 2;
+								area.moveBy(offset);
+								painter.clip(area);
+								painter.blit(pixmap, offset+ePoint(area.left() + offs, correction), area, gPainter::BT_ALPHATEST);
+								painter.clippop();
 							}
-							area.moveBy(offset);
-							painter.clip(area);
-							painter.blit(pixmap, offset+ePoint(area.left() + oldoffs, correction), area, gPainter::BT_ALPHATEST);
-							painter.clippop();
 						}
 					}
 				}
