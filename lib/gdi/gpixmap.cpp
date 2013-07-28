@@ -99,16 +99,8 @@ gSurface::gSurface(eSize size, int _bpp, int accel):
 {
 	if (accel)
 	{
-		if (gAccel::getInstance())
-		{
-			stride += 63;
-			stride &= ~63;
-			int pal_size = (bpp == 8) ? 256 * 4 : 0;
-			if (gAccel::getInstance()->accelAlloc(data, data_phys, y * stride + pal_size) != 0)
+		if (gAccel::getInstance()->accelAlloc(this) != 0)
 				eDebug("ERROR: accelAlloc failed");
-		}
-		else
-			eDebug("no accel available");
 	}
 	if (!data)
 		data = new unsigned char [y * stride];
@@ -116,9 +108,8 @@ gSurface::gSurface(eSize size, int _bpp, int accel):
 
 gSurface::~gSurface()
 {
-	if (data_phys)
-		gAccel::getInstance()->accelFree(data_phys);
-	else if (data)
+	gAccel::getInstance()->accelFree(this);
+	if (data)
 		delete [] (unsigned char*)data;
 	if (clut.data)
 		delete [] clut.data;
