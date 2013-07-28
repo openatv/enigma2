@@ -1004,7 +1004,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 
 	if (m_filepara->bits == 8)
 	{
-		result=new gPixmap(eSize(m_filepara->max_x, m_filepara->max_y), 8);
+		result=new gPixmap(eSize(m_filepara->max_x, m_filepara->max_y), 8, 2);
 		gUnmanagedSurface *surface = result->surface;
 		surface->clut.data = m_filepara->palette;
 		surface->clut.colors = m_filepara->palette_size;

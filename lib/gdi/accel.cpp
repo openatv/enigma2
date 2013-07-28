@@ -8,6 +8,8 @@
 #include <lib/gdi/erect.h>
 #include <lib/gdi/gpixmap.h>
 
+// #define ACCEL_DEBUG
+
 gAccel *gAccel::instance;
 #define BCM_ACCEL
 
@@ -210,12 +212,6 @@ int gAccel::fill(gUnmanagedSurface *dst, const eRect &area, unsigned long col)
 
 int gAccel::accelAlloc(gUnmanagedSurface* surface)
 {
-	eSingleLocker lock(m_allocation_lock);
-	if (!m_accel_allocation)
-	{
-		eDebug("m_accel_allocation not set");
-		return -1;
-	}
 	int stride = (surface->stride + 63) & ~63;
 	int size = stride * surface->y;
 	if (!size)
@@ -225,6 +221,11 @@ int gAccel::accelAlloc(gUnmanagedSurface* surface)
 	}
 	if (surface->bpp == 8)
 		size += 256 * 4;
+	else if (surface->bpp != 32)
+	{
+		eDebug("Accel does not support bpp=%d", surface->bpp);
+		return -4;
+	}
 
 #ifdef ACCEL_DEBUG
 	eDebug("[%s] %p size=%d %dx%d:%d", __func__, surface, size, surface->x, surface->y, surface->bpp);
@@ -232,6 +233,13 @@ int gAccel::accelAlloc(gUnmanagedSurface* surface)
 
 	size += 4095;
 	size >>= 12;
+
+	eSingleLocker lock(m_allocation_lock);
+	if (!m_accel_allocation)
+	{
+		eDebug("m_accel_allocation not set");
+		return -1;
+	}
 	for (int i = m_accel_size - size; i >= 0 ; --i)
 	{
 		int a;
