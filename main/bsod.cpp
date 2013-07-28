@@ -116,13 +116,6 @@ void bsodFatal(const char *component)
 	if (bsodhandled) return;
 	bsodhandled = true;
 
-	std::ostringstream os;
-	os << "/media/hdd/enigma2_crash_";
-	os << time(0);
-	os << ".log";
-
-	FILE *f = fopen(os.str().c_str(), "wb");
-	
 	std::string lines = getLogBuffer();
 	
 		/* find python-tracebacks, and extract "  File "-strings */
@@ -156,6 +149,33 @@ void bsodFatal(const char *component)
 				std::getline(in, crash_emailaddr) && std::getline(in, crash_component);
 				in.close();
 			}
+		}
+	}
+
+	FILE *f;
+	const char* crashlog_name;
+	std::ostringstream os;
+	os << "/media/hdd/enigma2_crash_";
+	os << time(0);
+	os << ".log";
+	crashlog_name = os.str().c_str();
+	f = fopen(crashlog_name, "wb");
+	
+	if (f == NULL)
+	{
+		/* No hardisk. If there is a crash log in /home/root, leave it
+		 * alone because we may be in a crash loop and writing this file
+		 * all night long may damage the flash. Also, usually the first
+		 * crash log is the most interesting one. */
+		crashlog_name = "/home/root/enigma2_crash.log";
+		if ((access(crashlog_name, F_OK) == 0) ||
+		    ((f = fopen(crashlog_name, "wb")) == NULL))
+		{
+			/* Re-write the same file in /tmp/ because it's expected to
+			 * be in RAM. So the first crash log will end up in /home
+			 * and the last in /tmp */
+			crashlog_name = "/tmp/enigma2_crash.log";
+			f = fopen(crashlog_name, "wb");
 		}
 	}
 
@@ -256,13 +276,15 @@ void bsodFatal(const char *component)
 
 	eRect usable_area = eRect(100, 70, my_dc->size().width() - 150, 100);
 	
-	std::string text("We are really sorry. Your STB encountered "
-		"a software problem, and needs to be restarted. "
-		"Please send the logfile created in /hdd/ to " + crash_emailaddr + ".\n"
+	os.str("");
+	os.clear();
+	os << "We are really sorry. Your STB encountered "
+		"a software problem, and needs to be restarted.\n"
+		"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
 		"Your STB restarts in 10 seconds!\n"
-		"Component: " + crash_component);
+		"Component: " << crash_component;
 
-	p.renderText(usable_area, text.c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
+	p.renderText(usable_area, os.str().c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
 
 	usable_area = eRect(100, 170, my_dc->size().width() - 180, my_dc->size().height() - 20);
 
@@ -304,11 +326,11 @@ void oops(const mcontext_t &context, int dumpcode)
 {
 	eDebug("PC: %08lx", (unsigned long)context.pc);
 	int i;
-	for (i=0; i<32; ++i)
+	for (i=0; i<32; i += 4)
 	{
-		eDebugNoNewLine(" %08x", (int)context.gregs[i]);
-		if ((i&3) == 3)
-			eDebug("");
+		eDebug("%08x %08x %08x %08x",
+			(int)context.gregs[i+0], (int)context.gregs[i+1],
+			(int)context.gregs[i+2], (int)context.gregs[i+3]);
 	}
 		/* this is temporary debug stuff. */
 	if (dumpcode && ((unsigned long)context.pc) > 0x10000) /* not a zero pointer */
