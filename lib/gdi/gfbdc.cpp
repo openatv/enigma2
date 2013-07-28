@@ -110,7 +110,10 @@ void gFBDC::exec(const gOpcode *o)
 			surface = surface_back;
 			surface_back = s;
 
-			fb->setOffset(surface_back.offset);
+			if (surface.data_phys > surface_back.data_phys)
+				fb->setOffset(surface_back.y);
+			else
+				fb->setOffset(0);
 		}
 		break;
 	}
@@ -187,7 +190,6 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 	surface.bypp = m_bpp / 8;
 	surface.stride = fb->Stride();
 	surface.data = fb->lfb;
-	surface.offset = 0;
 
 	surface.data_phys = fb->getPhysAddr();
 
@@ -201,7 +203,6 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 		surface_back.bpp = m_bpp;
 		surface_back.bypp = m_bpp / 8;
 		surface_back.stride = fb->Stride();
-		surface_back.offset = surface.y;
 		surface_back.data = fb->lfb + fb_size;
 		surface_back.data_phys = surface.data_phys + fb_size;
 		fb_size *= 2;
