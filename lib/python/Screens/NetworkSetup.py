@@ -249,6 +249,42 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 		ConfigListScreen.__init__(self, self.list)
 		self.createSetup()
 		
+class MacAddressSetup(Screen, ConfigListScreen, HelpableScreen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
+		self.backupNameserverList = iNetwork.getNameserverList()[:]
+		print "backup-list:", self.backupNameserverList
+		
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Add"))
+		self["key_yellow"] = StaticText(_("Delete"))
+
+		self["introduction"] = StaticText(_("Press OK to activate the settings."))
+		self.createConfig()
+
+		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
+			{
+			"cancel": (self.cancel, _("Exit nameserver configuration")),
+			"ok": (self.ok, _("Activate current configuration")),
+			})
+
+		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
+			{
+			"red": (self.cancel, _("Exit nameserver configuration")),
+			"green": (self.add, _("Add a nameserver entry")),
+			"yellow": (self.remove, _("Remove a nameserver entry")),
+			})
+
+		self["actions"] = NumberActionMap(["SetupActions"],
+		{
+			"ok": self.ok,
+		}, -2)
+
+		self.list = []
+		ConfigListScreen.__init__(self, self.list)
+		self.createSetup()		
+		
 	def createConfig(self):
 		self.nameservers = iNetwork.getNameserverList()
 		self.nameserverEntries = [ NoSave(ConfigIP(default=nameserver)) for nameserver in self.nameservers]
@@ -744,6 +780,8 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			self.session.open(NetworkAdapterTest,self.iface)
 		if self["menulist"].getCurrent()[1] == 'dns':
 			self.session.open(NameserverSetup)
+		if self["menulist"].getCurrent()[1] == 'mac':
+			self.session.open(MacAddressSetup)			
 		if self["menulist"].getCurrent()[1] == 'scanwlan':
 			try:
 				from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan
@@ -801,6 +839,8 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			self["description"].setText(_("Test the network configuration of your receiver.\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'dns':
 			self["description"].setText(_("Edit the nameserver configuration of your receiver.\n" ) + self.oktext )
+		if self["menulist"].getCurrent()[1] == 'mac':
+			self["description"].setText(_("Edit the mac address of the network interface.\n" ) + self.oktext )			
 		if self["menulist"].getCurrent()[1] == 'scanwlan':
 			self["description"].setText(_("Scan your network for wireless access points and connect to them using your selected wireless device.\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'wlanstatus':
@@ -837,6 +877,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		menu = []
 		menu.append((_("Adapter settings"), "edit"))
 		menu.append((_("Nameserver settings"), "dns"))
+		menu.append((_("MAC settings"), "mac"))		
 		menu.append((_("Network test"), "test"))
 		menu.append((_("Restart network"), "lanrestart"))
 

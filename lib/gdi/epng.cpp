@@ -2,6 +2,7 @@
 #include <zlib.h>
 #include <png.h>
 #include <stdio.h>
+#include <lib/base/cfile.h>
 #include <lib/gdi/epng.h>
 #include <unistd.h>
 
@@ -12,172 +13,149 @@ extern "C" {
 int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 {
 	__u8 header[8];
-	FILE *fp=fopen(filename, "rb");
+	CFile fp(filename, "rb");
 	
 	if (!fp)
 	{
-//		eDebug("couldn't open %s", filename );
+		eDebug("[ePNG] couldn't open %s", filename );
 		return 0;
 	}
 	if (!fread(header, 8, 1, fp))
 	{
-		eDebug("couldn't read");
-		fclose(fp);
+		eDebug("[ePNG] failed to get png header");
 		return 0;
 	}
 	if (png_sig_cmp(header, 0, 8))
 	{
-		fclose(fp);
+		eDebug("[ePNG] header size mismatch");
 		return 0;
 	}
-	png_structp png_ptr=png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
 	if (!png_ptr)
 	{
-		eDebug("no pngptr");
-		fclose(fp);
+		eDebug("[ePNG] failed to create read struct");
 		return 0;
 	}
-	png_infop info_ptr=png_create_info_struct(png_ptr);
+	png_infop info_ptr = png_create_info_struct(png_ptr);
 	if (!info_ptr)
 	{
-		eDebug("no info ptr");
+		eDebug("[ePNG] failed to create info struct");
 		png_destroy_read_struct(&png_ptr, (png_infopp)0, (png_infopp)0);
-		fclose(fp);
 		return 0;
 	}
 	png_infop end_info = png_create_info_struct(png_ptr);
 	if (!end_info)
 	{
-		eDebug("no end");
+		eDebug("[ePNG] failed to create end info struct");
 		png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
-		fclose(fp);
 		return 0;
-	 }
+	}
 	if (setjmp(png_jmpbuf(png_ptr)))
 	{
-		eDebug("das war wohl nix");
+		eDebug("[ePNG] png setjump failed or activated");
 		png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
-		fclose(fp);
 		result = 0;
 		return 0;
 	}
 	png_init_io(png_ptr, fp);
 	png_set_sig_bytes(png_ptr, 8);
-	png_set_invert_alpha(png_ptr);
 	png_read_info(png_ptr, info_ptr);
 	
 	png_uint_32 width, height;
 	int bit_depth;
 	int color_type;
+	int interlace_type;
+	int channels;
+	int trns;
 	
-	png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, 0, 0, 0);
-	
-	if (color_type == PNG_COLOR_TYPE_GRAY || color_type & PNG_COLOR_MASK_PALETTE)
-	{
-		if (bit_depth < 8)
-		{
-			png_set_packing(png_ptr);
-			bit_depth = 8;
-		}
+	png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type, 0, 0);
+	channels = png_get_channels(png_ptr, info_ptr);
+	trns = png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS);
+	//eDebug("[ePNG] %s: before %dx%dx%dbpcx%dchan coltyp=%d", filename, (int)width, (int)height, bit_depth, channels, color_type);
 
-		result=new gPixmap(eSize(width, height), bit_depth, accel);
-		gSurface *surface = result->surface;
-	
-		png_bytep *rowptr=new png_bytep[height];
-	
-		for (unsigned int i=0; i<height; i++)
-			rowptr[i]=((png_byte*)(surface->data))+i*surface->stride;
-		png_read_rows(png_ptr, rowptr, 0, height);
-	
-		delete [] rowptr;
-	
-		if (png_get_valid(png_ptr, info_ptr, PNG_INFO_PLTE))
-		{
-			png_color *palette;
-			int num_palette;
-			png_get_PLTE(png_ptr, info_ptr, &palette, &num_palette);
-			if (num_palette)
-				surface->clut.data=new gRGB[num_palette];
-			else
-				surface->clut.data=0;
-			surface->clut.colors=num_palette;
-			
-			for (int i=0; i<num_palette; i++)
-			{
-				surface->clut.data[i].a=0;
-				surface->clut.data[i].r=palette[i].red;
-				surface->clut.data[i].g=palette[i].green;
-				surface->clut.data[i].b=palette[i].blue;
-			}
-			if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))
-			{
-				png_byte *trans;
-				png_get_tRNS(png_ptr, info_ptr, &trans, &num_palette, 0);
-				for (int i=0; i<num_palette; i++)
-					surface->clut.data[i].a=255-trans[i];
-			}
-		} else
-		{
-			surface->clut.data=0;
-			surface->clut.colors=0;
-		}
-		surface->clut.start=0;
-		png_read_end(png_ptr, end_info);
-	} else {
-		result=new gPixmap(eSize(width, height), 32, accel);
-		gSurface *surface = result->surface;
-		
-		if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))
-			png_set_expand(png_ptr);
-		if (bit_depth == 16)
-			png_set_strip_16(png_ptr);
-		if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
-			png_set_gray_to_rgb(png_ptr);
-		if (color_type == PNG_COLOR_TYPE_RGB)
-			png_set_filler(png_ptr, 0x00, PNG_FILLER_AFTER);
-			
-		int number_passes = png_set_interlace_handling(png_ptr);
-		png_read_update_info(png_ptr, info_ptr);
-		
-		if (width * 4 != png_get_rowbytes(png_ptr, info_ptr))
-		{
-			eDebug("error processing %s (did not get RGBA data from PNG file)", filename);
-			png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
-			fclose(fp);
-			return 0;
-		}
-		
-		unsigned char *pic_buffer = ((unsigned char *)(surface->data));
-		
-		for(int pass = 0; pass < number_passes; pass++)
-		{
-			png_byte *fbptr = (png_byte *)pic_buffer;
-			for (int i = 0; i < height; i++, fbptr += width * 4)
-				png_read_row(png_ptr, fbptr, NULL);
-		}
-		
-		png_read_end(png_ptr, info_ptr);
-		
-		//       image is RGBA
-		// framebuffer is BGRA
-		// the alpha channel for the framebuffer mean transparency
-		// the alpha channel for the png mean opacity
-		// the api png_set_invert_alpha(png_ptr) seem doesn't work!
-		for (int offset = 0; offset < (width * height * 4); offset += 4)
-		{
-			unsigned char tmp = pic_buffer[offset + 2];
-			pic_buffer[offset + 2] = pic_buffer[offset];
-			pic_buffer[offset] = tmp;
-			pic_buffer[offset + 3] ^= 0xff;		// fix the alpha channel
-		}
-		
-		surface->clut.data=0;
-		surface->clut.colors=0;
-		surface->clut.start=0;
+	/*
+	 * gPixmaps use 8 bits per channel. rgb pixmaps are stored as abgr.
+	 * So convert 1,2 and 4 bpc to 8bpc images that enigma can blit
+	 * so add 'empty' alpha channel
+	 * Expand G+tRNS to GA, RGB+tRNS to RGBA
+	 */
+	if (bit_depth == 16)
+		png_set_strip_16(png_ptr);
+	if (bit_depth < 8)
+		png_set_packing (png_ptr);
+
+	if (color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8)
+		png_set_expand_gray_1_2_4_to_8(png_ptr);
+	if (color_type == PNG_COLOR_TYPE_GRAY && trns)
+		png_set_tRNS_to_alpha(png_ptr);
+	if ((color_type == PNG_COLOR_TYPE_GRAY && trns) || color_type == PNG_COLOR_TYPE_GRAY_ALPHA) {
+		png_set_gray_to_rgb(png_ptr);
+		png_set_bgr(png_ptr);
 	}
 
-	png_destroy_read_struct(&png_ptr, &info_ptr,&end_info);
-	fclose(fp);
+	if (color_type == PNG_COLOR_TYPE_RGB) {
+		if (trns)
+			png_set_tRNS_to_alpha(png_ptr);
+		else
+			png_set_add_alpha(png_ptr, 255, PNG_FILLER_AFTER);
+	}
+
+	if (color_type == PNG_COLOR_TYPE_RGB || color_type == PNG_COLOR_TYPE_RGB_ALPHA)
+		png_set_bgr(png_ptr);
+
+	// Update the info structures after the transformations take effect
+	if (interlace_type != PNG_INTERLACE_NONE)
+		png_set_interlace_handling(png_ptr);  // needed before read_update_info()
+	png_read_update_info (png_ptr, info_ptr);
+	png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, 0, 0, 0);
+	channels = png_get_channels(png_ptr, info_ptr);
+
+	result = new gPixmap(eSize(width, height), bit_depth * channels, accel);
+	gSurface *surface = result->surface;
+
+	png_bytep *rowptr = new png_bytep[height];
+	for (unsigned int i = 0; i < height; i++)
+		rowptr[i] = ((png_byte*)(surface->data)) + i * surface->stride;
+	png_read_image(png_ptr, rowptr);
+
+	delete [] rowptr;
+	
+	int num_palette = -1, num_trans = -1;
+	if (color_type == PNG_COLOR_TYPE_PALETTE) {
+		if (png_get_valid(png_ptr, info_ptr, PNG_INFO_PLTE)) {
+			png_color *palette;
+			png_get_PLTE(png_ptr, info_ptr, &palette, &num_palette);
+			if (num_palette)
+				surface->clut.data = new gRGB[num_palette];
+			else
+				surface->clut.data = 0;
+			surface->clut.colors = num_palette;
+			
+			for (int i = 0; i < num_palette; i++) {
+				surface->clut.data[i].a = 0;
+				surface->clut.data[i].r = palette[i].red;
+				surface->clut.data[i].g = palette[i].green;
+				surface->clut.data[i].b = palette[i].blue;
+			}
+			if (trns) {
+				png_byte *trans;
+				png_get_tRNS(png_ptr, info_ptr, &trans, &num_trans, 0);
+				for (int i = 0; i < num_trans; i++)
+					surface->clut.data[i].a = 255 - trans[i];
+				for (int i = num_trans; i < num_palette; i++)
+					surface->clut.data[i].a = 0;
+			}
+		}
+		else {
+			surface->clut.data = 0;
+			surface->clut.colors = 0;
+		}
+		surface->clut.start = 0;
+	}
+	//eDebug("[ePNG] %s: after  %dx%dx%dbpcx%dchan coltyp=%d cols=%d trans=%d", filename, (int)width, (int)height, bit_depth, channels, color_type, num_palette, num_trans);
+
+	png_read_end(png_ptr, end_info);
+	png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
 	return 0;
 }
 
@@ -200,10 +178,9 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha)
 {
 	struct jpeg_decompress_struct cinfo;
 	struct my_error_mgr jerr;
-	FILE *infile;
 	JSAMPARRAY buffer;
 	int row_stride;
-	infile = fopen(filename, "rb");
+	CFile infile(filename, "rb");
 	result = 0;
 
 	if (alpha)
@@ -222,7 +199,6 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha)
 	if (setjmp(jerr.setjmp_buffer)) {
 		result = 0;
 		jpeg_destroy_decompress(&cinfo);
-		fclose(infile);
 		return -1;
 	}
 	jpeg_create_decompress(&cinfo);
@@ -279,37 +255,26 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha)
 	}
 	(void) jpeg_finish_decompress(&cinfo);
 	jpeg_destroy_decompress(&cinfo);
-	fclose(infile);
 	return 0;
 }
 
-int savePNG(const char *filename, gPixmap *pixmap)
+static int savePNGto(FILE *fp, gPixmap *pixmap)
 {
-
-	eDebug("\33[33m %s \33[0m",filename);
-	FILE *fp=fopen(filename, "wb");
-	if (!fp)
-		return -1;
-	
 	gSurface *surface = pixmap->surface;
 	if (!surface)
 		return -2;
-	
-	png_structp png_ptr=png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+
+	png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
 	if (!png_ptr)
 	{
-		eDebug("write png, couldnt allocate write struct");
-		fclose(fp);
-		unlink(filename);
+		eDebug("[ePNG] couldn't allocate write struct");
 		return -2;
 	}
-	png_infop info_ptr=png_create_info_struct(png_ptr);
+	png_infop info_ptr = png_create_info_struct(png_ptr);
 	if (!info_ptr)
 	{
-		eDebug("info");
+		eDebug("[ePNG] failed to allocate info struct");
 		png_destroy_write_struct(&png_ptr, 0);
-		fclose(fp);
-		unlink(filename);
 		return -3;
 	}
 
@@ -319,10 +284,8 @@ int savePNG(const char *filename, gPixmap *pixmap)
 
 	if (setjmp(png_jmpbuf(png_ptr)))
 	{
-		eDebug("error :/");
+		eDebug("[ePNG] png setjump failed or activated");
 		png_destroy_write_struct(&png_ptr, &info_ptr);
-		fclose(fp);
-		unlink(filename);
 		return -4;
 	}
 	png_init_io(png_ptr, fp);
@@ -336,20 +299,20 @@ int savePNG(const char *filename, gPixmap *pixmap)
 	png_byte *cr = new png_byte[surface->y * surface->stride];
 	if (cr == NULL)
 	{
-		printf("Error: malloc\n");
+		eDebug("[ePNG] failed to allocate memory image");
 		return -5;
 	}
-	for (int i=0; i<surface->y; ++i)
+	for (int i = 0; i < surface->y; ++i)
 	{
-		row_pointer=((png_byte*)surface->data)+i*surface->stride;
+		row_pointer = ((png_byte*)surface->data) + i * surface->stride;
 		if (surface->bypp == 4)
 		{
 			memcpy(cr, row_pointer, surface->stride);
-			for (int j=0; j<surface->stride; j+=4)
+			for (int j = 0; j < surface->stride; j += 4)
 			{
 				unsigned char tmp = cr[j];
 				cr[j] = cr[j+2];
-				cr[j+2]= tmp;
+				cr[j+2] = tmp;
 			}
 			png_write_row(png_ptr, cr);
 		}
@@ -360,7 +323,21 @@ int savePNG(const char *filename, gPixmap *pixmap)
 
 	png_write_end(png_ptr, info_ptr);
 	png_destroy_write_struct(&png_ptr, &info_ptr);
-	fclose(fp);
-	eDebug("wrote png ! fine !");
 	return 0;
+}
+
+int savePNG(const char *filename, gPixmap *pixmap)
+{
+	int result;
+
+	{
+		eDebug("[ePNG] saving to %s",filename);
+		CFile fp(filename, "wb");
+		if (!fp)
+			return -1;
+		result = savePNGto(fp, pixmap);
+	}
+	if (result != 0)
+		::unlink(filename);
+	return result;
 }

@@ -14,20 +14,23 @@ gFBDC::gFBDC()
 	if (!fb->Available())
 		eFatal("no framebuffer available");
 
-	fb->getMode(m_xres, m_yres, m_bpp);
+	int xres;
+	int yres;
+	int bpp;
+	fb->getMode(xres, yres, bpp);
 
 	/* we can only use one of these three modes: */
-	if (!((m_xres == 720 && m_yres == 576)
-		|| (m_xres == 1280 && m_yres == 720)
-		|| (m_xres == 1920 && m_yres == 1080)))
+	if (!((xres == 720 && yres == 576)
+		|| (xres == 1280 && yres == 720)
+		|| (xres == 1920 && yres == 1080)))
 	{
 		/* fallback to a decent default */
-		m_xres = 720;
-		m_yres = 576;
+		xres = 720;
+		yres = 576;
 	}
 
 	surface.clut.data = 0;
-	setResolution(m_xres, m_yres); // default res
+	setResolution(xres, yres); // default res
 
 	reloadSettings();
 }
@@ -104,13 +107,16 @@ void gFBDC::exec(const gOpcode *o)
 	}
 	case gOpcode::flip:
 	{
-		if (m_enable_double_buffering)
+		if (surface_back.data_phys)
 		{
 			gUnmanagedSurface s(surface);
 			surface = surface_back;
 			surface_back = s;
 
-			fb->setOffset(surface_back.offset);
+			if (surface.data_phys > surface_back.data_phys)
+				fb->setOffset(surface_back.y);
+			else
+				fb->setOffset(0);
 		}
 		break;
 	}
@@ -171,20 +177,20 @@ void gFBDC::setGamma(int g)
 
 void gFBDC::setResolution(int xres, int yres, int bpp)
 {
-	if (m_pixmap && (m_xres == xres) && (m_yres == yres) && (bpp == m_bpp))
+	if (m_pixmap && (surface.x == xres) && (surface.y == yres) && (surface.bpp == bpp))
 		return;
 
-	m_xres = xres; m_yres = yres; m_bpp = bpp;
+	if (gAccel::getInstance())
+		gAccel::getInstance()->releaseAccelMemorySpace();
 
-	fb->SetMode(m_xres, m_yres, m_bpp);
+	fb->SetMode(xres, yres, bpp);
 
-	surface.x = m_xres;
-	surface.y = m_yres;
-	surface.bpp = m_bpp;
-	surface.bypp = m_bpp / 8;
+	surface.x = xres;
+	surface.y = yres;
+	surface.bpp = bpp;
+	surface.bypp = bpp / 8;
 	surface.stride = fb->Stride();
 	surface.data = fb->lfb;
-	surface.offset = 0;
 
 	surface.data_phys = fb->getPhysAddr();
 
@@ -192,18 +198,16 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 
 	if (fb->getNumPages() > 1)
 	{
-		m_enable_double_buffering = 1;
-		surface_back.x = m_xres;
-		surface_back.y = m_yres;
-		surface_back.bpp = m_bpp;
-		surface_back.bypp = m_bpp / 8;
-		surface_back.stride = fb->Stride();
-		surface_back.offset = surface.y;
+		surface_back = surface;
 		surface_back.data = fb->lfb + fb_size;
 		surface_back.data_phys = surface.data_phys + fb_size;
 		fb_size *= 2;
-	} else
-		m_enable_double_buffering = 0;
+	}
+	else
+	{
+		surface_back.data = 0;
+		surface_back.data_phys = 0;
+	}
 
 	eDebug("%dkB available for acceleration surfaces.", (fb->Available() - fb_size)/1024);
 	eDebug("resolution: %d x %d x %d (stride: %d)", surface.x, surface.y, surface.bpp, fb->Stride());
