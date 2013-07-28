@@ -170,7 +170,7 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 			
 			col^=0xFF000000;
 			
-			if (surface->data_phys && gAccel::getInstance())
+			if (surface->data_phys)
 				if (!gAccel::getInstance()->fill(surface,  area, col))
 					continue;
 
@@ -202,7 +202,7 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 			col = color.argb();
 			col^=0xFF000000;
 
-			if (surface->data_phys && gAccel::getInstance())
+			if (surface->data_phys)
 				if (!gAccel::getInstance()->fill(surface,  area, col))
 					continue;
 
@@ -308,7 +308,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 //		clip.extends.x(), clip.extends.y(), clip.extends.width(), clip.extends.height(),
 //		flag);
 	eRect pos = _pos;
-	bool accel = (surface->data_phys && src.surface->data_phys && gAccel::getInstance());
+	bool accel = (surface->data_phys && src.surface->data_phys);
 	
 //	eDebug("source size: %d %d", src.size().width(), src.size().height());
 	
