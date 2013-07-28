@@ -174,6 +174,9 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 	if (m_pixmap && (m_xres == xres) && (m_yres == yres) && (bpp == m_bpp))
 		return;
 
+	if (gAccel::getInstance())
+		gAccel::getInstance()->releaseAccelMemorySpace();
+
 	m_xres = xres; m_yres = yres; m_bpp = bpp;
 
 	fb->SetMode(m_xres, m_yres, m_bpp);

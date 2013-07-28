@@ -1,4 +1,4 @@
-from enigma import ePicLoad, eTimer, getDesktop
+from enigma import ePicLoad, eTimer, getDesktop, gMainDC, eSize
 
 from Screens.Screen import Screen
 from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA
@@ -11,7 +11,7 @@ from Components.AVSwitch import AVSwitch
 from Components.Sources.List import List
 from Components.ConfigList import ConfigList, ConfigListScreen
 
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigEnableDisable, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry
+from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry
 
 def getScale():
 	return AVSwitch().getFramebufferScale()
@@ -20,12 +20,13 @@ config.pic = ConfigSubsection()
 config.pic.framesize = ConfigInteger(default=30, limits=(5, 99))
 config.pic.slidetime = ConfigInteger(default=10, limits=(1, 60))
 config.pic.resize = ConfigSelection(default="1", choices = [("0", _("simple")), ("1", _("better"))])
-config.pic.cache = ConfigEnableDisable(default=True)
+config.pic.cache = ConfigYesNo(default=True)
 config.pic.lastDir = ConfigText(default=resolveFilename(SCOPE_MEDIA))
-config.pic.infoline = ConfigEnableDisable(default=True)
-config.pic.loop = ConfigEnableDisable(default=True)
+config.pic.infoline = ConfigYesNo(default=True)
+config.pic.loop = ConfigYesNo(default=True)
 config.pic.bgcolor = ConfigSelection(default="#00000000", choices = [("#00000000", _("black")),("#009eb9ff", _("blue")),("#00ff5a51", _("red")), ("#00ffe875", _("yellow")), ("#0038FF48", _("green"))])
 config.pic.textcolor = ConfigSelection(default="#0038FF48", choices = [("#00000000", _("black")),("#009eb9ff", _("blue")),("#00ff5a51", _("red")), ("#00ffe875", _("yellow")), ("#0038FF48", _("green"))])
+config.pic.fullview_resolution = ConfigSelection(default = None, choices = [(None, _("Same resolution as skin")), ("(720, 576)","720x576"), ("(1280, 720)", "1280x720"), ("(1920, 1080)", "1920x1080")])
 
 class picshow(Screen):
 	skin = """
@@ -178,6 +179,7 @@ class Pic_Setup(Screen, ConfigListScreen):
 			getConfigListEntry(_("Slide picture in loop"), config.pic.loop),
 			getConfigListEntry(_("Background color"), config.pic.bgcolor),
 			getConfigListEntry(_("Text color"), config.pic.textcolor),
+			getConfigListEntry(_("Fulview resulution"), config.pic.fullview_resolution),
 		]
 		self["config"].list = setup_list
 		self["config"].l.setList(setup_list)
@@ -441,8 +443,14 @@ class Pic_Full_View(Screen):
 		self.textcolor = config.pic.textcolor.getValue()
 		self.bgcolor = config.pic.bgcolor.getValue()
 		space = config.pic.framesize.getValue()
+
 		size_w = getDesktop(0).size().width()
 		size_h = getDesktop(0).size().height()
+
+		if config.pic.fullview_resolution.getValue() and (size_w, size_h) != eval(config.pic.fullview_resolution.getValue()):
+			(size_w, size_h) = eval(config.pic.fullview_resolution.getValue())
+			gMainDC.getInstance().setResolution(size_w, size_h)
+			getDesktop(0).resize(eSize(size_w, size_h))
 
 		self.skin = "<screen position=\"0,0\" size=\"" + str(size_w) + "," + str(size_h) + "\" flags=\"wfNoBorder\" > \
 			<eLabel position=\"0,0\" zPosition=\"0\" size=\""+ str(size_w) + "," + str(size_h) + "\" backgroundColor=\""+ self.bgcolor +"\" /><widget name=\"pic\" position=\"" + str(space) + "," + str(space) + "\" size=\"" + str(size_w-(space*2)) + "," + str(size_h-(space*2)) + "\" zPosition=\"1\" alphatest=\"on\" /> \
@@ -591,5 +599,10 @@ class Pic_Full_View(Screen):
 
 	def Exit(self):
 		del self.picload
+
+		if config.pic.fullview_resolution.value and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.value):
+			gMainDC.getInstance().setResolution(self.size_w, self.size_h)
+			getDesktop(0).resize(eSize(self.size_w, self.size_h))
+
 		self.close(self.lastindex + self.dirlistcount)
 

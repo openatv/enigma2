@@ -17,14 +17,7 @@ struct gRGB
 	}
 	gRGB(unsigned long val)
 	{
-		if (val)
-		{
-			set(val);
-		}
-		else
-		{
-			b = g = r = a = 0;
-		}
+		set(val);
 	}
 	gRGB(const char *colorstring)
 	{
@@ -64,20 +57,20 @@ struct gRGB
 	bool operator < (const gRGB &c) const
 	{
 		if (b < c.b)
-			return 1;
+			return true;
 		if (b == c.b)
 		{
 			if (g < c.g)
-				return 1;
+				return true;
 			if (g == c.g)
 			{
 				if (r < c.r)
-					return 1;
+					return true;
 				if (r == c.r)
 					return a < c.a;
 			}
 		}
-		return 0;
+		return false;
 	}
 	bool operator==(const gRGB &c) const
 	{
