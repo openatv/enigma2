@@ -228,6 +228,8 @@ class WlanScan(Screen):
 		self.cleanList = None
 		self.oldlist = {}
 		self.listLength = None
+		self.divpng = LoadPixmap(path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
+
 		self.rescanTimer = eTimer()
 		self.rescanTimer.callback.append(self.rescanTimerFired)
 		
@@ -286,9 +288,8 @@ class WlanScan(Screen):
 		self.updateAPList()
 
 	def buildEntryComponent(self, essid, bssid, encrypted, iface, maxrate, signal):
-		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
 		encryption = encrypted and _("Yes") or _("No")
-		return((essid, bssid, _("Signal: ") + str(signal), _("Max. bitrate: ") + str(maxrate), _("Encrypted: ") + encryption, _("Interface: ") + str(iface), divpng))
+		return((essid, bssid, _("Signal: ") + str(signal), _("Max. bitrate: ") + str(maxrate), _("Encrypted: ") + encryption, _("Interface: ") + str(iface), self.divpng))
 
 	def updateAPList(self):
 		newList = []
