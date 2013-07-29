@@ -322,7 +322,7 @@ void bsodFatal(const char *component)
 }
 
 #if defined(__MIPSEL__)
-void oops(const mcontext_t &context, int dumpcode)
+void oops(const mcontext_t &context)
 {
 	eDebug("PC: %08lx", (unsigned long)context.pc);
 	int i;
@@ -332,17 +332,6 @@ void oops(const mcontext_t &context, int dumpcode)
 			(int)context.gregs[i+0], (int)context.gregs[i+1],
 			(int)context.gregs[i+2], (int)context.gregs[i+3]);
 	}
-		/* this is temporary debug stuff. */
-	if (dumpcode && ((unsigned long)context.pc) > 0x10000) /* not a zero pointer */
-	{
-		eDebug("As a final action, i will try to dump a bit of code.");
-		eDebug("I just hope that this won't crash.");
-		int i;
-		eDebugNoNewLine("%08lx:", (unsigned long)context.pc);
-		for (i=0; i<0x20; ++i)
-			eDebugNoNewLine(" %02x", ((unsigned char*)context.pc)[i]);
-		eDebug(" (end)");
-	}
 }
 #endif
 
@@ -350,8 +339,7 @@ void handleFatalSignal(int signum, siginfo_t *si, void *ctx)
 {
 #ifndef NO_OOPS_SUPPORT
 	ucontext_t *uc = (ucontext_t*)ctx;
-
-	oops(uc->uc_mcontext, signum == SIGSEGV || signum == SIGABRT);
+	oops(uc->uc_mcontext);
 #endif
 	eDebug("-------");
 	bsodFatal("enigma2, signal");
