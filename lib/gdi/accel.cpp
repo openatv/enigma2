@@ -42,12 +42,11 @@ extern void bcm_accel_fill(
 extern bool bcm_accel_has_alphablending();
 #endif
 
-gAccel::gAccel()
+gAccel::gAccel():
+	m_accel_addr(0),
+	m_accel_phys_addr(0),
+	m_accel_size(0)
 {
-	m_accel_addr = 0;
-	m_accel_phys_addr = 0;
-	m_accel_size = 0;
-	m_accel_allocation = 0;
 	instance = this;
 
 #ifdef ATI_ACCEL	
@@ -70,56 +69,50 @@ gAccel::~gAccel()
 }
 
 #ifdef ACCEL_DEBUG
-static void dumpAccel(gUnmanagedSurface **m_accel_allocation, int m_accel_size)
+void gAccel::dumpDebug()
 {
-	if (m_accel_allocation)
-	{
-		gUnmanagedSurface *previous = NULL;
-		for (int i=0; i < m_accel_size; ++i)
-		{
-			gUnmanagedSurface *surface = m_accel_allocation[i];
-			if ((surface != NULL) && (surface != previous))
-			{
-				eDebug("accel surface: %p ->%x(%p) %dx%d:%d",
-					surface, surface->data_phys, surface->data,
-					surface->stride, surface->y, surface->bpp);
-				previous = surface;
-			}
-		}
-	}
+	eDebug("-- gAccel info --");
+	for (MemoryBlockList::const_iterator it = m_accel_allocation.begin();
+		 it != m_accel_allocation.end();
+		 ++it)
+	 {
+		 gUnmanagedSurface *surface = it->surface;
+		 if (surface)
+			eDebug("surface: (%d, %d) %p %dx%d:%d",
+					it->index, it->size,
+					surface, surface->stride, surface->y, surface->bpp);
+		else
+			eDebug("   free: (%d, %d)", it->index, it->size);
+	 }
+	eDebug("--");
 }
 #else
-static inline void dumpAccel(gUnmanagedSurface **m_accel_allocation, int m_accel_size) {}
+void gAccel::dumpDebug() {}
 #endif
 
 void gAccel::releaseAccelMemorySpace()
 {
 	eSingleLocker lock(m_allocation_lock);
-	dumpAccel(m_accel_allocation, m_accel_size);
-
-	if (m_accel_allocation)
+	dumpDebug();
+	for (MemoryBlockList::const_iterator it = m_accel_allocation.begin();
+		 it != m_accel_allocation.end();
+		 ++it)
 	{
-		gUnmanagedSurface *previous = NULL;
-		for (int i=0; i < m_accel_size; ++i)
+		gUnmanagedSurface *surface = it->surface;
+		if (surface != NULL)
 		{
-			gUnmanagedSurface *surface = m_accel_allocation[i];
-			if ((surface != NULL) && (surface != previous))
-			{
-				int size = surface->y * surface->stride;
+			int size = surface->y * surface->stride;
 #ifdef ACCEL_DEBUG
-				eDebug("%s: Re-locating %p->%x(%p) %dx%d:%d", __func__, surface, surface->data_phys, surface->data, surface->x, surface->y, surface->bpp);
+			eDebug("%s: Re-locating %p->%x(%p) %dx%d:%d", __func__, surface, surface->data_phys, surface->data, surface->x, surface->y, surface->bpp);
 #endif
-				unsigned char *new_data = new unsigned char [size];
-				memcpy(new_data, surface->data, size);
-				surface->data = new_data;
-				surface->data_phys = 0;
-				previous = surface;
-			}
+			unsigned char *new_data = new unsigned char [size];
+			memcpy(new_data, surface->data, size);
+			surface->data = new_data;
+			surface->data_phys = 0;
 		}
-		delete[] m_accel_allocation;
-		m_accel_allocation = NULL;
-		m_accel_size = 0;
 	}
+	m_accel_allocation.clear();
+	m_accel_size = 0;
 }
 
 void gAccel::setAccelMemorySpace(void *addr, int phys_addr, int size)
@@ -128,10 +121,10 @@ void gAccel::setAccelMemorySpace(void *addr, int phys_addr, int size)
 	{
 		eSingleLocker lock(m_allocation_lock);
 		m_accel_size = size >> 12;
-		m_accel_allocation = new gUnmanagedSurface*[m_accel_size];
-		memset(m_accel_allocation, 0, m_accel_size * sizeof(gUnmanagedSurface*));
 		m_accel_addr = addr;
 		m_accel_phys_addr = phys_addr;
+		m_accel_allocation.push_back(MemoryBlock(NULL, 0, m_accel_size));
+		dumpDebug();
 	}
 }
 
@@ -235,29 +228,31 @@ int gAccel::accelAlloc(gUnmanagedSurface* surface)
 	size >>= 12;
 
 	eSingleLocker lock(m_allocation_lock);
-	if (!m_accel_allocation)
+
+	for (MemoryBlockList::iterator it = m_accel_allocation.begin();
+		 it != m_accel_allocation.end();
+		 ++it)
 	{
-		eDebug("m_accel_allocation not set");
-		return -1;
-	}
-	for (int i = m_accel_size - size; i >= 0 ; --i)
-	{
-		int a;
-		for (a=0; a<size; ++a)
-			if (m_accel_allocation[i+a])
-				break;
-		if (a == size)
+		if ((it->surface == NULL) && (it->size >= size))
 		{
-			m_accel_allocation[i] = surface;
-			for (a=1; a<size; ++a)
-				m_accel_allocation[i+a] = surface;
-			surface->data = ((unsigned char*)m_accel_addr) + (i << 12);
-			surface->data_phys = m_accel_phys_addr + (i << 12);
+			int remain = it->size - size;
+			if (remain)
+			{
+				/* Add empty item before this one with the remaining memory */
+				m_accel_allocation.insert(it, MemoryBlock(NULL, it->index, remain));
+				/* it points behind the new item */
+				it->index += remain;
+				it->size = size;
+			}
+			it->surface = surface;
+			surface->data = ((unsigned char*)m_accel_addr) + (it->index << 12);
+			surface->data_phys = m_accel_phys_addr + (it->index << 12);
 			surface->stride = stride;
-			dumpAccel(m_accel_allocation, m_accel_size);
+			dumpDebug();
 			return 0;
 		}
 	}
+
 	eDebug("accel alloc failed\n");
 	return -3;
 }
@@ -267,6 +262,9 @@ void gAccel::accelFree(gUnmanagedSurface* surface)
 	int phys_addr = surface->data_phys;
 	if (phys_addr != 0)
 	{
+#ifdef ACCEL_DEBUG
+		eDebug("[%s] %p->%x %dx%d:%d", __func__, surface, surface->data_phys, surface->x, surface->y, surface->bpp);
+#endif
 		/* The lock scope is "good enough", the only other method that
 		 * might alter data_phys is the global release, and that will
 		 * be called in a safe context. So don't obtain the lock. */
@@ -275,21 +273,46 @@ void gAccel::accelFree(gUnmanagedSurface* surface)
 		phys_addr -= m_accel_phys_addr;
 		phys_addr >>= 12;
 
-		ASSERT(m_accel_allocation[phys_addr] == surface);
-
-		int count = 0;
-		while (m_accel_allocation[phys_addr] == surface)
+		for (MemoryBlockList::iterator it = m_accel_allocation.begin();
+			 it != m_accel_allocation.end();
+			 ++it)
 		{
-			++count;
-			m_accel_allocation[phys_addr++] = NULL;
+			if (it->surface == surface)
+			{
+				ASSERT(it->index == phys_addr);
+				/* Mark as free */
+				it->surface = NULL;
+				MemoryBlockList::iterator current = it;
+				/* Merge with previous item if possible */
+				if (it != m_accel_allocation.begin())
+				{
+					MemoryBlockList::iterator previous = it;
+					--previous;
+					if (previous->surface == NULL)
+					{
+						current = previous;
+						previous->size += it->size;
+						m_accel_allocation.erase(it);
+					}
+				}
+				/* Merge with next item if possible */
+				if (current != m_accel_allocation.end())
+				{
+					it = current;
+					++it;
+					if ((it != m_accel_allocation.end()) && (it->surface == NULL))
+					{
+						current->size += it->size;
+						m_accel_allocation.erase(it);
+					}
+				}
+				break;
+			}
 		}
-#ifdef ACCEL_DEBUG
-		eDebug("[%s] %p->%x (%d) %dx%d:%d", __func__, surface, surface->data_phys, count, surface->x, surface->y, surface->bpp);
-#endif
+		/* Mark as disposed (yes, even if it wasn't in our administration) */
 		surface->data = 0;
 		surface->data_phys = 0;
-
-		dumpAccel(m_accel_allocation, m_accel_size);
+		dumpDebug();
 	}
 }
 
