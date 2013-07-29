@@ -1011,6 +1011,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 		surface->clut.start=0;
 		m_filepara->palette = NULL; // transfer ownership
 		int o_y=0, u_y=0, v_x=0, h_x=0;
+		int extra_stride = surface->stride - surface->x;
 
 		unsigned char *tmp_buffer=((unsigned char *)(surface->data));
 		unsigned char *origin = m_filepara->pic_buffer;
@@ -1032,8 +1033,8 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 
 		if(m_filepara->oy < m_filepara->max_y)
 		{
-			memset(tmp_buffer, background, o_y * m_filepara->ox);
-			tmp_buffer += o_y * m_filepara->ox;
+			memset(tmp_buffer, background, o_y * surface->stride);
+			tmp_buffer += o_y * surface->stride;
 		}
 
 		for(int a = m_filepara->oy; a > 0; --a)
@@ -1053,12 +1054,13 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 				memset(tmp_buffer, background, h_x);
 				tmp_buffer += h_x;
 			}
+
+			tmp_buffer += extra_stride;
 		}
 
 		if(m_filepara->oy < m_filepara->max_y)
 		{
-			memset(tmp_buffer, background, u_y * m_filepara->ox);
-			tmp_buffer += u_y * m_filepara->ox;
+			memset(tmp_buffer, background, u_y * surface->stride);
 		}
 	}
 	else
