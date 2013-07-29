@@ -1880,7 +1880,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.close(None)
 
 	def zapBack(self):
-		if self.startServiceRef and self.session.nav.getCurrentlyPlayingServiceOrGroup() != self.startServiceRef:
+		if self.startServiceRef and self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.session.nav.getCurrentlyPlayingServiceOrGroup() != self.startServiceRef:
 			self.setStartRoot(self.startRoot)
 			self.new_service_played = True
 			self.session.nav.playService(self.startServiceRef)
