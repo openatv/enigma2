@@ -2,6 +2,7 @@
 #define __lib_gdi_accel_h
 
 #include <base/elock.h>
+#include <list>
 
 struct gUnmanagedSurface;
 class eRect;
@@ -23,12 +24,28 @@ public:
 	
 	int accelAlloc(gUnmanagedSurface* surface);
 	void accelFree(gUnmanagedSurface* surface);
+
+	void dumpDebug();
 private:
+	struct MemoryBlock {
+		gUnmanagedSurface *surface;
+		int index;
+		int size;
+		
+		MemoryBlock(gUnmanagedSurface *o, int i, int s):
+			surface(o), index(i), size(s)
+		{}
+		MemoryBlock():
+			surface(0), index(0), size(0)
+		{}
+	};
+	typedef std::list<MemoryBlock> MemoryBlockList;
+
 	eSingleLock m_allocation_lock;
 	void *m_accel_addr;
 	int m_accel_phys_addr;
 	int m_accel_size; // in blocks
-	gUnmanagedSurface **m_accel_allocation;
+	MemoryBlockList m_accel_allocation;
 	int m_bcm_accel_state;
 	
 	static gAccel *instance;
