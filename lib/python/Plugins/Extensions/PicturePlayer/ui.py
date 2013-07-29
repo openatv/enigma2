@@ -3,6 +3,7 @@ from enigma import ePicLoad, eTimer, getDesktop, gMainDC, eSize
 from Screens.Screen import Screen
 from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA
 
+from Components.About import about
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Sources.StaticText import StaticText
@@ -267,10 +268,10 @@ class Pic_Thumb(Screen):
 		self.spaceY = 30
 		self.picY = 200
 
-		size_w = getDesktop(0).size().width()
-		size_h = getDesktop(0).size().height()
-		self.thumbsX = size_w / (self.spaceX + self.picX) # thumbnails in X
-		self.thumbsY = size_h / (self.spaceY + self.picY) # thumbnails in Y
+		self.size_w = getDesktop(0).size().width()
+		self.size_h = getDesktop(0).size().height()
+		self.thumbsX = self.size_w / (self.spaceX + self.picX) # thumbnails in X
+		self.thumbsY = self.size_h / (self.spaceY + self.picY) # thumbnails in Y
 		self.thumbsC = self.thumbsX * self.thumbsY # all thumbnails
 
 		self.positionlist = []
@@ -290,8 +291,8 @@ class Pic_Thumb(Screen):
 			skincontent += "<widget name=\"thumb" + str(x) + "\" position=\"" + str(absX+5)+ "," + str(absY+5) + "\" size=\"" + str(self.picX -10) + "," + str(self.picY - (textsize*2)) + "\" zPosition=\"2\" transparent=\"1\" alphatest=\"on\" />"
 
 		# Screen, backgroundlabel and MovingPixmap
-		self.skin = "<screen position=\"0,0\" size=\"" + str(size_w) + "," + str(size_h) + "\" flags=\"wfNoBorder\" > \
-			<eLabel position=\"0,0\" zPosition=\"0\" size=\""+ str(size_w) + "," + str(size_h) + "\" backgroundColor=\"" + self.color + "\" /><widget name=\"frame\" position=\"35,30\" size=\"190,200\" pixmap=\"pic_frame.png\" zPosition=\"1\" alphatest=\"on\" />"  + skincontent + "</screen>"
+		self.skin = "<screen position=\"0,0\" size=\"" + str(self.size_w) + "," + str(self.size_h) + "\" flags=\"wfNoBorder\" > \
+			<eLabel position=\"0,0\" zPosition=\"0\" size=\""+ str(self.size_w) + "," + str(self.size_h) + "\" backgroundColor=\"" + self.color + "\" /><widget name=\"frame\" position=\"35,30\" size=\"190,200\" pixmap=\"pic_frame.png\" zPosition=\"1\" alphatest=\"on\" />"  + skincontent + "</screen>"
 
 		Screen.__init__(self, session)
 
@@ -444,11 +445,16 @@ class Pic_Full_View(Screen):
 		self.bgcolor = config.pic.bgcolor.getValue()
 		space = config.pic.framesize.getValue()
 
-		size_w = getDesktop(0).size().width()
-		size_h = getDesktop(0).size().height()
+		self.size_w = getDesktop(0).size().width()
+		self.size_h = getDesktop(0).size().height()
+		(size_w, size_h) = (self.size_w, self.size_h)
+		print 'A:',self.size_w
+		print 'B:',self.size_h
 
-		if config.pic.fullview_resolution.getValue() and (size_w, size_h) != eval(config.pic.fullview_resolution.getValue()):
+		if config.pic.fullview_resolution.getValue() and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.getValue()):
 			(size_w, size_h) = eval(config.pic.fullview_resolution.getValue())
+			print 'C:',size_w
+			print 'D:',size_h
 			gMainDC.getInstance().setResolution(size_w, size_h)
 			getDesktop(0).resize(eSize(size_w, size_h))
 
@@ -510,9 +516,23 @@ class Pic_Full_View(Screen):
 		self.slideTimer.callback.append(self.slidePic)
 
 		if self.maxentry >= 0:
-			self.onLayoutFinish.append(self.setPicloadConf)
+			# self.onLayoutFinish.append(self.setPicloadConf)
+			if config.pic.fullview_resolution.getValue() and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.getValue()):
+				self.createTimer = eTimer()
+				self.createTimer.callback.append(self.setPicloadConf)
+				self.onLayoutFinish.append(self.LayoutFinish)
+			else:
+				self.onLayoutFinish.append(self.setPicloadConf)
+
+	def LayoutFinish(self):
+		if about.getCPUString() != 'BCM7346B2' and about.getCPUString() != 'BCM7425B2':
+			self.createTimer.start(800)
+		else:
+			self.createTimer.start(1600)
 
 	def setPicloadConf(self):
+		if config.pic.fullview_resolution.getValue() and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.getValue()):
+			self.createTimer.stop()
 		sc = getScale()
 		self.picload.setPara([self["pic"].instance.size().width(), self["pic"].instance.size().height(), sc[0], sc[1], 0, int(config.pic.resize.getValue()), self.bgcolor])
 
@@ -600,7 +620,7 @@ class Pic_Full_View(Screen):
 	def Exit(self):
 		del self.picload
 
-		if config.pic.fullview_resolution.value and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.value):
+		if config.pic.fullview_resolution.getValue() and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.getValue()):
 			gMainDC.getInstance().setResolution(self.size_w, self.size_h)
 			getDesktop(0).resize(eSize(self.size_w, self.size_h))
 
