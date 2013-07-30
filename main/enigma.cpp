@@ -344,11 +344,7 @@ const char *getMachineBrand()
 	{
 		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 		fclose(boxtype_file);
-<<<<<<< HEAD
-		
-=======
 
->>>>>>> f571a86e02507b2edc29967bfa8056cb8d811fc9
 		if((strcmp(boxtype_name, "ini-1000\n") == 0)  || (strcmp(boxtype_name, "ini-3000\n") == 0) || (strcmp(boxtype_name, "ini-5000\n") == 0) || (strcmp(boxtype_name, "ini-7000\n") == 0) || (strcmp(boxtype_name, "ini-7012\n") == 0))
 		{
 			return "UNiBOX";
@@ -357,21 +353,13 @@ const char *getMachineBrand()
 		{
 			return "Miraclebox";
 		}
-<<<<<<< HEAD
 		else if((strcmp(boxtype_name, "ini-1000ru\n") == 0) || (strcmp(boxtype_name, "ini-5000ru\n") == 0) || (strcmp(boxtype_name, "ini-9000ru\n") == 0))
-=======
-		else if((strcmp(boxtype_name, "ini-1000ru\n") == 0) || (strcmp(boxtype_name, "ini-5000ru\n") == 0))
->>>>>>> f571a86e02507b2edc29967bfa8056cb8d811fc9
 		{
 			return "Sezam";
 		}
 		else if((strcmp(boxtype_name, "ini-1000de\n") == 0))
 		{
-<<<<<<< HEAD
 			return "GI";
-=======
-			return "GM";
->>>>>>> f571a86e02507b2edc29967bfa8056cb8d811fc9
 		}		
 		else if((strcmp(boxtype_name, "xp1000s\n") == 0))
 		{
