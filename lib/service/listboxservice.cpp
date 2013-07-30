@@ -2,6 +2,7 @@
 #include <lib/service/service.h>
 #include <lib/gdi/font.h>
 #include <lib/gdi/epng.h>
+#include <lib/gdi/picload.h>
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/pmt.h>
 #include <lib/python/connections.h>
@@ -710,10 +711,10 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						if (PyCallable_Check(m_GetPiconNameFunc))
 						{
 							eRect area = m_element_position[celServiceInfo];
-							m_element_position[celServiceInfo].setLeft(area.left() + area.height()*2 + 8);
-							m_element_position[celServiceInfo].setWidth(area.width() - area.height()*2 - 8);
+							m_element_position[celServiceInfo].setLeft(area.left() + area.height() * 2);
+							m_element_position[celServiceInfo].setWidth(area.width() - area.height() * 2);
 							area = m_element_position[celServiceName];
-							xoffs += area.height()*2 + 8;
+							xoffs += area.height() * 2;
 							ePyObject pArgs = PyTuple_New(1);
 							PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(ref.toString().c_str()));
 							ePyObject pRet = PyObject_CallObject(m_GetPiconNameFunc, pArgs);
@@ -726,12 +727,15 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 									if (!piconFilename.empty())
 									{
 										ePtr<gPixmap> piconPixmap;
-										loadPNG(piconPixmap, piconFilename.c_str(), 1);
+										ePicLoad picload;
+										picload.setPara(area.height()*2, area.height(), 1.0, 1, true, 1, "#FFFFFFFF");
+										picload.startDecode(piconFilename.c_str(), 0, 0, false);
+										picload.getData(piconPixmap);
 										if (piconPixmap)
 										{
 											area.moveBy(offset);
 											painter.clip(area);
-											painter.blitScale(piconPixmap, eRect(offset.x()+ area.left(), area.top(), area.height()*2, area.height()), area, gPainter::BT_ALPHABLEND);
+											painter.blit(piconPixmap, ePoint(offset.x()+ area.left(), area.top()), area, gPainter::BT_ALPHABLEND);
 											painter.clippop();
 										}
 									}
