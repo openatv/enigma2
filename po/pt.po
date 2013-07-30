@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-09 17:05+0100\n"
+"POT-Creation-Date: 2013-07-25 09:57+0200\n"
 "PO-Revision-Date: 2012-12-09 02:05+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Muaitai <muaitai@gmail.com>\n"
@@ -1190,6 +1190,10 @@ msgstr ""
 msgid "Automatically start timeshift after"
 msgstr ""
 
+#, fuzzy
+msgid "Automatically turn on external subtitles"
+msgstr "Atraso antes da repetição da tecla:"
+
 msgid "Automatically update Client/Server View?"
 msgstr ""
 
@@ -1608,9 +1612,10 @@ msgstr ""
 msgid "Channel selection"
 msgstr "Selecção de Canal"
 
+#
 #, fuzzy
-msgid "Channel selection configuration"
-msgstr "Configuração manual"
+msgid "Channel selection settings"
+msgstr "Definições da coleção"
 
 #
 msgid "Channel:"
@@ -1731,6 +1736,10 @@ msgstr "Circular esquerda"
 #
 msgid "Circular right"
 msgstr "Circular direita"
+
+#, fuzzy
+msgid "Clean network trash can's"
+msgstr "Impossível apagar"
 
 msgid "Cleaning Trashes"
 msgstr ""
@@ -2825,11 +2834,6 @@ msgstr ""
 #
 #, fuzzy, python-format
 msgid "Do you want to update your %s %s ?"
-msgstr "Deseja fazer um restauro ás definições?"
-
-#
-#, fuzzy, python-format
-msgid "Do you want to update your %s ?"
 msgstr "Deseja fazer um restauro ás definições?"
 
 #
@@ -5403,6 +5407,9 @@ msgstr ""
 msgid "PIDs"
 msgstr ""
 
+msgid "PLP ID"
+msgstr ""
+
 msgid "PMT PID"
 msgstr ""
 
@@ -6441,6 +6448,11 @@ msgstr ""
 #, python-format
 msgid "Renamed %s!"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Repeat"
+msgstr "Repetições"
 
 msgid "Repeat Display Message"
 msgstr ""
@@ -8260,6 +8272,12 @@ msgid ""
 "Please press OK to start using your %s %s."
 msgstr ""
 
+msgid "The %s %s reads the stored EPG data every (hours)."
+msgstr ""
+
+msgid "The %s %s stores the EPG data every (hours)."
+msgstr ""
+
 msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
@@ -8283,12 +8301,6 @@ msgstr ""
 msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
-msgstr ""
-
-msgid "The %s %s reads the stored EPG data every (hours)."
-msgstr ""
-
-msgid "The %s %s stores the EPG data every (hours)."
 msgstr ""
 
 msgid ""
@@ -9204,6 +9216,9 @@ msgstr ""
 msgid "Use ViaSat EPG information when it is available."
 msgstr ""
 
+msgid "Use WOL"
+msgstr ""
+
 #
 msgid "Use a gateway"
 msgstr "Use gateway"
@@ -9737,6 +9752,9 @@ msgstr ""
 msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
 msgstr ""
 
+msgid "When enabled, external subtitles will be always turned on for playback movie."
+msgstr ""
+
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
 msgstr ""
 
@@ -9750,6 +9768,9 @@ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instea
 msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
+msgstr ""
+
+msgid "When enabled, network trash can's are probed for cleaning."
 msgstr ""
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
@@ -10090,6 +10111,20 @@ msgstr ""
 "A ligação à iternet está agora a funcionar.\n"
 "\n"
 
+#
+msgid ""
+"Your %s %s is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"A %s %s está pronta a funcionar.\n"
+"\n"
+"A ligação à iternet está agora a funcionar.\n"
+"\n"
+"Por favor prima OK para continuar."
+
 #, python-format
 msgid "Your %s %s is rebooting"
 msgstr ""
@@ -10097,6 +10132,10 @@ msgstr ""
 #, python-format
 msgid "Your %s %s is shutting down"
 msgstr ""
+
+#
+msgid "Your %s %s is shutting down. Please stand by..."
+msgstr "A Desligar. "
 
 #, python-format
 msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
@@ -10120,24 +10159,6 @@ msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
 msgstr ""
-
-#
-msgid ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"A %s %s está pronta a funcionar.\n"
-"\n"
-"A ligação à iternet está agora a funcionar.\n"
-"\n"
-"Por favor prima OK para continuar."
-
-#
-msgid "Your %s %s is shutting down. Please stand by..."
-msgstr "A Desligar. "
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
@@ -11609,3 +11630,12 @@ msgstr "gravar"
 #
 msgid "zapped"
 msgstr "zapped"
+
+#, fuzzy
+#~ msgid "Channel selection configuration"
+#~ msgstr "Configuração manual"
+
+#
+#, fuzzy
+#~ msgid "Do you want to update your %s ?"
+#~ msgstr "Deseja fazer um restauro ás definições?"

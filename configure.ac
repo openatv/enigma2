@@ -91,14 +91,16 @@ AC_ARG_WITH(driverdate,
 AC_SUBST(DRIVERDATE)
 AC_DEFINE_UNQUOTED(DRIVERDATE,"$DRIVERDATE",[driver date])
 
+AM_CONDITIONAL(AZBOX, test `echo "$BOXTYPE" | cut -b 1-5` == "azbox")
 AM_CONDITIONAL(DREAMBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "dm")
 AM_CONDITIONAL(VUPLUS, test `echo "$BOXTYPE" | cut -b 1-2` == "vu")
 AM_CONDITIONAL(XTREND, test `echo "$BOXTYPE" | cut -b 1-2` == "et")
 AM_CONDITIONAL(TECHNOMATE, test `echo "$BOXTYPE" | cut -b 1-2` == "tm")
 AM_CONDITIONAL(IQON, test `echo "$BOXTYPE" | cut -b 1-4` == "iqon")
+AM_CONDITIONAL(INI, test `echo "$BOXTYPE" | cut -b 1-3` == "ini")
 AM_CONDITIONAL(GIGABLUE, test `echo "$BOXTYPE" | cut -b 1-2` == "gb")
 AM_CONDITIONAL(ODIN, test `echo "$BOXTYPE" | cut -b 1-4` == "odin")
-AM_CONDITIONAL(VENTON, test `echo "$BOXTYPE" | cut -b 1-6` == "venton" -o `echo "$BOXTYPE" | cut -b 1-3` == "ini")
+AM_CONDITIONAL(VENTON, test `echo "$BOXTYPE" | cut -b 1-6` == "venton")
 AM_CONDITIONAL(DM8000, test "$BOXTYPE" == dm8000)
 AM_CONDITIONAL(DM7020HD, test "$BOXTYPE" == dm7020hd)
 AM_CONDITIONAL(DM800, test "$BOXTYPE" == dm800)
@@ -113,6 +115,8 @@ AM_CONDITIONAL(GB800SOLO, test "$BOXTYPE" == gb800solo)
 AM_CONDITIONAL(GB800SE, test "$BOXTYPE" == gb800se)
 AM_CONDITIONAL(GB800UE, test "$BOXTYPE" == gb800ue)
 AM_CONDITIONAL(GBQUAD, test "$BOXTYPE" == gbquad)
+AM_CONDITIONAL(INIHDE, test "$BOXTYPE" == inihde)
+AM_CONDITIONAL(INIHDP, test "$BOXTYPE" == inihdp)
 AM_CONDITIONAL(IQONIOS100HD, test "$BOXTYPE" == iqonios100hd)
 AM_CONDITIONAL(IQONIOS200HD, test "$BOXTYPE" == iqonios200hd)
 AM_CONDITIONAL(IQONIOS300HD, test "$BOXTYPE" == iqonios300hd)
@@ -123,6 +127,7 @@ AM_CONDITIONAL(ODINM9, test "$BOXTYPE" == odinm9)
 AM_CONDITIONAL(TMTWINOE, test "$BOXTYPE" == tmtwin)
 AM_CONDITIONAL(TM2TOE, test "$BOXTYPE" == tm2t)
 AM_CONDITIONAL(TMSINGLE, test "$BOXTYPE" == tmsingle)
+AM_CONDITIONAL(TMNANO, test "$BOXTYPE" == tmnano)
 AM_CONDITIONAL(VUUNO, test "$BOXTYPE" == vuuno)
 AM_CONDITIONAL(VUULTIMO, test "$BOXTYPE" == vuultimo)
 AM_CONDITIONAL(VUSOLO, test "$BOXTYPE" == vusolo)
@@ -250,7 +255,7 @@ if test "$BOXTYPE" == "gb800solo" -o "$BOXTYPE" == "gb800se" -o "$BOXTYPE" == "g
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 fi
 
-if test "$BOXTYPE" == "ventonhde" -o "$BOXTYPE" == "ventonhdx"; then
+if test "$BOXTYPE" == "inihde" -o "$BOXTYPE" == "ventonhdx"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 fi

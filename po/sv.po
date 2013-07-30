@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-09 17:05+0100\n"
+"POT-Creation-Date: 2013-07-25 09:57+0200\n"
 "PO-Revision-Date: 2013-02-04 16:38+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: torac <info@takerman.se>\n"
@@ -1182,6 +1182,10 @@ msgstr "Automatisk backup av inställningarna"
 msgid "Automatically start timeshift after"
 msgstr ""
 
+#, fuzzy
+msgid "Automatically turn on external subtitles"
+msgstr "Gula  externa undertexter"
+
 msgid "Automatically update Client/Server View?"
 msgstr "Automatisk uppdatering av Klient/Server vy?"
 
@@ -1604,8 +1608,9 @@ msgid "Channel selection"
 msgstr "Kanalval"
 
 #
-msgid "Channel selection configuration"
-msgstr "Konfiguration av kanalval"
+#, fuzzy
+msgid "Channel selection settings"
+msgstr "Kollektionsinställning"
 
 #
 msgid "Channel:"
@@ -1726,6 +1731,10 @@ msgstr "Cirkulär vänster"
 #
 msgid "Circular right"
 msgstr "Cirkulär höger"
+
+#, fuzzy
+msgid "Clean network trash can's"
+msgstr "Går inte att flytta till papperskorgen"
 
 msgid "Cleaning Trashes"
 msgstr "Rensar skräp"
@@ -2798,11 +2807,6 @@ msgstr ""
 #
 #, fuzzy, python-format
 msgid "Do you want to update your %s %s ?"
-msgstr "Vill du återställa dina inställningar?"
-
-#
-#, fuzzy, python-format
-msgid "Do you want to update your %s ?"
 msgstr "Vill du återställa dina inställningar?"
 
 #
@@ -5298,6 +5302,9 @@ msgstr "PCR PID"
 msgid "PIDs"
 msgstr "PIDs"
 
+msgid "PLP ID"
+msgstr ""
+
 msgid "PMT PID"
 msgstr "PMT PID"
 
@@ -6294,6 +6301,11 @@ msgstr "Döp om till:"
 #, python-format
 msgid "Renamed %s!"
 msgstr "Döpt om %s!"
+
+#
+#, fuzzy
+msgid "Repeat"
+msgstr "Upprepningar"
 
 msgid "Repeat Display Message"
 msgstr "Upprepa Displaymeddelande"
@@ -8046,6 +8058,12 @@ msgstr ""
 "Tack för att du använde guiden. Din %s %s är nu klar att användas.\n"
 "Vänligen tryck OK för att börja använda din %s %s."
 
+msgid "The %s %s reads the stored EPG data every (hours)."
+msgstr "%s %s läser den lagrade EPG datan varje (tim)."
+
+msgid "The %s %s stores the EPG data every (hours)."
+msgstr "%s %s lagrar EPG datan varje (tim)."
+
 msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
@@ -8077,12 +8095,6 @@ msgid ""
 msgstr ""
 "Filsystemet på din Timeshift-Enhet stöder inte hardlinks.\n"
 "Se till att den är formatterad som EXT2 ellerEXT3!"
-
-msgid "The %s %s reads the stored EPG data every (hours)."
-msgstr "%s %s läser den lagrade EPG datan varje (tim)."
-
-msgid "The %s %s stores the EPG data every (hours)."
-msgstr "%s %s lagrar EPG datan varje (tim)."
 
 msgid ""
 "The IMDb plugin is not installed!\n"
@@ -8993,6 +9005,9 @@ msgstr "Använd ViX färgade Knappar *"
 msgid "Use ViaSat EPG information when it is available."
 msgstr "Använd ViaSat EPG information om tillgänglig"
 
+msgid "Use WOL"
+msgstr ""
+
 #
 msgid "Use a gateway"
 msgstr "Använd en gateway"
@@ -9506,6 +9521,10 @@ msgstr "Om aktiverat, så flyttas borttagna inspelningar till papperskorgen, ist
 msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
 msgstr "Om aktiverat, så visas externa undertexter (i media filer) i gult, istället för originalfärgen."
 
+#, fuzzy
+msgid "When enabled, external subtitles will be always turned on for playback movie."
+msgstr "Om aktiverat, text-tv undertexter visas på deras originalposition."
+
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
 msgstr "Om aktiverat, så föredras grafiska DVB-undertexter före text-tv's undertexter, när båda typer är tillgängliga."
 
@@ -9520,6 +9539,9 @@ msgstr "Om aktiverat, grafiska DVB-undertexter visas i gult, istället för orig
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Om aktiverat, strömkonsumtionen mäts för att upptäcka om rotorn slutar gå (om mottagaren stöder detta)."
+
+msgid "When enabled, network trash can's are probed for cleaning."
+msgstr ""
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "Om aktiverat, tryckning på '0' förflyttar dig till den första kanalen i din första favoritlista, och raderar din zap-historik."
@@ -9866,6 +9888,20 @@ msgstr ""
 "Din Internet anslutning fungerar.\n"
 "\n"
 
+#
+msgid ""
+"Your %s %s is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Din %s %s är nu klar för användning.\n"
+"\n"
+"Din Internet anslutning fungerar nu.\n"
+"\n"
+"Vänligen tryck OK för att forsätta."
+
 #, fuzzy, python-format
 msgid "Your %s %s is rebooting"
 msgstr "Din %s %s startar om."
@@ -9873,6 +9909,10 @@ msgstr "Din %s %s startar om."
 #, fuzzy, python-format
 msgid "Your %s %s is shutting down"
 msgstr "Din %s %s stänger ned"
+
+#
+msgid "Your %s %s is shutting down. Please stand by..."
+msgstr "Din %s %s håller på att stängas av. Vänligen vänta..."
 
 #, fuzzy, python-format
 msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
@@ -9903,24 +9943,6 @@ msgid ""
 msgstr ""
 "Din %s %s kommer att startas om efter borttagningen av tjänst\n"
 "Vill du ta bort nu ?"
-
-#
-msgid ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Din %s %s är nu klar för användning.\n"
-"\n"
-"Din Internet anslutning fungerar nu.\n"
-"\n"
-"Vänligen tryck OK för att forsätta."
-
-#
-msgid "Your %s %s is shutting down. Please stand by..."
-msgstr "Din %s %s håller på att stängas av. Vänligen vänta..."
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "Din %s %s startar om efter tryckning på OK på din fjärrkontroll."
@@ -11390,3 +11412,12 @@ msgstr "Spara och spela in"
 #
 msgid "zapped"
 msgstr "zappad"
+
+#
+#~ msgid "Channel selection configuration"
+#~ msgstr "Konfiguration av kanalval"
+
+#
+#, fuzzy
+#~ msgid "Do you want to update your %s ?"
+#~ msgstr "Vill du återställa dina inställningar?"

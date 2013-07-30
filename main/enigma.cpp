@@ -115,7 +115,7 @@ public:
 		m_epgcache = new eEPGCache();
 		m_mgr->setChannelList(m_dvbdb);
 	}
-	
+
 	~eMain()
 	{
 		m_dvbdb->saveServicelist();
@@ -148,7 +148,7 @@ int main(int argc, char **argv)
 	// set pythonpath if unset
 	setenv("PYTHONPATH", eEnv::resolve("${libdir}/enigma2/python").c_str(), 0);
 	printf("PYTHONPATH: %s\n", getenv("PYTHONPATH"));
-	
+
 	bsodLogInit();
 
 	ePython python;
@@ -157,15 +157,15 @@ int main(int argc, char **argv)
 #if 1
 	ePtr<gMainDC> my_dc;
 	gMainDC::getInstance(my_dc);
-	
+
 	//int double_buffer = my_dc->haveDoubleBuffering();
 
 	ePtr<gLCDDC> my_lcd_dc;
 	gLCDDC::getInstance(my_lcd_dc);
 
 
-		/* ok, this is currently hardcoded for arabic. */
-			/* some characters are wrong in the regular font, force them to use the replacement font */
+	/* ok, this is currently hardcoded for arabic. */
+	/* some characters are wrong in the regular font, force them to use the replacement font */
 	for (int i = 0x60c; i <= 0x66d; ++i)
 		eTextPara::forceReplacementGlyph(i);
 	eTextPara::forceReplacementGlyph(0xfdf2);
@@ -183,7 +183,7 @@ int main(int argc, char **argv)
 		eDebug(" - double buffering found, enable buffered graphics mode.");
 		dsk.setCompositionMode(eWidgetDesktop::cmBuffered);
 	} */
-	
+
 	wdsk = &dsk;
 	lcddsk = &dsk_lcd;
 
@@ -196,10 +196,10 @@ int main(int argc, char **argv)
 		/* redrawing is done in an idle-timer, so we have to set the context */
 	dsk.setRedrawTask(main);
 	dsk_lcd.setRedrawTask(main);
-	
-	
+
+
 	eDebug("Loading spinners...");
-	
+
 	{
 		int i;
 #define MAX_SPINNER 64
@@ -211,7 +211,7 @@ int main(int argc, char **argv)
 			snprintf(filename, sizeof(filename), "${datadir}/enigma2/spinner/wait%d.png", i + 1);
 			rfilename = eEnv::resolve(filename);
 			loadPNG(wait[i], rfilename.c_str());
-			
+
 			if (!wait[i])
 			{
 				if (!i)
@@ -230,13 +230,13 @@ int main(int argc, char **argv)
 		else
 			my_dc->setSpinner(eRect(25, 25, 0, 0), wait, 1);*/
 	}
-	
+
 	gRC::getInstance()->setSpinnerDC(my_dc);
 
 	eRCInput::getInstance()->keyEvent.connect(slot(keyEvent));
-	
+
 	printf("executing main\n");
-	
+
 	bsodCatchSignals();
 
 	setIoPrio(IOPRIO_CLASS_BE, 3);
@@ -244,7 +244,7 @@ int main(int argc, char **argv)
 	/* start at full size */
 	eVideoWidget::setFullsize(true);
 
-//	python.execute("mytest", "__main__");
+	// python.execute("mytest", "__main__");
 	python.execFile(eEnv::resolve("${libdir}/enigma2/python/mytest.py").c_str());
 
 	/* restore both decoders to full size */
@@ -255,7 +255,7 @@ int main(int argc, char **argv)
 		eDebug("(exit code 5)");
 		bsodFatal(0);
 	}
-	
+
 	dsk.paint();
 	dsk_lcd.paint();
 
@@ -344,7 +344,11 @@ const char *getMachineBrand()
 	{
 		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 		fclose(boxtype_file);
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> f571a86e02507b2edc29967bfa8056cb8d811fc9
 		if((strcmp(boxtype_name, "ini-1000\n") == 0)  || (strcmp(boxtype_name, "ini-3000\n") == 0) || (strcmp(boxtype_name, "ini-5000\n") == 0) || (strcmp(boxtype_name, "ini-7000\n") == 0) || (strcmp(boxtype_name, "ini-7012\n") == 0))
 		{
 			return "UNiBOX";
@@ -353,13 +357,21 @@ const char *getMachineBrand()
 		{
 			return "Miraclebox";
 		}
+<<<<<<< HEAD
 		else if((strcmp(boxtype_name, "ini-1000ru\n") == 0) || (strcmp(boxtype_name, "ini-5000ru\n") == 0) || (strcmp(boxtype_name, "ini-9000ru\n") == 0))
+=======
+		else if((strcmp(boxtype_name, "ini-1000ru\n") == 0) || (strcmp(boxtype_name, "ini-5000ru\n") == 0))
+>>>>>>> f571a86e02507b2edc29967bfa8056cb8d811fc9
 		{
 			return "Sezam";
 		}
 		else if((strcmp(boxtype_name, "ini-1000de\n") == 0))
 		{
+<<<<<<< HEAD
 			return "GI";
+=======
+			return "GM";
+>>>>>>> f571a86e02507b2edc29967bfa8056cb8d811fc9
 		}		
 		else if((strcmp(boxtype_name, "xp1000s\n") == 0))
 		{
@@ -383,7 +395,7 @@ const char *getMachineName()
 	{
 		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 		fclose(boxtype_file);
-		
+
 		if(strcmp(boxtype_name, "ini-1000\n") == 0) 
 		{
 			return "HD-e";
@@ -427,7 +439,7 @@ const char *getMachineName()
 		else if(strcmp(boxtype_name, "ini-1000de\n") == 0) 
 		{
 			return "XpeedLX";
-		}		
+		}
 		else if(strcmp(boxtype_name, "xp1000s\n") == 0) 
 		{
 			return "SF8 HD";
@@ -458,33 +470,17 @@ const char *getDriverDateString()
 const char *getBoxType()
 {
   	// hack way to not change all in code
-	if(strcmp(BOXTYPE, "sezamhdx") == 0) 
+	if(strcmp(BOXTYPE, "inihdx") == 0) 
 	{
-	  return "ventonhdx";
+		return "ventonhdx";
 	}
-	else if(strcmp(BOXTYPE, "sezamhde") == 0) 
-	{
-	  return "ventonhde";
-	}
-	else if(strcmp(BOXTYPE, "inihdx") == 0) 
-	{
-	  return "ventonhdx";
-	}  
 	else if(strcmp(BOXTYPE, "inihde") == 0) 
 	{
-	  return "ventonhde";
-	} 
-	else if(strcmp(BOXTYPE, "ini9000") == 0) 
-	{
-	  return "ventonhdx";
+		return "inihde";
 	}
-	else if(strcmp(BOXTYPE, "xpeedlx") == 0) 
-	{
-	  return "ventonhde";
-	} 	
 	else
 	{
-	  return BOXTYPE;
+		return BOXTYPE;
 	}
 }
 

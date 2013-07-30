@@ -8,15 +8,13 @@
 class gFBDC: public gMainDC
 {
 	fbClass *fb;
-	void exec(const gOpcode *opcode);
-	unsigned char ramp[256], rampalpha[256]; // RGB ramp 0..255
 	int brightness, gamma, alpha;
-	void calcRamp();
-	void setPalette();
 	gUnmanagedSurface surface;
 	gUnmanagedSurface surface_back;
-	int m_enable_double_buffering;
-	int m_xres, m_yres, m_bpp;
+	unsigned char ramp[256], rampalpha[256]; // RGB ramp 0..255
+	void exec(const gOpcode *opcode);
+	void calcRamp();
+	void setPalette();
 public:
 	void setResolution(int xres, int yres, int bpp = 32);
 	void reloadSettings();
@@ -24,17 +22,17 @@ public:
 	void setBrightness(int brightness);
 	void setGamma(int gamma);
 
-	int getAlpha() { return alpha; }
-	int getBrightness() { return brightness; }
-	int getGamma() { return gamma; }
+	int getAlpha() const { return alpha; }
+	int getBrightness() const { return brightness; }
+	int getGamma() const { return gamma; }
 
-	int haveDoubleBuffering() { return m_enable_double_buffering; }
+	int haveDoubleBuffering() const { return surface_back.data_phys != 0; }
 
 	void saveSettings();
 
 	gFBDC();
 	virtual ~gFBDC();
-	int islocked() { return fb->islocked(); }
+	int islocked() const { return fb->islocked(); }
 };
 
 #endif
