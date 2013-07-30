@@ -1153,23 +1153,34 @@ RESULT ePicLoad::setPara(PyObject *val)
 	if (PySequence_Size(val) < 7)
 		return 0;
 	else {
-		int as;
 		ePyObject fast		= PySequence_Fast(val, "");
-		m_conf.max_x		= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 0));
-		m_conf.max_y		= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 1));
-		as			= PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 3));
-		m_conf.aspect_ratio	= as == 0 ? 0.0 : (double)PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 2)) / as;
-		m_conf.usecache		= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 4));
-		m_conf.resizetype	= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 5));
+		int width		= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 0));
+		int height		= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 1));
+		double aspectRatio 	= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 2));
+		int as			= PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 3));
+		bool useCache		= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 4));
+		int resizeType	        = PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 5));
 		const char *bg_str	= PyString_AsString( PySequence_Fast_GET_ITEM(fast, 6));
 
-		if(bg_str[0] == '#' && strlen(bg_str)==9)
-			m_conf.background = strtoul(bg_str+1, NULL, 16);
-		eDebug("[Picload] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X",
-				m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio,
-				(int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background);
+		return setPara(width, height, aspectRatio, as, useCache, resizeType, bg_str);
 	}
 	return 1;
+}
+
+RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool useCache, int resizeType, const char *bg_str)
+{
+	m_conf.max_x = width;
+	m_conf.max_y = height;
+	m_conf.aspect_ratio = as == 0 ? 0.0 : aspectRatio / as;
+	m_conf.usecache	= useCache;
+	m_conf.resizetype = resizeType;
+
+	if(bg_str[0] == '#' && strlen(bg_str)==9)
+		m_conf.background = strtoul(bg_str+1, NULL, 16);
+	eDebug("[Picload] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X",
+			m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio,
+			(int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background);
+	return 1;	
 }
 
 //------------------------------------------------------------------------------------
