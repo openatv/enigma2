@@ -133,13 +133,13 @@ struct gUnmanagedSurface
 	int data_phys;
 
 	gUnmanagedSurface();
-	gUnmanagedSurface(eSize size, int bpp);
+	gUnmanagedSurface(int width, int height, int bpp);
 };
 
 struct gSurface: gUnmanagedSurface
 {
 	gSurface(): gUnmanagedSurface() {}
-	gSurface(eSize size, int bpp, int accel);
+	gSurface(int width, int height, int bpp, int accel);
 	~gSurface();
 private:
 	gSurface(const gSurface&); /* Copying managed gSurface is not allowed */
@@ -154,7 +154,9 @@ class gPixmap: public iObject
 {
 	DECLARE_REF(gPixmap);
 public:
-#ifndef SWIG
+#ifdef SWIG
+	gPixmap();
+#else
 	enum
 	{
 		blitAlphaTest=1,
@@ -166,12 +168,7 @@ public:
 	gPixmap(eSize, int bpp, int accel = 0);
 
 	gUnmanagedSurface *surface;
-	
-	eLock contentlock;
-	int final;
-	
-	gPixmap *lock();
-	void unlock();
+
 	inline bool needClut() const { return surface && surface->bpp <= 8; }
 #endif
 	virtual ~gPixmap();
@@ -188,9 +185,6 @@ private:
 	void line(const gRegion &clip, ePoint start, ePoint end, gColor color);
 	void line(const gRegion &clip, ePoint start, ePoint end, gRGB color);
 	void line(const gRegion &clip, ePoint start, ePoint end, unsigned int color);
-#ifdef SWIG
-	gPixmap();
-#endif
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<gPixmap>, gPixmapPtr);
 
