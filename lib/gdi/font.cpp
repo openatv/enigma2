@@ -896,7 +896,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 
 	ePtr<gPixmap> target;
 	dc.getPixmap(target);
-	gSurface *surface = target->surface;
+	gUnmanagedSurface *surface = target->surface;
 	gRGB currentforeground = foreground;
 
 	register int opcode = -1;

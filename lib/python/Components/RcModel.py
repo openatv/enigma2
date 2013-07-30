@@ -3,30 +3,34 @@ from Tools.StbHardware import getFPVersion
 import os
 
 class RcModel:
-	RCTYPE_DMM = 0
-	RCTYPE_DMM1 = 1
-	RCTYPE_DMM2 = 2
-	RCTYPE_EBOX5000 = 3
-	RCTYPE_ET4X00 = 4
-	RCTYPE_ET6X00 = 5
-	RCTYPE_ET6500 = 6
-	RCTYPE_ET9X00 = 7
-	RCTYPE_ET9500 = 8
-	RCTYPE_GB = 9
-	RCTYPE_INI0 = 10
-	RCTYPE_INI1 = 11
-	RCTYPE_INI2 = 12
-	RCTYPE_INI3 = 13
-	RCTYPE_INI4 = 14
-	RCTYPE_IQON = 15
-	RCTYPE_IXUSSONE = 16
-	RCTYPE_IXUSSZERO = 17
-	RCTYPE_ODINM7 = 18
-	RCTYPE_ODINM9 = 19
-	RCTYPE_TM = 20
-	RCTYPE_VU = 21
-	RCTYPE_VU2 = 22
-	RCTYPE_XP1000 = 23
+	RCTYPE_AZBOXHD = 0
+	RCTYPE_AZBOXELITE = 1
+	RCTYPE_AZBOXME = 2
+	RCTYPE_DMM = 3
+	RCTYPE_DMM1 = 4
+	RCTYPE_DMM2 = 5
+	RCTYPE_E3HD = 6
+	RCTYPE_EBOX5000 = 7
+	RCTYPE_ET4X00 = 8
+	RCTYPE_ET6X00 = 9
+	RCTYPE_ET6500 = 10
+	RCTYPE_ET9X00 = 11
+	RCTYPE_ET9500 = 12
+	RCTYPE_GB = 13
+	RCTYPE_INI0 = 14
+	RCTYPE_INI1 = 15
+	RCTYPE_INI2 = 16
+	RCTYPE_INI3 = 17
+	RCTYPE_IQON = 18
+	RCTYPE_IXUSSONE = 19
+	RCTYPE_IXUSSZERO = 20
+	RCTYPE_ODINM7 = 21
+	RCTYPE_ODINM9 = 22
+	RCTYPE_TM = 23
+	RCTYPE_VU = 24
+	RCTYPE_VU2 = 25
+	RCTYPE_XP1000 = 26
+	RCTYPE_INI4 = 27
 
 
 	def __init__(self):
@@ -45,15 +49,25 @@ class RcModel:
 		return out.split()[0]
 
 	def readRcTypeFromProc(self):
-		if os.path.exists('/proc/stb/info/hwmodel'):
+		if os.path.exists('/proc/stb/info/azmodel'):
+			f = open("/proc/stb/info/model",'r')
+			model = f.readline().strip()
+			f.close()
+			if model == "premium" or model == "premium+":
+				self.currentRcType = self.RCTYPE_AZBOXHD
+			elif model == "elite" or model == "ultra":
+				self.currentRcType = self.RCTYPE_AZBOXELITE
+			elif model == "me" or model == "minime":
+				self.currentRcType = self.RCTYPE_AZBOXME
+		elif os.path.exists('/proc/stb/info/hwmodel'):
 			model = self.readFile('/proc/stb/info/hwmodel')
-			if model == 'tmtwinoe' or model == 'tm2toe' or model == 'tmsingle':
+			if model == 'tmtwinoe' or model == 'tm2toe' or model == 'tmsingle' or model == 'tmnanooe':
 				self.currentRcType = self.RCTYPE_TM
 			elif model == 'ios100hd' or model == 'ios200hd' or model == 'ios300hd':
 				self.currentRcType = self.RCTYPE_IQON
 		elif getBoxType() == 'dm8000':
 				self.currentRcType = self.RCTYPE_DMM
-		elif getBoxType() == 'dm7020hd':
+		elif getBoxType() == 'dm7020hd' or getBoxType() == 'dm7020hdv2' or getBoxType() == 'dm800sev2' or getBoxType() == 'dm500hdv2':
 				self.currentRcType = self.RCTYPE_DMM2
 		elif getBoxType() == 'dm800' or getBoxType() == 'dm800se' or getBoxType() == 'dm500hd':
 				self.currentRcType = self.RCTYPE_DMM1
@@ -85,7 +99,7 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_ET4X00
 				elif rc == '14':
 					self.currentRcType = self.RCTYPE_XP1000
-			elif model == 'ebox5000':
+			elif model == 'ebox5000' or model == 'ebox5100' or model == 'ebox7358':
 				self.currentRcType = self.RCTYPE_EBOX5000
 			elif model == 'gigablue':
 				self.currentRcType = self.RCTYPE_GB
@@ -95,14 +109,16 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_INI0
 				else:
 					self.currentRcType = self.RCTYPE_INI2
-			elif model == 'ini-5000' or model == 'ini-7000' or model == 'ini-7012':
+			elif model == 'ini-5000' or model == 'ini-7000' or model == 'ini-7012' or model== 'ini-9000':
 				self.currentRcType = self.RCTYPE_INI1
-			elif model == 'ini-1000' or model == 'ini-1000ru' or model == 'ini-5000ru' or model == 'ini-9000':
+			elif model == 'ini-1000' or model == 'ini-1000ru' or model == 'ini-5000ru' or model== 'ini-9000ru':
 				self.currentRcType = self.RCTYPE_INI2
 			elif model == 'ini-1000sv' or model == 'ini-5000sv':
 				self.currentRcType = self.RCTYPE_INI3
 			elif model == 'ini-1000de':
 				self.currentRcType = self.RCTYPE_INI4
+			elif model == 'e3hd':
+				self.currentRcType = self.RCTYPE_E3HD
 			elif model == 'odinm9':
 				self.currentRcType = self.RCTYPE_ODINM9
 			elif model == 'odinm7':
@@ -120,12 +136,20 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_VU
 		
 	def getRcLocation(self):
-		if self.currentRcType == self.RCTYPE_DMM:
+		if self.currentRcType == self.RCTYPE_AZBOXHD:
+			return '/usr/share/enigma2/rc_models/azboxhd/'
+		elif self.currentRcType == self.RCTYPE_AZBOXELITE:
+			return '/usr/share/enigma2/rc_models/azboxelite/'
+		elif self.currentRcType == self.RCTYPE_AZBOXME:
+			return '/usr/share/enigma2/rc_models/azboxme/'	
+		elif self.currentRcType == self.RCTYPE_DMM:
 			return '/usr/share/enigma2/rc_models/dmm0/'
 		elif self.currentRcType == self.RCTYPE_DMM1:
 			return '/usr/share/enigma2/rc_models/dmm1/'
 		elif self.currentRcType == self.RCTYPE_DMM2:
 			return '/usr/share/enigma2/rc_models/dmm2/'
+		elif self.currentRcType == self.RCTYPE_E3HD:
+			return '/usr/share/enigma2/rc_models/e3hd/'	
 		elif self.currentRcType == self.RCTYPE_EBOX5000:
 			return '/usr/share/enigma2/rc_models/ebox5000/'
 		elif self.currentRcType == self.RCTYPE_ET4X00:
@@ -147,7 +171,7 @@ class RcModel:
 		elif self.currentRcType == self.RCTYPE_INI2:
 			return '/usr/share/enigma2/rc_models/ini2/'
 		elif self.currentRcType == self.RCTYPE_INI3:
-			return '/usr/share/enigma2/rc_models/ini3/'      
+			return '/usr/share/enigma2/rc_models/ini3/'
 		elif self.currentRcType == self.RCTYPE_INI4:
 			return '/usr/share/enigma2/rc_models/ini4/'
 		elif self.currentRcType == self.RCTYPE_IQON:

@@ -36,11 +36,13 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.cached_subtitle_checked = False
 		self.__selected_subtitle = None
 
-		self["actions"] = NumberActionMap(["ColorActions", "OkCancelActions", "DirectionActions", "MenuActions"],
+		self["actions"] = NumberActionMap(["ColorActions", "OkCancelActions", "DirectionActions", "MenuActions", "InfobarAudioSelectionActions", "InfobarSubtitleSelectionActions"],
 		{
 			"red": self.keyRed,
 			"green": self.keyGreen,
 			"yellow": self.keyYellow,
+			"subtitleSelection": self.keyYellow,
+			"audioSelection": self.keyYellow,
 			"blue": self.keyBlue,
 			"ok": self.keyOk,
 			"cancel": self.cancel,
@@ -427,7 +429,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		else: 		# pango
 			menu = [
 				getConfigMenuItem("config.subtitles.pango_subtitles_delay"),
-				getConfigMenuItem("config.subtitles.pango_subtitles_yellow"),
+				getConfigMenuItem("config.subtitles.pango_subtitle_colors"),
 				getConfigMenuItem("config.subtitles.subtitle_fontsize"),
 				getConfigMenuItem("config.subtitles.subtitle_position"),
 				getConfigMenuItem("config.subtitles.subtitle_alignment"),
