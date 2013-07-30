@@ -115,11 +115,17 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersTerrestrial.Modulation_QAM256 : "QAM256"}.get(tp.get("constellation"))
 		ret["transmission_mode"] = {
 			eDVBFrontendParametersTerrestrial.TransmissionMode_Auto : _("Auto"),
+			eDVBFrontendParametersTerrestrial.TransmissionMode_1k : "1k",
 			eDVBFrontendParametersTerrestrial.TransmissionMode_2k : "2k",
 			eDVBFrontendParametersTerrestrial.TransmissionMode_4k : "4k",
-			eDVBFrontendParametersTerrestrial.TransmissionMode_8k : "8k"}.get(tp.get("transmission_mode"))
+			eDVBFrontendParametersTerrestrial.TransmissionMode_8k : "8k",
+			eDVBFrontendParametersTerrestrial.TransmissionMode_16k : "16k",
+			eDVBFrontendParametersTerrestrial.TransmissionMode_32k : "32k"}.get(tp.get("transmission_mode"))
 		ret["guard_interval"] = {
 			eDVBFrontendParametersTerrestrial.GuardInterval_Auto : _("Auto"),
+			eDVBFrontendParametersTerrestrial.GuardInterval_19_256 : "19/256",
+			eDVBFrontendParametersTerrestrial.GuardInterval_19_128 : "19/128",
+			eDVBFrontendParametersTerrestrial.GuardInterval_1_128 : "1/128",
 			eDVBFrontendParametersTerrestrial.GuardInterval_1_32 : "1/32",
 			eDVBFrontendParametersTerrestrial.GuardInterval_1_16 : "1/16",
 			eDVBFrontendParametersTerrestrial.GuardInterval_1_8 : "1/8",
