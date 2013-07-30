@@ -131,8 +131,7 @@ struct gUnmanagedSurface
 	gPalette clut;
 	void *data;
 	int data_phys;
-	int offset; // only for backbuffers (TODO: get rid of it then!)
-	
+
 	gUnmanagedSurface();
 	gUnmanagedSurface(eSize size, int bpp);
 };
