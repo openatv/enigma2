@@ -9,6 +9,8 @@
 #error "no BYTE_ORDER defined!"
 #endif
 
+// #define GPIXMAP_DEBUG
+
 gLookup::gLookup()
 	:size(0), lookup(0)
 {
@@ -63,9 +65,9 @@ gUnmanagedSurface::gUnmanagedSurface():
 {
 }
 
-gUnmanagedSurface::gUnmanagedSurface(eSize size, int _bpp):
-	x(size.width()),
-	y(size.height()),
+gUnmanagedSurface::gUnmanagedSurface(int width, int height, int _bpp):
+	x(width),
+	y(height),
 	bpp(_bpp),
 	data(0),
 	data_phys(0)
@@ -92,8 +94,25 @@ gUnmanagedSurface::gUnmanagedSurface(eSize size, int _bpp):
 	clut.data = 0;
 }
 
-gSurface::gSurface(eSize size, int _bpp, int accel):
-	gUnmanagedSurface(size, _bpp)
+#ifdef GPIXMAP_DEBUG
+unsigned int pixmap_total_size = 0;
+unsigned int pixmap_total_count = 0;
+static void added_pixmap(int size)
+{
+	++pixmap_total_count;
+	pixmap_total_size += size;
+	eDebug("[gSurface] Added %dk, total %u pixmaps, %uk", size>>10, pixmap_total_count, pixmap_total_size>>10);
+}
+static void removed_pixmap(int size)
+{
+	--pixmap_total_count;
+	pixmap_total_size -= size;
+	eDebug("[gSurface] Removed %dk, total %u pixmaps, %uk", size>>10, pixmap_total_count, pixmap_total_size>>10);
+}
+#endif
+
+gSurface::gSurface(int width, int height, int _bpp, int accel):
+	gUnmanagedSurface(width, height, _bpp)
 {
 	if (accel)
 	{
@@ -101,27 +120,28 @@ gSurface::gSurface(eSize size, int _bpp, int accel):
 				eDebug("ERROR: accelAlloc failed");
 	}
 	if (!data)
+	{
 		data = new unsigned char [y * stride];
+#ifdef GPIXMAP_DEBUG
+		added_pixmap(y * stride);
+#endif
+	}
 }
 
 gSurface::~gSurface()
 {
 	gAccel::getInstance()->accelFree(this);
 	if (data)
+	{
 		delete [] (unsigned char*)data;
+#ifdef GPIXMAP_DEBUG
+		removed_pixmap(y * stride);
+#endif
+	}
 	if (clut.data)
+	{
 		delete [] clut.data;
-}
-
-gPixmap *gPixmap::lock()
-{
-	contentlock.lock(1);
-	return this;
-}
-
-void gPixmap::unlock()
-{
-	contentlock.unlock(1);
+	}
 }
 
 void gPixmap::fill(const gRegion &region, const gColor &color)
@@ -828,14 +848,15 @@ gPixmap::~gPixmap()
 		delete (gSurface*)surface;
 }
 
-gPixmap::gPixmap(gUnmanagedSurface *surface)
-	:surface(surface), must_delete_surface(false)
+gPixmap::gPixmap(gUnmanagedSurface *surface):
+	surface(surface),
+	must_delete_surface(false)
 {
 }
 
-gPixmap::gPixmap(eSize size, int bpp, int accel)
-	:must_delete_surface(true)
+gPixmap::gPixmap(eSize size, int bpp, int accel):
+	surface(new gSurface(size.width(), size.height(), bpp, accel)),
+	must_delete_surface(true)
 {
-	surface = new gSurface(size, bpp, accel);
 }
 
