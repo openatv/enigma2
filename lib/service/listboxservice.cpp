@@ -7,7 +7,6 @@
 #include <lib/dvb/pmt.h>
 #include <lib/python/connections.h>
 #include <lib/python/python.h>
-#include <lib/dvb/db.h>
 
 ePyObject eListboxServiceContent::m_GetPiconNameFunc;
 
@@ -29,7 +28,6 @@ void eListboxServiceContent::addService(const eServiceReference &service, bool b
 		m_cursor_number=0;
 		m_listbox->entryAdded(0);
 	}
-	eDVBDB::getInstance()->renumberBouquet();
 }
 
 void eListboxServiceContent::removeCurrent()
@@ -53,7 +51,6 @@ void eListboxServiceContent::removeCurrent()
 			m_listbox->entryRemoved(cursorResolve(m_cursor_number));
 		}
 	}
-	eDVBDB::getInstance()->renumberBouquet();
 }
 
 void eListboxServiceContent::FillFinished()
