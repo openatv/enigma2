@@ -129,6 +129,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			if ref and not self.session.nav.getCurrentlyPlayingServiceOrGroup():
 				self.session.nav.playService(ref)
 		else:
+			self.subtitle_window.hide()
 			self.session.open(MoviePlayer, service, slist = self.servicelist, lastservice = ref)
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
