@@ -844,19 +844,31 @@ DEFINE_REF(gPixmap);
 
 gPixmap::~gPixmap()
 {
-	if (must_delete_surface)
+	if (on_dispose)
+		on_dispose(this);
+	if (surface)
 		delete (gSurface*)surface;
+}
+
+static void donot_delete_surface(gPixmap *pixmap)
+{
+	pixmap->surface = NULL;
 }
 
 gPixmap::gPixmap(gUnmanagedSurface *surface):
 	surface(surface),
-	must_delete_surface(false)
+	on_dispose(donot_delete_surface)
 {
 }
 
 gPixmap::gPixmap(eSize size, int bpp, int accel):
 	surface(new gSurface(size.width(), size.height(), bpp, accel)),
-	must_delete_surface(true)
+	on_dispose(NULL)
 {
 }
 
+gPixmap::gPixmap(int width, int height, int bpp, gPixmapDisposeCallback call_on_dispose, int accel):
+	surface(new gSurface(width, height, bpp, accel)),
+	on_dispose(call_on_dispose)
+{
+}
