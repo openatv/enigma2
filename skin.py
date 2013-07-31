@@ -236,13 +236,10 @@ def morphRcImagePath(value):
 	return value
 
 def loadPixmap(path, desktop):
-	cached = False
 	option = path.find("#")
 	if option != -1:
-		options = path[option+1:].split(',')
 		path = path[:option]
-		cached = "cached" in options
-	ptr = LoadPixmap(morphRcImagePath(path), desktop, cached)
+	ptr = LoadPixmap(morphRcImagePath(path), desktop)
 	if ptr is None:
 		raise SkinError("pixmap file %s not found!" % (path))
 	return ptr
