@@ -155,7 +155,8 @@ void bsodFatal(const char *component)
 	FILE *f;
 	const char* crashlog_name;
 	std::ostringstream os;
-	os << getConfigString("config.crash.debug_path", "/home/root/logs/enigma2_crash_");
+	os << getConfigString("config.crash.debug_path", "/home/root/logs/");
+	os << "enigma2_crash_";
 	os << time(0);
 	os << ".log";
 	crashlog_name = os.str().c_str();
@@ -167,7 +168,7 @@ void bsodFatal(const char *component)
 		 * alone because we may be in a crash loop and writing this file
 		 * all night long may damage the flash. Also, usually the first
 		 * crash log is the most interesting one. */
-		crashlog_name = "/home/root/enigma2_crash.log";
+		crashlog_name = "/home/root/logs/enigma2_crash.log";
 		if ((access(crashlog_name, F_OK) == 0) ||
 		    ((f = fopen(crashlog_name, "wb")) == NULL))
 		{
