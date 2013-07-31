@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-25 09:57+0200\n"
-"PO-Revision-Date: 2013-07-25 13:23+0100\n"
+"POT-Creation-Date: 2013-07-31 10:01+0200\n"
+"PO-Revision-Date: 2013-07-31 20:54+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -327,6 +327,9 @@ msgstr "* = Neustart erforderlich"
 msgid "* Only available if more than one interface is active."
 msgstr "* Nur verfügbar wenn mehr als ein Netzwerkadapter aktiv ist."
 
+msgid "/s"
+msgstr ""
+
 msgid "1.0"
 msgstr "1.0"
 
@@ -478,7 +481,7 @@ msgid ""
 "A finished powertimer wants to restart the user interface.\n"
 "Do that now?"
 msgstr ""
-"Ein Powertimer will die Benutzeroberfläche der %s %s neu starten.\n"
+"Ein Powertimer will die Benutzeroberfläche neu starten.\n"
 "\n"
 "Jetzt neu starten?"
 
@@ -970,7 +973,7 @@ msgid ""
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
 "Sicher das dieses Backup wiederhergestellt werden soll?\n"
-"Deine %s %s wird neu gestartet wenn das Backup wiederhergestellt wurde."
+"Die Box wird neu gestartet wenn das Backup wiederhergestellt wurde."
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr ""
@@ -1739,6 +1742,9 @@ msgstr "Konfigurieren der Zusammensetzung des Dateinamens von Aufnahmen"
 msgid "Configure if and how service type icons will be shown."
 msgstr "Konfigurieren ob und wie Sendertyp Icons gezeigt werden."
 
+msgid "Configure if service picons will be shown in the servicelist."
+msgstr "Konfigurieren ob und wie PIcons in der Senderliste gezeigt werden."
+
 msgid "Configure interface"
 msgstr "Netzwerkkarte konfigurieren"
 
@@ -1795,6 +1801,13 @@ msgstr "Konfiguriere die Helligkeit des Frontpanels bei normalem Betrieb."
 
 msgid "Configure the brightness level of the front panel displa for standby."
 msgstr "Konfiguriere die Helligkeit des Frontpanels bei Bereitschaft."
+
+msgid ""
+"Configure the color of the external subtitles, alternative (normal in white, "
+"italic in yellow, bold in cyan, underscore in green), white or yellow."
+msgstr ""
+"Konfiguriere die Farben der externen Untertitel. Alternativ (Normal in Weiß, "
+"italic in Gelb, Fett in Cyan, Unterstrich in Grün),  Weiß oder Gelb."
 
 msgid "Configure the color of the teletext subtitles."
 msgstr "Konfiguriere die Farbe von Videotext-Untertiteln."
@@ -2636,7 +2649,7 @@ msgid "Do you want to reboot your %s %s"
 msgstr "Die %s %s neu starten?"
 
 msgid "Do you want to reboot your receiver?"
-msgstr "Soll die %s %s neu gestartet werden?"
+msgstr "Soll die Box neu gestartet werden?"
 
 msgid "Do you want to remove the package:\n"
 msgstr "Das Paket deinstallieren:\n"
@@ -3040,6 +3053,9 @@ msgstr "Extern"
 msgid "External (CF)"
 msgstr "Extern (CF)"
 
+msgid "External subtitle color"
+msgstr "Farbe externe Untertitel"
+
 msgid "FAILED"
 msgstr "FEHLGESCHLAGEN"
 
@@ -3210,6 +3226,9 @@ msgstr "volle Transparenz"
 
 msgid "Fulscreen"
 msgstr "Vollbild"
+
+msgid "Fulview resulution"
+msgstr "Vollbild Auflösung"
 
 msgid "Function of OK button"
 msgstr "Funktion von der OK Taste"
@@ -4077,7 +4096,7 @@ msgid "Load/Save"
 msgstr "Laden/Speichern"
 
 msgid "Local box"
-msgstr "Lokale %s %s"
+msgstr "Lokale Box"
 
 msgid "Local network"
 msgstr "Lokales Netzwerk"
@@ -4224,6 +4243,9 @@ msgstr "Speicherinformationen"
 msgid "Memory index"
 msgstr "Index Speicher"
 
+msgid "Memory positions"
+msgstr "Positionen speichern"
+
 msgid "Menu"
 msgstr "Menu"
 
@@ -4272,10 +4294,6 @@ msgstr "Modell:\t%s %s\n"
 
 msgid "Model: "
 msgstr "Modell:"
-
-#, python-format
-msgid "Model: %s"
-msgstr "Modell: %s"
 
 msgid "Modulation"
 msgstr "Modulation"
@@ -4412,7 +4430,7 @@ msgstr "NFI Image Flashing"
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
 "NFI Image Flashen beendet.\n"
-"Drücke Gelb um die %s %s neu zu starten!"
+"Drücke Gelb um neu zu starten!"
 
 msgid "NFS Setup"
 msgstr "NFS Einstellungen"
@@ -4853,7 +4871,7 @@ msgid ""
 "On reaching the end of a file during playback, you can choose the box's "
 "behavior."
 msgstr ""
-"Am Ende einer Filmwiedergabe kann das Verhalten der %s %s bestimmt werden"
+"Am Ende einer Filmwiedergabe kann das Verhalten der Box bestimmt werden"
 
 msgid "Once per day"
 msgstr "Einmal am Tag"
@@ -5160,7 +5178,7 @@ msgstr ""
 "Drücke OK zum Fortfahren"
 
 msgid "Please connect your receiver to the internet"
-msgstr "Bitte die %s %s mit dem Internet verbinden"
+msgstr "Bitte die Box mit dem Internet verbinden"
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Bitte keine Werte ändern, falls Du nicht weißt, was Du machst!"
@@ -5874,7 +5892,7 @@ msgid "Restart test"
 msgstr "Test wiederholen"
 
 msgid "Restart your network connection and interfaces.\n"
-msgstr "Neustart der Netzwerk-Konfiguration der %s %s.\n"
+msgstr "Neustart der Netzwerk-Konfiguration.\n"
 
 msgid "Restore"
 msgstr "Wiederherstellung"
@@ -5982,6 +6000,9 @@ msgstr "Samba Einstellungen"
 
 msgid "Samba setup"
 msgstr "Samba/CIFS Einstellungen"
+
+msgid "Same resolution as skin"
+msgstr "Gleiche Auflösung wie Skin"
 
 msgid "Sat"
 msgstr "Sa"
@@ -6753,6 +6774,9 @@ msgstr "Zeige oder verstecke erweiterte Beschreibung (skinabhängig)."
 
 msgid "Show picon background colour"
 msgstr "Zeige Hintergrundfarbe von PIcon"
+
+msgid "Show picons in servicelist"
+msgstr "Zeige PIcon in der Senderliste"
 
 msgid "Show positioner movement"
 msgstr "Zeige Rotorbewegung"
@@ -8822,9 +8846,9 @@ msgid ""
 "return to the state it had when the timer started. 'Do nothing', 'Go to "
 "standby' and 'Go to deep standby' do ecaxtly that."
 msgstr ""
-"Was soll am Ende des Timer geschehen? 'Auto' schickt die %s %s in den "
-"Zustand den sie hatte als der Timer startete. 'Nichts machen', 'In "
-"Bereitschaft gehen', 'Ausschalten' machen genau das was sie sagen."
+"Was soll am Ende des Timer geschehen? 'Auto' schickt die Box in den Zustand "
+"den sie hatte als der Timer startete. 'Nichts machen', 'In Bereitschaft "
+"gehen', 'Ausschalten' machen genau das was sie sagen."
 
 msgid "What do you want to scan?"
 msgstr "Was durchsuchen?"
@@ -8895,13 +8919,6 @@ msgstr ""
 "wirklich gelöscht zu werden."
 
 msgid ""
-"When enabled, external subtitles (in media files) will be displayed in "
-"yellow, instead of the original color."
-msgstr ""
-"Wenn aktiviert werden externe Untertitel von Filmen in Gelb statt der "
-"Originalfarbe dargestellt."
-
-msgid ""
 "When enabled, external subtitles will be always turned on for playback movie."
 msgstr ""
 "Wenn aktiviert werden externe Untertitel bei Filmwiedergabe immer "
@@ -8935,8 +8952,8 @@ msgid ""
 "When enabled, measure power consumption to detect when the rotor stops "
 "turning (when supported by the tuner)."
 msgstr ""
-"Benutze Strommessung um zu erkennen wenn der Rotor gestoppt ist (wenn es die "
-"%s %s unterstützt)"
+"Benutze Strommessung um zu erkennen wenn der Rotor gestoppt ist (wenn es der "
+"Tuner  unterstützt)"
 
 msgid "When enabled, network trash can's are probed for cleaning."
 msgstr ""
@@ -9002,8 +9019,7 @@ msgstr ""
 "worden sind."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
-msgstr ""
-"Wenn auf 'Ja' gestellt so wird die %s %s AC3 Ton benutzen wenn verfügbar."
+msgstr "Wenn auf 'Ja' gestellt so wird AC3 Ton benutzt wenn verfügbar."
 
 msgid ""
 "When enabled, timeshift starts automatically in background after specified "
@@ -9017,8 +9033,7 @@ msgstr "Wenn aktiviert benutzt der Receiver DHCP zur Netzwerkkonfiguration."
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr ""
-"Wenn auf 'Ja' gestellt so wird die %s %s Aktivitäten am SCART-Eingang "
-"erkennen."
+"Wenn auf 'Ja' gestellt so wird die Box Aktivitäten am SCART-Eingang erkennen."
 
 msgid ""
 "When nonzero, a recording will start earlier than the starting time "
@@ -9063,7 +9078,7 @@ msgid ""
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
 msgstr ""
-"Wenn ein Sender eingestellt ist durchsucht die %s %s den Transponder nach "
+"Wenn ein Sender eingestellt ist durchsucht die Box den Transponder nach "
 "Änderungen und speichert sie. Nur 'Nein' einstellen wenn Du weißt was Du "
 "tust."
 
@@ -9158,9 +9173,6 @@ msgstr "Jahr"
 msgid "Yellow DVB subtitles"
 msgstr "DVB Untertitel Gelb"
 
-msgid "Yellow external subtitles"
-msgstr "Gelbe, externe Untertitel"
-
 msgid "Yes"
 msgstr "Ja"
 
@@ -9233,7 +9245,7 @@ msgstr "Das Löschen kann abgebrochen werden."
 
 msgid "You can continue watching TV etc. while this is running."
 msgstr ""
-"Der Vorgang findet im Hintergrund statt, die %s %s kann  ganz normal weiter "
+"Der Vorgang findet im Hintergrund statt, die Box kann  ganz normal weiter "
 "genutzt werden."
 
 msgid "You can disable Telnet Server and use ssh to login."
@@ -9414,13 +9426,13 @@ msgstr ""
 "Service jetzt entfernen?"
 
 msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Deine %s %s wird neu Starten wenn Du OK auf der Fernbedienung drückst."
+msgstr "Deine Box wird neu starten wenn Du OK auf der Fernbedienung drückst."
 
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr ""
-"Die Sicherung ist geglückt. Die %s %s wird nun den weiteren Aktualisierungs-"
+"Die Sicherung ist geglückt. Die Box wird nun den weiteren Aktualisierungs-"
 "Prozess erklären."
 
 msgid ""
@@ -9473,10 +9485,10 @@ msgid "Your network configuration has been activated."
 msgstr "Ihre Netzwerk-Konfiguration wurde aktiviert."
 
 msgid "Your receiver does not have an internet connection"
-msgstr "Deine %s %s hat keine Internetverbindung"
+msgstr "Deine Box hat keine Internetverbindung"
 
 msgid "Your receiver is not connected to the internet"
-msgstr "Deine %s %s ist nicht mit dem Internet verbunden"
+msgstr "Deine Box ist nicht mit dem Internet verbunden"
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -9622,6 +9634,9 @@ msgstr "alphabetisch"
 
 msgid "alphabetic reverse"
 msgstr "umgekehrtes Alphabet"
+
+msgid "alternative"
+msgstr "Alternative"
 
 msgid "arts/culture (without music, general)"
 msgstr "Kunst/Kultur (ohne Musik, allgemein)"
@@ -10251,7 +10266,7 @@ msgid "provider:"
 msgstr "Anbieter:"
 
 msgid "reboot system"
-msgstr "%s %s neu starten"
+msgstr "Box neu starten"
 
 msgid "record"
 msgstr "aufnehmen"
@@ -10705,3 +10720,16 @@ msgstr "umgeschaltet"
 
 #~ msgid "Do you want to update your %s ?"
 #~ msgstr "Die %s aktualisieren?"
+
+#~ msgid "Model: %s"
+#~ msgstr "Modell: %s"
+
+#~ msgid ""
+#~ "When enabled, external subtitles (in media files) will be displayed in "
+#~ "yellow, instead of the original color."
+#~ msgstr ""
+#~ "Wenn aktiviert werden externe Untertitel von Filmen in Gelb statt der "
+#~ "Originalfarbe dargestellt."
+
+#~ msgid "Yellow external subtitles"
+#~ msgstr "Gelbe, externe Untertitel"
