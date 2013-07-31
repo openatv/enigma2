@@ -2736,7 +2736,13 @@ class InfoBarSubtitleSupport(object):
 			})
 
 		self.selected_subtitle = None
-		self.subtitle_window = self.session.instantiateDialog(SubtitleDisplay)
+
+		if isStandardInfoBar(self):
+			self.subtitle_window = self.session.instantiateDialog(SubtitleDisplay)
+		else:
+			from Screens.InfoBar import InfoBar
+			self.subtitle_window = InfoBar.instance.subtitle_window
+
 		self.subtitle_window.hide()
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
