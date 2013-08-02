@@ -1,3 +1,5 @@
+#include <linux/dvb/version.h>
+
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/frontendparms.h>
 #include <lib/base/eerror.h>
@@ -391,7 +393,7 @@ int eDVBCableTransponderData::getSystem() const
 {
 	if (originalValues) return transponderParameters.system;
 
-#ifdef SYS_DVBC_ANNEX_C
+#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 6
 	switch (getProperty(DTV_DELIVERY_SYSTEM))
 	{
 	default:
@@ -497,6 +499,11 @@ int eDVBTerrestrialTransponderData::getTransmissionMode() const
 	{
 	case TRANSMISSION_MODE_2K: return eDVBFrontendParametersTerrestrial::TransmissionMode_2k;
 	case TRANSMISSION_MODE_8K: return eDVBFrontendParametersTerrestrial::TransmissionMode_8k;
+#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 5
+	case TRANSMISSION_MODE_1K: return eDVBFrontendParametersTerrestrial::TransmissionMode_1k;
+	case TRANSMISSION_MODE_16K: return eDVBFrontendParametersTerrestrial::TransmissionMode_16k;
+	case TRANSMISSION_MODE_32K: return eDVBFrontendParametersTerrestrial::TransmissionMode_32k;
+#endif
 	default:
 	case TRANSMISSION_MODE_AUTO: return eDVBFrontendParametersTerrestrial::TransmissionMode_Auto;
 	}
@@ -512,6 +519,11 @@ int eDVBTerrestrialTransponderData::getGuardInterval() const
 	case GUARD_INTERVAL_1_16: return eDVBFrontendParametersTerrestrial::GuardInterval_1_16;
 	case GUARD_INTERVAL_1_8: return eDVBFrontendParametersTerrestrial::GuardInterval_1_8;
 	case GUARD_INTERVAL_1_4: return eDVBFrontendParametersTerrestrial::GuardInterval_1_4;
+#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 5
+	case GUARD_INTERVAL_1_128: return eDVBFrontendParametersTerrestrial::GuardInterval_1_128;
+	case GUARD_INTERVAL_19_128: return eDVBFrontendParametersTerrestrial::GuardInterval_19_128;
+	case GUARD_INTERVAL_19_256: return eDVBFrontendParametersTerrestrial::GuardInterval_19_256;
+#endif
 	default:
 	case GUARD_INTERVAL_AUTO: return eDVBFrontendParametersTerrestrial::GuardInterval_Auto;
 	}
@@ -628,7 +640,7 @@ std::string eDVBFrontendData::getTypeDescription() const
 		{
 			result = "DVB-S";
 		}
-#ifdef SYS_DVBC_ANNEX_A
+#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 6
 		else if (frontend->supportsDeliverySystem(SYS_DVBC_ANNEX_A, true) || frontend->supportsDeliverySystem(SYS_DVBC_ANNEX_C, true))
 #else
 		else if (frontend->supportsDeliverySystem(SYS_DVBC_ANNEX_AC, true))
