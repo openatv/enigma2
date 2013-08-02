@@ -133,13 +133,13 @@ struct gUnmanagedSurface
 	int data_phys;
 
 	gUnmanagedSurface();
-	gUnmanagedSurface(eSize size, int bpp);
+	gUnmanagedSurface(int width, int height, int bpp);
 };
 
 struct gSurface: gUnmanagedSurface
 {
 	gSurface(): gUnmanagedSurface() {}
-	gSurface(eSize size, int bpp, int accel);
+	gSurface(int width, int height, int bpp, int accel);
 	~gSurface();
 private:
 	gSurface(const gSurface&); /* Copying managed gSurface is not allowed */
@@ -154,7 +154,9 @@ class gPixmap: public iObject
 {
 	DECLARE_REF(gPixmap);
 public:
-#ifndef SWIG
+#ifdef SWIG
+	gPixmap();
+#else
 	enum
 	{
 		blitAlphaTest=1,
@@ -162,22 +164,22 @@ public:
 		blitScale=4
 	};
 
+	typedef void (*gPixmapDisposeCallback)(gPixmap* pixmap);
+
 	gPixmap(gUnmanagedSurface *surface);
 	gPixmap(eSize, int bpp, int accel = 0);
+	gPixmap(int width, int height, int bpp, gPixmapDisposeCallback on_dispose, int accel = 0);
 
 	gUnmanagedSurface *surface;
-	
-	eLock contentlock;
-	int final;
-	
-	gPixmap *lock();
-	void unlock();
+
 	inline bool needClut() const { return surface && surface->bpp <= 8; }
 #endif
 	virtual ~gPixmap();
 	eSize size() const { return eSize(surface->x, surface->y); }
+
 private:
-	bool must_delete_surface;
+	gPixmapDisposeCallback on_dispose;
+
 	friend class gDC;
 	void fill(const gRegion &clip, const gColor &color);
 	void fill(const gRegion &clip, const gRGB &color);
@@ -188,9 +190,6 @@ private:
 	void line(const gRegion &clip, ePoint start, ePoint end, gColor color);
 	void line(const gRegion &clip, ePoint start, ePoint end, gRGB color);
 	void line(const gRegion &clip, ePoint start, ePoint end, unsigned int color);
-#ifdef SWIG
-	gPixmap();
-#endif
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<gPixmap>, gPixmapPtr);
 

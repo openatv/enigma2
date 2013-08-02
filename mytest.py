@@ -554,7 +554,6 @@ def runScreenTest():
 		if x[0] != -1
 	]
 	wakeupList.sort()
-	print 'wakeupList',wakeupList
 	recordTimerWakeupAuto = False
 	if wakeupList and wakeupList[0][1] != 3:
 		from time import strftime
@@ -579,7 +578,6 @@ def runScreenTest():
 
 	PowerTimerWakeupAuto = False
 	if wakeupList and wakeupList[0][1] == 3:
-		print 'PT TEST:', wakeupList
 		from time import strftime
 		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 60: # no time to switch box back on
