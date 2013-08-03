@@ -20,8 +20,10 @@ class Dish(Screen):
 		self["turnTime"] = Label("")
 		self["posFrom"] = Label("")
 		self["posGoto"] = Label("")
-		self["From"] = Label (_("From :"))
-		self["Goto"] = Label (_("Goto :"))
+		self["From"] = Label(_("From :"))
+		self["Goto"] = Label(_("Goto :"))
+		self["tunerName"] = Label("")
+		self["turnSpeed"] = Label("")
 
 		self.rotorTimer = eTimer()
 		self.rotorTimer.callback.append(self.updateRotorMovingState)
@@ -61,8 +63,9 @@ class Dish(Screen):
 				self.hide()
 
 	def turnTimerLoop(self):
-		self.turn_time -= 1
-		self["turnTime"].setText(self.FormatTurnTime(self.turn_time))
+		if self.total_time:
+			self.turn_time -= 1
+			self["turnTime"].setText(self.FormatTurnTime(self.turn_time))
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
@@ -74,8 +77,13 @@ class Dish(Screen):
 
 		self["posFrom"].setText(self.OrbToStr(prev_rotor_pos))
 		self["posGoto"].setText(self.OrbToStr(self.rotor_pos))
-		self["turnTime"].setText(self.FormatTurnTime(self.turn_time))
-
+		self["tunerName"].setText(self.getTunerName())
+		if self.total_time == 0:
+			self["turnTime"].setText("")
+			self["turnSpeed"].setText("")
+		else:
+			self["turnTime"].setText(self.FormatTurnTime(self.turn_time))
+			self["turnSpeed"].setText(str(self.getTurningSpeed(self.cur_polar)) + chr(176) + _("/s"))
 		self.turnTimer.start(1000, False)
 
 	def __onHide(self):
@@ -132,22 +140,37 @@ class Dish(Screen):
 				mrt = 3600 - mrt
 			if (mrt % 10):
 				mrt += 10
-			( turningspeedH, turningspeedV ) = self.getTurningSpeed()
-			if pol in (1, 3):	# vertical
-				mrt = (mrt * 1000 / turningspeedV ) / 10000
-			else:			# horizontal
-				mrt = (mrt * 1000 / turningspeedH ) / 10000
-		return mrt + 3
+			mrt = (mrt * 1000 / self.getTurningSpeed(pol) ) / 10000 + 3
+		return mrt
 
-	def getTurningSpeed(self):
-		tuner_number = self.currentTunerInfo().get("tuner_number")
-		nim = config.Nims[tuner_number]
-		return (nim.turningspeedH.float, nim.turningspeedV.float)
+	def getTurningSpeed(self, pol=0):
+		tuner = self.getCurrentTuner()
+		if tuner is not None:
+			nim = config.Nims[tuner]
+			if pol in (1, 3): # vertical
+				return nim.turningspeedV.float
+			return nim.turningspeedH.float
+		if pol in (1, 3):
+			return 1.0
+		return 1.5
 
-	def currentTunerInfo(self):
+	def getCurrentTuner(self):
 		service = self.session.nav.getCurrentService()
 		feinfo = service and service.frontendInfo()
-		return feinfo and feinfo.getFrontendData()
+		tuner = feinfo and feinfo.getFrontendData()
+		if tuner is not None:
+			return tuner.get("tuner_number")
+		return None
+
+	def getTunerName(self):
+		nr = self.getCurrentTuner()
+		if nr is not None:
+			from Components.NimManager import nimmanager
+			nims = nimmanager.nimList()
+			if nr < 4:
+				return "".join(nims[nr].split(':')[:1])
+			return " ".join((_("Tuner"),str(nr)))
+		return ""
 
 	def OrbToStr(self, orbpos):
 		if orbpos == INVALID_POSITION:

@@ -9,6 +9,8 @@
 #error "no BYTE_ORDER defined!"
 #endif
 
+// #define GPIXMAP_DEBUG
+
 gLookup::gLookup()
 	:size(0), lookup(0)
 {
@@ -59,18 +61,16 @@ void gLookup::build(int _size, const gPalette &pal, const gRGB &start, const gRG
 gUnmanagedSurface::gUnmanagedSurface():
 	x(0), y(0), bpp(0), bypp(0), stride(0),
 	data(0),
-	data_phys(0),
-	offset(0)
+	data_phys(0)
 {
 }
 
-gUnmanagedSurface::gUnmanagedSurface(eSize size, int _bpp):
-	x(size.width()),
-	y(size.height()),
+gUnmanagedSurface::gUnmanagedSurface(int width, int height, int _bpp):
+	x(width),
+	y(height),
 	bpp(_bpp),
 	data(0),
-	data_phys(0),
-	offset(0)
+	data_phys(0)
 {
 	switch (_bpp)
 	{
@@ -94,45 +94,54 @@ gUnmanagedSurface::gUnmanagedSurface(eSize size, int _bpp):
 	clut.data = 0;
 }
 
-gSurface::gSurface(eSize size, int _bpp, int accel):
-	gUnmanagedSurface(size, _bpp)
+#ifdef GPIXMAP_DEBUG
+unsigned int pixmap_total_size = 0;
+unsigned int pixmap_total_count = 0;
+static void added_pixmap(int size)
+{
+	++pixmap_total_count;
+	pixmap_total_size += size;
+	eDebug("[gSurface] Added %dk, total %u pixmaps, %uk", size>>10, pixmap_total_count, pixmap_total_size>>10);
+}
+static void removed_pixmap(int size)
+{
+	--pixmap_total_count;
+	pixmap_total_size -= size;
+	eDebug("[gSurface] Removed %dk, total %u pixmaps, %uk", size>>10, pixmap_total_count, pixmap_total_size>>10);
+}
+#endif
+
+gSurface::gSurface(int width, int height, int _bpp, int accel):
+	gUnmanagedSurface(width, height, _bpp)
 {
 	if (accel)
 	{
-		if (gAccel::getInstance())
-		{
-			stride += 63;
-			stride &= ~63;
-			int pal_size = (bpp == 8) ? 256 * 4 : 0;
-			if (gAccel::getInstance()->accelAlloc(data, data_phys, y * stride + pal_size) != 0)
+		if (gAccel::getInstance()->accelAlloc(this) != 0)
 				eDebug("ERROR: accelAlloc failed");
-		}
-		else
-			eDebug("no accel available");
 	}
 	if (!data)
+	{
 		data = new unsigned char [y * stride];
+#ifdef GPIXMAP_DEBUG
+		added_pixmap(y * stride);
+#endif
+	}
 }
 
 gSurface::~gSurface()
 {
-	if (data_phys)
-		gAccel::getInstance()->accelFree(data_phys);
-	else if (data)
+	gAccel::getInstance()->accelFree(this);
+	if (data)
+	{
 		delete [] (unsigned char*)data;
+#ifdef GPIXMAP_DEBUG
+		removed_pixmap(y * stride);
+#endif
+	}
 	if (clut.data)
+	{
 		delete [] clut.data;
-}
-
-gPixmap *gPixmap::lock()
-{
-	contentlock.lock(1);
-	return this;
-}
-
-void gPixmap::unlock()
-{
-	contentlock.unlock(1);
+	}
 }
 
 void gPixmap::fill(const gRegion &region, const gColor &color)
@@ -179,7 +188,7 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 			
 			col^=0xFF000000;
 			
-			if (surface->data_phys && gAccel::getInstance())
+			if (surface->data_phys)
 				if (!gAccel::getInstance()->fill(surface,  area, col))
 					continue;
 
@@ -211,7 +220,7 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 			col = color.argb();
 			col^=0xFF000000;
 
-			if (surface->data_phys && gAccel::getInstance())
+			if (surface->data_phys)
 				if (!gAccel::getInstance()->fill(surface,  area, col))
 					continue;
 
@@ -317,7 +326,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 //		clip.extends.x(), clip.extends.y(), clip.extends.width(), clip.extends.height(),
 //		flag);
 	eRect pos = _pos;
-	bool accel = (surface->data_phys && src.surface->data_phys && gAccel::getInstance());
+	bool accel = (surface->data_phys && src.surface->data_phys);
 	
 //	eDebug("source size: %d %d", src.size().width(), src.size().height());
 	
@@ -835,18 +844,31 @@ DEFINE_REF(gPixmap);
 
 gPixmap::~gPixmap()
 {
-	if (must_delete_surface)
+	if (on_dispose)
+		on_dispose(this);
+	if (surface)
 		delete (gSurface*)surface;
 }
 
-gPixmap::gPixmap(gUnmanagedSurface *surface)
-	:surface(surface), must_delete_surface(false)
+static void donot_delete_surface(gPixmap *pixmap)
+{
+	pixmap->surface = NULL;
+}
+
+gPixmap::gPixmap(gUnmanagedSurface *surface):
+	surface(surface),
+	on_dispose(donot_delete_surface)
 {
 }
 
-gPixmap::gPixmap(eSize size, int bpp, int accel)
-	:must_delete_surface(true)
+gPixmap::gPixmap(eSize size, int bpp, int accel):
+	surface(new gSurface(size.width(), size.height(), bpp, accel)),
+	on_dispose(NULL)
 {
-	surface = new gSurface(size, bpp, accel);
 }
 
+gPixmap::gPixmap(int width, int height, int bpp, gPixmapDisposeCallback call_on_dispose, int accel):
+	surface(new gSurface(width, height, bpp, accel)),
+	on_dispose(call_on_dispose)
+{
+}

@@ -17,14 +17,7 @@ struct gRGB
 	}
 	gRGB(unsigned long val)
 	{
-		if (val)
-		{
-			set(val);
-		}
-		else
-		{
-			b = g = r = a = 0;
-		}
+		set(val);
 	}
 	gRGB(const char *colorstring)
 	{
@@ -64,20 +57,20 @@ struct gRGB
 	bool operator < (const gRGB &c) const
 	{
 		if (b < c.b)
-			return 1;
+			return true;
 		if (b == c.b)
 		{
 			if (g < c.g)
-				return 1;
+				return true;
 			if (g == c.g)
 			{
 				if (r < c.r)
-					return 1;
+					return true;
 				if (r == c.r)
 					return a < c.a;
 			}
 		}
-		return 0;
+		return false;
 	}
 	bool operator==(const gRGB &c) const
 	{
@@ -138,16 +131,15 @@ struct gUnmanagedSurface
 	gPalette clut;
 	void *data;
 	int data_phys;
-	int offset; // only for backbuffers (TODO: get rid of it then!)
-	
+
 	gUnmanagedSurface();
-	gUnmanagedSurface(eSize size, int bpp);
+	gUnmanagedSurface(int width, int height, int bpp);
 };
 
 struct gSurface: gUnmanagedSurface
 {
 	gSurface(): gUnmanagedSurface() {}
-	gSurface(eSize size, int bpp, int accel);
+	gSurface(int width, int height, int bpp, int accel);
 	~gSurface();
 private:
 	gSurface(const gSurface&); /* Copying managed gSurface is not allowed */
@@ -162,7 +154,9 @@ class gPixmap: public iObject
 {
 	DECLARE_REF(gPixmap);
 public:
-#ifndef SWIG
+#ifdef SWIG
+	gPixmap();
+#else
 	enum
 	{
 		blitAlphaTest=1,
@@ -170,22 +164,22 @@ public:
 		blitScale=4
 	};
 
+	typedef void (*gPixmapDisposeCallback)(gPixmap* pixmap);
+
 	gPixmap(gUnmanagedSurface *surface);
 	gPixmap(eSize, int bpp, int accel = 0);
+	gPixmap(int width, int height, int bpp, gPixmapDisposeCallback on_dispose, int accel = 0);
 
 	gUnmanagedSurface *surface;
-	
-	eLock contentlock;
-	int final;
-	
-	gPixmap *lock();
-	void unlock();
+
 	inline bool needClut() const { return surface && surface->bpp <= 8; }
 #endif
 	virtual ~gPixmap();
 	eSize size() const { return eSize(surface->x, surface->y); }
+
 private:
-	bool must_delete_surface;
+	gPixmapDisposeCallback on_dispose;
+
 	friend class gDC;
 	void fill(const gRegion &clip, const gColor &color);
 	void fill(const gRegion &clip, const gRGB &color);
@@ -196,9 +190,6 @@ private:
 	void line(const gRegion &clip, ePoint start, ePoint end, gColor color);
 	void line(const gRegion &clip, ePoint start, ePoint end, gRGB color);
 	void line(const gRegion &clip, ePoint start, ePoint end, unsigned int color);
-#ifdef SWIG
-	gPixmap();
-#endif
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<gPixmap>, gPixmapPtr);
 
