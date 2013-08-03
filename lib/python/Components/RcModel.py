@@ -9,25 +9,25 @@ class RcModel:
 	RCTYPE_DMM = 3
 	RCTYPE_DMM1 = 4
 	RCTYPE_DMM2 = 5
-	RCTYPE_E3HD = 6	
-	RCTYPE_EBOX5000 = 7	
+	RCTYPE_E3HD = 6
+	RCTYPE_EBOX5000 = 7
 	RCTYPE_ET4X00 = 8
 	RCTYPE_ET6X00 = 9
 	RCTYPE_ET6500 = 10
-	RCTYPE_ET9X00 = 11	
+	RCTYPE_ET9X00 = 11
 	RCTYPE_ET9500 = 12
 	RCTYPE_GB = 13
 	RCTYPE_INI0 = 14
 	RCTYPE_INI1 = 15
 	RCTYPE_INI2 = 16
-	RCTYPE_INI3 = 17	
-	RCTYPE_IQON = 18	
+	RCTYPE_INI3 = 17
+	RCTYPE_IQON = 18
 	RCTYPE_IXUSSONE = 19
 	RCTYPE_IXUSSZERO = 20
 	RCTYPE_ODINM7 = 21
-	RCTYPE_ODINM9 = 22	
+	RCTYPE_ODINM9 = 22
 	RCTYPE_TM = 23
-	RCTYPE_VU = 24	
+	RCTYPE_VU = 24
 	RCTYPE_VU2 = 25
 	RCTYPE_XP1000 = 26
 
@@ -108,11 +108,11 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_INI0
 				else:
 					self.currentRcType = self.RCTYPE_INI2
-			elif model == 'ini-5000' or model == 'ini-7000' or model == 'ini-7012':
+			elif model == 'ini-5000' or model == 'ini-7000' or model == 'ini-7012' or model== 'ini-9000':
 				self.currentRcType = self.RCTYPE_INI1
-			elif model == 'ini-1000' or model == 'ini-1000ru' or model == 'ini-5000ru' or model== 'ini-9000':
+			elif model == 'ini-1000' or model == 'ini-1000ru' or model == 'ini-5000ru' or model== 'ini-9000ru':
 				self.currentRcType = self.RCTYPE_INI2
-			elif model == 'ini-1000sv' or model == 'ini-5000sv':
+			elif model == 'ini-1000de' or model == 'ini-1000sv' or model == 'ini-5000sv':
 				self.currentRcType = self.RCTYPE_INI3
 			elif model == 'e3hd':
 				self.currentRcType = self.RCTYPE_E3HD
@@ -175,10 +175,10 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/ixussone/'
 		elif self.currentRcType == self.RCTYPE_IXUSSZERO:
 			return '/usr/share/enigma2/rc_models/ixusszero/'
-		elif self.currentRcType == self.RCTYPE_ODINM9:
-			return '/usr/share/enigma2/rc_models/odinm9/'
 		elif self.currentRcType == self.RCTYPE_ODINM7:
 			return '/usr/share/enigma2/rc_models/odinm7/'
+		elif self.currentRcType == self.RCTYPE_ODINM9:
+			return '/usr/share/enigma2/rc_models/odinm9/'
 		elif self.currentRcType == self.RCTYPE_TM:
 			return '/usr/share/enigma2/rc_models/tm/'
 		elif self.currentRcType == self.RCTYPE_VU:
