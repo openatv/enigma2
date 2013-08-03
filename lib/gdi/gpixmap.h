@@ -174,12 +174,18 @@ public:
 		blitAlphaBlend=2,
 		blitScale=4
 	};
+	
+	enum {
+		accelNever = -1,
+		accelAuto = 0,
+		accelAlways = 1,
+	};
 
 	typedef void (*gPixmapDisposeCallback)(gPixmap* pixmap);
 
 	gPixmap(gUnmanagedSurface *surface);
 	gPixmap(eSize, int bpp, int accel = 0);
-	gPixmap(int width, int height, int bpp, gPixmapDisposeCallback on_dispose, int accel = 0);
+	gPixmap(int width, int height, int bpp, gPixmapDisposeCallback on_dispose, int accel = accelAuto);
 
 	gUnmanagedSurface *surface;
 

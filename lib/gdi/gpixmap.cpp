@@ -114,16 +114,19 @@ static void removed_pixmap(int size)
 gSurface::gSurface(int width, int height, int _bpp, int accel):
 	gUnmanagedSurface(width, height, _bpp)
 {
-	if (accel)
+	const int size = y * stride;
+	if ((accel) ||
+		((accel == gPixmap::accelAuto) &&
+	     ((_bpp==8) && (size > 800) && (size < 1024*512) && (stride > 32))))
 	{
 		if (gAccel::getInstance()->accelAlloc(this) != 0)
 				eDebug("ERROR: accelAlloc failed");
 	}
 	if (!data)
 	{
-		data = new unsigned char [y * stride];
+		data = new unsigned char [size];
 #ifdef GPIXMAP_DEBUG
-		added_pixmap(y * stride);
+		added_pixmap(size);
 #endif
 	}
 }
