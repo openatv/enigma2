@@ -412,9 +412,13 @@ class PowerKey:
 				wasRecTimerWakeup = int(file) and True or False
 			if self.session.nav.RecordTimer.isRecTimerWakeup() or wasRecTimerWakeup or self.session.nav.RecordTimer.isRecording():
 				print "PowerOff (timer wakewup) - Recording in progress or a timer about to activate, entering standby!"
+				lastrecordEnd = 0
 				for timer in self.session.nav.RecordTimer.timer_list:
-					timer.afterEvent = 2
-					break
+					if lastrecordEnd == 0 or lastrecordEnd >= timer.begin:
+						print "Set after-event for recording %s to DEEP-STANDBY." % timer.name
+						timer.afterEvent = 2
+						if timer.end > lastrecordEnd:
+							lastrecordEnd = timer.end + 900
 				from Screens.MessageBox import MessageBox
 				self.session.openWithCallback(self.gotoStandby,MessageBox,_("PowerOff while Recording in progress!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, timeout = 10)
 			else:
