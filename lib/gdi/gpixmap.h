@@ -112,7 +112,7 @@ struct gPalette
 {
 	int start, colors;
 	gRGB *data;
-	gColor findColor(const gRGB &rgb) const;
+	gColor findColor(const gRGB rgb) const;
 };
 
 struct gLookup
