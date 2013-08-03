@@ -8,16 +8,30 @@
 #include <lib/base/elock.h>
 #include <lib/gdi/erect.h>
 #include <lib/gdi/fb.h>
+#include <byteswap.h>
 
 struct gRGB
 {
-	unsigned char b, g, r, a;
+	union {
+#if BYTE_ORDER == LITTLE_ENDIAN
+		struct {
+			unsigned char b, g, r, a;
+		};
+#else
+		struct {
+			unsigned char a, r, g, b;
+		};
+#endif
+		unsigned long value;
+	};
 	gRGB(int r, int g, int b, int a=0): b(b), g(g), r(r), a(a)
 	{
 	}
-	gRGB(unsigned long val)
+	gRGB(unsigned long val): value(val)
 	{
-		set(val);
+	}
+	gRGB(const gRGB& other): value(other.value)
+	{
 	}
 	gRGB(const char *colorstring)
 	{
@@ -31,28 +45,25 @@ struct gRGB
 				val |= (colorstring[i]) & 0x0f;
 			}
 		}
-		set(val);
+		value = val;
 	}
-	gRGB(): b(0), g(0), r(0), a(0)
+	gRGB(): value(0)
 	{
 	}
 
 	unsigned long argb() const
 	{
-		return (a<<24)|(r<<16)|(g<<8)|b;
+		return value;
 	}
 
 	void set(unsigned long val)
 	{
-		b = val&0xFF;
-		g = (val>>8)&0xFF;
-		r = (val>>16)&0xFF;
-		a = (val>>24)&0xFF;
+		value = val;
 	}
 
 	void operator=(unsigned long val)
 	{
-		set(val);
+		value = val;
 	}
 	bool operator < (const gRGB &c) const
 	{
@@ -74,15 +85,15 @@ struct gRGB
 	}
 	bool operator==(const gRGB &c) const
 	{
-		return (b == c.b) && (g == c.g) && (r == c.r) && (a == c.a);
+		return c.value == value;
 	}
 	bool operator != (const gRGB &c) const
 	{
-		return (b != c.b) || (g != c.g) || (r != c.r) || (a != c.a);
+		return c.value != value;
 	}
 	operator const std::string () const
 	{
-		unsigned long val = argb();
+		unsigned long val = value;
 		std::string escapecolor = "\\c";
 		escapecolor.resize(10);
 		for (int i = 9; i >= 2; i--)
