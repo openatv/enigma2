@@ -4,7 +4,6 @@ from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import pathExists, SCOPE_ACTIVE_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
-from PIL import Image
 from enigma import getBoxType
 
 searchPaths = []
@@ -89,16 +88,6 @@ def getLcdPiconName(serviceName):
 			#fallback to 1 for tv services with nonstandard servicetypes
 			fields[2] = '1'
 			pngname = findLcdPicon('_'.join(fields))
-	return pngname
-
-def resizePicon(pngname, size):
-	try:
-		im = Image.open(pngname)
-		im.resize((size[0],size[1])).save("/tmp/picon.png")
-		pngname = "/tmp/picon.png"
-	except:
-		print"[PiconRes] error resizePicon"
-		pass
 	return pngname
 
 class LcdPicon(Renderer):
