@@ -62,7 +62,7 @@ class Navigation:
 		for x in self.record_event:
 			x(rec_service, event)
 
-	def playService(self, ref, checkParentalControl = True, forceRestart = False):
+	def playService(self, ref, checkParentalControl=True, forceRestart=False):
 		oldref = self.currentlyPlayingServiceReference
 		if ref and oldref and ref == oldref and not forceRestart:
 			print "ignore request to play already running service(1)"
@@ -72,7 +72,7 @@ class Navigation:
 			self.stopService()
 			return 0
 		InfoBarInstance = InfoBar.instance
-		if not checkParentalControl or parentalControl.isServicePlayable(ref, boundFunction(self.playService, checkParentalControl = False)):
+		if not checkParentalControl or parentalControl.isServicePlayable(ref, boundFunction(self.playService, checkParentalControl=False, forceRestart=forceRestart)):
 			if ref.flags & eServiceReference.isGroup:
 				if not oldref:
 					oldref = eServiceReference()
