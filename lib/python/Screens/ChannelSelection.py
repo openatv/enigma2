@@ -1666,7 +1666,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def zapCheckTimeshiftCallback(self, enable_pipzap, preview_zap, nref, answer):
 		if answer:
 			self.new_service_played = True
-			self.session.nav.playService(nref)
+			self.session.nav.playService(nref, forceRestart=self.rootChanged)
 			if not preview_zap:
 				self.saveRoot()
 				self.saveChannel(nref)
@@ -1676,6 +1676,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				if self.dopipzap:
 					self.setCurrentSelection(self.session.pip.getCurrentService())
 				self.revertMode = None
+				self.rootChanged = False
 			else:
 				Notifications.RemovePopup("Parental control")
 				self.setCurrentSelection(nref)
