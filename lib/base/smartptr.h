@@ -13,18 +13,6 @@ class ePtr
 {
 protected:
 	T *ptr;
-	char m_ptrStr[sizeof(void*)*2+1];
-	void updatePtrStr()
-	{
-		if (ptr) {
-			if (sizeof(void*) > 4)
-				sprintf(m_ptrStr, "%llx", (unsigned long long)ptr);
-			else
-				sprintf(m_ptrStr, "%lx", (unsigned long)ptr);
-		}
-		else
-			strcpy(m_ptrStr, "NIL");
-	}
 public:
 	T &operator*() { return *ptr; }
 	ePtr(): ptr(0)
@@ -63,10 +51,12 @@ public:
 		if (ptr)
 			ptr->Release();
 	}
-	char *getPtrString()
+	/* Horribly misnamed now, but why waste >9 bytes on each object just
+	 * to satisfy one ServiceEventTracker which doesn't even care about
+	 * the actual type it returns. */
+	intptr_t getPtrString() const
 	{
-		updatePtrStr();
-		return m_ptrStr;
+		return (intptr_t)ptr;
 	}
 #ifndef SWIG
 	T* grabRef() { if (!ptr) return 0; ptr->AddRef(); return ptr; }
