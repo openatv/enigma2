@@ -19,7 +19,7 @@
 #include <gst/pbutils/missing-plugins.h>
 #include <sys/stat.h>
 
-#define HTTP_TIMEOUT 20
+#define HTTP_TIMEOUT 30
 
 typedef enum
 {
