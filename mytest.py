@@ -563,7 +563,7 @@ def runScreenTest():
 			evfd.getInstance().vfd_write_string("-E2-")
 		evfd.getInstance().vfd_led(str(1))
 		
-	if enigma.getBoxType() == 'odinm7':
+	if enigma.getBoxType() == 'odinm7' or enigma.getBoxType() == 'odinm6' or enigma.getBoxType() == 'xp1000s':
 		f = open("/dev/dbox/oled0", "w")
 		f.write('-E2-')
 		f.close()

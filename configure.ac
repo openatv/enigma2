@@ -132,6 +132,7 @@ AM_CONDITIONAL(IQONIOS300HD, test "$BOXTYPE" == iqonios300hd)
 AM_CONDITIONAL(IXUSSONE, test "$BOXTYPE" == ixussone)
 AM_CONDITIONAL(IXUSSZERO, test "$BOXTYPE" == ixusszero)
 AM_CONDITIONAL(IXUSSDUO, test "$BOXTYPE" == ixussduo)
+AM_CONDITIONAL(ODINM6, test "$BOXTYPE" == odinm6)
 AM_CONDITIONAL(ODINM7, test "$BOXTYPE" == odinm7)
 AM_CONDITIONAL(ODINM9, test "$BOXTYPE" == odinm9)
 AM_CONDITIONAL(TMTWINOE, test "$BOXTYPE" == tmtwin)
@@ -299,7 +300,7 @@ if test "$BOXTYPE" == "ixussone" -o "$BOXTYPE" == "ixusszero" -o "$BOXTYPE" == "
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 fi
 
-if test "$BOXTYPE" == "odinm7" -o "$BOXTYPE" == "e3hd"; then
+if test "$BOXTYPE" == "odinm7" -o "$BOXTYPE" == "odinm6" -o "$BOXTYPE" == "e3hd"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 	AC_DEFINE(KEY_POWER2_TO_KEY_WWW, 1,[define when rc sends a KEY_POWER2 event for its KEY_WWW key])
 	AC_DEFINE(KEY_DIRECTORY_TO_KEY_FILE, 1,[define when rc sends a KEY_DIRECTORY event for its KEY_FILE key])		

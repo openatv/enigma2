@@ -24,12 +24,13 @@ class RcModel:
 	RCTYPE_IQON = 18
 	RCTYPE_IXUSSONE = 19
 	RCTYPE_IXUSSZERO = 20
-	RCTYPE_ODINM7 = 21
-	RCTYPE_ODINM9 = 22
-	RCTYPE_TM = 23
-	RCTYPE_VU = 24
-	RCTYPE_VU2 = 25
-	RCTYPE_XP1000 = 26
+	RCTYPE_ODINM6 = 21	
+	RCTYPE_ODINM7 = 22
+	RCTYPE_ODINM9 = 23
+	RCTYPE_TM = 24
+	RCTYPE_VU = 25
+	RCTYPE_VU2 = 26
+	RCTYPE_XP1000 = 27
 
 
 	def __init__(self):
@@ -120,6 +121,8 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_ODINM9
 			elif model == 'odinm7':
 				self.currentRcType = self.RCTYPE_ODINM7
+			elif model == 'odinm6':
+				self.currentRcType = self.RCTYPE_ODINM6
 			elif model.startswith('Ixuss'):
 				if getBoxType() == 'ixussone':
 					self.currentRcType = self.RCTYPE_IXUSSONE
@@ -175,6 +178,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/ixussone/'
 		elif self.currentRcType == self.RCTYPE_IXUSSZERO:
 			return '/usr/share/enigma2/rc_models/ixusszero/'
+		elif self.currentRcType == self.RCTYPE_ODINM6:
+			return '/usr/share/enigma2/rc_models/odinm6/'
 		elif self.currentRcType == self.RCTYPE_ODINM7:
 			return '/usr/share/enigma2/rc_models/odinm7/'
 		elif self.currentRcType == self.RCTYPE_ODINM9:

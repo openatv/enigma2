@@ -42,12 +42,8 @@ if IXUSSDUO
 SUBDIRS = ixusszero
 endif
 
-if ODINM7
-SUBDIRS = odinm7
-endif
-
-if ODINM9
-SUBDIRS = odinm9
+if ODIN
+SUBDIRS = odinm9 odinm7 odinm6
 endif
 
 if TECHNOMATE
