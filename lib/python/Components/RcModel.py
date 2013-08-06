@@ -115,14 +115,14 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_INI2
 			elif model == 'ini-1000de' or model == 'ini-1000sv' or model == 'ini-5000sv':
 				self.currentRcType = self.RCTYPE_INI3
+			elif getBoxType() == 'odinm6':
+				self.currentRcType = self.RCTYPE_ODINM6
 			elif model == 'e3hd':
 				self.currentRcType = self.RCTYPE_E3HD
 			elif model == 'odinm9':
 				self.currentRcType = self.RCTYPE_ODINM9
 			elif model == 'odinm7':
 				self.currentRcType = self.RCTYPE_ODINM7
-			elif model == 'odinm6':
-				self.currentRcType = self.RCTYPE_ODINM6
 			elif model.startswith('Ixuss'):
 				if getBoxType() == 'ixussone':
 					self.currentRcType = self.RCTYPE_IXUSSONE
