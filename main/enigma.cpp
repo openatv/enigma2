@@ -362,6 +362,13 @@ const char *getMachineBrand()
 		{
 			return "Octagon";
 		}
+		else if(strcmp(boxtype_name, "odinm7\n") == 0)
+		{
+			if(strcmp(BOXTYPE, "odinm6") == 0)
+			{
+				return "TELESTAR";
+			}
+		}
 		else
 		{
 			return MACHINE_BRAND;
@@ -424,6 +431,13 @@ const char *getMachineName()
 		else if(strcmp(boxtype_name, "xp1000s\n") == 0) 
 		{
 			return "SF8 HD";
+		}
+		else if(strcmp(boxtype_name, "odinm7\n") == 0)
+		{
+			if(strcmp(BOXTYPE, "odinm6") == 0)
+			{
+				return "STARSAT-LX";
+			}
 		}
 		else
 		{
