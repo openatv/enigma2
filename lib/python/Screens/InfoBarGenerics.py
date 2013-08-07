@@ -2579,6 +2579,11 @@ class InfoBarTimeshift:
 	def autostartPermanentTimeshift(self):
 		print '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!autostartPermanentTimeshift'
 		self["TimeshiftActions"].setEnabled(True)
+		ts = self.getTimeshift()
+		if ts is None:
+			print '[TimeShift] tune lock failed, so could not start.'
+			return 0
+
 		if int(config.timeshift.startdelay.getValue()):
 			self.activatePermanentTimeshift()
 
