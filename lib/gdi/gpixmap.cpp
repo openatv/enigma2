@@ -114,16 +114,19 @@ static void removed_pixmap(int size)
 gSurface::gSurface(int width, int height, int _bpp, int accel):
 	gUnmanagedSurface(width, height, _bpp)
 {
-	if (accel)
+	const int size = y * stride;
+	if ((accel) ||
+		((accel == gPixmap::accelAuto) &&
+	     ((_bpp==8) && (size > 800) && (size < 1024*512) && (stride > 32))))
 	{
 		if (gAccel::getInstance()->accelAlloc(this) != 0)
 				eDebug("ERROR: accelAlloc failed");
 	}
 	if (!data)
 	{
-		data = new unsigned char [y * stride];
+		data = new unsigned char [size];
 #ifdef GPIXMAP_DEBUG
-		added_pixmap(y * stride);
+		added_pixmap(size);
 #endif
 	}
 }
@@ -806,11 +809,18 @@ fail:
 	}
 }
 
-gColor gPalette::findColor(const gRGB &rgb) const
+gColor gPalette::findColor(const gRGB rgb) const
 {
 		/* grayscale? */
 	if (!data)
 		return (rgb.r + rgb.g + rgb.b) / 3;
+	
+	if (rgb.a == 255) /* Fully transparent, then RGB does not matter */
+	{
+		for (int t=0; t<colors; t++)
+			if (data[t].a == 255)
+				return t;
+	}
 	
 	int difference=1<<30, best_choice=0;
 	for (int t=0; t<colors; t++)
