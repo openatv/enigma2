@@ -177,7 +177,11 @@ public:
 	
 	enum {
 		accelNever = -1,
+#ifdef FORCE_NO_ACCELNEVER	
+		accelAuto = -1,
+#else
 		accelAuto = 0,
+#endif	
 		accelAlways = 1,
 	};
 
