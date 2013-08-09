@@ -22,6 +22,7 @@ class Dish(Screen):
 		self["posGoto"] = Label("")
 		self["From"] = Label(_("From :"))
 		self["Goto"] = Label(_("Goto :"))
+		self["Tuner"] = Label(_("Tuner :"))
 		self["tunerName"] = Label("")
 		self["turnSpeed"] = Label("")
 
@@ -32,6 +33,7 @@ class Dish(Screen):
 		self.showTimer = eTimer()
 		self.showTimer.callback.append(self.hide)
 
+		self.showdish = config.usage.showdish.getValue()
 		config.usage.showdish.addNotifier(self.configChanged)
 		self.configChanged(config.usage.showdish)
 
@@ -169,7 +171,7 @@ class Dish(Screen):
 			nims = nimmanager.nimList()
 			if nr < 4:
 				return "".join(nims[nr].split(':')[:1])
-			return " ".join((_("Tuner"),str(nr)))
+			return str(nr)
 		return ""
 
 	def OrbToStr(self, orbpos):
