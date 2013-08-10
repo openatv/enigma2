@@ -723,7 +723,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 									{
 										ePtr<gPixmap> piconPixmap;
 										ePicLoad picload;
-										picload.setPara(area.height()*2, area.height(), 1.0, 1, true, 1, "#FFFFFFFF");
+										picload.setPara(area.height()*2, area.height(), 1.0, 1, true, 1, "#FF000000");
 										picload.startDecode(piconFilename.c_str(), 0, 0, false);
 										picload.getData(piconPixmap);
 										if (piconPixmap)
