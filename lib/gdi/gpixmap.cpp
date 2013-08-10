@@ -162,7 +162,7 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 			__u32 icol;
 
 			if (surface->clut.data && color < surface->clut.colors)
-				icol=(surface->clut.data[color].a<<24)|(surface->clut.data[color].r<<16)|(surface->clut.data[color].g<<8)|(surface->clut.data[color].b);
+				icol=surface->clut.data[color].argb();
 			else
 				icol=0x10101*color;
 #if BYTE_ORDER == LITTLE_ENDIAN
@@ -182,9 +182,9 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 			__u32 col;
 
 			if (surface->clut.data && color < surface->clut.colors)
-				col=(surface->clut.data[color].a<<24)|(surface->clut.data[color].r<<16)|(surface->clut.data[color].g<<8)|(surface->clut.data[color].b);
+				col = surface->clut.data[color].argb();
 			else
-				col=0x10101*color;
+				col = 0x10101 * color;
 			
 			col^=0xFF000000;
 			
@@ -513,34 +513,39 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 		}
 		else if ((surface->bpp == 32) && (src.surface->bpp==8))
 		{	
-			__u8 *srcptr=(__u8*)src.surface->data;
+			const __u8 *srcptr = (__u8*)src.surface->data;
 			__u8 *dstptr=(__u8*)surface->data; // !!
 			__u32 pal[256];
 
-			for (int i=0; i != 256; ++i)
 			{
-				if (src.surface->clut.data && (i<src.surface->clut.colors))
-					pal[i]=(src.surface->clut.data[i].a<<24)|(src.surface->clut.data[i].r<<16)|(src.surface->clut.data[i].g<<8)|(src.surface->clut.data[i].b);
-				else
-					pal[i]=0x010101*i;
-				pal[i]^=0xFF000000;
+				int i = 0;
+				if (src.surface->clut.data)
+					while (i < src.surface->clut.colors)
+					{
+						pal[i] = src.surface->clut.data[i].argb() ^ 0xFF000000;
+						++i;
+					}
+				for(; i != 256; ++i)
+				{
+					pal[i] = (0x010101*i) | 0xFF000000;
+				}
 			}
 
 			srcptr+=srcarea.left()*src.surface->bypp+srcarea.top()*src.surface->stride;
 			dstptr+=area.left()*surface->bypp+area.top()*surface->stride;
-			for (int y=0; y<area.height(); y++)
+			const int width=area.width();
+			for (int y = area.height(); y != 0; --y)
 			{
-				int width=area.width();
-				unsigned char *psrc=(unsigned char*)srcptr;
-				__u32 *dst=(__u32*)dstptr;
+				unsigned char *psrc = (unsigned char*)srcptr;
+				__u32 *dst = (__u32*)dstptr;
 				if (flag & blitAlphaTest)
 					blit_8i_to_32_at(dst, psrc, pal, width);
 				else if (flag & blitAlphaBlend)
 					blit_8i_to_32_ab(dst, psrc, pal, width);
 				else
 					blit_8i_to_32(dst, psrc, pal, width);
-				srcptr+=src.surface->stride;
-				dstptr+=surface->stride;
+				srcptr += src.surface->stride;
+				dstptr += surface->stride;
 			}
 		}
 		else if ((surface->bpp == 16) && (src.surface->bpp==8))
@@ -553,7 +558,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			{
 				__u32 icol;
 				if (src.surface->clut.data && (i<src.surface->clut.colors))
-					icol=(src.surface->clut.data[i].a<<24)|(src.surface->clut.data[i].r<<16)|(src.surface->clut.data[i].g<<8)|(src.surface->clut.data[i].b);
+					icol = src.surface->clut.data[i].argb();
 				else
 					icol=0x010101*i;
 #if BYTE_ORDER == LITTLE_ENDIAN
@@ -684,9 +689,9 @@ void gPixmap::line(const gRegion &clip, ePoint start, ePoint dst, gColor color)
 	if (surface->bpp != 8)
 	{
 		if (surface->clut.data && color < surface->clut.colors)
-			col=(surface->clut.data[color].a<<24)|(surface->clut.data[color].r<<16)|(surface->clut.data[color].g<<8)|(surface->clut.data[color].b);
+			col = surface->clut.data[color].argb();
 		else
-			col=0x10101*color;
+			col = 0x10101*color;
 		col^=0xFF000000;
 	}
 
