@@ -75,6 +75,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.eventviewWasShown = False
 		self.currch = None
 		self.session.pipshown = False
+		self.cureventindex = None
 		if plugin_PiPServiceRelation_installed:
 			self.pipServiceRelation = getRelationDict()
 		else:
@@ -495,14 +496,21 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_MULTI:
 			self['list'].fillMultiEPG(self.services, self.ask_time)
 		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
-			if self.type == EPG_TYPE_SINGLE:
-				service = self.currentService
-			elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
-				service = ServiceReference(self.servicelist.getCurrentSelection())
-			index = self['list'].getCurrentIndex()
-			self['list'].fillSingleEPG(service)
-			self['list'].sortSingleEPG(int(config.epgselection.sort.getValue()))
-			self['list'].setCurrentIndex(index)
+			try:
+				if self.type == EPG_TYPE_SINGLE:
+					service = self.currentService
+				elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+					service = ServiceReference(self.servicelist.getCurrentSelection())
+				if not self.cureventindex:
+					index = self['list'].getCurrentIndex()
+				else:
+					index = self.cureventindex
+					self.cureventindex = None
+				self['list'].fillSingleEPG(service)
+				self['list'].sortSingleEPG(int(config.epgselection.sort.getValue()))
+				self['list'].setCurrentIndex(index)
+			except:
+				pass
 
 	def moveUp(self):
 		self['list'].moveTo(self['list'].instance.moveUp)
@@ -933,6 +941,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def timerAdd(self):
 		cur = self['list'].getCurrent()
+		self.cureventindex = self['list'].getCurrentIndex()
 		event = cur[0]
 		serviceref = cur[1]
 		if event is None:
@@ -966,10 +975,7 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			self['key_green'].setText(_('Add Timer'))
 			self.key_green_choice = self.ADD_TIMER
-		try:
-			self.refreshlist()
-		except:
-			pass
+		self.refreshlist()
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
@@ -980,10 +986,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self['key_green'].setText(_('Add Timer'))
 		self.key_green_choice = self.ADD_TIMER
 		self.closeChoiceBoxDialog()
-		try:
-			self.refreshlist()
-		except:
-			pass
+		self.refreshlist()
 
 	def RecordTimerQuestion(self):
 		cur = self['list'].getCurrent()
