@@ -89,9 +89,6 @@ gUnmanagedSurface::gUnmanagedSurface(int width, int height, int _bpp):
 		bypp = (bpp+7)/8;
 	}
 	stride = x*bypp;
-
-	clut.colors = 0;
-	clut.data = 0;
 }
 
 #ifdef GPIXMAP_DEBUG
