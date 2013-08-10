@@ -144,7 +144,7 @@ bool gAccel::hasAlphaBlendingSupport()
 #endif
 }
 
-int gAccel::blit(gUnmanagedSurface *dst, const gUnmanagedSurface *src, const eRect &p, const eRect &area, int flags)
+int gAccel::blit(gUnmanagedSurface *dst, gUnmanagedSurface *src, const eRect &p, const eRect &area, int flags)
 {
 #ifdef ATI_ACCEL
 	ati_accel_blit(
@@ -165,12 +165,20 @@ int gAccel::blit(gUnmanagedSurface *dst, const gUnmanagedSurface *src, const eRe
 		{
 			src_format = 1;
 			/* sync pal */
-			int i;
-			pal_addr = src->stride * src->y;
-			unsigned long *pal = (unsigned long*)(((unsigned char*)src->data) + pal_addr);
-			pal_addr += src->data_phys;
-			for (i = 0; i < src->clut.colors; ++i)
-				*pal++ = src->clut.data[i].argb() ^ 0xFF000000;
+			if (src->clut.data_phys == 0)
+			{
+				/* sync pal */
+				pal_addr = src->stride * src->y;
+				unsigned long *pal = (unsigned long*)(((unsigned char*)src->data) + pal_addr);
+				pal_addr += src->data_phys;
+				for (int i = 0; i < src->clut.colors; ++i)
+					*pal++ = src->clut.data[i].argb() ^ 0xFF000000;
+				src->clut.data_phys = pal_addr;
+			}
+			else
+			{
+				pal_addr = src->clut.data_phys;
+			}
 		} else
 			return -1; /* unsupported source format */
 
