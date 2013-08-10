@@ -77,7 +77,7 @@ elif [ $MODEL = "odinm6" ] ; then
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/en2
 	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_odinm7/$DATE	
+	EXTRA=$DIRECTORY/fullbackup_odinm7/$DATE
 ## TESTING THE E3 HD Model	
 elif [ $MODEL = "e3hd" ] ; then
 	TYPE=E3HD
