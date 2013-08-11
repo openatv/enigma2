@@ -89,9 +89,6 @@ gUnmanagedSurface::gUnmanagedSurface(int width, int height, int _bpp):
 		bypp = (bpp+7)/8;
 	}
 	stride = x*bypp;
-
-	clut.colors = 0;
-	clut.data = 0;
 }
 
 #ifdef GPIXMAP_DEBUG
@@ -378,7 +375,14 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			if (flag & (blitAlphaTest | blitAlphaBlend))
 			{
 				/* alpha blending is requested */
-				if (!gAccel::getInstance()->hasAlphaBlendingSupport())
+				if (gAccel::getInstance()->hasAlphaBlendingSupport())
+				{
+					/* Hardware alpha blending is broken on the few
+					 * boxes that support it, so only use it
+					 * when scaling */
+					accel = (flag & blitScale);
+				}
+				else
 				{
 					/* our hardware does not support alphablending */
 					if (flag & blitScale)

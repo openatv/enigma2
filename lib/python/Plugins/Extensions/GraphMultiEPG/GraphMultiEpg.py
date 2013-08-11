@@ -403,7 +403,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			piconWidth = self.picon_size.width()
 			piconHeight = self.picon_size.height()
 			if picon != "":
-				self.picload.setPara((piconWidth, piconHeight, 1, 1, 1, 1, "#FFFFFFFF"))
+				self.picload.setPara((piconWidth, piconHeight, 1, 1, 1, 1, "#FF000000"))
 				self.picload.startDecode(picon, 0, 0, False)
 				displayPicon = self.picload.getData()
 			if displayPicon is not None:
