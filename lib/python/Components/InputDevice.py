@@ -3,6 +3,7 @@ from os import listdir, open as os_open, close as os_close, write as os_write, O
 from Tools.Directories import pathExists
 from fcntl import ioctl
 import struct
+from enigma import getBoxType
 
 # asm-generic/ioctl.h
 IOC_NRBITS = 8L
@@ -206,6 +207,8 @@ class RcTypeControl():
 			if config.plugins.remotecontroltype.rctype.value != 0:
 				self.writeRcType(config.plugins.remotecontroltype.rctype.value)
 		else:
+			self.isSupported = False
+		if getBoxType().startswith('gb')
 			self.isSupported = False
 
 	def multipleRcSupported(self):
