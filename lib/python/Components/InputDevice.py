@@ -219,7 +219,7 @@ class RcTypeControl():
 				self.writeRcType(config.plugins.remotecontroltype.rctype.getValue())
 		else:
 			self.isSupported = False
-		if getBoxType().startswith('gb')
+		if getBoxType().startswith('gb'):
 			self.isSupported = False			
 
 	def multipleRcSupported(self):
