@@ -19,7 +19,7 @@ public:
 	void setAccelMemorySpace(void *addr, int phys_addr, int size);
 
 	bool hasAlphaBlendingSupport();
-	int blit(gUnmanagedSurface *dst, const gUnmanagedSurface *src, const eRect &p, const eRect &area, int flags);
+	int blit(gUnmanagedSurface *dst, gUnmanagedSurface *src, const eRect &p, const eRect &area, int flags);
 	int fill(gUnmanagedSurface *dst, const eRect &area, unsigned long col);
 	
 	int accelAlloc(gUnmanagedSurface* surface);
