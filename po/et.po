@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-25 09:57+0200\n"
+"POT-Creation-Date: 2013-08-12 23:40+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -325,6 +325,9 @@ msgstr "* = Vajalik taaskäivitus"
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Enam kui ühe aktiivse liidese puhul."
+
+msgid "/s"
+msgstr "/s"
 
 msgid "1.0"
 msgstr "1.0"
@@ -1239,7 +1242,7 @@ msgid "CCcam Client Info"
 msgstr "CCcam kliendi info"
 
 msgid "CCcam Config Switcher"
-msgstr ""
+msgstr "CCcam config-faili valik"
 
 msgid "CCcam ECM Info"
 msgstr "CCcam ECM info"
@@ -1269,16 +1272,16 @@ msgid "CCcam Provider Info"
 msgstr "CCcam Provider Info"
 
 msgid "CCcam Remote Info"
-msgstr ""
+msgstr "CCcam remote info"
 
 msgid "CCcam Server Info"
 msgstr "CCcam serveri Info"
 
 msgid "CCcam Share Info"
-msgstr ""
+msgstr "CCcam share info"
 
 msgid "CCcam Shares Info"
-msgstr ""
+msgstr "CCcam shares info"
 
 msgid "CCcam info"
 msgstr "CCcam info"
@@ -1437,9 +1440,8 @@ msgstr "Kanali eelvaade"
 msgid "Channel selection"
 msgstr "Kanalivalik"
 
-#, fuzzy
 msgid "Channel selection settings"
-msgstr "Valimiku seaded"
+msgstr "Kanalivaliku seaded"
 
 msgid "Channel:"
 msgstr "Kanal:"
@@ -1550,9 +1552,8 @@ msgstr "Ringpolarisatsioon vasak"
 msgid "Circular right"
 msgstr "Ringpolarisatsioon parem"
 
-#, fuzzy
 msgid "Clean network trash can's"
-msgstr "Prügikasti saatmine ei ole võimalik"
+msgstr "Tühjenda võrguketta prigikast"
 
 msgid "Cleaning Trashes"
 msgstr "Prügikasti puhastamine"
@@ -1674,7 +1675,10 @@ msgid "Configure how recording filenames are constructed."
 msgstr "Määra, millisel kujul salvestuste nimed luuakse"
 
 msgid "Configure if and how service type icons will be shown."
-msgstr "Määra kas ja kuidas näidatakse teenuse liike."
+msgstr "Määra, kas ja kuidas näidatakse teenuse liigi ikoone."
+
+msgid "Configure if service picons will be shown in the servicelist."
+msgstr "Määra, kas kanalinimekirjas näidatakse kanalilogosi."
 
 msgid "Configure interface"
 msgstr "Seadista liides"
@@ -1720,6 +1724,9 @@ msgstr "Määra esipaneeli heleduse tase tavakasutuses."
 
 msgid "Configure the brightness level of the front panel displa for standby."
 msgstr "Määra esipaneeli heleduse tase ooterežiimil."
+
+msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
+msgstr "Määra väliste subtiitrite värv - alternatiivne, valge või kollane. Alternatiivne: tavatekst valge, kaldtekst kollane, rasvane tekst sinine, allajoonitud tekst roheline."
 
 msgid "Configure the color of the teletext subtitles."
 msgstr "Määra teleteksti subtiitrite värv."
@@ -2870,6 +2877,9 @@ msgstr "Väline"
 msgid "External (CF)"
 msgstr "Väline (CF)"
 
+msgid "External subtitle color"
+msgstr "Väliste subtiitrite värv"
+
 msgid "FAILED"
 msgstr "NURJUS"
 
@@ -3040,6 +3050,9 @@ msgstr "Täiesti läbipaistev"
 
 msgid "Fulscreen"
 msgstr "Täisekraan"
+
+msgid "Fulview resulution"
+msgstr "Täisekraani resolutsioon"
 
 msgid "Function of OK button"
 msgstr "OK nupu toime"
@@ -3268,7 +3281,7 @@ msgid "History buttons mode"
 msgstr "Ajaloo nuppude toiming"
 
 msgid "History zap..."
-msgstr "Kanalivahetuse ajalugu..."
+msgstr "Vaadatud kanalid..."
 
 msgid "Hold screen"
 msgstr "Hoia pilti"
@@ -3280,7 +3293,7 @@ msgid "Home"
 msgstr "Avaleht"
 
 msgid "Hops:"
-msgstr ""
+msgstr "Hops:"
 
 msgid "Horizontal"
 msgstr "Horisontaalne"
@@ -3765,7 +3778,7 @@ msgid "Letterbox"
 msgstr "Letterbox"
 
 msgid "Letterbox zoom"
-msgstr ""
+msgstr "Letterbox zoom"
 
 msgid "Light Grey"
 msgstr "Helehall"
@@ -3993,6 +4006,9 @@ msgstr "Mälu andmed"
 msgid "Memory index"
 msgstr "Mälu indeks"
 
+msgid "Memory positions"
+msgstr "Mälukoht"
+
 msgid "Menu"
 msgstr "Menüü"
 
@@ -4041,10 +4057,6 @@ msgstr "Mudel:\t%s %s\n"
 
 msgid "Model: "
 msgstr "Tüüp: "
-
-#, python-format
-msgid "Model: %s"
-msgstr "Mudel: %s"
 
 msgid "Modulation"
 msgstr "Modulatsioon"
@@ -4675,7 +4687,7 @@ msgid "PIDs"
 msgstr "PIDd"
 
 msgid "PLP ID"
-msgstr ""
+msgstr "PLP ID"
 
 msgid "PMT PID"
 msgstr "PMT PID"
@@ -5527,9 +5539,8 @@ msgstr "Uus nimi:"
 msgid "Renamed %s!"
 msgstr "Ümber nimetatud %s!"
 
-#, fuzzy
 msgid "Repeat"
-msgstr "Kordused"
+msgstr "Korda"
 
 msgid "Repeat Display Message"
 msgstr "Korda teadet ekraanil"
@@ -5700,6 +5711,9 @@ msgstr "Samba seaded"
 
 msgid "Samba setup"
 msgstr "Samba seaded"
+
+msgid "Same resolution as skin"
+msgstr "Sama resolutsioon kui skinil"
 
 msgid "Sat"
 msgstr "L"
@@ -6288,7 +6302,7 @@ msgid "Show EIT now/next in infobar"
 msgstr "Näita EIT nüüd/järgmine inforibal"
 
 msgid "Show EPG for current channel..."
-msgstr "Näita käesoleva saate kava..."
+msgstr "Näita kanali saatekava..."
 
 msgid "Show Games show"
 msgstr "Viktoriin"
@@ -6421,6 +6435,9 @@ msgstr "Näita või varja täpsemat saatetutvustust (sõltub teemast)."
 
 msgid "Show picon background colour"
 msgstr "Kanalilogo tausta värv"
+
+msgid "Show picons in servicelist"
+msgstr "Näita kanalinimekirjas kanalilogosi."
 
 msgid "Show positioner movement"
 msgstr "Näita positsioneeri liikumist"
@@ -6619,7 +6636,7 @@ msgid "Software"
 msgstr "Tarkvara"
 
 msgid "Software Update"
-msgstr "Uuendamise seaded"
+msgstr "Tarkvara uuendused"
 
 msgid "Software management"
 msgstr "Tarkvara haldamine"
@@ -7670,10 +7687,10 @@ msgid "Total cards:"
 msgstr "Kaarte kokku:"
 
 msgid "Total handled client ecm's"
-msgstr ""
+msgstr "Käsitletud ECM"
 
 msgid "Total handled client emm's"
-msgstr ""
+msgstr "Käsitletud EMM"
 
 msgid "Total:"
 msgstr "Kokku:"
@@ -7731,6 +7748,9 @@ msgstr "Häälestus nurjus!"
 
 msgid "Tuner"
 msgstr "Tuuner"
+
+msgid "Tuner :"
+msgstr "Tuuner :"
 
 msgid "Tuner configuration"
 msgstr "Tuuneri seaded"
@@ -7867,13 +7887,13 @@ msgid "Upgrading"
 msgstr "Uuendan"
 
 msgid "Uphops +"
-msgstr ""
+msgstr "Uphops +"
 
 msgid "Uphops -"
-msgstr ""
+msgstr "Uphops -"
 
 msgid "Uphops: "
-msgstr ""
+msgstr "Uphops: "
 
 msgid "Uptime"
 msgstr "Ülalolekuaeg"
@@ -7909,7 +7929,7 @@ msgid "Use ViaSat EPG information when it is available."
 msgstr "Viasat EPG kasutamine, kui see on saadaval."
 
 msgid "Use WOL"
-msgstr ""
+msgstr "Kasuta WOL"
 
 msgid "Use a gateway"
 msgstr "Kasuta lüüsi"
@@ -8360,9 +8380,6 @@ msgstr "Määrates 'jah', liigutakse kanalivahetusel käesoleva lemmiknimekirja 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr "Määrates 'jah', ei kustutata salvestusi silmapilkselt, vaid liigutatakse prügikasti."
 
-msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
-msgstr "Määrates 'jah', kuvatakse välised subtiitrid (meedia failidel) kollasena."
-
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Määrates 'jah', käivitatakse välised subtiitrid alati koos filmiga."
 
@@ -8382,7 +8399,7 @@ msgid "When enabled, measure power consumption to detect when the rotor stops tu
 msgstr "Määrates 'jah', kasuta energiakulu mõõtmist, et tuvastada mootori peatumist (kui vastuvõtja seda toetab)."
 
 msgid "When enabled, network trash can's are probed for cleaning."
-msgstr ""
+msgstr "Määrates 'jah', uuritakse kustutamisel ka võrgukettaid."
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "Määrates 'jah', viib '0' vajutus alati kanalile 1 ja kustutab kanalivahetuse ajaloo."
@@ -8528,9 +8545,6 @@ msgstr "Aasta"
 
 msgid "Yellow DVB subtitles"
 msgstr "Kollased DVB subtiitrid"
-
-msgid "Yellow external subtitles"
-msgstr "Kollased välised subtiitrid"
 
 msgid "Yes"
 msgstr "Jah"
@@ -8944,6 +8958,9 @@ msgstr "tähestikuline"
 msgid "alphabetic reverse"
 msgstr "tagurpidi tähestikujärjekord"
 
+msgid "alternative"
+msgstr "alternatiivne"
+
 msgid "arts/culture (without music, general)"
 msgstr "Kkunst/kultuur (välja arvatud muusika)"
 
@@ -9085,7 +9102,7 @@ msgid "day"
 msgstr "päev"
 
 msgid "decrease uphop by 1"
-msgstr ""
+msgstr "vähenda uphop 1"
 
 msgid "delete"
 msgstr "kustuta"
@@ -9277,7 +9294,7 @@ msgid "gardening"
 msgstr "aiandus"
 
 msgid "get the cards' server"
-msgstr ""
+msgstr "hangi kaardiserver"
 
 msgid "go to deep standby"
 msgstr "mine sügavooterežiimi"
@@ -9308,13 +9325,13 @@ msgid "height"
 msgstr "kõrgus"
 
 msgid "hops:"
-msgstr ""
+msgstr "hops:"
 
 msgid "horizontal"
 msgstr "horisontaalne"
 
 msgid "increase uphop by 1"
-msgstr ""
+msgstr "suurenda uphop 1"
 
 msgid "information/education/school program"
 msgstr "teave/haridus/kooliprogramm"
@@ -9716,34 +9733,34 @@ msgid "show alternatives"
 msgstr "näita asenduskanaleid"
 
 msgid "show cards with uphop 0"
-msgstr ""
+msgstr "näita kaarte: uphop 0"
 
 msgid "show cards with uphop 1"
-msgstr ""
+msgstr "näita kaarte: uphop 1"
 
 msgid "show cards with uphop 2"
-msgstr ""
+msgstr "näita kaarte: uphop 2"
 
 msgid "show cards with uphop 3"
-msgstr ""
+msgstr "näita kaarte: uphop 3"
 
 msgid "show cards with uphop 4"
-msgstr ""
+msgstr "näita kaarte: uphop 4"
 
 msgid "show cards with uphop 5"
-msgstr ""
+msgstr "näita kaarte: uphop 5"
 
 msgid "show cards with uphop 6"
-msgstr ""
+msgstr "näita kaarte: uphop 6"
 
 msgid "show cards with uphop 7"
-msgstr ""
+msgstr "näita kaarte: uphop 7"
 
 msgid "show cards with uphop 8"
-msgstr ""
+msgstr "näita kaarte: uphop 8"
 
 msgid "show cards with uphop 9"
-msgstr ""
+msgstr "näita kaarte: uphop 9"
 
 msgid "show event details"
 msgstr "näita üksikasju"
@@ -10026,3 +10043,15 @@ msgstr "vahetatud"
 
 #~ msgid "Do you want to update your %s ?"
 #~ msgstr "Kas uuendad %s tarkvara?"
+
+#~ msgid "Model: %s"
+#~ msgstr "Mudel: %s"
+
+#~ msgid ""
+#~ "When enabled, external subtitles (in media files) will be displayed in "
+#~ "yellow, instead of the original color."
+#~ msgstr ""
+#~ "Määrates 'jah', kuvatakse välised subtiitrid (meedia failidel) kollasena."
+
+#~ msgid "Yellow external subtitles"
+#~ msgstr "Kollased välised subtiitrid"
