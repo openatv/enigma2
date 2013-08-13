@@ -1,5 +1,4 @@
 from Screen import Screen
-from Components.Language import language
 from enigma import eConsoleAppContainer, eDVBDB
 
 from Components.ActionMap import ActionMap
@@ -18,10 +17,6 @@ from Tools.LoadPixmap import LoadPixmap
 
 from time import time
 import os
-
-def languageChanged():
-	plugins.clearPluginList()
-	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 class PluginBrowserSummary(Screen):
 	def __init__(self, session, parent):
@@ -411,5 +406,3 @@ class PluginDownloadBrowser(Screen):
 				list.append(PluginCategoryComponent(x, expandableIcon, self.listWidth))
 		self.list = list
 		self["list"].l.setList(list)
-
-language.addCallback(languageChanged)
