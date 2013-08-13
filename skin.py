@@ -225,7 +225,7 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 				skinAttributes.append((attrib, value.encode("utf-8")))
 	if pos is not None:
 		pos, size = context.parse(pos, size, font)
-	        skinAttributes.append(('position', pos))
+		skinAttributes.append(('position', pos))
 	if size is not None:
 		skinAttributes.append(('size', size))
 
@@ -436,6 +436,16 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				if bpp != 32:
 					# load palette (not yet implemented)
 					pass
+
+	for skininclude in skin.findall("include"):
+		filename = skininclude.attrib.get("filename")
+		if filename:
+			skinfile = resolveFilename(SCOPE_CURRENT_SKIN, filename, path_prefix=path_prefix)
+			if not fileExists(skinfile):
+				skinfile = resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)
+			if fileExists(skinfile):
+				print "[SKIN] loading include:", skinfile
+				loadSkin(skinfile)
 
 	for c in skin.findall("colors"):
 		for color in c.findall("color"):
@@ -889,18 +899,18 @@ def readSkin(screen, skin, names, desktop):
 		screen.additionalWidgets.append(w)
 
 	def process_screen(widget, context):
-	        for w in widget.getchildren():
+		for w in widget.getchildren():
 			conditional = w.attrib.get('conditional')
 			if conditional and not [i for i in conditional.split(",") if i in screen.keys()]:
 				continue
-	                p = processors.get(w.tag, process_none)
+			p = processors.get(w.tag, process_none)
 			try:
-		                p(w, context)
+				p(w, context)
 			except SkinError, e:
 				print "[Skin] SKIN ERROR in screen '%s' widget '%s':" % (name, w.tag), e
 
 	def process_panel(widget, context):
-	        n = widget.attrib.get('name')
+		n = widget.attrib.get('name')
 		if n:
 			try:
 				s = dom_screens[n]
