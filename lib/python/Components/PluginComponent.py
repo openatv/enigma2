@@ -137,7 +137,7 @@ class PluginComponent:
 		self.pluginList = []
 		self.plugins = {}
 
-	def reloadPlugins(self):
+	def reloadPlugins(self, dummy=False):
 		self.clearPluginList()
 		self.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
