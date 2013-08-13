@@ -1,6 +1,5 @@
 import os
 from bisect import insort
-from Components.Language import language
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
 from Tools.Import import my_import
 from Tools.Profile import profile
@@ -17,7 +16,6 @@ class PluginComponent:
 		self.installedPluginList = [ ]
 		self.setPluginPrefix("Plugins.")
 		self.resetWarnings()
-		language.addCallback(self.reloadPlugins)
 
 	def setPluginPrefix(self, prefix):
 		self.prefix = prefix

@@ -5,6 +5,7 @@ from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
 from Components.PluginList import *
 from Components.Label import Label
+from Components.Language import language
 from Components.Harddisk import harddiskmanager
 from Components.Sources.StaticText import StaticText
 from Components import Ipkg
@@ -17,6 +18,8 @@ from Tools.LoadPixmap import LoadPixmap
 
 from time import time
 import os
+
+language.addCallback(plugins.reloadPlugins)
 
 class PluginBrowserSummary(Screen):
 	def __init__(self, session, parent):
