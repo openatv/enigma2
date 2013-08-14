@@ -66,7 +66,7 @@ if TECHNOMATE
 SUBDIRS = tm
 endif
 
-if VENTON
+if INI
 SUBDIRS = ini0 ini1 ini2 ini3 ini4
 endif
 
