@@ -1,13 +1,5 @@
-SUBDIRS = menu icons buttons
+SUBDIRS = menu icons buttons spinner16
 
 installdir = $(pkgdatadir)/skin_default
 
 dist_install_DATA = *.png
-
-if GIGABLUE
-SUBDIRS += spinner16
-endif
-
-if GBQUAD
-SUBDIRS += spinner32
-endif
