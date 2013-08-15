@@ -335,25 +335,29 @@ class Harddisk:
 		task.weighting = 1
 
 		task = MkfsTask(job, _("Creating filesystem"))
+		big_o_options = ["dir_index"]
 		if isFileSystemSupported("ext4"):
 			task.setTool("mkfs.ext4")
 			if size > 20000:
 				version = open("/proc/version","r").read().split(' ', 4)[2].split('.',2)[:2]
 				if (version[0] > 3) or ((version[0] > 2) and (version[1] >= 2)):
 					# Linux version 3.2 supports bigalloc and -C option, use 256k blocks
-					task.args += ["-O", "bigalloc", "-C", "262144"]
+					task.args += ["-C", "262144"]
+					big_o_options.append("bigalloc")
 		else:
 			task.setTool("mkfs.ext3")
 		if size > 250000:
 			# No more than 256k i-nodes (prevent problems with fsck memory requirements)
-			task.args += ["-T", "largefile", "-O", "sparse_super", "-N", "262144"]
+			task.args += ["-T", "largefile", "-N", "262144"]
+			big_o_options.append("sparse_super")
 		elif size > 16384:
 			# between 16GB and 250GB: 1 i-node per megabyte
-			task.args += ["-T", "largefile", "-O", "sparse_super"]
+			task.args += ["-T", "largefile"]
+			big_o_options.append("sparse_super")
 		elif size > 2048:
 			# Over 2GB: 32 i-nodes per megabyte
 			task.args += ["-T", "largefile", "-N", str(size * 32)]
-		task.args += ["-m0", "-O", "dir_index", self.partitionPath("1")]
+		task.args += ["-m0", "-O", ",".join(big_o_options), self.partitionPath("1")]
 
 		task = MountTask(job, self)
 		task.weighting = 3
