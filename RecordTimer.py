@@ -158,7 +158,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.MountPath = dirname
 		mountwriteable = os.access(dirname, os.W_OK)
 		if not mountwriteable:
-			self.log(0, ("Mount '%s' is not writeable.", dirname))
+			self.log(0, ("Mount '%s' is not writeable." % dirname))
 			return False
 
 		s = os.statvfs(dirname)

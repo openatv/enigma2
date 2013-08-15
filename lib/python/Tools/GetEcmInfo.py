@@ -44,9 +44,9 @@ class GetEcmInfo:
 			info['pid'] = "0"
 			info['prov'] = ""
 			info['provid'] = "0"
-			print 'ECM DATA:',ecm
+			# print 'ECM DATA:',ecm
 			for line in ecm:
-				print 'ECM LINE:',line
+				# print 'ECM LINE:',line
 				d = line.split(':', 1)
 				if len(d) > 1:
 					info[d[0].strip()] = d[1].strip()

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-25 09:57+0200\n"
-"PO-Revision-Date: 2013-07-25 15:05+0100\n"
+"POT-Creation-Date: 2013-08-02 03:12+0200\n"
+"PO-Revision-Date: 2013-08-02 10:46+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -14,6 +14,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 "X-Generator: Poedit 1.5.4\n"
+"X-Poedit-Language: Dutch\n"
+"X-Poedit-Country: The Netherlands\n"
 
 msgid ""
 "\n"
@@ -327,6 +329,9 @@ msgstr "* = Herstart noodzakelijk"
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Alleen beschikbaar indien meer dan één interface actief is."
+
+msgid "/s"
+msgstr "/s"
 
 msgid "1.0"
 msgstr "1.0"
@@ -1680,6 +1685,9 @@ msgstr "Stel in hoe de namen van opnames worden samengesteld"
 msgid "Configure if and how service type icons will be shown."
 msgstr "Stel in of en hoe de service type iconen worden getoond."
 
+msgid "Configure if service picons will be shown in the servicelist."
+msgstr "Stel in of de servicetype iconen worden getoond."
+
 msgid "Configure interface"
 msgstr "Configureer interface"
 
@@ -1724,6 +1732,9 @@ msgstr "Configureer de helderheid van het front panel display gedurende normaal 
 
 msgid "Configure the brightness level of the front panel displa for standby."
 msgstr "Configureer de helderheid van het front panel display gedurende standby."
+
+msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
+msgstr "Configureer de kleur van de externe ondertitels, alternatief (normaal in wit, cursief in geel, vet in groenblauw, onderstreept in groen), wit of geel."
 
 msgid "Configure the color of the teletext subtitles."
 msgstr "Bepaal de kleur van de teletekst ondertitels"
@@ -2878,6 +2889,9 @@ msgstr "Extern"
 msgid "External (CF)"
 msgstr "Extern (CF)"
 
+msgid "External subtitle color"
+msgstr "Kleur externe ondertitels"
+
 msgid "FAILED"
 msgstr "MISLUKT"
 
@@ -3049,6 +3063,9 @@ msgstr "Volledig doorzichtig"
 
 msgid "Fulscreen"
 msgstr "Vol scherm"
+
+msgid "Fulview resulution"
+msgstr "Volscherm resolutie"
 
 msgid "Function of OK button"
 msgstr "Functie van OK-toets"
@@ -4005,6 +4022,9 @@ msgstr "Geheugen informatie"
 msgid "Memory index"
 msgstr "Geheugen index"
 
+msgid "Memory positions"
+msgstr "Geheugenposities"
+
 msgid "Menu"
 msgstr "Menu"
 
@@ -4053,10 +4073,6 @@ msgstr "Model:\t%s %s\n"
 
 msgid "Model: "
 msgstr "Model: "
-
-#, python-format
-msgid "Model: %s"
-msgstr "Model: %s"
 
 msgid "Modulation"
 msgstr "Modulatie"
@@ -5718,6 +5734,9 @@ msgstr "Samba instellingen"
 msgid "Samba setup"
 msgstr "Samba instellingen"
 
+msgid "Same resolution as skin"
+msgstr "Zelfde resolutie als de skin"
+
 msgid "Sat"
 msgstr "Za"
 
@@ -6443,6 +6462,9 @@ msgstr "Toon of verberg de uitgebreide beschrijving (skin afhankelijk)"
 
 msgid "Show picon background colour"
 msgstr "Toon achtergrondkleurpicons"
+
+msgid "Show picons in servicelist"
+msgstr "Toon picons in movielijst"
 
 msgid "Show positioner movement"
 msgstr "Rotor bewegingen zichtbaar"
@@ -8393,9 +8415,6 @@ msgstr "Indien ingeschakeld zal worden doorgegaan naar de volgende favorietenlij
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr "Indien ingeschakeld zullen opnames die verwijderd worden naar de prullenbak worden verplaatst in plaats van direct verwijderd. Dat scheelt ja/nee vragen."
 
-msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
-msgstr "Indien geactiveerd, zullen externe ondertitles (in media bestanden) in geel worden vertoond, in plaats van in de originele kleur."
-
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Indien geactiveerd worden externe ondertitels altijd getoond."
 
@@ -8562,9 +8581,6 @@ msgstr "Jaar"
 
 msgid "Yellow DVB subtitles"
 msgstr "Gele DVB-ondertitels"
-
-msgid "Yellow external subtitles"
-msgstr "Gele externe ondertitels"
 
 msgid "Yes"
 msgstr "Ja"
@@ -8978,6 +8994,9 @@ msgstr "alfabetisch"
 
 msgid "alphabetic reverse"
 msgstr "Omgekeerd alfabetisch"
+
+msgid "alternative"
+msgstr "alternatief"
 
 msgid "arts/culture (without music, general)"
 msgstr "Kunst/Cultuur (zonder muziek, algemeen)"
@@ -10062,3 +10081,12 @@ msgstr "zapte"
 
 #~ msgid "Do you want to update your %s ?"
 #~ msgstr "Wilt u uw %s updaten?"
+
+#~ msgid "Model: %s"
+#~ msgstr "Model: %s"
+
+#~ msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
+#~ msgstr "Indien geactiveerd, zullen externe ondertitles (in media bestanden) in geel worden vertoond, in plaats van in de originele kleur."
+
+#~ msgid "Yellow external subtitles"
+#~ msgstr "Gele externe ondertitels"
