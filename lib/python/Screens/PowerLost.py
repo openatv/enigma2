@@ -10,9 +10,12 @@ class PowerLost(Screen):
 		self.showMessageBox()
 
 	def showMessageBox(self):
-		message = _("Your %s %s was not shutdown properly.\n\n"
+		if config.usage.boot_action.getValue() == 'normal':
+			message = _("Your %s %s was not shutdown properly.\n\n"
 					"Do you want to put it in %s?") % (getMachineBrand(), getMachineName(), config.usage.shutdownNOK_action.getValue())
-		self.session.openWithCallback(self.MsgBoxClosed, MessageBox, message, MessageBox.TYPE_YESNO, timeout = 60, default = True)
+			self.session.openWithCallback(self.MsgBoxClosed, MessageBox, message, MessageBox.TYPE_YESNO, timeout = 60, default = True)
+		else:
+			self.MsgBoxClosed(True)
 
 	def MsgBoxClosed(self, ret):
 		if ret:
