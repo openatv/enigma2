@@ -1034,7 +1034,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def showChoiceBoxDialog(self):
 		self['okactions'].setEnabled(False)
-		self['epgcursoractions'].setEnabled(False)
+		if self.has_key('epgcursoractions'):
+			self['epgcursoractions'].setEnabled(False)
 		self['colouractions'].setEnabled(False)
 		self['recordingactions'].setEnabled(False)
 		self['epgactions'].setEnabled(False)
@@ -1050,7 +1051,8 @@ class EPGSelection(Screen, HelpableScreen):
 			self.ChoiceBoxDialog['actions'].execEnd()
 			self.session.deleteDialog(self.ChoiceBoxDialog)
 		self['okactions'].setEnabled(True)
-		self['epgcursoractions'].setEnabled(True)
+		if self.has_key('epgcursoractions'):
+			self['epgcursoractions'].setEnabled(True)
 		self['colouractions'].setEnabled(True)
 		self['recordingactions'].setEnabled(True)
 		self['epgactions'].setEnabled(True)
