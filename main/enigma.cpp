@@ -356,7 +356,7 @@ const char *getMachineBrand()
 		}
 		else if((strcmp(boxtype_name, "ini-1000de\n") == 0))
 		{
-			return "GM";
+			return "GI";
 		}
 		else if((strcmp(boxtype_name, "xp1000s\n") == 0))
 		{
@@ -423,6 +423,10 @@ const char *getMachineName()
 		else if(strcmp(boxtype_name, "ini-5000ru\n") == 0) 
 		{
 			return "HD-5000";
+		}
+		else if(strcmp(boxtype_name, "ini-9000ru\n") == 0) 
+		{
+			return "HD-9000";
 		}
 		else if(strcmp(boxtype_name, "ini-1000de\n") == 0) 
 		{
