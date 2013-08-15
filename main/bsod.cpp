@@ -155,7 +155,8 @@ void bsodFatal(const char *component)
 	FILE *f;
 	const char* crashlog_name;
 	std::ostringstream os;
-	os << getConfigString("config.crash.debug_path", "/home/root/logs/enigma2_crash_");
+	os << getConfigString("config.crash.debug_path", "/home/root/logs/");
+	os << "enigma2_crash_";
 	os << time(0);
 	os << ".log";
 	crashlog_name = os.str().c_str();
@@ -167,7 +168,7 @@ void bsodFatal(const char *component)
 		 * alone because we may be in a crash loop and writing this file
 		 * all night long may damage the flash. Also, usually the first
 		 * crash log is the most interesting one. */
-		crashlog_name = "/home/root/enigma2_crash.log";
+		crashlog_name = "/home/root/logs/enigma2_crash.log";
 		if ((access(crashlog_name, F_OK) == 0) ||
 		    ((f = fopen(crashlog_name, "wb")) == NULL))
 		{
@@ -218,17 +219,6 @@ void bsodFatal(const char *component)
 		xml.cDataFromCmd("kernelversion", "uname -a");
 		xml.stringFromFile("kernelcmdline", "/proc/cmdline");
 		xml.stringFromFile("nimsockets", "/proc/bus/nim_sockets");
-		if (!getConfigBool("config.plugins.crashlogautosubmit.sendAnonCrashlog", true)) {
-			xml.cDataFromFile("stbca", "/proc/stb/info/ca");
-			xml.cDataFromFile("enigma2settings", eEnv::resolve("${sysconfdir}/enigma2/settings"), ".password=");
-		}
-		if (getConfigBool("config.plugins.crashlogautosubmit.addNetwork", false)) {
-			xml.cDataFromFile("networkinterfaces", "/etc/network/interfaces");
-			xml.cDataFromFile("dns", "/etc/resolv.conf");
-			xml.cDataFromFile("defaultgateway", "/etc/default_gw");
-		}
-		if (getConfigBool("config.plugins.crashlogautosubmit.addWlan", false))
-			xml.cDataFromFile("wpasupplicant", "/etc/wpa_supplicant.conf");
 		xml.cDataFromFile("imageversion", "/etc/image-version");
 		xml.cDataFromFile("imageissue", "/etc/issue.net");
 		xml.close();

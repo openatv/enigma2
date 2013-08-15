@@ -2344,6 +2344,11 @@ class InfoBarTimeshift:
 	def autostartPermanentTimeshift(self):
 		print '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!autostartPermanentTimeshift'
 		self["TimeshiftActions"].setEnabled(True)
+		ts = self.getTimeshift()
+		if ts is None:
+			print '[TimeShift] tune lock failed, so could not start.'
+			return 0
+
 		if int(config.timeshift.startdelay.getValue()):
 			self.activatePermanentTimeshift()
 
@@ -4369,7 +4374,13 @@ class InfoBarSubtitleSupport(object):
 			})
 
 		self.selected_subtitle = None
-		self.subtitle_window = self.session.instantiateDialog(SubtitleDisplay)
+
+		if isStandardInfoBar(self):
+			self.subtitle_window = self.session.instantiateDialog(SubtitleDisplay)
+		else:
+			from Screens.InfoBar import InfoBar
+			self.subtitle_window = InfoBar.instance.subtitle_window
+
 		self.subtitle_window.hide()
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=

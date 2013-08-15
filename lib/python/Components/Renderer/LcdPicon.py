@@ -1,10 +1,9 @@
 import os
 from Renderer import Renderer
-from enigma import ePixmap
+from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import pathExists, SCOPE_ACTIVE_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
-from PIL import Image
 from enigma import getBoxType
 
 searchPaths = []
@@ -91,19 +90,11 @@ def getLcdPiconName(serviceName):
 			pngname = findLcdPicon('_'.join(fields))
 	return pngname
 
-def resizePicon(pngname, size):
-	try:
-		im = Image.open(pngname)
-		im.resize((size[0],size[1])).save("/tmp/picon.png")
-		pngname = "/tmp/picon.png"
-	except:
-		print"[PiconRes] error resizePicon"
-		pass
-	return pngname
-
 class LcdPicon(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
+		self.PicLoad = ePicLoad()
+		self.PicLoad.PictureData.get().append(self.updatePicon)
 		self.piconsize = (0,0)
 		self.pngname = ""
 		self.lastPath = None
@@ -151,21 +142,26 @@ class LcdPicon(Renderer):
 	def postWidgetCreate(self, instance):
 		self.changed((self.CHANGED_DEFAULT,))
 
+	def updatePicon(self, picInfo=None):
+		ptr = self.PicLoad.getData()
+		if ptr != None:
+			self.instance.setPixmap(ptr.__deref__())
+			self.instance.show()
+
 	def changed(self, what):
 		if self.instance:
 			pngname = ""
-			if what[0] != self.CHANGED_CLEAR:
+			if what[0] == 1 or what[0] == 3:
 				pngname = getLcdPiconName(self.source.text)
-			if not pngname: # no picon for service found
-				pngname = self.defaultpngname
-			if self.pngname != pngname:
-				if pngname:
-					self.instance.setScale(1)
-					self.instance.setPixmapFromFile(resizePicon(pngname, self.piconsize))
-					self.instance.show()
-				else:
-					self.instance.hide()
-				self.pngname = pngname
+				if not pathExists(pngname): # no picon for service found
+					pngname = self.defaultpngname
+				if self.pngname != pngname:
+					if pngname:
+						self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#FF000000"))
+						self.PicLoad.startDecode(pngname)
+					else:
+						self.instance.hide()
+					self.pngname = pngname
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)
 initLcdPiconPaths()

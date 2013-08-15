@@ -9,6 +9,8 @@
 #error "no BYTE_ORDER defined!"
 #endif
 
+// #define GPIXMAP_DEBUG
+
 gLookup::gLookup()
 	:size(0), lookup(0)
 {
@@ -63,9 +65,9 @@ gUnmanagedSurface::gUnmanagedSurface():
 {
 }
 
-gUnmanagedSurface::gUnmanagedSurface(eSize size, int _bpp):
-	x(size.width()),
-	y(size.height()),
+gUnmanagedSurface::gUnmanagedSurface(int width, int height, int _bpp):
+	x(width),
+	y(height),
 	bpp(_bpp),
 	data(0),
 	data_phys(0)
@@ -87,41 +89,59 @@ gUnmanagedSurface::gUnmanagedSurface(eSize size, int _bpp):
 		bypp = (bpp+7)/8;
 	}
 	stride = x*bypp;
-
-	clut.colors = 0;
-	clut.data = 0;
 }
 
-gSurface::gSurface(eSize size, int _bpp, int accel):
-	gUnmanagedSurface(size, _bpp)
+#ifdef GPIXMAP_DEBUG
+unsigned int pixmap_total_size = 0;
+unsigned int pixmap_total_count = 0;
+static void added_pixmap(int size)
 {
-	if (accel)
+	++pixmap_total_count;
+	pixmap_total_size += size;
+	eDebug("[gSurface] Added %dk, total %u pixmaps, %uk", size>>10, pixmap_total_count, pixmap_total_size>>10);
+}
+static void removed_pixmap(int size)
+{
+	--pixmap_total_count;
+	pixmap_total_size -= size;
+	eDebug("[gSurface] Removed %dk, total %u pixmaps, %uk", size>>10, pixmap_total_count, pixmap_total_size>>10);
+}
+#endif
+
+gSurface::gSurface(int width, int height, int _bpp, int accel):
+	gUnmanagedSurface(width, height, _bpp)
+{
+	const int size = y * stride;
+	if ((accel) ||
+		((accel == gPixmap::accelAuto) &&
+	     ((_bpp==8) && (size > 800) && (size < 1024*512) && (stride > 32))))
 	{
 		if (gAccel::getInstance()->accelAlloc(this) != 0)
 				eDebug("ERROR: accelAlloc failed");
 	}
 	if (!data)
-		data = new unsigned char [y * stride];
+	{
+		data = new unsigned char [size];
+#ifdef GPIXMAP_DEBUG
+		added_pixmap(size);
+#endif
+	}
 }
 
 gSurface::~gSurface()
 {
 	gAccel::getInstance()->accelFree(this);
 	if (data)
+	{
 		delete [] (unsigned char*)data;
+#ifdef GPIXMAP_DEBUG
+		removed_pixmap(y * stride);
+#endif
+	}
 	if (clut.data)
+	{
 		delete [] clut.data;
-}
-
-gPixmap *gPixmap::lock()
-{
-	contentlock.lock(1);
-	return this;
-}
-
-void gPixmap::unlock()
-{
-	contentlock.unlock(1);
+	}
 }
 
 void gPixmap::fill(const gRegion &region, const gColor &color)
@@ -142,7 +162,7 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 			__u32 icol;
 
 			if (surface->clut.data && color < surface->clut.colors)
-				icol=(surface->clut.data[color].a<<24)|(surface->clut.data[color].r<<16)|(surface->clut.data[color].g<<8)|(surface->clut.data[color].b);
+				icol=surface->clut.data[color].argb();
 			else
 				icol=0x10101*color;
 #if BYTE_ORDER == LITTLE_ENDIAN
@@ -162,9 +182,9 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 			__u32 col;
 
 			if (surface->clut.data && color < surface->clut.colors)
-				col=(surface->clut.data[color].a<<24)|(surface->clut.data[color].r<<16)|(surface->clut.data[color].g<<8)|(surface->clut.data[color].b);
+				col = surface->clut.data[color].argb();
 			else
-				col=0x10101*color;
+				col = 0x10101 * color;
 			
 			col^=0xFF000000;
 			
@@ -355,7 +375,14 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			if (flag & (blitAlphaTest | blitAlphaBlend))
 			{
 				/* alpha blending is requested */
-				if (!gAccel::getInstance()->hasAlphaBlendingSupport())
+				if (gAccel::getInstance()->hasAlphaBlendingSupport())
+				{
+					/* Hardware alpha blending is broken on the few
+					 * boxes that support it, so only use it
+					 * when scaling */
+					accel = (flag & blitScale);
+				}
+				else
 				{
 					/* our hardware does not support alphablending */
 					if (flag & blitScale)
@@ -486,34 +513,39 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 		}
 		else if ((surface->bpp == 32) && (src.surface->bpp==8))
 		{	
-			__u8 *srcptr=(__u8*)src.surface->data;
+			const __u8 *srcptr = (__u8*)src.surface->data;
 			__u8 *dstptr=(__u8*)surface->data; // !!
 			__u32 pal[256];
 
-			for (int i=0; i != 256; ++i)
 			{
-				if (src.surface->clut.data && (i<src.surface->clut.colors))
-					pal[i]=(src.surface->clut.data[i].a<<24)|(src.surface->clut.data[i].r<<16)|(src.surface->clut.data[i].g<<8)|(src.surface->clut.data[i].b);
-				else
-					pal[i]=0x010101*i;
-				pal[i]^=0xFF000000;
+				int i = 0;
+				if (src.surface->clut.data)
+					while (i < src.surface->clut.colors)
+					{
+						pal[i] = src.surface->clut.data[i].argb() ^ 0xFF000000;
+						++i;
+					}
+				for(; i != 256; ++i)
+				{
+					pal[i] = (0x010101*i) | 0xFF000000;
+				}
 			}
 
 			srcptr+=srcarea.left()*src.surface->bypp+srcarea.top()*src.surface->stride;
 			dstptr+=area.left()*surface->bypp+area.top()*surface->stride;
-			for (int y=0; y<area.height(); y++)
+			const int width=area.width();
+			for (int y = area.height(); y != 0; --y)
 			{
-				int width=area.width();
-				unsigned char *psrc=(unsigned char*)srcptr;
-				__u32 *dst=(__u32*)dstptr;
+				unsigned char *psrc = (unsigned char*)srcptr;
+				__u32 *dst = (__u32*)dstptr;
 				if (flag & blitAlphaTest)
 					blit_8i_to_32_at(dst, psrc, pal, width);
 				else if (flag & blitAlphaBlend)
 					blit_8i_to_32_ab(dst, psrc, pal, width);
 				else
 					blit_8i_to_32(dst, psrc, pal, width);
-				srcptr+=src.surface->stride;
-				dstptr+=surface->stride;
+				srcptr += src.surface->stride;
+				dstptr += surface->stride;
 			}
 		}
 		else if ((surface->bpp == 16) && (src.surface->bpp==8))
@@ -526,7 +558,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			{
 				__u32 icol;
 				if (src.surface->clut.data && (i<src.surface->clut.colors))
-					icol=(src.surface->clut.data[i].a<<24)|(src.surface->clut.data[i].r<<16)|(src.surface->clut.data[i].g<<8)|(src.surface->clut.data[i].b);
+					icol = src.surface->clut.data[i].argb();
 				else
 					icol=0x010101*i;
 #if BYTE_ORDER == LITTLE_ENDIAN
@@ -657,9 +689,9 @@ void gPixmap::line(const gRegion &clip, ePoint start, ePoint dst, gColor color)
 	if (surface->bpp != 8)
 	{
 		if (surface->clut.data && color < surface->clut.colors)
-			col=(surface->clut.data[color].a<<24)|(surface->clut.data[color].r<<16)|(surface->clut.data[color].g<<8)|(surface->clut.data[color].b);
+			col = surface->clut.data[color].argb();
 		else
-			col=0x10101*color;
+			col = 0x10101*color;
 		col^=0xFF000000;
 	}
 
@@ -786,11 +818,18 @@ fail:
 	}
 }
 
-gColor gPalette::findColor(const gRGB &rgb) const
+gColor gPalette::findColor(const gRGB rgb) const
 {
 		/* grayscale? */
 	if (!data)
 		return (rgb.r + rgb.g + rgb.b) / 3;
+	
+	if (rgb.a == 255) /* Fully transparent, then RGB does not matter */
+	{
+		for (int t=0; t<colors; t++)
+			if (data[t].a == 255)
+				return t;
+	}
 	
 	int difference=1<<30, best_choice=0;
 	for (int t=0; t<colors; t++)
@@ -824,18 +863,31 @@ DEFINE_REF(gPixmap);
 
 gPixmap::~gPixmap()
 {
-	if (must_delete_surface)
+	if (on_dispose)
+		on_dispose(this);
+	if (surface)
 		delete (gSurface*)surface;
 }
 
-gPixmap::gPixmap(gUnmanagedSurface *surface)
-	:surface(surface), must_delete_surface(false)
+static void donot_delete_surface(gPixmap *pixmap)
+{
+	pixmap->surface = NULL;
+}
+
+gPixmap::gPixmap(gUnmanagedSurface *surface):
+	surface(surface),
+	on_dispose(donot_delete_surface)
 {
 }
 
-gPixmap::gPixmap(eSize size, int bpp, int accel)
-	:must_delete_surface(true)
+gPixmap::gPixmap(eSize size, int bpp, int accel):
+	surface(new gSurface(size.width(), size.height(), bpp, accel)),
+	on_dispose(NULL)
 {
-	surface = new gSurface(size, bpp, accel);
 }
 
+gPixmap::gPixmap(int width, int height, int bpp, gPixmapDisposeCallback call_on_dispose, int accel):
+	surface(new gSurface(width, height, bpp, accel)),
+	on_dispose(call_on_dispose)
+{
+}
