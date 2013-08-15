@@ -11,6 +11,10 @@
 
 // #define GPIXMAP_DEBUG
 
+#ifdef GPIXMAP_DEBUG
+#	include "../base/benchmark.h"
+#endif
+
 gLookup::gLookup()
 	:size(0), lookup(0)
 {
@@ -106,25 +110,39 @@ static void removed_pixmap(int size)
 	pixmap_total_size -= size;
 	eDebug("[gSurface] Removed %dk, total %u pixmaps, %uk", size>>10, pixmap_total_count, pixmap_total_size>>10);
 }
+#else
+static inline void added_pixmap(int size) {}
+static inline void removed_pixmap(int size) {}
 #endif
+
+static bool is_a_candidate_for_accel(const gUnmanagedSurface* surface)
+{
+	if (surface->stride < 48)
+		return false;
+	switch (surface->bpp)
+	{
+		case 8:
+			return (surface->y * surface->stride) > 12000;
+		case 32:
+			return (surface->y * surface->stride) > 48000;
+		default:
+			return false;
+	}
+}
 
 gSurface::gSurface(int width, int height, int _bpp, int accel):
 	gUnmanagedSurface(width, height, _bpp)
 {
-	const int size = y * stride;
-	if ((accel) ||
-		((accel == gPixmap::accelAuto) &&
-	     ((_bpp==8) && (size > 800) && (size < 1024*512) && (stride > 32))))
+	if ((accel > gPixmap::accelAuto) ||
+		((accel == gPixmap::accelAuto) && (is_a_candidate_for_accel(this))))
 	{
 		if (gAccel::getInstance()->accelAlloc(this) != 0)
 				eDebug("ERROR: accelAlloc failed");
 	}
 	if (!data)
 	{
-		data = new unsigned char [size];
-#ifdef GPIXMAP_DEBUG
-		added_pixmap(size);
-#endif
+		data = new unsigned char [y * stride];
+		added_pixmap(y * stride);
 	}
 }
 
@@ -134,9 +152,7 @@ gSurface::~gSurface()
 	if (data)
 	{
 		delete [] (unsigned char*)data;
-#ifdef GPIXMAP_DEBUG
 		removed_pixmap(y * stride);
-#endif
 	}
 	if (clut.data)
 	{
@@ -321,12 +337,12 @@ static void blit_8i_to_32_ab(__u32 *dst, __u8 *src, __u32 *pal, int width)
 
 void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, int flag)
 {
-//	eDebug("blit: -> %d.%d %d:%d -> %d.%d %d:%d, flags=%d",
+	bool accel = (surface->data_phys && src.surface->data_phys);
+//	eDebug("blit: -> %d,%d+%d,%d -> %d,%d+%d,%d, flags=0x%x, accel=%d",
 //		_pos.x(), _pos.y(), _pos.width(), _pos.height(),
 //		clip.extends.x(), clip.extends.y(), clip.extends.width(), clip.extends.height(),
-//		flag);
+//		flag, accel);
 	eRect pos = _pos;
-	bool accel = (surface->data_phys && src.surface->data_phys);
 	
 //	eDebug("source size: %d %d", src.size().width(), src.size().height());
 	
@@ -380,7 +396,14 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 					/* Hardware alpha blending is broken on the few
 					 * boxes that support it, so only use it
 					 * when scaling */
-					accel = (flag & blitScale);
+					 if (flag & blitScale)
+						accel = true;
+					else if (flag & blitAlphaTest) /* Alpha test only on 8-bit */
+						accel = (src.surface->bpp == 8);
+					else
+						accel = false;
+					
+					accel = (flag & (blitScale|blitAlphaTest));
 				}
 				else
 				{
@@ -399,9 +422,18 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			}
 		}
 
-		if (accel)
-			if (!gAccel::getInstance()->blit(surface, src.surface, area, srcarea, flag))
+#ifdef GPIXMAP_DEBUG
+		Stopwatch s;
+#endif
+		if (accel) {
+			if (!gAccel::getInstance()->blit(surface, src.surface, area, srcarea, flag)) {
+#ifdef GPIXMAP_DEBUG
+				s.stop();
+				eDebug("[BLITBENCH] accel blit took %u us", s.elapsed_us());
+#endif
 				continue;
+			}
+		}
 
 		if (flag & blitScale)
 		{
@@ -641,6 +673,10 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 		}
 		else
 			eWarning("cannot blit %dbpp from %dbpp", surface->bpp, src.surface->bpp);
+#ifdef GPIXMAP_DEBUG
+		s.stop();
+		eDebug("[BLITBENCH] cpu blit took %u us", s.elapsed_us());
+#endif
 	}
 }
 
