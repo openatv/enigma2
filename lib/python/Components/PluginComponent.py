@@ -1,6 +1,6 @@
 import os
 from bisect import insort
-from Tools.Directories import fileExists
+from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
 from Tools.Import import my_import
 from Tools.Profile import profile
 from Plugins.Plugin import PluginDescriptor
@@ -136,6 +136,10 @@ class PluginComponent:
 	def clearPluginList(self):
 		self.pluginList = []
 		self.plugins = {}
+
+	def reloadPlugins(self, dummy=False):
+		self.clearPluginList()
+		self.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 	def shutdown(self):
 		for p in self.pluginList[:]:

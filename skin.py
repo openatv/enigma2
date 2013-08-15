@@ -448,6 +448,16 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					# load palette (not yet implemented)
 					pass
 
+	for skininclude in skin.findall("include"):
+		filename = skininclude.attrib.get("filename")
+		if filename:
+			skinfile = resolveFilename(SCOPE_CURRENT_SKIN, filename, path_prefix=path_prefix)
+			if not fileExists(skinfile):
+				skinfile = resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)
+			if fileExists(skinfile):
+				print "[SKIN] loading include:", skinfile
+				loadSkin(skinfile)
+
 	for c in skin.findall("colors"):
 		for color in c.findall("color"):
 			get_attr = color.attrib.get
