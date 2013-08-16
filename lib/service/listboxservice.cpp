@@ -710,10 +710,10 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							eRect area = m_element_position[celServiceInfo];
 							 /* PIcons are usually about 100:60 */
 							const int iconWidth = area.height() * 5 / 3;
-							m_element_position[celServiceInfo].setLeft(area.left() + iconWidth);
-							m_element_position[celServiceInfo].setWidth(area.width() - iconWidth);
+							m_element_position[celServiceInfo].setLeft(area.left() + iconWidth + 8);
+							m_element_position[celServiceInfo].setWidth(area.width() - iconWidth - 8);
 							area = m_element_position[celServiceName];
-							xoffs += iconWidth;
+							xoffs += iconWidth + 8;
 							ePyObject pArgs = PyTuple_New(1);
 							PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(ref.toString().c_str()));
 							ePyObject pRet = PyObject_CallObject(m_GetPiconNameFunc, pArgs);
@@ -727,7 +727,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 									{
 										ePtr<gPixmap> piconPixmap;
 										ePicLoad picload;
-										picload.setPara(iconWidth, area.height(), 1.0, 1, true, 1, "#FF000000");
+										picload.setPara(iconWidth, area.height(), 0, 1, true, 1, "#FF000000");
 										picload.startDecode(piconFilename.c_str(), 0, 0, false);
 										picload.getData(piconPixmap);
 										if (piconPixmap)
