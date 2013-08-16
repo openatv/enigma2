@@ -145,6 +145,7 @@ def InitAVSwitch():
 
 	iAVSwitch.setInput("ENCODER") # init on startup
 	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
+	config.av.show_vcr_scart = ConfigEnableDisable(default = False)
 
 	try:
 		can_downmix = open("/proc/stb/audio/ac3_choices", "r").read()[:-1].find("downmix") != -1

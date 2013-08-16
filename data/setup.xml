@@ -18,7 +18,6 @@
 		<item level="2" text="Include AIT in http streams" description="When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV.">config.streaming.stream_ait</item>
 		<item level="2" text="Include ECM in http streams" description="When enabled, ECM data will be included in http streams. This allows a client receiver to do the descrambling.">config.streaming.stream_ecm</item>
 		<item level="2" text="Descramble http streams" description="When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling.">config.streaming.descramble</item>
-		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown on the main menu">config.usage.show_vcr_scart</item>
 	</setup>
 	<setup key="userinterface" title="User interface">
 		<item level="0" text="Show animation while busy" description="Show busy indicator when the system is busy.">config.usage.show_spinner</item>
