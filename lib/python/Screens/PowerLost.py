@@ -19,7 +19,7 @@ class PowerLost(Screen):
 
 	def MsgBoxClosed(self, ret):
 		if ret:
-			if config.usage.shutdownNOK_action.getValue() == 'deepstandby':
+			if config.usage.shutdownNOK_action.getValue() == 'deepstandby' and not config.usage.shutdownOK.getValue():
 				self.session.open(Screens.Standby.TryQuitMainloop, 1)
 			elif not Screens.Standby.inStandby:
 				self.session.open(Screens.Standby.Standby)
