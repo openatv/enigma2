@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
-from os.stat import S_IMODE
 from re import compile
 from enigma import eEnv
 
@@ -311,7 +310,7 @@ def copyfile(src, dst):
 				break
 			f2.write(buf)
 		st = os.stat(src)
-		mode = S_IMODE(st.st_mode)
+		mode = os.stat.S_IMODE(st.st_mode)
 		if have_chmod:
 			chmod(dst, mode)
 		if have_utime:
@@ -344,7 +343,7 @@ def copytree(src, dst, symlinks=False):
 			print "dont copy srcname (no file or link or folder)"
 	try:
 		st = os.stat(src)
-		mode = S_IMODE(st.st_mode)
+		mode = os.stat.S_IMODE(st.st_mode)
 		if have_chmod:
 			chmod(dst, mode)
 		if have_utime:
