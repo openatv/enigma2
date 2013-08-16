@@ -114,6 +114,9 @@ class Menu(Screen):
 					return
 			elif not SystemInfo.get(requires, False):
 				return
+		configCondition = node.get("configcondition")
+		if configCondition and not eval(configCondition + ".value"):
+			return
 		item_text = node.get("text", "").encode("UTF-8")
 		entryID = node.get("entryID", "undefined")
 		weight = node.get("weight", 50)
