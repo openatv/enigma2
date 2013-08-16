@@ -49,6 +49,14 @@ class InstallWizard(Screen, ConfigListScreen):
 					else:
 						iNetwork.restartNetwork(self.checkNetworkLinkCB)
 					break
+				elif x[1] == 'ra0':
+					if iNetwork.getAdapterAttribute(x[1], 'up'):
+						self.ipConfigEntry = ConfigIP(default = iNetwork.getAdapterAttribute(x[1], "ip"))
+						iNetwork.checkNetworkState(self.checkNetworkCB)
+						if_found = True
+					else:
+						iNetwork.restartNetwork(self.checkNetworkLinkCB)
+					break
 			if is_found is False:
 				self.createMenu()
 		elif self.index == self.STATE_CHOISE_CHANNELLIST:
