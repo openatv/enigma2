@@ -333,6 +333,23 @@ static void blit_8i_to_32_ab(__u32 *dst, __u8 *src, __u32 *pal, int width)
 	}
 }
 
+static void convert_palette(__u32* pal, const gPalette& clut)
+{
+	int i = 0;
+	if (clut.data)
+	{
+		while (i < clut.colors)
+		{
+			pal[i] = clut.data[i].argb() ^ 0xFF000000;
+			++i;
+		}
+	}
+	for(; i != 256; ++i)
+	{
+		pal[i] = (0x010101*i) | 0xFF000000;
+	}
+}
+
 #define FIX 0x10000
 
 void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, int flag)
@@ -408,16 +425,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 				else
 				{
 					/* our hardware does not support alphablending */
-					if (flag & blitScale)
-					{
-						/* we have to scale, we really need hardware for that. Strip the alpha blending flags, and continue */
-						flag &= ~(blitAlphaTest | blitAlphaBlend);
-					}
-					else
-					{
-						/* we do not have to scale, so we will perform software alphablending */
-						accel = false;
-					}
+					accel = false;
 				}
 			}
 		}
@@ -437,7 +445,90 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 
 		if (flag & blitScale)
 		{
-			eWarning("unimplemented: scale on non-accel surfaces");
+			if ((surface->bpp == 32) && (src.surface->bpp==8))
+			{	
+				const __u8 *srcptr = (__u8*)src.surface->data;
+				__u8 *dstptr=(__u8*)surface->data; // !!
+				__u32 pal[256];
+				convert_palette(pal, src.surface->clut);
+
+				const int src_stride = src.surface->stride;
+				srcptr += srcarea.left()*src.surface->bypp + srcarea.top()*src_stride;
+				dstptr += area.left()*surface->bypp + area.top()*surface->stride;
+				const int width = area.width();
+				const int height = area.height();
+				const int src_height = srcarea.height();
+				const int src_width = srcarea.width();
+				if (flag & blitAlphaTest)
+				{			
+					for (int y = 0; y < height; ++y)
+					{
+						const __u8 *src_row_ptr = srcptr + (((y * src_height) / height) * src_stride);
+						__u32 *dst = (__u32*)dstptr;
+						for (int x = 0; x < width; ++x)
+						{
+							__u32 pixel = pal[src_row_ptr[(x *src_width) / width]];
+							if (pixel & 0x80000000)
+								*dst = pixel;
+							++dst;
+						}
+						dstptr += surface->stride;
+					}
+				}
+				else if (flag & blitAlphaBlend)
+				{			
+					for (int y = 0; y < height; ++y)
+					{
+						const __u8 *src_row_ptr = srcptr + (((y * src_height) / height) * src_stride);
+						__u32 *dst = (__u32*)dstptr;
+						for (int x = 0; x < width; ++x)
+						{
+							__u32 srccol = pal[src_row_ptr[(x *src_width) / width]];
+#define BLEND(x, y, a) (y + (((x-y) * a)>>8))
+							__u32 dstcol = *dst;
+							unsigned char sb = srccol & 0xFF;
+							unsigned char sg = (srccol >> 8) & 0xFF;
+							unsigned char sr = (srccol >> 16) & 0xFF;
+							unsigned char sa = (srccol >> 24) & 0xFF;
+
+							unsigned char db = dstcol & 0xFF;
+							unsigned char dg = (dstcol >> 8) & 0xFF;
+							unsigned char dr = (dstcol >> 16) & 0xFF;
+							unsigned char da = (dstcol >> 24) & 0xFF;
+
+							da = BLEND(0xFF, da, sa) & 0xFF;
+							dr = BLEND(sr, dr, sa) & 0xFF;
+							dg = BLEND(sg, dg, sa) & 0xFF;
+							db = BLEND(sb, db, sa) & 0xFF;
+#undef BLEND
+							*dst++ = db | (dg << 8) | (dr << 16) | (da << 24);
+						}
+						dstptr += surface->stride;
+					}
+				}
+				else
+				{			
+					for (int y = 0; y < height; ++y)
+					{
+						const __u8 *src_row_ptr = srcptr + (((y * src_height) / height) * src_stride);
+						__u32 *dst = (__u32*)dstptr;
+						for (int x = 0; x < width; ++x)
+						{
+							*dst = pal[src_row_ptr[(x *src_width) / width]];
+							++dst;
+						}
+						dstptr += surface->stride;
+					}
+				}
+			}
+			else
+			{
+				eWarning("unimplemented: scale on non-accel surface %d->%d bpp", src.surface->bpp, surface->bpp);
+			}
+#ifdef GPIXMAP_DEBUG
+			s.stop();
+			eDebug("[BLITBENCH] CPU scale blit took %u us", s.elapsed_us());
+#endif
 			continue;
 		}
 
@@ -548,20 +639,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			const __u8 *srcptr = (__u8*)src.surface->data;
 			__u8 *dstptr=(__u8*)surface->data; // !!
 			__u32 pal[256];
-
-			{
-				int i = 0;
-				if (src.surface->clut.data)
-					while (i < src.surface->clut.colors)
-					{
-						pal[i] = src.surface->clut.data[i].argb() ^ 0xFF000000;
-						++i;
-					}
-				for(; i != 256; ++i)
-				{
-					pal[i] = (0x010101*i) | 0xFF000000;
-				}
-			}
+			convert_palette(pal, src.surface->clut);
 
 			srcptr+=srcarea.left()*src.surface->bypp+srcarea.top()*src.surface->stride;
 			dstptr+=area.left()*surface->bypp+area.top()*surface->stride;
