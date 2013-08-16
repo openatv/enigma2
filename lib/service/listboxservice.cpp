@@ -708,8 +708,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						if (PyCallable_Check(m_GetPiconNameFunc))
 						{
 							eRect area = m_element_position[celServiceInfo];
-							 /* PIcons are usually about 3:2 */
-							const int iconWidth = area.height() * 3 / 2;
+							 /* PIcons are usually about 100:60 */
+							const int iconWidth = area.height() * 5 / 3;
 							m_element_position[celServiceInfo].setLeft(area.left() + iconWidth);
 							m_element_position[celServiceInfo].setWidth(area.width() - iconWidth);
 							area = m_element_position[celServiceName];
