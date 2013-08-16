@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-from os import mkdir, rmdir, system, walk, stat as os_stat, listdir, readlink, makedirs, error as os_error, symlink, access, F_OK, R_OK, W_OK, rename as os_rename
-from stat import S_IMODE
+from os.stat import S_IMODE
 from re import compile
 from enigma import eEnv
 
@@ -181,7 +180,7 @@ def resolveFilename(scope, base = "", path_prefix = None):
 	if flags == PATH_CREATE:
 		if not pathExists(path):
 			try:
-				mkdir(path)
+				os.mkdir(path)
 			except OSError:
 				print "resolveFilename: Couldn't create %s" % path
 				return None
@@ -196,7 +195,7 @@ def resolveFilename(scope, base = "", path_prefix = None):
 						try:
 							os.link(x[0] + base, path + base)
 						except:
-							system("cp " + x[0] + base + " " + path + base)
+							os.system("cp " + x[0] + base + " " + path + base)
 						break
 				elif x[1] == FILE_MOVE:
 					if fileExists(x[0] + base):
@@ -205,8 +204,8 @@ def resolveFilename(scope, base = "", path_prefix = None):
 				elif x[1] == PATH_COPY:
 					if pathExists(x[0]):
 						if not pathExists(defaultPaths[scope][0]):
-							mkdir(path)
-						system("cp -a " + x[0] + "* " + path)
+							os.mkdir(path)
+						os.system("cp -a " + x[0] + "* " + path)
 						break
 				elif x[1] == PATH_MOVE:
 					if pathExists(x[0]):
@@ -225,9 +224,9 @@ isMount = os.path.ismount
 def createDir(path, makeParents = False):
 	try:
 		if makeParents:
-			makedirs(path)
+			os.makedirs(path)
 		else:
-			mkdir(path)
+			os.mkdir(path)
 	except:
 		return 0
 	else:
@@ -235,7 +234,7 @@ def createDir(path, makeParents = False):
 
 def removeDir(path):
 	try:
-		rmdir(path)
+		os.rmdir(path)
 	except:
 		return 0
 	else:
@@ -243,12 +242,12 @@ def removeDir(path):
 
 def fileExists(f, mode='r'):
 	if mode == 'r':
-		acc_mode = R_OK
+		acc_mode = os.R_OK
 	elif mode == 'w':
-		acc_mode = W_OK
+		acc_mode = os.W_OK
 	else:
-		acc_mode = F_OK
-	return access(f, acc_mode)
+		acc_mode = os.F_OK
+	return os.access(f, acc_mode)
 
 def getRecordingFilename(basename, dirname = None):
 	# filter out non-allowed characters
@@ -294,7 +293,7 @@ def crawlDirectory(directory, pattern):
 	list = []
 	if directory:
 		expression = compile(pattern)
-		for root, dirs, files in walk(directory):
+		for root, dirs, files in os.walk(directory):
 			for file in files:
 				if expression.match(file) is not None:
 					list.append((root, file))
@@ -311,7 +310,7 @@ def copyfile(src, dst):
 			if not buf:
 				break
 			f2.write(buf)
-		st = os_stat(src)
+		st = os.stat(src)
 		mode = S_IMODE(st.st_mode)
 		if have_chmod:
 			chmod(dst, mode)
@@ -323,20 +322,20 @@ def copyfile(src, dst):
 	return 0
 
 def copytree(src, dst, symlinks=False):
-	names = listdir(src)
+	names = os.listdir(src)
 	if os.path.isdir(dst):
 		dst = os.path.join(dst, os.path.basename(src))
 		if not os.path.isdir(dst):
-			mkdir(dst)
+			os.mkdir(dst)
 	else:
-		makedirs(dst)
+		os.makedirs(dst)
 	for name in names:
 		srcname = os.path.join(src, name)
 		dstname = os.path.join(dst, name)
 		try:
 			if symlinks and os.path.islink(srcname):
-				linkto = readlink(srcname)
-				symlink(linkto, dstname)
+				linkto = os.readlink(srcname)
+				os.symlink(linkto, dstname)
 			elif os.path.isdir(srcname):
 				copytree(srcname, dstname, symlinks)
 			else:
@@ -344,7 +343,7 @@ def copytree(src, dst, symlinks=False):
 		except:
 			print "dont copy srcname (no file or link or folder)"
 	try:
-		st = os_stat(src)
+		st = os.stat(src)
 		mode = S_IMODE(st.st_mode)
 		if have_chmod:
 			chmod(dst, mode)
@@ -360,7 +359,7 @@ def moveFiles(fileList):
 	try:
 		try:
 			for item in fileList:
-				os_rename(item[0], item[1])
+				os.rename(item[0], item[1])
 				movedList.append(item)
 		except OSError, e:
 			if e.errno == 18:
@@ -374,7 +373,7 @@ def moveFiles(fileList):
 		print "[Directories] Failed move:", e
 		for item in movedList:
 			try:
-				os_rename(item[1], item[0])
+				os.rename(item[1], item[0])
 			except:
 				print "[Directories] Failed to undo move:", item
 				raise
