@@ -25,13 +25,15 @@ class RcModel:
 	RCTYPE_IQON = 19
 	RCTYPE_IXUSSONE = 20
 	RCTYPE_IXUSSZERO = 21
-	RCTYPE_ODINM6 = 22
-	RCTYPE_ODINM7 = 23
-	RCTYPE_ODINM9 = 24
-	RCTYPE_TM = 25
-	RCTYPE_VU = 26
-	RCTYPE_VU2 = 27
-	RCTYPE_XP1000 = 28
+	RCTYPE_MEDIABOX = 22
+	RCTYPE_ODINM6 = 23
+	RCTYPE_ODINM7 = 24
+	RCTYPE_ODINM9 = 25
+	RCTYPE_OPTIMUSS = 26
+	RCTYPE_TM = 26
+	RCTYPE_VU = 27
+	RCTYPE_VU2 = 28
+	RCTYPE_XP1000 = 29
 
 
 	def __init__(self):
@@ -66,6 +68,10 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_TM
 			elif model == 'ios100hd' or model == 'ios200hd' or model == 'ios300hd':
 				self.currentRcType = self.RCTYPE_IQON
+			elif model == "mediabox":
+				self.currentRcType = self.RCTYPE_MEDIABOX
+			elif model == "optimussos1" or model == 'optimussos2':
+				self.currentRcType = self.RCTYPE_OPTIMUSS
 		elif getBoxType() == 'dm8000':
 				self.currentRcType = self.RCTYPE_DMM
 		elif getBoxType() == 'dm7020hd' or getBoxType() == 'dm7020hdv2' or getBoxType() == 'dm800sev2' or getBoxType() == 'dm500hdv2':
@@ -183,12 +189,16 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/ixussone/'
 		elif self.currentRcType == self.RCTYPE_IXUSSZERO:
 			return '/usr/share/enigma2/rc_models/ixusszero/'
+		elif self.currentRcType == self.RCTYPE_MEDIABOX:
+			return '/usr/share/enigma2/rc_models/tm/mediabox/'
 		elif self.currentRcType == self.RCTYPE_ODINM6:
 			return '/usr/share/enigma2/rc_models/odinm6/'
 		elif self.currentRcType == self.RCTYPE_ODINM7:
 			return '/usr/share/enigma2/rc_models/odinm7/'
 		elif self.currentRcType == self.RCTYPE_ODINM9:
 			return '/usr/share/enigma2/rc_models/odinm9/'
+		elif self.currentRcType == self.RCTYPE_OPTIMUSS:
+			return '/usr/share/enigma2/rc_models/tm/optimuss/'
 		elif self.currentRcType == self.RCTYPE_TM:
 			return '/usr/share/enigma2/rc_models/tm/'
 		elif self.currentRcType == self.RCTYPE_VU:

@@ -30,6 +30,14 @@ if IQON
 SUBDIRS = iqon
 endif
 
+if JEPSSON
+SUBDIRS = mediabox
+endif
+
+if EDISION
+SUBDIRS = optimuss
+endif
+
 if IXUSSONE
 SUBDIRS = ixussone
 endif
