@@ -52,7 +52,7 @@ class LanguageSelection(Screen):
 
 	def save(self):
 		self.commit(self.run())
-		self.close(self.oldActiveLanguage != config.osd.language.value)
+		self.close()
 
 	def cancel(self):
 		language.activateLanguage(self.oldActiveLanguage)
