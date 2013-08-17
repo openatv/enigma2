@@ -183,7 +183,8 @@ public:
 	{
 		blitAlphaTest=1,
 		blitAlphaBlend=2,
-		blitScale=4
+		blitScale=4,
+		blitKeepAspectRatio=8
 	};
 	
 	enum {
