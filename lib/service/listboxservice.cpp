@@ -731,29 +731,12 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 										loadPNG(piconPixmap, piconFilename.c_str());
 										if (piconPixmap)
 										{
-											int renderX;
-											int renderY;
-											int renderWidth = piconPixmap->surface->x;
-											int renderHeight = piconPixmap->surface->y;
-											if (renderWidth * area.height() <= iconWidth * renderHeight)
-											{ /* Adjust width to fit height */
-												renderWidth = renderWidth  * area.height() / renderHeight;
-												renderHeight = area.height();
-												renderX = (iconWidth - renderWidth) / 2;
-												renderY = 0;
-											}
-											else
-											{ /* Adjust height to fit width */
-												renderHeight = renderHeight * iconWidth / renderWidth;
-												renderWidth = iconWidth;
-												renderX = 0;
-												renderY = (area.height() - renderHeight) / 2;
-											}
 											area.moveBy(offset);
 											painter.clip(area);
 											painter.blitScale(piconPixmap,
-												eRect(offset.x()+ area.left() + renderX, area.top() + renderY, renderWidth, renderHeight),
-												area, gPainter::BT_ALPHABLEND);
+												eRect(offset.x()+ area.left(), area.top(), iconWidth, area.height()),
+												area,
+												gPainter::BT_ALPHABLEND | gPainter::BT_KEEP_ASPECT_RATIO);
 											painter.clippop();
 										}
 									}
