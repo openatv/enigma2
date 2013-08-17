@@ -485,6 +485,60 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 					}
 				}
 			}
+			else if ((surface->bpp == 32) && (src.surface->bpp==8))
+			{
+				const int src_stride = src.surface->stride;
+				const __u8* srcptr = (const __u8*)src.surface->data + srcarea.left()*src.surface->bypp + srcarea.top()*src_stride;
+				__u8* dstptr = (__u8*)surface->data + area.left()*surface->bypp + area.top()*surface->stride;
+				const int width = area.width();
+				const int height = area.height();
+				const int src_height = srcarea.height();
+				const int src_width = srcarea.width();
+				if (flag & blitAlphaTest)
+				{
+					for (int y = 0; y < height; ++y)
+					{
+						const __u32 *src_row_ptr = (__u32*)(srcptr + (((y * src_height) / height) * src_stride));
+						__u32 *dst = (__u32*)dstptr;
+						for (int x = 0; x < width; ++x)
+						{
+							__u32 pixel = src_row_ptr[(x *src_width) / width];
+							if (pixel & 0x80000000)
+								*dst = pixel;
+							++dst;
+						}
+						dstptr += surface->stride;
+					}
+				}
+				else if (flag & blitAlphaBlend)
+				{
+					for (int y = 0; y < height; ++y)
+					{
+						const gRGB *src_row_ptr = (gRGB *)(srcptr + (((y * src_height) / height) * src_stride));
+						gRGB *dst = (gRGB*)dstptr;
+						for (int x = 0; x < width; ++x)
+						{
+							dst->alpha_blend(src_row_ptr[(x * src_width) / width]);
+							++dst;
+						}
+						dstptr += surface->stride;
+					}
+				}
+				else
+				{
+					for (int y = 0; y < height; ++y)
+					{
+						const __u32 *src_row_ptr = (__u32*)(srcptr + (((y * src_height) / height) * src_stride));
+						__u32 *dst = (__u32*)dstptr;
+						for (int x = 0; x < width; ++x)
+						{
+							*dst = src_row_ptr[(x * src_width) / width];
+							++dst;
+						}
+						dstptr += surface->stride;
+					}
+				}
+			}
 			else
 			{
 				eWarning("unimplemented: scale on non-accel surface %d->%d bpp", src.surface->bpp, surface->bpp);
