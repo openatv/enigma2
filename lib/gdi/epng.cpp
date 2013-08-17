@@ -305,17 +305,27 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha)
 			memcpy(dst, src, cinfo.output_width);
 		else
 		{
-			int x;
-			for (x = 0; x < (int)cinfo.output_width; ++x)
+			if (palpha)
 			{
-				*dst++ = src[2];
-				*dst++ = src[1];
-				*dst++ = src[0];
-				src += 3;
-				if (palpha)
+				for (int x = (int)cinfo.output_width; x != 0; --x)
+				{
+					*dst++ = src[2];
+					*dst++ = src[1];
+					*dst++ = src[0];
 					*dst++ = *palpha++;
-				else 
+					src += 3;
+				}
+			}
+			else
+			{
+				for (int x = (int)cinfo.output_width; x != 0; --x)
+				{
+					*dst++ = src[2];
+					*dst++ = src[1];
+					*dst++ = src[0];
 					*dst++ = 0xFF;
+					src += 3;
+				}
 			}
 		}
 	}

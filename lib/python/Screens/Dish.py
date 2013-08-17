@@ -169,9 +169,7 @@ class Dish(Screen):
 		if nr is not None:
 			from Components.NimManager import nimmanager
 			nims = nimmanager.nimList()
-			if nr < 4:
-				return "".join(nims[nr].split(':')[:1])
-			return str(nr)
+			return str(nims[nr].split(':')[:1][0].split(' ')[1])
 		return ""
 
 	def OrbToStr(self, orbpos):
