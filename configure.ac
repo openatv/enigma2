@@ -144,7 +144,6 @@ fi
 
 if test x"$BOXTYPE" == "xgb800se" -o x"$BOXTYPE" == "xgb800solo" -o x"$BOXTYPE" == "xgb800ue" -o x"$BOXTYPE" == "xgbquad" -o x"$BOXTYPE" == "xgb800seplus" -o x"$BOXTYPE" == "xgb800ueplus"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
-	AC_DEFINE(FORCE_NO_ACCELNEVER, 1,[define when the framebuffer acceleration auto not working correct])	
 	AC_DEFINE(KEY_GUIDE_TO_KEY_EPG, 1,[define when rc sends a KEY_HELP event for its KEY_EPG key])
 fi
 
