@@ -219,17 +219,6 @@ void bsodFatal(const char *component)
 		xml.cDataFromCmd("kernelversion", "uname -a");
 		xml.stringFromFile("kernelcmdline", "/proc/cmdline");
 		xml.stringFromFile("nimsockets", "/proc/bus/nim_sockets");
-		if (!getConfigBool("config.plugins.crashlogautosubmit.sendAnonCrashlog", true)) {
-			xml.cDataFromFile("stbca", "/proc/stb/info/ca");
-			xml.cDataFromFile("enigma2settings", eEnv::resolve("${sysconfdir}/enigma2/settings"), ".password=");
-		}
-		if (getConfigBool("config.plugins.crashlogautosubmit.addNetwork", false)) {
-			xml.cDataFromFile("networkinterfaces", "/etc/network/interfaces");
-			xml.cDataFromFile("dns", "/etc/resolv.conf");
-			xml.cDataFromFile("defaultgateway", "/etc/default_gw");
-		}
-		if (getConfigBool("config.plugins.crashlogautosubmit.addWlan", false))
-			xml.cDataFromFile("wpasupplicant", "/etc/wpa_supplicant.conf");
 		xml.cDataFromFile("imageversion", "/etc/image-version");
 		xml.cDataFromFile("imageissue", "/etc/issue.net");
 		xml.close();

@@ -19,7 +19,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarRdsDecoder, InfoBarRedButton, InfoBarTimerButton, InfoBarVmodeButton, \
 	InfoBarEPG, InfoBarSeek, InfoBarInstantRecord, InfoBarINFOpanel, InfoBarResolutionSelection, InfoBarAspectSelection, \
 	InfoBarAudioSelection, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarUnhandledKey, \
-	InfoBarSubserviceSelection, InfoBarShowMovies, InfoBarTimeshift,  \
+	InfoBarSubserviceSelection, InfoBarShowMovies, \
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView, \
 	InfoBarSummarySupport, InfoBarMoviePlayerSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
 	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarQuickMenu, InfoBarZoom, \
@@ -27,6 +27,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 
 profile("LOAD:InitBar_Components")
 from Components.ActionMap import HelpableActionMap
+from Components.Timeshift import InfoBarTimeshift
 from Components.config import config
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 
