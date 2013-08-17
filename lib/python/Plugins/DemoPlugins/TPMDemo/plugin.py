@@ -63,7 +63,7 @@ def main(session, **kwargs):
 		
 		l3cert = etpm.getCert(eTPM.TPMD_DT_LEVEL3_CERT)
 		if l3cert is None:
-			print "l3cert not found (can be fixed by running the genuine STB-BOX plugin and running the offered update)"
+			print "l3cert not found (can be fixed by running the genuine receiver plugin and running the offered update)"
 			return
 		
 		l3key = validate_cert(l3cert, l2key)

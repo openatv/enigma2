@@ -703,7 +703,7 @@ class NimManager:
 			#db.readATSC(self.atscList, self.transpondersatsc)
 
 	def enumerateNIMs(self):
-		# enum available NIMs. This is currently very STB-BOX-centric and uses the /proc/bus/nim_sockets interface.
+		# enum available NIMs. This is currently very receiver-centric and uses the /proc/bus/nim_sockets interface.
 		# the result will be stored into nim_slots.
 		# the content of /proc/bus/nim_sockets looks like:
 		# NIM Socket 0:
