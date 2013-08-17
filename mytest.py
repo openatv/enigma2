@@ -568,10 +568,11 @@ def runScreenTest():
 		f.write('-E2-')
 		f.close()
 		
-
-	print config.usage.shutdownOK.getValue()
-	print config.usage.shutdownNOK_action.getValue()
-	if not config.usage.shutdownOK.getValue() and not config.usage.shutdownNOK_action.getValue() == 'normal':
+	print "##################################### BOOTUP ACTIONS ###########################################"
+	print "lastshutdown=%s" % config.usage.shutdownOK.getValue()
+	print "NOK shutdown action=%s" % config.usage.shutdownNOK_action.getValue()
+	print "bootup action=%s" % config.usage.boot_action.getValue()
+	if not config.usage.shutdownOK.getValue() and not config.usage.shutdownNOK_action.getValue() == 'normal' or not config.usage.boot_action.getValue() == 'normal':
 		print "last shutdown = %s" % config.usage.shutdownOK.getValue()
 		import Screens.PowerLost
 		Screens.PowerLost.PowerLost(session)
