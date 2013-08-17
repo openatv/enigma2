@@ -267,13 +267,13 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 	}
 }
 
-static inline void blit_8i_to_32(__u32 *dst, __u8 *src, __u32 *pal, int width)
+static inline void blit_8i_to_32(__u32 *dst, const __u8 *src, const __u32 *pal, int width)
 {
 	while (width--)
 		*dst++=pal[*src++];
 }
 
-static inline void blit_8i_to_32_at(__u32 *dst, __u8 *src, __u32 *pal, int width)
+static inline void blit_8i_to_32_at(__u32 *dst, const __u8 *src, const __u32 *pal, int width)
 {
 	while (width--)
 	{
@@ -286,13 +286,13 @@ static inline void blit_8i_to_32_at(__u32 *dst, __u8 *src, __u32 *pal, int width
 	}
 }
 
-static inline void blit_8i_to_16(__u16 *dst, __u8 *src, __u32 *pal, int width)
+static inline void blit_8i_to_16(__u16 *dst, const __u8 *src, const __u32 *pal, int width)
 {
 	while (width--)
 		*dst++=pal[*src++] & 0xFFFF;
 }
 
-static inline void blit_8i_to_16_at(__u16 *dst, __u8 *src, __u32 *pal, int width)
+static inline void blit_8i_to_16_at(__u16 *dst, const __u8 *src, const __u32 *pal, int width)
 {
 	while (width--)
 	{
@@ -305,31 +305,12 @@ static inline void blit_8i_to_16_at(__u16 *dst, __u8 *src, __u32 *pal, int width
 	}
 }
 
-		/* WARNING, this function is not endian safe! */
-static void blit_8i_to_32_ab(__u32 *dst, __u8 *src, __u32 *pal, int width)
+static void blit_8i_to_32_ab(gRGB *dst, const __u8 *src, const gRGB *pal, int width)
 {
 	while (width--)
 	{
-#define BLEND(x, y, a) (y + (((x-y) * a)>>8))
-		__u32 srccol = pal[*src++];
-		__u32 dstcol = *dst;
-		unsigned char sb = srccol & 0xFF;
-		unsigned char sg = (srccol >> 8) & 0xFF;
-		unsigned char sr = (srccol >> 16) & 0xFF;
-		unsigned char sa = (srccol >> 24) & 0xFF;
-
-		unsigned char db = dstcol & 0xFF;
-		unsigned char dg = (dstcol >> 8) & 0xFF;
-		unsigned char dr = (dstcol >> 16) & 0xFF;
-		unsigned char da = (dstcol >> 24) & 0xFF;
-
-		da = BLEND(0xFF, da, sa) & 0xFF;
-		dr = BLEND(sr, dr, sa) & 0xFF;
-		dg = BLEND(sg, dg, sa) & 0xFF;
-		db = BLEND(sb, db, sa) & 0xFF;
-
-#undef BLEND
-		*dst++ = db | (dg << 8) | (dr << 16) | (da << 24);
+		dst->alpha_blend(pal[*src++]);
+		++dst;
 	}
 }
 
@@ -460,7 +441,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 				const int src_height = srcarea.height();
 				const int src_width = srcarea.width();
 				if (flag & blitAlphaTest)
-				{			
+				{
 					for (int y = 0; y < height; ++y)
 					{
 						const __u8 *src_row_ptr = srcptr + (((y * src_height) / height) * src_stride);
@@ -476,45 +457,28 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 					}
 				}
 				else if (flag & blitAlphaBlend)
-				{			
+				{
 					for (int y = 0; y < height; ++y)
 					{
 						const __u8 *src_row_ptr = srcptr + (((y * src_height) / height) * src_stride);
-						__u32 *dst = (__u32*)dstptr;
+						gRGB *dst = (gRGB*)dstptr;
 						for (int x = 0; x < width; ++x)
 						{
-							__u32 srccol = pal[src_row_ptr[(x *src_width) / width]];
-#define BLEND(x, y, a) (y + (((x-y) * a)>>8))
-							__u32 dstcol = *dst;
-							unsigned char sb = srccol & 0xFF;
-							unsigned char sg = (srccol >> 8) & 0xFF;
-							unsigned char sr = (srccol >> 16) & 0xFF;
-							unsigned char sa = (srccol >> 24) & 0xFF;
-
-							unsigned char db = dstcol & 0xFF;
-							unsigned char dg = (dstcol >> 8) & 0xFF;
-							unsigned char dr = (dstcol >> 16) & 0xFF;
-							unsigned char da = (dstcol >> 24) & 0xFF;
-
-							da = BLEND(0xFF, da, sa) & 0xFF;
-							dr = BLEND(sr, dr, sa) & 0xFF;
-							dg = BLEND(sg, dg, sa) & 0xFF;
-							db = BLEND(sb, db, sa) & 0xFF;
-#undef BLEND
-							*dst++ = db | (dg << 8) | (dr << 16) | (da << 24);
+							dst->alpha_blend(pal[src_row_ptr[(x * src_width) / width]]);
+							++dst;
 						}
 						dstptr += surface->stride;
 					}
 				}
 				else
-				{			
+				{
 					for (int y = 0; y < height; ++y)
 					{
 						const __u8 *src_row_ptr = srcptr + (((y * src_height) / height) * src_stride);
 						__u32 *dst = (__u32*)dstptr;
 						for (int x = 0; x < width; ++x)
 						{
-							*dst = pal[src_row_ptr[(x *src_width) / width]];
+							*dst = pal[src_row_ptr[(x * src_width) / width]];
 							++dst;
 						}
 						dstptr += surface->stride;
@@ -600,38 +564,17 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 					}
 				} else if (flag & blitAlphaBlend)
 				{
-					// uh oh. this is only until hardware accel is working.
-
-					int width=area.width();
-							// ARGB color space!
-					unsigned char *src=(unsigned char*)srcptr;
-					unsigned char *dst=(unsigned char*)dstptr;
-
-#define BLEND(x, y, a) (y + ((x-y) * a)/256)
+					int width = area.width();
+					gRGB *src = (gRGB*)srcptr;
+					gRGB *dst = (gRGB*)dstptr;
 					while (width--)
 					{
-						unsigned char sa = src[3];
-						unsigned char sr = src[2];
-						unsigned char sg = src[1];
-						unsigned char sb = src[0];
-
-						unsigned char da = dst[3];
-						unsigned char dr = dst[2];
-						unsigned char dg = dst[1];
-						unsigned char db = dst[0];
-
-						dst[3] = BLEND(0xFF, da, sa);
-						dst[2] = BLEND(sr, dr, sa);
-						dst[1] = BLEND(sg, dg, sa);
-						dst[0] = BLEND(sb, db, sa);
-#undef BLEND
-
-						src += 4; dst += 4;
+						dst->alpha_blend(*src++);
 					}
 				} else
 					memcpy(dstptr, srcptr, area.width()*surface->bypp);
-				srcptr+=src.surface->stride/4;
-				dstptr+=surface->stride/4;
+				srcptr = (__u32*)((__u8*)srcptr + src.surface->stride);
+				dstptr = (__u32*)((__u8*)dstptr + surface->stride);
 			}
 		}
 		else if ((surface->bpp == 32) && (src.surface->bpp==8))
@@ -646,14 +589,12 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			const int width=area.width();
 			for (int y = area.height(); y != 0; --y)
 			{
-				unsigned char *psrc = (unsigned char*)srcptr;
-				__u32 *dst = (__u32*)dstptr;
 				if (flag & blitAlphaTest)
-					blit_8i_to_32_at(dst, psrc, pal, width);
+					blit_8i_to_32_at((__u32*)dstptr, srcptr, pal, width);
 				else if (flag & blitAlphaBlend)
-					blit_8i_to_32_ab(dst, psrc, pal, width);
+					blit_8i_to_32_ab((gRGB*)dstptr, srcptr, (const gRGB*)pal, width);
 				else
-					blit_8i_to_32(dst, psrc, pal, width);
+					blit_8i_to_32((__u32*)dstptr, srcptr, pal, width);
 				srcptr += src.surface->stride;
 				dstptr += surface->stride;
 			}
