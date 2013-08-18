@@ -144,7 +144,6 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 	bool validitem = (m_list && cursorValid());
 	eListboxStyle *local_style = 0;
 	bool cursorValid = this->cursorValid();
-	ePoint text_offset = offset;
 	gRGB border_color;
 	int border_size = 0;
 
@@ -1088,6 +1087,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				int y = PyInt_AsLong(py) + offset.y();
 				int width = PyInt_AsLong(pwidth);
 				int height = PyInt_AsLong(pheight);
+				int flags = 0;
 				ePtr<gPixmap> pixmap;
 				if (SwigFromPython(pixmap, ppixmap))
 				{
@@ -1101,6 +1101,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (size > 7)
 					pbackColorSelected = lookupColor(PyTuple_GET_ITEM(item, 7), data);
 
+				if (size > 8)
+					flags = PyInt_AsLong(PyTuple_GET_ITEM(item, 8));
+
 				eRect rect(x, y, width, height);
 				painter.clip(rect);
 
@@ -1109,8 +1112,11 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
 					clearRegion(painter, style, local_style, ePyObject(), ePyObject(), pbackColor, pbackColorSelected, selected, rc, sel_clip, offset, cursorValid, mustClear);
 				}
-
-				painter.blit(pixmap, rect.topLeft(), rect, (type == TYPE_PIXMAP_ALPHATEST) ? gPainter::BT_ALPHATEST : (type == TYPE_PIXMAP_ALPHABLEND) ? gPainter::BT_ALPHABLEND : 0);
+				flags |= (type == TYPE_PIXMAP_ALPHATEST) ? gPainter::BT_ALPHATEST : (type == TYPE_PIXMAP_ALPHABLEND) ? gPainter::BT_ALPHABLEND : 0;
+				if (flags & gPainter::BT_SCALE)
+					painter.blitScale(pixmap, rect, rect, flags);
+				else
+					painter.blit(pixmap, rect.topLeft(), rect, flags);
 				painter.clippop();
 				break;
 			}
