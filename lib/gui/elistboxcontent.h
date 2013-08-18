@@ -97,9 +97,9 @@ private:
 #define RT_VALIGN_BOTTOM 32
 #define RT_WRAP 64
 #define BT_ALPHATEST 1
-#define	BT_ALPHABLEND 2
-#define	BT_SCALE 4
-#define	BT_KEEP_ASPECT_RATIO 8
+#define BT_ALPHABLEND 2
+#define BT_SCALE 4
+#define BT_KEEP_ASPECT_RATIO 8
 #endif // SWIG
 
 #endif
