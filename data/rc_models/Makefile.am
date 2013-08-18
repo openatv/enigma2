@@ -30,7 +30,7 @@ if IQON
 SUBDIRS = iqon
 endif
 
-if JEPSSON
+if JEPSSEN
 SUBDIRS = mediabox
 endif
 
