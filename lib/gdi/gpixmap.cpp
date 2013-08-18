@@ -355,32 +355,24 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 	{
 		ASSERT(src.size().width());
 		ASSERT(src.size().height());
-
-		if (flag & blitKeepAspectRatio)
-		{
-			int renderX;
-			int renderY;
-			int renderWidth = src.size().width();
-			int renderHeight = src.size().height();
-			if (renderWidth * pos.height() <= pos.width() * renderHeight)
-			{ /* Adjust width to fit height */
-				renderWidth = renderWidth  * pos.height() / renderHeight;
-				renderHeight = pos.height();
-				renderX = (pos.width() - renderWidth) / 2;
-				renderY = 0;
-			}
-			else
-			{ /* Adjust height to fit width */
-				renderHeight = renderHeight * pos.width() / renderWidth;
-				renderWidth = pos.width();
-				renderX = 0;
-				renderY = (pos.height() - renderHeight) / 2;
-			}
-			pos = eRect(ePoint(pos.x() + renderX, pos.y()+ renderY), eSize(renderWidth, renderHeight));
-		}
-
 		scale_x = pos.size().width() * FIX / src.size().width();
 		scale_y = pos.size().height() * FIX / src.size().height();
+		if (flag & blitKeepAspectRatio)
+		{
+			if (scale_x > scale_y)
+			{
+				pos = eRect(ePoint(pos.x() + (scale_x - scale_y) * pos.width() / (2 * FIX), pos.y()),
+					eSize(src.size().width() * pos.height() / src.size().height(), pos.height()));
+				scale_x = scale_y;
+
+			}
+			else
+			{
+				pos = eRect(ePoint(pos.x(), pos.y()  + (scale_y - scale_x) * pos.height() / (2 * FIX)),
+					eSize(pos.width(), src.size().height() * pos.width() / src.size().width()));
+				scale_y = scale_x;
+			}
+		}
 	}
 	
 //	eDebug("SCALE %x %x", scale_x, scale_y);
