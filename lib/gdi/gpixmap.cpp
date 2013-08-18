@@ -640,6 +640,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 					while (width--)
 					{
 						dst->alpha_blend(*src++);
+						++dst;
 					}
 				} else
 					memcpy(dstptr, srcptr, area.width()*surface->bypp);
