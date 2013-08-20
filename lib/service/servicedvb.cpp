@@ -1066,16 +1066,17 @@ eDVBServicePlay::~eDVBServicePlay()
 
 void eDVBServicePlay::gotNewEvent(int error)
 {
+	ePtr<eServiceEvent> event_now;
+	getEvent(event_now, 0);
 #if 0
 		// debug only
-	ePtr<eServiceEvent> m_event_now, m_event_next;
-	getEvent(m_event_now, 0);
-	getEvent(m_event_next, 1);
+	ePtr<eServiceEvent> event_next;
+	getEvent(event_next, 1);
 
-	if (m_event_now)
-		eDebug("now running: %s (%d seconds :)", m_event_now->m_event_name.c_str(), m_event_now->m_duration);
-	if (m_event_next)
-		eDebug("next running: %s (%d seconds :)", m_event_next->m_event_name.c_str(), m_event_next->m_duration);
+	if (event_now)
+		eDebug("now running: %s (%d seconds :)", event_now->m_event_name.c_str(), event_now->m_duration);
+	if (event_next)
+		eDebug("next running: %s (%d seconds :)", event_next->m_event_name.c_str(), event_next->m_duration);
 #endif
 	if (!error)
 	{
@@ -1086,6 +1087,32 @@ void eDVBServicePlay::gotNewEvent(int error)
 	{
 		/* our eit reader has stopped, we have to take care of our own event updates */
 		updateEpgCacheNowNext();
+	}
+
+	if (m_timeshift_enabled)
+	{
+		if (!event_now)
+			return;
+
+		pts_t now_pts, first_pts, fixup_pts;
+		if (m_record)
+		{
+			if (m_record->getCurrentPCR(now_pts))
+				eDebug("getting current PTS failed!");
+			else
+			{
+				if (m_record->getFirstPTS(first_pts))
+					return;
+				if (now_pts < first_pts)
+					fixup_pts = now_pts + 0x200000000LL - first_pts;
+				else
+					fixup_pts = now_pts - first_pts;
+				m_cue_entries.insert(cueEntry(fixup_pts, 2));
+				m_cuesheet_changed = 1;
+				eDebug("pts of eit change: %llx, fixup_pts: %llx, first_pts: %llx", now_pts, fixup_pts, first_pts);
+				m_event((iPlayableService*)this, evCuesheetChanged);
+			}
+		}
 	}
 }
 
@@ -1384,17 +1411,16 @@ RESULT eDVBServicePlay::stop()
 		}
 	}
 
+	if ((m_is_pvr || m_timeshift_enabled) && m_cuesheet_changed)
+	{
+		saveCuesheet();
+	}
+
 	stopTimeshift(); /* in case timeshift was enabled, remove buffer etc. */
 
 	m_service_handler_timeshift.free();
 	m_service_handler.free();
 
-	if (m_is_pvr && m_cuesheet_changed)
-	{
-				/* save cuesheet only when main file is accessible. */
-		if (::access(m_reference.path.c_str(), R_OK) >= 0)
-			saveCuesheet();
-	}
 	m_nownext_timer->stop();
 	m_event((iPlayableService*)this, evStopped);
 	return 0;
@@ -1706,7 +1732,7 @@ RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 
 RESULT eDVBServicePlay::cueSheet(ePtr<iCueSheet> &ptr)
 {
-	if (m_is_pvr)
+	if (m_is_pvr || m_timeshift_enabled)
 	{
 		ptr = this;
 		return 0;
@@ -2369,6 +2395,7 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 		eDebug("remove timeshift files");
 		eBackgroundFileEraser::getInstance()->erase(m_timeshift_file);
 		eBackgroundFileEraser::getInstance()->erase(m_timeshift_file + ".sc");
+		eBackgroundFileEraser::getInstance()->erase(m_timeshift_file + ".cuts");
 	}
 	else
 	{
@@ -2873,7 +2900,13 @@ void eDVBServicePlay::loadCuesheet()
 
 void eDVBServicePlay::saveCuesheet()
 {
-	std::string filename = m_reference.path + ".cuts";
+	std::string filename = m_timeshift_enabled ? m_timeshift_file : m_reference.path;
+
+		/* save cuesheet only when main file is accessible. */
+	if (::access(filename.c_str(), R_OK) < 0)
+		return;
+
+	filename.append(".cuts");
 
 	FILE *f = fopen(filename.c_str(), "wb");
 

@@ -193,12 +193,13 @@ def InitAVSwitch():
 		config.av.wss.addNotifier(setWSS)
 	
 	iAVSwitch.setInput("ENCODER") # init on startup
-	if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'odinm6':
+	if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'odinm6' or getBoxType() == 'omtimussos1' or getBoxType() == 'omtimussos2':
 		detected = False
 	else:
 		detected = eAVSwitch.getInstance().haveScartSwitch()
 	
 	SystemInfo["ScartSwitch"] = detected
+	config.av.show_vcr_scart = ConfigEnableDisable(default = False)
 
 	if os.path.exists("/proc/stb/hdmi/bypass_edid_checking"):
 		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")

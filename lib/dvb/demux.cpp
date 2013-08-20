@@ -390,6 +390,7 @@ public:
 	void startSaveMetaInformation(const std::string &filename);
 	void stopSaveMetaInformation();
 	int getLastPTS(pts_t &pts);
+	int getFirstPTS(pts_t &pts);
 	void setTargetFD(int fd) { m_fd_dest = fd; }
 	void enableAccessPoints(bool enable) { m_ts_parser.enableAccessPoints(enable); }
 protected:
@@ -470,6 +471,11 @@ void eDVBRecordFileThread::stopSaveMetaInformation()
 int eDVBRecordFileThread::getLastPTS(pts_t &pts)
 {
 	return m_ts_parser.getLastPTS(pts);
+}
+
+int eDVBRecordFileThread::getFirstPTS(pts_t &pts)
+{
+	return m_ts_parser.getFirstPTS(pts);
 }
 
 int eDVBRecordFileThread::AsyncIO::wait()
@@ -890,6 +896,14 @@ RESULT eDVBTSRecorder::getCurrentPCR(pts_t &pcr)
 
 			/* we don't filter PCR data, so just use the last received PTS, which is not accurate, but better than nothing */
 	return m_thread->getLastPTS(pcr);
+}
+
+RESULT eDVBTSRecorder::getFirstPTS(pts_t &pts)
+{
+	if (!m_running || !m_thread)
+		return 0;
+
+	return m_thread->getFirstPTS(pts);
 }
 
 RESULT eDVBTSRecorder::connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &conn)
