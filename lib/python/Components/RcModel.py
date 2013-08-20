@@ -190,7 +190,7 @@ class RcModel:
 		elif self.currentRcType == self.RCTYPE_IXUSSZERO:
 			return '/usr/share/enigma2/rc_models/ixusszero/'
 		elif self.currentRcType == self.RCTYPE_MEDIABOX:
-			return '/usr/share/enigma2/rc_models/tm/mediabox/'
+			return '/usr/share/enigma2/rc_models/mediabox/'
 		elif self.currentRcType == self.RCTYPE_ODINM6:
 			return '/usr/share/enigma2/rc_models/odinm6/'
 		elif self.currentRcType == self.RCTYPE_ODINM7:
@@ -198,7 +198,7 @@ class RcModel:
 		elif self.currentRcType == self.RCTYPE_ODINM9:
 			return '/usr/share/enigma2/rc_models/odinm9/'
 		elif self.currentRcType == self.RCTYPE_OPTIMUSS:
-			return '/usr/share/enigma2/rc_models/tm/optimuss/'
+			return '/usr/share/enigma2/rc_models/optimuss/'
 		elif self.currentRcType == self.RCTYPE_TM:
 			return '/usr/share/enigma2/rc_models/tm/'
 		elif self.currentRcType == self.RCTYPE_VU:
