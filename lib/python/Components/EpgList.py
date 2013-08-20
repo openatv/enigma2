@@ -5,7 +5,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.Renderer.Picon import getPiconName
 
 from skin import parseColor, parseFont
-from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, ePicLoad, gFont, eRect, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP
+from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, loadPNG, gFont, eRect, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO
 
 from Tools.Alternatives import CompareWithAlternatives
 from Tools.LoadPixmap import LoadPixmap
@@ -59,8 +59,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.currentlyPlaying = None
 		self.showPicon = False
 		self.showServiceTitle = True
-		self.picload = ePicLoad()
-		self.picloadpicon = ePicLoad()
 
 		self.overjump_empty = overjump_empty
 		self.timer = timer
@@ -554,8 +552,6 @@ class EPGList(HTMLComponent, GUIComponent):
 			if piconWidth > w - 2 * self.serviceBorderWidth:
 				piconWidth = w - 2 * self.serviceBorderWidth
 			self.picon_size = eSize(piconWidth, piconHeight)
-			if piconWidth > 0:
-				self.picloadpicon.setPara((piconWidth, piconHeight, 0, 0, 1, 1, "#00000000"))
 		else:
 			self.weekday_rect = Rect(0, 0, float(width * 10) / 100, height)
 			self.datetime_rect = Rect(self.weekday_rect.width(), 0, float(width * 25) / 100, height)
@@ -714,7 +710,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
 					size = (r1.w - 2 * self.serviceBorderWidth, r1.h - 2 * self.serviceBorderWidth),
-					png = bgpng))
+					png = bgpng,
+					flags = BT_SCALE))
 		else:
 			res.append(MultiContentEntryText(
 					pos  = (r1.x, r1.y),
@@ -723,7 +720,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					text = "",
 					color = serviceForeColor, color_sel = serviceForeColor,
 					backcolor = serviceBackColor, backcolor_sel = serviceBackColor,
-					border_width = self.serviceBorderWidth, border_color = self.borderColorService) )
+					border_width = self.serviceBorderWidth, border_color = self.borderColorService))
 
 		displayPicon = None
 		if self.showPicon:
@@ -734,14 +731,13 @@ class EPGList(HTMLComponent, GUIComponent):
 			piconWidth = self.picon_size.width()
 			piconHeight = self.picon_size.height()
 			if picon != "":
-				self.picloadpicon.startDecode(picon, 0, 0, False)
-				displayPicon = self.picloadpicon.getData()
+				displayPicon = loadPNG(picon)
 			if displayPicon is not None:
 				res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
 					size = (piconWidth, piconHeight),
 					png = displayPicon,
-					backcolor = None, backcolor_sel = None) )
+					backcolor = None, backcolor_sel = None, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO))
 			elif not self.showServiceTitle:
 				# no picon so show servicename anyway in picon space
 				namefont = 1
@@ -774,38 +770,46 @@ class EPGList(HTMLComponent, GUIComponent):
 			res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r1.x, r1.y),
 					size = (r1.w, self.serviceBorderWidth),
-					png = self.borderTopPix))
+					png = self.borderTopPix,
+					flags = BT_SCALE))
 			res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r2.x, r2.y),
 					size = (r2.w, self.eventBorderWidth),
-					png = self.borderTopPix))
+					png = self.borderTopPix,
+					flags = BT_SCALE))
 		if self.borderBottomPix is not None and self.graphic:
 			res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r1.x, r1.h-self.serviceBorderWidth),
 					size = (r1.w, self.serviceBorderWidth),
-					png = self.borderBottomPix))
+					png = self.borderBottomPix,
+					flags = BT_SCALE))
 			res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r2.x, r2.h-self.eventBorderWidth),
 					size = (r2.w, self.eventBorderWidth),
-					png = self.borderBottomPix))
+					png = self.borderBottomPix,
+					flags = BT_SCALE))
 		if self.borderLeftPix is not None and self.graphic:
 			res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r1.x, r1.y),
 					size = (self.serviceBorderWidth, r1.h),
-					png = self.borderLeftPix))
+					png = self.borderLeftPix,
+					flags = BT_SCALE))
 			res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r2.x, r2.y),
 					size = (self.eventBorderWidth, r2.h),
-					png = self.borderLeftPix))
+					png = self.borderLeftPix,
+					flags = BT_SCALE))
 		if self.borderRightPix is not None and self.graphic:
 			res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r1.w-self.serviceBorderWidth, r1.x),
 					size = (self.serviceBorderWidth, r1.h),
-					png = self.borderRightPix))
+					png = self.borderRightPix,
+					flags = BT_SCALE))
 			res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r2.x + r2.w-self.eventBorderWidth, r2.y),
 					size = (self.eventBorderWidth, r2.h),
-					png = self.borderRightPix))
+					png = self.borderRightPix,
+					flags = BT_SCALE))
 
 		# Events for service
 		backColorSel = self.backColorSelected
@@ -922,7 +926,8 @@ class EPGList(HTMLComponent, GUIComponent):
 					res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (left + xpos + self.eventBorderWidth, top + self.eventBorderWidth),
 						size = (ewidth - 2 * self.eventBorderWidth, height - 2 * self.eventBorderWidth),
-						png = bgpng))
+						png = bgpng,
+						flags = BT_SCALE))
 				else:
 					res.append(MultiContentEntryText(
 						pos = (left + xpos, top), size = (ewidth, height),
@@ -949,22 +954,26 @@ class EPGList(HTMLComponent, GUIComponent):
 					res.append(MultiContentEntryPixmapAlphaTest(
 							pos = (left + xpos, top),
 							size = (ewidth, self.eventBorderWidth),
-							png = borderTopPix))
+							png = borderTopPix,
+							flags = BT_SCALE))
 				if borderBottomPix is not None and self.graphic:
 					res.append(MultiContentEntryPixmapAlphaTest(
 							pos = (left + xpos, height-self.eventBorderWidth),
 							size = (ewidth, self.eventBorderWidth),
-							png = borderBottomPix))
+							png = borderBottomPix,
+							flags = BT_SCALE))
 				if borderLeftPix is not None and self.graphic:
 					res.append(MultiContentEntryPixmapAlphaTest(
 							pos = (left + xpos, top),
 							size = (self.eventBorderWidth, height),
-							png = borderLeftPix))
+							png = borderLeftPix,
+							flags = BT_SCALE))
 				if borderRightPix is not None and self.graphic:
 					res.append(MultiContentEntryPixmapAlphaTest(
 							pos = (left + xpos + ewidth-self.eventBorderWidth, top),
 							size = (self.eventBorderWidth, height),
-							png = borderRightPix))
+							png = borderRightPix,
+							flags = BT_SCALE))
 				
 				# recording icons
 				if rec is not None and rec[1] >0 and ewidth > 23:
@@ -994,7 +1003,8 @@ class EPGList(HTMLComponent, GUIComponent):
 					res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
 						size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
-						png = self.selEvPix))
+						png = self.selEvPix,
+						flags = BT_SCALE))
 			else:
 				res.append(MultiContentEntryText(
 					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
@@ -1161,49 +1171,26 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def fillGraphEPG(self, services, stime = None):
 		if (self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and self.graphic and not self.graphicsloaded:
-			self.picload.setPara((self.listWidth, self.itemHeight, 0, 0, 1, 1, "#00000000"))
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/CurrentEvent.png'), 0, 0, False)
-			self.nowEvPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedCurrentEvent.png'), 0, 0, False)
-			self.nowSelEvPix = self.picload.getData()
 
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherEvent.png'), 0, 0, False)
-			self.othEvPix = self.picload.getData()
+			self.nowEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/CurrentEvent.png'))
+			self.nowSelEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedCurrentEvent.png'))
+			self.othEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherEvent.png'))
+			self.selEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedEvent.png'))
+			self.othServPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherService.png'))
+			self.nowServPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/CurrentService.png'))
+			self.recEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/RecordEvent.png'))
+			self.recSelEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedRecordEvent.png'))
+			self.zapEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/ZapEvent.png'))
+			self.zapSelEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedZapEvent.png'))
 
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedEvent.png'), 0, 0, False)
-			self.selEvPix = self.picload.getData()
-
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherService.png'), 0, 0, False)
-			self.othServPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/CurrentService.png'), 0, 0, False)
-			self.nowServPix = self.picload.getData()
-
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/RecordEvent.png'), 0, 0, False)
-			self.recEvPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedRecordEvent.png'), 0, 0, False)
-			self.recSelEvPix = self.picload.getData()
-
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/ZapEvent.png'), 0, 0, False)
-			self.zapEvPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedZapEvent.png'), 0, 0, False)
-			self.zapSelEvPix = self.picload.getData()
-
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderTop.png'), 0, 0, False)
-			self.borderTopPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderLeft.png'), 0, 0, False)
-			self.borderLeftPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderBottom.png'), 0, 0, False)
-			self.borderBottomPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderRight.png'), 0, 0, False)
-			self.borderRightPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderTop.png'), 0, 0, False)
-			self.borderSelectedTopPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderLeft.png'), 0, 0, False)
-			self.borderSelectedLeftPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderBottom.png'), 0, 0, False)
-			self.borderSelectedBottomPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderRight.png'), 0, 0, False)
-			self.borderSelectedRightPix = self.picload.getData()
+			self.borderTopPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderTop.png'))
+			self.borderBottomPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderLeft.png'))
+			self.borderLeftPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderBottom.png'))
+			self.borderRightPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderRight.png'))
+			self.borderSelectedTopPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderTop.png'))
+			self.borderSelectedLeftPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderLeft.png'))
+			self.borderSelectedBottomPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderBottom.png'))
+			self.borderSelectedRightPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderRight.png'))
 
 			self.graphicsloaded = True
 
@@ -1309,7 +1296,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.timelineFontName = "Regular"
 		self.timelineFontSize = 20
 		self.datefmt = ""
-		self.picload = ePicLoad()
 
 	GUI_WIDGET = eListbox
 
@@ -1338,11 +1324,8 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
 		if self.graphic:
-			self.picload.setPara((self.listWidth, self.listHeight, 0, 0, 1, 1, "#00000000"))
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/TimeLineDate.png'), 0, 0, False)
-			self.TlDate = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/TimeLineTime.png'), 0, 0, False)
-			self.TlTime = self.picload.getData()
+			self.TlDate = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/TimeLineDate.png'))
+			self.TlTime = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/TimeLineTime.png'))
 		return rc
 
 	def setTimeLineFontsize(self):
@@ -1404,7 +1387,8 @@ class TimelineText(HTMLComponent, GUIComponent):
 				res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (0, 0),
 					size = (service_rect.width(), self.listHeight),
-					png = bgpng))
+					png = bgpng,
+					flags = BT_SCALE))
 			else:
 				res.append( MultiContentEntryText(
 					pos = (0, 0),
@@ -1431,7 +1415,8 @@ class TimelineText(HTMLComponent, GUIComponent):
 				res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (service_rect.width(), 0),
 					size = (event_rect.width(), self.listHeight),
-					png = bgpng))
+					png = bgpng,
+					flags = BT_SCALE))
 			else:
 				res.append( MultiContentEntryText(
 					pos = (service_rect.width(), 0),
@@ -1478,8 +1463,6 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		self.l.setBuildFunc(self.buildEntry)
 
 		self.onSelChanged = [ ]
-
-		self.picload = ePicLoad()
 
 		self.foreColor = 0xffffff
 		self.foreColorSelected = 0xffffff
@@ -1657,7 +1640,8 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 			res.append(MultiContentEntryPixmapAlphaTest(
 				pos = (left + self.BorderWidth, top + self.BorderWidth),
 				size = (width - 2 * self.BorderWidth, height - 2 * self.BorderWidth),
-				png = bgpng))
+				png = bgpng,
+				flags = BT_SCALE))
 		else:
 			res.append(MultiContentEntryText(
 				pos = (left , top), size = (width, height),
@@ -1684,49 +1668,43 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 				res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (left, r1.y),
 						size = (r1.w, self.BorderWidth),
-						png = borderTopPix))
+						png = borderTopPix,
+						flags = BT_SCALE))
 			if borderBottomPix is not None:
 				res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (left, r1.h-self.BorderWidth),
 						size = (r1.w, self.BorderWidth),
-						png = borderBottomPix))
+						png = borderBottomPix,
+						flags = BT_SCALE))
 			if borderLeftPix is not None:
 				res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (left, r1.y),
 						size = (self.BorderWidth, r1.h),
-						png = borderLeftPix))
+						png = borderLeftPix,
+						flags = BT_SCALE))
 			if borderRightPix is not None:
 				res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (r1.w-self.BorderWidth, left),
 						size = (self.BorderWidth, r1.h),
-						png = borderRightPix))
+						png = borderRightPix,
+						flags = BT_SCALE))
 
 		return res
 
 	def fillBouquetList(self, bouquets):
 		if self.graphic and not self.graphicsloaded:
-			self.picload.setPara((self.listWidth, self.itemHeight, 0, 0, 1, 1, "#00000000"))
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherEvent.png'), 0, 0, False)
-			self.othPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedCurrentEvent.png'), 0, 0, False)
-			self.selPix = self.picload.getData()
-		
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderTop.png'), 0, 0, False)
-			self.borderTopPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderLeft.png'), 0, 0, False)
-			self.borderLeftPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderBottom.png'), 0, 0, False)
-			self.borderBottomPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderRight.png'), 0, 0, False)
-			self.borderRightPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderTop.png'), 0, 0, False)
-			self.borderSelectedTopPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderLeft.png'), 0, 0, False)
-			self.borderSelectedLeftPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderBottom.png'), 0, 0, False)
-			self.borderSelectedBottomPix = self.picload.getData()
-			self.picload.startDecode(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderRight.png'), 0, 0, False)
-			self.borderSelectedRightPix = self.picload.getData()
+			self.othEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherEvent.png'))
+			self.selEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedCurrentEvent.png'))
+
+			self.borderTopPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderTop.png'))
+			self.borderBottomPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderLeft.png'))
+			self.borderLeftPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderBottom.png'))
+			self.borderRightPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderRight.png'))
+			self.borderSelectedTopPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderTop.png'))
+			self.borderSelectedLeftPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderLeft.png'))
+			self.borderSelectedBottomPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderBottom.png'))
+			self.borderSelectedRightPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderRight.png'))
+
 			self.graphicsloaded = True
 		self.bouquetslist = bouquets
 		self.l.setList(self.bouquetslist)
