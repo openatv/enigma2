@@ -103,6 +103,15 @@ struct gRGB
 		}
 		return escapecolor;
 	}
+	void alpha_blend(const gRGB other)
+	{
+#define BLEND(x, y, a) (y + (((x-y) * a)>>8))
+		b = BLEND(other.b, b, other.a);
+		g = BLEND(other.g, g, other.a);
+		r = BLEND(other.r, r, other.a);
+		a = BLEND(0xFF, a, other.a);
+#undef BLEND
+	}
 };
 
 #ifndef SWIG
@@ -174,7 +183,8 @@ public:
 	{
 		blitAlphaTest=1,
 		blitAlphaBlend=2,
-		blitScale=4
+		blitScale=4,
+		blitKeepAspectRatio=8
 	};
 	
 	enum {
