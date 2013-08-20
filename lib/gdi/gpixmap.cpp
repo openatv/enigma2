@@ -11,6 +11,10 @@
 
 // #define GPIXMAP_DEBUG
 
+#ifdef GPIXMAP_DEBUG
+#	include "../base/benchmark.h"
+#endif
+
 gLookup::gLookup()
 	:size(0), lookup(0)
 {
@@ -106,25 +110,39 @@ static void removed_pixmap(int size)
 	pixmap_total_size -= size;
 	eDebug("[gSurface] Removed %dk, total %u pixmaps, %uk", size>>10, pixmap_total_count, pixmap_total_size>>10);
 }
+#else
+static inline void added_pixmap(int size) {}
+static inline void removed_pixmap(int size) {}
 #endif
+
+static bool is_a_candidate_for_accel(const gUnmanagedSurface* surface)
+{
+	if (surface->stride < 48)
+		return false;
+	switch (surface->bpp)
+	{
+		case 8:
+			return (surface->y * surface->stride) > 12000;
+		case 32:
+			return (surface->y * surface->stride) > 48000;
+		default:
+			return false;
+	}
+}
 
 gSurface::gSurface(int width, int height, int _bpp, int accel):
 	gUnmanagedSurface(width, height, _bpp)
 {
-	const int size = y * stride;
-	if ((accel) ||
-		((accel == gPixmap::accelAuto) &&
-	     ((_bpp==8) && (size > 800) && (size < 1024*512) && (stride > 32))))
+	if ((accel > gPixmap::accelAuto) ||
+		((accel == gPixmap::accelAuto) && (is_a_candidate_for_accel(this))))
 	{
 		if (gAccel::getInstance()->accelAlloc(this) != 0)
 				eDebug("ERROR: accelAlloc failed");
 	}
 	if (!data)
 	{
-		data = new unsigned char [size];
-#ifdef GPIXMAP_DEBUG
-		added_pixmap(size);
-#endif
+		data = new unsigned char [y * stride];
+		added_pixmap(y * stride);
 	}
 }
 
@@ -134,9 +152,7 @@ gSurface::~gSurface()
 	if (data)
 	{
 		delete [] (unsigned char*)data;
-#ifdef GPIXMAP_DEBUG
 		removed_pixmap(y * stride);
-#endif
 	}
 	if (clut.data)
 	{
@@ -251,13 +267,13 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 	}
 }
 
-static inline void blit_8i_to_32(__u32 *dst, __u8 *src, __u32 *pal, int width)
+static inline void blit_8i_to_32(__u32 *dst, const __u8 *src, const __u32 *pal, int width)
 {
 	while (width--)
 		*dst++=pal[*src++];
 }
 
-static inline void blit_8i_to_32_at(__u32 *dst, __u8 *src, __u32 *pal, int width)
+static inline void blit_8i_to_32_at(__u32 *dst, const __u8 *src, const __u32 *pal, int width)
 {
 	while (width--)
 	{
@@ -270,13 +286,13 @@ static inline void blit_8i_to_32_at(__u32 *dst, __u8 *src, __u32 *pal, int width
 	}
 }
 
-static inline void blit_8i_to_16(__u16 *dst, __u8 *src, __u32 *pal, int width)
+static inline void blit_8i_to_16(__u16 *dst, const __u8 *src, const __u32 *pal, int width)
 {
 	while (width--)
 		*dst++=pal[*src++] & 0xFFFF;
 }
 
-static inline void blit_8i_to_16_at(__u16 *dst, __u8 *src, __u32 *pal, int width)
+static inline void blit_8i_to_16_at(__u16 *dst, const __u8 *src, const __u32 *pal, int width)
 {
 	while (width--)
 	{
@@ -289,31 +305,29 @@ static inline void blit_8i_to_16_at(__u16 *dst, __u8 *src, __u32 *pal, int width
 	}
 }
 
-		/* WARNING, this function is not endian safe! */
-static void blit_8i_to_32_ab(__u32 *dst, __u8 *src, __u32 *pal, int width)
+static void blit_8i_to_32_ab(gRGB *dst, const __u8 *src, const gRGB *pal, int width)
 {
 	while (width--)
 	{
-#define BLEND(x, y, a) (y + (((x-y) * a)>>8))
-		__u32 srccol = pal[*src++];
-		__u32 dstcol = *dst;
-		unsigned char sb = srccol & 0xFF;
-		unsigned char sg = (srccol >> 8) & 0xFF;
-		unsigned char sr = (srccol >> 16) & 0xFF;
-		unsigned char sa = (srccol >> 24) & 0xFF;
+		dst->alpha_blend(pal[*src++]);
+		++dst;
+	}
+}
 
-		unsigned char db = dstcol & 0xFF;
-		unsigned char dg = (dstcol >> 8) & 0xFF;
-		unsigned char dr = (dstcol >> 16) & 0xFF;
-		unsigned char da = (dstcol >> 24) & 0xFF;
-
-		da = BLEND(0xFF, da, sa) & 0xFF;
-		dr = BLEND(sr, dr, sa) & 0xFF;
-		dg = BLEND(sg, dg, sa) & 0xFF;
-		db = BLEND(sb, db, sa) & 0xFF;
-
-#undef BLEND
-		*dst++ = db | (dg << 8) | (dr << 16) | (da << 24);
+static void convert_palette(__u32* pal, const gPalette& clut)
+{
+	int i = 0;
+	if (clut.data)
+	{
+		while (i < clut.colors)
+		{
+			pal[i] = clut.data[i].argb() ^ 0xFF000000;
+			++i;
+		}
+	}
+	for(; i != 256; ++i)
+	{
+		pal[i] = (0x010101*i) | 0xFF000000;
 	}
 }
 
@@ -321,12 +335,12 @@ static void blit_8i_to_32_ab(__u32 *dst, __u8 *src, __u32 *pal, int width)
 
 void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, int flag)
 {
-//	eDebug("blit: -> %d.%d %d:%d -> %d.%d %d:%d, flags=%d",
+	bool accel = (surface->data_phys && src.surface->data_phys);
+//	eDebug("blit: -> %d,%d+%d,%d -> %d,%d+%d,%d, flags=0x%x, accel=%d",
 //		_pos.x(), _pos.y(), _pos.width(), _pos.height(),
 //		clip.extends.x(), clip.extends.y(), clip.extends.width(), clip.extends.height(),
-//		flag);
+//		flag, accel);
 	eRect pos = _pos;
-	bool accel = (surface->data_phys && src.surface->data_phys);
 	
 //	eDebug("source size: %d %d", src.size().width(), src.size().height());
 	
@@ -343,6 +357,22 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 		ASSERT(src.size().height());
 		scale_x = pos.size().width() * FIX / src.size().width();
 		scale_y = pos.size().height() * FIX / src.size().height();
+		if (flag & blitKeepAspectRatio)
+		{
+			if (scale_x > scale_y)
+			{
+				pos = eRect(ePoint(pos.x() + (scale_x - scale_y) * pos.width() / (2 * FIX), pos.y()),
+					eSize(src.size().width() * pos.height() / src.size().height(), pos.height()));
+				scale_x = scale_y;
+
+			}
+			else
+			{
+				pos = eRect(ePoint(pos.x(), pos.y()  + (scale_y - scale_x) * pos.height() / (2 * FIX)),
+					eSize(pos.width(), src.size().height() * pos.width() / src.size().width()));
+				scale_y = scale_x;
+			}
+		}
 	}
 	
 //	eDebug("SCALE %x %x", scale_x, scale_y);
@@ -380,36 +410,163 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 					/* Hardware alpha blending is broken on the few
 					 * boxes that support it, so only use it
 					 * when scaling */
-					accel = (flag & blitScale);
+					 if (flag & blitScale)
+						accel = true;
+					else if (flag & blitAlphaTest) /* Alpha test only on 8-bit */
+						accel = (src.surface->bpp == 8);
+					else
+						accel = false;
+					
+					accel = (flag & (blitScale|blitAlphaTest));
 				}
 				else
 				{
 					/* our hardware does not support alphablending */
-					if (flag & blitScale)
-					{
-						/* we have to scale, we really need hardware for that. Strip the alpha blending flags, and continue */
-						flag &= ~(blitAlphaTest | blitAlphaBlend);
-					}
-					else
-					{
-						/* we do not have to scale, so we will perform software alphablending */
-						accel = false;
-					}
+					accel = false;
 				}
 			}
 		}
 
-		if (accel)
-			if (!gAccel::getInstance()->blit(surface, src.surface, area, srcarea, flag))
+#ifdef GPIXMAP_DEBUG
+		Stopwatch s;
+#endif
+		if (accel) {
+			if (!gAccel::getInstance()->blit(surface, src.surface, area, srcarea, flag)) {
+#ifdef GPIXMAP_DEBUG
+				s.stop();
+				eDebug("[BLITBENCH] accel blit took %u us", s.elapsed_us());
+#endif
 				continue;
+			}
+		}
 
 		if (flag & blitScale)
 		{
-			eWarning("unimplemented: scale on non-accel surfaces");
+			if ((surface->bpp == 32) && (src.surface->bpp==8))
+			{	
+				const __u8 *srcptr = (__u8*)src.surface->data;
+				__u8 *dstptr=(__u8*)surface->data; // !!
+				__u32 pal[256];
+				convert_palette(pal, src.surface->clut);
+
+				const int src_stride = src.surface->stride;
+				srcptr += srcarea.left()*src.surface->bypp + srcarea.top()*src_stride;
+				dstptr += area.left()*surface->bypp + area.top()*surface->stride;
+				const int width = area.width();
+				const int height = area.height();
+				const int src_height = srcarea.height();
+				const int src_width = srcarea.width();
+				if (flag & blitAlphaTest)
+				{
+					for (int y = 0; y < height; ++y)
+					{
+						const __u8 *src_row_ptr = srcptr + (((y * src_height) / height) * src_stride);
+						__u32 *dst = (__u32*)dstptr;
+						for (int x = 0; x < width; ++x)
+						{
+							__u32 pixel = pal[src_row_ptr[(x *src_width) / width]];
+							if (pixel & 0x80000000)
+								*dst = pixel;
+							++dst;
+						}
+						dstptr += surface->stride;
+					}
+				}
+				else if (flag & blitAlphaBlend)
+				{
+					for (int y = 0; y < height; ++y)
+					{
+						const __u8 *src_row_ptr = srcptr + (((y * src_height) / height) * src_stride);
+						gRGB *dst = (gRGB*)dstptr;
+						for (int x = 0; x < width; ++x)
+						{
+							dst->alpha_blend(pal[src_row_ptr[(x * src_width) / width]]);
+							++dst;
+						}
+						dstptr += surface->stride;
+					}
+				}
+				else
+				{
+					for (int y = 0; y < height; ++y)
+					{
+						const __u8 *src_row_ptr = srcptr + (((y * src_height) / height) * src_stride);
+						__u32 *dst = (__u32*)dstptr;
+						for (int x = 0; x < width; ++x)
+						{
+							*dst = pal[src_row_ptr[(x * src_width) / width]];
+							++dst;
+						}
+						dstptr += surface->stride;
+					}
+				}
+			}
+			else if ((surface->bpp == 32) && (src.surface->bpp == 32))
+			{
+				const int src_stride = src.surface->stride;
+				const __u8* srcptr = (const __u8*)src.surface->data + srcarea.left()*src.surface->bypp + srcarea.top()*src_stride;
+				__u8* dstptr = (__u8*)surface->data + area.left()*surface->bypp + area.top()*surface->stride;
+				const int width = area.width();
+				const int height = area.height();
+				const int src_height = srcarea.height();
+				const int src_width = srcarea.width();
+				if (flag & blitAlphaTest)
+				{
+					for (int y = 0; y < height; ++y)
+					{
+						const __u32 *src_row_ptr = (__u32*)(srcptr + (((y * src_height) / height) * src_stride));
+						__u32 *dst = (__u32*)dstptr;
+						for (int x = 0; x < width; ++x)
+						{
+							__u32 pixel = src_row_ptr[(x *src_width) / width];
+							if (pixel & 0x80000000)
+								*dst = pixel;
+							++dst;
+						}
+						dstptr += surface->stride;
+					}
+				}
+				else if (flag & blitAlphaBlend)
+				{
+					for (int y = 0; y < height; ++y)
+					{
+						const gRGB *src_row_ptr = (gRGB *)(srcptr + (((y * src_height) / height) * src_stride));
+						gRGB *dst = (gRGB*)dstptr;
+						for (int x = 0; x < width; ++x)
+						{
+							dst->alpha_blend(src_row_ptr[(x * src_width) / width]);
+							++dst;
+						}
+						dstptr += surface->stride;
+					}
+				}
+				else
+				{
+					for (int y = 0; y < height; ++y)
+					{
+						const __u32 *src_row_ptr = (__u32*)(srcptr + (((y * src_height) / height) * src_stride));
+						__u32 *dst = (__u32*)dstptr;
+						for (int x = 0; x < width; ++x)
+						{
+							*dst = src_row_ptr[(x * src_width) / width];
+							++dst;
+						}
+						dstptr += surface->stride;
+					}
+				}
+			}
+			else
+			{
+				eWarning("unimplemented: scale on non-accel surface %d->%d bpp", src.surface->bpp, surface->bpp);
+			}
+#ifdef GPIXMAP_DEBUG
+			s.stop();
+			eDebug("[BLITBENCH] CPU scale blit took %u us", s.elapsed_us());
+#endif
 			continue;
 		}
 
-		if ((surface->bpp == 8) && (src.surface->bpp==8))
+		if ((surface->bpp == 8) && (src.surface->bpp == 8))
 		{
 			__u8 *srcptr=(__u8*)src.surface->data;
 			__u8 *dstptr=(__u8*)surface->data;
@@ -477,38 +634,18 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 					}
 				} else if (flag & blitAlphaBlend)
 				{
-					// uh oh. this is only until hardware accel is working.
-
-					int width=area.width();
-							// ARGB color space!
-					unsigned char *src=(unsigned char*)srcptr;
-					unsigned char *dst=(unsigned char*)dstptr;
-
-#define BLEND(x, y, a) (y + ((x-y) * a)/256)
+					int width = area.width();
+					gRGB *src = (gRGB*)srcptr;
+					gRGB *dst = (gRGB*)dstptr;
 					while (width--)
 					{
-						unsigned char sa = src[3];
-						unsigned char sr = src[2];
-						unsigned char sg = src[1];
-						unsigned char sb = src[0];
-
-						unsigned char da = dst[3];
-						unsigned char dr = dst[2];
-						unsigned char dg = dst[1];
-						unsigned char db = dst[0];
-
-						dst[3] = BLEND(0xFF, da, sa);
-						dst[2] = BLEND(sr, dr, sa);
-						dst[1] = BLEND(sg, dg, sa);
-						dst[0] = BLEND(sb, db, sa);
-#undef BLEND
-
-						src += 4; dst += 4;
+						dst->alpha_blend(*src++);
+						++dst;
 					}
 				} else
 					memcpy(dstptr, srcptr, area.width()*surface->bypp);
-				srcptr+=src.surface->stride/4;
-				dstptr+=surface->stride/4;
+				srcptr = (__u32*)((__u8*)srcptr + src.surface->stride);
+				dstptr = (__u32*)((__u8*)dstptr + surface->stride);
 			}
 		}
 		else if ((surface->bpp == 32) && (src.surface->bpp==8))
@@ -516,34 +653,19 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			const __u8 *srcptr = (__u8*)src.surface->data;
 			__u8 *dstptr=(__u8*)surface->data; // !!
 			__u32 pal[256];
-
-			{
-				int i = 0;
-				if (src.surface->clut.data)
-					while (i < src.surface->clut.colors)
-					{
-						pal[i] = src.surface->clut.data[i].argb() ^ 0xFF000000;
-						++i;
-					}
-				for(; i != 256; ++i)
-				{
-					pal[i] = (0x010101*i) | 0xFF000000;
-				}
-			}
+			convert_palette(pal, src.surface->clut);
 
 			srcptr+=srcarea.left()*src.surface->bypp+srcarea.top()*src.surface->stride;
 			dstptr+=area.left()*surface->bypp+area.top()*surface->stride;
 			const int width=area.width();
 			for (int y = area.height(); y != 0; --y)
 			{
-				unsigned char *psrc = (unsigned char*)srcptr;
-				__u32 *dst = (__u32*)dstptr;
 				if (flag & blitAlphaTest)
-					blit_8i_to_32_at(dst, psrc, pal, width);
+					blit_8i_to_32_at((__u32*)dstptr, srcptr, pal, width);
 				else if (flag & blitAlphaBlend)
-					blit_8i_to_32_ab(dst, psrc, pal, width);
+					blit_8i_to_32_ab((gRGB*)dstptr, srcptr, (const gRGB*)pal, width);
 				else
-					blit_8i_to_32(dst, psrc, pal, width);
+					blit_8i_to_32((__u32*)dstptr, srcptr, pal, width);
 				srcptr += src.surface->stride;
 				dstptr += surface->stride;
 			}
@@ -641,6 +763,10 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 		}
 		else
 			eWarning("cannot blit %dbpp from %dbpp", surface->bpp, src.surface->bpp);
+#ifdef GPIXMAP_DEBUG
+		s.stop();
+		eDebug("[BLITBENCH] cpu blit took %u us", s.elapsed_us());
+#endif
 	}
 }
 

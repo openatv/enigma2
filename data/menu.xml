@@ -19,7 +19,7 @@
 			<item weight="100" level="0" text="Timers" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
 			<item weight="100" level="0" text="PowerTimers" entryID="powertimer_edit"><screen module="PowerTimerEdit" screen="PowerTimerEditList" /></item>
 		</menu>
-		<item level="1" text="VCR scart" entryID="scart_switch" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>
+		<item level="1" text="VCR scart" entryID="scart_switch" configcondition="config.av.show_vcr_scart" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>
 
 		<menu level="0" text="Information" entryID="info_screen">
 			<id val="information" />

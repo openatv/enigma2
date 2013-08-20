@@ -109,6 +109,7 @@ public:
 	RESULT stop();
 
 	RESULT getCurrentPCR(pts_t &pcr);
+	RESULT getFirstPTS(pts_t &pts);
 
 	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &conn);
 private:
