@@ -1,8 +1,9 @@
 #!/bin/sh
 
-if [ `cat /etc/hostname | cut -c 1-5`=="gb800" ]; then
+if [ `cat /etc/hostname | cut -c 1-2`=="gb" ]; then
 	echo 'Gigablue' > /proc/stb/info/model
-fi 
+	cat /etc/model > /proc/stb/info/gbmodel
+fi
 
 rm -rf /dev/dbox/oled0
 
