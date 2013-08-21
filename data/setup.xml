@@ -19,6 +19,7 @@
 		<item level="2" text="Descramble http streams" description="Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available).">config.streaming.descramble</item>
 		<!--item level="2" text="Enable Startup Bootvideo" description="You can Enable or Disable the Startup Bootvideo.">config.misc.bootvideo</item-->
 		<item level="1" text="After PowerLost" description="Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost.">config.usage.shutdownNOK_action</item>
+		<item level="1" text="Boot-up action" description="Select what should be done when the %s %s was boot-up, normal playing or goto standby.">config.usage.boot_action</item>
 	</setup>
 	<setup key="userinterface" title="Settings...">
 		<item level="0" text="1st Infobar timeout" description="Set the time to hide the infobar.">config.usage.infobar_timeout</item>
@@ -53,6 +54,7 @@
 		<item level="1" text="Sort plug-in browser alphabetically" description="This option allows you to disable sorting of the plugin browser.">config.usage.sort_pluginlist</item>
 		<item level="1" text="Sort Extensions list alphabetically" description="This option allows you to disable sorting of the Extensions list.">config.usage.sort_extensionslist</item>
 		<item level="1" text="Show PVR status in MoviePlayer infobar" description="This option moves the PVR status from the seprate window into the MoviePlayer infobar.">config.usage.movieplayer_pvrstate</item>
+		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown on the main menu" requires="ScartSwitch">config.usage.output_12V>config.av.show_vcr_scart</item>
 	</setup>
 	<setup key="channelselection" title="Channel selection settings">
 		<item level="1" text="Alternative numbering mode" description="When enabled, channel numbering will start at '1' for each bouquet.">config.usage.alternative_number_mode</item>
@@ -67,6 +69,7 @@
 		<item level="0" text="Show event-progress in channel selection" description="Set the type of the progress indication in the channel selection screen.">config.usage.show_event_progress_in_servicelist</item>
 		<item level="0" text="Show channel numbers in channel selection" description="When enabled, show channel numbers in the channel selection screen.">config.usage.show_channel_numbers_in_servicelist</item>
 		<item level="1" text="Show service type icons" description="Configure if and how service type icons will be shown.">config.usage.servicetype_icon_mode</item>
+		<item level="1" text="Show picons in servicelist" description="Configure if service picons will be shown in the servicelist.">config.usage.service_icon_enable</item>
 		<item level="1" text="Number of rows" description="This allows you change the number of rows shown.">config.usage.serviceitems_per_page</item>
 		<item level="1" text="Service number font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.usage.servicenum_fontsize</item>
 		<item level="1" text="Service name font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.usage.servicename_fontsize</item>
@@ -104,7 +107,7 @@
 		<item level="2" text="Center DVB subtitles" description="When enabled, graphical DVB subtitles will be centered horizontally.">config.subtitles.dvb_subtitles_centered</item>
 		<item level="2" text="Subtitle delay when timing is bad" description="Configure an additional delay to improve subtitle synchronisation.">config.subtitles.subtitle_bad_timing_delay</item>
 		<item level="2" text="DVB subtitle black transparency" description="Configure the transparency of the black background of graphical DVB subtitles.">config.subtitles.dvb_subtitles_backtrans</item>
-		<item level="2" text="Yellow external subtitles" description="When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color.">config.subtitles.pango_subtitles_yellow</item>
+		<item level="2" text="External subtitle color" description="Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow.">config.subtitles.pango_subtitle_colors</item>
 		<item level="2" text="Delay for external subtitles" description="Configure an additional delay to improve external subtitle synchronisation.">config.subtitles.pango_subtitles_delay</item>
 		<item level="2" text="Set fps for external subtitles" description="Can be used for different fps between external subtitles and video.">config.subtitles.pango_subtitles_fps</item>
 		<item level="2" text="Automatically turn on external subtitles" description="When enabled, external subtitles will be always turned on for playback movie.">config.subtitles.pango_autoturnon</item>

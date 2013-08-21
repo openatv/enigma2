@@ -150,9 +150,9 @@ class VideoHardware:
 		if self.modes.has_key("DVI-PC") and not self.getModeList("DVI-PC"):
 			print "remove DVI-PC because of not existing modes"
 			del self.modes["DVI-PC"]
-		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'iqonios300hd' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'tmnano' or getBoxType() == 'odimm7' or model == 'ini-3000' or getBoxType() == 'vusolo2' or getBoxType() == 'e3hd' or getBoxType() == 'dm500hd' or getBoxType() == 'dm800' or getBoxType() == 'ebox7358' or getBoxType() == 'ebox5100' or getBoxType() == 'ixusszero':
+		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'iqonios300hd' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'tmnano' or getBoxType() == 'odimm7' or model == 'ini-3000' or getBoxType() == 'vusolo2' or getBoxType() == 'e3hd' or getBoxType() == 'dm500hd' or getBoxType() == 'dm800' or getBoxType() == 'ebox7358' or getBoxType() == 'ebox5100' or getBoxType() == 'ixusszero' or getBoxType() == 'optimussos1':
 			del self.modes["YPbPr"]
-		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'ebox7358' or getBoxType() == 'tmnano' or self.hw_type == 'ultra' or self.hw_type == "me" or self.hw_type == "minime":
+		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'odinm6' or getBoxType() == 'ebox7358' or getBoxType() == 'tmnano' or self.hw_type == 'ultra' or self.hw_type == "me" or self.hw_type == "minime" or getBoxType() == 'optimussos1' or getBoxType() == 'optimussos2':
 			del self.modes["Scart"]
 		if self.hw_type == 'elite' or self.hw_type == 'premium' or self.hw_type == 'premium+' or self.hw_type == 'ultra' or self.hw_type == "me" or self.hw_type == "minime" : self.readPreferredModes()	
 

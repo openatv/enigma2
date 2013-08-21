@@ -1,5 +1,9 @@
 #!/bin/sh
 
+if [ `cat /etc/model | cut -c 1-2`=="gb" ]; then
+	cat /etc/model > /proc/stb/info/gbmodel
+fi
+
 prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@

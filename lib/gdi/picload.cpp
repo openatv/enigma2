@@ -884,7 +884,7 @@ int ePicLoad::startThread(int what, const char *file, int x, int y, bool async)
 
 	if(file_id < 0)
 	{
-		eDebug("[Picload] <format not supportet>");
+		eDebug("[Picload] <format not supported>");
 		return 1;
 	}
 
@@ -1004,13 +1004,13 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 
 	if (m_filepara->bits == 8)
 	{
-		result=new gPixmap(eSize(m_filepara->max_x, m_filepara->max_y), 8);
-		gSurface *surface = result->surface;
+		result=new gPixmap(m_filepara->max_x, m_filepara->max_y, 8, NULL, gPixmap::accelAlways);
+		gUnmanagedSurface *surface = result->surface;
 		surface->clut.data = m_filepara->palette;
 		surface->clut.colors = m_filepara->palette_size;
-		surface->clut.start=0;
 		m_filepara->palette = NULL; // transfer ownership
 		int o_y=0, u_y=0, v_x=0, h_x=0;
+		int extra_stride = surface->stride - surface->x;
 
 		unsigned char *tmp_buffer=((unsigned char *)(surface->data));
 		unsigned char *origin = m_filepara->pic_buffer;
@@ -1032,8 +1032,8 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 
 		if(m_filepara->oy < m_filepara->max_y)
 		{
-			memset(tmp_buffer, background, o_y * m_filepara->ox);
-			tmp_buffer += o_y * m_filepara->ox;
+			memset(tmp_buffer, background, o_y * surface->stride);
+			tmp_buffer += o_y * surface->stride;
 		}
 
 		for(int a = m_filepara->oy; a > 0; --a)
@@ -1053,22 +1053,24 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 				memset(tmp_buffer, background, h_x);
 				tmp_buffer += h_x;
 			}
+
+			tmp_buffer += extra_stride;
 		}
 
 		if(m_filepara->oy < m_filepara->max_y)
 		{
-			memset(tmp_buffer, background, u_y * m_filepara->ox);
-			tmp_buffer += u_y * m_filepara->ox;
+			memset(tmp_buffer, background, u_y * surface->stride);
 		}
 	}
 	else
 	{
-		result=new gPixmap(eSize(m_filepara->max_x, m_filepara->max_y), 32);
-		gSurface *surface = result->surface;
+		result=new gPixmap(m_filepara->max_x, m_filepara->max_y, 32, NULL, gPixmap::accelAuto);
+		gUnmanagedSurface *surface = result->surface;
 		int o_y=0, u_y=0, v_x=0, h_x=0;
 
 		unsigned char *tmp_buffer=((unsigned char *)(surface->data));
 		unsigned char *origin = m_filepara->pic_buffer;
+		int extra_stride = surface->stride - (surface->x * surface->bypp);
 
 		if(m_filepara->oy < m_filepara->max_y)
 		{
@@ -1084,10 +1086,12 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 		int background = m_conf.background;
 		if(m_filepara->oy < m_filepara->max_y)
 		{
-			for(int ma = o_y * m_filepara->ox; ma != 0; --ma)
+			for (int y = o_y; y != 0; --y)
 			{
-				*(int*)tmp_buffer = background;
-				tmp_buffer += 4;
+				int* row_buffer = (int*)tmp_buffer;
+				for (int x = m_filepara->ox; x !=0; --x)
+					*row_buffer++ = background;
+				tmp_buffer += surface->stride;
 			}
 		}
 
@@ -1122,20 +1126,20 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 					tmp_buffer += 4;
 				}
 			}
+
+			tmp_buffer += extra_stride;
 		}
 
 		if(m_filepara->oy < m_filepara->max_y)
 		{
-			for(int a = u_y * m_filepara->ox; a != 0; --a)
+			for (int y = u_y; y != 0; --y)
 			{
-				*(int*)tmp_buffer = background;
-				tmp_buffer += 4;
+				int* row_buffer = (int*)tmp_buffer;
+				for (int x = m_filepara->ox; x !=0; --x)
+					*row_buffer++ = background;
+				tmp_buffer += surface->stride;
 			}
 		}
-
-		surface->clut.data=0;
-		surface->clut.colors=0;
-		surface->clut.start=0;
 	}
 
 	delete m_filepara;
@@ -1151,23 +1155,34 @@ RESULT ePicLoad::setPara(PyObject *val)
 	if (PySequence_Size(val) < 7)
 		return 0;
 	else {
-		int as;
 		ePyObject fast		= PySequence_Fast(val, "");
-		m_conf.max_x		= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 0));
-		m_conf.max_y		= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 1));
-		as			= PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 3));
-		m_conf.aspect_ratio	= as == 0 ? 0.0 : (double)PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 2)) / as;
-		m_conf.usecache		= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 4));
-		m_conf.resizetype	= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 5));
-		const char *bg_str	= PyString_AsString( PySequence_Fast_GET_ITEM(fast, 6));
+		int width		= PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 0));
+		int height		= PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 1));
+		double aspectRatio 	= PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 2));
+		int as			= PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 3));
+		bool useCache		= PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 4));
+		int resizeType	        = PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 5));
+		const char *bg_str	= PyString_AsString(PySequence_Fast_GET_ITEM(fast, 6));
 
-		if(bg_str[0] == '#' && strlen(bg_str)==9)
-			m_conf.background = strtoul(bg_str+1, NULL, 16);
-		eDebug("[Picload] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X",
-				m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio,
-				(int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background);
+		return setPara(width, height, aspectRatio, as, useCache, resizeType, bg_str);
 	}
 	return 1;
+}
+
+RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool useCache, int resizeType, const char *bg_str)
+{
+	m_conf.max_x = width;
+	m_conf.max_y = height;
+	m_conf.aspect_ratio = as == 0 ? 0.0 : aspectRatio / as;
+	m_conf.usecache	= useCache;
+	m_conf.resizetype = resizeType;
+
+	if(bg_str[0] == '#' && strlen(bg_str)==9)
+		m_conf.background = strtoul(bg_str+1, NULL, 16);
+	eDebug("[Picload] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X",
+			m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio,
+			(int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background);
+	return 1;	
 }
 
 //------------------------------------------------------------------------------------

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-09 17:05+0100\n"
+"POT-Creation-Date: 2013-07-25 09:57+0200\n"
 "PO-Revision-Date: 2013-06-02 22:34+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: RU locale edited by Sowa\n"
@@ -1061,6 +1061,10 @@ msgstr "Автосохранение настроек"
 msgid "Automatically start timeshift after"
 msgstr "Автоматическое начало сдвига во времени после"
 
+#, fuzzy
+msgid "Automatically turn on external subtitles"
+msgstr "Желтые внешние субтитры"
+
 msgid "Automatically update Client/Server View?"
 msgstr "Просмотр автообновления Клиент/Сервер?"
 
@@ -1443,8 +1447,9 @@ msgstr "Режим предпросмотра канала"
 msgid "Channel selection"
 msgstr "Выбор каналов"
 
-msgid "Channel selection configuration"
-msgstr "Настройка выбора каналов"
+#, fuzzy
+msgid "Channel selection settings"
+msgstr "Настройки коллекции"
 
 msgid "Channel:"
 msgstr "Канал:"
@@ -1554,6 +1559,10 @@ msgstr "Круговая левая"
 
 msgid "Circular right"
 msgstr "Круговая правая"
+
+#, fuzzy
+msgid "Clean network trash can's"
+msgstr "Не удаётся переместить в корзину!"
 
 msgid "Cleaning Trashes"
 msgstr "Удалить из корзины"
@@ -2504,10 +2513,6 @@ msgstr ""
 msgid "Do you want to update your %s %s ?"
 msgstr "Вы желаете обновить %s %s?"
 
-#, python-format
-msgid "Do you want to update your %s ?"
-msgstr "Вы желаете обновить %s?"
-
 msgid "Do you want to upgrade the package:\n"
 msgstr "Вы желаете обновить пакет:\n"
 
@@ -2520,9 +2525,9 @@ msgstr "Не останавливать текущее событие, но от
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
-msgstr[0] "Готово - Установлен, обновлен или удален %d пакет (%s)"
-msgstr[1] "Готово - Установлено, обновлено или удалено %d пакета (%s)"
-msgstr[2] "Готово - Установлено, обновлено или удалено %d пакетов (%s)"
+msgstr[0] "Готово - Установлен, обновлен или удален %d пакет с %s ошибками"
+msgstr[1] "Готово - Установлены, обновлены или удалены %d пакета с %s ошибками"
+msgstr[2] "Готово - Установлены, обновлены или удалены %d пакетов с %s ошибками"
 
 msgid "Download"
 msgstr "Загрузить"
@@ -4686,6 +4691,9 @@ msgstr "PCR PID"
 msgid "PIDs"
 msgstr "ПИДы"
 
+msgid "PLP ID"
+msgstr ""
+
 msgid "PMT PID"
 msgstr "PMT PID"
 
@@ -5535,6 +5543,10 @@ msgstr "Дать новое имя:"
 #, python-format
 msgid "Renamed %s!"
 msgstr "Переименование %s!"
+
+#, fuzzy
+msgid "Repeat"
+msgstr "Повторы"
 
 msgid "Repeat Display Message"
 msgstr "Повторить сообщение"
@@ -7070,6 +7082,12 @@ msgstr ""
 "Благодарим вас за использование мастера. Ваш %s %s теперь готов к использованию.\n"
 "Пожалуйста, нажмите ОК, чтобы начать работу с %s %s."
 
+msgid "The %s %s reads the stored EPG data every (hours)."
+msgstr "%s %s считывает сохранённые данные EPG каждые (час)"
+
+msgid "The %s %s stores the EPG data every (hours)."
+msgstr "%s %s сохраяет данные EPG каждые (час)"
+
 msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
@@ -7101,12 +7119,6 @@ msgid ""
 msgstr ""
 "Файловая система носителя для сдвига времени не поддерживает жёсткие ссылки.\n"
 "Убедитесь, что она отформатирована в EXT2 или EXT3!"
-
-msgid "The %s %s reads the stored EPG data every (hours)."
-msgstr "%s %s считывает сохранённые данные EPG каждые (час)"
-
-msgid "The %s %s stores the EPG data every (hours)."
-msgstr "%s %s сохраяет данные EPG каждые (час)"
 
 msgid ""
 "The IMDb plugin is not installed!\n"
@@ -7918,6 +7930,9 @@ msgstr "Использовать цветные кнопки ViX *"
 msgid "Use ViaSat EPG information when it is available."
 msgstr "Испольовать информацию ViaSat в EPG, когда она доступна."
 
+msgid "Use WOL"
+msgstr ""
+
 msgid "Use a gateway"
 msgstr "Использовать шлюз"
 
@@ -8373,6 +8388,10 @@ msgstr "Если эта функция включена, удаленные за
 msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
 msgstr "Если эта функция включена, внешние субтитры (в медиа-файах) будут отображаться в желтом, а не первоначальном цвете."
 
+#, fuzzy
+msgid "When enabled, external subtitles will be always turned on for playback movie."
+msgstr "Если эта функция включена, телетекст субтитров будут показаны в исходном положении."
+
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
 msgstr "Если эта функция включена, графические субтитры DVB предпочтительнее субтитрами телетекста, когда доступны оба типа."
 
@@ -8387,6 +8406,9 @@ msgstr "Если эта функция включена, графические 
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "При включении измеряется потребляемая мощность, для обнаружения остановки ротора (если поддерживается тюнером)."
+
+msgid "When enabled, network trash can's are probed for cleaning."
+msgstr ""
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "Если эта функция включена, нажатие на '0' переключит вас на первый канал в первый букет и удалит историю переключений."
@@ -8700,6 +8722,19 @@ msgstr ""
 "Ваше соединение с Интернет работает.\n"
 "\n"
 
+msgid ""
+"Your %s %s is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"%s %s готов к работе.\n"
+"\n"
+"Интернет соединение уже работает.\n"
+"\n"
+"Нажмите ОК для продолжения."
+
 #, python-format
 msgid "Your %s %s is rebooting"
 msgstr "Перезагрузка %s %s"
@@ -8707,6 +8742,11 @@ msgstr "Перезагрузка %s %s"
 #, python-format
 msgid "Your %s %s is shutting down"
 msgstr "Перевод %s %s в полный режим ожидания"
+
+msgid "Your %s %s is shutting down. Please stand by..."
+msgstr ""
+"%s %s переводится в полный режим ожидания.\n"
+"Пожалуйста, ожидайте..."
 
 #, python-format
 msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
@@ -8737,24 +8777,6 @@ msgid ""
 msgstr ""
 "%s %s будет перезапущен после удаления сервиса\n"
 "Вы хотите удалить сейчас?"
-
-msgid ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"%s %s готов к работе.\n"
-"\n"
-"Интернет соединение уже работает.\n"
-"\n"
-"Нажмите ОК для продолжения."
-
-msgid "Your %s %s is shutting down. Please stand by..."
-msgstr ""
-"%s %s переводится в полный режим ожидания.\n"
-"Пожалуйста, ожидайте..."
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "Ресивер будет перезапущен после нажатия кнопки OK на пульте ДУ"
@@ -10027,3 +10049,9 @@ msgstr "переключить и записать"
 
 msgid "zapped"
 msgstr "переключено"
+
+#~ msgid "Channel selection configuration"
+#~ msgstr "Настройка выбора каналов"
+
+#~ msgid "Do you want to update your %s ?"
+#~ msgstr "Вы желаете обновить %s?"

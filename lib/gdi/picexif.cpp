@@ -619,12 +619,9 @@ void Cexif::process_COM (const unsigned char * Data, int length)
 
 void Cexif::process_SOFn (const unsigned char * Data, int marker)
 {
-	int data_precision, num_components;
-
-	data_precision = Data[2];
 	m_exifinfo->Height = Get16m((void*)(Data+3));
 	m_exifinfo->Width = Get16m((void*)(Data+5));
-	num_components = Data[7];
+	unsigned char num_components = Data[7];
 
 	if (num_components == 3) strcpy(m_exifinfo->IsColor,"yes");
 	else strcpy(m_exifinfo->IsColor,"no");

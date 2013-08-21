@@ -623,6 +623,7 @@ void eFastScan::parseResult()
 
 	if (multibouquet)
 	{
+		bool moveToFront = true;
 		std::string bouquetname = "userbouquet." + bouquetFilename + ".tv";
 		std::string bouquetquery = "FROM BOUQUET \"" + bouquetname + "\" ORDER BY bouquet";
 		eServiceReference bouquetref(eServiceReference::idDVB, eServiceReference::flagDirectory, bouquetquery);
@@ -634,6 +635,7 @@ void eFastScan::parseResult()
 		{
 			/* bouquet already exists, empty it before we continue */
 			bouquet->m_services.clear();
+			moveToFront = false;
 		}
 		else
 		{
@@ -659,7 +661,7 @@ void eFastScan::parseResult()
 			eDebug("failed to create bouquet!");
 		}
 
-		if (!db->getBouquet(rootref, bouquet) && bouquet)
+		if (moveToFront && !db->getBouquet(rootref, bouquet) && bouquet)
 		{
 			/* now move the new fastscan bouquet to the front */
 			for (std::list<eServiceReference>::iterator it = bouquet->m_services.begin(); it != bouquet->m_services.end(); it++)
@@ -693,6 +695,7 @@ void eFastScan::parseResult()
 	{
 		if (multibouquet)
 		{
+			bool moveToFront = true;
 			std::string bouquetname = "userbouquet." + bouquetFilename + ".radio";
 			std::string bouquetquery = "FROM BOUQUET \"" + bouquetname + "\" ORDER BY bouquet";
 			eServiceReference bouquetref(eServiceReference::idDVB, eServiceReference::flagDirectory, bouquetquery);
@@ -704,6 +707,7 @@ void eFastScan::parseResult()
 			{
 				/* bouquet already exists, empty it before we continue */
 				bouquet->m_services.clear();
+				moveToFront = false;
 			}
 			else
 			{
@@ -729,7 +733,7 @@ void eFastScan::parseResult()
 				eDebug("failed to create bouquet!");
 			}
 
-			if (!db->getBouquet(rootref, bouquet) && bouquet)
+			if (moveToFront && !db->getBouquet(rootref, bouquet) && bouquet)
 			{
 				/* now move the new fastscan bouquet to the front */
 				for (std::list<eServiceReference>::iterator it = bouquet->m_services.begin(); it != bouquet->m_services.end(); it++)

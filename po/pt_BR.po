@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-09 17:05+0100\n"
+"POT-Creation-Date: 2013-07-25 09:57+0200\n"
 "PO-Revision-Date: 2012-12-09 02:05+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: No-Team\n"
@@ -1107,6 +1107,10 @@ msgstr "Busca automática"
 msgid "Automatically start timeshift after"
 msgstr ""
 
+#, fuzzy
+msgid "Automatically turn on external subtitles"
+msgstr "Legendas externas em amarelo"
+
 msgid "Automatically update Client/Server View?"
 msgstr ""
 
@@ -1514,8 +1518,8 @@ msgid "Channel selection"
 msgstr "Seleção de canal"
 
 #, fuzzy
-msgid "Channel selection configuration"
-msgstr "Seleção de canal"
+msgid "Channel selection settings"
+msgstr "Definições da coleção"
 
 msgid "Channel:"
 msgstr "Canal:"
@@ -1634,6 +1638,10 @@ msgstr "Circular esquerda"
 
 msgid "Circular right"
 msgstr "Circular direita"
+
+#, fuzzy
+msgid "Clean network trash can's"
+msgstr "Impossível apagar"
 
 msgid "Cleaning Trashes"
 msgstr ""
@@ -2629,10 +2637,6 @@ msgstr ""
 
 #, fuzzy, python-format
 msgid "Do you want to update your %s %s ?"
-msgstr "Deseja restaurar as definições?"
-
-#, fuzzy, python-format
-msgid "Do you want to update your %s ?"
 msgstr "Deseja restaurar as definições?"
 
 msgid "Do you want to upgrade the package:\n"
@@ -4942,6 +4946,9 @@ msgstr "PCR PID"
 msgid "PIDs"
 msgstr "PIDs"
 
+msgid "PLP ID"
+msgstr ""
+
 msgid "PMT PID"
 msgstr "PMT PID"
 
@@ -5839,6 +5846,10 @@ msgstr "Renomear"
 #, fuzzy, python-format
 msgid "Renamed %s!"
 msgstr "Renomear"
+
+#, fuzzy
+msgid "Repeat"
+msgstr "Repetições"
 
 msgid "Repeat Display Message"
 msgstr ""
@@ -7486,6 +7497,12 @@ msgstr ""
 "Obrigado por usar o assistente. Seu receptor está pronto para uso.\n"
 "Por favor pressione 'OK' para usar seu receptor."
 
+msgid "The %s %s reads the stored EPG data every (hours)."
+msgstr ""
+
+msgid "The %s %s stores the EPG data every (hours)."
+msgstr ""
+
 #, fuzzy
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -7517,12 +7534,6 @@ msgstr ""
 msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
-msgstr ""
-
-msgid "The %s %s reads the stored EPG data every (hours)."
-msgstr ""
-
-msgid "The %s %s stores the EPG data every (hours)."
 msgstr ""
 
 #, fuzzy
@@ -8372,6 +8383,9 @@ msgstr ""
 msgid "Use ViaSat EPG information when it is available."
 msgstr "Usar informação ViaSat EPG quando disponível."
 
+msgid "Use WOL"
+msgstr ""
+
 msgid "Use a gateway"
 msgstr "Usar um gateway"
 
@@ -8851,6 +8865,10 @@ msgstr "Quando ativado, gravações apagadas são movidas para a lixeira, em vez
 msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
 msgstr "Quando ativado, legendas externas (em arquivos de mídia) serão exibidas em amarelo, em vez da cor original."
 
+#, fuzzy
+msgid "When enabled, external subtitles will be always turned on for playback movie."
+msgstr "Quando ativado, as legendas de teletexto serão exibidas em sua posição original."
+
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
 msgstr "Quando ativado, legendas gráficas DVB têm preferência sobre as legendas de teletexto, quando ambos os tipos estão disponíveis."
 
@@ -8865,6 +8883,9 @@ msgstr "Quando ativado, legendas gráficas DVB serão exibidas em amarelo, em ve
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Quando ativado, medirá o consumo de energia para detectar quando o \"rotor\" parar de girar (quando suportado pelo sintonizador)."
+
+msgid "When enabled, network trash can's are probed for cleaning."
+msgstr ""
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr ""
@@ -9180,6 +9201,20 @@ msgstr ""
 "A ligação à internet está funcionando.\n"
 "\n"
 
+#, fuzzy
+msgid ""
+"Your %s %s is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Seu receptor está pronto para uso.\n"
+"\n"
+"A ligação à internet está funcionando agora.\n"
+"\n"
+"Por favor pressione 'OK' para continuar."
+
 #, fuzzy, python-format
 msgid "Your %s %s is rebooting"
 msgstr "Seu receptor está reiniciando..."
@@ -9187,6 +9222,10 @@ msgstr "Seu receptor está reiniciando..."
 #, fuzzy, python-format
 msgid "Your %s %s is shutting down"
 msgstr "Seu receptor está desligando..."
+
+#, fuzzy
+msgid "Your %s %s is shutting down. Please stand by..."
+msgstr "Seu receptor está desligando... Por favor, aguarde..."
 
 #, fuzzy, python-format
 msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
@@ -9210,24 +9249,6 @@ msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
 msgstr ""
-
-#, fuzzy
-msgid ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Seu receptor está pronto para uso.\n"
-"\n"
-"A ligação à internet está funcionando agora.\n"
-"\n"
-"Por favor pressione 'OK' para continuar."
-
-#, fuzzy
-msgid "Your %s %s is shutting down. Please stand by..."
-msgstr "Seu receptor está desligando... Por favor, aguarde..."
 
 #, fuzzy
 msgid "Your STB will restart after pressing OK on your remote control."
@@ -10539,3 +10560,11 @@ msgstr "desencriptar e gravar ecm"
 
 msgid "zapped"
 msgstr "zapped"
+
+#, fuzzy
+#~ msgid "Channel selection configuration"
+#~ msgstr "Seleção de canal"
+
+#, fuzzy
+#~ msgid "Do you want to update your %s ?"
+#~ msgstr "Deseja restaurar as definições?"

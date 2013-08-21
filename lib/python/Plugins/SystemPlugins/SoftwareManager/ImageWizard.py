@@ -17,7 +17,7 @@ from Components.Harddisk import harddiskmanager
 
 config.misc.firstrun = ConfigBoolean(default = True)
 config.plugins.configurationbackup = ConfigSubsection()
-if getBoxType() == "odinm9" or getBoxType() == "odinm7":
+if getBoxType() == "odinm9" or getBoxType() == "odinm7" or getBoxType() == "odinm6":
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
 else:
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
@@ -29,7 +29,7 @@ backupfile = "enigma2settingsbackup.tar.gz"
 def checkConfigBackup():
 	parts = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
 	box = getBoxType()
-	if box == "odinm9" or box == "odinm7":
+	if box == "odinm9" or box == "odinm7" or box == "odinm6":
 		parts.append(('mtd backup','/media/backup'))
 	for x in parts:
 		if x[1] == '/':

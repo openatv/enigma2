@@ -336,7 +336,7 @@ DEFINE_REF(eTextPara);
 int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags, int border, bool last,
 		bool activate_newcolor, unsigned long newcolor)
 {
-	int xadvance, top, left, width, height;
+	int xadvance, top, left, height;
 	pGlyph ng;
 	int xborder = 0;
 
@@ -401,7 +401,6 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 
 		top = glyph->top;
 		left = glyph->left;
-		width = glyph->bitmap.width;
 		height = glyph->bitmap.rows;
 	}
 	else
@@ -413,7 +412,6 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 		xadvance = glyph->xadvance;
 		top = glyph->top;
 		left = glyph->left;
-		width = glyph->width;
 		height = glyph->height;
 	}
 
@@ -896,7 +894,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 
 	ePtr<gPixmap> target;
 	dc.getPixmap(target);
-	gSurface *surface = target->surface;
+	gUnmanagedSurface *surface = target->surface;
 	gRGB currentforeground = foreground;
 
 	register int opcode = -1;

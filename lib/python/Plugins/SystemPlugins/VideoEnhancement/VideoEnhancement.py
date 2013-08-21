@@ -29,10 +29,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			if getBoxType() == 'odinm7':
-				config.pep.contrast = ConfigSlider(default=128, limits=(0,256))
-			else:
-				config.pep.contrast = ConfigSlider(default=128, limits=(0,256))			
+			config.pep.contrast = ConfigSlider(default=128, limits=(0,256))			
 			config.pep.contrast.addNotifier(setContrast)
 		else:
 			config.pep.contrast = NoSave(ConfigNothing())
@@ -51,10 +48,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			if getBoxType() == 'odinm7':
-				config.pep.saturation = ConfigSlider(default=128, limits=(0,256))
-			else:
-				config.pep.saturation = ConfigSlider(default=128, limits=(0,256))
+			config.pep.saturation = ConfigSlider(default=128, limits=(0,256))
 			config.pep.saturation.addNotifier(setSaturation)
 		else:
 			config.pep.saturation = NoSave(ConfigNothing())
@@ -73,10 +67,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			if getBoxType() == 'odinm7':
-				config.pep.hue = ConfigSlider(default=128, limits=(0,256))
-			else:
-				config.pep.hue = ConfigSlider(default=128, limits=(0,256))
+			config.pep.hue = ConfigSlider(default=128, limits=(0,256))
 			config.pep.hue.addNotifier(setHue)
 		else:
 			config.pep.hue = NoSave(ConfigNothing())
@@ -94,10 +85,7 @@ class VideoEnhancement:
 
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
-			if getBoxType() == 'odinm7':
-				config.pep.brightness = ConfigSlider(default=128, limits=(0,256))
-			else:
-				config.pep.brightness = ConfigSlider(default=128, limits=(0,256))			
+			config.pep.brightness = ConfigSlider(default=128, limits=(0,256))			
 			config.pep.brightness.addNotifier(setBrightness)
 		else:
 			config.pep.brightness = NoSave(ConfigNothing())
@@ -197,8 +185,6 @@ class VideoEnhancement:
 
 			if getBoxType() == 'gbquad':
 				config.pep.sharpness = ConfigSlider(default=256, limits=(0,256))
-			elif getBoxType() == 'odinm7':
-				config.pep.sharpness = ConfigSlider(default=128, limits=(0,256))	
 			else:
 				config.pep.sharpness = ConfigSlider(default=0, limits=(0,256))
 			config.pep.sharpness.addNotifier(setSharpness)

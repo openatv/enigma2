@@ -30,6 +30,14 @@ if IQON
 SUBDIRS = iqon
 endif
 
+if JEPSSEN
+SUBDIRS = mediabox
+endif
+
+if EDISION
+SUBDIRS = optimuss
+endif
+
 if IXUSSONE
 SUBDIRS = ixussone
 endif
@@ -42,12 +50,8 @@ if IXUSSDUO
 SUBDIRS = ixusszero
 endif
 
-if ODINM7
-SUBDIRS = odinm7
-endif
-
-if ODINM9
-SUBDIRS = odinm9
+if ODIN
+SUBDIRS = odinm9 odinm7 odinm6
 endif
 
 if TECHNOMATE
@@ -55,7 +59,11 @@ SUBDIRS = tm
 endif
 
 if VENTON
-SUBDIRS = ini0 ini1 ini2 ini3
+SUBDIRS = ini0 ini1 ini2 ini3 ini4
+endif
+
+if INI
+SUBDIRS = ini0 ini1 ini2 ini3 ini4
 endif
 
 if VUSOLO

@@ -28,10 +28,11 @@ class SelectionList(MenuList):
 		self.setList(self.list)
 
 	def toggleSelection(self):
-		idx = self.getSelectedIndex()
-		item = self.list[idx][0]
-		self.list[idx] = SelectionEntryComponent(item[0], item[1], item[2], not item[3])
-		self.setList(self.list)
+		if len(self.list) > 0:
+			idx = self.getSelectedIndex()
+			item = self.list[idx][0]
+			self.list[idx] = SelectionEntryComponent(item[0], item[1], item[2], not item[3])
+			self.setList(self.list)
 
 	def getSelectionsList(self):
 		return [ (item[0][0], item[0][1], item[0][2]) for item in self.list if item[0][3] ]

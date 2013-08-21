@@ -563,15 +563,16 @@ def runScreenTest():
 			evfd.getInstance().vfd_write_string("-E2-")
 		evfd.getInstance().vfd_led(str(1))
 		
-	if enigma.getBoxType() == 'odinm7':
+	if enigma.getBoxType() == 'odinm7' or enigma.getBoxType() == 'odinm6' or enigma.getBoxType() == 'xp1000s':
 		f = open("/dev/dbox/oled0", "w")
 		f.write('-E2-')
 		f.close()
 		
-
-	print config.usage.shutdownOK.getValue()
-	print config.usage.shutdownNOK_action.getValue()
-	if not config.usage.shutdownOK.getValue() and not config.usage.shutdownNOK_action.getValue() == 'normal':
+	print "##################################### BOOTUP ACTIONS ###########################################"
+	print "lastshutdown=%s" % config.usage.shutdownOK.getValue()
+	print "NOK shutdown action=%s" % config.usage.shutdownNOK_action.getValue()
+	print "bootup action=%s" % config.usage.boot_action.getValue()
+	if not config.usage.shutdownOK.getValue() and not config.usage.shutdownNOK_action.getValue() == 'normal' or not config.usage.boot_action.getValue() == 'normal':
 		print "last shutdown = %s" % config.usage.shutdownOK.getValue()
 		import Screens.PowerLost
 		Screens.PowerLost.PowerLost(session)
@@ -605,7 +606,6 @@ def runScreenTest():
 		if x[0] != -1
 	]
 	wakeupList.sort()
-	print 'wakeupList',wakeupList
 	recordTimerWakeupAuto = False
 	if wakeupList and wakeupList[0][1] != 3:
 		from time import strftime
@@ -630,7 +630,6 @@ def runScreenTest():
 
 	PowerTimerWakeupAuto = False
 	if wakeupList and wakeupList[0][1] == 3:
-		print 'PT TEST:', wakeupList
 		from time import strftime
 		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 60: # no time to switch box back on

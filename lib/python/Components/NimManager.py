@@ -208,13 +208,15 @@ class SecConfigure:
 					elif nim.configMode.getValue() == "simple":		#simple config
 						print "diseqcmode: ", nim.diseqcMode.getValue()
 						if nim.diseqcMode.getValue() == "single":			#single
+							setVoltageTone = nim.simpleDiSEqCSetVoltageTone.getValue()
 							if nim.simpleSingleSendDiSEqC.getValue():
-								self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA, diseqc13V = nim.diseqc13V.getValue())
+								self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, setVoltageTone = setVoltageTone, diseqcpos = diseqcParam.AA, diseqc13V = nim.diseqc13V.getValue())
 							else:
-								self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.NONE, diseqcpos = diseqcParam.SENDNO, diseqc13V = nim.diseqc13V.getValue())
+								self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.NONE, setVoltageTone = setVoltageTone, diseqcpos = diseqcParam.SENDNO, diseqc13V = nim.diseqc13V.getValue())
 						elif nim.diseqcMode.getValue() == "toneburst_a_b":		#Toneburst A/B
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.A, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO, diseqc13V = nim.diseqc13V.getValue())
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.B, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO, diseqc13V = nim.diseqc13V.getValue())
+							setVoltageTone = nim.simpleDiSEqCSetVoltageTone.getValue()
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.A, diseqcmode = diseqcParam.V1_0, setVoltageTone = setVoltageTone, diseqcpos = diseqcParam.SENDNO, diseqc13V = nim.diseqc13V.getValue())
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.B, diseqcmode = diseqcParam.V1_0, setVoltageTone = setVoltageTone, diseqcpos = diseqcParam.SENDNO, diseqc13V = nim.diseqc13V.getValue())
 						elif nim.diseqcMode.getValue() == "diseqc_a_b":		#DiSEqC A/B
 							fastDiSEqC = nim.simpleDiSEqCOnlyOnSatChange.getValue()
 							setVoltageTone = nim.simpleDiSEqCSetVoltageTone.getValue()
@@ -1325,6 +1327,7 @@ def InitNimManager(nimmgr):
 			section.latitude = ConfigFloat(default = [50,767], limits = [(0,359),(0,999)])
 			section.latitudeOrientation = ConfigSelection(latitude_orientation_choices, "north")
 			section.tuningstepsize = ConfigFloat(default = [0,360], limits = [(0,9),(0,999)])
+			section.rotorPositions = ConfigInteger(default = 49, limits = [1,999])
 			section.turningspeedH = ConfigFloat(default = [2,3], limits = [(0,9),(0,9)])
 			section.turningspeedV = ConfigFloat(default = [1,7], limits = [(0,9),(0,9)])
 			section.powerMeasurement = ConfigYesNo(default=True)
@@ -1440,6 +1443,7 @@ def InitNimManager(nimmgr):
 			nim.latitude = ConfigFloat(default=[50,767], limits=[(0,359),(0,999)])
 			nim.latitudeOrientation = ConfigSelection(latitude_orientation_choices, "north")
 			nim.tuningstepsize = ConfigFloat(default = [0,360], limits = [(0,9),(0,999)])
+			nim.rotorPositions = ConfigInteger(default = 49, limits = [1,999])
 			nim.turningspeedH = ConfigFloat(default = [2,3], limits = [(0,9),(0,9)])
 			nim.turningspeedV = ConfigFloat(default = [1,7], limits = [(0,9),(0,9)])
 			nim.powerMeasurement = ConfigYesNo(False)

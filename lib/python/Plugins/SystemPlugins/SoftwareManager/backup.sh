@@ -67,6 +67,17 @@ elif [ $MODEL = "odinm7" ] ; then
 	MAINDEST=$DIRECTORY/en2
 	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_odinm7/$DATE
+## TESTING THE Odin M6 Model	
+elif [ $MODEL = "odinm6" ] ; then
+	TYPE=ODINM7
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="ODIN $MODEL"
+	MTDKERNEL="mtd3"
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/en2
+	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_odinm7/$DATE
 ## TESTING THE E3 HD Model	
 elif [ $MODEL = "e3hd" ] ; then
 	TYPE=E3HD
@@ -127,10 +138,10 @@ elif [ $MODEL = "ventonhdx" ] ; then
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/venton/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_$MODEL/$DATE/venton
-## TESTING THE Venton HDe Models
-elif [ $MODEL = "ventonhde" ] ; then
+## TESTING THE INI HDe Models
+elif [ $MODEL = "inihde" ] ; then
 	TYPE=VENTON
-	MODEL="venton-hde"
+	MODEL="inihde"
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
 	SHOWNAME="$MODEL"

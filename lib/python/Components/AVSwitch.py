@@ -26,21 +26,50 @@ class AVSwitch:
 		eAVSwitch.getInstance().setVideomode(value)
 
 	def getOutputAspect(self):
-		valstr = config.av.aspectratio.getValue()
-		if valstr in ("4_3_letterbox", "4_3_panscan"): # 4:3
-			return (4,3)
-		elif valstr == "16_9": # auto ... 4:3 or 16:9
-			try:
-				aspect_str = open("/proc/stb/vmpeg/0/aspect", "r").read()
-				if aspect_str == "1": # 4:3
-					return (4,3)
-			except IOError:
+		if os.path.exists('/usr/lib/enigma2/python/Plugins/SystemPlugins/Videomode/VideoHardware.pyo'):
+			from Plugins.SystemPlugins.Videomode.VideoHardware import video_hw
+			ret = (16,9)
+			port = config.av.videoport.getValue()
+			if port not in config.av.videomode:
+				print "current port not available in getOutputAspect!!! force 16:9"
+			else:
+				mode = config.av.videomode[port].getValue()
+				force_widescreen = video_hw.isWidescreenMode(port, mode)
+				is_widescreen = force_widescreen or config.av.aspect.getValue() in ("16_9", "16_10")
+				is_auto = config.av.aspect.getValue() == "auto"
+				if is_widescreen:
+					if force_widescreen:
+						pass
+					else:
+						aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.getValue()]
+						if aspect == "16:10":
+							ret = (16,10)
+				elif is_auto:
+					try:
+						aspect_str = open("/proc/stb/vmpeg/0/aspect", "r").read()
+						if aspect_str == "1": # 4:3
+							ret = (4,3)
+					except IOError:
+						pass
+				else:  # 4:3
+					ret = (4,3)
+			return ret
+		else:
+			valstr = config.av.aspectratio.getValue()
+			if valstr in ("4_3_letterbox", "4_3_panscan"): # 4:3
+				return (4,3)
+			elif valstr == "16_9": # auto ... 4:3 or 16:9
+				try:
+					aspect_str = open("/proc/stb/vmpeg/0/aspect", "r").read()
+					if aspect_str == "1": # 4:3
+						return (4,3)
+				except IOError:
+					pass
+			elif valstr in ("16_9_always", "16_9_letterbox"): # 16:9
 				pass
-		elif valstr in ("16_9_always", "16_9_letterbox"): # 16:9
-			pass
-		elif valstr in ("16_10_letterbox", "16_10_panscan"): # 16:10
-			return (16,10)
-		return (16,9)
+			elif valstr in ("16_10_letterbox", "16_10_panscan"): # 16:10
+				return (16,10)
+			return (16,9)
 
 	def getFramebufferScale(self):
 		aspect = self.getOutputAspect()
@@ -155,20 +184,22 @@ def InitAVSwitch():
 
 	def setWSS(configElement):
 		iAVSwitch.setAspectWSS()
-
-	# this will call the "setup-val" initial
+	
 	config.av.colorformat.addNotifier(setColorFormat)
-	config.av.aspectratio.addNotifier(setAspectRatio)
-	config.av.tvsystem.addNotifier(setSystem)
-	config.av.wss.addNotifier(setWSS)
-
+	if not os.path.exists('/usr/lib/enigma2/python/Plugins/SystemPlugins/Videomode/VideoHardware.pyo'):
+		# this will call the "setup-val" initial
+		config.av.aspectratio.addNotifier(setAspectRatio)
+		config.av.tvsystem.addNotifier(setSystem)
+		config.av.wss.addNotifier(setWSS)
+	
 	iAVSwitch.setInput("ENCODER") # init on startup
-	if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000' or getBoxType() == 'e3hd':
+	if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'odinm6' or getBoxType() == 'omtimussos1' or getBoxType() == 'omtimussos2':
 		detected = False
 	else:
 		detected = eAVSwitch.getInstance().haveScartSwitch()
 	
 	SystemInfo["ScartSwitch"] = detected
+	config.av.show_vcr_scart = ConfigEnableDisable(default = False)
 
 	if os.path.exists("/proc/stb/hdmi/bypass_edid_checking"):
 		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")

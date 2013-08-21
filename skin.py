@@ -269,13 +269,10 @@ def morphRcImagePath(value):
 	return value
 
 def loadPixmap(path, desktop):
-	cached = False
 	option = path.find("#")
 	if option != -1:
-		options = path[option+1:].split(',')
 		path = path[:option]
-		cached = "cached" in options
-	ptr = LoadPixmap(morphRcImagePath(path), desktop, cached)
+	ptr = LoadPixmap(morphRcImagePath(path), desktop)
 	if ptr is None:
 		raise SkinError("pixmap file %s not found!" % (path))
 	return ptr
@@ -491,12 +488,10 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			skinfile = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
 			if not fileExists(skinfile):
 				skinfile = resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)
-			print "[SKIN] loading include:", skinfile
-			try:
+			if fileExists(skinfile):
+				print "[SKIN] loading include:", skinfile
 				loadSkin(skinfile)
-			except Exception, err:
-				print "not loading user skin: ", err
-				
+
 	for c in skin.findall("colors"):
 		for color in c.findall("color"):
 			get_attr = color.attrib.get
