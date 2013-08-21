@@ -812,12 +812,9 @@ if [ $TYPE = "GIGABLUE" ] ; then
 		echo $EXTRA
 		echo "_________________________________________________\n"
 		echo " "
-		echo "To restore the image: \n"
-		echo "Place the USB-flash drive in the USB-port "
-		echo "and power off the Gigablue. "
-		echo "and power on the Gigablue. "
 		echo "\nPlease wait...almost ready! "
 	else
+		echo "_________________________________________________\n"
 		echo "Image creation failed - "
 		echo "Probable causes could be"
 		echo "     wrong back-up destination "
@@ -919,4 +916,27 @@ else
 	SECONDEN=$SECONDS
 fi
 echo " Time required for this process: $MINUTES:$SECONDEN"
+if [ $TYPE = "GIGABLUE" ] ; then
+		echo "_________________________________________________\n"
+		echo " "
+		echo "NOTE - GigaBlue UE and QUAD need additional files "
+		echo "from any available image copied to: " 
+		echo $MAINDEST
+		echo $EXTRA
+		for candidate in  /media/usb /media/sdb1 /media/sdc1 /media/sdd1 /media/sde1 /media/mmc1 
+		do
+			if [ -f ${candidate}/*backupstick* ]
+				then
+				echo $TARGET/gigablue/$MODEL
+			fi    
+		done
+		echo "Needed additional files are splash.bin, "
+		echo "lcdsplash.bin, lcdwaitkey.bin, lcdwarning.bin ."
+		echo "Copy them to above locations!\n"
+		echo "To restore the image: "
+		echo " * Turn OFF power from your box. "
+		echo " * Plug in USB-flash drive. "
+		echo " * Turn ON power from your box. "
+		echo " * Confirm flash pressing OK-Button on your box. "
+fi
 exit 
