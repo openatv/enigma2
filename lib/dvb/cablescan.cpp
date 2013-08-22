@@ -385,25 +385,6 @@ void eCableScan::createBouquets()
 		{
 			eDebug("failed to create bouquet!");
 		}
-
-		if (!db->getBouquet(rootref, bouquet) && bouquet)
-		{
-			/* now move the new cable bouquet to the front */
-			for (std::list<eServiceReference>::iterator it = bouquet->m_services.begin(); it != bouquet->m_services.end(); it++)
-			{
-				if ((*it).getPath() == bouquetquery)
-				{
-					if (it != bouquet->m_services.begin())
-					{
-						std::list<eServiceReference>::iterator tmp = it;
-						bouquet->m_services.push_front(*it);
-						bouquet->m_services.erase(tmp);
-					}
-					break;
-				}
-			}
-			bouquet->flushChanges();
-		}
 	}
 	else
 	{
@@ -454,25 +435,6 @@ void eCableScan::createBouquets()
 			else
 			{
 				eDebug("failed to create bouquet!");
-			}
-
-			if (!db->getBouquet(rootref, bouquet) && bouquet)
-			{
-				/* now move the new cable bouquet to the front */
-				for (std::list<eServiceReference>::iterator it = bouquet->m_services.begin(); it != bouquet->m_services.end(); it++)
-				{
-					if ((*it).getPath() == bouquetquery)
-					{
-						if (it != bouquet->m_services.begin())
-						{
-							std::list<eServiceReference>::iterator tmp = it;
-							bouquet->m_services.push_front(*it);
-							bouquet->m_services.erase(tmp);
-						}
-						break;
-					}
-				}
-				bouquet->flushChanges();
 			}
 		}
 		else
