@@ -770,7 +770,7 @@ class RecordTimer(timer.Timer):
 			if check:
 				timer_end = x.end
 				if x.justplay:
-					type = 4
+					type = 5
 					if (timer_end - x.begin) <= 1:
 						timer_end += 60
 				if x.repeated != 0:
@@ -816,7 +816,7 @@ class RecordTimer(timer.Timer):
 						else:           # recording whole event
 							time_match = end - begin
 							type += 2
-				if type == 2 or type == 6: # stop searching if a full recording is found
+				if type == 2 or type == 7: # stop searching if a full recording is found
 					break
 		if time_match:
 			return (time_match, type)
