@@ -99,6 +99,7 @@ dist_install_DATA = \
 	unlockBouquet.png \
 	za.png \
         zapclock.png \
+        zapclock_add.png \
         zapclock_post.png \
         zapclock_pre.png \
         zapclock_prepost.png
