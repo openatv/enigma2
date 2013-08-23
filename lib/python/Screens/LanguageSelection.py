@@ -6,6 +6,7 @@ from Components.config import config
 from Components.Sources.List import List
 from Components.Label import Label
 from Components.Pixmap import Pixmap
+from Screens.InfoBar import InfoBar
 from Screens.Rc import Rc
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_LANGUAGE
 from Tools.LoadPixmap import LoadPixmap
@@ -52,7 +53,10 @@ class LanguageSelection(Screen):
 
 	def save(self):
 		self.commit(self.run())
-		self.close(self.oldActiveLanguage != config.osd.language.value)
+		if InfoBar.instance:
+			self.close(self.oldActiveLanguage != config.osd.language.value)
+		else:
+			self.close()
 
 	def cancel(self):
 		language.activateLanguage(self.oldActiveLanguage)
