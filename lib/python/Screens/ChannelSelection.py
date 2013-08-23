@@ -340,6 +340,7 @@ class ChannelContextMenu(Screen):
 
 	def removeBouquet(self):
 		self.csel.removeBouquet()
+		eDVBDB.getInstance().reloadBouquets()
 		self.close()
 
 	def showMarkerInputBox(self):
