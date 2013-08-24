@@ -118,6 +118,7 @@ public:
 	void parseData(off_t offset, const void *data, unsigned int len);
 	void setPid(int pid, iDVBTSRecorder::timing_pid_type pidtype, int streamtype);
 	int getLastPTS(pts_t &last_pts);
+	int getFirstPTS(pts_t &first_pts);
 	void enableAccessPoints(bool enable) { m_enable_accesspoints = enable; }
 private:
 	unsigned char m_pkt[192];
@@ -132,6 +133,7 @@ private:
 	int m_skip;
 	int m_last_pts_valid; /* m_last_pts contains a valid value */
 	pts_t m_last_pts; /* last pts value, either from mpeg stream, or measured in streamtime */
+	pts_t m_first_pts;
 	int m_packetsize;
 	int m_header_offset;
 	timespec m_last_access_point; /* timespec at which the previous access point was reported */

@@ -2,7 +2,6 @@
 #include <lib/service/service.h>
 #include <lib/gdi/font.h>
 #include <lib/gdi/epng.h>
-#include <lib/gdi/picload.h>
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/pmt.h>
 #include <lib/python/connections.h>
@@ -706,10 +705,15 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						if (PyCallable_Check(m_GetPiconNameFunc))
 						{
 							eRect area = m_element_position[celServiceInfo];
-							m_element_position[celServiceInfo].setLeft(area.left() + area.height() * 2);
-							m_element_position[celServiceInfo].setWidth(area.width() - area.height() * 2);
+							/* PIcons are usually about 100:60. Make it a
+							 * bit wider in case the icons are diffently
+							 * shaped, and to add a bit of margin between
+							 * icon and text. */
+							const int iconWidth = area.height() * 9 / 5;
+							m_element_position[celServiceInfo].setLeft(area.left() + iconWidth);
+							m_element_position[celServiceInfo].setWidth(area.width() - iconWidth);
 							area = m_element_position[celServiceName];
-							xoffs += area.height() * 2;
+							xoffs += iconWidth;
 							ePyObject pArgs = PyTuple_New(1);
 							PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(ref.toString().c_str()));
 							ePyObject pRet = PyObject_CallObject(m_GetPiconNameFunc, pArgs);
@@ -722,15 +726,15 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 									if (!piconFilename.empty())
 									{
 										ePtr<gPixmap> piconPixmap;
-										ePicLoad picload;
-										picload.setPara(area.height()*2, area.height(), 1.0, 1, true, 1, "#FF000000");
-										picload.startDecode(piconFilename.c_str(), 0, 0, false);
-										picload.getData(piconPixmap);
+										loadPNG(piconPixmap, piconFilename.c_str());
 										if (piconPixmap)
 										{
 											area.moveBy(offset);
 											painter.clip(area);
-											painter.blit(piconPixmap, ePoint(offset.x()+ area.left(), area.top()), area, gPainter::BT_ALPHABLEND);
+											painter.blitScale(piconPixmap,
+												eRect(offset.x()+ area.left(), area.top(), iconWidth, area.height()),
+												area,
+												gPainter::BT_ALPHABLEND | gPainter::BT_KEEP_ASPECT_RATIO);
 											painter.clippop();
 										}
 									}

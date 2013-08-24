@@ -884,7 +884,7 @@ int ePicLoad::startThread(int what, const char *file, int x, int y, bool async)
 
 	if(file_id < 0)
 	{
-		eDebug("[Picload] <format not supportet>");
+		eDebug("[Picload] <format not supported>");
 		return 1;
 	}
 
@@ -1004,11 +1004,10 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 
 	if (m_filepara->bits == 8)
 	{
-		result=new gPixmap(eSize(m_filepara->max_x, m_filepara->max_y), 8, 2);
+		result=new gPixmap(m_filepara->max_x, m_filepara->max_y, 8, NULL, gPixmap::accelAlways);
 		gUnmanagedSurface *surface = result->surface;
 		surface->clut.data = m_filepara->palette;
 		surface->clut.colors = m_filepara->palette_size;
-		surface->clut.start=0;
 		m_filepara->palette = NULL; // transfer ownership
 		int o_y=0, u_y=0, v_x=0, h_x=0;
 		int extra_stride = surface->stride - surface->x;
@@ -1065,12 +1064,13 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	}
 	else
 	{
-		result=new gPixmap(eSize(m_filepara->max_x, m_filepara->max_y), 32);
+		result=new gPixmap(m_filepara->max_x, m_filepara->max_y, 32, NULL, gPixmap::accelAuto);
 		gUnmanagedSurface *surface = result->surface;
 		int o_y=0, u_y=0, v_x=0, h_x=0;
 
 		unsigned char *tmp_buffer=((unsigned char *)(surface->data));
 		unsigned char *origin = m_filepara->pic_buffer;
+		int extra_stride = surface->stride - (surface->x * surface->bypp);
 
 		if(m_filepara->oy < m_filepara->max_y)
 		{
@@ -1086,10 +1086,12 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 		int background = m_conf.background;
 		if(m_filepara->oy < m_filepara->max_y)
 		{
-			for(int ma = o_y * m_filepara->ox; ma != 0; --ma)
+			for (int y = o_y; y != 0; --y)
 			{
-				*(int*)tmp_buffer = background;
-				tmp_buffer += 4;
+				int* row_buffer = (int*)tmp_buffer;
+				for (int x = m_filepara->ox; x !=0; --x)
+					*row_buffer++ = background;
+				tmp_buffer += surface->stride;
 			}
 		}
 
@@ -1124,20 +1126,20 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 					tmp_buffer += 4;
 				}
 			}
+
+			tmp_buffer += extra_stride;
 		}
 
 		if(m_filepara->oy < m_filepara->max_y)
 		{
-			for(int a = u_y * m_filepara->ox; a != 0; --a)
+			for (int y = u_y; y != 0; --y)
 			{
-				*(int*)tmp_buffer = background;
-				tmp_buffer += 4;
+				int* row_buffer = (int*)tmp_buffer;
+				for (int x = m_filepara->ox; x !=0; --x)
+					*row_buffer++ = background;
+				tmp_buffer += surface->stride;
 			}
 		}
-
-		surface->clut.data=0;
-		surface->clut.colors=0;
-		surface->clut.start=0;
 	}
 
 	delete m_filepara;
