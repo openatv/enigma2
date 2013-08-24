@@ -17,7 +17,7 @@ def setupdom(plugin=None):
 	# read the setupmenu
 	try:
 		# first we search in the current path
-		setupfile = file(resolveFilename(SCOPE_CURRENT_PLUGIN, plugin + '/data/setup.xml'), 'r')
+		setupfile = file(resolveFilename(SCOPE_CURRENT_PLUGIN, plugin + '/ssetup.xml'), 'r')
 	except:
 		# if not found in the current path, we use the global datadir-path
 		setupfile = file(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
