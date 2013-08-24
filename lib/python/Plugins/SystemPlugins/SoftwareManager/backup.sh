@@ -1,11 +1,12 @@
-###############################################################################
-# FULL BACKUP UYILITY FOR ENIGMA2/OPENPLI, SUPPORTS THE MODELS ET-XX00 & VU+  #
-#  							& Gigablue & Venton HD Models			   		  #
-#                   MAKES A FULLBACK-UP READY FOR FLASHING.                   #
-#                                                                             #
-###############################################################################
+#################################################################################
+# FULL BACKUP UYILITY FOR ENIGMA2/OPENPLI, SUPPORTS THE MODELS ET-XX00 & VU+	#
+#							& Gigablue & Venton HD Models						#
+#					MAKES A FULLBACK-UP READY FOR FLASHING.						#
+#																				#
+#################################################################################
 #
 #!/bin/sh
+
 VERSION="Version 1.0 openATV"
 START=$(date +%s)
 
@@ -17,7 +18,7 @@ IMAGEVERSION=`date +%Y%m%d`
 if grep rootfs /proc/mounts | grep ubifs > /dev/null; then # TESTING FOR UBIFS
 	ROOTFSTYPE=ubifs
 else
-	ROOTFSTYPE=jffs2									    # NO UBIFS THEN JFFS2
+	ROOTFSTYPE=jffs2									# NO UBIFS THEN JFFS2
 fi
 MKFS=/usr/sbin/mkfs.$ROOTFSTYPE
 UBINIZE=/usr/sbin/ubinize
@@ -29,7 +30,7 @@ MTDKERNEL="mtd1"
 ## TESTING WHICH KIND OF SATELLITE RECEIVER IS USED
 ## TESTING THE XTREND AND CLARK TECH MODELS
 MODEL=$( cat /etc/model )
-if [ $MODEL = "et9x00" ] || [ $MODEL = "et5x00" ] || [ $MODEL = "et6x00" ] || [ $MODEL = "et6500" ] || [ $MODEL = "et4x00" ]; then
+if [ $MODEL = "et9x00" ] || [ $MODEL = "et5x00" ] || [ $MODEL = "et6x00" ] || [ $MODEL = "et6500" ] || [ $MODEL = "et4x00" ] ; then
 	TYPE=ET
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
@@ -45,7 +46,7 @@ if [ $MODEL = "et9x00" ] || [ $MODEL = "et5x00" ] || [ $MODEL = "et6x00" ] || [ 
 		MAINDESTOLD=$DIRECTORY/$MODEL
 		EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
 	fi
-## TESTING THE Odin M9 Model	
+## TESTING THE Odin M9 Model
 elif [ $MODEL = "odinm9" ] ; then
 	TYPE=ODINM9
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
@@ -56,7 +57,7 @@ elif [ $MODEL = "odinm9" ] ; then
 	MAINDEST=$DIRECTORY/odinm9
 	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_odinm9/$DATE
-## TESTING THE Odin M7 Model	
+## TESTING THE Odin M7 Model
 elif [ $MODEL = "odinm7" ] ; then
 	TYPE=ODINM7
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
@@ -67,7 +68,7 @@ elif [ $MODEL = "odinm7" ] ; then
 	MAINDEST=$DIRECTORY/en2
 	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_odinm7/$DATE
-## TESTING THE Odin M6 Model	
+## TESTING THE Odin M6 Model
 elif [ $MODEL = "odinm6" ] ; then
 	TYPE=ODINM7
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
@@ -78,7 +79,7 @@ elif [ $MODEL = "odinm6" ] ; then
 	MAINDEST=$DIRECTORY/en2
 	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_odinm7/$DATE
-## TESTING THE E3 HD Model	
+## TESTING THE E3 HD Model
 elif [ $MODEL = "e3hd" ] ; then
 	TYPE=E3HD
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
@@ -88,7 +89,7 @@ elif [ $MODEL = "e3hd" ] ; then
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/e3hd
 	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_e3hd/$DATE		
+	EXTRA=$DIRECTORY/fullbackup_e3hd/$DATE
 elif [ $MODEL = "xp1000" ] ; then
 	TYPE=MAXDIGITAL
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
@@ -127,7 +128,7 @@ elif [ $MODEL = "ebox7358" ] ; then
 	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/ebox/$MODEL
 	MAINDEST=$DIRECTORY/ebox/7358/
-	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/ebox	
+	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/ebox
 ## TESTING THE Venton HDx Models
 elif [ $MODEL = "ventonhdx" ] ; then
 	TYPE=VENTON
@@ -145,73 +146,89 @@ elif [ $MODEL = "inihde" ] ; then
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
 	SHOWNAME="$MODEL"
-	MTDKERNEL="mtd2"	
+	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/venton/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_$MODEL/$DATE/venton	
+	EXTRA=$DIRECTORY/fullbackup_$MODEL/$DATE/venton
 elif [ $MODEL = "tmtwin" ] ; then
 	TYPE=TECHNO
 	MODEL="tmtwinoe"
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096 -F"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
 	SHOWNAME="$MODEL"
+	MTDKERNEL="mtd6"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/update/$MODEL/cfe
-	EXTRA=$DIRECTORY/fullbackup_TECHNO/$DATE/update/$MODEL/cfe
+	EXTRA=$DIRECTORY/fullbackup_TECHNO/$DATE/update/$MODEL
 elif [ $MODEL = "tmsingle" ] ; then
 	TYPE=TECHNO
 	MODEL="tmsingle"
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096 -F"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
 	SHOWNAME="$MODEL"
+	MTDKERNEL="mtd6"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/update/$MODEL/cfe
-	EXTRA=$DIRECTORY/fullbackup_TECHNO/$DATE/update/$MODEL/cfe
+	EXTRA=$DIRECTORY/fullbackup_TECHNO/$DATE/update/$MODEL
 elif [ $MODEL = "tmnano" ] ; then
 	TYPE=TECHNO
 	MODEL="tmnanooe"
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096 -F"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
 	SHOWNAME="$MODEL"
+	MTDKERNEL="mtd6"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/update/$MODEL/cfe
-	EXTRA=$DIRECTORY/fullbackup_TECHNO/$DATE/update/$MODEL/cfe	
+	EXTRA=$DIRECTORY/fullbackup_TECHNO/$DATE/update/$MODEL
 elif [ $MODEL = "tm2t" ] ; then
 	TYPE=TECHNO
 	MODEL="tm2toe"
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096 -F"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
 	SHOWNAME="$MODEL"
+	MTDKERNEL="mtd6"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/update/$MODEL/cfe
-	EXTRA=$DIRECTORY/fullbackup_TECHNO/$DATE/update/$MODEL/cfe
+	EXTRA=$DIRECTORY/fullbackup_TECHNO/$DATE/update/$MODEL
 elif [ $MODEL = "iqonios100hd" ] ; then
 	TYPE=IQON
 	MODEL="ios100"
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096 -F"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
 	SHOWNAME="$MODEL"
+	MTDKERNEL="mtd6"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/update/$MODEL/cfe
-	EXTRA=$DIRECTORY/fullbackup_IQON/$DATE/update/$MODEL/cfe
+	EXTRA=$DIRECTORY/fullbackup_IQON/$DATE/update/$MODEL
 elif [ $MODEL = "iqonios200hd" ] ; then
 	TYPE=IQON
 	MODEL="ios200"
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096 -F"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
 	SHOWNAME="$MODEL"
+	MTDKERNEL="mtd6"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/update/$MODEL/cfe
-	EXTRA=$DIRECTORY/fullbackup_IQON/$DATE/update/$MODEL/cfe	
+	EXTRA=$DIRECTORY/fullbackup_IQON/$DATE/update/$MODEL
 elif [ $MODEL = "iqonios300hd" ] ; then
 	TYPE=IQON
 	MODEL="ios300"
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096 -F"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
 	SHOWNAME="$MODEL"
+	MTDKERNEL="mtd6"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/update/$MODEL/cfe
-	EXTRA=$DIRECTORY/fullbackup_IQON/$DATE/update/$MODEL/cfe	
+	EXTRA=$DIRECTORY/fullbackup_IQON/$DATE/update/$MODEL
+elif [ $MODEL = "optimussos2" ] ; then
+	TYPE=EDISION
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096 -F"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="$MODEL"
+	MTDKERNEL="mtd6"
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/update/$MODEL/cfe
+	EXTRA=$DIRECTORY/fullbackup_EDISION/$DATE/update/$MODEL
 ## TESTING THE Gigablue HD 800 SE Model
 elif [ $MODEL = "gb800se" ] ; then
 	TYPE=GIGABLUE
@@ -223,7 +240,7 @@ elif [ $MODEL = "gb800se" ] ; then
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue
-## TESTING THE Gigablue HD 800 UE Models	
+## TESTING THE Gigablue HD 800 UE Models
 elif [ $MODEL = "gb800ue" ]; then
 	TYPE=GIGABLUE
 	MODEL="ue"
@@ -234,7 +251,7 @@ elif [ $MODEL = "gb800ue" ]; then
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue
-## TESTING THE Gigablue HD 800 Solo Model	
+## TESTING THE Gigablue HD 800 Solo Model
 elif [ $MODEL = "gb800solo" ] ; then
 	TYPE=GIGABLUE
 	MODEL="solo"
@@ -244,7 +261,7 @@ elif [ $MODEL = "gb800solo" ] ; then
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue
-## TESTING THE Gigablue HD Quad Model	
+## TESTING THE Gigablue HD Quad Model
 elif [ $MODEL = "gbquad" ] ; then
 	TYPE=GIGABLUE
 	MODEL="quad"
@@ -457,7 +474,7 @@ if [ $TYPE = "VU" ] ; then
 		echo "and switch the VU+ off and on with the powerswitch "
 		echo "on the back of the VU+. Follow the instructions "
 		echo "on the front-display.\n"
-		echo "\nPlease wait...almost ready! "	
+		echo "\nPlease wait...almost ready! "
 	else
 		echo "Image creation failed - "
 		echo "Probable causes could be"
@@ -500,14 +517,16 @@ if [ $TYPE = "VENTON" ] ; then
 fi
 
 if [ $TYPE = "TECHNO" ] ; then
+	echo $MAINDEST
+	echo $EXTRA
 	rm -rf $MAINDEST
 	mkdir -p $MAINDEST
-	mkdir -p $EXTRA/$MODEL
+	mkdir -p $EXTRA
 	mv $WORKDIR/root.ubifs $MAINDEST/oe_rootfs.bin
 	mv $WORKDIR/vmlinux.gz $MAINDEST/oe_kernel.bin
 	echo ${MODEL}-$IMAGEVERSION > $MAINDEST/imageversion
 	cp -r $MAINDEST $EXTRA #copy the made back-up to images
-	if [ -f $MAINDEST/oe_rootfs.bin -a -f $MAINDEST/oe_kernel.bin -a -f $MAINDEST/imageversion] ; then
+	if [ -f $MAINDEST/oe_rootfs.bin -a -f $MAINDEST/oe_kernel.bin -a -f $MAINDEST/imageversion ] ; then
 		echo "_________________________________________________\n"
 		echo "USB Image created on:" $MAINDEST
 		echo "and there is made an extra copy on:"
@@ -533,12 +552,12 @@ fi
 if [ $TYPE = "IQON" ] ; then
 	rm -rf $MAINDEST
 	mkdir -p $MAINDEST
-	mkdir -p $EXTRA/$MODEL
+	mkdir -p $EXTRA
 	mv $WORKDIR/root.ubifs $MAINDEST/oe_rootfs.bin
 	mv $WORKDIR/vmlinux.gz $MAINDEST/oe_kernel.bin
 	echo ${MODEL}-$IMAGEVERSION > $MAINDEST/imageversion
 	cp -r $MAINDEST $EXTRA #copy the made back-up to images
-	if [ -f $MAINDEST/oe_rootfs.bin -a -f $MAINDEST/oe_kernel.bin -a -f $MAINDEST/imageversion] ; then
+	if [ -f $MAINDEST/oe_rootfs.bin -a -f $MAINDEST/oe_kernel.bin -a -f $MAINDEST/imageversion ] ; then
 		echo "_________________________________________________\n"
 		echo "USB Image created on:" $MAINDEST
 		echo "and there is made an extra copy on:"
@@ -549,6 +568,37 @@ if [ $TYPE = "IQON" ] ; then
 		echo "Place the USB-flash drive in the (front) USB-port "
 		echo "and switch the Iqon off and on with the powerswitch "
 		echo "on the back of the Iqon. Follow the instructions "
+		echo "on the front-display.\n"
+		echo "\nPlease wait...almost ready! "
+	else
+		echo "Image creation failed - "
+		echo "Probable causes could be"
+		echo "     wrong back-up destination "
+		echo "     no space left on back-up device"
+		echo "     no writing permission on back-up device"
+		echo " "
+	fi
+fi
+
+if [ $TYPE = "EDISION" ] ; then
+	rm -rf $MAINDEST
+	mkdir -p $MAINDEST
+	mkdir -p $EXTRA
+	mv $WORKDIR/root.ubifs $MAINDEST/oe_rootfs.bin
+	mv $WORKDIR/vmlinux.gz $MAINDEST/oe_kernel.bin
+	echo ${MODEL}-$IMAGEVERSION > $MAINDEST/imageversion
+	cp -r $MAINDEST $EXTRA #copy the made back-up to images
+	if [ -f $MAINDEST/oe_rootfs.bin -a -f $MAINDEST/oe_kernel.bin -a -f $MAINDEST/imageversion ] ; then
+		echo "_________________________________________________\n"
+		echo "USB Image created on:" $MAINDEST
+		echo "and there is made an extra copy on:"
+		echo $EXTRA
+		echo "_________________________________________________\n"
+		echo " "
+		echo "To restore the image: \n"
+		echo "Place the USB-flash drive in the (front) USB-port "
+		echo "and switch the Edision off and on with the powerswitch "
+		echo "on the back of the Edision. Follow the instructions "
 		echo "on the front-display.\n"
 		echo "\nPlease wait...almost ready! "
 	else
@@ -893,11 +943,14 @@ if [ $DIRECTORY == /hdd ]; then
 			cp -r $MAINDEST $TARGET/update/$MODEL/cfe
 		elif [ $TYPE = "IQON" ] ; then					# Iqon detected
 			mkdir -p $TARGET/update/$MODEL/cfe
-			cp -r $MAINDEST $TARGET/update/$MODEL/cfe			
+			cp -r $MAINDEST $TARGET/update/$MODEL/cfe	
+		elif [ $TYPE = "EDISION" ] ; then					# Edision detected
+			mkdir -p $TARGET/update/$MODEL/cfe
+			cp -r $MAINDEST $TARGET/update/$MODEL/cfe
 		else
 			echo 
 		fi
-    sync
+	sync
 	echo "Backup finished and copied to your USB-flash drive"
 	fi
 fi
@@ -920,10 +973,10 @@ if [ $TYPE = "GIGABLUE" ] ; then
 		echo "_________________________________________________\n"
 		echo " "
 		echo "NOTE - GigaBlue UE and QUAD need additional files "
-		echo "from any available image copied to: " 
+		echo "from any available image copied to: "
 		echo $MAINDEST
 		echo $EXTRA
-		for candidate in  /media/usb /media/sdb1 /media/sdc1 /media/sdd1 /media/sde1 /media/mmc1 
+		for candidate in  /media/usb /media/sdb1 /media/sdc1 /media/sdd1 /media/sde1 /media/mmc1
 		do
 			if [ -f ${candidate}/*backupstick* ]
 				then
