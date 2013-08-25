@@ -148,8 +148,8 @@ elif [ $MODEL = "inihde" ] ; then
 	SHOWNAME="$MODEL"
 	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/$MODEL
-	MAINDEST=$DIRECTORY/venton/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_$MODEL/$DATE/venton
+	MAINDEST=$DIRECTORY/inihde/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_$MODEL/$DATE/inihde
 elif [ $MODEL = "tmtwin" ] ; then
 	TYPE=TECHNO
 	MODEL="tmtwinoe"
@@ -502,8 +502,8 @@ if [ $TYPE = "VENTON" ] ; then
 		echo " "
 		echo "To restore the image: \n"
 		echo "Place the USB-flash drive in the (back) USB-port "
-		echo "and switch the Venton off and on with the powerswitch "
-		echo "on the back of the Venton. Follow the instructions "
+		echo "and switch the ${MODEL} off and on with the powerswitch "
+		echo "on the back of the ${MODEL}. Follow the instructions "
 		echo "on the front-display.\n"
 		echo "\nPlease wait...almost ready! "
 	else
