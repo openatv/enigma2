@@ -1751,8 +1751,8 @@ class MyTubePlayer(MoviePlayer):
 				#if self.shown:
 				#	self.__setHideTimer()
 
-		for c in self.onPlayStateChanged:
-			c(self.state)
+		#for c in self.onPlayStateChanged:
+		#	c(self.state)
 		
 		return True
 
