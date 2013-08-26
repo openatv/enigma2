@@ -530,7 +530,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				self.copyFile()
 
 		if self.currList == "playlist":
-			if self.playlist.getCurrentIndex() == self.playlist.getSelectionIndex():
+			if self.playlist.getCurrentIndex() == self.playlist.getSelectionIndex() and not self.playlist.isStopped():
 				if self.shown:
 					self.hideAndInfoBar()
 				elif self.mediaPlayerInfoBar.shown:
@@ -831,6 +831,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		elif ( len(self.playlist) > 0 ) and ( config.mediaplayer.repeat.getValue() == True ):
 			self.stopEntry()
 			self.changeEntry(0)
+		elif ( len(self.playlist) > 0 ):
+			self.stopEntry()
 
 	def nextMarkOrEntry(self):
 		if not self.jumpPreviousNextMark(lambda x: x):
@@ -885,7 +887,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		if len(self.playlist.getServiceRefList()):
 			needsInfoUpdate = False
 			currref = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()]
-			if self.session.nav.getCurrentlyPlayingServiceReference() is None or currref != self.session.nav.getCurrentlyPlayingServiceReference():
+			if self.session.nav.getCurrentlyPlayingServiceReference() is None or currref != self.session.nav.getCurrentlyPlayingServiceReference() or self.playlist.isStopped():
 				self.session.nav.playService(self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()])
 				info = eServiceCenter.getInstance().info(currref)
 				description = info and info.getInfoString(currref, iServiceInformation.sDescription) or ""
