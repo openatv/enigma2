@@ -769,8 +769,11 @@ class RecordTimer(timer.Timer):
 							break
 			if check:
 				timer_end = x.end
-				if x.justplay:
+				type = 0
+				if x.justplay or x.always_zap:
 					type = 5
+					if x.always_zap:
+						type = 10
 					if (timer_end - x.begin) <= 1:
 						timer_end += 60
 				if x.repeated != 0:
@@ -794,6 +797,7 @@ class RecordTimer(timer.Timer):
 							else:           # recording last part of event
 								time_match = (end2 - xbegin) * 60
 								type += 1
+							break
 						elif xbegin <= begin2 <= xend:
 							if xend < end2: # recording first part of event
 								time_match = (xend - begin2) * 60
@@ -801,6 +805,7 @@ class RecordTimer(timer.Timer):
 							else:           # recording whole event
 								time_match = (end2 - begin2) * 60
 								type += 2
+							break
 				else:
 					if begin < x.begin <= end:
 						if timer_end < end: # recording within event
@@ -809,6 +814,7 @@ class RecordTimer(timer.Timer):
 						else:           # recording last part of event
 							time_match = end - x.begin
 							type += 1
+						break
 					elif x.begin <= begin <= timer_end:
 						if timer_end < end: # recording first part of event
 							time_match = timer_end - begin
@@ -816,7 +822,8 @@ class RecordTimer(timer.Timer):
 						else:           # recording whole event
 							time_match = end - begin
 							type += 2
-				if type == 2 or type == 7: # stop searching if a full recording is found
+						break
+				if type in [2, 7, 12]: # stop searching if a full recording is found
 					break
 		if time_match:
 			return (time_match, type)
