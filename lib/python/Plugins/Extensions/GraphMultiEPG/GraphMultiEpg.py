@@ -465,7 +465,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				if selected and self.select_rect.x == xpos + left and self.selEvPix:
 					bgpng = self.selEvPix
 					backColorSel = None
-				elif rec is not None and rec[1] == 2:
+				elif rec is not None and rec[1] in (2, 12):
 					bgpng = self.recEvPix
 					foreColor = self.foreColorRec
 					backColor = self.backColorRec
