@@ -6,6 +6,7 @@ from Components.Sources.List import List
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
+from Screens.InfoBar import InfoBar
 from Screens.Rc import Rc
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN, SCOPE_LANGUAGE
 from Tools.LoadPixmap import LoadPixmap
@@ -25,12 +26,10 @@ class LanguageSelection(Screen):
 		Screen.__init__(self, session)
 
 		self.oldActiveLanguage = language.getActiveLanguage()
-		self.catalog = language.getActiveCatalog()
 
 		self.list = []
 		self["summarylangname"] = StaticText()
 		self["languages"] = List(self.list)
-		self["languages"].onSelectionChanged.append(self.changed)
 
 		self.updateList()
 		self.onLayoutFinish.append(self.selectActiveLanguage)
@@ -45,20 +44,21 @@ class LanguageSelection(Screen):
 			"red": self.cancel,
 			"green": self.save,
 		}, -1)
-		self.selectDelay = enigma.eTimer()
-		self.selectDelay.callback.append(self.run)
 
 	def selectActiveLanguage(self):
-		activeLanguage = language.getActiveLanguage()
+		self.setTitle(_("Language selection"))
 		pos = 0
 		for pos, x in enumerate(self.list):
-			if x[0] == activeLanguage:
+			if x[0] == self.oldActiveLanguage:
 				self["languages"].index = pos
 				break
 
 	def save(self):
 		self.commit(self.run())
-		self.close(self.oldActiveLanguage != config.osd.language.value)
+		if InfoBar.instance and self.oldActiveLanguage != config.osd.language.getValue():
+			self.close(True)
+		else:
+			self.close()
 
 	def cancel(self):
 		language.activateLanguage(self.oldActiveLanguage)
@@ -70,9 +70,6 @@ class LanguageSelection(Screen):
 		if lang != config.osd.language.getValue():
 			config.osd.language.setValue(lang)
 			config.osd.language.save()
-			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[config.osd.language.getValue()])
-		self.setTitle(self.catalog.gettext("Language selection"))
-		self["summarylangname"].setText(self["languages"].getCurrent()[1])
 		return lang
 
 	def commit(self, lang):
@@ -90,9 +87,6 @@ class LanguageSelection(Screen):
 		self.list = list
 		self["languages"].list = list
 
-	def changed(self):
-		self.selectDelay.start(500, True)
-
 class LanguageWizard(LanguageSelection, Rc):
 	def __init__(self, session):
 		LanguageSelection.__init__(self, session)
@@ -108,13 +102,9 @@ class LanguageWizard(LanguageSelection, Rc):
 		self.selectKey("UP")
 		self.selectKey("DOWN")
 
-	def changed(self):
-		self.run()
-		self.setText()
-
 	def setText(self):
-		self["text"].setText(self.catalog.gettext("Please use the UP and DOWN keys to select your language. Afterwards press the OK button."))
-		self["summarytext"].setText(self.catalog.gettext("Please use the UP and DOWN keys to select your language. Afterwards press the OK button."))
+		self["text"].setText(_("Please use the UP and DOWN keys to select your language. Afterwards press the OK button."))
+		self["summarytext"].setText(_("Please use the UP and DOWN keys to select your language. Afterwards press the OK button."))
 
 	def createSummary(self):
 		return LanguageWizardSummary

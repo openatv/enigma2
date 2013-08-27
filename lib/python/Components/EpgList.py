@@ -80,21 +80,18 @@ class EPGList(HTMLComponent, GUIComponent):
 			assert(type == EPG_TYPE_SIMILAR)
 			self.l.setBuildFunc(self.buildSimilarEntry)
 		self.epgcache = eEPGCache.getInstance()
-		epgclock_add = resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_add.png')
-		epgclock_pre = resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_pre.png')
-		epgclock_rec = resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock.png')
-		epgclock_zap = resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_zap.png')
-		epgclock_prepost = resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_prepost.png')
-		epgclock_post = resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_post.png')
-		epgclock_at = resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_autotimer.png')
 
-		self.clocks = [ LoadPixmap(cached=True, path=epgclock_add),
-						LoadPixmap(cached=True, path=epgclock_pre),
-						LoadPixmap(cached=True, path=epgclock_rec),
-						LoadPixmap(cached=True, path=epgclock_zap),
-						LoadPixmap(cached=True, path=epgclock_prepost),
-						LoadPixmap(cached=True, path=epgclock_post),
-						LoadPixmap(cached=True, path=epgclock_at) ]
+		self.clocks = [ LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_add.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_pre.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_prepost.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_post.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_add.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_pre.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_zap.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_prepost.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_post.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_autotimer.png'))]
 
 		self.nowEvPix = None
 		self.nowSelEvPix = None
@@ -990,7 +987,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					if rec[2]:
 						res.append(MultiContentEntryPixmapAlphaBlend(
 							pos = (pos[0]-22,pos[1]), size = (21, 21),
-							png = self.clocks[rec[2]],
+							png = self.clocks[10],
 							backcolor_sel = backColorSel))
 		else:
 			if self.graphic:
@@ -1693,8 +1690,8 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 
 	def fillBouquetList(self, bouquets):
 		if self.graphic and not self.graphicsloaded:
-			self.othEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherEvent.png'))
-			self.selEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedCurrentEvent.png'))
+			self.othPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherEvent.png'))
+			self.selPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedCurrentEvent.png'))
 
 			self.borderTopPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderTop.png'))
 			self.borderBottomPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderLeft.png'))
