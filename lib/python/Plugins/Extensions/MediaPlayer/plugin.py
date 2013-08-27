@@ -230,6 +230,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 		self.currList = "filelist"
 		self.isAudioCD = False
+		self.ext = None
 		self.AudioCD_albuminfo = {}
 		self.cdAudioTrackFiles = []
 		self.onShown.append(self.applySettings)
@@ -253,7 +254,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 	def hideAndInfoBar(self):
 		self.hide()
 		self.mediaPlayerInfoBar.show()
-		self.hideMediaPlayerInfoBar.start(5000, True)
+		if self.ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
+			self.hideMediaPlayerInfoBar.start(5000, True)
 
 	def timerHideMediaPlayerInfoBar(self):
 		self.hideMediaPlayerInfoBar.stop()
@@ -528,12 +530,14 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				self.copyFile()
 
 		if self.currList == "playlist":
-			if self.playlist.getCurrentIndex() == self.playlist.getSelectionIndex():
+			if self.playlist.getCurrentIndex() == self.playlist.getSelectionIndex() and not self.playlist.isStopped():
 				if self.shown:
 					self.hideAndInfoBar()
 				elif self.mediaPlayerInfoBar.shown:
 					self.mediaPlayerInfoBar.hide()
 					self.hideMediaPlayerInfoBar.stop()
+					if self.ext in AUDIO_EXTENSIONS or self.isAudioCD:
+						self.show()
 				else:
 					self.mediaPlayerInfoBar.show()
 			else:
@@ -827,6 +831,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		elif ( len(self.playlist) > 0 ) and ( config.mediaplayer.repeat.getValue() == True ):
 			self.stopEntry()
 			self.changeEntry(0)
+		elif ( len(self.playlist) > 0 ):
+			self.stopEntry()
 
 	def nextMarkOrEntry(self):
 		if not self.jumpPreviousNextMark(lambda x: x):
@@ -881,7 +887,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		if len(self.playlist.getServiceRefList()):
 			needsInfoUpdate = False
 			currref = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()]
-			if self.session.nav.getCurrentlyPlayingServiceReference() is None or currref != self.session.nav.getCurrentlyPlayingServiceReference():
+			if self.session.nav.getCurrentlyPlayingServiceReference() is None or currref != self.session.nav.getCurrentlyPlayingServiceReference() or self.playlist.isStopped():
 				self.session.nav.playService(self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()])
 				info = eServiceCenter.getInstance().info(currref)
 				description = info and info.getInfoString(currref, iServiceInformation.sDescription) or ""
@@ -890,10 +896,10 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				idx = self.playlist.getCurrentIndex()
 				currref = self.playlist.getServiceRefList()[idx]
 				text = self.getIdentifier(currref)
-				ext = os.path.splitext(text)[1].lower()
+				self.ext = os.path.splitext(text)[1].lower()
 				text = ">"+text
 				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead 
-				if ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
+				if self.ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
 					self.hideAndInfoBar()
 				else:
 					needsInfoUpdate = True
@@ -920,7 +926,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				currref = self.playlist.getServiceRefList()[idx]
 				text = currref.getPath()
 				ext = os.path.splitext(text)[1].lower()
-				if ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
+				if self.ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
 					self.hideAndInfoBar()
 				else:
 					needsInfoUpdate = True

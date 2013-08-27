@@ -30,43 +30,6 @@ import log
 import rotor_calc
 
 class PositionerSetup(Screen):
-	skin = """
-		<screen position="center,center" size="560,400" title="Positioner setup" >
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" transparent="1" alphatest="on" />
-
-			<widget name="key_red" position="0,0" size="140,40" zPosition="1" halign="center" valign="center" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2"/>
-			<widget name="key_green" position="140,0" size="140,40" zPosition="1" halign="center" valign="center" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2"/>
-			<widget name="key_yellow" position="280,0" size="140,40" zPosition="1" halign="center" valign="center" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2"/>
-			<widget name="key_blue" position="420,0" size="140,40" zPosition="1" halign="center" valign="center" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2"/>
-
-			<widget name="list" position="120,50" size="320,215" font="Regular;20" />
-
-			<widget name="snr_db" position="70,265" size="150,22" halign="center" valign="center" font="Regular;20" foregroundColor="white"/>
-			<eLabel text="SNR:" position="10,290" size="60,22" font="Regular;20" foregroundColor="white"/>
-			<eLabel text="BER:" position="10,315" size="60,22" font="Regular;20" foregroundColor="white"/>
-			<eLabel text="Lock:" position="10,340" size="60,22" font="Regular;20" foregroundColor="white"/>
-			<widget name="snr_percentage" position="230,290" size="60,22" font="Regular;20" foregroundColor="white"/>
-			<widget name="ber_value" position="230,315" size="60,22" font="Regular;20" foregroundColor="white"/>
-			<widget name="lock_state" position="70,340" size="150,22" font="Regular;20" foregroundColor="white"/>
-			<widget name="snr_bar" position="70,290" size="150,22" foregroundColor="white"/>
-			<widget name="ber_bar" position="70,315" size="150,22" foregroundColor="white"/>
-
-			<eLabel text="Frequency:" position="320,290" size="120,22" font="Regular;20" foregroundColor="white"/>
-			<eLabel text="Polarisation:" position="320,315" size="120,22" font="Regular;20" foregroundColor="white"/>
-			<eLabel text="Symbol rate:" position="320,340" size="120,22" font="Regular;20" foregroundColor="white"/>
-			<widget name="frequency_value" position="440,290" size="120,22" font="Regular;20" foregroundColor="white"/>
-			<widget name="polarisation" position="440,315" size="120,22" font="Regular;20" foregroundColor="white"/>
-			<widget name="symbolrate_value" position="440,340" size="120,22" font="Regular;20" foregroundColor="white"/>
-
-			<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="480,383" size="14,14" zPosition="3"/>
-			<widget font="Regular;18" halign="left" position="505,380" render="Label" size="55,20" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
-				<convert type="ClockToText">Default</convert>
-			</widget>
-			<widget name="status_bar" position="10,380" size="460,20" font="Regular;18" foregroundColor="white"/>
-		</screen>"""
 
 	@staticmethod
 	def satposition2metric(position):

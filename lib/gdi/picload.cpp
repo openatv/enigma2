@@ -1086,10 +1086,12 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 		int background = m_conf.background;
 		if(m_filepara->oy < m_filepara->max_y)
 		{
-			for(int ma = o_y * m_filepara->ox; ma != 0; --ma)
+			for (int y = o_y; y != 0; --y)
 			{
-				*(int*)tmp_buffer = background;
-				tmp_buffer += 4;
+				int* row_buffer = (int*)tmp_buffer;
+				for (int x = m_filepara->ox; x !=0; --x)
+					*row_buffer++ = background;
+				tmp_buffer += surface->stride;
 			}
 		}
 
@@ -1124,21 +1126,20 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 					tmp_buffer += 4;
 				}
 			}
-			
+
 			tmp_buffer += extra_stride;
 		}
 
 		if(m_filepara->oy < m_filepara->max_y)
 		{
-			for(int a = u_y * m_filepara->ox; a != 0; --a)
+			for (int y = u_y; y != 0; --y)
 			{
-				*(int*)tmp_buffer = background;
-				tmp_buffer += 4;
+				int* row_buffer = (int*)tmp_buffer;
+				for (int x = m_filepara->ox; x !=0; --x)
+					*row_buffer++ = background;
+				tmp_buffer += surface->stride;
 			}
 		}
-
-		surface->clut.data=0;
-		surface->clut.colors=0;
 	}
 
 	delete m_filepara;

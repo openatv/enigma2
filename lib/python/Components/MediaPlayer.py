@@ -22,6 +22,7 @@ class PlayList(MenuList):
 		self.currPlaying = -1
 		self.oldCurrPlaying = -1
 		self.serviceHandler = eServiceCenter.getInstance()
+		self.state = STATE_NONE
 		self.icons = [
 			LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/ico_mp_play.png")),
 			LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/ico_mp_pause.png")),
@@ -37,7 +38,7 @@ class PlayList(MenuList):
 			text = path.split(serviceref.getPath().split('/')[-1])[1]
 		res.append((eListboxPythonMultiContent.TYPE_TEXT,25, 1, 470, 22, 0, RT_VALIGN_CENTER, text))
 		try:
-		        png = self.icons[state]
+			png = self.icons[state]
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 3, 16, 16, png))
 		except:
 		        pass
@@ -70,11 +71,15 @@ class PlayList(MenuList):
 		self.moveToIndex(index)
 
 	def updateState(self, state):
+		self.state = state
 		if len(self.list) > self.oldCurrPlaying and self.oldCurrPlaying != -1:
 			self.list[self.oldCurrPlaying] = self.PlaylistEntryComponent(self.list[self.oldCurrPlaying][0], STATE_NONE)
 		if self.currPlaying != -1 and self.currPlaying < len(self.list):
 			self.list[self.currPlaying] = self.PlaylistEntryComponent(self.list[self.currPlaying][0], state)
 		self.updateList()
+
+	def isStopped(self):
+		return self.state in (STATE_STOP, STATE_NONE)
 
 	def playFile(self):
 		self.updateState(STATE_PLAY)
