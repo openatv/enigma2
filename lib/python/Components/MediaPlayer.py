@@ -38,7 +38,7 @@ class PlayList(MenuList):
 			text = path.split(serviceref.getPath().split('/')[-1])[1]
 		res.append((eListboxPythonMultiContent.TYPE_TEXT,25, 1, 470, 22, 0, RT_VALIGN_CENTER, text))
 		try:
-		        png = self.icons[state]
+			png = self.icons[state]
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 3, 16, 16, png))
 		except:
 		        pass
