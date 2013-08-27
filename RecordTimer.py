@@ -795,35 +795,35 @@ class RecordTimer(timer.Timer):
 						if begin2 < xbegin <= end2:
 							if xend < end2: # recording within event
 								time_match = (xend - xbegin) * 60
-								type = 3
+								type = type_offset + 3
 							else:           # recording last part of event
 								time_match = (end2 - xbegin) * 60
-								type = 1
+								type = type_offset + 1
 						elif xbegin <= begin2 <= xend:
 							if xend < end2: # recording first part of event
 								time_match = (xend - begin2) * 60
-								type = 4
+								type = type_offset + 4
 							else:           # recording whole event
 								time_match = (end2 - begin2) * 60
-								type = 2
+								type = type_offset + 2
 				else:
 					if begin < x.begin <= end:
 						if timer_end < end: # recording within event
 							time_match = timer_end - x.begin
-							type = 3
+							type = type_offset + 3
 						else:           # recording last part of event
 							time_match = end - x.begin
-							type = 1
+							type = type_offset + 1
 					elif x.begin <= begin <= timer_end:
 						if timer_end < end: # recording first part of event
 							time_match = timer_end - begin
-							type = 4
+							type = type_offset + 4
 						else:           # recording whole event
 							time_match = end - begin
-							type = 2
+							type = type_offset + 2
 				if time_match:
-					returnValue = (time_match, type_offset + type)
-					if type in (1, 2, 3): # When full recording, partly or end of recording do not look further
+					returnValue = (time_match, type)
+					if type == 2: # When full recording do not look further
 						break
 		return returnValue
 
