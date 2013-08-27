@@ -837,19 +837,19 @@ class RecordTimer(timer.Timer):
 						if begin2 < xbegin <= end2:
 							if xend < end2: # recording within event
 								time_match = (xend - xbegin) * 60
-								type = 4
-							else:			# recording last part of event
+								type = 3
+							else:           # recording last part of event
 								time_match = (end2 - xbegin) * 60
 								type = 1
 						elif xbegin <= begin2 <= xend:
 							if xend < end2: # recording first part of event
 								time_match = (xend - begin2) * 60
-								type = 5
-							else:			# recording whole event
+								type = 4
+							else:           # recording whole event
 								time_match = (end2 - begin2) * 60
 								type = 2
 								if x.isAutoTimer:
-									isAutoTimer = 6
+									isAutoTimer = 1
 				else:
 					if begin < x.begin <= end:
 						if timer_end < end: # recording within event
@@ -861,20 +861,18 @@ class RecordTimer(timer.Timer):
 					elif x.begin <= begin <= timer_end:
 						if timer_end < end: # recording first part of event
 							time_match = timer_end - begin
-							if not x.justplay:
-#							if not x.justplay or (x.end - (x.begin + (config.recording.margin_before.getValue() * 60))) > 1:
-								type = 5
-							elif x.justplay:
-								type = 3
-						else:           # recording whole event
-							time_match = end - begin
-							if not x.justplay:
+							type = 4
+							if x.justplay:
 								type = 2
-								if x.isAutoTimer:
-									isAutoTimer = 6
-							else:
-								type = 3
-				if type == 2 or type == 3: # stop searching if a full recording is found
+						else:           # recording whole event
+							print 'G'
+							time_match = end - begin
+							type = 2
+							if x.isAutoTimer:
+								isAutoTimer = 1
+				if x.justplay:
+					type += 5
+				if type == 2 or type == 7: # stop searching if a full recording is found
 					break
 		if time_match:
 			return (time_match, type, isAutoTimer)

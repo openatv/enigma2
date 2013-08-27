@@ -231,6 +231,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 		self.currList = "filelist"
 		self.isAudioCD = False
+		self.ext = None
 		self.AudioCD_albuminfo = {}
 		self.cdAudioTrackFiles = []
 		self.onShown.append(self.applySettings)
@@ -254,7 +255,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 	def hideAndInfoBar(self):
 		self.hide()
 		self.mediaPlayerInfoBar.show()
-		self.hideMediaPlayerInfoBar.start(5000, True)
+		if self.ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
+			self.hideMediaPlayerInfoBar.start(5000, True)
 
 	def timerHideMediaPlayerInfoBar(self):
 		self.hideMediaPlayerInfoBar.stop()
@@ -535,6 +537,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				elif self.mediaPlayerInfoBar.shown:
 					self.mediaPlayerInfoBar.hide()
 					self.hideMediaPlayerInfoBar.stop()
+					if self.ext in AUDIO_EXTENSIONS or self.isAudioCD:
+						self.show()
 				else:
 					self.mediaPlayerInfoBar.show()
 			else:
@@ -891,10 +895,10 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				idx = self.playlist.getCurrentIndex()
 				currref = self.playlist.getServiceRefList()[idx]
 				text = self.getIdentifier(currref)
-				ext = os.path.splitext(text)[1].lower()
+				self.ext = os.path.splitext(text)[1].lower()
 				text = ">"+text
 				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead 
-				if ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
+				if self.ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
 					self.hideAndInfoBar()
 				else:
 					needsInfoUpdate = True
@@ -921,7 +925,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				currref = self.playlist.getServiceRefList()[idx]
 				text = currref.getPath()
 				ext = os.path.splitext(text)[1].lower()
-				if ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
+				if self.ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
 					self.hideAndInfoBar()
 				else:
 					needsInfoUpdate = True
