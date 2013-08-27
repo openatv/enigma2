@@ -11,20 +11,18 @@ class eRect // rectangle class
 {
 	friend class gRegion;
 public:
-			/* eRect() constructs an INVALID rectangle. */
-	eRect()	{ x1 = y1 = 0; x2 = y2 = -1; }
-	eRect( const ePoint &topleft, const ePoint &bottomright );
-
-	// we use this contructor very often... do it inline...
-	eRect( const ePoint &topleft, const eSize &size )
-	{
-		x1 = topleft.x();
-		y1 = topleft.y();
-		x2 = (x1+size.width());
-		y2 = (y1+size.height());
-	}
-
-	eRect( int left, int top, int width, int height );
+	/* eRect() constructs an INVALID rectangle. */
+	eRect(): x1(0), y1(0), x2(-1), y2(-1) {}
+	eRect( int left, int top, int width, int height ):
+		x1(left), y1(top), x2(left+width), y2(top+height)
+	{}
+	eRect( const ePoint &topleft, const ePoint &bottomright ):
+		x1(topleft.x()), y1(topleft.y()), x2(bottomright.x()), y2(bottomright.y())
+	{}
+	eRect( const ePoint &topleft, const eSize &size ):
+		x1(topleft.x()), y1(topleft.y()),
+		x2(x1+size.width()), y2(y1+size.height())
+	{}
 
 	bool empty()	const;
 	bool valid()	const;
@@ -33,7 +31,7 @@ public:
 	int left()	const;
 	int top()	const;
 	int right()	const;
-	int  bottom()	const;
+	int bottom()	const;
 	int &rLeft();
 	int &rTop();
 	int &rRight();
@@ -97,6 +95,7 @@ public:
 	eSize size()	const;
 	int width()	const;
 	int height()	const;
+	int surface() const { return width() * height(); }
 	void setWidth( int w );
 	void setHeight( int h );
 	void setSize( const eSize &s );
@@ -135,13 +134,6 @@ bool operator!=( const eRect &, const eRect & );
 /*****************************************************************************
   eRect inline member functions
  *****************************************************************************/
-
-inline eRect::eRect( int left, int top, int width, int height ):
-	x1(left),
-	y1(top),
-	x2(left+width),
-	y2(top+height)
-{}
 
 inline bool eRect::empty() const
 { return x1 >= x2 || y1 >= y2; }

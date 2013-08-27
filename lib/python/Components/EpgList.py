@@ -91,6 +91,11 @@ class EPGList(HTMLComponent, GUIComponent):
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_zap.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_prepost.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_post.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_add.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_pre.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_zaprec.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_prepost.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_post.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_autotimer.png'))]
 
 		self.nowEvPix = None
@@ -593,7 +598,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			if rec[2] is not None:
 				res.extend((
 					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[rec[1]]),
-					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-42, (r3.h/2-11), 21, 21, self.clocks[rec[2]]),
+					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-42, (r3.h/2-11), 21, 21, self.clocks[15]),
 					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-42, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
 					))
 			else:
@@ -620,7 +625,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			if rec[2] is not None:
 				res.extend((
 					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[rec[1]]),
-					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-42, (r3.h/2-11), 21, 21, self.clocks[rec[1]]),
+					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-42, (r3.h/2-11), 21, 21, self.clocks[15]),
 					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-42, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name)
 				))
 			else:
@@ -667,7 +672,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					res.extend((
 						(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w-131, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
 						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-11), 21, 21, self.clocks[rec[1]]),
-						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-22, (r3.h/2-11), 21, 21, self.clocks[rec[2]])
+						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-22, (r3.h/2-11), 21, 21, self.clocks[15])
 					))
 				else:
 					res.extend((
@@ -987,7 +992,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					if rec[2]:
 						res.append(MultiContentEntryPixmapAlphaBlend(
 							pos = (pos[0]-22,pos[1]), size = (21, 21),
-							png = self.clocks[10],
+							png = self.clocks[15],
 							backcolor_sel = backColorSel))
 		else:
 			if self.graphic:
