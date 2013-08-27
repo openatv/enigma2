@@ -865,13 +865,14 @@ class RecordTimer(timer.Timer):
 							if x.justplay:
 								type = 2
 						else:           # recording whole event
-							print 'G'
 							time_match = end - begin
 							type = 2
 							if x.isAutoTimer:
 								isAutoTimer = 1
 				if x.justplay:
 					type += 5
+				elif x.always_zap:
+					type += 10
 				if type == 2 or type == 7: # stop searching if a full recording is found
 					break
 		if time_match:
