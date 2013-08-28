@@ -822,9 +822,15 @@ class RecordTimer(timer.Timer):
 							time_match = end - begin
 							type = type_offset + 2
 				if time_match:
-					returnValue = (time_match, type)
 					if type in (2,7,12): # When full recording do not look further
+						returnValue = (time_match, [type])
 						break
+					elif returnValue:
+						if type not in returnValue[1]:
+							returnValue[1].append(type)
+					else:
+						returnValue = (time_match, [type])
+
 		return returnValue
 
 	def removeEntry(self, entry):
