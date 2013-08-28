@@ -823,7 +823,7 @@ class RecordTimer(timer.Timer):
 							type = type_offset + 2
 				if time_match:
 					returnValue = (time_match, type)
-					if type == 2: # When full recording do not look further
+					if type in (2,7,12): # When full recording do not look further
 						break
 		return returnValue
 
