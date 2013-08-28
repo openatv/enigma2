@@ -158,12 +158,12 @@ class EPGList(HTMLComponent, GUIComponent):
 			return None
 		rec = self.timer.isInTimer(eventId, beginTime, duration, service)
 		if rec is not None:
-			return self.clocks[rec[1]]
+			return rec[1]
 		else:
 			return None
 
 	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
-		clock_pic = self.getPixmapForEntry(service, eventId, beginTime, duration)
+		clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1=self.weekday_rect
 		r2=self.datetime_rect
 		r3=self.descr_rect
@@ -173,11 +173,10 @@ class EPGList(HTMLComponent, GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_RIGHT, self.days[t[6]]),
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_RIGHT, "%2d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
 		]
-		if clock_pic is not None:
-			res.extend((
-				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.x, r3.y, 21, 21, clock_pic),
-				(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 25, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT, EventName)
-			))
+		if clock_types:
+			for i in range(len(clock_types)):
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.x + i * 23, r3.y, 21, 21, self.clocks[clock_types[i]]))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x + (i + 1) * 23, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT, EventName))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT, EventName))
 		return res
