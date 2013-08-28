@@ -2220,6 +2220,8 @@ class InfoBarPiP:
 	def showPiP(self):
 		try:
 			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			xres = str(info.getInfo(enigma.iServiceInformation.sVideoWidth))
 			if self.session.pipshown:
 				slist = self.servicelist
 				if slist and slist.dopipzap:
@@ -2227,7 +2229,7 @@ class InfoBarPiP:
 				del self.session.pip
 				self.session.pipshown = False
 			else:
-				if about.getCPUString() == 'BCM7346B2' or about.getCPUString() == 'BCM7425B2':
+				if int(xres) <= 720 or about.getCPUString() == 'BCM7346B2' or about.getCPUString() == 'BCM7425B2':
 					self.session.pip = self.session.instantiateDialog(PictureInPicture)
 					self.session.pip.show()
 					newservice = self.servicelist.servicelist.getCurrent()
