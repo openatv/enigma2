@@ -325,11 +325,7 @@ class Harddisk:
 			else:
 				# Prefer optimal alignment for performance
 				alignment = 'opt'
-			if size > 2097151:
-				parttype = 'gpt'
-			else:
-				parttype = 'msdos'
-			task.args += ['-a', alignment, '-s', self.disk_path, 'mklabel', parttype, 'mkpart', 'primary', '0%', '100%']
+			task.args += ['-a', alignment, '-s', self.disk_path, 'mklabel', 'gpt', 'mkpart', 'primary', '0%', '100%']
 		else:
 			task.setTool('sfdisk')
 			task.args.append('-f')
@@ -355,7 +351,7 @@ class Harddisk:
 				file = open("/proc/version","r")
 				version = file.read().split(' ', 4)[2].split('.',2)[:2]
 				file.close()
-				if (version[0] > 3) or ((version[0] > 2) and (version[1] >= 2)):
+				if (int(version[0]) > 3) or ((int(version[0]) == 3) and (int(version[1]) >= 2)):
 					# Linux version 3.2 supports bigalloc and -C option, use 256k blocks
 					task.args += ["-C", "262144"]
 					big_o_options.append("bigalloc")
