@@ -257,20 +257,23 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		next_state = self.state + 1
 		self.log(5, "activating state %d" % next_state)
 
-		if next_state == 1 and self.always_zap:
-			if Screens.Standby.inStandby:
-				#set service to zap after standby
-				Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
-				Screens.Standby.inStandby.paused_service = None
-				#wakeup standby
-				Screens.Standby.inStandby.Power()
-				self.log(5, "wakeup and zap to recording service")
-			else:
-				cur_zap_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
-				if cur_zap_ref and not cur_zap_ref.getPath():# we do not zap away if it is no live service
-					Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_INFO, timeout=20)
-					self.failureCB(True)
-					self.log(5, "zap to recording service")
+		if next_state == 1:
+			self.wasInStandby = False
+			if self.always_zap:
+				if Screens.Standby.inStandby:
+					self.wasInStandby = True
+					#set service to zap after standby
+					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
+					Screens.Standby.inStandby.paused_service = None
+					#wakeup standby
+					Screens.Standby.inStandby.Power()
+					self.log(5, "wakeup and zap to recording service")
+				else:
+					cur_zap_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
+					if cur_zap_ref and not cur_zap_ref.getPath():# we do not zap away if it is no live service
+						Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_INFO, timeout=20)
+						self.failureCB(True)
+						self.log(5, "zap to recording service")
 
 		if next_state == self.StatePrepared:
 			if self.tryPrepare():
@@ -316,6 +319,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 			if self.justplay:
 				if Screens.Standby.inStandby:
+					self.wasInStandby = True
 					self.log(11, "wakeup and zap")
 					#set service to zap after standby
 					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
@@ -352,7 +356,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if not self.justplay:
 				NavigationInstance.instance.stopRecordService(self.record_service)
 				self.record_service = None
-			if self.afterEvent == AFTEREVENT.STANDBY:
+			if self.afterEvent == AFTEREVENT.STANDBY or self.wasInStandby:
 				if not Screens.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nreceiver to standby. Do that now?"), timeout = 20)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
