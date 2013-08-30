@@ -727,8 +727,12 @@ class RecordTimer(timer.Timer):
 
 	def getStillRecording(self):
 		isStillRecording = False
+		now = time()
 		for timer in self.timer_list:
 			if timer.isStillRecording:
+				isStillRecording = True
+				break
+			elif (abs(timer.begin - now) <= 10):
 				isStillRecording = True
 				break
 		return isStillRecording
