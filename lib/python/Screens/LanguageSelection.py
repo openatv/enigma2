@@ -53,7 +53,7 @@ class LanguageSelection(Screen):
 			"green": self.save,
 			"yellow": self.updateCache,
 		}, -1)
-	    
+		
 	def updateCache(self):
 		print"updateCache"
 		self["languages"].setList([('update cache','Updating cache, please wait...',None)])
