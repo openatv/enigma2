@@ -527,7 +527,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 
-	if config.misc.boxtype.value == 'odinm9' or config.misc.boxtype.value == 'ventonhdx':
+	if config.misc.boxtype.value == 'odinm9' or enigma.getBoxType().startswith('inihdx') or config.misc.boxtype.value == 'ventonhdx' or config.misc.boxtype.value == 'mbtwin':
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -551,6 +551,10 @@ def runScreenTest():
 	from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime
 	#get currentTime
 	nowTime = time()
+	
+	if enigma.getBoxType().startswith('gb') or enigma.getBoxType().startswith('ini'):
+		setRTCtime(nowTime)
+		
 	wakeupList = [
 		x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
 					(session.nav.RecordTimer.getNextZapTime(), 1),
@@ -570,7 +574,7 @@ def runScreenTest():
 				wptime = startTime[0] - 120 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0] - 240
-		if not config.misc.SyncTimeUsing.getValue() == "0" or enigma.getBoxType().startswith('gb'):
+		if not config.misc.SyncTimeUsing.getValue() == "0":
 			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
@@ -592,7 +596,7 @@ def runScreenTest():
 				wptime = startTime[0] + 120 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0]
-		if not config.misc.SyncTimeUsing.getValue() == "0" or enigma.getBoxType().startswith('gb'):
+		if not config.misc.SyncTimeUsing.getValue() == "0":
 			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime+60))
