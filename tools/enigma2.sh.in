@@ -62,6 +62,7 @@ case $ret in
 		;;
 	3)
 		rm -fR /home/root/.gstreamer-0.10
+		rm -f /tmp/.listen.camd.socket.ignore
 		;;
 	4)
 		/sbin/rmmod lcd
@@ -78,5 +79,6 @@ case $ret in
 		init 1
 		;;
 	*)
+		rm -f /tmp/.listen.camd.socket.ignore
 		;;
 esac
