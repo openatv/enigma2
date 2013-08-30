@@ -486,8 +486,6 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			if fileExists(skinfile):
 				print "[SKIN] loading include:", skinfile
 				loadSkin(skinfile)
-			except Exception, err:
-				print "not loading user skin: ", err
 
 	for c in skin.findall('switchpixmap'):
 	    for pixmap in c.findall('pixmap'):
