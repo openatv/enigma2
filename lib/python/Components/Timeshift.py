@@ -36,6 +36,7 @@ from Components.Task import job_manager as JobManager
 
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
+import Screens.Standby
 from ServiceReference import ServiceReference
 
 from RecordTimer import RecordTimerEntry, parseEvent
