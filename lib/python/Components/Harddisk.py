@@ -339,11 +339,14 @@ class Harddisk:
 		if isFileSystemSupported("ext4"):
 			task.setTool("mkfs.ext4")
 			if size > 20000:
-				version = open("/proc/version","r").read().split(' ', 4)[2].split('.',2)[:2]
-				if (version[0] > 3) or ((version[0] > 2) and (version[1] >= 2)):
-					# Linux version 3.2 supports bigalloc and -C option, use 256k blocks
-					task.args += ["-C", "262144"]
-					big_o_options.append("bigalloc")
+				try:
+					version = map(int, open("/proc/version","r").read().split(' ', 4)[2].split('.',2)[:2])
+					if (version[0] > 3) or ((version[0] > 2) and (version[1] >= 2)):
+						# Linux version 3.2 supports bigalloc and -C option, use 256k blocks
+						task.args += ["-C", "262144"]
+						big_o_options.append("bigalloc")
+				except Exception, ex:
+					print "Failed to detect Linux version:", ex
 		else:
 			task.setTool("mkfs.ext3")
 		if size > 250000:
