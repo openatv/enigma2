@@ -232,7 +232,7 @@ class InfoBarScreenSaver:
 			eActionMap.getInstance().bindAction('', -maxint - 1, self.keypressScreenSaver)
 
 	def keypressScreenSaver(self, key, flag):
-		if flag == 1:
+		if flag:
 			self.screensaver.hide()
 			self.show()
 			self.ScreenSaverTimerStart()
