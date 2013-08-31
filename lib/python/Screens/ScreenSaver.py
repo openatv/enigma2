@@ -1,4 +1,5 @@
 from Screens.Screen import Screen
+from Components.About import about
 from Components.MovieList import AUDIO_EXTENSIONS
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Pixmap import Pixmap
@@ -48,11 +49,14 @@ class Screensaver(Screen):
 					self.hide()
 
 	def doMovePicture(self):
-			if self.posx > self.maxx or self.posx < 0:
-				self.movex = -self.movex
-			self.posx += self.movex
-			if self.posy > self.maxy or self.posy < 0:
-				self.movey = -self.movey
-			self.posy += self.movey		
-			self["picture"].instance.move(ePoint(self.posx, self.posy))
+		if self.posx > self.maxx or self.posx < 0:
+			self.movex = -self.movex
+		self.posx += self.movex
+		if self.posy > self.maxy or self.posy < 0:
+			self.movey = -self.movey
+		self.posy += self.movey		
+		self["picture"].instance.move(ePoint(self.posx, self.posy))
+		if about.getCPUString() == 'BCM7346B2' or about.getCPUString() == 'BCM7425B2':
+			self.moveLogoTimer.start(90)
+		else:
 			self.moveLogoTimer.start(50)
