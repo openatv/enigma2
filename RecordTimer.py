@@ -1,6 +1,6 @@
 import os
 from enigma import eEPGCache, getBestPlayableServiceReference, \
-	eServiceReference, iRecordableService, quitMainloop
+	eServiceReference, iRecordableService, quitMainloop, eActionMap
 
 from Components.config import config
 from Components.UsageConfig import defaultMoviePath
@@ -18,6 +18,7 @@ from ServiceReference import ServiceReference
 
 from time import localtime, strftime, ctime, time
 from bisect import insort
+from sys import maxint
 
 # ok, for descriptions etc we have:
 # service reference  (to get the service name)
@@ -144,6 +145,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.tags = tags or []
 		self.descramble = descramble
 		self.record_ecm = record_ecm
+		self.wasInStandby = False
 
 		self.log_entries = []
 		self.resetState()
@@ -258,10 +260,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.log(5, "activating state %d" % next_state)
 
 		if next_state == 1:
-			self.wasInStandby = False
 			if self.always_zap:
 				if Screens.Standby.inStandby:
 					self.wasInStandby = True
+					eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
 					#set service to zap after standby
 					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
 					Screens.Standby.inStandby.paused_service = None
@@ -320,6 +322,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if self.justplay:
 				if Screens.Standby.inStandby:
 					self.wasInStandby = True
+					eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
 					self.log(11, "wakeup and zap")
 					#set service to zap after standby
 					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
@@ -357,6 +360,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				NavigationInstance.instance.stopRecordService(self.record_service)
 				self.record_service = None
 			if self.afterEvent == AFTEREVENT.STANDBY or self.wasInStandby:
+				self.keypress() #this unbinds the keypress detection
 				if not Screens.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nreceiver to standby. Do that now?"), timeout = 20)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
@@ -366,6 +370,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					else:
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour receiver. Shutdown now?"), timeout = 20)
 			return True
+
+	def keypress(self, key=None, flag=1):
+		if flag == 1 and self.wasInStandby:
+			self.wasInStandby = False
+			eActionMap.getInstance().unbindAction('', self.keypress)
 
 	def setAutoincreaseEnd(self, entry = None):
 		if not self.autoincrease:
