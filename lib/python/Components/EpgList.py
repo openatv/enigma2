@@ -370,9 +370,12 @@ class EPGList(HTMLComponent, GUIComponent):
 		time_base = self.getTimeBase()
 		last_time = time()
 		if old_service and self.cur_event is not None:
-			events = old_service[2]
-			cur_event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
-			last_time = cur_event[2]
+			try:
+				events = old_service[2]
+				cur_event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
+				last_time = cur_event[2]
+			except:
+				pass
 		if cur_service:
 			self.cur_event = 0
 			events = cur_service[2]
