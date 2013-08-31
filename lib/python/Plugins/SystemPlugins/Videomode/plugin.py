@@ -111,9 +111,6 @@ class VideoSetup(Screen, ConfigListScreen):
 		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
 			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("Configure the sharpness of the video scaling.")))
 
-		if SystemInfo["ScartSwitch"]:
-			self.list.append(getConfigListEntry(_("Show VCR scart on main menu"), config.av.show_vcr_scart, _("When enabled, the VCR scart option will be shown on the main menu.")))
-
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
