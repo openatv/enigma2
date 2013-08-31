@@ -372,7 +372,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			return True
 
 	def keypress(self, key=None, flag=1):
-		if flag == 1 and self.wasInStandby:
+		if flag and self.wasInStandby:
 			self.wasInStandby = False
 			eActionMap.getInstance().unbindAction('', self.keypress)
 
