@@ -164,11 +164,12 @@ class TryQuitMainloop(MessageBox):
 			reason = (ngettext("%d job is running in the background!", "%d jobs are running in the background!", jobs) % jobs) + '\n'
 			if jobs == 1:
 				job = job_manager.getPendingJobs()[0]
-				reason += "%s: %s (%d%%)\n" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
+				if job.name == "VFD Checker":		
+					reason = ""
+				else:
+					reason += "%s: %s (%d%%)\n" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
 			else:
 				reason += (_("%d jobs are running in the background!") % jobs) + '\n'
-			if job.name == "VFD Checker":		
-				reason = ""
 		if inTimeshift:
 			reason = _("You seem to be in timeshift!") + '\n'
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
