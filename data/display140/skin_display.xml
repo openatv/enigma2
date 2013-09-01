@@ -446,4 +446,26 @@
 		<widget source="parent.summary_action" render="Label" position="0,21" size="255,18" font="FdLcD;16" halign="left" noWrap="1" />
 		<widget source="parent.summary_status" render="Label" position="0,41" size="255,18" font="FdLcD;16" halign="left" noWrap="1" />
 	</screen>
+	<!-- LCD screen EMC -->
+  	<screen name="EMCMoviePlayerSummary" position="0,0" size="140,32" >
+		<widget source="session.CurrentService" render="Label" position="1,1" size="130,12" font="Regular;10" halign="center">
+			  <convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="Service" render="Progress" position="1,15" size="130,4" zPosition="2" borderWidth="1">
+			  <convert type="EMCServicePosition">Position</convert>
+		</widget>
+		<widget source="Service" render="Progress" position="1,15" size="130,4" zPosition="1" borderWidth="1">
+			  <convert type="EMCRecordPosition">Position</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="1,22" size="58,25" font="Regular;10" halign="center">
+			  <convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="60,22" size="72,25" font="Regular;10" halign="center">
+			  <convert type="ServicePosition">Remaining,Negate</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" text="REC" position="62,22" size="70,25" font="Regular;10" halign="center">
+			  <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+			  <convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+  </screen>		
 </skin>
