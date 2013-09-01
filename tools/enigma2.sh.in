@@ -25,11 +25,6 @@ fi
 
 LIBS=@libdir@/libopen.so.0.0.0
 
-#check for receiver specific passthrough helper lib
-if [ -e @libdir@/libpassthrough.so ]; then
-	LIBS="$LIBS @libdir@/libpassthrough.so"
-fi
-
 sync
 LD_PRELOAD=$LIBS @bindir@/enigma2
 
