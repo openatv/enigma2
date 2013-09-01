@@ -33,7 +33,8 @@ class RcModel:
 	RCTYPE_TM = 27
 	RCTYPE_VU = 28
 	RCTYPE_VU2 = 29
-	RCTYPE_XP1000 = 30
+	RCTYPE_VU3 = 30
+	RCTYPE_XP1000 = 31
 
 
 	def __init__(self):
@@ -141,6 +142,8 @@ class RcModel:
 			model = self.readFile('/proc/stb/info/vumodel')
 			if model == 'ultimo':
 				self.currentRcType = self.RCTYPE_VU2
+			elif model == 'duo2':
+				self.currentRcType = self.RCTYPE_VU3
 			else:
 				self.currentRcType = self.RCTYPE_VU
 		
@@ -205,6 +208,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/vu/'
 		elif self.currentRcType == self.RCTYPE_VU2:
 			return '/usr/share/enigma2/rc_models/vu2/'
+		elif self.currentRcType == self.RCTYPE_VU3:
+			return '/usr/share/enigma2/rc_models/vu3/'
 		elif self.currentRcType == self.RCTYPE_XP1000:
 			return '/usr/share/enigma2/rc_models/xp1000/'
 

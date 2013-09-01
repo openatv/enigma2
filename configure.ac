@@ -440,6 +440,7 @@ data/rc_models/optimuss/Makefile
 data/rc_models/tm/Makefile
 data/rc_models/vu/Makefile
 data/rc_models/vu2/Makefile
+data/rc_models/vu3/Makefile
 data/rc_models/xp1000/Makefile
 include/Makefile
 lib/Makefile

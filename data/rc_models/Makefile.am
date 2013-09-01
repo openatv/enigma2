@@ -87,7 +87,7 @@ SUBDIRS = vu2
 endif
 
 if VUDUO2
-SUBDIRS = vu
+SUBDIRS = vu3
 endif
 
 if XP1000
