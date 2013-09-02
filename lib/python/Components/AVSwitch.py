@@ -148,7 +148,6 @@ def InitAVSwitch():
 
 	iAVSwitch.setInput("ENCODER") # init on startup
 	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
-	config.av.show_vcr_scart = ConfigEnableDisable(default = False)
 	
 	if os.path.exists("/proc/stb/audio/3d_surround_choices"):
 		f = open("/proc/stb/audio/3d_surround_choices", "r")

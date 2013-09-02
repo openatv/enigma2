@@ -37,11 +37,6 @@ else
 	LIBS="/usr/lib/libopen.so.0.0.0"
 fi
 
-#check for receiver specific passthrough helper lib
-if [ -e @libdir@/libpassthrough.so ]; then
-	LIBS="$LIBS @libdir@/libpassthrough.so"
-fi
-
 sync
 
 if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then

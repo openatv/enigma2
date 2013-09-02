@@ -1,6 +1,6 @@
 import os
 from enigma import eEPGCache, getBestPlayableServiceReference, \
-	eServiceReference, iRecordableService, quitMainloop
+	eServiceReference, iRecordableService, quitMainloop, eActionMap
 
 from Components.config import config
 from Components.UsageConfig import defaultMoviePath
@@ -18,6 +18,7 @@ from ServiceReference import ServiceReference
 
 from time import localtime, strftime, ctime, time
 from bisect import insort
+from sys import maxint
 
 # ok, for descriptions etc we have:
 # service reference  (to get the service name)
@@ -146,6 +147,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.tags = tags or []
 		self.descramble = descramble
 		self.record_ecm = record_ecm
+		self.wasInStandby = False
 
 		self.log_entries = []
 		self.resetState()
@@ -259,20 +261,23 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		next_state = self.state + 1
 		self.log(5, "activating state %d" % next_state)
 
-		if next_state == 1 and self.always_zap:
-			if Screens.Standby.inStandby:
-				#set service to zap after standby
-				Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
-				Screens.Standby.inStandby.paused_service = None
-				#wakeup standby
-				Screens.Standby.inStandby.Power()
-				self.log(5, "wakeup and zap to recording service")
-			else:
-				cur_zap_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
-				if cur_zap_ref and not cur_zap_ref.getPath():# we do not zap away if it is no live service
-					Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_INFO, timeout=20)
-					self.failureCB(True)
-					self.log(5, "zap to recording service")
+		if next_state == 1:
+			if self.always_zap:
+				if Screens.Standby.inStandby:
+					self.wasInStandby = True
+					eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
+					#set service to zap after standby
+					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
+					Screens.Standby.inStandby.paused_service = None
+					#wakeup standby
+					Screens.Standby.inStandby.Power()
+					self.log(5, "wakeup and zap to recording service")
+				else:
+					cur_zap_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
+					if cur_zap_ref and not cur_zap_ref.getPath():# we do not zap away if it is no live service
+						Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_INFO, timeout=20)
+						self.failureCB(True)
+						self.log(5, "zap to recording service")
 
 		if next_state == self.StatePrepared:
 			if self.tryPrepare():
@@ -325,6 +330,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 			if self.justplay:
 				if Screens.Standby.inStandby:
+					self.wasInStandby = True
+					eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
 					self.log(11, "wakeup and zap")
 					#set service to zap after standby
 					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
@@ -362,7 +369,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				NavigationInstance.instance.stopRecordService(self.record_service)
 				self.record_service = None
 			NavigationInstance.instance.RecordTimer.saveTimer()
-			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and self.autostate and self.afterEvent == AFTEREVENT.AUTO):
+			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and self.autostate and self.afterEvent == AFTEREVENT.AUTO)  or self.wasInStandby:
+				self.keypress() #this unbinds the keypress detection
 				if not Screens.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nreceiver to standby. Do that now?"), timeout = 20)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO):
@@ -376,6 +384,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour receiver. Shutdown now?"), timeout = 20)
 			return True
 
+	def keypress(self, key=None, flag=1):
+		if flag and self.wasInStandby:
+			self.wasInStandby = False
+			eActionMap.getInstance().unbindAction('', self.keypress)
 	def setAutoincreaseEnd(self, entry = None):
 		if not self.autoincrease:
 			return False
