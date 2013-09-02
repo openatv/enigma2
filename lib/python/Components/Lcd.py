@@ -1,6 +1,7 @@
-from config import config, ConfigSubsection, ConfigSlider, ConfigYesNo, ConfigNothing
+from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
 from enigma import eDBoxLCD
 from Components.SystemInfo import SystemInfo
+from Tools.Directories import fileExists
 
 class LCD:
 	def __init__(self):
@@ -47,6 +48,33 @@ def InitLcd():
 	SystemInfo["Display"] = detected
 	config.lcd = ConfigSubsection();
 	if detected:
+		if fileExists("/proc/stb/lcd/mode"):
+			f = open("/proc/stb/lcd/mode", "r")
+			can_lcdmodechecking = f.read().strip().split(" ")
+			f.close()
+		else:
+			can_lcdmodechecking = False
+
+		SystemInfo["LCDMiniTV"] = can_lcdmodechecking
+
+		if can_lcdmodechecking:
+			def setLCDModeMinitTV(configElement):
+				try:
+					f = open("/proc/stb/lcd/mode", "w")
+					f.write(configElement.value)
+					f.close()
+				except:
+					pass
+			config.lcd.modeminitv = ConfigSelection(choices={
+					"0": _("normale"),
+					"1": _("Mini TV"),
+					"2": _("OSD"),
+					"3": _("Minit TV with OSD")},					
+					default = "0")
+			config.lcd.modeminitv.addNotifier(setLCDModeMinitTV)
+		else:
+			config.lcd.modeminitv = ConfigNothing()
+			
 		def setLCDbright(configElement):
 			ilcd.setBright(configElement.value);
 
