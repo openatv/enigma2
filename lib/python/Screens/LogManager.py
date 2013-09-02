@@ -431,7 +431,7 @@ class LogManager(Screen):
 
 			# Send the email via our own SMTP server.
 			wos_user = 'vixlogs@world-of-satellite.com'
-			wos_pwd = base64.b64decode('NDJJWnojMEpldUxX')
+			wos_pwd = base64.b64decode('TF95X0dCRlRFNHRDenVKN1dNdlEkZj14')
 
 			try:
 				print "connecting to server: mail.world-of-satellite.com"
