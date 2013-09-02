@@ -201,6 +201,7 @@
 		<item level="1" requires="GraphicLCD" text="LCD scroll speed" description="Set the scrolling speed of text on the front display.">config.usage.lcd_scroll_speed</item>
 		<item level="1" requires="GraphicLCD" text="Time for next LCD scrolling" description="If the text is too long to be displayed on the front panel, it will be repeated (number of times):">config.usage.lcd_scroll_delay</item>
 		<item level="1" requires="GraphicLCD" text="Show blinking rec symbol in LCD during recording" description="Enable blinking rec symbol on the LCD Display">config.usage.blinking_rec_symbol_during_recording</item>
+		<item level="1" requires="LCDMiniTV" text="Show MiniTV in the Front Display" description="You can Display MiniTV with or without OSD Menu">config.lcd.modeminitv</item>		
 		<item level="1" text="Show Display Icons" description="Allows you to enable/disable displaying icons on the frontpanel.">config.lcd.mode</item>
 		<item level="1" text="Show Time Remaining/Elapsed" description="This option allows you choose how to display remaining time, or elapsed time, or both.">config.usage.swap_time_remaining_on_vfd</item>
 		<item level="1" text="Show Transponder Remaining/Elapsed as" description="This option allows you choose how to display the remaining/elapsed time for live tv.">config.usage.swap_time_display_on_vfd</item>
