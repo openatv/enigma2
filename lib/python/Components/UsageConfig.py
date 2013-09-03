@@ -246,6 +246,7 @@ def InitUsageConfig():
 	config.usage.hide_ci_messages = ConfigYesNo(default = False)
 	config.usage.show_cryptoinfo = ConfigSelection([("0", _("Off")),("1", _("One line")),("2", _("Two lines"))], "2")
 	config.usage.show_eit_nownext = ConfigYesNo(default = True)
+	config.usage.show_vcr_scart = ConfigYesNo(default = False)
 
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)

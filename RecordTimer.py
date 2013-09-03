@@ -1,5 +1,5 @@
 import os
-from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference, eServiceCenter, iRecordableService, quitMainloop, getMachineBrand, getMachineName
+from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference, eServiceCenter, iRecordableService, quitMainloop, eActionMap, getMachineBrand, getMachineName
 
 from Components.config import config
 from Components import Harddisk
@@ -18,6 +18,8 @@ from ServiceReference import ServiceReference
 
 from time import localtime, strftime, ctime, time
 from bisect import insort
+from sys import maxint
+
 import os
 
 # ok, for descriptions etc we have:
@@ -129,6 +131,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.record_ecm = record_ecm
 
 		self.isAutoTimer = isAutoTimer
+		self.wasInStandby = False
 
 		self.log_entries = []
 		self.resetState()
@@ -272,6 +275,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 			if self.always_zap:
 				if Screens.Standby.inStandby:
+					self.wasInStandby = True
+					eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
 					#set service to zap after standby
 					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
 					Screens.Standby.inStandby.paused_service = None
@@ -339,6 +344,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 			if self.justplay:
 				if Screens.Standby.inStandby:
+					self.wasInStandby = True
+					eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
 					self.log(11, "wakeup and zap")
 					#set service to zap after standby
 					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
@@ -408,7 +415,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.record_service = None
 
 			NavigationInstance.instance.RecordTimer.saveTimer()
-			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and self.autostate and self.afterEvent == AFTEREVENT.AUTO):
+			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and self.autostate and self.afterEvent == AFTEREVENT.AUTO) or self.wasInStandby:
+				self.keypress() #this unbinds the keypress detection
 				if not Screens.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO):
@@ -421,6 +429,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					else:
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName()), timeout = 180)
 			return True
+
+	def keypress(self, key=None, flag=1):
+		if flag and self.wasInStandby:
+			self.wasInStandby = False
+			eActionMap.getInstance().unbindAction('', self.keypress)
 
 	def setAutoincreaseEnd(self, entry = None):
 		if not self.autoincrease:
@@ -786,12 +799,14 @@ class RecordTimer(timer.Timer):
 		return None
 
 	def isInTimer(self, eventid, begin, duration, service):
-		time_match = 0
+		returnValue = None
 		type = 0
+		time_match = 0
+
+		isAutoTimer = None
 		bt = None
 		end = begin + duration
 		refstr = str(service)
-		isAutoTimer = None
 		for x in self.timer_list:
 			check = x.service_ref.ref.toString() == refstr
 			if not check:
@@ -877,12 +892,12 @@ class RecordTimer(timer.Timer):
 					type += 5
 				elif x.always_zap:
 					type += 10
-				if type == 2 or type == 7: # stop searching if a full recording is found
-					break
-		if time_match:
-			return (time_match, type, isAutoTimer)
-		else:
-			return None
+
+				if time_match:
+					returnValue = (time_match, type, isAutoTimer)
+					if type in (2,7,12): # When full recording do not look further
+						break
+		return returnValue
 
 	def removeEntry(self, entry):
 		print "[Timer] Remove " + str(entry)
