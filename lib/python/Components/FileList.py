@@ -335,7 +335,6 @@ class MultiFileSelectList(FileList):
 	def getSelectedList(self):
 		selectedFilesExist = []
 		for x in self.selectedFiles:
-			print x
 			if pathExists(x):
 				selectedFilesExist.append(x)
 		return selectedFilesExist
@@ -409,24 +408,18 @@ class MultiFileSelectList(FileList):
 
 		if self.showFiles:
 			for x in files:
-				print x
 				if self.useServiceRef:
 					path = x.getPath()
 					name = path.split('/')[-1]
-					print"useServiceRef: path=%s name=%s" %(path, name)
 				else:
 					path = directory + x
 					name = x
-					print"path=%s name=%s" %(path, name)
 				if (self.matchingPattern is None) or self.matchingPattern.search(path):
 					alreadySelected = False
 					for entry in self.selectedFiles:
-						print"entry=%s" %(entry)
-						print"path.basename=%s x=%s" %(os.path.basename(entry), x)
 						#if os.path.basename(entry) == x:
 						if entry == path:
 							alreadySelected = True
-							print"alreadySelected = True"
 					self.list.append(MultiFileSelectEntryComponent(name = name, absolute = x , isDir = False, selected = alreadySelected))
 
 		self.l.setList(self.list)
