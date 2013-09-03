@@ -424,7 +424,7 @@ class VideoHardware:
 		else:
 			wss = "auto"
 
-		print "-> setting aspect, policy, policy2, wss", aspect, policy, policy2, wss
+		print "-> setting aspect: %s, policy: %s, policy2: %s, wss: %s" % (aspect, policy, policy2, wss)
 		f = open("/proc/stb/video/aspect", "w")
 		f.write(aspect)
 		f.close()

@@ -4,6 +4,7 @@ from enigma import eHdmiCEC, eActionMap
 from Tools.StbHardware import getFPWasTimerWakeup
 from enigma import eTimer
 from Tools.Directories import fileExists
+from sys import maxint
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = False)
@@ -52,7 +53,7 @@ class HdmiCec:
 
 		self.volumeForwardingEnabled = False
 		self.volumeForwardingDestination = 0
-		eActionMap.getInstance().bindAction('', -0x7FFFFFF, self.keyEvent)
+		eActionMap.getInstance().bindAction('', -maxint - 1, self.keyEvent)
 		config.hdmicec.volume_forwarding.addNotifier(self.configVolumeForwarding)
 		config.hdmicec.enabled.addNotifier(self.configVolumeForwarding)
 		if config.hdmicec.handle_deepstandby_events.getValue():

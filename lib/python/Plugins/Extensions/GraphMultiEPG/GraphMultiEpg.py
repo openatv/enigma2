@@ -465,7 +465,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				if selected and self.select_rect.x == xpos + left and self.selEvPix:
 					bgpng = self.selEvPix
 					backColorSel = None
-				elif rec is not None and rec[1] in (2, 12):
+				elif rec is not None and rec[1][-1] in (2, 12):
 					bgpng = self.recEvPix
 					foreColor = self.foreColorRec
 					backColor = self.backColorRec
@@ -505,10 +505,14 @@ class EPGList(HTMLComponent, GUIComponent):
 						color = foreColor,
 						color_sel = foreColorSelected))
 				# recording icons
-				if rec is not None and ewidth > 23:
-					res.append(MultiContentEntryPixmapAlphaTest(
-						pos = (left + xpos + ewidth - 22, top + height - 22), size = (21, 21),
-						png = self.clocks[rec[1]] ) )
+				if rec is not None:
+					for i in range(len(rec[1])):
+						if ewidth < (i + 1) * 22:
+							break
+						res.append(MultiContentEntryPixmapAlphaTest(
+							pos = (left + xpos + ewidth - (i + 1) * 22, top + height - 22), size = (21, 21),
+							png = self.clocks[rec[1][len(rec[1]) - 1 - i]]))
+
 		else:
 			if selected and self.selEvPix:
 				res.append(MultiContentEntryPixmapAlphaTest(

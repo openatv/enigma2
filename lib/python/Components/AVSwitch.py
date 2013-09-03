@@ -202,7 +202,6 @@ def InitAVSwitch():
 		detected = eAVSwitch.getInstance().haveScartSwitch()
 	
 	SystemInfo["ScartSwitch"] = detected
-	config.av.show_vcr_scart = ConfigEnableDisable(default = False)
 
 	if os.path.exists("/proc/stb/hdmi/bypass_edid_checking"):
 		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")

@@ -8,7 +8,6 @@ from Components.FileList import FileList
 from Components.ScrollLabel import ScrollLabel
 from Components.config import config, configfile
 from Components.FileList import MultiFileSelectList
-from Components.Pixmap import Pixmap
 from Screens.MessageBox import MessageBox
 from os import path, remove, walk, stat, rmdir
 from time import time
@@ -495,7 +494,7 @@ class LogManagerFb(Screen):
 		self["blue"] = Label(_("rename"))
 
 
-		self["actions"] = ActionMap(["ChannelSelectBaseActions","WizardActions", "DirectionActions","MenuActions","NumberActions","ColorActions"],
+		self["actions"] = ActionMap(["ChannelSelectBaseActions","WizardActions", "DirectionActions", "MenuActions", "NumberActions", "ColorActions"],
 			{
 			 "ok": self.ok,
 			 "back": self.exit,
