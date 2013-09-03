@@ -762,7 +762,7 @@ class InfoBarTimeshift:
 				print 'filename:',filename
 				statinfo = os.stat("%s%s" % (config.usage.timeshift_path.getValue(),filename)) # if no write for 3 sec = stranded timeshift
 				if statinfo.st_mtime < (time()-3.0):
-				# try:
+				try:
 					print "[TimeShift] Erasing stranded timeshift %s" % filename
 					self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.getValue(),filename))
 
@@ -770,8 +770,8 @@ class InfoBarTimeshift:
 					# if filename.startswith("pts_livebuffer_") is True:
 					# 	self.BgFileEraser.erase("%s%s.meta" % (config.usage.timeshift_path.getValue(),filename))
 					# 	self.BgFileEraser.erase("%s%s.eit" % (config.usage.timeshift_path.getValue(),filename))
-				# except:
-				# 	print "[TimeShift] IO-Error while cleaning Timeshift Folder ..."
+				except:
+				 	print "[TimeShift] IO-Error while cleaning Timeshift Folder ..."
 
 	def ptsGetEventInfo(self):
 		event = None
