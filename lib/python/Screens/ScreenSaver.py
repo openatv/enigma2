@@ -48,11 +48,11 @@ class Screensaver(Screen):
 					self.hide()
 
 	def doMovePicture(self):
-			if self.posx > self.maxx or self.posx < 0:
-				self.movex = -self.movex
-			self.posx += self.movex
-			if self.posy > self.maxy or self.posy < 0:
-				self.movey = -self.movey
-			self.posy += self.movey		
-			self["picture"].instance.move(ePoint(self.posx, self.posy))
-			self.moveLogoTimer.start(50)
+		if self.posx > self.maxx or self.posx < 0:
+			self.movex = -self.movex
+		self.posx += self.movex
+		if self.posy > self.maxy or self.posy < 0:
+			self.movey = -self.movey
+		self.posy += self.movey		
+		self["picture"].instance.move(ePoint(self.posx, self.posy))
+		self.moveLogoTimer.start(90)
