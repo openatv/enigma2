@@ -388,10 +388,16 @@ class VideoHardware:
 		else:
 			wss = "auto"
 
-		print "-> setting aspect, policy, policy2, wss", aspect, policy, policy2, wss
-		open("/proc/stb/video/aspect", "w").write(aspect)
-		open("/proc/stb/video/policy", "w").write(policy)
-		open("/proc/stb/denc/0/wss", "w").write(wss)
+		print "-> setting aspect: %s, policy: %s, policy2: %s, wss: %s" % (aspect, policy, policy2, wss)
+		f = open("/proc/stb/video/aspect", "w")
+		f.write(aspect)
+		f.close()
+		f = open("/proc/stb/video/policy", "w")
+		f.write(policy)
+		f.close()
+		f = open("/proc/stb/denc/0/wss", "w")
+		f.write(wss)
+		f.close()
 		try:
 			open("/proc/stb/video/policy2", "w").write(policy2)
 		except IOError:

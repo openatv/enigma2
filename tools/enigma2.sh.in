@@ -28,11 +28,6 @@ else
 	LIBS="/usr/lib/libopen.so.0.0.0"
 fi
 
-#check for receiver specific passthrough helper lib
-if [ -e @libdir@/libpassthrough.so ]; then
-	LIBS="$LIBS @libdir@/libpassthrough.so"
-fi
-
 sync
 if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
 	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
@@ -62,6 +57,7 @@ case $ret in
 		;;
 	3)
 		rm -fR /home/root/.gstreamer-0.10
+		rm -f /tmp/.listen.camd.socket.ignore
 		;;
 	4)
 		/sbin/rmmod lcd
@@ -82,5 +78,6 @@ case $ret in
 		/usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi && echo fpupload > /dev/dbox/oled0 && sleep 3 && cat /tmp/micom.bin > /dev/mcu && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi && sleep 200000
 		;;
 	*)
+		rm -f /tmp/.listen.camd.socket.ignore
 		;;
 esac

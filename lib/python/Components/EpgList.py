@@ -95,8 +95,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_pre.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_zaprec.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_prepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_post.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_autotimer.png'))]
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_post.png'))]
+
+		self.autotimericon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_autotimer.png'))
 
 		self.nowEvPix = None
 		self.nowSelEvPix = None
@@ -574,17 +575,23 @@ class EPGList(HTMLComponent, GUIComponent):
 		xpos, width = self.calcEntryPosAndWidthHelper(ev_start, ev_duration, time_base, time_base + time_epoch * 60, event_rect.width())
 		return xpos + event_rect.left(), width
 
-	def getPixmapForEntry(self, service, eventId, beginTime, duration):
+	def getClockTypesForEntry(self, service, eventId, beginTime, duration):
 		if not beginTime:
 			return None
 		rec = self.timer.isInTimer(eventId, beginTime, duration, service)
 		if rec is not None:
-			return self.clocks[rec[1]]
+			return rec[1]
 		else:
 			return None
 
-	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
+	def wasEntryAutoTimer(self, service, eventId, beginTime, duration):
+		if not beginTime:
+			return None
 		rec = self.timer.isInTimer(eventId, beginTime, duration, service)
+		return rec[2]
+
+	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
+		clock_types = self.getClockTypesForEntry(service, eventId, beginTime, duration)
 		r1 = self.weekday_rect
 		r2 = self.datetime_rect
 		r3 = self.descr_rect
@@ -594,16 +601,16 @@ class EPGList(HTMLComponent, GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t))
 		]
-		if rec and rec[1] is not None:
-			if rec[2] is not None:
+		if clock_types:
+			if self.wasEntryAutoTimer and clock_types in (2,7,12):
 				res.extend((
-					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[rec[1]]),
-					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-42, (r3.h/2-11), 21, 21, self.clocks[15]),
+					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[clock_types]),
+					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-42, (r3.h/2-11), 21, 21, self.autotimericon),
 					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-42, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
 					))
 			else:
 				res.extend((
-					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[rec[1]]),
+					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[clock_types]),
 					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-21, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
 					))
 		else:
@@ -611,7 +618,7 @@ class EPGList(HTMLComponent, GUIComponent):
  		return res
 
 	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
-		rec = self.timer.isInTimer(eventId, beginTime, duration, service)
+		clock_types = self.getClockTypesForEntry(service, eventId, beginTime, duration)
 		r1 = self.weekday_rect
 		r2 = self.datetime_rect
 		r3 = self.descr_rect
@@ -621,16 +628,16 @@ class EPGList(HTMLComponent, GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t))
 		]
-		if rec and rec[1] is not None:
-			if rec[2] is not None:
+		if clock_types:
+			if self.wasEntryAutoTimer and clock_types in (2,7,12):
 				res.extend((
-					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[rec[1]]),
-					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-42, (r3.h/2-11), 21, 21, self.clocks[15]),
+					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[clock_types]),
+					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-42, (r3.h/2-11), 21, 21, self.autotimericon),
 					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-42, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name)
 				))
 			else:
 				res.extend((
-					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[rec[1]]),
+					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[clock_types]),
 					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-21, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name)
 				))
 		else:
@@ -645,7 +652,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		res = [ None ] # no private data needed
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
 		if beginTime is not None:
-			rec = self.timer.isInTimer(eventId, beginTime, duration, service)
+			clock_types = self.getClockTypesForEntry(service, eventId, beginTime, duration)
 			if nowTime < beginTime:
 				begin = localtime(beginTime)
 				end = localtime(beginTime+duration)
@@ -663,21 +670,21 @@ class EPGList(HTMLComponent, GUIComponent):
 					(eListboxPythonMultiContent.TYPE_PROGRESS, r2.x, r2.y, r2.w, r2.h, percent),
 					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, 80, r3.h, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, _("%s%d min") % (prefix, remaining))
 				))
-			if rec is not None and rec[1] >0:
-				if rec[1] == 1:
+			if clock_types:
+				if clock_types in (1,6,11):
 					pos = r3.x+r3.w
 				else:
 					pos = r3.x+r3.w-10
-				if rec[2] is not None:
+				if self.wasEntryAutoTimer and clock_types in (2,7,12):
 					res.extend((
 						(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w-131, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
-						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-11), 21, 21, self.clocks[rec[1]]),
-						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-22, (r3.h/2-11), 21, 21, self.clocks[15])
+						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-11), 21, 21, self.clocks[clock_types]),
+						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-22, (r3.h/2-11), 21, 21, self.autotimericon)
 					))
 				else:
 					res.extend((
 						(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w-110, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
-						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-11), 21, 21, self.clocks[rec[1]])
+						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-11), 21, 21, self.clocks[clock_types])
 					))
 			else:
 				res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w-100, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
@@ -828,7 +835,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				stime = ev[2]
 				duration = ev[3]
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
-				rec = self.timer.isInTimer(ev[0], stime, duration, service)
+				clock_types = self.getClockTypesForEntry(service, ev[0], stime, duration)
 				if self.eventNameAlign.lower() == 'left':
 					if self.eventNameWrap.lower() == 'yes':
 						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
@@ -845,7 +852,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					borderLeftPix = self.borderSelectedLeftPix
 					borderBottomPix = self.borderSelectedBottomPix
 					borderRightPix = self.borderSelectedRightPix
-					if rec is not None and rec[1] == 2:
+					if clock_types is not None and clock_types == 2:
 						foreColor = self.foreColorRecord
 						backColor = self.backColorRecord
 						foreColorSel = self.foreColorRecordSelected
@@ -854,7 +861,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						if bgpng is not None and self.graphic:
 							backColor = None
 							backColorSel = None
-					elif rec is not None and rec[1] == 3:
+					elif clock_types is not None and clock_types == 7:
 						foreColor = self.foreColorZap
 						backColor = self.backColorZap
 						foreColorSel = self.foreColorZapSelected
@@ -886,7 +893,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					borderLeftPix = self.borderLeftPix
 					borderBottomPix = self.borderBottomPix
 					borderRightPix = self.borderRightPix
-					if rec is not None and rec[1] == 2:
+					if clock_types is not None and clock_types == 2:
 						foreColor = self.foreColorRecord
 						backColor = self.backColorRecord
 						foreColorSel = self.foreColorRecordSelected
@@ -895,7 +902,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						if bgpng is not None and self.graphic:
 							backColor = None
 							backColorSel = None
-					elif rec is not None and rec[1] == 3:
+					elif clock_types is not None and clock_types == 7:
 						foreColor = self.foreColorZap
 						backColor = self.backColorZap
 						foreColorSel = self.foreColorZapSelected
@@ -978,21 +985,21 @@ class EPGList(HTMLComponent, GUIComponent):
 							flags = BT_SCALE))
 				
 				# recording icons
-				if rec is not None and rec[1] >0 and ewidth > 23:
-					if rec[1] == 1:
+				if clock_types is not None and ewidth > 23:
+					if clock_types in (1,6,11):
 						pos = (left+xpos+ewidth-13, top+height-22)
-					elif rec[1] == 5:
+					elif clock_types in (5,10,15):
 						pos = (left+xpos-8, top+height-23)
 					else:
 						pos = (left+xpos+ewidth-23, top+height-22)
 					res.append(MultiContentEntryPixmapAlphaBlend(
 						pos = pos, size = (21, 21),
-						png = self.clocks[rec[1]],
+						png = self.clocks[clock_types],
 						backcolor_sel = backColorSel))
-					if rec[2]:
+					if self.wasEntryAutoTimer and clock_types in (2,7,12):
 						res.append(MultiContentEntryPixmapAlphaBlend(
 							pos = (pos[0]-22,pos[1]), size = (21, 21),
-							png = self.clocks[15],
+							png = self.autotimericon,
 							backcolor_sel = backColorSel))
 		else:
 			if self.graphic:
