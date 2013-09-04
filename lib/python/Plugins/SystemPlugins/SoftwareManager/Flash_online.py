@@ -35,6 +35,12 @@ flashTmp = '/hdd/images/tmp'
 ofgwritePath = '/usr/bin/ofgwrite'
 #############################################################################################################
 
+def Freespace(dev):
+	statdev = os.statvfs(dev)
+	space = (statdev.f_bavail * statdev.f_frsize) / 1024
+	print "[Flash Online] Free space on %s = %i bytes" %(dev, space)
+	return space
+
 class FlashOnline(Screen):
 	skin = """
 	<screen position="center,center" size="560,400" title="Flash On the Fly">
@@ -74,6 +80,9 @@ class FlashOnline(Screen):
 	def check_hdd(self):
 		if not os.path.exists("/media/hdd"):
 			self.session.open(MessageBox, _("No /hdd found !!\nPlease make sure you have a HDD mounted.\n\nExit plugin."), type = MessageBox.TYPE_ERROR)
+			return False
+		if Freespace('/media/hdd') < 300000:
+			self.session.open(MessageBox, _("Not enough free space on /hdd !!\nYou need at least 300Mb free space.\n\nExit plugin."), type = MessageBox.TYPE_ERROR)
 			return False
 		if not os.path.exists(ofgwritePath):
 			self.session.open(MessageBox, _('"ofgwrite" not found !!\nPlease make sure you have ofgwrite installed in /usr/bin/ofgwrite.\n\nExit plugin.'), type = MessageBox.TYPE_ERROR)
