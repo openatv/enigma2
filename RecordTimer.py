@@ -99,16 +99,14 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		RecordTimerEntry.receiveRecordEvents = False
 
 	@staticmethod
-	def TryQuitMainloop(default_yes = True):
-		if not RecordTimerEntry.receiveRecordEvents:
+	def TryQuitMainloop():
+		if not RecordTimerEntry.receiveRecordEvents and Screens.Standby.inStandby:
 			print "RecordTimer.TryQuitMainloop"
 			NavigationInstance.instance.record_event.append(RecordTimerEntry.staticGotRecordEvent)
 			RecordTimerEntry.receiveRecordEvents = True
 			# send fake event.. to check if another recordings are running or
 			# other timers start in a few seconds
 			RecordTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
-			# send normal notification for the case the user leave the standby now..
-			Notifications.AddNotificationWithID("RecordTimerQuitMainloop", Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
 #################################################################
 
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = True, record_ecm = False, always_zap = False):
@@ -302,9 +300,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.first_try_prepare = False
 				cur_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 				if cur_ref and not cur_ref.getPath():
-					if not config.recording.asktozap.value:
+					if Screens.Standby.inStandby:
+						self.failureCB(True)
+					elif not config.recording.asktozap.value:
 						self.log(8, "asking user to zap away")
-						Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nDisable TV and try again?\n"), timeout=20)
+						Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nDisable TV and try again?\n"), timeout=20, default=True)
 					else: # zap without asking
 						self.log(9, "zap without asking")
 						Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_INFO, timeout=20)
@@ -359,16 +359,16 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if not self.justplay:
 				NavigationInstance.instance.stopRecordService(self.record_service)
 				self.record_service = None
-			if self.afterEvent == AFTEREVENT.STANDBY or self.wasInStandby:
-				self.keypress() #this unbinds the keypress detection
-				if not Screens.Standby.inStandby: # not already in standby
-					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nreceiver to standby. Do that now?"), timeout = 20)
-			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
+			if self.afterEvent == AFTEREVENT.DEEPSTANDBY or (Screens.Standby.inStandby or self.wasInStandby) and NavigationInstance.instance.wasTimerWakeup() and config.misc.standbyCounter.value == 1:
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
 						RecordTimerEntry.TryQuitMainloop() # start shutdown handling without screen
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour receiver. Shutdown now?"), timeout = 20)
+						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour receiver. Shutdown now?"), timeout=20, default=True)
+			elif self.afterEvent == AFTEREVENT.STANDBY or self.wasInStandby:
+				if not Screens.Standby.inStandby: # not already in standby
+					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nreceiver to standby. Do that now?"), timeout=20, default=True)
+			self.keypress() #this ensures to unbind the keypress detection
 			return True
 
 	def keypress(self, key=None, flag=1):

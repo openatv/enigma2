@@ -87,7 +87,6 @@ class Standby(Screen):
 		self.session.screen["Standby"].boolean = False
 		globalActionMap.setEnabled(True)
 		if RecordTimer.RecordTimerEntry.receiveRecordEvents:
-			Notifications.RemovePopup(id = "RecordTimerQuitMainloop")
 			RecordTimer.RecordTimerEntry.stopTryQuitMainloop()
 
 	def __onFirstExecBegin(self):
@@ -101,7 +100,7 @@ class Standby(Screen):
 
 	def standbyTimeout(self):
 		from RecordTimer import RecordTimerEntry
-		RecordTimerEntry.TryQuitMainloop(True)
+		RecordTimerEntry.TryQuitMainloop()
 
 class StandbySummary(Screen):
 	skin = """
