@@ -803,7 +803,7 @@ class RecordTimer(timer.Timer):
 		type = 0
 		time_match = 0
 
-		isAutoTimer = None
+		isAutoTimer = False
 		bt = None
 		end = begin + duration
 		refstr = str(service)
@@ -868,7 +868,7 @@ class RecordTimer(timer.Timer):
 								time_match = (end2 - begin2) * 60
 								type = 2
 								if x.isAutoTimer:
-									isAutoTimer = 1
+									isAutoTimer = True
 				else:
 					if begin < x.begin <= end:
 						if timer_end < end: # recording within event
@@ -887,7 +887,7 @@ class RecordTimer(timer.Timer):
 							time_match = end - begin
 							type = 2
 							if x.isAutoTimer:
-								isAutoTimer = 1
+								isAutoTimer = True
 				if x.justplay:
 					type += 5
 				elif x.always_zap:
