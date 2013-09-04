@@ -85,7 +85,7 @@ class FlashOnline(Screen):
 			self.session.open(MessageBox, _("Not enough free space on /hdd !!\nYou need at least 300Mb free space.\n\nExit plugin."), type = MessageBox.TYPE_ERROR)
 			return False
 		if not os.path.exists(ofgwritePath):
-			self.session.open(MessageBox, _('"ofgwrite" not found !!\nPlease make sure you have ofgwrite installed in /usr/bin/ofgwrite.\n\nExit plugin.'), type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _('ofgwrite not found !!\nPlease make sure you have ofgwrite installed in /usr/bin/ofgwrite.\n\nExit plugin.'), type = MessageBox.TYPE_ERROR)
 			return False
 
 		if not os.path.exists(imagePath):
