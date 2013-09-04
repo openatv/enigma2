@@ -580,15 +580,11 @@ class EPGList(HTMLComponent, GUIComponent):
 			return None
 		rec = self.timer.isInTimer(eventId, beginTime, duration, service)
 		if rec is not None:
+			self.wasEntryAutoTimer = rec[2]
 			return rec[1]
 		else:
+			self.wasEntryAutoTimer = False
 			return None
-
-	def wasEntryAutoTimer(self, service, eventId, beginTime, duration):
-		if not beginTime:
-			return None
-		rec = self.timer.isInTimer(eventId, beginTime, duration, service)
-		return rec[2]
 
 	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
 		clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
