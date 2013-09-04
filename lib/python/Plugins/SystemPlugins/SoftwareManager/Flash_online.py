@@ -175,7 +175,7 @@ class doFlashImage(Screen):
 			print"Nothing to select !!"
 			return
 		self.filename = sel
-		self.session.openWithCallback(self.RemoveCB, MessageBox, _("Do you really want to delete\n%s ?" % (sel)), MessageBox.TYPE_YESNO)
+		self.session.openWithCallback(self.RemoveCB, MessageBox, _("Do you really want to delete\n%s ?") % (sel), MessageBox.TYPE_YESNO)
 
 	def RemoveCB(self, ret):
 		if ret:
