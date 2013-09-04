@@ -2,6 +2,7 @@ from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBe
 from Components.ParentalControl import parentalControl
 from Tools.BoundFunction import boundFunction
 from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup
+from Tools import Notifications
 from time import time
 import RecordTimer
 import Screens.Standby
@@ -11,7 +12,7 @@ from Screens.InfoBar import InfoBar
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:
-	def __init__(self, nextRecordTimerAfterEventActionAuto=False):
+	def __init__(self):
 		if NavigationInstance.instance is not None:
 			raise NavigationInstance.instance
 
@@ -30,24 +31,12 @@ class Navigation:
 		self.currentlyPlayingServiceOrGroup = None
 		self.currentlyPlayingService = None
 		self.RecordTimer = RecordTimer.RecordTimer()
-		self.__wasTimerWakeup = False
-		if getFPWasTimerWakeup():
-			self.__wasTimerWakeup = True
-			if nextRecordTimerAfterEventActionAuto:
-				# We need to give the systemclock the chance to sync with the transponder time,
-				# before we will make the decision about whether or not we need to shutdown
-				# after the upcoming recording has completed
-				self.recordshutdowntimer = eTimer()
-				self.recordshutdowntimer.callback.append(self.checkShutdownAfterRecording)
-				self.recordshutdowntimer.start(30000, True)
+		self.__wasTimerWakeup = getFPWasTimerWakeup()
+		if self.__wasTimerWakeup:
+			Notifications.AddNotification(Screens.Standby.Standby)
 
 	def wasTimerWakeup(self):
 		return self.__wasTimerWakeup
-
-	def checkShutdownAfterRecording(self):
-		if len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
-			if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
-				RecordTimer.RecordTimerEntry.TryQuitMainloop(False) # start shutdown handling
 
 	def dispatchEvent(self, i):
 		for x in self.event:
