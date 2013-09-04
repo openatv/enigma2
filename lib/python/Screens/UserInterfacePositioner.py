@@ -147,7 +147,6 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		config.osd.dst_top.setValue(0)
 		config.osd.dst_height.setValue(576)
 
-
 	def setPreviewPosition(self):
 		size_w = getDesktop(0).size().width()
 		size_h = getDesktop(0).size().height()
@@ -193,6 +192,14 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
 		else:
 			self.close()
+
+	def run(self):
+		config.osd.dst_left.save()
+		config.osd.dst_width.save()
+		config.osd.dst_top.save()
+		config.osd.dst_height.save()
+		configfile.save()
+		self.close()
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session):
