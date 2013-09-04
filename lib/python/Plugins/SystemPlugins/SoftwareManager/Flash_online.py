@@ -326,18 +326,14 @@ class doFlashImage(Screen):
 			try:
 				response = urllib2.urlopen(req)
 			except urllib2.URLError as e:
-				print e.code
-				the_page = "URL ERROR: %s" % e.code
-				self.session.open(MessageBox,_(the_page), MessageBox.TYPE_INFO)
+				print "URL ERROR: %s" % e
 				return
 
 			try:
 				the_page = response.read()
 
 			except urllib2.HTTPError as e:
-				print e.code
-				the_page = "HTTP download ERROR: %s" % e.code
-				self.session.open(MessageBox,_(the_page), MessageBox.TYPE_INFO)
+				print "HTTP download ERROR: %s" % e.code
 				return
 
 			lines = the_page.split('\n')
