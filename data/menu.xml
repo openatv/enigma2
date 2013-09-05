@@ -62,7 +62,7 @@
 				<menu level="2" text="OSD settings" entryID="osd_setup" requires="OsdMenu">
 					<id val="osd_menu" />
 					<item level="0" entryID="user_interface"><setup id="userinterface" /></item>
-					<item level="2" text="OSD Position" entryID="osdsetup" requires="OsdSetup"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner"/></item>
+					<item level="2" text="OSD Position" entryID="osdsetup" requires="OsdSetup"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner2"/></item>
 					<item level="2" text="OSD 3D Setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="UserInterfacePositioner" screen="OSD3DSetupScreen"/></item>
 				</menu>
 				<menu level="0" text="Harddisk" entryID="hardisk_selection" requires="Harddisk">
