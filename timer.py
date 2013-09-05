@@ -95,6 +95,8 @@ class TimerEntry:
 	# check if a timer entry must be skipped
 	def shouldSkip(self):
 		if self.disabled:
+			if self.end <= time() and not "PowerTimerEntry" in `self`:
+				self.disabled = False
 			return True
 		if "PowerTimerEntry" in `self`:
 			if (self.timerType == 3 or self.timerType == 4) and self.autosleeprepeat != 'once':

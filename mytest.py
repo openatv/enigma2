@@ -725,9 +725,6 @@ if enigma.getBoxType() == 'ventonhdx':
 profile("UserInterface")
 import Screens.UserInterfacePositioner
 Screens.UserInterfacePositioner.InitOsd()
-Screens.UserInterfacePositioner.setConfiguredPosition()
-Screens.UserInterfacePositioner.setConfiguredSettings()
-Screens.UserInterfacePositioner.setConfiguredAplha()
 
 profile("EpgCacheSched")
 import Components.EpgLoadSave

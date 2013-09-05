@@ -581,23 +581,19 @@ class EPGList(HTMLComponent, GUIComponent):
 		xpos, width = self.calcEntryPosAndWidthHelper(ev_start, ev_duration, time_base, time_base + time_epoch * 60, event_rect.width())
 		return xpos + event_rect.left(), width
 
-	def getClockTypesForEntry(self, service, eventId, beginTime, duration):
+	def getPixmapForEntry(self, service, eventId, beginTime, duration):
 		if not beginTime:
 			return None
 		rec = self.timer.isInTimer(eventId, beginTime, duration, service)
 		if rec is not None:
+			self.wasEntryAutoTimer = rec[2]
 			return rec[1]
 		else:
+			self.wasEntryAutoTimer = False
 			return None
-
-	def wasEntryAutoTimer(self, service, eventId, beginTime, duration):
-		if not beginTime:
-			return None
-		rec = self.timer.isInTimer(eventId, beginTime, duration, service)
-		return rec[2]
 
 	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
-		clock_types = self.getClockTypesForEntry(service, eventId, beginTime, duration)
+		clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1 = self.weekday_rect
 		r2 = self.datetime_rect
 		r3 = self.descr_rect
@@ -624,7 +620,7 @@ class EPGList(HTMLComponent, GUIComponent):
  		return res
 
 	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
-		clock_types = self.getClockTypesForEntry(service, eventId, beginTime, duration)
+		clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1 = self.weekday_rect
 		r2 = self.datetime_rect
 		r3 = self.descr_rect
@@ -658,7 +654,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		res = [ None ] # no private data needed
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
 		if beginTime is not None:
-			clock_types = self.getClockTypesForEntry(service, eventId, beginTime, duration)
+			clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
 			if nowTime < beginTime:
 				begin = localtime(beginTime)
 				end = localtime(beginTime+duration)
@@ -841,7 +837,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				stime = ev[2]
 				duration = ev[3]
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
-				clock_types = self.getClockTypesForEntry(service, ev[0], stime, duration)
+				clock_types = self.getPixmapForEntry(service, ev[0], stime, duration)
 				if self.eventNameAlign.lower() == 'left':
 					if self.eventNameWrap.lower() == 'yes':
 						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
@@ -1199,12 +1195,12 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.zapSelEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedZapEvent.png'))
 
 			self.borderTopPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderTop.png'))
-			self.borderBottomPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderLeft.png'))
-			self.borderLeftPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderBottom.png'))
+			self.borderBottomPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderBottom.png'))
+			self.borderLeftPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderLeft.png'))
 			self.borderRightPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderRight.png'))
 			self.borderSelectedTopPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderTop.png'))
-			self.borderSelectedLeftPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderLeft.png'))
 			self.borderSelectedBottomPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderBottom.png'))
+			self.borderSelectedLeftPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderLeft.png'))
 			self.borderSelectedRightPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderRight.png'))
 
 			self.graphicsloaded = True
