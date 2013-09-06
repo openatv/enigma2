@@ -325,9 +325,6 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		self["key_green"] = StaticText(_("save"))
 		self["key_yellow"] = StaticText(_("Defaults"))
 		
-		self["title"] = StaticText(_("OSD Adjustment"))
-		self["info1"] = StaticText(_("Use arrows Up/Down to select"))
-		self["info2"] = StaticText(_("Use arrows Left/Right to adjust"))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
