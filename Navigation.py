@@ -3,7 +3,7 @@ from Components.ParentalControl import parentalControl
 from Tools.BoundFunction import boundFunction
 from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup
 from Tools import Notifications
-from time import time
+from time import time, localtime
 import RecordTimer
 import Screens.Standby
 import NavigationInstance
@@ -34,6 +34,19 @@ class Navigation:
 		self.__wasTimerWakeup = getFPWasTimerWakeup()
 		if self.__wasTimerWakeup:
 			Notifications.AddNotification(Screens.Standby.Standby)
+			RecordTimer.RecordTimerEntry.firstStandby = True
+			self.stopServiceInStandbyTimer = eTimer()
+			self.stopServiceInStandbyTimer.callback.append(self.stopServiceInStandby)
+			self.stopServiceInStandbyTimer.start(3000, True)
+
+	def stopServiceInStandby(self):
+		if Screens.Standby.inStandby:
+			if localtime(time()).tm_year != 1970: #if time is known we can stop the service
+				Screens.Standby.inStandby.prev_running_service = self.currentlyPlayingServiceOrGroup
+				Screens.Standby.inStandby.paused_service = None
+				self.stopService()
+			else:
+				self.stopServiceInStandbyTimer.start(3000, True)
 
 	def wasTimerWakeup(self):
 		return self.__wasTimerWakeup
