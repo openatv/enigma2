@@ -33,8 +33,7 @@ class Navigation:
 		self.RecordTimer = RecordTimer.RecordTimer()
 		self.__wasTimerWakeup = getFPWasTimerWakeup()
 		if self.__wasTimerWakeup:
-			Notifications.AddNotification(Screens.Standby.Standby)
-			RecordTimer.RecordTimerEntry.firstStandby = True
+			Notifications.AddNotification(Screens.Standby.Standby, StandbyCounterIncrease=0)
 			self.stopServiceInStandbyTimer = eTimer()
 			self.stopServiceInStandbyTimer.callback.append(self.stopServiceInStandby)
 			self.stopServiceInStandbyTimer.start(3000, True)
