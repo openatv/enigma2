@@ -969,6 +969,9 @@ class InfoBarChannelSelection:
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
 		self.tscallback = None
 
+		if config.misc.initialchannelselection.value:
+			self.onShown.append(self.firstRun)
+
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
 				"switchChannelUp": (self.UpPressed, _("Open service list and select previous channel")),
@@ -984,6 +987,12 @@ class InfoBarChannelSelection:
 				"ChannelPlusPressed": self.ChannelPlusPressed,
 				"ChannelMinusPressed": self.ChannelMinusPressed,
 			})
+
+	def firstRun(self):
+		self.onShown.remove(self.firstRun)
+		config.misc.initialchannelselection.value = False
+		config.misc.initialchannelselection.save()
+		self.openServiceList()
 
 	def LeftPressed(self):
 		if config.plisettings.InfoBarEpg_mode.getValue() == "3":

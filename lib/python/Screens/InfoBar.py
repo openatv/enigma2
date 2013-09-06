@@ -107,16 +107,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.zoomrate = 0
 		self.zoomin = 1
 
-		if config.misc.initialchannelselection.getValue():
-			self.onShown.append(self.showMenu)
-
 		self.onShow.append(self.doButtonsCheck)
-
-	def showMenu(self):
-		self.onShown.remove(self.showMenu)
-		config.misc.initialchannelselection.setValue(False)
-		config.misc.initialchannelselection.save()
-		self.mainMenu()
 
 	def doButtonsCheck(self):
 		if config.plisettings.ColouredButtons.getValue():
