@@ -40,6 +40,7 @@ from twisted.web import client
 from twisted.internet import reactor
 
 from ImageBackup import ImageBackup
+from Flash_online import FlashOnline
 from ImageWizard import ImageWizard
 from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename
 from SoftwareTools import iSoftwareTools
@@ -148,6 +149,7 @@ class UpdatePluginMenu(Screen):
 			print "building menu entries"
 			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your Receiver" ) + self.oktext, None))
 			self.list.append(("software-update", _("Software update"), _("\nOnline update of your Receiver software." ) + self.oktext, None))
+			self.list.append(("flash-online", _("Flash Online"), _("\nFlash on the fly your your Receiver software.") + self.oktext, None))
 			self.list.append(("software-restore", _("Software restore"), _("\nRestore your Receiver with a new firmware." ) + self.oktext, None))
 			self.list.append(("backup-image", _("Backup Image"), _("\nBackup your running Receiver image to HDD or USB." ) + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your Receiver settings." ) + self.oktext + "\n\n" + self.infotext, None))
@@ -284,6 +286,8 @@ class UpdatePluginMenu(Screen):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):
 					self.session.open(PluginManager, self.skin_path)
+				elif (currentEntry == "flash-online"):
+					self.session.open(FlashOnline)
 				elif (currentEntry == "backup-image"):
 					self.session.open(ImageBackup)
 				elif (currentEntry == "system-backup"):
