@@ -46,7 +46,7 @@ class UserInterfacePositionerWizard(WizardLanguage, Rc):
 			<screen position="center,center" size="1024,576" backgroundColor="#000000" title="OSD Adjustment" >
 
 				<widget name="text" position="200,180" zPosition="1" size="624,100" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
-				<widget source="config" render="Label" position="100,180" zPosition="1" size="824,50" font="Regular;24" halign="center" valign="center" transparent="1" />
+				<widget name="config" render="Label" position="100,180" zPosition="1" size="824,50" font="Regular;24" halign="center" valign="center" transparent="1" />
 				<widget source="info1" render="Label" position="200,450" zPosition="1" size="624,40" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
 				<widget source="info2" render="Label" position="200,480" zPosition="1" size="624,40" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
 				
@@ -74,7 +74,7 @@ class UserInterfacePositionerWizard(WizardLanguage, Rc):
 			<screen position="center,center" size="720,576" backgroundColor="#000000" title="OSD Adjustment" >
 
 				<widget name="text" position="75,80" zPosition="1" size="570,100" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
-				<widget source="config" render="Label" position="75,180" zPosition="1" size="570,50" font="Regular;21" halign="center" valign="center" transparent="1" />
+				<widget name="config" render="Label" position="75,180" zPosition="1" size="570,50" font="Regular;21" halign="center" valign="center" transparent="1" />
 				<widget source="info1" render="Label" position="75,450" zPosition="1" size="570,40" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
 				<widget source="info2" render="Label" position="75,480" zPosition="1" size="570,40" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
 				
