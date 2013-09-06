@@ -28,8 +28,8 @@ class VideoTestScreen(Screen):
 			"3": self.keyNumber,
 			"4": self.keyNumber,
 			"5": self.keyNumber,
-			"ok": self.stop,
-			"cancel": self.stop
+			"ok": self.ok,
+			"cancel": self.cancel
 		})
 
 	def switchbackResolution(self):
@@ -37,9 +37,13 @@ class VideoTestScreen(Screen):
 			gMainDC.getInstance().setResolution(self.xres, self.yres)
 			getDesktop(0).resize(eSize(self.xres, self.yres))
 
-	def stop(self):
+	def ok(self):
 		self.switchbackResolution()
 		self.close(True)
+
+	def cancel(self):
+		self.switchbackResolution()
+		self.close(False)
 
 	def keyNumber(self, key):
 		self.switchbackResolution()
@@ -121,7 +125,7 @@ class VideoFinetune(Screen):
 		c.flush()
 
 	def testpic_contrast(self):
-		self.next = self.close
+		self.next = self.testpic_colors
 
 		c = self["Canvas"]
 
@@ -159,7 +163,7 @@ class VideoFinetune(Screen):
 		c.flush()
 
 	def testpic_colors(self):
-		self.next = self.close
+		self.next = self.testpic_filter
 
 		c = self["Canvas"]
 
@@ -216,6 +220,8 @@ class VideoFinetune(Screen):
 		c.flush()
 
 	def testpic_filter(self):
+		self.next = self.testpic_gamma
+
 		c = self["Canvas"]
 
 		xres, yres = getDesktop(0).size().width(), getDesktop(0).size().height()
@@ -246,7 +252,7 @@ class VideoFinetune(Screen):
 		c.flush()
 
 	def testpic_gamma(self):
-		self.next = None
+		self.next = self.testpic_fullhd
 
 		c = self["Canvas"]
 
@@ -279,13 +285,16 @@ class VideoFinetune(Screen):
 		c.flush()
 
 	def testpic_fullhd(self):
-		self.next = None
+		self.next = self.testpic_brightness
 		self.hide()
 		self.session.openWithCallback(self.testpicCallback, VideoTestScreen)
 
 	def testpicCallback(self, key):
-		if key == True:
-			self.close()
-		else:
-			self.keyNumber(key)
+		if key:
+			if key == True:
+				self.next()
+			else:
+				self.keyNumber(key)
 			self.show()
+		else:
+			self.close()
