@@ -33,19 +33,10 @@ class Navigation:
 		self.RecordTimer = RecordTimer.RecordTimer()
 		self.__wasTimerWakeup = getFPWasTimerWakeup()
 		if self.__wasTimerWakeup:
-			Notifications.AddNotification(Screens.Standby.Standby, StandbyCounterIncrease=0)
-			self.stopServiceInStandbyTimer = eTimer()
-			self.stopServiceInStandbyTimer.callback.append(self.stopServiceInStandby)
-			self.stopServiceInStandbyTimer.start(3000, True)
-
-	def stopServiceInStandby(self):
-		if Screens.Standby.inStandby:
-			if localtime(time()).tm_year != 1970: #if time is known we can stop the service
-				Screens.Standby.inStandby.prev_running_service = self.currentlyPlayingServiceOrGroup
-				Screens.Standby.inStandby.paused_service = None
-				self.stopService()
+			if Screens.Standby.inStandby: #In case some plugin did put the receiver already in standby
+				config.misc.standbyCounter.value = 0
 			else:
-				self.stopServiceInStandbyTimer.start(3000, True)
+				Notifications.AddNotification(Screens.Standby.Standby, StandbyCounterIncrease=False)
 
 	def wasTimerWakeup(self):
 		return self.__wasTimerWakeup
