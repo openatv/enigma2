@@ -2977,7 +2977,7 @@ class InfoBarPowersaver:
 		if value < 0:
 			if Screens.Standby.inStandby:
 				print "[InfoBarPowersaver] already in standby now shut down"
-				RecordTimerEntry.TryQuitMainloop(True)
+				RecordTimerEntry.TryQuitMainloop()
 			elif not Screens.Standby.inTryQuitMainloop:
 				print "[InfoBarPowersaver] goto shutdown"
 				self.session.open(Screens.Standby.TryQuitMainloop, 1)

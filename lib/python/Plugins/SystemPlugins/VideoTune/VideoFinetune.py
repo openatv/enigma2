@@ -1,16 +1,58 @@
 from Screens.Screen import Screen
 from Components.Sources.CanvasSource import CanvasSource
-from Components.ActionMap import ActionMap
-from enigma import gFont
-from enigma import RT_HALIGN_RIGHT, RT_WRAP
+from Components.ActionMap import ActionMap, NumberActionMap
+from enigma import gFont, getDesktop, gMainDC, eSize, RT_HALIGN_RIGHT, RT_WRAP
 
 def RGB(r,g,b):
 	return (r<<16)|(g<<8)|b
 
+class VideoTestScreen(Screen):
+	skin = """
+		<screen position="fill">
+			<ePixmap pixmap="skin_default/testscreen.png" position="0,0" size="1920,1080" zPosition="1" alphatest="on" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+
+		self.xres, self.yres = getDesktop(0).size().width(), getDesktop(0).size().height()
+
+		if (self.xres, self.yres) != (1920, 1080):
+			gMainDC.getInstance().setResolution(1920, 1080)
+			getDesktop(0).resize(eSize(1920, 1080))
+
+		self["actions"] = NumberActionMap(["InputActions", "OkCancelActions"],
+		{
+			"1": self.keyNumber,
+			"2": self.keyNumber,
+			"3": self.keyNumber,
+			"4": self.keyNumber,
+			"5": self.keyNumber,
+			"ok": self.ok,
+			"cancel": self.cancel
+		})
+
+	def switchbackResolution(self):
+		if (self.xres, self.yres) != (1920, 1080):
+			gMainDC.getInstance().setResolution(self.xres, self.yres)
+			getDesktop(0).resize(eSize(self.xres, self.yres))
+
+	def ok(self):
+		self.switchbackResolution()
+		self.close(True)
+
+	def cancel(self):
+		self.switchbackResolution()
+		self.close(False)
+
+	def keyNumber(self, key):
+		self.switchbackResolution()
+		self.close(key)
+
 class VideoFinetune(Screen):
 	skin = """
-		<screen position="0,0" size="720,576">
-			<widget source="Canvas" render="Canvas" position="0,0" size="720,576" />
+		<screen position="fill">
+			<widget source="Canvas" render="Canvas" position="fill" />
 		</screen>"""
 
 	def __init__(self, session):
@@ -19,18 +61,21 @@ class VideoFinetune(Screen):
 
 		self.basic_colors = [RGB(255, 255, 255), RGB(255, 255, 0), RGB(0, 255, 255), RGB(0, 255, 0), RGB(255, 0, 255), RGB(255, 0, 0), RGB(0, 0, 255), RGB(0, 0, 0)]
 
-		self["actions"] = ActionMap(["InputActions", "OkCancelActions"],
+		self["actions"] = NumberActionMap(["InputActions", "OkCancelActions"],
 		{
-			"1": self.testpic_brightness,
-			"2": self.testpic_contrast,
-#			"3": self.testpic_colors,
-			"3": self.testpic_filter,
-			"4": self.testpic_gamma,
-			"5": self.testpic_fubk,
+			"1": self.keyNumber,
+			"2": self.keyNumber,
+			"3": self.keyNumber,
+			"4": self.keyNumber,
+			"5": self.keyNumber,
+			"6": self.keyNumber,
 			"ok": self.callNext,
 			"cancel": self.close,
 		})
 		self.testpic_brightness()
+
+	def keyNumber(self, key):
+		(self.testpic_brightness, self.testpic_contrast, self.testpic_colors, self.testpic_filter, self.testpic_gamma, self.testpic_fullhd)[key-1]()
 
 	def callNext(self):
 		if self.next:
@@ -47,23 +92,10 @@ class VideoFinetune(Screen):
 		self.next = self.testpic_contrast
 		c = self["Canvas"]
 
-		xres, yres = 720, 576
+		xres, yres = getDesktop(0).size().width(), getDesktop(0).size().height()
 
 		bbw, bbh = xres / 192, yres / 192
 		c.fill(0, 0, xres, yres, RGB(0,0,0))
-
-#		for i in range(8):
-#			col = (7-i) * 255 / 7
-#			width = xres - xres/5
-#			ew = width / 15
-#			offset = xres/10 + ew * i
-#			y = yres * 2 / 3
-#			height = yres / 6
-#
-#			c.fill(offset, y, ew, height, RGB(col, col, col))
-#
-#			if col == 0 or col == 16 or col == 116:
-#				self.bbox(offset, y, ew, height, RGB(255,255,255), bbw, bbh)
 
 		for i in range(15):
 			col = i * 116 / 14
@@ -76,8 +108,6 @@ class VideoFinetune(Screen):
 			c.fill(x, offset, width, eh, RGB(col, col, col))
 			if col == 0 or col == 16 or col == 116:
 				c.fill(x, offset, width, 2, RGB(255, 255, 255))
-#			if col == 0 or col == 36:
-#				self.bbox(x, offset, width, eh, RGB(255,255,255), bbw, bbh)
 			if i < 2:
 				c.writeText(x + width, offset, width, eh, RGB(255, 255, 255), RGB(0,0,0), gFont("Regular", 20), "%d." % (i+1))
 
@@ -95,12 +125,11 @@ class VideoFinetune(Screen):
 		c.flush()
 
 	def testpic_contrast(self):
-#		self.next = self.testpic_colors
-		self.next = self.close
+		self.next = self.testpic_colors
 
 		c = self["Canvas"]
 
-		xres, yres = 720, 576
+		xres, yres = getDesktop(0).size().width(), getDesktop(0).size().height()
 
 		bbw, bbh = xres / 192, yres / 192
 		c.fill(0, 0, xres, yres, RGB(0,0,0))
@@ -109,21 +138,7 @@ class VideoFinetune(Screen):
 		bbh = yres / 192
 		c.fill(0, 0, xres, yres, RGB(255,255,255))
 
-#		for i in range(15):
-#			col = 185 + i * 5
-#			width = xres - xres/5
-#			ew = width / 15
-#			offset = xres/10 + ew * i
-#			y = yres * 2 / 3
-#			height = yres / 6
-#
-#			c.fill(offset, y, ew, height, RGB(col, col, col))
-#
-#			if col == 185 or col == 235 or col == 255:
-#				self.bbox(offset, y, ew, height, RGB(0,0,0), bbw, bbh)
-
 		for i in range(15):
-#			col = (7-i) * 255 / 7
 			col = 185 + i * 5
 			height = yres / 3
 			eh = height / 8
@@ -132,10 +147,6 @@ class VideoFinetune(Screen):
 			width = yres / 6
 
 			c.fill(x, offset, width, eh, RGB(col, col, col))
-#			if col == 0 or col == 36:
-#				self.bbox(x, offset, width, eh, RGB(255,255,255), bbw, bbh);
-#			if col == 255:
-#				self.bbox(x, offset, width, eh, RGB(0,0,0), bbw, bbh);
 			if col == 185 or col == 235 or col == 255:
 				c.fill(x, offset, width, 2, RGB(0,0,0)) 
 			if i >= 13:
@@ -152,11 +163,11 @@ class VideoFinetune(Screen):
 		c.flush()
 
 	def testpic_colors(self):
-		self.next = self.close
+		self.next = self.testpic_filter
 
 		c = self["Canvas"]
 
-		xres, yres = 720, 576
+		xres, yres = getDesktop(0).size().width(), getDesktop(0).size().height()
 
 		bbw = xres / 192
 		bbh = yres / 192
@@ -209,9 +220,11 @@ class VideoFinetune(Screen):
 		c.flush()
 
 	def testpic_filter(self):
+		self.next = self.testpic_gamma
+
 		c = self["Canvas"]
 
-		xres, yres = 720, 576
+		xres, yres = getDesktop(0).size().width(), getDesktop(0).size().height()
 
 		c.fill(0, 0, xres, yres, RGB(64, 64, 64))
 
@@ -239,11 +252,11 @@ class VideoFinetune(Screen):
 		c.flush()
 
 	def testpic_gamma(self):
-		self.next = None
+		self.next = self.testpic_fullhd
 
 		c = self["Canvas"]
 
-		xres, yres = 720, 576
+		xres, yres = getDesktop(0).size().width(), getDesktop(0).size().height()
 
 		c.fill(0, 0, xres, yres, RGB(0, 0, 0))
 
@@ -271,41 +284,17 @@ class VideoFinetune(Screen):
 
 		c.flush()
 
-	def testpic_fubk(self):
-		self.next = None
+	def testpic_fullhd(self):
+		self.next = self.testpic_brightness
+		self.hide()
+		self.session.openWithCallback(self.testpicCallback, VideoTestScreen)
 
-		# TODO:
-		# this test currently only works for 4:3 aspect.
-		# also it's hardcoded to 720,576
-		c = self["Canvas"]
-
-		xres, yres = 720, 576
-
-		c.fill(0, 0, xres, yres, RGB(128, 128, 128))
-
-		for x in xrange(6, xres, 44):
-			c.fill(x, 0, 3, yres, RGB(255,255,255))
-
-		for y in xrange(34, yres, 44):
-			c.fill(0, y, xres, 3, RGB(255,255,255))
-
-		for i in range(8):
-			c.fill(140+i*55, 80, 55, 80, self.basic_colors[i])
-			g = i * 255 / 7
-			c.fill(140+i*55, 160, 55, 80, RGB(g,g,g))
-
-		x = 0
-		phase = 0
-
-		while x < 440:
-			freq = (440 - x) / 44 + 1
-			if phase:
-				col = RGB(255,255,255)
+	def testpicCallback(self, key):
+		if key:
+			if key == True:
+				self.next()
 			else:
-				col = RGB(0,0,0)
-			c.fill(140+x, 320, freq, 160, col)
-			x += freq
-			phase = not phase
-
-		c.flush()
-
+				self.keyNumber(key)
+			self.show()
+		else:
+			self.close()
