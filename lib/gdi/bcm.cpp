@@ -84,7 +84,8 @@ void bcm_accel_blit(
 		int dst_x, int dst_y, int dwidth, int dheight,
 		int pal_addr, int flags)
 {
-	unsigned int displaylist[128];
+	 /* Max 32 instructions in this method. */
+	static unsigned int displaylist[2*32];
 	int ptr = 0;
 
 	C(0x43); // reset source
@@ -146,7 +147,8 @@ void bcm_accel_fill(
 		int x, int y, int width, int height,
 		unsigned long color)
 {
-	unsigned int displaylist[128];
+	/* 35 instructions in this method */
+	static unsigned int displaylist[2*36];
 	int ptr = 0;
 
 	C(0x43); // reset source
@@ -196,4 +198,3 @@ void bcm_accel_fill(
 
 	exec_list(displaylist, ptr);
 }
-
