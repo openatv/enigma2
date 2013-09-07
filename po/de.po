@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2013-09-07 14:17+0100\n"
+"PO-Revision-Date: 2013-09-07 18:18+0100\n"
 "Last-Translator: mike99 <mike99@gmx.net>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -5470,6 +5470,22 @@ msgstr "Audio im Hintergrund abspielen"
 msgid "Play recorded movies..."
 msgstr "Aufgenommene Filme abspielen..."
 
+msgid "Fontsize"
+msgstr "Schriftgrösse"
+
+msgid "Show extended description"
+msgstr "Zeige erweiterte Beschreibung"
+
+msgid "Show or hide the extended description, (skin dependent)."
+msgstr ""
+"Anzeigen oder Verbergen der erweiterten Beschreibung (abhängig vom Skin)."
+
+msgid "Hide known extensions"
+msgstr "Bekannte Dateiendungen ausblenden"
+
+msgid "Allows you hide the extensions of known file types."
+msgstr "Erlaubt das Ausblenden der bekannten Dateiendungen"
+
 #
 msgid "Please Reboot"
 msgstr "Bitte neu starten"
@@ -7765,6 +7781,28 @@ msgstr ""
 "Konfiguriere eine zusätzliche Verzögerung, um die Synchronität der externen "
 "Untertitel zu verbessern."
 
+msgid "alternative"
+msgstr "Alternativ"
+
+msgid "External subtitle color"
+msgstr "Farbe für externe Untertitel"
+
+msgid ""
+"Configure the color of the external subtitles, alternative (normal in white, "
+"italic in yellow, bold in cyan, underscore in green), white or yellow."
+msgstr ""
+"Farbe der externen Untertitel , Alternativ (normal in Weiß, kursiv in Gelb, "
+"fett in Cyan, Unterstriche in Grün), Weiß oder Gelb."
+
+msgid "Automatically turn on external subtitles"
+msgstr "Externe Untertitel automatisch anschalten"
+
+msgid ""
+"When enabled, external subtitles will be always turned on for playback movie."
+msgstr ""
+"Bei Aktivierung werden externe Untertitel beim Abspielen von Filmen immer "
+"angezeigt."
+
 msgid "Set fps for external subtitles"
 msgstr "Bilder/Sekunde für externe Untertitel"
 
@@ -9615,6 +9653,12 @@ msgstr ""
 "Wenn aktiviert werden Zeilenumbrüche aus den Videotext Untertitel entfernt "
 "und es wird neu umgebrochen."
 
+msgid "Use individual settings for each directory"
+msgstr "Einstellungen für jedes Verzeichnis"
+
+msgid "Show live tv when movie stopped"
+msgstr "Zeige LiveTV wenn der Film beendet ist"
+
 msgid ""
 "When set each folder will show the previous state used, when off the default "
 "values will be shown."
@@ -9623,7 +9667,7 @@ msgstr ""
 "wird eine Standardansicht genommen."
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
-msgstr "Wenn aktiviert PIG wird Live-TV zeigen wenn der Film beendet wurde."
+msgstr "Wenn aktiviert wird Live-TV gezeigt, wenn der Film beendet wurde."
 
 msgid ""
 "When the content has an aspect ratio of 16:9, choose whether to scale/"
@@ -12464,6 +12508,13 @@ msgstr "Kanal Auswahl nach Modus Wechsel"
 
 msgid "Show PVR status in MoviePlayer infobar"
 msgstr "Zeige PVR Status in der MoviePlayer Infoleiste"
+
+msgid "Show VCR scart on main menu"
+msgstr "Zeige Scart-Videorekorder im Hauptmenü"
+
+msgid "When enabled, the VCR scart option will be shown on the main menu"
+msgstr ""
+"Bei Aktivierung wird die Option Scart-Videorekorder im Hauptmenü angezeigt."
 
 msgid "Show alternative radio mode"
 msgstr "Zeige alternativen Radio Modus"
