@@ -33,7 +33,7 @@ class Standby(Screen):
 		if self.wasMuted == 0:
 			eDVBVolumecontrol.getInstance().volumeToggleMute()
 
-	def __init__(self, session, StandbyCounterIncrease = 1):
+	def __init__(self, session, StandbyCounterIncrease=True):
 		Screen.__init__(self, session)
 		self.avswitch = AVSwitch()
 
@@ -95,7 +95,8 @@ class Standby(Screen):
 		global inStandby
 		inStandby = self
 		self.session.screen["Standby"].boolean = True
-		config.misc.standbyCounter.value += self.StandbyCounterIncrease
+		if self.StandbyCounterIncrease:
+			config.misc.standbyCounter.value += 1
 
 	def createSummary(self):
 		return StandbySummary

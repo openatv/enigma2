@@ -258,6 +258,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.log(5, "activating state %d" % next_state)
 
 		if next_state == 1:
+			if Screens.Standby.inStandby:
+				Screens.Standby.inStandby.prev_running_service = NavigationInstance.instance.getCurrentlyPlayingServiceOrGroup()
+				Screens.Standby.inStandby.paused_service = None
+				NavigationInstance.instance.stopService()
+				self.log(5, "stopped service in standby")
 			if self.always_zap:
 				if Screens.Standby.inStandby:
 					self.wasInStandby = True
@@ -314,11 +319,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				else:
 					self.log(8, "currently no service running... so we dont need to stop it")
 			return False
+
 		elif next_state == self.StateRunning:
 			# if this timer has been cancelled, just go to "end" state.
 			if self.cancelled:
 				return True
-
 			if self.justplay:
 				if Screens.Standby.inStandby:
 					self.wasInStandby = True
@@ -349,6 +354,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				Trashcan.instance.markDirty(self.Filename)
 
 				return True
+
 		elif next_state == self.StateEnded:
 			old_end = self.end
 			if self.setAutoincreaseEnd():
@@ -359,13 +365,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if not self.justplay:
 				NavigationInstance.instance.stopRecordService(self.record_service)
 				self.record_service = None
-			if self.afterEvent == AFTEREVENT.DEEPSTANDBY or (Screens.Standby.inStandby or self.wasInStandby) and NavigationInstance.instance.wasTimerWakeup() and not config.misc.standbyCounter.value:
+			if self.afterEvent == AFTEREVENT.DEEPSTANDBY or self.afterEvent == AFTEREVENT.AUTO and (Screens.Standby.inStandby or self.wasInStandby) and not config.misc.standbyCounter.value:
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
 						RecordTimerEntry.TryQuitMainloop() # start shutdown handling without screen
 					else:
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour receiver. Shutdown now?"), timeout=20, default=True)
-			elif self.afterEvent == AFTEREVENT.STANDBY or self.wasInStandby:
+			elif self.afterEvent == AFTEREVENT.STANDBY or self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby:
 				if not Screens.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nreceiver to standby. Do that now?"), timeout=20, default=True)
 			self.keypress() #this ensures to unbind the keypress detection
