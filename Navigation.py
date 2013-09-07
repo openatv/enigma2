@@ -32,7 +32,7 @@ class Navigation:
 		self.currentlyPlayingService = None
 		self.RecordTimer = RecordTimer.RecordTimer()
 		self.__wasTimerWakeup = getFPWasTimerWakeup()
-		if self.__wasTimerWakeup and (len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360):
+		if self.__wasTimerWakeup:
 			if Screens.Standby.inStandby: #In case some plugin did put the receiver already in standby
 				config.misc.standbyCounter.value = 0
 			else:
