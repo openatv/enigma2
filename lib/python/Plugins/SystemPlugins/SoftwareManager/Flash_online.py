@@ -13,7 +13,7 @@ from Screens.Console import Console
 from Screens.HelpMenu import HelpableScreen
 from Screens.TaskView import JobView
 from Tools.Downloader import downloadWithProgress
-from enigma import getBoxType, getDistro
+from enigma import getBoxType, getDistro, getMachineName
 import urllib2
 import os
 import shutil
@@ -38,7 +38,7 @@ ofgwritePath = '/usr/bin/ofgwrite'
 def Freespace(dev):
 	statdev = os.statvfs(dev)
 	space = (statdev.f_bavail * statdev.f_frsize) / 1024
-	print "[Flash Online] Free space on %s = %i bytes" %(dev, space)
+	print "[Flash Online] Free space on %s = %i kilobytes" %(dev, space)
 	return space
 
 class FlashOnline(Screen):
@@ -186,8 +186,11 @@ class doFlashImage(Screen):
 		
 	def box(self):
 		box = getBoxType()
+		machinename = getMachineName()
 		if box == 'odinm6':
 			box = getMachineName().lower()
+		elif box == "inihde" and machinename.lower() == "xpeedlx":
+			box = "xpeedlx"
 		return box
 
 	def green(self):

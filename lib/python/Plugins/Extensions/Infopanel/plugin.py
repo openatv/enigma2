@@ -116,17 +116,35 @@ def command(comandline, strip=1):
   os.system("rm /tmp/command.txt")
   return comandline
 
+boxversion = getBoxType()
+machinename = getMachineName()
+machinebrand = getMachineBrand()
+
 INFO_Panel_Version = 'Info-Panel V1.1'
-boxversion = command('cat /etc/image-version | grep box_type | cut -d = -f2')
+print "[Info-Panel] machinebrand: %s"  % (machinebrand)
+print "[Info-Panel] machinename: %s"  % (machinename)
 print "[Info-Panel] boxversion: %s"  % (boxversion)
 panel = open("/tmp/infopanel.ver", "w")
 panel.write(INFO_Panel_Version + '\n')
+panel.write("Machinebrand: %s " % (machinebrand)+ '\n')
+panel.write("Machinename: %s " % (machinename)+ '\n')
 panel.write("Boxversion: %s " % (boxversion)+ '\n')
 try:
 	panel.write("Keymap: %s " % (config.usage.keymap.getValue())+ '\n')
 except:
 	panel.write("Keymap: keymap file not found !!" + '\n')
 panel.close()
+if boxversion == "inihde" and machinename.lower() == "xpeedlx":
+	f1=open('/etc/hostname', "r")
+	hostname = f1.read()
+	f1.close()
+	if not hostname[:7] == "xpeedlx":
+		f=open('/etc/hostname', "w")
+		f.write('xpeedlx\n')
+		f.close()
+		ff=open('/etc/model', "w")
+		ff.write('xpeedlx\n')
+		ff.close()
 
 ExitSave = "[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save")
 
