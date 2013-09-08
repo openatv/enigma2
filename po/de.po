@@ -11811,7 +11811,7 @@ msgstr "Seitenverhältnis"
 #
 msgid ""
 "USB = Do you want to make a back-up on USB?\n"
-"This will take between 2 and 7 minutes depending on the used filesystem and "
+"This will take between 4-15 minutes depending on the used filesystem and "
 "is fully automatic.\n"
 "Make sure you first insert an USB flash drive before you select USB."
 msgstr ""
@@ -11822,10 +11822,66 @@ msgstr ""
 #
 msgid ""
 "HDD = Do you want to make an USB-back-up image on HDD? \n"
-"This only takes 2 or 3 minutes and is fully automatic."
+"This only takes 2-10 minutes and is fully automatic."
 msgstr ""
 "HDD = Willst du ein USB-Backup auf HDD erstellen? \n"
 "Das dauert nur ein paar Minuten und geht vollautomatisch."
+
+#
+msgid "No USB-Device found for fullbackup !!\n\n\n"
+msgstr "Es wurde kein USB-Stick für Backup gefunden !!\n\n\n"
+
+#
+msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
+msgstr "Für Backup auf USB-Stick, auf den USB-Stick muss\n"
+
+#
+msgid "contain a file with the name: \n\n"
+msgstr "ein File mit den namen: \n\n"
+
+#
+msgid "backupstick or backupstick.txt"
+msgstr "backupstick oder backupstick.txt vorhanden sein."
+
+#
+msgid "Full back-up on %s"
+msgstr "Komplett Backup auf %s"
+
+#
+msgid "%s not found !!"
+msgstr "%s nicht gefunden !!"
+
+#
+msgid "Back-up Tool for a %s\n"
+msgstr "Back-up Tool für %s\n"
+
+#
+msgid "Please be patient, a backup will now be made,\n"
+msgstr "Bitte einen moment geduld, das Backup wird erstellt,\n"
+
+#
+msgid "because of the used filesystem the back-up\n"
+msgstr "abhängig vom System dauert das Backup\n"
+
+#
+msgid "will take about 3-12 minutes for this system\n"
+msgstr "zwischen 3-12 Minuten\n"
+
+#
+msgid "this will take between 2 and 9 minutes\n"
+msgstr "zwischen 2-9 Minuten\n"
+
+#
+msgid "Kernel dump error\n"
+msgstr "Kernel dump fehler\n"
+
+#
+msgid "Please Flash your Kernel new and Backup again"
+msgstr "Bitte den Kernel neu Flashen und Backup wiederholen"
+
+#
+msgid "Please Flash your Kernel new and Backup again"
+msgstr "Bitte den Kernel neu Flashen und Backup wiederholen"
 
 #
 msgid "via USB"
