@@ -2857,7 +2857,7 @@ class InfoBarPowersaver:
 	def inactivityTimeout(self):
 		if config.usage.inactivity_timer_blocktime.value:
 			curtime = localtime(time())
-			if curtime.tm_year != "1970": #check if the current time is valid
+			if curtime.tm_year != 1970: #check if the current time is valid
 				curtime = (curtime.tm_hour, curtime.tm_min, curtime.tm_sec)
 				begintime = tuple(config.usage.inactivity_timer_blocktime_begin.value)
 				endtime = tuple(config.usage.inactivity_timer_blocktime_end.value)
