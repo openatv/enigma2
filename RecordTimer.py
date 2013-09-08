@@ -623,6 +623,8 @@ class RecordTimer(timer.Timer):
 				w.state = RecordTimerEntry.StateWaiting
 				self.addTimerEntry(w)
 			else:
+				# check for disabled timers, if time as passed set to completed.
+				self.cleanupDisabled()
 				# Remove old timers as set in config
 				self.cleanupDaily(config.recording.keep_timers.getValue())
 				insort(self.processed_timers, w)
