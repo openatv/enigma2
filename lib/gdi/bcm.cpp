@@ -12,41 +12,40 @@
 
 #define FBIO_ACCEL  0x23
 
+static unsigned int displaylist[1024];
+static int ptr;
 static bool supportblendingflags = true;
 
 #define P(x, y) do { displaylist[ptr++] = x; displaylist[ptr++] = y; } while (0)
 #define C(x) P(x, 0)
 
 static int fb_fd = -1;
-static int exec_list(unsigned int* displaylist, int count);
+static int exec_list(void);
 
 int bcm_accel_init(void)
 {
-	unsigned int displaylist[4];
-	int ptr = 0;
 	fb_fd = open("/dev/fb0", O_RDWR);
 	if (fb_fd < 0)
 	{
 		perror("/dev/fb0");
 		return 1;
 	}
-	if (exec_list(displaylist, ptr))
+	if (exec_list())
 	{
 		fprintf(stderr, "BCM accel interface not available - %m\n");
 		close(fb_fd);
 		fb_fd = -1;
 		return 1;
 	}
-#ifdef FORCE_NO_BLENDING_ACCELERATION
-	/* hardware doesn't allow us to detect whether the opcode is working */
-	supportblendingflags = false;
-#else
-	/* test for blending flags support */
+	/* now test for blending flags support */
 	P(0x80, 0);
-	if (exec_list(displaylist, ptr))
+	if (exec_list())
 	{
 		supportblendingflags = false;
 	}
+#ifdef FORCE_NO_BLENDING_ACCELERATION
+	/* hardware doesn't allow us to detect whether the opcode is working */
+	supportblendingflags = false;
 #endif
 	return 0;
 }
@@ -60,16 +59,20 @@ void bcm_accel_close(void)
 	}
 }
 
-static int exec_list(unsigned int* displaylist, int count)
+static int exec_list(void)
 {
+	int ret;
 	struct
 	{
 		void *ptr;
 		int len;
 	} l;
+
 	l.ptr = displaylist;
-	l.len = count;
-	return ioctl(fb_fd, FBIO_ACCEL, &l);
+	l.len = ptr;
+	ret = ioctl(fb_fd, FBIO_ACCEL, &l);
+	ptr = 0;
+	return ret;
 }
 
 bool bcm_accel_has_alphablending()
@@ -84,9 +87,6 @@ void bcm_accel_blit(
 		int dst_x, int dst_y, int dwidth, int dheight,
 		int pal_addr, int flags)
 {
-	unsigned int displaylist[128];
-	int ptr = 0;
-
 	C(0x43); // reset source
 	C(0x53); // reset dest
 	C(0x5b);  // reset pattern
@@ -138,7 +138,7 @@ void bcm_accel_blit(
 
 	C(0x77);  // do it
 
-	exec_list(displaylist, ptr);
+	exec_list();
 }
 
 void bcm_accel_fill(
@@ -146,9 +146,6 @@ void bcm_accel_fill(
 		int x, int y, int width, int height,
 		unsigned long color)
 {
-	unsigned int displaylist[128];
-	int ptr = 0;
-
 	C(0x43); // reset source
 	C(0x53); // reset dest
 	C(0x5b); // reset pattern
@@ -194,6 +191,6 @@ void bcm_accel_fill(
 
 	C(0x77);  // do it
 
-	exec_list(displaylist, ptr);
+	exec_list();
 }
 
