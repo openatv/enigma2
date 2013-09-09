@@ -594,7 +594,7 @@ def runScreenTest():
 	from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime
 	#get currentTime
 	nowTime = time()
-	if not config.misc.SyncTimeUsing.getValue() == "0" or enigma.getBoxType().startswith('gb'):
+	if not config.misc.SyncTimeUsing.getValue() == "0" or enigma.getBoxType().startswith('gb') or enigma.getBoxType().startswith('ini'):
 		print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 		setRTCtime(nowTime)
 
