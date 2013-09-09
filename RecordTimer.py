@@ -623,6 +623,8 @@ class RecordTimer(timer.Timer):
 				w.state = RecordTimerEntry.StateWaiting
 				self.addTimerEntry(w)
 			else:
+				# check for disabled timers, if time as passed set to completed.
+				self.cleanupDisabled()
 				# Remove old timers as set in config
 				self.cleanupDaily(config.recording.keep_timers.getValue())
 				insort(self.processed_timers, w)
@@ -803,11 +805,15 @@ class RecordTimer(timer.Timer):
 		type = 0
 		time_match = 0
 
-		isAutoTimer = None
+		isAutoTimer = False
 		bt = None
 		end = begin + duration
 		refstr = str(service)
 		for x in self.timer_list:
+			if x.isAutoTimer == 1:
+				isAutoTimer = True
+			else:
+				isAutoTimer = False
 			check = x.service_ref.ref.toString() == refstr
 			if not check:
 				sref = x.service_ref.ref
@@ -867,8 +873,6 @@ class RecordTimer(timer.Timer):
 							else:           # recording whole event
 								time_match = (end2 - begin2) * 60
 								type = 2
-								if x.isAutoTimer:
-									isAutoTimer = 1
 				else:
 					if begin < x.begin <= end:
 						if timer_end < end: # recording within event
@@ -883,11 +887,9 @@ class RecordTimer(timer.Timer):
 							type = 4
 							if x.justplay:
 								type = 2
-						else:           # recording whole event
+						else: # recording whole event
 							time_match = end - begin
 							type = 2
-							if x.isAutoTimer:
-								isAutoTimer = 1
 				if x.justplay:
 					type += 5
 				elif x.always_zap:
