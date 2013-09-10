@@ -34,7 +34,7 @@ class Navigation:
 		self.RecordTimer = RecordTimer.RecordTimer()
 		self.__wasTimerWakeup = getFPWasTimerWakeup()
 		if self.__wasTimerWakeup:
-			# We need to give the systemclock the chance to sync with the transponder time,
+			# We need to give the systemclock the chance to sync with the transponder time
 			self.recordshutdowntimer = eTimer()
 			self.recordshutdowntimer.callback.append(self.checkShutdownAfterRecording)
 			self.recordshutdowntimer.startLongTimer(30)
