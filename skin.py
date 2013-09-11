@@ -83,8 +83,6 @@ if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
 	DEFAULT_SKIN = "skin.xml"
 
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
-config.skin.x = ConfigText(default='1280')
-config.skin.y = ConfigText(default='720')
 
 DEFAULT_DISPLAY_SKIN = "skin_display.xml"
 
@@ -455,21 +453,18 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				if xres:
 					xres = int(xres)
 				else:
-					xres = 1280
+					xres = 720
 				yres = get_attr("yres")
 				if yres:
 					yres = int(yres)
 				else:
-					yres = 720
+					yres = 576
 				bpp = get_attr("bpp")
 				if bpp:
 					bpp = int(bpp)
 				else:
 					bpp = 32
 				#print "Resolution:", xres,yres,bpp
-				config.skin.x.value = str(xres)
-				config.skin.y.value = str(yres)
-				config.skin.save()
 				from enigma import gMainDC
 				gMainDC.getInstance().setResolution(xres, yres)
 				desktop.resize(eSize(xres, yres))
