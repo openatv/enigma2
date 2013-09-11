@@ -6,9 +6,7 @@ eCanvas::eCanvas(eWidget *parent): ePixmap(parent)
 
 void eCanvas::setSize(eSize size)
 {
-	/* Set accelNever to prevent hardware blitting to happen, which
-	 * appears to yield very strange effects. */
-	setPixmap(new gPixmap(size, 32, gPixmap::accelNever));
+	setPixmap(new gPixmap(size, 32)); /* TODO: do we need 8bit surfaces? */
 }
 
 void eCanvas::clear(gRGB color)

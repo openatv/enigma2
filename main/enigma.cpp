@@ -357,7 +357,7 @@ const char *getMachineBrand()
 		{
 			return "Sezam";
 		}
-		else if((strcmp(boxtype_name, "ini-1000de\n") == 0))
+		else if((strcmp(boxtype_name, "ini-1000de\n") == 0) || (strcmp(boxtype_name, "ini-9000de\n") == 0))
 		{
 			return "GI";
 		}		
@@ -461,19 +461,8 @@ const char *getDriverDateString()
 
 const char *getBoxType()
 {
-  	// hack way to not change all in code
-	if(strcmp(BOXTYPE, "inihdx") == 0) 
-	{
-		return "ventonhdx";
-	}
-	else if(strcmp(BOXTYPE, "inihde") == 0) 
-	{
-		return "inihde";
-	}
-	else
-	{
-		return BOXTYPE;
-	}
+	return BOXTYPE;
+
 }
 
 #include <malloc.h>
