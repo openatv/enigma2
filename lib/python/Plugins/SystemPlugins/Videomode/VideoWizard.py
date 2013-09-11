@@ -1,9 +1,9 @@
 from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
+from Screens.Screen import Screen
 from VideoHardware import video_hw
 
-from Components.About import about
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from Components.config import config, ConfigBoolean, configfile
 
@@ -12,9 +12,34 @@ from Tools.HardwareInfo import HardwareInfo
 
 config.misc.showtestcard = ConfigBoolean(default = False)
 
+try:
+	file = open("/proc/stb/info/chipset", "r")
+	chipset = file.readline().strip()
+	file.close()
+except:
+	chipset = "unknown"
+
 class VideoWizardSummary(WizardSummary):
+	skin = (
+	"""<screen name="VideoWizardSummary" position="0,0" size="132,64" id="1">
+		<widget name="text" position="6,4" size="120,40" font="Regular;12" transparent="1" />
+		<widget source="parent.list" render="Label" position="6,40" size="120,21" font="Regular;14">
+			<convert type="StringListSelection" />
+		</widget>
+		<!--widget name="pic" pixmap="%s" position="6,22" zPosition="10" size="64,64" transparent="1" alphatest="on"/-->
+	</screen>""",
+	"""<screen name="VideoWizardSummary" position="0,0" size="96,64" id="2">
+		<widget name="text" position="0,4" size="96,40" font="Regular;12" transparent="1" />
+		<widget source="parent.list" render="Label" position="0,40" size="96,21" font="Regular;14">
+			<convert type="StringListSelection" />
+		</widget>
+		<!--widget name="pic" pixmap="%s" position="0,22" zPosition="10" size="64,64" transparent="1" alphatest="on"/-->
+	</screen>""")
+	#% (resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/lcd_Scart.png"))
+
 	def __init__(self, session, parent):
 		WizardSummary.__init__(self, session, parent)
+		#self["pic"] = Pixmap()
 
 	def setLCDPicCallback(self):
 		self.parent.setLCDTextCallback(self.setText)
@@ -55,6 +80,7 @@ class VideoWizard(WizardLanguage, Rc):
 		Rc.__init__(self)
 		self["wizard"] = Pixmap()
 		self["portpic"] = Pixmap()
+		Screen.setTitle(self, _("Welcome..."))
 
 		self.port = None
 		self.mode = None
@@ -68,7 +94,7 @@ class VideoWizard(WizardLanguage, Rc):
 
 	def markDone(self):
 		self.hw.saveMode(self.port, self.mode, self.rate)
-		config.misc.videowizardenabled.value = 0
+		config.misc.videowizardenabled.setValue(0)
 		config.misc.videowizardenabled.save()
 		configfile.save()
 
@@ -134,14 +160,12 @@ class VideoWizard(WizardLanguage, Rc):
 	def modeSelect(self, mode):
 		ratesList = self.listRates(mode)
 		print "ratesList:", ratesList
-		if self.port == "DVI" and mode in ("720p", "1080i", "1080p") and (about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1):
+		if self.port == "DVI" and mode in ("720p", "1080i", "1080p") and (chipset.find('7358') != -1 or chipset.find('7356') != -1):
 			self.rate = "multi"
 			self.hw.setMode(port = self.port, mode = mode, rate = "multi")
 		elif self.port == "DVI" and mode in ("720p", "1080i"):
 			self.rate = "multi"
 			self.hw.setMode(port = self.port, mode = mode, rate = "multi")
-		elif self.port == "DVI" and mode in ("720p", "1080i", "1080p") and (about.getChipSetString().find('7405') != -1):
-			self.hw.setMode(port = self.port, mode = mode, rate = ratesList[0][0])		  
 		else:
 			self.hw.setMode(port = self.port, mode = mode, rate = ratesList[0][0])
 
@@ -179,9 +203,9 @@ class VideoWizard(WizardLanguage, Rc):
 			selection = self.selection
 		print "set config.misc.showtestcard to", {'yes': True, 'no': False}[selection]
 		if selection == "yes":
-			config.misc.showtestcard.value = True
+			config.misc.showtestcard.setValue(True)
 		else:
-			config.misc.showtestcard.value = False
+			config.misc.showtestcard.setValue(False)
 
 	def keyNumberGlobal(self, number):
 		if number in (1,2,3):
