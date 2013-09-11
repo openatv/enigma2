@@ -32,7 +32,9 @@ class EGExtraInfo(Poll, Converter, object):
 	def GetEcmInfo(self):
 		data = {}
 		try:
-			ecm = open('/tmp/ecm.info', 'rb').readlines()
+			f = open('/tmp/ecm.info', 'rb')
+			ecm = f.readlines()
+			f.close()
 			info = {}
 			for line in ecm:
 				d = line.split(':', 1)
@@ -83,13 +85,15 @@ class EGExtraInfo(Poll, Converter, object):
 					if data['decode'] == 'Network':
 						cardid = 'id:' + info.get('prov', '')
 						try:
-							share = open('/tmp/share.info', 'rb').readlines()
+							f = open('/tmp/share.info', 'rb')
+							share = f.readlines()
+							f.close()
 							for line in share:
 								if cardid in line:
 									data['address'] = line.strip()
 									break
 							else:
-								data['address'] = cardid
+								data['address'] = cardid	
 						except:
 							data['address'] = data['decode']
 					else:
