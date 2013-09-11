@@ -145,7 +145,7 @@ class About(Screen):
 			{
 				"cancel": self.close,
 				"ok": self.close,
-				"green": self.showTranslationInfo,
+				#"green": self.showTranslationInfo,
 				"up": self["AboutScrollLabel"].pageUp,
 				"down": self["AboutScrollLabel"].pageDown
 			})
