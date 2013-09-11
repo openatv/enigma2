@@ -33,13 +33,21 @@ class IconCheckPoller:
 	def JobTask(self):
 		LinkState = 0
 		if fileExists('/sys/class/net/wlan0/operstate'):
-			LinkState = open('/sys/class/net/wlan0/operstate').read()
+			f = open('/sys/class/net/wlan0/operstate')
+			LinkState = f.read()
+			f.close()
 			if LinkState != 'down':
-				LinkState = open('/sys/class/net/wlan0/operstate').read()
+				f = open('/sys/class/net/wlan0/operstate')
+				LinkState = f.read()
+				f.close()		
 		elif fileExists('/sys/class/net/eth0/operstate'):
-			LinkState = open('/sys/class/net/eth0/operstate').read()
+			f = open('/sys/class/net/eth0/operstate')
+			LinkState = f.read()
+			f.close()
 			if LinkState != 'down':
-				LinkState = open('/sys/class/net/eth0/carrier').read()
+				f = open('/sys/class/net/eth0/carrier')
+				LinkState = f.read()
+				f.close()	
 		LinkState = LinkState[:1]
 		if fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.getValue() == '1':
 			f = open("/proc/stb/lcd/symbol_network", "w")

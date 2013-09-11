@@ -17,7 +17,7 @@ from Components.UsageConfig import preferredTimerPath
 from Screens.TimerEdit import TimerSanityConflict
 profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
-from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv
+from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv, getMachineBrand, getMachineName
 from Components.config import config, configfile, ConfigSubsection, ConfigText
 from Tools.NumericalTextInput import NumericalTextInput
 profile("ChannelSelection.py 2")
@@ -1121,11 +1121,11 @@ class ChannelSelectionBase(Screen):
 
 	def buildTitleString(self):
 		titleStr = self.getTitle()
-		nameStr = ''
 		pos = titleStr.find(']')
 		if pos == -1:
-			pos = titleStr.find(' (')
+			pos = titleStr.find(')')
 		if pos != -1:
+			titleStr = titleStr[:pos+1]
 			if titleStr.find(' (TV)') != -1:
 				titleStr = titleStr[-5:]
 			elif titleStr.find(' (Radio)') != -1:
@@ -1134,18 +1134,18 @@ class ChannelSelectionBase(Screen):
 			if Len > 0:
 				base_ref = self.servicePath[0]
 				if Len > 1:
-					end_ref = self.servicePath[Len - 1]
+					end_ref = self.servicePath[Len-1]
 				else:
 					end_ref = None
-# 				nameStr = self.getServiceName(base_ref)
-# 				titleStr += ' - ' + nameStr
+				nameStr = self.getServiceName(base_ref)
+				#titleStr += ' - ' + nameStr
 				if end_ref is not None:
-# 					if Len > 2:
-# 						titleStr += '/../'
-# 					else:
-# 						titleStr += '/'
-					self.nameStr = self.getServiceName(end_ref)
-					titleStr = self.nameStr + titleStr
+					#if Len > 2:
+					#	titleStr += '/../'
+					#else:
+					#	titleStr += '/'
+					nameStr = self.getServiceName(end_ref)
+					titleStr += nameStr
 				self.setTitle(titleStr)
 
 	def moveUp(self):
