@@ -43,7 +43,7 @@ class Navigation:
 
 		wasTimerWakeup = getFPWasTimerWakeup()
 		thisBox = getBoxType()
-		if thisBox == 'gbquad' or thisBox == 'xp1000' or thisBox == 'ixussone' or thisBox == 'ventonhdx' or thisBox.startswith("tm") or thisBox.startswith("iqon") or thisBox.startswith("azbox") or thisBox.startswith("ebox"):
+		if thisBox == 'gbquad' or thisBox == 'xp1000' or thisBox == 'ixussone' or thisBox == 'ventonhdx' or thisBox.startswith("tm") or thisBox.startswith("iqon") or thisBox.startswith("opti") or thisBox.startswith("azbox") or thisBox.startswith("ebox"):
 			config.workaround.deeprecord.setValue(True)
 			config.workaround.deeprecord.save()
 			config.save()
