@@ -44,7 +44,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			"volumeDown": self.decrementStart,
 			"size+": self.incrementEnd,
 			"size-": self.decrementEnd,
-			"blue": self.changeTimerType
+			"yellow": self.changeTimerType
 		}, -2)
 
 		self.list = []
