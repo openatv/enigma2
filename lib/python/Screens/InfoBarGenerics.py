@@ -535,10 +535,18 @@ class InfoBarChannelSelection:
 		self.switchChannelDown()
 
 	def historyBack(self):
-		self.servicelist.historyBack()
+		self.checkTimeshiftRunning(self.historyBackCheckTimeshiftCallback)
+
+	def historyBackCheckTimeshiftCallback(self, answer):
+		if answer:
+			self.servicelist.historyBack()
 
 	def historyNext(self):
-		self.servicelist.historyNext()
+		self.checkTimeshiftRunning(self.historyNextCheckTimeshiftCallback)
+
+	def historyNextCheckTimeshiftCallback(self, answer):
+		if answer:
+			self.servicelist.historyNext()
 
 	def switchChannelUp(self):
 		self.servicelist.moveUp()
@@ -1079,7 +1087,9 @@ class InfoBarSeek:
 				"seekFwd": (self.seekFwd, _("Seek forward")),
 				"seekFwdManual": (self.seekFwdManual, _("Seek forward (enter time)")),
 				"seekBack": (self.seekBack, _("Seek backward")),
-				"seekBackManual": (self.seekBackManual, _("Seek backward (enter time)"))
+				"seekBackManual": (self.seekBackManual, _("Seek backward (enter time)")),
+				"jumpPreviousMark": (self.seekPreviousMark, _("Jump to previous marked position")),
+				"jumpNextMark": (self.seekNextMark, _("Jump to next marked position")),
 			}, prio=-1)
 			# give them a little more priority to win over color buttons
 
@@ -1407,6 +1417,15 @@ class InfoBarSeek:
 	def __evSOF(self):
 		self.setSeekState(self.SEEK_STATE_PLAY)
 		self.doSeek(0)
+
+	# This is needed, because some Mediaplayer use InfoBarSeek but not InfoBarCueSheetSupport
+	def seekPreviousMark(self):
+		if isinstance(self, InfoBarCueSheetSupport):
+			self.jumpPreviousMark()
+
+	def seekNextMark(self):
+		if isinstance(self, InfoBarCueSheetSupport):
+			self.jumpNextMark()
 
 from Screens.PVRState import PVRState, TimeshiftState
 
@@ -2468,6 +2487,7 @@ class InfoBarCueSheetSupport:
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evStart: self.__serviceStarted,
+				iPlayableService.evCuesheetChanged: self.downloadCuesheet,
 			})
 
 	def __serviceStarted(self):
