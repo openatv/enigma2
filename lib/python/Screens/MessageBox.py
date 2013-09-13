@@ -12,10 +12,10 @@ class MessageBox(Screen):
 	TYPE_WARNING = 2
 	TYPE_ERROR = 3
 
-	def __init__(self, session, text, type = TYPE_YESNO, timeout = -1, close_on_any_key = False, default = True, enable_input = True, msgBoxID = None, picon = None, simple = False, wizard = False, list = []):
+	def __init__(self, session, text, type = TYPE_YESNO, timeout = -1, close_on_any_key = False, default = True, enable_input = True, msgBoxID = None, picon = True, simple = False, wizard = False, list = [], skin_name = []):
 		self.type = type
 		Screen.__init__(self, session)
-
+		self.skinName = ["MessageBox"]
 		if wizard:
 			from Components.config import config, ConfigInteger
 			from Components.Pixmap import MultiPixmap
@@ -24,7 +24,10 @@ class MessageBox(Screen):
 			self.skinName = ["MessageBoxWizard"]
 
 		if simple:
-			self.skinName="MessageBoxSimple"
+			self.skinName = ["MessageBoxSimple"]
+
+		if isinstance(skin_name, str):
+			self.skinName = [skin_name] + self.skinName
 
 		self.msgBoxID = msgBoxID
 
@@ -36,18 +39,23 @@ class MessageBox(Screen):
 		self.close_on_any_key = close_on_any_key
 
 		self["ErrorPixmap"] = Pixmap()
+		self["ErrorPixmap"].hide()
 		self["QuestionPixmap"] = Pixmap()
+		self["QuestionPixmap"].hide()
 		self["InfoPixmap"] = Pixmap()
+		self["InfoPixmap"].hide()
+
 		self.timerRunning = False
 		self.initTimeout(timeout)
 
-		picon = picon or type
-		if picon != self.TYPE_ERROR:
-			self["ErrorPixmap"].hide()
-		if picon != self.TYPE_YESNO:
-			self["QuestionPixmap"].hide()
-		if picon != self.TYPE_INFO:
-			self["InfoPixmap"].hide()
+		if picon:
+			picon = type
+			if picon == self.TYPE_ERROR:
+				self["ErrorPixmap"].show()
+			elif picon == self.TYPE_YESNO:
+				self["QuestionPixmap"].show()
+			elif picon == self.TYPE_INFO:
+				self["InfoPixmap"].show()
 
 		self.messtype = type
 		if type == self.TYPE_YESNO:
@@ -86,40 +94,43 @@ class MessageBox(Screen):
 		desktop_w = enigma.getDesktop(0).size().width()
 		desktop_h = enigma.getDesktop(0).size().height()
 		count = len(self.list)
-		if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
-			textsize = self["text"].getSize()
-			if textsize[0] > 520:
-				textsize = (textsize[0],textsize[1]+25)
+
+		if not self["text"].text:
+			textsize = (520, 0)
+			listsize = (520, 25*count)
+			if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
+				self["list"].instance.move(enigma.ePoint(65, 0))
 			else:
-				textsize = (520,textsize[1]+25)
-			listsize = (textsize[0],25*count)
-			# resize label
-			self["text"].instance.resize(enigma.eSize(*textsize))
-			self["text"].instance.move(enigma.ePoint(65, 0))
-			# move list
-			self["list"].instance.move(enigma.ePoint(65, textsize[1]))
+				self["list"].instance.move(enigma.ePoint(0, 0))
 			self["list"].instance.resize(enigma.eSize(*listsize))
-			wsizex = textsize[0]+65
+
 		else:
 			textsize = self["text"].getSize()
+			if textsize[0] < textsize[1]:
+				textsize = (textsize[1],textsize[0]+10)
 			if textsize[0] > 520:
-				textsize = (textsize[0],textsize[1]+25)
+				textsize = (textsize[0], textsize[1]+25)
 			else:
-				textsize = (520,textsize[1]+25)
-			listsize = (textsize[0],25*count)
-			# resize label
+				textsize = (520, textsize[1]+25)
+			listsize = (textsize[0], 25*count)
+
 			self["text"].instance.resize(enigma.eSize(*textsize))
-			self["text"].instance.move(enigma.ePoint(0, 0))
-			# move list
-			self["list"].instance.move(enigma.ePoint(0, textsize[1]))
+			if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
+				self["text"].instance.move(enigma.ePoint(65, 0))
+			else:
+				self["text"].instance.move(enigma.ePoint(10, 10))
+
+			if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
+				self["list"].instance.move(enigma.ePoint(65, textsize[1]))
+				wsizex = textsize[0]+65
+			else:
+				self["list"].instance.move(enigma.ePoint(0, textsize[1]))
+				wsizex = textsize[0]
 			self["list"].instance.resize(enigma.eSize(*listsize))
-			wsizex = textsize[0]
 
 		wsizey = textsize[1]+listsize[1]
 		wsize = (wsizex, wsizey)
 		self.instance.resize(enigma.eSize(*wsize))
-		# center window
-		newwidth = wsize[0]
 		self.instance.move(enigma.ePoint((desktop_w-wsizex)/2, (desktop_h-wsizey)/2))
 
 	def initTimeout(self, timeout):
@@ -173,16 +184,47 @@ class MessageBox(Screen):
 		self.ok()
 
 	def cancel(self):
-		self.close(False)
+		if len(self["list"].list):
+			for l in self["list"].list:
+				if l[0].lower() == _('no') or l[0].lower() == _('false'):
+					self.cancelEntry(l)
+					break
+		else:
+			self.close(True)
 
 	def ok(self):
-		if self.list:
-			self.close(self["list"].getCurrent()[1])
+		cursel = self["list"].l.getCurrentSelection()
+		if cursel:
+			self.goEntry(cursel)
+		else:
+			self.cancel()
+
+	# runs a specific entry
+	def cancelEntry(self, entry=[]):
+		if len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
+			# CALLFUNC wants to have the current selection as argument
+			arg = self["list"].l.getCurrentSelection()[0]
+			entry[2](arg)
+		else:
+			self.close(False)
+
+	# runs a specific entry
+	def goEntry(self, entry=[]):
+		if len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
+			# CALLFUNC wants to have the current selection as argument
+			arg = self["list"].l.getCurrentSelection()[0]
+			entry[2](arg)
 		else:
 			self.close(True)
 
 	def alwaysOK(self):
-		self.close(True)
+		if len(self["list"].list):
+			for l in self["list"].list:
+				if l[0].lower() == _('yes') or l[0].lower() == _('true'):
+					self.goEntry(l)
+					break
+		else:
+			self.close(True)
 
 	def up(self):
 		self.move(self["list"].instance.moveUp)
