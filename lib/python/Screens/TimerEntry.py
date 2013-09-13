@@ -31,7 +31,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self["canceltext"] = Label(_("Cancel"))
 		self["ok"] = Pixmap()
 		self["cancel"] = Pixmap()
-		self["key_blue"] = Label(_("Timer type"))
+		self["key_yellow"] = Label(_("Timer type"))
 
 		self.createConfig()
 
