@@ -199,20 +199,16 @@ class MessageBox(Screen):
 		else:
 			self.cancel()
 
-	# runs a specific entry
 	def cancelEntry(self, entry=[]):
 		if len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
-			# CALLFUNC wants to have the current selection as argument
-			arg = self["list"].l.getCurrentSelection()[0]
+			arg = entry[3]
 			entry[2](arg)
 		else:
 			self.close(False)
 
-	# runs a specific entry
 	def goEntry(self, entry=[]):
 		if len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
-			# CALLFUNC wants to have the current selection as argument
-			arg = self["list"].l.getCurrentSelection()[0]
+			arg = entry[3]
 			entry[2](arg)
 		else:
 			self.close(True)
