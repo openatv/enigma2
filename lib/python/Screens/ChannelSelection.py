@@ -487,8 +487,8 @@ class ChannelSelectionEPG:
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
 				cb_func = lambda ret: self.removeTimer(timer)
-				menu = [(_("Yes"), 'CALLFUNC', cb_func), (_("No"), 'CALLFUNC', self.ChoiceBoxCB, self.ChoiceBoxNull)]
-				self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, text=_('Do you really want to remove the timer for %s?') % event.getEventName(), list=menu, skin_name="RemoveTimerQuestion")
+				menu = [(_("Yes"), 'CALLFUNC', cb_func), (_("No"), 'CALLFUNC', self.ChoiceBoxCB)]
+				self.ChoiceBoxDialog = self.session.instantiateDialog(MessageBox, text=_('Do you really want to remove the timer for %s?') % event.getEventName(), list=menu, skin_name="RemoveTimerQuestion", picon=False)
 				self.showChoiceBoxDialog()
 				break
 		else:
@@ -502,7 +502,7 @@ class ChannelSelectionEPG:
 			if int(sely) >= temp:
 				sely = int(sely) - int(self.listHeight)
 			menu = [(_("Record now"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordCurrentTimer), (_("Record next"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordNextTimer)]
-			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title="%s?" % eventname, list=menu, skin_name="RecordTimerQuestion")
+			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title="%s?" % eventname, list=menu, keys=['red', 'green'], skin_name="RecordTimerQuestion")
 			self.ChoiceBoxDialog.instance.move(ePoint(selx-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+sely))
 			self.showChoiceBoxDialog()
 
