@@ -12,6 +12,14 @@ import Screens.InfoBar
 
 inStandby = None
 
+def setLCDModeMinitTV(value):
+	try:
+		f = open("/proc/stb/lcd/mode", "w")
+		f.write(value)
+		f.close()
+	except:
+		pass
+
 class Standby2(Screen):
 	def Power(self):
 		print "leave standby"
@@ -20,6 +28,9 @@ class Standby2(Screen):
 		#restart last played service
 		#unmute adc
 		self.leaveMute()
+		# set LCDminiTV 
+		if SystemInfo["LCDMiniTV"]:
+			setLCDModeMinitTV(config.lcd.modeminitv.getValue())
 		#kill me
 		self.close(True)
 
@@ -54,6 +65,10 @@ class Standby2(Screen):
 
 		#mute adc
 		self.setMute()
+
+		# set LCDminiTV off
+		if SystemInfo["LCDMiniTV"]:
+			setLCDModeMinitTV("0")
 
 		self.paused_service = None
 		self.prev_running_service = None
