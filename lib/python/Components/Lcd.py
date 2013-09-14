@@ -213,7 +213,7 @@ def InitLcd():
 				except:
 					pass
 			config.lcd.modeminitv = ConfigSelection(choices={
-					"0": _("normale"),
+					"0": _("normal"),
 					"1": _("MiniTV"),
 					"2": _("OSD"),
 					"3": _("MiniTV with OSD")},					
