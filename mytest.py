@@ -553,7 +553,7 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 
-	if enigma.getBoxType() == 'gb800se' or enigma.getBoxType() == 'gb800solo':
+	if enigma.getBoxType() == 'gb800se' or enigma.getBoxType() == 'gb800solo' or enigma.getBoxType() == 'gb800seplus':
 		from enigma import evfd, eConsoleAppContainer
 		try:
 			cmd = 'vfdctl "    openatv starting e2"'
