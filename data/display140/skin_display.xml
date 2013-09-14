@@ -372,9 +372,9 @@
 		<widget source="parent.Title" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" valign="top" noWrap="1" />
 		<widget source="parent.package" render="Label" position="0,16" size="140,16" font="FdLcD;14" halign="center" valign="bottom" noWrap="1" />
 	</screen>
-	<screen name="SoftwareUpdateChanges_summary" position="0,0" size="140,32">
-		<widget source="parent.title_summary" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" valign="top" noWrap="1" />
-		<widget source="parent.text_summary" render="Label" position="0,16" size="140,16" font="FdLcD;14" halign="center" valign="bottom" transparent="1" />
+	<screen name="SoftwareUpdateChanges_summary" position="fill">
+		<!--<widget source="parent.title_summary" render="Label" position="top" size="*,14" font="FdLcD;16" halign="left" valign="top" noWrap="1" />-->
+		<widget source="parent.text_summary" render="Label" position="fill" size="*,18" font="FdLcD;10" halign="left" valign="top" />
 	</screen>
 <!-- AutoTimerOverview -->
 	<screen name="AutoTimerOverviewSummary" position="0,0" size="140,32">
