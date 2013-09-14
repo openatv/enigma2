@@ -217,7 +217,7 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
 		## TESTING THE OCTAGON Model
-		elif self.MODEL == "xp1000" and self.MACHINENAME.lower() == "SF8 HD":
+		elif self.MODEL == "xp1000" and self.MACHINENAME.lower() == "sf8 hd":
 			self.TYPE = "OCTAGON"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
@@ -265,7 +265,7 @@ class ImageBackup(Screen):
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/venton/%s" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s/venton" % (self.DIRECTORY, self.MODEL, self.DATE)
-		elif self.MODEL == "ventonhdx" and self.MACHINENAME.lower() == "HD-5000":
+		elif self.MODEL == "ventonhdx" and self.MACHINENAME.lower() == "hd-5000":
 			self.TYPE = "SEZAM"
 			self.MODEL = "hdx"			
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
@@ -274,7 +274,7 @@ class ImageBackup(Screen):
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
-		elif self.MODEL == "ventonhdx" and self.MACHINENAME.lower() == "Premium Twin":
+		elif self.MODEL == "ventonhdx" and self.MACHINENAME.lower() == "premium twin":
 			self.TYPE = "MICRACLE"
 			self.MODEL = "twin"			
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
@@ -294,7 +294,7 @@ class ImageBackup(Screen):
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
-		elif self.MODEL == "inihde" and self.MACHINENAME.lower() == "HD-1000":
+		elif self.MODEL == "inihde" and self.MACHINENAME.lower() == "hd-1000":
 			self.TYPE = "SEZAM"
 			self.MODEL = "hde"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"

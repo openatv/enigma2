@@ -191,11 +191,11 @@ class doFlashImage(Screen):
 			box = getMachineName().lower()
 		elif box == "inihde" and machinename.lower() == "xpeedlx":
 			box = "xpeedlx"
-		elif box == "inihde" and machinename.lower() == "HD-1000":
+		elif box == "inihde" and machinename.lower() == "hd-1000":
 			box = "sezam-1000hd"
-		elif box == "ventonhdx" and machinename.lower() == "HD-5000":
+		elif box == "ventonhdx" and machinename.lower() == "hd-5000":
 			box = "sezam-5000hd"
-		elif box == "ventonhdx" and machinename.lower() == "Premium Twin":
+		elif box == "ventonhdx" and machinename.lower() == "premium twin":
 			box = "miraclebox-twin"
 		return box
 
