@@ -61,17 +61,23 @@ def InitOsd():
 	def set3DMode(configElement):
 		if SystemInfo["CanChange3DOsd"]:
 			print 'Setting 3D mode:',configElement.getValue()
-			f = open("/proc/stb/fb/3dmode", "w")
-			f.write(configElement.getValue())
-			f.close()
+			try:
+				f = open("/proc/stb/fb/3dmode", "w")
+				f.write(configElement.getValue())
+				f.close()
+			except:
+				pass
 	config.osd.threeDmode.addNotifier(set3DMode)
 
 	def set3DZnorm(configElement):
 		if SystemInfo["CanChange3DOsd"]:
 			print 'Setting 3D depth:',configElement.getValue()
-			f = open("/proc/stb/fb/znorm", "w")
-			f.write('%d' % int(configElement.getValue()))
-			f.close()
+			try:
+				f = open("/proc/stb/fb/znorm", "w")
+				f.write('%d' % int(configElement.getValue()))
+				f.close()
+			except:
+				pass	
 	config.osd.threeDznorm.addNotifier(set3DZnorm)
 	
 class UserInterfacePositioner2(Screen, ConfigListScreen):
