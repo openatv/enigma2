@@ -6,7 +6,6 @@ from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
 from enigma import eDVBVolumecontrol, getMachineBrand, getMachineName
 from Tools import Notifications
-from Tools.Directories import fileExists
 import Screens.InfoBar
 
 inStandby = None
