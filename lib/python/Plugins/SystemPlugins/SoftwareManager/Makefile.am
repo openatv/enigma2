@@ -21,8 +21,3 @@ dist_install_DATA = \
 	update.png \
 	upgradeable.png \
 	upgrade.png
-
-install-data-hook:
-	chmod +x $(DESTDIR)$(installdir)/backup-hdd.sh; \
-	chmod +x $(DESTDIR)$(installdir)/backup-usb.sh; \
-	chmod +x $(DESTDIR)$(installdir)/backup.sh
