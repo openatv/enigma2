@@ -66,10 +66,10 @@ def InitLcd():
 				except:
 					pass
 			config.lcd.modeminitv = ConfigSelection(choices={
-					"0": _("normale"),
-					"1": _("Mini TV"),
+					"0": _("normal"),
+					"1": _("MiniTV"),
 					"2": _("OSD"),
-					"3": _("Minit TV with OSD")},					
+					"3": _("MiniTV with OSD")},					
 					default = "0")
 			config.lcd.modeminitv.addNotifier(setLCDModeMinitTV)
 		else:
