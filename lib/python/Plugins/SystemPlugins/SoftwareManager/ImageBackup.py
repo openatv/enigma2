@@ -1,10 +1,28 @@
-from enigma import *
+#################################################################################
+# FULL BACKUP UYILITY FOR ENIGMA2, SUPPORTS THE MODELS ET-XX00 & VU+			#
+#							& Gigablue & Venton HD Models						#
+#					MAKES A FULLBACK-UP READY FOR FLASHING.						#
+#																				#
+#################################################################################
+from enigma import getBoxType, getMachineBrand, getMachineName
 from Screens.Screen import Screen
 from Components.Button import Button
 from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Screens.Console import Console
+from Screens.MessageBox import MessageBox
+from time import time, strftime, localtime
+from os import path, system, makedirs, listdir, walk, statvfs
+import commands
+import datetime
 
+VERSION = "Version 2.0 openATV"
+
+def Freespace(dev):
+	statdev = statvfs(dev)
+	space = (statdev.f_bavail * statdev.f_frsize) / 1024
+	print "[FULL BACKUP] Free space on %s = %i kilobytes" %(dev, space)
+	return space
 
 class ImageBackup(Screen):
 	skin = """
@@ -24,13 +42,19 @@ class ImageBackup(Screen):
 	def __init__(self, session, args = 0):
 		Screen.__init__(self, session)
 		self.session = session
+		self.MODEL = getBoxType()
+		self.MACHINENAME = getMachineName()
+		self.MACHINEBRAND = getMachineBrand()
+		print "[FULL BACKUP] BOX MACHINENAME = >%s<" %self.MACHINENAME
+		print "[FULL BACKUP] BOX MACHINEBRAND = >%s<" %self.MACHINEBRAND
+		print "[FULL BACKUP] BOX MODEL = >%s<" %self.MODEL
 		
 		self["key_green"] = Button("USB")
 		self["key_red"] = Button("HDD")
 		self["key_blue"] = Button(_("Exit"))
 		self["key_yellow"] = Button("")
-		self["info-usb"] = Label(_("USB = Do you want to make a back-up on USB?\nThis will take between 2 and 7 minutes depending on the used filesystem and is fully automatic.\nMake sure you first insert an USB flash drive before you select USB."))
-		self["info-hdd"] = Label(_("HDD = Do you want to make an USB-back-up image on HDD? \nThis only takes 2 or 3 minutes and is fully automatic."))
+		self["info-usb"] = Label(_("USB = Do you want to make a back-up on USB?\nThis will take between 4 and 15 minutes depending on the used filesystem and is fully automatic.\nMake sure you first insert an USB flash drive before you select USB."))
+		self["info-hdd"] = Label(_("HDD = Do you want to make an USB-back-up image on HDD? \nThis only takes 2 or 10 minutes and is fully automatic."))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
 		{
 			"blue": self.quit,
@@ -40,17 +64,622 @@ class ImageBackup(Screen):
 			"cancel": self.quit,
 		}, -2)
 
+	def check_hdd(self):
+		if not path.exists("/media/hdd"):
+			self.session.open(MessageBox, _("No /hdd found !!\nPlease make sure you have a HDD mounted.\n"), type = MessageBox.TYPE_ERROR)
+			return False
+		if Freespace('/media/hdd') < 300000:
+			self.session.open(MessageBox, _("Not enough free space on /hdd !!\nYou need at least 300Mb free space.\n"), type = MessageBox.TYPE_ERROR)
+			return False
+		return True
+
+	def check_usb(self, dev):
+		if Freespace(dev) < 300000:
+			self.session.open(MessageBox, _("Not enough free space on %s !!\nYou need at least 300Mb free space.\n" % dev), type = MessageBox.TYPE_ERROR)
+			return False
+		return True
 		
 	def quit(self):
 		self.close()	
 		
 	def red(self):
-		self.session.open(Console, title = "Full back-up on HDD", cmdlist = ["sh '/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager/backup-hdd.sh'"])
+		if self.check_hdd():
+			self.doFullBackup("/hdd")
 
 	def green(self):
-		self.session.open(Console, title = "Full Back-up to USB", cmdlist = ["sh '/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager/backup-usb.sh'"])
+		USB_DEVICE = self.SearchUSBcanidate()
+		if USB_DEVICE == 'XX':
+			text = _("No USB-Device found for fullbackup !!\n\n\n")
+			text += _("To back-up directly to the USB-stick, the USB-stick MUST\n")
+			text += _("contain a file with the name: \n\n")
+			text += _("backupstick or backupstick.txt")
+			self.session.open(MessageBox, text, type = MessageBox.TYPE_ERROR)
+		else:
+			if self.check_usb(USB_DEVICE):
+				self.doFullBackup(USB_DEVICE)
 
 	def yellow(self):
 		#// Not used
 		pass	
 
+	def testUBIFS(self):
+		f = open("/proc/mounts", "r")
+		mounts = f.readlines()
+		f.close()
+		for line in mounts:
+			if "rootfs" in line and "ubifs" in line:
+				return "ubifs"
+		return "jffs2"
+
+	def SearchUSBcanidate(self):
+		for paths, subdirs, files in walk("/media"):
+			for dir in subdirs:
+				if not dir == 'hdd' and not dir == 'net':
+					for file in listdir("/media/" + dir):
+						if file.find("backupstick") > -1:
+							print "USB-DEVICE found on: /media/%s" % dir
+							return "/media/" + dir						
+			break
+		return "XX"
+
+	def doFullBackup(self, DIRECTORY):
+		self.DIRECTORY = DIRECTORY
+		self.TITLE = _("Full back-up on %s") % (self.DIRECTORY)
+		self.START = time()
+		self.DATE = strftime("%Y%m%d_%H%M", localtime(self.START))
+		self.IMAGEVERSION = strftime("%Y%m%d", localtime(self.START))
+		self.ROOTFSTYPE = self.testUBIFS()
+		self.MKFS = "/usr/sbin/mkfs.%s" %self.ROOTFSTYPE
+		self.UBINIZE = "/usr/sbin/ubinize"
+		self.NANDDUMP = "/usr/sbin/nanddump"
+		self.WORKDIR= "%s/bi" %self.DIRECTORY
+		self.TARGET="XX"
+		self.MTDKERNEL="mtd1"
+		self.ROOTFSBIN="rootfs.bin"
+		self.KERNELBIN="kernel.bin"
+
+		## TESTING IF ALL THE TOOLS FOR THE BUILDING PROCESS ARE PRESENT
+		if not path.exists(self.MKFS):
+			text = "%s not found !!" %self.MKFS
+			self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
+			return
+		if not path.exists(self.NANDDUMP):
+			text = "%s not found !!" %self.NANDDUMP
+			self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
+			return
+
+		## TESTING WHICH KIND OF SATELLITE RECEIVER IS USED
+
+		## TESTING THE XTREND AND CLARK TECH MODELS
+		if self.MODEL == "et9x00" or self.MODEL == "et5x00" or self.MODEL == "et6x00" or self.MODEL == "et6500" or self.MODEL == "et4x00":
+			self.TYPE = "ET"
+			if self.MODEL == "et6500":
+				self.MODEL = "et6x00"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "Xtrend %s" %self.MODEL
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/%sx00" %(self.DIRECTORY, self.MODEL[:-3])
+			self.EXTRA = "%s/fullbackup_%sx00/%s" % (self.DIRECTORY, self.MODEL[:-3], self.DATE)
+			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
+		## TESTING THE Odin M9 Model
+		elif self.MODEL == "odinm9":
+			self.TYPE = "ODINM9"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "ODIN %s" %self.MODEL
+			self.MTDKERNEL = "mtd2"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/odinm9" % self.DIRECTORY
+			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
+			self.EXTRA = "%s/fullbackup_odinm9/%s" % (self.DIRECTORY, self.DATE)
+		## TESTING THE Odin M7 Model
+		elif self.MODEL == "odinm7":
+			self.TYPE = "ODINM7"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "ODIN %s" %self.MODEL
+			self.MTDKERNEL = "mtd3"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/en2" % self.DIRECTORY
+			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
+			self.EXTRA = "%s/fullbackup_odinm7/%s" % (self.DIRECTORY, self.DATE)
+		## TESTING THE Odin M6 Model
+		elif self.MODEL == "odinm6":
+			self.TYPE = "ODINM7"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "ODIN %s" %self.MODEL
+			self.MTDKERNEL = "mtd3"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/en2" % self.DIRECTORY
+			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
+			self.EXTRA = "%s/fullbackup_odinm7/%s" % (self.DIRECTORY, self.DATE)
+		## TESTING THE E3 HD Model
+		elif self.MODEL == "e3hd":
+			self.TYPE = "E3HD"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s" %self.MODEL
+			self.MTDKERNEL = "mtd3"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/e3hd" % self.DIRECTORY
+			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
+			self.EXTRA = "%s/fullbackup_e3hd/%s" % (self.DIRECTORY, self.DATE)
+		## TESTING THE MK Digital Model
+		elif self.MODEL == "xp1000":
+			self.TYPE = "MAXDIGITAL"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "MaxDigital %s" %self.MODEL
+			self.MTDKERNEL = "mtd1"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
+		## TESTING THE Medialink Model
+		elif self.MODEL == "ixussone" or self.MODEL == "ixusszero" or self.MODEL == "ixussduo":
+			self.TYPE = "IXUSS"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "Medialink %s" %self.MODEL
+			self.MTDKERNEL = "mtd1"	
+			self.MAINDESTOLD = "%s/medialink/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/medialink/%s" %(self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
+		## TESTING THE Mixos Model
+		elif self.MODEL == "ebox5000" or self.MODEL == "ebox5100":
+			self.TYPE = "MIXOS"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "Mixos %s" %self.MODEL
+			self.MTDKERNEL = "mtd1"	
+			self.MAINDESTOLD = "%s/ebox/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/ebox/7403/" % self.DIRECTORY
+			self.EXTRA = "%s/fullbackup_%s/%s/ebox" % (self.DIRECTORY, self.TYPE, self.DATE)
+		## TESTING THE Mixos Model
+		elif self.MODEL == "ebox7358":
+			self.TYPE = "MIXOS2"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "Mixos %s" %self.MODEL
+			self.MTDKERNEL = "mtd2"	
+			self.MAINDESTOLD = "%s/ebox/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/ebox/7358/" % self.DIRECTORY
+			self.EXTRA = "%s/fullbackup_%s/%s/ebox" % (self.DIRECTORY, self.TYPE, self.DATE)
+		## TESTING Venton HDx Model
+		elif self.MODEL == "ventonhdx":
+			self.TYPE = "VENTON"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s" %self.MODEL
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/venton/%s" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s/venton" % (self.DIRECTORY, self.MODEL, self.DATE)
+		## TESTING INI HDe Model
+		elif self.MODEL == "inihde" and self.MACHINENAME.lower() == "xpeedlx":
+			self.TYPE = "GI"
+			self.MODEL = "xpeedlx"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s" %self.MODEL
+			self.MTDKERNEL = "mtd2"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
+		## TESTING Technomate Model
+		elif self.MODEL == "tmtwin":
+			self.TYPE = "TECHNO"
+			self.MODEL = "tmtwinoe"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s" %self.MODEL
+			self.MTDKERNEL = "mtd6"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_TECHNO/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
+		## TESTING Technomate Model
+		elif self.MODEL == "tmsingle":
+			self.TYPE = "TECHNO"
+			self.MODEL = "tmsingle"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s" %self.MODEL
+			self.MTDKERNEL = "mtd6"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_TECHNO/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
+		## TESTING Technomate Model
+		elif self.MODEL == "tmnano":
+			self.TYPE = "TECHNO"
+			self.MODEL = "tmnanooe"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s" %self.MODEL
+			self.MTDKERNEL = "mtd6"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_TECHNO/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
+		## TESTING Technomate Model
+		elif self.MODEL == "tm2t":
+			self.TYPE = "TECHNO"
+			self.MODEL = "tm2toe"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s" %self.MODEL
+			self.MTDKERNEL = "mtd6"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_TECHNO/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
+		## TESTING Iqon Model
+		elif self.MODEL == "iqonios100hd":
+			self.TYPE = "IQON"
+			self.MODEL = "ios100"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s" %self.MODEL
+			self.MTDKERNEL = "mtd6"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_IQON/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
+		## TESTING Iqon Model
+		elif self.MODEL == "iqonios200hd":
+			self.TYPE = "IQON"
+			self.MODEL = "ios200"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s" %self.MODEL
+			self.MTDKERNEL = "mtd6"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_IQON/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
+		## TESTING Iqon Model
+		elif self.MODEL == "iqonios300hd":
+			self.TYPE = "IQON"
+			self.MODEL = "ios300"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s" %self.MODEL
+			self.MTDKERNEL = "mtd6"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_IQON/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
+		## TESTING Edison Model
+		elif self.MODEL == "optimussos2":
+			self.TYPE = "EDISION"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s" %self.MODEL
+			self.MTDKERNEL = "mtd6"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_EDISION/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
+		## TESTING THE Gigablue 800 Solo Model
+		elif self.MODEL == "gb800solo":
+			self.TYPE = "GIGABLUE"
+			self.MODEL = "solo"
+			self.JFFS2OPTIONS="--eraseblock=0x20000 -n -l --pad=125829120"
+			self.SHOWNAME = "GigaBlue %s" %self.MODEL
+			self.MTDKERNEL = "mtd2"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
+			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)
+		## TESTING THE Gigablue 800 SE Model
+		elif self.MODEL == "gb800se":
+			self.TYPE = "GIGABLUE"
+			self.MODEL = "se"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "GigaBlue %s" %self.MODEL
+			self.MTDKERNEL = "mtd2"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
+			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)
+		## TESTING THE Gigablue 800 UE Model
+		elif self.MODEL == "gb800ue":
+			self.TYPE = "GIGABLUE"
+			self.MODEL = "ue"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "GigaBlue %s" %self.MODEL
+			self.MTDKERNEL = "mtd2"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
+			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)
+		## TESTING THE Gigablue 800 SE Plus Model
+		elif self.MODEL == "gb800seplus":
+			self.TYPE = "GIGABLUE"
+			self.MODEL = "seplus"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "GigaBlue %s" %self.MODEL
+			self.MTDKERNEL = "mtd1"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
+			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)
+		## TESTING THE Gigablue 800 UE Plus Model
+		elif self.MODEL == "gb800ueplus":
+			self.TYPE = "GIGABLUE"
+			self.MODEL = "ueplus"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "GigaBlue %s" %self.MODEL
+			self.MTDKERNEL = "mtd1"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
+			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)
+		## TESTING THE Gigablue HD Quad Model
+		elif self.MODEL == "gbquad":
+			self.TYPE = "GIGABLUE"
+			self.MODEL = "quad"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "GigaBlue %s" %self.MODEL
+			self.MTDKERNEL = "mtd2"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
+			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)
+		## TESTING THE VU+ MODELS
+		elif self.MODEL == "vusolo" or self.MODEL == "vuduo" or self.MODEL == "vuuno" or self.MODEL == "vuultimo" or self.MODEL == "vusolo2" or self.MODEL == "vuduo2":
+			self.TYPE = "VU"
+			if self.MODEL == "vusolo2" or self.MODEL == "vuduo2":
+				self.MTDKERNEL = "mtd2"
+			self.SHOWNAME = "VU+ %s" %self.MODEL[2:]
+			self.MAINDEST = "%s/vuplus/%s" %(self.DIRECTORY, self.MODEL[2:])
+			self.EXTRA =  "%s/fullbackup_%s/%s/vuplus" % (self.DIRECTORY, self.MODEL[2:], self.DATE)
+			if self.ROOTFSTYPE == "ubifs":
+				self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
+				self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			else:
+				self.MTDROOT = 0
+				self.MTDBOOT = 2
+				self.JFFS2OPTIONS = "--eraseblock=0x20000 -n -l"
+		else:
+			print "No supported receiver found!"
+			return
+
+		self.message = "echo -e '\n"
+		self.message += (_("Back-up Tool for a %s\n" %self.SHOWNAME)).upper()
+		self.message += VERSION + '\n'
+		self.message += "_________________________________________________\n\n"
+		self.message += _("Please be patient, a backup will now be made,\n")
+		if self.ROOTFSTYPE == "ubifs":
+			self.message += _("because of the used filesystem the back-up\n")
+			self.message += _("will take about 3-12 minutes for this system\n")
+		else:
+			self.message += _("this will take between 2 and 9 minutes\n")
+		self.message += "\n_________________________________________________\n\n"
+		self.message += "'"
+
+		## PREPARING THE BUILDING ENVIRONMENT
+		system("rm -rf %s" %self.WORKDIR)
+		if not path.exists(self.WORKDIR):
+			makedirs(self.WORKDIR)
+		if not path.exists("/tmp/bi/root"):
+			makedirs("/tmp/bi/root")
+		system("sync")
+		system("mount --bind / /tmp/bi/root")
+
+		if self.ROOTFSTYPE == "jffs2":
+			cmd1 = "%s --root=/tmp/bi/root --faketime --output=%s/root.jffs2 %s" % (self.MKFS, self.WORKDIR, self.JFFS2OPTIONS)
+		else:
+			f = open("%s/ubinize.cfg" %self.WORKDIR, "w")
+			f.write("[ubifs]\n")
+			f.write("mode=ubi\n")
+			f.write("image=%s/root.ubi\n" %self.WORKDIR)
+			f.write("vol_id=0\n")
+			f.write("vol_type=dynamic\n")
+			f.write("vol_name=rootfs\n")
+			f.write("vol_flags=autoresize\n")
+			f.close()
+			ff = open("%s/root.ubi" %self.WORKDIR, "w")
+			ff.close()
+			cmd1 = "%s -r /tmp/bi/root -o %s/root.ubi %s" % (self.MKFS, self.WORKDIR, self.MKUBIFS_ARGS)
+			cmd2 = "%s -o %s/root.ubifs %s %s/ubinize.cfg" % (self.UBINIZE, self.WORKDIR, self.UBINIZE_ARGS, self.WORKDIR)
+
+
+		cmdlist = []
+		cmdlist.append(self.message)
+		cmdlist.append('echo "Create: root.%s\n"' %self.ROOTFSTYPE)
+		cmdlist.append(cmd1)
+		if cmd2:
+			cmdlist.append(cmd2)
+		cmdlist.append("chmod 644 %s/root.%s" %(self.WORKDIR, self.ROOTFSTYPE))
+		cmdlist.append('echo " "')
+		cmdlist.append('echo "Create: kerneldump"')
+		cmdlist.append('echo " "')
+		cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
+		cmdlist.append('echo " "')
+		cmdlist.append('echo "Check: kerneldump"')
+		cmdlist.append("sync")
+				
+		self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, finishedCallback = self.doFullBackupCB, closeOnSuccess = True)
+
+	def doFullBackupCB(self):
+		ret = commands.getoutput(' gzip -d %s/vmlinux.gz -c > /tmp/vmlinux.bin' % self.WORKDIR)
+		if ret:
+			text = "Kernel dump error\n"
+			text += "Please Flash your Kernel new and Backup again"
+			system('rm -rf /tmp/vmlinux.bin')
+			self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
+			return
+
+		cmdlist = []
+		cmdlist.append(self.message)
+		cmdlist.append('echo "Kernel dump OK"')
+		cmdlist.append("rm -rf /tmp/vmlinux.bin")
+		cmdlist.append('echo "_________________________________________________"')
+		cmdlist.append('echo "Almost there... "')
+		cmdlist.append('echo "Now building the USB-Image"')
+
+		system('rm -rf %s' %self.MAINDEST)
+		if not path.exists(self.MAINDEST):
+			makedirs(self.MAINDEST)
+		if not path.exists(self.EXTRA):
+			makedirs(self.EXTRA)
+
+		if self.TYPE == "ET" or self.TYPE == "VENTON" or self.TYPE == "GI" or self.TYPE == "ODINM9"  or self.TYPE == "ODINM7" or self.TYPE == "E3HD" or self.TYPE == "MAXDIGITAL" or self.TYPE == "IXUSS":
+			system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
+			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
+			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
+			cmdlist.append('echo %s-%s > %s/imageversion' % (self.MODEL, self.IMAGEVERSION, self.MAINDEST))
+			cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.EXTRA))
+		elif self.TYPE == "VU":
+			if self.MODEL == "vusolo2" or self.MODEL == "vuduo2":
+				self.ROOTFSBIN = "root_cfe_auto.bin"
+			else:
+				self.ROOTFSBIN = "root_cfe_auto.jffs2"
+			system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
+			self.KERNELBIN = "kernel_cfe_auto.bin"
+			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
+			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
+			cmdlist.append('echo %s-%s > %s/imageversion' % (self.MODEL, self.IMAGEVERSION, self.MAINDEST))
+			cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.EXTRA))
+		elif self.TYPE == "TECHNO" or self.TYPE == "IQON" or self.TYPE == "EDISION":
+			self.ROOTFSBIN = "oe_rootfs.bin"
+			system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
+			self.KERNELBIN = "oe_kernel.bin"
+			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
+			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
+			cmdlist.append('echo %s-%s > %s/imageversion' % (self.MODEL, self.IMAGEVERSION, self.MAINDEST))
+			cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.EXTRA))
+		elif self.TYPE == "MIXOS" or self.TYPE == "MIXOS2":
+			self.ROOTFSBIN = "root_cfe_auto.bin"
+			system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
+			self.KERNELBIN = "kernel_cfe_auto.bin"
+			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
+			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
+			cmdlist.append('echo %s-%s > %s/imageversion' % (self.MODEL, self.IMAGEVERSION, self.MAINDEST))
+			cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.EXTRA))
+		elif self.TYPE == "GIGABLUE":
+			if self.ROOTFSTYPE == "jffs2":
+				system('mv %s/root.jffs2 %s/rootfs.bin' %(self.WORKDIR, self.MAINDEST))
+			else:
+				system('mv %s/root.ubifs %s/rootfs.bin' %(self.WORKDIR, self.MAINDEST))
+			system('mv %s/vmlinux.gz %s/kernel.bin' %(self.WORKDIR, self.MAINDEST))
+			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
+			cmdlist.append('echo %s-%s > %s/imageversion' % (self.MODEL, self.IMAGEVERSION, self.MAINDEST))
+			if self.MODEL == "quad" or self.MODEL == "ue" or self.MODEL == "ueplus":
+				lcdwaitkey = '/usr/share/lcdwaitkey.bin'
+				lcdwarning = '/usr/share/lcdwarning.bin'
+				if path.exists(lcdwaitkey):
+					system('cp %s %s/lcdwaitkey.bin' %(lcdwaitkey, self.MAINDEST))
+				if path.exists(lcdwarning):
+					system('cp %s %s/lcdwarning.bin' %(lcdwarning, self.MAINDEST))				
+			cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.EXTRA))
+
+		cmdlist.append("sync")
+		file_found = True
+
+		if not path.exists("%s/%s" % (self.MAINDEST, self.ROOTFSBIN)):
+			print 'ROOTFS bin file not found'
+			file_found = False
+
+		if not path.exists("%s/%s" % (self.MAINDEST, self.KERNELBIN)):
+			print 'KERNEL bin file not found'
+			file_found = False
+
+		if path.exists("%s/noforce" % self.MAINDEST):
+			print 'NOFORCE bin file not found'
+			file_found = False
+
+		if file_found:
+			cmdlist.append('echo "_________________________________________________\n"')
+			cmdlist.append('echo "USB Image created on:" %s' %self.MAINDEST)
+			cmdlist.append('echo "and there is made an extra copy on:"')
+			cmdlist.append('echo %s' %self.EXTRA)
+			cmdlist.append('echo "_________________________________________________\n"')
+			cmdlist.append('echo " "')
+			cmdlist.append('echo "\nPlease wait...almost ready! "')
+			cmdlist.append('echo " "')
+			cmdlist.append('echo "To restore the image:"')
+			cmdlist.append('echo "Please check the manual of the receiver"')
+			cmdlist.append('echo "on how to restore the image"')
+		else:
+			cmdlist.append('echo "_________________________________________________\n"')
+			cmdlist.append('echo "Image creation failed - "')
+			cmdlist.append('echo "Probable causes could be"')
+			cmdlist.append('echo "     wrong back-up destination "')
+			cmdlist.append('echo "     no space left on back-up device"')
+			cmdlist.append('echo "     no writing permission on back-up device"')
+			cmdlist.append('echo " "')
+
+		if self.DIRECTORY == "/hdd":
+			self.TARGET = self.SearchUSBcanidate()
+			print "TARGET = %s" % self.TARGET
+			if self.TARGET == 'XX':
+				cmdlist.append('echo " "')
+			else:
+				cmdlist.append('echo "_________________________________________________\n"')
+				cmdlist.append('echo " "')
+				cmdlist.append('echo "There is a valid USB-flash drive detected in one "')
+				cmdlist.append('echo "of the USB-ports, therefor an extra copy of the "')
+				cmdlist.append('echo "back-up image will now be copied to that USB- "')
+				cmdlist.append('echo "flash drive. "')
+				cmdlist.append('echo "This only takes about 1 or 2 minutes"')
+				cmdlist.append('echo " "')
+
+				if self.TYPE == 'ET':
+					cmdlist.append('mkdir -p %s/%sx00' % (self.TARGET, self.MODEL[:-3]))
+					cmdlist.append('cp -r %s %s' % (MAINDEST, TARGET))
+				elif self.TYPE == 'VU':
+					cmdlist.append('mkdir -p %s/vuplus_back/%s' % (self.TARGET, self.MODEL[2:]))
+					cmdlist.append('cp -r %s %s/vuplus_back/' % (MAINDEST, TARGET))
+				elif self.TYPE == 'VENTON':
+					cmdlist.append('mkdir -p %s/venton/%s' % (self.TARGET, self.MODEL))
+					cmdlist.append('cp -r %s %s/venton/' % (self.MAINDEST, self.TARGET))
+				elif self.TYPE == 'GI':
+					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
+					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
+				elif self.TYPE == 'GIGABLUE':
+					cmdlist.append('mkdir -p %s/gigablue/%s' % (self.TARGET, self.MODEL))
+					cmdlist.append('cp -r %s %s/gigablue/' % (self.MAINDEST, self.TARGET))
+				elif self.TYPE == 'ODINM9':
+					#cmdlist.append('mkdir -p %s/odinm9/%s' % (self.TARGET, self.MODEL))
+					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
+				elif self.TYPE == 'ODINM7':
+					#cmdlist.append('mkdir -p %s/' % (self.TARGET))
+					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
+				elif self.TYPE == 'E3HD':
+					#cmdlist.append('mkdir -p %s/' % (self.TARGET))
+					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
+				elif self.TYPE == 'MAXDIGITAL':
+					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
+					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
+				elif self.TYPE == 'IXUSS':
+					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
+					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
+				elif self.TYPE == 'IXUSS':
+					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
+					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
+				elif self.TYPE == 'MIXOS':
+					cmdlist.append('mkdir -p %s/ebox/7403' % (self.TARGET))
+					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
+				elif self.TYPE == 'MIXOS2':
+					cmdlist.append('mkdir -p %s/ebox/7358' % (self.TARGET))
+					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
+				elif self.TYPE == 'TECHNO':
+					cmdlist.append('mkdir -p %s/update/%s/cfe' % (self.TARGET, self.MODEL))
+					cmdlist.append('cp -r %s %s/update/%s/cfe' % (self.MAINDEST, self.TARGET, self.MODEL))
+				elif self.TYPE == 'IQON':
+					cmdlist.append('mkdir -p %s/update/%s/cfe' % (self.TARGET, self.MODEL))
+					cmdlist.append('cp -r %s %s/update/%s/cfe' % (self.MAINDEST, self.TARGET, self.MODEL))
+				elif self.TYPE == 'EDISION':
+					cmdlist.append('mkdir -p %s/update/%s/cfe' % (self.TARGET, self.MODEL))
+					cmdlist.append('cp -r %s %s/update/%s/cfe' % (self.MAINDEST, self.TARGET, self.MODEL))
+				else:
+					cmdlist.append('echo " "')
+
+				cmdlist.append("sync")
+				cmdlist.append('echo "Backup finished and copied to your USB-flash drive"')
+			
+		cmdlist.append("umount /tmp/bi/root")
+		cmdlist.append("rmdir /tmp/bi/root")
+		cmdlist.append("rmdir /tmp/bi")
+		cmdlist.append("rm -rf %s" % self.WORKDIR)
+		cmdlist.append("sleep 5")
+		END = time()
+		DIFF = int(END - self.START)
+		TIMELAP = str(datetime.timedelta(seconds=DIFF))
+		cmdlist.append('echo " Time required for this process: %s"' %TIMELAP)
+
+		self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, closeOnSuccess = False)
