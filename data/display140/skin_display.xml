@@ -93,10 +93,10 @@
 		<widget source="parent.Service" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" valign="bottom" zPosition="1" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="parent.Event" render="Label" position="0,10" size="140,16" font="FdLcD;16" halign="center" valign="top" zPosition="1" noWrap="1" >
+		<widget source="parent.Event" render="Label" position="0,13" size="140,14" font="FdLcD;14" halign="center" valign="top" zPosition="1" noWrap="1" >
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="parent.Event" render="Progress" position="0,27" size="60,5" borderWidth="1" zPosition="1" >
+		<widget source="parent.Event" render="Progress" position="0,27" size="60,4" borderWidth="1" zPosition="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<widget source="parent.Event" render="Label" position="70,25" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
@@ -110,7 +110,7 @@
 		<widget source="session.CurrentService" render="Label" position="0,10" size="140,20" font="FdLcD;16" halign="center" valign="top" zPosition="1" >
 			<convert type="ServiceName">NameOnly</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Progress" position="0,27" size="60,5" borderWidth="1" zPosition="1" >
+		<widget source="session.Event_Now" render="Progress" position="0,27" size="60,4" borderWidth="1" zPosition="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="70,25" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
@@ -128,7 +128,7 @@
 		<widget source="session.CurrentService" render="Label" position="12,10" size="129,20" font="FdLcD;16" halign="left" valign="top" zPosition="1" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Progress" position="0,27" size="60,5" borderWidth="1" zPosition="1" >
+		<widget source="session.CurrentService" render="Progress" position="0,27" size="60,4" borderWidth="1" zPosition="1" >
 			<convert type="ServicePosition">VFDPosition</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="70,25" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
@@ -165,7 +165,7 @@
 		<widget source="parent.ServiceEvent" render="Label" position="0,13" size="140,14" font="FdLcD;14" halign="center" valign="top" zPosition="1" noWrap="1">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Progress" position="0,27" size="60,5" borderWidth="1" zPosition="1" >
+		<widget source="parent.ServiceEvent" render="Progress" position="0,27" size="60,4" borderWidth="1" zPosition="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<widget source="parent.ServiceEvent" render="Label" position="70,25" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
@@ -176,29 +176,23 @@
 
 <!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="140,32">
-		<widget source="parent.title" render="Label" position="0,10" size="140,16" font="FdLcD;16" halign="center" valign="bottom" zPosition="1" noWrap="1" />
-		<widget source="parent.menu" render="Label" position="0,21" size="140,14" font="FdLcD;14" halign="center" valign="top" zPosition="1" noWrap="1" >
+		<widget source="parent.title" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" valign="top" zPosition="1" noWrap="1" />
+		<widget source="parent.menu" render="Label" position="0,16" size="140,16" font="FdLcD;14" halign="center" valign="bottom" zPosition="1" noWrap="1" >
 			<convert type="StringListSelection" />
 		</widget>
-		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryClockPanel" />
 	</screen>
 
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="140,32">
 		<!-- <widget source="SetupTitle" render="Label" position="0,0" size="170,18" font="FdLcD;15" halign="left" valign="top" noWrap="1"  /> -->
-		<widget source="SetupEntry" render="Label" position="0,10" size="140,16" font="FdLcD;16" halign="center" valign="bottom" zPosition="1" noWrap="1" />
-		<widget source="SetupValue" render="Label" position="0,21" size="140,14" font="FdLcD;14" halign="center" valign="top" zPosition="1" noWrap="1" />
-		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryClockPanel" />
+		<widget source="SetupEntry" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" valign="top" zPosition="1" noWrap="1" />
+		<widget source="SetupValue" render="Label" position="0,16" size="140,16" font="FdLcD;14" halign="center" valign="bottom" zPosition="1" noWrap="1" />
 	</screen>
 
 
 <!-- misc-->
 	<screen name="SimpleSummary" position="0,0" size="140,32">
 		<widget source="parent.Title" render="Label" position="0,10" size="140,16" font="FdLcD;16" halign="center" valign="bottom" zPosition="1" noWrap="1" />
-		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryClockPanel" />
 	</screen>
 
 <!-- standby -->
@@ -259,28 +253,28 @@
 
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="0,0" size="140,32">
-		<widget source="parent.Title" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" valign="bottom" zPosition="1" noWrap="1" />
-		<widget source="entry" render="Label" position="0,13" size="140,14" font="FdLcD;14" halign="center" valign="top" zPosition="1" />
+		<widget source="parent.Title" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" valign="top" zPosition="1" noWrap="1" />
+		<widget source="entry" render="Label" position="0,16" size="140,16" font="FdLcD;14" halign="center" valign="bottom" zPosition="1" />
 	</screen>
 
 <!-- JobView Summary -->
 	<screen name="JobView_summary" position="0,0" size="140,32">
 		<widget source="parent.summary_job_name" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" valign="bottom" zPosition="1" noWrap="1" />
 		<widget source="parent.summary_job_task" render="Label" position="0,13" size="140,14" font="FdLcD;14" halign="center" valign="top" zPosition="1" noWrap="1" />
-		<widget source="parent.summary_job_progress" render="Progress" position="0,27" size="60,5" borderWidth="1" zPosition="1" />
+		<widget source="parent.summary_job_progress" render="Progress" position="0,27" size="60,4" borderWidth="1" zPosition="1" />
 		<widget source="parent.summary_job_progress" render="Label" position="70,25" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
 			<convert type="ProgressToText" />
 		</widget>
 	</screen>
 
-	<screen name="EventView_summary" position="0,0" size="140,32">
-		<widget source="parent.Title" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" valign="bottom" zPosition="1" noWrap="1" />
-		<widget source="parent.summary_description" render="Label" position="0,13" size="140,22" font="FdLcD;12" halign="let" valign="top" zPosition="1" />
+	<screen name="EventView_summary" position="fill">
+		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;16" halign="center" valign="top" zPosition="1" noWrap="1" />
+		<widget source="parent.summary_description" render="Label" position="fill" size="*,18" font="FdLcD;10" halign="center" valign="top" zPosition="1" />
 	</screen>
 
-	<screen name="EventViewSimple_summary" position="0,0" size="140,32">
-		<widget source="parent.Title" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" valign="bottom" zPosition="1" noWrap="1" />
-		<widget source="parent.summary_description" render="Label" position="0,13" size="140,22" font="FdLcD;12" halign="left" valign="top" zPosition="1" />
+	<screen name="EventViewSimple_summary" position="fill">
+		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;16" halign="center" valign="top" zPosition="1" noWrap="1" />
+		<widget source="parent.summary_description" render="Label" position="fill" size="*,18" font="FdLcD;10" halign="center" valign="top" zPosition="1" />
 	</screen>
 
 <!-- EPG Screens -->
@@ -302,12 +296,12 @@
 	</screen>
 
 	<screen name="MessageBox_summary" position="0,0" size="140,32">
-		<widget source="parent.Text" render="Label" position="0,0" size="140,32" font="FdLcD;12" halign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="left" />
+		<widget source="parent.Text" render="Label" position="0,0" size="140,16" font="FdLcD;16" valign="top" halign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="0,16" size="140,16" font="FdLcD;14" valign="bottom" halign="center" />
 	</screen>
 	<screen name="MessageBoxSimple_summary" position="0,0" size="140,32">
-		<widget source="parent.Text" render="Label" position="0,0" size="140,32" font="FdLcD;12" halign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="left" />
+		<widget source="parent.Text" render="Label" position="0,0" size="140,16" font="FdLcD;16" valign="top" halign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="0,16" size="140,16" font="FdLcD;14" valign="bottom" halign="center" />
 	</screen>
 
 	<screen name="AboutSummary" position="0,0" size="140,32">
@@ -321,8 +315,8 @@
 	</screen>
 
 	<screen name="WizardSummary" position="0,0" size="140,32">
-		<widget source="text" render="Label" position="0,0" size="140,32" font="FdLcD;12" halign="center" />
-		<widget source="parent.list" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="center" noWrap="1"  >
+		<widget source="text" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" />
+		<widget source="parent.list" render="Label" position="0,16" size="140,16" font="FdLcD;12" halign="center" noWrap="1"  >
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -375,16 +369,12 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="UpdatePlugin_summary" position="0,0" size="140,32">
-		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
-		<widget source="parent.package" render="Label" position="0,21" size="255,18" font="FdLcD;16" halign="left" noWrap="1" />
-		<widget source="parent.status" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="left" transparent="1" />
-		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryClockPanel" />
+		<widget source="parent.Title" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" valign="top" noWrap="1" />
+		<widget source="parent.package" render="Label" position="0,16" size="140,16" font="FdLcD;14" halign="center" valign="bottom" noWrap="1" />
 	</screen>
 	<screen name="SoftwareUpdateChanges_summary" position="0,0" size="140,32">
-		<widget source="parent.title_summary" render="Label" position="0,0" size="160,15" font="FdLcD;15" halign="left" noWrap="1" />
-		<widget source="parent.text_summary" render="Label" position="0,16" size="255,54" font="FdLcD;12" halign="left" transparent="1" />
-		<panel name="SummaryIconsPanel" />
+		<widget source="parent.title_summary" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" valign="top" noWrap="1" />
+		<widget source="parent.text_summary" render="Label" position="0,16" size="140,16" font="FdLcD;14" halign="center" valign="bottom" transparent="1" />
 	</screen>
 <!-- AutoTimerOverview -->
 	<screen name="AutoTimerOverviewSummary" position="0,0" size="140,32">
