@@ -216,6 +216,16 @@ class ImageBackup(Screen):
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
+		## TESTING THE OCTAGON Model
+		elif self.MODEL == "xp1000" and self.MACHINENAME.lower() == "SF8 HD":
+			self.TYPE = "OCTAGON"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "Octagon SF8 HD"
+			self.MTDKERNEL = "mtd1"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)			
 		## TESTING THE Medialink Model
 		elif self.MODEL == "ixussone" or self.MODEL == "ixusszero" or self.MODEL == "ixussduo":
 			self.TYPE = "IXUSS"
@@ -255,17 +265,45 @@ class ImageBackup(Screen):
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/venton/%s" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s/venton" % (self.DIRECTORY, self.MODEL, self.DATE)
+		elif self.MODEL == "ventonhdx" and self.MACHINENAME.lower() == "HD-5000":
+			self.TYPE = "SEZAM"
+			self.MODEL = "hdx"			
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "SEZAM 5000HD"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
+		elif self.MODEL == "ventonhdx" and self.MACHINENAME.lower() == "Premium Twin":
+			self.TYPE = "MICRACLE"
+			self.MODEL = "twin"			
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "MICRACLE Primium Twin"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/miraclebox/%s" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s/miraclebox" % (self.DIRECTORY, self.MODEL, self.DATE)			
 		## TESTING INI HDe Model
 		elif self.MODEL == "inihde" and self.MACHINENAME.lower() == "xpeedlx":
 			self.TYPE = "GI"
 			self.MODEL = "xpeedlx"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
-			self.SHOWNAME = "%s" %self.MODEL
+			self.SHOWNAME = "GI XpeedLX"
 			self.MTDKERNEL = "mtd2"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
+		elif self.MODEL == "inihde" and self.MACHINENAME.lower() == "HD-1000":
+			self.TYPE = "SEZAM"
+			self.MODEL = "hde"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "SEZAM 1000HD"
+			self.MTDKERNEL = "mtd2"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)			
 		## TESTING Technomate Model
 		elif self.MODEL == "tmtwin":
 			self.TYPE = "TECHNO"
@@ -517,7 +555,7 @@ class ImageBackup(Screen):
 		if not path.exists(self.EXTRA):
 			makedirs(self.EXTRA)
 
-		if self.TYPE == "ET" or self.TYPE == "VENTON" or self.TYPE == "GI" or self.TYPE == "ODINM9"  or self.TYPE == "ODINM7" or self.TYPE == "E3HD" or self.TYPE == "MAXDIGITAL" or self.TYPE == "IXUSS":
+		if self.TYPE == "ET" or self.TYPE == "VENTON" or self.TYPE == "SEZAM" or self.TYPE == "MICRACLE" or self.TYPE == "GI" or self.TYPE == "ODINM9"  or self.TYPE == "ODINM7" or self.TYPE == "E3HD" or self.TYPE == "MAXDIGITAL" or self.TYPE == "OCTAGON" or self.TYPE == "IXUSS":
 			system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
 			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
@@ -627,6 +665,12 @@ class ImageBackup(Screen):
 				elif self.TYPE == 'VENTON':
 					cmdlist.append('mkdir -p %s/venton/%s' % (self.TARGET, self.MODEL))
 					cmdlist.append('cp -r %s %s/venton/' % (self.MAINDEST, self.TARGET))
+				elif self.TYPE == 'SEZAM':
+					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
+					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
+				elif self.TYPE == 'MICRACLE':
+					cmdlist.append('mkdir -p %s/miraclebox/%s' % (self.TARGET, self.MODEL))
+					cmdlist.append('cp -r %s %s/miraclebox/' % (self.MAINDEST, self.TARGET))					
 				elif self.TYPE == 'GI':
 					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
 					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
@@ -642,7 +686,7 @@ class ImageBackup(Screen):
 				elif self.TYPE == 'E3HD':
 					#cmdlist.append('mkdir -p %s/' % (self.TARGET))
 					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'MAXDIGITAL':
+				elif self.TYPE == 'MAXDIGITAL' or self.TYPE == 'OCTAGON':
 					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
 					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
 				elif self.TYPE == 'IXUSS':
