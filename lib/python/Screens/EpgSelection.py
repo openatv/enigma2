@@ -1021,14 +1021,12 @@ class EPGSelection(Screen, HelpableScreen):
 		self.longbuttonpressed = True
 		self.doZapTimer()
 
-	def ChoiceBoxNull(self):
-		return
-
 	def ChoiceBoxCB(self, choice):
-		try:
-			choice()
-		except:
-			choice
+		if choice:
+			try:
+				choice()
+			except:
+				choice
 		self.closeChoiceBoxDialog()
 
 	def showChoiceBoxDialog(self):
