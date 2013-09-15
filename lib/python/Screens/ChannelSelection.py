@@ -30,7 +30,7 @@ profile("ChannelSelection.py 2.3")
 from Components.Input import Input
 profile("ChannelSelection.py 3")
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
-from RecordTimer import RecordTimerEntry
+from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry, InstantRecordTimerEntry
 from Screens.InputBox import InputBox, PinInput
 from Screens.ChoiceBox import ChoiceBox
@@ -455,6 +455,7 @@ def parseNextEvent(list):
 class ChannelSelectionEPG:
 	def __init__(self):
 		self.ChoiceBoxDialog = None
+		self.RemoveTimerDialog = None
 
 		self["ChannelSelectEPGActions"] = ActionMap(["ChannelSelectEPGActions"],
 			{
@@ -470,7 +471,6 @@ class ChannelSelectionEPG:
 				'back': self.closeChoiceBoxDialog,
 			})
 		self['dialogactions'].execEnd()
-		
 
 	def RecordTimerQuestion(self):
 		serviceref = ServiceReference(self.getCurrentSelection())
@@ -480,54 +480,51 @@ class ChannelSelectionEPG:
 		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
 		if self.list is None:
 			return
-		eventid = self.list[0]
+		eventid = self.list[0][0]
+		eventidnext = self.list[1][0]
 		eventname = str(self.list[0][1])
 		if eventid is None:
 			return
+		indx = int(self.servicelist.getCurrentIndex())
+		selx = self.servicelist.instance.size().width()
+		while indx+1 > config.usage.serviceitems_per_page.getValue():
+			indx = indx - config.usage.serviceitems_per_page.getValue()
+		pos = self.servicelist.instance.position().y()
+		sely = int(pos)+(int(self.servicelist.ItemHeight)*int(indx))
+		temp = int(self.servicelist.instance.position().y())+int(self.servicelist.instance.size().height())
+		if int(sely) >= temp:
+			sely = int(sely) - int(self.listHeight)
+		menu1 = _("Record now")
+		menu2 = _("Record next")
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret: self.removeTimer(timer)
-				menu = [(_("Yes"), 'CALLFUNC', cb_func), (_("No"), 'CALLFUNC', self.ChoiceBoxCB)]
-				self.ChoiceBoxDialog = self.session.instantiateDialog(MessageBox, text=_('Do you really want to remove the timer for %s?') % event.getEventName(), list=menu, skin_name="RemoveTimerQuestion", picon=False)
-				self.showChoiceBoxDialog()
-				break
-		else:
-			indx = int(self.servicelist.getCurrentIndex())
-			selx = self.servicelist.instance.size().width()
-			while indx+1 > config.usage.serviceitems_per_page.getValue():
-				indx = indx - config.usage.serviceitems_per_page.getValue()
-			pos = self.servicelist.instance.position().y()
-			sely = int(pos)+(int(self.servicelist.ItemHeight)*int(indx))
-			temp = int(self.servicelist.instance.position().y())+int(self.servicelist.instance.size().height())
-			if int(sely) >= temp:
-				sely = int(sely) - int(self.listHeight)
-			menu = [(_("Record now"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordCurrentTimer), (_("Record next"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordNextTimer)]
-			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title="%s?" % eventname, list=menu, keys=['red', 'green'], skin_name="RecordTimerQuestion")
-			self.ChoiceBoxDialog.instance.move(ePoint(selx-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+sely))
-			self.showChoiceBoxDialog()
-
-	def ChoiceBoxNull(self):
-		return
+				menu1 = _("Stop recording now")
+			elif timer.eit == eventidnext and timer.service_ref.ref.toString() == refstr:
+				menu2 = _("Cancel next timer")
+		menu = [(menu1, 'CALLFUNC', self.ChoiceBoxCB, self.doRecordCurrentTimer), (menu2, 'CALLFUNC', self.ChoiceBoxCB, self.doRecordNextTimer)]
+		self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, list=menu, keys=['red', 'green'], skin_name="RecordTimerQuestion")
+		self.ChoiceBoxDialog.instance.move(ePoint(selx-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+sely))
+		self.showChoiceBoxDialog()
 
 	def ChoiceBoxCB(self, choice):
-		if choice[3]:
+		if choice:
 			try:
-				choice[3]()
+				choice()
 			except:
-				choice[3]
+				choice
 		self.closeChoiceBoxDialog()
 
 	def showChoiceBoxDialog(self):
+		print 'showChoiceBoxDialog'
 		self['actions'].setEnabled(False)
 		self['recordingactions'].setEnabled(False)
 		self['ChannelSelectEPGActions'].setEnabled(False)
 		self['dialogactions'].execBegin()
 		self.ChoiceBoxDialog['actions'].execBegin()
-		self.ChoiceBoxDialog['cancelaction'].execEnd()
-		
 		self.ChoiceBoxDialog.show()
 
 	def closeChoiceBoxDialog(self):
+		print 'closeChoiceBoxDialog'
 		self['dialogactions'].execEnd()
 		if self.ChoiceBoxDialog:
 			self.ChoiceBoxDialog['actions'].execEnd()
@@ -536,17 +533,36 @@ class ChannelSelectionEPG:
 		self['recordingactions'].setEnabled(True)
 		self['ChannelSelectEPGActions'].setEnabled(True)
 
+	def RemoveTimerDialogCB(self, choice):
+		if choice:
+			try:
+				choice()
+			except:
+				choice
+		self.closeRemoveTimerDialog()
+
+	def closeRemoveTimerDialog(self):
+		print 'closeRemoveTimerDialog'
+		self['dialogactions'].execEnd()
+		if self.RemoveTimerDialog:
+			self.RemoveTimerDialog['actions'].execEnd()
+			self.session.deleteDialog(self.RemoveTimerDialog)
+		self['actions'].setEnabled(True)
+		self['recordingactions'].setEnabled(True)
+		self['ChannelSelectEPGActions'].setEnabled(True)
 
 	def doRecordCurrentTimer(self):
+		self.closeChoiceBoxDialog()
 		self.doInstantTimer(0, parseCurentEvent)
 
 	def doRecordNextTimer(self):
-		self.doInstantTimer(0, parseNextEvent)
+		self.closeChoiceBoxDialog()
+		self.doInstantTimer(0, parseNextEvent, True)
 
 	def doZapTimer(self):
 		self.doInstantTimer(1, parseNextEvent)
 
-	def doInstantTimer(self, zap, parseEvent):
+	def doInstantTimer(self, zap, parseEvent, next=False):
 		serviceref = ServiceReference(self.getCurrentSelection())
 		refstr = serviceref.ref.toString()
 		self.epgcache = eEPGCache.getInstance()
@@ -554,16 +570,33 @@ class ChannelSelectionEPG:
 		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
 		if self.list is None:
 			return
-		eventid = self.list[0]
-		eventname = self.list[0][1]
+		if not next:
+			eventid = self.list[0][0]
+			eventname = str(self.list[0][1])
+		else:
+			eventid = self.list[1][0]
+			eventname = str(self.list[1][1])
 		if eventid is None:
 			return
-		newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.list))
-		if not newEntry:
-			return
-		self.InstantRecordDialog = self.session.instantiateDialog(InstantRecordTimerEntry, newEntry, zap)
-		retval = [True, self.InstantRecordDialog.retval()]
-		self.session.deleteDialogWithCallback(self.finishedAdd, self.InstantRecordDialog, retval)
+		for timer in self.session.nav.RecordTimer.timer_list:
+			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+				cb_func = lambda ret: self.removeTimer(timer)
+				menu = [(_("Yes"), 'CALLFUNC', cb_func), (_("No"), 'CALLFUNC', self.RemoveTimerDialogCB)]
+				self.RemoveTimerDialog = self.session.instantiateDialog(MessageBox, text=_('Do you really want to remove the timer for %s?') % eventname, list=menu, skin_name="RemoveTimerQuestion", picon=False)
+				self['actions'].setEnabled(False)
+				self['recordingactions'].setEnabled(False)
+				self['ChannelSelectEPGActions'].setEnabled(False)
+				self['dialogactions'].execBegin()
+				self.RemoveTimerDialog['actions'].execBegin()
+				self.RemoveTimerDialog.show()
+				break
+		else:
+			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.list))
+			if not newEntry:
+				return
+			self.InstantRecordDialog = self.session.instantiateDialog(InstantRecordTimerEntry, newEntry, zap)
+			retval = [True, self.InstantRecordDialog.retval()]
+			self.session.deleteDialogWithCallback(self.finishedAdd, self.InstantRecordDialog, retval)
 
 	def finishedAdd(self, answer):
 		# print "finished add"
@@ -580,6 +613,11 @@ class ChannelSelectionEPG:
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
+
+	def removeTimer(self, timer):
+		timer.afterEvent = AFTEREVENT.NONE
+		self.session.nav.RecordTimer.removeEntry(timer)
+		self.closeRemoveTimerDialog()
 
 	def showEPGList(self):
 		ref=self.getCurrentSelection()
