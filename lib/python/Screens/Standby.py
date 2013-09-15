@@ -29,7 +29,7 @@ class Standby2(Screen):
 		#unmute adc
 		self.leaveMute()
 		# set LCDminiTV 
-		if SystemInfo["LCDMiniTV"]:
+		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			setLCDModeMinitTV(config.lcd.modeminitv.getValue())
 		#kill me
 		self.close(True)
@@ -67,7 +67,7 @@ class Standby2(Screen):
 		self.setMute()
 
 		# set LCDminiTV off
-		if SystemInfo["LCDMiniTV"]:
+		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			setLCDModeMinitTV("0")
 
 		self.paused_service = None
