@@ -27,7 +27,7 @@ class Standby2(Screen):
 		#unmute adc
 		self.leaveMute()
 		# set LCDminiTV 
-		if SystemInfo["LCDMiniTV"]:
+		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			setLCDModeMinitTV(config.lcd.modeminitv.getValue())
 		#kill me
 		self.close(True)
@@ -62,10 +62,9 @@ class Standby2(Screen):
 		#mute adc
 		self.setMute()
 		
-		if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'gb800seplus' or getBoxType() == 'tmsingle' or getBoxType() == 'vusolo' or getBoxType() == 'et4x00' or getBoxType() == 'et5x00' or getBoxType() == 'et6x00':
+		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			# set LCDminiTV off
-			if SystemInfo["LCDMiniTV"]:
-				setLCDModeMinitTV("0")
+			setLCDModeMinitTV("0")
 
 		self.paused_service = None
 		self.prev_running_service = None
