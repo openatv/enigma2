@@ -187,31 +187,25 @@ class MessageBox(Screen):
 		if len(self["list"].list):
 			for l in self["list"].list:
 				if l[0].lower() == _('no') or l[0].lower() == _('false'):
-					self.cancelEntry(l)
+					entry[2](None)
 					break
-		else:
-			self.close(True)
-
-	def ok(self):
-		cursel = self["list"].l.getCurrentSelection()
-		if cursel:
-			self.goEntry(cursel)
-		else:
-			self.cancel()
-
-	def cancelEntry(self, entry=[]):
-		if len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
-			arg = entry[3]
-			entry[2](arg)
 		else:
 			self.close(False)
 
-	def goEntry(self, entry=[]):
-		if len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
-			arg = entry[3]
-			entry[2](arg)
+	def ok(self):
+		if self["list"]:
+			self.goEntry(self["list"].getCurrent())
 		else:
 			self.close(True)
+
+	def goEntry(self, entry=[]):
+		if len(entry) > 3 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
+			arg = entry[3]
+			entry[2](arg)
+		elif len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
+			entry[2](None)
+		else:
+			self.close(entry[1])
 
 	def alwaysOK(self):
 		if len(self["list"].list):
