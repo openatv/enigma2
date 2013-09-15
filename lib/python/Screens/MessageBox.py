@@ -184,31 +184,33 @@ class MessageBox(Screen):
 		self.ok()
 
 	def cancel(self):
-		if len(self["list"].list):
+		if self["list"].list:
 			for l in self["list"].list:
 				if l[0].lower() == _('no') or l[0].lower() == _('false'):
-					entry[2](None)
+					l[2](None)
 					break
 		else:
 			self.close(False)
 
 	def ok(self):
-		if self["list"]:
+		if self["list"].getCurrent():
 			self.goEntry(self["list"].getCurrent())
 		else:
 			self.close(True)
 
 	def goEntry(self, entry=[]):
-		if len(entry) > 3 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
+		if entry and len(entry) > 3 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
 			arg = entry[3]
 			entry[2](arg)
-		elif len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
+		elif entry and len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
 			entry[2](None)
-		else:
+		elif entry:
 			self.close(entry[1])
+		else:
+			self.close(False)
 
 	def alwaysOK(self):
-		if len(self["list"].list):
+		if self["list"].list:
 			for l in self["list"].list:
 				if l[0].lower() == _('yes') or l[0].lower() == _('true'):
 					self.goEntry(l)
