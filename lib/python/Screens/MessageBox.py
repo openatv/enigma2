@@ -187,7 +187,10 @@ class MessageBox(Screen):
 		if self["list"].list:
 			for l in self["list"].list:
 				if l[0].lower() == _('no') or l[0].lower() == _('false'):
-					l[2](None)
+					if len(l) > 1:
+						l[2](None)
+					else:
+						self.close(False)
 					break
 		else:
 			self.close(False)
@@ -213,7 +216,10 @@ class MessageBox(Screen):
 		if self["list"].list:
 			for l in self["list"].list:
 				if l[0].lower() == _('yes') or l[0].lower() == _('true'):
-					self.goEntry(l)
+					if len(l) > 1:
+						self.goEntry(l)
+					else:
+						self.close(True)
 					break
 		else:
 			self.close(True)
