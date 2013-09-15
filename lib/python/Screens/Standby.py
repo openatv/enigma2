@@ -4,7 +4,7 @@ from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
-from enigma import eDVBVolumecontrol, getMachineBrand, getMachineName
+from enigma import eDVBVolumecontrol, getMachineBrand, getMachineName, getBoxType
 from Tools import Notifications
 import Screens.InfoBar
 
@@ -61,10 +61,11 @@ class Standby2(Screen):
 
 		#mute adc
 		self.setMute()
-
-		# set LCDminiTV off
-		if SystemInfo["LCDMiniTV"]:
-			setLCDModeMinitTV("0")
+		
+		if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'gb800seplus' or getBoxType() == 'tmsingle' or getBoxType() == 'vusolo' or getBoxType() == 'et4x00' or getBoxType() == 'et5x00' or getBoxType() == 'et6x00':
+			# set LCDminiTV off
+			if SystemInfo["LCDMiniTV"]:
+				setLCDModeMinitTV("0")
 
 		self.paused_service = None
 		self.prev_running_service = None
