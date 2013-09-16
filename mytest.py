@@ -568,7 +568,7 @@ def runScreenTest():
 		f.write('-E2-')
 		f.close()
 		
-	print "lastshutdown=%s (True = last shutdown was OK" % config.usage.shutdownOK.getValue()
+	print "lastshutdown=%s		(True = last shutdown was OK)" % config.usage.shutdownOK.getValue()
 	print "NOK shutdown action=%s" % config.usage.shutdownNOK_action.getValue()
 	print "bootup action=%s" % config.usage.boot_action.getValue()
 	if not config.usage.shutdownOK.getValue() and not config.usage.shutdownNOK_action.getValue() == 'normal' or not config.usage.boot_action.getValue() == 'normal':
