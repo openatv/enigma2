@@ -252,9 +252,9 @@
 	</screen>
 
 <!-- Plugin browser -->
-	<screen name="PluginBrowserSummary" position="0,0" size="140,32">
-		<widget source="parent.Title" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" valign="top" zPosition="1" noWrap="1" />
-		<widget source="entry" render="Label" position="0,16" size="140,16" font="FdLcD;14" halign="center" valign="bottom" zPosition="1" />
+	<screen name="PluginBrowserSummary" position="fill">
+		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;15" halign="center" valign="top" zPosition="1" noWrap="1" />
+		<widget source="entry" render="Label" position="fill" size="*,18" font="FdLcD;10" halign="center" valign="top" zPosition="1" />
 	</screen>
 
 <!-- JobView Summary -->
@@ -281,7 +281,13 @@
 	<screen name="EPGSelection_summary" position="0,0" size="140,32">
 		<panel name="SummaryEpgPanel" />
 	</screen>
+	<screen name="EPGSelectionMulti_summary" position="0,0" size="140,32">
+		<panel name="SummaryEpgPanel" />
+	</screen>
 	<screen name="QuickEPG_summary" position="0,0" size="140,32">
+		<panel name="SummaryEpgPanel" />
+	</screen>
+	<screen name="GraphicalInfoBarEPG_summary" position="0,0" size="140,32">
 		<panel name="SummaryEpgPanel" />
 	</screen>
 	<screen name="GraphicalEPG_summary" position="0,0" size="140,32">
@@ -292,7 +298,7 @@
 	</screen>
 
 	<screen name="ChoiceBox_summary" position="0,0" size="140,32">
-		<widget source="parent.summary_list" render="Label" position="0,0" size="140,32" font="FdLcD;11" noWrap="1" />
+		<widget source="parent.summary_list" render="Label" position="0,0" size="140,30" font="FdLcD;11" valign="top" noWrap="1" />
 	</screen>
 
 	<screen name="MessageBox_summary" position="0,0" size="140,32">
@@ -355,18 +361,14 @@
 	</screen>
 <!-- ViX -->
 	<screen name="VIXDevicesPanelSummary" position="0,0" size="140,32">
-		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
-		<widget source="entry" render="Label" position="0,21" size="255,16" font="FdLcD;14" halign="left" noWrap="1" />
-		<widget source="desc" render="Label" position="0,38" size="255,26" font="FdLcD;12" halign="left" transparent="1" />
-		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryClockPanel" />
+		<widget source="parent.Title" render="Label" position="0,0" size="160,16" font="FdLcD;16" halign="left" valign="top" noWrap="1" />
+		<widget source="entry" render="Label" position="0,16" size="255,16" font="FdLcD;14" halign="left" valign="bottom" noWrap="1" />
+		<!--<widget source="desc" render="Label" position="0,38" size="255,26" font="FdLcD;12" halign="left" transparent="1" />-->
 	</screen>
 	<screen name="VIXSwap_summary" position="0,0" size="140,32">
-		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
-		<widget source="parent.swapname_summary" render="Label" position="0,21" size="255,18" font="FdLcD;16" halign="left" noWrap="1" />
-		<widget source="parent.swapactive_summary" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="left" transparent="1" />
-		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryClockPanel" />
+		<widget source="parent.Title" render="Label" position="0,0" size="160,16" font="FdLcD;16" halign="left" noWrap="1" />
+		<widget source="parent.swapname_summary" render="Label" position="0,16" size="255,14" font="FdLcD;16" halign="left" noWrap="1" />
+		<!--<widget source="parent.swapactive_summary" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="left" transparent="1" />-->
 	</screen>
 	<screen name="UpdatePlugin_summary" position="0,0" size="140,32">
 		<widget source="parent.Title" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" valign="top" noWrap="1" />
@@ -382,11 +384,9 @@
 		<widget source="entry" render="Label" position="0,11" size="140,18" font="FdLcD;15" halign="left" noWrap="1" />
 	</screen>
 	<screen name="NetworkServicesSummary" position="0,0" size="140,32">
-		<widget source="title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
-		<widget source="status_summary" render="Label" position="0,30" size="190,15" font="FdLcD;14" halign="left" transparent="1" />
-		<widget source="autostartstatus_summary" render="Label" position="0,49" size="190,15" font="FdLcD;14" halign="left" transparent="1" />
-		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryClockPanel" />
+		<widget source="title" render="Label" position="0,0" size="160,16" font="FdLcD;18" halign="left" noWrap="1" />
+		<widget source="status_summary" render="Label" position="0,16" size="190,15" font="FdLcD;14" halign="left" transparent="1" />
+		<!--<widget source="autostartstatus_summary" render="Label" position="0,49" size="190,15" font="FdLcD;14" halign="left" transparent="1" />-->
 	</screen>
 	<screen name="CrossEPG_MenuSummary" position="0,0" size="140,32">
 		<widget source="SetupTitle" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1"  />
