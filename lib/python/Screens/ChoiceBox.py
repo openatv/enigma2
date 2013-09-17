@@ -169,7 +169,7 @@ class ChoiceBox(Screen):
 	def goEntry(self, entry):
 		if len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
 			# CALLFUNC wants to have the current selection as argument
-			arg = self["list"].l.getCurrentSelection()[0]
+			arg = entry[3]
 			entry[2](arg)
 		else:
 			self.close(entry)
