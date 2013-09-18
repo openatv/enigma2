@@ -1,5 +1,6 @@
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService, eActionMap
 from Components.ParentalControl import parentalControl
+from Components.config import config
 from Tools.BoundFunction import boundFunction
 from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup
 from Tools import Notifications
