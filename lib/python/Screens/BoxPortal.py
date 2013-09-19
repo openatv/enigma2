@@ -32,6 +32,7 @@ class BoxPortal(Screen):
 		elif config.servicelist.lastmode.value == 'radio':
 			list.append((_("Switch to TV"), "tv", "", "50"))
 		list.append((_("Show Record Movies"), "pvr", "", "50"))
+		list.append((_("Media Center"), "bmc", "", "50"))
 		self["menu"] = List(list)
 		
 	def okbuttonClick(self):
@@ -45,6 +46,8 @@ class BoxPortal(Screen):
 				self.exit()
 			elif selection[1] == "pvr":
 				InfoBar.showMovies(InfoBar.instance)
+			elif selection[1] == "bmc":
+				InfoBar.showMediaCenter(InfoBar.instance)				
 	
 	def exit(self):
 		self.close()
