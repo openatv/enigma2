@@ -346,8 +346,11 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.session.open(PluginBrowser)
 		
 	def showBoxPortal(self):
-		from Screens.BoxPortal import BoxPortal
-		self.session.open(BoxPortal)	
+		if enigma.getMachineBrand() == 'GI' or enigma.getBoxType().startswith('azbox'):
+			from Screens.BoxPortal import BoxPortal
+			self.session.open(BoxPortal)
+		else:
+			self.showMovies()
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		InfoBarMenu, InfoBarEPG, \

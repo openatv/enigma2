@@ -185,6 +185,15 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+#if KEY_MEDIA_TO_KEY_OPEN
+	if (ev->code == KEY_MEDIA)
+	{
+		/* Venton ini2 remote has a KEY_MEDIA key we need KEY_OPEN. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_OPEN;
+		
+	}
+#endif
+
 #if KEY_SEARCH_TO_KEY_WWW
 	if (ev->code == KEY_SEARCH)
 	{
