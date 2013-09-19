@@ -260,11 +260,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.log(5, "activating state %d" % next_state)
 
 		if next_state == 1:
-			if Screens.Standby.inStandby:
-				Screens.Standby.inStandby.prev_running_service = NavigationInstance.instance.getCurrentlyPlayingServiceOrGroup()
-				Screens.Standby.inStandby.paused_service = None
-				NavigationInstance.instance.stopService()
-				self.log(5, "stopped service in standby")
 			if self.always_zap:
 				if Screens.Standby.inStandby:
 					self.wasInStandby = True
@@ -387,6 +382,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def keypress(self, key=None, flag=1):
 		if flag and self.wasInStandby:
+			if not config.misc.standbyCounter.value:
+				config.misc.standbyCounter.value += 1
 			self.wasInStandby = False
 			eActionMap.getInstance().unbindAction('', self.keypress)
 
@@ -739,6 +736,15 @@ class RecordTimer(timer.Timer):
 		for timer in self.timer_list:
 			next_act = timer.getNextActivation()
 			if timer.justplay or next_act < now:
+				continue
+			return next_act
+		return -1
+
+	def getNextTimerTime(self):
+		now = time()
+		for timer in self.timer_list:
+			next_act = timer.getNextActivation()
+			if next_act < now:
 				continue
 			return next_act
 		return -1

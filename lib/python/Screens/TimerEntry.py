@@ -31,10 +31,11 @@ class TimerEntry(Screen, ConfigListScreen):
 		self["canceltext"] = Label(_("Cancel"))
 		self["ok"] = Pixmap()
 		self["cancel"] = Pixmap()
+		self["key_blue"] = Label(_("Timer type"))
 
 		self.createConfig()
 
-		self["actions"] = NumberActionMap(["SetupActions", "GlobalActions", "PiPSetupActions"],
+		self["actions"] = NumberActionMap(["SetupActions", "GlobalActions", "PiPSetupActions", "ColorActions"],
 		{
 			"ok": self.keySelect,
 			"save": self.keyGo,
@@ -42,7 +43,8 @@ class TimerEntry(Screen, ConfigListScreen):
 			"volumeUp": self.incrementStart,
 			"volumeDown": self.decrementStart,
 			"size+": self.incrementEnd,
-			"size-": self.decrementEnd
+			"size-": self.decrementEnd,
+			"yellow": self.changeTimerType
 		}, -2)
 
 		self.list = []
@@ -378,6 +380,11 @@ class TimerEntry(Screen, ConfigListScreen):
 					self.timer.service_ref = ServiceReference(event.getLinkageService(parent, 0))
 		self.saveTimer()
 		self.close((True, self.timer))
+
+	def changeTimerType(self):
+		self.timerentry_justplay.selectNext()
+		self.timerJustplayEntry = getConfigListEntry(_("Timer type"), self.timerentry_justplay)
+		self["config"].invalidate(self.timerJustplayEntry)
 
 	def incrementStart(self):
 		self.timerentry_starttime.increment()
