@@ -4,11 +4,12 @@
 #					MAKES A FULLBACK-UP READY FOR FLASHING.						#
 #																				#
 #################################################################################
-from enigma import getBoxType, getMachineBrand, getMachineName
+from enigma import getBoxType, getMachineBrand, getMachineName, getImageVersionString, getBuildVersionString, getDriverDateString, getEnigmaVersionString
 from Screens.Screen import Screen
 from Components.Button import Button
 from Components.Label import Label
 from Components.ActionMap import ActionMap
+from Components.About import about
 from Screens.Console import Console
 from Screens.MessageBox import MessageBox
 from time import time, strftime, localtime
@@ -127,7 +128,7 @@ class ImageBackup(Screen):
 		self.TITLE = _("Full back-up on %s") % (self.DIRECTORY)
 		self.START = time()
 		self.DATE = strftime("%Y%m%d_%H%M", localtime(self.START))
-		self.IMAGEVERSION = strftime("%Y%m%d", localtime(self.START))
+		self.IMAGEVERSION = self.imageInfo() #strftime("%Y%m%d", localtime(self.START))
 		self.ROOTFSTYPE = self.testUBIFS()
 		self.MKFS = "/usr/sbin/mkfs.%s" %self.ROOTFSTYPE
 		self.UBINIZE = "/usr/sbin/ubinize"
@@ -555,11 +556,14 @@ class ImageBackup(Screen):
 		if not path.exists(self.EXTRA):
 			makedirs(self.EXTRA)
 
+		f = open("%s/imageversion" %self.MAINDEST, "w")
+		f.write(self.IMAGEVERSION)
+		f.close()
+
 		if self.TYPE == "ET" or self.TYPE == "VENTON" or self.TYPE == "SEZAM" or self.TYPE == "MICRACLE" or self.TYPE == "GI" or self.TYPE == "ODINM9"  or self.TYPE == "ODINM7" or self.TYPE == "E3HD" or self.TYPE == "MAXDIGITAL" or self.TYPE == "OCTAGON" or self.TYPE == "IXUSS":
 			system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
 			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
-			cmdlist.append('echo %s-%s > %s/imageversion' % (self.MODEL, self.IMAGEVERSION, self.MAINDEST))
 			cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.EXTRA))
 		elif self.TYPE == "VU":
 			if self.MODEL == "vusolo2" or self.MODEL == "vuduo2":
@@ -570,7 +574,6 @@ class ImageBackup(Screen):
 			self.KERNELBIN = "kernel_cfe_auto.bin"
 			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
-			cmdlist.append('echo %s-%s > %s/imageversion' % (self.MODEL, self.IMAGEVERSION, self.MAINDEST))
 			cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.EXTRA))
 		elif self.TYPE == "TECHNO" or self.TYPE == "IQON" or self.TYPE == "EDISION":
 			self.ROOTFSBIN = "oe_rootfs.bin"
@@ -578,7 +581,6 @@ class ImageBackup(Screen):
 			self.KERNELBIN = "oe_kernel.bin"
 			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
-			cmdlist.append('echo %s-%s > %s/imageversion' % (self.MODEL, self.IMAGEVERSION, self.MAINDEST))
 			cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.EXTRA))
 		elif self.TYPE == "MIXOS" or self.TYPE == "MIXOS2":
 			self.ROOTFSBIN = "root_cfe_auto.bin"
@@ -586,7 +588,6 @@ class ImageBackup(Screen):
 			self.KERNELBIN = "kernel_cfe_auto.bin"
 			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
-			cmdlist.append('echo %s-%s > %s/imageversion' % (self.MODEL, self.IMAGEVERSION, self.MAINDEST))
 			cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.EXTRA))
 		elif self.TYPE == "GIGABLUE":
 			if self.ROOTFSTYPE == "jffs2":
@@ -595,7 +596,6 @@ class ImageBackup(Screen):
 				system('mv %s/root.ubifs %s/rootfs.bin' %(self.WORKDIR, self.MAINDEST))
 			system('mv %s/vmlinux.gz %s/kernel.bin' %(self.WORKDIR, self.MAINDEST))
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
-			cmdlist.append('echo %s-%s > %s/imageversion' % (self.MODEL, self.IMAGEVERSION, self.MAINDEST))
 			if self.MODEL == "quad" or self.MODEL == "ue" or self.MODEL == "ueplus":
 				lcdwaitkey = '/usr/share/lcdwaitkey.bin'
 				lcdwarning = '/usr/share/lcdwarning.bin'
@@ -727,3 +727,71 @@ class ImageBackup(Screen):
 		cmdlist.append('echo " Time required for this process: %s"' %TIMELAP)
 
 		self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, closeOnSuccess = False)
+
+	def imageInfo(self):
+		AboutText = _("Full Image Backup ")
+		AboutText += _("By openATV Image Team") + "\n"
+		AboutText += _("Support at") + " www.opena.tv\n\n"
+		AboutText += _("[Image Info]\n")
+		AboutText += _("Model: %s %s\n") % (getMachineBrand(), getMachineName())
+		AboutText += _("Backup Date: %s\n") % strftime("%Y-%m-%d", localtime(self.START))
+
+		if path.exists('/proc/stb/info/chipset'):
+			AboutText += _("Chipset: BCM%s") % about.getChipSetString().lower().replace('\n','').replace('bcm','') + "\n"
+
+		AboutText += _("CPU: %s") % about.getCPUString() + "\n"
+		AboutText += _("Cores: %s") % about.getCpuCoresString() + "\n"
+
+		AboutText += _("Version: %s") % getImageVersionString() + "\n"
+		AboutText += _("Build: %s") % getBuildVersionString() + "\n"
+		AboutText += _("Kernel: %s") % about.getKernelVersionString() + "\n"
+
+		string = getDriverDateString()
+		year = string[0:4]
+		month = string[4:6]
+		day = string[6:8]
+		driversdate = '-'.join((year, month, day))
+		AboutText += _("Drivers:\t%s") % driversdate + "\n"
+
+		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n\n"
+
+		AboutText += _("[Enigma2 Settings]\n")
+		AboutText += commands.getoutput("cat /etc/enigma2/settings")
+		AboutText += _("\n\n[User - bouquets (TV)]\n")
+		try:
+			f = open("/etc/enigma2/bouquets.tv","r")
+			lines = f.readlines()
+			f.close()
+			for line in lines:
+				if line.startswith("#SERVICE:"):
+					bouqet = line.split()
+					if len(bouqet) > 3:
+						bouqet[3] = bouqet[3].replace('"','')
+						f = open("/etc/enigma2/" + bouqet[3],"r")
+						userbouqet = f.readline()
+						AboutText += userbouqet.replace('#NAME ','')
+						f.close()
+		except:
+			AboutText += "Error reading bouquets.tv"
+			
+		AboutText += _("\n[User - bouquets (RADIO)]\n")
+		try:
+			f = open("/etc/enigma2/bouquets.radio","r")
+			lines = f.readlines()
+			f.close()
+			for line in lines:
+				if line.startswith("#SERVICE:"):
+					bouqet = line.split()
+					if len(bouqet) > 3:
+						bouqet[3] = bouqet[3].replace('"','')
+						f = open("/etc/enigma2/" + bouqet[3],"r")
+						userbouqet = f.readline()
+						AboutText += userbouqet.replace('#NAME ','')
+						f.close()
+		except:
+			AboutText += "Error reading bouquets.radio"
+
+		AboutText += _("\n[Installed Plugins]\n")
+		AboutText += commands.getoutput("opkg list_installed | grep enigma2-plugin-")
+
+		return AboutText
