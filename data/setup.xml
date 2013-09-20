@@ -190,6 +190,8 @@
 		<item level="0" text="LED Deep Standby" description="LED brightness during deep standby.">config.lcd.ledbrightnessdeepstandby</item>
 		<item level="0" text="LED Blinking" description="LED Blinking">config.lcd.ledblinkingtime</item>
 		<item level="1" text="Repeat Display Message" description="If the text is too long to be displayed on the front panel, it will be repeated (number of times):">config.lcd.repeat</item>
+		<item level="1" requires="GraphicLCD" text="LCD scroll speed" description="Set the scrolling speed of text on the front display.">config.usage.lcd_scroll_speed</item>
+		<item level="1" requires="GraphicLCD" text="Time for next LCD scrolling" description="If the text is too long to be displayed on the front panel, it will be repeated (number of times):">config.usage.lcd_scroll_delay</item>
 		<item level="1" text="Scrolling Speed" description="Set the scrolling speed of text on the front display.">config.lcd.scrollspeed</item>
 		<item level="1" text="Show Display Icons" description="Allows you to enable/disable displaying icons on the frontpanel.">config.lcd.mode</item>
 		<item level="1" text="Show Time Remaining/Elapsed" description="This option allows you choose how to display remaining time, or elapsed time, or both.">config.usage.swap_time_remaining_on_vfd</item>
