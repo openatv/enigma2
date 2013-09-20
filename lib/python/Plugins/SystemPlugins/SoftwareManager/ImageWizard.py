@@ -25,10 +25,10 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.re
 
 
 backupfile = "enigma2settingsbackup.tar.gz"
+box = getBoxType()
 
 def checkConfigBackup():
 	parts = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
-	box = getBoxType()
 	if box == "odinm9" or box == "odinm7" or box == "odinm6":
 		parts.append(('mtd backup','/media/backup'))
 	for x in parts:
