@@ -1,6 +1,6 @@
 from Components.Harddisk import harddiskmanager
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, ConfigSelectionNumber, ConfigClock
-from Tools.Directories import resolveFilename, SCOPE_HDD
+from Tools.Directories import resolveFilename, SCOPE_HDD, defaultRecordingLocation
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
 from enigma import Misc_Options, eEnv;
 from Components.NimManager import nimmanager
@@ -481,4 +481,4 @@ def preferredInstantRecordPath():
 	return preferredPath(config.usage.instantrec_path.value)
 
 def defaultMoviePath():
-	return config.usage.default_path.value
+	return defaultRecordingLocation(config.usage.default_path.value)
