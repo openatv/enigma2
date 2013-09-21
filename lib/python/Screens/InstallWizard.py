@@ -45,8 +45,8 @@ class InstallWizard(Screen, ConfigListScreen):
 				self.createMenu()
 		elif self.index == self.STATE_CHOISE_CHANNELLIST:
 			self.enabled = ConfigYesNo(default = True)
-			modes = {"default-ventonsupport": "Default Germany", "henksat-19e": "Astra 1", "henksat-23e": "Astra 3", "henksat-19e-23e": "Astra 1 Astra 3", "henksat-19e-23e-28e": "Astra 1 Astra 2 Astra 3", "henksat-13e-19e-23e-28e": "Astra 1 Astra 2 Astra 3 Hotbird"}
-			self.channellist_type = ConfigSelection(choices = modes, default = "default-ventonsupport")
+			modes = {"henksat-19e": "Astra 1", "henksat-23e": "Astra 3", "henksat-19e-23e": "Astra 1 Astra 3", "henksat-19e-23e-28e": "Astra 1 Astra 2 Astra 3", "henksat-13e-19e-23e-28e": "Astra 1 Astra 2 Astra 3 Hotbird"}
+			self.channellist_type = ConfigSelection(choices = modes, default = "henksat-13e-19e-23e-28e")
 			self.createMenu()
 		elif self.index == self.STATE_CHOISE_SOFTCAM:
 			self.enabled = ConfigYesNo(default = True)
