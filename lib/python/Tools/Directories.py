@@ -159,6 +159,43 @@ def resolveFilename(scope, base = "", path_prefix = None):
 pathExists = os.path.exists
 isMount = os.path.ismount
 
+def defaultRecordingLocation(candidate=None):
+	if candidate and os.path.exists(candidate):
+		return candidate
+	# First, try whatever /hdd points to, or /media/hdd
+	try:
+		path = os.readlink('/hdd')
+	except:
+		path = '/media/hdd'
+	if not os.path.exists(path):
+		path = ''
+		# Find the largest local disk
+		from Components import Harddisk
+		mounts = [m for m in Harddisk.getProcMounts() if m[1].startswith('/media/')]
+		biggest = 0
+		havelocal = False
+		for candidate in mounts:
+			try:
+				islocal = candidate[1].startswith('/dev/') # Good enough
+				stat = os.statvfs(candidate[1])
+				# Free space counts double
+				size = (stat.f_blocks + stat.f_bavail) * stat.f_bsize
+				if (islocal and not havelocal) or ((islocal or not havelocal) and (size > biggest)):
+					path = candidate[1]
+					havelocal = islocal
+					biggest = size
+			except Exception, e:
+				print "[DRL]", e
+	if path:
+		# If there's a movie subdir, we'd probably want to use that.
+		movie = os.path.join(path, 'movie')
+		if os.path.isdir(movie):
+			path = movie
+		if not path.endswith('/'):
+			path += '/' # Bad habits die hard, old code relies on this
+	return path
+	
+
 def createDir(path, makeParents = False):
 	try:
 		if makeParents:
@@ -200,16 +237,15 @@ def getRecordingFilename(basename, dirname = None):
 		filename += c
 
 	if dirname is not None:
-		filename = os.path.join(dirname, filename)
-
-	while len(filename) > 240:
-		filename = filename.decode('UTF-8')
-		filename = filename[:-1]
-		filename = filename.encode('UTF-8')
+		if not dirname.startswith('/'):
+			dirname = os.path.join(defaultRecordingLocation(), dirname)
+	else:
+		dirname = defaultRecordingLocation()
+	filename = os.path.join(dirname, filename)
 
 	i = 0
 	while True:
-		path = resolveFilename(SCOPE_HDD, filename)
+		path = filename
 		if i > 0:
 			path += "_%03d" % i
 		try:
