@@ -489,7 +489,6 @@ class Menu(Screen):
     def createSummary(self):
         return MenuSummary
 
-
 class MainMenu(Menu):
 
     def __init__(self, *x):

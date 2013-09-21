@@ -27,12 +27,12 @@
 	</screen>
 
 	<screen name="SummaryIconsPanel">
-		<widget source="session.CurrentService" render="Pixmap" pixmap="hd.png" position="0,0" size="22,10">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="hd.png" position="0,0" size="18,10">
 			<convert type="ServiceInfo">VideoWidth</convert>
 			<convert type="ValueRange">721,1980</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="dolby.png" position="25,0" size="14,10">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="dolby.png" position="22,0" size="14,10">
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
