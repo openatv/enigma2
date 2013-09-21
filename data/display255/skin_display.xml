@@ -107,13 +107,13 @@
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="255,64">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="255,25" font="FdLcD;25" halign="center" noWrap="1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="255,28" font="FdLcD;28" halign="center" noWrap="1">
 			<convert type="ServiceName">NameOnly</convert>
 		</widget>
-		<widget source="session.Event_Now" render="RollerCharLCD" position="0,26" size="255,22" font="FdLcD;21" halign="center" noWrap="1">
+		<widget source="session.Event_Now" render="RollerCharLCD" position="0,30" size="255,22" font="FdLcD;22" halign="center" noWrap="1">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Progress" position="0,58" size="255,6" borderWidth="1">
+		<widget source="session.Event_Now" render="Progress" position="0,59" size="255,5" borderWidth="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
 	</screen>
@@ -130,7 +130,7 @@
 		</widget>
 	</screen>
 	<screen name="MovieContextMenuSummary" position="0,0" size="255,64">
-		<widget source="parent.Title" render="RollerCharLCD" position="0,0" size="255,32" font="FdLcD;28" halign="center"/>
+		<widget source="parent.Title" render="RollerCharLCD" position="0,0" size="255,32" font="FdLcD;32" halign="center"/>
 		<widget source="selected" render="RollerCharLCD" position="0,41" size="255,50" font="FdLcD;24" halign="center" />
 	</screen>
 	<screen name="MovieSelectionSummary" position="0,0" size="255,64">
@@ -162,7 +162,7 @@
 
 <!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="255,64">
-		<widget source="parent.title" render="RollerCharLCD" position="0,0" size="255,32" font="FdLcD;28" halign="center"/>
+		<widget source="parent.title" render="RollerCharLCD" position="0,0" size="255,32" font="FdLcD;32" halign="center"/>
 		<widget source="parent.menu" render="RollerCharLCD" position="0,41" size="255,50" font="FdLcD;24" halign="center">
 			<convert type="StringListSelection" />
 		</widget>
@@ -170,16 +170,19 @@
 
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="255,64">
-		<widget source="SetupTitle" render="Label" position="0,0" size="255,32" font="FdLcD;28" halign="center"/>
+		<widget source="SetupTitle" render="Label" position="0,0" size="255,32" font="FdLcD;32" halign="center"/>
 		<widget source="SetupEntry" render="Label" position="0,41" size="255,50" font="FdLcD;24" halign="center"/>
 	</screen>
-
-
+	
 <!-- misc-->
 	<screen name="SimpleSummary" position="0,0" size="255,64">
-		<widget source="parent.Title" render="Label" position="0,20" size="255,32" font="FdLcD;28" halign="center"/>
+		<widget source="parent.Title" render="Label" position="0,0" size="255,64" font="FdLcD;32" valign="center" halign="center"/>
 	</screen>
-
+	
+	<screen name="GeneralMenuSummary" position="0,0" size="255,64" >
+		<widget name="mTitle" position="0,0" size="255,64" font="FdLcD;32" halign="center"/>
+		<widget name="mMenu" position="0,34" size="255,64" font="FdLcD;28" halign="center"/>
+	</screen>
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="255,64">
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="255,24" font="FdLcD;22" halign="left"  noWrap="1">

@@ -162,12 +162,15 @@ def GeneralSubMenuEntryComponent(entry, enableEntry = False, selectedEntry = Fal
 
 
 class GeneralMenuSummary(Screen):
-    skin = ('\n\t<screen name="GeneralMenuSummary" position="0,0" size="132,64" id="1">\n\t\t<widget name="mTitle" position="6,0" size="120,32" font="LCD;14" halign="center" valign="center" />\n\t\t<widget name="mMenu" position="6,32" size="145,32" autoScroll="1" font="LCD;16" halign="center" valign="top" />\n\t</screen>', '\n\t<screen name="GeneralMenuSummary" position="0,0" size="96,64" id="2">\n\t\t<widget name="mTitle" position="0,0" size="96,32" font="LCD;15" halign="center" valign="center" />\n\t\t<widget name="mMenu" position="0,32" size="96,32" autoScroll="1" font="LCD;16" halign="center" valign="top" />\n\t</screen>\n\t')
+    skin = '''<screen name="GeneralMenuSummary" position="0,0" size="255,64" >
+			<widget name="mTitle" position="0,0" size="255,32" font="FdLcD;28" halign="center"/>
+			<widget name="mMenu" position="0,41" size="255,50" font="FdLcD;24" halign="center"/>
+	      </screen>'''
 
     def __init__(self, session, parent):
         Screen.__init__(self, session)
         self['mTitle'] = Label()
-        self['mMenu'] = ScrollLabel()
+        self['mMenu'] = Label()
 
     def setTextTitle(self, text):
         text = text.strip()
