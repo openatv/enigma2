@@ -11,7 +11,7 @@ from Components.Sources.List import List
 from Components.Label import Label,MultiColorLabel
 from Components.Pixmap import Pixmap,MultiPixmap
 from Components.MenuList import MenuList
-from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNothing, ConfigBoolean
+from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNothing, ConfigBoolean, ConfigMacText
 from Components.ConfigList import ConfigListScreen
 from Components.PluginComponent import plugins
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
@@ -22,6 +22,7 @@ from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer, ePoint, eSize, RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
 from os import path as os_path, system as os_system, unlink
 from re import compile as re_compile, search as re_search
+import commands
 
 
 class NetworkAdapterSelection(Screen,HelpableScreen):
@@ -294,6 +295,71 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.createConfig()
 			self.createSetup()
 
+class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
+		Screen.setTitle(self, _("MAC-adress settings"))
+		self.curMac = self.getmac('eth0')
+		self.getConfigMac = NoSave(ConfigMacText(default=self.curMac))
+
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Save"))
+
+		self["introduction"] = StaticText(_("Press OK to set the MAC-adress."))
+
+		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
+			{
+			"cancel": (self.cancel, _("Exit nameserver configuration")),
+			"ok": (self.ok, _("Activate current configuration")),
+			})
+
+		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
+			{
+			"red": (self.cancel, _("Exit MAC-adress configuration")),
+			"green": (self.ok, _("Activate MAC-adress configuration")),
+			})
+
+		self["actions"] = NumberActionMap(["SetupActions"],
+		{
+			"ok": self.ok,
+		}, -2)
+
+		self.list = []
+		ConfigListScreen.__init__(self, self.list)
+		self.createSetup()
+
+	def getmac(self, iface):
+		mac = (0,0,0,0,0,0)
+		ifconfig = commands.getoutput("ifconfig " + iface + "| grep HWaddr | awk '{ print $5 }'").strip()
+		if len(ifconfig) == 0:
+			mac = "00:00:00:00:00:00"
+		else:
+			mac = ifconfig[:17]
+		return mac
+
+	def createSetup(self):
+		self.list = []
+		self.list.append(getConfigListEntry(_("MAC-adress"), self.getConfigMac))
+		self["config"].list = self.list
+		self["config"].l.setList(self.list)
+
+	def ok(self):
+		MAC = self.getConfigMac.getValue()
+		f = open('/etc/enigma2/hwmac', 'w')
+		f.write(MAC)
+		f.close()
+		route = commands.getoutput("route -n |grep UG | awk '{print $2}'")
+		os_system('ifconfig eth0 down')
+		os_system('ifconfig eth0 hw ether %s up' % MAC)
+		os_system('route add default gw %s eth0' % route)
+		self.close()
+
+	def run(self):
+		self.ok()
+
+	def cancel(self):
+		self.close()
 
 class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session, networkinfo, essid=None):
@@ -744,6 +810,8 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			self.session.open(NetworkAdapterTest,self.iface)
 		if self["menulist"].getCurrent()[1] == 'dns':
 			self.session.open(NameserverSetup)
+		if self["menulist"].getCurrent()[1] == 'mac':
+			self.session.open(NetworkMacSetup)
 		if self["menulist"].getCurrent()[1] == 'scanwlan':
 			try:
 				from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan
@@ -811,6 +879,8 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			self["description"].setText(_("Use the network wizard to configure your network\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1][0] == 'extendedSetup':
 			self["description"].setText(_(self["menulist"].getCurrent()[1][1]) + self.oktext )
+		if self["menulist"].getCurrent()[1] == 'mac':
+			self["description"].setText(_("Set the MAC-adress of your receiver.\n" ) + self.oktext )
 		
 	def updateStatusbar(self, data = None):
 		self.mainmenu = self.genMainMenu()
@@ -864,6 +934,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append((_("Network wizard"), "openwizard"))
+		menu.append((_("Network MAC settings"), "mac"))
 
 		return menu
 
@@ -1320,7 +1391,7 @@ class NetworkAdapterTest(Screen):
 	def LinkStatedataAvail(self,data):
 		for item in data.splitlines():
 			if "Link detected:" in item:
-			        if "yes" in item:
+				if "yes" in item:
 					self["Network"].setForegroundColorNum(2)
 					self["Network"].setText(_("connected"))
 					self["NetworkInfo_Check"].setPixmapNum(0)
