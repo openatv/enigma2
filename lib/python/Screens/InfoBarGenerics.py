@@ -535,10 +535,18 @@ class InfoBarChannelSelection:
 		self.switchChannelDown()
 
 	def historyBack(self):
-		self.servicelist.historyBack()
+		self.checkTimeshiftRunning(self.historyBackCheckTimeshiftCallback)
+
+	def historyBackCheckTimeshiftCallback(self, answer):
+		if answer:
+			self.servicelist.historyBack()
 
 	def historyNext(self):
-		self.servicelist.historyNext()
+		self.checkTimeshiftRunning(self.historyNextCheckTimeshiftCallback)
+
+	def historyNextCheckTimeshiftCallback(self, answer):
+		if answer:
+			self.servicelist.historyNext()
 
 	def switchChannelUp(self):
 		self.servicelist.moveUp()
