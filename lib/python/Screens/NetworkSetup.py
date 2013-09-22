@@ -372,8 +372,7 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def ok(self):
 		MAC = self.getConfigMac.getValue()
-		print "OK button = >%s< " % MAC
-		f = open('/etc/hwmac', 'w')
+		f = open('/etc/enigma2/hwmac', 'w')
 		f.write(MAC)
 		f.close()
 		route = commands.getoutput("route -n |grep UG | awk '{print $2}'")
