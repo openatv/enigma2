@@ -2470,7 +2470,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 			eServiceReference ref(handleGroup(eServiceReference(PyString_AS_STRING(service))));
 			if (ref.type != eServiceReference::idDVB)
 			{
-				eDebug("service reference for epg query is not valid");
+				// eDebug("service reference for epg query is not valid");
 				continue;
 			}
 
