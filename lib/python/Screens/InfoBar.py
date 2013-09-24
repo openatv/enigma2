@@ -473,26 +473,34 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 	def showPiP(self):
 		try:
-			f = open("/proc/stb/info/boxtype", "r")
-			model = f.read().strip()
-			f.close()
-		except:
-			model = "unknown"
-		if model.startswith("ini-10") or model.startswith("ini-30") or model.startswith("ini-50") or model.startswith("ini-70") or model.startswith("ini-90"):
-				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (enigma.getMachineBrand(), enigma.getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
-		else:
+			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			try:
+				xres = str(info.getInfo(enigma.iServiceInformation.sVideoWidth))
+			except:
+				xres = str(info.getInfo(iServiceInformation.sVideoWidth))
 			slist = self.servicelist
 			if self.session.pipshown:
+				slist = self.servicelist
 				if slist and slist.dopipzap:
 					slist.togglePipzap()
 				del self.session.pip
 				self.session.pipshown = False
 			else:
-				from Screens.PictureInPicture import PictureInPicture
-				self.session.pip = self.session.instantiateDialog(PictureInPicture)
-				self.session.pip.show()
-				self.session.pipshown = True
-				self.session.pip.playService(slist.getCurrentSelection())
+				if int(xres) <= 720 or about.getCPUString() == 'BCM7346B2' or about.getCPUString() == 'BCM7425B2':
+					self.session.pip = self.session.instantiateDialog(PictureInPicture)
+					self.session.pip.show()
+					newservice = self.servicelist.servicelist.getCurrent()
+					if self.session.pip.playService(newservice):
+						self.session.pipshown = True
+						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+					else:
+						self.session.pipshown = False
+						del self.session.pip
+				else:
+					self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
+		except:
+			pass
 
 	def swapPiP(self):
 		pass
