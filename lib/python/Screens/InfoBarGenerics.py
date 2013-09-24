@@ -2238,7 +2238,10 @@ class InfoBarPiP:
 		try:
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
-			xres = str(info.getInfo(enigma.iServiceInformation.sVideoWidth))
+			try:
+				xres = str(info.getInfo(enigma.iServiceInformation.sVideoWidth))
+			except:
+				xres = str(info.getInfo(iServiceInformation.sVideoWidth))
 			slist = self.servicelist
 			if self.session.pipshown:
 				slist = self.servicelist
