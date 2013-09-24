@@ -475,10 +475,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		try:
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
-			try:
-				xres = str(info.getInfo(enigma.iServiceInformation.sVideoWidth))
-			except:
-				xres = str(info.getInfo(iServiceInformation.sVideoWidth))
+			xres = str(info.getInfo(enigma.iServiceInformation.sVideoWidth))
 			slist = self.servicelist
 			if self.session.pipshown:
 				slist = self.servicelist
@@ -498,7 +495,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 						self.session.pipshown = False
 						del self.session.pip
 				else:
-					self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
+					self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (enigma.getMachineBrand(), enigma.getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
 		except:
 			pass
 
