@@ -179,7 +179,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if self.lastservice and self.lastservice.toString().find(':0:/') != -1:
 			self.lastservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.getValue())
-		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef)
+		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef, timeshiftEnabled = self.timeshiftEnabled())
 
 	def movieSelected(self, service):
 		ref = self.lastservice
@@ -472,18 +472,27 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			InfoBarSeek.seekBack(self)
 
 	def showPiP(self):
-		slist = self.servicelist
-		if self.session.pipshown:
-			if slist and slist.dopipzap:
-				slist.togglePipzap()
-			del self.session.pip
-			self.session.pipshown = False
+		try:
+			f = open("/proc/stb/info/boxtype", "r")
+			model = f.read().strip()
+			f.close()
+		except:
+			model = "unknown"
+		if model.startswith("ini-10") or model.startswith("ini-30") or model.startswith("ini-50") or model.startswith("ini-70") or model.startswith("ini-90"):
+				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (enigma.getMachineBrand(), enigma.getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
 		else:
-			from Screens.PictureInPicture import PictureInPicture
-			self.session.pip = self.session.instantiateDialog(PictureInPicture)
-			self.session.pip.show()
-			self.session.pipshown = True
-			self.session.pip.playService(slist.getCurrentSelection())
+			slist = self.servicelist
+			if self.session.pipshown:
+				if slist and slist.dopipzap:
+					slist.togglePipzap()
+				del self.session.pip
+				self.session.pipshown = False
+			else:
+				from Screens.PictureInPicture import PictureInPicture
+				self.session.pip = self.session.instantiateDialog(PictureInPicture)
+				self.session.pip.show()
+				self.session.pipshown = True
+				self.session.pip.playService(slist.getCurrentSelection())
 
 	def swapPiP(self):
 		pass

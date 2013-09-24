@@ -50,7 +50,7 @@ from Tools import Notifications
 from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT
 from Tools.KeyBindings import getKeyDescription
 
-from enigma import getBoxType, eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
+from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, getBoxType, getMachineBrand, getMachineName
 
 from time import time, localtime, strftime
 from bisect import insort
@@ -245,6 +245,7 @@ class InfoBarScreenSaver:
 class SecondInfoBar(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.skin = None
 		
 class InfoBarShowHide(InfoBarScreenSaver):
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
@@ -301,8 +302,8 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
-#		if self.secondInfoBarScreen:
-#			self.secondInfoBarScreen.hide()
+		if self.secondInfoBarScreen:
+			self.secondInfoBarScreen.hide()
 		for x in self.onShowHideNotifiers:
 			x(False)
 
@@ -317,9 +318,11 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		else:
 			self.hide()
 			if hasattr(self, "pvrStateDialog"):
-				self.pvrStateDialog.hide()
-
-
+				try:
+					self.pvrStateDialog.hide()
+				except:
+					pass
+				      
 	def connectShowHideNotifier(self, fnc):
 		if not fnc in self.onShowHideNotifiers:
 			self.onShowHideNotifiers.append(fnc)
@@ -359,7 +362,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		if self.__state == self.STATE_SHOWN:
 			self.hide()
 			if hasattr(self, "pvrStateDialog"):
-				self.pvrStateDialog.hide()
+				try:
+					self.pvrStateDialog.hide()
+				except:
+					pass
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
@@ -371,7 +377,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 			self.EventViewIsShown = False
 		elif hasattr(self, "pvrStateDialog"):
-			self.pvrStateDialog.hide()
+			try:
+				self.pvrStateDialog.hide()
+			except:
+				pass
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
@@ -381,9 +390,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
 		elif self.secondInfoBarScreen and config.usage.show_second_infobar.getValue() and not self.secondInfoBarScreen.shown:
-			self.hide()
 			self.secondInfoBarScreen.show()
-			self.secondInfoBarWasShown = True
 			self.startHideTimer()
 		elif isMoviePlayerInfoBar(self) and config.usage.show_second_infobar.getValue():
 			self.hide()
@@ -394,13 +401,19 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.secondInfoBarScreen.hide()
 
 	def lockShow(self):
-		self.__locked = self.__locked + 1
+		try:
+			self.__locked = self.__locked + 1
+		except:
+			self.__locked = 0
 		if self.execing:
 			self.show()
 			self.hideTimer.stop()
 
 	def unlockShow(self):
-		self.__locked = self.__locked - 1
+		try:
+			self.__locked = self.__locked - 1
+		except:
+			self.__locked = 0
 		if self.__locked  <0:
 			self.__locked = 0
 		if self.execing:
@@ -791,7 +804,10 @@ class InfoBarMenu:
 		self.session.open(MessageBox, _("AV aspect is %s." % ASPECT_MSG[config.av.aspect.getValue()]), MessageBox.TYPE_INFO, timeout=5)
 
 	def showRFSetup(self):
-		self.session.openWithCallback(self.mainMenuClosed, Setup, 'RFmod')
+		if SystemInfo["RfModulator"]:
+			self.session.openWithCallback(self.mainMenuClosed, Setup, 'RFmod')
+		else:
+			pass
 
 	def mainMenuClosed(self, *val):
 		self.session.infobar = None
@@ -2223,6 +2239,7 @@ class InfoBarPiP:
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
 			xres = str(info.getInfo(enigma.iServiceInformation.sVideoWidth))
+			slist = self.servicelist
 			if self.session.pipshown:
 				slist = self.servicelist
 				if slist and slist.dopipzap:
