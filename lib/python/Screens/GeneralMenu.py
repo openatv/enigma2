@@ -574,7 +574,7 @@ class GeneralMenu(Screen):
                 countitems += 1
                 wight += 1
    
-        elif menuID == 'id_mainmenu_tasks':
+        elif menuID == 'id_mainmenu_tasks2':
             wight = 100
             countitems = 0
             for x in self.subentrys['id_mainmenu_tasks']:
