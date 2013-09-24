@@ -126,13 +126,8 @@ def canMove(item):
 	return True
 
 canDelete = canMove
-
-def canCopy(item):
-	if not item:
-		return False
-	if not item[0] or not item[1]:
-		return False
-	return True
+canCopy = canMove
+canRename = canMove
 
 def createMoveList(serviceref, dest):
 	#normpath is to remove the trailing '/' from directories
@@ -162,7 +157,7 @@ def moveServiceFiles(serviceref, dest, name=None, allowCopy=True):
 	# Try to "atomically" move these files
 	movedList = []
 	try:
-		print "[MovieSelection] Moving in background..."
+		# print "[MovieSelection] Moving in background..."
 		# start with the smaller files, do the big one later.
 		moveList.reverse()
 		if name is None:
@@ -179,7 +174,7 @@ def copyServiceFiles(serviceref, dest, name=None):
 	# Try to "atomically" move these files
 	movedList = []
 	try:
-		print "[MovieSelection] Copying in background..."
+		# print "[MovieSelection] Copying in background..."
 		# start with the smaller files, do the big one later.
 		moveList.reverse()
 		if name is None:
@@ -315,7 +310,7 @@ class MovieContextMenu(Screen):
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
 		self['footnote'] = Label("")
-		self["status"] = StaticText()
+		self["description"] = StaticText()
 
 		self["actions"] = ActionMap(["OkCancelActions", 'ColorActions'],
 			{
@@ -340,6 +335,7 @@ class MovieContextMenu(Screen):
 				else:
 					menu.append((_("Delete"), csel.do_delete))
 					menu.append((_("Move"), csel.do_move))
+					menu.append((_("Copy"), csel.do_copy))
 					menu.append((_("Rename"), csel.do_rename))
 			else:
 				menu.append((_("Delete"), csel.do_delete))
@@ -789,13 +785,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if not item:
 			return False
 		return canDelete(item) or isTrashFolder(item[0])
-	def can_move(self, item):
-		return canMove(item)
+
 	def can_default(self, item):
 		# returns whether item is a regular file
 		return isSimpleFile(item)
+
 	def can_sort(self, item):
 		return True
+
 	def can_preview(self, item):
 		return isSimpleFile(item)
 
@@ -1460,11 +1457,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			mbox=self.session.open(MessageBox, msg, type = MessageBox.TYPE_ERROR, timeout = 5)
 			mbox.setTitle(self.getTitle())
 
-	def can_rename(self, item):
-		return canMove(item)
 	def do_rename(self):
 		item = self.getCurrentSelection()
-		if not canMove(item):
+		if not canRename(item):
 			return
 		if isFolder(item):
 			p = os.path.split(item[0].getPath())
@@ -1606,12 +1601,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			mbox=self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 			mbox.setTitle(self.getTitle())
 
-	def can_copy(self, item):
-		return canCopy(item)
-
 	def do_copy(self):
 		item = self.getCurrentSelection()
-		if canMove(item):
+		if canCopy(item):
 			current = item[0]
 			info = item[1]
 			if info is None:
