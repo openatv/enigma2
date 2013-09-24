@@ -18,7 +18,9 @@ static int determineBufferCount()
 	}
 	unsigned int megabytes = si.totalram >> 20;
 	int result;
-	if (megabytes > 200)
+	if (megabytes > 400)
+		result = 40; // 1024MB systems: Use 8MB IO buffers (vusolo2, vuduo2, ...)
+	else if (megabytes > 200)
 		result = 20; // 512MB systems: Use 4MB IO buffers (et9x00, vuultimo, ...)
 	else if (megabytes > 100)
 		result = 16; // 256MB systems: Use 3MB demux buffers (dm8000, et5x00, vuduo)
