@@ -3253,17 +3253,27 @@ class InfoBarSubserviceSelection:
 		if not config.plisettings.Subservice.getValue():
 			self.openTimerList()
 		else:
-			#self.subserviceSelection()
 			service = self.session.nav.getCurrentService()
 			subservices = service and service.subServices()
 			if not subservices or subservices.getNumberOfSubservices() == 0:
-				try:
-					from Screens.PluginBrowser import PluginBrowser
-					self.session.open(PluginBrowser)
-				except:
-					pass
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CustomSubservices/plugin.pyo"):
+					serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+					subservices = self.getAvailableSubservices(serviceRef)
+					if not subservices or len(subservices) == 0:
+						self.openPluginBrowser()
+					else:
+						self.subserviceSelection()
+				else:
+					self.openPluginBrowser()
 			else:
 				self.subserviceSelection()
+
+	def openPluginBrowser(self):
+		try:
+			from Screens.PluginBrowser import PluginBrowser
+			self.session.open(PluginBrowser)
+		except:
+			pass
 
 	def __removeNotifications(self):
 		self.session.nav.event.remove(self.checkSubservicesAvail)
