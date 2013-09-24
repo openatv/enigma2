@@ -1135,9 +1135,7 @@ class InfoBarSeek:
 				"seekFwd": (self.seekFwd, _("Seek forward")),
 				"seekFwdManual": (self.seekFwdManual, _("Seek forward (enter time)")),
 				"seekBack": (self.seekBack, _("Seek backward")),
-				"seekBackManual": (self.seekBackManual, _("Seek backward (enter time)")),
-				"jumpPreviousMark": (self.jumpPreviousMark, _("Jump to previous marked position")),
-				"jumpNextMark": (self.jumpNextMark, _("Jump to next marked position")),
+				"seekBackManual": (self.seekBackManual, _("Seek backward (enter time)"))
 			}, prio=-1)
 			# give them a little more priority to win over color buttons
 
