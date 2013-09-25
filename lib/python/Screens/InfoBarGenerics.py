@@ -576,18 +576,10 @@ class InfoBarChannelSelection:
 		self.switchChannelDown()
 
 	def historyBack(self):
-		self.checkTimeshiftRunning(self.historyBackCheckTimeshiftCallback)
-
-	def historyBackCheckTimeshiftCallback(self, answer):
-		if answer:
-			self.servicelist.historyBack()
+		self.servicelist.historyBack()
 
 	def historyNext(self):
-		self.checkTimeshiftRunning(self.historyNextCheckTimeshiftCallback)
-
-	def historyNextCheckTimeshiftCallback(self, answer):
-		if answer:
-			self.servicelist.historyNext()
+		self.servicelist.historyNext()
 
 	def openBouquetList(self):
 		self.servicelist.showFavourites()
@@ -2524,7 +2516,6 @@ class InfoBarCueSheetSupport:
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evStart: self.__serviceStarted,
-				iPlayableService.evCuesheetChanged: self.downloadCuesheet,
 			})
 
 	def __serviceStarted(self):
