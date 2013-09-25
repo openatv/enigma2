@@ -22,6 +22,7 @@
 #include <dvbsi++/simple_application_location_descriptor.h>
 #include <dvbsi++/simple_application_boundary_descriptor.h>
 #include <dvbsi++/transport_protocol_descriptor.h>
+#include <dvbsi++/application_name_descriptor.h>
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
 	:m_ca_servicePtr(0), m_dvb_scan(0), m_decode_demux_num(0xFF), m_no_pat_entry_delay(eTimer::create())
@@ -232,6 +233,7 @@ void eDVBServicePMTHandler::AITready(int error)
 {
 	eDebug("AITready");
 	ePtr<eTable<ApplicationInformationSection> > ptr;
+	m_aitInfoList.clear();
 	if (!m_AIT.getCurrent(ptr))
 	{
 		m_HBBTVUrl = "";
@@ -239,53 +241,67 @@ void eDVBServicePMTHandler::AITready(int error)
 		{
 			for (std::list<ApplicationInformation *>::const_iterator i = (*it)->getApplicationInformation()->begin(); i != (*it)->getApplicationInformation()->end(); ++i)
 			{
-				if ((*i)->getApplicationControlCode() == 0x01) /* AUTOSTART */
+				struct aitInfo aitinfo;
+				aitinfo.id = ((ApplicationIdentifier*)(*i)->getApplicationIdentifier())->getApplicationId();
+				for (DescriptorConstIterator desc = (*i)->getDescriptors()->begin(); desc != (*i)->getDescriptors()->end(); ++desc)
 				{
-					for (DescriptorConstIterator desc = (*i)->getDescriptors()->begin();
-						desc != (*i)->getDescriptors()->end(); ++desc)
+					switch ((*desc)->getTag())
 					{
-						switch ((*desc)->getTag())
+					case APPLICATION_DESCRIPTOR:
+						break;
+					case APPLICATION_NAME_DESCRIPTOR:
+					{
+						ApplicationNameDescriptor *appname = (ApplicationNameDescriptor*)(*desc);
+						for (ApplicationNameConstIterator appnamesit = appname->getApplicationNames()->begin(); appnamesit != appname->getApplicationNames()->end(); ++appnamesit)
 						{
-						case APPLICATION_DESCRIPTOR:
-							break;
-						case APPLICATION_NAME_DESCRIPTOR:
-							break;
-						case TRANSPORT_PROTOCOL_DESCRIPTOR:
+							aitinfo.name = (*appnamesit)->getApplicationName();
+						}
+						break;
+					}
+					case TRANSPORT_PROTOCOL_DESCRIPTOR:
+					{
+						TransportProtocolDescriptor *transport = (TransportProtocolDescriptor*)(*desc);
+						switch (transport->getProtocolId())
 						{
-							TransportProtocolDescriptor *transport = (TransportProtocolDescriptor*)(*desc);
-							switch (transport->getProtocolId())
+						case 1: /* object carousel */
+							if (m_dsmcc_pid >= 0)
 							{
-							case 1: /* object carousel */
-								if (m_dsmcc_pid >= 0)
-								{
-									m_OC.begin(eApp, eDVBDSMCCDLDataSpec(m_dsmcc_pid), m_demux);
-								}
-								break;
-							case 2: /* ip */
-								break;
-							case 3: /* interaction */
-								for (InterActionTransportConstIterator interactionit = transport->getInteractionTransports()->begin(); interactionit != transport->getInteractionTransports()->end(); ++interactionit)
+								m_OC.begin(eApp, eDVBDSMCCDLDataSpec(m_dsmcc_pid), m_demux);
+							}
+							break;
+						case 2: /* ip */
+							break;
+						case 3: /* interaction */
+							for (InterActionTransportConstIterator interactionit = transport->getInteractionTransports()->begin(); interactionit != transport->getInteractionTransports()->end(); ++interactionit)
+							{
+								if ((*i)->getApplicationControlCode() == 0x01) /* AUTOSTART */
 								{
 									m_HBBTVUrl = (*interactionit)->getUrlBase()->getUrl();
-									break;
 								}
+								aitinfo.url = (*interactionit)->getUrlBase()->getUrl();
 								break;
 							}
 							break;
 						}
-						case GRAPHICS_CONSTRAINTS_DESCRIPTOR:
-							break;
-						case SIMPLE_APPLICATION_LOCATION_DESCRIPTOR:
+						break;
+					}
+					case GRAPHICS_CONSTRAINTS_DESCRIPTOR:
+						break;
+					case SIMPLE_APPLICATION_LOCATION_DESCRIPTOR:
+					{
+						SimpleApplicationLocationDescriptor *applicationlocation = (SimpleApplicationLocationDescriptor*)(*desc);
+						if ((*i)->getApplicationControlCode() == 0x01) /* AUTOSTART */
 						{
-							SimpleApplicationLocationDescriptor *applicationlocation = (SimpleApplicationLocationDescriptor*)(*desc);
 							m_HBBTVUrl += applicationlocation->getInitialPath();
-							break;
 						}
-						case APPLICATION_USAGE_DESCRIPTOR:
-							break;
-						case SIMPLE_APPLICATION_BOUNDARY_DESCRIPTOR:
-							break;
-						}
+						aitinfo.url += applicationlocation->getInitialPath();
+						m_aitInfoList.push_back(aitinfo);
+						break;
+					}
+					case APPLICATION_USAGE_DESCRIPTOR:
+						break;
+					case SIMPLE_APPLICATION_BOUNDARY_DESCRIPTOR:
+						break;
 					}
 				}
 			}
@@ -312,6 +328,15 @@ void eDVBServicePMTHandler::OCready(int error)
 	}
 	/* for now, do not keep listening for table updates */
 	m_OC.stop();
+}
+
+void eDVBServicePMTHandler::getAITApplications(std::map<int, std::string> &aitlist)
+{
+	for (std::vector<struct aitInfo>::iterator it = m_aitInfoList.begin(); it != m_aitInfoList.end(); ++it)
+	{
+		aitlist[it->id] = it->url;
+	}
+	return -1;
 }
 
 void eDVBServicePMTHandler::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids)
