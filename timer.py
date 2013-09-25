@@ -164,8 +164,8 @@ class Timer:
 		self.processed_timers = [entry for entry in self.processed_timers if entry.disabled]
 
 	def cleanupDisabled(self):
-		self.processed_timers = [entry for entry in self.processed_timers if entry.disabled]
-		for timer in self.processed_timers:
+		disabled_timers = [entry for entry in self.processed_timers if entry.disabled]
+		for timer in disabled_timers:
 			timer.shouldSkip()
 
 	def cleanupDaily(self, days):
