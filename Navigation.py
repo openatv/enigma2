@@ -45,7 +45,7 @@ class Navigation:
 		if RecordTimer.chechForRecordings():
 			if Screens.Standby.inStandby: #In case some plugin did put the receiver already in standby
 				config.misc.standbyCounter.value = 0
-			RecordTimer.RecordTimerEntry.wasInDeepStandby = True
+			RecordTimer.RecordTimerEntry.setWasInDeepStandby()
 			self.keypress() #this ensures to unbind the keypress detection	
 
 	def keypress(self, key=None, flag=1):
