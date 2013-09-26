@@ -362,7 +362,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 				if RecordTimerEntry.wasInDeepStandby:
 					RecordTimerEntry.keypress()
-					if not Screens.Standby.inStandby:
+					if Screens.Standby.inStandby: #In case some plugin did put the receiver already in standby
+						config.misc.standbyCounter.value = 0
+					else:
 						Notifications.AddNotification(Screens.Standby.Standby, StandbyCounterIncrease=False)
 
 				record_res = self.record_service.start()
