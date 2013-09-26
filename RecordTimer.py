@@ -83,16 +83,23 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	@staticmethod
 	def keypress(key=None, flag=1):
-		if flag and RecordTimerEntry.wasInStandby:
+		if flag and (RecordTimerEntry.wasInStandby or RecordTimerEntry.wasInDeepStandby):
 			RecordTimerEntry.wasInStandby = False
+			RecordTimerEntry.wasInDeepStandby = False
 			eActionMap.getInstance().unbindAction('', RecordTimerEntry.keypress)
+
+	@staticmethod
+	def setWasInDeepStandby():
+		RecordTimerEntry.wasInDeepStandby = True
+		eActionMap.getInstance().bindAction('', -maxint - 1, RecordTimerEntry.keypress)
 
 	@staticmethod
 	def setWasInStandby():
 		if not RecordTimerEntry.wasInStandby:
-			RecordTimerEntry.wasInStandby = True
+			if not RecordTimerEntry.wasInDeepStandby:
+				eActionMap.getInstance().bindAction('', -maxint - 1, RecordTimerEntry.keypress)
 			RecordTimerEntry.wasInDeepStandby = False
-			eActionMap.getInstance().bindAction('', -maxint - 1, RecordTimerEntry.keypress)
+			RecordTimerEntry.wasInStandby = True
 
 	@staticmethod
 	def shutdown():
@@ -354,7 +361,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.log(11, "start recording")
 
 				if RecordTimerEntry.wasInDeepStandby:
-					RecordTimerEntry.wasInDeepStandby = False
+					RecordTimerEntry.keypress()
 					if not Screens.Standby.inStandby:
 						Notifications.AddNotification(Screens.Standby.Standby, StandbyCounterIncrease=False)
 
