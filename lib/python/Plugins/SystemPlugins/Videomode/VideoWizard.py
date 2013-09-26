@@ -1,3 +1,4 @@
+from enigma import getBoxType
 from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
@@ -17,6 +18,9 @@ try:
 	file.close()
 except:
 	chipset = "unknown"
+	
+if getBoxType() == 'gbquad' or getBoxType() == 'gb800seplus' or getBoxType() == 'gb800useplus':	
+	has_rca = True
 
 class VideoWizardSummary(WizardSummary):
 	def __init__(self, session, parent):
@@ -86,6 +90,8 @@ class VideoWizard(WizardLanguage, Rc):
 				descr = port
 				if descr == 'DVI' and has_hdmi:
 					descr = 'HDMI'
+				if descr == 'Scart' and has_rca:
+					descr = 'RCA'
 				if port != "DVI-PC":
 					list.append((descr,port))
 		list.sort(key = lambda x: x[0])
@@ -106,6 +112,8 @@ class VideoWizard(WizardLanguage, Rc):
 			picname = self.selection
 			if picname == 'DVI' and has_hdmi:
 				picname = "HDMI"
+			if picname == 'Scart' and has_rca:
+				picname = "RCA"					
 			self["portpic"].instance.setPixmapFromFile(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/" + picname + ".png"))
 
 	def inputSelect(self, port):

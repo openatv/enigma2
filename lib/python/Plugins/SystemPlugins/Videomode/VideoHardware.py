@@ -133,8 +133,6 @@ class VideoHardware:
 		if self.modes.has_key("DVI-PC") and not self.getModeList("DVI-PC"):
 			print "remove DVI-PC because of not existing modes"
 			del self.modes["DVI-PC"]
-		if config.misc.boxtype.value == 'gbquad':
-			del self.modes["Scart"]	
 
 		self.createConfig()
 #		self.on_hotplug.append(self.createConfig)
