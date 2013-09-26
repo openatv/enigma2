@@ -229,6 +229,7 @@ class Satfinder(ScanSetup):
 		self.updateSatList()
 
 		self.scan_satselection = [ self.tuning_sat ]
+		self.satfindNim = self.feid
 
 		self.scan_sat.frequency.setValue(self.transponder[0])
 		self.scan_sat.symbolrate.setValue(self.transponder[1])
