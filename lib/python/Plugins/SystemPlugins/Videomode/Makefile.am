@@ -17,4 +17,5 @@ dist_install_DATA = \
 	videowizard.xml \
 	YPbPr.png \
 	HDMI.png \
-	lcd_HDMI.png
+	lcd_HDMI.png \
+	RCA.png 
