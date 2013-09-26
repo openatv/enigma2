@@ -42,11 +42,10 @@ class Navigation:
 			eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
 
 	def checkShutdownAfterRecording(self):
-		if len(self.getRecordings()) or abs(self.RecordTimer.getNextTimerTime() - time()) <= 360:
+		if RecordTimer.chechForRecordings():
 			if Screens.Standby.inStandby: #In case some plugin did put the receiver already in standby
 				config.misc.standbyCounter.value = 0
-			else:
-				Notifications.AddNotification(Screens.Standby.Standby, StandbyCounterIncrease=False)
+			RecordTimer.RecordTimerEntry.wasInDeepStandby = True
 			self.keypress() #this ensures to unbind the keypress detection	
 
 	def keypress(self, key=None, flag=1):

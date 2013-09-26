@@ -71,13 +71,14 @@ def findSafeRecordPath(dirname):
 def chechForRecordings():
 	if NavigationInstance.instance.getRecordings():
 		return True
-	rec_time = NavigationInstance.instance.RecordTimer.getNextRecordingTime()
+	rec_time = NavigationInstance.instance.RecordTimer.getNextTimerTime()
 	return rec_time > 0 and (rec_time - time()) < 360
 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry, object):
 ######### the following static methods and members are only in use when the box is in (soft) standby
 	wasInStandby = False
+	wasInDeepStandby = False
 	receiveRecordEvents = False
 
 	@staticmethod
@@ -90,6 +91,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	def setWasInStandby():
 		if not RecordTimerEntry.wasInStandby:
 			RecordTimerEntry.wasInStandby = True
+			RecordTimerEntry.wasInDeepStandby = False
 			eActionMap.getInstance().bindAction('', -maxint - 1, RecordTimerEntry.keypress)
 
 	@staticmethod
@@ -281,6 +283,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					#wakeup standby
 					Screens.Standby.inStandby.Power()
 				else:
+					if RecordTimerEntry.wasInDeepStandby:
+						RecordTimerEntry.setWasInStandby()
 					cur_zap_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 					if cur_zap_ref and not cur_zap_ref.getPath():# we do not zap away if it is no live service
 						Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_INFO, timeout=20)
@@ -341,11 +345,19 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					#wakeup standby
 					Screens.Standby.inStandby.Power()
 				else:
+					if RecordTimerEntry.wasInDeepStandby:
+						RecordTimerEntry.setWasInStandby()
 					self.log(11, "zapping")
 					NavigationInstance.instance.playService(self.service_ref.ref)
 				return True
 			else:
 				self.log(11, "start recording")
+
+				if RecordTimerEntry.wasInDeepStandby:
+					RecordTimerEntry.wasInDeepStandby = False
+					if not Screens.Standby.inStandby:
+						Notifications.AddNotification(Screens.Standby.Standby, StandbyCounterIncrease=False)
+
 				record_res = self.record_service.start()
 				
 				if record_res:
