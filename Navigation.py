@@ -35,8 +35,6 @@ class Navigation:
 		self.RecordTimer = RecordTimer.RecordTimer()
 		self.__wasTimerWakeup = getFPWasTimerWakeup()
 		if self.__wasTimerWakeup:
-			if Screens.Standby.inStandby: #In case some plugin did put the receiver already in standby
-				config.misc.standbyCounter.value = 0
 			RecordTimer.RecordTimerEntry.setWasInDeepStandby()
 
 	def wasTimerWakeup(self):
