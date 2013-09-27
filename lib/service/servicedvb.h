@@ -133,6 +133,7 @@ public:
 	int getInfo(int w);
 	std::string getInfoString(int w);
 	ePtr<iDVBTransponderData> getTransponderData();
+	void getAITApplications(std::map<int, std::string> &aitlist);
 	void getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids);
 
 		// iAudioTrackSelection	
