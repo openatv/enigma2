@@ -427,11 +427,11 @@ class ImageBackup(Screen):
 		## TESTING THE Gigablue 800 SE Plus Model
 		elif self.MODEL == "gb800seplus":
 			self.TYPE = "GIGABLUE"
-			self.MODEL = "seplus"
+			self.MODEL = "ueplus"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "GigaBlue %s" %self.MODEL
-			self.MTDKERNEL = "mtd1"	
+			self.MTDKERNEL = "mtd2"	
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)
@@ -442,7 +442,7 @@ class ImageBackup(Screen):
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "GigaBlue %s" %self.MODEL
-			self.MTDKERNEL = "mtd1"	
+			self.MTDKERNEL = "mtd2"	
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)
