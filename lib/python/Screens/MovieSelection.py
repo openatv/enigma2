@@ -73,12 +73,8 @@ l_moviesort = [(str(MovieList.SORT_RECORDED), _("by date"), '03/02/01'),
 def defaultMoviePath():
 	result = config.usage.default_path.getValue()
 	if not os.path.isdir(result):
-		for mount in Components.Harddisk.getProcMounts():
-			if mount[1].startswith('/media/'):
-				result = mount[1]
-				if not result.endswith('/'):
-					result += '/'
-				break
+		from Tools import Directories
+		return Directories.defaultRecordingLocation()
 	return result
 
 def setPreferredTagEditor(te):
