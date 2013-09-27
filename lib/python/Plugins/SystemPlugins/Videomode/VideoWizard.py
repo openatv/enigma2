@@ -18,7 +18,8 @@ try:
 	file.close()
 except:
 	chipset = "unknown"
-	
+
+has_rca = False
 if getBoxType() == 'gbquad' or getBoxType() == 'gb800seplus' or getBoxType() == 'gb800ueplus':	
 	has_rca = True
 
