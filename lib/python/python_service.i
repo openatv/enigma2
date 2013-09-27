@@ -122,6 +122,28 @@ PyObject *getInfoObject(int w)
 	Py_INCREF(Py_None);
 	return Py_None;
 }
+
+PyObject *getAITApplications()
+{
+	ePyObject tuple = PyTuple_New(2);
+	std::map<int, std::string> aitlist;
+	self->getAITApplications(aitlist);
+	if (!aitlist.empty())
+	{
+		ePyObject l = PyList_New(0);
+		for (std::map<int, std::string>::iterator it=aitlist.begin(); it!=aitlist.end(); ++it)
+		{
+			ePyObject tuple = PyTuple_New(2);
+			PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(it->first));
+			PyTuple_SET_ITEM(tuple, 1, PyString_FromString(it->second.c_str()));
+			PyList_Append(l, tuple);
+			Py_DECREF(tuple);
+		}
+		return l;
+	}
+	Py_INCREF(Py_None);
+	return Py_None;
+}
 };
 
 %ignore iServiceInformation::getInfoObject;
