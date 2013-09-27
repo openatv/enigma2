@@ -356,6 +356,15 @@ class SystemNetworkInfo(Screen):
 				self.AboutText += _("MAC:") + "\t" + eth0['hwaddr'] + "\n"
 			self.iface = 'eth0'
 
+		ra0 = about.getIfConfig('ra0')
+		if ra0.has_key('addr'):
+			self.AboutText += _("IP:") + "\t" + ra0['addr'] + "\n"
+			if ra0.has_key('netmask'):
+				self.AboutText += _("Netmask:") + "\t" + ra0['netmask'] + "\n"
+			if ra0.has_key('hwaddr'):
+				self.AboutText += _("MAC:") + "\t" + ra0['hwaddr'] + "\n"
+			self.iface = 'ra0'
+
 		wlan0 = about.getIfConfig('wlan0')
 		if wlan0.has_key('addr'):
 			self.AboutText += _("IP:") + "\t" + wlan0['addr'] + "\n"
@@ -386,7 +395,7 @@ class SystemNetworkInfo(Screen):
 		if data is not None:
 			if data is True:
 				if status is not None:
-					if self.iface == 'wlan0':
+					if self.iface == 'wlan0' or self.iface == 'ra0':
 						if status[self.iface]["essid"] == "off":
 							essid = _("No Connection")
 						else:
