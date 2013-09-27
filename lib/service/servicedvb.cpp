@@ -1950,6 +1950,11 @@ ePtr<iDVBTransponderData> eDVBServicePlay::getTransponderData()
 	return eStaticServiceDVBInformation().getTransponderData(m_reference);
 }
 
+void eDVBServicePlay::getAITApplications(std::map<int, std::string> &aitlist)
+{
+	return m_service_handler.getAITApplications(aitlist);
+}
+
 void eDVBServicePlay::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids)
 {
 	m_service_handler.getCaIds(caids, ecmpids);
