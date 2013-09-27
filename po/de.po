@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2013-09-23 17:30+0100\n"
+"PO-Revision-Date: 2013-09-27 17:19+0100\n"
 "Last-Translator: mike99 <mike99@gmx.net>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -6187,6 +6187,11 @@ msgstr "Bildwiederholrate"
 msgid "Refresh every (in hours)"
 msgstr "Aktualisierungsintervall (in Stunden)"
 
+msgid "The %s %s reads the stored EPG data every (hours)."
+msgstr ""
+"Ihre %s %s liest die gespeicherten EPG-Daten nach der eingestellten Zeit neu "
+"ein."
+
 #
 msgid "Refresh rate selection."
 msgstr "Auswahl der Bildwiederholungsrate."
@@ -6558,6 +6563,10 @@ msgstr "Speichern und beenden"
 
 msgid "Save every (in hours)"
 msgstr "Sicherungsintervall (in Stunden)"
+
+msgid "The %s %s stores the EPG data every (hours)."
+msgstr ""
+"Ihre %s %s speichert die EPG-Daten nach der eingestellten Zeit automatisch."
 
 msgid "Saving EPG Cache..."
 msgstr "EPG Cache speichern..."
@@ -14820,26 +14829,33 @@ msgstr ""
 "\n"
 "Flashen   Online / Local Ihrer %s %s."
 
+# /SoftwareManager/Flash_online.py
 msgid "Online = Download a image and flash it"
 msgstr "Image online laden und Flashen."
 
+# /SoftwareManager/Flash_online.py
 msgid "Local = Flash a image from local path /hdd/images"
 msgstr "Image von HDD oder USB Flashen."
 
+# /SoftwareManager/Flash_online.py
 msgid "Flash On the fly (select a image)"
 msgstr "Image zum Flashen auswählen"
 
+# /SoftwareManager/Flash_online.py
 msgid "Unzipping files, Please wait ..."
 msgstr "Datei wird entpackt, Bitte warten..."
 
+# /SoftwareManager/Flash_online.py
 msgid "The image is downloaded. Do you want to flash now?"
 msgstr ""
 "Das Image ist herruntergeladen,\n"
 "wollen Sie jetzt Flashen?"
 
+# /SoftwareManager/Flash_online.py
 msgid "Please select medium"
 msgstr "Bitte wählen Sie das Image"
 
+# /SoftwareManager/Flash_online.py
 msgid ""
 "Do you really want to delete\n"
 "%s ?"
@@ -14847,6 +14863,7 @@ msgstr ""
 "Wollen Sie %s\n"
 "wirklich löschen?"
 
+# /SoftwareManager/Flash_online.py
 msgid ""
 "Not enough free space on /hdd !!\n"
 "You need at least 300Mb free space.\n"
@@ -14858,6 +14875,7 @@ msgstr ""
 "\n"
 "Plugin wird beendet."
 
+# /SoftwareManager/Flash_online.py
 msgid ""
 "ofgwrite not found !!\n"
 "Please make sure you have ofgwrite installed in /usr/bin/ofgwrite.\n"
