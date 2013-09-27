@@ -19,7 +19,7 @@ try:
 except:
 	chipset = "unknown"
 	
-if getBoxType() == 'gbquad' or getBoxType() == 'gb800seplus' or getBoxType() == 'gb800useplus':	
+if getBoxType() == 'gbquad' or getBoxType() == 'gb800seplus' or getBoxType() == 'gb800ueplus':	
 	has_rca = True
 
 class VideoWizardSummary(WizardSummary):
