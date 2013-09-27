@@ -1,4 +1,4 @@
 enigma2
 =======
 
-openaaf-gui
+openatv-gui
