@@ -3723,6 +3723,7 @@ class InfoBarCueSheetSupport:
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evStart: self.__serviceStarted,
+				iPlayableService.evCuesheetChanged: self.downloadCuesheet,
 			})
 
 	def __serviceStarted(self):

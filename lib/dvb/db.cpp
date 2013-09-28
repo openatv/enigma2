@@ -663,7 +663,7 @@ int eDVBDB::loadBouquet(const char *path, int startChannelNum)
 
 	std::string p = eEnv::resolve("${sysconfdir}/enigma2/");
 	p+=path;
-	eDebug("loading bouquet... %s %d", p.c_str(), startChannelNum);
+	// eDebug("loading bouquet... %s %d", p.c_str(), startChannelNum);
 	CFile fp(p.c_str(), "rt");
 	if (!fp)
 	{
@@ -759,7 +759,7 @@ int eDVBDB::loadBouquet(const char *path, int startChannelNum)
 			bouquet.m_bouquet_name=line+6;
 	}
 	free(line);
-	eDebug("%d entries in Bouquet %s", entries, bouquet_name.c_str());
+	// eDebug("%d entries in Bouquet %s", entries, bouquet_name.c_str());
 	return startChannelNum;
 }
 
