@@ -777,7 +777,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				assert len(self.scan_satselection) > index_to_scan
 
 				nimsats = self.satfinder and self.satList[self.feid] or self.satList[index_to_scan]
-				selsatidx = self.scan_satselection[index_to_scan].index
+				selsatidx = (not self.satfinder and self.scan_satselection[index_to_scan].index) or self.scan_satselection[0].index
 
 				# however, the satList itself could be empty. in that case, "index" is 0 (for "None").
 				if len(nimsats):
