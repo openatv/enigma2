@@ -845,7 +845,7 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 		if (!gst_element_query_position(m_gst_playbin, fmt, &pos))
 #endif
 		{
-			eDebug("gst_element_query_position failed in getPlayPosition");
+			// eDebug("gst_element_query_position failed in getPlayPosition");
 			return -1;
 		}
 	}
