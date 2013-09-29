@@ -616,7 +616,11 @@ def InitUsageConfig():
 	config.epgselection.infobar_oklong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
 	config.epgselection.infobar_itemsperpage = ConfigSelectionNumber(default = 2, stepwidth = 1, min = 2, max = 4, wraparound = True)
 	if SystemInfo.get("NumVideoDecoders", 1) > 1:
-		config.epgselection.infobar_preview_mode = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fulscreen")), ("2", _("PiP"))], default = "1")
+		if about.getCPUString() in ('BCM7346B2', 'BCM7425B2'):
+			previewdefault = "2"
+		else:
+			previewdefault = "1"
+		config.epgselection.infobar_preview_mode = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fulscreen")), ("2", _("PiP"))], default = previewdefault)
 	else:
 		config.epgselection.infobar_preview_mode = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fulscreen"))], default = "1")
 	config.epgselection.infobar_roundto = ConfigSelection(default = "15", choices = [("15", _("%d minutes") % 15), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60)])
