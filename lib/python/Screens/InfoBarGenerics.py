@@ -528,8 +528,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 					self.secondInfoBarScreen.hide()
 					self.secondInfoBarWasShown = False
-			if self.session.pipshown:
-				self.showPiP()
 		else:
 			self.hide()
 			if hasattr(self, "pvrStateDialog"):
