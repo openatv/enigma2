@@ -58,7 +58,13 @@ class Navigation:
 
 		if wasTimerWakeup:
 			self.__wasTimerWakeup = True
-			if nextRecordTimerAfterEventActionAuto and abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
+			if time() <= 31536000:
+				self.timesynctimer = eTimer()
+				self.timesynctimer.callback.append(self.TimeSynctimer)
+				self.timesynctimer.start(5000, True)
+				print"[NAVIGATION] wait for time sync"
+	
+			elif nextRecordTimerAfterEventActionAuto and abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
 				self.__wasRecTimerWakeup = True
 				print 'RECTIMER: wakeup to standby detected.'
 				f = open("/tmp/was_rectimer_wakeup", "w")
@@ -80,9 +86,9 @@ class Navigation:
 		if self.nextRecordTimerAfterEventActionAuto and abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
 			self.__wasRecTimerWakeup = True
 			print 'RECTIMER: wakeup to standby detected.'
-			print"[NAVIGATION] [work-around] getNextRecordingTime= %s" % self.RecordTimer.getNextRecordingTime()
-			print"[NAVIGATION] [work-around] current Time=%s" % time()
-			print"[NAVIGATION] [work-around] timediff=%s" % abs(self.RecordTimer.getNextRecordingTime() - time())
+			print"[NAVIGATION] getNextRecordingTime= %s" % self.RecordTimer.getNextRecordingTime()
+			print"[NAVIGATION] current Time=%s" % time()
+			print"[NAVIGATION] timediff=%s" % abs(self.RecordTimer.getNextRecordingTime() - time())
 			f = open("/tmp/was_rectimer_wakeup", "w")
 			f.write('1')
 			f.close()
@@ -91,9 +97,9 @@ class Navigation:
 			if self.syncCount <= 24 and time() <= 31536000: # max 2 mins or when time is in sync
 				self.timesynctimer.start(5000, True)
 			else:
-				print"[NAVIGATION] [work-around] No Recordings found, end work-around"
+				print"[NAVIGATION] No Recordings found, end work-around"
 
-		print"[NAVIGATION] [work-around] wasTimerWakeup after time sync = %s, sync time = %s sec." % (self.__wasRecTimerWakeup, self.syncCount * 5)
+		print"[NAVIGATION] wasTimerWakeup after time sync = %s, sync time = %s sec." % (self.__wasRecTimerWakeup, self.syncCount * 5)
 
 	def gotostandby(self):
 		from Tools import Notifications

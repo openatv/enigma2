@@ -46,6 +46,7 @@ config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
 config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandby
 config.misc.epgcache_filename = ConfigText(default = "/hdd/epg.dat")
+config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
 
 def setEPGCachePath(configElement):
 	enigma.eEPGCache.getInstance().setCacheFile(configElement.value)
@@ -454,7 +455,7 @@ def runScreenTest():
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 	profile("Init:Session")
-	nav = Navigation()
+	nav = Navigation(config.misc.isNextRecordTimerAfterEventActionAuto.getValue())
 	session = Session(desktop = enigma.getDesktop(0), summary_desktop = enigma.getDesktop(1), navigation = nav)
 
 	CiHandler.setSession(session)
@@ -541,6 +542,7 @@ def runScreenTest():
 		if x[0] != -1
 	]
 	wakeupList.sort()
+	recordTimerWakeupAuto = False
 	if wakeupList:
 		from time import strftime, altzone, timezone
 		startTime = wakeupList[0]
@@ -553,6 +555,11 @@ def runScreenTest():
 			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
 		setFPWakeuptime(wptime)
+		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
+		print 'recordTimerWakeupAuto',recordTimerWakeupAuto
+
+	config.misc.isNextRecordTimerAfterEventActionAuto.value = recordTimerWakeupAuto
+	config.misc.isNextRecordTimerAfterEventActionAuto.save()
 
 	profile("stopService")
 	session.nav.stopService()
