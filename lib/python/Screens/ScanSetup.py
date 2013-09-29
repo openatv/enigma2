@@ -858,7 +858,9 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		for x in self["config"].list:
 			x[1].save()
 
-		if startScan:
+		if startScan and self.satfinder:
+			self.startScan(tlist, flags, self.feid, self.networkid)
+		elif startScan:
 			self.startScan(tlist, flags, index_to_scan, self.networkid)
 		else:
 			self.flags = flags
