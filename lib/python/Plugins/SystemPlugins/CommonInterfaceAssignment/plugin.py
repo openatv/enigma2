@@ -640,7 +640,7 @@ def main(session, **kwargs):
 	session.open(CIselectMainMenu)
 
 def menu(menuid, **kwargs):
-	if menuid == "cam" and eDVBCIInterfaces.getInstance().getNumOfSlots():
+	if menuid == "setup" and eDVBCIInterfaces.getInstance().getNumOfSlots():
 		return [(_("Common Interface Assignment"), main, "ci_assign", 11)]
 	return [ ]
 
