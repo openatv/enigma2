@@ -336,7 +336,6 @@ void eDVBServicePMTHandler::getAITApplications(std::map<int, std::string> &aitli
 	{
 		aitlist[it->id] = it->url;
 	}
-	return -1;
 }
 
 void eDVBServicePMTHandler::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids)
