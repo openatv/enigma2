@@ -268,14 +268,15 @@ class CIconfigMenu(Screen):
 			Len = len(definitions)
 			return Len > 0 and definitions[Len-1].text or default
 
+		self.read_services=[]
+		self.read_providers=[]
+		self.usingcaid=[]
+		self.ci_config=[]
+
 		try:
 			fp = opens(self.filename, 'r')
 			tree = ci_parse(fp).getroot()
 			fp.close()
-			self.read_services=[]
-			self.read_providers=[]
-			self.usingcaid=[]
-			self.ci_config=[]
 			for slot in tree.findall("slot"):
 				read_slot = getValue(slot.findall("id"), False).encode("UTF-8")
 				print "ci " + read_slot
@@ -624,6 +625,16 @@ def find_in_list(list, search, listpos=0):
 
 global_session = None
 
+def isModule():
+	if eDVBCIInterfaces.getInstance().getNumOfSlots():
+		NUM_CI=eDVBCIInterfaces.getInstance().getNumOfSlots()
+		if NUM_CI > 0:
+			for slot in range(NUM_CI):
+				state = eDVBCI_UI.getInstance().getState(slot)
+				if state > 0:
+					return True
+	return False
+
 def sessionstart(reason, session):
 	global global_session
 	global_session = session
@@ -640,7 +651,7 @@ def main(session, **kwargs):
 	session.open(CIselectMainMenu)
 
 def menu(menuid, **kwargs):
-	if menuid == "cam" and eDVBCIInterfaces.getInstance().getNumOfSlots():
+	if menuid == "setup" and isModule():
 		return [(_("Common Interface Assignment"), main, "ci_assign", 11)]
 	return [ ]
 
