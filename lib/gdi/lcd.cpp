@@ -95,13 +95,17 @@ eDBoxLCD::eDBoxLCD()
 				{
 					lcdfd = open("/dev/dbox/oled0", O_RDWR);
 				}
-		}		
+		}
 		else
 		{
 			lcdfd = open("/dev/dbox/oled0", O_RDWR);
-		}
+		}		
 	}	
-
+	else
+	{
+		lcdfd = open("/dev/dbox/oled0", O_RDWR);
+	}
+	
 	if (lcdfd < 0)
 	{
 		if (!access("/proc/stb/lcd/oled_brightness", W_OK) ||
