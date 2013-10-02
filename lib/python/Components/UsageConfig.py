@@ -61,7 +61,8 @@ def InitUsageConfig():
 	config.usage.pip_zero_button = ConfigSelection(default = "standard", choices = [
 		("standard", _("Standard")), ("swap", _("Swap PiP and main picture")),
 		("swapstop", _("Move PiP to main picture")), ("stop", _("Stop PiP")) ])
-	config.usage.pip_hideOnExit = ConfigYesNo(default=True)
+	config.usage.pip_hideOnExit = ConfigSelection(default = "without popup", choices = [
+		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup")) ])
 
 	config.usage.default_path = ConfigText(default = resolveFilename(SCOPE_HDD))
 	config.usage.timer_path = ConfigText(default = "<default>")
