@@ -524,25 +524,25 @@ class ChannelSelectionEdit:
 
 	def renameEntry(self, name):
 		if name:
-			cur = self.servicelist.getCurrent()
-			if (cur.flags & eServiceReference.mustDescent):
-				mutableList = self.getMutableList(cur)
+			current = self.servicelist.getCurrent()
+			if (current.flags & eServiceReference.mustDescent):
+				mutableList = self.getMutableList(current)
 				mutableList.setListName(name)
 				mutableList.flushChanges()
 			else:
 				end = self.atEnd()
-				if (cur.flags & eServiceReference.isMarker):
+				if (current.flags & eServiceReference.isMarker):
 					self.addMarker(name)
 					mutableList = self.getMutableList()
-					mutableList.removeService(cur)
+					mutableList.removeService(current)
 					mutableList.flushChanges()
-					self.servicelist.removeService(cur)
+					self.servicelist.removeService(current)
 				else:
-					sRef = cur.toCompareString()
+					sRef = current.toCompareString()
 					ref = eServiceReference(sRef)
 					ref.setName(name)
 					mutableList = self.getMutableList()
-					mutableList.removeService(cur)
+					mutableList.removeService(current)
 					self.servicelist.removeCurrent()
 					if end:
 						if not mutableList.addService(ref):
@@ -554,6 +554,7 @@ class ChannelSelectionEdit:
 							self.servicelist.addService(ref, True)
 					mutableList.flushChanges()
 			refreshServiceList()
+			self.servicelist.setCurrent(current)
 
 	def addMarker(self, name):
 		current = self.servicelist.getCurrent()
