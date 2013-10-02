@@ -210,8 +210,10 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			self.hide()
 		elif self.session.pipshown and config.usage.pip_hideOnExit.value:
 			self.showPiP()
-		else:
+		elif config.usage.leave_movieplayer_onExit.value == "popup":
 			self.session.openWithCallback(self.leavePlayerOnExitCallback, MessageBox, _("Exit movie player?"), simple=True)
+		elif config.usage.leave_movieplayer_onExit.value == "without popup":	
+			self.leavePlayerOnExitCallback(True)
 
 	def leavePlayerOnExitCallback(self, answer):
 		if answer == True:
