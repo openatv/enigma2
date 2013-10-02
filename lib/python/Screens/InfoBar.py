@@ -208,7 +208,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	def leavePlayerOnExit(self):
 		if self.shown:
 			self.hide()
-		elif self.session.pipshown:
+		elif self.session.pipshown and config.usage.pip_hideOnExit.value:
 			self.showPiP()
 		else:
 			self.session.openWithCallback(self.leavePlayerOnExitCallback, MessageBox, _("Exit movie player?"), simple=True)
