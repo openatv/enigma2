@@ -275,9 +275,8 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	def keyHide(self):
 		if self.__state == self.STATE_SHOWN:
 			self.hide()
-		else:
-			if self.session.pipshown:
-				self.showPiP()
+		elif self.session.pipshown and config.usage.pip_hideOnExit.value:
+			self.showPiP()
 
 	def connectShowHideNotifier(self, fnc):
 		if not fnc in self.onShowHideNotifiers:
