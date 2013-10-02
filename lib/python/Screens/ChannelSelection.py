@@ -4,7 +4,7 @@ from Screen import Screen
 import Screens.InfoBar
 import Components.ParentalControl
 from Components.Button import Button
-from Components.ServiceList import ServiceList
+from Components.ServiceList import ServiceList, refreshServiceList
 from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
@@ -167,11 +167,13 @@ class ChannelContextMenu(Screen):
 					if current_sel_path.find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
 						append_when_current_valid(current, menu, (_("remove all new found flags"), self.removeAllNewFoundFlags), level = 0)
 				if inBouquet:
+					append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level = 0)					
 					append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level = 0)
 				if current_root and current_root.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
 					append_when_current_valid(current, menu, (_("remove new found flag"), self.removeNewFoundFlag), level = 0)
 			else:
 					menu.append(ChoiceEntryComponent(text = (_("add bouquet"), self.showBouquetInputBox)))
+					append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level = 0)
 					append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet), level = 0)
 
 		if inBouquet: # current list is editable?
@@ -339,6 +341,14 @@ class ChannelContextMenu(Screen):
 
 	def removeCurrentService(self):
 		self.csel.removeCurrentService()
+		self.close()
+
+	def renameEntry(self):
+		cur = self.csel.getCurrentSelection()
+		name = eServiceCenter.getInstance().info(cur).getName(cur) or ServiceReference(cur).getServiceName() or ""
+		name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+		if name:
+			self.session.openWithCallback(self.csel.renameEntry, InputBox, title=_("Please enter new name:"), text=name, maxSize=False, visible_width=56, type=Input.TEXT)
 		self.close()
 
 	def toggleMoveMode(self):
@@ -511,6 +521,39 @@ class ChannelSelectionEdit:
 			else:
 				name += '_'
 		return name
+
+	def renameEntry(self, name):
+		if name:
+			cur = self.servicelist.getCurrent()
+			if (cur.flags & eServiceReference.mustDescent):
+				mutableList = self.getMutableList(cur)
+				mutableList.setListName(name)
+				mutableList.flushChanges()
+			else:
+				end = self.atEnd()
+				if (cur.flags & eServiceReference.isMarker):
+					self.addMarker(name)
+					mutableList = self.getMutableList()
+					mutableList.removeService(cur)
+					mutableList.flushChanges()
+					self.servicelist.removeService(cur)
+				else:
+					sRef = cur.toCompareString()
+					ref = eServiceReference(sRef)
+					ref.setName(name)
+					mutableList = self.getMutableList()
+					mutableList.removeService(cur)
+					self.servicelist.removeCurrent()
+					if end:
+						if not mutableList.addService(ref):
+							self.servicelist.addService(ref, False)
+							self.moveDown()
+					else:
+						cur = self.servicelist.getCurrent()
+						if not mutableList.addService(ref, cur):
+							self.servicelist.addService(ref, True)
+					mutableList.flushChanges()
+			refreshServiceList()
 
 	def addMarker(self, name):
 		current = self.servicelist.getCurrent()
