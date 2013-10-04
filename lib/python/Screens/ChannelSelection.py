@@ -203,9 +203,12 @@ class ChannelContextMenu(Screen):
 					else:
 						append_when_current_valid(current, menu, (_("end favourites edit"), self.bouquetMarkEnd), level = 0)
 						append_when_current_valid(current, menu, (_("abort favourites edit"), self.bouquetMarkAbort), level = 0)
+					if current_sel_flags & eServiceReference.isMarker:	
+						append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level = 0)
+						append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level = 0)
 				else:
-						append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level = 0)
-						append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level = 0)
+					append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level = 0)
+					append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level = 0)
 
 		menu.append(ChoiceEntryComponent(text = (_("Configuration..."), boundFunction(self.openSetup, "userinterface"))))
 		self["menu"] = ChoiceList(menu)
@@ -532,20 +535,28 @@ class ChannelSelectionEdit:
 				mutableList.flushChanges()
 			else:
 				end = self.atEnd()
-				sRef = current.toCompareString()
-				ref = eServiceReference(sRef)
-				ref.setName(name)
-				mutableList = self.getMutableList()
-				mutableList.removeService(current)
-				self.servicelist.removeCurrent()
-				if end:
-					if not mutableList.addService(ref):
-						self.servicelist.addService(ref, False)
-						self.moveDown()
+				if (current.flags & eServiceReference.isMarker):
+					self.addMarker(name)
+					mutableList = self.getMutableList()
+					mutableList.removeService(current)
+					mutableList.flushChanges()
+					self.servicelist.removeCurrent()
 				else:
-					cur = self.servicelist.getCurrent()
-					if not mutableList.addService(ref, cur):
-						self.servicelist.addService(ref, True)
+					sRef = current.toCompareString()
+					ref = eServiceReference(sRef)
+					ref.setName(name)
+					mutableList = self.getMutableList()
+					mutableList.removeService(current)
+					self.servicelist.removeCurrent()
+					if end:
+						if not mutableList.addService(ref):
+							self.servicelist.addService(ref, False)
+							self.moveDown()
+					else:
+						cur = self.servicelist.getCurrent()
+						if not mutableList.addService(ref, cur):
+							self.servicelist.addService(ref, True)
+					mutableList.flushChanges()
 				mutableList.flushChanges()
 				refreshServiceList()
 				self.servicelist.setCurrent(current)
