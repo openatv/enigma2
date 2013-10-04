@@ -529,7 +529,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 					self.secondInfoBarScreen.hide()
 					self.secondInfoBarWasShown = False
 			if self.session.pipshown and "popup" in config.usage.pip_hideOnExit.getValue():
-				if config.usage.pip_hideOnExit.getVale() == "popup":
+				if config.usage.pip_hideOnExit.getValue() == "popup":
 					self.session.openWithCallback(self.hidePipOnExitCallback, MessageBox, _("Disable Picture in Picture"), simple=True)
 				else:
 					self.hidePipOnExitCallback(True)
