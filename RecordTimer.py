@@ -583,6 +583,7 @@ class RecordTimer(timer.Timer):
 			if w.repeated:
 				w.processRepeated()
 				w.state = RecordTimerEntry.StateWaiting
+				w.first_try_prepare = True
 				self.addTimerEntry(w)
 			else:
 				# Remove old timers as set in config
