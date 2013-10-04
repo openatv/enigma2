@@ -557,7 +557,6 @@ class ChannelSelectionEdit:
 						if not mutableList.addService(ref, cur):
 							self.servicelist.addService(ref, True)
 					mutableList.flushChanges()
-				mutableList.flushChanges()
 				refreshServiceList()
 				self.servicelist.setCurrent(current)
 
