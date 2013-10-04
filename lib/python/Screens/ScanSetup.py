@@ -293,7 +293,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.updateSatList()
 		self.service = session.nav.getCurrentService()
 		self.feinfo = None
-		self.satfindNim = None
+		self.satfinder = False
 		self.networkid = 0
 		frontendData = None
 		if self.service is not None:
@@ -763,13 +763,16 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		flags = None
 		startScan = True
 		removeAll = True
-		index_to_scan = self.satfindNim and 0 or int(self.scan_nims.value)
+		index_to_scan = int(self.scan_nims.value)
 
 		if self.scan_nims == [ ]:
 			self.session.open(MessageBox, _("No tuner is enabled!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 			return
 
-		nim = self.satfindNim and nimmanager.nim_slots[self.satfindNim] or nimmanager.nim_slots[index_to_scan]
+		if self.satfinder:
+			nim = nimmanager.nim_slots[self.feid]
+		else:
+			nim = nimmanager.nim_slots[index_to_scan]
 		print "nim", nim.slot
 		if nim.isCompatible("DVB-S"):
 			print "is compatible with DVB-S"
@@ -778,8 +781,12 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				assert len(self.satList) > index_to_scan
 				assert len(self.scan_satselection) > index_to_scan
 
-				nimsats = self.satList[self.satfindNim or index_to_scan]
-				selsatidx = self.scan_satselection[index_to_scan].index
+				if self.satfinder:
+					nimsats = self.satList[self.feid]
+					selsatidx = self.scan_satselection[0].index
+				else:
+					nimsats = self.satList[index_to_scan]
+					selsatidx = self.scan_satselection[index_to_scan].index
 
 				# however, the satList itself could be empty. in that case, "index" is 0 (for "None").
 				if len(nimsats):
@@ -861,7 +868,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			x[1].save()
 
 		if startScan:
-			self.startScan(tlist, flags, index_to_scan, self.networkid)
+			if self.satfinder:
+				self.startScan(tlist, flags, self.feid, self.networkid)
+			else:
+				self.startScan(tlist, flags, index_to_scan, self.networkid)
 		else:
 			self.flags = flags
 			self.feid = index_to_scan

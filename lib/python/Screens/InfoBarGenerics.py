@@ -275,9 +275,15 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	def keyHide(self):
 		if self.__state == self.STATE_SHOWN:
 			self.hide()
-		else:
-			if self.session.pipshown:
-				self.showPiP()
+		elif self.session.pipshown and "popup" in config.usage.pip_hideOnExit.value:
+			if config.usage.pip_hideOnExit.value == "popup":
+				self.session.openWithCallback(self.hidePipOnExitCallback, MessageBox, _("Disable Picture in Picture"), simple=True)
+			else:
+				self.hidePipOnExitCallback(True)
+
+	def hidePipOnExitCallback(self, answer):
+		if answer == True:
+			self.showPiP()
 
 	def connectShowHideNotifier(self, fnc):
 		if not fnc in self.onShowHideNotifiers:

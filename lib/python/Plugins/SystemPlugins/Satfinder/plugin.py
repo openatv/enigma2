@@ -229,12 +229,15 @@ class Satfinder(ScanSetup):
 		self.updateSatList()
 
 		self.scan_satselection = [ self.tuning_sat ]
-		self.satfindNim = self.feid
+		self.satfinder = True
 
 		self.scan_sat.frequency.setValue(self.transponder[0])
 		self.scan_sat.symbolrate.setValue(self.transponder[1])
 		self.scan_sat.polarization.setValue(self.transponder[2])
-		self.scan_sat.fec.setValue(self.transponder[3])
+		if self.scan_sat.system.getValue() == eDVBFrontendParametersSatellite.System_DVB_S:
+			self.scan_sat.fec.setValue(self.transponder[3])
+		else:
+			self.scan_sat.fec_s2.setValue(self.transponder[3])
 		self.scan_sat.inversion.setValue(self.transponder[4])
 		self.scan_sat.system.setValue(self.transponder[6])
 		self.scan_sat.modulation.setValue(self.transponder[7])
