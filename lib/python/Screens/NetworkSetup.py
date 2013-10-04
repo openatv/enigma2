@@ -19,7 +19,7 @@ from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
-from enigma import eTimer, ePoint, eSize, RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
+from enigma import eTimer, ePoint, eSize, RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont, getBoxType
 from os import path as os_path, system as os_system, unlink
 from re import compile as re_compile, search as re_search
 import commands
@@ -934,7 +934,8 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append((_("Network wizard"), "openwizard"))
-		menu.append((_("Network MAC settings"), "mac"))
+		if not getBoxType() == 'gb800seplus' or not getBoxType() == 'gb800ueplus':		
+			menu.append((_("Network MAC settings"), "mac"))
 
 		return menu
 
