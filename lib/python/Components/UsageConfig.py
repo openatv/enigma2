@@ -77,6 +77,8 @@ def InitUsageConfig():
 	config.usage.pip_zero_button = ConfigSelection(default = "standard", choices = [
 		("standard", _("Standard")), ("swap", _("Swap PiP and main picture")),
 		("swapstop", _("Move PiP to main picture")), ("stop", _("Stop PiP")) ])
+	config.usage.pip_hideOnExit = ConfigSelection(default = "no", choices = [
+		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup")) ])
 
 	if not os.path.exists(resolveFilename(SCOPE_HDD)):
 		try:
@@ -128,6 +130,8 @@ def InitUsageConfig():
 		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service")), ("pause", _("Pause movie at end")), ("playlist", _("Play next (return to movie list)")),
 		("playlistquit", _("Play next (return to previous service)")), ("loop", _("Continues play (loop)")), ("repeatcurrent", _("Repeat"))])
 	config.usage.next_movie_msg = ConfigYesNo(default = True)
+	config.usage.leave_movieplayer_onExit = ConfigSelection(default = "no", choices = [
+		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup")) ])
 
 	config.usage.setup_level = ConfigSelection(default = "expert", choices = [
 		("simple", _("Simple")),

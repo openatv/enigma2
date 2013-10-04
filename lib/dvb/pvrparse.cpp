@@ -645,24 +645,36 @@ int eMPEGStreamInformationWriter::stopSave(void)
 	if (m_access_points.empty() && (m_streamtime_access_points.size() <= 1))
 		// Nothing to save, don't create an ap file at all
 		return 1;
-	CFile f((m_filename + ".ap").c_str(), "wb");
-	if (!f)
-		return -1;
-	for (std::deque<AccessPoint>::const_iterator i(m_streamtime_access_points.begin()); i != m_streamtime_access_points.end(); ++i)
+	std::string ap_filename(m_filename);
+	ap_filename += ".ap";
 	{
-		unsigned long long d[2];
-		d[0] = htobe64(i->off);
-		d[1] = htobe64(i->pts);
-		fwrite(d, sizeof(d), 1, f);
-	}
-	for (std::deque<AccessPoint>::const_iterator i(m_access_points.begin()); i != m_access_points.end(); ++i)
-	{
-		unsigned long long d[2];
-		d[0] = htobe64(i->off);
-		d[1] = htobe64(i->pts);
-		fwrite(d, sizeof(d), 1, f);
+		CFile f(ap_filename.c_str(), "wb");
+		if (!f)
+			return -1;
+		for (std::deque<AccessPoint>::const_iterator i(m_streamtime_access_points.begin()); i != m_streamtime_access_points.end(); ++i)
+		{
+			unsigned long long d[2];
+			d[0] = htobe64(i->off);
+			d[1] = htobe64(i->pts);
+			if (fwrite(d, sizeof(d), 1, f) <= 0)
+				goto write_ap_error;
+		}
+		for (std::deque<AccessPoint>::const_iterator i(m_access_points.begin()); i != m_access_points.end(); ++i)
+		{
+			unsigned long long d[2];
+			d[0] = htobe64(i->off);
+			d[1] = htobe64(i->pts);
+			if (fwrite(d, sizeof(d), 1, f) <= 0)
+				goto write_ap_error;
+		}
 	}
 	return 0;
+write_ap_error:
+	/* Writing half an AP file is worse than no file at all, so unlink
+	 * it if writing it fails */
+	eDebug("Failed to write %s, removing it", ap_filename.c_str());
+	::unlink(ap_filename.c_str());
+	return -1;
 }
 
 void eMPEGStreamInformationWriter::addAccessPoint(off_t offset, pts_t pts, bool streamtime)
