@@ -349,6 +349,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.typeOfScanEntry = None
 		self.systemEntry = None
 		self.modulationEntry = None
+		self.preDefSatList = None
 		nim = nimmanager.nim_slots[index_to_scan]
 		if nim.isCompatible("DVB-S"):
 			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), self.scan_type)
@@ -383,6 +384,14 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					self.list.append(self.modulationEntry)
 					self.list.append(getConfigListEntry(_('Roll-off'), self.scan_sat.rolloff))
 					self.list.append(getConfigListEntry(_('Pilot'), self.scan_sat.pilot))
+			elif self.scan_type.value == "predefined_transponder":
+				self.updateSatList()
+				self.scan_satselection[index_to_scan]
+				self.preDefSatList = getConfigListEntry(_('Satellite'), self.scan_satselection[index_to_scan])
+				self.list.append(self.preDefSatList)
+				sat = self.satList[index_to_scan][self.scan_satselection[index_to_scan].index]
+				self.predefinedTranspondersList(sat[0])
+				self.list.append(getConfigListEntry(_('Transponder'), self.preDefTransponders))
 			elif self.scan_type.value == "single_satellite":
 				self.updateSatList()
 				print self.scan_satselection[index_to_scan]
@@ -445,6 +454,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		if cur == self.typeOfScanEntry or \
 			cur == self.tunerEntry or \
 			cur == self.systemEntry or \
+			cur == self.preDefSatList or \
 			(self.modulationEntry and self.systemEntry[1].value == eDVBFrontendParametersSatellite.System_DVB_S2 and cur == self.modulationEntry):
 			self.createSetup()
 
@@ -518,7 +528,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.scan_cab = ConfigSubsection()
 			self.scan_ter = ConfigSubsection()
 
-			self.scan_type = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("single_satellite", _("Single satellite")), ("multisat", _("Multisat")), ("multisat_yes", _("Multisat"))])
+			self.scan_type = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder")), ("single_satellite", _("Single satellite")), ("multisat", _("Multisat")), ("multisat_yes", _("Multisat"))])
 			self.scan_typecable = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("complete", _("Complete"))])
 			self.scan_typeterrestrial = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("complete", _("Complete"))])
 			self.scan_clearallservices = ConfigSelection(default = "no", choices = [("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (keep feeds)"))])
@@ -801,6 +811,16 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 								self.scan_sat.rolloff.value,
 								self.scan_sat.pilot.value)
 				removeAll = False
+			elif self.scan_type.value == "predefined_transponder":
+				nimsats = self.satList[index_to_scan]
+				selsatidx = self.scan_satselection[index_to_scan].index
+				if len(nimsats):
+					orbpos = nimsats[selsatidx][0]
+					tps = nimmanager.getTransponders(orbpos)
+					if len(tps) and len(tps) > self.preDefTransponders.index :
+						tp = tps[self.preDefTransponders.index]
+						self.addSatTransponder(tlist, tp[1] / 1000, tp[2] / 1000, tp[3], tp[4], tp[7], orbpos, tp[5], tp[6], tp[8], tp[9])
+				removeAll = False
 			elif self.scan_type.value == "single_satellite":
 				sat = self.satList[index_to_scan][self.scan_satselection[index_to_scan].index]
 				getInitialTransponderList(tlist, sat[0])
@@ -880,6 +900,25 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.tlist = []
 		else:
 			self.startScan(self.tlist, self.flags, self.feid)
+
+	def predefinedTranspondersList(self, orbpos):
+		if orbpos is not None:
+			list = []
+			default = None
+			i = 0
+			tps = nimmanager.getTransponders(orbpos)
+			for tp in tps:
+				if tp[0] == 0:
+					polarization = (tp[3] == 0 and "H") or (tp[3] == 1 and "V") or (tp[3] == 2 and "L") or (tp[3] == 3 and "R") or "??"
+					fec = (tp[4] == 0 and "Auto") or (tp[4] == 1 and "1/2") or (tp[4] == 2 and "2/3") or (tp[4] == 3 and "3/4") or \
+						(tp[4] == 4 and "5/6") or (tp[4] == 5 and "7/8") or (tp[4] == 6 and "8/9") or (tp[4] == 7 and "3/5") or \
+						(tp[4] == 8 and "4/5") or (tp[4] == 9 and "9/10") or (tp[4] == 15 and "None") or "??"
+					params = str(tp[1]/1000) + " " + polarization + " " + str(tp[2]/1000) + " " + fec
+					if default is None:
+						default = str(i)
+					list.append((str(i), params))
+					i += 1
+			self.preDefTransponders = ConfigSelection(choices = list, default = default)
 
 	def startScan(self, tlist, flags, feid, networkid = 0):
 		if len(tlist):
