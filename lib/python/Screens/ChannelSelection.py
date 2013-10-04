@@ -1524,9 +1524,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			{
 				"cancel": self.cancel,
 				"ok": self.channelSelected,
-				"keyRadio": self.setModeRadio,
-				"keyTV": self.setModeTv,
+				"keyRadio": self.toogleTvRadio,
+				"keyTV": self.toogleTvRadio,
 			})
+			
+		self.radioTV = 0	
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -1592,6 +1594,14 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		lastservice = eServiceReference(self.lastservice.getValue())
 		if lastservice.valid():
 			self.setCurrentSelection(lastservice)
+			
+	def toogleTvRadio(self): 
+		if self.radioTV == 1:
+			self.radioTV = 0
+			self.setModeTv() 
+		else: 
+			self.radioTV = 1
+			self.setModeRadio() 
 
 	def setModeTv(self):
 		if self.revertMode is None and config.servicelist.lastmode.getValue() == 'radio':
