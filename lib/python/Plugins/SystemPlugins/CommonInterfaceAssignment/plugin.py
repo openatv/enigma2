@@ -274,7 +274,7 @@ class CIconfigMenu(Screen):
 		self.ci_config=[]
 
 		try:
-			fp = opens(self.filename, 'r')
+			fp = open(self.filename, 'r')
 			tree = ci_parse(fp).getroot()
 			fp.close()
 			for slot in tree.findall("slot"):
