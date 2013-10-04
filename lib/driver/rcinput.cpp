@@ -102,6 +102,15 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		ev->code = KEY_TEXT;
 		
 	}
+#endif
+
+#if KEY_F2_TO_KEY_F6
+	if (ev->code == KEY_F2)
+	{
+		/* Gigablue New Remote rc has a KEY_PIP key, which sends KEY_F2 events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_F6;
+		
+	}
 #endif		
 
 #if KEY_TV_TO_KEY_MODE
