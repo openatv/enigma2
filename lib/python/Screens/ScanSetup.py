@@ -915,7 +915,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					list.append((str(i), params))
 					i += 1
 			self.preDefTransponders = ConfigSelection(choices = list, default = default)
-			
+
 	def startScan(self, tlist, flags, feid, networkid = 0):
 		if len(tlist):
 			# flags |= eComponentScan.scanSearchBAT
