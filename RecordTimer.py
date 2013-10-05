@@ -621,6 +621,7 @@ class RecordTimer(timer.Timer):
 			if w.repeated:
 				w.processRepeated()
 				w.state = RecordTimerEntry.StateWaiting
+				w.first_try_prepare = True
 				self.addTimerEntry(w)
 			else:
 				# check for disabled timers, if time as passed set to completed.
