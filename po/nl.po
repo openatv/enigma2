@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-29 14:36+0200\n"
-"PO-Revision-Date: 2013-09-01 08:21+0100\n"
+"POT-Creation-Date: 2013-10-05 15:29+0200\n"
+"PO-Revision-Date: 2013-10-06 17:05+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -801,6 +801,9 @@ msgstr "Wijs toe"
 msgid "Allocate unused memory index"
 msgstr "Wijs niet gebruikte geheugen index toe"
 
+msgid "Allow quit movieplayer with exit"
+msgstr "Speler kan verlaten worden met de Exit-toets."
+
 msgid "Allow subtitle language to equal audio language"
 msgstr "Ondertitel taal overeenkomstig aan audio taal"
 
@@ -1340,6 +1343,9 @@ msgstr "Kan worden gebruikt voor verschillen in fps tussen externe ondertitels."
 msgid "Cancel"
 msgstr "Annuleren"
 
+msgid "Cancel next timer"
+msgstr "annuleer de volgende timer"
+
 msgid "Cancel save timeshift as movie"
 msgstr "Annuleer het opslaan van timeshift als opname."
 
@@ -1589,6 +1595,9 @@ msgstr "Klanten"
 
 msgid "Close"
 msgstr "Sluiten"
+
+msgid "Close PiP on exit"
+msgstr "Sluit PiP met de exit-toets."
 
 msgid "Close bouquet list."
 msgstr "Sluit favorietenlijst"
@@ -4943,6 +4952,9 @@ msgstr "Voer een bestandsnaam in (leeg= huidige datum)"
 msgid "Please enter name of the new directory"
 msgstr "Voer de naam van de nieuwe map in a.u.b."
 
+msgid "Please enter new name:"
+msgstr "Voer een nieuwe naam in "
+
 msgid "Please enter the correct pin code"
 msgstr "Gelieve de juiste pincode in te voeren"
 
@@ -5398,9 +5410,6 @@ msgstr "Neem volgende op"
 msgid "Record now"
 msgstr "Neem nu op"
 
-msgid "Record once"
-msgstr "Neem eenmaal op"
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr "Opname begonnen! Timeshift stopt nu....."
 
@@ -5648,13 +5657,6 @@ msgstr "Ga door op laatste positie"
 msgid "Resume position at %s"
 msgstr "Hervat positie op %s"
 
-#. TRANSLATORS: The string "Resuming playback" flashes for a moment
-#. TRANSLATORS: at the start of a movie, when the user has selected
-#. TRANSLATORS: "Resume from last position" as start behavior.
-#. TRANSLATORS: The purpose is to notify the user that the movie starts
-#. TRANSLATORS: in the middle somewhere and not from the beginning.
-#. TRANSLATORS: (Some translators seem to have interpreted it as a
-#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Afspelen wordt hervat"
 
@@ -6844,6 +6846,9 @@ msgstr "Stop opname"
 
 msgid "Stop recording and delete"
 msgstr "Stop opname en verwijder"
+
+msgid "Stop recording now"
+msgstr "Stop de opname nu"
 
 msgid "Stop test"
 msgstr "Stop test"
@@ -8059,6 +8064,9 @@ msgstr "Favorieten"
 msgid "User defined"
 msgstr "Door u ingesteld"
 
+msgid "User defined transponder"
+msgstr "Door gebruiker bepaalde transponder"
+
 msgid "User interface"
 msgstr "Gebruikers interface"
 
@@ -8391,6 +8399,9 @@ msgstr "Welke actie is vereist als de timer gereed is? 'Auto' brengt de ontvange
 msgid "What do you want to scan?"
 msgstr "Wat wilt u zoeken?"
 
+msgid "When enabled the PiP can be closed by the exit button."
+msgstr "Indien ingeschakeld kan PiP (ook) verlaten worden door op de exit-toets te drukken. "
+
 msgid "When enabled the online checker will also check for experimental versions"
 msgstr "Indien geactiveerd zal ook worden gecontroleerd op experimentele versies."
 
@@ -8438,6 +8449,9 @@ msgstr "Indien geactiveerd, zullen grafische DVB-ondertitels op hun originele pl
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr "Indien geactiveerd worden grafische DVB-ondertitels vertoond in geel in plaats van in de originele kleur."
+
+msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgstr "Indien ingeschakeld kan de speler (ook) verlaten worden door op de exit-toets te drukken. "
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Indien ingeschakeld zal de motor het stroomverbruik benutten om te bepalen of een motor gestopt is (als de tuners dat ondersteunen)."
@@ -8562,11 +8576,17 @@ msgstr "Draadloze netwerkinstellingen."
 msgid "Wireless network state"
 msgstr "Status draadloos netwerk"
 
+msgid "With popup"
+msgstr "Met pop-up"
+
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr "Als deze optie is geactiveerd, toont de kanaallijst altijd eerts de favorietenlijsten. Indien gedeactiveerd wordt de huidige lijst getoond."
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Met deze optie kunt u systeemtaken in de extensielijst (onder de bauwe knop) verbergen."
+
+msgid "Without popup"
+msgstr "Zonder pop-up"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schrijffout tijdens opname. Harde schijf vol?\n"
@@ -9692,6 +9712,9 @@ msgstr "verwijder dit merkteken"
 msgid "rename"
 msgstr "hernoem"
 
+msgid "rename entry"
+msgstr "Invoer hernoemen"
+
 msgid "repeat playlist"
 msgstr "Herhaal afspeellijst"
 
@@ -10096,6 +10119,9 @@ msgstr "zapte"
 
 #~ msgid "Model: %s"
 #~ msgstr "Model: %s"
+
+#~ msgid "Record once"
+#~ msgstr "Neem eenmaal op"
 
 #~ msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
 #~ msgstr "Indien geactiveerd, zullen externe ondertitles (in media bestanden) in geel worden vertoond, in plaats van in de originele kleur."
