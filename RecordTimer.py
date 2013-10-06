@@ -485,6 +485,39 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if answer == True:
 			self.log(13, "ok, zapped away")
 			#NavigationInstance.instance.stopUserServices()
+			from Screens.ChannelSelection import ChannelSelection
+			ChannelSelectionInstance = ChannelSelection.instance
+			self.service_types = service_types_tv
+			if ChannelSelectionInstance:
+				if config.usage.multibouquet.getValue():
+					bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
+				else:
+					bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types)
+				rootstr = ''
+				serviceHandler = eServiceCenter.getInstance()
+				rootbouquet = eServiceReference(bqrootstr)
+				bouquet = eServiceReference(bqrootstr)
+				bouquetlist = serviceHandler.list(bouquet)
+				if not bouquetlist is None:
+					while True:
+						bouquet = bouquetlist.getNext()
+						if bouquet.flags & eServiceReference.isDirectory:
+							ChannelSelectionInstance.clearPath()
+							ChannelSelectionInstance.setRoot(bouquet)
+							servicelist = serviceHandler.list(bouquet)
+							if not servicelist is None:
+								serviceIterator = servicelist.getNext()
+								while serviceIterator.valid():
+									if self.service_ref.ref == serviceIterator:
+										break
+									serviceIterator = servicelist.getNext()
+								if self.service_ref.ref == serviceIterator:
+									break
+					ChannelSelectionInstance.enterPath(rootbouquet)
+					ChannelSelectionInstance.enterPath(bouquet)
+					ChannelSelectionInstance.saveRoot()
+					ChannelSelectionInstance.saveChannel(self.service_ref.ref)
+				ChannelSelectionInstance.addToHistory(self.service_ref.ref)
 			NavigationInstance.instance.playService(self.service_ref.ref)
 		else:
 			self.log(14, "user didn't want to zap away, record will probably fail")
