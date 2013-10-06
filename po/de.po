@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-23 23:10+0200\n"
-"PO-Revision-Date: 2013-08-24 09:26+0100\n"
+"POT-Creation-Date: 2013-10-05 15:29+0200\n"
+"PO-Revision-Date: 2013-10-06 09:01+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -820,6 +820,9 @@ msgstr "Reservieren"
 msgid "Allocate unused memory index"
 msgstr "Unbenutzten Speicher Index reservieren"
 
+msgid "Allow quit movieplayer with exit"
+msgstr "Erlaube Mediaplayer mit Exit verlassen "
+
 msgid "Allow subtitle language to equal audio language"
 msgstr "Erlaube gleiche Sprache bei Untertitel und Ton"
 
@@ -1372,6 +1375,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "Abbrechen"
 
+msgid "Cancel next timer"
+msgstr "Nächsten Timer abbrechen"
+
 msgid "Cancel save timeshift as movie"
 msgstr "Film speichern abbrechen"
 
@@ -1635,6 +1641,9 @@ msgstr "Klienten"
 
 msgid "Close"
 msgstr "Schließen"
+
+msgid "Close PiP on exit"
+msgstr "PiP mit Exit beenden"
 
 msgid "Close bouquet list."
 msgstr "Schließe Favoritenliste"
@@ -5198,6 +5207,9 @@ msgstr "Bitte einen Dateinamen eingeben (leer = Dateiname ist aktuelles Datum)"
 msgid "Please enter name of the new directory"
 msgstr "Bitte den Namen des neuen Verzeichnisses eingeben"
 
+msgid "Please enter new name:"
+msgstr "Bitte neuen Dateinamen eingeben:"
+
 msgid "Please enter the correct pin code"
 msgstr "Bitte den korrekten PIN Code eingeben"
 
@@ -5665,9 +5677,6 @@ msgstr "Aufnahme demnächst"
 msgid "Record now"
 msgstr "Aufnahme jetzt"
 
-msgid "Record once"
-msgstr "Einmalige Aufnahme"
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr "Aufnahme wurde gestartet! TimeShift wird jetzt angehalten ..."
 
@@ -5916,13 +5925,6 @@ msgstr "An letzter Position fortsetzen"
 msgid "Resume position at %s"
 msgstr "Wiedergabestart ab %s"
 
-#. TRANSLATORS: The string "Resuming playback" flashes for a moment
-#. TRANSLATORS: at the start of a movie, when the user has selected
-#. TRANSLATORS: "Resume from last position" as start behavior.
-#. TRANSLATORS: The purpose is to notify the user that the movie starts
-#. TRANSLATORS: in the middle somewhere and not from the beginning.
-#. TRANSLATORS: (Some translators seem to have interpreted it as a
-#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Setze Wiedergabe fort"
 
@@ -7163,6 +7165,9 @@ msgstr "Aufnahme beenden"
 
 msgid "Stop recording and delete"
 msgstr "Aufnahme beenden und löschen"
+
+msgid "Stop recording now"
+msgstr "Aufnahme jetzt beenden"
 
 msgid "Stop test"
 msgstr "Test stoppen"
@@ -8503,6 +8508,9 @@ msgstr "Benutzer - Favoritenlisten"
 msgid "User defined"
 msgstr "Benutzerdefiniert"
 
+msgid "User defined transponder"
+msgstr "Benutzerdefinierter Transponder"
+
 msgid "User interface"
 msgstr "Benutzeroberfläche"
 
@@ -8862,6 +8870,9 @@ msgstr ""
 msgid "What do you want to scan?"
 msgstr "Was durchsuchen?"
 
+msgid "When enabled the PiP can be closed by the exit button."
+msgstr "Wenn aktiviert kann PiP mit der Exit Taste geschlossen werden."
+
 msgid ""
 "When enabled the online checker will also check for experimental versions"
 msgstr "Wenn aktiviert werden auch experimentelle Updates gesucht."
@@ -8956,6 +8967,9 @@ msgid ""
 msgstr ""
 "Wenn aktiviert werden grafische DVB Untertitel in Gelb statt der "
 "Originalfarbe dargestellt."
+
+msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgstr "Wenn aktiviert kann der Mediaplayer mit Exit verlassen werden."
 
 msgid ""
 "When enabled, measure power consumption to detect when the rotor stops "
@@ -9145,6 +9159,9 @@ msgstr "Funk-Netzwerk Konfiguration."
 msgid "Wireless network state"
 msgstr "Funk-Netzwerk Status"
 
+msgid "With popup"
+msgstr "Mit Popup"
+
 msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
 "bouquet screen first. If set to 'no' the current bouquet will be opened."
@@ -9158,6 +9175,9 @@ msgid ""
 msgstr ""
 "Mit dieser Option kannst Du Jobs in Erweiterungen verstecken (kurzer Druck "
 "auf Blau)."
+
+msgid "Without popup"
+msgstr "Ohne Popup"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schreibfehler bei der Aufnahme. Festplatte voll?\n"
@@ -10331,6 +10351,9 @@ msgstr "Diese Markierung entfernen"
 msgid "rename"
 msgstr "umbenennen"
 
+msgid "rename entry"
+msgstr "Eintrag umbenennen"
+
 msgid "repeat playlist"
 msgstr "Wiederholung der Wiedergabeliste"
 
@@ -10735,6 +10758,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "Model: %s"
 #~ msgstr "Modell: %s"
+
+#~ msgid "Record once"
+#~ msgstr "Einmalige Aufnahme"
 
 #~ msgid ""
 #~ "When enabled, external subtitles (in media files) will be displayed in "
