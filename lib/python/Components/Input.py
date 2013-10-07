@@ -11,14 +11,14 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 	PIN = 1
 	NUMBER = 2
 
-	def __init__(self, text="", maxSize = False, visible_width = False, type = TEXT):
+	def __init__(self, text="", maxSize=False, visible_width=False, type=TEXT, currPos=0, allMarked=True):
 		NumericalTextInput.__init__(self, self.right)
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		self.type = type
-		self.allmarked = (text != "") and (type != self.PIN)
+		self.allmarked = allMarked and (text != "") and (type != self.PIN)
 		self.maxSize = maxSize
-		self.currPos = 0
+		self.currPos = currPos
 		self.visible_width = visible_width
 		self.offset = 0
 		self.overwrite = maxSize
@@ -81,6 +81,10 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 	def getSize(self):
 		s = self.instance.calculateSize()
 		return (s.width(), s.height())
+
+	def markAll(self):
+		self.allmarked = True
+		self.update()
 	
 	def innerright(self):
 		if self.allmarked:
@@ -151,7 +155,9 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 			self.currPos = len(self.Text)
 		self.update()
 
-	def insertChar(self, ch, pos, owr, ins):
+	def insertChar(self, ch, pos=False, owr=False, ins=False):
+		if not pos:
+			pos = self.currPos
 		if ins and not self.maxSize:
 			self.Text = self.Text[0:pos] + ch + self.Text[pos:]
 		elif owr or self.overwrite:
@@ -242,4 +248,12 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		self.insertChar(newChar, self.currPos, owr, False);
 		if self.type == self.PIN or self.type == self.NUMBER:
 			self.innerright()
+		self.update()
+
+	def char(self, char):
+		if self.allmarked:
+			self.deleteAllChars()
+			self.allmarked = False
+		self.insertChar(char)
+		self.innerright()
 		self.update()

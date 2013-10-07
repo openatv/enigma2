@@ -57,6 +57,7 @@ dist_install_DATA = \
 	timeline.png \
 	unhandled-key.png \
 	verticalline-plugins.png \
+	vkey_all.png \
 	vkey_backspace.png \
 	vkey_bg.png \
 	vkey_clr.png \
