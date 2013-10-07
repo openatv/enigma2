@@ -333,10 +333,10 @@ class VirtualKeyBoard(Screen):
 			self.shiftClicked()
 		
 		elif text == "SPACE":
-			self["text"].char(" ")
+			self["text"].char(" ".encode("UTF-8"))
 		
 		elif text == "OK":
-			self.close(self["text"].getText())
+			self.close(self["text"].getText().encode("UTF-8"))
 
 		elif text == "LEFT":
 			self["text"].left()
@@ -348,7 +348,7 @@ class VirtualKeyBoard(Screen):
 			self["text"].char(text)
 
 	def ok(self):
-		self.close(self["text"].getText())
+		self.close(self["text"].getText().encode("UTF-8"))
 
 	def exit(self):
 		self.close(None)
