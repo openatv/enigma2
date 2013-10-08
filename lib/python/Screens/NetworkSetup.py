@@ -975,7 +975,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append((_("Network wizard"), "openwizard"))
-		if not getBoxType() == 'gb800seplus' or not getBoxType() == 'gb800ueplus': 
+		if not (getBoxType() == 'gb800seplus' or getBoxType() == 'gb800ueplus'):
 			menu.append((_("Network MAC settings"), "mac"))
 
 		return menu
