@@ -7,6 +7,7 @@ from GlobalActions import globalActionMap
 from enigma import eDVBVolumecontrol, getMachineBrand, getMachineName, getBoxType
 from Tools import Notifications
 import Screens.InfoBar
+from gettext import dgettext
 
 inStandby = None
 
