@@ -117,13 +117,13 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_INI0
 				else:
 					self.currentRcType = self.RCTYPE_INI2
-			elif model == 'ini-5000' or model == 'ini-7000' or model == 'ini-7012' or model== 'ini-9000':
+			elif model == 'ini-5000' or model == 'ini-7000' or model == 'ini-7012' or model == 'ini-9000':
 				self.currentRcType = self.RCTYPE_INI1
-			elif model == 'ini-1000' or model == 'ini-1000ru' or model == 'ini-5000ru' or model== 'ini-9000ru':
+			elif model == 'ini-1000' or model == 'ini-1000ru' or model == 'ini-5000ru' or model == 'ini-9000ru':
 				self.currentRcType = self.RCTYPE_INI2
-			elif model == 'ini-1000sv' or model == 'ini-5000sv':
+			elif model == 'ini-1000sv' or model == 'ini-5000sv' or model == 'ini-9000sv':
 				self.currentRcType = self.RCTYPE_INI3
-			elif model == 'ini-1000de':
+			elif model == 'ini-1000de' or model == 'ini-9000de':
 				self.currentRcType = self.RCTYPE_INI4				
 			elif getBoxType() == 'odinm6':
 				self.currentRcType = self.RCTYPE_ODINM6
