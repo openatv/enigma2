@@ -197,6 +197,8 @@ class doFlashImage(Screen):
 			box = "sezam-5000hd"
 		elif box == "ventonhdx" and machinename.lower() == "premium twin":
 			box = "miraclebox-twin"
+		elif box == "xp1000" and machinename.lower() == "sf8 hd":
+			box = "sf8"
 		return box
 
 	def green(self):
