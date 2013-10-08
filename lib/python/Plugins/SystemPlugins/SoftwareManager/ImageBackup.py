@@ -208,7 +208,7 @@ class ImageBackup(Screen):
 			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
 			self.EXTRA = "%s/fullbackup_e3hd/%s" % (self.DIRECTORY, self.DATE)
 		## TESTING THE MK Digital Model
-		elif self.MODEL == "xp1000":
+		elif self.MODEL == "xp1000" and not self.MACHINENAME.lower() == "sf8 hd":
 			self.TYPE = "MAXDIGITAL"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
