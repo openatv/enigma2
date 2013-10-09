@@ -716,6 +716,8 @@ class ChannelSelectionEdit:
 		self.__marked = self.servicelist.getRootServices()
 		for x in self.__marked:
 			self.servicelist.addMarked(eServiceReference(x))
+		if type == EDIT_ALTERNATIVES:
+			self.showAllServices()
 		self["Service"].editmode = True
 
 	def endMarkedEdit(self, abort):
