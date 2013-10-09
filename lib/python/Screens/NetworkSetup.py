@@ -2,7 +2,7 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
 from Screens.HelpMenu import HelpableScreen
-from Components.About import getImageVersionString
+from Components.About import about, getImageVersionString
 from Components.Console import Console
 from Components.Network import iNetwork
 from Components.Sources.StaticText import StaticText
@@ -975,7 +975,8 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append((_("Network wizard"), "openwizard"))
-		if not (getBoxType() == 'gb800seplus' or getBoxType() == 'gb800ueplus'):
+		kernel_ver = about.getKernelVersionString()
+		if kernel_ver <= "3.5.0":
 			menu.append((_("Network MAC settings"), "mac"))
 
 		return menu
