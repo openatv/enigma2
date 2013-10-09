@@ -1059,7 +1059,7 @@ class ChannelSelectionBase(Screen):
 				if currentRoot is None or currentRoot != ref:
 					self.clearPath()
 					self.enterPath(ref)
-					self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
+					self.setCurrentSelectionAlternative(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
 	def showSatellites(self):
 		if not self.pathChangeDisabled:
@@ -1134,7 +1134,7 @@ class ChannelSelectionBase(Screen):
 							if len(op) >= 4:
 								hop = int(op[:-4],16)
 								refstr = '1:7:0:0:0:0:%s:0:0:0:(satellitePosition == %s) && %s ORDER BY name'%(op,hop,self.service_types[self.service_types.rfind(':')+1:])
-								self.setCurrentSelection(eServiceReference(refstr))
+								self.setCurrentSelectionAlternative(eServiceReference(refstr))
 
 	def showProviders(self):
 		if not self.pathChangeDisabled:
@@ -1154,7 +1154,7 @@ class ChannelSelectionBase(Screen):
 							if info:
 								provider = info.getInfoString(iServiceInformation.sProvider)
 								refstr = '1:7:0:0:0:0:0:0:0:0:(provider == \"%s\") && %s ORDER BY name:%s'%(provider,self.service_types[self.service_types.rfind(':')+1:],provider)
-								self.setCurrentSelection(eServiceReference(refstr))
+								self.setCurrentSelectionAlternative(eServiceReference(refstr))
 
 	def changeBouquet(self, direction):
 		if not self.pathChangeDisabled:
@@ -1244,6 +1244,16 @@ class ChannelSelectionBase(Screen):
 		if service:
 			self.servicelist.setCurrent(service)
 
+	def setCurrentSelectionAlternative(self, ref):
+		if self.bouquet_mark_edit != EDIT_ALTERNATIVES or (ref.flags & eServiceReference.isDirectory):
+			self.setCurrentSelection(ref)
+		else:
+			for markedService in self.servicelist.getMarked():
+				markedService = eServiceReference(markedService)
+				self.setCurrentSelection(markedService)
+				if markedService == self.getCurrentSelection():
+					break
+
 	def getBouquetList(self):
 		bouquets = [ ]
 		serviceHandler = eServiceCenter.getInstance()
@@ -1304,8 +1314,8 @@ class ChannelSelectionBase(Screen):
 					op = int(self.session.nav.getCurrentlyPlayingServiceOrGroup().toString().split(':')[6][:-4] or "0",16)
 					refstr = '1:7:0:0:0:0:0:0:0:0:(provider == \"%s\") && (satellitePosition == %s) && %s ORDER BY name:%s'%(provider,op,self.service_types[self.service_types.rfind(':')+1:],provider)
 					self.servicelist.setCurrent(eServiceReference(refstr))
-		elif not self.isBasePathEqual(self.bouquet_root):
-			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
+		elif not self.isBasePathEqual(self.bouquet_root) or self.bouquet_mark_edit == EDIT_ALTERNATIVES:
+			self.setCurrentSelectionAlternative(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
 HISTORYSIZE = 20
 
