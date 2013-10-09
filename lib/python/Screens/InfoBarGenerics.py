@@ -2277,8 +2277,6 @@ class InfoBarSubserviceSelection:
 				selection += 2
 
 			self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a sub service..."), list = tlist, selection = selection, keys = keys, skin_name = "SubserviceSelection")
-		else: #When there are no subservices then show the ChannelSelection list instead
-			self.openServiceList()
 
 	def subserviceSelected(self, service):
 		del self.bouquets
