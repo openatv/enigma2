@@ -1245,14 +1245,13 @@ class ChannelSelectionBase(Screen):
 			self.servicelist.setCurrent(service)
 
 	def setCurrentSelectionAlternative(self, ref):
-		if self.bouquet_mark_edit != EDIT_ALTERNATIVES or (ref.flags & eServiceReference.isDirectory):
-			self.setCurrentSelection(ref)
-		else:
+		if self.bouquet_mark_edit == EDIT_ALTERNATIVES and not (ref.flags & eServiceReference.isDirectory):
 			for markedService in self.servicelist.getMarked():
 				markedService = eServiceReference(markedService)
 				self.setCurrentSelection(markedService)
 				if markedService == self.getCurrentSelection():
-					break
+					return
+		self.setCurrentSelection(ref)
 
 	def getBouquetList(self):
 		bouquets = [ ]
