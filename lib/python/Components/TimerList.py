@@ -78,6 +78,8 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		if icon:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 2, 20, 20, icon))
 
+		if timer.isAutoTimer:
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 25, 21, 21, self.iconAutoTimer))
 		line = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, height-2, width, 2, line))
 
@@ -99,6 +101,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.iconZapped = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_zap.png"))
 		self.iconDisabled = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_off.png"))
 		self.iconFailed = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_failed.png"))
+		self.iconAutoTimer = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/epgclock_autotimer.png"))
 
 	def getCurrent(self):
 		cur = self.l.getCurrentSelection()
