@@ -131,7 +131,7 @@ class HdmiCec:
 				cmd = 0x44
 				data = str(struct.pack('B', 0x6c))
 			if cmd:
-				if config.hdmicec.minimum_send_interval.getValue() != "0":
+				if config.hdmicec.minimum_send_interval.getValue() != "0" and message != "standby": # Use no interval time when message is standby. usefull for Panasonic TV
 					self.queue.append((address, cmd, data))
 					if not self.wait.isActive():
 						self.wait.start(int(config.hdmicec.minimum_send_interval.getValue()), True)
