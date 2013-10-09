@@ -13,10 +13,11 @@ from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Sources.List import List
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredTimerPath
+from Components.Renderer.Picon import getPiconName
 from Screens.TimerEdit import TimerSanityConflict
 profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
-from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv
+from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv, loadPNG
 from Components.config import config, configfile, ConfigSubsection, ConfigText
 from Tools.NumericalTextInput import NumericalTextInput
 profile("ChannelSelection.py 2")
@@ -44,6 +45,7 @@ from ServiceReference import ServiceReference
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.BoundFunction import boundFunction
 from Tools import Notifications
+from time import localtime, time
 from os import remove
 profile("ChannelSelection.py after imports")
 
@@ -2197,11 +2199,51 @@ class HistoryZapSelector(Screen):
 		self.setTitle(_("History zap..."))
 		self.list = []
 		cnt = 0
+		serviceHandler = eServiceCenter.getInstance()
 		for x in items:
+
+			info = serviceHandler.info(x[-1])
+			if info:
+				serviceName = info.getName(x[-1])
+				if serviceName is None:
+					serviceName = ""
+				eventName = ""
+				descriptionName = ""
+				durationTime = ""
+				# if config.plugins.SetupZapSelector.event.value != "0":
+				event = info.getEvent(x[-1])
+				if event:
+					eventName = event.getEventName()
+					if eventName is None:
+						eventName = ""
+					else:
+						eventName = eventName.replace('(18+)', '').replace('18+', '').replace('(16+)', '').replace('16+', '').replace('(12+)', '').replace('12+', '').replace('(7+)', '').replace('7+', '').replace('(6+)', '').replace('6+', '').replace('(0+)', '').replace('0+', '')	
+					# if config.plugins.SetupZapSelector.event.value == "2":
+					descriptionName = event.getShortDescription()
+					if descriptionName is None or descriptionName == "":
+						descriptionName = event.getExtendedDescription()
+						if descriptionName is None:
+							descriptionName = ""
+					# if config.plugins.SetupZapSelector.duration.value:
+					begin = event.getBeginTime()
+					if begin is not None:
+						end = begin + event.getDuration()
+						remaining = (end - int(time())) / 60
+						prefix = ""
+						if remaining > 0:
+							prefix = "+"
+						local_begin = localtime(begin)
+						local_end = localtime(end)
+						durationTime = _("%02d.%02d - %02d.%02d (%s%d min)") % (local_begin[3],local_begin[4],local_end[3],local_end[4],prefix, remaining)
+
+			png = ""
+			picon = getPiconName(str(ServiceReference(x[1])))
+			if picon != "":
+				png = loadPNG(picon)
 			if self.invertItems:
-				self.list.insert(0, (x[1], cnt == mark_item and "»" or "", x[0]))
+				self.list.insert(0, (x[1], cnt == mark_item and "»" or "", x[0], eventName, descriptionName, durationTime, png))
 			else:
-				self.list.append((x[1], cnt == mark_item and "»" or "", x[0]))
+				self.list.append((x[1], cnt == mark_item and "»" or "", x[0], eventName, descriptionName, durationTime, png))
 			cnt += 1
 		self["menu"] = List(self.list, enableWrapAround=wrap_around)
 		self.onShown.append(self.__onShown)
