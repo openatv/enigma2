@@ -111,7 +111,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			RecordTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
 #################################################################
 
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = True, record_ecm = False, always_zap = False):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = True, record_ecm = False, always_zap = False, isAutoTimer = False):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 
 		if checkOldTimers == True:
@@ -146,12 +146,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.descramble = descramble
 		self.record_ecm = record_ecm
 		self.wasInStandby = False
+		self.isAutoTimer = isAutoTimer
 
 		self.log_entries = []
 		self.resetState()
 
 	def __repr__(self):
-		return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s)" % (self.name, ctime(self.begin), self.service_ref, self.justplay)
+		return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s, isAutoTimer=%s)" % (self.name, ctime(self.begin), self.service_ref, self.justplay, self.isAutoTimer)
 
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
@@ -521,10 +522,11 @@ def createTimer(xml):
 		tags = None
 	descramble = int(xml.get("descramble") or "1")
 	record_ecm = int(xml.get("record_ecm") or "0")
+	isAutoTimer = int(xml.get("isAutoTimer") or "0")
 
 	name = xml.get("name").encode("utf-8")
 	#filename = xml.get("filename").encode("utf-8")
-	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm, always_zap = always_zap)
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm, isAutoTimer = isAutoTimer, always_zap = always_zap)
 	entry.repeated = int(repeated)
 	
 	for l in xml.findall("log"):
@@ -576,6 +578,9 @@ class RecordTimer(timer.Timer):
 				self.cleanupDaily(config.recording.keep_timers.value)
 				insort(self.processed_timers, w)
 		self.stateChanged(w)
+	
+	def isRecTimerWakeup(self):
+		return wasRecTimerWakeup
 
 	def isRecording(self):
 		for timer in self.timer_list:
@@ -691,6 +696,7 @@ class RecordTimer(timer.Timer):
 			list.append(' always_zap="' + str(int(timer.always_zap)) + '"')
 			list.append(' descramble="' + str(int(timer.descramble)) + '"')
 			list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
+			list.append(' isAutoTimer="' + str(int(timer.isAutoTimer)) + '"')
 			list.append('>\n')
 			
 			if config.recording.debug.value:
@@ -786,10 +792,15 @@ class RecordTimer(timer.Timer):
 		returnValue = None
 		type = 0
 		time_match = 0
+		isAutoTimer = False
 		bt = None
 		end = begin + duration
 		refstr = str(service)
 		for x in self.timer_list:
+			if x.isAutoTimer == 1:
+				isAutoTimer = True
+			else:
+				isAutoTimer = False
 			check = x.service_ref.ref.toString() == refstr
 			if not check:
 				sref = x.service_ref.ref
@@ -872,7 +883,7 @@ class RecordTimer(timer.Timer):
 							type = type_offset + 2
 				if time_match:
 					if type in (2,7,12): # When full recording do not look further
-						returnValue = (time_match, [type])
+						returnValue = (time_match, [type], isAutoTimer)
 						break
 					elif returnValue:
 						if type not in returnValue[1]:

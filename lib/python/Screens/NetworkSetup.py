@@ -4,6 +4,7 @@ from Screens.InputBox import InputBox
 from Screens.Standby import *
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.HelpMenu import HelpableScreen
+from Components.About import about
 from Components.Network import iNetwork
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Boolean import Boolean
@@ -934,7 +935,8 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append((_("Network wizard"), "openwizard"))
-		if not getBoxType() == 'gb800seplus' or not getBoxType() == 'gb800ueplus':		
+		kernel_ver = about.getKernelVersionString()
+		if kernel_ver <= "3.5.0":
 			menu.append((_("Network MAC settings"), "mac"))
 
 		return menu
