@@ -578,6 +578,9 @@ class RecordTimer(timer.Timer):
 				self.cleanupDaily(config.recording.keep_timers.value)
 				insort(self.processed_timers, w)
 		self.stateChanged(w)
+	
+	def isRecTimerWakeup(self):
+		return wasRecTimerWakeup
 
 	def isRecording(self):
 		for timer in self.timer_list:
