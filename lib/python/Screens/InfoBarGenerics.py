@@ -1419,7 +1419,10 @@ class InfoBarEPG:
 			elif config.plisettings.PLIINFO_mode.getValue() == "coolinfoguide":
 				self.showCoolInfoGuide()
 			elif config.plisettings.PLIINFO_mode.getValue() == "coolsingleguide":
-				self.showCoolSingleGuide()			
+				self.showCoolSingleGuide()
+			elif config.plisettings.PLIINFO_mode.getValue() == "cooltvguide":
+				if self.isInfo:
+					self.showCoolTVGuide()
 
 	def IPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
