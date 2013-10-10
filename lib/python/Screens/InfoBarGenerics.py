@@ -600,11 +600,13 @@ class InfoBarChannelSelection:
 		self.session.execDialog(self.servicelist)	
 
 	def switchChannelUp(self):
-		self.servicelist.moveUp()
+		if not config.usage.servicelist_keep_service.value:
+			self.servicelist.moveUp()
 		self.session.execDialog(self.servicelist)
 
 	def switchChannelDown(self):
-		self.servicelist.moveDown()
+		if not config.usage.servicelist_keep_service.value:
+			self.servicelist.moveDown()
 		self.session.execDialog(self.servicelist)
 
 	def openServiceList(self):

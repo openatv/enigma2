@@ -1341,8 +1341,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def can_createdir(self, item):
 		return True
 	def do_createdir(self):
-		from Screens.InputBox import InputBox
-		self.session.openWithCallback(self.createDirCallback, InputBox,
+		from Screens.VirtualKeyBoard import VirtualKeyBoard
+		self.session.openWithCallback(self.createDirCallback, VirtualKeyBoard,
 			title = _("Please enter name of the new directory"),
 			text = "")
 	def createDirCallback(self, name):
@@ -1382,8 +1382,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		else:
 			info = item[1]
 			name = info.getName(item[0])
-		from Screens.InputBox import InputBox
-		self.session.openWithCallback(self.renameCallback, InputBox,
+		from Screens.VirtualKeyBoard import VirtualKeyBoard
+		self.session.openWithCallback(self.renameCallback, VirtualKeyBoard,
 			title = _("Rename"),
 			text = name)
 
