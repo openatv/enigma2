@@ -9,7 +9,7 @@ self.selectKey("OK")
 		<step id="introduction" >
 			<text value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<list>
-				<listentry caption="Use the wizard to set up basic features" step="network" />
+				<listentry caption="Use the wizard to set up basic features" step="nima" />
 				<listentry caption="Exit the wizard" step="end" />
 			</list>
 			<code>
@@ -105,6 +105,7 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 		</step>
+<!--
 		<step id="channels">
 			<condition>
 from Components.NimManager import nimmanager
@@ -118,12 +119,16 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 		</step>
+ -->
 		<step id="scanquestion">
 			<text value="Do you want to do a service scan?" />
 			<condition>
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
 			</condition>
+			<code>
+self.hideRc()
+			</code>	
 			<list>
 				<listentry caption="No, scan later manually" step="finisheddefaultsatlists" />
 				<listentry caption="Yes, do an automatic scan now" step="scan" />
