@@ -3,11 +3,10 @@ from GUIComponent import GUIComponent
 
 from Tools.FuzzyDate import FuzzyTime
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, \
-	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_VALIGN_BOTTOM
+from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_VALIGN_BOTTOM
 from Tools.LoadPixmap import LoadPixmap
 from timer import TimerEntry
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 
 class TimerList(HTMLComponent, GUIComponent, object):
 #
@@ -33,7 +32,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 				flags = flags >> 1
 			repeatedtext = ", ".join(repeatedtext)
 			if self.iconRepeat:
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 25, 20, 20, self.iconRepeat))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 25, 20, 20, self.iconRepeat))
 		else:
 			repeatedtext = begin[0] # date
 		if timer.justplay:
@@ -76,10 +75,12 @@ class TimerList(HTMLComponent, GUIComponent, object):
 
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 25, 126, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
 		if icon:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 2, 20, 20, icon))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 2, 20, 20, icon))
 
+		if timer.isAutoTimer:
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 25, 20, 20, self.iconAutoTimer))
 		line = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, height-2, width, 2, line))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 0, height-2, width, 2, line))
 
 		return res
 
@@ -99,6 +100,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.iconZapped = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_zap.png"))
 		self.iconDisabled = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_off.png"))
 		self.iconFailed = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_failed.png"))
+		self.iconAutoTimer = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_autotimer.png"))
 
 	def getCurrent(self):
 		cur = self.l.getCurrentSelection()
