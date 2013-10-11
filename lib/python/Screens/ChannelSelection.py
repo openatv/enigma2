@@ -2154,9 +2154,10 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.channelSelected()
 
 
-class SimpleChannelSelection(ChannelSelectionBase):
+class SimpleChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 	def __init__(self, session, title):
 		ChannelSelectionBase.__init__(self, session)
+		ChannelSelectionEdit.__init__(self)
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
 				"cancel": self.close,
