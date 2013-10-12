@@ -1184,10 +1184,10 @@ class ChannelSelectionBase(Screen):
 		return self.servicelist.atEnd()
 
 	def nextBouquet(self):
-		self.changeBouquet(+1)
+		self.changeBouquet(-1)
 
 	def prevBouquet(self):
-		self.changeBouquet(-1)
+		self.changeBouquet(+1)
 
 	def showFavourites(self):
 		if not self.pathChangeDisabled:
