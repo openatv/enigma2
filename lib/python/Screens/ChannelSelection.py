@@ -348,11 +348,7 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def renameEntry(self):
-		cur = self.csel.getCurrentSelection()
-		name = eServiceCenter.getInstance().info(cur).getName(cur) or ServiceReference(cur).getServiceName() or ""
-		name.replace('\xc2\x86', '').replace('\xc2\x87', '')
-		if name:
-			self.session.openWithCallback(self.csel.renameEntry, VirtualKeyBoard, title=_("Please enter new name:"), text=name)
+		self.csel.renameEntry()
 		self.close()
 
 	def toggleMoveMode(self):
@@ -526,7 +522,14 @@ class ChannelSelectionEdit:
 				name += '_'
 		return name
 
-	def renameEntry(self, name):
+	def renameEntry(self):
+		cur = self.getCurrentSelection()
+		name = eServiceCenter.getInstance().info(cur).getName(cur) or ServiceReference(cur).getServiceName() or ""
+		name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+		if name:
+			self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=_("Please enter new name:"), text=name)
+
+	def renameEntryCallback(self, name):
 		if name:
 			current = self.servicelist.getCurrent()
 			if (current.flags & eServiceReference.mustDescent):
@@ -757,13 +760,17 @@ class ChannelSelectionEdit:
 			self.servicelist.addMarked(ref)
 
 	def removeCurrentService(self):
-		ref = self.servicelist.getCurrent()
-		mutableList = self.getMutableList()
-		if ref.valid() and mutableList is not None:
-			if not mutableList.removeService(ref):
-				mutableList.flushChanges() #FIXME dont flush on each single removed service
-				self.servicelist.removeCurrent()
-				self.servicelist.resetRoot()
+		self.session.openWithCallback(self.removeCurrentServiceCallback, MessageBox, _("Are you sure to remove this entry."))
+
+	def removeCurrentServiceCallback(self, confirmation):
+		if confirmation:
+			ref = self.servicelist.getCurrent()
+			mutableList = self.getMutableList()
+			if ref.valid() and mutableList is not None:
+				if not mutableList.removeService(ref):
+					mutableList.flushChanges() #FIXME dont flush on each single removed service
+					self.servicelist.removeCurrent()
+					self.servicelist.resetRoot()
 
 	def addServiceToBouquet(self, dest, service=None):
 		mutableList = self.getMutableList(dest)
@@ -1227,6 +1234,12 @@ class ChannelSelectionBase(Screen):
 				self.setCurrentSelection(service)
 				if self.servicelist.getCurrent() != service:
 					self.servicelist.setCurrent(currentSelectedService)
+		elif number == 4:
+			self.renameEntry()
+		elif number == 5:
+			self.removeCurrentService()
+		elif number == 6:
+			self.toggleMoveMode()
 
 	def keyAsciiCode(self):
 		unichar = unichr(getPrevAsciiCode())
