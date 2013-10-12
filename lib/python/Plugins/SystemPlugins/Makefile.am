@@ -5,31 +5,26 @@ SUBDIRS = SoftwareManager PositionerSetup Satfinder \
 	DefaultServicesScanner CommonInterfaceAssignment \
 	HdmiCEC VideoClippingSetup \
 	VideoEnhancement WirelessLan NetworkWizard \
-	SABnzbdSetup FastScan
-
-if XTREND
-SUBDIRS += SatelliteEquipmentControl DiseqcTester
-endif
-
-if ODIN
-SUBDIRS += SatelliteEquipmentControl DiseqcTester
-endif
+	SABnzbdSetup FastScan SatelliteEquipmentControl DiseqcTester
 
 if VUSOLO2
-SUBDIRS += SatelliteEquipmentControl DiseqcTester
+SUBDIRS += CableScan
+endif
+
+if VUDUO2
+SUBDIRS += CableScan
 endif
 
 if VUUNO
-SUBDIRS += SatelliteEquipmentControl DiseqcTester CableScan
+SUBDIRS += CableScan
 endif
 
 if VUULTIMO
-SUBDIRS += SatelliteEquipmentControl DiseqcTester CableScan
+SUBDIRS += CableScan
 endif
 
 if DREAMBOX
-SUBDIRS += FrontprocessorUpgrade NFIFlash SatelliteEquipmentControl DiseqcTester CableScan
+SUBDIRS += FrontprocessorUpgrade NFIFlash CableScan
 endif
 
-install_PYTHON =	\
-	__init__.py
+install_PYTHON = __init__.py
