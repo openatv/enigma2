@@ -36,6 +36,8 @@ def getCPUString():
 				splitted[1] = splitted[1].replace('\n','')
 				if splitted[0].startswith("system type"):
 					system = splitted[1].split(' ')[0]
+				elif splitted[0].startswith("Processor"):
+					system = splitted[1].split(' ')[0]
 		file.close()
 		return system 
 	except IOError:
