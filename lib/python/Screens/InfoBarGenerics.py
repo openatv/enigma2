@@ -555,12 +555,12 @@ class InfoBarChannelSelection:
 			self.servicelist.historyNext()
 
 	def switchChannelUp(self):
-		if not config.usage.servicelist_keep_service.value:
+		if "keep" not in config.usage.servicelist_cursor_behavior.value:
 			self.servicelist.moveUp()
 		self.session.execDialog(self.servicelist)
 
 	def switchChannelDown(self):
-		if not config.usage.servicelist_keep_service.value:
+		if "keep" not in config.usage.servicelist_cursor_behavior.value:
 			self.servicelist.moveDown()
 		self.session.execDialog(self.servicelist)
 
@@ -1702,6 +1702,8 @@ class InfoBarTimeshift:
 				if ts:
 					ts.saveTimeshiftFile()
 					del ts
+			if "continue" not in answer:
+				self.saveTimeshiftFiles()
 		returnFunction(answer and answer != "continue")
 
 	# renames/moves timeshift files if requested
