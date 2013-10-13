@@ -1191,10 +1191,16 @@ class ChannelSelectionBase(Screen):
 		return self.servicelist.atEnd()
 
 	def nextBouquet(self):
-		self.changeBouquet(-1)
+		if "reverseB" in config.usage.servicelist_cursor_behavior.value:
+			self.changeBouquet(-1)
+		else:
+			self.changeBouquet(+1)
 
 	def prevBouquet(self):
-		self.changeBouquet(+1)
+		if "reverseB" in config.usage.servicelist_cursor_behavior.value:
+			self.changeBouquet(+1)
+		else:
+			self.changeBouquet(-1)
 
 	def showFavourites(self):
 		if not self.pathChangeDisabled:
