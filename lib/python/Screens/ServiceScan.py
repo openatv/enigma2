@@ -52,6 +52,7 @@ class ServiceScan(Screen):
 	def __init__(self, session, scanList):
 		Screen.__init__(self, session)
 
+		self["Title"] = Label(_("Scanning..."))
 		self.scanList = scanList
 
 		if hasattr(session, 'infobar'):
@@ -86,6 +87,10 @@ class ServiceScan(Screen):
 		self.onFirstExecBegin.append(self.doServiceScan)
 
 	def doServiceScan(self):
+		height = self["servicelist"].instance.size().height()
+		rowheight = self["servicelist"].l.getItemSize().height()
+		rows = height/rowheight
+		self["servicelist"].len=rows
 		self["scan"] = CScan(self["scan_progress"], self["scan_state"], self["servicelist"], self["pass"], self.scanList, self["network"], self["transponder"], self["FrontendInfo"], self.session.summary)
 
 	def createSummary(self):
