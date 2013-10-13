@@ -760,7 +760,7 @@ class ChannelSelectionEdit:
 			self.servicelist.addMarked(ref)
 
 	def removeCurrentService(self):
-		self.session.openWithCallback(self.removeCurrentServiceCallback, MessageBox, _("Are you sure to remove this entry."))
+		self.session.openWithCallback(self.removeCurrentServiceCallback, MessageBox, _("Are you sure to remove this entry?"))
 
 	def removeCurrentServiceCallback(self, confirmation):
 		if confirmation:
