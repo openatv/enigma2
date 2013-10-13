@@ -11,7 +11,7 @@ from Screens.ChoiceBox import ChoiceBox
 
 # Generic
 from Tools.BoundFunction import boundFunction
-from Tool.Directories import pathExists
+from Tools.Directories import pathExists
 from Components.config import config
 import os
 
