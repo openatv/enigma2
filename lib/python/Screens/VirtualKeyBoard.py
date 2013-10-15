@@ -260,16 +260,11 @@ class VirtualKeyBoard(Screen):
 			x += width
 		return res + text
 
-	def buildVirtualKeyBoard(self, selectedKey=0):
-		self.list = []
-		self.selectedKey = selectedKey
-		for keys in self.shiftMode and self.shiftkeys_list or self.keys_list:
-			if selectedKey < 12 and selectedKey > -1:
-				self.list.append(self.virtualKeyBoardEntryComponent(keys))
-			else:
-				self.list.append(self.virtualKeyBoardEntryComponent(keys))
-			selectedKey -= 12
+	def buildVirtualKeyBoard(self):
 		self.previousSelectedKey = None
+		self.list = []
+		for keys in self.shiftMode and self.shiftkeys_list or self.keys_list:
+			self.list.append(self.virtualKeyBoardEntryComponent(keys))
 		self.markSelectedKey()
 		
 	def markSelectedKey(self):
@@ -287,31 +282,11 @@ class VirtualKeyBoard(Screen):
 	def shiftClicked(self):
 		self.smsChar = None
 		self.shiftMode = not self.shiftMode
-		self.buildVirtualKeyBoard(self.selectedKey)
+		self.buildVirtualKeyBoard()
 
 	def okClicked(self):
 		self.smsChar = None
-		if self.shiftMode:
-			list = self.shiftkeys_list
-		else:
-			list = self.keys_list
-		
-		selectedKey = self.selectedKey
-
-		text = None
-
-		for x in list:
-			if selectedKey < 12:
-				if selectedKey < len(x):
-					text = x[selectedKey]
-				break
-			else:
-				selectedKey -= 12
-
-		if text is None:
-			return
-
-		text = text.encode("UTF-8")
+		text = (self.shiftMode and self.shiftkeys_list or self.keys_list)[self.selectedKey / 12][self.selectedKey % 12].encode("UTF-8")
 
 		if text == "EXIT":
 			self.close(None)
@@ -388,11 +363,9 @@ class VirtualKeyBoard(Screen):
 
 	def keyNumberGlobal(self, number):
 		self.smsChar = self.sms.getKey(number)
-		print "SMS", number, self.smsChar
 		self.selectAsciiKey(self.smsChar)
 
 	def smsOK(self):
-		print "SMS ok", self.smsChar
 		if self.smsChar and self.selectAsciiKey(self.smsChar):
 			print "pressing ok now"
 			self.okClicked()
@@ -410,9 +383,12 @@ class VirtualKeyBoard(Screen):
 			for keys in keyslist:
 				for key in keys:
 					if key == char:
-						self.shiftMode = (keyslist is self.shiftkeys_list)
 						self.selectedKey = selkey
-						self.markSelectedKey()
+						if self.shiftMode != (keyslist is self.shiftkeys_list):
+							self.shiftMode = not self.shiftMode
+							self.buildVirtualKeyBoard()
+						else:
+							self.markSelectedKey()
 						return True
 					selkey += 1
 		return False
