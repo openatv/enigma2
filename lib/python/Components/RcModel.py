@@ -1,4 +1,4 @@
-from enigma import getBoxType
+from enigma import getBoxType, getMachineName
 from Tools.StbHardware import getFPVersion
 import os
 
@@ -125,7 +125,7 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_INI3
 			elif model == 'ini-1000de' or model == 'ini-9000de':
 				self.currentRcType = self.RCTYPE_INI4				
-			elif getBoxType() == 'odinm6':
+			elif getBoxType() == 'odinm6' or getMachineName() == 'AX-Odin':
 				self.currentRcType = self.RCTYPE_ODINM6
 			elif model == 'e3hd':
 				self.currentRcType = self.RCTYPE_E3HD

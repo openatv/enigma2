@@ -368,6 +368,14 @@ const char *getMachineBrand()
 			{
 				return "TELESTAR";
 			}
+			else if (access("/dev/bus/usb/001/002", F_OK) != NULL )
+			{
+				return "Opticum";
+			}
+			else
+			{	
+				return MACHINE_BRAND;
+			}			
 		}
 		else
 		{
@@ -445,6 +453,14 @@ const char *getMachineName()
 			if(strcmp(BOXTYPE, "odinm6") == 0)
 			{
 				return "STARSAT-LX";
+			}
+			else if (access("/dev/bus/usb/001/002", F_OK) != NULL )
+			{
+				return "AX-Odin";
+			}
+			else
+			{	
+				return MACHINE_NAME;
 			}
 		}
 		else
