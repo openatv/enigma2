@@ -28,13 +28,13 @@ class AVSwitch:
 			else:
 				mode = config.av.videomode[port].getValue()
 				force_widescreen = video_hw.isWidescreenMode(port, mode)
-				is_widescreen = force_widescreen or config.av.aspect.getValue() in ("16_9", "16_10")
+				is_widescreen = force_widescreen or config.av.aspect.getValue() in ("16:9", "16:10")
 				is_auto = config.av.aspect.getValue() == "auto"
 				if is_widescreen:
 					if force_widescreen:
 						pass
 					else:
-						aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.getValue()]
+						aspect = {"16:9": "16:9", "16:10": "16:10"}[config.av.aspect.getValue()]
 						if aspect == "16:10":
 							ret = (16,10)
 				elif is_auto:
@@ -51,7 +51,7 @@ class AVSwitch:
 			valstr = config.av.aspectratio.getValue()
 			if valstr in ("4_3_letterbox", "4_3_panscan"): # 4:3
 				return (4,3)
-			elif valstr == "16_9": # auto ... 4:3 or 16:9
+			elif valstr == "16:9": # auto ... 4:3 or 16:9
 				try:
 					aspect_str = open("/proc/stb/vmpeg/0/aspect", "r").read()
 					if aspect_str == "1": # 4:3
@@ -103,6 +103,7 @@ def InitAVSwitch():
 	if config.av.yuvenabled.getValue():
 		colorformat_choices["yuv"] = _("YPbPr")
 
+	config.av.autores = ConfigYesNo(default = False)
 	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
 	config.av.aspectratio = ConfigSelection(choices={
 			"4_3_letterbox": _("4:3 Letterbox"),
@@ -114,11 +115,11 @@ def InitAVSwitch():
 			"16_9_letterbox": _("16:9 Letterbox")},
 			default = "16_9")
 	config.av.aspect = ConfigSelection(choices={
-			"4_3": _("4:3"),
-			"16_9": _("16:9"),
-			"16_10": _("16:10"),
+			"4:3": _("4:3"),
+			"16:9": _("16:9"),
+			"16:10": _("16:10"),
 			"auto": _("Automatic")},
-			default = "auto")
+			default = "16:9")
 	policy2_choices = {
 	# TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 	"letterbox": _("Letterbox"),
@@ -135,13 +136,13 @@ def InitAVSwitch():
 	config.av.policy_169 = ConfigSelection(choices=policy2_choices, default = "letterbox")
 	policy_choices = {
 	# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
-	"pillarbox": _("Pillarbox"),
+	"panscan": _("Pillarbox"),
 	# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-	"panscan": _("Pan&scan"),
+	"letterbox": _("Pan&scan"),
 	# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 	"nonlinear": _("Nonlinear"),
 	# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
-	"scale": _("Just scale")}
+	"bestfit": _("Just scale")}
 	if os.path.exists("/proc/stb/video/policy_choices"):
 		f = open("/proc/stb/video/policy_choices")
 		if "auto" in f.readline():

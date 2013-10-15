@@ -154,9 +154,9 @@ class VideoHardware:
 		AVSwitch.getOutputAspect = self.getOutputAspect
 
 		config.av.aspect.addNotifier(self.updateAspect)
-		config.av.wss.addNotifier(self.updateAspect)
-		config.av.policy_169.addNotifier(self.updateAspect)
-		config.av.policy_43.addNotifier(self.updateAspect)
+		config.av.wss.addNotifier(self.updateWss)
+		config.av.policy_43.addNotifier(self.updatePolicy43)
+		config.av.policy_169.addNotifier(self.updatePolicy169)
 
 	def readAvailableModes(self):
 		try:
@@ -236,7 +236,7 @@ class VideoHardware:
 				except IOError:
 					print "setting videomode failed."
 
-		self.updateAspect(None)
+		# self.updateAspect(None)
 
 	def saveMode(self, port, mode, rate):
 		print "saveMode", port, mode, rate
@@ -323,75 +323,33 @@ class VideoHardware:
 		self.setMode(port, mode, rate)
 
 	def updateAspect(self, cfgelement):
-		# determine aspect = {any,4:3,16:9,16:10}
-		# determine policy = {bestfit,letterbox,panscan,nonlinear}
+		print "-> setting aspect: %s" % cfgelement.value
+		f = open("/proc/stb/video/aspect", "w")
+		f.write(cfgelement.value)
+		f.close()
 
-		# based on;
-		#   config.av.videoport.getValue(): current video output device
-		#     Scart:
-		#   config.av.aspect:
-		#     4_3:            use policy_169
-		#     16_9,16_10:     use policy_43
-		#     auto            always "bestfit"
-		#   config.av.policy_169
-		#     letterbox       use letterbox
-		#     panscan         use panscan
-		#     scale           use bestfit
-		#   config.av.policy_43
-		#     pillarbox       use panscan
-		#     panscan         use letterbox  ("panscan" is just a bad term, it's inverse-panscan)
-		#     nonlinear       use nonlinear
-		#     scale           use bestfit
-
-		port = config.av.videoport.getValue()
-		if port not in config.av.videomode:
-			print "current port not available, not setting videomode"
-			return
-		mode = config.av.videomode[port].getValue()
-
-		force_widescreen = self.isWidescreenMode(port, mode)
-
-		is_widescreen = force_widescreen or config.av.aspect.getValue() in ("16_9", "16_10")
-		is_auto = config.av.aspect.getValue() == "auto"
-		policy2 = "policy" # use main policy
-
-		if is_widescreen:
-			if force_widescreen:
-				aspect = "16:9"
-			else:
-				aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.getValue()]
-			policy_choices = {"pillarbox": "panscan", "panscan": "letterbox", "nonlinear": "nonlinear", "scale": "bestfit", "auto": "bestfit"}
-			policy = policy_choices[config.av.policy_43.getValue()]
-			policy2_choices = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit", "auto": "bestfit"}
-			policy2 = policy2_choices[config.av.policy_169.getValue()]
-		elif is_auto:
-			aspect = "any"
-			policy = "bestfit"
-		else:
-			aspect = "4:3"
-			policy = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit", "auto": "bestfit"}[config.av.policy_169.getValue()]
-
-		if not config.av.wss.getValue():
+	def updateWss(self, cfgelement):
+		if not cfgelement.value:
 			wss = "auto(4:3_off)"
 		else:
 			wss = "auto"
-
-		print "-> setting aspect: %s, policy: %s, policy2: %s, wss: %s" % (aspect, policy, policy2, wss)
-		f = open("/proc/stb/video/aspect", "w")
-		f.write(aspect)
-		f.close()
-		f = open("/proc/stb/video/policy", "w")
-		f.write(policy)
-		f.close()
+		print "-> setting wss: %s" % wss
 		f = open("/proc/stb/denc/0/wss", "w")
 		f.write(wss)
 		f.close()
-		try:
+
+	def updatePolicy43(self, cfgelement):
+		print "-> setting policy: %s" % cfgelement.value
+		f = open("/proc/stb/video/policy", "w")
+		f.write(cfgelement.value)
+		f.close()
+
+	def updatePolicy169(self, cfgelement):
+		if path.exists("/proc/stb/video/policy2"):
+			print "-> setting policy2: %s" % cfgelement.value
 			f = open("/proc/stb/video/policy2", "w")
-			f.write(policy2)
+			f.write(cfgelement.value)
 			f.close()
-		except IOError:
-			pass
 
 config.av.edid_override = ConfigYesNo(default = False)
 video_hw = VideoHardware()
