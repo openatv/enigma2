@@ -243,14 +243,12 @@ class VirtualKeyBoard(Screen):
 		self.max_key=47+len(self.keys_list[4])
 
 	def virtualKeyBoardEntryComponent(self, keys):
-		key_bg_width = self.key_bg.size().width()
+		key_bg_width = self.key_bg and self.key_bg.size().width() or 45
 		key_images = self.shiftMode and self.keyImagesShift or self.keyImages
-		res = [ (keys) ]
-		text = [ ]
+		res = [(keys)]
+		text = []
 		x = 0
-		count = 0
-		for count, key in enumerate(keys):
-			width = None
+		for key in keys:
 			png = key_images.get(key, None)
 			if png:
 				width = png.size().width()
@@ -259,7 +257,7 @@ class VirtualKeyBoard(Screen):
 				width = key_bg_width
 				res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=self.key_bg))
 				text.append(MultiContentEntryText(pos=(x, 0), size=(width, 45), font=0, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
-			x += width or 45
+			x += width
 		return res + text
 
 	def buildVirtualKeyBoard(self, selectedKey=0):
