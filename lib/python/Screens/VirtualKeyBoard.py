@@ -19,60 +19,6 @@ class VirtualKeyBoardList(MenuList):
 		self.l.setFont(0, gFont("Regular", 28))
 		self.l.setItemHeight(45)
 
-KEY_IMAGES =  {
-		"BACKSPACE": "skin_default/vkey_backspace.png",
-		"ALL": "skin_default/vkey_all.png",
-		"EXIT": "skin_default/vkey_esc.png",
-		"OK": "skin_default/vkey_ok.png",
-		"SHIFT": "skin_default/vkey_shift.png",
-		"SPACE": "skin_default/vkey_space.png",
-		"LEFT": "skin_default/vkey_left.png",
-		"RIGHT": "skin_default/vkey_right.png",
-		}
-KEY_IMAGES_SHIFT = {
-		"BACKSPACE": "skin_default/vkey_backspace.png",
-		"CLEAR": "skin_default/vkey_clr.png",
-		"EXIT": "skin_default/vkey_esc.png",
-		"OK": "skin_default/vkey_ok.png",
-		"SHIFT": "skin_default/vkey_shift_sel.png",
-		"SPACE": "skin_default/vkey_space.png",
-		"LEFT": "skin_default/vkey_left.png",
-		"RIGHT": "skin_default/vkey_right.png",
-		}
-def VirtualKeyBoardEntryComponent(keys, selectedKey, shiftMode=False):
-	key_bg = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_bg.png"))
-	key_bg_width = key_bg.size().width()
-	if shiftMode:
-		key_images = KEY_IMAGES_SHIFT
-	else:
-		key_images = KEY_IMAGES
-	res = [ (keys) ]
-	x = 0
-	count = 0
-	for count, key in enumerate(keys):
-		width = None
-		png = key_images.get(key, None)
-		if png:
-			pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, png))
-			width = pixmap.size().width()
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=pixmap))
-		else:
-			width = key_bg_width
-			res.extend((
-				MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=key_bg),
-				MultiContentEntryText(pos=(x, 0), size=(width, 45), font=0, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER)
-			))
-		if selectedKey == count:
-			key_sel = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_sel.png"))
-			width = key_sel.size().width()
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=key_sel))
-		if width is not None:
-			x += width
-		else:
-			x += 45
-	return res
-
-
 class VirtualKeyBoard(Screen):
 
 	def __init__(self, session, title="", **kwargs):
@@ -86,6 +32,40 @@ class VirtualKeyBoard(Screen):
 		self.smsChar = None
 		self.sms = NumericalTextInput(self.smsOK)
 		
+		self.key_bg = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_bg.png"))
+		self.key_sel = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_sel.png"))
+		self.key_backspace = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_backspace.png"))
+		self.key_all = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_all.png"))
+		self.key_clr = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_clr.png"))
+		self.key_esc = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_esc.png"))
+		self.key_ok = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_ok.png"))
+		self.key_shift = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_shift.png"))
+		self.key_shift_sel = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_shift_sel.png"))
+		self.key_space = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_space.png"))
+		self.key_left = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_left.png"))
+		self.key_right = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_right.png"))
+
+		self.keyImages =  {
+				"BACKSPACE": self.key_backspace,
+				"ALL": self.key_all,
+				"EXIT": self.key_esc,
+				"OK": self.key_ok,
+				"SHIFT": self.key_shift,
+				"SPACE": self.key_space,
+				"LEFT": self.key_left,
+				"RIGHT": self.key_right
+			}
+		self.keyImagesShift = {
+				"BACKSPACE": self.key_backspace,
+				"CLEAR": self.key_clr,
+				"EXIT": self.key_esc,
+				"OK": self.key_ok,
+				"SHIFT": self.key_shift_sel,
+				"SPACE": self.key_space,
+				"LEFT": self.key_left,
+				"RIGHT": self.key_right
+			}
+
 		self["country"] = StaticText("")
 		self["header"] = Label(title)
 		self["text"] = Input(currPos=len(kwargs.get("text", "")), allMarked=False, **kwargs)
@@ -262,28 +242,47 @@ class VirtualKeyBoard(Screen):
 		self["country"].setText(self.lang)
 		self.max_key=47+len(self.keys_list[4])
 
+	def virtualKeyBoardEntryComponent(self, keys):
+		key_bg_width = self.key_bg.size().width()
+		key_images = self.shiftMode and self.keyImagesShift or self.keyImages
+		res = [ (keys) ]
+		text = [ ]
+		x = 0
+		count = 0
+		for count, key in enumerate(keys):
+			width = None
+			png = key_images.get(key, None)
+			if png:
+				width = png.size().width()
+				res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=png))
+			else:
+				width = key_bg_width
+				res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=self.key_bg))
+				text.append(MultiContentEntryText(pos=(x, 0), size=(width, 45), font=0, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
+			x += width or 45
+		return res + text
+
 	def buildVirtualKeyBoard(self, selectedKey=0):
-		list = []
+		self.list = []
+		self.selectedKey = selectedKey
+		for keys in self.shiftMode and self.shiftkeys_list or self.keys_list:
+			if selectedKey < 12 and selectedKey > -1:
+				self.list.append(self.virtualKeyBoardEntryComponent(keys))
+			else:
+				self.list.append(self.virtualKeyBoardEntryComponent(keys))
+			selectedKey -= 12
+		self.previousSelectedKey = None
+		self.markSelectedKey()
 		
-		if self.shiftMode:
-			self.k_list = self.shiftkeys_list
-			for keys in self.k_list:
-				if selectedKey < 12 and selectedKey > -1:
-					list.append(VirtualKeyBoardEntryComponent(keys, selectedKey,True))
-				else:
-					list.append(VirtualKeyBoardEntryComponent(keys, -1,True))
-				selectedKey -= 12
-		else:
-			self.k_list = self.keys_list
-			for keys in self.k_list:
-				if selectedKey < 12 and selectedKey > -1:
-					list.append(VirtualKeyBoardEntryComponent(keys, selectedKey))
-				else:
-					list.append(VirtualKeyBoardEntryComponent(keys, -1))
-				selectedKey -= 12
-		
-		self["list"].setList(list)
-	
+	def markSelectedKey(self):
+		if self.previousSelectedKey is not None:
+			self.list[self.previousSelectedKey /12] = self.list[self.previousSelectedKey /12][:-1]
+		width = self.key_sel.size().width()
+		x = self.list[self.selectedKey/12][self.selectedKey % 12 + 1][1]
+		self.list[self.selectedKey / 12].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=self.key_sel))
+		self.previousSelectedKey = self.selectedKey
+		self["list"].setList(self.list)
+
 	def backClicked(self):
 		self["text"].deleteBackward()
 
@@ -361,55 +360,33 @@ class VirtualKeyBoard(Screen):
 
 	def left(self):
 		self.smsChar = None
-		self.selectedKey -= 1
-		if self.selectedKey == -1:
-			self.selectedKey = 11
-		elif self.selectedKey == 11:
-			self.selectedKey = 23
-		elif self.selectedKey == 23:
-			self.selectedKey = 35
-		elif self.selectedKey == 35:
-			self.selectedKey = 47
-		elif self.selectedKey == 47:
+		self.selectedKey = self.selectedKey / 12 * 12 + (self.selectedKey + 11) % 12
+		if self.selectedKey > self.max_key:
 			self.selectedKey = self.max_key
-		
-		self.showActiveKey()
+		self.markSelectedKey()
 
 	def right(self):
 		self.smsChar = None
-		self.selectedKey += 1
-		if self.selectedKey == 12:
-			self.selectedKey = 0
-		elif self.selectedKey == 24:
-			self.selectedKey = 12
-		elif self.selectedKey == 36:
-			self.selectedKey = 24
-		elif self.selectedKey == 48:
-			self.selectedKey = 36
-		elif self.selectedKey > self.max_key:
-			self.selectedKey = 48
-		self.showActiveKey()
+		self.selectedKey = self.selectedKey / 12 * 12 + (self.selectedKey + 1) % 12
+		if self.selectedKey > self.max_key:
+			self.selectedKey = self.selectedKey / 12 * 12
+		self.markSelectedKey()
 
 	def up(self):
 		self.smsChar = None
 		self.selectedKey -= 12
-		if (self.selectedKey < 0) and (self.selectedKey > (self.max_key-60)):
-			self.selectedKey += 48
-		elif self.selectedKey < 0:
-			self.selectedKey += 60	
-		self.showActiveKey()
+		if self.selectedKey < 0:
+			self.selectedKey = self.max_key / 12 * 12 + self.selectedKey % 12
+			if self.selectedKey > self.max_key:
+				self.selectedKey -= 12
+		self.markSelectedKey()
 
 	def down(self):
 		self.smsChar = None
 		self.selectedKey += 12
-		if (self.selectedKey > self.max_key) and (self.selectedKey > 59):
-			self.selectedKey -= 60
-		elif self.selectedKey > self.max_key:
-			self.selectedKey -= 48
-		self.showActiveKey()
-
-	def showActiveKey(self):
-		self.buildVirtualKeyBoard(self.selectedKey)
+		if self.selectedKey > self.max_key:
+			self.selectedKey = self.selectedKey % 12
+		self.markSelectedKey()
 
 	def keyNumberGlobal(self, number):
 		self.smsChar = self.sms.getKey(number)
@@ -437,7 +414,7 @@ class VirtualKeyBoard(Screen):
 					if key == char:
 						self.shiftMode = (keyslist is self.shiftkeys_list)
 						self.selectedKey = selkey
-						self.showActiveKey()
+						self.markSelectedKey()
 						return True
 					selkey += 1
 		return False
