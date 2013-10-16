@@ -135,20 +135,16 @@ class FastScanScreen(ConfigListScreen, Screen):
 		Screen.__init__(self, session)
 
 		self.providers = {}
-		self.providers['Canal Digitaal'] = (0, 900, True)
-		self.providers['TV Vlaanderen'] = (0, 910, True)
+		self.providers['Canal Digitaal'] = (1, 900, True)
+		self.providers['TV Vlaanderen'] = (1, 910, True)
 		self.providers['TéléSAT'] = (0, 920, True)
-		self.providers['Mobistar NL'] = (0, 930, False)
-		self.providers['Mobistar FR'] = (0, 940, False)
 		self.providers['AustriaSat'] = (0, 950, False)
 		self.providers['Skylink Czech Republic'] = (1, 30, False)
 		self.providers['Skylink Slovak Republic'] = (1, 31, False)
-		self.providers['Canal Digitaal Astra3'] = (2, 900, True)
-		self.providers['TV Vlaanderen Astra3'] = (2, 910, True)
-		self.providers['TéléSAT Astra3'] = (2, 920, True)
-		self.providers['Mobistar NL Astra3'] = (2, 930, False)
-		self.providers['Mobistar FR Astra3'] = (2, 940, False)
-		self.providers['AustriaSat Astra3'] = (2, 950, False)
+		self.providers['TéléSAT Astra3'] = (1, 920, True)
+		self.providers['AustriaSat Astra3'] = (1, 950, False)
+		self.providers['Canal Digitaal Astra 1'] = (0, 900, True)
+		self.providers['TV Vlaanderen  Astra 1'] = (0, 910, True)
 
 		self.transponders = ((12515000, 22000000, eDVBFrontendParametersSatellite.FEC_5_6, 192,
 			eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.Inversion_Unknown,
@@ -157,10 +153,6 @@ class FastScanScreen(ConfigListScreen, Screen):
 			(12070000, 27500000, eDVBFrontendParametersSatellite.FEC_3_4, 235,
 			eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.Inversion_Unknown,
 			eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_QPSK,
-			eDVBFrontendParametersSatellite.RollOff_alpha_0_35, eDVBFrontendParametersSatellite.Pilot_Off),
-			(12187000, 27500000, eDVBFrontendParametersSatellite.FEC_2_3, 235,
-			eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.Inversion_Unknown,
-			eDVBFrontendParametersSatellite.System_DVB_S2, eDVBFrontendParametersSatellite.Modulation_8PSK,
 			eDVBFrontendParametersSatellite.RollOff_alpha_0_35, eDVBFrontendParametersSatellite.Pilot_Off))
 
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
