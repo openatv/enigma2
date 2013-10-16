@@ -622,9 +622,11 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				(eDVBFrontendParametersCable.FEC_2_3, "2/3"),
 				(eDVBFrontendParametersCable.FEC_3_4, "3/4"),
 				(eDVBFrontendParametersCable.FEC_5_6, "5/6"),
-				(eDVBFrontendParametersCable.FEC_6_7, "6/7"),
 				(eDVBFrontendParametersCable.FEC_7_8, "7/8"),
 				(eDVBFrontendParametersCable.FEC_8_9, "8/9"),
+				(eDVBFrontendParametersCable.FEC_3_5, "3/5"),
+				(eDVBFrontendParametersCable.FEC_4_5, "4/5"),
+				(eDVBFrontendParametersCable.FEC_9_10, "9/10"),
 				(eDVBFrontendParametersCable.FEC_None, _("None"))])
 			self.scan_cab.symbolrate = ConfigInteger(default = defaultCab["symbolrate"], limits = (1, 99999))
 			self.scan_cab.system = ConfigSelection(default = defaultCab["system"], choices = [
