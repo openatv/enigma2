@@ -600,12 +600,12 @@ class InfoBarChannelSelection:
 		self.session.execDialog(self.servicelist)	
 
 	def switchChannelUp(self):
-		if not config.usage.servicelist_keep_service.value:
+		if "keep" not in config.usage.servicelist_cursor_behavior.value:
 			self.servicelist.moveUp()
 		self.session.execDialog(self.servicelist)
 
 	def switchChannelDown(self):
-		if not config.usage.servicelist_keep_service.value:
+		if "keep" not in config.usage.servicelist_cursor_behavior.value:
 			self.servicelist.moveDown()
 		self.session.execDialog(self.servicelist)
 

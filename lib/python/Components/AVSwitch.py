@@ -123,7 +123,7 @@ def InitAVSwitch():
 	iAVSwitch = AVSwitch()
 
 	def setColorFormat(configElement):
-		if getBoxType() == 'gbquad':
+		if getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus':
 			map = {"cvbs": 0, "rgb": 3, "svideo": 2, "yuv": 3}
 		else:
 			map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3} 
@@ -224,7 +224,7 @@ def InitAVSwitch():
 			except IOError:
 				print "couldn't write pep_scaler_sharpness"
 
-		if getBoxType() == 'gbquad':		
+		if getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus':		
 			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
 		else:
 			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))

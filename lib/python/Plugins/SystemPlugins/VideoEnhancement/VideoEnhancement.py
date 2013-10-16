@@ -166,7 +166,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			if getBoxType() == 'gbquad':
+			if getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus':
 				config.pep.sharpness = ConfigSlider(default=256, limits=(0,256))
 			else:	
 				config.pep.sharpness = ConfigSlider(default=0, limits=(0,256))
@@ -236,7 +236,7 @@ class VideoEnhancement:
 
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
-			if getBoxType() == 'gbquad':
+			if getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus':
 				config.pep.dynamic_contrast = ConfigSlider(default=3, limits=(0,256))
 			else:	
 				config.pep.dynamic_contrast = ConfigSlider(default=0, limits=(0,256))
@@ -259,7 +259,7 @@ class VideoEnhancement:
 					if not VideoEnhancement.firstRun:
 						self.setConfiguredValues()
 
-				if getBoxType() == 'gbquad':
+				if getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus':
 					config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
 				else:
 					config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))

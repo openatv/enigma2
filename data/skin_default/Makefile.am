@@ -20,6 +20,10 @@ if GBQUAD
 SUBDIRS += spinner32
 endif
 
+if GBQUADPLUS
+SUBDIRS += spinner32
+endif
+
 if GB800SEPLUS
 SUBDIRS += spinner32
 endif

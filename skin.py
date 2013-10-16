@@ -90,7 +90,7 @@ addSkin('skin_box.xml')
 addSkin('skin_second_infobar.xml')
 
 # Only one of these is present, compliments of AM_CONDITIONAL
-if getBoxType() == 'gbquad' or getBoxType() == 'gb800ue' or getBoxType() == 'gb800ueplus':
+if getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus' or getBoxType() == 'gb800ue' or getBoxType() == 'gb800ueplus':
 	config.skin.lcdskin = ConfigText(default = "skin_lcd_default.xml")
 else:	
 	config.skin.lcdskin = ConfigNothing()	

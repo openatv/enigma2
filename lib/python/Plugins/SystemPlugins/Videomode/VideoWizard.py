@@ -20,7 +20,7 @@ except:
 	chipset = "unknown"
 
 has_rca = False
-if getBoxType() == 'gbquad' or getBoxType() == 'gb800seplus' or getBoxType() == 'gb800ueplus':	
+if getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus' or getBoxType() == 'gb800seplus' or getBoxType() == 'gb800ueplus':	
 	has_rca = True
 
 class VideoWizardSummary(WizardSummary):
