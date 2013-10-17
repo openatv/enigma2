@@ -32,6 +32,8 @@ class ServiceScan:
 			else:
 				result = self.foundServices + self.scan.getNumServices()
 				percentage = self.scan.getProgress()
+				if percentage > 99:
+					percentage = 99
 				#TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
 				message = ngettext("Scanning - %d%% completed", "Scanning - %d%% completed", percentage) % percentage
 				message += ", "
