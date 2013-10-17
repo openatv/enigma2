@@ -10,6 +10,7 @@ dist_pkgdata_DATA = \
 	skin_subtitles.xml \
 	startwizard.xml \
 	userinterfacepositionerwizard.xml \
+	videowizard.xml \
 	freesat.t1 \
 	freesat.t2 \
 	unicable.xml \

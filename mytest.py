@@ -625,6 +625,7 @@ Components.SetupDevices.InitSetupDevices()
 profile("AVSwitch")
 import Components.AVSwitch
 Components.AVSwitch.InitAVSwitch()
+Components.AVSwitch.InitiVideomodeHotplug()
 
 profile("RecordingConfig")
 import Components.RecordingConfig

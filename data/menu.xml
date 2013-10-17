@@ -42,6 +42,7 @@
 			</menu>
 			<menu weight="5" level="0" text="System" entryID="system_selection">
 				<id val="system" />
+				<item weight="10" text="A/V settings" entryID="av_setup"><screen module="VideoMode" screen="VideoSetup" /></item>
 				<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
 				<item level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
 				<item level="0" entryID="usage_setup"><setup id="usage" /></item>
