@@ -223,7 +223,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 				self["config"].invalidate(self.nameEntry)
 
 		self["config"].list = self.list
-		self["config"].l.setSeperation(400)
+		self["config"].l.setSeperation(600)
 		self["config"].l.setList(self.list)
 		if not self.selectionChanged in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
