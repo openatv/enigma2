@@ -89,7 +89,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		# if not force_wide:
 			# self.list.append(getConfigListEntry(_("Aspect ratio"), config.av.aspect, _("Configure the aspect ratio of the screen.")))
 
-		if force_wide or config.av.aspect.getValue() in ("16_9", "16_10"):
+		if force_wide or config.av.aspect.getValue() in ("16:9", "16:10"):
 			self.list.extend((
 				getConfigListEntry(_("Display 4:3 content as"), config.av.policy_43, _("When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture.")),
 				getConfigListEntry(_("Display >16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."))
