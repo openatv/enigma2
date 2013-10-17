@@ -74,9 +74,9 @@ class AutoFrameRate(Screen):
 		f.close()
 		print 'current mode:',current_mode
 
-		if current_mode.find('i') != -1:
+		if current_mode and current_mode.find('i') != -1:
 			current_pol = 'i'
-		elif current_mode.find('p') != -1:
+		elif current_mode and current_mode.find('p') != -1:
 			current_pol = 'p'
 		else:
 			current_pol = ''
