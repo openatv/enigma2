@@ -1759,3 +1759,84 @@ def updateConfigElement(element, newelement):
 ##configfile.save()
 #config.save()
 #print config.pickle()
+
+cec_limits = [(0,15),(0,15),(0,15),(0,15)]
+class ConfigCECAddress(ConfigSequence):
+	def __init__(self, default, auto_jump = False):
+		ConfigSequence.__init__(self, seperator = ".", limits = cec_limits, default = default)
+		self.block_len = [len(str(x[1])) for x in self.limits]
+		self.marked_block = 0
+		self.overwrite = True
+		self.auto_jump = auto_jump
+
+	def handleKey(self, key):
+		if key == KEY_LEFT:
+			if self.marked_block > 0:
+				self.marked_block -= 1
+			self.overwrite = True
+
+		elif key == KEY_RIGHT:
+			if self.marked_block < len(self.limits)-1:
+				self.marked_block += 1
+			self.overwrite = True
+
+		elif key == KEY_HOME:
+			self.marked_block = 0
+			self.overwrite = True
+
+		elif key == KEY_END:
+			self.marked_block = len(self.limits)-1
+			self.overwrite = True
+
+		elif key in KEY_NUMBERS or key == KEY_ASCII:
+			if key == KEY_ASCII:
+				code = getPrevAsciiCode()
+				if code < 48 or code > 57:
+					return
+				number = code - 48
+			else:
+				number = getKeyNumber(key)
+			oldvalue = self._value[self.marked_block]
+
+			if self.overwrite:
+				self._value[self.marked_block] = number
+				self.overwrite = False
+			else:
+				oldvalue *= 10
+				newvalue = oldvalue + number
+				if self.auto_jump and newvalue > self.limits[self.marked_block][1] and self.marked_block < len(self.limits)-1:
+					self.handleKey(KEY_RIGHT)
+					self.handleKey(key)
+					return
+				else:
+					self._value[self.marked_block] = newvalue
+
+			if len(str(self._value[self.marked_block])) >= self.block_len[self.marked_block]:
+				self.handleKey(KEY_RIGHT)
+
+			self.validate()
+			self.changed()
+
+	def genText(self):
+		value = ""
+		block_strlen = []
+		for i in self._value:
+			block_strlen.append(len(str(i)))
+			if value:
+				value += self.seperator
+			value += str(i)
+		leftPos = sum(block_strlen[:(self.marked_block)])+self.marked_block
+		rightPos = sum(block_strlen[:(self.marked_block+1)])+self.marked_block
+		mBlock = range(leftPos, rightPos)
+		return (value, mBlock)
+
+	def getMulti(self, selected):
+		(value, mBlock) = self.genText()
+		if self.enabled:
+			return ("mtext"[1-selected:], value, mBlock)
+		else:
+			return ("text", value)
+
+	def getHTML(self, id):
+		# we definitely don't want leading zeros
+		return '.'.join(["%d" % d for d in self.value])
