@@ -137,7 +137,7 @@ if test x"$withcolorlcd400" != xno ; then
 	AC_DEFINE(HAVE_COLORLCD400, 1,[Define when using a 400x240 color display device])
 fi
 
-AM_CONDITIONAL(HAVE_COLORLCD220, test x"$withcolorlcd220" != xno)
+AM_CONDITIONAL(HAVE_COLORLCD400, test x"$withcolorlcd400" != xno)
 
 AC_ARG_WITH(oldpvr,
 	AC_HELP_STRING([--with-oldpvr], [use /dev/misc/pvr instead of /dev/dvb/adapterX/dvrX, yes or no]),
