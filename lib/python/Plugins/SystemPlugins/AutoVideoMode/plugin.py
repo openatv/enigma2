@@ -150,7 +150,7 @@ class AutoFrameRate(Screen):
 				new_mode = config_mode
 			print 'new mode:',new_mode
 
-		print 'config.av.autores:',config.av.autores.getValue(
+		print 'config.av.autores:',config.av.autores.getValue()
 		if config.av.autores.getValue():
 			write_mode = new_mode
 		else:
