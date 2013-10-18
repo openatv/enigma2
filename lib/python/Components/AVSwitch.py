@@ -10,56 +10,35 @@ config.av = ConfigSubsection()
 
 class AVSwitch:
 	rates = { } # high-level, use selectable modes.
-
 	modes = { }  # a list of (high-level) modes for a certain port.
 
-	rates["PAL"] =			{ "50Hz":	{ 50: "pal" },
-								"60Hz":		{ 60: "pal60" },
-								"multi":	{ 50: "pal", 60: "pal60" } }
+	rates["PAL"] =		{	"50Hz":		{ 50: "pal" },
+							"60Hz":		{ 60: "pal60" },
+							"multi":	{ 50: "pal", 60: "pal60" } }
 
-	rates["NTSC"] =			{ "60Hz": 	{ 60: "ntsc" } }
+	rates["NTSC"] =		{	"60Hz": 	{ 60: "ntsc" } }
 
-	rates["Multi"] =		{ "multi": 	{ 50: "pal", 60: "ntsc" } }
+	rates["Multi"] =	{	"multi":	{ 50: "pal", 60: "ntsc" } }
 
-	rates["480i"] =			{ "60Hz": 	{ 60: "480i" } }
+	rates["480i"] =		{	"60Hz": 	{ 60: "480i" } }
 
-	rates["576i"] =			{ "50Hz": 	{ 50: "576i" } }
+	rates["576i"] =		{	"50Hz": 	{ 50: "576i" } }
 
-	rates["480p"] =			{ "60Hz": 	{ 60: "480p" } }
+	rates["480p"] =		{	"60Hz": 	{ 60: "480p" } }
 
-	rates["576p"] =			{ "50Hz": 	{ 50: "576p" } }
+	rates["576p"] =		{	"50Hz": 	{ 50: "576p" } }
 
-	if about.getChipSetString().find('7335') != -1 or about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7405') != -1 or about.getChipSetString().find('7424') != -1:
-		rates["720p"] =		{ "24Hz": 		{ 24: "720p24" },
-								"25Hz": 	{ 25: "720p25" },
-								"30Hz": 	{ 30: "720p30" },
-								"50Hz": 	{ 50: "720p50" },
-								"60Hz": 	{ 60: "720p" },
-								"multi": 	{ 50: "720p50", 60: "720p" } }
-	else:
-		rates["720p"] =		{ "50Hz": 	{ 50: "720p50" },
-								"60Hz": 	{ 60: "720p" },
-								"multi": 	{ 50: "720p50", 60: "720p" } }
+	rates["720p"] =		{	"50Hz": 	{ 50: "720p50" },
+							"60Hz": 	{ 60: "720p" },
+							"multi": 	{ 50: "720p50", 60: "720p" } }
 
-	rates["1080i"] =		{ "50Hz":	{ 50: "1080i50" },
-								"60Hz":		{ 60: "1080i" },
-								"multi":	{ 50: "1080i50", 60: "1080i" } }
+	rates["1080i"] =	{	"50Hz":		{ 50: "1080i50" },
+							"60Hz":		{ 60: "1080i" },
+							"multi":	{ 50: "1080i50", 60: "1080i" } }
 
-# 	if about.getChipSetString().find('7405') != -1 or about.getChipSetString().find('7335') != -1:
-# 		rates["1080p"] =	{ "24Hz":		{ 24: "1080p24" },
-# 								"25Hz":		{ 25: "1080p25" },
-# 								"30Hz":		{ 30: "1080p30" }}
-# 	elif about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1:
-# 		rates["1080p"] =	{ 	"24Hz":		{ 24: "1080p24" },
-# 								"25Hz":		{ 25: "1080p25" },
-# 								"30Hz":		{ 30: "1080p30" },
-# 								"50Hz":		{ 50: "1080p50" },
-# 								"60Hz":		{ 60: "1080p" },
-# 								"multi":	{ 50: "1080p50", 60: "1080p" }}
-	if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1:
-		rates["1080p"] =	{ 	"50Hz":		{ 50: "1080p50" },
-								"60Hz":		{ 60: "1080p" },
-								"multi":	{ 50: "1080p50", 60: "1080p" }}
+	rates["1080p"] =	{ 	"50Hz":		{ 50: "1080p50" },
+							"60Hz":		{ 60: "1080p" },
+							"multi":	{ 50: "1080p50", 60: "1080p" } }
 
 	rates["PC"] = {
 		"1024x768": { 60: "1024x768" }, # not possible on DM7025
@@ -78,24 +57,30 @@ class AVSwitch:
 	}
 
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
-	modes["DVI-PC"] = ["PC"]
+	# modes["DVI-PC"] = ["PC"]
 
+	print 'CPU:',about.getChipSetString()
 	if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1:
-		modes["YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
-		modes["DVI"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
-		widescreen_modes = set(["720p", "1080i", "1080p"])
+		modes["HDMI"] = ["1080p", "1080i", "720p", "576p", "576i", "480p", "480i"]
+		widescreen_modes = set(["1080p", "1080i", "720p"])
 	else:
-		modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
-		modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
-		widescreen_modes = set(["720p", "1080i"])
+		modes["HDMI"] = ["1080i", "720p", "576p", "576i", "480p", "480i"]
+		widescreen_modes = set(["1080i", "720p"])
 
+	modes["YPbPr"] = modes["HDMI"]
 	if getBoxType().startswith('vu'):
-		if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1:
-			modes["Scart-YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
-		else:
-			modes["Scart-YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
+		modes["Scart-YPbPr"] = modes["HDMI"]
 
+	print 'MODES 1:',modes
 
+	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
+	# 	print "remove DVI-PC because of not existing modes"
+	# 	del modes["DVI-PC"]
+	if modes.has_key("YPbPr") and getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'odimm7' or getBoxType() == 'vusolo2' or getBoxType() == 'tmnano':
+		del modes["YPbPr"]
+	if modes.has_key("Scart") and getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'et6x00' or getBoxType() == 'tmnano':
+		del modes["Scart"]
+	print 'MODES:',modes
 
 	def __init__(self):
 		self.last_modes_preferred =  [ ]
@@ -104,14 +89,6 @@ class AVSwitch:
 		self.current_port = None
 
 		self.readAvailableModes()
-
-		if self.modes.has_key("DVI-PC") and not self.getModeList("DVI-PC"):
-			print "remove DVI-PC because of not existing modes"
-			del self.modes["DVI-PC"]
-		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'odimm7' or getBoxType() == 'vusolo2' or getBoxType() == 'tmnano':
-			del self.modes["YPbPr"]
-		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'et6x00' or getBoxType() == 'tmnano':
-			del self.modes["Scart"]
 
 		self.createConfig()
 		self.readPreferredModes()
@@ -139,8 +116,7 @@ class AVSwitch:
 
 		if self.modes_preferred != self.last_modes_preferred:
 			self.last_modes_preferred = self.modes_preferred
-			print "hotplug on dvi"
-			self.on_hotplug("DVI") # must be DVI
+			self.on_hotplug("HDMI") # must be HDMI
 
 	# check if a high-level mode with a given rate is available.
 	def isModeAvailable(self, port, mode, rate):
@@ -154,7 +130,7 @@ class AVSwitch:
 		return mode in self.widescreen_modes
 
 	def setMode(self, port, mode, rate, force = None):
-		print "setMode - port: %s, mode: %s, rate: %s" % (port, mode, rate)
+		print "[AVSwitch] setMode - port: %s, mode: %s, rate: %s" % (port, mode, rate)
 
 		# config.av.videoport.setValue(port)
 		# we can ignore "port"
@@ -211,7 +187,7 @@ class AVSwitch:
 		return True
 
 	def isPortUsed(self, port):
-		if port == "DVI":
+		if port == "HDMI":
 			self.readPreferredModes()
 			return len(self.modes_preferred) != 0
 		else:
@@ -245,10 +221,10 @@ class AVSwitch:
 		portlist = self.getPortList()
 		for port in portlist:
 			descr = port
-			if descr == 'DVI' and has_hdmi:
-				descr = 'HDMI'
-			elif descr == 'DVI-PC' and has_hdmi:
-				descr = 'HDMI-PC'
+			# if descr == 'DVI' and has_hdmi:
+			# 	descr = 'HDMI'
+			# elif descr == 'DVI-PC' and has_hdmi:
+			# 	descr = 'HDMI-PC'
 			lst.append((port, descr))
 
 			# create list of available modes
