@@ -61,7 +61,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.list = [
 			getConfigListEntry(_("Video output"), config.av.videoport, _("Configures which video output connector will be used."))
 		]
-		if config.av.videoport.getValue() in ('DVI', 'YPbPr', 'Scart-YPbPr'):
+		if config.av.videoport.getValue() in ('HDMI', 'YPbPr', 'Scart-YPbPr'):
 			self.list.append(getConfigListEntry(_("Automatic resolution"), config.av.autores,_("If enabled the output resolution of the box will try to match the resolution of the video contents resolution")))
 		# if we have modes for this port:
 		if config.av.videoport.getValue() in config.av.videomode and not config.av.autores.getValue():
@@ -92,7 +92,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		elif config.av.aspect.getValue() == "4:3":
 			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
 
-#		if config.av.videoport.getValue() == "DVI":
+#		if config.av.videoport.getValue() == "HDMI":
 #			self.list.append(getConfigListEntry(_("Allow unsupported modes"), config.av.edid_override))
 		if config.av.videoport.getValue() == "Scart":
 			self.list.append(getConfigListEntry(_("Color format"), config.av.colorformat, _("Configure which color format should be used on the SCART output.")))
