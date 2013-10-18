@@ -44,6 +44,7 @@ int main(int argc, char **argv)
 	if (png_sig_cmp(header, 0, 8))
 	{
 		fprintf(stderr, "this is not a PNG file\n");
+		fclose(fpin);
 		return 1;
 	}
 	png_structp png_ptr = png_create_read_struct
@@ -77,11 +78,13 @@ int main(int argc, char **argv)
 	if (color_type != PNG_COLOR_TYPE_RGB_ALPHA)
 	{
 		fprintf(stderr, "input PNG must be RGB+Alpha\n");
+		fclose(fpin);
 		return 1;
 	}
 	if (bit_depth != 8)
 	{
 		fprintf(stderr, "input bit depth must be 8bit!\n");
+		fclose(fpin);
 		return 1;
 	}
 	printf("png is %ldx%ld\n", width, height);
@@ -89,10 +92,13 @@ int main(int argc, char **argv)
 	if (channels != 4)
 	{
 		fprintf(stderr, "channels must be 4.\n");
+		fclose(fpin);
 		return 1;
 	}
 
-		/* now write jpeg */
+	fclose(fpin);
+
+	/* now write jpeg */
 	struct jpeg_compress_struct cinfo;
 	struct jpeg_error_mgr jerr;
 	JSAMPROW jrow_pointer[1];
@@ -141,7 +147,7 @@ int main(int argc, char **argv)
 	fclose(outfp);
 	jpeg_destroy_compress(&cinfo);
 
-		/* and write png */
+	/* and write png */
 	strcpy(filename, outfile);
 	strcat(filename, ".a.png");
 
@@ -179,5 +185,6 @@ int main(int argc, char **argv)
 	png_write_png(png_ptr_w, info_ptr_w, PNG_TRANSFORM_IDENTITY, 0);
 	png_write_end(png_ptr_w, info_ptr_w);
 	png_destroy_write_struct(&png_ptr_w, &info_ptr_w);
+	fclose(outfp);
 	return 0;
 }
