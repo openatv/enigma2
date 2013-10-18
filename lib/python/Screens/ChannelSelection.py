@@ -258,10 +258,7 @@ class ChannelContextMenu(Screen):
 
 	def setStartupService(self):
 		config.servicelist.startupservice.value = self.csel.getCurrentSelection().toString()
-		path = ''
-		for i in self.csel.servicePath:
-			path += i.toString()
-			path += ';'
+		path = ';'.join([i.toString() for i in self.csel.servicePath])
 		config.servicelist.startuproot.value = path
 		config.servicelist.startupmode.value = config.servicelist.lastmode.getValue()
 		config.servicelist.save()

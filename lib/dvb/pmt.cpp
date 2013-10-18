@@ -542,7 +542,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 				program.defaultSubtitleStream = autosub_txt_hearing;
 			else if (autosub_txt_normal != -1)
 				program.defaultSubtitleStream = autosub_txt_normal;
-			else if (allow_hearingimpaired && autosub_dvb_hearing != -1)
+			else if (allow_hearingimpaired && autosub_txt_hearing != -1)
 				program.defaultSubtitleStream = autosub_txt_hearing;
 		}
 		else
