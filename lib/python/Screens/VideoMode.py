@@ -320,7 +320,7 @@ class AutoFrameRate(Screen):
 		if config.av.autores.getValue():
 			write_mode = new_mode
 		else:
-			if os.path.exists('/proc/stb/video/videomode_%shz' % new_rate) and config_rate == 'multi':
+			if path.exists('/proc/stb/video/videomode_%shz' % new_rate) and config_rate == 'multi':
 				f = open("/proc/stb/video/videomode_%shz" % new_rate, "r")
 				multi_videomode = f.read()
 				print 'multi_videomode:',multi_videomode
