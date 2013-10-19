@@ -19,7 +19,6 @@ class VirtualKeyBoardList(MenuList):
 		self.l.setItemHeight(45)
 
 class VirtualKeyBoard(Screen):
-
 	def __init__(self, session, title="", **kwargs):
 		Screen.__init__(self, session)
 		self.setTitle(_(title))
@@ -392,3 +391,6 @@ class VirtualKeyBoard(Screen):
 						return True
 					selkey += 1
 		return False
+
+class VirtualKeyBoardEntryComponent:
+	pass
