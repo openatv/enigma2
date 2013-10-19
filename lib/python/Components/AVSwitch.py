@@ -386,7 +386,7 @@ def InitAVSwitch():
 	# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 	"letterbox": _("Pan&scan"),
 	# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-	"nonlinear": _("Nonlinear"),
+	# "nonlinear": _("Nonlinear"),
 	# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 	"bestfit": _("Just scale")}
 	if os.path.exists("/proc/stb/video/policy_choices"):
