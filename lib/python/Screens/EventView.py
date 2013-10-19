@@ -40,6 +40,10 @@ class EventViewContextMenu(Screen):
 				menu.append((p.name, boundFunction(self.runPlugin, p)))
 
 		self["menu"] = MenuList(menu)
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(_(self.title))
 
 	def okbuttonClick(self):
 		self["menu"].getCurrent() and self["menu"].getCurrent()[1]()
