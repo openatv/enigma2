@@ -534,6 +534,10 @@ def runScreenTest():
 	import Tools.Trashcan
 	Tools.Trashcan.init(session)
 
+	profile("Init:AutoFrameRate")
+	import Screens.VideoMode
+	Screens.VideoMode.autostart(session)
+
 	profile("RunReactor")
 	profile_final()
 	runReactor()

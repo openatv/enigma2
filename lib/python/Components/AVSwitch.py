@@ -2,7 +2,7 @@ from config import config, ConfigSlider, ConfigSelection, ConfigSubDict, ConfigY
 from Components.About import about
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
-from enigma import eTimer, eAVSwitch, getDesktop, getBoxType
+from enigma import eAVSwitch, getDesktop, getBoxType
 from SystemInfo import SystemInfo
 import os
 
@@ -515,14 +515,14 @@ def InitAVSwitch():
 	iAVSwitch.setConfiguredMode()
 
 class VideomodeHotplug:
-	def __init__(self, hw):
-		self.hw = hw
+	def __init__(self):
+		pass
 
 	def start(self):
-		self.hw.on_hotplug.append(self.hotplug)
+		iAVSwitch.on_hotplug.append(self.hotplug)
 
 	def stop(self):
-		self.hw.on_hotplug.remove(self.hotplug)
+		iAVSwitch.on_hotplug.remove(self.hotplug)
 
 	def hotplug(self, what):
 		print "hotplug detected on port '%s'" % (what)
@@ -530,22 +530,22 @@ class VideomodeHotplug:
 		mode = config.av.videomode[port].getValue()
 		rate = config.av.videorate[mode].getValue()
 
-		if not self.hw.isModeAvailable(port, mode, rate):
+		if not iAVSwitch.isModeAvailable(port, mode, rate):
 			print "mode %s/%s/%s went away!" % (port, mode, rate)
-			modelist = self.hw.getModeList(port)
+			modelist = iAVSwitch.getModeList(port)
 			if not len(modelist):
 				print "sorry, no other mode is available (unplug?). Doing nothing."
 				return
 			mode = modelist[0][0]
 			rate = modelist[0][1]
 			print "setting %s/%s/%s" % (port, mode, rate)
-			self.hw.setMode(port, mode, rate)
+			iAVSwitch.setMode(port, mode, rate)
 
 hotplug = None
 
 def startHotplug():
-	global hotplug, iAVSwitch
-	hotplug = VideomodeHotplug(iAVSwitch)
+	global hotplug
+	hotplug = VideomodeHotplug()
 	hotplug.start()
 
 def stopHotplug():
