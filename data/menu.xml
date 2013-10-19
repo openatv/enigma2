@@ -86,13 +86,6 @@ self.session.openWithCallback(msgClosed, EpgLoadMsg)
 					<item level="2" entryID="setup_epginfobargraphical"><setup id="epginfobargraphical" /></item>
 					<item level="2" entryID="setup_epggraphical"><setup id="epggraphical" /></item>
 				</menu>
-				<menu level="0" text="Harddisk" entryID="hardisk_selection" requires="Harddisk">
-					<id val="harddisk" />
-					<item level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
-					<item level="0" text="Initialization" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
-					<item level="0" text="Filesystem check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
-					<item level="0" text="Convert ext3 filesystem to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
-				</menu>
 				<item level="0" text="HDMI CEC" entryID="hdmicec" requires="HDMICEC">
 <code>
 from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
@@ -131,6 +124,13 @@ self.session.open(SABnzbdSetupScreen)
 				<item level="0" text="Recording settings" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings" /></item>
 				<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
 				<item level="0" text="Skin setup" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector"/></item>
+				<menu level="0" text="Storage devices" entryID="hardisk_selection" requires="Harddisk">
+					<id val="harddisk" />
+					<item level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
+					<item level="0" text="Initialization" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
+					<item level="0" text="Filesystem check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
+					<item level="0" text="Convert ext3 filesystem to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
+				</menu>
 				<item level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
 				<item level="0" text="Timeshift settings" entryID="timshift_setup"><screen module="Timershift" screen="TimeshiftSettings" /></item>
 				<item level="0" entryID="time_setup"><setup id="time"/></item>
