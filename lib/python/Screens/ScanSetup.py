@@ -926,12 +926,16 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			if self.finished_cb:
 				self.session.openWithCallback(self.finished_cb, ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags, "networkid": networkid}])
 			else:
-				self.session.open(ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags, "networkid": networkid}])
+				self.session.openWithCallback(self.startScanCallback, ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags, "networkid": networkid}])
 		else:
 			if self.finished_cb:
 				self.session.openWithCallback(self.finished_cb, MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 			else:
 				self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
+
+	def startScanCallback(self, answer):
+		if answer:
+			self.doCloseRecursive()
 
 	def keyCancel(self):
 		self.session.nav.playService(self.session.postScanService)
