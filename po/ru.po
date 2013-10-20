@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-25 09:57+0200\n"
-"PO-Revision-Date: 2013-06-02 22:34+0100\n"
-"Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
+"POT-Creation-Date: 2013-10-20 17:53+0200\n"
+"PO-Revision-Date: 2013-10-20 16:58+0100\n"
+"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: RU locale edited by Sowa\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
@@ -126,6 +126,10 @@ msgstr " и"
 
 msgid "%-H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr ""
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -334,6 +338,9 @@ msgstr "* Требуется перезапуск"
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Доступно, если активно более одного интерфейса"
+
+msgid "/s"
+msgstr ""
 
 msgid "1.0"
 msgstr "1.0"
@@ -800,6 +807,9 @@ msgstr "Выделить"
 msgid "Allocate unused memory index"
 msgstr "Определение не зайдествованных индексов"
 
+msgid "Allow quit movieplayer with exit"
+msgstr ""
+
 msgid "Allow subtitle language to equal audio language"
 msgstr "Разрешить одноименный язык субтитров и аудио-трека"
 
@@ -883,6 +893,10 @@ msgstr "Любая активность"
 
 msgid "Arabic"
 msgstr "Арабский"
+
+#, fuzzy
+msgid "Are you sure to remove this entry?"
+msgstr "Вы уверены, что хотите выйти из этого мастера?"
 
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
@@ -1048,6 +1062,10 @@ msgstr "Автосохранение имиджа"
 
 msgid "Automatic refresh"
 msgstr "Автообновление"
+
+#, fuzzy
+msgid "Automatic resolution"
+msgstr "Автосканирование"
 
 msgid "Automatic save"
 msgstr "Автосохранение"
@@ -1339,6 +1357,10 @@ msgstr "Может использоваться для различных час
 msgid "Cancel"
 msgstr "Отмена"
 
+#, fuzzy
+msgid "Cancel next timer"
+msgstr "Текущее время:"
+
 msgid "Cancel save timeshift as movie"
 msgstr "Не сохранять сдвиг времени как видеозапись"
 
@@ -1425,6 +1447,10 @@ msgstr "Список каналов"
 
 msgid "Channel list context menu"
 msgstr "Контекстное меню списка каналов"
+
+#, fuzzy
+msgid "Channel list cursor behavior"
+msgstr "Предпросмотр в списке каналов"
 
 msgid "Channel list on mode change"
 msgstr "Изменить режим списка каналов на "
@@ -1591,6 +1617,10 @@ msgstr "Клиенты"
 msgid "Close"
 msgstr "Закрыть"
 
+#, fuzzy
+msgid "Close PiP on exit"
+msgstr "сохранить плейлист при выходе"
+
 msgid "Close bouquet list."
 msgstr "Закрыть список букетов"
 
@@ -1686,6 +1716,10 @@ msgstr "Настройка метода построения имен файло
 msgid "Configure if and how service type icons will be shown."
 msgstr "Настроить, какие и если будут показаны иконки типов каналов."
 
+#, fuzzy
+msgid "Configure if service picons will be shown in the servicelist."
+msgstr "Настроить, какие и если будут показаны иконки типов каналов."
+
 msgid "Configure interface"
 msgstr "Настройка интерфейса"
 
@@ -1706,9 +1740,6 @@ msgstr "Настройка IP-адреса."
 
 msgid "Configure the amount of time that will be presented."
 msgstr "Конфигурирование количество времени, которое будет предоставлено."
-
-msgid "Configure the aspect ratio of the screen."
-msgstr "Настройка соотношения сторон экрана."
 
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr "Настрока поведения кнопки «Пауза», когда воспроизведение фильма уже приостановлено."
@@ -1731,11 +1762,17 @@ msgstr "Настройка уровня яркости VFD дисплея для
 msgid "Configure the brightness level of the front panel displa for standby."
 msgstr "Настройка уровня яркости VFD дисплея в режиме сна."
 
+msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
+msgstr ""
+
 msgid "Configure the color of the teletext subtitles."
 msgstr "Настройка цвета телетекста."
 
 msgid "Configure the contrast level of the front panel display."
 msgstr "Настройка уровня контрастности VFD дисплея."
+
+msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
+msgstr ""
 
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Выбор времени до включения сохранения экрана"
@@ -2797,6 +2834,10 @@ msgstr "Размер шрифта текущего события"
 msgid "Event font size (relative to skin size)"
 msgstr "Размер шрифта текущего события (по отношению к используемому в скине)"
 
+#, fuzzy
+msgid "Event view"
+msgstr "Размер шрифта текущего события"
+
 msgid "Everywhere"
 msgstr "Везде"
 
@@ -2883,6 +2924,10 @@ msgstr "Внешний "
 
 msgid "External (CF)"
 msgstr "Внешняя (CF)"
+
+#, fuzzy
+msgid "External subtitle color"
+msgstr "Цвет субтитров телетекста"
 
 msgid "FAILED"
 msgstr "НЕ УДАЛОСЬ"
@@ -3054,6 +3099,10 @@ msgstr "полная прозрачность"
 
 msgid "Fulscreen"
 msgstr "Полноэкранный"
+
+#, fuzzy
+msgid "Fulview resulution"
+msgstr "Выбор из списка"
 
 msgid "Function of OK button"
 msgstr "Функции кнопки ОК"
@@ -3236,9 +3285,6 @@ msgstr "Настройка жёсткого диска"
 msgid "Hard disk standby after"
 msgstr "Отключение жёсткого диска через "
 
-msgid "Harddisk"
-msgstr "Жёсткий диск"
-
 msgid "Hebrew"
 msgstr "Иврит"
 
@@ -3355,6 +3401,9 @@ msgstr "Иконки"
 
 msgid "Idle Time: "
 msgstr "Время простоя:"
+
+msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
+msgstr ""
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Если отчёты об ошибках полностью заполнят выделенное место, старые отчёты будут удалены"
@@ -3667,11 +3716,18 @@ msgid "Just change channels"
 msgstr "Простая смена каналов"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+#. "nonlinear": _("Nonlinear"),
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just scale"
 msgstr "только масштабирование"
 
 msgid "Just zap"
 msgstr "только переключ."
+
+#, fuzzy
+msgid "Keep service"
+msgstr "Нет каналов"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Открытое окно выбоа записей во время проигрывания аудиофайлов."
@@ -4008,6 +4064,10 @@ msgstr "Инфо о памяти"
 msgid "Memory index"
 msgstr "Запомненный индекс"
 
+#, fuzzy
+msgid "Memory positions"
+msgstr "Сохранить положение"
+
 msgid "Menu"
 msgstr "Меню"
 
@@ -4056,10 +4116,6 @@ msgstr "Модель:\t%s %s\n"
 
 msgid "Model: "
 msgstr "Модель: "
-
-#, python-format
-msgid "Model: %s"
-msgstr "Модель: %s"
 
 msgid "Modulation"
 msgstr "Модуляция"
@@ -4489,10 +4545,6 @@ msgstr "ID узла: "
 
 msgid "None"
 msgstr "Никакой"
-
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-msgid "Nonlinear"
-msgstr "Не линейно"
 
 msgid "Normal mode"
 msgstr "Обычный режим"
@@ -4928,6 +4980,10 @@ msgstr "Пожалуйста, введите имя файла (пусто - т�
 
 msgid "Please enter name of the new directory"
 msgstr "Пожалуйста, введите имя нового каталога"
+
+#, fuzzy
+msgid "Please enter new name:"
+msgstr "Пожалуйста, введите новое имя файла"
 
 msgid "Please enter the correct pin code"
 msgstr "Пожалуйста, введите правильный PIN"
@@ -5384,9 +5440,6 @@ msgstr "Записать сдедующ."
 msgid "Record now"
 msgstr "Записать"
 
-msgid "Record once"
-msgstr "Записать однократно"
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr "Запись начата! Остановка сдвига времени..."
 
@@ -5633,13 +5686,6 @@ msgstr "Возобновить с последней позиции"
 msgid "Resume position at %s"
 msgstr "Возобновить с позиции %s"
 
-#. TRANSLATORS: The string "Resuming playback" flashes for a moment
-#. TRANSLATORS: at the start of a movie, when the user has selected
-#. TRANSLATORS: "Resume from last position" as start behavior.
-#. TRANSLATORS: The purpose is to notify the user that the movie starts
-#. TRANSLATORS: in the middle somewhere and not from the beginning.
-#. TRANSLATORS: (Some translators seem to have interpreted it as a
-#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Возобновление воспроизведения"
 
@@ -5648,6 +5694,9 @@ msgstr "Вернуться к списку записей"
 
 msgid "Return to previous service"
 msgstr "Вернуться к предыдущему каналу"
+
+msgid "Reverse bouquet buttons"
+msgstr ""
 
 msgid "Rewind speeds"
 msgstr "Скорость перемотки назад"
@@ -5717,6 +5766,9 @@ msgstr "Настройка Samba"
 
 msgid "Samba setup"
 msgstr "Настройка Samba"
+
+msgid "Same resolution as skin"
+msgstr ""
 
 msgid "Sat"
 msgstr "Сб"
@@ -6345,6 +6397,10 @@ msgstr "Отобразить список таймеров"
 msgid "Show Transponder Remaining/Elapsed as"
 msgstr "Показывать при просмотре Осталось/Прошло как"
 
+#, fuzzy
+msgid "Show VCR scart on main menu"
+msgstr "показать главное меню DVD"
+
 msgid "Show ViX spinning logo when system is busy."
 msgstr "Отображать спиннер ViX, когда система занята."
 
@@ -6402,6 +6458,10 @@ msgstr "Показ значков новый/непросмотренный"
 msgid "Show in extensions list ?"
 msgstr "Показать в меню расширений?"
 
+#, fuzzy
+msgid "Show in extensions menu"
+msgstr "Показать в меню расширений?"
+
 msgid "Show info"
 msgstr "Показать информацию"
 
@@ -6440,6 +6500,10 @@ msgstr "Показать или скрыть расширенные описан
 
 msgid "Show picon background colour"
 msgstr "Показ пиконов в фоне"
+
+#, fuzzy
+msgid "Show picons in servicelist"
+msgstr "Показать статусную иконку в списке фильмов"
 
 msgid "Show positioner movement"
 msgstr "Показывать движение позиционера"
@@ -6634,6 +6698,10 @@ msgstr "Настройки Softcam"
 msgid "Softcam settings"
 msgstr "Настройки Softcam"
 
+#, fuzzy
+msgid "SoftcamCheck"
+msgstr "Программное обеспечение"
+
 msgid "Software"
 msgstr "Программное обеспечение"
 
@@ -6813,6 +6881,10 @@ msgstr "Остановить запись"
 msgid "Stop recording and delete"
 msgstr "Остановить запись и удалить"
 
+#, fuzzy
+msgid "Stop recording now"
+msgstr "Остановить запись"
+
 msgid "Stop test"
 msgstr "Остановить тест"
 
@@ -6836,6 +6908,10 @@ msgstr "Использовать останов сдвига времени, е�
 
 msgid "Stopped"
 msgstr "Остановка"
+
+#, fuzzy
+msgid "Storage devices"
+msgstr "Список устройств хранения"
 
 msgid "Store at index"
 msgstr "Сохранить положение в индекс"
@@ -7753,6 +7829,10 @@ msgstr "Настройка неудачна! Проверьте сигнал!"
 msgid "Tuner"
 msgstr "Тюнер"
 
+#, fuzzy
+msgid "Tuner :"
+msgstr "Тюнер"
+
 msgid "Tuner configuration"
 msgstr "Конфигурация тюнера"
 
@@ -8017,6 +8097,10 @@ msgstr "Пакет пользователя"
 msgid "User defined"
 msgstr "Определены пользователем"
 
+#, fuzzy
+msgid "User defined transponder"
+msgstr "Предпочитаемый транспондер"
+
 msgid "User interface"
 msgstr "Интерфейс пользователя"
 
@@ -8084,6 +8168,10 @@ msgstr "Настройки улучшения изображения"
 msgid "Video PID"
 msgstr "Видео ПИД (VPID)"
 
+#, python-format
+msgid "Video content: %sx%s%s %sHz"
+msgstr ""
+
 msgid "Video enhancement preview"
 msgstr "Просмотр улучшения изображения"
 
@@ -8111,6 +8199,10 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "Выбор режима видео."
+
+#, fuzzy, python-format
+msgid "Video mode: %s"
+msgstr "Режим просмотра"
 
 msgid "Video output"
 msgstr "Видео выход"
@@ -8352,6 +8444,10 @@ msgstr ""
 msgid "What do you want to scan?"
 msgstr "Что вы хотите сканировать?"
 
+#, fuzzy
+msgid "When enabled the PiP can be closed by the exit button."
+msgstr "Если эта функция включена, оригинальное разбиение на строки будут удалено из телетекста субтитров."
+
 msgid "When enabled the online checker will also check for experimental versions"
 msgstr "Если эта функция включена, онлайн проверка также проверит экспериментальные версии"
 
@@ -8385,9 +8481,6 @@ msgstr "Если эта функция включена, перейдите к �
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr "Если эта функция включена, удаленные записи перемещаются в корзину, а не сразу стерты."
 
-msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
-msgstr "Если эта функция включена, внешние субтитры (в медиа-файах) будут отображаться в желтом, а не первоначальном цвете."
-
 #, fuzzy
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Если эта функция включена, телетекст субтитров будут показаны в исходном положении."
@@ -8403,6 +8496,9 @@ msgstr "Если эта функция включена, графические 
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr "Если эта функция включена, графические субтитры DVB будет отображаться желтым, а не первоначальным цветом."
+
+msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "При включении измеряется потребляемая мощность, для обнаружения остановки ротора (если поддерживается тюнером)."
@@ -8427,6 +8523,10 @@ msgstr "Если эта функция включена, страницы тел
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr "Если эта функция включена, телетекст субтитров будут показаны в исходном положении."
+
+#, fuzzy
+msgid "When enabled, the VCR scart option will be shown on the main menu"
+msgstr "Кагда функция зайдействована, всплывает сообщение при начале записи"
 
 msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
 msgstr "Если эта функция включена, длина каждой записи будет показан в списке фильмов (это может вызвать некоторое дополнительное время загрузки)."
@@ -8523,11 +8623,17 @@ msgstr "Настройка беспроводного сетевого подк�
 msgid "Wireless network state"
 msgstr "Состояние беспроводной сети"
 
+msgid "With popup"
+msgstr ""
+
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr "Если эта опция включена (установлено значение 'да'), то список каналов в букете отобразится на экране в первую очередь. Если установлено 'нет', то будет открыт текущий букет."
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Если эта опция включена, вы можете скрыть рабочие задачи с экрана расширений (короткое нажатие синей кнопки)."
+
+msgid "Without popup"
+msgstr ""
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Ошибка во время записи. Диск переполнен?\n"
@@ -8554,9 +8660,6 @@ msgstr "Год"
 
 msgid "Yellow DVB subtitles"
 msgstr "Жёлтые DVB субтитры"
-
-msgid "Yellow external subtitles"
-msgstr "Желтые внешние субтитры"
 
 msgid "Yes"
 msgstr "Да"
@@ -8971,6 +9074,10 @@ msgstr "алфавитный"
 
 msgid "alphabetic reverse"
 msgstr "сортировать по алфавиту (Я-А)"
+
+#, fuzzy
+msgid "alternative"
+msgstr "Альтернативы"
 
 msgid "arts/culture (without music, general)"
 msgstr "искусство/культура (без музыки, общее)"
@@ -9653,6 +9760,10 @@ msgstr "удалить метку"
 msgid "rename"
 msgstr "переименовать"
 
+#, fuzzy
+msgid "rename entry"
+msgstr "удалить выбранное"
+
 msgid "repeat playlist"
 msgstr "повторить плейлист"
 
@@ -10049,9 +10160,3 @@ msgstr "переключить и записать"
 
 msgid "zapped"
 msgstr "переключено"
-
-#~ msgid "Channel selection configuration"
-#~ msgstr "Настройка выбора каналов"
-
-#~ msgid "Do you want to update your %s ?"
-#~ msgstr "Вы желаете обновить %s?"

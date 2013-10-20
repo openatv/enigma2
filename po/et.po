@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-12 23:40+0200\n"
+"POT-Creation-Date: 2013-10-20 17:53+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
+"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
@@ -125,6 +125,10 @@ msgstr "ja"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
+
+#, python-format
+msgid "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr ""
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -794,6 +798,9 @@ msgstr "Jaota"
 msgid "Allocate unused memory index"
 msgstr "Jaota vaba mäluindeks"
 
+msgid "Allow quit movieplayer with exit"
+msgstr ""
+
 msgid "Allow subtitle language to equal audio language"
 msgstr "Luba subtiitrid heli keele valiku järgi"
 
@@ -877,6 +884,10 @@ msgstr "Iga tegevus"
 
 msgid "Arabic"
 msgstr "Araabia"
+
+#, fuzzy
+msgid "Are you sure to remove this entry?"
+msgstr "Kas väljud seadistusabist?"
 
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
@@ -1042,6 +1053,10 @@ msgstr "Automaatne tarkvarakoopia loomine"
 
 msgid "Automatic refresh"
 msgstr "Automaatne värskendamine"
+
+#, fuzzy
+msgid "Automatic resolution"
+msgstr "Automaatotsing"
 
 msgid "Automatic save"
 msgstr "Automaatne salvestamine"
@@ -1332,6 +1347,10 @@ msgstr "Saab kasutada väliste subtiitrite ja video erineva fps korral."
 msgid "Cancel"
 msgstr "Tühista"
 
+#, fuzzy
+msgid "Cancel next timer"
+msgstr "Praegune kellaaeg"
+
 msgid "Cancel save timeshift as movie"
 msgstr "Ära salvesta ajanihke faile"
 
@@ -1418,6 +1437,10 @@ msgstr "Kanalinimekiri"
 
 msgid "Channel list context menu"
 msgstr "Kanalinimekirja menüü"
+
+#, fuzzy
+msgid "Channel list cursor behavior"
+msgstr "Eelvaade kanalinimekirjas"
 
 msgid "Channel list on mode change"
 msgstr "Kanalinimekiri TV ja raadiorežiimi vahetusel"
@@ -1582,6 +1605,10 @@ msgstr "Kliendid"
 msgid "Close"
 msgstr "Sulge"
 
+#, fuzzy
+msgid "Close PiP on exit"
+msgstr "salvesta väljumisel esitusloend"
+
 msgid "Close bouquet list."
 msgstr "Sulge lemmiknimekirjad"
 
@@ -1701,9 +1728,6 @@ msgstr "Määra IP aadress."
 msgid "Configure the amount of time that will be presented."
 msgstr "Määra saatekavas kuvatava aja hulk minutites."
 
-msgid "Configure the aspect ratio of the screen."
-msgstr "Määra ekraani pildisuhe."
-
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr "Määra 'paus' nupu toiming, kui filmi esitus on juba peatatud."
 
@@ -1733,6 +1757,9 @@ msgstr "Määra teleteksti subtiitrite värv."
 
 msgid "Configure the contrast level of the front panel display."
 msgstr "Määra esipaneeli heleduse tase."
+
+msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
+msgstr ""
 
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Määra aeg ekraanisäästja käivitamiseni (min)."
@@ -2790,6 +2817,10 @@ msgstr "Saate tähesuurus"
 msgid "Event font size (relative to skin size)"
 msgstr "Saate nime tähesuurus (suhtes teemaga)"
 
+#, fuzzy
+msgid "Event view"
+msgstr "Saate tähesuurus"
+
 msgid "Everywhere"
 msgstr "Igal pool"
 
@@ -3235,9 +3266,6 @@ msgstr "Kõvaketta seaded"
 msgid "Hard disk standby after"
 msgstr "Kõvaketta seiskamine peale"
 
-msgid "Harddisk"
-msgstr "Kõvaketas"
-
 msgid "Hebrew"
 msgstr "Heebrea"
 
@@ -3354,6 +3382,9 @@ msgstr "Ikoonid"
 
 msgid "Idle Time: "
 msgstr "Jõudeaeg:"
+
+msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
+msgstr ""
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Kui logidele lubatud suurim kettaruum on täis, kustutakse kõige vanemad."
@@ -3666,11 +3697,18 @@ msgid "Just change channels"
 msgstr "Kanalivahetus"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+#. "nonlinear": _("Nonlinear"),
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just scale"
 msgstr "Alati kogu ekraan"
 
 msgid "Just zap"
 msgstr "Kanalivahetus"
+
+#, fuzzy
+msgid "Keep service"
+msgstr "Kanal puudub"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Filmilist hoitakse helifailide esitusel avatud."
@@ -4485,10 +4523,6 @@ msgstr "NodeID: "
 msgid "None"
 msgstr "Pole"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-msgid "Nonlinear"
-msgstr "Ebalineaarne"
-
 msgid "Normal mode"
 msgstr "Tavaline"
 
@@ -4923,6 +4957,10 @@ msgstr "Sisesta faili nimi (tühi = tänane kuupäev)"
 
 msgid "Please enter name of the new directory"
 msgstr "Sisesta uue kataloogi nimi"
+
+#, fuzzy
+msgid "Please enter new name:"
+msgstr "Sisesta uus faili nimi"
 
 msgid "Please enter the correct pin code"
 msgstr "Sisesta õige kood"
@@ -5379,9 +5417,6 @@ msgstr "Salvesta järgmine"
 msgid "Record now"
 msgstr "Salvesta kohe"
 
-msgid "Record once"
-msgstr "Salvesta üks kord"
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr "Salvestamine algas! Ajanihe peatatakse ..."
 
@@ -5627,13 +5662,6 @@ msgstr "Jätka katkestatud kohalt"
 msgid "Resume position at %s"
 msgstr "Jätka alates %s"
 
-#. TRANSLATORS: The string "Resuming playback" flashes for a moment
-#. TRANSLATORS: at the start of a movie, when the user has selected
-#. TRANSLATORS: "Resume from last position" as start behavior.
-#. TRANSLATORS: The purpose is to notify the user that the movie starts
-#. TRANSLATORS: in the middle somewhere and not from the beginning.
-#. TRANSLATORS: (Some translators seem to have interpreted it as a
-#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Taasesituse jätkamine"
 
@@ -5642,6 +5670,9 @@ msgstr "Tagasi filmilisti"
 
 msgid "Return to previous service"
 msgstr "Tagasi vaadatud kanalile"
+
+msgid "Reverse bouquet buttons"
+msgstr ""
 
 msgid "Rewind speeds"
 msgstr "Tagasikerimise kiirused"
@@ -6340,6 +6371,10 @@ msgstr "Taimerite nimekiri"
 msgid "Show Transponder Remaining/Elapsed as"
 msgstr "Jäänud/möödunud transponderi näit"
 
+#, fuzzy
+msgid "Show VCR scart on main menu"
+msgstr "näita DVD peamenüüd"
+
 msgid "Show ViX spinning logo when system is busy."
 msgstr "Näita hõivatud oleku puhul animatsiooni."
 
@@ -6395,6 +6430,10 @@ msgid "Show icon for new/unseen items"
 msgstr "Tähista uus/vaatamata nimetus"
 
 msgid "Show in extensions list ?"
+msgstr "Näita laienduste menüüs?"
+
+#, fuzzy
+msgid "Show in extensions menu"
 msgstr "Näita laienduste menüüs?"
 
 msgid "Show info"
@@ -6632,6 +6671,10 @@ msgstr "EMU seaded"
 msgid "Softcam settings"
 msgstr "EMU seaded"
 
+#, fuzzy
+msgid "SoftcamCheck"
+msgstr "Tarkvara"
+
 msgid "Software"
 msgstr "Tarkvara"
 
@@ -6811,6 +6854,10 @@ msgstr "Peata salvestamine"
 msgid "Stop recording and delete"
 msgstr "Peata salvestamine ja kustuta"
 
+#, fuzzy
+msgid "Stop recording now"
+msgstr "Peata salvestamine"
+
 msgid "Stop test"
 msgstr "Peata test"
 
@@ -6834,6 +6881,10 @@ msgstr "Peatab ajanihke salvestuse ajaks. Soovitatav, kui kasutatakse usb pulka.
 
 msgid "Stopped"
 msgstr "Peatatud"
+
+#, fuzzy
+msgid "Storage devices"
+msgstr "Salvestite loetelu"
 
 msgid "Store at index"
 msgstr "Salvesta indeksis"
@@ -8015,6 +8066,10 @@ msgstr "Lemmiknimekirjad"
 msgid "User defined"
 msgstr "Kasutaja määratud"
 
+#, fuzzy
+msgid "User defined transponder"
+msgstr "Eelmääratud transponder"
+
 msgid "User interface"
 msgstr "Kasutajaliides"
 
@@ -8082,6 +8137,10 @@ msgstr "Pildi paranduste sätted"
 msgid "Video PID"
 msgstr "Video PID"
 
+#, python-format
+msgid "Video content: %sx%s%s %sHz"
+msgstr ""
+
 msgid "Video enhancement preview"
 msgstr "Pildi paranduste eelvaade"
 
@@ -8109,6 +8168,10 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "Videorežiimi valik."
+
+#, fuzzy, python-format
+msgid "Video mode: %s"
+msgstr "Vaate laad"
 
 msgid "Video output"
 msgstr "Video väljund"
@@ -8347,6 +8410,10 @@ msgstr "Mida teha taimeri lõppemisel? 'Automaatne' laseb vstuvõtjal minna olek
 msgid "What do you want to scan?"
 msgstr "Mida soovid otsida?"
 
+#, fuzzy
+msgid "When enabled the PiP can be closed by the exit button."
+msgstr "Määrates 'jah', kasutatakse teleteksti subtiitritel parandamata reamurdmist."
+
 msgid "When enabled the online checker will also check for experimental versions"
 msgstr "Määrates 'jah', otsitakse ka eksperimentaalseid uuendusi"
 
@@ -8395,6 +8462,9 @@ msgstr "Määrates 'jah', kuvatakse DVB subtiitrid nende algsel asukohal."
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr "Määrates 'jah', kuvatakse DVB subtiitrid nende tõelise värvi asemel kollasena."
 
+msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgstr ""
+
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Määrates 'jah', kasuta energiakulu mõõtmist, et tuvastada mootori peatumist (kui vastuvõtja seda toetab)."
 
@@ -8418,6 +8488,10 @@ msgstr "Määrates 'jah', puhverdadakse teleteksti lehed, võimaldamaks kiiremat
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr "Määrates 'jah', kuvatakse teleteksti subtiitrid nende algsel asukohal."
+
+#, fuzzy
+msgid "When enabled, the VCR scart option will be shown on the main menu"
+msgstr "Määrates 'jah', teavitatakse salvestuse algamisest hüpikaknaga."
 
 msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
 msgstr "Määrates 'jah', näidatakse filmilistis salvestuste kestust (laadimine võib kesta veidi kauem)."
@@ -8514,11 +8588,17 @@ msgstr "Wifi võrgu seadistus."
 msgid "Wireless network state"
 msgstr "Wifi võrgu olek"
 
+msgid "With popup"
+msgstr ""
+
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr "Määrates 'jah', avatakse alati lemmiknimekirjade valik. Määrates 'ei' avatakse praegune kanalinimekiri."
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Siin saab valida, kas käsiloevaid tööülesandeid näidatakse laienduste menüüs (sinine nupp)."
+
+msgid "Without popup"
+msgstr ""
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Viga salvestamisel. Kõvaketas täis?\n"
@@ -9642,6 +9722,10 @@ msgstr "kustuta see märk"
 msgid "rename"
 msgstr "muuda nime"
 
+#, fuzzy
+msgid "rename entry"
+msgstr "kustuta"
+
 msgid "repeat playlist"
 msgstr "korda esitusloendit"
 
@@ -10037,21 +10121,3 @@ msgstr "mine kanalile ja salvesta"
 
 msgid "zapped"
 msgstr "vahetatud"
-
-#~ msgid "Channel selection configuration"
-#~ msgstr "Kanalivaliku seadistused"
-
-#~ msgid "Do you want to update your %s ?"
-#~ msgstr "Kas uuendad %s tarkvara?"
-
-#~ msgid "Model: %s"
-#~ msgstr "Mudel: %s"
-
-#~ msgid ""
-#~ "When enabled, external subtitles (in media files) will be displayed in "
-#~ "yellow, instead of the original color."
-#~ msgstr ""
-#~ "Määrates 'jah', kuvatakse välised subtiitrid (meedia failidel) kollasena."
-
-#~ msgid "Yellow external subtitles"
-#~ msgstr "Kollased välised subtiitrid"

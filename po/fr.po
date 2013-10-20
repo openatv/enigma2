@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-25 09:57+0200\n"
-"PO-Revision-Date: 2012-12-09 02:02+0100\n"
+"POT-Creation-Date: 2013-10-20 17:53+0200\n"
+"PO-Revision-Date: 2013-10-20 16:59+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: french\n"
 "Language: fr\n"
@@ -123,6 +123,10 @@ msgstr ""
 #, fuzzy
 msgid "%-H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr ""
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -323,6 +327,9 @@ msgstr ""
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Seulement disponible si plus d'une interface est active."
+
+msgid "/s"
+msgstr ""
 
 msgid "1.0"
 msgstr "1.0"
@@ -809,6 +816,9 @@ msgstr ""
 msgid "Allocate unused memory index"
 msgstr ""
 
+msgid "Allow quit movieplayer with exit"
+msgstr ""
+
 msgid "Allow subtitle language to equal audio language"
 msgstr ""
 
@@ -894,6 +904,10 @@ msgstr "Pour toute activité"
 
 msgid "Arabic"
 msgstr "Arabe"
+
+#, fuzzy
+msgid "Are you sure to remove this entry?"
+msgstr "Etes-vous sûr de vouloir quitter cet assistant?"
 
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
@@ -1055,6 +1069,10 @@ msgstr ""
 
 msgid "Automatic refresh"
 msgstr ""
+
+#, fuzzy
+msgid "Automatic resolution"
+msgstr "Analyse Automatique"
 
 msgid "Automatic save"
 msgstr ""
@@ -1345,6 +1363,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "Annuler"
 
+msgid "Cancel next timer"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -1430,6 +1451,9 @@ msgid "Channel List"
 msgstr ""
 
 msgid "Channel list context menu"
+msgstr ""
+
+msgid "Channel list cursor behavior"
 msgstr ""
 
 msgid "Channel list on mode change"
@@ -1602,6 +1626,10 @@ msgid "Close"
 msgstr "Fermer"
 
 #, fuzzy
+msgid "Close PiP on exit"
+msgstr "sauver liste lecture en sortant"
+
+#, fuzzy
 msgid "Close bouquet list."
 msgstr "Editer liste bouquets"
 
@@ -1701,6 +1729,9 @@ msgstr ""
 msgid "Configure if and how service type icons will be shown."
 msgstr ""
 
+msgid "Configure if service picons will be shown in the servicelist."
+msgstr ""
+
 msgid "Configure interface"
 msgstr "Configurer interface"
 
@@ -1720,9 +1751,6 @@ msgid "Configure the IP address."
 msgstr ""
 
 msgid "Configure the amount of time that will be presented."
-msgstr ""
-
-msgid "Configure the aspect ratio of the screen."
 msgstr ""
 
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
@@ -1746,10 +1774,16 @@ msgstr ""
 msgid "Configure the brightness level of the front panel displa for standby."
 msgstr ""
 
+msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
+msgstr ""
+
 msgid "Configure the color of the teletext subtitles."
 msgstr ""
 
 msgid "Configure the contrast level of the front panel display."
+msgstr ""
+
+msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr ""
 
 msgid "Configure the duration in minutes for the screensaver."
@@ -2831,6 +2865,9 @@ msgstr ""
 msgid "Event font size (relative to skin size)"
 msgstr ""
 
+msgid "Event view"
+msgstr ""
+
 msgid "Everywhere"
 msgstr "Partout"
 
@@ -2926,6 +2963,10 @@ msgstr ""
 
 msgid "External (CF)"
 msgstr ""
+
+#, fuzzy
+msgid "External subtitle color"
+msgstr "Couleur des sous-titres télétexte"
 
 msgid "FAILED"
 msgstr ""
@@ -3100,6 +3141,10 @@ msgstr "transparence complète"
 #, fuzzy
 msgid "Fulscreen"
 msgstr "Vérouiller l'écran"
+
+#, fuzzy
+msgid "Fulview resulution"
+msgstr "Emplacement des films"
 
 msgid "Function of OK button"
 msgstr ""
@@ -3298,9 +3343,6 @@ msgstr "Paramètres du disque dur"
 msgid "Hard disk standby after"
 msgstr "Disque dur en veille après"
 
-msgid "Harddisk"
-msgstr "Disque dur"
-
 msgid "Hebrew"
 msgstr "Hébreu"
 
@@ -3420,6 +3462,9 @@ msgid "Icons"
 msgstr "Icônes"
 
 msgid "Idle Time: "
+msgstr ""
+
+msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr ""
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
@@ -3745,6 +3790,9 @@ msgid "Just change channels"
 msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+#. "nonlinear": _("Nonlinear"),
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 #, fuzzy
 msgid "Just scale"
 msgstr "Juste mettre à l'échelle"
@@ -3752,6 +3800,10 @@ msgstr "Juste mettre à l'échelle"
 #, fuzzy
 msgid "Just zap"
 msgstr "Juste mettre à l'échelle"
+
+#, fuzzy
+msgid "Keep service"
+msgstr "ajout Service"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr ""
@@ -4106,6 +4158,10 @@ msgstr ""
 msgid "Memory index"
 msgstr "Mémoire"
 
+#, fuzzy
+msgid "Memory positions"
+msgstr "Enregistrer la position"
+
 msgid "Menu"
 msgstr "Menu"
 
@@ -4154,10 +4210,6 @@ msgid "Model:\t%s %s\n"
 msgstr "Modèle: "
 
 msgid "Model: "
-msgstr "Modèle: "
-
-#, fuzzy, python-format
-msgid "Model: %s"
 msgstr "Modèle: "
 
 msgid "Modulation"
@@ -4612,10 +4664,6 @@ msgstr ""
 msgid "None"
 msgstr "Aucun"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-msgid "Nonlinear"
-msgstr "Non Linéaire"
-
 msgid "Normal mode"
 msgstr ""
 
@@ -5060,6 +5108,10 @@ msgstr "Veuillez saisir le nom de fichier (vide = utilise la date du jour)"
 
 msgid "Please enter name of the new directory"
 msgstr "Veuillez saisir le nom du nouveau répertoire"
+
+#, fuzzy
+msgid "Please enter new name:"
+msgstr "Veuillez saisir un nouveau nom de fichier"
 
 msgid "Please enter the correct pin code"
 msgstr "Veuillez saisir le code pin correcte"
@@ -5534,10 +5586,6 @@ msgstr "Enregistrer"
 msgid "Record now"
 msgstr "Enregistrer"
 
-#, fuzzy
-msgid "Record once"
-msgstr "Enregistrer"
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr ""
 
@@ -5792,13 +5840,6 @@ msgstr "Reprendre à la dernière position"
 msgid "Resume position at %s"
 msgstr "Reprendre position à %s"
 
-#. TRANSLATORS: The string "Resuming playback" flashes for a moment
-#. TRANSLATORS: at the start of a movie, when the user has selected
-#. TRANSLATORS: "Resume from last position" as start behavior.
-#. TRANSLATORS: The purpose is to notify the user that the movie starts
-#. TRANSLATORS: in the middle somewhere and not from the beginning.
-#. TRANSLATORS: (Some translators seem to have interpreted it as a
-#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Reprise de la lecture"
 
@@ -5807,6 +5848,9 @@ msgstr "Retour vers liste des films"
 
 msgid "Return to previous service"
 msgstr "Retour service précédent"
+
+msgid "Reverse bouquet buttons"
+msgstr ""
 
 msgid "Rewind speeds"
 msgstr "Vitesses rembobinage"
@@ -5876,6 +5920,9 @@ msgid "Samba Setup"
 msgstr ""
 
 msgid "Samba setup"
+msgstr ""
+
+msgid "Same resolution as skin"
 msgstr ""
 
 msgid "Sat"
@@ -6531,6 +6578,10 @@ msgstr ""
 msgid "Show Transponder Remaining/Elapsed as"
 msgstr ""
 
+#, fuzzy
+msgid "Show VCR scart on main menu"
+msgstr "afficher menu DVD principal"
+
 msgid "Show ViX spinning logo when system is busy."
 msgstr ""
 
@@ -6593,6 +6644,10 @@ msgid "Show in extensions list ?"
 msgstr ""
 
 #, fuzzy
+msgid "Show in extensions menu"
+msgstr "Afficher le menu sélection de bouquet"
+
+#, fuzzy
 msgid "Show info"
 msgstr "Afficher Infos"
 
@@ -6633,6 +6688,10 @@ msgstr ""
 
 msgid "Show picon background colour"
 msgstr ""
+
+#, fuzzy
+msgid "Show picons in servicelist"
+msgstr "Chaîne absente de la liste services"
 
 msgid "Show positioner movement"
 msgstr "Afficher le mouvement du positionneur"
@@ -6846,6 +6905,10 @@ msgstr ""
 msgid "Softcam settings"
 msgstr ""
 
+#, fuzzy
+msgid "SoftcamCheck"
+msgstr "Logiciel"
+
 msgid "Software"
 msgstr "Logiciel"
 
@@ -7031,6 +7094,10 @@ msgstr "Arrêter l'enregistrement"
 msgid "Stop recording and delete"
 msgstr "Arrêter l'enregistrement et supprimer"
 
+#, fuzzy
+msgid "Stop recording now"
+msgstr "Arrêter l'enregistrement"
+
 msgid "Stop test"
 msgstr "Stopper le test"
 
@@ -7055,6 +7122,10 @@ msgstr ""
 
 msgid "Stopped"
 msgstr "Arrêté"
+
+#, fuzzy
+msgid "Storage devices"
+msgstr "Liste des Périphériques de Stockage"
 
 #, fuzzy
 msgid "Store at index"
@@ -7979,6 +8050,10 @@ msgstr "Echec accord"
 msgid "Tuner"
 msgstr "Tuner"
 
+#, fuzzy
+msgid "Tuner :"
+msgstr "Tuner"
+
 msgid "Tuner configuration"
 msgstr "Configuration tuner"
 
@@ -8251,6 +8326,10 @@ msgstr "Perso - bouquets"
 msgid "User defined"
 msgstr "Défini par l'utilisateur"
 
+#, fuzzy
+msgid "User defined transponder"
+msgstr "Transpondeur prédéfini"
+
 msgid "User interface"
 msgstr ""
 
@@ -8319,6 +8398,10 @@ msgstr ""
 msgid "Video PID"
 msgstr "PID Video"
 
+#, python-format
+msgid "Video content: %sx%s%s %sHz"
+msgstr ""
+
 msgid "Video enhancement preview"
 msgstr "Aperçu pour vidéo améliorée"
 
@@ -8342,6 +8425,10 @@ msgid ""
 msgstr ""
 
 msgid "Video mode selection."
+msgstr "Sélection du mode vidéo."
+
+#, fuzzy, python-format
+msgid "Video mode: %s"
 msgstr "Sélection du mode vidéo."
 
 msgid "Video output"
@@ -8586,6 +8673,9 @@ msgstr ""
 msgid "What do you want to scan?"
 msgstr "Que voulez-vous analyser?"
 
+msgid "When enabled the PiP can be closed by the exit button."
+msgstr ""
+
 msgid "When enabled the online checker will also check for experimental versions"
 msgstr ""
 
@@ -8619,9 +8709,6 @@ msgstr ""
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr ""
 
-msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
-msgstr ""
-
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr ""
 
@@ -8635,6 +8722,9 @@ msgid "When enabled, graphical DVB subtitles will be displayed at their original
 msgstr ""
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
+msgstr ""
+
+msgid "When enabled, it is possible to leave the movieplayer with exit."
 msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -8659,6 +8749,9 @@ msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr ""
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
+msgstr ""
+
+msgid "When enabled, the VCR scart option will be shown on the main menu"
 msgstr ""
 
 msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
@@ -8758,10 +8851,16 @@ msgstr "Configuration connexion réseau sans fil."
 msgid "Wireless network state"
 msgstr "Etat du réseau sans fil"
 
+msgid "With popup"
+msgstr ""
+
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr ""
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
+msgstr ""
+
+msgid "Without popup"
 msgstr ""
 
 msgid "Write error while recording. Disk full?\n"
@@ -8787,9 +8886,6 @@ msgstr "Année"
 
 msgid "Yellow DVB subtitles"
 msgstr "Sous-titres DVB jaune"
-
-msgid "Yellow external subtitles"
-msgstr ""
 
 msgid "Yes"
 msgstr "Oui"
@@ -9187,6 +9283,10 @@ msgstr ""
 
 msgid "alphabetic reverse"
 msgstr ""
+
+#, fuzzy
+msgid "alternative"
+msgstr "ajouter les alternatifs"
 
 msgid "arts/culture (without music, general)"
 msgstr ""
@@ -9872,6 +9972,10 @@ msgstr "retirer ce marqueur"
 msgid "rename"
 msgstr ""
 
+#, fuzzy
+msgid "rename entry"
+msgstr "retirer l'entrée"
+
 msgid "repeat playlist"
 msgstr "répéter liste lecture"
 
@@ -10278,3 +10382,17 @@ msgstr "zappé"
 #, fuzzy
 #~ msgid "Do you want to update your %s ?"
 #~ msgstr "Voulez-vous restaurer vos paramètres?"
+
+#~ msgid "Harddisk"
+#~ msgstr "Disque dur"
+
+#, fuzzy
+#~ msgid "Model: %s"
+#~ msgstr "Modèle: "
+
+#~ msgid "Nonlinear"
+#~ msgstr "Non Linéaire"
+
+#, fuzzy
+#~ msgid "Record once"
+#~ msgstr "Enregistrer"

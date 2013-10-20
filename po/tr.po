@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-25 09:57+0200\n"
-"PO-Revision-Date: 2012-12-09 02:04+0100\n"
+"POT-Creation-Date: 2013-10-20 17:53+0200\n"
+"PO-Revision-Date: 2013-10-20 16:58+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: CÜNEYT OCAKLILAR <ocaklilar@gmail.com>\n"
 "Language: tr\n"
@@ -140,6 +140,10 @@ msgstr " ve"
 #, fuzzy
 msgid "%-H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr ""
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -348,6 +352,9 @@ msgstr "* = Yeniden başlatılmalı"
 #
 msgid "* Only available if more than one interface is active."
 msgstr "* Yalnızca birden fazla arayüz olduğunda kullanılabilir."
+
+msgid "/s"
+msgstr ""
 
 #
 msgid "1.0"
@@ -909,6 +916,9 @@ msgstr ""
 msgid "Allocate unused memory index"
 msgstr ""
 
+msgid "Allow quit movieplayer with exit"
+msgstr ""
+
 msgid "Allow subtitle language to equal audio language"
 msgstr ""
 
@@ -1002,6 +1012,11 @@ msgstr "Herhangi bir eylem"
 #
 msgid "Arabic"
 msgstr "Arapça"
+
+#
+#, fuzzy
+msgid "Are you sure to remove this entry?"
+msgstr "Sihirbazdan çıkmak istiyor musunuz?"
 
 #
 msgid ""
@@ -1181,6 +1196,10 @@ msgid "Automatic image backup"
 msgstr ""
 
 msgid "Automatic refresh"
+msgstr "Otomatik yenileme"
+
+#, fuzzy
+msgid "Automatic resolution"
 msgstr "Otomatik yenileme"
 
 msgid "Automatic save"
@@ -1509,6 +1528,10 @@ msgid "Cancel"
 msgstr "İptal"
 
 #, fuzzy
+msgid "Cancel next timer"
+msgstr "Geçerli zaman"
+
+#, fuzzy
 msgid "Cancel save timeshift as movie"
 msgstr "Zaman-kaydırmayı film olarak saklama"
 
@@ -1602,6 +1625,10 @@ msgstr "Kanal Listesi"
 
 msgid "Channel list context menu"
 msgstr ""
+
+#, fuzzy
+msgid "Channel list cursor behavior"
+msgstr "Kanal Liste Önizlemesi"
 
 msgid "Channel list on mode change"
 msgstr ""
@@ -1790,6 +1817,11 @@ msgstr "İstemciler"
 msgid "Close"
 msgstr "Kapa"
 
+#
+#, fuzzy
+msgid "Close PiP on exit"
+msgstr "çıkarken, oynatma listesini kaydet"
+
 #, fuzzy
 msgid "Close bouquet list."
 msgstr "buket listesini aç"
@@ -1908,6 +1940,10 @@ msgstr ""
 msgid "Configure if and how service type icons will be shown."
 msgstr "Gösterim süresini seçin."
 
+#, fuzzy
+msgid "Configure if service picons will be shown in the servicelist."
+msgstr "Gösterim süresini seçin."
+
 #
 msgid "Configure interface"
 msgstr "Arayüz yapılandırması"
@@ -1933,9 +1969,6 @@ msgstr ""
 msgid "Configure the amount of time that will be presented."
 msgstr "Gösterim süresini seçin."
 
-msgid "Configure the aspect ratio of the screen."
-msgstr ""
-
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr ""
 
@@ -1957,10 +1990,16 @@ msgstr ""
 msgid "Configure the brightness level of the front panel displa for standby."
 msgstr ""
 
+msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
+msgstr ""
+
 msgid "Configure the color of the teletext subtitles."
 msgstr ""
 
 msgid "Configure the contrast level of the front panel display."
+msgstr ""
+
+msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr ""
 
 #, fuzzy
@@ -3198,6 +3237,10 @@ msgstr "Etkinlik Font boyutu"
 msgid "Event font size (relative to skin size)"
 msgstr "Etkinlik Font boyutu (görsel-arayüze göre)"
 
+#, fuzzy
+msgid "Event view"
+msgstr "Etkinlik Font boyutu"
+
 msgid "Everywhere"
 msgstr "Heryerde"
 
@@ -3316,6 +3359,10 @@ msgstr ""
 
 msgid "External (CF)"
 msgstr ""
+
+#, fuzzy
+msgid "External subtitle color"
+msgstr "Teletext altyazı rengi"
 
 msgid "FAILED"
 msgstr ""
@@ -3519,6 +3566,11 @@ msgstr "tam saydamlık"
 #, fuzzy
 msgid "Fulscreen"
 msgstr "Ekranı tut"
+
+#
+#, fuzzy
+msgid "Fulview resulution"
+msgstr "Film konumu"
 
 msgid "Function of OK button"
 msgstr ""
@@ -3734,10 +3786,6 @@ msgstr "HDD kurulumu"
 msgid "Hard disk standby after"
 msgstr "Kullanılmadığında diski bekleme kipine geçir"
 
-#
-msgid "Harddisk"
-msgstr "Harddisk"
-
 msgid "Hebrew"
 msgstr "Hebrew"
 
@@ -3871,6 +3919,9 @@ msgstr "Ikonlar"
 
 msgid "Idle Time: "
 msgstr "Atıl Zaman: "
+
+msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
+msgstr ""
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Günlükler, ayarlamış kullanım boyutunu aştığında eskileri silinecektir."
@@ -4235,6 +4286,9 @@ msgstr "Sadece kanal değiştir"
 
 #
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+#. "nonlinear": _("Nonlinear"),
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 #, fuzzy
 msgid "Just scale"
 msgstr "Hep Tam ekran"
@@ -4243,6 +4297,11 @@ msgstr "Hep Tam ekran"
 #, fuzzy
 msgid "Just zap"
 msgstr "Hep Tam ekran"
+
+#
+#, fuzzy
+msgid "Keep service"
+msgstr "Kanal ekle"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Ses dosyalarını çalarken Film Listesini açık tutar."
@@ -4652,6 +4711,11 @@ msgid "Memory index"
 msgstr "Bellek"
 
 #
+#, fuzzy
+msgid "Memory positions"
+msgstr "Konumu kaydet"
+
+#
 msgid "Menu"
 msgstr "Menü"
 
@@ -4702,11 +4766,6 @@ msgstr "Model: "
 
 #
 msgid "Model: "
-msgstr "Model: "
-
-#
-#, fuzzy, python-format
-msgid "Model: %s"
 msgstr "Model: "
 
 #
@@ -5243,11 +5302,6 @@ msgstr "NodeID: "
 msgid "None"
 msgstr "Yok"
 
-#
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-msgid "Nonlinear"
-msgstr "Doğrusal olmayan"
-
 msgid "Normal mode"
 msgstr ""
 
@@ -5751,6 +5805,11 @@ msgstr "Lütfen dosya adı girin (boş = geçerli tarih)"
 #
 msgid "Please enter name of the new directory"
 msgstr "Lütfen yeni kasör için bir ad girin"
+
+#
+#, fuzzy
+msgid "Please enter new name:"
+msgstr "Lütfen yeni bir dosya adını girin"
 
 #
 msgid "Please enter the correct pin code"
@@ -6314,11 +6373,6 @@ msgstr "Kayıt"
 msgid "Record now"
 msgstr "Kayıt"
 
-#
-#, fuzzy
-msgid "Record once"
-msgstr "Kayıt"
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr "Kayıt başladı! Zaman-kaydırma şimdi durduruluyor ..."
 
@@ -6614,13 +6668,6 @@ msgid "Resume position at %s"
 msgstr "%s konumundan devam et"
 
 #
-#. TRANSLATORS: The string "Resuming playback" flashes for a moment
-#. TRANSLATORS: at the start of a movie, when the user has selected
-#. TRANSLATORS: "Resume from last position" as start behavior.
-#. TRANSLATORS: The purpose is to notify the user that the movie starts
-#. TRANSLATORS: in the middle somewhere and not from the beginning.
-#. TRANSLATORS: (Some translators seem to have interpreted it as a
-#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Oynatmaya devam ediliyor"
 
@@ -6631,6 +6678,9 @@ msgstr "Film listesine geri dön"
 #
 msgid "Return to previous service"
 msgstr "Önceki kanala dön"
+
+msgid "Reverse bouquet buttons"
+msgstr ""
 
 #
 msgid "Rewind speeds"
@@ -6708,6 +6758,9 @@ msgid "Samba Setup"
 msgstr "Samba Kurulumu"
 
 msgid "Samba setup"
+msgstr ""
+
+msgid "Same resolution as skin"
 msgstr ""
 
 #
@@ -7438,6 +7491,11 @@ msgstr "Zamanlayıcı Listesini göster"
 msgid "Show Transponder Remaining/Elapsed as"
 msgstr "Aktarıcı Kalan/Geçen zamanı göster"
 
+#
+#, fuzzy
+msgid "Show VCR scart on main menu"
+msgstr "DVD ana menüsünü göster"
+
 msgid "Show ViX spinning logo when system is busy."
 msgstr "Sistem meşgulken, dönen ViX logosunu göster. "
 
@@ -7502,6 +7560,10 @@ msgstr "Yeni öğeler için ikon göster"
 msgid "Show in extensions list ?"
 msgstr "Genişletmeler listesinde göster?"
 
+#, fuzzy
+msgid "Show in extensions menu"
+msgstr "Genişletmeler listesinde göster?"
+
 #
 #, fuzzy
 msgid "Show info"
@@ -7549,6 +7611,11 @@ msgstr ""
 
 msgid "Show picon background colour"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Show picons in servicelist"
+msgstr "Kanal, kanal listesinde yok"
 
 #
 msgid "Show positioner movement"
@@ -7797,6 +7864,11 @@ msgid "Softcam settings"
 msgstr ""
 
 #
+#, fuzzy
+msgid "SoftcamCheck"
+msgstr "Yazılım"
+
+#
 msgid "Software"
 msgstr "Yazılım"
 
@@ -8009,6 +8081,10 @@ msgstr "Kayıdı durdur"
 msgid "Stop recording and delete"
 msgstr "Kayıdı durdur ve sil"
 
+#, fuzzy
+msgid "Stop recording now"
+msgstr "Kayıdı durdur"
+
 #
 msgid "Stop test"
 msgstr "Testi durdur"
@@ -8036,6 +8112,11 @@ msgstr ""
 
 msgid "Stopped"
 msgstr "Durduruldu"
+
+#
+#, fuzzy
+msgid "Storage devices"
+msgstr "Depolama Aygıtları"
 
 #
 #, fuzzy
@@ -9073,6 +9154,11 @@ msgid "Tuner"
 msgstr "Tuner"
 
 #
+#, fuzzy
+msgid "Tuner :"
+msgstr "Tuner"
+
+#
 msgid "Tuner configuration"
 msgstr "Tuner kurulumu"
 
@@ -9383,6 +9469,11 @@ msgstr "Kullanıcı - buketler"
 msgid "User defined"
 msgstr "Kullanıcı tanımlı"
 
+#
+#, fuzzy
+msgid "User defined transponder"
+msgstr "Tanımlanmış aktarıcı"
+
 msgid "User interface"
 msgstr ""
 
@@ -9456,6 +9547,10 @@ msgstr "Görüntü İyileştirme Ayarları"
 msgid "Video PID"
 msgstr "Görüntü PID"
 
+#, python-format
+msgid "Video content: %sx%s%s %sHz"
+msgstr ""
+
 #
 msgid "Video enhancement preview"
 msgstr "Görüntü iyileştirme önizleme"
@@ -9484,6 +9579,11 @@ msgstr ""
 
 #
 msgid "Video mode selection."
+msgstr "Görüntü kipi seçimi."
+
+#
+#, fuzzy, python-format
+msgid "Video mode: %s"
 msgstr "Görüntü kipi seçimi."
 
 msgid "Video output"
@@ -9780,6 +9880,9 @@ msgstr ""
 msgid "What do you want to scan?"
 msgstr "Ne taramak istiyorsunuz?"
 
+msgid "When enabled the PiP can be closed by the exit button."
+msgstr ""
+
 msgid "When enabled the online checker will also check for experimental versions"
 msgstr ""
 
@@ -9813,9 +9916,6 @@ msgstr ""
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr ""
 
-msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
-msgstr ""
-
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr ""
 
@@ -9829,6 +9929,9 @@ msgid "When enabled, graphical DVB subtitles will be displayed at their original
 msgstr ""
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
+msgstr ""
+
+msgid "When enabled, it is possible to leave the movieplayer with exit."
 msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -9853,6 +9956,9 @@ msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr ""
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
+msgstr ""
+
+msgid "When enabled, the VCR scart option will be shown on the main menu"
 msgstr ""
 
 msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
@@ -9957,11 +10063,17 @@ msgstr "Kablosuz ağ bağlantı kurulumu."
 msgid "Wireless network state"
 msgstr "Kablosuz ağ durumu"
 
+msgid "With popup"
+msgstr ""
+
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr "'evet' ise, kanal listesi daima önce buket ekranını gösterir. 'hayır' ise, geçerli buket açılır."
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Görevlerin genişletmeler ekranında gizlenmesini sağlar (mavi tuşa kısa basış)."
+
+msgid "Without popup"
+msgstr ""
 
 #
 msgid "Write error while recording. Disk full?\n"
@@ -9992,9 +10104,6 @@ msgstr "Yıl"
 
 msgid "Yellow DVB subtitles"
 msgstr "Sarı DVB altyazı"
-
-msgid "Yellow external subtitles"
-msgstr ""
 
 #
 msgid "Yes"
@@ -10453,6 +10562,11 @@ msgstr ""
 
 msgid "alphabetic reverse"
 msgstr "ters alfabetik"
+
+#
+#, fuzzy
+msgid "alternative"
+msgstr "alternatifler ekle"
 
 msgid "arts/culture (without music, general)"
 msgstr ""
@@ -11252,6 +11366,11 @@ msgid "rename"
 msgstr "ad değiştir"
 
 #
+#, fuzzy
+msgid "rename entry"
+msgstr "seçilen kanalı/buketi kaldır"
+
+#
 msgid "repeat playlist"
 msgstr "oynatma listesini tekrarla"
 
@@ -11702,12 +11821,3 @@ msgstr "Sakla ve kaydet"
 #
 msgid "zapped"
 msgstr "zapped"
-
-#, fuzzy
-#~ msgid "Channel selection configuration"
-#~ msgstr "El ile yapılandırma"
-
-#
-#, fuzzy
-#~ msgid "Do you want to update your %s ?"
-#~ msgstr "Ayarlarınızı geri yüklemek istiyor musunuz?"

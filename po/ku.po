@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-25 09:57+0200\n"
-"PO-Revision-Date: 2013-04-22 04:29+0330\n"
-"Last-Translator: dimili21\n"
+"POT-Creation-Date: 2013-10-20 17:53+0200\n"
+"PO-Revision-Date: 2013-10-20 16:59+0100\n"
+"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
@@ -133,6 +133,10 @@ msgstr ""
 #, fuzzy
 msgid "%-H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr ""
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -336,6 +340,9 @@ msgstr ""
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Only available if more than one interface is active."
+
+msgid "/s"
+msgstr ""
 
 msgid "1.0"
 msgstr "1.0"
@@ -832,6 +839,9 @@ msgstr "Biqetinin"
 msgid "Allocate unused memory index"
 msgstr "Allocate unused memory index"
 
+msgid "Allow quit movieplayer with exit"
+msgstr ""
+
 msgid "Allow subtitle language to equal audio language"
 msgstr "Allow subtitle language to equal audio language"
 
@@ -919,6 +929,10 @@ msgstr "Any activity"
 
 msgid "Arabic"
 msgstr "Arabi"
+
+#, fuzzy
+msgid "Are you sure to remove this entry?"
+msgstr "Are you sure you want to exit this wizard?"
 
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
@@ -1098,6 +1112,10 @@ msgstr "Automatic Légerin"
 
 #, fuzzy
 msgid "Automatic refresh"
+msgstr "Automatic Légerin"
+
+#, fuzzy
+msgid "Automatic resolution"
 msgstr "Automatic Légerin"
 
 #, fuzzy
@@ -1401,6 +1419,10 @@ msgstr ""
 msgid "Cancel"
 msgstr "Berdi"
 
+#, fuzzy
+msgid "Cancel next timer"
+msgstr "Current device: "
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -1495,6 +1517,10 @@ msgstr "Qanal Liste "
 #, fuzzy
 msgid "Channel list context menu"
 msgstr "Menu Qenal Liste"
+
+#, fuzzy
+msgid "Channel list cursor behavior"
+msgstr "Qanal Liste "
 
 #, fuzzy
 msgid "Channel list on mode change"
@@ -1675,6 +1701,10 @@ msgid "Close"
 msgstr "Veqeti"
 
 #, fuzzy
+msgid "Close PiP on exit"
+msgstr "save playlist on exit"
+
+#, fuzzy
 msgid "Close bouquet list."
 msgstr "Edit bouquets list"
 
@@ -1776,6 +1806,10 @@ msgstr "Configure how recording filenames are constructed."
 msgid "Configure if and how service type icons will be shown."
 msgstr "Configures which video output connector will be used."
 
+#, fuzzy
+msgid "Configure if service picons will be shown in the servicelist."
+msgstr "Configures which video output connector will be used."
+
 msgid "Configure interface"
 msgstr "Configure interface"
 
@@ -1797,9 +1831,6 @@ msgstr "Configure the IP address."
 #, fuzzy
 msgid "Configure the amount of time that will be presented."
 msgstr "Configure the font size of the subtitles."
-
-msgid "Configure the aspect ratio of the screen."
-msgstr "Configure the aspect ratio of the screen."
 
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr "Configure the behavior of the 'pause' key when movie playback is already paused."
@@ -1824,11 +1855,17 @@ msgstr "Configure the brightness level of the front panel display."
 msgid "Configure the brightness level of the front panel displa for standby."
 msgstr "Configure the brightness level of the front panel display during standby."
 
+msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
+msgstr ""
+
 msgid "Configure the color of the teletext subtitles."
 msgstr "Configure the color of the teletext subtitles."
 
 msgid "Configure the contrast level of the front panel display."
 msgstr "Configure the contrast level of the front panel display."
+
+msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
+msgstr ""
 
 #, fuzzy
 msgid "Configure the duration in minutes for the screensaver."
@@ -2934,6 +2971,10 @@ msgstr "Subtitle font size"
 msgid "Event font size (relative to skin size)"
 msgstr "Event font size (relative to skin size)"
 
+#, fuzzy
+msgid "Event view"
+msgstr "Event view menu"
+
 msgid "Everywhere"
 msgstr "Everywhere"
 
@@ -3024,6 +3065,10 @@ msgstr ""
 
 msgid "External (CF)"
 msgstr ""
+
+#, fuzzy
+msgid "External subtitle color"
+msgstr "Teletext subtitle color"
 
 msgid "FAILED"
 msgstr ""
@@ -3200,6 +3245,10 @@ msgstr "Full transparency"
 #, fuzzy
 msgid "Fulscreen"
 msgstr "Hold screen"
+
+#, fuzzy
+msgid "Fulview resulution"
+msgstr "Movie selection"
 
 msgid "Function of OK button"
 msgstr "Function of OK button"
@@ -3393,9 +3442,6 @@ msgstr "Hard disk setup"
 msgid "Hard disk standby after"
 msgstr "Hard disk standby after"
 
-msgid "Harddisk"
-msgstr "Harddisk"
-
 msgid "Hebrew"
 msgstr "Hebrew"
 
@@ -3518,6 +3564,9 @@ msgid "Icons"
 msgstr "Icons"
 
 msgid "Idle Time: "
+msgstr ""
+
+msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr ""
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
@@ -3855,12 +3904,19 @@ msgid "Just change channels"
 msgstr "Switch next channel"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+#. "nonlinear": _("Nonlinear"),
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just scale"
 msgstr "Just scale"
 
 #, fuzzy
 msgid "Just zap"
 msgstr "Just scale"
+
+#, fuzzy
+msgid "Keep service"
+msgstr "Hizmeté Nu girédi"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr ""
@@ -4213,6 +4269,10 @@ msgstr "Hakké İmagéda"
 msgid "Memory index"
 msgstr "Memory index"
 
+#, fuzzy
+msgid "Memory positions"
+msgstr "Store position"
+
 msgid "Menu"
 msgstr "Menu"
 
@@ -4263,10 +4323,6 @@ msgid "Model:\t%s %s\n"
 msgstr "Model: "
 
 msgid "Model: "
-msgstr "Model: "
-
-#, fuzzy, python-format
-msgid "Model: %s"
 msgstr "Model: "
 
 msgid "Modulation"
@@ -4718,10 +4774,6 @@ msgstr ""
 
 msgid "None"
 msgstr "None"
-
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-msgid "Nonlinear"
-msgstr "Nonlinear"
 
 msgid "Normal mode"
 msgstr "Normal mode"
@@ -5176,6 +5228,10 @@ msgstr "Please enter filename (empty = use current date)"
 
 msgid "Please enter name of the new directory"
 msgstr "Please enter name of the new directory"
+
+#, fuzzy
+msgid "Please enter new name:"
+msgstr "Please enter a new filename"
 
 msgid "Please enter the correct pin code"
 msgstr "Please enter the correct pin code"
@@ -5654,10 +5710,6 @@ msgstr "Qeyd"
 msgid "Record now"
 msgstr "Qeyd"
 
-#, fuzzy
-msgid "Record once"
-msgstr "Qeyd"
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr ""
 
@@ -5916,13 +5968,6 @@ msgstr "Resume from last position"
 msgid "Resume position at %s"
 msgstr "Resume position at %s"
 
-#. TRANSLATORS: The string "Resuming playback" flashes for a moment
-#. TRANSLATORS: at the start of a movie, when the user has selected
-#. TRANSLATORS: "Resume from last position" as start behavior.
-#. TRANSLATORS: The purpose is to notify the user that the movie starts
-#. TRANSLATORS: in the middle somewhere and not from the beginning.
-#. TRANSLATORS: (Some translators seem to have interpreted it as a
-#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Resuming playback"
 
@@ -5931,6 +5976,9 @@ msgstr "Return to movie list"
 
 msgid "Return to previous service"
 msgstr "Return to previous service"
+
+msgid "Reverse bouquet buttons"
+msgstr ""
 
 msgid "Rewind speeds"
 msgstr "Rewind speeds"
@@ -6003,6 +6051,10 @@ msgstr "Çékirin"
 #, fuzzy
 msgid "Samba setup"
 msgstr "Keyboard setup"
+
+#, fuzzy
+msgid "Same resolution as skin"
+msgstr "Select a skin"
 
 msgid "Sat"
 msgstr "Sat"
@@ -6674,6 +6726,10 @@ msgid "Show Transponder Remaining/Elapsed as"
 msgstr ""
 
 #, fuzzy
+msgid "Show VCR scart on main menu"
+msgstr "show DVD main menu"
+
+#, fuzzy
 msgid "Show ViX spinning logo when system is busy."
 msgstr "Show busy indicator when the system is busy."
 
@@ -6737,6 +6793,10 @@ msgstr "Show icon for new/unseen items"
 msgid "Show in extensions list ?"
 msgstr "Show extensions..."
 
+#, fuzzy
+msgid "Show in extensions menu"
+msgstr "Show extensions..."
+
 msgid "Show info"
 msgstr "Show info"
 
@@ -6781,6 +6841,10 @@ msgstr "Show extended description"
 #, fuzzy
 msgid "Show picon background colour"
 msgstr "Rengé Paşi"
+
+#, fuzzy
+msgid "Show picons in servicelist"
+msgstr "Show status icons in movielist"
 
 msgid "Show positioner movement"
 msgstr "Show positioner movement"
@@ -6992,6 +7056,10 @@ msgstr "Softcam type"
 msgid "Softcam settings"
 msgstr "OSD settings"
 
+#, fuzzy
+msgid "SoftcamCheck"
+msgstr "Software"
+
 msgid "Software"
 msgstr "Software"
 
@@ -7175,6 +7243,10 @@ msgstr "Stop recording"
 msgid "Stop recording and delete"
 msgstr "Stop recording and delete"
 
+#, fuzzy
+msgid "Stop recording now"
+msgstr "Stop recording"
+
 msgid "Stop test"
 msgstr "Stop test"
 
@@ -7200,6 +7272,10 @@ msgstr ""
 
 msgid "Stopped"
 msgstr "Stopped"
+
+#, fuzzy
+msgid "Storage devices"
+msgstr "List of storage devices"
 
 msgid "Store at index"
 msgstr "Store at index"
@@ -8159,6 +8235,10 @@ msgstr "Tune failed!"
 msgid "Tuner"
 msgstr "Tuner"
 
+#, fuzzy
+msgid "Tuner :"
+msgstr "Tuner"
+
 msgid "Tuner configuration"
 msgstr "Çékirina Tuner "
 
@@ -8434,6 +8514,10 @@ msgstr "User - bouquets"
 msgid "User defined"
 msgstr "User defined"
 
+#, fuzzy
+msgid "User defined transponder"
+msgstr "Predefined transponder"
+
 msgid "User interface"
 msgstr "Çékirina te"
 
@@ -8507,6 +8591,10 @@ msgstr "Video enhancement settings"
 msgid "Video PID"
 msgstr "Video PID"
 
+#, python-format
+msgid "Video content: %sx%s%s %sHz"
+msgstr ""
+
 msgid "Video enhancement preview"
 msgstr "Video enhancement preview"
 
@@ -8535,6 +8623,10 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "Video mode selection."
+
+#, fuzzy, python-format
+msgid "Video mode: %s"
+msgstr "List mode"
 
 msgid "Video output"
 msgstr "Video output"
@@ -8785,6 +8877,10 @@ msgstr ""
 msgid "What do you want to scan?"
 msgstr "What do you want to scan?"
 
+#, fuzzy
+msgid "When enabled the PiP can be closed by the exit button."
+msgstr "When enabled, the original line breaks will be removed from the teletext subtitles."
+
 msgid "When enabled the online checker will also check for experimental versions"
 msgstr ""
 
@@ -8818,9 +8914,6 @@ msgstr "When enabled, continue to the next bouquet when the last channel of the 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 
-msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
-msgstr "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
-
 #, fuzzy
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "When enabled, teletext subtitles will be displayed at their original position."
@@ -8836,6 +8929,9 @@ msgstr "When enabled, graphical DVB subtitles will be displayed at their origina
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
+
+msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -8860,6 +8956,10 @@ msgstr "When enabled, teletext pages will be cached, allowing faster access."
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr "When enabled, teletext subtitles will be displayed at their original position."
+
+#, fuzzy
+msgid "When enabled, the VCR scart option will be shown on the main menu"
+msgstr "When enabled, a popup message will be shown when a recording starts."
 
 msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
 msgstr "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
@@ -8960,10 +9060,16 @@ msgstr "Wireless network connection setup."
 msgid "Wireless network state"
 msgstr "Wireless network state"
 
+msgid "With popup"
+msgstr ""
+
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr ""
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
+msgstr ""
+
+msgid "Without popup"
 msgstr ""
 
 msgid "Write error while recording. Disk full?\n"
@@ -8990,9 +9096,6 @@ msgstr "Year"
 
 msgid "Yellow DVB subtitles"
 msgstr "Yellow DVB subtitles"
-
-msgid "Yellow external subtitles"
-msgstr "Yellow external subtitles"
 
 msgid "Yes"
 msgstr "Yes"
@@ -9401,6 +9504,10 @@ msgstr "alphabetic"
 
 msgid "alphabetic reverse"
 msgstr "alphabetic reverse"
+
+#, fuzzy
+msgid "alternative"
+msgstr "Evé din"
 
 msgid "arts/culture (without music, general)"
 msgstr "arts/culture (without music, general)"
@@ -10106,6 +10213,10 @@ msgstr "remove this mark"
 msgid "rename"
 msgstr "Rename"
 
+#, fuzzy
+msgid "rename entry"
+msgstr "remove entry"
+
 msgid "repeat playlist"
 msgstr "repeat playlist"
 
@@ -10514,424 +10625,3 @@ msgstr "Do not record"
 
 msgid "zapped"
 msgstr "zapped"
-
-#, fuzzy
-#~ msgid "%d subdirectory"
-#~ msgid_plural "%d subdirectories"
-#~ msgstr[0] "Root directory"
-#~ msgstr[1] "Root directory"
-
-#~ msgid "%d-%b-%Y %-H:%M"
-#~ msgstr "%d-%b-%Y %-H:%M"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgid "9"
-#~ msgstr "9"
-
-#~ msgid "A demo plugin for TPM usage."
-#~ msgstr "A demo plugin for TPM usage."
-
-#~ msgid "Action:"
-#~ msgstr "Eylem:"
-
-#~ msgid "Adjust HDMI CEC settings"
-#~ msgstr "Adjust HDMI CEC settings"
-
-#~ msgid "Audio"
-#~ msgstr "Deng"
-
-#~ msgid "BER"
-#~ msgstr "BER"
-
-#~ msgid "BER:"
-#~ msgstr "BER:"
-
-#~ msgid "Blue boost"
-#~ msgstr "Pişgiriya mawi"
-
-#~ msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-#~ msgstr "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-
-#~ msgid "C"
-#~ msgstr "C"
-
-#~ msgid "Cannot move files on a different disk or system to the trash can"
-#~ msgstr "Kutuya Çöp ti nikani valaki"
-
-#~ msgid "Command execution..."
-#~ msgstr "Command execution..."
-
-#~ msgid "Compact flash"
-#~ msgstr "Compact flash"
-
-#~ msgid "Configure for how long the infobar will remain visible after activation."
-#~ msgstr "Configure for how long the infobar will remain visible after activation."
-
-#~ msgid "Configure the sharpness of the video scaling."
-#~ msgstr "Configure the sharpness of the video scaling."
-
-#~ msgid "Configure the transparency of the OSD."
-#~ msgstr "Configure the transparency of the OSD."
-
-#~ msgid "Configure the way in which the receiver changes channels."
-#~ msgstr "Configure the way in which the receiver changes channels."
-
-#~ msgid "Configure which access level to use for the configuration menu. Expert level gives access to all items."
-#~ msgstr "Configure which access level to use for the configuration menu. Expert level gives access to all items."
-
-#~ msgid "Confirm shutdown:"
-#~ msgstr "Confirm shutdown:"
-
-#~ msgid "Continue in background"
-#~ msgstr "Continue in background"
-
-#~ msgid "Current event EPG"
-#~ msgstr "Current event EPG"
-
-#~ msgid "D"
-#~ msgstr "D"
-
-#, fuzzy
-#~ msgid "Directory contains %s and %s."
-#~ msgstr "Directory contains %d file(s) and %d sub-directories.\n"
-
-#~ msgid "Disable timer"
-#~ msgstr "Disable timer"
-
-#~ msgid "Dish"
-#~ msgstr "Dish"
-
-#~ msgid "Do you want to install a channel list?"
-#~ msgstr "Do you want to install a channel list?"
-
-#~ msgid "Do you want to update your receiver?"
-#~ msgstr "Do you want to update your receiver?"
-
-#~ msgid "Downloadable new plugins"
-#~ msgstr "Dayni Girédayiyé nu"
-
-#~ msgid "Downloadable plugins"
-#~ msgstr "Downloadable plugins"
-
-#~ msgid "Enable bouquet selection in multi-EPG"
-#~ msgstr "Enable bouquet selection in multi-EPG"
-
-#~ msgid "Enable timer"
-#~ msgstr "Enable timer"
-
-#~ msgid "Event view menu"
-#~ msgstr "Event view menu"
-
-#~ msgid "FTA"
-#~ msgstr "FTA"
-
-#~ msgid "Fan %d PWM"
-#~ msgstr "Fan %d PWM"
-
-#~ msgid "Fan %d voltage"
-#~ msgstr "Fan %d voltage"
-
-#~ msgid "Green boost"
-#~ msgstr "Green boost"
-
-#~ msgid "Hard disk"
-#~ msgstr "Hard disk"
-
-#~ msgid "Hardware: "
-#~ msgstr "Hardware: "
-
-#~ msgid "Hide channel list in radio mode"
-#~ msgstr "Hide channel list in radio mode"
-
-#~ msgid "Image: "
-#~ msgstr "Image: "
-
-#~ msgid "Index"
-#~ msgstr "Index"
-
-#~ msgid "Initial location in new timers"
-#~ msgstr "Initial location in new timers"
-
-#~ msgid "Install softcam"
-#~ msgstr "Install softcam"
-
-#~ msgid "Installing software..."
-#~ msgstr "Installing software..."
-
-#~ msgid "List type"
-#~ msgstr "List type"
-
-#~ msgid "Load length of movies in movie list"
-#~ msgstr "Load length of movies in movie list"
-
-#~ msgid "Location for instant recordings"
-#~ msgstr "Location for instant recordings"
-
-#~ msgid "Lock:"
-#~ msgstr "Lock:"
-
-#~ msgid "MORE"
-#~ msgstr "MORE"
-
-#~ msgid "Message"
-#~ msgstr "Message"
-
-#~ msgid "Message..."
-#~ msgstr "Message..."
-
-#~ msgid "Multi-EPG bouquet selection"
-#~ msgstr "Multi-EPG bouquet selection"
-
-#~ msgid "Mute"
-#~ msgstr "Mute"
-
-#~ msgid "NEXT"
-#~ msgstr "NEXT"
-
-#~ msgid "NOW"
-#~ msgstr "NOW"
-
-#~ msgid "Nameserver setup"
-#~ msgstr "Nameserver setup"
-
-#~ msgid "Network mount %s"
-#~ msgstr "Network mount %s"
-
-#~ msgid "Network test..."
-#~ msgstr "Network test..."
-
-#~ msgctxt "button label, 'next screen'"
-#~ msgid "Next"
-#~ msgstr "Next"
-
-#~ msgid "No sat tuner found!"
-#~ msgstr "No sat tuner found!"
-
-#~ msgid "No updates available"
-#~ msgstr "No updates available"
-
-#~ msgid "No, but restart from beginning"
-#~ msgstr "No, but restart from beginning"
-
-#~ msgid "Now playing"
-#~ msgstr "Now playing"
-
-#~ msgid "OSD transparency"
-#~ msgstr "OSD transparency"
-
-#~ msgid "Ok"
-#~ msgstr "Ok"
-
-#~ msgid "PIN code needed"
-#~ msgstr "PIN code needed"
-
-#~ msgid "Parental control services editor"
-#~ msgstr "Parental control services editor"
-
-#~ msgid "Please wait (downloading softcam)"
-#~ msgstr "Please wait (downloading softcam)"
-
-#~ msgctxt "button label, 'previous screen'"
-#~ msgid "Prev"
-#~ msgstr "Prev"
-
-#~ msgid "Radio"
-#~ msgstr "Radio"
-
-#~ msgid "Ram disk"
-#~ msgstr "Ram disk"
-
-#~ msgid "Recorded files..."
-#~ msgstr "Recorded files..."
-
-#~ msgid "Recording paths"
-#~ msgstr "Réya Qeyda"
-
-#~ msgid "Remember these settings for each folder"
-#~ msgstr "Remember these settings for each folder"
-
-#~ msgid "Removal has completed."
-#~ msgstr "Removal has completed."
-
-#~ msgid "SNR"
-#~ msgstr "SNR"
-
-#~ msgid "SNR:"
-#~ msgstr "SNR:"
-
-#~ msgid "Select HDD"
-#~ msgstr "Select HDD"
-
-#~ msgid "Select a bouquet"
-#~ msgstr "Select a bouquet"
-
-#~ msgid "Select a movie"
-#~ msgstr "Select a movie"
-
-#~ msgid "Select a network adapter"
-#~ msgstr "Select a network adapter"
-
-#~ msgid "Select a skin"
-#~ msgstr "Select a skin"
-
-#~ msgid "Select a tuner"
-#~ msgstr "Select a tuner"
-
-#~ msgid "Show SNR percentage instead of dB value"
-#~ msgstr "Show SNR percentage instead of dB value"
-
-#~ msgid "Show status icons in movie list"
-#~ msgstr "Show status icons in movie list"
-
-#~ msgid "Shutdown receiver after"
-#~ msgstr "Shutdown receiver after"
-
-#~ msgid "Skin"
-#~ msgstr "Ruyé Cihaz"
-
-#~ msgid "Sleep timer action:"
-#~ msgstr "Sleep timer action:"
-
-#~ msgid "Sorry, deleting directories can (for now) only be done through the trash can."
-#~ msgstr "Sorry, deleting directories can (for now) only be done through the trash can."
-
-#~ msgid "Sort A-Z"
-#~ msgstr "Sort A-Z"
-
-#~ msgid "Standby fan %d PWM"
-#~ msgstr "Standby fan %d PWM"
-
-#~ msgid "Standby fan %d voltage"
-#~ msgstr "Standby fan %d voltage"
-
-#~ msgid "Subservice list..."
-#~ msgstr "Subservice list..."
-
-#~ msgid "Temperature and fan control"
-#~ msgstr "Temperature and fan control"
-
-#~ msgid ""
-#~ "The current beta image might not be stable.\n"
-#~ "For more information see %s."
-#~ msgstr ""
-#~ "The current beta image might not be stable.\n"
-#~ "For more information see %s."
-
-#~ msgid "The sleep timer has been activated."
-#~ msgstr "The sleep timer has been activated."
-
-#~ msgid "The sleep timer has been disabled."
-#~ msgstr "The sleep timer has been disabled."
-
-#~ msgid "The status of the current beta image could not be checked because %s can not be reached."
-#~ msgstr "The status of the current beta image could not be checked because %s can not be reached."
-
-#~ msgid "Timer editor"
-#~ msgstr "Timer editor"
-
-#~ msgid "Timer status:"
-#~ msgstr "Timer status:"
-
-#~ msgid "Translation:"
-#~ msgstr "Translation:"
-
-#~ msgid "Tuner status %s"
-#~ msgstr "Tuner status %s"
-
-#~ msgid "USB stick"
-#~ msgstr "USB stick"
-
-#~ msgid "Update and ask to reboot"
-#~ msgstr "Update and ask to reboot"
-
-#~ msgid "Update completed. Do you want to reboot your receiver?"
-#~ msgstr "Update completed. Do you want to reboot your receiver?"
-
-#~ msgid "Update has completed."
-#~ msgstr "Update has completed."
-
-#~ msgid "Use time of currently running service"
-#~ msgstr "Use time of currently running service"
-
-#~ msgid "Volume"
-#~ msgstr "Volume"
-
-#~ msgid "Wakeup receiver from standby"
-#~ msgstr "Wakeup receiver from standby"
-
-#~ msgid "Welcome..."
-#~ msgstr "Welcome..."
-
-#~ msgid "When enabled, a radio background image will be visible while listening to a radio channel."
-#~ msgstr "When enabled, a radio background image will be visible while listening to a radio channel."
-
-#~ msgid "When enabled, display the EIT now/next eventdata in infobar. When disabled, display now/next eventdata from the EPG cache instead."
-#~ msgstr "When enabled, display the EIT now/next eventdata in infobar. When disabled, display now/next eventdata from the EPG cache instead."
-
-#~ msgid "When enabled, error messages related to zapping will not be shown."
-#~ msgstr "When enabled, error messages related to zapping will not be shown."
-
-#~ msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling."
-#~ msgstr "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling."
-
-#~ msgid "When enabled, services may be grouped in multiple bouquets."
-#~ msgstr "When enabled, services may be grouped in multiple bouquets."
-
-#~ msgid "When enabled, the channel selection list will be hidden while listening to a radio channel"
-#~ msgstr "When enabled, the channel selection list will be hidden while listening to a radio channel"
-
-#~ msgid "When enabled, the receiver will no longer monitor the tuned transponder for possible changes. Do not use this option unless you know what you are doing."
-#~ msgstr "When enabled, the receiver will no longer monitor the tuned transponder for possible changes. Do not use this option unless you know what you are doing."
-
-#~ msgid "Would you like to install a softcam?"
-#~ msgstr "Would you like to install a softcam?"
-
-#~ msgid "config menu"
-#~ msgstr "config menu"
-
-#~ msgid "default"
-#~ msgstr "default"
-
-#~ msgid "dreambox ir keyboard"
-#~ msgstr "dreambox ir keyboard"
-
-#~ msgid "dreambox ir mouse"
-#~ msgstr "dreambox ir mouse"
-
-#~ msgid "help..."
-#~ msgstr "help..."
-
-#~ msgid "list style compact"
-#~ msgstr "list style compact"
-
-#~ msgid "list style compact with description"
-#~ msgstr "list style compact with description"
-
-#~ msgid "list style default"
-#~ msgstr "list style default"
-
-#~ msgid "list style single line"
-#~ msgstr "list style single line"
-
-#~ msgid "play from next mark or playlist entry"
-#~ msgstr "play from next mark or playlist entry"
-
-#~ msgid "play from previous mark or playlist entry"
-#~ msgstr "play from previous mark or playlist entry"
-
-#~ msgid "shutdown"
-#~ msgstr "shutdown"
-
-#~ msgid "standby"
-#~ msgstr "standby"

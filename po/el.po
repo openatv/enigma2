@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2_v2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-25 09:57+0200\n"
-"PO-Revision-Date: 2012-12-09 02:03+0100\n"
+"POT-Creation-Date: 2013-10-20 17:53+0200\n"
+"PO-Revision-Date: 2013-10-20 17:03+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
 "Language: el\n"
@@ -147,6 +147,10 @@ msgstr ""
 #, fuzzy
 msgid "%-H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr ""
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -379,6 +383,9 @@ msgstr ""
 #
 msgid "* Only available if more than one interface is active."
 msgstr "* Διαθέσιμο μόνο εάν είναι ενεργές περισσότερες από μία διεπαφές."
+
+msgid "/s"
+msgstr ""
 
 #
 #
@@ -1017,6 +1024,9 @@ msgstr ""
 msgid "Allocate unused memory index"
 msgstr ""
 
+msgid "Allow quit movieplayer with exit"
+msgstr ""
+
 msgid "Allow subtitle language to equal audio language"
 msgstr ""
 
@@ -1115,6 +1125,12 @@ msgstr "Οποιαδήποτε δραστηριότητα"
 #
 msgid "Arabic"
 msgstr "Αραβικά"
+
+#
+#
+#, fuzzy
+msgid "Are you sure to remove this entry?"
+msgstr "Σίγουρα να γίνει έξοδος από αυτό τον οδηγό;"
 
 #
 #
@@ -1327,6 +1343,12 @@ msgstr ""
 
 msgid "Automatic refresh"
 msgstr ""
+
+#
+#
+#, fuzzy
+msgid "Automatic resolution"
+msgstr "Αυτόματη σάρωση"
 
 msgid "Automatic save"
 msgstr ""
@@ -1698,6 +1720,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "Άκυρο "
 
+msgid "Cancel next timer"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -1796,6 +1821,9 @@ msgid "Channel List"
 msgstr ""
 
 msgid "Channel list context menu"
+msgstr ""
+
+msgid "Channel list cursor behavior"
 msgstr ""
 
 msgid "Channel list on mode change"
@@ -2009,6 +2037,12 @@ msgstr "Κλείσιμο"
 #
 #
 #, fuzzy
+msgid "Close PiP on exit"
+msgstr "αποθήκευση λίστας αναπαραγωγής κατά την έξοδο"
+
+#
+#
+#, fuzzy
 msgid "Close bouquet list."
 msgstr "Επεξεργασία λίστας μπουκέτων"
 
@@ -2141,6 +2175,9 @@ msgstr ""
 msgid "Configure if and how service type icons will be shown."
 msgstr ""
 
+msgid "Configure if service picons will be shown in the servicelist."
+msgstr ""
+
 #
 #
 msgid "Configure interface"
@@ -2166,9 +2203,6 @@ msgstr ""
 msgid "Configure the amount of time that will be presented."
 msgstr ""
 
-msgid "Configure the aspect ratio of the screen."
-msgstr ""
-
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr ""
 
@@ -2190,10 +2224,16 @@ msgstr ""
 msgid "Configure the brightness level of the front panel displa for standby."
 msgstr ""
 
+msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
+msgstr ""
+
 msgid "Configure the color of the teletext subtitles."
 msgstr ""
 
 msgid "Configure the contrast level of the front panel display."
+msgstr ""
+
+msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr ""
 
 msgid "Configure the duration in minutes for the screensaver."
@@ -3602,6 +3642,11 @@ msgid "Event font size (relative to skin size)"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Event view"
+msgstr "Μέγεθος γραμματοσειράς προγράμματος"
+
+#
 msgid "Everywhere"
 msgstr "Παντού"
 
@@ -3743,6 +3788,12 @@ msgstr ""
 
 msgid "External (CF)"
 msgstr ""
+
+#
+#
+#, fuzzy
+msgid "External subtitle color"
+msgstr "Χρώμα υποτίτλων teletext"
 
 msgid "FAILED"
 msgstr ""
@@ -3979,6 +4030,12 @@ msgstr "μέγιστη διαφάνεια"
 #, fuzzy
 msgid "Fulscreen"
 msgstr "Hold screen"
+
+#
+#
+#, fuzzy
+msgid "Fulview resulution"
+msgstr "Τοποθεσία ταινιών"
 
 msgid "Function of OK button"
 msgstr ""
@@ -4225,11 +4282,6 @@ msgid "Hard disk standby after"
 msgstr "Σκληρός δίσκος σε αναμονή μετά από"
 
 #
-#
-msgid "Harddisk"
-msgstr "Σκληρός δίσκος"
-
-#
 msgid "Hebrew"
 msgstr "Εβραϊκά"
 
@@ -4377,6 +4429,9 @@ msgid "Icons"
 msgstr "Εικονίδια"
 
 msgid "Idle Time: "
+msgstr ""
+
+msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr ""
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
@@ -4787,6 +4842,9 @@ msgstr ""
 
 #
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+#. "nonlinear": _("Nonlinear"),
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 #, fuzzy
 msgid "Just scale"
 msgstr "Σε κλίμακα"
@@ -4795,6 +4853,12 @@ msgstr "Σε κλίμακα"
 #, fuzzy
 msgid "Just zap"
 msgstr "Σε κλίμακα"
+
+#
+#
+#, fuzzy
+msgid "Keep service"
+msgstr "προσθήκη υπηρεσίας"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr ""
@@ -5261,6 +5325,12 @@ msgstr "Μνήμη"
 
 #
 #
+#, fuzzy
+msgid "Memory positions"
+msgstr "Αποθήκευση θέσης"
+
+#
+#
 msgid "Menu"
 msgstr "Μενού"
 
@@ -5314,12 +5384,6 @@ msgstr "Μοντέλο:"
 #
 #
 msgid "Model: "
-msgstr "Μοντέλο:"
-
-#
-#
-#, fuzzy, python-format
-msgid "Model: %s"
 msgstr "Μοντέλο:"
 
 #
@@ -5954,12 +6018,6 @@ msgstr ""
 msgid "None"
 msgstr "Κανένα"
 
-#
-#
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-msgid "Nonlinear"
-msgstr "Μη γραμμικός"
-
 msgid "Normal mode"
 msgstr ""
 
@@ -6518,6 +6576,12 @@ msgstr "Παρακαλώ εισάγετε όνομα αρχείου (κενό = 
 #
 msgid "Please enter name of the new directory"
 msgstr "Παρακαλώ εισάγετε όνομα νέου φάκελου"
+
+#
+#
+#, fuzzy
+msgid "Please enter new name:"
+msgstr "Παρακαλώ εισάγετε νέο όνομα αρχείου"
 
 #
 #
@@ -7190,12 +7254,6 @@ msgstr "Εγγραφή"
 msgid "Record now"
 msgstr "Εγγραφή"
 
-#
-#
-#, fuzzy
-msgid "Record once"
-msgstr "Εγγραφή"
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr ""
 
@@ -7549,13 +7607,6 @@ msgstr "Συνέχεια από το %s"
 
 #
 #
-#. TRANSLATORS: The string "Resuming playback" flashes for a moment
-#. TRANSLATORS: at the start of a movie, when the user has selected
-#. TRANSLATORS: "Resume from last position" as start behavior.
-#. TRANSLATORS: The purpose is to notify the user that the movie starts
-#. TRANSLATORS: in the middle somewhere and not from the beginning.
-#. TRANSLATORS: (Some translators seem to have interpreted it as a
-#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Συνέχεια αναπαραγωγής"
 
@@ -7568,6 +7619,9 @@ msgstr "Επιστροφή στη λίστα ταινίων"
 #
 msgid "Return to previous service"
 msgstr "Επιστροφή στην προηγούμενη υπηρεσία"
+
+msgid "Reverse bouquet buttons"
+msgstr ""
 
 #
 #
@@ -7657,6 +7711,9 @@ msgid "Samba Setup"
 msgstr ""
 
 msgid "Samba setup"
+msgstr ""
+
+msgid "Same resolution as skin"
 msgstr ""
 
 #
@@ -8472,6 +8529,12 @@ msgstr ""
 msgid "Show Transponder Remaining/Elapsed as"
 msgstr ""
 
+#
+#
+#, fuzzy
+msgid "Show VCR scart on main menu"
+msgstr "εμφάνιση κύριου μενού DVD "
+
 msgid "Show ViX spinning logo when system is busy."
 msgstr ""
 
@@ -8550,6 +8613,11 @@ msgid "Show in extensions list ?"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Show in extensions menu"
+msgstr "εμφάνιση επεκτάσεων..."
+
+#
 #
 #, fuzzy
 msgid "Show info"
@@ -8602,6 +8670,12 @@ msgstr ""
 
 msgid "Show picon background colour"
 msgstr ""
+
+#
+#
+#, fuzzy
+msgid "Show picons in servicelist"
+msgstr "Το κανάλι δεν υπάρχει στη λίστα υπηρεσιών"
 
 #
 #
@@ -8895,6 +8969,12 @@ msgstr ""
 
 #
 #
+#, fuzzy
+msgid "SoftcamCheck"
+msgstr "Λογισμικό"
+
+#
+#
 msgid "Software"
 msgstr "Λογισμικό"
 
@@ -9139,6 +9219,11 @@ msgid "Stop recording and delete"
 msgstr "Τερματισμός εγγραφής και διαγραφή"
 
 #
+#, fuzzy
+msgid "Stop recording now"
+msgstr "Τερματισμός εγγραφής"
+
+#
 #
 msgid "Stop test"
 msgstr "Τερματισμός ελέγχου"
@@ -9169,6 +9254,12 @@ msgstr ""
 
 msgid "Stopped"
 msgstr ""
+
+#
+#
+#, fuzzy
+msgid "Storage devices"
+msgstr "Λίστα μέσων αποθήκευσης"
 
 #
 #
@@ -10323,6 +10414,12 @@ msgstr "Tuner"
 
 #
 #
+#, fuzzy
+msgid "Tuner :"
+msgstr "Tuner"
+
+#
+#
 msgid "Tuner configuration"
 msgstr "Εγκατάσταση tuner"
 
@@ -10664,6 +10761,12 @@ msgstr ""
 msgid "User defined"
 msgstr "Ορισμός από το χρήστη"
 
+#
+#
+#, fuzzy
+msgid "User defined transponder"
+msgstr "Προεπιλεγμένος αναμεταδότης"
+
 msgid "User interface"
 msgstr ""
 
@@ -10748,6 +10851,10 @@ msgstr ""
 msgid "Video PID"
 msgstr "PID εικόνας"
 
+#, python-format
+msgid "Video content: %sx%s%s %sHz"
+msgstr ""
+
 #
 #
 msgid "Video enhancement preview"
@@ -10781,6 +10888,12 @@ msgstr ""
 #
 #
 msgid "Video mode selection."
+msgstr "Επιλογή Video mode"
+
+#
+#
+#, fuzzy, python-format
+msgid "Video mode: %s"
 msgstr "Επιλογή Video mode"
 
 msgid "Video output"
@@ -11122,6 +11235,9 @@ msgstr ""
 msgid "What do you want to scan?"
 msgstr "Τι θέλετε να σαρώσετε;"
 
+msgid "When enabled the PiP can be closed by the exit button."
+msgstr ""
+
 msgid "When enabled the online checker will also check for experimental versions"
 msgstr ""
 
@@ -11155,9 +11271,6 @@ msgstr ""
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr ""
 
-msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
-msgstr ""
-
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr ""
 
@@ -11171,6 +11284,9 @@ msgid "When enabled, graphical DVB subtitles will be displayed at their original
 msgstr ""
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
+msgstr ""
+
+msgid "When enabled, it is possible to leave the movieplayer with exit."
 msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -11195,6 +11311,9 @@ msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr ""
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
+msgstr ""
+
+msgid "When enabled, the VCR scart option will be shown on the main menu"
 msgstr ""
 
 msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
@@ -11308,10 +11427,16 @@ msgstr "Ρύθμιση σύνδεσης ασύρματου δικτύου."
 msgid "Wireless network state"
 msgstr "Κατάσταση ασύρματου δικτύου"
 
+msgid "With popup"
+msgstr ""
+
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr ""
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
+msgstr ""
+
+msgid "Without popup"
 msgstr ""
 
 #
@@ -11347,9 +11472,6 @@ msgstr "Έτος"
 #
 msgid "Yellow DVB subtitles"
 msgstr "Κίτρινοι υπότιτλοι"
-
-msgid "Yellow external subtitles"
-msgstr ""
 
 #
 #
@@ -11857,6 +11979,12 @@ msgstr ""
 #
 msgid "alphabetic reverse"
 msgstr "αλφαβητική αντιστροφή"
+
+#
+#
+#, fuzzy
+msgid "alternative"
+msgstr "προσθήκη εναλλακτικών"
 
 msgid "arts/culture (without music, general)"
 msgstr ""
@@ -12769,6 +12897,12 @@ msgstr ""
 
 #
 #
+#, fuzzy
+msgid "rename entry"
+msgstr "διαγραφή εγγραφής"
+
+#
+#
 msgid "repeat playlist"
 msgstr "επανάληψη λίστας αναπαραγωγής"
 
@@ -13274,14 +13408,3 @@ msgstr "εγγραφή"
 # #
 msgid "zapped"
 msgstr "zapped"
-
-#
-#, fuzzy
-#~ msgid "Channel selection configuration"
-#~ msgstr "Χειροκίνητη ρύθμιση"
-
-#
-#
-#, fuzzy
-#~ msgid "Do you want to update your %s ?"
-#~ msgstr "Θέλετε να επαναφέρετε τις ρυθμίσεις σας;"
