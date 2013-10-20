@@ -12,6 +12,8 @@ from os import path
 
 from Components.AVSwitch import iAVSwitch
 
+resolutionlabel = None
+
 class VideoSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -184,7 +186,22 @@ class VideoSetup(Screen, ConfigListScreen):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
 
-class AutoFrameRate(Screen):
+class AutoVideoModeLabel(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+
+		self["content"] = Label()
+		self["restxt"] = Label()
+
+		self.hideTimer = eTimer()
+		self.hideTimer.callback.append(self.hide)
+
+		self.onShow.append(self.hide_me)
+
+	def hide_me(self):
+		self.hideTimer.start(config.usage.infobar_timeout.index * 2000, True)
+
+class AutoVideoMode(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
@@ -231,40 +248,37 @@ class AutoFrameRate(Screen):
 		print '!!!!!!!!!!!!!!!!!!!!!!!!VideoChangeDetect'
 
 		config_port = config.av.videoport.getValue()
-		config_mode = str(config.av.videomode[config_port].getValue())
-		print 'config mode:',config_mode
-		config_res = str(config.av.videomode[config_port].getValue()[:-1])
-		print 'config res:',config_res
-		config_rate = str(config.av.videorate[config_mode].getValue())
-		print 'config rate:',config_rate
-		config_pol = str(config.av.videomode[config_port].getValue()[-1:])
-		print 'config pol:',config_pol
+		config_mode = str(config.av.videomode[config_port].getValue()).replace('\n','')
+		config_res = str(config.av.videomode[config_port].getValue()[:-1]).replace('\n','')
+		config_pol = str(config.av.videomode[config_port].getValue()[-1:]).replace('\n','')
+		config_rate = str(config.av.videorate[config_mode].getValue()).replace('Hz','').replace('\n','')
 
-		print '\n'
+		print 'config mode:',config_mode
+		print 'config res:',config_res
+		print 'config pol:',config_pol
+		print 'config rate:',config_rate
+		print ' '
 
 		f = open("/proc/stb/video/videomode")
-		current_mode = f.read()[:-1]
+		current_mode = f.read()[:-1].replace('\n','')
 		f.close()
-		print 'current mode:',current_mode
-
 		if current_mode and current_mode.find('i') != -1:
 			current_pol = 'i'
 		elif current_mode and current_mode.find('p') != -1:
 			current_pol = 'p'
 		else:
 			current_pol = ''
-		print 'current pol:',current_pol
-
-		current_res = current_mode.split(current_pol)[0]
-		print 'current res:',current_res
-
+		current_res = current_mode.split(current_pol)[0].replace('\n','')
 		if len(current_mode.split(current_pol)) > 0:
-			current_rate = current_mode.split(current_pol)[1]
+			current_rate = current_mode.split(current_pol)[1].replace('\n','')
 		else:
 			current_rate = ""
-		print 'current rate:',current_rate
 
-		print '\n'
+		print 'current mode:',current_mode
+		print 'current res:',current_res
+		print 'current pol:',current_pol
+		print 'current rate:',current_rate
+		print ' '
 
 		service = self.session.nav.getCurrentService()
 		if service is not None:
@@ -274,15 +288,16 @@ class AutoFrameRate(Screen):
 
 		if info:
 			video_height = int(info.getInfo(iServiceInformation.sVideoHeight))
-			print 'video height:',video_height
 			video_width = int(info.getInfo(iServiceInformation.sVideoWidth))
-			print 'video width:',video_width
 			video_pol = ("i", "p")[info.getInfo(iServiceInformation.sProgressive)]
-			print 'video pol:',video_pol
 			video_rate = int(info.getInfo(iServiceInformation.sFrameRate))
-			print 'video rate:',video_rate
 
-			print '\n'
+			resolutionlabel["content"].setText(_("Video content: %sx%s%s %sHz") % (video_width, video_height, video_pol, (video_rate + 500) / 1000))
+			print 'video height:',video_height
+			print 'video width:',video_width
+			print 'video pol:',video_pol
+			print 'video rate:',video_rate
+			print ' '
 
 			if video_height != -1:
 				if video_height > 720:
@@ -295,7 +310,6 @@ class AutoFrameRate(Screen):
 					new_res = "480"
 			else:
 				new_res = config_res
-			print 'new res:',new_res
 
 			if video_rate != -1:
 				if video_rate in (29970, 30000, 59940, 60000) and video_pol == 'i':
@@ -307,43 +321,54 @@ class AutoFrameRate(Screen):
 				new_rate = str((new_rate + 500) / 1000)
 			else:
 				new_rate = config_rate
-			print 'new rate:',new_rate
 
 			if video_pol != -1:
 				new_pol = str(video_pol)
 			else:
 				new_pol = config_pol
-			print 'new pol:',new_pol
+
+		print 'config.av.autores:',config.av.autores.getValue()
+		if config.av.autores.getValue() and info:
 			iAVSwitch.readAvailableModes()
 			if new_res+new_pol+new_rate in iAVSwitch.modes_available:
 				new_mode = new_res+new_pol+new_rate
 			elif new_res+new_pol in iAVSwitch.modes_available:
 				new_mode = new_res+new_pol
 			else:
-				new_mode = config_mode
-			print 'new mode:',new_mode
+				new_mode = config_mode+config_rate
 
-		print 'config.av.autores:',config.av.autores.getValue()
-		if config.av.autores.getValue():
+			print 'new mode:',new_mode
+			print 'new res:',new_res
+			print 'new pol:',new_pol
+			print 'new rate:',new_rate
+			print ' '
+
 			write_mode = new_mode
 		else:
+			if config_res+config_pol+config_rate in iAVSwitch.modes_available:
+				write_mode = config_res+config_pol+config_rate
+			elif config_res+config_pol in iAVSwitch.modes_available:
+				write_mode = config_res+config_pol
+
 			if path.exists('/proc/stb/video/videomode_%shz' % new_rate) and config_rate == 'multi':
 				f = open("/proc/stb/video/videomode_%shz" % new_rate, "r")
-				multi_videomode = f.read()
+				multi_videomode = f.read().replace('\n','')
 				print 'multi_videomode:',multi_videomode
 				f.close()
 			else:
 				multi_videomode = None
 
-			write_mode = config_mode
 			if multi_videomode and (write_mode != multi_videomode):
 				write_mode = multi_videomode
 
-		print '\n'
+		print ' '
 		print 'CURRENT MODE:',current_mode
 		print 'NEW MODE:',write_mode
+		print ' '
 
 		if current_mode != write_mode and self.bufferfull:
+			resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
+			resolutionlabel.show()
 			print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, write_mode)
 			f = open("/proc/stb/video/videomode", "w")
 			f.write(write_mode)
@@ -358,5 +383,7 @@ class AutoFrameRate(Screen):
 		self.detecttimer.stop()
 
 def autostart(session):
-	print 'autostart'
-	AutoFrameRate(session)
+	if resolutionlabel is None:
+		global resolutionlabel
+		resolutionlabel = session.instantiateDialog(AutoVideoModeLabel)
+	AutoVideoMode(session)
