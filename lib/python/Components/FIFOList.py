@@ -15,5 +15,5 @@ class FIFOList(MenuList):
 		del self.list[:]
 		self.l.setList(self.list)
 
-	def getCurrentSelection(self)
-		return self.list[self.getSelectionIndex()]
+	def getCurrentSelection(self):
+		return self.list and self.getCurrent() or None
