@@ -236,6 +236,9 @@ def getRecordingFilename(basename, dirname = None):
 			c = "_"
 		filename += c
 
+	# max filename length for ext4 is 255 (minus 8 characters for .ts.meta)
+	filename = filename[:247]
+
 	if dirname is not None:
 		if not dirname.startswith('/'):
 			dirname = os.path.join(defaultRecordingLocation(), dirname)
