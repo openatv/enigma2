@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2013-10-09 20:36+0100\n"
-"Last-Translator: mike99 <mike99@gmx.net>\n"
+"PO-Revision-Date: 2013-10-20 13:22+0100\n"
+"Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -14818,13 +14818,14 @@ msgstr "Wenn aktiviert, werden die Picons in der Kanalliste angezeigt."
 
 #
 msgid "Flash Online a new image"
-msgstr "Online/Offline Flashen"
+msgstr "Online/Offline flashen"
 
 msgid "Flash on the fly your your Receiver software."
-msgstr "Flashen Online oder Local Ihrer Receiver software."
+msgstr ""
+"Flashen Sie online oder von einer lokalen Quelle ihre Receiver Software."
 
 msgid "Flash Online"
-msgstr "Flashen Online/Local"
+msgstr "Flashen Online/Lokal"
 
 msgid ""
 "No /hdd found !!\n"
@@ -14839,7 +14840,7 @@ msgstr ""
 
 # /SoftwareManager/plugin.py
 msgid "Flash On the Fly"
-msgstr "Flashen   Online / Local"
+msgstr "Flashen   Online / Lokal"
 
 # /SoftwareManager/Flash_online.py
 msgid ""
@@ -14847,15 +14848,15 @@ msgid ""
 "Flash on the fly your %s %s."
 msgstr ""
 "\n"
-"Flashen   Online / Local Ihrer %s %s."
+"Flashen   Online / Lokal Ihrer %s %s."
 
 # /SoftwareManager/Flash_online.py
 msgid "Online = Download a image and flash it"
-msgstr "Image online laden und Flashen."
+msgstr "Image online laden und flashen."
 
 # /SoftwareManager/Flash_online.py
 msgid "Local = Flash a image from local path /hdd/images"
-msgstr "Image von HDD oder USB Flashen."
+msgstr "Image von HDD oder USB flashen."
 
 # /SoftwareManager/Flash_online.py
 msgid "Flash On the fly (select a image)"
@@ -14906,6 +14907,34 @@ msgstr ""
 "Bitte installieren Sie ofgwrite nach /usr/bin/ofgwrite.\n"
 "\n"
 "Plugin wird beendet."
+
+msgid "Download Failed !!"
+msgstr "Herunterladen gescheitert !!"
+
+msgid "Simulate (no write)"
+msgstr "Simulation (kein Schreibvorgang)"
+
+msgid "Show only found image and mtd partitions.\n"
+msgstr "Zeige nur verfügbare Images und MTD Partitionen.\n"
+
+msgid "ofgwrite will stop enigma2 now to run the flash.\n"
+msgstr "ofgwrite stoppt jetzt Enigma2 um den Flashvorgang zu starten.\n"
+
+msgid "Your STB will freeze during the flashing process.\n"
+msgstr ""
+"Während des Flashvorganges ist Ihr Receiver unbedienbar und das Bild wird "
+"stoppen.\n"
+
+msgid "Please: DO NOT reboot your STB and turn off the power.\n"
+msgstr "Bitte: Den Receiver keinesfalls neustarten oder ausschalten!\n"
+
+msgid "The image or kernel will be flashing and auto booted in few minutes.\n"
+msgstr ""
+"Image oder Kernel werden geflasht - Ihr Receiver startet in wenigen Minuten "
+"neu.\n"
+
+msgid "Local"
+msgstr "Lokal"
 
 #
 msgid "Show MiniTV in the Front Display"
