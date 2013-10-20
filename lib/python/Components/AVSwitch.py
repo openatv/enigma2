@@ -59,7 +59,6 @@ class AVSwitch:
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	# modes["DVI-PC"] = ["PC"]
 
-	print 'CPU:',about.getChipSetString()
 	if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1:
 		modes["HDMI"] = ["1080p", "1080i", "720p", "576p", "576i", "480p", "480i"]
 		widescreen_modes = set(["1080p", "1080i", "720p"])
@@ -71,8 +70,6 @@ class AVSwitch:
 	if getBoxType().startswith('vu'):
 		modes["Scart-YPbPr"] = modes["HDMI"]
 
-	print 'MODES 1:',modes
-
 	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
 	# 	print "remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
@@ -80,7 +77,6 @@ class AVSwitch:
 		del modes["YPbPr"]
 	if modes.has_key("Scart") and getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'et6x00' or getBoxType() == 'tmnano':
 		del modes["Scart"]
-	print 'MODES:',modes
 
 	def __init__(self):
 		self.last_modes_preferred =  [ ]
@@ -156,7 +152,6 @@ class AVSwitch:
 			f.close()
 		try:
 			mode_etc = modes.get(int(rate[:2]))
-			print 'mode_etc:',mode_etc
 			f = open("/proc/stb/video/videomode", "w")
 			f.write(mode_etc)
 			f.close()
@@ -172,7 +167,6 @@ class AVSwitch:
 		# self.updateAspect(None)
 
 	def saveMode(self, port, mode, rate):
-		print "saveMode", port, mode, rate
 		config.av.videoport.setValue(port)
 		config.av.videoport.save()
 		if port in config.av.videomode:
@@ -198,7 +192,6 @@ class AVSwitch:
 
 	# get a list with all modes, with all rates, for a given port.
 	def getModeList(self, port):
-		print "getModeList for port", port
 		res = [ ]
 		for mode in self.modes[port]:
 			# list all rates which are completely valid
@@ -240,7 +233,6 @@ class AVSwitch:
 		eAVSwitch.getInstance().setInput(INPUT[input])
 
 	def setColorFormat(self, value):
-		print'colorformat 1'
 		eAVSwitch.getInstance().setColorFormat(value)
 
 	def setConfiguredMode(self):
@@ -288,7 +280,6 @@ class AVSwitch:
 			f.close()
 
 	def getOutputAspect(self):
-		print 'getOutputAspect'
 		ret = (16,9)
 		port = config.av.videoport.getValue()
 		if port not in config.av.videomode:
@@ -317,7 +308,6 @@ class AVSwitch:
 		return ret
 
 	def getFramebufferScale(self):
-		print 'getFramebufferScale'
 		aspect = self.getOutputAspect()
 		fb_size = getDesktop(0).size()
 		return (aspect[0] * fb_size.height(), aspect[1] * fb_size.width())
@@ -409,8 +399,6 @@ def InitAVSwitch():
 	config.av.policy_169.addNotifier(iAVSwitch.setPolicy169)
 
 	def setColorFormat(configElement):
-		print 'colorformat 2'
-		print 'config.av.videoport',config.av.videoport and config.av.videoport.getValue()
 		if config.av.videoport and config.av.videoport.getValue() == "Scart-YPbPr":
 			iAVSwitch.setColorFormat(3)
 		else:
