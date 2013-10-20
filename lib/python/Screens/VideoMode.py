@@ -1,7 +1,7 @@
 from Screens.Screen import Screen
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
-from Components.config import getConfigListEntry, config, ConfigBoolean, ConfigNothing, ConfigSlider
+from Components.config import config, configfile, getConfigListEntry, ConfigBoolean, ConfigNothing, ConfigSlider
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
@@ -66,12 +66,12 @@ class VideoSetup(Screen, ConfigListScreen):
 		if config.av.videoport.getValue() in ('HDMI', 'YPbPr', 'Scart-YPbPr'):
 			self.list.append(getConfigListEntry(_("Automatic resolution"), config.av.autores,_("If enabled the output resolution of the box will try to match the resolution of the video contents resolution")))
 		# if we have modes for this port:
-		if config.av.videoport.getValue() in config.av.videomode and not config.av.autores.getValue():
+		if (config.av.videoport.getValue() in config.av.videomode and not config.av.autores.getValue()) or config.av.videoport.getValue() == 'Scart':
 			# add mode- and rate-selection:
 			self.list.append(getConfigListEntry(pgettext("Video output mode", "Mode"), config.av.videomode[config.av.videoport.getValue()], _("This option configures the video output mode (or resolution).")))
 			if config.av.videomode[config.av.videoport.getValue()].getValue() == 'PC':
 				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.getValue()].getValue()], _("This option configures the screen resolution in PC output mode.")))
-			else:
+			elif config.av.videoport.getValue() != 'Scart':
 				self.list.append(getConfigListEntry(_("Refresh rate"), config.av.videorate[config.av.videomode[config.av.videoport.getValue()].getValue()], _("Configure the refresh rate of the screen.")))
 
 		port = config.av.videoport.getValue()
@@ -147,6 +147,13 @@ class VideoSetup(Screen, ConfigListScreen):
 		mode = config.av.videomode[port].getValue()
 		rate = config.av.videorate[mode].getValue()
 		self.last_good = (port, mode, rate)
+
+	def saveAll(self):
+		if config.av.videoport.getValue() == 'Scart':
+			config.av.autores.setValue(False)
+		for x in self["config"].list:
+			x[1].save()
+		configfile.save()
 
 	def apply(self):
 		port = config.av.videoport.getValue()
