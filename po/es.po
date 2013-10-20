@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-25 09:57+0200\n"
-"PO-Revision-Date: 2013-02-22 08:25+0100\n"
-"Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
+"POT-Creation-Date: 2013-10-20 17:53+0200\n"
+"PO-Revision-Date: 2013-10-20 16:59+0100\n"
+"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: www.CostaBlancaTranslations.com <maria@CostaBlancaTranslations.com>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -138,6 +138,10 @@ msgstr "y"
 #
 msgid "%-H:%M"
 msgstr "%-H:%M"
+
+#, python-format
+msgid "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr ""
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -354,6 +358,9 @@ msgstr "* = Reinicio obligatorio"
 #
 msgid "* Only available if more than one interface is active."
 msgstr "* Sólo disponible si hay más de una interfaz activa."
+
+msgid "/s"
+msgstr ""
 
 #
 msgid "1.0"
@@ -904,6 +911,9 @@ msgstr "Asignar"
 msgid "Allocate unused memory index"
 msgstr "Asignar índice de memoria no utilizada."
 
+msgid "Allow quit movieplayer with exit"
+msgstr ""
+
 msgid "Allow subtitle language to equal audio language"
 msgstr "Igualar el idioma de subtítulos al de audio"
 
@@ -993,6 +1003,11 @@ msgstr "Cualquier actividad"
 #
 msgid "Arabic"
 msgstr "Árabe"
+
+#
+#, fuzzy
+msgid "Are you sure to remove this entry?"
+msgstr "¿Seguro que quieres salir de este asistente?"
 
 #
 msgid ""
@@ -1178,6 +1193,10 @@ msgstr "Copia automática de Image"
 
 msgid "Automatic refresh"
 msgstr "Reinicio automático"
+
+#, fuzzy
+msgid "Automatic resolution"
+msgstr "Búsqueda automática"
 
 msgid "Automatic save"
 msgstr "Guardado automático"
@@ -1503,6 +1522,10 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #, fuzzy
+msgid "Cancel next timer"
+msgstr "Hora actual:"
+
+#, fuzzy
 msgid "Cancel save timeshift as movie"
 msgstr "No guardar Timeshift como película"
 
@@ -1594,6 +1617,10 @@ msgstr "Lista de canales"
 
 msgid "Channel list context menu"
 msgstr "Menú de contexto de lista de canales"
+
+#, fuzzy
+msgid "Channel list cursor behavior"
+msgstr "Previsualiación de la lista de canales"
 
 msgid "Channel list on mode change"
 msgstr "Lista de canales en cambio de modo"
@@ -1780,6 +1807,11 @@ msgstr "Clientes"
 msgid "Close"
 msgstr "Cerrar"
 
+#
+#, fuzzy
+msgid "Close PiP on exit"
+msgstr "Guardar la lista al salir"
+
 #, fuzzy
 msgid "Close bouquet list."
 msgstr "Abrir lista de grupos"
@@ -1893,6 +1925,10 @@ msgstr "Configura cómo se construyen los nombres de archivo de grabación."
 msgid "Configure if and how service type icons will be shown."
 msgstr "Configura el conector de salida de vídeo que se va a utilizar."
 
+#, fuzzy
+msgid "Configure if service picons will be shown in the servicelist."
+msgstr "Configura el conector de salida de vídeo que se va a utilizar."
+
 #
 msgid "Configure interface"
 msgstr "Configurar interfaz"
@@ -1916,9 +1952,6 @@ msgstr "Configurar la dirección IP."
 msgid "Configure the amount of time that will be presented."
 msgstr "Configurar la duración de la presentación."
 
-msgid "Configure the aspect ratio of the screen."
-msgstr "Configurar la proporción de la pantalla"
-
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr "Configurar el comportamiento de la tecla \"pausa\" cuando la reproducción de películas ya está en pausa."
 
@@ -1940,11 +1973,17 @@ msgstr "Configurar el nivel de brillo del panel frontal durante la operación no
 msgid "Configure the brightness level of the front panel displa for standby."
 msgstr "Configurar el nivel de brillo del panel frontal en espera."
 
+msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
+msgstr ""
+
 msgid "Configure the color of the teletext subtitles."
 msgstr "Configurar el color de los subtítulos del teletexto."
 
 msgid "Configure the contrast level of the front panel display."
 msgstr "Configurar el nivel de contraste del panel frontal."
+
+msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
+msgstr ""
 
 #, fuzzy
 msgid "Configure the duration in minutes for the screensaver."
@@ -3145,6 +3184,10 @@ msgstr "Tamaño de fuente del programa"
 msgid "Event font size (relative to skin size)"
 msgstr "Tamaño de fuente del programa (depende del tamaño de Skin)"
 
+#, fuzzy
+msgid "Event view"
+msgstr "Tamaño de fuente del programa"
+
 msgid "Everywhere"
 msgstr "En todo"
 
@@ -3254,6 +3297,10 @@ msgstr "Externo"
 
 msgid "External (CF)"
 msgstr "Externo (CF)"
+
+#, fuzzy
+msgid "External subtitle color"
+msgstr "Color de subtítulos del teletexto."
 
 msgid "FAILED"
 msgstr ""
@@ -3451,6 +3498,11 @@ msgstr "Transparencia completa"
 
 msgid "Fulscreen"
 msgstr "Pantalla completa"
+
+#
+#, fuzzy
+msgid "Fulview resulution"
+msgstr "Selección de películas"
 
 msgid "Function of OK button"
 msgstr "Función de la tecla OK"
@@ -3659,10 +3711,6 @@ msgstr "Configuración del disco duro"
 msgid "Hard disk standby after"
 msgstr "Disco duro en modo de espera después"
 
-#
-msgid "Harddisk"
-msgstr "Disco duro"
-
 msgid "Hebrew"
 msgstr "Hebreo"
 
@@ -3790,6 +3838,9 @@ msgstr "Iconos"
 
 msgid "Idle Time: "
 msgstr "Tiempo de inactividad"
+
+msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
+msgstr ""
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Si los historiales utilizan el espacio máximo configurado, se borrará el más antiguo."
@@ -4143,12 +4194,20 @@ msgstr "Sólo cambiar canales"
 
 #
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+#. "nonlinear": _("Nonlinear"),
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just scale"
 msgstr "Sólo escalar"
 
 #
 msgid "Just zap"
 msgstr "Zapear"
+
+#
+#, fuzzy
+msgid "Keep service"
+msgstr "Ningún canal"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Mantiene abierta la lista de películas durante la reproducción de archivos de audio."
@@ -4542,6 +4601,11 @@ msgid "Memory index"
 msgstr "Número de posición"
 
 #
+#, fuzzy
+msgid "Memory positions"
+msgstr "Almacenar posición"
+
+#
 msgid "Menu"
 msgstr "Menú"
 
@@ -4592,11 +4656,6 @@ msgstr "Modelo: %s"
 #
 msgid "Model: "
 msgstr "Modelo: "
-
-#
-#, python-format
-msgid "Model: %s"
-msgstr "Modelo: %s"
 
 #
 msgid "Modulation"
@@ -5108,11 +5167,6 @@ msgstr "ID de nodo:"
 msgid "None"
 msgstr "Ninguno"
 
-#
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-msgid "Nonlinear"
-msgstr "No lineal"
-
 msgid "Normal mode"
 msgstr "Modo normal"
 
@@ -5600,6 +5654,11 @@ msgstr "Introduce un nombre de fichero (vacío = usar fecha actual)"
 #
 msgid "Please enter name of the new directory"
 msgstr "Introduce el nombre del directorio nuevo"
+
+#
+#, fuzzy
+msgid "Please enter new name:"
+msgstr "Introduce un nombre de archivo nuevo"
 
 #
 msgid "Please enter the correct pin code"
@@ -6146,11 +6205,6 @@ msgstr "Grabar"
 msgid "Record now"
 msgstr "Grabar"
 
-#
-#, fuzzy
-msgid "Record once"
-msgstr "Grabar"
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr "Grabación iniciada. Deteniendo Timeshift..."
 
@@ -6439,13 +6493,6 @@ msgid "Resume position at %s"
 msgstr "Reanudar posición en %s."
 
 #
-#. TRANSLATORS: The string "Resuming playback" flashes for a moment
-#. TRANSLATORS: at the start of a movie, when the user has selected
-#. TRANSLATORS: "Resume from last position" as start behavior.
-#. TRANSLATORS: The purpose is to notify the user that the movie starts
-#. TRANSLATORS: in the middle somewhere and not from the beginning.
-#. TRANSLATORS: (Some translators seem to have interpreted it as a
-#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Reanudar reproducción"
 
@@ -6456,6 +6503,9 @@ msgstr "Volver a la lista de películas"
 #
 msgid "Return to previous service"
 msgstr "Volver al canal anterior"
+
+msgid "Reverse bouquet buttons"
+msgstr ""
 
 #
 msgid "Rewind speeds"
@@ -6533,6 +6583,9 @@ msgstr "Configuración Samba"
 
 msgid "Samba setup"
 msgstr "Configuración Samba"
+
+msgid "Same resolution as skin"
+msgstr ""
 
 #
 msgid "Sat"
@@ -7230,6 +7283,11 @@ msgstr "Ver lista de temporizadores"
 msgid "Show Transponder Remaining/Elapsed as"
 msgstr "Ver transpondedor restante/transcurrido como..."
 
+#
+#, fuzzy
+msgid "Show VCR scart on main menu"
+msgstr "Ver el menú principal de DVD"
+
 msgid "Show ViX spinning logo when system is busy."
 msgstr "Ver logo giratorio ViX cuando el sistema esté ocupado."
 
@@ -7291,6 +7349,10 @@ msgstr "Ver icono de elementos nuevos/no vistos."
 msgid "Show in extensions list ?"
 msgstr "¿Ver en lista de extensiones?"
 
+#, fuzzy
+msgid "Show in extensions menu"
+msgstr "¿Ver en lista de extensiones?"
+
 #
 msgid "Show info"
 msgstr "Ver información"
@@ -7335,6 +7397,10 @@ msgstr "Ver u ocultar la descripción ampliada (depende de Skin)."
 
 msgid "Show picon background colour"
 msgstr "Ver color de fondo de Picon."
+
+#, fuzzy
+msgid "Show picons in servicelist"
+msgstr "Ver iconos de estado en la lista de películas."
 
 #
 msgid "Show positioner movement"
@@ -7568,6 +7634,11 @@ msgid "Softcam settings"
 msgstr "Ajustes de Softcam"
 
 #
+#, fuzzy
+msgid "SoftcamCheck"
+msgstr "Software"
+
+#
 msgid "Software"
 msgstr "Software"
 
@@ -7774,6 +7845,10 @@ msgstr "Detener grabación"
 msgid "Stop recording and delete"
 msgstr "Detener grabación y borrar."
 
+#, fuzzy
+msgid "Stop recording now"
+msgstr "Detener grabación"
+
 #
 msgid "Stop test"
 msgstr "Detener prueba"
@@ -7801,6 +7876,11 @@ msgstr ""
 
 msgid "Stopped"
 msgstr "Detenido"
+
+#
+#, fuzzy
+msgid "Storage devices"
+msgstr "Enumerar dispositivos de almacenamiento"
 
 #
 msgid "Store at index"
@@ -8824,6 +8904,11 @@ msgid "Tuner"
 msgstr "Sintonizador"
 
 #
+#, fuzzy
+msgid "Tuner :"
+msgstr "Sintonizador"
+
+#
 msgid "Tuner configuration"
 msgstr "Configuración del sintonizador"
 
@@ -9120,6 +9205,11 @@ msgstr "Usuario - Grupos"
 msgid "User defined"
 msgstr "Definido por el usuario"
 
+#
+#, fuzzy
+msgid "User defined transponder"
+msgstr "Transpondedor predefinido"
+
 msgid "User interface"
 msgstr "Interfaz de usuario"
 
@@ -9192,6 +9282,10 @@ msgstr "Ajustes de mejora de vídeo"
 msgid "Video PID"
 msgstr "Vídeo PID"
 
+#, python-format
+msgid "Video content: %sx%s%s %sHz"
+msgstr ""
+
 #
 msgid "Video enhancement preview"
 msgstr "Previsualizar la mejora de vídeo"
@@ -9224,6 +9318,10 @@ msgstr ""
 #
 msgid "Video mode selection."
 msgstr "Selección de modo de vídeo."
+
+#, fuzzy, python-format
+msgid "Video mode: %s"
+msgstr "Ver modo"
 
 msgid "Video output"
 msgstr "Salida de vídeo"
@@ -9502,6 +9600,10 @@ msgstr "¿Qué acción debe ejecutarse al finalizar el temporizador? En \"auto\"
 msgid "What do you want to scan?"
 msgstr "¿Qué quieres buscar?"
 
+#, fuzzy
+msgid "When enabled the PiP can be closed by the exit button."
+msgstr "Cuando está activado, los saltos de línea originales se eliminan de los subtítulos de teletexto."
+
 msgid "When enabled the online checker will also check for experimental versions"
 msgstr "Cuando está activado, el verificador online comprabará también las versiones experimentales."
 
@@ -9535,9 +9637,6 @@ msgstr "Cuando está activado, se continúa al siguiente grupo cuando se llega a
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr "Cuando está activado, las grabaciones borradas pasan a la papelera en vez de eliminarse inmediatamente."
 
-msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
-msgstr "Cuando está activado, los subtítulos externos (en archivos de media) aparecerán en amarillo y no en su color original."
-
 #, fuzzy
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Cuando está activado, los subtítulos del teletexto aparecen en su posición original."
@@ -9553,6 +9652,9 @@ msgstr "Cuando está activado, los subtítulos gráficos DVB aparecen en su posi
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr "Cuando está activado, los subtítulos gráficos DVB aparecerán en amarillo y no en su color original."
+
+msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Cuando está activado, se mide el consumo de energía para detectar cuando deja de girar el rotor (si lo soporta el sintonizador)."
@@ -9577,6 +9679,10 @@ msgstr "Cuando está activado, las páginas del teletexto se guardan en caché y
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr "Cuando está activado, los subtítulos del teletexto aparecen en su posición original."
+
+#, fuzzy
+msgid "When enabled, the VCR scart option will be shown on the main menu"
+msgstr "Cuando está activado, aparecerá un mensaje cuando empiece una grabación."
 
 msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
 msgstr "Cuando está activado, la duración de cada grabación aparecerá en la lista de películas (puede tardar más)."
@@ -9679,11 +9785,17 @@ msgstr "Configuración de la conexión de red inalámbrica."
 msgid "Wireless network state"
 msgstr "Estado de red inalámbrica."
 
+msgid "With popup"
+msgstr ""
+
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr "Con esta opción en 'Sí', las listas de canales siempre muestran primero la pantalla de grupos. En 'no', se abre el grupo actual."
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Con esta opción puedes ocultar las tareas en la pantalla de extensión (pulsación corta de la tecla azul)."
+
+msgid "Without popup"
+msgstr ""
 
 #
 msgid "Write error while recording. Disk full?\n"
@@ -9714,9 +9826,6 @@ msgstr "Año"
 
 msgid "Yellow DVB subtitles"
 msgstr "Subtítulos DVB en amarillo"
-
-msgid "Yellow external subtitles"
-msgstr "Subtítulos externos en amarillo"
 
 #
 msgid "Yes"
@@ -10181,6 +10290,11 @@ msgstr "Alfabético"
 
 msgid "alphabetic reverse"
 msgstr "Invertir orden alfabético"
+
+#
+#, fuzzy
+msgid "alternative"
+msgstr "Alternativa"
 
 msgid "arts/culture (without music, general)"
 msgstr "Arte y cultura (sin música, general)"
@@ -10973,6 +11087,11 @@ msgid "rename"
 msgstr "Renombrar"
 
 #
+#, fuzzy
+msgid "rename entry"
+msgstr "Eliminar entrada"
+
+#
 msgid "repeat playlist"
 msgstr "Repetir lista de reproducción"
 
@@ -11424,12 +11543,3 @@ msgstr "Guardar y grabar"
 #
 msgid "zapped"
 msgstr "Zapping"
-
-#
-#~ msgid "Channel selection configuration"
-#~ msgstr "Configuración de selección de canales"
-
-#
-#, fuzzy
-#~ msgid "Do you want to update your %s ?"
-#~ msgstr "¿Quieres restaurar la configuración?"

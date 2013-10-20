@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-25 09:57+0200\n"
-"PO-Revision-Date: 2012-12-09 02:02+0100\n"
+"POT-Creation-Date: 2013-10-20 17:53+0200\n"
+"PO-Revision-Date: 2013-10-20 16:59+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Persian Professionals <persianpros@yahoo.com>\n"
 "Language: fa\n"
@@ -129,6 +129,10 @@ msgstr ""
 #, fuzzy
 msgid "%-H:%M"
 msgstr "%ساعت:%دقیقه"
+
+#, python-format
+msgid "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr ""
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -323,6 +327,9 @@ msgstr ""
 #
 msgid "* Only available if more than one interface is active."
 msgstr "فقط زمانی در دسترس است که بیش از یک رابط فعال باشد"
+
+msgid "/s"
+msgstr ""
 
 msgid "1.0"
 msgstr "1.0"
@@ -810,6 +817,9 @@ msgstr ""
 msgid "Allocate unused memory index"
 msgstr ""
 
+msgid "Allow quit movieplayer with exit"
+msgstr ""
+
 msgid "Allow subtitle language to equal audio language"
 msgstr ""
 
@@ -895,6 +905,10 @@ msgstr "هر فعالیتی"
 
 msgid "Arabic"
 msgstr "عربی"
+
+#, fuzzy
+msgid "Are you sure to remove this entry?"
+msgstr "آیا مطمئن هستید که میخواهید از این هدایتگر خارج شوید ؟"
 
 #
 msgid ""
@@ -1061,6 +1075,10 @@ msgstr ""
 
 msgid "Automatic refresh"
 msgstr ""
+
+#, fuzzy
+msgid "Automatic resolution"
+msgstr "اسکن خودکار"
 
 msgid "Automatic save"
 msgstr ""
@@ -1355,6 +1373,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "انصراف"
 
+msgid "Cancel next timer"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -1440,6 +1461,9 @@ msgid "Channel List"
 msgstr ""
 
 msgid "Channel list context menu"
+msgstr ""
+
+msgid "Channel list cursor behavior"
 msgstr ""
 
 msgid "Channel list on mode change"
@@ -1612,6 +1636,10 @@ msgid "Close"
 msgstr "بستن"
 
 #, fuzzy
+msgid "Close PiP on exit"
+msgstr "ذخیره لیست پخش هنگام خروج"
+
+#, fuzzy
 msgid "Close bouquet list."
 msgstr "ویرایش لیست های کانال"
 
@@ -1711,6 +1739,9 @@ msgstr ""
 msgid "Configure if and how service type icons will be shown."
 msgstr ""
 
+msgid "Configure if service picons will be shown in the servicelist."
+msgstr ""
+
 msgid "Configure interface"
 msgstr "رابط مشترک"
 
@@ -1731,9 +1762,6 @@ msgid "Configure the IP address."
 msgstr ""
 
 msgid "Configure the amount of time that will be presented."
-msgstr ""
-
-msgid "Configure the aspect ratio of the screen."
 msgstr ""
 
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
@@ -1757,10 +1785,16 @@ msgstr ""
 msgid "Configure the brightness level of the front panel displa for standby."
 msgstr ""
 
+msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
+msgstr ""
+
 msgid "Configure the color of the teletext subtitles."
 msgstr ""
 
 msgid "Configure the contrast level of the front panel display."
+msgstr ""
+
+msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr ""
 
 msgid "Configure the duration in minutes for the screensaver."
@@ -2849,6 +2883,9 @@ msgstr ""
 msgid "Event font size (relative to skin size)"
 msgstr ""
 
+msgid "Event view"
+msgstr ""
+
 msgid "Everywhere"
 msgstr "در همه جا"
 
@@ -2946,6 +2983,10 @@ msgstr ""
 
 msgid "External (CF)"
 msgstr ""
+
+#, fuzzy
+msgid "External subtitle color"
+msgstr "رنگ زیرنویس تله تکست"
 
 msgid "FAILED"
 msgstr ""
@@ -3120,6 +3161,10 @@ msgstr ""
 
 msgid "Fulscreen"
 msgstr ""
+
+#, fuzzy
+msgid "Fulview resulution"
+msgstr "محل فیلم"
 
 msgid "Function of OK button"
 msgstr ""
@@ -3318,9 +3363,6 @@ msgstr "تنظیمات دیسک سخت"
 msgid "Hard disk standby after"
 msgstr "خاموشی موقت دیسک سخت بعد از"
 
-msgid "Harddisk"
-msgstr "دیسک سخت"
-
 msgid "Hebrew"
 msgstr "عبری"
 
@@ -3444,6 +3486,9 @@ msgid "Icons"
 msgstr "آیکون"
 
 msgid "Idle Time: "
+msgstr ""
+
+msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr ""
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
@@ -3773,6 +3818,9 @@ msgid "Just change channels"
 msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+#. "nonlinear": _("Nonlinear"),
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 #, fuzzy
 msgid "Just scale"
 msgstr "فقط Scale"
@@ -3780,6 +3828,10 @@ msgstr "فقط Scale"
 #, fuzzy
 msgid "Just zap"
 msgstr "فقط Scale"
+
+#, fuzzy
+msgid "Keep service"
+msgstr "اضافه کردن کانال"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr ""
@@ -4136,6 +4188,10 @@ msgstr ""
 msgid "Memory index"
 msgstr "حافظه"
 
+#, fuzzy
+msgid "Memory positions"
+msgstr "ذخیره مکان"
+
 msgid "Menu"
 msgstr "منو"
 
@@ -4184,10 +4240,6 @@ msgid "Model:\t%s %s\n"
 msgstr "مدل:"
 
 msgid "Model: "
-msgstr "مدل:"
-
-#, fuzzy, python-format
-msgid "Model: %s"
 msgstr "مدل:"
 
 msgid "Modulation"
@@ -4642,10 +4694,6 @@ msgstr ""
 msgid "None"
 msgstr "هیچکدام"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-msgid "Nonlinear"
-msgstr "غیر خطی"
-
 msgid "Normal mode"
 msgstr ""
 
@@ -5088,6 +5136,10 @@ msgstr ""
 
 msgid "Please enter name of the new directory"
 msgstr "لطفا نام پوشه جدید را وارد کنید"
+
+#, fuzzy
+msgid "Please enter new name:"
+msgstr "لطفا یک نام جدید برای فایل وارد کنید"
 
 msgid "Please enter the correct pin code"
 msgstr "لطفا رمز درست را وارد کنید"
@@ -5559,10 +5611,6 @@ msgstr "ضبط"
 msgid "Record now"
 msgstr "ضبط"
 
-#, fuzzy
-msgid "Record once"
-msgstr "ضبط"
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr ""
 
@@ -5821,13 +5869,6 @@ msgstr "ادامه از مکان قبلی"
 msgid "Resume position at %s"
 msgstr "ادامه دادن مکان در %s"
 
-#. TRANSLATORS: The string "Resuming playback" flashes for a moment
-#. TRANSLATORS: at the start of a movie, when the user has selected
-#. TRANSLATORS: "Resume from last position" as start behavior.
-#. TRANSLATORS: The purpose is to notify the user that the movie starts
-#. TRANSLATORS: in the middle somewhere and not from the beginning.
-#. TRANSLATORS: (Some translators seem to have interpreted it as a
-#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr ""
 
@@ -5836,6 +5877,9 @@ msgstr "بازگشت به لیست فیلم"
 
 msgid "Return to previous service"
 msgstr "بازگشت به کانال قبلی"
+
+msgid "Reverse bouquet buttons"
+msgstr ""
 
 msgid "Rewind speeds"
 msgstr "سرعت های بازگشت:"
@@ -5907,6 +5951,9 @@ msgid "Samba Setup"
 msgstr ""
 
 msgid "Samba setup"
+msgstr ""
+
+msgid "Same resolution as skin"
 msgstr ""
 
 msgid "Sat"
@@ -6567,6 +6614,10 @@ msgstr ""
 msgid "Show Transponder Remaining/Elapsed as"
 msgstr ""
 
+#, fuzzy
+msgid "Show VCR scart on main menu"
+msgstr "نمایش منوی اصلی DVD"
+
 msgid "Show ViX spinning logo when system is busy."
 msgstr ""
 
@@ -6630,6 +6681,10 @@ msgid "Show in extensions list ?"
 msgstr ""
 
 #, fuzzy
+msgid "Show in extensions menu"
+msgstr "نمایش منوی انتخاب لیست"
+
+#, fuzzy
 msgid "Show info"
 msgstr "نمایش اطلاعات"
 
@@ -6670,6 +6725,10 @@ msgstr ""
 
 msgid "Show picon background colour"
 msgstr ""
+
+#, fuzzy
+msgid "Show picons in servicelist"
+msgstr "کانال در لیست کانال ها وجود ندارد"
 
 msgid "Show positioner movement"
 msgstr "نمایش گردش مکان یاب"
@@ -6887,6 +6946,10 @@ msgstr ""
 msgid "Softcam settings"
 msgstr ""
 
+#, fuzzy
+msgid "SoftcamCheck"
+msgstr "نرم افزار"
+
 msgid "Software"
 msgstr "نرم افزار"
 
@@ -7073,6 +7136,10 @@ msgstr ""
 msgid "Stop recording and delete"
 msgstr ""
 
+#, fuzzy
+msgid "Stop recording now"
+msgstr "این ضبط کردن"
+
 msgid "Stop test"
 msgstr "توقف تست"
 
@@ -7099,6 +7166,10 @@ msgstr ""
 
 msgid "Stopped"
 msgstr ""
+
+#, fuzzy
+msgid "Storage devices"
+msgstr "لیست دستگاه های ذخیره سازی"
 
 #, fuzzy
 msgid "Store at index"
@@ -8001,6 +8072,10 @@ msgstr "دریافت سیگنال ناموفق"
 msgid "Tuner"
 msgstr "تیونر"
 
+#, fuzzy
+msgid "Tuner :"
+msgstr "تیونر"
+
 msgid "Tuner configuration"
 msgstr "پیکربندی تیونر"
 
@@ -8276,6 +8351,10 @@ msgstr ""
 msgid "User defined"
 msgstr "تعریف شده توسط کاربر"
 
+#, fuzzy
+msgid "User defined transponder"
+msgstr "ترانسپوندر از قبل تعریف شده"
+
 msgid "User interface"
 msgstr ""
 
@@ -8344,6 +8423,10 @@ msgstr ""
 msgid "Video PID"
 msgstr "PID تصویر"
 
+#, python-format
+msgid "Video content: %sx%s%s %sHz"
+msgstr ""
+
 #
 msgid "Video enhancement preview"
 msgstr "پیش نمایش بهینه تصویر"
@@ -8369,6 +8452,10 @@ msgid ""
 msgstr ""
 
 msgid "Video mode selection."
+msgstr "انتخاب حالت تصویر"
+
+#, fuzzy, python-format
+msgid "Video mode: %s"
 msgstr "انتخاب حالت تصویر"
 
 msgid "Video output"
@@ -8619,6 +8706,9 @@ msgstr ""
 msgid "What do you want to scan?"
 msgstr "چه چیزی را میخواهید اسکن کنید؟"
 
+msgid "When enabled the PiP can be closed by the exit button."
+msgstr ""
+
 msgid "When enabled the online checker will also check for experimental versions"
 msgstr ""
 
@@ -8652,9 +8742,6 @@ msgstr ""
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr ""
 
-msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
-msgstr ""
-
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr ""
 
@@ -8668,6 +8755,9 @@ msgid "When enabled, graphical DVB subtitles will be displayed at their original
 msgstr ""
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
+msgstr ""
+
+msgid "When enabled, it is possible to leave the movieplayer with exit."
 msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -8692,6 +8782,9 @@ msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr ""
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
+msgstr ""
+
+msgid "When enabled, the VCR scart option will be shown on the main menu"
 msgstr ""
 
 msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
@@ -8787,10 +8880,16 @@ msgstr "تنظیم ارتباط شبکه بدون سیم"
 msgid "Wireless network state"
 msgstr "کیفیت شبکه بدون سیم"
 
+msgid "With popup"
+msgstr ""
+
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr ""
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
+msgstr ""
+
+msgid "Without popup"
 msgstr ""
 
 msgid "Write error while recording. Disk full?\n"
@@ -8815,9 +8914,6 @@ msgid "Year"
 msgstr "سال"
 
 msgid "Yellow DVB subtitles"
-msgstr ""
-
-msgid "Yellow external subtitles"
 msgstr ""
 
 msgid "Yes"
@@ -9212,6 +9308,10 @@ msgstr ""
 
 msgid "alphabetic reverse"
 msgstr "معکوس حروف الفبا"
+
+#, fuzzy
+msgid "alternative"
+msgstr "اضافه کردن متناوب"
 
 msgid "arts/culture (without music, general)"
 msgstr ""
@@ -9905,6 +10005,10 @@ msgstr "حذف این علامت"
 msgid "rename"
 msgstr ""
 
+#, fuzzy
+msgid "rename entry"
+msgstr "حذف مورد"
+
 msgid "repeat playlist"
 msgstr "تکرار لیست پخش"
 
@@ -10302,11 +10406,3 @@ msgstr "ضبط"
 
 msgid "zapped"
 msgstr "حذف شد"
-
-#, fuzzy
-#~ msgid "Channel selection configuration"
-#~ msgstr "پیکربندی دستی"
-
-#, fuzzy
-#~ msgid "Do you want to update your %s ?"
-#~ msgstr "آیا میخواهید تنظیمات شما بازگردانی شود ؟"
