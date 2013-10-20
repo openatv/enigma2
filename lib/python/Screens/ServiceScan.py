@@ -54,6 +54,9 @@ class ServiceScan(Screen):
 	def cancel(self):
 		self.close(False)
 
+	def doCloseRecursive(self):
+		self.close(True)
+
 	def __init__(self, session, scanList):
 		Screen.__init__(self, session)
 
@@ -80,12 +83,16 @@ class ServiceScan(Screen):
 		self["pass"] = Label("")
 		self["servicelist"] = FIFOList()
 		self["FrontendInfo"] = FrontendInfo()
+		self["key_red"] = Label(_("Cancel"))
+		self["key_green"] = Label(_("OK"))
 
-		self["actions"] = ActionMap(["OkCancelActions"],
-			{
-				"ok": self.ok,
-				"cancel": self.cancel
-			})
+		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
+		{
+			"ok": self.ok,
+			"save": self.ok,
+			"cancel": self.cancel,
+			"menu": self.doCloseRecursive
+		}, -2)
 
 		self.onFirstExecBegin.append(self.doServiceScan)
 
