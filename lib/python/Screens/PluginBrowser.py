@@ -107,7 +107,7 @@ class PluginBrowser(Screen):
 		
 	def updateList(self):
 		self.pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
-		self.list = [PluginEntryComponent(plugin) for plugin in self.pluginlist]
+		self.list = [PluginEntryComponent(plugin, self.listWidth) for plugin in self.pluginlist]
 		self["list"].l.setList(self.list)
 
 	def delete(self):
