@@ -5,6 +5,7 @@ from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Components.FIFOList import FIFOList
 from Components.Sources.FrontendInfo import FrontendInfo
+from ServiceReference import ServiceReference
 from enigma import eServiceCenter
 
 class ServiceScanSummary(Screen):
@@ -39,16 +40,19 @@ class ServiceScan(Screen):
 					bouquets = self.currentServiceList.getBouquetList()
 					for x in bouquets:
 						if x[0] == 'Last Scanned':
+							selectedChannel = self["servicelist"].getCurrentSelection()
 							self.currentServiceList.setRoot(x[1])
 							services = eServiceCenter.getInstance().list(self.currentServiceList.servicelist.getRoot())
 							channels = services and services.getContent("R", True)
-							if channels:
-								self.session.postScanService = channels[0]
-								self.currentServiceList.addToHistory(channels[0])
-			self.close()
+							for channel in channels:
+								if selectedChannel == ServiceReference(channel.toString()).getServiceName():
+									self.session.postScanService = channel
+									self.currentServiceList.addToHistory(channel)
+									break
+			self.close(True)
 
 	def cancel(self):
-		self.close()
+		self.close(False)
 
 	def __init__(self, session, scanList):
 		Screen.__init__(self, session)
@@ -74,7 +78,7 @@ class ServiceScan(Screen):
 		self["transponder"] = Label()
 
 		self["pass"] = Label("")
-		self["servicelist"] = FIFOList(len=10)
+		self["servicelist"] = FIFOList()
 		self["FrontendInfo"] = FrontendInfo()
 
 		self["actions"] = ActionMap(["OkCancelActions"],
