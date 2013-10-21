@@ -658,10 +658,10 @@ class ImageBackup(Screen):
 
 				if self.TYPE == 'ET':
 					cmdlist.append('mkdir -p %s/%sx00' % (self.TARGET, self.MODEL[:-3]))
-					cmdlist.append('cp -r %s %s' % (MAINDEST, TARGET))
+					cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.TARGET))
 				elif self.TYPE == 'VU':
 					cmdlist.append('mkdir -p %s/vuplus_back/%s' % (self.TARGET, self.MODEL[2:]))
-					cmdlist.append('cp -r %s %s/vuplus_back/' % (MAINDEST, TARGET))
+					cmdlist.append('cp -r %s %s/vuplus_back/' % (self.MAINDEST, self.TARGET))
 				elif self.TYPE == 'VENTON':
 					cmdlist.append('mkdir -p %s/venton/%s' % (self.TARGET, self.MODEL))
 					cmdlist.append('cp -r %s %s/venton/' % (self.MAINDEST, self.TARGET))
