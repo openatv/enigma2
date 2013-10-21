@@ -385,7 +385,7 @@ def InitAVSwitch():
 			# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 			policy_choices.update({"auto": _("Auto")})
 		f.close()
-	config.av.policy_43 = ConfigSelection(choices=policy_choices, default = "pillarbox")
+	config.av.policy_43 = ConfigSelection(choices=policy_choices, default = "panscan")
 	config.av.tvsystem = ConfigSelection(choices = {"pal": _("PAL"), "ntsc": _("NTSC"), "multinorm": _("multinorm")}, default="pal")
 	config.av.wss = ConfigEnableDisable(default = True)
 	config.av.generalAC3delay = ConfigSelectionNumber(-1000, 1000, 5, default = 0)
