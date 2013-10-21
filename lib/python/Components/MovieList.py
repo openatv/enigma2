@@ -535,7 +535,7 @@ class MovieList(GUIComponent):
 			self.list.sort(key=self.buildAlphaNumericFlatSortKey)
 		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE:
 			self.list.sort(key=self.buildAlphaNumericFlatSortKey, reverse = True)
-		elif self.sort_type == MovieList.SORT_RECORDED_REVERSE:
+		elif self.sort_type == MovieList.SORT_RECORDED:
 			self.list = sorted(self.list[:numberOfDirs], key=self.buildBeginTimeSortKey) + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey)
 		elif self.sort_type == MovieList.SORT_RECORDED_REVERSE:
 			self.list = sorted(self.list[:numberOfDirs], key=self.buildBeginTimeSortKey, reverse = True) + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey, reverse = True)
