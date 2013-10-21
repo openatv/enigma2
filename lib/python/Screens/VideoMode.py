@@ -229,11 +229,11 @@ class AutoVideoMode(Screen):
 	def VideoChanged(self):
 		print '!!!!!!!!!!!!!!!!!!!!!!!!VideoChanged'
 		print 'REF:',self.session.nav.getCurrentlyPlayingServiceReference().toString()
-		print 'REF:',self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('4097:')
+		print 'IS STREAM:',self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('4097:')
 		if self.session.nav.getCurrentlyPlayingServiceReference() and not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('4097:'):
-			delay = 200
+			delay = 400
 		else:
-			delay = 200
+			delay = 800
 		if not self.detecttimer.isActive() and not self.delay:
 			print 'TEST 1:',delay
 			self.delay = True
@@ -287,17 +287,38 @@ class AutoVideoMode(Screen):
 			info = None
 
 		if info:
-			video_height = int(info.getInfo(iServiceInformation.sVideoHeight))
-			video_width = int(info.getInfo(iServiceInformation.sVideoWidth))
-			video_pol = ("i", "p")[info.getInfo(iServiceInformation.sProgressive)]
-			video_rate = int(info.getInfo(iServiceInformation.sFrameRate))
+			if path.exists("/proc/stb/vmpeg/0/yres"):
+				f = open("/proc/stb/vmpeg/0/yres", "r")
+				video_height = int(f.read(),16)
+				f.close()
+			else:
+				video_height = int(info.getInfo(iServiceInformation.sVideoHeight))
+			if path.exists("/proc/stb/vmpeg/0/xres"):
+				f = open("/proc/stb/vmpeg/0/xres", "r")
+				video_width = int(f.read(),16)
+				f.close()
+			else:
+				video_width = int(info.getInfo(iServiceInformation.sVideoWidth))
+			if path.exists("/proc/stb/vmpeg/0/progressive"):
+				f = open("/proc/stb/vmpeg/0/progressive", "r")
+				video_pol = "p" if int(f.read(),16) else "i"
+				f.close()
+			else:
+				video_pol = ("i", "p")[info.getInfo(iServiceInformation.sProgressive)]
+			if path.exists("/proc/stb/vmpeg/0/framerate"):
+				f = open("/proc/stb/vmpeg/0/framerate", "r")
+				video_rate = int(f.read())
+				f.close()
+			else:
+				video_rate = int(info.getInfo(iServiceInformation.sFrameRate))
 
-			resolutionlabel["content"].setText(_("Video content: %sx%s%s %sHz") % (video_width, video_height, video_pol, (video_rate + 500) / 1000))
 			print 'video height:',video_height
 			print 'video width:',video_width
 			print 'video pol:',video_pol
 			print 'video rate:',video_rate
 			print ' '
+
+			resolutionlabel["content"].setText(_("Video content: %ix%i%s %iHz") % (video_width, video_height, video_pol, (video_rate + 500) / 1000))
 
 			if video_height != -1:
 				if video_height > 720:
