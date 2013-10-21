@@ -199,7 +199,7 @@ class AutoVideoModeLabel(Screen):
 		self.onShow.append(self.hide_me)
 
 	def hide_me(self):
-		self.hideTimer.start(config.usage.infobar_timeout.index * 2000, True)
+		self.hideTimer.start(config.usage.infobar_timeout.index * 1000, True)
 
 class AutoVideoMode(Screen):
 	def __init__(self, session):
@@ -220,14 +220,12 @@ class AutoVideoMode(Screen):
 	def BufferInfo(self):
 		bufferInfo = self.session.nav.getCurrentService().streamed().getBufferCharge()
 		if bufferInfo[0] > 98:
-			print '!!!!!!!!!!!!!!!bufferfull'
 			self.bufferfull = True
 			self.VideoChanged()
 		else:
 			self.bufferfull = False
 
 	def VideoChanged(self):
-		print '!!!!!!!!!!!!!!!!!!!!!!!!VideoChanged'
 		print 'REF:',self.session.nav.getCurrentlyPlayingServiceReference().toString()
 		print 'IS STREAM:',self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('4097:')
 		if self.session.nav.getCurrentlyPlayingServiceReference() and not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('4097:'):
@@ -245,8 +243,6 @@ class AutoVideoMode(Screen):
 			self.detecttimer.start(delay)
 
 	def VideoChangeDetect(self):
-		print '!!!!!!!!!!!!!!!!!!!!!!!!VideoChangeDetect'
-
 		config_port = config.av.videoport.getValue()
 		config_mode = str(config.av.videomode[config_port].getValue()).replace('\n','')
 		config_res = str(config.av.videomode[config_port].getValue()[:-1]).replace('\n','')
@@ -262,17 +258,16 @@ class AutoVideoMode(Screen):
 		f = open("/proc/stb/video/videomode")
 		current_mode = f.read()[:-1].replace('\n','')
 		f.close()
-		if current_mode and current_mode.find('i') != -1:
+		if current_mode.upper() in ('PAL', 'NTSC'):
+			current_mode = current_mode.upper()
+
+		current_pol = ''
+		if current_mode.find('i') != -1:
 			current_pol = 'i'
-		elif current_mode and current_mode.find('p') != -1:
+		elif current_mode.find('p') != -1:
 			current_pol = 'p'
-		else:
-			current_pol = ''
-		current_res = current_mode.split(current_pol)[0].replace('\n','')
-		if len(current_mode.split(current_pol)) > 0:
-			current_rate = current_mode.split(current_pol)[1].replace('\n','')
-		else:
-			current_rate = ""
+		current_res = current_pol and current_mode.split(current_pol)[0].replace('\n','') or ""
+		current_rate = current_pol and current_mode.split(current_pol)[0].replace('\n','') and current_mode.split(current_pol)[1].replace('\n','') or ""
 
 		print 'current mode:',current_mode
 		print 'current res:',current_res
@@ -349,7 +344,9 @@ class AutoVideoMode(Screen):
 				new_pol = config_pol
 
 		print 'config.av.autores:',config.av.autores.getValue()
-		if config.av.autores.getValue() and info:
+		if config_mode in ('PAL', 'NTSC'):
+			write_mode = config_mode
+		elif config.av.autores.getValue() and info:
 			iAVSwitch.readAvailableModes()
 			if new_res+new_pol+new_rate in iAVSwitch.modes_available:
 				new_mode = new_res+new_pol+new_rate
@@ -370,6 +367,8 @@ class AutoVideoMode(Screen):
 				write_mode = config_res+config_pol+config_rate
 			elif config_res+config_pol in iAVSwitch.modes_available:
 				write_mode = config_res+config_pol
+			elif config_res in iAVSwitch.modes_available:
+				write_mode = config_res
 
 			if path.exists('/proc/stb/video/videomode_%shz' % new_rate) and config_rate == 'multi':
 				f = open("/proc/stb/video/videomode_%shz" % new_rate, "r")
@@ -382,12 +381,11 @@ class AutoVideoMode(Screen):
 			if multi_videomode and (write_mode != multi_videomode):
 				write_mode = multi_videomode
 
-		print ' '
-		print 'CURRENT MODE:',current_mode
-		print 'NEW MODE:',write_mode
-		print ' '
-
 		if current_mode != write_mode and self.bufferfull:
+			print ' '
+			print 'CURRENT MODE:',current_mode
+			print 'NEW MODE:',write_mode
+			print ' '
 			resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
 			resolutionlabel.show()
 			print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, write_mode)
