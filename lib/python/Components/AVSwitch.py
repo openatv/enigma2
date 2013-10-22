@@ -126,7 +126,7 @@ class AVSwitch:
 		return mode in self.widescreen_modes
 
 	def setMode(self, port, mode, rate, force = None):
-		print "[AVSwitch] setMode - port: %s, mode: %s, rate: %s" % (port, mode, rate)
+		print "[VideoMode] setMode - port: %s, mode: %s, rate: %s" % (port, mode, rate)
 
 		# config.av.videoport.setValue(port)
 		# we can ignore "port"
@@ -251,7 +251,7 @@ class AVSwitch:
 		self.setMode(port, mode, rate)
 
 	def setAspect(self, cfgelement):
-		print "-> setting aspect: %s" % cfgelement.value
+		print "[VideoMode] setting aspect: %s" % cfgelement.value
 		f = open("/proc/stb/video/aspect", "w")
 		f.write(cfgelement.value)
 		f.close()
@@ -261,20 +261,20 @@ class AVSwitch:
 			wss = "auto(4:3_off)"
 		else:
 			wss = "auto"
-		print "-> setting wss: %s" % wss
+		print "[VideoMode] setting wss: %s" % wss
 		f = open("/proc/stb/denc/0/wss", "w")
 		f.write(wss)
 		f.close()
 
 	def setPolicy43(self, cfgelement):
-		print "-> setting policy: %s" % cfgelement.value
+		print "[VideoMode] setting policy: %s" % cfgelement.value
 		f = open("/proc/stb/video/policy", "w")
 		f.write(cfgelement.value)
 		f.close()
 
 	def setPolicy169(self, cfgelement):
 		if os.path.exists("/proc/stb/video/policy2"):
-			print "-> setting policy2: %s" % cfgelement.value
+			print "[VideoMode] setting policy2: %s" % cfgelement.value
 			f = open("/proc/stb/video/policy2", "w")
 			f.write(cfgelement.value)
 			f.close()
@@ -392,7 +392,6 @@ def InitAVSwitch():
 	config.av.generalPCMdelay = ConfigSelectionNumber(-1000, 1000, 5, default = 0)
 	config.av.vcrswitch = ConfigEnableDisable(default = False)
 
-
 	config.av.aspect.addNotifier(iAVSwitch.setAspect)
 	config.av.wss.addNotifier(iAVSwitch.setWss)
 	config.av.policy_43.addNotifier(iAVSwitch.setPolicy43)
@@ -480,7 +479,7 @@ def InitAVSwitch():
 		def setScaler_sharpness(config):
 			myval = int(config.getValue())
 			try:
-				print "--> setting scaler_sharpness to: %0.8X" % myval
+				print "[VideoMode] setting scaler_sharpness to: %0.8X" % myval
 				f = open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w")
 				f.write("%0.8X" % myval)
 				f.close()
