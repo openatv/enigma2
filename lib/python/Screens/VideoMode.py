@@ -249,6 +249,7 @@ class AutoVideoMode(Screen):
 		config_pol = str(config.av.videomode[config_port].getValue()[-1:]).replace('\n','')
 		config_rate = str(config.av.videorate[config_mode].getValue()).replace('Hz','').replace('\n','')
 
+		print 'config port:',config_port
 		print 'config mode:',config_mode
 		print 'config res:',config_res
 		print 'config pol:',config_pol
@@ -344,10 +345,10 @@ class AutoVideoMode(Screen):
 				new_pol = config_pol
 
 		print 'config.av.autores:',config.av.autores.getValue()
+		write_mode = None
 		if config_mode in ('PAL', 'NTSC'):
 			write_mode = config_mode
 		elif config.av.autores.getValue() and info:
-			iAVSwitch.readAvailableModes()
 			if new_res+new_pol+new_rate in iAVSwitch.modes_available:
 				new_mode = new_res+new_pol+new_rate
 			elif new_res+new_pol in iAVSwitch.modes_available:
@@ -363,29 +364,19 @@ class AutoVideoMode(Screen):
 
 			write_mode = new_mode
 		else:
-			if config_res+config_pol+config_rate in iAVSwitch.modes_available:
-				write_mode = config_res+config_pol+config_rate
-			elif config_res+config_pol in iAVSwitch.modes_available:
-				write_mode = config_res+config_pol
-			elif config_res in iAVSwitch.modes_available:
-				write_mode = config_res
-
 			if path.exists('/proc/stb/video/videomode_%shz' % new_rate) and config_rate == 'multi':
 				f = open("/proc/stb/video/videomode_%shz" % new_rate, "r")
 				multi_videomode = f.read().replace('\n','')
 				print 'multi_videomode:',multi_videomode
 				f.close()
-			else:
-				multi_videomode = None
+				if multi_videomode and (current_mode != multi_videomode):
+					write_mode = multi_videomode
 
-			if multi_videomode and (write_mode != multi_videomode):
-				write_mode = multi_videomode
-
-		if current_mode != write_mode and self.bufferfull:
-			print ' '
-			print 'CURRENT MODE:',current_mode
-			print 'NEW MODE:',write_mode
-			print ' '
+		print ' '
+		print 'CURRENT MODE:',current_mode
+		print 'NEW MODE:',write_mode
+		print ' '
+		if write_mode and current_mode != write_mode and self.bufferfull:
 			resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
 			resolutionlabel.show()
 			print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, write_mode)
