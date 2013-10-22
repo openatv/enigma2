@@ -792,22 +792,25 @@ class ChannelSelectionEdit:
 			self.mutableList = None
 			self.setTitle(self.saved_title)
 			self.saved_title = None
-			cur_root = self.getRoot()
 			self.servicelist.resetRoot()
+			# Renumber service number on InfoBar by restarting selection TODO: find a better work-a-round
+			ref = self.getCurrentSelection()
+			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
+			self.session.nav.playService(self.getCurrentSelection(), forceRestart=True)
+			self.setCurrentSelection(ref)
 		else:
+			if not self.entry_marked:
+				self.toggleMoveMarked() # mark current entry
 			self.mutableList = self.getMutableList()
 			self.movemode = True
 			self.pathChangeDisabled = True # no path change allowed in movemode
 			self.saved_title = self.getTitle()
-			new_title = self.saved_title
 			pos = self.saved_title.find(')')
-			new_title = self.saved_title[:pos+1] + ' ' + _("[move mode]") + self.saved_title[pos+1:]
-			self.setTitle(new_title);
+			self.setTitle(self.saved_title[:pos+1] + ' ' + _("[move mode]") + self.saved_title[pos+1:]);
 		self["Service"].editmode = True
 
 	def handleEditCancel(self):
 		if self.movemode: #movemode active?
-			self.channelSelected() # unmark
 			self.toggleMoveMode() # disable move mode
 		elif self.bouquet_mark_edit != OFF:
 			self.endMarkedEdit(True) # abort edit mode
