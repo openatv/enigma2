@@ -7,6 +7,7 @@ from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.ServiceEventTracker import ServiceEventTracker
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from enigma import iPlayableService, iServiceInformation, eTimer
 from os import path
 
@@ -65,7 +66,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.list = [
 			getConfigListEntry(_("Video output"), config.av.videoport, _("Configures which video output connector will be used."))
 		]
-		if config.av.videoport.getValue() in ('HDMI', 'YPbPr', 'Scart-YPbPr'):
+		if config.av.videoport.getValue() in ('HDMI', 'YPbPr', 'Scart-YPbPr') and not path.exists(resolveFilename(SCOPE_PLUGINS)+'SystemPlugins/AutoResolution'):
 			self.list.append(getConfigListEntry(_("Automatic resolution"), config.av.autores,_("If enabled the output resolution of the box will try to match the resolution of the video contents resolution")))
 		# if we have modes for this port:
 		if (config.av.videoport.getValue() in config.av.videomode and not config.av.autores.getValue()) or config.av.videoport.getValue() == 'Scart':
@@ -401,7 +402,8 @@ class AutoVideoMode(Screen):
 		self.detecttimer.stop()
 
 def autostart(session):
-	if resolutionlabel is None:
-		global resolutionlabel
-		resolutionlabel = session.instantiateDialog(AutoVideoModeLabel)
-	AutoVideoMode(session)
+	if not path.exists(resolveFilename(SCOPE_PLUGINS)+'SystemPlugins/AutoResolution'):
+		if resolutionlabel is None:
+			global resolutionlabel
+			resolutionlabel = session.instantiateDialog(AutoVideoModeLabel)
+		AutoVideoMode(session)
