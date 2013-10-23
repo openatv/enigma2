@@ -321,7 +321,7 @@ void runMainloop()
 
 const char *getEnigmaVersionString()
 {
-	return enigma2_version;
+	return enigma2_date;
 }
 
 const char *getDistro()
