@@ -1198,11 +1198,11 @@ msgstr "Konfigurieren Sie wie viele Minuten eine abgeschlossene Sendung in der E
 msgid "Configure how recording filenames are constructed."
 msgstr "Aufnahme-Dateiname konfigurieren"
 
-msgid "Configure if and how service type icons will be shown."
-msgstr "Konfiguriert, ob und wie Service-Typ Icons angezeigt werden."
+msgid "Configure if and how service type icons will be shown in the channel selection list."
+msgstr "Konfiguriert, ob und wie Service-Typ Icons in der Kanalliste angezeigt werden."
 
-msgid "Configure if service picons will be shown in the servicelist."
-msgstr "Falls aktiviert, werden Picons in der Senderliste angezeigt."
+msgid "Configure if service picons will be shown in the channel selection list."
+msgstr "Falls aktiviert, werden Picons in der Kanalauswahlliste angezeigt."
 
 msgid "Configure interface"
 msgstr "Netzwerkkarte konfigurieren"
@@ -4792,8 +4792,8 @@ msgstr "Zeige Filmlänge in der Filmliste"
 msgid "Show multi channel EPG"
 msgstr "Zeige Multi-Channel-EPG"
 
-msgid "Show picons in servicelist"
-msgstr "Zeige Picons in Senderliste"
+msgid "Show picons in channel list"
+msgstr "Zeige Picons in Kanalliste"
 
 msgid "Show positioner movement"
 msgstr "Rotorbewegung anzeigen"
@@ -7689,11 +7689,17 @@ msgstr "Skin Auswahl"
 msgid "Choose Tuner"
 msgstr "Tuner-Wahl"
 
-msgid "Keep focus on current service while entering servicelist"
-msgstr "Aktuellen Kanal auswählen bei Aufruf der Kanalliste"
-
-msgid "Configure to keep focus on the current played service while entering the servicelist via the bouquet buttons."
-msgstr "Legt fest, ob beim Aufruf der Kanalliste über die Bouquet-Tasten der aktuelle Sender ausgewählt bleibt."
-
 msgid "Are you sure to remove this entry?"
 msgstr "Soll dieser Eintrag wirklich gelöscht werden?"
+
+msgid "Customize channel list cursor behavior"
+msgstr "Cursor-Verhalten in Kanalliste einstellen"
+
+msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
+msgstr "Konfiguriert das Verhalten des Cursors in Kanalauswahllisten. Beim Öffnen von Kanalauswahllisten kann der Cursor auf dem aktuellen Sender bleiben oder bereits den oberen/unteren Kanal markieren (oben/unten kann dabei nach Wunsch invertiert werden)."
+
+msgid "Keep service"
+msgstr "Aktueller Sender"
+
+msgid "Reverse bouquet buttons"
+msgstr "Bouquet-Tasten invertieren"

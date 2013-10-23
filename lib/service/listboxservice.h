@@ -150,6 +150,7 @@ private:
 
 		/* support for movemode */
 	bool m_current_marked;
+	void swapServices(list::iterator, list::iterator);
 
 	eServiceReference m_is_playable_ignore;
 
