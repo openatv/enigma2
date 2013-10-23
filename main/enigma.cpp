@@ -331,7 +331,7 @@ const char *getDistro()
 
 const char *getMachineBrand()
 {
-	return return MACHINE_BRAND;
+	return MACHINE_BRAND;
 }
 
 const char *getMachineName()
