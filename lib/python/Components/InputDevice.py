@@ -173,7 +173,7 @@ class InitInputDevices:
 	def setupConfigEntries(self,device):
 		cmd = "config.inputDevices." + device + " = ConfigSubsection()"
 		exec (cmd)
-		if getBoxType() == 'dm800' or getBoxType() == 'odinm9' or getBoxType() == 'odinm7' or getBoxType() == 'odinm6':
+		if getBoxType() == 'dm800' or getBoxType() == 'odinm9' or getBoxType() == 'odinm7' or getBoxType() == 'odinm6' or getBoxType() == 'azboxhd':
 			cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = False)"
 		else:
 			cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = False)"		
@@ -186,7 +186,9 @@ class InitInputDevices:
 		exec (cmd)
 		if getBoxType() == 'odinm9' or getBoxType() == 'odinm7' or getBoxType() == 'odinm6':
 			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=400, increment = 10, limits=(0, 500))"
-		else:
+		elif getBoxType() == 'azboxhd':
+			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=150, increment = 10, limits=(0, 500))"
+		else:		
 			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=100, increment = 10, limits=(0, 500))"	
 		exec (cmd)
 		cmd = "config.inputDevices." + device + ".repeat.addNotifier(self.inputDevicesRepeatChanged,config.inputDevices." + device + ".repeat)"
