@@ -407,6 +407,8 @@ extern void addFont(const char *filename, const char *alias, int scale_factor, i
 extern const char *getEnigmaVersionString();
 extern const char *getBoxType();
 extern const char *getDistro();
+extern const char *getMachineBrand();
+extern const char *getMachineName();
 extern const char *getImageVersionString();
 extern const char *getBuildVersionString();
 extern const char *getDriverDateString();
@@ -421,6 +423,8 @@ extern eApplication *getApplication();
 extern const char *getEnigmaVersionString();
 extern const char *getBoxType();
 extern const char *getDistro();
+extern const char *getMachineBrand();
+extern const char *getMachineName();
 extern const char *getImageVersionString();
 extern const char *getBuildVersionString();
 extern const char *getDriverDateString();

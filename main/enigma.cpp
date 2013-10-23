@@ -329,6 +329,16 @@ const char *getDistro()
 	return DISTRO;
 }
 
+const char *getMachineBrand()
+{
+	return return MACHINE_BRAND;
+}
+
+const char *getMachineName()
+{
+	return MACHINE_NAME;
+}
+
 const char *getImageVersionString()
 {
 	return IMAGEVERSION;
