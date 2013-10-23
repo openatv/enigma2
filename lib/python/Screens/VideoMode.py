@@ -364,6 +364,14 @@ class AutoVideoMode(Screen):
 
 			write_mode = new_mode
 		else:
+			if video_rate != -1:
+				if video_rate in (29970, 30000, 59940, 60000):
+					new_rate = 60000
+				else:
+					new_rate = 50000
+				new_rate = str((new_rate + 500) / 1000)
+			else:
+				new_rate = config_rate
 			if path.exists('/proc/stb/video/videomode_%shz' % new_rate) and config_rate == 'multi':
 				f = open("/proc/stb/video/videomode_%shz" % new_rate, "r")
 				multi_videomode = f.read().replace('\n','')
