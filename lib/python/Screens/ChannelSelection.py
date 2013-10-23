@@ -1738,13 +1738,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.saveRoot()
 
 	def correctChannelNumber(self):
-		ref = self.getCurrentSelection()
-		nref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		refnum = ref and ref.getChannelNum()
-		nrefnum = nref and nref.getChannelNum()
-		if refnum != nrefnum:
+		selected_ref = self.getCurrentSelection()
+		current_ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if selected_ref and selected_ref.getChannelNum() !=  (current_ref and current_ref.getChannelNum()):
 			# TODO: find a better way e.g. trigger an evStart from python
-			self.session.nav.playService(ref, forceRestart=True)
+			self.session.nav.playService(selected_ref, forceRestart=True)
 
 class RadioInfoBar(Screen):
 	def __init__(self, session):
