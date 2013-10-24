@@ -68,6 +68,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		]
 		if config.av.videoport.getValue() in ('HDMI', 'YPbPr', 'Scart-YPbPr') and not path.exists(resolveFilename(SCOPE_PLUGINS)+'SystemPlugins/AutoResolution'):
 			self.list.append(getConfigListEntry(_("Automatic resolution"), config.av.autores,_("If enabled the output resolution of the box will try to match the resolution of the video contents resolution")))
+			self.list.append(getConfigListEntry(_("Automatic resolution label"), config.av.autores_label_timeout,_("Allows you to adjust the amount of time the resolution infomation display on screen.")))
 		# if we have modes for this port:
 		if (config.av.videoport.getValue() in config.av.videomode and config.av.autores.getValue() == 'disabled') or config.av.videoport.getValue() == 'Scart':
 			# add mode- and rate-selection:
@@ -86,8 +87,8 @@ class VideoSetup(Screen, ConfigListScreen):
 		# some modes (720p, 1080i) are always widescreen. Don't let the user select something here, "auto" is not what he wants.
 		force_wide = self.hw.isWidescreenMode(port, mode)
 
-		# if not force_wide:
-			# self.list.append(getConfigListEntry(_("Aspect ratio"), config.av.aspect, _("Configure the aspect ratio of the screen.")))
+		if not force_wide:
+			self.list.append(getConfigListEntry(_("Aspect ratio"), config.av.aspect, _("Configure the aspect ratio of the screen.")))
 
 		if force_wide or config.av.aspect.getValue() in ("16:9", "16:10"):
 			self.list.extend((
@@ -200,7 +201,10 @@ class AutoVideoModeLabel(Screen):
 		self.onShow.append(self.hide_me)
 
 	def hide_me(self):
-		self.hideTimer.start(config.usage.infobar_timeout.index * 1000, True)
+		idx = config.av.autores_label_timeout.index
+		if idx:
+			idx = idx+4
+			self.hideTimer.start(idx*1000, True)
 
 class AutoVideoMode(Screen):
 	def __init__(self, session):
@@ -383,7 +387,8 @@ class AutoVideoMode(Screen):
 			print ' '
 			if write_mode and current_mode != write_mode and self.bufferfull:
 				resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
-				resolutionlabel.show()
+				if config.av.autores_label_timeout.getValue() != '0':
+					resolutionlabel.show()
 				print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, write_mode)
 				f = open("/proc/stb/video/videomode", "w")
 				f.write(write_mode)
