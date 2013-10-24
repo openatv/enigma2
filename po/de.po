@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2013-10-20 13:22+0100\n"
+"PO-Revision-Date: 2013-10-24 10:50+0100\n"
 "Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -11866,7 +11866,7 @@ msgid ""
 "HDD = Do you want to make an USB-back-up image on HDD? \n"
 "This only takes 2 or 10 minutes and is fully automatic."
 msgstr ""
-"HDD = Wollen Sie ein Backup auf der HDD erstellen? \n"
+"HDD = Wollen Sie ein Backup auf HDD erstellen? \n"
 "Das dauert 2 - 10 Minuten und geht vollautomatisch."
 
 msgid ""
@@ -11877,7 +11877,12 @@ msgid ""
 msgstr ""
 "USB = Wollen Sie ein Backup auf USB erstellen? \n"
 "Das dauert 4 - 15 Minuten und geht vollautomatisch.\n"
-"Bitte erst ein USB Stick Anschließen bevor man USB Auswählt."
+"\n"
+"------------------------  WICHTIG !!!  ------------------------\n"
+"Stellen Sie sicher, dass ein USB Stick angeschlossen ist bevor Sie USB "
+"auswählen.\n"
+"Auf dem USB Stick muß eine Datei mit Namen\n"
+"backupstick oder backupstick.txt vorhanden sein."
 
 msgid ""
 "No USB-Device found for fullbackup !!\n"
@@ -11927,7 +11932,7 @@ msgstr "Back-up Tool für %s\n"
 
 #
 msgid "Please be patient, a backup will now be made,\n"
-msgstr "Bitte einen moment geduld, das Backup wird erstellt,\n"
+msgstr "Bitte etwas Geduld, das Backup wird erstellt,\n"
 
 #
 msgid "because of the used filesystem the back-up\n"
@@ -14935,6 +14940,9 @@ msgstr ""
 
 msgid "Local"
 msgstr "Lokal"
+
+msgid "root and kernel"
+msgstr "root und kernel"
 
 #
 msgid "Show MiniTV in the Front Display"
