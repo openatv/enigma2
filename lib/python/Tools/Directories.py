@@ -50,8 +50,8 @@ defaultPaths = {
 		SCOPE_SKIN: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
 		SCOPE_LCDSKIN: (eEnv.resolve("${datadir}/enigma2/display/"), PATH_DONTCREATE),
 		SCOPE_SKIN_IMAGE: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
-		SCOPE_HDD: ("/hdd/movie/", PATH_DONTCREATE),
-		SCOPE_TIMESHIFT: ("/hdd/timeshift/", PATH_DONTCREATE),
+		SCOPE_HDD: ("/media/hdd/movie/", PATH_DONTCREATE),
+		SCOPE_TIMESHIFT: ("/media/hdd/timeshift/", PATH_DONTCREATE),
 		SCOPE_MEDIA: ("/media/", PATH_DONTCREATE),
 		SCOPE_PLAYLIST: (eEnv.resolve("${sysconfdir}/enigma2/playlist/"), PATH_CREATE),
 
@@ -67,8 +67,8 @@ PATH_MOVE = 3 # move the fallback dir to the basedir (can be used for changes in
 fallbackPaths = {
 		SCOPE_CONFIG: [("/home/root/", FILE_MOVE),
 					   (eEnv.resolve("${datadir}/enigma2/defaults/"), FILE_COPY)],
-		SCOPE_HDD: [("/hdd/movies", PATH_MOVE)],
-		SCOPE_TIMESHIFT: [("/hdd/timeshift", PATH_MOVE)]
+		SCOPE_HDD: [("/media/hdd/movies", PATH_MOVE)],
+		SCOPE_TIMESHIFT: [("/media/hdd/timeshift", PATH_MOVE)]
 	}
 
 def resolveFilename(scope, base = "", path_prefix = None):
