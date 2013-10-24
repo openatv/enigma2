@@ -69,7 +69,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		if config.av.videoport.getValue() in ('HDMI', 'YPbPr', 'Scart-YPbPr') and not path.exists(resolveFilename(SCOPE_PLUGINS)+'SystemPlugins/AutoResolution'):
 			self.list.append(getConfigListEntry(_("Automatic resolution"), config.av.autores,_("If enabled the output resolution of the box will try to match the resolution of the video contents resolution")))
 		# if we have modes for this port:
-		if (config.av.videoport.getValue() in config.av.videomode and not config.av.autores.getValue()) or config.av.videoport.getValue() == 'Scart':
+		if (config.av.videoport.getValue() in config.av.videomode and config.av.autores.getValue() == 'disabled') or config.av.videoport.getValue() == 'Scart':
 			# add mode- and rate-selection:
 			self.list.append(getConfigListEntry(pgettext("Video output mode", "Mode"), config.av.videomode[config.av.videoport.getValue()], _("This option configures the video output mode (or resolution).")))
 			if config.av.videomode[config.av.videoport.getValue()].getValue() == 'PC':
@@ -153,7 +153,7 @@ class VideoSetup(Screen, ConfigListScreen):
 
 	def saveAll(self):
 		if config.av.videoport.getValue() == 'Scart':
-			config.av.autores.setValue(False)
+			config.av.autores.setValue('disabled')
 		for x in self["config"].list:
 			x[1].save()
 		configfile.save()
@@ -277,38 +277,42 @@ class AutoVideoMode(Screen):
 		print 'current rate:',current_rate
 		print ' '
 
-		service = self.session.nav.getCurrentService()
-		if service is not None:
-			info = service.info()
-		else:
-			info = None
 
-		if info:
-			if path.exists("/proc/stb/vmpeg/0/yres"):
-				f = open("/proc/stb/vmpeg/0/yres", "r")
-				video_height = int(f.read(),16)
-				f.close()
+		video_height = None
+		video_width = None
+		video_pol = None
+		video_rate = None
+		if path.exists("/proc/stb/vmpeg/0/yres"):
+			f = open("/proc/stb/vmpeg/0/yres", "r")
+			video_height = int(f.read(),16)
+			f.close()
+		if path.exists("/proc/stb/vmpeg/0/xres"):
+			f = open("/proc/stb/vmpeg/0/xres", "r")
+			video_width = int(f.read(),16)
+			f.close()
+		if path.exists("/proc/stb/vmpeg/0/progressive"):
+			f = open("/proc/stb/vmpeg/0/progressive", "r")
+			video_pol = "p" if int(f.read(),16) else "i"
+			f.close()
+		if path.exists("/proc/stb/vmpeg/0/framerate"):
+			f = open("/proc/stb/vmpeg/0/framerate", "r")
+			video_rate = int(f.read())
+			f.close()
+
+		if not video_height or not video_width or not video_pol or not video_rate:
+			service = self.session.nav.getCurrentService()
+			if service is not None:
+				info = service.info()
 			else:
+				info = None
+
+			if info:
 				video_height = int(info.getInfo(iServiceInformation.sVideoHeight))
-			if path.exists("/proc/stb/vmpeg/0/xres"):
-				f = open("/proc/stb/vmpeg/0/xres", "r")
-				video_width = int(f.read(),16)
-				f.close()
-			else:
 				video_width = int(info.getInfo(iServiceInformation.sVideoWidth))
-			if path.exists("/proc/stb/vmpeg/0/progressive"):
-				f = open("/proc/stb/vmpeg/0/progressive", "r")
-				video_pol = "p" if int(f.read(),16) else "i"
-				f.close()
-			else:
 				video_pol = ("i", "p")[info.getInfo(iServiceInformation.sProgressive)]
-			if path.exists("/proc/stb/vmpeg/0/framerate"):
-				f = open("/proc/stb/vmpeg/0/framerate", "r")
-				video_rate = int(f.read())
-				f.close()
-			else:
 				video_rate = int(info.getInfo(iServiceInformation.sFrameRate))
 
+		if video_height and video_width and video_pol and video_rate:
 			print 'video height:',video_height
 			print 'video width:',video_width
 			print 'video pol:',video_pol
@@ -330,12 +334,10 @@ class AutoVideoMode(Screen):
 				new_res = config_res
 
 			if video_rate != -1:
-				if video_rate in (29970, 30000, 59940, 60000) and video_pol == 'i':
+				if video_rate in (29970, 30000, 59940, 60000):
 					new_rate = 60000
-				elif video_pol == 'i':
-					new_rate = 50000
 				else:
-					new_rate = video_rate
+					new_rate = 50000
 				new_rate = str((new_rate + 500) / 1000)
 			else:
 				new_rate = config_rate
@@ -345,53 +347,47 @@ class AutoVideoMode(Screen):
 			else:
 				new_pol = config_pol
 
-		print 'config.av.autores:',config.av.autores.getValue()
-		write_mode = None
-		if config_mode in ('PAL', 'NTSC'):
-			write_mode = config_mode
-		elif config.av.autores.getValue() and info:
-			if new_res+new_pol+new_rate in iAVSwitch.modes_available:
-				new_mode = new_res+new_pol+new_rate
-			elif new_res+new_pol in iAVSwitch.modes_available:
-				new_mode = new_res+new_pol
-			else:
-				new_mode = config_mode+config_rate
-
-			print 'new mode:',new_mode
 			print 'new res:',new_res
 			print 'new pol:',new_pol
 			print 'new rate:',new_rate
-			print ' '
 
-			write_mode = new_mode
-		else:
-			if video_rate != -1:
-				if video_rate in (29970, 30000, 59940, 60000):
-					new_rate = 60000
-				else:
-					new_rate = 50000
-				new_rate = str((new_rate + 500) / 1000)
+			print 'config.av.autores:',config.av.autores.getValue()
+			write_mode = None
+			if config_mode in ('PAL', 'NTSC'):
+				write_mode = config_mode
+			elif config.av.autores.getValue() == 'all' or (config.av.autores.getValue() == 'hd' and int(new_res) >= 720):
+				if new_res+new_pol+new_rate in iAVSwitch.modes_available:
+					new_mode = new_res+new_pol+new_rate
+				elif new_res+new_pol in iAVSwitch.modes_available:
+					new_mode = new_res+new_pol
+
+				print 'new mode:',new_mode
+
+				write_mode = new_mode
 			else:
-				new_rate = config_rate
-			if path.exists('/proc/stb/video/videomode_%shz' % new_rate) and config_rate == 'multi':
-				f = open("/proc/stb/video/videomode_%shz" % new_rate, "r")
-				multi_videomode = f.read().replace('\n','')
-				print 'multi_videomode:',multi_videomode
-				f.close()
-				if multi_videomode and (current_mode != multi_videomode):
-					write_mode = multi_videomode
+				if path.exists('/proc/stb/video/videomode_%shz' % new_rate) and config_rate == 'multi':
+					f = open("/proc/stb/video/videomode_%shz" % new_rate, "r")
+					multi_videomode = f.read().replace('\n','')
+					print 'multi_videomode:',multi_videomode
+					f.close()
+					if multi_videomode and (current_mode != multi_videomode):
+						write_mode = multi_videomode
+					else:
+						write_mode = config_mode+current_rate
 
-		print ' '
-		print 'CURRENT MODE:',current_mode
-		print 'NEW MODE:',write_mode
-		print ' '
-		if write_mode and current_mode != write_mode and self.bufferfull:
-			resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
-			resolutionlabel.show()
-			print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, write_mode)
-			f = open("/proc/stb/video/videomode", "w")
-			f.write(write_mode)
-			f.close()
+				print 'new mode:',write_mode
+
+			print ' '
+			print 'CURRENT MODE:',current_mode
+			print 'NEW MODE:',write_mode
+			print ' '
+			if write_mode and current_mode != write_mode and self.bufferfull:
+				resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
+				resolutionlabel.show()
+				print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, write_mode)
+				f = open("/proc/stb/video/videomode", "w")
+				f.write(write_mode)
+				f.close()
 
 		iAVSwitch.setAspect(config.av.aspect)
 		iAVSwitch.setWss(config.av.wss)
