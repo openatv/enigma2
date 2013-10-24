@@ -145,6 +145,33 @@ class Menu(Screen):
 
 				destList.append((_(item_text or "??"), boundFunction(self.runScreen, (module, screen)), entryID, weight))
 				return
+			elif x.tag == 'plugin':
+				extensions = x.get("extensions")
+				system = x.get("system")
+				screen = x.get("screen")
+
+				if extensions:
+					module = extensions
+				elif system:
+					module = system
+
+				if screen is None:
+					screen = module
+
+				if extensions:
+					module = "Plugins.Extensions." + extensions + '.plugin'
+				elif system:
+					module = "Plugins.SystemPlugins." + system + '.plugin'
+				else:
+					module = ""
+
+				# check for arguments. they will be appended to the
+				# openDialog call
+				args = x.text or ""
+				screen += ", " + args
+
+				destList.append((_(item_text or "??"), boundFunction(self.runScreen, (module, screen)), entryID, weight))
+				return
 			elif x.tag == 'code':
 				destList.append((_(item_text or "??"), boundFunction(self.execText, x.text), entryID, weight))
 				return
