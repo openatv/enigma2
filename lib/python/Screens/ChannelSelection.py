@@ -1742,8 +1742,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		selected_ref = self.getCurrentSelection()
 		current_ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if selected_ref and selected_ref.getChannelNum() !=  (current_ref and current_ref.getChannelNum()):
-			# TODO: find a better way e.g. trigger an evStart from python
-			self.session.nav.playService(selected_ref, forceRestart=True)
+			self.session.nav.currentlyPlayingServiceOrGroup = selected_ref
+			from Components.Renderer.ChannelNumber import doRenumber
+			doRenumber()
 
 class RadioInfoBar(Screen):
 	def __init__(self, session):
