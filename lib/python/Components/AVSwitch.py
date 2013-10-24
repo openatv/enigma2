@@ -340,6 +340,10 @@ def InitAVSwitch():
 		colorformat_choices["yuv"] = _("YPbPr")
 
 	config.av.autores = ConfigSelection(choices={"disabled": _("Disabled"), "all": _("All resolutions"), "hd": _("only HD")}, default="disabled")
+	choicelist = []
+	for i in range(5, 16):
+		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
+	config.av.autores_label_timeout = ConfigSelection(default = "5", choices = [("0", _("Not Shown"))] + choicelist)
 	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
 	config.av.aspectratio = ConfigSelection(choices={
 			"4_3_letterbox": _("4:3 Letterbox"),
