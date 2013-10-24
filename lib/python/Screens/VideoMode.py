@@ -340,8 +340,10 @@ class AutoVideoMode(Screen):
 			if video_rate != -1:
 				if video_rate in (29970, 30000, 59940, 60000):
 					new_rate = 60000
-				else:
+				elif video_rate not in (23976, 24000) and video_pol == 'p':
 					new_rate = 50000
+				else:
+					new_rate = video_rate
 				new_rate = str((new_rate + 500) / 1000)
 			else:
 				new_rate = config_rate
