@@ -396,6 +396,7 @@ def InitAVSwitch():
 	config.av.generalPCMdelay = ConfigSelectionNumber(-1000, 1000, 5, default = 0)
 	config.av.vcrswitch = ConfigEnableDisable(default = False)
 
+	config.av.aspect.setValue('16:9')
 	config.av.aspect.addNotifier(iAVSwitch.setAspect)
 	config.av.wss.addNotifier(iAVSwitch.setWss)
 	config.av.policy_43.addNotifier(iAVSwitch.setPolicy43)
