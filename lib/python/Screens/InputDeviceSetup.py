@@ -187,12 +187,14 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 
 	def layoutFinished(self):
 		self.setTitle(self.setup_title)
+		listWidth = self["config"].l.getItemSize().width()
+		# use 20% of list width for sliders
+		self["config"].l.setSeperation(int(listWidth*.8))
 
 	def cleanup(self):
 		iInputDevices.currentDevice = ""
 
 	def createSetup(self):
-		self.list = [ ]
 		label = _("Change repeat and delay settings?")
 		cmd = "self.enableEntry = getConfigListEntry(label, config.inputDevices." + self.inputDevice + ".enabled)"
 		exec (cmd)
@@ -223,7 +225,6 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 				self["config"].invalidate(self.nameEntry)
 
 		self["config"].list = self.list
-		self["config"].l.setSeperation(600)
 		self["config"].l.setList(self.list)
 		if not self.selectionChanged in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
