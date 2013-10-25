@@ -359,6 +359,7 @@ class AutoVideoMode(Screen):
 
 			print 'config.av.autores:',config.av.autores.getValue()
 			write_mode = None
+			new_mode = None
 			if config_mode in ('PAL', 'NTSC'):
 				write_mode = config_mode
 			elif config.av.autores.getValue() == 'all' or (config.av.autores.getValue() == 'hd' and int(new_res) >= 720):
@@ -366,6 +367,8 @@ class AutoVideoMode(Screen):
 					new_mode = new_res+new_pol+new_rate
 				elif new_res+new_pol in iAVSwitch.modes_available:
 					new_mode = new_res+new_pol
+				else:
+					write_mode = config_mode+current_rate
 
 				print 'new mode:',new_mode
 
