@@ -195,6 +195,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		iInputDevices.currentDevice = ""
 
 	def createSetup(self):
+		self.list = [ ]
 		label = _("Change repeat and delay settings?")
 		cmd = "self.enableEntry = getConfigListEntry(label, config.inputDevices." + self.inputDevice + ".enabled)"
 		exec (cmd)
