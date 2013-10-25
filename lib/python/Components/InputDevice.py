@@ -173,8 +173,8 @@ class InitInputDevices:
 	def setupConfigEntries(self,device):
 		cmd = "config.inputDevices." + device + " = ConfigSubsection()"
 		exec (cmd)
-		if getBoxType() == 'dm800' or getBoxType() == 'odinm9' or getBoxType() == 'odinm7' or getBoxType() == 'odinm6' or getBoxType() == 'azboxhd':
-			cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = False)"
+		if getBoxType() == 'dm800' or getBoxType() == 'azboxhd':
+			cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = True)"
 		else:
 			cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = False)"		
 		exec (cmd)
