@@ -147,7 +147,7 @@ def InitAVSwitch():
 	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
 
 	try:
-		can_downmix = open("/proc/stb/audio/ac3_choices", "r").read()[:-1].find("downmix") != -1
+		can_downmix = "downmix" in open("/proc/stb/audio/ac3_choices", "r").read()
 	except:
 		can_downmix = False
 

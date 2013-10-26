@@ -47,11 +47,11 @@ class inputDevices:
 
 
 	def getInputDeviceType(self,name):
-		if name.find("remote control") != -1:
+		if "remote control" in name:
 			return "remote"
-		elif name.find("keyboard") != -1:
+		elif "keyboard" in name:
 			return "keyboard"
-		elif name.find("mouse") != -1:
+		elif "mouse" in name:
 			return "mouse"
 		else:
 			print "Unknown device type:",name
