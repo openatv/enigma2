@@ -6,5 +6,4 @@ if HAVE_LIBDDVD
 SUBDIRS += DVDPlayer
 endif
 
-install_PYTHON =	\
-	__init__.py
+install_PYTHON = __init__.py

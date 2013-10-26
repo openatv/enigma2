@@ -1073,7 +1073,7 @@ class InfoBarChannelSelection:
 
 	def switchChannelUp(self):
 		if not config.usage.show_bouquetalways.getValue():
-			if not config.usage.servicelist_keep_service.getValue():
+			if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
 				self.servicelist.moveUp()
 			self.session.execDialog(self.servicelist)
 		else:
@@ -1082,7 +1082,7 @@ class InfoBarChannelSelection:
 
 	def switchChannelDown(self):
 		if not config.usage.show_bouquetalways.getValue():
-			if not config.usage.servicelist_keep_service.getValue():
+			if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
 				self.servicelist.moveDown()
 			self.session.execDialog(self.servicelist)
 		else:

@@ -2,24 +2,18 @@ from enigma import getBoxType, getMachineName
 from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
+from Components.AVSwitch import iAVSwitch
 from Screens.Screen import Screen
-from VideoHardware import video_hw
 
+from Components.About import about
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from Components.config import config, ConfigBoolean, configfile
 
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_ACTIVE_SKIN
 from Tools.HardwareInfo import HardwareInfo
 
 config.misc.showtestcard = ConfigBoolean(default = False)
 
-try:
-	file = open("/proc/stb/info/chipset", "r")
-	chipset = file.readline().strip()
-	file.close()
-except:
-	chipset = "unknown"
-	
 try:
 	file = open("/proc/stb/info/boxtype", "r")
 	model = file.readline().strip()
@@ -86,8 +80,8 @@ class VideoWizard(WizardLanguage, Rc):
 
 	def __init__(self, session):
 		# FIXME anyone knows how to use relative paths from the plugin's directory?
-		self.xmlfile = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/videowizard.xml")
-		self.hw = video_hw
+		self.xmlfile = resolveFilename(SCOPE_SKIN, "videowizard.xml")
+		self.hw = iAVSwitch
 
 		WizardLanguage.__init__(self, session, showSteps = False, showStepSlider = False)
 		Rc.__init__(self)
@@ -107,14 +101,13 @@ class VideoWizard(WizardLanguage, Rc):
 
 	def markDone(self):
 		self.hw.saveMode(self.port, self.mode, self.rate)
-		config.misc.videowizardenabled.setValue(0)
+		config.misc.videowizardenabled.value = 0
 		config.misc.videowizardenabled.save()
 		configfile.save()
 
 	def listInputChannels(self):
 		hw_type = HardwareInfo().get_device_name()
 		has_hdmi = HardwareInfo().has_hdmi()
-
 		list = []
 
 		for port in self.hw.getPortList():
@@ -146,7 +139,7 @@ class VideoWizard(WizardLanguage, Rc):
 				picname = "HDMI"
 			if picname == 'Scart' and has_rca:
 				picname = "RCA"	
-			self["portpic"].instance.setPixmapFromFile(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/" + picname + ".png"))
+			self["portpic"].instance.setPixmapFromFile(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/" + picname + ".png"))
 
 	def inputSelect(self, port):
 		print "inputSelect:", port
@@ -178,7 +171,7 @@ class VideoWizard(WizardLanguage, Rc):
 	def modeSelect(self, mode):
 		ratesList = self.listRates(mode)
 		print "ratesList:", ratesList
-		if self.port == "DVI" and mode in ("720p", "1080i", "1080p") and (chipset.find('7358') != -1 or chipset.find('7356') != -1):
+		if self.port == "DVI" and mode in ("720p", "1080i", "1080p") and (about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1):
 			self.rate = "multi"
 			self.hw.setMode(port = self.port, mode = mode, rate = "multi")
 		elif self.port == "DVI" and mode in ("720p", "1080i"):
@@ -221,9 +214,9 @@ class VideoWizard(WizardLanguage, Rc):
 			selection = self.selection
 		print "set config.misc.showtestcard to", {'yes': True, 'no': False}[selection]
 		if selection == "yes":
-			config.misc.showtestcard.setValue(True)
+			config.misc.showtestcard.value = True
 		else:
-			config.misc.showtestcard.setValue(False)
+			config.misc.showtestcard.value = False
 
 	def keyNumberGlobal(self, number):
 		if number in (1,2,3):

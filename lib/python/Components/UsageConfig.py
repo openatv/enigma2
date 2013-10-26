@@ -36,8 +36,11 @@ def InitUsageConfig():
 
 	config.usage.service_icon_enable = ConfigYesNo(default = False)
 	config.usage.service_icon_enable.addNotifier(refreshServiceList)
-
-	config.usage.servicelist_keep_service = ConfigYesNo(default = True)
+	config.usage.servicelist_cursor_behavior = ConfigSelection(default = "keep", choices = [
+		("standard", _("Standard")),
+		("keep", _("Keep service")),
+		("reverseB", _("Reverse bouquet buttons")),
+		("keep reverseB", _("Keep service") + " + " + _("Reverse bouquet buttons"))])
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
 	config.usage.showpicon = ConfigYesNo(default = True)
 	config.usage.show_dvdplayer = ConfigYesNo(default = False)
@@ -65,7 +68,7 @@ def InitUsageConfig():
 			SystemInfo["InfoBarEpg"] = False
 	config.usage.show_second_infobar.addNotifier(showsecondinfobarChanged, immediate_feedback = True)
 
-	config.usage.show_picon_bkgrn = ConfigSelection(default = "transparent", choices = [("transparent", _("Transparent")), ("blue", _("Blue")), ("red", _("Red")), ("black", _("Black")), ("white", _("White")), ("lightgrey", _("Light Grey")), ("grey", _("Grey"))])
+	config.usage.show_picon_bkgrn = ConfigSelection(default = "transparent", choices = [("none", _("Disabled")), ("transparent", _("Transparent")), ("blue", _("Blue")), ("red", _("Red")), ("black", _("Black")), ("white", _("White")), ("lightgrey", _("Light Grey")), ("grey", _("Grey"))])
 
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)

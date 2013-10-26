@@ -1,5 +1,6 @@
 from Wizard import wizardManager
 from Screens.WizardLanguage import WizardLanguage
+from Screens.VideoWizard import VideoWizard
 from Screens.Rc import Rc
 from Screens.Screen import Screen
 
@@ -10,6 +11,7 @@ from LanguageSelection import LanguageWizard
 
 config.misc.firstrun = ConfigBoolean(default = True)
 config.misc.languageselected = ConfigBoolean(default = True)
+config.misc.videowizardenabled = ConfigBoolean(default = True)
 
 class StartWizard(WizardLanguage, Rc):
 	def __init__(self, session, silent = True, showSteps = False, neededTag = None):
@@ -36,5 +38,6 @@ class StartWizard(WizardLanguage, Rc):
 		config.misc.firstrun.save()
 		configfile.save()
 
+wizardManager.registerWizard(VideoWizard, config.misc.videowizardenabled.getValue(), priority = 0)
 wizardManager.registerWizard(LanguageWizard, config.misc.languageselected.getValue(), priority = 2)
 wizardManager.registerWizard(StartWizard, config.misc.firstrun.getValue(), priority = 20)

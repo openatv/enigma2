@@ -265,10 +265,7 @@ class ChannelContextMenu(Screen):
 
 	def setStartupService(self):
 		config.servicelist.startupservice.value = self.csel.getCurrentSelection().toString()
-		path = ''
-		for i in self.csel.servicePath:
-			path += i.toString()
-			path += ';'
+		path = ';'.join([i.toString() for i in self.csel.servicePath])
 		config.servicelist.startuproot.value = path
 		config.servicelist.startupmode.value = config.servicelist.lastmode.getValue()
 		config.servicelist.save()
@@ -378,11 +375,7 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def renameEntry(self):
-		cur = self.csel.getCurrentSelection()
-		name = eServiceCenter.getInstance().info(cur).getName(cur) or ServiceReference(cur).getServiceName() or ""
-		name.replace('\xc2\x86', '').replace('\xc2\x87', '')
-		if name:
-			self.session.openWithCallback(self.csel.renameEntry, VirtualKeyBoard, title=_("Please enter new name:"), text=name)
+		self.csel.renameEntry()
 		self.close()
 
 	def toggleMoveMode(self):
@@ -738,7 +731,14 @@ class ChannelSelectionEdit:
 				name += '_'
 		return name
 
-	def renameEntry(self, name):
+	def renameEntry(self):
+		cur = self.getCurrentSelection()
+		name = eServiceCenter.getInstance().info(cur).getName(cur) or ServiceReference(cur).getServiceName() or ""
+		name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+		if name:
+			self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=_("Please enter new name:"), text=name)
+
+	def renameEntryCallback(self, name):
 		if name:
 			current = self.servicelist.getCurrent()
 			if (current.flags & eServiceReference.mustDescent):
@@ -1412,16 +1412,28 @@ class ChannelSelectionBase(Screen):
 		return self.servicelist.atEnd()
 
 	def nextBouquet(self):
-		if config.usage.channelbutton_mode.getValue() == '0':
-			self.changeBouquet(+1)
+		if "reverseB" in config.usage.servicelist_cursor_behavior.getValue():
+			if config.usage.channelbutton_mode.getValue() == '0':
+				self.changeBouquet(-1)
+			else:
+				self.servicelist.moveDown()
 		else:
-			self.servicelist.moveUp()
+			if config.usage.channelbutton_mode.getValue() == '0':
+				self.changeBouquet(+1)
+			else:
+				self.servicelist.moveUp()
 
 	def prevBouquet(self):
-		if config.usage.channelbutton_mode.getValue() == '0':
-			self.changeBouquet(-1)
+		if "reverseB" in config.usage.servicelist_cursor_behavior.getValue():
+			if config.usage.channelbutton_mode.getValue() == '0':
+				self.changeBouquet(+1)
+			else:
+				self.servicelist.moveUp()
 		else:
-			self.servicelist.moveDown()
+			if config.usage.channelbutton_mode.getValue() == '0':
+				self.changeBouquet(-1)
+			else:
+				self.servicelist.moveDown()
 
 	def showFavourites(self):
 		if not self.pathChangeDisabled:
@@ -1461,6 +1473,16 @@ class ChannelSelectionBase(Screen):
 				self.setCurrentSelection(service)
 				if self.servicelist.getCurrent() != service:
 					self.servicelist.setCurrent(currentSelectedService)
+		elif number == 4:
+			self.renameEntry()
+		elif number == 5:
+			self.session.openWithCallback(self.removeCurrentServiceCallback, MessageBox, _("Are you sure to remove this entry?"))
+		elif number == 6:
+			self.toggleMoveMode()
+
+	def removeCurrentServiceCallback(self, confirmation):
+		if confirmation:
+			self.removeCurrentService()
 
 	def keyAsciiCode(self):
 		unichar = unichr(getPrevAsciiCode())
@@ -2171,7 +2193,6 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 	def zapBack(self):
 		self.channelSelected()
 
-
 class SimpleChannelSelection(ChannelSelectionBase):
 	def __init__(self, session, title):
 		ChannelSelectionBase.__init__(self, session)
@@ -2182,6 +2203,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 				"keyRadio": self.setModeRadio,
 				"keyTV": self.setModeTv,
 			})
+		self.bouquet_mark_edit = OFF
 		self.title = title
 		self.bouquet_mark_edit = OFF
 		self.onLayoutFinish.append(self.layoutFinished)

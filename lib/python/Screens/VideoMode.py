@@ -1,22 +1,19 @@
 from Screens.Screen import Screen
-from Plugins.Plugin import PluginDescriptor
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, config, ConfigBoolean, ConfigNothing, ConfigSlider
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
-from Components.Pixmap import Pixmap,MultiPixmap
-from Screens.VirtualKeyBoard import VirtualKeyBoard
+from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.ServiceEventTracker import ServiceEventTracker
 from enigma import iPlayableService, iServiceInformation, eTimer
+from os import path
 
-from VideoHardware import video_hw
-
-config.misc.videowizardenabled = ConfigBoolean(default = True)
+from Components.AVSwitch import iAVSwitch
 
 class VideoSetup(Screen, ConfigListScreen):
-	def __init__(self, session, hw):
+	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = ["Setup" ]
 		self.setup_title = _("A/V settings")
@@ -25,7 +22,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		self["VKeyIcon"] = Boolean(False)
 		self['footnote'] = Label()
 
-		self.hw = hw
+		self.hw = iAVSwitch
 		self.onChangedEntry = [ ]
 
 		# handle hotplug by re-creating setup
@@ -66,8 +63,8 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.list = [
 			getConfigListEntry(_("Video output"), config.av.videoport, _("Configures which video output connector will be used."))
 		]
-
-		self.list.append(getConfigListEntry(_("Automatic resolution"), config.av.autores,_("If enabled the output resolution of the box will try to match the resolution of the video contents resolution")))
+		if config.av.videoport.getValue() in ('HDMI', 'YPbPr', 'Scart-YPbPr'):
+			self.list.append(getConfigListEntry(_("Automatic resolution"), config.av.autores,_("If enabled the output resolution of the box will try to match the resolution of the video contents resolution")))
 		# if we have modes for this port:
 		if config.av.videoport.getValue() in config.av.videomode and not config.av.autores.getValue():
 			# add mode- and rate-selection:
@@ -94,11 +91,11 @@ class VideoSetup(Screen, ConfigListScreen):
 				getConfigListEntry(_("Display 4:3 content as"), config.av.policy_43, _("When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture.")),
 				getConfigListEntry(_("Display >16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."))
 			))
-		elif config.av.aspect.getValue() == "4_3":
+		elif config.av.aspect.getValue() == "4:3":
 			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
 
-#		if config.av.videoport.value == "DVI":
-#			self.list.append(getConfigListEntry(_("Allow Unsupported Modes"), config.av.edid_override))
+#		if config.av.videoport.getValue() == "HDMI":
+#			self.list.append(getConfigListEntry(_("Allow unsupported modes"), config.av.edid_override))
 		if config.av.videoport.getValue() == "Scart":
 			self.list.append(getConfigListEntry(_("Color format"), config.av.colorformat, _("Configure which color format should be used on the SCART output.")))
 			if level >= 1:
@@ -112,19 +109,16 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.list.extend((
 				getConfigListEntry(_("General AC3 delay"), config.av.generalAC3delay, _("This option configures the general audio delay of Dolby Digital sound tracks.")),
 				getConfigListEntry(_("General PCM delay"), config.av.generalPCMdelay, _("This option configures the general audio delay of stereo sound tracks."))
-				))
+			))
 
 			if SystemInfo["Can3DSurround"]:
 				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d,_("This option configures you can enable 3D Surround Sound.")))
-
-			if SystemInfo["CanAutoVolume"]:
-				self.list.append(getConfigListEntry(_("Audio Auto Volume Level"), config.av.autovolume,_("This option configures you can set Auto Volume Level.")))
 
 			if SystemInfo["Canedidchecking"]:
 				self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking,_("This option configures you can Bypass HDMI EDID check")))
 
 #		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
-#			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option sets up the picture sharpness.")))
+#			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option configures the picture sharpness.")))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -183,63 +177,21 @@ class VideoSetup(Screen, ConfigListScreen):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
 
-class VideomodeHotplug:
-	def __init__(self, hw):
-		self.hw = hw
-
-	def start(self):
-		self.hw.on_hotplug.append(self.hotplug)
-
-	def stop(self):
-		self.hw.on_hotplug.remove(self.hotplug)
-
-	def hotplug(self, what):
-		print "hotplug detected on port '%s'" % (what)
-		port = config.av.videoport.getValue()
-		mode = config.av.videomode[port].getValue()
-		rate = config.av.videorate[mode].getValue()
-
-		if not self.hw.isModeAvailable(port, mode, rate):
-			print "mode %s/%s/%s went away!" % (port, mode, rate)
-			modelist = self.hw.getModeList(port)
-			if not len(modelist):
-				print "sorry, no other mode is available (unplug?). Doing nothing."
-				return
-			mode = modelist[0][0]
-			rate = modelist[0][1]
-			print "setting %s/%s/%s" % (port, mode, rate)
-			self.hw.setMode(port, mode, rate)
-
 class AutoFrameRate(Screen):
-	def __init__(self, session, hw):
+	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evVideoSizeChanged: self.VideoChanged,
 				iPlayableService.evVideoProgressiveChanged: self.VideoChanged,
 				iPlayableService.evVideoFramerateChanged: self.VideoChanged,
-				iPlayableService.evVideoFramerateChanged: self.VideoChanged,
 				iPlayableService.evBuffering: self.BufferInfo,
-				# iPlayableService.evUpdatedInfo: self.VideoChanged,
-				# iPlayableService.evStart: self.__evStart
 			})
 
 		self.delay = False
 		self.bufferfull = True
 		self.detecttimer = eTimer()
 		self.detecttimer.callback.append(self.VideoChangeDetect)
-		self.hw = hw
-
-	def readAvailableModes(self):
-		try:
-			f = open("/proc/stb/video/videomode_choices")
-			modes = f.read()[:-1]
-			f.close()
-		except IOError:
-			print "couldn't read available videomodes."
-			self.modes_available = [ ]
-			return
-		return modes.split(' ')
 
 	def BufferInfo(self):
 		bufferInfo = self.session.nav.getCurrentService().streamed().getBufferCharge()
@@ -283,19 +235,14 @@ class AutoFrameRate(Screen):
 
 		print '\n'
 
-		f = open("/proc/stb/video/aspect")
-		current_aspect = f.read()[:-1]
-		f.close()
-		print 'current aspect:',current_aspect
-
 		f = open("/proc/stb/video/videomode")
 		current_mode = f.read()[:-1]
 		f.close()
 		print 'current mode:',current_mode
 
-		if current_mode.find('i') != -1:
+		if current_mode and current_mode.find('i') != -1:
 			current_pol = 'i'
-		elif current_mode.find('p') != -1:
+		elif current_mode and current_mode.find('p') != -1:
 			current_pol = 'p'
 		else:
 			current_pol = ''
@@ -318,23 +265,13 @@ class AutoFrameRate(Screen):
 		else:
 			info = None
 
-		if info and config.av.autores.getValue():
+		if info:
 			video_height = int(info.getInfo(iServiceInformation.sVideoHeight))
 			print 'video height:',video_height
-
 			video_width = int(info.getInfo(iServiceInformation.sVideoWidth))
 			print 'video width:',video_width
-
-			count = 0
-			while video_height == -1 and count < 11:
-				print 'RETRYING HEIGHT',count
-				video_width = int(info.getInfo(iServiceInformation.sVideoHeight))
-				count += 1
-			print 'video height:',video_height
-
 			video_pol = ("i", "p")[info.getInfo(iServiceInformation.sProgressive)]
 			print 'video pol:',video_pol
-
 			video_rate = int(info.getInfo(iServiceInformation.sFrameRate))
 			print 'video rate:',video_rate
 
@@ -370,81 +307,49 @@ class AutoFrameRate(Screen):
 			else:
 				new_pol = config_pol
 			print 'new pol:',new_pol
-
-			if new_res+new_pol+new_rate in self.readAvailableModes():
+			iAVSwitch.readAvailableModes()
+			if new_res+new_pol+new_rate in iAVSwitch.modes_available:
 				new_mode = new_res+new_pol+new_rate
-			elif new_res+new_pol in self.readAvailableModes():
+			elif new_res+new_pol in iAVSwitch.modes_available:
 				new_mode = new_res+new_pol
 			else:
 				new_mode = config_mode
 			print 'new mode:',new_mode
 
+		print 'config.av.autores:',config.av.autores.getValue()
+		if config.av.autores.getValue():
 			write_mode = new_mode
 		else:
+			if path.exists('/proc/stb/video/videomode_%shz' % new_rate) and config_rate == 'multi':
+				f = open("/proc/stb/video/videomode_%shz" % new_rate, "r")
+				multi_videomode = f.read()
+				print 'multi_videomode:',multi_videomode
+				f.close()
+			else:
+				multi_videomode = None
+
 			write_mode = config_mode
-			
+			if multi_videomode and (write_mode != multi_videomode):
+				write_mode = multi_videomode
+
 		print '\n'
 		print 'CURRENT MODE:',current_mode
 		print 'NEW MODE:',write_mode
 
 		if current_mode != write_mode and self.bufferfull:
-			print '\nCHANGE MODE'
-			print '[AutoRes] changing to',write_mode
+			print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, write_mode)
 			f = open("/proc/stb/video/videomode", "w")
 			f.write(write_mode)
 			f.close()
 
-		self.hw.updateAspect(config.av.aspect)
-		self.hw.updateWss(config.av.wss)
-		self.hw.updatePolicy43(config.av.policy_43)
-		self.hw.updatePolicy169(config.av.policy_169)
-
-		f = open("/proc/stb/video/aspect")
-		aspect = f.read()[:-1]
-		f.close()
-		print 'aspect:',aspect
+		iAVSwitch.setAspect(config.av.aspect)
+		iAVSwitch.setWss(config.av.wss)
+		iAVSwitch.setPolicy43(config.av.policy_43)
+		iAVSwitch.setPolicy169(config.av.policy_169)
 
 		self.delay = False
 		self.detecttimer.stop()
 
-hotplug = None
-
-def startHotplug():
-	global hotplug, video_hw
-	hotplug = VideomodeHotplug(video_hw)
-	hotplug.start()
-
-def stopHotplug():
-	global hotplug
-	hotplug.stop()
-
-def autostart(reason, **kwargs):
-	global session
-	if kwargs.has_key("session") and reason == 0:
-		session = kwargs["session"]
-		startHotplug()
-		AutoFrameRate(session, video_hw)
-	elif reason == 1:
-		stopHotplug()
-
-def videoSetupMain(session, **kwargs):
-	session.open(VideoSetup, video_hw)
-
-def startSetup(menuid):
-	if menuid != "system":
-		return [ ]
-
-	return [(_("A/V settings"), videoSetupMain, "av_setup", 40)]
-
-def VideoWizard(*args, **kwargs):
-	from VideoWizard import VideoWizard
-	return VideoWizard(*args, **kwargs)
-
-def Plugins(**kwargs):
-	list = [
-		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),
-		PluginDescriptor(name=_("Video setup"), description=_("Advanced video setup"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup)
-	]
-	if config.misc.videowizardenabled.getValue():
-		list.append(PluginDescriptor(name=_("Video wizard"), where = PluginDescriptor.WHERE_WIZARD, needsRestart = False, fnc=(0, VideoWizard)))
-	return list
+def autostart(session):
+	print 'autostart'
+	AutoFrameRate(session)

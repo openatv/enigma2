@@ -41,6 +41,7 @@
 			</menu>
 			<menu weight="5" level="0" text="System" entryID="system_selection">
 				<id val="system" />
+				<item weight="10" text="A/V settings" entryID="av_setup"><screen module="VideoMode" screen="VideoSetup" /></item>
 				<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
 				<item level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
 				<item level="0" entryID="usage_setup"><setup id="usage" /></item>
@@ -65,7 +66,7 @@
 					<item level="2" text="OSD Position" entryID="osdsetup" requires="OsdSetup"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner2"/></item>
 					<item level="2" text="OSD 3D Setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="UserInterfacePositioner" screen="OSD3DSetupScreen"/></item>
 				</menu>
-				<menu level="0" text="Harddisk" entryID="hardisk_selection" requires="Harddisk">
+				<menu level="0" text="Storage devices" entryID="hardisk_selection" requires="Harddisk">
 					<id val="harddisk" />
 					<item level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
 					<item level="0" text="Initialization" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>

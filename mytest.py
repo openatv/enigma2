@@ -557,6 +557,10 @@ def runScreenTest():
 	import Tools.Trashcan
 	Tools.Trashcan.init(session)
 
+	profile("Init:AutoFrameRate")
+	import Screens.VideoMode
+	Screens.VideoMode.autostart(session)
+
 	profile("RunReactor")
 	profile_final()
 
@@ -683,6 +687,7 @@ Components.SetupDevices.InitSetupDevices()
 profile("AVSwitch")
 import Components.AVSwitch
 Components.AVSwitch.InitAVSwitch()
+Components.AVSwitch.InitiVideomodeHotplug()
 
 profile("RecordingConfig")
 import Components.RecordingConfig
