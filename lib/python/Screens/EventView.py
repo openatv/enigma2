@@ -24,6 +24,7 @@ from enigma import eEPGCache, eTimer, eServiceReference
 class EventViewContextMenu(Screen):
 	def __init__(self, session, service, event):
 		Screen.__init__(self, session)
+		self.setTitle(_('Event view'))
 		self.event = event
 		self.service = service
 		self.eventname = event.getEventName()

@@ -69,7 +69,6 @@ class AVSwitch:
 	
 	if hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra' or hw_type == "me" or hw_type == "minime" : config.av.edid_override = True
 
-	print 'CPU:',about.getChipSetString()
 	if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1 or hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra' or hw_type == "me" or hw_type == "minime":
 		modes["HDMI"] = ["1080p", "1080i", "720p", "576p", "576i", "480p", "480i"]
 		widescreen_modes = set(["1080p", "1080i", "720p"])
@@ -81,14 +80,11 @@ class AVSwitch:
 	if getBoxType().startswith('vu') or getBoxType() == 'dm500hd' or getBoxType() == 'dm800':
 		modes["Scart-YPbPr"] = modes["HDMI"]
 
-	print 'MODES 1:',modes
-
 	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
 	# 	print "remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
 	if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'iqonios300hd' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'tmnano' or getBoxType() == 'odinm7' or model == 'ini-3000' or getBoxType() == 'vusolo2' or getBoxType() == 'e3hd' or getBoxType() == 'dm500hd' or getBoxType() == 'dm800' or getBoxType() == 'ebox7358' or getBoxType() == 'ebox5100' or getBoxType() == 'ixusszero' or getBoxType() == 'optimussos1':
 		del modes["YPbPr"]
-	print 'MODES:',modes
 
 	def __init__(self):
 		self.last_modes_preferred =  [ ]
@@ -130,13 +126,11 @@ class AVSwitch:
 	def isModeAvailable(self, port, mode, rate):
 		rate = self.rates[mode][rate]
 		for mode in rate.values():
-			##### Only for test #####
 			if port == "DVI":
 				if self.hw_type == 'elite' or self.hw_type == 'premium' or self.hw_type == 'premium+' or self.hw_type == 'ultra' or self.hw_type == "me" or self.hw_type == "minime" :
 					if mode not in self.modes_preferred and not config.av.edid_override.value:
 						print "no, not preferred"
 						return False
-			##### Only for test #####		
 			if mode not in self.modes_available:
 				return False
 		return True
@@ -145,7 +139,7 @@ class AVSwitch:
 		return mode in self.widescreen_modes
 
 	def setMode(self, port, mode, rate, force = None):
-		print "[AVSwitch] setMode - port: %s, mode: %s, rate: %s" % (port, mode, rate)
+		print "[VideoMode] setMode - port: %s, mode: %s, rate: %s" % (port, mode, rate)
 
 		# config.av.videoport.setValue(port)
 		# we can ignore "port"
@@ -171,7 +165,6 @@ class AVSwitch:
 			f.close()
 		try:
 			mode_etc = modes.get(int(rate[:2]))
-			print 'mode_etc:',mode_etc
 			f = open("/proc/stb/video/videomode", "w")
 			f.write(mode_etc)
 			f.close()
@@ -187,7 +180,6 @@ class AVSwitch:
 		# self.updateAspect(None)
 
 	def saveMode(self, port, mode, rate):
-		print "saveMode", port, mode, rate
 		config.av.videoport.setValue(port)
 		config.av.videoport.save()
 		if port in config.av.videomode:
@@ -213,7 +205,6 @@ class AVSwitch:
 
 	# get a list with all modes, with all rates, for a given port.
 	def getModeList(self, port):
-		print "getModeList for port", port
 		res = [ ]
 		for mode in self.modes[port]:
 			# list all rates which are completely valid
@@ -255,7 +246,6 @@ class AVSwitch:
 		eAVSwitch.getInstance().setInput(INPUT[input])
 
 	def setColorFormat(self, value):
-		print'colorformat 1'
 		eAVSwitch.getInstance().setColorFormat(value)
 
 	def setConfiguredMode(self):
@@ -274,7 +264,7 @@ class AVSwitch:
 		self.setMode(port, mode, rate)
 
 	def setAspect(self, cfgelement):
-		print "-> setting aspect: %s" % cfgelement.value
+		print "[VideoMode] setting aspect: %s" % cfgelement.value
 		f = open("/proc/stb/video/aspect", "w")
 		f.write(cfgelement.value)
 		f.close()
@@ -284,26 +274,25 @@ class AVSwitch:
 			wss = "auto(4:3_off)"
 		else:
 			wss = "auto"
-		print "-> setting wss: %s" % wss
+		print "[VideoMode] setting wss: %s" % wss
 		f = open("/proc/stb/denc/0/wss", "w")
 		f.write(wss)
 		f.close()
 
 	def setPolicy43(self, cfgelement):
-		print "-> setting policy: %s" % cfgelement.value
+		print "[VideoMode] setting policy: %s" % cfgelement.value
 		f = open("/proc/stb/video/policy", "w")
 		f.write(cfgelement.value)
 		f.close()
 
 	def setPolicy169(self, cfgelement):
 		if os.path.exists("/proc/stb/video/policy2"):
-			print "-> setting policy2: %s" % cfgelement.value
+			print "[VideoMode] setting policy2: %s" % cfgelement.value
 			f = open("/proc/stb/video/policy2", "w")
 			f.write(cfgelement.value)
 			f.close()
 
 	def getOutputAspect(self):
-		print 'getOutputAspect'
 		ret = (16,9)
 		port = config.av.videoport.getValue()
 		if port not in config.av.videomode:
@@ -332,7 +321,6 @@ class AVSwitch:
 		return ret
 
 	def getFramebufferScale(self):
-		print 'getFramebufferScale'
 		aspect = self.getOutputAspect()
 		fb_size = getDesktop(0).size()
 		return (aspect[0] * fb_size.height(), aspect[1] * fb_size.width())
@@ -368,7 +356,11 @@ def InitAVSwitch():
 	if config.av.yuvenabled.getValue():
 		colorformat_choices["yuv"] = _("YPbPr")
 
-	config.av.autores = ConfigYesNo(default = False)
+	config.av.autores = ConfigSelection(choices={"disabled": _("Disabled"), "all": _("All resolutions"), "hd": _("only HD")}, default="disabled")
+	choicelist = []
+	for i in range(5, 16):
+		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
+	config.av.autores_label_timeout = ConfigSelection(default = "5", choices = [("0", _("Not Shown"))] + choicelist)
 	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
 	config.av.aspectratio = ConfigSelection(choices={
 			"4_3_letterbox": _("4:3 Letterbox"),
@@ -414,22 +406,20 @@ def InitAVSwitch():
 			# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 			policy_choices.update({"auto": _("Auto")})
 		f.close()
-	config.av.policy_43 = ConfigSelection(choices=policy_choices, default = "pillarbox")
+	config.av.policy_43 = ConfigSelection(choices=policy_choices, default = "panscan")
 	config.av.tvsystem = ConfigSelection(choices = {"pal": _("PAL"), "ntsc": _("NTSC"), "multinorm": _("multinorm")}, default="pal")
 	config.av.wss = ConfigEnableDisable(default = True)
 	config.av.generalAC3delay = ConfigSelectionNumber(-1000, 1000, 5, default = 0)
 	config.av.generalPCMdelay = ConfigSelectionNumber(-1000, 1000, 5, default = 0)
 	config.av.vcrswitch = ConfigEnableDisable(default = False)
 
-
+	config.av.aspect.setValue('16:9')
 	config.av.aspect.addNotifier(iAVSwitch.setAspect)
 	config.av.wss.addNotifier(iAVSwitch.setWss)
 	config.av.policy_43.addNotifier(iAVSwitch.setPolicy43)
 	config.av.policy_169.addNotifier(iAVSwitch.setPolicy169)
 
 	def setColorFormat(configElement):
-		print 'colorformat 2'
-		print 'config.av.videoport',config.av.videoport and config.av.videoport.getValue()
 		if config.av.videoport and config.av.videoport.getValue() == "Scart-YPbPr":
 			iAVSwitch.setColorFormat(3)
 		else:
@@ -541,7 +531,7 @@ def InitAVSwitch():
 		def setScaler_sharpness(config):
 			myval = int(config.getValue())
 			try:
-				print "--> setting scaler_sharpness to: %0.8X" % myval
+				print "[VideoMode] setting scaler_sharpness to: %0.8X" % myval
 				f = open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w")
 				f.write("%0.8X" % myval)
 				f.close()

@@ -288,6 +288,14 @@ void eListboxServiceContent::setColor(int color, gRGB &col)
 	}
 }
 
+void eListboxServiceContent::swapServices(list::iterator a, list::iterator b)
+{
+	std::iter_swap(a, b);
+	int temp = a->getChannelNum();
+	a->setChannelNum(b->getChannelNum());
+	b->setChannelNum(temp);
+}
+
 void eListboxServiceContent::cursorHome()
 {
 	if (m_current_marked && m_saved_cursor == m_list.end())
@@ -299,7 +307,7 @@ void eListboxServiceContent::cursorHome()
 		}
 		while (m_cursor_number)
 		{
-			std::iter_swap(m_cursor--, m_cursor);
+			swapServices(m_cursor--, m_cursor);
 			--m_cursor_number;
 			if (m_listbox && m_cursor_number)
 				m_listbox->entryChanged(cursorResolve(m_cursor_number));
@@ -322,7 +330,7 @@ void eListboxServiceContent::cursorEnd()
 			++m_cursor_number;
 			if ( prev != m_list.end() && m_cursor != m_list.end() )
 			{
-				std::iter_swap(m_cursor, prev);
+				swapServices(m_cursor, prev);
 				if ( m_listbox )
 					m_listbox->entryChanged(cursorResolve(m_cursor_number));
 			}
@@ -387,7 +395,7 @@ int eListboxServiceContent::cursorMove(int count)
 			list::iterator prev_it = m_cursor++;
 			if ( m_current_marked && m_cursor != m_list.end() && m_saved_cursor == m_list.end() )
 			{
-				std::iter_swap(prev_it, m_cursor);
+				swapServices(prev_it, m_cursor);
 				if ( m_listbox && prev != m_cursor_number && last != m_cursor_number )
 					m_listbox->entryChanged(cursorResolve(m_cursor_number));
 			}
@@ -403,7 +411,7 @@ int eListboxServiceContent::cursorMove(int count)
 			list::iterator prev_it = m_cursor--;
 			if ( m_current_marked && m_cursor != m_list.end() && prev_it != m_list.end() && m_saved_cursor == m_list.end() )
 			{
-				std::iter_swap(prev_it, m_cursor);
+				swapServices(prev_it, m_cursor);
 				if ( m_listbox && prev != m_cursor_number && last != m_cursor_number )
 					m_listbox->entryChanged(cursorResolve(m_cursor_number));
 			}

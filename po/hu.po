@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-25 09:57+0200\n"
-"PO-Revision-Date: 2012-12-09 02:01+0100\n"
+"POT-Creation-Date: 2013-10-20 17:53+0200\n"
+"PO-Revision-Date: 2013-10-20 16:59+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Mediavox, robertut <info@mediavox.hu, robertut@yahoo.com>\n"
 "Language: hu_HU\n"
@@ -140,6 +140,10 @@ msgstr ""
 #, fuzzy
 msgid "%-H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr ""
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -356,6 +360,9 @@ msgstr ""
 #
 msgid "* Only available if more than one interface is active."
 msgstr "* Csak akkor érvényes, ha egynél több interfész aktív."
+
+msgid "/s"
+msgstr ""
 
 #
 msgid "1.0"
@@ -920,6 +927,9 @@ msgstr ""
 msgid "Allocate unused memory index"
 msgstr ""
 
+msgid "Allow quit movieplayer with exit"
+msgstr ""
+
 msgid "Allow subtitle language to equal audio language"
 msgstr ""
 
@@ -1011,6 +1021,10 @@ msgstr ""
 #
 msgid "Arabic"
 msgstr "Arab"
+
+#, fuzzy
+msgid "Are you sure to remove this entry?"
+msgstr "Biztos benne, hogy kilép a Varázslóból?"
 
 #
 msgid ""
@@ -1191,6 +1205,11 @@ msgstr ""
 
 msgid "Automatic refresh"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Automatic resolution"
+msgstr "Automatikus keresés"
 
 msgid "Automatic save"
 msgstr ""
@@ -1516,6 +1535,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "Mégse"
 
+msgid "Cancel next timer"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -1606,6 +1628,9 @@ msgid "Channel List"
 msgstr ""
 
 msgid "Channel list context menu"
+msgstr ""
+
+msgid "Channel list cursor behavior"
 msgstr ""
 
 msgid "Channel list on mode change"
@@ -1799,6 +1824,11 @@ msgstr "Bezárás"
 
 #
 #, fuzzy
+msgid "Close PiP on exit"
+msgstr "lejátszási lista mentése kilépéskor"
+
+#
+#, fuzzy
 msgid "Close bouquet list."
 msgstr "Bouquet-listák szerkesztése"
 
@@ -1915,6 +1945,9 @@ msgstr ""
 msgid "Configure if and how service type icons will be shown."
 msgstr ""
 
+msgid "Configure if service picons will be shown in the servicelist."
+msgstr ""
+
 #
 msgid "Configure interface"
 msgstr "Interfész konfigurálása"
@@ -1938,9 +1971,6 @@ msgstr ""
 msgid "Configure the amount of time that will be presented."
 msgstr ""
 
-msgid "Configure the aspect ratio of the screen."
-msgstr ""
-
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr ""
 
@@ -1962,10 +1992,16 @@ msgstr ""
 msgid "Configure the brightness level of the front panel displa for standby."
 msgstr ""
 
+msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
+msgstr ""
+
 msgid "Configure the color of the teletext subtitles."
 msgstr ""
 
 msgid "Configure the contrast level of the front panel display."
+msgstr ""
+
+msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr ""
 
 msgid "Configure the duration in minutes for the screensaver."
@@ -3193,6 +3229,9 @@ msgstr ""
 msgid "Event font size (relative to skin size)"
 msgstr ""
 
+msgid "Event view"
+msgstr ""
+
 msgid "Everywhere"
 msgstr "mindenhonnan"
 
@@ -3311,6 +3350,10 @@ msgstr ""
 
 msgid "External (CF)"
 msgstr ""
+
+#, fuzzy
+msgid "External subtitle color"
+msgstr "Teletext felirat színe"
 
 msgid "FAILED"
 msgstr ""
@@ -3513,6 +3556,11 @@ msgstr "teljesen áttetsző"
 
 msgid "Fulscreen"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Fulview resulution"
+msgstr "Filmek tárhelye"
 
 msgid "Function of OK button"
 msgstr ""
@@ -3734,10 +3782,6 @@ msgstr "Merevlemez beállítások"
 msgid "Hard disk standby after"
 msgstr "Merevlemez leállítása megadott idö után"
 
-#
-msgid "Harddisk"
-msgstr "Merevlemez"
-
 msgid "Hebrew"
 msgstr ""
 
@@ -3868,6 +3912,9 @@ msgid "Icons"
 msgstr ""
 
 msgid "Idle Time: "
+msgstr ""
+
+msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr ""
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
@@ -4234,6 +4281,9 @@ msgstr ""
 
 #
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+#. "nonlinear": _("Nonlinear"),
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 #, fuzzy
 msgid "Just scale"
 msgstr "Skálázás (nyújtás)"
@@ -4242,6 +4292,11 @@ msgstr "Skálázás (nyújtás)"
 #, fuzzy
 msgid "Just zap"
 msgstr "Skálázás (nyújtás)"
+
+#
+#, fuzzy
+msgid "Keep service"
+msgstr "Szolgáltatás hozzáadása"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr ""
@@ -4651,6 +4706,11 @@ msgid "Memory index"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Memory positions"
+msgstr "Pozíció tárolása"
+
+#
 msgid "Menu"
 msgstr "Menü"
 
@@ -4701,11 +4761,6 @@ msgstr "Modell:"
 
 #
 msgid "Model: "
-msgstr "Modell:"
-
-#
-#, fuzzy, python-format
-msgid "Model: %s"
 msgstr "Modell:"
 
 #
@@ -5243,11 +5298,6 @@ msgstr ""
 msgid "None"
 msgstr "nincs"
 
-#
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-msgid "Nonlinear"
-msgstr "Nem-lineáris (szélek széthúzása)"
-
 msgid "Normal mode"
 msgstr ""
 
@@ -5742,6 +5792,11 @@ msgstr "Adja meg a fájlnevet (üres = jelenlegi adatok használata)"
 #
 msgid "Please enter name of the new directory"
 msgstr "Kérem, adja meg az új mappa nevét"
+
+#
+#, fuzzy
+msgid "Please enter new name:"
+msgstr "Adja meg az új fájlnevet"
 
 #
 msgid "Please enter the correct pin code"
@@ -6304,11 +6359,6 @@ msgstr "Felvétel"
 msgid "Record now"
 msgstr "Felvétel"
 
-#
-#, fuzzy
-msgid "Record once"
-msgstr "Felvétel"
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr ""
 
@@ -6603,13 +6653,6 @@ msgid "Resume position at %s"
 msgstr ""
 
 #
-#. TRANSLATORS: The string "Resuming playback" flashes for a moment
-#. TRANSLATORS: at the start of a movie, when the user has selected
-#. TRANSLATORS: "Resume from last position" as start behavior.
-#. TRANSLATORS: The purpose is to notify the user that the movie starts
-#. TRANSLATORS: in the middle somewhere and not from the beginning.
-#. TRANSLATORS: (Some translators seem to have interpreted it as a
-#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Lejátszás folytatása"
 
@@ -6620,6 +6663,9 @@ msgstr "Visszatérés a felvételek listájához"
 #
 msgid "Return to previous service"
 msgstr "Visszatérés az előző csatornához"
+
+msgid "Reverse bouquet buttons"
+msgstr ""
 
 #
 msgid "Rewind speeds"
@@ -6697,6 +6743,9 @@ msgid "Samba Setup"
 msgstr ""
 
 msgid "Samba setup"
+msgstr ""
+
+msgid "Same resolution as skin"
 msgstr ""
 
 #
@@ -7425,6 +7474,11 @@ msgstr ""
 msgid "Show Transponder Remaining/Elapsed as"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Show VCR scart on main menu"
+msgstr "DVD főmenü megjelenítése"
+
 msgid "Show ViX spinning logo when system is busy."
 msgstr ""
 
@@ -7492,6 +7546,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Show in extensions menu"
+msgstr "Bővítmények megtekintése..."
+
+#
+#, fuzzy
 msgid "Show info"
 msgstr "Info megjelenítése"
 
@@ -7537,6 +7596,11 @@ msgstr ""
 
 msgid "Show picon background colour"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Show picons in servicelist"
+msgstr "A csatorna nem szerepel a szolgáltatási listában"
 
 #
 msgid "Show positioner movement"
@@ -7786,6 +7850,11 @@ msgid "Softcam settings"
 msgstr ""
 
 #
+#, fuzzy
+msgid "SoftcamCheck"
+msgstr "Szoftver"
+
+#
 msgid "Software"
 msgstr "Szoftver"
 
@@ -7998,6 +8067,11 @@ msgid "Stop recording and delete"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Stop recording now"
+msgstr "ez a felvétel"
+
+#
 msgid "Stop test"
 msgstr "Teszt megállítása"
 
@@ -8025,6 +8099,11 @@ msgstr ""
 
 msgid "Stopped"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Storage devices"
+msgstr "Tárolóeszközök listája"
 
 #
 #, fuzzy
@@ -9043,6 +9122,11 @@ msgid "Tuner"
 msgstr "Tuner"
 
 #
+#, fuzzy
+msgid "Tuner :"
+msgstr "Tuner"
+
+#
 msgid "Tuner configuration"
 msgstr "Tuner beállítások"
 
@@ -9344,6 +9428,11 @@ msgstr ""
 msgid "User defined"
 msgstr "Felh. által megadva"
 
+#
+#, fuzzy
+msgid "User defined transponder"
+msgstr "Előreprogramozott transzponder"
+
 msgid "User interface"
 msgstr ""
 
@@ -9419,6 +9508,10 @@ msgstr ""
 msgid "Video PID"
 msgstr ""
 
+#, python-format
+msgid "Video content: %sx%s%s %sHz"
+msgstr ""
+
 #
 msgid "Video enhancement preview"
 msgstr "Videó-beállítások előnézete"
@@ -9447,6 +9540,11 @@ msgstr ""
 
 #
 msgid "Video mode selection."
+msgstr "Video mód kiválasztás"
+
+#
+#, fuzzy, python-format
+msgid "Video mode: %s"
 msgstr "Video mód kiválasztás"
 
 msgid "Video output"
@@ -9739,6 +9837,9 @@ msgstr ""
 msgid "What do you want to scan?"
 msgstr "Mit szeretne lekeresni?"
 
+msgid "When enabled the PiP can be closed by the exit button."
+msgstr ""
+
 msgid "When enabled the online checker will also check for experimental versions"
 msgstr ""
 
@@ -9772,9 +9873,6 @@ msgstr ""
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr ""
 
-msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
-msgstr ""
-
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr ""
 
@@ -9788,6 +9886,9 @@ msgid "When enabled, graphical DVB subtitles will be displayed at their original
 msgstr ""
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
+msgstr ""
+
+msgid "When enabled, it is possible to leave the movieplayer with exit."
 msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -9812,6 +9913,9 @@ msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr ""
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
+msgstr ""
+
+msgid "When enabled, the VCR scart option will be shown on the main menu"
 msgstr ""
 
 msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
@@ -9915,10 +10019,16 @@ msgstr ""
 msgid "Wireless network state"
 msgstr ""
 
+msgid "With popup"
+msgstr ""
+
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr ""
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
+msgstr ""
+
+msgid "Without popup"
 msgstr ""
 
 #
@@ -9947,9 +10057,6 @@ msgstr "Év"
 
 msgid "Yellow DVB subtitles"
 msgstr "Sárga DVB felirat"
-
-msgid "Yellow external subtitles"
-msgstr ""
 
 #
 msgid "Yes"
@@ -10394,6 +10501,11 @@ msgstr ""
 
 msgid "alphabetic reverse"
 msgstr ""
+
+#
+#, fuzzy
+msgid "alternative"
+msgstr "alternatívák hozzáadása"
 
 msgid "arts/culture (without music, general)"
 msgstr ""
@@ -11189,6 +11301,11 @@ msgid "rename"
 msgstr ""
 
 #
+#, fuzzy
+msgid "rename entry"
+msgstr "bejegyzés törlése"
+
+#
 msgid "repeat playlist"
 msgstr "playlista ismétlése"
 
@@ -11645,13 +11762,3 @@ msgstr "felvétel"
 #
 msgid "zapped"
 msgstr "ugrott"
-
-#
-#, fuzzy
-#~ msgid "Channel selection configuration"
-#~ msgstr "névszerver konfiguráció megnyítása"
-
-#
-#, fuzzy
-#~ msgid "Do you want to update your %s ?"
-#~ msgstr "Szeretné visszaállítani a beállításait?"

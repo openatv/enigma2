@@ -301,7 +301,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 			channelNumberWidth = 0
 			channelNumberSpace = 0
 		else:
-			channelNumberWidth = 55
+			channelNumberWidth = config.usage.alternative_number_mode.getValue() and 55 or 63
 			channelNumberSpace = 10
 
 		self.l.setElementPosition(self.l.celServiceNumber, eRect(0, 0, channelNumberWidth, self.ItemHeight))

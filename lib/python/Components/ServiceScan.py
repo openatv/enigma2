@@ -24,6 +24,7 @@ class ServiceScan:
 
 				if errcode == 0:
 					self.state = self.Done
+					self.servicelist.listAll()
 				else:
 					self.state = self.Error
 					self.errorcode = errcode

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-25 09:57+0200\n"
-"PO-Revision-Date: 2013-07-25 11:31+0100\n"
+"POT-Creation-Date: 2013-10-20 17:53+0200\n"
+"PO-Revision-Date: 2013-10-20 17:04+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -127,6 +127,10 @@ msgstr " and"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
+
+#, python-format
+msgid "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr "%02d.%02d - %02d.%02d (%s%d min)"
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -327,6 +331,9 @@ msgstr "* = Restart Required"
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Only available if more than one interface is active."
+
+msgid "/s"
+msgstr "/s"
 
 msgid "1.0"
 msgstr "1.0"
@@ -793,6 +800,9 @@ msgstr "Allocate"
 msgid "Allocate unused memory index"
 msgstr "Allocate unused memory index"
 
+msgid "Allow quit movieplayer with exit"
+msgstr "Allow quit movieplayer with exit"
+
 msgid "Allow subtitle language to equal audio language"
 msgstr "Allow subtitle language to equal audio language"
 
@@ -876,6 +886,9 @@ msgstr "Any activity"
 
 msgid "Arabic"
 msgstr "Arabic"
+
+msgid "Are you sure to remove this entry?"
+msgstr "Are you sure to remove this entry?"
 
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
@@ -1041,6 +1054,9 @@ msgstr "Automatic image backup"
 
 msgid "Automatic refresh"
 msgstr "Automatic refresh"
+
+msgid "Automatic resolution"
+msgstr "Automatic resolution"
 
 msgid "Automatic save"
 msgstr "Automatic save"
@@ -1331,6 +1347,9 @@ msgstr "Can be used for different fps between external subtitles and video."
 msgid "Cancel"
 msgstr "Cancel"
 
+msgid "Cancel next timer"
+msgstr "Cancel next timer"
+
 msgid "Cancel save timeshift as movie"
 msgstr "Cancel save timeshift as movie"
 
@@ -1417,6 +1436,9 @@ msgstr "Channel List"
 
 msgid "Channel list context menu"
 msgstr "Channel list context menu"
+
+msgid "Channel list cursor behavior"
+msgstr "Channel list cursor behavior"
 
 msgid "Channel list on mode change"
 msgstr "Channel list on mode change"
@@ -1581,6 +1603,9 @@ msgstr "Clients"
 msgid "Close"
 msgstr "Close"
 
+msgid "Close PiP on exit"
+msgstr "Close PiP on exit"
+
 msgid "Close bouquet list."
 msgstr "Close bouquet list."
 
@@ -1676,6 +1701,9 @@ msgstr "Configure how recording filenames are constructed."
 msgid "Configure if and how service type icons will be shown."
 msgstr "Configure if and how service type icons will be shown."
 
+msgid "Configure if service picons will be shown in the servicelist."
+msgstr "Configure if service picons will be shown in the servicelist."
+
 msgid "Configure interface"
 msgstr "Configure interface"
 
@@ -1696,9 +1724,6 @@ msgstr "Configure the IP address."
 
 msgid "Configure the amount of time that will be presented."
 msgstr "Configure the amount of time that will be presented."
-
-msgid "Configure the aspect ratio of the screen."
-msgstr "Configure the aspect ratio of the screen."
 
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr "Configure the behavior of the 'pause' key when movie playback is already paused."
@@ -1721,11 +1746,17 @@ msgstr "Configure the brightness level of the front panel displa for normal oper
 msgid "Configure the brightness level of the front panel displa for standby."
 msgstr "Configure the brightness level of the front panel displa for standby."
 
+msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
+msgstr "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
+
 msgid "Configure the color of the teletext subtitles."
 msgstr "Configure the color of the teletext subtitles."
 
 msgid "Configure the contrast level of the front panel display."
 msgstr "Configure the contrast level of the front panel display."
+
+msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
+msgstr "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
 
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Configure the duration in minutes for the screensaver."
@@ -2784,6 +2815,9 @@ msgstr "Event font size"
 msgid "Event font size (relative to skin size)"
 msgstr "Event font size (relative to skin size)"
 
+msgid "Event view"
+msgstr "Event view"
+
 msgid "Everywhere"
 msgstr "Everywhere"
 
@@ -2870,6 +2904,9 @@ msgstr "External"
 
 msgid "External (CF)"
 msgstr "External (CF)"
+
+msgid "External subtitle color"
+msgstr "External subtitle color"
 
 msgid "FAILED"
 msgstr "FAILED"
@@ -3041,6 +3078,9 @@ msgstr "Full transparency"
 
 msgid "Fulscreen"
 msgstr "Fulscreen"
+
+msgid "Fulview resulution"
+msgstr "Fulview resulution"
 
 msgid "Function of OK button"
 msgstr "Function of OK button"
@@ -3223,9 +3263,6 @@ msgstr "Hard disk setup"
 msgid "Hard disk standby after"
 msgstr "Hard disk standby after"
 
-msgid "Harddisk"
-msgstr "Harddisk"
-
 msgid "Hebrew"
 msgstr "Hebrew"
 
@@ -3342,6 +3379,9 @@ msgstr "Icons"
 
 msgid "Idle Time: "
 msgstr "Idle Time: "
+
+msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
+msgstr "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "If logs are using the set maximum space used the eldest will be deleted."
@@ -3654,11 +3694,17 @@ msgid "Just change channels"
 msgstr "Just change channels"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+#. "nonlinear": _("Nonlinear"),
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just scale"
 msgstr "Just scale"
 
 msgid "Just zap"
 msgstr "Just zap"
+
+msgid "Keep service"
+msgstr "Keep service"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Keeps MovieList open whilst playing audio files."
@@ -3994,6 +4040,9 @@ msgstr "Memory Information"
 msgid "Memory index"
 msgstr "Memory index"
 
+msgid "Memory positions"
+msgstr "Memory positions"
+
 msgid "Menu"
 msgstr "Menu"
 
@@ -4042,10 +4091,6 @@ msgstr "Model:\t%s %s\n"
 
 msgid "Model: "
 msgstr "Model: "
-
-#, python-format
-msgid "Model: %s"
-msgstr "Model: %s"
 
 msgid "Modulation"
 msgstr "Modulation"
@@ -4474,10 +4519,6 @@ msgstr "NodeID: "
 
 msgid "None"
 msgstr "None"
-
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-msgid "Nonlinear"
-msgstr "Nonlinear"
 
 msgid "Normal mode"
 msgstr "Normal mode"
@@ -4913,6 +4954,9 @@ msgstr "Please enter filename (empty = use current date)"
 
 msgid "Please enter name of the new directory"
 msgstr "Please enter name of the new directory"
+
+msgid "Please enter new name:"
+msgstr "Please enter new name:"
 
 msgid "Please enter the correct pin code"
 msgstr "Please enter the correct pin code"
@@ -5369,9 +5413,6 @@ msgstr "Record next"
 msgid "Record now"
 msgstr "Record now"
 
-msgid "Record once"
-msgstr "Record once"
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr "Record started! Stopping timeshift now ..."
 
@@ -5617,13 +5658,6 @@ msgstr "Resume from last position"
 msgid "Resume position at %s"
 msgstr "Resume position at %s"
 
-#. TRANSLATORS: The string "Resuming playback" flashes for a moment
-#. TRANSLATORS: at the start of a movie, when the user has selected
-#. TRANSLATORS: "Resume from last position" as start behavior.
-#. TRANSLATORS: The purpose is to notify the user that the movie starts
-#. TRANSLATORS: in the middle somewhere and not from the beginning.
-#. TRANSLATORS: (Some translators seem to have interpreted it as a
-#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Resuming playback"
 
@@ -5632,6 +5666,9 @@ msgstr "Return to movie list"
 
 msgid "Return to previous service"
 msgstr "Return to previous service"
+
+msgid "Reverse bouquet buttons"
+msgstr "Reverse bouquet buttons"
 
 msgid "Rewind speeds"
 msgstr "Rewind speeds"
@@ -5701,6 +5738,9 @@ msgstr "Samba Setup"
 
 msgid "Samba setup"
 msgstr "Samba setup"
+
+msgid "Same resolution as skin"
+msgstr "Same resolution as skin"
 
 msgid "Sat"
 msgstr "Sat"
@@ -6327,6 +6367,9 @@ msgstr "Show Timer List"
 msgid "Show Transponder Remaining/Elapsed as"
 msgstr "Show Transponder Remaining/Elapsed as"
 
+msgid "Show VCR scart on main menu"
+msgstr "Show VCR scart on main menu"
+
 msgid "Show ViX spinning logo when system is busy."
 msgstr "Show ViX spinning logo when system is busy."
 
@@ -6384,6 +6427,9 @@ msgstr "Show icon for new/unseen items"
 msgid "Show in extensions list ?"
 msgstr "Show in extensions list ?"
 
+msgid "Show in extensions menu"
+msgstr "Show in extensions menu"
+
 msgid "Show info"
 msgstr "Show info"
 
@@ -6422,6 +6468,9 @@ msgstr "Show or hide the extended description, (skin dependent)."
 
 msgid "Show picon background colour"
 msgstr "Show picon background colour"
+
+msgid "Show picons in servicelist"
+msgstr "Show picons in servicelist"
 
 msgid "Show positioner movement"
 msgstr "Show positioner movement"
@@ -6616,6 +6665,9 @@ msgstr "Softcam settings"
 msgid "Softcam settings"
 msgstr "Softcam settings"
 
+msgid "SoftcamCheck"
+msgstr "SoftcamCheck"
+
 msgid "Software"
 msgstr "Software"
 
@@ -6795,6 +6847,9 @@ msgstr "Stop recording"
 msgid "Stop recording and delete"
 msgstr "Stop recording and delete"
 
+msgid "Stop recording now"
+msgstr "Stop recording now"
+
 msgid "Stop test"
 msgstr "Stop test"
 
@@ -6818,6 +6873,9 @@ msgstr "Stop's timeshift being used if a recording is in progress. (adviseable f
 
 msgid "Stopped"
 msgstr "Stopped"
+
+msgid "Storage devices"
+msgstr "Storage devices"
 
 msgid "Store at index"
 msgstr "Store at index"
@@ -7733,6 +7791,9 @@ msgstr "Tune failed!"
 msgid "Tuner"
 msgstr "Tuner"
 
+msgid "Tuner :"
+msgstr "Tuner :"
+
 msgid "Tuner configuration"
 msgstr "Tuner configuration"
 
@@ -7996,6 +8057,9 @@ msgstr "User - bouquets"
 msgid "User defined"
 msgstr "User defined"
 
+msgid "User defined transponder"
+msgstr "User defined transponder"
+
 msgid "User interface"
 msgstr "User interface"
 
@@ -8063,6 +8127,10 @@ msgstr "Video Enhancement Settings"
 msgid "Video PID"
 msgstr "Video PID"
 
+#, python-format
+msgid "Video content: %sx%s%s %sHz"
+msgstr "Video content: %sx%s%s %sHz"
+
 msgid "Video enhancement preview"
 msgstr "Video enhancement preview"
 
@@ -8090,6 +8158,10 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "Video mode selection."
+
+#, python-format
+msgid "Video mode: %s"
+msgstr "Video mode: %s"
 
 msgid "Video output"
 msgstr "Video output"
@@ -8328,6 +8400,9 @@ msgstr "What action is required on complettion of the timer? 'Auto' lets the box
 msgid "What do you want to scan?"
 msgstr "What do you want to scan?"
 
+msgid "When enabled the PiP can be closed by the exit button."
+msgstr "When enabled the PiP can be closed by the exit button."
+
 msgid "When enabled the online checker will also check for experimental versions"
 msgstr "When enabled the online checker will also check for experimental versions"
 
@@ -8361,9 +8436,6 @@ msgstr "When enabled, continue to the next bouquet when the last channel of the 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 
-msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
-msgstr "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
-
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "When enabled, external subtitles will be always turned on for playback movie."
 
@@ -8378,6 +8450,9 @@ msgstr "When enabled, graphical DVB subtitles will be displayed at their origina
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
+
+msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgstr "When enabled, it is possible to leave the movieplayer with exit."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -8402,6 +8477,9 @@ msgstr "When enabled, teletext pages will be cached, allowing faster access."
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr "When enabled, teletext subtitles will be displayed at their original position."
+
+msgid "When enabled, the VCR scart option will be shown on the main menu"
+msgstr "When enabled, the VCR scart option will be shown on the main menu"
 
 msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
 msgstr "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
@@ -8498,11 +8576,17 @@ msgstr "Wireless network connection setup."
 msgid "Wireless network state"
 msgstr "Wireless network state"
 
+msgid "With popup"
+msgstr "With popup"
+
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "With this option you can hide Job Tasks from the extension screen (short blue button press)."
+
+msgid "Without popup"
+msgstr "Without popup"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Write error while recording. Disk full?\n"
@@ -8529,9 +8613,6 @@ msgstr "Year"
 
 msgid "Yellow DVB subtitles"
 msgstr "Yellow DVB subtitles"
-
-msgid "Yellow external subtitles"
-msgstr "Yellow external subtitles"
 
 msgid "Yes"
 msgstr "Yes"
@@ -8944,6 +9025,9 @@ msgstr "alphabetic"
 
 msgid "alphabetic reverse"
 msgstr "alphabetic reverse"
+
+msgid "alternative"
+msgstr "alternative"
 
 msgid "arts/culture (without music, general)"
 msgstr "arts/culture (without music, general)"
@@ -9625,6 +9709,9 @@ msgstr "remove this mark"
 
 msgid "rename"
 msgstr "rename"
+
+msgid "rename entry"
+msgstr "rename entry"
 
 msgid "repeat playlist"
 msgstr "repeat playlist"

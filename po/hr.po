@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-25 09:57+0200\n"
-"PO-Revision-Date: 2012-12-09 02:01+0100\n"
+"POT-Creation-Date: 2013-10-20 17:53+0200\n"
+"PO-Revision-Date: 2013-10-20 16:59+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team:  <jurica@dream-multimedia.eu>\n"
 "Language: hr_HR\n"
@@ -111,6 +111,10 @@ msgstr ""
 #, fuzzy
 msgid "%-H:%M"
 msgstr "%S:%M"
+
+#, python-format
+msgid "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr ""
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -321,6 +325,9 @@ msgstr ""
 
 #
 msgid "* Only available if more than one interface is active."
+msgstr ""
+
+msgid "/s"
 msgstr ""
 
 #
@@ -871,6 +878,9 @@ msgstr ""
 msgid "Allocate unused memory index"
 msgstr ""
 
+msgid "Allow quit movieplayer with exit"
+msgstr ""
+
 msgid "Allow subtitle language to equal audio language"
 msgstr ""
 
@@ -960,6 +970,11 @@ msgstr ""
 #
 msgid "Arabic"
 msgstr "Arabski"
+
+#
+#, fuzzy
+msgid "Are you sure to remove this entry?"
+msgstr "Jeste li sigurni da želite obrisati datoteku %s?"
 
 #
 msgid ""
@@ -1131,6 +1146,11 @@ msgstr ""
 
 msgid "Automatic refresh"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Automatic resolution"
+msgstr "Automatsko skeniranje "
 
 msgid "Automatic save"
 msgstr ""
@@ -1453,6 +1473,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "Odustani"
 
+msgid "Cancel next timer"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -1543,6 +1566,9 @@ msgid "Channel List"
 msgstr ""
 
 msgid "Channel list context menu"
+msgstr ""
+
+msgid "Channel list cursor behavior"
 msgstr ""
 
 msgid "Channel list on mode change"
@@ -1732,6 +1758,9 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
+msgid "Close PiP on exit"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Close bouquet list."
@@ -1850,6 +1879,9 @@ msgstr ""
 msgid "Configure if and how service type icons will be shown."
 msgstr ""
 
+msgid "Configure if service picons will be shown in the servicelist."
+msgstr ""
+
 #
 msgid "Configure interface"
 msgstr ""
@@ -1873,9 +1905,6 @@ msgstr ""
 msgid "Configure the amount of time that will be presented."
 msgstr ""
 
-msgid "Configure the aspect ratio of the screen."
-msgstr ""
-
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr ""
 
@@ -1897,10 +1926,16 @@ msgstr ""
 msgid "Configure the brightness level of the front panel displa for standby."
 msgstr ""
 
+msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
+msgstr ""
+
 msgid "Configure the color of the teletext subtitles."
 msgstr ""
 
 msgid "Configure the contrast level of the front panel display."
+msgstr ""
+
+msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr ""
 
 msgid "Configure the duration in minutes for the screensaver."
@@ -3093,6 +3128,9 @@ msgstr ""
 msgid "Event font size (relative to skin size)"
 msgstr ""
 
+msgid "Event view"
+msgstr ""
+
 msgid "Everywhere"
 msgstr ""
 
@@ -3210,6 +3248,9 @@ msgid "External"
 msgstr ""
 
 msgid "External (CF)"
+msgstr ""
+
+msgid "External subtitle color"
 msgstr ""
 
 msgid "FAILED"
@@ -3411,6 +3452,11 @@ msgstr ""
 
 msgid "Fulscreen"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Fulview resulution"
+msgstr "Korekcija vremena "
 
 msgid "Function of OK button"
 msgstr ""
@@ -3631,10 +3677,6 @@ msgstr "Postavke tvrdog diska"
 msgid "Hard disk standby after"
 msgstr "Isključi tvrdi disk nakon"
 
-#
-msgid "Harddisk"
-msgstr "Tvrdi disk"
-
 msgid "Hebrew"
 msgstr ""
 
@@ -3765,6 +3807,9 @@ msgid "Icons"
 msgstr ""
 
 msgid "Idle Time: "
+msgstr ""
+
+msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr ""
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
@@ -4119,11 +4164,19 @@ msgid "Just change channels"
 msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+#. "nonlinear": _("Nonlinear"),
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just scale"
 msgstr ""
 
 msgid "Just zap"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Keep service"
+msgstr "Usluge "
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr ""
@@ -4524,6 +4577,11 @@ msgid "Memory index"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Memory positions"
+msgstr "Pohrani poziciju"
+
+#
 msgid "Menu"
 msgstr "Izbornik "
 
@@ -4573,11 +4631,6 @@ msgstr "Model:"
 
 #
 msgid "Model: "
-msgstr "Model:"
-
-#
-#, fuzzy, python-format
-msgid "Model: %s"
 msgstr "Model:"
 
 #
@@ -5093,11 +5146,6 @@ msgstr ""
 msgid "None"
 msgstr "Prazno"
 
-#
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-msgid "Nonlinear"
-msgstr ""
-
 msgid "Normal mode"
 msgstr ""
 
@@ -5581,6 +5629,11 @@ msgstr "Molim unesite ime datoteke (prazno = koristi današnji datum)"
 #
 msgid "Please enter name of the new directory"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Please enter new name:"
+msgstr "Molim unesite ime za novu oznaku"
 
 #
 msgid "Please enter the correct pin code"
@@ -6128,11 +6181,6 @@ msgstr "Snimi  "
 msgid "Record now"
 msgstr "Snimi  "
 
-#
-#, fuzzy
-msgid "Record once"
-msgstr "Snimi  "
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr ""
 
@@ -6424,13 +6472,6 @@ msgid "Resume position at %s"
 msgstr ""
 
 #
-#. TRANSLATORS: The string "Resuming playback" flashes for a moment
-#. TRANSLATORS: at the start of a movie, when the user has selected
-#. TRANSLATORS: "Resume from last position" as start behavior.
-#. TRANSLATORS: The purpose is to notify the user that the movie starts
-#. TRANSLATORS: in the middle somewhere and not from the beginning.
-#. TRANSLATORS: (Some translators seem to have interpreted it as a
-#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr ""
 
@@ -6440,6 +6481,9 @@ msgstr ""
 
 #
 msgid "Return to previous service"
+msgstr ""
+
+msgid "Reverse bouquet buttons"
 msgstr ""
 
 #
@@ -6518,6 +6562,9 @@ msgid "Samba Setup"
 msgstr ""
 
 msgid "Samba setup"
+msgstr ""
+
+msgid "Same resolution as skin"
 msgstr ""
 
 #
@@ -7242,6 +7289,11 @@ msgstr ""
 msgid "Show Transponder Remaining/Elapsed as"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Show VCR scart on main menu"
+msgstr "prikaži izbornik isključivanja"
+
 msgid "Show ViX spinning logo when system is busy."
 msgstr ""
 
@@ -7306,6 +7358,11 @@ msgstr ""
 msgid "Show in extensions list ?"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Show in extensions menu"
+msgstr "gledaj ekstenzije..."
+
 msgid "Show info"
 msgstr ""
 
@@ -7349,6 +7406,11 @@ msgstr ""
 
 msgid "Show picon background colour"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Show picons in servicelist"
+msgstr "prebaci u predhodnu poduslugu "
 
 #
 msgid "Show positioner movement"
@@ -7587,6 +7649,9 @@ msgstr ""
 msgid "Softcam settings"
 msgstr ""
 
+msgid "SoftcamCheck"
+msgstr ""
+
 #
 msgid "Software"
 msgstr ""
@@ -7801,6 +7866,11 @@ msgid "Stop recording and delete"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Stop recording now"
+msgstr "ovo snimanje"
+
+#
 msgid "Stop test"
 msgstr ""
 
@@ -7828,6 +7898,11 @@ msgstr ""
 
 msgid "Stopped"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Storage devices"
+msgstr "Lista uređaja za pohranu"
 
 #
 #, fuzzy
@@ -8785,6 +8860,11 @@ msgid "Tuner"
 msgstr "Tuner"
 
 #
+#, fuzzy
+msgid "Tuner :"
+msgstr "Tuner"
+
+#
 msgid "Tuner configuration"
 msgstr "Konfiguracija Tunera"
 
@@ -9077,6 +9157,11 @@ msgstr ""
 msgid "User defined"
 msgstr "Korisnički def"
 
+#
+#, fuzzy
+msgid "User defined transponder"
+msgstr "Predefinirani transponder"
+
 msgid "User interface"
 msgstr ""
 
@@ -9150,6 +9235,10 @@ msgstr ""
 msgid "Video PID"
 msgstr ""
 
+#, python-format
+msgid "Video content: %sx%s%s %sHz"
+msgstr ""
+
 #
 msgid "Video enhancement preview"
 msgstr ""
@@ -9175,6 +9264,11 @@ msgstr ""
 #
 msgid "Video mode selection."
 msgstr ""
+
+#
+#, fuzzy, python-format
+msgid "Video mode: %s"
+msgstr "Konfiguriram"
 
 msgid "Video output"
 msgstr ""
@@ -9445,6 +9539,9 @@ msgstr ""
 msgid "What do you want to scan?"
 msgstr "Što želite skenirati?"
 
+msgid "When enabled the PiP can be closed by the exit button."
+msgstr ""
+
 msgid "When enabled the online checker will also check for experimental versions"
 msgstr ""
 
@@ -9478,9 +9575,6 @@ msgstr ""
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr ""
 
-msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
-msgstr ""
-
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr ""
 
@@ -9494,6 +9588,9 @@ msgid "When enabled, graphical DVB subtitles will be displayed at their original
 msgstr ""
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
+msgstr ""
+
+msgid "When enabled, it is possible to leave the movieplayer with exit."
 msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -9518,6 +9615,9 @@ msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr ""
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
+msgstr ""
+
+msgid "When enabled, the VCR scart option will be shown on the main menu"
 msgstr ""
 
 msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
@@ -9615,10 +9715,16 @@ msgstr ""
 msgid "Wireless network state"
 msgstr ""
 
+msgid "With popup"
+msgstr ""
+
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr ""
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
+msgstr ""
+
+msgid "Without popup"
 msgstr ""
 
 #
@@ -9647,9 +9753,6 @@ msgid "Year"
 msgstr "Godina"
 
 msgid "Yellow DVB subtitles"
-msgstr ""
-
-msgid "Yellow external subtitles"
 msgstr ""
 
 #
@@ -10078,6 +10181,11 @@ msgstr ""
 
 msgid "alphabetic reverse"
 msgstr ""
+
+#
+#, fuzzy
+msgid "alternative"
+msgstr "dodaj alternative"
 
 msgid "arts/culture (without music, general)"
 msgstr ""
@@ -10873,6 +10981,11 @@ msgid "rename"
 msgstr ""
 
 #
+#, fuzzy
+msgid "rename entry"
+msgstr "obriši unos"
+
+#
 msgid "repeat playlist"
 msgstr ""
 
@@ -11327,13 +11440,3 @@ msgstr "Snimi"
 #
 msgid "zapped"
 msgstr "prebačen"
-
-#
-#, fuzzy
-#~ msgid "Channel selection configuration"
-#~ msgstr "Sekcija kanala"
-
-#
-#, fuzzy
-#~ msgid "Do you want to update your %s ?"
-#~ msgstr "Želite li vratiti vašu listu kanala iz sigurnosne kopije?"

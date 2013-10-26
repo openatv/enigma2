@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-05 15:29+0200\n"
-"PO-Revision-Date: 2013-10-06 17:05+0100\n"
-"Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
+"POT-Creation-Date: 2013-10-20 17:53+0200\n"
+"PO-Revision-Date: 2013-10-20 19:36+0100\n"
+"Last-Translator: Delagroov <delagroov@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
 "MIME-Version: 1.0\n"
@@ -129,6 +129,10 @@ msgstr "en"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
+
+#, python-format
+msgid "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr "%02d.%02d - %02d.%02d (%s%d min)"
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -888,6 +892,9 @@ msgstr "Elke activiteit"
 msgid "Arabic"
 msgstr "Arabisch"
 
+msgid "Are you sure to remove this entry?"
+msgstr "weet u zeker dat deze waarde verwijderd mag worden?"
+
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
 "\n"
@@ -1052,6 +1059,9 @@ msgstr "Automatische imagebackup"
 
 msgid "Automatic refresh"
 msgstr "Automatisch verversen"
+
+msgid "Automatic resolution"
+msgstr "Automatische resolutie"
 
 msgid "Automatic save"
 msgstr "automatisch opslaan"
@@ -1433,8 +1443,11 @@ msgstr "Kanaal lijst"
 msgid "Channel list context menu"
 msgstr "Kanaallijst contextmenu"
 
+msgid "Channel list cursor behavior"
+msgstr "Gedrag van cursor in kanaallijst."
+
 msgid "Channel list on mode change"
-msgstr "informatiebalk zichtbaar na zenderwissel"
+msgstr "Kanaallijst zichtbaar na zenderwissel"
 
 msgid "Channel list preview"
 msgstr "Kanaallijst preview"
@@ -1718,9 +1731,6 @@ msgstr "U kunt het IP-adres ingeven."
 msgid "Configure the amount of time that will be presented."
 msgstr "Kies het tijdsinterval dat getoond moet worden."
 
-msgid "Configure the aspect ratio of the screen."
-msgstr "Bepaal de lettergrootte van de ondertitels."
-
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr "Configureer gedrag van de pauze-knop wanneer de film gepauzeerd is."
 
@@ -1750,6 +1760,9 @@ msgstr "Bepaal de kleur van de teletekst ondertitels"
 
 msgid "Configure the contrast level of the front panel display."
 msgstr "Configureer het contrast van het front panel display"
+
+msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
+msgstr "Bepaal het gedrag van de cursor in de kanaallijst. Als de kanaallijst wordt geopend kan het huidige kanaal geselecteerd blijven of het vorige/volgende kanaal."
 
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "stel de duur van de screensaver in (minuten)."
@@ -2809,6 +2822,9 @@ msgstr "Event lettergrootte"
 msgid "Event font size (relative to skin size)"
 msgstr "Event lettergrootte (t.o.v. de waarde in de skin)"
 
+msgid "Event view"
+msgstr "Event view"
+
 msgid "Everywhere"
 msgstr "Overal"
 
@@ -3257,9 +3273,6 @@ msgstr "Harde schijf instellingen"
 msgid "Hard disk standby after"
 msgstr "Harde schijf standby na"
 
-msgid "Harddisk"
-msgstr "Harde schijf"
-
 msgid "Hebrew"
 msgstr "Hebreeuws"
 
@@ -3377,6 +3390,9 @@ msgstr "Icons"
 
 msgid "Idle Time: "
 msgstr "Tijd werkloos"
+
+msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
+msgstr "Indien ingeschakeld zal getracht worden de output-resolutie van uw box overeen te laten komen met de resolutie van de video inhoud."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Maximale ruimte die de logs in beslag mogen nemen. Als dat overschreden wordt,worden de oudste het eerste verwijderd."
@@ -3691,11 +3707,17 @@ msgid "Just change channels"
 msgstr "Kanaal veranderen"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+#. "nonlinear": _("Nonlinear"),
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just scale"
 msgstr "Alleen schalen"
 
 msgid "Just zap"
 msgstr "Alleen zappen"
+
+msgid "Keep service"
+msgstr "Behoud zender"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Houdt de opnamelijst geopend tijdens het afspelen van audio bestanden."
@@ -4509,10 +4531,6 @@ msgstr "NodeID: "
 
 msgid "None"
 msgstr "Geen"
-
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-msgid "Nonlinear"
-msgstr "Nonlineair"
 
 msgid "Normal mode"
 msgstr "Normale mode"
@@ -5666,6 +5684,9 @@ msgstr "Terug naar de opnamelijst"
 msgid "Return to previous service"
 msgstr "Terug naar laatste zender"
 
+msgid "Reverse bouquet buttons"
+msgstr "Omgekeerde favorieten knoppen"
+
 msgid "Rewind speeds"
 msgstr "Terugspoel snelheid"
 
@@ -6667,6 +6688,9 @@ msgstr "Softcam instellingen"
 msgid "Softcam settings"
 msgstr "Softcam instellingen"
 
+msgid "SoftcamCheck"
+msgstr "Softcam controle"
+
 msgid "Software"
 msgstr "Software"
 
@@ -6873,6 +6897,9 @@ msgstr "Stopt timeshift als een opname loopt (zinvol voor USB-sticks)."
 
 msgid "Stopped"
 msgstr "Gestopt"
+
+msgid "Storage devices"
+msgstr "Opslagmedia"
 
 msgid "Store at index"
 msgstr "Sla positie op"
@@ -8134,6 +8161,10 @@ msgstr "video verbeterings instellingen"
 msgid "Video PID"
 msgstr "Video PID"
 
+#, python-format
+msgid "Video content: %sx%s%s %sHz"
+msgstr "Video inhoud: %sx%s%s %sHz"
+
 msgid "Video enhancement preview"
 msgstr "Videoverbetering preview"
 
@@ -8160,6 +8191,10 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "Videomodus selectie"
+
+#, python-format
+msgid "Video mode: %s"
+msgstr "Videomode: %s"
 
 msgid "Video output"
 msgstr "Video output"
@@ -10111,20 +10146,3 @@ msgstr "zap en neem op"
 msgid "zapped"
 msgstr "zapte"
 
-#~ msgid "Channel selection configuration"
-#~ msgstr "Kanaallijst instellingen"
-
-#~ msgid "Do you want to update your %s ?"
-#~ msgstr "Wilt u uw %s updaten?"
-
-#~ msgid "Model: %s"
-#~ msgstr "Model: %s"
-
-#~ msgid "Record once"
-#~ msgstr "Neem eenmaal op"
-
-#~ msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
-#~ msgstr "Indien geactiveerd, zullen externe ondertitles (in media bestanden) in geel worden vertoond, in plaats van in de originele kleur."
-
-#~ msgid "Yellow external subtitles"
-#~ msgstr "Gele externe ondertitels"
