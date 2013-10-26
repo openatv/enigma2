@@ -21,10 +21,13 @@ try:
 except:
 	model = "unknown"	
 
-has_rca = False	
-hw_type = HardwareInfo().get_device_name()	
+has_rca = False
+has_dvi = False
+hw_type = HardwareInfo().get_device_name()
 if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'odinm6' or getMachineName() == 'AX-Odin' or getBoxType() == 'ebox7358' or getBoxType() == 'tmnano' or hw_type == 'ultra' or hw_type == "me" or hw_type == "minime" or getBoxType() == 'optimussos1' or getBoxType() == 'optimussos2' or getBoxType() == 'gb800seplus' or getBoxType() == 'gb800ueplus' or model == 'ini-1000ru' or model == 'ini-1000sv' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero':	
 	has_rca = True
+if getBoxType() == 'dm8000' or getBoxType() == 'dm800':
+	has_dvi = True
 
 class VideoWizardSummary(WizardSummary):
 	skin = (
@@ -113,8 +116,8 @@ class VideoWizard(WizardLanguage, Rc):
 		for port in self.hw.getPortList():
 			if self.hw.isPortUsed(port):
 				descr = port
-				if descr == 'DVI' and has_hdmi:
-					descr = 'HDMI'
+				if descr == 'HDMI' and has_dvi:
+					descr = 'DVI'
 				if descr == 'Scart' and has_rca:
 					descr = 'RCA'					
 				if port != "DVI-PC":
@@ -135,8 +138,8 @@ class VideoWizard(WizardLanguage, Rc):
 		self.inputSelect(self.selection)
 		if self["portpic"].instance is not None:
 			picname = self.selection
-			if picname == 'DVI' and has_hdmi:
-				picname = "HDMI"
+			if picname == 'HDMI' and has_dvi:
+				picname = "DVI"
 			if picname == 'Scart' and has_rca:
 				picname = "RCA"	
 			self["portpic"].instance.setPixmapFromFile(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/" + picname + ".png"))
