@@ -7,6 +7,7 @@ from Components.PluginComponent import plugins
 from Components.config import config
 from Components.SystemInfo import SystemInfo
 
+from Tools.BoundFunction import boundFunction
 from Tools.Directories import resolveFilename, SCOPE_SKIN
 
 import xml.etree.cElementTree
@@ -16,14 +17,6 @@ from Screens.Setup import Setup, getSetupTitle
 # read the menu
 mdom = xml.etree.cElementTree.parse(resolveFilename(SCOPE_SKIN, 'menu.xml'))
 
-class boundFunction:
-	def __init__(self, fnc, *args, **kwargs):
-		self.fnc = fnc
-		self.args = args
-		self.kwargs = kwargs
-	def __call__(self):
-		self.fnc(*self.args, **self.kwargs)
-		
 class MenuUpdater:
 	def __init__(self):
 		self.updatedMenuItems = {}
