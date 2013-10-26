@@ -42,6 +42,25 @@ class Satfinder(ScanSetup):
 		self.onClose.append(self.__onClose)
 		self.onShow.append(self.prepareFrontend)
 
+	def preStart(self):
+		nims = nimmanager.getNimListOfType("DVB-S")
+
+		nimList = []
+		for x in nims:
+			if nimmanager.getNimConfig(x).configMode.getValue() in ("loopthrough", "satposdepends", "nothing"):
+				continue
+			if nimmanager.getNimConfig(x).configMode.getValue() == "advanced" and len(nimmanager.getSatListForNim(x)) < 1:
+				continue
+			nimList.append(x)
+
+		if len(nimList) == 0:
+			self.session.openWithCallback(self.close, MessageBox, _("No satellites configured. Plese check your tuner setup."), MessageBox.TYPE_ERROR)
+		else:
+			if session.nav.RecordTimer.isRecording():
+				self.session.openWithCallback(self.close, MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
+			else:
+				self.prepareFrontend()
+
 	def openFrontend(self):
 		res_mgr = eDVBResourceManager.getInstance()
 		if res_mgr:
@@ -238,34 +257,3 @@ class Satfinder(ScanSetup):
 			if transponder is not None:
 				self.tuner.tune(transponder)
 				self.transponder = transponder
-
-def SatfinderMain(session, **kwargs):
-	nims = nimmanager.getNimListOfType("DVB-S")
-
-	nimList = []
-	for x in nims:
-		if nimmanager.getNimConfig(x).configMode.getValue() in ("loopthrough", "satposdepends", "nothing"):
-			continue
-		if nimmanager.getNimConfig(x).configMode.getValue() == "advanced" and len(nimmanager.getSatListForNim(x)) < 1:
-			continue
-		nimList.append(x)
-
-	if len(nimList) == 0:
-		session.open(MessageBox, _("No satellites configured. Plese check your tuner setup."), MessageBox.TYPE_ERROR)
-	else:
-		if session.nav.RecordTimer.isRecording():
-			session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
-		else:
-			session.open(Satfinder)
-
-def SatfinderStart(menuid, **kwargs):
-	if menuid == "scan":
-		return [(_("Satfinder"), SatfinderMain, "satfinder", None)]
-	else:
-		return []
-
-def Plugins(**kwargs):
-	if (nimmanager.hasNimType("DVB-S")):
-		return PluginDescriptor(name=_("Satfinder"), description=_("Helps setting up your dish"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SatfinderStart)
-	else:
-		return []
