@@ -62,12 +62,6 @@ if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/VideoEnhancement/p
 else:
 	VIDEOENH = False
 
-if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/AutoResolution/plugin.pyo"):
-	from Plugins.SystemPlugins.AutoResolution.plugin import AutoResSetupMenu
-	AUTORES = True
-else:
-	AUTORES = False
-
 if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
 	from Plugins.Extensions.dFlash.plugin import dFlash
 	DFLASH = True
@@ -276,8 +270,6 @@ class QuickMenu(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Auto Language",_("Auto Language Selection"),_("Select your Language for Audio/Subtitles")))
 		if os_path.exists("/proc/stb/vmpeg/0/pep_apply") and VIDEOENH == True:
 			self.sublist.append(QuickSubMenuEntryComponent("VideoEnhancement",_("VideoEnhancement Setup"),_("VideoEnhancement Setup")))
-		if AUTORES == True:
-			self.sublist.append(QuickSubMenuEntryComponent("AutoResolution",_("AutoResolution Setup"),_("Automatically change resolution")))
 
 		self["sublist"].l.setList(self.sublist)
 
@@ -446,8 +438,6 @@ class QuickMenu(Screen):
 			self.session.open(AC3LipSyncSetup, plugin_path_audiosync)
 		elif item[0] == _("VideoEnhancement"):
 			self.session.open(VideoEnhancementSetup)
-		elif item[0] == _("AutoResolution"):
-			self.session.open(AutoResSetupMenu)
 ######## Select TUNER Setup Menu ##############################
 		elif item[0] == _("Tuner Configuration"):
 			self.session.open(NimSelection)

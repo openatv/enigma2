@@ -69,6 +69,8 @@ class VideoSetup(Screen, ConfigListScreen):
 		if config.av.videoport.getValue() in ('HDMI', 'YPbPr', 'Scart-YPbPr') and not path.exists(resolveFilename(SCOPE_PLUGINS)+'SystemPlugins/AutoResolution'):
 			self.list.append(getConfigListEntry(_("Automatic resolution"), config.av.autores,_("If enabled the output resolution of the box will try to match the resolution of the video contents resolution")))
 			self.list.append(getConfigListEntry(_("Automatic resolution label"), config.av.autores_label_timeout,_("Allows you to adjust the amount of time the resolution infomation display on screen.")))
+			self.list.append(getConfigListEntry(_("Automatic resolution 25p/30p"), config.av.autores_all_res,_("Allows these mode to be used (please note not all TV's support these modes).")))
+
 		# if we have modes for this port:
 		if (config.av.videoport.getValue() in config.av.videomode and config.av.autores.getValue() == 'disabled') or config.av.videoport.getValue() == 'Scart':
 			# add mode- and rate-selection:
@@ -338,10 +340,14 @@ class AutoVideoMode(Screen):
 				new_res = config_res
 
 			if video_rate != -1:
-				if video_rate in (29970, 30000, 59940, 60000):
-					new_rate = 60000
-				elif video_rate not in (23976, 24000):
+				if video_rate == 23976:
+					new_rate = 24000
+				elif video_rate == 29970 and config.av.autores_all_res.getValue() and video_pol == 'p':
+					new_rate = 30000
+				elif video_rate == 25000 and (not config.av.autores_all_res.getValue() or video_pol == 'i'):
 					new_rate = 50000
+				elif video_rate == 59940 or (video_rate == 29970 and (not config.av.autores_all_res.getValue() or video_pol == 'i')):
+					new_rate = 60000
 				else:
 					new_rate = video_rate
 				new_rate = str((new_rate + 500) / 1000)
@@ -373,6 +379,8 @@ class AutoVideoMode(Screen):
 				print 'new mode:',new_mode
 
 				write_mode = new_mode
+			elif config.av.autores.getValue() == 'hd' and int(new_res) <= 576:
+				write_mode = config_res+current_pol+current_rate
 			else:
 				if path.exists('/proc/stb/video/videomode_%shz' % new_rate) and config_rate == 'multi':
 					f = open("/proc/stb/video/videomode_%shz" % new_rate, "r")
