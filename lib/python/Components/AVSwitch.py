@@ -60,11 +60,11 @@ class AVSwitch:
 	# modes["DVI-PC"] = ["PC"]
 
 	if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1:
-		modes["HDMI"] = ["1080p", "1080i", "720p", "576p", "576i", "480p", "480i"]
-		widescreen_modes = set(["1080p", "1080i", "720p"])
+		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
+		widescreen_modes = set(["720p", "1080p", "1080i"])
 	else:
-		modes["HDMI"] = ["1080i", "720p", "576p", "576i", "480p", "480i"]
-		widescreen_modes = set(["1080i", "720p"])
+		modes["HDMI"] = ["720p", "1080i", "576p", "576i", "480p", "480i"]
+		widescreen_modes = set(["720p", "1080i"])
 
 	modes["YPbPr"] = modes["HDMI"]
 	if getBoxType().startswith('vu'):
