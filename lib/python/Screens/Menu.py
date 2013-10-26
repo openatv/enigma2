@@ -17,11 +17,12 @@ from Screens.Setup import Setup, getSetupTitle
 mdom = xml.etree.cElementTree.parse(resolveFilename(SCOPE_SKIN, 'menu.xml'))
 
 class boundFunction:
-	def __init__(self, fnc, *args):
+	def __init__(self, fnc, *args, **kwargs):
 		self.fnc = fnc
 		self.args = args
+		self.kwargs = kwargs
 	def __call__(self):
-		self.fnc(*self.args)
+		self.fnc(*self.args, **self.kwargs)
 		
 class MenuUpdater:
 	def __init__(self):
@@ -193,7 +194,7 @@ class Menu(Screen):
 					if x[2] == plugin_menuid:
 						list.remove(x)
 						break
-				list.append((l[0], boundFunction(l[1], self.session), l[2], l[3] or 50))
+				list.append((l[0], boundFunction(l[1], self.session, close=self.close), l[2], l[3] or 50))
 
 		# for the skin: first try a menu_<menuID>, then Menu
 		self.skinName = [ ]
