@@ -460,7 +460,7 @@ class Wizard(Screen):
 			
 	def updateText(self, firstset = False):
 		text = self.getTranslation(self.wizard[self.currStep]["text"])
-		if text.find("[timeout]") != -1:
+		if "[timeout]" in text:
 			text = text.replace("[timeout]", str(self.timeoutCounter))
 			self["text"].setText(text)
 		else:
