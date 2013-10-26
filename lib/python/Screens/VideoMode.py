@@ -302,7 +302,10 @@ class AutoVideoMode(Screen):
 			f.close()
 		if path.exists("/proc/stb/vmpeg/0/framerate"):
 			f = open("/proc/stb/vmpeg/0/framerate", "r")
-			video_rate = int(f.read())
+			try:
+				video_rate = int(f.read())
+			except:
+				video_rate = 50
 			f.close()
 
 		if not video_height or not video_width or not video_pol or not video_rate:
