@@ -346,7 +346,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.session.open(PluginBrowser)
 		
 	def showBoxPortal(self):
-		if enigma.getMachineBrand() == 'GI' or enigma.getBoxType().startswith('azbox'):
+		if enigma.getMachineBrand() == 'GI' or enigma.getBoxType().startswith('azbox') or enigma.getBoxType().startswith('ini') or enigma.getBoxType().startswith('venton'):
 			from Screens.BoxPortal import BoxPortal
 			self.session.open(BoxPortal)
 		else:
