@@ -120,7 +120,7 @@ class Dish(Screen):
 			return
 
 		tuner_type = data.get("tuner_type")
-		if tuner_type and tuner_type.find("DVB-S") != -1:
+		if tuner_type and "DVB-S" in tuner_type:
 			self.cur_orbpos = data.get("orbital_position", INVALID_POSITION)
 			if self.cur_orbpos != INVALID_POSITION:
 				config.misc.lastrotorposition.value = self.cur_orbpos

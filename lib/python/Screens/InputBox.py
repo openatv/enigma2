@@ -128,7 +128,7 @@ class PinInput(InputBox):
 			InputBox.keyNumberGlobal(self, number)
 		
 	def checkPin(self, pin):
-		if pin is not None and pin.find(" ") == -1 and int(pin) in self.pinList:
+		if pin is not None and " " not in pin and int(pin) in self.pinList:
 			return True
 		return False
 		
