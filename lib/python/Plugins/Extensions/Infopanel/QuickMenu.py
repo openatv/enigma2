@@ -20,6 +20,7 @@ from Screens.ScanSetup import ScanSimple, ScanSetup
 from Screens.Setup import Setup, getSetupTitle
 from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, HarddiskConvertExt4Selection
 from Screens.SkinSelector import LcdSkinSelector
+from Screens.VideoMode import VideoSetup
 
 from Plugins.Plugin import PluginDescriptor
 from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerSetup, RotorNimSelection
@@ -27,8 +28,6 @@ from Plugins.SystemPlugins.Satfinder.plugin import Satfinder, SatNimSelection
 from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
 from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
 from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
-from Plugins.SystemPlugins.Videomode.plugin import VideoSetup
-from Plugins.SystemPlugins.Videomode.VideoHardware import video_hw
 from Plugins.Extensions.Infopanel.RestartNetwork import RestartNetwork
 from Plugins.Extensions.Infopanel.MountManager import HddMount
 from Plugins.Extensions.Infopanel.SoftcamPanel import *
@@ -431,7 +430,7 @@ class QuickMenu(Screen):
 			self.session.open(ShowSoftcamPackages)
 ######## Select AV Setup Menu ##############################
 		elif item[0] == _("AV Settings"):
-			self.session.open(VideoSetup, video_hw)
+			self.session.open(VideoSetup)
 		elif item[0] == _("Auto Language"):
 			self.openSetup("autolanguagesetup")
 		elif item[0] == _("Audio Sync"):
