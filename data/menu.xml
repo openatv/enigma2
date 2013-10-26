@@ -37,7 +37,7 @@
 				<id val="scan" />
 				<item weight="10" text="Tuner configuration" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection" /></item>
 				<item weight="20" text="Automatic scan" entryID="auto_scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
-				<item weight="25" text="Blind scan" entryID="blind_scan"><plugin system="Blindscan" screen="Blindscan" /></item>
+				<item weight="25" text="Blind scan" entryID="blind_scan" requires="Blindscan"><plugin system="Blindscan" screen="Blindscan" /></item>
 				<item weight="30" text="Manual scan" entryID="manual_scan"><screen module="ScanSetup" /></item>
 			</menu>
 			<menu weight="5" level="0" text="System" entryID="system_selection">
