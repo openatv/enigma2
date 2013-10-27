@@ -74,7 +74,7 @@ class AVSwitch:
 		widescreen_modes = set(["720p", "1080p", "1080i"])
 	else:
 		modes["HDMI"] = ["720p", "1080i", "576p", "576i", "480p", "480i"]
-		widescreen_modes = set(["720p", "1080i"]))
+		widescreen_modes = set(["720p", "1080i"])
 
 	modes["YPbPr"] = modes["HDMI"]
 	if getBoxType().startswith('vu') or getBoxType() == 'dm500hd' or getBoxType() == 'dm800':
