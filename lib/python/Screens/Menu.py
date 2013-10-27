@@ -218,7 +218,10 @@ class Menu(Screen):
 					if x[2] == plugin_menuid:
 						list.remove(x)
 						break
-				list.append((l[0], boundFunction(l[1], self.session, close=self.close), l[2], l[3] or 50))
+				if len(l) > 4 and l[4]:
+					list.append((l[0], boundFunction(l[1], self.session, self.close), l[2], l[3] or 50))
+				else:
+					list.append((l[0], boundFunction(l[1], self.session), l[2], l[3] or 50))
 
 		# for the skin: first try a menu_<menuID>, then Menu
 		self.skinName = [ ]
