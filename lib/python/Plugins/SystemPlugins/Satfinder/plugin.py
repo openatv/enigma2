@@ -17,7 +17,6 @@ from Components.TuneTest import Tuner
 class Satfinder(ScanSetup):
 	def __init__(self, session):
 		self.initcomplete = False
-		self.oldref = None
 		self.frontendData = None
 		service = session and session.nav.getCurrentService()
 		feinfo = service and service.frontendInfo()
@@ -38,28 +37,9 @@ class Satfinder(ScanSetup):
 		}, -3)
 
 		self.initcomplete = True
-		self.oldref = self.session.nav.getCurrentlyPlayingServiceReference()
+		self.session.postScanService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.onClose.append(self.__onClose)
 		self.onShow.append(self.prepareFrontend)
-
-	def preStart(self):
-		nims = nimmanager.getNimListOfType("DVB-S")
-
-		nimList = []
-		for x in nims:
-			if nimmanager.getNimConfig(x).configMode.getValue() in ("loopthrough", "satposdepends", "nothing"):
-				continue
-			if nimmanager.getNimConfig(x).configMode.getValue() == "advanced" and len(nimmanager.getSatListForNim(x)) < 1:
-				continue
-			nimList.append(x)
-
-		if len(nimList) == 0:
-			self.session.openWithCallback(self.close, MessageBox, _("No satellites configured. Plese check your tuner setup."), MessageBox.TYPE_ERROR)
-		else:
-			if session.nav.RecordTimer.isRecording():
-				self.session.openWithCallback(self.close, MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
-			else:
-				self.prepareFrontend()
 
 	def openFrontend(self):
 		res_mgr = eDVBResourceManager.getInstance()
@@ -69,12 +49,6 @@ class Satfinder(ScanSetup):
 				self.frontend = self.raw_channel.getFrontend()
 				if self.frontend:
 					return True
-				else:
-					print "getFrontend failed"
-			else:
-				print "getRawChannel failed"
-		else:
-			print "getResourceManager instance failed"
 		return False
 
 	def prepareFrontend(self):
@@ -91,12 +65,12 @@ class Satfinder(ScanSetup):
 		self.retune(None)
 
 	def __onClose(self):
-		self.session.nav.playService(self.oldref)
+		self.session.nav.playService(self.session.postScanService)
 
 	def createSetup(self):
 		self.list = []
 		self.satfinderTunerEntry = getConfigListEntry(_("Tuner"), self.satfinder_scan_nims)
-		self.list.append(self.satfinderTunerEntry)		
+		self.list.append(self.satfinderTunerEntry)
 		self.tuning_sat = self.scan_satselection[self.getSelectedSatIndex(self.feid)]
 		self.satEntry = getConfigListEntry(_('Satellite'), self.tuning_sat)
 		self.list.append(self.satEntry)
@@ -185,7 +159,7 @@ class Satfinder(ScanSetup):
 			self.scan_sat.fec_s2, self.scan_sat.fec, self.scan_sat.modulation,
 			self.scan_sat.rolloff, self.scan_sat.system):
 			x.addNotifier(self.retune, initial_call = False)
-			
+
 		satfinder_nim_list = []
 		for n in nimmanager.nim_slots:
 			if not n.isCompatible("DVB-S"):
@@ -197,7 +171,7 @@ class Satfinder(ScanSetup):
 			satfinder_nim_list.append((str(n.slot), n.friendly_full_description))
 		self.satfinder_scan_nims = ConfigSelection(choices = satfinder_nim_list)
 		self.feid = int(self.satfinder_scan_nims.value)
-		
+
 		self.satList = []
 		self.scan_satselection = []
 		for slot in nimmanager.nim_slots:
@@ -206,7 +180,7 @@ class Satfinder(ScanSetup):
 				self.scan_satselection.append(getConfigSatlist(self.orbital_position, self.satList[slot.slot]))
 			else:
 				self.satList.append(None)
-		
+
 	def getSelectedSatIndex(self, v):
 		index    = 0
 		none_cnt = 0
@@ -247,13 +221,44 @@ class Satfinder(ScanSetup):
 		self.keyGo()
 
 	def keyCancel(self):
-		if self.oldref and self.frontend:
+		if self.session.postScanService and self.frontend:
 			self.frontend = None
 			del self.raw_channel
-		self.close(None)
+		self.close(False)
 
 	def tune(self, transponder):
 		if self.initcomplete:
 			if transponder is not None:
 				self.tuner.tune(transponder)
 				self.transponder = transponder
+
+def SatfinderMain(session, close=None, **kwargs):
+	nims = nimmanager.getNimListOfType("DVB-S")
+
+	nimList = []
+	for x in nims:
+		if nimmanager.getNimConfig(x).configMode.value in ("loopthrough", "satposdepends", "nothing"):
+			continue
+		if nimmanager.getNimConfig(x).configMode.value == "advanced" and len(nimmanager.getSatListForNim(x)) < 1:
+			continue
+		nimList.append(x)
+
+	if len(nimList) == 0:
+		session.open(MessageBox, _("No satellites configured. Plese check your tuner setup."), MessageBox.TYPE_ERROR)
+	else:
+		if session.nav.RecordTimer.isRecording():
+			session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
+		else:
+			session.openWithCallback(close, Satfinder)
+
+def SatfinderStart(menuid, **kwargs):
+	if menuid == "scan":
+		return [(_("Satfinder"), SatfinderMain, "satfinder", 35)]
+	else:
+		return []
+
+def Plugins(**kwargs):
+	if (nimmanager.hasNimType("DVB-S")):
+		return PluginDescriptor(name=_("Satfinder"), description=_("Helps setting up your dish"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SatfinderStart)
+	else:
+		return []
