@@ -198,18 +198,13 @@
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<!-- Movie progress -->
-		<widget source="Service" render="EMCPositionGauge" position="1,40" size="94,8" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/OLED_Pointer.png:94,0" transparent="1" >
-			<convert type="EMCServicePosition">Position</convert>
-		</widget>
+		<widget source="session.CurrentService" render="Progress" position="1,40" size="94,8" zPosition="2" borderWidth="1">
+			<convert type="ServicePosition">Position</convert>
+		</widget> 
 		<!-- Movie recording progress -->
 		<widget source="Service" render="EMCPositionGauge" position="1,40" size="94,8" zPosition="1" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/OLED_RecPointer.png:94,0" transparent="1" >
 			<convert type="EMCRecordPosition">Position</convert>
 		</widget>
-		<!-- Progress border -->
-		<eLabel position="0,39" size="96,1" backgroundColor="#3D3DFF" />
-		<eLabel position="0,39" size="1,8" backgroundColor="#3D3DFF" />
-		<eLabel position="95,39" size="1,8" backgroundColor="#3D3DFF" />
-		<eLabel position="0,47" size="96,1" backgroundColor="#3D3DFF" />
 		<!-- Current time -->
 		<widget source="global.CurrentTime" render="Label" position="0,48" size="48,16" font="Regular;16" halign="left" >
 			<convert type="ClockToText">Default</convert>
