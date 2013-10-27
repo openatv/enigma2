@@ -68,8 +68,9 @@ class VideoSetup(Screen, ConfigListScreen):
 		]
 		if config.av.videoport.getValue() in ('HDMI', 'YPbPr', 'Scart-YPbPr') and not path.exists(resolveFilename(SCOPE_PLUGINS)+'SystemPlugins/AutoResolution'):
 			self.list.append(getConfigListEntry(_("Automatic resolution"), config.av.autores,_("If enabled the output resolution of the box will try to match the resolution of the video contents resolution")))
-			self.list.append(getConfigListEntry(_("Automatic resolution label"), config.av.autores_label_timeout,_("Allows you to adjust the amount of time the resolution infomation display on screen.")))
-			self.list.append(getConfigListEntry(_("Automatic resolution 25p/30p"), config.av.autores_all_res,_("Allows these mode to be used (please note not all TV's support these modes).")))
+			if config.av.autores.getValue() in ('all', 'hd'):
+				self.list.append(getConfigListEntry(_("Automatic resolution label"), config.av.autores_label_timeout,_("Allows you to adjust the amount of time the resolution infomation display on screen.")))
+				self.list.append(getConfigListEntry(_("Allow 25Hz/30Hz"), config.av.autores_all_res,_("With this option enabled these refresh rates will be used. (please note not all TV's support these rates).")))
 
 		# if we have modes for this port:
 		if (config.av.videoport.getValue() in config.av.videomode and config.av.autores.getValue() == 'disabled') or config.av.videoport.getValue() == 'Scart':

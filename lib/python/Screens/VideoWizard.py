@@ -96,9 +96,7 @@ class VideoWizard(WizardLanguage, Rc):
 		self.mode = None
 		self.rate = None
 
-
 	def createSummary(self):
-		print "++++++++++++***++**** VideoWizard-createSummary"
 		from Screens.Wizard import WizardSummary
 		return VideoWizardSummary
 
@@ -174,10 +172,7 @@ class VideoWizard(WizardLanguage, Rc):
 	def modeSelect(self, mode):
 		ratesList = self.listRates(mode)
 		print "ratesList:", ratesList
-		if self.port == "DVI" and mode in ("720p", "1080i", "1080p") and (about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1):
-			self.rate = "multi"
-			self.hw.setMode(port = self.port, mode = mode, rate = "multi")
-		elif self.port == "DVI" and mode in ("720p", "1080i"):
+		if self.port == "HDMI" and mode in ("720p", "1080i", "1080p"):
 			self.rate = "multi"
 			self.hw.setMode(port = self.port, mode = mode, rate = "multi")
 		else:
@@ -224,9 +219,9 @@ class VideoWizard(WizardLanguage, Rc):
 	def keyNumberGlobal(self, number):
 		if number in (1,2,3):
 			if number == 1:
-				self.hw.saveMode("DVI", "720p", "multi")
+				self.hw.saveMode("HDMI", "720p", "multi")
 			elif number == 2:
-				self.hw.saveMode("DVI", "1080i", "multi")
+				self.hw.saveMode("HDMI", "1080i", "multi")
 			elif number == 3:
 				self.hw.saveMode("Scart", "Multi", "multi")
 			self.hw.setConfiguredMode()
