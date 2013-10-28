@@ -1273,6 +1273,14 @@ void eDVBScan::getLastServiceName(std::string &last_service_name)
 		last_service_name = m_last_service->second->m_service_name;
 }
 
+void eDVBScan::getLastServiceRef(std::string &last_service_ref)
+{
+	if (m_last_service == m_new_services.end())
+		last_service_ref = "";
+	else
+		last_service_ref = m_last_service->first.toString();
+}
+
 RESULT eDVBScan::getFrontend(ePtr<iDVBFrontend> &fe)
 {
 	if (m_channel)
