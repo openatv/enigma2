@@ -34,8 +34,8 @@ class ServiceScan(Screen):
 	def ok(self):
 		print "ok"
 		if self["scan"].isDone():
-			selectedChannel = self["servicelist"].getCurrentSelection()
-			if selectedChannel and self.currentInfobar.__class__.__name__ == "InfoBar":
+			selectedChannelRefstring = self["servicelist"].getCurrentSelection()[1]
+			if selectedChannelRefstring and self.currentInfobar.__class__.__name__ == "InfoBar":
 				if self.currentServiceList is not None:
 					self.currentServiceList.setTvMode()
 					bouquets = self.currentServiceList.getBouquetList()
@@ -43,11 +43,10 @@ class ServiceScan(Screen):
 						if x[0] == 'Last Scanned':
 							self.currentServiceList.setRoot(x[1])
 							services = eServiceCenter.getInstance().list(self.currentServiceList.servicelist.getRoot())
-							channels = services and services.getContent("R", True)
-							for channel in channels:
-								if selectedChannel == ServiceReference(channel.toString()).getServiceName():
-									self.session.postScanService = channel
-									self.currentServiceList.addToHistory(channel)
+							for service in services and services.getContent("R", True):
+								if selectedChannelRefstring == service.toString():
+									self.session.postScanService = service
+									self.currentServiceList.addToHistory(service)
 									self.close(True)
 			self.close(False)
 
