@@ -3,6 +3,7 @@ from enigma import eDVBResourceManager,\
 
 from Screens.Screen import Screen
 from Screens.ScanSetup import ScanSetup
+from Screens.ServiceScan import ServiceScan
 from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 
@@ -14,7 +15,7 @@ from Components.MenuList import MenuList
 from Components.config import ConfigSelection, getConfigListEntry
 from Components.TuneTest import Tuner
 
-class Satfinder(ScanSetup):
+class Satfinder(ScanSetup, ServiceScan):
 	def __init__(self, session):
 		self.initcomplete = False
 		self.frontendData = None
@@ -196,29 +197,32 @@ class Satfinder(ScanSetup):
 		ScanSetup.predefinedTranspondersList(self, self.tuning_sat.orbital_position)
 		self.preDefTransponders.addNotifier(self.retune, initial_call = False)
 
-	def keyGoScan(self):
-		self.frontend = None
-		del self.raw_channel
+ 	def keyGoScan(self):
+ 		self.frontend = None
+ 		del self.raw_channel
+		tlist = []
+		self.addSatTransponder(tlist,
+			self.transponder[0], # frequency
+			self.transponder[1], # sr
+			self.transponder[2], # pol
+			self.transponder[3], # fec
+			self.transponder[4], # inversion
+			self.tuning_sat.orbital_position,
+			self.transponder[6], # system
+			self.transponder[7], # modulation
+			self.transponder[8], # rolloff
+			self.transponder[9]  # pilot
+		)
+		self.startScan(tlist, self.feid)
 
-		self.updateSatList()
+	def startScan(self, tlist, feid):
+		flags = 0
+		networkid = 0
+		self.session.openWithCallback(self.startScanCallback, ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags, "networkid": networkid}])
 
-		self.scan_satselection = [ self.tuning_sat ]
-		self.satfinder = True
-
-		self.scan_sat.frequency.value = self.transponder[0]
-		self.scan_sat.symbolrate.value = self.transponder[1]
-		self.scan_sat.polarization.value = self.transponder[2]
-		if self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S:
-			self.scan_sat.fec.value = self.transponder[3]
-		else:
-			self.scan_sat.fec_s2.value = self.transponder[3]
-		self.scan_sat.inversion.value = self.transponder[4]
-		self.scan_sat.system.value = self.transponder[6]
-		self.scan_sat.modulation.value = self.transponder[7]
-		self.scan_sat.rolloff.value = self.transponder[8]
-		self.scan_sat.pilot.value = self.transponder[9]
-
-		self.keyGo()
+	def startScanCallback(self, answer):
+		if answer:
+			self.doCloseRecursive()
 
 	def keyCancel(self):
 		if self.session.postScanService and self.frontend:
