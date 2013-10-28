@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# date: 05.12.2012  16:51:56
+# date: 28.10.2013  22:51:41
 #
 
 LANG_TEXT = {
@@ -20,6 +20,12 @@ LANG_TEXT = {
 	 "T2": "Избор Език",
 	 "T3": "Отказ",
 	 "T4": "Запази",
+},
+"nb_NO": {
+	 "T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
+	 "T2": "Language selection",
+	 "T3": "Cancel",
+	 "T4": "Save",
 },
 "ca_AD": {
 	 "T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
@@ -58,13 +64,13 @@ LANG_TEXT = {
 	 "T4": "Save",
 },
 "es_ES": {
-	 "T1": "Use las teclas ARRIBA y ABAJO para seleccionar su idioma. Después, pulse el botón OK.",
+	 "T1": "Usa las teclas ARRIBA y ABAJO para seleccionar el idioma. Después, pulsa el botón OK.",
 	 "T2": "Selección de idioma",
 	 "T3": "Cancelar",
 	 "T4": "Guardar",
 },
 "et_EE": {
-	 "T1": "Kasuta keele valimiseks 'ÜLES' ja 'ALLA' nuppe. Valimiseks vajuta OK.",
+	 "T1": "Kasuta keele valimiseks 'ÜLES' ja 'ALLA' nuppe, seejärel vajuta OK.",
 	 "T2": "Keele valik",
 	 "T3": "Tühista",
 	 "T4": "Salvesta",
@@ -123,6 +129,12 @@ LANG_TEXT = {
 	 "T3": "Annull.",
 	 "T4": "Salvare",
 },
+"ku_KU": {
+	 "T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
+	 "T2": "Language selection",
+	 "T3": "Berdi",
+	 "T4": "Save",
+},
 "lt_LT": {
 	 "T1": "Prašome naudoti AUKŠTYN IR ŽEMYN mygtukus, kad išsirinktumėte savo kalbą. Po to spauskite OK mygtuką.",
 	 "T2": "Kalbos pasirinkimas",
@@ -141,16 +153,16 @@ LANG_TEXT = {
 	 "T3": "Annuleren",
 	 "T4": "Opslaan",
 },
-"no_NO": {
-	 "T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
-	 "T2": "Språkvalg",
-	 "T3": "Avbryte",
-	 "T4": "Save",
-},
 "nb_NO": {
 	 "T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
 	 "T2": "Language selection",
 	 "T3": "Cancel",
+	 "T4": "Save",
+},
+"no_NO": {
+	 "T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
+	 "T2": "Språkvalg",
+	 "T3": "Avbryte",
 	 "T4": "Save",
 },
 "pl_PL": {
