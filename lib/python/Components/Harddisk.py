@@ -548,7 +548,7 @@ class Partition:
 			return None
 
 	def tabbedDescription(self):
-		if self.mountpoint.startswith('/media/net'):
+		if self.mountpoint.startswith('/media/net') or self.mountpoint.startswith('/media/autofs'):
 			# Network devices have a user defined name
 			return self.description
 		return self.description + '\t' + self.mountpoint
@@ -687,6 +687,12 @@ class HarddiskManager:
 				if os.path.ismount('/media/net/' + fil):
 					print "new Network Mount", fil, '->', os.path.join('/media/net/',fil)
 					self.partitions.append(Partition(mountpoint = os.path.join('/media/net/',fil), description = fil))
+		autofsmount = (os.path.exists('/media/autofs') and os.listdir('/media/autofs')) or ""
+		if len(autofsmount) > 0:
+			for fil in autofsmount:
+				if os.path.exists('/media/autofs/' + fil):
+					print "new Network Mount", fil, '->', os.path.join('/media/autofs/',fil)
+					self.partitions.append(Partition(mountpoint = os.path.join('/media/autofs/',fil), description = fil))
 		if os.path.ismount('/media/hdd') and '/media/hdd/' not in [p.mountpoint for p in self.partitions]:
 			print "new Network Mount being used as HDD replacement -> /media/hdd/"
 			self.partitions.append(Partition(mountpoint = '/media/hdd/', description = '/media/hdd'))
