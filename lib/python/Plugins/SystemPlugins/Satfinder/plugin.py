@@ -226,6 +226,12 @@ class Satfinder(ScanSetup):
 			del self.raw_channel
 		self.close(False)
 
+	def doCloseRecursive(self):
+		if self.session.postScanService and self.frontend:
+			self.frontend = None
+			del self.raw_channel
+		self.close(True)
+
 	def tune(self, transponder):
 		if self.initcomplete:
 			if transponder is not None:
