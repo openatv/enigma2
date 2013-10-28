@@ -3,6 +3,7 @@ from enigma import eDVBResourceManager,\
 
 from Screens.Screen import Screen
 from Screens.ScanSetup import ScanSetup
+from Screens.ServiceScan import ServiceScan
 from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 
@@ -14,7 +15,7 @@ from Components.MenuList import MenuList
 from Components.config import ConfigSelection, getConfigListEntry
 from Components.TuneTest import Tuner
 
-class Satfinder(ScanSetup):
+class Satfinder(ScanSetup, ServiceScan):
 	def __init__(self, session):
 		self.initcomplete = False
 		self.frontendData = None
@@ -199,26 +200,30 @@ class Satfinder(ScanSetup):
 	def keyGoScan(self):
 		self.frontend = None
 		del self.raw_channel
-
-		self.updateSatList()
-
-		self.scan_satselection = [ self.tuning_sat ]
-		self.satfinder = True
-
-		self.scan_sat.frequency.setValue(self.transponder[0])
-		self.scan_sat.symbolrate.setValue(self.transponder[1])
-		self.scan_sat.polarization.setValue(self.transponder[2])
-		if self.scan_sat.system.getValue() == eDVBFrontendParametersSatellite.System_DVB_S:
-			self.scan_sat.fec.setValue(self.transponder[3])
-		else:
-			self.scan_sat.fec_s2.setValue(self.transponder[3])
-		self.scan_sat.inversion.setValue(self.transponder[4])
-		self.scan_sat.system.setValue(self.transponder[6])
-		self.scan_sat.modulation.setValue(self.transponder[7])
-		self.scan_sat.rolloff.setValue(self.transponder[8])
-		self.scan_sat.pilot.setValue(self.transponder[9])
-
-		self.keyGo()
+		tlist = []
+		self.addSatTransponder(tlist, 
+								self.transponder[0], # frequency
+								self.transponder[1], # sr
+								self.transponder[2], # pol
+								self.transponder[3], # fec
+								self.transponder[4], # inversion
+								self.tuning_sat.orbital_position,
+								self.transponder[6], # system
+								self.transponder[7], # modulation
+								self.transponder[8], # rolloff
+								self.transponder[9]  # pilot
+								)
+		self.startScan(tlist, self.feid)				
+		
+	def startScan(self, tlist, feid):
+		flags = 0
+		networkid = 0
+		self.session.openWithCallback(self.startScanCallback, ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags, "networkid": networkid}])
+		
+	def startScanCallback(self, answer):
+		if answer:
+			self.session.nav.playService(self.session.postScanService)
+			self.close(True)	
 
 	def keyCancel(self):
 		if self.session.postScanService and self.frontend:

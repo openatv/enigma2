@@ -286,7 +286,6 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.updateSatList()
 		self.service = session.nav.getCurrentService()
 		self.feinfo = None
-		self.satfinder = False
 		self.networkid = 0
 		frontendData = None
 		if self.service is not None:
@@ -777,7 +776,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.session.open(MessageBox, _("No tuner is enabled!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 			return
 
-		nim = self.satfinder and nimmanager.nim_slots[self.feid] or nimmanager.nim_slots[index_to_scan]
+		nim = nimmanager.nim_slots[index_to_scan]
 		print "nim", nim.slot
 		if nim.isCompatible("DVB-S"):
 			print "is compatible with DVB-S"
@@ -786,8 +785,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				assert len(self.satList) > index_to_scan
 				assert len(self.scan_satselection) > index_to_scan
 
-				nimsats = self.satfinder and self.satList[self.feid] or self.satList[index_to_scan]
-				selsatidx = (not self.satfinder and self.scan_satselection[index_to_scan].index) or self.scan_satselection[0].index
+				nimsats = self.satList[index_to_scan]
+				selsatidx = self.scan_satselection[index_to_scan].index
 
 				# however, the satList itself could be empty. in that case, "index" is 0 (for "None").
 				if len(nimsats):
@@ -878,9 +877,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		for x in self["config"].list:
 			x[1].save()
 
-		if startScan and self.satfinder:
-			self.startScan(tlist, flags, self.feid, self.networkid)
-		elif startScan:
+		if startScan:
 			self.startScan(tlist, flags, index_to_scan, self.networkid)
 		else:
 			self.flags = flags
