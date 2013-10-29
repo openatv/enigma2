@@ -70,6 +70,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		if config.av.videoport.getValue() in ('HDMI', 'YPbPr', 'Scart-YPbPr') and not path.exists(resolveFilename(SCOPE_PLUGINS)+'SystemPlugins/AutoResolution'):
 			self.list.append(getConfigListEntry(_("Automatic resolution"), config.av.autores,_("If enabled the output resolution of the box will try to match the resolution of the video contents resolution")))
 			if config.av.autores.getValue() in ('all', 'hd'):
+				self.list.append(getConfigListEntry(_("Delay time"), config.av.autores_delay,_("Set the time before checking video source for resolution infomation.")))
 				self.list.append(getConfigListEntry(_("Force de-interlace"), config.av.autores_deinterlace,_("If enabled the video wil always be de-interlaced.")))
 				self.list.append(getConfigListEntry(_("Automatic resolution label"), config.av.autores_label_timeout,_("Allows you to adjust the amount of time the resolution infomation display on screen.")))
 				if config.av.autores.getValue() in ('hd'):
@@ -244,9 +245,9 @@ class AutoVideoMode(Screen):
 		print 'REF:',self.session.nav.getCurrentlyPlayingServiceReference().toString()
 		print 'IS STREAM:',self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('4097:')
 		if self.session.nav.getCurrentlyPlayingServiceReference() and not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('4097:'):
-			delay = 400
+			delay = config.av.autores_delay.getValue()
 		else:
-			delay = 800
+			delay = config.av.autores_delay.getValue() * 2
 		if not self.detecttimer.isActive() and not self.delay:
 			print 'TEST 1:',delay
 			self.delay = True
