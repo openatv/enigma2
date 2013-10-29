@@ -473,7 +473,7 @@ def InitAVSwitch():
 		f = open("/proc/stb/audio/ac3_choices", "r")
 		file = f.read()[:-1]
 		f.close()
-		can_downmix = file.find("downmix") != -1
+		can_downmix = "downmix" in file
 	except:
 		can_downmix = False
 
