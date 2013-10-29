@@ -607,7 +607,7 @@ class ChannelSelectionEdit:
 					self.servicelist.addService(new_ref.ref, True)
 					self.servicelist.removeCurrent()
 					self.servicelist.moveUp()
-					if cur_service.ref == self.session.nav.getCurrentlyPlayingServiceOrGroup():
+					if cur_service.ref.toString() == self.lastservice.value:
 						self.saveChannel(new_ref.ref)
 					if self.startServiceRef and cur_service.ref == self.startServiceRef:
 						self.startServiceRef = new_ref.ref
@@ -673,7 +673,7 @@ class ChannelSelectionEdit:
 			if edit_root:
 				if not edit_root.addService(first_in_alternative, cur_service.ref):
 					self.servicelist.addService(first_in_alternative, True)
-					if cur_service.ref == self.session.nav.getCurrentlyPlayingServiceOrGroup():
+					if cur_service.ref.toString() == self.lastservice.value:
 						self.saveChannel(first_in_alternative)
 					if self.startServiceRef and cur_service.ref == self.startServiceRef:
 						self.startServiceRef = first_in_alternative
