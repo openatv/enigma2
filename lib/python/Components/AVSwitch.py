@@ -344,6 +344,7 @@ def InitAVSwitch():
 	for i in range(5, 16):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
 	config.av.autores_label_timeout = ConfigSelection(default = "5", choices = [("0", _("Not Shown"))] + choicelist)
+	config.av.autores_delay = ConfigSelectionNumber(min = 200, max = 3000, stepwidth = 200, default = 400, wraparound = True)
 	config.av.autores_deinterlace = ConfigYesNo(default=False)
 	config.av.autores_sd = ConfigSelection(choices={"720p": _("720p"), "1080i": _("1080i")}, default="720p")
 	config.av.autores_720p24 = ConfigSelection(choices={"720p24": _("720p 24Hz"), "1080p24": _("1080p 24Hz")}, default="720p24")
@@ -473,7 +474,7 @@ def InitAVSwitch():
 		f = open("/proc/stb/audio/ac3_choices", "r")
 		file = f.read()[:-1]
 		f.close()
-		can_downmix = file.find("downmix") != -1
+		can_downmix = "downmix" in file
 	except:
 		can_downmix = False
 
