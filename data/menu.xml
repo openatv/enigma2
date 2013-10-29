@@ -163,9 +163,9 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 			<id val="shutdown" />
 			<item text="Deep Standby" requires="DeepstandbySupport" entryID="deep_standby">
 <code>
-recordings = self.session.nav.RecordTimer.isRecTimerWakeup() or self.session.nav.RecordTimer.isRecording()
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
+recordings = self.session.nav.getRecordings()
 if recordings:
 	lastrecordEnd = 0
 	for timer in self.session.nav.RecordTimer.timer_list:
