@@ -201,35 +201,40 @@ class Satfinder(ScanSetup, ServiceScan):
 		self.frontend = None
 		del self.raw_channel
 		tlist = []
-		self.addSatTransponder(tlist, 
-								self.transponder[0], # frequency
-								self.transponder[1], # sr
-								self.transponder[2], # pol
-								self.transponder[3], # fec
-								self.transponder[4], # inversion
-								self.tuning_sat.orbital_position,
-								self.transponder[6], # system
-								self.transponder[7], # modulation
-								self.transponder[8], # rolloff
-								self.transponder[9]  # pilot
-								)
-		self.startScan(tlist, self.feid)				
-		
+		self.addSatTransponder(tlist,
+			self.transponder[0], # frequency
+			self.transponder[1], # sr
+			self.transponder[2], # pol
+			self.transponder[3], # fec
+			self.transponder[4], # inversion
+			self.tuning_sat.orbital_position,
+			self.transponder[6], # system
+			self.transponder[7], # modulation
+			self.transponder[8], # rolloff
+			self.transponder[9]  # pilot
+		)
+		self.startScan(tlist, self.feid)
+
 	def startScan(self, tlist, feid):
 		flags = 0
 		networkid = 0
 		self.session.openWithCallback(self.startScanCallback, ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags, "networkid": networkid}])
-		
+
 	def startScanCallback(self, answer):
 		if answer:
-			self.session.nav.playService(self.session.postScanService)
-			self.close(True)	
+			self.doCloseRecursive()
 
 	def keyCancel(self):
 		if self.session.postScanService and self.frontend:
 			self.frontend = None
 			del self.raw_channel
 		self.close(False)
+
+	def doCloseRecursive(self):
+		if self.session.postScanService and self.frontend:
+			self.frontend = None
+			del self.raw_channel
+		self.close(True)
 
 	def tune(self, transponder):
 		if self.initcomplete:
