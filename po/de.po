@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-26 16:32+0200\n"
-"PO-Revision-Date: 2013-10-28 09:49+0100\n"
+"POT-Creation-Date: 2013-10-30 00:47+0100\n"
+"PO-Revision-Date: 2013-10-30 08:20+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -343,6 +343,24 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
+msgid "1080i"
+msgstr ""
+
+msgid "1080p 24Hz"
+msgstr ""
+
+msgid "1080p 25Hz"
+msgstr ""
+
+msgid "1080p 30Hz"
+msgstr ""
+
+msgid "1080p 50Hz"
+msgstr ""
+
+msgid "1080p 60Hz"
+msgstr ""
+
 msgid "12V output"
 msgstr "12V-Ausgang"
 
@@ -423,6 +441,12 @@ msgstr "4:3 PanScan"
 
 msgid "4X"
 msgstr "4X"
+
+msgid "720p"
+msgstr ""
+
+msgid "720p 24Hz"
+msgstr ""
 
 msgid "<Current movielist location>"
 msgstr "<Aktuelles Filmverzeichnis>"
@@ -827,9 +851,6 @@ msgstr "Reservieren"
 msgid "Allocate unused memory index"
 msgstr "Unbenutzten Speicher Index reservieren"
 
-msgid "Allow 25Hz/30Hz"
-msgstr "25Hz/30Hz erlauben"
-
 msgid "Allow quit movieplayer with exit"
 msgstr "Erlaube Mediaplayer mit Exit verlassen "
 
@@ -1224,9 +1245,6 @@ msgstr "Schwarzes Bild"
 
 msgid "Black screen till locked"
 msgstr "Schwarzes Bild bis Abschluss"
-
-msgid "Blind scan"
-msgstr ""
 
 msgid "Block noise reduction"
 msgstr "Block Noise Reduzierung"
@@ -2399,6 +2417,9 @@ msgstr "Verzögerung bevor Tastenwiederholung startet:"
 msgid "Delay for external subtitles"
 msgstr "Verzögerung für externe Untertitel"
 
+msgid "Delay time"
+msgstr "Zeitverzögerung"
+
 msgid "Delay:"
 msgstr "Verzögerung:"
 
@@ -3211,6 +3232,9 @@ msgstr "Folgendes wird ausgeführt, nachdem OK gedrückt wurde!"
 msgid "Fontsize"
 msgstr "Schriftgröße"
 
+msgid "Force de-interlace"
+msgstr "DeInterlacing erzwingen"
+
 msgid "Format"
 msgstr "Formatieren"
 
@@ -3586,6 +3610,9 @@ msgid ""
 msgstr ""
 "Wenn aktiviert wird versucht die Auflösung des Bildes der Auflösung des "
 "Films anzupassen."
+
+msgid "If enabled the video wil always be de-interlaced."
+msgstr "Wenn aktiviert wird das Video immer von der Box DeInterlaced"
 
 msgid ""
 "If logs are using the set maximum space used the eldest will be deleted."
@@ -4688,8 +4715,8 @@ msgstr "Anzahl von Elementen wechseln (erhöhen oder verringern)"
 msgid "No positioner capable frontend found."
 msgstr "Keinen rotortauglichen Tuner gefunden."
 
-msgid "No satellite frontend found!!"
-msgstr "Kein Satellit-Tuner gefunden"
+msgid "No satellites configured. Plese check your tuner setup."
+msgstr "Keine Satelliten konfiguriert. Bitte Tuner-Einstellungen prüfen."
 
 msgid "No service"
 msgstr "Kein Sender"
@@ -6567,6 +6594,9 @@ msgstr "Setze den Namen den die Aufnahme bekommen soll."
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Wähle die Durchlaufgeschwindigkeit für Text im Display"
 
+msgid "Set the time before checking video source for resolution infomation."
+msgstr "Systemzeit setzen vor Prüfung der Videoauflösung."
+
 msgid "Set the time the timer must start."
 msgstr "Setze die Zeit für den Start des Timers."
 
@@ -6677,6 +6707,18 @@ msgstr "Kurze Dateinamen"
 msgid "Show /tmp/ecm.info"
 msgstr "Zeige /tmp/ecm.info"
 
+msgid "Show 1080p 24fps as"
+msgstr "Zeige 1080p 24FPS als"
+
+msgid "Show 1080p 25fps as"
+msgstr "Zeige 1080p 25FPS als"
+
+msgid "Show 1080p 30fps as"
+msgstr "Zeige 1080p 30FPS als"
+
+msgid "Show 720p 24fps as"
+msgstr "Zeige 720p 24FPS als"
+
 msgid "Show AutoTimer List"
 msgstr "Zeige AutoTimer Liste"
 
@@ -6724,6 +6766,9 @@ msgstr "Zeige UHF Modulator Einstellungen..."
 
 msgid "Show Readers/Proxies"
 msgstr "Zeige Kartenleser/Proxies"
+
+msgid "Show SD as"
+msgstr "Zeige SD als"
 
 msgid "Show Time Remaining/Elapsed"
 msgstr "Zeige Zeit bei TV verbleibend/verstrichen"
@@ -7809,6 +7854,39 @@ msgid ""
 "available."
 msgstr ""
 "Diese Option gibt dir die Wahl zwischen den beiden verfügbaren Senderlisten."
+
+msgid ""
+"This option allows you to choose how to display 1080p 24Hz on your TV. (as "
+"not all TV's support these resolutions)"
+msgstr ""
+"Diese Option erlaubt es einzustellen wie ein 1080p 24Hz Video angezeigt "
+"wird. (Niicht alle Fernseher unterstützen alle Formate)"
+
+msgid ""
+"This option allows you to choose how to display 1080p 25Hz on your TV. (as "
+"not all TV's support these resolutions)"
+msgstr ""
+"Diese Option erlaubt es einzustellen wie ein 1080p 25Hz Video angezeigt "
+"wird. (Niicht alle Fernseher unterstützen alle Formate)"
+
+msgid ""
+"This option allows you to choose how to display 1080p 30Hz on your TV. (as "
+"not all TV's support these resolutions)"
+msgstr ""
+"Diese Option erlaubt es einzustellen wie ein 1080p 30Hz Video angezeigt "
+"wird. (Niicht alle Fernseher unterstützen alle Formate)"
+
+msgid ""
+"This option allows you to choose how to display 720p 24Hz on your TV. (as "
+"not all TV's support these resolutions)"
+msgstr ""
+"Diese Option erlaubt es einzustellen wie ein 720p 24Hz Video angezeigt wird. "
+"(Niicht alle Fernseher unterstützen alle Formate)"
+
+msgid ""
+"This option allows you to choose how to display standard defintion video on "
+"your TV."
+msgstr "Diese Option erlaubt es einzustellen wie ein SD Video angezeigt wird."
 
 msgid ""
 "This option allows you to choose what the first button press jumps to in "
@@ -9231,13 +9309,6 @@ msgid "With popup"
 msgstr "Mit Popup"
 
 msgid ""
-"With this option enabled these refresh rates will be used. (please note not "
-"all TV's support these rates)."
-msgstr ""
-"Wenn aktiviert dann werden diese Bildraten unterstützt. Achtung: Nicht alle "
-"Fernseher unterstützen diese Bildraten."
-
-msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
 "bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr ""
@@ -9621,11 +9692,6 @@ msgid "Zap back to service before positioner setup?"
 msgstr ""
 "Zurückschalten zum Sender der vor dem\n"
 "Öffnen der Rotor Einstellungen lief?"
-
-msgid "Zap back to service before satfinder?"
-msgstr ""
-"Zurückschalten zum Sender, der vor dem\n"
-"Öffnen des Satfinders lief?"
 
 msgid "Zap back to service before tuner setup?"
 msgstr "Zurückschalten zum vorher laufenden Sender?"
@@ -10827,3 +10893,21 @@ msgstr "umschalten und aufnehmen"
 
 msgid "zapped"
 msgstr "umgeschaltet"
+
+#~ msgid "Allow 25Hz/30Hz"
+#~ msgstr "25Hz/30Hz erlauben"
+
+#~ msgid "No satellite frontend found!!"
+#~ msgstr "Kein Satellit-Tuner gefunden"
+
+#~ msgid ""
+#~ "With this option enabled these refresh rates will be used. (please note "
+#~ "not all TV's support these rates)."
+#~ msgstr ""
+#~ "Wenn aktiviert dann werden diese Bildraten unterstützt. Achtung: Nicht "
+#~ "alle Fernseher unterstützen diese Bildraten."
+
+#~ msgid "Zap back to service before satfinder?"
+#~ msgstr ""
+#~ "Zurückschalten zum Sender, der vor dem\n"
+#~ "Öffnen des Satfinders lief?"
