@@ -1560,6 +1560,14 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				self.setCurrentSelection(ref)
 		elif ref is None or ref != nref:
 			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref))
+		elif self.rootChanged and not preview_zap:
+			if ref is not None and ref == nref:
+				self.saveRoot()
+				config.servicelist.lastmode.save()
+				self.setCurrentSelection(nref)
+				if self.startServiceRef is None or nref != self.startServiceRef:
+					self.addToHistory(nref)
+				self.rootChanged = False
 
 	def zapCheckTimeshiftCallback(self, enable_pipzap, preview_zap, nref, answer):
 		if answer:
