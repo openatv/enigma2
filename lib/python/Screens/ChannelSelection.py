@@ -45,6 +45,8 @@ from ServiceReference import ServiceReference
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.BoundFunction import boundFunction
 from Tools import Notifications
+from Tools.Alternatives import CompareWithAlternatives
+from time import localtime, time
 from os import remove
 profile("ChannelSelection.py after imports")
 
