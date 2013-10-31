@@ -24,7 +24,7 @@ from Screens.VideoMode import VideoSetup
 
 from Plugins.Plugin import PluginDescriptor
 from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerSetup, RotorNimSelection
-from Plugins.SystemPlugins.Satfinder.plugin import Satfinder, SatNimSelection
+from Plugins.SystemPlugins.Satfinder.plugin import Satfinder
 from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
 from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
 from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
@@ -558,11 +558,7 @@ class QuickMenu(Screen):
 			if len(NavigationInstance.instance.getRecordings()) > 0:
 				self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
 			else:
-				if len(nimList) == 1:
-					self.session.open(Satfinder, nimList[0])
-				else:
-					self.session.open(SatNimSelection)
-
+				self.session.open(Satfinder)
 		
 ######## SOFTWARE MANAGER TOOLS #######################
 	def backupfiles_choosen(self, ret):
