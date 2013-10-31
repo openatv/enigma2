@@ -71,8 +71,7 @@ class VirtualKeyBoard(Screen):
 
 		self["country"] = StaticText("")
 		self["header"] = Label(title)
-		kwargs["text"] = kwargs.get("text", "").decode('utf-8', 'ignore').encode('utf-8')
-		self["text"] = Input(currPos=len(kwargs["text"]), allMarked=False, **kwargs)
+		self["text"] = Input(currPos=len(kwargs.get("text", "")), allMarked=False, **kwargs)
 		self["list"] = VirtualKeyBoardList([])
 		
 		self["actions"] = NumberActionMap(["OkCancelActions", "WizardActions", "ColorActions", "KeyboardInputActions", "InputBoxActions", "InputAsciiActions"],
