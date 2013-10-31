@@ -62,11 +62,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 			self.currPos = 0
 			self.Text = u""
 		else:
-			try:
-				self.Text = text.decode("utf-8")
-			except UnicodeDecodeError:
-				print "utf8 kaputt!"
-				self.Text = text
+			self.Text = text.decode("utf-8", "ignore").decode("utf-8")
 		self.update()
 
 	def getText(self):
@@ -156,6 +152,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		self.update()
 
 	def insertChar(self, ch, pos=False, owr=False, ins=False):
+		self.Text = self.Text.decode("utf-8", "ignore").decode("utf-8")
 		if not pos:
 			pos = self.currPos
 		if ins and not self.maxSize:
