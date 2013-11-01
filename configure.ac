@@ -92,6 +92,7 @@ AC_SUBST(DRIVERDATE)
 AC_DEFINE_UNQUOTED(DRIVERDATE,"$DRIVERDATE",[driver date])
 
 AM_CONDITIONAL(AZBOX, test `echo "$BOXTYPE" | cut -b 1-5` == "azbox")
+AM_CONDITIONAL(CUBE, test `echo "$BOXTYPE" | cut -b 1-4` == "cube")
 AM_CONDITIONAL(DREAMBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "dm")
 AM_CONDITIONAL(VUPLUS, test `echo "$BOXTYPE" | cut -b 1-2` == "vu")
 AM_CONDITIONAL(XTREND, test `echo "$BOXTYPE" | cut -b 1-2` == "et")
@@ -411,6 +412,7 @@ data/rc_models/Makefile
 data/rc_models/azboxhd/Makefile
 data/rc_models/azboxme/Makefile
 data/rc_models/azboxelite/Makefile
+data/rc_models/cube/Makefile
 data/rc_models/dmm0/Makefile
 data/rc_models/dmm1/Makefile
 data/rc_models/dmm2/Makefile

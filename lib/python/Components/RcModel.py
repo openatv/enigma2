@@ -6,35 +6,36 @@ class RcModel:
 	RCTYPE_AZBOXHD = 0
 	RCTYPE_AZBOXELITE = 1
 	RCTYPE_AZBOXME = 2
-	RCTYPE_DMM = 3
-	RCTYPE_DMM1 = 4
-	RCTYPE_DMM2 = 5
-	RCTYPE_E3HD = 6
-	RCTYPE_EBOX5000 = 7
-	RCTYPE_ET4X00 = 8
-	RCTYPE_ET6X00 = 9
-	RCTYPE_ET6500 = 10
-	RCTYPE_ET9X00 = 11
-	RCTYPE_ET9500 = 12
-	RCTYPE_GB = 13
-	RCTYPE_INI0 = 14
-	RCTYPE_INI1 = 15
-	RCTYPE_INI2 = 16
-	RCTYPE_INI3 = 17
-	RCTYPE_INI4 = 18
-	RCTYPE_IQON = 19
-	RCTYPE_IXUSSONE = 20
-	RCTYPE_IXUSSZERO = 21
-	RCTYPE_MEDIABOX = 22
-	RCTYPE_ODINM6 = 23
-	RCTYPE_ODINM7 = 24
-	RCTYPE_ODINM9 = 25
-	RCTYPE_OPTIMUSS = 26
-	RCTYPE_TM = 27
-	RCTYPE_VU = 28
-	RCTYPE_VU2 = 29
-	RCTYPE_VU3 = 30
-	RCTYPE_XP1000 = 31
+	RCTYPE_CUBE = 3	
+	RCTYPE_DMM = 4
+	RCTYPE_DMM1 = 5
+	RCTYPE_DMM2 = 6
+	RCTYPE_E3HD = 7
+	RCTYPE_EBOX5000 = 8
+	RCTYPE_ET4X00 = 9
+	RCTYPE_ET6X00 = 10
+	RCTYPE_ET6500 = 11
+	RCTYPE_ET9X00 = 12
+	RCTYPE_ET9500 = 13
+	RCTYPE_GB = 14
+	RCTYPE_INI0 = 15
+	RCTYPE_INI1 = 16
+	RCTYPE_INI2 = 17
+	RCTYPE_INI3 = 18
+	RCTYPE_INI4 = 19
+	RCTYPE_IQON = 20
+	RCTYPE_IXUSSONE = 21
+	RCTYPE_IXUSSZERO = 22
+	RCTYPE_MEDIABOX = 23
+	RCTYPE_ODINM6 = 24
+	RCTYPE_ODINM7 = 25
+	RCTYPE_ODINM9 = 26
+	RCTYPE_OPTIMUSS = 27
+	RCTYPE_TM = 28
+	RCTYPE_VU = 29
+	RCTYPE_VU2 = 30
+	RCTYPE_VU3 = 31
+	RCTYPE_XP1000 = 32
 
 
 	def __init__(self):
@@ -111,6 +112,8 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_EBOX5000
 			elif model == 'gigablue':
 				self.currentRcType = self.RCTYPE_GB
+			elif model == 'cube':
+				self.currentRcType = self.RCTYPE_CUBE
 			elif model == 'ini-3000':
 				fp_version = str(getFPVersion())
 				if fp_version.startswith('1'):
@@ -153,7 +156,9 @@ class RcModel:
 		elif self.currentRcType == self.RCTYPE_AZBOXELITE:
 			return '/usr/share/enigma2/rc_models/azboxelite/'
 		elif self.currentRcType == self.RCTYPE_AZBOXME:
-			return '/usr/share/enigma2/rc_models/azboxme/'	
+			return '/usr/share/enigma2/rc_models/azboxme/'
+		elif self.currentRcType == self.RCTYPE_CUBE:
+			return '/usr/share/enigma2/rc_models/cube/'
 		elif self.currentRcType == self.RCTYPE_DMM:
 			return '/usr/share/enigma2/rc_models/dmm0/'
 		elif self.currentRcType == self.RCTYPE_DMM1:

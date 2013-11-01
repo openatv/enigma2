@@ -69,7 +69,7 @@ class AVSwitch:
 	
 	if hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra' or hw_type == "me" or hw_type == "minime" : config.av.edid_override = True
 
-	if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1 or hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra' or hw_type == "me" or hw_type == "minime":
+	if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1 or about.getChipSetString().find('8493') != -1 or hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra' or hw_type == "me" or hw_type == "minime":
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = set(["720p", "1080p", "1080i"])
 	else:

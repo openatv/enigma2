@@ -2,6 +2,10 @@ if AZBOX
 SUBDIRS = azboxme azboxhd azboxelite
 endif
 
+if CUBE
+SUBDIRS = cube
+endif
+
 if DREAMBOX
 SUBDIRS = dmm0 dmm1 dmm2
 endif
