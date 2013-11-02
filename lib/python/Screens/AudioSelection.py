@@ -23,7 +23,7 @@ class AudioSelection(Screen, ConfigListScreen):
 	def __init__(self, session, infobar=None, page=PAGE_AUDIO):
 		Screen.__init__(self, session)
 
-		self["streams"] = List([])
+		self["streams"] = List([], enableWrapAround=True)
 		self["key_red"] = Boolean(False)
 		self["key_green"] = Boolean(False)
 		self["key_yellow"] = Boolean(True)
