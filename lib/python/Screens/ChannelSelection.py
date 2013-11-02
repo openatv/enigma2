@@ -1764,10 +1764,19 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def correctChannelNumber(self):
 		selected_ref = self.getCurrentSelection()
 		current_ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if self.dopipzap:
+			pip_ref = self.session.pip.getCurrentService()
+			if selected_ref and pip_ref and selected_ref.getChannelNum() != pip_ref.getChannelNum():
+				self.session.pip.currentService = selected_ref
+			temp_ref = selected_ref
+			self.setCurrentSelection(current_ref)
+			selected_ref = self.getCurrentSelection()
 		if selected_ref and current_ref and selected_ref.getChannelNum() != current_ref.getChannelNum():
 			self.session.nav.currentlyPlayingServiceOrGroup = selected_ref
 			from Components.Renderer.ChannelNumber import doRenumber
 			doRenumber()
+		if self.dopipzap:
+			self.setCurrentSelection(temp_ref)
 
 class RadioInfoBar(Screen):
 	def __init__(self, session):
