@@ -5,15 +5,15 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2013-10-26 22:25+0100\n"
-"Last-Translator: mike99 <mike99@gmx.net>\n"
+"PO-Revision-Date: 2013-11-02 11:18+0100\n"
+"Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.5.5\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 #
@@ -5126,8 +5126,8 @@ msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
-"Nichts zu suchen!\n"
-"Bitte den Tuner vor dem Suchelauf einstellen."
+"Nichts gefunden!\n"
+"Bitte den Tuner vor dem Suchlauf einstellen."
 
 msgid "Nothing to upgrade"
 msgstr "Keine Updates vorhanden"
@@ -5861,6 +5861,10 @@ msgstr "Schwellwert Stromverbrauch in mA"
 #
 msgid "Predefined transponder"
 msgstr "Vordefinierte Transponder"
+
+#
+msgid "User defined transponder"
+msgstr "Benutzerdefinierter Transponder"
 
 msgid "Prefer AC3 track"
 msgstr "AC3 bevorzugen"
@@ -15063,3 +15067,80 @@ msgstr "Drücken Sie OK, um die MAC-Adresse zu setzen."
 #
 msgid "Storage devices"
 msgstr "Speichergeräte"
+
+msgid "Channel list cursor behavior"
+msgstr "Kanallisten Cursor verhalten"
+
+msgid ""
+"Configure the cursor behaviour in the channel selection list. When opening "
+"the channel selection list you can keep on the current service or already "
+"select up/down and you are able to revert the B+/B- buttons."
+msgstr ""
+"Position des Curors beim Öffnen der Kannliste festlegen. Auf dem laufenden "
+"Kanal oder einen Eintrag hoch/runter positionieren. Ausserdem kann die "
+"Belegung der B+/B- Tasten getauscht werden"
+
+msgid "Keep service"
+msgstr "Laufender Kanal"
+
+msgid "Reverse bouquet buttons"
+msgstr "Bouquet Tasten tauschen"
+
+msgid "Keep service + Reverse bouquet buttons"
+msgstr "Laufender Kanal + Bouquet Tasten tauschen"
+
+msgid "Automatic resolution"
+msgstr "Automatische Auflösung"
+
+msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
+msgstr "Hiermit können Sie einstellen, ob die auszugebende Video Auflösung an die Auflösung des Videomaterials angepasst werden soll."
+
+msgid "Automatic resolution label"
+msgstr "Bildschirmmeldung der Auflösung"
+
+msgid "Allows you to adjust the amount of time the resolution infomation display on screen."
+msgstr "Hiermit können Sie einstellen, ob oder wie lange die Bildschirmeinblendung bei Auflösungsänderungen angezeigt werden soll."
+
+msgid "All resolutions"
+msgstr "Alle Auflösung"
+
+msgid "only HD"
+msgstr "Nur bei HD"
+
+msgid "Not Shown"
+msgstr "Keine Anzeige"
+
+msgid "Delay time"
+msgstr "Verzögerungs Zeit"
+
+msgid "Set the time before checking video source for resolution infomation."
+msgstr "Hiermit können Sie eine Verzögerungszeit einstellen, bevor die Automatische Auflösung die Video Quelle prüft."
+
+msgid "Force de-interlace"
+msgstr "Immer de-interlacer benutzen"
+
+msgid "If enabled the video wil always be de-interlaced."
+msgstr "Hiermit können Sie einstellen, ob das Video immer de-interlaced werden soll."
+
+msgid "Show SD as"
+msgstr "Zeige SD als"
+
+msgid "This option allows you to choose how to display standard defintion video on your TV."
+msgstr "Hiermit können Sie einstellen, mit welcher Auflösung SD-Video angezeigt werden soll."
+
+msgid "This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Hiermit können Sie einstellen, wie 720p 24 Hz angezeigt werden soll. (einige TVs unterstützen diese Auflösung nicht)"
+
+msgid "This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Hiermit können Sie einstellen, wie 1080p 24Hz angezeigt werden soll. (einige TVs unterstützen diese Auflösung nicht)"
+
+msgid "This option allows you to choose how to display 1080p 25Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Hiermit können Sie einstellen, wie 1080p 25Hz angezeigt werden soll. (einige TVs unterstützen diese Auflösung nicht)"
+
+msgid "This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Hiermit können Sie einstellen, wie 1080p 30Hz angezeigt werden soll. (einige TVs unterstützen diese Auflösung nicht)"
+
+
+
+
+
