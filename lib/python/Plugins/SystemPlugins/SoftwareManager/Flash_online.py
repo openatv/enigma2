@@ -273,6 +273,8 @@ class doFlashImage(Screen):
 				message += _('Your STB will freeze during the flashing process.\n')
 				message += _('Please: DO NOT reboot your STB and turn off the power.\n')
 				message += _('The image or kernel will be flashing and auto booted in few minutes.\n')
+				if self.box() == 'gb800solo':
+					message += _('GB800SOLO takes about 20 mins !!\n')
 				message += "'"
 			self.session.open(Console, text,[message, cmd])
 
