@@ -37,6 +37,7 @@ class Language:
 		self.addLanguage("Lietuvių",    "lt", "LT")
 		self.addLanguage("Latviešu",    "lv", "LV")
 		self.addLanguage("Nederlands",  "nl", "NL")
+		self.addLanguage("Norsk Bokmål","nb", "NO")
 		self.addLanguage("Norsk",       "no", "NO")
 		self.addLanguage("Polski",      "pl", "PL")
 		self.addLanguage("Português",   "pt", "PT")

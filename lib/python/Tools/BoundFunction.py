@@ -7,5 +7,3 @@ class boundFunction:
 		newkwargs = self.kwargs
 		newkwargs.update(kwargs)
 		return self.fnc(*self.args + args, **newkwargs)
-		
-	

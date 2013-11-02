@@ -2,22 +2,25 @@ from Components.VariableText import VariableText
 from enigma import eLabel, iPlayableService
 from Renderer import Renderer
 
+ChannelNumberClasses = []
+def doRenumber():
+	for func in ChannelNumberClasses:
+		func(True)
+
 class ChannelNumber(Renderer, VariableText):
 	def __init__(self):
+		ChannelNumberClasses.append(self.changed)
 		Renderer.__init__(self)
 		VariableText.__init__(self)
 		self.text = "---"
 	GUI_WIDGET = eLabel
 
 	def changed(self, what):
-		if what[0] != self.CHANGED_SPECIFIC:
-			return
-		if what[1] != iPlayableService.evStart:
-			return
-		service = self.source.serviceref
-		num = service and service.getChannelNum() or None
-		if num:
-			self.text = str(num)
-		else:
-			self.text = '---'
+		if what == True or what[0] == self.CHANGED_SPECIFIC and what[1] == iPlayableService.evStart:
+			service = self.source.serviceref
+			num = service and service.getChannelNum() or None
+			if num:
+				self.text = str(num)
+			else:
+				self.text = '---'
 

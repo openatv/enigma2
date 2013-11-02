@@ -57,7 +57,7 @@ class ServiceScan:
 							h = _("W")
 						else:
 							h = _("E")
-						if sat_name.find("%d.%d" % (orb_pos/10, orb_pos%10)) != -1:
+						if ("%d.%d" % (orb_pos/10, orb_pos%10)) in sat_name:
 							network = sat_name
 						else:
 							network = ("%s %d.%d %s") % (sat_name, orb_pos / 10, orb_pos % 10, h)
@@ -183,8 +183,9 @@ class ServiceScan:
 
 	def newService(self):
 		newServiceName = self.scan.getLastServiceName()
-		self.servicelist.addItem(newServiceName)
-		self.lcd_summary.updateService(self.scan.getLastServiceName())
+		newServiceRef = self.scan.getLastServiceRef()
+		self.servicelist.addItem((newServiceName, newServiceRef))
+		self.lcd_summary.updateService(newServiceName)
 
 	def destroy(self):
 		pass

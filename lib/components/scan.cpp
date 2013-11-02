@@ -188,6 +188,13 @@ void eComponentScan::getLastServiceName(std::string &string)
 	m_scan->getLastServiceName(string);
 }
 
+void eComponentScan::getLastServiceRef(std::string &string)
+{
+	if (!m_scan)
+		return;
+	m_scan->getLastServiceRef(string);
+}
+
 RESULT eComponentScan::getFrontend(ePtr<iDVBFrontend> &fe)
 {
 	if (m_scan)
