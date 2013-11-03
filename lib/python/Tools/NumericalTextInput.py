@@ -108,7 +108,7 @@ MAP_RU = (
 	u"jklмноп5JKLМНОП",
 	u"mnoрсту6MNOРСТУ",
 	u"pqrsфхцч7PQRSФХЦЧ",
-	u"tuvшщь8TUVШЩЬ",
+	u"tuvшщьы8TUVШЩЬЫ",
 	u"wxyzъэюя9WXYZЪЭЮЯ",
 	)
 MAPPINGS = {

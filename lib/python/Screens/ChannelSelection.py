@@ -1411,6 +1411,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.new_service_played = False
 		self.dopipzap = False
 		self.onExecBegin.append(self.asciiOn)
+		self.mainScreenMode = None
+		self.mainScreenRoot = None
 
 		self.lastChannelRootTimer = eTimer()
 		self.lastChannelRootTimer.callback.append(self.__onCreate)
@@ -1587,6 +1589,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.addToHistory(nref)
 				if self.dopipzap:
 					self.setCurrentSelection(self.session.pip.getCurrentService())
+				else:
+					self.mainScreenMode = config.servicelist.lastmode.value
+					self.mainScreenRoot = self.getRoot()
 				self.revertMode = None
 			else:
 				Notifications.RemovePopup("Parental control")
@@ -1768,13 +1773,34 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.saveRoot()
 
 	def correctChannelNumber(self):
-		selected_ref = self.getCurrentSelection()
 		current_ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if selected_ref and current_ref and CompareWithAlternatives(selected_ref.toString(), current_ref.toString()):
+		if self.dopipzap:
+			tmp_mode = config.servicelist.lastmode.value
+			tmp_root = self.getRoot()
+			tmp_ref = self.getCurrentSelection()
+			if self.mainScreenMode == "tv":
+				self.setModeTv()
+			elif self.mainScreenMode == "radio":
+				self.setModeRadio()
+			if self.mainScreenRoot:
+				self.setRoot(self.mainScreenRoot)
+				self.setCurrentSelection(current_ref)
+		selected_ref = self.getCurrentSelection()
+		if selected_ref and current_ref and selected_ref.getChannelNum() != current_ref.getChannelNum():
 			self.session.nav.currentlyPlayingServiceOrGroup = selected_ref
-			if selected_ref.getChannelNum() != current_ref.getChannelNum():
-				from Components.Renderer.ChannelNumber import doRenumber
-				doRenumber()
+			from Components.Renderer.ChannelNumber import doRenumber
+			doRenumber()
+		if self.dopipzap:
+			if tmp_mode == "tv":
+				self.setModeTv()
+			elif tmp_mode == "radio":
+				self.setModeRadio()
+			self.setRoot(tmp_root)
+			pip_ref = self.session.pip.getCurrentService()
+			if tmp_ref and pip_ref and tmp_ref.getChannelNum() != pip_ref.getChannelNum():
+				self.session.pip.currentService = tmp_ref
+			self.setCurrentSelection(tmp_ref)
+
 
 class RadioInfoBar(Screen):
 	def __init__(self, session):
