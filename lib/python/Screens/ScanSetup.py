@@ -176,6 +176,33 @@ class CableTransponderSearchSupport:
 				self.cable_search_session["text"].setText(tmpstr)
 
 	def startCableTransponderSearch(self, nim_idx):
+		def GetCommand(nimIdx):
+			_supportNimType   = { 'SSH108':'ssh108' }
+			_nimSocket = {}
+			fp = file('/proc/bus/nim_sockets')
+
+			sNo, sName = -1, ""
+			for line in fp:
+				line = line.strip()
+				if line.startswith('NIM Socket'):
+					try:	sNo = line.split()[2][:-1]
+					except: sNo = -1
+				elif line.startswith('Name:'):
+					try:	sName = line.split()[3][4:-1]
+					except: sName = ""
+				if sNo >= 0 and sName != "":
+					_nimSocket[sNo] = sName
+					sNo, sName = -1, ''
+			fp.close()
+			print 'parsed nim_sockets :', _nimSocket
+
+			try:
+				sName = _nimSocket[str(nimIdx)]
+				sType = _supportNimType[sName]
+				return sType
+			except: pass
+			return 'tda1002x'
+
 		if not self.tryGetRawFrontend(nim_idx):
 			self.session.nav.stopService()
 			if not self.tryGetRawFrontend(nim_idx):
@@ -215,7 +242,8 @@ class CableTransponderSearchSupport:
 		elif tunername.startswith("Sundtek"):
 			cmd = "mediaclient --blindscan %d" % nim_idx
 		else:
-			cmd = "tda1002x --init --scan --verbose --wakeup --inv 2 --bus %d" % bus
+			bin_name = GetCommand(nim_idx)
+			cmd = "%(BIN_NAME)s --init --scan --verbose --wakeup --inv 2 --bus %(BUS)d" % {'BIN_NAME':bin_name , 'BUS':bus}
 
 		if cableConfig.scan_type.getValue() == "bands":
 			cmd += " --scan-bands "
@@ -270,7 +298,7 @@ class CableTransponderSearchSupport:
 			cmd += " --sr "
 			cmd += str(cableConfig.scan_sr_ext2.getValue())
 			cmd += "000"
-		print "TDA1002x CMD is", cmd
+		print bin_name, " CMD is", cmd
 
 		self.cable_search_container.execute(cmd)
 		tmpstr = _("Try to find used transponders in cable network.. please wait...")
