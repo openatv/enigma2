@@ -1405,6 +1405,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.new_service_played = False
 		self.dopipzap = False
 		self.onExecBegin.append(self.asciiOn)
+		self.mainScreenMode = None
+		self.mainScreenRoot = None
 
 		self.lastChannelRootTimer = eTimer()
 		self.lastChannelRootTimer.callback.append(self.__onCreate)
@@ -1774,8 +1776,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				self.setModeTv()
 			elif self.mainScreenMode == "radio":
 				self.setModeRadio()
-			self.setRoot(self.mainScreenRoot)
-			self.setCurrentSelection(current_ref)
+			if self.mainScreenRoot:
+				self.setRoot(self.mainScreenRoot)
+				self.setCurrentSelection(current_ref)
 		selected_ref = self.getCurrentSelection()
 		if selected_ref and current_ref and selected_ref.getChannelNum() != current_ref.getChannelNum():
 			self.session.nav.currentlyPlayingServiceOrGroup = selected_ref
