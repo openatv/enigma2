@@ -1581,6 +1581,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.addToHistory(nref)
 				if self.dopipzap:
 					self.setCurrentSelection(self.session.pip.getCurrentService())
+				else:
+					self.mainScreenMode = config.servicelist.lastmode.value
+					self.mainScreenRoot = self.getRoot()
 				self.revertMode = None
 			else:
 				Notifications.RemovePopup("Parental control")
@@ -1762,21 +1765,33 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.saveRoot()
 
 	def correctChannelNumber(self):
-		selected_ref = self.getCurrentSelection()
 		current_ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if self.dopipzap:
-			pip_ref = self.session.pip.getCurrentService()
-			if selected_ref and pip_ref and selected_ref.getChannelNum() != pip_ref.getChannelNum():
-				self.session.pip.currentService = selected_ref
-			temp_ref = selected_ref
+			tmp_mode = config.servicelist.lastmode.value
+			tmp_root = self.getRoot()
+			tmp_ref = self.getCurrentSelection()
+			if self.mainScreenMode == "tv":
+				self.setModeTv()
+			elif self.mainScreenMode == "radio":
+				self.setModeRadio()
+			self.setRoot(self.mainScreenRoot)
 			self.setCurrentSelection(current_ref)
-			selected_ref = self.getCurrentSelection()
+		selected_ref = self.getCurrentSelection()
 		if selected_ref and current_ref and selected_ref.getChannelNum() != current_ref.getChannelNum():
 			self.session.nav.currentlyPlayingServiceOrGroup = selected_ref
 			from Components.Renderer.ChannelNumber import doRenumber
 			doRenumber()
 		if self.dopipzap:
-			self.setCurrentSelection(temp_ref)
+			if tmp_mode == "tv":
+				self.setModeTv()
+			elif tmp_mode == "radio":
+				self.setModeRadio()
+			self.setRoot(tmp_root)
+			pip_ref = self.session.pip.getCurrentService()
+			if tmp_ref and pip_ref and tmp_ref.getChannelNum() != pip_ref.getChannelNum():
+				self.session.pip.currentService = tmp_ref
+			self.setCurrentSelection(tmp_ref)
+
 
 class RadioInfoBar(Screen):
 	def __init__(self, session):
