@@ -427,7 +427,7 @@ class ImageBackup(Screen):
 		## TESTING THE Gigablue 800 SE Plus Model
 		elif self.MODEL == "gb800seplus":
 			self.TYPE = "GIGABLUE"
-			self.MODEL = "ueplus"
+			self.MODEL = "seplus"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "GigaBlue %s" %self.MODEL
