@@ -1552,14 +1552,14 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
-			if not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False)):
-				if ref is None or ref != nref:
+			if ref is None or ref != nref:
+				if not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False)):
 					if not self.session.pip.playService(nref):
 						# XXX: Make sure we set an invalid ref
 						self.session.pip.playService(None)
-			else:
-				self.setStartRoot(self.curRoot)
-				self.setCurrentSelection(ref)
+				else:
+					self.setStartRoot(self.curRoot)
+					self.setCurrentSelection(ref)
 		elif ref is None or ref != nref:
 			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref))
 		elif self.rootChanged and not preview_zap:
