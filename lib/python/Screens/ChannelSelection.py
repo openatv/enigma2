@@ -1225,8 +1225,9 @@ class ChannelSelectionBase(Screen):
 		nameStr = ''
 		pos = titleStr.find(']')
 		if pos == -1:
-			pos = titleStr.find(' (')
+			pos = titleStr.find(')')
 		if pos != -1:
+			titleStr = titleStr[:pos+1]
 			if titleStr.find(' (TV)') != -1:
 				titleStr = titleStr[-5:]
 			elif titleStr.find(' (Radio)') != -1:
@@ -1238,15 +1239,15 @@ class ChannelSelectionBase(Screen):
 					end_ref = self.servicePath[Len - 1]
 				else:
 					end_ref = None
-# 				nameStr = self.getServiceName(base_ref)
+				nameStr = self.getServiceName(base_ref)
 # 				titleStr += ' - ' + nameStr
 				if end_ref is not None:
 # 					if Len > 2:
 # 						titleStr += '/../'
 # 					else:
 # 						titleStr += '/'
-					self.nameStr = self.getServiceName(end_ref)
-					titleStr = self.nameStr + titleStr
+					nameStr = self.getServiceName(end_ref)
+					titleStr += nameStr
 				self.setTitle(titleStr)
 
 	def moveUp(self):
