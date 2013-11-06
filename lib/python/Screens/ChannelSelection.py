@@ -606,9 +606,11 @@ class ChannelSelectionEdit:
 					if mutableAlternatives.addService(cur_service.ref):
 						print "add", cur_service.ref.toString(), "to new alternatives failed"
 					mutableAlternatives.flushChanges()
+					end = self.atEnd()
 					self.servicelist.addService(new_ref.ref, True)
 					self.servicelist.removeCurrent()
-					self.servicelist.moveUp()
+					if not end:
+						self.servicelist.moveUp()
 					if cur_service.ref.toString() == self.lastservice.value:
 						self.saveChannel(new_ref.ref)
 					if self.startServiceRef and cur_service.ref == self.startServiceRef:
@@ -666,6 +668,7 @@ class ChannelSelectionEdit:
 
 	def removeAlternativeServices(self):
 		cur_service = ServiceReference(self.getCurrentSelection())
+		end = self.atEnd()
 		root = self.getRoot()
 		cur_root = root and ServiceReference(root)
 		list = cur_service.list()
@@ -686,7 +689,8 @@ class ChannelSelectionEdit:
 		else:
 			print "remove empty alternative list !!"
 		self.removeBouquet()
-		self.servicelist.moveUp()
+		if not end:
+			self.servicelist.moveUp()
 
 	def removeBouquet(self):
 		refstr = self.getCurrentSelection().toString()
