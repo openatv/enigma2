@@ -746,7 +746,7 @@ class ChannelSelectionEdit:
 				changed = True
 				self.mutableList.addService(eServiceReference(x))
 			if changed:
-				if self.bouquet_mark_edit == EDIT_ALTERNATIVES and not self.getMutableList and self.__marked:
+				if self.bouquet_mark_edit == EDIT_ALTERNATIVES and not new_marked and self.__marked:
 					self.mutableList.addService(eServiceReference(self.__marked[0]))	
 				self.mutableList.flushChanges()
 		self.__marked = []
