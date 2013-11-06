@@ -121,6 +121,7 @@ class ChannelContextMenu(Screen):
 		current_sel_path = current.getPath()
 		current_sel_flags = current.flags
 		inBouquetRootList = current_root and 'FROM BOUQUET "bouquets.' in current_root.getPath() #FIXME HACK
+		inAlternativeList = current_root and 'FROM BOUQUET "alternatives' in current_root.getPath()
 		inBouquet = csel.getMutableList() is not None
 		haveBouquets = config.usage.multibouquet.value
 
@@ -169,8 +170,9 @@ class ChannelContextMenu(Screen):
 					if ("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) in current_sel_path:
 						append_when_current_valid(current, menu, (_("remove all new found flags"), self.removeAllNewFoundFlags), level = 0)
 				if inBouquet:
-					append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level = 0)					
-					append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level = 0)
+					append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level = 0)
+					if not inAlternativeList:
+						append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level = 0)
 				if current_root and ("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) in current_root.getPath():
 					append_when_current_valid(current, menu, (_("remove new found flag"), self.removeNewFoundFlag), level = 0)
 			else:
@@ -744,6 +746,8 @@ class ChannelSelectionEdit:
 				changed = True
 				self.mutableList.addService(eServiceReference(x))
 			if changed:
+				if self.bouquet_mark_edit == EDIT_ALTERNATIVES and not self.getMutableList and self.__marked:
+					self.mutableList.addService(eServiceReference(self.__marked[0]))	
 				self.mutableList.flushChanges()
 		self.__marked = []
 		self.clearMarks()
@@ -1794,7 +1798,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if tmp_ref and pip_ref and tmp_ref.getChannelNum() != pip_ref.getChannelNum():
 				self.session.pip.currentService = tmp_ref
 			self.setCurrentSelection(tmp_ref)
-
 
 class RadioInfoBar(Screen):
 	def __init__(self, session):
