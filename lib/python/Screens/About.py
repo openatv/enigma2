@@ -8,6 +8,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Button import Button
 
 from Tools.StbHardware import getFPVersion
+from enigma import eTimer
 
 class About(Screen):
 	def __init__(self, session):
@@ -66,11 +67,13 @@ class About(Screen):
 		AboutText += hddinfo
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 		self["key_green"] = Button(_("Translations"))
+		self["key_red"] = Button(_("Latest Commits"))
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
+		self["actions"] = ActionMap(["ColorActions", "SetupActions", "DirectionActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
+				"red": self.showCommits,
 				"green": self.showTranslationInfo,
 				"up": self["AboutScrollLabel"].pageUp,
 				"down": self["AboutScrollLabel"].pageDown
@@ -78,6 +81,9 @@ class About(Screen):
 
 	def showTranslationInfo(self):
 		self.session.open(TranslationInfo)
+
+	def showCommits(self):
+		self.session.open(CommitInfo)
 
 class TranslationInfo(Screen):
 	def __init__(self, session):
@@ -113,3 +119,40 @@ class TranslationInfo(Screen):
 				"cancel": self.close,
 				"ok": self.close,
 			})
+
+class CommitInfo(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skinName = ["CommitInfo", "About"]
+		self["AboutScrollLabel"] = ScrollLabel(_("Please wait"))
+
+		self["actions"] = ActionMap(["SetupActions", "DirectionActions"],
+			{
+				"cancel": self.close,
+				"ok": self.close,
+				"up": self["AboutScrollLabel"].pageUp,
+				"down": self["AboutScrollLabel"].pageDown
+			})
+
+		self.Timer = eTimer()
+		self.Timer.callback.append(self.readCommitLogs)
+		self.Timer.start(50, True)
+
+	def readCommitLogs(self):
+		url = 'http://sourceforge.net/p/openpli/mailman/openpli-git-commits/'
+		commitlog = ""
+		try:
+			import urllib2
+			for x in  "".join(urllib2.urlopen(url, timeout=5).read().split('<td class="email-body">')[1:]).split('<pre>'):
+				for y in x.split('Commit diffs:')[0].replace('New commits:','').strip().split('\n'):
+					y = y.strip()
+					if y or commitlog:
+						if y.startswith('Author:') or y.startswith('Signed-off-by:'):
+							commitlog += y.split('&lt;')[0]
+						else:
+							commitlog += y
+						commitlog += "\n"
+				commitlog += 140*'-' + "\n"
+		except:
+			commitlog = _("Currently the commit log cannot be retreived - please try later again")
+		self["AboutScrollLabel"].setText(commitlog)
