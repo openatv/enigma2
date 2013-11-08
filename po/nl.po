@@ -3596,7 +3596,7 @@ msgid "Install lcd picons on"
 msgstr "Installeer LCD-Picons in."
 
 msgid "Install local extension"
-msgstr "Installeer lokale extensie."
+msgstr "Installeer lokale extensie"
 
 msgid "Install or remove finished."
 msgstr "Installeren of verwijderen voltooid."
@@ -6474,13 +6474,13 @@ msgid "Show info line"
 msgstr "Toon infolijn"
 
 msgid "Show infobar on channel change"
-msgstr "informatiebalk zichtbaar na zenderwissel"
+msgstr "Informatiebalk zichtbaar na zenderwissel"
 
 msgid "Show infobar on event change"
-msgstr "informatiebalk weergeven bij EPG update"
+msgstr "Informatiebalk weergeven bij EPG update"
 
 msgid "Show infobar on skip forward/backward"
-msgstr "informatiebalk zichtbaar na overslaan, vooruit/achteruit"
+msgstr "Informatiebalk zichtbaar na overslaan, vooruit/achteruit"
 
 msgid "Show job tasks in extensions"
 msgstr "Toon systeemtaken in extensies"
@@ -10200,17 +10200,23 @@ msgid "Software Manager"
 msgstr "Software beheerder"
 
 msgid "Update/Backup/Restore your box"
-msgstr "Update/Backup/Restore uw %s %s"
+msgstr "Update/Backup/Herstel uw box"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
-msgstr "Update/Backup uw software, Backup/Restore uw instellingen"
+msgstr "Hier kun je een Update/Backup maken uw software, Backup/Herstel uw instellingen"
 
 msgid "Start/stop/select cam"
 msgstr "Start/Stop/Kies cam"
 
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr ""
-"Start/Stop/Kies een cam, de softcam moet eerst geïnstalleerd worden."
+"Hier kun je softcam installeren en beheren."
+
+msgid "System Setup"
+msgstr "Systeem beheren"
+
+msgid "Setup your System"
+msgstr "Hier kun je alles instellen om je systeem te beheren."
 
 msgid "Mount Setup"
 msgstr "Mount Instellingen"
@@ -10219,27 +10225,33 @@ msgid "Setup your mounts for network"
 msgstr "Stel de netwerkmounts in"
 
 msgid "Setup your local network"
-msgstr "Stel het netwerk in"
+msgstr "Netwerk instellingen"
 
 msgid ""
 "Setup your local network. For Wlan you need to boot with a USB-Wlan stick"
 msgstr ""
-"Stel het netwerk in. Voor WLAN moet er opgestart worden met een USB WLAN Stick"
+"Hier kun je uw netwerk beheren. Voor WLAN moet er opgestart worden met een USB WLAN Stick."
 
 msgid "Setup Videomode"
 msgstr "Instellen Video modus"
 
 msgid "Setup your Video Mode, Video Output and other Video Settings"
-msgstr "Video modus instellen, Video uitgang en Video instellingen"
+msgstr "Hier kun je alles wat met Video en taal te maken heeft instellen."
 
 msgid "Setup Tuner"
 msgstr "Instellen Tuner"
 
 msgid "Setup your Tuner and search for channels"
-msgstr "Tuner instellen en kanalen zoeken"
+msgstr "Hier kun je uw tuners instellen en kanalen zoeken."
 
 msgid "Shows available pluigns. Here you can download and install them"
-msgstr "Toon alle plugins. Hier downloaden en installeren."
+msgstr "Hier kun je uw plugins beheren. Nieuwe plugins downloaden en installeren."
+
+msgid "Harddisk Setup"
+msgstr "Harddisk instellen"
+
+msgid "Setup your Harddisk"
+msgstr "Hier kun je uw interne harde schijf beheren."
 
 # Menue Software manager
 msgid ""
@@ -10288,8 +10300,7 @@ msgid ""
 "Restore your settings back from a backup. After restore the box will restart "
 "to activated the new settings"
 msgstr ""
-"Herstel de instellingen uit een Backup. De %s %s moet heropgestart worden "
-"worden om de instellingen te activeren"
+"Herstel de instellingen uit een Backup. De box moet heropgestart worden om de instellingen te activeren"
 
 msgid "Choose the files to backup"
 msgstr "Kies de bestanden voor een Backup"
@@ -10298,14 +10309,14 @@ msgid ""
 "Here you can select which files should be added to backupfile. (default: E2-"
 "setup, channels, network"
 msgstr ""
-"Hier de bestanden kiezen die nodig zijn voor een Backup (standaard: "
-"Enigma2-instellingen, Zenders, Netwerk)."
+"Hier de bestanden kiezen die nodig zijn voor een Backup te maken. "
+"(standaard zijn: "Enigma2-instellingen, Zenders, Netwerk)"
 
 msgid "Manage your online update files"
 msgstr "Beheer Online-Update bestanden"
 
 msgid "Here you can select which files should be updated with a online update"
-msgstr "Hier die bestanden kiezen die een Online-Update mogen krijgen"
+msgstr "Hier die bestanden kiezen die een Online-Update mogen krijgen."
 
 # Menue Softcam
 msgid "Control your Softcams"
@@ -10315,14 +10326,14 @@ msgid ""
 "Use the Softcam Panel to control your Cam. This let you start/stop/select a "
 "cam"
 msgstr ""
-"Gebruik het Softcam Panel om de gebruikte Cam te beheren. "
-"Een softcam te Starten/Stoppen/Kiezen."
+"Gebruik het Softcam Panel om de gebruikte Softcam te beheren. "
+"Een Softcam te Starten/Stoppen/Kiezen."
 
 msgid "Download and install cam"
-msgstr "Download Cam en installeer deze"
+msgstr "Download en installeer softcam"
 
 msgid "Shows available softcams. Here you can download and install them"
-msgstr "Toon de beschikbare Softcams die geïnstalleerd kunnen worden"
+msgstr "Toon de beschikbare Softcams die geïnstalleerd kunnen worden."
 
 # Menue Systeem Customise
 msgid "Customise"
@@ -10358,7 +10369,7 @@ msgstr ""
 "normal gebruik of ga in stand-by?"
 
 msgid "just boot"
-msgstr "Normal opstarten"
+msgstr "Normaal opstarten"
 
 msgid "goto standby"
 msgstr "Ga in stand-by"
@@ -10469,8 +10480,8 @@ msgstr "Omhoog/Omlaag-toets modus"
 msgid "Select what you want the Up/Down button to activate:"
 msgstr "Stel in wat de Omhoog/Omlaag-toets moet doen:"
 
-msgid "Use image Coloured Buttons*"
-msgstr "Gebruik de gekleurde toetsen*"
+msgid "Use image Coloured Buttons *"
+msgstr "Gebruik de gekleurde toetsen *"
 
 msgid ""
 "Select if you want to use the image coloured Buttons (set to 'no' if you "
@@ -10523,3 +10534,134 @@ msgstr "EPG instellingen"
 
 msgid "Setup your EPG config"
 msgstr "Alle instellingen die met de EPG te maken hebben."
+
+# Menue Mounts
+msgid "Manage network mounts"
+msgstr "Beheer Netwerk Mounts"
+
+msgid "Setup your network mounts"
+msgstr "Netwerk Mounts instellen."
+
+msgid "Network Browser"
+msgstr "Netwerk Browser"
+
+msgid "Search for network shares"
+msgstr "Doorzoek uw netwerk."
+
+msgid "Device Manager"
+msgstr "Beheer opslagmedia"
+
+msgid "Mounts Devices"
+msgstr "Mount opslagmedia"
+
+msgid "Setup your Device mounts (USB, HDD, others...)"
+msgstr "Opslagmedia instellen (USB, HDD, andere...)."
+
+# Menue Netwerk
+msgid "Configure your Network"
+msgstr "Configureer het Netwerk"
+
+msgid ""
+"Use the Networkwizard to configure your Network. The wizard will help you to "
+"setup your network"
+msgstr "Gebruik de netwerk wizard om het netwerk in te stellen."
+
+msgid "Network Adapter Selection"
+msgstr "Netwerk Adapter"
+
+msgid "Select Lan/Wlan"
+msgstr "Kies Lan/Wlan"
+
+msgid ""
+"Setup your network interface. If no Wlan stick is used, you only can select "
+"Lan"
+msgstr ""
+"Netwerk Interface instellen. Als er geen WLAN-Stick gebruikt wordt, "
+"kan er enkel voor LAN gekozen worden."
+
+msgid "Network Interface"
+msgstr "Netwerk Interface"
+
+msgid "Setup interface"
+msgstr "Interface instellen."
+
+msgid "Setup network. Here you can setup DHCP, IP, DNS"
+msgstr "Netwerk instellingen. Hier DHCP, IP, DNS instellen."
+
+msgid "Network Restart"
+msgstr "Netwerk herstarten"
+
+msgid "Restart network to with current setup"
+msgstr "Netwerk herstarten met huidige instelling."
+
+msgid "Restart network and remount connections"
+msgstr "Netwerk herstarten en remount verbindingen."
+
+msgid "Network Services"
+msgstr "Netwerkadapter kiezen."
+
+msgid "Setup Network Services"
+msgstr "Netwerkadapter instellen."
+
+msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
+msgstr "Netwerkadapter instellen (Samba, FTP, NFS,...)."
+
+# Menue Tuner Setup
+msgid "Setup tuner(s)"
+msgstr "Tuner(s) instellen."
+
+msgid "Setup each tuner for your satellite system"
+msgstr "Elke tuner instellen."
+
+msgid "Setup rotor"
+msgstr "Rotor instellen."
+
+msgid "Setup your positioner for your satellite system"
+msgstr "Positioner Instellen."
+
+msgid "Automatic scan for services"
+msgstr "Automatisch kanalen zoeken."
+
+msgid "Manual scan for services"
+msgstr "Handmatig kanalen zoeken."
+
+msgid "Sat Finder"
+msgstr "Handmatig satelliet opzoeken."
+
+msgid "Search Sats"
+msgstr "Zoek satellieten"
+
+msgid "Search Sats, check signal and lock"
+msgstr "Zoek satellieten en zet de positie vast."
+
+# Menue Applicaties
+msgid "Pluginbrowser"
+msgstr "Plugin Beheerder"
+
+msgid "Open the Plugin Browser"
+msgstr "Open de Plugin Beheerder."
+
+msgid "Shows Plugins Browser. Here you can setup installed Plugin"
+msgstr ""
+"Toon alle Plugins. Hier kun je elke plugin instellen en gebruiken."
+
+msgid "Download and install Plugins"
+msgstr "Download en installeer Plugins."
+
+msgid "Delete Plugins"
+msgstr "Plugins verwijderen"
+
+msgid "Delete and unstall Plugins. This will remove the Plugin from your box"
+msgstr "Verwijder geinstalleerde Plugins. Dit zal Plugins verwijderen van je Box "
+
+msgid "Setup Plugin filter"
+msgstr "Plugin filter instellen"
+
+msgid ""
+"Setup Plugin filter. Here you can select which Plugins are showed in the "
+"PluginBrowser"
+msgstr ""
+"Hier kun je bepalen welke soort Plugins er zichtbaar zijn in de Plugin Beheerder"
+
+msgid "Scan for local extensions and install them"
+msgstr "Zoek locale extenties en installeer deze."
