@@ -325,6 +325,9 @@ class AVSwitch:
 		fb_size = getDesktop(0).size()
 		return (aspect[0] * fb_size.height(), aspect[1] * fb_size.width())
 
+	def setAspectRatio(self, value):
+		eAVSwitch.getInstance().setAspectRatio(value)
+
 	def getAspectRatioSetting(self):
 		valstr = config.av.aspectratio.getValue()
 		if valstr == "4_3_letterbox":
