@@ -21,7 +21,7 @@ class parseXML(ContentHandler, LexicalHandler):
 		self.ishex = re.compile('#[0-9a-fA-F]+\Z')
 
 	def comment(self, comment):
-		if comment.find("TRANSLATORS:") != -1:
+		if "TRANSLATORS:" in comment:
 			self.last_comment = comment
 
 	def startElement(self, name, attrs):

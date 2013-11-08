@@ -238,7 +238,7 @@ static eXMLRPCVariant *fromXML(XMLTreeNode *n)
 				delete s;
 				return 0;
 			}
-			std::string name=0;
+			std::string name("");
 			eXMLRPCVariant *value;
 			for (XMLTreeNode *v=n->GetChild(); v; v=v->GetNext())
 			{
@@ -247,7 +247,7 @@ static eXMLRPCVariant *fromXML(XMLTreeNode *n)
 				else if (!strcmp(v->GetType(), "value"))
 					value=fromXML(v);
 			}
-			if ((!value) || (!name))
+			if ((!value) || name.empty())
 			{
 				delete s;
 				return 0;
@@ -294,7 +294,7 @@ int eXMLRPCResponse::doCall()
 	eDebug("doing call");
 	result="";
 		// get method name
-	std::string methodName=0;
+	std::string methodName("");
 	
 	if (connection->remote_header["Content-Type"]!="text/xml")
 	{
@@ -334,7 +334,7 @@ int eXMLRPCResponse::doCall()
 		}
 	}
 	
-	if (!methodName)
+	if (methodName.empty())
 	{
 		eDebug("no methodName found!");
 		return -3;
@@ -443,7 +443,7 @@ void xmlrpc_initialize(eHTTPD *httpd)
 	httpd->addResolver(new eHTTPXMLRPCResolver);
 }
 
-void xmlrpc_addMethod(std::string methodName, int (*proc)(std::vector<eXMLRPCVariant>&, ePtrList<eXMLRPCVariant>&))
+void xmlrpc_addMethod(const std::string& methodName, int (*proc)(std::vector<eXMLRPCVariant>&, ePtrList<eXMLRPCVariant>&))
 {
 	rpcproc[methodName]=proc;
 }
@@ -456,7 +456,7 @@ void xmlrpc_fault(ePtrList<eXMLRPCVariant> &res, int faultCode, std::string faul
 	res.push_back(new eXMLRPCVariant(s));
 }
 
-int xmlrpc_checkArgs(std::string args, std::vector<eXMLRPCVariant> &parm, ePtrList<eXMLRPCVariant> &res)
+int xmlrpc_checkArgs(const std::string& args, std::vector<eXMLRPCVariant> &parm, ePtrList<eXMLRPCVariant> &res)
 {
 	if (parm.size() != args.length())
 	{
@@ -511,7 +511,7 @@ eHTTPXMLRPCResolver::eHTTPXMLRPCResolver()
 {
 }
 
-eHTTPDataSource *eHTTPXMLRPCResolver::getDataSource(std::string request, std::string path, eHTTPConnection *conn)
+eHTTPDataSource *eHTTPXMLRPCResolver::getDataSource(const std::string& request, const std::string& path, eHTTPConnection *conn)
 {
 	if ((path=="/RPC2") && (request=="POST"))
 		return new eXMLRPCResponse(conn);

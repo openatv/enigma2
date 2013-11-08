@@ -65,16 +65,16 @@ public:
 };
 
 void xmlrpc_initialize(eHTTPD *httpd);
-void xmlrpc_addMethod(std::string methodName, int (*)(std::vector<eXMLRPCVariant>&, ePtrList<eXMLRPCVariant>&));
+void xmlrpc_addMethod(const std::string& methodName, int (*)(std::vector<eXMLRPCVariant>&, ePtrList<eXMLRPCVariant>&));
 void xmlrpc_fault(ePtrList<eXMLRPCVariant> &res, int faultCode, std::string faultString);
-int xmlrpc_checkArgs(std::string args, std::vector<eXMLRPCVariant>&, ePtrList<eXMLRPCVariant> &res);
+int xmlrpc_checkArgs(const std::string& args, std::vector<eXMLRPCVariant>&, ePtrList<eXMLRPCVariant> &res);
 
 class eHTTPXMLRPCResolver: public iHTTPPathResolver
 {
 	DECLARE_REF(eHTTPXMLRPCResolver);
 public:
 	eHTTPXMLRPCResolver();
-	eHTTPDataSource *getDataSource(std::string request, std::string path, eHTTPConnection *conn);
+	eHTTPDataSource *getDataSource(const std::string& request, const std::string& path, eHTTPConnection *conn);
 };
 
 #endif

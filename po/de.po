@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-23 23:10+0200\n"
-"PO-Revision-Date: 2013-08-24 09:26+0100\n"
-"Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
+"POT-Creation-Date: 2013-10-30 00:47+0100\n"
+"PO-Revision-Date: 2013-10-30 08:20+0100\n"
+"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -126,6 +126,10 @@ msgstr "und"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
+
+#, python-format
+msgid "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr ""
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -339,6 +343,24 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
+msgid "1080i"
+msgstr ""
+
+msgid "1080p 24Hz"
+msgstr ""
+
+msgid "1080p 25Hz"
+msgstr ""
+
+msgid "1080p 30Hz"
+msgstr ""
+
+msgid "1080p 50Hz"
+msgstr ""
+
+msgid "1080p 60Hz"
+msgstr ""
+
 msgid "12V output"
 msgstr "12V-Ausgang"
 
@@ -419,6 +441,12 @@ msgstr "4:3 PanScan"
 
 msgid "4X"
 msgstr "4X"
+
+msgid "720p"
+msgstr ""
+
+msgid "720p 24Hz"
+msgstr ""
 
 msgid "<Current movielist location>"
 msgstr "<Aktuelles Filmverzeichnis>"
@@ -811,6 +839,9 @@ msgstr "Alle"
 msgid "All ages"
 msgstr "Alle Alter"
 
+msgid "All resolutions"
+msgstr "Alle Auflösungen"
+
 msgid "All satellites"
 msgstr "Alle Satelliten"
 
@@ -819,6 +850,9 @@ msgstr "Reservieren"
 
 msgid "Allocate unused memory index"
 msgstr "Unbenutzten Speicher Index reservieren"
+
+msgid "Allow quit movieplayer with exit"
+msgstr "Erlaube Mediaplayer mit Exit verlassen "
 
 msgid "Allow subtitle language to equal audio language"
 msgstr "Erlaube gleiche Sprache bei Untertitel und Ton"
@@ -843,6 +877,13 @@ msgstr "Erlaubt es Erweiterungen bekannter Dateitypen zu verstecken."
 
 msgid "Allows you setup the button to do what you choose."
 msgstr "Erlaubt dir zu bestimmen was die gewählte Taste macht."
+
+msgid ""
+"Allows you to adjust the amount of time the resolution infomation display on "
+"screen."
+msgstr ""
+"Erlaubt es die Zeit einzustellen für die das Fenster mit der neuen Auflösung "
+"angezeigt wird."
 
 msgid ""
 "Allows you to enable the debug log. They contain very detailed information "
@@ -914,6 +955,9 @@ msgstr "Irgendeine Aktivität"
 
 msgid "Arabic"
 msgstr "Arabisch"
+
+msgid "Are you sure to remove this entry?"
+msgstr "Sicher das dieser Eintrag entfernt werden soll?"
 
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
@@ -1082,6 +1126,12 @@ msgstr "Automatische Image Sicherung"
 msgid "Automatic refresh"
 msgstr "Automatisch aktualisieren"
 
+msgid "Automatic resolution"
+msgstr "Automatische Auflösung"
+
+msgid "Automatic resolution label"
+msgstr "Info Auflösung"
+
 msgid "Automatic save"
 msgstr "Automatisch speichern"
 
@@ -1089,7 +1139,7 @@ msgid "Automatic scan"
 msgstr "Automatische Suche"
 
 msgid "Automatic setting backup"
-msgstr "Automatische Einstellungs-Sicherung"
+msgstr "Automatische Einstellungs Sicherung"
 
 msgid "Automatically start timeshift after"
 msgstr "TimeShift automatisch starten nach"
@@ -1372,6 +1422,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "Abbrechen"
 
+msgid "Cancel next timer"
+msgstr "Nächsten Timer abbrechen"
+
 msgid "Cancel save timeshift as movie"
 msgstr "Film speichern abbrechen"
 
@@ -1458,6 +1511,9 @@ msgstr "Senderliste"
 
 msgid "Channel list context menu"
 msgstr "Senderliste Kontextmenü"
+
+msgid "Channel list cursor behavior"
+msgstr "Senderliste Cursor-Verhalten "
 
 msgid "Channel list on mode change"
 msgstr "Senderliste bei Moduswechsel"
@@ -1636,6 +1692,9 @@ msgstr "Klienten"
 msgid "Close"
 msgstr "Schließen"
 
+msgid "Close PiP on exit"
+msgstr "PiP mit Exit beenden"
+
 msgid "Close bouquet list."
 msgstr "Schließe Favoritenliste"
 
@@ -1766,9 +1825,6 @@ msgstr "Konfigurieren der IP-Adresse."
 msgid "Configure the amount of time that will be presented."
 msgstr "Konfiguriere die Zeitspanne die angezeigt wird."
 
-msgid "Configure the aspect ratio of the screen."
-msgstr "Konfiguriere das Bildverhältnis für den Bildschirm."
-
 msgid ""
 "Configure the behavior of the 'pause' key when movie playback is already "
 "paused."
@@ -1814,6 +1870,16 @@ msgstr "Konfiguriere die Farbe von Videotext-Untertiteln."
 
 msgid "Configure the contrast level of the front panel display."
 msgstr "Konfiguriere den Kontrast des Frontpanels."
+
+msgid ""
+"Configure the cursor behaviour in the channel selection list. When opening "
+"the channel selection list you can keep on the current service or already "
+"select up/down and you are able to revert the B+/B- buttons."
+msgstr ""
+"Konfiguriere das Verhalten der Cursor Tasten in der Senderliste. Wenn die "
+"Senderliste geöffnet wird kann der Cursor auf dem aktuellen Sender stehen "
+"bleiben oder der nächste/vorherige Sender kann schon ausgewählt sein. Das "
+"Verhalten der Tasten Bouquet +/- kann auch eingestellt werden."
 
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Konfiguriere die Zeit in Minuten für den Bildschirmschoner."
@@ -2351,6 +2417,9 @@ msgstr "Verzögerung bevor Tastenwiederholung startet:"
 msgid "Delay for external subtitles"
 msgstr "Verzögerung für externe Untertitel"
 
+msgid "Delay time"
+msgstr "Zeitverzögerung"
+
 msgid "Delay:"
 msgstr "Verzögerung:"
 
@@ -2506,7 +2575,7 @@ msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Reservierter Speicherplatz für Aufnahmen (GB)"
 
 msgid "Display"
-msgstr "Anzeige"
+msgstr "Display (VFD/LCD)"
 
 msgid "Display 16:9 content as"
 msgstr "16:9-Inhalt anzeigen als"
@@ -2966,6 +3035,9 @@ msgstr "Programm Schriftgröße"
 msgid "Event font size (relative to skin size)"
 msgstr "Sendung Schriftgröße (relativ zur Skingröße)"
 
+msgid "Event view"
+msgstr "Sendungsdetails"
+
 msgid "Everywhere"
 msgstr "überall"
 
@@ -3159,6 +3231,9 @@ msgstr "Folgendes wird ausgeführt, nachdem OK gedrückt wurde!"
 
 msgid "Fontsize"
 msgstr "Schriftgröße"
+
+msgid "Force de-interlace"
+msgstr "DeInterlacing erzwingen"
 
 msgid "Format"
 msgstr "Formatieren"
@@ -3412,9 +3487,6 @@ msgstr "Festplatten Einstellungen"
 msgid "Hard disk standby after"
 msgstr "Festplatte Ruhezustand nach"
 
-msgid "Harddisk"
-msgstr "Festplatte"
-
 msgid "Hebrew"
 msgstr "Hebräisch"
 
@@ -3443,7 +3515,7 @@ msgid "Hide player"
 msgstr "Player ausblenden"
 
 msgid "Hide zap errors"
-msgstr "Verberge Zap-Fehler"
+msgstr "Verberge Zap Fehler"
 
 msgid "Hierarchy info"
 msgstr "Hierarchie Information"
@@ -3458,7 +3530,7 @@ msgid "History buttons mode"
 msgstr "History Tasten bewirken"
 
 msgid "History zap..."
-msgstr ""
+msgstr "Vergangenheit zappen..."
 
 msgid "Hold screen"
 msgstr "Bild halten"
@@ -3531,6 +3603,16 @@ msgstr "Icons"
 
 msgid "Idle Time: "
 msgstr "Leerlaufzeit:"
+
+msgid ""
+"If enabled the output resolution of the box will try to match the resolution "
+"of the video contents resolution"
+msgstr ""
+"Wenn aktiviert wird versucht die Auflösung des Bildes der Auflösung des "
+"Films anzupassen."
+
+msgid "If enabled the video wil always be de-interlaced."
+msgstr "Wenn aktiviert wird das Video immer von der Box DeInterlaced"
 
 msgid ""
 "If logs are using the set maximum space used the eldest will be deleted."
@@ -3897,11 +3979,17 @@ msgid "Just change channels"
 msgstr "Nur Umschalten"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+#. "nonlinear": _("Nonlinear"),
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just scale"
 msgstr "Nur Skalieren"
 
 msgid "Just zap"
 msgstr "Nur Umschalten"
+
+msgid "Keep service"
+msgstr "Sender beibehalten"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Filmliste offen lassen wenn Musikdateien abgespielt werden."
@@ -4627,8 +4715,8 @@ msgstr "Anzahl von Elementen wechseln (erhöhen oder verringern)"
 msgid "No positioner capable frontend found."
 msgstr "Keinen rotortauglichen Tuner gefunden."
 
-msgid "No satellite frontend found!!"
-msgstr "Kein Satellit-Tuner gefunden"
+msgid "No satellites configured. Plese check your tuner setup."
+msgstr "Keine Satelliten konfiguriert. Bitte Tuner-Einstellungen prüfen."
 
 msgid "No service"
 msgstr "Kein Sender"
@@ -4740,10 +4828,6 @@ msgstr "NodeID: "
 msgid "None"
 msgstr "Keine"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-msgid "Nonlinear"
-msgstr "Nicht linear"
-
 msgid "Normal mode"
 msgstr "Normaler Modus"
 
@@ -4755,6 +4839,9 @@ msgstr "Norwegisch"
 
 msgid "Not Flashing"
 msgstr "nicht blinked"
+
+msgid "Not Shown"
+msgstr "Nicht zeigen"
 
 msgid "Not associated"
 msgstr "Nicht verknüpft"
@@ -5197,6 +5284,9 @@ msgstr "Bitte einen Dateinamen eingeben (leer = Dateiname ist aktuelles Datum)"
 
 msgid "Please enter name of the new directory"
 msgstr "Bitte den Namen des neuen Verzeichnisses eingeben"
+
+msgid "Please enter new name:"
+msgstr "Bitte neuen Dateinamen eingeben:"
 
 msgid "Please enter the correct pin code"
 msgstr "Bitte den korrekten PIN Code eingeben"
@@ -5665,9 +5755,6 @@ msgstr "Aufnahme demnächst"
 msgid "Record now"
 msgstr "Aufnahme jetzt"
 
-msgid "Record once"
-msgstr "Einmalige Aufnahme"
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr "Aufnahme wurde gestartet! TimeShift wird jetzt angehalten ..."
 
@@ -5916,13 +6003,6 @@ msgstr "An letzter Position fortsetzen"
 msgid "Resume position at %s"
 msgstr "Wiedergabestart ab %s"
 
-#. TRANSLATORS: The string "Resuming playback" flashes for a moment
-#. TRANSLATORS: at the start of a movie, when the user has selected
-#. TRANSLATORS: "Resume from last position" as start behavior.
-#. TRANSLATORS: The purpose is to notify the user that the movie starts
-#. TRANSLATORS: in the middle somewhere and not from the beginning.
-#. TRANSLATORS: (Some translators seem to have interpreted it as a
-#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Setze Wiedergabe fort"
 
@@ -5932,8 +6012,11 @@ msgstr "Zurück zur Filmliste"
 msgid "Return to previous service"
 msgstr "Zurück zum letzten Sender"
 
+msgid "Reverse bouquet buttons"
+msgstr "Bouquet-Button umdrehen"
+
 msgid "Rewind speeds"
-msgstr "Rücklauf Geschwindigkeiten"
+msgstr "Rücklaufgeschwindigkeiten"
 
 msgid "Rewrap teletext subtitles"
 msgstr "Videotextuntertitel anders formatieren"
@@ -6217,7 +6300,7 @@ msgid "Select backup files"
 msgstr "Wähle die zu sichernden Dateien"
 
 msgid "Select backup location"
-msgstr "Wähle das Sicherungs-Verzeichnis"
+msgstr "Wähle das Sicherungs Verzeichnis"
 
 msgid "Select channel to record from"
 msgstr "Wähle Sender von dem aufgenommen werden soll"
@@ -6511,6 +6594,9 @@ msgstr "Setze den Namen den die Aufnahme bekommen soll."
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Wähle die Durchlaufgeschwindigkeit für Text im Display"
 
+msgid "Set the time before checking video source for resolution infomation."
+msgstr "Systemzeit setzen vor Prüfung der Videoauflösung."
+
 msgid "Set the time the timer must start."
 msgstr "Setze die Zeit für den Start des Timers."
 
@@ -6621,6 +6707,18 @@ msgstr "Kurze Dateinamen"
 msgid "Show /tmp/ecm.info"
 msgstr "Zeige /tmp/ecm.info"
 
+msgid "Show 1080p 24fps as"
+msgstr "Zeige 1080p 24FPS als"
+
+msgid "Show 1080p 25fps as"
+msgstr "Zeige 1080p 25FPS als"
+
+msgid "Show 1080p 30fps as"
+msgstr "Zeige 1080p 30FPS als"
+
+msgid "Show 720p 24fps as"
+msgstr "Zeige 720p 24FPS als"
+
 msgid "Show AutoTimer List"
 msgstr "Zeige AutoTimer Liste"
 
@@ -6669,6 +6767,9 @@ msgstr "Zeige UHF Modulator Einstellungen..."
 msgid "Show Readers/Proxies"
 msgstr "Zeige Kartenleser/Proxies"
 
+msgid "Show SD as"
+msgstr "Zeige SD als"
+
 msgid "Show Time Remaining/Elapsed"
 msgstr "Zeige Zeit bei TV verbleibend/verstrichen"
 
@@ -6712,7 +6813,7 @@ msgid "Show crypto info in infobar"
 msgstr "Zeige Verschlüsselung in Infobar an"
 
 msgid "Show detailed event info"
-msgstr "Zeige detaillierte Sendungs-Information"
+msgstr "Zeige detaillierte Sendungsinformation"
 
 msgid "Show encryption info in the infobar (when supported by the skin)."
 msgstr ""
@@ -6978,6 +7079,9 @@ msgstr "Softcam Einstellungen"
 msgid "Softcam settings"
 msgstr "Softcam Einstellungen"
 
+msgid "SoftcamCheck"
+msgstr "Softcam Überprüfung"
+
 msgid "Software"
 msgstr "Software"
 
@@ -7164,6 +7268,9 @@ msgstr "Aufnahme beenden"
 msgid "Stop recording and delete"
 msgstr "Aufnahme beenden und löschen"
 
+msgid "Stop recording now"
+msgstr "Aufnahme jetzt beenden"
+
 msgid "Stop test"
 msgstr "Test stoppen"
 
@@ -7189,6 +7296,9 @@ msgstr "Stoppt TimeShift wenn eine Aufnahme läuft. Sinnvoll bei USB-Sticks."
 
 msgid "Stopped"
 msgstr "Gestoppt"
+
+msgid "Storage devices"
+msgstr "Speichergeräte"
 
 msgid "Store at index"
 msgstr "Bei Index speichern"
@@ -7476,7 +7586,7 @@ msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
 msgstr ""
-"Das Dateisystem vom TimeShift-Verzeichnis unterstützt keine Hardlinks.\n"
+"Das Dateisystem vom TimeShift Verzeichnis unterstützt keine Hardlinks.\n"
 "Stelle sicher das es mit EXT2/3/4 formatiert ist!"
 
 msgid ""
@@ -7508,7 +7618,7 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr ""
-"Die Sicherung ist fehlgeschlagen. Bitte einen anderes Sicherungs-Verzeichnis "
+"Die Sicherung ist fehlgeschlagen. Bitte einen anderes Sicherungs Verzeichnis "
 "auswählen."
 
 msgid "The current update maybe unstable"
@@ -7744,6 +7854,39 @@ msgid ""
 "available."
 msgstr ""
 "Diese Option gibt dir die Wahl zwischen den beiden verfügbaren Senderlisten."
+
+msgid ""
+"This option allows you to choose how to display 1080p 24Hz on your TV. (as "
+"not all TV's support these resolutions)"
+msgstr ""
+"Diese Option erlaubt es einzustellen wie ein 1080p 24Hz Video angezeigt "
+"wird. (Niicht alle Fernseher unterstützen alle Formate)"
+
+msgid ""
+"This option allows you to choose how to display 1080p 25Hz on your TV. (as "
+"not all TV's support these resolutions)"
+msgstr ""
+"Diese Option erlaubt es einzustellen wie ein 1080p 25Hz Video angezeigt "
+"wird. (Niicht alle Fernseher unterstützen alle Formate)"
+
+msgid ""
+"This option allows you to choose how to display 1080p 30Hz on your TV. (as "
+"not all TV's support these resolutions)"
+msgstr ""
+"Diese Option erlaubt es einzustellen wie ein 1080p 30Hz Video angezeigt "
+"wird. (Niicht alle Fernseher unterstützen alle Formate)"
+
+msgid ""
+"This option allows you to choose how to display 720p 24Hz on your TV. (as "
+"not all TV's support these resolutions)"
+msgstr ""
+"Diese Option erlaubt es einzustellen wie ein 720p 24Hz Video angezeigt wird. "
+"(Niicht alle Fernseher unterstützen alle Formate)"
+
+msgid ""
+"This option allows you to choose how to display standard defintion video on "
+"your TV."
+msgstr "Diese Option erlaubt es einzustellen wie ein SD Video angezeigt wird."
 
 msgid ""
 "This option allows you to choose what the first button press jumps to in "
@@ -8054,7 +8197,7 @@ msgid "Timeshift"
 msgstr "TimeShift"
 
 msgid "Timeshift location"
-msgstr "TimeShift-Verzeichnis"
+msgstr "TimeShift Verzeichnis"
 
 msgid "Timeshift not possible!"
 msgstr "TimeShift nicht möglich!"
@@ -8503,6 +8646,9 @@ msgstr "Benutzer - Favoritenlisten"
 msgid "User defined"
 msgstr "Benutzerdefiniert"
 
+msgid "User defined transponder"
+msgstr "Benutzerdefinierter Transponder"
+
 msgid "User interface"
 msgstr "Benutzeroberfläche"
 
@@ -8576,6 +8722,10 @@ msgstr "Bildoptimierung Einstellungen"
 msgid "Video PID"
 msgstr "Video PID"
 
+#, python-format
+msgid "Video content: %ix%i%s %iHz"
+msgstr "Video Format: %ix%i%s %iHz"
+
 msgid "Video enhancement preview"
 msgstr "Erweiterte A/V Einstellungen Vorschau"
 
@@ -8605,6 +8755,10 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "Auswahl des Videomodus."
+
+#, python-format
+msgid "Video mode: %s"
+msgstr "Video Modus: %s"
 
 msgid "Video output"
 msgstr "Bild Ausgang"
@@ -8862,6 +9016,9 @@ msgstr ""
 msgid "What do you want to scan?"
 msgstr "Was durchsuchen?"
 
+msgid "When enabled the PiP can be closed by the exit button."
+msgstr "Wenn aktiviert kann PiP mit der Exit Taste geschlossen werden."
+
 msgid ""
 "When enabled the online checker will also check for experimental versions"
 msgstr "Wenn aktiviert werden auch experimentelle Updates gesucht."
@@ -8956,6 +9113,9 @@ msgid ""
 msgstr ""
 "Wenn aktiviert werden grafische DVB Untertitel in Gelb statt der "
 "Originalfarbe dargestellt."
+
+msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgstr "Wenn aktiviert kann der Mediaplayer mit Exit verlassen werden."
 
 msgid ""
 "When enabled, measure power consumption to detect when the rotor stops "
@@ -9145,6 +9305,9 @@ msgstr "Funk-Netzwerk Konfiguration."
 msgid "Wireless network state"
 msgstr "Funk-Netzwerk Status"
 
+msgid "With popup"
+msgstr "Mit Popup"
+
 msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
 "bouquet screen first. If set to 'no' the current bouquet will be opened."
@@ -9158,6 +9321,9 @@ msgid ""
 msgstr ""
 "Mit dieser Option kannst Du Jobs in Erweiterungen verstecken (kurzer Druck "
 "auf Blau)."
+
+msgid "Without popup"
+msgstr "Ohne Popup"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schreibfehler bei der Aufnahme. Festplatte voll?\n"
@@ -9527,11 +9693,6 @@ msgstr ""
 "Zurückschalten zum Sender der vor dem\n"
 "Öffnen der Rotor Einstellungen lief?"
 
-msgid "Zap back to service before satfinder?"
-msgstr ""
-"Zurückschalten zum Sender, der vor dem\n"
-"Öffnen des Satfinders lief?"
-
 msgid "Zap back to service before tuner setup?"
 msgstr "Zurückschalten zum vorher laufenden Sender?"
 
@@ -9597,7 +9758,7 @@ msgid "abort bouquet edit"
 msgstr "Favoriten bearbeiten abbrechen"
 
 msgid "abort favourites edit"
-msgstr "Favoriteneditor abbrechen"
+msgstr "Favoriten bearbeiten abbrechen"
 
 msgid "about to start"
 msgstr "startet gleich"
@@ -9860,10 +10021,10 @@ msgid "enable"
 msgstr "aktivieren"
 
 msgid "enable bouquet edit"
-msgstr "Favoritenliste bearbeiten"
+msgstr "Favoriten bearbeiten"
 
 msgid "enable favourite edit"
-msgstr "Favoriteneditor aktivieren"
+msgstr "Favoriten bearbeiten"
 
 msgid "enable move mode"
 msgstr "Verschiebemodus aktivieren"
@@ -9872,10 +10033,10 @@ msgid "enabled"
 msgstr "aktiviert"
 
 msgid "end alternatives edit"
-msgstr "Alternativen-Bearbeitung beenden"
+msgstr "Alternativen Bearbeitung beenden"
 
 msgid "end bouquet edit"
-msgstr "Favoritenliste bearbeiten beenden"
+msgstr "Favoriten Bearbeitung beenden"
 
 msgid "end cut here"
 msgstr "Schnitt endet hier"
@@ -10223,6 +10384,9 @@ msgstr "auf dem nicht beschreibbaren Medium."
 msgid "once"
 msgstr "einmalig"
 
+msgid "only HD"
+msgstr "nur HD"
+
 msgid "open bouquetlist"
 msgstr "öffne Favoritenliste"
 
@@ -10330,6 +10494,9 @@ msgstr "Diese Markierung entfernen"
 
 msgid "rename"
 msgstr "umbenennen"
+
+msgid "rename entry"
+msgstr "Eintrag umbenennen"
 
 msgid "repeat playlist"
 msgstr "Wiederholung der Wiedergabeliste"
@@ -10727,21 +10894,20 @@ msgstr "umschalten und aufnehmen"
 msgid "zapped"
 msgstr "umgeschaltet"
 
-#~ msgid "Channel selection configuration"
-#~ msgstr "Senderliste Einstellungen"
+#~ msgid "Allow 25Hz/30Hz"
+#~ msgstr "25Hz/30Hz erlauben"
 
-#~ msgid "Do you want to update your %s ?"
-#~ msgstr "Die %s aktualisieren?"
-
-#~ msgid "Model: %s"
-#~ msgstr "Modell: %s"
+#~ msgid "No satellite frontend found!!"
+#~ msgstr "Kein Satellit-Tuner gefunden"
 
 #~ msgid ""
-#~ "When enabled, external subtitles (in media files) will be displayed in "
-#~ "yellow, instead of the original color."
+#~ "With this option enabled these refresh rates will be used. (please note "
+#~ "not all TV's support these rates)."
 #~ msgstr ""
-#~ "Wenn aktiviert werden externe Untertitel von Filmen in Gelb statt der "
-#~ "Originalfarbe dargestellt."
+#~ "Wenn aktiviert dann werden diese Bildraten unterstützt. Achtung: Nicht "
+#~ "alle Fernseher unterstützen diese Bildraten."
 
-#~ msgid "Yellow external subtitles"
-#~ msgstr "Gelbe, externe Untertitel"
+#~ msgid "Zap back to service before satfinder?"
+#~ msgstr ""
+#~ "Zurückschalten zum Sender, der vor dem\n"
+#~ "Öffnen des Satfinders lief?"

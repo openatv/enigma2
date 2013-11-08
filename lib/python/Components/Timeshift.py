@@ -105,7 +105,6 @@ class InfoBarTimeshift:
 			})
 
 		self.pts_begintime = 0
-		self.pts_pathchecked = False
 		self.pts_switchtolive = False
 		self.pts_currplaying = 1
 		self.pts_nextplaying = 0
@@ -1198,20 +1197,16 @@ class InfoBarTimeshift:
 			self.setSeekState(self.makeStateBackward(int(-self.pts_lastseekspeed)))
 
 	def ptsCheckTimeshiftPath(self):
-		if self.pts_pathchecked:
+		if fileExists(config.usage.timeshift_path.getValue(), 'w'):
 			return True
 		else:
-			if fileExists(config.usage.timeshift_path.getValue(), 'w'):
-				self.pts_pathchecked = True
-				return True
-			else:
-				# Notifications.AddNotification(MessageBox, _("Could not activate Permanent-Timeshift!\nTimeshift-Path does not exist"), MessageBox.TYPE_ERROR, timeout=15)
-				if self.pts_delay_timer.isActive():
-					self.pts_delay_timer.stop()
-				if self.pts_cleanUp_timer.isActive():
-					# print 'CCCCCCCCCCCCCCCCCCCCCCCC'
-					self.pts_cleanUp_timer.stop()
-				return False
+			# Notifications.AddNotification(MessageBox, _("Could not activate Permanent-Timeshift!\nTimeshift-Path does not exist"), MessageBox.TYPE_ERROR, timeout=15)
+			if self.pts_delay_timer.isActive():
+				self.pts_delay_timer.stop()
+			if self.pts_cleanUp_timer.isActive():
+				# print 'CCCCCCCCCCCCCCCCCCCCCCCC'
+				self.pts_cleanUp_timer.stop()
+			return False
 
 	def ptsTimerEntryStateChange(self, timer):
 		# print 'ptsTimerEntryStateChange'

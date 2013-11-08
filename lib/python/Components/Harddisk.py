@@ -171,6 +171,8 @@ class Harddisk:
 	def free(self):
 		dev = self.findMount()
 		if dev:
+			if not os.path.exists(dev):
+				os.mkdir(dev)
 			stat = os.statvfs(dev)
 			return int((stat.f_bfree/1000) * (stat.f_bsize/1000))
 		return -1
@@ -548,7 +550,7 @@ class Partition:
 			return None
 
 	def tabbedDescription(self):
-		if self.mountpoint.startswith('/media/net'):
+		if self.mountpoint.startswith('/media/net') or self.mountpoint.startswith('/media/autofs'):
 			# Network devices have a user defined name
 			return self.description
 		return self.description + '\t' + self.mountpoint
@@ -689,12 +691,12 @@ class HarddiskManager:
 				if os.path.ismount('/media/net/' + fil):
 					print "new Network Mount", fil, '->', os.path.join('/media/net/',fil)
 					self.partitions.append(Partition(mountpoint = os.path.join('/media/net/',fil), description = fil))
-		#upnpmount = (os.path.exists('/media/upnp') and os.listdir('/media/upnp')) or ""
-		#if len(upnpmount) > 0:
-		#	for fil in upnpmount:
-		#		if os.path.ismount('/media/upnp/'):
-		#			print "new UPNP DLNA -> /media/upnp/"
-		#			self.partitions.append(Partition(mountpoint = '/media/upnp/', description = 'DLNA'))
+		autofsmount = (os.path.exists('/media/autofs') and os.listdir('/media/autofs')) or ""
+		if len(autofsmount) > 0:
+			for fil in autofsmount:
+				if os.path.ismount('/media/autofs/' + fil):
+					print "new Network Mount", fil, '->', os.path.join('/media/autofs/',fil)
+					self.partitions.append(Partition(mountpoint = os.path.join('/media/autofs/',fil), description = fil))
 		if os.path.ismount('/media/hdd') and '/media/hdd/' not in [p.mountpoint for p in self.partitions]:
 			print "new Network Mount being used as HDD replacement -> /media/hdd/"
 			self.partitions.append(Partition(mountpoint = '/media/hdd/', description = '/media/hdd'))

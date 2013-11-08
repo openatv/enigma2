@@ -77,6 +77,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	def postWidgetCreate(self, instance):
 		instance.selectionChanged.get().append(self.selectionChanged)
 		instance.setContent(self.l)
+		self.instance.setWrapAround(True)
 
 	def preWidgetRemove(self, instance):
 		if isinstance(self.current,tuple) and len(self.current) >= 2:
@@ -107,6 +108,14 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 			is_changed |= x[1].isChanged()
 
 		return is_changed
+
+	def pageUp(self):
+		if self.instance is not None:
+			self.instance.moveSelection(self.instance.pageUp)
+
+	def pageDown(self):
+		if self.instance is not None:
+			self.instance.moveSelection(self.instance.pageDown)
 
 class ConfigListScreen:
 	def __init__(self, list, session = None, on_change = None):
@@ -225,16 +234,10 @@ class ConfigListScreen:
 		self.__changed()
 
 	def keyPageDown(self):
-		if self["config"].getCurrentIndex() + 10 <= (len(self["config"].getList()) - 1):
-			self["config"].setCurrentIndex(self["config"].getCurrentIndex() + 10)
-		else:
-			self["config"].setCurrentIndex((len(self["config"].getList()) - 1))
+		self["config"].pageDown()
 
 	def keyPageUp(self):
-		if self["config"].getCurrentIndex() - 10 > 0:
-			self["config"].setCurrentIndex(self["config"].getCurrentIndex() - 10)
-		else:
-			self["config"].setCurrentIndex(0)
+		self["config"].pageUp()
 
 	def saveAll(self):
 		for x in self["config"].list:

@@ -267,6 +267,16 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarScreenSaver, InfoBarA
 				iPlayableService.evUser+13: self["coverArt"].embeddedCoverArt
 			})
 
+	def hideAndInfoBar(self):
+		self.hide()
+		self.mediaPlayerInfoBar.show()
+		if config.mediaplayer.alwaysHideInfoBar.value or self.ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
+			self.hideMediaPlayerInfoBar.start(5000, True)
+
+	def timerHideMediaPlayerInfoBar(self):
+		self.hideMediaPlayerInfoBar.stop()
+		self.mediaPlayerInfoBar.hide()
+
 	def doNothing(self):
 		pass
 
@@ -556,9 +566,11 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarScreenSaver, InfoBarA
 			menu.append((_("Save playlist"), "saveplaylist"));
 			menu.append((_("Delete saved playlist"), "deleteplaylist"));
 			menu.append((_("Edit settings"), "settings"))
+		self.timerHideMediaPlayerInfoBar()
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 
 	def menuCallback(self, choice):
+		self.show()
 		if choice is None:
 			return
 

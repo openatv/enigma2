@@ -325,8 +325,7 @@ void runMainloop()
 
 const char *getEnigmaVersionString()
 {
-	std::string date = enigma2_date;
-	return std::string(date).c_str();
+	return enigma2_date;
 }
 
 const char *getDistro()
