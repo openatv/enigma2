@@ -3488,7 +3488,7 @@ class NetworkMiniDLNA(Screen):
 	def updateService(self):
 		import process
 		p = process.ProcessList()
-		minidlna_process = str(p.named('minidlna')).strip('[]')
+		minidlna_process = str(p.named('minidlnad')).strip('[]')
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self['labactive'].hide()

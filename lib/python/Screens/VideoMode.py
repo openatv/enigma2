@@ -343,11 +343,11 @@ class AutoVideoMode(Screen):
 			resolutionlabel["content"].setText(_("Video content: %ix%i%s %iHz") % (video_width, video_height, video_pol, (video_rate + 500) / 1000))
 
 			if video_height != -1:
-				if video_height > 720:
+				if video_height > 720 or video_width > 1280:
 					new_res = "1080"
-				elif video_height > 576 and video_height <= 720:
+				elif (video_height > 576 and video_height <= 720) or video_width > 1024:
 					new_res = "720"
-				elif video_height > 480 and video_height <= 576 or (video_height >= 400 and video_height <= 480 and video_width <= 720):
+				elif (video_height > 480 and video_height <= 576) or video_width > 720 or video_rate in (25000, 23976, 24000):
 					new_res = "576"
 				else:
 					new_res = "480"
