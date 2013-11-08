@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ims\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-25 09:57+0200\n"
-"PO-Revision-Date: 2012-12-09 02:03+0100\n"
+"POT-Creation-Date: 2013-10-26 16:32+0200\n"
+"PO-Revision-Date: 2013-10-26 15:43+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: jerry00 <jerry00@quick.cz>\n"
 "Language: Czech\n"
@@ -133,6 +133,10 @@ msgstr " a"
 #, fuzzy
 msgid "%-H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr ""
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -363,6 +367,9 @@ msgstr "* = Vyžaduje Restart"
 #
 msgid "* Only available if more than one interface is active."
 msgstr "* dostupné pouze při více než jenom aktivním interface."
+
+msgid "/s"
+msgstr ""
 
 #
 msgid "1.0"
@@ -943,6 +950,11 @@ msgstr "Vše"
 msgid "All ages"
 msgstr ""
 
+#
+#, fuzzy
+msgid "All resolutions"
+msgstr "Rozlišení"
+
 msgid "All satellites"
 msgstr ""
 
@@ -950,6 +962,12 @@ msgid "Allocate"
 msgstr ""
 
 msgid "Allocate unused memory index"
+msgstr ""
+
+msgid "Allow 25Hz/30Hz"
+msgstr ""
+
+msgid "Allow quit movieplayer with exit"
 msgstr ""
 
 msgid "Allow subtitle language to equal audio language"
@@ -982,6 +1000,9 @@ msgstr "Umožňuje zobrazit/skrýt CCcam v rozšířeních (modré tlačítko)."
 #
 msgid "Allows you setup the button to do what you choose."
 msgstr "Umožňuje nastavit tlačítka na to, co si vyberete."
+
+msgid "Allows you to adjust the amount of time the resolution infomation display on screen."
+msgstr ""
 
 #
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
@@ -1061,6 +1082,11 @@ msgstr "po čemkoliv"
 #
 msgid "Arabic"
 msgstr "Arabsky"
+
+#
+#, fuzzy
+msgid "Are you sure to remove this entry?"
+msgstr "Opravdu chcete ukončit tohoto průvodce?"
 
 #
 msgid ""
@@ -1258,6 +1284,16 @@ msgid "Automatic refresh"
 msgstr "Auto obnova"
 
 #
+#, fuzzy
+msgid "Automatic resolution"
+msgstr "Auto obnova"
+
+#
+#, fuzzy
+msgid "Automatic resolution label"
+msgstr "Auto obnova"
+
+#
 msgid "Automatic save"
 msgstr "Auto uložení"
 
@@ -1404,6 +1440,9 @@ msgstr "černá obrazovka"
 #
 msgid "Black screen till locked"
 msgstr "Vyplnit černou obrazovkou"
+
+msgid "Blind scan"
+msgstr ""
 
 #
 msgid "Block noise reduction"
@@ -1625,6 +1664,11 @@ msgstr "Zavřít"
 
 #
 #, fuzzy
+msgid "Cancel next timer"
+msgstr "Akt. čas"
+
+#
+#, fuzzy
 msgid "Cancel save timeshift as movie"
 msgstr "Neukládat Timeshift jako film"
 
@@ -1735,6 +1779,11 @@ msgstr "Seznam kanálů"
 
 msgid "Channel list context menu"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Channel list cursor behavior"
+msgstr "Náhled seznamu kanálů"
 
 msgid "Channel list on mode change"
 msgstr ""
@@ -1944,6 +1993,11 @@ msgstr "Zavřít"
 
 #
 #, fuzzy
+msgid "Close PiP on exit"
+msgstr "Při ukončení uložit playlist"
+
+#
+#, fuzzy
 msgid "Close bouquet list."
 msgstr "otevřít seznamy"
 
@@ -2066,6 +2120,11 @@ msgid "Configure if and how service type icons will be shown."
 msgstr "Vyberte množství času, pro prezentaci."
 
 #
+#, fuzzy
+msgid "Configure if service picons will be shown in the servicelist."
+msgstr "Vyberte množství času, pro prezentaci."
+
+#
 msgid "Configure interface"
 msgstr "Konfigurovat interface"
 
@@ -2092,9 +2151,6 @@ msgstr ""
 msgid "Configure the amount of time that will be presented."
 msgstr "Vyberte množství času, pro prezentaci."
 
-msgid "Configure the aspect ratio of the screen."
-msgstr ""
-
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr ""
 
@@ -2116,10 +2172,16 @@ msgstr ""
 msgid "Configure the brightness level of the front panel displa for standby."
 msgstr ""
 
+msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
+msgstr ""
+
 msgid "Configure the color of the teletext subtitles."
 msgstr ""
 
 msgid "Configure the contrast level of the front panel display."
+msgstr ""
+
+msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr ""
 
 #
@@ -3470,6 +3532,11 @@ msgid "Event font size (relative to skin size)"
 msgstr "Velikost písma pro pořad(relativně k velikosti skinu)"
 
 #
+#, fuzzy
+msgid "Event view"
+msgstr "Písmo pořadu"
+
+#
 msgid "Everywhere"
 msgstr "na všech"
 
@@ -3591,6 +3658,11 @@ msgstr ""
 
 msgid "External (CF)"
 msgstr ""
+
+#
+#, fuzzy
+msgid "External subtitle color"
+msgstr "Barva teletextových titulků"
 
 msgid "FAILED"
 msgstr ""
@@ -3817,6 +3889,11 @@ msgstr "průhledné"
 #, fuzzy
 msgid "Fulscreen"
 msgstr "Přidržet obraz"
+
+#
+#, fuzzy
+msgid "Fulview resulution"
+msgstr "Umístění souboru"
 
 msgid "Function of OK button"
 msgstr ""
@@ -4068,10 +4145,6 @@ msgid "Hard disk standby after"
 msgstr "Uspat disk po"
 
 #
-msgid "Harddisk"
-msgstr "Pevný disk"
-
-#
 msgid "Hebrew"
 msgstr "Hebrejsky"
 
@@ -4227,6 +4300,9 @@ msgstr "ikony"
 #
 msgid "Idle Time: "
 msgstr "Čekání:"
+
+msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
+msgstr ""
 
 #
 msgid "If logs are using the set maximum space used the eldest will be deleted."
@@ -4638,6 +4714,9 @@ msgstr "Stačí přepnout kanály"
 
 #
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+#. "nonlinear": _("Nonlinear"),
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 #, fuzzy
 msgid "Just scale"
 msgstr "celá obrazovka (nedodržuje poměr stran)"
@@ -4646,6 +4725,11 @@ msgstr "celá obrazovka (nedodržuje poměr stran)"
 #, fuzzy
 msgid "Just zap"
 msgstr "celá obrazovka (nedodržuje poměr stran)"
+
+#
+#, fuzzy
+msgid "Keep service"
+msgstr "Přidat program"
 
 #
 msgid "Keeps MovieList open whilst playing audio files."
@@ -5096,6 +5180,11 @@ msgid "Memory index"
 msgstr "Paměť"
 
 #
+#, fuzzy
+msgid "Memory positions"
+msgstr "Ulož pozici"
+
+#
 msgid "Menu"
 msgstr "Menu"
 
@@ -5154,11 +5243,6 @@ msgstr "Model: "
 
 #
 msgid "Model: "
-msgstr "Model: "
-
-#
-#, fuzzy, python-format
-msgid "Model: %s"
 msgstr "Model: "
 
 #
@@ -5736,11 +5820,6 @@ msgstr "ID uzlu: "
 msgid "None"
 msgstr "Ne"
 
-#
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-msgid "Nonlinear"
-msgstr "celá obrazovka (roztažení obrazu vlevo a vpravo)"
-
 msgid "Normal mode"
 msgstr ""
 
@@ -5755,6 +5834,9 @@ msgstr "Norsky"
 #
 msgid "Not Flashing"
 msgstr "Neblikat"
+
+msgid "Not Shown"
+msgstr ""
 
 #
 #, fuzzy
@@ -6290,6 +6372,11 @@ msgstr "Zadejte název souboru (prázdné = dnešní datum)"
 #
 msgid "Please enter name of the new directory"
 msgstr "Zadejte jméno nového adresáře"
+
+#
+#, fuzzy
+msgid "Please enter new name:"
+msgstr "Zadejte nové jméno souboru"
 
 #
 msgid "Please enter the correct pin code"
@@ -6898,11 +6985,6 @@ msgid "Record now"
 msgstr "Nahrávání a přehrávání"
 
 #
-#, fuzzy
-msgid "Record once"
-msgstr "Nahrávání a přehrávání"
-
-#
 msgid "Record started! Stopping timeshift now ..."
 msgstr "Záznam spuštěn! Zastavuji nyní Timeshift..."
 
@@ -7231,13 +7313,6 @@ msgstr "Pokračovat od pozice %s"
 #
 #
 #
-#. TRANSLATORS: The string "Resuming playback" flashes for a moment
-#. TRANSLATORS: at the start of a movie, when the user has selected
-#. TRANSLATORS: "Resume from last position" as start behavior.
-#. TRANSLATORS: The purpose is to notify the user that the movie starts
-#. TRANSLATORS: in the middle somewhere and not from the beginning.
-#. TRANSLATORS: (Some translators seem to have interpreted it as a
-#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Obnovit přehrávání"
 
@@ -7248,6 +7323,9 @@ msgstr "zpět na seznam filmů"
 #
 msgid "Return to previous service"
 msgstr "návrat na předchozí program"
+
+msgid "Reverse bouquet buttons"
+msgstr ""
 
 #
 msgid "Rewind speeds"
@@ -7336,6 +7414,9 @@ msgid "Samba Setup"
 msgstr "Nastavení Samby"
 
 msgid "Samba setup"
+msgstr ""
+
+msgid "Same resolution as skin"
 msgstr ""
 
 #
@@ -8174,6 +8255,11 @@ msgid "Show Transponder Remaining/Elapsed as"
 msgstr "Zobrazit hotové/zbylé tranďáky jako"
 
 #
+#, fuzzy
+msgid "Show VCR scart on main menu"
+msgstr "zobrazit DVD hlavní menu"
+
+#
 msgid "Show ViX spinning logo when system is busy."
 msgstr "Zobrazit logo VIX při zaneprázdnění systému."
 
@@ -8251,6 +8337,11 @@ msgstr "Zobrazit v seznamu doplňků ?"
 
 #
 #, fuzzy
+msgid "Show in extensions menu"
+msgstr "Zobrazit v seznamu doplňků ?"
+
+#
+#, fuzzy
 msgid "Show info"
 msgstr "Zobrazit info"
 
@@ -8299,6 +8390,11 @@ msgstr "Zobrazit/skrýt rozšířený popis, (závisí na skinu)."
 
 msgid "Show picon background colour"
 msgstr "Zobrazit barvu pozadí piconů"
+
+#
+#, fuzzy
+msgid "Show picons in servicelist"
+msgstr "Kanál není v seznamu stanic"
 
 #
 msgid "Show positioner movement"
@@ -8564,6 +8660,11 @@ msgid "Softcam settings"
 msgstr ""
 
 #
+#, fuzzy
+msgid "SoftcamCheck"
+msgstr "Software"
+
+#
 msgid "Software"
 msgstr "Software"
 
@@ -8800,6 +8901,11 @@ msgid "Stop recording and delete"
 msgstr "ukončit nahrávání a smazat"
 
 #
+#, fuzzy
+msgid "Stop recording now"
+msgstr "ukončit nahrávání"
+
+#
 msgid "Stop test"
 msgstr "Zastavit test"
 
@@ -8829,6 +8935,11 @@ msgstr ""
 #
 msgid "Stopped"
 msgstr "Zastaveno"
+
+#
+#, fuzzy
+msgid "Storage devices"
+msgstr "seznam záznamových zařízení"
 
 #
 #, fuzzy
@@ -9979,6 +10090,11 @@ msgid "Tuner"
 msgstr "Tuner"
 
 #
+#, fuzzy
+msgid "Tuner :"
+msgstr "Tuner"
+
+#
 msgid "Tuner configuration"
 msgstr "Konfigurace tuneru"
 
@@ -10322,6 +10438,11 @@ msgstr "Oblíbené"
 msgid "User defined"
 msgstr "Uživatelsky definované"
 
+#
+#, fuzzy
+msgid "User defined transponder"
+msgstr "předdefinovaný transponder"
+
 msgid "User interface"
 msgstr ""
 
@@ -10406,6 +10527,10 @@ msgstr "Rozšířené nastavení videa"
 msgid "Video PID"
 msgstr "Video pid"
 
+#, python-format
+msgid "Video content: %ix%i%s %iHz"
+msgstr ""
+
 #
 msgid "Video enhancement preview"
 msgstr "Rozšířený náhled videa"
@@ -10434,6 +10559,11 @@ msgstr ""
 
 #
 msgid "Video mode selection."
+msgstr "Výběr video režimu."
+
+#
+#, fuzzy, python-format
+msgid "Video mode: %s"
 msgstr "Výběr video režimu."
 
 msgid "Video output"
@@ -10747,6 +10877,9 @@ msgstr ""
 msgid "What do you want to scan?"
 msgstr "Co chcete prohledat?"
 
+msgid "When enabled the PiP can be closed by the exit button."
+msgstr ""
+
 msgid "When enabled the online checker will also check for experimental versions"
 msgstr ""
 
@@ -10782,9 +10915,6 @@ msgstr ""
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr ""
 
-msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
-msgstr ""
-
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr ""
 
@@ -10798,6 +10928,9 @@ msgid "When enabled, graphical DVB subtitles will be displayed at their original
 msgstr ""
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
+msgstr ""
+
+msgid "When enabled, it is possible to leave the movieplayer with exit."
 msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -10823,6 +10956,11 @@ msgstr ""
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr ""
+
+#
+#, fuzzy
+msgid "When enabled, the VCR scart option will be shown on the main menu"
+msgstr "Chcete zobrazovat hlášku 'Záznam byl spuštěn'?"
 
 msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
 msgstr ""
@@ -10935,6 +11073,12 @@ msgstr "Nastavení připojení bezdrátové sítě."
 msgid "Wireless network state"
 msgstr "Stav WiFi"
 
+msgid "With popup"
+msgstr ""
+
+msgid "With this option enabled these refresh rates will be used. (please note not all TV's support these rates)."
+msgstr ""
+
 #
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr "S touto volbou nastavenou na 'ano' bude seznam kanálů zobrazen v přehledu vždy jako první. Při nastavení na 'ne' otevře se aktuální přehled."
@@ -10942,6 +11086,9 @@ msgstr "S touto volbou nastavenou na 'ano' bude seznam kanálů zobrazen v přeh
 #
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Pomocí této volby můžete skrýt pracovní úkoly z rozšířené obrazovky (krátký stisk modrého tlačítka)."
+
+msgid "Without popup"
+msgstr ""
 
 #
 msgid "Write error while recording. Disk full?\n"
@@ -10974,9 +11121,6 @@ msgstr "Rok"
 #
 msgid "Yellow DVB subtitles"
 msgstr "Žluté DVB titulky"
-
-msgid "Yellow external subtitles"
-msgstr ""
 
 msgid "Yes"
 msgstr ""
@@ -11475,6 +11619,11 @@ msgstr ""
 #
 msgid "alphabetic reverse"
 msgstr "srovnat podle abecedy v opačném pořadí"
+
+#
+#, fuzzy
+msgid "alternative"
+msgstr "přidat alternativy"
 
 msgid "arts/culture (without music, general)"
 msgstr ""
@@ -12176,6 +12325,9 @@ msgstr "na READ ONLY médiu."
 msgid "once"
 msgstr "jednou"
 
+msgid "only HD"
+msgstr ""
+
 #
 msgid "open bouquetlist"
 msgstr "otevřít seznamy"
@@ -12314,6 +12466,11 @@ msgstr "odebrat tuto značku"
 #
 msgid "rename"
 msgstr "přejmenovat"
+
+#
+#, fuzzy
+msgid "rename entry"
+msgstr "odstranit položku"
 
 #
 msgid "repeat playlist"
@@ -12812,12 +12969,3 @@ msgstr "Ulož a nahraj"
 msgid "zapped"
 msgstr "přepnutý"
 
-#
-#, fuzzy
-#~ msgid "Channel selection configuration"
-#~ msgstr "Ruční konfigurace"
-
-#
-#, fuzzy
-#~ msgid "Do you want to update your %s ?"
-#~ msgstr "Chcete obnovit Vaše nastavení?"

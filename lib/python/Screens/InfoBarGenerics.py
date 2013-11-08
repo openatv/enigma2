@@ -306,23 +306,27 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.secondInfoBarScreen.hide()
 		for x in self.onShowHideNotifiers:
 			x(False)
-
+			
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN:
 			self.hide()
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
 				self.secondInfoBarWasShown = False
-			if self.session.pipshown:
-				self.showPiP()
+			if self.session.pipshown and "popup" in config.usage.pip_hideOnExit.getValue():
+				if config.usage.pip_hideOnExit.getValue() == "popup":
+					self.session.openWithCallback(self.hidePipOnExitCallback, MessageBox, _("Disable Picture in Picture"), simple=True)
+				else:
+					self.hidePipOnExitCallback(True)
 		else:
 			self.hide()
 			if hasattr(self, "pvrStateDialog"):
-				try:
-					self.pvrStateDialog.hide()
-				except:
-					pass
-				      
+				self.pvrStateDialog.hide()
+				
+	def hidePipOnExitCallback(self, answer):
+		if answer == True:
+			self.showPiP()
+
 	def connectShowHideNotifier(self, fnc):
 		if not fnc in self.onShowHideNotifiers:
 			self.onShowHideNotifiers.append(fnc)
@@ -616,6 +620,7 @@ class InfoBarNumberZap:
 				self.servicelist.enterPath(bouquet)
 			self.servicelist.setCurrentSelection(service) #select the service in servicelist
 			self.servicelist.zap(enable_pipzap = True)
+			self.servicelist.correctChannelNumber()
 			self.servicelist.startRoot = None
 
 	def zapToNumber(self, number):
@@ -694,7 +699,8 @@ class InfoBarChannelSelection:
 
 	def switchChannelUp(self):
 		if not config.usage.show_bouquetalways.getValue():
-#				self.servicelist.moveUp()
+			if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+				self.servicelist.moveUp()
 			self.session.execDialog(self.servicelist)
 		else:
 			self.servicelist.showFavourites()
@@ -702,7 +708,8 @@ class InfoBarChannelSelection:
 
 	def switchChannelDown(self):
 		if not config.usage.show_bouquetalways.getValue():
-#				self.servicelist.moveDown()
+			if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+				self.servicelist.moveDown()
 			self.session.execDialog(self.servicelist)
 		else:
 			self.servicelist.showFavourites()

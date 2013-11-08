@@ -1,35 +1,27 @@
 installdir = $(pkglibdir)/python/Plugins/SystemPlugins
 
 SUBDIRS = SoftwareManager PositionerSetup Satfinder \
-	Videomode VideoTune Hotplug \
+	VideoTune Hotplug \
 	CommonInterfaceAssignment \
-	IniFanSetup HdmiCEC VideoClippingSetup \
+	HdmiCEC VideoClippingSetup \
 	VideoEnhancement WirelessLan NetworkWizard \
-	SABnzbdSetup FastScan
-
-if XTREND
-SUBDIRS += SatelliteEquipmentControl DiseqcTester
-endif
-
-if ODIN
-SUBDIRS += SatelliteEquipmentControl DiseqcTester
-endif
+	IniFanSetup \
+	SABnzbdSetup FastScan SatelliteEquipmentControl DiseqcTester
 
 if VUSOLO2
-SUBDIRS += SatelliteEquipmentControl DiseqcTester
+SUBDIRS += CableScan
+endif
+
+if VUDUO2
+SUBDIRS += CableScan
 endif
 
 if VUUNO
-SUBDIRS += SatelliteEquipmentControl DiseqcTester CableScan
+SUBDIRS += CableScan
 endif
 
 if VUULTIMO
-SUBDIRS += SatelliteEquipmentControl DiseqcTester CableScan
+SUBDIRS += CableScan
 endif
 
-if DREAMBOX
-SUBDIRS += SatelliteEquipmentControl DiseqcTester CableScan
-endif
-
-install_PYTHON =	\
-	__init__.py
+install_PYTHON = __init__.py

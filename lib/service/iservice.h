@@ -91,6 +91,7 @@ public:
 	std::string getName() const { return name; }
 	void setName( const std::string &n ) { name=n; }
 	int getChannelNum() const { return number; }
+	void setChannelNum(const int n) { number = n; }
 
 	eServiceReference()
 		: type(idInvalid), flags(0)

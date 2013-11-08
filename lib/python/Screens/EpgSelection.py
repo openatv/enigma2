@@ -258,8 +258,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 			self['bouquetcursoractions'] = HelpableActionMap(self, 'DirectionActions', 
 				{
-					'left': (self.leftPressed, _('Goto previous event')),
-					'right': (self.rightPressed, _('Goto next event')),
+					'left': (self.moveBouquetPageUp, _('Goto previous event')),
+					'right': (self.moveBouquetPageDown, _('Goto next event')),
 					'up': (self.moveBouquetUp, _('Goto previous channel')),
 					'down': (self.moveBouquetDown, _('Goto next channel'))
 				}, -1)
@@ -329,8 +329,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 			self['bouquetcursoractions'] = HelpableActionMap(self, 'DirectionActions', 
 				{
-					'left': (self.leftPressed, _('Goto previous event')),
-					'right': (self.rightPressed, _('Goto next event')),
+					'left': (self.moveBouquetPageUp, _('Goto previous event')),
+					'right': (self.moveBouquetPageDown, _('Goto next event')),
 					'up': (self.moveBouquetUp, _('Goto previous channel')),
 					'down': (self.moveBouquetDown, _('Goto next channel'))
 				}, -1)
@@ -602,6 +602,14 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def moveBouquetDown(self):
 		self['bouquetlist'].moveTo(self['bouquetlist'].instance.moveDown)
+		self['bouquetlist'].fillBouquetList(self.bouquets)
+
+	def moveBouquetPageUp(self):
+		self['bouquetlist'].moveTo(self['bouquetlist'].instance.pageUp)
+		self['bouquetlist'].fillBouquetList(self.bouquets)
+
+	def moveBouquetPageDown(self):
+		self['bouquetlist'].moveTo(self['bouquetlist'].instance.pageDown)
 		self['bouquetlist'].fillBouquetList(self.bouquets)
 
 	def nextBouquet(self):
@@ -1004,8 +1012,8 @@ class EPGSelection(Screen, HelpableScreen):
 				self.showChoiceBoxDialog()
 				break
 		else:
-			menu = [(_("Record once"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordTimer), (_("Add AutoTimer"), 'CALLFUNC', self.ChoiceBoxCB, self.addAutoTimerSilent)]
-			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title="%s?" % event.getEventName(), list=menu, keys=['red', 'green'], skin_name="RecordTimerQuestion")
+			menu = [(_("Add Timer"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordTimer), (_("Add AutoTimer"), 'CALLFUNC', self.ChoiceBoxCB, self.addAutoTimerSilent)]
+			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title="%s?" % event.getEventName(), list=menu, keys=['green', 'blue'], skin_name="RecordTimerQuestion")
 			serviceref = eServiceReference(str(self['list'].getCurrent()[1]))
 			posy = self['list'].getSelectionPosition(serviceref)
 			self.ChoiceBoxDialog.instance.move(ePoint(posy[0]-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+posy[1]))
