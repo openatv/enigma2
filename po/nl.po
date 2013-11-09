@@ -1998,13 +1998,13 @@ msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Stel in waar afgewerkte timers in de lijst moeten staan."
 
 msgid "Convert ext3 filesystem to ext4"
-msgstr "Converteer bestandssysteem ext3 naar ext4"
+msgstr "Converteer ext3 naar ext4."
 
 msgid "Convert ext3 to ext4"
 msgstr "Converteer ext3 naar ext4"
 
 msgid "Convert filesystem ext3 to ext4"
-msgstr "Converteer bestandssysteem ext3 naar ext4"
+msgstr "Hier kun je uw bestandssysteem omzetten van ext3 naar ext4."
 
 msgid "Converting ext3 to ext4..."
 msgstr "Converteert ext3 naar ext4...."
@@ -10173,6 +10173,13 @@ msgstr "Bericht"
 msgid "Setup Mode"
 msgstr "Gebruikers modus"
 
+msgid ""
+"Upgrade voltooid. Do you want to \n"
+"reboot your %s %s?"
+msgstr ""
+"Upgrade voltooid. \n"
+" %s %s heropstarten?"
+
 # PowerLost
 msgid ""
 "Your %s %s was not shutdown properly.\n"
@@ -10192,6 +10199,17 @@ msgstr ""
 "Ja, verwijder uit Timerlijst "
 "EN verwijder de opname."
 
+# Menue loading settings
+msgid ""
+"Please wait while Dreamset is \n"
+"Writing your settings..."
+msgstr ""
+"Even wachten, Dreamset is \n"
+"uw settings aan het laden..."
+
+msgid "Operation completed"
+msgstr "Bewerking is voltooid"
+
 # Quick Launch Menu (Blue button)
 msgid "Quick Launch Menu"
 msgstr "Gebruikers modus"
@@ -10203,7 +10221,7 @@ msgid "Update/Backup/Restore your box"
 msgstr "Update/Backup/Herstel uw box"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
-msgstr "Hier kun je een Update/Backup maken uw software, Backup/Herstel uw instellingen"
+msgstr "Hier kun je een Update/Backup maken uw software, Backup/Herstel uw instellingen."
 
 msgid "Start/stop/select cam"
 msgstr "Start/Stop/Kies cam"
@@ -10222,7 +10240,7 @@ msgid "Mount Setup"
 msgstr "Mount Instellingen"
 
 msgid "Setup your mounts for network"
-msgstr "Stel de netwerkmounts in"
+msgstr "Stel de netwerkmounts in."
 
 msgid "Setup your local network"
 msgstr "Netwerk instellingen"
@@ -10230,7 +10248,8 @@ msgstr "Netwerk instellingen"
 msgid ""
 "Setup your local network. For Wlan you need to boot with a USB-Wlan stick"
 msgstr ""
-"Hier kun je uw netwerk beheren. Voor WLAN moet er opgestart worden met een USB WLAN Stick."
+"Hier kun je uw netwerk beheren. \n"
+"Voor WLAN moet er opgestart worden met een USB WLAN Stick."
 
 msgid "Setup Videomode"
 msgstr "Instellen Video modus"
@@ -10257,7 +10276,7 @@ msgstr "Hier kun je uw interne harde schijf beheren."
 msgid ""
 "Check/Install online updates (you must have a working internet connection)"
 msgstr ""
-"Controleer op/Installeer updates, (werkende internet verbinding nodig)."
+"Controleer Op/Installeer updates, (werkende internet verbinding nodig)."
 
 msgid "Flash Online a new image"
 msgstr "Flash Online een Image"
@@ -10288,7 +10307,7 @@ msgid ""
 "all selected files"
 msgstr ""
 "Maak volledige Backup van: Enigma2-instellingen, Zenders, Netwerk en  "
-"alle geselecteerde bestanden"
+"alle geselecteerde bestanden."
 
 msgid "Restore Settings"
 msgstr "Herstel instellingen"
@@ -10300,7 +10319,8 @@ msgid ""
 "Restore your settings back from a backup. After restore the box will restart "
 "to activated the new settings"
 msgstr ""
-"Herstel de instellingen uit een Backup. De box moet heropgestart worden om de instellingen te activeren"
+"Herstel de instellingen uit een Backup. \n"
+"De box moet heropgestart worden om de instellingen te activeren."
 
 msgid "Choose the files to backup"
 msgstr "Kies de bestanden voor een Backup"
@@ -10309,7 +10329,7 @@ msgid ""
 "Here you can select which files should be added to backupfile. (default: E2-"
 "setup, channels, network"
 msgstr ""
-"Hier de bestanden kiezen die nodig zijn voor een Backup te maken. "
+"Hier de bestanden kiezen die nodig zijn voor een Backup te maken. \n"
 "(standaard zijn: Enigma2-instellingen, Zenders, Netwerk)"
 
 msgid "Manage your online update files"
@@ -10333,7 +10353,7 @@ msgid "Download and install cam"
 msgstr "Download en installeer softcam"
 
 msgid "Shows available softcams. Here you can download and install them"
-msgstr "Toon de beschikbare Softcams die geïnstalleerd kunnen worden."
+msgstr "Toon de beschikbare Softcams die online geïnstalleerd kunnen worden."
 
 # Menue Systeem Customise
 msgid "Customise"
@@ -10376,7 +10396,9 @@ msgstr "Ga in stand-by"
 
 # Menue Systeem OSD
 msgid "Setup your OSD"
-msgstr "Alle instellingen die met infomenu's te maken hebben."
+msgstr ""
+"Alle instellingen die met infomenu's te maken hebben. \n"
+"(infobalk, 2e infobalk, menu)"
 
 msgid "2nd infobar"
 msgstr "2e infobalk"
@@ -10555,7 +10577,7 @@ msgid "Mounts Devices"
 msgstr "Mount opslagmedia"
 
 msgid "Setup your Device mounts (USB, HDD, others...)"
-msgstr "Opslagmedia instellen (USB, HDD, andere...)."
+msgstr "Mounts van opslagmedia instellen (USB, HDD, andere...)."
 
 # Menue Netwerk
 msgid "Configure your Network"
@@ -10576,8 +10598,8 @@ msgid ""
 "Setup your network interface. If no Wlan stick is used, you only can select "
 "Lan"
 msgstr ""
-"Netwerk Interface instellen. Als er geen WLAN-Stick gebruikt wordt, "
-"kan er enkel voor LAN gekozen worden."
+"Netwerk Interface instellen. \n"
+"Als er geen WLAN-Stick gebruikt wordt, kan er enkel voor LAN gekozen worden."
 
 msgid "Network Interface"
 msgstr "Netwerk Interface"
@@ -10606,24 +10628,37 @@ msgstr "Netwerkadapter instellen."
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
 msgstr "Netwerkadapter instellen (Samba, FTP, NFS,...)."
 
+# Menue AV Setup
+msgid "Auto Language"
+msgstr "Automatische taalkeuze."
+
+msgid "Select your Language for Audio/Subtitles"
+msgstr "Kies de voorkeurtaal voor audio, ondertitels en EGP."
+
+msgid "VideoEnhancement"
+msgstr "Videoverbetering"
+
+msgid "VideoEnhancement Setup"
+msgstr "Instellingen voor beeldverbetering."
+
 # Menue Tuner Setup
 msgid "Setup tuner(s)"
 msgstr "Tuner(s) instellen."
 
 msgid "Setup each tuner for your satellite system"
-msgstr "Elke tuner instellen."
+msgstr "Hier kun je elke tuner instellen."
 
 msgid "Setup rotor"
 msgstr "Rotor instellen."
 
 msgid "Setup your positioner for your satellite system"
-msgstr "Positioner Instellen."
+msgstr "Hier kun je een DiSeqC motor instellen."
 
 msgid "Automatic scan for services"
 msgstr "Automatisch kanalen zoeken."
 
 msgid "Manual scan for services"
-msgstr "Handmatig kanalen zoeken."
+msgstr "Hier kun je handmatig kanalen zoeken."
 
 msgid "Sat Finder"
 msgstr "Handmatig satelliet opzoeken."
@@ -10632,7 +10667,9 @@ msgid "Search Sats"
 msgstr "Zoek satellieten"
 
 msgid "Search Sats, check signal and lock"
-msgstr "Zoek satellieten en zet de positie vast."
+msgstr ""
+"Hier kun je satellieten zoeken en hun positie vastzetten. \n"
+"(signaalzoeker)"
 
 # Menue Applicaties
 msgid "Pluginbrowser"
@@ -10648,11 +10685,18 @@ msgstr ""
 msgid "Download and install Plugins"
 msgstr "Download en installeer Plugins."
 
+msgid "Shows available plugins. Here you can download and install them"
+msgstr ""
+"Hier een online-lijst met beschikbare plugins. \n"
+"Via deze weg kun je nieuwe plugins downloaden en installeren."
+
 msgid "Delete Plugins"
 msgstr "Plugins verwijderen"
 
 msgid "Delete and unstall Plugins. This will remove the Plugin from your box"
-msgstr "Verwijder geinstalleerde Plugins. Dit zal Plugins verwijderen van je Box "
+msgstr ""
+"Hier een lijst met geinstalleerde plugins. \n"
+"Via deze weg kun je plugins verwijderen van je box."
 
 msgid "Setup Plugin filter"
 msgstr "Plugin filter instellen"
@@ -10661,7 +10705,65 @@ msgid ""
 "Setup Plugin filter. Here you can select which Plugins are showed in the "
 "PluginBrowser"
 msgstr ""
-"Hier kun je bepalen welke soort Plugins er zichtbaar zijn in de Plugin Beheerder"
+"Hier kun je bepalen welke soort Plugins er zichtbaar zijn in de Pluginbrowser."
 
 msgid "Scan for local extensions and install them"
-msgstr "Zoek locale extenties en installeer deze."
+msgstr ""
+"Zoek locale plugins en installeer deze. \n"
+"(plugins installeren vanop: HDD, USB, ..."  
+
+# Menue Harddisk
+msgid "Format your Harddisk"
+msgstr "Harde schijf of ander medium formatteren."
+
+msgid "Check HDD"
+msgstr "Controle Harde schijf"
+
+msgid "Filesystem check your Harddisk"
+msgstr "Het bestandssysteem van de interne harde schijf of ander medium controleren."
+
+msgid "Channel list cursor behavior"
+msgstr "Gedrag van de kanaallijst cursor"
+
+#
+msgid ""
+"Configure the cursor behaviour in the channel selection list. When opening "
+"the channel selection list you can keep on the current service or already "
+"select up/down and you are able to revert the B+/B- buttons."
+msgstr ""
+"Bepaal het gedrag van de cursor in de kanaallijst. Bij het openen "
+"van de kanaallijst kan het huidige kanaal behouden blijven of het "
+"vorige/volgende dit kan je ongedaan maken met de B+/B- toetsen."
+
+msgid "Keep service + Reverse bouquet buttons"
+msgstr "Behoud zender + Omgekeerde favorieten toetsen."
+
+msgid "Delay time"
+msgstr "Verlaat tijd"
+
+msgid "Set the time before checking video source for resolution infomation."
+msgstr "Stel de tijd in voordat de videobron gecontroleerd wordt op resolutie info."
+
+msgid "Force de-interlace"
+msgstr "Altijd de-interlacer gebruiken."
+
+msgid "If enabled the video wil always be de-interlaced."
+msgstr "Indien ingeschakeld zal de video altijd de-interlaced worden."
+
+msgid "Show SD as"
+msgstr "Vertoon SD als"
+
+msgid "This option allows you to choose how to display standard defintion video on your TV."
+msgstr "Hier kunt u instellen hoe SD-video moet weergegeven worden op je TV."
+
+msgid "This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Hier kunt u instellen hoe 720p 24Hz moet weergegeven worden op je TV. (sommige  TVs ondersteunen deze resolutie niet)"
+
+msgid "This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Hier kunt u instellen hoe 1080p 24Hz moet weergegeven worden op je TV. (sommige  TVs ondersteunen deze resolutie niet)"
+
+msgid "This option allows you to choose how to display 1080p 25Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Hier kunt u instellen hoe 1080p 25Hz moet weergegeven worden op je TV. (sommige  TVs ondersteunen deze resolutie niet)"
+
+msgid "This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Hier kunt u instellen hoe 1080p 30Hz moet weergegeven worden op je TV. (sommige  TVs ondersteunen deze resolutie niet)"
