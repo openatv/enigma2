@@ -82,7 +82,7 @@ void eListboxServiceContent::setRoot(const eServiceReference &root, bool justSet
 	FillFinished();
 }
 
-void eListboxServiceContent::setCurrent(const eServiceReference &ref)
+bool eListboxServiceContent::setCurrent(const eServiceReference &ref)
 {
 	int index=0;
 	for (list::iterator i(m_list.begin()); i != m_list.end(); ++i, ++index)
@@ -90,10 +90,12 @@ void eListboxServiceContent::setCurrent(const eServiceReference &ref)
 		{
 			m_cursor = i;
 			m_cursor_number = index;
+			if (m_listbox)
+				m_listbox->moveSelectionTo(cursorResolve(index));
+				return true;
 			break;
 		}
-	if (m_listbox)
-		m_listbox->moveSelectionTo(cursorResolve(index));
+	return false;
 }
 
 void eListboxServiceContent::getCurrent(eServiceReference &ref)
