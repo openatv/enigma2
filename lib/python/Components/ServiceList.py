@@ -125,7 +125,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 	def setCurrent(self, ref):
 		if self.l.setCurrent(ref):
 			return None
-		if config.usage.multibouquet.getValue():
+		if config.usage.multibouquet.value:
 			print "[servicelist] search for service in userbouquets"
 			from Screens.ChannelSelection import ChannelSelection
 			revert_mode = config.servicelist.lastmode.value
