@@ -2,6 +2,7 @@ from config import config, ConfigSlider, ConfigSubsection, ConfigYesNo, ConfigTe
 from os import listdir, open as os_open, close as os_close, write as os_write, O_RDWR, O_NONBLOCK
 from Tools.Directories import pathExists
 from fcntl import ioctl
+from enigma import getBoxType
 import struct
 
 # asm-generic/ioctl.h
@@ -198,7 +199,7 @@ config.plugins.remotecontroltype.rctype = ConfigInteger(default = 0)
 
 class RcTypeControl():
 	def __init__(self):
-		if pathExists('/proc/stb/ir/rc/type') and pathExists('/proc/stb/info/boxtype'):
+		if pathExists('/proc/stb/ir/rc/type') and pathExists('/proc/stb/info/boxtype') and not getBoxType().startswith('gb'):
 			self.isSupported = True
 
 			fd = open('/proc/stb/info/boxtype', 'r')
