@@ -82,7 +82,8 @@ class Navigation:
 				self.currentlyPlayingServiceReference = playref
 				self.currentlyPlayingServiceOrGroup = ref
 				if InfoBarInstance is not None:
-					InfoBarInstance.servicelist.servicelist.setCurrent(ref)
+					if InfoBarInstance.servicelist.servicelist.setCurrent(ref):
+						self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
 				if self.pnav.playService(playref):
 					print "Failed to start", playref
 					self.currentlyPlayingServiceReference = None
