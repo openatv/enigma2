@@ -128,31 +128,32 @@ class ServiceList(HTMLComponent, GUIComponent):
 		if config.usage.multibouquet.value:
 			print "[servicelist] search for service in userbouquets"
 			from Screens.ChannelSelection import ChannelSelection
-			revert_mode = config.servicelist.lastmode.value
-			revert_root = self.getRoot()
 			currentServiceList = ChannelSelection.instance
-			currentServiceList.setTvMode()
-			bouquets = currentServiceList.getBouquetList()
-			for bouquet in bouquets:
-				currentServiceList.setRoot(bouquet[1])
-				if self.l.setCurrent(ref):
-					currentServiceList.saveRoot()
-					config.servicelist.lastmode.save()
-					return True
-			currentServiceList.setRadioMode()
-			bouquets = currentServiceList.getBouquetList()
-			for bouquet in bouquets:
-				currentServiceList.setRoot(bouquet[1])
-				if self.l.setCurrent(ref):
-					currentServiceList.saveRoot()
-					config.servicelist.lastmode.save()
-					return True
-			print "[servicelist] service not found in any userbouquets"
-			if revert_mode == "tv":
-				self.setModeTv()
-			elif revert_mode == "radio":
-				self.setModeRadio()
-			self.setRoot(revert_root)
+			if currentServiceList:
+				revert_mode = config.servicelist.lastmode.value
+				revert_root = self.getRoot()
+				currentServiceList.setTvMode()
+				bouquets = currentServiceList.getBouquetList()
+				for bouquet in bouquets:
+					currentServiceList.setRoot(bouquet[1])
+					if self.l.setCurrent(ref):
+						currentServiceList.saveRoot()
+						config.servicelist.lastmode.save()
+						return True
+				currentServiceList.setRadioMode()
+				bouquets = currentServiceList.getBouquetList()
+				for bouquet in bouquets:
+					currentServiceList.setRoot(bouquet[1])
+					if self.l.setCurrent(ref):
+						currentServiceList.saveRoot()
+						config.servicelist.lastmode.save()
+						return True
+				print "[servicelist] service not found in any userbouquets"
+				if revert_mode == "tv":
+					self.setModeTv()
+				elif revert_mode == "radio":
+					self.setModeRadio()
+				self.setRoot(revert_root)
 		return False
 
 	def getCurrent(self):
