@@ -150,10 +150,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 						return True
 				print "[servicelist] service not found in any userbouquets"
 				if revert_mode == "tv":
-					self.setModeTv()
+					currentServiceList.setModeTv()
 				elif revert_mode == "radio":
-					self.setModeRadio()
-				self.setRoot(revert_root)
+					currentServiceList.setModeRadio()
+				currentServiceList.setRoot(revert_root)
 		return False
 
 	def getCurrent(self):
