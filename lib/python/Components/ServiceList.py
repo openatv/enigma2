@@ -123,11 +123,11 @@ class ServiceList(HTMLComponent, GUIComponent):
 		for x in self.onSelectionChanged:
 			x()
 
-	def setCurrent(self, ref):
+	def setCurrent(self, ref, adjust=True):
 		if self.l.setCurrent(ref):
 			return None
 		from Components.ServiceEventTracker import InfoBarCount
-		if config.usage.multibouquet.value and InfoBarCount == 1:
+		if adjust and config.usage.multibouquet.value and InfoBarCount == 1:
 			print "[servicelist] search for service in userbouquets"
 			if self.serviceList:
 				revert_mode = config.servicelist.lastmode.value
