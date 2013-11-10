@@ -1280,7 +1280,7 @@ class ChannelSelectionBase(Screen):
 
 	def setCurrentSelection(self, service):
 		if service:
-			self.servicelist.setCurrent(service)
+			self.servicelist.setCurrent(service, adjust=False)
 
 	def setCurrentSelectionAlternative(self, ref):
 		if self.bouquet_mark_edit == EDIT_ALTERNATIVES and not (ref.flags & eServiceReference.isDirectory):
