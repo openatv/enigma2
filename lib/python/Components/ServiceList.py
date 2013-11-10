@@ -22,7 +22,8 @@ class ServiceList(HTMLComponent, GUIComponent):
 	MODE_NORMAL = 0
 	MODE_FAVOURITES = 1
 
-	def __init__(self):
+	def __init__(self, serviceList):
+		self.serviceList = serviceList
 		GUIComponent.__init__(self)
 		self.l = eListboxServiceContent()
 
@@ -128,33 +129,31 @@ class ServiceList(HTMLComponent, GUIComponent):
 		from Components.ServiceEventTracker import InfoBarCount
 		if config.usage.multibouquet.value and InfoBarCount == 1:
 			print "[servicelist] search for service in userbouquets"
-			from Screens.ChannelSelection import ChannelSelection
-			currentServiceList = ChannelSelection.instance
-			if currentServiceList:
+			if self.serviceList:
 				revert_mode = config.servicelist.lastmode.value
 				revert_root = self.getRoot()
-				currentServiceList.setTvMode()
-				bouquets = currentServiceList.getBouquetList()
+				self.serviceList.setTvMode()
+				bouquets = self.serviceList.getBouquetList()
 				for bouquet in bouquets:
-					currentServiceList.setRoot(bouquet[1])
+					self.serviceList.setRoot(bouquet[1])
 					if self.l.setCurrent(ref):
-						currentServiceList.saveRoot()
+						self.serviceList.saveRoot()
 						config.servicelist.lastmode.save()
 						return True
-				currentServiceList.setRadioMode()
-				bouquets = currentServiceList.getBouquetList()
+				self.serviceList.setRadioMode()
+				bouquets = self.serviceList.getBouquetList()
 				for bouquet in bouquets:
-					currentServiceList.setRoot(bouquet[1])
+					self.serviceList.setRoot(bouquet[1])
 					if self.l.setCurrent(ref):
-						currentServiceList.saveRoot()
+						self.serviceList.saveRoot()
 						config.servicelist.lastmode.save()
 						return True
 				print "[servicelist] service not found in any userbouquets"
 				if revert_mode == "tv":
-					currentServiceList.setModeTv()
+					self.serviceList.setModeTv()
 				elif revert_mode == "radio":
-					currentServiceList.setModeRadio()
-				currentServiceList.setRoot(revert_root)
+					self.serviceList.setModeRadio()
+				self.serviceList.setRoot(revert_root)
 		return False
 
 	def getCurrent(self):
