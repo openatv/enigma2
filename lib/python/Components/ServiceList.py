@@ -125,7 +125,8 @@ class ServiceList(HTMLComponent, GUIComponent):
 	def setCurrent(self, ref):
 		if self.l.setCurrent(ref):
 			return None
-		if config.usage.multibouquet.value:
+		from Components.ServiceEventTracker import InfoBarCount
+		if config.usage.multibouquet.value and InfoBarCount == 1:
 			print "[servicelist] search for service in userbouquets"
 			from Screens.ChannelSelection import ChannelSelection
 			currentServiceList = ChannelSelection.instance
