@@ -23,7 +23,6 @@ from Screens.SkinSelector import LcdSkinSelector
 from Screens.VideoMode import VideoSetup
 
 from Plugins.Plugin import PluginDescriptor
-from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerSetup, RotorNimSelection
 from Plugins.SystemPlugins.Satfinder.plugin import Satfinder
 from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
 from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
@@ -66,6 +65,12 @@ if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
 	DFLASH = True
 else:
 	DFLASH = False
+
+if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/PositionerSetup/plugin.pyo"):
+	from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerSetup, RotorNimSelection
+	POSSETUP = True
+else:
+	POSSETUP = False
 
 def isFileSystemSupported(filesystem):
 	try:
@@ -276,7 +281,8 @@ class QuickMenu(Screen):
 	def Qtuner(self):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Tuner Configuration",_("Setup tuner(s)"),_("Setup each tuner for your satellite system")))
-		self.sublist.append(QuickSubMenuEntryComponent("Positioner Setup",_("Setup rotor"),_("Setup your positioner for your satellite system")))
+		if POSSETUP == True:
+			self.sublist.append(QuickSubMenuEntryComponent("Positioner Setup",_("Setup rotor"),_("Setup your positioner for your satellite system")))
 		self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan",_("Service Searching"),_("Automatic scan for services")))
 		self.sublist.append(QuickSubMenuEntryComponent("Manual Scan",_("Service Searching"),_("Manual scan for services")))
 		self.sublist.append(QuickSubMenuEntryComponent("Sat Finder",_("Search Sats"),_("Search Sats, check signal and lock")))
