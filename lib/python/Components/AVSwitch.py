@@ -59,7 +59,7 @@ class AVSwitch:
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	# modes["DVI-PC"] = ["PC"]
 
-	if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1:
+	if about.getChipSetString() in ('7358', '7356', '7424'):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = set(["720p", "1080p", "1080i"])
 	else:
@@ -73,9 +73,9 @@ class AVSwitch:
 	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
 	# 	print "remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
-	if modes.has_key("YPbPr") and getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'odimm7' or getBoxType() == 'vusolo2' or getBoxType() == 'tmnano':
+	if modes.has_key("YPbPr") and getBoxType() in ('et4x00', 'xp1000', 'tm2t', 'tmsingle', 'odimm7', 'vusolo2', 'tmnano'):
 		del modes["YPbPr"]
-	if modes.has_key("Scart") and getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'et6x00' or getBoxType() == 'tmnano':
+	if modes.has_key("Scart") and getBoxType() in ('gbquad', 'et5x00', 'ixussone', 'et6x00', 'tmnano'):
 		del modes["Scart"]
 
 	def __init__(self):
@@ -141,28 +141,21 @@ class AVSwitch:
 		if mode_60 is None or force == 50:
 			mode_60 = mode_50
 
-		mode_etc = None
-		if os.path.exists('/proc/stb/video/videomode_50hz'):
+		if os.path.exists('/proc/stb/video/videomode_50hz') and not getBoxType().startswith('gb'):
 			f = open("/proc/stb/video/videomode_50hz", "w")
 			f.write(mode_50)
 			f.close()
-		if os.path.exists('/proc/stb/video/videomode_60hz'):
+		if os.path.exists('/proc/stb/video/videomode_60hz') and not getBoxType().startswith('gb'):
 			f = open("/proc/stb/video/videomode_60hz", "w")
 			f.write(mode_60)
 			f.close()
 		try:
-			mode_etc = modes.get(int(rate[:2]))
-			f = open("/proc/stb/video/videomode", "w")
-			f.write(mode_etc)
-			f.close()
+			set_mode = modes.get(int(rate[:2]))
 		except: # not support 50Hz, 60Hz for 1080p
-			try:
-				# fallback if no possibility to setup 50/60 hz mode
-				f = open("/proc/stb/video/videomode", "w")
-				f.write(mode_50)
-				f.close()
-			except IOError:
-				print "setting videomode failed."
+			set_mode = mode_50
+		f = open("/proc/stb/video/videomode", "w")
+		f.write(set_mode)
+		f.close()
 
 		# self.updateAspect(None)
 
@@ -214,13 +207,11 @@ class AVSwitch:
 		portlist = self.getPortList()
 		for port in portlist:
 			descr = port
-			# if descr == 'DVI' and has_hdmi:
-			# 	descr = 'HDMI'
-			# elif descr == 'DVI-PC' and has_hdmi:
-			# 	descr = 'HDMI-PC'
-			lst.append((port, descr))
+			if 'HDMI' in port:
+				lst.insert(0, (port, descr))
+			else:
+				lst.append((port, descr))
 
-			# create list of available modes
 			modes = self.getModeList(port)
 			if len(modes):
 				config.av.videomode[port] = ConfigSelection(choices = [mode for (mode, rates) in modes])

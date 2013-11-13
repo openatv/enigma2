@@ -279,9 +279,9 @@ class AutoVideoMode(Screen):
 			current_mode = current_mode.upper()
 
 		current_pol = ''
-		if current_mode.find('i') != -1:
+		if 'i' in current_mode:
 			current_pol = 'i'
-		elif current_mode.find('p') != -1:
+		elif 'p' in current_mode:
 			current_pol = 'p'
 		current_res = current_pol and current_mode.split(current_pol)[0].replace('\n','') or ""
 		current_rate = current_pol and current_mode.split(current_pol)[0].replace('\n','') and current_mode.split(current_pol)[1].replace('\n','') or ""
@@ -349,18 +349,26 @@ class AutoVideoMode(Screen):
 				new_res = config_res
 
 			if video_rate != -1:
-				if video_rate == 23976:
-					new_rate = 24000
-				elif video_rate == 29970:
-					new_rate = 30000
-				elif video_rate == 25000 and video_pol == 'i':
+				print 'VID TEST1'
+				if video_rate == 25000 and video_pol == 'i':
+					print 'VID TEST2'
 					new_rate = 50000
 				elif video_rate == 59940 or (video_rate == 29970 and video_pol == 'i'): 
+					print 'VID TEST3'
 					new_rate = 60000
+				elif video_rate == 23976:
+					print 'VID TEST4'
+					new_rate = 24000
+				elif video_rate == 29970:
+					print 'VID TEST5'
+					new_rate = 30000
 				else:
+					print 'VID TEST6'
 					new_rate = video_rate
+				print 'VID TEST7'
 				new_rate = str((new_rate + 500) / 1000)
 			else:
+				print 'VID TEST8'
 				new_rate = config_rate
 
 			if video_pol != -1:
