@@ -86,7 +86,7 @@ class Navigation:
 		print "playing", ref and ref.toString()
 		if path.exists("/proc/stb/lcd/symbol_signal") and config.lcd.mode.getValue() == '1':
 			try:
-				if ref.toString().find('0:0:0:0:0:0:0:0:0') == -1:
+				if '0:0:0:0:0:0:0:0:0' not in ref.toString():
 					signal = 1
 				else:
 					signal = 0
@@ -144,7 +144,7 @@ class Navigation:
 
 	def isMovieplayerActive(self):
 		MoviePlayerInstance = MoviePlayer.instance
-		if MoviePlayerInstance is not None and self.currentlyPlayingServiceReference.toString().find('0:0:0:0:0:0:0:0:0') != -1:
+		if MoviePlayerInstance is not None and '0:0:0:0:0:0:0:0:0' in self.currentlyPlayingServiceReference.toString():
 			from Screens.InfoBarGenerics import setResumePoint
 			setResumePoint(MoviePlayer.instance.session)
 			MoviePlayerInstance.close()
