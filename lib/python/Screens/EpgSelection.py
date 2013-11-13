@@ -734,9 +734,9 @@ class EPGSelection(Screen, HelpableScreen):
 			self.zapToNumber(self.StartRef, self.StartBouquet)
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
 			if self.zapFunc and ((self.type == EPG_TYPE_GRAPH and config.epgselection.graph_preview_mode.getValue()) or (self.type == EPG_TYPE_MULTI and config.epgselection.multi_preview_mode.getValue()) or ((self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH) and (config.epgselection.infobar_preview_mode.getValue() == '1' or config.epgselection.infobar_preview_mode.getValue() == '2')) or (self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_preview_mode.getValue())) and self.StartRef and self.StartBouquet:
-				if self.StartRef.toString().find('0:0:0:0:0:0:0:0:0') == -1:
+				if '0:0:0:0:0:0:0:0:0' not in self.StartRef.toString():
 					self.zapFunc(None, zapback = True)
-			elif self.StartRef.toString().find('0:0:0:0:0:0:0:0:0') != -1:
+			elif '0:0:0:0:0:0:0:0:0' in self.StartRef.toString():
 				self.session.nav.playService(self.StartRef)
 		if self.session.pipshown:
 			self.session.pipshown = False
@@ -1273,7 +1273,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self['list'].setCurrentlyPlaying(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
 	def zapTo(self):
-		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString().find('0:0:0:0:0:0:0:0:0') != -1:
+		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and '0:0:0:0:0:0:0:0:0' in self.session.nav.getCurrentlyPlayingServiceOrGroup().toString():
 			from Screens.InfoBarGenerics import setResumePoint
 			setResumePoint(self.session)
 		if self.zapFunc:

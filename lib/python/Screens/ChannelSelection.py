@@ -498,7 +498,7 @@ class ChannelSelectionEPG:
 		self.epgcache = eEPGCache.getInstance()
 		test = [ 'ITBDSECX', (refstr, 1, -1, 60) ] # search next 24 hours
 		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
-		if self.list is None:
+		if len(self.list) < 2:
 			return
 		eventid = self.list[0][0]
 		eventidnext = self.list[1][0]
@@ -1088,7 +1088,7 @@ class ChannelSelectionBase(Screen):
 		self["key_yellow"] = Button(_("Provider"))
 		self["key_blue"] = Button(_("Favourites"))
 
-		self["list"] = ServiceList()
+		self["list"] = ServiceList(self)
 		self.servicelist = self["list"]
 
 		self.numericalTextInput = NumericalTextInput()
@@ -1521,7 +1521,7 @@ class ChannelSelectionBase(Screen):
 
 	def setCurrentSelection(self, service):
 		if service:
-			self.servicelist.setCurrent(service)
+			self.servicelist.setCurrent(service, adjust=False)
 
 	def setCurrentSelectionAlternative(self, ref):
 		if self.bouquet_mark_edit == EDIT_ALTERNATIVES and not (ref.flags & eServiceReference.isDirectory):
@@ -1823,14 +1823,15 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.setCurrentSelection(ref)
 		elif ref is None or ref != nref:
 			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref))
-		elif self.rootChanged and not preview_zap:
-			if ref is not None and ref == nref:
-				self.saveRoot()
-				config.servicelist.lastmode.save()
-				self.setCurrentSelection(nref)
-				if self.startServiceRef is None or nref != self.startServiceRef:
-					self.addToHistory(nref)
-				self.rootChanged = False
+		elif not preview_zap:
+			self.saveRoot()
+			self.saveChannel(nref)
+			config.servicelist.lastmode.save()
+			self.setCurrentSelection(nref)
+			if self.startServiceRef is None or nref != self.startServiceRef:
+				self.addToHistory(nref)
+			self.rootChanged = False
+			self.revertMode = None
 
 	def zapCheckTimeshiftCallback(self, enable_pipzap, preview_zap, nref, answer):
 		if answer:
@@ -2095,9 +2096,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				self.setCurrentSelection(current_ref)
 		selected_ref = self.getCurrentSelection()
 		if selected_ref and current_ref and selected_ref.getChannelNum() != current_ref.getChannelNum():
-			self.session.nav.currentlyPlayingServiceOrGroup = selected_ref
-			from Components.Renderer.ChannelNumber import doRenumber
-			doRenumber()
+			oldref = self.session.nav.currentlyPlayingServiceReference
+			if oldref and selected_ref == oldref or (oldref != current_ref and selected_ref == current_ref):
+				self.session.nav.currentlyPlayingServiceOrGroup = selected_ref
+				from Components.Renderer.ChannelNumber import doRenumber
+				doRenumber()
 		if self.dopipzap:
 			if tmp_mode == "tv":
 				self.setModeTv()

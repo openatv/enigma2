@@ -134,7 +134,7 @@ class RunningText(Renderer):
 				elif attrib == "options":
 					options = value.split(',')
 					for o in options:
-						if o.find('=') != -1:
+						if '=' in o:
 							opt, val = (x.strip() for x in o.split('=', 1))
 						else:
 							opt, val = o.strip(), ""

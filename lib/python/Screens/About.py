@@ -150,7 +150,7 @@ class Devices(Screen):
 			mount = '/dev/' + device
 			f = open('/proc/mounts', 'r')
 			for line in f.readlines():
-				if line.find(device) != -1:
+				if device in line:
 					parts = line.strip().split()
 					mount = str(parts[1])
 					break

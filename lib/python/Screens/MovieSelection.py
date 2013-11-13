@@ -836,7 +836,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.updateDescription()
 
 	def FilePlaying(self):
-		if self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') != -1:
+		if self.session.nav.getCurrentlyPlayingServiceReference() and ':0:/' in self.session.nav.getCurrentlyPlayingServiceReference().toString():
 			self.list.playInForeground = self.session.nav.getCurrentlyPlayingServiceReference()
 		else:
 			self.list.playInForeground = None
@@ -857,12 +857,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def LivePlay(self):
 		if self.session.nav.getCurrentlyPlayingServiceReference():
-			if self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') == -1:
+			if ':0:/' not in self.session.nav.getCurrentlyPlayingServiceReference().toString():
 				config.movielist.curentlyplayingservice.setValue(self.session.nav.getCurrentlyPlayingServiceReference().toString())
 		checkplaying = self.session.nav.getCurrentlyPlayingServiceReference()
 		if checkplaying:
 			checkplaying = checkplaying.toString()
-		if checkplaying is None or (config.movielist.curentlyplayingservice.getValue() != checkplaying and self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') == -1):
+		if checkplaying is None or (config.movielist.curentlyplayingservice.getValue() != checkplaying and ':0:/' not in self.session.nav.getCurrentlyPlayingServiceReference().toString()):
 			self.session.nav.playService(eServiceReference(config.movielist.curentlyplayingservice.getValue()))
 		self.LivePlayTimer.stop()
 
@@ -1179,7 +1179,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		from Screens.InfoBar import InfoBar
 		infobar = InfoBar.instance
 		if self.session.nav.getCurrentlyPlayingServiceReference():
-			if not infobar.timeshiftEnabled() and self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') == -1:
+			if not infobar.timeshiftEnabled() and ':0:/' not in self.session.nav.getCurrentlyPlayingServiceReference().toString():
 				self.session.nav.stopService()
 		self.close(None)
 
@@ -1683,7 +1683,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.purgeAll()
 			return
 		if current.flags & eServiceReference.mustDescent:
-			if cur_path.find('.Trash') == -1 and config.usage.movielist_trashcan.getValue():
+			if '.Trash' not in cur_path and config.usage.movielist_trashcan.getValue():
 				try:
 					# Move the files to the trash can in a way that their CTIME is
 					# set to "now". A simple move would not correctly update the
@@ -1702,7 +1702,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			else:
 				files = 0
 				subdirs = 0
-				if cur_path.find('.Trash') != -1:
+				if '.Trash' in cur_path:
 					are_you_sure = _("Do you really want to permanently remove from trash can ?")
 				else:
 					are_you_sure = _("Do you really want to delete ?")
@@ -1759,7 +1759,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						mbox=self.session.openWithCallback(self.delete, MessageBox, _("File appears to be busy.\n") + are_you_sure)
 						mbox.setTitle(self.getTitle())
 						return
-			if cur_path.find('.Trash') == -1 and config.usage.movielist_trashcan.getValue():
+			if '.Trash' not in cur_path and config.usage.movielist_trashcan.getValue():
 				try:
 					trash = Tools.Trashcan.createTrashFolder(cur_path)
 					moveServiceFiles(current, trash, name, allowCopy=True)
@@ -1774,7 +1774,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					# Failed to create trash or move files.
 					msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
 			else:
-				if cur_path.find('.Trash') != -1:
+				if '.Trash' in cur_path:
 					are_you_sure = _("Do you really want to permamently remove '%s' from trash can ?") % (name)
 				else:
 					are_you_sure = _("Do you really want to delete %s?") % (name)

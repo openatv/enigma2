@@ -69,7 +69,7 @@ class AVSwitch:
 	
 	if hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra' or hw_type == "me" or hw_type == "minime" : config.av.edid_override = True
 
-	if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1 or about.getChipSetString().find('8493') != -1 or hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra' or hw_type == "me" or hw_type == "minime":
+	if about.getChipSetString() in ('7358', '7356', '7424', '8493')  or hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra' or hw_type == "me" or hw_type == "minime":
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = set(["720p", "1080p", "1080i"])
 	else:
@@ -83,9 +83,8 @@ class AVSwitch:
 	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
 	# 	print "remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
-	if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'iqonios300hd' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'tmnano' or getBoxType() == 'odinm7' or model == 'ini-3000' or getBoxType() == 'vusolo2' or getBoxType() == 'e3hd' or getBoxType() == 'dm500hdv2' or getBoxType() == 'dm500hd' or getBoxType() == 'dm800' or getBoxType() == 'ebox7358' or getBoxType() == 'ebox5100' or getBoxType() == 'ixusszero' or getBoxType() == 'optimussos1':
+	if modes.has_key("YPbPr") and getBoxType() in ('et4x00', 'xp1000', 'tm2t', 'tmsingle', 'odimm7', 'vusolo2', 'tmnano','iqonios300hd', 'odinm7', 'ini-3000', 'e3hd', 'dm500hdv2', 'dm500hd', 'dm800', 'ebox7358', 'ebox5100','ixusszero', 'optimussos1'):
 		del modes["YPbPr"]
-
 	def __init__(self):
 		self.last_modes_preferred =  [ ]
 		self.on_hotplug = CList()
@@ -227,13 +226,11 @@ class AVSwitch:
 		portlist = self.getPortList()
 		for port in portlist:
 			descr = port
-			# if descr == 'DVI' and has_hdmi:
-			# 	descr = 'HDMI'
-			# elif descr == 'DVI-PC' and has_hdmi:
-			# 	descr = 'HDMI-PC'
-			lst.append((port, descr))
+			if 'HDMI' in port:
+				lst.insert(0, (port, descr))
+			else:
+				lst.append((port, descr))
 
-			# create list of available modes
 			modes = self.getModeList(port)
 			if len(modes):
 				config.av.videomode[port] = ConfigSelection(choices = [mode for (mode, rates) in modes])
@@ -326,7 +323,7 @@ class AVSwitch:
 		return (aspect[0] * fb_size.height(), aspect[1] * fb_size.width())
 
 	def setAspectRatio(self, value):
-		eAVSwitch.getInstance().setAspectRatio(value)
+		pass
 
 	def getAspectRatioSetting(self):
 		valstr = config.av.aspectratio.getValue()

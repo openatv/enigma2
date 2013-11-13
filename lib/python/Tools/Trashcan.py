@@ -13,7 +13,7 @@ def getTrashFolder(path=None):
 		if path is None:
 			print 'path is none'
 		else:
-			if path.find('/movie') >0:
+			if '/movie' in path:
 				mountpoint = Harddisk.findMountPoint(os.path.realpath(path))
 				trashcan = os.path.join(mountpoint, 'movie')
 			else:
