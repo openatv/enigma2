@@ -575,7 +575,6 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.scan_nims = ConfigSelection(choices = nim_list)
 		if frontendData is not None and len(nim_list) > 0:
 			self.scan_nims.setValue(str(frontendData.get("tuner_number", nim_list[0][0])))
-		
 
 		# status
 		self.scan_snr = ConfigSlider()
@@ -950,7 +949,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					i += 1
 			self.preDefTransponders = ConfigSelection(choices = list, default = default)
 		return default
-			
+
 	def humanReadableTransponder(self, tp, div = 1):
 		pol_list = ['H','V','L','R']
 		fec_list = ['Auto','1/2','2/3','3/4','5/6','7/8','8/9','3/5','4/5','9/10','None']

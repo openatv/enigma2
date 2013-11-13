@@ -111,23 +111,22 @@ class ServiceInfo(Screen):
 			else:
 				name = _("N/A")
 				refstr = _("N/A")
-			aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
-			if aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ):
-				aspect = "4:3"
-			else:
-				aspect = "16:9"
-
-			videocodec =  ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "-" )[self.info and self.info.getInfo(iServiceInformation.sVideoType) or -1]
-
-			width = self.info and self.info.getInfo(iServiceInformation.sVideoWidth) or -1
-			height = self.info and self.info.getInfo(iServiceInformation.sVideoHeight) or -1
-			if width != -1 and height != -1:
-				resolution = "%dx%d" % (width,height)
-				resolution += ("i", "p", "")[self.info.getInfo(iServiceInformation.sProgressive)]
-				resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
-			else:
-				resolution = "-"
-				aspect = "-"
+			aspect = "-"
+			videocodec = "-"
+			resolution = "-"
+			if self.info:
+				videocodec =  ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "-" )[self.info and self.info.getInfo(iServiceInformation.sVideoType)]
+				width = self.info.getInfo(iServiceInformation.sVideoWidth)
+				height = self.info.getInfo(iServiceInformation.sVideoHeight)
+				if width > 0 and height > 0:
+					resolution = "%dx%d" % (width,height)
+					resolution += ("i", "p", "")[self.info.getInfo(iServiceInformation.sProgressive)]
+					resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
+					aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
+					if aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ):
+						aspect = "4:3"
+					else:
+						aspect = "16:9"
 
 			Labels = ( (_("Name"), name, TYPE_TEXT),
 					(_("Provider"), self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
