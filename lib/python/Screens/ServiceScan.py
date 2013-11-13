@@ -42,8 +42,8 @@ class ServiceScan(Screen):
 					if last_scanned_bouquet:
 						self.currentServiceList.setRoot(last_scanned_bouquet)
 						self.currentServiceList.setCurrentSelection(eServiceReference(selectedService[1]))
-						service = self.currentServiceList.getCurrentSelection()
-						if service != self.session.postScanService:
+						service = self.currentServiceList and self.currentServiceList.getCurrentSelection()
+						if service and ((self.session.postScanService and service != self.session.postScanService) or not self.session.postScanService):
 							self.session.postScanService = service
 							self.currentServiceList.addToHistory(service)
 						self.currentServiceList.saveRoot()
