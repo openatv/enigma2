@@ -176,7 +176,7 @@ void eHttpStream::thread()
 	hasStarted();
 	std::string currenturl, newurl;
 	currenturl = streamUrl;
-	for (unsigned int i = 0; i < 3; i++)
+	for (unsigned int i = 0; i < 5; i++)
 	{
 		if (openUrl(currenturl, newurl) < 0)
 		{
@@ -197,7 +197,7 @@ void eHttpStream::thread()
 		currenturl = newurl;
 		newurl = "";
 	}
-	/* too many redirect / playlist levels (we accept one redirect + one playlist) */
+	/* too many redirect / playlist levels */
 	eDebug("eHttpStream::Thread end NO connection");
 	connectionStatus = FAILED;
 	return;
