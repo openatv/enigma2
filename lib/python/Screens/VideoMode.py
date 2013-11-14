@@ -359,7 +359,7 @@ class AutoVideoMode(Screen):
 				if video_rate == 25000 and video_pol == 'i':
 					print 'VID TEST2'
 					new_rate = 50000
-				elif video_rate == 59940 or (video_rate == 29970 and video_pol == 'i'): 
+				elif video_rate == 59940 or (video_rate == 29970 and video_pol == 'i') or (video_rate == 29970 and video_pol == 'p' and config.av.autores.getValue() == 'disabled'): 
 					print 'VID TEST3'
 					new_rate = 60000
 				elif video_rate == 23976:
