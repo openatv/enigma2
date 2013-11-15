@@ -1,5 +1,6 @@
 from enigma import eComponentScan, iDVBFrontend
 from Components.NimManager import nimmanager as nimmgr
+from Components.Converter.ChannelNumbers import channelnumbers
 
 class ServiceScan:
 
@@ -89,7 +90,10 @@ class ServiceScan:
 					elif tp_type == iDVBFrontend.feTerrestrial:
 						network = _("Terrestrial")
 						tp = transponder.getDVBT()
-						tp_text = ("%s %s %d %s") %(
+						channel = channelnumbers.getChannelNumber(tp.frequency, self.scanList[self.run]["feid"])
+						if channel:
+							channel = _("CH") + "%s " % channel
+						tp_text = ("%s %s %s %s") %(
 							{
 								tp.System_DVB_T : "DVB-T",
 								tp.System_DVB_T2 : "DVB-T2"
@@ -99,7 +103,7 @@ class ServiceScan:
 								tp.Modulation_QAM16 : "QAM16", tp.Modulation_QAM64 : "QAM64",
 								tp.Modulation_Auto : "AUTO", tp.Modulation_QAM256 : "QAM256"
 							}.get(tp.modulation, ""),
-							tp.frequency,
+							"%s%s" % (channel , tp.frequency),
 							{
 								tp.Bandwidth_8MHz : "Bw 8MHz", tp.Bandwidth_7MHz : "Bw 7MHz", tp.Bandwidth_6MHz : "Bw 6MHz",
 								tp.Bandwidth_Auto : "Bw Auto", tp.Bandwidth_5MHz : "Bw 5MHz",
