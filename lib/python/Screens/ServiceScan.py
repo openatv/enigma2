@@ -59,7 +59,8 @@ class ServiceScan(Screen):
 		self.close()
 
 	def doCloseRecursive(self):
-		self.close(True)
+		if self.currentInfobar.__class__.__name__ == "InfoBar":
+			self.close(True)
 
 	def __init__(self, session, scanList):
 		Screen.__init__(self, session)
