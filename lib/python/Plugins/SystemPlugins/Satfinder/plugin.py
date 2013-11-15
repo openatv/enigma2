@@ -119,6 +119,8 @@ class Satfinder(ScanSetup, ServiceScan):
 
 	def retune(self, configElement):
 		returnvalue = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+		if not self.tuning_sat.value:
+			return
 		satpos = int(self.tuning_sat.getValue())
 		if self.tuning_type.getValue() == "manual_transponder":
 			if self.scan_sat.system.getValue() == eDVBFrontendParametersSatellite.System_DVB_S2:
@@ -195,7 +197,8 @@ class Satfinder(ScanSetup, ServiceScan):
 
 	def updatePreDefTransponders(self):
 		ScanSetup.predefinedTranspondersList(self, self.tuning_sat.orbital_position)
-		self.preDefTransponders.addNotifier(self.retune, initial_call = False)
+		if self.preDefTransponders:
+			self.preDefTransponders.addNotifier(self.retune, initial_call=False)
 
 	def keyGoScan(self):
 		self.frontend = None
