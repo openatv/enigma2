@@ -41,13 +41,12 @@ class ServiceScan(Screen):
 					bouquets = self.currentServiceList.getBouquetList()
 					last_scanned_bouquet = bouquets and next((x[1] for x in bouquets if x[0] == "Last Scanned"), None)
 					if last_scanned_bouquet:
-						self.currentServiceList.setRoot(last_scanned_bouquet)
+						self.currentServiceList.enterUserbouquet(last_scanned_bouquet)
 						self.currentServiceList.setCurrentSelection(eServiceReference(selectedService[1]))
 						service = self.currentServiceList.getCurrentSelection()
 						if not self.session.postScanService or service != self.session.postScanService:
 							self.session.postScanService = service
 							self.currentServiceList.addToHistory(service)
-						self.currentServiceList.saveRoot()
 						config.servicelist.lastmode.save()
 						self.close(True)
 				self.close(False)
