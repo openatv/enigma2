@@ -77,7 +77,7 @@ class SoftwareUpdateChanges(Screen):
 			fd.close()
 		except:
 			releasenotes = '404 Not Found'
-		if '404 Not Found' in releasenotes:
+		if '404 Not Found' not in releasenotes:
 			releasenotes = releasenotes.replace('\nopenvix: build',"\n\nopenvix: build")
 			releasenotes = releasenotes.split('\n\n')
 			ver = -1
