@@ -48,18 +48,20 @@ class ServiceScan(Screen):
 							self.session.postScanService = service
 							self.currentServiceList.addToHistory(service)
 						config.servicelist.lastmode.save()
-						self.close(True)
-				self.close(False)
-			self.close()
+						self.currentServiceList.saveChannel(service)
+						self.doCloseRecursive()
+			self.cancel()
 
 	def cancel(self):
-		if self.currentInfobar.__class__.__name__ == "InfoBar":
-			self.close(False)
-		self.close()
+		self.exit(False)
 
 	def doCloseRecursive(self):
+		self.exit(True)
+
+	def exit(self, returnValue):
 		if self.currentInfobar.__class__.__name__ == "InfoBar":
-			self.close(True)
+			self.close(returnValue)
+		self.close()
 
 	def __init__(self, session, scanList):
 		Screen.__init__(self, session)
