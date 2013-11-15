@@ -1766,13 +1766,16 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			elif self.revertMode == MODE_RADIO:
 				self.setModeRadio()
 			self.revertMode = None
-			self.clearPath()
-			self.recallBouquetMode()
-			if self.bouquet_root:
-				self.enterPath(self.bouquet_root)
-			self.enterPath(root)
-			self.startRoot = None
-			self.saveRoot()
+			self.enterUserbouquet(root)
+
+	def enterUserbouquet(self, root):
+		self.clearPath()
+		self.recallBouquetMode()
+		if self.bouquet_root:
+			self.enterPath(self.bouquet_root)
+		self.enterPath(root)
+		self.startRoot = None
+		self.saveRoot()
 
 	def correctChannelNumber(self):
 		current_ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
