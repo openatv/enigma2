@@ -1,7 +1,7 @@
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 
-from os import path as os_path, walk as os_walk
+import os
 from mimetypes import guess_type, add_type
 
 add_type("application/x-debian-package", ".ipk")
@@ -13,6 +13,7 @@ add_type("video/MP2T", ".ts")
 add_type("video/x-dvd-iso", ".iso")
 add_type("video/x-matroska", ".mkv")
 add_type("audio/x-matroska", ".mka")
+add_type("video/mpeg", ".mts")
 
 def getType(file):
 	(type, _) = guess_type(file)
@@ -126,11 +127,11 @@ def scanDevice(mountpoint):
 
 	# now scan the paths
 	for p in paths_to_scan:
-		path = os_path.join(mountpoint, p.path)
+		path = os.path.join(mountpoint, p.path)
 
-		for root, dirs, files in os_walk(path):
+		for root, dirs, files in os.walk(path):
 			for f in files:
-				path = os_path.join(root, f)
+				path = os.path.join(root, f)
 				if is_cdrom and f.endswith(".wav") and f.startswith("track"):
 					sfile = ScanFile(path,"audio/x-cda")
 				else:
@@ -154,8 +155,9 @@ def openList(session, files):
 	for p in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
 		l = p()
 		if not isinstance(l, list):
-			l = [l]
-		scanner += l
+			scanner.append(l)
+		else:
+			scanner += l
 
 	print "scanner:", scanner
 
