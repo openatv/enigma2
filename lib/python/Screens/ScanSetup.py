@@ -415,9 +415,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					self.list.append(self.modulationEntry)
 					self.list.append(getConfigListEntry(_('Roll-off'), self.scan_sat.rolloff))
 					self.list.append(getConfigListEntry(_('Pilot'), self.scan_sat.pilot))
-			elif self.scan_type.getValue() == "predefined_transponder":
+			elif self.scan_type.getValue() == "predefined_transponder" and self.satList[index_to_scan]:
 				self.updateSatList()
-				self.scan_satselection[index_to_scan]
 				self.preDefSatList = getConfigListEntry(_('Satellite'), self.scan_satselection[index_to_scan])
 				self.list.append(self.preDefSatList)
 				sat = self.satList[index_to_scan][self.scan_satselection[index_to_scan].index]
