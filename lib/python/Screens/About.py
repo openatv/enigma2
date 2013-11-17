@@ -37,7 +37,7 @@ class About(Screen):
 
 	def populate(self):
 		self["lab1"] = StaticText(_("openATV"))
-		self["lab2"] = StaticText(_("By openATV Image Team"))
+		self["lab2"] = StaticText(_("By sodo"))
 		model = None
 		AboutText = ""
 		self["lab3"] = StaticText(_("Support at") + " www.opena.tv")
