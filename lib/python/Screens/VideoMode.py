@@ -98,8 +98,8 @@ class VideoSetup(Screen, ConfigListScreen):
 		# some modes (720p, 1080i) are always widescreen. Don't let the user select something here, "auto" is not what he wants.
 		force_wide = self.hw.isWidescreenMode(port, mode)
 
-		# if not force_wide:
-		# 	self.list.append(getConfigListEntry(_("Aspect ratio"), config.av.aspect, _("Configure the aspect ratio of the screen.")))
+		if not force_wide:
+		 	self.list.append(getConfigListEntry(_("Aspect ratio"), config.av.aspect, _("Configure the aspect ratio of the screen.")))
 
 		if force_wide or config.av.aspect.getValue() in ("16:9", "16:10"):
 			self.list.extend((
