@@ -105,7 +105,11 @@ case $ret in
 	44)
 		# little hack but it will be fixed soon in drivers
 		/usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi && echo fpupload > /dev/dbox/oled0 && sleep 3 && cat /tmp/micom.bin > /dev/mcu && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi && sleep 200000
-		;;			
+		;;
+	45)
+		echo "    " > /dev/lcd0
+		/usr/bin/gigablue_wol
+		;;		
 	*)
 		rm -f /tmp/.listen.camd.socket.ignore
 		;;

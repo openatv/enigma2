@@ -159,7 +159,8 @@ class QuitMainloopScreen(Screen):
 			5: _("The user interface of your %s %s is restarting\ndue to an error in mytest.py") % (getMachineBrand(), getMachineName()),
 			42: _("Upgrade in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
 			43: _("Reflash in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
-			44: _("Your front panel will be upgraded\nThis may take a few minutes")}.get(retvalue)
+			44: _("Your front panel will be upgraded\nThis may take a few minutes"),
+			45: _("Your %s %s goes to WOL") % (getMachineBrand(), getMachineName())}.get(retvalue)
 		self["text"] = Label(text)
 
 inTryQuitMainloop = False
@@ -202,7 +203,8 @@ class TryQuitMainloop(MessageBox):
 				4: _("Really upgrade the frontprocessor and reboot now?"),
 				42: _("Really upgrade your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
 				43: _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),				
-				44: _("Really upgrade the front panel and reboot now?")}.get(retvalue)
+				44: _("Really upgrade the front panel and reboot now?"),
+				45: _("Really WOL now?")}.get(retvalue)
 			if text:
 				MessageBox.__init__(self, session, reason+text, type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
 				self.skinName = "MessageBoxSimple"

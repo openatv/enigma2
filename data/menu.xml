@@ -179,6 +179,24 @@ else:
 	self.session.open(TryQuitMainloop, 1)
 </code>			
 			</item>
+			<item text="WOL Standby" requires="GBWOL" entryID="deep_standby">
+<code>
+from Screens.Standby import TryQuitMainloop
+from Screens.MessageBox import MessageBox
+recordings = self.session.nav.getRecordings()
+if recordings:
+	lastrecordEnd = 0
+	for timer in self.session.nav.RecordTimer.timer_list:
+		if lastrecordEnd == 0 or lastrecordEnd >= timer.begin:
+			print "Set after-event for recording %s to DEEP-STANDBY." % timer.name
+			timer.afterEvent = 2
+			if timer.end > lastrecordEnd:
+				lastrecordEnd = timer.end + 900
+	self.session.openWithCallback(self.gotoStandby,MessageBox,_("PowerOff while Recording in progress!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, timeout = 10)
+else:
+	self.session.open(TryQuitMainloop, 45)
+</code>			
+			</item>			
 			<item text="Standby" entryID="standby"><screen module="Standby" screen="Standby"/></item>
 			<item text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
 			<item text="PowerTimers" entryID="powertimer_edit"><screen module="PowerTimerEdit" screen="PowerTimerEditList" /></item>

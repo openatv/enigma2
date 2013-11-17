@@ -38,3 +38,4 @@ SystemInfo["SeekStatePlay"] = False
 SystemInfo["GraphicLCD"] = getBoxType() == "vuultimo"
 SystemInfo["Blindscan"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Blindscan/plugin.pyo")
 SystemInfo["Satfinder"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Satfinder/plugin.pyo")
+SystemInfo["GBWOL"] = fileExists("/usr/bin/gigablue_wol")
