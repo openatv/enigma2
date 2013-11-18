@@ -362,7 +362,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.list.append(self.typeOfScanEntry)
 		elif nim.isCompatible("DVB-T"):
 			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), self.scan_typeterrestrial)
-			self.typeOfInputEntry = getConfigListEntry(_("Use frequence or channel"), self.scan_input_as)
+			self.typeOfInputEntry = getConfigListEntry(_("Use frequency or channel"), self.scan_input_as)
 			self.list.append(self.typeOfScanEntry)
 			if self.ter_channel_input:
 				self.list.append(self.typeOfInputEntry)
