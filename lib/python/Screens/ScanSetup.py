@@ -522,8 +522,6 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					defaultCab["modulation"] = frontendData.get("modulation", eDVBFrontendParametersCable.Modulation_QAM16)
 					defaultTer["system"] = frontendData.get("system", eDVBFrontendParametersCable.System_DVB_C_ANNEX_A)
 				elif ttype == "DVB-T":
-					self.ter_tnumber = frontendData.get("tuner_number", "UNKNOWN")
-					self.ter_channel_input = channelnumbers.supportedChannels(self.ter_tnumber)
 					defaultTer["frequency"] = frontendData.get("frequency", 0)
 					defaultTer["inversion"] = frontendData.get("inversion", eDVBFrontendParametersTerrestrial.Inversion_Unknown)
 					defaultTer["bandwidth"] = frontendData.get("bandwidth", 7000000)
@@ -555,6 +553,12 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.scan_nims = ConfigSelection(choices = nim_list)
 			if frontendData is not None and len(nim_list) > 0:
 				self.scan_nims.value = str(frontendData.get("tuner_number", nim_list[0][0]))
+
+			for slot in nimmanager.nim_slots:
+				if slot.isCompatible("DVB-T"):
+					self.ter_tnumber = slot.slot
+			if self.ter_tnumber:
+				self.ter_channel_input = channelnumbers.supportedChannels(self.ter_tnumber)
 
 			# status
 			self.scan_snr = ConfigSlider()
