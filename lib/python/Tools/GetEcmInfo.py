@@ -51,12 +51,12 @@ class GetEcmInfo:
 				if len(d) > 1:
 					info[d[0].strip()] = d[1].strip()
 				mgcam = line.strip()
-				if line.find('ECM') != -1:
+				if 'ECM' in line:
 					linetmp = mgcam.split(' ')
 					info['eEnc'] = linetmp[1]
 					info['eCaid'] = linetmp[5][2:-1]
 					continue
-				if line.find('source') != -1:
+				if 'source' in line:
 					linetmp = mgcam.split(' ')
 					try:
 						info['eSrc'] = linetmp[4][:-1]
@@ -64,14 +64,14 @@ class GetEcmInfo:
 					except:
 						info['eSrc'] = linetmp[1]
 						continue
-				if line.find('msec') != -1:
+				if 'msec' in line:
 					linetmp = line.split(' ')
 					info['eTime'] = linetmp[0]
 					continue
-				if line.find('SysID') != -1:
+				if 'SysID' in line:
 					info['prov'] = line.strip()[6:]
 					continue
-				if line.find('CaID 0x') != -1 and line.find('pid 0x') != -1:
+				if 'CaID 0x' in line and 'pid 0x' in line:
 					info['caid'] = line[line.find('CaID 0x')+7:line.find(',')]
 					info['pid'] = line[line.find('pid 0x')+6:line.find(' =')]
 					info['provid'] = info.get('prov', '0')[:4]

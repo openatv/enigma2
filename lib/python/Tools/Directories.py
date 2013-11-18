@@ -113,19 +113,19 @@ def resolveFilename(scope, base = "", path_prefix = None):
 			pos = config.skin.primary_skin.value.rfind('/')
 			if pos != -1:
 				tmpfile = tmp+config.skin.primary_skin.value[:pos+1] + base
-				if pathExists(tmpfile) or (tmpfile.find(':') != -1 and pathExists(tmpfile.split(':')[0])):
+				if pathExists(tmpfile) or (':' in tmpfile and pathExists(tmpfile.split(':')[0])):
 					path = tmp+config.skin.primary_skin.value[:pos+1]
-				elif pathExists(tmp + base) or (base.find(':') != -1 and pathExists(tmp + base.split(':')[0])):
+				elif pathExists(tmp + base) or (':' in base and pathExists(tmp + base.split(':')[0])):
 					path = tmp
 				else:
-					if tmp.find('skin_default') == -1:
+					if 'skin_default' not in tmp:
 						path = tmp + 'skin_default/'
 					else:
 						path = tmp
 			else:
 				if pathExists(tmp + base):
 					path = tmp
-				elif tmp.find('skin_default') == -1:
+				elif 'skin_default' not in tmp:
 					path = tmp + 'skin_default/'
 				else:
 					path = tmp
@@ -146,12 +146,12 @@ def resolveFilename(scope, base = "", path_prefix = None):
 				if pathExists(tmpfile):
 					path = tmp+config.skin.display_skin.getValue()[:pos+1]
 				else:
-					if tmp.find('skin_default') == -1:
+					if 'skin_default' not in tmp:
 						path = tmp + 'skin_default/'
 					else:
 						path = tmp
 			else:
-				if tmp.find('skin_default') == -1:
+				if 'skin_default' not in tmp:
 					path = tmp + 'skin_default/'
 				else:
 					path = tmp

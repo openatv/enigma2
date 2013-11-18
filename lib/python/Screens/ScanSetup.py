@@ -415,9 +415,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					self.list.append(self.modulationEntry)
 					self.list.append(getConfigListEntry(_('Roll-off'), self.scan_sat.rolloff))
 					self.list.append(getConfigListEntry(_('Pilot'), self.scan_sat.pilot))
-			elif self.scan_type.getValue() == "predefined_transponder":
+			elif self.scan_type.getValue() == "predefined_transponder" and self.satList[index_to_scan]:
 				self.updateSatList()
-				self.scan_satselection[index_to_scan]
 				self.preDefSatList = getConfigListEntry(_('Satellite'), self.scan_satselection[index_to_scan])
 				self.list.append(self.preDefSatList)
 				sat = self.satList[index_to_scan][self.scan_satselection[index_to_scan].index]
@@ -490,7 +489,6 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.createSetup()
 
 	def createConfig(self, frontendData):
-		defaultNim = "0"
 		defaultSat = {
 			"orbpos": 192,
 			"system": eDVBFrontendParametersSatellite.System_DVB_S,
@@ -523,7 +521,6 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		if frontendData is not None:
 			ttype = frontendData.get("tuner_type", "UNKNOWN")
-			defaultNim = str(frontendData.get("tuner_number", 0))
 			if ttype == "DVB-S":
 				defaultSat["system"] = frontendData.get("system", eDVBFrontendParametersSatellite.System_DVB_S)
 				defaultSat["frequency"] = frontendData.get("frequency", 0) / 1000
@@ -573,8 +570,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				if n.type == nimmanager.nim_slots[root_id].type: # check if connected from a DVB-S to DVB-S2 Nim or vice versa
 					continue
 			nim_list.append((str(n.slot), n.friendly_full_description))
-
-		self.scan_nims = ConfigSelection(choices = nim_list, default = defaultNim)
+			
+		self.scan_nims = ConfigSelection(choices = nim_list)
+		if frontendData is not None and len(nim_list) > 0:
+			self.scan_nims.setValue(str(frontendData.get("tuner_number", nim_list[0][0])))
 
 		# status
 		self.scan_snr = ConfigSlider()
@@ -949,7 +948,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					i += 1
 			self.preDefTransponders = ConfigSelection(choices = list, default = default)
 		return default
-			
+
 	def humanReadableTransponder(self, tp, div = 1):
 		pol_list = ['H','V','L','R']
 		fec_list = ['Auto','1/2','2/3','3/4','5/6','7/8','8/9','3/5','4/5','9/10','None']
