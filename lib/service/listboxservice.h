@@ -37,7 +37,7 @@ public:
 	int markedQueryNext(eServiceReference &ref);
 
 	int lookupService(const eServiceReference &ref);
-	void setCurrent(const eServiceReference &ref);
+	bool setCurrent(const eServiceReference &ref);
 
 	enum {
 		visModeSimple,
