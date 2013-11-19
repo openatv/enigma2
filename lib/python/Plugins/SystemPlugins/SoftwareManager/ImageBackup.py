@@ -500,6 +500,7 @@ class ImageBackup(Screen):
 
 		if self.ROOTFSTYPE == "jffs2":
 			cmd1 = "%s --root=/tmp/bi/root --faketime --output=%s/root.jffs2 %s" % (self.MKFS, self.WORKDIR, self.JFFS2OPTIONS)
+			cmd2 = None
 		else:
 			f = open("%s/ubinize.cfg" %self.WORKDIR, "w")
 			f.write("[ubifs]\n")
@@ -602,7 +603,16 @@ class ImageBackup(Screen):
 				if path.exists(lcdwaitkey):
 					system('cp %s %s/lcdwaitkey.bin' %(lcdwaitkey, self.MAINDEST))
 				if path.exists(lcdwarning):
-					system('cp %s %s/lcdwarning.bin' %(lcdwarning, self.MAINDEST))				
+					system('cp %s %s/lcdwarning.bin' %(lcdwarning, self.MAINDEST))
+			if self.MODEL == "solo":
+				burnbat = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
+				f = open("%s/burn.bat" % (burnbat), "w")
+				f.write("flash -noheader usbdisk0:gigablue/solo/kernel.bin flash0.kernel\n")
+				f.write("flash -noheader usbdisk0:gigablue/solo/rootfs.bin flash0.rootfs\n")
+				f.write('setenv -p STARTUP "boot -z -elf flash0.kernel: ')
+				f.write("'rootfstype=jffs2 bmem=106M@150M root=/dev/mtdblock6 rw '")
+				f.write('"\n')
+				f.close()
 			cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.EXTRA))
 
 		cmdlist.append("sync")
