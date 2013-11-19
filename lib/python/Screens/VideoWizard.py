@@ -1,7 +1,9 @@
+from enigma import getBoxType, getMachineName
 from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
 from Components.AVSwitch import iAVSwitch
+from Screens.Screen import Screen
 
 from Components.About import about
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
@@ -12,9 +14,42 @@ from Tools.HardwareInfo import HardwareInfo
 
 config.misc.showtestcard = ConfigBoolean(default = False)
 
+try:
+	file = open("/proc/stb/info/boxtype", "r")
+	model = file.readline().strip()
+	file.close()
+except:
+	model = "unknown"	
+
+has_rca = False
+has_dvi = False
+hw_type = HardwareInfo().get_device_name()
+if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'odinm6' or getMachineName() == 'AX-Odin' or getBoxType() == 'ebox7358' or getBoxType() == 'tmnano' or hw_type == 'ultra' or hw_type == "me" or hw_type == "minime" or getBoxType() == 'optimussos1' or getBoxType() == 'optimussos2' or getBoxType() == 'gb800seplus' or getBoxType() == 'gb800ueplus' or model == 'ini-1000ru' or model == 'ini-1000sv' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero':	
+	has_rca = True
+if getBoxType() == 'dm8000' or getBoxType() == 'dm800':
+	has_dvi = True
+
 class VideoWizardSummary(WizardSummary):
+	skin = (
+	"""<screen name="VideoWizardSummary" position="0,0" size="132,64" id="1">
+		<widget name="text" position="6,4" size="120,40" font="Regular;12" transparent="1" />
+		<widget source="parent.list" render="Label" position="6,40" size="120,21" font="Regular;14">
+			<convert type="StringListSelection" />
+		</widget>
+		<!--widget name="pic" pixmap="%s" position="6,22" zPosition="10" size="64,64" transparent="1" alphatest="on"/-->
+	</screen>""",
+	"""<screen name="VideoWizardSummary" position="0,0" size="96,64" id="2">
+		<widget name="text" position="0,4" size="96,40" font="Regular;12" transparent="1" />
+		<widget source="parent.list" render="Label" position="0,40" size="96,21" font="Regular;14">
+			<convert type="StringListSelection" />
+		</widget>
+		<!--widget name="pic" pixmap="%s" position="0,22" zPosition="10" size="64,64" transparent="1" alphatest="on"/-->
+	</screen>""")
+	#% (resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/lcd_Scart.png"))
+
 	def __init__(self, session, parent):
 		WizardSummary.__init__(self, session, parent)
+		#self["pic"] = Pixmap()
 
 	def setLCDPicCallback(self):
 		self.parent.setLCDTextCallback(self.setText)
@@ -55,6 +90,7 @@ class VideoWizard(WizardLanguage, Rc):
 		Rc.__init__(self)
 		self["wizard"] = Pixmap()
 		self["portpic"] = Pixmap()
+		Screen.setTitle(self, _("Welcome..."))
 
 		self.port = None
 		self.mode = None
@@ -78,8 +114,10 @@ class VideoWizard(WizardLanguage, Rc):
 		for port in self.hw.getPortList():
 			if self.hw.isPortUsed(port):
 				descr = port
-				if descr == 'DVI' and has_hdmi:
-					descr = 'HDMI'
+				if descr == 'HDMI' and has_dvi:
+					descr = 'DVI'
+				if descr == 'Scart' and has_rca:
+					descr = 'RCA'					
 				if port != "DVI-PC":
 					list.append((descr,port))
 		list.sort(key = lambda x: x[0])
@@ -98,8 +136,10 @@ class VideoWizard(WizardLanguage, Rc):
 		self.inputSelect(self.selection)
 		if self["portpic"].instance is not None:
 			picname = self.selection
-			if picname == 'DVI' and has_hdmi:
-				picname = "HDMI"
+			if picname == 'HDMI' and has_dvi:
+				picname = "DVI"
+			if picname == 'Scart' and has_rca:
+				picname = "RCA"	
 			self["portpic"].instance.setPixmapFromFile(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/" + picname + ".png"))
 
 	def inputSelect(self, port):

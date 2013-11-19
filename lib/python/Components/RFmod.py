@@ -38,17 +38,17 @@ def InitRFmod():
 		iRFmod = RFmod()
 
 		def setFunction(configElement):
-			iRFmod.setFunction(configElement.value);
+			iRFmod.setFunction(configElement.getValue());
 		def setTestmode(configElement):
-			iRFmod.setTestmode(configElement.value);
+			iRFmod.setTestmode(configElement.getValue());
 		def setSoundFunction(configElement):
-			iRFmod.setSoundFunction(configElement.value);
+			iRFmod.setSoundFunction(configElement.getValue());
 		def setSoundCarrier(configElement):
 			iRFmod.setSoundCarrier(configElement.index);
 		def setChannel(configElement):
-			iRFmod.setChannel(int(configElement.value));
+			iRFmod.setChannel(int(configElement.getValue()));
 		def setFinetune(configElement):
-			iRFmod.setFinetune(configElement.value - 5);
+			iRFmod.setFinetune(configElement.getValue() - 5);
 
 		# this will call the "setup-val" initial
 		config.rfmod.enable.addNotifier(setFunction);

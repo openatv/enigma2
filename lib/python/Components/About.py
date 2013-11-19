@@ -144,7 +144,60 @@ def getImageDistroString():
 		return distro
 	except IOError:
 		return "unavailable"
+		
+def getModelString():
+	try:
+		file = open("/proc/stb/info/boxtype", "r")
+		model = file.readline().strip()
+		file.close()
+		return model
+	except IOError:
+		return "unknown"		
 
+def getChipSetString():
+	try:
+		f = open('/proc/stb/info/chipset', 'r')
+		chipset = f.read()
+		f.close()
+		return chipset.replace('\n','')
+	except IOError:
+		return "unavailable"
+
+def getCPUString():
+	try:
+		file = open('/proc/cpuinfo', 'r')
+		lines = file.readlines()
+		for x in lines:
+			splitted = x.split(': ')
+			if len(splitted) > 1:
+				splitted[1] = splitted[1].replace('\n','')
+				if splitted[0].startswith("system type"):
+					system = splitted[1].split(' ')[0]
+				elif splitted[0].startswith("Processor"):
+					system = splitted[1].split(' ')[0]
+		file.close()
+		return system 
+	except IOError:
+		return "unavailable"
+
+def getCpuCoresString():
+	try:
+		file = open('/proc/cpuinfo', 'r')
+		lines = file.readlines()
+		for x in lines:
+			splitted = x.split(': ')
+			if len(splitted) > 1:
+				splitted[1] = splitted[1].replace('\n','')
+				if splitted[0].startswith("processor"):
+					if int(splitted[1]) > 0:
+						cores = 2
+					else:
+						cores = 1
+		file.close()
+		return cores
+	except IOError:
+		return "unavailable"
+		
 import socket, fcntl, struct
 
 def _ifinfo(sock, addr, ifname):
@@ -180,52 +233,6 @@ def getIfTransferredData(ifname):
 			rx_bytes, tx_bytes = (data[0], data[8])
 			f.close()
 			return (rx_bytes, tx_bytes)
-
-def getChipSetString():
-	try:
-		f = open('/proc/stb/info/chipset', 'r')
-		chipset = f.read()
-		if chipset == "bcm7358\n":
-			chipset = "7358"
-		elif chipset == "bcm7424\n":
-			chipset = "7424"
-		f.close()
-		return chipset
-	except IOError:
-		return "unavailable"
-
-def getCPUString():
-	try:
-		file = open('/proc/cpuinfo', 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split(': ')
-			if len(splitted) > 1:
-				splitted[1] = splitted[1].replace('\n','')
-				if splitted[0].startswith("system type"):
-					system = splitted[1].split(' ')[0]
-		file.close()
-		return system 
-	except IOError:
-		return "unavailable"
-
-def getCpuCoresString():
-	try:
-		file = open('/proc/cpuinfo', 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split(': ')
-			if len(splitted) > 1:
-				splitted[1] = splitted[1].replace('\n','')
-				if splitted[0].startswith("processor"):
-					if int(splitted[1]) > 0:
-						cores = 2
-					else:
-						cores = 1
-		file.close()
-		return cores
-	except IOError:
-		return "unavailable"
 
 # For modules that do "from About import about"
 about = sys.modules[__name__]

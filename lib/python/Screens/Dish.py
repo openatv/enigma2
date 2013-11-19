@@ -108,7 +108,7 @@ class Dish(Screen):
 		if tuner_type and "DVB-S" in tuner_type:
 			self.cur_orbpos = data.get("orbital_position", INVALID_POSITION)
 			if self.cur_orbpos != INVALID_POSITION:
-				config.misc.lastrotorposition.value = self.cur_orbpos
+				config.misc.lastrotorposition.setValue(self.cur_orbpos)
 				config.misc.lastrotorposition.save()
 			self.cur_polar  = data.get("polarization", 0)
 			self.rotorTimer.start(500, False)
@@ -120,8 +120,8 @@ class Dish(Screen):
 			self.hide()
 
 	def configChanged(self, configElement):
-		self.showdish = configElement.value
-		if configElement.value == "off":
+		self.showdish = configElement.getValue()
+		if configElement.getValue() == "off":
 			self["Dishpixmap"].setConnect(lambda: False)
 		else:
 			self["Dishpixmap"].setConnect(eDVBSatelliteEquipmentControl.getInstance().isRotorMoving)

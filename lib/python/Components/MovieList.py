@@ -36,12 +36,15 @@ class StubInfo:
 	def isPlayable(self):
 		return True
 	def getInfo(self, serviceref, w):
-		if w == iServiceInformation.sTimeCreate:
-			return os.stat(serviceref.getPath()).st_ctime
-		if w == iServiceInformation.sFileSize:
-			return os.stat(serviceref.getPath()).st_size
-		if w == iServiceInformation.sDescription:
-			return serviceref.getPath()
+		try:
+			if w == iServiceInformation.sTimeCreate:
+				return os.stat(serviceref.getPath()).st_ctime
+			if w == iServiceInformation.sFileSize:
+				return os.stat(serviceref.getPath()).st_size
+			if w == iServiceInformation.sDescription:
+				return serviceref.getPath()
+		except:
+			pass
 		return 0
 	def getInfoString(self, serviceref, w):
 		return ''
@@ -152,6 +155,7 @@ class MovieList(GUIComponent):
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
 		self.root = None
+		self.list = None
 		self._playInBackground = None
 		self._playInForeground = None
 		self._char = ''
@@ -364,7 +368,7 @@ class MovieList(GUIComponent):
 
 		begin_string = ""
 		if begin > 0:
-			begin_string = ', '.join(FuzzyTime(begin, inPast = True))
+			begin_string = ' '.join(FuzzyTime(begin, inPast = True))
 
 		ih = self.itemHeight
 		lenSize = ih * 3 # 25 -> 75
@@ -453,7 +457,7 @@ class MovieList(GUIComponent):
 	def load(self, root, filter_tags):
 		# this lists our root service, then building a
 		# nice list
-		del self.list[:]
+		self.list = [ ]
 		serviceHandler = eServiceCenter.getInstance()
 		numberOfDirs = 0
 

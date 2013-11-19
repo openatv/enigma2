@@ -55,9 +55,9 @@ class FanControl:
 
 	def createConfig(self):
 		def setVlt(fancontrol, fanid, configElement):
-			fancontrol.setVoltage(fanid, configElement.value)
+			fancontrol.setVoltage(fanid, configElement.getValue())
 		def setPWM(fancontrol, fanid, configElement):
-			fancontrol.setPWM(fanid, configElement.value)
+			fancontrol.setPWM(fanid, configElement.getValue())
 
 		config.fans = ConfigSubList()
 		for fanid in range(self.getFanCount()):

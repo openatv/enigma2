@@ -81,6 +81,7 @@ class EventViewBase:
 			{
 				"cancel": self.close,
 				"ok": self.close,
+				"info": self.close,
 				"pageUp": self.pageUp,
 				"pageDown": self.pageDown,
 				"prevEvent": self.prevEvent,
@@ -195,8 +196,19 @@ class EventViewBase:
 
 		self["summary_description"].setText(extended)
 
-		begintime = event.getBeginTimeString().split(', ')[1].split(':')
-		begindate = event.getBeginTimeString().split(', ')[0].split('.')
+		beginTimeString = event.getBeginTimeString()
+
+		if not beginTimeString:
+			return
+		if beginTimeString.find(', ') > -1:
+			begintime = beginTimeString.split(', ')[1].split(':')
+			begindate = beginTimeString.split(', ')[0].split('.')
+		else:
+			if len(beginTimeString.split(' ')) > 1:
+				begintime = beginTimeString.split(' ')[1].split(':')
+			else:
+				return
+			begindate = beginTimeString.split(' ')[0].split('.')
 		nowt = time()
 		now = localtime(nowt)
 		test = int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst)))
@@ -206,7 +218,7 @@ class EventViewBase:
 		self["duration"].setText(_("%d min")%(event.getDuration()/60))
 		if self.SimilarBroadcastTimer is not None:
 			self.SimilarBroadcastTimer.start(400, True)
-
+			
 		serviceref = self.currentService
 		eventid = self.event.getEventId()
 		refstr = serviceref.ref.toString()

@@ -1,3 +1,4 @@
+from enigma import getBoxType
 from config import config, ConfigSlider, ConfigSubsection, ConfigYesNo, ConfigText, ConfigInteger
 from os import listdir, open as os_open, close as os_close, write as os_write, O_RDWR, O_NONBLOCK
 from Tools.Directories import pathExists
@@ -141,39 +142,42 @@ class InitInputDevices:
 
 	def inputDevicesEnabledChanged(self,configElement):
 		if self.currentDevice != "" and iInputDevices.currentDevice == "":
-			iInputDevices.setEnabled(self.currentDevice, configElement.value)
+			iInputDevices.setEnabled(self.currentDevice, configElement.getValue())
 		elif iInputDevices.currentDevice != "":
-			iInputDevices.setEnabled(iInputDevices.currentDevice, configElement.value)
+			iInputDevices.setEnabled(iInputDevices.currentDevice, configElement.getValue())
 
 	def inputDevicesNameChanged(self,configElement):
 		if self.currentDevice != "" and iInputDevices.currentDevice == "":
-			iInputDevices.setName(self.currentDevice, configElement.value)
-			if configElement.value != "":
+			iInputDevices.setName(self.currentDevice, configElement.getValue())
+			if configElement.getValue() != "":
 				devname = iInputDevices.getDeviceAttribute(self.currentDevice, 'name')
-				if devname != configElement.value:
-					cmd = "config.inputDevices." + self.currentDevice + ".enabled.value = False"
+				if devname != configElement.getValue():
+					cmd = "config.inputDevices." + self.currentDevice + ".enabled.setValue(False)"
 					exec (cmd)
 					cmd = "config.inputDevices." + self.currentDevice + ".enabled.save()"
 					exec (cmd)
 		elif iInputDevices.currentDevice != "":
-			iInputDevices.setName(iInputDevices.currentDevice, configElement.value)
+			iInputDevices.setName(iInputDevices.currentDevice, configElement.getValue())
 
 	def inputDevicesRepeatChanged(self,configElement):
 		if self.currentDevice != "" and iInputDevices.currentDevice == "":
-			iInputDevices.setRepeat(self.currentDevice, configElement.value)
+			iInputDevices.setRepeat(self.currentDevice, configElement.getValue())
 		elif iInputDevices.currentDevice != "":
-			iInputDevices.setRepeat(iInputDevices.currentDevice, configElement.value)
+			iInputDevices.setRepeat(iInputDevices.currentDevice, configElement.getValue())
 
 	def inputDevicesDelayChanged(self,configElement):
 		if self.currentDevice != "" and iInputDevices.currentDevice == "":
-			iInputDevices.setDelay(self.currentDevice, configElement.value)
+			iInputDevices.setDelay(self.currentDevice, configElement.getValue())
 		elif iInputDevices.currentDevice != "":
-			iInputDevices.setDelay(iInputDevices.currentDevice, configElement.value)
+			iInputDevices.setDelay(iInputDevices.currentDevice, configElement.getValue())
 
 	def setupConfigEntries(self,device):
 		cmd = "config.inputDevices." + device + " = ConfigSubsection()"
 		exec (cmd)
-		cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = False)"
+		if getBoxType() == 'dm800' or getBoxType() == 'azboxhd':
+			cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = True)"
+		else:
+			cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = False)"		
 		exec (cmd)
 		cmd = "config.inputDevices." + device + ".enabled.addNotifier(self.inputDevicesEnabledChanged,config.inputDevices." + device + ".enabled)"
 		exec (cmd)
@@ -181,11 +185,19 @@ class InitInputDevices:
 		exec (cmd)
 		cmd = "config.inputDevices." + device + ".name.addNotifier(self.inputDevicesNameChanged,config.inputDevices." + device + ".name)"
 		exec (cmd)
-		cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=100, increment = 10, limits=(0, 500))"
+		if getBoxType() == 'odinm9' or getBoxType() == 'odinm7' or getBoxType() == 'odinm6':
+			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=400, increment = 10, limits=(0, 500))"
+		elif getBoxType() == 'azboxhd':
+			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=150, increment = 10, limits=(0, 500))"
+		else:		
+			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=100, increment = 10, limits=(0, 500))"	
 		exec (cmd)
 		cmd = "config.inputDevices." + device + ".repeat.addNotifier(self.inputDevicesRepeatChanged,config.inputDevices." + device + ".repeat)"
 		exec (cmd)
-		cmd = "config.inputDevices." + device + ".delay = ConfigSlider(default=700, increment = 100, limits=(0, 5000))"
+		if getBoxType() == 'odinm9' or getBoxType() == 'odinm7' or getBoxType() == 'odinm6':
+			cmd = "config.inputDevices." + device + ".delay = ConfigSlider(default=200, increment = 100, limits=(0, 5000))"
+		else:
+			cmd = "config.inputDevices." + device + ".delay = ConfigSlider(default=700, increment = 100, limits=(0, 5000))"
 		exec (cmd)
 		cmd = "config.inputDevices." + device + ".delay.addNotifier(self.inputDevicesDelayChanged,config.inputDevices." + device + ".delay)"
 		exec (cmd)
@@ -210,6 +222,8 @@ class RcTypeControl():
 				self.writeRcType(config.plugins.remotecontroltype.rctype.getValue())
 		else:
 			self.isSupported = False
+		if getBoxType().startswith('gb'):
+			self.isSupported = False			
 
 	def multipleRcSupported(self):
 		return self.isSupported
