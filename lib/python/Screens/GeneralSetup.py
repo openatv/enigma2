@@ -22,12 +22,11 @@ from Screens.SkinSelector import LcdSkinSelector
 
 from Plugins.Plugin import PluginDescriptor
 from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerSetup, RotorNimSelection
-from Plugins.SystemPlugins.Satfinder.plugin import Satfinder, SatNimSelection
+from Plugins.SystemPlugins.Satfinder.plugin import Satfinder
 from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
 from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
 from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
-from Plugins.SystemPlugins.Videomode.plugin import VideoSetup
-from Plugins.SystemPlugins.Videomode.VideoHardware import video_hw
+from Screens.VideoMode import VideoSetup
 
 from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin, SoftwareManagerSetup
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
@@ -518,7 +517,7 @@ class GeneralSetup(Screen):
 		#	self.session.open(ShowSoftcamPackages)
 ######## Select AV Setup Menu ##############################
 		elif item[0] == _("AV Settings"):
-			self.session.open(VideoSetup, video_hw)
+			self.session.open(VideoSetup)
 		elif item[0] == _("Auto Language"):
 			self.openSetup("autolanguagesetup")
 		elif item[0] == _("Audio Sync"):
@@ -647,19 +646,19 @@ class GeneralSetup(Screen):
 
 		nimList = []
 		for x in nims:
-			if not nimmanager.getNimConfig(x).configMode.getValue() in ("loopthrough", "satposdepends", "nothing"):
-				nimList.append(x)
+			if nimmanager.getNimConfig(x).configMode.value in ("loopthrough", "satposdepends", "nothing"):
+				continue
+			if nimmanager.getNimConfig(x).configMode.value == "advanced" and len(nimmanager.getSatListForNim(x)) < 1:
+				continue
+			nimList.append(x)
 
 		if len(nimList) == 0:
-			self.session.open(MessageBox, _("No satellite frontend found!!"), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("No satellites configured. Plese check your tuner setup."), MessageBox.TYPE_ERROR)
 		else:
-			if len(NavigationInstance.instance.getRecordings()) > 0:
+			if self.session.nav.RecordTimer.isRecording():
 				self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
 			else:
-				if len(nimList) == 1:
-					self.session.open(Satfinder, nimList[0])
-				else:
-					self.session.open(SatNimSelection)
+				self.session.open(Satfinder)
 
 		    
 ######## SOFTWARE MANAGER TOOLS #######################
