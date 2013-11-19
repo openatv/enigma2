@@ -135,8 +135,6 @@ class VideoWizard(WizardLanguage, Rc):
 		if self.port == "HDMI" and mode in ("720p", "1080i", "1080p"):
 			self.rate = "multi"
 			self.hw.setMode(port = self.port, mode = mode, rate = "multi")
-		elif self.port == "DVI" and mode in ("720p", "1080i", "1080p") and (about.getChipSetString().find('7405') != -1):
-			self.hw.setMode(port = self.port, mode = mode, rate = ratesList[0][0])		  
 		else:
 			self.hw.setMode(port = self.port, mode = mode, rate = ratesList[0][0])
 
