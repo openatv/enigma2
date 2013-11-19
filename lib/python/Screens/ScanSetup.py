@@ -925,11 +925,11 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		default = None
 		if orbpos is not None:
 			list = []
-			if self.scan_sat.system.getValue() == eDVBFrontendParametersSatellite.System_DVB_S2:
-				fec = self.scan_sat.fec_s2.getValue()
+			if self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S2:
+				fec = self.scan_sat.fec_s2.value
 			else:
-				fec = self.scan_sat.fec.getValue()
-			compare = self.humanReadableTransponder([0, self.scan_sat.frequency.getValue(), self.scan_sat.symbolrate.getValue(), self.scan_sat.polarization.getValue(), fec])
+				fec = self.scan_sat.fec.value
+			compare = self.humanReadableTransponder([0, self.scan_sat.frequency.value, self.scan_sat.symbolrate.value, self.scan_sat.polarization.value, fec])
 			i = 0
 			tps = nimmanager.getTransponders(orbpos)
 			for tp in tps:
