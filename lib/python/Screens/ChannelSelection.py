@@ -1211,10 +1211,14 @@ class ChannelSelectionBase(Screen):
 		if self.isBasePathEqual(self.bouquet_root):
 			self.BouqetNumberActions(number)
 		else:
-			unichar = self.numericalTextInput.getKey(number)
-			charstr = unichar.encode("utf-8")
-			if len(charstr) == 1:
-				self.servicelist.moveToChar(charstr[0])
+			current_root = self.getRoot()
+			if  current_root and 'FROM BOUQUET "bouquets.' in current_root.getPath():
+				self.BouqetNumberActions(number)
+			else:
+				unichar = self.numericalTextInput.getKey(number)
+				charstr = unichar.encode("utf-8")
+				if len(charstr) == 1:
+					self.servicelist.moveToChar(charstr[0])
 
 	def BouqetNumberActions(self, number):
 		if number == 1: #Set focus on current playing service when available in current userbouquet
