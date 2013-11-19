@@ -72,7 +72,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 
 		self.list = []
 		self.list.append(getConfigListEntry(_("Enable parental control"), config.ParentalControl.configured))
-		print "config.ParentalControl.configured.value", config.ParentalControl.configured.getValue()
+		print "config.ParentalControl.configured.getValue()", config.ParentalControl.configured.getValue()
 		self.editBouquetListEntry = -1
 		self.reloadLists = -1
 		if config.ParentalControl.configured.getValue():
@@ -139,14 +139,14 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		if value:
 			self.session.openWithCallback(self.cancelCB, ParentalControlChangePin, config.ParentalControl.setuppin, _("setup PIN"))
 		else:
-			config.ParentalControl.setuppinactive.value = False
+			config.ParentalControl.setuppinactive.setValue(False)
 			self.keyCancel()
 
 	def ServicePinMessageCallback(self, value):
 		if value:
 			self.session.openWithCallback(self.cancelCB, ParentalControlChangePin, config.ParentalControl.servicepin[0], _("service PIN"))
 		else:
-			config.ParentalControl.servicepinactive.value = False
+			config.ParentalControl.servicepinactive.setValue(False)
 			self.keyCancel()
 
 	def cancelCB(self,value):
@@ -325,7 +325,7 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		self.list.append(getConfigListEntry(_("Reenter new PIN"), NoSave(self.pin2)))
 		ConfigListScreen.__init__(self, self.list)
 #		print "old pin:", pin
-		#if pin.getValue() != "aaaa":
+		#if pin.value != "aaaa":
 			#self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.pinEntered, PinInput, pinList = [self.pin.value], title = _("please enter the old pin"), windowTitle = _("Change pin code")))
 		ProtectedScreen.__init__(self)
 
@@ -362,12 +362,12 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		#if result[0] is None:
 			#self.close()
 		#if not result[0]:
-			#print result, "-", self.pin.getValue()
+			#print result, "-", self.pin.value
 			#self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
 
 	def keyOK(self):
 		if self.pin1.getValue() == self.pin2.getValue():
-			self.pin.value = self.pin1.getValue()
+			self.pin.setValue(self.pin1.getValue())
 			self.pin.save()
 			self.session.openWithCallback(self.close, MessageBox, _("The PIN code has been changed successfully."), MessageBox.TYPE_INFO)
 		else:

@@ -1,5 +1,6 @@
 from fcntl import ioctl
 from struct import pack, unpack
+from Components.config import config
 from enigma import getBoxType
 
 def getFPVersion():
@@ -10,7 +11,6 @@ def getFPVersion():
 		try:
 			fp = open("/dev/dbox/fp0")
 			ret = ioctl(fp.fileno(),0)
-			fp.close()
 		except IOError:
 			print "getFPVersion failed!"
 	return ret
@@ -46,7 +46,7 @@ def setRTCoffset():
 		print "set RTC Offset failed!"
 
 def setRTCtime(wutime):
-	if getBoxType().startswith('gb') or getBoxType().startswith('ini'):
+	if getBoxType().startswith('gb')or getBoxType().startswith('ini'):
 		setRTCoffset()
 	try:
 		f = open("/proc/stb/fp/rtc", "w")
@@ -87,6 +87,9 @@ def getFPWasTimerWakeup():
 		file = f.read()
 		f.close()
 		wasTimerWakeup = int(file) and True or False
+		f = open("/tmp/was_timer_wakeup.txt", "w")
+		file = f.write(str(wasTimerWakeup))
+		f.close()
 	except:
 		try:
 			fp = open("/dev/dbox/fp0")
@@ -94,6 +97,7 @@ def getFPWasTimerWakeup():
 			fp.close()
 		except IOError:
 			print "wasTimerWakeup failed!"
+
 	if wasTimerWakeup:
 		# clear hardware status
 		clearFPWasTimerWakeup()
@@ -111,3 +115,4 @@ def clearFPWasTimerWakeup():
 			fp.close()
 		except IOError:
 			print "clearFPWasTimerWakeup failed!"
+

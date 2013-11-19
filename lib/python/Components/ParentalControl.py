@@ -118,7 +118,7 @@ class ParentalControl:
 
 	def unProtectService(self, service):
 		#print "unprotect"
-		#print "config.ParentalControl.type.getValue():", config.ParentalControl.type.getValue()
+		#print "config.ParentalControl.type.value:", config.ParentalControl.type.value
 		if config.ParentalControl.type.getValue() == LIST_WHITELIST:
 			if not self.whitelist.has_key(service):
 				self.serviceMethodWrapper(service, self.addServiceToList, self.whitelist)
@@ -207,7 +207,7 @@ class ParentalControl:
 				self.sessionPinCached = True
 			if self.checkPinInterval == True:
 				self.sessionPinCached = True
-				self.sessionPinTimer.start(self.pinIntervalSeconds*1000,1)
+				self.sessionPinTimer.start(int(self.pinIntervalSeconds*1000))
 			self.callback(ref = service)
 		else:
 			#This is the new function of caching cancelling of service pin
