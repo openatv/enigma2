@@ -929,23 +929,27 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				fec = self.scan_sat.fec_s2.value
 			else:
 				fec = self.scan_sat.fec.value
-			compare = self.humanReadableTransponder([0, self.scan_sat.frequency.value, self.scan_sat.symbolrate.value, self.scan_sat.polarization.value, fec])
+			compare = [0, self.scan_sat.frequency.value, self.scan_sat.symbolrate.value, self.scan_sat.polarization.value, fec]
 			i = 0
 			tps = nimmanager.getTransponders(orbpos)
 			for tp in tps:
 				if tp[0] == 0:
-					params = self.humanReadableTransponder(tp, 1000)
-					if default is None and params == compare:
+					if default is None and self.compareTransponders(tp, compare):
 						default = str(i)
-					list.append((str(i), params))
+					list.append((str(i), self.humanReadableTransponder(tp)))
 					i += 1
 			self.preDefTransponders = ConfigSelection(choices = list, default = default)
 		return default
 
-	def humanReadableTransponder(self, tp, div = 1):
-		pol_list = ['H','V','L','R']
-		fec_list = ['Auto','1/2','2/3','3/4','5/6','7/8','8/9','3/5','4/5','9/10','None']
-		return str(tp[1]/div) + " " + pol_list[tp[3]] + " " + str(tp[2]/div) + " " + fec_list[tp[4]]
+	def humanReadableTransponder(self, tp):
+		if tp[3] in range (4) and tp[4] in range (11):
+			pol_list = ['H','V','L','R']
+			fec_list = ['Auto','1/2','2/3','3/4','5/6','7/8','8/9','3/5','4/5','9/10','None']
+			return str(tp[1] / 1000) + " " + pol_list[tp[3]] + " " + str(tp[2] / 1000) + " " + fec_list[tp[4]]
+		return _("Invalid transponder data")
+
+	def compareTransponders(self, tp, compare):
+		return abs(tp[1] / 1000 - compare[1]) <= 2 and abs(tp[2] / 1000 - compare[2]) <= 10 and tp[3] == compare[3] and (not tp[4] or tp[4] == compare[4])
 
 	def startScan(self, tlist, flags, feid, networkid = 0):
 		if len(tlist):
