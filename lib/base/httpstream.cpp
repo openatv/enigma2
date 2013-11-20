@@ -13,7 +13,7 @@ eHttpStream::eHttpStream()
 	connectionStatus = FAILED;
 	isChunked = false;
 	currentChunkSize = 0;
-
+	partialPktSz = 0;
 	tmpBufSize = 32;
 	tmpBuf = (char*)malloc(tmpBufSize);
 }
@@ -226,26 +226,70 @@ int eHttpStream::close()
 	return retval;
 }
 
-ssize_t eHttpStream::httpChunkedRead(void* buf, size_t count)
+ssize_t eHttpStream::syncNextRead(void *buf, ssize_t length)
+{
+	unsigned char *b = (unsigned char*)buf;
+	unsigned char *e = b + length;
+	partialPktSz = 0;
+
+	if (*(char*)buf != 0x47)
+	{
+		// the current read is not aligned
+		// get the head position of the last packet
+		// so we'll try to align the next read
+		while (e != b && *e != 0x47) e--;
+	}
+	else
+	{
+		// the current read is aligned
+		// get the last incomplete packet position
+		e -= length % packetSize;
+	}
+
+	if (e != b && e != (b + length))
+	{
+		partialPktSz = (b + length) - e;
+		// if the last packet is read partially save it to align the next read
+		if (partialPktSz > 0 && partialPktSz < sizeof(partialPkt))
+		{
+			memcpy(partialPkt, e, partialPktSz);
+		}
+	} 
+	return (length - partialPktSz);
+}
+
+ssize_t eHttpStream::httpChunkedRead(void *buf, size_t count)
 {
 	ssize_t ret = -1;
-	size_t total_read = 0;
+	size_t total_read = partialPktSz;
+
+	// write partial packet from the previous read
+	if (partialPktSz > 0)
+	{
+		memcpy(buf, partialPkt, partialPktSz);
+		partialPktSz = 0;
+	}
 
 	if (!isChunked)
 	{
-		ret = timedRead(streamSocket, buf, count, 5000, 100);
+		ret = timedRead(streamSocket,((char*)buf) + total_read , count - total_read, 5000, 100);
+		if (ret > 0)
+		{
+			ret += total_read;
+			ret = syncNextRead(buf, ret);
+		}
 	}
 	else
 	{
 		while (total_read < count)
 		{
-			if (currentChunkSize==0)
+			if (0 == currentChunkSize)
 			{
 				do 
 				{
 					ret = readLine(streamSocket, &tmpBuf, &tmpBufSize);
 					if (ret < 0) return -1;
-				}while(!*tmpBuf && ret > 0); /* skip CR LF from last chunk */
+				} while (!*tmpBuf && ret > 0); /* skip CR LF from last chunk */
 				if (ret == 0) break;
 				currentChunkSize = strtol(tmpBuf, NULL, 16);
 				if (currentChunkSize == 0) return -1;
@@ -255,12 +299,15 @@ ssize_t eHttpStream::httpChunkedRead(void* buf, size_t count)
 			if (currentChunkSize < to_read) to_read = currentChunkSize;
 
 			// do not wait too long if we have something in the buffer already
-			ret = timedRead(streamSocket, ((char*)buf)+total_read, to_read, ((total_read)? 100:5000), 100);
+			ret = timedRead(streamSocket, ((char*)buf) + total_read, to_read, ((total_read)? 100 : 5000), 100);
 			if (ret <= 0) break;
 			currentChunkSize -= ret;
 			total_read += ret;
 		}
-		if (total_read > 0) ret = total_read;
+		if (total_read > 0)
+		{
+			ret = syncNextRead(buf, total_read);
+		}
 	}
 	return ret;
 }
