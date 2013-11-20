@@ -11,10 +11,16 @@ eHttpStream::eHttpStream()
 {
 	streamSocket = -1;
 	connectionStatus = FAILED;
+	isChunked = false;
+	currentChunkSize = 0;
+
+	tmpBufSize = 32;
+	tmpBuf = (char*)malloc(tmpBufSize);
 }
 
 eHttpStream::~eHttpStream()
 {
+	free(tmpBuf);
 	kill(true);
 	close();
 }
@@ -107,7 +113,7 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 	if (result <= 0) goto error;
 
 	result = sscanf(linebuf, "%99s %d %99s", proto, &statuscode, statusmsg);
-	if (result != 3 || (statuscode != 200 && statuscode != 302))
+	if (result != 3 || (statuscode != 200 && statuscode != 206 && statuscode != 302))
 	{
 		eDebug("%s: wrong http response code: %d", __FUNCTION__, statuscode);
 		goto error;
@@ -144,6 +150,11 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 			newurl = &linebuf[10];
 			eDebug("%s: redirecting to: %s", __FUNCTION__, newurl.c_str());
 			break;
+		}
+
+		if (statuscode == 206 && strncmp(linebuf, "Transfer-Encoding: chunked", strlen("Transfer-Encoding: chunked")))
+		{
+			isChunked = true;
 		}
 		if (!playlist && result == 0) break;
 		if (result < 0) break;
@@ -215,13 +226,52 @@ int eHttpStream::close()
 	return retval;
 }
 
+ssize_t eHttpStream::httpChunkedRead(void* buf, size_t count)
+{
+	ssize_t ret = -1;
+	size_t total_read = 0;
+
+	if (!isChunked)
+	{
+		ret = timedRead(streamSocket, buf, count, 5000, 100);
+	}
+	else
+	{
+		while (total_read < count)
+		{
+			if (currentChunkSize==0)
+			{
+				do 
+				{
+					ret = readLine(streamSocket, &tmpBuf, &tmpBufSize);
+					if (ret < 0) return -1;
+				}while(!*tmpBuf && ret > 0); /* skip CR LF from last chunk */
+				if (ret == 0) break;
+				currentChunkSize = strtol(tmpBuf, NULL, 16);
+				if (currentChunkSize == 0) return -1;
+			}
+
+			size_t to_read = count - total_read;
+			if (currentChunkSize < to_read) to_read = currentChunkSize;
+
+			// do not wait too long if we have something in the buffer already
+			ret = timedRead(streamSocket, ((char*)buf)+total_read, to_read, ((total_read)? 100:5000), 100);
+			if (ret <= 0) break;
+			currentChunkSize -= ret;
+			total_read += ret;
+		}
+		if (total_read > 0) ret = total_read;
+	}
+	return ret;
+}
+
 ssize_t eHttpStream::read(off_t offset, void *buf, size_t count)
 {
 	if (connectionStatus == BUSY)
 		return 0;
 	else if (connectionStatus == FAILED)
 		return -1;
-	return timedRead(streamSocket, buf, count, 5000, 500);
+	return httpChunkedRead(buf, count);
 }
 
 int eHttpStream::valid()
