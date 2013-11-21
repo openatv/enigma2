@@ -128,10 +128,10 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 			if (sscanf(linebuf, "Content-Type: %32s", contenttype) == 1)
 			{
 				contenttypeparsed = true;
-				if (!strcmp(contenttype, "application/text")
-				|| !strcmp(contenttype, "audio/x-mpegurl")
-				|| !strcmp(contenttype, "audio/mpegurl")
-				|| !strcmp(contenttype, "application/m3u"))
+				if (!strcasecmp(contenttype, "application/text")
+				|| !strcasecmp(contenttype, "audio/x-mpegurl")
+				|| !strcasecmp(contenttype, "audio/mpegurl")
+				|| !strcasecmp(contenttype, "application/m3u"))
 				{
 					/* assume we'll get a playlist, some text file containing a stream url */
 					playlist = true;
@@ -139,20 +139,20 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 				continue;
 			}
 		}
-		if (playlist && !strncmp(linebuf, "http://", 7))
+		if (playlist && !strncasecmp(linebuf, "http://", 7))
 		{
 			newurl = linebuf;
 			eDebug("%s: playlist entry: %s", __FUNCTION__, newurl.c_str());
 			break;
 		}
-		if (statuscode == 302 && strncmp(linebuf, "Location: ", 10) == 0)
+		if (statuscode == 302 && strncasecmp(linebuf, "location: ", 10) == 0)
 		{
 			newurl = &linebuf[10];
 			eDebug("%s: redirecting to: %s", __FUNCTION__, newurl.c_str());
 			break;
 		}
 
-		if (statuscode == 206 && strncmp(linebuf, "Transfer-Encoding: chunked", strlen("Transfer-Encoding: chunked")))
+		if (statuscode == 206 && strncasecmp(linebuf, "transfer-encoding: chunked", strlen("transfer-encoding: chunked")))
 		{
 			isChunked = true;
 		}
