@@ -91,7 +91,8 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 		port = 80;
 	}
 	streamSocket = Connect(hostname.c_str(), port, 10);
-	if (streamSocket < 0) goto error;
+	if (streamSocket < 0)
+		goto error;
 
 	request = "GET ";
 	request.append(uri).append(" HTTP/1.1\r\n");
@@ -110,7 +111,8 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 	linebuf = (char*)malloc(buflen);
 
 	result = readLine(streamSocket, &linebuf, &buflen);
-	if (result <= 0) goto error;
+	if (result <= 0)
+		goto error;
 
 	result = sscanf(linebuf, "%99s %d %99s", proto, &statuscode, statusmsg);
 	if (result != 3 || (statuscode != 200 && statuscode != 206 && statuscode != 302))
@@ -156,8 +158,10 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 		{
 			isChunked = true;
 		}
-		if (!playlist && result == 0) break;
-		if (result < 0) break;
+		if (!playlist && result == 0)
+			break;
+		if (result < 0)
+			break;
 	}
 
 	free(linebuf);
@@ -290,17 +294,20 @@ ssize_t eHttpStream::httpChunkedRead(void *buf, size_t count)
 					ret = readLine(streamSocket, &tmpBuf, &tmpBufSize);
 					if (ret < 0) return -1;
 				} while (!*tmpBuf && ret > 0); /* skip CR LF from last chunk */
-				if (ret == 0) break;
+				if (ret == 0)
+					break;
 				currentChunkSize = strtol(tmpBuf, NULL, 16);
 				if (currentChunkSize == 0) return -1;
 			}
 
 			size_t to_read = count - total_read;
-			if (currentChunkSize < to_read) to_read = currentChunkSize;
+			if (currentChunkSize < to_read)
+				to_read = currentChunkSize;
 
 			// do not wait too long if we have something in the buffer already
 			ret = timedRead(streamSocket, ((char*)buf) + total_read, to_read, ((total_read)? 100 : 5000), 100);
-			if (ret <= 0) break;
+			if (ret <= 0)
+				break;
 			currentChunkSize -= ret;
 			total_read += ret;
 		}
