@@ -195,7 +195,7 @@ protected:
 	ePtr<eDVBService> m_dvb_service;
 	
 	ePtr<iTSMPEGDecoder> m_decoder;
-	int m_is_primary;
+	int m_decoder_index;
 	int m_have_video_pid;
 	int m_tune_state;
 	
