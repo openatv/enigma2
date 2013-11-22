@@ -79,7 +79,7 @@ class ServiceScan:
 						network = _("Cable")
 						tp = transponder.getDVBC()
 						freqMHz = "%0.1f MHz" % (tp.frequency/1000000.)
-						tp_text = ("DVB-C %s %d / %d / %s") %( { tp.Modulation_Auto : "AUTO",
+						tp_text = ("DVB-C %s %s / %d / %s") %( { tp.Modulation_Auto : "AUTO",
 							tp.Modulation_QAM16 : "QAM16", tp.Modulation_QAM32 : "QAM32",
 							tp.Modulation_QAM64 : "QAM64", tp.Modulation_QAM128 : "QAM128",
 							tp.Modulation_QAM256 : "QAM256" }.get(tp.modulation, ""),
