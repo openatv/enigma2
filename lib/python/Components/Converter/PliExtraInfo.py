@@ -152,7 +152,7 @@ class PliExtraInfo(Poll, Converter, object):
 			if "DVB-T" in feraw.get("tuner_type"):
 				return str(int(frequency / 1000000. + 0.5))
 			else:
-				return str(int(frequency / 1000. + 0.5))
+				return str(int(frequency / 1000 + 0.5))
 		return ""
 
 	def createChannelNumber(self, fedata, feraw):
