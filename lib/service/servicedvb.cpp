@@ -1005,7 +1005,7 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service):
 	m_reference(ref),
 	m_dvb_service(service),
-	m_is_primary(1),
+	m_decoder_index(0),
 	m_have_video_pid(0),
 	m_tune_state(-1),
 	m_is_stream(ref.path.substr(0, 7) == "http://"),
@@ -1424,7 +1424,7 @@ RESULT eDVBServicePlay::stop()
 
 RESULT eDVBServicePlay::setTarget(int target)
 {
-	m_is_primary = !target;
+	m_decoder_index = target;
 	return 0;
 }
 
@@ -2087,7 +2087,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 	int rdsPid = apid;
 
 		/* if we are not in PVR mode, timeshift is not active and we are not in pip mode, check if we need to enable the rds reader */
-	if (!(m_is_pvr || m_timeshift_active || !m_is_primary || m_have_video_pid))
+	if (!(m_is_pvr || m_timeshift_active || m_decoder_index || m_have_video_pid))
 	{
 		int different_pid = program.videoStreams.empty() && program.audioStreams.size() == 1 && program.audioStreams[stream].rdsPid != -1;
 		if (different_pid)
@@ -2720,7 +2720,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		h.getDecodeDemux(m_decode_demux);
 		if (m_decode_demux)
 		{
-			m_decode_demux->getMPEGDecoder(m_decoder, m_is_primary);
+			m_decode_demux->getMPEGDecoder(m_decoder, m_decoder_index);
 			if (m_decoder)
 				m_decoder->connectVideoEvent(slot(*this, &eDVBServicePlay::video_event), m_video_event_connection);
 		}
@@ -2779,7 +2779,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		else
 			m_decoder->setSyncPCR(-1);
 
-		if (m_is_primary)
+		if (m_decoder_index == 0)
 		{
 			m_decoder->setTextPID(tpid);
 		}
@@ -2805,7 +2805,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 
 		m_decoder->setAudioChannel(achannel);
 
-		if (mustPlay && m_decode_demux && m_is_primary)
+		if (mustPlay && m_decode_demux && m_decoder_index == 0)
 		{
 			m_teletext_parser = new eDVBTeletextParser(m_decode_demux);
 			m_teletext_parser->connectNewStream(slot(*this, &eDVBServicePlay::newSubtitleStream), m_new_subtitle_stream_connection);

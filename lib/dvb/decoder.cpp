@@ -40,7 +40,21 @@ int eDVBAudio::startPid(int pid, int type)
 	pes.pid      = pid;
 	pes.input    = DMX_IN_FRONTEND;
 	pes.output   = DMX_OUT_DECODER;
-	pes.pes_type = m_dev ? DMX_PES_AUDIO1 : DMX_PES_AUDIO0; /* FIXME */
+	switch (m_dev)
+	{
+	case 0:
+		pes.pes_type = DMX_PES_AUDIO0;
+		break;
+	case 1:
+		pes.pes_type = DMX_PES_AUDIO1;
+		break;
+	case 2:
+		pes.pes_type = DMX_PES_AUDIO2;
+		break;
+	case 3:
+		pes.pes_type = DMX_PES_AUDIO3;
+		break;
+	}
 	pes.flags    = 0;
 	eDebugNoNewLine("DMX_SET_PES_FILTER(0x%02x) - audio - ", pid);
 	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
@@ -265,7 +279,21 @@ int eDVBVideo::startPid(int pid, int type)
 	pes.pid      = pid;
 	pes.input    = DMX_IN_FRONTEND;
 	pes.output   = DMX_OUT_DECODER;
-	pes.pes_type = m_dev ? DMX_PES_VIDEO1 : DMX_PES_VIDEO0; /* FIXME */
+	switch (m_dev)
+	{
+	case 0:
+		pes.pes_type = DMX_PES_VIDEO0;
+		break;
+	case 1:
+		pes.pes_type = DMX_PES_VIDEO1;
+		break;
+	case 2:
+		pes.pes_type = DMX_PES_VIDEO2;
+		break;
+	case 3:
+		pes.pes_type = DMX_PES_VIDEO3;
+		break;
+	}
 	pes.flags    = 0;
 	eDebugNoNewLine("DMX_SET_PES_FILTER(0x%02x) - video - ", pid);
 	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
@@ -522,7 +550,21 @@ int eDVBPCR::startPid(int pid)
 	pes.pid      = pid;
 	pes.input    = DMX_IN_FRONTEND;
 	pes.output   = DMX_OUT_DECODER;
-	pes.pes_type = m_dev ? DMX_PES_PCR1 : DMX_PES_PCR0; /* FIXME */
+	switch (m_dev)
+	{
+	case 0:
+		pes.pes_type = DMX_PES_PCR0;
+		break;
+	case 1:
+		pes.pes_type = DMX_PES_PCR1;
+		break;
+	case 2:
+		pes.pes_type = DMX_PES_PCR2;
+		break;
+	case 3:
+		pes.pes_type = DMX_PES_PCR3;
+		break;
+	}
 	pes.flags    = 0;
 	eDebugNoNewLine("DMX_SET_PES_FILTER(0x%02x) - pcr - ", pid);
 	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
@@ -577,7 +619,21 @@ int eDVBTText::startPid(int pid)
 	pes.pid      = pid;
 	pes.input    = DMX_IN_FRONTEND;
 	pes.output   = DMX_OUT_DECODER;
-	pes.pes_type = m_dev ? DMX_PES_TELETEXT1 : DMX_PES_TELETEXT0; // FIXME
+	switch (m_dev)
+	{
+	case 0:
+		pes.pes_type = DMX_PES_TELETEXT0;
+		break;
+	case 1:
+		pes.pes_type = DMX_PES_TELETEXT1;
+		break;
+	case 2:
+		pes.pes_type = DMX_PES_TELETEXT2;
+		break;
+	case 3:
+		pes.pes_type = DMX_PES_TELETEXT3;
+		break;
+	}
 	pes.flags    = 0;
 
 	eDebugNoNewLine("DMX_SET_PES_FILTER(0x%02x) - ttx - ", pid);
