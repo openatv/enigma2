@@ -198,6 +198,8 @@
 		<item level="1" text="Show Transponder Remaining/Elapsed as" description="This option allows you choose how to display the remaining/elapsed time for live tv.">config.usage.swap_time_display_on_vfd</item>
 		<item level="1" text="Show Media playback Remaining/Elapsed as" description="This option allows you choose how to display the remaining/elapsed time for Media playback.">config.usage.swap_media_time_display_on_vfd</item>
 		<item level="0" text="Show time elapsed as positive" description="This option allows you choose how to display elapsed time  as + or -">config.usage.elapsed_time_positive_vfd</item>
+		<item level="1" text="Scrolling Speed (software render)" description="Set the scrolling speed of text on the front display, this uses a sotware render use in some skins.">config.lcd.scroll_speed</item>
+		<item level="1" text="Scrolling delay (software render)" description="Set the delay time between repeated loops, this uses a sotware render use in some skins.">config.lcd.scroll_delay</item>		
 	</setup>
 	<setup key="satconfig" title="Satellite dish setup">
 		<item text="Tuner slot" description="Choose which tuner to configure.">config.sat.tunerslot</item>
