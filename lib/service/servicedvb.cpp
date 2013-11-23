@@ -1755,6 +1755,29 @@ RESULT eDVBServicePlay::rdsDecoder(ePtr<iRdsDecoder> &ptr)
 	return 0;
 }
 
+RESULT eDVBServicePlay::streamed(ePtr<iStreamedService> &ptr)
+{
+	if (m_is_stream)
+	{
+		ptr = this;
+		return 0;
+	}
+	ptr = 0;
+	return -1;
+}
+
+ePtr<iStreamBufferInfo> eDVBServicePlay::getBufferCharge()
+{
+	/** FIXME **/
+	return 0;
+}
+
+int eDVBServicePlay::setBufferSize(int size)
+{
+	/** FIXME **/
+	return 0;
+}
+
 RESULT eDVBServicePlay::getName(std::string &name)
 {
 	if (m_is_pvr)
