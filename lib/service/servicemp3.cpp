@@ -21,6 +21,22 @@
 
 #define HTTP_TIMEOUT 30
 
+/*
+ * UNUSED variable from service reference is now used as buffer flag for gstreamer
+ * REFTYPE:FLAGS:STYPE:SID:TSID:ONID:NS:PARENT_SID:PARENT_TSID:UNUSED
+ *   D  D X X X X X X X X
+ * 4097:0:1:0:0:0:0:0:0:0:URL:NAME (no buffering)
+ * 4097:0:1:0:0:0:0:0:0:1:URL:NAME (buffering enabled)
+ * 4097:0:1:0:0:0:0:0:0:3:URL:NAME (progressive download and buffering enabled)
+ *
+ * Progressive download requires buffering enabled, so it's mandatory to use flag 3 not 2
+ */
+typedef enum
+{
+	BUFFERING_ENABLED	= 0x00000001,
+	PROGRESSIVE_DOWNLOAD	= 0x00000002
+} eServiceMP3Flags;
+
 typedef enum
 {
 	GST_PLAY_FLAG_VIDEO         = 0x00000001,
@@ -450,19 +466,18 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		if (m_useragent.empty())
 			m_useragent = "Enigma2 Mediaplayer";
 		m_extra_headers = eConfigManager::getConfigValue("config.mediaplayer.extraHeaders");
-		if (strstr(filename, " buffer=1"))
+		if ( m_ref.getData(7) & BUFFERING_ENABLED )
 		{
 			m_use_prefillbuffer = true;
-		}
-		else if (strstr(filename, " buffer=2"))
-		{
-			/* progressive download buffering */
-			if (::access("/hdd/movie", X_OK) >= 0)
+			if ( m_ref.getData(7) & PROGRESSIVE_DOWNLOAD )
 			{
-				/* It looks like /hdd points to a valid mount, so we can store a download buffer on it */
-				m_download_buffer_path = "/hdd/gstreamer_XXXXXXXXXX";
+				/* progressive download buffering */
+				if (::access("/hdd/movie", X_OK) >= 0)
+				{
+					/* It looks like /hdd points to a valid mount, so we can store a download buffer on it */
+					m_download_buffer_path = "/hdd/gstreamer_XXXXXXXXXX";
+				}
 			}
-			m_use_prefillbuffer = true;
 		}
 	}
 	else if ( m_sourceinfo.containertype == ctCDA )
