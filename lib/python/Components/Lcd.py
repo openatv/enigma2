@@ -149,6 +149,18 @@ def InitLcd():
 	SystemInfo["Display"] = detected
 	config.lcd = ConfigSubsection();
 	if detected:
+		config.lcd.scroll_speed = ConfigSelection(default = "300", choices = [
+			("500", _("slow")),
+			("300", _("normal")),
+			("100", _("fast"))])
+		config.lcd.scroll_delay = ConfigSelection(default = "10000", choices = [
+			("10000", "10 " + _("seconds")),
+			("20000", "20 " + _("seconds")),
+			("30000", "30 " + _("seconds")),
+			("60000", "1 " + _("minute")),
+			("300000", "5 " + _("minutes")),
+			("noscrolling", _("off"))])
+	
 		def setLCDbright(configElement):
 			ilcd.setBright(configElement.value);
 
