@@ -24,7 +24,7 @@ except:
 has_rca = False
 has_dvi = False
 hw_type = HardwareInfo().get_device_name()
-if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'odinm6' or getMachineName() == 'AX-Odin' or getBoxType() == 'ebox7358' or getBoxType() == 'tmnano' or hw_type == 'ultra' or hw_type == "me" or hw_type == "minime" or getBoxType() == 'optimussos1' or getBoxType() == 'optimussos2' or getBoxType() == 'gb800seplus' or getBoxType() == 'gb800ueplus' or model == 'ini-1000ru' or model == 'ini-1000sv' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero':	
+if getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus' or getBoxType() == 'et5x00' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'odinm6' or getMachineName() == 'AX-Odin' or getBoxType() == 'ebox7358' or getBoxType() == 'tmnano' or hw_type == 'ultra' or hw_type == "me" or hw_type == "minime" or getBoxType() == 'optimussos1' or getBoxType() == 'optimussos2' or getBoxType() == 'gb800seplus' or getBoxType() == 'gb800ueplus' or model == 'ini-1000ru' or model == 'ini-1000sv' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero':	
 	has_rca = True
 if getBoxType() == 'dm8000' or getBoxType() == 'dm800':
 	has_dvi = True

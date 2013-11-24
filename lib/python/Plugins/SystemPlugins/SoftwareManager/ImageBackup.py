@@ -457,6 +457,17 @@ class ImageBackup(Screen):
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)
+		## TESTING THE Gigablue HD Quad Plus Model
+		elif self.MODEL == "gbquadplus":
+			self.TYPE = "GIGABLUE"
+			self.MODEL = "quadplus"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "GigaBlue %s" %self.MODEL
+			self.MTDKERNEL = "mtd2"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
+			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)			
 		## TESTING THE VU+ MODELS
 		elif self.MODEL == "vusolo" or self.MODEL == "vuduo" or self.MODEL == "vuuno" or self.MODEL == "vuultimo" or self.MODEL == "vusolo2" or self.MODEL == "vuduo2":
 			self.TYPE = "VU"
@@ -597,7 +608,7 @@ class ImageBackup(Screen):
 				system('mv %s/root.ubifs %s/rootfs.bin' %(self.WORKDIR, self.MAINDEST))
 			system('mv %s/vmlinux.gz %s/kernel.bin' %(self.WORKDIR, self.MAINDEST))
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
-			if self.MODEL == "quad" or self.MODEL == "ue" or self.MODEL == "ueplus":
+			if self.MODEL == "quad" or self.MODEL == "quadplus" or self.MODEL == "ue" or self.MODEL == "ueplus":
 				lcdwaitkey = '/usr/share/lcdwaitkey.bin'
 				lcdwarning = '/usr/share/lcdwarning.bin'
 				if path.exists(lcdwaitkey):

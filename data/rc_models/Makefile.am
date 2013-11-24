@@ -98,3 +98,6 @@ if XP1000
 SUBDIRS = xp1000
 endif
 
+if SOGNO
+SUBDIRS = sogno
+endif

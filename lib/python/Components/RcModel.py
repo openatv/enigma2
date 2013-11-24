@@ -31,11 +31,12 @@ class RcModel:
 	RCTYPE_ODINM7 = 25
 	RCTYPE_ODINM9 = 26
 	RCTYPE_OPTIMUSS = 27
-	RCTYPE_TM = 28
-	RCTYPE_VU = 29
-	RCTYPE_VU2 = 30
-	RCTYPE_VU3 = 31
-	RCTYPE_XP1000 = 32
+	RCTYPE_SOGNO = 28	
+	RCTYPE_TM = 29
+	RCTYPE_VU = 30
+	RCTYPE_VU2 = 31
+	RCTYPE_VU3 = 32
+	RCTYPE_XP1000 = 33
 
 
 	def __init__(self):
@@ -141,6 +142,8 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_IXUSSONE
 				elif getBoxType() == 'ixusszero':
 					self.currentRcType = self.RCTYPE_IXUSSZERO
+			elif model == 'sogno-8800hd':
+				self.currentRcType = self.RCTYPE_SOGNO	
 		elif os.path.exists('/proc/stb/info/vumodel'):
 			model = self.readFile('/proc/stb/info/vumodel')
 			if model == 'ultimo':
@@ -207,6 +210,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/odinm9/'
 		elif self.currentRcType == self.RCTYPE_OPTIMUSS:
 			return '/usr/share/enigma2/rc_models/optimuss/'
+		elif self.currentRcType == self.RCTYPE_SOGNO:
+			return '/usr/share/enigma2/rc_models/sogno/'
 		elif self.currentRcType == self.RCTYPE_TM:
 			return '/usr/share/enigma2/rc_models/tm/'
 		elif self.currentRcType == self.RCTYPE_VU:

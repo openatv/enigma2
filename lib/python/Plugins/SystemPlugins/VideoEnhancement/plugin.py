@@ -227,7 +227,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 			if self.digital_contour_removalEntry is not None:
 				config.pep.digital_contour_removal.setValue(0)
 			if self.scaler_sharpnessEntry is not None:
-				if getBoxType() == 'gbquad':
+				if getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus':
 					config.av.scaler_sharpness.setValue(13)
 				else:
 					config.av.scaler_sharpness.setValue(13)
