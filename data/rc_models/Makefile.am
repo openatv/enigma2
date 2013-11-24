@@ -30,6 +30,10 @@ if GBQUAD
 SUBDIRS = gb
 endif
 
+if GBQUADPLUS
+SUBDIRS = gb
+endif
+
 if IQON
 SUBDIRS = iqon
 endif
