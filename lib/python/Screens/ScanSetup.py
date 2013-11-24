@@ -173,10 +173,7 @@ class CableTransponderSearchSupport:
 					self.__tlist.append(parm)
 				tmpstr = _("Try to find used transponders in cable network.. please wait...")
 				tmpstr += "\n\n"
-				try:
-					tmpstr += "%s MHz " % (int(data[1])/1000.)
-				except:
-					tmpstr += data[1]
+				tmpstr += data[1].isdigit() and "%s MHz " % (int(data[1]) / 1000.) or data[1]
 				tmpstr += data[0]
 				self.cable_search_session["text"].setText(tmpstr)
 
