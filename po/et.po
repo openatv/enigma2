@@ -2,16 +2,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-26 16:32+0200\n"
+"POT-Creation-Date: 2013-11-24 02:43+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
+"Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: Estonian\n"
+"X-Poedit-Country: ESTONIA\n"
 
 msgid ""
 "\n"
@@ -342,6 +344,24 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
+msgid "1080i"
+msgstr "1080i"
+
+msgid "1080p 24Hz"
+msgstr "1080p 24Hz"
+
+msgid "1080p 25Hz"
+msgstr "1080p 25Hz"
+
+msgid "1080p 30Hz"
+msgstr "1080p 30Hz"
+
+msgid "1080p 50Hz"
+msgstr "1080p 50Hz"
+
+msgid "1080p 60Hz"
+msgstr "1080p 60Hz"
+
 msgid "12V output"
 msgstr "12V väljund"
 
@@ -422,6 +442,12 @@ msgstr "4:3 panscan"
 
 msgid "4X"
 msgstr "4X"
+
+msgid "720p"
+msgstr "720p"
+
+msgid "720p 24Hz"
+msgstr "720p 24Hz"
 
 msgid "<Current movielist location>"
 msgstr "<Filmilisti hetkeasukoht >"
@@ -789,9 +815,8 @@ msgstr "Kõik"
 msgid "All ages"
 msgstr "Kõik vanused"
 
-#, fuzzy
 msgid "All resolutions"
-msgstr "Ekraanilahutus"
+msgstr "Kõik ekraanilahutused"
 
 msgid "All satellites"
 msgstr "Kõik satelliidid"
@@ -801,9 +826,6 @@ msgstr "Jaota"
 
 msgid "Allocate unused memory index"
 msgstr "Jaota vaba mäluindeks"
-
-msgid "Allow 25Hz/30Hz"
-msgstr ""
 
 msgid "Allow quit movieplayer with exit"
 msgstr "Luba filmimängija sulgemine EXIT nupuga"
@@ -833,7 +855,7 @@ msgid "Allows you setup the button to do what you choose."
 msgstr "Võimaldab valida nupu toimingu."
 
 msgid "Allows you to adjust the amount of time the resolution infomation display on screen."
-msgstr ""
+msgstr "Võimaldab määrata aega, mille jooksul  ekraanilahutuse andmeid ekraanil näidatakse."
 
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Võimaldab lubada silumislogid. Need sisaldavad väga üksikasjalikku teavet kõigist süsteemi tegevustest."
@@ -876,6 +898,9 @@ msgstr "Tuuneri eelistus asenduskanalitel"
 
 msgid "Always ask"
 msgstr "Küsi alati"
+
+msgid "Always hide infobar"
+msgstr "Ära näita inforiba"
 
 msgid "Always show bouquets"
 msgstr "Näita alati lemmiknimekirju"
@@ -1066,9 +1091,8 @@ msgstr "Automaatne värskendamine"
 msgid "Automatic resolution"
 msgstr "Automaatne ekraanilahutus"
 
-#, fuzzy
 msgid "Automatic resolution label"
-msgstr "Automaatne ekraanilahutus"
+msgstr "Ekraanilahutuse teavitamine"
 
 msgid "Automatic save"
 msgstr "Automaatne salvestamine"
@@ -1183,9 +1207,6 @@ msgstr "Must ekraan"
 
 msgid "Black screen till locked"
 msgstr "Must ekraan lukustumiseni"
-
-msgid "Blind scan"
-msgstr ""
 
 msgid "Block noise reduction"
 msgstr "Plokkmüra vähendamine"
@@ -2236,6 +2257,9 @@ msgstr "Viiviteaeg enne võtme kordamist:"
 msgid "Delay for external subtitles"
 msgstr "Väliste subtiitrite viiteaeg"
 
+msgid "Delay time"
+msgstr "Viiteaeg"
+
 msgid "Delay:"
 msgstr "Viiteaeg:"
 
@@ -2385,13 +2409,13 @@ msgid "Display"
 msgstr "Esipaneeli seaded"
 
 msgid "Display 16:9 content as"
-msgstr "16:9 sisu"
+msgstr "16:9 sisu kuvamine"
 
 msgid "Display 4:3 content as"
-msgstr "4:3 sisu"
+msgstr "4:3 sisu kuvamine"
 
 msgid "Display >16:9 content as"
-msgstr ">16:9 sisu"
+msgstr ">16:9 sisu kuvamine"
 
 msgid "Display and userinterface"
 msgstr "Esipaneel ja kasutajaliides"
@@ -3026,6 +3050,9 @@ msgstr "Järgmised toimingud tehakse pärast OK vajutamist!"
 msgid "Fontsize"
 msgstr "Tähesuurus"
 
+msgid "Force de-interlace"
+msgstr "Sunnitud ülerealaotuse eemaldamine (deinterlace)"
+
 msgid "Format"
 msgstr "Vorming"
 
@@ -3396,6 +3423,9 @@ msgstr "Jõudeaeg:"
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr "Määrates 'jah', üritab vastuvõtja valida ekraanilahutuse vastavalt video sisu omale"
+
+msgid "If enabled the video wil always be de-interlaced."
+msgstr "Määrates 'jah', toimub alati video ülerealaotuse eemaldamine"
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Kui logidele lubatud suurim kettaruum on täis, kustutakse kõige vanemad."
@@ -4427,8 +4457,8 @@ msgstr "Pole, mida vahetada (suurendada või vähendada)"
 msgid "No positioner capable frontend found."
 msgstr "Ei leitud positsioneeri toetavat tuunerit."
 
-msgid "No satellite frontend found!!"
-msgstr "Ei leitud satituunerit!!"
+msgid "No satellites configured. Plese check your tuner setup."
+msgstr "Satellidid on seadistamata. Kontrolli tuuneri seadeid."
 
 msgid "No service"
 msgstr "Kanal puudub"
@@ -4545,9 +4575,8 @@ msgstr "Norra"
 msgid "Not Flashing"
 msgstr "Ei vilgu"
 
-#, fuzzy
 msgid "Not Shown"
-msgstr "Haakimata"
+msgstr "Ei näidata"
 
 msgid "Not associated"
 msgstr "Määramata"
@@ -5888,6 +5917,12 @@ msgstr "Otsib algsed lamedb-d järjestatud satelliitide järgi ühendatud posits
 msgid "Scrolling Speed"
 msgstr "Kerimise kiirus"
 
+msgid "Scrolling Speed (software render)"
+msgstr "Kerimise kiirus (tarkvaraline renderdamine)"
+
+msgid "Scrolling delay (software render)"
+msgstr "Kerimise viiteaeg (tarkvaraline renderdamine)"
+
 msgid "Search"
 msgstr "Otsi"
 
@@ -6215,6 +6250,9 @@ msgstr "Määra ajanihke failide tavaasukoht. Uue asukoha lisamiseks vajuta 'OK'
 msgid "Set the default sorting method."
 msgstr "Määra järjestusviis."
 
+msgid "Set the delay time between repeated loops, this uses a sotware render use in some skins."
+msgstr "Määra kordustele viiteaeg. Mõni kujundus kasutab selleks tarkvaralist renderdamist"
+
 msgid "Set the description of the recording."
 msgstr "Määra salvestuse kirjeldus."
 
@@ -6224,8 +6262,14 @@ msgstr "Määra otsiriba hüppe pikkus."
 msgid "Set the name the recording will get."
 msgstr "Määra salvestuse nimi."
 
+msgid "Set the scrolling speed of text on the front display, this uses a sotware render use in some skins."
+msgstr "Määra teksti kerimise kiirus esipaneelil. Mõni kujundus kasutab selleks tarkvaralist renderdamist."
+
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Määra esipaneeli teksti kerimise kiirus."
+
+msgid "Set the time before checking video source for resolution infomation."
+msgstr "Määra ajahulk, enne mida videolahutust ei kontrollita."
 
 msgid "Set the time the timer must start."
 msgstr "Määra taimeri algusaeg."
@@ -6327,6 +6371,18 @@ msgstr "Lühikesed failinimed"
 msgid "Show /tmp/ecm.info"
 msgstr "Näita /tmp/ecm.info"
 
+msgid "Show 1080p 24fps as"
+msgstr "1080p 24fps kuvamine"
+
+msgid "Show 1080p 25fps as"
+msgstr "1080p 25fps kuvamine"
+
+msgid "Show 1080p 30fps as"
+msgstr "1080p 30fps kuvamine"
+
+msgid "Show 720p 24fps as"
+msgstr "720p 24fps kuvamine"
+
 msgid "Show AutoTimer List"
 msgstr "Autotaimerite nimekiri"
 
@@ -6373,7 +6429,10 @@ msgid "Show RFmod setup..."
 msgstr "RFmod seadistused..."
 
 msgid "Show Readers/Proxies"
-msgstr ""
+msgstr "Näita lugereid/proksisi"
+
+msgid "Show SD as"
+msgstr "SD kuvamine"
 
 msgid "Show Time Remaining/Elapsed"
 msgstr "Jäänud/möödunud aja näit"
@@ -7391,6 +7450,21 @@ msgstr "Siin saab võimendada pildi rohelisi toone."
 msgid "This option allows you to choose from the two channel lists that are available."
 msgstr "Siin saab valida kahe saadaoleva kanalinimekirja vahel."
 
+msgid "This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "See valik võimaldab määrata, kuidas 1080p 24Hz  kuvatakse teleekraanil. (Kõik telerid seda ei toeta.)"
+
+msgid "This option allows you to choose how to display 1080p 25Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "See valik võimaldab määrata, kuidas 1080p 25Hz  kuvatakse teleekraanil. (Kõik telerid seda ei toeta.)"
+
+msgid "This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "See valik võimaldab määrata, kuidas 1080p 30Hz  kuvatakse teleekraanil. (Kõik telerid seda ei toeta.)"
+
+msgid "This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "See valik võimaldab määrata, kuidas 720p 24Hz  kuvatakse teleekraanil. (Kõik telerid seda ei toeta.)"
+
+msgid "This option allows you to choose how to display standard defintion video on your TV."
+msgstr "See valik võimaldab määrata vaikimisi kasutatava ekraanilahutuse."
+
 msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first)"
 msgstr "Siin saab valida, kuhu kursor esimesel nupuvajutusel liigub (vajutades '2' liigub kõigepealt 'A' või '2' peale)"
 
@@ -8144,9 +8218,9 @@ msgstr "Pildi paranduste sätted"
 msgid "Video PID"
 msgstr "Video PID"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Video content: %ix%i%s %iHz"
-msgstr "Video sisu: %sx%s%s %sHz"
+msgstr "Video sisu: %ix%i%s %iHz"
 
 msgid "Video enhancement preview"
 msgstr "Pildi paranduste eelvaade"
@@ -8596,9 +8670,6 @@ msgstr "Wifi võrgu olek"
 msgid "With popup"
 msgstr "Hüpikaknaga"
 
-msgid "With this option enabled these refresh rates will be used. (please note not all TV's support these rates)."
-msgstr ""
-
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr "Määrates 'jah', avatakse alati lemmiknimekirjade valik. Määrates 'ei' avatakse praegune kanalinimekiri."
 
@@ -8930,9 +9001,6 @@ msgid "Zap back to previously tuned service?"
 msgstr "Tagasi vaadatud kanalile?"
 
 msgid "Zap back to service before positioner setup?"
-msgstr "Tagasi vaadatud kanalile?"
-
-msgid "Zap back to service before satfinder?"
 msgstr "Tagasi vaadatud kanalile?"
 
 msgid "Zap back to service before tuner setup?"
@@ -9324,6 +9392,9 @@ msgstr "väär"
 msgid "fashion"
 msgstr "mood"
 
+msgid "fast"
+msgstr "kiire"
+
 msgid "file oscam.conf could not be found"
 msgstr "oscam.conf faili ei leitud"
 
@@ -9502,6 +9573,9 @@ msgstr "menüü"
 msgid "mins"
 msgstr "min"
 
+msgid "minute"
+msgstr "minut"
+
 msgid "minutes"
 msgstr "minutid"
 
@@ -9623,7 +9697,7 @@ msgid "once"
 msgstr "üks kord"
 
 msgid "only HD"
-msgstr ""
+msgstr "ainult HD"
 
 msgid "open bouquetlist"
 msgstr "näita lemmiknimekirju"
@@ -9897,6 +9971,9 @@ msgstr "hüppaedasi"
 
 msgid "skip forward (enter time)"
 msgstr "hüppa edasi (sisesta aeg)"
+
+msgid "slow"
+msgstr "aeglane"
 
 msgid "soap/melodram/folkloric"
 msgstr "seep/melodraama"
