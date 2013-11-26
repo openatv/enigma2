@@ -69,7 +69,7 @@ class RcModel:
 			model = self.readFile('/proc/stb/info/hwmodel')
 			if model == 'tmtwinoe' or model == 'tm2toe' or model == 'tmsingle' or model == 'tmnanooe':
 				self.currentRcType = self.RCTYPE_TM
-			elif model == 'ios100hd' or model == 'ios200hd' or model == 'ios300hd':
+			elif model == 'ios100hd' or model == 'ios200hd' or model == 'ios300hd' or model == 'force1':
 				self.currentRcType = self.RCTYPE_IQON
 			elif model == "mediabox":
 				self.currentRcType = self.RCTYPE_MEDIABOX

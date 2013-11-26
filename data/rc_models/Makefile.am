@@ -38,6 +38,10 @@ if IQON
 SUBDIRS = iqon
 endif
 
+if FORCE1
+SUBDIRS = iqon
+endif
+
 if JEPSSEN
 SUBDIRS = mediabox
 endif
