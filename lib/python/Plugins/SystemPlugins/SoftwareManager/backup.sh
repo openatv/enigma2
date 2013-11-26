@@ -207,7 +207,23 @@ if [ $TYPE = "GIGABLUE" ] ; then
 		cp $MAINDEST/../../burn.bat $EXTRA/..
 		mv $MAINDEST/../../burn.bat $MAINDEST/../../noburn.bat
 	fi
-
+	if [ $MODEL = "ue" ]; then #copy needed lcdwaitkey and lcdwarning to backup
+		cp /usr/share/lcdwaitkey.bin $MAINDEST/lcdwaitkey.bin
+		cp /usr/share/lcdwarning.bin $MAINDEST/lcdwarning.bin
+	fi
+	if [ $MODEL = "ueplus" ]; then
+		cp /usr/share/lcdwaitkey.bin $MAINDEST/lcdwaitkey.bin
+		cp /usr/share/lcdwarning.bin $MAINDEST/lcdwarning.bin
+	fi
+	if [ $MODEL = "quad" ]; then
+		cp /usr/share/lcdwaitkey.bin $MAINDEST/lcdwaitkey.bin
+		cp /usr/share/lcdwarning.bin $MAINDEST/lcdwarning.bin
+	fi
+	if [ $MODEL = "quadplus" ]; then
+		cp /usr/share/lcdwaitkey.bin $MAINDEST/lcdwaitkey.bin
+		cp /usr/share/lcdwarning.bin $MAINDEST/lcdwarning.bin
+	fi
+	
 	cp -r $MAINDEST $EXTRA #copy the made back-up to images
 	if [ -f $MAINDEST/rootfs.bin -a -f $MAINDEST/kernel.bin -a -f $MAINDEST/imageversion -a -f $MAINDEST/noforce ]  ; then
 		echo "_________________________________________________\n"
@@ -217,13 +233,8 @@ if [ $TYPE = "GIGABLUE" ] ; then
 		echo "_________________________________________________\n"
 		echo " "
 		echo "To restore the image: \n"
-		echo "Place the USB-flash drive in the USB-port "
-		echo "and power off the Gigablue. "
-		echo "and power on the Gigablue. "
-		echo "\nFor UE and QUAD you have to copy:"
-		echo "\nlcdsplash.bin, lcdwaitkey.bin, lcdwarning.bin "
-		echo "and splash.bin into: "
-		echo "\n/gigablue/ue/ or /gigablue/quad/"
+		echo "Please check the manual of the receiver"
+		echo "or visit gigablue-support.com ."
 		echo "\nPlease wait...almost ready! "
 	else
 		echo "Image creation failed - "
