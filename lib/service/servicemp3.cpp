@@ -6,6 +6,7 @@
 #include <lib/base/init.h>
 #include <lib/base/nconfig.h>
 #include <lib/base/object.h>
+#include <lib/dvb/epgcache.h>
 #include <lib/dvb/decoder.h>
 #include <lib/components/file_eraser.h>
 #include <lib/gui/esubtitle.h>
@@ -360,8 +361,10 @@ void eServiceMP3InfoContainer::setBuffer(GstBuffer *buffer)
 int eServiceMP3::ac3_delay = 0,
     eServiceMP3::pcm_delay = 0;
 
-eServiceMP3::eServiceMP3(eServiceReference ref)
-	:m_ref(ref), m_pump(eApp, 1)
+eServiceMP3::eServiceMP3(eServiceReference ref):
+	m_ref(ref),
+	m_pump(eApp, 1),
+	m_nownext_timer(eTimer::create(eApp))
 {
 	m_subtitle_sync_timer = eTimer::create(eApp);
 	m_streamingsrc_timeout = 0;
@@ -384,6 +387,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 
 	CONNECT(m_subtitle_sync_timer->timeout, eServiceMP3::pushSubtitles);
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
+	CONNECT(m_nownext_timer->timeout, eServiceMP3::updateEpgCacheNowNext);
 	m_aspect = m_width = m_height = m_framerate = m_progressive = -1;
 
 	m_state = stIdle;
@@ -625,6 +629,51 @@ eServiceMP3::~eServiceMP3()
 	}
 }
 
+void eServiceMP3::updateEpgCacheNowNext()
+{
+	bool update = false;
+	ePtr<eServiceEvent> next = 0;
+	ePtr<eServiceEvent> ptr = 0;
+	eServiceReference ref(m_ref);
+	ref.type = eServiceFactoryMP3::id;
+	ref.path.clear();
+	if (eEPGCache::getInstance() && eEPGCache::getInstance()->lookupEventTime(ref, -1, ptr) >= 0)
+	{
+		ePtr<eServiceEvent> current = m_event_now;
+		if (!current || !ptr || current->getEventId() != ptr->getEventId())
+		{
+			update = true;
+			m_event_now = ptr;
+			time_t next_time = ptr->getBeginTime() + ptr->getDuration();
+			if (eEPGCache::getInstance()->lookupEventTime(ref, next_time, ptr) >= 0)
+			{
+				next = ptr;
+				m_event_next = ptr;
+			}
+		}
+	}
+
+	int refreshtime = 60;
+	if (!next)
+	{
+		next = m_event_next;
+	}
+	if (next)
+	{
+		time_t now = eDVBLocalTimeHandler::getInstance()->nowTime();
+		refreshtime = (int)(next->getBeginTime() - now) + 3;
+		if (refreshtime <= 0 || refreshtime > 60)
+		{
+			refreshtime = 60;
+		}
+	}
+	m_nownext_timer->startLongTimer(refreshtime);
+	if (update)
+	{
+		m_event((iPlayableService*)this, evUpdatedEventInfo);
+	}
+}
+
 DEFINE_REF(eServiceMP3);
 
 DEFINE_REF(eServiceMP3::GstMessageContainer);
@@ -644,6 +693,7 @@ RESULT eServiceMP3::start()
 	{
 		eDebug("eServiceMP3::starting pipeline");
 		gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
+		updateEpgCacheNowNext();
 	}
 
 	m_event(this, evStart);
@@ -667,6 +717,7 @@ RESULT eServiceMP3::stop()
 	eDebug("eServiceMP3::stop %s", m_ref.path.c_str());
 	gst_element_set_state(m_gst_playbin, GST_STATE_NULL);
 	m_state = stStopped;
+	m_nownext_timer->stop();
 
 	return 0;
 }
@@ -906,6 +957,14 @@ RESULT eServiceMP3::getName(std::string &name)
 	}
 	else
 		name = title;
+	return 0;
+}
+
+RESULT eServiceMP3::getEvent(ePtr<eServiceEvent> &evt, int nownext)
+{
+	evt = nownext ? m_event_next : m_event_now;
+	if (!evt)
+		return -1;
 	return 0;
 }
 
