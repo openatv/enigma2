@@ -8,7 +8,6 @@ from xml.dom.minidom import parseString
 # for localized messages
 from . import _
 
-
 class LastFMEventRegister:
     def __init__(self):
         self.onMetadataChangedList = []

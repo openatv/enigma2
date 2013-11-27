@@ -81,7 +81,7 @@ def initConfigfore():
 
 
 class WeatherPluginEntriesListConfigScreenfore(Screen):
-    skin = '''<screen position="center,center" size="750,400" title="%s %s" >
+    skin = '''<screen position="center,center" size="750,400" title="WeatherPlugin: List of Entries (foreca.com)" >
 	      <widget name="city" position="5,0" size="150,50" font="Regular;20" halign="left"/>
 	      <widget name="language" position="155,0" size="150,50" font="Regular;20" halign="left"/>
 	      <widget name="entrylist" position="0,50" size="750,300" scrollbarMode="showOnDemand"/>
@@ -93,7 +93,7 @@ class WeatherPluginEntriesListConfigScreenfore(Screen):
 	      <ePixmap name="green" position="140,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
 	      <ePixmap name="yellow" position="280,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
 	      <ePixmap name="blue" position="420,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
-	      </screen>''' % (_('WeatherPlugin: List of Entries'), '(foreca.com)')
+	      </screen>'''
 
     def __init__(self, session):
         Screen.__init__(self, session)
@@ -191,7 +191,7 @@ class WeatherPluginEntryListfore(MenuList):
 
     def postWidgetCreate(self, instance):
         MenuList.postWidgetCreate(self, instance)
-        instance.setItemHeight(20)
+        instance.setItemHeight(50)
 
     def getCurrentIndex(self):
         return self.instance.getCurrentIndex()
@@ -201,19 +201,19 @@ class WeatherPluginEntryListfore(MenuList):
         for c in config.plugins.AccuWeatherPlugin.foreEntries:
             res = [c]
             res.append((eListboxPythonMultiContent.TYPE_TEXT,
-             5,
+             15,
              0,
              150,
-             20,
+             50,
              1,
              RT_HALIGN_LEFT | RT_VALIGN_CENTER,
              str(c.city.value)))
             tvalor = str(c.pais.value) + ' (.' + str(c.dominio.value) + ')'
             res.append((eListboxPythonMultiContent.TYPE_TEXT,
-             155,
+             165,
              0,
              150,
-             20,
+             50,
              1,
              RT_HALIGN_LEFT | RT_VALIGN_CENTER,
              tvalor))
@@ -224,7 +224,7 @@ class WeatherPluginEntryListfore(MenuList):
 
 
 class WeatherPluginEntryConfigScreenfore(ConfigListScreen, Screen):
-    skin = '''<screen name="WeatherPluginEntryConfigScreen" position="center,center" size="750,276" title="%s%s">
+    skin = '''<screen name="WeatherPluginEntryConfigScreen" position="center,center" size="750,276" title="WeatherPlugin: Edit Entry (foreca.com)">
 	      <widget name="config" position="20,10" size="720,200" scrollbarMode="showOnDemand" />
 	      <ePixmap name="red" position="10,225" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
 	      <ePixmap name="green" position="167,225" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
@@ -232,7 +232,7 @@ class WeatherPluginEntryConfigScreenfore(ConfigListScreen, Screen):
 	      <widget name="key_red" position="10,225" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 	      <widget name="key_green" position="166,225" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 	      <widget name="key_blue" position="319,225" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-	      </screen>''' % (_('WeatherPlugin: Edit Entry'), '(foreca.com)')
+	      </screen>'''
 
     def __init__(self, session, entry):
         self.session = session
