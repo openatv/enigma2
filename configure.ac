@@ -92,21 +92,37 @@ AC_SUBST(DRIVERDATE)
 AC_DEFINE_UNQUOTED(DRIVERDATE,"$DRIVERDATE",[driver date])
 
 AM_CONDITIONAL(AZBOX, test `echo "$BOXTYPE" | cut -b 1-5` == "azbox")
+AM_CONDITIONAL(CUBE, test `echo "$BOXTYPE" | cut -b 1-4` == "cube")
 AM_CONDITIONAL(DREAMBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "dm")
 AM_CONDITIONAL(VUPLUS, test `echo "$BOXTYPE" | cut -b 1-2` == "vu")
 AM_CONDITIONAL(XTREND, test `echo "$BOXTYPE" | cut -b 1-2` == "et")
 AM_CONDITIONAL(TECHNOMATE, test `echo "$BOXTYPE" | cut -b 1-2` == "tm")
-AM_CONDITIONAL(IQON, test `echo "$BOXTYPE" | cut -b 1-4` == "iqon")
 AM_CONDITIONAL(INI, test `echo "$BOXTYPE" | cut -b 1-3` == "ini")
+AM_CONDITIONAL(IQON, test `echo "$BOXTYPE" | cut -b 1-4` == "iqon")
 AM_CONDITIONAL(GIGABLUE, test `echo "$BOXTYPE" | cut -b 1-2` == "gb")
 AM_CONDITIONAL(ODIN, test `echo "$BOXTYPE" | cut -b 1-4` == "odin")
 AM_CONDITIONAL(VENTON, test `echo "$BOXTYPE" | cut -b 1-6` == "venton")
+AM_CONDITIONAL(EBOX, test `echo "$BOXTYPE" | cut -b 1-4` == "ebox")
+AM_CONDITIONAL(EDISION, test `echo "$BOXTYPE" | cut -b 1-4` == "opti")
+AM_CONDITIONAL(JEPSSEN, test `echo "$BOXTYPE" | cut -b 1-5` == "media")
+AM_CONDITIONAL(SOGNO, test `echo "$BOXTYPE" | cut -b 1-5` == "sogno")
+AM_CONDITIONAL(MIRACLEBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "mb")
+AM_CONDITIONAL(AZBOXME, test "$BOXTYPE" == azboxme)
+AM_CONDITIONAL(AZBOXMINIME, test "$BOXTYPE" == azboxminime)
+AM_CONDITIONAL(AZBOXHD, test "$BOXTYPE" == azboxhd)
 AM_CONDITIONAL(DM8000, test "$BOXTYPE" == dm8000)
 AM_CONDITIONAL(DM7020HD, test "$BOXTYPE" == dm7020hd)
+AM_CONDITIONAL(DM7020HDV2, test "$BOXTYPE" == dm7020hdv2)
 AM_CONDITIONAL(DM800, test "$BOXTYPE" == dm800)
-AM_CONDITIONAL(DM800SE, test "$BOXTYPE" == dm800se)
 AM_CONDITIONAL(DM800HD, test "$BOXTYPE" == dm800hd)
+AM_CONDITIONAL(DM800SE, test "$BOXTYPE" == dm800se)
+AM_CONDITIONAL(DM800SEV2, test "$BOXTYPE" == dm800sev2)
+AM_CONDITIONAL(DM500HD, test "$BOXTYPE" == dm500hd)
+AM_CONDITIONAL(DM500HDV2, test "$BOXTYPE" == dm500hdv2)
+AM_CONDITIONAL(E3HD, test "$BOXTYPE" == e3hd)
 AM_CONDITIONAL(EBOX5000, test "$BOXTYPE" == ebox5000)
+AM_CONDITIONAL(EBOX5100, test "$BOXTYPE" == ebox5100)
+AM_CONDITIONAL(EBOX7358, test "$BOXTYPE" == ebox7358)
 AM_CONDITIONAL(ET4X00, test "$BOXTYPE" == et4x00)
 AM_CONDITIONAL(ET5X00, test "$BOXTYPE" == et5x00)
 AM_CONDITIONAL(ET6X00, test "$BOXTYPE" == et6x00)
@@ -114,6 +130,9 @@ AM_CONDITIONAL(ET9X00, test "$BOXTYPE" == et9x00)
 AM_CONDITIONAL(GB800SOLO, test "$BOXTYPE" == gb800solo)
 AM_CONDITIONAL(GB800SE, test "$BOXTYPE" == gb800se)
 AM_CONDITIONAL(GB800UE, test "$BOXTYPE" == gb800ue)
+AM_CONDITIONAL(GB800SEPLUS, test "$BOXTYPE" == gb800seplus)
+AM_CONDITIONAL(GB800UEPLUS, test "$BOXTYPE" == gb800ueplus)
+AM_CONDITIONAL(GBQUADPLUS, test "$BOXTYPE" == gbquadplus)
 AM_CONDITIONAL(GBQUAD, test "$BOXTYPE" == gbquad)
 AM_CONDITIONAL(INIHDE, test "$BOXTYPE" == inihde)
 AM_CONDITIONAL(INIHDX, test "$BOXTYPE" == inihdx)
@@ -123,8 +142,15 @@ AM_CONDITIONAL(IQONIOS200HD, test "$BOXTYPE" == iqonios200hd)
 AM_CONDITIONAL(IQONIOS300HD, test "$BOXTYPE" == iqonios300hd)
 AM_CONDITIONAL(IXUSSONE, test "$BOXTYPE" == ixussone)
 AM_CONDITIONAL(IXUSSZERO, test "$BOXTYPE" == ixusszero)
+AM_CONDITIONAL(IXUSSDUO, test "$BOXTYPE" == ixussduo)
+AM_CONDITIONAL(MEDIABOX, test "$BOXTYPE" == mediabox)
+AM_CONDITIONAL(MBTWIN, test "$BOXTYPE" == mbtwin)
+AM_CONDITIONAL(ODINM6, test "$BOXTYPE" == odinm6)
 AM_CONDITIONAL(ODINM7, test "$BOXTYPE" == odinm7)
 AM_CONDITIONAL(ODINM9, test "$BOXTYPE" == odinm9)
+AM_CONDITIONAL(OPTIMUSSOS1, test "$BOXTYPE" == optimussos1)
+AM_CONDITIONAL(OPTIMUSSOS2, test "$BOXTYPE" == optimussos2)
+AM_CONDITIONAL(SOGNO8800HD, test "$BOXTYPE" == sogno8800hd)
 AM_CONDITIONAL(TMTWINOE, test "$BOXTYPE" == tmtwin)
 AM_CONDITIONAL(TM2TOE, test "$BOXTYPE" == tm2t)
 AM_CONDITIONAL(TMSINGLE, test "$BOXTYPE" == tmsingle)
@@ -327,6 +353,7 @@ data/rc_models/Makefile
 data/rc_models/dmm0/Makefile
 data/rc_models/dmm1/Makefile
 data/rc_models/dmm2/Makefile
+data/rc_models/e3hd/Makefile
 data/rc_models/ebox5000/Makefile
 data/rc_models/et4x00/Makefile
 data/rc_models/et6x00/Makefile
@@ -347,6 +374,7 @@ data/rc_models/odinm9/Makefile
 data/rc_models/tm/Makefile
 data/rc_models/vu/Makefile
 data/rc_models/vu2/Makefile
+data/rc_models/vu3/Makefile
 data/rc_models/xp1000/Makefile
 data/spinner/Makefile
 include/Makefile
