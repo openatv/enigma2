@@ -58,7 +58,6 @@ class picshow(Screen):
 			"red": self.KeyExit,
 			"green": self.KeyGreen,
 			"yellow": self.KeyYellow,
-			"menu": self.KeyMenu,
 			"ok": self.KeyOk
 		}, -1)
 
