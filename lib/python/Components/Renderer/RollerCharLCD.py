@@ -53,7 +53,7 @@ class RollerCharLCD(VariableText, Renderer):
             self.scrollspeed = int(config.lcd.scroll_speed.getValue())
             self.moveTimerText.start(self.scrollspeed)
         if config.lcd.scroll_delay.getValue() != 'noscrolling':
-            self.scrolldelay = int(config.lcd.scroll_delay.getValue)
+            self.scrolldelay = int(config.lcd.scroll_delay.getValue())
             self.delayTimer = eTimer()
             self.delayTimer.timeout.get().append(self.delayTimergo)
             self.delayTimer.start(self.scrolldelay)

@@ -350,6 +350,10 @@ data/display140/Makefile
 data/display220/Makefile
 data/display255/Makefile
 data/rc_models/Makefile
+data/rc_models/azboxhd/Makefile
+data/rc_models/azboxme/Makefile
+data/rc_models/azboxelite/Makefile
+data/rc_models/cube/Makefile
 data/rc_models/dmm0/Makefile
 data/rc_models/dmm1/Makefile
 data/rc_models/dmm2/Makefile
@@ -369,8 +373,12 @@ data/rc_models/ini4/Makefile
 data/rc_models/iqon/Makefile
 data/rc_models/ixussone/Makefile
 data/rc_models/ixusszero/Makefile
+data/rc_models/mediabox/Makefile
+data/rc_models/odinm6/Makefile
 data/rc_models/odinm7/Makefile
 data/rc_models/odinm9/Makefile
+data/rc_models/optimuss/Makefile
+data/rc_models/sogno/Makefile
 data/rc_models/tm/Makefile
 data/rc_models/vu/Makefile
 data/rc_models/vu2/Makefile
