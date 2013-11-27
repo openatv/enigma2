@@ -18,7 +18,11 @@ if DM800HD
 SUBDIRS = dmm2
 endif
 
-if EBOX5000
+if E3HD
+SUBDIRS = e3hd
+endif
+
+if EBOX
 SUBDIRS = ebox5000
 endif
 
@@ -42,6 +46,10 @@ if GIGABLUE
 SUBDIRS = gb
 endif
 
+if INI
+SUBDIRS = ini0 ini1 ini2 ini3 ini4
+endif
+
 if IQON
 SUBDIRS = iqon
 endif
@@ -52,6 +60,10 @@ endif
 
 if IXUSSZERO
 SUBDIRS = ixusszero
+endif
+
+if MIRACLEBOX
+SUBDIRS = ini3
 endif
 
 if ODINM7
@@ -67,7 +79,7 @@ SUBDIRS = tm
 endif
 
 if VENTON
-SUBDIRS = ini3000 ini5000 ini5000r ini7000
+SUBDIRS = ini0 ini1 ini2 ini3 ini4
 endif
 
 if VUSOLO
@@ -91,7 +103,7 @@ SUBDIRS = vu2
 endif
 
 if VUDUO2
-SUBDIRS = vu
+SUBDIRS = vu3
 endif
 
 if XP1000
