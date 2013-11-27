@@ -62,7 +62,7 @@ class AVSwitch:
 	
 	if hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime") : config.av.edid_override = True
 	
-	if (about.getChipSetString() in ('bcm7358', 'bcm7356', 'bcm7424', '8493'))  or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
+	if (about.getChipSetString() in ('7358', '7356', '7424', '8493'))  or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = set(["720p", "1080p", "1080i"])
 	else:
@@ -425,7 +425,7 @@ def InitAVSwitch():
 		else:
 			if getBoxType() == 'et6x00':
 				map = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}	
-			elif getBoxType() == 'gbquad' or getBoxType().startswith('et'):
+			elif getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus' or getBoxType().startswith('et'):
 				map = {"cvbs": 0, "rgb": 3, "svideo": 2, "yuv": 3}
 			else:
 				map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
@@ -438,7 +438,7 @@ def InitAVSwitch():
 	config.av.colorformat.addNotifier(setColorFormat)
 	
 	iAVSwitch.setInput("ENCODER") # init on startup
-	if (getBoxType() in ('gbquad', 'et5x00', 'ixussone', 'ixusszero', 'e3hd', 'odinm6', 'omtimussos1', 'omtimussos2', 'gb800seplus' )) or about.getModelString() == 'et6000':
+	if (getBoxType() in ('gbquad', 'gbquadplus', 'et5x00', 'ixussone', 'ixusszero', 'e3hd', 'odinm6', 'omtimussos1', 'omtimussos2', 'gb800seplus' )) or about.getModelString() == 'et6000':
 		detected = False
 	else:
 		detected = eAVSwitch.getInstance().haveScartSwitch()
@@ -541,7 +541,7 @@ def InitAVSwitch():
 			except IOError:
 				print "couldn't write pep_scaler_sharpness"
 
-		if getBoxType() == 'gbquad':
+		if getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus': 
 			config.av.scaler_sharpness = ConfigSlider(default=5, limits=(0,26))
 		else:
 			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
