@@ -242,6 +242,7 @@ class ImageBackup(Screen):
 			self.TYPE = "MIXOS"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.JFFS2OPTIONS = "--eraseblock=0x20000 -n -l"
 			self.SHOWNAME = "Mixos %s" %self.MODEL
 			self.MTDKERNEL = "mtd1"	
 			self.MAINDESTOLD = "%s/ebox/%s" %(self.DIRECTORY, self.MODEL)
