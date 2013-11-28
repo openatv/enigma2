@@ -999,7 +999,7 @@ class ChannelSelectionEdit:
 				self.servicelist.removeCurrent()
 				self.servicelist.resetRoot()
 				if not bouquet and ref == self.session.nav.getCurrentlyPlayingServiceOrGroup():
-					self.channelSelected(doClose = False)
+					self.channelSelected()
 
 	def addServiceToBouquet(self, dest, service=None):
 		mutableList = self.getMutableList(dest)
