@@ -82,6 +82,10 @@ case $ret in
 		opkg upgrade 2>&1 | tee /home/root/ipkgupgrade.log
 		/sbin/reboot
 		;;
+	43)
+		echo "    " > /dev/lcd0
+		/usr/bin/gigablue_wol
+		;;
 	*)
 		;;
 esac
