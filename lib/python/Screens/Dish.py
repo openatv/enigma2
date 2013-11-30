@@ -167,10 +167,25 @@ class Dish(Screen):
 	def getTurningSpeed(self, pol=0):
 		tuner = self.getCurrentTuner()
 		if tuner is not None:
-			nim = config.Nims[tuner]
-			if pol in (1, 3): # vertical
-				return nim.turningspeedV.float
-			return nim.turningspeedH.float
+			from Components.NimManager import nimmanager
+			nimConfig = nimmanager.getNimConfig(tuner)
+			if nimConfig.configMode.value == "simple":
+				nim = config.Nims[tuner]
+				if pol in (1, 3): # vertical
+					return nim.turningspeedV.float
+				return nim.turningspeedH.float
+			elif nimConfig.configMode.value == "advanced":
+				cur_orb_pos = nimConfig.advanced.sats.orbital_position
+				satlist = nimConfig.advanced.sat.keys()
+				if cur_orb_pos is not None:
+					if cur_orb_pos not in satlist:
+						cur_orb_pos = satlist[0]
+					currSat = nimConfig.advanced.sat[cur_orb_pos]
+					lnbnum = int(currSat.lnb.value)
+					currLnb = nimConfig.advanced.lnb[lnbnum]
+					if pol in (1, 3): # vertical
+						return currLnb.turningspeedV.float
+					return currLnb.turningspeedH.float
 		if pol in (1, 3):
 			return 1.0
 		return 1.5
