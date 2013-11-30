@@ -163,6 +163,7 @@
 		<item level="0" text="Contrast" description="Configure the contrast level of the front panel display.">config.lcd.contrast</item>
 		<item level="0" text="Standby" description="Configure the brightness level of the front panel display during standby.">config.lcd.standby</item>
 		<item level="1" requires="LCDMiniTV" text="Show MiniTV in the Front Display" description="You can Display MiniTV with or without OSD Menu">config.lcd.modeminitv</item>
+		<item level="1" requires="LCDMiniTV" text="Show PIP in the Front Display" description="You can Display PIP with or without OSD Menu">config.lcd.modepip</item>	
 		<item level="1" requires="LCDMiniTV" text="Set Framerate for MiniTV" description="Lower Framerate save CPU Time">config.lcd.fpsminitv</item>		
 	</setup>
 	<setup key="satconfig" title="Satellite dish setup">
