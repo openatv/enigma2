@@ -170,22 +170,26 @@ class Dish(Screen):
 			from Components.NimManager import nimmanager
 			nimConfig = nimmanager.getNimConfig(tuner)
 			if nimConfig.configMode.value == "simple":
-				nim = config.Nims[tuner]
-				if pol in (1, 3): # vertical
-					return nim.turningspeedV.float
-				return nim.turningspeedH.float
-			elif nimConfig.configMode.value == "advanced":
-				cur_orb_pos = nimConfig.advanced.sats.orbital_position
-				satlist = nimConfig.advanced.sat.keys()
-				if cur_orb_pos is not None:
-					if cur_orb_pos not in satlist:
-						cur_orb_pos = satlist[0]
-					currSat = nimConfig.advanced.sat[cur_orb_pos]
-					lnbnum = int(currSat.lnb.value)
-					currLnb = nimConfig.advanced.lnb[lnbnum]
+				if nimConfig.diseqcMode.value == "positioner":
+					print "[Dish] configMode positioner"
+					nim = config.Nims[tuner]
 					if pol in (1, 3): # vertical
-						return currLnb.turningspeedV.float
-					return currLnb.turningspeedH.float
+						return nim.turningspeedV.float
+					return nim.turningspeedH.float
+			elif nimConfig.configMode.value == "advanced":
+				if self.cur_orbpos != INVALID_POSITION:
+					satlist = nimConfig.advanced.sat.keys()
+					if self.cur_orbpos in satlist:
+						print "[Dish] cur_orb_pos"
+						currSat = nimConfig.advanced.sat[self.cur_orbpos]
+						lnbnum = int(currSat.lnb.value)
+						currLnb = lnbnum and nimConfig.advanced.lnb[lnbnum]
+						diseqcmode = currLnb and currLnb.diseqcMode.value or ""
+						if diseqcmode == "1_2":
+							print "[Dish] configMode advanced"
+							if pol in (1, 3): # vertical
+								return currLnb.turningspeedV.float
+							return currLnb.turningspeedH.float
 		if pol in (1, 3):
 			return 1.0
 		return 1.5
