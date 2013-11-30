@@ -2838,6 +2838,10 @@ class InfoBarPiP:
 			if slist and slist.dopipzap:
 				slist.togglePipzap()
 			del self.session.pip
+			if config.lcd.modepip.value >= "1":
+				f = open("/proc/stb/lcd/mode", "w")
+				f.write(config.lcd.modeminitv.value)
+				f.close()
 			self.session.pipshown = False
 		else:
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
@@ -2846,6 +2850,20 @@ class InfoBarPiP:
 			if self.session.pip.playService(newservice):
 				self.session.pipshown = True
 				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+				if config.lcd.modepip:
+					if config.lcd.modepip.value >= "1":
+						f = open("/proc/stb/lcd/mode", "w")
+						f.write(config.lcd.modepip.value)
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_width", "w")
+						f.write("0")
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_height", "w")
+						f.write("0")
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_apply", "w")
+						f.write("1")
+						f.close()
 			else:
 				self.session.pipshown = False
 				del self.session.pip
