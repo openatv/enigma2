@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2013-11-29 20:37+0100\n"
+"PO-Revision-Date: 2013-11-30 02:06+0100\n"
 "Last-Translator: mike99 <mike99@gmx.net>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -8682,13 +8682,37 @@ msgstr "PowerTimer Liste"
 msgid "PowerTimer Overview"
 msgstr "PowerTimer Übersicht"
 
-# PowerTimer.py
+# /usr/lib/enigma2/python/PowerTimer.py
 msgid ""
 "A finished powertimer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
 "Ein Powertimer will Ihren Receiver ausschalten.\n"
 "Ihre %s %s jetzt ausschalten?"
+
+# /usr/lib/enigma2/python/PowerTimer.py
+msgid ""
+"A finished powertimer wants to shutdown your %s %s.\n"
+"Do that now?"
+msgstr ""
+"Ein Powertimer will Ihren Receiver ausschalten.\n"
+"Ihre %s %s jetzt ausschalten?"
+
+# /usr/lib/enigma2/python/PowerTimer.py
+msgid ""
+"A finished powertimer wants to reboot your %s %s.\n"
+"Do that now?"
+msgstr ""
+"Ein Powertimer will Ihren Receiver neu starten.\n"
+"Ihre %s %s jetzt neu starten?"
+
+# /usr/lib/enigma2/python/PowerTimer.py
+msgid ""
+"A finished powertimer wants to restart the user interface.\n"
+"Do that now?"
+msgstr ""
+"Ein Powertimer will die GUI Neustarten.\n"
+"Jetzt neu starten?"
 
 #
 msgid "Timer type"
@@ -9214,6 +9238,10 @@ msgstr "Nutzername"
 #
 msgid "User defined"
 msgstr "Benutzerdefiniert"
+
+#
+msgid "Use WOL"
+msgstr "WOL benutzen"
 
 #
 msgid "Username"
