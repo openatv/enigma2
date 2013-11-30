@@ -7,6 +7,7 @@ from Components.config import config
 from Tools.Transponder import ConvertToHumanReadable
 from Tools.GetEcmInfo import GetEcmInfo
 from Poll import Poll
+from Components.Converter.ChannelNumbers import channelnumbers
 
 def addspace(text):
 	if text:
@@ -138,17 +139,26 @@ class PliExtraInfo(Poll, Converter, object):
 		return "Pids:%04d:%04d:%04d:%05d" % (vpid, apid, pcrpid, sidpid)
 
 	def createTransponderInfo(self, fedata, feraw):
-		return addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(feraw)) + addspace(self.createPolarization(fedata)) \
-			+ addspace(self.createSymbolRate(fedata, feraw)) + addspace(self.createFEC(fedata, feraw)) + addspace(self.createModulation(fedata)) \
-			+ self.createOrbPos(feraw)
-		
+		if "DVB-T" in feraw.get("tuner_type"):
+			tmp = addspace(self.createChannelNumber(fedata, feraw)) + self.createFrequency(feraw) + "/" + self.createPolarization(fedata)
+		else:
+			tmp = addspace(self.createFrequency(feraw)) + addspace(self.createPolarization(fedata))
+		return addspace(self.createTunerSystem(fedata)) + tmp + addspace(self.createSymbolRate(fedata, feraw)) + addspace(self.createFEC(fedata, feraw)) \
+			+ addspace(self.createModulation(fedata)) + self.createOrbPos(feraw)
+
 	def createFrequency(self, feraw):
 		frequency = feraw.get("frequency")
 		if frequency:
 			if "DVB-T" in feraw.get("tuner_type"):
-				return str(int(frequency / 1000000 + 0.5))
+				return str(int(frequency / 1000000. + 0.5))
 			else:
 				return str(int(frequency / 1000 + 0.5))
+		return ""
+
+	def createChannelNumber(self, fedata, feraw):
+		channel = channelnumbers.getChannelNumber(feraw.get("frequency"), feraw.get("tuner_number"))
+		if channel:
+			return _("CH") + "%s" % channel
 		return ""
 
 	def createSymbolRate(self, fedata, feraw):
@@ -313,6 +323,9 @@ class PliExtraInfo(Poll, Converter, object):
 
 		if self.type == "PIDInfo":
 			return self.createPIDInfo(info)
+
+		if self.type == "TerrestrialChannelNumber":
+			return self.createChannelNumber(fedata, feraw)
 
 		return _("invalid type")
 

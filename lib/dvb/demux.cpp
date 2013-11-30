@@ -4,7 +4,6 @@
 #include <errno.h>
 #include <unistd.h>
 #include <signal.h>
-#include <aio.h>
 #include <sys/sysinfo.h>
 #include <sys/mman.h>
 
@@ -34,12 +33,10 @@ static int recordingBufferCount = determineBufferCount();
 #include "crc32.h"
 
 #include <lib/base/eerror.h>
-#include <lib/base/filepush.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/demux.h>
 #include <lib/dvb/esection.h>
 #include <lib/dvb/decoder.h>
-#include <lib/dvb/pvrparse.h>
 
 eDVBDemux::eDVBDemux(int adapter, int demux):
 	adapter(adapter),
@@ -124,9 +121,9 @@ RESULT eDVBDemux::createTSRecorder(ePtr<iDVBTSRecorder> &recorder, int packetsiz
 	return 0;
 }
 
-RESULT eDVBDemux::getMPEGDecoder(ePtr<iTSMPEGDecoder> &decoder, int primary)
+RESULT eDVBDemux::getMPEGDecoder(ePtr<iTSMPEGDecoder> &decoder, int index)
 {
-	decoder = new eTSMPEGDecoder(this, primary ? 0 : 1);
+	decoder = new eTSMPEGDecoder(this, index);
 	return 0;
 }
 
@@ -381,47 +378,6 @@ RESULT eDVBPESReader::connectRead(const Slot2<void,const __u8*,int> &r, ePtr<eCo
 	return 0;
 }
 
-class eDVBRecordFileThread: public eFilePushThreadRecorder
-{
-public:
-	eDVBRecordFileThread(int packetsize, int bufferCount);
-	~eDVBRecordFileThread();
-	void setTimingPID(int pid, iDVBTSRecorder::timing_pid_type pidtype, int streamtype);
-	void startSaveMetaInformation(const std::string &filename);
-	void stopSaveMetaInformation();
-	int getLastPTS(pts_t &pts);
-	int getFirstPTS(pts_t &pts);
-	void setTargetFD(int fd) { m_fd_dest = fd; }
-	void enableAccessPoints(bool enable) { m_ts_parser.enableAccessPoints(enable); }
-protected:
-	int asyncWrite(int len);
-	/* override */ int writeData(int len);
-	/* override */ void flush();
-
-	struct AsyncIO
-	{
-		struct aiocb aio;
-		unsigned char* buffer;
-		AsyncIO()
-		{
-			memset(&aio, 0, sizeof(struct aiocb));
-			buffer = NULL;
-		}
-		int wait();
-		int start(int fd, off_t offset, size_t nbytes, void* buffer);
-		int poll(); // returns 1 if busy, 0 if ready, <0 on error return
-		int cancel(int fd); // returns <0 on error, 0 cancelled, >0 bytes written?
-	};
-	eMPEGStreamParserTS m_ts_parser;
-	off_t m_current_offset;
-	int m_fd_dest;
-	typedef std::vector<AsyncIO> AsyncIOvector;
-	unsigned char* m_allocated_buffer;
-	AsyncIOvector m_aio;
-	AsyncIOvector::iterator m_current_buffer;
-	std::vector<int> m_buffer_use_histogram;
-};
-
 eDVBRecordFileThread::eDVBRecordFileThread(int packetsize, int bufferCount):
 	eFilePushThreadRecorder(
 		/* buffer */ (unsigned char*) ::mmap(NULL, bufferCount * packetsize * 1024, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, /*ignored*/-1, 0),
@@ -636,76 +592,67 @@ void eDVBRecordFileThread::flush()
 	}
 }
 
-class eDVBRecordStreamThread: public eDVBRecordFileThread
+int eDVBRecordStreamThread::writeData(int len)
 {
-public:
-	eDVBRecordStreamThread(int packetsize):
-		eDVBRecordFileThread(packetsize, /*bufferCount*/ 4)
-	{
-	}
-protected:
-	int writeData(int len)
-	{
-		len = asyncWrite(len);
-		if (len < 0)
-			return len;
-		// Cancel aio on this buffer before returning, streams should not be held up. So we CANCEL
-		// any request that hasn't finished on the second round.
-		int r = m_current_buffer->cancel(m_fd_dest);
-		switch (r)
-		{
-			//case 0: // that's one of these two:
-			case AIO_CANCELED:
-			case AIO_ALLDONE:
-				break;
-			case AIO_NOTCANCELED:
-				eDebug("[eDVBRecordStreamThread] failed to cancel, killing all waiting IO");
-				aio_cancel(m_fd_dest, NULL);
-				// Poll all open requests, because they are all in error state now.
-				for (AsyncIOvector::iterator it = m_aio.begin(); it != m_aio.end(); ++it)
-				{
-					it->poll();
-				}
-				break;
-			case -1:
-				eDebug("[eDVBRecordStreamThread] failed: %m");
-				return r;
-		}
-		// we want to have a consistent state, so wait for completion, just to be sure
-		r = m_current_buffer->wait();
-		if (r < 0)
-		{
-			eDebug("[eDVBRecordStreamThread] wait failed: %m");
-			return -1;
-		}
+	len = asyncWrite(len);
+	if (len < 0)
 		return len;
-	}
-	void flush()
+	// Cancel aio on this buffer before returning, streams should not be held up. So we CANCEL
+	// any request that hasn't finished on the second round.
+	int r = m_current_buffer->cancel(m_fd_dest);
+	switch (r)
 	{
-		eDebug("[eDVBRecordStreamThread] cancelling aio");
-		switch (aio_cancel(m_fd_dest, NULL))
-		{
-			case AIO_CANCELED:
-				eDebug("[eDVBRecordStreamThread] ok");
-				break;
-			case AIO_NOTCANCELED:
-				eDebug("[eDVBRecordStreamThread] not all cancelled");
-				break;
-			case AIO_ALLDONE:
-				eDebug("[eDVBRecordStreamThread] all done");
-				break;
-			case -1:
-				eDebug("[eDVBRecordStreamThread] failed: %m");
-				break;
-			default:
-				eDebug("[eDVBRecordStreamThread] unexpected return code");
-				break;
-		}
-		// Call inherited flush to clean up the rest.
-		eDVBRecordFileThread::flush();
+		//case 0: // that's one of these two:
+		case AIO_CANCELED:
+		case AIO_ALLDONE:
+			break;
+		case AIO_NOTCANCELED:
+			eDebug("[eDVBRecordStreamThread] failed to cancel, killing all waiting IO");
+			aio_cancel(m_fd_dest, NULL);
+			// Poll all open requests, because they are all in error state now.
+			for (AsyncIOvector::iterator it = m_aio.begin(); it != m_aio.end(); ++it)
+			{
+				it->poll();
+			}
+			break;
+		case -1:
+			eDebug("[eDVBRecordStreamThread] failed: %m");
+			return r;
 	}
-};
+	// we want to have a consistent state, so wait for completion, just to be sure
+	r = m_current_buffer->wait();
+	if (r < 0)
+	{
+		eDebug("[eDVBRecordStreamThread] wait failed: %m");
+		return -1;
+	}
+	return len;
+}
 
+void eDVBRecordStreamThread::flush()
+{
+	eDebug("[eDVBRecordStreamThread] cancelling aio");
+	switch (aio_cancel(m_fd_dest, NULL))
+	{
+		case AIO_CANCELED:
+			eDebug("[eDVBRecordStreamThread] ok");
+			break;
+		case AIO_NOTCANCELED:
+			eDebug("[eDVBRecordStreamThread] not all cancelled");
+			break;
+		case AIO_ALLDONE:
+			eDebug("[eDVBRecordStreamThread] all done");
+			break;
+		case -1:
+			eDebug("[eDVBRecordStreamThread] failed: %m");
+			break;
+		default:
+			eDebug("[eDVBRecordStreamThread] unexpected return code");
+			break;
+	}
+	// Call inherited flush to clean up the rest.
+	eDVBRecordFileThread::flush();
+}
 
 DEFINE_REF(eDVBTSRecorder);
 
