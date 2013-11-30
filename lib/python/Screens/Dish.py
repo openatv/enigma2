@@ -7,7 +7,7 @@ from Components.Sources.Boolean import Boolean
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 from Components.ServiceEventTracker import ServiceEventTracker
-from enigma import eDVBSatelliteEquipmentControl, eTimer, eComponentScan, iPlayableService
+from enigma import eDVBSatelliteEquipmentControl, eTimer, iPlayableService
 from enigma import eServiceCenter, iServiceInformation
 from ServiceReference import ServiceReference
 
@@ -46,14 +46,14 @@ class Dish(Screen):
 		self.rotorTimer.callback.append(self.updateRotorMovingState)
 		self.turnTimer = eTimer()
 		self.turnTimer.callback.append(self.turnTimerLoop)
-		self.showTimer = eTimer()
-		self.showTimer.callback.append(self.hide)
+		self.timeoutTimer = eTimer()
+		self.timeoutTimer.callback.append(self.testIsTuned)
 
 		config.usage.showdish.addNotifier(self.configChanged)
 		self.configChanged(config.usage.showdish)
 
 		self.rotor_pos = self.cur_orbpos = config.misc.lastrotorposition.value
-		self.turn_time = self.total_time = None
+		self.turn_time = self.total_time = self.pmt_timeout = self.close_timeout = None
 		self.cur_polar = 0
 		self.__state = self.STATE_HIDDEN
 
@@ -63,26 +63,23 @@ class Dish(Screen):
 		self.__event_tracker = ServiceEventTracker(screen=self,
 			eventmap= {
 				iPlayableService.evStart: self.__serviceStarted,
-				iPlayableService.evTunedIn: self.__serviceTuneEnd,
-				iPlayableService.evTuneFailed: self.__serviceTuneEnd,
+				iPlayableService.evTunedIn: self.__serviceTunedIn,
 			})
 
 	def updateRotorMovingState(self):
 		moving = eDVBSatelliteEquipmentControl.getInstance().isRotorMoving()
-		#if not moving:
 		if moving:
 			if self.__state == self.STATE_HIDDEN:
 				self.show()
-			#self.rotorTimer.start(500, True)
-		else:
-			if self.__state == self.STATE_SHOWN:
-				#self.rotorTimer.stop()
-				self.hide()
 
 	def turnTimerLoop(self):
 		if self.total_time:
 			self.turn_time -= 1
 			self["turnTime"].setText(self.FormatTurnTime(self.turn_time))
+			self.close_timeout -=1
+			if self.close_timeout < 0:
+				print "[Dish] timeout!"
+				self.__toHide()
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
@@ -91,6 +88,7 @@ class Dish(Screen):
 		self.rotor_pos = self.cur_orbpos
 		self.total_time = self.getTurnTime(prev_rotor_pos, self.rotor_pos, self.cur_polar)
 		self.turn_time = self.total_time
+		self.close_timeout = round(self.total_time * 1.25) # aded 25%
 
 		self["posFrom"].setText(self.OrbToStr(prev_rotor_pos))
 		self["posGoto"].setText(self.OrbToStr(self.rotor_pos))
@@ -101,6 +99,7 @@ class Dish(Screen):
 		else:
 			self["turnTime"].setText(self.FormatTurnTime(self.turn_time))
 			self["turnSpeed"].setText(str(self.getTurningSpeed(self.cur_polar)) + chr(176) + _("/s"))
+
 		self.turnTimer.start(1000, False)
 
 	def __onHide(self):
@@ -128,11 +127,29 @@ class Dish(Screen):
 			self.cur_polar  = data.get("polarization", 0)
 			self.rotorTimer.start(500, False)
 
-	def __serviceTuneEnd(self):
+	def __toHide(self):
 		self.rotorTimer.stop()
+		self.timeoutTimer.stop()
 		if self.__state == self.STATE_SHOWN:
-			#self.showTimer.start(25000, True)
 			self.hide()
+
+	def __serviceTunedIn(self):
+		self.pmt_timeout = self.close_timeout
+		self.timeoutTimer.start(500, False)
+
+	def testIsTuned(self):
+		if self.pmt_timeout >= 0:
+			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			pmt = info and info.getInfo(iServiceInformation.sPMTPID)
+			if pmt >= 0:
+				print "[Dish] tuned, closing..."
+				self.__toHide()
+			else:
+				self.pmt_timeout -= 0.5
+		else:
+			self.__toHide()
+			print "[Dish] tuning failed"
 
 	def configChanged(self, configElement):
 		self.showdish = configElement.value
@@ -144,7 +161,7 @@ class Dish(Screen):
 				mrt = 3600 - mrt
 			if (mrt % 10):
 				mrt += 10
-			mrt = (mrt * 1000 / self.getTurningSpeed(pol) ) / 10000 + 3
+			mrt = round((mrt * 1000 / self.getTurningSpeed(pol) ) / 10000) + 3
 		return mrt
 
 	def getTurningSpeed(self, pol=0):
