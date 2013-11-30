@@ -41,6 +41,7 @@ public:
 	int getInfo(const eServiceReference &ref, int w);
 	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate) { return 1; }
 	long long getFileSize(const eServiceReference &ref);
+	RESULT getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr, time_t start_time);
 };
 
 class eStreamBufferInfo: public iStreamBufferInfo
