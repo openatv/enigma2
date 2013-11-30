@@ -1788,7 +1788,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				self.setModeTv()
 			elif tmp_mode == "radio":
 				self.setModeRadio()
-			self.setRoot(tmp_root)
+			self.enterUserbouquet(tmp_root)
 			pip_ref = self.session.pip.getCurrentService()
 			if tmp_ref and pip_ref and tmp_ref.getChannelNum() != pip_ref.getChannelNum():
 				self.session.pip.currentService = tmp_ref
