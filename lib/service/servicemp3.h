@@ -41,6 +41,7 @@ public:
 	int getInfo(const eServiceReference &ref, int w);
 	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate) { return 1; }
 	long long getFileSize(const eServiceReference &ref);
+	RESULT getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr, time_t start_time);
 };
 
 class eStreamBufferInfo: public iStreamBufferInfo
@@ -142,6 +143,7 @@ public:
 
 		// iServiceInformation
 	RESULT getName(std::string &name);
+	RESULT getEvent(ePtr<eServiceEvent> &evt, int nownext);
 	int getInfo(int w);
 	std::string getInfoString(int w);
 	ePtr<iServiceInfoContainer> getInfoObject(int w);
@@ -221,6 +223,11 @@ public:
 		std::string error_message;
 		std::string missing_codec;
 	};
+
+protected:
+	ePtr<eTimer> m_nownext_timer;
+	ePtr<eServiceEvent> m_event_now, m_event_next;	
+	void updateEpgCacheNowNext();
 
 private:
 	static int pcm_delay;
