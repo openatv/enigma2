@@ -216,8 +216,8 @@
 		<item level="0" text="Show HDMI-Output Res" description="Show HDMI Output Resulution">config.lcd.showoutputresolution</item>
 		<item level="0" text="Show HDD progress" description="Disable the HDD Process on VFD">config.lcd.hdd</item>
 		<item level="0" text="Show on Display" description="Disable all VFD Symbols">config.vfd.show</item>
-		<item level="1" text="Scrolling Speed (software render)" description="Set the scrolling speed of text on the front display, this uses a sotware render use in some skins.">config.lcd.scroll_speed</item>
-		<item level="1" text="Scrolling delay (software render)" description="Set the delay time between repeated loops, this uses a sotware render use in some skins.">config.lcd.scroll_delay</item>
+		<item level="1" text="Scrolling speed (software renderer)" description="Set the scrolling speed of text on the front display, this is used by software renderer in some skins.">config.lcd.scroll_speed</item>
+		<item level="1" text="Scrolling delay (software renderer)" description="Set the delay time between repeated loops, this is used by software renderer in some skins.">config.lcd.scroll_delay</item>
 	</setup>
 	<setup key="specialfeatures" title="Special Features">
 		<item level="0" text="BlueSwitch: Blue-Short/Blue-Long" description="Switch Blue-Short (QuickMenu) with Blue-Long (Extensions)">config.workaround.blueswitch</item>
