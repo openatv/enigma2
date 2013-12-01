@@ -1084,6 +1084,7 @@ def filescan(**kwargs):
 			paths_to_scan =
 				[
 					ScanPath(path = "", with_subdirs = False),
+					ScanPath(path = "PRIVATE/AVCHD/BDMV/STREAM", with_subdirs = False),
 				],
 			name = "Movie",
 			description = _("Watch movies..."),

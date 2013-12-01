@@ -1,8 +1,11 @@
 #ifndef __dvb_demux_h
 #define __dvb_demux_h
 
+#include <aio.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/idemux.h>
+#include <lib/base/filepush.h>
+#include <lib/dvb/pvrparse.h>
 
 class eDVBDemux: public iDVBDemux
 {
@@ -21,7 +24,7 @@ public:
 	RESULT createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader);
 	RESULT createPESReader(eMainloop *context, ePtr<iDVBPESReader> &reader);
 	RESULT createTSRecorder(ePtr<iDVBTSRecorder> &recorder, int packetsize = 188, bool streaming=false);
-	RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader, int primary);
+	RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader, int index);
 	RESULT getSTC(pts_t &pts, int num);
 	RESULT getCADemuxID(uint8_t &id) { id = demux; return 0; }
 	RESULT getCAAdapterID(uint8_t &id) { id = adapter; return 0; }
@@ -85,7 +88,58 @@ public:
 	RESULT connectRead(const Slot2<void,const __u8*, int> &read, ePtr<eConnection> &conn);
 };
 
-class eDVBRecordFileThread;
+class eDVBRecordFileThread: public eFilePushThreadRecorder
+{
+public:
+	eDVBRecordFileThread(int packetsize, int bufferCount);
+	~eDVBRecordFileThread();
+	void setTimingPID(int pid, iDVBTSRecorder::timing_pid_type pidtype, int streamtype);
+	void startSaveMetaInformation(const std::string &filename);
+	void stopSaveMetaInformation();
+	int getLastPTS(pts_t &pts);
+	int getFirstPTS(pts_t &pts);
+	void setTargetFD(int fd) { m_fd_dest = fd; }
+	void enableAccessPoints(bool enable) { m_ts_parser.enableAccessPoints(enable); }
+protected:
+	int asyncWrite(int len);
+	/* override */ int writeData(int len);
+	/* override */ void flush();
+
+	struct AsyncIO
+	{
+		struct aiocb aio;
+		unsigned char* buffer;
+		AsyncIO()
+		{
+			memset(&aio, 0, sizeof(struct aiocb));
+			buffer = NULL;
+		}
+		int wait();
+		int start(int fd, off_t offset, size_t nbytes, void* buffer);
+		int poll(); // returns 1 if busy, 0 if ready, <0 on error return
+		int cancel(int fd); // returns <0 on error, 0 cancelled, >0 bytes written?
+	};
+	eMPEGStreamParserTS m_ts_parser;
+	off_t m_current_offset;
+	int m_fd_dest;
+	typedef std::vector<AsyncIO> AsyncIOvector;
+	unsigned char* m_allocated_buffer;
+	AsyncIOvector m_aio;
+	AsyncIOvector::iterator m_current_buffer;
+	std::vector<int> m_buffer_use_histogram;
+};
+
+class eDVBRecordStreamThread: public eDVBRecordFileThread
+{
+public:
+	eDVBRecordStreamThread(int packetsize):
+		eDVBRecordFileThread(packetsize, /*bufferCount*/ 4)
+	{
+	}
+protected:
+	int writeData(int len);
+	void flush();
+};
 
 class eDVBTSRecorder: public iDVBTSRecorder, public Object
 {
