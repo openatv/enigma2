@@ -400,6 +400,8 @@ def InitLcd():
 		config.lcd.mode = ConfigNothing()
 		config.lcd.repeat = ConfigNothing()
 		config.lcd.scrollspeed = ConfigNothing()
+		config.lcd.scroll_speed = ConfigSelection(choices = [("300", _("normal"))])
+		config.lcd.scroll_delay = ConfigSelection(choices = [("noscrolling", _("off"))])
 		config.lcd.showoutputresolution = ConfigNothing()
 		config.lcd.ledbrightness = ConfigNothing()
 		config.lcd.ledbrightness.apply = lambda : doNothing()
