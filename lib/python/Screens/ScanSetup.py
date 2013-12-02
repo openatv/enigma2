@@ -502,70 +502,70 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.createSetup()
 
 	def createConfig(self, frontendData):
-			defaultSat = {
-				"orbpos": 192,
-				"system": eDVBFrontendParametersSatellite.System_DVB_S,
-				"frequency": 11836,
-				"inversion": eDVBFrontendParametersSatellite.Inversion_Unknown,
-				"symbolrate": 27500,
-				"polarization": eDVBFrontendParametersSatellite.Polarisation_Horizontal,
-				"fec": eDVBFrontendParametersSatellite.FEC_Auto,
-				"fec_s2": eDVBFrontendParametersSatellite.FEC_9_10,
-				"modulation": eDVBFrontendParametersSatellite.Modulation_QPSK }
-			defaultCab = {
-				"frequency": 466,
-				"inversion": eDVBFrontendParametersCable.Inversion_Unknown,
-				"modulation": eDVBFrontendParametersCable.Modulation_QAM64,
-				"fec": eDVBFrontendParametersCable.FEC_Auto,
-				"symbolrate": 6900,
-				"system": eDVBFrontendParametersCable.System_DVB_C_ANNEX_A }
-			defaultTer = {
-				"frequency" : 474000,
-				"inversion" : eDVBFrontendParametersTerrestrial.Inversion_Unknown,
-				"bandwidth" : 8000000,
-				"fechigh" : eDVBFrontendParametersTerrestrial.FEC_Auto,
-				"feclow" : eDVBFrontendParametersTerrestrial.FEC_Auto,
-				"modulation" : eDVBFrontendParametersTerrestrial.Modulation_Auto,
-				"transmission_mode" : eDVBFrontendParametersTerrestrial.TransmissionMode_Auto,
-				"guard_interval" : eDVBFrontendParametersTerrestrial.GuardInterval_Auto,
-				"hierarchy": eDVBFrontendParametersTerrestrial.Hierarchy_Auto,
-				"system": eDVBFrontendParametersTerrestrial.System_DVB_T,
-				"plp_id": 0 }
+		defaultSat = {
+			"orbpos": 192,
+			"system": eDVBFrontendParametersSatellite.System_DVB_S,
+			"frequency": 11836,
+			"inversion": eDVBFrontendParametersSatellite.Inversion_Unknown,
+			"symbolrate": 27500,
+			"polarization": eDVBFrontendParametersSatellite.Polarisation_Horizontal,
+			"fec": eDVBFrontendParametersSatellite.FEC_Auto,
+			"fec_s2": eDVBFrontendParametersSatellite.FEC_9_10,
+			"modulation": eDVBFrontendParametersSatellite.Modulation_QPSK }
+		defaultCab = {
+			"frequency": 466,
+			"inversion": eDVBFrontendParametersCable.Inversion_Unknown,
+			"modulation": eDVBFrontendParametersCable.Modulation_QAM64,
+			"fec": eDVBFrontendParametersCable.FEC_Auto,
+			"symbolrate": 6900,
+			"system": eDVBFrontendParametersCable.System_DVB_C_ANNEX_A }
+		defaultTer = {
+			"frequency" : 474000,
+			"inversion" : eDVBFrontendParametersTerrestrial.Inversion_Unknown,
+			"bandwidth" : 8000000,
+			"fechigh" : eDVBFrontendParametersTerrestrial.FEC_Auto,
+			"feclow" : eDVBFrontendParametersTerrestrial.FEC_Auto,
+			"modulation" : eDVBFrontendParametersTerrestrial.Modulation_Auto,
+			"transmission_mode" : eDVBFrontendParametersTerrestrial.TransmissionMode_Auto,
+			"guard_interval" : eDVBFrontendParametersTerrestrial.GuardInterval_Auto,
+			"hierarchy": eDVBFrontendParametersTerrestrial.Hierarchy_Auto,
+			"system": eDVBFrontendParametersTerrestrial.System_DVB_T,
+			"plp_id": 0 }
 
-			if frontendData is not None:
-				ttype = frontendData.get("tuner_type", "UNKNOWN")
-				if ttype == "DVB-S":
-					defaultSat["system"] = frontendData.get("system", eDVBFrontendParametersSatellite.System_DVB_S)
-					defaultSat["frequency"] = frontendData.get("frequency", 0) / 1000
-					defaultSat["inversion"] = frontendData.get("inversion", eDVBFrontendParametersSatellite.Inversion_Unknown)
-					defaultSat["symbolrate"] = frontendData.get("symbol_rate", 0) / 1000
-					defaultSat["polarization"] = frontendData.get("polarization", eDVBFrontendParametersSatellite.Polarisation_Horizontal)
-					if defaultSat["system"] == eDVBFrontendParametersSatellite.System_DVB_S2:
-						defaultSat["fec_s2"] = frontendData.get("fec_inner", eDVBFrontendParametersSatellite.FEC_Auto)
-						defaultSat["rolloff"] = frontendData.get("rolloff", eDVBFrontendParametersSatellite.RollOff_alpha_0_35)
-						defaultSat["pilot"] = frontendData.get("pilot", eDVBFrontendParametersSatellite.Pilot_Unknown)
-					else:
-						defaultSat["fec"] = frontendData.get("fec_inner", eDVBFrontendParametersSatellite.FEC_Auto)
-					defaultSat["modulation"] = frontendData.get("modulation", eDVBFrontendParametersSatellite.Modulation_QPSK)
-					defaultSat["orbpos"] = frontendData.get("orbital_position", 0)
-				elif ttype == "DVB-C":
-					defaultCab["frequency"] = frontendData.get("frequency", 0) / 1000
-					defaultCab["symbolrate"] = frontendData.get("symbol_rate", 0) / 1000
-					defaultCab["inversion"] = frontendData.get("inversion", eDVBFrontendParametersCable.Inversion_Unknown)
-					defaultCab["fec"] = frontendData.get("fec_inner", eDVBFrontendParametersCable.FEC_Auto)
-					defaultCab["modulation"] = frontendData.get("modulation", eDVBFrontendParametersCable.Modulation_QAM16)
-					defaultTer["system"] = frontendData.get("system", eDVBFrontendParametersCable.System_DVB_C_ANNEX_A)
-				elif ttype == "DVB-T":
-					defaultTer["frequency"] = frontendData.get("frequency", 0)
-					defaultTer["inversion"] = frontendData.get("inversion", eDVBFrontendParametersTerrestrial.Inversion_Unknown)
-					defaultTer["bandwidth"] = frontendData.get("bandwidth", 8000000)
-					defaultTer["fechigh"] = frontendData.get("code_rate_hp", eDVBFrontendParametersTerrestrial.FEC_Auto)
-					defaultTer["feclow"] = frontendData.get("code_rate_lp", eDVBFrontendParametersTerrestrial.FEC_Auto)
-					defaultTer["modulation"] = frontendData.get("constellation", eDVBFrontendParametersTerrestrial.Modulation_Auto)
-					defaultTer["transmission_mode"] = frontendData.get("transmission_mode", eDVBFrontendParametersTerrestrial.TransmissionMode_Auto)
-					defaultTer["guard_interval"] = frontendData.get("guard_interval", eDVBFrontendParametersTerrestrial.GuardInterval_Auto)
-					defaultTer["hierarchy"] = frontendData.get("hierarchy_information", eDVBFrontendParametersTerrestrial.Hierarchy_Auto)
-					defaultTer["system"] = frontendData.get("system", eDVBFrontendParametersTerrestrial.System_DVB_T)
+		if frontendData is not None:
+			ttype = frontendData.get("tuner_type", "UNKNOWN")
+			if ttype == "DVB-S":
+				defaultSat["system"] = frontendData.get("system", eDVBFrontendParametersSatellite.System_DVB_S)
+				defaultSat["frequency"] = frontendData.get("frequency", 0) / 1000
+				defaultSat["inversion"] = frontendData.get("inversion", eDVBFrontendParametersSatellite.Inversion_Unknown)
+				defaultSat["symbolrate"] = frontendData.get("symbol_rate", 0) / 1000
+				defaultSat["polarization"] = frontendData.get("polarization", eDVBFrontendParametersSatellite.Polarisation_Horizontal)
+				if defaultSat["system"] == eDVBFrontendParametersSatellite.System_DVB_S2:
+					defaultSat["fec_s2"] = frontendData.get("fec_inner", eDVBFrontendParametersSatellite.FEC_Auto)
+					defaultSat["rolloff"] = frontendData.get("rolloff", eDVBFrontendParametersSatellite.RollOff_alpha_0_35)
+					defaultSat["pilot"] = frontendData.get("pilot", eDVBFrontendParametersSatellite.Pilot_Unknown)
+				else:
+					defaultSat["fec"] = frontendData.get("fec_inner", eDVBFrontendParametersSatellite.FEC_Auto)
+				defaultSat["modulation"] = frontendData.get("modulation", eDVBFrontendParametersSatellite.Modulation_QPSK)
+				defaultSat["orbpos"] = frontendData.get("orbital_position", 0)
+			elif ttype == "DVB-C":
+				defaultCab["frequency"] = frontendData.get("frequency", 0) / 1000
+				defaultCab["symbolrate"] = frontendData.get("symbol_rate", 0) / 1000
+				defaultCab["inversion"] = frontendData.get("inversion", eDVBFrontendParametersCable.Inversion_Unknown)
+				defaultCab["fec"] = frontendData.get("fec_inner", eDVBFrontendParametersCable.FEC_Auto)
+				defaultCab["modulation"] = frontendData.get("modulation", eDVBFrontendParametersCable.Modulation_QAM16)
+				defaultTer["system"] = frontendData.get("system", eDVBFrontendParametersCable.System_DVB_C_ANNEX_A)
+			elif ttype == "DVB-T":
+				defaultTer["frequency"] = frontendData.get("frequency", 0)
+				defaultTer["inversion"] = frontendData.get("inversion", eDVBFrontendParametersTerrestrial.Inversion_Unknown)
+				defaultTer["bandwidth"] = frontendData.get("bandwidth", 8000000)
+				defaultTer["fechigh"] = frontendData.get("code_rate_hp", eDVBFrontendParametersTerrestrial.FEC_Auto)
+				defaultTer["feclow"] = frontendData.get("code_rate_lp", eDVBFrontendParametersTerrestrial.FEC_Auto)
+				defaultTer["modulation"] = frontendData.get("constellation", eDVBFrontendParametersTerrestrial.Modulation_Auto)
+				defaultTer["transmission_mode"] = frontendData.get("transmission_mode", eDVBFrontendParametersTerrestrial.TransmissionMode_Auto)
+				defaultTer["guard_interval"] = frontendData.get("guard_interval", eDVBFrontendParametersTerrestrial.GuardInterval_Auto)
+				defaultTer["hierarchy"] = frontendData.get("hierarchy_information", eDVBFrontendParametersTerrestrial.Hierarchy_Auto)
+				defaultTer["system"] = frontendData.get("system", eDVBFrontendParametersTerrestrial.System_DVB_T)
 
 		self.scan_sat = ConfigSubsection()
 		self.scan_cab = ConfigSubsection()
@@ -675,86 +675,86 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			(eDVBFrontendParametersCable.System_DVB_C_ANNEX_A, _("DVB-C")),
 			(eDVBFrontendParametersCable.System_DVB_C_ANNEX_C, _("DVB-C ANNEX C"))])
 
-			# terrestial
-			self.scan_ter.frequency = ConfigInteger(default = 474000, limits = (50000, 999000))
-			self.scan_ter.channel = ConfigInteger(default = 21, limits = (1, 99))
-			self.scan_ter.inversion = ConfigSelection(default = defaultTer["inversion"], choices = [
-				(eDVBFrontendParametersTerrestrial.Inversion_Off, _("Off")),
-				(eDVBFrontendParametersTerrestrial.Inversion_On, _("On")),
-				(eDVBFrontendParametersTerrestrial.Inversion_Unknown, _("Auto"))])
-			# WORKAROUND: we can't use BW-auto
-			self.scan_ter.bandwidth = ConfigSelection(default = defaultTer["bandwidth"], choices = [
-				(1712000, "1.712MHz"),
-				(5000000, "8MHz"),
-				(6000000, "7MHz"),
-				(7000000, "6MHz"),
-				(8000000, "5MHz"),
-				(10000000, "10MHz")
-				])
-			#, (eDVBFrontendParametersTerrestrial.Bandwidth_Auto, _("Auto"))))
-			self.scan_ter.fechigh = ConfigSelection(default = defaultTer["fechigh"], choices = [
-				(eDVBFrontendParametersTerrestrial.FEC_1_2, "1/2"),
-				(eDVBFrontendParametersTerrestrial.FEC_2_3, "2/3"),
-				(eDVBFrontendParametersTerrestrial.FEC_3_4, "3/4"),
-				(eDVBFrontendParametersTerrestrial.FEC_5_6, "5/6"),
-				(eDVBFrontendParametersTerrestrial.FEC_6_7, "6/7"),
-				(eDVBFrontendParametersTerrestrial.FEC_7_8, "7/8"),
-				(eDVBFrontendParametersTerrestrial.FEC_8_9, "8/9"),
-				(eDVBFrontendParametersTerrestrial.FEC_Auto, _("Auto"))])
-			self.scan_ter.feclow = ConfigSelection(default = defaultTer["feclow"], choices = [
-				(eDVBFrontendParametersTerrestrial.FEC_1_2, "1/2"),
-				(eDVBFrontendParametersTerrestrial.FEC_2_3, "2/3"),
-				(eDVBFrontendParametersTerrestrial.FEC_3_4, "3/4"),
-				(eDVBFrontendParametersTerrestrial.FEC_5_6, "5/6"),
-				(eDVBFrontendParametersTerrestrial.FEC_6_7, "6/7"),
-				(eDVBFrontendParametersTerrestrial.FEC_7_8, "7/8"),
-				(eDVBFrontendParametersTerrestrial.FEC_8_9, "8/9"),
-				(eDVBFrontendParametersTerrestrial.FEC_Auto, _("Auto"))])
-			self.scan_ter.modulation = ConfigSelection(default = defaultTer["modulation"], choices = [
-				(eDVBFrontendParametersTerrestrial.Modulation_QPSK, "QPSK"),
-				(eDVBFrontendParametersTerrestrial.Modulation_QAM16, "QAM16"),
-				(eDVBFrontendParametersTerrestrial.Modulation_QAM64, "QAM64"),
-				(eDVBFrontendParametersTerrestrial.Modulation_QAM256, "QAM256"),
-				(eDVBFrontendParametersTerrestrial.Modulation_Auto, _("Auto"))])
-			self.scan_ter.transmission = ConfigSelection(default = defaultTer["transmission_mode"], choices = [
-				(eDVBFrontendParametersTerrestrial.TransmissionMode_1k, "1K"),
-				(eDVBFrontendParametersTerrestrial.TransmissionMode_2k, "2K"),
-				(eDVBFrontendParametersTerrestrial.TransmissionMode_4k, "4K"),
-				(eDVBFrontendParametersTerrestrial.TransmissionMode_8k, "8K"),
-				(eDVBFrontendParametersTerrestrial.TransmissionMode_16k, "16K"),
-				(eDVBFrontendParametersTerrestrial.TransmissionMode_32k, "32K"),
-				(eDVBFrontendParametersTerrestrial.TransmissionMode_Auto, _("Auto"))])
-			self.scan_ter.guard = ConfigSelection(default = defaultTer["guard_interval"], choices = [
-				(eDVBFrontendParametersTerrestrial.GuardInterval_1_32, "1/32"),
-				(eDVBFrontendParametersTerrestrial.GuardInterval_1_16, "1/16"),
-				(eDVBFrontendParametersTerrestrial.GuardInterval_1_8, "1/8"),
-				(eDVBFrontendParametersTerrestrial.GuardInterval_1_4, "1/4"),
-				(eDVBFrontendParametersTerrestrial.GuardInterval_1_128, "1/128"),
-				(eDVBFrontendParametersTerrestrial.GuardInterval_19_128, "19/128"),
-				(eDVBFrontendParametersTerrestrial.GuardInterval_19_256, "19/256"),
-				(eDVBFrontendParametersTerrestrial.GuardInterval_Auto, _("Auto"))])
-			self.scan_ter.hierarchy = ConfigSelection(default = defaultTer["hierarchy"], choices = [
-				(eDVBFrontendParametersTerrestrial.Hierarchy_None, _("None")),
-				(eDVBFrontendParametersTerrestrial.Hierarchy_1, "1"),
-				(eDVBFrontendParametersTerrestrial.Hierarchy_2, "2"),
-				(eDVBFrontendParametersTerrestrial.Hierarchy_4, "4"),
-				(eDVBFrontendParametersTerrestrial.Hierarchy_Auto, _("Auto"))])
-			self.scan_ter.system = ConfigSelection(default = defaultTer["system"], choices = [
-				(eDVBFrontendParametersTerrestrial.System_DVB_T, _("DVB-T")),
-				(eDVBFrontendParametersTerrestrial.System_DVB_T2, _("DVB-T2"))])
-			self.scan_ter.plp_id = ConfigInteger(default = defaultTer["plp_id"], limits = (0, 255))
+		# terrestial
+		self.scan_ter.frequency = ConfigInteger(default = 474000, limits = (50000, 999000))
+		self.scan_ter.channel = ConfigInteger(default = 21, limits = (1, 99))
+		self.scan_ter.inversion = ConfigSelection(default = defaultTer["inversion"], choices = [
+			(eDVBFrontendParametersTerrestrial.Inversion_Off, _("Off")),
+			(eDVBFrontendParametersTerrestrial.Inversion_On, _("On")),
+			(eDVBFrontendParametersTerrestrial.Inversion_Unknown, _("Auto"))])
+		# WORKAROUND: we can't use BW-auto
+		self.scan_ter.bandwidth = ConfigSelection(default = defaultTer["bandwidth"], choices = [
+			(1712000, "1.712MHz"),
+			(5000000, "8MHz"),
+			(6000000, "7MHz"),
+			(7000000, "6MHz"),
+			(8000000, "5MHz"),
+			(10000000, "10MHz")
+			])
+		#, (eDVBFrontendParametersTerrestrial.Bandwidth_Auto, _("Auto"))))
+		self.scan_ter.fechigh = ConfigSelection(default = defaultTer["fechigh"], choices = [
+			(eDVBFrontendParametersTerrestrial.FEC_1_2, "1/2"),
+			(eDVBFrontendParametersTerrestrial.FEC_2_3, "2/3"),
+			(eDVBFrontendParametersTerrestrial.FEC_3_4, "3/4"),
+			(eDVBFrontendParametersTerrestrial.FEC_5_6, "5/6"),
+			(eDVBFrontendParametersTerrestrial.FEC_6_7, "6/7"),
+			(eDVBFrontendParametersTerrestrial.FEC_7_8, "7/8"),
+			(eDVBFrontendParametersTerrestrial.FEC_8_9, "8/9"),
+			(eDVBFrontendParametersTerrestrial.FEC_Auto, _("Auto"))])
+		self.scan_ter.feclow = ConfigSelection(default = defaultTer["feclow"], choices = [
+			(eDVBFrontendParametersTerrestrial.FEC_1_2, "1/2"),
+			(eDVBFrontendParametersTerrestrial.FEC_2_3, "2/3"),
+			(eDVBFrontendParametersTerrestrial.FEC_3_4, "3/4"),
+			(eDVBFrontendParametersTerrestrial.FEC_5_6, "5/6"),
+			(eDVBFrontendParametersTerrestrial.FEC_6_7, "6/7"),
+			(eDVBFrontendParametersTerrestrial.FEC_7_8, "7/8"),
+			(eDVBFrontendParametersTerrestrial.FEC_8_9, "8/9"),
+			(eDVBFrontendParametersTerrestrial.FEC_Auto, _("Auto"))])
+		self.scan_ter.modulation = ConfigSelection(default = defaultTer["modulation"], choices = [
+			(eDVBFrontendParametersTerrestrial.Modulation_QPSK, "QPSK"),
+			(eDVBFrontendParametersTerrestrial.Modulation_QAM16, "QAM16"),
+			(eDVBFrontendParametersTerrestrial.Modulation_QAM64, "QAM64"),
+			(eDVBFrontendParametersTerrestrial.Modulation_QAM256, "QAM256"),
+			(eDVBFrontendParametersTerrestrial.Modulation_Auto, _("Auto"))])
+		self.scan_ter.transmission = ConfigSelection(default = defaultTer["transmission_mode"], choices = [
+			(eDVBFrontendParametersTerrestrial.TransmissionMode_1k, "1K"),
+			(eDVBFrontendParametersTerrestrial.TransmissionMode_2k, "2K"),
+			(eDVBFrontendParametersTerrestrial.TransmissionMode_4k, "4K"),
+			(eDVBFrontendParametersTerrestrial.TransmissionMode_8k, "8K"),
+			(eDVBFrontendParametersTerrestrial.TransmissionMode_16k, "16K"),
+			(eDVBFrontendParametersTerrestrial.TransmissionMode_32k, "32K"),
+			(eDVBFrontendParametersTerrestrial.TransmissionMode_Auto, _("Auto"))])
+		self.scan_ter.guard = ConfigSelection(default = defaultTer["guard_interval"], choices = [
+			(eDVBFrontendParametersTerrestrial.GuardInterval_1_32, "1/32"),
+			(eDVBFrontendParametersTerrestrial.GuardInterval_1_16, "1/16"),
+			(eDVBFrontendParametersTerrestrial.GuardInterval_1_8, "1/8"),
+			(eDVBFrontendParametersTerrestrial.GuardInterval_1_4, "1/4"),
+			(eDVBFrontendParametersTerrestrial.GuardInterval_1_128, "1/128"),
+			(eDVBFrontendParametersTerrestrial.GuardInterval_19_128, "19/128"),
+			(eDVBFrontendParametersTerrestrial.GuardInterval_19_256, "19/256"),
+			(eDVBFrontendParametersTerrestrial.GuardInterval_Auto, _("Auto"))])
+		self.scan_ter.hierarchy = ConfigSelection(default = defaultTer["hierarchy"], choices = [
+			(eDVBFrontendParametersTerrestrial.Hierarchy_None, _("None")),
+			(eDVBFrontendParametersTerrestrial.Hierarchy_1, "1"),
+			(eDVBFrontendParametersTerrestrial.Hierarchy_2, "2"),
+			(eDVBFrontendParametersTerrestrial.Hierarchy_4, "4"),
+			(eDVBFrontendParametersTerrestrial.Hierarchy_Auto, _("Auto"))])
+		self.scan_ter.system = ConfigSelection(default = defaultTer["system"], choices = [
+			(eDVBFrontendParametersTerrestrial.System_DVB_T, _("DVB-T")),
+			(eDVBFrontendParametersTerrestrial.System_DVB_T2, _("DVB-T2"))])
+		self.scan_ter.plp_id = ConfigInteger(default = defaultTer["plp_id"], limits = (0, 255))
 
-			if frontendData is not None and ttype == "DVB-S" and self.predefinedTranspondersList(defaultSat["orbpos"]) != None:
-				defaultSatSearchType = "predefined_transponder"
-			else:
-				defaultSatSearchType = "single_transponder"
+		if frontendData is not None and ttype == "DVB-S" and self.predefinedTranspondersList(defaultSat["orbpos"]) != None:
+			defaultSatSearchType = "predefined_transponder"
+		else:
+			defaultSatSearchType = "single_transponder"
 
-			self.scan_type = ConfigSelection(default = defaultSatSearchType, choices = [("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder")), ("single_satellite", _("Single satellite")), ("multisat", _("Multisat")), ("multisat_yes", _("Multisat"))])
-			self.scan_typecable = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("complete", _("Complete"))])
-			self.scan_typeterrestrial = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("complete", _("Complete"))])
-			self.scan_clearallservices = ConfigSelection(default = "no", choices = [("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (keep feeds)"))])
-			self.scan_onlyfree = ConfigYesNo(default = False)
-			self.scan_networkScan = ConfigYesNo(default = False)
+		self.scan_type = ConfigSelection(default = defaultSatSearchType, choices = [("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder")), ("single_satellite", _("Single satellite")), ("multisat", _("Multisat")), ("multisat_yes", _("Multisat"))])
+		self.scan_typecable = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("complete", _("Complete"))])
+		self.scan_typeterrestrial = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("complete", _("Complete"))])
+		self.scan_clearallservices = ConfigSelection(default = "no", choices = [("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (keep feeds)"))])
+		self.scan_onlyfree = ConfigYesNo(default = False)
+		self.scan_networkScan = ConfigYesNo(default = False)
 
 		self.scan_scansat = {}
 		for sat in nimmanager.satList:
