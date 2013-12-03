@@ -1273,7 +1273,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			d = os.path.normpath(p.mountpoint)
 			if d in inlist:
 				# improve shortcuts to mountpoints
-				bookmarks[bookmarks.index((d,d))] = (p.tabbedDescription(), d)
+				try:
+					bookmarks[bookmarks.index((d,d))] = (p.tabbedDescription(), d)
+				except:
+					pass # When already listed as some "friendly" name
 			else:
 				bookmarks.append((p.tabbedDescription(), d))
 			inlist.append(d)
