@@ -111,6 +111,8 @@ class RcModel:
 		elif getBoxType().startswith('vu'):
 			if getBoxType() == 'vuultimo':
 				self.currentRcType = self.RCTYPE_VU2
+			elif getBoxType() == 'vuduo2':
+				self.currentRcType = self.RCTYPE_VU3
 			else:
 				self.currentRcType = self.RCTYPE_VU
 		elif getBoxType().startswith('xp'):
