@@ -159,12 +159,6 @@
 		<widget source="global.CurrentTime" render="Label" position="center,center" size="225,100" font="FdLcD;85" halign="center" noWrap="1">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="lcd/update_stable.png" position="135,146" size="30,30" >
-			<convert type="ConditionalShowHide"></convert>
-		</widget>
-		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="lcd/update_unstable.png" position="135,146" size="30,30" >
-			<convert type="ConditionalShowHide"></convert>
-		</widget>
 		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="center,150" size="190,22" font="FdLcD;22" zPosition="2" valign="bottom" halign="center" noWrap="1" foregroundColor="#ff0000" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
