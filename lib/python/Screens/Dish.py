@@ -18,7 +18,7 @@ class Dish(Screen):
 	STATE_HIDDEN = 0
 	STATE_SHOWN  = 1
 	skin = """
-		<screen name="Dish" flags="wfNoBorder" position="86,100" size="130,200" title="Dish" zPosition="1" backgroundColor="#11396D" >
+		<screen name="Dish" flags="wfNoBorder" position="86,100" size="130,220" title="Dish" zPosition="1" backgroundColor="#11396D" >
 			<widget name="Dishpixmap" position="0,0"  size="130,160" zPosition="-1" pixmap="skin_default/icons/dish.png" transparent="1" alphatest="on" />
 			<widget name="turnTime"   position="5,0"   size="120,20" zPosition="1" font="Regular;20" halign="right" shadowColor="black" shadowOffset="-2,-2" transparent="1" />
 			<widget name="From"       position="5,162" size="50,17" zPosition="1" font="Regular;17" halign="left"  shadowColor="black" shadowOffset="-2,-1" transparent="1"  />
@@ -27,6 +27,9 @@ class Dish(Screen):
 			<widget name="posGoto"    position="57,180" size="70,20" zPosition="1" font="Regular;20" halign="left"  shadowColor="black" shadowOffset="-2,-2" transparent="1" />
 			<widget name="tunerName"  position="5,144"  size="90,16" zPosition="2" font="Regular;14" halign="left"  shadowColor="black" shadowOffset="-2,-1" transparent="1" />
 			<widget name="turnSpeed"  position="75,95" size="50,16" zPosition="2" font="Regular;14" halign="right" shadowColor="black" shadowOffset="-2,-1" transparent="1" />
+			<widget source="session.FrontendStatus" render="Progress" position="5,205" size="120,10" pixmap="skin_default/bar_snr.png" zPosition="2" borderWidth="2" borderColor="#cccccc">
+				<convert type="FrontendInfo">SNR</convert>
+			</widget>
 		</screen>"""
 
 	def __init__(self, session):
