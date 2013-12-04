@@ -72,6 +72,9 @@ class Dish(Screen):
 	def updateRotorMovingState(self):
 		moving = eDVBSatelliteEquipmentControl.getInstance().isRotorMoving()
 		if moving:
+			if self.cur_orbpos != INVALID_POSITION and self.cur_orbpos != config.misc.lastrotorposition.value:
+				config.misc.lastrotorposition.value = self.cur_orbpos
+				config.misc.lastrotorposition.save()
 			if self.__state == self.STATE_HIDDEN:
 				self.show()
 
@@ -124,9 +127,6 @@ class Dish(Screen):
 		tuner_type = data.get("tuner_type")
 		if tuner_type and "DVB-S" in tuner_type:
 			self.cur_orbpos = data.get("orbital_position", INVALID_POSITION)
-			if self.cur_orbpos != INVALID_POSITION:
-				config.misc.lastrotorposition.value = self.cur_orbpos
-				config.misc.lastrotorposition.save()
 			self.cur_polar  = data.get("polarization", 0)
 			self.rotorTimer.start(500, False)
 
@@ -177,7 +177,6 @@ class Dish(Screen):
 			nimConfig = nimmanager.getNimConfig(tuner)
 			if nimConfig.configMode.value == "simple":
 				if nimConfig.diseqcMode.value == "positioner":
-					print "[Dish] configMode positioner"
 					nim = config.Nims[tuner]
 					if pol in (1, 3): # vertical
 						return nim.turningspeedV.float
@@ -186,13 +185,11 @@ class Dish(Screen):
 				if self.cur_orbpos != INVALID_POSITION:
 					satlist = nimConfig.advanced.sat.keys()
 					if self.cur_orbpos in satlist:
-						print "[Dish] cur_orb_pos"
 						currSat = nimConfig.advanced.sat[self.cur_orbpos]
 						lnbnum = int(currSat.lnb.value)
 						currLnb = lnbnum and nimConfig.advanced.lnb[lnbnum]
 						diseqcmode = currLnb and currLnb.diseqcMode.value or ""
 						if diseqcmode == "1_2":
-							print "[Dish] configMode advanced"
 							if pol in (1, 3): # vertical
 								return currLnb.turningspeedV.float
 							return currLnb.turningspeedH.float
