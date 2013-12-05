@@ -255,7 +255,11 @@ int eDVBServiceRecord::doPrepare()
 		m_pids_active.clear();
 		m_state = statePrepared;
 		ePtr<iTsSource> source;
-		if (!m_ref.path.empty())
+		/*
+		 * NOTE: we do not have to create a source for simulated recordings,
+		 * we will not get to the point where the source is going to be used
+		 */
+		if (!m_simulate && !m_ref.path.empty())
 		{
 			if (m_is_stream_client)
 			{
