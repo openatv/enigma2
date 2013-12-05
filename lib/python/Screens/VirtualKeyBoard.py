@@ -88,7 +88,7 @@ class VirtualKeyBoard(Screen):
 				"yellow": self.switchLang,
 				"blue": self.shiftClicked,
 				"deleteBackward": self.backClicked,
-				"deleteForward": self.backClicked,
+				"deleteForward": self.forwardClicked,
 				"back": self.exit,
 				"pageUp": self.cursorRight,
 				"pageDown": self.cursorLeft,
@@ -281,6 +281,9 @@ class VirtualKeyBoard(Screen):
 
 	def backClicked(self):
 		self["text"].deleteBackward()
+
+	def forwardClicked(self):
+		self["text"].deleteForward()
 
 	def shiftClicked(self):
 		self.smsChar = None
