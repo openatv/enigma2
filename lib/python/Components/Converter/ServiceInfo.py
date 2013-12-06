@@ -28,7 +28,8 @@ class ServiceInfo(Converter, object):
 	SUBTITLES_AVAILABLE = 19
 	FREQ_INFO = 20
 	EDITMODE = 21
-
+	IS_STREAM = 22
+	
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		self.type, self.interesting_events = {
@@ -54,6 +55,7 @@ class ServiceInfo(Converter, object):
 				"SubtitlesAvailable": (self.SUBTITLES_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
 				"Freq_Info": (self.FREQ_INFO, (iPlayableService.evUpdatedInfo,)),
 				"Editmode": (self.EDITMODE, (iPlayableService.evUpdatedInfo,)),
+				"IsStream": (self.IS_STREAM, (iPlayableService.evUpdatedInfo,)),
 			}[type]
 
 	def getServiceInfoString(self, info, what, convert = lambda x: "%d" % x):
@@ -107,6 +109,8 @@ class ServiceInfo(Converter, object):
 			return False
 		elif self.type == self.EDITMODE:
 			return hasattr(self.source, "editmode") and not not self.source.editmode
+		elif self.type == self.IS_STREAM:
+			return service.streamed() is not None
 		return False
 
 	boolean = property(getBoolean)

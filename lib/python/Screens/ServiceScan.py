@@ -40,26 +40,27 @@ class ServiceScan(Screen):
 					bouquets = self.currentServiceList.getBouquetList()
 					last_scanned_bouquet = bouquets and next((x[1] for x in bouquets if x[0] == "Last Scanned"), None)
 					if last_scanned_bouquet:
-						self.currentServiceList.setRoot(last_scanned_bouquet)
+						self.currentServiceList.enterUserbouquet(last_scanned_bouquet)
 						self.currentServiceList.setCurrentSelection(eServiceReference(selectedService[1]))
 						service = self.currentServiceList.getCurrentSelection()
 						if not self.session.postScanService or service != self.session.postScanService:
 							self.session.postScanService = service
 							self.currentServiceList.addToHistory(service)
-						self.currentServiceList.saveRoot()
 						config.servicelist.lastmode.save()
-						self.close(True)
-				self.close(False)
-			self.close()
+						self.currentServiceList.saveChannel(service)
+						self.doCloseRecursive()
+			self.cancel()
 
 	def cancel(self):
-		if self.currentInfobar.__class__.__name__ == "InfoBar":
-			self.close(False)
-		self.close()
+		self.exit(False)
 
 	def doCloseRecursive(self):
+		self.exit(True)
+
+	def exit(self, returnValue):
 		if self.currentInfobar.__class__.__name__ == "InfoBar":
-			self.close(True)
+			self.close(returnValue)
+		self.close()
 
 	def __init__(self, session, scanList):
 		Screen.__init__(self, session)

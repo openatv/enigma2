@@ -86,7 +86,8 @@ class eDVBServicePlay: public eDVBServiceBase,
 		public iAudioTrackSelection, public iAudioChannelSelection,
 		public iSubserviceList, public iTimeshiftService,
 		public iCueSheet, public iSubtitleOutput, public iAudioDelay,
-		public iRdsDecoder, public iStreamableService
+		public iRdsDecoder, public iStreamableService, 
+		public iStreamedService
 {
 	DECLARE_REF(eDVBServicePlay);
 public:
@@ -111,7 +112,12 @@ public:
 	RESULT audioDelay(ePtr<iAudioDelay> &ptr);
 	RESULT rdsDecoder(ePtr<iRdsDecoder> &ptr);
 	RESULT keys(ePtr<iServiceKeys> &ptr) { ptr = 0; return -1; }
-	RESULT streamed(ePtr<iStreamedService> &ptr) { ptr = 0; return -1; }
+
+		// iStreamedService
+	RESULT streamed(ePtr<iStreamedService> &ptr);
+	ePtr<iStreamBufferInfo> getBufferCharge();
+	int setBufferSize(int size);
+
 
 		// iPauseableService
 	RESULT pause();
@@ -195,7 +201,7 @@ protected:
 	ePtr<eDVBService> m_dvb_service;
 	
 	ePtr<iTSMPEGDecoder> m_decoder;
-	int m_is_primary;
+	int m_decoder_index;
 	int m_have_video_pid;
 	int m_tune_state;
 	
