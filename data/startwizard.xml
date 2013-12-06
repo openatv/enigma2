@@ -107,7 +107,7 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 		</step>
-		<step id="channels">
+<!--		<step id="channels">
 			<condition>
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and config.misc.installwizard.hasnetwork.value and config.misc.installwizard.ipkgloaded.value
@@ -119,7 +119,7 @@ self.clearSelectedKeys()
 self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
-		</step>
+		      </step>-->
 		<step id="scanquestion">
 			<text value="Do you want to do a service scan?" />
 			<condition>

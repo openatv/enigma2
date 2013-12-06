@@ -339,7 +339,7 @@ const char *getMachineBrand()
 	char boxtype_name[20];
 
 	// for OEM resellers
-	if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
+	/*if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
 	{
 		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 		fclose(boxtype_file);
@@ -368,8 +368,8 @@ const char *getMachineBrand()
 		{
 			return MACHINE_BRAND;
 		}
-	}
-	return MACHINE_BRAND; // to avoid if no /proc/stb/info/boxtype
+	}*/
+	return "Beyonwiz";//MACHINE_BRAND; // to avoid if no /proc/stb/info/boxtype
 }
 
 const char *getMachineName()
@@ -378,7 +378,7 @@ const char *getMachineName()
 	char boxtype_name[20];
 
 	// for OEM resellers
-	if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
+	/*if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
 	{
 		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 		fclose(boxtype_file);
@@ -439,8 +439,8 @@ const char *getMachineName()
 		{
 			return MACHINE_NAME;
 		}
-	}
-	return MACHINE_NAME; // to avoid if no /proc/stb/info/boxtype
+	}*/
+	return "T3"; //return MACHINE_NAME;// to avoid if no /proc/stb/info/boxtype
 }
 
 const char *getImageVersionString()
