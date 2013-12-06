@@ -6,7 +6,7 @@ SUBDIRS = SoftwareManager PositionerSetup Satfinder \
 	HdmiCEC VideoClippingSetup \
 	VideoEnhancement WirelessLan NetworkWizard \
 	IniFanSetup \
-	SABnzbdSetup FastScan SatelliteEquipmentControl DiseqcTester
+	SABnzbdSetup FastScan SatelliteEquipmentControl DiseqcTester LCNScanner
 
 if VUSOLO2
 SUBDIRS += CableScan

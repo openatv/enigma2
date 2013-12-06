@@ -1,0 +1,21 @@
+<rules>
+	<ruleset name="default">
+		<!-- no "renumber" rules... keep the exact order from original lcn -->
+		<rule type="marker" position="16635">Duplicates</rule>
+	</ruleset>
+	<ruleset name="Italia">
+		<!-- "renumber" rules are applied sequentially keeping the original order -->
+		<rule type="renumber" range="0-99999">value * 10</rule>
+		<rule type="renumber" range="1010-1990">value - 995</rule>
+		<rule type="renumber" range="2010-2990">value - 1995</rule>
+		<rule type="renumber" range="5010-5990">value - 5005</rule>
+		<rule type="marker" position="0">Intrattenimento</rule>
+		<rule type="marker" position="395">Bambini e ragazzi</rule>
+		<rule type="marker" position="475">Informazione e cultura</rule>
+		<rule type="marker" position="565">Sport</rule>
+		<rule type="marker" position="655">Musica</rule>
+		<rule type="marker" position="2995">Pay TV</rule>
+		<rule type="marker" position="7995">Servizi On Demand</rule>
+		<rule type="marker" position="166350">Duplicati</rule>
+	</ruleset>
+</rules>
