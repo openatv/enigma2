@@ -1,5 +1,6 @@
 from enigma import eComponentScan, iDVBFrontend
 from Components.NimManager import nimmanager as nimmgr
+from Components.Converter.ChannelNumbers import channelnumbers
 
 class ServiceScan:
 
@@ -79,11 +80,12 @@ class ServiceScan:
 					elif tp_type == iDVBFrontend.feCable:
 						network = _("Cable")
 						tp = transponder.getDVBC()
-						tp_text = ("DVB-C %s %d / %d / %s") %( { tp.Modulation_Auto : "AUTO",
+						freqMHz = "%0.1f MHz" % (tp.frequency/1000000.)
+						tp_text = ("DVB-C %s %s / %d / %s") %( { tp.Modulation_Auto : "AUTO",
 							tp.Modulation_QAM16 : "QAM16", tp.Modulation_QAM32 : "QAM32",
 							tp.Modulation_QAM64 : "QAM64", tp.Modulation_QAM128 : "QAM128",
 							tp.Modulation_QAM256 : "QAM256" }.get(tp.modulation, ""),
-							tp.frequency,
+							freqMHz.replace(".0",""),
 							tp.symbol_rate/1000,
 							{ tp.FEC_Auto : "AUTO", tp.FEC_1_2 : "1/2", tp.FEC_2_3 : "2/3",
 								tp.FEC_3_4 : "3/4", tp.FEC_5_6 : "5/6", tp.FEC_7_8 : "7/8",
@@ -91,7 +93,11 @@ class ServiceScan:
 					elif tp_type == iDVBFrontend.feTerrestrial:
 						network = _("Terrestrial")
 						tp = transponder.getDVBT()
-						tp_text = ("%s %s %d %s") %(
+						channel = channelnumbers.getChannelNumber(tp.frequency, self.scanList[self.run]["feid"])
+						if channel:
+							channel = _("CH") + "%s " % channel
+						freqMHz = "%0.1f MHz" % (tp.frequency/1000000.)
+						tp_text = ("%s %s %s %s") %(
 							{
 								tp.System_DVB_T : "DVB-T",
 								tp.System_DVB_T2 : "DVB-T2"
@@ -101,7 +107,7 @@ class ServiceScan:
 								tp.Modulation_QAM16 : "QAM16", tp.Modulation_QAM64 : "QAM64",
 								tp.Modulation_Auto : "AUTO", tp.Modulation_QAM256 : "QAM256"
 							}.get(tp.modulation, ""),
-							tp.frequency,
+							"%s%s" % (channel, freqMHz.replace(".0","")),
 							{
 								tp.Bandwidth_8MHz : "Bw 8MHz", tp.Bandwidth_7MHz : "Bw 7MHz", tp.Bandwidth_6MHz : "Bw 6MHz",
 								tp.Bandwidth_Auto : "Bw Auto", tp.Bandwidth_5MHz : "Bw 5MHz",
