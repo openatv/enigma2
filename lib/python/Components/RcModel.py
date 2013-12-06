@@ -75,6 +75,8 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_MEDIABOX
 			elif model == "optimussos1" or model == 'optimussos2':
 				self.currentRcType = self.RCTYPE_OPTIMUSS
+			elif model == 'sogno-8800hd':
+				self.currentRcType = self.RCTYPE_SOGNO					
 		elif getBoxType() == 'dm8000':
 				self.currentRcType = self.RCTYPE_DMM
 		elif getBoxType() == 'dm7020hd' or getBoxType() == 'dm7020hdv2' or getBoxType() == 'dm800sev2' or getBoxType() == 'dm500hdv2':
