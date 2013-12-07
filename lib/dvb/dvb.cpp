@@ -464,6 +464,14 @@ void *eDVBUsbAdapter::threadproc(void *arg)
 	return user->vtunerPump();
 }
 
+static bool exist_in_pidlist(unsigned short int* pidlist, unsigned short int value)
+{
+	for (int i=0; i<30; ++i)
+		if (pidlist[i] == value)
+			return true;
+	return false;
+}
+
 void *eDVBUsbAdapter::vtunerPump()
 {
 	int pidcount = 0;
@@ -521,8 +529,6 @@ void *eDVBUsbAdapter::vtunerPump()
 		{
 			if (FD_ISSET(vtunerFd, &xset))
 			{
-				int i, j;
-				int count = 0;
 				struct vtuner_message message;
 				memset(message.pidlist, 0xff, sizeof(message.pidlist));
 				::ioctl(vtunerFd, VTUNER_GET_MESSAGE, &message);
@@ -531,20 +537,12 @@ void *eDVBUsbAdapter::vtunerPump()
 				{
 				case MSG_PIDLIST:
 					/* remove old pids */
-					for (i = 0; i < 30; i++)
+					for (int i = 0; i < 30; i++)
 					{
-						bool found = false;
-						if (pidList[i] == 0xffff) continue;
-						for (j = 0; j < 30; j++)
-						{
-							if (pidList[i] == message.pidlist[j])
-							{
-								found = true;
-								break;
-							}
-						}
-
-						if (found) continue;
+						if (pidList[i] == 0xffff)
+							continue;
+						if (exist_in_pidlist(message.pidlist, pidList[i]))
+							continue;
 
 						if (pidcount > 1)
 						{
@@ -559,20 +557,12 @@ void *eDVBUsbAdapter::vtunerPump()
 					}
 
 					/* add new pids */
-					for (i = 0; i < 30; i++)
+					for (int i = 0; i < 30; i++)
 					{
-						bool found = false;
-						if (message.pidlist[i] == 0xffff) continue;
-						for (j = 0; j < 30; j++)
-						{
-							if (message.pidlist[i] == pidList[j])
-							{
-								found = true;
-								break;
-							}
-						}
-
-						if (found) continue;
+						if (message.pidlist[i] == 0xffff)
+							continue;
+						if (exist_in_pidlist(message.pidlist, pidList[i]))
+							continue;
 
 						if (pidcount)
 						{
@@ -596,10 +586,8 @@ void *eDVBUsbAdapter::vtunerPump()
 					}
 
 					/* copy pids */
-					for (i = 0; i < 30; i++)
-					{
-						pidList[i] = message.pidlist[i];
-					}
+					memcpy(pidList, message.pidlist, sizeof(message.pidlist));
+
 					break;
 				}
 			}
@@ -2211,6 +2199,7 @@ RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, in
 		now = pos; /* fixup supplied */
 
 	m_tstools_lock.lock();
+	/* Interesting: the only place where iTSSource->offset() is ever used */
 	r = m_tstools.fixupPTS(m_source ? m_source->offset() : 0, now);
 	m_tstools_lock.unlock();
 	if (r)
