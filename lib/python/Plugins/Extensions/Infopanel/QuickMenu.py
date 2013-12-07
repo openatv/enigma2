@@ -39,7 +39,7 @@ from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, Re
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, SCOPE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 
-from os import path
+from os import path, listdir
 from time import sleep
 from re import search
 
@@ -80,6 +80,14 @@ def isFileSystemSupported(filesystem):
 		return False
 	except Exception, ex:
 		print "[Harddisk] Failed to read /proc/filesystems:", ex
+
+def Check_Softcam():
+	found = False
+	for x in listdir('/etc'):
+		if x.find('.emu') > -1:
+			found = True
+			break;
+	return found
 
 class QuickMenu(Screen):
 	skin = """
@@ -197,7 +205,8 @@ class QuickMenu(Screen):
 		self.list = []
 		self.oldlist = []
 		self.list.append(QuickMenuEntryComponent("Software Manager",_("Update/Backup/Restore your box"),_("Update/Backup your firmware, Backup/Restore settings")))
-		self.list.append(QuickMenuEntryComponent("Softcam",_("Start/stop/select cam"),_("Start/stop/select your cam, You need to install first a softcam")))
+		if Check_Softcam():
+			self.list.append(QuickMenuEntryComponent("Softcam",_("Start/stop/select cam"),_("Start/stop/select your cam, You need to install first a softcam")))
 		self.list.append(QuickMenuEntryComponent("System",_("System Setup"),_("Setup your System")))
 		self.list.append(QuickMenuEntryComponent("Mounts",_("Mount Setup"),_("Setup your mounts for network")))
 		self.list.append(QuickMenuEntryComponent("Network",_("Setup your local network"),_("Setup your local network. For Wlan you need to boot with a USB-Wlan stick")))
