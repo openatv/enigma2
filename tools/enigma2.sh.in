@@ -12,6 +12,11 @@ if [ -x @bindir@/showiframe ]; then
 	fi
 fi
 
+#check if factory mode is present
+if [ ! -f /etc/enigma2/settings ]; then
+	cp -a /usr/share/enigma2/defaults/* /etc/enigma2/
+fi
+
 # hook to execute scripts always before enigma2 start
 if [ -x @bindir@/enigma2_pre_start.sh ]; then
 	@bindir@/enigma2_pre_start.sh
