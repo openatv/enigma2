@@ -561,7 +561,7 @@ void *eDVBUsbAdapter::vtunerPump()
 					{
 						if (message.pidlist[i] == 0xffff)
 							continue;
-						if (exist_in_pidlist(message.pidlist, pidList[i]))
+						if (exist_in_pidlist(pidList, message.pidlist[i]))
 							continue;
 
 						if (pidcount)
