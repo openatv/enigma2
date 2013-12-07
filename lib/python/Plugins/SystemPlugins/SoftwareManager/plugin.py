@@ -112,6 +112,13 @@ def load_cache(cache_file):
 	fd.close()
 	return cache_data
 
+def Check_Softcam():
+	found = False
+	for x in os.listdir('/etc'):
+		if x.find('.emu') > -1:
+			found = True
+			break;
+	return found
 
 class UpdatePluginMenu(Screen):
 	skin = """
@@ -448,7 +455,8 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.list.append(self.overwriteConfigfilesEntry)
 		self.list.append(self.overwriteSettingsfilesEntry)
 		self.list.append(self.overwriteDriversfilesEntry)
-		self.list.append(self.overwriteEmusfilesEntry)
+		if Check_Softcam():
+			self.list.append(self.overwriteEmusfilesEntry)
 		self.list.append(self.overwritePiconsfilesEntry)
 		self.list.append(self.overwriteBootlogofilesEntry)
 		self.list.append(self.overwriteSpinnerfilesEntry)
