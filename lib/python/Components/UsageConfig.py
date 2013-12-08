@@ -1,7 +1,7 @@
 from Components.About import about
 from Components.Harddisk import harddiskmanager
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
-from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC, defaultRecordingLocation
+from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC, defaultRecordingLocation, fileExists
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv, getBoxType
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
@@ -655,36 +655,47 @@ def InitUsageConfig():
 					("1", _("with long OK press")),
 					("2", _("with exit button")),
 					("3", _("with left/right buttons"))])
-
-	if getBoxType() == 'dm800' or getBoxType() == 'dm800se' or getBoxType() == 'dm500hd' or getBoxType() == 'azboxminime'  or getBoxType() == 'azboxhd':				
+	if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
+		if getBoxType() == 'dm800' or getBoxType() == 'dm800se' or getBoxType() == 'dm500hd' or getBoxType() == 'azboxminime'  or getBoxType() == 'azboxhd':				
+			config.plisettings.PLIEPG_mode = ConfigSelection(default="pliepg", choices = [
+						("pliepg", _("Show Graphical EPG")),
+						("single", _("Show Single EPG")),
+						("multi", _("Show Multi EPG")),
+						("eventview", _("Show Eventview")),
+						("merlinepgcenter", _("Show Merlin EPG Center")),
+						("cooltvguide", _("Show CoolTVGuide"))])
+			config.plisettings.PLIINFO_mode = ConfigSelection(default="eventview", choices = [
+						("eventview", _("Show Eventview")),
+						("epgpress", _("Show EPG")),
+						("single", _("Show Single EPG")),
+						("coolsingleguide", _("Show CoolSingleGuide")),
+						("coolinfoguide", _("Show CoolInfoGuide"))])
+		else:
+			config.plisettings.PLIEPG_mode = ConfigSelection(default="cooltvguide", choices = [
+						("pliepg", _("Show Graphical EPG")),
+						("single", _("Show Single EPG")),
+						("multi", _("Show Multi EPG")),
+						("eventview", _("Show Eventview")),
+						("merlinepgcenter", _("Show Merlin EPG Center")),
+						("cooltvguide", _("Show CoolTVGuide"))])
+			config.plisettings.PLIINFO_mode = ConfigSelection(default="coolinfoguide", choices = [
+						("eventview", _("Show Eventview")),
+						("epgpress", _("Show EPG")),
+						("single", _("Show Single EPG")),
+						("coolsingleguide", _("Show CoolSingleGuide")),
+						("coolinfoguide", _("Show CoolInfoGuide")),
+						("cooltvguide", _("Show CoolTVGuide"))])
+	else:
 		config.plisettings.PLIEPG_mode = ConfigSelection(default="pliepg", choices = [
 					("pliepg", _("Show Graphical EPG")),
 					("single", _("Show Single EPG")),
 					("multi", _("Show Multi EPG")),
 					("eventview", _("Show Eventview")),
-					("merlinepgcenter", _("Show Merlin EPG Center")),
-					("cooltvguide", _("Show CoolTVGuide"))])
+					("merlinepgcenter", _("Show Merlin EPG Center"))])
 		config.plisettings.PLIINFO_mode = ConfigSelection(default="eventview", choices = [
 					("eventview", _("Show Eventview")),
 					("epgpress", _("Show EPG")),
-					("single", _("Show Single EPG")),
-					("coolsingleguide", _("Show CoolSingleGuide")),
-					("coolinfoguide", _("Show CoolInfoGuide"))])
-	else:
-		config.plisettings.PLIEPG_mode = ConfigSelection(default="cooltvguide", choices = [
-					("pliepg", _("Show Graphical EPG")),
-					("single", _("Show Single EPG")),
-					("multi", _("Show Multi EPG")),
-					("eventview", _("Show Eventview")),
-					("merlinepgcenter", _("Show Merlin EPG Center")),
-					("cooltvguide", _("Show CoolTVGuide"))])
-		config.plisettings.PLIINFO_mode = ConfigSelection(default="coolinfoguide", choices = [
-					("eventview", _("Show Eventview")),
-					("epgpress", _("Show EPG")),
-					("single", _("Show Single EPG")),
-					("coolsingleguide", _("Show CoolSingleGuide")),
-					("coolinfoguide", _("Show CoolInfoGuide")),
-					("cooltvguide", _("Show CoolTVGuide"))])
+					("single", _("Show Single EPG"))])
 
 	config.epgselection = ConfigSubsection()
 	config.epgselection.sort = ConfigSelection(default="0", choices = [("0", _("Time")),("1", _("Alphanumeric"))])
