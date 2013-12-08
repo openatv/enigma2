@@ -60,6 +60,21 @@ import Screens.Standby
 
 AUDIO = False
 
+if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
+	COOLTVGUIDE = True
+else:
+	COOLTVGUIDE = False
+
+if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/CoolSingleGuide.pyo"):
+	COOLSINGLEGUIDE = True
+else:
+	COOLSINGLEGUIDE = False
+
+if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/CoolInfoGuide.pyo"):
+	COOLINFOGUIDE = True
+else:
+	COOLINFOGUIDE = False
+
 def isStandardInfoBar(self):
 	return self.__class__.__name__ == "InfoBar"
 
@@ -1419,13 +1434,15 @@ class InfoBarEPG:
 				self.showDefaultEPG()
 			elif config.plisettings.PLIINFO_mode.getValue() == "single":
 				self.openSingleServiceEPG()
-			elif config.plisettings.PLIINFO_mode.getValue() == "coolinfoguide":
+			elif config.plisettings.PLIINFO_mode.getValue() == "coolinfoguide" and COOLINFOGUIDE:
 				self.showCoolInfoGuide()
-			elif config.plisettings.PLIINFO_mode.getValue() == "coolsingleguide":
+			elif config.plisettings.PLIINFO_mode.getValue() == "coolsingleguide" and COOLSINGLEGUIDE:
 				self.showCoolSingleGuide()
-			elif config.plisettings.PLIINFO_mode.getValue() == "cooltvguide":
+			elif config.plisettings.PLIINFO_mode.getValue() == "cooltvguide" and COOLTVGUIDE:
 				if self.isInfo:
 					self.showCoolTVGuide()
+			else:
+				self.showDefaultEPG()
 
 	def IPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
@@ -1441,11 +1458,13 @@ class InfoBarEPG:
 				self.openSingleServiceEPG()
 			elif config.plisettings.PLIEPG_mode.getValue() == "merlinepgcenter":
 				self.openMerlinEPGCenter()	
-			elif config.plisettings.PLIEPG_mode.getValue() == "cooltvguide":
+			elif config.plisettings.PLIEPG_mode.getValue() == "cooltvguide" and COOLTVGUIDE:
 				if self.isInfo:
 					self.showCoolTVGuide()
 			elif config.plisettings.PLIEPG_mode.getValue() == "eventview":
 				self.openEventView()
+			else:
+				self.openSingleServiceEPG()
 
 	def showEventInfoWhenNotVisible(self):
 		if self.shown:
@@ -1562,7 +1581,7 @@ class InfoBarEPG:
 	def showCoolTVGuide(self):
 		if self.servicelist is None:
 			return
-		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
+		if COOLTVGUIDE:
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("Cool TV Guide"):
 					self.runPlugin(plugin)
@@ -1620,7 +1639,7 @@ class InfoBarEPG:
 	def showCoolInfoGuide(self):
 		if self.servicelist is None:
 			return
-		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/CoolInfoGuide.pyo"):
+		if COOLINFOGUIDE:
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("Cool Info Guide"):
 					self.runPlugin(plugin)
@@ -1631,7 +1650,7 @@ class InfoBarEPG:
 	def showCoolSingleGuide(self):
 		if self.servicelist is None:
 			return	
-		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/CoolSingleGuide.pyo"):
+		if COOLSINGLEGUIDE:
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("Cool Single Guide"):
 					self.runPlugin(plugin)
