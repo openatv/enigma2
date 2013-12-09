@@ -685,10 +685,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		# WORKAROUND: we can't use BW-auto
 		self.scan_ter.bandwidth = ConfigSelection(default = defaultTer["bandwidth"], choices = [
 			(1712000, "1.712MHz"),
-			(5000000, "8MHz"),
-			(6000000, "7MHz"),
-			(7000000, "6MHz"),
-			(8000000, "5MHz"),
+			(5000000, "5MHz"),
+			(6000000, "6MHz"),
+			(7000000, "7MHz"),
+			(8000000, "8MHz"),
 			(10000000, "10MHz")
 			])
 		#, (eDVBFrontendParametersTerrestrial.Bandwidth_Auto, _("Auto"))))
