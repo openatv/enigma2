@@ -443,7 +443,10 @@ class EPGSelection(Screen, HelpableScreen):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		title = None
 		self['list'].recalcEntrySize()
+		self.BouquetRoot = False
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			if self.StartBouquet.toString().startswith('1:7:0'):
+				self.BouquetRoot = True
 			self.services = self.getBouquetServices(self.StartBouquet)
 			self['list'].fillGraphEPG(self.services, self.ask_time)
 			self['list'].moveToService(serviceref)
@@ -573,13 +576,16 @@ class EPGSelection(Screen, HelpableScreen):
 		self.bouquetlist_active = False
 
 	def getCurrentBouquet(self):
-		if self.has_key('bouquetlist'):
+		if self.BouquetRoot:
+			return self.StartBouquet
+		elif self.has_key('bouquetlist'):
 			cur = self["bouquetlist"].l.getCurrentSelection()
 			return cur and cur[1]
 		else:
 			return self.servicelist.getRoot()
 
 	def BouquetOK(self):
+		self.BouquetRoot = False
 		now = time() - int(config.epg.histminutes.getValue()) * 60
 		self.services = self.getBouquetServices(self.getCurrentBouquet())
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
