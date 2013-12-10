@@ -104,7 +104,7 @@ class LanguageSelection(Screen):
 	def delLang(self):
 		self.curlang = self["languages"].getCurrent()[0]
 		print self["languages"].getCurrent()
-		self.session.openWithCallback(self.delLangCB, MessageBox, _("Do you want to delete %s language?" %(self["languages"].getCurrent()[1])), default = False)
+		self.session.openWithCallback(self.delLangCB, MessageBox, _("Do you want to delete %s language?") %(self["languages"].getCurrent()[1]), default = False)
 
 	def delLangCB(self, anwser):
 		if anwser:		
