@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-27 17:48+0100\n"
-"PO-Revision-Date: 2013-10-29 18:06+0100\n"
+"POT-Creation-Date: 2013-12-09 21:23+0100\n"
+"PO-Revision-Date: 2013-12-10 13:49+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -346,6 +346,24 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
+msgid "1080i"
+msgstr "1080i"
+
+msgid "1080p 24Hz"
+msgstr "1080p 24Hz"
+
+msgid "1080p 25Hz"
+msgstr "1080p 25Hz"
+
+msgid "1080p 30Hz"
+msgstr "1080p 30Hz"
+
+msgid "1080p 50Hz"
+msgstr "1080p 50Hz"
+
+msgid "1080p 60Hz"
+msgstr "1080p 60Hz"
+
 msgid "12V output"
 msgstr "12V uitgang"
 
@@ -426,6 +444,12 @@ msgstr "4:3 pan & scan"
 
 msgid "4X"
 msgstr "4X"
+
+msgid "720p"
+msgstr "720p"
+
+msgid "720p 24Hz"
+msgstr "720p 24Hz"
 
 msgid "<Current movielist location>"
 msgstr "<Huidige lokatie opnamelijst>"
@@ -805,9 +829,6 @@ msgstr "Wijs toe"
 msgid "Allocate unused memory index"
 msgstr "Wijs niet gebruikte geheugen index toe"
 
-msgid "Allow 25Hz/30Hz"
-msgstr "Gebruik 25Hz/30Hz modus"
-
 msgid "Allow quit movieplayer with exit"
 msgstr "Speler kan verlaten worden met de Exit-toets."
 
@@ -879,6 +900,9 @@ msgstr "Alternatieve tunerprioriteit"
 
 msgid "Always ask"
 msgstr "Altijd vragen"
+
+msgid "Always hide infobar"
+msgstr "Informatiebalk altijd verbergen"
 
 msgid "Always show bouquets"
 msgstr "Toon altijd favorieten"
@@ -1314,6 +1338,9 @@ msgstr "CCcam share-informatie"
 
 msgid "CCcam info"
 msgstr "CCcam info"
+
+msgid "CH"
+msgstr "CH"
 
 msgid "CHANGE BOUQUET"
 msgstr "VERANDER BOUQUET"
@@ -2236,6 +2263,9 @@ msgstr "Vertraging voordat de toets herhaling begint:"
 msgid "Delay for external subtitles"
 msgstr "Vertraging voor externe ondertitels"
 
+msgid "Delay time"
+msgstr "Vertragingstijd"
+
 msgid "Delay:"
 msgstr "Vertraging:"
 
@@ -3030,6 +3060,9 @@ msgstr "Nadat u op OK drukt worden de volgende taken uitgevoerd!"
 msgid "Fontsize"
 msgstr "Lettergrootte"
 
+msgid "Force de-interlace"
+msgstr "Forceer de-interlace"
+
 msgid "Format"
 msgstr "Formaat"
 
@@ -3402,6 +3435,9 @@ msgstr "Tijd werkloos"
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr "Indien ingeschakeld zal getracht worden de output-resolutie van uw box overeen te laten komen met de resolutie van de video inhoud."
 
+msgid "If enabled the video wil always be de-interlaced."
+msgstr "Indien ingeschakeld zal de video altijd worden gede-interlaced."
+
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Maximale ruimte die de logs in beslag mogen nemen. Als die overschreden wordt,worden de oudste het eerste verwijderd."
 
@@ -3653,6 +3689,9 @@ msgstr "Ongeldige map geselecteerd: %s"
 
 msgid "Invalid location"
 msgstr "Ongeldige lokatie"
+
+msgid "Invalid transponder data"
+msgstr "Ongeldige transponderdata"
 
 msgid "Inversion"
 msgstr "Inversie"
@@ -5900,6 +5939,12 @@ msgstr "Doorzoekt standaard lamedb gesorteerd op satelliet middels een verbonden
 msgid "Scrolling Speed"
 msgstr "Sroll-snelheid"
 
+msgid "Scrolling Speed (software render)"
+msgstr "Scroll-snelheid (software render)"
+
+msgid "Scrolling delay (software render)"
+msgstr "Scroll-vertraging (software render)"
+
 msgid "Search"
 msgstr "Zoek"
 
@@ -6230,6 +6275,9 @@ msgstr "Stel hier de standaardlokatie in voortimeshift bestanden. Druk op 'OK' o
 msgid "Set the default sorting method."
 msgstr "Kies de standaard sorteermethode."
 
+msgid "Set the delay time between repeated loops, this uses a sotware render use in some skins."
+msgstr "Stel de vertraging tussen loops in; in sommige skins wordt een softwarerenderer gebruikt."
+
 msgid "Set the description of the recording."
 msgstr "Kies de beschrijving van de opname."
 
@@ -6239,8 +6287,14 @@ msgstr "Stel hier de grootte van de tijdsprong van de zoekbalk in."
 msgid "Set the name the recording will get."
 msgstr "Geef de naam die de opname krijgt."
 
+msgid "Set the scrolling speed of text on the front display, this uses a sotware render use in some skins."
+msgstr "Stel de scroll-snelheid voor het schermpje in; sommige skins gebruiken een softwarerenderer."
+
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Stel de scrollsnelheid op het schermpje van uw %s %s in."
+
+msgid "Set the time before checking video source for resolution infomation."
+msgstr "Stel de tijd in voordat u de videobron op resolutie controleert"
 
 msgid "Set the time the timer must start."
 msgstr "Stel de tijd in waarop de timer moet starten."
@@ -6343,6 +6397,18 @@ msgstr "Korte naam"
 msgid "Show /tmp/ecm.info"
 msgstr "Toon /tmp/ecm.info"
 
+msgid "Show 1080p 24fps as"
+msgstr "Toon 1080p 24fps als"
+
+msgid "Show 1080p 25fps as"
+msgstr "Toon 1080p 25fps als"
+
+msgid "Show 1080p 30fps as"
+msgstr "Toon 1080p 30fps als"
+
+msgid "Show 720p 24fps as"
+msgstr "Toon 720p 24fps als"
+
 msgid "Show AutoTimer List"
 msgstr "Toon Autotimers"
 
@@ -6390,6 +6456,9 @@ msgstr "Toon RFmod instellingen..."
 
 msgid "Show Readers/Proxies"
 msgstr "Toon lezers/proxies"
+
+msgid "Show SD as"
+msgstr "Toon SD als"
 
 msgid "Show Time Remaining/Elapsed"
 msgstr "Toon resterende/verstreken tijd"
@@ -7409,6 +7478,21 @@ msgstr "Met deze instelling kunt u de groene kleuren in het beeld versterken."
 msgid "This option allows you to choose from the two channel lists that are available."
 msgstr "Hier kiest u tussen twee lijsttypes (afhankelijk van uw skin kunnen er twee met een verschillende indeling zijn)."
 
+msgid "This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Hier kunt u aangeven hoe 1080p24 op uw TV moet worden weergegeven (omdat niet alle TV's deze resolutie ondersteunen)"
+
+msgid "This option allows you to choose how to display 1080p 25Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Hier kunt u aangeven hoe 1080p25 op uw TV moet worden weergegeven (omdat niet alle TV's deze resolutie ondersteunen)"
+
+msgid "This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Hier kunt u aangeven hoe 1080p30 op uw TV moet worden weergegeven (omdat niet alle TV's deze resolutie ondersteunen)"
+
+msgid "This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Hier kunt u aangeven hoe 720p24 op uw TV moet worden weergegeven (omdat niet alle TV's deze resolutie ondersteunen)"
+
+msgid "This option allows you to choose how to display standard defintion video on your TV."
+msgstr "Hier kunt u aangeven SD op uw TV moet worden weergegeven."
+
 msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first)"
 msgstr "Hier stelt u in waarheen als eerste gesprongen wordt in de kanaallijst (dus bij drukken op '2' springt u afhankelijk van deze instelling eerst naar 'A' of naar '2')"
 
@@ -8024,6 +8108,9 @@ msgstr "Gebruik fastscan kanaalnamen"
 msgid "Use fastscan channel numbering"
 msgstr "Gebruik fastscan zendervolgorde"
 
+msgid "Use frequency or channel"
+msgstr "Gebruik frequentie of kanaal"
+
 msgid "Use individual settings for each directory"
 msgstr "Bewaar de instellingen voor elke map"
 
@@ -8621,9 +8708,6 @@ msgstr "Status draadloos netwerk"
 
 msgid "With popup"
 msgstr "Met pop-up"
-
-msgid "With this option enabled these refresh rates will be used. (please note not all TV's support these rates)."
-msgstr "Indien deze optie is ingeschakeld worden deze refreshrates gebruikt. (Niet alle tv's ondersteunen dit)"
 
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr "Als deze optie is geactiveerd, toont de kanaallijst altijd eerst de favorietenlijsten. Indien gedeactiveerd wordt de huidige lijst getoond."
@@ -9348,6 +9432,9 @@ msgstr "niet waar"
 msgid "fashion"
 msgstr "mode"
 
+msgid "fast"
+msgstr "snel"
+
 msgid "file oscam.conf could not be found"
 msgstr "bestand oscam.conf niet gevonden"
 
@@ -9525,6 +9612,9 @@ msgstr "menu"
 
 msgid "mins"
 msgstr "min"
+
+msgid "minute"
+msgstr "minuut"
 
 msgid "minutes"
 msgstr "minuten"
@@ -9923,6 +10013,9 @@ msgstr "vooruit spoelen"
 msgid "skip forward (enter time)"
 msgstr "spring vooruit (tijd invoeren)"
 
+msgid "slow"
+msgstr "langzaam"
+
 msgid "soap/melodram/folkloric"
 msgstr "soap/melodrama/folklore"
 
@@ -10157,11 +10250,17 @@ msgstr "zap en neem op"
 msgid "zapped"
 msgstr "zapte"
 
+#~ msgid "Allow 25Hz/30Hz"
+#~ msgstr "Gebruik 25Hz/30Hz modus"
+
 #~ msgid "Blind scan"
 #~ msgstr "Blind scan"
 
 #~ msgid "No satellite frontend found!!"
 #~ msgstr "Geen satelliettuner gevonden!"
+
+#~ msgid "With this option enabled these refresh rates will be used. (please note not all TV's support these rates)."
+#~ msgstr "Indien deze optie is ingeschakeld worden deze refreshrates gebruikt. (Niet alle tv's ondersteunen dit)"
 
 #~ msgid "Zap back to service before satfinder?"
 #~ msgstr "Wilt u terugkeren naar de vorige zender?"
