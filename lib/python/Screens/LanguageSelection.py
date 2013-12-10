@@ -1,4 +1,5 @@
 from Screens.Screen import Screen
+from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap
 from Components.Language import language
 from Components.config import config
@@ -55,6 +56,7 @@ class LanguageSelection(Screen):
 			"red": self.cancel,
 			"green": self.save,
 			"yellow": self.updateCache,
+			"blue": self.delLang,
 		}, -1)
 
 	def updateCache(self):
@@ -84,15 +86,32 @@ class LanguageSelection(Screen):
 		global inWizzard
 		if inWizzard:
 			inWizzard = False
-			self.close()
+			self.session.openWithCallback(self.deletelanguagesCB, MessageBox, _("Do you want to delete all other languages?"), default = False)
 		else:
 			self.close(self.oldActiveLanguage != config.osd.language.value)
+
+	def deletelanguagesCB(self, anwser):
+		if anwser:
+			language.delLanguage()
+		self.close()
 
 	def cancel(self):
 		language.activateLanguage(self.oldActiveLanguage)
 		config.osd.language.setValue(self.oldActiveLanguage)
 		config.osd.language.save()
 		self.close()
+
+	def delLang(self):
+		self.curlang = self["languages"].getCurrent()[0]
+		print self["languages"].getCurrent()
+		self.session.openWithCallback(self.delLangCB, MessageBox, _("Do you want to delete %s language?" %(self["languages"].getCurrent()[1])), default = False)
+
+	def delLangCB(self, anwser):
+		if anwser:		
+			language.delLanguage(self.curlang)
+			language.activateLanguage(self.oldActiveLanguage)
+			self.updateList()
+			self.selectActiveLanguage()
 
 	def run(self, justlocal = False):
 		print "updating language..."

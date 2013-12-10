@@ -1,4 +1,4 @@
-from config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigText
+from config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigText, ConfigBoolean
 from Components.Timezones import timezones
 from Components.Language import language
 from Components.Keyboard import keyboard
@@ -25,6 +25,7 @@ def InitSetupDevices():
 	config.osd = ConfigSubsection();
 	config.osd.language = ConfigText(default = "de_DE");
 	config.osd.language.addNotifier(languageNotifier)
+	config.osd.language.removelang = ConfigBoolean(default = False)
 
 	config.parental = ConfigSubsection();
 	config.parental.lock = ConfigOnOff(default = False)
