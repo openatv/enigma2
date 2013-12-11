@@ -301,7 +301,7 @@ public:
 	int getPixmap(ePtr<gPixmap> &pm) { pm = m_pixmap; return 0; }
 	gRGB getRGB(gColor col);
 	virtual eSize size() { return m_pixmap->size(); }
-	virtual int islocked() { return 0; }
+	virtual int islocked() const { return 0; }
 	
 	virtual void enableSpinner();
 	virtual void disableSpinner();
