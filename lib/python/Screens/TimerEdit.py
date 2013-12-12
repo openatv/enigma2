@@ -15,7 +15,7 @@ from ServiceReference import ServiceReference
 from Screens.TimerEntry import TimerEntry, TimerLog
 from Tools.BoundFunction import boundFunction
 from Tools.FuzzyDate import FuzzyTime
-from Tools.Directories import resolveFilename, SCOPE_HDD
+from Tools.Directories import resolveFilename, SCOPE_HDD, fileExists
 from time import time, localtime
 from timer import TimerEntry as RealTimerEntry
 from enigma import eServiceCenter
@@ -293,9 +293,10 @@ class TimerEditList(Screen):
 		elif answer[1] == 'yes':
 			self.removeTimer(True)
 		elif answer[1] == 'yesremove':
-			if config.EMC.movie_trashcan_enable.getValue():
-				trashpath = config.EMC.movie_trashcan_path.getValue()
-				self.MoveToTrash(trashpath)
+			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
+				if config.EMC.movie_trashcan_enable.getValue():
+					trashpath = config.EMC.movie_trashcan_path.getValue()
+					self.MoveToTrash(trashpath)
 			elif config.usage.movielist_trashcan.getValue():
 				trashpath = resolveFilename(SCOPE_HDD) + '.Trash'
 				self.MoveToTrash(trashpath)
