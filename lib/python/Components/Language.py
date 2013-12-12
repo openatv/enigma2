@@ -157,7 +157,8 @@ class Language:
 					elif x == "pt":
 						if x != lang:
 							rmtree(LPATH + x)
-			config.osd.language.removelang.setValue(True)
+			config.osd.language_removelang.setValue(True)
+			config.osd.language.save()
 
 		self.InitLang()
 

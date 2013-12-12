@@ -25,7 +25,7 @@ def InitSetupDevices():
 	config.osd = ConfigSubsection();
 	config.osd.language = ConfigText(default = "de_DE");
 	config.osd.language.addNotifier(languageNotifier)
-	config.osd.language.removelang = ConfigBoolean(default = False)
+	config.osd.language_removelang = ConfigBoolean(default = False)
 
 	config.parental = ConfigSubsection();
 	config.parental.lock = ConfigOnOff(default = False)
