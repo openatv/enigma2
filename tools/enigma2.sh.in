@@ -32,6 +32,24 @@ if [ -x @bindir@/enigma2_pre_start.sh ]; then
 	@bindir@/enigma2_pre_start.sh
 fi
 
+stbcheck=`cat /proc/stb/info/hwmodel| cut -c1-8`
+if [ $stbcheck = "optimuss" ]; then
+	string=`mount | grep 'sda1' | cut -c21-23` 
+	if [ -e /media/$string/sat-soft/settings.txt ]; then
+		if [ -d /media/$string/sat-soft/settings ]; then
+			if [ -f /media/$string/sat-soft/settings/wpa_supplicant.wlan0.conf ]; then
+				cp -f /media/$string/sat-soft/settings/wpa_supplicant.wlan0.conf /etc
+				rm -rf /media/$string/sat-soft/settings/wpa_supplicant.wlan0.conf
+			fi
+			cp -rf /media/$string/sat-soft/settings/* /etc/enigma2
+			rm -rf /media/$string/sat-soft/settings.txt 
+		fi
+		if [ -f /media/$string/sat-soft/IDL.tar.gz ]; then
+			tar xf /media/$string/sat-soft/IDL.tar.gz -C /
+		fi
+	fi
+fi
+
 if [ -d /home/root ]; then
 	cd /home/root
 fi
