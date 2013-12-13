@@ -188,17 +188,30 @@ def InitAVSwitch():
 		config.av.autovolume.addNotifier(setAutoVulume)
 	else:
 		config.av.autovolume = ConfigNothing()		
+	
 	try:
-		can_downmix = "downmix" in open("/proc/stb/audio/ac3_choices", "r").read()
+		can_downmix_ac3 = "downmix" in open("/proc/stb/audio/ac3_choices", "r").read()
 	except:
-		can_downmix = False
+		can_downmix_ac3 = False
 
-	SystemInfo["CanDownmixAC3"] = can_downmix
-	if can_downmix:
+	SystemInfo["CanDownmixAC3"] = can_downmix_ac3
+	if can_downmix_ac3:
 		def setAC3Downmix(configElement):
 			open("/proc/stb/audio/ac3", "w").write(configElement.value and "downmix" or "passthrough")
 		config.av.downmix_ac3 = ConfigYesNo(default = True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
+	
+	try:
+		can_downmix_aac = "downmix" in open("/proc/stb/audio/aac_choices", "r").read()
+	except:
+		can_downmix_aac = False
+
+	SystemInfo["CanDownmixAAC"] = can_downmix_aac
+	if can_downmix_aac:
+		def setAACDownmix(configElement):
+			open("/proc/stb/audio/aac", "w").write(configElement.value and "downmix" or "passthrough")
+		config.av.downmix_aac = ConfigYesNo(default = True)
+		config.av.downmix_aac.addNotifier(setAACDownmix)
 
 	try:
 		can_osd_alpha = open("/proc/stb/video/alpha", "r") and True or False
