@@ -277,12 +277,19 @@ class AudioSelection(Screen, ConfigListScreen):
 			config.av.surround_3d.value = surround_3d.getValue()
 		config.av.surround_3d.save()
 
-	def changeAC3Downmix(self, downmix):
-		if downmix.getValue() == True:
+	def changeAC3Downmix(self, downmix_ac3):
+		if downmix_ac3.getValue() == True:
 			config.av.downmix_ac3.value = True
 		else:
 			config.av.downmix_ac3.value = False
 		config.av.downmix_ac3.save()
+
+	def changeAACDownmix(self, downmix_aac):
+		if downmix_aac.getValue() == True:
+			config.av.downmix_aac.value = True
+		else:
+			config.av.downmix_aac.value = False
+		config.av.downmix_aac.save()
 
 	def changeMode(self, mode):
 		if mode is not None and self.audioChannel:
