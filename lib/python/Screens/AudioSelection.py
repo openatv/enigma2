@@ -167,7 +167,7 @@ class AudioSelection(Screen, ConfigListScreen):
                         if SystemInfo["CanDownmixAAC"]:
                                 self.settings.downmix_aac = ConfigOnOff(default=config.av.downmix_aac.getValue())
                                 self.settings.downmix_aac.addNotifier(self.changeAACDownmix, initial_call = False)
-                                conflist.append(getConfigListEntry(_("AAC downmix"), self.settings.downmix_acc))
+                                conflist.append(getConfigListEntry(_("AAC downmix"), self.settings.downmix_aac))
 
 			if SystemInfo["Can3DSurround"]:
 				surround_choicelist = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
