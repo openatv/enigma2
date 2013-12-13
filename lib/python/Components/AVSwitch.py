@@ -470,7 +470,7 @@ def InitAVSwitch():
 		can_downmix_ac3 = False
 
 	SystemInfo["CanDownmixAC3"] = can_downmix_ac3
-	if can_downmix:
+	if can_downmix_ac3:
 		def setAC3Downmix(configElement):
 			f = open("/proc/stb/audio/ac3", "w")
 			f.write(configElement.value and "downmix" or "passthrough")
