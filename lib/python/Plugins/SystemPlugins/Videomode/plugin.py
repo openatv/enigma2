@@ -105,6 +105,9 @@ class VideoSetup(Screen, ConfigListScreen):
 				getConfigListEntry(_("General PCM delay"), config.av.generalPCMdelay, _("Configure the general audio delay of stereo sound tracks."))
 			))
 			
+			if SystemInfo["CanDownmixAAC"]:
+				self.list.append(getConfigListEntry(_("AAC downmix"), config.av.downmix_aac, _("Choose whether multi channel sound tracks should be downmixed to stereo.")))
+			
 			if SystemInfo["Can3DSurround"]:
 				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d,_("This option configures you can enable 3D Surround Sound.")))
 
