@@ -157,9 +157,7 @@ class Language:
 					elif x == "pt":
 						if x != lang:
 							rmtree(LPATH + x)
-			config.osd.language_removelang.setValue(True)
-			config.osd.save()
-			configfile.save()
+			os.system("touch /etc/enigma2/.removelang")
 
 		self.InitLang()
 
