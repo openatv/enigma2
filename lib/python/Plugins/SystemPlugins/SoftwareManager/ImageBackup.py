@@ -238,7 +238,7 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/medialink/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
 		## TESTING THE Mixos Model
-		elif self.MODEL == "ebox5000" or self.MODEL == "ebox5100":
+		elif self.MODEL == "ebox5000" or self.MODEL == "ebox5100" or self.MODEL == "eboxlumi":
 			self.TYPE = "MIXOS"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"

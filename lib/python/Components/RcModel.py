@@ -111,7 +111,7 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_ET4X00
 				elif rc == '14':
 					self.currentRcType = self.RCTYPE_XP1000
-			elif model == 'ebox5000' or model == 'ebox5100' or model == 'ebox7358':
+			elif model.startswith('ebox'):
 				self.currentRcType = self.RCTYPE_EBOX5000
 			elif model == 'gigablue':
 				self.currentRcType = self.RCTYPE_GB

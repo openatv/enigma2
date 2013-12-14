@@ -124,6 +124,8 @@ eDVBResourceManager::eDVBResourceManager()
 		m_boxtype = DM800;
 	else if (!strncmp(tmp, "ebox5100\n", rd))
 		m_boxtype = DM800;
+	else if (!strncmp(tmp, "eboxlumi\n", rd))
+		m_boxtype = DM800;		
 	else if (!strncmp(tmp, "ebox7358\n", rd))
 		m_boxtype = DM800SE;		
 	else {
