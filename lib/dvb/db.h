@@ -79,9 +79,6 @@ public:
 	void saveServicelist(const char *file);
 	void reloadBouquets();
 	void parseServiceData(ePtr<eDVBService> s, std::string str);
-	ePtr<eDVBFrontendParameters> parseFrontendData(char * line, int version);
-	eDVBChannelID parseChannelData(char * line);
-	eServiceReferenceDVB parseServiceRefData(char *line);
 };
 
 #ifndef SWIG

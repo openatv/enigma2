@@ -337,7 +337,7 @@ void eDVBDB::parseServiceData(ePtr<eDVBService> s, std::string str)
 	}
 }
 
-ePtr<eDVBFrontendParameters> eDVBDB::parseFrontendData(char * line, int version)
+static ePtr<eDVBFrontendParameters> parseFrontendData(const char* line, int version)
 {
 	if (line[0] != 's' && line[0] != 't' && line[0] != 'c')
 		return NULL;
@@ -427,7 +427,7 @@ ePtr<eDVBFrontendParameters> eDVBDB::parseFrontendData(char * line, int version)
 	return feparm;
 }
 
-eDVBChannelID eDVBDB::parseChannelData(char * line)
+static eDVBChannelID parseChannelData(const char * line)
 {
 	int dvb_namespace = -1, transport_stream_id = -1, original_network_id = -1;
 	sscanf(line, "%x:%x:%x", &dvb_namespace, &transport_stream_id, &original_network_id);
@@ -439,7 +439,7 @@ eDVBChannelID eDVBDB::parseChannelData(char * line)
 			eOriginalNetworkID(original_network_id));
 }
 
-eServiceReferenceDVB eDVBDB::parseServiceRefData(char *line)
+static eServiceReferenceDVB parseServiceRefData(const char *line)
 {
 	int service_id = -1, dvb_namespace, transport_stream_id = -1, original_network_id = -1,
 		service_type = -1, service_number = -1;
@@ -492,7 +492,7 @@ void eDVBDB::loadServicelist(const char *file)
 		if (!fgets(line, 256, f))
 			break;
 		ePtr<eDVBFrontendParameters> feparm = parseFrontendData(line + 1, version);
-                if (feparm) {
+		if (feparm) {
 			addChannelToList(channelid, feparm);
 			tcount++;
 		}
