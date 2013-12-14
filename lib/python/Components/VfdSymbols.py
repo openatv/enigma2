@@ -63,7 +63,7 @@ class SymbolsCheckPoller:
 				open("/proc/stb/lcd/symbol_circle", "w").write("3")
 			else:
 				open("/proc/stb/lcd/symbol_circle", "w").write("0")
-		elif getBoxType() == 'ebox5000':
+		elif getBoxType() == 'ebox5000' or getBoxType() == 'eboxlumi' or getBoxType() == 'ebox7358':
 			recordings = len(NavigationInstance.instance.getRecordings())
 			if recordings > 0:
 				open("/proc/stb/lcd/symbol_recording", "w").write("1")

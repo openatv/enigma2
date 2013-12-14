@@ -545,7 +545,7 @@ def runScreenTest():
 	except:
 		model = "unknown"
 
-	if enigma.getBoxType() == 'odinm9' or enigma.getBoxType() == 'ventonhdx' or enigma.getBoxType() == 'ebox5000' or enigma.getBoxType() == 'ixussone' or enigma.getBoxType() == 'ixusszero' or model == 'ini-1000ru' or model == 'ini-1000sv':
+	if enigma.getBoxType() == 'odinm9' or enigma.getBoxType() == 'ventonhdx' or enigma.getBoxType() == 'ebox5000' or enigma.getBoxType() == 'ebox7358' or enigma.getBoxType() == 'eboxlumi' or enigma.getBoxType() == 'ixussone' or enigma.getBoxType() == 'ixusszero' or model == 'ini-1000ru' or model == 'ini-1000sv':
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
