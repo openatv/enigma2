@@ -255,7 +255,7 @@ class VirtualKeyBoard(Screen):
 				[u">", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
 				[u"SHIFT", u"SPACE", u"OK", u"LEFT", u"RIGHT"]]
 			self.lang = 'en_EN'
-			self.nextLang = 'de_DE'		
+			self.nextLang = 'de_DE'
 		self["country"].setText(self.lang)
 		self.max_key=47+len(self.keys_list[4])
 
@@ -283,7 +283,7 @@ class VirtualKeyBoard(Screen):
 		for keys in self.shiftMode and self.shiftkeys_list or self.keys_list:
 			self.list.append(self.virtualKeyBoardEntryComponent(keys))
 		self.markSelectedKey()
-		
+
 	def markSelectedKey(self):
 		if self.previousSelectedKey is not None:
 			self.list[self.previousSelectedKey /12] = self.list[self.previousSelectedKey /12][:-1]
