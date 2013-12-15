@@ -269,7 +269,10 @@ class TimerEditList(Screen):
 		onhdd = False
 		self.moviename = f
 		path = resolveFilename(SCOPE_HDD)
-		files = os.listdir(path)
+		try:
+			files = os.listdir(path)
+		except:
+			files = ""
 		for file in files:
 			if file.startswith(f):
 				onhdd = True
