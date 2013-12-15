@@ -147,7 +147,12 @@ def InitAVSwitch():
 	config.av.wss.addNotifier(setWSS)
 
 	iAVSwitch.setInput("ENCODER") # init on startup
-	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
+	if (getBoxType() in ('gbquad', 'gbquadplus', 'gb800seplus', 'gb800ueplus')):
+		detected = False
+	else:
+		detected = eAVSwitch.getInstance().haveScartSwitch()
+
+	SystemInfo["ScartSwitch"] = detected
 	
 	if os.path.exists("/proc/stb/audio/3d_surround_choices"):
 		f = open("/proc/stb/audio/3d_surround_choices", "r")
