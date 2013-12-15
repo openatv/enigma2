@@ -47,16 +47,16 @@ def InitLcd():
 		detected = eDBoxLCD.getInstance().detected()
 	SystemInfo["Display"] = detected
 	config.lcd = ConfigSubsection();
-	if detected:
-		if fileExists("/proc/stb/lcd/mode"):
-			f = open("/proc/stb/lcd/mode", "r")
-			can_lcdmodechecking = f.read().strip().split(" ")
-			f.close()
-		else:
-			can_lcdmodechecking = False
 
+	if fileExists("/proc/stb/lcd/mode"):
+		f = open("/proc/stb/lcd/mode", "r")
+		can_lcdmodechecking = f.read().strip().split(" ")
+		f.close()
+	else:
+		can_lcdmodechecking = False
 		SystemInfo["LCDMiniTV"] = can_lcdmodechecking
 
+	if detected:
 		if can_lcdmodechecking:
 			def setLCDModeMinitTV(configElement):
 				try:
