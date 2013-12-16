@@ -216,6 +216,16 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 				self.currPos -= 1
 		self.update()
 
+	def deleteForward(self):
+		if self.type == self.TEXT:
+			self.timeout()
+		if self.allmarked:
+			self.deleteAllChars()
+			self.allmarked = False
+		else:
+			self.deleteChar(self.currPos);
+		self.update()
+
 	def toggleOverwrite(self):
 		if self.type == self.TEXT:
 			self.timeout()

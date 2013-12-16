@@ -514,18 +514,35 @@ def InitAVSwitch():
 		f = open("/proc/stb/audio/ac3_choices", "r")
 		file = f.read()[:-1]
 		f.close()
-		can_downmix = "downmix" in file
+		can_downmix_ac3 = "downmix" in file
 	except:
-		can_downmix = False
+		can_downmix_ac3 = False
 
-	SystemInfo["CanDownmixAC3"] = can_downmix
-	if can_downmix:
+	SystemInfo["CanDownmixAC3"] = can_downmix_ac3
+	if can_downmix_ac3:
 		def setAC3Downmix(configElement):
 			f = open("/proc/stb/audio/ac3", "w")
 			f.write(configElement.value and "downmix" or "passthrough")
 			f.close()
 		config.av.downmix_ac3 = ConfigYesNo(default = True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
+
+	try:
+		f = open("/proc/stb/audio/aac_choices", "r")
+		file = f.read()[:-1]
+		f.close()
+		can_downmix_aac = "downmix" in file
+	except:
+		can_downmix_aac = False
+
+	SystemInfo["CanDownmixAAC"] = can_downmix_aac
+	if can_downmix_aac:
+		def setAACDownmix(configElement):
+			f = open("/proc/stb/audio/aac", "w")
+			f.write(configElement.value and "downmix" or "passthrough")
+			f.close()
+		config.av.downmix_aac = ConfigYesNo(default = True)
+		config.av.downmix_aac.addNotifier(setAACDownmix)
 
 	if os.path.exists("/proc/stb/vmpeg/0/pep_scaler_sharpness"):
 		def setScaler_sharpness(config):
