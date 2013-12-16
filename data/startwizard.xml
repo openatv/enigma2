@@ -124,7 +124,7 @@ self.clearSelectedKeys()
 self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
-		      </step>-->
+		      </step>
 		<step id="scanquestion">
 			<text value="Do you want to do a service scan?" />
 			<condition>
@@ -136,7 +136,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 				<listentry caption="Yes, do an automatic scan now" step="scan" />
 				<listentry caption="Yes, do a manual scan now" step="manualscan" />
 			</list>
-		</step>
+		</step>-->
 		<step id="scan" nextstep="end">
 			<condition>
 from Components.NimManager import nimmanager
