@@ -66,7 +66,7 @@ class AVSwitch:
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = set(["720p", "1080p", "1080i"])
 	else:
-		modes["HDMI"] = ["720p", "1080i", "576p", "576i", "480p", "480i"]
+		modes["HDMI"] = ["1080i", "720p", "576p", "576i", "480p", "480i"]
 		widescreen_modes = set(["720p", "1080i"])
 
 	modes["YPbPr"] = modes["HDMI"]
