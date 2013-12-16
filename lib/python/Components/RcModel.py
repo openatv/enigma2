@@ -75,6 +75,8 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_MEDIABOX
 			elif model == "optimussos1" or model == 'optimussos2':
 				self.currentRcType = self.RCTYPE_OPTIMUSS
+			elif model == 'sogno-8800hd':
+				self.currentRcType = self.RCTYPE_SOGNO					
 		elif getBoxType() == 'dm8000':
 				self.currentRcType = self.RCTYPE_DMM
 		elif getBoxType() == 'dm7020hd' or getBoxType() == 'dm7020hdv2' or getBoxType() == 'dm800sev2' or getBoxType() == 'dm500hdv2':
@@ -109,7 +111,7 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_ET4X00
 				elif rc == '14':
 					self.currentRcType = self.RCTYPE_XP1000
-			elif model == 'ebox5000' or model == 'ebox5100' or model == 'ebox7358':
+			elif model.startswith('ebox'):
 				self.currentRcType = self.RCTYPE_EBOX5000
 			elif model == 'gigablue':
 				self.currentRcType = self.RCTYPE_GB
@@ -123,7 +125,7 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_INI2
 			elif model == 'ini-5000' or model == 'ini-7000' or model == 'ini-7012' or model == 'ini-9000':
 				self.currentRcType = self.RCTYPE_INI1
-			elif model == 'ini-1000' or model == 'ini-1000ru' or model == 'ini-5000ru':
+			elif model == 'ini-1000' or model == 'ini-1000ru' or model == 'ini-5000ru' :
 				self.currentRcType = self.RCTYPE_INI2
 			elif model == 'ini-1000sv' or model == 'ini-5000sv' or model == 'ini-9000sv':
 				self.currentRcType = self.RCTYPE_INI3
