@@ -685,11 +685,11 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		# WORKAROUND: we can't use BW-auto
 		self.scan_ter.bandwidth = ConfigSelection(default = defaultTer["bandwidth"], choices = [
 			(1712000, "1.712MHz"),
-			(5000000, "8MHz"),
-			(6000000, "7MHz"),
-			(7000000, "6MHz"),
-			(8000000, "5MHz"),
-			(10000000, "10MHz")
+			(5000000, "5MHz"),
+			(6000000, "6MHz"),
+			(7000000, "7MHz"),
+			(8000000, "8MHz"),
+			(10000000,"10MHz")
 			])
 		#, (eDVBFrontendParametersTerrestrial.Bandwidth_Auto, _("Auto"))))
 		self.scan_ter.fechigh = ConfigSelection(default = defaultTer["fechigh"], choices = [
@@ -752,6 +752,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.scan_type = ConfigSelection(default = defaultSatSearchType, choices = [("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder")), ("single_satellite", _("Single satellite")), ("multisat", _("Multisat")), ("multisat_yes", _("Multisat"))])
 		self.scan_typecable = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("complete", _("Complete"))])
 		self.scan_typeterrestrial = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("complete", _("Complete"))])
+		self.scan_input_as = ConfigSelection(default = "channel", choices = [("frequency", _("Frequency")), ("channel", _("Channel"))])
 		self.scan_clearallservices = ConfigSelection(default = "no", choices = [("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (keep feeds)"))])
 		self.scan_onlyfree = ConfigYesNo(default = False)
 		self.scan_networkScan = ConfigYesNo(default = False)
