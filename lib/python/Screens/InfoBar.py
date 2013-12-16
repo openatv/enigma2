@@ -87,7 +87,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		assert InfoBar.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
 		InfoBar.instance = self
 
-		if not config.misc.initialchannelselection.getValue():
+		if config.misc.initialchannelselection.getValue():
 			self.onShown.append(self.showMenu)
 			
 	def openChannelSelection(self):
