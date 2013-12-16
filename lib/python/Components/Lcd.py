@@ -54,7 +54,8 @@ def InitLcd():
 		f.close()
 	else:
 		can_lcdmodechecking = False
-		SystemInfo["LCDMiniTV"] = can_lcdmodechecking
+	
+	SystemInfo["LCDMiniTV"] = can_lcdmodechecking
 
 	if detected:
 		if can_lcdmodechecking:
