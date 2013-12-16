@@ -17,6 +17,11 @@ if [ ! -f /etc/enigma2/settings ]; then
 	cp -a /usr/share/enigma2/defaults/* /etc/enigma2/
 fi
 
+#check if Timezone for Australia is present
+if [ ! -f /etc/tuxbox/timezone-aus.xml ]; then
+	cp -a /usr/share/enigma2/defaults/timezone-aus.xml /etc/tuxbox/timezone-aus.xml
+fi
+
 # hook to execute scripts always before enigma2 start
 if [ -x @bindir@/enigma2_pre_start.sh ]; then
 	@bindir@/enigma2_pre_start.sh

@@ -1,5 +1,5 @@
 import xml.etree.cElementTree
-
+from enigma import getDistro
 from os import environ, unlink, symlink
 import time
 
@@ -10,7 +10,10 @@ class Timezones:
 
 	def readTimezonesFromFile(self):
 		try:
-			file = open('/etc/timezone.xml')
+			tz_file = "/etc/timezone.xml"
+			if getDistro() == "easy-gui-aus":
+				tz_file = "/etc/timezone-aus.xml"
+			file = open(tz_file)
 			root = xml.etree.cElementTree.parse(file).getroot()
 			file.close()
 			for zone in root.findall("zone"):
