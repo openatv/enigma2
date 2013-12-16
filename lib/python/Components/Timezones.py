@@ -12,7 +12,7 @@ class Timezones:
 		try:
 			tz_file = "/etc/timezone.xml"
 			if getDistro() == "easy-gui-aus":
-				tz_file = "/etc/timezone-aus.xml"
+				tz_file = "/etc/tuxbox/timezone-aus.xml"
 			file = open(tz_file)
 			root = xml.etree.cElementTree.parse(file).getroot()
 			file.close()
