@@ -4150,7 +4150,7 @@ class InfoBarServiceErrorPopupSupport:
 
 			if error:
 				self.closeNotificationInstantiateDialog()
-				if not self.dishDialog.dishState():
+				if hasattr(self, "dishDialog") and not self.dishDialog.dishState():
 					Notifications.AddPopup(text = error, type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapError")
 
 class InfoBarZoom:
