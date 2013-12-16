@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-24 03:39+0100\n"
-"PO-Revision-Date: 2013-12-13 08:03+0100\n"
+"POT-Creation-Date: 2013-12-14 14:15+0100\n"
+"PO-Revision-Date: 2013-12-16 08:22+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: girginoz <girginoz@gmail.com>\n"
 "Language: tr\n"
@@ -148,31 +148,31 @@ msgstr "%-S:%dk"
 
 #, python-format
 msgid "%02d.%02d - %02d.%02d (%s%d min)"
-msgstr ""
+msgstr "%02d.%02d - %02d.%02d (%s%d min)"
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
-msgstr ""
+msgstr "%2d:%02d"
 
 #. TRANSLATORS: full time representation hour:minute:seconds
 #, python-format
 msgid "%2d:%02d:%02d"
-msgstr ""
+msgstr "%2d:%02d:%02d"
 
 msgid "%A %d %B"
-msgstr ""
+msgstr "%A %d %B"
 
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
-msgstr ""
+msgstr "%A %e %B"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 msgid "%A %e %B %Y"
-msgstr ""
+msgstr "%A %e %B %Y"
 
 msgid "%A %e %b"
-msgstr ""
+msgstr "%A %e %b"
 
 #
 msgid "%H:%M"
@@ -180,27 +180,27 @@ msgstr "%H:%M"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
-msgstr ""
+msgstr "%a %e %B %Y"
 
 #. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
 msgid "%a %e/%m"
-msgstr ""
+msgstr "%a %e/%m"
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
-msgstr ""
+msgstr "%a %e/%m  %-H:%M"
 
 #, python-format
 msgid "%d GB"
-msgstr ""
+msgstr "%d GB"
 
 #, python-format
 msgid "%d Gb"
-msgstr ""
+msgstr "%d Gb"
 
 #, python-format
 msgid "%d KB"
-msgstr ""
+msgstr "%d KB"
 
 #, python-format
 msgid "%d MB"
@@ -236,7 +236,7 @@ msgstr "%d görev arkaplanda çalışıyor!"
 
 #, python-format
 msgid "%d kB"
-msgstr ""
+msgstr "%d kB"
 
 #
 #, python-format
@@ -264,7 +264,7 @@ msgid_plural "%d wireless networks found!"
 msgstr[0] "%d kablosuz ağ bulundu!"
 
 msgid "%d-%m"
-msgstr ""
+msgstr "%d-%m"
 
 #
 msgid "%d.%B %Y"
@@ -272,7 +272,7 @@ msgstr "%d.%B %Y"
 
 #. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
 msgid "%k:%M %e/%m"
-msgstr ""
+msgstr "%k:%M %e/%m"
 
 #, python-format
 msgid "%s %s advanced remote control (native)"
@@ -327,7 +327,7 @@ msgstr "%s%d dak"
 
 #, python-format
 msgid "%s/%s: %s"
-msgstr ""
+msgstr "%s/%s: %s"
 
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
@@ -374,22 +374,22 @@ msgid "1.2"
 msgstr "1.2"
 
 msgid "1080i"
-msgstr ""
+msgstr "1080i"
 
 msgid "1080p 24Hz"
-msgstr ""
+msgstr "1080p 24Hz"
 
 msgid "1080p 25Hz"
-msgstr ""
+msgstr "1080p 25Hz"
 
 msgid "1080p 30Hz"
-msgstr ""
+msgstr "1080p 30Hz"
 
 msgid "1080p 50Hz"
-msgstr ""
+msgstr "1080p 50Hz"
 
 msgid "1080p 60Hz"
-msgstr ""
+msgstr "1080p 60Hz"
 
 #
 msgid "12V output"
@@ -438,28 +438,25 @@ msgid "1st Infobar timeout"
 msgstr "1. Bilgi-çubuğu zaman aşımı"
 
 msgid "23.976"
-msgstr ""
+msgstr "23.976"
 
 #
-#, fuzzy
 msgid "24"
-msgstr "2"
+msgstr "24"
 
 #
-#, fuzzy
 msgid "25"
-msgstr "2"
+msgstr "25"
 
 msgid "29.97"
-msgstr ""
+msgstr "29.97"
 
 msgid "2X"
 msgstr "2X"
 
 #
-#, fuzzy
 msgid "30"
-msgstr "0"
+msgstr "30"
 
 msgid "3D Mode"
 msgstr "3D Kipi"
@@ -493,10 +490,10 @@ msgid "4X"
 msgstr "4X"
 
 msgid "720p"
-msgstr ""
+msgstr "720p"
 
 msgid "720p 24Hz"
-msgstr ""
+msgstr "720p 24Hz"
 
 msgid "<Current movielist location>"
 msgstr "<Geçerli film listesi konumu>"
@@ -514,9 +511,8 @@ msgid "<unknown>"
 msgstr "<bilinmiyor>"
 
 #
-#, fuzzy
 msgid "??"
-msgstr "Güncelleme tamamlandı. %s %s'nun yeniden başlatılmasını istiyor musunuz?"
+msgstr "??"
 
 #
 msgid "A"
@@ -691,6 +687,9 @@ msgstr "Ses-görüntü ayarları"
 msgid "AA"
 msgstr "AA"
 
+msgid "AAC downmix"
+msgstr "Sayısal downmix"
+
 #
 msgid "AB"
 msgstr "AB"
@@ -759,7 +758,7 @@ msgstr "Etkin istemciler"
 
 #
 msgid "Adapter settings"
-msgstr "Ağ donanım ayarları"
+msgstr "Ağ adaptör ayarları"
 
 #
 msgid "Add"
@@ -844,7 +843,7 @@ msgstr "Başlık ekle"
 
 #
 msgid "Add to bouquet"
-msgstr "Buket ekle"
+msgstr "Bukete ekle"
 
 #
 msgid "Add to favourites"
@@ -866,7 +865,7 @@ msgid "Address"
 msgstr "Adres"
 
 msgid "Adjust 3D settings"
-msgstr "3D Ayarları"
+msgstr "3D Ayarlarını düzenle"
 
 #
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
@@ -1176,7 +1175,7 @@ msgstr "Otomatik"
 
 #
 msgid "Auto Deep Standby"
-msgstr "Oto Derin Bekleme"
+msgstr "Oto Derin Uyku"
 
 #
 msgid "Auto Standby"
@@ -1492,6 +1491,9 @@ msgstr "CCcam Paylaşımlar Bilgisi"
 msgid "CCcam info"
 msgstr "CCcam bilgisi"
 
+msgid "CH"
+msgstr ""
+
 msgid "CHANGE BOUQUET"
 msgstr ""
 
@@ -1588,7 +1590,7 @@ msgstr "Tarifeleri ortala ve tarihi kaldır"
 
 #
 msgid "Change bouquets in quickzap"
-msgstr "Zapta buketleri değiştir"
+msgstr "Hızlı zapta buketleri değiştir"
 
 #
 msgid "Change pin code"
@@ -1892,7 +1894,7 @@ msgstr "Ortak Arayüz Ataması"
 
 #
 msgid "Common Interface assignment"
-msgstr "Ortak Arayüz Ataması"
+msgstr "Ortak Arayüz ataması"
 
 msgid "Common interface"
 msgstr "Ortak arayüz"
@@ -2161,7 +2163,7 @@ msgid "Configure your network again"
 msgstr "Kablosuz ağınızı yeniden yapılandırın"
 
 msgid "Configure your network settings, and press OK to start the scan"
-msgstr "Ağ ayarlarınızı yapın, ve taramayı başlatmak için OK'a basın."
+msgstr "Ağ ayarlarınızı yapın, ve taramayı başlatmak için OK'a basın"
 
 #
 msgid "Configure your wireless LAN again"
@@ -2480,7 +2482,7 @@ msgstr "Hata ayıklama Günlükleri"
 
 #
 msgid "Deep Standby"
-msgstr "Derin Bekleme"
+msgstr "Derin Uyku"
 
 msgid "Deep standby"
 msgstr "Derin uyku"
@@ -2498,7 +2500,7 @@ msgstr "Varsayılan Kayıt tipi"
 
 #
 msgid "Default settings"
-msgstr "Varsayılan Ayarlar"
+msgstr "Varsayılan ayarlar"
 
 msgid "Defaults"
 msgstr "Varsayılanlar"
@@ -2870,6 +2872,9 @@ msgstr "%s %s güncellemek istiyor musunuz?"
 #
 msgid "Do you want to upgrade the package:\n"
 msgstr "Seçilen paketi yükseltmek istiyor musunuz?:\n"
+
+msgid "Dolby Digital / DTS downmix"
+msgstr "Sayısal downmix"
 
 msgid "Don't save"
 msgstr "Saklama"
@@ -3514,7 +3519,7 @@ msgid "Function of OK button"
 msgstr "OK tuşu işlevi"
 
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #
 msgid ""
@@ -3726,7 +3731,7 @@ msgid "Hide any zap error messages."
 msgstr "Zap hata mesajlarını gizle."
 
 msgid "Hide error messages from the Common Interface module."
-msgstr ""
+msgstr "Ortak arayüz modülünde hata mesajlarını gizle."
 
 #
 msgid "Hide known extensions"
@@ -4123,6 +4128,10 @@ msgid "Invalid location"
 msgstr "Geçersiz Konum"
 
 #
+msgid "Invalid transponder data"
+msgstr "Geçersiz aktarıcı bilgisi"
+
+#
 msgid "Inversion"
 msgstr "Tersine çevir"
 
@@ -4235,7 +4244,7 @@ msgid "LED Blinking"
 msgstr "Led Yanıp sönüyor"
 
 msgid "LED Deep Standby"
-msgstr "LED Derin Bekleme"
+msgstr "LED Derin Uyku"
 
 msgid "LED Normal"
 msgstr "LED Normal"
@@ -4244,7 +4253,7 @@ msgid "LED Standby"
 msgstr "LED Bekleme"
 
 msgid "LED brightness during deep standby."
-msgstr "Derin Beklemede LED parlaklığı"
+msgstr "Derin uykuda LED parlaklığı"
 
 msgid "LED brightness during normal operations."
 msgstr "Normal durumda LED parlaklığı"
@@ -4478,10 +4487,10 @@ msgid "Luxembourgish"
 msgstr ""
 
 msgid "MAC:"
-msgstr ""
+msgstr "MAC:"
 
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #
 msgid "Main menu"
@@ -5071,7 +5080,7 @@ msgid ""
 "No tuner is enabled!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
-"Tuner etkinleştirilmemiş!\n"
+"Etkin tuner yok!\n"
 "Lütfen kanal taramasına başlamadan önce tuner ayarlarınızı yapın."
 
 msgid "No updates available. Please try again later."
@@ -5193,7 +5202,7 @@ msgstr ""
 "Konum: %s"
 
 msgid "Not mounted"
-msgstr ""
+msgstr "Takılmadı"
 
 msgid "Not-Associated"
 msgstr "İlişkilendirilmemiş"
@@ -5262,7 +5271,7 @@ msgid "OScam Info"
 msgstr "OScam Bilgisi"
 
 msgid "OScam info"
-msgstr ""
+msgstr "OScam bilgisi"
 
 #
 msgid "Off"
@@ -5354,7 +5363,7 @@ msgid "Overwrite configuration files?"
 msgstr "Yapılandırma dosyalarının üstüne yazılsın mı?"
 
 msgid "PAGE UP/DOWN"
-msgstr ""
+msgstr "SAYFA YUKARI/AŞAĞI"
 
 #
 msgid "PAL"
@@ -5899,7 +5908,7 @@ msgid "PowerTimer List"
 msgstr "Zamanlayıcı Listesini göster"
 
 msgid "PowerTimer Overview"
-msgstr "Zamanlayıcı geneel bakış"
+msgstr "Zamanlayıcı genel bakış"
 
 msgid "PowerTimers"
 msgstr "Güç Zamanlayıcıları"
@@ -6252,7 +6261,7 @@ msgid "Refresh rate selection."
 msgstr "Yenileme hızı seçimi."
 
 msgid "Regard deep standby as standby"
-msgstr "Derin Beklemeyi, bekleme olarak kabul et."
+msgstr "Derin uykuyu, bekleme olarak kabul et."
 
 msgid "Relative"
 msgstr "bağıl"
@@ -7238,7 +7247,7 @@ msgid "Show Display Icons"
 msgstr "Görüntü ikonlarını göster"
 
 msgid "Show E2 Log"
-msgstr ""
+msgstr "E2 Günlük Göster"
 
 msgid "Show EIT now/next in infobar"
 msgstr "Bilgi-çubuğunda EIT şimdiki/sonraki göster"
@@ -8049,7 +8058,7 @@ msgid "System: "
 msgstr "Sistem: "
 
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
 #
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
@@ -8096,7 +8105,7 @@ msgid "Telnet Setup"
 msgstr "Telnet Kurulumu"
 
 msgid "Telnet setup"
-msgstr ""
+msgstr "Telnet Kurulumu"
 
 #
 msgid "Terrestrial"
@@ -8258,7 +8267,7 @@ msgid "The following files were found..."
 msgstr "Aşağıdaki dosyalar bulundu..."
 
 msgid "The loopthrough setting is wrong."
-msgstr ""
+msgstr "Döngü ayarı yanlış."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr "md5sum doğrulaması başarısız, dosya bozulmuş olabilir!"
@@ -9114,6 +9123,9 @@ msgstr "Hızlı tarama kanal isimleri kullan"
 msgid "Use fastscan channel numbering"
 msgstr "Hızlı tarama kanal numaralama kullan"
 
+msgid "Use frequency or channel"
+msgstr ""
+
 msgid "Use individual settings for each directory"
 msgstr "Bu ayarları her klasör için uygula"
 
@@ -9176,9 +9188,8 @@ msgstr "Bu ayarlar kullanılsın mı?"
 msgid "Use this video enhancement settings?"
 msgstr "Bu görüntü iyileştirme ayarları kullanılsın mı?"
 
-#, fuzzy
 msgid "Use timeshift seekbar while timeshifting?"
-msgstr "Kayıt yapılırken zaman-kaydırma durdurulsun mu?"
+msgstr "Kayıt yapılırken zaman-kaydırma arama çubuğu kullanılsın mı?"
 
 msgid "Use trash can in movielist"
 msgstr "Filmlistesinde çöp kutusu kullan"
@@ -10330,7 +10341,7 @@ msgstr ""
 
 #, python-format
 msgid "bc%s"
-msgstr ""
+msgstr "bc%s"
 
 #
 msgid "better"
@@ -10670,7 +10681,7 @@ msgstr "kart sunucu al"
 
 #
 msgid "go to deep standby"
-msgstr "derin uyku kipine geç"
+msgstr "derin uykuya geç"
 
 #
 msgid "go to standby"
@@ -10845,7 +10856,7 @@ msgid "movie/drama (general)"
 msgstr "film/dram"
 
 msgid "ms"
-msgstr ""
+msgstr "ms"
 
 #
 msgid "multinorm"
@@ -10871,7 +10882,7 @@ msgid "news magazine"
 msgstr "haber dergisi"
 
 msgid "news/current affairs (general)"
-msgstr ""
+msgstr "haberler/günlük olaylar (genel)"
 
 msgid "news/weather report"
 msgstr "haberler/hava durumu"
