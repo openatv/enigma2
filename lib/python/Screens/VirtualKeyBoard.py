@@ -67,11 +67,10 @@ class VirtualKeyBoard(Screen):
 				"LEFT": self.key_left,
 				"RIGHT": self.key_right
 			}
-			
-		self["country"] = Label(_("Keyboard language"))
-		self["header"] = Label(title)
-		kwargs["text"] = kwargs.get("text", "").decode('utf-8', 'ignore').encode('utf-8')
-		self["text"] = Input(currPos=len(kwargs.get("text", "")), allMarked=False, **kwargs)
+
+		self["country"] = StaticText("")
+		self["header"] = Label()
+		self["text"] = Input(currPos=len(kwargs.get("text", "").decode("utf-8")), allMarked=False, **kwargs)
 		self["list"] = VirtualKeyBoardList([])
 
 		self["actions"] = NumberActionMap(["OkCancelActions", "WizardActions", "ColorActions", "KeyboardInputActions", "InputBoxActions", "InputAsciiActions"],
@@ -106,7 +105,7 @@ class VirtualKeyBoard(Screen):
 		self.setLang()
 		self.onExecBegin.append(self.setKeyboardModeAscii)
 		self.onLayoutFinish.append(self.buildVirtualKeyBoard)
-
+	
 	def switchLang(self):
 		self.lang = self.nextLang
 		self.setLang()
@@ -126,7 +125,7 @@ class VirtualKeyBoard(Screen):
 				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"Ö", u"Ä", u"'"],
 				[u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
 				[u"SHIFT", u"SPACE", u"?", u"\\", u"OK", u"LEFT", u"RIGHT"]]
-			self.nextLang = 'en_EN'
+			self.nextLang = 'es_ES'
 		elif self.lang == 'es_ES':
 			#still missing keys (u"ùÙ")
 			self.keys_list = [
@@ -141,7 +140,7 @@ class VirtualKeyBoard(Screen):
 				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"Ó", u"Á", u"'"],
 				[u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
 				[u"SHIFT", u"SPACE", u"?", u"\\", u"Ŕ", u"É", u"Č", u"Í", u"Ě", u"Ń", u"Ň", u"OK"]]
-			self.nextLang = 'en_EN'
+			self.nextLang = 'fi_FI'
 		elif self.lang == 'fi_FI':
 			self.keys_list = [
 				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
@@ -155,7 +154,7 @@ class VirtualKeyBoard(Screen):
 				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"Ö", u"Ä", u"'"],
 				[u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
 				[u"SHIFT", u"SPACE", u"?", u"\\", u"Ĺ", u"OK", u"LEFT", u"RIGHT"]]
-			self.nextLang = 'en_EN'
+			self.nextLang = 'ru_RU'
 		elif self.lang == 'ru_RU':
 			self.keys_list = [
 				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
@@ -169,7 +168,7 @@ class VirtualKeyBoard(Screen):
 				[u"К", u"Л", u"М", u"Н", u"О", u"П", u"Р", u"С", u"Т", u"У", u"Ф", u"'"],
 				[u">", u"Х", u"Ц", u"Ч", u"Ш", u"Щ", u"Ъ", u"Ы", u";", u":", u"_", u"CLEAR"],
 				[u"SHIFT", u"SPACE", u"?", u"\\", u"Ь", u"Э", u"Ю", u"Я", u"OK", u"LEFT", u"RIGHT"]]
-			self.nextLang = 'en_EN'
+			self.nextLang = 'sv_SE'
 		elif self.lang == 'sv_SE':
 			self.keys_list = [
 				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
@@ -183,7 +182,7 @@ class VirtualKeyBoard(Screen):
 				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"Ö", u"Ä", u"'"],
 				[u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
 				[u"SHIFT", u"SPACE", u"?", u"\\", u"Ĺ", u"OK", u"LEFT", u"RIGHT"]]
-			self.nextLang = 'en_EN'
+			self.nextLang = 'sk_SK'
 		elif self.lang =='sk_SK':
 			self.keys_list = [
 				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
@@ -198,7 +197,7 @@ class VirtualKeyBoard(Screen):
 				[u"Á", u"É", u"Ď", u"Í", u"Ý", u"Ó", u"Ú", u"Ž", u"Š", u"Č", u"Ť", u"Ň"],
 				[u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
 				[u"SHIFT", u"SPACE", u"?", u"\\", u"ä", u"ö", u"ü", u"ô", u"ŕ", u"ĺ", u"OK"]]
-			self.nextLang = 'en_EN'
+			self.nextLang = 'cs_CZ'
 		elif self.lang == 'cs_CZ':
 			self.keys_list = [
 				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
@@ -226,13 +225,13 @@ class VirtualKeyBoard(Screen):
 				[u"Α", u"Σ", u"Δ", u"Φ", u"Γ", u"Η", u"Ξ", u"Κ", u"Λ", u":", u'"', u"_"],
 				[u"|", u"Ζ", u"Χ", u"Ψ", u"Ω", u"Β", u"Ν", u"Μ", u"<", u">", u"?", u"CLEAR"],
 				[u"SHIFT", u"SPACE", u"Ά", u"Έ", u"Ή", u"Ί", u"Ό", u"Ύ", u"Ώ", u"Ϊ", u"Ϋ", u"OK"]]
-			self.nextLang = 'en_EN'
+			self.nextLang = 'pl_PL'
 		elif self.lang == 'pl_PL':
 			self.keys_list = [
 				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
 				[u"q", u"w", u"e", u"r", u"t", u"y", u"u", u"i", u"o", u"p", u"-", u"["],
 				[u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u";", u"'", u"\\"],
-				[u"<", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"/", u"CLEAR"],
+				[u"<", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"/", u"ALL"],
 				[u"SHIFT", u"SPACE", u"ą", u"ć", u"ę", u"ł", u"ń", u"ó", u"ś", u"ź", u"ż", u"OK"]]
 			self.shiftkeys_list = [
 				[u"EXIT", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"(", u")", u"=", u"BACKSPACE"],
@@ -240,20 +239,6 @@ class VirtualKeyBoard(Screen):
 				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"?", u'"', u"|"],
 				[u">", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
 				[u"SHIFT", u"SPACE", u"Ą", u"Ć", u"Ę", u"Ł", u"Ń", u"Ó", u"Ś", u"Ź", u"Ż", u"OK"]]
-			self.nextLang = 'en_EN'
-		elif self.lang == 'tr_TR':
-			self.keys_list = [
-				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-				[u"f", u"g", u"ğ", u"i", u"o", u"d", u"r", u"n", u"h", u"p", u"q", u"w"],
-				[u"u", u"i", u"e", u"a", u"ü", u"t", u"k", u"m", u"l", u"y", u"ş", u"-"],
-				[u"j", u"ö", u"v", u"c", u"ç", u"z", u"s", u"b", u"x", u",", ".", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"+", u"OK"]]
-			self.shiftkeys_list = [
-				[u"EXIT", u"*", u'"', u"^", u"$", u"%", u"'", u"(", u")", u"=", u"?",  u"BACKSPACE"],
-				[u"F", u"G", u"Ğ", u"I", u"O", u"D", u"R", u"N", u"H", u"P", u"Q", u"W"],
-				[u"U", u"İ", u"E", u"A", u"Ü", u"T", u"K", u"M", u"L", u"Ş", u"|", u"X"],
-				[u"J", u"Ö", u"V", u"C", u"Ç", u"Z", u"S", u"B", u"_", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u",", u";", u":", u"OK"]]
 			self.nextLang = 'en_EN'
 		else:
 			self.keys_list = [
@@ -269,8 +254,8 @@ class VirtualKeyBoard(Screen):
 				[u">", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
 				[u"SHIFT", u"SPACE", u"OK", u"LEFT", u"RIGHT"]]
 			self.lang = 'en_EN'
-			self.nextLang = language.getLanguage()
-		#self["country"].setText(self.lang + (_(" press Yellow to change Keyboard language")))
+			self.nextLang = 'de_DE'
+		self["country"].setText(self.lang)
 		self.max_key=47+len(self.keys_list[4])
 
 	def virtualKeyBoardEntryComponent(self, keys):
@@ -297,7 +282,7 @@ class VirtualKeyBoard(Screen):
 		for keys in self.shiftMode and self.shiftkeys_list or self.keys_list:
 			self.list.append(self.virtualKeyBoardEntryComponent(keys))
 		self.markSelectedKey()
-		
+
 	def markSelectedKey(self):
 		if self.previousSelectedKey is not None:
 			self.list[self.previousSelectedKey /12] = self.list[self.previousSelectedKey /12][:-1]
@@ -321,7 +306,7 @@ class VirtualKeyBoard(Screen):
 
 		if text == "EXIT":
 			self.close(None)
-
+		
 		elif text == "BACKSPACE":
 			self["text"].deleteBackward()
 		
@@ -393,41 +378,9 @@ class VirtualKeyBoard(Screen):
 		self.markSelectedKey()
 
 	def keyNumberGlobal(self, number):
-		if number == 1:
-			self.text += "1"
-			self["text"].setText(self.text.encode("utf-8"))
-		elif number == 2:
-			self.text += "2"
-			self["text"].setText(self.text.encode("utf-8"))
-		elif number == 3:
-			self.text += "3"
-			self["text"].setText(self.text.encode("utf-8"))
-		elif number == 4:
-			self.text += "4"
-			self["text"].setText(self.text.encode("utf-8"))
-		elif number == 5:
-			self.text += "5"
-			self["text"].setText(self.text.encode("utf-8"))
-		elif number == 6:
-			self.text += "6"
-			self["text"].setText(self.text.encode("utf-8"))
-		elif number == 7:
-			self.text += "7"
-			self["text"].setText(self.text.encode("utf-8"))
-		elif number == 8:
-			self.text += "8"
-			self["text"].setText(self.text.encode("utf-8"))
-		elif number == 9:
-			self.text += "9"
-			self["text"].setText(self.text.encode("utf-8"))
-		elif number == 0:
-			self.text += "0"
-			self["text"].setText(self.text.encode("utf-8"))
-		else:
-			self.smsChar = self.sms.getKey(number)
-			print "SMS", number, self.smsChar
-			self.selectAsciiKey(self.smsChar)
-			
+		self.smsChar = self.sms.getKey(number)
+		self.selectAsciiKey(self.smsChar)
+
 	def smsOK(self):
 		if self.smsChar and self.selectAsciiKey(self.smsChar):
 			print "pressing ok now"
@@ -455,4 +408,3 @@ class VirtualKeyBoard(Screen):
 						return True
 					selkey += 1
 		return False
-

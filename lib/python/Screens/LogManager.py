@@ -392,7 +392,7 @@ class LogManager(Screen):
 		msg = MIMEMultipart()
 		if config.logmanager.user.getValue() != '' and config.logmanager.useremail.getValue() != '':
 			fromlogman = config.logmanager.user.getValue() + '  <' + config.logmanager.useremail.getValue() + '>'
-			tovixlogs = 'vixlogs@world-of-satellite.com'
+			tovixlogs = 'vixlogs@oe-alliance.com'
 			msg['From'] = fromlogman
 			msg['To'] = tovixlogs
 			msg['Cc'] = fromlogman
@@ -430,13 +430,13 @@ class LogManager(Screen):
 				self.saveSelection()
 
 			# Send the email via our own SMTP server.
-			wos_user = 'vixlogs@world-of-satellite.com'
-			wos_pwd = base64.b64decode('TF95X0dCRlRFNHRDenVKN1dNdlEkZj14')
+			wos_user = 'vixlogs@oe-alliance.com'
+			wos_pwd = base64.b64decode('elZMRFMwaFprNUdp')
 
 			try:
-				print "connecting to server: mail.world-of-satellite.com"
+				print "connecting to server: mail.oe-alliance.com"
 				#socket.setdefaulttimeout(30)
-				s = smtplib.SMTP("mail.world-of-satellite.com", 26)
+				s = smtplib.SMTP("mail.oe-alliance.com", 26)
 				s.login(wos_user, wos_pwd)
 				if config.logmanager.usersendcopy.getValue():
 					s.sendmail(fromlogman, [tovixlogs, fromlogman], msg.as_string())
