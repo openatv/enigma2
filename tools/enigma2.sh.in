@@ -15,6 +15,7 @@ fi
 #check if factory mode is present
 if [ ! -f /etc/enigma2/settings ]; then
 	cp -a /usr/share/enigma2/defaults/* /etc/enigma2/
+	cp -a /usr/share/enigma2/defaults/terrestrial.xml /etc/tuxbox/
 fi
 
 #check if Timezone for Australia is present
