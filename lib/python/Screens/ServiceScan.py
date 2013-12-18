@@ -100,6 +100,8 @@ class ServiceScan(Screen):
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("OK"))
 
+		self["done_text"] = Label()
+
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 		{
 			"ok": self.ok,
@@ -112,7 +114,7 @@ class ServiceScan(Screen):
 
 	def doServiceScan(self):
 		self["servicelist"].len = self["servicelist"].instance.size().height() / self["servicelist"].l.getItemSize().height()
-		self["scan"] = CScan(self["scan_progress"], self["scan_state"], self["servicelist"], self["pass"], self.scanList, self["network"], self["transponder"], self["FrontendInfo"], self.session.summary)
+		self["scan"] = CScan(self["scan_progress"], self["scan_state"], self["servicelist"], self["pass"], self.scanList, self["network"], self["transponder"], self["FrontendInfo"], self.session.summary, self["done_text"])
 
 	def createSummary(self):
 		return ServiceScanSummary

@@ -120,10 +120,14 @@ class ServiceScan:
 		if self.state == self.Done:
 			result = self.foundServices + self.scan.getNumServices()
 			self.text.setText(ngettext("Scanning completed.\n%d channel found", "Scanning completed.\n%d channels found", result) % result)
+			self.done_text.setText(_("Your scan is now complete !\n\nPlease press ok to continue"))
+			self.done_text.show()
 
 		if self.state == self.Error:
 			self.text.setText(_("ERROR - failed to scan (%s)!") % (self.Errors[self.errorcode]) )
-
+			self.done_text.setText(_("ERROR - failed to scan (%s)!") % (self.Errors[self.errorcode]) )
+			self.done_text.show()
+			
 		if self.state == self.Done or self.state == self.Error:
 			if self.run != len(self.scanList) - 1:
 				self.foundServices += self.scan.getNumServices()
@@ -131,7 +135,7 @@ class ServiceScan:
 				self.run += 1
 				self.execBegin()
 
-	def __init__(self, progressbar, text, servicelist, passNumber, scanList, network, transponder, frontendInfo, lcd_summary):
+	def __init__(self, progressbar, text, servicelist, passNumber, scanList, network, transponder, frontendInfo, lcd_summary, done_text):
 		self.foundServices = 0
 		self.progressbar = progressbar
 		self.text = text
@@ -141,6 +145,8 @@ class ServiceScan:
 		self.frontendInfo = frontendInfo
 		self.transponder = transponder
 		self.network = network
+		self.done_text = done_text
+		self.done_text.hide()
 		self.run = 0
 		self.lcd_summary = lcd_summary
 
