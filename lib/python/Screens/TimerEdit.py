@@ -342,7 +342,7 @@ class TimerSanityConflict(Screen):
 		self["list"] = MenuList(self.list)
 		self["timer2"] = TimerList(self.list2)
 
-		self["key_red"] = Button("Edit")
+		self["key_red"] = Button(_("Edit"))
 		self["key_green"] = Button(" ")
 		self["key_yellow"] = Button(" ")
 		self["key_blue"] = Button(" ")
