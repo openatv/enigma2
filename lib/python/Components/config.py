@@ -133,10 +133,14 @@ class ConfigElement(object):
 		try:
 			del self.__notifiers[str(notifier)]
 		except:
-			pass
-			
+			try:
+				del self.__notifiers_final[str(notifier)]
+			except:
+				pass
+
 	def clearNotifiers(self):
 		self.__notifiers = { }
+		self.__notifiers_final = { }
 
 	def disableSave(self):
 		self.save_disabled = True
