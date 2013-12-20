@@ -1626,7 +1626,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.history_pos += 1
 			self.setHistoryPath()
 
-	def setHistoryPath(self):
+	def setHistoryPath(self, doZap=True):
 		path = self.history[self.history_pos][:]
 		ref = path.pop()
 		del self.servicePath[:]
@@ -1636,7 +1636,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		cur_root = self.getRoot()
 		if cur_root and cur_root != root:
 			self.setRoot(root)
-		self.session.nav.playService(ref)
+		if doZap:
+			self.session.nav.playService(ref)
 		if self.dopipzap:
 			self.setCurrentSelection(self.session.pip.getCurrentService())
 		else:
@@ -1689,12 +1690,12 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.lastservice.value = refstr
 			self.lastservice.save()
 
-	def setCurrentServicePath(self, path):
+	def setCurrentServicePath(self, path, doZap=True):
 		if self.history:
 			self.history[self.history_pos] = path
 		else:
 			self.history.append(path)
-		self.setHistoryPath()
+		self.setHistoryPath(doZap)
 
 	def getCurrentServicePath(self):
 		if self.history:
