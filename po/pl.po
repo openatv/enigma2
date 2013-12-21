@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-06 12:09+0200\n"
-"PO-Revision-Date: 2013-10-07 21:59+0100\n"
+"POT-Creation-Date: 2013-12-12 21:53+0100\n"
+"PO-Revision-Date: 2013-12-14 13:28+0100\n"
 "Last-Translator: blzr <blzr@o2.pl>\n"
 "Language-Team: \n"
 "Language: pl_PL\n"
@@ -621,9 +621,6 @@ msgstr "Ustawienia adaptera"
 msgid "Add"
 msgstr "Dodaj"
 
-msgid "Add Bookmark"
-msgstr "Dodaj zakładkę"
-
 #
 msgid "Add a mark"
 msgstr "Dodaj znacznik"
@@ -658,7 +655,7 @@ msgstr "Twórz szczegółowe crashlogi"
 
 #
 msgid "Add provider"
-msgstr "Dodaj providera"
+msgstr "Dodaj nadawcę"
 
 #
 msgid "Add recording (enter recording duration)"
@@ -795,6 +792,9 @@ msgstr "Priorytet tunera dla serwisów alternatywnych."
 msgid "Always ask"
 msgstr "Zawsze pytaj"
 
+msgid "Always hide infobar"
+msgstr "Zawsze ukrywaj infobar"
+
 #
 msgid "An empty filename is illegal."
 msgstr "Pusta nazwa pliku jest niedozwolona."
@@ -820,6 +820,10 @@ msgstr "Każda aktywność"
 #
 msgid "Arabic"
 msgstr "Arabski"
+
+#
+msgid "Are you sure to remove this entry?"
+msgstr "Jesteś pewien, że chcesz usunąć?"
 
 #
 msgid ""
@@ -890,7 +894,7 @@ msgstr "Przyporządkowane CAIDy:"
 
 #
 msgid "Assigned services/provider:"
-msgstr "Przyporządkowane kanały/providerzy:"
+msgstr "Przyporządkowane kanały/nadawcy"
 
 #
 msgid "At beginning"
@@ -1140,6 +1144,10 @@ msgstr "C"
 #
 msgid "C-Band"
 msgstr "Pasmo C"
+
+#
+msgid "CH"
+msgstr ""
 
 #
 msgid "CI assignment"
@@ -1447,10 +1455,10 @@ msgstr "Skonfiguruj przez ile minut zakończone audycje pozostaną widoczne w EP
 msgid "Configure how recording filenames are constructed."
 msgstr "Skonfiguruj jak mają wyglądać nazwy plików nagrań."
 
-msgid "Configure if and how service type icons will be shown."
-msgstr "Skonfiguruj czy i jak będą wyświetlane ikony typu kanału "
+msgid "Configure if and how service type icons will be shown in the channel selection list."
+msgstr "Skonfiguruj czy i jak wyświetlać ikony typu w liście kanałów."
 
-msgid "Configure if service picons will be shown in the servicelist."
+msgid "Configure if service picons will be shown in the channel selection list."
 msgstr "Skonfiguruj czy wyświetlać pikony w liście kanałów."
 
 #
@@ -1509,6 +1517,9 @@ msgstr "Skonfiguruj kolor napisów teletext,"
 
 msgid "Configure the contrast level of the front panel display."
 msgstr "Skonfiguruj kontrast wyświetlacza na frontowym panelu."
+
+msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
+msgstr "Skonfiguruj zachowanie kursora w liście wyboru kanałów. Można skonfigurować aby kursor był zawsze na aktualnie włączonym kanale przy wejściu w listę kanałów strzałkami góra/dół; można także odwrócić przełączanie bukietów klawiszami B+/B- w liście."
 
 msgid "Configure the duration in hours and action, which could be shut down or standby, when the receiver is not controlled."
 msgstr "Ustaw czas (w godzinach) oraz preferowane działanie (tryb czuwania lub wyłączenie) gdy odbiornik pozostaje nieaktywny."
@@ -1860,6 +1871,9 @@ msgstr "Aktualna wersja:"
 msgid "Currently installed image"
 msgstr "Aktualnie zainstalowane image"
 
+msgid "Currently the commit log cannot be retreived - please try later again"
+msgstr "Commit log nie może zostać teraz pobrany - spróbuj ponownie później"
+
 #
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "Czas przeskoku dla klawiszy '1'/'3'"
@@ -1875,6 +1889,9 @@ msgstr "Czas przeskoku dla klawiszy '7'/'9'"
 #
 msgid "Customize"
 msgstr "Konfiguracja"
+
+msgid "Customize channel list cursor behavior"
+msgstr "Zachowanie kursora w liście kanałów"
 
 #
 msgid "Cut"
@@ -2098,17 +2115,9 @@ msgstr "Katalog"
 msgid "Directory %s does not exist."
 msgstr "Katalog %s nie istnieje."
 
-#, python-format
-msgid "Directory %s nonexistent."
-msgstr "Katalog %s nie istnieje."
-
 #
 msgid "Directory browser"
 msgstr "Przeglądarka katalogów"
-
-#, python-format
-msgid "Directory contains %d file(s) and %d sub-directories.\n"
-msgstr "Katalog zawiera  %d plik(ów) i %d podkatalogów.\n"
 
 #, python-format
 msgid "Directory contains %s and %s."
@@ -3275,6 +3284,10 @@ msgid "Invalid location"
 msgstr "Nieprawidłowa lokalizacja"
 
 #
+msgid "Invalid transponder data"
+msgstr "Błędne dane transpondera"
+
+#
 msgid "Inversion"
 msgstr "Inwersja"
 
@@ -3326,6 +3339,9 @@ msgstr "Skocz do poprzedniej zaznaczonej pozycji"
 msgid "Just scale"
 msgstr "Po prostu skaluj"
 
+msgid "Keep service"
+msgstr "Zostaw na aktualnym"
+
 msgid "Kernel version: "
 msgstr "Wersja kernela:"
 
@@ -3370,6 +3386,9 @@ msgstr "Ostatnia prędkość"
 
 msgid "Last upgrade: "
 msgstr "Ostatnia aktualizacja:"
+
+msgid "Latest Commits"
+msgstr "Ostatnie commit'y"
 
 #
 msgid "Latitude"
@@ -3478,9 +3497,6 @@ msgstr "Litewski"
 #
 msgid "Load"
 msgstr "Otwórz"
-
-msgid "Load Length of Movies in Movielist"
-msgstr "Wyświetlaj długość filmów w liście"
 
 #
 msgid "Load length of movies in movie list"
@@ -3718,12 +3734,6 @@ msgstr "Przesunięto na pozycję z indeksem"
 
 msgid "Movement"
 msgstr "Ruch"
-
-msgid "Movie List Configuration"
-msgstr "Konfiguracja listy filmów"
-
-msgid "Movie Selection"
-msgstr "Lista filmów"
 
 msgid "Movie list configuration"
 msgstr "Konfiguracja listy kanałów"
@@ -3989,16 +3999,15 @@ msgstr "Nie znaleziono nowych pluginów"
 msgid "No positioner capable frontend found."
 msgstr "Nie znaleziono pozycjonera."
 
-#
-msgid "No satellite frontend found!!"
-msgstr "Nie znaleziono tunera!!!"
+msgid "No satellites configured. Plese check your tuner setup."
+msgstr "Brak skonfigurowanych satelitów. Sprawdź ustawienia."
 
 msgid "No service"
 msgstr "Brak kanału"
 
 #
 msgid "No services/providers selected"
-msgstr "Brak wybranych kanałów/providerów"
+msgstr "Brak wybranych kanałów/nadawców"
 
 #
 msgid "No standby"
@@ -4422,7 +4431,7 @@ msgstr "Sprawdź ustawienia sieci!"
 
 #
 msgid "Please choose an extension..."
-msgstr "Wybierz rozszerzenie..."
+msgstr "Menu rozszerzeń"
 
 #
 msgid ""
@@ -4580,6 +4589,10 @@ msgstr ""
 #
 msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
 msgstr "W celu wyboru języka użyj klawiszy GÓRA i DÓŁ. Nastepnie nacisnij przycisk OK."
+
+#
+msgid "Please wait"
+msgstr "Czekaj..."
 
 #
 msgid "Please wait (downloading channel list)"
@@ -4770,7 +4783,7 @@ msgstr "Wciśnij OK, aby skanować"
 
 #
 msgid "Press OK to select a provider."
-msgstr "Wciśnij OK, aby wybrać providera."
+msgstr "Wciśnij OK, aby wybrać nadawcę."
 
 #
 msgid "Press OK to select/deselect a CAId."
@@ -4841,15 +4854,15 @@ msgstr "Zabezpiecz ustawienia"
 
 #
 msgid "Provider"
-msgstr "Providerzy"
+msgstr "Nadawcy"
 
 #
 msgid "Provider to scan"
-msgstr "Provider do skanowania"
+msgstr "Nadawca do skanowania"
 
 #
 msgid "Providers"
-msgstr "Providerzy"
+msgstr "Nadawcy"
 
 #
 msgid "Put TV in standby"
@@ -5016,10 +5029,6 @@ msgstr "Przeładowanie bukietów i kanałów"
 #
 msgid "Remember service PIN"
 msgstr "Pamiętaj PIN kanału"
-
-#
-msgid "Remember these settings for each folder"
-msgstr "Zapamiętej te ustawienia dla każdego folderu"
 
 msgid "Reminder, you have chosen to save timeshift file."
 msgstr "Pamietaj, wybrałeś zapisywanie pliku timeshift."
@@ -5208,6 +5217,9 @@ msgstr "Powrót do listy filmów"
 #
 msgid "Return to previous service"
 msgstr "Powrót do poprzedniego kanału"
+
+msgid "Reverse bouquet buttons"
+msgstr "Zamień przyciski bukietów"
 
 #
 msgid "Rewind speeds"
@@ -5553,7 +5565,7 @@ msgstr "Wybierz film"
 
 #
 msgid "Select provider to add..."
-msgstr "Wybierz providera do dodania..."
+msgstr "Wybierz nadawcę do dodania..."
 
 #
 msgid "Select refresh rate"
@@ -5592,7 +5604,7 @@ msgid "Select wireless network"
 msgstr "Wybierz sieć bezprzewodową"
 
 msgid "Select your provider, and press OK to start the scan"
-msgstr "Wybierz providera i wciśnij OK aby rozpocząć skanowanie"
+msgstr "Wybierz nadawcę i wciśnij OK aby rozpocząć skanowanie"
 
 #
 msgid "Send DiSEqC"
@@ -5846,6 +5858,9 @@ msgstr "Pokaż pasek info przy zmianie wydarzenia"
 msgid "Show infobar on skip forward/backward"
 msgstr "Pokaż pasek info przy przewijaniu przód/tył"
 
+msgid "Show latest commits on sourceforge"
+msgstr "Pokaż ostatnie commit'y na sourceforge"
+
 #
 msgid "Show message when recording starts"
 msgstr "Pokaż info przy rozpoczęciu nagrywania"
@@ -5857,7 +5872,7 @@ msgstr "Długość filmów w liście"
 msgid "Show multi channel EPG"
 msgstr "Wyświetl EPG dla wielu kanałów"
 
-msgid "Show picons in servicelist"
+msgid "Show picons in channel list"
 msgstr "Pikony w liście kanałów"
 
 #
@@ -5884,9 +5899,6 @@ msgstr "Pokaż menu wyłączania"
 
 msgid "Show single service EPG"
 msgstr "Wyświetl EPG pojedynczego kanału"
-
-msgid "Show status icons in Movielist"
-msgstr "Ikony stanu w liście filmów"
 
 #
 msgid "Show status icons in movie list"
@@ -6501,7 +6513,7 @@ msgstr "Naziemna"
 
 #
 msgid "Terrestrial provider"
-msgstr "Provider DVB-T"
+msgstr "Nadawca DVB-T"
 
 #
 msgid "Test DiSEqC settings"
@@ -7213,6 +7225,9 @@ msgstr "Fastscan nazw kanałów"
 
 msgid "Use fastscan channel numbering"
 msgstr "Fastscan numerów kanałów"
+
+msgid "Use frequency or channel"
+msgstr "Użyj częstotliwości lub kanału"
 
 msgid "Use individual settings for each directory"
 msgstr "Użyj osobnych ustawień dla każdego folderu"
@@ -8073,10 +8088,6 @@ msgid "Zap back to service before positioner setup?"
 msgstr "Powrócić na kanał sprzed ustawiania pozycjonera?"
 
 #
-msgid "Zap back to service before satfinder?"
-msgstr "Powrócić na kanał sprzed miernika sygnału?"
-
-#
 msgid "Zap back to service before tuner setup?"
 msgstr "Powrócić na kanał sprzed konfiguracji tunera?"
 
@@ -8115,11 +8126,11 @@ msgstr "[tryb przenoszenia]"
 
 #
 msgid "a gui to assign services/providers to common interface modules"
-msgstr "Menu do przyporządkowywania kanałów/providerów dla modułów CI"
+msgstr "Menu do przyporządkowywania kanałów/nadawców dla modułów CI"
 
 #
 msgid "a gui to assign services/providers/caids to common interface modules"
-msgstr "Menu do przyporządkowywania kanałów/providerów/CAIDów dla modułów CI"
+msgstr "Menu do przyporządkowywania kanałów/nadawców/CAIDów dla modułów CI"
 
 #
 msgid "abort alternatives edit"
@@ -8339,9 +8350,6 @@ msgstr "Domyślny"
 msgid "delete cut"
 msgstr "Usuń cięcie"
 
-msgid "delete..."
-msgstr "usuń..."
-
 msgid "descramble and record ecm"
 msgstr "Dekoduj i nagrywaj ECM"
 
@@ -8450,9 +8458,6 @@ msgstr "Jeździectwo"
 #
 msgid "exit DVD player or return to file browser"
 msgstr "Zamknij odtwarzacz DVD lub powróć do przeglądarki plików"
-
-msgid "exit movielist"
-msgstr "wyjdź z odtwarzacza"
 
 #
 msgid "exit network adapter configuration"
@@ -8792,9 +8797,6 @@ msgstr "Włączony"
 msgid "on READ ONLY medium."
 msgstr "Nośnik tylko do odczytu."
 
-msgid "on end of movie"
-msgstr "na końcu filmu"
-
 #
 msgid "once"
 msgstr "Raz"
@@ -8970,12 +8972,6 @@ msgstr "Wybierz CAId'y"
 msgid "select menu entry"
 msgstr "Wybierz pozycję menu"
 
-msgid "select movie"
-msgstr "Wybierz film"
-
-msgid "select the movie path"
-msgstr "Wskaż ścieżkę do filmu"
-
 msgid "serious music/classic music"
 msgstr "Muzyka klasyczna"
 
@@ -9009,9 +9005,6 @@ msgstr "Pokaż alternatywne kanały"
 msgid "show event details"
 msgstr "Pokaż szczegóły wydarzenia"
 
-msgid "show extended description"
-msgstr "Wyświetl rozszerzony opis"
-
 msgid "show mediaplayer on mainmenu"
 msgstr "Pokaż Mediaplayer w menu głównym"
 
@@ -9020,9 +9013,6 @@ msgstr "Software Manager w menu/ustawienia"
 
 msgid "show softwaremanager on blue button"
 msgstr "Software Manager pod niebieskim"
-
-msgid "show tag menu"
-msgstr "Pokaż Tag menu"
 
 #
 msgid "show transponder info"
