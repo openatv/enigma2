@@ -85,7 +85,8 @@ class Language:
 			self.catalog.install(names=("ngettext", "pgettext"))
 			self.activeLanguage = index
 			for x in self.callbacks:
-				x()
+				if x:
+					x()
 		except:
 			print "Selected language does not exist!"
 		# NOTE: we do not use LC_ALL, because LC_ALL will not set any of the categories, when one of the categories fails.
