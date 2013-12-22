@@ -238,8 +238,10 @@ class CableTransponderSearchSupport:
 					bus = 4 # DM8000 second num is /dev/i2c/4
 
 		if tunername == "CXD1981":
+			bin_name = "CXD1981"
 			cmd = "cxd1978 --init --scan --verbose --wakeup --inv 2 --bus %d" % bus
 		elif tunername.startswith("Sundtek"):
+			bin_name = "mediaclient"
 			cmd = "mediaclient --blindscan %d" % nim_idx
 		else:
 			bin_name = GetCommand(nim_idx)
