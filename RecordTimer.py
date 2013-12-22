@@ -836,15 +836,14 @@ class RecordTimer(timer.Timer):
 				if x.repeated != 0:
 					if bt is None:
 						bt = localtime(begin)
-						et = localtime(end)
 						bday = bt.tm_wday;
-						begin2 = bday * 1440 + bt.tm_hour * 60 + bt.tm_min
-						end2   = et.tm_wday * 1440 + et.tm_hour * 60 + et.tm_min
+						begin2 = 1440 + bt.tm_hour * 60 + bt.tm_min
+						end2 = begin2 + duration / 60
 					if x.repeated & (1 << bday):
 						xbt = localtime(x.begin)
 						xet = localtime(timer_end)
-						xbegin = bday * 1440 + xbt.tm_hour * 60 + xbt.tm_min
-						xend   = bday * 1440 + xet.tm_hour * 60 + xet.tm_min
+						xbegin = 1440 + xbt.tm_hour * 60 + xbt.tm_min
+						xend = xbegin + ((timer_end - x.begin) / 60)
 						if xend < xbegin:
 							xend += 1440
 						if begin2 < xbegin <= end2:
@@ -861,6 +860,23 @@ class RecordTimer(timer.Timer):
 							else:           # recording whole event
 								time_match = (end2 - begin2) * 60
 								type = type_offset + 2
+						elif xbt.tm_yday < xet.tm_yday:
+							xbegin -= 1440
+							xend -= 1440
+							if begin2 < xbegin <= end2:
+								if xend < end2: # recording within event
+									time_match = (xend - xbegin) * 60
+									type = type_offset + 3
+								else:           # recording last part of event
+									time_match = (end2 - xbegin) * 60
+									type = type_offset + 1
+							elif xbegin <= begin2 <= xend:
+								if xend < end2: # recording first part of event
+									time_match = (xend - begin2) * 60
+									type = type_offset + 4
+								else:           # recording whole event
+									time_match = (end2 - begin2) * 60
+									type = type_offset + 2
 				else:
 					if begin < x.begin <= end:
 						if timer_end < end: # recording within event
