@@ -30,7 +30,7 @@ import commands
 
 
 if float(getImageVersionString()) >= 4.0:
-	basegroup = "packagegroup"
+	basegroup = "packagegroup-base"
 else:
 	basegroup = "task-base"
 
