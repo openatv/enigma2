@@ -484,6 +484,17 @@ class ImageBackup(Screen):
 				self.MTDROOT = 0
 				self.MTDBOOT = 2
 				self.JFFS2OPTIONS = "--eraseblock=0x20000 -n -l"
+		## TESTING THE SOGNO8800HD MODEL		
+		elif self.MODEL == "sogno8800hd":
+			self.TYPE = "SOGNO"
+			self.MODEL = "8800hd"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "Sogno %s" %self.MODEL
+			self.MTDKERNEL = "mtd7"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/sogno/%s" %(self.DIRECTORY, self.MODEL)
+			self.EXTRA =  "%s/fullbackup_%s/%s/sogno" % (self.DIRECTORY, self.TYPE, self.DATE)
 		else:
 			print "No supported receiver found!"
 			return
@@ -573,7 +584,7 @@ class ImageBackup(Screen):
 		f.write(self.IMAGEVERSION)
 		f.close()
 
-		if self.TYPE == "ET" or self.TYPE == "VENTON" or self.TYPE == "SEZAM" or self.TYPE == "MICRACLE" or self.TYPE == "GI" or self.TYPE == "ODINM9"  or self.TYPE == "ODINM7" or self.TYPE == "E3HD" or self.TYPE == "MAXDIGITAL" or self.TYPE == "OCTAGON" or self.TYPE == "IXUSS":
+		if self.TYPE == "ET" or self.TYPE == "VENTON" or self.TYPE == "SEZAM" or self.TYPE == "MICRACLE" or self.TYPE == "GI" or self.TYPE == "ODINM9"  or self.TYPE == "ODINM7" or self.TYPE == "E3HD" or self.TYPE == "MAXDIGITAL" or self.TYPE == "OCTAGON" or self.TYPE == "IXUSS" or self.TYPE == "SOGNO":
 			system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
 			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
@@ -699,6 +710,9 @@ class ImageBackup(Screen):
 				elif self.TYPE == 'GIGABLUE':
 					cmdlist.append('mkdir -p %s/gigablue/%s' % (self.TARGET, self.MODEL))
 					cmdlist.append('cp -r %s %s/gigablue/' % (self.MAINDEST, self.TARGET))
+				elif self.TYPE == 'SOGNO':
+					cmdlist.append('mkdir -p %s/sogno/%s' % (self.TARGET, self.MODEL))
+					cmdlist.append('cp -r %s %s/sogno/' % (self.MAINDEST, self.TARGET))
 				elif self.TYPE == 'ODINM9':
 					#cmdlist.append('mkdir -p %s/odinm9/%s' % (self.TARGET, self.MODEL))
 					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
