@@ -1221,6 +1221,8 @@ class ChannelSelectionBase(Screen):
 					self.servicelist.moveToChar(charstr[0])
 
 	def BouqetNumberActions(self, number):
+		if number > 2 and self.__class__.__name__ != "ChannelSelection":
+			return
 		if number == 1: #Set focus on current playing service when available in current userbouquet
 			currentSelectedService = self.servicelist.getCurrent()
 			currentPlayingService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
