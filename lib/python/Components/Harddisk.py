@@ -694,7 +694,7 @@ class HarddiskManager:
 		autofsmount = (os.path.exists('/media/autofs') and os.listdir('/media/autofs')) or ""
 		if len(autofsmount) > 0:
 			for fil in autofsmount:
-				if os.path.ismount('/media/autofs/' + fil):
+				if os.path.ismount('/media/autofs/' + fil) or os.path.exists('/media/autofs/' + fil):
 					print "new Network Mount", fil, '->', os.path.join('/media/autofs/',fil)
 					self.partitions.append(Partition(mountpoint = os.path.join('/media/autofs/',fil), description = fil))
 		if os.path.ismount('/media/hdd') and '/media/hdd/' not in [p.mountpoint for p in self.partitions]:
