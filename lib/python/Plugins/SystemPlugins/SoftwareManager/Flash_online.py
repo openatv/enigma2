@@ -17,6 +17,7 @@ from enigma import getBoxType, getDistro, getMachineName
 import urllib2
 import os
 import shutil
+import math
 
 distro = getDistro()
 
@@ -40,6 +41,12 @@ def Freespace(dev):
 	space = (statdev.f_bavail * statdev.f_frsize) / 1024
 	print "[Flash Online] Free space on %s = %i kilobytes" %(dev, space)
 	return space
+
+def ReadNewfeed():
+	f = open('/etc/enigma2/newfeed', 'r')
+	newfeed = f.readlines()
+	f.close()
+	return newfeed
 
 class FlashOnline(Screen):
 	skin = """
@@ -156,6 +163,9 @@ class doFlashImage(Screen):
 			"cancel": self.quit,
 		}, -2)
 		self.onLayoutFinish.append(self.layoutFinished)
+		self.newfeed = None
+		if os.path.exists('/etc/enigma2/newfeed'):
+			self.newfeed = ReadNewfeed()
 
 		
 	def quit(self):
@@ -212,16 +222,38 @@ class doFlashImage(Screen):
 		self.hide()
 		if self.Online:
 			url = self.feedurl + "/" + box + "/" + sel
-			u = urllib2.urlopen(url)
-			f = open(file_name, 'wb')
-			meta = u.info()
-			file_size = int(meta.getheaders("Content-Length")[0])
-			print "Downloading: %s Bytes: %s" % (sel, file_size)
-			job = ImageDownloadJob(url, file_name, sel)
-			job.afterEvent = "close"
-			job_manager.AddJob(job)
-			job_manager.failed_jobs = []
-			self.session.openWithCallback(self.ImageDownloadCB, JobView, job, backgroundable = False, afterEventChangeable = False)
+			if self.newfeed:
+				self.feedurl = self.newfeed[0][:-1]
+				url = self.feedurl + "/" + box + "/" + sel
+				authinfo = urllib2.HTTPPasswordMgrWithDefaultRealm()
+				authinfo.add_password(None, self.feedurl, self.newfeed[1][:-1], self.newfeed[2][:-1])
+				handler = urllib2.HTTPBasicAuthHandler(authinfo)
+				myopener = urllib2.build_opener(handler)
+				opened = urllib2.install_opener(myopener)
+				u = urllib2.urlopen(url)
+				total_size = int(u.info().getheaders("Content-Length")[0])
+				downloaded = 0
+				CHUNK = 256 * 1024
+				with open(file_name, 'wb') as fp:
+					while True:
+						chunk = u.read(CHUNK)
+						downloaded += len(chunk)
+						print "Downloading: %s Bytes of %s" % (downloaded, total_size)
+						if not chunk: break
+						fp.write(chunk)
+				self.ImageDownloadCB(False)
+			else:
+				u = urllib2.urlopen(url)
+				f = open(file_name, 'wb')
+				f.close()
+				#meta = u.info()
+				#file_size = int(meta.getheaders("Content-Length")[0])
+				#print "Downloading: %s Bytes: %s" % (sel, file_size)
+				job = ImageDownloadJob(url, file_name, sel)
+				job.afterEvent = "close"
+				job_manager.AddJob(job)
+				job_manager.failed_jobs = []
+				self.session.openWithCallback(self.ImageDownloadCB, JobView, job, backgroundable = False, afterEventChangeable = False)
 		else:
 			if sel == str(flashTmp):
 				self.Start_Flashing()
@@ -344,7 +376,17 @@ class doFlashImage(Screen):
 			url = '%s/index.php?open=%s' % (self.feedurl,box)
 			req = urllib2.Request(url)
 			try:
-				response = urllib2.urlopen(req)
+				if self.newfeed:
+					self.feedurl = self.newfeed[0][:-1]
+					url = '%s/index.php?open=%s' % (self.feedurl,box)
+					authinfo = urllib2.HTTPPasswordMgrWithDefaultRealm()
+					authinfo.add_password(None, self.feedurl, self.newfeed[1][:-1], self.newfeed[2][:-1])
+					handler = urllib2.HTTPBasicAuthHandler(authinfo)
+					myopener = urllib2.build_opener(handler)
+					opened = urllib2.install_opener(myopener)
+					response = urllib2.urlopen(url)
+				else:
+					response = urllib2.urlopen(req)
 			except urllib2.URLError as e:
 				print "URL ERROR: %s" % e
 				return
