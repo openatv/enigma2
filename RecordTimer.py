@@ -793,6 +793,7 @@ class RecordTimer(timer.Timer):
 		type = 0
 		time_match = 0
 		bt = None
+		check_offset_time = not config.recording.margin_before.value and not config.recording.margin_after.value
 		end = begin + duration
 		refstr = str(service)
 		for x in self.timer_list:
@@ -825,7 +826,13 @@ class RecordTimer(timer.Timer):
 							break
 			if check:
 				timer_end = x.end
+				timer_begin = x.begin
 				type_offset = 0
+				if not x.repeated and check_offset_time:
+					if 0 < end - timer_end <= 59:
+						timer_end = end
+					elif 0 < timer_begin - begin <= 59:
+						timer_begin = begin
 				if x.justplay:
 					type_offset = 5
 					if (timer_end - x.begin) <= 1:
@@ -878,14 +885,14 @@ class RecordTimer(timer.Timer):
 									time_match = (end2 - begin2) * 60
 									type = type_offset + 2
 				else:
-					if begin < x.begin <= end:
+					if begin < timer_begin <= end:
 						if timer_end < end: # recording within event
-							time_match = timer_end - x.begin
+							time_match = timer_end - timer_begin
 							type = type_offset + 3
 						else:           # recording last part of event
-							time_match = end - x.begin
+							time_match = end - timer_begin
 							type = type_offset + 1
-					elif x.begin <= begin <= timer_end:
+					elif timer_begin <= begin <= timer_end:
 						if timer_end < end: # recording first part of event
 							time_match = timer_end - begin
 							type = type_offset + 4
