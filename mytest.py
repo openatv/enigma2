@@ -500,8 +500,8 @@ def runScreenTest():
 	#get currentTime
 	nowTime = time()
 	wakeupList = [
-		x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
-					(session.nav.RecordTimer.getNextZapTime(), 1),
+		x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0),
+					(session.nav.RecordTimer.getNextZapTime(isWakeup=True), 1),
 					(plugins.getNextWakeupTime(), 2))
 		if x[0] != -1
 	]

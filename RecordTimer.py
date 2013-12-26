@@ -71,7 +71,7 @@ def findSafeRecordPath(dirname):
 def chechForRecordings():
 	if NavigationInstance.instance.getRecordings():
 		return True
-	rec_time = NavigationInstance.instance.RecordTimer.getNextTimerTime()
+	rec_time = NavigationInstance.instance.RecordTimer.getNextTimerTime(isWakeup=True)
 	return rec_time > 0 and (rec_time - time()) < 360
 
 # please do not translate log messages
@@ -132,7 +132,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			RecordTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
 #################################################################
 
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = True, record_ecm = False, always_zap = False):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = True, record_ecm = False, always_zap = False, zap_wakeup = "always"):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 
 		if checkOldTimers == True:
@@ -158,6 +158,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.start_prepare = 0
 		self.justplay = justplay
 		self.always_zap = always_zap
+		self.zap_wakeup = zap_wakeup
 		self.afterEvent = afterEvent
 		self.dirname = dirname
 		self.dirnameHadToFallback = False
@@ -344,13 +345,14 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				return True
 			if self.justplay:
 				if Screens.Standby.inStandby:
-					self.log(11, "wakeup and zap")
-					RecordTimerEntry.setWasInStandby()
-					#set service to zap after standby
-					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
-					Screens.Standby.inStandby.paused_service = None
-					#wakeup standby
-					Screens.Standby.inStandby.Power()
+					if RecordTimerEntry.wasInDeepStandby and self.zap_wakeup in ("always", "from_deep_standby") or self.zap_wakeup in ("always", "from_standby"):
+						self.log(11, "wakeup and zap")
+						RecordTimerEntry.setWasInStandby()
+						#set service to zap after standby
+						Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
+						Screens.Standby.inStandby.paused_service = None
+						#wakeup standby
+						Screens.Standby.inStandby.Power()
 				else:
 					if RecordTimerEntry.wasInDeepStandby:
 						RecordTimerEntry.setWasInStandby()
@@ -366,7 +368,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						config.misc.standbyCounter.value = 0
 					else:
 						Notifications.AddNotification(Screens.Standby.Standby, StandbyCounterIncrease=False)
-
 				record_res = self.record_service.start()
 				
 				if record_res:
@@ -511,6 +512,7 @@ def createTimer(xml):
 	disabled = long(xml.get("disabled") or "0")
 	justplay = long(xml.get("justplay") or "0")
 	always_zap = long(xml.get("always_zap") or "0")
+	zap_wakeup = str(xml.get("zap_wakeup") or "always")
 	afterevent = str(xml.get("afterevent") or "nothing")
 	afterevent = {
 		"nothing": AFTEREVENT.NONE,
@@ -538,7 +540,7 @@ def createTimer(xml):
 
 	name = xml.get("name").encode("utf-8")
 	#filename = xml.get("filename").encode("utf-8")
-	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm, always_zap = always_zap)
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm, always_zap = always_zap, zap_wakeup = zap_wakeup)
 	entry.repeated = int(repeated)
 	
 	for l in xml.findall("log"):
@@ -703,6 +705,7 @@ class RecordTimer(timer.Timer):
 			list.append(' disabled="' + str(int(timer.disabled)) + '"')
 			list.append(' justplay="' + str(int(timer.justplay)) + '"')
 			list.append(' always_zap="' + str(int(timer.always_zap)) + '"')
+			list.append(' zap_wakeup="' + str(timer.zap_wakeup) + '"')
 			list.append(' descramble="' + str(int(timer.descramble)) + '"')
 			list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
 			list.append('>\n')
@@ -730,10 +733,10 @@ class RecordTimer(timer.Timer):
 		file.close()
 		os.rename(self.Filename + ".writing", self.Filename)
 
-	def getNextZapTime(self):
+	def getNextZapTime(self, isWakeup=False):
 		now = time()
 		for timer in self.timer_list:
-			if not timer.justplay or timer.begin < now:
+			if not timer.justplay or timer.begin < now or isWakeup and timer.zap_wakeup in ("from_standby", "never"):
 				continue
 			return timer.begin
 		return -1
@@ -747,11 +750,11 @@ class RecordTimer(timer.Timer):
 			return next_act
 		return -1
 
-	def getNextTimerTime(self):
+	def getNextTimerTime(self, isWakeup=False):
 		now = time()
 		for timer in self.timer_list:
 			next_act = timer.getNextActivation()
-			if next_act < now:
+			if next_act < now or isWakeup and timer.justplay and timer.zap_wakeup in ("from_standby", "never"):
 				continue
 			return next_act
 		return -1
