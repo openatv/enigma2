@@ -97,7 +97,6 @@ def InitUsageConfig():
 		("swapstop", _("Move PiP to main picture")), ("stop", _("Stop PiP")) ])
 	config.usage.pip_hideOnExit = ConfigSelection(default = "no", choices = [
 		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup")) ])
-
 	if not os.path.exists(resolveFilename(SCOPE_HDD)):
 		try:
 			os.mkdir(resolveFilename(SCOPE_HDD),0755)
@@ -109,8 +108,13 @@ def InitUsageConfig():
 		config.usage.default_path.setValue(tmpvalue + '/')
 		config.usage.default_path.save()
 	def defaultpathChanged(configElement):
+		tmpvalue = config.usage.default_path.getValue()
+		try:
+			if not os.path.exists(tmpvalue):
+				os.system("mkdir -p %s" %tmpvalue)
+		except:
+			print "Failed to create recording path: %s" %tmpvalue
 		if not config.usage.default_path.getValue().endswith('/'):
-			tmpvalue = config.usage.default_path.getValue()
 			config.usage.default_path.setValue(tmpvalue + '/')
 			config.usage.default_path.save()
 	config.usage.default_path.addNotifier(defaultpathChanged, immediate_feedback = False)
