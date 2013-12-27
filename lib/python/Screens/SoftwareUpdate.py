@@ -248,7 +248,7 @@ class UpdatePlugin(Screen):
 				try:
 					config.softwareupdate.updateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + getImageVersionString() + "/status").read())
 				except:
-					config.softwareupdate.updateisunstable.setValue(1)
+					config.softwareupdate.updateisunstable.setValue('1')
 				socket.setdefaulttimeout(currentTimeoutDefault)
 				self.total_packages = None
 				if config.softwareupdate.updateisunstable.getValue() == '1' and config.softwareupdate.updatebeta.getValue():
