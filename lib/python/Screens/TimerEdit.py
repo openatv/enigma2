@@ -324,6 +324,8 @@ class TimerEditList(Screen):
 			self.updateState()
 
 	def MoveToTrash(self, trashpath):
+		if not os.path.exists(trashpath):
+			os.system("mkdir -p %s" %trashpath)
 		self.removeTimer(True)
 		moviepath = os.path.normpath(resolveFilename(SCOPE_HDD))
 		movedList =[]
