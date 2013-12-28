@@ -508,9 +508,10 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		int fd = open(filename,O_RDONLY);
 		if (fd >= 0)
 		{
-			char tmp[128*1024];
+			char* tmp = new char[128*1024];
 			ret = read(fd, tmp, 128*1024);
 			close(fd);
+			delete [] tmp;
 		}
 		if ( ret == -1 ) // this is a "REAL" VCD
 			uri = g_strdup_printf ("vcd://");
@@ -2125,13 +2126,6 @@ void eServiceMP3::gstCBsubtitleAvail(GstElement *subsink, GstBuffer *buffer, gpo
 		if (buffer) gst_buffer_unref(buffer);
 		return;
 	}
-#if GST_VERSION_MAJOR < 1
-	guint8 *label = GST_BUFFER_DATA(buffer);
-#else
-	guint8 label[32] = {0};
-	gst_buffer_extract(buffer, 0, label, sizeof(label));
-#endif
-	eDebug("gstCBsubtitleAvail: %s", (const char*)label);
 	_this->m_pump.send(new GstMessageContainer(2, NULL, NULL, buffer));
 }
 
