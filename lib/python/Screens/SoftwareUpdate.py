@@ -91,8 +91,11 @@ class SoftwareUpdateChanges(Screen):
 					releasever = releasever[2].replace(':',"")
 				else:
 					releasever = releasever[0].replace(':',"")
-
-			while int(releasever) > int(getBuildVersionString()):
+			if self.logtype == 'oe':
+				imagever = getBuildVersionString()
+			else:
+				imagever = int(getBuildVersionString())+805
+			while int(releasever) > int(imagever):
 				if ocram:
 					viewrelease += releasenotes[int(ver)]+'\n'+ocram+'\n'
 					ocram = ""
