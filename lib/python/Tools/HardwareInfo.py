@@ -47,3 +47,6 @@ class HardwareInfo:
 
 	def has_hdmi(self):
 		return (getBoxType() == 'ebox5000' or getBoxType().startswith('et') or getBoxType().startswith('gb') or getBoxType().startswith('iqon') or getBoxType() == 'ixussone' or getBoxType().startswith('odin') or getBoxType().startswith('tm') or getBoxType().startswith('vu') or getBoxType().startswith('venton') or getBoxType().startswith('ini') or getBoxType().startswith('xp') or getBoxType() == 'dm7020hd' or getBoxType() == 'dm800se' or getBoxType() == 'dm500hd' or (getBoxType() == 'dm8000' and HardwareInfo.device_version != None))
+
+	def has_deepstandby(self):
+		return getBoxType() != 'dm800'
