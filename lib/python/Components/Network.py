@@ -8,7 +8,6 @@ from Plugins.Plugin import PluginDescriptor
 class Network:
 	def __init__(self):
 		self.ifaces = {}
-		self.configuredInterfaces = []
 		self.configuredNetworkAdapters = []
 		self.NetworkState = 0
 		self.DnsState = 0
@@ -681,7 +680,22 @@ class Network:
 		if self.config_ready is not None:
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKCONFIG_READ):
 				p(reason=self.config_ready)
-	
+
+	def hotplug(self, event):
+		interface = event['INTERFACE']
+		if self.isBlacklisted(interface):
+			return
+		action = event['ACTION']
+		if action == "add":
+			print "[Network] Add new interface:", interface
+			self.getAddrInet(interface, None)
+		elif action == "remove":
+			print "[Network] Removed interface:", interface
+			try:
+				del self.ifaces[interface]
+			except KeyError:
+				pass
+
 iNetwork = Network()
 
 def InitNetwork():
