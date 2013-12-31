@@ -172,7 +172,11 @@ def InitUsageConfig():
 	nims = [("-1", _("auto"))]
 	for x in nimmanager.nim_slots:
 		nims.append((str(x.slot), x.getSlotName()))
-	config.usage.frontend_priority = ConfigSelection(default = "-1", choices = nims)
+	try:
+		config.usage.frontend_priority = ConfigSelection(default = "0", choices = nims)
+	except:
+		config.usage.frontend_priority = ConfigSelection(default = "-1", choices = nims)
+	
 	config.misc.disable_background_scan = ConfigYesNo(default = False)
 
 	config.usage.jobtaksextensions = ConfigYesNo(default = True)
