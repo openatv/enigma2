@@ -381,6 +381,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			self.session.pip.show()
 			self.session.pipshown = True
 			self.session.pip.playService(slist.getCurrentSelection())
+			self.session.pip.servicePath = slist.getCurrentServicePath()
 
 	def swapPiP(self):
 		pass
