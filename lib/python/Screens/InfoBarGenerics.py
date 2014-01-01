@@ -580,7 +580,8 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN:
-			if config.plisettings.InfoBarEpg_mode.getValue() == "2":
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup().toString()
+			if config.plisettings.InfoBarEpg_mode.getValue() == "2" and not ref[1:].startswith(":0:0:0:0:0:0:0:0:0:"):
 				self.openInfoBarEPG()
 			else:
 				self.hide()
