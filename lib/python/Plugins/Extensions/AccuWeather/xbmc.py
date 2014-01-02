@@ -336,6 +336,8 @@ class MeteoMain(Screen):
 		url2 = '906057' # Stockholm
 	elif about.getHardwareTypeString() == "INI-5000R":
 		url2 = '2122265' # Moskwa
+	elif about.getHardwareTypeString() == "INI-7012AU" or about.getHardwareTypeString() == "INI-7000AU":
+		url2 = '1105779' # Sydney
 	else:
 		url2 = '638242' # Berlin
 	    
