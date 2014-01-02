@@ -1,4 +1,5 @@
 from Screens.Screen import Screen
+from Components.About import about
 from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
@@ -42,7 +43,7 @@ class Standby2(Screen):
 
 		print "enter standby"
 		# Venton series	new vfd
-		if open("/proc/stb/info/boxtype").read().strip() == "ini-7012":
+		if about.getHardwareTypeString().lower() == "ini-7012" or about.getHardwareTypeString().lower() == "ini-7012au":
 			if path.exists("/proc/stb/lcd/symbol_scrambled"):
 				open("/proc/stb/lcd/symbol_scrambled", "w").write("0")
 		

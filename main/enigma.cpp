@@ -359,7 +359,11 @@ const char *getMachineBrand()
 		else if((strcmp(boxtype_name, "ini-1000de\n") == 0) || (strcmp(boxtype_name, "ini-9000de\n") == 0))
 		{
 			return "GI";
-		}		
+		}
+		else if((strcmp(boxtype_name, "ini-7000au\n") == 0) || (strcmp(boxtype_name, "ini-7012au\n") == 0))
+		{
+			return "Beyonwiz";
+		}
 		else if((strcmp(boxtype_name, "xp1000s\n") == 0))
 		{
 			return "Octagon";
@@ -430,7 +434,15 @@ const char *getMachineName()
 		else if(strcmp(boxtype_name, "ini-9000de\n") == 0) 
 		{
 			return "Xpeed LX-3";
-		}		
+		}
+		else if(strcmp(boxtype_name, "ini-7000au\n") == 0) 
+		{
+			return "T3";
+		}
+		else if(strcmp(boxtype_name, "ini-7012au\n") == 0) 
+		{
+			return "T3";
+		}
 		else if(strcmp(boxtype_name, "xp1000s\n") == 0) 
 		{
 			return "SF8 HD";

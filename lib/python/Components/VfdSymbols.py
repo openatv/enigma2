@@ -3,6 +3,7 @@ from config import config
 from enigma import eDBoxLCD, eTimer, iPlayableService, iServiceInformation
 import NavigationInstance
 from Tools.Directories import fileExists
+from Components.About import about
 from Components.ParentalControl import parentalControl
 from Components.ServiceEventTracker import ServiceEventTracker
 
@@ -44,10 +45,7 @@ class SymbolsCheckPoller:
 
 	def __evUpdatedInfo(self):
 		self.service = self.session.nav.getCurrentService()
-		f = open("/proc/stb/info/boxtype", 'r')
-		model = f.read().strip()
-		f.close()
-		if model == "ini-7012":
+		if about.getHardwareTypeString().lower() == "ini-7012" or about.getHardwareTypeString().lower() == "ini-7012au":
 			self.Resolution()
 			self.Audio()
 		self.Subtitle()
