@@ -129,7 +129,7 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_INI2
 			elif model == 'ini-1000sv' or model == 'ini-5000sv' or model == 'ini-9000sv':
 				self.currentRcType = self.RCTYPE_INI3
-			elif model == 'ini-1000de' or model == 'ini-9000de' or model == 'ini-9000ru':
+			elif model == 'ini-1000de' or model == 'ini-9000de' or model == 'ini-9000ru' or model == 'ini-7012au':
 				self.currentRcType = self.RCTYPE_INI4
 			elif getBoxType() == 'odinm6' or getMachineName() == 'AX-Odin':
 				self.currentRcType = self.RCTYPE_ODINM6
