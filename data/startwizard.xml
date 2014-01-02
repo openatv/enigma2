@@ -65,7 +65,7 @@ self.selectKey("DOWN")
 from Components.NimManager import nimmanager
 self.condition = len(nimmanager.nim_slots) > 0 and not nimmanager.nim_slots[0].empty
 			</condition>
-			<text value="Please set up tuner A" />
+			<text value="Please set up tuner A\n\n**Important** Please scroll to location and select your location using Left / Right Arrow on your %s %s remote and then press ok, repeat for all tuners. If your location is not listed or you do not find all the channels please select Australia as your location." />
 			<config screen="NimSetup" module="Satconfig" args="0" type="ConfigList" />
 			<code>
 self.clearSelectedKeys()
