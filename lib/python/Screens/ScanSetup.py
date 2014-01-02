@@ -996,10 +996,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			else:
 				self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 
-	def startScanCallback(self, answer):
+	def startScanCallback(self, answer=True):
 		if answer:
 			self.doCloseRecursive()
-
+			
 	def keyCancel(self):
 		self.session.nav.playService(self.session.postScanService)
 		for x in self["config"].list:
@@ -1027,7 +1027,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Scan"))
-
+		
 		self["actions"] = ActionMap(["SetupActions", "MenuActions", "ColorActions"],
 		{
 			"ok": self.keyGo,
