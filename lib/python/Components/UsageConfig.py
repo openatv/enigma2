@@ -660,35 +660,20 @@ def InitUsageConfig():
 					("2", _("with exit button")),
 					("3", _("with left/right buttons"))])
 	if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
-		if getBoxType() == 'dm800' or getBoxType() == 'dm800se' or getBoxType() == 'dm500hd' or getBoxType() == 'azboxminime'  or getBoxType() == 'azboxhd':				
-			config.plisettings.PLIEPG_mode = ConfigSelection(default="pliepg", choices = [
-						("pliepg", _("Show Graphical EPG")),
-						("single", _("Show Single EPG")),
-						("multi", _("Show Multi EPG")),
-						("eventview", _("Show Eventview")),
-						("merlinepgcenter", _("Show Merlin EPG Center")),
-						("cooltvguide", _("Show CoolTVGuide"))])
-			config.plisettings.PLIINFO_mode = ConfigSelection(default="eventview", choices = [
-						("eventview", _("Show Eventview")),
-						("epgpress", _("Show EPG")),
-						("single", _("Show Single EPG")),
-						("coolsingleguide", _("Show CoolSingleGuide")),
-						("coolinfoguide", _("Show CoolInfoGuide"))])
-		else:
-			config.plisettings.PLIEPG_mode = ConfigSelection(default="cooltvguide", choices = [
-						("pliepg", _("Show Graphical EPG")),
-						("single", _("Show Single EPG")),
-						("multi", _("Show Multi EPG")),
-						("eventview", _("Show Eventview")),
-						("merlinepgcenter", _("Show Merlin EPG Center")),
-						("cooltvguide", _("Show CoolTVGuide"))])
-			config.plisettings.PLIINFO_mode = ConfigSelection(default="coolinfoguide", choices = [
-						("eventview", _("Show Eventview")),
-						("epgpress", _("Show EPG")),
-						("single", _("Show Single EPG")),
-						("coolsingleguide", _("Show CoolSingleGuide")),
-						("coolinfoguide", _("Show CoolInfoGuide")),
-						("cooltvguide", _("Show CoolTVGuide"))])
+		config.plisettings.PLIEPG_mode = ConfigSelection(default="cooltvguide", choices = [
+					("pliepg", _("Show Graphical EPG")),
+					("single", _("Show Single EPG")),
+					("multi", _("Show Multi EPG")),
+					("eventview", _("Show Eventview")),
+					("merlinepgcenter", _("Show Merlin EPG Center")),
+					("cooltvguide", _("Show CoolTVGuide"))])
+		config.plisettings.PLIINFO_mode = ConfigSelection(default="coolinfoguide", choices = [
+					("eventview", _("Show Eventview")),
+					("epgpress", _("Show EPG")),
+					("single", _("Show Single EPG")),
+					("coolsingleguide", _("Show CoolSingleGuide")),
+					("coolinfoguide", _("Show CoolInfoGuide")),
+					("cooltvguide", _("Show CoolTVGuide"))])
 	else:
 		config.plisettings.PLIEPG_mode = ConfigSelection(default="pliepg", choices = [
 					("pliepg", _("Show Graphical EPG")),
