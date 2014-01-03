@@ -491,7 +491,7 @@ class ImageBackup(Screen):
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "Sogno %s" %self.MODEL
-			self.MTDKERNEL = "mtd7"	
+			self.MTDKERNEL = "mtd8"	
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/sogno/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA =  "%s/fullbackup_%s/%s/sogno" % (self.DIRECTORY, self.TYPE, self.DATE)
