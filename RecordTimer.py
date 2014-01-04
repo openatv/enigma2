@@ -851,6 +851,7 @@ class RecordTimer(timer.Timer):
 
 		isAutoTimer = False
 		bt = None
+		check_offset_time = not config.recording.margin_before.getValue() and not config.recording.margin_after.getValue()
 		end = begin + duration
 		refstr = str(service)
 		for x in self.timer_list:
@@ -887,57 +888,81 @@ class RecordTimer(timer.Timer):
 							break
 			if check:
 				timer_end = x.end
-				if x.justplay and (timer_end - x.begin) <= 1:
-					timer_end += 60
+				timer_begin = x.begin
+				type_offset = 0
+				if not x.repeated and check_offset_time:
+					if 0 < end - timer_end <= 59:
+						timer_end = end
+					elif 0 < timer_begin - begin <= 59:
+						timer_begin = begin
+				if x.justplay:
+					type_offset = 5
+					if (timer_end - x.begin) <= 1:
+						timer_end += 60
+				if x.always_zap:
+					type_offset = 10
+
 				if x.repeated != 0:
 					if bt is None:
 						bt = localtime(begin)
-						et = localtime(end)
-						bday = bt.tm_wday
-						begin2 = bday * 1440 + bt.tm_hour * 60 + bt.tm_min
-						end2   = et.tm_wday * 1440 + et.tm_hour * 60 + et.tm_min
+						bday = bt.tm_wday;
+						begin2 = 1440 + bt.tm_hour * 60 + bt.tm_min
+						end2 = begin2 + duration / 60
 					if x.repeated & (1 << bday):
 						xbt = localtime(x.begin)
 						xet = localtime(timer_end)
-						xbegin = bday * 1440 + xbt.tm_hour * 60 + xbt.tm_min
-						xend   = bday * 1440 + xet.tm_hour * 60 + xet.tm_min
+						xbegin = 1440 + xbt.tm_hour * 60 + xbt.tm_min
+						xend = xbegin + ((timer_end - x.begin) / 60)
 						if xend < xbegin:
 							xend += 1440
 						if begin2 < xbegin <= end2:
 							if xend < end2: # recording within event
 								time_match = (xend - xbegin) * 60
-								type = 3
+								type = type_offset + 3
 							else:           # recording last part of event
 								time_match = (end2 - xbegin) * 60
-								type = 1
+								type = type_offset + 1
 						elif xbegin <= begin2 <= xend:
 							if xend < end2: # recording first part of event
 								time_match = (xend - begin2) * 60
-								type = 4
+								type = type_offset + 4
 							else:           # recording whole event
 								time_match = (end2 - begin2) * 60
-								type = 2
+								type = type_offset + 2
+						elif xbt.tm_yday < xet.tm_yday:
+							xbegin -= 1440
+							xend -= 1440
+							if begin2 < xbegin <= end2:
+								if xend < end2: # recording within event
+									time_match = (xend - xbegin) * 60
+									type = type_offset + 3
+								else:           # recording last part of event
+									time_match = (end2 - xbegin) * 60
+									type = type_offset + 1
+							elif xbegin <= begin2 <= xend:
+								if xend < end2: # recording first part of event
+									time_match = (xend - begin2) * 60
+									type = type_offset + 4
+								else:           # recording whole event
+									time_match = (end2 - begin2) * 60
+									type = type_offset + 2
 				else:
-					if begin < x.begin <= end:
+					if begin < timer_begin <= end:
 						if timer_end < end: # recording within event
-							time_match = timer_end - x.begin
-							type = 3
+							time_match = timer_end - timer_begin
+							type = type_offset + 3
 						else:           # recording last part of event
-							time_match = end - x.begin
-							type = 1
-					elif x.begin <= begin <= timer_end:
+							time_match = end - timer_begin
+							type = type_offset + 1
+					elif timer_begin <= begin <= timer_end:
 						if timer_end < end: # recording first part of event
 							time_match = timer_end - begin
-							type = 4
+							type = type_offset + 4
 							if x.justplay:
-								type = 2
+								type = type_offset + 2
 						else: # recording whole event
 							time_match = end - begin
-							type = 2
-				if x.justplay:
-					type += 5
-				elif x.always_zap:
-					type += 10
+							type = type_offset + 2
 
 				if time_match:
 					returnValue = (time_match, type, isAutoTimer)

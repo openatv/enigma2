@@ -91,8 +91,11 @@ class SoftwareUpdateChanges(Screen):
 					releasever = releasever[2].replace(':',"")
 				else:
 					releasever = releasever[0].replace(':',"")
-
-			while int(releasever) > int(getBuildVersionString()):
+			if self.logtype == 'oe':
+				imagever = getBuildVersionString()
+			else:
+				imagever = int(getBuildVersionString())+805
+			while int(releasever) > int(imagever):
 				if ocram:
 					viewrelease += releasenotes[int(ver)]+'\n'+ocram+'\n'
 					ocram = ""
@@ -248,7 +251,7 @@ class UpdatePlugin(Screen):
 				try:
 					config.softwareupdate.updateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + getImageVersionString() + "/status").read())
 				except:
-					config.softwareupdate.updateisunstable.setValue(1)
+					config.softwareupdate.updateisunstable.setValue('1')
 				socket.setdefaulttimeout(currentTimeoutDefault)
 				self.total_packages = None
 				if config.softwareupdate.updateisunstable.getValue() == '1' and config.softwareupdate.updatebeta.getValue():

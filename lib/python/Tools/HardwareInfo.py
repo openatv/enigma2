@@ -55,3 +55,6 @@ class HardwareInfo:
 			return open("/proc/version","r").read().split(' ', 4)[2].split('-',2)[0]
 		except:
 			return "unknown"
+
+	def has_deepstandby(self):
+		return getBoxType() != 'dm800'

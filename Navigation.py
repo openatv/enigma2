@@ -203,8 +203,7 @@ class Navigation:
 		InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
 		if not checkParentalControl or parentalControl.isServicePlayable(ref, boundFunction(self.playService, checkParentalControl=False, forceRestart=forceRestart)):
 			if ref.flags & eServiceReference.isGroup:
-				if not oldref:
-					oldref = eServiceReference()
+				oldref = self.currentlyPlayingServiceReference or eServiceReference()
 				playref = getBestPlayableServiceReference(ref, oldref)
 				print "playref", playref
 				if playref and oldref and playref == oldref and not forceRestart:

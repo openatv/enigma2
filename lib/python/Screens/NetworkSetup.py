@@ -22,7 +22,7 @@ from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer, getBoxType, getMachineBrand, getMachineName
-from os import path as os_path, remove, unlink, rename, chmod, access, X_OK, system
+from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
 from shutil import move
 import time
 import commands
@@ -361,13 +361,8 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.createSetup()
 
 	def getmac(self, iface):
-		mac = (0,0,0,0,0,0)
-		ifconfig = commands.getoutput("ifconfig " + iface + "| grep HWaddr | awk '{ print $5 }'").strip()
-		if len(ifconfig) == 0:
-			mac = "00:00:00:00:00:00"
-		else:
-			mac = ifconfig[:17]
-		return mac
+		eth = about.getIfConfig(iface)
+		return eth['hwaddr']
 
 	def createSetup(self):
 		self.list = []
@@ -380,17 +375,29 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 		f = open('/etc/enigma2/hwmac', 'w')
 		f.write(MAC)
 		f.close()
-		route = commands.getoutput("route -n |grep UG | awk '{print $2}'")
-		system('ifconfig eth0 down')
-		system('ifconfig eth0 hw ether %s up' % MAC)
-		system('route add default gw %s eth0' % route)
-		self.close()
+		self.restartLan()
 
 	def run(self):
 		self.ok()
 
 	def cancel(self):
 		self.close()
+
+	def restartLan(self):
+		iNetwork.restartNetwork(self.restartLanDataAvail)
+		self.restartLanRef = self.session.openWithCallback(self.restartfinishedCB, MessageBox, _("Please wait while we configure your network..."), type = MessageBox.TYPE_INFO, enable_input = False)
+
+	def restartLanDataAvail(self, data):
+		if data is True:
+			iNetwork.getInterfaces(self.getInterfacesDataAvail)
+
+	def getInterfacesDataAvail(self, data):
+		if data is True:
+			self.restartLanRef.close(True)
+
+	def restartfinishedCB(self, data):
+		if data is True:
+			self.session.openWithCallback(self.close, MessageBox, _("Finished configuring your network"), type = MessageBox.TYPE_INFO, timeout = 10, default = False)
 
 class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session, networkinfo, essid=None):
