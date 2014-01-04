@@ -328,10 +328,10 @@ def InitUsageConfig():
 
 	hddchoises = [('/etc/enigma2/', 'Internal Flash')]
 	for p in harddiskmanager.getMountedPartitions():
-		d = os.path.normpath(p.mountpoint)
 		if os.path.exists(p.mountpoint):
+			d = os.path.normpath(p.mountpoint)
 			if p.mountpoint != '/':
-				hddchoises.append((d + '/', p.mountpoint))
+				hddchoises.append((p.mountpoint, d))
 	config.misc.epgcachepath = ConfigSelection(default = '/etc/enigma2/', choices = hddchoises)
 	config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
 	config.misc.epgcache_filename = ConfigText(default = (config.misc.epgcachepath.getValue() + config.misc.epgcachefilename.getValue().replace('.dat','') + '.dat'))
@@ -427,10 +427,10 @@ def InitUsageConfig():
 
 	debugpath = [('/home/root/logs/', '/home/root/')]
 	for p in harddiskmanager.getMountedPartitions():
-		d = os.path.normpath(p.mountpoint)
 		if os.path.exists(p.mountpoint):
+			d = os.path.normpath(p.mountpoint)
 			if p.mountpoint != '/':
-				debugpath.append((d + '/logs/', p.mountpoint))
+				debugpath.append((p.mountpoint + 'logs/', d))
 	config.crash.debug_path = ConfigSelection(default = "/home/root/logs/", choices = debugpath)
 
 	def updatedebug_path(configElement):
