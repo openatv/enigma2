@@ -613,14 +613,16 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		if self.session.pipshown:
 			if slist and slist.dopipzap:
 				slist.togglePipzap()
-			del self.session.pip
-			self.session.pipshown = False
+			if self.session.pipshown:
+				del self.session.pip
+				self.session.pipshown = False
 		else:
 			from Screens.PictureInPicture import PictureInPicture
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.show()
 			self.session.pipshown = True
 			self.session.pip.playService(slist.getCurrentSelection())
+			self.session.pip.servicePath = slist.getCurrentServicePath()
 
 	def swapPiP(self):
 		pass
