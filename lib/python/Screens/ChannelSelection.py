@@ -1798,6 +1798,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					if not self.session.pip.playService(nref):
 						# XXX: Make sure we set an invalid ref
 						self.session.pip.playService(None)
+					else:
+						self.servicelist.setPlayableIgnoreService(self.session.pip.getCurrentService())
 				else:
 					self.setStartRoot(self.curRoot)
 					self.setCurrentSelection(ref)
