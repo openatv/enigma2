@@ -385,7 +385,7 @@ class GeneralSetup(Screen):
 		elif item[0] == _("AV Setup"):
 			self.Qavsetup()
 ######## Select Tuner Setup Menu ##############################
-		elif item[0] == _("Antena Setup"):
+		elif item[0] == _("Antenna Setup"):
 			self.Qtuner()
 ######## Select Software Manager Menu ##############################
 		elif item[0] == _("Software Manager"):
