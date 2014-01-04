@@ -33,7 +33,7 @@ if [ -x @bindir@/enigma2_pre_start.sh ]; then
 fi
 
 stbcheck=`cat /proc/stb/info/hwmodel| cut -c1-8`
-if [ $stbcheck = "optimuss" ]; then
+if [ $stbcheck == "optimuss" ]; then
  string=`mount | grep 'sda1' | cut -c21-23` 
  if [ -e /media/$string/sat-soft/settings.sh ]; then
   chmod 755 /media/$string/sat-soft/settings.sh
