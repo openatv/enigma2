@@ -741,6 +741,139 @@ class ConfigMAC(ConfigSequence):
 	def __init__(self, default):
 		ConfigSequence.__init__(self, seperator = ":", limits = mac_limits, default = default)
 
+class ConfigMacText(ConfigElement, NumericalTextInput):
+	def __init__(self, default = "", visible_width = False):
+		ConfigElement.__init__(self)
+		NumericalTextInput.__init__(self, nextFunc = self.nextFunc, handleTimeout = False)
+
+		self.marked_pos = 0
+		self.allmarked = (default != "")
+		self.fixed_size = 17
+		self.visible_width = visible_width
+		self.offset = 0
+		self.overwrite = 17
+		self.help_window = None
+		self.value = self.last_value = self.default = default
+		self.useableChars = ('0123456789ABCDEF')
+
+	def validateMarker(self):
+		textlen = len(self.text)
+		if self.marked_pos > textlen-1:
+			self.marked_pos = textlen-1
+		elif self.marked_pos < 0:
+			self.marked_pos = 0
+
+	def insertChar(self, ch, pos, owr):
+		if self.text[pos] == ':':
+			pos += 1
+		if owr or self.overwrite:
+			self.text = self.text[0:pos] + ch + self.text[pos + 1:]
+		elif self.fixed_size:
+			self.text = self.text[0:pos] + ch + self.text[pos:-1]
+		else:
+			self.text = self.text[0:pos] + ch + self.text[pos:]
+
+	def handleKey(self, key):
+		if key == KEY_LEFT:
+			self.timeout()
+			if self.allmarked:
+				self.marked_pos = len(self.text)
+				self.allmarked = False
+			else:
+				if self.text[self.marked_pos-1] == ':':
+					self.marked_pos -= 2
+				else:
+					self.marked_pos -= 1
+		elif key == KEY_RIGHT:
+			self.timeout()
+			if self.allmarked:
+				self.marked_pos = 0
+				self.allmarked = False
+			else:
+				if self.marked_pos < (len(self.text)-1):
+					if self.text[self.marked_pos+1] == ':':
+						self.marked_pos += 2
+					else:
+						self.marked_pos += 1
+		elif key in KEY_NUMBERS:
+			owr = self.lastKey == getKeyNumber(key)
+			newChar = self.getKey(getKeyNumber(key))
+			self.insertChar(newChar, self.marked_pos, owr)
+		elif key == KEY_TIMEOUT:
+			self.timeout()
+			if self.help_window:
+				self.help_window.update(self)
+			if self.text[self.marked_pos] == ':':
+				self.marked_pos += 1
+			return
+
+		if self.help_window:
+			self.help_window.update(self)
+		self.validateMarker()
+		self.changed()
+
+	def nextFunc(self):
+		self.marked_pos += 1
+		self.validateMarker()
+		self.changed()
+
+	def getValue(self):
+		try:
+			return self.text.encode("utf-8")
+		except UnicodeDecodeError:
+			print "Broken UTF8!"
+			return self.text
+
+	def setValue(self, val):
+		try:
+			self.text = val.decode("utf-8")
+		except UnicodeDecodeError:
+			self.text = val.decode("utf-8", "ignore")
+			print "Broken UTF8!"
+
+	value = property(getValue, setValue)
+	_value = property(getValue, setValue)
+
+	def getText(self):
+		return self.text.encode("utf-8")
+
+	def getMulti(self, selected):
+		if self.visible_width:
+			if self.allmarked:
+				mark = range(0, min(self.visible_width, len(self.text)))
+			else:
+				mark = [self.marked_pos-self.offset]
+			return ("mtext"[1-selected:], self.text[self.offset:self.offset+self.visible_width].encode("utf-8")+" ", mark)
+		else:
+			if self.allmarked:
+				mark = range(0, len(self.text))
+			else:
+				mark = [self.marked_pos]
+			return ("mtext"[1-selected:], self.text.encode("utf-8")+" ", mark)
+
+	def onSelect(self, session):
+		self.allmarked = (self.value != "")
+		if session is not None:
+			from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
+			self.help_window = session.instantiateDialog(NumericalTextInputHelpDialog, self)
+			self.help_window.show()
+
+	def onDeselect(self, session):
+		self.marked_pos = 0
+		self.offset = 0
+		if self.help_window:
+			session.deleteDialog(self.help_window)
+			self.help_window = None
+		if not self.last_value == self.value:
+			self.changedFinal()
+			self.last_value = self.value
+
+	def getHTML(self, id):
+		return '<input type="text" name="' + id + '" value="' + self.value + '" /><br>\n'
+
+	def unsafeAssign(self, value):
+		self.value = str(value)
+
 class ConfigPosition(ConfigSequence):
 	def __init__(self, default, args):
 		ConfigSequence.__init__(self, seperator = ",", limits = [(0,args[0]),(0,args[1]),(0,args[2]),(0,args[3])], default = default)
@@ -1109,7 +1242,7 @@ class ConfigNumber(ConfigText):
 					return
 			else:
 				ascii = getKeyNumber(key) + 48
-  			newChar = unichr(ascii)
+			newChar = unichr(ascii)
 			if self.allmarked:
 				self.deleteAllChars()
 				self.allmarked = False

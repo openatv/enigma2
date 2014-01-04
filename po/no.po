@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-21 18:54+0100\n"
-"PO-Revision-Date: 2014-01-01 19:22+0100\n"
+"PO-Revision-Date: 2014-01-03 04:41+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Stig-O\n"
 "Language: nb_NO\n"
@@ -498,7 +498,7 @@ msgstr "720p 24Hz"
 
 #
 msgid "<Current movielist location>"
-msgstr "<Gjeldende filmliste sted>"
+msgstr "<Gjeldende filmliste plassering>"
 
 #
 msgid "<Default movie location>"
@@ -521,7 +521,7 @@ msgid "A"
 msgstr "A"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr "En bakgrunn oppdatering pågår, vennligst vent et par minutter og prøv igjen."
+msgstr "En bakgrunnsoppdatering pågår, vennligst vent et par minutter og prøv igjen."
 
 #, python-format
 msgid ""
@@ -590,7 +590,7 @@ msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"En avluttet timer ønsker å sett din\n"
+"En avluttet timer ønsker å sette din\n"
 "%s %s i dvalemodus. Skal det gjøres nå ?"
 
 #
@@ -776,7 +776,7 @@ msgid "Add Timer"
 msgstr "Legg til Timer"
 
 msgid "Add a auto timer for current event"
-msgstr "Lag et auto timer for aktuelle program"
+msgstr "Lag en auto timer for aktuelle program"
 
 #
 msgid "Add a mark"
@@ -795,7 +795,7 @@ msgid "Add a record timer"
 msgstr "Legge til timer"
 
 msgid "Add a record timer for current event"
-msgstr "Lag en timer for aktuellet program"
+msgstr "Lag en timer for aktuelle program"
 
 msgid "Add a zap timer for current event"
 msgstr "Legg til zap timer for nåværende program"
@@ -841,7 +841,7 @@ msgstr "Legg til kanal"
 
 #
 msgid "Add timer"
-msgstr "Legge til timer"
+msgstr "Legg til timer"
 
 #
 msgid "Add title"
@@ -849,17 +849,17 @@ msgstr "Legg til tittel"
 
 #
 msgid "Add to bouquet"
-msgstr "Legge til i bouquet"
+msgstr "Legg til i bouquet"
 
 #
 msgid "Add to favourites"
-msgstr "Legge til i favoritter"
+msgstr "Legg til i favoritter"
 
 msgid "Add/Remove timer for current event"
-msgstr "Legg til/fjern timer for aktuellet program"
+msgstr "Legg til/fjern timer for aktuelle program"
 
 msgid "Add/remove timer for current event"
-msgstr "Legg til/fjern timer  for aktuellet program"
+msgstr "Legg til/fjern timer  for aktuelle program"
 
 msgid "Adding schedule..."
 msgstr "Legg til planlagt oppgave..."
@@ -986,7 +986,7 @@ msgstr "Lar deg vise/skjule OScam under utvidelser (blå knapp)."
 
 #
 msgid "Alpha"
-msgstr "Alpha"
+msgstr "Alfa"
 
 msgid "Alphanumeric"
 msgstr "Alfanumerisk"
@@ -1012,7 +1012,7 @@ msgid "Always hide infobar"
 msgstr "Skjul alltid linfovinduet"
 
 msgid "Always show bouquets"
-msgstr "Vis alltid buketter"
+msgstr "Vis alltid favoritter"
 
 #
 msgid "An empty filename is illegal."
@@ -1356,7 +1356,7 @@ msgid "Black screen"
 msgstr "Sort skjerm"
 
 msgid "Black screen till locked"
-msgstr "Svart skjerm till låst"
+msgstr "Sort skjerm til låst"
 
 #
 msgid "Block noise reduction"
@@ -1376,7 +1376,7 @@ msgid "Boost green"
 msgstr "Grønn farge økning"
 
 msgid "Bouquet List"
-msgstr "Bukett liste"
+msgstr "Favoritt liste"
 
 #
 msgid "Brightness"
@@ -3883,9 +3883,8 @@ msgstr "Inaktiv tid:"
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr "Hvis det er aktivert vil utgangsoppløsningen på boksen prøve å matche oppløsningen på videoinnhold"
 
-#, fuzzy
 msgid "If enabled the video wil always be de-interlaced."
-msgstr "Hvis den er aktivert vil videoen alltid bli deinterlaced."
+msgstr "Hvis aktivert, vil videoen alltid bli deinterlaced."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Hvis logger bruker maksimal plass vil den eldste bli slettet."
@@ -5498,9 +5497,8 @@ msgstr "Pause filem ved slutt"
 msgid "Pause playback"
 msgstr "Pause avspilling"
 
-#, fuzzy
 msgid "Peak load (max queued requests per workerthread)"
-msgstr "Peak belastning (maks kø forespørsler per arbeidstråd)"
+msgstr "Peak belastning (maks forespørsler i kø per arbeidstråd)"
 
 msgid "Percentage"
 msgstr "Prosent"
@@ -5563,9 +5561,8 @@ msgid "Picture in graphics"
 msgstr "Bilde i grafikk"
 
 #
-#, fuzzy
 msgid "Picture player"
-msgstr "Bilde viser"
+msgstr "Bildeviser"
 
 #
 #. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
@@ -6067,13 +6064,11 @@ msgstr "Forhåndsvis valgt kanal"
 msgid "Primary DNS"
 msgstr "Primær DNS"
 
-#, fuzzy
 msgid "Primetime hour"
-msgstr "Primetime hour"
+msgstr "Primetime time"
 
-#, fuzzy
 msgid "Primetime minute"
-msgstr "Primetime minute"
+msgstr "Primetime minutt"
 
 #
 msgid "Priority"
@@ -6427,9 +6422,8 @@ msgid "Renamed %s!"
 msgstr "Endre navn %s!"
 
 #
-#, fuzzy
 msgid "Repeat"
-msgstr "Gjentagelser"
+msgstr "Gjentagelse"
 
 msgid "Repeat Display Message"
 msgstr "Gjenta display melding"
@@ -6945,9 +6939,8 @@ msgstr "Velg tilbyder å legge til..."
 msgid "Select refresh rate"
 msgstr "Velg oppfriskningsrate"
 
-#, fuzzy
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
-msgstr "Velg søkebar for å bli aktivert av pil V/H (lang) eller << >> (lang)."
+msgstr "Velg søkefelt for å bli aktivert av pil V/H (lang) eller << >> (lang)."
 
 #
 msgid "Select service to add..."
@@ -7174,9 +7167,8 @@ msgstr "Angi tidsforsinkelsen mellom gjentatte looper, dette bruker en programva
 msgid "Set the description of the recording."
 msgstr "Angi en beskrivelse av opptaket."
 
-#, fuzzy
 msgid "Set the jump-size of the seekbar."
-msgstr "Angi en hoppe størrelsen på søkebaren."
+msgstr "Angi hoppestørrelsen på søkefeltet."
 
 msgid "Set the name the recording will get."
 msgstr "Angi navnet opptaket vil få."
@@ -7265,14 +7257,12 @@ msgid "Setup the interval to check for online updates. (in hours)"
 msgstr "Oppsett av intervallet for å sjekke etter oppdateringer på nettet. (i timer)"
 
 #
-#, fuzzy
 msgid "Setup your positioner"
-msgstr "Oppsettet din positioner"
+msgstr "Konfigurer din positioner."
 
 #
-#, fuzzy
 msgid "Setup your satellite equipment"
-msgstr "Oppsettet ditt satellitt utstyr"
+msgstr "Konfigurer ditt satellitt utstyr."
 
 msgid "Setup your timezone."
 msgstr "Angi din tidssone."
@@ -7358,9 +7348,8 @@ msgstr "Vis PVR status i mediaspillerens infolinjen"
 msgid "Show RFmod setup..."
 msgstr "Vis RFmod oppsett..."
 
-#, fuzzy
 msgid "Show Readers/Proxies"
-msgstr "Vis Leser/Proxies"
+msgstr "Vis Lesere/Proxies"
 
 #
 msgid "Show SD as"
@@ -7502,9 +7491,8 @@ msgid "Show screensaver"
 msgstr "Vis skjermsparer"
 
 #
-#, fuzzy
 msgid "Show second infobar"
-msgstr "Vis andre infolinjen"
+msgstr "Vis sekundær infolinje"
 
 #
 msgid "Show service type icons"
@@ -7567,9 +7555,8 @@ msgstr "Vis transponder gjenværende/medgått som"
 msgid "Show warning when timeshift is stopped"
 msgstr "Vis advarsel når timeshift er stoppet"
 
-#, fuzzy
 msgid "Shows the icons when new/unseen, else will not show an icon."
-msgstr "Viser ikonene på nye/usette, ellers ikke vise ikon."
+msgstr "Viser ikonene hvis nye/usette, ellers ikke vise ikon."
 
 #
 msgid "Shows the state of your wireless LAN connection.\n"
@@ -7683,9 +7670,8 @@ msgstr "Hoppe over sjekk av internettforbindelse (deaktiverer automatisk pakke i
 msgid "Sleep delay"
 msgstr "Sleep forsinkelse"
 
-#, fuzzy
 msgid "Slide picture in loop"
-msgstr "Lysbilde i sløyfe"
+msgstr "Skyv bilde i loop"
 
 #
 msgid "Slide show interval (sec.)"
@@ -7707,9 +7693,8 @@ msgstr "Slovensk"
 msgid "Slow"
 msgstr "Langsom"
 
-#, fuzzy
 msgid "Slow motion speeds"
-msgstr "Hastigheter ved sen fart"
+msgstr "Sakte fart hastighet"
 
 #
 msgid "Small progress"
@@ -7817,9 +7802,8 @@ msgid "Sound"
 msgstr "Lyd"
 
 #
-#, fuzzy
 msgid "Sound carrier"
-msgstr "Tonebærer"
+msgstr "Lydoperatør"
 
 msgid "Source request"
 msgstr "Kilde forespørsel"
@@ -7864,9 +7848,8 @@ msgstr "Start"
 msgid "Start from the beginning"
 msgstr "Start fra begynnelsen"
 
-#, fuzzy
 msgid "Start offline decode"
-msgstr "Begynn offline dekode"
+msgstr "Begynn offline dekoding"
 
 #
 msgid "Start recording?"
@@ -8589,9 +8572,8 @@ msgstr "Med dette alternativet kan du justere gjennomsiktigheten til brukergrens
 msgid "This option lets you choose the 3D mode"
 msgstr "Dette alternativet lar deg velge 3D-modus"
 
-#, fuzzy
 msgid "This option lets you show the option in the extension screen"
-msgstr "Dette alternativet lar deg vise mulighetene til forlengelses bildet"
+msgstr "Dette alternativet lar deg vise alternativet i tilleggsskjerm"
 
 msgid "This option moves the PVR status from the seprate window into the MoviePlayer infobar."
 msgstr "Dette alternativet flytter PVR status fra ett seprate vinduet og inn i filmavspillerens infolinjen."
@@ -11319,7 +11301,7 @@ msgid "show alternatives"
 msgstr "vis alternativer"
 
 msgid "show cards with uphop 0"
-msgstr "vise kortene med uphop 0"
+msgstr "vise kortene med uphop "
 
 msgid "show cards with uphop 1"
 msgstr "vise kortene med uphop 1"
