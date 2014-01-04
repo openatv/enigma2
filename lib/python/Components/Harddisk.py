@@ -686,13 +686,13 @@ class HarddiskManager:
 			for fil in netmount:
 				if os.path.ismount('/media/net/' + fil):
 					print "new Network Mount", fil, '->', os.path.join('/media/net/',fil)
-					self.partitions.append(Partition(mountpoint = os.path.join('/media/net/',fil), description = fil))
+					self.partitions.append(Partition(mountpoint = os.path.join('/media/net/',fil + '/'), description = fil))
 		autofsmount = (os.path.exists('/media/autofs') and os.listdir('/media/autofs')) or ""
 		if len(autofsmount) > 0:
 			for fil in autofsmount:
 				if os.path.ismount('/media/autofs/' + fil) or os.path.exists('/media/autofs/' + fil):
 					print "new Network Mount", fil, '->', os.path.join('/media/autofs/',fil)
-					self.partitions.append(Partition(mountpoint = os.path.join('/media/autofs/',fil), description = fil))
+					self.partitions.append(Partition(mountpoint = os.path.join('/media/autofs/',fil + '/'), description = fil))
 		if os.path.ismount('/media/hdd') and '/media/hdd/' not in [p.mountpoint for p in self.partitions]:
 			print "new Network Mount being used as HDD replacement -> /media/hdd/"
 			self.partitions.append(Partition(mountpoint = '/media/hdd/', description = '/media/hdd'))
