@@ -566,7 +566,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarScreenSaver, InfoBarA
 			menu.append((_("Save playlist"), "saveplaylist"));
 			menu.append((_("Delete saved playlist"), "deleteplaylist"));
 			menu.append((_("Edit settings"), "settings"))
-		self.timerHideMediaPlayerInfoBar()
+		#self.timerHideMediaPlayerInfoBar()
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 
 	def menuCallback(self, choice):
