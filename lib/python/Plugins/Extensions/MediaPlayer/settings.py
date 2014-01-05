@@ -115,8 +115,12 @@ class MediaPlayerSettings(Screen,ConfigListScreen):
 
 	def ok(self):
 		if self["config"].getCurrent()[1] == config.mediaplayer.defaultDir:
-			self.session.openWithCallback(self.DirectoryBrowserClosed, DirectoryBrowser, self.parent.filelist.getCurrentDirectory())
-
+			try:
+				self.session.openWithCallback(self.DirectoryBrowserClosed, DirectoryBrowser, self.parent.filelist.getCurrentDirectory())
+				
+			except: ## CALL from SETUP
+				self.session.openWithCallback(self.DirectoryBrowserClosed, DirectoryBrowser, config.mediaplayer.defaultDir.getValue())
+				
 	def DirectoryBrowserClosed(self, path):
 		print "PathBrowserClosed:" + str(path)
 		if path != False:
