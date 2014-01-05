@@ -1895,7 +1895,7 @@ class InfoBarPiP:
 		if not self.session.pipshown:
 			self.showPiP()
 		slist = self.servicelist
-		if slist:
+		if slist and self.session.pipshown:
 			slist.togglePipzap()
 			currentServicePath = self.servicelist.getCurrentServicePath()
 			self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
