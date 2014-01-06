@@ -2324,11 +2324,11 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 			return 0;
 		}
 		score = 2;
-		if (parm.system == eDVBFrontendParametersTerrestrial::System_DVB_T && can_handle_dvbt2)
-		{
-			/* prefer to use a T tuner, try to keep T2 free for T2 transponders */
-			score--;
-		}
+// 		if (parm.system == eDVBFrontendParametersTerrestrial::System_DVB_T && can_handle_dvbt2)
+// 		{
+// 			/* prefer to use a T tuner, try to keep T2 free for T2 transponders */
+// 			score--;
+// 		}
 	}
 	else if (type == eDVBFrontend::feATSC)
 	{
