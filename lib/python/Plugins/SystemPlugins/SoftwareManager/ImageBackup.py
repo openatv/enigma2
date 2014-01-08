@@ -451,7 +451,7 @@ class ImageBackup(Screen):
 		elif self.MODEL == "gbquad":
 			self.TYPE = "GIGABLUE"
 			self.MODEL = "quad"
-			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4000"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "GigaBlue %s" %self.MODEL
 			self.MTDKERNEL = "mtd2"	
@@ -462,7 +462,7 @@ class ImageBackup(Screen):
 		elif self.MODEL == "gbquadplus":
 			self.TYPE = "GIGABLUE"
 			self.MODEL = "quadplus"
-			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4000"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "GigaBlue %s" %self.MODEL
 			self.MTDKERNEL = "mtd2"	
