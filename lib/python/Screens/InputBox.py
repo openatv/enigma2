@@ -45,7 +45,7 @@ class InputBox(Screen):
 		}, -1)
 
 		if self["input"].type == Input.TEXT:
-			if config.misc.remotecontrol_text_support.getValue():
+			if config.plugins.remotecontrolcode.getValue():
 				self.onExecBegin.append(self.setKeyboardModeNone)
 			else:
 				self.onExecBegin.append(self.setKeyboardModeAscii)

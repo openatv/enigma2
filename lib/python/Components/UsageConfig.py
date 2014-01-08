@@ -12,7 +12,6 @@ from time import time
 
 def InitUsageConfig():
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
-	config.misc.remotecontrol_text_support = ConfigYesNo(default = False)
 
 	config.usage = ConfigSubsection();
 	config.usage.showdish = ConfigSelection(default = "flashing", choices = [("flashing", _("Flashing")), ("normal", _("Not Flashing")), ("off", _("Off"))])
