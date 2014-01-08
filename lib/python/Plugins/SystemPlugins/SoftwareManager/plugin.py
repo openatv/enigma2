@@ -1605,7 +1605,7 @@ class PacketManager(Screen, NumericalTextInput):
 		self.onLayoutFinish.append(self.rebuildList)
 
 		rcinput = eRCInput.getInstance()
-		if config.plugins.remotecontrolcode.getValue():
+		if config.misc.remotecontrol_text_support.getValue():
 			rcinput.setKeyboardMode(rcinput.kmNone)
 		else:
 			rcinput.setKeyboardMode(rcinput.kmAscii)
