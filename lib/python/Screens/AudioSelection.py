@@ -166,6 +166,9 @@ class AudioSelection(Screen, ConfigListScreen):
 					conflist.append(('',))
 				if len(Plugins) > 1:
 					print "plugin(s) installed but not displayed in the dialog box:", Plugins[1:]
+			else:
+				self["key_blue"].setBoolean(False)
+				conflist.append(('',))
 
 			if SystemInfo["CanDownmixAAC"]:
 				self.settings.downmix_aac = ConfigOnOff(default=config.av.downmix_aac.getValue())
@@ -184,7 +187,6 @@ class AudioSelection(Screen, ConfigListScreen):
 			conflist.append(getConfigListEntry(_("Bypass HDMI EDID Check"), self.settings.edid_bypass))
 
 		elif self.settings.menupage.getValue() == PAGE_SUBTITLES:
-
 			self.setTitle(_("Subtitle selection"))
 			conflist.append(('',))
 			conflist.append(('',))
