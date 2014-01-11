@@ -1417,12 +1417,15 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.recallBouquetMode()
 
 	def __evServiceStart(self):
-		service = self.session.nav.getCurrentService()
-		if service:
-			info = service.info()
-			if info:
-				refstr = info.getInfoString(iServiceInformation.sServiceref)
-				self.servicelist.setPlayableIgnoreService(eServiceReference(refstr))
+		if self.dopipzap and self.session.pip.pipservice:
+			self.servicelist.setPlayableIgnoreService(self.session.pip.getCurrentServiceReference())
+		else:
+			service = self.session.nav.getCurrentService()
+			if service:
+				info = service.info()
+				if info:
+					refstr = info.getInfoString(iServiceInformation.sServiceref)
+					self.servicelist.setPlayableIgnoreService(eServiceReference(refstr))
 
 	def __evServiceEnd(self):
 		self.servicelist.setPlayableIgnoreService(eServiceReference())
@@ -1519,7 +1522,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if self.session.pip.pipservice is None:
 				self.session.pipshown = False
 				del self.session.pip
-
+			self.__evServiceStart()
 			# Move to playing service
 			lastservice = eServiceReference(self.lastservice.value)      
 			if lastservice.valid() and self.getCurrentSelection() != lastservice:                        
@@ -1530,7 +1533,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			# Mark PiP as active and effectively active pipzap
 			self.session.pip.active()
 			self.dopipzap = True
-
+			self.__evServiceStart()
 			# Move to service playing in pip (will not work with subservices)
 			self.setCurrentSelection(self.session.pip.getCurrentService())
 
@@ -1546,12 +1549,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
 			if ref is None or ref != nref:
-				if not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False)):
-					if not self.session.pip.playService(nref):
-						# XXX: Make sure we set an invalid ref
-						self.session.pip.playService(None)
-					else:
-						self.servicelist.setPlayableIgnoreService(self.session.pip.getCurrentService())
+				nref = self.session.pip.resolveAlternatePipService(nref)
+				if nref and (not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False))):
+					if self.session.pip.playService(nref):
+						self.__evServiceStart()
 				else:
 					self.setStartRoot(self.curRoot)
 					self.setCurrentSelection(ref)
