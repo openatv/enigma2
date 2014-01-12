@@ -798,9 +798,9 @@ class RecordTimer(timer.Timer):
 		bt = None
 		check_offset_time = not config.recording.margin_before.value and not config.recording.margin_after.value
 		end = begin + duration
-		refstr = str(service)
+		refstr = ':'.join(service.toString().split(':')[:11])
 		for x in self.timer_list:
-			check = x.service_ref.ref.toString() == refstr
+			check = ':'.join(x.service_ref.ref.toString().split(':')[:11]) == refstr
 			if not check:
 				sref = x.service_ref.ref
 				parent_sid = sref.getUnsignedData(5)
