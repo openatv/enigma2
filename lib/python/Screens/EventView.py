@@ -125,9 +125,9 @@ class EventViewBase:
 		if event is None:
 			return
 		eventid = event.getEventId()
-		refstr = serviceref.ref.toString()
+		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
 				menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
 				buttons = ["red", "green"]
 				def timerAction(choice):
@@ -227,10 +227,10 @@ class EventViewBase:
 
 		serviceref = self.currentService
 		eventid = self.event.getEventId()
-		refstr = serviceref.ref.toString()
+		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		isRecordEvent = False
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
 				isRecordEvent = True
 				break
 		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
