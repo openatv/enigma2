@@ -168,8 +168,6 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{
-				"channelUp": (self.openEPGserviceList, _("open EPG channel selection...")),
-				"channelDown": (self.openEPGserviceList, _("open EPG channel selection...")),
 				"leavePlayer": (self.leavePlayer, _("leave movie player...")),
 				"leavePlayerOnExit": (self.leavePlayerOnExit, _("leave movie player..."))
 			})
@@ -331,8 +329,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	def up(self):
 		slist = self.servicelist
 		if slist and slist.dopipzap:
-			if "keep" not in config.usage.servicelist_cursor_behavior.value:
-				slist.moveUp()
+			slist.moveUp()
 			self.session.execDialog(slist)
 		else:
 			self.showMovies()
@@ -340,8 +337,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	def down(self):
 		slist = self.servicelist
 		if slist and slist.dopipzap:
-			if "keep" not in config.usage.servicelist_cursor_behavior.value:
-				slist.moveDown()
+			slist.moveDown()
 			self.session.execDialog(slist)
 		else:
 			self.showMovies()
@@ -396,29 +392,17 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		if self.session.pipshown:
 			if slist and slist.dopipzap:
 				slist.togglePipzap()
-			if self.session.pipshown:
-				del self.session.pip
-				self.session.pipshown = False
+			del self.session.pip
+			self.session.pipshown = False
 		else:
 			from Screens.PictureInPicture import PictureInPicture
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.show()
-			if self.session.pip.playService(slist.getCurrentSelection()):
-				self.session.pipshown = True
-				self.session.pip.servicePath = slist.getCurrentServicePath()
-			else:
-				self.session.pipshown = False
-				del self.session.pip
-
-	def movePiP(self):
-		if self.session.pipshown:
-			InfoBarPiP.movePiP(self)
+			self.session.pipshown = True
+			self.session.pip.playService(slist.getCurrentSelection())
 
 	def swapPiP(self):
 		pass
-
-	def openEPGserviceList(self):
-		self.session.open(MoviePlayerEPGselection, _("EPG Channel Selection"))
 
 	def showMovies(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -460,25 +444,3 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 	def ref2HumanName(self, ref):
 		return enigma.eServiceCenter.getInstance().info(ref).getName(ref)
-
-from Screens.ChannelSelection import SimpleChannelSelection
-from Screens.EpgSelection import EPGSelection
-from enigma import eServiceReference
-
-class MoviePlayerEPGselection(SimpleChannelSelection):
-	def __init__(self, session, title):
-		SimpleChannelSelection.__init__(self, session, title)
-		self.skinName = "SimpleChannelSelection"
-
-	def channelSelected(self):
-		ref = self.getCurrentSelection()
-		if (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
-			self.enterPath(ref)
-			self.gotoCurrentServiceOrProvider(ref)
-		elif not (ref.flags & eServiceReference.isMarker):
-			ref = self.getCurrentSelection()
-			self.session.openWithCallback(self.closed, EPGSelection, ref)
-
-	def closed(self, ret=None):
-		if ret:
-			self.close(ret)

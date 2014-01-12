@@ -17,18 +17,19 @@
  * so you can use them together with a \c eMainloop.
  */
 #ifndef SWIG
-class eMessagePumpMT
+class eMessagePump
 {
 	int fd[2];
 	eLock content;
+	int ismt;
 public:
-	eMessagePumpMT();
-	virtual ~eMessagePumpMT();
+	eMessagePump(int mt=0);
+	virtual ~eMessagePump();
 protected:
 	int send(const void *data, int len);
 	int recv(void *data, int len); // blockierend
-	int getInputFD() const { return fd[1]; }
-	int getOutputFD() const { return fd[0]; }
+	int getInputFD() const;
+	int getOutputFD() const;
 };
 
 /**
@@ -97,7 +98,7 @@ public:
 };
 #endif
 
-class ePythonMessagePump: public eMessagePumpMT, public Object
+class ePythonMessagePump: public eMessagePump, public Object
 {
 	ePtr<eSocketNotifier> sn;
 	void do_recv(int)
@@ -110,9 +111,10 @@ public:
 	PSignal1<void,int> recv_msg;
 	void send(int msg)
 	{
-		eMessagePumpMT::send(&msg, sizeof(msg));
+		eMessagePump::send(&msg, sizeof(msg));
 	}
 	ePythonMessagePump()
+		:eMessagePump(1)
 	{
 		sn=eSocketNotifier::create(eApp, getOutputFD(), eSocketNotifier::Read);
 		CONNECT(sn->activated, ePythonMessagePump::do_recv);
