@@ -19,6 +19,7 @@ from Screens.TimerEntry import TimerEntry
 from Screens.EpgSelection import EPGSelection
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.MessageBox import MessageBox
+from Screens.ChoiceBox import ChoiceBox
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from ServiceReference import ServiceReference, isPlayableForCur
@@ -793,7 +794,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self["okactions"].csel = self
 		self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
 			{
-				"timerAdd":    (self.timerAdd,       _("Add/remove timer for current event")),
+				"timerAdd":    (self.timerAdd,       _("Add/remove change timer for current event")),
 				"info":        (self.infoKeyPressed, _("Show detailed event info")),
 				"red":         (self.zapTo,          _("Zap to selected channel")),
 				"yellow":      (self.swapMode,       _("Switch between normal mode and list mode")),	
@@ -1032,8 +1033,15 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		refstr = serviceref.ref.toString()
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret : not ret or self.removeTimer(timer)
-				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % event.getEventName())
+				menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
+				buttons = ["red", "green"]
+				def timerAction(choice):
+					if choice is not None:
+						if choice[1] == "delete":
+							self.removeTimer(timer)
+						elif choice[1] == "edit":
+							self.session.open(TimerEntry, timer)
+				self.session.openWithCallback(timerAction, ChoiceBox, title=_("Select action for timer %s:") % event.getEventName(), list=menu, keys=buttons)
 				break
 		else:
 			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))
@@ -1050,8 +1058,21 @@ class GraphMultiEPG(Screen, HelpableScreen):
 						self.session.nav.RecordTimer.timeChanged(x)
 				simulTimerList = self.session.nav.RecordTimer.record(entry)
 				if simulTimerList is not None:
-					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
-			self["key_green"].setText(_("Remove timer"))
+					if not entry.repeated and not config.recording.margin_before.value and not config.recording.margin_after.value and len(simulTimerList) > 1:
+						change_time = False
+						conflict_begin = simulTimerList[1].begin
+						conflict_end = simulTimerList[1].end
+						if conflict_begin == entry.end:
+							entry.end -= 30
+							change_time = True
+						elif entry.begin == conflict_end:
+							entry.begin += 30
+							change_time = True
+						if change_time:
+							simulTimerList = self.session.nav.RecordTimer.record(entry)
+					if simulTimerList is not None:
+						self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
+			self["key_green"].setText(_("Change timer"))
 			self.key_green_choice = self.REMOVE_TIMER
 		else:
 			self["key_green"].setText(_("Add timer"))
@@ -1096,7 +1117,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				isRecordEvent = True
 				break
 		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
-			self["key_green"].setText(_("Remove timer"))
+			self["key_green"].setText(_("Change timer"))
 			self.key_green_choice = self.REMOVE_TIMER
 		elif not isRecordEvent and self.key_green_choice != self.ADD_TIMER:
 			self["key_green"].setText(_("Add timer"))

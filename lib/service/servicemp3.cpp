@@ -375,9 +375,9 @@ int eServiceMP3::ac3_delay = 0,
     eServiceMP3::pcm_delay = 0;
 
 eServiceMP3::eServiceMP3(eServiceReference ref):
+	m_nownext_timer(eTimer::create(eApp)),
 	m_ref(ref),
-	m_pump(eApp, 1),
-	m_nownext_timer(eTimer::create(eApp))
+	m_pump(eApp, 1)
 {
 	m_subtitle_sync_timer = eTimer::create(eApp);
 	m_streamingsrc_timeout = 0;
@@ -508,9 +508,10 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		int fd = open(filename,O_RDONLY);
 		if (fd >= 0)
 		{
-			char tmp[128*1024];
+			char* tmp = new char[128*1024];
 			ret = read(fd, tmp, 128*1024);
 			close(fd);
+			delete [] tmp;
 		}
 		if ( ret == -1 ) // this is a "REAL" VCD
 			uri = g_strdup_printf ("vcd://");
@@ -1083,6 +1084,25 @@ int eServiceMP3::getInfo(int w)
 
 std::string eServiceMP3::getInfoString(int w)
 {
+	if ( m_sourceinfo.is_streaming )
+	{
+		switch (w)
+		{
+		case sProvider:
+			return "IPTV";
+		case sServiceref:
+		{
+			eServiceReference ref(m_ref);
+			ref.type = eServiceFactoryMP3::id;
+			ref.path.clear();
+			return ref.toString();
+		}
+		default:
+			break;
+		}
+		return iServiceInformation::getInfoString(w);
+	}
+
 	if ( !m_stream_tags && w < sUser && w > 26 )
 		return "";
 	const gchar *tag = 0;
@@ -2106,13 +2126,6 @@ void eServiceMP3::gstCBsubtitleAvail(GstElement *subsink, GstBuffer *buffer, gpo
 		if (buffer) gst_buffer_unref(buffer);
 		return;
 	}
-#if GST_VERSION_MAJOR < 1
-	guint8 *label = GST_BUFFER_DATA(buffer);
-#else
-	guint8 label[32] = {0};
-	gst_buffer_extract(buffer, 0, label, sizeof(label));
-#endif
-	eDebug("gstCBsubtitleAvail: %s", (const char*)label);
 	_this->m_pump.send(new GstMessageContainer(2, NULL, NULL, buffer));
 }
 
@@ -2180,8 +2193,6 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 
 void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 {
-	uint32_t start_ms, end_ms;
-
 	if (buffer && m_currentSubtitleStream >= 0 && m_currentSubtitleStream < (int)m_subtitleStreams.size())
 	{
 		gint64 buf_pos = GST_BUFFER_TIMESTAMP(buffer);
@@ -2191,11 +2202,11 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 #else
 		size_t len = gst_buffer_get_size(buffer);
 #endif
-		eDebug("pullSubtitle m_subtitleStreams[m_currentSubtitleStream].type=%i",m_subtitleStreams[m_currentSubtitleStream].type);
-
-		if ( m_subtitleStreams[m_currentSubtitleStream].type )
+		int subType = m_subtitleStreams[m_currentSubtitleStream].type;
+		eDebug("pullSubtitle type=%d size=%zu", subType, len);
+		if ( subType )
 		{
-			if ( m_subtitleStreams[m_currentSubtitleStream].type < stVOB )
+			if ( subType < stVOB )
 			{
 				int delay = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_delay");
 				int subtitle_fps = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_fps");
@@ -2204,18 +2215,17 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 				if (subtitle_fps > 1 && m_framerate > 0)
 					convert_fps = subtitle_fps / (double)m_framerate;
 
-				unsigned char line[len+1];
 #if GST_VERSION_MAJOR < 1
-				memcpy(line, GST_BUFFER_DATA(buffer), len);
+				std::string line((const char*)GST_BUFFER_DATA(buffer), len);
 #else
-				gst_buffer_extract(buffer, 0, line, len);
+				std::string line(len);
+				gst_buffer_extract(buffer, 0, (char*)line.data(), len);
 #endif
-				line[len] = 0;
-				eDebug("got new text subtitle @ buf_pos = %lld ns (in pts=%lld), dur=%lld: '%s' ", buf_pos, buf_pos/11111, duration_ns, line);
+				eDebug("got new text subtitle @ buf_pos = %lld ns (in pts=%lld), dur=%lld: '%s' ", buf_pos, buf_pos/11111, duration_ns, line.c_str());
 
-				start_ms = ((buf_pos / 1000000ULL) * convert_fps) + delay;
-				end_ms = start_ms + (duration_ns / 1000000ULL);
-				m_subtitle_pages.insert(subtitle_pages_map_pair_t(end_ms, subtitle_page_t(start_ms, end_ms, (const char *)line)));
+				uint32_t start_ms = ((buf_pos / 1000000ULL) * convert_fps) + delay;
+				uint32_t end_ms = start_ms + (duration_ns / 1000000ULL);
+				m_subtitle_pages.insert(subtitle_pages_map_pair_t(end_ms, subtitle_page_t(start_ms, end_ms, line)));
 				m_subtitle_sync_timer->start(1, true);
 			}
 			else
