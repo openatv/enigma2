@@ -248,12 +248,11 @@ class EPGSelection(Screen):
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
 				menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
-				buttons = ["green", "yellow"]
+				buttons = ["red", "green"]
 				def timerAction(choice):
 					if choice is not None:
 						if choice[1] == "delete":
-							cb_func = lambda ret : not ret or self.removeTimer(timer)
-							self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % event.getEventName())
+							self.removeTimer(timer)
 						elif choice[1] == "edit":
 							self.session.open(TimerEntry, timer)
 				self.session.openWithCallback(timerAction, ChoiceBox, title=_("Select action for timer"), list=menu, keys=buttons)
