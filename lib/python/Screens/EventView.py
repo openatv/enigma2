@@ -1,6 +1,7 @@
 from Screen import Screen
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.MessageBox import MessageBox
+from Screens.ChoiceBox import ChoiceBox
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
@@ -127,8 +128,16 @@ class EventViewBase:
 		refstr = serviceref.ref.toString()
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret : not ret or self.removeTimer(timer)
-				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % event.getEventName())
+				menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
+				buttons = ["green", "yellow"]
+				def timerAction(choice):
+					if choice is not None:
+						if choice[1] == "delete":
+							cb_func = lambda ret : not ret or self.removeTimer(timer)
+							self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % event.getEventName())
+						elif choice[1] == "edit":
+							self.session.open(TimerEntry, timer)
+				self.session.openWithCallback(timerAction, ChoiceBox, title=_("Select action for timer"), list=menu, keys=buttons)
 				break
 		else:
 			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.event))
