@@ -136,7 +136,7 @@ class EventViewBase:
 							self.removeTimer(timer)
 						elif choice[1] == "edit":
 							self.session.open(TimerEntry, timer)
-				self.session.openWithCallback(timerAction, ChoiceBox, title=_("Select action for timer"), list=menu, keys=buttons)
+				self.session.openWithCallback(timerAction, ChoiceBox, title=_("Select action for timer %s:") % event.getEventName(), list=menu, keys=buttons)
 				break
 		else:
 			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.event))
