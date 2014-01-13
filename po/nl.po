@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-19 02:18+0100\n"
-"PO-Revision-Date: 2013-12-21 14:09+0100\n"
+"POT-Creation-Date: 2014-01-08 18:40+0100\n"
+"PO-Revision-Date: 2014-01-10 17:50+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -660,6 +660,9 @@ msgstr "Actie bij kort indrukken van de aan-uit toets"
 
 msgid "Activate"
 msgstr "Activeer"
+
+msgid "Activate MAC-adress configuration"
+msgstr "Activeer MAC-adresconfiguratie"
 
 msgid "Activate PiP"
 msgstr "activeer PiP"
@@ -2890,6 +2893,9 @@ msgstr "Afsluiten"
 msgid "Exit EPG"
 msgstr "Verlaat EPG"
 
+msgid "Exit MAC-adress configuration"
+msgstr "Verlaat Activeer MAC-adresconfiguratie"
+
 msgid "Exit editor"
 msgstr "Editor afsluiten"
 
@@ -3130,11 +3136,11 @@ msgstr "Frontprocessor versie: %d"
 msgid "Ftpd service type: Vsftpd server"
 msgstr "Ftpd service type: Vsftpd server"
 
+msgid "Full screen"
+msgstr "Volledig scherm"
+
 msgid "Full transparency"
 msgstr "Volledig doorzichtig"
-
-msgid "Fulscreen"
-msgstr "Vol scherm"
 
 msgid "Fulview resulution"
 msgstr "Vol scherm resolutie"
@@ -3798,9 +3804,6 @@ msgstr "LAN-adapter"
 msgid "LAN connection"
 msgstr "LAN-verbinding"
 
-msgid "LED Blinking"
-msgstr "LED knipperen"
-
 msgid "LED Deep Standby"
 msgstr "LED deep sleep"
 
@@ -4011,6 +4014,12 @@ msgstr "Lengtegraad"
 
 msgid "Luxembourgish"
 msgstr "Luxumburgs"
+
+msgid "MAC-adress"
+msgstr "MAC-adres"
+
+msgid "MAC-adress settings"
+msgstr "MAC-adresinstellingen"
 
 msgid "MAC:"
 msgstr "MAC:"
@@ -4344,6 +4353,9 @@ msgstr "Netwerk-ID"
 
 msgid "Network Information"
 msgstr "Netwerkinformatie"
+
+msgid "Network MAC settings"
+msgstr "Netwerk MAC-instellingen"
 
 msgid "Network Servers:"
 msgstr "Netwerkservers:"
@@ -5307,6 +5319,9 @@ msgstr "Druk op OK om een provider te kiezen."
 msgid "Press OK to select/deselect a CAId."
 msgstr "Druk op OK om de CAId aan/uit te zetten."
 
+msgid "Press OK to set the MAC-adress."
+msgstr "Druk op OK om MAC-adresin te stallen."
+
 msgid "Press OK to start the scan"
 msgstr "Druk OK om te zoeken."
 
@@ -6259,6 +6274,10 @@ msgstr "Stel deze interface in als standaard"
 
 msgid "Set limits"
 msgstr "Limieten instellen"
+
+#, python-format
+msgid "Set the MAC-adress of your %s %s.\n"
+msgstr "Bepaal het MAC-adres van uw %s %s.\n"
 
 msgid "Set the channel for this timer."
 msgstr "Kies het kanaal voor deze timer"
@@ -7789,12 +7808,6 @@ msgstr "Titel instellingen"
 
 msgid "Titleset mode"
 msgstr "Titelset modus"
-
-msgid "To audio selection"
-msgstr "Naar audioselectie"
-
-msgid "To subtitle selection"
-msgstr "Naar ondertitelselectie"
 
 #, python-format
 msgid ""
@@ -10262,8 +10275,17 @@ msgstr "zapte"
 #~ msgid "Blind scan"
 #~ msgstr "Blind scan"
 
+#~ msgid "LED Blinking"
+#~ msgstr "LED knipperen"
+
 #~ msgid "No satellite frontend found!!"
 #~ msgstr "Geen satelliettuner gevonden!"
+
+#~ msgid "To audio selection"
+#~ msgstr "Naar audioselectie"
+
+#~ msgid "To subtitle selection"
+#~ msgstr "Naar ondertitelselectie"
 
 #~ msgid "With this option enabled these refresh rates will be used. (please note not all TV's support these rates)."
 #~ msgstr "Indien deze optie is ingeschakeld worden deze refreshrates gebruikt. (Niet alle tv's ondersteunen dit)"

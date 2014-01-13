@@ -72,7 +72,7 @@ def moveFiles(fileList, name):
 			move(src, dst)
 
 def deleteFiles(fileList, name):
-	job = Components.Task.Job(_("Deleting files"))
+	job = Job(_("Deleting files"))
 	task = DeleteFolderTask(job, name)
 	task.openFiles(fileList)
-	Components.Task.job_manager.AddJob(job)
+	JobManager.AddJob(job)
