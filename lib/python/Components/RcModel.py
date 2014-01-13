@@ -6,7 +6,7 @@ class RcModel:
 	RCTYPE_AZBOXHD = 0
 	RCTYPE_AZBOXELITE = 1
 	RCTYPE_AZBOXME = 2
-	RCTYPE_CUBE = 3	
+	RCTYPE_CUBE = 3
 	RCTYPE_DMM = 4
 	RCTYPE_DMM1 = 5
 	RCTYPE_DMM2 = 6
@@ -17,26 +17,27 @@ class RcModel:
 	RCTYPE_ET6500 = 11
 	RCTYPE_ET9X00 = 12
 	RCTYPE_ET9500 = 13
-	RCTYPE_GB = 14
-	RCTYPE_INI0 = 15
-	RCTYPE_INI1 = 16
-	RCTYPE_INI2 = 17
-	RCTYPE_INI3 = 18
-	RCTYPE_INI4 = 19
-	RCTYPE_IQON = 20
-	RCTYPE_IXUSSONE = 21
-	RCTYPE_IXUSSZERO = 22
-	RCTYPE_MEDIABOX = 23
-	RCTYPE_ODINM6 = 24
-	RCTYPE_ODINM7 = 25
-	RCTYPE_ODINM9 = 26
-	RCTYPE_OPTIMUSS = 27
-	RCTYPE_SOGNO = 28	
-	RCTYPE_TM = 29
-	RCTYPE_VU = 30
-	RCTYPE_VU2 = 31
-	RCTYPE_VU3 = 32
-	RCTYPE_XP1000 = 33
+	RCTYPE_EVO = 14
+	RCTYPE_GB = 15
+	RCTYPE_INI0 = 16
+	RCTYPE_INI1 = 17
+	RCTYPE_INI2 = 18
+	RCTYPE_INI3 = 19
+	RCTYPE_INI4 = 20
+	RCTYPE_IQON = 21
+	RCTYPE_IXUSSONE = 22
+	RCTYPE_IXUSSZERO = 23
+	RCTYPE_MEDIABOX = 24
+	RCTYPE_ODINM6 = 25
+	RCTYPE_ODINM7 = 26
+	RCTYPE_ODINM9 = 27
+	RCTYPE_OPTIMUSS = 28
+	RCTYPE_SOGNO = 29
+	RCTYPE_TM = 30
+	RCTYPE_VU = 31
+	RCTYPE_VU2 = 32
+	RCTYPE_VU3 = 33
+	RCTYPE_XP1000 = 34
 
 
 	def __init__(self):
@@ -67,7 +68,7 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_AZBOXME
 		elif os.path.exists('/proc/stb/info/hwmodel'):
 			model = self.readFile('/proc/stb/info/hwmodel')
-			if model == 'tmtwinoe' or model == 'tm2toe' or model == 'tmsingle' or model == 'tmnanooe':
+			if model == 'tmtwinoe' or model == 'tm2toe' or model == 'tmsingle' or model == 'tmnanooe' or model == 'tmnano2t':
 				self.currentRcType = self.RCTYPE_TM
 			elif model == 'ios100hd' or model == 'ios200hd' or model == 'ios300hd' or model == 'force1':
 				self.currentRcType = self.RCTYPE_IQON
@@ -113,6 +114,8 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_XP1000
 			elif model.startswith('ebox'):
 				self.currentRcType = self.RCTYPE_EBOX5000
+			elif model == 'enfinity':
+				self.currentRcType = self.RCTYPE_EVO
 			elif model == 'gigablue':
 				self.currentRcType = self.RCTYPE_GB
 			elif model == 'cube':
@@ -184,6 +187,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/et9x00/'
 		elif self.currentRcType == self.RCTYPE_ET9500:
 			return '/usr/share/enigma2/rc_models/et9500/'
+		elif self.currentRcType == self.RCTYPE_EVO:
+			return '/usr/share/enigma2/rc_models/evo/'
 		elif self.currentRcType == self.RCTYPE_GB:
 			return '/usr/share/enigma2/rc_models/gb/'
 		elif self.currentRcType == self.RCTYPE_INI0:

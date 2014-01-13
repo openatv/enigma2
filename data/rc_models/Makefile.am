@@ -18,6 +18,10 @@ if EBOX
 SUBDIRS = ebox5000
 endif
 
+if EVO
+SUBDIRS = evo
+endif
+
 if XTREND
 SUBDIRS = et4x00 et6x00 et6500 et9x00 et9500
 endif
