@@ -980,27 +980,34 @@ class InfoBarChannelSelection:
 							self.servicelist.prevBouquet()
 					self.servicelist.moveUp()
 					cur = self.servicelist.getCurrentSelection()
-					if cur and (cur.toString() == prev or isPlayableForCur(cur)):
+					if cur:
+						if self.servicelist.dopipzap:
+							isPlayable = self.session.pip.isPlayableForPipService(cur)
+						else:
+							isPlayable = isPlayableForCur(cur)
+					if cur and (cur.toString() == prev or isPlayable):
 						break
 		else:
 			self.servicelist.moveUp()
 		self.servicelist.zap(enable_pipzap = True)
 
 	def zapDown(self):
-		if self.pts_blockZap_timer.isActive():
-			return
-
 		if self.servicelist.inBouquet():
 			prev = self.servicelist.getCurrentSelection()
 			if prev:
 				prev = prev.toString()
 				while True:
-					if config.usage.quickzap_bouquet_change.getValue() and self.servicelist.atEnd():
+					if config.usage.quickzap_bouquet_change.value and self.servicelist.atEnd():
 						self.servicelist.nextBouquet()
 					else:
 						self.servicelist.moveDown()
 					cur = self.servicelist.getCurrentSelection()
-					if cur and (cur.toString() == prev or isPlayableForCur(cur)):
+					if cur:
+						if self.servicelist.dopipzap:
+							isPlayable = self.session.pip.isPlayableForPipService(cur)
+						else:
+							isPlayable = isPlayableForCur(cur)
+					if cur and (cur.toString() == prev or isPlayable):
 						break
 		else:
 			self.servicelist.moveDown()
@@ -2499,11 +2506,12 @@ class InfoBarPiP:
 		if not self.session.pipshown:
 			self.showPiP()
 		slist = self.servicelist
-		if slist:
+		if slist and self.session.pipshown:
 			slist.togglePipzap()
-			currentServicePath = self.servicelist.getCurrentServicePath()
-			self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
-			self.session.pip.servicePath = currentServicePath
+			if slist.dopipzap:
+				currentServicePath = self.servicelist.getCurrentServicePath()
+				self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
+				self.session.pip.servicePath = currentServicePath
 
 	def showPiP(self):
 		if self.session.pipshown:
@@ -2516,7 +2524,7 @@ class InfoBarPiP:
 		else:
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.show()
-			newservice = self.servicelist.servicelist.getCurrent()
+			newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
 			if self.session.pip.playService(newservice):
 				self.session.pipshown = True
 				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()

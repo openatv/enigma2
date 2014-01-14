@@ -2,6 +2,8 @@ from Screens.Screen import Screen
 from enigma import ePoint, eSize, eServiceCenter, getBestPlayableServiceReference, eServiceReference
 from Components.VideoWindow import VideoWindow
 from Components.config import config, ConfigPosition, ConfigYesNo
+from Tools import Notifications
+from Screens.MessageBox import MessageBox
 from os import access, W_OK
 
 pip_config_initialized = False
@@ -18,6 +20,7 @@ class PictureInPicture(Screen):
 		self["video"] = VideoWindow()
 		self.pipActive = session.instantiateDialog(PictureInPictureZapping)
 		self.currentService = None
+		self.currentServiceReference = None
 		self.has_external_pip = access("/proc/stb/vmpeg/1/external", W_OK)
 		if not pip_config_initialized:
 			config.av.pip = ConfigPosition(default=[-1, -1, -1, -1], args = (719, 567, 720, 568))
@@ -79,20 +82,48 @@ class PictureInPicture(Screen):
 		return (self.instance.size().width(), self.instance.size().height())
 
 	def playService(self, service):
-		if service and (service.flags & eServiceReference.isGroup):
-			ref = getBestPlayableServiceReference(service, eServiceReference())
-		else:
-			ref = service
+		if service is None:
+			return False
+		ref = self.resolveAlternatePipService(service)
 		if ref:
+			if self.isPlayableForPipService(ref):
+				print "playing pip service", ref and ref.toString()
+			else:
+				if not config.usage.hide_zap_errors.value:
+					Notifications.AddPopup(text = _("No free tuner!"), type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapPipError")
+				return False
 			self.pipservice = eServiceCenter.getInstance().play(ref)
 			if self.pipservice and not self.pipservice.setTarget(1):
 				self.pipservice.start()
 				self.currentService = service
+				self.currentServiceReference = ref
 				return True
 			else:
 				self.pipservice = None
+				self.currentService = None
+				self.currentServiceReference = None
+				if not config.usage.hide_zap_errors.value:
+					Notifications.AddPopup(text = _("Incorrect type service for PiP!"), type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapPipError")
 		return False
 
 	def getCurrentService(self):
 		return self.currentService
 
+	def getCurrentServiceReference(self):
+		return self.currentServiceReference
+
+	def isPlayableForPipService(self, service):
+		playingref = self.session.nav.getCurrentlyPlayingServiceReference()
+		if playingref is None or service == playingref:
+			return True
+		info = eServiceCenter.getInstance().info(service)
+		oldref = self.currentServiceReference or eServiceReference()
+		if info and info.isPlayable(service, oldref):
+			return True
+		return False
+
+	def resolveAlternatePipService(self, service):
+		if service and (service.flags & eServiceReference.isGroup):
+			oldref = self.currentServiceReference or eServiceReference()
+			return getBestPlayableServiceReference(service, oldref)
+		return service
