@@ -25,24 +25,24 @@ def Check_Softcam():
 	return found
 
 def command(comandline, strip=1):
-  comandline = comandline + " >/tmp/command.txt"
-  os.system(comandline)
-  text = ""
-  if os.path.exists("/tmp/command.txt") is True:
-    file = open("/tmp/command.txt", "r")
-    if strip == 1:
-      for line in file:
-        text = text + line.strip() + '\n'
-    else:
-      for line in file:
-        text = text + line
-        if text[-1:] != '\n': text = text + "\n"
-    file.close()
-  # if one or last line then remove linefeed
-  if text[-1:] == '\n': text = text[:-1]
-  comandline = text
-  os.system("rm /tmp/command.txt")
-  return comandline
+	comandline = comandline + " >/tmp/command.txt"
+	os.system(comandline)
+	text = ""
+	if os.path.exists("/tmp/command.txt") is True:
+		file = open("/tmp/command.txt", "r")
+		if strip == 1:
+			for line in file:
+				text = text + line.strip() + '\n'
+		else:
+			for line in file:
+				text = text + line
+				if text[-1:] != '\n': text = text + "\n"
+		file.close()
+	# if one or last line then remove linefeed
+	if text[-1:] == '\n': text = text[:-1]
+	comandline = text
+	os.system("rm /tmp/command.txt")
+	return comandline
 
 #class EMUlist(MenuList):
 #	def __init__(self, list=[], enableWrapAround = False):
@@ -791,15 +791,15 @@ class ShowSoftcamPackages(Screen):
 			self.statuslist = []
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
 			if status == 'update':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/Infopanel/pics/upgrade.png"))
+				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/Infopanel/icons/upgrade.png"))
 				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new updatelist. Please wait..." ),'', statuspng, divpng ))
 				self['list'].setList(self.statuslist)
 			if status == 'list':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/Infopanel/pics/upgrade.png"))
+				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/Infopanel/icons/upgrade.png"))
 				self.statuslist.append(( _("Package list"), '', _("Getting Softcam list. Please wait..." ),'', statuspng, divpng ))
 				self['list'].setList(self.statuslist)
 			elif status == 'error':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/Infopanel/pics/remove.png"))
+				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/Infopanel/icons/remove.png"))
 				self.statuslist.append(( _("Error"), '', _("There was an error downloading the updatelist. Please try again." ),'', statuspng, divpng ))
 				self['list'].setList(self.statuslist)				
 
@@ -835,7 +835,7 @@ class ShowSoftcamPackages(Screen):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
 		if not description:
 			description = ""
-		installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/Infopanel/pics/installed.png"))
+		installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/Infopanel/icons/installed.png"))
 		return((name, version, _(description), state, installedpng, divpng))
 
 	def buildPacketList(self):

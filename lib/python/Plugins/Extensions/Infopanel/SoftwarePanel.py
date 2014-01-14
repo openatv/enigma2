@@ -19,10 +19,10 @@ class SoftwarePanel(Screen):
 		Screen.setTitle(self, _("Software Panel"))
 		skin = """
 		<screen name="SoftwarePanel" position="center,center" size="650,605" title="Software Panel">
-			<widget name="a_off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/pics/aoff.png" position="10,10" zPosition="1" size="36,97" alphatest="on" />
-			<widget name="a_red" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/pics/ared.png" position="10,10" zPosition="1" size="36,97" alphatest="on" />
-			<widget name="a_yellow" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/pics/ayellow.png" position="10,10" zPosition="1" size="36,97" alphatest="on" />
-			<widget name="a_green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/pics/agreen.png" position="10,10" zPosition="1" size="36,97" alphatest="on" />
+			<widget name="a_off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/aoff.png" position="10,10" zPosition="1" size="36,97" alphatest="on" />
+			<widget name="a_red" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/ared.png" position="10,10" zPosition="1" size="36,97" alphatest="on" />
+			<widget name="a_yellow" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/ayellow.png" position="10,10" zPosition="1" size="36,97" alphatest="on" />
+			<widget name="a_green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/agreen.png" position="10,10" zPosition="1" size="36,97" alphatest="on" />
 			<widget name="feedstatusRED" position="60,14" size="200,30" zPosition="1" font="Regular;25" halign="left" transparent="1" />
 			<widget name="feedstatusYELLOW" position="60,46" size="200,30" zPosition="1" font="Regular;25" halign="left" transparent="1" />
 			<widget name="feedstatusGREEN" position="60,78" size="200,30" zPosition="1" font="Regular;25" halign="left" transparent="1" />

@@ -602,9 +602,9 @@ def QuickMenuEntryComponent(name, description, long_description = None, width=54
 
 	return [
 		_(name),
-		MultiContentEntryText(pos=(120, 5), size=(width-120, 25), font=0, text = _(name)),
-		MultiContentEntryText(pos=(120, 26), size=(width-120, 17), font=1, text = _(description)),
-		MultiContentEntryPixmapAlphaTest(pos=(10, 5), size=(100, 40), png = png),
+		MultiContentEntryText(pos=(60, 5), size=(width-60, 25), font=0, text = _(name)),
+		MultiContentEntryText(pos=(60, 26), size=(width-60, 17), font=1, text = _(description)),
+		MultiContentEntryPixmapAlphaTest(pos=(10, 5), size=(40, 40), png = png),
 		_(long_description),
 	]
 

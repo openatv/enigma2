@@ -120,7 +120,7 @@ boxversion = getBoxType()
 machinename = getMachineName()
 machinebrand = getMachineBrand()
 
-INFO_Panel_Version = 'Info-Panel V1.1'
+INFO_Panel_Version = 'Info-Panel V1.2'
 print "[Info-Panel] machinebrand: %s"  % (machinebrand)
 print "[Info-Panel] machinename: %s"  % (machinename)
 print "[Info-Panel] boxversion: %s"  % (boxversion)
@@ -196,13 +196,13 @@ def Plugins(**kwargs):
 	return [
 
 	#// show Infopanel in Main Menu
-	PluginDescriptor(name="Info Panel", description="Info panel GUI 12/11/2012", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
+	PluginDescriptor(name="Info Panel", description="Info panel GUI 27/12/2013", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
 	#// autostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = camstart),
 	#// SwapAutostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = SwapAutostart),
 	#// show Infopanel in EXTENSIONS Menu
-	PluginDescriptor(name="Info Panel", description="Info panel GUI 12/11/2012", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
+	PluginDescriptor(name="Info Panel", description="Info panel GUI 27/12/2013", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
 
 
 
@@ -242,8 +242,8 @@ class PanelList(MenuList):
 
 def MenuEntryItem(entry):
 	res = [entry]
-	res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 5), size=(100, 40), png=entry[0]))  # png vorn
-	res.append(MultiContentEntryText(pos=(110, 10), size=(440, 40), font=0, text=entry[1]))  # menupunkt
+	res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 5), size=(40, 40), png=entry[0]))  # png vorn
+	res.append(MultiContentEntryText(pos=(60, 10), size=(440, 40), font=0, text=entry[1]))  # menupunkt
 	return res
 ###################  Max Test ###################
 
@@ -253,13 +253,13 @@ from Screens.InfoBarGenerics import InfoBarPiP
 #g
 
 def InfoEntryComponent(file):
-	png = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "pics/" + file + ".png"));
+	png = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "icons/" + file + ".png"));
 	if png == None:
-		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/pics/" + file + ".png")
+		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/" + file + ".png")
 		if png == None:
-			png = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "pics/default.png"));
+			png = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "icons/default.png"));
 			if png == None:
-				png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/pics/default.png")
+				png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/default.png")
 	res = (png)
 	return res
 
@@ -405,9 +405,9 @@ class Infopanel(Screen, InfoBarPiP):
 		elif menu == "InfoPanel":
 			self.session.open(Info, "InfoPanel")
 		elif menu == "Info":
-			self.session.open(Info, "Sytem_info")
-		elif menu == "Default":
-			self.session.open(Info, "Default")
+			self.session.open(Info, "SystemInfo")
+		elif menu == "ImageVersion":
+			self.session.open(Info, "ImageVersion")
 		elif menu == "FreeSpace":
 			self.session.open(Info, "FreeSpace")
 		elif menu == "Network":
@@ -432,7 +432,7 @@ class Infopanel(Screen, InfoBarPiP):
 			self.session.open(Info, "Partitions")
 		elif menu == "Swap":
 			self.session.open(Info, "Swap")
-		elif menu == "System_Info":
+		elif menu == "SystemInfo":
 			self.System()
 		elif menu == "CronManager":
 			self.session.open(CronManager)	
@@ -503,13 +503,13 @@ class Infopanel(Screen, InfoBarPiP):
 		self.oldmlist1 = []
 		self.oldmlist = self.Mlist
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('InfoPanel'), _("InfoPanel"), 'InfoPanel')))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent('Default'), _("Default"), 'Default')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('ImageVersion'), _("Image-Version"), 'ImageVersion')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('FreeSpace'), _("FreeSpace"), 'FreeSpace')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('Kernel'), _("Kernel"), 'Kernel')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('Mounts'), _("Mounts"), 'Mounts')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('Network'), _("Network"), 'Network')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('Ram'), _("Ram"), 'Ram')))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent('System_Info'), _("System_Info"), 'System_Info')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('SystemInfo'), _("SystemInfo"), 'SystemInfo')))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 		self.oldmlist1 = self.tlist
@@ -1002,10 +1002,10 @@ class Info(Screen):
 		self["label1"] =  ScrollLabel()
 		if info == "InfoPanel":
 			self.InfoPanel()
-		if info == "Sytem_info":
-			self.Sytem_info()
-		elif info == "Default":
-			self.Default()
+		if info == "SystemInfo":
+			self.SystemInfo()
+		elif info == "ImageVersion":
+			self.ImageVersion()
 		elif info == "FreeSpace":
 			self.FreeSpace()
 		elif info == "Mounts":
@@ -1066,7 +1066,7 @@ class Info(Screen):
 		except:
 			self["label1"].setText(_("an internal error has occur"))
 
-	def Sytem_info(self):
+	def SystemInfo(self):
 		try:
 			self["label2"].setText(_("Image Info"))
 			info1 = self.Do_cmd("cat", "/etc/version", None)
@@ -1075,10 +1075,9 @@ class Info(Screen):
 		except:
 			self["label1"].setText(_("an internal error has occur"))
 
-	def Default(self):
-
+	def ImageVersion(self):
 		try:
-			self["label2"].setText(_("Default"))
+			self["label2"].setText(_("Image Version"))
 			now = datetime.now()
 			info1 = 'Date = ' + now.strftime("%d-%B-%Y") + "\n"
 			info2 = 'Time = ' + now.strftime("%H:%M:%S") + "\n"
