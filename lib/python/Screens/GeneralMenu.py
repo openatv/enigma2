@@ -1045,9 +1045,12 @@ class GeneralMenu(Screen):
 
     # Movies
     def openMediaPortal(self):
-	from Plugins.Extensions.MediaPortal.plugin import haupt_Screen
-	self.session.open(haupt_Screen)
-	
+	from Plugins.Extensions.MediaPortal.plugin import haupt_Screen, haupt_Screen_Wall, config
+	if config.mediaportal.ansicht.value == "liste":
+		self.session.open(haupt_Screen)
+	else:
+		self.session.open(haupt_Screen_Wall, config.mediaportal.filter.value)
+		
     def openMovieBrowserAll(self):
  	from Plugins.Extensions.MovieBrowser.plugin import movieBrowserBackdrop
 	self.session.open(movieBrowserBackdrop, 0, ":::", ":::")
