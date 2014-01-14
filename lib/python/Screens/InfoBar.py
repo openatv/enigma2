@@ -506,14 +506,21 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 					from Screens.PictureInPicture import PictureInPicture
 					self.session.pip = self.session.instantiateDialog(PictureInPicture)
 					self.session.pip.show()
-					self.session.pipshown = True
-					self.session.pip.playService(slist.getCurrentSelection())
-					self.session.pip.servicePath = slist.getCurrentServicePath()
+					if self.session.pip.playService(slist.getCurrentSelection()):
+						self.session.pipshown = True
+						self.session.pip.servicePath = slist.getCurrentServicePath()
+					else:
+						self.session.pipshown = False
+						del self.session.pip
 				else:
 					self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (enigma.getMachineBrand(), enigma.getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
 		except:
 			pass
-
+		      
+	def movePiP(self):
+		if self.session.pipshown:
+			InfoBarPiP.movePiP(self)
+			
 	def swapPiP(self):
 		pass
 

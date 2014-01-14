@@ -961,12 +961,14 @@ class EPGSelection(Screen, HelpableScreen):
 		if event is None:
 			return
 		eventid = event.getEventId()
-		refstr = serviceref.ref.toString()
+		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret: self.removeTimer(timer)
-				menu = [(_("Yes"), 'CALLFUNC', cb_func), (_("No"), 'CALLFUNC', self.ChoiceBoxCB)]
-				self.ChoiceBoxDialog = self.session.instantiateDialog(MessageBox, text=_('Do you really want to remove the timer for %s?') % event.getEventName(), list=menu, skin_name="RemoveTimerQuestion", picon=False)
+			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
+				cb_func1 = lambda ret: self.removeTimer(timer)
+				cb_func2 = lambda ret: self.editTimer(timer)
+				menu = [(_("Delete timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func1), (_("Edit timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func2)]
+				self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=_("Select action for timer %s:") % event.getEventName(), list=menu, keys=['green', 'blue'], skin_name="RecordTimerQuestion")
+				self.ChoiceBoxDialog.instance.move(ePoint(self.instance.position().x()+self["key_green"].getPosition()[0],self.instance.position().y()+self["key_green"].getPosition()[1]-self["key_green"].instance.size().height()))
 				self.showChoiceBoxDialog()
 				break
 		else:
@@ -997,7 +999,7 @@ class EPGSelection(Screen, HelpableScreen):
 							simulTimerList = self.session.nav.RecordTimer.record(entry)
 					if simulTimerList is not None:
 						self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
-			self['key_green'].setText(_('Remove timer'))
+			self["key_green"].setText(_("Change timer"))
 			self.key_green_choice = self.REMOVE_TIMER
 		else:
 			self['key_green'].setText(_('Add Timer'))
@@ -1047,6 +1049,11 @@ class EPGSelection(Screen, HelpableScreen):
 	def reclongButtonPressed(self):
 		self.longbuttonpressed = True
 		self.doZapTimer()
+
+	def RemoveChoiceBoxCB(self, choice):
+		if choice:
+			choice(self)
+		self.closeChoiceBoxDialog()
 
 	def ChoiceBoxCB(self, choice):
 		if choice:
@@ -1209,14 +1216,14 @@ class EPGSelection(Screen, HelpableScreen):
 			return
 		serviceref = cur[1]
 		eventid = event.getEventId()
-		refstr = serviceref.ref.toString()
+		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		isRecordEvent = False
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
 				isRecordEvent = True
 				break
 		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
-			self['key_green'].setText(_('Remove timer'))
+			self["key_green"].setText(_("Change timer"))
 			self.key_green_choice = self.REMOVE_TIMER
 		elif not isRecordEvent and self.key_green_choice != self.ADD_TIMER:
 			self['key_green'].setText(_('Add Timer'))

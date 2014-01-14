@@ -815,7 +815,7 @@ class RecordTimer(timer.Timer):
 				return True
 		return False
 
-	def record(self, entry, ignoreTSC=False, dosave=True):		#wird von loadTimer mit dosave=False aufgerufen
+	def record(self, entry, ignoreTSC=False, dosave=True): # wird von loadTimer mit dosave=False aufgerufen
 		timersanitycheck = TimerSanityCheck(self.timer_list,entry)
 		if not timersanitycheck.check():
 			if ignoreTSC != True:
@@ -843,18 +843,19 @@ class RecordTimer(timer.Timer):
 		bt = None
 		check_offset_time = not config.recording.margin_before.getValue() and not config.recording.margin_after.getValue()
 		end = begin + duration
-		refstr = str(service)
+		refstr = ':'.join(service.split(':')[:11])
 		for x in self.timer_list:
 			if x.isAutoTimer == 1:
 				isAutoTimer = True
 			else:
 				isAutoTimer = False
-			check = x.service_ref.ref.toString() == refstr
+			check = ':'.join(x.service_ref.ref.toString().split(':')[:11]) == refstr
 			if not check:
 				sref = x.service_ref.ref
 				parent_sid = sref.getUnsignedData(5)
 				parent_tsid = sref.getUnsignedData(6)
-				if parent_sid and parent_tsid: # check for subservice
+				if parent_sid and parent_tsid:
+					# check for subservice
 					sid = sref.getUnsignedData(1)
 					tsid = sref.getUnsignedData(2)
 					sref.setUnsignedData(1, parent_sid)
@@ -895,57 +896,95 @@ class RecordTimer(timer.Timer):
 				if x.repeated != 0:
 					if bt is None:
 						bt = localtime(begin)
-						bday = bt.tm_wday;
+						bday = bt.tm_wday
 						begin2 = 1440 + bt.tm_hour * 60 + bt.tm_min
 						end2 = begin2 + duration / 60
-					if x.repeated & (1 << bday):
-						xbt = localtime(x.begin)
-						xet = localtime(timer_end)
-						xbegin = 1440 + xbt.tm_hour * 60 + xbt.tm_min
-						xend = xbegin + ((timer_end - x.begin) / 60)
-						if xend < xbegin:
-							xend += 1440
+					xbt = localtime(x.begin)
+					xet = localtime(timer_end)
+					offset_day = False
+					checking_time = x.begin < begin or begin <= x.begin <= end
+					if xbt.tm_yday != xet.tm_yday:
+						oday = bday - 1
+						if oday == -1: oday = 6
+						offset_day = x.repeated & (1 << oday)
+					xbegin = 1440 + xbt.tm_hour * 60 + xbt.tm_min
+					xend = xbegin + ((timer_end - x.begin) / 60)
+					if xend < xbegin:
+						xend += 1440
+					if x.repeated & (1 << bday) and checking_time:
 						if begin2 < xbegin <= end2:
-							if xend < end2: # recording within event
+							if xend < end2:
+								# recording within event
 								time_match = (xend - xbegin) * 60
 								type = type_offset + 3
-							else:           # recording last part of event
+							else:
+								# recording last part of event
 								time_match = (end2 - xbegin) * 60
 								type = type_offset + 1
 						elif xbegin <= begin2 <= xend:
-							if xend < end2: # recording first part of event
+							if xend < end2:
+								# recording first part of event
 								time_match = (xend - begin2) * 60
 								type = type_offset + 4
-							else:           # recording whole event
+							else:
+								# recording whole event
 								time_match = (end2 - begin2) * 60
 								type = type_offset + 2
-						elif xbt.tm_yday < xet.tm_yday:
+						elif offset_day:
 							xbegin -= 1440
 							xend -= 1440
 							if begin2 < xbegin <= end2:
-								if xend < end2: # recording within event
+								if xend < end2:
+									# recording within event
 									time_match = (xend - xbegin) * 60
 									type = type_offset + 3
-								else:           # recording last part of event
+								else:
+									# recording last part of event
 									time_match = (end2 - xbegin) * 60
 									type = type_offset + 1
 							elif xbegin <= begin2 <= xend:
-								if xend < end2: # recording first part of event
+								if xend < end2:
+									# recording first part of event
 									time_match = (xend - begin2) * 60
 									type = type_offset + 4
-								else:           # recording whole event
+								else:
+									# recording whole event
 									time_match = (end2 - begin2) * 60
 									type = type_offset + 2
+					elif offset_day and checking_time:
+						xbegin -= 1440
+						xend -= 1440
+						if begin2 < xbegin <= end2:
+							if xend < end2:
+								# recording within event
+								time_match = (xend - xbegin) * 60
+								type = type_offset + 3
+							else:
+								# recording last part of event
+								time_match = (end2 - xbegin) * 60
+								type = type_offset + 1
+						elif xbegin <= begin2 <= xend:
+							if xend < end2:
+								# recording first part of event
+								time_match = (xend - begin2) * 60
+								type = type_offset + 4
+							else:
+								# recording whole event
+								time_match = (end2 - begin2) * 60
+								type = type_offset + 2
 				else:
 					if begin < timer_begin <= end:
-						if timer_end < end: # recording within event
+						if timer_end < end:
+							# recording within event
 							time_match = timer_end - timer_begin
 							type = type_offset + 3
-						else:           # recording last part of event
+						else:
+							# recording last part of event
 							time_match = end - timer_begin
 							type = type_offset + 1
 					elif timer_begin <= begin <= timer_end:
-						if timer_end < end: # recording first part of event
+						if timer_end < end:
+							# recording first part of event
 							time_match = timer_end - begin
 							type = type_offset + 4
 							if x.justplay:
