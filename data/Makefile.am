@@ -16,7 +16,6 @@ dist_pkgdata_DATA = \
 	unicable.xml \
 	hd-testcard.mvi \
 	distro-logo.png \
-	distro-lcd-logo.png
 
 if HAVE_TEXTLCD
 SUBDIRS += displaytext
