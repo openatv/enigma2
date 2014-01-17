@@ -304,7 +304,7 @@ class Infopanel(Screen, InfoBarPiP):
 		self.Mlist = []
 		if Check_Softcam():
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('SoftcamPanel'), _("SoftcamPanel"), 'SoftcamPanel')))
-			self.Mlist.append(MenuEntryItem((InfoEntryComponent('Softcam-Panel Setup'), _("Softcam-Panel Setup"), 'Softcam-Panel Setup')))
+			self.Mlist.append(MenuEntryItem((InfoEntryComponent('SoftcamPanelSetup'), _("Softcam-Panel Setup"), 'Softcam-Panel Setup')))
 		#self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software Manager"), ("software-manager"))))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('RedPanel'), _("RedPanel"), 'RedPanel')))
