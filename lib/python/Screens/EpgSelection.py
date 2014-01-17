@@ -955,6 +955,9 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			autopoller = None
 			autotimer = None
+			
+	def timerAdd(self):
+		self.RecordTimerQuestion(True)			
 
 	def editTimer(self, timer):
 		self.session.open(TimerEntry, timer)
