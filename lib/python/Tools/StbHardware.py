@@ -1,6 +1,6 @@
 from fcntl import ioctl
 from struct import pack, unpack
-from enigma import getBoxType
+from boxbranding import getBoxType
 
 def getFPVersion():
 	ret = None

@@ -7,7 +7,8 @@ from Components.NimManager import nimmanager
 from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
-from enigma import eTimer, getBoxType, getMachineBrand, getMachineName, getImageVersionString, getBuildVersionString, getDriverDateString, getEnigmaVersionString
+from enigma import eTimer, getEnigmaVersionString
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
@@ -74,11 +75,11 @@ class About(Screen):
 		AboutText += _("CPU:\t%s") % about.getCPUString() + "\n"
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
 
-		AboutText += _("Version:\t%s") % getImageVersionString() + "\n"
-		AboutText += _("Build:\t%s") % getBuildVersionString() + "\n"
+		AboutText += _("Version:\t%s") % getImageVersion() + "\n"
+		AboutText += _("Build:\t%s") % getImageBuild() + "\n"
 		AboutText += _("Kernel:\t%s") % about.getKernelVersionString() + "\n"
 		
-		string = getDriverDateString()
+		string = getDriverDate()
 		year = string[0:4]
 		month = string[4:6]
 		day = string[6:8]
@@ -499,7 +500,7 @@ class SystemNetworkInfo(Screen):
 class AboutSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
-		self["selected"] = StaticText("ViX:" + getImageVersionString())
+		self["selected"] = StaticText("ViX:" + getImageVersion())
 
 		AboutText = _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
 
@@ -507,11 +508,11 @@ class AboutSummary(Screen):
 			chipset = open('/proc/stb/info/chipset', 'r').read()
 			AboutText += _("Chipset: BCM%s") % chipset.replace('\n','') + "\n"
 
-		AboutText += _("Version: %s") % getImageVersionString() + "\n"
-		AboutText += _("Build: %s") % getBuildVersionString() + "\n"
+		AboutText += _("Version: %s") % getImageVersion() + "\n"
+		AboutText += _("Build: %s") % getImageBuild() + "\n"
 		AboutText += _("Kernel: %s") % about.getKernelVersionString() + "\n"
 
-		string = getDriverDateString()
+		string = getDriverDate()
 		year = string[0:4]
 		month = string[4:6]
 		day = string[6:8]
