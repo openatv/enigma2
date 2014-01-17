@@ -10,7 +10,7 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 import VideoEnhancement
 from os import path as os_path
-from enigma import getBoxType
+from boxbranding import getBoxType
 
 class VideoEnhancementSetup(Screen, ConfigListScreen):
 	def __init__(self, session):

@@ -1,16 +1,4 @@
 import sys, os
-if os.path.exists('/dev/lcd2'): # VuDuo2 lcd
-	from fcntl import ioctl
-	led_fd = open("/dev/lcd2",'rw')
-	ioctl(led_fd, 0x10, 25)
-	led_fd.close()
-
-	from pngutil import png_util
-	pngutil = png_util.PNGUtil()
-	pngutilconnect = pngutil.connect()
-	if pngutilconnect:
-		pngutil.send("/usr/share/enigma2/distro-lcd-logo.png")
-
 if os.path.isfile("/usr/lib/enigma2/python/enigma.zip"):
 	sys.path.append("/usr/lib/enigma2/python/enigma.zip")
 
@@ -19,6 +7,7 @@ profile("PYTHON_START")
 
 import Tools.RedirectOutput
 import enigma
+from boxbranding import getBoxType
 import eConsoleImpl
 import eBaseImpl
 enigma.eTimer = eBaseImpl.eTimer
@@ -51,7 +40,7 @@ from Components.config import config, configfile, ConfigText, ConfigYesNo, Confi
 InitFallbackFiles()
 
 profile("config.misc")
-config.misc.boxtype = ConfigText(default = enigma.getBoxType())
+config.misc.boxtype = ConfigText(default = getBoxType())
 config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
@@ -538,14 +527,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 	
-	try:
-		file = open("/proc/stb/info/boxtype", "r")
-		model = file.readline().strip()
-		file.close()
-	except:
-		model = "unknown"
-
-	if enigma.getBoxType() == 'odinm9' or enigma.getBoxType() == 'ventonhdx' or enigma.getBoxType() == 'ebox5000' or enigma.getBoxType() == 'ebox7358' or enigma.getBoxType() == 'eboxlumi' or enigma.getBoxType() == 'ixussone' or enigma.getBoxType() == 'ixusszero' or model == 'ini-1000ru' or model == 'ini-1000sv':
+	if getBoxType() == 'odinm9' or getBoxType() == 'ventonhdx' or getBoxType() == 'ebox5000' or getBoxType() == 'ebox7358' or getBoxType() == 'eboxlumi' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or getBoxType() == 'ini-1000ru' or getBoxType() == 'ini-1000sv':
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -564,7 +546,7 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 
-	if enigma.getBoxType() == 'gb800se' or enigma.getBoxType() == 'gb800solo' or enigma.getBoxType() == 'gb800seplus':
+	if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'gb800seplus':
 		from enigma import evfd, eConsoleAppContainer
 		try:
 			cmd = 'vfdctl "    openatv starting e2"'
@@ -574,7 +556,7 @@ def runScreenTest():
 			evfd.getInstance().vfd_write_string("-E2-")
 		evfd.getInstance().vfd_led(str(1))
 		
-	if enigma.getBoxType() == 'odinm7' or enigma.getBoxType() == 'odinm6' or enigma.getBoxType() == 'xp1000s':
+	if getBoxType() == 'odinm7' or getBoxType() == 'odinm6' or getBoxType() == 'xp1000s':
 		f = open("/dev/dbox/oled0", "w")
 		f.write('-E2-')
 		f.close()
@@ -604,7 +586,7 @@ def runScreenTest():
 	from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime
 	#get currentTime
 	nowTime = time()
-	if not config.misc.SyncTimeUsing.getValue() == "0" or enigma.getBoxType().startswith('gb') or enigma.getBoxType().startswith('ini'):
+	if not config.misc.SyncTimeUsing.getValue() == "0" or getBoxType().startswith('gb') or getBoxType().startswith('ini'):
 		print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 		setRTCtime(nowTime)
 
@@ -623,11 +605,11 @@ def runScreenTest():
 		if (startTime[0] - nowTime) < 270: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
-			if enigma.getBoxType().startswith("gb"):
+			if getBoxType().startswith("gb"):
 				wptime = startTime[0] - 120 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0] - 240
-#		if not config.misc.SyncTimeUsing.getValue() == "0" or enigma.getBoxType().startswith('gb'):
+#		if not config.misc.SyncTimeUsing.getValue() == "0" or getBoxType().startswith('gb'):
 #			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 #			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
@@ -649,7 +631,7 @@ def runScreenTest():
 				wptime = startTime[0] - 240 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0]
-#		if not config.misc.SyncTimeUsing.getValue() == "0" or enigma.getBoxType().startswith('gb'):
+#		if not config.misc.SyncTimeUsing.getValue() == "0" or getBoxType().startswith('gb'):
 #			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 #			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime+60))
@@ -723,7 +705,7 @@ import Components.Lcd
 Components.Lcd.InitLcd()
 Components.Lcd.IconCheck()
 # Disable internal clock vfd for Venton-HD1 until we can adjust it for standby
-if enigma.getBoxType() == 'ventonhdx':
+if getBoxType() == 'ventonhdx':
 	try:
 		f = open("/proc/stb/fp/enable_clock", "r").readline()[:-1]
 		if f != '0':

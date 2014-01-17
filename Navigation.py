@@ -11,7 +11,7 @@ import NavigationInstance
 import ServiceReference
 from Screens.InfoBar import InfoBar, MoviePlayer
 from os import path
-from enigma import getBoxType
+from boxbranding import getBoxType
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:

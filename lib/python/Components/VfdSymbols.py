@@ -1,11 +1,12 @@
 from twisted.internet import threads
 from config import config
-from enigma import eDBoxLCD, eTimer, iPlayableService, getBoxType
+from enigma import eDBoxLCD, eTimer, iPlayableService
 import NavigationInstance
 from Tools.Directories import fileExists
 from Components.ParentalControl import parentalControl
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import SystemInfo
+from boxbranding import getBoxType
 
 POLLTIME = 5 # seconds
 

@@ -4,10 +4,11 @@ from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
-from enigma import eDVBVolumecontrol, getMachineBrand, getMachineName, getBoxType
+from enigma import eDVBVolumecontrol
 from Tools import Notifications
 import Screens.InfoBar
 from gettext import dgettext
+from boxbranding import getMachineBrand, getMachineName, getBoxType
 
 inStandby = None
 

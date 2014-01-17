@@ -1,6 +1,7 @@
 from twisted.internet import threads
 from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
-from enigma import eDBoxLCD, eTimer, getBoxType
+from enigma import eDBoxLCD, eTimer
+from boxbranding import getBoxType
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
 import usb

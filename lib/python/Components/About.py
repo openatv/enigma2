@@ -1,12 +1,12 @@
-from enigma import getImageVersionString
+from boxbranding import getImageVersion
 from sys import modules
 import socket, fcntl, struct
 
 def getVersionString():
-	return getImageVersionString()
+	return getImageVersion()
 
 def getEnigmaVersionString():
-	return getImageVersionString()
+	return getImageVersion()
 	
 def getKernelVersionString():
 	try:

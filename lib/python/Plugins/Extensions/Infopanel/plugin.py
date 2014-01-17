@@ -26,6 +26,7 @@ from Components.ActionMap import ActionMap
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from __init__ import _
+from boxbranding import getBoxType, getMachineName, getMachineBrand
 
 import os
 import sys

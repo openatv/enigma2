@@ -19,7 +19,8 @@ from Components.Task import Task, Job, job_manager, Condition
 from Tools.Directories import fileExists, isMount, resolveFilename, SCOPE_HDD, SCOPE_MEDIA
 from Tools.HardwareInfo import HardwareInfo
 from Tools.Downloader import downloadWithProgress
-from enigma import eConsoleAppContainer, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eTimer, getImageVersionString, getMachineBrand, getMachineName
+from enigma import eConsoleAppContainer, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eTimer
+from boxbranding import getImageVersion, getMachineBrand, getMachineName
 from os import system, path, access, stat, remove, W_OK, R_OK
 from twisted.web import client
 from twisted.internet import reactor, defer
@@ -735,7 +736,7 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 		self.menulist.append((ALLIMAGES, _("Select an image to be downloaded"), _("Select desired image from feed list" ), None))
 		self.menulist.append((STICK_WIZARD, _("USB stick wizard"), _("Prepare another USB stick for image flashing" ), None))
 		self["menu"].setList(self.menulist)
-		self["status"].text = _("Currently installed image") + ": %s" % (getImageVersionString())
+		self["status"].text = _("Currently installed image") + ": %s" % (getImageVersion())
 		self.branch = START
 		self.updateButtons()
 

@@ -13,12 +13,11 @@ from Screens.Console import Console
 from Screens.HelpMenu import HelpableScreen
 from Screens.TaskView import JobView
 from Tools.Downloader import downloadWithProgress
-from enigma import getBoxType, getDistro, getMachineName
 import urllib2
 import os
 import shutil
 import math
-
+from boxbranding import getBoxType, getDistro, getMachineName
 distro = getDistro()
 
 #############################################################################################################

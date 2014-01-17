@@ -1,6 +1,7 @@
 from Components.config import config
 from Renderer import Renderer
-from enigma import eLabel, eTimer, getBoxType
+from enigma import eLabel, eTimer
+from boxbranding import getBoxType
 from Components.VariableText import VariableText
 
 class RollerCharLCD(VariableText, Renderer):

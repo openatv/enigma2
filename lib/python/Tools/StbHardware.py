@@ -1,7 +1,7 @@
 from fcntl import ioctl
 from struct import pack, unpack
 from Components.config import config
-from enigma import getBoxType
+from boxbranding import getBoxType
 
 def getFPVersion():
 	ret = None
@@ -115,4 +115,3 @@ def clearFPWasTimerWakeup():
 			fp.close()
 		except IOError:
 			print "clearFPWasTimerWakeup failed!"
-

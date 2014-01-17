@@ -1,7 +1,8 @@
-from enigma import eDVBResourceManager, getBoxType
+from enigma import eDVBResourceManager
 from Tools.Directories import fileExists, resolveFilename, SCOPE_SKIN
 from Tools.HardwareInfo import HardwareInfo
 from os import path
+from boxbranding import getBoxType
 
 SystemInfo = { }
 

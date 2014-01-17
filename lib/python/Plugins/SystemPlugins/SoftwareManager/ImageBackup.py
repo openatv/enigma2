@@ -4,7 +4,7 @@
 #					MAKES A FULLBACK-UP READY FOR FLASHING.						#
 #																				#
 #################################################################################
-from enigma import getBoxType, getMachineBrand, getMachineName, getImageVersionString, getBuildVersionString, getDriverDateString, getEnigmaVersionString
+from enigma import getEnigmaVersionString
 from Screens.Screen import Screen
 from Components.Button import Button
 from Components.Label import Label
@@ -16,6 +16,7 @@ from time import time, strftime, localtime
 from os import path, system, makedirs, listdir, walk, statvfs
 import commands
 import datetime
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDateString, getImageVersion, getBuildVersion
 
 VERSION = "Version 2.0 openATV"
 
@@ -799,8 +800,8 @@ class ImageBackup(Screen):
 		AboutText += _("CPU: %s") % about.getCPUString() + "\n"
 		AboutText += _("Cores: %s") % about.getCpuCoresString() + "\n"
 
-		AboutText += _("Version: %s") % getImageVersionString() + "\n"
-		AboutText += _("Build: %s") % getBuildVersionString() + "\n"
+		AboutText += _("Version: %s") % getImageVersion() + "\n"
+		AboutText += _("Build: %s") % getBuildVersion() + "\n"
 		AboutText += _("Kernel: %s") % about.getKernelVersionString() + "\n"
 
 		string = getDriverDateString()

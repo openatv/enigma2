@@ -1,6 +1,6 @@
 
-from enigma import eListboxPythonMultiContent, gFont, eEnv, getMachineBrand, getMachineName, getBoxType
-
+from enigma import eListboxPythonMultiContent, gFont, eEnv
+from boxbranding import getMachineBrand, getMachineName, getBoxType
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap

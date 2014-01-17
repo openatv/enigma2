@@ -12,8 +12,8 @@ from Components.Ipkg import IpkgComponent
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
-from enigma import eTimer, eDVBDB, getImageVersionString, getBuildVersionString, getMachineBrand, getMachineName, getBoxType
-
+from enigma import eTimer, eDVBDB
+from boxbranding import getImageVersion, getImageBuild, getMachineBrand, getMachineName, getBoxType
 
 from os import rename, path, remove
 from gettext import dgettext
@@ -69,7 +69,7 @@ class SoftwareUpdateChanges(Screen):
 	def getlog(self):
 		global ocram
 		try:
-			sourcefile = 'http://enigma2.world-of-satellite.com/feeds/' + getImageVersionString() + '/' + getBoxType() + '/'  + self.logtype + '-git.log'
+			sourcefile = 'http://enigma2.world-of-satellite.com/feeds/' + getImageVersion() + '/' + getBoxType() + '/'  + self.logtype + '-git.log'
 			sourcefile,headers = urllib.urlretrieve(sourcefile)
 			rename(sourcefile,'/tmp/' + self.logtype + '-git.log')
 			fd = open('/tmp/' + self.logtype + '-git.log', 'r')
@@ -92,9 +92,9 @@ class SoftwareUpdateChanges(Screen):
 				else:
 					releasever = releasever[0].replace(':',"")
 			if self.logtype == 'oe':
-				imagever = getBuildVersionString()
+				imagever = getImageBuild()
 			else:
-				imagever = int(getBuildVersionString())+805
+				imagever = int(getImageBuild())+805
 			while int(releasever) > int(imagever):
 				if ocram:
 					viewrelease += releasenotes[int(ver)]+'\n'+ocram+'\n'
@@ -249,7 +249,7 @@ class UpdatePlugin(Screen):
 				currentTimeoutDefault = socket.getdefaulttimeout()
 				socket.setdefaulttimeout(3)
 				try:
-					config.softwareupdate.updateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + getImageVersionString() + "/status").read())
+					config.softwareupdate.updateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + getImageVersion() + "/status").read())
 				except:
 					config.softwareupdate.updateisunstable.setValue('1')
 				socket.setdefaulttimeout(currentTimeoutDefault)

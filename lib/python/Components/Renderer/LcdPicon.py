@@ -4,7 +4,7 @@ from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import pathExists, SCOPE_ACTIVE_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
-from enigma import getBoxType
+from boxbranding import getBoxType
 
 searchPaths = []
 lastLcdPiconPath = None
