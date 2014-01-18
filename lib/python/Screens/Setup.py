@@ -8,9 +8,9 @@ from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Components.Label import Label
 from Components.Sources.Boolean import Boolean
-from boxbranding import getMachineBrand, getMachineName
 
 from enigma import eEnv
+from boxbranding import getMachineBrand, getMachineName
 
 import xml.etree.cElementTree
 
