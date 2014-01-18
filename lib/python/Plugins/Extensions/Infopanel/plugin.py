@@ -135,28 +135,6 @@ try:
 except:
 	panel.write("Keymap: keymap file not found !!" + '\n')
 panel.close()
-if boxversion == "inihde" and machinename.lower() == "xpeedlx":
-	f1=open('/etc/hostname', "r")
-	hostname = f1.read()
-	f1.close()
-	if not hostname[:7] == "xpeedlx":
-		f=open('/etc/hostname', "w")
-		f.write('xpeedlx\n')
-		f.close()
-		ff=open('/etc/model', "w")
-		ff.write('xpeedlx\n')
-		ff.close()
-elif boxversion == "xp1000" and machinename.lower() == "sf8 hd":
-	f1=open('/etc/hostname', "r")
-	hostname = f1.read()
-	f1.close()
-	if not hostname[:3] == "sf8":
-		f=open('/etc/hostname', "w")
-		f.write('sf8\n')
-		f.close()
-		ff=open('/etc/model', "w")
-		ff.write('sf8 hd\n')
-		ff.close()
 
 ExitSave = "[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save")
 
