@@ -16,7 +16,7 @@ from time import time, strftime, localtime
 from os import path, system, makedirs, listdir, walk, statvfs
 import commands
 import datetime
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDateString, getImageVersion, getBuildVersion
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getBuildVersion
 
 VERSION = "Version 2.0 openATV"
 
