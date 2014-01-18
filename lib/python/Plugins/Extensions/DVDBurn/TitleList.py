@@ -12,7 +12,8 @@ from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
 from Components.MultiContent import MultiContentEntryText
 from Components.Label import MultiColorLabel
-from enigma import gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, getMachineBrand, getMachineName
+from enigma import gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT
+from boxbranding import getMachineBrand, getMachineName
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 class TitleList(Screen, HelpableScreen):

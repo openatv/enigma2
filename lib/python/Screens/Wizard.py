@@ -8,7 +8,8 @@ from Components.Slider import Slider
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigList
 from Components.Sources.List import List
-from enigma import eTimer, eEnv, getMachineBrand, getMachineName
+from enigma import eTimer, eEnv
+from boxbranding import getMachineBrand, getMachineName
 
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler

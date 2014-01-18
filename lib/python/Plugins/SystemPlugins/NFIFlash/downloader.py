@@ -20,7 +20,7 @@ from Tools.Directories import fileExists, isMount, resolveFilename, SCOPE_HDD, S
 from Tools.HardwareInfo import HardwareInfo
 from Tools.Downloader import downloadWithProgress
 from enigma import eConsoleAppContainer, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eTimer
-from boxbranding import getImageVersion, getMachineBrand, getMachineName
+from boxbranding import getImageVersion,getMachineBrand, getMachineName
 from os import system, path, access, stat, remove, W_OK, R_OK
 from twisted.web import client
 from twisted.internet import reactor, defer

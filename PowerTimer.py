@@ -1,5 +1,6 @@
 import os
-from enigma import eActionMap, eEPGCache, quitMainloop, getMachineBrand, getMachineName
+from enigma import eActionMap, eEPGCache, quitMainloop
+from boxbranding import getMachineBrand, getMachineName
 
 from Components.config import config
 from Components.TimerSanityCheck import TimerSanityCheck
