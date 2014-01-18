@@ -2,7 +2,7 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
 from Screens.HelpMenu import HelpableScreen
-from Components.About import about, getImageVersionString
+from Components.About import about, getVersionString
 from Components.Console import Console
 from Components.Network import iNetwork
 from Components.Sources.StaticText import StaticText
@@ -30,7 +30,7 @@ import commands
 
 
 
-if float(getImageVersionString()) >= 4.0:
+if float(getVersionString()) >= 4.0:
 	basegroup = "packagegroup-base"
 else:
 	basegroup = "task-base"

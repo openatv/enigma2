@@ -3,7 +3,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.config import config, configfile, getConfigListEntry
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
-from enigma import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName
 from Tools.Directories import fileExists
 from os import path
 if path.exists("/dev/hdmi_cec") or path.exists("/dev/misc/hdmi_cec0"):

@@ -14,7 +14,7 @@ from Components.ConfigList import ConfigList, ConfigListScreen
 
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry
 
-from enigma import getMachineBrand
+from boxbranding import getMachineBrand
 
 def getScale():
 	return AVSwitch().getFramebufferScale()

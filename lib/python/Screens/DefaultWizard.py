@@ -8,7 +8,7 @@ from Components.DreamInfoHandler import DreamInfoHandler
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from os import system as os_system, path as os_path, mkdir
-from enigma import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName
 
 config.misc.defaultchosen = ConfigBoolean(default = False)
 

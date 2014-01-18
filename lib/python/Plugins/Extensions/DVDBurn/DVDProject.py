@@ -3,7 +3,7 @@ from Components.config import config, ConfigSubsection, ConfigInteger, ConfigTex
 import DVDTitle
 import xml.dom.minidom
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
-from enigma import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName
 
 class ConfigColor(ConfigSequence):
 	def __init__(self, default = [128,128,128]):

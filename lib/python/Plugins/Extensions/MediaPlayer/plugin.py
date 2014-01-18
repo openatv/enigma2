@@ -25,7 +25,7 @@ from Tools.Directories import fileExists, pathExists, resolveFilename, SCOPE_CON
 from Tools.BoundFunction import boundFunction
 from settings import MediaPlayerSettings
 import random
-from enigma import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName
 
 class MyPlayList(PlayList):
 	def __init__(self):

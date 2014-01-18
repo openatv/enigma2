@@ -2,7 +2,7 @@ from Screen import Screen
 from MessageBox import MessageBox
 from Components.config import config
 import Screens.Standby
-from enigma import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName
 
 class PowerLost(Screen):
 	def __init__(self, session):
