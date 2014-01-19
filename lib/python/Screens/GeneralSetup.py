@@ -1,4 +1,5 @@
-from enigma import eListboxPythonMultiContent, gFont, eEnv, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, RT_WRAP, getMachineBrand, getMachineName
+from enigma import eListboxPythonMultiContent, gFont, eEnv, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, RT_WRAP
+from boxbranding import getMachineBrand, getMachineName
 
 from Components.ActionMap import ActionMap
 from Components.Label import Label

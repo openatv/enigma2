@@ -4,7 +4,7 @@ from os import path
 import sys
 import os
 import time
-from boxbranding import getImageVersion
+from boxbranding import getImageVersion, getMachineBrand
 from sys import modules
 import socket, fcntl, struct
 
@@ -26,14 +26,19 @@ def getImageVersionString():
 
 def getImageUrlString():
 	try:
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "url":
-				version = splitted[1].replace('\n','')
-		file.close()
-		return version
+		if getMachineBrand() == "GI":
+			return "www.xpeed-lx.de"
+		elif getMachineBrand() == "Beyonwiz":
+			return "www.beyonwiz.com.au"
+		else:
+			file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
+			lines = file.readlines()
+			for x in lines:
+				splitted = x.split('=')
+				if splitted[0] == "url":
+					version = splitted[1].replace('\n','')
+			file.close()
+			return version
 	except IOError:
 		return "unavailable"
 	      
