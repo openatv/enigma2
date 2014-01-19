@@ -3,7 +3,7 @@ from os import listdir, open as os_open, close as os_close, write as os_write, O
 from Tools.Directories import pathExists
 from fcntl import ioctl
 import struct
-from enigma import getBoxType
+from boxbranding import getBoxType
 
 # asm-generic/ioctl.h
 IOC_NRBITS = 8L

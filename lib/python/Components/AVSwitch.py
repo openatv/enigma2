@@ -1,8 +1,9 @@
 from config import config, ConfigSlider, ConfigSelection, ConfigYesNo, \
 	ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
-from enigma import eAVSwitch, getDesktop, getBoxType
+from enigma import eAVSwitch, getDesktop
 from SystemInfo import SystemInfo
 import os
+from boxbranding import getBoxType
 
 class AVSwitch:
 	def setInput(self, input):

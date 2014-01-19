@@ -19,8 +19,8 @@ def getImageVersionString():
 	return _("unavailable")
 
 def getEnigmaVersionString():
-	import enigma
-	enigma_version = enigma.getEnigmaVersionString()
+	from boxbranding import getImageVersion
+	enigma_version = enigma.getImageVersion()
 	if '-(no branch)' in enigma_version:
 		enigma_version = enigma_version [:-12]
 	return enigma_version

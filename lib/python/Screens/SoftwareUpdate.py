@@ -6,7 +6,8 @@ from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Ipkg import IpkgComponent
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
-from enigma import eTimer, getBoxType, eDVBDB
+from enigma import eTimer, eDVBDB
+from boxbranding import getBoxType
 
 class UpdatePlugin(Screen):
 	skin = """

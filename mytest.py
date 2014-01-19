@@ -12,6 +12,7 @@ import eBaseImpl
 enigma.eTimer = eBaseImpl.eTimer
 enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
+from boxbranding import getBoxType
 
 from traceback import print_exc
 profile("SimpleSummary")
@@ -509,7 +510,7 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 	
-	if enigma.getBoxType() == 'gb800se' or enigma.getBoxType() == 'gb800solo' or enigma.getBoxType() == 'gb800seplus':
+	if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'gb800seplus':
 		from enigma import evfd, eConsoleAppContainer
 		try:
 			cmd = 'vfdctl "    openmips starting e2"'

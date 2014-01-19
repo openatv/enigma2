@@ -13,19 +13,18 @@ from Screens.Console import Console
 from Screens.HelpMenu import HelpableScreen
 from Screens.TaskView import JobView
 from Tools.Downloader import downloadWithProgress
-from enigma import getBoxType, getDistro
+from boxbranding import getBoxType, getImageDistro, getMachineBrand, getMachineName
 import urllib2
 import os
 import shutil
 
-distro = getDistro()
+distro = getImageDistro()
 
 #############################################################################################################
 image = 0 # 0=openATV / 1=openMips
 if distro.lower() == "openmips":
 	image = 1
 elif distro.lower() == "openatv":
-	from enigma import getMachineBrand, getMachineName
 	image = 0
 feedurl_atv = 'http://images.mynonpublic.com/openatv/nightly'
 feedurl_om = 'http://image.openmips.com/2.0'

@@ -20,10 +20,11 @@ from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
-from enigma import eTimer, ePoint, eSize, RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont, getBoxType
+from enigma import eTimer, ePoint, eSize, RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
 from os import path as os_path, system as os_system, unlink
 from re import compile as re_compile, search as re_search
 import commands
+from boxbranding import getBoxType
 
 
 class NetworkAdapterSelection(Screen,HelpableScreen):

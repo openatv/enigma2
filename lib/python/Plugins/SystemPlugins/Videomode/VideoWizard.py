@@ -1,4 +1,4 @@
-from enigma import getBoxType
+from boxbranding import getBoxType
 from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
