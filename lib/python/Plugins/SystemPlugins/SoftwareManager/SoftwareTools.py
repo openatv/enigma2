@@ -11,6 +11,7 @@ from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_MET
 from Tools.HardwareInfo import HardwareInfo
 from time import time
 
+from boxbranding import getImageVersion
 
 class SoftwareTools(PackageInfoHandler):
 	lastDownloadDate = None
@@ -23,7 +24,7 @@ class SoftwareTools(PackageInfoHandler):
 
 
 	def __init__(self):
-		aboutInfo = about.getImageVersionString()
+		aboutInfo = getImageVersion()
 		if aboutInfo.startswith("dev-"):
 			self.ImageVersion = 'Experimental'
 		else:

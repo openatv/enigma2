@@ -1,7 +1,7 @@
 from fcntl import ioctl
 from struct import pack, unpack
 from Components.config import config
-from enigma import getBoxType
+from boxbranding import getBoxType
 
 def getFPVersion():
 	ret = None
@@ -46,7 +46,7 @@ def setRTCoffset():
 		print "set RTC Offset failed!"
 
 def setRTCtime(wutime):
-	if getBoxType().startswith('gb')or getBoxType().startswith('ini'):
+	if getBoxType().startswith('gb') or getBoxType().startswith('ini'):
 		setRTCoffset()
 	try:
 		f = open("/proc/stb/fp/rtc", "w")
@@ -115,4 +115,3 @@ def clearFPWasTimerWakeup():
 			fp.close()
 		except IOError:
 			print "clearFPWasTimerWakeup failed!"
-

@@ -4,9 +4,12 @@ from os import path
 import sys
 import os
 import time
+from boxbranding import getImageVersion, getMachineBrand
+from sys import modules
+import socket, fcntl, struct
 
 def getVersionString():
-	return getImageVersionString()
+	return getImageVersion()
 
 def getImageVersionString():
 	try:
@@ -23,22 +26,25 @@ def getImageVersionString():
 
 def getImageUrlString():
 	try:
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "url":
-				version = splitted[1].replace('\n','')
-		file.close()
-		return version
+		if getMachineBrand() == "GI":
+			return "www.xpeed-lx.de"
+		elif getMachineBrand() == "Beyonwiz":
+			return "www.beyonwiz.com.au"
+		else:
+			file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
+			lines = file.readlines()
+			for x in lines:
+				splitted = x.split('=')
+				if splitted[0] == "url":
+					version = splitted[1].replace('\n','')
+			file.close()
+			return version
 	except IOError:
 		return "unavailable"
 	      
 def getEnigmaVersionString():
-	import enigma
-	enigma_version = enigma.getEnigmaVersionString()
-	return enigma_version
-
+	return getImageVersion()
+	
 def getKernelVersionString():
 	try:
 		f = open("/proc/version","r")
@@ -47,19 +53,6 @@ def getKernelVersionString():
 		return kernelversion
 	except:
 		return _("unknown")
-
-def getBuildVersionString():
-	try:
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "build":
-				version = splitted[1].replace('\n','')
-		file.close()
-		return version
-	except IOError:
-		return "unavailable"
 
 def getLastUpdateString():
 	try:
@@ -81,80 +74,6 @@ def getLastUpdateString():
 				lastupdated = ' '.join((date, time))
 		file.close()
 		return lastupdated
-	except IOError:
-		return "unavailable"
-
-def getDriversString():
-	try:
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "drivers":
-				#YYYY MM DD hh mm
-				#2005 11 29 01 16
-				string = splitted[1].replace('\n','')
-				year = string[0:4]
-				month = string[4:6]
-				day = string[6:8]
-				date = '-'.join((year, month, day))
-		file.close()
-		return date
-	except IOError:
-		return "unavailable"
-
-def getDriversVersionString():
-	try:
-		if (os.path.isfile("/proc/stb/info/boxtype") and os.path.isfile("/proc/stb/info/version")):
-			  if ((open("/proc/stb/info/chipset").read().strip()) == "bcm7405"):
-			    return open("/proc/stb/info/chipset").read().strip().replace("7405", "7413") + "-" + open("/proc/stb/info/version").read().strip()
-			  else:
-			    return open("/proc/stb/info/chipset").read().strip() + "-" + open("/proc/stb/info/version").read().strip()
-	except:
-		pass
-	return "Unavailable"  
-
-def getHardwareTypeString():                                                    
-	try:
-		if (os.path.isfile("/proc/stb/info/boxtype") and os.path.isfile("/proc/stb/info/version")): 
-			return open("/proc/stb/info/boxtype").read().strip().upper()
-		if os.path.isfile("/proc/stb/info/boxtype"):                            
-			return open("/proc/stb/info/boxtype").read().strip().upper() + " (" + open("/proc/stb/info/board_revision").read().strip() + "-" + open("/proc/stb/info/version").read().strip() + ")"
-		if os.path.isfile("/proc/stb/info/vumodel"):                            
-			return "VU+" + open("/proc/stb/info/vumodel").read().strip().upper() + "(" + open("/proc/stb/info/version").read().strip().upper() + ")" 
-		if os.path.isfile("/proc/stb/info/model"):                              
-			return open("/proc/stb/info/model").read().strip().upper()      
-	except:
-		pass
-	return "Unavailable" 
-	
-def getImageTypeString():
-	try:
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "build_type":
-				image_type = splitted[1].replace('\n','') # 0 = release, 1 = experimental
-		file.close()
-		if image_type == '0':
-			image_type = _("Release")
-		else:
-			image_type = _("Experimental")
-		return image_type
-	except IOError:
-		return "unavailable"
-
-def getImageDistroString():
-	try:
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		file.close()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "comment":
-				distro =  splitted[1].replace('\n','')
-		return distro
 	except IOError:
 		return "unavailable"
 

@@ -9,7 +9,8 @@ from Components.config import config
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
 from Components.Label import Label
-from enigma import eTimer, getBoxType, getMachineBrand, getMachineName, getImageVersionString, getBuildVersionString, getDriverDateString, getEnigmaVersionString
+from enigma import eTimer, getEnigmaVersionString
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
@@ -38,32 +39,31 @@ class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		AboutText = _("Hardware: ") + about.getHardwareTypeString() + "\n"
+		AboutText = _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
 		if path.exists('/proc/stb/info/chipset'):
-			AboutText += _("Chipset: BCM%s") % about.getChipSetString().lower().replace('\n','').replace('bcm','') + "\n"
-		AboutText += _("CPU: %s") % about.getCPUString() + "\n"
-		AboutText += _("Cores: %s") % about.getCpuCoresString() + "\n"
-		AboutText += _("Drivers: ") + about.getDriversVersionString() + "\n"
-		AboutText += _("Image: ") + about.getImageVersionString() + "\n"
-		AboutText += _("Kernel Version: ") + about.getKernelVersionString() + "\n"
-		
-		EnigmaVersion = _("GUI: ") + about.getEnigmaVersionString()
-		self["EnigmaVersion"] = StaticText(EnigmaVersion)
-		AboutText += EnigmaVersion + "\n"
+			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString() + "\n"
 
-		ImageVersion = _("Last Upgrade: ") + about.getLastUpdateString()
+		AboutText += _("CPU:\t%s") % about.getCPUString() + "\n"
+		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
+		string = getDriverDate()
+		year = string[0:4]
+		month = string[4:6]
+		day = string[6:8]
+		driversdate = '-'.join((year, month, day))
+		AboutText += _("Drivers:\t%s") % driversdate + "\n"
+		AboutText += _("Image:\t%s") % about.getImageVersionString() + "\n"
+		AboutText += _("Kernel: \t%s") % about.getKernelVersionString() + "\n"
+		AboutText += _("Oe-Core:\t%s") % about.getEnigmaVersionString() + "\n"
 		
-		EGAMIVersion = "EGAMI " + about.getImageVersionString()
-		
-		self["EGAMIVersion"] = Label(EGAMIVersion)
-		AboutText += ImageVersion + "\n"
-
 		fp_version = getFPVersion()
 		if fp_version is None:
 			fp_version = ""
 		else:
-			fp_version = _("Frontprocessor version: %d") % fp_version
-			AboutText += fp_version + "\n"
+			fp_version = _("Front Panel:\t%d") % fp_version
+			AboutText += fp_version + "\n\n"
+			
+		AboutText += _("Last Upgrade:\t%s") % about.getLastUpdateString() + "\n\n" 
+		AboutText += _("WWW:\t%s") % about.getImageUrlString()
 
 		self["FPVersion"] = StaticText(fp_version)
 
@@ -129,10 +129,6 @@ class About(Screen):
 		else:
 			hddinfo = _("none")
 		self["hddA"] = StaticText(hddinfo)
-	
-		ImageUrl = _("WWW: ") + about.getImageUrlString()
-		self["ImageUrl"] = StaticText(ImageUrl)
-		AboutText += ImageUrl + "\n"
 		
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 

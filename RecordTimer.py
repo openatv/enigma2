@@ -1,5 +1,6 @@
 import os
-from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference, eServiceCenter, iRecordableService, quitMainloop, eActionMap, getMachineBrand, getMachineName
+from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference, eServiceCenter, iRecordableService, quitMainloop, eActionMap
+from boxbranding import getMachineBrand, getMachineName
 
 from Components.config import config
 from Components import Harddisk

@@ -1,4 +1,4 @@
-from enigma import getBoxType
+from boxbranding import getBoxType
 
 class HardwareInfo:
 	device_name = None
