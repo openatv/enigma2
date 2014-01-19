@@ -30,13 +30,13 @@ def countFrontpanelLEDs():
 SystemInfo["NumFrontpanelLEDs"] = countFrontpanelLEDs()
 SystemInfo["FrontpanelDisplay"] = fileExists("/dev/dbox/oled0") or fileExists("/dev/dbox/lcd0")
 SystemInfo["OledDisplay"] = fileExists("/dev/dbox/oled0")
-SystemInfo["LcdDisplay"] = fileExists("/dev/dbox/lcd0") or getBoxType() == "inihde" or getBoxType() == "inihdx"
+SystemInfo["LcdDisplay"] = fileExists("/dev/dbox/lcd0") or getBoxType().startswith("ini-10") or getBoxType().startswith("ini-30") or getBoxType().startswith("ini-50") or getBoxType().startswith("ini-70")
 SystemInfo["DeepstandbySupport"] = HardwareInfo().has_deepstandby()
 SystemInfo["WOL"] = fileExists("/proc/stb/fp/wol")
 SystemInfo["HDMICEC"] = (path.exists("/dev/hdmi_cec") or path.exists("/dev/misc/hdmi_cec0")) and fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/HdmiCEC/plugin.pyo")
 SystemInfo["SABSetup"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SABnzbd/plugin.pyo")
 SystemInfo["SeekStatePlay"] = False
-SystemInfo["GraphicLCD"] = getBoxType() == "inihdp" or getBoxType() == "vuultimo"
+SystemInfo["GraphicLCD"] = getBoxType().startswith("ini-90") or getBoxType() == "vuultimo"
 SystemInfo["Blindscan"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Blindscan/plugin.pyo")
 SystemInfo["Satfinder"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Satfinder/plugin.pyo")
 SystemInfo["GBWOL"] = fileExists("/usr/bin/gigablue_wol")
