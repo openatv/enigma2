@@ -223,8 +223,9 @@ class Satfinder(ScanSetup, ServiceScan):
 		networkid = 0
 		self.session.openWithCallback(self.startScanCallback, ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags, "networkid": networkid}])
 
-	def startScanCallback(self):
-		self.doCloseRecursive()
+	def startScanCallback(self, answer=None):
+		if answer:
+			self.doCloseRecursive()
 
 	def keyCancel(self):
 		if self.session.postScanService and self.frontend:
