@@ -17,15 +17,14 @@ import urllib2
 import os
 import shutil
 import math
-from boxbranding import getBoxType, getDistro, getMachineName
-distro = getDistro()
+from boxbranding import getBoxType,  getImageDistro, getMachineName, getMachineBrand
+distro =  getImageDistro()
 
 #############################################################################################################
 image = 0 # 0=openATV / 1=openMips
 if distro.lower() == "openmips":
 	image = 1
 elif distro.lower() == "openatv":
-	from enigma import getMachineBrand, getMachineName
 	image = 0
 feedurl_atv = 'http://images.mynonpublic.com/openatv/nightly'
 feedurl_om = 'http://image.openmips.com/2.0'

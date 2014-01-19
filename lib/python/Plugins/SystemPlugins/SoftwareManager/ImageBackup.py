@@ -16,7 +16,7 @@ from time import time, strftime, localtime
 from os import path, system, makedirs, listdir, walk, statvfs
 import commands
 import datetime
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getBuildVersion
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild
 
 VERSION = "Version 2.0 openATV"
 
@@ -801,7 +801,7 @@ class ImageBackup(Screen):
 		AboutText += _("Cores: %s") % about.getCpuCoresString() + "\n"
 
 		AboutText += _("Version: %s") % getImageVersion() + "\n"
-		AboutText += _("Build: %s") % getBuildVersion() + "\n"
+		AboutText += _("Build: %s") % getImageBuild() + "\n"
 		AboutText += _("Kernel: %s") % about.getKernelVersionString() + "\n"
 
 		string = getDriverDateString()
