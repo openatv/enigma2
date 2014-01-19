@@ -6,7 +6,7 @@ from Components.ActionMap import ActionMap
 from Components.Sources.List import List
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-from Components.About import about
+from boxbranding import getBoxType
 
 from Tools.Directories import fileExists
 from urllib import quote
@@ -332,9 +332,9 @@ class MeteoMain(Screen):
 
     def get_Url(self):
         url = 'http://weather.yahooapis.com/forecastrss?w='
-        if about.getHardwareTypeString() == "INI-5000SV":
+        if getBoxType() == "ini-5000sv":
 		url2 = '906057' # Stockholm
-	elif about.getHardwareTypeString() == "INI-5000R":
+	elif getBoxType() == "ini-5000r":
 		url2 = '2122265' # Moskwa
 	else:
 		url2 = '638242' # Berlin
@@ -356,9 +356,9 @@ class MeteoMain(Screen):
     def key_red(self):
         msg = _('Enter the city name:')
         city = ''
-        if about.getHardwareTypeString() == "INI-5000SV":
+        if getBoxType() == "ini-5000sv":
 		city ="Stockholm"
-	elif about.getHardwareTypeString() == "INI-5000R":
+	elif getBoxType() == "ini-5000r":
 		city = "Moscow"
 	else:
 		city = "Berlin"
