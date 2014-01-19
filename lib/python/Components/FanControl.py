@@ -4,7 +4,8 @@ from Components.config import config, ConfigSubList, ConfigSubsection, ConfigSli
 from Tools.BoundFunction import boundFunction
 
 import NavigationInstance
-from enigma import iRecordableService, getBoxType
+from enigma import iRecordableService
+from boxbranding import getBoxType
 
 class FanControl:
 	# ATM there's only support for one fan

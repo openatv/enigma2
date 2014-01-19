@@ -50,7 +50,8 @@ from Tools import Notifications
 from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT
 from Tools.KeyBindings import getKeyDescription
 
-from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, getBoxType, getMachineBrand, getMachineName
+from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
+from boxbranding import getBoxType, getMachineBrand, getMachineName
 
 from time import time, localtime, strftime
 from bisect import insort

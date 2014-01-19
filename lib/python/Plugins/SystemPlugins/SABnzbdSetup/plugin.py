@@ -7,7 +7,7 @@ from Components.PluginComponent import plugins
 from Components.ActionMap import ActionMap
 from Tools.Directories import fileExists
 from Plugins.Plugin import PluginDescriptor
-from enigma import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName
 import time
 
 class SABnzbdSetupScreen(Screen):

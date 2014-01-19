@@ -26,7 +26,7 @@ from Tools.BoundFunction import boundFunction
 from settings import MediaPlayerSettings
 from Screens.InfoBar import MoviePlayer
 import random
-from enigma import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName
 
 
 class ExMoviePlayer(MoviePlayer):

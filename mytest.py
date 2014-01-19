@@ -1,16 +1,4 @@
 import sys, os
-if os.path.exists('/dev/lcd2'): # VuDuo2 lcd
-	from fcntl import ioctl
-	led_fd = open("/dev/lcd2",'rw')
-	ioctl(led_fd, 0x10, 25)
-	led_fd.close()
-
-	from pngutil import png_util
-	pngutil = png_util.PNGUtil()
-	pngutilconnect = pngutil.connect()
-	if pngutilconnect:
-		pngutil.send("/usr/share/enigma2/distro-lcd-logo.png")
-
 if os.path.isfile("/usr/lib/enigma2/python/enigma.zip"):
 	sys.path.append("/usr/lib/enigma2/python/enigma.zip")
 
@@ -19,6 +7,7 @@ profile("PYTHON_START")
 
 import Tools.RedirectOutput
 import enigma
+from boxbranding import getBoxType
 import eConsoleImpl
 import eBaseImpl
 enigma.eTimer = eBaseImpl.eTimer
@@ -51,7 +40,6 @@ from Components.config import config, configfile, ConfigText, ConfigYesNo, Confi
 InitFallbackFiles()
 
 profile("config.misc")
-config.misc.boxtype = ConfigText(default = enigma.getBoxType())
 config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_ACTIVE_SKIN, "radio.mvi"))
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
@@ -527,7 +515,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 
-	if config.misc.boxtype.value == 'odinm9' or enigma.getBoxType().startswith('inihdx') or config.misc.boxtype.value == 'ventonhdx' or config.misc.boxtype.value == 'mbtwin':
+	if config.misc.boxtype.value == 'odinm9' or getBoxType().startswith('inihdx') or config.misc.boxtype.value == 'ventonhdx' or config.misc.boxtype.value == 'mbtwin':
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -556,7 +544,7 @@ def runScreenTest():
 	#get currentTime
 	nowTime = time()
 	
-	if enigma.getBoxType().startswith('gb') or enigma.getBoxType().startswith('ini'):
+	if getBoxType().startswith('gb') or getBoxType().startswith('ini'):
 		setRTCtime(nowTime)
 		
 	wakeupList = [
@@ -574,11 +562,11 @@ def runScreenTest():
 		if (startTime[0] - nowTime) < 270: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
-			if enigma.getBoxType().startswith("gb"):
+			if getBoxType().startswith("gb"):
 				wptime = startTime[0] - 120 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0] - 240
-		if not config.misc.SyncTimeUsing.getValue() == "0":
+		if not config.misc.SyncTimeUsing.getValue() == "0" or getBoxType().startswith('gb'):
 			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
@@ -596,11 +584,11 @@ def runScreenTest():
 		if (startTime[0] - nowTime) < 60: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
-			if enigma.getBoxType().startswith("gb"):
+			if getBoxType().startswith("gb"):
 				wptime = startTime[0] + 120 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0]
-		if not config.misc.SyncTimeUsing.getValue() == "0":
+		if not config.misc.SyncTimeUsing.getValue() == "0" or getBoxType().startswith('gb'):
 			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime+60))

@@ -3,18 +3,23 @@ from Tools.Directories import resolveFilename, SCOPE_SKIN
 from xml.etree.ElementTree import ElementTree
 from Components.config import config, ConfigInteger
 from Components.RcModel import rc_model
-from enigma import getBoxType, ePoint
+from boxbranding import getBoxType
+from enigma import ePoint
 
 config.misc.rcused = ConfigInteger(default = 1)
 
 class Rc:
 	def __init__(self):
 		self["rc"] = MultiPixmap()
+		self['red'] = MovingPixmap()
+		self['tunera'] = MovingPixmap()
+		self['tunerb'] = MovingPixmap()
+		self['tunerc'] = MovingPixmap()
+		self['tunerd'] = MovingPixmap()
 		self["arrowdown"] = MovingPixmap()
 		self["arrowdown2"] = MovingPixmap()
 		self["arrowup"] = MovingPixmap()
 		self["arrowup2"] = MovingPixmap()
-		self['red'] = MovingPixmap()
 
 		config.misc.rcused = ConfigInteger(default = 1)
 		self.isDefaultRc = rc_model.rcIsDefault()
@@ -24,11 +29,9 @@ class Rc:
 		self.selectpics = []
 		self.selectpics.append((self.rcheighthalf, ["arrowdown", "arrowdown2"], (-18,-70)))
 		self.selectpics.append((self.rcheight, ["arrowup", "arrowup2"], (-18,0)))
-
 		self['red'].hide()
-		if self.has_key('languagetext'):
-		    self['languagetext'].hide()
-
+		#if self.has_key('languagetext'):
+		#    self['languagetext'].hide()
 		self.readPositions()
 		self.clearSelectedKeys()
 		self.onShown.append(self.initRc)
@@ -36,24 +39,19 @@ class Rc:
 	def initRc(self):
 		if self.isDefaultRc:
 			self["rc"].setPixmapNum(config.misc.rcused.getValue())
-			rc = self.rcs[int(config.misc.rcused.getValue())]
 		else:
 			self["rc"].setPixmapNum(0)
-			try:
-				rc = self.rcs[2]
-			except:
-				rc = self.rcs[config.misc.rcused.getValue()]
-				
-		if rc.has_key('RED'):
-			rcpos = self['rc'].getPosition()
-			pos = rc['RED']
-			self['red'].moveTo(rcpos[0] + pos[0] - 313, rcpos[1] + pos[1] - 15, 1)
-			self['red'].startMoving()
-			self['red'].show()
-			if self.has_key('languagetext'):
-			    self['languagetext'].instance.move(ePoint(rcpos[0] + pos[0] - 313, rcpos[1] + pos[1] + 50))
-			    self['languagetext'].show()
-
+			
+		#if rc.has_key('RED'):
+		#	rcpos = self['rc'].getPosition()
+		#	pos = rc['RED']
+		#	self['red'].moveTo(rcpos[0] + pos[0] - 313, rcpos[1] + pos[1] - 15, 1)
+		#	self['red'].startMoving()
+		#	self['red'].show()
+		#	if self.has_key('languagetext'):
+		#	    self['languagetext'].instance.move(ePoint(rcpos[0] + pos[0] - 313, rcpos[1] + pos[1] + 50))
+		#	    self['languagetext'].show()
+                
 	def readPositions(self):
 		if self.isDefaultRc:
 			target = resolveFilename(SCOPE_SKIN, "rcpositions.xml")
@@ -117,3 +115,4 @@ class Rc:
 		for selectPic in self.selectpics:
 			for pic in selectPic[1]:
 				self[pic].hide()
+				

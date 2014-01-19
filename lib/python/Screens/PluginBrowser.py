@@ -1,6 +1,7 @@
 from Screens.Screen import Screen
 
-from enigma import eConsoleAppContainer, eDVBDB, getImageVersionString
+from enigma import eConsoleAppContainer, eDVBDB
+from boxbranding import getImageVersion
 
 from Components.About import about
 from Components.ActionMap import ActionMap
@@ -188,12 +189,12 @@ class PluginDownloadBrowser(Screen):
 		})
 		if os.path.isfile('/usr/bin/opkg'):
 			self.ipkg = '/usr/bin/opkg'
-			self.ipkg_install = self.ipkg + ' install'
-			self.ipkg_remove =	self.ipkg + ' remove --autoremove'
+			self.ipkg_install = self.ipkg + ' install --force-overwrite'
+			self.ipkg_remove =  self.ipkg + ' remove --autoremove --force-depends'
 		else:
 			self.ipkg = 'ipkg'
-			self.ipkg_install = 'ipkg install -force-defaults'
-			self.ipkg_remove =	self.ipkg + ' remove'
+			self.ipkg_install = 'ipkg install --force-overwrite -force-defaults'
+			self.ipkg_remove =  self.ipkg + ' remove --autoremove --force-depends'
 
 	def go(self):
 		sel = self["list"].l.getCurrentSelection()
@@ -252,7 +253,7 @@ class PluginDownloadBrowser(Screen):
 		if val:
 			if self.type == self.DOWNLOAD:
 				if self["list"].l.getCurrentSelection()[0].name.startswith("picons-"):
-					supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
+					supported_filesystems = frozenset(('vfat','ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
 					candidates = []
 					import Components.Harddisk
 					mounts = Components.Harddisk.getProcMounts()
@@ -265,7 +266,7 @@ class PluginDownloadBrowser(Screen):
 						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install picons on"), list=candidates)
 					return
 				elif self["list"].l.getCurrentSelection()[0].name.startswith("display-picon"):
-					supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
+					supported_filesystems = frozenset(('vfat','ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
 					candidates = []
 					import Components.Harddisk
 					mounts = Components.Harddisk.getProcMounts()
@@ -324,23 +325,8 @@ class PluginDownloadBrowser(Screen):
 		self["list"].instance.hide()
 		self.listWidth = listsize.width()
 		self.listHeight = listsize.height()
-
 		if self.type == self.DOWNLOAD:
-			currentTimeoutDefault = socket.getdefaulttimeout()
-			socket.setdefaulttimeout(3)
-			try:
-				config.softwareupdate.updateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + about.getImageVersionString() + "/status").read())
-			except:
-				config.softwareupdate.updateisunstable.setValue(1)
-			socket.setdefaulttimeout(currentTimeoutDefault)
-
-			if config.softwareupdate.updateisunstable.getValue() == '1' and config.softwareupdate.updatebeta.getValue():
-				self["text"].setText(_("Downloading plugin information. Please wait..."))
-				self.container.execute(self.ipkg + " update")
-			elif config.softwareupdate.updateisunstable.getValue() == '1' and not config.softwareupdate.updatebeta.getValue():
-				self["text"].setText(_("Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in online update setup."))
-			else:
-				self.container.execute(self.ipkg + " update")
+			self.container.execute(self.ipkg + " update")
 		elif self.type == self.REMOVE:
 			self.run = 1
 			self.startIpkgListInstalled()

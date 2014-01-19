@@ -12,7 +12,8 @@ from ServiceReference import ServiceReference
 from Plugins.Plugin import PluginDescriptor
 from xml.etree.cElementTree import parse as ci_parse
 from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
-from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv, getMachineBrand, getMachineName
+from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv
+from boxbranding import getMachineBrand, getMachineName
 
 from os import system, path as os_path
 

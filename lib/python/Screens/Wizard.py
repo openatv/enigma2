@@ -8,7 +8,8 @@ from Components.Slider import Slider
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigList
 from Components.Sources.List import List
-from enigma import eTimer, eEnv, getMachineBrand, getMachineName
+from enigma import eTimer, eEnv
+from boxbranding import getMachineBrand, getMachineName
 from Components.config import config
 
 from xml.sax import make_parser
@@ -579,7 +580,10 @@ class Wizard(Screen):
 					if isinstance(element, ConfigSelection):
 						for choice in element.choices.choices:
 							print "choice:", choice
-							self.list.append((choice[1], choice[0]))
+							if configelement == "config.timezone.val":
+								self.list.append((choice, choice))
+							else:
+								self.list.append((choice[1], choice[0]))
 						index = element.getIndex()
 					elif isinstance(element, ConfigBoolean):
 						self.list.append((_(element.descriptions[True]), True))

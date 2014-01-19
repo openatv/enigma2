@@ -12,7 +12,8 @@ from Components.Ipkg import IpkgComponent
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
-from enigma import eTimer, eDVBDB, getImageVersionString, getBuildVersionString, getMachineBrand, getMachineName, getBoxType
+from enigma import eTimer, eDVBDB
+from boxbranding import getImageVersion, getImageBuild, getMachineBrand, getMachineName, getBoxType
 
 from os import rename, path, remove
 from gettext import dgettext

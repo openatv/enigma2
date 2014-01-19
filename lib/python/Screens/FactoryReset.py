@@ -1,5 +1,5 @@
 from Screens.MessageBox import MessageBox
-from enigma import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName
 
 class FactoryReset(MessageBox):
 	def __init__(self, session):

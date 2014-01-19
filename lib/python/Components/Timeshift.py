@@ -47,7 +47,8 @@ from Tools.BoundFunction import boundFunction
 from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, resolveFilename, SCOPE_TIMESHIFT
 from Tools.TimeShift import CopyTimeshiftJob, MergeTimeshiftJob, CreateAPSCFilesJob
 
-from enigma import getBoxType, eBackgroundFileEraser, eTimer, eServiceCenter, iServiceInformation, iPlayableService
+from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, iServiceInformation, iPlayableService
+from boxbranding import getBoxType
 
 from time import time, localtime, strftime
 from random import randint

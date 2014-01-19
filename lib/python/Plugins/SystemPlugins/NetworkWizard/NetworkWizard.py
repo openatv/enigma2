@@ -2,14 +2,15 @@ from Screens.Screen import Screen
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
 from Screens.MessageBox import MessageBox
+from Components.About import about
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Components.Network import iNetwork
 from Components.config import config, ConfigSubsection, ConfigBoolean
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from Components.About import about
-from enigma import eTimer, getMachineBrand, getMachineName
+from enigma import eTimer
+from boxbranding import getMachineBrand, getMachineName
 
 from os import system
 
@@ -427,7 +428,7 @@ class NetworkWizard(WizardLanguage, Rc):
 				for entry in complist:
 					self.APList.append( (entry[1], entry[1]) )
 			if not len(aps):
-				self.APList.append( ( _("No networks found"), None ) )
+				self.APList.append( ( _("Searching for WLAN networks..."), None ) )
 			
 		self.rescanTimer.start(4000)
 		return self.APList
