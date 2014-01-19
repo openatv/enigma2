@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-04 19:12+0100\n"
-"PO-Revision-Date: 2014-01-04 20:11+0100\n"
+"POT-Creation-Date: 2014-01-19 01:14+0100\n"
+"PO-Revision-Date: 2014-01-19 17:59+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -779,8 +779,8 @@ msgstr "Zu Favoriten hinzufügen"
 msgid "Add/Remove timer for current event"
 msgstr "Timer für aktuelle Sendung hinzufügen/entfernen"
 
-msgid "Add/remove timer for current event"
-msgstr "Timer für aktuelle Sendung hinzufügen/entfernen"
+msgid "Add/remove change timer for current event"
+msgstr "Bearbeiten/Ändern/Entfernen des Timers dieser Sendung"
 
 msgid "Adding schedule..."
 msgstr "Termin hinzufügen..."
@@ -1434,9 +1434,6 @@ msgstr ""
 msgid "Cancel"
 msgstr "Abbrechen"
 
-msgid "Cancel next timer"
-msgstr "Nächsten Timer abbrechen"
-
 msgid "Cancel save timeshift as movie"
 msgstr "Film speichern abbrechen"
 
@@ -1479,6 +1476,9 @@ msgstr "Zentriere Zeit und entferne Datum"
 msgid "Change bouquets in quickzap"
 msgstr "Favoriten wechseln beim Quickzap"
 
+msgid "Change next timer"
+msgstr "Nächsten Timer ändern"
+
 msgid "Change pin code"
 msgstr "PIN Code ändern"
 
@@ -1502,6 +1502,9 @@ msgstr "PIN für Einstellungen ändern"
 
 msgid "Change step size"
 msgstr "Schrittweite ändern."
+
+msgid "Change timer"
+msgstr "Timer ändern"
 
 msgid "Changelog"
 msgstr "Changelog"
@@ -2460,6 +2463,9 @@ msgstr "Wiedergabelisteneintrag löschen"
 msgid "Delete saved playlist"
 msgstr "gespeicherte Wiedergabeliste löschen"
 
+msgid "Delete timer"
+msgstr "Timer löschen"
+
 msgid "Delete..."
 msgstr "löschen..."
 
@@ -2890,6 +2896,9 @@ msgstr "Bearbeite die DNS Einstellungen der %s %s.\n"
 #, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Bearbeite die Netzwerk-Konfiguration der %s %s.\n"
+
+msgid "Edit timer"
+msgstr "Timer bearbeiten"
 
 msgid "Edit title"
 msgstr "Titel schneiden"
@@ -3784,6 +3793,9 @@ msgstr "ECM in HTTP-Streams integrieren"
 
 msgid "Include EIT in http streams"
 msgstr "EIT in HTTP-Streams integrieren"
+
+msgid "Incorrect type service for PiP!"
+msgstr "Falsche Senderart für PiP!"
 
 msgid "Increase time scale"
 msgstr "Erhöhe Zeitspanne"
@@ -6326,6 +6338,10 @@ msgstr "CAID auswählen"
 msgid "Select a wireless network"
 msgstr "Wähle Funk-Netzwerk"
 
+#, python-format
+msgid "Select action for timer %s:"
+msgstr "Wäjle Aktion für Timer %s:"
+
 msgid "Select an image to be downloaded"
 msgstr "Wähle Image zum Download"
 
@@ -6931,9 +6947,6 @@ msgstr "Zeige oder verstecke erweiterte Beschreibung (skinabhängig)."
 
 msgid "Show picon background colour"
 msgstr "Zeige Hintergrundfarbe von PIcon"
-
-msgid "Show picons in servicelist"
-msgstr "Zeige PIcon in der Senderliste"
 
 msgid "Show positioner movement"
 msgstr "Zeige Rotorbewegung"
@@ -10676,6 +10689,9 @@ msgstr "Sendungs-Details anzeigen"
 
 msgid "show mediaplayer on mainmenu"
 msgstr "Zeige Mediaplayer im Hauptmenü"
+
+msgid "show picons in service list"
+msgstr "Zeige PIcon in der Senderliste"
 
 msgid "show program information..."
 msgstr "Zeige Programminformationen..."
