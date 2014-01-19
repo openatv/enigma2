@@ -38,10 +38,7 @@ def get_ip_address(ifname):
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		
-		EGAMIVersion = _("EGAMI %s") % about.getImageVersionString()
-		self["EGAMIVersion"] = Label(EGAMIVersion)
-		
+
 		AboutText = _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
 		if path.exists('/proc/stb/info/chipset'):
 			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString() + "\n"
