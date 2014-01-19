@@ -9,8 +9,8 @@ class RollerCharLCD(VariableText, Renderer):
     def __init__(self):
         Renderer.__init__(self)
         VariableText.__init__(self)
-        if getBoxType() == 'inihdp':
-            self.stringlength = 20
+        if getBoxType().startswith("ini-90"):
+            self.stringlength = 25
         else:
             self.stringlength = 12
 
