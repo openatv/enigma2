@@ -1,5 +1,5 @@
 import xml.etree.cElementTree
-from enigma import getDistro
+from boxbranding import getImageDistro
 from os import environ, unlink, symlink
 import time
 
@@ -11,7 +11,7 @@ class Timezones:
 	def readTimezonesFromFile(self):
 		try:
 			tz_file = "/etc/timezone.xml"
-			if getDistro() == "easy-gui-aus":
+			if getImageDistro() == "easy-gui-aus":
 				tz_file = "/etc/tuxbox/timezone-aus.xml"
 			file = open(tz_file)
 			root = xml.etree.cElementTree.parse(file).getroot()
