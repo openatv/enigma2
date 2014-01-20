@@ -55,42 +55,6 @@ AC_ARG_WITH(boxtype,
 AC_SUBST(BOXTYPE)
 AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
 
-AC_ARG_WITH(distro,
-	[  --with-distro=NAME distro name [[openvix,openaaf,...]]],
-	[DISTRO="$withval"],[DISTRO="openvix"])
-AC_SUBST(DISTRO)
-AC_DEFINE_UNQUOTED(DISTRO,"$DISTRO",[distro name])
-
-AC_ARG_WITH(machinebrand,
-	[  --with-machinebrand=NAME brand name [[Vu,Xtrend,...]]],
-	[MACHINE_BRAND="$withval"],[MACHINE_BRAND="Vu+"])
-AC_SUBST(MACHINE_BRAND)
-AC_DEFINE_UNQUOTED(MACHINE_BRAND,"$MACHINE_BRAND",[machine brand])
-
-AC_ARG_WITH(machinename,
-	[  --with-machinename=NAME machine name [[Solo,Ultimo,...]]],
-	[MACHINE_NAME="$withval"],[MACHINE_NAME="Ultimo"])
-AC_SUBST(MACHINE_NAME)
-AC_DEFINE_UNQUOTED(MACHINE_NAME,"$MACHINE_NAME",[machine name])
-
-AC_ARG_WITH(imageversion,
-	[  --with-imageversion=NAME version number [[3.0]]],
-	[IMAGEVERSION="$withval"],[IMAGEVERSION=""])
-AC_SUBST(IMAGEVERSION)
-AC_DEFINE_UNQUOTED(IMAGEVERSION,"$IMAGEVERSION",[version number])
-
-AC_ARG_WITH(imagebuild,
-	[  --with-imagebuild=NAME build number [[628]]],
-	[IMAGEBUILD="$withval"],[IMAGEBUILD=""])
-AC_SUBST(IMAGEBUILD)
-AC_DEFINE_UNQUOTED(IMAGEBUILD,"$IMAGEBUILD",[build number])
-
-AC_ARG_WITH(driverdate,
-	[  --with-driverdate=NAME driver date [[628]]],
-	[DRIVERDATE="$withval"],[DRIVERDATE=""])
-AC_SUBST(DRIVERDATE)
-AC_DEFINE_UNQUOTED(DRIVERDATE,"$DRIVERDATE",[driver date])
-
 AM_CONDITIONAL(AZBOX, test `echo "$BOXTYPE" | cut -b 1-5` == "azbox")
 AM_CONDITIONAL(CUBE, test `echo "$BOXTYPE" | cut -b 1-4` == "cube")
 AM_CONDITIONAL(DREAMBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "dm")
@@ -228,16 +192,6 @@ if test x"$withbwlcd140" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_BWLCD140, test x"$withbwlcd140" != xno)
 
-AC_ARG_WITH(fullgraphiclcd,
-	AC_HELP_STRING([--with-fullgraphiclcd], [display right_half_vfd_icons from skin(for ultimo), yes or no]),
-	[[withfullgraphiclcd=$withval]],
-	[[withfullgraphiclcd=no]]
-)
-if test x"$withfullgraphiclcd" != xno ; then
-	AC_DEFINE(HAVE_FULLGRAPHICLCD, 1,[Define when display right_half_vfd_icons from skin, for ultimo])
-fi
-AM_CONDITIONAL(HAVE_FULLGRAPHICLCD, test x"$withfullgraphiclcd" != xno)
-
 AC_ARG_WITH(gigabluelcd,
 	AC_HELP_STRING([--with-gigabluelcd], [use fix colour map in color display, yes or no]),
 	[[withgigabluelcd=$withval]],
@@ -273,11 +227,6 @@ if test `echo "$BOXTYPE" | cut -b 1-2` == "vu"; then
 fi
 
 if test `echo "$BOXTYPE" | cut -b 1-2` == "gb"; then
-	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
-	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
-fi
-
-if test `echo "$BOXTYPE" | cut -b 1-6` == "venton"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 fi
@@ -328,20 +277,6 @@ AC_ARG_WITH(memcheck,
 if test "$with_memcheck" = "yes"; then
 	AC_DEFINE([MEMLEAK_CHECK],[1],[Define to 1 to enable memory leak checks])
 fi
-
-AC_ARG_WITH(po,
-	AS_HELP_STRING([--with-po],[enable updating of po files]),
-	[with_po="$withval"],[with_po="no"])
-if test "$with_po" = "yes"; then
-	AC_PATH_PROG(MSGINIT, msginit)
-	AC_PATH_PROG(MSGMERGE, msgmerge)
-	AC_PATH_PROG(MSGUNIQ, msguniq)
-	AC_PATH_PROG(XGETTEXT, xgettext)
-	if test -z "$MSGINIT" -o -z "$MSGMERGE" -o -z "$MSGUNIQ" -o -z "$XGETTEXT"; then
-		AC_MSG_ERROR([Could not find required gettext tools])
-	fi
-fi
-AM_CONDITIONAL(UPDATE_PO, test "$with_po" = "yes")
 
 ENIGMA2_CFLAGS="-fno-rtti -fno-exceptions"
 AC_SUBST(ENIGMA2_CFLAGS)

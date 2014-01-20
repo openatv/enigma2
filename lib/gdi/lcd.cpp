@@ -119,12 +119,12 @@ eDBoxLCD::eDBoxLCD()
 		}
 	}
 #endif
-#ifdef HAVE_FULLGRAPHICLCD
-	fprintf(stdout,"SET RIGHT HALF VFD SKIN\n");
-	FILE *f = fopen("/proc/stb/lcd/right_half", "w");
-	fprintf(f,"skin");
-	fclose(f);
-#endif
+	if (FILE * file = fopen("/proc/stb/lcd/right_half", "w")
+	{
+		fprintf(stdout,"SET RIGHT HALF VFD SKIN\n");
+		fprintf(file,"skin");
+		fclose(file);
+	}
 	instance=this;
 
 	setSize(xres, yres, bpp);
