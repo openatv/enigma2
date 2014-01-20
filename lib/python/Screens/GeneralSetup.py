@@ -1,5 +1,5 @@
 from enigma import eListboxPythonMultiContent, gFont, eEnv, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, RT_WRAP
-from boxbranding import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName, getBoxType
 
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -239,7 +239,7 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Time Settings",_("Time Settings"),_("Setup date and time")))
 		if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
 			self.sublist.append(QuickSubMenuEntryComponent("Display Settings",_("Display Setup"),_("Setup your display")))
-		if SystemInfo["LcdDisplay"]:
+		if SystemInfo["GraphicLCD"]: 
 			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Setup",_("Skin Setup"),_("Setup your LCD")))
 		self.sublist.append(QuickSubMenuEntryComponent("HDMI-CEC",_("Consumer Electronics Control"),_("Control up to ten CEC-enabled devices connected through HDMI")))
 		self.sublist.append(QuickSubMenuEntryComponent("Factory Reset",_("Load default"),_("Reset all settings to defaults one")))
