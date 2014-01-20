@@ -415,6 +415,7 @@ data/Makefile
 data/fonts/Makefile
 data/extensions/Makefile
 data/keymaps/Makefile
+data/defaults/Makefile
 data/displaytext/Makefile
 data/display96/Makefile
 data/display128/Makefile
