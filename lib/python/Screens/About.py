@@ -150,19 +150,13 @@ class Devices(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Device Information"))
 		self.skinName = ["SystemDevicesInfo", "About"]
-
-		EGAMIVersion = "EGAMI " + about.getImageVersionString()
-		
-		self["EGAMIVersion"] = Label(EGAMIVersion)
 		
 		self.AboutText = ""
 		self["AboutScrollLabel"] = ScrollLabel(self.AboutText)
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.populate2)
 		self.populate()
-
 		
-
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
 			{
 				"cancel": self.close,
@@ -178,7 +172,7 @@ class Devices(Screen):
 		self.activityTimer.stop()
 		self.Console = Console()
 		
-		self.AboutText = _("Hardware: ") + about.getHardwareTypeString() + "\n"
+		self.AboutText = _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
 		self.AboutText += "\n" + _("Detected NIMs:") + "\n"
 
 		nims = nimmanager.nimList()
@@ -278,9 +272,6 @@ class SystemMemoryInfo(Screen):
 		Screen.setTitle(self, _("Memory Information"))
 		#self.skinName = ["SystemMemoryInfo", "About"]
 		self.skinName = ["About"]
-		EGAMIVersion = "EGAMI " + about.getImageVersionString()
-		
-		self["EGAMIVersion"] = Label(EGAMIVersion)
 		
 		self["AboutScrollLabel"] = ScrollLabel()
 
@@ -343,10 +334,7 @@ class SystemNetworkInfo(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Network Information"))
 		self.skinName = ["SystemNetworkInfo", "About"]
-		EGAMIVersion = "EGAMI " + about.getImageVersionString()
-		
-		self["EGAMIVersion"] = Label(EGAMIVersion)
-		
+
 		self["LabelBSSID"] = StaticText()
 		self["LabelESSID"] = StaticText()
 		self["LabelQuality"] = StaticText()
@@ -547,13 +535,8 @@ class SystemNetworkInfo(Screen):
 class AboutSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
-		
 		self["selected"] = StaticText("About")
-		self["BoxType"] = StaticText(_("Hardware: "))
-		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
-		self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
-		self["ImageVersion"] = StaticText(_("Version:") + " " + about.getImageVersionString())
-		self["EnigmaVersion"] = StaticText(_("Last Update:"))
+
 		
 class TranslationInfo(Screen):
 	def __init__(self, session):
