@@ -17,7 +17,7 @@ from Screens.EventView import EventViewEPGSelect
 from Screens.TimeDateInput import TimeDateInput
 from Screens.TimerEntry import TimerEntry
 from Screens.EpgSelection import EPGSelection
-from Screens.TimerEdit import TimerSanityConflict
+from Screens.TimerEdit import TimerSanityConflict, TimerEditList
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
@@ -1022,6 +1022,12 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.session.nav.RecordTimer.removeEntry(timer)
 		self["key_green"].setText(_("Add timer"))
 		self.key_green_choice = self.ADD_TIMER
+
+	def disableTimer(self, timer):
+		timer.disable()
+		self.session.nav.RecordTimer.timeChanged(timer)
+		self["key_green"].setText(_("Add timer"))
+		self.key_green_choice = self.ADD_TIMER
 	
 	def timerAdd(self):
 		cur = self["list"].getCurrent()
@@ -1035,12 +1041,20 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
 				menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
 				buttons = ["red", "green"]
+				if not timer.isRunning():
+					menu.append((_("Disable timer"), "disable"))
+					buttons.append("yellow")
+				menu.append((_("Timer Overview"), "timereditlist"))
 				def timerAction(choice):
 					if choice is not None:
 						if choice[1] == "delete":
 							self.removeTimer(timer)
 						elif choice[1] == "edit":
 							self.session.open(TimerEntry, timer)
+						elif choice[1] == "disable":
+							self.disableTimer(timer)
+						elif choice[1] == "timereditlist":
+							self.session.open(TimerEditList)
 				self.session.openWithCallback(timerAction, ChoiceBox, title=_("Select action for timer %s:") % event.getEventName(), list=menu, keys=buttons)
 				break
 		else:
