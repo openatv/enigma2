@@ -11,8 +11,6 @@ from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_MET
 from Tools.HardwareInfo import HardwareInfo
 from time import time
 
-from boxbranding import getImageVersion
-
 class SoftwareTools(PackageInfoHandler):
 	lastDownloadDate = None
 	NetworkConnectionAvailable = None
