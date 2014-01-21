@@ -15,6 +15,10 @@ m4_ifdef([LT_INIT], [LT_INIT], [AC_PROG_LIBTOOL])
 AC_CONFIG_MACRO_DIR([m4])
 
 AC_PATH_PROG(MSGFMT, msgfmt, AC_MSG_ERROR(Could not find msgfmt))
+AC_PATH_PROG(MSGINIT, msginit, AC_MSG_ERROR(Could not find msginit))
+AC_PATH_PROG(MSGMERGE, msgmerge, AC_MSG_ERROR(Could not find msgmerge))
+AC_PATH_PROG(MSGUNIQ, msguniq, AC_MSG_ERROR(Could not find msguniq))
+AC_PATH_PROG(XGETTEXT, xgettext, AC_MSG_ERROR(Could not find xgettext))
 
 AM_PATH_PYTHON
 AX_PYTHON_DEVEL
@@ -55,44 +59,9 @@ AC_ARG_WITH(boxtype,
 AC_SUBST(BOXTYPE)
 AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
 
-AC_ARG_WITH(distro,
-	[  --with-distro=NAME distro name [[openvix,openaaf,...]]],
-	[DISTRO="$withval"],[DISTRO="openaaf"])
-AC_SUBST(DISTRO)
-AC_DEFINE_UNQUOTED(DISTRO,"$DISTRO",[distro name])
-
-AC_ARG_WITH(machinebrand,
-	[  --with-machinebrand=NAME brand name [[Vu,Xtrend,...]]],
-	[MACHINE_BRAND="$withval"],[MACHINE_BRAND="Vu+"])
-AC_SUBST(MACHINE_BRAND)
-AC_DEFINE_UNQUOTED(MACHINE_BRAND,"$MACHINE_BRAND",[machine brand])
-
-AC_ARG_WITH(machinename,
-	[  --with-machinename=NAME machine name [[Solo,Ultimo,...]]],
-	[MACHINE_NAME="$withval"],[MACHINE_NAME="Ultimo"])
-AC_SUBST(MACHINE_NAME)
-AC_DEFINE_UNQUOTED(MACHINE_NAME,"$MACHINE_NAME",[machine name])
-
-AC_ARG_WITH(imageversion,
-	[  --with-imageversion=NAME version number [[2.0]]],
-	[IMAGEVERSION="$withval"],[IMAGEVERSION=""])
-AC_SUBST(IMAGEVERSION)
-AC_DEFINE_UNQUOTED(IMAGEVERSION,"$IMAGEVERSION",[version number])
-
-AC_ARG_WITH(imagebuild,
-	[  --with-imagebuild=NAME build number [[5]]],
-	[IMAGEBUILD="$withval"],[IMAGEBUILD=""])
-AC_SUBST(IMAGEBUILD)
-AC_DEFINE_UNQUOTED(IMAGEBUILD,"$IMAGEBUILD",[build number])
-
-AC_ARG_WITH(driverdate,
-	[  --with-driverdate=NAME driver date [[5]]],
-	[DRIVERDATE="$withval"],[DRIVERDATE=""])
-AC_SUBST(DRIVERDATE)
-AC_DEFINE_UNQUOTED(DRIVERDATE,"$DRIVERDATE",[driver date])
-
 AM_CONDITIONAL(AZBOX, test `echo "$BOXTYPE" | cut -b 1-5` == "azbox")
 AM_CONDITIONAL(CUBE, test `echo "$BOXTYPE" | cut -b 1-4` == "cube")
+AM_CONDITIONAL(DAGS, test `echo "$BOXTYPE" | cut -b 1-4` == "dags")
 AM_CONDITIONAL(DREAMBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "dm")
 AM_CONDITIONAL(VUPLUS, test `echo "$BOXTYPE" | cut -b 1-2` == "vu")
 AM_CONDITIONAL(XTREND, test `echo "$BOXTYPE" | cut -b 1-2` == "et")
@@ -107,9 +76,13 @@ AM_CONDITIONAL(EDISION, test `echo "$BOXTYPE" | cut -b 1-4` == "opti")
 AM_CONDITIONAL(JEPSSEN, test `echo "$BOXTYPE" | cut -b 1-5` == "media")
 AM_CONDITIONAL(SOGNO, test `echo "$BOXTYPE" | cut -b 1-5` == "sogno")
 AM_CONDITIONAL(EVO, test `echo "$BOXTYPE" | cut -b 1-4` == "enfi")
+AM_CONDITIONAL(MIRACLEBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "mb")
 AM_CONDITIONAL(AZBOXME, test "$BOXTYPE" == azboxme)
 AM_CONDITIONAL(AZBOXMINIME, test "$BOXTYPE" == azboxminime)
 AM_CONDITIONAL(AZBOXHD, test "$BOXTYPE" == azboxhd)
+AM_CONDITIONAL(DAGS1, test "$BOXTYPE" == dags1)
+AM_CONDITIONAL(DAGS2, test "$BOXTYPE" == dags2)
+AM_CONDITIONAL(DAGS3, test "$BOXTYPE" == dags3)
 AM_CONDITIONAL(DM8000, test "$BOXTYPE" == dm8000)
 AM_CONDITIONAL(DM7020HD, test "$BOXTYPE" == dm7020hd)
 AM_CONDITIONAL(DM7020HDV2, test "$BOXTYPE" == dm7020hdv2)
@@ -138,6 +111,7 @@ AM_CONDITIONAL(GBQUADPLUS, test "$BOXTYPE" == gbquadplus)
 AM_CONDITIONAL(GBQUAD, test "$BOXTYPE" == gbquad)
 AM_CONDITIONAL(INIHDE, test "$BOXTYPE" == inihde)
 AM_CONDITIONAL(INIHDP, test "$BOXTYPE" == inihdp)
+AM_CONDITIONAL(INIHDX, test "$BOXTYPE" == inihdx)
 AM_CONDITIONAL(IQONIOS100HD, test "$BOXTYPE" == iqonios100hd)
 AM_CONDITIONAL(IQONIOS200HD, test "$BOXTYPE" == iqonios200hd)
 AM_CONDITIONAL(IQONIOS300HD, test "$BOXTYPE" == iqonios300hd)
@@ -145,6 +119,7 @@ AM_CONDITIONAL(IXUSSONE, test "$BOXTYPE" == ixussone)
 AM_CONDITIONAL(IXUSSZERO, test "$BOXTYPE" == ixusszero)
 AM_CONDITIONAL(IXUSSDUO, test "$BOXTYPE" == ixussduo)
 AM_CONDITIONAL(MEDIABOX, test "$BOXTYPE" == mediabox)
+AM_CONDITIONAL(MBTWIN, test "$BOXTYPE" == mbtwin)
 AM_CONDITIONAL(ODINM6, test "$BOXTYPE" == odinm6)
 AM_CONDITIONAL(ODINM7, test "$BOXTYPE" == odinm7)
 AM_CONDITIONAL(ODINM9, test "$BOXTYPE" == odinm9)
@@ -155,6 +130,7 @@ AM_CONDITIONAL(TMTWINOE, test "$BOXTYPE" == tmtwin)
 AM_CONDITIONAL(TM2TOE, test "$BOXTYPE" == tm2t)
 AM_CONDITIONAL(TMSINGLE, test "$BOXTYPE" == tmsingle)
 AM_CONDITIONAL(TMNANO, test "$BOXTYPE" == tmnano)
+AM_CONDITIONAL(TMNANO2T, test "$BOXTYPE" == tmnano2t)
 AM_CONDITIONAL(VUUNO, test "$BOXTYPE" == vuuno)
 AM_CONDITIONAL(VUULTIMO, test "$BOXTYPE" == vuultimo)
 AM_CONDITIONAL(VUSOLO, test "$BOXTYPE" == vusolo)
@@ -340,7 +316,7 @@ if test "$BOXTYPE" == "gb800solo" -o "$BOXTYPE" == "gb800se" -o "$BOXTYPE" == "g
 	AC_DEFINE(KEY_F2_TO_KEY_F6, 1,[define when rc sends a KEY_F2 event for its KEY_F6 key])	
 fi
 
-if test "$BOXTYPE" == "inihde" -o "$BOXTYPE" == "ventonhdx" -o "$BOXTYPE" == "inihdp"; then
+if test "$BOXTYPE" == "inihde" -o "$BOXTYPE" == "ventonhdx" -o "$BOXTYPE" == "inihdp" -o "$BOXTYPE" == "inihdx"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 	AC_DEFINE(KEY_MEDIA_TO_KEY_OPEN, 1,[define when rc sends a KEY_MEDIA event for its KEY_OPEN key])
@@ -358,7 +334,7 @@ if test "$BOXTYPE" == "sogno8800hd"; then
 	AC_DEFINE(KEY_MEDIA_TO_KEY_BOOKMARKS, 1,[define when rc sends a KEY_MEDIA event for its KEY_BOOKMARKS key])
 fi
 
-if test "$BOXTYPE" == "tmtwin" -o "$BOXTYPE" == "tm2t" -o "$BOXTYPE" == "tmsingle" -o "$BOXTYPE" == "tmnano" -o "$BOXTYPE" == "iqonios100hd" -o "$BOXTYPE" == "iqonios200hd" -o "$BOXTYPE" == "iqonios300hd" -o "$BOXTYPE" == "optimussos1" -o "$BOXTYPE" == "optimussos2" -o "$BOXTYPE" == "mediabox" -o "$BOXTYPE" == "force1"; then
+if test "$BOXTYPE" == "tmtwin" -o "$BOXTYPE" == "tm2t" -o "$BOXTYPE" == "tmsingle" -o "$BOXTYPE" == "tmnano" -o "$BOXTYPE" == "tmnano2t" -o "$BOXTYPE" == "iqonios100hd" -o "$BOXTYPE" == "iqonios200hd" -o "$BOXTYPE" == "iqonios300hd" -o "$BOXTYPE" == "optimussos1" -o "$BOXTYPE" == "optimussos2" -o "$BOXTYPE" == "mediabox" -o "$BOXTYPE" == "force1" -o "$BOXTYPE" == "dags1" -o "$BOXTYPE" == "dags2" -o "$BOXTYPE" == "dags3"; then
 	AC_DEFINE(KEY_F1_TO_KEY_PC, 1,[define when rc sends a KEY_F1 event for its KEY_PC key])
 	AC_DEFINE(KEY_F5_TO_KEY_ANGLE, 1,[define when rc sends a KEY_F5 event for its KEY_ANGLE key])
 	AC_DEFINE(KEY_DOT_TO_KEY_HOMEPAGE, 1,[define when rc sends a KEY_DOT event for its KEY_KEY_HOMEPAGE key])
@@ -397,20 +373,6 @@ AC_ARG_WITH(memcheck,
 if test "$with_memcheck" = "yes"; then
 	AC_DEFINE([MEMLEAK_CHECK],[1],[Define to 1 to enable memory leak checks])
 fi
-
-AC_ARG_WITH(po,
-	AS_HELP_STRING([--with-po],[enable updating of po files]),
-	[with_po="$withval"],[with_po="no"])
-if test "$with_po" = "yes"; then
-	AC_PATH_PROG(MSGINIT, msginit)
-	AC_PATH_PROG(MSGMERGE, msgmerge)
-	AC_PATH_PROG(MSGUNIQ, msguniq)
-	AC_PATH_PROG(XGETTEXT, xgettext)
-	if test -z "$MSGINIT" -o -z "$MSGMERGE" -o -z "$MSGUNIQ" -o -z "$XGETTEXT"; then
-		AC_MSG_ERROR([Could not find required gettext tools])
-	fi
-fi
-AM_CONDITIONAL(UPDATE_PO, test "$with_po" = "yes")
 
 ENIGMA2_CFLAGS="-fno-rtti -fno-exceptions"
 AC_SUBST(ENIGMA2_CFLAGS)
