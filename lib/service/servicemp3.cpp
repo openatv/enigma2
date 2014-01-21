@@ -1100,7 +1100,6 @@ std::string eServiceMP3::getInfoString(int w)
 		default:
 			break;
 		}
-		return iServiceInformation::getInfoString(w);
 	}
 
 	if ( !m_stream_tags && w < sUser && w > 26 )
