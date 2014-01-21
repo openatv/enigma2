@@ -552,7 +552,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		ssfwd = lambda: self.seekRelative(1, config.seek.selfdefined_79.getValue() * 90000)
 		sback = lambda: self.seekRelative(-1, config.seek.selfdefined_46.getValue() * 90000)
 		ssback = lambda: self.seekRelative(-1, config.seek.selfdefined_79.getValue() * 90000)
-		self["SeekActions"] = HelpableActionMap(self, "InfobarSeekActions",
+		self["SeekActions"] = HelpableActionMap(self, "MovielistSeekActions",
 			{
 				"playpauseService": (self.preview, _("Preview")),
 				"seekFwd": (sfwd, tFwd),
