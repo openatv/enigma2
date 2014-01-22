@@ -188,8 +188,12 @@ class EPGSelection(Screen):
 	def zapTo(self):
 		if self.key_red_choice == self.ZAP and self.zapFunc:
 			self.closeRecursive = True
-			self.zapSelectedService()
-			self.close(self.closeRecursive)
+			from Components.ServiceEventTracker import InfoBarCount
+			if InfoBarCount > 1:
+				self.eventPreview()
+			else:
+				self.zapSelectedService()
+				self.close(self.closeRecursive)
 
 	def zapSelectedService(self, prev=False):
 		lst = self["list"]

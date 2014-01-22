@@ -998,8 +998,10 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		if self.zapFunc and self.key_red_choice == self.ZAP:
 			ref = self["list"].getCurrent()[1]
 			if ref:
-				self.zapFunc(ref.ref)
-				if self.previousref and self.previousref == ref.ref:
+				from Components.ServiceEventTracker import InfoBarCount
+				preview = InfoBarCount > 1
+				self.zapFunc(ref.ref, preview)
+				if self.previousref and self.previousref == ref.ref and not preview:
 					config.misc.graph_mepg.save()
 					self.close(True)
 				self.previousref = ref.ref
