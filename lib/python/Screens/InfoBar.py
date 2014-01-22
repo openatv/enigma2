@@ -146,8 +146,6 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{
-				"channelUp": (self.openEPGserviceList, _("open EPG channel selection...")),
-				"channelDown": (self.openEPGserviceList, _("open EPG channel selection...")),
 				"leavePlayer": (self.leavePlayer, _("leave movie player...")),
 				"leavePlayerOnExit": (self.leavePlayerOnExit, _("leave movie player..."))
 			})
@@ -395,9 +393,6 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	def swapPiP(self):
 		pass
 
-	def openEPGserviceList(self):
-		self.session.open(MoviePlayerEPGselection, _("EPG Channel Selection"))
-
 	def showMovies(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.playingservice = ref # movie list may change the currently playing
@@ -438,25 +433,3 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 	def ref2HumanName(self, ref):
 		return enigma.eServiceCenter.getInstance().info(ref).getName(ref)
-
-from Screens.ChannelSelection import SimpleChannelSelection
-from Screens.EpgSelection import EPGSelection
-from enigma import eServiceReference
-
-class MoviePlayerEPGselection(SimpleChannelSelection):
-	def __init__(self, session, title):
-		SimpleChannelSelection.__init__(self, session, title)
-		self.skinName = "SimpleChannelSelection"
-
-	def channelSelected(self):
-		ref = self.getCurrentSelection()
-		if (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
-			self.enterPath(ref)
-			self.gotoCurrentServiceOrProvider(ref)
-		elif not (ref.flags & eServiceReference.isMarker):
-			ref = self.getCurrentSelection()
-			self.session.openWithCallback(self.closed, EPGSelection, ref)
-
-	def closed(self, ret=None):
-		if ret:
-			self.close(ret)
