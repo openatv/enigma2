@@ -987,7 +987,7 @@ class InfoBarEPG:
 	def openEventView(self):
 		from Components.ServiceEventTracker import InfoBarCount
 		if InfoBarCount > 1:
-			self.openMultiServiceEPG(False)
+			return 0
 		else:
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.getNowNext()
