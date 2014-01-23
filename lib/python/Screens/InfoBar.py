@@ -395,10 +395,12 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		pass
 
 	def showDefaultEPG(self):
-		self.infobar.showMultiEPG()
+		if self.infobar:
+			self.infobar.showMultiEPG()
 
 	def showDefaultInfo(self):
-		self.infobar.showDefaultEPG()
+		if self.infobar:
+			self.infobar.showDefaultEPG()
 
 	def showMovies(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
