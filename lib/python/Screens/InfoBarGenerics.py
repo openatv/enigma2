@@ -641,6 +641,7 @@ class InfoBarSimpleEventView:
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
 				"showEventInfo": (self.openEventView, _("Show event details")),
+				"showEventInfoSingleEPG": (self.openEventView, _("Show event details")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 			})
 
