@@ -16,7 +16,7 @@ from time import time, strftime, localtime
 from os import path, system, makedirs, listdir, walk, statvfs
 import commands
 import datetime
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getOEM
 
 VERSION = "Version 2.0 openATV"
 
@@ -45,11 +45,13 @@ class ImageBackup(Screen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.MODEL = getBoxType()
+		self.OEM = getOEM()
 		self.MACHINENAME = getMachineName()
 		self.MACHINEBRAND = getMachineBrand()
 		print "[FULL BACKUP] BOX MACHINENAME = >%s<" %self.MACHINENAME
 		print "[FULL BACKUP] BOX MACHINEBRAND = >%s<" %self.MACHINEBRAND
 		print "[FULL BACKUP] BOX MODEL = >%s<" %self.MODEL
+		print "[FULL BACKUP] OEM MODEL = >%s<" %self.OEM
 		
 		self["key_green"] = Button("USB")
 		self["key_red"] = Button("HDD")
@@ -153,13 +155,12 @@ class ImageBackup(Screen):
 		## TESTING WHICH KIND OF SATELLITE RECEIVER IS USED
 
 		## TESTING THE XTREND AND CLARK TECH MODELS
-		if self.MODEL == "et9x00" or self.MODEL == "et5x00" or self.MODEL == "et6x00" or self.MODEL == "et6500" or self.MODEL == "et4x00":
+		if self.OEM == "et4x00" or self.OEM == "et5x00" or self.OEM == "et6x00" or self.OEM == "et9x00":
 			self.TYPE = "ET"
-			if self.MODEL == "et6500":
-				self.MODEL = "et6x00"
+			self.MODEL = self.OEM	
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
-			self.SHOWNAME = "Xtrend %s" %self.MODEL
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/%sx00" %(self.DIRECTORY, self.MODEL[:-3])
 			self.EXTRA = "%s/fullbackup_%sx00/%s" % (self.DIRECTORY, self.MODEL[:-3], self.DATE)
@@ -169,40 +170,31 @@ class ImageBackup(Screen):
 			self.TYPE = "ODINM9"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
-			self.SHOWNAME = "ODIN %s" %self.MODEL
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 			self.MTDKERNEL = "mtd2"	
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/odinm9" % self.DIRECTORY
 			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
 			self.EXTRA = "%s/fullbackup_odinm9/%s" % (self.DIRECTORY, self.DATE)
 		## TESTING THE Odin M7 Model
-		elif self.MODEL == "odinm7":
+		elif self.OEM == "odinm7":
 			self.TYPE = "ODINM7"
+			self.MODEL = self.OEM
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
-			self.SHOWNAME = "ODIN %s" %self.MODEL
-			self.MTDKERNEL = "mtd3"	
-			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
-			self.MAINDEST = "%s/en2" % self.DIRECTORY
-			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
-			self.EXTRA = "%s/fullbackup_odinm7/%s" % (self.DIRECTORY, self.DATE)
-		## TESTING THE Odin M6 Model
-		elif self.MODEL == "odinm6":
-			self.TYPE = "ODINM7"
-			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
-			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
-			self.SHOWNAME = "ODIN %s" %self.MODEL
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 			self.MTDKERNEL = "mtd3"	
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/en2" % self.DIRECTORY
 			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
 			self.EXTRA = "%s/fullbackup_odinm7/%s" % (self.DIRECTORY, self.DATE)
 		## TESTING THE E3 HD Model
-		elif self.MODEL == "e3hd":
+		elif self.OEM == "e3hd":
 			self.TYPE = "E3HD"
+			self.MODEL = self.OEM
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
-			self.SHOWNAME = "%s" %self.MODEL
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 			self.MTDKERNEL = "mtd1"	
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/e3hd" % self.DIRECTORY
@@ -213,73 +205,64 @@ class ImageBackup(Screen):
 			self.TYPE = "EVO"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
-			self.SHOWNAME = "%s" %self.MODEL
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 			self.MTDKERNEL = "mtd1"	
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/enfinity" % self.DIRECTORY
 			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
 			self.EXTRA = "%s/fullbackup_enfinity/%s" % (self.DIRECTORY, self.DATE)
 		## TESTING THE MK Digital Model
-		elif self.MODEL == "xp1000" and not self.MACHINENAME.lower() == "sf8 hd":
+		elif self.OEM == "xp1000":
 			self.TYPE = "MAXDIGITAL"
+			self.MODEL = self.OEM
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
-			self.SHOWNAME = "MaxDigital %s" %self.MODEL
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 			self.MTDKERNEL = "mtd1"	
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
-		## TESTING THE OCTAGON Model
-		elif self.MODEL == "xp1000" and self.MACHINENAME.lower() == "sf8 hd":
-			self.TYPE = "OCTAGON"
-			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
-			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
-			self.SHOWNAME = "Octagon SF8 HD"
-			self.MTDKERNEL = "mtd1"	
-			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
-			self.MAINDEST = "%s/%s" %(self.DIRECTORY, self.MODEL)
-			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)			
 		## TESTING THE Medialink Model
-		elif self.MODEL == "ixussone" or self.MODEL == "ixusszero" or self.MODEL == "ixussduo":
+		elif self.MODEL == "ixussone" or self.MODEL == "ixusszero":
 			self.TYPE = "IXUSS"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
-			self.SHOWNAME = "Medialink %s" %self.MODEL
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 			self.MTDKERNEL = "mtd1"	
 			self.MAINDESTOLD = "%s/medialink/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/medialink/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
 		## TESTING THE Mixos Model
-		elif self.MODEL == "ebox5000" or self.MODEL == "ebox5100" or self.MODEL == "eboxlumi":
+		elif self.OEM == "ebox5000" or self.OEM == "ebox5100" or self.OEM == "eboxlumi":
 			self.TYPE = "MIXOS"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
-			self.JFFS2OPTIONS = "--eraseblock=0x20000 -n -l"
-			self.SHOWNAME = "Mixos %s" %self.MODEL
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 			self.MTDKERNEL = "mtd1"	
 			self.MAINDESTOLD = "%s/ebox/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/ebox/7403/" % self.DIRECTORY
 			self.EXTRA = "%s/fullbackup_%s/%s/ebox" % (self.DIRECTORY, self.TYPE, self.DATE)
 		## TESTING THE Mixos Model
-		elif self.MODEL == "ebox7358":
+		elif self.OEM == "ebox7358":
 			self.TYPE = "MIXOS2"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
-			self.SHOWNAME = "Mixos %s" %self.MODEL
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 			self.MTDKERNEL = "mtd2"	
 			self.MAINDESTOLD = "%s/ebox/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/ebox/7358/" % self.DIRECTORY
 			self.EXTRA = "%s/fullbackup_%s/%s/ebox" % (self.DIRECTORY, self.TYPE, self.DATE)
 		## TESTING Venton HDx Model
-		elif self.MODEL == "ventonhdx":
+		elif self.MODEL == "ini-3000" or self.MODEL == "ini-5000" or self.MODEL == "ini-7000" or self.MODEL == "ini-7012":
 			self.TYPE = "VENTON"
+			self.MODEL = "venton-hdx"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "%s" %self.MODEL
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
-			self.MAINDEST = "%s/venton/%s" % (self.DIRECTORY, self.MODEL)
-			self.EXTRA = "%s/fullbackup_%s/%s/venton" % (self.DIRECTORY, self.MODEL, self.DATE)
-		elif self.MODEL == "ventonhdx" and self.MACHINENAME.lower() == "hd-5000":
+			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
+		elif self.MODEL == "ini-5000ru":
 			self.TYPE = "SEZAM"
 			self.MODEL = "hdx"			
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
@@ -288,7 +271,7 @@ class ImageBackup(Screen):
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
-		elif self.MODEL == "ventonhdx" and self.MACHINENAME.lower() == "premium twin":
+		elif self.MODEL == "ini-5000sv":
 			self.TYPE = "MICRACLE"
 			self.MODEL = "twin"			
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
@@ -298,7 +281,7 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/miraclebox/%s" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s/miraclebox" % (self.DIRECTORY, self.MODEL, self.DATE)			
 		## TESTING INI HDe Model
-		elif self.MODEL == "inihde" and self.MACHINENAME.lower() == "xpeedlx":
+		elif self.MODEL == "ini-1000de" :
 			self.TYPE = "GI"
 			self.MODEL = "xpeedlx"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
@@ -308,7 +291,7 @@ class ImageBackup(Screen):
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
-		elif self.MODEL == "inihde" and self.MACHINENAME.lower() == "hd-1000":
+		elif self.MODEL == "ini-1000ru":
 			self.TYPE = "SEZAM"
 			self.MODEL = "hde"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
@@ -317,9 +300,19 @@ class ImageBackup(Screen):
 			self.MTDKERNEL = "mtd2"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
-			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)			
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
+		elif self.MODEL == "ini-1000sv":
+			self.TYPE = "MICRACLE"
+			self.MODEL = "mini"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "MICRACLE Primium mini"
+			self.MTDKERNEL = "mtd2"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/miraclebox/%s" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s/miraclebox" % (self.DIRECTORY, self.MODEL, self.DATE)			
 		## TESTING Technomate Model
-		elif self.MODEL == "tmtwin":
+		elif self.MACHINENAME == "TM-TWIN-OE":
 			self.TYPE = "TECHNO"
 			self.MODEL = "tmtwinoe"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
@@ -330,7 +323,7 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_TECHNO/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
 		## TESTING Technomate Model
-		elif self.MODEL == "tmsingle":
+		elif self.MACHINENAME == "TM-SINGLE":
 			self.TYPE = "TECHNO"
 			self.MODEL = "tmsingle"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
@@ -341,7 +334,7 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_TECHNO/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
 		## TESTING Technomate Model
-		elif self.MODEL == "tmnano":
+		elif self.MACHINENAME == "TM-NANO-OE":
 			self.TYPE = "TECHNO"
 			self.MODEL = "tmnanooe"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
@@ -352,7 +345,7 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_TECHNO/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
 		## TESTING Technomate Model
-		elif self.MODEL == "tm2t":
+		elif self.MACHINENAME == "TM-2T-OE":
 			self.TYPE = "TECHNO"
 			self.MODEL = "tm2toe"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
@@ -362,7 +355,7 @@ class ImageBackup(Screen):
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_TECHNO/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
-		elif self.MODEL == "tmnano2t":
+		elif self.MACHINENAME == "TM-NANO-2T-OE":
 			self.TYPE = "TECHNO"
 			self.MODEL = "tmnano2t"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
@@ -373,7 +366,7 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_TECHNO/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
 		## TESTING Iqon Model
-		elif self.MODEL == "iqonios100hd":
+		elif self.MACHINENAME == "IOS-100HD" or self.MACHINENAME == "Optimuss-OS1":
 			self.TYPE = "IQON"
 			self.MODEL = "ios100"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
@@ -384,37 +377,27 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_IQON/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
 		## TESTING Iqon Model
-		elif self.MODEL == "iqonios200hd":
+		elif self.MACHINENAME == "IOS-200HD" or self.MACHINENAME == "Optimuss-OS2" or self.MACHINENAME == "Roxxs-200HD" or self.MACHINENAME == "MediaBox-HD-LX":
 			self.TYPE = "IQON"
 			self.MODEL = "ios200"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
-			self.SHOWNAME = "%s" %self.MODEL
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 			self.MTDKERNEL = "mtd6"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
-			self.EXTRA = "%s/fullbackup_IQON/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s/update/%s" % (self.DIRECTORY,self.MACHINEBRAND , self.DATE, self.MODEL)
 		## TESTING Iqon Model
-		elif self.MODEL == "iqonios300hd":
+		elif self.MACHINENAME == "IOS-300HD":
 			self.TYPE = "IQON"
 			self.MODEL = "ios300"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
-			self.SHOWNAME = "%s" %self.MODEL
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 			self.MTDKERNEL = "mtd6"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
-			self.EXTRA = "%s/fullbackup_IQON/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
-		## TESTING Edison Model
-		elif self.MODEL == "optimussos2":
-			self.TYPE = "EDISION"
-			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
-			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
-			self.SHOWNAME = "%s" %self.MODEL
-			self.MTDKERNEL = "mtd6"
-			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
-			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
-			self.EXTRA = "%s/fullbackup_EDISION/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s/update/%s" % (self.DIRECTORY,self.MACHINEBRAND, self.DATE, self.MODEL)
 		## TESTING THE Gigablue 800 Solo Model
 		elif self.MODEL == "gb800solo":
 			self.TYPE = "GIGABLUE"
