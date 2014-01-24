@@ -210,7 +210,12 @@ class EPGSelection(Screen):
 			self.zapSelectedService(True)
 
 	def eventSelected(self):
-		self.infoKeyPressed()
+		if self.skinName == "EPGSelectionMulti":
+			ref = self["list"].getCurrent()[1].ref.toString()
+			if ref:
+				self.session.open(EPGSelection, ref)
+		else:
+			self.infoKeyPressed()
 
 	def yellowButtonPressed(self):
 		if self.type == EPG_TYPE_MULTI:
