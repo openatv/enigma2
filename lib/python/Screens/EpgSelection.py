@@ -211,8 +211,10 @@ class EPGSelection(Screen):
 
 	def eventSelected(self):
 		if self.skinName == "EPGSelectionMulti":
-			ref = self["list"].getCurrent()[1].ref.toString()
-			if ref:
+			cur = self["list"].getCurrent()
+			event = cur[0]
+			ref = cur[1].ref.toString()
+			if ref and event:
 				self.session.open(EPGSelection, ref)
 		else:
 			self.infoKeyPressed()
