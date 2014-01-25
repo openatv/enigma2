@@ -213,7 +213,7 @@ class EPGSelection(Screen):
 		if self.skinName == "EPGSelectionMulti":
 			cur = self["list"].getCurrent()
 			event = cur[0]
-			ref = cur[1].ref.toString()
+			ref = cur[1] and cur[1].ref.toString()
 			if ref and event:
 				self.session.open(EPGSelection, ref)
 		else:
