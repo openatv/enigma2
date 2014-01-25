@@ -21,24 +21,14 @@ from time import localtime
 from Components.config import config
 
 class EventViewContextMenu(Screen):
-	def __init__(self, session, service, event):
+	def __init__(self, session, menu):
 		Screen.__init__(self, session)
-		self.event = event
-		self.service = service
-		self.eventname = event.getEventName()
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 			{
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick
 			})
-
-		menu = []
-
-		for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
-			#only list service or event specific eventinfo plugins here, no servelist plugins
-			if 'servicelist' not in p.__call__.func_code.co_varnames:
-				menu.append((p.name, boundFunction(self.runPlugin, p)))
 
 		self["menu"] = MenuList(menu)
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -51,9 +41,6 @@ class EventViewContextMenu(Screen):
 
 	def cancelClick(self):
 		self.close(False)
-
-	def runPlugin(self, plugin):
-		plugin(session=self.session, service=self.service, event=self.event, eventName=self.eventname)
 
 class EventViewBase:
 	ADD_TIMER = 0
@@ -278,7 +265,16 @@ class EventViewBase:
 
 	def doContext(self):
 		if self.event is not None:
-			self.session.open(EventViewContextMenu, self.currentService, self.event)
+			menu = []
+			for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
+				#only list service or event specific eventinfo plugins here, no servelist plugins
+				if 'servicelist' not in p.__call__.func_code.co_varnames:
+					menu.append((p.name, boundFunction(self.runPlugin, p)))
+			if menu:
+				self.session.open(EventViewContextMenu, menu)
+
+	def runPlugin(self, plugin):
+		plugin(session=self.session, service=self.currentService, event=self.event, eventname=self.event.getEventName())
 
 class EventViewSimple(Screen, EventViewBase):
 	def __init__(self, session, Event, Ref, callback=None, similarEPGCB=None):
