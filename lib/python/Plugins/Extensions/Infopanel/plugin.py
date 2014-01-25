@@ -26,7 +26,7 @@ from Components.ActionMap import ActionMap
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from __init__ import _
-from boxbranding import getBoxType, getMachineName, getMachineBrand
+from boxbranding import getBoxType, getMachineName, getMachineBrand, getOEM
 
 import os
 import sys
@@ -120,16 +120,19 @@ def command(comandline, strip=1):
 boxversion = getBoxType()
 machinename = getMachineName()
 machinebrand = getMachineBrand()
+OEMname = getOEM()
 
 INFO_Panel_Version = 'Info-Panel V1.2'
 print "[Info-Panel] machinebrand: %s"  % (machinebrand)
 print "[Info-Panel] machinename: %s"  % (machinename)
-print "[Info-Panel] boxversion: %s"  % (boxversion)
+print "[Info-Panel] oem name: %s"  % (OEMname)
+print "[Info-Panel] boxtype: %s"  % (boxversion)
 panel = open("/tmp/infopanel.ver", "w")
 panel.write(INFO_Panel_Version + '\n')
 panel.write("Machinebrand: %s " % (machinebrand)+ '\n')
 panel.write("Machinename: %s " % (machinename)+ '\n')
-panel.write("Boxversion: %s " % (boxversion)+ '\n')
+panel.write("oem name: %s " % (OEMname)+ '\n')
+panel.write("Boxtype: %s " % (boxversion)+ '\n')
 try:
 	panel.write("Keymap: %s " % (config.usage.keymap.getValue())+ '\n')
 except:
