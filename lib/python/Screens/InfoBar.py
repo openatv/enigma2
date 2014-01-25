@@ -146,6 +146,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 			{
 				"InfoButtonPressed": (self.showDefaultInfo, _("open Info...")),
 				"EPGButtonPressed": (self.showDefaultEPG,  _("open EPG...")),
+				"InfoButtonPressedLong": (self.showEventInfoPlugins, _("select Info...")),
+				"EPGButtonPressedLong": (self.showEventGuidePlugins,  _("select EPG...")),
 				"leavePlayer": (self.leavePlayer, _("leave movie player...")),
 				"leavePlayerOnExit": (self.leavePlayerOnExit, _("leave movie player..."))
 			})
@@ -401,6 +403,14 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 	def showDefaultInfo(self):
 		if self.infobar:
 			self.infobar.showDefaultEPG()
+
+	def showEventInfoPlugins(self):
+		if self.infobar:
+			self.infobar.showEventInfoPlugins()
+
+	def showEventGuidePlugins(self):
+		if self.infobar:
+			self.infobar.showEventGuidePlugins()
 
 	def showMovies(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
