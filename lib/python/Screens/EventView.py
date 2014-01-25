@@ -274,7 +274,7 @@ class EventViewBase:
 				self.session.open(EventViewContextMenu, menu)
 
 	def runPlugin(self, plugin):
-		plugin(session=self.session, service=self.currentService, event=self.event, eventname=self.event.getEventName())
+		plugin(session=self.session, service=self.currentService, event=self.event, eventName=self.event.getEventName())
 
 class EventViewSimple(Screen, EventViewBase):
 	def __init__(self, session, Event, Ref, callback=None, similarEPGCB=None):
