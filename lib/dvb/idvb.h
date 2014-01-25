@@ -266,7 +266,7 @@ public:
 	{
 		cVPID, cMPEGAPID, cTPID, cPCRPID, cAC3PID,
 		cVTYPE, cACHANNEL, cAC3DELAY, cPCMDELAY,
-		cSUBTITLE, cAACHEAPID, cacheMax
+		cSUBTITLE, cAACHEAPID=12, cacheMax
 	};
 
 	int getCacheEntry(cacheID);
