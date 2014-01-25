@@ -635,6 +635,46 @@ class InfoBarMenu:
 	def mainMenuClosed(self, *val):
 		self.session.infobar = None
 
+class InfoBarSimpleEventView:
+	""" Opens the Eventview for now/next """
+	def __init__(self):
+		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
+			{
+				"showEventInfo": (self.openEventView, _("Show event details")),
+				"showEventInfoSingleEPG": (self.openEventView, _("Show event details")),
+				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
+			})
+
+	def showEventInfoWhenNotVisible(self):
+		if self.shown:
+			self.openEventView()
+		else:
+			self.toggleShow()
+			return 1
+
+	def openEventView(self):
+		epglist = [ ]
+		self.epglist = epglist
+		service = self.session.nav.getCurrentService()
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		info = service.info()
+		ptr=info.getEvent(0)
+		if ptr:
+			epglist.append(ptr)
+		ptr=info.getEvent(1)
+		if ptr:
+			epglist.append(ptr)
+		if epglist:
+			self.session.open(EventViewSimple, epglist[0], ServiceReference(ref), self.eventViewCallback)
+
+	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
+		epglist = self.epglist
+		if len(epglist) > 1:
+			tmp = epglist[0]
+			epglist[0] = epglist[1]
+			epglist[1] = tmp
+			setEvent(epglist[0])
+
 class SimpleServicelist:
 	def __init__(self, services):
 		self.services = services
