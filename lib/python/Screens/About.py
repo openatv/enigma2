@@ -333,6 +333,15 @@ class SystemNetworkInfo(Screen):
 				self.AboutText += _("MAC:") + "\t" + eth0['hwaddr'] + "\n"
 			self.iface = 'eth0'
 
+		eth1 = about.getIfConfig('eth1')
+		if eth1.has_key('addr'):
+			self.AboutText += _("IP:") + "\t" + eth1['addr'] + "\n"
+			if eth1.has_key('netmask'):
+				self.AboutText += _("Netmask:") + "\t" + eth1['netmask'] + "\n"
+			if eth1.has_key('hwaddr'):
+				self.AboutText += _("MAC:") + "\t" + eth1['hwaddr'] + "\n"
+			self.iface = 'eth1'
+
 		ra0 = about.getIfConfig('ra0')
 		if ra0.has_key('addr'):
 			self.AboutText += _("IP:") + "\t" + ra0['addr'] + "\n"
