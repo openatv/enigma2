@@ -1,6 +1,6 @@
 from Screens.Screen import Screen
 from Screens.Setup import setupdom
-from Screens.LocationBox import TimeshiftLocationBox
+from Screens.LocationBox import AutorecordLocationBox, TimeshiftLocationBox
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.config import config, configfile, ConfigYesNo, ConfigNothing, ConfigSelection, getConfigListEntry
@@ -91,6 +91,8 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		self.item = self["config"].getCurrent()
 		if self["config"].getCurrent()[0] == _("Timeshift location"):
 			self.checkReadWriteDir(self["config"].getCurrent()[1])
+		if self["config"].getCurrent()[0] == _("Autorecord location"):
+			self.checkReadWriteDir(self["config"].getCurrent()[1])
 		for x in self.onChangedEntry:
 			x()
 		try:
@@ -155,16 +157,25 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 
 	def createSetup(self):
 		default = config.usage.timeshift_path.getValue()
+		cooldefault = config.usage.autorecord_path.getValue()
 		tmp = config.usage.allowed_timeshift_paths.getValue()
+		cooltmp = config.usage.allowed_autorecord_paths.getValue()
 		if default not in tmp:
 			tmp = tmp[:]
 			tmp.append(default)
+		if cooldefault not in cooltmp:
+			cooltmp = cooltmp[:]
+			cooltmp.append(cooldefault)
 # 		print "TimeshiftPath: ", default, tmp
 		self.timeshift_dirname = ConfigSelection(default = default, choices = tmp)
+		self.autorecord_dirname = ConfigSelection(default = cooldefault, choices = cooltmp)
 		self.timeshift_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
+		self.autorecord_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
 		list = []
 		self.timeshift_entry = getConfigListEntry(_("Timeshift location"), self.timeshift_dirname, _("Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."))
 		list.append(self.timeshift_entry)
+		self.autorecord_entry = getConfigListEntry(_("Autorecord location"), self.autorecord_dirname, _("Set the default location for your autorecord-files. Press 'OK' to add new locations, select left/right to select an existing location."))
+		list.append(self.autorecord_entry)
 
 		self.refill(list)
 		self["config"].setList(list)
@@ -178,12 +189,20 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		currentry = self["config"].getCurrent()
 		self.lastvideodirs = config.movielist.videodirs.getValue()
 		self.lasttimeshiftdirs = config.usage.allowed_timeshift_paths.getValue()
+		self.lastautorecorddirs = config.usage.allowed_autorecord_paths.getValue()
 		if currentry == self.timeshift_entry:
 			self.entrydirname = self.timeshift_dirname
 			config.usage.timeshift_path.value = self.timeshift_dirname.getValue()
 			self.session.openWithCallback(
 				self.dirnameSelected,
 				TimeshiftLocationBox
+			)
+		if currentry == self.autorecord_entry:
+			self.entrydirname = self.autorecord_dirname
+			config.usage.autorecord_path.value = self.autorecord_dirname.getValue()
+			self.session.openWithCallback(
+				self.dirnameSelected,
+				AutorecordLocationBox
 			)
 
 	def dirnameSelected(self, res):
@@ -209,6 +228,14 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 							tmp = tmp[:]
 							tmp.append(default)
 						self.timeshift_dirname.setChoices(tmp, default=default)
+						self.entrydirname.value = res
+					if config.usage.allowed_autorecord_paths.getValue() != self.lastautorecorddirs:
+						tmp = config.usage.allowed_autorecord_paths.getValue()
+						default = self.autorecord_dirname.getValue()
+						if default not in tmp:
+							tmp = tmp[:]
+							tmp.append(default)
+						self.autorecord_dirname.setChoices(tmp, default=default)
 						self.entrydirname.value = res
 				else:
 					self.session.open(

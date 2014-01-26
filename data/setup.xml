@@ -268,6 +268,7 @@
 		<item level="2" text="Maximum space used (MB):" description="If logs are using the set maximum space used the eldest will be deleted.">config.crash.sizeloglimit</item>
 	</setup>
 	<setup key="timeshift" title="Timeshift settings">
+		<item level="2" text="Enable Autorecord" description="If set to 'yes', enable autorecord for automatically background timeshift">config.timeshift.autorecord</item>
 		<item level="1" text="Automatically start timeshift after" description="When enabled, timeshift starts automatically in background after specified time.">config.timeshift.startdelay</item>
 		<item level="1" text="Show warning when timeshift is stopped" description="When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift.">config.usage.check_timeshift</item>
 		<item level="2" text="Timeshift-save action on zap" description="Select if timeshift must continue when set to record.">config.timeshift.favoriteSaveAction</item>
