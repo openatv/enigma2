@@ -489,7 +489,7 @@ class ImageBackup(Screen):
 				self.MTDBOOT = 2
 				self.JFFS2OPTIONS = "--eraseblock=0x20000 -n -l"
 		## TESTING THE SOGNO8800HD MODEL		
-		elif self.MODEL == "sogno8800hd":
+		elif self.MODEL == "sogno-8800hd":
 			self.TYPE = "SOGNO"
 			self.MODEL = "8800hd"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
