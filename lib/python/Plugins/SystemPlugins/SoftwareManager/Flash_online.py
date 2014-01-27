@@ -27,6 +27,7 @@ if distro.lower() == "openmips":
 elif distro.lower() == "openatv":
 	image = 0
 feedurl_atv = 'http://images.mynonpublic.com/openatv/nightly'
+feedurl_atv2= 'http://images.mynonpublic.com/openatv/beta'
 feedurl_om = 'http://image.openmips.com/2.0'
 imagePath = '/hdd/images'
 flashPath = '/hdd/images/flash'
@@ -176,7 +177,12 @@ class doFlashImage(Screen):
 					self.feed = "om"
 				else:
 					self.feed = "atv"
-				self.layoutFinished()
+			else:
+				if self.feed == "atv":
+					self.feed = "atv2"
+				else:
+					self.feed = "atv"
+			self.layoutFinished()
 			return
 		sel = self["imageList"].l.getCurrentSelection()
 		if sel == None:
@@ -209,6 +215,8 @@ class doFlashImage(Screen):
 			box = "sf8"
 		elif box.startswith('et'):
 			box = box[0:3] + 'x00'
+		elif box == 'odinm9' and self.feed == "atv2":
+			box = 'maram9'
 		return box
 
 	def green(self):
@@ -371,8 +379,12 @@ class doFlashImage(Screen):
 					self.feedurl = feedurl_om
 					self["key_blue"].setText("openATV")
 			else:
-				self.feedurl = feedurl_atv
-				self["key_blue"].setText("")
+				if self.feed == "atv":
+					self.feedurl = feedurl_atv
+					self["key_blue"].setText("ATV 4.0")
+				else:
+					self.feedurl = feedurl_atv2
+					self["key_blue"].setText("ATV 3.0")
 			url = '%s/index.php?open=%s' % (self.feedurl,box)
 			req = urllib2.Request(url)
 			try:
@@ -403,7 +415,7 @@ class doFlashImage(Screen):
 			for line in lines:
 				if line.find("<a href='%s/" % box) > -1:
 					t = line.find("<a href='%s/" % box)
-					if self.feed == "atv":
+					if self.feed == "atv" or self.feed == "atv2":
 						self.imagelist.append(line[t+tt+10:t+tt+tt+39])
 					else:
 						self.imagelist.append(line[t+tt+10:t+tt+tt+40])
