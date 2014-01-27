@@ -6,7 +6,7 @@ from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
 from enigma import eDVBVolumecontrol
-from boxbranding import getMachineBrand, getMachineName
+from boxbranding import getBoxType, getMachineBrand, getMachineName
 from Tools import Notifications
 import Screens.InfoBar
 from os import path
@@ -43,8 +43,7 @@ class Standby2(Screen):
 		self.avswitch = AVSwitch()
 
 		print "enter standby"
-		# Venton series	new vfd
-		if about.getHardwareTypeString().lower() == "ini-7012" or about.getHardwareTypeString().lower() == "ini-7012au":
+		if getBoxType() in ('ini-7000', ,'ini-7012', 'ini-7000au', 'ini-7012au'):
 			if path.exists("/proc/stb/lcd/symbol_scrambled"):
 				open("/proc/stb/lcd/symbol_scrambled", "w").write("0")
 		
