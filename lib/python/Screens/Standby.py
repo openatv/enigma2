@@ -43,7 +43,7 @@ class Standby2(Screen):
 		self.avswitch = AVSwitch()
 
 		print "enter standby"
-		if getBoxType() in ('ini-7000', ,'ini-7012', 'ini-7000au', 'ini-7012au'):
+		if getBoxType() in ('ini-7012', 'ini-7012au'):
 			if path.exists("/proc/stb/lcd/symbol_scrambled"):
 				open("/proc/stb/lcd/symbol_scrambled", "w").write("0")
 		
