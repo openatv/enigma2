@@ -412,6 +412,9 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		if self.infobar:
 			self.infobar.showEventGuidePlugins()
 
+	def openEventView(self):
+		self.showDefaultInfo()
+
 	def showMovies(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.playingservice = ref # movie list may change the currently playing
