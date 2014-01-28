@@ -1,331 +1,295 @@
-# Greek translation for OpenPli.
-# dimfil.sat@gmail.com, 2012.
+# English translations for enigma2 package.
+# Copyright (C) 2012 THE enigma2'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the enigma2 package.
+# Automatically generated, 2012.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: enigma2_v2.0\n"
+"Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 20:11+0100\n"
-"PO-Revision-Date: 2014-01-22 23:31+0100\n"
+"PO-Revision-Date: 2014-01-22 19:30+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
-"Language-Team: \n"
-"Language: el\n"
+"Language-Team: ViX\n"
+"Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 2.0.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED KINGDOM\n"
 
-#
 msgid ""
 "\n"
 "Advanced options and settings."
 msgstr ""
 "\n"
-"Προχωρημένες επιλογές και ρυθμίσεις"
+"Advanced options and settings."
 
-#
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
-"Αφού πιέσετε ΟΚ, παρακαλώ περιμένετε!"
+"After pressing OK, please wait!"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "Backup your %s %s settings."
-msgstr "Αντίγραφο ασφαλείας ρυθμίσεων"
+msgstr ""
+"\n"
+"Backup your %s %s settings."
 
-#
 msgid ""
 "\n"
 "Edit the upgrade source address."
 msgstr ""
 "\n"
-"Επεξεργασία της πηγής αναβαθμίσεων"
+"Edit the upgrade source address."
 
-#
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "Manage extensions or plugins for your %s %s"
 msgstr ""
 "\n"
-"Διαχείριση επεκτάσεων ή προσθέτων του δέκτη"
+"Manage extensions or plugins for your %s %s"
 
-#
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "Online update of your %s %s software."
 msgstr ""
 "\n"
-"Διαδικτυακή ενημέρωση του λογισμικού του δέκτη"
+"Online update of your %s %s software."
 
-#
 msgid ""
 "\n"
 "Press OK on your remote control to continue."
 msgstr ""
 "\n"
-"Πιέστε ΟΚ στο τηλεχειριστήριο για συνέχεια."
+"Press OK on your remote control to continue."
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "Restore your %s %s settings."
-msgstr "Αποκατάσταση ρυθμίσεων συστήματος"
+msgstr ""
+"\n"
+"Restore your %s %s settings."
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "Restore your %s %s with a new firmware."
 msgstr ""
 "\n"
-"Αποκατάσταση του δέκτη με νέο λογισμικό"
+"Restore your %s %s with a new firmware."
 
-#
-#
 msgid ""
 "\n"
 "Restore your backups by date."
 msgstr ""
 "\n"
-"Αποκατάσταση των αντιγράφων ασφαλείας κατά ημερομηνία."
+"Restore your backups by date."
 
-#
-#
 msgid ""
 "\n"
 "Scan for local extensions and install them."
 msgstr ""
 "\n"
-"Αναζήτηση και εγκατάσταση επεκτάσεων τοπικά."
+"Scan for local extensions and install them."
 
-#
-#
 msgid ""
 "\n"
 "Select your backup device.\n"
 "Current device: "
 msgstr ""
 "\n"
-"Επιλογή συσκευής backup.\n"
-"Τρέχουσα συσκευή:"
+"Select your backup device.\n"
+"Current device: "
 
-#
-#
 msgid ""
 "\n"
 "View, install and remove available or installed packages."
 msgstr ""
 "\n"
-"Εμφάνιση, εγκατάσταση και διαγραφή διαθέσιμων ή εγκατεστημένων προσθέτων"
+"View, install and remove available or installed packages."
 
 msgid " (PiP)"
-msgstr ""
+msgstr " (PiP)"
 
 msgid " (Radio)"
-msgstr ""
+msgstr " (Radio)"
 
 msgid " (TV)"
-msgstr ""
+msgstr " (TV)"
 
 msgid " and"
-msgstr ""
+msgstr " and"
 
-#
-#
-#, fuzzy
 msgid "%-H:%M"
-msgstr "%H:%M"
+msgstr "%-H:%M"
 
 #, python-format
 msgid "%02d.%02d - %02d.%02d (%s%d min)"
-msgstr ""
+msgstr "%02d.%02d - %02d.%02d (%s%d min)"
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
-msgstr ""
+msgstr "%2d:%02d"
 
 #. TRANSLATORS: full time representation hour:minute:seconds
 #, python-format
 msgid "%2d:%02d:%02d"
-msgstr ""
+msgstr "%2d:%02d:%02d"
 
 msgid "%A %d %B"
-msgstr ""
+msgstr "%A %d %B"
 
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
-msgstr ""
+msgstr "%A %e %B"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 msgid "%A %e %B %Y"
-msgstr ""
+msgstr "%A %e %B %Y"
 
 msgid "%A %e %b"
-msgstr ""
+msgstr "%A %e %b"
 
-#
-#
 msgid "%H:%M"
 msgstr "%H:%M"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
-msgstr ""
+msgstr "%a %e %B %Y"
 
 #. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
 msgid "%a %e/%m"
-msgstr ""
+msgstr "%a %e/%m"
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
-msgstr ""
+msgstr "%a %e/%m  %-H:%M"
 
 #, python-format
 msgid "%d GB"
-msgstr ""
+msgstr "%d GB"
 
 #, python-format
 msgid "%d Gb"
-msgstr ""
+msgstr "%d Gb"
 
 #, python-format
 msgid "%d KB"
-msgstr ""
+msgstr "%d KB"
 
 #, python-format
 msgid "%d MB"
-msgstr ""
+msgstr "%d MB"
 
 #, python-format
 msgid "%d Min"
 msgid_plural "%d Mins"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Min"
+msgstr[1] "%d Mins"
 
-#
-# , python-format
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-#, fuzzy, python-format
+#, python-format
 msgid "%d channel found"
 msgid_plural "%d channels found"
-msgstr[0] "%d υπηρεσίες βρέθηκαν!"
-msgstr[1] "%d υπηρεσίες βρέθηκαν!"
+msgstr[0] "%d channel found"
+msgstr[1] "%d channels found"
 
 #, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d hour"
+msgstr[1] "%d hours"
 
-#
-# , python-format
-#, fuzzy, python-format
+#, python-format
 msgid "%d job is running in the background!"
 msgid_plural "%d jobs are running in the background!"
-msgstr[0] "%d εργασίες στο παρασκήνιο!"
-msgstr[1] "%d εργασίες στο παρασκήνιο!"
+msgstr[0] "%d job is running in the background!"
+msgstr[1] "%d jobs are running in the background!"
 
-#
-# , python-format
 #, python-format
 msgid "%d jobs are running in the background!"
-msgstr "%d εργασίες στο παρασκήνιο!"
+msgstr "%d jobs are running in the background!"
 
 #, python-format
 msgid "%d kB"
-msgstr ""
+msgstr "%d kB"
 
-#
-# , python-format
 #, python-format
 msgid "%d min"
-msgstr "%d λεπτά"
+msgstr "%d min"
 
 #, python-format
 msgid "%d minute"
 msgid_plural "%d minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d minute"
+msgstr[1] "%d minutes"
 
 #, python-format
 msgid "%d minutes"
-msgstr ""
+msgstr "%d minutes"
 
 #, python-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d second"
+msgstr[1] "%d seconds"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
-msgstr[0] "1 ασύρματο δίκτυο βρέθηκε!"
-msgstr[1] "1 ασύρματο δίκτυο βρέθηκε!"
+msgstr[0] "%d wireless network found!"
+msgstr[1] "%d wireless networks found!"
 
 msgid "%d-%m"
-msgstr ""
+msgstr "%d-%m"
 
-#
-#
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
 #. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
 msgid "%k:%M %e/%m"
-msgstr ""
+msgstr "%k:%M %e/%m"
 
 #, python-format
 msgid "%s %s advanced remote control (native)"
-msgstr ""
+msgstr "%s %s advanced remote control (native)"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "%s %s format data DVD (HDTV compatible)"
 msgstr "%s %s format data DVD (HDTV compatible)"
 
 #, python-format
 msgid "%s %s front panel"
-msgstr ""
+msgstr "%s %s front panel"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "%s %s ir keyboard"
-msgstr "Εικονικό πληκτρολόγιο"
+msgstr "%s %s ir keyboard"
 
 #, python-format
 msgid "%s %s ir mouse"
-msgstr ""
+msgstr "%s %s ir mouse"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s %s remote control (native)"
-msgstr "Χρήση τηλεχειριστηρίου TV"
+msgstr "%s %s remote control (native)"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "%s %s software because updates are available."
-msgstr "λογισμικό δέκτη γιατί διατίθενται ενημερώσεις."
+msgstr "%s %s software because updates are available."
 
-#
-# , python-format
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
@@ -333,891 +297,679 @@ msgstr "%s (%s)\n"
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
-msgstr ""
+msgstr "%s is no longer used. Should it be deleted?"
 
 #, python-format
 msgid "%s updated package available"
 msgid_plural "%s updated packages available"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s updated package available"
+msgstr[1] "%s updated packages available"
 
-#
-# , python-format
-#, fuzzy, python-format
+#, python-format
 msgid "%s%d min"
-msgstr "%d λεπτά"
+msgstr "%s%d min"
 
 #, python-format
 msgid "%s/%s: %s"
-msgstr ""
+msgstr "%s/%s: %s"
 
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
-msgstr ""
+msgstr "'%s' contains %d file(s) and %d sub-directories.\n"
 
 msgid "( All readers)"
-msgstr ""
+msgstr "( All readers)"
 
 msgid "(Show only reader:"
-msgstr ""
+msgstr "(Show only reader:"
 
-#
-#
 msgid "(ZAP)"
 msgstr "(ZAP)"
 
-#
-#
 msgid "(empty)"
-msgstr "(κενό)"
+msgstr "(empty)"
 
-#
-#
 msgid "(show optional DVD audio menu)"
-msgstr "(εμφάνιση προαιρετικού μενού ήχου DVD)"
+msgstr "(show optional DVD audio menu)"
 
 msgid "* = Restart Required"
-msgstr ""
+msgstr "* = Restart Required"
 
-#
-#
 msgid "* Only available if more than one interface is active."
-msgstr "* Διαθέσιμο μόνο εάν είναι ενεργές περισσότερες από μία διεπαφές."
+msgstr "* Only available if more than one interface is active."
 
 msgid "/s"
-msgstr ""
+msgstr "/s"
 
-#
-#
 msgid "1.0"
 msgstr "1.0"
 
-#
-#
 msgid "1.1"
 msgstr "1.1"
 
-#
-#
 msgid "1.2"
 msgstr "1.2"
 
 msgid "1080i"
-msgstr ""
+msgstr "1080i"
 
 msgid "1080p 24Hz"
-msgstr ""
+msgstr "1080p 24Hz"
 
 msgid "1080p 25Hz"
-msgstr ""
+msgstr "1080p 25Hz"
 
 msgid "1080p 30Hz"
-msgstr ""
+msgstr "1080p 30Hz"
 
 msgid "1080p 50Hz"
-msgstr ""
+msgstr "1080p 50Hz"
 
 msgid "1080p 60Hz"
-msgstr ""
+msgstr "1080p 60Hz"
 
-#
-#
 msgid "12V output"
-msgstr "έξοδος 12V"
+msgstr "12V output"
 
-#
-#
-#, fuzzy
 msgid "12V output."
-msgstr "έξοδος 12V"
+msgstr "12V output."
 
-#
-#
 msgid "13 V"
 msgstr "13 V"
 
-#
-#
 msgid "16:10"
 msgstr "16:10"
 
-#
-#
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
-#
-#
 msgid "16:10 PanScan"
 msgstr "16:10 PanScan"
 
-#
-#
 msgid "16:9"
 msgstr "16:9"
 
-#
-#
 msgid "16:9 Letterbox"
-msgstr "16:10 Letterbox"
+msgstr "16:9 Letterbox"
 
-#
-#
 msgid "16:9 always"
-msgstr "πάντα 16:9"
+msgstr "16:9 always"
 
-#
-#
 msgid "18 V"
 msgstr "18 V"
 
 msgid "1X"
-msgstr ""
+msgstr "1X"
 
 msgid "1st Infobar timeout"
-msgstr ""
+msgstr "1st Infobar timeout"
 
 msgid "23.976"
-msgstr ""
+msgstr "23.976"
 
-#
-#
-#, fuzzy
 msgid "24"
-msgstr "2"
+msgstr "24"
 
-#
-#
-#, fuzzy
 msgid "25"
-msgstr "2"
+msgstr "25"
 
 msgid "29.97"
-msgstr ""
+msgstr "29.97"
 
 msgid "2X"
-msgstr ""
+msgstr "2X"
 
-#
-#
-#, fuzzy
 msgid "30"
-msgstr "0"
+msgstr "30"
 
 msgid "3D Mode"
-msgstr ""
+msgstr "3D Mode"
 
-#
-#
-#, fuzzy
 msgid "3D Surround"
-msgstr "Ήχος"
+msgstr "3D Surround"
 
 msgid "3D setup"
-msgstr ""
+msgstr "3D setup"
 
 msgid "3X"
-msgstr ""
+msgstr "3X"
 
-#
 msgid "3d mode"
-msgstr "τύπος 3d"
+msgstr "3d mode"
 
-#
-#
 msgid "4:3"
 msgstr "4:3"
 
-#
-#
 msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
 
-#
-#
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
 msgid "4X"
-msgstr ""
+msgstr "4X"
 
 msgid "720p"
-msgstr ""
+msgstr "720p"
 
 msgid "720p 24Hz"
-msgstr ""
+msgstr "720p 24Hz"
 
-#
 msgid "<Current movielist location>"
-msgstr "<Τρέχουσα τοποθεσία καταλόγου ταινιών>"
+msgstr "<Current movie list location>"
 
-#
 msgid "<Default movie location>"
-msgstr "<Αρχική>"
+msgstr "<Default movie location>"
 
-#
 msgid "<Last timer location>"
-msgstr "<Τελευταία τοποθεσία χρονοδιακόπτη>"
+msgstr "<Last timer location>"
 
-#
-#
 msgid "<unknown>"
-msgstr "<άγνωστο>"
+msgstr "<unknown>"
 
-#
 msgid "??"
 msgstr "??"
 
-#
-#
 msgid "A"
 msgstr "A"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr ""
+msgstr "A background update check is in progress, please wait a few minutes and try again."
 
 #, python-format
 msgid ""
 "A configuration file (%s) has been modified since it was installed.\n"
 "Do you want to keep your modifications?"
 msgstr ""
+"A configuration file (%s) has been modified since it was installed.\n"
+"Do you want to keep your modifications?"
 
-#
-# , python-format
 #, python-format
 msgid ""
 "A configuration file (%s) was modified since Installation.\n"
 "Do you want to keep your version?"
 msgstr ""
-"Ένα αρχείο ρυθμίσεων (%s) έχει αλλάξει.\n"
-"Θέλετε να διατηρήσετε τη δική σας έκδοση;"
+"A configuration file (%s) was modified since Installation.\n"
+"Do you want to keep your version?"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A finished power timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"Μία ολοκληρωμένη εγγραφή θέτει το δέκτη σε βαθιά αναμονή\n"
-"Να εκτελεστεί τώρα;"
+"A finished power timer wants to shut down\n"
+"your %s %s. Shutdown now?"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
 "Do that now?"
 msgstr ""
-"Μία ολοκληρωμένη εγγραφή θέτει το δέκτη σε αναμονή\n"
-"Να εκτελεστεί τώρα;"
+"A finished powertimer wants to reboot your %s %s.\n"
+"Do that now?"
 
-#
-#
-#, fuzzy
 msgid ""
 "A finished powertimer wants to restart the user interface.\n"
 "Do that now?"
 msgstr ""
-"Ο δέκτης σας είναι τώρα έτοιμος για χρήση.\n"
-"\n"
-"Η σύνδεση με το διαδίκτυο είναι έτοιμη.\n"
-"\n"
+"A finished powertimer wants to restart the user interface.\n"
+"Do that now?"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A finished powertimer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Μία ολοκληρωμένη εγγραφή θέτει το δέκτη σε αναμονή\n"
-"Να εκτελεστεί τώρα;"
+"A finished powertimer wants to set your\n"
+"%s %s to standby. Do that now?"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A finished powertimer wants to shutdown your %s %s.\n"
 "Do that now?"
 msgstr ""
-"Μία ολοκληρωμένη εγγραφή θέτει το δέκτη σε βαθιά αναμονή\n"
-"Να εκτελεστεί τώρα;"
+"A finished powertimer wants to shutdown your %s %s.\n"
+"Do that now?"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Μία ολοκληρωμένη εγγραφή θέτει το δέκτη σε αναμονή\n"
-"Να εκτελεστεί τώρα;"
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A finished record timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"Μία ολοκληρωμένη εγγραφή θέτει το δέκτη σε βαθιά αναμονή\n"
-"Να εκτελεστεί τώρα;"
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
 
-#
-#
 msgid "A graphical EPG for all services of a specific bouquet"
-msgstr "Γραφικό EPG για όλα τα κανάλια σε συγκεκριμένο μπουκέτο"
+msgstr "A graphical EPG for all services of a specific bouquet"
 
 #, python-format
 msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
+"A recording has been started:\n"
+"%s"
 
-#
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
-"Μια εγγραφή είναι σε εξέλιξη.\n"
-"Τι θέλετε να γίνει;"
+"A recording is currently running.\n"
+"What do you want to do?"
 
-#
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
-msgstr "Μια εγγραφή είναι σε εξέλιξη. Για να παραμετροποιήσετε τον positioner πρέπει να σταματήσετε την εγγραφή."
+msgstr "A recording is currently running. Please stop the recording before trying to configure the positioner."
 
 msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Μια εγγραφή είναι σε εξέλιξη. Πρέπει να σταματήσετε την εγγραφή πριν από σάρωση."
+msgstr "A recording is currently running. Please stop the recording before trying to scan."
 
-#
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
-msgstr "Μια εγγραφή είναι σε εξέλιξη. Για να ενεργοποιήσετε τον satfinder πρέπει να σταματήσετε την εγγραφή."
+msgstr "A recording is currently running. Please stop the recording before trying to start the sat finder."
 
 msgid "A repeating timer or just once?"
-msgstr ""
+msgstr "A repeating timer or just once?"
 
-#
 #, python-format
 msgid "A required tool (%s) was not found."
-msgstr "Ένα απαιτούμενο εργαλείο (%s) δεν βρέθηκε."
+msgstr "A required tool (%s) was not found."
 
-#
 msgid "A search for available updates is currently in progress."
-msgstr "Μία αναζήτηση για διαθέσιμες ενημερώσεις είναι σε εξέλιξη."
+msgstr "A search for available updates is currently in progress."
 
-#
-#
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
 "Do you want to disable the second network interface?"
 msgstr ""
-"Βρέθηκε δεύτερο ρυθμισμένο δίκτυο.\n"
+"A second configured interface has been found.\n"
 "\n"
-"Θέλετε να απενεργοποιήσετε το δεύτερο προσαρμογέα δικτύου;"
+"Do you want to disable the second network interface?"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A sleep timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Ο χρονοδιακόπτης απενεργοποίησης θέτει το δέκτη σε αναμονή.\n"
-"Να εκτελεστεί τώρα;"
+"A sleep timer wants to set your\n"
+"%s %s to standby. Do that now?"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"Ο χρονοδιακόπτης απενεργοποίησης θέτει το δέκτη σε βαθιά αναμονή.\n"
-"Να εκτελεστεί τώρα;"
+"A sleep timer wants to shut down\n"
+"your %s %s. Shutdown now?"
 
-#
-#
 msgid "A small overview of the available icon states and actions."
-msgstr "Μια επισκόπηση των διαθέσιμων εικονιδίων κατάστασης και ενεργειών."
+msgstr "A small overview of the available icon states and actions."
 
-#
-#
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
 msgstr ""
-"Ένας χρονοδιακόπτης απέτυχε να ξεκινήσει.\n"
-"Να απενεργοποιηθεί η TV και να ξαναπροσπαθήσει;\n"
+"A timer failed to record!\n"
+"Disable TV and try again?\n"
 
 msgid "A/V settings"
-msgstr ""
+msgstr "A/V settings"
 
-#
-#
 msgid "AA"
 msgstr "AA"
 
 msgid "AAC downmix"
-msgstr ""
+msgstr "AAC downmix"
 
-#
-#
 msgid "AB"
 msgstr "AB"
 
 msgid "ACQUIRING TSID/ONID"
-msgstr ""
+msgstr "ACQUIRING TSID/ONID"
 
 msgid "AFP Setup"
-msgstr ""
+msgstr "AFP Setup"
 
 msgid "AFP setup"
-msgstr ""
+msgstr "AFP setup"
 
 #, python-format
 msgid "AV aspect is %s."
-msgstr ""
+msgstr "AV aspect is %s."
 
-#
-#
 msgid "Abort"
-msgstr "Ακύρωσε"
+msgstr "Abort"
 
-#
-#
 msgid "About"
-msgstr "Περί"
+msgstr "About"
 
-#
-#
 msgid "About..."
-msgstr "Περί..."
+msgstr "About..."
 
-#
-#
 msgid "Accesspoint:"
-msgstr "Σημείο πρόσβασης:"
+msgstr "Access point:"
 
 msgid "Action on long power button press"
-msgstr ""
+msgstr "Action on long power button press"
 
 msgid "Action on short power button press"
-msgstr ""
+msgstr "Action on short power button press"
 
 msgid "Activate"
-msgstr ""
+msgstr "Activate"
 
-#
-#
-#, fuzzy
 msgid "Activate MAC-address configuration"
-msgstr "ενεργοποίηση τρέχουσας παραμετροποίησης"
+msgstr "Activate MAC-address configuration"
 
 msgid "Activate PiP"
-msgstr ""
+msgstr "Activate PiP"
 
-#
-#
 msgid "Activate Picture in Picture"
-msgstr "Να ενεργοποιηθεί το PiP"
+msgstr "Activate Picture in Picture"
 
-#
-#
-#, fuzzy
 msgid "Activate current configuration"
-msgstr "ενεργοποίηση τρέχουσας παραμετροποίησης"
+msgstr "Activate current configuration"
 
-#
-#
 msgid "Activate network settings"
-msgstr "Ενεργοποίηση ρυθμίσεων δικτύου"
+msgstr "Activate network settings"
 
 msgid "Activate the configured network settings."
-msgstr ""
+msgstr "Activate the configured network settings."
 
-#
 msgid "Active"
-msgstr "Ενεργό"
+msgstr "Active"
 
 msgid "Active clients"
-msgstr ""
+msgstr "Active clients"
 
-#
-#
 msgid "Adapter settings"
-msgstr "Ρυθμίσεις κάρτας δικτύου"
+msgstr "Adapter settings"
 
-#
-#
 msgid "Add"
-msgstr "Προσθήκη"
+msgstr "Add"
 
 msgid "Add AutoTimer"
-msgstr ""
+msgstr "Add AutoTimer"
 
 msgid "Add Timer"
-msgstr ""
+msgstr "Add Timer"
 
 msgid "Add a auto timer for current event"
-msgstr ""
+msgstr "Add a auto timer for current event"
 
-#
-#
 msgid "Add a mark"
-msgstr "Προσθήκη σημειωτή"
+msgstr "Add a mark"
 
-#
-#
-#, fuzzy
 msgid "Add a nameserver entry"
-msgstr "προσθήκη nameserver"
+msgstr "Add a nameserver entry"
 
-#
-#
 msgid "Add a new title"
-msgstr "Προσθήκη νέου τίτλου"
+msgstr "Add a new title"
 
-#
-#
-#, fuzzy
 msgid "Add a record timer"
-msgstr "Προσθήκη χρονοδιακόπτη"
+msgstr "Add a record timer"
 
 msgid "Add a record timer for current event"
-msgstr ""
+msgstr "Add a record timer for current event"
 
 msgid "Add a zap timer for current event"
-msgstr ""
+msgstr "Add a zap timer for current event"
 
-#
-#
-#, fuzzy
 msgid "Add a zap timer for next event"
-msgstr "μετάβαση στην επόμενη εγγραφή"
+msgstr "Add a zap timer for next event"
 
-#
-#
-#, fuzzy
 msgid "Add bookmark"
-msgstr "προσθήκη σελιδοδείκτη"
+msgstr "Add bookmark"
 
-#
-#
-#, fuzzy
 msgid "Add directory to playlist"
-msgstr "προσθήκη φακέλου στη λίστα αναπαραγωγής"
+msgstr "Add directory to playlist"
 
-#
-#
-#, fuzzy
 msgid "Add file to playlist"
-msgstr "προσθήκη αρχείου στη λίστα αναπαραγωγής"
+msgstr "Add file to playlist"
 
-#
-#
-#, fuzzy
 msgid "Add files to playlist"
-msgstr "προσθήκη αρχείων στη λίστα αναπαραγωγής"
+msgstr "Add files to playlist"
 
-#
-#
-#, fuzzy
 msgid "Add provider"
-msgstr "προσθήκη παρόχου"
+msgstr "Add provider"
 
 msgid "Add recording (enter recording duration)"
-msgstr ""
+msgstr "Add recording (enter recording duration)"
 
 msgid "Add recording (enter recording endtime)"
-msgstr ""
+msgstr "Add recording (enter recording endtime)"
 
 msgid "Add recording (indefinitely)"
-msgstr ""
+msgstr "Add recording (indefinitely)"
 
 msgid "Add recording (stop after current event)"
-msgstr ""
+msgstr "Add recording (stop after current event)"
 
-#
-#
-#, fuzzy
 msgid "Add service"
-msgstr "προσθήκη υπηρεσίας"
+msgstr "Add service"
 
-#
-#
 msgid "Add timer"
-msgstr "Προσθήκη χρονοδιακόπτη"
+msgstr "Add timer"
 
-#
-#
 msgid "Add title"
-msgstr "Προσθήκη τίτλου"
+msgstr "Add title"
 
-#
-#
 msgid "Add to bouquet"
-msgstr "Προσθήκη σε μπουκέτο"
+msgstr "Add to bouquet"
 
-#
-#
 msgid "Add to favourites"
-msgstr "Προσθήκη στα αγαπημένα"
+msgstr "Add to favourites"
 
 msgid "Add/Remove timer for current event"
-msgstr ""
+msgstr "Add/Remove timer for current event"
 
-#
-#
-#, fuzzy
 msgid "Add/remove change timer for current event"
-msgstr "μετάβαση στην επόμενη εγγραφή"
+msgstr "Add/remove change timer for current event"
 
 msgid "Adding schedule..."
-msgstr ""
+msgstr "Adding schedule..."
 
 msgid "Additional Info"
-msgstr ""
+msgstr "Additional Info"
 
 msgid "Address"
-msgstr ""
+msgstr "Address"
 
-#
 msgid "Adjust 3D settings"
-msgstr "Μεταβολή ρυθμίσεων 3D"
+msgstr "Adjust 3D settings"
 
-#
-#
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
-msgstr "Ρυθμίστε την ένταση των χρωμάτων έτσι που να διαφέρουν οι χρωματισμοί με τη μέγιστη φωτεινότητα. Όταν τελειώσετε, πιέστε ΟΚ για να κλείσει τη μικρορύθμιση ή πατήστε ένα νούμερο για να δείτε και άλλες οθόνες δοκιμών."
+msgstr "Adjust the colour settings so that all the colour shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 
-#
-#
-#, fuzzy
 msgid "Advanced options"
-msgstr "Προχωρημένες επιλογές"
+msgstr "Advanced options"
 
-#
-#
 msgid "Advanced restore"
-msgstr "Προχωρημένη αποκατάσταση"
+msgstr "Advanced restore"
 
-#
-#
-#, fuzzy
 msgid "Advanced software"
-msgstr "Προχωρημένο λογισμικό"
+msgstr "Advanced software"
 
-#
-#
-#, fuzzy
 msgid "Advanced software plugin"
-msgstr "Προχωρημένα πρόσθετα λογισμικού"
+msgstr "Advanced software plugin"
 
-#
-#
-#, fuzzy
 msgid "Advanced video enhancement setup"
-msgstr "Προχωρημένη εγκατάσταση βελτίωσης εικόνας"
+msgstr "Advanced video enhancement setup"
 
 msgid "Advanced video setup"
-msgstr ""
+msgstr "Advanced video setup"
 
-#
-#
 msgid "After event"
-msgstr "Μετά το πρόγραμμα"
+msgstr "After event"
 
-#
-#
 msgid "Album"
 msgstr "Album"
 
 msgid "Alias"
-msgstr ""
+msgstr "Alias"
 
 msgid "Alignment of events"
-msgstr ""
+msgstr "Alignment of events"
 
 msgid "Alignment of service names"
-msgstr ""
+msgstr "Alignment of service names"
 
-#
-#
 msgid "All"
-msgstr "Όλα"
+msgstr "All"
 
 msgid "All ages"
-msgstr ""
+msgstr "All ages"
 
-#
-#
-#, fuzzy
 msgid "All resolutions"
-msgstr "Ανάλυση"
+msgstr "All resolutions"
 
 msgid "All satellites"
-msgstr ""
+msgstr "All satellites"
 
 msgid "Allocate"
-msgstr ""
+msgstr "Allocate"
 
 msgid "Allocate unused memory index"
-msgstr ""
+msgstr "Allocate unused memory index"
 
 msgid "Allow subtitle language to equal audio language"
-msgstr ""
+msgstr "Allow subtitle language to equal audio language"
 
 msgid "Allow subtitles for hearing impaired"
-msgstr ""
+msgstr "Allow subtitles for hearing impaired"
 
 msgid "Allow unstable (experimental) updates"
-msgstr ""
+msgstr "Allow unstable (experimental) updates"
 
 msgid "Allows more detailed information to be in the crash log"
-msgstr ""
+msgstr "Allows more detailed information to be in the crash log"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
-msgstr ""
+msgstr "Allows the %s %s to read the stored EPG data regularly."
 
 msgid "Allows the %s %s to store the EPG data regularly."
-msgstr ""
+msgstr "Allows the %s %s to store the EPG data regularly."
 
 msgid "Allows you to hide the extensions of known file types."
-msgstr ""
+msgstr "Allows you to hide the extensions of known file types."
 
 msgid "Allows you to setup the button to do what you choose."
-msgstr ""
+msgstr "Allows you to setup the button to do what you choose."
 
 msgid "Allows you to adjust the amount of time the resolution infomation display on screen."
-msgstr ""
+msgstr "Allows you to adjust the amount of time the resolution infomation display on screen."
 
 msgid "Allows you to enable the debug logs. They contain very detailed information about everything the system does."
-msgstr ""
+msgstr "Allows you to enable the debug logs. They contain very detailed information about everything the system does."
 
 msgid "Allows you to enable/disable displaying icons on the front panel."
-msgstr ""
+msgstr "Allows you to enable/disable displaying icons on the front panel."
 
 msgid "Allows you to send a copy of the log to yourself."
-msgstr ""
+msgstr "Allows you to send a copy of the log to yourself."
 
 msgid "Allows you to set the maximum size (MB) of the individual debug logs. When that size is reached, a new file will be created."
-msgstr ""
+msgstr "Allows you to set the maximum size (MB) of the individual debug logs. When that size is reached, a new file will be created."
 
 msgid "Allows you to show/hide CCcam Info in extensions (blue button)."
-msgstr ""
+msgstr "Allows you to show/hide CCcam Info in extensions (blue button)."
 
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
-msgstr ""
+msgstr "Allows you to show/hide Log Manager in extensions (blue button)."
 
 msgid "Allows you to show/hide OScam Info in extensions (blue button)."
-msgstr ""
+msgstr "Allows you to show/hide OScam Info in extensions (blue button)."
 
-#
-#
 msgid "Alpha"
 msgstr "Alpha"
 
 msgid "Alphanumeric"
-msgstr ""
+msgstr "Alphanumeric"
 
-#
-#
-#, fuzzy
 msgid "Alternative"
-msgstr "προσθήκη εναλλακτικών"
+msgstr "Alternative"
 
 msgid "Alternative numbering mode"
-msgstr ""
+msgstr "Alternative numbering mode"
 
 msgid "Alternative radio mode"
-msgstr ""
+msgstr "Alternative radio mode"
 
-#
-#
 msgid "Alternative services tuner priority"
-msgstr "Εναλλακτική προτεραιότητα tuner "
+msgstr "Alternative services tuner priority"
 
-#
 msgid "Always ask"
-msgstr "Πάντα ερώτηση"
+msgstr "Always ask"
 
 msgid "Always hide infobar"
-msgstr ""
+msgstr "Always hide infobar"
 
 msgid "Always show bouquets"
-msgstr ""
+msgstr "Always show bouquets"
 
-#
-#
 msgid "An empty filename is illegal."
-msgstr "Κενή ονομασία είναι άκυρη."
+msgstr "An empty filename is illegal."
 
 msgid "An error occurred while downloading the packetlist. Please try again."
-msgstr ""
+msgstr "An error occurred while downloading the packetlist. Please try again."
 
-#
-#
-#, fuzzy
 msgid "An unknown error occurred!"
-msgstr "Συνέβη άγνωστο σφάλμα!"
+msgstr "An unknown error occurred!"
 
-#
 msgid "Any activity"
-msgstr "Οποιαδήποτε δραστηριότητα"
+msgstr "Any activity"
 
-#
 msgid "Arabic"
-msgstr "Αραβικά"
+msgstr "Arabic"
 
-#
-#
-#, fuzzy
 msgid "Are you sure to remove this entry?"
-msgstr "Σίγουρα να γίνει έξοδος από αυτό τον οδηγό;"
+msgstr "Are you sure to remove this entry?"
 
-#
-#
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
 "\n"
-msgstr "Σίγουρα θέλετε να ενεργοποιήσετε αυτό το δίκτυο;\n"
+msgstr ""
+"Are you sure you want to activate this network configuration?\n"
+"\n"
 
 msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
 msgstr ""
+"Are you sure you want to delete\n"
+"the following backup:\n"
 
 msgid "Are you sure you want to delete all selected logs:\n"
-msgstr ""
+msgstr "Are you sure you want to delete all selected logs:\n"
 
 msgid "Are you sure you want to delete this log:\n"
-msgstr ""
+msgstr "Are you sure you want to delete this log:\n"
 
-#
-#
-#, fuzzy
 msgid ""
 "Are you sure you want to delete this:\n"
 " "
-msgstr "Σίγουρα να γίνει έξοδος από αυτό τον οδηγό;"
+msgstr ""
+"Are you sure you want to delete this:\n"
+" "
 
-#
-#
 msgid "Are you sure you want to exit this wizard?"
-msgstr "Σίγουρα να γίνει έξοδος από αυτό τον οδηγό;"
+msgstr "Are you sure you want to exit this wizard?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
-msgstr ""
+msgstr "Are you sure you want to reload the EPG data from:\n"
 
-#
-#
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr ""
-"Είστε σίγουρος ότι θέλετε να επανεκκινήσετε τις διεπαφές δικτύου;\n"
+"Are you sure you want to restart your network interfaces?\n"
 "\n"
 
 #, python-format
@@ -1227,457 +979,336 @@ msgid ""
 "%s\n"
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
+"Are you sure you want to restore\n"
+"the following backup:\n"
+"%s\n"
+"Your receiver will restart after the backup has been restored!"
 
 msgid ""
 "Are you sure you want to restore the backup?\n"
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
+"Are you sure you want to restore the backup?\n"
+"Your receiver will restart after the backup has been restored!"
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
-msgstr ""
+msgstr "Are you sure you want to save the EPG Cache to:\n"
 
 msgid "Are you sure you want to send this log:\n"
-msgstr ""
+msgstr "Are you sure you want to send this log:\n"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Are you sure you want to update your %s %s ?"
-msgstr "Σίγουρα να γίνει έξοδος από αυτό τον οδηγό;"
+msgstr "Are you sure you want to update your %s %s ?"
 
-#
-#
 msgid "Artist"
-msgstr "Καλλιτέχνης"
+msgstr "Artist"
 
 msgid "Arts/Culture"
-msgstr ""
+msgstr "Arts/Culture"
 
-#
-#
 msgid "Ask user"
-msgstr "Ερώτηση χρήστη"
+msgstr "Ask user"
 
 msgid "Aspect ratio"
-msgstr ""
+msgstr "Aspect ratio"
 
-#
-#
-#, fuzzy
 msgid "Assigned CAIds:"
-msgstr "ανατεθημένα CAIds:"
+msgstr "Assigned CAIds:"
 
-#
-#
-#, fuzzy
 msgid "Assigned services/provider:"
-msgstr "ανατεθημένες υπηρεσίες/πάροχοι:"
+msgstr "Assigned services/provider:"
 
 msgid "At End:"
-msgstr ""
+msgstr "At End:"
 
 msgid "Attach a file"
-msgstr ""
+msgstr "Attach a file"
 
-#
 msgid "Audio PID"
-msgstr "PID ήχου"
+msgstr "Audio PID"
 
-#
-#
 msgid "Audio language selection 1"
-msgstr "Επιλογή γλώσσας ήχου 1"
+msgstr "Audio language selection 1"
 
-#
-#
 msgid "Audio language selection 2"
-msgstr "Επιλογή γλώσσας ήχου 2"
+msgstr "Audio language selection 2"
 
-#
-#
 msgid "Audio language selection 3"
-msgstr "Επιλογή γλώσσας ήχου 3"
+msgstr "Audio language selection 3"
 
-#
-#
 msgid "Audio language selection 4"
-msgstr "Επιλογή γλώσσας ήχου 4"
+msgstr "Audio language selection 4"
 
 msgid "Audio options..."
-msgstr ""
+msgstr "Audio options..."
 
-#
-# , python-format
-#, fuzzy, python-format
+#, python-format
 msgid "Audio track (%s) format"
-msgstr "format audio track (%s)"
+msgstr "Audio track (%s) format"
 
-#
-# , python-format
-#, fuzzy, python-format
+#, python-format
 msgid "Audio track (%s) language"
-msgstr "γλώσσα audio track (%s)"
+msgstr "Audio track (%s) language"
 
-#
-#
 msgid "Author: "
-msgstr "Δημιουργός: "
+msgstr "Author: "
 
-#
-#
 msgid "Authoring mode"
-msgstr "Λειτουργία δημιουργίας ταινίας"
+msgstr "Authoring mode"
 
-#
-#
 #. TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 msgid "Auto"
-msgstr "Αυτόματα"
+msgstr "Auto"
 
-#
-#
-#, fuzzy
 msgid "Auto Deep Standby"
-msgstr "Τερματισμός"
+msgstr "Auto Deep Standby"
 
-#
-#
-#, fuzzy
 msgid "Auto Standby"
-msgstr "Αναμονή"
+msgstr "Auto Standby"
 
-#
-#
 msgid "Auto chapter split every ? minutes (0=never)"
-msgstr "Αυτόματη δημιουργία κεφαλαίου κάθε ? λεπτα (0=ποτέ)"
+msgstr "Auto chapter split every ? minutes (0=never)"
 
-#
-#
 msgid "Auto flesh"
 msgstr "Auto flesh"
 
-#
-#
-#, fuzzy
 msgid "Auto focus"
-msgstr "Auto flesh"
+msgstr "Auto focus"
 
 msgid "Auto focus commencing ..."
-msgstr ""
+msgstr "Auto focus commencing ..."
 
 msgid "Auto language selection"
-msgstr ""
+msgstr "Auto language selection"
 
-#
-#
 msgid "Auto scart switching"
-msgstr "Αυτόματη αλλαγή scart"
+msgstr "Auto scart switching"
 
-#
-#
 msgid "Automatic"
-msgstr "Αυτόματο"
+msgstr "Automatic"
 
-#
-#
 msgid "Automatic Scan"
-msgstr "Αυτόματη σάρωση"
+msgstr "Automatic Scan"
 
 msgid "Automatic image backup"
-msgstr ""
+msgstr "Automatic image backup"
 
 msgid "Automatic refresh"
-msgstr ""
+msgstr "Automatic refresh"
 
-#
-#
-#, fuzzy
 msgid "Automatic resolution"
-msgstr "Αυτόματη σάρωση"
+msgstr "Automatic resolution"
 
-#
-#
-#, fuzzy
 msgid "Automatic resolution label"
-msgstr "Αυτόματη σάρωση"
+msgstr "Automatic resolution label"
 
 msgid "Automatic save"
-msgstr ""
+msgstr "Automatic save"
 
 msgid "Automatic scan"
-msgstr ""
+msgstr "Automatic scan"
 
 msgid "Automatic settings backup"
-msgstr ""
+msgstr "Automatic settings backup"
 
 msgid "Automatically start timeshift after"
-msgstr ""
+msgstr "Automatically start timeshift after"
 
-#
-#
-#, fuzzy
 msgid "Automatically turn on external subtitles"
-msgstr "Αναδίπλωση υποτίτλων teletext"
+msgstr "Automatically turn on external subtitles"
 
 msgid "Automatically update Client/Server View?"
-msgstr ""
+msgstr "Automatically update Client/Server View?"
 
 msgid "Autostart"
-msgstr ""
+msgstr "Autostart"
 
 msgid "Autostart:"
-msgstr ""
+msgstr "Autostart:"
 
-#
-#
 msgid "Available format variables"
-msgstr "Διαθέσιμες επιλογές format"
+msgstr "Available format variables"
 
 msgid "Available shares:"
-msgstr ""
+msgstr "Available shares:"
 
-#
-#
 msgid "B"
 msgstr "B"
 
-#
-#
 msgid "BA"
 msgstr "BA"
 
-#
-#
 msgid "BB"
 msgstr "BB"
 
-#
-#
 msgid "Back"
-msgstr "Πίσω"
+msgstr "Back"
 
-#
-#
 msgid "Background"
-msgstr "Παρασκήνιο"
+msgstr "Background"
 
 msgid "Background check"
-msgstr ""
+msgstr "Background check"
 
-#
-#
-#, fuzzy
 msgid "Background color"
-msgstr "χρώμα φόντου"
+msgstr "Background color"
 
-#
-#
 msgid "Background delete option"
-msgstr "Επιλογή διαγραφής στο παρασκήνιο"
+msgstr "Background delete option"
 
-#
-#
 msgid "Background delete speed"
-msgstr "Ταχύτητα διαγραφής στο παρασκήνιο"
+msgstr "Background delete speed"
 
 msgid "Backup Manager"
-msgstr ""
+msgstr "Backup Manager"
 
 msgid "Backup completed."
-msgstr ""
+msgstr "Backup completed."
 
-#
-#
 msgid "Backup failed."
-msgstr "Αντίγραφο ασφαλείας απέτυχε."
+msgstr "Backup failed."
 
-#
-#
 msgid "Backup is running..."
-msgstr "Εκτελείται αντίγραφο ασφαλείας..."
+msgstr "Backup is running..."
 
-#
-#
 msgid "Backup system settings"
-msgstr "Αντίγραφο ασφαλείας ρυθμίσεων"
+msgstr "Backup system settings"
 
-#
-#
 msgid "Band"
-msgstr "Μπάντα"
+msgstr "Band"
 
-#
-#
 msgid "Bandwidth"
-msgstr "Εύρος"
+msgstr "Bandwidth"
 
-#
-#
-#, fuzzy
 msgid "Base time"
-msgstr "Ώρα έναρξης"
+msgstr "Base time"
 
-#
 msgid "Basque"
-msgstr "Βασκικά"
+msgstr "Basque"
 
-#
-#
 msgid "Begin time"
-msgstr "Ώρα έναρξης"
+msgstr "Begin time"
 
-#
-#
 msgid "Behavior of 'pause' when paused"
-msgstr "Συμπεριφορά του 'pause' στην παύση"
+msgstr "Behaviour of 'pause' when paused"
 
-#
-#
 msgid "Behavior of 0 key in PiP-mode"
-msgstr "Συμπεριφορά του πλήκτρου 0 στο PiP-mode"
+msgstr "Behaviour of 0 key in PiP-mode"
 
-#
-#
 msgid "Behavior when a movie is started"
-msgstr "Συμπεριφορά όταν μια ταινία παίζει"
+msgstr "Behaviour when a movie is started"
 
-#
-#
 msgid "Behavior when a movie is stopped"
-msgstr "Συμπεριφορά όταν μια ταινία σταμάτησε"
+msgstr "Behaviour when a movie is stopped"
 
-#
-#
 msgid "Behavior when a movie reaches the end"
-msgstr "Συμπεριφορά όταν μια ταινία έχει φτάσει στο τέλος"
+msgstr "Behaviour when a movie reaches the end"
 
-#
-#
 msgid "Bitrate:"
 msgstr "Bitrate:"
 
 msgid "Black"
-msgstr ""
+msgstr "Black"
 
-#
-#
 msgid "Black screen"
-msgstr "Μαύρη οθόνη"
+msgstr "Black screen"
 
-#
 msgid "Black screen till locked"
 msgstr "Black screen till locked"
 
-#
 msgid "Block noise reduction"
-msgstr "Φραγή μείωσης θορύβου"
+msgstr "Block noise reduction"
 
 msgid "Blue"
-msgstr ""
+msgstr "Blue"
 
-#
-#
 msgid "Bookmarks"
-msgstr "Σελιδοδείκτες"
+msgstr "Bookmarks"
 
 msgid "Boost blue"
-msgstr ""
+msgstr "Boost blue"
 
 msgid "Boost green"
-msgstr ""
+msgstr "Boost green"
 
 msgid "Bouquet List"
-msgstr ""
+msgstr "Bouquet List"
 
-#
-#
 msgid "Brightness"
-msgstr "Φωτεινότητα"
+msgstr "Brightness"
 
 msgid "Brightness (Normal)"
-msgstr ""
+msgstr "Brightness (Normal)"
 
 msgid "Brightness (Standby)"
-msgstr ""
+msgstr "Brightness (Standby)"
 
 msgid "Buffers:"
-msgstr ""
+msgstr "Buffers:"
 
 #, python-format
 msgid "Build:\t%s"
-msgstr ""
+msgstr "Build:\t%s"
 
 #, python-format
 msgid "Build: %s"
-msgstr ""
+msgstr "Build: %s"
 
-#
 msgid "Bulgarian"
-msgstr "Βουλγαρικά"
+msgstr "Bulgarian"
 
-#
-#
 msgid "Burn DVD"
-msgstr "Εγγραφή DVD"
+msgstr "Burn DVD"
 
-#
-# , python-format
-#, fuzzy, python-format
+#, python-format
 msgid "Burn audio track (%s)"
-msgstr "εγγραφή audio track (%s)"
+msgstr "Burn audio track (%s)"
 
-#
-#
 msgid "Burn existing image to DVD"
-msgstr "Εγγραφή υπάρχουσας εικόνας σε DVD"
+msgstr "Burn existing image to DVD"
 
-#
-#
 msgid "Burn to DVD"
-msgstr "Εγγραφή σε DVD"
+msgstr "Burn to DVD"
 
-#
-#
 msgid "Bus: "
-msgstr "Bus:"
+msgstr "Bus: "
 
 msgid "Button"
-msgstr ""
+msgstr "Button"
 
 msgid "Button setup"
-msgstr ""
+msgstr "Button setup"
 
 msgid "By Team ViX"
-msgstr ""
+msgstr "By Team ViX"
 
 msgid "Bypass HDMI EDID Check"
-msgstr ""
+msgstr "Bypass HDMI EDID Check"
 
 msgid "Bytes received:"
-msgstr ""
+msgstr "Bytes received:"
 
 msgid "Bytes sent:"
-msgstr ""
+msgstr "Bytes sent:"
 
-#
-#
 msgid "C-Band"
 msgstr "C-Band"
 
 msgid "CAID"
-msgstr ""
+msgstr "CAID"
 
 msgid "CCcam Client Info"
-msgstr ""
+msgstr "CCcam Client Info"
 
 msgid "CCcam Config Switcher"
-msgstr ""
+msgstr "CCcam Config Switcher"
 
 msgid "CCcam ECM Info"
-msgstr ""
+msgstr "CCcam ECM Info"
 
 msgid "CCcam Info"
-msgstr ""
+msgstr "CCcam Info"
 
 #, python-format
 msgid ""
@@ -1686,442 +1317,358 @@ msgid ""
 "\n"
 "This plugin shows you the status of your CCcam."
 msgstr ""
+"CCcam Info %s\n"
+"by AliAbdul %s\n"
+"\n"
+"This plugin shows you the status of your CCcam."
 
 msgid "CCcam Info Config"
-msgstr ""
+msgstr "CCcam Info Config"
 
 msgid "CCcam Info Setup"
-msgstr ""
+msgstr "CCcam Info Setup"
 
 msgid "CCcam Provider Info"
-msgstr ""
+msgstr "CCcam Provider Info"
 
 msgid "CCcam Remote Info"
-msgstr ""
+msgstr "CCcam Remote Info"
 
 msgid "CCcam Server Info"
-msgstr ""
+msgstr "CCcam Server Info"
 
 msgid "CCcam Share Info"
-msgstr ""
+msgstr "CCcam Share Info"
 
 msgid "CCcam Shares Info"
-msgstr ""
+msgstr "CCcam Shares Info"
 
 msgid "CCcam info"
-msgstr ""
+msgstr "CCcam info"
 
 msgid "CH"
-msgstr ""
+msgstr "CH"
 
 msgid "CHANGE BOUQUET"
-msgstr ""
+msgstr "CHANGE BOUQUET"
 
-#
-#
 msgid "CI assignment"
-msgstr "Ορισμός CI"
+msgstr "CI assignment"
 
 #, python-format
 msgid "CPU:\t%s"
-msgstr ""
+msgstr "CPU:\t%s"
 
-#
-#
 msgid "CVBS"
 msgstr "CVBS"
 
 msgid "CaID: "
-msgstr ""
+msgstr "CaID: "
 
-#
-#
 msgid "Cable"
-msgstr "Καλωδιακή"
+msgstr "Cable"
 
-#
 msgid "Cable Scan"
 msgstr "Cable Scan"
 
-#
-#
-#, fuzzy
 msgid "Cache thumbnails"
-msgstr "Cache Thumbnails"
+msgstr "Cache thumbnails"
 
 msgid "Cached:"
-msgstr ""
+msgstr "Cached:"
 
 msgid "Calculate"
-msgstr ""
+msgstr "Calculate"
 
-#
-#, fuzzy
 msgid "Calculate all positions"
-msgstr "Τροχιακή θέση"
+msgstr "Calculate all positions"
 
 msgid "Calculation complete"
-msgstr ""
+msgstr "Calculation complete"
 
 msgid "Calibrate"
-msgstr ""
+msgstr "Calibrate"
 
 msgid "Can be used for different fps between external subtitles and video."
-msgstr ""
+msgstr "Can be used for different fps between external subtitles and video."
 
-#
-#
 msgid "Cancel"
-msgstr "Άκυρο "
+msgstr "Cancel"
 
 msgid "Cancel save timeshift as movie"
-msgstr ""
+msgstr "Cancel save timeshift as movie"
 
 msgid "Cannot delete file"
-msgstr ""
+msgstr "Cannot delete file"
 
 msgid "Cannot determine"
-msgstr ""
+msgstr "Cannot determine"
 
 msgid "Cannot find any signal ..., aborting !"
-msgstr ""
+msgstr "Cannot find any signal ..., aborting !"
 
 msgid "Cannot move to trash can"
-msgstr "Αδύνατη μεταφορά στον κάδο ανακύκλωσης"
+msgstr "Cannot move to trash can"
 
-#
-#
 msgid "Capacity: "
-msgstr "Χωρητικότητα:"
+msgstr "Capacity: "
 
 msgid "Card infos (CCcam-Reader)"
-msgstr ""
+msgstr "Card infos (CCcam-Reader)"
 
 msgid "Cards:"
-msgstr ""
+msgstr "Cards:"
 
 msgid "Cards: "
-msgstr ""
+msgstr "Cards: "
 
 msgid "Cards: 0"
-msgstr ""
+msgstr "Cards: 0"
 
 msgid "Cardserial"
-msgstr ""
+msgstr "Card-serial"
 
 msgid "Center DVB subtitles"
-msgstr ""
+msgstr "Center DVB subtitles"
 
 msgid "Center time-labels and remove date"
-msgstr ""
+msgstr "Center time-labels and remove date"
 
-#
-#
 msgid "Change bouquets in quickzap"
-msgstr "Αλλαγή μπουκέτου στο γρήγορο zapping"
+msgstr "Change bouquets in quickzap"
 
-#
-#
-#, fuzzy
 msgid "Change next timer"
-msgstr "Αλλαγή μεγέθους βήματος"
+msgstr "Change next timer"
 
-#
-#
 msgid "Change pin code"
-msgstr "Αλλαγή pin:"
+msgstr "Change pin code"
 
 msgid "Change recording (duration)"
-msgstr ""
+msgstr "Change recording (duration)"
 
 msgid "Change recording (endtime)"
-msgstr ""
+msgstr "Change recording (endtime)"
 
 msgid "Change repeat and delay settings?"
-msgstr ""
+msgstr "Change repeat and delay settings?"
 
-#
 msgid "Change service PIN"
-msgstr "Αλλαγή PIN υπηρεσίας"
+msgstr "Change service PIN"
 
-#
 msgid "Change service PINs"
-msgstr "Αλλαγή PIN υπηρεσίας"
+msgstr "Change service PINs"
 
-#
 msgid "Change setup PIN"
-msgstr "Αλλαγή pin ρυθμίσεων:"
+msgstr "Change setup PIN"
 
-#
-#
 msgid "Change step size"
-msgstr "Αλλαγή μεγέθους βήματος"
+msgstr "Change step size"
 
-#
-#
-#, fuzzy
 msgid "Change timer"
-msgstr "Αλλαγή μεγέθους βήματος"
+msgstr "Change timer"
 
 msgid "Changelog"
-msgstr "Καταγραφή αλλαγών"
+msgstr "Change log"
 
-#
-#
 msgid "Channel"
-msgstr "Κανάλι"
+msgstr "Channel"
 
 msgid "Channel +/- button mode"
-msgstr ""
+msgstr "Channel +/- button mode"
 
 msgid "Channel 1 at start"
-msgstr ""
+msgstr "Channel 1 at start"
 
 msgid "Channel Info"
-msgstr ""
+msgstr "Channel Info"
 
 msgid "Channel List"
-msgstr ""
+msgstr "Channel List"
 
 msgid "Channel list context menu"
-msgstr ""
+msgstr "Channel list context menu"
 
 msgid "Channel list cursor behavior"
-msgstr ""
+msgstr "Channel list cursor behavior"
 
 msgid "Channel list on mode change"
-msgstr ""
+msgstr "Channel list on mode change"
 
 msgid "Channel list preview"
-msgstr ""
+msgstr "Channel list preview"
 
 msgid "Channel list service mode*"
-msgstr ""
+msgstr "Channel list service mode*"
 
 msgid "Channel list type"
-msgstr ""
+msgstr "Channel list type"
 
-#
-#
 msgid "Channel not in services list"
-msgstr "Το κανάλι δεν υπάρχει στη λίστα υπηρεσιών"
+msgstr "Channel not in services list"
 
 msgid "Channel preview mode"
-msgstr ""
+msgstr "Channel preview mode"
 
-#
-#
-#, fuzzy
 msgid "Channel selection"
-msgstr "Επιλογή Καναλιού"
+msgstr "Channel selection"
 
-#
-#
-#, fuzzy
 msgid "Channel selection settings"
-msgstr "Επιλογές συλλογής"
+msgstr "Channel selection settings"
 
-#
-#
 msgid "Channel:"
-msgstr "Κανάλι:"
+msgstr "Channel:"
 
-#
-#
-#, fuzzy
 msgid "ChannelEPG settings"
-msgstr "Επιλογή Καναλιού"
+msgstr "ChannelEPG settings"
 
-#
-#
 msgid "Chap."
-msgstr "Κεφ."
+msgstr "Chap."
 
-#
-#
 msgid "Chapter"
-msgstr "Κεφάλαιο"
+msgstr "Chapter"
 
-#
-#
 msgid "Chapter:"
-msgstr "Κεφάλαιο:"
+msgstr "Chapter:"
 
-#
-#
 msgid "Check"
-msgstr "Έλεγχος"
+msgstr "Check"
 
 msgid "Check every (hours)"
-msgstr ""
+msgstr "Check every (hours)"
 
 msgid "Check the internet connection"
-msgstr ""
+msgstr "Check the internet connection"
 
 msgid "Check the internet connection again"
-msgstr ""
+msgstr "Check the internet connection again"
 
 msgid "Checking Feeds"
-msgstr ""
+msgstr "Checking Feeds"
 
 msgid "Checking Logs..."
-msgstr ""
+msgstr "Checking Logs..."
 
-#
-#
-#, fuzzy
 msgid "Checking filesystem..."
-msgstr "Έλεγχος του Filesystem..."
+msgstr "Checking filesystem..."
 
 msgid "Checking for Updates..."
-msgstr ""
+msgstr "Checking for Updates..."
 
 msgid "Checking the internet connection"
-msgstr ""
+msgstr "Checking the internet connection"
 
 #, python-format
 msgid ""
 "Checking tuner %d\n"
 "DiSEqC port %s for %s"
 msgstr ""
+"Checking tuner %d\n"
+"DiSEqC port %s for %s"
 
 msgid "Children/Youth"
-msgstr ""
+msgstr "Children/Youth"
 
 #, python-format
 msgid "Chipset:\tBCM%s"
-msgstr ""
+msgstr "Chipset:\tBCM%s"
 
 #, python-format
 msgid "Chipset: BCM%s"
-msgstr ""
+msgstr "Chipset: BCM%s"
 
-#
-#
-#, fuzzy
 msgid "Change to bouquet"
-msgstr "Προσθήκη σε μπουκέτο"
+msgstr "Change to bouquet"
 
 msgid "Choose Bouquet"
-msgstr ""
+msgstr "Choose Bouquet"
 
 msgid "Choose a tag for easy finding a recording."
-msgstr ""
+msgstr "Choose a tag for easy finding a recording."
 
 msgid "Choose between Daily, Weekly, Weekdays or user defined."
-msgstr ""
+msgstr "Choose between Daily, Weekly, Weekdays or user defined."
 
 msgid "Choose the location for crash and debug logs."
-msgstr ""
+msgstr "Choose the location for crash and debug logs."
 
 msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
-msgstr ""
+msgstr "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
 
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
-msgstr ""
+msgstr "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 
 msgid "Choose time interval to which the graphics will be rounded off."
-msgstr ""
+msgstr "Choose time interval to which the graphics will be rounded off."
 
 msgid "Choose what you want the '0' button to do when PIP is active."
-msgstr ""
+msgstr "Choose what you want the '0' button to do when PIP is active."
 
 msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
-msgstr ""
+msgstr "Choose whether multi channel sound tracks should be downmixed to stereo."
 
 msgid "Choose whether or not to show an icon when a motorised dish is moving."
-msgstr ""
+msgstr "Choose whether or not to show an icon when a motorised dish is moving."
 
 msgid "Choose which level of menu/settings to display. 'Expert' level shows all items."
-msgstr ""
+msgstr "Choose which level of menu/settings to display. 'Expert' level shows all items."
 
 msgid "Choose which tuner to configure."
-msgstr ""
+msgstr "Choose which tuner to configure."
 
 msgid "Chose between record and ZAP."
-msgstr ""
+msgstr "Chose between record and ZAP."
 
-#
-#
 msgid "Circular left"
-msgstr "Αριστερόστροφη"
+msgstr "Circular left"
 
-#
-#
 msgid "Circular right"
-msgstr "Δεξιόστροφη"
+msgstr "Circular right"
 
-#, fuzzy
 msgid "Clean network trash cans"
-msgstr "Αδύνατη μεταφορά στον κάδο ανακύκλωσης"
+msgstr "Clean network trash cans"
 
 msgid "Cleaning Trashes"
-msgstr ""
+msgstr "Cleaning Trashes"
 
-#
-#
 msgid "Cleanup"
-msgstr "Εκκαθάριση"
+msgstr "Cleanup"
 
-#
-#
-#, fuzzy
 msgid "Clear"
-msgstr "Εκκαθάριση καταγραφής"
+msgstr "Clear"
 
-#
-#
 msgid "Clear before scan"
-msgstr "Εκκαθάριση πριν τη σάρωση"
+msgstr "Clear before scan"
 
-#
 msgid "Clear fixed"
 msgstr "Clear fixed"
 
-#
-#
 msgid "Clear log"
-msgstr "Εκκαθάριση καταγραφής"
+msgstr "Clear log"
 
-#
-#
-#, fuzzy
 msgid "Clear playlist"
-msgstr "εκκαθάριση λίστας αναπαραγωγής"
+msgstr "Clear playlist"
 
 msgid "Clients"
-msgstr ""
+msgstr "Clients"
 
-#
-#
 msgid "Close"
-msgstr "Κλείσιμο"
+msgstr "Close"
 
-#
-#
-#, fuzzy
 msgid "Close PiP on exit"
-msgstr "αποθήκευση λίστας αναπαραγωγής κατά την έξοδο"
+msgstr "Close PiP on exit"
 
-#
-#
-#, fuzzy
 msgid "Close bouquet list."
-msgstr "Επεξεργασία λίστας μπουκέτων"
+msgstr "Close bouquet list."
 
 msgid "Close dialog"
-msgstr ""
+msgstr "Close dialog"
 
-#
-#
 msgid "Close title selection"
-msgstr "Κλείσιμο επιλογής τίτλου"
+msgstr "Close title selection"
 
-#
 msgid "Code rate HP"
 msgstr "Code rate HP"
 
-#
 msgid "Code rate LP"
 msgstr "Code rate LP"
 
@@ -2131,4049 +1678,2948 @@ msgstr "Coderate HP"
 msgid "Coderate LP"
 msgstr "Coderate LP"
 
-#
-#
 msgid "Collection name"
-msgstr "Όνομα συλλογής"
+msgstr "Collection name"
 
-#
-#
 msgid "Collection settings"
-msgstr "Επιλογές συλλογής"
+msgstr "Collection settings"
 
 msgid "Color format"
-msgstr ""
+msgstr "Color format"
 
-#
-#
-#, fuzzy
 msgid "Color space"
-msgstr "Format χρώματος"
+msgstr "Color space"
 
-#
-#
-#, fuzzy
 msgid "Command To Run"
-msgstr "Σειρά εντολών "
+msgstr "Command To Run"
 
-#
-#
 msgid "Command order"
-msgstr "Σειρά εντολών "
+msgstr "Command order"
 
-#
-#
-#, fuzzy
 msgid "Command type"
-msgstr "Σειρά εντολών "
+msgstr "Command type"
 
-#
-#
 msgid "Committed DiSEqC command"
-msgstr "Ενεργοποίηση εντολής DiSEqC"
+msgstr "Committed DiSEqC command"
 
-#
-#
 msgid "Common Interface"
-msgstr "Κοινή Διεπαφή"
+msgstr "Common Interface"
 
-#
-#
 msgid "Common Interface Assignment"
-msgstr "Ορισμός Κοινής Διεπαφής"
+msgstr "Common Interface Assignment"
 
-#
-#
-#, fuzzy
 msgid "Common Interface assignment"
-msgstr "Ορισμός Κοινής Διεπαφής"
+msgstr "Common Interface assignment"
 
 msgid "Common interface"
-msgstr ""
+msgstr "Common interface"
 
-#
-#
 msgid "Communication"
-msgstr "Επικοινωνία"
+msgstr "Communication"
 
-#
-#
 msgid "Complete"
-msgstr "Ολοκληρώθηκε"
+msgstr "Complete"
 
-#
-#
 msgid "Complex (allows mixing audio tracks and aspects)"
-msgstr "Σύνθετη (επιτρέπει τη μίξη καναλιών ήχου και λόγου πλευρών)"
+msgstr "Complex (allows mixing audio tracks and aspects)"
 
-#
 msgid "Composition of the recording filenames"
-msgstr "Σύνθεση ονομάτων εγγραφών"
+msgstr "Composition of the recording filenames"
 
 #, python-format
 msgid "Configfile %s saved."
-msgstr ""
+msgstr "Config file %s saved."
 
 msgid "Configuration mode"
-msgstr ""
+msgstr "Configuration mode"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Configuration mode: %s"
-msgstr "Παραμετροποίηση"
+msgstr "Configuration mode: %s"
 
 msgid "Configure an additional delay to improve external subtitle synchronisation."
-msgstr ""
+msgstr "Configure an additional delay to improve external subtitle synchronisation."
 
 msgid "Configure an additional delay to improve subtitle synchronisation."
-msgstr ""
+msgstr "Configure an additional delay to improve subtitle synchronisation."
 
 msgid "Configure duration of inactivity before the hard disk drive goes to standby"
-msgstr ""
+msgstr "Configure duration of inactivity before the hard disk drive goes to standby"
 
 msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-msgstr ""
+msgstr "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
 
 msgid "Configure how recording filenames are constructed."
-msgstr ""
+msgstr "Configure how recording filenames are constructed."
 
 msgid "Configure if and how service type icons will be shown."
-msgstr ""
+msgstr "Configure if and how service type icons will be shown."
 
 msgid "Configure if picons will be shown in the service list."
-msgstr ""
+msgstr "Configure if picons will be shown in the service list."
 
-#
-#
 msgid "Configure interface"
-msgstr "Παραμετροποίηση διεπαφής"
+msgstr "Configure interface"
 
-#
-#
 msgid "Configure nameservers"
-msgstr "Παραμετροποίηση nameservers"
+msgstr "Configure name servers"
 
 msgid "Configure on which devices the background delete option should be used."
-msgstr ""
+msgstr "Configure on which devices the background delete option should be used."
 
 msgid "Configure remote control type"
-msgstr ""
+msgstr "Configure remote control type"
 
 msgid "Configure the DiSEqC mode for this LNB."
-msgstr ""
+msgstr "Configure the DiSEqC mode for this LNB."
 
 msgid "Configure the IP address."
-msgstr ""
+msgstr "Configure the IP address."
 
 msgid "Configure the amount of time that will be presented."
-msgstr ""
+msgstr "Configure the amount of time that will be presented."
 
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
-msgstr ""
+msgstr "Configure the behavior of the 'pause' key when movie playback is already paused."
 
 msgid "Configure the behavior when movie playback is manually stopped."
-msgstr ""
+msgstr "Configure the behavior when movie playback is manually stopped."
 
 msgid "Configure the behavior when movie playback is started."
-msgstr ""
+msgstr "Configure the behavior when movie playback is started."
 
 msgid "Configure the behavior when reaching the end of a movie, during movie playback."
-msgstr ""
+msgstr "Configure the behavior when reaching the end of a movie, during movie playback."
 
 msgid "Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background."
-msgstr ""
+msgstr "Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background."
 
 msgid "Configure the brightness level of the front panel display for normal operation."
-msgstr ""
+msgstr "Configure the brightness level of the front panel display for normal operation."
 
 msgid "Configure the brightness level of the front panel display for standby."
-msgstr ""
+msgstr "Configure the brightness level of the front panel display for standby."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
-msgstr ""
+msgstr "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 
 msgid "Configure the color of the teletext subtitles."
-msgstr ""
+msgstr "Configure the color of the teletext subtitles."
 
 msgid "Configure the contrast level of the front panel display."
-msgstr ""
+msgstr "Configure the contrast level of the front panel display."
 
 msgid "Configure the cursor behavior in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
-msgstr ""
+msgstr "Configure the cursor behavior in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
 
 msgid "Configure the duration (in minutes) for the screensaver."
-msgstr ""
+msgstr "Configure the duration (in minutes) for the screensaver."
 
 msgid "Configure the first audio language (highest priority)."
-msgstr ""
+msgstr "Configure the first audio language (highest priority)."
 
 msgid "Configure the first subtitle language (highest priority)."
-msgstr ""
+msgstr "Configure the first subtitle language (highest priority)."
 
 msgid "Configure the font size of the subtitles."
-msgstr ""
+msgstr "Configure the font size of the subtitles."
 
 msgid "Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
-msgstr ""
+msgstr "Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 
 msgid "Configure the fourth audio language."
-msgstr ""
+msgstr "Configure the fourth audio language."
 
 msgid "Configure the fourth subtitle language."
-msgstr ""
+msgstr "Configure the fourth subtitle language."
 
 msgid "Configure the function of a long press of the power button."
-msgstr ""
+msgstr "Configure the function of a long press of the power button."
 
 msgid "Configure the function of a short press of the power button."
-msgstr ""
+msgstr "Configure the function of a short press of the power button."
 
 msgid "Configure the function of the <  > buttons."
-msgstr ""
+msgstr "Configure the function of the <  > buttons."
 
 msgid "Configure the gateway."
-msgstr ""
+msgstr "Configure the gateway."
 
 msgid "Configure the horizontal alignment of the subtitles."
-msgstr ""
+msgstr "Configure the horizontal alignment of the subtitles."
 
 msgid "Configure the initial fast forward speed. When you press the fast forward button, winding will start at this speed."
-msgstr ""
+msgstr "Configure the initial fast forward speed. When you press the fast forward button, winding will start at this speed."
 
 msgid "Configure the initial rewind speed. When you press the rewind button, rewinding will start at this speed."
-msgstr ""
+msgstr "Configure the initial rewind speed. When you press the rewind button, rewinding will start at this speed."
 
 msgid "Configure the latitude of your location."
-msgstr ""
+msgstr "Configure the latitude of your location."
 
 msgid "Configure the longitude of your location."
-msgstr ""
+msgstr "Configure the longitude of your location."
 
 msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
-msgstr ""
+msgstr "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
 
 msgid "Configure the nameserver (DNS)."
-msgstr ""
+msgstr "Configure the nameserver (DNS)."
 
 msgid "Configure the netmask."
-msgstr ""
+msgstr "Configure the netmask."
 
 msgid "Configure the number of days after which items are automatically removed from the trash can."
-msgstr ""
+msgstr "Configure the number of days after which items are automatically removed from the trash can."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
-msgstr ""
+msgstr "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 
 msgid "Configure the number of rows shown."
-msgstr ""
+msgstr "Configure the number of rows shown."
 
 msgid "Configure the offline decoding delay (in milliseconds). The configured delay is observed at each control word parity change."
-msgstr ""
+msgstr "Configure the offline decoding delay (in milliseconds). The configured delay is observed at each control word parity change."
 
 msgid "Configure the possible fast forward speeds."
-msgstr ""
+msgstr "Configure the possible fast forward speeds."
 
 msgid "Configure the possible rewind speeds."
-msgstr ""
+msgstr "Configure the possible rewind speeds."
 
 msgid "Configure the primary EPG language."
-msgstr ""
+msgstr "Configure the primary EPG language."
 
 msgid "Configure the refresh rate of the screen."
-msgstr ""
+msgstr "Configure the refresh rate of the screen."
 
 msgid "Configure the second audio language."
-msgstr ""
+msgstr "Configure the second audio language."
 
 msgid "Configure the second subtitle language."
-msgstr ""
+msgstr "Configure the second subtitle language."
 
 msgid "Configure the secondary EPG language."
-msgstr ""
+msgstr "Configure the secondary EPG language."
 
-#
-#
-#, fuzzy
 msgid "Configure the skip time interval for the 1 and 3 buttons."
-msgstr "Χρόνος μετάβασης για τα πλήκτρα '1'/'3'"
+msgstr "Configure the skip time interval for the 1 and 3 buttons."
 
-#
-#
-#, fuzzy
 msgid "Configure the skip time interval for the 4 and 6 buttons."
-msgstr "Χρόνος μετάβασης για τα πλήκτρα '4'/'6'"
+msgstr "Configure the skip time interval for the 4 and 6 buttons."
 
-#
-#
-#, fuzzy
 msgid "Configure the skip time interval for the 7 and 9 buttons."
-msgstr "Χρόνος μετάβασης για τα πλήκτρα '7'/'9'"
+msgstr "Configure the skip time interval for the 7 and 9 buttons."
 
 msgid "Configure the slow motion speeds."
-msgstr ""
+msgstr "Configure the slow motion speeds."
 
 msgid "Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance."
-msgstr ""
+msgstr "Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance."
 
 msgid "Configure the subtitle delay when timing information is not available."
-msgstr ""
+msgstr "Configure the subtitle delay when timing information is not available."
 
 msgid "Configure the third audio language."
-msgstr ""
+msgstr "Configure the third audio language."
 
 msgid "Configure the third subtitle language."
-msgstr ""
+msgstr "Configure the third subtitle language."
 
 msgid "Configure the transparency of the black background of graphical DVB subtitles."
-msgstr ""
+msgstr "Configure the transparency of the black background of graphical DVB subtitles."
 
 msgid "Configure the tuner mode."
-msgstr ""
+msgstr "Configure the tuner mode."
 
 msgid "Configure the type of status indication icons shown in the movie list."
-msgstr ""
+msgstr "Configure the type of status indication icons shown in the movie list."
 
 msgid "Configure the vertical position of the subtitles, measured from the bottom of the screen."
-msgstr ""
+msgstr "Configure the vertical position of the subtitles, measured from the bottom of the screen."
 
 msgid "Configure the width allocated to the picon."
-msgstr ""
+msgstr "Configure the width allocated to the picon."
 
 msgid "Configure the width allocated to the service name."
-msgstr ""
+msgstr "Configure the width allocated to the service name."
 
 msgid "Configure to show the channel names, picons, or both in the EPG."
-msgstr ""
+msgstr "Configure to show the channel names, picons, or both in the EPG."
 
 msgid "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
-msgstr ""
+msgstr "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
 
 msgid "Configure which color format should be used on the SCART output."
-msgstr ""
+msgstr "Configure which color format should be used on the SCART output."
 
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
-msgstr ""
+msgstr "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
-msgstr ""
+msgstr "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 
-#
-#
-#, fuzzy
 msgid "Configure your NTP server."
-msgstr "Παραμετροποίηση nameservers"
+msgstr "Configure your NTP server."
 
-#
-#
 msgid "Configure your internal LAN"
-msgstr "Παραμετροποίηση δικτύου"
+msgstr "Configure your internal LAN"
 
-#
-#
 msgid "Configure your network again"
-msgstr "Παραμετροποίηση του δικτύου εκ νέου"
+msgstr "Configure your network again"
 
 msgid "Configure your network settings, and press OK to start the scan"
-msgstr "Ρυθμίστε το δίκτυο και πιέστε ΟΚ για εκκίνηση σάρωσης"
+msgstr "Configure your network settings, and press OK to start the scan"
 
-#
-#
 msgid "Configure your wireless LAN again"
-msgstr "Παραμετροποίηση ασύρματου δικτύου εκ νέου"
+msgstr "Configure your wireless LAN again"
 
 msgid "Configures which video output connector will be used."
-msgstr ""
+msgstr "Configures which video output connector will be used."
 
-#
-#
 msgid "Configuring"
-msgstr "Παραμετροποίηση"
+msgstr "Configuring"
 
-#
-#
 msgid "Conflicting timer"
-msgstr "Διένεξη χρονοδιακόπτη"
+msgstr "Conflicting timer"
 
-#
-#
 msgid "Connect"
-msgstr "Σύνδεση"
+msgstr "Connect"
 
-#
-#
-#, fuzzy
 msgid "Connect to a wireless network"
-msgstr "Σύνδεση σε ασύρματο δίκτυο"
+msgstr "Connect to a wireless network"
 
 msgid "Connected clients"
-msgstr ""
+msgstr "Connected clients"
 
-#
-#
 msgid "Connected to"
-msgstr "Συνδέθηκε με"
+msgstr "Connected to"
 
-#
-#
 msgid "Connected!"
-msgstr "Συνδέθηκε!"
+msgstr "Connected!"
 
 msgid "Connected: "
-msgstr ""
+msgstr "Connected: "
 
-#
-#
 msgid "Constellation"
-msgstr "Διάταξη"
+msgstr "Constellation"
 
 msgid "Content"
-msgstr ""
+msgstr "Content"
 
-#
-#
 msgid "Content does not fit on DVD!"
-msgstr "Το περιεχόμενο δε χωράει σε DVD!"
+msgstr "Content does not fit on DVD!"
 
-#
 msgid "Continue"
-msgstr "Συνέχισε"
+msgstr "Continue"
 
 msgid "Continue playback"
-msgstr ""
+msgstr "Continue playback"
 
-#
-#
 msgid "Continue playing"
-msgstr "Συνέχεια αναπαραγωγής..."
+msgstr "Continue playing"
 
 msgid "Continues"
-msgstr ""
+msgstr "Continues"
 
 msgid "Continues play (loop)"
-msgstr ""
+msgstr "Continues play (loop)"
 
-#
-#
 msgid "Contrast"
-msgstr "Αντίθεση"
+msgstr "Contrast"
 
 msgid "Control of the position how finished timers are shown in the Timer List."
-msgstr ""
+msgstr "Control of the position how finished timers are shown in the Timer List."
 
-#
-#, fuzzy
 msgid "Convert ext3 filesystem to ext4"
-msgstr "Μετατροπή συστήματος αρχείων ext3 σε ext4"
+msgstr "Convert ext3 filesystem to ext4"
 
-#
 msgid "Convert ext3 to ext4"
-msgstr "Μετατροπή ext3 σε ext4"
+msgstr "Convert ext3 to ext4"
 
-#
 msgid "Convert filesystem ext3 to ext4"
-msgstr "Μετατροπή συστήματος αρχείων ext3 σε ext4"
+msgstr "Convert filesystem ext3 to ext4"
 
-#
-#, fuzzy
 msgid "Converting ext3 to ext4..."
-msgstr "Μετατροπή ext3 σε ext4..."
+msgstr "Converting ext3 to ext4..."
 
 msgid "Cool TV Guide"
-msgstr ""
+msgstr "Cool TV Guide"
 
-#
 msgid "Copy"
-msgstr "Αντιγραφή"
+msgstr "Copy"
 
-#
-#, fuzzy
 msgid "Copying files"
-msgstr "Μεγάλα ονόματα αρχείων"
+msgstr "Copying files"
 
 #, python-format
 msgid "Cores:\t%s"
-msgstr ""
+msgstr "Cores:\t%s"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "Αδύνατη σύνδεση στο  δέκτη. Διακομιστής λογισμικού NFI:"
+msgstr "Could not connect to %s %s .NFI image feed server:"
 
 msgid "Could not find installed channel list."
-msgstr ""
+msgstr "Could not find installed channel list."
 
-#
-#
-#, fuzzy
 msgid "Could not load medium! No disc inserted?"
-msgstr "Το μέσο δεν φορτώθηκε! Δεν έγινε εισαγωγή δίσκου;"
+msgstr "Could not load medium! No disc inserted?"
 
-#
-#
 msgid "Could not open Picture in Picture"
-msgstr "Αδυναμία εκκίνησης PiP"
+msgstr "Could not open Picture in Picture"
 
 #, python-format
 msgid "Could not open the file %s!"
-msgstr ""
+msgstr "Could not open the file %s!"
 
 #, python-format
 msgid "Could not record due to conflicting timer %s"
-msgstr ""
+msgstr "Could not record due to conflicting timer %s"
 
 #, python-format
 msgid "Could not record due to invalid service %s"
-msgstr ""
+msgstr "Could not record due to invalid service %s"
 
 #, python-format
 msgid "Could not save configfile %s!"
-msgstr ""
+msgstr "Could not save config file %s!"
 
 msgid "Crash Logs"
-msgstr ""
+msgstr "Crash Logs"
 
-#
-#
 msgid "Create DVD-ISO"
-msgstr "Δημιουργία DVD-ISO"
+msgstr "Create DVD-ISO"
 
-#
-#
-#, fuzzy
 msgid "Create directory"
-msgstr "δημιουργία φακέλου"
+msgstr "Create directory"
 
-#
-#
 msgid "Create more detailed crash log"
-msgstr "Δημιουργία λεπτομερούς αρχείου καταγραφής σφαλμάτων"
+msgstr "Create more detailed crash log"
 
 msgid "Creating AP and SC Files"
-msgstr ""
+msgstr "Creating AP and SC Files"
 
 msgid "Creating Hardlink to Timeshift file failed!"
-msgstr ""
+msgstr "Creating Hard-link to Timeshift file failed!"
 
-#
-# , python-format
 #, python-format
 msgid "Creating directory %s failed."
-msgstr "Η δημιουργία του φακέλου %s απέτυχε."
+msgstr "Creating directory %s failed."
 
-#
-#, fuzzy
 msgid "Creating filesystem"
-msgstr "Δημιουργίας συτήματος αρχείων"
+msgstr "Creating filesystem"
 
-#
-#, fuzzy
 msgid "Creating partition"
-msgstr "Δημιουργία κατάτμησης"
+msgstr "Creating partition"
 
-#
 msgid "Croatian"
-msgstr "Κροάτικα"
+msgstr "Croatian"
 
 msgid "Cron Manager"
-msgstr ""
+msgstr "Cron Manager"
 
 msgid "CronTimers"
-msgstr ""
+msgstr "CronTimers"
 
-#
 msgid "Current CEC address"
-msgstr "Τρέχουσα διεύθυνση CEC"
+msgstr "Current CEC address"
 
 msgid "Current Event:"
-msgstr ""
+msgstr "Current Event:"
 
 msgid "Current Status:"
-msgstr ""
+msgstr "Current Status:"
 
-#
 msgid "Current device: "
-msgstr "Τρέχουσα συσκευή:"
+msgstr "Current device: "
 
-#
-#
 msgid "Current settings:"
-msgstr "Τρέχουσες ρυθμίσεις:"
+msgstr "Current settings:"
 
 msgid "Current time"
-msgstr ""
+msgstr "Current time"
 
-#
-#
-#, fuzzy
 msgid "Current transponder"
-msgstr "Tρέχων αναμεταδότης"
+msgstr "Current transponder"
 
-#
-#
 msgid "Current value: "
-msgstr "Τρέχουσα τιμή: "
+msgstr "Current value: "
 
-#
 msgid "Current version:"
-msgstr "Τρέχουσα έκδοση:"
+msgstr "Current version:"
 
-#
 msgid "Currently installed image"
-msgstr "Τρέχων εγκατεστημένο λογισμικό"
+msgstr "Currently installed image"
 
-#
-#
-#, fuzzy
 msgid "Custom"
-msgstr "Παραμετροποίηση"
+msgstr "Custom"
 
-#
-#
-#, fuzzy
 msgid "Custom skip time for '1''3' buttons"
-msgstr "Χρόνος μετάβασης για τα πλήκτρα '1'/'3'"
+msgstr "Custom skip time for '1''3' buttons"
 
-#
-#
-#, fuzzy
 msgid "Custom skip time for '4'/'6' buttons"
-msgstr "Χρόνος μετάβασης για τα πλήκτρα '4'/'6'"
+msgstr "Custom skip time for '4'/'6' buttons"
 
-#
-#
-#, fuzzy
 msgid "Custom skip time for '7'/'9' buttons"
-msgstr "Χρόνος μετάβασης για τα πλήκτρα '7'/'9'"
+msgstr "Custom skip time for '7'/'9' buttons"
 
-#
-#
 msgid "Customize"
-msgstr "Παραμετροποίηση"
+msgstr "Customise"
 
-#
-#
 msgid "Cut"
-msgstr "Αποκοπή"
+msgstr "Cut"
 
 msgid "Cutlist editor"
-msgstr ""
+msgstr "Cutlist editor"
 
-#
-#
 msgid "Cutlist editor..."
-msgstr "Επεξεργασία σημείων αποκοπής..."
+msgstr "Cut-list editor..."
 
-#
 msgid "Czech"
-msgstr "Τσέχικα"
+msgstr "Czech"
 
 msgid "DAC"
-msgstr ""
+msgstr "DAC"
 
-#
-#
 msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DLNA support"
-msgstr ""
+msgstr "DLNA support"
 
 msgid "DMM advanced"
-msgstr ""
+msgstr "DMM advanced"
 
 msgid "DMM normal"
-msgstr ""
+msgstr "DMM normal"
 
-#
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
 
-#
-#
 msgid "DVB subtitle black transparency"
-msgstr "Διαφάνεια υποτίτλων DVB"
+msgstr "DVB subtitle black transparency"
 
 msgid "DVB-C"
-msgstr ""
+msgstr "DVB-C"
 
 msgid "DVB-C ANNEX C"
-msgstr ""
+msgstr "DVB-C ANNEX C"
 
-#
-#
 msgid "DVB-S"
 msgstr "DVB-S"
 
-#
-#
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
 msgid "DVB-T"
-msgstr ""
+msgstr "DVB-T"
 
 msgid "DVB-T2"
-msgstr ""
+msgstr "DVB-T2"
 
-#
 msgid "DVD data format"
-msgstr "Format δεδομένων DVD"
+msgstr "DVD data format"
 
-#
-#
-#, fuzzy
 msgid "DVD file browser"
-msgstr "Διαφυλλιστής DVD"
+msgstr "DVD file browser"
 
-#
-#
 msgid "DVD media toolbox"
-msgstr "Εργαλειοθήκη πολυμέσων DVD"
+msgstr "DVD media toolbox"
 
-#
-#
-#, fuzzy
 msgid "DVD player"
-msgstr "απόκρυψη player"
+msgstr "DVD player"
 
-#
-#
-#, fuzzy
 msgid "DVD titlelist"
-msgstr "Λίστα τίτλων DVD"
+msgstr "DVD titlelist"
 
-#
-#
-#, fuzzy
 msgid "Daily"
-msgstr "καθημερινά"
+msgstr "Daily"
 
-#
 msgid "Danish"
-msgstr "Δανικά"
+msgstr "Danish"
 
-#
-#
 msgid "Date"
-msgstr "Ημερομηνία"
+msgstr "Date"
 
 msgid "Debug Logs"
-msgstr ""
+msgstr "Debug Logs"
 
-#
-#
 msgid "Deep Standby"
-msgstr "Τερματισμός"
+msgstr "Deep Standby"
 
 msgid "Deep standby"
-msgstr ""
+msgstr "Deep standby"
 
-#
-#
 msgid "Default"
-msgstr "Προεπιλεγμένες"
+msgstr "Default"
 
-#
 msgid "Default movie location"
-msgstr "Αρχική"
+msgstr "Default movie location"
 
-#
-#, fuzzy
 msgid "Default recording type"
-msgstr "Τερματισμός εγγραφής"
+msgstr "Default recording type"
 
-#
-#
-#, fuzzy
 msgid "Default settings"
-msgstr "Αρχικές ρυθμίσεις"
+msgstr "Default settings"
 
 msgid "Defaults"
-msgstr ""
+msgstr "Defaults"
 
 msgid "Delay before key repeat starts:"
-msgstr ""
+msgstr "Delay before key repeat starts:"
 
-#
-#
-#, fuzzy
 msgid "Delay for external subtitles"
-msgstr "Αναδίπλωση υποτίτλων teletext"
+msgstr "Delay for external subtitles"
 
-#
-#
-#, fuzzy
 msgid "Delay time"
-msgstr "Ώρα έναρξης"
+msgstr "Delay time"
 
 msgid "Delay:"
-msgstr ""
+msgstr "Delay:"
 
-#
-#
 msgid "Delete"
-msgstr "Διαγραφή"
+msgstr "Delete"
 
 #, python-format
 msgid "Delete %s?"
-msgstr ""
+msgstr "Delete %s?"
 
 msgid "Delete Confirmation"
-msgstr ""
+msgstr "Delete Confirmation"
 
-#
-#
 msgid "Delete entry"
-msgstr "Διαγραφή εγγραφής"
+msgstr "Delete entry"
 
-#
-#
 msgid "Delete failed!"
-msgstr "Διαγραφή απέτυχε!"
+msgstr "Delete failed!"
 
-#
-#
-#, fuzzy
 msgid "Delete file"
-msgstr "διαγραφή αρχείου"
+msgstr "Delete file"
 
-#
-#
-#, fuzzy
 msgid "Delete playlist entry"
-msgstr "διαγραφή εγγραφής λίστας αναπαραγωγής"
+msgstr "Delete playlist entry"
 
-#
-#
-#, fuzzy
 msgid "Delete saved playlist"
-msgstr "διαγραφή αποθηκευμένης λίστας αναπαραγωγής"
+msgstr "Delete saved playlist"
 
-#
-#
-#, fuzzy
 msgid "Delete timer"
-msgstr "διαγραφή αρχείου"
+msgstr "Delete timer"
 
-#
-#
-#, fuzzy
 msgid "Delete..."
-msgstr "διαγραφή..."
+msgstr "Delete..."
 
-#
 msgid "Deleted"
-msgstr "Διεγραμμένα"
+msgstr "Deleted"
 
 #, python-format
 msgid "Deleted %s!"
-msgstr ""
+msgstr "Deleted %s!"
 
-#
 msgid "Deleted items"
-msgstr "Διεγραμμένα αντικείμενα"
+msgstr "Deleted items"
 
-#
-#
-#, fuzzy
 msgid "Deleting files"
-msgstr "διαγραφή αρχείου"
+msgstr "Deleting files"
 
 msgid "Depth"
-msgstr "Βάθος"
+msgstr "Depth"
 
 msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
+msgstr "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
 
 msgid "Descramble http streams"
-msgstr ""
+msgstr "Descramble http streams"
 
-#
-#
 msgid "Description"
-msgstr "Περιγραφή"
+msgstr "Description"
 
-#
-#
 msgid "Deselect"
-msgstr "Αποεπιλογή"
+msgstr "Deselect"
 
-#
 msgid "Details for plugin: "
-msgstr "Λεπτομέρειες για το πρόσθετο: "
+msgstr "Details for plugin: "
 
 msgid "Detected Devices:"
-msgstr ""
+msgstr "Detected Devices:"
 
-#
-#
 msgid "Detected NIMs:"
-msgstr "Εντοπίστηκαν NIMs:"
+msgstr "Detected NIMs:"
 
 msgid "Device Information"
-msgstr ""
+msgstr "Device Information"
 
 msgid "Device mounts"
-msgstr ""
+msgstr "Device mounts"
 
 msgid "Device setup"
-msgstr ""
+msgstr "Device setup"
 
 msgid "Devicename:"
-msgstr ""
+msgstr "Device name:"
 
 msgid "Devices"
-msgstr ""
+msgstr "Devices"
 
-#
-#
 msgid "DiSEqC"
 msgstr "DiSEqC"
 
-#
-#
 msgid "DiSEqC A/B"
 msgstr "DiSEqC A/B"
 
-#
-#
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
 
-#
-#
 msgid "DiSEqC mode"
 msgstr "DiSEqC mode"
 
 #, python-format
 msgid "DiSEqC port %s: %s"
-msgstr ""
+msgstr "DiSEqC port %s: %s"
 
-#
-#
 msgid "DiSEqC repeats"
 msgstr "DiSEqC repeats"
 
-#
-#
-#, fuzzy
 msgid "DiSEqC-tester settings"
-msgstr "Ρυθμίσεις DiSEqC-Tester"
+msgstr "DiSEqC-tester settings"
 
-#
-#
 msgid "Dialing:"
-msgstr "Κλήση:"
+msgstr "Dialling:"
 
-#
-#
 msgid "Digital contour removal"
 msgstr "Digital contour removal"
 
 msgid "Digital downmix"
-msgstr ""
+msgstr "Digital down mix"
 
-#
-#
 msgid "Direct playback of linked titles without menu"
-msgstr "Άμεση αναπαραγωγή των συνδεδεμένων τίτλων χωρίς μενού"
+msgstr "Direct playback of linked titles without menu"
 
-#
 msgid "Directory"
-msgstr "Φάκελος"
+msgstr "Directory"
 
-#
-# , python-format
-#, fuzzy, python-format
+#, python-format
 msgid "Directory %s does not exist."
-msgstr "Ο φάκελος %s δεν υπάρχει."
+msgstr "Directory %s does not exist."
 
-#
-#
 msgid "Directory browser"
-msgstr "Διαφυλλιστής φακέλων"
+msgstr "Directory browser"
 
-#
-#
 msgid "Disable"
-msgstr "Απενεργοποίηση"
+msgstr "Disable"
 
-#
-#
 msgid "Disable Picture in Picture"
-msgstr "Απενεργοποίηση Picture in Picture"
+msgstr "Disable Picture in Picture"
 
-#
-#
 msgid "Disable background scanning"
-msgstr "Απενεργοποίηση αναζήτησης στο παρασκήνιο"
+msgstr "Disable background scanning"
 
-#
-#
 msgid "Disabled"
-msgstr "Απενεργοποιήθηκε "
+msgstr "Disabled"
 
-#
-#
 msgid "Disconnect"
-msgstr "Αποσύνδεση"
+msgstr "Disconnect"
 
-#
-#
 msgid "Disk space to reserve for recordings (in GB)"
-msgstr "Χώρος δίσκου που διατίθεται για εγγραφές (σε GB)"
+msgstr "Disk space to reserve for recordings (in GB)"
 
 msgid "Display"
-msgstr ""
+msgstr "Display"
 
-#
-#
 msgid "Display 16:9 content as"
-msgstr "Εμφάνιση περιεχομένου 16:9 ως"
+msgstr "Display 16:9 content as"
 
-#
-#
 msgid "Display 4:3 content as"
-msgstr "Εμφάνιση περιεχομένου 4:3 ως"
+msgstr "Display 4:3 content as"
 
-#
-#
 msgid "Display >16:9 content as"
-msgstr "Εμφάνιση περιεχομένου >16:9 ως"
+msgstr "Display >16:9 content as"
 
-#
-#
-#, fuzzy
 msgid "Display and user interface"
-msgstr "Απεικόνιση και Περιβάλλον Χρήστη"
+msgstr "Display and user interface"
 
 msgid "Display message before playing next movie"
-msgstr ""
+msgstr "Display message before playing next movie"
 
 msgid "Display the EIT now/next eventdata in infobar."
-msgstr ""
+msgstr "Display the EIT now/next event data in infobar."
 
-#
-#
-#, fuzzy
 msgid "Do not change"
-msgstr "μην το αλλάζεις"
+msgstr "Do not change"
 
-#
-#
-#, fuzzy
 msgid "Do not record"
-msgstr "εγγραφή"
+msgstr "Do not record"
 
-#
-#
 msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take a long time!"
 msgstr ""
-"Είστε σίγουρος οτι θέλετε να ελέγξετε το σύστημα αρχείων;\n"
-"Ενδέχεται να διαρκέσει αρκετά!"
+"Do you really want to check the filesystem?\n"
+"This could take a long time!"
 
 msgid ""
 "Do you really want to convert the filesystem?\n"
 "You cannot go back!"
 msgstr ""
-"Θέλετε σίγουρα να μετατρέψετε το σύστημα αρχείων;\n"
-"Δεν μπορεί να αναιρεθεί!"
+"Do you really want to convert the filesystem?\n"
+"You cannot go back!"
 
 #, python-format
 msgid "Do you really want to delete %s ?"
-msgstr ""
+msgstr "Do you really want to delete %s ?"
 
-#
-# , python-format
 #, python-format
 msgid "Do you really want to delete %s?"
-msgstr "Θέλετε πραγματικά να διαγράψετε το %s;"
+msgstr "Do you really want to delete %s?"
 
 msgid "Do you really want to delete ?"
-msgstr ""
+msgstr "Do you really want to delete ?"
 
-#
-# , python-format
-#, fuzzy
 msgid "Do you really want to delete this timer ?"
-msgstr "Θέλετε πραγματικά να διαγράψετε το %s;"
+msgstr "Do you really want to delete this timer ?"
 
 #, python-format
 msgid "Do you really want to download the plugin \"%s\"?"
-msgstr ""
+msgstr "Do you really want to download the plugin \"%s\"?"
 
-#
-#
 msgid "Do you really want to exit?"
-msgstr "Είστε σίγουρος οτι θέλετε να βγείτε;"
+msgstr "Do you really want to exit?"
 
-#
 msgid ""
 "Do you really want to initialize the device?\n"
 "All data on the disk will be lost!"
 msgstr ""
-"Θέλετε να αρχικοποιήσετε το σκληρό δίσκο;\n"
-"Όλα τα δεδομένα θα χαθούν!"
+"Do you really want to initialise the device?\n"
+"All data on the disk will be lost!"
 
 #, python-format
 msgid "Do you really want to permamently remove '%s' from trash can ?"
-msgstr ""
+msgstr "Do you really want to permanently remove '%s' from trash can ?"
 
 msgid "Do you really want to permanently remove from trash can ?"
-msgstr ""
+msgstr "Do you really want to permanently remove from trash can ?"
 
-#
-# , python-format
 #, python-format
 msgid "Do you really want to remove directory %s from the disk?"
-msgstr "Θέλετε πραγματικά να αφαιρέσετε το φάκελο %s από το δίσκο;"
+msgstr "Do you really want to remove directory %s from the disk?"
 
 #, python-format
 msgid "Do you really want to remove the plugin \"%s\"?"
-msgstr ""
+msgstr "Do you really want to remove the plugin \"%s\"?"
 
-#
-# , python-format
-#, fuzzy, python-format
+#, python-format
 msgid "Do you really want to remove the timer for %s?"
-msgstr "Θέλετε πραγματικά να διαγράψετε το %s;"
+msgstr "Do you really want to remove the timer for %s?"
 
-#
-# , python-format
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
-msgstr "Θέλετε να αφαιρέσετε το σελιδοδείκτη του %s;"
+msgstr "Do you really want to remove your bookmark of %s?"
 
 msgid "Do you want to add any additional information ?"
-msgstr ""
+msgstr "Do you want to add any additional information ?"
 
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
+"Do you want to also install samba client ?\n"
+"This allows you to mount your windows shares on this device."
 
 msgid ""
 "Do you want to attach a text file to explain the log ?\n"
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
+"Do you want to attach a text file to explain the log ?\n"
+"(choose 'No' to type message using virtual keyboard.)"
 
-#
-#
 msgid "Do you want to burn this collection to DVD medium?"
-msgstr "Θέλετε να γίνει εγγραφή αυτής της συλλογής σε DVD;"
+msgstr "Do you want to burn this collection to DVD medium?"
 
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
 msgstr ""
+"Do you want to delete all selected files:\n"
+"(choose 'No' to only delete the currently selected file.)"
 
-#
-#
 msgid "Do you want to do a service scan?"
-msgstr "Θέλετε να κάνετε σάρωση για υπηρεσίες;"
+msgstr "Do you want to do a service scan?"
 
-#
-#
 msgid "Do you want to do another manual service scan?"
-msgstr "Θέλετε να πραγματοποιηθεί μία ακόμα χειροκίνητη σάρωση;"
+msgstr "Do you want to do another manual service scan?"
 
-# , python-format
-#, fuzzy, python-format
+#, python-format
 msgid "Do you want to download the image to %s ?"
-msgstr "Είστε σίγουρος για λήψη λογισμικού;"
+msgstr "Do you want to download the image to %s ?"
 
-#
-#
 msgid "Do you want to install the package:\n"
-msgstr "Θέλετε να εγκαταστήσετε το πακέτο:\n"
+msgstr "Do you want to install the package:\n"
 
-#
-#
 msgid "Do you want to play DVD in drive?"
-msgstr "Θέλετε να παίξει το DVD στη συσκευή;"
+msgstr "Do you want to play DVD in drive?"
 
-#
-#
 msgid "Do you want to preview this DVD before burning?"
-msgstr "Θέλετε να γίνει προεπισκόπιση αυτού του DVD πριν την εγγραφή;"
+msgstr "Do you want to preview this DVD before burning?"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Do you want to reboot your %s %s"
-msgstr "Θέλετε να επαναφέρετε τις ρυθμίσεις σας;"
+msgstr "Do you want to reboot your %s %s"
 
 msgid "Do you want to reboot your receiver?"
-msgstr ""
+msgstr "Do you want to reboot your receiver?"
 
-#
-#
 msgid "Do you want to remove the package:\n"
-msgstr "Θέλετε να αφαιρέσετε το πακέτο:\n"
+msgstr "Do you want to remove the package:\n"
 
-#
-#
 msgid "Do you want to restore your settings?"
-msgstr "Θέλετε να επαναφέρετε τις ρυθμίσεις σας;"
+msgstr "Do you want to restore your settings?"
 
-#
-#
 msgid "Do you want to resume this playback?"
-msgstr "Θέλετε να συνεχίσετε την αναπαραγωγή;"
+msgstr "Do you want to resume this playback?"
 
 msgid ""
 "Do you want to send all selected files:\n"
 "(choose 'No' to only send the currently selected file.)"
 msgstr ""
+"Do you want to send all selected files:\n"
+"(choose 'No' to only send the currently selected file.)"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Do you want to update your %s %s ?"
-msgstr "Θέλετε να επαναφέρετε τις ρυθμίσεις σας;"
+msgstr "Do you want to update your %s %s ?"
 
-#
-#
 msgid "Do you want to upgrade the package:\n"
-msgstr "Θέλετε να αναβαθμίσετε το πακέτο:\n"
+msgstr "Do you want to upgrade the package:\n"
 
 msgid "Dolby Digital / DTS downmix"
-msgstr ""
+msgstr "Dolby Digital / DTS downmix"
 
 msgid "Don't save"
-msgstr ""
+msgstr "Don't save"
 
-#
-#
 msgid "Don't stop current event but disable coming events"
-msgstr "Χωρίς παύση τρέχοντος προγράμματος, αλλά με απενεργοποίση επερχόμενων"
+msgstr "Don't stop current event but disable coming events"
 
-#
-# , python-format
-#, fuzzy, python-format
+#, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
-msgstr[0] "Τέλος - Εγκαταστάθηκαν, αναβαθμίστηκαν ή αφαιρέθηκαν %d πακέτα με %d σφάλματα"
-msgstr[1] "Τέλος - Εγκαταστάθηκαν, αναβαθμίστηκαν ή αφαιρέθηκαν %d πακέτα με %d σφάλματα"
+msgstr[0] "Done - Installed, upgraded or removed %d package (%s)"
+msgstr[1] "Done - Installed, upgraded or removed %d packages (%s)"
 
-#
-#
 msgid "Download"
-msgstr "Λήψη"
+msgstr "Download"
 
-# , python-format
-#, fuzzy, python-format
+#, python-format
 msgid "Download %s from server"
-msgstr "Λήψη %s από το διακομιστή"
+msgstr "Download %s from server"
 
-#
-#
-#, fuzzy
 msgid "Download .NFI-files for USB-flasher"
-msgstr "Λήψη αρχείων .NFI για USB-Flasher"
+msgstr "Download .NFI-files for USB-flasher"
 
 msgid "Download plugins"
-msgstr ""
+msgstr "Download plugins"
 
-#
-#
 msgid "Downloading"
-msgstr "Λήψη"
+msgstr "Downloading"
 
-#
-#
 msgid "Downloading plugin information. Please wait..."
-msgstr "Λήψη πληροφοριών προσθέτων. Παρακαλώ περιμένετε ..."
+msgstr "Downloading plugin information. Please wait..."
 
 #, python-format
 msgid "Drivers:\t%s"
-msgstr ""
+msgstr "Drivers:\t%s"
 
 #, python-format
 msgid "Drivers: %s"
-msgstr ""
+msgstr "Drivers: %s"
 
-#
 msgid "Dutch"
-msgstr "Ολλανδικά"
+msgstr "Dutch"
 
-#
-#
 msgid "Dynamic contrast"
-msgstr "Δυναμική αντίθεση"
+msgstr "Dynamic contrast"
 
-#
-#
 msgid "E"
 msgstr "E"
 
 msgid "ECM Statistics"
-msgstr ""
+msgstr "ECM Statistics"
 
 msgid "ECM Time"
-msgstr ""
+msgstr "ECM Time"
 
 msgid "ECM avg"
-msgstr ""
+msgstr "ECM avg."
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
-msgstr ""
+msgstr "ECM data will be included in the stream. This enables a client receiver to decode it."
 
 msgid "ECM last"
-msgstr ""
+msgstr "ECM last"
 
 msgid "ECM-Time"
-msgstr ""
+msgstr "ECM-Time"
 
 msgid "EPG"
-msgstr ""
+msgstr "EPG"
 
 msgid "EPG Cache Check"
-msgstr ""
+msgstr "EPG Cache Check"
 
 msgid "EPG Search"
-msgstr ""
+msgstr "EPG Search"
 
 msgid "EPG filename"
-msgstr ""
+msgstr "EPG filename"
 
-#
-#
 msgid "EPG language selection 1"
-msgstr "Επιλογή γλώσσας EPG 1"
+msgstr "EPG language selection 1"
 
-#
-#
 msgid "EPG language selection 2"
-msgstr "Επιλογή γλώσσας EPG 2"
+msgstr "EPG language selection 2"
 
 msgid "EPG location"
-msgstr ""
+msgstr "EPG location"
 
 msgid "EPG settings"
-msgstr ""
+msgstr "EPG settings"
 
-#
-# , python-format
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
-msgstr "ΣΦΑΛΜΑ - Αποτυχία στη σάρωση  (%s)!"
+msgstr "ERROR - failed to scan (%s)!"
 
-#
-#
 msgid "East"
-msgstr "Ανατολή"
+msgstr "East"
 
-#
-#
-#, fuzzy
 msgid "East limit set"
-msgstr "Ορισμός ορίων"
+msgstr "East limit set"
 
 msgid "Ecm:"
-msgstr ""
+msgstr "Ecm:"
 
-#
-#
 msgid "Edit"
-msgstr "Επεξεργασία"
+msgstr "Edit"
 
-#
-#
 msgid "Edit DNS"
-msgstr "Επεξεργασία DNS"
+msgstr "Edit DNS"
 
-#
-#
 msgid "Edit bouquets list"
-msgstr "Επεξεργασία λίστας μπουκέτων"
+msgstr "Edit bouquets list"
 
-#
-#
 msgid "Edit chapters of current title"
-msgstr "Επεξεργασία κεφαλαίων του τρέχοντα τίτλου"
+msgstr "Edit chapters of current title"
 
-#
-#
 msgid "Edit services list"
-msgstr "Επεξεργασία λίστας υπηρεσιών"
+msgstr "Edit services list"
 
-#
-#
 msgid "Edit settings"
-msgstr "Επεξεργασία ρυθμίσεων"
+msgstr "Edit settings"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Edit the Nameserver configuration of your %s %s.\n"
-msgstr "Επεξεργασία ρυθμίσεων Nameserver του δέκτη.\n"
+msgstr "Edit the Nameserver configuration of your %s %s.\n"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Edit the network configuration of your %s %s.\n"
-msgstr "Επεξεργασία ρυθμίσεων δικτύου του δέκτη.\n"
+msgstr "Edit the network configuration of your %s %s.\n"
 
-#
-#
-#, fuzzy
 msgid "Edit timer"
-msgstr "Επεξεργασία τίτλου"
+msgstr "Edit timer"
 
-#
-#
 msgid "Edit title"
-msgstr "Επεξεργασία τίτλου"
+msgstr "Edit title"
 
-#
-#
 msgid "Edit upgrade source url."
-msgstr "Επιλέξτε πηγή αναβάθμισης για επεξεργασία"
+msgstr "Edit upgrade source url."
 
 msgid "Education/Science/..."
-msgstr ""
+msgstr "Education/Science/..."
 
 msgid "Elapsed"
-msgstr ""
+msgstr "Elapsed"
 
 msgid "Elapsed & Remaining"
-msgstr ""
+msgstr "Elapsed & Remaining"
 
-#
-#
 msgid "Electronic Program Guide"
-msgstr "Ηλεκτρονικός Οδηγός Προγράμματος"
+msgstr "Electronic Program Guide"
 
-#
-#
 msgid "Enable"
-msgstr "Ενεργοποίηση"
+msgstr "Enable"
 
-#
-#
 msgid "Enable 5V for active antenna"
-msgstr "Ενεργοποίηση των 5 V για την ενεργή κεραία"
+msgstr "Enable 5V for active antenna"
 
-#
-#
 msgid "Enable EIT EPG"
-msgstr "Ενεργοποίηση EIT EPG"
+msgstr "Enable EIT EPG"
 
-#
-#
-#, fuzzy
 msgid "Enable FreeSat EPG"
-msgstr "Ενεργοποίηση freesat EPG"
+msgstr "Enable FreeSat EPG"
 
-#
-#
 msgid "Enable MHW EPG"
-msgstr "Ενεργοποίηση MHW EPG"
+msgstr "Enable MHW EPG"
 
-#
-#
 msgid "Enable Netmed EPG"
-msgstr "Ενεργοποίηση Netmed EPG"
+msgstr "Enable Netmed EPG"
 
-#
-#
 msgid "Enable ViaSat EPG"
-msgstr "Ενεργοποίηση ViaSat EPG"
+msgstr "Enable ViaSat EPG"
 
 msgid "Enable debug logs"
-msgstr ""
+msgstr "Enable debug logs"
 
-#
-#
 msgid "Enable multiple bouquets"
-msgstr "Ενεργοποίηση πολλαπλών μπουκέτων"
+msgstr "Enable multiple bouquets"
 
 msgid "Enable panic button"
-msgstr ""
+msgstr "Enable panic button"
 
-#
-#
 msgid "Enable parental control"
-msgstr "Ενεργοποίηση γονικού έλεγχου"
+msgstr "Enable parental control"
 
-#
-#
 msgid "Enable teletext caching"
-msgstr "Ενεργοποίηση teletext caching"
+msgstr "Enable teletext caching"
 
-#
-#
 msgid "Enabled"
-msgstr "Ενεργοποιήθηκε"
+msgstr "Enabled"
 
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
-msgstr ""
+msgstr "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 
-#
-#
 msgid "Encrypted: "
-msgstr "Κωδικοποιημένο:"
+msgstr "Encrypted: "
 
-#
-#
 msgid "Encryption"
-msgstr "Κωδικοποίηση"
+msgstr "Encryption"
 
-#
-#
-#, fuzzy
 msgid "Encryption key"
-msgstr "Κλειδί κωδικοποίησης"
+msgstr "Encryption key"
 
-#
-#
-#, fuzzy
 msgid "Encryption key type"
-msgstr "Τύπος κλειδιού κωδικοποίησης"
+msgstr "Encryption key type"
 
-#
-#
 msgid "Encryption:"
-msgstr "Κωδικοποίηση:"
+msgstr "Encryption:"
 
-#
-#
 msgid "End time"
-msgstr "Ώρα τερματισμού"
+msgstr "End time"
 
-#
 msgid "English"
-msgstr "Αγγλικά"
+msgstr "English"
 
 msgid "Enigma2 skin selector"
-msgstr ""
+msgstr "Enigma2 skin selector"
 
 msgid "Enimga2 Changes"
-msgstr ""
+msgstr "Enimga2 Changes"
 
-#
-#
 msgid "Enter main menu..."
-msgstr "Είσοδος στο κεντρικό μενού..."
+msgstr "Enter main menu..."
 
-#
-#
 msgid "Enter pin code"
-msgstr "Εισαγωγή κωδικού pin"
+msgstr "Enter pin code"
 
-#
-#
 msgid "Enter the service pin"
-msgstr "Βάλτε το pin υπηρεσίας"
+msgstr "Enter the service pin"
 
 msgid "Enter your e-mail address to send a copy of the log to."
-msgstr ""
+msgstr "Enter your e-mail address to send a copy of the log to."
 
 msgid "Enter your forum user name, to make it easier to trace logs."
-msgstr ""
+msgstr "Enter your forum user name, to make it easier to trace logs."
 
 msgid "Entitlements"
-msgstr ""
+msgstr "Entitlements"
 
-#
-#
 msgid "Error"
-msgstr "Σφάλμα"
+msgstr "Error"
 
-#
 msgid "Error code"
-msgstr "Κωδικός σφάλματος"
+msgstr "Error code"
 
 msgid "Error downloading change log."
-msgstr ""
+msgstr "Error downloading change log."
 
-#
-#
 msgid "Error executing plugin"
-msgstr "Σφάλμα κατά την εκτέλεση προσθέτου"
+msgstr "Error executing plugin"
 
 msgid "Error reading webpage!"
-msgstr ""
+msgstr "Error reading webpage!"
 
 #, python-format
 msgid ""
 "Error:\n"
 "%s"
 msgstr ""
+"Error:\n"
+"%s"
 
-#
-# , python-format
 #, python-format
 msgid ""
 "Error: %s\n"
 "Retry?"
 msgstr ""
-"Σφάλμα: %s\n"
-"Προσπάθεια ξανά;"
+"Error: %s\n"
+"Retry?"
 
-#
 msgid "Estonian"
-msgstr "Εσθονικά"
+msgstr "Estonian"
 
-#
 msgid "Ethernet network interface"
-msgstr "Διεπαφή ενσύρματου δικτύου"
+msgstr "Ethernet network interface"
 
 msgid "Event Info"
-msgstr ""
+msgstr "Event Info"
 
-#
-#, fuzzy
 msgid "Event font size"
-msgstr "Μέγεθος γραμματοσειράς προγράμματος"
+msgstr "Event font size"
 
 msgid "Event font size (relative to skin size)"
-msgstr ""
+msgstr "Event font size (relative to skin size)"
 
-#
-#, fuzzy
 msgid "Event view"
-msgstr "Μέγεθος γραμματοσειράς προγράμματος"
+msgstr "Event view"
 
-#
 msgid "Everywhere"
-msgstr "Παντού"
+msgstr "Everywhere"
 
-#
-#
 msgid "Exceeds dual layer medium!"
-msgstr "Υπερκαλύπτει το μέγεθος του dual layer!"
+msgstr "Exceeds dual layer medium!"
 
-#
-#
 msgid "Execution finished!!"
-msgstr "Εκτέλεση τελείωσε!!"
+msgstr "Execution finished!!"
 
-#
-#
-#, fuzzy
 msgid "Execution progress:"
-msgstr "Πρόοδος Εκτέλεσης:"
+msgstr "Execution progress:"
 
-#
-#
 msgid "Exif"
 msgstr "Exif"
 
-#
-#
 msgid "Exit"
-msgstr "Έξοδος"
+msgstr "Exit"
 
 msgid "Exit EPG"
-msgstr ""
+msgstr "Exit EPG"
 
-#
-#
-#, fuzzy
 msgid "Exit MAC-address configuration"
-msgstr "έξοδος από ρύθμιση nameserver"
+msgstr "Exit MAC-address configuration"
 
-#
-#
 msgid "Exit editor"
-msgstr "Έξοδος απο τον editor"
+msgstr "Exit editor"
 
 msgid "Exit input device selection."
-msgstr "Έξοδος από επιλογή συσκευής εισαγωγής."
+msgstr "Exit input device selection."
 
-#
-#
-#, fuzzy
 msgid "Exit media player?"
-msgstr "έξοδος από αναπαραγωγή πολυμέσων"
+msgstr "Exit media player?"
 
-#
-#
-#, fuzzy
 msgid "Exit mediaplayer"
-msgstr "έξοδος από αναπαραγωγή πολυμέσων"
+msgstr "Exit mediaplayer"
 
-#
-#
-#, fuzzy
 msgid "Exit movie list"
-msgstr "έξοδος από λίστα ταινιών"
+msgstr "Exit movie list"
 
-#
-#
-#, fuzzy
 msgid "Exit movie player?"
-msgstr "έξοδος από αναπαραγωγή πολυμέσων"
+msgstr "Exit movie player?"
 
-#
-#
-#, fuzzy
 msgid "Exit nameserver configuration"
-msgstr "έξοδος από ρύθμιση nameserver"
+msgstr "Exit nameserver configuration"
 
-#
-#
-#, fuzzy
 msgid "Exit network interface list"
-msgstr "έξοδος από λίστα διεπαφών δικτύου"
+msgstr "Exit network interface list"
 
-#
-#
 msgid "Exit network wizard"
-msgstr "Έξοδος από τον Οδηγό δικτύου"
+msgstr "Exit network wizard"
 
-#
-#
 msgid "Exit the wizard"
-msgstr "Έξοδος από το οδηγό"
+msgstr "Exit the wizard"
 
-#
-#
 msgid "Expert"
-msgstr "Εξειδικευμένο"
+msgstr "Expert"
 
-#
-#
 msgid "Extended Networksetup Plugin..."
-msgstr "Πρόσθετο Εξελιγμένης ρύθμισης δικτύου..."
+msgstr "Extended Network setup Plugin..."
 
-#
-#
 msgid "Extended Setup..."
-msgstr "Εξελιγμένη ρύθμιση..."
+msgstr "Extended Setup..."
 
 msgid "Extended Shares"
-msgstr ""
+msgstr "Extended Shares"
 
-#
-#
 msgid "Extended Software"
-msgstr "Εξελιγμένο λογισμικό"
+msgstr "Extended Software"
 
-#
-#
 msgid "Extended Software Plugin"
-msgstr "Πρόσθετο εξελιγμένου λογισμικού"
+msgstr "Extended Software Plugin"
 
-#
-#
-#, fuzzy
 msgid "Extended network setup plugin..."
-msgstr "Πρόσθετο Εξελιγμένης ρύθμισης δικτύου..."
+msgstr "Extended network setup plugin..."
 
-#
-#
-#, fuzzy
 msgid "Extended setup..."
-msgstr "Εξελιγμένη ρύθμιση..."
+msgstr "Extended setup..."
 
-#
-#
 msgid "Extensions"
-msgstr "Επεκτάσεις"
+msgstr "Extensions"
 
-#
-#
 msgid "Extensions management"
-msgstr "Διαχείριση επεκτάσεων"
+msgstr "Extensions management"
 
 msgid "External"
-msgstr ""
+msgstr "External"
 
 msgid "External (CF)"
-msgstr ""
+msgstr "External (CF)"
 
-#
-#
-#, fuzzy
 msgid "External subtitle color"
-msgstr "Χρώμα υποτίτλων teletext"
+msgstr "External subtitle color"
 
 msgid "FAILED"
-msgstr ""
+msgstr "FAILED"
 
-#
-#
 msgid "FEC"
 msgstr "FEC"
 
 msgid "FLASH"
-msgstr ""
+msgstr "FLASH"
 
 msgid "FTP Setup"
-msgstr ""
+msgstr "FTP Setup"
 
 msgid "FTP setup"
-msgstr ""
+msgstr "FTP setup"
 
-#
-#
 msgid "Factory reset"
-msgstr "Επαναφορά εργοστασιακών ρυθμίσεων"
+msgstr "Factory reset"
 
-#
-#
 msgid "Failed"
-msgstr "Απέτυχε"
+msgstr "Failed"
 
 msgid "Failed to write /tmp/positionersetup.log: "
-msgstr ""
+msgstr "Failed to write /tmp/positionersetup.log: "
 
-#
-# , python-format
 #, python-format
 msgid "Fan %d"
 msgstr "Fan %d"
 
-#
-#
 msgid "Fast"
-msgstr "Γρήγορο"
+msgstr "Fast"
 
-#
-#
 msgid "Fast DiSEqC"
-msgstr "Γρήγορο DiSEqC"
+msgstr "Fast DiSEqC"
 
-#
 msgid "Fast Scan"
-msgstr "Γρήγορη σάρωση"
+msgstr "Fast Scan"
 
-#
-#
 msgid "Fast epoch"
 msgstr "Fast epoch"
 
 msgid "Fast forward speeds"
-msgstr ""
+msgstr "Fast forward speeds"
 
-#
-#
 msgid "Favourites"
-msgstr "Αγαπημένα"
+msgstr "Favourites"
 
 msgid "File appears to be busy.\n"
-msgstr "Το αρχείο χρησιμοποιείται.\n"
+msgstr "File appears to be busy.\n"
 
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
 msgstr ""
+"File oscam.conf not found.\n"
+"Please enter username/password manually."
 
-#
-#
 msgid "Filesystem Check"
-msgstr "Έλεγχος συστήματος αρχείων"
+msgstr "Filesystem Check"
 
 msgid "Filesystem check"
-msgstr ""
+msgstr "Filesystem check"
 
-#
-#, fuzzy
 msgid "Final position at"
-msgstr "Τροχιακή θέση"
+msgstr "Final position at"
 
-#
-#, fuzzy
 msgid "Final position at index"
-msgstr "Τροχιακή θέση"
+msgstr "Final position at index"
 
-#
-#
-#, fuzzy
 msgid "Fine movement"
-msgstr "Κίνηση positioner"
+msgstr "Fine movement"
 
-#
-#
 msgid "Finetune"
-msgstr "Μικρορύθμιση"
+msgstr "Fine tune"
 
-#
-#
 msgid "Finished"
-msgstr "Τελείωσε"
+msgstr "Finished"
 
-#
-#
 msgid "Finished configuring your network"
-msgstr "Πέρας ρύθμισης του δικτύου"
+msgstr "Finished configuring your network"
 
-#
-#
 msgid "Finished restarting your network"
-msgstr "Πέρας επανεκκίνησης δικτύου"
+msgstr "Finished restarting your network"
 
-#
 msgid "Finnish"
-msgstr "Φιλλανδικά"
+msgstr "Finnish"
 
-#
-#, fuzzy
 msgid "Fixed"
-msgstr "σταθερό"
+msgstr "Fixed"
 
-#
-#
 msgid "Flash"
 msgstr "Flash"
 
 msgid "Flashing"
-msgstr ""
+msgstr "Flashing"
 
-#
-#
 msgid "Flashing failed"
-msgstr "Η εγκατάσταση απέτυχε"
+msgstr "Flashing failed"
 
-#
-#
 msgid "Following tasks will be done after you press OK!"
-msgstr "Οι ακόλουθες ενέργειες θα εκτελεστούν αφού πιέσετε ΟΚ!"
+msgstr "Following tasks will be done after you press OK!"
 
 msgid "Fontsize"
-msgstr ""
+msgstr "Font-size"
 
-#
-#
-#, fuzzy
 msgid "Force de-interlace"
-msgstr "Παραμετροποίηση διεπαφής"
+msgstr "Force de-interlace"
 
-#
-#
 msgid "Format"
 msgstr "Format"
 
-#
 msgid "Forward volume keys"
 msgstr "Forward volume keys"
 
-#
-#
 msgid "Frame size in full view"
-msgstr "Μέγεθος καρέ σε πλήρη οθόνη"
+msgstr "Frame size in full view"
 
 msgid "Free Memory:"
-msgstr ""
+msgstr "Free Memory:"
 
 msgid "Free Swap:"
-msgstr ""
+msgstr "Free Swap:"
 
 msgid "Free To Air"
-msgstr ""
+msgstr "Free To Air"
 
 msgid "Free memory"
-msgstr ""
+msgstr "Free memory"
 
 msgid "Free memory:"
-msgstr ""
+msgstr "Free memory:"
 
 msgid "Free:"
-msgstr ""
+msgstr "Free:"
 
 msgid "Free: "
-msgstr ""
+msgstr "Free: "
 
-#
 msgid "French"
-msgstr "Γαλλικά"
+msgstr "French"
 
-#
-#
 msgid "Frequency"
-msgstr "Συχνότητα"
+msgstr "Frequency"
 
-#
-#
 msgid "Frequency bands"
-msgstr "Μπάντες συχνότητας"
+msgstr "Frequency bands"
 
-#
-#
 msgid "Frequency scan step size(khz)"
-msgstr "Απόσταση κλίμακας συχνότητας στην ανεύρεση(khz)"
+msgstr "Frequency scan step size(kHz)"
 
-#
-#
 msgid "Frequency steps"
-msgstr "Βήμα συχνότητας"
+msgstr "Frequency steps"
 
-#
-#
 msgid "Fri"
-msgstr "Παρ"
+msgstr "Fri"
 
-#
-#
 msgid "Friday"
-msgstr "Παρασκευή"
+msgstr "Friday"
 
 msgid "From :"
-msgstr ""
+msgstr "From :"
 
-#
-# , python-format
 #, python-format
 msgid "Frontprocessor version: %d"
-msgstr "Έκδοση frontprocessor: %d"
+msgstr "Front-processor version: %d"
 
 msgid "Ftpd service type: Vsftpd server"
-msgstr ""
+msgstr "Ftpd service type: Vsftpd server"
 
-#
-#, fuzzy
 msgid "Full screen"
-msgstr "Hold screen"
+msgstr "Full screen"
 
-#
-#, fuzzy
 msgid "Full transparency"
-msgstr "μέγιστη διαφάνεια"
+msgstr "Full transparency"
 
-#
-#
-#, fuzzy
 msgid "Fullview resulution"
-msgstr "Τοποθεσία ταινιών"
+msgstr "Fullview resulution"
 
 msgid "Function of OK button"
-msgstr ""
+msgstr "Function of OK button"
 
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
-#
-#
-#, fuzzy
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to restart the GUI now?"
 msgstr ""
-"Πρέπει να γίνει  επανεκκίνηση του GUI για να ενεργοποιηθεί το νέο θέμα. \n"
-"Να γίνει τώρα;"
+"GUI needs a restart to apply a new skin\n"
+"Do you want to restart the GUI now?"
 
-#
-#
 msgid "Gateway"
 msgstr "Gateway"
 
 msgid "General"
-msgstr ""
+msgstr "General"
 
 msgid "General AC3 delay"
-msgstr ""
+msgstr "General AC3 delay"
 
 msgid "General PCM delay"
-msgstr ""
+msgstr "General PCM delay"
 
-#
-#
 msgid "Genre"
-msgstr "Είδος"
+msgstr "Genre"
 
-#
 msgid "German"
-msgstr "Γερμανικά"
+msgstr "German"
 
 msgid "Get latest experimental image"
-msgstr "Λήψη τελευταίου λογισμικού experimental"
+msgstr "Get latest experimental image"
 
 msgid "Get latest release image"
-msgstr "Λήψη τελευταίου σταθερού λογισμικού"
+msgstr "Get latest release image"
 
 msgid "Getting Event Info failed!"
-msgstr ""
+msgstr "Getting Event Info failed!"
 
-#
-#
 msgid "Getting plugin information. Please wait..."
-msgstr "Λήψη πληροφοριών προσθέτου. Παρακαλώ περιμένετε..."
+msgstr "Getting plugin information. Please wait..."
 
 msgid "Go down the list"
-msgstr ""
+msgstr "Go down the list"
 
 msgid "Go to first movie or last item"
-msgstr ""
+msgstr "Go to first movie or last item"
 
 msgid "Go to first movie or top of list"
-msgstr ""
+msgstr "Go to first movie or top of list"
 
-#
-#
-#, fuzzy
 msgid "Go to first service"
-msgstr "μετάβαση στην πρώτη εγγραφή"
+msgstr "Go to first service"
 
-#
-#, fuzzy
 msgid "Go to last service"
-msgstr "ορισμός ως αρχική υπηρεσία"
+msgstr "Go to last service"
 
-#
-#
-#, fuzzy
 msgid "Go to next event"
-msgstr "μετάβαση στην επόμενη εγγραφή"
+msgstr "Go to next event"
 
-#
-#
-#, fuzzy
 msgid "Go to next page of service"
-msgstr "Προώθηση στην επόμενη υπό-υπηρεσία"
+msgstr "Go to next page of service"
 
-#
-#
-#, fuzzy
 msgid "Go to previous event"
-msgstr "μετάβαση στην προηγούμενη εγγραφή"
+msgstr "Go to previous event"
 
-#
-#
-#, fuzzy
 msgid "Go to previous page of service"
-msgstr "Επιστροφή στην προηγούμενη υπηρεσία"
+msgstr "Go to previous page of service"
 
 msgid "Go up the list"
-msgstr ""
+msgstr "Go up the list"
 
 msgid "Goto"
-msgstr ""
+msgstr "Goto"
 
-#
-#
 msgid "Goto 0"
-msgstr "Πήγαινε στην θέση 0"
+msgstr "Goto 0"
 
 msgid "Goto :"
-msgstr ""
+msgstr "Goto :"
 
-#
-#
-#, fuzzy
 msgid "Goto X"
-msgstr "Πήγαινε στην θέση 0"
+msgstr "Goto X"
 
-#
-#
-#, fuzzy
 msgid "Goto index position"
-msgstr "Πήγαινε στην θέση"
+msgstr "Goto index position"
 
 msgid "Goto next bouquet"
-msgstr ""
+msgstr "Goto next bouquet"
 
 msgid "Goto next channel"
-msgstr ""
+msgstr "Goto next channel"
 
-#
-#
-#, fuzzy
 msgid "Goto next day of events"
-msgstr "μετάβαση στην επόμενη εγγραφή"
+msgstr "Goto next day of events"
 
 msgid "Goto next event"
-msgstr ""
+msgstr "Goto next event"
 
 msgid "Goto next page of events"
-msgstr ""
+msgstr "Goto next page of events"
 
-#
-#
 msgid "Goto position"
-msgstr "Πήγαινε στην θέση"
+msgstr "Goto position"
 
 msgid "Goto previous bouquet"
-msgstr ""
+msgstr "Goto previous bouquet"
 
 msgid "Goto previous channel"
-msgstr ""
+msgstr "Goto previous channel"
 
-#
-#
-#, fuzzy
 msgid "Goto previous day of events"
-msgstr "μετάβαση στην προηγούμενη εγγραφή"
+msgstr "Goto previous day of events"
 
 msgid "Goto previous event"
-msgstr ""
+msgstr "Goto previous event"
 
 msgid "Goto previous page of events"
-msgstr ""
+msgstr "Goto previous page of events"
 
 msgid "Goto specific data/time"
-msgstr ""
+msgstr "Goto specific data/time"
 
-#
-#
-#, fuzzy
 msgid "GotoX calibration"
-msgstr "Πήγαινε στην θέση"
+msgstr "GotoX calibration"
 
 msgid "GraphMultiEpg Settings"
-msgstr ""
+msgstr "GraphMultiEpg Settings"
 
 msgid "Graphical EPG"
-msgstr ""
+msgstr "Graphical EPG"
 
-#
-#
-#, fuzzy
 msgid "Graphical Infobar EPG settings"
-msgstr "Γραφικό Multi EPG"
+msgstr "Graphical Infobar EPG settings"
 
-#
-#
 msgid "Graphical Multi EPG"
-msgstr "Γραφικό Multi EPG"
+msgstr "Graphical Multi EPG"
 
-#
-#
-#, fuzzy
 msgid "GraphicalEPG settings"
-msgstr "Γραφικό Multi EPG"
+msgstr "GraphicalEPG settings"
 
 msgid "Graphics"
-msgstr ""
+msgstr "Graphics"
 
-#
 msgid "Greek"
-msgstr "Ελληνικά"
+msgstr "Greek"
 
 msgid "Grey"
-msgstr ""
+msgstr "Grey"
 
-#
 msgid "Guard interval"
 msgstr "Guard interval"
 
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
-msgstr ""
+msgstr "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 
-#
 msgid "HD list"
-msgstr "λίστα HD"
+msgstr "HD list"
 
 msgid "HDMI"
-msgstr ""
+msgstr "HDMI"
 
 msgid "HDMI CEC"
-msgstr ""
+msgstr "HDMI CEC"
 
 msgid "HDMI CEC Setup"
-msgstr ""
+msgstr "HDMI CEC Setup"
 
 msgid "Handle standby from TV"
-msgstr "Χειρισμός αναμονής από TV"
+msgstr "Handle standby from TV"
 
 msgid "Handle wakeup from TV"
-msgstr "Χειρισμός εκκίνησης από TV"
+msgstr "Handle wakeup from TV"
 
-#
-#
-#, fuzzy
 msgid "Hard disk setup"
-msgstr "Ρύθμιση σκληρού δίσκου"
+msgstr "Hard disk setup"
 
-#
-#
-#, fuzzy
 msgid "Hard disk standby after"
-msgstr "Σκληρός δίσκος σε αναμονή μετά από"
+msgstr "Hard disk standby after"
 
-#
 msgid "Hebrew"
-msgstr "Εβραϊκά"
+msgstr "Hebrew"
 
 msgid "Height"
-msgstr ""
+msgstr "Height"
 
 msgid "Helps setting up your dish"
-msgstr ""
+msgstr "Helps setting up your dish"
 
-#
 msgid "Hidden network"
-msgstr "Κρυφό δίκτυο"
+msgstr "Hidden network"
 
-#
-#
 msgid "Hide CI messages"
-msgstr "Απόκρυψη μηνυμάτων CI"
+msgstr "Hide CI messages"
 
 msgid "Hide any zap error messages."
-msgstr ""
+msgstr "Hide any zap error messages."
 
 msgid "Hide error messages from the Common Interface module."
-msgstr ""
+msgstr "Hide error messages from the Common Interface module."
 
-#
-#, fuzzy
 msgid "Hide known extensions"
-msgstr "εμφάνιση επεκτάσεων..."
+msgstr "Hide known extensions"
 
-#
-#
-#, fuzzy
 msgid "Hide player"
-msgstr "απόκρυψη player"
+msgstr "Hide player"
 
-#
-#
 msgid "Hide zap errors"
-msgstr "Απόκρυψη σφαλμάτων εναλλαγής καναλιών"
+msgstr "Hide zap errors"
 
-#
 msgid "Hierarchy info"
-msgstr "Πληροφορίες ιεραρχίας"
+msgstr "Hierarchy info"
 
-#
-#, fuzzy
 msgid "Hierarchy information"
-msgstr "Πληροφορίες ιεραρχίας"
+msgstr "Hierarchy information"
 
-#
-#
 msgid "High bitrate support"
-msgstr "Υποστήριξη υψηλού bitrate"
+msgstr "High bitrate support"
 
 msgid "History buttons mode"
-msgstr ""
+msgstr "History buttons mode"
 
 msgid "History zap..."
-msgstr ""
+msgstr "History zap..."
 
-#
 msgid "Hold screen"
 msgstr "Hold screen"
 
-#
 msgid "Hold till locked"
 msgstr "Hold till locked"
 
-#
 msgid "Home"
-msgstr "Αρχική"
+msgstr "Home"
 
 msgid "Hops:"
-msgstr ""
+msgstr "Hops:"
 
-#
-#
 msgid "Horizontal"
-msgstr "Οριζόντια"
+msgstr "Horizontal"
 
 msgid "Horizontal turning speed"
-msgstr ""
+msgstr "Horizontal turning speed"
 
 msgid "Hostname:"
-msgstr ""
+msgstr "Hostname:"
 
 msgid "Hostname: "
-msgstr ""
+msgstr "Hostname: "
 
 msgid "Hour"
-msgstr ""
+msgstr "Hour"
 
 msgid "Hourly"
-msgstr ""
+msgstr "Hourly"
 
 msgid "Hours Mins"
-msgstr ""
+msgstr "Hours Mins"
 
 msgid "Hours Mins Secs"
-msgstr ""
+msgstr "Hours Mins Secs"
 
-#
-#
 msgid "How many minutes do you want to record?"
-msgstr "Ποσά λεπτά θέλετε να εγγραφούν;"
+msgstr "How many minutes do you want to record?"
 
-#
-#
 msgid "Hue"
 msgstr "Hue"
 
-#
 msgid "Hungarian"
-msgstr "Ουγγρικά"
+msgstr "Hungarian"
 
 msgid "IMDB search for current event"
-msgstr ""
+msgstr "IMDB search for current event"
 
 msgid "IMDb Search"
-msgstr ""
+msgstr "IMDb Search"
 
-#
-#
-#, fuzzy
 msgid "IP address"
-msgstr "Διεύθυνση IP"
+msgstr "IP address"
 
 msgid "IP-Address"
-msgstr ""
+msgstr "IP-Address"
 
 msgid "IP:"
-msgstr ""
+msgstr "IP:"
 
-#
-#
 msgid "ISO file is too large for this filesystem!"
-msgstr "Το αρχείο ISO είναι πολύ μεγάλο για αυτό το σύστημα αρχείων!"
+msgstr "ISO file is too large for this filesystem!"
 
-#
-#
 msgid "ISO path"
-msgstr "Διαδρομή ISO"
+msgstr "ISO path"
 
 msgid "Icons"
-msgstr "Εικονίδια"
+msgstr "Icons"
 
 msgid "Idle Time: "
-msgstr ""
+msgstr "Idle Time: "
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
-msgstr ""
+msgstr "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 
 msgid "If enabled the video will always be de-interlaced."
-msgstr ""
+msgstr "If enabled the video will always be de-interlaced."
 
 msgid "If set to 'yes' channels without EPG will not be shown."
-msgstr ""
+msgstr "If set to 'yes' channels without EPG will not be shown."
 
 msgid "If set to 'yes' it will show the 'PO' packages in browser."
-msgstr ""
+msgstr "If set to 'yes' it will show the 'PO' packages in browser."
 
 msgid "If set to 'yes' it will show the 'SRC' packages in browser."
-msgstr ""
+msgstr "If set to 'yes' it will show the 'SRC' packages in browser."
 
 msgid "If set to 'yes' shows a small TV-screen in the EPG."
-msgstr ""
+msgstr "If set to 'yes' shows a small TV-screen in the EPG."
 
 msgid "If set to 'yes' the EPG will always open at the first channel of bouquet. If set to 'no' the EPG will open on the current channel."
-msgstr ""
+msgstr "If set to 'yes' the EPG will always open at the first channel of bouquet. If set to 'no' the EPG will open on the current channel."
 
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
-msgstr ""
+msgstr "If set to 'yes' the bouquets will be shown each time you open the EPG."
 
 msgid "If set to 'yes' the channel list will be shown after switching between radio and TV modes."
-msgstr ""
+msgstr "If set to 'yes' the channel list will be shown after switching between radio and TV modes."
 
 msgid "If set to 'yes' the channel number will be displayed in the infobar."
-msgstr ""
+msgstr "If set to 'yes' the channel number will be displayed in the infobar."
 
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
-msgstr ""
+msgstr "If set to 'yes' the infobar will be displayed when a new event starts."
 
 msgid "If set to 'yes' the infobar will be displayed when changing channels."
-msgstr ""
+msgstr "If set to 'yes' the infobar will be displayed when changing channels."
 
 msgid "If set to 'yes' you can preview channels in the EPG list."
-msgstr ""
+msgstr "If set to 'yes' you can preview channels in the EPG list."
 
 msgid "If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at."
-msgstr ""
+msgstr "If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at."
 
 msgid "If set to 'yes', allows you to use the seekbar to jump to a point within the event."
-msgstr ""
+msgstr "If set to 'yes', allows you to use the seekbar to jump to a point within the event."
 
 msgid "If set to 'yes', the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
-msgstr ""
+msgstr "If set to 'yes', the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
-msgstr ""
+msgstr "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 
-#
-#
 msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
 msgstr ""
-"Αν διαβάζετε αυτό το μήνυμα τότε υπάρχει\n"
-"κάποιο πρόβλημα με το scart. Πιέστε ΟΚ για επιστροφή."
+"If you see this, something is wrong with\n"
+"your scart connection. Press OK to return."
 
-#
-#
 msgid ""
 "If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
 "Then turn the brightness setting as low as possible, but make sure that the two lowermost shades of gray stay distinguishable.\n"
 "Do not care about the bright shades now. They will be set up in the next step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
-"Εάν η TV σας έχει επιλογή βελτίωσης για φωτεινότητα ή αντίθεση, απενεργοποιήστε την. Εάν υπάρχει επιλογή με όνομα \"dynamic\", βάλτε τη σε θέση \"standard\". Ρυθμίστε τον φωτισμό με τα δικά σας δεδομένα. Κατεβάστε την αντίθεση όσο γίνετε. \n"
-"Κατεβάστε την φωτεινότητα τόσο ώστε μόλις να διακρίνονται οι δύο κατώτερες γκρί σκιές.\n"
-"Μην λαμβάνετε υπόψιν τις φωτεινές σκιές τώρα. Θα ρυθμιστούν στο επόμενο βήμα.\n"
-"Εάν σας ικανοποιεί το αποτέλεσμα, πιέστε ΟΚ."
+"If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
+"Then turn the brightness setting as low as possible, but make sure that the two lowermost shades of grey stay distinguishable.\n"
+"Do not care about the bright shades now. They will be set up in the next step.\n"
+"If you are happy with the result, press OK."
 
 msgid "Image Information"
-msgstr ""
+msgstr "Image Information"
 
 msgid "Image Manager"
-msgstr ""
+msgstr "Image Manager"
 
-#
-#
-#, fuzzy
 msgid "Immediate shutdown"
-msgstr "άμεσος τερματισμός"
+msgstr "Immediate shutdown"
 
-#
-#
 msgid "In order to record a timer, the TV was switched to the recording service!\n"
-msgstr "Για να εκτελεστεί μια εγγραφή, ο δέκτης άλλαξε στο κανάλι εγγραφής!\n"
+msgstr "In order to record a timer, the TV was switched to the recording service!\n"
 
-#
-#
-#, fuzzy
 msgid "In progress"
-msgstr "Σε εξέλιξη"
+msgstr "In progress"
 
 msgid "Inadyn Log"
-msgstr ""
+msgstr "Inadyn Log"
 
 msgid "Inadyn Setup"
-msgstr ""
+msgstr "Inadyn Setup"
 
 msgid "Inadyn setup"
-msgstr ""
+msgstr "Inadyn setup"
 
 msgid "Include AIT in http streams"
-msgstr "Να περιέχεται AIT στα http streams"
+msgstr "Include AIT in http streams"
 
 msgid "Include ECM in http streams"
-msgstr "Να περιέχεται ECM στα http streams"
+msgstr "Include ECM in http streams"
 
 msgid "Include EIT in http streams"
-msgstr "Να περιέχεται EIT στα http streams"
+msgstr "Include EIT in http streams"
 
 msgid "Incorrect type service for PiP!"
-msgstr ""
+msgstr "Incorrect type service for PiP!"
 
 msgid "Increase time scale"
-msgstr ""
+msgstr "Increase time scale"
 
-#
-#
 msgid "Increased voltage"
-msgstr "Αυξημένη τάση"
+msgstr "Increased voltage"
 
 msgid "Index allocated:"
-msgstr ""
+msgstr "Index allocated:"
 
-#
-#
 msgid "Info"
-msgstr "Πληροφορίες"
+msgstr "Info"
 
 msgid "Info button (long)"
-msgstr ""
+msgstr "Info button (long)"
 
 msgid "Info button (short)"
-msgstr ""
+msgstr "Info button (short)"
 
-#
-#
-#, fuzzy
 msgid "InfoBar EPG"
-msgstr "Μπάρα πληροφοριών"
+msgstr "InfoBar EPG"
 
-#
-#
-#, fuzzy
 msgid "InfoBar EPG mode"
-msgstr "Μπάρα πληροφοριών"
+msgstr "InfoBar EPG mode"
 
 msgid "Infobar EPG"
-msgstr ""
+msgstr "Infobar EPG"
 
-#
-#
-#, fuzzy
 msgid "InfobarEPG settings"
-msgstr "Ρυθμίσεις κάρτας δικτύου"
+msgstr "InfobarEPG settings"
 
-#
-#
 msgid "Information"
-msgstr "Πληροφορίες"
+msgstr "Information"
 
-#
-#
 msgid "Init"
 msgstr "Init"
 
 msgid "Initial fast forward speed"
-msgstr ""
+msgstr "Initial fast forward speed"
 
-#
-#
-#, fuzzy
 msgid "Initial lock ratio"
-msgstr "Άκυρη τοποθεσία "
+msgstr "Initial lock ratio"
 
 msgid "Initial rewind speed"
-msgstr ""
+msgstr "Initial rewind speed"
 
 msgid "Initial signal quality"
-msgstr ""
+msgstr "Initial signal quality"
 
-#
-#
-#, fuzzy
 msgid "Initial signal quality:"
-msgstr "Ποιότητα σύνδεσης:"
+msgstr "Initial signal quality:"
 
-#
-#
 msgid "Initialization"
-msgstr "Αρχικοποίηση"
+msgstr "Initialisation"
 
-#
-#
 msgid "Initialize"
-msgstr "Αρχικοποίηση "
+msgstr "Initialise"
 
-#
 msgid "Initializing storage device..."
-msgstr "Αρχικοποίηση συσκευής αποθήκευσης..."
+msgstr "Initialising storage device..."
 
 msgid "Inotify Monitoring"
-msgstr ""
+msgstr "Inotify Monitoring"
 
-#
-#
 msgid "Input"
-msgstr "Είσοδος"
+msgstr "Input"
 
-#
 msgid "Input device setup"
-msgstr "Ρύθμιση συσκευής εισαγωγής χαρακτήρων"
+msgstr "Input device setup"
 
 msgid "Input devices"
-msgstr ""
+msgstr "Input devices"
 
-#
-#
 msgid "Install"
-msgstr "Εγκατάσταση"
+msgstr "Install"
 
-#
-#
 msgid "Install a new image with a USB stick"
-msgstr "Εγκατάσταση νέου λογισμικού με usb stick"
+msgstr "Install a new image with a USB stick"
 
-#
-#
 msgid "Install a new image with your web browser"
-msgstr "Εγκατάσταση νέου λογισμικού με web browser"
+msgstr "Install a new image with your web browser"
 
 msgid "Install channel list"
-msgstr ""
+msgstr "Install channel list"
 
-#
-#
 msgid "Install extensions."
-msgstr "Εγκατάσταση επεκτάσεων."
+msgstr "Install extensions."
 
 msgid "Install lcd picons on"
-msgstr ""
+msgstr "Install lcd picon's on"
 
-#
-#
 msgid "Install local extension"
-msgstr "Εγκατάσταση επεκτάσεων τοπικά"
+msgstr "Install local extension"
 
-#
-#
 msgid "Install or remove finished."
-msgstr "Η εγκατάσταση ή διαγραφή τελείωσε."
+msgstr "Install or remove finished."
 
-#
 msgid "Install picons on"
-msgstr "Εγκατάσταση picons σε"
+msgstr "Install picon's on"
 
 msgid "Install plugins"
-msgstr ""
+msgstr "Install plugins"
 
-#
-#
 msgid "Installation finished."
-msgstr "Η εγκατάσταση τελείωσε."
+msgstr "Installation finished."
 
-#
-#
 msgid "Installing"
-msgstr "Εγκατάσταση"
+msgstr "Installing"
 
 msgid "Installing Service"
-msgstr ""
+msgstr "Installing Service"
 
-#
-#
 msgid "Instant record location"
-msgstr "Άμεσες εγγραφές"
+msgstr "Instant record location"
 
-#
-#
-#, fuzzy
 msgid "Instant recording location"
-msgstr "Άμεσες εγγραφές"
+msgstr "Instant recording location"
 
-#
-#
-#, fuzzy
 msgid "Instant recording..."
-msgstr "Άμεση εγγραφή..."
+msgstr "Instant recording..."
 
 msgid "Instant recordings location"
-msgstr ""
+msgstr "Instant recordings location"
 
 msgid "Interface"
-msgstr ""
+msgstr "Interface"
 
-#
-#
 msgid "Interface: "
-msgstr "Διεπαφή:"
+msgstr "Interface: "
 
-#
-#
 msgid "Intermediate"
-msgstr "Μέσο"
+msgstr "Intermediate"
 
-#
-#
-#, fuzzy
 msgid "Internal"
-msgstr "Εσωτερική Flash"
+msgstr "Internal"
 
-#
-#
-#, fuzzy
 msgid "Internal flash"
-msgstr "Εσωτερική Flash"
+msgstr "Internal flash"
 
-#
 msgid "Internal hdd only"
-msgstr "Εσωτερικός δίσκος μόνο"
+msgstr "Internal hdd only"
 
 msgid "Interval between keys when repeating:"
-msgstr ""
+msgstr "Interval between keys when repeating:"
 
-#
-# , python-format
 #, python-format
 msgid "Invalid directory selected: %s"
-msgstr "Επιλέχθηκε άκυρος φάκελος: %s"
+msgstr "Invalid directory selected: %s"
 
-#
-#
-#, fuzzy
 msgid "Invalid location"
-msgstr "Άκυρη τοποθεσία "
+msgstr "Invalid location"
 
-#
-#
-#, fuzzy
 msgid "Invalid transponder data"
-msgstr "Χειροκίνητος αναμεταδότης"
+msgstr "Invalid transponder data"
 
-#
-#
 msgid "Inversion"
-msgstr "Αναστροφή"
+msgstr "Inversion"
 
 msgid "Invert"
-msgstr "Αντιστροφή"
+msgstr "Invert"
 
-#
-#
 msgid "Ipkg"
 msgstr "Ipkg"
 
 msgid "Is this setting ok?"
-msgstr ""
+msgstr "Is this setting ok?"
 
 msgid "Is this video mode ok?"
-msgstr ""
+msgstr "Is this video mode ok?"
 
-#
 msgid "Italian"
-msgstr "Ιταλικά"
+msgstr "Italian"
 
-#, fuzzy
 msgid "Items per page "
-msgstr "Αντικείμενα ανά σελίδα"
+msgstr "Items per page "
 
-#, fuzzy
 msgid "Items per page for list screen"
-msgstr "Αντικείμενα ανά σελίδα"
+msgstr "Items per page for list screen"
 
 msgid "JUMP 24 HOURS"
-msgstr ""
+msgstr "JUMP 24 HOURS"
 
-#
-#
 msgid "Job View"
-msgstr "Εμφάνιση εργασιών"
+msgstr "Job View"
 
 msgid "Jump back 24 hours"
-msgstr ""
+msgstr "Jump back 24 hours"
 
 msgid "Jump first press in channel selection*"
-msgstr ""
+msgstr "Jump first press in channel selection*"
 
 msgid "Jump forward 24 hours"
-msgstr ""
+msgstr "Jump forward 24 hours"
 
 msgid "Jump to beginning of list"
-msgstr ""
+msgstr "Jump to beginning of list"
 
 msgid "Jump to current time"
-msgstr ""
+msgstr "Jump to current time"
 
-#
-#
-#, fuzzy
 msgid "Jump to end of list"
-msgstr "μετάβαση στο τέλος της λίστας"
+msgstr "Jump to end of list"
 
 msgid "Jump to next marked position"
-msgstr ""
+msgstr "Jump to next marked position"
 
 msgid "Jump to previous marked position"
-msgstr ""
+msgstr "Jump to previous marked position"
 
 msgid "Jump to prime time"
-msgstr ""
+msgstr "Jump to prime time"
 
 msgid "Just change channels"
-msgstr ""
+msgstr "Just change channels"
 
-#
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 #. "nonlinear": _("Nonlinear"),
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
-#, fuzzy
 msgid "Just scale"
-msgstr "Σε κλίμακα"
+msgstr "Just scale"
 
-#
-#, fuzzy
 msgid "Just zap"
-msgstr "Σε κλίμακα"
+msgstr "Just zap"
 
-#
-#
-#, fuzzy
 msgid "Keep service"
-msgstr "προσθήκη υπηρεσίας"
+msgstr "Keep service"
 
 msgid "Keeps MovieList open whilst playing audio files."
-msgstr ""
+msgstr "Keeps MovieList open whilst playing audio files."
 
 #, python-format
 msgid "Kernel:\t%s"
-msgstr ""
+msgstr "Kernel:\t%s"
 
 #, python-format
 msgid "Kernel: %s"
-msgstr ""
+msgstr "Kernel: %s"
 
-#
-#
 msgid "Keyboard"
-msgstr "Πληκτρολόγιο"
+msgstr "Keyboard"
 
-#
-#
-#, fuzzy
 msgid "Keyboard map"
-msgstr "Χάρτης πληκτρολογίου"
+msgstr "Keyboard map"
 
 msgid "Keyboard setup"
-msgstr ""
+msgstr "Keyboard setup"
 
-#
-#
-#, fuzzy
 msgid "LAN adapter"
-msgstr "Προσαρμογέας δικτύου"
+msgstr "LAN adapter"
 
-#
 msgid "LAN connection"
-msgstr "   Σύνδεση δικτύου"
+msgstr "LAN connection"
 
 msgid "LED Deep Standby"
-msgstr ""
+msgstr "LED Deep Standby"
 
 msgid "LED Normal"
-msgstr ""
+msgstr "LED Normal"
 
 msgid "LED Standby"
-msgstr ""
+msgstr "LED Standby"
 
 msgid "LED brightness during deep standby."
-msgstr ""
+msgstr "LED brightness during deep standby."
 
 msgid "LED brightness during normal operations."
-msgstr ""
+msgstr "LED brightness during normal operations."
 
 msgid "LED brightness during standby."
-msgstr ""
+msgstr "LED brightness during standby."
 
-#
-#
 msgid "LNB"
 msgstr "LNB"
 
 msgid "Label"
-msgstr ""
+msgstr "Label"
 
-#
-#
 msgid "Language"
-msgstr "Γλώσσα "
+msgstr "Language"
 
-#
-#
 msgid "Language selection"
-msgstr "Επιλογή γλώσσας"
+msgstr "Language selection"
 
 msgid "Last Req."
-msgstr ""
+msgstr "Last Req."
 
-#
-#
 msgid "Last config"
-msgstr "Τελυταία ρύθμιση"
+msgstr "Last config"
 
-#
-#
 msgid "Last speed"
-msgstr "Τελευταία ταχύτητα"
+msgstr "Last speed"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Last update:\t%s"
-msgstr "Ενημέρωση λίστας πακέτων"
+msgstr "Last update:\t%s"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Last update: %s"
-msgstr "Ενημέρωση λίστας πακέτων"
+msgstr "Last update: %s"
 
 msgid "Last used share: "
-msgstr ""
+msgstr "Last used share: "
 
 msgctxt "third event: 'third' event label"
 msgid "Later"
-msgstr ""
+msgstr "Later"
 
-#
-#
 msgid "Latitude"
-msgstr "Γεωγρ. πλάτος"
+msgstr "Latitude"
 
 msgid "Latvian"
-msgstr ""
+msgstr "Latvian"
 
-#
-#
-#, fuzzy
 msgid "Leave DVD player?"
-msgstr "Έξοδος από DVD Player;"
+msgstr "Leave DVD player?"
 
-#
-#
 msgid "Left"
-msgstr "Αριστερά"
+msgstr "Left"
 
-#
-#
-#, fuzzy
 msgid "Left from servicename"
-msgstr "Ανεύρεση υπηρεσιών"
+msgstr "Left from servicename"
 
 msgid "Leisure hobbies"
-msgstr ""
+msgstr "Leisure hobbies"
 
-#
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
 msgstr "Letterbox"
 
-#
-#, fuzzy
 msgid "Letterbox zoom"
-msgstr "Letterbox"
+msgstr "Letterbox zoom"
 
 msgid "Light Grey"
-msgstr ""
+msgstr "Light Grey"
 
 msgid "Limit character set for recording filenames"
-msgstr ""
+msgstr "Limit character set for recording filenames"
 
 msgid "Limit debug log size (MB)"
-msgstr ""
+msgstr "Limit debug log size (MB)"
 
-#
-#
 msgid "Limit east"
-msgstr "Ανατολικό όριο"
+msgstr "Limit east"
 
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ascii. This ensures compatibility with operating systems or file systems with limited character sets."
-msgstr ""
+msgstr "Limit the characters that can be used in recording filenames to (7 bit) ascii. This ensures compatibility with operating systems or file systems with limited character sets."
 
-#
-#
 msgid "Limit west"
-msgstr "Δυτικό όριο"
+msgstr "Limit west"
 
-#
-#
-#, fuzzy
 msgid "Limits cancelled"
-msgstr "Όρια ενεργοποιήμενα"
+msgstr "Limits cancelled"
 
-#
-#
-#, fuzzy
 msgid "Limits enabled"
-msgstr "Όρια ενεργοποιήμενα"
+msgstr "Limits enabled"
 
-#
-#
 msgid "Limits off"
-msgstr "Όρια απενεργοποιήμενα"
+msgstr "Limits off"
 
-#
-#
 msgid "Limits on"
-msgstr "Όρια ενεργοποιήμενα"
+msgstr "Limits on"
 
-#
-#
 msgid "Link Quality:"
-msgstr "Ποιότητα σύνδεσης:"
+msgstr "Link Quality:"
 
-#
-#
-#, fuzzy
 msgid "Link quality:"
-msgstr "Ποιότητα σύνδεσης:"
+msgstr "Link quality:"
 
-#
-#
 msgid "Link:"
-msgstr "Σύνδεση:"
+msgstr "Link:"
 
-#
-#
 msgid "Linked titles with a DVD menu"
-msgstr "Τίτλοι συνδεδεμένοι με μενού DVD"
+msgstr "Linked titles with a DVD menu"
 
 msgid "List EPG functions..."
-msgstr ""
+msgstr "List EPG functions..."
 
-#
 msgid "List available networks"
-msgstr "Λίστα διαθέσιμων δικτύων"
+msgstr "List available networks"
 
 msgid "List mode"
-msgstr ""
+msgstr "List mode"
 
-#
-#
-#, fuzzy
 msgid "List of storage devices"
-msgstr "Λίστα μέσων αποθήκευσης"
+msgstr "List of Storage Devices"
 
-#, fuzzy, python-format
+#, python-format
 msgid "List version %d, found %d channel"
 msgid_plural "List version %d, found %d channels"
-msgstr[0] "List version %d, found %d channels"
+msgstr[0] "List version %d, found %d channel"
 msgstr[1] "List version %d, found %d channels"
 
-#
-#
-#, fuzzy
 msgid "Listen to the radio..."
-msgstr "άκουσε ραδιόφωνο..."
+msgstr "Listen to the radio..."
 
-#
 msgid "Lithuanian"
-msgstr "Λιθουανικά"
+msgstr "Lithuanian"
 
-#
-#
 msgid "Load"
-msgstr "Φόρτωση"
+msgstr "Load"
 
 msgid "Load EPG"
-msgstr ""
+msgstr "Load EPG"
 
-#
-#
-#, fuzzy
 msgid "Load playlist"
-msgstr "ανάγνωση λίστας αναπαραγωγής"
+msgstr "load playlist"
 
 msgid "Load/Save"
-msgstr ""
+msgstr "Load/Save"
 
 msgid "Local box"
-msgstr ""
+msgstr "Local box"
 
-#
-#
-#, fuzzy
 msgid "Local network"
-msgstr "Τοπικό δίκτυο"
+msgstr "Local network"
 
-#
-#
 msgid "Location"
-msgstr "Τοποθεσία"
+msgstr "Location"
 
-#
-#
-#, fuzzy
 msgid "Lock ratio"
-msgstr "Τοποθεσία"
+msgstr "Lock ratio"
 
 msgid "Log Manager"
-msgstr ""
+msgstr "Log Manager"
 
-#
-#
 msgid "Log results to harddisk"
-msgstr "Καταγραφή αποτελεσμάτων στο δίσκο"
+msgstr "Log results to hard disk"
 
 msgid "LogManager"
-msgstr ""
+msgstr "LogManager"
 
 msgid "Logs"
-msgstr ""
+msgstr "Logs"
 
 msgid "Logs location"
-msgstr ""
+msgstr "Logs location"
 
 msgid "Logs manager"
-msgstr ""
+msgstr "Logs manager"
 
 msgid "Logs older than the specified no of days will be deleted."
-msgstr ""
+msgstr "Logs older than the specified no of days will be deleted."
 
 msgid "Logs settings"
-msgstr ""
+msgstr "Logs settings"
 
 msgid "Long << / >>"
-msgstr ""
+msgstr "Long << / >>"
 
 msgid "Long Left/Right"
-msgstr ""
+msgstr "Long Left/Right"
 
-#
 msgid "Long filenames"
-msgstr "Μεγάλα ονόματα αρχείων"
+msgstr "Long filenames"
 
-#
-#
-#, fuzzy
 msgid "Long key press"
-msgstr "Συνεχές πάτημα πλήκτρου"
+msgstr "Long key press"
 
-#
-#
 msgid "Longitude"
-msgstr "Γεωγρ. μήκος"
+msgstr "Longitude"
 
 msgid "Luxembourgish"
-msgstr ""
+msgstr "Luxembourgish"
 
-#
-#
-#, fuzzy
 msgid "MAC-address"
-msgstr "Διεύθυνση IP"
+msgstr "MAC-address"
 
-#
-#
-#, fuzzy
 msgid "MAC-address settings"
-msgstr "Ρυθμίσεις κάρτας δικτύου"
+msgstr "MAC-address settings"
 
 msgid "MAC:"
-msgstr ""
+msgstr "MAC:"
 
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
-#
-#
 msgid "Main menu"
-msgstr "Κεντρικό μενού"
+msgstr "Main Menu"
 
-#
-#
 msgid "Mainmenu"
-msgstr "Κεντρικό μενού"
+msgstr "Mainmenu"
 
 msgid "Maintain old EPG data for"
-msgstr ""
+msgstr "Maintain old EPG data for"
 
-#
-#
 msgid "Make this mark an 'in' point"
-msgstr "Μάρκαρε αυτό το σημείο σαν σημείο εσόδου"
+msgstr "Make this mark an 'in' point"
 
-#
-#
 msgid "Make this mark an 'out' point"
-msgstr "Μάρκαρε αυτό το σημείο σαν σημείο εξόδου"
+msgstr "Make this mark an 'out' point"
 
-#
-#
 msgid "Make this mark just a mark"
-msgstr "Μάρκαρε αυτό το σημείο απλός σαν σημείο"
+msgstr "Make this mark just a mark"
 
-#
-#
 msgid "Manage extensions"
-msgstr "Διαχείριση επεκτάσεων"
+msgstr "Manage extensions"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Manage your %s %s's software"
-msgstr "Διαχείριση λογισμικού δέκτη"
+msgstr "Manage your %s %s's software"
 
-#
-#
 msgid "Manual Scan"
-msgstr "Χειροκίνητη σάρωση"
+msgstr "Manual Scan"
 
-#
 msgid "Manual configuration"
-msgstr "Χειροκίνητη ρύθμιση"
+msgstr "Manual configuration"
 
 msgid "Manual scan"
-msgstr ""
+msgstr "Manual scan"
 
-#
-#
 msgid "Manual transponder"
-msgstr "Χειροκίνητος αναμεταδότης"
+msgstr "Manual transponder"
 
-#
-#
 msgid "Manufacturer"
-msgstr "Κατασκευαστής"
+msgstr "Manufacturer"
 
-#
-#
-#, fuzzy
 msgid "Margin after recording (minutes)"
-msgstr "Περιθώριο πριν την εγγραφή (λεπτά)"
+msgstr "Margin after recording (minutes)"
 
-#
-#
-#, fuzzy
 msgid "Margin before recording (minutes)"
-msgstr "Περιθώριο πριν την εγγραφή (λεπτά)"
+msgstr "Margin before recording (minutes)"
 
-#
-#, fuzzy
 msgid "Max. bitrate: "
-msgstr "Μεγ. Bitrate: "
+msgstr "Max. bitrate: "
 
 msgid "Maxdown +"
-msgstr ""
+msgstr "Maxdown +"
 
 msgid "Maxdown -"
-msgstr ""
+msgstr "Maxdown -"
 
 msgid "Maxdown: "
-msgstr ""
+msgstr "Maxdown: "
 
 msgid "Maximum no of days"
-msgstr ""
+msgstr "Maximum no of days"
 
 msgid "Maximum total space used (MB)"
-msgstr ""
+msgstr "Maximum total space used (MB)"
 
 msgid "Media playback Remaining/Elapsed as"
-msgstr ""
+msgstr "Media playback Remaining/Elapsed as"
 
-#
-#
 msgid "Media player"
-msgstr "Αναπαραγωγή πολυμέσων"
+msgstr "Media player"
 
-#
-#
-#, fuzzy
 msgid "Media scanner"
-msgstr "Αναπαραγωγή πολυμέσων"
+msgstr "Media scanner"
 
-#
-#
 msgid "Medium is not a writeable DVD!"
-msgstr "Δεν είναι εγγράψιμο DVD!"
+msgstr "Medium is not a writeable DVD!"
 
-#
-#
 msgid "Medium is not empty!"
-msgstr "Το μέσο δεν είναι κενό!"
+msgstr "Medium is not empty!"
 
-#
 msgid "Memory"
-msgstr "Μνήμη"
+msgstr "Memory"
 
 msgid "Memory Information"
-msgstr ""
+msgstr "Memory Information"
 
-#
-#, fuzzy
 msgid "Memory index"
-msgstr "Μνήμη"
+msgstr "Memory index"
 
-#
-#
-#, fuzzy
 msgid "Memory positions"
-msgstr "Αποθήκευση θέσης"
+msgstr "Memory positions"
 
-#
-#
 msgid "Menu"
-msgstr "Μενού"
+msgstr "Menu"
 
 msgid "Menu config"
-msgstr ""
+msgstr "Menu config"
 
 msgid "Merging Timeshift files"
-msgstr ""
+msgstr "Merging Timeshift files"
 
 msgid "MiniDLNA Log"
-msgstr ""
+msgstr "MiniDLNA Log"
 
 msgid "MiniDLNA Setup"
-msgstr ""
+msgstr "MiniDLNA Setup"
 
 msgid "MiniDLNA setup"
-msgstr ""
+msgstr "MiniDLNA setup"
 
 #, python-format
 msgid "Minimum age %d years"
-msgstr ""
+msgstr "Minimum age %d years"
 
-#
-#, fuzzy
 msgid "Minimum send interval"
-msgstr "Guard interval"
+msgstr "Minimum send interval"
 
 msgid "Mins"
-msgstr ""
+msgstr "Mins"
 
 msgid "Mins Secs"
-msgstr ""
+msgstr "Mins Secs"
 
 msgid "Missing "
-msgstr "Λείπει"
+msgstr "Missing "
 
 msgctxt "Satellite configuration mode"
 msgid "Mode"
-msgstr ""
+msgstr "Mode"
 
 msgctxt "Video output mode"
 msgid "Mode"
-msgstr ""
+msgstr "Mode"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Model:\t%s %s\n"
-msgstr "Μοντέλο:"
+msgstr "Model:\t%s %s\n"
 
-#
-#
 msgid "Model: "
-msgstr "Μοντέλο:"
+msgstr "Model: "
 
-#
-#
 msgid "Modulation"
-msgstr "Διαμόρφωση"
+msgstr "Modulation"
 
-#
-#
 msgid "Modulator"
-msgstr "Διαμορφωτής"
+msgstr "Modulator"
 
-#
-#
 msgid "Mon"
-msgstr "Δευ"
+msgstr "Mon"
 
-#
-#
 msgid "Mon-Fri"
-msgstr "Δευ-Παρ"
+msgstr "Mon-Fri"
 
-#
-#
 msgid "Monday"
-msgstr "Δευτέρα"
+msgstr "Monday"
 
-#
-#
-#, fuzzy
 msgid "Monthly"
-msgstr "μήνας"
+msgstr "Monthly"
 
-#
-#
 msgid "Mosquito noise reduction"
 msgstr "Mosquito noise reduction"
 
-#
 msgid "Mount"
-msgstr "Προσάρτηση:"
+msgstr "Mount"
 
 msgid "Mounts Setup"
-msgstr ""
+msgstr "Mounts Setup"
 
 msgid "Mounts setup"
-msgstr ""
+msgstr "Mounts setup"
 
-#
 msgid "Move"
-msgstr "Μετακίνηση"
+msgstr "Move"
 
 msgid "Move Left/Right"
-msgstr ""
+msgstr "Move Left/Right"
 
-#
-#
-#, fuzzy
 msgid "Move PiP to main picture"
-msgstr "μετακίνηση PiP στην κεντρική εικόνα"
+msgstr "Move PiP to main picture"
 
-#
-#
 msgid "Move Picture in Picture"
-msgstr "Μετακίνηση Picture in Picture"
+msgstr "Move Picture in Picture"
 
 msgid "Move Up/Down"
-msgstr ""
+msgstr "Move Up/Down"
 
 msgid "Move down a page"
-msgstr ""
+msgstr "Move down a page"
 
-#
-#
 msgid "Move east"
-msgstr "Μετακίνηση ανατολικά"
+msgstr "Move east"
 
 msgid "Move to home of list"
-msgstr ""
+msgstr "Move to home of list"
 
-#
 msgid "Move to other directory"
-msgstr "Μετακινηση σε άλλο φάκελο"
+msgstr "Move to other directory"
 
-#
-#
-#, fuzzy
 msgid "Move to position X"
-msgstr "Πήγαινε στην θέση"
+msgstr "Move to position X"
 
 msgid "Move up a page"
-msgstr ""
+msgstr "Move up a page"
 
-#
-#
 msgid "Move west"
-msgstr "Μετακίνηση δυτικά"
+msgstr "Move west"
 
-#
-#
-#, fuzzy
 msgid "Moved to position 0"
-msgstr "Πήγαινε στην θέση"
+msgstr "Moved to position 0"
 
-#
-#
-#, fuzzy
 msgid "Moved to position at index"
-msgstr "Πήγαινε στην θέση"
+msgstr "Moved to position at index"
 
-#
-#
-#, fuzzy
 msgid "Movement"
-msgstr "Μετακίνηση ανατολικά"
+msgstr "Movement"
 
 msgid "Movie List"
-msgstr ""
+msgstr "Movie List"
 
 msgid "Movie List Setup"
-msgstr ""
+msgstr "Movie List Setup"
 
-#
-#
 msgid "Movie location"
-msgstr "Τοποθεσία ταινιών"
+msgstr "Movie location"
 
-#
-#
-#, fuzzy
 msgid "Movie selection"
-msgstr "Τοποθεσία ταινιών"
+msgstr "Movie selection"
 
 msgid "Movie/Drama"
-msgstr ""
+msgstr "Movie/Drama"
 
-#
-#
-#, fuzzy
 msgid "Moving"
-msgstr "Διαγραφή"
+msgstr "Moving"
 
-#
-#
-#, fuzzy
 msgid "Moving east ..."
-msgstr "Μετακίνηση ανατολικά"
+msgstr "Moving east ..."
 
-#
-#, fuzzy
 msgid "Moving files"
-msgstr "Μεγάλα ονόματα αρχείων"
+msgstr "Moving files"
 
-#
-#
-#, fuzzy
 msgid "Moving to position"
-msgstr "Πήγαινε στην θέση"
+msgstr "Moving to position"
 
-#
-#
-#, fuzzy
 msgid "Moving west ..."
-msgstr "Μετακίνηση δυτικά"
+msgstr "Moving west ..."
 
-#
-#
 msgid "Multi EPG"
-msgstr "Πολλαπλό EPG"
+msgstr "Multi EPG"
 
-#
-#
-#, fuzzy
 msgid "MultiEPG settings"
-msgstr "Επιλογές συλλογής"
+msgstr "MultiEPG settings"
 
-#
-#
 msgid "Multimedia"
-msgstr "Πολυμέσα"
+msgstr "Multimedia"
 
-#
-#
 msgid "Multiple service support"
-msgstr "Υποστήριξη πολλαπλών υπηρεσιών"
+msgstr "Multiple service support"
 
 msgid "Multiplex"
 msgstr "Multiplex"
 
-#
-#
 msgid "Multisat"
 msgstr "Multisat"
 
 msgid "Music/Ballet/Dance"
-msgstr ""
+msgstr "Music/Ballet/Dance"
 
-#
-#
 msgid "N/A"
 msgstr "N/A"
 
-#
-#
-#, fuzzy
 msgid "NFI image flashing"
-msgstr "Εγκατάσταση λογισμικού NFI"
+msgstr "NFI image flashing"
 
-#
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "Η εγκατάσταση λογισμικού NFI τελείωσε. Πατήστε Κίτρινο για επανεκκίνηση!"
+msgstr "NFI image flashing completed. Press Yellow to Reboot!"
 
 msgid "NFS Setup"
-msgstr ""
+msgstr "NFS Setup"
 
 msgid "NFS setup"
-msgstr ""
+msgstr "NFS setup"
 
 msgid "NIM"
 msgstr "NIM"
 
 msgid "NTP"
-msgstr ""
+msgstr "NTP"
 
-#
-#
-#, fuzzy
 msgid "NTP server"
-msgstr "Nameserver"
+msgstr "NTP server"
 
-#
-#
 msgid "NTSC"
 msgstr "NTSC"
 
-#
-#
 msgid "Name"
-msgstr "Όνομα"
+msgstr "Name"
 
 msgid "Name:"
-msgstr ""
+msgstr "Name:"
 
-#
-#
 msgid "Nameserver"
-msgstr "Nameserver"
+msgstr "Name server"
 
-#
-# , python-format
 #, python-format
 msgid "Nameserver %d"
-msgstr "Nameserver %d"
+msgstr "Name server %d"
 
-#
-#
 msgid "Nameserver settings"
-msgstr "Παραμετροποίηση Nameserver "
+msgstr "Name server settings"
 
 msgid "Namespace"
 msgstr "Namespace"
 
-#
-#
 msgid "Netmask"
 msgstr "Netmask"
 
 msgid "Netmask:"
-msgstr ""
+msgstr "Netmask:"
 
-#
-#
 msgid "Network"
-msgstr "Δίκτυο"
+msgstr "Network"
 
-#
 msgid "Network ID"
-msgstr "ID δικτύου"
+msgstr "Network ID"
 
 msgid "Network Information"
-msgstr ""
+msgstr "Network Information"
 
-#
-#
-#, fuzzy
 msgid "Network MAC settings"
-msgstr "Ενεργοποίηση ρυθμίσεων δικτύου"
+msgstr "Network MAC settings"
 
 msgid "Network Servers:"
-msgstr ""
+msgstr "Network Servers:"
 
-#
-#
 msgid "Network Setup"
-msgstr "Ρύθμιση δικτύου"
+msgstr "Network Setup"
 
 msgid "Network Test"
-msgstr ""
+msgstr "Network Test"
 
-#
-#
-#, fuzzy
 msgid "Network mounts"
-msgstr "Έλεγχος δικτύου"
+msgstr "Network mounts"
 
-#
-#, fuzzy
 msgid "Network name (SSID)"
-msgstr "Όνομα δικτύου (SSID)"
+msgstr "Network name (SSID)"
 
-#
-#
 msgid "Network scan"
-msgstr "Ανεύρεση Δικτύου"
+msgstr "Network scan"
 
-#
-#
 msgid "Network setup"
-msgstr "Ρύθμιση δικτύου"
+msgstr "Network setup"
 
-#
-#
 msgid "Network test"
-msgstr "Έλεγχος δικτύου"
+msgstr "Network test"
 
-#
 msgid "Network test: "
-msgstr "Έλεγχος δικτύου: "
+msgstr "Network test: "
 
-#
-#
-#, fuzzy
 msgid "Network wizard"
-msgstr "Οδηγός δικτύωσης"
+msgstr "Network wizard"
 
-#
-#
 msgid "Network:"
-msgstr "Δίκτυο:"
+msgstr "Network:"
 
-#
-#
 msgid "New"
-msgstr "Νέο"
+msgstr "New"
 
-#
 msgid "New PIN"
-msgstr "Νέο PIN"
+msgstr "New PIN"
 
 msgid "New profile: "
-msgstr ""
+msgstr "New profile: "
 
 msgid "New timers location"
-msgstr ""
+msgstr "New timers location"
 
-#
-#
 msgid "New version:"
-msgstr "Νέα έκδοση:"
+msgstr "New version:"
 
 msgid "News Current Affairs"
-msgstr ""
+msgstr "News Current Affairs"
 
 msgctxt "now/next: 'next' event label"
 msgid "Next"
-msgstr ""
+msgstr "Next"
 
-#
-#
 msgid "No"
-msgstr "Όχι"
+msgstr "No"
 
-#
-#
 msgid "No (supported) DVDROM found!"
-msgstr "Δεν βρέθηκε (υποστηριζόμενο) DVDROM!"
+msgstr "No (supported) DVDROM found!"
 
-#
-#
 msgid "No Connection"
-msgstr "Δεν υπάρχει σύνδεση"
+msgstr "No Connection"
 
-#
-#
 msgid "No HDD found or HDD not initialized!"
-msgstr ""
-"Δεν βρέθηκε σκληρός δίσκος \n"
-"ή δεν έχει γίνει αρχικοποίηση!"
+msgstr "No HDD found or HDD not initialised!"
 
 msgid "No Timeshift found to save as recording!"
-msgstr ""
+msgstr "No Timeshift found to save as recording!"
 
-#
-#
 msgid "No backup needed"
-msgstr "Δεν χρειάζεται αντίγραφο ασφαλείας"
+msgstr "No backup needed"
 
-#
 msgid "No cable tuner found!"
-msgstr "Δεν βρέθηκε καλωδιακό tuner!"
+msgstr "No cable tuner found!"
 
 msgid "No card inserted!"
-msgstr ""
+msgstr "No card inserted!"
 
-#
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
 msgstr ""
-"Δεν υπάρχουν δεδομένα στον αναμεταδότη!\n"
+"No data on transponder!\n"
 "(Timeout reading PAT)"
 
 msgid "No delay"
-msgstr ""
+msgstr "No delay"
 
-#
-#
 msgid "No description available."
-msgstr "Δεν υπάρχει περιγραφή."
+msgstr "No description available."
 
-#
-#
 msgid "No details for this image file"
-msgstr "Δεν υπάρχουν λεπτομέρειες για αυτό το αρχείο"
+msgstr "No details for this image file"
 
-#
-#
 msgid "No displayable files on this medium found!"
-msgstr "Δεν υπάρχουν αρχεία προς εμφάνιση σε αυτό το μέσο!"
+msgstr "No displayable files on this medium found!"
 
-#
-#
 msgid "No event info found, recording indefinitely."
-msgstr ""
-"Δεν βρέθηκαν πληροφορίες προγράμματος,\n"
-"η εγγραφή δεν θα σταματήσει."
+msgstr "No event info found, recording indefinitely."
 
-#
-#
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
-msgstr "Δεν είναι δυνατή η γρήγορη μετάβαση... Χρησιμοποιήστε τα αριθμητικά πλήκτρα για μετακίνηση εμπρός/πίσω!"
+msgstr "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
 
-#
-#
-#, fuzzy
 msgid "No free index available"
-msgstr "Δεν υπάρχει περιγραφή."
+msgstr "No free index available"
 
-#
-#
 msgid "No free tuner!"
-msgstr "Δεν υπάρχει ελεύθερο tuner!"
+msgstr "No free tuner!"
 
 msgid "No httpport defined in oscam.conf. This value is required!"
-msgstr ""
+msgstr "No httpport defined in oscam.conf. This value is required!"
 
 msgid "No httppwd defined in oscam.conf"
-msgstr ""
+msgstr "No httppwd defined in oscam.conf"
 
 msgid "No httpuser defined in oscam.conf"
-msgstr ""
+msgstr "No httpuser defined in oscam.conf"
 
-#
-#
 msgid "No network connection available."
-msgstr "Δεν υπάρχει διαθέσιμη σύνδεση δικτύου."
+msgstr "No network connection available."
 
-#
-#
 msgid "No networks found"
-msgstr "Δεν βρέθηκαν δίκτυα"
+msgstr "No networks found"
 
-#
-#
-#, fuzzy
 msgid "No new plugins found"
-msgstr "Δεν βρέθηκαν δίκτυα"
+msgstr "No new plugins found"
 
 msgid "No of items switch (increase or reduced)"
-msgstr ""
+msgstr "No of items switch (increase or reduced)"
 
-#
-#
 msgid "No positioner capable frontend found."
-msgstr "Δεν βρέθηκε διεπαφή χρήστη για το positioner."
+msgstr "No positioner capable frontend found."
 
 msgid "No satellites configured. Plese check your tuner setup."
-msgstr ""
+msgstr "No satellites configured. Plese check your tuner setup."
 
-#
-#
-#, fuzzy
 msgid "No service"
-msgstr "προσθήκη υπηρεσίας"
+msgstr "No service"
 
-#
-#
-#, fuzzy
 msgid "No services/providers selected"
-msgstr "δεν έχουν επιλεγεί υπηρεσίες/πάροχοι"
+msgstr "No services/providers selected"
 
-#
-#
-#, fuzzy
 msgid "No standby"
-msgstr "οχι αναμονή"
+msgstr "No standby"
 
-#
-#, fuzzy
 msgid "No suitable sat tuner found!"
-msgstr "Δεν βρέθηκε καλωδιακό tuner!"
+msgstr "No suitable sat tuner found!"
 
-#
-#
 msgid "No tags are set on these movies."
-msgstr "Δεν έχουν τεθεί σημεία σε αυτές τις ταινίες."
+msgstr "No tags are set on these movies."
 
-#
-#
-#, fuzzy
 msgid "No timeout"
-msgstr "χωρίς λήξη"
+msgstr "No timeout"
 
-#
-#
 msgid "No to all"
-msgstr "Όχι σε όλα"
+msgstr "No to all"
 
-#
-#, fuzzy
 msgid "No transparency"
-msgstr "χωρίς διαφάνεια"
+msgstr "No transparency"
 
-#
-#
 msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr "Δεν υπάρχει ενεργοποιημένο tuner για χρήση με diseqc positioner!"
+msgstr "No tuner is configured for use with a diseqc positioner!"
 
-#
-#
 msgid ""
 "No tuner is enabled!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
-"Δεν ενεργοποιήθηκε tuner!\n"
-"Παραμετροποιήστε το tuner προτού κάνετε ανεύρεση υπηρεσιών."
+"No tuner is enabled!\n"
+"Please setup your tuner settings before you start a service scan."
 
 msgid "No updates available. Please try again later."
-msgstr ""
+msgstr "No updates available. Please try again later."
 
-#
-#
 msgid ""
 "No valid service PIN found!\n"
 "Do you like to change the service PIN now?\n"
 "When you say 'No' here the service protection stay disabled!"
 msgstr ""
-"Δεν υπάρχει έγκυρο PIN υπηρεσίας!\n"
-"Θέλετε να αλλάξετε το PIN υπηρεσίας τώρα;\n"
-"Εάν πείτε \"ΟΧΙ\" εδώ η προστασία της υπηρεσίας θα μείνει επενεργοποιημένη!"
+"No valid service PIN found!\n"
+"Do you like to change the service PIN now?\n"
+"When you say 'No' here the service protection stay disabled!"
 
-#
-#
 msgid ""
 "No valid setup PIN found!\n"
 "Do you like to change the setup PIN now?\n"
 "When you say 'No' here the setup protection stay disabled!"
 msgstr ""
-"Άκυρο PIN ρύθμισης!\n"
-"Θέλετε να ορίσετε τώρα ένα PIN;\n"
-"Σε περίπτωση που πείτε \"Όχι\"' η προστασία των ρυθμίσεων θα μείνει απεργοποιήμενη!"
+"No valid setup PIN found!\n"
+"Do you like to change the setup PIN now?\n"
+"When you say 'No' here the setup protection stay disabled!"
 
-#
 msgid "No wireless networks found! Searching..."
-msgstr "Δεν βρέθηκαν ασύρματα δίκτυα! Αναζήτηση..."
+msgstr "No wireless networks found! Searching..."
 
-#
-#
 msgid ""
 "No working local network adapter found.\n"
 "Please verify that you have attached a network cable and your network is configured correctly."
 msgstr ""
-"Δεν βρέθηκε ενεργή κάρτα δικτύου.\n"
-"Παρακαλώ επιβεβαιώστε ότι έχει συνδεθεί καλώδιο δικτύου και έχει ρυθμιστεί σωστά το δίκτυο."
+"No working local network adapter found.\n"
+"Please verify that you have attached a network cable and your network is configured correctly."
 
-#
-#
 msgid ""
 "No working wireless network adapter found.\n"
 "Please verify that you have attached a compatible WLAN device and your network is configured correctly."
 msgstr ""
-"Δεν βρέθηκε ενεργή συσκευή ασύρματου δικτύου.\n"
-"Παρακαλώ επιβεβαιώστε ότι έχει συνδεθεί συμβατή συσκευή WLAN και και έχει ρυθμιστεί σωστά το δίκτυο."
+"No working wireless network adapter found.\n"
+"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
 
-#
-#
 msgid ""
 "No working wireless network interface found.\n"
 " Please verify that you have attached a compatible WLAN device or enable your local network interface."
 msgstr ""
-"Δεν βρέθηκε ενεργή διεπαφή ασύρματου δικτύου.\n"
-"Παρακαλώ επιβεβαιώστε ότι έχει συνδεθεί συμβατή συσκευή WLAN ή ενεργοποιήστε τη διεπαφή δικτύου."
+"No working wireless network interface found.\n"
+" Please verify that you have attached a compatible WLAN device or enable your local network interface."
 
-#
-#
 msgid "No, but restart from begin"
-msgstr "Όχι. Επανεκκίνηση απο την αρχή."
+msgstr "No, but restart from begin"
 
-#
-#
 msgid "No, do nothing."
-msgstr "Όχι. Μην κάνεις τίποτα."
+msgstr "No, do nothing."
 
-#
-#
 msgid "No, just start my %s %s"
-msgstr "Όχι, απλώς εκκίνηση του δέκτη"
+msgstr "No, just start my %s %s"
 
-#
 msgid "No, never"
-msgstr "Όχι, ποτέ"
+msgstr "No, never"
 
-#
-#
 msgid "No, scan later manually"
-msgstr "Όχι, θα γίνει σάρωση αργότερα"
+msgstr "No, scan later manually"
 
 msgid "NodeID"
-msgstr ""
+msgstr "NodeID"
 
 msgid "NodeID: "
-msgstr ""
+msgstr "NodeID: "
 
-#
-#
 msgid "None"
-msgstr "Κανένα"
+msgstr "None"
 
 msgid "Normal mode"
-msgstr ""
+msgstr "Normal mode"
 
-#
-#
 msgid "North"
-msgstr "Βορράς"
+msgstr "North"
 
-#
 msgid "Norwegian"
-msgstr "Νορβηγικά"
+msgstr "Norwegian"
 
 msgid "Not Flashing"
-msgstr ""
+msgstr "Not Flashing"
 
 msgid "Not Shown"
-msgstr ""
+msgstr "Not Shown"
 
-#
-#, fuzzy
 msgid "Not associated"
-msgstr "Ασύνδετα"
+msgstr "Not associated"
 
-#
-# , python-format
-#, fuzzy, python-format
+#, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
-msgstr "Μη επαρκής χώρος δίσκου. Παρακαλώ ελευθερώστε χώρο και προσπαθήστε ξανά. (%d MB απαιτούνται, %d MB διαθέσιμα)"
+msgstr "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 
 #, python-format
 msgid ""
@@ -6183,3645 +4629,2655 @@ msgid ""
 "Free Space: %sMB\n"
 "Path: %s"
 msgstr ""
+"Not enough free Disk space!\n"
+"\n"
+"File size: %sMB\n"
+"Free Space: %sMB\n"
+"Path: %s"
 
 msgid "Not mounted"
-msgstr ""
+msgstr "Not mounted"
 
-#
 msgid "Not-Associated"
-msgstr "Ασύνδετα"
+msgstr "Not-Associated"
 
-#
-#
-#, fuzzy
 msgid "Nothing"
-msgstr "μην κάνεις τίποτα"
+msgstr "Nothing"
 
-#
-#
 msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
-"Τίποτα για σάρωση!\n"
-"Παρακαλώ παραμετροποιήστε το tuner πρώτα."
+"Nothing to scan!\n"
+"Please setup your tuner settings before you start a service scan."
 
-#
 msgid "Nothing to upgrade"
-msgstr "Τίποτα για αναβάθμιση"
+msgstr "Nothing to upgrade"
 
 msgid "Nothing, just leave this menu"
-msgstr ""
+msgstr "Nothing, just leave this menu"
 
 msgctxt "now/next: 'now' event label"
 msgid "Now"
-msgstr ""
+msgstr "Now"
 
-#
-#
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades. If you have done that, press OK."
-msgstr "Χρησιμοποιείστε τις ρυθμίσεις αντίθεσης για να μεγιστοποιήσετε τη φωτεινότητα του φόντου, αλλά βεβαιωθείτε ότι μπορείτε να διακρίνετε τη διαφορά ανάμεσα στις δύο φωτεινότερες σκιές. Εάν το κάνατε, πιέστε ΟΚ."
+msgstr "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades. If you have done that, press OK."
 
 msgid "Number"
-msgstr ""
+msgstr "Number"
 
 msgid "Number of rows"
-msgstr ""
+msgstr "Number of rows"
 
 msgid "OE Changes"
-msgstr ""
+msgstr "OE Changes"
 
-#
-#
 msgid "OK"
 msgstr "OK"
 
 msgid "OK button (long)"
-msgstr ""
+msgstr "OK button (long)"
 
 msgid "OK button (short)"
-msgstr ""
+msgstr "OK button (short)"
 
-#
-#
 msgid "OK, guide me through the upgrade process"
-msgstr "ΟΚ, οδήγησε με στην διαδικασία αναβάθμισης"
+msgstr "OK, guide me through the upgrade process"
 
 msgid "ONID"
 msgstr "ONID"
 
 msgid "OSD 3D Setup"
-msgstr ""
+msgstr "OSD 3D Setup"
 
-#
 msgid "OSD name request"
 msgstr "OSD name request"
 
 msgid "OSD settings"
-msgstr ""
+msgstr "OSD settings"
 
 msgid "OScam Info"
-msgstr ""
+msgstr "OScam Info"
 
 msgid "OScam info"
-msgstr ""
+msgstr "OScam info"
 
-#
-#
 msgid "Off"
-msgstr "Εκτός"
+msgstr "Off"
 
 msgid "Offline decode delay (ms)"
-msgstr ""
+msgstr "Offline decode delay (ms)"
 
-#
-#
 msgid "On"
-msgstr "Εντός"
+msgstr "On"
 
 msgid "On end of movie"
-msgstr ""
+msgstr "On end of movie"
 
 msgid "On reaching the end of a file during playback, you can choose the box's behavior."
-msgstr ""
+msgstr "On reaching the end of a file during playback, you can choose the box's behavior."
 
 msgid "Once per day"
-msgstr ""
+msgstr "Once per day"
 
-#
-#
 msgid "One"
-msgstr "Ένα"
+msgstr "One"
 
 msgid "One line"
-msgstr ""
+msgstr "One line"
 
 msgid "OnlineVersionCheck"
-msgstr ""
+msgstr "OnlineVersionCheck"
 
 msgid "Only active when in standby"
-msgstr ""
+msgstr "Only active when in standby"
 
-#
-#
 msgid "Only extensions."
-msgstr "Μόνο επεκτάσεις."
+msgstr "Only extensions."
 
-#
-#
-#, fuzzy
 msgid "Only free scan"
-msgstr "Σάρωση μόνο ελεύθερων"
+msgstr "Only free scan"
 
 msgid "Open satellites list"
-msgstr ""
+msgstr "Open satellites list"
 
 msgid "Open service list"
-msgstr ""
+msgstr "Open service list"
 
 msgid "Open service list and select next channel"
-msgstr ""
+msgstr "Open service list and select next channel"
 
 msgid "Open service list and select previous channel"
-msgstr ""
+msgstr "Open service list and select previous channel"
 
 msgid "Open the movie list"
-msgstr ""
+msgstr "Open the movie list"
 
 msgid "OpenVPN setup"
-msgstr ""
+msgstr "OpenVPN setup"
 
 msgid "OpenVpn Log"
-msgstr ""
+msgstr "OpenVpn Log"
 
 msgid "OpenVpn Setup"
-msgstr ""
+msgstr "OpenVpn Setup"
 
-#
 msgid "Orbital position"
-msgstr "Τροχιακή θέση"
+msgstr "Orbital position"
 
 msgid "Original"
-msgstr ""
+msgstr "Original"
 
 msgid "Oscam Info - Configuration"
-msgstr ""
+msgstr "Oscam Info - Configuration"
 
 msgid "Oscam Info - Main Menu"
-msgstr ""
+msgstr "Oscam Info - Main Menu"
 
 msgid "Other"
-msgstr "Άλλο"
+msgstr "Other"
 
-#
 msgid "Output"
-msgstr "Έξοδος"
+msgstr "Output"
 
 msgid "Overwrite configuration files during software upgrade?"
-msgstr "Να αντικατασταθούν τα αρχεία ρυθμίσεων κατά την αναβάθμιση λογισμικού;"
+msgstr "Overwrite configuration files during software upgrade?"
 
 msgid "Overwrite configuration files?"
-msgstr ""
+msgstr "Overwrite configuration files?"
 
 msgid "PAGE UP/DOWN"
-msgstr ""
+msgstr "PAGE UP/DOWN"
 
-#
-#
 msgid "PAL"
 msgstr "PAL"
 
 msgid "PCR PID"
 msgstr "PCR PID"
 
-#
-#
 msgid "PIDs"
 msgstr "PIDs"
 
 msgid "PLP ID"
-msgstr ""
+msgstr "PLP ID"
 
 msgid "PMT PID"
 msgstr "PMT PID"
 
 msgid "PRIMETIME"
-msgstr ""
+msgstr "PRIMETIME"
 
-#
-#
 msgid "Package list update"
-msgstr "Ενημέρωση λίστας πακέτων"
+msgstr "Package list update"
 
-#
 msgid "Packages"
-msgstr "Πακέτα"
+msgstr "Packages"
 
-#
-#
 msgid "Packet management"
-msgstr "Διαχείριση πακέτων"
+msgstr "Packet management"
 
-#
-#
 msgid "Packet manager"
-msgstr "Διαχείριση πακέτων"
+msgstr "Packet manager"
 
 msgid "Page down"
-msgstr ""
+msgstr "Page down"
 
 msgid "Page right"
-msgstr ""
+msgstr "Page right"
 
 msgid "Page up"
-msgstr ""
+msgstr "Page up"
 
-#
-#
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-#, fuzzy
 msgid "Pan&scan"
-msgstr "Pan&Scan"
+msgstr "Pan&scan"
 
-#
-#
-#, fuzzy
 msgid "Parent directory"
-msgstr "Γονικός φάκελος"
+msgstr "Parent directory"
 
-#
-#
 msgid "Parental control"
-msgstr "Γονικός έλεγχος"
+msgstr "Parental control"
 
 msgid "Parental control editor"
-msgstr ""
+msgstr "Parental control editor"
 
-#
-#
 msgid "Parental control setup"
-msgstr "Παραμετροποίηση γονικού ελέγχου"
+msgstr "Parental control setup"
 
-#
-#
 msgid "Parental control type"
-msgstr "Είδος γονικού ελέγχου"
+msgstr "Parental control type"
 
-#
-#
 msgid "Password"
-msgstr "Κωδικός "
+msgstr "Password"
 
 msgid "Password (httpwd)"
-msgstr ""
+msgstr "Password (httpwd)"
 
 msgid "Password:"
-msgstr ""
+msgstr "Password:"
 
-#
-#
-#, fuzzy
 msgid "Pause"
-msgstr "παύση"
+msgstr "Pause"
 
-#
-#
 msgid "Pause movie at end"
-msgstr "Πάυση στο τέλος της ταινίας"
+msgstr "Pause movie at end"
 
 msgid "Pause playback"
-msgstr ""
+msgstr "Pause playback"
 
 msgid "Peak load (max queued requests per workerthread)"
-msgstr ""
+msgstr "Peak load (max queued requests per worker thread)"
 
 msgid "Percentage"
-msgstr ""
+msgstr "Percentage"
 
 msgid "Percentage left"
-msgstr ""
+msgstr "Percentage left"
 
-#
-#
-#, fuzzy
 msgid "Percentage right"
-msgstr "Δεξιόστροφη"
+msgstr "Percentage right"
 
 msgid "Perform a complete image backup before updating."
-msgstr ""
+msgstr "Perform a complete image backup before updating."
 
 msgid "Perform a full image backup"
-msgstr ""
+msgstr "Perform a full image backup"
 
 msgid "Perform a settings backup,"
-msgstr ""
+msgstr "Perform a settings backup,"
 
 msgid "Perform a settings backup, making a backup before updating is strongly advised."
-msgstr ""
+msgstr "Perform a settings backup, making a backup before updating is strongly advised."
 
 msgid "Perform a settings backup before updating."
-msgstr ""
+msgstr "Perform a settings backup before updating."
 
 msgid "Perform an online update check in the background"
-msgstr ""
+msgstr "Perform an online update check in the background"
 
 msgid "Permanently delete all recordings in the trash can?"
-msgstr "Οριστική διαγραφή όλων των εγγραφών από τον κάδο;"
+msgstr "Permanently delete all recordings in the trash can?"
 
 msgid "Permanently remove all deleted items"
-msgstr "Οριστική διαγραφή όλων των διεγραμμένων αντικειμένων"
+msgstr "Permanently remove all deleted items"
 
-#
 msgid "Persian"
-msgstr "Περσικά"
+msgstr "Persian"
 
-#
-#
 msgid "Phone number"
-msgstr "Τηλεφωνικός αριθμός"
+msgstr "Phone number"
 
 msgid "PiP"
-msgstr ""
+msgstr "PiP"
 
 msgid "Picon"
-msgstr ""
+msgstr "Picon"
 
 msgid "Picon and Service Name"
-msgstr ""
+msgstr "Picon and Service Name"
 
 msgid "Picon and service name"
-msgstr ""
+msgstr "Picon and service name"
 
 msgid "Picon width"
-msgstr ""
+msgstr "Picon width"
 
-#
-#
-#, fuzzy
 msgid "Picture in graphics"
-msgstr "Μετακίνηση Picture in Picture"
+msgstr "Picture in graphics"
 
-#
-#
-#, fuzzy
 msgid "Picture player"
-msgstr "Αναπαραγωγή εικόνων"
+msgstr "Picture player"
 
-#
-#
 #. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
 msgstr "Pillarbox"
 
-#
-#
 msgid "Pilot"
 msgstr "Pilot"
 
-#
-#
 msgid "Play"
-msgstr "Αναπαραγωγή"
+msgstr "Play"
 
-#
-#
 msgid "Play Audio-CD..."
-msgstr "Αναπαραγωγή Audio-CD..."
+msgstr "Play Audio-CD..."
 
-#
-#
 msgid "Play DVD"
-msgstr "Αναπαραγωγή DVD"
+msgstr "Play DVD"
 
-#
-#
 msgid "Play Music..."
-msgstr "Αναπαραγωγή μουσικής..."
+msgstr "Play Music..."
 
-#
 msgid "Play audio in background"
-msgstr "Αναπαραγωγή ήχου στο παρασκήνιο"
+msgstr "Play audio in background"
 
-#
-#
-#, fuzzy
 msgid "Play audio-CD..."
-msgstr "Αναπαραγωγή Audio-CD..."
+msgstr "Play audio-CD..."
 
 msgid "Play back media files"
-msgstr ""
+msgstr "Play back media files"
 
-#
-#
-#, fuzzy
 msgid "Play entry"
-msgstr "αναπαραγωγή"
+msgstr "Play entry"
 
-#
-#
-#, fuzzy
 msgid "Play from next mark or playlist entry"
-msgstr "αναπαραγωγή από επόμενο σημείο ή λίστα"
+msgstr "Play from next mark or playlist entry"
 
-#
-#
-#, fuzzy
 msgid "Play from previous mark or playlist entry"
-msgstr "αναπαραγωγή από προηγούμενο σημείο ή λίστα"
+msgstr "Play from previous mark or playlist entry"
 
-#
-#
-#, fuzzy
 msgid "Play music..."
-msgstr "Αναπαραγωγή μουσικής..."
+msgstr "Play Music…"
 
 msgid "Play next"
-msgstr ""
+msgstr "Play next"
 
 msgid "Play next (return to movie list)"
-msgstr ""
+msgstr "Play next (return to movie list)"
 
 msgid "Play next (return to previous service)"
-msgstr ""
+msgstr "Play next (return to previous service)"
 
 msgid "Play previous"
-msgstr ""
+msgstr "Play previous"
 
-#
-#
 msgid "Play recorded movies..."
-msgstr "Αναπαραγωγή εγγραφών..."
+msgstr "Play recorded movies..."
 
-#
 msgid "Please add titles to the compilation."
-msgstr "Παρακαλώ προσθέστε τίτλους στη συλλογή."
+msgstr "Please add titles to the compilation."
 
-#
-#
 msgid "Please change recording endtime"
-msgstr "Παρακαλώ αλλάξτε την ώρα τερματισμού"
+msgstr "Please change recording end time"
 
-#
-#
 msgid "Please check your network settings!"
-msgstr "Παρακαλώ ελέγξτε τις ρυθμίσεις δικτύου!"
+msgstr "Please check your network settings!"
 
 msgid "Please choose CCcam-Reader"
-msgstr ""
+msgstr "Please choose CCcam-Reader"
 
-#
-#
 msgid "Please choose an extension..."
-msgstr "Παρακαλώ επιλέξτε μία επέκταση..."
+msgstr "Please choose an extension..."
 
 msgid "Please choose reader"
-msgstr ""
+msgstr "Please choose reader"
 
-#
-#
 msgid ""
 "Please configure or verify your Nameservers by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
-"Παρακαλώ ρυθμίστε ή επιβεβαιώστε τους Nameservers συμπλρώνοντας τα απαιτούμενα πεδία.\n"
-"Όταν είστε έτοιμος, πιέστε ΟΚ για συνέχεια."
+"Please configure or verify your Name servers by filling out the required values.\n"
+"When you are ready press OK to continue."
 
-#
-#
 msgid ""
 "Please configure your internet connection by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
-"Παρακαλώ ρυθμίστε τη σύνδεση διαδικτύου συμπληρώνοντας τα απαιτούμενα πεδία.\n"
-"Όταν είστε έτοιμος, πιέστε ΟΚ για συνέχεια."
+"Please configure your internet connection by filling out the required values.\n"
+"When you are ready press OK to continue."
 
 msgid "Please connect your receiver to the internet"
-msgstr ""
+msgstr "Please connect your receiver to the internet"
 
-#
-#
 msgid "Please do not change any values unless you know what you are doing!"
-msgstr "Παρακαλώ μην αλλάζετε τιμές εάν δεν γνωρίζετε τι κάνετε!"
+msgstr "Please do not change any values unless you know what you are doing!"
 
-#
-#
 msgid "Please enter a name for the new bouquet"
-msgstr "Επέλεξε ένα όνομα για το νέο μπουκέτο"
+msgstr "Please enter a name for the new bouquet"
 
-#
-#
 msgid "Please enter a name for the new marker"
-msgstr "Επιλέξτε ένα όνομα για το νέο σημειωτή"
+msgstr "Please enter a name for the new marker"
 
-#
-#
 msgid "Please enter a new filename"
-msgstr "Παρακαλώ εισάγετε νέο όνομα αρχείου"
+msgstr "Please enter a new filename"
 
-#
-#
 msgid "Please enter filename (empty = use current date)"
-msgstr "Παρακαλώ εισάγετε όνομα αρχείου (κενό = χρήση τρέχουσας ημερομηνίας)"
+msgstr "Please enter filename (empty = use current date)"
 
-#
-#
 msgid "Please enter name of the new directory"
-msgstr "Παρακαλώ εισάγετε όνομα νέου φάκελου"
+msgstr "Please enter name of the new directory"
 
-#
-#
-#, fuzzy
 msgid "Please enter new name:"
-msgstr "Παρακαλώ εισάγετε νέο όνομα αρχείου"
+msgstr "Please enter new name:"
 
-#
-#
 msgid "Please enter the correct pin code"
-msgstr "Βάλε το σωστό PIN"
+msgstr "Please enter the correct pin code"
 
-#
 msgid "Please enter the old PIN code"
-msgstr "Βάλε το παλιό PIN"
+msgstr "Please enter the old PIN code"
 
-#
-#
 msgid "Please follow the instructions on the TV"
-msgstr "Παρακαλώ ακολουθήστε τις οδηγίες στην οθόνη"
+msgstr "Please follow the instructions on the TV"
 
-#
-#
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
-msgstr "Δεν υπάρχει πρόσβαση στο μέσο που επιλέχθηκε προηγουμένως. Θα χρησιμοποιηθεί ο αρχικός φάκελος."
+msgstr "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 
-#
-#
 msgid "Please press OK to continue."
-msgstr "Παρακαλώ πιέστε ΟΚ για συνέχεια."
+msgstr "Please press OK to continue."
 
 msgid "Please select a default EPG type..."
-msgstr ""
+msgstr "Please select a default EPG type…"
 
-#
-#
 msgid "Please select a playlist to delete..."
-msgstr "Παρακαλώ επιλέξτε λίστα αναπαραγωγής για διαγραφή..."
+msgstr "Please select a playlist to delete..."
 
-#
-#
 msgid "Please select a playlist..."
-msgstr "Παρακαλώ επιλέξτε λίστα αναπαραγωγής..."
+msgstr "Please select a playlist..."
 
-#
-#
-#, fuzzy
 msgid "Please select a sub service..."
-msgstr "Επιλέξτε μια υπό-υπηρεσία"
+msgstr "Please select a sub service…"
 
-#
-#
 msgid "Please select a subservice to record..."
-msgstr "Επέλεξε μια υπό-υπηρεσία για εγγραφή..."
+msgstr "Please select a subservice to record..."
 
-#
-#
 msgid "Please select a subservice..."
-msgstr "Επιλέξτε μια υπό-υπηρεσία"
+msgstr "Please select a subservice..."
 
 msgid "Please select an NFI file and press green key to flash!"
-msgstr "Παρακαλώ επιλέξτε αρχείο NFI και πιέστε το πράσινο κουμπί για εγκατάσταση!"
+msgstr "Please select an NFI file and press green key to flash!"
 
-#
-#
-#, fuzzy
 msgid "Please select medium to be scanned"
-msgstr "Παρακαλώ επιλέξετε μέσο για σάρωση"
+msgstr "Please select medium to be scanned"
 
-#
-#
 msgid "Please select medium to use as backup location"
-msgstr "Παρακαλώ επιλέξτε μέσο που θα χρησιμοποιηθεί ως προορισμός των αντιγράφων ασφαλείας"
+msgstr "Please select medium to use as backup location"
 
-#
-#
 msgid "Please select tag to filter..."
 msgstr "Please select tag to filter..."
 
-#
-#
 msgid "Please select the movie path..."
-msgstr "Παρακαλώ επιλέξτε φάκελο ταινιών..."
+msgstr "Please select the movie path..."
 
-#
-#
 msgid ""
 "Please select the network interface that you want to use for your internet connection.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
-"Παρακαλώ επιλέξτε τη διεπαφή δικτύου που θέλετε να χρησιμοποιήσετε για το διαδίκτυο.\n"
+"Please select the network interface that you want to use for your internet connection.\n"
 "\n"
-"Πιέστε ΟΚ για συνέχεια."
+"Please press OK to continue."
 
-#
-#
 msgid ""
 "Please select the wireless network that you want to connect to.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
-"Παρακαλώ επιλέξτε το ασύρματο δίκτυο στο οποίο θα συνδεθείτε.\n"
+"Please select the wireless network that you want to connect to.\n"
 "\n"
-"Πιέστε ΟΚ για συνέχεια."
+"Please press OK to continue."
 
 msgid "Please set up tuner A"
-msgstr ""
+msgstr "Please set up tuner A"
 
-#
-#
 msgid "Please set up tuner B"
-msgstr "Παρακαλώ παραμετροποιήσετε το tuner B"
+msgstr "Please set up tuner B"
 
-#
-#
 msgid "Please set up tuner C"
-msgstr "Παρακαλώ παραμετροποιήσετε το tuner C"
+msgstr "Please set up tuner C"
 
-#
-#
 msgid "Please set up tuner D"
-msgstr "Παρακαλώ παραμετροποιήσετε το tuner D"
+msgstr "Please set up tuner D"
 
-#
-#
-#, fuzzy
 msgid ""
 "Please setup your user interface by adjusting the values till the edges of the blue box are touching the edges of your TV.\n"
 "When you are ready press OK to continue."
 msgstr ""
-"Παρακαλώ ρυθμίστε τη σύνδεση διαδικτύου συμπληρώνοντας τα απαιτούμενα πεδία.\n"
-"Όταν είστε έτοιμος, πιέστε ΟΚ για συνέχεια."
+"Please setup your user interface by adjusting the values till the edges of the blue box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
 
-#
-#
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
-"Χρησιμοποίηστε τα βελάκια για μετακίνηση του PiP παραθύρου.\n"
-"Για αλλαγή μεγέθους πιέστε τα πλήκτρα Bouquet +/-.\n"
-"Πιέστε ΟΚ για επιστροφή σε κατάσταση TV ή EXIT για ακύρωση της μετακίνησης."
+"Please use direction keys to move the PiP window.\n"
+"Press Bouquet +/- to resize the window.\n"
+"Press OK to go back to the TV mode or EXIT to cancel the moving."
 
-#
-#
 msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
-msgstr "Χρησιμοποιήστε τα πλήκτρα ΠΑΝΩ και ΚΑΤΩ για επιλογή γλώσσας. Μετά πιέστε το ΟΚ."
+msgstr "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
 
 msgid "Please wait (downloading channel list)"
-msgstr ""
+msgstr "Please wait (downloading channel list)"
 
 msgid "Please wait (updating packages)"
-msgstr ""
+msgstr "Please wait (updating packages)"
 
-#
-#
 msgid "Please wait for activation of your network configuration..."
-msgstr "Παρακαλώ περιμένετε. Ενεργοποίηση ρύθμισης δικτύου..."
+msgstr "Please wait for activation of your network configuration..."
 
-#
-#
-#, fuzzy
 msgid "Please wait while gathering data..."
-msgstr "Παρακαλώ περιμένετε. Έλεγχος δικτύου..."
+msgstr "Please wait while gathering data..."
 
-#
-#
 msgid "Please wait while scanning is in progress..."
-msgstr "Παρακαλώ περιμένετε. Σάρωση σε εξέλιξη..."
+msgstr "Please wait while scanning is in progress..."
 
-#
 msgid "Please wait while we configure your network..."
-msgstr "Παρακαλώ περιμένετε. Ρύθμιση δικτύου..."
+msgstr "Please wait while we configure your network..."
 
-#
-#
 msgid "Please wait while we prepare your network interfaces..."
-msgstr "Παρακαλώ περιμένετε. Προετοιμασία διεπαφών δικτύου..."
+msgstr "Please wait while we prepare your network interfaces..."
 
-#
-#
 msgid "Please wait while we test your network..."
-msgstr "Παρακαλώ περιμένετε. Έλεγχος δικτύου..."
+msgstr "Please wait while we test your network..."
 
-#
-#
 msgid "Please wait while your network is restarting..."
-msgstr "Παρακαλώ περιμένετε. Επανεκκίνηση δικτύου..."
+msgstr "Please wait while your network is restarting..."
 
 msgid "Please wait whilst feeds state is checked."
-msgstr ""
+msgstr "Please wait whilst feeds state is checked."
 
-#
-#
 msgid "Please wait..."
-msgstr "Παρακαλώ περιμένετε..."
+msgstr "Please wait..."
 
-#
-#
 msgid "Please wait... Loading list..."
-msgstr "Παρακαλώ περιμένετε … Φορτώνεται η λίστα..."
+msgstr "Please wait... Loading list..."
 
 msgid "Plugin Browser"
-msgstr ""
+msgstr "Plugin Browser"
 
 msgid "Plugin details"
-msgstr ""
+msgstr "Plugin details"
 
-#
-#
 msgid "Plugin manager activity information"
-msgstr "Πληροφορίες ενεργειών διαχειριστή προσθέτων"
+msgstr "Plugin manager activity information"
 
-#
-#
 msgid "Plugin manager help"
-msgstr "Βοήθεια διαχειριστή προσθέτων"
+msgstr "Plugin manager help"
 
-#
-#
 msgid "Plugins"
-msgstr "Πρόσθετα"
+msgstr "Plugins"
 
-#
-#
-#, fuzzy
 msgid "Polarisation"
-msgstr "Πόλωση"
+msgstr "Polarisation"
 
-#
-#
 msgid "Polarization"
-msgstr "Πόλωση"
+msgstr "Polarisation"
 
-#
 msgid "Polish"
-msgstr "Πολωνικά"
+msgstr "Polish"
 
 msgid "Port"
-msgstr ""
+msgstr "Port"
 
-#
-#
 msgid "Port A"
-msgstr "Είσοδος A"
+msgstr "Port A"
 
-#
-#
 msgid "Port B"
-msgstr "Είσοδος B"
+msgstr "Port B"
 
-#
-#
 msgid "Port C"
-msgstr "Είσοδος C"
+msgstr "Port C"
 
-#
-#
 msgid "Port D"
-msgstr "Είσοδος D"
+msgstr "Port D"
 
 msgid "Port:"
-msgstr ""
+msgstr "Port:"
 
-#
 msgid "Portuguese"
-msgstr "Πορτογαλλικά"
+msgstr "Portuguese"
 
-#
-#
-#, fuzzy
 msgid "Position Setup"
-msgstr "Ρύθμιση positioner"
+msgstr "Position Setup"
 
-#
-#, fuzzy
 msgid "Position of finished Timers in the Timer list"
-msgstr "Θέση ολοκληρωμένων χρονοδιακοπτών στη λίστα"
+msgstr "Position of finished Timers in the Timer list"
 
 msgid "Position setup"
-msgstr ""
+msgstr "Position setup"
 
-#
-#
-#, fuzzy
 msgid "Position stored at index"
-msgstr "Αποθήκευση positioner"
+msgstr "Position stored at index"
 
-#
-#
 msgid "Positioner"
 msgstr "Positioner"
 
-#
-#
 msgid "Positioner setup"
-msgstr "Ρύθμιση positioner"
+msgstr "Positioner setup"
 
-#
-#
 msgid "Power threshold in mA"
-msgstr "Όριο ρέυματος σε mA"
+msgstr "Power threshold in mA"
 
-#
-#
-#, fuzzy
 msgid "PowerManager entry"
-msgstr "διαγραφή nameserver"
+msgstr "PowerManager entry"
 
 msgid "PowerManager log"
-msgstr ""
+msgstr "PowerManager log"
 
-#
-#
-#, fuzzy
 msgid "PowerTimer List"
-msgstr "Επεξεργασία χρονοδιακόπτη"
+msgstr "PowerTimer List"
 
 msgid "PowerTimer Overview"
-msgstr ""
+msgstr "PowerTimer Overview"
 
 msgid "PowerTimers"
-msgstr ""
+msgstr "PowerTimers"
 
-#
-#
-#, fuzzy
 msgid "Predefined"
-msgstr "Ορισμός από το χρήστη"
+msgstr "Predefined"
 
-#
-#
 msgid "Predefined transponder"
-msgstr "Προεπιλεγμένος αναμεταδότης"
+msgstr "Predefined transponder"
 
-#
-#
-#, fuzzy
 msgid "Prefer AC3 track"
-msgstr "AC3 προτιμώμενο"
+msgstr "Prefer AC3 track"
 
-#
-#
-#, fuzzy
 msgid "Prefer audio track stored by service"
-msgstr "Να προτιμάται ο ήχος που έχει αποθηκευτεί από την υπηρεσία"
+msgstr "Prefer audio track stored by service"
 
-#
-#
-#, fuzzy
 msgid "Prefer graphical DVB subtitles"
-msgstr "Κίτρινοι υπότιτλοι"
+msgstr "Prefer graphical DVB subtitles"
 
 msgid "Prefer subtitles for hearing impaired"
-msgstr ""
+msgstr "Prefer subtitles for hearing impaired"
 
 msgid "Prefer subtitles stored by service"
-msgstr ""
+msgstr "Prefer subtitles stored by service"
 
-#
-#
 msgid "Preferred tuner"
-msgstr "Προτιμώμενο tuner"
+msgstr "Preferred tuner"
 
 msgid "Prepare another USB stick for image flashing"
-msgstr "Προετοιμάστε άλλο usb stick για εγκατάσταση λογισμικού."
+msgstr "Prepare another USB stick for image flashing"
 
-#
-#
 msgid "Preparing... Please wait"
-msgstr "Παρακαλώ περιμένετε, προετοιμασία…"
+msgstr "Preparing... Please wait"
 
 msgid "Press '0' to toggle internal/external PiP."
-msgstr "Πιέστε '0' για εναλλαγή εσωτερικού/εξωτερικού PiP."
+msgstr "Press '0' to toggle internal/external PiP."
 
-#
 msgid "Press INFO on your remote control for additional information."
-msgstr "Πιέστε INFO στο τηλεχειριστήριο για πρόσθετες πληροφορίες."
+msgstr "Press INFO on your remote control for additional information."
 
-#
 msgid "Press MENU on your remote control for additional options."
-msgstr "Πιέστε MENU στο τηλεχειριστήριο για πρόσθετες επιλογές."
+msgstr "Press MENU on your remote control for additional options."
 
-#
-#
 msgid "Press OK on your remote control to continue."
-msgstr "Πιέστε ΟΚ για συνέχεια."
+msgstr "Press OK on your remote control to continue."
 
-#
-#
 msgid "Press OK to activate the selected skin."
-msgstr "Πιέστε το ΟΚ για ενεργοποίηση του επιλεγμένου θέματος."
+msgstr "Press OK to activate the selected skin."
 
-#
-#
 msgid "Press OK to activate the settings."
-msgstr "Πιέστε ΟΚ για να ενεργοποιηθούν οι ρυθμίσεις."
+msgstr "Press OK to activate the settings."
 
-#
-#
 msgid "Press OK to edit the settings."
-msgstr "Πιέστε ΟΚ για επεξεργασία των ρυθμίσεων."
+msgstr "Press OK to edit the settings."
 
-#
-# , python-format
 #, python-format
 msgid "Press OK to get further details for %s"
-msgstr "Πιέστε ΟΚ για λεπτομέρειες σχετικά με το %s"
+msgstr "Press OK to get further details for %s"
 
-#
-#
 msgid "Press OK to scan"
-msgstr "Πιέστε OK για σάρωση"
+msgstr "Press OK to scan"
 
-#
-#
-#, fuzzy
 msgid "Press OK to select a provider."
-msgstr "Πιέστε ΟΚ για επιλογή παρόχου"
+msgstr "Press OK to select a provider."
 
-#
-#
 msgid "Press OK to select/deselect a CAId."
-msgstr "Πιέστε ΟΚ για επιλογή/αποεπιλογή CAId."
+msgstr "Press OK to select/deselect a CAId."
 
-#
-#
-#, fuzzy
 msgid "Press OK to set the MAC-address."
-msgstr "Πιέστε ΟΚ για επεξεργασία των ρυθμίσεων."
+msgstr "Press OK to set the MAC-address."
 
-#
-#
 msgid "Press OK to start the scan"
-msgstr "Πιέστε OK για να αρχίσει η σάρωση"
+msgstr "Press OK to start the scan"
 
-#
-#
 msgid "Press OK to toggle the selection."
-msgstr "Πιέστε ΟΚ για εναλλαγή της επιλογής."
+msgstr "Press OK to toggle the selection."
 
-#
-#
 msgid "Press yellow to set this interface as default interface."
-msgstr "Πιέστε το ΚΙΤΡΙΝΟ για να τεθεί ως προεπιλεγμένη διεπαφή."
+msgstr "Press yellow to set this interface as default interface."
 
-#
-#
 msgid "Preview"
-msgstr "Προεπισκόπηση"
+msgstr "Preview"
 
-#
-#
 msgid "Preview menu"
-msgstr "Μενού προεπισκόπησης"
+msgstr "Preview menu"
 
 msgid "Preview selected channel"
-msgstr ""
+msgstr "Preview selected channel"
 
-#
-#
 msgid "Primary DNS"
-msgstr "Πρωτεύον DNS"
+msgstr "Primary DNS"
 
 msgid "Primetime hour"
-msgstr ""
+msgstr "Primetime hour"
 
 msgid "Primetime minute"
-msgstr ""
+msgstr "Primetime minute"
 
-#
-#
 msgid "Priority"
-msgstr "Προτεραιότητα"
+msgstr "Priority"
 
-#
-#
 msgid "Process"
-msgstr "Επεξεργασία"
+msgstr "Process"
 
 msgid "Profile"
-msgstr ""
+msgstr "Profile"
 
 msgid "Profile: Local box"
-msgstr ""
+msgstr "Profile: Local box"
 
-#
-#
 msgid "Progress"
-msgstr "Πρόοδος"
+msgstr "Progress"
 
-#
-#
-#, fuzzy
 msgid "Progress bar left"
-msgstr "Progress Small"
+msgstr "Progress bar left"
 
-#
-#
-#, fuzzy
 msgid "Progress bar right"
-msgstr "Progress Small"
+msgstr "Progress bar right"
 
-#
-#
 msgid "Properties of current title"
-msgstr "Ιδιότητες τρέχοντα τίτλου"
+msgstr "Properties of current title"
 
-#
-#
 msgid "Protect services"
-msgstr "Προστασία υπηρεσιών"
+msgstr "Protect services"
 
-#
-#
 msgid "Protect setup"
-msgstr "Προστασία ρυθμίσεων"
+msgstr "Protect setup"
 
 msgid "Protocol"
-msgstr ""
+msgstr "Protocol"
 
 msgid "Protocol:"
-msgstr ""
+msgstr "Protocol:"
 
-#
-#
 msgid "Provider"
-msgstr "Πάροχος"
+msgstr "Provider"
 
 msgid "Provider Name: "
-msgstr ""
+msgstr "Provider Name: "
 
-#
-#
 msgid "Provider to scan"
-msgstr "Provider για σάρωση"
+msgstr "Provider to scan"
 
 msgid "Provider: "
-msgstr ""
+msgstr "Provider: "
 
-#
-#
 msgid "Providers"
-msgstr "Πάροχοι"
+msgstr "Providers"
 
 msgid "Providers:"
-msgstr ""
+msgstr "Providers:"
 
 msgid "Providers: "
-msgstr ""
+msgstr "Providers: "
 
 msgid "Put TV in standby"
-msgstr "Θέστε την TV σε αναμονή"
+msgstr "Put TV in standby"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Put your %s %s in standby"
-msgstr "Θέστε την TV σε αναμονή"
+msgstr "Put your %s %s in standby"
 
-#
-#
 msgid "Python frontend for /tmp/mmi.socket"
-msgstr "Διεπαφή Python για το /tmp/mmi.socket"
+msgstr "Python frontend for /tmp/mmi.socket"
 
-#
-#
 msgid "Quick"
-msgstr "Γρήγορο"
+msgstr "Quick"
 
-#
-#
-#, fuzzy
 msgid "Quick zap"
-msgstr "Γρήγορο zapping"
+msgstr "Quick zap"
 
 msgid "Quit Movie Player with EXIT button"
-msgstr ""
+msgstr "Quit Movie Player with EXIT button"
 
 msgid "RAM"
-msgstr ""
+msgstr "RAM"
 
-#
-#
 msgid "RF output"
-msgstr "Έξοδος RF"
+msgstr "RF output"
 
-#
-#
 msgid "RGB"
 msgstr "RGB"
 
-#
-#
 msgid "Random"
-msgstr "Τυχαίο"
+msgstr "Random"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
-msgstr ""
+msgstr "Rating defined by broadcaster - %d"
 
 msgid "Rating undefined"
-msgstr ""
+msgstr "Rating undefined"
 
 msgid "Read Userdata from oscam.conf"
-msgstr ""
+msgstr "Read User data from oscam.conf"
 
 msgid "Reader"
-msgstr ""
+msgstr "Reader"
 
 msgid "Reader Statistics"
-msgstr ""
+msgstr "Reader Statistics"
 
 #, python-format
 msgid "Ready to install \"%s\" ?"
-msgstr ""
+msgstr "Ready to install \"%s\" ?"
 
 #, python-format
 msgid "Ready to remove \"%s\" ?"
-msgstr ""
+msgstr "Ready to remove \"%s\" ?"
 
-#
-#
 msgid "Really close without saving settings?"
-msgstr "Κλείσιμο χωρίς αποθήκευση ρυθμίσεων;"
+msgstr "Really close without saving settings?"
 
-#
-#
 msgid "Really delete done timers?"
-msgstr "Διαγραφή όλων των ολοκληρωμένων χρονοδιακοπτών;"
+msgstr "Really delete done timers?"
 
-#
-#
 msgid "Really exit the subservices quickzap?"
-msgstr "Έξοδος απο γρήγορο zapping στης υπό-υπηρεσίες?"
+msgstr "Really exit the sub-services quick-zap?"
 
-#
-#
 msgid "Really reboot now?"
-msgstr "Επανεκκίνηση τώρα;"
+msgstr "Really reboot now?"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Really reflash your %s %s and reboot now?"
-msgstr "Επανεκκίνηση τώρα;"
+msgstr "Really reflash your %s %s and reboot now?"
 
-#
-#
 msgid "Really restart now?"
-msgstr "Επανεκκίνηση τώρα;"
+msgstr "Really restart now?"
 
-#
-#
 msgid "Really shutdown now?"
-msgstr "Τερματισμός τώρα;"
+msgstr "Really shutdown now?"
 
 msgid "Really upgrade the frontprocessor and reboot now?"
-msgstr ""
+msgstr "Really upgrade the front-processor and reboot now?"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Really upgrade your %s %s and reboot now?"
-msgstr "Επανεκκίνηση τώρα;"
+msgstr "Really upgrade your %s %s and reboot now?"
 
-#
-#
 msgid "Reboot"
-msgstr "Επανεκκίνηση"
+msgstr "Reboot"
 
-#
-#
 msgid "Record"
-msgstr "Εγγραφή"
+msgstr "Record"
 
-#
-#
-#, fuzzy
 msgid "Record next"
-msgstr "Εγγραφή"
+msgstr "Record next"
 
-#
-#
-#, fuzzy
 msgid "Record now"
-msgstr "Εγγραφή"
+msgstr "Record now"
 
 msgid "Record started! Stopping timeshift now ..."
-msgstr ""
+msgstr "Record started! Stopping timeshift now ..."
 
-#
-# , python-format
 #, python-format
 msgid "Record time limited due to conflicting timer %s"
-msgstr "Περιορισμένος χρόνος εγγραφής λόγω διένεξης χρονοδιακόπτη %s"
+msgstr "Record time limited due to conflicting timer %s"
 
-#
-#
 msgid "Recording"
-msgstr "Εγγραφή..."
+msgstr "Recording"
 
-#
 msgid "Recording in progress"
-msgstr "Εγγραφή σε εξέλιξη"
+msgstr "Recording in progress"
 
 msgid "Recording settings"
-msgstr ""
+msgstr "Recording settings"
 
 msgid "Recording type"
-msgstr ""
+msgstr "Recording type"
 
-#
-#
 msgid "Recording(s) are in progress or coming up in few seconds!"
-msgstr "Εκτελούνται εγγραφές ή θα ξεκινήσουν σε λίγο!"
+msgstr "Recording(s) are in progress or coming up in few seconds!"
 
-#
-#
 msgid "Recordings"
-msgstr "Εγγραφές"
+msgstr "Recordings"
 
-#
-#
 msgid "Recordings always have priority"
-msgstr "Οι εγγραφές έχουν πάντα προτεραιότητα"
+msgstr "Recordings always have priority"
 
 msgid "Red"
-msgstr ""
+msgstr "Red"
 
 msgid "Red button..."
-msgstr "Κόκκινο κουμπί..."
+msgstr "Red button..."
 
 msgid "Reduce time scale"
-msgstr ""
+msgstr "Reduce time scale"
 
-#
 msgid "Reenter new PIN"
-msgstr "Εισαγωγή PIN ξανά:"
+msgstr "Reenter new PIN"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Reflash in progress\n"
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
-"Εκτελείται αναβάθμιση\n"
-"Παρακαλώ περιμένετε μέχρι την επανεκκίνηση του δέκτη\n"
-"Θα διαρκέσει μερικά λεπτά"
+"Reflash in progress\n"
+"Please wait until your %s %s reboots\n"
+"This may take a few minutes"
 
 msgid "Refresh every (in hours)"
-msgstr ""
+msgstr "Refresh every (in hours)"
 
 msgid "Refresh rate"
-msgstr ""
+msgstr "Refresh rate"
 
-#
-#
 msgid "Refresh rate selection."
-msgstr "Επιλογή συχνότητας ανανέωσης."
+msgstr "Refresh rate selection."
 
-#
 msgid "Regard deep standby as standby"
-msgstr "Να θεωρείται ο Τερματισμός ως Αναμονή"
+msgstr "Regard deep standby as standby"
 
-#
-#, fuzzy
 msgid "Relative"
-msgstr "σχετικό"
+msgstr "Relative"
 
-#
-#
 msgid "Reload"
-msgstr "Ανανέωση"
+msgstr "Reload"
 
-#
-#
-#, fuzzy
 msgid "Reload black-/white lists"
-msgstr "Ανανέωση λίστας (μη)επιτρεπόμενων"
+msgstr "Reload black-/white lists"
 
 msgid "Reloading EPG Cache..."
-msgstr ""
+msgstr "Reloading EPG Cache..."
 
 msgid "Reloading bouquets and services..."
-msgstr "Επαναφόρτωση μπουκέτων και υπηρεσιών..."
+msgstr "Reloading bouquets and services..."
 
 msgid "Remaining"
-msgstr ""
+msgstr "Remaining"
 
 msgid "Remaining & Elapsed"
-msgstr ""
+msgstr "Remaining & Elapsed"
 
-#
 msgid "Remember service PIN"
-msgstr "Αποθήκευση PIN υπηρεσίας"
+msgstr "Remember service PIN"
 
 msgid "Remote box"
-msgstr ""
+msgstr "Remote box"
 
 msgid "Remote control type"
-msgstr ""
+msgstr "Remote control type"
 
-#
-#
 msgid "Remove"
-msgstr "Διαγραφή"
+msgstr "Remove"
 
-#
-#
-#, fuzzy
 msgid "Remove Confirmation"
-msgstr "Εγκατάσταση tuner"
+msgstr "Remove Confirmation"
 
 msgid "Remove Service"
-msgstr ""
+msgstr "Remove Service"
 
-#
-#
 msgid "Remove a mark"
-msgstr "Διαγραφή σημειωτή"
+msgstr "Remove a mark"
 
-#
-#
-#, fuzzy
 msgid "Remove a nameserver entry"
-msgstr "διαγραφή nameserver"
+msgstr "Remove a nameserver entry"
 
-#
-#
-#, fuzzy
 msgid "Remove bookmark"
-msgstr "διαγραφή σελιδοδείκτη"
+msgstr "Remove bookmark"
 
 msgid "Remove completed timers after (days)"
-msgstr ""
+msgstr "Remove completed timers after (days)"
 
-#
-#
 msgid "Remove currently selected title"
-msgstr "Διαγραφή επιλεγμένου τίτλου"
+msgstr "Remove currently selected title"
 
-#
-#
 msgid "Remove finished."
-msgstr "Η διαγραφή τελείωσε."
+msgstr "Remove finished."
 
 msgid "Remove items from trash can after (days)"
-msgstr ""
+msgstr "Remove items from trash can after (days)"
 
-#
-#
 msgid "Remove plugins"
-msgstr "Απεγκατάσταση προσθέτων"
+msgstr "Remove plugins"
 
-#
-#
 msgid "Remove timer"
-msgstr "Διαγραφή χρονοδιακόπτη"
+msgstr "Remove timer"
 
-#
-#
 msgid "Remove title"
-msgstr "Διαγραφή τίτλου"
+msgstr "Remove title"
 
-#
-#
 msgid "Removing"
-msgstr "Διαγραφή"
+msgstr "Removing"
 
 msgid "Removing Service"
-msgstr ""
+msgstr "Removing Service"
 
-#
-# , python-format
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
-msgstr "Η διαγραφή του φακέλου %s απέτυχε. (Ίσως δεν είναι κενός)."
+msgstr "Removing directory %s failed. (Maybe not empty.)"
 
-#
-#, fuzzy
 msgid "Removing partition table"
-msgstr "Ανάγνωση πίνακα κατατμήσεων"
+msgstr "Removing partition table"
 
-#
-#
 msgid "Rename"
-msgstr "Μετονομασία"
+msgstr "Rename"
 
 msgid "Rename failed!"
-msgstr ""
+msgstr "Rename failed!"
 
 msgid "Rename to:"
-msgstr ""
+msgstr "Rename to:"
 
 #, python-format
 msgid "Renamed %s!"
-msgstr ""
+msgstr "Renamed %s!"
 
-#
-#
-#, fuzzy
 msgid "Repeat"
-msgstr "Επαναλήψεις"
+msgstr "Repeat"
 
 msgid "Repeat Display Message"
-msgstr ""
+msgstr "Repeat Display Message"
 
-#
-#
-#, fuzzy
 msgid "Repeat type"
-msgstr "Τύπος επανάληψης"
+msgstr "Repeat type"
 
-#
-#
 msgid "Repeating event currently recording... What do you want to do?"
-msgstr "Επανάληψη προγράμματος που εγγράφεται... Τι να συμβεί;"
+msgstr "Repeating event currently recording... What do you want to do?"
 
-#
-#
 msgid "Repeats"
-msgstr "Επαναλήψεις"
+msgstr "Repeats"
 
-#
-#
 msgid "Required medium type:"
-msgstr "Απαιτείται τύπος μέσου:"
+msgstr "Required medium type:"
 
-#
-#, fuzzy
 msgid "Rereading partition table"
-msgstr "Ανάγνωση πίνακα κατατμήσεων"
+msgstr "Rereading partition table"
 
 msgid "Reserved"
-msgstr ""
+msgstr "Reserved"
 
-#
-#
 msgid "Reset"
-msgstr "Επαναφορά"
+msgstr "Reset"
 
-#
-#
 msgid "Reset and renumerate title names"
-msgstr "Reset and renumerate title names"
+msgstr "Reset and enumerate title names"
 
-#
 msgid "Reset playback position"
-msgstr "Επαναφορά σημείου αναπαραγωγής"
+msgstr "Reset playback position"
 
-#
-#
 msgid "Reset video enhancement settings to system defaults?"
-msgstr "Επαναφορά ρυθμίσεων αναβάθμισης εικόνας σε προρυθμισμένες τιμές;"
+msgstr "Reset video enhancement settings to system defaults?"
 
-#
-#
 msgid "Reset video enhancement settings to your last configuration?"
-msgstr "Επαναφορά ρυθμίσεων αναβάθμισης εικόνας στις τελευταίες ρυθμίσεις σας;"
+msgstr "Reset video enhancement settings to your last configuration?"
 
 msgid "Reshare:"
-msgstr ""
+msgstr "Reshare:"
 
-#
-#
 msgid "Resolution"
-msgstr "Ανάλυση"
+msgstr "Resolution"
 
-#
-#
 msgid "Restart"
-msgstr "Επανεκκίνηση"
+msgstr "Restart"
 
-#
-#
-#, fuzzy
 msgid "Restart GUI"
-msgstr "Επανεκκίνηση του GUI τώρα;"
+msgstr "Restart GUI"
 
-#
-#
 msgid "Restart GUI now?"
-msgstr "Επανεκκίνηση του GUI τώρα;"
+msgstr "Restart GUI now?"
 
-#
-#
 msgid "Restart enigma"
-msgstr "Επανεκκίνηση enigma"
+msgstr "Restart enigma"
 
-#
-#
 msgid "Restart network"
-msgstr "Eπανεκκίνηση δικτύου"
+msgstr "Restart network"
 
-#
-#
 msgid "Restart test"
-msgstr "Eπανεκκίνηση ελέγχου"
+msgstr "Restart test"
 
-#
-#
 msgid "Restart your network connection and interfaces.\n"
-msgstr "Επανεκκίνηση σύνδεσης δικτύου και διεπαφών.\n"
+msgstr "Restart your network connection and interfaces.\n"
 
-#
-#
 msgid "Restore"
-msgstr "Αποκατάσταση"
+msgstr "Restore"
 
-#
-#
 msgid "Restore backups"
-msgstr "Αποκατάσταση αντιγράφων ασφαλείας"
+msgstr "Restore backups"
 
-#
-#
 msgid "Restore is running..."
-msgstr "Αποκατάσταση εκτελείται..."
+msgstr "Restore is running..."
 
-#
-#
 msgid "Restore system settings"
-msgstr "Αποκατάσταση ρυθμίσεων συστήματος"
+msgstr "Restore system settings"
 
 msgid "Restoring..."
-msgstr ""
+msgstr "Restoring..."
 
-#
-#
 msgid "Resume from last position"
-msgstr "Συνέχεια απο τελευταίο σημείο"
+msgstr "Resume from last position"
 
-#
-# , python-format
 #, python-format
 msgid "Resume position at %s"
-msgstr "Συνέχεια από το %s"
+msgstr "Resume position at %s"
 
-#
-#
 msgid "Resuming playback"
-msgstr "Συνέχεια αναπαραγωγής"
+msgstr "Resuming playback"
 
-#
-#
 msgid "Return to movie list"
-msgstr "Επιστροφή στη λίστα ταινίων"
+msgstr "Return to movie list"
 
-#
-#
 msgid "Return to previous service"
-msgstr "Επιστροφή στην προηγούμενη υπηρεσία"
+msgstr "Return to previous service"
 
 msgid "Reverse bouquet buttons"
-msgstr ""
+msgstr "Reverse bouquet buttons"
 
-#
-#
 msgid "Rewind speeds"
-msgstr "Ταχύτητα κίνησης πίσω "
+msgstr "Rewind speeds"
 
-#
-#
 msgid "Rewrap teletext subtitles"
-msgstr "Αναδίπλωση υποτίτλων teletext"
+msgstr "Rewrap teletext subtitles"
 
-#
-#
 msgid "Right"
-msgstr "Δεξιά"
+msgstr "Right"
 
 msgid "Right from servicename"
-msgstr ""
+msgstr "Right from servicename"
 
-#
 msgid "Roll-off"
 msgstr "Roll-off"
 
-#
 msgid "Romanian"
-msgstr "Ρουμανικά"
+msgstr "Romanian"
 
-#
 msgid "Root directory"
-msgstr "Αρχικός φάκελος"
+msgstr "Root directory"
 
-#
-#
-#, fuzzy
 msgid "Rotor step position:"
-msgstr "Αποθήκευση θέσης"
+msgstr "Rotor step position:"
 
-#
-#
 msgid "Rotor turning speed"
-msgstr "Ταχύτητα του ρότορα"
+msgstr "Rotor turning speed"
 
 msgid "Round start time on"
-msgstr ""
+msgstr "Round start time on"
 
 msgid "Run how often ?"
-msgstr ""
+msgstr "Run how often ?"
 
 msgid "Running"
-msgstr ""
+msgstr "Running"
 
-#
 msgid "Russian"
-msgstr "Ρωσικά"
+msgstr "Russian"
 
-#
-#
 msgid "S-Video"
 msgstr "S-Video"
 
 msgid "SABnzbd Setup"
-msgstr ""
+msgstr "SABnzbd Setup"
 
 msgid "SABnzbd setup"
-msgstr ""
+msgstr "SABnzbd setup"
 
 msgid "SID"
 msgstr "SID"
 
-#
-#
 msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
 
 msgid "SPDIF"
-msgstr ""
+msgstr "SPDIF"
 
-#
-#
 msgid "SSID:"
 msgstr "SSID:"
 
 msgid "Samba Log"
-msgstr ""
+msgstr "Samba Log"
 
 msgid "Samba Setup"
-msgstr ""
+msgstr "Samba Setup"
 
 msgid "Samba setup"
-msgstr ""
+msgstr "Samba setup"
 
 msgid "Same resolution as skin"
-msgstr ""
+msgstr "Same resolution as skin"
 
-#
-#
 msgid "Sat"
-msgstr "Σαβ"
+msgstr "Sat"
 
-#
-#
 msgid "Satellite"
-msgstr "Δορυφόρος"
+msgstr "Satellite"
 
-#
-#
-#, fuzzy
 msgid "Satellite dish setup"
-msgstr "Ρύθμιση δορυφορικού εξοπλισμού"
+msgstr "Satellite dish setup"
 
-#
-#
 msgid "Satellite equipment"
-msgstr "Δορυφορικός εξοπλισμός"
+msgstr "Satellite equipment"
 
-#
-#
-#, fuzzy
 msgid "Satellite equipment setup"
-msgstr "Ρύθμιση δορυφορικού εξοπλισμού"
+msgstr "Satellite equipment setup"
 
-#
-#
-#, fuzzy
 msgid "Satellite longitude:"
-msgstr "Ρύθμιση δορυφορικού εξοπλισμού"
+msgstr "Satellite longitude:"
 
-#
-#
 msgid "Satellites"
-msgstr "Δορυφόροι"
+msgstr "Satellites"
 
-#
-#
 msgid "Satfinder"
-msgstr "Satfinder"
+msgstr "Sat finder"
 
-#
 msgid "Sats"
 msgstr "Sats"
 
-#
-#
 msgid "Saturation"
 msgstr "Saturation"
 
-#
-#
 msgid "Saturday"
-msgstr "Σάββατο"
+msgstr "Saturday"
 
-#
-#
 msgid "Save"
-msgstr "Αποθήκευση"
+msgstr "Save"
 
 msgid "Save EPG"
-msgstr ""
+msgstr "Save EPG"
 
 msgid "Save and record"
-msgstr ""
+msgstr "Save and record"
 
 msgid "Save and stop"
-msgstr ""
+msgstr "Save and stop"
 
 msgid "Save every (in hours)"
-msgstr ""
+msgstr "Save every (in hours)"
 
-#
-#
-#, fuzzy
 msgid "Save playlist"
-msgstr "αποθήκευση λίστας αναπαραγωγής"
+msgstr "Save playlist"
 
 msgid "Save timeshift as movie and continue recording"
-msgstr ""
+msgstr "Save timeshift as movie and continue recording"
 
 msgid "Save timeshift as movie and stop recording"
-msgstr ""
+msgstr "Save timeshift as movie and stop recording"
 
 msgid "Saving EPG Cache..."
-msgstr ""
+msgstr "Saving EPG Cache..."
 
 msgid "Saving Timeshift files"
-msgstr ""
+msgstr "Saving Timeshift files"
 
 msgid "Saving timeshift as movie now. This might take a while!"
-msgstr ""
+msgstr "Saving timeshift as movie now. This might take a while!"
 
-#
-#
 msgid "Scaler sharpness"
-msgstr "Ακρίβεια scaler"
+msgstr "Scaler sharpness"
 
-#
-#
-#, fuzzy
 msgid "Scaling mode"
-msgstr "Scaling Mode"
+msgstr "Scaling mode"
 
 msgid "Scan"
-msgstr ""
+msgstr "Scan"
 
-#
-#
 msgid "Scan "
-msgstr "Σάρωση "
+msgstr "Scan "
 
 #. TRANSLATORS: option name, indicating which type of (DVB-C) modulation should be scanned. The modulation type is printed in '%s'. E.g.: 'Scan QAM16'
 #, python-format
 msgid "Scan %s"
-msgstr ""
+msgstr "Scan %s"
 
 #. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
 #, python-format
 msgid "Scan %s band"
-msgstr ""
+msgstr "Scan %s band"
 
-#
-#
 msgid "Scan additional SR"
-msgstr "Σάρωση πρόσθετης SR"
+msgstr "Scan additional SR"
 
-#
-#
-#, fuzzy
 msgid "Scan files..."
-msgstr "Αναζήτηση αρχείων"
+msgstr "Scan files..."
 
-#
-#
-#, fuzzy
 msgid "Scan wireless networks"
-msgstr "Σάρωση ασύρματων δικτύων"
+msgstr "Scan wireless networks"
 
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
-msgstr "Σάρωση του δικτύου για ασύρματα σημεία σύνδεσης και σύνδεση σε αυτά με την επιλεγμένη ασύρματη συσκευή.\n"
+msgstr "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
 
-# , python-format
 #, python-format
 msgid "Scanning %s..."
-msgstr "Σάρωση %s"
+msgstr "Scanning %s..."
 
 #. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
 #, python-format
 msgid "Scanning - %d%% completed"
 msgid_plural "Scanning - %d%% completed"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Scanning - %d%% completed"
+msgstr[1] "Scanning - %d%% completed"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
-msgstr[0] "Η σάρωση ολοκληρώθηκε, βρέθηκαν %d κανάλια"
-msgstr[1] "Η σάρωση ολοκληρώθηκε, βρέθηκαν %d κανάλια"
+msgstr[0] "Scanning completed, %d channel found"
+msgstr[1] "Scanning completed, %d channels found"
 
-#
 msgid "Scanning failed!"
-msgstr "Η σάρωση απέτυχε!"
+msgstr "Scanning failed!"
 
-#
 msgid "Scanning..."
-msgstr "Σάρωση..."
+msgstr "Scanning..."
 
-#
-#
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
-msgstr "Εκτελεί σάρωση αρχικής lamedb ταξινομημένης κατά δορυφόρο με συνδεδεμένο positioner"
+msgstr "Scans default lamedbs sorted by satellite with a connected dish positioner"
 
 msgid "Scrolling Speed"
-msgstr ""
+msgstr "Scrolling Speed"
 
 msgid "Scrolling Speed (software render)"
-msgstr ""
+msgstr "Scrolling Speed (software render)"
 
 msgid "Scrolling delay (software render)"
-msgstr ""
+msgstr "Scrolling delay (software render)"
 
 msgid "Search"
-msgstr ""
+msgstr "Search"
 
 msgid "Search IMDb for information about current event."
-msgstr ""
+msgstr "Search IMDb for information about current event."
 
-#
-#
 msgid "Search east"
-msgstr "Αναζήτηση ανατολικά"
+msgstr "Search east"
 
 msgid "Search for similar events"
-msgstr ""
+msgstr "Search for similar events"
 
 msgid "Search the epg for current event."
-msgstr ""
+msgstr "Search the epg for current event."
 
-#
-#
 msgid "Search west"
-msgstr "Αναζήτηση δυτικά"
+msgstr "Search west"
 
-#
-#, fuzzy
 msgid "Searching"
-msgstr "Πληροφορίες ιεραρχίας"
+msgstr "Searching"
 
-#
-#
-#, fuzzy
 msgid "Searching east ..."
-msgstr "Αναζήτηση ανατολικά"
+msgstr "Searching east ..."
 
-#
-#
 msgid "Searching for available updates. Please wait..."
-msgstr "Αναζήτηση για διαθέσιμες ενμερώσεις. Παρακαλώ περιμένετε..."
+msgstr "Searching for available updates. Please wait..."
 
-#
-#
 msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Αναζήτηση για νέα εγκατεστημένα ή διεγραμμένα πακέτα. Παρακαλώ περιμένετε..."
+msgstr "Searching for new installed or removed packages. Please wait..."
 
-#
-#
-#, fuzzy
 msgid "Searching west ..."
-msgstr "Αναζήτηση δυτικά"
+msgstr "Searching west ..."
 
-#
-#
 msgid "Secondary DNS"
-msgstr "Δευτερεύον DNS"
+msgstr "Secondary DNS"
 
-#
-#
 msgid "Seek"
-msgstr "Αναζήτηση"
+msgstr "Seek"
 
 msgid "Seek backward"
-msgstr ""
+msgstr "Seek backward"
 
 msgid "Seek backward (enter time)"
-msgstr ""
+msgstr "Seek backward (enter time)"
 
 msgid "Seek forward"
-msgstr ""
+msgstr "Seek forward"
 
 msgid "Seek forward (enter time)"
-msgstr ""
+msgstr "Seek forward (enter time)"
 
 msgid "Seekbar activation"
-msgstr ""
+msgstr "Seekbar activation"
 
 msgid "Seekbar sensibility"
-msgstr ""
+msgstr "Seekbar sensibility"
 
-#
-#
 msgid "Select"
-msgstr "Επιλογή"
+msgstr "Select"
 
-#
-#
-#, fuzzy
 msgid "Select CAId"
-msgstr "επέλεξε CAId"
+msgstr "Select CAId"
 
-#
-#
-#, fuzzy
 msgid "Select a wireless network"
-msgstr "Επιλέξτε ασύρματο δίκτυο"
+msgstr "Select a wireless network"
 
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Select action for timer %s:"
-msgstr "Επιλέξτε προορισμό για:"
+msgstr "Select action for timer %s:"
 
-#
-#, fuzzy
 msgid "Select an image to be downloaded"
-msgstr "Επιλογή λογισμικού για λήψη"
+msgstr "Select an image to be downloaded"
 
-#
-#
 msgid "Select audio track"
-msgstr "Επιλέξτε track ήχου"
+msgstr "Select audio track"
 
-#
-#
-#, fuzzy
 msgid "Select backup files"
-msgstr "Επιλέξτε αρχεία αντιγράφου ασφαλείας"
+msgstr "Select backup files"
 
-#
-#
-#, fuzzy
 msgid "Select backup location"
-msgstr "Επιλέξτε θέση του αντιγράφου ασφαλείας"
+msgstr "Select backup location"
 
-#
-#
 msgid "Select channel to record from"
-msgstr "Επιλέξτε κανάλι για εγγραφή"
+msgstr "Select channel to record from"
 
-#
 msgid "Select copy destination for:"
-msgstr "Επιλέξτε προορισμό αντιγραφής για:"
+msgstr "Select copy destination for:"
 
 msgid "Select default EPG type..."
-msgstr ""
+msgstr "Select default EPG type…"
 
 msgid "Select desired image from feed list"
-msgstr "Επιλέξτε επιθυμητό λογισμικό από τη λίστα"
+msgstr "Select desired image from feed list"
 
-#
 msgid "Select destination for:"
-msgstr "Επιλέξτε προορισμό για:"
+msgstr "Select destination for:"
 
-#
 msgid "Select files for backup."
-msgstr "Επιλέξτε αρχεία για αντίγραφο ασφαλείας."
+msgstr "Select files for backup."
 
-#
-#
 msgid "Select files/folders to backup"
-msgstr "Επιλέξτε αρχεία/φακέλους για αντίγραφο ασφαλείας"
+msgstr "Select files/folders to backup"
 
 msgid "Select folders"
-msgstr ""
+msgstr "Select folders"
 
 msgid "Select how to activate the Quick EPG mode:"
-msgstr ""
+msgstr "Select how to activate the Quick EPG mode:"
 
 msgid "Select if timeshift should continue when set to record."
-msgstr ""
+msgstr "Select if timeshift should continue when set to record."
 
 msgid "Select if you want the Subservice mode to be activated."
-msgstr ""
+msgstr "Select if you want the Subservice mode to be activated."
 
 msgid "Select if you want to use the ViX colored buttons (set to 'no' if you want to use (Multi Quick Button)."
-msgstr ""
+msgstr "Select if you want to use the ViX colored buttons (set to 'no' if you want to use (Multi Quick Button)."
 
-#
 msgid "Select input device"
-msgstr "Επιλέξτε συσκευή εισαγωγής χαρακτήρων"
+msgstr "Select input device"
 
-#
 msgid "Select input device."
-msgstr "Επιλέξτε συσκευή εισαγωγής χαρακτήρων."
+msgstr "Select input device."
 
-#
-#
 msgid "Select interface"
-msgstr "Επιλέξτε διεπαφή"
+msgstr "Select interface"
 
-#
-#
-#, fuzzy
 msgid "Select location"
-msgstr "Επιλέξτε τοποθεσία"
+msgstr "Select location"
 
-#
-#
-#, fuzzy
 msgid "Select movie"
-msgstr "Επιλέξτε ταινία"
+msgstr "Select movie"
 
-#
-#
 msgid "Select provider to add..."
-msgstr "Επιλέξτε πάροχο για προσθήκη..."
+msgstr "Select provider to add..."
 
-#
-#
 msgid "Select refresh rate"
-msgstr "Επιλέξτε ρυθμό ανανέωσης"
+msgstr "Select refresh rate"
 
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
-msgstr ""
+msgstr "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 
-#
-#
 msgid "Select service to add..."
-msgstr "Επιλέξτε υπηρεσία για προσθήκη..."
+msgstr "Select service to add..."
 
-#
-#
-#, fuzzy
 msgid "Select target folder"
-msgstr "Επιλέξτε φάκελο προορισμού"
+msgstr "Select target folder"
 
-#
-#
-#, fuzzy
 msgid "Select the movie path"
-msgstr "επέλεξε διαδρομή ταινίας"
+msgstr "Select the movie path"
 
-#
-#
-#, fuzzy
 msgid "Select upgrade source"
-msgstr "Επιλέξτε πηγή αναβάθμισης για επεξεργασία."
+msgstr "Select upgrade source"
 
-#
-#
 msgid "Select upgrade source to edit."
-msgstr "Επιλέξτε πηγή αναβάθμισης για επεξεργασία."
+msgstr "Select upgrade source to edit."
 
-#
-#
 msgid "Select video input with up/down buttons"
-msgstr "Επιλέξτε είσοδο εικόνας με τα πλήκτρα πάνω/κάτω"
+msgstr "Select video input with up/down buttons"
 
-#
-#
 msgid "Select video mode"
-msgstr "Επιλέξτε video mode"
+msgstr "Select video mode"
 
 msgid "Select what you want the Channel +/- buttons to activate."
-msgstr ""
+msgstr "Select what you want the Channel +/- buttons to activate."
 
 msgid "Select what you want the TV button to activate."
-msgstr ""
+msgstr "Select what you want the TV button to activate."
 
-#
-#
 msgid "Select wireless network"
-msgstr "Επιλέξτε ασύρματο δίκτυο"
+msgstr "Select wireless network"
 
 msgid "Select your provider, and press OK to start the scan"
-msgstr "Επιλέξτε παροχέα, και πιέστε ΟΚ για εκκίνηση σάρωσης"
+msgstr "Select your provider, and press OK to start the scan"
 
 msgid "Send"
-msgstr ""
+msgstr "Send"
 
 msgid "Send Confirmation"
-msgstr ""
+msgstr "Send Confirmation"
 
-#
-#
 msgid "Send DiSEqC"
-msgstr "Αποστολή DiSEqC"
+msgstr "Send DiSEqC"
 
-#
-#
 msgid "Send DiSEqC only on satellite change"
-msgstr "Αποστολή DiSEqC μόνο σε αλλαγή δορυφόρου"
+msgstr "Send DiSEqC only on satellite change"
 
 msgid "Send yourself a copy"
-msgstr ""
+msgstr "Send yourself a copy"
 
-#
-#
 msgid "Seperate titles with a main menu"
-msgstr "Διαχωρισμός τίτλων με κεντρικό μενού"
+msgstr "Separate titles with a main menu"
 
-#
-#
 msgid "Sequence repeat"
-msgstr "Επανάληψη διαδοχής"
+msgstr "Sequence repeat"
 
-#
 msgid "Serbian"
-msgstr "Σερβικά"
+msgstr "Serbian"
 
 msgid "Serial No"
-msgstr ""
+msgstr "Serial No"
 
 msgid "Serv.Name"
-msgstr ""
+msgstr "Serv.Name"
 
 msgid "Server:"
-msgstr ""
+msgstr "Server:"
 
 msgid "Servers"
-msgstr ""
+msgstr "Servers"
 
 msgid "Servers:"
-msgstr ""
+msgstr "Servers:"
 
-#
-#
 msgid "Service"
-msgstr "Υπηρεσία"
+msgstr "Service"
 
 msgid "Service Information"
-msgstr ""
+msgstr "Service Information"
 
 msgid "Service Name"
-msgstr ""
+msgstr "Service Name"
 
 msgid "Service Title mode"
-msgstr ""
+msgstr "Service Title mode"
 
-#
-#, fuzzy
 msgid "Service font size"
-msgstr "Αναφορά υπηρεσιών"
+msgstr "Service font size"
 
-#
-#
 msgid "Service has been added to the favourites."
-msgstr "Η υπηρεσία προστέθηκε στα αγαπημένα."
+msgstr "Service has been added to the favourites."
 
-#
-#
 msgid "Service has been added to the selected bouquet."
-msgstr "Η υπηρεσία προστέθηκε στo επιλεγμένο μπουκέτο"
+msgstr "Service has been added to the selected bouquet."
 
 msgid "Service info font size"
-msgstr ""
+msgstr "Service info font size"
 
-#
-#
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
 msgstr ""
-"Άκυρη υπηρεσία\n"
+"Service invalid!\n"
 "(Timeout reading PMT)"
 
-#
-#
-#, fuzzy
 msgid "Service name"
-msgstr "Ανεύρεση υπηρεσιών"
+msgstr "Service name"
 
 msgid "Service name font size"
-msgstr ""
+msgstr "Service name font size"
 
-#
-#
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
-"Η υπηρεσία δεν βρέθηκε\n"
+"Service not found!\n"
 "(SID not found in PAT)"
 
 msgid "Service number font size"
-msgstr ""
+msgstr "Service number font size"
 
-#
 msgid "Service reference"
-msgstr "Αναφορά υπηρεσιών"
+msgstr "Service reference"
 
-#
-#
 msgid "Service scan"
-msgstr "Ανεύρεση υπηρεσίων"
+msgstr "Service scan"
 
 msgid "Service searching"
-msgstr ""
+msgstr "Service searching"
 
-#
-#
-#, fuzzy
 msgid "Service title mode"
-msgstr "Επιλέξτε video mode"
+msgstr "Service title mode"
 
-#
-#
 msgid ""
 "Service unavailable!\n"
 "Check tuner configuration!"
 msgstr ""
-"Υπηρεσία μη διαθέσιμη!\n"
-"Ελένξτε της παραμετροποιήσης του tuner!"
+"Service unavailable!\n"
+"Check tuner configuration!"
 
 msgid "Service width"
-msgstr ""
+msgstr "Service width"
 
-#
-#
 msgid "Services"
-msgstr "Υπηρεσίες"
+msgstr "Services"
 
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
-msgstr ""
+msgstr "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 
 msgid "Set System"
-msgstr ""
+msgstr "Set System"
 
-#
-#
-#, fuzzy
 msgid "Set end time"
-msgstr "Ρύθμιση χρόνου τερματισμού"
+msgstr "Set end time"
 
-#
-#
-#, fuzzy
 msgid "Set end time"
-msgstr "Ρύθμιση χρόνου τερματισμού"
+msgstr "Set end time"
 
-#
 msgid "Set fixed"
-msgstr "Ορισμός σταθερού"
+msgstr "Set fixed"
 
 msgid "Set fps for external subtitles"
-msgstr ""
+msgstr "Set fps for external subtitles"
 
-#
-#
 msgid "Set interface as default Interface"
-msgstr "Ορισμός διεπαφής ως προεπιλεγμένης"
+msgstr "Set interface as default Interface"
 
-#
-#
 msgid "Set limits"
-msgstr "Ορισμός ορίων"
+msgstr "Set limits"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Set the MAC-address of your %s %s.\n"
-msgstr "Επεξεργασία ρυθμίσεων Nameserver του δέκτη.\n"
+msgstr "Set the MAC-address of your %s %s.\n"
 
 msgid "Set the channel for this timer."
-msgstr ""
+msgstr "Set the channel for this timer."
 
 msgid "Set the date the timer must start."
-msgstr ""
+msgstr "Set the date the timer must start."
 
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr ""
+msgstr "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 
 msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr ""
+msgstr "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 
 msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr ""
+msgstr "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
 
 msgid "Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr ""
+msgstr "Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."
 
 msgid "Set the default sorting method."
-msgstr ""
+msgstr "Set the default sorting method."
 
 msgid "Set the delay time between repeated loops, this uses a software render in some skins."
-msgstr ""
+msgstr "Set the delay time between repeated loops, this uses a software render in some skins."
 
-#
-#, fuzzy
 msgid "Set the description of the recording."
-msgstr "Σύνθεση ονομάτων εγγραφών"
+msgstr "Set the description of the recording."
 
 msgid "Set the desired primetime (hour)."
-msgstr ""
+msgstr "Set the desired primetime (hour)."
 
 msgid "Set the desired primetime (minutes)."
-msgstr ""
+msgstr "Set the desired primetime (minutes)."
 
 msgid "Set the jump-size of the seekbar."
-msgstr ""
+msgstr "Set the jump-size of the seekbar."
 
 msgid "Set the name the recording will get."
-msgstr ""
+msgstr "Set the name the recording will get."
 
 msgid "Set the scrolling speed of text on the front display, this uses a software render in some skins."
-msgstr ""
+msgstr "Set the scrolling speed of text on the front display, this uses a software render in some skins."
 
 msgid "Set the scrolling speed of text on the front display."
-msgstr ""
+msgstr "Set the scrolling speed of text on the front display."
 
 msgid "Set the time before checking video source for resolution infomation."
-msgstr ""
+msgstr "Set the time before checking video source for resolution infomation."
 
 msgid "Set the time delay before hiding the infobar."
-msgstr ""
+msgstr "Set the time delay before hiding the infobar."
 
 msgid "Set the time the timer must start."
-msgstr ""
+msgstr "Set the time the timer must start."
 
 msgid "Set the time the timer must stop."
-msgstr ""
+msgstr "Set the time the timer must stop."
 
 msgid "Set the type of the progress indication in the channel selection screen."
-msgstr ""
+msgstr "Set the type of the progress indication in the channel selection screen."
 
 msgid "Set time window to 1 hour"
-msgstr ""
+msgstr "Set time window to 1 hour"
 
 msgid "Set time window to 2 hours"
-msgstr ""
+msgstr "Set time window to 2 hours"
 
 msgid "Set time window to 3 hours"
-msgstr ""
+msgstr "Set time window to 3 hours"
 
 msgid "Set time window to 4 hours"
-msgstr ""
+msgstr "Set time window to 4 hours"
 
 msgid "Set time window to 5 hours"
-msgstr ""
+msgstr "Set time window to 5 hours"
 
 msgid "Set time window to 6 hours"
-msgstr ""
+msgstr "Set time window to 6 hours"
 
 msgid "Set to the desired primetime (hour)."
-msgstr ""
+msgstr "Set to the desired primetime (hour)."
 
 msgid "Set to the desired primetime (minutes)."
-msgstr ""
+msgstr "Set to the desired primetime (minutes)."
 
 msgid "Set to what you want the button to do."
-msgstr ""
+msgstr "Set to what you want the button to do."
 
 msgid "Set voltage and 22KHz"
-msgstr ""
+msgstr "Set voltage and 22KHz"
 
 msgid "Sets the root folder of movie list, to remove the '..' from benign shown in that folder."
-msgstr ""
+msgstr "Sets the root folder of movie list, to remove the '..' from benign shown in that folder."
 
-#
-#
 msgid "Settings"
-msgstr "Ρυθμίσεις"
+msgstr "Settings"
 
 msgid "Settings..."
-msgstr ""
+msgstr "Settings..."
 
-#
-#
 msgid "Setup"
-msgstr "Παραμετροποίηση"
+msgstr "Setup"
 
 msgid "Setup how to control the channel changing."
-msgstr ""
+msgstr "Setup how to control the channel changing."
 
 msgid "Setup menu"
-msgstr ""
+msgstr "Setup menu"
 
 msgid "Setup mode"
-msgstr ""
+msgstr "Setup mode"
 
 msgid "Setup network time synchronization interval."
-msgstr ""
+msgstr "Setup network time synchronization interval."
 
 msgid "Setup the interval (in hours) to check for online updates."
-msgstr ""
+msgstr "Setup the interval (in hours) to check for online updates."
 
-#
-#
-#, fuzzy
 msgid "Setup your positioner"
-msgstr "Αποθήκευση θέσης"
+msgstr "Setup your positioner"
 
-#
-#
-#, fuzzy
 msgid "Setup your satellite equipment"
-msgstr "Δορυφορικός εξοπλισμός"
+msgstr "Setup your satellite equipment"
 
 msgid "Setup your timezone."
-msgstr ""
+msgstr "Setup your timezone."
 
 #, python-format
 msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "Να προχωρήσει ο Οδηγός Usb Stick και να εγκαταστήσει το λογισμικό %s στη μνήμη flash;"
+msgstr "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
 
 msgid "Share Folder's"
-msgstr ""
+msgstr "Share Folder's"
 
 msgid "Share View"
-msgstr ""
+msgstr "Share View"
 
 msgid "Shares"
-msgstr ""
+msgstr "Shares"
 
-#
 msgid "Sharpness"
 msgstr "Sharpness"
 
-#
 msgid "Short filenames"
-msgstr "Σύντομα ονόματα"
+msgstr "Short filenames"
 
 msgid "Show /tmp/ecm.info"
-msgstr ""
+msgstr "Show /tmp/ecm.info"
 
 msgid "Show 1080p 24fps as"
-msgstr ""
+msgstr "Show 1080p 24fps as"
 
 msgid "Show 1080p 25fps as"
-msgstr ""
+msgstr "Show 1080p 25fps as"
 
 msgid "Show 1080p 30fps as"
-msgstr ""
+msgstr "Show 1080p 30fps as"
 
 msgid "Show 720p 24fps as"
-msgstr ""
+msgstr "Show 720p 24fps as"
 
 msgid "Show AutoTimer List"
-msgstr ""
+msgstr "Show AutoTimer List"
 
-#
-#, fuzzy
 msgid "Show CCcam Info in extensions?"
-msgstr "εμφάνιση επεκτάσεων..."
+msgstr "Show CCcam Info in extensions?"
 
 msgid "Show Clients"
-msgstr ""
+msgstr "Show Clients"
 
 msgid "Show Display Icons"
-msgstr ""
+msgstr "Show Display Icons"
 
 msgid "Show E2 Log"
-msgstr ""
+msgstr "Show E2 Log"
 
-#
-#
 msgid "Show EIT now/next in infobar"
-msgstr "Εμφάνιση ΕΙΤ τρέχων/απόμενο στη μπάρα πληροφοριών"
+msgstr "Show EIT now/next in infobar"
 
 msgid "Show EPG for current channel..."
-msgstr ""
+msgstr "Show EPG for current channel..."
 
 msgid "Show Games show"
-msgstr ""
+msgstr "Show Games show"
 
 msgid "Show Log"
-msgstr ""
+msgstr "Show Log"
 
-#
-#, fuzzy
 msgid "Show Log Manager in extensions list ?"
-msgstr "εμφάνιση επεκτάσεων..."
+msgstr "Show Log Manager in extensions list ?"
 
 msgid "Show Media playback Remaining/Elapsed as"
-msgstr ""
+msgstr "Show Media playback Remaining/Elapsed as"
 
 msgid "Show OE Log"
-msgstr ""
+msgstr "Show OE Log"
 
-#
-#, fuzzy
 msgid "Show OScam Info in extensions?"
-msgstr "εμφάνιση επεκτάσεων..."
+msgstr "Show OScam Info in extensions?"
 
 msgid "Show PVR status in Movie Player infobar"
-msgstr ""
+msgstr "Show PVR status in Movie Player infobar"
 
 msgid "Show RFmod setup..."
-msgstr ""
+msgstr "Show RFmod setup..."
 
 msgid "Show Readers/Proxies"
-msgstr ""
+msgstr "Show Readers/Proxies"
 
-#
-#
-#, fuzzy
 msgid "Show SD as"
-msgstr "Εμφάνιση κατάστασης ασύρματου δικτύου"
+msgstr "Show SD as"
 
 msgid "Show Time Remaining/Elapsed"
-msgstr ""
+msgstr "Show Time Remaining/Elapsed"
 
 msgid "Show Timer List"
-msgstr ""
+msgstr "Show Timer List"
 
 msgid "Show Transponder Remaining/Elapsed as"
-msgstr ""
+msgstr "Show Transponder Remaining/Elapsed as"
 
-#
-#
-#, fuzzy
 msgid "Show VCR scart on main menu"
-msgstr "εμφάνιση κύριου μενού DVD "
+msgstr "Show VCR scart on main menu"
 
 msgid "Show ViX spinning logo when the system is busy."
-msgstr ""
+msgstr "Show ViX spinning logo when the system is busy."
 
-#
-#
-#, fuzzy
 msgid "Show WLAN status"
-msgstr "Εμφάνιση κατάστασης ασύρματου δικτύου"
+msgstr "Show WLAN status"
 
-#
-#
 msgid "Show animation while busy"
-msgstr "Εμφάνιση animation κατά την καθυστέρηση"
+msgstr "Show animation while busy"
 
-#
-#
-#, fuzzy
 msgid "Show background in Radio mode"
-msgstr "εικόνα φόντου"
+msgstr "Show background in Radio mode"
 
 msgid "Show background when tuned to a radio channel."
-msgstr ""
+msgstr "Show background when tuned to a radio channel."
 
 msgid "Show bouquet on launch"
-msgstr ""
+msgstr "Show bouquet on launch"
 
 msgid "Show bouquet selection menu"
-msgstr ""
+msgstr "Show bouquet selection menu"
 
-#
-#
-#, fuzzy
 msgid "Show channel number in infobar"
-msgstr "Εμφάνιση αριθμού καναλιού στην επιλογή καναλιού"
+msgstr "Show channel number in infobar"
 
-#
-#
 msgid "Show channel numbers in channel selection"
-msgstr "Εμφάνιση αριθμού καναλιού στην επιλογή καναλιού"
+msgstr "Show channel numbers in channel selection"
 
-#
-#
 msgid "Show crypto info in infobar"
-msgstr "Εμφάνιση πληροφοριών crypto στη μπάρα πληροφοριών"
+msgstr "Show crypto info in infobar"
 
 msgid "Show detailed event info"
-msgstr ""
+msgstr "Show detailed event info"
 
 msgid "Show encryption info in the infobar (when supported by the skin)."
-msgstr ""
+msgstr "Show encryption info in the infobar (when supported by the skin)."
 
 msgid "Show epg"
-msgstr ""
+msgstr "Show epg"
 
-#
-#
-#, fuzzy
 msgid "Show event details"
-msgstr "εμφάνιση λεπτομερειών προγράμματος"
+msgstr "Show event details"
 
-#
-#
 msgid "Show event-progress in channel selection"
-msgstr "Εμφάνιση χρονικού σημείου στην επιλογή καναλιού"
+msgstr "Show event-progress in channel selection"
 
-#
-#
-#, fuzzy
 msgid "Show extended description"
-msgstr "εμφάνιση εεκτεταμένης περιγραφής"
+msgstr "Show extended description"
 
 msgid "Show extensions..."
-msgstr ""
+msgstr "Show extensions..."
 
 msgid "Show icon for new/unseen items"
-msgstr "Εμφάνιση εικονιδίου για νέα αντικείμενα"
+msgstr "Show icon for new/unseen items"
 
 msgid "Show in extensions list ?"
-msgstr ""
+msgstr "Show in extensions list ?"
 
-#
-#, fuzzy
 msgid "Show in extensions menu"
-msgstr "εμφάνιση επεκτάσεων..."
+msgstr "Show in extensions menu"
 
-#
-#
-#, fuzzy
 msgid "Show info"
-msgstr "Εμφάνιση πληροφοριών"
+msgstr "Show info"
 
-#
-#
-#, fuzzy
 msgid "Show info line"
-msgstr "εμφάνιση γραμμής πληροφοριών"
+msgstr "Show info line"
 
-#
-#
 msgid "Show infobar on channel change"
-msgstr "Εμφάνιση μπάρας πληροφοριών σε αλλαγή καναλιού"
+msgstr "Show infobar on channel change"
 
-#
-#
 msgid "Show infobar on event change"
-msgstr "Εμφάνιση μπάρας πληροφοριών σε αλλαγή προγράμματος"
+msgstr "Show infobar on event change"
 
-#
-#
 msgid "Show infobar on skip forward/backward"
-msgstr "Εμφάνιση της μπάρας πληροφοριών κατά το εμπρός/πίσω"
+msgstr "Show infobar on skip forward/backward"
 
 msgid "Show job tasks in extensions"
-msgstr ""
+msgstr "Show job tasks in extensions"
 
 msgid "Show live tv when movie stopped"
-msgstr ""
+msgstr "Show live tv when movie stopped"
 
-#
-#
-#, fuzzy
 msgid "Show menu"
-msgstr "εμφάνιση μενού tag "
+msgstr "Show menu"
 
 msgid "Show message when recording starts"
-msgstr ""
+msgstr "Show message when recording starts"
 
 msgid "Show movie lengths in movielist"
-msgstr ""
+msgstr "Show movie lengths in movielist"
 
 msgid "Show network mounts ..."
-msgstr ""
+msgstr "Show network mounts ..."
 
 msgid "Show or hide the extended description, (skin dependent)."
-msgstr ""
+msgstr "Show or hide the extended description, (skin dependant)."
 
-#
-#
-#, fuzzy
 msgid "Show picon background color"
-msgstr "χρώμα φόντου"
+msgstr "Show picon background color"
 
-#
-#
 msgid "Show positioner movement"
-msgstr "Εμφάνιση κινήσεων του positioner"
+msgstr "Show positioner movement"
 
 msgid "Show screensaver"
-msgstr ""
+msgstr "Show screensaver"
 
-#
-#
-#, fuzzy
 msgid "Show second infobar"
-msgstr "Εμφάνιση πληροφοριών crypto στη μπάρα πληροφοριών"
+msgstr "Show second infobar"
 
-#
-#
-#, fuzzy
 msgid "Show service type icons"
-msgstr "Εμφάνιση υπηρεσιών που αρχίσουν με"
+msgstr "Show service type icons"
 
-#
-#
 msgid "Show services beginning with"
-msgstr "Εμφάνιση υπηρεσιών που αρχίσουν με"
+msgstr "Show services beginning with"
 
-#
-#
-#, fuzzy
 msgid "Show shutdown menu"
-msgstr "εμφάνιση μενού τερματισμού"
+msgstr "Show shutdown menu"
 
 msgid "Show single epg for current channel"
-msgstr ""
+msgstr "Show single epg for current channel"
 
 msgid "Show source packages"
-msgstr ""
+msgstr "Show source packages"
 
-#
-#
-#, fuzzy
 msgid "Show status icons in movie list"
-msgstr "Το κανάλι δεν υπάρχει στη λίστα υπηρεσιών"
+msgstr "Show status icons in movie list"
 
 msgid "Show status icons in movielist"
-msgstr ""
+msgstr "Show status icons in movielist"
 
-#
-#
-#, fuzzy
 msgid "Show tag menu"
-msgstr "εμφάνιση μενού tag "
+msgstr "Show tag menu"
 
 msgid "Show the list of AutoTimers."
-msgstr ""
+msgstr "Show the list of AutoTimers."
 
 msgid "Show the list of timers."
-msgstr ""
+msgstr "Show the list of timers."
 
 msgid "Show the media player..."
-msgstr ""
+msgstr "Show the media player..."
 
 msgid "Show the plugin browser.."
-msgstr ""
+msgstr "Show the plugin browser.."
 
-#
-#
 msgid "Show the radio player..."
-msgstr "Εμφάνιση ραδιοφώνου..."
+msgstr "Show the radio player..."
 
-#
-#
 msgid "Show the tv player..."
-msgstr "Εμφάνιση TV"
+msgstr "Show the tv player..."
 
 msgid "Show time elapsed as positive"
-msgstr ""
+msgstr "Show time elapsed as positive"
 
 msgid "Show time remaining/elapsed"
-msgstr ""
+msgstr "Show time remaining/elapsed"
 
-#
-#
-#, fuzzy
 msgid "Show translation packages"
-msgstr "Εμφάνιση animation κατά την καθυστέρηση"
+msgstr "Show translation packages"
 
 msgid "Show transponder remaining/elapsed as"
-msgstr ""
+msgstr "Show transponder remaining/elapsed as"
 
-#
-#
-#, fuzzy
 msgid "Show warning when timeshift is stopped"
-msgstr "Συμπεριφορά όταν μια ταινία σταμάτησε"
+msgstr "Show warning when timeshift is stopped"
 
 msgid "Shows the icons when new/unseen, else will not show an icon."
-msgstr ""
+msgstr "Shows the icons when new/unseen, else will not show an icon."
 
-#
-#
 msgid "Shows the state of your wireless LAN connection.\n"
-msgstr "Εμφανίζει την κατάσταση του ασύρματου δικτύου.\n"
+msgstr "Shows the state of your wireless LAN connection.\n"
 
 msgid "Shows the watched status of the movie."
-msgstr ""
+msgstr "Shows the watched status of the movie."
 
-#
-#
-#, fuzzy
 msgid "Shuffle playlist"
-msgstr "τυχαία ανακατανομή λίστας αναπαραγωγής"
+msgstr "Shuffle playlist"
 
-#
-#
 msgid "Shutdown"
-msgstr "Τερματισμός"
+msgstr "Shutdown"
 
-#
 msgid "Side by Side"
-msgstr "Σε παράθεση"
+msgstr "Side by Side"
 
-#
-#, fuzzy
 msgid "Side by side"
-msgstr "Σε παράθεση"
+msgstr "Side by side"
 
 msgid "Signal OK, proceeding"
-msgstr ""
+msgstr "Signal OK, proceeding"
 
-#
-#
 msgid "Signal Strength:"
-msgstr "Ένταση σήματος:"
+msgstr "Signal Strength:"
 
-#
-#
-#, fuzzy
 msgid "Signal quality"
-msgstr "Ποιότητα σύνδεσης:"
+msgstr "Signal quality"
 
-#
-#
-#, fuzzy
 msgid "Signal strength:"
-msgstr "Ένταση σήματος:"
+msgstr "Signal strength:"
 
-#
-#
 msgid "Signal: "
-msgstr "Σήμα: "
+msgstr "Signal: "
 
-#
-#
 msgid "Similar"
-msgstr "Παρόμοιο"
+msgstr "Similar"
 
-#
-#
 msgid "Similar broadcasts:"
-msgstr "Παρόμοιες μεταδόσεις:"
+msgstr "Similar broadcasts:"
 
-#
-#
 msgid "Simple"
-msgstr "Απλό"
+msgstr "Simple"
 
-#
-#
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Simple titleset (compatibility for legacy players)"
 
-#
-#
 msgid "Single"
-msgstr "Μονό"
+msgstr "Single"
 
-#
-#
 msgid "Single EPG"
-msgstr "Μονό EPG"
+msgstr "Single EPG"
 
-#
-#
 msgid "Single satellite"
-msgstr "Ένας δορυφόρος"
+msgstr "Single satellite"
 
-#
-#
-#, fuzzy
 msgid "Single step (GOP)"
-msgstr "Μονού βήματος (GOP)"
+msgstr "Single step (GOP)"
 
-#
-#
 msgid "Single transponder"
-msgstr "Ένας αναμεταδότης"
+msgstr "Single transponder"
 
-#
-#
-#, fuzzy
 msgid "SingleEPG settings"
-msgstr "Επεξεργασία ρυθμίσεων"
+msgstr "SingleEPG settings"
 
-#
-#
-#, fuzzy
 msgid "Site latitude"
-msgstr "Γεωγρ. πλάτος"
+msgstr "Site latitude"
 
-#
-#
-#, fuzzy
 msgid "Site longitude"
-msgstr "Γεωγρ. μήκος"
+msgstr "Site longitude"
 
 msgid "Size: "
-msgstr ""
+msgstr "Size: "
 
 msgid "Skin Setting"
-msgstr ""
+msgstr "Skin Setting"
 
 msgid "Skin setup"
-msgstr ""
+msgstr "Skin setup"
 
-#
-#
 msgid "Skins"
-msgstr "Θέματα"
+msgstr "Skins"
 
-#
-#
-#, fuzzy
 msgid "Skip empty services"
-msgstr "Προστασία υπηρεσιών"
+msgstr "Skip empty services"
 
 msgid "Skip internet connection check (disables automatic package installation)"
-msgstr ""
+msgstr "Skip internet connection check (disables automatic package installation)"
 
-#
-#
-#, fuzzy
 msgid "Sleep delay"
-msgstr "Χρονοδιακόπτης απενεργοποίησης"
+msgstr "Sleep delay"
 
-#
-#
-#, fuzzy
 msgid "Slide picture in loop"
-msgstr "slide picture in loop"
+msgstr "Slide picture in loop"
 
-#
-#
-#, fuzzy
 msgid "Slide show interval (sec.)"
-msgstr "Περίοδος Slideshow (δεπτ.)"
+msgstr "Slide show interval (sec.)"
 
-#
-# , python-format
 #, python-format
 msgid "Slot %d"
-msgstr "Θέση %d"
+msgstr "Slot %d"
 
 msgid "Slovak"
-msgstr ""
+msgstr "Slovak"
 
-#
 msgid "Slovenian"
-msgstr "Σλοβανικά"
+msgstr "Slovenian"
 
-#
-#
 msgid "Slow"
-msgstr "Αργά"
+msgstr "Slow"
 
 msgid "Slow motion speeds"
-msgstr ""
+msgstr "Slow motion speeds"
 
-#
-#
-#, fuzzy
 msgid "Small progress"
-msgstr "Σε εξέλιξη"
+msgstr "Small progress"
 
 msgid "Social/Political/Economics"
-msgstr ""
+msgstr "Social/Political/Economics"
 
-#
 msgid "SoftCam / CI"
 msgstr "SoftCam / CI"
 
 msgid "Softcam setings"
-msgstr ""
+msgstr "Softcam settings"
 
 msgid "Softcam settings"
-msgstr ""
+msgstr "Softcam settings"
 
-#
-#
-#, fuzzy
 msgid "SoftcamCheck"
-msgstr "Λογισμικό"
+msgstr "SoftcamCheck"
 
-#
-#
 msgid "Software"
-msgstr "Λογισμικό"
+msgstr "Software"
 
 msgid "Software Update"
-msgstr ""
+msgstr "Software Update"
 
-#
-#
 msgid "Software management"
-msgstr "Διαχείριση λογισμικού"
+msgstr "Software management"
 
-#
 msgid "Software manager setup"
-msgstr "Ρυθμίσεις διαχειριστή λογισμικού"
+msgstr "Software manager setup"
 
-#
-#
 msgid "Software restore"
-msgstr "Αποκατάσταση λογισμικού"
+msgstr "Software restore"
 
-#
-#
 msgid "Software update"
-msgstr "Ενημέρωση λογισμικού"
+msgstr "Software update"
 
-#
-#
-#, fuzzy
 msgid "Software update settings"
-msgstr "Ενημέρωση λογισμικού"
+msgstr "Software update settings"
 
-#
 msgid "Softwaremanager information"
-msgstr "Πληροφορίες διαχειριστή λογισμικού"
+msgstr "Software manager information"
 
-#
-#
 msgid "Some plugins are not available:\n"
-msgstr "Μερικά πρόσθετα δεν είναι διαθέσιμα:\n"
+msgstr "Some plugins are not available:\n"
 
 msgid "Sorry Inadyn Config is Missing"
-msgstr ""
+msgstr "Sorry Inadyn Config is Missing"
 
 msgid "Sorry MiniDLNA Config is Missing"
-msgstr ""
+msgstr "Sorry MiniDLNA Config is Missing"
 
 msgid "Sorry feeds are down for maintenance"
-msgstr ""
+msgstr "Sorry feeds are down for maintenance"
 
 msgid "Sorry feeds are down for maintenance, please try again later."
-msgstr ""
+msgstr "Sorry feeds are down for maintenance, please try again later."
 
 msgid "Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in \"software update setup\"."
-msgstr ""
+msgstr "Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in \"software update setup\"."
 
 msgid "Sorry uShare Config is Missing"
-msgstr ""
+msgstr "Sorry uShare Config is Missing"
 
 #, python-format
 msgid "Sorry, %s has not been installed!"
-msgstr ""
+msgstr "Sorry, %s has not been installed!"
 
 msgid "Sorry, no backups found!"
-msgstr ""
+msgstr "Sorry, no backups found!"
 
 msgid "Sorry, no details available!"
-msgstr ""
+msgstr "Sorry, no details available!"
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
 msgstr ""
+"Sorry, your backup destination is not writeable.\n"
+"Please select a different one."
 
-#
 msgid "Sort"
-msgstr "Ταξινόμηση"
+msgstr "Sort"
 
 msgid "Sort EPG List"
-msgstr ""
+msgstr "Sort EPG List"
 
 msgid "Sort list by"
-msgstr ""
+msgstr "Sort list by"
 
 msgid "Sort menu screens alphabetically"
-msgstr ""
+msgstr "Sort menu screens alphabetically"
 
 msgid "Sort plug-in browser alphabetically"
-msgstr ""
+msgstr "Sort plug-in browser alphabetically"
 
 msgid "Sort setting screens alphabetically"
-msgstr ""
+msgstr "Sort setting screens alphabetically"
 
-#
-#
 msgid "Sound"
-msgstr "Ήχος"
+msgstr "Sound"
 
-#
-#
-#, fuzzy
 msgid "Sound carrier"
-msgstr "Soundcarrier"
+msgstr "Sound carrier"
 
-#
 msgid "Source request"
-msgstr "Επιλογή πηγής αναβάθμισης"
+msgstr "Source request"
 
-#
-#
 msgid "South"
-msgstr "Νότος"
+msgstr "South"
 
 msgid "Space used:"
-msgstr ""
+msgstr "Space used:"
 
-#
 msgid "Spanish"
-msgstr "Ισπανικά"
+msgstr "Spanish"
 
-#
-#
 msgid "Split preview mode"
-msgstr "Διαχωρισμός κατάστασης επισκόπησης"
+msgstr "Split preview mode"
 
 msgid "Sports"
-msgstr ""
+msgstr "Sports"
 
 msgid "Standard"
-msgstr ""
+msgstr "Standard"
 
-#
-#
 msgid "Standby"
-msgstr "Αναμονή"
+msgstr "Standby"
 
-#
-#
 msgid "Standby / Restart"
-msgstr "Αναμονή / Επανεκκίνηση"
+msgstr "Standby / Restart"
 
-#
-#
-#, fuzzy
 msgid "Standby / restart"
-msgstr "Αναμονή / Επανεκκίνηση"
+msgstr "Standby / restart"
 
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
-#
-#
 msgid "Start from the beginning"
-msgstr "Έναρξη  απο την αρχή"
+msgstr "Start from the beginning"
 
 msgid "Start offline decode"
-msgstr ""
+msgstr "Start offline decode"
 
-#
-#, fuzzy
 msgid "Start recording?"
-msgstr "Τερματισμός εγγραφής"
+msgstr "Start recording?"
 
-#
-#
 msgid "Start test"
-msgstr "Έναρξη ελέγχου"
+msgstr "Start test"
 
-#
-#
-#, fuzzy
 msgid "Start time"
-msgstr "Ώρα έναρξης"
+msgstr "Start time"
 
 msgid "Start timeshift"
-msgstr ""
+msgstr "Start timeshift"
 
 msgid "Start with list screen"
-msgstr ""
+msgstr "Start with list screen"
 
-#
-#
 msgid "Starting on"
-msgstr "Έναρξη απο"
+msgstr "Starting on"
 
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
-#
-#
 msgid "Step east"
-msgstr "Βήμα ανατολικά"
+msgstr "Step east"
 
-#
-#
 msgid "Step west"
-msgstr "Βήμα δυτικά"
+msgstr "Step west"
 
-#
-#
-#, fuzzy
 msgid "Stepped east"
-msgstr "Βήμα ανατολικά"
+msgstr "Stepped east"
 
-#
-#
-#, fuzzy
 msgid "Stepped west"
-msgstr "Βήμα δυτικά"
+msgstr "Stepped west"
 
-#
-#
 msgid "Stop"
-msgstr "Τερματισμός"
+msgstr "Stop"
 
-#
-#
-#, fuzzy
 msgid "Stop PiP"
-msgstr "τερματισμός PiP"
+msgstr "Stop PiP"
 
-#
-#
 msgid "Stop current event and disable coming events"
-msgstr "Τερματισμός τρέχοντος προγράμματος και ακύρωση επερχόμενων"
+msgstr "Stop current event and disable coming events"
 
-#
-#
 msgid "Stop current event but not coming events"
-msgstr "Τερματισμός τρέχοντος προγράμματος αλλά όχι των επερχόμενων"
+msgstr "Stop current event but not coming events"
 
-#
-#
-#, fuzzy
 msgid "Stop entry"
-msgstr "τερματισμός εισαγωγής"
+msgstr "Stop entry"
 
-#
-#
 msgid "Stop playing this movie?"
-msgstr "Τερματισμός αναπαραγωγής;"
+msgstr "Stop playing this movie?"
 
-#
 msgid "Stop recording"
-msgstr "Τερματισμός εγγραφής"
+msgstr "Stop recording"
 
-#
 msgid "Stop recording and delete"
-msgstr "Τερματισμός εγγραφής και διαγραφή"
+msgstr "Stop recording and delete"
 
-#
-#, fuzzy
 msgid "Stop recording now"
-msgstr "Τερματισμός εγγραφής"
+msgstr "Stop recording now"
 
-#
-#
 msgid "Stop test"
-msgstr "Τερματισμός ελέγχου"
+msgstr "Stop test"
 
-#
-#
 msgid "Stop testing plane after # failed transponders"
 msgstr "Stop testing plane after # failed transponders"
 
-#
-#
 msgid "Stop testing plane after # successful transponders"
 msgstr "Stop testing plane after # successful transponders"
 
-#
-#, fuzzy
 msgid "Stop timer recording"
-msgstr "Τερματισμός εγγραφής"
+msgstr "Stop timer recording"
 
 msgid "Stop timeshift"
-msgstr ""
+msgstr "Stop timeshift"
 
 msgid "Stop timeshift while recording?"
-msgstr ""
+msgstr "Stop timeshift while recording?"
 
 msgid "Stopped"
-msgstr ""
+msgstr "Stopped"
 
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks)"
-msgstr ""
+msgstr "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks)"
 
-#
-#
-#, fuzzy
 msgid "Storage devices"
-msgstr "Λίστα μέσων αποθήκευσης"
+msgstr "Storage devices"
 
-#
-#
-#, fuzzy
 msgid "Store at index"
-msgstr "Αποθήκευση θέσης"
+msgstr "Store at index"
 
-#
-#
 msgid "Store position"
-msgstr "Αποθήκευση θέσης"
+msgstr "Store position"
 
-#
-#
 msgid "Stored position"
-msgstr "Αποθηκευμένη θέση"
+msgstr "Stored position"
 
 msgid "Stream"
-msgstr ""
+msgstr "Stream"
 
 msgid "Stream request"
 msgstr "Stream request"
 
 msgid "Strict DLNA"
-msgstr ""
+msgstr "Strict DLNA"
 
-#
-#
-#, fuzzy
 msgid "Strongest position"
-msgstr "Αποθήκευση θέσης"
+msgstr "Strongest position"
 
 msgid "Subservice mode"
-msgstr ""
+msgstr "Subservice mode"
 
-#
-#
 msgid "Subservices"
-msgstr "Υπό-υπηρεσίες"
+msgstr "Subservice's"
 
-#
-#
-#, fuzzy
 msgid "Subtitle Quickmenu"
-msgstr "Επιλογή υποτίτλων"
+msgstr "Subtitle Quickmenu"
 
 msgid "Subtitle alignment"
-msgstr ""
+msgstr "Subtitle alignment"
 
 msgid "Subtitle border width"
-msgstr ""
+msgstr "Subtitle border width"
 
-#
-#
-#, fuzzy
 msgid "Subtitle delay when timing is bad"
-msgstr "Καθυστέρηση κειμένου όταν δεν υπάρχει χρονισμός"
+msgstr "Subtitle delay when timing is bad"
 
-#
-#
 msgid "Subtitle delay when timing lacks"
-msgstr "Καθυστέρηση κειμένου όταν δεν υπάρχει χρονισμός"
+msgstr "Subtitle delay when timing lacks"
 
 msgid "Subtitle font size"
-msgstr ""
+msgstr "Subtitle font size"
 
-#
-#
 msgid "Subtitle language selection 1"
-msgstr "Επιλογή γλώσσας υποτίτλων 1"
+msgstr "Subtitle language selection 1"
 
-#
-#
 msgid "Subtitle language selection 2"
-msgstr "Επιλογή γλώσσας υποτίτλων 2"
+msgstr "Subtitle language selection 2"
 
-#
-#
 msgid "Subtitle language selection 3"
-msgstr "Επιλογή γλώσσας υποτίτλων 3"
+msgstr "Subtitle language selection 3"
 
-#
-#
 msgid "Subtitle language selection 4"
-msgstr "Επιλογή γλώσσας υποτίτλων 4"
+msgstr "Subtitle language selection 4"
 
 msgid "Subtitle position"
-msgstr ""
+msgstr "Subtitle position"
 
-#
-#
 msgid "Subtitle selection"
-msgstr "Επιλογή υποτίτλων"
+msgstr "Subtitle selection"
 
-#
 msgid "Subtitle selection..."
-msgstr "Επιλογή υποτίτλων..."
+msgstr "Subtitle selection..."
 
 msgid "Subtitle settings"
-msgstr ""
+msgstr "Subtitle settings"
 
-#
-#
 msgid "Subtitles"
-msgstr "Υπότιτλοι"
+msgstr "Subtitles"
 
-#
-#
 msgid "Sun"
-msgstr "Κυρ"
+msgstr "Sun"
 
-#
-#
 msgid "Sunday"
-msgstr "Κυριακή"
+msgstr "Sunday"
 
 msgid "Support at"
-msgstr ""
+msgstr "Support at"
 
-#
-#
-#, fuzzy
 msgid "Swap PiP and main picture"
-msgstr "εναλλαγή PiP και κύριας εικόνας"
+msgstr "Swap PiP and main picture"
 
 msgid "Swap SNR in '%' with SNR in 'db'"
-msgstr ""
+msgstr "Swap SNR in '%' with SNR in 'db'"
 
 msgid "Swap services"
-msgstr ""
+msgstr "Swap services"
 
-#
 msgid "Swedish"
-msgstr "Σουηδικά"
+msgstr "Swedish"
 
 msgid "Switch TV to correct input"
-msgstr "Αλλαγή της TV στη σωστή είσοδο"
+msgstr "Switch TV to correct input"
 
-#
-#
-#, fuzzy
 msgid "Switch between filelist/playlist"
-msgstr "μετάβαση στη λίστα αρχείων"
+msgstr "Switch between filelist/playlist"
 
 msgid "Switch between normal mode and list mode"
-msgstr ""
+msgstr "Switch between normal mode and list mode"
 
 msgid "Switch config"
-msgstr ""
+msgstr "Switch config"
 
 msgid "Switch next channel"
-msgstr ""
+msgstr "Switch next channel"
 
-#
-#
-#, fuzzy
 msgid "Switch to filelist"
-msgstr "μετάβαση στη λίστα αρχείων"
+msgstr "Switch to filelist"
 
 msgid "Switch to next channel in history"
-msgstr ""
+msgstr "Switch to next channel in history"
 
-#
-#
-#, fuzzy
 msgid "Switch to next sub service"
-msgstr "Προώθηση στην επόμενη υπό-υπηρεσία"
+msgstr "Switch to next sub service"
 
-#
-#
-#, fuzzy
 msgid "Switch to playlist"
-msgstr "μετάβαση στη λίστα αναπαραγωγής"
+msgstr "Switch to playlist"
 
 msgid "Switch to previous channel"
-msgstr ""
+msgstr "Switch to previous channel"
 
 msgid "Switch to previous channel in history"
-msgstr ""
+msgstr "Switch to previous channel in history"
 
-#
-#
-#, fuzzy
 msgid "Switch to previous sub service"
-msgstr "Προώθηση στην προηγούμενη υπό-υπηρεσία"
+msgstr "Switch to previous sub service"
 
-#
-#
 msgid "Switchable tuner types:"
-msgstr "Εναλλακτοί τύποι tuner:"
+msgstr "Switchable tuner types:"
 
-#
 msgid "Symbol rate"
 msgstr "Symbol rate"
 
 msgid "Sync NTP every (minutes)"
-msgstr ""
+msgstr "Sync NTP every (minutes)"
 
 msgid "Sync failure moving back to origin !"
-msgstr ""
+msgstr "Sync failure moving back to origin !"
 
 msgid "Sync time using"
-msgstr ""
+msgstr "Sync time using"
 
 msgid "Synchronize system time using transponder or internet."
-msgstr ""
+msgstr "Synchronize system time using transponder or internet."
 
-#
-#
 msgid "System"
-msgstr "Σύστημα"
+msgstr "System"
 
 #, python-format
 msgid "System temperature: %s"
-msgstr ""
+msgstr "System temperature: %s"
 
 msgid "System: "
-msgstr ""
+msgstr "System: "
 
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
-#
-#
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "ΠΛΗΡ_ΜΕΤΑΦΡΑΣΤΗ"
+msgstr "TRANSLATOR_INFO"
 
-#
-#
 msgid "TS file is too large for ISO9660 level 1!"
-msgstr "Το αρχείο TS είναι πολύ μεγάλο για το ISO9660 level 1!"
+msgstr "TS file is too large for ISO9660 level 1!"
 
 msgid "TSID"
 msgstr "TSID"
 
 msgid "TUNING"
-msgstr ""
+msgstr "TUNING"
 
 msgid "TV button mode"
-msgstr ""
+msgstr "TV button mode"
 
 msgid "TV physical address report"
-msgstr ""
+msgstr "TV physical address report"
 
 msgid "TXT PID"
 msgstr "TXT PID"
 
-#
-#
-#, fuzzy
 msgid "Table of contents for collection"
-msgstr "Πίνακας περιεχομένων για συλλογή"
+msgstr "Table of contents for collection"
 
-#
-#
 msgid "Tags"
 msgstr "Tags"
 
-#
-#
 msgid "Teletext subtitle color"
-msgstr "Χρώμα υποτίτλων teletext"
+msgstr "Teletext subtitle colour"
 
 msgid "Telnet Interface"
-msgstr ""
+msgstr "Telnet Interface"
 
 msgid "Telnet Port"
-msgstr ""
+msgstr "Telnet Port"
 
 msgid "Telnet Setup"
-msgstr ""
+msgstr "Telnet Setup"
 
 msgid "Telnet setup"
-msgstr ""
+msgstr "Telnet setup"
 
-#
-#
 msgid "Terrestrial"
-msgstr "Επίγειος "
+msgstr "Terrestrial"
 
-#
-#
 msgid "Terrestrial provider"
-msgstr "Επίγειος πάροχος"
+msgstr "Terrestrial provider"
 
-#
-#
 msgid "Test DiSEqC settings"
-msgstr "Έλεγχος ρυθμίσεων DiSEqC"
+msgstr "Test DiSEqC settings"
 
-#
-#
 msgid "Test mode"
-msgstr "Κατάσταση ελέγχου"
+msgstr "Test mode"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Test the network configuration of your %s %s.\n"
-msgstr "Ελέγξτε τις ρυθμίσεις δικτύου του δέκτη.\n"
+msgstr "Test the network configuration of your %s %s.\n"
 
-#
-#
-#, fuzzy
 msgid "Test type"
-msgstr "Τύπος ελέγχου"
+msgstr "Test type"
 
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
-#
-#
-#, fuzzy
 msgid "Text color"
-msgstr "χρώμα κειμένου"
+msgstr "Text color"
 
 msgid "Thai"
-msgstr ""
+msgstr "Thai"
 
-#
-#
 msgid ""
 "Thank you for using the wizard.\n"
 "Please press OK to continue."
 msgstr ""
-"Σας ευχαριστούμε που χρησιμοποιήσατε τον Οδηγό.\n"
-"Παρακαλώ πιέστε ΟΚ για συνέχεια."
+"Thank you for using the wizard.\n"
+"Please press OK to continue."
 
 msgid ""
 "Thank you for using the wizard. Your %s %s is now ready to use.\n"
 "Please press OK to start using your %s %s."
 msgstr ""
+"Thank you for using the wizard. Your %s %s is now ready to use.\n"
+"Please press OK to start using your %s %s."
 
 msgid "The %s %s reads the stored EPG data every (hours)."
-msgstr ""
+msgstr "The %s %s reads the stored EPG data every (hours)."
 
 msgid "The %s %s stores the EPG data every (hours)."
-msgstr ""
+msgstr "The %s %s stores the EPG data every (hours)."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
 msgstr ""
+"The AutoTimer plugin is not installed!\n"
+"Please install it."
 
 msgid ""
 "The Cool TV Guide plugin is not installed!\n"
 "Please install it."
 msgstr ""
+"The Cool TV Guide plugin is not installed!\n"
+"Please install it."
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a %s %s format data DVD (which will not play in stand-alone DVD players) instead?"
 msgstr "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a %s %s format data DVD (which will not play in stand-alone DVD players) instead?"
 
@@ -9829,61 +7285,65 @@ msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
+"The EPGSearch plugin is not installed!\n"
+"Please install it."
 
 msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
 msgstr ""
+"The Filesystem on your Timeshift-Device does not support hardlinks.\n"
+"Make sure it is formatted in EXT2 or EXT3!"
 
 msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
+"The IMDb plugin is not installed!\n"
+"Please install it."
 
 msgid ""
 "The MediaPlayer plugin is not installed!\n"
 "Please install it."
 msgstr ""
+"The MediaPlayer plugin is not installed!\n"
+"Please install it."
 
 msgid "The PIN code has been changed successfully."
-msgstr "Το PIN έχει αλλαχθεί επιτυχώς."
+msgstr "The PIN code has been changed successfully."
 
 msgid "The PIN codes you entered are different."
-msgstr "Τα PIN που εισάγατε είναι διαφορετικά."
+msgstr "The PIN codes you entered are different."
 
 msgid ""
 "The USB stick was prepared to be bootable.\n"
 "Now you can download an NFI image file!"
 msgstr ""
-"Το usb stick προετοιμάσθηκε ως εκκινήσιμο.\n"
-"Τώρα μπορεί να γίνει λήψη του αρχείου NFI!"
+"The USB stick was prepared to be bootable.\n"
+"Now you can download an NFI image file!"
 
-#
-#
 msgid "The backup failed. Please choose a different backup location."
-msgstr "Το backup απέτυχε. Διάλεξτε άλλη τοποθεσία για το backup."
+msgstr "The backup failed. Please choose a different backup location."
 
 msgid "The current update may be unstable"
-msgstr ""
+msgstr "The current update may be unstable"
 
 #, python-format
 msgid ""
 "The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\n"
 "Make sure you select a valid partition type."
 msgstr ""
+"The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\n"
+"Make sure you select a valid partition type."
 
-#
-# , python-format
 #, python-format
 msgid ""
 "The directory %s is not writable.\n"
 "Make sure you select a writable directory instead."
 msgstr ""
-"Ο φάκελος %s δεν είναι εγγράψιμος.\n"
-"Επιλέξτε εναλλακτικά έναν εγγράψιμο φάκελο."
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
 
-#
-# , python-format
 #, python-format
 msgid ""
 "The following device was found:\n"
@@ -9892,389 +7352,329 @@ msgid ""
 "\n"
 "Do you want to write the USB flasher to this stick?"
 msgstr ""
-"Βρέθηκε η παρακάτω συσκευή:\n"
+"The following device was found:\n"
 "\n"
 "%s\n"
 "\n"
-"Θέλετε να γράψετε το USB flasher σε αυτό το stick;"
+"Do you want to write the USB flasher to this stick?"
 
-#
-#
 msgid "The following files were found..."
-msgstr "Βρέθηκαν τα παρακάτω αρχεία..."
+msgstr "The following files were found..."
 
 msgid "The loopthrough setting is wrong."
-msgstr ""
+msgstr "The loopthrough setting is wrong."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr "Η επιβεβαίωση md5sum απέτυχε, το αρχείο ενδέχεται να είναι κατεστραμμένο!"
+msgstr "The md5sum validation failed, the file may be corrupted!"
 
-#
-#
-#, fuzzy
 msgid ""
 "The network wizard extension is not installed!\n"
 "Please install it."
 msgstr ""
-"Η επέκταση NetworkWizard δεν είναι εγκατεστημένη!\n"
-"Παρακαλώ εγκαταστήστε τη."
+"The network wizard extension is not installed!\n"
+"Please install it."
 
-#
-# , python-format
 #, python-format
 msgid "The path %s already exists."
-msgstr "Η διαδρομή %s υπάρχει ήδη."
+msgstr "The path %s already exists."
 
-#
-#
 msgid "The pin code you entered is wrong."
-msgstr "Το Pin είναι λάθος."
+msgstr "The pin code you entered is wrong."
 
-#
-# , python-format
 #, python-format
 msgid "The results have been written to %s."
-msgstr "Τα αποτελέσματα γράφτηκαν στο %s."
+msgstr "The results have been written to %s."
 
-#
-#
-#, fuzzy
 msgid ""
 "The software management extension is not installed!\n"
 "Please install it."
 msgstr ""
-"Η επέκταση Softwaremanagement δεν είναι εγκατεστημένη!\n"
-"Παρακαλώ εγκαταστήστε τη."
+"The software management extension is not installed!\n"
+"Please install it."
 
-#
-#
-#, fuzzy
 msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Το timer file (timers.xml) ειναι άκυρο και δεν φωρτοθείκε."
+msgstr "The timer file (pm_timers.xml) is corrupt and could not be loaded."
 
-#
-#
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Το timer file (timers.xml) ειναι άκυρο και δεν φωρτοθείκε."
+msgstr "The timer file (timers.xml) is corrupt and could not be loaded."
 
-#
-#, fuzzy, python-format
+#, python-format
 msgid "The user interface of your %s %s is restarting"
-msgstr ""
-"\n"
-"Αποκατάσταση των ρυθμίσεων."
+msgstr "The user interface of your %s %s is restarting"
 
-#
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The user interface of your %s %s is restarting\n"
 "due to an error in mytest.py"
 msgstr ""
-"\n"
-"Αποκατάσταση των ρυθμίσεων."
+"The user interface of your %s %s is restarting\n"
+"due to an error in mytest.py"
 
-#
-#
 msgid ""
 "The wireless LAN plugin is not installed!\n"
 "Please install it and choose what you want to do next."
 msgstr ""
-"Το πρόσθετο wireless LAN δεν είναι εγκατεστημένο!\n"
-"Παρακαλώ εγκαταστήστε το και επιλέξτε τι θέλετε να συμβεί στη συνέχεια."
+"The wireless LAN plugin is not installed!\n"
+"Please install it and choose what you want to do next."
 
-#
-#
 msgid ""
 "The wireless LAN plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Το πρόσθετο wireless LAN δεν είναι εγκατεστημένο!\n"
-"Παρακαλώ εγκαταστήστε το."
+"The wireless LAN plugin is not installed!\n"
+"Please install it."
 
-#
-#
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr "Ο Οδηγός μπορεί να κρατήσει αντίγραφο των ρυθμίσεων. Να κρατήσει αντίγραφο τώρα;"
+msgstr "The wizard can backup your current settings. Do you want to do a backup now?"
 
 #, python-format
 msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "Ο Οδηγός βρήκε αντίγραφο ασφαλείας των ρυθμίσεων. Θέλετε να αποκαταστήσετε τις παλιές ρυθμίσεις σας από το %s;"
+msgstr "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
 
-#
-#
 msgid "The wizard is finished now."
-msgstr "Ο Οδηγός ολοκληρώθηκε."
+msgstr "The wizard is finished now."
 
-#
-#
 msgid "There are at least "
-msgstr "Υπάρχουν τουλάχιστον"
+msgstr "There are at least "
 
 #, python-format
 msgid "There are at least %s updates available."
-msgstr ""
+msgstr "There are at least %s updates available."
 
-#
-#
 msgid "There are currently no outstanding actions."
 msgstr "There are currently no outstanding actions."
 
-#
-#
 msgid "There are no updates available."
-msgstr "Δεν υπάρχουν διαθέσιμες ενημερώσεις."
+msgstr "There are no updates available."
 
 msgid "There is no [webif] section in oscam.conf"
-msgstr ""
+msgstr "There is no [webif] section in oscam.conf"
 
 msgid "There is no signal to lock on !"
-msgstr ""
+msgstr "There is no signal to lock on !"
 
-#
-#
 msgid ""
 "There might not be enough space on the selected partition..\n"
 "Do you really want to continue?"
 msgstr ""
-"Ενδεχομένως να μην υπάρχει αρκετός χώρος στην επιλεγμένη κατάτμηση.\n"
-"Θέλετε να συνεχίσετε;"
+"There might not be enough space on the selected partition..\n"
+"Do you really want to continue?"
 
-#
-# , python-format
-#, fuzzy, python-format
+#, python-format
 msgid "This %s %s cannot decode %s streams!"
-msgstr "Αυτός ο δέκτης δε μπορεί να αποκωδικοποιήσει %s streams!"
+msgstr "This %s %s cannot decode %s streams!"
 
-#
-#
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
-msgstr ""
+msgstr "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 
 msgid "This allows you to change the number of rows shown."
-msgstr ""
+msgstr "This allows you to change the number of rows shown."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
-msgstr ""
+msgstr "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 
 msgid "This allows you to change the number of rows shown."
-msgstr ""
+msgstr "This allows you to change the number of rows shown."
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
-msgstr ""
+msgstr "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
-msgstr ""
+msgstr "This option allows to set the level of dynamic contrast of the picture."
 
 msgid "This option allows you choose how to display elapsed time as + or -"
-msgstr ""
+msgstr "This option allows you choose how to display elapsed time as + or -"
 
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
-msgstr ""
+msgstr "This option allows you choose how to display remaining time, or elapsed time, or both."
 
 msgid "This option allows you choose how to display the remaining/elapsed time for live TV."
-msgstr ""
+msgstr "This option allows you choose how to display the remaining/elapsed time for live TV."
 
 msgid "This option allows you choose the background color of transparent picons."
-msgstr ""
+msgstr "This option allows you choose the background color of transparent picons."
 
 msgid "This option allows you set the layout view (Text or Graphics)."
-msgstr ""
+msgstr "This option allows you set the layout view (Text or Graphics)."
 
 msgid "This option allows you to boost the blue tones in the picture."
-msgstr ""
+msgstr "This option allows you to boost the blue tones in the picture."
 
 msgid "This option allows you to boost the green tones in the picture."
-msgstr ""
+msgstr "This option allows you to boost the green tones in the picture."
 
 msgid "This option allows you to choose from the two channel lists that are available."
-msgstr ""
+msgstr "This option allows you to choose from the two channel lists that are available."
 
 msgid "This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)"
-msgstr ""
+msgstr "This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)"
 
 msgid "This option allows you to choose how to display 1080p 25Hz on your TV. (as not all TV's support these resolutions)"
-msgstr ""
+msgstr "This option allows you to choose how to display 1080p 25Hz on your TV. (as not all TV's support these resolutions)"
 
 msgid "This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)"
-msgstr ""
+msgstr "This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)"
 
 msgid "This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)"
-msgstr ""
+msgstr "This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)"
 
 msgid "This option allows you to choose how to display elapsed time. As + or -"
-msgstr ""
+msgstr "This option allows you to choose how to display elapsed time. As + or -"
 
 msgid "This option allows you to choose how to display standard defintion video on your TV."
-msgstr ""
+msgstr "This option allows you to choose how to display standard defintion video on your TV."
 
 msgid "This option allows you to choose how to display the remaining/elapsed time for Media playback."
-msgstr ""
+msgstr "This option allows you to choose how to display the remaining/elapsed time for Media playback."
 
 msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
-msgstr ""
+msgstr "This option allows you to choose how to display the remaining/elapsed time for live TV."
 
 msgid "This option allows you to choose how to display the remaining/elapsed time for media playback."
-msgstr ""
+msgstr "This option allows you to choose how to display the remaining/elapsed time for media playback."
 
 msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first)"
-msgstr ""
+msgstr "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first)"
 
 msgid "This option allows you to disable sorting of the menus"
-msgstr ""
+msgstr "This option allows you to disable sorting of the menus"
 
 msgid "This option allows you to disable sorting of the option in setting screens"
-msgstr ""
+msgstr "This option allows you to disable sorting of the option in setting screens"
 
 msgid "This option allows you to disable sorting of the plugin browser."
-msgstr ""
+msgstr "This option allows you to disable sorting of the plugin browser."
 
 msgid "This option allows you to set the layout view (Text or Graphics)."
-msgstr ""
+msgstr "This option allows you to set the layout view (Text or Graphics)."
 
 msgid "This option allows you to show the SNR as a percentage (not all receivers support this)."
-msgstr ""
+msgstr "This option allows you to show the SNR as a percentage (not all receivers support this)."
 
 msgid "This option allows you to view the old and new settings side by side."
-msgstr ""
+msgstr "This option allows you to view the old and new settings side by side."
 
 msgid "This option configures the general audio delay of Dolby Digital sound tracks."
-msgstr ""
+msgstr "This option configures the general audio delay of Dolby Digital sound tracks."
 
 msgid "This option configures the general audio delay of stereo sound tracks."
-msgstr ""
+msgstr "This option configures the general audio delay of stereo sound tracks."
 
 msgid "This option configures the screen resolution in PC output mode."
-msgstr ""
+msgstr "This option configures the screen resolution in PC output mode."
 
 msgid "This option configures the video output mode (or resolution)."
-msgstr ""
+msgstr "This option configures the video output mode (or resolution)."
 
 msgid "This option allows you to bypass HDMI EDID check"
-msgstr ""
+msgstr "This option allows you to bypass HDMI EDID check"
 
 msgid "This option allows you to enable 3D Surround Sound."
-msgstr ""
+msgstr "This option allows you to enable 3D Surround Sound."
 
 msgid "This option lets you adjust the 3D depth"
-msgstr ""
+msgstr "This option lets you adjust the 3D depth"
 
 msgid "This option lets you adjust the transparency of the user interface"
-msgstr ""
+msgstr "This option lets you adjust the transparency of the user interface"
 
 msgid "This option lets you choose the 3D mode"
-msgstr ""
+msgstr "This option lets you choose the 3D mode"
 
 msgid "This option lets you show the option in the extension screen"
-msgstr ""
+msgstr "This option lets you show the option in the extension screen"
 
 msgid "This option moves the PVR status from the separate window into the Movie Player infobar."
-msgstr ""
+msgstr "This option moves the PVR status from the separate window into the Movie Player infobar."
 
 msgid "This option set the level of surpression of musquito noise (Musquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
-msgstr ""
+msgstr "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 
 msgid "This option sets  the picture contrast."
-msgstr ""
+msgstr "This option sets  the picture contrast."
 
 msgid "This option sets the picture brightness."
-msgstr ""
+msgstr "This option sets the picture brightness."
 
 msgid "This option sets the picture color space."
-msgstr ""
+msgstr "This option sets the picture color space."
 
 msgid "This option sets the picture flesh tones."
-msgstr ""
+msgstr "This option sets the picture flesh tones."
 
 msgid "This option sets the picture hue."
-msgstr ""
+msgstr "This option sets the picture hue."
 
 msgid "This option sets the picture saturation."
-msgstr ""
+msgstr "This option sets the picture saturation."
 
 msgid "This option sets the scaler sharpness, used when stretching picture from 4:3 to 16:9."
-msgstr ""
+msgstr "This option sets the scaler sharpness, used when scretching picture from 4:3 to 16:9."
 
 msgid "This option sets the surpression of false digital contours, that are the result of a limited number of discrete values."
-msgstr ""
+msgstr "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
-msgstr ""
+msgstr "This option sets up the picture sharpness, used when the picture is being upscaled."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
 "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
-"Αυτό το πρόσθετο δημιουργεί ένα usb stick που μπορεί να χρησιμοποιηθεί για αναβάθμιση του %s %s χωρίς ανάγκη ύπαρξης δικτύου.\n"
-"Καταρχήν, ένα usb stick πρέπει να προετοιμασθεί ώστε να είναι εκκινήσιμο.\n"
-"Στο επόμενο βήμα, ένα αρχείο NFI μπορεί να αποθηκευτεί σε αυτό από τον διακομιστή ενημερώσεων.\n"
-"Εάν έχετε ένα ήδη έτοιμο usb stick, παρακαλώ συνδέστε το τώρα. Αλλιώς συνδέστε ένα usb stick ελάχιστης χωρητικότητας 64MB!"
+"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
+"First, a USB stick needs to be prepared so that it becomes bootable.\n"
+"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 
-#
-#
 msgid "This plugin is installed."
-msgstr "Το πρόσθετο είναι εγκατεστημένο."
+msgstr "This plugin is installed."
 
-#
-#
 msgid "This plugin is not installed."
-msgstr "Το πρόσθετο δεν είναι εγκατεστημένο."
+msgstr "This plugin is not installed."
 
-#
-#
 msgid "This plugin will be installed."
-msgstr "Το πρόσθετο θα εγκατασταθεί."
+msgstr "This plugin will be installed."
 
-#
-#
 msgid "This plugin will be removed."
-msgstr "Το πρόσθετο θα διαγραφεί."
+msgstr "This plugin will be removed."
 
-#
-#
-#, fuzzy
 msgid ""
 "This test checks for configured nameservers.\n"
 "If you get a \"unconfirmed\" message:\n"
 "- please check your DHCP, cabling and adapter setup\n"
 "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
 msgstr ""
-"This test checks for configured Nameservers.\n"
+"This test checks for configured nameservers.\n"
 "If you get a \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and Adapter setup\n"
-"- if you configured your Nameservers manually please verify your entries in the \"Nameserver\" Configuration"
+"- please check your DHCP, cabling and adapter setup\n"
+"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
 
-#
-#
-#, fuzzy
 msgid ""
 "This test checks whether a network cable is connected to your LAN adapter.\n"
 "If you get a \"disconnected\" message:\n"
 "- verify that a network cable is attached\n"
 "- verify that the cable is not broken"
 msgstr ""
-"This test checks whether a network cable is connected to your LAN-Adapter.\n"
+"This test checks whether a network cable is connected to your LAN adapter.\n"
 "If you get a \"disconnected\" message:\n"
 "- verify that a network cable is attached\n"
 "- verify that the cable is not broken"
 
-#
-#
-#, fuzzy
 msgid ""
 "This test checks whether a valid IP address is found for your LAN adapter.\n"
 "If you get a \"unconfirmed\" message:\n"
 "- no valid IP address was found\n"
 "- please check your DHCP, cabling and adapter setup"
 msgstr ""
-"This test checks whether a valid IP Address is found for your LAN Adapter.\n"
+"This test checks whether a valid IP address is found for your LAN adapter.\n"
 "If you get a \"unconfirmed\" message:\n"
-"- no valid IP Address was found\n"
+"- no valid IP address was found\n"
 "- please check your DHCP, cabling and adapter setup"
 
 msgid ""
@@ -10285,98 +7685,78 @@ msgid ""
 "If you get an \"enabled\" message:\n"
 "-verify that you have a configured and working DHCP server in your network."
 msgstr ""
+"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
+"If you get a \"disabled\" message:\n"
+" - then your LAN adapter is configured for manual IP setup\n"
+"- verify thay you have entered correct IP informations in the adapter setup dialog.\n"
+"If you get an \"enabled\" message:\n"
+"-verify that you have a configured and working DHCP server in your network."
 
-#
-#
-#, fuzzy
 msgid "This test detects your configured LAN adapter."
-msgstr "Αυτός ο έλεγχος αναζητά την ρυθμισμένη κάρτα δικτύου."
+msgstr "This test detects your configured LAN adapter."
 
 msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
+"This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
+"Are you sure?"
 
-#
-#
 msgid "Three"
-msgstr "Τρία"
+msgstr "Three"
 
-#
-#
 msgid "Threshold"
-msgstr "Όριο"
+msgstr "Threshold"
 
-#
-#
 msgid "Thu"
-msgstr "Πεμ"
+msgstr "Thu"
 
-#
-#
 msgid "Thumbnails"
 msgstr "Thumbnails"
 
-#
-#
 msgid "Thursday"
-msgstr "Πέμπτη"
+msgstr "Thursday"
 
 msgid "TiVo support"
-msgstr ""
+msgstr "TiVo support"
 
-#
-#
 msgid "Time"
-msgstr "Χρόνος"
+msgstr "Time"
 
 msgid "Time Update in Minutes"
-msgstr ""
+msgstr "Time Update in Minutes"
 
 msgid "Time Update in Minutes:"
-msgstr ""
+msgstr "Time Update in Minutes:"
 
-#
-#, fuzzy
 msgid "Time scale"
-msgstr "Κλίμακα χρόνου"
+msgstr "Time scale"
 
 msgid "Time settings"
-msgstr ""
+msgstr "Time settings"
 
 msgid "Time to execute command or script"
-msgstr ""
+msgstr "Time to execute command or script"
 
-#
-#, fuzzy
 msgid "Timeline font size"
-msgstr "Μέγεθος γραμματοσειράς προγράμματος"
+msgstr "Timeline font size"
 
 msgid "Timer List"
-msgstr ""
+msgstr "Timer List"
 
-#
-#
 msgid "Timer entry"
-msgstr "Εγγραφή χρονοδιακόπτη"
+msgstr "Timer entry"
 
-#
-#
 msgid "Timer log"
-msgstr "Καταγραφή χρονοδιακόπτη"
+msgstr "Timer log"
 
-#
-#
-#, fuzzy
 msgid ""
 "Timer overlap in pm_timers.xml detected!\n"
 "Please recheck it!"
 msgstr ""
-"Timer overlap in timers.xml detected!\n"
+"Timer overlap in pm_timers.xml detected!\n"
 "Please recheck it!"
 
-#
-#
 msgid ""
 "Timer overlap in timers.xml detected!\n"
 "Please recheck it!"
@@ -10384,103 +7764,71 @@ msgstr ""
 "Timer overlap in timers.xml detected!\n"
 "Please recheck it!"
 
-#
-#
-#, fuzzy
 msgid "Timer overview"
-msgstr "Εγγραφή χρονοδιακόπτη"
+msgstr "Timer overview"
 
-#
-#
 msgid "Timer record location"
-msgstr "Τοποθεσία εγγραφής χρονοδιακόπτη"
+msgstr "Timer record location"
 
-#
-#
-#, fuzzy
 msgid "Timer recording location"
-msgstr "Τοποθεσία εγγραφής χρονοδιακόπτη"
+msgstr "Timer recording location"
 
-#
-#
 msgid "Timer sanity error"
 msgstr "Timer sanity error"
 
-#
-#
 msgid "Timer selection"
-msgstr "Επιλογή χρονοδιακόπτη"
+msgstr "Timer selection"
 
-#
-#
-#, fuzzy
 msgid "Timer selection..."
-msgstr "Επιλογή χρονοδιακόπτη"
+msgstr "Timer selection..."
 
-#
-#
-#, fuzzy
 msgid "Timer type"
-msgstr "Τύπος χρονοδιακόπτη"
+msgstr "Timer type"
 
 msgid "Timers"
-msgstr ""
+msgstr "Timers"
 
-#
-#
 msgid "Timeshift"
 msgstr "Timeshift"
 
-#
-#
 msgid "Timeshift location"
-msgstr "Τοποθεσία Timeshift"
+msgstr "Timeshift location"
 
-#
-#
 msgid "Timeshift not possible!"
-msgstr "Το timeshift δεν είναι δυνατό!"
+msgstr "Timeshift not possible!"
 
 msgid "Timeshift save failed!"
-msgstr ""
+msgstr "Timeshift save failed!"
 
 msgid "Timeshift save recording (Select event)"
-msgstr ""
+msgstr "Timeshift save recording (Select event)"
 
 msgid "Timeshift save recording (stop after current event)"
-msgstr ""
+msgstr "Timeshift save recording (stop after current event)"
 
 msgid "Timeshift saved to your harddisk!"
-msgstr ""
+msgstr "Timeshift saved to your hard disk!"
 
 msgid "Timeshift settings"
-msgstr ""
+msgstr "Timeshift settings"
 
 msgid "Timeshift will get saved at end of event!"
-msgstr ""
+msgstr "Timeshift will get saved at end of event!"
 
 msgid "Timeshift-save action on zap"
-msgstr ""
+msgstr "Timeshift-save action on zap"
 
-#
-#
 msgid "Timezone"
-msgstr "Χρονική ζώνη"
+msgstr "Timezone"
 
-#
-#
 msgid "Title"
-msgstr "Τίτλος"
+msgstr "Title"
 
-#
-#
 msgid "Title properties"
-msgstr "Ιδιότητες τίτλου"
+msgstr "Title properties"
 
-#
-#
 msgid "Titleset mode"
-msgstr "Titleset mode"
+msgstr "Title set mode"
 
 #, python-format
 msgid ""
@@ -10489,406 +7837,303 @@ msgid ""
 "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
+"To update your %s %s firmware, please follow these steps:\n"
+"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+"3) Wait for bootup and follow instructions of the wizard."
 
-#
-#
 msgid "Today"
-msgstr "Σήμερα"
+msgstr "Today"
 
 msgid "Toggle Picture In Graphics"
-msgstr ""
+msgstr "Toggle Picture In Graphics"
 
 msgid "Toggle a cut mark at the current position"
-msgstr ""
+msgstr "Toggle a cut mark at the current position"
 
 msgid "Toggle aspect ratio..."
-msgstr ""
+msgstr "Toggle aspect ratio..."
 
 msgid "Toggle between bouquet/epg lists"
-msgstr ""
+msgstr "Toggle between bouquet/epg lists"
 
 msgid "Tone amplitude"
-msgstr ""
+msgstr "Tone amplitude"
 
-#
-#
 msgid "Tone mode"
-msgstr "Τύπος τόνου"
+msgstr "Tone mode"
 
-#
-#
 msgid "Toneburst"
-msgstr "Toneburst"
+msgstr "Tone-burst"
 
-#
-#
 msgid "Toneburst A/B"
-msgstr "Toneburst A/B"
+msgstr "Tone-burst A/B"
 
-#
 msgid "Top and Bottom"
-msgstr "Πάνω και Κάτω"
+msgstr "Top and Bottom"
 
-#
-#, fuzzy
 msgid "Top and bottom"
-msgstr "Πάνω και Κάτω"
+msgstr "Top and bottom"
 
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 msgid "Total Memory:"
-msgstr ""
+msgstr "Total Memory:"
 
 msgid "Total Swap:"
-msgstr ""
+msgstr "Total Swap:"
 
 msgid "Total cards:"
-msgstr ""
+msgstr "Total cards:"
 
 msgid "Total handled client ecm's"
-msgstr ""
+msgstr "Total handled client ecm's"
 
 msgid "Total handled client emm's"
-msgstr ""
+msgstr "Total handled client emm's"
 
 msgid "Total:"
-msgstr ""
+msgstr "Total:"
 
-#
-#
 msgid "Track"
 msgstr "Track"
 
-#
-#
-#, fuzzy
 msgid "Translation Information"
-msgstr "Πληροφορίες"
+msgstr "Translation Information"
 
-#
-#
-#, fuzzy
 msgid "Translations"
-msgstr "Μετάφραση"
+msgstr "Translations"
 
-#
-#
 msgid "Transmission mode"
-msgstr "Mode μετάδοσης"
+msgstr "Transmission mode"
 
 msgid "Transparent"
-msgstr ""
+msgstr "Transparent"
 
-#
-#
 msgid "Transponder"
-msgstr "Αναμεταδότης"
+msgstr "Transponder"
 
-#
-#, fuzzy
 msgid "Transponder type"
-msgstr "Τύπος αναμεταδότη"
+msgstr "Transponder type"
 
-#
 msgid "Trashcan"
-msgstr "Καλάθι αχρήστων"
+msgstr "Trashcan"
 
 msgid "Trashcan:"
-msgstr ""
+msgstr "Trashcan:"
 
-#
-#
 msgid "Tries left:"
-msgstr "Προσπάθειες που απομένουν:"
+msgstr "Tries left:"
 
-#
-#
 msgid "Try to find used transponders in cable network.. please wait..."
-msgstr "Αναζήτηση χρησιμοποιούμενων αναμεταδοτών στο καλωδιακό δίκτυο... Παρακαλώ περιμένετε..."
+msgstr "Try to find used transponders in cable network.. please wait..."
 
-#
-#
 msgid "Trying to download a new packetlist. Please wait..."
-msgstr "Προσπάθεια για λήψη νέας λίστας πακέτων. Παρακαλώ περιμένετε ..."
+msgstr "Trying to download a new packet list. Please wait..."
 
-#
-#
 msgid "Tue"
-msgstr "Τρι"
+msgstr "Tue"
 
-#
-#
 msgid "Tuesday"
-msgstr "Τρίτη "
+msgstr "Tuesday"
 
-#
-#
 msgid "Tune"
-msgstr "Συντονισμός"
+msgstr "Tune"
 
-#
-#
-#, fuzzy
 msgid "Tune and focus"
-msgstr "Κατάσταση tuner"
+msgstr "Tune and focus"
 
-#
-#
 msgid "Tune failed!"
-msgstr "Ο συντονισμός απέτυχε!"
+msgstr "Tune failed!"
 
-#
-#
 msgid "Tuner"
 msgstr "Tuner"
 
-#
-#
-#, fuzzy
 msgid "Tuner :"
-msgstr "Tuner"
+msgstr "Tuner :"
 
-#
-#
 msgid "Tuner configuration"
-msgstr "Εγκατάσταση tuner"
+msgstr "Tuner configuration"
 
 msgid "Tuner settings"
-msgstr ""
+msgstr "Tuner settings"
 
 msgid "Tuner slot"
-msgstr ""
+msgstr "Tuner slot"
 
-#
-#
 msgid "Tuner status"
-msgstr "Κατάσταση tuner"
+msgstr "Tuner status"
 
-#
-#
-#, fuzzy
 msgid "Tuner status:"
-msgstr "Κατάσταση tuner"
+msgstr "Tuner status:"
 
-#
-#
 msgid "Tuner type"
-msgstr "Τύπος tuner"
+msgstr "Tuner type"
 
 msgid "Tuning step size"
-msgstr ""
+msgstr "Tuning step size"
 
-#
 msgid "Turkish"
-msgstr "Τούρκικα"
+msgstr "Turkish"
 
-#
-#
 msgid "Two"
-msgstr "Δύο"
+msgstr "Two"
 
 msgid "Two lines"
-msgstr ""
+msgstr "Two lines"
 
-#
-#
 msgid "Type"
-msgstr "Τύπος"
+msgstr "Type"
 
-#
-#
 msgid "Type of scan"
-msgstr "Τύπος σάρωσης"
+msgstr "Type of scan"
 
 msgid "Type: "
-msgstr ""
+msgstr "Type: "
 
-#
-#
 msgid "USALS"
 msgstr "USALS"
 
 msgid "USALS calibration"
-msgstr ""
+msgstr "USALS calibration"
 
-#
 msgid "USB stick wizard"
-msgstr "Οδηγός USB stick"
+msgstr "USB stick wizard"
 
 msgid "Unattended upgrade without GUI and reboot system"
-msgstr "Αναβάθμιση χωρίς γραφικό περιβάλλον και επανεκκίνηση"
+msgstr "Unattended upgrade without GUI and reboot system"
 
-#
-#
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC command"
 
 msgid "Undetermined"
-msgstr ""
+msgstr "Undetermined"
 
-#
-#
 msgid "Undo install"
-msgstr "Αναίρεση εγκατάστασης"
+msgstr "Undo install"
 
-#
-#
 msgid "Undo uninstall"
-msgstr "Αναίρεση απεγκατάστασης"
+msgstr "Undo uninstall"
 
 msgid "Unencrypted"
-msgstr "Χωρίς κωδικοποίηση"
+msgstr "Unencrypted"
 
-#
-#
 msgid "Unicable"
 msgstr "Unicable"
 
-#
-#
 msgid "Unicable LNB"
 msgstr "Unicable LNB"
 
 msgid "Unicable Matrix"
-msgstr ""
+msgstr "Unicable Matrix"
 
-#
-#
 msgid "Uninstall"
-msgstr "Απεγκατάσταση"
+msgstr "Uninstall"
 
-#
-#
 msgid "Universal LNB"
 msgstr "Universal LNB"
 
-#
 msgid "Unknown"
-msgstr "Άγνωστο"
+msgstr "Unknown"
 
-#
 msgid "Unmount"
-msgstr "Αποπροσάρτηση"
+msgstr "Unmount"
 
-#
-#
 msgid "Unsupported"
-msgstr "Δεν υποστηρίζεται"
+msgstr "Unsupported"
 
-#
-#
 msgid "Update"
-msgstr "Ενημέρωση"
+msgstr "Update"
 
 msgid "Update channel list only"
-msgstr ""
+msgstr "Update channel list only"
 
 #, python-format
 msgid "Update completed, %d package was installed."
 msgid_plural "Update completed, %d packages were installed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Update completed, %d package was installed."
+msgstr[1] "Update completed, %d packages were installed."
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Update failed. Your %s %s does not have a working internet connection."
-msgstr ""
-"Ο δέκτης σας είναι τώρα έτοιμος για χρήση.\n"
-"\n"
-"Η σύνδεση με το διαδίκτυο είναι έτοιμη.\n"
-"\n"
+msgstr "Update failed. Your %s %s does not have a working internet connection."
 
 msgid "Update interval (in seconds)"
-msgstr ""
+msgstr "Update interval (in seconds)"
 
-#
-#
 msgid "Updatefeed not available."
-msgstr "Το feed ναβάθμισης δεν είναι διαθέσιμο"
+msgstr "Update feed not available."
 
-#
-#
 msgid "Updating software catalog"
-msgstr "Ενημέρωση καταλόγου λογισμικού"
+msgstr "Updating software catalog"
 
 msgid "Upgrade and reboot system"
-msgstr ""
+msgstr "Upgrade and reboot system"
 
-#
-#
 msgid "Upgrade finished."
-msgstr "Η αναβάθμιση τελείωσε."
+msgstr "Upgrade finished."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Upgrade in progress\n"
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
-"Εκτελείται αναβάθμιση\n"
-"Παρακαλώ περιμένετε μέχρι την επανεκκίνηση του δέκτη\n"
-"Θα διαρκέσει μερικά λεπτά"
+"Upgrade in progress\n"
+"Please wait until your %s %s reboots\n"
+"This may take a few minutes"
 
-#
-#
 msgid "Upgrading"
-msgstr "Εκτελείται αναβάθμιση"
+msgstr "Upgrading"
 
 msgid "Uphops +"
-msgstr ""
+msgstr "Uphops +"
 
 msgid "Uphops -"
-msgstr ""
+msgstr "Uphops -"
 
 msgid "Uphops: "
-msgstr ""
+msgstr "Uphops: "
 
 msgid "Uptime"
-msgstr ""
+msgstr "Uptime"
 
-#
-#
 msgid "Use"
-msgstr "Χρήση"
+msgstr "Use"
 
-#
-#
 msgid "Use DHCP"
-msgstr "Χρήση DHCP"
+msgstr "Use DHCP"
 
 msgid "Use EIT EPG information when it is available."
-msgstr ""
+msgstr "Use EIT EPG information when it is available."
 
 msgid "Use FreeSat EPG information when it is available."
-msgstr ""
+msgstr "Use FreeSat EPG information when it is available."
 
 msgid "Use MHW EPG information when it is available."
-msgstr ""
+msgstr "Use MHW EPG information when it is available."
 
 msgid "Use Netmed EPG information when it is available."
-msgstr ""
+msgstr "Use Netmed EPG information when it is available."
 
 msgid "Use TV remote control"
-msgstr "Χρήση τηλεχειριστηρίου TV"
+msgstr "Use TV remote control"
 
 msgid "Use USALS for this sat"
-msgstr ""
+msgstr "Use USALS for this sat"
 
 msgid "Use ViX colored Buttons*"
-msgstr ""
+msgstr "Use ViX colored Buttons*"
 
 msgid "Use ViaSat EPG information when it is available."
-msgstr ""
+msgstr "Use ViaSat EPG information when it is available."
 
 msgid "Use WOL"
-msgstr ""
+msgstr "Use WOL"
 
-#
-#
 msgid "Use a gateway"
-msgstr "Χρήση gateway"
+msgstr "Use a gateway"
 
 msgid "Use fastscan channel names"
 msgstr "Use fastscan channel names"
@@ -10897,216 +8142,165 @@ msgid "Use fastscan channel numbering"
 msgstr "Use fastscan channel numbering"
 
 msgid "Use frequency or channel"
-msgstr ""
+msgstr "Use frequency or channel"
 
-#, fuzzy
 msgid "Use individual settings for each directory"
-msgstr "Αποθήκευση αυτών των ρυθμίσεων για κάθε φάκελο"
+msgstr "Use individual settings for each directory"
 
-#
-#
-#, fuzzy
 msgid "Use interface"
-msgstr "Χρήση διεπαφής χρήστη"
+msgstr "Use interface"
 
 msgid "Use official channel numbering"
 msgstr "Use official channel numbering"
 
 msgid "Use original DVB subtitle position"
-msgstr ""
+msgstr "Use original DVB subtitle position"
 
-#
 msgid "Use original teletext position"
-msgstr "Χρήση αρχικής θέσης teletext"
+msgstr "Use original teletext position"
 
-#
-#
 msgid "Use power measurement"
-msgstr "Χρήση power measurement"
+msgstr "Use power measurement"
 
 msgid "Use slim screen"
-msgstr ""
+msgstr "Use slim screen"
 
 msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
-msgstr ""
+msgstr "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
 
 msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
-msgstr ""
+msgstr "Use the Left/Right buttons on your remote to move the user interface up/down"
 
 msgid "Use the Left/Right buttons on your remote to move the user inyterface left/right"
-msgstr ""
+msgstr "Use the Left/Right buttons on your remote to move the user inyterface left/right"
 
 msgid "Use the alternative or the conventional radio mode."
-msgstr ""
+msgstr "Use the alternative or the conventional radio mode."
 
 msgid "Use the alternative screen"
-msgstr ""
+msgstr "Use the alternative screen"
 
-#
-#
-#, fuzzy
 msgid "Use the network wizard to configure selected network adapter"
-msgstr "Χρήση του Οδηγού Δικτύου για παραμετροποίηση επιλεγμένης κάρτας δικτύου"
+msgstr "Use the network wizard to configure selected network adapter"
 
-#
-#
-#, fuzzy
 msgid "Use the network wizard to configure your Network\n"
-msgstr "Χρήση Οδηγού Δικτύου για παραμετροποίηση του δικτύου\n"
+msgstr "Use the network wizard to configure your Network\n"
 
-#
-#
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
-msgstr "Πιέστε τα πλήκτρα Πάνω/Κάτω του τηλεχειριστηρίου για επιλογή. Μετά, πιέστε ΟΚ."
+msgstr "Use the up/down keys on your remote control to select an option. After that, press OK."
 
 msgid "Use the wizard to set up basic features"
-msgstr ""
+msgstr "Use the wizard to set up basic features"
 
 msgid "Use these input device settings?"
-msgstr ""
+msgstr "Use these input device settings?"
 
 msgid "Use these settings?"
-msgstr ""
+msgstr "Use these settings?"
 
-#
-#
 msgid "Use this video enhancement settings?"
-msgstr "Χρήση αυτών των ρυθμίσεων αναβάθμισης εικόνας;"
+msgstr "Use this video enhancement settings?"
 
 msgid "Use timeshift seekbar while timeshifting?"
-msgstr ""
+msgstr "Use timeshift seekbar while timeshifting?"
 
 msgid "Use trash can in movielist"
-msgstr ""
+msgstr "Use trash can in movielist"
 
-#
-#
 msgid "Used service scan type"
 msgstr "Used service scan type"
 
 msgid "Used:"
-msgstr ""
+msgstr "Used:"
 
 msgid "User - bouquets"
-msgstr ""
+msgstr "User - bouquets"
 
-#
-#
 msgid "User defined"
-msgstr "Ορισμός από το χρήστη"
+msgstr "User defined"
 
-#
-#
-#, fuzzy
 msgid "User defined transponder"
-msgstr "Προεπιλεγμένος αναμεταδότης"
+msgstr "User defined transponder"
 
 msgid "User interface"
-msgstr ""
+msgstr "User interface"
 
-#
-#
-#, fuzzy
 msgid "User interface visibility"
-msgstr "Χρήση διεπαφής χρήστη"
+msgstr "User interface visibility"
 
-#
-#
 msgid "Username"
-msgstr "Όνομα χρήστη"
+msgstr "Username"
 
 msgid "Username (httpuser)"
-msgstr ""
+msgstr "Username (httpuser)"
 
 msgid "Username:"
-msgstr ""
+msgstr "Username:"
 
 #, python-format
 msgid "Using LNB %d"
-msgstr ""
+msgstr "Using LNB %d"
 
-#
 msgid "Using fixed address"
-msgstr "Χρήση σταθερής διεύθυνσης"
+msgstr "Using fixed address"
 
 msgid "Using old profile: "
-msgstr ""
+msgstr "Using old profile: "
 
 #, python-format
 msgid "Using tuner %s"
-msgstr ""
+msgstr "Using tuner %s"
 
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
-msgstr ""
+msgstr "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
 
-#
-#
 msgid "VCR scart"
 msgstr "VCR scart"
 
-#
-#
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Version:\t%s"
-msgstr "Νέα έκδοση:"
+msgstr "Version:\t%s"
 
 msgid "Version: "
-msgstr ""
+msgstr "Version: "
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Version: %s"
-msgstr "Νέα έκδοση:"
+msgstr "Version: %s"
 
-#
-#
 msgid "Vertical"
-msgstr "Κάθετη"
+msgstr "Vertical"
 
 msgid "Vertical turning speed"
-msgstr ""
+msgstr "Vertical turning speed"
 
 msgid "ViX EPG"
-msgstr ""
+msgstr "ViX EPG"
 
 msgid "Video Enhancement Settings"
-msgstr ""
+msgstr "Video Enhancement Settings"
 
-#
 msgid "Video PID"
-msgstr "PID εικόνας"
+msgstr "Video PID"
 
 #, python-format
 msgid "Video content: %ix%i%s %iHz"
-msgstr ""
+msgstr "Video content: %ix%i%s %iHz"
 
-#
-#
 msgid "Video enhancement preview"
-msgstr "Προεπισκόπηση αναβάθμισης εικόνας"
+msgstr "Video enhancement preview"
 
-#
-#
 msgid "Video enhancement setup"
-msgstr "Εγκατάσταση αναβάθμισης εικόνας"
+msgstr "Video enhancement setup"
 
-#
-#
-#, fuzzy
 msgid "Video fine tuning"
-msgstr "Μικρορύθμιση οθόνης"
+msgstr "Video fine tuning"
 
-#
-#
-#, fuzzy
 msgid "Video fine-tuning"
-msgstr "Μικρορύθμιση οθόνης"
+msgstr "Video fine-tuning"
 
 msgid ""
 "Video input selection\n"
@@ -11115,289 +8309,201 @@ msgid ""
 "\n"
 "The next input port will be automatically probed in 20 seconds."
 msgstr ""
+"Video input selection\n"
+"\n"
+"Please press OK if you can see this page on your TV (or select a different input port).\n"
+"\n"
+"The next input port will be automatically probed in 20 seconds."
 
-#
-#
 msgid "Video mode selection."
-msgstr "Επιλογή Video mode"
+msgstr "Video mode selection."
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "Video mode: %s"
-msgstr "Επιλογή Video mode"
+msgstr "Video mode: %s"
 
 msgid "Video output"
-msgstr ""
+msgstr "Video output"
 
 msgid "Video setup"
-msgstr ""
+msgstr "Video setup"
 
 msgid "Video wizard"
-msgstr ""
+msgstr "Video wizard"
 
 #, python-format
 msgid "Video: %s fps"
-msgstr ""
+msgstr "Video: %s fps"
 
 msgid "Videocodec"
-msgstr "Videocodec"
+msgstr "Video codec"
 
 msgid "Videoformat"
-msgstr "Videoformat"
+msgstr "Video format"
 
 msgid "Videosize"
-msgstr "Μέγεθος video"
+msgstr "Video size"
 
 msgid "View"
-msgstr ""
+msgstr "View"
 
-#
-#
 msgid "View Movies..."
-msgstr "Εμφάνιση ταινιών..."
+msgstr "View Movies..."
 
-#
-#
 msgid "View Rass interactive..."
-msgstr "Εμφάνιση διαδραστικού Rass..."
+msgstr "View Rass interactive..."
 
-#
-#
 msgid "View Video CD..."
-msgstr "Εμφάνιση Video CD..."
+msgstr "View Video CD..."
 
-#
-#
 msgid "View details"
-msgstr "Εμφάνιση λεπτομερειών"
+msgstr "View details"
 
-#
-#
 msgid "View list of available "
-msgstr "Εμφάνιση λίστας διαθέσιμων"
+msgstr "View list of available "
 
-#
-#
 msgid "View list of available CommonInterface extensions"
-msgstr "Εμφάνιση λίστας διαθέσιμων επεκτάσεων Κοινών Διεπαφών"
+msgstr "View list of available CommonInterface extensions"
 
-#
-#
 msgid "View list of available EPG extensions."
-msgstr "Εμφάνιση λίστας διαθέσιμων επεκτάσεων EPG"
+msgstr "View list of available EPG extensions."
 
-#
-#
 msgid "View list of available Satellite equipment extensions."
-msgstr "Εμφάνιση λίστας διαθέσιμων επεκτάσεων δορυφορικού εξοπλισμού"
+msgstr "View list of available Satellite equipment extensions."
 
-#
-#
 msgid "View list of available communication extensions."
-msgstr "Εμφάνιση λίστας διαθέσιμων επεκτάσεων επικοινωνίας"
+msgstr "View list of available communication extensions."
 
-#
-#
 msgid "View list of available default settings"
-msgstr "Εμφάνιση λίστας διαθέσιμων επεκτάσεων αρχικών ρυθμίσεων."
+msgstr "View list of available default settings"
 
-#
-#
-#, fuzzy
 msgid "View list of available display and userinterface extensions."
-msgstr "Εμφάνιση λίστας διαθέσιμων επεκτάσεων Οθόνης και Διεπαφής χρήστη"
+msgstr "View list of available display and userinterface extensions."
 
-#
-#
 msgid "View list of available multimedia extensions."
-msgstr "Εμφάνιση λίστας διαθέσιμων επεκτάσεων πολυμέσων"
+msgstr "View list of available multimedia extensions."
 
-#
-#
 msgid "View list of available networking extensions"
-msgstr "Εμφάνιση λίστας διαθέσιμων επεκτάσεων δικτύωσης"
+msgstr "View list of available networking extensions"
 
-#
-#
 msgid "View list of available recording extensions"
-msgstr "Εμφάνιση λίστας διαθέσιμων επεκτάσεων εγγραφών"
+msgstr "View list of available recording extensions"
 
-#
-#
 msgid "View list of available skins"
-msgstr "Εμφάνιση λίστας διαθέσιμων θεμάτων"
+msgstr "View list of available skins"
 
-#
-#
 msgid "View list of available software extensions"
-msgstr "Εμφάνιση λίστας διαθέσιμων επεκτάσεων λογισμικού"
+msgstr "View list of available software extensions"
 
-#
-#
 msgid "View list of available system extensions"
-msgstr "Εμφάνιση λίστας διαθέσιμων επεκτάσεων συστήματος"
+msgstr "View list of available system extensions"
 
 msgid "View mode"
-msgstr ""
+msgstr "View mode"
 
-#
-#
-#, fuzzy
 msgid "View photos..."
-msgstr "Εμφάνιση φωτογραφιών..."
+msgstr "View photos…"
 
-#
-#
 msgid "View teletext..."
-msgstr "Εμφάνιση teletext..."
+msgstr "View teletext..."
 
 msgid "View the changes"
-msgstr ""
+msgstr "View the changes"
 
-#
-#
-#, fuzzy
 msgid "View video CD..."
-msgstr "Εμφάνιση Video CD..."
+msgstr "View video CD..."
 
 msgid "Virtuosso Image Xtreme"
-msgstr ""
+msgstr "Virtuosso Image Xtreme"
 
-#
-#
-#, fuzzy
 msgid "Vix forum user name"
-msgstr "Ανεύρεση υπηρεσιών"
+msgstr "Vix forum user name"
 
-#
-#
 msgid "Voltage mode"
 msgstr "Voltage mode"
 
-#
-#
 msgid "W"
 msgstr "W"
 
 msgid "WARNING: feeds may be unstable."
-msgstr ""
+msgstr "WARNING: feeds may be unstable."
 
-#
-#
 msgid "WEP"
 msgstr "WEP"
 
-#
 msgid "WLAN connection"
-msgstr "Σύνδεση WLAN"
+msgstr "WLAN connection"
 
-#
-#
 msgid "WPA"
 msgstr "WPA"
 
-#
-#
 msgid "WPA or WPA2"
 msgstr "WPA or WPA2"
 
-#
-#
 msgid "WPA2"
 msgstr "WPA2"
 
-#
-#
 msgid "WSS on 4:3"
 msgstr "WSS on 4:3"
 
 msgid "Wait please while scanning for devices..."
-msgstr ""
+msgstr "Wait please while scanning for devices..."
 
-#
-#
 msgid "Waiting"
-msgstr "Αναμονή"
+msgstr "Waiting"
 
-#
-#, fuzzy
 msgid "Waiting for mount"
-msgstr "Αναμονή για προσάρτηση"
+msgstr "Waiting for mount"
 
-#
-#, fuzzy
 msgid "Waiting for partition"
-msgstr "Αναμονή για κατάτμηση"
+msgstr "Waiting for partition"
 
-#, fuzzy
 msgid "Wake Up"
-msgstr "Εκκίνηση"
+msgstr "Wake Up"
 
-#, fuzzy
 msgid "Wake Up To Standby"
-msgstr "Εκκίνηση TV από αναμονή"
+msgstr "Wake Up To Standby"
 
 msgid "Wakeup"
-msgstr "Εκκίνηση"
+msgstr "Wakeup"
 
 msgid "Wakeup TV from standby"
-msgstr "Εκκίνηση TV από αναμονή"
+msgstr "Wakeup TV from standby"
 
 msgid "Wakeup signal from TV"
-msgstr "Σήμα εκκίνησης από TV"
+msgstr "Wakeup signal from TV"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Wakeup your %s %s from standby"
-msgstr "Εκκίνηση TV από αναμονή"
+msgstr "Wakeup your %s %s from standby"
 
 msgid "Warning: no LNB; using factory defaults."
-msgstr ""
+msgstr "Warning: no LNB; using factory defaults."
 
-#
-#
-#, fuzzy
 msgid "Watch movies..."
-msgstr "Αναπαραγωγή εγγραφών..."
+msgstr "Watch movies..."
 
-#
-#
-#, fuzzy
 msgid "Watch recordings..."
-msgstr "εγγραφή..."
+msgstr "Watch recordings..."
 
 msgid "Web Interface"
-msgstr ""
+msgstr "Web Interface"
 
-#
-#
 msgid "Wed"
-msgstr "Τετ"
+msgstr "Wed"
 
-#
-#
 msgid "Wednesday"
-msgstr "Τετάρτη"
+msgstr "Wednesday"
 
-#
-#
 msgid "Weekday"
-msgstr "Ημέρα εβδομάδος"
+msgstr "Weekday"
 
-#
-#, fuzzy
 msgid "Weekly"
-msgstr "εβδομαδιαία"
+msgstr "Weekly"
 
-#
-#
-#, fuzzy
 msgid "Weighted position"
-msgstr "Αποθηκευμένη θέση"
+msgstr "Weighted position"
 
-#
-#
-#, fuzzy
 msgid ""
 "Welcome to the cutlist editor.\n"
 "\n"
@@ -11405,20 +8511,15 @@ msgid ""
 "\n"
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
-"Καλώς ορίσατε στο Διορθωτή Σημείων Αποκοπής.\n"
+"Welcome to the cutlist editor.\n"
 "\n"
-"Αναζητήστε την αρχή του τμήματος που θέλετε να διαγράψετε. Πιέστε ΟΚ, επιλέξτε \"start cut\".\n"
+"Seek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n"
 "\n"
-"Στη συνέχεια αναζητήστε το τέλος του τμήματος, πιέστε ΟΚ, επιλέξτε \"end cut\". Αυτό είναι όλο."
+"Then seek to the end, press OK, select 'end cut'. That's it."
 
-#
-#
-#, fuzzy
 msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "Καλώς ορίσατε στον Οδηγό αναβάθμισης λογισμικού. Ο Οδηγός θα σας βοηθήσει στην αναβάθμιση του λογισμικού του δέκτη παρέχοντας δυνατότητα αντιγράφου ασφαλείας των ρυθμίσεών σας και σύντομη επεξήγηση της διαδικασίας."
+msgstr "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
 
-#
-#
 msgid ""
 "Welcome.\n"
 "\n"
@@ -11426,184 +8527,171 @@ msgid ""
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
-"Καλώς ορίσατε.\n"
+"Welcome.\n"
 "\n"
-"Εάν θέλετε να συνδέσετε το δέκτη στο διαδίκτυο, αυτό ο Οδηγός θα σας καθοδηγήσει στα βήματα της διαδικασίας ρύθμισης δικτύου του δέκτη.\n"
+"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
 "\n"
-"Πιέστε ΟΚ για εκκίνηση ρύθμισης του δικτύου."
+"Press OK to start configuring your network"
 
-#
-#
-#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your %s %s.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"Καλώς ορίσατε.\n"
+"Welcome.\n"
 "\n"
-"Εάν θέλετε να συνδέσετε το δέκτη στο διαδίκτυο, αυτό ο Οδηγός θα σας καθοδηγήσει στα βήματα της διαδικασίας ρύθμισης δικτύου του δέκτη.\n"
-"\n"
-"Πιέστε ΟΚ για εκκίνηση ρύθμισης του δικτύου."
+"This start wizard will guide you through the basic setup of your %s %s.\n"
+"Press the OK button on your remote control to move to the next step."
 
-#
-#
 msgid "West"
-msgstr "Δυτικά"
+msgstr "West"
 
-#
-#
-#, fuzzy
 msgid "West limit set"
-msgstr "Ορισμός ορίων"
+msgstr "West limit set"
 
 msgid "What date of month ?"
-msgstr ""
+msgstr "What date of month ?"
 
 msgid "What Day of week ?"
-msgstr ""
+msgstr "What Day of week ?"
 
 msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
-msgstr ""
+msgstr "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
 
-#
-#
 msgid "What do you want to scan?"
-msgstr "Τι θέλετε να σαρώσετε;"
+msgstr "What do you want to scan?"
 
 msgid "When enabled the online checker will also check for experimental versions"
-msgstr ""
+msgstr "When enabled the online checker will also check for experimental versions"
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
-msgstr ""
+msgstr "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
-msgstr ""
+msgstr "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
 
 msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
-msgstr ""
+msgstr "When enabled, a popup message will be shown when a movie has finished and the next one will start."
 
 msgid "When enabled, a popup message will be shown when a recording starts."
-msgstr ""
+msgstr "When enabled, a popup message will be shown when a recording starts."
 
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
-msgstr ""
+msgstr "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
-msgstr ""
+msgstr "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
 
 msgid "When enabled, channel numbering will start at '1' for every bouquet."
-msgstr ""
+msgstr "When enabled, channel numbering will start at '1' for every bouquet."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
-msgstr ""
+msgstr "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached."
-msgstr ""
+msgstr "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached."
 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
-msgstr ""
+msgstr "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 
 msgid "When enabled, external subtitles will always be turned on for movie playback."
-msgstr ""
+msgstr "When enabled, external subtitles will always be turned on for movie playback."
 
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
-msgstr ""
+msgstr "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
 
 msgid "When enabled, graphical DVB subtitles will be centered horizontally."
-msgstr ""
+msgstr "When enabled, graphical DVB subtitles will be centered horizontally."
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
-msgstr ""
+msgstr "When enabled, graphical DVB subtitles will be displayed at their original position."
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr ""
+msgstr "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 
 msgid "When enabled, it is possible to leave the Movie Player with exit."
-msgstr ""
+msgstr "When enabled, it is possible to leave the Movie Player with exit."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
-msgstr ""
+msgstr "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 
 msgid "When enabled, network trash cans are probed for cleaning."
-msgstr ""
+msgstr "When enabled, network trash cans are probed for cleaning."
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr ""
+msgstr "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
-msgstr ""
+msgstr "When enabled, show channel numbers in the channel selection screen."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
-msgstr ""
+msgstr "When enabled, subtitles for the hearing impaired can be used."
 
 msgid "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
-msgstr ""
+msgstr "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
-msgstr ""
+msgstr "When enabled, teletext pages will be cached, allowing faster access."
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
-msgstr ""
+msgstr "When enabled, teletext subtitles will be displayed at their original position."
 
 msgid "When enabled, the PiP can be closed by the EXIT button."
-msgstr ""
+msgstr "When enabled, the PiP can be closed by the EXIT button."
 
 msgid "When enabled, the VCR scart option will be shown in the main menu"
-msgstr ""
+msgstr "When enabled, the VCR scart option will be shown in the main menu"
 
 msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
-msgstr ""
+msgstr "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 
 msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
-msgstr ""
+msgstr "When enabled, the original line breaks will be removed from the teletext subtitles."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
-msgstr ""
+msgstr "When enabled, the receiver will automatically use the audio track which you selected before."
 
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
-msgstr ""
+msgstr "When enabled, the receiver will automatically use the subtitles which you selected before."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
-msgstr ""
+msgstr "When enabled, the receiver will select an AC3 track (when available)."
 
 msgid "When enabled, timeshift starts automatically in background after the specified time."
-msgstr ""
+msgstr "When enabled, timeshift starts automatically in background after the specified time."
 
 msgid "When enabled, use DHCP for the IP configuration."
-msgstr ""
+msgstr "When enabled, use DHCP for the IP configuration."
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
-msgstr ""
+msgstr "When enabled, your receiver will detect activity on the VCR SCART input."
 
 msgid "When maximum space for all logs is reached, the oldest logs will be deleted."
-msgstr ""
+msgstr "When maximum space for all logs is reached, the oldest logs will be deleted."
 
 msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
-msgstr ""
+msgstr "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
 
 msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
-msgstr ""
+msgstr "When nonzero, a recording will stop later than the ending time indicated by the EPG."
 
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
-msgstr ""
+msgstr "When set each folder will show the previous state used, when off the default values will be shown."
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
-msgstr ""
+msgstr "When set the PIG will return to live after a movie has stopped playing."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
-msgstr ""
+msgstr "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
-msgstr ""
+msgstr "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure of what you're doing."
-msgstr ""
+msgstr "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure of what you're doing."
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
@@ -11611,176 +8699,130 @@ msgid ""
 "\n"
 "Really do a factory reset?"
 msgstr ""
-"Με την επαναφορά, θα χάσετε ΟΛΑ τα δεδομένα παραμετροποίησης\n"
-"(συμπεριλαμβάνονται μπουκέτα, υπηρεσίες, δορυφόροι...)\n"
-"Με την ολοκλήρωση της επαναφοράς, ο δέκτης θα επανεκκινήσει αυτόματα!\n"
+"When you do a factory reset, you will lose ALL your configuration data\n"
+"(including bouquets, services, satellite data ...)\n"
+"After completion of factory reset, your %s %s will restart automatically!\n"
 "\n"
-"Θέλετε σίγουρα να γίνει η επαναφορά σε εργοστασιακές ρυθμίσεις;"
+"Really do a factory reset?"
 
-#
-#
 msgid "Where do you want to backup your settings?"
-msgstr "Που θέλετε να γίνει η αντιγραφή των ρυθμίσεων;"
+msgstr "Where do you want to backup your settings?"
 
 msgid "Where should the recording be saved?"
-msgstr ""
+msgstr "Where should the recording be saved?"
 
-#
-#
 msgid "Where to save temporary timeshift recordings?"
-msgstr "Που θέλετε να αποθηκεύονται προσωρινά οι εγγραφές timeshift;"
+msgstr "Where to save temporary timeshift recordings?"
 
 msgid "Which event do you want to save permanently?"
-msgstr ""
+msgstr "Which event do you want to save permanently?"
 
 msgid "White"
-msgstr ""
+msgstr "White"
 
 msgid "Width"
-msgstr ""
+msgstr "Width"
 
-#
-#
 msgid "Wireless LAN"
-msgstr "Ασύρματο δίκτυο"
+msgstr "Wireless LAN"
 
-#
-#
-#, fuzzy
 msgid "Wireless network"
-msgstr "Ασύρματο δίκτυο"
+msgstr "Wireless network"
 
-#
-#, fuzzy
 msgid "Wireless network configuration..."
-msgstr "Ρύθμιση σύνδεσης ασύρματου δικτύου."
+msgstr "Wireless network configuration…"
 
-#
 msgid "Wireless network connection setup"
-msgstr "Ρύθμιση σύνδεσης ασύρματου δικτύου"
+msgstr "Wireless network connection setup"
 
-#
 msgid "Wireless network connection setup."
-msgstr "Ρύθμιση σύνδεσης ασύρματου δικτύου."
+msgstr "Wireless network connection setup."
 
-#
 msgid "Wireless network state"
-msgstr "Κατάσταση ασύρματου δικτύου"
+msgstr "Wireless network state"
 
 msgid "With popup"
-msgstr ""
+msgstr "With popup"
 
 msgid "With this option set to 'yes' the channel list will always show you the list of bouquets. If set to 'no' the current bouquet will be opened."
-msgstr ""
+msgstr "With this option set to 'yes' the channel list will always show you the list of bouquets. If set to 'no' the current bouquet will be opened."
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
-msgstr ""
+msgstr "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 
 msgid "Without popup"
-msgstr ""
+msgstr "Without popup"
 
-#
-#
 msgid "Write error while recording. Disk full?\n"
-msgstr "Σφάλμα κατά την εγγραφή. Δίσκος γεμάτος;\n"
+msgstr "Write error while recording. Disk full?\n"
 
 #, python-format
 msgid ""
 "Write error while recording. Disk full?\n"
 "%s"
 msgstr ""
+"Write error while recording. Disk full?\n"
+"%s"
 
-#
-#
 msgid "Write failed!"
-msgstr "Η εγγραφή απέτυχε!"
+msgstr "Write failed!"
 
 msgid "XBox 360 support"
-msgstr ""
+msgstr "XBox 360 support"
 
-#
-#
 msgid "YPbPr"
 msgstr "YPbPr"
 
-#
-#
 msgid "Year"
-msgstr "Έτος"
+msgstr "Year"
 
-#
-#
 msgid "Yellow DVB subtitles"
-msgstr "Κίτρινοι υπότιτλοι"
+msgstr "Yellow DVB subtitles"
 
-#
-#
 msgid "Yes"
-msgstr "Ναι"
+msgstr "Yes"
 
-#
-#
 msgid "Yes to all"
-msgstr "Ναι σε όλα"
+msgstr "Yes to all"
 
-#
 msgid "Yes, always"
-msgstr "Ναι, πάντα"
+msgstr "Yes, always"
 
-#
-#
 msgid "Yes, and delete this movie"
-msgstr "Ναι,και διαγραφή αυτής της ταινίας"
+msgstr "Yes, and delete this movie"
 
-#
-#
 msgid "Yes, backup my settings!"
-msgstr "Ναι, κράτα αντίγραφο των ρυθμίσεων!"
+msgstr "Yes, backup my settings!"
 
-#
-#
-#, fuzzy
 msgid "Yes, but don't save timeshift as movie"
-msgstr "Ναι,και διαγραφή αυτής της ταινίας"
+msgstr "Yes, but don't save timeshift as movie"
 
 msgid "Yes, but save timeshift as movie and continue recording"
-msgstr ""
+msgstr "Yes, but save timeshift as movie and continue recording"
 
 msgid "Yes, but save timeshift as movie and stop recording"
-msgstr ""
+msgstr "Yes, but save timeshift as movie and stop recording"
 
-#
-#
 msgid "Yes, do a manual scan now"
-msgstr "Ναι, κάνε χειροκίνητη σάρωση τώρα"
+msgstr "Yes, do a manual scan now"
 
-#
-#
 msgid "Yes, do an automatic scan now"
-msgstr "Ναι, κάνε αυτόματη σάρωση τώρα"
+msgstr "Yes, do an automatic scan now"
 
-#
-#
 msgid "Yes, do another manual scan now"
-msgstr "Ναι, κάνε μια ακόμη χειροκίνητη σάρωση τώρα"
+msgstr "Yes, do another manual scan now"
 
-#
-#
 msgid "Yes, shut down now."
-msgstr "Ναι, τερματισμός τώρα."
+msgstr "Yes, shut down now."
 
-#
-#
 msgid "Yes, restore the settings now"
-msgstr "Ναι, αποκατάσταση ρυθμίσεων τώρα"
+msgstr "Yes, restore the settings now"
 
-#
-#
 msgid "Yes, returning to movie list"
-msgstr "Ναι, επιστροφή στη λίστα ταινιών"
+msgstr "Yes, returning to movie list"
 
 msgid "Yesterday"
-msgstr "Χθες"
+msgstr "Yesterday"
 
 #, python-format
 msgid ""
@@ -11788,6 +8830,9 @@ msgid ""
 "would you like to remove\n"
 "\"%s\"?"
 msgstr ""
+"You already have a bootlogo installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
 
 #, python-format
 msgid ""
@@ -11795,94 +8840,77 @@ msgid ""
 "would you like to remove\n"
 "\"%s\"?"
 msgstr ""
-"Έχετε ήδη εγκατεστημένη μία λίστα καναλιών,\n"
-"θέλετε να διαγράψετε\n"
-"\"%s\";"
+"You already have a channel list installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
 
-#
-#
 msgid "You can cancel the installation."
-msgstr "Μπορείτε να ακυρώσετε την εγκατάσταση."
+msgstr "You can cancel the installation."
 
-#
-#
 msgid "You can cancel the removal."
-msgstr "Μπορείτε να ακυρώσετε τη διαγραφή."
+msgstr "You can cancel the removal."
 
 msgid "You can continue watching TV etc. while this is running."
-msgstr "Μπορείτε να συνεχίσετε να βλέπετε TV κλπ όσο αυτό εκτελείται."
+msgstr "You can continue watching TV etc. while this is running."
 
 msgid "You can disable Telnet Server and use ssh to login."
-msgstr ""
+msgstr "You can disable Telnet Server and use ssh to login."
 
 msgid "You can have the list sorted by time or alphanumerical."
-msgstr ""
+msgstr "You can have the list sorted by time or alphanumerical."
 
-#
-#
 msgid "You can install this plugin."
-msgstr "Μπορείτε να εγκαταστήσετε το πρόσθετο."
+msgstr "You can install this plugin."
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid "You can only burn %s %s recordings!"
-msgstr "Μπορείτε να εγγράψετε μόνο εγγραφές από δέκτη!"
+msgstr "You can only burn %s %s recordings!"
 
-#
-#
 msgid "You can remove this plugin."
-msgstr "Μπορείτε να διαγράψετε το πρόσθετο."
+msgstr "You can remove this plugin."
 
-#
-#
 msgid "You cannot delete this!"
-msgstr "Δεν μπορετε να διαγράψτε αυτό!"
+msgstr "You cannot delete this!"
 
 msgid "You didn't select a channel to record from."
-msgstr "Δεν επιλέξατε κανάλι για εγγραφή."
+msgstr "You didn't select a channel to record from."
 
 msgid "You have already sent this log, are you sure you want to resend this log:\n"
-msgstr ""
+msgstr "You have already sent this log, are you sure you want to resend this log:\n"
 
-#
-#
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
-msgstr "Επιλέξατε να κρατηθεί αντίγραφο ασφαλείας των ρυθμίσεων. Πιέστε ΟΚ για να ξεκινήσει η διαδικασία τώρα."
+msgstr "You have chosen to backup your settings. Please press OK to start the backup now."
 
-#
 msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Επιλέξατε να δημιουργήσετε νέο εκκινήσιμο Usb stick για εγκατάσταση NFI. Θα γίνει εκ νέου κατάτμηση του usb stick και όλα τα δεδομένα σε αυτό θα χαθούν."
+msgstr "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
 
-#
-#
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-msgstr "Επιλέξατε αποκατάσταση των ρυθμίσεων. Το Enigma2 θα επανεκκινήσει μετά την αποκατάσταση. Πιέστε ΟΚ για να ξεκνήσει η διαδικασία τώρα."
+msgstr "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 
 msgid ""
 "You have chosen to save the current timeshift event, but the event has not yet finished\n"
 "What do you want to do ?"
 msgstr ""
+"You have chosen to save the current timeshift event, but the event has not yet finished\n"
+"What do you want to do ?"
 
 msgid ""
 "You have not setup your user info in the setup screen\n"
 "Press MENU, and enter your info, then try again"
 msgstr ""
+"You have not setup your user info in the setup screen\n"
+"Press MENU, and enter your info, then try again"
 
 msgid "You have selected no logs to delete."
-msgstr ""
+msgstr "You have selected no logs to delete."
 
 msgid "You have selected no logs to send."
-msgstr ""
+msgstr "You have selected no logs to send."
 
-#
-# , python-format
 #, python-format
 msgid "You have to wait %s!"
-msgstr "Περιμένετε για %s!"
+msgstr "You have to wait %s!"
 
-#
-#
 msgid ""
 "You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
 "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
@@ -11891,34 +8919,30 @@ msgstr ""
 "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 
 msgid "You seem to be in timeshift!"
-msgstr ""
+msgstr "You seem to be in timeshift!"
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
-msgstr ""
+msgstr "You seem to be in timeshift, Do you want to leave timeshift ?"
 
 msgid "You system does not support ext4"
-msgstr "Το σύστημά σας δεν υποστηρίζει ext4"
+msgstr "You system does not support ext4"
 
 #, python-format
 msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
-msgstr ""
+msgstr "Your %s %s is not connected to the internet, please check your network settings and try again."
 
-#
-#
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your %s %s is now ready to be used.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
 msgstr ""
-"Ο δέκτης σας είναι τώρα έτοιμος για χρήση.\n"
+"Your %s %s is now ready to be used.\n"
 "\n"
-"Η σύνδεση με το διαδίκτυο είναι έτοιμη.\n"
+"Your internet connection is working now.\n"
 "\n"
 
-#
-#
 msgid ""
 "Your %s %s is now ready to use.\n"
 "\n"
@@ -11926,34 +8950,34 @@ msgid ""
 "\n"
 "Please press OK to continue."
 msgstr ""
-"Ο δέκτης σας είναι τώρα έτοιμος για χρήση.\n"
+"Your %s %s is now ready to use.\n"
 "\n"
-"Η σύνδεση με το διαδίκτυο είναι έτοιμη.\n"
+"Your internet connection is working now.\n"
 "\n"
-"Πιέστε ΟΚ για συνέχεια."
+"Please press OK to continue."
 
 #, python-format
 msgid "Your %s %s is rebooting"
-msgstr ""
+msgstr "Your %s %s is rebooting"
 
 #, python-format
 msgid "Your %s %s is shutting down"
-msgstr ""
+msgstr "Your %s %s is shutting down"
 
-#
-#
 msgid "Your %s %s is shutting down. Please wait..."
-msgstr "Ο δέκτης τερματίζεται. Παρακαλώ περιμένετε..."
+msgstr "Your %s %s is shutting down. Please wait..."
 
 #, python-format
 msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr ""
+msgstr "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 
 #, python-format
 msgid ""
 "Your %s %s will be restarted after the installation of service\n"
 "Ready to install \"%s\" ?"
 msgstr ""
+"Your %s %s will be restarted after the installation of service\n"
+"Ready to install \"%s\" ?"
 
 #, python-format
 msgid ""
@@ -11961,110 +8985,100 @@ msgid ""
 "\n"
 "Do you want to install now ?"
 msgstr ""
+"Your %s %s will be restarted after the installation of service.\n"
+"\n"
+"Do you want to install now ?"
 
 #, python-format
 msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
 msgstr ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now ?"
 
 msgid "Your STB will restart after pressing OK on your remote control."
-msgstr ""
+msgstr "Your STB will restart after pressing OK on your remote control."
 
-#
-#
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-msgstr "Το αντίγραφο ασφαλείας ολοκληρώθηκε. Ση συνέχεια θα επεξηγηθεί η υπόλοιπη διαδικασία."
+msgstr "Your backup succeeded. We will now continue to explain the further upgrade process."
 
-#
-#
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
-msgstr "Η συλλογή σας υπερβαίνει το μέγεθος ενός single layer DVD. Θα χρειαστείτε ένα κενό dual layer DVD!"
+msgstr "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 
 #, python-format
 msgid ""
 "Your config file is not well-formed:\n"
 "%s"
 msgstr ""
+"Your config file is not well-formed:\n"
+"%s"
 
-#
-#
 msgid "Your current collection will get lost!"
-msgstr "Η τρέχουσα συλλογή σας θα χαθεί!"
+msgstr "Your current collection will get lost!"
 
-#
-#
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
-"Το “frontprocessor firmware” πρέπει να αναβαθμιστεί\n"
-"Πιέστε ΟΚ για την αναβάθμιση."
+"Your front-processor firmware must be upgraded.\n"
+"Press OK to start upgrade."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your frontprocessor will be upgraded\n"
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
-"Εκτελείται αναβάθμιση\n"
-"Παρακαλώ περιμένετε μέχρι την επανεκκίνηση του δέκτη\n"
-"Θα διαρκέσει μερικά λεπτά"
+"Your frontprocessor will be upgraded\n"
+"Please wait until your %s %s reboots\n"
+"This may take a few minutes"
 
-#
-#
 msgid ""
 "Your internet connection is not working!\n"
 "Please choose what you want to do next."
-msgstr "Η σύνδεση προς το διαδίκτυο δεν δουλεύει!Επιλέξτε τι θέλετε να ακολουθήσει."
+msgstr ""
+"Your internet connection is not working!\n"
+"Please choose what you want to do next."
 
 #, python-format
 msgid "Your internet connection is working (ip: %s)"
-msgstr ""
+msgstr "Your internet connection is working (ip: %s)"
 
-#
-#
 msgid "Your network configuration has been activated."
-msgstr "Η ρύθμιση δικτύου ενεργοποιήθηκε."
+msgstr "Your network configuration has been activated."
 
 msgid "Your receiver does not have an internet connection"
-msgstr ""
+msgstr "Your receiver does not have an internet connection"
 
 msgid "Your receiver is not connected to the internet"
-msgstr ""
+msgstr "Your receiver is not connected to the internet"
 
-#
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
 "Have you attached your USB WLAN Stick?\n"
 "\n"
 "Please choose what you want to do next."
 msgstr ""
-"Η ασύρματη σύνδεση δικτύου δεν μπορεί να εκκινήσει!\n"
-"Έχετε συνδέσει το Usb Stick;\n"
+"Your wireless LAN internet connection could not be started!\n"
+"Have you attached your USB WLAN Stick?\n"
 "\n"
-"Επιλέξτε τι θέλετε να ακολουθήσει."
+"Please choose what you want to do next."
 
 msgid "Zap"
-msgstr ""
+msgstr "Zap"
 
 msgid "Zap + Exit"
-msgstr ""
+msgstr "Zap + Exit"
 
-#
-#
 msgid "Zap back to previously tuned service?"
-msgstr "Μετάβαση στην προηγούμενη υπηρεσία;"
+msgstr "Zap back to previously tuned service?"
 
-#
-#
 msgid "Zap back to service before positioner setup?"
-msgstr "Μετάβαση στην υπηρεσία πριν τη ρύθμιση του positioner;"
+msgstr "Zap back to service before positioner setup?"
 
-#
-#
 msgid "Zap back to service before tuner setup?"
-msgstr "Μετάβαση στην υπηρεσία πριν τη ρύθμιση του tuner;"
+msgstr "Zap back to service before tuner setup?"
 
 msgid "Zap focus to Picture in Picture"
 msgstr "Zap focus to Picture in Picture"
@@ -12072,1599 +9086,1203 @@ msgstr "Zap focus to Picture in Picture"
 msgid "Zap focus to main screen"
 msgstr "Zap focus to main screen"
 
-#
-#
 msgid "Zap mode"
-msgstr "Κατάσταση zap"
+msgstr "Zap mode"
 
 msgid "Zap to channel (setup in menu)"
-msgstr ""
+msgstr "Zap to channel (setup in menu)"
 
 msgid "Zap to channel and close (setup in menu)"
-msgstr ""
+msgstr "Zap to channel and close (setup in menu)"
 
 msgid "Zap to selected channel"
-msgstr ""
+msgstr "Zap to selected channel"
 
 msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
-msgstr ""
+msgstr "Zap to selected channel, or show detailed event info (depends on configuration)"
 
 msgid "Zoom In/Out TV..."
-msgstr ""
+msgstr "Zoom In/Out TV..."
 
 msgid "Zoom Off..."
-msgstr ""
+msgstr "Zoom Off..."
 
 msgid "[TimeShift] Restarting Timeshift!"
-msgstr ""
+msgstr "[TimeShift] Restarting Timeshift!"
 
 msgid "[Timeshift] Merging records failed!"
-msgstr ""
+msgstr "[Timeshift] Merging records failed!"
 
-#
-#
 msgid "[alternative edit]"
-msgstr "[εναλλακτική επεξεργασία]"
+msgstr "[alternative edit]"
 
-#
-#
 msgid "[bouquet edit]"
-msgstr "[επεξεργασία μπουκέτου]"
+msgstr "[bouquet edit]"
 
-#
-#
 msgid "[favourite edit]"
-msgstr "[επεξεργασία αγαπημένου]"
+msgstr "[favourite edit]"
 
-#
-#
 msgid "[move mode]"
-msgstr "[κατάσταση μεταφοράς]"
+msgstr "[move mode]"
 
-#
-#
 msgid "a gui to assign services/providers to common interface modules"
-msgstr "γραφικό περιβάλλον για ανάθεση υπηρεσιών/παρόχων σε κοινή διεπαφή"
+msgstr "a gui to assign services/providers to common interface modules"
 
-#
-#
 msgid "a gui to assign services/providers/caids to common interface modules"
-msgstr "γραφικό περιβάλλον για ανάθεση υπηρεσιών/παρόχων/caids σε κοινή διεπαφή"
+msgstr "a gui to assign services/providers/caids to common interface modules"
 
-#
-#
 msgid "abort alternatives edit"
-msgstr "ακύρωση εναλλακτικής επεξεργασίας"
+msgstr "abort alternatives edit"
 
-#
-#
 msgid "abort bouquet edit"
-msgstr "ακύρωση επεξεργασίας μπουκέτου"
+msgstr "abort bouquet edit"
 
-#
-#
 msgid "abort favourites edit"
-msgstr "ακύρωση επεξεργασίας αγαπημένων"
+msgstr "abort favourites edit"
 
-#
-#
 msgid "about to start"
-msgstr "έτοιμο για εκκίνηση"
+msgstr "about to start"
 
-#
-#
 msgid "activate network adapter configuration"
-msgstr "ενεργοποίηση παραμετροποίησης κάρτας δικτύου"
+msgstr "activate network adapter configuration"
 
-#
-#
 msgid "add alternatives"
-msgstr "προσθήκη εναλλακτικών"
+msgstr "add alternatives"
 
-#
-#
 msgid "add bookmark"
-msgstr "προσθήκη σελιδοδείκτη"
+msgstr "add bookmark"
 
-#
-#
 msgid "add bouquet"
-msgstr "προσθήκη μπουκέτου"
+msgstr "add bouquet"
 
-#
-#
 msgid "add marker"
-msgstr "προσθήκη σημειωτή"
+msgstr "add marker"
 
-#
-#
 msgid "add service to bouquet"
-msgstr "προσθήκη υπηρεσίας σε μπουκέτο"
+msgstr "add service to bouquet"
 
-#
-#
 msgid "add service to favourites"
-msgstr "προσθήκη υπηρεσίας στα αγαπημένα"
+msgstr "add service to favourites"
 
-#
-#
 msgid "add to parental protection"
-msgstr "προσθήκη στο γονικό έλεγχο"
+msgstr "add to parental protection"
 
 msgid "address:"
-msgstr ""
+msgstr "address:"
 
 msgid "adult movie/drama"
-msgstr ""
+msgstr "adult movie/drama"
 
-#
-#
 msgid "advanced"
-msgstr "προχωρημένο"
+msgstr "advanced"
 
 msgid "adventure/western/war"
-msgstr ""
+msgstr "adventure/western/war"
 
 msgid "advertisement/shopping"
-msgstr ""
+msgstr "advertisement/shopping"
 
 msgid "alphabetic"
-msgstr ""
+msgstr "alphabetic"
 
-#
 msgid "alphabetic reverse"
-msgstr "αλφαβητική αντιστροφή"
+msgstr "alphabetic reverse"
 
-#
-#
-#, fuzzy
 msgid "alternative"
-msgstr "προσθήκη εναλλακτικών"
+msgstr "alternative"
 
 msgid "arts/culture (without music, general)"
-msgstr ""
+msgstr "arts/culture (without music, general)"
 
 msgid "arts/culture magazine"
-msgstr ""
+msgstr "arts/culture magazine"
 
 msgid "as plugin in extended bar"
-msgstr ""
+msgstr "as plugin in extended bar"
 
-#
 msgid "at beginning"
-msgstr "στην αρχή"
+msgstr "at beginning"
 
-#
 msgid "at end"
-msgstr "στο τέλος"
+msgstr "at end"
 
 msgid "athletics"
-msgstr ""
+msgstr "athletics"
 
-#
-#
 msgid "audio tracks"
 msgstr "audio tracks"
 
-#
-#
 msgid "auto"
-msgstr "αυτόματο"
+msgstr "auto"
 
-#
-#
-#, fuzzy
 msgid "auto deepstandby"
-msgstr "πήγαινε σε Τερματισμό"
+msgstr "auto deepstandby"
 
-#
-#
-#, fuzzy
 msgid "auto standby"
-msgstr "οχι αναμονή"
+msgstr "auto standby"
 
 msgid "automatic"
-msgstr ""
+msgstr "automatic"
 
-#
-#
 msgid "back"
-msgstr "πίσω"
+msgstr "back"
 
-#
-#
 msgid "background image"
-msgstr "εικόνα φόντου"
+msgstr "background image"
 
 msgid "ballet"
-msgstr ""
+msgstr "ballet"
 
 #, python-format
 msgid "bc%s"
-msgstr ""
+msgstr "bc%s"
 
-#
-#
 msgid "better"
-msgstr "καλύτερα"
+msgstr "better"
 
-#
-#
 msgid "black"
-msgstr "μαύρο"
+msgstr "black"
 
 msgid "black & white"
-msgstr ""
+msgstr "black & white"
 
-#
-#
 msgid "blacklist"
-msgstr "μη επιτρεπόμενα"
+msgstr "blacklist"
 
-#
-#
 msgid "blue"
-msgstr "μπλε"
+msgstr "blue"
 
 msgid "broadcasting/press"
-msgstr ""
+msgstr "broadcasting/press"
 
 msgid "by date"
-msgstr ""
+msgstr "by date"
 
 msgid "caid:"
-msgstr ""
+msgstr "caid:"
 
 msgid "card"
-msgstr ""
+msgstr "card"
 
 msgid "card reader"
-msgstr ""
+msgstr "card reader"
 
 msgid "cartoon/puppets"
-msgstr ""
+msgstr "cartoon/puppets"
 
 msgid "center"
-msgstr ""
+msgstr "centre"
 
-#
-#
-#, fuzzy
 msgid "centered"
-msgstr "Μέσο"
+msgstr "centered"
 
 msgid "centered, wrapped"
-msgstr ""
+msgstr "centered, wrapped"
 
-#
-#
 msgid "chapters"
-msgstr "κεφάλαια"
+msgstr "chapters"
 
 msgid "childrens's/youth program (general)"
-msgstr ""
+msgstr "children's's/youth program (general)"
 
-#
-#
 msgid "circular left"
-msgstr "αριστερόστροφη"
+msgstr "circular left"
 
-#
-#
 msgid "circular right"
-msgstr "δεξιόστροφη"
+msgstr "circular right"
 
 msgid "close share view"
-msgstr ""
+msgstr "close share view"
 
 msgid "comedy"
-msgstr ""
+msgstr "comedy"
 
-#
-#
 msgid "complex"
-msgstr "σύνθετο"
+msgstr "complex"
 
-#
-#
 msgid "confirmed"
-msgstr "επιβεβαιωμένο"
+msgstr "confirmed"
 
-#
-#
 msgid "connected"
-msgstr "συνδεδεμένο"
+msgstr "connected"
 
-#
-#
 msgid "continue"
-msgstr "συνέχεια"
+msgstr "continue"
 
 msgid "cooking"
-msgstr ""
+msgstr "cooking"
 
 msgid "copy"
-msgstr ""
+msgstr "copy"
 
-#
-#
 msgid "copy to bouquets"
-msgstr "αντιγραφή στα μπουκέτα"
+msgstr "copy to bouquets"
 
-#
-#
 msgid "create directory"
-msgstr "δημιουργία φακέλου"
+msgstr "create directory"
 
-# , python-format
 #, python-format
 msgid "currently installed image: %s"
-msgstr "εγκατεστημένο λογισμικό: %s"
+msgstr "currently installed image: %s"
 
-#
-#
 msgid "daily"
-msgstr "καθημερινά"
+msgstr "daily"
 
-#
-#
 msgid "day"
-msgstr "ημέρα"
+msgstr "day"
 
 msgid "decrease uphop by 1"
-msgstr ""
+msgstr "decrease uphop by 1"
 
 msgid "delete"
-msgstr ""
+msgstr "delete"
 
-#
-#
 msgid "delete cut"
-msgstr "διαγραφή \"cut\""
+msgstr "delete cut"
 
 msgid "descramble and record ecm"
-msgstr ""
+msgstr "descramble and record ecm"
 
 msgid "detective/thriller"
-msgstr ""
+msgstr "detective/thriller"
 
-#
 msgid "disable"
-msgstr "απενεργοποίηση"
+msgstr "disable"
 
-#
-#
 msgid "disable move mode"
-msgstr "απενεργοποίηση κατάστασης μεταφοράς"
+msgstr "disable move mode"
 
-#
 msgid "disabled"
-msgstr "απεργοποιημένο"
+msgstr "disabled"
 
-#
-#
 msgid "disconnected"
-msgstr "αποσυνδεμένο"
+msgstr "disconnected"
 
 msgid "discussion/interview/debate"
-msgstr ""
+msgstr "discussion/interview/debate"
 
-#
-#
 msgid "do nothing"
-msgstr "μην κάνεις τίποτα"
+msgstr "do nothing"
 
 msgid "documentary"
-msgstr ""
+msgstr "documentary"
 
 msgid "don't descramble, record ecm"
-msgstr ""
+msgstr "don't descramble, record ecm"
 
-#
-#
 msgid "done!"
-msgstr "Ολοκληρώθηκε!"
+msgstr "done!"
 
-#
-#
-#, fuzzy
 msgid "e-mail address"
-msgstr "Διεύθυνση IP"
+msgstr "e-mail address"
 
-#
-#
-#, fuzzy
 msgid "east"
-msgstr "Μετακίνηση ανατολικά"
+msgstr "east"
 
 msgid "ecm time:"
-msgstr ""
+msgstr "ecm time:"
 
 msgid "ecm.info"
-msgstr ""
+msgstr "ecm.info"
 
 msgid "economics/social advisory"
-msgstr ""
+msgstr "economics/social advisory"
 
-#
-#
 msgid "edit alternatives"
-msgstr "επεξεργασία εναλλακτικών"
+msgstr "edit alternatives"
 
 msgid "education/science/factual topics (general)"
-msgstr ""
+msgstr "education/science/factual topics (general)"
 
-#
-#
 msgid "empty"
-msgstr "κενό"
+msgstr "empty"
 
-#
 msgid "enable"
-msgstr "ενεργοποίησε"
+msgstr "enable"
 
-#
-#
 msgid "enable bouquet edit"
-msgstr "ενεργοποίησε την επεξεργασία μπουκέτου"
+msgstr "enable bouquet edit"
 
-#
-#
 msgid "enable favourite edit"
-msgstr "ενεργοποίησε την επεξεργασία αγαπημένων"
+msgstr "enable favourite edit"
 
-#
-#
 msgid "enable move mode"
-msgstr "ενεργοποίηση κατάστασης μεταφοράς"
+msgstr "enable move mode"
 
-#
 msgid "enabled"
-msgstr "ενεργοποιημένο"
+msgstr "enabled"
 
-#
-#
 msgid "end alternatives edit"
-msgstr "τέλος επεξεργασίας εναλλακτικών"
+msgstr "end alternatives edit"
 
-#
-#
 msgid "end bouquet edit"
-msgstr "τέλος επεξεργασίας μπουκέτου"
+msgstr "end bouquet edit"
 
-#
-#
 msgid "end cut here"
-msgstr "σημείωσε το τέλος αποκοπής"
+msgstr "end cut here"
 
-#
-#
 msgid "end favourites edit"
-msgstr "τέλος επεξεργασίας αγαπημένων "
+msgstr "end favourites edit"
 
 msgid "enter number to jump to channel."
-msgstr ""
+msgstr "enter number to jump to channel."
 
 msgid "entertainment (10-16 year old)"
-msgstr ""
+msgstr "entertainment (10-16 year old)"
 
 msgid "entertainment (6-14 year old)"
-msgstr ""
+msgstr "entertainment (6-14 year old)"
 
-#
-#
 msgid "equal to"
-msgstr "ίσο με"
+msgstr "equal to"
 
 msgid "equestrian"
-msgstr ""
+msgstr "equestrian"
 
-#
-#
 msgid "exit DVD player or return to file browser"
-msgstr "έξοδος απο το DVD player ή επιστροφή στο διαφυλλιστή αρχείων"
+msgstr "exit DVD player or return to file browser"
 
 msgid "exit mounts setup menu"
-msgstr ""
+msgstr "exit mounts setup menu"
 
-#
-#
 msgid "exit network adapter configuration"
-msgstr "έξοδος από ρύθμιση κάρτας δικτύου"
+msgstr "exit network adapter configuration"
 
-#
-#
 msgid "exit networkadapter setup menu"
-msgstr "έξοδος από μενού ρυθμίσεων κάρτας δικτύου"
+msgstr "exit network adapter setup menu"
 
 msgid "experimental film/video"
-msgstr ""
+msgstr "experimental film/video"
 
 msgid "extensions."
-msgstr ""
+msgstr "extensions."
 
 msgid "failed"
-msgstr ""
+msgstr "failed"
 
 msgid "false"
-msgstr ""
+msgstr "false"
 
 msgid "fashion"
-msgstr ""
+msgstr "fashion"
 
 msgid "fast"
-msgstr ""
+msgstr "fast"
 
 msgid "file oscam.conf could not be found"
-msgstr ""
+msgstr "file oscam.conf could not be found"
 
-#
-#
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "fileformats (BMP, PNG, JPG, GIF)"
 
-#
-#
 msgid "filename"
-msgstr "όνομα αρχείου"
+msgstr "filename"
 
 msgid "film/cinema"
-msgstr ""
+msgstr "film/cinema"
 
 msgid "fine arts"
-msgstr ""
+msgstr "fine arts"
 
-#
-#
 msgid "fine-tune your display"
-msgstr "μικρορύθμιση οθόνης"
+msgstr "fine-tune your display"
 
 msgid "fitness & health"
-msgstr ""
+msgstr "fitness & health"
 
 msgid "flat alphabetic"
-msgstr ""
+msgstr "flat alphabetic"
 
 msgid "flat alphabetic reverse"
-msgstr ""
+msgstr "flat alphabetic reverse"
 
 msgid "folk/traditional music"
-msgstr ""
+msgstr "folk/traditional music"
 
 msgid "football/soccer"
-msgstr ""
+msgstr "football/soccer"
 
 msgid "foreign countries/expeditions"
-msgstr ""
+msgstr "foreign countries/expeditions"
 
-#
-#
 msgid "forward to the next chapter"
-msgstr "προώθηση στο επόμενο κεφάλαιο"
+msgstr "forward to the next chapter"
 
-#
-#
 msgid "free"
-msgstr "ελεύθερα"
+msgstr "free"
 
-#
-#
 msgid "free diskspace"
-msgstr "ελεύθερος χώρος δίσκου"
+msgstr "disk space"
 
 msgid "full"
-msgstr ""
+msgstr "full"
 
 msgid "further education"
-msgstr ""
+msgstr "further education"
 
 msgid "game show/quiz/contest"
-msgstr ""
+msgstr "game show/quiz/contest"
 
 msgid "gardening"
-msgstr ""
+msgstr "gardening"
 
 msgid "get the cards' server"
-msgstr ""
+msgstr "get the cards' server"
 
-#
-#
 msgid "go to deep standby"
-msgstr "πήγαινε σε Τερματισμό"
+msgstr "go to deep standby"
 
-#
-#
 msgid "go to standby"
-msgstr "πήγαινε σε αναμονή"
+msgstr "go to standby"
 
-#
-#
 msgid "grab this frame as bitmap"
 msgstr "grab this frame as bitmap"
 
-#
-#
 msgid "green"
-msgstr "πράσινο"
+msgstr "green"
 
 msgid "handicraft"
-msgstr ""
+msgstr "handicraft"
 
 msgid "handled"
-msgstr ""
+msgstr "handled"
 
 msgid ""
 "has been sent to the ViX beta team.\n"
 "please quote"
 msgstr ""
+"has been sent to the ViX beta team.\n"
+"please quote"
 
 msgid "height"
-msgstr "ύψος"
+msgstr "height"
 
 msgid "hops:"
-msgstr ""
+msgstr "hops:"
 
-#
-#
 msgid "horizontal"
-msgstr "οριζόντια"
+msgstr "horizontal"
 
 msgid "increase uphop by 1"
-msgstr ""
+msgstr "increase uphop by 1"
 
 msgid "information/education/school program"
-msgstr ""
+msgstr "information/education/school program"
 
-#
-#
 msgid "init module"
 msgstr "init module"
 
-#
-#
 msgid "init modules"
 msgstr "init modules"
 
-#
-#
 msgid "insert mark here"
-msgstr "εισαγωγή σημειωτή"
+msgstr "insert mark here"
 
 msgid "invalid type"
-msgstr ""
+msgstr "invalid type"
 
 msgid "is strongly advised."
-msgstr ""
+msgstr "is strongly advised."
 
 msgid "jazz"
-msgstr ""
+msgstr "jazz"
 
-#
-#
 msgid "jump back to the previous title"
-msgstr "μετάβαση στον πρηγούμενο τίτλο"
+msgstr "jump back to the previous title"
 
-#
-#
 msgid "jump forward to the next title"
-msgstr "μετάβαση στον επόμενο τίτλο"
+msgstr "jump forward to the next title"
 
 msgid "languages"
-msgstr ""
+msgstr "languages"
 
-#
-#
 msgid "leave movie player..."
-msgstr "έξοδος απο το movie player..."
+msgstr "leave movie player..."
 
-#
-#
 msgid "left"
-msgstr "αριστερά"
+msgstr "left"
 
 msgid "left, wrapped"
-msgstr ""
+msgstr "left, wrapped"
 
 msgid "leisure hobbies (general)"
-msgstr ""
+msgstr "leisure hobbies (general)"
 
-#
-#
 msgid "length"
-msgstr "μήκος"
+msgstr "length"
 
 msgid "limit ..., aborting !"
-msgstr ""
+msgstr "limit ..., aborting !"
 
 msgid "literature"
-msgstr ""
+msgstr "literature"
 
 msgid "live broadcast"
-msgstr ""
+msgstr "live broadcast"
 
-#
-#
 msgid "locked"
-msgstr "κλειδωμένο "
+msgstr "locked"
 
-#
-#
 msgid "loopthrough to"
 msgstr "loopthrough to"
 
 msgid "magazines/reports/documentary"
-msgstr ""
+msgstr "magazines/reports/documentary"
 
 msgid "making a backup before updating"
-msgstr ""
+msgstr "making a backup before updating"
 
-#
-#
 msgid "manual"
-msgstr "χειροκίνητα"
+msgstr "manual"
 
 msgid "martial sports"
-msgstr ""
+msgstr "martial sports"
 
 msgid "medicine/physiology/psychology"
-msgstr ""
+msgstr "medicine/physiology/psychology"
 
-#
-#
 msgid "menu"
-msgstr "μενού"
+msgstr "menu"
 
-#
-#
 msgid "mins"
-msgstr "λεπτά"
+msgstr "mins"
 
-#
-#
-#, fuzzy
 msgid "minute"
-msgstr "λεπτά"
+msgstr "minute"
 
-#
-#
 msgid "minutes"
-msgstr "λεπτά"
+msgstr "minutes"
 
-#
-#
 msgid "month"
-msgstr "μήνας"
+msgstr "month"
 
 msgid "motor sport"
-msgstr ""
+msgstr "motor sport"
 
 msgid "motoring"
-msgstr ""
+msgstr "motoring"
 
 msgid "move"
-msgstr ""
+msgstr "move"
 
-#
-#
 msgid "move down to last entry"
-msgstr "μετάβαση στην τελευταία εγγραφή"
+msgstr "move down to last entry"
 
-#
-#
 msgid "move down to next entry"
-msgstr "μετάβαση στην επόμενη εγγραφή"
+msgstr "move down to next entry"
 
-#
-#
 msgid "move up to first entry"
-msgstr "μετάβαση στην πρώτη εγγραφή"
+msgstr "move up to first entry"
 
-#
-#
 msgid "move up to previous entry"
-msgstr "μετάβαση στην προηγούμενη εγγραφή"
+msgstr "move up to previous entry"
 
 msgid "movie/drama (general)"
-msgstr ""
+msgstr "movie/drama (general)"
 
 msgid "ms"
-msgstr ""
+msgstr "ms"
 
-#
-#
 msgid "multinorm"
 msgstr "multinorm"
 
 msgid "music/ballet/dance (general)"
-msgstr ""
+msgstr "music/ballet/dance (general)"
 
 msgid "musical/opera"
-msgstr ""
+msgstr "musical/opera"
 
 msgid "nature/animals/environment"
-msgstr ""
+msgstr "nature/animals/environment"
 
-#
-#
 msgid "never"
-msgstr "ποτέ"
+msgstr "never"
 
 msgid "new media"
-msgstr ""
+msgstr "new media"
 
 msgid "news magazine"
-msgstr ""
+msgstr "news magazine"
 
 msgid "news/current affairs (general)"
-msgstr ""
+msgstr "news/current affairs (general)"
 
 msgid "news/weather report"
-msgstr ""
+msgstr "news/weather report"
 
-#
-#
 msgid "no"
-msgstr "όχι"
+msgstr "no"
 
-#
-#
 msgid "no CAId selected"
-msgstr " δεν έχει επιλεγεί CAId"
+msgstr "no CAId selected"
 
-#
-#
 msgid "no CI slots found"
-msgstr "δεν βρέθηκαν κοινές διεπαφές (CI)"
+msgstr "no CI slots found"
 
-#
-#
 msgid "no module found"
-msgstr "δεν βρέθηκε άρθρωμα"
+msgstr "no module found"
 
 msgid "no or unknown card inserted"
-msgstr ""
+msgstr "no or unknown card inserted"
 
-#
 msgid "no storage devices found"
-msgstr "δεν βρέθηκαν συσκευές αποθήκευσης"
+msgstr "no storage devices found"
 
-#
-#
 msgid "none"
-msgstr "κανένα"
+msgstr "none"
 
 msgid "normal"
-msgstr ""
+msgstr "normal"
 
-#
-#
 msgid "not configured"
-msgstr "δεν ρυθμίστηκε"
+msgstr "not configured"
 
-#
-#
 msgid "not locked"
-msgstr "δεν είναι κλειδωμένο"
+msgstr "not locked"
 
-#
 msgid "not supported"
-msgstr "δεν υποστηρίζεται"
+msgstr "not supported"
 
-#
-#
 msgid "not used"
-msgstr "δεν χρησιμοποιείται"
+msgstr "not used"
 
-#
-#
 msgid "nothing connected"
-msgstr "δεν έχει συνδεθεί τίποτα"
+msgstr "nothing connected"
 
-#
-#
 msgid "of a DUAL layer medium used."
 msgstr "of a DUAL layer medium used."
 
-#
-#
 msgid "of a SINGLE layer medium used."
 msgstr "of a SINGLE layer medium used."
 
-#
-#
 msgid "off"
-msgstr "εκτός"
+msgstr "off"
 
 msgid "offset is"
-msgstr ""
+msgstr "offset is"
 
-#
-#
 msgid "on"
-msgstr "εντός"
+msgstr "on"
 
-#
-#
 msgid "on READ ONLY medium."
 msgstr "on READ ONLY medium."
 
-#
-#
 msgid "once"
-msgstr "μια φορά"
+msgstr "once"
 
 msgid "only HD"
-msgstr ""
+msgstr "only HD"
 
 msgid "open bouquetlist"
-msgstr ""
+msgstr "open bouquet list"
 
-#
-#
 msgid "open nameserver configuration"
-msgstr "άνοιγμα ρύθμισης nameserver"
+msgstr "open name server configuration"
 
-#
 msgid "original"
-msgstr "αρχικό"
+msgstr "original"
 
 msgid "original language"
-msgstr ""
+msgstr "original language"
 
 msgid "packages selected."
-msgstr ""
+msgstr "packages selected."
 
 msgid "page left"
-msgstr ""
+msgstr "page left"
 
-#
-#
 msgid "pass"
 msgstr "pass"
 
 msgid "performing arts"
-msgstr ""
+msgstr "performing arts"
 
 msgid "pid:"
-msgstr ""
+msgstr "pid:"
 
-#
 msgid "play as picture in picture"
-msgstr "αναπαραγωγή ως PiP"
+msgstr "play as picture in picture"
 
-#
 msgid "play in mainwindow"
-msgstr "αναπαραγωγή στο κεντρικό παράθυρο"
+msgstr "play in main window"
 
-#
-#
 msgid "please press OK when ready"
-msgstr "πιέστε OK όταν είστε έτοιμος"
+msgstr "please press OK when ready"
 
-#
-#
 msgid "please wait, loading picture..."
-msgstr "περίμενετε, φορτώνεται η εικόνα..."
+msgstr "please wait, loading picture..."
 
 msgid "please wait..."
-msgstr ""
+msgstr "please wait..."
 
 msgid "popular culture/traditional arts"
-msgstr ""
+msgstr "popular culture/traditional arts"
 
 msgid "pre-school children's program"
-msgstr ""
+msgstr "pre-school children's program"
 
 msgid "provid:"
-msgstr ""
+msgstr "provid:"
 
 msgid "provider:"
-msgstr ""
+msgstr "provider:"
 
-#
-#, fuzzy
 msgid "reboot system"
-msgstr "Δημιουργίας συτήματος αρχείων"
+msgstr "reboot system"
 
-#
-#
 msgid "record"
-msgstr "εγγραφή"
+msgstr "record"
 
-#
-#
 msgid "recording..."
-msgstr "εγγραφή..."
+msgstr "recording..."
 
-#
-#
 msgid "red"
-msgstr "κόκκινο"
+msgstr "red"
 
 msgid "religion"
-msgstr ""
+msgstr "religion"
 
 msgid "remarkable people"
-msgstr ""
+msgstr "remarkable people"
 
-#
-#
 msgid "remove after this position"
-msgstr "διαγραφή μετά από αυτό το σημείο "
+msgstr "remove after this position"
 
-#
-#
 msgid "remove all alternatives"
-msgstr "διαγραφή όλων των εναλλακτικών"
+msgstr "remove all alternatives"
 
-#
-#
 msgid "remove all new found flags"
-msgstr "διαγραφή όλων των νέων flags"
+msgstr "remove all new found flags"
 
-#
-#
 msgid "remove before this position"
-msgstr "διαγραφή πριν από αυτό το σημείο"
+msgstr "remove before this position"
 
-#
-#
 msgid "remove bookmark"
-msgstr "διαγραφή σελιδοδείκτη"
+msgstr "remove bookmark"
 
-#
-#
 msgid "remove directory"
-msgstr "διαγραφή φακέλου"
+msgstr "remove directory"
 
-#
-#
 msgid "remove entry"
-msgstr "διαγραφή εγγραφής"
+msgstr "remove entry"
 
-#
-#
 msgid "remove from parental protection"
-msgstr "διαγραφή από γονικό έλεγχο"
+msgstr "remove from parental protection"
 
-#
-#
 msgid "remove new found flag"
-msgstr "διαγραφή νέου flag"
+msgstr "remove new found flag"
 
-#
-#
 msgid "remove selected satellite"
-msgstr "διαγραφή επιλεγμένου δορυφόρου"
+msgstr "remove selected satellite"
 
-#
-#
 msgid "remove this mark"
-msgstr "διαγραφή αυτού του σημειωτή"
+msgstr "remove this mark"
 
 msgid "rename"
-msgstr ""
+msgstr "rename"
 
-#
-#
-#, fuzzy
 msgid "rename entry"
-msgstr "διαγραφή εγγραφής"
+msgstr "rename entry"
 
-#
-#
 msgid "repeat playlist"
-msgstr "επανάληψη λίστας αναπαραγωγής"
+msgstr "repeat playlist"
 
-#
-#
 msgid "repeated"
-msgstr "επαναλαμβανόμενο"
+msgstr "repeated"
 
-#
-#
-#, fuzzy
 msgid "restart GUI"
-msgstr "Επανεκκίνηση του GUI τώρα;"
+msgstr "restart GUI"
 
-#
 msgid "reverse by date"
-msgstr "αντιστροφή κατά ημερομηνία"
+msgstr "reverse by date"
 
-#
-#
 msgid "rewind to the previous chapter"
-msgstr "μετάβαση στο προηγούμενο κεφάλαιο"
+msgstr "rewind to the previous chapter"
 
-#
-#
 msgid "right"
-msgstr "δεξιά"
+msgstr "right"
 
 msgid "right, wrapped"
-msgstr ""
+msgstr "right, wrapped"
 
 msgid "rock/pop"
-msgstr ""
+msgstr "rock/pop"
 
 msgid "romance"
-msgstr ""
+msgstr "romance"
 
-#
-#, fuzzy
 msgid "running..."
-msgstr "Σάρωση..."
+msgstr "running..."
 
-#
-#
 msgid "save last directory on exit"
-msgstr "αποθήκευση τελευταίου φακέλου κατά την έξοδο"
+msgstr "save last directory on exit"
 
-#
-#
 msgid "save playlist on exit"
-msgstr "αποθήκευση λίστας αναπαραγωγής κατά την έξοδο"
+msgstr "save playlist on exit"
 
-#
-#
 msgid "scan state"
-msgstr "κατάσταση σάρωσης"
+msgstr "scan state"
 
 msgid "science fiction/fantasy/horror"
-msgstr ""
+msgstr "science fiction/fantasy/horror"
 
-#
-#
 msgid "second cable of motorized LNB"
-msgstr "δεύτερο καλώδιο σε κινούμενο LNB"
+msgstr "second cable of motorised LNB"
 
-#
-#
 msgid "seconds"
-msgstr "δευτερόλεπτα"
+msgstr "seconds"
 
-#
-#
 msgid "select"
-msgstr "επέλεξε"
+msgstr "select"
 
-#
-#
 msgid "select CAId's"
-msgstr "επέλεξε CAId's"
+msgstr "select CAId's"
 
-#
-#
 msgid "select menu entry"
-msgstr "επέλεξε σημείο μενού"
+msgstr "select menu entry"
 
 msgid "serious music/classic music"
-msgstr ""
+msgstr "serious music/classic music"
 
 msgid "serious/classical/religious/historical movie/drama"
-msgstr ""
+msgstr "serious/classical/religious/historical movie/drama"
 
-#
 msgid "service PIN"
-msgstr "PIN υπηρεσίας"
+msgstr "service PIN"
 
-#
 msgid "set as startup service"
-msgstr "ορισμός ως αρχική υπηρεσία"
+msgstr "set as startup service"
 
-#
 msgid "setup PIN"
-msgstr "ρύθμιση PIN"
+msgstr "setup PIN"
 
 msgid "share:"
-msgstr ""
+msgstr "share:"
 
-#
-#
 msgid "show DVD main menu"
-msgstr "εμφάνιση κύριου μενού DVD "
+msgstr "show DVD main menu"
 
 msgid "show EPG..."
-msgstr ""
+msgstr "show EPG…"
 
 msgid "show all cards"
-msgstr ""
+msgstr "show all cards"
 
-#
 msgid "show all tags"
-msgstr "εμφάνιση όλων των tags"
+msgstr "show all tags"
 
-#
-#
 msgid "show alternatives"
-msgstr "εμφάνιση εναλλακτικών"
+msgstr "show alternatives"
 
 msgid "show cards with uphop 0"
-msgstr ""
+msgstr "show cards with uphop 0"
 
 msgid "show cards with uphop 1"
-msgstr ""
+msgstr "show cards with uphop 1"
 
 msgid "show cards with uphop 2"
-msgstr ""
+msgstr "show cards with uphop 2"
 
 msgid "show cards with uphop 3"
-msgstr ""
+msgstr "show cards with uphop 3"
 
 msgid "show cards with uphop 4"
-msgstr ""
+msgstr "show cards with uphop 4"
 
 msgid "show cards with uphop 5"
-msgstr ""
+msgstr "show cards with uphop 5"
 
 msgid "show cards with uphop 6"
-msgstr ""
+msgstr "show cards with uphop 6"
 
 msgid "show cards with uphop 7"
-msgstr ""
+msgstr "show cards with uphop 7"
 
 msgid "show cards with uphop 8"
-msgstr ""
+msgstr "show cards with uphop 8"
 
 msgid "show cards with uphop 9"
-msgstr ""
+msgstr "show cards with uphop 9"
 
-#
-#
 msgid "show event details"
-msgstr "εμφάνιση λεπτομερειών προγράμματος"
+msgstr "show event details"
 
 msgid "show mediaplayer on mainmenu"
-msgstr ""
+msgstr "show media player on main menu"
 
-#
-#
-#, fuzzy
 msgid "show picons in service list"
-msgstr "Το κανάλι δεν υπάρχει στη λίστα υπηρεσιών"
+msgstr "show picons in service list"
 
 msgid "show program information..."
-msgstr ""
+msgstr "show program information..."
 
 msgid "show softwaremanager in plugin menu"
-msgstr ""
+msgstr "show software manager in plugin menu"
 
 msgid "show softwaremanager on blue button"
-msgstr ""
+msgstr "show software manager on blue button"
 
-#
-#
 msgid "show transponder info"
-msgstr "εμφάνιση πληροφοριών αναμεταδότη"
+msgstr "show transponder info"
 
 msgid "show/game show (general)"
-msgstr ""
+msgstr "show/game show (general)"
 
-#
 msgid "shuffle"
-msgstr "τυχαία ανακατανομή"
+msgstr "shuffle"
 
-#
-#
 msgid "shut down"
-msgstr "τερματισμός"
+msgstr "shut down"
 
-#
-#
 msgid "simple"
-msgstr "απλό"
+msgstr "simple"
 
-#
-#
 msgid "skip backward"
-msgstr "μεταπήδηση πίσω"
+msgstr "skip backward"
 
-#
-#
 msgid "skip backward (enter time)"
-msgstr "μεταπήδηση πίσω (σε χρόνο)"
+msgstr "skip backward (enter time)"
 
-#
-#
 msgid "skip forward"
-msgstr "μεταπήδηση εμπρός"
+msgstr "skip forward"
 
-#
-#
 msgid "skip forward (enter time)"
-msgstr "μεταπήδηση εμπρός (σε χρόνο)"
+msgstr "skip forward (enter time)"
 
 msgid "slow"
-msgstr ""
+msgstr "slow"
 
 msgid "soap/melodram/folkloric"
-msgstr ""
+msgstr "soap/melodrama/folkloric"
 
 msgid "social/political issues/economics (general)"
-msgstr ""
+msgstr "social/political issues/economics (general)"
 
 msgid "social/spiritual science"
-msgstr ""
+msgstr "social/spiritual science"
 
 msgid "sorting of playlists"
-msgstr "ταξινόμηση λιστών αναπαραγωγής"
+msgstr "sorting of playlists"
 
-#
-#
 msgid "special characters"
-msgstr "ειδικοί χαρακτήρες"
+msgstr "special characters"
 
 msgid "special events"
-msgstr ""
+msgstr "special events"
 
 msgid "sports (general)"
-msgstr ""
+msgstr "sports (general)"
 
 msgid "sports magazine"
-msgstr ""
+msgstr "sports magazine"
 
-#
-#
 msgid "standard"
-msgstr "πρότυπο"
+msgstr "standard"
 
-#
-#
 msgid "start cut here"
-msgstr "εκκίνηση αποκοπής εδώ"
+msgstr "start cut here"
 
-#
-#
 msgid "start directory"
-msgstr "εκκίνηση φακέλου"
+msgstr "start directory"
 
 msgid "stepsize"
-msgstr "μέγεθος βήματος"
+msgstr "stepsize"
 
-#
-#
 msgid "stereo"
 msgstr "stereo"
 
 msgid "stop using as startup service"
-msgstr "τέλος χρήσης ως υπηρεσία εκκίνησης"
+msgstr "stop using as startup service"
 
-#
-#
 msgid "switch to bookmarks"
-msgstr "μετάβαση σε σελιδοδείκτες"
+msgstr "switch to bookmarks"
 
-#
-#
 msgid "switch to filelist"
-msgstr "μετάβαση στη λίστα αρχείων"
+msgstr "switch to filelist"
 
-#
-#
 msgid "switch to the next angle"
-msgstr "μετάβαση σε επόμενη γωνία"
+msgstr "switch to the next angle"
 
-#
-#
 msgid "switch to the next audio track"
-msgstr "μετάβαση σε επόμενο audio track"
+msgstr "switch to the next audio track"
 
-#
-#
 msgid "switch to the next subtitle language"
-msgstr "μετάβαση σε επόμενη γλώσσα υποτίτλων"
+msgstr "switch to the next subtitle language"
 
 msgid "system:"
-msgstr ""
+msgstr "system:"
 
 msgid "talk show"
-msgstr ""
+msgstr "talk show"
 
 msgid "team sports"
-msgstr ""
+msgstr "team sports"
 
 msgid "technology/natural science"
-msgstr ""
+msgstr "technology/natural science"
 
-#
-#
 msgid "template file"
-msgstr "πρότυπο αρχείο"
+msgstr "template file"
 
 msgid "tennis/squash"
-msgstr ""
+msgstr "tennis/squash"
 
-#
-#
 msgid "this recording"
-msgstr "αυτή η εγγραφή"
+msgstr "this recording"
 
-#
-#
 msgid "this service is protected by a parental control pin"
-msgstr "η εγγραφή είναι προστατευμένη από τον γονικό έλεγχο"
+msgstr "this service is protected by a parental control pin"
 
-#
-#
 msgid "toggle time, chapter, audio, subtitle info"
-msgstr "εναλλαγή πληροφοριών χρόνου, κεφαλαίου, ήχου, υποτίτλων"
+msgstr "toggle time, chapter, audio, subtitle info"
 
-#
 msgid "top"
-msgstr "κορυφή"
+msgstr "top"
 
 msgid "tourism/travel"
-msgstr ""
+msgstr "tourism/travel"
 
 msgid "true"
-msgstr ""
+msgstr "true"
 
-#
 msgid "tuner is not supported"
-msgstr "το tuner δεν υποστηρίζεται"
+msgstr "tuner is not supported"
 
 msgid "uShare Log"
-msgstr ""
+msgstr "uShare Log"
 
 msgid "uShare Name"
-msgstr ""
+msgstr "uShare Name"
 
 msgid "uShare Port"
-msgstr ""
+msgstr "uShare Port"
 
 msgid "uShare Setup"
-msgstr ""
+msgstr "uShare Setup"
 
 msgid "uShare setup"
-msgstr ""
+msgstr "uShare setup"
 
 msgid "unavailable"
-msgstr ""
+msgstr "unavailable"
 
-#
-#
 msgid "unconfirmed"
-msgstr "ανεπιβεβαιωμένο"
+msgstr "unconfirmed"
 
-#
-#
 msgid "unknown"
-msgstr "άγνωστο"
+msgstr "unknown"
 
-#
-#
 msgid "unknown service"
-msgstr "άγνωστη υπηρεσία"
+msgstr "unknown service"
 
 msgid "unpublished"
-msgstr ""
+msgstr "unpublished"
 
-#
-#
 msgid "until standby/restart"
-msgstr "μέχρι την αναμονή/επανεκκίνηση"
+msgstr "until standby/restart"
 
 msgid "updates available."
-msgstr ""
+msgstr "updates available."
 
-#
-#
 msgid "user defined"
-msgstr "ορισμένο από το χρήστη"
+msgstr "user defined"
 
 msgid "using:"
-msgstr ""
+msgstr "using:"
 
 msgid "variety show"
-msgstr ""
+msgstr "variety show"
 
-#
 msgid "vertical"
-msgstr "κάθετη"
+msgstr "vertical"
 
-#
 msgid "view extensions..."
-msgstr "εμφάνιση επεκτάσεων..."
+msgstr "view extensions..."
 
-#
 msgid "wait for ci..."
-msgstr "αναμονή γα κοινή διεπαφή (CI)..."
+msgstr "wait for ci..."
 
-#
 msgid "wait for mmi..."
-msgstr "αναμονή για mmi..."
+msgstr "wait for mmi..."
 
-#
 msgid "waiting"
-msgstr "αναμονή "
+msgstr "waiting"
 
-#, fuzzy
 msgid "wakeup"
-msgstr "Εκκίνηση"
+msgstr "wakeup"
 
-#, fuzzy
 msgid "wakeup to standby"
-msgstr "Εκκίνηση TV από αναμονή"
+msgstr "wakeup to standby"
 
 msgid "water sport"
-msgstr ""
+msgstr "water sport"
 
-#
 msgid "weekly"
-msgstr "εβδομαδιαία"
+msgstr "weekly"
 
-#
-#
-#, fuzzy
 msgid "west"
-msgstr "Μετακίνηση δυτικά"
+msgstr "west"
 
 msgid "when asking question about this log"
-msgstr ""
+msgstr "when asking question about this log"
 
 msgid ""
 "when asking question about this log\n"
 "\n"
 "A copy has been sent to yourself."
 msgstr ""
+"when asking question about this log\n"
+"\n"
+"A copy has been sent to yourself."
 
 msgid "white"
-msgstr "άσπρο"
+msgstr "white"
 
-#
 msgid "whitelist"
-msgstr "λίστα επιτρεπομένων"
+msgstr "whitelist"
 
 msgid "width"
-msgstr "πλάτος"
+msgstr "width"
 
 msgid "winter sport"
-msgstr ""
+msgstr "winter sport"
 
 msgid "wireless network interface"
-msgstr "διεπαφή ασύρματου δικτύου"
+msgstr "wireless network interface"
 
 #, python-format
 msgid "with %d error"
 msgid_plural "with %d errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "with %d error"
+msgstr[1] "with %d errors"
 
 msgid "with exit button"
-msgstr ""
+msgstr "with exit button"
 
 msgid "with left/right buttons"
-msgstr ""
+msgstr "with left/right buttons"
 
 msgid "with long OK press"
-msgstr ""
+msgstr "with long OK press"
 
-#
 msgid "working"
-msgstr "λειτουργεί"
+msgstr "working"
 
-#
 msgid "yellow"
-msgstr "κίτρινο"
+msgstr "yellow"
 
-#
 msgid "yes"
-msgstr "ναι"
+msgstr "yes"
 
-#
 msgid "yes (keep feeds)"
-msgstr "ναι (σώσε feeds)"
+msgstr "yes (keep feeds)"
 
-#
 msgid "zap"
 msgstr "zap"
 
-#
-#, fuzzy
 msgid "zap and record"
-msgstr "εγγραφή"
+msgstr "zap and record"
 
-# #
 msgid "zapped"
 msgstr "zapped"
 

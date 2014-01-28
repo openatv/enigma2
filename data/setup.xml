@@ -26,14 +26,14 @@
 		<item level="1" text="Show job tasks in extensions" description="With this option you can hide Job Tasks from the extension screen (short blue button press).">config.usage.jobtaksextensions</item>
 		<item level="1" text="Show positioner movement" description="Choose whether or not to show an icon when a motorised dish is moving.">config.usage.showdish</item>
 		<item level="1" text="Alternative radio mode" description="Use the alternative or the conventional radio mode.">config.usage.e1like_radio_mode</item>
-		<item level="1" text="Position of finished Timers in the Timer list" description="Control of the position how finished timer are shown in the Timer List.">config.usage.timerlist_finished_timer_position</item>
+		<item level="1" text="Position of finished Timers in the Timer list" description="Control of the position how finished timers are shown in the Timer List.">config.usage.timerlist_finished_timer_position</item>
 		<item level="2" text="Show infobar on channel change" description="If set to 'yes' the infobar will be displayed when changing channels.">config.usage.show_infobar_on_zap</item>
 		<item level="1" text="Show infobar on skip forward/backward" description="If set to 'yes', the infobar will be displayed when Fast Forwarding or Rewinding during media playback.">config.usage.show_infobar_on_skip</item>
 		<item level="1" text="Show infobar on event change" description="If set to 'yes' the infobar will be displayed when a new event starts.">config.usage.show_infobar_on_event_change</item>
 		<item level="1" text="Show channel number in infobar" description="If set to 'yes' the channel number will be displayed in the infobar.">config.usage.show_infobar_channel_number</item>
 		<item level="0" text="Show picon background color" description="This option allows you choose the background color of transparent picons.">config.usage.show_picon_bkgrn</item>
 		<item level="2" text="Show background in Radio mode" description="Show background when tuned to a radio channel.">config.misc.showradiopic</item>
-		<item level="2" text="Show screensaver" description="Configure the duration in minutes for the screensaver.">config.usage.screen_saver</item>
+		<item level="2" text="Show screensaver" description="Configure the duration (in minutes) for the screensaver.">config.usage.screen_saver</item>
 		<item level="0" text="Show time remaining/elapsed" description="This option allows you choose how to display remaining time, or elapsed time, or both.">config.usage.swap_time_remaining_on_osd</item>
 		<item level="0" text="Show time elapsed as positive" description="This option allows you choose how to display elapsed time as + or -">config.usage.elapsed_time_positive_osd</item>
 		<item level="0" text="Show transponder remaining/elapsed as" description="This option allows you to choose how to display the remaining/elapsed time for live TV.">config.usage.swap_time_display_on_osd</item>
@@ -43,8 +43,8 @@
 		<item level="2" text="Show crypto info in infobar" description="Show encryption info in the infobar (when supported by the skin).">config.usage.show_cryptoinfo</item>
 		<item level="2" text="Swap SNR in '&#37;' with SNR in 'db'" description="This option allows you to show the SNR as a percentage (not all receivers support this).">config.usage.swap_snr_on_osd</item>
 		<item level="1" text="Behavior of 0 key in PiP-mode" description="Choose what you want the '0' button to do when PIP is active.">config.usage.pip_zero_button</item>
-		<item level="1" text="Sort setting screens alphabetically" description="This option allows you to disable sorting of the option in setting screen's">config.usage.sort_settings</item>
-		<item level="1" text="Sort menu screen's alphabetically" description="This option allows you to disable sorting of the menus">config.usage.sort_menus</item>
+		<item level="1" text="Sort setting screens alphabetically" description="This option allows you to disable sorting of the option in setting screens">config.usage.sort_settings</item>
+		<item level="1" text="Sort menu screens alphabetically" description="This option allows you to disable sorting of the menus">config.usage.sort_menus</item>
 		<item level="1" text="Sort plug-in browser alphabetically" description="This option allows you to disable sorting of the plugin browser.">config.usage.sort_pluginlist</item>
 		<item level="1" text="Show PVR status in Movie Player infobar" description="This option moves the PVR status from the separate window into the Movie Player infobar.">config.usage.movieplayer_pvrstate</item>
 		<item level="2" text="Close PiP on exit" description="When enabled, the PiP can be closed by the EXIT button.">config.usage.pip_hideOnExit</item>
@@ -197,8 +197,8 @@
 		<item level="1" text="Show Transponder Remaining/Elapsed as" description="This option allows you choose how to display the remaining/elapsed time for live TV.">config.usage.swap_time_display_on_vfd</item>
 		<item level="1" text="Show Media playback Remaining/Elapsed as" description="This option allows you to choose how to display the remaining/elapsed time for Media playback.">config.usage.swap_media_time_display_on_vfd</item>
 		<item level="0" text="Show time elapsed as positive" description="This option allows you to choose how to display elapsed time. As + or -">config.usage.elapsed_time_positive_vfd</item>
-		<item level="1" text="Scrolling Speed (software render)" description="Set the scrolling speed of text on the front display, this uses a software render use in some skins.">config.lcd.scroll_speed</item>
-		<item level="1" text="Scrolling delay (software render)" description="Set the delay time between repeated loops, this uses a software render use in some skins.">config.lcd.scroll_delay</item>		
+		<item level="1" text="Scrolling Speed (software render)" description="Set the scrolling speed of text on the front display, this uses a software render in some skins.">config.lcd.scroll_speed</item>
+		<item level="1" text="Scrolling delay (software render)" description="Set the delay time between repeated loops, this uses a software render in some skins.">config.lcd.scroll_delay</item>		
 	</setup>
 	<setup key="satconfig" title="Satellite dish setup">
 		<item text="Tuner slot" description="Choose which tuner to configure.">config.sat.tunerslot</item>
@@ -210,9 +210,9 @@
 	</setup>
 	<setup key="softwareupdate" title="Software update settings">
 		<item level="1" text="Background check" description="Perform an online update check in the background">config.softwareupdate.check</item>
-		<item level="1" text="Check every (hours)" description="Setup the interval(in hours) to check for online updates." requires="config.softwareupdate.check">config.softwareupdate.checktimer</item>
+		<item level="1" text="Check every (hours)" description="Setup the interval (in hours) to check for online updates." requires="config.softwareupdate.check">config.softwareupdate.checktimer</item>
 		<item level="1" text="Allow unstable (experimental) updates" description="When enabled the online checker will also check for experimental versions">config.softwareupdate.updatebeta</item>
-		<item level="1" text="Automatic setting backup" description="Perform a settings backup before updating.">config.softwareupdate.autosettingsbackup</item>
+		<item level="1" text="Automatic settings backup" description="Perform a settings backup before updating.">config.softwareupdate.autosettingsbackup</item>
 		<item level="1" text="Automatic image backup" description="Perform a complete image backup before updating.">config.softwareupdate.autoimagebackup</item>
 	</setup>
 	<setup key="remotesetup" title="Button setup">
@@ -231,9 +231,9 @@
 	<setup key="logs" title="Logs settings">
 		<item level="2" text="Logs location" description="Choose the location for crash and debug logs.">config.crash.debug_path</item>
 		<item level="2" text="Create more detailed crash log" description="Allows more detailed information to be in the crash log">config.crash.details</item>
-		<item level="2" text="Enable debug logs" description="Allows you to enable the debug logs. They contain very detailed information of everything the system does.">config.crash.enabledebug</item>
+		<item level="2" text="Enable debug logs" description="Allows you to enable the debug logs. They contain very detailed information about everything the system does.">config.crash.enabledebug</item>
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size (MB) of the individual debug logs. When that size is reached, a new file will be created.">config.crash.debugloglimit</item>
-		<item level="2" text="Show Log Manager in extensions list" description="Allows you to show/hide Log Manager in extensions (blue button).">config.logmanager.showinextensions</item>
+		<item level="2" text="Show Log Manager in extensions list ?" description="Allows you to show/hide Log Manager in extensions (blue button).">config.logmanager.showinextensions</item>
 		<item level="2" text="Vix forum user name" description="Enter your forum user name, to make it easier to trace logs.">config.logmanager.user</item>
 		<item level="2" text="e-mail address" description="Enter your e-mail address to send a copy of the log to.">config.logmanager.useremail</item>
 		<item level="2" text="Send yourself a copy" description="Allows you to send a copy of the log to yourself.">config.logmanager.usersendcopy</item>
@@ -290,7 +290,7 @@
 		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
 		<item level="2" text="Base time" description="Choose time interval to which the graphics will be rounded off.">config.epgselection.infobar_roundto</item>
 		<item level="2" text="Primetime hour" description="Set to the desired primetime (hour).">config.epgselection.infobar_primetimehour</item>
-		<item level="2" text="Primetime minute" description="Set to the desired primetime (minutes.">config.epgselection.infobar_primetimemins</item>
+		<item level="2" text="Primetime minute" description="Set to the desired primetime (minutes).">config.epgselection.infobar_primetimemins</item>
 		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.infobar_itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_eventfs</item>
 		<item level="2" text="Service font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_servfs</item>
@@ -309,7 +309,7 @@
 		<item level="2" text="Info button (long)" description="Set to what you want the button to do.">config.epgselection.graph_infolong</item>
 		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.graph_ok</item>
 		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.graph_oklong</item>
-		<item level="2" text="Channel 1 at start" description="If set to 'yes' the EPG will always open at the first channel of bouquet. If set to 'no' the EPG will open on the present channel.">config.epgselection.graph_channel1</item>
+		<item level="2" text="Channel 1 at start" description="If set to 'yes' the EPG will always open at the first channel of bouquet. If set to 'no' the EPG will open on the current channel.">config.epgselection.graph_channel1</item>
 		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
 		<item level="2" text="Base time" description="Choose time interval to which the graphics will be rounded off.">config.epgselection.graph_roundto</item>
 		<item level="2" text="Primetime hour" description="Set the desired primetime (hour).">config.epgselection.graph_primetimehour</item>

@@ -80,7 +80,7 @@ class HarddiskFsckSelection(HarddiskSelection):
 		self.session.openWithCallback(self.close, HarddiskSetup, selection,
 			 action=selection.createCheckJob,
 			 text=_("Check"),
-			 question=_("Do you really want to check the filesystem?\nThis could take lots of time!"))
+			 question=_("Do you really want to check the filesystem?\nThis could take a long time!"))
 
 class HarddiskConvertExt4Selection(HarddiskSelection):
 	def __init__(self, session):

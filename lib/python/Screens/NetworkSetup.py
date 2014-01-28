@@ -323,14 +323,14 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("MAC-adress settings"))
+		Screen.setTitle(self, _("MAC-address settings"))
 		self.curMac = self.getmac('eth0')
 		self.getConfigMac = NoSave(ConfigMacText(default=self.curMac))
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 
-		self["introduction"] = StaticText(_("Press OK to set the MAC-adress."))
+		self["introduction"] = StaticText(_("Press OK to set the MAC-address."))
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
@@ -340,8 +340,8 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-			"red": (self.cancel, _("Exit MAC-adress configuration")),
-			"green": (self.ok, _("Activate MAC-adress configuration")),
+			"red": (self.cancel, _("Exit MAC-address configuration")),
+			"green": (self.ok, _("Activate MAC-address configuration")),
 			})
 
 		self["actions"] = NumberActionMap(["SetupActions"],
@@ -359,7 +359,7 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def createSetup(self):
 		self.list = []
-		self.list.append(getConfigListEntry(_("MAC-adress"), self.getConfigMac))
+		self.list.append(getConfigListEntry(_("MAC-address"), self.getConfigMac))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -915,11 +915,11 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if self["menulist"].getCurrent()[1] == 'lanrestart':
 			self["description"].setText(_("Restart your network connection and interfaces.\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'openwizard':
-			self["description"].setText(_("Use the networkwizard to configure your Network\n" ) + self.oktext )
+			self["description"].setText(_("Use the network wizard to configure your Network\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1][0] == 'extendedSetup':
 			self["description"].setText(_(self["menulist"].getCurrent()[1][1]) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'mac':
-			self["description"].setText(_("Set the MAC-adress of your %s %s.\n" ) % (getMachineBrand(), getMachineName()) + self.oktext )
+			self["description"].setText(_("Set the MAC-address of your %s %s.\n" ) % (getMachineBrand(), getMachineName()) + self.oktext )
 		item = self["menulist"].getCurrent()
 		if item:
 			name = str(self["menulist"].getCurrent()[0])

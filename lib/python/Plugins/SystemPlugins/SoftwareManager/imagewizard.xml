@@ -80,7 +80,7 @@ self.condition = (self.backuppath is False)
 	<step id="upgrade">
 		<text value="You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\nYour %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings." />
 		<list>
-			<listentry caption="Yes, perform a shutdown now." step="shutdown" />
+			<listentry caption="Yes, shut down now." step="shutdown" />
 			<listentry caption="No, do nothing." step="end" />
 		</list>
 	</step>
@@ -90,7 +90,7 @@ self.condition = (self.backuppath is False)
 from enigma import quitMainloop
 quitMainloop(1)
 		</code>
-		<text value="Your %s %s is shutting down. Please stand by..." />
+		<text value="Your %s %s is shutting down. Please wait..." />
 	</step>
 
 	<step id="end" laststep="true">

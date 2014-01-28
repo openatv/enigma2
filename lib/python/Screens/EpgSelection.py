@@ -251,7 +251,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self['bouquetokactions'] = HelpableActionMap(self, 'OkCancelActions',
 				{
 					'cancel': (self.BouquetlistHide, _('Close bouquet list.')),
-					'OK': (self.BouquetOK, _('Chnage to bouquet')),
+					'OK': (self.BouquetOK, _('Change to bouquet')),
 				}, -1)
 			self['bouquetokactions'].csel = self
 			self["bouquetokactions"].setEnabled(False)
@@ -322,7 +322,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.bouquetlist_active = False
 			self['bouquetokactions'] = HelpableActionMap(self, 'OkCancelActions',
 				{
-					'OK': (self.BouquetOK, _('Chnage to bouquet')),
+					'OK': (self.BouquetOK, _('Change to bouquet')),
 				}, -1)
 			self['bouquetokactions'].csel = self
 			self["bouquetokactions"].setEnabled(False)

@@ -256,7 +256,7 @@ class UpdatePlugin(Screen):
 				self.total_packages = None
 				if config.softwareupdate.updateisunstable.getValue() == '1' and config.softwareupdate.updatebeta.getValue():
 					self.total_packages = len(self.ipkg.getFetchedList())
-					message = _("The current update maybe unstable") + "\n" + _("Are you sure you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
+					message = _("The current update may be unstable") + "\n" + _("Are you sure you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
 				elif config.softwareupdate.updateisunstable.getValue() == '0':
 					self.total_packages = len(self.ipkg.getFetchedList())
 					message = _("Do you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
@@ -272,7 +272,7 @@ class UpdatePlugin(Screen):
 						(_("Upgrade and reboot system"), "cold")]
 					if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/BackupManager.pyo"):
 						if not config.softwareupdate.autosettingsbackup.getValue() and config.backupmanager.backuplocation.getValue():
-							choices.append((_("Perform a setting backup,") + '\n\t' + _("making a backup before updating") + '\n\t' +_("is strongly advised."), "backup"))
+							choices.append((_("Perform a settings backup,") + '\n\t' + _("making a backup before updating") + '\n\t' +_("is strongly advised."), "backup"))
 						if not config.softwareupdate.autoimagebackup.getValue() and config.imagemanager.backuplocation.getValue():
 							choices.append((_("Perform a full image backup"), "imagebackup"))
 					choices.append((_("Update channel list only"), "channels"))
@@ -329,13 +329,13 @@ class UpdatePlugin(Screen):
 
 		if answer[1] == "menu":
 			if config.softwareupdate.updateisunstable.getValue() == '1':
-				message = _("The current update maybe unstable") + "\n" + _("Are you sure you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(%s " % self.total_packages + _("Packages") + ")"
+				message = _("The current update may be unstable") + "\n" + _("Are you sure you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(%s " % self.total_packages + _("Packages") + ")"
 			elif config.softwareupdate.updateisunstable.getValue() == '0':
 				message = _("Do you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(%s " % self.total_packages + _("Packages") + ")"
 			choices = [(_("View the changes"), "changes"),
 				(_("Upgrade and reboot system"), "cold")]
 			if not self.SettingsBackupDone and not config.softwareupdate.autosettingsbackup.getValue() and config.backupmanager.backuplocation.getValue():
-				choices.append((_("Perform a setting backup, making a backup before updating is strongly advised."), "backup"))
+				choices.append((_("Perform a settings backup, making a backup before updating is strongly advised."), "backup"))
 			if not self.ImageBackupDone and not config.softwareupdate.autoimagebackup.getValue() and config.imagemanager.backuplocation.getValue():
 				choices.append((_("Perform a full image backup"), "imagebackup"))
 			choices.append((_("Update channel list only"), "channels"))
