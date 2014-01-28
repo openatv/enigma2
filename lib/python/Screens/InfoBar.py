@@ -144,7 +144,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{
-				"InfoButtonPressed": (self.showDefaultInfo, _("open Info...")),
+				"InfoButtonPressed": (self.openEventView, _("open Info...")),
 				"EPGButtonPressed": (self.showDefaultEPG,  _("open EPG...")),
 				"InfoButtonPressedLong": (self.showEventInfoPlugins, _("select Info...")),
 				"EPGButtonPressedLong": (self.showEventGuidePlugins,  _("select EPG...")),
@@ -400,7 +400,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		if self.infobar:
 			self.infobar.showMultiEPG()
 
-	def showDefaultInfo(self):
+	def openEventView(self):
 		if self.infobar:
 			self.infobar.showDefaultEPG()
 
@@ -411,9 +411,6 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 	def showEventGuidePlugins(self):
 		if self.infobar:
 			self.infobar.showEventGuidePlugins()
-
-	def openEventView(self):
-		self.showDefaultInfo()
 
 	def showMovies(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
