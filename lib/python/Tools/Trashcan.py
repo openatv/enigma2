@@ -10,7 +10,7 @@ import enigma
 def getTrashFolder(path=None):
 	# Returns trash folder without symlinks
 	try:
-		if path is None:
+		if path is None or os.path.realpath(path) == '/media/autofs':
 			print 'path is none'
 		else:
 			if '/movie' in path:
