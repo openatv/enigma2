@@ -87,7 +87,7 @@ def getPiconName(serviceName):
 		if fields[0] == '4097':
 			#fallback to 1 for IPTV streams
 			fields[0] = '1'
-			pngname = findPicon('_'.join(fields))
+		pngname = findPicon('_'.join(fields))
 	return pngname
 
 class Picon(Renderer):
