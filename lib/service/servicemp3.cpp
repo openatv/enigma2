@@ -1961,7 +1961,11 @@ void eServiceMP3::playbinNotifySource(GObject *object, GParamSpec *unused, gpoin
 		}
 		if (g_object_class_find_property(G_OBJECT_GET_CLASS(source), "extra-headers") != 0 && !_this->m_extra_headers.empty())
 		{
+#if GST_VERSION_MAJOR < 1
 			GstStructure *extras = gst_structure_empty_new("extras");
+#else
+			GstStructure *extras = gst_structure_new_empty("extras");
+#endif
 			size_t pos = 0;
 			while (pos != std::string::npos)
 			{
