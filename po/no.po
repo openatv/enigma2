@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-22 20:11+0100\n"
+"POT-Creation-Date: 2014-01-30 22:11+0100\n"
 "PO-Revision-Date: 2014-01-22 23:31+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Stig-O\n"
@@ -156,9 +156,6 @@ msgstr "%2d:%02d"
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-msgid "%A %d %B"
-msgstr "%A %d %B"
-
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr "%A %e %B"
@@ -264,9 +261,6 @@ msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
 msgstr[0] "%d trådløst nettverk funnet!"
 msgstr[1] "%d trådløst nettverk funnet!"
-
-msgid "%d-%m"
-msgstr "%d-%m"
 
 #
 msgid "%d.%B %Y"
@@ -602,10 +596,6 @@ msgstr ""
 "Et avluttet timer ønsker å slå av\n"
 "din %s %s. Skal den slås av nå ?"
 
-#
-msgid "A graphical EPG for all services of a specific bouquet"
-msgstr "En grafisk EPG for alle kanaler i en valgt bouqet"
-
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -865,10 +855,6 @@ msgstr "Legg til i favoritter"
 msgid "Add/Remove timer for current event"
 msgstr "Legg til/fjern timer for aktuelle program"
 
-#, fuzzy
-msgid "Add/remove change timer for current event"
-msgstr "Legg til/fjern timer  for aktuelle program"
-
 msgid "Adding schedule..."
 msgstr "Legg til planlagt oppgave..."
 
@@ -915,12 +901,6 @@ msgstr "Album"
 msgid "Alias"
 msgstr "Alias"
 
-msgid "Alignment of events"
-msgstr "Justering av program"
-
-msgid "Alignment of service names"
-msgstr "Justering av kanalnavn"
-
 #
 msgid "All"
 msgstr "Alle"
@@ -961,12 +941,6 @@ msgstr "Tillater %s %s å lese de lagrede EPG-dataene regelmessig."
 msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "Tillater %s %s å lagre EPG-dataene regelmessig."
 
-msgid "Allows you to hide the extensions of known file types."
-msgstr "Tillater deg å skjule utvidelser av kjente filtyper."
-
-msgid "Allows you to setup the button to do what you choose."
-msgstr "Tillater deg å konfigurere knappene til å gjøre hva du velger."
-
 msgid "Allows you to adjust the amount of time the resolution infomation display on screen."
 msgstr "Tillater deg å justere hvor lenge informasjonen om skjermoppløsning vises på skjermen."
 
@@ -978,12 +952,18 @@ msgstr "Tillater deg å aktivere debug loggen. De inneholder svært detaljerte o
 msgid "Allows you to enable/disable displaying icons on the front panel."
 msgstr "Tillater deg å aktivere/deaktivere visning av ikoner på frontpanelet."
 
+msgid "Allows you to hide the extensions of known file types."
+msgstr "Tillater deg å skjule utvidelser av kjente filtyper."
+
 msgid "Allows you to send a copy of the log to yourself."
 msgstr "Her kan du sende en kopi av loggen til deg selv."
 
 #, fuzzy
 msgid "Allows you to set the maximum size (MB) of the individual debug logs. When that size is reached, a new file will be created."
 msgstr "Lar deg sette maksimal størrelse av Debug logg størrelse (MB). Når denne størrelsen er nådd, vil en ny fil opprettes."
+
+msgid "Allows you to setup the button to do what you choose."
+msgstr "Tillater deg å konfigurere knappene til å gjøre hva du velger."
 
 #, fuzzy
 msgid "Allows you to show/hide CCcam Info in extensions (blue button)."
@@ -1600,9 +1580,6 @@ msgstr "Kortet serie"
 msgid "Center DVB subtitles"
 msgstr "Sentrer DVB undertekst"
 
-msgid "Center time-labels and remove date"
-msgstr "Sentrere tids etiketter og fjerne dato"
-
 #
 msgid "Change bouquets in quickzap"
 msgstr "Bytt bouquet i Quickzap"
@@ -1641,6 +1618,10 @@ msgstr "Endre trinn størrelse"
 #, fuzzy
 msgid "Change timer"
 msgstr "Endre trinn størrelse"
+
+#
+msgid "Change to bouquet"
+msgstr "Bytt til i bukett"
 
 msgid "Changelog"
 msgstr "Endringslogg"
@@ -1761,10 +1742,6 @@ msgstr "Chipset:\tBCM%s"
 #, python-format
 msgid "Chipset: BCM%s"
 msgstr "Chipset: BCM%s"
-
-#
-msgid "Change to bouquet"
-msgstr "Bytt til i bukett"
 
 msgid "Choose Bouquet"
 msgstr "Velg bukett"
@@ -2727,6 +2704,11 @@ msgid "Disable background scanning"
 msgstr "Deaktiver bakgrunns søking"
 
 #
+#, fuzzy
+msgid "Disable timer"
+msgstr "Slett fil."
+
+#
 msgid "Disabled"
 msgstr "Avslått"
 
@@ -3264,9 +3246,6 @@ msgstr "Program info"
 msgid "Event font size"
 msgstr "Programmets skriftstørrelse"
 
-msgid "Event font size (relative to skin size)"
-msgstr "programmets skriftstørrelse (i forhold til skin størrelse)"
-
 msgid "Event view"
 msgstr "Program visning"
 
@@ -3601,9 +3580,6 @@ msgstr "Full gjennomsiktighet"
 msgid "Fullview resolution"
 msgstr "Fullview resolution"
 
-msgid "Function of OK button"
-msgstr "Funksjon av OK-knappen"
-
 msgid "GB"
 msgstr "GB"
 
@@ -3658,29 +3634,6 @@ msgstr "Gå til første film eller siste element"
 msgid "Go to first movie or top of list"
 msgstr "Gå til første film eller toppen av listen"
 
-#
-msgid "Go to first service"
-msgstr "Gå til første kanal"
-
-#
-msgid "Go to last service"
-msgstr "Gå til siste kanal"
-
-msgid "Go to next event"
-msgstr "Gå til neste program"
-
-#
-msgid "Go to next page of service"
-msgstr "Gå til neste side med kanaler"
-
-#
-msgid "Go to previous event"
-msgstr "Gå tilbake til forrige program"
-
-#
-msgid "Go to previous page of service"
-msgstr "Gå til forrige side med kanaler"
-
 msgid "Go up the list"
 msgstr "Gå opp på listen"
 
@@ -3708,15 +3661,8 @@ msgstr "Gå til neste bukett"
 msgid "Goto next channel"
 msgstr "Gå til neste kanal"
 
-#
-msgid "Goto next day of events"
-msgstr "Gå til neste dags program"
-
 msgid "Goto next event"
 msgstr "Gå til neste program"
-
-msgid "Goto next page of events"
-msgstr "Gå til neste side med program"
 
 #
 msgid "Goto position"
@@ -3728,15 +3674,8 @@ msgstr "Gå til forrige bukett"
 msgid "Goto previous channel"
 msgstr "Gå til forrige kanal"
 
-#
-msgid "Goto previous day of events"
-msgstr "Gå til forrige dags program"
-
 msgid "Goto previous event"
 msgstr "Gå til forrige program"
-
-msgid "Goto previous page of events"
-msgstr "Gå til forrige side med program"
 
 msgid "Goto specific data/time"
 msgstr "Gå til bestemt data/tid"
@@ -3745,9 +3684,6 @@ msgstr "Gå til bestemt data/tid"
 msgid "GotoX calibration"
 msgstr "Gå til X kalibrering"
 
-msgid "GraphMultiEpg Settings"
-msgstr "GraphMultiEpg Oppsett"
-
 msgid "Graphical EPG"
 msgstr "Grafisk EPG"
 
@@ -3755,10 +3691,6 @@ msgstr "Grafisk EPG"
 #, fuzzy
 msgid "Graphical Infobar EPG settings"
 msgstr "Grafiske InfobarEPG innstillinger"
-
-#
-msgid "Graphical Multi EPG"
-msgstr "Grafisk Multi EPG"
 
 #
 msgid "GraphicalEPG settings"
@@ -4256,13 +4188,6 @@ msgstr "Er denne videomodus ok?"
 msgid "Italian"
 msgstr "Italiensk"
 
-msgid "Items per page "
-msgstr "Elementer per side"
-
-#, fuzzy
-msgid "Items per page for list screen"
-msgstr "Elementer per side for listeskjermen"
-
 msgid "JUMP 24 HOURS"
 msgstr "GÅ FREM 24 TIMER"
 
@@ -4496,9 +4421,6 @@ msgstr "Liste EPG funksjoner..."
 
 msgid "List available networks"
 msgstr "Vis tilgjengelige nettverk"
-
-msgid "List mode"
-msgstr "Liste modus"
 
 #
 msgid "List of storage devices"
@@ -5280,9 +5202,6 @@ msgstr "NodeID:"
 msgid "None"
 msgstr "Ingen"
 
-msgid "Normal mode"
-msgstr "Normal modus"
-
 #
 msgid "North"
 msgstr "Nord"
@@ -5347,7 +5266,8 @@ msgid "Now"
 msgstr "Nå"
 
 #
-msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades. If you have done that, press OK."
+#, fuzzy
+msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Bruk kontrastinstillningen for å justere lysstyrke på bakgrunnen så mye som mulig, men pass på att du fortsatt kan skille mellom de to lyseste skyggenivåene. Når du har gjort det trykk OK."
 
 msgid "Number"
@@ -5593,15 +5513,15 @@ msgstr "Utfør en sikkerhetskopiering av image før du oppdaterer."
 msgid "Perform a full image backup"
 msgstr "Utfør en full sikkerhetskopiering av image"
 
+#, fuzzy
+msgid "Perform a settings backup before updating."
+msgstr "Utfør en sikkerhetskopiering av innstillinger før du oppdaterer."
+
 msgid "Perform a settings backup,"
 msgstr "Utfør en sikkerhetskopiering av innstillinger,"
 
 msgid "Perform a settings backup, making a backup before updating is strongly advised."
 msgstr "Utfør en sikkerhetskopiering av innstillinger, å lage en sikkerhetskopi før oppdatering anbefales på det sterkeste."
-
-#, fuzzy
-msgid "Perform a settings backup before updating."
-msgstr "Utfør en sikkerhetskopiering av innstillinger før du oppdaterer."
 
 msgid "Perform an online update check in the background"
 msgstr "Utfører en online oppdaterings sjekk i bakgrunnen"
@@ -5627,9 +5547,6 @@ msgstr "Picon"
 
 msgid "Picon and Service Name"
 msgstr "Picons og Kanal Navn"
-
-msgid "Picon and service name"
-msgstr "Picon og kanal navn"
 
 msgid "Picon width"
 msgstr "Picon bredde"
@@ -6140,9 +6057,6 @@ msgstr "Forhåndsvisning"
 #
 msgid "Preview menu"
 msgstr "Forhåndsvis meny"
-
-msgid "Preview selected channel"
-msgstr "Forhåndsvis valgt kanal"
 
 #
 msgid "Primary DNS"
@@ -6665,9 +6579,6 @@ msgstr "Rotor trinn posisjon:"
 msgid "Rotor turning speed"
 msgstr "Motor dreie hastighet"
 
-msgid "Round start time on"
-msgstr "Rund starttid på"
-
 msgid "Run how often ?"
 msgstr "Kjør hvor ofte?"
 
@@ -7161,10 +7072,6 @@ msgstr ""
 "Kanal feil!\n"
 "(Timeout ved lesing av PMT)"
 
-#
-msgid "Service name"
-msgstr "Kanalnavn"
-
 msgid "Service name font size"
 msgstr "Skriftstørrelse på Kanalnavn"
 
@@ -7188,11 +7095,6 @@ msgstr "Kanalsøk"
 
 msgid "Service searching"
 msgstr "Kanalsøk"
-
-#
-#, fuzzy
-msgid "Service title mode"
-msgstr "Kanalens tittel modus"
 
 #
 msgid ""
@@ -7302,24 +7204,6 @@ msgstr "Angi en tid timeren skal stoppe."
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Angi typen for fremdriftsindikatoren i kanalvalg-skjermen."
-
-msgid "Set time window to 1 hour"
-msgstr "Angir tidsvinduet til 1 time."
-
-msgid "Set time window to 2 hours"
-msgstr "Angir tidsvinduet til 2 timer."
-
-msgid "Set time window to 3 hours"
-msgstr "Angir tidsvinduet til 3 timer."
-
-msgid "Set time window to 4 hours"
-msgstr "Angir tidsvinduet til 4 timer."
-
-msgid "Set time window to 5 hours"
-msgstr "Angir tidsvinduet til 5 timer."
-
-msgid "Set time window to 6 hours"
-msgstr "Angir tidsvinduet til 6 timer."
 
 #, fuzzy
 msgid "Set to the desired primetime (hour)."
@@ -7502,9 +7386,6 @@ msgstr "Vis bakgrunnen når innstilt til en radiokanal."
 msgid "Show bouquet on launch"
 msgstr "Vis bukett ved oppstart"
 
-msgid "Show bouquet selection menu"
-msgstr "Vis bukett valgmenyen"
-
 #
 msgid "Show channel number in infobar"
 msgstr "Vis kanalnummer i infolinjen"
@@ -7544,10 +7425,6 @@ msgstr "Vis ikon for nye/usynlige elementer"
 
 msgid "Show in extensions list ?"
 msgstr "Vis i utvidelser listen?"
-
-#
-msgid "Show in extensions menu"
-msgstr "Vis i utvidelses menyen"
 
 #
 msgid "Show info"
@@ -7988,10 +7865,6 @@ msgstr "Start tid"
 msgid "Start timeshift"
 msgstr "Start timeshift"
 
-#, fuzzy
-msgid "Start with list screen"
-msgstr "Begynn med listeskjermen"
-
 #
 msgid "Starting on"
 msgstr "Starter på"
@@ -8198,9 +8071,6 @@ msgstr "Bytt TV til riktig inngang"
 #
 msgid "Switch between filelist/playlist"
 msgstr "Bytt mellom fileliste/spilleliste"
-
-msgid "Switch between normal mode and list mode"
-msgstr "Bytte mellom normal modus og liste modus"
 
 msgid "Switch config"
 msgstr "Bytt konfig"
@@ -8597,12 +8467,12 @@ msgstr "DVD RW medie er allerede formattert - omformattering sletter innholdet p
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr "Dette gjør at du kan endre skriftstørrelsen i forhold til skin størrelse, så 1 øker med 1 punktstørrelse, og -1 reduseres med 1 punktstørrelse"
 
-msgid "This allows you to change the number of rows shown."
-msgstr "Dette lar deg endre antallet rader som vises."
-
 #, fuzzy
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr "Dette gjør at du kan endre skriftstørrelsen i forhold til skin størrelse, så 1 øker med 1 punktstørrelse, og -1 reduseres med 1 punktstørrelse"
+
+msgid "This allows you to change the number of rows shown."
+msgstr "Dette lar deg endre antallet rader som vises."
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Dette alternativet gjør det mulig å redusere blokk-støy i bildet. Selvsagt er dette på bekostning av bildets skarphet."
@@ -8633,6 +8503,9 @@ msgstr "Dette valget gjør at du kan øke blå toner i bildet."
 
 msgid "This option allows you to boost the green tones in the picture."
 msgstr "Dette valget gjør at du kan øke grønne toner i bildet."
+
+msgid "This option allows you to bypass HDMI EDID check"
+msgstr "Dette alternativet konfigurerer så du kan gå utenom HDMI EDID sjekk"
 
 msgid "This option allows you to choose from the two channel lists that are available."
 msgstr "Dette alternativet lar deg velge mellom to kanallister som er tilgjengelige."
@@ -8680,6 +8553,9 @@ msgstr "Dette alternativet lar deg deaktivere sortering av valg i innstillingene
 msgid "This option allows you to disable sorting of the plugin browser."
 msgstr "Dette alternativet lar deg deaktivere sortering av plugin leseren."
 
+msgid "This option allows you to enable 3D Surround Sound."
+msgstr "Dette alternativet lar deg aktivere 3D Surround Sound."
+
 #, fuzzy
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "Med dette alternativet kan du angi oppsettvisning (tekst eller grafikk)."
@@ -8702,12 +8578,6 @@ msgstr "Dette alternativet konfigurerer skjermoppløsningen tili PC-utgangen."
 
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Dette alternativet konfigurerer videoutgangsmodus (eller oppløsning)."
-
-msgid "This option allows you to bypass HDMI EDID check"
-msgstr "Dette alternativet konfigurerer så du kan gå utenom HDMI EDID sjekk"
-
-msgid "This option allows you to enable 3D Surround Sound."
-msgstr "Dette alternativet lar deg aktivere 3D Surround Sound."
 
 msgid "This option lets you adjust the 3D depth"
 msgstr "Dette alternativet lar deg justere 3D-dybde."
@@ -9835,14 +9705,14 @@ msgstr "Vest"
 msgid "West limit set"
 msgstr "Vest grensen satt"
 
-msgid "What date of month ?"
-msgstr "Hvilken dag i måneden?"
-
 msgid "What Day of week ?"
 msgstr "Hvilken dag i uken?"
 
 msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
 msgstr "Hvilke tiltak er nødvendig for å fullføre timeren? 'Auto' lar boksen tilbake til den tilstanden den hadde da timeren startet. 'Gjør ingenting', 'Gå til dvalemodus' og 'Gå i dyp dvalemodus' gjøre akkurat det."
+
+msgid "What date of month ?"
+msgstr "Hvilken dag i måneden?"
 
 #
 msgid "What do you want to scan?"
@@ -10131,16 +10001,16 @@ msgid "Yes, do another manual scan now"
 msgstr "Ja, gjør et nytt manuelt søk nå"
 
 #
-msgid "Yes, shut down now."
-msgstr "Ja, slå av nå."
-
-#
 msgid "Yes, restore the settings now"
 msgstr "Ja, legg tilbake innstillingene nå"
 
 #
 msgid "Yes, returning to movie list"
 msgstr "Ja, returner til filmlisten"
+
+#
+msgid "Yes, shut down now."
+msgstr "Ja, slå av nå."
 
 msgid "Yesterday"
 msgstr "I går"
@@ -10438,12 +10308,6 @@ msgstr "Zap til kanal (oppsett i menyen)"
 msgid "Zap to channel and close (setup in menu)"
 msgstr "Zap til kanal og lukk (oppsett i menyen)"
 
-msgid "Zap to selected channel"
-msgstr "Zap til valgt kanal"
-
-msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
-msgstr "Zap til valgt kanal, eller vise detaljert program info (avhengig av konfigurasjon)"
-
 msgid "Zoom In/Out TV..."
 msgstr "Zoom inn/ut TV..."
 
@@ -10645,13 +10509,6 @@ msgstr "tegneserie/dukketeater"
 
 msgid "center"
 msgstr "senter"
-
-#
-msgid "centered"
-msgstr "sentrert"
-
-msgid "centered, wrapped"
-msgstr "sentrert, innpakket"
 
 #
 msgid "chapters"
@@ -11029,9 +10886,6 @@ msgstr "Forlat filmspiller..."
 msgid "left"
 msgstr "venstre"
 
-msgid "left, wrapped"
-msgstr "venstre, innpakket"
-
 msgid "leisure hobbies (general)"
 msgstr "Fritidssysler (generelt)"
 
@@ -11382,9 +11236,6 @@ msgstr "spol tilbake til forrige kapittel"
 #
 msgid "right"
 msgstr "høyre"
-
-msgid "right, wrapped"
-msgstr "høyre, innpakket"
 
 msgid "rock/pop"
 msgstr "rock/pop"

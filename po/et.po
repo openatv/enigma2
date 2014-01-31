@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-22 20:11+0100\n"
+"POT-Creation-Date: 2014-01-30 22:11+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -142,9 +142,6 @@ msgstr "%2d:%02d"
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-msgid "%A %d %B"
-msgstr "%A %d %B"
-
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr "%A %e %B"
@@ -245,9 +242,6 @@ msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
 msgstr[0] "%d Wifi võrk leitud!"
 msgstr[1] "%d Wifi võrku leitud!"
-
-msgid "%d-%m"
-msgstr "%d-%m"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -541,9 +535,6 @@ msgstr ""
 "Taimeriga salvestus on lõpetatud ja\n"
 "%s %s lülitatakse välja. Kas nõustud?"
 
-msgid "A graphical EPG for all services of a specific bouquet"
-msgstr "Graafiline saatekava kõigile kanalitele lemmiknimekirjas"
-
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -768,10 +759,6 @@ msgstr "Lisa lemmikutesse"
 msgid "Add/Remove timer for current event"
 msgstr "Lisa/eemalda taimer käesolevale saatele"
 
-#, fuzzy
-msgid "Add/remove change timer for current event"
-msgstr "Lisa/eemalda käesolevale saatele taimer"
-
 msgid "Adding schedule..."
 msgstr "Ajakava lisamine..."
 
@@ -814,12 +801,6 @@ msgstr "Album"
 msgid "Alias"
 msgstr "Alias"
 
-msgid "Alignment of events"
-msgstr "Saate nime asukoht"
-
-msgid "Alignment of service names"
-msgstr "Kanalinime asukoht"
-
 msgid "All"
 msgstr "Kõik"
 
@@ -858,12 +839,6 @@ msgstr "%s %s saab regulaarselt lugeda salvestatud EPG andmeid."
 msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "%s %s saab regulaarselt salvestada EPG andmeid."
 
-msgid "Allows you to hide the extensions of known file types."
-msgstr "Võimaldab peita tuntud failitüüpide laiendid."
-
-msgid "Allows you to setup the button to do what you choose."
-msgstr "Võimaldab valida nupu toimingu."
-
 msgid "Allows you to adjust the amount of time the resolution infomation display on screen."
 msgstr "Võimaldab määrata aega, mille jooksul  ekraanilahutuse andmeid ekraanil näidatakse."
 
@@ -875,12 +850,18 @@ msgstr "Võimaldab lubada silumislogid. Need sisaldavad väga üksikasjalikku te
 msgid "Allows you to enable/disable displaying icons on the front panel."
 msgstr "Võimaldab lubada/keelata ikoonide näitamise esipaneelil."
 
+msgid "Allows you to hide the extensions of known file types."
+msgstr "Võimaldab peita tuntud failitüüpide laiendid."
+
 msgid "Allows you to send a copy of the log to yourself."
 msgstr "Võimaldab saata logi koopia iseendale."
 
 #, fuzzy
 msgid "Allows you to set the maximum size (MB) of the individual debug logs. When that size is reached, a new file will be created."
 msgstr "Võimaldab määrata silumislogide piirsuuruse (MB). Kui see on saavutatud, luuakse uus fail"
+
+msgid "Allows you to setup the button to do what you choose."
+msgstr "Võimaldab valida nupu toimingu."
 
 #, fuzzy
 msgid "Allows you to show/hide CCcam Info in extensions (blue button)."
@@ -1437,9 +1418,6 @@ msgstr "Kaardi seerianumber"
 msgid "Center DVB subtitles"
 msgstr "Tsentreeritud DVB subtiitrid"
 
-msgid "Center time-labels and remove date"
-msgstr "Aja näit keskel, kuupäeva ei näidata"
-
 msgid "Change bouquets in quickzap"
 msgstr "Lemmiknimekirjade vahetus noolenuppudega"
 
@@ -1474,6 +1452,9 @@ msgstr "Muuda sammu suurust"
 #, fuzzy
 msgid "Change timer"
 msgstr "Muuda sammu suurust"
+
+msgid "Change to bouquet"
+msgstr "Vaheta lemmiknimekirja"
 
 msgid "Changelog"
 msgstr "Muutuste logi"
@@ -1583,9 +1564,6 @@ msgstr "Kiibistik:\tBCM%s"
 #, python-format
 msgid "Chipset: BCM%s"
 msgstr "Kiibistik: BCM%s"
-
-msgid "Change to bouquet"
-msgstr "Vaheta lemmiknimekirja"
 
 msgid "Choose Bouquet"
 msgstr "Vali lemmiknimekiri"
@@ -2442,6 +2420,10 @@ msgstr "Sulge pilt-pildis"
 msgid "Disable background scanning"
 msgstr "Keela kanaliotsing taustal"
 
+#, fuzzy
+msgid "Disable timer"
+msgstr "Kustuta fail"
+
 msgid "Disabled"
 msgstr "Keelatud"
 
@@ -2908,9 +2890,6 @@ msgstr "Saate andmed"
 msgid "Event font size"
 msgstr "Saate tähesuurus"
 
-msgid "Event font size (relative to skin size)"
-msgstr "Saate nime tähesuurus (suhtes teemaga)"
-
 msgid "Event view"
 msgstr "Saateinfo"
 
@@ -3186,9 +3165,6 @@ msgstr "Täiesti läbipaistev"
 msgid "Fullview resolution"
 msgstr "Täisekraani lahutus"
 
-msgid "Function of OK button"
-msgstr "OK nupu toime"
-
 msgid "GB"
 msgstr "GB"
 
@@ -3238,24 +3214,6 @@ msgstr "Liigu esimesele nimetusele"
 msgid "Go to first movie or top of list"
 msgstr "Liigu esimesele nimetusele või nimekirja tippu"
 
-msgid "Go to first service"
-msgstr "Liigu esimesele kanalile"
-
-msgid "Go to last service"
-msgstr "Liigu viimasele kanalile"
-
-msgid "Go to next event"
-msgstr "Liigu järgmisele saatele"
-
-msgid "Go to next page of service"
-msgstr "Liigu järgmisele kanalite lehele"
-
-msgid "Go to previous event"
-msgstr "Liigu eelmisele saatele"
-
-msgid "Go to previous page of service"
-msgstr "Liigu eelmisele kanalite lehele"
-
 msgid "Go up the list"
 msgstr "Liigu nimekirjas üles"
 
@@ -3280,14 +3238,8 @@ msgstr "Liigu järgmisele lemmiknimekirjale"
 msgid "Goto next channel"
 msgstr "Liigu järgmisele kanalile"
 
-msgid "Goto next day of events"
-msgstr "Liigu saatekavas järgmisele päevale"
-
 msgid "Goto next event"
 msgstr "Liigu järgmisele saatele"
-
-msgid "Goto next page of events"
-msgstr "Liigu järgmisele saatekava lehele"
 
 msgid "Goto position"
 msgstr "Liigu kohale"
@@ -3298,14 +3250,8 @@ msgstr "Liigu eelmisele lemmiknimekirjale"
 msgid "Goto previous channel"
 msgstr "Liigu eelmisele kanalile"
 
-msgid "Goto previous day of events"
-msgstr "Liigu saatekavas eelmisele päevale"
-
 msgid "Goto previous event"
 msgstr "Liigu eelmisele saatele"
-
-msgid "Goto previous page of events"
-msgstr "Liigu eelmisele saatekava lehele"
 
 msgid "Goto specific data/time"
 msgstr "Mine kindlale kellaajale/kuupäevale"
@@ -3313,18 +3259,12 @@ msgstr "Mine kindlale kellaajale/kuupäevale"
 msgid "GotoX calibration"
 msgstr "GotoX kalibreerimine"
 
-msgid "GraphMultiEpg Settings"
-msgstr "Multi Epg seadistused"
-
 msgid "Graphical EPG"
 msgstr "Graafiline saatekava"
 
 #, fuzzy
 msgid "Graphical Infobar EPG settings"
 msgstr "Graafilise inforiba EPG seaded"
-
-msgid "Graphical Multi EPG"
-msgstr "Graafiline Multi EPG"
 
 msgid "GraphicalEPG settings"
 msgstr "Graafilise EPG seaded"
@@ -3766,12 +3706,6 @@ msgstr "Kas see videorežiim sobib?"
 msgid "Italian"
 msgstr "Itaalia"
 
-msgid "Items per page "
-msgstr "Kirjet lehel"
-
-msgid "Items per page for list screen"
-msgstr "Kirjet lehel nimekirja laadis"
-
 msgid "JUMP 24 HOURS"
 msgstr "HÜPPA 24 TUNDI"
 
@@ -3973,9 +3907,6 @@ msgstr "Loetle EPG valikud..."
 
 msgid "List available networks"
 msgstr "Loetle saadaolevad võrgud"
-
-msgid "List mode"
-msgstr "Nimekirja laad"
 
 msgid "List of storage devices"
 msgstr "Salvestite loetelu"
@@ -4646,9 +4577,6 @@ msgstr "NodeID: "
 msgid "None"
 msgstr "Pole"
 
-msgid "Normal mode"
-msgstr "Tavaline"
-
 msgid "North"
 msgstr "Põhi"
 
@@ -4708,7 +4636,8 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Hetkel"
 
-msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades. If you have done that, press OK."
+#, fuzzy
+msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Nüüd suurenda kontrastsuse seadmise abil pildi tausta heledust nii palju kui võimalik, aga veendu, et sa näed siiski erinevust kahe kõige heledama varjundi vahel. Kui see on tehtud, vajuta OK."
 
 msgid "Number"
@@ -4932,15 +4861,15 @@ msgstr "Loo enne uuendamist tarkvarakoopia."
 msgid "Perform a full image backup"
 msgstr "Loo täielik tarkvarakoopia"
 
+#, fuzzy
+msgid "Perform a settings backup before updating."
+msgstr "Loo enne uuendamist seadistustest varukoopia."
+
 msgid "Perform a settings backup,"
 msgstr "Loo seadistustest varukoopia"
 
 msgid "Perform a settings backup, making a backup before updating is strongly advised."
 msgstr "Loo seadistustest varukoopia. Enne uuendamist on see väga soovitatav."
-
-#, fuzzy
-msgid "Perform a settings backup before updating."
-msgstr "Loo enne uuendamist seadistustest varukoopia."
 
 msgid "Perform an online update check in the background"
 msgstr "Otsi taustal uuendusi"
@@ -4964,9 +4893,6 @@ msgid "Picon"
 msgstr "Kanalilogo"
 
 msgid "Picon and Service Name"
-msgstr "Kanalilogo ja nimi"
-
-msgid "Picon and service name"
 msgstr "Kanalilogo ja nimi"
 
 msgid "Picon width"
@@ -5386,9 +5312,6 @@ msgstr "Eelvaade"
 
 msgid "Preview menu"
 msgstr "Eelvaate menüü"
-
-msgid "Preview selected channel"
-msgstr "Valitud kanali eelvaatlus"
 
 msgid "Primary DNS"
 msgstr "Esmane nimeserver"
@@ -5837,9 +5760,6 @@ msgstr "Mootori sammu asukoht:"
 msgid "Rotor turning speed"
 msgstr "Mootori pööramise kiirus"
 
-msgid "Round start time on"
-msgstr "Ümarda algusaega"
-
 msgid "Run how often ?"
 msgstr "Kui tihti käivitada?"
 
@@ -6267,9 +6187,6 @@ msgstr ""
 "Kehtetu kanal!\n"
 "(PMT lugemise aegumine)"
 
-msgid "Service name"
-msgstr "Kanali nimi"
-
 msgid "Service name font size"
 msgstr "Kanalinime tähesuurus"
 
@@ -6291,9 +6208,6 @@ msgstr "Kanaliotsing"
 
 msgid "Service searching"
 msgstr "Kanaliotsing"
-
-msgid "Service title mode"
-msgstr "Kanalinime kuju"
 
 msgid ""
 "Service unavailable!\n"
@@ -6398,24 +6312,6 @@ msgstr "Määra taimeri lõppaeg."
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Määra saate edenemise näit kanalivalikus."
-
-msgid "Set time window to 1 hour"
-msgstr "Määra ajaaknaks 1 tund"
-
-msgid "Set time window to 2 hours"
-msgstr "Määra ajaaknaks 2 tundi"
-
-msgid "Set time window to 3 hours"
-msgstr "Määra ajaaknaks 3 tundi"
-
-msgid "Set time window to 4 hours"
-msgstr "Määra ajaaknaks 4 tundi"
-
-msgid "Set time window to 5 hours"
-msgstr "Määra ajaaknaks 5 tundi"
-
-msgid "Set time window to 6 hours"
-msgstr "Määra ajaaknaks 6 tundi"
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Määra tippajaks (tunnid)."
@@ -6587,9 +6483,6 @@ msgstr "Näita raadiokanali taustaks taustapilti."
 msgid "Show bouquet on launch"
 msgstr "Näita käivitamisel lemmiknimekirju"
 
-msgid "Show bouquet selection menu"
-msgstr "Näita lemmiknimekirja menüüd"
-
 msgid "Show channel number in infobar"
 msgstr "Näita inforibal kanalinumbreid"
 
@@ -6625,9 +6518,6 @@ msgstr "Tähista uus/vaatamata nimetus"
 
 msgid "Show in extensions list ?"
 msgstr "Näita laienduste menüüs?"
-
-msgid "Show in extensions menu"
-msgstr "Näita laienduste menüüs"
 
 msgid "Show info"
 msgstr "Näita andmeid"
@@ -7008,9 +6898,6 @@ msgstr "Algusaeg"
 msgid "Start timeshift"
 msgstr "Käivita ajanihe"
 
-msgid "Start with list screen"
-msgstr "Käivita nimekirjana"
-
 msgid "Starting on"
 msgstr "Alates"
 
@@ -7182,9 +7069,6 @@ msgstr "Lülita TV õigele sisendile"
 
 msgid "Switch between filelist/playlist"
 msgstr "Vaheta faililoend/esitusloend"
-
-msgid "Switch between normal mode and list mode"
-msgstr "Vaheta tava laadist nimekirjaks"
 
 msgid "Switch config"
 msgstr "Vaheta seadistust"
@@ -7543,12 +7427,12 @@ msgstr "DVD RW ketas on juba vormindatud. Uuesti vormindamisel kustutatakse kõi
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr "Siin saab muuta tähesuurust suhtes teemaga. 1 suurendab ja -1 vähendab"
 
-msgid "This allows you to change the number of rows shown."
-msgstr "Siin saab muuta näidatavate ridade arvu."
-
 #, fuzzy
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr "Siin saab muuta tähesuurust suhtes teemaga. 1 suurendab ja -1 vähendab"
+
+msgid "This allows you to change the number of rows shown."
+msgstr "Siin saab muuta näidatavate ridade arvu."
 
 #, fuzzy
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
@@ -7580,6 +7464,9 @@ msgstr "Siin saab võimendada pildi siniseid toone."
 
 msgid "This option allows you to boost the green tones in the picture."
 msgstr "Siin saab võimendada pildi rohelisi toone."
+
+msgid "This option allows you to bypass HDMI EDID check"
+msgstr "Siin valikus saad keelata HDMI EDID kontrolli"
 
 msgid "This option allows you to choose from the two channel lists that are available."
 msgstr "Siin saab valida kahe saadaoleva kanalinimekirja vahel."
@@ -7627,6 +7514,9 @@ msgstr "Siin saab keelata seadistusmenüüde ümberjärjestamise"
 msgid "This option allows you to disable sorting of the plugin browser."
 msgstr "Siin saab keelata laienduste menüü ümberjärjestamise."
 
+msgid "This option allows you to enable 3D Surround Sound."
+msgstr "Selles valikus saad lubada 3D ruumheli."
+
 #, fuzzy
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "Siin saab määrata saatekava kujunduse (tekst või graafiline)."
@@ -7649,12 +7539,6 @@ msgstr "See valik määrab ekraani lahutuse PC väljundi režiimis."
 
 msgid "This option configures the video output mode (or resolution)."
 msgstr "See valik määrab väljundi ekraanilahutuse"
-
-msgid "This option allows you to bypass HDMI EDID check"
-msgstr "Siin valikus saad keelata HDMI EDID kontrolli"
-
-msgid "This option allows you to enable 3D Surround Sound."
-msgstr "Selles valikus saad lubada 3D ruumheli."
 
 msgid "This option lets you adjust the 3D depth"
 msgstr "See valik võimaldab seadistada 3D sügavust"
@@ -8634,14 +8518,14 @@ msgstr "Lääs"
 msgid "West limit set"
 msgstr "Kääne piir määratud"
 
-msgid "What date of month ?"
-msgstr "Mis kuupäev?"
-
 msgid "What Day of week ?"
 msgstr "Mis nädalapäev?"
 
 msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
 msgstr "Mida teha taimeri lõppemisel? 'Automaatne' laseb vstuvõtjal minna olekusse, mis oli enne taimeri alustamist. 'Ära tee midagi', 'mine ooterežiimi' ja 'mine sügavooterežiimi' teevad just seda, mis kirjas."
+
+msgid "What date of month ?"
+msgstr "Mis kuupäev?"
 
 msgid "What do you want to scan?"
 msgstr "Mida soovid otsida?"
@@ -8909,14 +8793,14 @@ msgstr "Jah, tee nüüd automaatotsing"
 msgid "Yes, do another manual scan now"
 msgstr "Jah, tee nüüd uus käsiotsing"
 
-msgid "Yes, shut down now."
-msgstr "Jah, lülita välja."
-
 msgid "Yes, restore the settings now"
 msgstr "Jah, taasta nüüd seadistused"
 
 msgid "Yes, returning to movie list"
 msgstr "Jah, tagasi filmilisti"
+
+msgid "Yes, shut down now."
+msgstr "Jah, lülita välja."
 
 msgid "Yesterday"
 msgstr "Eile"
@@ -9192,12 +9076,6 @@ msgstr "Mine kanalile (seadistamine menüüs)"
 msgid "Zap to channel and close (setup in menu)"
 msgstr "Mine kanalile ja sulge (seadistamine menüüs)"
 
-msgid "Zap to selected channel"
-msgstr "Mine valitud kanalile"
-
-msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
-msgstr "Mine valitud kanalile või näita saateinfot (sõltub seadistusest)"
-
 msgid "Zoom In/Out TV..."
 msgstr "Suumi sisse ja välja..."
 
@@ -9369,12 +9247,6 @@ msgstr "joonis/nukufilm"
 
 msgid "center"
 msgstr "keskel"
-
-msgid "centered"
-msgstr "keskel"
-
-msgid "centered, wrapped"
-msgstr "keskel, reamurdmisega"
 
 msgid "chapters"
 msgstr "peatükid"
@@ -9700,9 +9572,6 @@ msgstr "sulge filmimängija..."
 msgid "left"
 msgstr "vasakul"
 
-msgid "left, wrapped"
-msgstr "vasakul, reamurdmisega"
-
 msgid "leisure hobbies (general)"
 msgstr "vaba aja harrastused"
 
@@ -9999,9 +9868,6 @@ msgstr "hüppa eelmisele peatükile"
 
 msgid "right"
 msgstr "paremal"
-
-msgid "right, wrapped"
-msgstr "paremal, reamurdmisega"
 
 msgid "rock/pop"
 msgstr "rock/pop"

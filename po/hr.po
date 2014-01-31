@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-22 20:11+0100\n"
+"POT-Creation-Date: 2014-01-30 22:11+0100\n"
 "PO-Revision-Date: 2014-01-22 23:31+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team:  <jurica@dream-multimedia.eu>\n"
@@ -126,9 +126,6 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
-msgid "%A %d %B"
-msgstr ""
-
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr ""
@@ -233,9 +230,6 @@ msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
 msgstr[0] ""
 msgstr[1] ""
-
-msgid "%d-%m"
-msgstr ""
 
 #
 msgid "%d.%B %Y"
@@ -574,10 +568,6 @@ msgstr ""
 "Tajmer snimanja je završio i želi isključiti vaš\n"
 "%s %s sada. Isključiti sada?"
 
-#
-msgid "A graphical EPG for all services of a specific bouquet"
-msgstr "Grafički EPG za sve usluge od specifičnog paketa"
-
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -839,9 +829,6 @@ msgstr "Dodaj u favorite"
 msgid "Add/Remove timer for current event"
 msgstr ""
 
-msgid "Add/remove change timer for current event"
-msgstr ""
-
 msgid "Adding schedule..."
 msgstr ""
 
@@ -888,12 +875,6 @@ msgstr "Album"
 msgid "Alias"
 msgstr ""
 
-msgid "Alignment of events"
-msgstr ""
-
-msgid "Alignment of service names"
-msgstr ""
-
 #
 msgid "All"
 msgstr "Svi"
@@ -933,12 +914,6 @@ msgstr ""
 msgid "Allows the %s %s to store the EPG data regularly."
 msgstr ""
 
-msgid "Allows you to hide the extensions of known file types."
-msgstr ""
-
-msgid "Allows you to setup the button to do what you choose."
-msgstr ""
-
 msgid "Allows you to adjust the amount of time the resolution infomation display on screen."
 msgstr ""
 
@@ -948,10 +923,16 @@ msgstr ""
 msgid "Allows you to enable/disable displaying icons on the front panel."
 msgstr ""
 
+msgid "Allows you to hide the extensions of known file types."
+msgstr ""
+
 msgid "Allows you to send a copy of the log to yourself."
 msgstr ""
 
 msgid "Allows you to set the maximum size (MB) of the individual debug logs. When that size is reached, a new file will be created."
+msgstr ""
+
+msgid "Allows you to setup the button to do what you choose."
 msgstr ""
 
 msgid "Allows you to show/hide CCcam Info in extensions (blue button)."
@@ -1558,9 +1539,6 @@ msgstr ""
 msgid "Center DVB subtitles"
 msgstr ""
 
-msgid "Center time-labels and remove date"
-msgstr ""
-
 #
 msgid "Change bouquets in quickzap"
 msgstr "Promjeni pakete u brzom prebacivanju"
@@ -1600,6 +1578,11 @@ msgstr ""
 #, fuzzy
 msgid "Change timer"
 msgstr "Promjeni pin kod"
+
+#
+#, fuzzy
+msgid "Change to bouquet"
+msgstr "Dodaj u paket"
 
 msgid "Changelog"
 msgstr ""
@@ -1720,11 +1703,6 @@ msgstr ""
 #, python-format
 msgid "Chipset: BCM%s"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Change to bouquet"
-msgstr "Dodaj u paket"
 
 msgid "Choose Bouquet"
 msgstr ""
@@ -2693,6 +2671,11 @@ msgid "Disable background scanning"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Disable timer"
+msgstr "Brisanje neuspješno!"
+
+#
 msgid "Disabled"
 msgstr "Onemogućeno"
 
@@ -3204,9 +3187,6 @@ msgstr ""
 msgid "Event font size"
 msgstr ""
 
-msgid "Event font size (relative to skin size)"
-msgstr ""
-
 msgid "Event view"
 msgstr ""
 
@@ -3547,9 +3527,6 @@ msgstr ""
 msgid "Fullview resolution"
 msgstr "Korekcija vremena "
 
-msgid "Function of OK button"
-msgstr ""
-
 msgid "GB"
 msgstr ""
 
@@ -3605,34 +3582,6 @@ msgstr ""
 msgid "Go to first movie or top of list"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Go to first service"
-msgstr "Zaštiti usluge"
-
-#
-#, fuzzy
-msgid "Go to last service"
-msgstr "Zaštiti usluge"
-
-msgid "Go to next event"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Go to next page of service"
-msgstr "prebaci na sljedeću poduslugu "
-
-#
-#, fuzzy
-msgid "Go to previous event"
-msgstr "prebaci u predhodnu poduslugu "
-
-#
-#, fuzzy
-msgid "Go to previous page of service"
-msgstr "prebaci u predhodnu poduslugu "
-
 msgid "Go up the list"
 msgstr ""
 
@@ -3662,15 +3611,7 @@ msgstr ""
 msgid "Goto next channel"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Goto next day of events"
-msgstr "prebaci na sljedeću poduslugu "
-
 msgid "Goto next event"
-msgstr ""
-
-msgid "Goto next page of events"
 msgstr ""
 
 #
@@ -3683,15 +3624,7 @@ msgstr ""
 msgid "Goto previous channel"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Goto previous day of events"
-msgstr "prebaci u predhodnu poduslugu "
-
 msgid "Goto previous event"
-msgstr ""
-
-msgid "Goto previous page of events"
 msgstr ""
 
 msgid "Goto specific data/time"
@@ -3702,19 +3635,12 @@ msgstr ""
 msgid "GotoX calibration"
 msgstr "Goto pozicija"
 
-msgid "GraphMultiEpg Settings"
-msgstr ""
-
 msgid "Graphical EPG"
 msgstr ""
 
 #
 #, fuzzy
 msgid "Graphical Infobar EPG settings"
-msgstr "Grafički Multi EPG"
-
-#
-msgid "Graphical Multi EPG"
 msgstr "Grafički Multi EPG"
 
 #
@@ -4215,12 +4141,6 @@ msgstr ""
 msgid "Italian"
 msgstr "Talijanski"
 
-msgid "Items per page "
-msgstr ""
-
-msgid "Items per page for list screen"
-msgstr ""
-
 msgid "JUMP 24 HOURS"
 msgstr ""
 
@@ -4457,9 +4377,6 @@ msgid "List EPG functions..."
 msgstr ""
 
 msgid "List available networks"
-msgstr ""
-
-msgid "List mode"
 msgstr ""
 
 #
@@ -5254,9 +5171,6 @@ msgstr ""
 msgid "None"
 msgstr "Prazno"
 
-msgid "Normal mode"
-msgstr ""
-
 #
 msgid "North"
 msgstr "Sjever"
@@ -5316,8 +5230,7 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr ""
 
-#
-msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades. If you have done that, press OK."
+msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr ""
 
 msgid "Number"
@@ -5564,13 +5477,13 @@ msgstr ""
 msgid "Perform a full image backup"
 msgstr ""
 
+msgid "Perform a settings backup before updating."
+msgstr ""
+
 msgid "Perform a settings backup,"
 msgstr ""
 
 msgid "Perform a settings backup, making a backup before updating is strongly advised."
-msgstr ""
-
-msgid "Perform a settings backup before updating."
 msgstr ""
 
 msgid "Perform an online update check in the background"
@@ -5596,9 +5509,6 @@ msgid "Picon"
 msgstr ""
 
 msgid "Picon and Service Name"
-msgstr ""
-
-msgid "Picon and service name"
 msgstr ""
 
 msgid "Picon width"
@@ -6105,9 +6015,6 @@ msgstr ""
 
 #
 msgid "Preview menu"
-msgstr ""
-
-msgid "Preview selected channel"
 msgstr ""
 
 #
@@ -6637,9 +6544,6 @@ msgstr "Pohrani poziciju"
 msgid "Rotor turning speed"
 msgstr "Brzina okretanja rotora"
 
-msgid "Round start time on"
-msgstr ""
-
 msgid "Run how often ?"
 msgstr ""
 
@@ -7143,11 +7047,6 @@ msgstr ""
 "Neispravna usluga!\n"
 "(Isteklo čitanje PMT)"
 
-#
-#, fuzzy
-msgid "Service name"
-msgstr "Pretraživanje usluge"
-
 msgid "Service name font size"
 msgstr ""
 
@@ -7171,11 +7070,6 @@ msgstr "Pretraga usluga"
 
 msgid "Service searching"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Service title mode"
-msgstr "Info Usluge"
 
 #
 msgid ""
@@ -7279,24 +7173,6 @@ msgid "Set the time the timer must stop."
 msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
-msgstr ""
-
-msgid "Set time window to 1 hour"
-msgstr ""
-
-msgid "Set time window to 2 hours"
-msgstr ""
-
-msgid "Set time window to 3 hours"
-msgstr ""
-
-msgid "Set time window to 4 hours"
-msgstr ""
-
-msgid "Set time window to 5 hours"
-msgstr ""
-
-msgid "Set time window to 6 hours"
 msgstr ""
 
 msgid "Set to the desired primetime (hour)."
@@ -7478,9 +7354,6 @@ msgstr ""
 msgid "Show bouquet on launch"
 msgstr ""
 
-msgid "Show bouquet selection menu"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Show channel number in infobar"
@@ -7523,11 +7396,6 @@ msgstr ""
 
 msgid "Show in extensions list ?"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Show in extensions menu"
-msgstr "gledaj ekstenzije..."
 
 msgid "Show info"
 msgstr ""
@@ -7976,9 +7844,6 @@ msgstr "Početno vrijeme "
 msgid "Start timeshift"
 msgstr ""
 
-msgid "Start with list screen"
-msgstr ""
-
 #
 msgid "Starting on"
 msgstr "Pokrećem"
@@ -8191,9 +8056,6 @@ msgstr ""
 #, fuzzy
 msgid "Switch between filelist/playlist"
 msgstr "prebaci u datoteknu listu"
-
-msgid "Switch between normal mode and list mode"
-msgstr ""
 
 msgid "Switch config"
 msgstr ""
@@ -8550,10 +8412,10 @@ msgstr ""
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr ""
 
-msgid "This allows you to change the number of rows shown."
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr ""
 
-msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgid "This allows you to change the number of rows shown."
 msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
@@ -8581,6 +8443,9 @@ msgid "This option allows you to boost the blue tones in the picture."
 msgstr ""
 
 msgid "This option allows you to boost the green tones in the picture."
+msgstr ""
+
+msgid "This option allows you to bypass HDMI EDID check"
 msgstr ""
 
 msgid "This option allows you to choose from the two channel lists that are available."
@@ -8625,6 +8490,9 @@ msgstr ""
 msgid "This option allows you to disable sorting of the plugin browser."
 msgstr ""
 
+msgid "This option allows you to enable 3D Surround Sound."
+msgstr ""
+
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr ""
 
@@ -8644,12 +8512,6 @@ msgid "This option configures the screen resolution in PC output mode."
 msgstr ""
 
 msgid "This option configures the video output mode (or resolution)."
-msgstr ""
-
-msgid "This option allows you to bypass HDMI EDID check"
-msgstr ""
-
-msgid "This option allows you to enable 3D Surround Sound."
 msgstr ""
 
 msgid "This option lets you adjust the 3D depth"
@@ -9723,13 +9585,13 @@ msgstr "Zapad"
 msgid "West limit set"
 msgstr ""
 
-msgid "What date of month ?"
-msgstr ""
-
 msgid "What Day of week ?"
 msgstr ""
 
 msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
+msgstr ""
+
+msgid "What date of month ?"
 msgstr ""
 
 #
@@ -9996,16 +9858,16 @@ msgid "Yes, do another manual scan now"
 msgstr "Da, započni drugu ručnu pretragu sada"
 
 #
-msgid "Yes, shut down now."
-msgstr "Da, započni isključivanje sada"
-
-#
 msgid "Yes, restore the settings now"
 msgstr "Da, vratite pohranjene postavke sada"
 
 #
 msgid "Yes, returning to movie list"
 msgstr ""
+
+#
+msgid "Yes, shut down now."
+msgstr "Da, započni isključivanje sada"
 
 msgid "Yesterday"
 msgstr ""
@@ -10266,12 +10128,6 @@ msgstr ""
 msgid "Zap to channel and close (setup in menu)"
 msgstr ""
 
-msgid "Zap to selected channel"
-msgstr ""
-
-msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
-msgstr ""
-
 msgid "Zoom In/Out TV..."
 msgstr ""
 
@@ -10475,14 +10331,6 @@ msgid "cartoon/puppets"
 msgstr ""
 
 msgid "center"
-msgstr ""
-
-#
-#, fuzzy
-msgid "centered"
-msgstr "Srednje"
-
-msgid "centered, wrapped"
 msgstr ""
 
 #
@@ -10861,9 +10709,6 @@ msgstr "napusti video ..."
 msgid "left"
 msgstr "lijevi"
 
-msgid "left, wrapped"
-msgstr ""
-
 msgid "leisure hobbies (general)"
 msgstr ""
 
@@ -11217,9 +11062,6 @@ msgstr ""
 #
 msgid "right"
 msgstr "desni"
-
-msgid "right, wrapped"
-msgstr ""
 
 msgid "rock/pop"
 msgstr ""

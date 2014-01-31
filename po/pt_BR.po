@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-22 20:11+0100\n"
+"POT-Creation-Date: 2014-01-30 22:11+0100\n"
 "PO-Revision-Date: 2014-01-22 23:31+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: No-Team\n"
@@ -140,9 +140,6 @@ msgstr "%2d:%02d"
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-msgid "%A %d %B"
-msgstr "%A %d %B"
-
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr "%A %e %B"
@@ -245,9 +242,6 @@ msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
 msgstr[0] "%d rede sem fio encontrada!"
 msgstr[1] "%d rede sem fios encontrada!"
-
-msgid "%d-%m"
-msgstr "%d-%m"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -555,9 +549,6 @@ msgstr ""
 "A gravação finalizada vai desligar \n"
 "receptor em standby. Desligar?"
 
-msgid "A graphical EPG for all services of a specific bouquet"
-msgstr "Um EPG gráfico para uma lista de favoritos"
-
 #, fuzzy, python-format
 msgid ""
 "A recording has been started:\n"
@@ -795,10 +786,6 @@ msgstr "Adicionar aos favoritos"
 msgid "Add/Remove timer for current event"
 msgstr "Adic./Remov. gravação do evento atual"
 
-#, fuzzy
-msgid "Add/remove change timer for current event"
-msgstr "Adic./Remov. gravação do evento atual"
-
 msgid "Adding schedule..."
 msgstr ""
 
@@ -843,14 +830,6 @@ msgstr "Álbum"
 msgid "Alias"
 msgstr ""
 
-#, fuzzy
-msgid "Alignment of events"
-msgstr "Ir para a próxima página de eventos"
-
-#, fuzzy
-msgid "Alignment of service names"
-msgstr "Picon e nome do serviço"
-
 msgid "All"
 msgstr "Todos"
 
@@ -889,12 +868,6 @@ msgstr ""
 msgid "Allows the %s %s to store the EPG data regularly."
 msgstr ""
 
-msgid "Allows you to hide the extensions of known file types."
-msgstr ""
-
-msgid "Allows you to setup the button to do what you choose."
-msgstr ""
-
 msgid "Allows you to adjust the amount of time the resolution infomation display on screen."
 msgstr ""
 
@@ -904,10 +877,16 @@ msgstr ""
 msgid "Allows you to enable/disable displaying icons on the front panel."
 msgstr ""
 
+msgid "Allows you to hide the extensions of known file types."
+msgstr ""
+
 msgid "Allows you to send a copy of the log to yourself."
 msgstr ""
 
 msgid "Allows you to set the maximum size (MB) of the individual debug logs. When that size is reached, a new file will be created."
+msgstr ""
+
+msgid "Allows you to setup the button to do what you choose."
 msgstr ""
 
 msgid "Allows you to show/hide CCcam Info in extensions (blue button)."
@@ -1504,9 +1483,6 @@ msgstr ""
 msgid "Center DVB subtitles"
 msgstr "Legendas DVB centralizadas"
 
-msgid "Center time-labels and remove date"
-msgstr ""
-
 msgid "Change bouquets in quickzap"
 msgstr "Muda de bouquets no zap rápido"
 
@@ -1541,6 +1517,10 @@ msgstr "Mudar o tamanho do passo"
 #, fuzzy
 msgid "Change timer"
 msgstr "Mudar o tamanho do passo"
+
+#, fuzzy
+msgid "Change to bouquet"
+msgstr "Adicionar aos bouquets"
 
 msgid "Changelog"
 msgstr "Registo de atividade"
@@ -1664,10 +1644,6 @@ msgstr ""
 #, python-format
 msgid "Chipset: BCM%s"
 msgstr ""
-
-#, fuzzy
-msgid "Change to bouquet"
-msgstr "Adicionar aos bouquets"
 
 #, fuzzy
 msgid "Choose Bouquet"
@@ -2569,6 +2545,10 @@ msgstr "Desabilitar PIP (Imagem na Imagem)"
 msgid "Disable background scanning"
 msgstr "Desativar busca em segundo plano"
 
+#, fuzzy
+msgid "Disable timer"
+msgstr "Apagar arquivo"
+
 msgid "Disabled"
 msgstr "Desabilitado"
 
@@ -3047,9 +3027,6 @@ msgstr "Ver evento"
 msgid "Event font size"
 msgstr "Tamanho de letra"
 
-msgid "Event font size (relative to skin size)"
-msgstr "Tamanho de letra (relativo ao tam. do tema)"
-
 #, fuzzy
 msgid "Event view"
 msgstr "Tamanho de letra"
@@ -3340,9 +3317,6 @@ msgstr "Transparência total"
 msgid "Fullview resolution"
 msgstr "Seleção de gravação"
 
-msgid "Function of OK button"
-msgstr "Função do botão 'OK'"
-
 #, fuzzy
 msgid "GB"
 msgstr "RGB"
@@ -3393,24 +3367,6 @@ msgstr "Ir para a primeira gravação ou último item"
 msgid "Go to first movie or top of list"
 msgstr "Ir para a primeira gravação ou topo da lista"
 
-msgid "Go to first service"
-msgstr "Ir para o primeiro canal"
-
-msgid "Go to last service"
-msgstr "Ir para o último canal"
-
-msgid "Go to next event"
-msgstr "Ir para o evento seguinte"
-
-msgid "Go to next page of service"
-msgstr "Ir para a próxima página de serviços"
-
-msgid "Go to previous event"
-msgstr "Ir para o evento seguinte"
-
-msgid "Go to previous page of service"
-msgstr "Ir para a página anterior de serviços"
-
 msgid "Go up the list"
 msgstr "Ir para o topo da lista"
 
@@ -3440,15 +3396,8 @@ msgid "Goto next channel"
 msgstr "Próximo canal"
 
 #, fuzzy
-msgid "Goto next day of events"
-msgstr "Ir para a próxima página de eventos"
-
-#, fuzzy
 msgid "Goto next event"
 msgstr "Ir para o evento seguinte"
-
-msgid "Goto next page of events"
-msgstr "Ir para a próxima página de eventos"
 
 msgid "Goto position"
 msgstr "Ir para posição"
@@ -3462,15 +3411,8 @@ msgid "Goto previous channel"
 msgstr "canal anterior"
 
 #, fuzzy
-msgid "Goto previous day of events"
-msgstr "Ir para a página anterior de eventos"
-
-#, fuzzy
 msgid "Goto previous event"
 msgstr "Ir para o evento seguinte"
-
-msgid "Goto previous page of events"
-msgstr "Ir para a página anterior de eventos"
 
 msgid "Goto specific data/time"
 msgstr "Ir para a data/tempo especificado"
@@ -3479,9 +3421,6 @@ msgstr "Ir para a data/tempo especificado"
 msgid "GotoX calibration"
 msgstr "Ir para posição"
 
-msgid "GraphMultiEpg Settings"
-msgstr "Configurações GraphMultiEpg"
-
 #, fuzzy
 msgid "Graphical EPG"
 msgstr "Multi EPG gráfico"
@@ -3489,9 +3428,6 @@ msgstr "Multi EPG gráfico"
 #, fuzzy
 msgid "Graphical Infobar EPG settings"
 msgstr "Editar definições"
-
-msgid "Graphical Multi EPG"
-msgstr "Multi EPG gráfico"
 
 #, fuzzy
 msgid "GraphicalEPG settings"
@@ -3960,12 +3896,6 @@ msgstr "Este modo de vídeo está correto?"
 msgid "Italian"
 msgstr "Italiano"
 
-msgid "Items per page "
-msgstr "Itens por página"
-
-msgid "Items per page for list screen"
-msgstr "Itens por página"
-
 msgid "JUMP 24 HOURS"
 msgstr ""
 
@@ -4184,9 +4114,6 @@ msgstr "Listar opções do EPG..."
 
 msgid "List available networks"
 msgstr "Listar redes disponíveis"
-
-msgid "List mode"
-msgstr "Listar modo"
 
 msgid "List of storage devices"
 msgstr "Listar dispositivos de armazenamento"
@@ -4900,9 +4827,6 @@ msgstr ""
 msgid "None"
 msgstr "Nenhum"
 
-msgid "Normal mode"
-msgstr "Modo Zap"
-
 msgid "North"
 msgstr "Norte"
 
@@ -4962,7 +4886,8 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Não"
 
-msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades. If you have done that, press OK."
+#, fuzzy
+msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Agora use o ajuste do contraste para aumentar o brilho da luz de fundo, o máximo possível, mas certifique-se de que consegue ver a diferença entre os dois níveis de brilho mais altos. Quando terminar pressione 'OK'."
 
 msgid "Number"
@@ -5196,13 +5121,13 @@ msgstr ""
 msgid "Perform a full image backup"
 msgstr ""
 
+msgid "Perform a settings backup before updating."
+msgstr ""
+
 msgid "Perform a settings backup,"
 msgstr ""
 
 msgid "Perform a settings backup, making a backup before updating is strongly advised."
-msgstr ""
-
-msgid "Perform a settings backup before updating."
 msgstr ""
 
 msgid "Perform an online update check in the background"
@@ -5229,9 +5154,6 @@ msgstr "Picon"
 
 #, fuzzy
 msgid "Picon and Service Name"
-msgstr "Picon e nome do serviço"
-
-msgid "Picon and service name"
 msgstr "Picon e nome do serviço"
 
 #, fuzzy
@@ -5674,9 +5596,6 @@ msgstr "Pré-visualizar"
 
 msgid "Preview menu"
 msgstr "Menu de pré-visualização"
-
-msgid "Preview selected channel"
-msgstr "Zap para o canal selecionado"
 
 msgid "Primary DNS"
 msgstr "DNS primário"
@@ -6145,9 +6064,6 @@ msgstr "Guardar posição"
 msgid "Rotor turning speed"
 msgstr "Velocidade de retorno do motor"
 
-msgid "Round start time on"
-msgstr "Arredondar o tempo de início em"
-
 msgid "Run how often ?"
 msgstr ""
 
@@ -6602,9 +6518,6 @@ msgstr ""
 "Canal inválido!\n"
 "(Timeout reading PMT)"
 
-msgid "Service name"
-msgstr "Dispositivo:"
-
 #, fuzzy
 msgid "Service name font size"
 msgstr "Dispositivo:"
@@ -6628,9 +6541,6 @@ msgstr "Busca de canais"
 
 msgid "Service searching"
 msgstr "Buscar canais"
-
-msgid "Service title mode"
-msgstr "Selecione o modo de vídeo"
 
 msgid ""
 "Service unavailable!\n"
@@ -6738,25 +6648,6 @@ msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Mostrar progresso dos eventos na lista de canais."
-
-msgid "Set time window to 1 hour"
-msgstr "Definir janela de tempo para 1 hora"
-
-msgid "Set time window to 2 hours"
-msgstr "Definir janela de tempo para 2 horas"
-
-msgid "Set time window to 3 hours"
-msgstr "Definir janela de tempo para 3 horas"
-
-msgid "Set time window to 4 hours"
-msgstr "Definir janela de tempo para 4 horas"
-
-msgid "Set time window to 5 hours"
-msgstr "Definir janela de tempo para 5 horas"
-
-#, fuzzy
-msgid "Set time window to 6 hours"
-msgstr "Definir janela de tempo para 2 horas"
 
 msgid "Set to the desired primetime (hour)."
 msgstr ""
@@ -6943,9 +6834,6 @@ msgstr "Mostrar fundo no modo de rádio"
 msgid "Show bouquet on launch"
 msgstr "Mostrar o menu de seleção de favoritos"
 
-msgid "Show bouquet selection menu"
-msgstr "Mostrar o menu de seleção de favoritos"
-
 #, fuzzy
 msgid "Show channel number in infobar"
 msgstr "Mostrar a numeração dos canais na lista de canais"
@@ -6983,10 +6871,6 @@ msgstr "Mostrar ícone para gravações novas/sem visualizações"
 
 #, fuzzy
 msgid "Show in extensions list ?"
-msgstr "Ver extensões..."
-
-#, fuzzy
-msgid "Show in extensions menu"
 msgstr "Ver extensões..."
 
 msgid "Show info"
@@ -7396,9 +7280,6 @@ msgstr "Tempo de início"
 msgid "Start timeshift"
 msgstr "Iniciar timeshift"
 
-msgid "Start with list screen"
-msgstr "Comece com a lista da tela"
-
 msgid "Starting on"
 msgstr "Iniciar em"
 
@@ -7583,9 +7464,6 @@ msgstr "Mudar a TV para a entrada correta"
 #, fuzzy
 msgid "Switch between filelist/playlist"
 msgstr "Ver lista de arquivos"
-
-msgid "Switch between normal mode and list mode"
-msgstr "Escolher entre modo normal e modo de lista"
 
 #, fuzzy
 msgid "Switch config"
@@ -7956,10 +7834,10 @@ msgstr "Este DVD RW já está formatado - reformatar irá apagar todo o conteudo
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr ""
 
-msgid "This allows you to change the number of rows shown."
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr ""
 
-msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgid "This allows you to change the number of rows shown."
 msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
@@ -7987,6 +7865,9 @@ msgid "This option allows you to boost the blue tones in the picture."
 msgstr ""
 
 msgid "This option allows you to boost the green tones in the picture."
+msgstr ""
+
+msgid "This option allows you to bypass HDMI EDID check"
 msgstr ""
 
 msgid "This option allows you to choose from the two channel lists that are available."
@@ -8031,6 +7912,10 @@ msgstr ""
 msgid "This option allows you to disable sorting of the plugin browser."
 msgstr ""
 
+#, fuzzy
+msgid "This option allows you to enable 3D Surround Sound."
+msgstr "Configurar a resolução da tela no modo de saída \"PC\"."
+
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr ""
 
@@ -8055,13 +7940,6 @@ msgstr "Configurar a resolução da tela no modo de saída \"PC\"."
 #, fuzzy
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Configurar o modo de saída de vídeo (ou resolução)."
-
-msgid "This option allows you to bypass HDMI EDID check"
-msgstr ""
-
-#, fuzzy
-msgid "This option allows you to enable 3D Surround Sound."
-msgstr "Configurar a resolução da tela no modo de saída \"PC\"."
 
 msgid "This option lets you adjust the 3D depth"
 msgstr ""
@@ -9098,13 +8976,13 @@ msgstr "'Oeste'"
 msgid "West limit set"
 msgstr "Definir limites"
 
-msgid "What date of month ?"
-msgstr ""
-
 msgid "What Day of week ?"
 msgstr ""
 
 msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
+msgstr ""
+
+msgid "What date of month ?"
 msgstr ""
 
 msgid "What do you want to scan?"
@@ -9371,14 +9249,14 @@ msgstr "Sim, iniciar busca automática"
 msgid "Yes, do another manual scan now"
 msgstr "Sim, continuar busca manual"
 
-msgid "Yes, shut down now."
-msgstr "Sim, desligar agora"
-
 msgid "Yes, restore the settings now"
 msgstr "Sim, restaurar as configurações agora"
 
 msgid "Yes, returning to movie list"
 msgstr "Sim, voltar à lista de filmes"
+
+msgid "Yes, shut down now."
+msgstr "Sim, desligar agora"
 
 msgid "Yesterday"
 msgstr "Ontem"
@@ -9647,12 +9525,6 @@ msgstr ""
 msgid "Zap to channel and close (setup in menu)"
 msgstr ""
 
-msgid "Zap to selected channel"
-msgstr "Zap para o canal selecionado"
-
-msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
-msgstr "Zap para o canal selecionado, ou mostrar informação do evento detalhada (dependendo da configuração)"
-
 msgid "Zoom In/Out TV..."
 msgstr ""
 
@@ -9832,13 +9704,6 @@ msgstr "cartoon/fantoches"
 
 msgid "center"
 msgstr "centro"
-
-#, fuzzy
-msgid "centered"
-msgstr "centro"
-
-msgid "centered, wrapped"
-msgstr ""
 
 msgid "chapters"
 msgstr "capítulos"
@@ -10171,9 +10036,6 @@ msgstr "sair do reprodutor de mídia"
 msgid "left"
 msgstr "esquerda"
 
-msgid "left, wrapped"
-msgstr ""
-
 msgid "leisure hobbies (general)"
 msgstr "lazer/hobbies (geral)"
 
@@ -10483,9 +10345,6 @@ msgstr "voltar ao capítulo anterior"
 
 msgid "right"
 msgstr "direita"
-
-msgid "right, wrapped"
-msgstr ""
 
 msgid "rock/pop"
 msgstr "rock/pop"

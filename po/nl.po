@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-22 20:11+0100\n"
+"POT-Creation-Date: 2014-01-30 22:11+0100\n"
 "PO-Revision-Date: 2014-01-22 23:31+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
@@ -144,9 +144,6 @@ msgstr "%2d:%02d"
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-msgid "%A %d %B"
-msgstr "%A %d %B"
-
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr "%A %e %B"
@@ -247,9 +244,6 @@ msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
 msgstr[0] "%d draadloos netwerk gevonden!"
 msgstr[1] "%d draadloze netwerken gevonden!"
-
-msgid "%d-%m"
-msgstr "%d-%m"
 
 msgid "%d.%B %Y"
 msgstr "%d-%m-%Y"
@@ -543,9 +537,6 @@ msgstr ""
 "Een afgewerkte timer wil uw\n"
 "%s %s uitschakelen. Wilt u dat nu doen?"
 
-msgid "A graphical EPG for all services of a specific bouquet"
-msgstr "Grafische EPG voor alle zenders uit een specifieke favorietenlijst"
-
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -768,10 +759,6 @@ msgstr "Voeg aan favorieten toe"
 msgid "Add/Remove timer for current event"
 msgstr "Ttimer voor huidige event toevoegen/verwijderen"
 
-#, fuzzy
-msgid "Add/remove change timer for current event"
-msgstr "Ttimer voor huidige programma toevoegen/verwijderen"
-
 msgid "Adding schedule..."
 msgstr "Voegt schema toe..."
 
@@ -814,12 +801,6 @@ msgstr "Album"
 msgid "Alias"
 msgstr "Alias"
 
-msgid "Alignment of events"
-msgstr "Events uitgelijnd"
-
-msgid "Alignment of service names"
-msgstr "Kanaalnamen uitgelijnd"
-
 msgid "All"
 msgstr "Alles"
 
@@ -858,12 +839,6 @@ msgstr "Laat de %s %s regelmatig de opgeslagen EPG-data lezen."
 msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "Laat de %s %s de EPG data regelmatig opslaan."
 
-msgid "Allows you to hide the extensions of known file types."
-msgstr "Geeft de mogelijkheid bekende extensies niet te tonen."
-
-msgid "Allows you to setup the button to do what you choose."
-msgstr "Geeft u de mogelijkheid in te stellen wat de functie van een toets is."
-
 msgid "Allows you to adjust the amount of time the resolution infomation display on screen."
 msgstr "Stelt de tijdsduur in dat resolutie-informatie op het tv-scherm getoond wordt"
 
@@ -875,12 +850,18 @@ msgstr "Geeft de mogelijkheid debug-logs te activeren. Deze bevatten zeer gedeta
 msgid "Allows you to enable/disable displaying icons on the front panel."
 msgstr "Geeft u de mogelijkheid on iconen weer te geven op het frontpaneel."
 
+msgid "Allows you to hide the extensions of known file types."
+msgstr "Geeft de mogelijkheid bekende extensies niet te tonen."
+
 msgid "Allows you to send a copy of the log to yourself."
 msgstr "Maakt het mogelijk een kopie van de logs naar uzelf te sturen."
 
 #, fuzzy
 msgid "Allows you to set the maximum size (MB) of the individual debug logs. When that size is reached, a new file will be created."
 msgstr "Hier geeft u aan hoeveel ruimte de debug logs mogen gebruiken. Als die hoeveelheid bereikt wordt, worden de oudste logs het eerste verwijderd."
+
+msgid "Allows you to setup the button to do what you choose."
+msgstr "Geeft u de mogelijkheid in te stellen wat de functie van een toets is."
 
 #, fuzzy
 msgid "Allows you to show/hide CCcam Info in extensions (blue button)."
@@ -1437,9 +1418,6 @@ msgstr "Kaart serie"
 msgid "Center DVB subtitles"
 msgstr "Centreer DVB-ondertitels"
 
-msgid "Center time-labels and remove date"
-msgstr "Centreer de tijd-labels en verwijder de datum."
-
 msgid "Change bouquets in quickzap"
 msgstr "Verander van favorietenlijst tijdens zappen"
 
@@ -1474,6 +1452,9 @@ msgstr "Wijzig stapgrootte"
 #, fuzzy
 msgid "Change timer"
 msgstr "Wijzig stapgrootte"
+
+msgid "Change to bouquet"
+msgstr "Verander in favorietenlijst"
 
 msgid "Changelog"
 msgstr "Veranderingslogboek"
@@ -1583,9 +1564,6 @@ msgstr "Chipset:\tBCM%s"
 #, python-format
 msgid "Chipset: BCM%s"
 msgstr "Chipset: BCM%s"
-
-msgid "Change to bouquet"
-msgstr "Verander in favorietenlijst"
 
 msgid "Choose Bouquet"
 msgstr "Kies favorieten"
@@ -2443,6 +2421,10 @@ msgstr "Beeld-in-beeld uitschakelen"
 msgid "Disable background scanning"
 msgstr "Scannen op de achtergrond uitschakelen"
 
+#, fuzzy
+msgid "Disable timer"
+msgstr "Verwijder bestand"
+
 msgid "Disabled"
 msgstr "Gedeactiveerd"
 
@@ -2909,9 +2891,6 @@ msgstr "Event Info..."
 msgid "Event font size"
 msgstr "Event lettergrootte"
 
-msgid "Event font size (relative to skin size)"
-msgstr "Event lettergrootte (t.o.v. de waarde in de skin)"
-
 msgid "Event view"
 msgstr "Event view"
 
@@ -3188,9 +3167,6 @@ msgstr "Volledig doorzichtig"
 msgid "Fullview resolution"
 msgstr "Vol scherm resolutie"
 
-msgid "Function of OK button"
-msgstr "Functie van OK-toets"
-
 msgid "GB"
 msgstr "GB"
 
@@ -3240,24 +3216,6 @@ msgstr "Ga naar de eerste opname of het laatste item."
 msgid "Go to first movie or top of list"
 msgstr "Ga naar de eerste opname of naar het eerste item"
 
-msgid "Go to first service"
-msgstr "Ga naar eerste kanaal"
-
-msgid "Go to last service"
-msgstr "Ga naar laatste kanaal"
-
-msgid "Go to next event"
-msgstr "Ga naar het volgende programma"
-
-msgid "Go to next page of service"
-msgstr "Ga naar volgende pagina van het kanaal "
-
-msgid "Go to previous event"
-msgstr "Ga naar vorige programma"
-
-msgid "Go to previous page of service"
-msgstr "Ga naar de vorige pagina van het kanaal"
-
 msgid "Go up the list"
 msgstr "Ga naar boven in de lijst"
 
@@ -3282,14 +3240,8 @@ msgstr "Ga naar volgende favorietenlijst"
 msgid "Goto next channel"
 msgstr "Ga naar volgende kanaal"
 
-msgid "Goto next day of events"
-msgstr "Ga naar volgende event pagina"
-
 msgid "Goto next event"
 msgstr "Ga naar volgende event"
-
-msgid "Goto next page of events"
-msgstr "Ga naar volgende event pagina "
 
 msgid "Goto position"
 msgstr "Naar positie draaien"
@@ -3300,14 +3252,8 @@ msgstr "Ga naar vorige favorietenlijst"
 msgid "Goto previous channel"
 msgstr "Ga naar vorige kanaal"
 
-msgid "Goto previous day of events"
-msgstr "Ga naar vorige event pagina"
-
 msgid "Goto previous event"
 msgstr "Ga naar vorige event"
-
-msgid "Goto previous page of events"
-msgstr "Ga naar vorige event pagina"
 
 msgid "Goto specific data/time"
 msgstr "Ga naar specifieke datum/tijd"
@@ -3315,18 +3261,12 @@ msgstr "Ga naar specifieke datum/tijd"
 msgid "GotoX calibration"
 msgstr "GotoX calibratie"
 
-msgid "GraphMultiEpg Settings"
-msgstr "GraphMultiEpg instellingen"
-
 msgid "Graphical EPG"
 msgstr "Graphische EPG..."
 
 #, fuzzy
 msgid "Graphical Infobar EPG settings"
 msgstr "Grafische InfobarEPG instellingen"
-
-msgid "Graphical Multi EPG"
-msgstr "Grafische Multi EPG"
 
 msgid "GraphicalEPG settings"
 msgstr "Grafische EPG instellingen"
@@ -3770,12 +3710,6 @@ msgstr "Is deze videomode goed?"
 msgid "Italian"
 msgstr "Italiaans"
 
-msgid "Items per page "
-msgstr "Onderdelen per pagina"
-
-msgid "Items per page for list screen"
-msgstr "Items per pagina voor lijst modus"
-
 msgid "JUMP 24 HOURS"
 msgstr "SPRING 24 UUR"
 
@@ -3977,9 +3911,6 @@ msgstr "Lijst-EPG functies..."
 
 msgid "List available networks"
 msgstr "Lijst met beschikbare netwerken"
-
-msgid "List mode"
-msgstr "Lijst modus"
 
 msgid "List of storage devices"
 msgstr "Lijst van opslagmedia"
@@ -4647,9 +4578,6 @@ msgstr "Node-ID: "
 msgid "None"
 msgstr "Geen"
 
-msgid "Normal mode"
-msgstr "Normale mode"
-
 msgid "North"
 msgstr "Noord"
 
@@ -4709,7 +4637,8 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Nu"
 
-msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades. If you have done that, press OK."
+#, fuzzy
+msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr ""
 "Gebruik nu 'contrast' om de helderheid van de achtergrond zo hoog mogelijk in te stellen, maar zorg er voor dat u nog steeds de helderste grijze vlakken van elkaar kunt onderscheiden.\n"
 "Indien het resultaat goed is, drukt u op OK."
@@ -4935,15 +4864,15 @@ msgstr "Maak een imagebackup alvorens te updaten"
 msgid "Perform a full image backup"
 msgstr "Maak een volledige imagebackup"
 
+#, fuzzy
+msgid "Perform a settings backup before updating."
+msgstr "Maak een settingsbackup alvorens te updaten"
+
 msgid "Perform a settings backup,"
 msgstr "Maak een settingsbackup"
 
 msgid "Perform a settings backup, making a backup before updating is strongly advised."
 msgstr "Maak een settingsbackup; het maken van een backup alvorens te updaten wordt sterk geadviseerd."
-
-#, fuzzy
-msgid "Perform a settings backup before updating."
-msgstr "Maak een settingsbackup alvorens te updaten"
 
 msgid "Perform an online update check in the background"
 msgstr "Controleer op de achtergrond op updates "
@@ -4968,9 +4897,6 @@ msgstr "Picon"
 
 msgid "Picon and Service Name"
 msgstr "Picon en Service Naam"
-
-msgid "Picon and service name"
-msgstr "Picon en kanaalnaam"
 
 msgid "Picon width"
 msgstr "Picon breedte"
@@ -5389,9 +5315,6 @@ msgstr "Voorbeeld"
 
 msgid "Preview menu"
 msgstr "Voorbeeldmenu"
-
-msgid "Preview selected channel"
-msgstr "Voorvertoning geselecteerde kanaal"
 
 msgid "Primary DNS"
 msgstr "Primaire DNS"
@@ -5842,9 +5765,6 @@ msgstr "Rotor stap positie:"
 msgid "Rotor turning speed"
 msgstr "Rotor draaisnelheid"
 
-msgid "Round start time on"
-msgstr "Ronde starttijd om"
-
 msgid "Run how often ?"
 msgstr "Hoe vaak uitvoeren?"
 
@@ -6274,9 +6194,6 @@ msgstr ""
 "Zender ongeldig!\n"
 "(Timeout reading PMT)"
 
-msgid "Service name"
-msgstr "Kanaalnaam"
-
 msgid "Service name font size"
 msgstr "Kanaalnaam lettergrootte"
 
@@ -6298,9 +6215,6 @@ msgstr "Zenders zoeken"
 
 msgid "Service searching"
 msgstr "Kanalen zoeken"
-
-msgid "Service title mode"
-msgstr "Alleen kanaalnaam"
 
 msgid ""
 "Service unavailable!\n"
@@ -6406,24 +6320,6 @@ msgstr "Stel de tijd in waarop de timer stopt."
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Bepaal teh type voortgangsindicator dat u wilt gebruiken in de kanaallijst."
-
-msgid "Set time window to 1 hour"
-msgstr "Stel tijdvenster in op 1 uur"
-
-msgid "Set time window to 2 hours"
-msgstr "Stel tijdvenster in op 2 uur"
-
-msgid "Set time window to 3 hours"
-msgstr "Stel tijdvenster in op 3 uur"
-
-msgid "Set time window to 4 hours"
-msgstr "Stel tijdvenster in op 4 uur"
-
-msgid "Set time window to 5 hours"
-msgstr "Stel tijdvenster in op 5 uur"
-
-msgid "Set time window to 6 hours"
-msgstr "Stel tijdvenster in op 6 uur"
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Stel de gewenste primetime in (uur)."
@@ -6596,9 +6492,6 @@ msgstr "Toon achtergrond als op een radiokanaal is afgestemd."
 msgid "Show bouquet on launch"
 msgstr "Toon favorieten na opstarten"
 
-msgid "Show bouquet selection menu"
-msgstr "Toon menu 'favorieten selectie'"
-
 msgid "Show channel number in infobar"
 msgstr "Toon kanaalnummers in informatiebalk."
 
@@ -6635,9 +6528,6 @@ msgstr "Toon icon voor nieuwe/niet bekeken onderdelen"
 
 msgid "Show in extensions list ?"
 msgstr "Toon in extensiemenu?"
-
-msgid "Show in extensions menu"
-msgstr "Toon in extensiemenu"
 
 msgid "Show info"
 msgstr "Info weergeven"
@@ -7019,9 +6909,6 @@ msgstr "Starttijd"
 msgid "Start timeshift"
 msgstr "Timeshift starten"
 
-msgid "Start with list screen"
-msgstr "Begin met lijstweergave"
-
 msgid "Starting on"
 msgstr "Start op"
 
@@ -7193,9 +7080,6 @@ msgstr "Schakel TV naar juiste ingang"
 
 msgid "Switch between filelist/playlist"
 msgstr "Schakel tussen bestands- en afspeellist"
-
-msgid "Switch between normal mode and list mode"
-msgstr "Wissel tussen normale en lijstmodus"
 
 msgid "Switch config"
 msgstr "Wissel configuratie"
@@ -7554,12 +7438,12 @@ msgstr "Dit DVD-RW medium is reeds geformatteerd; herformatteren zal alles wisse
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr "Hier stelt u de lettergrootte in t.o.v. de waarde die in de skin staat. Dus '1' vergroot die met 1 punt en '-1' verkleint die met 1 punt."
 
-msgid "This allows you to change the number of rows shown."
-msgstr "Hier kunt u het aantal regels dat vertoond wordt aanpassen."
-
 #, fuzzy
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr "Hier stelt u de lettergrootte in t.o.v. de waarde die in de skin staat. Dus '1' vergroot die met 1 punt en '-1' verkleint die met 1 punt."
+
+msgid "This allows you to change the number of rows shown."
+msgstr "Hier kunt u het aantal regels dat vertoond wordt aanpassen."
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Met deze optie bepaalt u de mate van onderdrukking van 'blokruis' ('blokruis' is blokvorming als resultaat van sterke compressie). Uiteraard gaat dit ten koste van de beeldscherpte."
@@ -7590,6 +7474,9 @@ msgstr "Met deze instelling kunt u de blauwe kleuren in het beeld versterken."
 
 msgid "This option allows you to boost the green tones in the picture."
 msgstr "Met deze instelling kunt u de groene kleuren in het beeld versterken."
+
+msgid "This option allows you to bypass HDMI EDID check"
+msgstr "U hunt de HDMI EDID controle omzeilen."
 
 msgid "This option allows you to choose from the two channel lists that are available."
 msgstr "Hier kiest u tussen twee lijsttypes (afhankelijk van uw skin kunnen er twee met een verschillende indeling zijn)."
@@ -7637,6 +7524,9 @@ msgstr "Hiermee kunt u de sortering van de instellingenschermen uitschakelen. "
 msgid "This option allows you to disable sorting of the plugin browser."
 msgstr "Hiermee kunt u de sortering van de pluginbrowser uitschakelen. "
 
+msgid "This option allows you to enable 3D Surround Sound."
+msgstr "Met deze optie stelt u 3D surround-geluid in."
+
 #, fuzzy
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "Hier kiest u de lay-out: tekst of grafisch."
@@ -7659,12 +7549,6 @@ msgstr "Deze optie stelt de schermresolutie in de PC-modus in."
 
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Deze instelling bepaalt de video output (of resolutie)"
-
-msgid "This option allows you to bypass HDMI EDID check"
-msgstr "U hunt de HDMI EDID controle omzeilen."
-
-msgid "This option allows you to enable 3D Surround Sound."
-msgstr "Met deze optie stelt u 3D surround-geluid in."
 
 msgid "This option lets you adjust the 3D depth"
 msgstr "Hier kunt u de 3D-diepte instellen."
@@ -8651,14 +8535,14 @@ msgstr "West"
 msgid "West limit set"
 msgstr "Westelijke limiet instellen"
 
-msgid "What date of month ?"
-msgstr "Welke dag of maand?"
-
 msgid "What Day of week ?"
 msgstr "Welke dag of week?"
 
 msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
 msgstr "Welke actie is vereist als de timer gereed is? 'Auto' brengt de ontvanger terug in dezelfde status als toen de opname begon. De andere instellingen doen precies wat er staat."
+
+msgid "What date of month ?"
+msgstr "Welke dag of maand?"
 
 msgid "What do you want to scan?"
 msgstr "Wat wilt u zoeken?"
@@ -8927,14 +8811,14 @@ msgstr "Ja, voer nu de automatische zoekfunctie uit"
 msgid "Yes, do another manual scan now"
 msgstr "Ja, ik wil nogmaals handmatig zoeken"
 
-msgid "Yes, shut down now."
-msgstr "Ja, ik wil nu afsluiten."
-
 msgid "Yes, restore the settings now"
 msgstr "Ja, de gegevens nu terugplaatsen"
 
 msgid "Yes, returning to movie list"
 msgstr "Ja, terug naar de opname lijst"
+
+msgid "Yes, shut down now."
+msgstr "Ja, ik wil nu afsluiten."
 
 msgid "Yesterday"
 msgstr "Gisteren"
@@ -9211,12 +9095,6 @@ msgstr "Zap naar kanaal (stel in in menu)"
 msgid "Zap to channel and close (setup in menu)"
 msgstr "Zap naar kanaal en sluit (stel in in menu)"
 
-msgid "Zap to selected channel"
-msgstr "Zap naar geselecteerde kanaal"
-
-msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
-msgstr "Zap naar het gekozen kanaal of toon gedetaileerde programma info (afhankelijk van de configuratie)."
-
 msgid "Zoom In/Out TV..."
 msgstr "Zoom In/Uit TV..."
 
@@ -9388,12 +9266,6 @@ msgstr "tekenfilm/poppen"
 
 msgid "center"
 msgstr "midden"
-
-msgid "centered"
-msgstr "gecentreerd"
-
-msgid "centered, wrapped"
-msgstr "gecentreerd, verpakt"
 
 msgid "chapters"
 msgstr "hoofdstukken"
@@ -9719,9 +9591,6 @@ msgstr "opnamemenu afsluiten"
 msgid "left"
 msgstr "links"
 
-msgid "left, wrapped"
-msgstr "links, verpakt"
-
 msgid "leisure hobbies (general)"
 msgstr "vrijetijd/hobby's (algemeen)"
 
@@ -10019,9 +9888,6 @@ msgstr "terugspoelen naar vorig hoofdstuk"
 
 msgid "right"
 msgstr "rechts"
-
-msgid "right, wrapped"
-msgstr "rechts, verpakt"
 
 msgid "rock/pop"
 msgstr "rock/pop"
