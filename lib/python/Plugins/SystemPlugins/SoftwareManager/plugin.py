@@ -981,7 +981,7 @@ class PluginManager(Screen, PackageInfoHandler):
 			elif tag == 'Multimedia':
 				return(( _("Multimedia"), _("View list of available multimedia extensions." ), tag, divpng ))
 			elif tag == 'Display':
-				return(( _("Display and userinterface"), _("View list of available display and userinterface extensions." ), tag, divpng ))
+				return(( _("Display and user interface"), _("View list of available display and userinterface extensions." ), tag, divpng ))
 			elif tag == 'EPG':
 				return(( _("Electronic Program Guide"), _("View list of available EPG extensions." ), tag, divpng ))
 			elif tag == 'Communication':

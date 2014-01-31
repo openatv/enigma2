@@ -141,7 +141,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Sleep delay"), self.timerrntry_autosleepdelay))
 			self.list.append(getConfigListEntry(_("Repeat type"), self.timerentry_autosleeprepeat))
 			self.timerTypeEntry = getConfigListEntry(_("Repeat type"), self.timerentry_type)
-			self.entryShowEndTime = getConfigListEntry(_("Set end Time"), self.timerentry_showendtime)
+			self.entryShowEndTime = getConfigListEntry(_("Set end time"), self.timerentry_showendtime)
 			self.frequencyEntry = getConfigListEntry(_("Repeats"), self.timerentry_repeated)
 		else:
 			self.timerTypeEntry = getConfigListEntry(_("Repeat type"), self.timerentry_type)

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-22 20:11+0100\n"
+"POT-Creation-Date: 2014-01-30 22:11+0100\n"
 "PO-Revision-Date: 2014-01-22 23:31+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: RU locale edited by Sowa\n"
@@ -141,9 +141,6 @@ msgstr "%2d:%02d"
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-msgid "%A %d %B"
-msgstr "%A %d %B"
-
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr "%A %e %B"
@@ -251,9 +248,6 @@ msgid_plural "%d wireless networks found!"
 msgstr[0] "%d беспроводная сеть найдена!"
 msgstr[1] "%d беспроводные сети найдено!"
 msgstr[2] "%d беспроводных сетей найдено!"
-
-msgid "%d-%m"
-msgstr "%d-%m"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -549,9 +543,6 @@ msgstr ""
 "Запись по таймеру завершена,  %s %s будет переведён\n"
 "в  полный режим ожидания. Сделать это сейчас?"
 
-msgid "A graphical EPG for all services of an specific bouquet"
-msgstr "Графический телегид для всех каналов в букете"
-
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -671,7 +662,7 @@ msgid "Activate"
 msgstr "Активировать"
 
 #, fuzzy
-msgid "Activate MAC-adress configuration"
+msgid "Activate MAC-address configuration"
 msgstr "Активировать текущие настройки"
 
 msgid "Activate PiP"
@@ -776,10 +767,6 @@ msgstr "Добавить в избранное"
 msgid "Add/Remove timer for current event"
 msgstr "Добавить/Удалить таймер для текущего события"
 
-#, fuzzy
-msgid "Add/remove change timer for current event"
-msgstr "Добавить/Удалить таймер для текущего события"
-
 msgid "Adding schedule..."
 msgstr "Добавление задания..."
 
@@ -822,12 +809,6 @@ msgstr "Альбом"
 msgid "Alias"
 msgstr "Псевдоним"
 
-msgid "Alignment of events"
-msgstr "Расположение событий"
-
-msgid "Alignment of service names"
-msgstr "Расположение имен каналов"
-
 msgid "All"
 msgstr "Все"
 
@@ -867,22 +848,19 @@ msgstr "Позволяет %s %s регулярно считывать сохр�
 msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "Позволяет %s %s регулярно сохранять данные EPG"
 
-msgid "Allows you hide the extensions of known file types."
-msgstr "Позволяет скрывать расширения известных типов файлов."
-
-msgid "Allows you setup the button to do what you choose."
-msgstr "Позволяет видеть настройку выбранной кнопки."
-
 msgid "Allows you to adjust the amount of time the resolution infomation display on screen."
 msgstr ""
 
 #, fuzzy
-msgid "Allows you to enable the debug logs. They contain very detailed information of everything the system does."
+msgid "Allows you to enable the debug logs. They contain very detailed information about everything the system does."
 msgstr "Позволяет включить журнал отладки для записи подробной информации обо всех действиях системы."
 
 #, fuzzy
 msgid "Allows you to enable/disable displaying icons on the front panel."
 msgstr "Позволяет включить/выключить иконки на передней панели."
+
+msgid "Allows you to hide the extensions of known file types."
+msgstr "Позволяет скрывать расширения известных типов файлов."
 
 msgid "Allows you to send a copy of the log to yourself."
 msgstr "Позволяет отправлять копии журнала для себя."
@@ -890,6 +868,9 @@ msgstr "Позволяет отправлять копии журнала для
 #, fuzzy
 msgid "Allows you to set the maximum size (MB) of the individual debug logs. When that size is reached, a new file will be created."
 msgstr "Позволяет установить максимальный размер размер журнала отладки (МБ). Когда этот размер будет достигнут, то будет создан новый файл."
+
+msgid "Allows you to setup the button to do what you choose."
+msgstr "Позволяет видеть настройку выбранной кнопки."
 
 #, fuzzy
 msgid "Allows you to show/hide CCcam Info in extensions (blue button)."
@@ -1127,7 +1108,7 @@ msgstr "Автосохранение"
 msgid "Automatic scan"
 msgstr "Автосканирование"
 
-msgid "Automatic setting backup"
+msgid "Automatic settings backup"
 msgstr "Автосохранение настроек"
 
 msgid "Automatically start timeshift after"
@@ -1450,9 +1431,6 @@ msgstr "Серийный номер карты"
 msgid "Center DVB subtitles"
 msgstr "Центрировать DVB субтитры"
 
-msgid "Center time-labels and remove date"
-msgstr "Центрировать временную метку и удалить дату"
-
 msgid "Change bouquets in quickzap"
 msgstr "Сменять букеты при быстром переключении"
 
@@ -1487,6 +1465,9 @@ msgstr "Изменить размер шага"
 #, fuzzy
 msgid "Change timer"
 msgstr "Изменить размер шага"
+
+msgid "Change to bouquet"
+msgstr "Изменить букет"
 
 msgid "Changelog"
 msgstr "Список изменений"
@@ -1599,16 +1580,13 @@ msgstr "Чипсет:\tBCM%s"
 msgid "Chipset: BCM%s"
 msgstr "Чипсет: BCM%s"
 
-msgid "Chnage to bouquet"
-msgstr "Изменить букет"
-
 msgid "Choose Bouquet"
 msgstr "Выбор букета"
 
 msgid "Choose a tag for easy finding a recording."
 msgstr "Выберите тег для легкого поиска записи."
 
-msgid "Choose between Daily, Weekly, Weekdays or self defined."
+msgid "Choose between Daily, Weekly, Weekdays or user defined."
 msgstr "Выбор между ежедневно, еженедельно, по будням, или определить самостоятельно"
 
 #, fuzzy
@@ -1844,7 +1822,7 @@ msgstr "Настройка уровня контрастности VFD дисп�
 msgid "Configure the cursor behavior in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr ""
 
-msgid "Configure the duration in minutes for the screensaver."
+msgid "Configure the duration (in minutes) for the screensaver."
 msgstr "Выбор времени до включения сохранения экрана"
 
 msgid "Configure the first audio language (highest priority)."
@@ -2069,7 +2047,7 @@ msgstr "Продолжить воспроизведение (по кольцу)"
 msgid "Contrast"
 msgstr "Контраст"
 
-msgid "Control of the position how finished timer are shown in the Timer List."
+msgid "Control of the position how finished timers are shown in the Timer List."
 msgstr "Контроль положения выполненных таймерев в списке."
 
 msgid "Convert ext3 filesystem to ext4"
@@ -2461,6 +2439,10 @@ msgstr "Отключить режим PiP"
 msgid "Disable background scanning"
 msgstr "Отключить фоновое сканирование"
 
+#, fuzzy
+msgid "Disable timer"
+msgstr "удалить файл"
+
 msgid "Disabled"
 msgstr "Отключен"
 
@@ -2482,7 +2464,7 @@ msgstr "Отображать формат 4:3 как"
 msgid "Display >16:9 content as"
 msgstr "Отображать формат 16:9 как"
 
-msgid "Display and userinterface"
+msgid "Display and user interface"
 msgstr "VFD Дисплей и Интерфейс пользователя"
 
 msgid "Display message before playing next movie"
@@ -2499,7 +2481,7 @@ msgstr "Не записывать"
 
 msgid ""
 "Do you really want to check the filesystem?\n"
-"This could take lots of time!"
+"This could take a long time!"
 msgstr ""
 "Вы действительно хотите проверить файловую систему?\n"
 "Это займет некоторое время!"
@@ -2928,9 +2910,6 @@ msgstr "Информация о событии"
 msgid "Event font size"
 msgstr "Размер шрифта текущего события"
 
-msgid "Event font size (relative to skin size)"
-msgstr "Размер шрифта текущего события (по отношению к используемому в скине)"
-
 #, fuzzy
 msgid "Event view"
 msgstr "Размер шрифта текущего события"
@@ -2957,7 +2936,7 @@ msgid "Exit EPG"
 msgstr "Выход из EPG"
 
 #, fuzzy
-msgid "Exit MAC-adress configuration"
+msgid "Exit MAC-address configuration"
 msgstr "закрыть конфигуратор DNS"
 
 msgid "Exit editor"
@@ -3207,11 +3186,8 @@ msgid "Full transparency"
 msgstr "полная прозрачность"
 
 #, fuzzy
-msgid "Fulview resulution"
+msgid "Fullview resolution"
 msgstr "Выбор из списка"
-
-msgid "Function of OK button"
-msgstr "Функции кнопки ОК"
 
 msgid "GB"
 msgstr "ГБ"
@@ -3262,24 +3238,6 @@ msgstr "Переход к первой записи или последнему 
 msgid "Go to first movie or top of list"
 msgstr "Переход к первой записи или в верхнюю часть списка"
 
-msgid "Go to first service"
-msgstr "Перейти к первому каналу"
-
-msgid "Go to last service"
-msgstr "Перейти к последнему каналу"
-
-msgid "Go to next event"
-msgstr "Перейти к следующему событию"
-
-msgid "Go to next page of service"
-msgstr "Перейти на следующую страницу канала"
-
-msgid "Go to previous event"
-msgstr "Перейти к предыдущему событию"
-
-msgid "Go to previous page of service"
-msgstr "Перейти к предыдущей странице канала"
-
 msgid "Go up the list"
 msgstr "Переход вверх по списку"
 
@@ -3304,14 +3262,8 @@ msgstr "Перейти в следующий букет"
 msgid "Goto next channel"
 msgstr "Перейти к следующему каналу"
 
-msgid "Goto next day of events"
-msgstr "К событиям следующего дня"
-
 msgid "Goto next event"
 msgstr "Перейти к следующему событию"
-
-msgid "Goto next page of events"
-msgstr "Перейти на следующую страницу событий"
 
 msgid "Goto position"
 msgstr "Переход на позицию"
@@ -3322,14 +3274,8 @@ msgstr "Перейти в предыдущий букет"
 msgid "Goto previous channel"
 msgstr "Перейти к предыдущему каналу"
 
-msgid "Goto previous day of events"
-msgstr "К событиям предидущего дня"
-
 msgid "Goto previous event"
 msgstr "Перейти к предыдущему событию"
-
-msgid "Goto previous page of events"
-msgstr "Перейти к предыдущей странице события"
 
 msgid "Goto specific data/time"
 msgstr "Перейти на конкретную дату/время"
@@ -3337,18 +3283,12 @@ msgstr "Перейти на конкретную дату/время"
 msgid "GotoX calibration"
 msgstr "Переход на позицию и калибровка"
 
-msgid "GraphMultiEpg Settings"
-msgstr "Настройки графического мульти-EPG"
-
 msgid "Graphical EPG"
 msgstr "Графический EPG"
 
 #, fuzzy
 msgid "Graphical Infobar EPG settings"
 msgstr "Настройки графического EPG инфобара"
-
-msgid "Graphical Multi EPG"
-msgstr "Графический телегид"
 
 msgid "GraphicalEPG settings"
 msgstr "Настройки графического EPG"
@@ -3512,7 +3452,7 @@ msgstr "Время простоя:"
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr ""
 
-msgid "If enabled the video wil always be de-interlaced."
+msgid "If enabled the video will always be de-interlaced."
 msgstr ""
 
 msgid "If set to 'yes' channels without EPG will not be shown."
@@ -3528,7 +3468,7 @@ msgid "If set to 'yes' shows a small TV-screen in the EPG."
 msgstr "Если выбрано 'Да', то изображение ТВ не будет скрыто в EPG."
 
 #, fuzzy
-msgid "If set to 'yes' the EPG will always open at the first channel of bouquet. If set to 'no' the EPG will open on the present channel."
+msgid "If set to 'yes' the EPG will always open at the first channel of bouquet. If set to 'no' the EPG will open on the current channel."
 msgstr "Если выбрано 'Да', то EPG будет отображаться с первого канала, если 'Нет' - то с текущего"
 
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
@@ -3790,12 +3730,6 @@ msgstr "Этот видеорежим правильный?"
 msgid "Italian"
 msgstr "Итальянский"
 
-msgid "Items per page "
-msgstr "Пунктов на странице"
-
-msgid "Items per page for list screen"
-msgstr "Пунктов на странице списка"
-
 msgid "JUMP 24 HOURS"
 msgstr "ПЕРЕЙТИ НА 24 ЧАСА"
 
@@ -3999,9 +3933,6 @@ msgstr "Список функций EPG ..."
 msgid "List available networks"
 msgstr "Список доступных сетей"
 
-msgid "List mode"
-msgstr "Режим списка"
-
 msgid "List of storage devices"
 msgstr "Список устройств хранения"
 
@@ -4086,11 +4017,11 @@ msgid "Luxembourgish"
 msgstr "Люксембургский"
 
 #, fuzzy
-msgid "MAC-adress"
+msgid "MAC-address"
 msgstr "Адрес"
 
 #, fuzzy
-msgid "MAC-adress settings"
+msgid "MAC-address settings"
 msgstr "Настройка адаптера"
 
 msgid "MAC:"
@@ -4675,9 +4606,6 @@ msgstr "ID узла: "
 msgid "None"
 msgstr "Никакой"
 
-msgid "Normal mode"
-msgstr "Обычный режим"
-
 msgid "North"
 msgstr "Север"
 
@@ -4738,6 +4666,7 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Сейчас:"
 
+#, fuzzy
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Теперь используйте  настройки  контрастности для поднятия фона в максимально возможный уровень, но при этом необходимо следить,чтобы Вы могли видеть различия между двумя самыми яркими уровнями оттенков. Если все нормально - нажмите OK."
 
@@ -4962,15 +4891,15 @@ msgstr "Выполнить резервное копирование имидж�
 msgid "Perform a full image backup"
 msgstr "Выполнять полное резервное копирование имиджа"
 
-msgid "Perform a setting backup,"
-msgstr "Настройки резервного копирования"
-
-msgid "Perform a setting backup, making a backup before updating is strongly advised."
-msgstr "Выполните настройки резервного копирования, создание резервной копии перед обновлением настоятельно рекомендуется."
-
 #, fuzzy
 msgid "Perform a settings backup before updating."
 msgstr "Выполнить резервное копирование настроек перед обновлением."
+
+msgid "Perform a settings backup,"
+msgstr "Настройки резервного копирования"
+
+msgid "Perform a settings backup, making a backup before updating is strongly advised."
+msgstr "Выполните настройки резервного копирования, создание резервной копии перед обновлением настоятельно рекомендуется."
 
 msgid "Perform an online update check in the background"
 msgstr "Выполнять онлайн проверки обновлений в фоновом режиме"
@@ -4994,9 +4923,6 @@ msgid "Picon"
 msgstr "Пикон"
 
 msgid "Picon and Service Name"
-msgstr "Пикон и имя канала"
-
-msgid "Picon and service name"
 msgstr "Пикон и имя канала"
 
 msgid "Picon width"
@@ -5400,7 +5326,7 @@ msgid "Press OK to select/deselect a CAId."
 msgstr "Нажмите OK для добавления/удаления CAID"
 
 #, fuzzy
-msgid "Press OK to set the MAC-adress."
+msgid "Press OK to set the MAC-address."
 msgstr "Нажмите OK для изменения настроек"
 
 msgid "Press OK to start the scan"
@@ -5417,9 +5343,6 @@ msgstr "Предварительный просмотр"
 
 msgid "Preview menu"
 msgstr "Просмотреть меню"
-
-msgid "Preview selected channel"
-msgstr "Предпросмотр выбранного канала"
 
 msgid "Primary DNS"
 msgstr "Первичный DNS"
@@ -5868,9 +5791,6 @@ msgstr "Шаг положение мотора:"
 msgid "Rotor turning speed"
 msgstr "Скорость вращения мотора"
 
-msgid "Round start time on"
-msgstr "Округлить время начала на"
-
 msgid "Run how often ?"
 msgstr "Как часто выполнять?"
 
@@ -6301,9 +6221,6 @@ msgstr ""
 "Сервис неисправен! (канал ушёл или слабый сигнал)\n"
 "(Таймаут чтения PMT)"
 
-msgid "Service name"
-msgstr "Имя канала"
-
 msgid "Service name font size"
 msgstr "Размер шрифта имени канала"
 
@@ -6326,9 +6243,6 @@ msgstr "Поиск каналов"
 msgid "Service searching"
 msgstr "Поиск каналов"
 
-msgid "Service title mode"
-msgstr "Режим имён каналов"
-
 msgid ""
 "Service unavailable!\n"
 "Check tuner configuration!"
@@ -6349,9 +6263,6 @@ msgstr "Сервисы могут быть сгруппированы в бук�
 msgid "Set System"
 msgstr "Установить систему"
 
-msgid "Set end Time"
-msgstr "Установите время окончания"
-
 msgid "Set end time"
 msgstr "Установите время окончания"
 
@@ -6368,7 +6279,7 @@ msgid "Set limits"
 msgstr "Установить лимиты"
 
 #, fuzzy, python-format
-msgid "Set the MAC-adress of your %s %s.\n"
+msgid "Set the MAC-address of your %s %s.\n"
 msgstr "Изменить настройки DNS вашего %s %s.\n"
 
 msgid "Set the channel for this timer."
@@ -6392,7 +6303,7 @@ msgstr "Установите место хранения файлов сдвиг
 msgid "Set the default sorting method."
 msgstr "Установить метод сортировки по умолчанию."
 
-msgid "Set the delay time between repeated loops, this uses a software render use in some skins."
+msgid "Set the delay time between repeated loops, this uses a software render in some skins."
 msgstr ""
 
 msgid "Set the description of the recording."
@@ -6413,7 +6324,7 @@ msgid "Set the name the recording will get."
 msgstr "Получить имя записи"
 
 #, fuzzy
-msgid "Set the scrolling speed of text on the front display, this uses a software render use in some skins."
+msgid "Set the scrolling speed of text on the front display, this uses a software render in some skins."
 msgstr "Установить скорость прокрутки текста на дисплее."
 
 msgid "Set the scrolling speed of text on the front display."
@@ -6435,28 +6346,10 @@ msgstr "Установите время остановки таймера."
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Установка типа отображения прогресса на экране выбора канала."
 
-msgid "Set time window to 1 hour"
-msgstr "Установить временное окно до 1 часа"
-
-msgid "Set time window to 2 hours"
-msgstr "Установить временное окно до 2-х часов"
-
-msgid "Set time window to 3 hours"
-msgstr "Установить временное окно до 3-х часов"
-
-msgid "Set time window to 4 hours"
-msgstr "Установить временное окно до 4-х часов"
-
-msgid "Set time window to 5 hours"
-msgstr "Установить временное окно до 5-и часов"
-
-msgid "Set time window to 6 hours"
-msgstr "Установить временное окно до 6 часов"
-
 msgid "Set to the desired primetime (hour)."
 msgstr "Установите время прайм-тайма (час)."
 
-msgid "Set to the desired primetime (minutes."
+msgid "Set to the desired primetime (minutes)."
 msgstr "Установите время прайм-тайма (мин)."
 
 msgid "Set to what you want the button to do."
@@ -6490,7 +6383,7 @@ msgid "Setup network time synchronization interval."
 msgstr "Настройка интервала времени синхронизации сети."
 
 #, fuzzy
-msgid "Setup the interval(in hours) to check for online updates."
+msgid "Setup the interval (in hours) to check for online updates."
 msgstr "Настройка интервала проверки онлайн обновлений (в часах)"
 
 msgid "Setup your positioner"
@@ -6565,7 +6458,7 @@ msgid "Show Log"
 msgstr "Показать отчёт"
 
 #, fuzzy
-msgid "Show Log Manager in extensions list"
+msgid "Show Log Manager in extensions list ?"
 msgstr "Показывать журнал отчётов в меню расширений?"
 
 msgid "Show Media playback Remaining/Elapsed as"
@@ -6625,9 +6518,6 @@ msgstr "Показ фона при настройке на радиостанц�
 msgid "Show bouquet on launch"
 msgstr "Показывать список букетов при запуске"
 
-msgid "Show bouquet selection menu"
-msgstr "Показать меню выбора букетов"
-
 msgid "Show channel number in infobar"
 msgstr "Отображать номер канала в инфо-баре"
 
@@ -6662,10 +6552,6 @@ msgid "Show icon for new/unseen items"
 msgstr "Показ значков новый/непросмотренный"
 
 msgid "Show in extensions list ?"
-msgstr "Показать в меню расширений?"
-
-#, fuzzy
-msgid "Show in extensions menu"
 msgstr "Показать в меню расширений?"
 
 msgid "Show info"
@@ -6949,7 +6835,7 @@ msgstr "Извините, сервер закрыт на техническое 
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Извините, сервер закрыт на техническое обслуживание, попробуйте позже"
 
-msgid "Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in online update setup."
+msgid "Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in \"software update setup\"."
 msgstr "Извините, плагины на сервере нестабильны, если вы хотите использовать их, пожалуйста, включите 'Разрешить нестабильные (непроверенные) обновления' в настройках онлайн обновления."
 
 msgid "Sorry uShare Config is Missing"
@@ -6981,7 +6867,7 @@ msgstr "Сортировать список EPG"
 msgid "Sort list by"
 msgstr "Сортировать список по"
 
-msgid "Sort menu screen's alphabetically"
+msgid "Sort menu screens alphabetically"
 msgstr "Сортировать пункты экранного меню по алфавиту"
 
 msgid "Sort plug-in browser alphabetically"
@@ -7047,9 +6933,6 @@ msgstr "Время запуска"
 
 msgid "Start timeshift"
 msgstr "Начать TimeShift"
-
-msgid "Start with list screen"
-msgstr "Начать с экрана списка"
 
 msgid "Starting on"
 msgstr "Начиная с"
@@ -7224,9 +7107,6 @@ msgstr "Переключить ТВ на правильный вход"
 
 msgid "Switch between filelist/playlist"
 msgstr "Переключить список/плейлист"
-
-msgid "Switch between normal mode and list mode"
-msgstr "Сменить обычный режим на режим списка"
 
 msgid "Switch config"
 msgstr "Переключить конфиг"
@@ -7440,7 +7320,7 @@ msgstr ""
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Сохранение не выполнено. Выберите правильное расположение. "
 
-msgid "The current update maybe unstable"
+msgid "The current update may be unstable"
 msgstr "Текущее обновление может быть нестабильным"
 
 #, python-format
@@ -7571,7 +7451,7 @@ msgid "There is no signal to lock on !"
 msgstr "Нет сигнала для привязки!"
 
 msgid ""
-"There might not be enough Space on the selected Partition.\n"
+"There might not be enough space on the selected partition..\n"
 "Do you really want to continue?"
 msgstr ""
 "Возможно, недостаточно места на выбранном разделе. \n"
@@ -7587,14 +7467,10 @@ msgstr "Этот DVD RW  уже отформатирован - переформ�
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr "Позволяет изменить размер шрифта по отношению к скину так, что '1' увеличивается на 1 пункт и '-1' уменьшается на 1 пункт"
 
-msgid "This allows you change the number of rows shown."
-msgstr "Позволяет вам изменить количество строк"
-
 #, fuzzy
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr "Позволяет изменить размер шрифта по отношению к скину так, что '1' увеличивается на 1 пункт и '-1' уменьшается на 1 пункт"
 
-#, fuzzy
 msgid "This allows you to change the number of rows shown."
 msgstr "Позволяет вам изменить количество строк"
 
@@ -7627,6 +7503,9 @@ msgstr "Позволяет увеличить синих тонов в изоб�
 
 msgid "This option allows you to boost the green tones in the picture."
 msgstr "Позволяет увеличить зелёных тонов в изображении."
+
+msgid "This option allows you to bypass HDMI EDID check"
+msgstr "При включении этой опции вы можете обойти проверку HDMI EDID"
 
 msgid "This option allows you to choose from the two channel lists that are available."
 msgstr "Позволяет выбрать один из двух доступных списков каналов."
@@ -7673,11 +7552,14 @@ msgstr "Позволяет выбрать действие на первое н�
 msgid "This option allows you to disable sorting of the menus"
 msgstr "Позволяет отключить сортировку меню"
 
-msgid "This option allows you to disable sorting of the option in setting screen's"
+msgid "This option allows you to disable sorting of the option in setting screens"
 msgstr "Позволяет отключить сортировку опций в меню настроек"
 
 msgid "This option allows you to disable sorting of the plugin browser."
 msgstr "Позволяет отключить сортировку плагинов."
+
+msgid "This option allows you to enable 3D Surround Sound."
+msgstr "Эта опция настраивает возможность включеня объемного звучания 3D."
 
 #, fuzzy
 msgid "This option allows you to set the layout view (Text or Graphics)."
@@ -7701,12 +7583,6 @@ msgstr "Эта опция настраивает разрешение экран
 
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Эта опция настраивает режим видеовыхода (или разрешение)."
-
-msgid "This option configures you can Bypass HDMI EDID check"
-msgstr "При включении этой опции вы можете обойти проверку HDMI EDID"
-
-msgid "This option configures you can enable 3D Surround Sound."
-msgstr "Эта опция настраивает возможность включеня объемного звучания 3D."
 
 msgid "This option lets you adjust the 3D depth"
 msgstr "Позволяет регулировать глубину 3D"
@@ -8320,7 +8196,7 @@ msgstr "Использовать альтернативный экран"
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Используйте мастера сети для настройки выбранного сетевого адаптера"
 
-msgid "Use the networkwizard to configure your Network\n"
+msgid "Use the network wizard to configure your Network\n"
 msgstr "Использовать мастер для настройки сети\n"
 
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
@@ -8564,7 +8440,7 @@ msgstr "Режим напряжения"
 msgid "W"
 msgstr "W"
 
-msgid "WARNING: feeds maybe unstable."
+msgid "WARNING: feeds may be unstable."
 msgstr "ВНИМАНИЕ: возможны нестабильные (непроверенные) обновления."
 
 msgid "WEP"
@@ -8689,9 +8565,6 @@ msgstr "Запад"
 msgid "West limit set"
 msgstr "Установить ограничение на запад"
 
-msgid "What Day of month ?"
-msgstr "Какой день месяца?"
-
 msgid "What Day of week ?"
 msgstr "Какой день недели?"
 
@@ -8700,6 +8573,9 @@ msgstr ""
 "Какие действия требуются по завершении работы таймера?\n"
 "\"Авто\" возвращает ресивер в состояние, которое было до начала таймера.\n"
 "\"Ничего не делать\", \"Перейти в режим ожидания\" и \"Перейти в режим глубокого ожидания\" - сделают именно это."
+
+msgid "What date of month ?"
+msgstr "Какой день месяца?"
 
 msgid "What do you want to scan?"
 msgstr "Что вы хотите сканировать?"
@@ -8965,14 +8841,14 @@ msgstr "Да, выполнить автоматический поиск"
 msgid "Yes, do another manual scan now"
 msgstr "Да, повторить ручной поиск"
 
-msgid "Yes, perform a shutdown now."
-msgstr "Да, перевести в полный режим ожидания сейчас"
-
 msgid "Yes, restore the settings now"
 msgstr "Да, восстановить установки сейчас"
 
 msgid "Yes, returning to movie list"
 msgstr "Да, вернуться к списку записей"
+
+msgid "Yes, shut down now."
+msgstr "Да, перевести в полный режим ожидания сейчас"
 
 msgid "Yesterday"
 msgstr "Вчера"
@@ -9117,7 +8993,7 @@ msgstr "Перезагрузка %s %s"
 msgid "Your %s %s is shutting down"
 msgstr "Перевод %s %s в полный режим ожидания"
 
-msgid "Your %s %s is shutting down. Please stand by..."
+msgid "Your %s %s is shutting down. Please wait..."
 msgstr ""
 "%s %s переводится в полный режим ожидания.\n"
 "Пожалуйста, ожидайте..."
@@ -9249,12 +9125,6 @@ msgstr "Переключиться на канал (настройки в мен
 
 msgid "Zap to channel and close (setup in menu)"
 msgstr "Переключиться на канал и закрыть (настройки в меню)"
-
-msgid "Zap to selected channel"
-msgstr "Переключиться на выбранный канал"
-
-msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
-msgstr "Переключиться на выбранный канал, или показать подробную информацию о событии (в зависимости от конфигурации)"
 
 msgid "Zoom In/Out TV..."
 msgstr "Увеличение включено/Выходит за рамки ТВ..."
@@ -9428,12 +9298,6 @@ msgstr "Мультфильм/куклы"
 
 msgid "center"
 msgstr "центр"
-
-msgid "centered"
-msgstr "по центру"
-
-msgid "centered, wrapped"
-msgstr "по центру, выравненный"
 
 msgid "chapters"
 msgstr "разделы"
@@ -9759,9 +9623,6 @@ msgstr "выйти из проигрывателя..."
 msgid "left"
 msgstr "левый"
 
-msgid "left, wrapped"
-msgstr "выровнять влево"
-
 msgid "leisure hobbies (general)"
 msgstr "досуг, хобби (общее)"
 
@@ -10060,9 +9921,6 @@ msgstr "назад на предыдущую главу"
 
 msgid "right"
 msgstr "правый"
-
-msgid "right, wrapped"
-msgstr "выравненный вправо"
 
 msgid "rock/pop"
 msgstr "рок/поп"

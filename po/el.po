@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2_v2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-22 20:11+0100\n"
+"POT-Creation-Date: 2014-01-30 22:11+0100\n"
 "PO-Revision-Date: 2014-01-22 23:31+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: \n"
@@ -162,9 +162,6 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
-msgid "%A %d %B"
-msgstr ""
-
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr ""
@@ -277,9 +274,6 @@ msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
 msgstr[0] "1 ασύρματο δίκτυο βρέθηκε!"
 msgstr[1] "1 ασύρματο δίκτυο βρέθηκε!"
-
-msgid "%d-%m"
-msgstr ""
 
 #
 #
@@ -664,11 +658,6 @@ msgstr ""
 "Μία ολοκληρωμένη εγγραφή θέτει το δέκτη σε βαθιά αναμονή\n"
 "Να εκτελεστεί τώρα;"
 
-#
-#
-msgid "A graphical EPG for all services of an specific bouquet"
-msgstr "Γραφικό EPG για όλα τα κανάλια σε συγκεκριμένο μπουκέτο"
-
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -812,7 +801,7 @@ msgstr ""
 #
 #
 #, fuzzy
-msgid "Activate MAC-adress configuration"
+msgid "Activate MAC-address configuration"
 msgstr "ενεργοποίηση τρέχουσας παραμετροποίησης"
 
 msgid "Activate PiP"
@@ -968,12 +957,6 @@ msgstr "Προσθήκη στα αγαπημένα"
 msgid "Add/Remove timer for current event"
 msgstr ""
 
-#
-#
-#, fuzzy
-msgid "Add/remove change timer for current event"
-msgstr "μετάβαση στην επόμενη εγγραφή"
-
 msgid "Adding schedule..."
 msgstr ""
 
@@ -1037,12 +1020,6 @@ msgstr "Album"
 msgid "Alias"
 msgstr ""
 
-msgid "Alignment of events"
-msgstr ""
-
-msgid "Alignment of service names"
-msgstr ""
-
 #
 #
 msgid "All"
@@ -1084,25 +1061,25 @@ msgstr ""
 msgid "Allows the %s %s to store the EPG data regularly."
 msgstr ""
 
-msgid "Allows you hide the extensions of known file types."
-msgstr ""
-
-msgid "Allows you setup the button to do what you choose."
-msgstr ""
-
 msgid "Allows you to adjust the amount of time the resolution infomation display on screen."
 msgstr ""
 
-msgid "Allows you to enable the debug logs. They contain very detailed information of everything the system does."
+msgid "Allows you to enable the debug logs. They contain very detailed information about everything the system does."
 msgstr ""
 
 msgid "Allows you to enable/disable displaying icons on the front panel."
+msgstr ""
+
+msgid "Allows you to hide the extensions of known file types."
 msgstr ""
 
 msgid "Allows you to send a copy of the log to yourself."
 msgstr ""
 
 msgid "Allows you to set the maximum size (MB) of the individual debug logs. When that size is reached, a new file will be created."
+msgstr ""
+
+msgid "Allows you to setup the button to do what you choose."
 msgstr ""
 
 msgid "Allows you to show/hide CCcam Info in extensions (blue button)."
@@ -1407,7 +1384,7 @@ msgstr ""
 msgid "Automatic scan"
 msgstr ""
 
-msgid "Automatic setting backup"
+msgid "Automatic settings backup"
 msgstr ""
 
 msgid "Automatically start timeshift after"
@@ -1812,9 +1789,6 @@ msgstr ""
 msgid "Center DVB subtitles"
 msgstr ""
 
-msgid "Center time-labels and remove date"
-msgstr ""
-
 #
 #
 msgid "Change bouquets in quickzap"
@@ -1862,6 +1836,12 @@ msgstr "Αλλαγή μεγέθους βήματος"
 #, fuzzy
 msgid "Change timer"
 msgstr "Αλλαγή μεγέθους βήματος"
+
+#
+#
+#, fuzzy
+msgid "Change to bouquet"
+msgstr "Προσθήκη σε μπουκέτο"
 
 msgid "Changelog"
 msgstr "Καταγραφή αλλαγών"
@@ -1996,19 +1976,13 @@ msgstr ""
 msgid "Chipset: BCM%s"
 msgstr ""
 
-#
-#
-#, fuzzy
-msgid "Chnage to bouquet"
-msgstr "Προσθήκη σε μπουκέτο"
-
 msgid "Choose Bouquet"
 msgstr ""
 
 msgid "Choose a tag for easy finding a recording."
 msgstr ""
 
-msgid "Choose between Daily, Weekly, Weekdays or self defined."
+msgid "Choose between Daily, Weekly, Weekdays or user defined."
 msgstr ""
 
 msgid "Choose the location for crash and debug logs."
@@ -2302,7 +2276,7 @@ msgstr ""
 msgid "Configure the cursor behavior in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr ""
 
-msgid "Configure the duration in minutes for the screensaver."
+msgid "Configure the duration (in minutes) for the screensaver."
 msgstr ""
 
 msgid "Configure the first audio language (highest priority)."
@@ -2558,7 +2532,7 @@ msgstr ""
 msgid "Contrast"
 msgstr "Αντίθεση"
 
-msgid "Control of the position how finished timer are shown in the Timer List."
+msgid "Control of the position how finished timers are shown in the Timer List."
 msgstr ""
 
 #
@@ -3112,6 +3086,12 @@ msgstr "Απενεργοποίηση αναζήτησης στο παρασκή�
 
 #
 #
+#, fuzzy
+msgid "Disable timer"
+msgstr "διαγραφή αρχείου"
+
+#
+#
 msgid "Disabled"
 msgstr "Απενεργοποιήθηκε "
 
@@ -3146,7 +3126,7 @@ msgstr "Εμφάνιση περιεχομένου >16:9 ως"
 #
 #
 #, fuzzy
-msgid "Display and userinterface"
+msgid "Display and user interface"
 msgstr "Απεικόνιση και Περιβάλλον Χρήστη"
 
 msgid "Display message before playing next movie"
@@ -3171,7 +3151,7 @@ msgstr "εγγραφή"
 #
 msgid ""
 "Do you really want to check the filesystem?\n"
-"This could take lots of time!"
+"This could take a long time!"
 msgstr ""
 "Είστε σίγουρος οτι θέλετε να ελέγξετε το σύστημα αρχείων;\n"
 "Ενδέχεται να διαρκέσει αρκετά!"
@@ -3732,9 +3712,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "Μέγεθος γραμματοσειράς προγράμματος"
 
-msgid "Event font size (relative to skin size)"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Event view"
@@ -3776,7 +3753,7 @@ msgstr ""
 #
 #
 #, fuzzy
-msgid "Exit MAC-adress configuration"
+msgid "Exit MAC-address configuration"
 msgstr "έξοδος από ρύθμιση nameserver"
 
 #
@@ -4140,11 +4117,8 @@ msgstr "μέγιστη διαφάνεια"
 #
 #
 #, fuzzy
-msgid "Fulview resulution"
+msgid "Fullview resolution"
 msgstr "Τοποθεσία ταινιών"
-
-msgid "Function of OK button"
-msgstr ""
 
 msgid "GB"
 msgstr ""
@@ -4205,41 +4179,6 @@ msgstr ""
 msgid "Go to first movie or top of list"
 msgstr ""
 
-#
-#
-#, fuzzy
-msgid "Go to first service"
-msgstr "μετάβαση στην πρώτη εγγραφή"
-
-#
-#, fuzzy
-msgid "Go to last service"
-msgstr "ορισμός ως αρχική υπηρεσία"
-
-#
-#
-#, fuzzy
-msgid "Go to next event"
-msgstr "μετάβαση στην επόμενη εγγραφή"
-
-#
-#
-#, fuzzy
-msgid "Go to next page of service"
-msgstr "Προώθηση στην επόμενη υπό-υπηρεσία"
-
-#
-#
-#, fuzzy
-msgid "Go to previous event"
-msgstr "μετάβαση στην προηγούμενη εγγραφή"
-
-#
-#
-#, fuzzy
-msgid "Go to previous page of service"
-msgstr "Επιστροφή στην προηγούμενη υπηρεσία"
-
 msgid "Go up the list"
 msgstr ""
 
@@ -4272,16 +4211,7 @@ msgstr ""
 msgid "Goto next channel"
 msgstr ""
 
-#
-#
-#, fuzzy
-msgid "Goto next day of events"
-msgstr "μετάβαση στην επόμενη εγγραφή"
-
 msgid "Goto next event"
-msgstr ""
-
-msgid "Goto next page of events"
 msgstr ""
 
 #
@@ -4295,16 +4225,7 @@ msgstr ""
 msgid "Goto previous channel"
 msgstr ""
 
-#
-#
-#, fuzzy
-msgid "Goto previous day of events"
-msgstr "μετάβαση στην προηγούμενη εγγραφή"
-
 msgid "Goto previous event"
-msgstr ""
-
-msgid "Goto previous page of events"
 msgstr ""
 
 msgid "Goto specific data/time"
@@ -4316,9 +4237,6 @@ msgstr ""
 msgid "GotoX calibration"
 msgstr "Πήγαινε στην θέση"
 
-msgid "GraphMultiEpg Settings"
-msgstr ""
-
 msgid "Graphical EPG"
 msgstr ""
 
@@ -4326,11 +4244,6 @@ msgstr ""
 #
 #, fuzzy
 msgid "Graphical Infobar EPG settings"
-msgstr "Γραφικό Multi EPG"
-
-#
-#
-msgid "Graphical Multi EPG"
 msgstr "Γραφικό Multi EPG"
 
 #
@@ -4540,7 +4453,7 @@ msgstr ""
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr ""
 
-msgid "If enabled the video wil always be de-interlaced."
+msgid "If enabled the video will always be de-interlaced."
 msgstr ""
 
 msgid "If set to 'yes' channels without EPG will not be shown."
@@ -4555,7 +4468,7 @@ msgstr ""
 msgid "If set to 'yes' shows a small TV-screen in the EPG."
 msgstr ""
 
-msgid "If set to 'yes' the EPG will always open at the first channel of bouquet. If set to 'no' the EPG will open on the present channel."
+msgid "If set to 'yes' the EPG will always open at the first channel of bouquet. If set to 'no' the EPG will open on the current channel."
 msgstr ""
 
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
@@ -4906,14 +4819,6 @@ msgstr ""
 msgid "Italian"
 msgstr "Ιταλικά"
 
-#, fuzzy
-msgid "Items per page "
-msgstr "Αντικείμενα ανά σελίδα"
-
-#, fuzzy
-msgid "Items per page for list screen"
-msgstr "Αντικείμενα ανά σελίδα"
-
 msgid "JUMP 24 HOURS"
 msgstr ""
 
@@ -5188,9 +5093,6 @@ msgstr ""
 msgid "List available networks"
 msgstr "Λίστα διαθέσιμων δικτύων"
 
-msgid "List mode"
-msgstr ""
-
 #
 #
 #, fuzzy
@@ -5303,13 +5205,13 @@ msgstr ""
 #
 #
 #, fuzzy
-msgid "MAC-adress"
+msgid "MAC-address"
 msgstr "Διεύθυνση IP"
 
 #
 #
 #, fuzzy
-msgid "MAC-adress settings"
+msgid "MAC-address settings"
 msgstr "Ρυθμίσεις κάρτας δικτύου"
 
 msgid "MAC:"
@@ -6146,9 +6048,6 @@ msgstr ""
 msgid "None"
 msgstr "Κανένα"
 
-msgid "Normal mode"
-msgstr ""
-
 #
 #
 msgid "North"
@@ -6219,6 +6118,7 @@ msgstr ""
 
 #
 #
+#, fuzzy
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Χρησιμοποιείστε τις ρυθμίσεις αντίθεσης για να μεγιστοποιήσετε τη φωτεινότητα του φόντου, αλλά βεβαιωθείτε ότι μπορείτε να διακρίνετε τη διαφορά ανάμεσα στις δύο φωτεινότερες σκιές. Εάν το κάνατε, πιέστε ΟΚ."
 
@@ -6493,13 +6393,13 @@ msgstr ""
 msgid "Perform a full image backup"
 msgstr ""
 
-msgid "Perform a setting backup,"
-msgstr ""
-
-msgid "Perform a setting backup, making a backup before updating is strongly advised."
-msgstr ""
-
 msgid "Perform a settings backup before updating."
+msgstr ""
+
+msgid "Perform a settings backup,"
+msgstr ""
+
+msgid "Perform a settings backup, making a backup before updating is strongly advised."
 msgstr ""
 
 msgid "Perform an online update check in the background"
@@ -6527,9 +6427,6 @@ msgid "Picon"
 msgstr ""
 
 msgid "Picon and Service Name"
-msgstr ""
-
-msgid "Picon and service name"
 msgstr ""
 
 msgid "Picon width"
@@ -7137,7 +7034,7 @@ msgstr "Πιέστε ΟΚ για επιλογή/αποεπιλογή CAId."
 #
 #
 #, fuzzy
-msgid "Press OK to set the MAC-adress."
+msgid "Press OK to set the MAC-address."
 msgstr "Πιέστε ΟΚ για επεξεργασία των ρυθμίσεων."
 
 #
@@ -7164,9 +7061,6 @@ msgstr "Προεπισκόπηση"
 #
 msgid "Preview menu"
 msgstr "Μενού προεπισκόπησης"
-
-msgid "Preview selected channel"
-msgstr ""
 
 #
 #
@@ -7805,9 +7699,6 @@ msgstr "Αποθήκευση θέσης"
 msgid "Rotor turning speed"
 msgstr "Ταχύτητα του ρότορα"
 
-msgid "Round start time on"
-msgstr ""
-
 msgid "Run how often ?"
 msgstr ""
 
@@ -8384,12 +8275,6 @@ msgstr ""
 "Άκυρη υπηρεσία\n"
 "(Timeout reading PMT)"
 
-#
-#
-#, fuzzy
-msgid "Service name"
-msgstr "Ανεύρεση υπηρεσιών"
-
 msgid "Service name font size"
 msgstr ""
 
@@ -8419,12 +8304,6 @@ msgstr ""
 
 #
 #
-#, fuzzy
-msgid "Service title mode"
-msgstr "Επιλέξτε video mode"
-
-#
-#
 msgid ""
 "Service unavailable!\n"
 "Check tuner configuration!"
@@ -8449,16 +8328,9 @@ msgstr ""
 #
 #
 #, fuzzy
-msgid "Set end Time"
-msgstr "Ρύθμιση χρόνου τερματισμού"
-
-#
-#
-#, fuzzy
 msgid "Set end time"
 msgstr "Ρύθμιση χρόνου τερματισμού"
 
-#
 msgid "Set fixed"
 msgstr "Ορισμός σταθερού"
 
@@ -8478,7 +8350,7 @@ msgstr "Ορισμός ορίων"
 #
 #
 #, fuzzy, python-format
-msgid "Set the MAC-adress of your %s %s.\n"
+msgid "Set the MAC-address of your %s %s.\n"
 msgstr "Επεξεργασία ρυθμίσεων Nameserver του δέκτη.\n"
 
 msgid "Set the channel for this timer."
@@ -8502,7 +8374,7 @@ msgstr ""
 msgid "Set the default sorting method."
 msgstr ""
 
-msgid "Set the delay time between repeated loops, this uses a software render use in some skins."
+msgid "Set the delay time between repeated loops, this uses a software render in some skins."
 msgstr ""
 
 #
@@ -8522,7 +8394,7 @@ msgstr ""
 msgid "Set the name the recording will get."
 msgstr ""
 
-msgid "Set the scrolling speed of text on the front display, this uses a software render use in some skins."
+msgid "Set the scrolling speed of text on the front display, this uses a software render in some skins."
 msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
@@ -8543,28 +8415,10 @@ msgstr ""
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr ""
 
-msgid "Set time window to 1 hour"
-msgstr ""
-
-msgid "Set time window to 2 hours"
-msgstr ""
-
-msgid "Set time window to 3 hours"
-msgstr ""
-
-msgid "Set time window to 4 hours"
-msgstr ""
-
-msgid "Set time window to 5 hours"
-msgstr ""
-
-msgid "Set time window to 6 hours"
-msgstr ""
-
 msgid "Set to the desired primetime (hour)."
 msgstr ""
 
-msgid "Set to the desired primetime (minutes."
+msgid "Set to the desired primetime (minutes)."
 msgstr ""
 
 msgid "Set to what you want the button to do."
@@ -8601,7 +8455,7 @@ msgstr ""
 msgid "Setup network time synchronization interval."
 msgstr ""
 
-msgid "Setup the interval(in hours) to check for online updates."
+msgid "Setup the interval (in hours) to check for online updates."
 msgstr ""
 
 #
@@ -8688,7 +8542,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Show Log Manager in extensions list"
+msgid "Show Log Manager in extensions list ?"
 msgstr "εμφάνιση επεκτάσεων..."
 
 msgid "Show Media playback Remaining/Elapsed as"
@@ -8758,9 +8612,6 @@ msgstr ""
 msgid "Show bouquet on launch"
 msgstr ""
 
-msgid "Show bouquet selection menu"
-msgstr ""
-
 #
 #
 #, fuzzy
@@ -8811,11 +8662,6 @@ msgstr "Εμφάνιση εικονιδίου για νέα αντικείμεν
 
 msgid "Show in extensions list ?"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Show in extensions menu"
-msgstr "εμφάνιση επεκτάσεων..."
 
 #
 #
@@ -9230,7 +9076,7 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in online update setup."
+msgid "Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in \"software update setup\"."
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -9261,7 +9107,7 @@ msgstr ""
 msgid "Sort list by"
 msgstr ""
 
-msgid "Sort menu screen's alphabetically"
+msgid "Sort menu screens alphabetically"
 msgstr ""
 
 msgid "Sort plug-in browser alphabetically"
@@ -9352,9 +9198,6 @@ msgid "Start time"
 msgstr "Ώρα έναρξης"
 
 msgid "Start timeshift"
-msgstr ""
-
-msgid "Start with list screen"
 msgstr ""
 
 #
@@ -9613,9 +9456,6 @@ msgstr "Αλλαγή της TV στη σωστή είσοδο"
 msgid "Switch between filelist/playlist"
 msgstr "μετάβαση στη λίστα αρχείων"
 
-msgid "Switch between normal mode and list mode"
-msgstr ""
-
 msgid "Switch config"
 msgstr ""
 
@@ -9863,7 +9703,7 @@ msgstr ""
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Το backup απέτυχε. Διάλεξτε άλλη τοποθεσία για το backup."
 
-msgid "The current update maybe unstable"
+msgid "The current update may be unstable"
 msgstr ""
 
 #, python-format
@@ -10033,7 +9873,7 @@ msgstr ""
 #
 #
 msgid ""
-"There might not be enough Space on the selected Partition.\n"
+"There might not be enough space on the selected partition..\n"
 "Do you really want to continue?"
 msgstr ""
 "Ενδεχομένως να μην υπάρχει αρκετός χώρος στην επιλεγμένη κατάτμηση.\n"
@@ -10051,9 +9891,6 @@ msgid "This DVD RW medium is already formatted - reformatting will erase all con
 msgstr "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
-msgstr ""
-
-msgid "This allows you change the number of rows shown."
 msgstr ""
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
@@ -10087,6 +9924,9 @@ msgid "This option allows you to boost the blue tones in the picture."
 msgstr ""
 
 msgid "This option allows you to boost the green tones in the picture."
+msgstr ""
+
+msgid "This option allows you to bypass HDMI EDID check"
 msgstr ""
 
 msgid "This option allows you to choose from the two channel lists that are available."
@@ -10125,10 +9965,13 @@ msgstr ""
 msgid "This option allows you to disable sorting of the menus"
 msgstr ""
 
-msgid "This option allows you to disable sorting of the option in setting screen's"
+msgid "This option allows you to disable sorting of the option in setting screens"
 msgstr ""
 
 msgid "This option allows you to disable sorting of the plugin browser."
+msgstr ""
+
+msgid "This option allows you to enable 3D Surround Sound."
 msgstr ""
 
 msgid "This option allows you to set the layout view (Text or Graphics)."
@@ -10150,12 +9993,6 @@ msgid "This option configures the screen resolution in PC output mode."
 msgstr ""
 
 msgid "This option configures the video output mode (or resolution)."
-msgstr ""
-
-msgid "This option configures you can Bypass HDMI EDID check"
-msgstr ""
-
-msgid "This option configures you can enable 3D Surround Sound."
 msgstr ""
 
 msgid "This option lets you adjust the 3D depth"
@@ -10951,7 +10788,7 @@ msgstr "Χρήση του Οδηγού Δικτύου για παραμετρο�
 #
 #
 #, fuzzy
-msgid "Use the networkwizard to configure your Network\n"
+msgid "Use the network wizard to configure your Network\n"
 msgstr "Χρήση Οδηγού Δικτύου για παραμετροποίηση του δικτύου\n"
 
 #
@@ -11280,7 +11117,7 @@ msgstr "Voltage mode"
 msgid "W"
 msgstr "W"
 
-msgid "WARNING: feeds maybe unstable."
+msgid "WARNING: feeds may be unstable."
 msgstr ""
 
 #
@@ -11458,13 +11295,13 @@ msgstr "Δυτικά"
 msgid "West limit set"
 msgstr "Ορισμός ορίων"
 
-msgid "What Day of month ?"
-msgstr ""
-
 msgid "What Day of week ?"
 msgstr ""
 
 msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
+msgstr ""
+
+msgid "What date of month ?"
 msgstr ""
 
 #
@@ -11766,11 +11603,6 @@ msgstr "Ναι, κάνε μια ακόμη χειροκίνητη σάρωση �
 
 #
 #
-msgid "Yes, perform a shutdown now."
-msgstr "Ναι, τερματισμός τώρα."
-
-#
-#
 msgid "Yes, restore the settings now"
 msgstr "Ναι, αποκατάσταση ρυθμίσεων τώρα"
 
@@ -11778,6 +11610,11 @@ msgstr "Ναι, αποκατάσταση ρυθμίσεων τώρα"
 #
 msgid "Yes, returning to movie list"
 msgstr "Ναι, επιστροφή στη λίστα ταινιών"
+
+#
+#
+msgid "Yes, shut down now."
+msgstr "Ναι, τερματισμός τώρα."
 
 msgid "Yesterday"
 msgstr "Χθες"
@@ -11942,7 +11779,7 @@ msgstr ""
 
 #
 #
-msgid "Your %s %s is shutting down. Please stand by..."
+msgid "Your %s %s is shutting down. Please wait..."
 msgstr "Ο δέκτης τερματίζεται. Παρακαλώ περιμένετε..."
 
 #, python-format
@@ -12081,12 +11918,6 @@ msgid "Zap to channel (setup in menu)"
 msgstr ""
 
 msgid "Zap to channel and close (setup in menu)"
-msgstr ""
-
-msgid "Zap to selected channel"
-msgstr ""
-
-msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 msgstr ""
 
 msgid "Zoom In/Out TV..."
@@ -12325,15 +12156,6 @@ msgid "cartoon/puppets"
 msgstr ""
 
 msgid "center"
-msgstr ""
-
-#
-#
-#, fuzzy
-msgid "centered"
-msgstr "Μέσο"
-
-msgid "centered, wrapped"
 msgstr ""
 
 #
@@ -12762,9 +12584,6 @@ msgstr "έξοδος απο το movie player..."
 msgid "left"
 msgstr "αριστερά"
 
-msgid "left, wrapped"
-msgstr ""
-
 msgid "leisure hobbies (general)"
 msgstr ""
 
@@ -13180,9 +12999,6 @@ msgstr "μετάβαση στο προηγούμενο κεφάλαιο"
 #
 msgid "right"
 msgstr "δεξιά"
-
-msgid "right, wrapped"
-msgstr ""
 
 msgid "rock/pop"
 msgstr ""

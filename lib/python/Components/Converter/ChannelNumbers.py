@@ -32,6 +32,8 @@ class ChannelNumbers:
 		return ""
 
 	def getMHz(self, frequency):
+		if str(frequency).endswith('Mhz'):
+			return frequency.split()[0]
 		return (frequency+50000)/100000/10.
 
 	def getTunerDescription(self, region):

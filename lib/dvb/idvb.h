@@ -264,9 +264,9 @@ class eDVBService: public iStaticServiceInformation
 public:
 	enum cacheID
 	{
-		cVPID, cAPID, cTPID, cPCRPID, cAC3PID,
+		cVPID, cMPEGAPID, cTPID, cPCRPID, cAC3PID,
 		cVTYPE, cACHANNEL, cAC3DELAY, cPCMDELAY,
-		cSUBTITLE, cacheMax
+		cSUBTITLE, cAACHEAPID=12, cacheMax
 	};
 
 	int getCacheEntry(cacheID);
