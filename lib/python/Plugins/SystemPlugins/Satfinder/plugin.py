@@ -191,7 +191,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			if self.satList[index] is None:
 				none_cnt += 1
 			if index == int(v):
-				return (index-none_cnt)
+				return index-none_cnt
 			index += 1
 		return -1
 
@@ -271,7 +271,7 @@ def SatfinderStart(menuid, **kwargs):
 		return []
 
 def Plugins(**kwargs):
-	if (nimmanager.hasNimType("DVB-S")):
+	if nimmanager.hasNimType("DVB-S"):
 		return PluginDescriptor(name=_("Satfinder"), description=_("Helps setting up your dish"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SatfinderStart)
 	else:
 		return []

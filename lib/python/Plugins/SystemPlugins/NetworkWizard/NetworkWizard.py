@@ -69,7 +69,7 @@ class NetworkWizard(WizardLanguage, Rc):
 		self.isWlanPluginInstalled()
 
 	def exitWizardQuestion(self, ret = False):
-		if (ret):
+		if ret:
 			self.markDone()
 			self.close()
 
@@ -291,7 +291,7 @@ class NetworkWizard(WizardLanguage, Rc):
 			self.newAPlist.append(newentry)
 
 		if len(self.newAPlist):
-			if (self.wizard[self.currStep].has_key("dynamiclist")):
+			if self.wizard[self.currStep].has_key("dynamiclist"):
 				currentListEntry = self["list"].getCurrent()
 				if currentListEntry is not None:
 					idx = 0

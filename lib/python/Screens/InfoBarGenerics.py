@@ -773,7 +773,7 @@ class InfoBarNumberZap:
 					if config.usage.multibouquet.getValue():
 						bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
 					else:
-						bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types)
+						bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'% self.service_types
 					serviceHandler = eServiceCenter.getInstance()
 					rootbouquet = eServiceReference(bqrootstr)
 					bouquet = eServiceReference(bqrootstr)
@@ -1666,13 +1666,13 @@ class InfoBarSeek:
 		self.__seekableStatusChanged()
 
 	def makeStateForward(self, n):
-		return (0, n, 0, ">> %dx" % n)
+		return 0, n, 0, ">> %dx" % n
 
 	def makeStateBackward(self, n):
-		return (0, -n, 0, "<< %dx" % n)
+		return 0, -n, 0, "<< %dx" % n
 
 	def makeStateSlowMotion(self, n):
-		return (0, 0, n, "/%d" % n)
+		return 0, 0, n, "/%d" % n
 
 	def isStateForward(self, state):
 		return state[1] > 1
@@ -1725,7 +1725,7 @@ class InfoBarSeek:
 		return True
 
 	def __seekableStatusChanged(self):
-		if (isStandardInfoBar(self) and self.timeshiftEnabled()):
+		if isStandardInfoBar(self) and self.timeshiftEnabled():
 			pass
 		elif not self.isSeekable():
 #			print "not seekable, return to play"
@@ -2472,7 +2472,7 @@ class InfoBarPiP:
 				{
 					"activatePiP": (self.showPiP, _("Activate PiP")),
 				})
-			if (self.allowPiP):
+			if self.allowPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 				self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
@@ -2834,7 +2834,7 @@ class InfoBarSubserviceSelection:
 	def __init__(self):
 		self["SubserviceSelectionAction"] = HelpableActionMap(self, "InfobarSubserviceSelectionActions",
 			{
-				"GreenPressed": (self.GreenPressed),
+				"GreenPressed": self.GreenPressed,
 			})
 
 		self["SubserviceQuickzapAction"] = HelpableActionMap(self, "InfobarSubserviceQuickzapActions",

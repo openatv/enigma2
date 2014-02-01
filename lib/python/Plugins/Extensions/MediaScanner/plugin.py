@@ -53,7 +53,7 @@ def menuHook(menuid):
 	if menuid != "mainmenu":
 		return [ ]
 	from Tools.BoundFunction import boundFunction
-	return [(("%s (files)") % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug_%s" % r.mountpoint, None) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
+	return [("%s (files)" % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug_%s" % r.mountpoint, None) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
 
 global_session = None
 

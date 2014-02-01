@@ -31,7 +31,7 @@ class PluginRunner(Screen):
 			self.session.openWithCallback(
 				self.finishedExecution,
 				MessageBox,
-				_("Error executing plugin") % (param)
+				_("Error executing plugin") % param
 			)
 		else:
 			self.close()

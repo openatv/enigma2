@@ -544,7 +544,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			if video_attr_high != 0:
 				status = True
 			video_attr_low = ord(ifofile.read(1))
-			print "[DVD] %s: video_attr_high = %x" % ( name, video_attr_high ), "video_attr_low = %x" % ( video_attr_low )
+			print "[DVD] %s: video_attr_high = %x" % ( name, video_attr_high ), "video_attr_low = %x" % video_attr_low
 			isNTSC = (video_attr_high & 0x10 == 0)
 			isLowResolution = (video_attr_low & 0x18 == 0x18)
 		except:
@@ -554,7 +554,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		finally:
 			if ifofile is not None:
 				ifofile.close()
-		return ( status, isNTSC, isLowResolution )
+		return status, isNTSC, isLowResolution
 
 	def exitCB(self, answer):
 		if answer is not None:

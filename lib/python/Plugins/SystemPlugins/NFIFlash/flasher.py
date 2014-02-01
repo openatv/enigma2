@@ -54,7 +54,7 @@ class md5verify(Task):
 
 class writeNAND(Task):
 	def __init__(self, job, param, box):
-		Task.__init__(self,job, ("Writing image file to NAND Flash"))
+		Task.__init__(self,job, "Writing image file to NAND Flash")
 		self.setTool(eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/NFIFlash/writenfi-mipsel-2.6.18-r1"))
 		if box == "dm7025":
 			self.end = 256
@@ -228,6 +228,6 @@ class NFIFlash(Screen):
 
 	def reboot(self, ret=None):
 		if self.job.status == self.job.FINISHED:
-			self["status"].text = ("rebooting...")
+			self["status"].text = "rebooting..."
 			from os import system
 			system(eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/NFIFlash/kill_e2_reboot.sh"))

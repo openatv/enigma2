@@ -190,7 +190,7 @@ class TitleList(Screen, HelpableScreen):
 				self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 				{
 					"red": (self.close, _("Close title selection")),
-					"green": (self.insertWithoutEdit, ("insert without cutlist editor")),
+					"green": (self.insertWithoutEdit, "insert without cutlist editor"),
 					"yellow": (self.movieSelected, _("Add a new title"))
 				})
 			def updateTags(self):

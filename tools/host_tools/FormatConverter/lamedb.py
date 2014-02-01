@@ -70,7 +70,7 @@ class lamedb(datasource):
 					if len(transponder) > 7:
 						tmp_transponder["system"] = transponder[7]
 						tmp_transponder["modulation"] = transponder[8]
-				if (tsid != "1" or onid != "1"): 
+				if tsid != "1" or onid != "1":
 					tmp_transponder["tsid"] = transponder[0]
 					tmp_transponder["onid"] = transponder[0]
 				self.addTransponder(sat, tmp_transponder)

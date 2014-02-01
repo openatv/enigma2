@@ -99,7 +99,7 @@ class inputDevices:
 	#}; -> size = 16
 
 	def setDefaults(self, device):
-		print "[iInputDevices] setDefaults for device %s" % (device)
+		print "[iInputDevices] setDefaults for device %s" % device
 		self.setDeviceAttribute(device, 'configuredName', None)
 		event_repeat = struct.pack('iihhi', 0, 0, 0x14, 0x01, 100)
 		event_delay = struct.pack('iihhi', 0, 0, 0x14, 0x00, 700)
@@ -152,9 +152,9 @@ class InitInputDevices:
 				devname = iInputDevices.getDeviceAttribute(self.currentDevice, 'name')
 				if devname != configElement.value:
 					cmd = "config.inputDevices." + self.currentDevice + ".enabled.value = False"
-					exec (cmd)
+					exec cmd
 					cmd = "config.inputDevices." + self.currentDevice + ".enabled.save()"
-					exec (cmd)
+					exec cmd
 		elif iInputDevices.currentDevice != "":
 			iInputDevices.setName(iInputDevices.currentDevice, configElement.value)
 
@@ -172,23 +172,23 @@ class InitInputDevices:
 
 	def setupConfigEntries(self,device):
 		cmd = "config.inputDevices." + device + " = ConfigSubsection()"
-		exec (cmd)
+		exec cmd
 		cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = False)"
-		exec (cmd)
+		exec cmd
 		cmd = "config.inputDevices." + device + ".enabled.addNotifier(self.inputDevicesEnabledChanged,config.inputDevices." + device + ".enabled)"
-		exec (cmd)
+		exec cmd
 		cmd = "config.inputDevices." + device + '.name = ConfigText(default="")'
-		exec (cmd)
+		exec cmd
 		cmd = "config.inputDevices." + device + ".name.addNotifier(self.inputDevicesNameChanged,config.inputDevices." + device + ".name)"
-		exec (cmd)
+		exec cmd
 		cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=100, increment = 10, limits=(0, 500))"
-		exec (cmd)
+		exec cmd
 		cmd = "config.inputDevices." + device + ".repeat.addNotifier(self.inputDevicesRepeatChanged,config.inputDevices." + device + ".repeat)"
-		exec (cmd)
+		exec cmd
 		cmd = "config.inputDevices." + device + ".delay = ConfigSlider(default=700, increment = 100, limits=(0, 5000))"
-		exec (cmd)
+		exec cmd
 		cmd = "config.inputDevices." + device + ".delay.addNotifier(self.inputDevicesDelayChanged,config.inputDevices." + device + ".delay)"
-		exec (cmd)
+		exec cmd
 
 
 iInputDevices = inputDevices()
@@ -219,7 +219,7 @@ class RcTypeControl():
 
 	def writeRcType(self, rctype):
 		fd = open('/proc/stb/ir/rc/type', 'w')
-		fd.write('%d' % (rctype))
+		fd.write('%d' % rctype)
 		fd.close()
 
 iRcTypeControl = RcTypeControl()

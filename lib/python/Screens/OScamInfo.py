@@ -38,7 +38,6 @@ class OscamInfo:
 	SRVNAME = 4
 	ECMTIME = 5
 	IP_PORT = 6
-	ECMTIME = 7
 	HEAD = { NAME: _("Label"), PROT: _("Protocol"),
 		CAID_SRVID: "CAID:SrvID", SRVNAME: _("Serv.Name"),
 		ECMTIME: _("ECM-Time"), IP_PORT: _("IP-Address") }
@@ -90,7 +89,7 @@ class OscamInfo:
 			if err != "":
 				return err
 			else:
-				return (user, pwd, port)
+				return user, pwd, port
 		else:
 			return _("file oscam.conf could not be found")
 
@@ -104,7 +103,7 @@ class OscamInfo:
 				elif "httppwd" in udata:
 					self.password = ""
 				else:
-					return (False, udata)
+					return False, udata
 			else:
 				self.port = udata[2]
 				self.username = udata[0]
@@ -139,9 +138,9 @@ class OscamInfo:
 				err = str(e.code)
 		if err is not False:
 			print "[openWebIF] Fehler: %s" % err
-			return (False, err)
+			return False, err
 		else:
-			return (True, data)
+			return True, data
 
 	def readXML(self, typ):
 		if typ == "l":

@@ -7,7 +7,7 @@ class ConditionalWidget(GUIComponent):
 
 		self.setConnect(None)
 
-		if (withTimer):
+		if withTimer:
 			self.conditionCheckTimer = eTimer()
 			self.conditionCheckTimer.callback.append(self.update)
 			self.conditionCheckTimer.start(1000)
@@ -25,7 +25,7 @@ class ConditionalWidget(GUIComponent):
 			self.visible = 0
 
 	def update(self):
-		if (self.conditionalFunction is not None):
+		if self.conditionalFunction is not None:
 			try:
 				self.activateCondition(self.conditionalFunction())
 			except:
@@ -63,7 +63,7 @@ class BlinkingWidgetConditional(BlinkingWidget, ConditionalWidget):
 		ConditionalWidget.__init__(self)
 
 	def activateCondition(self, condition):
-		if (condition):
+		if condition:
 			if not self.blinking: # we are already blinking
 				self.startBlinking()
 		else:

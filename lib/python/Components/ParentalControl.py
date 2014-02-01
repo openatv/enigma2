@@ -143,20 +143,20 @@ class ParentalControl:
 		#New method used in ParentalControlList: This method does not only return
 		#if a service is protected or not, it also returns, why (whitelist or blacklist, service or bouquet)
 		sImage = ""
-		if (config.ParentalControl.type.getValue() == LIST_WHITELIST):
+		if config.ParentalControl.type.getValue() == LIST_WHITELIST:
 			if self.whitelist.has_key(service):
 				if TYPE_SERVICE in self.whitelist[service]:
 					sImage = IMG_WHITESERVICE
 				else:
 					sImage = IMG_WHITEBOUQUET
-		elif (config.ParentalControl.type.getValue() == LIST_BLACKLIST):
+		elif config.ParentalControl.type.getValue() == LIST_BLACKLIST:
 			if self.blacklist.has_key(service):
 				if TYPE_SERVICE in self.blacklist[service]:
 					sImage = IMG_BLACKSERVICE
 				else:
 					sImage = IMG_BLACKBOUQUET
 		bLocked = self.getProtectionLevel(service) != -1
-		return (bLocked,sImage)
+		return bLocked,sImage
 
 	def getConfigValues(self):
 		#Read all values from configuration

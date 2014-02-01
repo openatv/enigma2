@@ -79,7 +79,7 @@ class SecConfigure:
 				# noinspection PyProtectedMember
 				sec.setVoltageMode(switchParam._14V)
 				sec.setToneMode(switchParam.OFF)
-		elif (diseqcmode == 3): # diseqc 1.2
+		elif diseqcmode == 3: # diseqc 1.2
 			if self.satposdepends.has_key(slotid):
 				for slot in self.satposdepends[slotid]:
 					tunermask |= (1 << slot)
@@ -123,7 +123,7 @@ class SecConfigure:
 
 	def getRoot(self, slotid, connto):
 		visited = []
-		while (self.NimManager.getNimConfig(connto).configMode.getValue() in ("satposdepends", "equal", "loopthrough")):
+		while self.NimManager.getNimConfig(connto).configMode.getValue() in ("satposdepends", "equal", "loopthrough"):
 			connto = int(self.NimManager.getNimConfig(connto).connectedTo.getValue())
 			if connto in visited: # prevent endless loop
 				return slotid
@@ -556,7 +556,7 @@ class NIM(object):
 				"DVB-S2": ("DVB-S", "DVB-S2"),
 				"DVB-C2": ("DVB-C", "DVB-C2"),
 				"DVB-T2": ("DVB-T", "DVB-T2"),
-				"ATSC": ("ATSC"),
+				"ATSC": "ATSC",
 			}
 		return connectable[self.getType()]
 
@@ -595,7 +595,7 @@ class NIM(object):
 			f.close()
 
 	def isMultiType(self):
-		return (len(self.multi_type) > 0)
+		return len(self.multi_type) > 0
 
 	def isEmpty(self):
 		return self.__is_empty
@@ -939,7 +939,7 @@ class NimManager:
 	# returns True if something is configured to be connected to this nim
 	# if slotid == -1, returns if something is connected to ANY nim
 	def somethingConnected(self, slotid = -1):
-		if (slotid == -1):
+		if slotid == -1:
 			connected = False
 			for id in range(self.getSlotCount()):
 				if self.somethingConnected(id):
@@ -1394,7 +1394,7 @@ def InitNimManager(nimmgr):
 				tmp.usals = ConfigYesNo(default=True)
 				tmp.rotorposition = ConfigInteger(default=1, limits=(1, 255))
 				lnbnum = 33+x-3601
-				lnb = ConfigSelection([("0", "not available"), (str(lnbnum), "LNB %d"%(lnbnum))], "0")
+				lnb = ConfigSelection([("0", "not available"), (str(lnbnum), "LNB %d"% lnbnum)], "0")
 				lnb.slot_id = slot_id
 				lnb.addNotifier(configLNBChanged, initial_call = False)
 				tmp.lnb = lnb
@@ -1404,7 +1404,7 @@ def InitNimManager(nimmgr):
 		fe_id = configElement.fe_id
 		slot_id = configElement.slot_id
 		if path.exists("/proc/stb/frontend/%d/tone_amplitude" % fe_id):
-			f = open("/proc/stb/frontend/%d/tone_amplitude" %(fe_id), "w")
+			f = open("/proc/stb/frontend/%d/tone_amplitude" % fe_id, "w")
 			f.write(configElement.value)
 			f.close()
 
@@ -1542,7 +1542,7 @@ def InitNimManager(nimmgr):
 		fe_id = configElement.fe_id
 		eDVBResourceManager.getInstance().setFrontendType(nimmgr.nim_slots[fe_id].frontend_id, nimmgr.nim_slots[fe_id].getType())
 		if path.exists("/proc/stb/frontend/%d/mode" % fe_id):
-			cur_type = int(open("/proc/stb/frontend/%d/mode" % (fe_id), "r").read())
+			cur_type = int(open("/proc/stb/frontend/%d/mode" % fe_id, "r").read())
 			if cur_type != int(configElement.value):
 				print "tunerTypeChanged feid %d from %d to mode %d" % (fe_id, cur_type, int(configElement.value))
 
@@ -1556,7 +1556,7 @@ def InitNimManager(nimmgr):
 
 				frontend = eDVBResourceManager.getInstance().allocateRawChannel(fe_id).getFrontend()
 				frontend.closeFrontend()
-				f = open("/proc/stb/frontend/%d/mode" % (fe_id), "w")
+				f = open("/proc/stb/frontend/%d/mode" % fe_id, "w")
 				f.write(configElement.value)
 				f.close()
 				frontend.reopenFrontend()

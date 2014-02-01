@@ -327,28 +327,28 @@ class EPGList(HTMLComponent, GUIComponent):
 	def getCurrent(self):
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			if self.cur_service is None:
-				return (None, None)
+				return None, None
 			old_service = self.cur_service  #(service, service_name, events, picon)
 			events = self.cur_service[2]
 			refstr = self.cur_service[0]
 			if self.cur_event is None or not events or self.cur_event > len(events):
-				return (None, ServiceReference(refstr))
+				return None, ServiceReference(refstr)
 			event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
 			eventid = event[0]
 			service = ServiceReference(refstr)
 			event = self.getEventFromId(service, eventid) # get full event info
-			return (event, service)
+			return event, service
 		else:
 			idx = 0
 			if self.type == EPG_TYPE_MULTI:
 				idx += 1
 			tmp = self.l.getCurrentSelection()
 			if tmp is None:
-				return (None, None)
+				return None, None
 			eventid = tmp[idx+1]
 			service = ServiceReference(tmp[idx])
 			event = self.getEventFromId(service, eventid)
-			return ( event, service )
+			return event, service
 
 	def connectSelectionChanged(func):
 		if not self.onSelChanged.count(func):
@@ -1051,7 +1051,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		temp = int(self.instance.position().y())+int(self.listHeight)
 		if int(sely) >= temp:
 			sely = int(sely) - int(self.listHeight)
-		return (int(selx), int(sely))
+		return int(selx), int(sely)
 
 	def selEntry(self, dir, visible = True):
 		cur_service = self.cur_service    #(service, service_name, events, picon)

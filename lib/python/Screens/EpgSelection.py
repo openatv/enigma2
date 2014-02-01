@@ -736,7 +736,8 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.CurrBouquet and self.CurrService and (self.CurrBouquet != self.StartBouquet or self.CurrService != self.StartRef):
 			self.zapToNumber(self.StartRef, self.StartBouquet)
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
-			if self.zapFunc and ((self.type == EPG_TYPE_GRAPH and config.epgselection.graph_preview_mode.getValue()) or (self.type == EPG_TYPE_MULTI and config.epgselection.multi_preview_mode.getValue()) or ((self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH) and (config.epgselection.infobar_preview_mode.getValue() == '1' or config.epgselection.infobar_preview_mode.getValue() == '2')) or (self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_preview_mode.getValue())) and self.StartRef and self.StartBouquet:
+			if self.zapFunc and ((self.type == EPG_TYPE_GRAPH and config.epgselection.graph_preview_mode.getValue()) or (self.type == EPG_TYPE_MULTI and config.epgselection.multi_preview_mode.getValue()) or (
+						self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH and config.epgselection.infobar_preview_mode.getValue() == '1' or config.epgselection.infobar_preview_mode.getValue() == '2') or (self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_preview_mode.getValue())) and self.StartRef and self.StartBouquet:
 				if '0:0:0:0:0:0:0:0:0' not in self.StartRef.toString():
 					self.zapFunc(None, zapback = True)
 			elif '0:0:0:0:0:0:0:0:0' in self.StartRef.toString():
@@ -1128,9 +1129,9 @@ class EPGSelection(Screen, HelpableScreen):
 				self.zap()
 
 	def Info(self):
-		if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.getValue() == 'Channel Info'):
+		if self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.getValue() == 'Channel Info':
 			self.infoKeyPressed()
-		elif (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.getValue() == 'Single EPG'):
+		elif self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.getValue() == 'Single EPG':
 			self.OpenSingleEPG()
 		else:
 			self.infoKeyPressed()
@@ -1469,7 +1470,7 @@ class EPGSelection(Screen, HelpableScreen):
 							if config.usage.alternative_number_mode.getValue():
 								break
 						bouquet = bouquetlist.getNext()
-		return (service, bouquet)
+		return service, bouquet
 
 	def zapToNumber(self, service, bouquet):
 		self["number"].hide()

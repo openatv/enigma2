@@ -259,7 +259,7 @@ class Task(object):
 	progress = property(getProgress, setProgress)
 
 	def __str__(self):
-		return "Components.Task.Task name=%s" % (self.name)
+		return "Components.Task.Task name=%s" % self.name
 
 class LoggingTask(Task):
 	def __init__(self, job, name):
@@ -368,7 +368,7 @@ class JobManager:
 			Notifications.AddNotificationWithCallback(self.errorCB, MessageBox, _("Error: %s\nRetry?") % (problems[0].getErrorMessage(task)))
 			return True
 		else:
-			Notifications.AddNotification(MessageBox, job.name + "\n" + _("Error") + (': %s') % (problems[0].getErrorMessage(task)), type = MessageBox.TYPE_ERROR )
+			Notifications.AddNotification(MessageBox, job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task)), type = MessageBox.TYPE_ERROR )
 			return False
 
 	def jobDone(self, job, task, problems):
@@ -496,7 +496,7 @@ class ToolExistsPrecondition(Condition):
 		return False
 
 	def getErrorMessage(self, task):
-		return _("A required tool (%s) was not found.") % (self.realpath)
+		return _("A required tool (%s) was not found.") % self.realpath
 
 class AbortedPostcondition(Condition):
 	def __init__(self):

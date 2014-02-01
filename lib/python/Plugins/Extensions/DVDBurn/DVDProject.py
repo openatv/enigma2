@@ -16,14 +16,14 @@ class ConfigFilename(ConfigText):
 
 	def getMulti(self, selected):
 		if self.text == "":
-			return ("mtext"[1-selected:], "", 0)
+			return "mtext"[1-selected:], "", 0
 		cut_len = min(len(self.text),40)
 		filename = (self.text.rstrip("/").rsplit("/",1))[1].encode("utf-8")[:cut_len] + " "
 		if self.allmarked:
 			mark = range(0, len(filename))
 		else:
 			mark = [filename]
-		return ("mtext"[1-selected:], filename, mark)
+		return "mtext"[1-selected:], filename, mark
 
 class DVDProject:
 	MAX_SL = 4480
@@ -37,7 +37,7 @@ class DVDProject:
 		self.settings.titlesetmode = ConfigSelection(choices = [("single", _("Simple titleset (compatibility for legacy players)")), ("multi", _("Complex (allows mixing audio tracks and aspects)"))], default="multi")
 		self.settings.output = ConfigSelection(choices = [("iso", _("Create DVD-ISO")), ("dvd", _("Burn DVD"))])
 		self.settings.isopath = ConfigText(fixed_size = False, visible_width = 40)
-		self.settings.dataformat = ConfigSelection(choices = [("iso9660_1", ("ISO9660 Level 1")), ("iso9660_4", ("ISO9660 version 2")), ("udf", ("UDF"))])
+		self.settings.dataformat = ConfigSelection(choices = [("iso9660_1", "ISO9660 Level 1"), ("iso9660_4", "ISO9660 version 2"), ("udf", "UDF")])
 		self.settings.menutemplate = ConfigFilename()
 		self.settings.vmgm = ConfigFilename()
 		self.filekeys = ["vmgm", "isopath", "menutemplate"]
@@ -158,13 +158,13 @@ class DVDProject:
 				try:
 					print "config[%s].setValue(%s)" % (key, val)
 					config.dict()[key].setValue(val)
-				except (KeyError):
-					self.error = "unknown attribute '%s'" % (key)
+				except KeyError:
+					self.error = "unknown attribute '%s'" % key
 					print "KeyError", self.error
 					raise AttributeError
 				i += 1
 		except AttributeError:
-			self.error += (" XML attribute error '%s'") % node.toxml()
+			self.error += " XML attribute error '%s'" % node.toxml()
 			return False
 
 	def xmlGetTitleNodeRecursive(self, node, title_idx = -1):

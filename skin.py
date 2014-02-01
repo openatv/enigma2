@@ -210,7 +210,7 @@ def parseColor(s):
 		try:
 			return colorNames[s]
 		except:
-			raise SkinError("color '%s' must be #aarrggbb or valid named color" % (s))
+			raise SkinError("color '%s' must be #aarrggbb or valid named color" % s)
 	return gRGB(int(s[1:], 0x10))
 
 def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, ignore=(), filenames=frozenset(("pixmap", "pointer", "seek_pointer", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarbackgroundPixmap"))):
@@ -258,7 +258,7 @@ def loadPixmap(path, desktop):
 		path = path[:option]
 	ptr = LoadPixmap(morphRcImagePath(path), desktop)
 	if ptr is None:
-		raise SkinError("pixmap file %s not found!" % (path))
+		raise SkinError("pixmap file %s not found!" % path)
 	return ptr
 
 class AttributeParser:
@@ -337,7 +337,7 @@ class AttributeParser:
 					"orRightToLeft": (self.guiObject.orHorizontal, True),
 				}[value])
 		except KeyError:
-			print "oprientation must be either orVertical or orHorizontal!, not %s. Please contact the skin's author!" % (value)
+			print "oprientation must be either orVertical or orHorizontal!, not %s. Please contact the skin's author!" % value
 	def valign(self, value):
 		try:
 			self.guiObject.setVAlign(
@@ -346,7 +346,7 @@ class AttributeParser:
 					"bottom": self.guiObject.alignBottom
 				}[value])
 		except KeyError:
-			print "valign must be either top, center or bottom!, not %s. Please contact the skin's author!" % (value)
+			print "valign must be either top, center or bottom!, not %s. Please contact the skin's author!" % value
 	def halign(self, value):
 		try:
 			self.guiObject.setHAlign(
@@ -356,7 +356,7 @@ class AttributeParser:
 					"block": self.guiObject.alignBlock
 				}[value])
 		except KeyError:
-			print "halign must be either left, center, right or block!, not %s. Please contact the skin's author!" % (value)
+			print "halign must be either left, center, right or block!, not %s. Please contact the skin's author!" % value
 	def textOffset(self, value):
 		x, y = value.split(',')
 		self.guiObject.setTextOffset(ePoint(int(x) * self.scale[0][0] / self.scale[0][1], int(y) * self.scale[1][0] / self.scale[1][1]))
@@ -591,7 +591,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			try:
 				style.setColor(eWindowStyleSkinned.__dict__["col" + colorType], color)
 			except:
-				raise SkinError("Unknown color %s" % (colorType))
+				raise SkinError("Unknown color %s" % colorType)
 				#pass
 			#print "  color:", type, color
 		x = eWindowStyleManager.getInstance()
@@ -684,7 +684,7 @@ class additionalWidget:
 # that size is a string and try to parse it. This class makes that work.
 class SizeTuple(tuple):
 	def split(self, *args):
-		return (str(self[0]), str(self[1]))
+		return str(self[0]), str(self[1])
 	def strip(self, *args):
 		return '%s,%s' % self
 	def __str__(self):
@@ -736,7 +736,7 @@ class SkinContext:
 				size = (w, h)
 				pos = pos.split(',')
 				pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font), self.y + parseCoordinate(pos[1], self.h, size[1], font))
-		return (SizeTuple(pos), SizeTuple(size))
+		return SizeTuple(pos), SizeTuple(size)
 
 class SkinContextStack(SkinContext):
 	# A context that stacks things instead of aligning them
@@ -764,7 +764,7 @@ class SkinContextStack(SkinContext):
 				size = (w, h)
 				pos = pos.split(',')
 				pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font), self.y + parseCoordinate(pos[1], self.h, size[1], font))
-		return (SizeTuple(pos), SizeTuple(size))
+		return SizeTuple(pos), SizeTuple(size)
 
 def readSkin(screen, skin, names, desktop):
 	if not isinstance(names, list):
@@ -789,7 +789,7 @@ def readSkin(screen, skin, names, desktop):
 	if myscreen is None and getattr(screen, "skin", None):
 		skin = screen.skin
 		print "[SKIN] Parsing embedded skin", name
-		if (isinstance(skin, tuple)):
+		if isinstance(skin, tuple):
 			for s in skin:
 				candidate = xml.etree.cElementTree.fromstring(s)
 				if candidate.tag == 'screen':
@@ -868,7 +868,7 @@ def readSkin(screen, skin, names, desktop):
 				if isinstance(source, ObsoleteSource):
 					# however, if we found an "obsolete source", issue warning, and resolve the real source.
 					print "WARNING: SKIN '%s' USES OBSOLETE SOURCE '%s', USE '%s' INSTEAD!" % (name, wsource, source.new_source)
-					print "OBSOLETE SOURCE WILL BE REMOVED %s, PLEASE UPDATE!" % (source.removal_date)
+					print "OBSOLETE SOURCE WILL BE REMOVED %s, PLEASE UPDATE!" % source.removal_date
 					if source.description:
 						print source.description
 					wsource = source.new_source
@@ -881,7 +881,7 @@ def readSkin(screen, skin, names, desktop):
 
 			wrender = get_attr('render')
 			if not wrender:
-				raise SkinError("you must define a renderer with render= for source '%s'" % (wsource))
+				raise SkinError("you must define a renderer with render= for source '%s'" % wsource)
 			for converter in widget.findall("convert"):
 				ctype = converter.get('type')
 				assert ctype, "'convert'-tag needs a 'type'-attribute"

@@ -201,7 +201,7 @@ def getConfigNameAndContent(fileName):
 	else:
 		name = fileName.replace("/var/etc/", "")
 
-	return (name, content)
+	return name, content
 
 #############################################################
 
@@ -230,7 +230,7 @@ class CCcamShareViewList(MenuList):
 		self.l.setFont(0, gFont("Regular", 18))
 
 def CCcamListEntry(name, idx):
-	res = [(name)]
+	res = [name]
 	if idx == 10:
 		idx = "red"
 	elif idx == 11:
@@ -250,7 +250,7 @@ def CCcamListEntry(name, idx):
 	return res
 
 def CCcamServerListEntry(name, color):
-	res = [(name)]
+	res = [name]
 	png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % color
 	if fileExists(png):
 		res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 0), size=(35, 25), png=loadPNG(png)))
@@ -275,7 +275,7 @@ def CCcamShareViewListEntry(caidprovider, providername, numberofcards, numberofr
 	return res
 
 def CCcamConfigListEntry(file):
-	res = [(file)]
+	res = [file]
 
 	try:
 		f = open(CFG, "r")
@@ -297,7 +297,7 @@ def CCcamConfigListEntry(file):
 	return res
 
 def CCcamMenuConfigListEntry(name, blacklisted):
-	res = [(name)]
+	res = [name]
 
 	if blacklisted:
 		png = lock_off
@@ -414,7 +414,7 @@ class CCcamInfoMain(Screen):
 			self.showInfo(_("Using old profile: ") + self.url, _("Profile"))
 
 	def keyNumberGlobal(self, idx):
-		if (self.working) == False and (idx < len(self.menu_list)):
+		if self.working == False and (idx < len(self.menu_list)):
 			self.working = True
 			sel = self.menu_list[idx]
 

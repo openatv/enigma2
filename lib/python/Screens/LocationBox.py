@@ -213,7 +213,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				self.session.openWithCallback(
 					boundFunction(self.removeBookmark, name),
 					MessageBox,
-					_("Do you really want to remove your bookmark of %s?") % (name),
+					_("Do you really want to remove your bookmark of %s?") % name,
 				)
 
 	def removeBookmark(self, name, ret):
@@ -239,7 +239,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				if not createDir(path):
 					self.session.open(
 						MessageBox,
-						_("Creating directory %s failed.") % (path),
+						_("Creating directory %s failed.") % path,
 						type = MessageBox.TYPE_ERROR,
 						timeout = 5
 					)
@@ -247,7 +247,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			else:
 				self.session.open(
 					MessageBox,
-					_("The path %s already exists.") % (path),
+					_("The path %s already exists.") % path,
 					type = MessageBox.TYPE_ERROR,
 					timeout = 5
 				)
@@ -274,7 +274,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			if not removeDir(name):
 				self.session.open(
 					MessageBox,
-					_("Removing directory %s failed. (Maybe not empty.)") % (name),
+					_("Removing directory %s failed. (Maybe not empty.)") % name,
 					type = MessageBox.TYPE_ERROR,
 					timeout = 5
 				)

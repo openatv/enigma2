@@ -10,7 +10,7 @@ class Keyboard:
 
 	def readKeyboardMapFiles(self):
 		for keymapfile in os_listdir(eEnv.resolve('${datadir}/keymaps/')):
-			if (keymapfile.endswith(".info")):
+			if keymapfile.endswith(".info"):
 				f = open(eEnv.resolve('${datadir}/keymaps/') + keymapfile)
 				mapfile = None
 				mapname = None

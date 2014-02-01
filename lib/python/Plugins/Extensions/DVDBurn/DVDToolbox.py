@@ -117,11 +117,11 @@ class DVDToolbox(Screen):
 					print "[dvd+rw-mediainfo] free blocks capacity=%d, used=%d" % (capacity, used)
 			elif line.find("Disc status:") > -1:
 				if line.find("blank") > -1:
-					print "[dvd+rw-mediainfo] Disc status blank capacity=%d, used=0" % (capacity)
+					print "[dvd+rw-mediainfo] Disc status blank capacity=%d, used=0" % capacity
 					capacity = used
 					used = 0
 				elif line.find("complete") > -1 and formatted_capacity == 0:
-					print "[dvd+rw-mediainfo] Disc status complete capacity=0, used=%d" % (capacity)
+					print "[dvd+rw-mediainfo] Disc status complete capacity=0, used=%d" % capacity
 					used = read_capacity
 					capacity = 1
 				else:
@@ -143,7 +143,7 @@ class DVDToolbox(Screen):
 			self["space_label"].text = "%d / %d MB" % (used, capacity) + " (%.2f%% " % percent + _("of a SINGLE layer medium used.") + ")"
 			self["space_bar"].value = int(percent)
 		elif capacity == 1 and used > 0:
-			self["space_label"].text = "%d MB " % (used) + _("on READ ONLY medium.")
+			self["space_label"].text = "%d MB " % used + _("on READ ONLY medium.")
 			self["space_bar"].value = int(percent)
 		else:
 			self["space_label"].text = _("Medium is not a writeable DVD!")
@@ -187,7 +187,7 @@ class DVDformatTask(Task):
 	ERROR_ALREADYFORMATTED, ERROR_NOTWRITEABLE, ERROR_UNKNOWN = range(3)
 	def __init__(self, job, extra_args=None):
 		if not extra_args: extra_args = []
-		Task.__init__(self, job, ("RW medium format"))
+		Task.__init__(self, job, "RW medium format")
 		self.toolbox = job.toolbox
 		self.postconditions.append(DVDformatTaskPostcondition())
 		self.setTool("dvd+rw-format")

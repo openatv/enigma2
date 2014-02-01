@@ -321,7 +321,7 @@ class MovieContextMenu(Screen):
 				(_("Add bookmark"), csel.do_addbookmark),
 				(_("Create directory"), csel.do_createdir)]
 		if service:
-			if (service.flags & eServiceReference.mustDescent):
+			if service.flags & eServiceReference.mustDescent:
 				if isTrashFolder(service):
 					menu.append((_("Permanently remove all deleted items"), csel.purgeAll))
 				else:
@@ -395,7 +395,7 @@ class MovieSelectionSummary(Screen):
 				name = ".."
 			else:
 				name = item[1].getName(item[0])
-			if (item[0].flags & eServiceReference.mustDescent):
+			if item[0].flags & eServiceReference.mustDescent:
 				if len(name) > 12:
 					name = os.path.split(os.path.normpath(name))[1]
 				name = "> " + name
@@ -1283,7 +1283,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			else:
 				mbox=self.session.open(
 					MessageBox,
-					_("Directory %s does not exist.") % (res),
+					_("Directory %s does not exist.") % res,
 					type = MessageBox.TYPE_ERROR,
 					timeout = 5
 					)
@@ -1758,9 +1758,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
 			else:
 				if '.Trash' in cur_path:
-					are_you_sure = _("Do you really want to permamently remove '%s' from trash can ?") % (name)
+					are_you_sure = _("Do you really want to permamently remove '%s' from trash can ?") % name
 				else:
-					are_you_sure = _("Do you really want to delete %s ?") % (name)
+					are_you_sure = _("Do you really want to delete %s ?") % name
 				msg = ''
 			mbox=self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg + are_you_sure)
 			mbox.setTitle(self.getTitle())

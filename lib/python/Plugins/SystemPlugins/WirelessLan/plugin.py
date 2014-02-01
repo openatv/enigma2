@@ -282,7 +282,7 @@ class WlanScan(Screen):
 
 	def buildEntryComponent(self, essid, bssid, encrypted, iface, maxrate, signal):
 		encryption = encrypted and _("Yes") or _("No")
-		return((essid, bssid, _("Signal: ") + str(signal), _("Max. bitrate: ") + str(maxrate), _("Encrypted: ") + encryption, _("Interface: ") + str(iface), self.divpng))
+		return essid, bssid, _("Signal: ") + str(signal), _("Max. bitrate: ") + str(maxrate), _("Encrypted: ") + encryption, _("Interface: ") + str(iface), self.divpng
 
 	def updateAPList(self):
 		newList = []

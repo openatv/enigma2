@@ -167,7 +167,7 @@ class PowerTimerEditList(Screen):
 		timer = self['timerlist'].getCurrent()
 
 		if timer:
-			time = ("%s %s ... %s") % (FuzzyTime(timer.begin)[0], FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1])
+			time = "%s %s ... %s" % (FuzzyTime(timer.begin)[0], FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1])
 			duration = ("(%d " + _("mins") + ")") % ((timer.end - timer.begin) / 60)
 
 			if timer.state == RealTimerEntry.StateWaiting:

@@ -302,7 +302,7 @@ class AVSwitch:
 	def getFramebufferScale(self):
 		aspect = self.getOutputAspect()
 		fb_size = getDesktop(0).size()
-		return (aspect[0] * fb_size.height(), aspect[1] * fb_size.width())
+		return aspect[0] * fb_size.height(), aspect[1] * fb_size.width()
 
 	def getAspectRatioSetting(self):
 		valstr = config.av.aspectratio.getValue()
@@ -533,7 +533,7 @@ class VideomodeHotplug:
 		iAVSwitch.on_hotplug.remove(self.hotplug)
 
 	def hotplug(self, what):
-		print "hotplug detected on port '%s'" % (what)
+		print "hotplug detected on port '%s'" % what
 		port = config.av.videoport.getValue()
 		mode = config.av.videomode[port].getValue()
 		rate = config.av.videorate[mode].getValue()

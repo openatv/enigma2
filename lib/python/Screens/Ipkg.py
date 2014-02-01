@@ -113,7 +113,7 @@ class Ipkg(Screen):
 			self.session.openWithCallback(
 				self.modificationCallback,
 				MessageBox,
-				_("A configuration file (%s) was modified since Installation.\nDo you want to keep your version?") % (param)
+				_("A configuration file (%s) was modified since Installation.\nDo you want to keep your version?") % param
 			)
 
 	def modificationCallback(self, res):

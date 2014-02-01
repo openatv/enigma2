@@ -25,7 +25,7 @@ import os
 def parseEvent(ev):
 	begin = ev.getBeginTime()
 	end = begin + ev.getDuration()
-	return (begin, end)
+	return begin, end
 
 class AFTEREVENT:
 	def __init__(self):
@@ -308,9 +308,9 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		if self.state == self.StateEnded or self.state == self.StateFailed:
 			return self.end
 
-		if (self.timerType != TIMERTYPE.WAKEUP and self.timerType != TIMERTYPE.WAKEUPTOSTANDBY and not self.afterEvent):
+		if self.timerType != TIMERTYPE.WAKEUP and self.timerType != TIMERTYPE.WAKEUPTOSTANDBY and not self.afterEvent:
 			return -1
-		elif (self.timerType != TIMERTYPE.WAKEUP and self.timerType != TIMERTYPE.WAKEUPTOSTANDBY and self.afterEvent):
+		elif self.timerType != TIMERTYPE.WAKEUP and self.timerType != TIMERTYPE.WAKEUPTOSTANDBY and self.afterEvent:
 			return self.end
 		next_state = self.state + 1
 		return {self.StatePrepared: self.start_prepare,

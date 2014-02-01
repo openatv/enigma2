@@ -109,14 +109,14 @@ class ServicePositionGauge(PerServiceBase, GUIComponent):
 		service = self.navcore.getCurrentService()
 		seek = service and service.seek()
 		if seek is None:
-			return (0, 0)
+			return 0, 0
 
 		len = seek.getLength()
 		pos = seek.getPlayPosition()
 
 		if len[0] or pos[0]:
-			return (0, 0)
-		return (len[1], pos[1])
+			return 0, 0
+		return len[1], pos[1]
 
 	def poll(self):
 		data = self.get()

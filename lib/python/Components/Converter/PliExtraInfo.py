@@ -68,7 +68,7 @@ class PliExtraInfo(Poll, Converter, object):
 		self.feraw = self.fedata = self.updateFEdata = None
 
 	def getCryptoInfo(self, info):
-		if (info.getInfo(iServiceInformation.sIsCrypted) == 1):
+		if info.getInfo(iServiceInformation.sIsCrypted) == 1:
 			data = self.ecmdata.getEcmData()
 			self.current_source = data[0]
 			self.current_caid = data[1]
@@ -828,7 +828,7 @@ class PliExtraInfo(Poll, Converter, object):
 
 		for caid_entry in self.caid_data:
 			if caid_entry[3] == request_caid:
-				if(request_selected):
+				if request_selected:
 					if int(caid_entry[0], 16) <= int(current_caid, 16) <= int(caid_entry[1], 16):
 						return True
 				else: # request available

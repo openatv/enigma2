@@ -18,7 +18,7 @@ for source in sources:
 for source in datasources:
 	source.setDatasources(datasources)
 
-while(True):
+while True:
 	os.system("/usr/bin/clear")
 	list = []
 	for index in range(len(datasources)):
@@ -27,7 +27,7 @@ while(True):
 	if index is None:
 		break		
 	
-	while(True):
+	while True:
 		print datasources[index].getStatus()
 		list = []
 		for action in datasources[index].getCapabilities():

@@ -46,7 +46,7 @@ def parseEvent(ev, description = True):
 	eit = ev.getEventId()
 	begin -= config.recording.margin_before.getValue() * 60
 	end += config.recording.margin_after.getValue() * 60
-	return (begin, end, name, description, eit)
+	return begin, end, name, description, eit
 
 class AFTEREVENT:
 	def __init__(self):
@@ -366,7 +366,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						if config.usage.multibouquet.getValue():
 							bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
 						else:
-							bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types)
+							bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'% self.service_types
 						rootstr = ''
 						serviceHandler = eServiceCenter.getInstance()
 						rootbouquet = eServiceReference(bqrootstr)
@@ -496,7 +496,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if config.usage.multibouquet.getValue():
 					bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
 				else:
-					bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types)
+					bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'% self.service_types
 				rootstr = ''
 				serviceHandler = eServiceCenter.getInstance()
 				rootbouquet = eServiceReference(bqrootstr)
@@ -783,7 +783,7 @@ class RecordTimer(timer.Timer):
 			if timer.isStillRecording:
 				isStillRecording = True
 				break
-			elif (abs(timer.begin - now) <= 10):
+			elif abs(timer.begin - now) <= 10:
 				isStillRecording = True
 				break
 		return isStillRecording

@@ -31,7 +31,7 @@ class TimerSanityCheck:
 		if self.newtimer is not None and self.newtimer.service_ref.ref.valid():
 			self.simultimer = [ self.newtimer ]
 			for timer in self.timerlist:
-				if (timer == self.newtimer):
+				if timer == self.newtimer:
 					return True
 				else:
 					if timer.begin == self.newtimer.begin:
@@ -116,7 +116,7 @@ class TimerSanityCheck:
 			interval_end = max(self.nrep_eventlist)[0]
 			offset_0 = interval_begin - (interval_begin % 604800)
 			weeks = (interval_end - offset_0) / 604800
-			if ((interval_end - offset_0) % 604800):
+			if (interval_end - offset_0) % 604800:
 				weeks += 1
 			for cnt in range(int(weeks)):
 				for event in self.rep_eventlist:

@@ -23,6 +23,6 @@ class ProgressBar(VariableValue, HTMLComponent, GUIComponent, object):
 			self.instance.setRange(__start, __end)
 
 	def getRange(self):
-		return (self.__start, self.__end)
+		return self.__start, self.__end
 
 	range = property(getRange, setRange)

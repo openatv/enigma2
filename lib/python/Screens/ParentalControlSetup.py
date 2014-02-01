@@ -227,7 +227,7 @@ class ParentalControlEditor(Screen):
 
 	def readServiceList(self):
 		serviceHandler = eServiceCenter.getInstance()
-		refstr = '%s ORDER BY name' % (service_types_tv)
+		refstr = '%s ORDER BY name' % service_types_tv
 		self.root = eServiceReference(refstr)
 		self.servicesList = {}
 		list = serviceHandler.list(self.root)
@@ -353,7 +353,7 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		return _("Please enter the old PIN code")
 
 	def isProtected(self):
-		return (self.pin.getValue() != "aaaa")
+		return self.pin.getValue() != "aaaa"
 
 	def protectedWithPin(self):
 		return self.pin.getValue()

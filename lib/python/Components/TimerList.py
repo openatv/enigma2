@@ -27,7 +27,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			repeatedtext = []
 			flags = timer.repeated
 			for x in (0, 1, 2, 3, 4, 5, 6):
-				if (flags & 1 == 1):
+				if flags & 1 == 1:
 					repeatedtext.append(days[x])
 				flags >>= 1
 			repeatedtext = ", ".join(repeatedtext)

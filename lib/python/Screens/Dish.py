@@ -158,9 +158,9 @@ class Dish(Screen):
 	def getTurnTime(self, start, end, pol=0):
 		mrt = abs(start - end) if start and end else 0
 		if mrt > 0:
-			if (mrt > 1800):
+			if mrt > 1800:
 				mrt = 3600 - mrt
-			if (mrt % 10):
+			if mrt % 10:
 				mrt += 10
 			mrt = round((mrt * 1000 / self.getTurningSpeed(pol) ) / 10000) + 3
 		return mrt

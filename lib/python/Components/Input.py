@@ -76,7 +76,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 
 	def getSize(self):
 		s = self.instance.calculateSize()
-		return (s.width(), s.height())
+		return s.width(), s.height()
 
 	def markAll(self):
 		self.allmarked = True

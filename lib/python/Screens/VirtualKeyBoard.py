@@ -262,7 +262,7 @@ class VirtualKeyBoard(Screen):
 	def virtualKeyBoardEntryComponent(self, keys):
 		key_bg_width = self.key_bg and self.key_bg.size().width() or 45
 		key_images = self.shiftMode and self.keyImagesShift or self.keyImages
-		res = [(keys)]
+		res = [keys]
 		text = []
 		x = 0
 		for key in keys:

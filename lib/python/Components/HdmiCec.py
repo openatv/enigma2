@@ -218,7 +218,7 @@ class HdmiCec:
 				else:
 					self.volumeForwardingDestination = 0; # off: send volume keys to tv
 				if config.hdmicec.volume_forwarding.getValue():
-					print 'eHdmiCec: volume forwarding to device %02x enabled'%(self.volumeForwardingDestination)
+					print 'eHdmiCec: volume forwarding to device %02x enabled'% self.volumeForwardingDestination
 					self.volumeForwardingEnabled = True;
 			elif cmd == 0x8f: # request power status
 				if inStandby:

@@ -378,7 +378,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 					self.leavePlayerConfirmed([True,"loop"])
 				else:
 					self.leavePlayerConfirmed([True,"quit"])
-		elif answer in ("repeatcurrent"):
+		elif answer in "repeatcurrent":
 			if config.usage.next_movie_msg.value:
 				(item, length) = self.getPlaylistServiceInfo(self.cur_service)
 				self.displayPlayedName(self.cur_service, item, length)
@@ -513,13 +513,13 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		for i, item in enumerate(playlist):
 			if item == service:
 				if config.usage.on_movie_eof.value == "repeatcurrent":
-					return (i+1, len(playlist))
+					return i+1, len(playlist)
 				i += 1
 				if i < len(playlist):
-					return (playlist[i], i+1, len(playlist))
+					return playlist[i], i+1, len(playlist)
 				elif config.usage.on_movie_eof.getValue() == "loop":
-					return (playlist[0], 1, len(playlist))
-		return ( None, 0, 0 )
+					return playlist[0], 1, len(playlist)
+		return None, 0, 0
 
 	def displayPlayedName(self, ref, index, n):
 		from Tools import Notifications

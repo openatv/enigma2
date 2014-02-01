@@ -90,9 +90,9 @@ class TimerEntry(Screen, ConfigListScreen):
 			day.append(0)
 		if self.timer.repeated: # repeated
 			type = "repeated"
-			if (self.timer.repeated == 31): # Mon-Fri
+			if self.timer.repeated == 31: # Mon-Fri
 				repeated = "weekdays"
-			elif (self.timer.repeated == 127): # daily
+			elif self.timer.repeated == 127: # daily
 				repeated = "daily"
 			else:
 				flags = self.timer.repeated

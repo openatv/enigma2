@@ -33,7 +33,7 @@ class FastScan:
 		self.done = False
 
 	def execBegin(self):
-		self.text.setText(_('Scanning %s...') % (self.providerName))
+		self.text.setText(_('Scanning %s...') % self.providerName)
 		self.progressbar.setValue(0)
 		self.scan = eFastScan(self.scanPid, self.providerName, self.transponderParameters, self.keepNumbers, self.keepSettings)
 		self.scan.scanCompleted.get().append(self.scanCompleted)
@@ -258,7 +258,7 @@ def FastScanStart(menuid, **kwargs):
 		return []
 
 def Plugins(**kwargs):
-	if (nimmanager.hasNimType("DVB-S")):
+	if nimmanager.hasNimType("DVB-S"):
 		return PluginDescriptor(name=_("Fast Scan"), description="Scan Dutch/Belgian sat provider", where = PluginDescriptor.WHERE_MENU, fnc=FastScanStart)
 	else:
 		return []
