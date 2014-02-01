@@ -23,16 +23,9 @@ from re import escape as re_escape
 plugin_path = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/WirelessLan")
 
 
-list = []
-list.append("Unencrypted")
-list.append("WEP")
-list.append("WPA")
-list.append("WPA/WPA2")
-list.append("WPA2")
+list = ["Unencrypted", "WEP", "WPA", "WPA/WPA2", "WPA2"]
 
-weplist = []
-weplist.append("ASCII")
-weplist.append("HEX")
+weplist = ["ASCII", "HEX"]
 
 config.plugins.wlan = ConfigSubsection()
 config.plugins.wlan.essid = NoSave(ConfigText(default = "", fixed_size = False))

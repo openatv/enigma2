@@ -532,8 +532,7 @@ class InfoBarTimeshift:
 
 	def saveTimeshiftEventPopup(self):
 		filecount = 0
-		entrylist = []
-		entrylist.append((_("Current Event:")+" %s" % (self.pts_curevent_name), "savetimeshift"))
+		entrylist = [(_("Current Event:") + " %s" % (self.pts_curevent_name), "savetimeshift")]
 
 		filelist = os.listdir(config.usage.timeshift_path.getValue())
 

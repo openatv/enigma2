@@ -63,6 +63,9 @@ class UmountTask(Task):
 		self.weighting = 1
 
 class DownloaderPostcondition(Condition):
+	def __init__(self):
+		pass
+
 	def check(self, task):
 		return task.returncode == 0
 
@@ -133,6 +136,9 @@ class StickWizardJob(Job):
 		CopyTask(self)
 
 class PartitionTaskPostcondition(Condition):
+	def __init__(self):
+		pass
+
 	def check(self, task):
 		return task.returncode == 0
 
@@ -554,7 +560,7 @@ class NFIDownload(Screen):
 			self.keyRed()
 
 	def ackDestinationDevice(self, device_description=None):
-		if device_description == None:
+		if device_description is None:
 			dev = self.target_dir
 		else:
 			dev = device_description
@@ -683,7 +689,7 @@ class NFIDownload(Screen):
 			self.md5_passback = self.getFeed
 			self.md5_failback = self.askStartWizard
 			self.md5verify(self.stickimage_md5, self.target_dir)
-		elif usbpartition == []:
+		elif not usbpartition:
 			print "[NFIFlash] needs to create usb flasher stick first!"
 			self.askStartWizard()
 		else:

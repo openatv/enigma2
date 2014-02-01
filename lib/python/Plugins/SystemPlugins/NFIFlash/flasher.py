@@ -19,6 +19,9 @@ from boxbranding import getImageVersion
 from Components.About import about
 
 class md5Postcondition(Condition):
+	def __init__(self):
+		pass
+
 	def check(self, task):
 		print "md5Postcondition::check", task.returncode
 		return task.returncode == 0
@@ -182,7 +185,7 @@ class NFIFlash(Screen):
 				self.md5sum = ""
 
 	def queryCB(self, answer):
-		if answer == True:
+		if answer:
 			self.createJob()
 
 	def createJob(self):

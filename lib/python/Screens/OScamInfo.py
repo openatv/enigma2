@@ -28,6 +28,9 @@ else:
 	HDSKIN = False
 
 class OscamInfo:
+	def __init__(self):
+		pass
+
 	TYPE = 0
 	NAME = 1
 	PROT = 2
@@ -717,8 +720,7 @@ class oscInfo(Screen, OscamInfo):
 			if self.what != "l":
 				heading = ( self.HEAD[self.NAME], self.HEAD[self.PROT], self.HEAD[self.CAID_SRVID],
 						self.HEAD[self.SRVNAME], self.HEAD[self.ECMTIME], self.HEAD[self.IP_PORT], "")
-				outlist = [ ]
-				outlist.append( heading )
+				outlist = [heading]
 				for i in data:
 					outlist.append( i )
 				self.fieldsize = self.calcSizes(outlist)

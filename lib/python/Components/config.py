@@ -465,9 +465,9 @@ class ConfigDateTime(ConfigElement):
 
 	def handleKey(self, key):
 		if key == KEY_LEFT:
-			self.value = self.value - self.increment
+			self.value -= self.increment
 		elif key == KEY_RIGHT:
-			self.value = self.value + self.increment
+			self.value += self.increment
 		elif key == KEY_HOME or key == KEY_END:
 			self.value = self.default
 
@@ -1271,7 +1271,7 @@ class ConfigDirectory(ConfigText):
 			return ConfigText.getValue(self)
 
 	def setValue(self, val):
-		if val == None:
+		if val is None:
 			val = ""
 		ConfigText.setValue(self, val)
 
@@ -1338,7 +1338,8 @@ class ConfigSatlist(ConfigSelection):
 	orbital_position = property(getOrbitalPosition)
 
 class ConfigSet(ConfigElement):
-	def __init__(self, choices, default = []):
+	def __init__(self, choices, default=None):
+		if not default: default = []
 		ConfigElement.__init__(self)
 		if isinstance(choices, list):
 			choices.sort()
@@ -1422,7 +1423,8 @@ class ConfigSet(ConfigElement):
 	description = property(lambda self: descriptionList(self.choices.choices, choicesList.LIST_TYPE_LIST))
 
 class ConfigLocations(ConfigElement):
-	def __init__(self, default = [], visible_width = False):
+	def __init__(self, default=None, visible_width=False):
+		if not default: default = []
 		ConfigElement.__init__(self)
 		self.visible_width = visible_width
 		self.pos = -1
@@ -1488,7 +1490,7 @@ class ConfigLocations(ConfigElement):
 		for x in self.locations:
 			if x[1] == mp:
 				x[2] = True
-			elif x[1] == None and fileExists(x[0]):
+			elif x[1] is None and fileExists(x[0]):
 				x[1] = self.getMountpoint(x[0])
 				x[2] = True
 
@@ -1823,6 +1825,9 @@ config = Config()
 config.misc = ConfigSubsection()
 
 class ConfigFile:
+	def __init__(self):
+		pass
+
 	CONFIG_FILE = resolveFilename(SCOPE_CONFIG, "settings")
 
 	def load(self):

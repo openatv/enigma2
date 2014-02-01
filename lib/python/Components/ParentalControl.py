@@ -90,7 +90,7 @@ class ParentalControl:
 		service = ref.toCompareString()
 		if (config.ParentalControl.type.getValue() == LIST_WHITELIST and not self.whitelist.has_key(service)) or (config.ParentalControl.type.getValue() == LIST_BLACKLIST and self.blacklist.has_key(service)):
 			#Check if the session pin is cached
-			if self.sessionPinCached == True:
+			if self.sessionPinCached:
 				return True
 			self.callback = callback
 			#Someone started to implement different levels of protection. Seems they were never completed
@@ -203,9 +203,9 @@ class ParentalControl:
 		if result is not None and result:
 			#This is the new function of caching the service pin
 			#save last session and time of last entered pin...
-			if self.checkSessionPin == True:
+			if self.checkSessionPin:
 				self.sessionPinCached = True
-			if self.checkPinInterval == True:
+			if self.checkPinInterval:
 				self.sessionPinCached = True
 				self.sessionPinTimer.start(self.pinIntervalSeconds*1000,1)
 			self.callback(ref = service)

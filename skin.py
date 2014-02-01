@@ -677,7 +677,8 @@ def loadSkinData(desktop):
 	del dom_skins
 
 class additionalWidget:
-	pass
+	def __init__(self):
+		pass
 
 # Class that makes a tuple look like something else. Some plugins just assume
 # that size is a string and try to parse it. This class makes that work.

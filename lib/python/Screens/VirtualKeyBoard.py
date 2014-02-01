@@ -19,7 +19,8 @@ class VirtualKeyBoardList(MenuList):
 		self.l.setItemHeight(45)
 
 class VirtualKeyBoardEntryComponent:
-	pass
+	def __init__(self):
+		pass
 
 class VirtualKeyBoard(Screen):
 	def __init__(self, session, title="", **kwargs):
@@ -377,7 +378,7 @@ class VirtualKeyBoard(Screen):
 		self.smsChar = None
 		self.selectedKey += 12
 		if self.selectedKey > self.max_key:
-			self.selectedKey = self.selectedKey % 12
+			self.selectedKey %= 12
 		self.markSelectedKey()
 
 	def keyNumberGlobal(self, number):

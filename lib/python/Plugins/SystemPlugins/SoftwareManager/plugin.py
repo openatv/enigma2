@@ -64,7 +64,7 @@ def write_cache(cache_file, cache_data):
 		try:
 			mkdir( os_path.dirname(cache_file) )
 		except OSError:
-			    print os_path.dirname(cache_file), 'is a file'
+				print os_path.dirname(cache_file), 'is a file'
 	fd = open(cache_file, 'w')
 	dump(cache_data, fd, -1)
 	fd.close()
@@ -361,7 +361,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.skin_path = skin_path
-		if self.skin_path == None:
+		if self.skin_path is None:
 			self.skin_path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager")
 
 		self.onChangedEntry = [ ]
@@ -491,7 +491,7 @@ class SoftwareManagerInfo(Screen):
 		self.session = session
 		self.mode = mode
 		self.skin_path = skin_path
-		if self.skin_path == None:
+		if self.skin_path is None:
 			self.skin_path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager")
 
 		self["actions"] = ActionMap(["ShortcutActions", "WizardActions"],
@@ -565,7 +565,7 @@ class PluginManager(Screen, PackageInfoHandler):
 		Screen.setTitle(self, _("Extensions management"))
 		self.session = session
 		self.skin_path = plugin_path
-		if self.skin_path == None:
+		if self.skin_path is None:
 			self.skin_path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager")
 
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions", "InfobarEPGActions", "HelpActions" ],
@@ -743,7 +743,7 @@ class PluginManager(Screen, PackageInfoHandler):
 				if current[7] is not '':
 					idx = self["list"].getIndex()
 					detailsFile = self.list[idx][1]
-					if self.list[idx][7] == True:
+					if self.list[idx][7]:
 						for entry in self.selectedFiles:
 							if entry[0] == detailsFile:
 								self.selectedFiles.remove(entry)
@@ -847,13 +847,13 @@ class PluginManager(Screen, PackageInfoHandler):
 				packagename = x[3].strip()
 				selectState = self.getSelectionState(details)
 				if iSoftwareTools.installed_packetlist.has_key(packagename):
-					if selectState == True:
+					if selectState:
 						status = "remove"
 					else:
 						status = "installed"
 					self.list.append(self.buildEntryComponent(name, _(details), _(description), packagename, status, selected = selectState))
 				else:
-					if selectState == True:
+					if selectState:
 						status = "install"
 					else:
 						status = "installable"
@@ -1293,16 +1293,16 @@ class PluginDetails(Screen, PackageInfoHandler):
 		self.picload.setPara((self["screenshot"].instance.size().width(), self["screenshot"].instance.size().height(), sc[0], sc[1], False, 1, "#00000000"))
 		self.picload.startDecode(filename)
 
-		if self.statuspicinstance != None:
+		if self.statuspicinstance is not None:
 			self["statuspic"].instance.setPixmap(self.statuspicinstance.__deref__())
 			self["statuspic"].show()
-		if self.divpicinstance != None:
+		if self.divpicinstance is not None:
 			self["divpic"].instance.setPixmap(self.divpicinstance.__deref__())
 			self["divpic"].show()
 
 	def paintScreenshotPixmapCB(self, picInfo=None):
 		ptr = self.picload.getData()
-		if ptr != None:
+		if ptr is not None:
 			self["screenshot"].instance.setPixmap(ptr.__deref__())
 			self["screenshot"].show()
 		else:

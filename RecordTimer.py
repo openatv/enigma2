@@ -49,6 +49,9 @@ def parseEvent(ev, description = True):
 	return (begin, end, name, description, eit)
 
 class AFTEREVENT:
+	def __init__(self):
+		pass
+
 	NONE = 0
 	STANDBY = 1
 	DEEPSTANDBY = 2
@@ -87,7 +90,7 @@ wasRecTimerWakeup = False
 class RecordTimerEntry(timer.TimerEntry, object):
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = 'notset', record_ecm = 'notset', isAutoTimer = False, always_zap = False):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
-		if checkOldTimers == True:
+		if checkOldTimers:
 			if self.begin < time() - 1209600:
 				self.begin = int(time())
 
@@ -483,7 +486,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.StateEnded: self.end}[next_state]
 
 	def failureCB(self, answer):
-		if answer == True:
+		if answer:
 			self.log(13, "ok, zapped away")
 			#NavigationInstance.instance.stopUserServices()
 			from Screens.ChannelSelection import ChannelSelection
@@ -712,9 +715,7 @@ class RecordTimer(timer.Timer):
 				checkit = False # at moment it is enough when the message is displayed one time
 
 	def saveTimer(self):
-		list = []
-		list.append('<?xml version="1.0" ?>\n')
-		list.append('<timers>\n')
+		list = ['<?xml version="1.0" ?>\n', '<timers>\n']
 
 		for timer in self.timer_list + self.processed_timers:
 			if timer.dontSave:
@@ -801,7 +802,7 @@ class RecordTimer(timer.Timer):
 		faketime = time()+300
 
 		if config.timeshift.isRecording.getValue():
-			if nextrectime > 0 and nextrectime < faketime:
+			if 0 < nextrectime < faketime:
 				return nextrectime
 			else:
 				return faketime
@@ -819,7 +820,7 @@ class RecordTimer(timer.Timer):
 	def record(self, entry, ignoreTSC=False, dosave=True): # wird von loadTimer mit dosave=False aufgerufen
 		timersanitycheck = TimerSanityCheck(self.timer_list,entry)
 		if not timersanitycheck.check():
-			if ignoreTSC != True:
+			if not ignoreTSC:
 				print "timer conflict detected!"
 				return timersanitycheck.getSimulTimerList()
 			else:

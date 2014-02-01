@@ -64,7 +64,7 @@ class TimerEntry:
 					day.append(0)
 				else:
 					day.append(1)
-				flags = flags >> 1
+				flags >>= 1
 
 			# if day is NOT in the list of repeated days
 			# OR if the day IS in the list of the repeated days, check, if event is currently running... then if findRunningEvent is false, go to the next event

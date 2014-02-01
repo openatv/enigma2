@@ -33,8 +33,10 @@ defaultInhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin",
 
 class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	"""Simple Class similar to MessageBox / ChoiceBox but used to choose a folder/pathname combination"""
-	def __init__(self, session, text = "", filename = "", currDir = None, bookmarks = None, userMode = False, windowTitle = _("Select location"), minFree = None, autoAdd = False, editDir = False, inhibitDirs = [], inhibitMounts = []):
+	def __init__(self, session, text="", filename="", currDir=None, bookmarks=None, userMode=False, windowTitle=_("Select location"), minFree=None, autoAdd=False, editDir=False, inhibitDirs=None, inhibitMounts=None):
 		# Init parents
+		if not inhibitDirs: inhibitDirs = []
+		if not inhibitMounts: inhibitMounts = []
 		Screen.__init__(self, session)
 		NumericalTextInput.__init__(self, handleTimeout = False)
 		HelpableScreen.__init__(self)
@@ -92,7 +94,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 		# Custom Action Handler
 		class LocationBoxActionMap(HelpableActionMap):
-			def __init__(self, parent, context, actions = { }, prio=0):
+			def __init__(self, parent, context, actions=None, prio=0):
+				if not actions: actions = {}
 				HelpableActionMap.__init__(self, parent, context, actions, prio)
 				self.box = parent
 
@@ -221,7 +224,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			self["booklist"].setList(self.bookmarks)
 
 	def createDir(self):
-		if self["filelist"].current_directory != None:
+		if self["filelist"].current_directory is not None:
 			self.session.openWithCallback(
 				self.createDirCallback,
 				InputBox,

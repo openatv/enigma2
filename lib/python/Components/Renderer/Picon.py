@@ -121,7 +121,7 @@ class Picon(Renderer):
 
 	def updatePicon(self, picInfo=None):
 		ptr = self.PicLoad.getData()
-		if ptr != None:
+		if ptr is not None:
 			self.instance.setPixmap(ptr.__deref__())
 			self.instance.show()
 

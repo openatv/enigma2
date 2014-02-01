@@ -178,8 +178,7 @@ class MMIDialog(Screen):
 		self["title"].setText("")
 		self["subtitle"].setText("")
 		self["bottom"].setText("")
-		list = [ ]
-		list.append( (self.wait_text, ConfigNothing()) )
+		list = [(self.wait_text, ConfigNothing())]
 		self.updateList(list)
 
 	def showScreen(self):

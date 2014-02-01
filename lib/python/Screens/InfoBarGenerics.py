@@ -553,7 +553,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.pvrStateDialog.hide()
 
 	def hidePipOnExitCallback(self, answer):
-		if answer == True:
+		if answer:
 			self.showPiP()
 
 	def connectShowHideNotifier(self, fnc):
@@ -642,13 +642,13 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.EventViewIsShown = False
 
 	def lockShow(self):
-		self.__locked = self.__locked + 1
+		self.__locked += 1
 		if self.execing:
 			self.show()
 			self.hideTimer.stop()
 
 	def unlockShow(self):
-		self.__locked = self.__locked - 1
+		self.__locked -= 1
 		if self.__locked  <0:
 			self.__locked = 0
 		if self.execing:
@@ -681,7 +681,7 @@ class NumberZap(Screen):
 
 	def keyNumberGlobal(self, number):
 		self.Timer.start(5000, True)
-		self.field = self.field + str(number)
+		self.field += str(number)
 		self["number"].setText(self.field)
 		self["number_summary"].setText(self.field)
 
@@ -746,6 +746,7 @@ class InfoBarNumberZap:
 
 	def keyNumberGlobal(self, number):
 		if self.pvrStateDialog.has_key("PTSSeekPointer") and self.timeshiftEnabled() and self.isSeekable():
+			# noinspection PyProtectedMember
 			InfoBarTimeshiftState._mayShow(self)
 			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width()-4)/2, self.pvrStateDialog["PTSSeekPointer"].position[1])
 			if self.seekstate != self.SEEK_STATE_PLAY:
@@ -2129,6 +2130,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 
 	def _mayShow(self):
 		if self.shown and self.timeshiftEnabled() and self.isSeekable():
+			# noinspection PyCallByClass
 			InfoBarTimeshift.ptsSeekPointerSetCurrentPos(self)
 			if config.timeshift.showinfobar.getValue():
 				self["TimeshiftSeekPointerActions"].setEnabled(True)
@@ -2703,6 +2705,7 @@ class InfoBarInstantRecord:
 			# print 'test1'
 			if self.isSeekable() and self.pts_eventcount != self.pts_currplaying:
 				# print 'test2'
+				# noinspection PyCallByClass
 				InfoBarTimeshift.SaveTimeshift(self, timeshiftfile="pts_livebuffer_%s" % self.pts_currplaying)
 			else:
 				# print 'test3'
@@ -2711,10 +2714,12 @@ class InfoBarInstantRecord:
 				config.timeshift.isRecording.value = True
 		elif answer[1] == "savetimeshiftEvent":
 			# print 'test4'
+			# noinspection PyCallByClass
 			InfoBarTimeshift.saveTimeshiftEventPopup(self)
 
 		elif answer[1].startswith("pts_livebuffer") is True:
 			# print 'test2'
+			# noinspection PyCallByClass
 			InfoBarTimeshift.SaveTimeshift(self, timeshiftfile=answer[1])
 
 	def setEndtime(self, entry):

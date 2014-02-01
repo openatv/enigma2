@@ -310,12 +310,12 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			self.leavePlayerOnExitCallback(True)
 
 	def leavePlayerOnExitCallback(self, answer):
-		if answer == True:
+		if answer:
 			setResumePoint(self.session)
 			self.handleLeave("quit")
 
 	def hidePipOnExitCallback(self, answer):
-		if answer == True:
+		if answer:
 			self.showPiP()
 
 	def deleteConfirmed(self, answer):

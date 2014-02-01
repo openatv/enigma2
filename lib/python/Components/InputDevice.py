@@ -109,7 +109,7 @@ class inputDevices:
 		os_close(fd)
 
 	def setRepeat(self, device, value): #REP_PERIOD
-		if self.getDeviceAttribute(device, 'enabled') == True:
+		if self.getDeviceAttribute(device, 'enabled'):
 			print "[iInputDevices] setRepeat for device %s to %d ms" % (device,value)
 			event = struct.pack('iihhi', 0, 0, 0x14, 0x01, int(value))
 			fd = os_open("/dev/input/" + device, O_RDWR)
@@ -117,7 +117,7 @@ class inputDevices:
 			os_close(fd)
 
 	def setDelay(self, device, value): #REP_DELAY
-		if self.getDeviceAttribute(device, 'enabled') == True:
+		if self.getDeviceAttribute(device, 'enabled'):
 			print "[iInputDevices] setDelay for device %s to %d ms" % (device,value)
 			event = struct.pack('iihhi', 0, 0, 0x14, 0x00, int(value))
 			fd = os_open("/dev/input/" + device, O_RDWR)

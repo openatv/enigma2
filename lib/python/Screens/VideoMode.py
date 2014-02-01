@@ -216,7 +216,7 @@ class AutoVideoModeLabel(Screen):
 	def hide_me(self):
 		idx = config.av.autores_label_timeout.index
 		if idx:
-			idx = idx+4
+			idx += 4
 			self.hideTimer.start(idx*1000, True)
 
 class AutoVideoMode(Screen):
@@ -316,9 +316,9 @@ class AutoVideoMode(Screen):
 			if video_height != -1:
 				if video_height > 720 or video_width > 1280:
 					new_res = "1080"
-				elif (video_height > 576 and video_height <= 720) or video_width > 1024:
+				elif (576 < video_height <= 720) or video_width > 1024:
 					new_res = "720"
-				elif (video_height > 480 and video_height <= 576) or video_width > 720 or video_rate in (25000, 23976, 24000):
+				elif (480 < video_height <= 576) or video_width > 720 or video_rate in (25000, 23976, 24000):
 					new_res = "576"
 				else:
 					new_res = "480"

@@ -25,7 +25,7 @@ class ConditionalWidget(GUIComponent):
 			self.visible = 0
 
 	def update(self):
-		if (self.conditionalFunction != None):
+		if (self.conditionalFunction is not None):
 			try:
 				self.activateCondition(self.conditionalFunction())
 			except:
@@ -44,7 +44,7 @@ class BlinkingWidget(GUIComponent):
 		self.blinktime = time
 
 	def blink(self):
-		if self.blinking == True:
+		if self.blinking:
 			self.visible = not self.visible
 
 	def startBlinking(self):

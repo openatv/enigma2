@@ -108,11 +108,11 @@ class SABnzbdSetupScreen(Screen):
 		return NetworkServicesSummary
 
 	def SABnzbdStartStop(self):
-		if self.my_sabnzbd_run == False:
+		if not self.my_sabnzbd_run:
 			self.Console.ePopen('/etc/init.d/sabnzbd start')
 			time.sleep(3)
 			self.updateService()
-		elif self.my_sabnzbd_run == True:
+		elif self.my_sabnzbd_run:
 			self.Console.ePopen('/etc/init.d/sabnzbd stop')
 			time.sleep(3)
 			self.updateService()
@@ -140,7 +140,7 @@ class SABnzbdSetupScreen(Screen):
 			self.my_sabnzbd_active = True
 		if sabnzbd_process:
 			self.my_sabnzbd_run = True
-		if self.my_sabnzbd_run == True:
+		if self.my_sabnzbd_run:
 			self['labstop'].hide()
 			self['labactive'].show()
 			self['labrun'].show()

@@ -6,7 +6,8 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
 from boxbranding import getMachineBrand, getMachineName
 
 class ConfigColor(ConfigSequence):
-	def __init__(self, default = [128,128,128]):
+	def __init__(self, default=None):
+		if not default: default = [128, 128, 128]
 		ConfigSequence.__init__(self, seperator = "#", limits = [(0,255),(0,255),(0,255)], default = default)
 
 class ConfigFilename(ConfigText):
@@ -52,10 +53,9 @@ class DVDProject:
 
 	def saveProject(self, path):
 		from Tools.XMLTools import stringToXML
-		list = []
-		list.append('<?xml version="1.0" encoding="utf-8" ?>\n')
-		list.append('<DreamDVDBurnerProject>\n')
-		list.append('\t<settings ')
+		list = ['<?xml version="1.0" encoding="utf-8" ?>\n',
+				'<DreamDVDBurnerProject>\n',
+				'\t<settings ']
 		for key, val in self.settings.dict().iteritems():
 			list.append( key + '="' + str(val.getValue()) + '" ' )
 		list.append('/>\n')
@@ -89,7 +89,7 @@ class DVDProject:
 		i = 0
 		filename = path + name + ".ddvdp.xml"
 		while fileExists(filename):
-			i = i+1
+			i += 1
 			filename = path + name + str(i).zfill(3) + ".ddvdp.xml"
 		try:
 			file = open(filename, "w")
@@ -117,12 +117,12 @@ class DVDProject:
 			file.close()
 			projectfiledom = xml.dom.minidom.parseString(data)
 			for node in projectfiledom.childNodes[0].childNodes:
-			  print "node:", node
-			  if node.nodeType == xml.dom.minidom.Element.nodeType:
-			    if node.tagName == 'settings':
-				self.xmlAttributesToConfig(node, self.settings)
-			    elif node.tagName == 'titles':
-				self.xmlGetTitleNodeRecursive(node)
+				print "node:", node
+				if node.nodeType == xml.dom.minidom.Element.nodeType:
+					if node.tagName == 'settings':
+						self.xmlAttributesToConfig(node, self.settings)
+					elif node.tagName == 'titles':
+						self.xmlGetTitleNodeRecursive(node)
 
 			for key in self.filekeys:
 				val = self.settings.dict()[key].getValue()
@@ -137,7 +137,7 @@ class DVDProject:
 							continue
 					self.error += "\n%s '%s' not found" % (key, val)
 		#except AttributeError:
-		  	#print "loadProject AttributeError", self.error
+			#print "loadProject AttributeError", self.error
 			#self.error += (" in project '%s'") % (filename)
 			#return False
 			return True
@@ -171,23 +171,23 @@ class DVDProject:
 		print "[xmlGetTitleNodeRecursive]", title_idx, node
 		print node.childNodes
 		for subnode in node.childNodes:
-		  print "xmlGetTitleNodeRecursive subnode:", subnode
-		  if subnode.nodeType == xml.dom.minidom.Element.nodeType:
-		    if subnode.tagName == 'title':
-			title_idx += 1
-			title = DVDTitle.DVDTitle(self)
-			self.titles.append(title)
-			self.xmlGetTitleNodeRecursive(subnode, title_idx)
-		    if subnode.tagName == 'path':
-			print "path:", subnode.firstChild.data
-			filename = subnode.firstChild.data
-			self.titles[title_idx].addFile(filename.encode("utf-8"))
-		    if subnode.tagName == 'properties':
-			self.xmlAttributesToConfig(node, self.titles[title_idx].properties)
-		    if subnode.tagName == 'audiotracks':
-			self.xmlGetTitleNodeRecursive(subnode, title_idx)
-		    if subnode.tagName == 'audiotrack':
-			print "audiotrack...", subnode.toxml()
+			print "xmlGetTitleNodeRecursive subnode:", subnode
+			if subnode.nodeType == xml.dom.minidom.Element.nodeType:
+				if subnode.tagName == 'title':
+					title_idx += 1
+					title = DVDTitle.DVDTitle(self)
+					self.titles.append(title)
+					self.xmlGetTitleNodeRecursive(subnode, title_idx)
+				if subnode.tagName == 'path':
+					print "path:", subnode.firstChild.data
+					filename = subnode.firstChild.data
+					self.titles[title_idx].addFile(filename.encode("utf-8"))
+				if subnode.tagName == 'properties':
+					self.xmlAttributesToConfig(node, self.titles[title_idx].properties)
+				if subnode.tagName == 'audiotracks':
+					self.xmlGetTitleNodeRecursive(subnode, title_idx)
+				if subnode.tagName == 'audiotrack':
+					print "audiotrack...", subnode.toxml()
 
 	def getSize(self):
 		totalsize = 0

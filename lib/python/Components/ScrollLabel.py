@@ -54,8 +54,8 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 			total=self.pageHeight
 			pages=1
 			while total < text_height:
-				total=total+self.pageHeight
-				pages=pages+1
+				total += self.pageHeight
+				pages += 1
 			if pages > 1:
 				self.scrollbar.show()
 				self.total = total
@@ -78,8 +78,8 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 			total=self.pageHeight
 			pages=1
 			while total < text_height:
-				total=total+self.pageHeight
-				pages=pages+1
+				total += self.pageHeight
+				pages += 1
 			if pages > 1:
 				self.scrollbar.show()
 				self.total = total

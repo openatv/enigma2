@@ -18,6 +18,7 @@ from Tools.StbHardware import getFPVersion
 from os import path
 from re import search
 
+
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -27,14 +28,14 @@ class About(Screen):
 
 		self["key_green"] = Button(_("Translations"))
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
-			{
-				"cancel": self.close,
-				"ok": self.close,
-				"log": self.showAboutReleaseNotes,
-				"up": self["AboutScrollLabel"].pageUp,
-				"down": self["AboutScrollLabel"].pageDown,
-				"green": self.showTranslationInfo,
-			})
+									{
+										"cancel": self.close,
+										"ok": self.close,
+										"log": self.showAboutReleaseNotes,
+										"up": self["AboutScrollLabel"].pageUp,
+										"down": self["AboutScrollLabel"].pageDown,
+										"green": self.showTranslationInfo,
+									})
 
 	def populate(self):
 		self["lab1"] = StaticText(_("Virtuosso Image Xtreme"))
@@ -78,7 +79,7 @@ class About(Screen):
 		AboutText += _("Version:\t%s") % getImageVersion() + "\n"
 		AboutText += _("Build:\t%s") % getImageBuild() + "\n"
 		AboutText += _("Kernel:\t%s") % about.getKernelVersionString() + "\n"
-		
+
 		string = getDriverDate()
 		year = string[0:4]
 		month = string[4:6]
@@ -104,9 +105,9 @@ class About(Screen):
 			f = open('/proc/stb/fp/temp_sensor', 'r')
 			tempinfo = f.read()
 			f.close()
-		if tempinfo and int(tempinfo.replace('\n','')) > 0:
+		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temperature: %s") % tempinfo.replace('\n','') + mark + "C\n\n"
+			AboutText += _("System temperature: %s") % tempinfo.replace('\n', '') + mark + "C\n\n"
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
@@ -118,6 +119,7 @@ class About(Screen):
 
 	def createSummary(self):
 		return AboutSummary
+
 
 class Devices(Screen):
 	def __init__(self, session):
@@ -133,10 +135,10 @@ class Devices(Screen):
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.populate2)
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
-			{
-				"cancel": self.close,
-				"ok": self.close,
-			})
+									{
+										"cancel": self.close,
+										"ok": self.close,
+									})
 		self.onLayoutFinish.append(self.populate)
 
 	def populate(self):
@@ -167,7 +169,7 @@ class Devices(Screen):
 			if not parts:
 				continue
 			device = parts[3]
-			if not search('sd[a-z][1-9]',device):
+			if not search('sd[a-z][1-9]', device):
 				continue
 			if device in list2:
 				continue
@@ -179,7 +181,6 @@ class Devices(Screen):
 					parts = line.strip().split()
 					mount = str(parts[1])
 					break
-					continue
 			f.close()
 
 			if not mount.startswith('/dev/'):
@@ -187,25 +188,25 @@ class Devices(Screen):
 				free = Harddisk(device).free()
 
 				if ((float(size) / 1024) / 1024) >= 1:
-					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024),2)) + _("TB")
+					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024), 2)) + _("TB")
 				elif (size / 1024) >= 1:
-					sizeline = _("Size: ") + str(round((float(size) / 1024),2)) + _("GB")
+					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) + _("GB")
 				elif size >= 1:
 					sizeline = _("Size: ") + str(size) + _("MB")
 				else:
 					sizeline = _("Size: ") + _("unavailable")
 
 				if ((float(free) / 1024) / 1024) >= 1:
-					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024),2)) + _("TB")
+					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) + _("TB")
 				elif (free / 1024) >= 1:
-					freeline = _("Free: ") + str(round((float(free) / 1024),2)) + _("GB")
+					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) + _("GB")
 				elif free >= 1:
 					freeline = _("Free: ") + str(free) + _("MB")
 				else:
 					freeline = _("Free: ") + _("full")
-				self.list.append(mount +'\t'  + sizeline + ' \t' + freeline)
+				self.list.append(mount + '\t' + sizeline + ' \t' + freeline)
 			else:
-				self.list.append(mount +'\t'  + _('Not mounted'))
+				self.list.append(mount + '\t' + _('Not mounted'))
 
 			list2.append(device)
 		self.list = '\n'.join(self.list)
@@ -213,8 +214,8 @@ class Devices(Screen):
 
 		self.Console.ePopen("df -mh | grep -v '^Filesystem'", self.Stage1Complete)
 
-	def Stage1Complete(self,result, retval, extra_args = None):
-		result = result.replace('\n                        ',' ').split('\n')
+	def Stage1Complete(self, result, retval, extra_args=None):
+		result = result.replace('\n                        ', ' ').split('\n')
 		self.mountinfo = ""
 		for line in result:
 			self.parts = line.split()
@@ -236,6 +237,7 @@ class Devices(Screen):
 	def createSummary(self):
 		return AboutSummary
 
+
 class SystemMemoryInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -246,16 +248,16 @@ class SystemMemoryInfo(Screen):
 		self["AboutScrollLabel"] = ScrollLabel()
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
-			{
-				"cancel": self.close,
-				"ok": self.close,
-			})
+									{
+										"cancel": self.close,
+										"ok": self.close,
+									})
 
 		out_lines = file("/proc/meminfo").readlines()
 		self.AboutText = _("RAM") + '\n\n'
 		RamTotal = "-"
 		RamFree = "-"
-		for lidx in range(len(out_lines)-1):
+		for lidx in range(len(out_lines) - 1):
 			tstLine = out_lines[lidx].split()
 			if "MemTotal:" in tstLine:
 				MemTotal = out_lines[lidx].split()
@@ -280,11 +282,11 @@ class SystemMemoryInfo(Screen):
 		self.Console = Console()
 		self.Console.ePopen("df -mh / | grep -v '^Filesystem'", self.Stage1Complete)
 
-	def Stage1Complete(self,result, retval, extra_args = None):
-		flash = str(result).replace('\n','')
+	def Stage1Complete(self, result, retval, extra_args=None):
+		flash = str(result).replace('\n', '')
 		flash = flash.split()
-		RamTotal=flash[1]
-		RamFree=flash[3]
+		RamTotal = flash[1]
+		RamFree = flash[3]
 
 		self.AboutText += _("FLASH") + '\n\n'
 		self.AboutText += _("Total:") + "\t" + RamTotal + "\n"
@@ -295,6 +297,7 @@ class SystemMemoryInfo(Screen):
 
 	def createSummary(self):
 		return AboutSummary
+
 
 class SystemNetworkInfo(Screen):
 	def __init__(self, session):
@@ -328,6 +331,7 @@ class SystemNetworkInfo(Screen):
 		if iNetwork.isWirelessInterface(self.iface):
 			try:
 				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
+
 				self.iStatus = iStatus
 			except:
 				pass
@@ -338,12 +342,12 @@ class SystemNetworkInfo(Screen):
 		self["key_red"] = StaticText(_("Close"))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
-			{
-				"cancel": self.close,
-				"ok": self.close,
-				"up": self["AboutScrollLabel"].pageUp,
-				"down": self["AboutScrollLabel"].pageDown
-			})
+									{
+										"cancel": self.close,
+										"ok": self.close,
+										"up": self["AboutScrollLabel"].pageUp,
+										"down": self["AboutScrollLabel"].pageDown
+									})
 
 	def createscreen(self):
 		self.AboutText = ""
@@ -398,9 +402,9 @@ class SystemNetworkInfo(Screen):
 
 	def resetList(self):
 		if self.iStatus:
-			self.iStatus.getDataForInterface(self.iface,self.getInfoCB)
+			self.iStatus.getDataForInterface(self.iface, self.getInfoCB)
 
-	def getInfoCB(self,data,status):
+	def getInfoCB(self, data, status):
 		self.LinkState = None
 		if data is not None:
 			if data is True:
@@ -445,7 +449,7 @@ class SystemNetworkInfo(Screen):
 						if self.has_key("enc"):
 							self.AboutText += _('Encryption:') + '\t' + encryption + '\n'
 
-						if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] == False:
+						if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] is False:
 							self.LinkState = False
 							self["statuspic"].setPixmapNum(1)
 							self["statuspic"].show()
@@ -463,14 +467,14 @@ class SystemNetworkInfo(Screen):
 		self["Statustext"].setText(_("Link:"))
 		if iNetwork.isWirelessInterface(self.iface):
 			try:
-				self.iStatus.getDataForInterface(self.iface,self.getInfoCB)
+				self.iStatus.getDataForInterface(self.iface, self.getInfoCB)
 			except:
 				self["statuspic"].setPixmapNum(1)
 				self["statuspic"].show()
 		else:
-			iNetwork.getLinkState(self.iface,self.dataAvail)
+			iNetwork.getLinkState(self.iface, self.dataAvail)
 
-	def dataAvail(self,data):
+	def dataAvail(self, data):
 		self.LinkState = None
 		for line in data.splitlines():
 			line = line.strip()
@@ -479,13 +483,13 @@ class SystemNetworkInfo(Screen):
 					self.LinkState = True
 				else:
 					self.LinkState = False
-		if self.LinkState == True:
+		if self.LinkState:
 			iNetwork.checkNetworkState(self.checkNetworkCB)
 		else:
 			self["statuspic"].setPixmapNum(1)
 			self["statuspic"].show()
 
-	def checkNetworkCB(self,data):
+	def checkNetworkCB(self, data):
 		try:
 			if iNetwork.getAdapterAttribute(self.iface, "up") is True:
 				if self.LinkState is True:
@@ -506,16 +510,17 @@ class SystemNetworkInfo(Screen):
 	def createSummary(self):
 		return AboutSummary
 
+
 class AboutSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["selected"] = StaticText("ViX:" + getImageVersion())
 
 		AboutText = _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
 
 		if path.exists('/proc/stb/info/chipset'):
 			chipset = open('/proc/stb/info/chipset', 'r').read()
-			AboutText += _("Chipset: BCM%s") % chipset.replace('\n','') + "\n"
+			AboutText += _("Chipset: BCM%s") % chipset.replace('\n', '') + "\n"
 
 		AboutText += _("Version: %s") % getImageVersion() + "\n"
 		AboutText += _("Build: %s") % getImageBuild() + "\n"
@@ -534,14 +539,15 @@ class AboutSummary(Screen):
 			tempinfo = open('/proc/stb/sensors/temp0/value', 'r').read()
 		elif path.exists('/proc/stb/fp/temp_sensor'):
 			tempinfo = open('/proc/stb/fp/temp_sensor', 'r').read()
-		if tempinfo and int(tempinfo.replace('\n','')) > 0:
+		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temperature: %s") % tempinfo.replace('\n','') + mark + "C\n\n"
+			AboutText += _("System temperature: %s") % tempinfo.replace('\n', '') + mark + "C\n\n"
 
 		self["AboutText"] = StaticText(AboutText)
 
+
 class ViewGitLog(Screen):
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.skinName = "SoftwareUpdateChanges"
 		self.setTitle(_("OE Changes"))
@@ -553,16 +559,16 @@ class ViewGitLog(Screen):
 		self["key_green"] = Button(_("OK"))
 		self["key_yellow"] = Button(_("Show E2 Log"))
 		self["myactions"] = ActionMap(['ColorActions', 'OkCancelActions', 'DirectionActions'],
-		{
-			'cancel': self.closeRecursive,
-			'green': self.closeRecursive,
-			"red": self.closeRecursive,
-			"yellow": self.changelogtype,
-			"left": self.pageUp,
-			"right": self.pageDown,
-			"down": self.pageDown,
-			"up": self.pageUp
-		},-1)
+									  {
+										  'cancel': self.closeRecursive,
+										  'green': self.closeRecursive,
+										  "red": self.closeRecursive,
+										  "yellow": self.changelogtype,
+										  "left": self.pageUp,
+										  "right": self.pageDown,
+										  "down": self.pageDown,
+										  "up": self.pageUp
+									  }, -1)
 		self.onLayoutFinish.append(self.getlog)
 
 	def changelogtype(self):
@@ -586,11 +592,11 @@ class ViewGitLog(Screen):
 		fd = open('/etc/' + self.logtype + '-git.log', 'r')
 		releasenotes = fd.read()
 		fd.close()
-		releasenotes = releasenotes.replace('\nopenvix: build',"\n\nopenvix: build")
+		releasenotes = releasenotes.replace('\nopenvix: build', "\n\nopenvix: build")
 		self["text"].setText(releasenotes)
 		summarytext = releasenotes
 		try:
-			self['title_summary'].setText(summarytext[0]+':')
+			self['title_summary'].setText(summarytext[0] + ':')
 			self['text_summary'].setText(summarytext[1])
 		except:
 			self['title_summary'].setText("")
@@ -601,6 +607,7 @@ class ViewGitLog(Screen):
 
 	def closeRecursive(self):
 		self.close((_("Cancel"), ""))
+
 
 class TranslationInfo(Screen):
 	def __init__(self, session):
@@ -633,7 +640,7 @@ class TranslationInfo(Screen):
 		self["TranslatorName"] = StaticText(translator_name)
 
 		self["actions"] = ActionMap(["SetupActions"],
-			{
-				"cancel": self.close,
-				"ok": self.close,
-			})
+									{
+										"cancel": self.close,
+										"ok": self.close,
+									})

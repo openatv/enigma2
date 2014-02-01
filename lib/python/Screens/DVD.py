@@ -55,7 +55,7 @@ class ChapterZap(Screen):
 
 	def keyNumberGlobal(self, number):
 		self.Timer.start(3000, True)		#reset timer
-		self.field = self.field + str(number)
+		self.field += str(number)
 		self["number"].setText(self.field)
 		if len(self.field) >= 4:
 			self.keyOK()
@@ -116,7 +116,8 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		config.seek.enter_backward.value = self.saved_config_enter_backward
 		config.seek.on_pause.value = self.saved_config_seek_on_pause
 
-	def __init__(self, session, dvd_device = None, dvd_filelist = [ ], args = None):
+	def __init__(self, session, dvd_device=None, dvd_filelist=None, args=None):
+		if not dvd_filelist: dvd_filelist = []
 		Screen.__init__(self, session)
 		InfoBarBase.__init__(self)
 		InfoBarNotifications.__init__(self)
@@ -473,7 +474,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			self.session.openWithCallback(self.playPhysicalCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5 )
 
 	def playPhysicalCB(self, answer):
-		if answer == True:
+		if answer:
 			harddiskmanager.setDVDSpeed(harddiskmanager.getCD(), 1)
 			self.FileBrowserClosed(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()))
 
@@ -580,7 +581,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def playLastCB(self, answer): # overwrite infobar cuesheet function
 		print "playLastCB", answer, self.resume_point
 		if self.service:
-			if answer == True:
+			if answer:
 				seekable = self.getSeek()
 				if seekable:
 					seekable.seekTo(self.resume_point)

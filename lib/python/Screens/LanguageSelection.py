@@ -14,9 +14,9 @@ import gettext, enigma
 
 def LanguageEntryComponent(file, name, index):
 	png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + index + ".png"))
-	if png == None:
+	if png is None:
 		png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + file + ".png"))
-		if png == None:
+		if png is None:
 			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/missing.png"))
 	res = (index, name, png)
 	return res

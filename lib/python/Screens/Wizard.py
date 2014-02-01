@@ -257,7 +257,7 @@ class Wizard(Screen):
 
 	def deleteForward(self):
 		self.resetCounter()
-		if (self.wizard[self.currStep]["config"]["screen"] != None):
+		if (self.wizard[self.currStep]["config"]["screen"] is not None):
 			self.configInstance.keyDelete()
 		elif (self.wizard[self.currStep]["config"]["type"] == "dynamic"):
 			self["config"].handleKey(KEY_DELETE)
@@ -265,7 +265,7 @@ class Wizard(Screen):
 
 	def deleteBackward(self):
 		self.resetCounter()
-		if (self.wizard[self.currStep]["config"]["screen"] != None):
+		if (self.wizard[self.currStep]["config"]["screen"] is not None):
 			self.configInstance.keyBackspace()
 		elif (self.wizard[self.currStep]["config"]["type"] == "dynamic"):
 			self["config"].handleKey(KEY_BACKSPACE)
@@ -360,7 +360,7 @@ class Wizard(Screen):
 		currStep = self.currStep
 
 		if self.showConfig:
-			if (self.wizard[currStep]["config"]["screen"] != None):
+			if (self.wizard[currStep]["config"]["screen"] is not None):
 				# TODO: don't die, if no run() is available
 				# there was a try/except here, but i can't see a reason
 				# for this. If there is one, please do a more specific check
@@ -375,20 +375,20 @@ class Wizard(Screen):
 		self.finished()
 
 	def keyNumberGlobal(self, number):
-		if (self.wizard[self.currStep]["config"]["screen"] != None):
+		if (self.wizard[self.currStep]["config"]["screen"] is not None):
 			self.configInstance.keyNumberGlobal(number)
 		elif (self.wizard[self.currStep]["config"]["type"] == "dynamic"):
 			self["config"].handleKey(KEY_0 + number)
 
 	def keyGotAscii(self):
-		if (self.wizard[self.currStep]["config"]["screen"] != None):
+		if (self.wizard[self.currStep]["config"]["screen"] is not None):
 			self["config"].handleKey(KEY_ASCII)
 		elif (self.wizard[self.currStep]["config"]["type"] == "dynamic"):
 			self["config"].handleKey(KEY_ASCII)
 
 	def left(self):
 		self.resetCounter()
-		if (self.wizard[self.currStep]["config"]["screen"] != None):
+		if (self.wizard[self.currStep]["config"]["screen"] is not None):
 			self.configInstance.keyLeft()
 		elif (self.wizard[self.currStep]["config"]["type"] == "dynamic"):
 			self["config"].handleKey(KEY_LEFT)
@@ -396,7 +396,7 @@ class Wizard(Screen):
 
 	def right(self):
 		self.resetCounter()
-		if (self.wizard[self.currStep]["config"]["screen"] != None):
+		if (self.wizard[self.currStep]["config"]["screen"] is not None):
 			self.configInstance.keyRight()
 		elif (self.wizard[self.currStep]["config"]["type"] == "dynamic"):
 			self["config"].handleKey(KEY_RIGHT)
@@ -404,7 +404,7 @@ class Wizard(Screen):
 
 	def up(self):
 		self.resetCounter()
-		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] != None  or self.wizard[self.currStep]["config"]["type"] == "dynamic"):
+		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] is not None or self.wizard[self.currStep]["config"]["type"] == "dynamic"):
 			self["config"].instance.moveSelection(self["config"].instance.moveUp)
 			self.handleInputHelpers()
 		elif (self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0):
@@ -418,7 +418,7 @@ class Wizard(Screen):
 
 	def down(self):
 		self.resetCounter()
-		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] != None  or self.wizard[self.currStep]["config"]["type"] == "dynamic"):
+		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] is not None or self.wizard[self.currStep]["config"]["type"] == "dynamic"):
 			self["config"].instance.moveSelection(self["config"].instance.moveDown)
 			self.handleInputHelpers()
 		elif (self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0):
@@ -436,7 +436,7 @@ class Wizard(Screen):
 	def selChanged(self):
 		self.resetCounter()
 
-		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] != None):
+		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] is not None):
 			self["config"].instance.moveSelection(self["config"].instance.moveUp)
 		elif (self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0):
 			if self.wizard[self.currStep].has_key("onselect"):
@@ -580,14 +580,14 @@ class Wizard(Screen):
 					print "config type is dynamic"
 					self["config"].instance.setZPosition(2)
 					self["config"].l.setList(eval("self." + self.wizard[self.currStep]["config"]["source"])())
-				elif (self.wizard[self.currStep]["config"]["screen"] != None):
+				elif (self.wizard[self.currStep]["config"]["screen"] is not None):
 					if self.wizard[self.currStep]["config"]["type"] == "standalone":
 						print "Type is standalone"
 						self.session.openWithCallback(self.ok, self.wizard[self.currStep]["config"]["screen"])
 					else:
 						self["config"].instance.setZPosition(2)
 						print "wizard screen", self.wizard[self.currStep]["config"]["screen"]
-						if self.wizard[self.currStep]["config"]["args"] == None:
+						if self.wizard[self.currStep]["config"]["args"] is None:
 							self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"])
 						else:
 							self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"], eval(self.wizard[self.currStep]["config"]["args"]))

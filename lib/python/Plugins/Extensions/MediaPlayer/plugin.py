@@ -66,7 +66,7 @@ class MediaPixmap(Pixmap):
 
 	def paintCoverArtPixmapCB(self, picInfo=None):
 		ptr = self.picload.getData()
-		if ptr != None:
+		if ptr is not None:
 			self.instance.setPixmap(ptr.__deref__())
 
 	def updateCoverArt(self, path):
@@ -156,7 +156,9 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			print "[MediaPlayer] No hotplug support", ex
 
 		class MoviePlayerActionMap(NumberActionMap):
-			def __init__(self, player, contexts = [ ], actions = { }, prio=0):
+			def __init__(self, player, contexts=None, actions=None, prio=0):
+				if not contexts: contexts = []
+				if not actions: actions = {}
 				NumberActionMap.__init__(self, contexts, actions, prio)
 				self.player = player
 
@@ -462,7 +464,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			idx = self.filelist.getSelectionIndex()
 			r = self.filelist.list[idx]
 			text = r[1][7]
-			if r[0][1] == True:
+			if r[0][1]:
 				if len(text) < 2:
 					text += " "
 				if text[:2] != "..":
@@ -473,7 +475,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			if idx < len(self.filelist.list):
 				r = self.filelist.list[idx]
 				text = r[1][7]
-				if r[0][1] == True:
+				if r[0][1]:
 					text = "/" + text
 				self.summaries.setText(text,3)
 			else:
@@ -483,7 +485,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			if idx < len(self.filelist.list):
 				r = self.filelist.list[idx]
 				text = r[1][7]
-				if r[0][1] == True:
+				if r[0][1]:
 					text = "/" + text
 				self.summaries.setText(text,4)
 			else:
@@ -627,7 +629,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 	def applySettings(self):
 		self.savePlaylistOnExit = config.mediaplayer.savePlaylistOnExit.getValue()
-		if config.mediaplayer.repeat.getValue() == True:
+		if config.mediaplayer.repeat.getValue():
 			self["repeat"].setPixmapNum(1)
 		else:
 			self["repeat"].setPixmapNum(0)
@@ -742,7 +744,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		filelist = FileList(directory, useServiceRef = True, showMountpoints = False, isTop = True)
 
 		for x in filelist.getFileList():
-			if x[0][1] == True: #isDir
+			if x[0][1]: #isDir
 				if recursive:
 					if x[0][0] != directory:
 						self.copyDirectory(x[0][0])
@@ -770,7 +772,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			# simulate first
 			if not offline.deleteFromDisk(1):
 				result = True
-		if result == True:
+		if result:
 			self.session.openWithCallback(self.deleteConfirmed_offline, MessageBox, _("Do you really want to delete %s?") % (name))
 		else:
 			self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
@@ -784,7 +786,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				# really delete!
 				if not offline.deleteFromDisk(0):
 					result = True
-			if result == False:
+			if not result:
 				self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
 			else:
 				self.removeListEntry()
@@ -935,7 +937,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 					needsInfoUpdate = True
 
 			self.unPauseService()
-			if needsInfoUpdate == True:
+			if needsInfoUpdate:
 				path = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()].getPath()
 				self["coverArt"].updateCoverArt(path)
 			else:
@@ -1014,7 +1016,7 @@ class MediaPlayerLCDScreen(Screen):
 			if text[-4:] == ".mp3":
 				text = text[:-4]
 		textleer = "    "
-		text = text + textleer*10
+		text += textleer * 10
 		if line == 1:
 			self["text1"].setText(text)
 		elif line == 3:

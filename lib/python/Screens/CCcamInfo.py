@@ -258,20 +258,20 @@ def CCcamServerListEntry(name, color):
 	return res
 
 def CCcamShareListEntry(hostname, type, caid, system, uphops, maxdown):
-	res = [(hostname, type, caid, system, uphops, maxdown)]
-	res.append(MultiContentEntryText(pos=(0, 0), size=(250, 20), font=0, text=hostname))
-	res.append(MultiContentEntryText(pos=(250, 0), size=(250, 20), font=0, text=_("Type: ")+type, flags=RT_HALIGN_RIGHT))
-	res.append(MultiContentEntryText(pos=(0, 20), size=(250, 20), font=0, text=_("CaID: ")+caid))
-	res.append(MultiContentEntryText(pos=(250, 20), size=(250, 20), font=0, text=_("System: ")+system, flags=RT_HALIGN_RIGHT))
-	res.append(MultiContentEntryText(pos=(0, 40), size=(250, 20), font=0, text=_("Uphops: ")+uphops))
-	res.append(MultiContentEntryText(pos=(250, 40), size=(250, 20), font=0, text=_("Maxdown: ")+maxdown, flags=RT_HALIGN_RIGHT))
+	res = [(hostname, type, caid, system, uphops, maxdown),
+		   MultiContentEntryText(pos=(0, 0), size=(250, 20), font=0, text=hostname),
+		   MultiContentEntryText(pos=(250, 0), size=(250, 20), font=0, text=_("Type: ") + type, flags=RT_HALIGN_RIGHT),
+		   MultiContentEntryText(pos=(0, 20), size=(250, 20), font=0, text=_("CaID: ") + caid),
+		   MultiContentEntryText(pos=(250, 20), size=(250, 20), font=0, text=_("System: ") + system, flags=RT_HALIGN_RIGHT),
+		   MultiContentEntryText(pos=(0, 40), size=(250, 20), font=0, text=_("Uphops: ") + uphops),
+		   MultiContentEntryText(pos=(250, 40), size=(250, 20), font=0, text=_("Maxdown: ") + maxdown, flags=RT_HALIGN_RIGHT)]
 	return res
 
 def CCcamShareViewListEntry(caidprovider, providername, numberofcards, numberofreshare):
-	res = [(caidprovider, providername, numberofcards)]
-	res.append(MultiContentEntryText(pos=(0, 0), size=(430, 20), font=0, text=providername))
-	res.append(MultiContentEntryText(pos=(430, 0), size=(50, 20), font=0, text=numberofcards, flags=RT_HALIGN_RIGHT))
-	res.append(MultiContentEntryText(pos=(480, 0), size=(50, 20), font=0, text=numberofreshare, flags=RT_HALIGN_RIGHT))
+	res = [(caidprovider, providername, numberofcards),
+		   MultiContentEntryText(pos=(0, 0), size=(430, 20), font=0, text=providername),
+		   MultiContentEntryText(pos=(430, 0), size=(50, 20), font=0, text=numberofcards, flags=RT_HALIGN_RIGHT),
+		   MultiContentEntryText(pos=(480, 0), size=(50, 20), font=0, text=numberofreshare, flags=RT_HALIGN_RIGHT)]
 	return res
 
 def CCcamConfigListEntry(file):
@@ -492,19 +492,19 @@ class CCcamInfoMain(Screen):
 		self.keyNumberGlobal(self["menu"].getSelectedIndex())
 
 	def up(self):
-		if self.working == False:
+		if not self.working:
 			self["menu"].up()
 
 	def down(self):
-		if self.working == False:
+		if not self.working:
 			self["menu"].down()
 
 	def left(self):
-		if self.working == False:
+		if not self.working:
 			self["menu"].pageUp()
 
 	def right(self):
-		if self.working == False:
+		if not self.working:
 			self["menu"].pageDown()
 
 	def getWebpageError(self, error=""):
@@ -801,7 +801,7 @@ class CCcamShareViewMenu(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.getProviders)
 
 	def exit(self):
-		if self.working == False:
+		if not self.working:
 			self.close()
 
 	def getProviders(self):
@@ -1355,7 +1355,7 @@ class CCcamInfoShareInfo(Screen):
 		self.onLayoutFinish.append(self.readShares)
 
 	def exit(self):
-		if self.working == False:
+		if not self.working:
 			self.close()
 
 	def readShares(self):
@@ -1421,28 +1421,28 @@ class CCcamInfoShareInfo(Screen):
 		self.working = False
 
 	def uhopsPlus(self):
-		if self.working == False:
+		if not self.working:
 			self.uphops += 1
 			if self.uphops > 9:
 				self.uphops = -1
 			self.refreshList()
 
 	def uhopsMinus(self):
-		if self.working == False:
+		if not self.working:
 			self.uphops -= 1
 			if self.uphops < -1:
 				self.uphops = 9
 			self.refreshList()
 
 	def maxdownPlus(self):
-		if self.working == False:
+		if not self.working:
 			self.maxdown += 1
 			if self.maxdown > 9:
 				self.maxdown = -1
 			self.refreshList()
 
 	def maxdownMinus(self):
-		if self.working == False:
+		if not self.working:
 			self.maxdown -= 1
 			if self.maxdown < -1:
 				self.maxdown = 9

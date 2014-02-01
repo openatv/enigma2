@@ -37,7 +37,7 @@ class ServicePosition(PerServiceDisplay, object):
 	def get(self, what):
 		service = self.navcore.getCurrentService()
 		seek = service and service.seek()
-		if seek != None:
+		if seek is not None:
 			if what == self.TYPE_LENGTH:
 				r = seek.getLength()
 			elif what == self.TYPE_POSITION:
@@ -50,7 +50,7 @@ class ServicePosition(PerServiceDisplay, object):
 	def update(self):
 		seek = None
 		service = self.navcore.getCurrentService()
-		if service != None:
+		if service is not None:
 			seek = service.seek()
 
 		if seek is not None:

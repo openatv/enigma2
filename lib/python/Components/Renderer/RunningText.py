@@ -377,7 +377,7 @@ class RunningText(Renderer):
 			else: # if self.direction in (TOP,BOTTOM)
 				self.moveLabel(self.X, self.P)
 			timeout = self.mStepTimeout
-			if (self.mStop != None) and (self.mStop + abs(self.mStep) > self.P >= self.mStop):
+			if (self.mStop is not None) and (self.mStop + abs(self.mStep) > self.P >= self.mStop):
 				if (self.type == RUNNING) and (self.mOneShot > 0):
 					if (self.mRepeat > 0) and (self.mCount-1 <= 0): return
 					timeout = self.mOneShot

@@ -211,7 +211,7 @@ class NetworkWizard(WizardLanguage, Rc):
 	def AdapterSetupEndCB(self,data):
 		if data is True:
 			if iNetwork.isWirelessInterface(self.selectedInterface):
-				if self.WlanPluginInstalled == True:
+				if self.WlanPluginInstalled:
 					from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 					iStatus.getDataForInterface(self.selectedInterface,self.checkWlanStateCB)
 				else:
@@ -254,7 +254,7 @@ class NetworkWizard(WizardLanguage, Rc):
 	def checkNetworkCB(self,data):
 		if data is True:
 			if iNetwork.isWirelessInterface(self.selectedInterface):
-				if self.WlanPluginInstalled == True:
+				if self.WlanPluginInstalled:
 					from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 					iStatus.getDataForInterface(self.selectedInterface,self.checkWlanStateCB)
 				else:
@@ -357,7 +357,7 @@ class NetworkWizard(WizardLanguage, Rc):
 	def listChoices(self):
 		self.stopScan()
 		list = []
-		if self.WlanPluginInstalled == True:
+		if self.WlanPluginInstalled:
 			list.append((_("Configure your wireless LAN again"), "scanwlan"))
 		list.append((_("Configure your internal LAN"), "nwconfig"))
 		list.append((_("Exit network wizard"), "end"))

@@ -76,6 +76,7 @@ class SecConfigure:
 					sec.setVoltageMode(switchParam.HV)
 				sec.setToneMode(switchParam.HILO)
 			else:
+				# noinspection PyProtectedMember
 				sec.setVoltageMode(switchParam._14V)
 				sec.setToneMode(switchParam.OFF)
 		elif (diseqcmode == 3): # diseqc 1.2
@@ -261,7 +262,7 @@ class SecConfigure:
 	def updateAdvanced(self, sec, slotid):
 		try:
 			if config.Nims[slotid].advanced.unicableconnected is not None:
-				if config.Nims[slotid].advanced.unicableconnected.getValue() == True:
+				if config.Nims[slotid].advanced.unicableconnected.getValue():
 					config.Nims[slotid].advanced.unicableconnectedTo.save_forced = True
 					self.linkNIMs(sec, slotid, int(config.Nims[slotid].advanced.unicableconnectedTo.getValue()))
 					connto = self.getRoot(slotid, int(config.Nims[slotid].advanced.unicableconnectedTo.getValue()))
@@ -472,8 +473,10 @@ class SecConfigure:
 						else:
 							sec.setVoltageMode(switchParam.HV)
 					elif currSat.voltage.getValue() == "13V":
+						# noinspection PyProtectedMember
 						sec.setVoltageMode(switchParam._14V)
 					elif currSat.voltage.getValue() == "18V":
+						# noinspection PyProtectedMember
 						sec.setVoltageMode(switchParam._18V)
 
 					if currSat.tonemode.getValue() == "band":
@@ -494,7 +497,8 @@ class SecConfigure:
 		self.update()
 
 class NIM(object):
-	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None, multi_type = {}, frontend_id = None, i2c = None, is_empty = False):
+	def __init__(self, slot, type, description, has_outputs=True, internally_connectable=None, multi_type=None, frontend_id=None, i2c=None, is_empty=False):
+		if not multi_type: multi_type = {}
 		self.slot = slot
 
 		if type not in ("DVB-S", "DVB-C", "DVB-T", "DVB-S2", "DVB-T2", "DVB-C2", "ATSC", None):
@@ -1143,11 +1147,7 @@ def InitNimManager(nimmgr):
 					scr.pop()
 				else:
 					break;
-			lof=[]
-			lof.append(int(product.get("positions",1)))
-			lof.append(int(product.get("lofl",9750)))
-			lof.append(int(product.get("lofh",10600)))
-			lof.append(int(product.get("threshold",11700)))
+			lof= [int(product.get("positions", 1)), int(product.get("lofl", 9750)), int(product.get("lofh", 10600)), int(product.get("threshold", 11700))]
 			scr.append(tuple(lof))
 			m.update({product.get("name"):tuple(scr)})
 		unicablelnbproducts.update({manufacturer.get("name"):m})
@@ -1165,11 +1165,7 @@ def InitNimManager(nimmgr):
 					scr.pop()
 				else:
 					break;
-			lof=[]
-			lof.append(int(product.get("positions",1)))
-			lof.append(int(product.get("lofl",9750)))
-			lof.append(int(product.get("lofh",10600)))
-			lof.append(int(product.get("threshold",11700)))
+			lof= [int(product.get("positions", 1)), int(product.get("lofl", 9750)), int(product.get("lofh", 10600)), int(product.get("threshold", 11700))]
 			scr.append(tuple(lof))
 			m.update({product.get("name"):tuple(scr)})
 		unicablematrixproducts.update({manufacturer.get("name"):m})
@@ -1372,7 +1368,7 @@ def InitNimManager(nimmgr):
 
 	def configModeChanged(configMode):
 		slot_id = configMode.slot_id
- 		nim = config.Nims[slot_id]
+		nim = config.Nims[slot_id]
 		if configMode.getValue() == "advanced" and isinstance(nim.advanced, ConfigNothing):
 			# advanced config:
 			nim.advanced = ConfigSubsection()

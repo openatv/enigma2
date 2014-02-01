@@ -319,7 +319,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				if len(choices):
 					self.advancedConnected = getConfigListEntry(_("connected"), self.nimConfig.advanced.unicableconnected)
 					self.list.append(self.advancedConnected)
-					if self.nimConfig.advanced.unicableconnected.getValue() == True:
+					if self.nimConfig.advanced.unicableconnected.getValue():
 						self.nimConfig.advanced.unicableconnectedTo.setChoices(choices)
 						self.list.append(getConfigListEntry(_("Connected to"),self.nimConfig.advanced.unicableconnectedTo))
 

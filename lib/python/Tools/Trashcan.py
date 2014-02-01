@@ -128,7 +128,7 @@ class CleanTrashTask(Components.Task.PythonTask):
 				mounts.append(parts[1])
 		f.close()
 
- 		for mount in mounts:
+		for mount in mounts:
 			if os.path.isdir(os.path.join(mount,'.Trash')):
 				matches.append(os.path.join(mount,'.Trash'))
 			if os.path.isdir(os.path.join(mount,'movie/.Trash')):

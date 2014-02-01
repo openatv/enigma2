@@ -188,11 +188,11 @@ class Satfinder(ScanSetup, ServiceScan):
 		index    = 0
 		none_cnt = 0
 		for n in self.satList:
-			if self.satList[index] == None:
-				none_cnt = none_cnt + 1
+			if self.satList[index] is None:
+				none_cnt += 1
 			if index == int(v):
 				return (index-none_cnt)
-			index = index + 1
+			index += 1
 		return -1
 
 	def updatePreDefTransponders(self):

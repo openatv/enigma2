@@ -10,7 +10,8 @@ try:
 	no_comments = False
 except ImportError:
 	class LexicalHandler:
-		pass
+		def __init__(self):
+			pass
 	no_comments = True
 
 class parseXML(ContentHandler, LexicalHandler):

@@ -367,7 +367,7 @@ class TitleList(Screen, HelpableScreen):
 
 	def DVDformatCB(self, answer):
 		t = self.current_edit_title
-		if answer == True:
+		if answer:
 			self.project.settings.authormode.setValue("data_ts")
 			self.updateTitleList()
 		else:

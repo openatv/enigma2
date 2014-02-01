@@ -952,11 +952,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		pass
 
 	def genMainMenu(self):
-		menu = []
-		menu.append((_("Adapter settings"), "edit"))
-		menu.append((_("Nameserver settings"), "dns"))
-		menu.append((_("Network test"), "test"))
-		menu.append((_("Restart network"), "lanrestart"))
+		menu = [(_("Adapter settings"), "edit"), (_("Nameserver settings"), "dns"), (_("Network test"), "test"), (_("Restart network"), "lanrestart")]
 
 		self.extended = None
 		self.extendedSetup = None
@@ -1046,7 +1042,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					self.LinkState = True
 				else:
 					self.LinkState = False
-		if self.LinkState == True:
+		if self.LinkState:
 			iNetwork.checkNetworkState(self.checkNetworkCB)
 		else:
 			self["statuspic"].setPixmapNum(1)
@@ -1709,9 +1705,9 @@ class NetworkAfp(Screen):
 		return NetworkServicesSummary
 
 	def AfpStartStop(self):
-		if self.my_afp_run == False:
+		if not self.my_afp_run:
 			self.Console.ePopen('/etc/init.d/atalk start', self.StartStopCallback)
-		elif self.my_afp_run == True:
+		elif self.my_afp_run:
 			self.Console.ePopen('/etc/init.d/atalk stop', self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
@@ -1728,7 +1724,7 @@ class NetworkAfp(Screen):
 		import process
 		p = process.ProcessList()
 		afp_process = str(p.named('afpd')).strip('[]')
- 		self['labrun'].hide()
+		self['labrun'].hide()
 		self['labstop'].hide()
 		self['labactive'].setText(_("Disabled"))
 		self.my_afp_active = False
@@ -1739,7 +1735,7 @@ class NetworkAfp(Screen):
 			self.my_afp_active = True
 		if afp_process:
 			self.my_afp_run = True
-		if self.my_afp_run == True:
+		if self.my_afp_run:
 			self['labstop'].hide()
 			self['labactive'].show()
 			self['labrun'].show()
@@ -1777,7 +1773,7 @@ class NetworkFtp(Screen):
 		return NetworkServicesSummary
 
 	def FtpStartStop(self):
-		if self.my_ftp_active == False:
+		if not self.my_ftp_active:
 			if fileExists('/etc/inetd.conf'):
 				inme = open('/etc/inetd.conf', 'r')
 				out = open('/etc/inetd.tmp', 'w')
@@ -1791,7 +1787,7 @@ class NetworkFtp(Screen):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
 				self.updateService()
-		elif self.my_ftp_active == True:
+		elif self.my_ftp_active:
 			if fileExists('/etc/inetd.conf'):
 				inme = open('/etc/inetd.conf', 'r')
 				out = open('/etc/inetd.tmp', 'w')
@@ -1818,7 +1814,7 @@ class NetworkFtp(Screen):
 					self.my_ftp_active = True
 					continue
 			f.close()
-		if self.my_ftp_active == True:
+		if self.my_ftp_active:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Disable"))
@@ -1924,9 +1920,9 @@ class NetworkNfs(Screen):
 		return NetworkServicesSummary
 
 	def NfsStartStop(self):
-		if self.my_nfs_run == False:
+		if not self.my_nfs_run:
 			self.Console.ePopen('/etc/init.d/nfsserver start', self.StartStopCallback)
-		elif self.my_nfs_run == True:
+		elif self.my_nfs_run:
 			self.Console.ePopen('/etc/init.d/nfsserver stop', self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
@@ -1954,7 +1950,7 @@ class NetworkNfs(Screen):
 			self.my_nfs_active = True
 		if nfs_process:
 			self.my_nfs_run = True
-		if self.my_nfs_run == True:
+		if self.my_nfs_run:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
@@ -2066,9 +2062,9 @@ class NetworkOpenvpn(Screen):
 		self.session.open(NetworkVpnLog)
 
 	def VpnStartStop(self):
-		if self.my_vpn_run == False:
+		if not self.my_vpn_run:
 			self.Console.ePopen('/etc/init.d/openvpn start', self.StartStopCallback)
-		elif self.my_vpn_run == True:
+		elif self.my_vpn_run:
 			self.Console.ePopen('/etc/init.d/openvpn stop', self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
@@ -2096,7 +2092,7 @@ class NetworkOpenvpn(Screen):
 			self.my_Vpn_active = True
 		if openvpn_process:
 			self.my_vpn_run = True
-		if self.my_vpn_run == True:
+		if self.my_vpn_run:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
@@ -2185,7 +2181,7 @@ class NetworkSamba(Screen):
 
 	def InstallPackage(self, val):
 		if val:
-			self.service_name = self.service_name + ' packagegroup-base-smbfs-client'
+			self.service_name += ' packagegroup-base-smbfs-client'
 		self.doInstall(self.installComplete, self.service_name)
 
 	def InstallPackageFailed(self, val):
@@ -2230,11 +2226,11 @@ class NetworkSamba(Screen):
 
 	def SambaStartStop(self):
 		commands = []
-		if self.my_Samba_run == False:
+		if not self.my_Samba_run:
 			commands.append('/etc/init.d/samba start')
 			commands.append('nmbd -D')
 			commands.append('smbd -D')
-		elif self.my_Samba_run == True:
+		elif self.my_Samba_run:
 			commands.append('/etc/init.d/samba stop')
 			commands.append('killall nmbd')
 			commands.append('killall smbd')
@@ -2276,7 +2272,7 @@ class NetworkSamba(Screen):
 
 		if samba_process:
 			self.my_Samba_run = True
-		if self.my_Samba_run == True:
+		if self.my_Samba_run:
 			self['labstop'].hide()
 			self['labactive'].show()
 			self['labrun'].show()
@@ -2333,7 +2329,7 @@ class NetworkTelnet(Screen):
 		return NetworkServicesSummary
 
 	def TelnetStartStop(self):
-		if self.my_telnet_active == False:
+		if not self.my_telnet_active:
 			if fileExists('/etc/inetd.conf'):
 				inme = open('/etc/inetd.conf', 'r')
 				out = open('/etc/inetd.tmp', 'w')
@@ -2346,7 +2342,7 @@ class NetworkTelnet(Screen):
 			if fileExists('/etc/inetd.tmp'):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
-		elif self.my_telnet_active == True:
+		elif self.my_telnet_active:
 			if fileExists('/etc/inetd.conf'):
 				inme = open('/etc/inetd.conf', 'r')
 				out = open('/etc/inetd.tmp', 'w')
@@ -2373,7 +2369,7 @@ class NetworkTelnet(Screen):
 					self.my_telnet_active = True
 					continue
 			f.close()
-		if self.my_telnet_active == True:
+		if self.my_telnet_active:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Disable"))
@@ -2491,9 +2487,9 @@ class NetworkInadyn(Screen):
 		return NetworkServicesSummary
 
 	def InadynStartStop(self):
-		if self.my_inadyn_run == False:
+		if not self.my_inadyn_run:
 			self.Console.ePopen('/etc/init.d/inadyn-mt start', self.StartStopCallback)
-		elif self.my_inadyn_run == True:
+		elif self.my_inadyn_run:
 			self.Console.ePopen('/etc/init.d/inadyn-mt stop', self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
@@ -2528,7 +2524,7 @@ class NetworkInadyn(Screen):
 			autostartstatus_summary = self['autostart'].text + ' ' + self['labdisabled'].text
 		if inadyn_process:
 			self.my_inadyn_run = True
-		if self.my_inadyn_run == True:
+		if self.my_inadyn_run:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
@@ -2691,7 +2687,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 					strview = str(strview)
 					line = ('update_period_sec ' + strview)
 				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
-					if self.ina_sysactive.getValue() == True:
+					if self.ina_sysactive.getValue():
 						line = ('dyndns_system ' + self.ina_system.value.strip())
 					else:
 						line = ('#dyndns_system ' + self.ina_system.value.strip())
@@ -2840,9 +2836,9 @@ class NetworkuShare(Screen):
 		return NetworkServicesSummary
 
 	def uShareStartStop(self):
-		if self.my_ushare_run == False:
+		if not self.my_ushare_run:
 			self.Console.ePopen('/etc/init.d/ushare start >> /tmp/uShare.log', self.StartStopCallback)
-		elif self.my_ushare_run == True:
+		elif self.my_ushare_run:
 			self.Console.ePopen('/etc/init.d/ushare stop >> /tmp/uShare.log', self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
@@ -2880,7 +2876,7 @@ class NetworkuShare(Screen):
 			autostartstatus_summary = self['autostart'].text + ' ' + self['labdisabled'].text
 		if ushare_process:
 			self.my_ushare_run = True
-		if self.my_ushare_run == True:
+		if self.my_ushare_run:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
@@ -3328,9 +3324,9 @@ class NetworkMiniDLNA(Screen):
 		return NetworkServicesSummary
 
 	def MiniDLNAStartStop(self):
-		if self.my_minidlna_run == False:
+		if not self.my_minidlna_run:
 			self.Console.ePopen('/etc/init.d/minidlna start', self.StartStopCallback)
-		elif self.my_minidlna_run == True:
+		elif self.my_minidlna_run:
 			self.Console.ePopen('/etc/init.d/minidlna stop', self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
@@ -3364,7 +3360,7 @@ class NetworkMiniDLNA(Screen):
 			autostartstatus_summary = self['autostart'].text + ' ' + self['labdisabled'].text
 		if minidlna_process:
 			self.my_minidlna_run = True
-		if self.my_minidlna_run == True:
+		if self.my_minidlna_run:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))

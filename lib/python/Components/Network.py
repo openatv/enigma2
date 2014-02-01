@@ -137,13 +137,13 @@ class Network:
 		fp.write("auto lo\n")
 		fp.write("iface lo inet loopback\n\n")
 		for ifacename, iface in self.ifaces.items():
-			if iface['up'] == True:
+			if iface['up']:
 				fp.write("auto " + ifacename + "\n")
 				self.configuredInterfaces.append(ifacename)
-			if iface['dhcp'] == True:
+			if iface['dhcp']:
 				fp.write("iface "+ ifacename +" inet dhcp\n")
 				fp.write("  hostname $(hostname)\n")
-			if iface['dhcp'] == False:
+			if not iface['dhcp']:
 				fp.write("iface "+ ifacename +" inet static\n")
 				fp.write("  hostname $(hostname)\n")
 				if iface.has_key('ip'):
@@ -589,8 +589,7 @@ class Network:
 			return
 		if not self.activateInterfaceConsole:
 			self.activateInterfaceConsole = Console()
-		commands = []
-		commands.append("ifup " + iface)
+		commands = ["ifup " + iface]
 		self.activateInterfaceConsole.eBatch(commands, self.activateInterfaceFinished, callback, debug=True)
 
 	def activateInterfaceFinished(self,extra_args):
