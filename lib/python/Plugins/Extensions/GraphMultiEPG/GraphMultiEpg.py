@@ -762,7 +762,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		else:
 			self["key_yellow"] = Button(_("List mode"))
 
-		self["key_blue"] = Button(_("Goto"))
+		self["key_blue"] = Button(_("Further Options"))
 
 		self.key_green_choice = self.EMPTY
 		self.key_red_choice = self.EMPTY
@@ -798,7 +798,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				"info":        (self.infoKeyPressed, _("Show detailed event info")),
 				"red":         (self.zapTo,          _("Zap to selected channel")),
 				"yellow":      (self.swapMode,       _("Switch between normal mode and list mode")),
-				"blue":        (self.nextOptions,    _("Next options")),
+				"blue":        (self.furtherOptions, _("Further options")),
 				"menu":        (self.showSetup,      _("Setup menu")),
 				"nextBouquet": (self.nextBouquet,    _("Show bouquet selection menu")),
 				"prevBouquet": (self.prevBouquet,    _("Show bouquet selection menu")),
@@ -936,7 +936,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		config.misc.graph_mepg.save()
 		self.close(False)
 
-	def nextOptions(self):
+	def furtherOptions(self):
 		def isAutoTimerPlugin():
 			try:
 				from Plugins.Extensions.AutoTimer.plugin import main
