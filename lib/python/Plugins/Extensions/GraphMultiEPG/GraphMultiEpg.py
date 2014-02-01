@@ -797,8 +797,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				"timerAdd":    (self.timerAdd,       _("Add/remove change timer for current event")),
 				"info":        (self.infoKeyPressed, _("Show detailed event info")),
 				"red":         (self.zapTo,          _("Zap to selected channel")),
-				"yellow":      (self.swapMode,       _("Switch between normal mode and list mode")),	
-				"blue":        (self.enterDateTime,  _("Goto specific data/time")),
+				"yellow":      (self.swapMode,       _("Switch between normal mode and list mode")),
+				"blue":        (self.nextOptions,    _("Next options")),
 				"menu":        (self.showSetup,      _("Setup menu")),
 				"nextBouquet": (self.nextBouquet,    _("Show bouquet selection menu")),
 				"prevBouquet": (self.prevBouquet,    _("Show bouquet selection menu")),
@@ -935,6 +935,34 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.zapFunc(None, zapback = True)
 		config.misc.graph_mepg.save()
 		self.close(False)
+
+	def nextOptions(self):
+		def isAutoTimerPlugin():
+			try:
+				from Plugins.Extensions.AutoTimer.plugin import main
+			except ImportError:
+				return False
+			else:
+				return True
+		menu = []
+		buttons = []
+		event = self["list"].getCurrent()
+		if isAutoTimerPlugin() and event[0]:
+			menu.append((_("Add AutoTimer"), "addautotimer"))
+			buttons.append("green")
+		menu.append((_("Goto specific data/time"), "enterdatetime"))
+		buttons.append("blue")
+		menu.append((_("Timer Overview"), "timereditlist"))
+		def menuAction(choice):
+			if choice is not None:
+				if choice[1] == "timereditlist":
+					self.session.open(TimerEditList)
+				if choice[1] == "addautotimer" and event[0]:
+					from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
+					addAutotimerFromEvent(self.session, evt = event[0], service = event[1])
+				if choice[1] == "enterdatetime":
+					self.enterDateTime()
+		self.session.openWithCallback(menuAction, ChoiceBox, title=_("Select action"), list=menu, keys=buttons)
 
 	def infoKeyPressed(self):
 		cur = self["list"].getCurrent()
