@@ -1,6 +1,7 @@
 import os
 from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference, eServiceCenter, iRecordableService, quitMainloop, eActionMap
 from boxbranding import getMachineBrand, getMachineName
+
 from Components.config import config
 from Components import Harddisk
 from Components.UsageConfig import defaultMoviePath
@@ -45,9 +46,12 @@ def parseEvent(ev, description = True):
 	eit = ev.getEventId()
 	begin -= config.recording.margin_before.getValue() * 60
 	end += config.recording.margin_after.getValue() * 60
-	return (begin, end, name, description, eit)
+	return begin, end, name, description, eit
 
 class AFTEREVENT:
+	def __init__(self):
+		pass
+
 	NONE = 0
 	STANDBY = 1
 	DEEPSTANDBY = 2
@@ -86,7 +90,7 @@ wasRecTimerWakeup = False
 class RecordTimerEntry(timer.TimerEntry, object):
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = 'notset', record_ecm = 'notset', isAutoTimer = False, always_zap = False, MountPath = None):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
-		if checkOldTimers == True:
+		if checkOldTimers:
 			if self.begin < time() - 1209600:
 				self.begin = int(time())
 
@@ -363,7 +367,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						if config.usage.multibouquet.getValue():
 							bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
 						else:
-							bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types)
+							bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'% self.service_types
 						rootstr = ''
 						serviceHandler = eServiceCenter.getInstance()
 						rootbouquet = eServiceReference(bqrootstr)
@@ -431,7 +435,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName()), default = True, timeout = 180)
 			elif wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO:
 				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
-					print '[Timer] Recording or Recording due is next 15 mins, not return to deepstandby'
 					return True
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
@@ -491,7 +494,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.StateEnded: self.end}[next_state]
 
 	def failureCB(self, answer):
-		if answer == True:
+		if answer:
 			self.log(13, "ok, zapped away")
 			#NavigationInstance.instance.stopUserServices()
 			from Screens.ChannelSelection import ChannelSelection
@@ -501,7 +504,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if config.usage.multibouquet.getValue():
 					bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
 				else:
-					bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types)
+					bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'% self.service_types
 				rootstr = ''
 				serviceHandler = eServiceCenter.getInstance()
 				rootbouquet = eServiceReference(bqrootstr)
@@ -720,9 +723,7 @@ class RecordTimer(timer.Timer):
 				checkit = False # at moment it is enough when the message is displayed one time
 
 	def saveTimer(self):
-		list = []
-		list.append('<?xml version="1.0" ?>\n')
-		list.append('<timers>\n')
+		list = ['<?xml version="1.0" ?>\n', '<timers>\n']
 
 		for timer in self.timer_list + self.processed_timers:
 			if timer.dontSave:
@@ -784,15 +785,14 @@ class RecordTimer(timer.Timer):
 		return -1
 
 	def getStillRecording(self):
-		now = time()
 		isStillRecording = False
+		now = time()
 		for timer in self.timer_list:
 			if timer.isStillRecording:
 				isStillRecording = True
 				break
-			if (abs(timer.begin - now) <= 10):
+			elif abs(timer.begin - now) <= 10:
 				isStillRecording = True
-				print "[Timer] new recording just started"
 				break
 		return isStillRecording
 
@@ -810,7 +810,7 @@ class RecordTimer(timer.Timer):
 		faketime = time()+300
 
 		if config.timeshift.isRecording.getValue():
-			if nextrectime > 0 and nextrectime < faketime:
+			if 0 < nextrectime < faketime:
 				return nextrectime
 			else:
 				return faketime
@@ -828,7 +828,7 @@ class RecordTimer(timer.Timer):
 	def record(self, entry, ignoreTSC=False, dosave=True): # wird von loadTimer mit dosave=False aufgerufen
 		timersanitycheck = TimerSanityCheck(self.timer_list,entry)
 		if not timersanitycheck.check():
-			if ignoreTSC != True:
+			if not ignoreTSC:
 				print "timer conflict detected!"
 				return timersanitycheck.getSimulTimerList()
 			else:

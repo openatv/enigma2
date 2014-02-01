@@ -7,7 +7,7 @@ class EnigmaOutput:
 			data = data.encode("UTF-8")
 		ePythonOutput(data)
 
-	def flush():
+	def flush(self):
 		pass
 
 sys.stdout = sys.stderr = EnigmaOutput()

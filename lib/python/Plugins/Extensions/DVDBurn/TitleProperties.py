@@ -120,7 +120,7 @@ class TitleProperties(Screen,ConfigListScreen):
 
 	def paintThumbPixmapCB(self, picInfo=None):
 		ptr = self.picload.getData()
-		if ptr != None:
+		if ptr is not None:
 			self["thumbnail"].instance.setPixmap(ptr.__deref__())
 
 	def changedConfigList(self):
@@ -164,7 +164,7 @@ class LanguageChoices():
 				self.langdict[key] = val
 				self.choices.append((key, val))
 		self.choices.sort()
-		self.choices.insert(0,("nolang", ("unspecified")))
+		self.choices.insert(0,("nolang", "unspecified"))
 		self.choices.insert(1,(syslang, self.langdict[syslang]))
 		if syslang != "en":
 			self.choices.insert(2,("en", self.langdict["en"]))

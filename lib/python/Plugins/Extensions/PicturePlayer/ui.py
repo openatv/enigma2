@@ -86,7 +86,7 @@ class picshow(Screen):
 
 	def showPic(self, picInfo=""):
 		ptr = self.picload.getData()
-		if ptr != None:
+		if ptr is not None:
 			self["thn"].instance.setPixmap(ptr.__deref__())
 			self["thn"].show()
 
@@ -328,7 +328,7 @@ class Pic_Thumb(Screen):
 		framePos = 0
 		Page = 0
 		for x in piclist:
-			if x[0][1] == False:
+			if not x[0][1]:
 				self.filelist.append((index, framePos, Page, x[0][0],  path + x[0][0]))
 				index += 1
 				framePos += 1
@@ -395,7 +395,7 @@ class Pic_Thumb(Screen):
 			elif self.Thumbnaillist[x][0] == 1:
 				self.Thumbnaillist[x][0] = 2
 				ptr = self.picload.getData()
-				if ptr != None:
+				if ptr is not None:
 					self["thumb" + str(self.Thumbnaillist[x][1])].instance.setPixmap(ptr.__deref__())
 					self["thumb" + str(self.Thumbnaillist[x][1])].show()
 
@@ -498,12 +498,12 @@ class Pic_Full_View(Screen):
 
 		for x in filelist:
 			if len(filelist[0]) == 3: #orig. filelist
-				if x[0][1] == False:
+				if not x[0][1]:
 					self.filelist.append(path + x[0][0])
 				else:
 					self.dirlistcount += 1
 			elif len(filelist[0]) == 2: #scanlist
-				if x[0][1] == False:
+				if not x[0][1]:
 					self.filelist.append(x[0][0])
 				else:
 					self.dirlistcount += 1
@@ -543,7 +543,7 @@ class Pic_Full_View(Screen):
 		self.picload.setPara([self["pic"].instance.size().width(), self["pic"].instance.size().height(), sc[0], sc[1], 0, int(config.pic.resize.getValue()), self.bgcolor])
 
 		self["play_icon"].hide()
-		if config.pic.infoline.getValue() == False:
+		if not config.pic.infoline.getValue():
 			self["file"].setText("")
 		self.start_decode()
 
@@ -564,7 +564,7 @@ class Pic_Full_View(Screen):
 	def finish_decode(self, picInfo=""):
 		self["point"].hide()
 		ptr = self.picload.getData()
-		if ptr != None:
+		if ptr is not None:
 			text = ""
 			try:
 				text = picInfo.split('\n',1)

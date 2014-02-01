@@ -228,12 +228,12 @@ class Harddisk:
 		cmd = 'umount ' + dev
 		print "[Harddisk]", cmd
 		res = os.system(cmd)
-		return (res >> 8)
+		return res >> 8
 
 	def createPartition(self):
 		cmd = 'printf "8,\n;0,0\n;0,0\n;0,0\ny\n" | sfdisk -f -uS ' + self.disk_path
 		res = os.system(cmd)
-		return (res >> 8)
+		return res >> 8
 
 	def mkfs(self):
 		# No longer supported, use createInitializeJob instead
@@ -259,7 +259,7 @@ class Harddisk:
 				print "[Harddisk] mounting:", fspath
 				cmd = "mount -t auto " + fspath
 				res = os.system(cmd)
-				return (res >> 8)
+				return res >> 8
 		# device is not in fstab
 		res = -1
 		if self.type == DEVTYPE_UDEV:
@@ -268,7 +268,7 @@ class Harddisk:
 			# give udev some time to make the mount, which it will do asynchronously
 			from time import sleep
 			sleep(3)
-		return (res >> 8)
+		return res >> 8
 
 	def fsck(self):
 		# No longer supported, use createCheckJob instead
@@ -357,7 +357,7 @@ class Harddisk:
 					file = open("/proc/version","r")
 					version = map(int, file.read().split(' ', 4)[2].split('.',2)[:2])
 					file.close()
-					if (version[0] > 3) or ((version[0] > 2) and (version[1] >= 2)):
+					if (version[0] > 3) or (version[0] > 2 and version[1] >= 2):
 						# Linux version 3.2 supports bigalloc and -C option, use 256k blocks
 						task.args += ["-C", "262144"]
 						big_o_options.append("bigalloc")
@@ -467,7 +467,7 @@ class Harddisk:
 			l = f.read()
 			f.close()
 			data = l.split(None,5)
-			return (int(data[0]), int(data[4]))
+			return int(data[0]), int(data[4])
 		else:
 			return -1,-1
 
@@ -707,7 +707,7 @@ class HarddiskManager:
 			self.partitions.append(Partition(mountpoint = '/media/hdd/', description = '/media/hdd'))
 
 	def getAutofsMountpoint(self, device):
-		return "/autofs/%s" % (device)
+		return "/autofs/%s" % device
 
 	def getMountpoint(self, device):
 		dev = "/dev/%s" % device
@@ -918,7 +918,7 @@ class MkfsTask(Task.LoggingTask):
 			if '/' in data:
 				try:
 					d = data.strip(' \x08\r\n').split('/',1)
-					if ('\x08' in d[1]):
+					if '\x08' in d[1]:
 						d[1] = d[1].split('\x08',1)[0]
 					self.setProgress(80*int(d[0])/int(d[1]))
 				except Exception, e:

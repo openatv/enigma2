@@ -36,7 +36,7 @@ class PositionerSetup(Screen):
 			orientation = "west"
 		else:
 			orientation = "east"
-		return (position, orientation)
+		return position, orientation
 
 	@staticmethod
 	def orbital2metric(position, orientation):
@@ -479,7 +479,7 @@ class PositionerSetup(Screen):
 		elif entry == "goto":
 			self.printMsg(_("Move to position X"))
 			satlon = self.orbitalposition.float
-			position = ("%5.1f %s") % (satlon, self.orientation.value)
+			position = "%5.1f %s" % (satlon, self.orientation.value)
 			print>>log, (_("Satellite longitude:") + " %s") % position
 			satlon = PositionerSetup.orbital2metric(satlon, self.orientation.value)
 			self.statusMsg((_("Moving to position") + " %s") % position, timeout = self.STATUS_MSG_TIMEOUT)
@@ -512,7 +512,7 @@ class PositionerSetup(Screen):
 		elif entry == "storage":
 			if self.advanced:
 				self.printMsg(_("Allocate unused memory index"))
-				while(True):
+				while True:
 					if not len(self.allocatedIndices):
 						for sat in self.availablesats:
 							self.allocatedIndices.append(int(self.advancedsats[sat].rotorposition.value))
@@ -734,7 +734,7 @@ class PositionerSetup(Screen):
 			yi = map(lambda (x, y) : x, readings.values())
 			x0 = sum(map(mul, xi, yi)) / sum(yi)
 			xm = xi[yi.index(max(yi))]
-			return (x0, xm)
+			return x0, xm
 
 		def toGeopos(x):
 			if x < 0:
@@ -869,7 +869,7 @@ class PositionerSetup(Screen):
 			yi = map(lambda (x, y) : x, readings.values())
 			x0 = int(round(sum(map(mul, xi, yi)) / sum(yi)))
 			xm = xi[yi.index(max(yi))]
-			return (x0, xm)
+			return x0, xm
 
 		def toGeoposEx(x):
 			if x < 0:
@@ -1318,7 +1318,7 @@ def PositionerSetupStart(menuid, **kwargs):
 		return []
 
 def Plugins(**kwargs):
-	if (nimmanager.hasNimType("DVB-S")):
+	if nimmanager.hasNimType("DVB-S"):
 		return PluginDescriptor(name=_("Positioner setup"), description = _("Setup your positioner"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = PositionerSetupStart)
 	else:
 		return []

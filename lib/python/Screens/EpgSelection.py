@@ -719,9 +719,9 @@ class EPGSelection(Screen, HelpableScreen):
 				elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 					now = time() - int(config.epg.histminutes.getValue()) * 60
 					if self.type == EPG_TYPE_GRAPH:
-						self.ask_time = self.ask_time - self.ask_time % (int(config.epgselection.graph_roundto.getValue()) * 60)
+						self.ask_time -= self.ask_time % (int(config.epgselection.graph_roundto.getValue()) * 60)
 					elif self.type == EPG_TYPE_INFOBARGRAPH:
-						self.ask_time = self.ask_time - self.ask_time % (int(config.epgselection.infobar_roundto.getValue()) * 60)
+						self.ask_time -= self.ask_time % (int(config.epgselection.infobar_roundto.getValue()) * 60)
 					l = self['list']
 					l.resetOffset()
 					l.fillGraphEPG(None, self.ask_time)
@@ -739,7 +739,8 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.CurrBouquet and self.CurrService and (self.CurrBouquet != self.StartBouquet or self.CurrService != self.StartRef):
 			self.zapToNumber(self.StartRef, self.StartBouquet)
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
-			if self.zapFunc and ((self.type == EPG_TYPE_GRAPH and config.epgselection.graph_preview_mode.getValue()) or (self.type == EPG_TYPE_MULTI and config.epgselection.multi_preview_mode.getValue()) or ((self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH) and (config.epgselection.infobar_preview_mode.getValue() == '1' or config.epgselection.infobar_preview_mode.getValue() == '2')) or (self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_preview_mode.getValue())) and self.StartRef and self.StartBouquet:
+			if self.zapFunc and ((self.type == EPG_TYPE_GRAPH and config.epgselection.graph_preview_mode.getValue()) or (self.type == EPG_TYPE_MULTI and config.epgselection.multi_preview_mode.getValue()) or (
+						self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH and config.epgselection.infobar_preview_mode.getValue() == '1' or config.epgselection.infobar_preview_mode.getValue() == '2') or (self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_preview_mode.getValue())) and self.StartRef and self.StartBouquet:
 				if '0:0:0:0:0:0:0:0:0' not in self.StartRef.toString():
 					self.zapFunc(None, zapback = True)
 			elif '0:0:0:0:0:0:0:0:0' in self.StartRef.toString():
@@ -1134,9 +1135,9 @@ class EPGSelection(Screen, HelpableScreen):
 				self.zap()
 
 	def Info(self):
-		if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.getValue() == 'Channel Info'):
+		if self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.getValue() == 'Channel Info':
 			self.infoKeyPressed()
-		elif (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.getValue() == 'Single EPG'):
+		elif self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.getValue() == 'Single EPG':
 			self.OpenSingleEPG()
 		else:
 			self.infoKeyPressed()
@@ -1322,7 +1323,7 @@ class EPGSelection(Screen, HelpableScreen):
 			if number == 1:
 				timeperiod = int(config.epgselection.graph_prevtimeperiod.getValue())
 				if timeperiod > 60:
-					timeperiod = timeperiod - 60
+					timeperiod -= 60
 					self['list'].setEpoch(timeperiod)
 					config.epgselection.graph_prevtimeperiod.setValue(timeperiod)
 					self.moveTimeLines()
@@ -1331,7 +1332,7 @@ class EPGSelection(Screen, HelpableScreen):
 			elif number == 3:
 				timeperiod = int(config.epgselection.graph_prevtimeperiod.getValue())
 				if timeperiod < 300:
-					timeperiod = timeperiod + 60
+					timeperiod += 60
 					self['list'].setEpoch(timeperiod)
 					config.epgselection.graph_prevtimeperiod.setValue(timeperiod)
 					self.moveTimeLines()
@@ -1360,7 +1361,7 @@ class EPGSelection(Screen, HelpableScreen):
 				basetime = (basetime[0], basetime[1], basetime[2], int(config.epgselection.graph_primetimehour.getValue()), int(config.epgselection.graph_primetimemins.getValue()), 0, basetime[6], basetime[7], basetime[8])
 				self.ask_time = mktime(basetime)
 				if self.ask_time + 3600 < time():
-					self.ask_time = self.ask_time + 86400
+					self.ask_time += 86400
 				self['list'].resetOffset()
 				self['list'].fillGraphEPG(None, self.ask_time)
 				self.moveTimeLines(True)
@@ -1375,7 +1376,7 @@ class EPGSelection(Screen, HelpableScreen):
 			if number == 1:
 				timeperiod = int(config.epgselection.infobar_prevtimeperiod.getValue())
 				if timeperiod > 60:
-					timeperiod = timeperiod - 60
+					timeperiod -= 60
 					self['list'].setEpoch(timeperiod)
 					config.epgselection.infobar_prevtimeperiod.setValue(timeperiod)
 					self.moveTimeLines()
@@ -1384,7 +1385,7 @@ class EPGSelection(Screen, HelpableScreen):
 			elif number == 3:
 				timeperiod = int(config.epgselection.infobar_prevtimeperiod.getValue())
 				if timeperiod < 300:
-					timeperiod = timeperiod + 60
+					timeperiod += 60
 					self['list'].setEpoch(timeperiod)
 					config.epgselection.infobar_prevtimeperiod.setValue(timeperiod)
 					self.moveTimeLines()
@@ -1405,7 +1406,7 @@ class EPGSelection(Screen, HelpableScreen):
 				basetime = (basetime[0], basetime[1], basetime[2], int(config.epgselection.infobar_primetimehour.getValue()), int(config.epgselection.infobar_primetimemins.getValue()), 0, basetime[6], basetime[7], basetime[8])
 				self.ask_time = mktime(basetime)
 				if self.ask_time + 3600 < time():
-					self.ask_time = self.ask_time + 86400
+					self.ask_time += 86400
 				self['list'].resetOffset()
 				self['list'].fillGraphEPG(None, self.ask_time)
 				self.moveTimeLines(True)
@@ -1422,7 +1423,7 @@ class EPGSelection(Screen, HelpableScreen):
 			if not self.NumberZapField:
 				self.NumberZapField = str(number)
 			else:
-				self.NumberZapField = self.NumberZapField + str(number)
+				self.NumberZapField += str(number)
 			self.handleServiceName()
 			self["number"].setText(self.zaptoservicename+'\n'+self.NumberZapField)
 			self["number"].show()
@@ -1475,7 +1476,7 @@ class EPGSelection(Screen, HelpableScreen):
 							if config.usage.alternative_number_mode.getValue():
 								break
 						bouquet = bouquetlist.getNext()
-		return (service, bouquet)
+		return service, bouquet
 
 	def zapToNumber(self, service, bouquet):
 		self["number"].hide()

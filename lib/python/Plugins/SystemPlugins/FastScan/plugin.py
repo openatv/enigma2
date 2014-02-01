@@ -33,7 +33,7 @@ class FastScan:
 		self.done = False
 
 	def execBegin(self):
-		self.text.setText(_('Scanning %s...') % (self.providerName))
+		self.text.setText(_('Scanning %s...') % self.providerName)
 		self.progressbar.setValue(0)
 		self.scan = eFastScan(self.scanPid, self.providerName, self.transponderParameters, self.keepNumbers, self.keepSettings)
 		self.scan.scanCompleted.get().append(self.scanCompleted)
@@ -136,17 +136,16 @@ class FastScanScreen(ConfigListScreen, Screen):
 		Screen.__init__(self, session)
 		self.setTitle(_("Fast Scan"))
 
-		self.providers = {}
-		self.providers['Canal Digitaal'] = (1, 900, True)
-		self.providers['TV Vlaanderen'] = (1, 910, True)
-		self.providers['TéléSAT'] = (0, 920, True)
-		self.providers['AustriaSat'] = (0, 950, False)
-		self.providers['Skylink Czech Republic'] = (1, 30, False)
-		self.providers['Skylink Slovak Republic'] = (1, 31, False)
-		self.providers['TéléSAT Astra3'] = (1, 920, True)
-		self.providers['AustriaSat Astra3'] = (1, 950, False)
-		self.providers['Canal Digitaal Astra 1'] = (0, 900, True)
-		self.providers['TV Vlaanderen  Astra 1'] = (0, 910, True)
+		self.providers = {'Canal Digitaal': (1, 900, True),
+						  'TV Vlaanderen': (1, 910, True),
+						  'TéléSAT': (0, 920, True),
+						  'AustriaSat': (0, 950, False),
+						  'Skylink Czech Republic': (1, 30, False),
+						  'Skylink Slovak Republic': (1, 31, False),
+						  'TéléSAT Astra3': (1, 920, True),
+						  'AustriaSat Astra3': (1, 950, False),
+						  'Canal Digitaal Astra 1': (0, 900, True),
+						  'TV Vlaanderen  Astra 1': (0, 910, True)}
 
 		self.transponders = ((12515000, 22000000, eDVBFrontendParametersSatellite.FEC_5_6, 192,
 			eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.Inversion_Unknown,
@@ -259,7 +258,7 @@ def FastScanStart(menuid, **kwargs):
 		return []
 
 def Plugins(**kwargs):
-	if (nimmanager.hasNimType("DVB-S")):
+	if nimmanager.hasNimType("DVB-S"):
 		return PluginDescriptor(name=_("Fast Scan"), description="Scan Dutch/Belgian sat provider", where = PluginDescriptor.WHERE_MENU, fnc=FastScanStart)
 	else:
 		return []

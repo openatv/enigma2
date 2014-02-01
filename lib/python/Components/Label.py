@@ -31,7 +31,7 @@ class Label(VariableText, HTMLComponent, GUIComponent):
 
 	def getSize(self):
 		s = self.instance.calculateSize()
-		return (s.width(), s.height())
+		return s.width(), s.height()
 
 class LabelConditional(Label, ConditionalWidget):
 	def __init__(self, text = "", withTimer = True):
@@ -90,12 +90,12 @@ class MultiColorLabel(Label):
 			if len(self.foreColors) > x:
 				self.instance.setForegroundColor(self.foreColors[x])
 			else:
-				print "setForegroundColorNum(%d) failed! defined colors:" %(x), self.foreColors
+				print "setForegroundColorNum(%d) failed! defined colors:" % x, self.foreColors
 
 	def setBackgroundColorNum(self, x):
 		if self.instance:
 			if len(self.backColors) > x:
 				self.instance.setBackgroundColor(self.backColors[x])
 			else:
-				print "setBackgroundColorNum(%d) failed! defined colors:" %(x), self.backColors
+				print "setBackgroundColorNum(%d) failed! defined colors:" % x, self.backColors
 

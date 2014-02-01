@@ -45,7 +45,7 @@ class ImageDownloadJob(Job):
 
 class MountTask(Task):
 	def __init__(self, job, device, mountpoint):
-		Task.__init__(self, job, ("mount"))
+		Task.__init__(self, job, "mount")
 		self.setTool("mount")
 		options = "rw,sync"
 		self.mountpoint = mountpoint
@@ -57,12 +57,15 @@ class MountTask(Task):
 
 class UmountTask(Task):
 	def __init__(self, job, mountpoint):
-		Task.__init__(self, job, ("mount"))
+		Task.__init__(self, job, "mount")
 		self.setTool("umount")
 		self.args += [mountpoint]
 		self.weighting = 1
 
 class DownloaderPostcondition(Condition):
+	def __init__(self):
+		pass
+
 	def check(self, task):
 		return task.returncode == 0
 
@@ -133,19 +136,22 @@ class StickWizardJob(Job):
 		CopyTask(self)
 
 class PartitionTaskPostcondition(Condition):
+	def __init__(self):
+		pass
+
 	def check(self, task):
 		return task.returncode == 0
 
 	def getErrorMessage(self, task):
 		return {
-			task.ERROR_BLKRRPART: ("Device or resource busy"),
-			task.ERROR_UNKNOWN: (task.errormsg)
+			task.ERROR_BLKRRPART: "Device or resource busy",
+			task.ERROR_UNKNOWN: task.errormsg
 		}[task.error]
 
 class PartitionTask(Task):
 	ERROR_UNKNOWN, ERROR_BLKRRPART = range(2)
 	def __init__(self, job):
-		Task.__init__(self, job, ("partitioning"))
+		Task.__init__(self, job, "partitioning")
 		self.postconditions.append(PartitionTaskPostcondition())
 		self.job = job
 		self.setTool("sfdisk")
@@ -167,7 +173,7 @@ class PartitionTask(Task):
 
 class UnpackTask(Task):
 	def __init__(self, job):
-		Task.__init__(self, job, ("Unpacking USB flasher image..."))
+		Task.__init__(self, job, "Unpacking USB flasher image...")
 		self.job = job
 		self.setTool("tar")
 		self.args += ["-xjvf", self.job.downloadfilename]
@@ -192,7 +198,7 @@ class UnpackTask(Task):
 
 class CopyTask(Task):
 	def __init__(self, job):
-		Task.__init__(self, job, ("Copying USB flasher boot image to stick..."))
+		Task.__init__(self, job, "Copying USB flasher boot image to stick...")
 		self.job = job
 		self.setTool("dd")
 		self.args += ["if=%s" % self.job.imagefilename, "of=%s1" % self.job.device]
@@ -554,11 +560,11 @@ class NFIDownload(Screen):
 			self.keyRed()
 
 	def ackDestinationDevice(self, device_description=None):
-		if device_description == None:
+		if device_description is None:
 			dev = self.target_dir
 		else:
 			dev = device_description
-		message = _("Do you want to download the image to %s ?") % (dev)
+		message = _("Do you want to download the image to %s ?") % dev
 		choices = [(_("Yes"), self.ackedDestination), (_("List of storage devices"),self.openDeviceBrowser), (_("Cancel"),self.keyRed)]
 		self.session.openWithCallback(self.ackDestination_query, ChoiceBox, title=message, list=choices)
 
@@ -683,7 +689,7 @@ class NFIDownload(Screen):
 			self.md5_passback = self.getFeed
 			self.md5_failback = self.askStartWizard
 			self.md5verify(self.stickimage_md5, self.target_dir)
-		elif usbpartition == []:
+		elif not usbpartition:
 			print "[NFIFlash] needs to create usb flasher stick first!"
 			self.askStartWizard()
 		else:
@@ -796,7 +802,7 @@ def main(session, **kwargs):
 	session.open(NFIDownload,resolveFilename(SCOPE_HDD))
 
 def filescan_open(list, session, **kwargs):
-	dev = "/dev/" + (list[0].path).rsplit('/',1)[0][7:]
+	dev = "/dev/" + list[0].path.rsplit('/',1)[0][7:]
 	print "mounting device " + dev + " to /media/usb..."
 	usbmountpoint = resolveFilename(SCOPE_MEDIA)+"usb/"
 	system("mount %s %s -o rw,sync" % (dev, usbmountpoint))

@@ -12,7 +12,9 @@ class MessageBox(Screen):
 	TYPE_WARNING = 2
 	TYPE_ERROR = 3
 
-	def __init__(self, session, text, type = TYPE_YESNO, timeout = -1, close_on_any_key = False, default = True, enable_input = True, msgBoxID = None, picon = True, simple = False, wizard = False, list = [], skin_name = []):
+	def __init__(self, session, text, type=TYPE_YESNO, timeout=-1, close_on_any_key=False, default=True, enable_input=True, msgBoxID=None, picon=True, simple=False, wizard=False, list=None, skin_name=None):
+		if not list: list = []
+		if not skin_name: skin_name = []
 		self.type = type
 		Screen.__init__(self, session)
 		self.skinName = ["MessageBox"]
@@ -61,7 +63,7 @@ class MessageBox(Screen):
 		if type == self.TYPE_YESNO:
 			if list:
 				self.list = list
-			elif default == True:
+			elif default:
 				self.list = [ (_("yes"), True), (_("no"), False) ]
 			else:
 				self.list = [ (_("no"), False), (_("yes"), True) ]
@@ -201,7 +203,8 @@ class MessageBox(Screen):
 		else:
 			self.close(True)
 
-	def goEntry(self, entry=[]):
+	def goEntry(self, entry=None):
+		if not entry: entry = []
 		if entry and len(entry) > 3 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
 			arg = entry[3]
 			entry[2](arg)

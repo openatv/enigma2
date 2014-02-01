@@ -61,7 +61,7 @@ class SoftwareTools(PackageInfoHandler):
 
 	def getUpdates(self, callback = None):
 		if self.lastDownloadDate is None:
-				if self.NetworkConnectionAvailable == True:
+				if self.NetworkConnectionAvailable:
 					self.lastDownloadDate = time()
 					if self.list_updating is False and callback is None:
 						self.list_updating = True
@@ -79,7 +79,7 @@ class SoftwareTools(PackageInfoHandler):
 					elif self.NotifierCallback is not None:
 						self.NotifierCallback(False)
 		else:
-			if self.NetworkConnectionAvailable == True:
+			if self.NetworkConnectionAvailable:
 				self.lastDownloadDate = time()
 				if self.list_updating is False and callback is None:
 					self.list_updating = True
@@ -150,7 +150,7 @@ class SoftwareTools(PackageInfoHandler):
 		if callback is not None:
 			self.list_updating = True
 		if self.list_updating:
-			if self.NetworkConnectionAvailable == True:
+			if self.NetworkConnectionAvailable:
 				if not self.UpdateConsole:
 					self.UpdateConsole = Console()
 				cmd = self.ipkg.ipkg + " install enigma2-meta enigma2-plugins-meta enigma2-skins-meta"

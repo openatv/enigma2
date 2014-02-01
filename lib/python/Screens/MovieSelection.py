@@ -158,7 +158,7 @@ def moveServiceFiles(serviceref, dest, name=None, allowCopy=True):
 	# Try to "atomically" move these files
 	movedList = []
 	try:
-		print "[MovieSelection] Moving in background..."
+		# print "[MovieSelection] Moving in background..."
 		# start with the smaller files, do the big one later.
 		moveList.reverse()
 		if name is None:
@@ -175,7 +175,7 @@ def copyServiceFiles(serviceref, dest, name=None):
 	# Try to "atomically" move these files
 	movedList = []
 	try:
-		print "[MovieSelection] Copying in background..."
+		# print "[MovieSelection] Copying in background..."
 		# start with the smaller files, do the big one later.
 		moveList.reverse()
 		if name is None:
@@ -204,15 +204,12 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		self.cfg = cfg
 		cfg.moviesort = ConfigSelection(default=str(config.movielist.moviesort.getValue()), choices = l_moviesort)
 		cfg.description = ConfigYesNo(default=(config.movielist.description.getValue() != MovieList.HIDE_DESCRIPTION))
-		configList = []
-		configList.append(getConfigListEntry(_("Fontsize"), config.movielist.fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
-		configList.append(getConfigListEntry(_("Number of rows"), config.movielist.itemsperpage, _("This allows you to change the number of rows shown.")))
-		configList.append(getConfigListEntry(_("Use slim screen"), config.movielist.useslim, _("Use the alternative screen")))
-		configList.append(getConfigListEntry(_("Sort"), cfg.moviesort, _("Set the default sorting method.")))
-		configList.append(getConfigListEntry(_("Show extended description"), cfg.description, _("Show or hide the extended description, (skin dependent).")))
-		configList.append(getConfigListEntry(_("Use individual settings for each directory"), config.movielist.settings_per_directory, _("When set each folder will show the previous state used, when off the default values will be shown.")))
-		configList.append(getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof,_("On reaching the end of a file during playback, you can choose the box's behavior.")))
-		configList.append(getConfigListEntry(_("Show status icons in movielist"), config.usage.show_icons_in_movielist, _("Shows the watched status of the movie.")))
+		configList = [getConfigListEntry(_("Fontsize"), config.movielist.fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")),
+					  getConfigListEntry(_("Number of rows"), config.movielist.itemsperpage, _("This allows you to change the number of rows shown.")), getConfigListEntry(_("Use slim screen"), config.movielist.useslim, _("Use the alternative screen")),
+					  getConfigListEntry(_("Sort"), cfg.moviesort, _("Set the default sorting method.")), getConfigListEntry(_("Show extended description"), cfg.description, _("Show or hide the extended description, (skin dependent).")),
+					  getConfigListEntry(_("Use individual settings for each directory"), config.movielist.settings_per_directory, _("When set each folder will show the previous state used, when off the default values will be shown.")),
+					  getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof, _("On reaching the end of a file during playback, you can choose the box's behavior.")),
+					  getConfigListEntry(_("Show status icons in movielist"), config.usage.show_icons_in_movielist, _("Shows the watched status of the movie."))]
 		if config.usage.show_icons_in_movielist.getValue():
 			configList.append(getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen, _("Shows the icons when new/unseen, else will not show an icon.")))
 		configList.append(getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal, _("Keeps MovieList open whilst playing audio files.")))
@@ -266,9 +263,9 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		cfg = self.cfg
 		config.movielist.moviesort.setValue(int(cfg.moviesort.getValue()))
 		if cfg.description.getValue():
-			config.movielist.description.setValue(MovieList.SHOW_DESCRIPTION)
+			config.movielist.description.value = MovieList.SHOW_DESCRIPTION
 		else:
-			config.movielist.description.setValue(MovieList.HIDE_DESCRIPTION)
+			config.movielist.description.value = MovieList.HIDE_DESCRIPTION
 		if not config.movielist.settings_per_directory.getValue():
 			config.movielist.moviesort.save()
 			config.movielist.description.save()
@@ -323,14 +320,13 @@ class MovieContextMenu(Screen):
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
-		menu = []
-		menu.append((_("Settings") + "...", csel.configure))
-		menu.append((_("Device mounts") + "...", csel.showDeviceMounts))
-		menu.append((_("Network mounts") + "...", csel.showNetworkMounts))
-		menu.append((_("Add bookmark"), csel.do_addbookmark))
-		menu.append((_("Create directory"), csel.do_createdir))
+		menu = [(_("Settings") + "...", csel.configure),
+				(_("Device mounts") + "...", csel.showDeviceMounts),
+				(_("Network mounts") + "...", csel.showNetworkMounts),
+				(_("Add bookmark"), csel.do_addbookmark),
+				(_("Create directory"), csel.do_createdir)]
 		if service:
-			if (service.flags & eServiceReference.mustDescent):
+			if service.flags & eServiceReference.mustDescent:
 				if isTrashFolder(service):
 					menu.append((_("Permanently remove all deleted items"), csel.purgeAll))
 				else:
@@ -403,7 +399,7 @@ class MovieSelectionSummary(Screen):
 				name = ".."
 			else:
 				name = item[1].getName(item[0])
-			if (item[0].flags & eServiceReference.mustDescent):
+			if item[0].flags & eServiceReference.mustDescent:
 				if len(name) > 12:
 					name = os.path.split(os.path.normpath(name))[1]
 				name = "> " + name
@@ -455,7 +451,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self["DescriptionBorder"].hide()
 
 		if not os.path.isdir(config.movielist.last_videodir.getValue()):
-			config.movielist.last_videodir.setValue(defaultMoviePath())
+			config.movielist.last_videodir.value = defaultMoviePath()
 			config.movielist.last_videodir.save()
 		self.setCurrentRef(config.movielist.last_videodir.getValue())
 
@@ -795,8 +791,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def can_default(self, item):
 		# returns whether item is a regular file
 		return isSimpleFile(item)
+
 	def can_sort(self, item):
 		return True
+
 	def can_preview(self, item):
 		return isSimpleFile(item)
 
@@ -1100,9 +1098,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		except Exception, e:
 			print "Failed to save settings to %s: %s" % (path, e)
 		# Also set config items, in case the user has a read-only disk
-		config.movielist.moviesort.setValue(self.settings["moviesort"])
-		config.movielist.description.setValue(self.settings["description"])
-		config.usage.on_movie_eof.setValue(self.settings["movieoff"])
+		config.movielist.moviesort.value = self.settings["moviesort"]
+		config.movielist.description.value = self.settings["description"]
+		config.usage.on_movie_eof.value = self.settings["movieoff"]
 
 	def loadLocalSettings(self):
 		'Load settings, called when entering a directory'
@@ -1143,9 +1141,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if self.settings["movieoff"] != self.movieOff:
 			self.movieOff = self.settings["movieoff"]
 			needUpdate = True
-		config.movielist.moviesort.setValue(self.settings["moviesort"])
-		config.movielist.description.setValue(self.settings["description"])
-		config.usage.on_movie_eof.setValue(self.settings["movieoff"])
+		config.movielist.moviesort.value = self.settings["moviesort"]
+		config.movielist.description.value = self.settings["description"]
+		config.usage.on_movie_eof.value = self.settings["movieoff"]
 		return needUpdate
 
 	def sortBy(self, newType):
@@ -1184,7 +1182,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.close(None)
 
 	def saveconfig(self):
-		config.movielist.last_selected_tags.setValue(self.selected_tags)
+		config.movielist.last_selected_tags.value = self.selected_tags
 
 	def configure(self):
 		self.session.openWithCallback(self.configureDone, MovieBrowserConfiguration)
@@ -1230,7 +1228,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def reloadWithDelay(self):
 		if not os.path.isdir(config.movielist.last_videodir.getValue()):
 			path = defaultMoviePath()
-			config.movielist.last_videodir.setValue(path)
+			config.movielist.last_videodir.value = path
 			config.movielist.last_videodir.save()
 			self.setCurrentRef(path)
 			self["freeDiskSpace"].path = path
@@ -1282,7 +1280,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		currentDir = config.movielist.last_videodir.getValue()
 		if res != currentDir:
 			if os.path.isdir(res):
-				config.movielist.last_videodir.setValue(res)
+				config.movielist.last_videodir.value = res
 				config.movielist.last_videodir.save()
 				self.loadLocalSettings()
 				self.setCurrentRef(res)
@@ -1295,7 +1293,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			else:
 				mbox=self.session.open(
 					MessageBox,
-					_("Directory %s does not exist.") % (res),
+					_("Directory %s does not exist.") % res,
 					type = MessageBox.TYPE_ERROR,
 					timeout = 5
 					)
@@ -1336,7 +1334,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			# TODO: Some error checking maybe, don't wanna crash on KeyError
 			self.selected_tags = self.tags[tag[0]]
 			if self.selected_tags_ele:
-				self.selected_tags_ele.setValue(tag[0])
+				self.selected_tags_ele.value = tag[0]
 				self.selected_tags_ele.save()
 			self.saveconfig()
 			self.reloadList(home = True)
@@ -1428,7 +1426,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		path = config.movielist.last_videodir.getValue()
 		bookmarks = config.movielist.videodirs.getValue()
 		bookmarks.remove(path)
-		config.movielist.videodirs.setValue(bookmarks)
+		config.movielist.videodirs.value = bookmarks
 		config.movielist.videodirs.save()
 
 	def can_createdir(self, item):
@@ -1775,9 +1773,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
 			else:
 				if '.Trash' in cur_path:
-					are_you_sure = _("Do you really want to permamently remove '%s' from trash can ?") % (name)
+					are_you_sure = _("Do you really want to permamently remove '%s' from trash can ?") % name
 				else:
-					are_you_sure = _("Do you really want to delete %s?") % (name)
+					are_you_sure = _("Do you really want to delete %s?") % name
 				msg = ''
 			mbox=self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg + are_you_sure)
 			mbox.setTitle(self.getTitle())

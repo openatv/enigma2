@@ -7,7 +7,8 @@ from Screens.MessageBox import MessageBox
 from enigma import eTimer
 
 class Ipkg(Screen):
-	def __init__(self, session, cmdList = []):
+	def __init__(self, session, cmdList=None):
+		if not cmdList: cmdList = []
 		Screen.__init__(self, session)
 
 		self.cmdList = cmdList
@@ -112,7 +113,7 @@ class Ipkg(Screen):
 			self.session.openWithCallback(
 				self.modificationCallback,
 				MessageBox,
-				_("A configuration file (%s) was modified since Installation.\nDo you want to keep your version?") % (param)
+				_("A configuration file (%s) was modified since Installation.\nDo you want to keep your version?") % param
 			)
 
 	def modificationCallback(self, res):

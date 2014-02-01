@@ -36,8 +36,7 @@ EXTENSIONS = {
 	}
 
 def FileEntryComponent(name, absolute = None, isDir = False):
-	res = [ (absolute, isDir) ]
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 35, 1, 470, 20, 0, RT_HALIGN_LEFT, name))
+	res = [(absolute, isDir), (eListboxPythonMultiContent.TYPE_TEXT, 35, 1, 470, 20, 0, RT_HALIGN_LEFT, name)]
 	if isDir:
 		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/directory.png"))
 	else:
@@ -68,7 +67,7 @@ class FileList(MenuList):
 		if matchingPattern:
 			self.matchingPattern = re.compile(matchingPattern)
 		else:
-		        self.matchingPattern = None
+			self.matchingPattern = None
 		self.inhibitDirs = inhibitDirs or []
 		self.inhibitMounts = inhibitMounts or []
 
@@ -267,8 +266,7 @@ class FileList(MenuList):
 
 
 def MultiFileSelectEntryComponent(name, absolute = None, isDir = False, selected = False):
-	res = [ (absolute, isDir, selected, name) ]
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 55, 1, 470, 20, 0, RT_HALIGN_LEFT, name))
+	res = [(absolute, isDir, selected, name), (eListboxPythonMultiContent.TYPE_TEXT, 55, 1, 470, 20, 0, RT_HALIGN_LEFT, name)]
 	if isDir:
 		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/directory.png"))
 	else:
@@ -294,7 +292,7 @@ class MultiFileSelectList(FileList):
 		if preselectedFiles is None:
 			self.selectedFiles = []
 		else:
-		        self.selectedFiles = preselectedFiles
+			self.selectedFiles = preselectedFiles
 		FileList.__init__(self, directory, showMountpoints = showMountpoints, matchingPattern = matchingPattern, showDirectories = showDirectories, showFiles = showFiles,  useServiceRef = useServiceRef, inhibitDirs = inhibitDirs, inhibitMounts = inhibitMounts, isTop = isTop, enableWrapAround = enableWrapAround, additionalExtensions = additionalExtensions)
 		self.changeDir(directory)
 		self.l.setItemHeight(25)
@@ -315,7 +313,7 @@ class MultiFileSelectList(FileList):
 					realPathname = x[0][0]
 				else:
 					realPathname = self.current_directory + x[0][0]
-				if x[0][2] == True:
+				if x[0][2]:
 					SelectState = False
 					try:
 						self.selectedFiles.remove(realPathname)

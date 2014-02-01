@@ -37,7 +37,7 @@ class ServicePosition(PerServiceDisplay, object):
 	def get(self, what):
 		service = self.navcore.getCurrentService()
 		seek = service and service.seek()
-		if seek != None:
+		if seek is not None:
 			if what == self.TYPE_LENGTH:
 				r = seek.getLength()
 			elif what == self.TYPE_POSITION:
@@ -50,7 +50,7 @@ class ServicePosition(PerServiceDisplay, object):
 	def update(self):
 		seek = None
 		service = self.navcore.getCurrentService()
-		if service != None:
+		if service is not None:
 			seek = service.seek()
 
 		if seek is not None:
@@ -109,14 +109,14 @@ class ServicePositionGauge(PerServiceBase, GUIComponent):
 		service = self.navcore.getCurrentService()
 		seek = service and service.seek()
 		if seek is None:
-			return (0, 0)
+			return 0, 0
 
 		len = seek.getLength()
 		pos = seek.getPlayPosition()
 
 		if len[0] or pos[0]:
-			return (0, 0)
-		return (len[1], pos[1])
+			return 0, 0
+		return len[1], pos[1]
 
 	def poll(self):
 		data = self.get()

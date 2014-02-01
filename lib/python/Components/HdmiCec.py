@@ -39,28 +39,29 @@ class HdmiCec:
 	instance = None
 
 	def __init__(self):
-		assert not HdmiCec.instance, "only one HdmiCec instance is allowed!"
-		HdmiCec.instance = self
+		if config.hdmicec.enabled.getValue():
+			assert not HdmiCec.instance, "only one HdmiCec instance is allowed!"
+			HdmiCec.instance = self
 
-		self.wait = eTimer()
-		self.wait.timeout.get().append(self.sendCmd)
-		self.queue = []
+			self.wait = eTimer()
+			self.wait.timeout.get().append(self.sendCmd)
+			self.queue = []
 
-		eHdmiCEC.getInstance().messageReceived.get().append(self.messageReceived)
-		config.misc.standbyCounter.addNotifier(self.onEnterStandby, initial_call = False)
-		config.misc.DeepStandby.addNotifier(self.onEnterDeepStandby, initial_call = False)
-		self.setFixedPhysicalAddress(config.hdmicec.fixed_physical_address.getValue())
+			eHdmiCEC.getInstance().messageReceived.get().append(self.messageReceived)
+			config.misc.standbyCounter.addNotifier(self.onEnterStandby, initial_call = False)
+			config.misc.DeepStandby.addNotifier(self.onEnterDeepStandby, initial_call = False)
+			self.setFixedPhysicalAddress(config.hdmicec.fixed_physical_address.getValue())
 
-		self.volumeForwardingEnabled = False
-		self.volumeForwardingDestination = 0
-		eActionMap.getInstance().bindAction('', -maxint - 1, self.keyEvent)
-		config.hdmicec.volume_forwarding.addNotifier(self.configVolumeForwarding)
-		config.hdmicec.enabled.addNotifier(self.configVolumeForwarding)
-		if config.hdmicec.handle_deepstandby_events.getValue():
-			if not getFPWasTimerWakeup():
-				self.wakeupMessages()
-#		if fileExists("/proc/stb/hdmi/preemphasis"):		
-#			self.sethdmipreemphasis()
+			self.volumeForwardingEnabled = False
+			self.volumeForwardingDestination = 0
+			eActionMap.getInstance().bindAction('', -maxint - 1, self.keyEvent)
+			config.hdmicec.volume_forwarding.addNotifier(self.configVolumeForwarding)
+			config.hdmicec.enabled.addNotifier(self.configVolumeForwarding)
+			if config.hdmicec.handle_deepstandby_events.getValue():
+				if not getFPWasTimerWakeup():
+					self.wakeupMessages()
+#			if fileExists("/proc/stb/hdmi/preemphasis"):		
+#				self.sethdmipreemphasis()
 
 	def getPhysicalAddress(self):
 		physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
@@ -222,7 +223,7 @@ class HdmiCec:
 				else:
 					self.volumeForwardingDestination = 0; # off: send volume keys to tv
 				if config.hdmicec.volume_forwarding.getValue():
-					print 'eHdmiCec: volume forwarding to device %02x enabled'%(self.volumeForwardingDestination)
+					print 'eHdmiCec: volume forwarding to device %02x enabled'% self.volumeForwardingDestination
 					self.volumeForwardingEnabled = True;
 			elif cmd == 0x8f: # request power status
 				if inStandby:

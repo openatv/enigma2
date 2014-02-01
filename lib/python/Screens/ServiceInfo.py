@@ -34,7 +34,7 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 			if b > 1800:
 				b = 3600 - b
 				direction = 'W'
-			b = ("%d.%d%s") % (b // 10, b % 10, direction)
+			b = "%d.%d%s" % (b // 10, b % 10, direction)
 		else:
 			b = str(b)
 

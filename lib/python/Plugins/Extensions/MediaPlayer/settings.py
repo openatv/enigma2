@@ -119,7 +119,7 @@ class MediaPlayerSettings(Screen,ConfigListScreen):
 
 	def DirectoryBrowserClosed(self, path):
 		print "PathBrowserClosed:" + str(path)
-		if path != False:
+		if path:
 			config.mediaplayer.defaultDir.setValue(path)
 
 	def save(self):

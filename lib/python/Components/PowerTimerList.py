@@ -68,9 +68,9 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 				repeatedtext = []
 				flags = timer.repeated
 				for x in (0, 1, 2, 3, 4, 5, 6):
-					if (flags & 1 == 1):
+					if flags & 1 == 1:
 						repeatedtext.append(days[x])
-					flags = flags >> 1
+					flags >>= 1
 				repeatedtext = ", ".join(repeatedtext)
 				if self.iconRepeat:
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 25, 20, 20, self.iconRepeat))

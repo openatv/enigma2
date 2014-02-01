@@ -33,7 +33,7 @@ class UserInterfacePositionerWizard(WizardLanguage, Rc):
 		self.Console.ePopen('/usr/bin/showiframe /usr/share/enigma2/hd-testcard.mvi')
 
 	def exitWizardQuestion(self, ret = False):
-		if (ret):
+		if ret:
 			self.markDone()
 			self.close()
 

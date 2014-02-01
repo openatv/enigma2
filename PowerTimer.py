@@ -24,15 +24,21 @@ import os
 def parseEvent(ev):
 	begin = ev.getBeginTime()
 	end = begin + ev.getDuration()
-	return (begin, end)
+	return begin, end
 
 class AFTEREVENT:
+	def __init__(self):
+		pass
+
 	NONE = 0
 	WAKEUPTOSTANDBY = 1
 	STANDBY = 2
 	DEEPSTANDBY = 3
 
 class TIMERTYPE:
+	def __init__(self):
+		pass
+
 	NONE = 0
 	WAKEUP = 1
 	WAKEUPTOSTANDBY = 2
@@ -47,7 +53,7 @@ class TIMERTYPE:
 class PowerTimerEntry(timer.TimerEntry, object):
 	def __init__(self, begin, end, disabled = False, afterEvent = AFTEREVENT.NONE, timerType = TIMERTYPE.WAKEUP, checkOldTimers = False):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
-		if checkOldTimers == True:
+		if checkOldTimers:
 			if self.begin < time() - 1209600:
 				self.begin = int(time())
 
@@ -301,9 +307,9 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		if self.state == self.StateEnded or self.state == self.StateFailed:
 			return self.end
 
-		if (self.timerType != TIMERTYPE.WAKEUP and self.timerType != TIMERTYPE.WAKEUPTOSTANDBY and not self.afterEvent):
+		if self.timerType != TIMERTYPE.WAKEUP and self.timerType != TIMERTYPE.WAKEUPTOSTANDBY and not self.afterEvent:
 			return -1
-		elif (self.timerType != TIMERTYPE.WAKEUP and self.timerType != TIMERTYPE.WAKEUPTOSTANDBY and self.afterEvent):
+		elif self.timerType != TIMERTYPE.WAKEUP and self.timerType != TIMERTYPE.WAKEUPTOSTANDBY and self.afterEvent:
 			return self.end
 		next_state = self.state + 1
 		return {self.StatePrepared: self.start_prepare,
@@ -441,9 +447,7 @@ class PowerTimer(timer.Timer):
 				checkit = False # at moment it is enough when the message is displayed one time
 
 	def saveTimer(self):
-		list = []
-		list.append('<?xml version="1.0" ?>\n')
-		list.append('<timers>\n')
+		list = ['<?xml version="1.0" ?>\n', '<timers>\n']
 		for timer in self.timer_list + self.processed_timers:
 			if timer.dontSave:
 				continue
@@ -516,7 +520,7 @@ class PowerTimer(timer.Timer):
 		nextrectime = self.getNextPowerManagerTimeOld()
 		faketime = time()+300
 		if config.timeshift.isRecording.getValue():
-			if nextrectime > 0 and nextrectime < faketime:
+			if 0 < nextrectime < faketime:
 				return nextrectime
 			else:
 				return faketime

@@ -56,7 +56,7 @@ class Rc:
 	def getSelectPic(self, pos):
 		for selectPic in self.selectpics:
 			if pos[1] <= selectPic[0]:
-				return (selectPic[1], selectPic[2])
+				return selectPic[1], selectPic[2]
 		return None
 
 	def hideRc(self):

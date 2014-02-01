@@ -23,10 +23,14 @@ KNOWN_EXTENSIONS = MOVIE_EXTENSIONS.union(IMAGE_EXTENSIONS, DVD_EXTENSIONS, AUDI
 cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
 
 class MovieListData:
-	pass
+	def __init__(self):
+		pass
 
 # iStaticServiceInformation
 class StubInfo:
+	def __init__(self):
+		pass
+
 	def getName(self, serviceref):
 		return os.path.split(serviceref.getPath())[1]
 	def getLength(self, serviceref):
@@ -619,8 +623,8 @@ class MovieList(GUIComponent):
 		ref = x[0]
 		name = x[1] and x[1].getName(ref)
 		if ref.flags & eServiceReference.mustDescent:
-			return (0, name and name.lower() or "", -x[2])
-		return (1, name and name.lower() or "", -x[2])
+			return 0, name and name.lower() or "", -x[2]
+		return 1, name and name.lower() or "", -x[2]
 
 	def buildAlphaNumericFlatSortKey(self, x):
 		# x = ref,info,begin,...
@@ -635,13 +639,13 @@ class MovieList(GUIComponent):
 			name = p[1]
 		# print "Sorting for -%s-" % name
 
-		return (1, name and name.lower() or "", -x[2])
+		return 1, name and name.lower() or "", -x[2]
 
 	def buildBeginTimeSortKey(self, x):
 		ref = x[0]
 		if ref.flags & eServiceReference.mustDescent:
-			return (0, x[1] and -os.stat(ref.getPath()).st_mtime)
-		return (1, -x[2])
+			return 0, x[1] and -os.stat(ref.getPath()).st_mtime
+		return 1, -x[2]
 
 	def moveTo(self, serviceref):
 		count = 0

@@ -90,9 +90,9 @@ class TimerEntry(Screen, ConfigListScreen):
 			day.append(0)
 		if self.timer.repeated: # repeated
 			type = "repeated"
-			if (self.timer.repeated == 31): # Mon-Fri
+			if self.timer.repeated == 31: # Mon-Fri
 				repeated = "weekdays"
-			elif (self.timer.repeated == 127): # daily
+			elif self.timer.repeated == 127: # daily
 				repeated = "daily"
 			else:
 				flags = self.timer.repeated
@@ -107,7 +107,7 @@ class TimerEntry(Screen, ConfigListScreen):
 						count += 1
 					else:
 						day[x] = 0
-					flags = flags >> 1
+					flags >>= 1
 				if count == 1:
 					repeated = "weekly"
 		else: # once
@@ -427,14 +427,14 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_starttime.increment()
 		self["config"].invalidate(self.entryStartTime)
 		if self.timerentry_type.value == "once" and self.timerentry_starttime.value == [0, 0]:
-			self.timerentry_date.value = self.timerentry_date.value + 86400
+			self.timerentry_date.value += 86400
 			self["config"].invalidate(self.entryDate)
 
 	def decrementStart(self):
 		self.timerentry_starttime.decrement()
 		self["config"].invalidate(self.entryStartTime)
 		if self.timerentry_type.value == "once" and self.timerentry_starttime.value == [23, 59]:
-			self.timerentry_date.value = self.timerentry_date.value - 86400
+			self.timerentry_date.value -= 86400
 			self["config"].invalidate(self.entryDate)
 
 	def incrementEnd(self):

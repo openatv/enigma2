@@ -80,9 +80,9 @@ class About(Screen):
 			f = open('/proc/stb/fp/temp_sensor', 'r')
 			tempinfo = f.read()
 			f.close()
-		if tempinfo and int(tempinfo.replace('\n','')) > 0:
+		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temperature: %s") % tempinfo.replace('\n','') + mark + "C\n\n"
+			AboutText += _("System temperature: %s") % tempinfo.replace('\n', '') + mark + "C\n\n"
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
@@ -143,7 +143,7 @@ class Devices(Screen):
 			if not parts:
 				continue
 			device = parts[3]
-			if not search('sd[a-z][1-9]',device):
+			if not search('sd[a-z][1-9]', device):
 				continue
 			if device in list2:
 				continue
@@ -155,7 +155,6 @@ class Devices(Screen):
 					parts = line.strip().split()
 					mount = str(parts[1])
 					break
-					continue
 			f.close()
 
 			if not mount.startswith('/dev/'):
@@ -163,25 +162,25 @@ class Devices(Screen):
 				free = Harddisk(device).free()
 
 				if ((float(size) / 1024) / 1024) >= 1:
-					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024),2)) + _("TB")
+					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024), 2)) + _("TB")
 				elif (size / 1024) >= 1:
-					sizeline = _("Size: ") + str(round((float(size) / 1024),2)) + _("GB")
+					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) + _("GB")
 				elif size >= 1:
 					sizeline = _("Size: ") + str(size) + _("MB")
 				else:
 					sizeline = _("Size: ") + _("unavailable")
 
 				if ((float(free) / 1024) / 1024) >= 1:
-					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024),2)) + _("TB")
+					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) + _("TB")
 				elif (free / 1024) >= 1:
-					freeline = _("Free: ") + str(round((float(free) / 1024),2)) + _("GB")
+					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) + _("GB")
 				elif free >= 1:
 					freeline = _("Free: ") + str(free) + _("MB")
 				else:
 					freeline = _("Free: ") + _("full")
-				self.list.append(mount +'\t'  + sizeline + ' \t' + freeline)
+				self.list.append(mount + '\t' + sizeline + ' \t' + freeline)
 			else:
-				self.list.append(mount +'\t'  + _('Not mounted'))
+				self.list.append(mount + '\t' + _('Not mounted'))
 
 			list2.append(device)
 		self.list = '\n'.join(self.list)
@@ -189,8 +188,8 @@ class Devices(Screen):
 
 		self.Console.ePopen("df -mh | grep -v '^Filesystem'", self.Stage1Complete)
 
-	def Stage1Complete(self,result, retval, extra_args = None):
-		result = result.replace('\n                        ',' ').split('\n')
+	def Stage1Complete(self, result, retval, extra_args=None):
+		result = result.replace('\n                        ', ' ').split('\n')
 		self.mountinfo = ""
 		for line in result:
 			self.parts = line.split()
@@ -231,7 +230,7 @@ class SystemMemoryInfo(Screen):
 		self.AboutText = _("RAM") + '\n\n'
 		RamTotal = "-"
 		RamFree = "-"
-		for lidx in range(len(out_lines)-1):
+		for lidx in range(len(out_lines) - 1):
 			tstLine = out_lines[lidx].split()
 			if "MemTotal:" in tstLine:
 				MemTotal = out_lines[lidx].split()
@@ -256,11 +255,11 @@ class SystemMemoryInfo(Screen):
 		self.Console = Console()
 		self.Console.ePopen("df -mh / | grep -v '^Filesystem'", self.Stage1Complete)
 
-	def Stage1Complete(self,result, retval, extra_args = None):
-		flash = str(result).replace('\n','')
+	def Stage1Complete(self, result, retval, extra_args=None):
+		flash = str(result).replace('\n', '')
 		flash = flash.split()
-		RamTotal=flash[1]
-		RamFree=flash[3]
+		RamTotal = flash[1]
+		RamFree = flash[3]
 
 		self.AboutText += _("FLASH") + '\n\n'
 		self.AboutText += _("Total:") + "\t" + RamTotal + "\n"
@@ -374,9 +373,9 @@ class SystemNetworkInfo(Screen):
 
 	def resetList(self):
 		if self.iStatus:
-			self.iStatus.getDataForInterface(self.iface,self.getInfoCB)
+			self.iStatus.getDataForInterface(self.iface, self.getInfoCB)
 
-	def getInfoCB(self,data,status):
+	def getInfoCB(self, data, status):
 		self.LinkState = None
 		if data is not None:
 			if data is True:
@@ -421,7 +420,7 @@ class SystemNetworkInfo(Screen):
 						if self.has_key("enc"):
 							self.AboutText += _('Encryption:') + '\t' + encryption + '\n'
 
-						if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] == False:
+						if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] is False:
 							self.LinkState = False
 							self["statuspic"].setPixmapNum(1)
 							self["statuspic"].show()
@@ -439,14 +438,14 @@ class SystemNetworkInfo(Screen):
 		self["Statustext"].setText(_("Link:"))
 		if iNetwork.isWirelessInterface(self.iface):
 			try:
-				self.iStatus.getDataForInterface(self.iface,self.getInfoCB)
+				self.iStatus.getDataForInterface(self.iface, self.getInfoCB)
 			except:
 				self["statuspic"].setPixmapNum(1)
 				self["statuspic"].show()
 		else:
-			iNetwork.getLinkState(self.iface,self.dataAvail)
+			iNetwork.getLinkState(self.iface, self.dataAvail)
 
-	def dataAvail(self,data):
+	def dataAvail(self, data):
 		self.LinkState = None
 		for line in data.splitlines():
 			line = line.strip()
@@ -455,13 +454,13 @@ class SystemNetworkInfo(Screen):
 					self.LinkState = True
 				else:
 					self.LinkState = False
-		if self.LinkState == True:
+		if self.LinkState:
 			iNetwork.checkNetworkState(self.checkNetworkCB)
 		else:
 			self["statuspic"].setPixmapNum(1)
 			self["statuspic"].show()
 
-	def checkNetworkCB(self,data):
+	def checkNetworkCB(self, data):
 		try:
 			if iNetwork.getAdapterAttribute(self.iface, "up") is True:
 				if self.LinkState is True:
@@ -484,14 +483,14 @@ class SystemNetworkInfo(Screen):
 
 class AboutSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["selected"] = StaticText("openATV:" + getImageVersion())
 
 		AboutText = _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
 
 		if path.exists('/proc/stb/info/chipset'):
 			chipset = open('/proc/stb/info/chipset', 'r').read()
-			AboutText += _("Chipset: BCM%s") % chipset.replace('\n','') + "\n"
+			AboutText += _("Chipset: BCM%s") % chipset.replace('\n', '') + "\n"
 
 		AboutText += _("Version: %s") % getImageVersion() + "\n"
 		AboutText += _("Build: %s") % getImageVersion() + "\n"
@@ -510,14 +509,14 @@ class AboutSummary(Screen):
 			tempinfo = open('/proc/stb/sensors/temp0/value', 'r').read()
 		elif path.exists('/proc/stb/fp/temp_sensor'):
 			tempinfo = open('/proc/stb/fp/temp_sensor', 'r').read()
-		if tempinfo and int(tempinfo.replace('\n','')) > 0:
+		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temperature: %s") % tempinfo.replace('\n','') + mark + "C\n\n"
+			AboutText += _("System temperature: %s") % tempinfo.replace('\n', '') + mark + "C\n\n"
 
 		self["AboutText"] = StaticText(AboutText)
 
 class ViewGitLog(Screen):
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.skinName = "SoftwareUpdateChanges"
 		self.setTitle(_("OE Changes"))
@@ -562,11 +561,11 @@ class ViewGitLog(Screen):
 		fd = open('/etc/' + self.logtype + '-git.log', 'r')
 		releasenotes = fd.read()
 		fd.close()
-		releasenotes = releasenotes.replace('\nopenatv: build',"\n\nopenatv: build")
+		releasenotes = releasenotes.replace('\nopenatv: build', "\n\nopenatv: build")
 		self["text"].setText(releasenotes)
 		summarytext = releasenotes
 		try:
-			self['title_summary'].setText(summarytext[0]+':')
+			self['title_summary'].setText(summarytext[0] + ':')
 			self['text_summary'].setText(summarytext[1])
 		except:
 			self['title_summary'].setText("")

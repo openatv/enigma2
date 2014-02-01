@@ -102,7 +102,7 @@ def getIfTransferredData(ifname):
 			data = line.split('%s:' % ifname)[1].split()
 			rx_bytes, tx_bytes = (data[0], data[8])
 			f.close()
-			return (rx_bytes, tx_bytes)
+			return rx_bytes, tx_bytes
 
 # For modules that do "from About import about"
 about = modules[__name__]

@@ -246,7 +246,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		self.onLayoutFinish.append(self.go)
 
 	def getProgressListComponent(self, index, status):
-		return (index, self.getTextualIndexRepresentation(index), status)
+		return index, self.getTextualIndexRepresentation(index), status
 
 	def clearProgressList(self):
 		self.list = []
@@ -430,9 +430,9 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 	# the algorithm checks, if we should continue scanning
 	def getContinueScanning(self):
 		if self.test_type == self.TEST_TYPE_QUICK or self.test_type == self.TEST_TYPE_RANDOM:
-			return (self.myindex < len(self.indexlist.keys()))
+			return self.myindex < len(self.indexlist.keys())
 		elif self.test_type == self.TEST_TYPE_COMPLETE:
-			return (self.myindex < len(self.keylist))
+			return self.myindex < len(self.keylist)
 
 	def addResult(self, index, status, failedTune, successfullyTune):
 		self.results[index] = self.results.get(index, {"failed": [], "successful": [], "status": None, "internalstatus": None})

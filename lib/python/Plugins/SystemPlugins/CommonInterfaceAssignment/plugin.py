@@ -147,6 +147,7 @@ class CIconfigMenu(Screen):
 			i+=1
 			self.caidlist.append((str(hex(int(caid))),str(caid),i))
 
+		# noinspection PyStringFormat
 		print "[CI_Wizzard_Config_CI%d] read following CAIds from CI: %s" %(self.ci_slot, self.caidlist)
 
 		self.selectedcaid = []
@@ -203,7 +204,7 @@ class CIconfigMenu(Screen):
 			ref=args[0]
 			service_ref = ServiceReference(ref)
 			service_name = service_ref.getServiceName()
-			if find_in_list(self.servicelist, service_name, 0)==False:
+			if not find_in_list(self.servicelist, service_name, 0):
 				split_ref=service_ref.ref.toString().split(":")
 				if split_ref[0] == "1":#== dvb service und nicht muell von None
 					self.servicelist.append( (service_name , ConfigNothing(), 0, service_ref.ref.toString()) )
@@ -214,7 +215,7 @@ class CIconfigMenu(Screen):
 		if len(args)>1: # bei nix selected kommt nur 1 arg zurueck (==None)
 			name=args[0]
 			dvbnamespace=args[1]
-			if find_in_list(self.servicelist, name, 0)==False:
+			if not find_in_list(self.servicelist, name, 0):
 				self.servicelist.append( (name , ConfigNothing(), 1, dvbnamespace) )
 				self["ServiceList"].l.setList(self.servicelist)
 				self.setServiceListInfo()
@@ -445,7 +446,7 @@ class myProviderSelection(ChannelSelectionBase):
 
 	def showSatellites(self):
 		if not self.pathChangeDisabled:
-			refstr = '%s FROM SATELLITES ORDER BY satellitePosition'%(self.service_types)
+			refstr = '%s FROM SATELLITES ORDER BY satellitePosition'% self.service_types
 			if not self.preEnterPath(refstr):
 				ref = eServiceReference(refstr)
 				justSet=False
