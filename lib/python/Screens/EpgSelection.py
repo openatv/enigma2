@@ -131,20 +131,18 @@ class EPGSelection(Screen):
 					return True
 			menu = []
 			buttons = []
-			if isAutoTimerPlugin():
+			event = self["list"].getCurrent()
+			if isAutoTimerPlugin() and event[0]:
 				menu.append((_("Add AutoTimer"), "addautotimer"))
 				buttons.append("green")
 			menu.append((_("Timer Overview"), "timereditlist"))
 			def menuAction(choice):
-				if choice is not None:
+				if choice:
 					if choice[1] == "timereditlist":
 						self.session.open(TimerEditList)
-					if choice[1] == "addautotimer":
-						event = self["list"].getCurrent()[0]
-						if event:
-							service = self["list"].getCurrent()[1]
+					if choice[1] == "addautotimer" and event[0]:
 							from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
-							addAutotimerFromEvent(self.session, evt = event, service = service)
+							addAutotimerFromEvent(self.session, evt = event[0], service = event[1])
 			self.session.openWithCallback(menuAction, ChoiceBox, title=_("Select action"), list=menu, keys=buttons)
 
 	def onDateTimeInputClosed(self, ret):
