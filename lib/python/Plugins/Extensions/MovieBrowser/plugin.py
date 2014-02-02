@@ -307,7 +307,7 @@ class movieBrowserBackdrop(Screen):
         if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/reset'):
             self.session.openWithCallback(self.reset_return, MessageBox, _('\nThe Movie Browser Database will be build now.\nDepending on the number of your movies this can take several minutes.\n\nBuild Movie Browser Database now?'), MessageBox.TYPE_YESNO)
         else:
-            self.session.openWithCallback(self.first_return, MessageBox, _('\nBefore the Movie Browser Database will be build for the first time,\nyou should check your Movie Folder setting and change the\nCache Folder to a hard drive disk for faster access or to an sub stick.'), MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.first_return, MessageBox, _('\nBefore the Movie Browser Database will be build for the first time,\nyou should check your Movie Folder setting and change the\nCache Folder to a hard drive disk for faster access or to an usb stick.'), MessageBox.TYPE_YESNO)
 
     def first_return(self, answer):
         if answer is True:
