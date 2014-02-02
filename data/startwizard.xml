@@ -23,7 +23,7 @@ self.selectKey("DOWN")
 			<text value="Please connect your %s %s to the internet" />
 			<list>
 				<listentry caption="Check the internet connection" step="update" />
-				<listentry caption="Skip internet connection check (disables automatic package installation)" step="nima" />
+				<listentry caption="Skip internet connection check" step="nima" />
 			</list>
 			<code>
 self.clearSelectedKeys()
@@ -47,7 +47,7 @@ self.condition = not config.misc.installwizard.ipkgloaded.value
 			<displaytext value="Your %s %s is not connected to the internet" />
 			<list>
 				<listentry caption="Check the internet connection again" step="update" />
-				<listentry caption="Skip internet connection check (disables automatic package installation)" step="nima" />
+				<listentry caption="Skip internet connection check" step="nima" />
 			</list>
 			<code>
 self.clearSelectedKeys()
