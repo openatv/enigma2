@@ -13,6 +13,7 @@ from Components.Label import Label, MultiColorLabel
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap, MultiPixmap
 from Components.MenuList import MenuList
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNumber, ConfigLocations, NoSave, ConfigMacText
 from Components.ConfigList import ConfigListScreen
 from Components.PluginComponent import plugins
@@ -21,7 +22,7 @@ from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
-from enigma import eTimer
+from enigma import eTimer, eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER, RT_WRAP
 from boxbranding import getBoxType, getMachineBrand, getMachineName
 from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
 from shutil import move
@@ -774,8 +775,19 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		elif current == self.encryptionKey and config.plugins.wlan.encryption.getValue() is not "Unencrypted":
 			if current[1].help_window.instance is not None:
 				current[1].help_window.instance.hide()
-
-
+				
+class NetworkMenuList(MenuList):
+	def __init__(self, list, enableWrapAround = False):
+		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
+		self.l.setFont(0, gFont("Regular", 28))
+		self.l.setFont(1, gFont("Regular", 14))
+		self.l.setItemHeight(50)
+	
+def SubNetworkMenuEntryComponent(name, item):
+	return [
+		_(item),
+		MultiContentEntryText(pos=(20, 8), size=(400, 50), font=0, text = _(name)),	
+	]
 class AdapterSetupConfiguration(Screen, HelpableScreen):
 	def __init__(self, session,iface):
 		Screen.__init__(self, session)
@@ -787,7 +799,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self.LinkState = None
 		self.onChangedEntry = [ ]
 		self.mainmenu = ""
-		self["menulist"] = MenuList(self.mainmenu)
+		self["menulist"] = NetworkMenuList(self.mainmenu)
 		self["key_red"] = StaticText(_("Close"))
 		self["description"] = StaticText()
 		self["IFtext"] = StaticText()
@@ -859,7 +871,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 	def ok(self):
 		self.cleanup()
-		if self["menulist"].getCurrent()[1] == 'edit':
+		if self["menulist"].getCurrent()[0] == 'edit':
 			if iNetwork.isWirelessInterface(self.iface):
 				try:
 					from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan
@@ -872,13 +884,13 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 						self.showErrorMessage()	# Display Wlan not available Message
 			else:
 				self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup,self.iface)
-		if self["menulist"].getCurrent()[1] == 'test':
+		if self["menulist"].getCurrent()[0] == 'test':
 			self.session.open(NetworkAdapterTest,self.iface)
-		if self["menulist"].getCurrent()[1] == 'dns':
+		if self["menulist"].getCurrent()[0] == 'dns':
 			self.session.open(NameserverSetup)
-		if self["menulist"].getCurrent()[1] == 'mac':
+		if self["menulist"].getCurrent()[0] == 'mac':
 			self.session.open(NetworkMacSetup)
-		if self["menulist"].getCurrent()[1] == 'scanwlan':
+		if self["menulist"].getCurrent()[0] == 'scanwlan':
 			try:
 				from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan
 			except ImportError:
@@ -888,7 +900,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					self.session.openWithCallback(self.WlanScanClosed, WlanScan, self.iface)
 				else:
 					self.showErrorMessage()	# Display Wlan not available Message
-		if self["menulist"].getCurrent()[1] == 'wlanstatus':
+		if self["menulist"].getCurrent()[0] == 'wlanstatus':
 			try:
 				from Plugins.SystemPlugins.WirelessLan.plugin import WlanStatus
 			except ImportError:
@@ -898,13 +910,13 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					self.session.openWithCallback(self.WlanStatusClosed, WlanStatus,self.iface)
 				else:
 					self.showErrorMessage()	# Display Wlan not available Message
-		if self["menulist"].getCurrent()[1] == 'lanrestart':
+		if self["menulist"].getCurrent()[0] == 'lanrestart':
 			self.session.openWithCallback(self.restartLan, MessageBox, (_("Are you sure you want to restart your network interfaces?\n\n") + self.oktext ) )
-		if self["menulist"].getCurrent()[1] == 'openwizard':
+		if self["menulist"].getCurrent()[0] == 'openwizard':
 			from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
 			self.session.openWithCallback(self.AdapterSetupClosed, NetworkWizard, self.iface)
-		if self["menulist"].getCurrent()[1][0] == 'extendedSetup':
-			self.extended = self["menulist"].getCurrent()[1][2]
+		if self["menulist"].getCurrent()[0][0] == 'extendedSetup':
+			self.extended = self["menulist"].getCurrent()[0][2]
 			self.extended(self.session, self.iface)
 
 	def up(self):
@@ -924,27 +936,27 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		return PluginBrowserSummary
 
 	def selectionChanged(self):
-		if self["menulist"].getCurrent()[1] == 'edit':
+		if self["menulist"].getCurrent()[0] == 'edit':
 			self["description"].setText(_("Edit the network configuration of your %s %s.\n" ) % (getMachineBrand(), getMachineName()) + self.oktext )
-		if self["menulist"].getCurrent()[1] == 'test':
+		if self["menulist"].getCurrent()[0] == 'test':
 			self["description"].setText(_("Test the network configuration of your %s %s.\n" ) % (getMachineBrand(), getMachineName()) + self.oktext )
-		if self["menulist"].getCurrent()[1] == 'dns':
+		if self["menulist"].getCurrent()[0] == 'dns':
 			self["description"].setText(_("Edit the Nameserver configuration of your %s %s.\n" ) % (getMachineBrand(), getMachineName()) + self.oktext )
-		if self["menulist"].getCurrent()[1] == 'scanwlan':
+		if self["menulist"].getCurrent()[0] == 'scanwlan':
 			self["description"].setText(_("Scan your network for wireless access points and connect to them using your selected wireless device.\n" ) + self.oktext )
-		if self["menulist"].getCurrent()[1] == 'wlanstatus':
-			self["description"].setText(_("Shows the state of your wireless LAN connection.\n" ) + self.oktext )
-		if self["menulist"].getCurrent()[1] == 'lanrestart':
+		if self["menulist"].getCurrent()[0] == 'wlanstatus':
+			self["description"].setTe0t(_("Shows the state of your wireless LAN connection.\n" ) + self.oktext )
+		if self["menulist"].getCurrent()[0] == 'lanrestart':
 			self["description"].setText(_("Restart your network connection and interfaces.\n" ) + self.oktext )
-		if self["menulist"].getCurrent()[1] == 'openwizard':
+		if self["menulist"].getCurrent()[0] == 'openwizard':
 			self["description"].setText(_("Use the networkwizard to configure your Network\n" ) + self.oktext )
-		if self["menulist"].getCurrent()[1][0] == 'extendedSetup':
+		if self["menulist"].getCurrent()[0][0] == 'extendedSetup':
 			self["description"].setText(_(self["menulist"].getCurrent()[1][1]) + self.oktext )
-		if self["menulist"].getCurrent()[1] == 'mac':
+		if self["menulist"].getCurrent()[0] == 'mac':
 			self["description"].setText(_("Set the MAC-adress of your %s %s.\n" ) % (getMachineBrand(), getMachineName()) + self.oktext )
-		item = self["menulist"].getCurrent()
+		item = self["menulist"].getCurrent()[0]
 		if item:
-			name = str(self["menulist"].getCurrent()[0])
+			name = str(self["menulist"].getCurrent())
 			desc = self["description"].text
 		else:
 			name = ""
@@ -975,10 +987,10 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 	def genMainMenu(self):
 		menu = []
-		menu.append((_("Network settings/info"), "edit"))
-		menu.append((_("Nameserver settings"), "dns"))
-		menu.append((_("Network test"), "test"))
-		menu.append((_("Restart network"), "lanrestart"))
+		menu.append(SubNetworkMenuEntryComponent((_("Network settings/info")), "edit"))
+		menu.append(SubNetworkMenuEntryComponent((_("Nameserver settings")), "dns"))
+		menu.append(SubNetworkMenuEntryComponent((_("Network test")), "test"))
+		menu.append(SubNetworkMenuEntryComponent((_("Restart network")), "lanrestart"))
 
 		self.extended = None
 		self.extendedSetup = None
@@ -987,9 +999,9 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			if callFnc is not None:
 				self.extended = callFnc
 				if p.__call__.has_key("WlanPluginEntry"): # internally used only for WLAN Plugin
-					menu.append((_("Scan wireless networks"), "scanwlan"))
+					menu.append(SubNetworkMenuEntryComponent((_("Scan wireless networks")), "scanwlan"))
 					if iNetwork.getAdapterAttribute(self.iface, "up"):
-						menu.append((_("Show WLAN status"), "wlanstatus"))
+						menu.append(SubNetworkMenuEntryComponent((_("Show WLAN status")), "wlanstatus"))
 				else:
 					if p.__call__.has_key("menuEntryName"):
 						menuEntryName = p.__call__["menuEntryName"](self.iface)
@@ -1000,14 +1012,15 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					else:
 						menuEntryDescription = _('Extended network setup plugin...')
 					self.extendedSetup = ('extendedSetup',menuEntryDescription, self.extended)
-					menu.append((menuEntryName,self.extendedSetup))
+					menu.append(SubNetworkMenuEntryComponent((menuEntryName,self.extendedSetup)))
 
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
-			menu.append((_("Network wizard"), "openwizard"))
+			menu.append(SubNetworkMenuEntryComponent((_("Network wizard")), "openwizard"))
 		kernel_ver = about.getKernelVersionString()
 		if kernel_ver <= "3.5.0":
-			menu.append((_("Network MAC settings"), "mac"))
+			menu.append(SubNetworkMenuEntryComponent((_("Network MAC settings")), "mac"))
 
+		
 		return menu
 
 	def AdapterSetupClosed(self, *ret):
@@ -1539,6 +1552,8 @@ class NetworkAdapterTest(Screen):
 		else:
 			iStatus.stopWlanConsole()
 
+
+        
 class NetworkMountsMenu(Screen,HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
