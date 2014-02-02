@@ -31,7 +31,7 @@ config.plugins.moviebrowser.style = ConfigSelection(default='backdrop', choices=
 config.plugins.moviebrowser.moviefolder = ConfigDirectory(default='/media/')
 config.plugins.moviebrowser.cachefolder = ConfigSelection(default='/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/cache', choices=[('/media/usb/moviebrowser/cache', _('/media/usb')), ('/media/hdd/moviebrowser/cache', _('/media/hdd')), ('/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/cache', _('Default'))])
 config.plugins.moviebrowser.database = ConfigSelection(default='tmdb', choices=[('tmdb', _('TMDb')), ('imdb', _('IMDb')), ('tvdb', _('TheTVDb'))])
-config.plugins.moviebrowser.language = ConfigSelection(default='de', choices=[('de', _('Deutsch')),
+config.plugins.moviebrowser.language = ConfigSelection(default='en', choices=[('de', _('Deutsch')),
  ('en', _('English')),
  ('es', _('Espanol')),
  ('ru', _('P\xd1\x83\xd1\x81\xd1\x81\xd0\xba\xd0\xb8\xd0\xb9'))])
@@ -305,9 +305,9 @@ class movieBrowserBackdrop(Screen):
 
     def openInfo(self):
         if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/reset'):
-            self.session.openWithCallback(self.reset_return, MessageBox, _('\nThe Movie Browser Database will be build now.\nDepending on the number of your movies this can take several minutes.\n\nBuild Movie Browser Database now?'), MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.reset_return, MessageBox, _('\nThe Movie Browser Database is built for now.\nDepending on the number of your movies this can take several minutes.\n\nBuild Movie Browser Database now?'), MessageBox.TYPE_YESNO)
         else:
-            self.session.openWithCallback(self.first_return, MessageBox, _('\nBefore the Movie Browser Database will be build for the first time,\nyou should check your Movie Folder setting and change the\nCache Folder to a hard drive disk for faster access or to an sub stick.'), MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.first_return, MessageBox, _('\nBefore the Movie Browser Database will be built for the first time,\nyou should check your Movie Folder setting and change the\nCache Folder to a hard drive disk for faster access or to an usb stick.'), MessageBox.TYPE_YESNO)
 
     def first_return(self, answer):
         if answer is True:
