@@ -31,7 +31,7 @@ config.plugins.moviebrowser.style = ConfigSelection(default='backdrop', choices=
 config.plugins.moviebrowser.moviefolder = ConfigDirectory(default='/media/')
 config.plugins.moviebrowser.cachefolder = ConfigSelection(default='/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/cache', choices=[('/media/usb/moviebrowser/cache', _('/media/usb')), ('/media/hdd/moviebrowser/cache', _('/media/hdd')), ('/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db/cache', _('Default'))])
 config.plugins.moviebrowser.database = ConfigSelection(default='tmdb', choices=[('tmdb', _('TMDb')), ('imdb', _('IMDb')), ('tvdb', _('TheTVDb'))])
-config.plugins.moviebrowser.language = ConfigSelection(default='de', choices=[('de', _('Deutsch')),
+config.plugins.moviebrowser.language = ConfigSelection(default='en', choices=[('de', _('Deutsch')),
  ('en', _('English')),
  ('es', _('Espanol')),
  ('ru', _('P\xd1\x83\xd1\x81\xd1\x81\xd0\xba\xd0\xb8\xd0\xb9'))])
