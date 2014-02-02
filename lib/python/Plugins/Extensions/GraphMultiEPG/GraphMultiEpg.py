@@ -30,6 +30,9 @@ from enigma import eEPGCache, eListbox, gFont, eListboxPythonMultiContent, RT_HA
 	RT_VALIGN_CENTER, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO, eSize, eRect, eTimer, getBestPlayableServiceReference, loadPNG
 from GraphMultiEpgSetup import GraphMultiEpgSetup
 from time import localtime, time, strftime
+from Components.PluginComponent import plugins
+from Plugins.Plugin import PluginDescriptor
+from Tools.BoundFunction import boundFunction
 
 MAX_TIMELINES = 6
 
@@ -762,7 +765,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		else:
 			self["key_yellow"] = Button(_("List mode"))
 
-		self["key_blue"] = Button(_("Further Options"))
+		self["key_blue"] = Button(_("Goto"))
 
 		self.key_green_choice = self.EMPTY
 		self.key_red_choice = self.EMPTY
@@ -798,8 +801,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				"info":        (self.infoKeyPressed, _("Show detailed event info")),
 				"red":         (self.zapTo,          _("Zap to selected channel")),
 				"yellow":      (self.swapMode,       _("Switch between normal mode and list mode")),
-				"blue":        (self.furtherOptions, _("Further options")),
-				"menu":        (self.showSetup,      _("Setup menu")),
+				"blue":        (self.enterDateTime,  _("Goto specific data/time")),
+				"menu":	       (self.furtherOptions, _("Further Options")),
 				"nextBouquet": (self.nextBouquet,    _("Show bouquet selection menu")),
 				"prevBouquet": (self.prevBouquet,    _("Show bouquet selection menu")),
 				"nextService": (self.nextPressed,    _("Goto next page of events")),
@@ -937,32 +940,26 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.close(False)
 
 	def furtherOptions(self):
-		def isAutoTimerPlugin():
-			try:
-				from Plugins.Extensions.AutoTimer.plugin import main
-			except ImportError:
-				return False
-			else:
-				return True
 		menu = []
-		buttons = []
+		event = self["list"].getCurrent()[0]
+		if event:
+			for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
+				#only event specific plugins here, no others plugins
+				if 'currentevent' in p.__call__.func_code.co_varnames:
+					menu.append((p.name, boundFunction(self.runPlugin, p)))
+		menu.append((_("Timer Overview"), self.openTimerOverview))
+		menu.append((_("Setup menu"), self.showSetup))
+		def boxAction(choice):
+			if choice:
+				choice[1]()
+		self.session.openWithCallback(boxAction, ChoiceBox, title=_("Select action"), list=menu)
+
+	def runPlugin(self, plugin):
 		event = self["list"].getCurrent()
-		if isAutoTimerPlugin() and event[0]:
-			menu.append((_("Add AutoTimer"), "addautotimer"))
-			buttons.append("green")
-		menu.append((_("Goto specific data/time"), "enterdatetime"))
-		buttons.append("blue")
-		menu.append((_("Timer Overview"), "timereditlist"))
-		def menuAction(choice):
-			if choice is not None:
-				if choice[1] == "timereditlist":
-					self.session.open(TimerEditList)
-				if choice[1] == "addautotimer" and event[0]:
-					from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
-					addAutotimerFromEvent(self.session, evt = event[0], service = event[1])
-				if choice[1] == "enterdatetime":
-					self.enterDateTime()
-		self.session.openWithCallback(menuAction, ChoiceBox, title=_("Select action"), list=menu, keys=buttons)
+		plugin(session=self.session, currentevent=event)
+
+	def openTimerOverview(self):
+		self.session.open(TimerEditList)
 
 	def infoKeyPressed(self):
 		cur = self["list"].getCurrent()

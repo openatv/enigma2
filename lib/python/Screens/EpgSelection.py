@@ -19,6 +19,9 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry
 from ServiceReference import ServiceReference
 from time import localtime, time
+from Components.PluginComponent import plugins
+from Plugins.Plugin import PluginDescriptor
+from Tools.BoundFunction import boundFunction
 
 mepg_config_initialized = False
 
@@ -88,7 +91,7 @@ class EPGSelection(Screen):
 				"blue": self.blueButtonPressed,
 				"info": self.infoKeyPressed,
 				"red": self.zapTo,
-				"menu": self.enterDateTime,
+				"menu": self.furtherOptions,
 				"nextBouquet": self.nextBouquet, # just used in multi epg yet
 				"prevBouquet": self.prevBouquet, # just used in multi epg yet
 				"nextService": self.nextService, # just used in single epg yet
@@ -121,29 +124,29 @@ class EPGSelection(Screen):
 				config.misc.prev_mepg_time=ConfigClock(default = time())
 				mepg_config_initialized = True
 			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.misc.prev_mepg_time )
-		elif self.type == EPG_TYPE_SINGLE:
-			def isAutoTimerPlugin():
-				try:
-					from Plugins.Extensions.AutoTimer.plugin import main
-				except ImportError:
-					return False
-				else:
-					return True
-			menu = []
-			buttons = []
-			event = self["list"].getCurrent()
-			if isAutoTimerPlugin() and event[0]:
-				menu.append((_("Add AutoTimer"), "addautotimer"))
-				buttons.append("green")
-			menu.append((_("Timer Overview"), "timereditlist"))
-			def menuAction(choice):
-				if choice:
-					if choice[1] == "timereditlist":
-						self.session.open(TimerEditList)
-					if choice[1] == "addautotimer" and event[0]:
-							from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
-							addAutotimerFromEvent(self.session, evt = event[0], service = event[1])
-			self.session.openWithCallback(menuAction, ChoiceBox, title=_("Select action"), list=menu, keys=buttons)
+
+	def furtherOptions(self):
+		menu = []
+		event = self["list"].getCurrent()[0]
+		if event:
+			for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
+				#only event specific plugins here, no others plugins
+				if 'currentevent' in p.__call__.func_code.co_varnames:
+					menu.append((p.name, boundFunction(self.runPlugin, p)))
+		if self.type == EPG_TYPE_MULTI:
+			menu.append((_("Goto specific data/time"),self.enterDateTime))
+		menu.append((_("Timer Overview"), self.openTimerOverview))
+		def boxAction(choice):
+			if choice:
+				choice[1]()
+		self.session.openWithCallback(boxAction, ChoiceBox, title=_("Select action"), list=menu)
+
+	def runPlugin(self, plugin):
+		event = self["list"].getCurrent()
+		plugin(session=self.session, currentevent=event)
+
+	def openTimerOverview(self):
+		self.session.open(TimerEditList)
 
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:

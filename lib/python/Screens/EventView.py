@@ -269,7 +269,8 @@ class EventViewBase:
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
 				#only list service or event specific eventinfo plugins here, no servelist plugins
 				if 'servicelist' not in p.__call__.func_code.co_varnames:
-					menu.append((p.name, boundFunction(self.runPlugin, p)))
+					if 'currentevent' not in p.__call__.func_code.co_varnames:
+						menu.append((p.name, boundFunction(self.runPlugin, p)))
 			if menu:
 				self.session.open(EventViewContextMenu, menu)
 
