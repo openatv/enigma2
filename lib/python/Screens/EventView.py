@@ -20,28 +20,6 @@ from Tools.BoundFunction import boundFunction
 from time import localtime
 from Components.config import config
 
-class EventViewContextMenu(Screen):
-	def __init__(self, session, menu):
-		Screen.__init__(self, session)
-
-		self["actions"] = ActionMap(["OkCancelActions"],
-			{
-				"ok": self.okbuttonClick,
-				"cancel": self.cancelClick
-			})
-
-		self["menu"] = MenuList(menu)
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(_(self.title))
-
-	def okbuttonClick(self):
-		self["menu"].getCurrent() and self["menu"].getCurrent()[1]()
-
-	def cancelClick(self):
-		self.close(False)
-
 class EventViewBase:
 	ADD_TIMER = 0
 	REMOVE_TIMER = 1
@@ -264,12 +242,18 @@ class EventViewBase:
 				self.similarEPGCB(id, refstr)
 
 	def doContext(self):
-		if self.event is not None:
+		if self.event:
 			menu = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO) \
 				if 'servicelist' not in p.__call__.func_code.co_varnames \
 					if 'selectedevent' not in p.__call__.func_code.co_varnames ]
-			if menu:
-				self.session.open(EventViewContextMenu, menu)
+			if len(menu) == 1:
+				menu and menu[0][1]()
+			elif len(menu) > 1:
+				def boxAction(choice):
+					if choice:
+						choice[1]()
+				text = _("Select action")
+				self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu)
 
 	def runPlugin(self, plugin):
 		plugin(session=self.session, service=self.currentService, event=self.event, eventName=self.event.getEventName())
