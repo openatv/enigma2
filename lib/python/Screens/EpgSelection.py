@@ -131,7 +131,7 @@ class EPGSelection(Screen):
 		event = self["list"].getCurrent()[0]
 		if event:
 			menu = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO) \
-				if 'currentevent' in p.__call__.func_code.co_varnames]
+				if 'selectedevent' in p.__call__.func_code.co_varnames]
 			if menu:
 				text += _(": %s") % event.getEventName()
 		if self.type == EPG_TYPE_MULTI:
@@ -144,7 +144,7 @@ class EPGSelection(Screen):
 
 	def runPlugin(self, plugin):
 		event = self["list"].getCurrent()
-		plugin(session=self.session, currentevent=event)
+		plugin(session=self.session, selectedevent=event)
 
 	def openTimerOverview(self):
 		self.session.open(TimerEditList)

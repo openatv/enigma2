@@ -267,7 +267,7 @@ class EventViewBase:
 		if self.event is not None:
 			menu = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO) \
 				if 'servicelist' not in p.__call__.func_code.co_varnames \
-					if 'currentevent' not in p.__call__.func_code.co_varnames ]
+					if 'selectedevent' not in p.__call__.func_code.co_varnames ]
 			if menu:
 				self.session.open(EventViewContextMenu, menu)
 
