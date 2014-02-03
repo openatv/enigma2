@@ -137,10 +137,13 @@ class EPGSelection(Screen):
 		if self.type == EPG_TYPE_MULTI:
 			menu.append((_("Goto specific date/time"),self.enterDateTime))
 		menu.append((_("Timer Overview"), self.openTimerOverview))
-		def boxAction(choice):
-			if choice:
-				choice[1]()
-		self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu)
+		if len(menu) == 1:
+			menu and menu[0][1]()
+		elif len(menu) > 1:
+			def boxAction(choice):
+				if choice:
+					choice[1]()
+			self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu)
 
 	def runPlugin(self, plugin):
 		event = self["list"].getCurrent()
