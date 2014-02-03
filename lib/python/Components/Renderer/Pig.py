@@ -1,8 +1,10 @@
 ##
 ## P(icture)i(n)g(raphics) renderer
 ##
+from enigma import eVideoWidget, getDesktop
+
 from Renderer import Renderer
-from enigma import eVideoWidget, eSize, ePoint, getDesktop
+
 
 class Pig(Renderer):
 	def __init__(self):

@@ -1,9 +1,13 @@
-import struct, os, time
-from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText
-from enigma import eHdmiCEC, eActionMap
-from Tools.StbHardware import getFPWasTimerWakeup
-from enigma import eTimer
+import struct
+import os
 from sys import maxint
+
+from enigma import eHdmiCEC, eActionMap
+from enigma import eTimer
+
+from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText
+from Tools.StbHardware import getFPWasTimerWakeup
+
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = False)
@@ -196,7 +200,7 @@ class HdmiCec:
 			Notifications.AddNotification(Standby)
 
 	def wakeup(self):
-		from Screens.Standby import Standby, inStandby
+		from Screens.Standby import inStandby
 		if inStandby:
 			inStandby.Power()
 
@@ -209,17 +213,17 @@ class HdmiCec:
 			if cmd == 0x00: # feature abort
 				if data[0] == '\x44':
 					print 'eHdmiCec: volume forwarding not supported by device %02x'%(message.getAddress())
-					self.volumeForwardingEnabled = False;
+					self.volumeForwardingEnabled = False
 			elif cmd == 0x46: # request name
 				self.sendMessage(message.getAddress(), 'osdname')
 			elif cmd == 0x7e or cmd == 0x72: # system audio mode status
 				if data[0] == '\x01':
-					self.volumeForwardingDestination = 5; # on: send volume keys to receiver
+					self.volumeForwardingDestination = 5 # on: send volume keys to receiver
 				else:
-					self.volumeForwardingDestination = 0; # off: send volume keys to tv
+					self.volumeForwardingDestination = 0 # off: send volume keys to tv
 				if config.hdmicec.volume_forwarding.getValue():
 					print 'eHdmiCec: volume forwarding to device %02x enabled'% self.volumeForwardingDestination
-					self.volumeForwardingEnabled = True;
+					self.volumeForwardingEnabled = True
 			elif cmd == 0x8f: # request power status
 				if inStandby:
 					self.sendMessage(message.getAddress(), 'powerinactive')

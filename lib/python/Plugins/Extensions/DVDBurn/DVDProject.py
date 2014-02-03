@@ -1,9 +1,11 @@
-from Tools.Directories import fileExists
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigText, ConfigSelection, getConfigListEntry, ConfigSequence, ConfigSubList
-import DVDTitle
 import xml.dom.minidom
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
 from boxbranding import getMachineBrand, getMachineName
+
+from Tools.Directories import fileExists
+from Components.config import ConfigSubsection, ConfigInteger, ConfigText, ConfigSelection, ConfigSequence, ConfigSubList
+import DVDTitle
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
+
 
 class ConfigColor(ConfigSequence):
 	def __init__(self, default=None):

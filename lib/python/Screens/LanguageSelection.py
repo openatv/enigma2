@@ -8,9 +8,9 @@ from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Screens.InfoBar import InfoBar
 from Screens.Rc import Rc
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN, SCOPE_LANGUAGE
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
-import gettext, enigma
+
 
 def LanguageEntryComponent(file, name, index):
 	png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + index + ".png"))

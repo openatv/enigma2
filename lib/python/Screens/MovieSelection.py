@@ -1,3 +1,9 @@
+import os
+import time
+import cPickle as pickle
+
+from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, eRCInput
+
 from Screen import Screen
 from Components.Button import Button
 from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
@@ -16,28 +22,20 @@ from Components.Sources.StaticText import StaticText
 import Components.Harddisk
 from Components.UsageConfig import preferredTimerPath
 from Components.Sources.Boolean import Boolean
-
 from Plugins.Plugin import PluginDescriptor
-
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
 import Screens.InfoBar
-
 from Tools import NumericalTextInput
-from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_HDD
 from Tools.BoundFunction import boundFunction
-
 import Tools.CopyFiles
 import Tools.Trashcan
 import NavigationInstance
 import RecordTimer
 
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, eRCInput
-import os
-import time
-import cPickle as pickle
 
 config.movielist = ConfigSubsection()
 config.movielist.curentlyplayingservice = ConfigText()
@@ -1179,8 +1177,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def configureDone(self, result):
 		if result:
-			self.applyConfigSettings({\
-				"moviesort": config.movielist.moviesort.getValue(),
+			self.applyConfigSettings({
+			"moviesort": config.movielist.moviesort.getValue(),
 				"description": config.movielist.description.getValue(),
 				"movieoff": config.usage.on_movie_eof.getValue()})
 			self.saveLocalSettings()

@@ -1,4 +1,6 @@
-import sys, os
+import sys
+import os
+
 if os.path.isfile("/usr/lib/enigma2/python/enigma.zip"):
 	sys.path.append("/usr/lib/enigma2/python/enigma.zip")
 
@@ -111,7 +113,6 @@ profile("LOAD:Plugin")
 from Components.PluginComponent import plugins
 
 profile("LOAD:Wizard")
-from Screens.Wizard import wizardManager
 from Screens.StartWizard import *
 import Screens.Rc
 from Tools.BoundFunction import boundFunction
@@ -534,8 +535,8 @@ def runScreenTest():
 
 	profile("wakeup")
 
-	from time import time, strftime, localtime
-	from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime
+	from time import time, localtime
+	from Tools.StbHardware import setFPWakeuptime, setRTCtime
 	#get currentTime
 	nowTime = time()
 	wakeupList = [
@@ -548,7 +549,6 @@ def runScreenTest():
 	wakeupList.sort()
 	recordTimerWakeupAuto = False
 	if wakeupList and wakeupList[0][1] != 3:
-		from time import strftime
 		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 270: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds

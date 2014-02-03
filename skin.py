@@ -5,7 +5,7 @@ import os
 
 profile("LOAD:enigma_skin")
 from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, addFont, gRGB, eWindowStyleSkinned, getDesktop
-from Components.config import ConfigSubsection, ConfigText, config, ConfigYesNo
+from Components.config import ConfigSubsection, ConfigText, config
 from Components.Sources.Source import ObsoleteSource
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_ACTIVE_SKIN, SCOPE_ACTIVE_LCDSKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
 from Tools.Import import my_import
@@ -527,7 +527,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 
 
 	for c in skin.findall("subtitles"):
-		from enigma import eWidget, eSubtitleWidget
+		from enigma import eSubtitleWidget
 		scale = ((1,1),(1,1))
 		for substyle in c.findall("sub"):
 			get_attr = substyle.attrib.get

@@ -1,21 +1,18 @@
+from os import path, makedirs, listdir, stat, rename, remove
+from datetime import date
+
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
 from Components.ActionMap import ActionMap, NumberActionMap
-from Components.Pixmap import Pixmap
-from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
-from Components.config import getConfigListEntry, configfile, ConfigSelection, ConfigSubsection, ConfigText, ConfigLocations
+from Components.config import configfile, ConfigSubsection, ConfigText, ConfigLocations
 from Components.config import config
-from Components.ConfigList import ConfigList,ConfigListScreen
+from Components.ConfigList import ConfigListScreen
 from Components.FileList import MultiFileSelectList
-from Plugins.Plugin import PluginDescriptor
-from enigma import eTimer, eEnv
 from Tools.Directories import *
-from os import popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
-from time import gmtime, strftime, localtime
-from datetime import date
+
 
 config.plugins.configurationbackup = ConfigSubsection()
 config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
@@ -67,7 +64,7 @@ class BackupScreen(Screen, ConfigListScreen):
 	def doBackup(self):
 		configfile.save()
 		try:
-			if path.exists(self.backuppath) == False:
+			if not path.exists(self.backuppath):
 				makedirs(self.backuppath)
 			self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.getValue() )
 			if path.exists(self.fullbackupfilename):
@@ -239,7 +236,7 @@ class RestoreMenu(Screen):
 	def fill_list(self):
 		self.flist = []
 		self.path = getBackupPath()
-		if path.exists(self.path) == False:
+		if not path.exists(self.path):
 			makedirs(self.path)
 		for file in listdir(self.path):
 			if file.endswith(".tar.gz"):
@@ -259,7 +256,7 @@ class RestoreMenu(Screen):
 		self.close()
 
 	def startRestore(self, ret = False):
-		if ret == True:
+		if ret:
 			self.exe = True
 			self.session.open(Console, title = _("Restoring..."), cmdlist = ["tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall -9 enigma2"])
 
@@ -271,10 +268,10 @@ class RestoreMenu(Screen):
 				self.session.openWithCallback(self.startDelete, MessageBox, _("Are you sure you want to delete\nthe following backup:\n") + self.sel)
 
 	def startDelete(self, ret = False):
-		if ret == True:
+		if ret:
 			self.exe = True
 			print "removing:",self.val
-			if path.exists(self.val) == True:
+			if path.exists(self.val):
 				remove(self.val)
 			self.exe = False
 			self.fill_list()

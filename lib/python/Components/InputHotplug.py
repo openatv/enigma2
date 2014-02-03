@@ -18,10 +18,10 @@ class NetlinkReader():
 					action = event['ACTION']
 					if action == 'add':
 						print "New input device detected:", devname
-						enigma.addInputDevice(os.path.join('/dev', devname));
+						enigma.addInputDevice(os.path.join('/dev', devname))
 					elif action == 'remove':
 						print "Removed input device:", devname
-						enigma.removeInputDevice(os.path.join('/dev', devname));
+						enigma.removeInputDevice(os.path.join('/dev', devname))
 				elif subsystem == 'net':
 					from Network import iNetwork
 					iNetwork.hotplug(event)

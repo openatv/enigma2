@@ -7,7 +7,6 @@ from Components.MovieList import AUDIO_EXTENSIONS
 from Components.PluginComponent import plugins
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
-from Components.Sources.List import List
 from Components.config import config, configfile, ConfigBoolean, ConfigClock
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath, preferredTimerPath, ConfigSelection
@@ -21,7 +20,7 @@ from Components.Timeshift import InfoBarTimeshift
 
 from Screens.Screen import Screen
 from Screens import ScreenSaver
-from Screens.ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector, EpgBouquetSelector
+from Screens.ChannelSelection import ChannelSelection, BouquetSelector, EpgBouquetSelector
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Dish import Dish
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
@@ -43,7 +42,7 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT, findSafeRecord
 from Screens.TimerEntry import TimerEntry as TimerEntry
 
 from Tools import Notifications
-from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT
+from Tools.Directories import pathExists, fileExists
 from Tools.KeyBindings import getKeyDescription
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
@@ -1081,9 +1080,6 @@ class InfoBarMenu:
 
 	def showRFSetup(self):
 		self.session.openWithCallback(self.mainMenuClosed, Setup, 'RFmod')
-
-	def mainMenuClosed(self, *val):
-		self.session.infobar = None
 
 
 class InfoBarSimpleEventView:

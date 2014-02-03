@@ -1,8 +1,11 @@
-from Screens.Screen import Screen
-from enigma import eConsoleAppContainer, eDVBDB
 from boxbranding import getImageVersion
+from urllib import urlopen
+import socket
+import os
 
-from Components.About import about
+from enigma import eConsoleAppContainer, eDVBDB
+
+from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
 from Components.PluginList import PluginList, PluginEntryComponent, PluginCategoryComponent, PluginDownloadComponent
@@ -20,10 +23,6 @@ from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 
-from urllib import urlopen
-import socket
-
-import os
 
 language.addCallback(plugins.reloadPlugins)
 

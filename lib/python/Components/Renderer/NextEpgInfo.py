@@ -1,7 +1,8 @@
+from enigma import eLabel, eEPGCache
+
 from Components.VariableText import VariableText
 from Renderer import Renderer
-from enigma import eLabel, eEPGCache
-from time import localtime
+
 
 class NextEpgInfo(Renderer, VariableText):
 	def __init__(self):

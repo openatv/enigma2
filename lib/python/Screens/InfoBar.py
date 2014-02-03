@@ -1,5 +1,4 @@
 from Tools.Profile import profile
-from Tools.BoundFunction import boundFunction
 
 # workaround for required config entry dependencies.
 import Screens.MovieSelection
@@ -125,10 +124,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				if old_begin_time and old_begin_time != self.current_begin_time:
 					self.doShow()
 
-	def __checkServiceStarted(self):
-		self.__serviceStarted(True)
-		self.onExecBegin.remove(self.__checkServiceStarted)
-
 	def serviceStarted(self):  #override from InfoBarShowHide
 		new = self.servicelist.newServicePlayed()
 		if self.execing:
@@ -205,9 +200,9 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		else:
 			self.session.open(MoviePlayer, service, slist = self.servicelist, lastservice = ref)
 
-class MoviePlayer(InfoBarBase, InfoBarShowHide, \
-		InfoBarMenu, InfoBarEPG, \
-		InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
+class MoviePlayer(InfoBarBase, InfoBarShowHide,
+				  InfoBarMenu, InfoBarEPG,
+				  InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
 		InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
 		InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarZoom):

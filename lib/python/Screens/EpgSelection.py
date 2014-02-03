@@ -1,3 +1,7 @@
+from time import localtime, time, strftime, mktime
+
+from enigma import eServiceReference, eTimer, eServiceCenter, ePoint
+
 from Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Components.About import about
@@ -9,7 +13,6 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.Event import Event
-from Components.Sources.StaticText import StaticText
 from Components.UsageConfig import preferredTimerPath
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
@@ -17,13 +20,11 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.PictureInPicture import PictureInPicture
 from Screens.Setup import Setup
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from TimeDateInput import TimeDateInput
-from enigma import eServiceReference, eTimer, eServiceCenter, ePoint
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry, InstantRecordTimerEntry
 from ServiceReference import ServiceReference
-from time import localtime, time, strftime, mktime
+
 mepg_config_initialized = False
 # PiPServiceRelation installed?
 try:

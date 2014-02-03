@@ -257,14 +257,14 @@ class AudioSelection(Screen, ConfigListScreen):
 		config.av.surround_3d.save()
 
 	def changeAC3Downmix(self, downmix):
-		if downmix.getValue() == True:
+		if downmix.getValue():
 			config.av.downmix_ac3.value = True
 		else:
 			config.av.downmix_ac3.value = False
 		config.av.downmix_ac3.save()
 
 	def changeAACDownmix(self, downmix):
-		if downmix.getValue() == True:
+		if downmix.getValue():
 			config.av.downmix_aac.value = True
 		else:
 			config.av.downmix_aac.value = False

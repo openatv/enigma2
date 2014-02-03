@@ -204,11 +204,11 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self["config"].l.setList(self.list)
 
 	def newConfig(self):
-		checkList = (self.configMode, self.diseqcModeEntry, self.advancedSatsEntry, \
-			self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry, \
-			self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed, \
-			self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected, \
-			self.uncommittedDiseqcCommand, self.cableScanType, self.multiType)
+		checkList = (self.configMode, self.diseqcModeEntry, self.advancedSatsEntry,
+					 self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry,
+					 self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed,
+					 self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected,
+					 self.uncommittedDiseqcCommand, self.cableScanType, self.multiType)
 		if self["config"].getCurrent() == self.multiType:
 			from Components.NimManager import InitNimManager
 			InitNimManager(nimmanager)

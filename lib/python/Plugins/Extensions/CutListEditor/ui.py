@@ -1,20 +1,19 @@
+import bisect
+
+from enigma import getDesktop, iPlayableService
+
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ServicePosition import ServicePositionGauge
 from Components.ActionMap import HelpableActionMap
-from Components.MultiContent import MultiContentEntryText
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.VideoWindow import VideoWindow
 from Components.Label import Label
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport
-from Components.GUIComponent import GUIComponent
-from enigma import eListboxPythonMultiContent, eListbox, getDesktop, gFont, iPlayableService, RT_HALIGN_RIGHT
 from Screens.FixedMenu import FixedMenu
 from Screens.HelpMenu import HelpableScreen
-from ServiceReference import ServiceReference
 from Components.Sources.List import List
 
-import bisect
 
 def CutListEntry(where, what):
 	w = where / 90

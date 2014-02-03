@@ -1,31 +1,29 @@
 # -*- coding: UTF-8 -*-
 # CCcam Info by AliAbdul
 from base64 import encodestring
+from os import listdir, remove, rename, system
+
+from enigma import eListboxPythonMultiContent, eTimer, gFont, loadPNG, RT_HALIGN_RIGHT
+
 from Components.ActionMap import ActionMap, NumberActionMap
-from Components.config import config, ConfigInteger, ConfigSelection, ConfigSubsection, ConfigText, ConfigYesNo, getConfigListEntry
+from Components.config import config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
 from Components.Label import Label
-from Components.Language import language
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.ScrollLabel import ScrollLabel
-from Components.ServiceEventTracker import ServiceEventTracker
-from enigma import eListboxPythonMultiContent, ePoint, eTimer, getDesktop, gFont, iPlayableService, iServiceInformation, loadPNG, RT_HALIGN_RIGHT
-from os import environ, listdir, remove, rename, system
-from Plugins.Plugin import PluginDescriptor
 from Screens.HelpMenu import HelpableScreen
+
 #from Screens.InfoBar import InfoBar
 from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-from skin import parseColor
-from Tools.Directories import fileExists, resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
+from Tools.Directories import fileExists
 from twisted.internet import reactor
 from twisted.web.client import HTTPClientFactory
 from urlparse import urlparse, urlunparse
-import gettext
 
 #TOGGLE_SHOW = InfoBar.toggleShow
 

@@ -5,8 +5,7 @@ from Screen import Screen
 import Screens.InfoBar
 import Components.ParentalControl
 from Components.Button import Button
-from Components.config import configfile, config
-from Components.ServiceList import ServiceList, refreshServiceList
+from Components.ServiceList import ServiceList
 from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
@@ -31,7 +30,7 @@ profile("ChannelSelection.py 2.3")
 from Components.Input import Input
 profile("ChannelSelection.py 3")
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
-from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
+from RecordTimer import RecordTimerEntry, AFTEREVENT
 from TimerEntry import TimerEntry, InstantRecordTimerEntry
 from Screens.InputBox import InputBox, PinInput
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -42,10 +41,8 @@ profile("ChannelSelection.py 4")
 from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
 from ServiceReference import ServiceReference
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.BoundFunction import boundFunction
 from Tools import Notifications
-from Tools.Alternatives import CompareWithAlternatives
 from time import localtime, time
 from os import remove
 profile("ChannelSelection.py after imports")
@@ -1025,7 +1022,7 @@ class ChannelSelectionEdit:
 			self.pathChangeDisabled = True # no path change allowed in movemode
 			self.saved_title = self.getTitle()
 			pos = self.saved_title.find(')')
-			self.setTitle(self.saved_title[:pos+1] + ' ' + _("[move mode]") + self.saved_title[pos+1:]);
+			self.setTitle(self.saved_title[:pos+1] + ' ' + _("[move mode]") + self.saved_title[pos+1:])
 		self["Service"].editmode = True
 
 	def handleEditCancel(self):

@@ -1,17 +1,14 @@
 from enigma import eDVBResourceManager,\
-	eDVBFrontendParametersSatellite, eDVBFrontendParameters
+	eDVBFrontendParametersSatellite
 
-from Screens.Screen import Screen
 from Screens.ScanSetup import ScanSetup
 from Screens.ServiceScan import ServiceScan
 from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 
-from Components.Label import Label
 from Components.Sources.FrontendStatus import FrontendStatus
 from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager, getConfigSatlist
-from Components.MenuList import MenuList
 from Components.config import ConfigSelection, getConfigListEntry
 from Components.TuneTest import Tuner
 

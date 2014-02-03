@@ -1,20 +1,23 @@
+import os
+from time import time
+
+from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv
+import enigma
+
 from Components.About import about
 from Components.Harddisk import harddiskmanager
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
-from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC, defaultRecordingLocation
-from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv
+from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, defaultRecordingLocation
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
-import os
-import enigma
-from time import time
+
 
 def InitUsageConfig():
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default = True)	
 
-	config.usage = ConfigSubsection();
+	config.usage = ConfigSubsection()
 	config.usage.showdish = ConfigSelection(default = "flashing", choices = [("flashing", _("Flashing")), ("normal", _("Not Flashing")), ("off", _("Off"))])
 	config.usage.multibouquet = ConfigYesNo(default = True)
 

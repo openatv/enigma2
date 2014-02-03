@@ -1,14 +1,16 @@
-from Screens.Wizard import wizardManager, WizardSummary
+from boxbranding import getMachineBrand, getMachineName
+from os import system
+
+from enigma import eTimer
+
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
 from Screens.MessageBox import MessageBox
-from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
+from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.Network import iNetwork
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from enigma import eTimer
-from boxbranding import getMachineBrand, getMachineName
-from os import system
+
 
 class NetworkWizard(WizardLanguage, Rc):
 	skin = """

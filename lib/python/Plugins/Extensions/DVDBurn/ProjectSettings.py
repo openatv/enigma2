@@ -1,12 +1,8 @@
 from Screens.Screen import Screen
-from Screens.ChoiceBox import ChoiceBox
-from Screens.InputBox import InputBox
 from Screens.MessageBox import MessageBox
 from Screens.HelpMenu import HelpableScreen
-from Components.ActionMap import HelpableActionMap, ActionMap
-from Components.Sources.List import List
+from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
-from Components.Sources.Progress import Progress
 from Components.FileList import FileList
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS, SCOPE_HDD
 from Components.config import config, getConfigListEntry

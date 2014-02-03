@@ -1,18 +1,15 @@
-from Screens.Wizard import WizardSummary
+from os import access, W_OK, R_OK
+
+from enigma import eEnv
+
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Wizard import wizardManager
 from Screens.Rc import Rc
-from Components.Label import Label
-from Components.MenuList import MenuList
-from Components.PluginComponent import plugins
-from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
-from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
-from os import popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
-from enigma import eEnv
-
-from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigText, ConfigLocations, ConfigBoolean
+from Components.Pixmap import Pixmap
+from Components.config import config, ConfigSubsection, ConfigText, ConfigLocations, ConfigBoolean
 from Components.Harddisk import harddiskmanager
+
 
 config.misc.firstrun = ConfigBoolean(default = True)
 config.plugins.configurationbackup = ConfigSubsection()

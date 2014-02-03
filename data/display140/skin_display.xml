@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--suppress XmlUnboundNsPrefix, XmlUnboundNsPrefix -->
 <skin>
 	<windowstyle id="1" type="skinned">
 		<color color="#000000" name="Background"/>
@@ -22,7 +23,7 @@
 <!-- template -->
 	<screen name="SummaryClockPanel">
 		<widget source="global.CurrentTime" render="Label" position="90,0" size="50,15" font="FdLcD;16" halign="right" valign="bottom" >
-			<convert type="ClockToText"></convert>
+			<convert type="ClockToText"/>
 		</widget>
 	</screen>
 

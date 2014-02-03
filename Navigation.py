@@ -1,16 +1,19 @@
+from time import time
+from os import path
+
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
+
 from Components.ParentalControl import parentalControl
 from Components.config import config
 from Tools.BoundFunction import boundFunction
-from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup
-from time import time
+from Tools.StbHardware import getFPWasTimerWakeup
 import RecordTimer
 import PowerTimer
 import Screens.Standby
 import NavigationInstance
 import ServiceReference
 from Screens.InfoBar import InfoBar, MoviePlayer
-from os import path
+
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:

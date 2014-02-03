@@ -67,7 +67,7 @@ class FileList(MenuList):
 		if matchingPattern:
 			self.matchingPattern = re.compile(matchingPattern)
 		else:
-				self.matchingPattern = None
+			self.matchingPattern = None
 		self.inhibitDirs = inhibitDirs or []
 		self.inhibitMounts = inhibitMounts or []
 
@@ -318,10 +318,10 @@ class MultiFileSelectList(FileList):
 					try:
 						self.selectedFiles.remove(realPathname)
 					except:
-							try:
-								self.selectedFiles.remove(os.path.normpath(realPathname))
-							except:
-								print "Couldn't remove:", realPathname
+						try:
+							self.selectedFiles.remove(os.path.normpath(realPathname))
+						except:
+							print "Couldn't remove:", realPathname
 				else:
 					SelectState = True
 					if (realPathname not in self.selectedFiles) and (os.path.normpath(realPathname) not in self.selectedFiles):

@@ -1,5 +1,13 @@
+from boxbranding import getMachineBrand, getMachineName
+from cPickle import dump, load
+from os import path as os_path, stat, mkdir, makedirs, listdir, access, remove, W_OK, R_OK, F_OK
+from time import time
+from stat import ST_MTIME
+
+from enigma import eTimer, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv
+from twisted.web import client
+
 from Plugins.Plugin import PluginDescriptor
-from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
@@ -14,35 +22,22 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap
 from Components.MenuList import MenuList
 from Components.Sources.List import List
-from Components.Slider import Slider
 from Components.Harddisk import harddiskmanager
 from Components.config import config,getConfigListEntry, ConfigSubsection, ConfigText, ConfigLocations, ConfigYesNo, ConfigSelection
 from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.SelectionList import SelectionList
 from Components.PluginComponent import plugins
-from Components.About import about
 from Components.PackageInfo import PackageInfoHandler
 from Components.Language import language
 from Components.AVSwitch import AVSwitch
-from Components.Task import job_manager
-from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_PLUGIN, SCOPE_ACTIVE_SKIN, SCOPE_METADIR
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_PLUGIN, SCOPE_ACTIVE_SKIN, SCOPE_METADIR
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
-from enigma import eTimer, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, iRecordableService
-from boxbranding import getMachineBrand, getMachineName
-from cPickle import dump, load
-from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
-from time import time, gmtime, strftime, localtime
-from stat import ST_MTIME
-from datetime import date
-from twisted.web import client
-from twisted.internet import reactor
-
 from ImageWizard import ImageWizard
 from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getBackupFilename
 from SoftwareTools import iSoftwareTools
+
 
 config.plugins.configurationbackup = ConfigSubsection()
 config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
@@ -324,7 +319,7 @@ class UpdatePluginMenu(Screen):
 		print "Creating backup folder if not already there..."
 		self.backuppath = getBackupPath()
 		try:
-			if os_path.exists(self.backuppath) == False:
+			if not os_path.exists(self.backuppath):
 				makedirs(self.backuppath)
 		except OSError:
 			self.session.open(MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout = 10)
@@ -336,7 +331,7 @@ class UpdatePluginMenu(Screen):
 			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout = 10)
 
 	def startRestore(self, ret = False):
-		if ret == True:
+		if ret:
 			self.exe = True
 			self.session.open(RestoreScreen, runRestore = True)
 
@@ -784,7 +779,7 @@ class PluginManager(Screen, PackageInfoHandler):
 			if self.currList == "packages":
 				if current[7] is not '':
 					detailsfile = iSoftwareTools.directory[0] + "/" + current[1]
-					if os_path.exists(detailsfile) == True:
+					if os_path.exists(detailsfile):
 						self.saved_currentSelectedPackage = self.currentSelectedPackage
 						self.session.openWithCallback(self.detailsClosed, PluginDetails, self.skin_path, current)
 					else:
@@ -920,7 +915,7 @@ class PluginManager(Screen, PackageInfoHandler):
 		if self.selectedFiles and len(self.selectedFiles):
 			for plugin in self.selectedFiles:
 				detailsfile = iSoftwareTools.directory[0] + "/" + plugin[0]
-				if os_path.exists(detailsfile) == True:
+				if os_path.exists(detailsfile):
 					iSoftwareTools.fillPackageDetails(plugin[0])
 					self.package = iSoftwareTools.packageDetails[0]
 					if self.package[0].has_key("attributes"):
@@ -1406,7 +1401,7 @@ class IPKGMenu(Screen):
 	def fill_list(self):
 		flist = []
 		self.path = '/etc/opkg/'
-		if os_path.exists(self.path) == False:
+		if not os_path.exists(self.path):
 			self.entry = False
 			return
 		for file in listdir(self.path):
@@ -1647,7 +1642,7 @@ class PacketManager(Screen, NumericalTextInput):
 		self.close()
 
 	def reload(self):
-		if os_path.exists(self.cache_file) == True:
+		if os_path.exists(self.cache_file):
 			remove(self.cache_file)
 			self.list_updating = True
 			self.rebuildList()

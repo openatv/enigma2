@@ -1,6 +1,8 @@
+from os import path as os_path
+
 from Plugins.Plugin import PluginDescriptor
 from Components.ConfigList import ConfigListScreen
-from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection
+from Components.config import getConfigListEntry, config, ConfigNothing
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap
@@ -8,8 +10,7 @@ from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-import VideoEnhancement
-from os import path as os_path
+
 
 class VideoEnhancementSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
@@ -73,7 +74,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		if isinstance(configEntry, ConfigNothing):
 			return None
 		entry = getConfigListEntry(description, configEntry, hinttext)
-		self.list.append(entry);
+		self.list.append(entry)
 		if add_to_xtdlist:
 			self.xtdlist.append(entry)
 		return entry

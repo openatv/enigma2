@@ -1,7 +1,9 @@
+from enigma import iPlayableService, iServiceInformation
+
 from Plugins.Extensions.CutListEditor.ui import CutListEditor
 from Components.ServiceEventTracker import ServiceEventTracker
-from enigma import iPlayableService, iServiceInformation
 from Tools.Directories import fileExists
+
 
 class TitleCutter(CutListEditor):
 	def __init__(self, session, t):
@@ -23,7 +25,7 @@ class TitleCutter(CutListEditor):
 		if n > 0:
 			from DVDTitle import ConfigFixedText
 			from TitleProperties import languageChoices
-			from Components.config import config, ConfigSubsection, ConfigSubList, ConfigSelection, ConfigYesNo
+			from Components.config import ConfigSubsection, ConfigSubList, ConfigSelection, ConfigYesNo
 			self.t.properties.audiotracks = ConfigSubList()
 			for x in range(n):
 				i = audio.getTrackInfo(x)

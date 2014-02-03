@@ -1,3 +1,10 @@
+from boxbranding import getBoxType, getMachineBrand, getMachineName
+from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
+from shutil import move
+import time
+
+from enigma import eTimer
+
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
@@ -13,7 +20,7 @@ from Components.Label import Label, MultiColorLabel
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap, MultiPixmap
 from Components.MenuList import MenuList
-from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNumber, ConfigLocations, NoSave, ConfigMacText
+from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigIP, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNumber, ConfigLocations, NoSave, ConfigMacText
 from Components.ConfigList import ConfigListScreen
 from Components.PluginComponent import plugins
 from Components.FileList import MultiFileSelectList
@@ -21,11 +28,7 @@ from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
-from enigma import eTimer
-from boxbranding import getBoxType, getMachineBrand, getMachineName
-from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
-from shutil import move
-import time
+
 
 class NetworkAdapterSelection(Screen,HelpableScreen):
 	def __init__(self, session):
@@ -623,7 +626,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		config.network.save()
 
 	def keySaveConfirm(self, ret = False):
-		if ret == True:
+		if ret:
 			num_configured_if = len(iNetwork.getConfiguredAdapters())
 			if num_configured_if >= 1:
 				if self.iface in iNetwork.getConfiguredAdapters():
@@ -651,7 +654,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.applyConfig(True)
 
 	def applyConfig(self, ret = False):
-		if ret == True:
+		if ret:
 			self.applyConfigRef = None
 			iNetwork.setAdapterAttribute(self.iface, "up", self.activateInterfaceEntry.getValue())
 			iNetwork.setAdapterAttribute(self.iface, "dhcp", self.dhcpConfigEntry.getValue())
@@ -1016,7 +1019,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			self.updateStatusbar()
 
 	def restartLan(self, ret = False):
-		if ret == True:
+		if ret:
 			iNetwork.restartNetwork(self.restartLanDataAvail)
 			self.restartLanRef = self.session.openWithCallback(self.restartfinishedCB, MessageBox, _("Please wait while your network is restarting..."), type = MessageBox.TYPE_INFO, enable_input = False)
 

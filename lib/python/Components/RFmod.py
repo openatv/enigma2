@@ -38,22 +38,27 @@ def InitRFmod():
 		iRFmod = RFmod()
 
 		def setFunction(configElement):
-			iRFmod.setFunction(configElement.value);
+			iRFmod.setFunction(configElement.value)
+
 		def setTestmode(configElement):
-			iRFmod.setTestmode(configElement.value);
+			iRFmod.setTestmode(configElement.value)
+
 		def setSoundFunction(configElement):
-			iRFmod.setSoundFunction(configElement.value);
+			iRFmod.setSoundFunction(configElement.value)
+
 		def setSoundCarrier(configElement):
-			iRFmod.setSoundCarrier(configElement.index);
+			iRFmod.setSoundCarrier(configElement.index)
+
 		def setChannel(configElement):
-			iRFmod.setChannel(int(configElement.value));
+			iRFmod.setChannel(int(configElement.value))
+
 		def setFinetune(configElement):
-			iRFmod.setFinetune(configElement.value - 5);
+			iRFmod.setFinetune(configElement.value - 5)
 
 		# this will call the "setup-val" initial
-		config.rfmod.enable.addNotifier(setFunction);
-		config.rfmod.test.addNotifier(setTestmode);
-		config.rfmod.sound.addNotifier(setSoundFunction);
-		config.rfmod.soundcarrier.addNotifier(setSoundCarrier);
-		config.rfmod.channel.addNotifier(setChannel);
-		config.rfmod.finetune.addNotifier(setFinetune);
+		config.rfmod.enable.addNotifier(setFunction)
+		config.rfmod.test.addNotifier(setTestmode)
+		config.rfmod.sound.addNotifier(setSoundFunction)
+		config.rfmod.soundcarrier.addNotifier(setSoundCarrier)
+		config.rfmod.channel.addNotifier(setChannel)
+		config.rfmod.finetune.addNotifier(setFinetune)

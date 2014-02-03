@@ -1,20 +1,18 @@
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
-from Components.config import config, ConfigSelectionNumber
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
-from Components.Renderer.Picon import getPiconName
+from time import localtime, time, strftime
 
-from skin import parseColor, parseFont
 from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, loadPNG, gFont, eRect, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO
 
+from HTMLComponent import HTMLComponent
+from GUIComponent import GUIComponent
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
+from Components.Renderer.Picon import getPiconName
+from skin import parseColor, parseFont
 from Tools.Alternatives import CompareWithAlternatives
 from Tools.LoadPixmap import LoadPixmap
-
-from time import localtime, time, strftime
 from Components.config import config
 from ServiceReference import ServiceReference
-from Tools.Directories import pathExists, resolveFilename, SCOPE_ACTIVE_SKIN
-from os import listdir, path
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+
 
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1
@@ -524,11 +522,11 @@ class EPGList(HTMLComponent, GUIComponent):
 		width = esize.width()
 		height = esize.height()
 		if self.type == EPG_TYPE_MULTI:
-			xpos = 0;
-			w = width / 10 * 3;
+			xpos = 0
+			w = width / 10 * 3
 			self.service_rect = Rect(xpos, 0, w-10, height)
-			xpos += w;
-			w = width / 10 * 2;
+			xpos += w
+			w = width / 10 * 2
 			self.start_end_rect = Rect(xpos, 0, w-10, height)
 			self.progress_rect = Rect(xpos, 4, w-10, height-8)
 			xpos += w
@@ -563,10 +561,10 @@ class EPGList(HTMLComponent, GUIComponent):
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
 		ewidth = (stime + duration - start) * width / (end - start)
-		ewidth -= xpos;
+		ewidth -= xpos
 		if xpos < 0:
-			ewidth += xpos;
-			xpos = 0;
+			ewidth += xpos
+			xpos = 0
 		if (xpos + ewidth) > width:
 			ewidth = width - xpos
 		return xpos, ewidth
@@ -1288,7 +1286,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.graphic = graphic
 		self.l = eListboxPythonMultiContent()
 		self.l.setSelectionClip(eRect(0,0,0,0))
-		self.l.setItemHeight(30);
+		self.l.setItemHeight(30)
 		self.TlDate = None
 		self.TlTime = None
 		self.foreColor = 0xffc000
