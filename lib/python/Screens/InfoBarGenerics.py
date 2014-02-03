@@ -740,10 +740,8 @@ class InfoBarEPG:
 			})
 
 	def getEPGPluginList(self, getAll=False):
-		pluginlist = []
-		for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO):
-			if 'currentevent' not in p.__call__.func_code.co_varnames:
-				pluginlist.append((p.name, boundFunction(self.runPlugin, p)))
+		pluginlist = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO) \
+				if 'currentevent' not in p.__call__.func_code.co_varnames]
 		if pluginlist:
 			from Components.ServiceEventTracker import InfoBarCount
 			if getAll or InfoBarCount == 1:

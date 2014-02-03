@@ -265,12 +265,9 @@ class EventViewBase:
 
 	def doContext(self):
 		if self.event is not None:
-			menu = []
-			for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
-				#only list service or event specific eventinfo plugins here, no servelist plugins
-				if 'servicelist' not in p.__call__.func_code.co_varnames:
-					if 'currentevent' not in p.__call__.func_code.co_varnames:
-						menu.append((p.name, boundFunction(self.runPlugin, p)))
+			menu = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO) \
+				if 'servicelist' not in p.__call__.func_code.co_varnames \
+					if 'currentevent' not in p.__call__.func_code.co_varnames ]
 			if menu:
 				self.session.open(EventViewContextMenu, menu)
 

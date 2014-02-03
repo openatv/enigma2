@@ -127,19 +127,20 @@ class EPGSelection(Screen):
 
 	def furtherOptions(self):
 		menu = []
+		text = _("Select action")
 		event = self["list"].getCurrent()[0]
 		if event:
-			for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
-				#only event specific plugins here, no others plugins
-				if 'currentevent' in p.__call__.func_code.co_varnames:
-					menu.append((p.name, boundFunction(self.runPlugin, p)))
+			menu = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO) \
+				if 'currentevent' in p.__call__.func_code.co_varnames]
+			if menu:
+				text += _(": %s") % event.getEventName()
 		if self.type == EPG_TYPE_MULTI:
-			menu.append((_("Goto specific data/time"),self.enterDateTime))
+			menu.append((_("Goto specific date/time"),self.enterDateTime))
 		menu.append((_("Timer Overview"), self.openTimerOverview))
 		def boxAction(choice):
 			if choice:
 				choice[1]()
-		self.session.openWithCallback(boxAction, ChoiceBox, title=_("Select action"), list=menu)
+		self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu)
 
 	def runPlugin(self, plugin):
 		event = self["list"].getCurrent()
