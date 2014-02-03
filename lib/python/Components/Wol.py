@@ -14,13 +14,12 @@ class WOL:
 		f.close()
 
 def Init():
-	if SystemInfo["WOL"]:
-		if not getBoxType() == 'gbquad' :
-			def setWOLmode(value):
-				iwol.setWolState(config.network.wol.value);
-			iwol = WOL()
-			config.network.wol = ConfigSelection([("disable", _("No")), ("enable", _("Yes"))], default = "disable")
-			config.network.wol.addNotifier(setWOLmode, initial_call=True)
+	if SystemInfo["WOL"] and not getBoxType() == 'gbquad':
+		def setWOLmode(value):
+			iwol.setWolState(config.network.wol.value);
+		iwol = WOL()
+		config.network.wol = ConfigSelection([("disable", _("No")), ("enable", _("Yes"))], default = "disable")
+		config.network.wol.addNotifier(setWOLmode, initial_call=True)
 	else:
 		def doNothing():
 			pass
