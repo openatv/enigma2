@@ -120,7 +120,6 @@ eDBoxLCD::eDBoxLCD()
 #endif
 	if (FILE * file = fopen("/proc/stb/lcd/right_half", "w"))
 	{
-		fprintf(stdout,"SET RIGHT HALF VFD SKIN\n");
 		fprintf(file,"skin");
 		fclose(file);
 	}
