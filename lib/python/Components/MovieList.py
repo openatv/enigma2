@@ -57,7 +57,7 @@ def lastPlayPosFromCache(ref):
 	return resumePointCache.get(ref.toString(), None)
 
 def moviePlayState(cutsFileName, ref, length):
-	'''Returns None, 0..100 for percentage'''
+	"""Returns None, 0..100 for percentage"""
 	try:
 		# read the cuts file first
 		f = open(cutsFileName, 'rb')

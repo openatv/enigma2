@@ -84,12 +84,12 @@ class CIselectMainMenu(Screen):
 				else:
 					self.session.open(easyCIconfigMenu, slot)
 
-	"""def yellowPressed(self): # unused
-		NUM_CI=eDVBCIInterfaces.getInstance().getNumOfSlots()
-		print "[CI_Check] FOUND %d CI Slots " % NUM_CI
-		if NUM_CI > 0:
-			for ci in range(NUM_CI):
-				print eDVBCIInterfaces.getInstance().getDescrambleRules(ci)"""
+	# def yellowPressed(self): # unused
+	# 	NUM_CI=eDVBCIInterfaces.getInstance().getNumOfSlots()
+	# 	print "[CI_Check] FOUND %d CI Slots " % NUM_CI
+	# 	if NUM_CI > 0:
+	# 		for ci in range(NUM_CI):
+	# 			print eDVBCIInterfaces.getInstance().getDescrambleRules(ci)
 
 
 class CIconfigMenu(Screen):

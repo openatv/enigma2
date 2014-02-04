@@ -1091,7 +1091,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		config.usage.on_movie_eof.value = self.settings["movieoff"]
 
 	def loadLocalSettings(self):
-		'Load settings, called when entering a directory'
+		"""Load settings, called when entering a directory"""
 		if config.movielist.settings_per_directory.getValue():
 			try:
 				path = os.path.join(config.movielist.last_videodir.getValue(), ".e2settings.pkl")
