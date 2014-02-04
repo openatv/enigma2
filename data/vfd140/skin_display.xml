@@ -37,7 +37,7 @@
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png" position="42,0" size="19,10" >
+		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png" position="40,0" size="19,10" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update.png" position="62,0" size="10,10" >
