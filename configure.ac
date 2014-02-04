@@ -206,6 +206,16 @@ if test x"$withbwlcd140" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_BWLCD140, test x"$withbwlcd140" != xno)
 
+AC_ARG_WITH(bwlcd128,
+	AC_HELP_STRING([--with-bwlcd128], [use 128x32 1bpp black and white display, yes or no]),
+	[[withbwlcd128=$withval]],
+	[[withbwlcd128=no]]
+)
+if test x"$withbwlcd128" != xno ; then
+	AC_DEFINE(HAVE_BWLCD128, 1,[Define when using a 128x32 black and white display device])
+fi
+AM_CONDITIONAL(HAVE_BWLCD128, test x"$withbwlcd128" != xno)
+
 AC_ARG_WITH(oldpvr,
 	AC_HELP_STRING([--with-oldpvr], [use /dev/misc/pvr instead of /dev/dvb/adapterX/dvrX, yes or no]),
 	[[witholdpvr=$withval]],
@@ -299,6 +309,7 @@ data/displaytext/Makefile
 data/display96/Makefile
 data/display128/Makefile
 data/display220/Makefile
+data/vfd128/Makefile
 data/vfd140/Makefile
 data/vfd255/Makefile
 include/Makefile
