@@ -34,9 +34,9 @@ SUBDIRS += display220
 endif
 
 if HAVE_BWLCD255
-SUBDIRS += display255
+SUBDIRS += vfd255
 endif
 
 if HAVE_BWLCD140
-SUBDIRS += display140
+SUBDIRS += vfd140
 endif
