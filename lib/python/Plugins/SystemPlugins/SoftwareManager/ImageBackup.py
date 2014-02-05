@@ -16,7 +16,7 @@ from time import time, strftime, localtime
 from os import path, system, makedirs, listdir, walk, statvfs
 import commands
 import datetime
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getOEM
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM
 
 VERSION = "Version 2.0 openATV"
 
@@ -45,7 +45,7 @@ class ImageBackup(Screen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.MODEL = getBoxType()
-		self.OEM = getOEM()
+		self.OEM = getBrandOEM()
 		self.MACHINENAME = getMachineName()
 		self.MACHINEBRAND = getMachineBrand()
 		print "[FULL BACKUP] BOX MACHINENAME = >%s<" %self.MACHINENAME
