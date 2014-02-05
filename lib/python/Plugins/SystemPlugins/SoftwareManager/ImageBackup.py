@@ -176,7 +176,7 @@ class ImageBackup(Screen):
 			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
 			self.EXTRA = "%s/fullbackup_odinm9/%s" % (self.DIRECTORY, self.DATE)
 		## TESTING THE Odin M7 Model
-		elif self.OEM == "odinm7":
+		elif self.OEM == "odinm7" or self.MODEL == "odinm7":
 			self.TYPE = "ODINM7"
 			self.MODEL = self.OEM
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
