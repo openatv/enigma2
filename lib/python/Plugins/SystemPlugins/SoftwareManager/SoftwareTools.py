@@ -121,10 +121,7 @@ class SoftwareTools(PackageInfoHandler):
 			self.UpdateConsole.ePopen(cmd, self.IpkgListAvailableCB, callback)
 
 	def IpkgListAvailableCB(self, result, retval, extra_args = None):
-		if extra_args == []:
-			(callback) = None
-		else:
-			(callback) = extra_args
+		(callback) = extra_args
 		if result:
 			if self.list_updating:
 				self.available_packetlist = []
@@ -162,10 +159,7 @@ class SoftwareTools(PackageInfoHandler):
 				self.InstallMetaPackageCB(True)
 
 	def InstallMetaPackageCB(self, result, retval = None, extra_args = None):
-		if extra_args == []:
-			(callback) = None
-		else:
-			(callback) = extra_args
+		(callback) = extra_args
 		if result:
 			self.fillPackagesIndexList()
 			if callback is None:
@@ -191,10 +185,7 @@ class SoftwareTools(PackageInfoHandler):
 			self.UpdateConsole.ePopen(cmd, self.IpkgListInstalledCB, callback)
 
 	def IpkgListInstalledCB(self, result, retval, extra_args = None):
-		if extra_args == []:
-			(callback) = None
-		else:
-			(callback) = extra_args
+		(callback) = extra_args
 		if result:
 			self.installed_packetlist = {}
 			for x in result.splitlines():
