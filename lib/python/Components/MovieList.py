@@ -1,18 +1,19 @@
-from GUIComponent import GUIComponent
-from Tools.FuzzyDate import FuzzyTime
-from ServiceReference import ServiceReference
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress
-from Components.config import config
 import os
 import struct
 import random
+
+from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceCenter, eTimer
+
+from GUIComponent import GUIComponent
+from Tools.FuzzyDate import FuzzyTime
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress
+from Components.config import config
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
 from Screens.LocationBox import defaultInhibitDirs
 import NavigationInstance
 import skin
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceCenter, eTimer
 
 AUDIO_EXTENSIONS = frozenset((".dts", ".mp3", ".wav", ".wave", ".ogg", ".flac", ".m4a", ".mp2", ".m2a", ".3gp", ".3g2", ".asf", ".wma"))
 DVD_EXTENSIONS = ('.iso', '.img')
@@ -59,7 +60,7 @@ def lastPlayPosFromCache(ref):
 	return resumePointCache.get(ref.toString(), None)
 
 def moviePlayState(cutsFileName, ref, length):
-	'''Returns None, 0..100 for percentage'''
+	"""Returns None, 0..100 for percentage"""
 	try:
 		# read the cuts file first
 		f = open(cutsFileName, 'rb')
@@ -471,7 +472,7 @@ class MovieList(GUIComponent):
 			return
 		realtags = set()
 		tags = {}
-		rootPath = os.path.normpath(root.getPath());
+		rootPath = os.path.normpath(root.getPath())
 		parent = None
 		# Don't navigate above the "root"
 		if len(rootPath) > 1 and (os.path.realpath(rootPath) != config.movielist.root.getValue()):

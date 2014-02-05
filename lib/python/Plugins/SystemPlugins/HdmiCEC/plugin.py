@@ -1,11 +1,13 @@
+from boxbranding import getMachineBrand, getMachineName
+from os import path
+
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, configfile, getConfigListEntry
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
-from boxbranding import getMachineBrand, getMachineName
+
 from Tools.Directories import fileExists
-from os import path
+
 if path.exists("/dev/hdmi_cec") or path.exists("/dev/misc/hdmi_cec0"):
 	import Components.HdmiCec
 
@@ -30,7 +32,6 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("HDMI CEC Setup"))
 
 		from Components.ActionMap import ActionMap
-		from Components.Button import Button
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))

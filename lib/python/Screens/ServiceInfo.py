@@ -232,7 +232,7 @@ class ServiceInfo(Screen):
 
 		for item in Labels:
 			if item[1] is None:
-				continue;
+				continue
 			value = item[1]
 			if len(item) < 4:
 				tlist.append(ServiceInfoListEntry(item[0]+":", value, item[2]))

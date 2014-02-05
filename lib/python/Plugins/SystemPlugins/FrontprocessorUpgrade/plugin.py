@@ -70,7 +70,6 @@ class SystemMessage(Screen):
 
 def Plugins(**kwargs):
 	from Tools.StbHardware import getFPVersion
-	from Screens.MessageBox import MessageBox
 
 	version = getFPVersion()
 	newversion = getUpgradeVersion() or 0

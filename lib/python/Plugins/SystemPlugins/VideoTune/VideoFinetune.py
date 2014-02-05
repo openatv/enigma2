@@ -1,7 +1,9 @@
+from enigma import gFont, getDesktop, gMainDC, eSize, RT_HALIGN_RIGHT, RT_WRAP
+
 from Screens.Screen import Screen
 from Components.Sources.CanvasSource import CanvasSource
-from Components.ActionMap import ActionMap, NumberActionMap
-from enigma import gFont, getDesktop, gMainDC, eSize, RT_HALIGN_RIGHT, RT_WRAP
+from Components.ActionMap import NumberActionMap
+
 
 def RGB(r,g,b):
 	return (r<<16)|(g<<8)|b
@@ -174,20 +176,20 @@ class VideoFinetune(Screen):
 		c.fill(0, 0, xres, yres, RGB(255,255,255))
 
 		for i in range(33):
-			col = i * 255 / 32;
-			width = xres - xres/5;
-			ew = width / 33;
-			offset = xres/10 + ew * i;
-			y = yres * 2 / 3;
-			height = yres / 20;
-			o = yres / 60;
+			col = i * 255 / 32
+			width = xres - xres/5
+			ew = width / 33
+			offset = xres/10 + ew * i
+			y = yres * 2 / 3
+			height = yres / 20
+			o = yres / 60
 
 			if i < 16:
-				c1 = 0xFF;
-				c2 = 0xFF - (0xFF * i / 16);
+				c1 = 0xFF
+				c2 = 0xFF - (0xFF * i / 16)
 			else:
-				c1 = 0xFF - (0xFF * (i - 16) / 16);
-				c2 = 0;
+				c1 = 0xFF - (0xFF * (i - 16) / 16)
+				c2 = 0
 
 			c.fill(offset, y, ew, height, RGB(c1, c2, c2))
 			c.fill(offset, y + (height + o) * 1, ew, height, RGB(c2, c1, c2))
@@ -195,16 +197,16 @@ class VideoFinetune(Screen):
 			c.fill(offset, y + (height + o) * 3, ew, height, RGB(col, col, col))
 
 			if i == 0:
-				self.bbox(offset, y, ew, height, RGB(0,0,0), bbw, bbh);
-				self.bbox(offset, y + (height + o) * 1, ew, height, RGB(0,0,0), bbw, bbh);
-				self.bbox(offset, y + (height + o) * 2, ew, height, RGB(0,0,0), bbw, bbh);
+				self.bbox(offset, y, ew, height, RGB(0,0,0), bbw, bbh)
+				self.bbox(offset, y + (height + o) * 1, ew, height, RGB(0,0,0), bbw, bbh)
+				self.bbox(offset, y + (height + o) * 2, ew, height, RGB(0,0,0), bbw, bbh)
 
 			for i in range(8):
-				height = yres / 3;
-				eh = height / 8;
-				offset = yres/6 + eh * i;
-				x = xres * 2 / 3;
-				width = yres / 6;
+				height = yres / 3
+				eh = height / 8
+				offset = yres/6 + eh * i
+				x = xres * 2 / 3
+				width = yres / 6
 
 				c.fill(x, offset, width, eh, self.basic_colors[i])
 				if i == 0:

@@ -1,14 +1,14 @@
+from boxbranding import getMachineBrand, getMachineName
+import time
+
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.Console import Console
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
-from Components.PluginComponent import plugins
 from Components.ActionMap import ActionMap
 from Tools.Directories import fileExists
-from Plugins.Plugin import PluginDescriptor
-from boxbranding import getMachineBrand, getMachineName
-import time
+
 
 class SABnzbdSetupScreen(Screen):
 	skin = """

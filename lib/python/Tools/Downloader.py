@@ -1,7 +1,8 @@
+from boxbranding import getMachineBrand, getMachineName
+
 from twisted.web import client
 from twisted.internet import reactor, defer, ssl
-from twisted.python import failure
-from boxbranding import getMachineBrand, getMachineName
+
 
 class HTTPProgressDownloader(client.HTTPDownloader):
 	def __init__(self, url, outfile, headers=None):

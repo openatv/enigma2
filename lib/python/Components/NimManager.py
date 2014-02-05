@@ -1,10 +1,7 @@
-from Tools.HardwareInfo import HardwareInfo
-from Tools.BoundFunction import boundFunction
-
-from Components.About import about
-from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, \
-	ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, \
-	ConfigSubDict, ConfigOnOff, ConfigDateTime
+from time import localtime, mktime
+from datetime import datetime
+import xml.etree.cElementTree
+from os import path
 
 from enigma import eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteLNBParameters as lnbParam, \
@@ -13,13 +10,12 @@ from enigma import eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteRotorParameters as rotorParam, \
 	eDVBResourceManager, eDVBDB, eEnv
 
-from time import localtime, mktime
-from datetime import datetime
+from Tools.HardwareInfo import HardwareInfo
+from Components.About import about
+from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, \
+	ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, \
+	ConfigSubDict, ConfigOnOff, ConfigDateTime
 from Tools.BoundFunction import boundFunction
-
-from Tools import Directories
-import xml.etree.cElementTree
-from os import path
 
 def getConfigSatlist(orbpos, satlist):
 	default_orbpos = None
@@ -1152,7 +1148,7 @@ def InitNimManager(nimmgr):
 				if scr[len(lscr)-i-1] == "0":
 					scr.pop()
 				else:
-					break;
+					break
 			lof= [int(product.get("positions", 1)), int(product.get("lofl", 9750)), int(product.get("lofh", 10600)), int(product.get("threshold", 11700))]
 			scr.append(tuple(lof))
 			m.update({product.get("name"):tuple(scr)})
@@ -1170,7 +1166,7 @@ def InitNimManager(nimmgr):
 				if scr[len(lscr)-i-1] == "0":
 					scr.pop()
 				else:
-					break;
+					break
 			lof= [int(product.get("positions", 1)), int(product.get("lofl", 9750)), int(product.get("lofh", 10600)), int(product.get("threshold", 11700))]
 			scr.append(tuple(lof))
 			m.update({product.get("name"):tuple(scr)})
@@ -1226,8 +1222,8 @@ def InitNimManager(nimmgr):
 		("cut", "committed, uncommitted, toneburst"), ("tcu", "toneburst, committed, uncommitted"),
 		("uct", "uncommitted, committed, toneburst"), ("tuc", "toneburst, uncommitted, commmitted")]
 	advanced_lnb_diseqc_repeat_choices = [("none", _("None")), ("one", _("One")), ("two", _("Two")), ("three", _("Three"))]
-	advanced_lnb_fast_turning_btime = mktime(datetime(1970, 1, 1, 7, 0).timetuple());
-	advanced_lnb_fast_turning_etime = mktime(datetime(1970, 1, 1, 19, 0).timetuple());
+	advanced_lnb_fast_turning_btime = mktime(datetime(1970, 1, 1, 7, 0).timetuple())
+	advanced_lnb_fast_turning_etime = mktime(datetime(1970, 1, 1, 19, 0).timetuple())
 
 	def configLOFChanged(configElement):
 		if configElement.value == "unicable":
@@ -1444,9 +1440,9 @@ def InitNimManager(nimmgr):
 			nim.powerMeasurement = ConfigYesNo(False)
 			nim.powerThreshold = ConfigInteger(default=hw.get_device_name() == "dm8000" and 15 or 50, limits=(0, 100))
 			nim.turningSpeed = ConfigSelection(turning_speed_choices, "fast")
-			btime = datetime(1970, 1, 1, 7, 0);
+			btime = datetime(1970, 1, 1, 7, 0)
 			nim.fastTurningBegin = ConfigDateTime(default = mktime(btime.timetuple()), formatstring = _("%H:%M"), increment = 900)
-			etime = datetime(1970, 1, 1, 19, 0);
+			etime = datetime(1970, 1, 1, 19, 0)
 			nim.fastTurningEnd = ConfigDateTime(default = mktime(etime.timetuple()), formatstring = _("%H:%M"), increment = 900)
 
 	def createCableConfig(nim, x):
@@ -1459,7 +1455,7 @@ def InitNimManager(nimmgr):
 				list.append((str(n), x[0]))
 				n += 1
 			nim.cable = ConfigSubsection()
-			nim.cable.scan_networkid = ConfigInteger(default = 0, limits = (0, 9999))
+			nim.cable.scan_networkid = ConfigInteger(default = 0, limits = (0, 99999))
 			possible_scan_types = [("bands", _("Frequency bands")), ("steps", _("Frequency steps"))]
 			if n:
 				possible_scan_types.append(("provider", _("Provider")))
@@ -1537,7 +1533,7 @@ def InitNimManager(nimmgr):
 			createTerrestrialConfig(nim, x)
 		else:
 			empty_slots += 1
-			nim.configMode = ConfigSelection(choices = { "nothing": _("disabled") }, default="nothing");
+			nim.configMode = ConfigSelection(choices = { "nothing": _("disabled") }, default="nothing")
 			if slot.type is not None:
 				print "pls add support for this frontend type!", slot.type
 #			assert False

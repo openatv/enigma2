@@ -37,7 +37,7 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		self.instance.resize(eSize(s.width(), self.pageHeight+ int(lineheight/6)))
 		self.scrollbar.move(ePoint(s.width()-10,0))
 		self.scrollbar.resize(eSize(10,self.pageHeight+ int(lineheight/6)))
-		self.scrollbar.setOrientation(eSlider.orVertical);
+		self.scrollbar.setOrientation(eSlider.orVertical)
 		self.scrollbar.setRange(0,100)
 		self.scrollbar.setBorderWidth(1)
 		self.long_text.move(ePoint(0,0))
@@ -92,7 +92,7 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 
 	def updateScrollbar(self):
 		start = -self.long_text.position().y() * 100 / self.total
-		vis = self.pageHeight * 100 / self.total;
+		vis = self.pageHeight * 100 / self.total
 		self.scrollbar.setStartEnd(start, start+vis)
 
 	def getText(self):

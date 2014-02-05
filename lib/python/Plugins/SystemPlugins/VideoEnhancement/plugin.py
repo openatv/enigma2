@@ -1,6 +1,8 @@
+from os import path as os_path
+
 from Plugins.Plugin import PluginDescriptor
 from Components.ConfigList import ConfigListScreen
-from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection
+from Components.config import getConfigListEntry, config, ConfigNothing
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap
@@ -8,8 +10,7 @@ from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-import VideoEnhancement
-from os import path as os_path
+
 from boxbranding import getBoxType
 
 class VideoEnhancementSetup(Screen, ConfigListScreen):

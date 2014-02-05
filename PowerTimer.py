@@ -1,23 +1,21 @@
 import os
-from enigma import eActionMap, eEPGCache, quitMainloop
 from boxbranding import getMachineBrand, getMachineName
+import xml.etree.cElementTree
+from time import ctime, time
+from bisect import insort
+
+from enigma import eActionMap, quitMainloop
+
 from Components.config import config
 from Components.TimerSanityCheck import TimerSanityCheck
-from Components.Task import Task, Job, job_manager as JobManager
-
 from Screens.MessageBox import MessageBox
 import Screens.Standby
-from Tools import Directories, Notifications, ASCIItranslit
+from Tools import Directories, Notifications
 from Tools.XMLTools import stringToXML
-
 import timer
-import xml.etree.cElementTree
 import NavigationInstance
-from ServiceReference import ServiceReference
 
-from time import localtime, strftime, ctime, time
-from bisect import insort
-import os
+
 
 # parses an event, and gives out a (begin, end, name, duration, eit)-tuple.
 # begin and end will be corrected

@@ -84,7 +84,8 @@ class ServicePosition(PerServiceDisplay, object):
 
 	def stopEvent(self):
 		self.updateTimer.stop()
-		self.setText("");
+		self.setText("")
+
 
 class ServicePositionGauge(PerServiceBase, GUIComponent):
 	def __init__(self, navcore):

@@ -1,10 +1,12 @@
+import enigma
+
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
-import enigma
+
 
 class MessageBox(Screen):
 	TYPE_YESNO = 0
@@ -19,7 +21,7 @@ class MessageBox(Screen):
 		Screen.__init__(self, session)
 		self.skinName = ["MessageBox"]
 		if wizard:
-			from Components.config import config, ConfigInteger
+			from Components.config import config
 			from Components.Pixmap import MultiPixmap
 			self["rc"] = MultiPixmap()
 			self["rc"].setPixmapNum(config.misc.rcused.value)		

@@ -1,14 +1,12 @@
+from os import system, path as os_path
+from string import maketrans, strip
+
 from Components.config import config, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, ConfigSelection, ConfigPassword
 from Components.Console import Console
 from Components.Network import iNetwork
-
-from os import system, path as os_path
-from string import maketrans, strip
-import sys
-import types
-from re import compile as re_compile, search as re_search, escape as re_escape
 from pythonwifi.iwlibs import getNICnames, Wireless, Iwfreq, getWNICnames
 from pythonwifi import flags as wififlags
+
 
 list = ["Unencrypted", "WEP", "WPA", "WPA/WPA2", "WPA2"]
 

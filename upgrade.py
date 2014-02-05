@@ -4,7 +4,7 @@ opkgDestinations = ['/']
 opkgStatusPath = ''
 
 def findMountPoint(path):
-	'Example: findMountPoint("/media/hdd/some/file") returns "/media/hdd"'
+	"""Example: findMountPoint("/media/hdd/some/file") returns "/media/hdd\""""
 	path = os.path.abspath(path)
 	while not os.path.ismount(path):
 		path = os.path.dirname(path)

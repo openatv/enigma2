@@ -228,6 +228,16 @@ if test x"$withbwlcd140" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_BWLCD140, test x"$withbwlcd140" != xno)
 
+AC_ARG_WITH(bwlcd128,
+	AC_HELP_STRING([--with-bwlcd128], [use 128x32 1bpp black and white display, yes or no]),
+	[[withbwlcd128=$withval]],
+	[[withbwlcd128=no]]
+)
+if test x"$withbwlcd128" != xno ; then
+	AC_DEFINE(HAVE_BWLCD128, 1,[Define when using a 128x32 black and white display device])
+fi
+AM_CONDITIONAL(HAVE_BWLCD128, test x"$withbwlcd128" != xno)
+
 AC_ARG_WITH(fullgraphiclcd,
 	AC_HELP_STRING([--with-fullgraphiclcd], [display right_half_vfd_icons from skin(for ultimo), yes or no]),
 	[[withfullgraphiclcd=$withval]],
@@ -390,10 +400,11 @@ data/keymaps/Makefile
 data/displaytext/Makefile
 data/display96/Makefile
 data/display128/Makefile
-data/display140/Makefile
 data/display220/Makefile
-data/display255/Makefile
 data/display400/Makefile
+data/vfd128/Makefile
+data/vfd140/Makefile
+data/vfd255/Makefile
 include/Makefile
 lib/Makefile
 lib/base/eenv.cpp

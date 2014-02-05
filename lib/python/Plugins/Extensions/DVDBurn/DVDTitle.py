@@ -1,4 +1,4 @@
-from Components.config import config, ConfigSubsection, ConfigSubList, ConfigInteger, ConfigText, ConfigSelection, getConfigListEntry, ConfigSequence, ConfigYesNo
+from Components.config import ConfigSubsection, ConfigSubList, ConfigInteger, ConfigText, ConfigSelection
 import TitleCutter
 
 class ConfigFixedText(ConfigText):
@@ -35,7 +35,8 @@ class DVDTitle:
 		from os import path
 		from enigma import eServiceCenter, iServiceInformation
 		from ServiceReference import ServiceReference
-		from time import localtime, time
+		from time import localtime
+
 		self.source = service
 		serviceHandler = eServiceCenter.getInstance()
 		info = serviceHandler.info(service)

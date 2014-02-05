@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--suppress XmlUnboundNsPrefix, XmlUnboundNsPrefix -->
 <skin>
 	<windowstyle id="1" type="skinned">
 		<color color="#000000" name="Background"/>
@@ -22,7 +23,7 @@
 <!-- template -->
 	<screen name="SummaryClockPanel">
 		<widget source="global.CurrentTime" render="Label" position="195,48" size="60,22" font="FdLcD;20" halign="right" valign="bottom" noWrap="1">
-			<convert type="ClockToText"></convert>
+			<convert type="ClockToText"/>
 		</widget>
 	</screen>
 
@@ -57,42 +58,42 @@
 		</widget>
 	</screen>
 	<screen name="SummaryTunerStatusPanel">
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-a.png" position="158,49" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-a.png" position="216,15" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-b.png" position="167,49" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-b.png" position="226,15" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-c.png" position="176,49" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-c.png" position="235,15" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">4</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-d.png" position="185,49" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-d.png" position="246,15" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">8</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-a-act.png" position="158,49" size="9,15">
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-a-act.png" position="216,15" size="9,15">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">0,0</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-b-act.png" position="167,49" size="9,15">
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-b-act.png" position="226,15" size="9,15">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">1,1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-c-act.png" position="176,49" size="9,15">
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-c-act.png" position="236,15" size="9,15">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">2,2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-d-act.png" position="185,49" size="9,15">
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-d-act.png" position="246,15" size="9,15">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">3,3</convert>
 			<convert type="ConditionalShowHide" />
@@ -103,15 +104,18 @@
 		<widget source="parent.Service" render="Label" position="0,0" size="170,22" font="FdLcD;18" halign="left" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="parent.Event" render="Label" position="0,21" size="255,20" font="FdLcD;17" halign="left" noWrap="1">
+		<widget source="parent.Service" render="LcdPicon" position="0,0" size="170,40" >
+            <convert type="ServiceName">Reference</convert>
+        </widget>
+		<widget source="parent.Event" render="Label" position="0,48" size="190,20" font="FdLcD;15" halign="left" noWrap="1">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="parent.Event" render="Progress" position="0,43" size="140,5" borderWidth="1">
-			<convert type="EventTime">Progress</convert>
-		</widget>
-		<widget source="parent.Event" render="Label" position="0,51" size="140,18" font="FdLcD;17" halign="left" valign="bottom" noWrap="1">
+		<widget source="parent.Event" render="Label" position="140,41" size="70,17" font="FdLcD;15" halign="left" valign="bottom">
 			<convert type="EventTime">VFDRemaining</convert>
 			<convert type="RemainingToText">VFDNoSeconds</convert>
+		</widget>
+		<widget source="parent.Event" render="Progress" position="0,43" size="120,5" borderWidth="1">
+			<convert type="EventTime">Progress</convert>
 		</widget>
 	</screen>
 
@@ -120,15 +124,18 @@
 		<widget source="session.CurrentService" render="Label" position="0,0" size="170,22" font="FdLcD;18" halign="left" noWrap="1">
 			<convert type="ServiceName">NameOnly</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,21" size="255,20" font="FdLcD;17" halign="left" noWrap="1">
+		<widget source="session.CurrentService" render="LcdPicon" position="0,0" size="170,40" backgroundColor="#ff000000">
+            <convert type="ServiceName">Reference</convert>
+        </widget>
+		<widget source="session.Event_Now" render="Label" position="0,48" size="190,20" font="FdLcD;15" halign="left" noWrap="1">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Progress" position="0,43" size="140,5" borderWidth="1">
-			<convert type="EventTime">Progress</convert>
-		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,51" size="140,18" font="FdLcD;17" halign="left" valign="bottom" noWrap="1">
+		<widget source="session.Event_Now" render="Label" position="140,41" size="70,17" font="FdLcD;15" halign="left" valign="bottom">
 			<convert type="EventTime">VFDRemaining</convert>
 			<convert type="RemainingToText">VFDNoSeconds</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Progress" position="0,43" size="120,5" borderWidth="1">
+			<convert type="EventTime">Progress</convert>
 		</widget>
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryTunerStatusPanel" />
@@ -181,15 +188,18 @@
 		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="170,22" font="FdLcD;18" halign="left" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="0,21" size="255,20" font="FdLcD;17" halign="left" noWrap="1">
+		<widget source="parent.ServiceEvent" render="LcdPicon" position="0,0" size="170,40" backgroundColor="#ff000000">
+            <convert type="ServiceName">Reference</convert>
+        </widget>
+		<widget source="parent.ServiceEvent" render="Label" position="0,48" size="190,20" font="FdLcD;15" halign="left" noWrap="1">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Progress" position="0,43" size="140,5" borderWidth="1">
-			<convert type="EventTime">Progress</convert>
-		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="0,51" size="140,18" font="FdLcD;17" halign="left" valign="bottom" noWrap="1">
+		<widget source="parent.ServiceEvent" render="Label" position="140,41" size="70,17" font="FdLcD;15" halign="left" valign="bottom">
 			<convert type="EventTime">VFDRemaining</convert>
 			<convert type="RemainingToText">VFDNoSeconds</convert>
+		</widget>
+		<widget source="parent.ServiceEvent" render="Progress" position="0,43" size="120,5" borderWidth="1">
+			<convert type="EventTime">Progress</convert>
 		</widget>
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryTunerStatusPanel" />

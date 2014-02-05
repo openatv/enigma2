@@ -1,15 +1,14 @@
+from enigma import eListboxPythonMultiContent, eListbox, gFont, \
+	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_TOP, RT_VALIGN_BOTTOM
+
 from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
-
 from Tools.FuzzyDate import FuzzyTime
-
-from enigma import eListboxPythonMultiContent, eListbox, gFont, \
-	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_VALIGN_BOTTOM
 from Tools.LoadPixmap import LoadPixmap
 from timer import TimerEntry
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN, SCOPE_ACTIVE_SKIN
-
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from PowerTimer import AFTEREVENT, TIMERTYPE
+
 
 class PowerTimerList(HTMLComponent, GUIComponent, object):
 #

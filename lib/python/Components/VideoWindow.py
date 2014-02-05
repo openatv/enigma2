@@ -12,4 +12,4 @@ class VideoWindow(GUIComponent):
 
 	def postWidgetCreate(self, instance):
 		instance.setDecoder(self.decoder)
-		instance.setFBSize(eSize(self.fb_width, self.fb_height));
+		instance.setFBSize(eSize(self.fb_width, self.fb_height))

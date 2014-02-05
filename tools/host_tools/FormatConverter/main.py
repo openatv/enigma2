@@ -1,10 +1,11 @@
 #!/usr/bin/python
+import os
+
 from datasource import genericdatasource
 from satxml import satxml
 from lamedb import lamedb
 from input import *
-import sys
-import os
+
 
 maindata = genericdatasource()
 

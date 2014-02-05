@@ -10,10 +10,10 @@ from Components.Timeshift import InfoBarTimeshift
 
 from enigma import eTimer
 
-class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu, \
-		InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, \
-		InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport, \
-		InfoBarAudioSelection, Screen):
+class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu,
+						  InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift,
+						  InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport,
+						  InfoBarAudioSelection, Screen):
 
 	def __init__(self, session, subservices):
 		Screen.__init__(self, session)

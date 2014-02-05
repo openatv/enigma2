@@ -320,7 +320,7 @@ class TimerLog(Screen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
 		self.skinName = "TimerLog"
-		self.timer = timer;
+		self.timer = timer
 		self.log_entries = self.timer.log_entries[:]
 
 		self.fillLogList()
