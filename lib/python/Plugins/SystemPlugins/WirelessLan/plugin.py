@@ -1,24 +1,19 @@
+from re import escape as re_escape
+
 from enigma import eTimer, eEnv
+
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap, NumberActionMap
-from Components.Pixmap import Pixmap,MultiPixmap
-from Components.Label import Label
+from Components.Pixmap import MultiPixmap
 from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
-from Components.MenuList import MenuList
-from Components.config import config, getConfigListEntry, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, ConfigSelection, ConfigPassword
-from Components.ConfigList import ConfigListScreen
+from Components.config import config, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, ConfigSelection, ConfigPassword
 from Components.Network import iNetwork
-from Components.Console import Console
 from Plugins.Plugin import PluginDescriptor
-from os import system, path as os_path, listdir
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
-from Tools.HardwareInfo import HardwareInfo
-from Wlan import iWlan, wpaSupplicant, iStatus, getWlanConfigName
-from time import time
-from os import system
-from re import escape as re_escape
+from Wlan import iWlan, iStatus, getWlanConfigName
+
 
 plugin_path = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/WirelessLan")
 

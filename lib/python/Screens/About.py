@@ -486,7 +486,7 @@ class AboutSummary(Screen):
 		Screen.__init__(self, session, parent=parent)
 		self["selected"] = StaticText("openATV:" + getImageVersion())
 
-		AboutText = _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
+		AboutText = _("Model: %s %s\n") % (getMachineBrand(), getMachineName())
 
 		if path.exists('/proc/stb/info/chipset'):
 			chipset = open('/proc/stb/info/chipset', 'r').read()

@@ -1,8 +1,10 @@
-import NavigationInstance
 from time import localtime, mktime, gmtime
-from ServiceReference import ServiceReference
+
 from enigma import iServiceInformation, eServiceCenter, eServiceReference
+
+import NavigationInstance
 from timer import TimerEntry
+
 
 class TimerSanityCheck:
 	def __init__(self, timerlist, newtimer=None):
@@ -45,7 +47,7 @@ class TimerSanityCheck:
 						getUnsignedDataRef2 = self.newtimer.service_ref.ref.getUnsignedData
 						for x in (1, 2, 3, 4):
 							if getUnsignedDataRef1(x) != getUnsignedDataRef2(x):
-								break;
+								break
 						else:
 							return True
 		return False

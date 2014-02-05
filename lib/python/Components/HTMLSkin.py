@@ -8,6 +8,6 @@ class HTMLSkin:
 		res = "<html>\n"
 		for name in self.order:
 			res += self[name].produceHTML()
-		res += "</html>\n";
+		res += "</html>\n"
 		return res
 

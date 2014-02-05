@@ -1,6 +1,6 @@
 from Screens.Screen import Screen
 from Screens.Setup import setupdom
-from Screens.LocationBox import MovieLocationBox, TimeshiftLocationBox, AutorecordLocationBox
+from Screens.LocationBox import MovieLocationBox
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.config import config, configfile, ConfigYesNo, ConfigNothing, ConfigSelection, getConfigListEntry
@@ -13,8 +13,6 @@ from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
 
-from enigma import eEnv
-import xml.etree.cElementTree
 
 class SetupSummary(Screen):
 	def __init__(self, session, parent):

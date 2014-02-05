@@ -1,5 +1,5 @@
 from Screens.Screen import Screen
-from Components.ConfigList import ConfigListScreen, ConfigList
+from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap
 from Components.Sources.FrontendStatus import FrontendStatus
 from Components.Sources.StaticText import StaticText

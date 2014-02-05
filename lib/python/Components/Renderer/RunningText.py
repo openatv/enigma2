@@ -28,11 +28,13 @@
 # take a look at the discussion: http://board.dreambox-tools.info/showthread.php?6050-Erweiterung-Running-Text-render
 ################################################################################
 
-from Renderer import Renderer
-from skin import parseColor, parseFont
-from enigma import eWidget, eCanvas, eLabel, eTimer, eRect, ePoint, eSize, gRGB, gFont, \
+from enigma import eWidget, eLabel, eTimer, ePoint, eSize, gFont, \
 	RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, RT_HALIGN_BLOCK, \
 	RT_VALIGN_TOP, RT_VALIGN_CENTER, RT_VALIGN_BOTTOM, RT_WRAP
+
+from Renderer import Renderer
+from skin import parseColor, parseFont
+
 
 # scroll type:
 NONE     = 0

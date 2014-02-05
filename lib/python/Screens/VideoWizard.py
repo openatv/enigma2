@@ -5,8 +5,7 @@ from Screens.Rc import Rc
 from Components.AVSwitch import iAVSwitch
 from Screens.Screen import Screen
 
-from Components.About import about
-from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
+from Components.Pixmap import Pixmap
 from Components.config import config, ConfigBoolean, configfile
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_ACTIVE_SKIN
@@ -89,7 +88,6 @@ class VideoWizard(WizardLanguage, Rc):
 		self.rate = None
 
 	def createSummary(self):
-		from Screens.Wizard import WizardSummary
 		return VideoWizardSummary
 
 	def markDone(self):

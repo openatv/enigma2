@@ -1,10 +1,11 @@
-import struct, os, time
-from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText
-from enigma import eHdmiCEC, eActionMap
-from Tools.StbHardware import getFPWasTimerWakeup
-from enigma import eTimer
-from Tools.Directories import fileExists
+import struct
+import os
 from sys import maxint
+from enigma import eTimer, eHdmiCEC, eActionMap
+from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText
+from Tools.StbHardware import getFPWasTimerWakeup
+from Tools.Directories import fileExists
+
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = False)

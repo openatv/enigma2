@@ -22,8 +22,8 @@ config.misc.fastscan.last_configuration = ConfigText(default = "()")
 
 class FastScan:
 	def __init__(self, text, progressbar, scanTuner = 0, transponderParameters = None, scanPid = 900, keepNumbers = False, keepSettings = False, providerName = 'Favorites'):
-		self.text = text;
-		self.progressbar = progressbar;
+		self.text = text
+		self.progressbar = progressbar
 		self.transponderParameters = transponderParameters
 		self.scanPid = scanPid
 		self.scanTuner = scanTuner

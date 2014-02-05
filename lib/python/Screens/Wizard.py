@@ -1,18 +1,19 @@
+from boxbranding import getMachineBrand, getMachineName
+from xml.sax import make_parser
+from xml.sax.handler import ContentHandler
+
+from enigma import eTimer, eEnv
+
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.config import config, ConfigText, ConfigPassword, KEY_LEFT, KEY_RIGHT, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_ASCII
-
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigList
 from Components.Sources.List import List
-from enigma import eTimer, eEnv
 
-from xml.sax import make_parser
-from xml.sax.handler import ContentHandler
-from boxbranding import getMachineBrand, getMachineName
 
 class WizardSummary(Screen):
 	def __init__(self, session, parent):
@@ -450,7 +451,7 @@ class Wizard(Screen):
 	def runCode(self, code):
 		if code != "":
 # 			print "code", code
-			exec(code)
+			exec code
 			return True
 		return False
 

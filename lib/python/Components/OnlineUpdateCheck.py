@@ -1,10 +1,12 @@
+from time import time
+from boxbranding import getImageVersion
+
+from enigma import eTimer
+
 import Components.Task
 from Components.Ipkg import IpkgComponent
-from Components.About import about
 from Components.config import config
-from time import time
-from enigma import eTimer
-from boxbranding import getImageVersion
+
 
 def OnlineUpdateCheck(session=None, **kwargs):
 	global onlineupdatecheckpoller

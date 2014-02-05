@@ -1,18 +1,20 @@
+from os import path
+
+from enigma import iPlayableService, iServiceInformation, eTimer
+
 from Screens.Screen import Screen
 from Components.About import about
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, configfile, getConfigListEntry, ConfigBoolean, ConfigNothing, ConfigSlider
+from Components.config import config, configfile, getConfigListEntry
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.ServiceEventTracker import ServiceEventTracker
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from enigma import iPlayableService, iServiceInformation, eTimer
-from os import path
-
 from Components.AVSwitch import iAVSwitch
+
 
 resolutionlabel = None
 

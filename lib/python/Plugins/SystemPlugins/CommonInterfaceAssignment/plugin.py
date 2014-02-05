@@ -1,21 +1,18 @@
-from Screens.Screen import Screen
+from xml.etree.cElementTree import parse as ci_parse
+from boxbranding import getMachineBrand, getMachineName
+from os import path as os_path
+
+from enigma import eDVBCI_UI, eDVBCIInterfaces
+
 from Screens.ChannelSelection import *
-from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
-from Components.Sources.List import List
+from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 from Components.config import ConfigNothing
 from Components.ConfigList import ConfigList
-from Components.Label import Label
 from Components.SelectionList import SelectionList
-from Components.MenuList import MenuList
 from ServiceReference import ServiceReference
 from Plugins.Plugin import PluginDescriptor
-from xml.etree.cElementTree import parse as ci_parse
-from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
-from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv
-from boxbranding import getMachineBrand, getMachineName
 
-from os import system, path as os_path
 
 class CIselectMainMenu(Screen):
 	skin = """
@@ -87,12 +84,12 @@ class CIselectMainMenu(Screen):
 				else:
 					self.session.open(easyCIconfigMenu, slot)
 
-	"""def yellowPressed(self): # unused
-		NUM_CI=eDVBCIInterfaces.getInstance().getNumOfSlots()
-		print "[CI_Check] FOUND %d CI Slots " % NUM_CI
-		if NUM_CI > 0:
-			for ci in range(NUM_CI):
-				print eDVBCIInterfaces.getInstance().getDescrambleRules(ci)"""
+	# def yellowPressed(self): # unused
+	# 	NUM_CI=eDVBCIInterfaces.getInstance().getNumOfSlots()
+	# 	print "[CI_Check] FOUND %d CI Slots " % NUM_CI
+	# 	if NUM_CI > 0:
+	# 		for ci in range(NUM_CI):
+	# 			print eDVBCIInterfaces.getInstance().getDescrambleRules(ci)
 
 
 class CIconfigMenu(Screen):

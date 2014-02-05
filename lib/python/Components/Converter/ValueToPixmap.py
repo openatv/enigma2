@@ -1,6 +1,6 @@
 from Components.Converter.Converter import Converter
 from Components.Element import cached, ElementError
-from Tools.Directories import fileExists, SCOPE_SKIN_IMAGE, SCOPE_ACTIVE_SKIN, resolveFilename
+from Tools.Directories import SCOPE_SKIN_IMAGE, SCOPE_ACTIVE_SKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 

@@ -1,31 +1,29 @@
 # -*- coding: UTF-8 -*-
 # CCcam Info by AliAbdul
 from base64 import encodestring
+from os import listdir, remove, rename, system, popen, path
+
+from enigma import eListboxPythonMultiContent, eTimer, gFont, loadPNG, RT_HALIGN_RIGHT
+
 from Components.ActionMap import ActionMap, NumberActionMap
-from Components.config import config, ConfigInteger, ConfigSelection, ConfigSubsection, ConfigText, ConfigYesNo, getConfigListEntry
+from Components.config import config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
 from Components.Label import Label
-from Components.Language import language
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.ScrollLabel import ScrollLabel
-from Components.ServiceEventTracker import ServiceEventTracker
-from enigma import eListboxPythonMultiContent, ePoint, eTimer, getDesktop, gFont, iPlayableService, iServiceInformation, loadPNG, RT_HALIGN_RIGHT
-from os import environ, listdir, remove, rename, system, popen, path
-from Plugins.Plugin import PluginDescriptor
 from Screens.HelpMenu import HelpableScreen
+
 #from Screens.InfoBar import InfoBar
 from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-from skin import parseColor
-from Tools.Directories import fileExists, resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
+from Tools.Directories import fileExists
 from twisted.internet import reactor
 from twisted.web.client import HTTPClientFactory
 from urlparse import urlparse, urlunparse
-import gettext
 
 #TOGGLE_SHOW = InfoBar.toggleShow
 
@@ -418,13 +416,13 @@ class CCcamInfoMain(Screen):
 		if (username is not None) and (password is not None) and (username != "") and (password != ""):
 			self.url = self.url.replace('http://', ("http://%s:%s@" % (username, password)))
 
-		config.cccaminfo.profile.setValue("")
+		config.cccaminfo.profile.value = ""
 		config.cccaminfo.profile.save()
 
 	def profileSelected(self, url=None):
 		if url is not None:
 			self.url = url
-			config.cccaminfo.profile.setValue(self.url)
+			config.cccaminfo.profile.value = self.url
 			config.cccaminfo.profile.save()
 			self.showInfo(_("New profile: ") + url, _("Profile"))
 		else:
@@ -1198,11 +1196,11 @@ class CCcamInfoConfigMenu(ConfigListScreen, Screen):
 	def __init__(self, session, profile):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("CCcam Info Setup"))
-		config.cccaminfo.name.setValue(profile.name)
-		config.cccaminfo.ip.setValue(profile.ip)
-		config.cccaminfo.username.setValue(profile.username)
-		config.cccaminfo.password.setValue(profile.password)
-		config.cccaminfo.port.setValue(profile.port)
+		config.cccaminfo.name.value = profile.name
+		config.cccaminfo.ip.value = profile.ip
+		config.cccaminfo.username.value = profile.username
+		config.cccaminfo.password.value = profile.password
+		config.cccaminfo.port.value = profile.port
 
 		ConfigListScreen.__init__(self, [
 			getConfigListEntry(_("Name:"), config.cccaminfo.name),

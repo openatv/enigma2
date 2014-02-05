@@ -1,5 +1,5 @@
-import os
 import re
+import os
 from socket import *
 from Components.Console import Console
 from Components.PluginComponent import plugins
@@ -668,8 +668,9 @@ class Network:
 		return 'wext'
 
 	def calc_netmask(self,nmask):
-		from struct import pack, unpack
-		from socket import inet_ntoa, inet_aton
+		from struct import pack
+		from socket import inet_ntoa
+
 		mask = 1L<<31
 		xnet = (1L<<32)-1
 		cidr_range = range(0, 32)

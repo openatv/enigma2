@@ -1,7 +1,9 @@
+from enigma import eTimer
+
 import Components.Task
 from Screens.MessageBox import MessageBox
-from Components.config import config, ConfigSelectionNumber, ConfigSubsection, ConfigYesNo
-from enigma import eTimer
+from Components.config import config
+
 
 def EpgCacheLoadCheck(session=None, **kwargs):
 	global epgcacheloadcheckpoller

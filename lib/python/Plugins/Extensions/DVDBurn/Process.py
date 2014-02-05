@@ -1,7 +1,9 @@
+import os
+
 from Components.Task import Task, Job, DiskspacePrecondition, Condition, ToolExistsPrecondition
 from Components.Harddisk import harddiskmanager
 from Screens.MessageBox import MessageBox
-import os
+
 
 class png2yuvTask(Task):
 	def __init__(self, job, inputfile, outputfile):
@@ -525,7 +527,8 @@ class MenuImageTask(Task):
 	def run(self, callback):
 		self.callback = callback
 		#try:
-		import ImageDraw, Image, os
+		import ImageDraw, Image
+
 		s = self.job.project.menutemplate.settings
 		s_top = s.margin_top.getValue()
 		s_bottom = s.margin_bottom.getValue()
