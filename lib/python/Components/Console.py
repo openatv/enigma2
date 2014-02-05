@@ -28,13 +28,13 @@ class Console(object):
 		if retval:
 			self.finishedCB(name, retval)
 
-	def eBatch(self, cmds, callback, extra_args=[], debug=False):
+	def eBatch(self, cmds, callback, extra_args=None, debug=False):
 		if not extra_args: extra_args = []
 		self.debug = debug
 		cmd = cmds.pop(0)
 		self.ePopen(cmd, self.eBatchCB, [cmds, callback, extra_args])
 
-	def eBatch(self, cmds, callback, extra_args=None, debug=False):
+	def eBatchCB(self, data, retval, _extra_args):
 		(cmds, callback, extra_args) = _extra_args
 		if self.debug:
 			print '[eBatch] retval=%s, cmds left=%d, data:\n%s' % (retval, len(cmds), data)
