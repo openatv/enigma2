@@ -76,7 +76,6 @@ class PluginDescriptor:
 			self.where = where
 		else:
 			self.where = [ where ]
-		print 'Name: %s    where: %s' % (name, self.where)
 		self.description = description
 
 		if icon is None or isinstance(icon, str):
