@@ -28,7 +28,7 @@ SUBDIRS += display96
 endif
 
 if HAVE_COLORLCD1
-SUBDIRS += vfd128
+SUBDIRS += display128
 endif
 
 if HAVE_COLORLCD220
