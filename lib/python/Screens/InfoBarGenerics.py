@@ -46,7 +46,7 @@ from Tools.Directories import pathExists, fileExists
 from Tools.KeyBindings import getKeyDescription
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
-from boxbranding import getBoxType
+from boxbranding import getBrandOEM
 
 from time import time, localtime, strftime
 from bisect import insort
@@ -1239,7 +1239,7 @@ class InfoBarEPG:
 
 	def InfoPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
-			if getBoxType().startswith('et') or getBoxType().startswith('odin') or getBoxType().startswith('venton') or getBoxType().startswith('ini') or getBoxType().startswith('tm') or getBoxType().startswith('gb') or getBoxType().startswith('xp1000'):
+			if getBrandOEM in ('xtrend', 'odin', 'ini', 'odin' ,'gigablue', 'xp'):
 				self.openEventView()
 			else:
 				self.showDefaultEPG()
