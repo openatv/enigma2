@@ -57,16 +57,16 @@ config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandb
 #def leaveStandby():
 #	print "!!!!!!!!!!!!!!!!!leave standby"
 
-#def standbyCountChanged(configElement):
-#	print "!!!!!!!!!!!!!!!!!enter standby num", configElement.value
+#def standbyCountChanged(configelement):
+#	print "!!!!!!!!!!!!!!!!!enter standby num", configelement.value
 #	from Screens.Standby import inStandby
 #	inStandby.onClose.append(leaveStandby)
 
 #config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call = False)
 ####################################################
 
-def useSyncUsingChanged(configElement):
-	if config.misc.SyncTimeUsing.getValue() == "0":
+def useSyncUsingChanged(configelement):
+	if configelement == "0":
 		print "[Time By]: Transponder"
 		value = True
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
@@ -79,15 +79,14 @@ def useSyncUsingChanged(configElement):
 		Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.getValue())
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 
-def NTPserverChanged(configElement):
-	if config.misc.NTPserver.getValue() == "pool.ntp.org":
+def NTPserverChanged(configelement):
+	if configelement == "pool.ntp.org":
 		return
 	print "[NTPDATE] save /etc/default/ntpdate"
-	file = "/etc/default/ntpdate"
-	f = open(file, "w")
+	f = open("/etc/default/ntpdate", "w")
 	f.write('NTPSERVERS="' + config.misc.NTPserver.getValue() + '"')
 	f.close()
-	os.chmod(file, 0755)
+	os.chmod("/etc/default/ntpdate", 0755)
 	from Components.Console import Console
 	Console = Console()
 	Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.getValue())
@@ -371,6 +370,7 @@ profile("Standby,PowerKey")
 import Screens.Standby
 from Screens.Menu import MainMenu, mdom
 from GlobalActions import globalActionMap
+from time import time
 
 class PowerKey:
 	""" PowerKey stuff - handles the powerkey press and powerkey release actions"""
@@ -389,7 +389,6 @@ class PowerKey:
 
 	def shutdown(self):
 		wasRecTimerWakeup = False
-		from time import time
 		recordings = self.session.nav.getRecordings()
 		if not recordings:
 			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
@@ -458,7 +457,7 @@ class AutoScartControl:
 		config.av.vcrswitch.addNotifier(self.recheckVCRSb)
 		enigma.eAVSwitch.getInstance().vcr_sb_notifier.get().append(self.VCRSbChanged)
 
-	def recheckVCRSb(self, configElement):
+	def recheckVCRSb(self, configelement):
 		self.VCRSbChanged(self.current_vcr_sb)
 
 	def VCRSbChanged(self, value):
@@ -475,6 +474,9 @@ from Screens.Ci import CiHandler
 
 profile("Load:VolumeControl")
 from Components.VolumeControl import VolumeControl
+
+from time import time, localtime, strftime
+from Tools.StbHardware import setFPWakeuptime, setRTCtime
 
 def runScreenTest():
 	config.misc.startCounter.value += 1
@@ -535,8 +537,6 @@ def runScreenTest():
 
 	profile("wakeup")
 
-	from time import time, localtime
-	from Tools.StbHardware import setFPWakeuptime, setRTCtime
 	#get currentTime
 	nowTime = time()
 	wakeupList = [
@@ -570,7 +570,6 @@ def runScreenTest():
 
 	PowerTimerWakeupAuto = False
 	if wakeupList and wakeupList[0][1] == 3:
-		from time import strftime
 		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 60: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
