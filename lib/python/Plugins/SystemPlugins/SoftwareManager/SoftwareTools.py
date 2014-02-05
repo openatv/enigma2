@@ -160,7 +160,7 @@ class SoftwareTools(PackageInfoHandler):
 				self.InstallMetaPackageCB(True)
 
 	def InstallMetaPackageCB(self, result, retval = None, extra_args = None):
-		(callback) = extra_args
+		(callback) = extra_args or None
 		if result:
 			self.fillPackagesIndexList()
 			if callback is None:
