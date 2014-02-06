@@ -173,7 +173,7 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
 			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
-		## TESTING THE Odin M9 Model
+		## TESTING THE Odin M9 Model 'maram9'
 		elif self.MODEL == "odinm9":
 			self.TYPE = "ODINM9"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
@@ -184,6 +184,16 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/odinm9" % self.DIRECTORY
 			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
 			self.EXTRA = "%s/fullbackup_odinm9/%s" % (self.DIRECTORY, self.DATE)
+		elif self.MODEL == "maram9":
+			self.TYPE = "MARAM9"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
+			self.MTDKERNEL = "mtd2"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/maram9" % self.DIRECTORY
+			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
+			self.EXTRA = "%s/fullbackup_maram9/%s" % (self.DIRECTORY, self.DATE)
 		## TESTING THE Odin M7 Model
 		elif self.OEM == "odinm7":
 			self.TYPE = "ODINM7"
@@ -289,7 +299,7 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/miraclebox/%s" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s/miraclebox" % (self.DIRECTORY, self.MODEL, self.DATE)			
 		## TESTING INI HDe Model
-		elif self.MODEL == "ini-1000de" :
+		elif self.MODEL == "ini-1000de" or self.MODEL == "xpeedlx2":
 			self.TYPE = "GI"
 			self.MODEL = "xpeedlx"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
