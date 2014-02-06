@@ -4,6 +4,7 @@ from Components.Harddisk import harddiskmanager
 from Components.MenuList import MenuList
 from Components.Label import Label
 from Components.Pixmap import Pixmap
+from Components.Task import job_manager
 from Screens.MessageBox import MessageBox
 
 class HarddiskSetup(Screen):
@@ -33,12 +34,24 @@ class HarddiskSetup(Screen):
 	def hddConfirmed(self, confirmed):
 		if not confirmed:
 			return
-		from Components.Task import job_manager
 		try:
-			job_manager.AddJob(self.action(), onSuccess=job_manager.popupTaskView)
+			job_manager.AddJob(self.action())
+			for job in job_manager.getPendingJobs():
+				if job.name in (_("Initializing storage device..."), _("Checking filesystem..."),_("Converting ext3 to ext4...")):
+					self.showJobView(job)
+					break
 		except Exception, ex:
 			self.session.open(MessageBox, str(ex), type=MessageBox.TYPE_ERROR, timeout=10)
 		self.close()
+
+	def showJobView(self, job):
+		from Screens.TaskView import JobView
+		job_manager.in_background = False
+		self.session.openWithCallback(self.JobViewCB, JobView, job, cancelable=False, afterEventChangeable=False, afterEvent="close")
+
+	def JobViewCB(self, in_background):
+		job_manager.in_background = in_background
+
 
 class HarddiskSelection(Screen):
 	def __init__(self, session):
@@ -46,8 +59,7 @@ class HarddiskSelection(Screen):
 		Screen.setTitle(self, _("Initialization"))
 		self.skinName = "HarddiskSelection" # For derived classes
 		if harddiskmanager.HDDCount() == 0:
-			tlist = []
-			tlist.append((_("no storage devices found"), 0))
+			tlist = [(_("no storage devices found"), 0)]
 			self["hddlist"] = MenuList(tlist)
 		else:
 			self["hddlist"] = MenuList(harddiskmanager.HDDList())
@@ -68,6 +80,7 @@ class HarddiskSelection(Screen):
 		selection = self["hddlist"].getCurrent()
 		if selection[1] != 0:
 			self.doIt(selection[1])
+			self.close(True)
 
 # This is actually just HarddiskSelection but with correct type
 class HarddiskFsckSelection(HarddiskSelection):
@@ -80,7 +93,7 @@ class HarddiskFsckSelection(HarddiskSelection):
 		self.session.openWithCallback(self.close, HarddiskSetup, selection,
 			 action=selection.createCheckJob,
 			 text=_("Check"),
-			 question=_("Do you really want to check the filesystem?\nThis could take lots of time!"))
+			 question=_("Do you really want to check the filesystem?\nThis could take a long time!"))
 
 class HarddiskConvertExt4Selection(HarddiskSelection):
 	def __init__(self, session):
