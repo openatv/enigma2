@@ -3,7 +3,7 @@ from Components.About import about
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
 from enigma import eAVSwitch, getDesktop
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getMachineBuild
 from SystemInfo import SystemInfo
 import os
 
@@ -422,6 +422,8 @@ def InitAVSwitch():
 
 	def setColorFormat(configElement):
 		if config.av.videoport and config.av.videoport.getValue() == "Scart-YPbPr":
+			iAVSwitch.setColorFormat(3)
+		elif config.av.videoport and config.av.videoport.getValue() == "YPbPr" and getMachineBuild() == 'inihdx' or getMachineBuild() == 'ventonhdx':
 			iAVSwitch.setColorFormat(3)
 		else:
 			if getBoxType() == 'et6x00':
