@@ -108,7 +108,7 @@
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="128,32" >
-		<widget source="session.CurrentService" render="Label" position="0,10" size="128,20" font="FdLcD;16" halign="center" valign="top" zPosition="1" >
+		<widget source="session.CurrentService" render="Label" position="0,10" size="128,16" font="FdLcD;16" halign="center" valign="top" zPosition="1" noWrap="1" >
 			<convert type="ServiceName">NameOnly</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Progress" position="0,26" size="50,6" borderWidth="1" zPosition="1" >
@@ -126,7 +126,7 @@
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="128,32">
 		<widget name="statusicon_summary" position="0,13" size="11,10" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" zPosition="3" />
-		<widget source="session.CurrentService" render="Label" position="12,10" size="129,20" font="FdLcD;16" halign="left" valign="top" zPosition="1" >
+		<widget source="session.CurrentService" render="Label" position="12,10" size="129,20" font="FdLcD;16" halign="left" valign="top" zPosition="1" noWrap="1" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Progress" position="0,26" size="50,6" borderWidth="1" zPosition="1" >
@@ -148,7 +148,7 @@
 		<widget source="parent.Service" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="center" valign="bottom" zPosition="1" noWrap="1">
 			<convert type="MovieInfo">RecordServiceName</convert>
 		</widget>
-		<widget source="name" render="Label" position="0,13" size="128,14" font="FdLcD;14" halign="center" valign="top" zPosition="1" noWrap="1" />
+		<widget source="name" render="Label" position="0,11" size="128,14" font="FdLcD;14" halign="center" valign="top" zPosition="1" noWrap="1" />
 		<widget source="parent.Service" render="Label" position="0,25" size="70,12" font="FdLcD;12" halign="left" valign="bottom" noWrap="1" zPosition="1" >
 			<convert type="ServiceTime">Duration</convert>
 			<convert type="ClockToText">AsLength</convert>
