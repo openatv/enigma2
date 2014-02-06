@@ -6,12 +6,16 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Task import job_manager
 from Screens.MessageBox import MessageBox
+from Tools.BoundFunction import boundFunction
+import Screens.InfoBar
+
 
 class HarddiskSetup(Screen):
 	def __init__(self, session, hdd, action, text, question):
 		Screen.__init__(self, session)
 		self.action = action
 		self.question = question
+		self.curentservice = None
 		self["model"] = Label(_("Model: ") + hdd.model())
 		self["capacity"] = Label(_("Capacity: ") + hdd.capacity())
 		self["bus"] = Label(_("Bus: ") + hdd.bus())
@@ -27,9 +31,22 @@ class HarddiskSetup(Screen):
 			"red": self.hddQuestion
 		})
 
-	def hddQuestion(self):
-		message = self.question + "\n" + _("You can continue watching TV etc. while this is running.")
-		self.session.openWithCallback(self.hddConfirmed, MessageBox, message)
+	def hddQuestion(self, answer=False):
+		print 'answer:',answer
+		if Screens.InfoBar.InfoBar.instance.timeshiftEnabled():
+			message = self.question + "\n\n" + _("You seem to be in timeshft, the service wil breifly stop as timeshfit stops.")
+			message += '\n' + _("Do you want to continue?")
+			self.session.openWithCallback(self.stopTimeshift, MessageBox, message)
+		else:
+			message = self.question + "\n" + _("You can continue watching TV etc. while this is running.")
+			self.session.openWithCallback(self.hddConfirmed, MessageBox, message)
+
+	def stopTimeshift(self, confirmed):
+		if confirmed:
+			self.curentservice = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.session.nav.stopService()
+			Screens.InfoBar.InfoBar.instance.stopTimeshiftcheckTimeshiftRunningCallback(True)
+			self.hddConfirmed(True)
 
 	def hddConfirmed(self, confirmed):
 		if not confirmed:
@@ -42,6 +59,9 @@ class HarddiskSetup(Screen):
 					break
 		except Exception, ex:
 			self.session.open(MessageBox, str(ex), type=MessageBox.TYPE_ERROR, timeout=10)
+
+		if self.curentservice:
+			self.session.nav.playService(self.curentservice)
 		self.close()
 
 	def showJobView(self, job):
