@@ -297,6 +297,7 @@ RESULT enableSubtitles(eWidget *parent, PyObject *tuple)
 	track.pid = -1;
 	track.page_number = 0;
 	track.magazine_number = 0;
+	track.language_code = "und";
 
 	if (PyTuple_Check(tuple))
 	{
@@ -327,6 +328,13 @@ RESULT enableSubtitles(eWidget *parent, PyObject *tuple)
 		if (PyInt_Check(entry))
 		{
 			track.magazine_number = PyInt_AsLong(entry);
+		}
+		if (tuplesize==5){
+			entry = PyTuple_GET_ITEM(tuple, 4);
+			if (PyString_Check(entry))
+			{
+				track.language_code = PyString_AsString(entry);
+			}
 		}
 	}
 
@@ -374,11 +382,12 @@ PyObject *getCachedSubtitle()
 	struct iSubtitleOutput::SubtitleTrack track;
 	if (self->getCachedSubtitle(track) >= 0)
 	{
-		ePyObject tuple = PyTuple_New(4);
+		ePyObject tuple = PyTuple_New(5);
 		PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(track.type));
 		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(track.pid));
 		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(track.page_number));
 		PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(track.magazine_number));
+		PyTuple_SET_ITEM(tuple, 4, PyString_FromString(track.language_code.c_str()));
 		return tuple;
 	}
 	Py_INCREF(Py_None);
