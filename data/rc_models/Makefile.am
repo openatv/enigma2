@@ -75,7 +75,7 @@ SUBDIRS = ini0 ini1 ini2 ini3 ini4
 endif
 
 if INI
-SUBDIRS = ini0 ini1 ini2 ini3 ini4
+SUBDIRS = ini0 ini1 ini2 ini3 ini4 ini5
 endif
 
 if VUSOLO

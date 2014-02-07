@@ -37,7 +37,7 @@ class RcModel:
 	RCTYPE_VU2 = 31
 	RCTYPE_VU3 = 32
 	RCTYPE_XP1000 = 33
-
+	RCTYPE_INI5 = 34
 
 	def __init__(self):
 		self.currentRcType = self.RCTYPE_DMM
@@ -131,6 +131,8 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_INI3
 			elif model == 'ini-1000de' or model == 'ini-9000de' or model == 'ini-9000ru' or model == 'ini-7012au':
 				self.currentRcType = self.RCTYPE_INI4
+			elif model == 'ini-7000au' or model == 'ini-7012au':
+				self.currentRcType = self.RCTYPE_INI5
 			elif getBoxType() == 'odinm6' or getMachineName() == 'AX-Odin':
 				self.currentRcType = self.RCTYPE_ODINM6
 			elif model == 'e3hd':
@@ -196,6 +198,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/ini3/'
 		elif self.currentRcType == self.RCTYPE_INI4:
 			return '/usr/share/enigma2/rc_models/ini4/'
+		elif self.currentRcType == self.RCTYPE_INI5:
+			return '/usr/share/enigma2/rc_models/ini5/'      
 		elif self.currentRcType == self.RCTYPE_IQON:
 			return '/usr/share/enigma2/rc_models/iqon/'
 		elif self.currentRcType == self.RCTYPE_IXUSSONE:
