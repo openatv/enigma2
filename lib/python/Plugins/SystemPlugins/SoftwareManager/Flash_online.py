@@ -205,7 +205,7 @@ class doFlashImage(Screen):
 			box = getMachineName().lower()
 		elif box == "inihde" and machinename.lower() == "xpeedlx":
 			box = "xpeedlx"
-		elif box == "xpeedlx2":
+		elif box == "xpeedlx1" or box == "xpeedlx2":
 			box = "xpeedlx"
 		elif box == "inihde" and machinename.lower() == "hd-1000":
 			box = "sezam-1000hd"

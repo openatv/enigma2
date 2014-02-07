@@ -299,7 +299,7 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/miraclebox/%s" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s/miraclebox" % (self.DIRECTORY, self.MODEL, self.DATE)			
 		## TESTING INI HDe Model
-		elif self.MODEL == "ini-1000de" or self.MODEL == "xpeedlx2":
+		elif self.MODEL == "ini-1000de" or self.MODEL == "xpeedlx2" or self.MODEL == "xpeedlx1":
 			self.TYPE = "GI"
 			self.MODEL = "xpeedlx"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
@@ -607,7 +607,7 @@ class ImageBackup(Screen):
 		f.write(self.IMAGEVERSION)
 		f.close()
 
-		if self.TYPE == "ET" or self.TYPE == "VENTON" or self.TYPE == "SEZAM" or self.TYPE == "MICRACLE" or self.TYPE == "GI" or self.TYPE == "ODINM9"  or self.TYPE == "ODINM7" or self.TYPE == "E3HD" or self.TYPE == "MAXDIGITAL" or self.TYPE == "OCTAGON" or self.TYPE == "IXUSS" or self.TYPE == "SOGNO" or self.TYPE == "EVO":
+		if self.TYPE == "ET" or self.TYPE == "VENTON" or self.TYPE == "SEZAM" or self.TYPE == "MICRACLE" or self.TYPE == "GI" or self.TYPE == "ODINM9" or self.TYPE == "ODINM7" or self.TYPE == "MARAM9" or self.TYPE == "E3HD" or self.TYPE == "MAXDIGITAL" or self.TYPE == "OCTAGON" or self.TYPE == "IXUSS" or self.TYPE == "SOGNO" or self.TYPE == "EVO":
 			system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
 			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
@@ -736,7 +736,7 @@ class ImageBackup(Screen):
 				elif self.TYPE == 'SOGNO':
 					cmdlist.append('mkdir -p %s/sogno/%s' % (self.TARGET, self.MODEL))
 					cmdlist.append('cp -r %s %s/sogno/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'ODINM9':
+				elif self.TYPE == 'ODINM9' or self.TYPE == 'MARAM9':
 					#cmdlist.append('mkdir -p %s/odinm9/%s' % (self.TARGET, self.MODEL))
 					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
 				elif self.TYPE == 'ODINM7':
