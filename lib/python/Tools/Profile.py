@@ -42,8 +42,21 @@ def profile(id):
 			else:
 				perc = PERCENTAGE_START
 			try:
-				f = open("/proc/progress", "w")
-				f.write("%d \n" % perc)
+				if boxtype == "odinm7" or boxtype == "odinm6" or boxtype == "xp1000s":
+					f = open("/dev/dbox/oled0", "w")
+					f.write("%d" % perc)
+				elif boxtype == "gb800se" or boxtype == "gb800solo":
+					f = open("/dev/dbox/oled0", "w")
+					f.write("%d  \n" % perc)
+				elif boxtype == "gb800seplus":
+					f = open("/dev/mcu", "w")
+					f.write("%d  \n" % perc)
+				elif boxtype == "ebox5000":
+					f = open("/proc/progress", "w")
+					f.write("%d" % perc)
+				else:
+					f = open("/proc/progress", "w")
+					f.write("%d \n" % perc)
 				f.close()
 			except IOError:
 				pass
