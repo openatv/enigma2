@@ -14,6 +14,8 @@ profile("LOAD:enigma")
 import enigma
 from boxbranding import getBoxType, getMachineBrand
 
+boxtype = getBoxType()
+
 profile("LOAD:InfoBarGenerics")
 from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarRdsDecoder, InfoBarRedButton, InfoBarTimerButton, InfoBarVmodeButton, \
@@ -164,9 +166,9 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.showTvChannelList(True)
 			self.servicelist.showFavourites()
 	def showTvButton(self):
-		if getBoxType().startswith('gb') or getBoxType() == 'odinm7':
+		if boxtype.startswith('gb') or boxtype == 'odinm7':
 			self.toogleTvRadio()
-		elif getBoxType() == 'ventonhdx':
+		elif boxtype == 'ventonhdx':
 			self.showMovies()
 		else:
 			self.showTv()
@@ -182,7 +184,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.showTvChannelList(True)
 
 	def showRadioButton(self):
-		if getBoxType().startswith('gb') or getBoxType() == 'ventonhdx' or getBoxType().startswith('azbox') or getBoxType() == 'odinm7':
+		if boxtype.startswith('gb') or boxtype == 'ventonhdx' or boxtype.startswith('azbox') or boxtype == 'odinm7':
 			self.toogleTvRadio()
 		else:
 			self.showRadio()
@@ -346,7 +348,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.session.open(PluginBrowser)
 		
 	def showBoxPortal(self):
-		if getMachineBrand() == 'GI' or getBoxType().startswith('azbox') or getBoxType().startswith('ini') or getBoxType().startswith('venton'):
+		if getMachineBrand() == 'GI' or boxtype.startswith('azbox') or boxtype.startswith('ini') or boxtype.startswith('venton'):
 			from Screens.BoxPortal import BoxPortal
 			self.session.open(BoxPortal)
 		else:

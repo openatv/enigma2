@@ -23,8 +23,10 @@ from time import gmtime, strftime, localtime, sleep
 from datetime import date
 from boxbranding import getBoxType
 
+boxtype = getBoxType()
+
 config.plugins.configurationbackup = ConfigSubsection()
-if getBoxType() == "odinm9" or getBoxType() == "odinm7" or getBoxType() == "odinm6":
+if boxtype == "odinm9" or boxtype == "maram9" or boxtype == "odinm7" or boxtype == "odinm6":
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
 else:	
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
@@ -35,11 +37,10 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.re
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.getValue()
-	box = getBoxType()
 	if backuppath.endswith('/'):
-		return backuppath + 'backup_' + box
+		return backuppath + 'backup_' + boxtype
 	else:
-		return backuppath + '/backup_' + box
+		return backuppath + '/backup_' + boxtype
 
 def getOldBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.getValue()

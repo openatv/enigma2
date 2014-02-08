@@ -77,7 +77,7 @@ class AVSwitch:
 	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
 	# 	print "remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
-	if modes.has_key("YPbPr") and getBoxType() in ('et4x00', 'xp1000', 'tm2t', 'tmsingle', 'odimm7', 'vusolo2', 'tmnano','iqonios300hd', 'odinm7', 'e3hd', 'dm500hdv2', 'dm500hd', 'dm800', 'ebox7358', 'eboxlumi', 'ebox5100','ixusszero', 'optimussos1', 'enfinity') or (about.getModelString() == 'ini-3000'):
+	if modes.has_key("YPbPr") and getBoxType() in ('et4x00', 'xp1000', 'tm2t', 'tmsingle', 'vusolo2', 'tmnano','iqonios300hd', 'odinm7', 'e3hd', 'dm500hdv2', 'dm500hd', 'dm800', 'ebox7358', 'eboxlumi', 'ebox5100','ixusszero', 'optimussos1', 'enfinity') or (about.getModelString() == 'ini-3000'):
 		del modes["YPbPr"]
 	def __init__(self):
 		self.last_modes_preferred =  [ ]

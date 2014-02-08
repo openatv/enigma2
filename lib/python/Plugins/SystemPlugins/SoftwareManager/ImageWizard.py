@@ -16,9 +16,11 @@ from boxbranding import getBoxType
 from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigText, ConfigLocations, ConfigBoolean
 from Components.Harddisk import harddiskmanager
 
+boxtype = getBoxType()
+
 config.misc.firstrun = ConfigBoolean(default = True)
 config.plugins.configurationbackup = ConfigSubsection()
-if getBoxType() == "odinm9" or getBoxType() == "odinm7" or getBoxType() == "odinm6":
+if boxtype == "odinm9" or boxtype == "maram9" or boxtype == "odinm7" or boxtype == "odinm6":
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
 else:
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
@@ -26,11 +28,10 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.re
 
 
 backupfile = "enigma2settingsbackup.tar.gz"
-box = getBoxType()
 
 def checkConfigBackup():
 	parts = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
-	if box == "odinm9" or box == "odinm7" or box == "odinm6":
+	if boxtype == "odinm9" or boxtype == "maram9" or boxtype == "odinm7" or boxtype == "odinm6":
 		parts.append(('mtd backup','/media/backup'))
 	for x in parts:
 		if x[1] == '/':
@@ -38,7 +39,7 @@ def checkConfigBackup():
 	if len(parts):
 		for x in parts:
 			if x[1].endswith('/'):
-				fullbackupfile =  x[1] + 'backup_' + box + '/' + backupfile
+				fullbackupfile =  x[1] + 'backup_' + boxtype + '/' + backupfile
 				if fileExists(fullbackupfile):
 					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
 					config.plugins.configurationbackup.backuplocation.save()
@@ -51,7 +52,7 @@ def checkConfigBackup():
 					config.plugins.configurationbackup.save()
 					return x
 			else:
-				fullbackupfile =  x[1] + '/backup_' + box + '/' + backupfile
+				fullbackupfile =  x[1] + '/backup_' + boxtype + '/' + backupfile
 				if fileExists(fullbackupfile):
 					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
 					config.plugins.configurationbackup.backuplocation.save()
@@ -68,7 +69,7 @@ def checkConfigBackup():
 def checkBackupFile():
 	backuplocation = config.plugins.configurationbackup.backuplocation.getValue()
 	if backuplocation.endswith('/'):
-		fullbackupfile =  backuplocation + 'backup_' + box + '/' + backupfile
+		fullbackupfile =  backuplocation + 'backup_' + boxtype + '/' + backupfile
 		if fileExists(fullbackupfile):
 			return True
 		else:
@@ -78,7 +79,7 @@ def checkBackupFile():
 			else:
 				return False
 	else:
-		fullbackupfile =  backuplocation + '/backup_' + box + '/' + backupfile
+		fullbackupfile =  backuplocation + '/backup_' + boxtype + '/' + backupfile
 		if fileExists(fullbackupfile):
 			return True
 		else:

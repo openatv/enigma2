@@ -7,6 +7,8 @@ from Tools.HardwareInfo import HardwareInfo
 from os import path
 from boxbranding import getBoxType
 
+boxtype = getBoxType()
+
 # The "VideoHardware" is the interface to /proc/stb/video.
 # It generates hotplug events, and gives you the list of
 # available and preferred modes, as well as handling the currently
@@ -99,7 +101,7 @@ class VideoHardware:
 		modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i"])
 
-	if getBoxType().startswith('vu') or getBoxType() == 'dm500hd' or getBoxType() == 'dm800':
+	if boxtype.startswith('vu') or boxtype == 'dm500hd' or boxtype == 'dm800':
 		if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1:
 			modes["Scart-YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		else:
@@ -144,7 +146,7 @@ class VideoHardware:
 		if self.modes.has_key("DVI-PC") and not self.getModeList("DVI-PC"):
 			print "remove DVI-PC because of not existing modes"
 			del self.modes["DVI-PC"]
-		if getBoxType() in ('et4x00', 'xp1000', 'tm2t', 'tmsingle', 'odimm7', 'vusolo2', 'tmnano','iqonios300hd', 'odinm7', 'e3hd', 'dm500hdv2', 'dm500hd', 'dm800', 'ebox7358', 'eboxlumi', 'ebox5100','ixusszero', 'optimussos1') or (about.getModelString() == 'ini-3000'):
+		if boxtype in ('et4x00', 'xp1000', 'tm2t', 'tmsingle', 'vusolo2', 'tmnano','iqonios300hd', 'odinm7', 'e3hd', 'dm500hdv2', 'dm500hd', 'dm800', 'ebox7358', 'eboxlumi', 'ebox5100','ixusszero', 'optimussos1') or (about.getModelString() == 'ini-3000'):
 			del self.modes["YPbPr"]
 		if hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime") : self.readPreferredModes()	
 

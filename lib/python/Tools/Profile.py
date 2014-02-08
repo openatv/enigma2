@@ -3,6 +3,8 @@ import time
 from Directories import resolveFilename, SCOPE_CONFIG
 from boxbranding import getBoxType
 
+boxtype = getBoxType()
+
 PERCENTAGE_START = 50
 PERCENTAGE_END = 100
 
@@ -43,16 +45,16 @@ def profile(id):
 			else:
 				perc = PERCENTAGE_START
 			try:
-				if getBoxType() == "odinm7" or getBoxType() == "odinm6" or getBoxType() == "xp1000s":
+				if boxtype == "odinm7" or boxtype == "odinm6" or boxtype == "xp1000s":
 					f = open("/dev/dbox/oled0", "w")
 					f.write("%d" % perc)
-				elif getBoxType() == "gb800se" or getBoxType() == "gb800solo":
+				elif boxtype == "gb800se" or boxtype == "gb800solo":
 					f = open("/dev/dbox/oled0", "w")
 					f.write("%d  \n" % perc)
-				elif getBoxType() == "gb800seplus":
+				elif boxtype == "gb800seplus":
 					f = open("/dev/mcu", "w")
 					f.write("%d  \n" % perc)					
-				elif getBoxType() == "ebox5000":
+				elif boxtype == "ebox5000":
 					f = open("/proc/progress", "w")
 					f.write("%d" % perc)
 				else:
