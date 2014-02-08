@@ -10,7 +10,7 @@ from Components.Pixmap import MultiPixmap
 
 profile("LOAD:enigma")
 import enigma
-from boxbranding import getBoxType
+from boxbranding import getBrandOEM
 
 profile("LOAD:InfoBarGenerics")
 from Screens.InfoBarGenerics import InfoBarShowHide, \
@@ -147,7 +147,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.servicelist.showFavourites()
 
 	def TvRadioToggle(self):
-		if getBoxType().startswith('gb'):
+		if getBrandOEM() == 'gigablue':
 			self.toogleTvRadio()
 		else:
 			self.showTv()

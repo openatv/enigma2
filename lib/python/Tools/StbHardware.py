@@ -1,6 +1,6 @@
 from fcntl import ioctl
 from struct import pack, unpack
-from boxbranding import getBoxType
+from boxbranding import getBrandOEM
 
 def getFPVersion():
 	ret = None
@@ -46,7 +46,7 @@ def setRTCoffset():
 		print "set RTC Offset failed!"
 
 def setRTCtime(wutime):
-	if getBoxType().startswith('gb'):
+	if getBrandOEM() == 'gigablue':
 		setRTCoffset()
 	try:
 		f = open("/proc/stb/fp/rtc", "w")

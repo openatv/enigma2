@@ -3,7 +3,7 @@ from Components.About import about
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
 from enigma import eAVSwitch, getDesktop
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getBrandOEM
 from SystemInfo import SystemInfo
 import os
 
@@ -68,7 +68,7 @@ class AVSwitch:
 		widescreen_modes = {"720p", "1080i"}
 
 	modes["YPbPr"] = modes["HDMI"]
-	if getBoxType().startswith('vu'):
+	if getBrandOEM() == 'vuplus':
 		modes["Scart-YPbPr"] = modes["HDMI"]
 
 	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
@@ -142,11 +142,11 @@ class AVSwitch:
 		if mode_60 is None or force == 50:
 			mode_60 = mode_50
 
-		if os.path.exists('/proc/stb/video/videomode_50hz') and not getBoxType().startswith('gb'):
+		if os.path.exists('/proc/stb/video/videomode_50hz') and getBrandOEM() != 'gigablue':
 			f = open("/proc/stb/video/videomode_50hz", "w")
 			f.write(mode_50)
 			f.close()
-		if os.path.exists('/proc/stb/video/videomode_60hz') and not getBoxType().startswith('gb'):
+		if os.path.exists('/proc/stb/video/videomode_60hz') and getBrandOEM() != 'gigablue':
 			f = open("/proc/stb/video/videomode_60hz", "w")
 			f.write(mode_60)
 			f.close()
