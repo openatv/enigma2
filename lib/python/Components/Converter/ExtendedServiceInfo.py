@@ -130,19 +130,11 @@ class ExtendedServiceInfo(Converter, object):
 		if (feinfo is not None):
 			frontendData = (feinfo and feinfo.getAll(True))
 			if (frontendData is not None):
-				if (frontendData.get("tuner_type") == "DVB-C"):
-					frequency = (str((frontendData.get("frequency") / 1000)) + " MHz")
-					symbolrate = str(int(frontendData.get("symbol_rate", 0) / 1000))
-					polarisation_i = 0
-					tunerinfo = (frequency + " " + symbolrate)
-				if (frontendData.get("tuner_type") == "DVB-T"):
-					frequency = (str((frontendData.get("frequency") / 1000)) + " MHz")
-					symbolrate = str(int(frontendData.get("symbol_rate", 0) / 1000))
-					polarisation_i = 0
+				frequency = "%1.3f MHz" % ((frontendData.get("frequency") / 1000.0))
+				symbolrate = str(int(frontendData.get("symbol_rate", 0) / 1000))
+				if (frontendData.get("tuner_type") == "DVB-C") or (frontendData.get("tuner_type") == "DVB-T"):
 					tunerinfo = (frequency + " " + symbolrate)
 				if (frontendData.get("tuner_type") == "DVB-S"):
-					frequency = (str((frontendData.get("frequency") / 1000)) + " MHz")
-					symbolrate = str(int(frontendData.get("symbol_rate", 0) / 1000))
 					polarisation_i = frontendData.get("polarization")
 					fec_i = frontendData.get("fec_inner")
 					tunerinfo = (frequency + " " + ar_pol[polarisation_i] + " " + ar_fec[fec_i] + " " + symbolrate)

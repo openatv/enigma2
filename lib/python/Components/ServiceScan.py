@@ -95,7 +95,7 @@ class ServiceScan:
 						channel = channelnumbers.getChannelNumber(tp.frequency, self.scanList[self.run]["feid"])
 						if channel:
 							channel = _("CH") + "%s " % channel
-						freqMHz = "%0.1f MHz" % (tp.frequency/1000000.)
+						freqMHz = "%1.3f MHz" % (tp.frequency/1000000.)
 						tp_text = ("%s %s %s %s") %(
 							{
 								tp.System_DVB_T : "DVB-T",
@@ -106,7 +106,7 @@ class ServiceScan:
 								tp.Modulation_QAM16 : "QAM16", tp.Modulation_QAM64 : "QAM64",
 								tp.Modulation_Auto : "AUTO", tp.Modulation_QAM256 : "QAM256"
 							}.get(tp.modulation, ""),
-							"%s%s" % (channel, freqMHz.replace(".0","")),
+							"%s%s" % (channel, freqMHz.replace("0.000","")),
 							{
 								tp.Bandwidth_8MHz : "Bw 8MHz", tp.Bandwidth_7MHz : "Bw 7MHz", tp.Bandwidth_6MHz : "Bw 6MHz",
 								tp.Bandwidth_Auto : "Bw Auto", tp.Bandwidth_5MHz : "Bw 5MHz",
