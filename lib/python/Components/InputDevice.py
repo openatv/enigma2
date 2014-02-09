@@ -6,6 +6,7 @@ import struct
 from config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigSlider
 from Tools.Directories import pathExists
 
+boxtype = getBoxType()
 
 # asm-generic/ioctl.h
 IOC_NRBITS = 8L
@@ -175,7 +176,7 @@ class InitInputDevices:
 	def setupConfigEntries(self,device):
 		cmd = "config.inputDevices." + device + " = ConfigSubsection()"
 		exec cmd
-		if getBoxType() == 'dm800' or getBoxType() == 'azboxhd':
+		if boxtype == 'dm800' or boxtype == 'azboxhd':
 			cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = True)"
 		else:
 			cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = False)"
@@ -186,16 +187,16 @@ class InitInputDevices:
 		exec cmd
 		cmd = "config.inputDevices." + device + ".name.addNotifier(self.inputDevicesNameChanged,config.inputDevices." + device + ".name)"
 		exec cmd
-		if getBoxType() == 'odinm9' or getBoxType() == 'odinm7' or getBoxType() == 'odinm6':
+		if boxtype == 'odinm9' or boxtype == 'maram9' or boxtype == 'odinm7' or boxtype == 'odinm6':
 			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=400, increment = 10, limits=(0, 500))"
-		elif getBoxType() == 'azboxhd':
+		elif boxtype == 'azboxhd':
 			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=150, increment = 10, limits=(0, 500))"
 		else:		
 			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=100, increment = 10, limits=(0, 500))"	
 		exec cmd
 		cmd = "config.inputDevices." + device + ".repeat.addNotifier(self.inputDevicesRepeatChanged,config.inputDevices." + device + ".repeat)"
 		exec cmd
-		if getBoxType() == 'odinm9' or getBoxType() == 'odinm7' or getBoxType() == 'odinm6':
+		if boxtype == 'odinm9' or boxtype == 'maram9' or boxtype == 'odinm7' or boxtype == 'odinm6':
 			cmd = "config.inputDevices." + device + ".delay = ConfigSlider(default=200, increment = 100, limits=(0, 5000))"
 		else:
 			cmd = "config.inputDevices." + device + ".delay = ConfigSlider(default=700, increment = 100, limits=(0, 5000))"
@@ -212,7 +213,7 @@ config.plugins.remotecontroltype.rctype = ConfigInteger(default = 0)
 
 class RcTypeControl():
 	def __init__(self):
-		if pathExists('/proc/stb/ir/rc/type') and pathExists('/proc/stb/info/boxtype') and not getBoxType().startswith('gb'):
+		if pathExists('/proc/stb/ir/rc/type') and pathExists('/proc/stb/info/boxtype') and not boxtype.startswith('gb'):
 			self.isSupported = True
 
 			fd = open('/proc/stb/info/boxtype', 'r')
@@ -223,7 +224,7 @@ class RcTypeControl():
 				self.writeRcType(config.plugins.remotecontroltype.rctype.getValue())
 		else:
 			self.isSupported = False
-		if getBoxType().startswith('gb'):
+		if boxtype.startswith('gb'):
 			self.isSupported = False			
 
 	def multipleRcSupported(self):

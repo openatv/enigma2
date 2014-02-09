@@ -46,6 +46,8 @@ from SoftwareTools import iSoftwareTools
 import os
 from boxbranding import getBoxType, getMachineBrand, getMachineName
 
+boxtype = getBoxType()
+
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
 	from Plugins.Extensions.dFlash.plugin import dFlash
 	DFLASH = True
@@ -53,7 +55,7 @@ else:
 	DFLASH = False
 
 config.plugins.configurationbackup = ConfigSubsection()
-if getBoxType() == "odinm9" :
+if boxtype == "odinm9" or boxtype == "maram9":
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
 else:
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
@@ -166,7 +168,7 @@ class UpdatePluginMenu(Screen):
 			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your %s %s") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			self.list.append(("software-update", _("Software update"), _("\nOnline update of your %s %s software.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			self.list.append(("software-restore", _("Software restore"), _("\nRestore your %s %s with a new firmware.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-			if not getBoxType().startswith('az') and not getBoxType().startswith('dream') and not getBoxType().startswith('ebox'):
+			if not boxtype.startswith('az') and not boxtype.startswith('dream') and not boxtype.startswith('ebox'):
 				self.list.append(("flash-online", _("Flash Online"), _("\nFlash on the fly your %s %s.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			self.list.append(("backup-image", _("Backup Image"), _("\nBackup your running %s %s image to HDD or USB.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext + "\n\n" + self.infotext, None))
@@ -451,7 +453,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.overwriteBootlogofilesEntry = getConfigListEntry(_("Overwrite Bootlogo Files ?"), config.plugins.softwaremanager.overwriteBootlogoFiles)
 		self.overwriteSpinnerfilesEntry = getConfigListEntry(_("Overwrite Spinner Files ?"), config.plugins.softwaremanager.overwriteSpinnerFiles)
 		self.updatetypeEntry  = getConfigListEntry(_("Select Software Update"), config.plugins.softwaremanager.updatetype)
-		if getBoxType().startswith('et'): 
+		if boxtype.startswith('et'): 
 			self.list.append(self.updatetypeEntry)
 		self.list.append(self.overwriteConfigfilesEntry)
 		self.list.append(self.overwriteSettingsfilesEntry)

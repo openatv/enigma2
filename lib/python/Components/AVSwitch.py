@@ -3,7 +3,7 @@ from Components.About import about
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
 from enigma import eAVSwitch, getDesktop
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getMachineBuild
 from SystemInfo import SystemInfo
 import os
 
@@ -77,7 +77,7 @@ class AVSwitch:
 	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
 	# 	print "remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
-	if modes.has_key("YPbPr") and getBoxType() in ('et4x00', 'xp1000', 'tm2t', 'tmsingle', 'odimm7', 'vusolo2', 'tmnano','iqonios300hd', 'odinm7', 'e3hd', 'dm500hdv2', 'dm500hd', 'dm800', 'ebox7358', 'eboxlumi', 'ebox5100','ixusszero', 'optimussos1', 'enfinity') or (about.getModelString() == 'ini-3000'):
+	if modes.has_key("YPbPr") and getBoxType() in ('et4x00', 'xp1000', 'tm2t', 'tmsingle', 'vusolo2', 'tmnano','iqonios300hd', 'odinm7', 'e3hd', 'dm500hdv2', 'dm500hd', 'dm800', 'ebox7358', 'eboxlumi', 'ebox5100','ixusszero', 'optimussos1', 'enfinity') or (about.getModelString() == 'ini-3000'):
 		del modes["YPbPr"]
 	def __init__(self):
 		self.last_modes_preferred =  [ ]
@@ -422,6 +422,8 @@ def InitAVSwitch():
 
 	def setColorFormat(configElement):
 		if config.av.videoport and config.av.videoport.getValue() == "Scart-YPbPr":
+			iAVSwitch.setColorFormat(3)
+		elif config.av.videoport and config.av.videoport.getValue() == "YPbPr" and getMachineBuild() == 'inihdx' or getMachineBuild() == 'ventonhdx':
 			iAVSwitch.setColorFormat(3)
 		else:
 			if getBoxType() == 'et6x00':

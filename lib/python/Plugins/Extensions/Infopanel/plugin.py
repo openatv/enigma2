@@ -26,7 +26,7 @@ from Components.ActionMap import ActionMap
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from __init__ import _
-from boxbranding import getBoxType, getMachineName, getMachineBrand, getOEM
+from boxbranding import getBoxType, getMachineName, getMachineBrand, getBrandOEM
 
 import os
 import sys
@@ -120,7 +120,7 @@ def command(comandline, strip=1):
 boxversion = getBoxType()
 machinename = getMachineName()
 machinebrand = getMachineBrand()
-OEMname = getOEM()
+OEMname = getBrandOEM()
 
 INFO_Panel_Version = 'Info-Panel V1.2'
 print "[Info-Panel] machinebrand: %s"  % (machinebrand)

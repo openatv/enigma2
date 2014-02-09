@@ -16,7 +16,7 @@ from time import time, strftime, localtime
 from os import path, system, makedirs, listdir, walk, statvfs
 import commands
 import datetime
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getOEM
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM
 
 VERSION = "Version 2.0 openATV"
 
@@ -45,7 +45,7 @@ class ImageBackup(Screen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.MODEL = getBoxType()
-		self.OEM = getOEM()
+		self.OEM = getBrandOEM()
 		self.MACHINENAME = getMachineName()
 		self.MACHINEBRAND = getMachineBrand()
 		print "[FULL BACKUP] BOX MACHINENAME = >%s<" %self.MACHINENAME
@@ -155,7 +155,7 @@ class ImageBackup(Screen):
 		## TESTING WHICH KIND OF SATELLITE RECEIVER IS USED
 
 		## TESTING THE XTREND AND CLARK TECH MODELS
-		if self.MODEL.startswith("et"):
+		if self.MODEL.startswith("et") and not self.MODEL == "et10000":
 			self.TYPE = "ET"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
@@ -164,7 +164,16 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/%sx00" %(self.DIRECTORY, self.MODEL[:-3])
 			self.EXTRA = "%s/fullbackup_%sx00/%s" % (self.DIRECTORY, self.MODEL[:-3], self.DATE)
 			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
-		## TESTING THE Odin M9 Model
+		elif self.MODEL == "et10000":
+			self.TYPE = "ET"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
+			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
+		## TESTING THE Odin M9 Model 'maram9'
 		elif self.MODEL == "odinm9":
 			self.TYPE = "ODINM9"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
@@ -175,6 +184,16 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/odinm9" % self.DIRECTORY
 			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
 			self.EXTRA = "%s/fullbackup_odinm9/%s" % (self.DIRECTORY, self.DATE)
+		elif self.MODEL == "maram9":
+			self.TYPE = "MARAM9"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
+			self.MTDKERNEL = "mtd2"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/maram9" % self.DIRECTORY
+			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
+			self.EXTRA = "%s/fullbackup_maram9/%s" % (self.DIRECTORY, self.DATE)
 		## TESTING THE Odin M7 Model
 		elif self.OEM == "odinm7" or self.MODEL == "odinm7":
 			self.TYPE = "ODINM7"
@@ -280,7 +299,7 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/miraclebox/%s" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s/miraclebox" % (self.DIRECTORY, self.MODEL, self.DATE)			
 		## TESTING INI HDe Model
-		elif self.MODEL == "ini-1000de" :
+		elif self.MODEL == "ini-1000de" or self.MODEL == "xpeedlx2" or self.MODEL == "xpeedlx1":
 			self.TYPE = "GI"
 			self.MODEL = "xpeedlx"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
@@ -588,7 +607,7 @@ class ImageBackup(Screen):
 		f.write(self.IMAGEVERSION)
 		f.close()
 
-		if self.TYPE == "ET" or self.TYPE == "VENTON" or self.TYPE == "SEZAM" or self.TYPE == "MICRACLE" or self.TYPE == "GI" or self.TYPE == "ODINM9"  or self.TYPE == "ODINM7" or self.TYPE == "E3HD" or self.TYPE == "MAXDIGITAL" or self.TYPE == "OCTAGON" or self.TYPE == "IXUSS" or self.TYPE == "SOGNO" or self.TYPE == "EVO":
+		if self.TYPE == "ET" or self.TYPE == "VENTON" or self.TYPE == "SEZAM" or self.TYPE == "MICRACLE" or self.TYPE == "GI" or self.TYPE == "ODINM9" or self.TYPE == "ODINM7" or self.TYPE == "MARAM9" or self.TYPE == "E3HD" or self.TYPE == "MAXDIGITAL" or self.TYPE == "OCTAGON" or self.TYPE == "IXUSS" or self.TYPE == "SOGNO" or self.TYPE == "EVO":
 			system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
 			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
@@ -717,7 +736,7 @@ class ImageBackup(Screen):
 				elif self.TYPE == 'SOGNO':
 					cmdlist.append('mkdir -p %s/sogno/%s' % (self.TARGET, self.MODEL))
 					cmdlist.append('cp -r %s %s/sogno/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'ODINM9':
+				elif self.TYPE == 'ODINM9' or self.TYPE == 'MARAM9':
 					#cmdlist.append('mkdir -p %s/odinm9/%s' % (self.TARGET, self.MODEL))
 					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
 				elif self.TYPE == 'ODINM7':

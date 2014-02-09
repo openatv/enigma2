@@ -40,12 +40,12 @@
 		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png" position="40,0" size="19,10" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update.png" position="62,0" size="10,10" >
+<!--		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update.png" position="62,0" size="10,10" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="update.png" position="62,0" size="10,10" >
 			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
+		</widget>  -->
 	</screen>
 	<screen name="SummaryTunerStatusPanel">
 		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-a.png" position="68,19" size="9,14">
@@ -125,6 +125,20 @@
 
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="128,32">
+		<widget name="statusicon_summary" position="0,13" size="11,10" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" zPosition="3" />
+		<widget source="session.CurrentService" render="Label" position="12,10" size="129,20" font="FdLcD;16" halign="left" valign="top" zPosition="1" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Progress" position="0,26" size="50,6" borderWidth="1" zPosition="1" >
+			<convert type="ServicePosition">VFDPosition</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="58,25" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
+			<convert type="ServicePosition">VFDPosition</convert>
+		</widget>
+		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryClockPanel" />
+	</screen>
+	<screen name="EMCMoviePlayerSummary" position="0,0" size="128,32">
 		<widget name="statusicon_summary" position="0,13" size="11,10" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" zPosition="3" />
 		<widget source="session.CurrentService" render="Label" position="12,10" size="129,20" font="FdLcD;16" halign="left" valign="top" zPosition="1" >
 			<convert type="ServiceName">Name</convert>
