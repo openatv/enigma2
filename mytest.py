@@ -527,7 +527,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 	
-	if getBoxType() == 'odinm9' or boxtype == 'maram9' or getBoxType() == 'ventonhdx' or getBoxType() == 'ebox5000' or getBoxType() == 'ebox7358' or getBoxType() == 'eboxlumi' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or getBoxType() == 'ini-1000ru' or getBoxType() == 'ini-1000sv':
+	if getBoxType() == 'odinm9' or getBoxType == 'maram9' or getBoxType() == 'ventonhdx' or getBoxType() == 'ebox5000' or getBoxType() == 'ebox7358' or getBoxType() == 'eboxlumi' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or getBoxType() == 'ini-1000ru' or getBoxType() == 'ini-1000sv':
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
