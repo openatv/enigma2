@@ -271,7 +271,7 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/ebox/7358/" % self.DIRECTORY
 			self.EXTRA = "%s/fullbackup_%s/%s/ebox" % (self.DIRECTORY, self.TYPE, self.DATE)
 		## TESTING Venton HDx Model
-		elif self.MODEL == "ini-3000" or self.MODEL == "ini-5000" or self.MODEL == "ini-7000" or self.MODEL == "ini-7012":
+		elif self.MODEL == "ini-3000" or self.MODEL == "ini-5000" or self.MODEL == "ini-7000" or self.MODEL == "ini-7012" or self.MACHINEBRAND == "UNiBOX":
 			self.TYPE = "VENTON"
 			self.MODEL = "venton-hdx"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
