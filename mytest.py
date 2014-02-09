@@ -1,6 +1,4 @@
-import sys
-import os
-
+import sys, os
 if os.path.isfile("/usr/lib/enigma2/python/enigma.zip"):
 	sys.path.append("/usr/lib/enigma2/python/enigma.zip")
 
@@ -15,7 +13,6 @@ import eBaseImpl
 enigma.eTimer = eBaseImpl.eTimer
 enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
-boxtype = getBoxType()
 
 from traceback import print_exc
 profile("SimpleSummary")
@@ -43,7 +40,7 @@ from Components.config import config, configfile, ConfigText, ConfigYesNo, Confi
 InitFallbackFiles()
 
 profile("config.misc")
-config.misc.boxtype = ConfigText(default = boxtype)
+config.misc.boxtype = ConfigText(default = getBoxType())
 config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
@@ -59,16 +56,16 @@ config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandb
 #def leaveStandby():
 #	print "!!!!!!!!!!!!!!!!!leave standby"
 
-#def standbyCountChanged(configelement):
-#	print "!!!!!!!!!!!!!!!!!enter standby num", configelement.value
+#def standbyCountChanged(configElement):
+#	print "!!!!!!!!!!!!!!!!!enter standby num", configElement.value
 #	from Screens.Standby import inStandby
 #	inStandby.onClose.append(leaveStandby)
 
 #config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call = False)
 ####################################################
 
-def useSyncUsingChanged(configelement):
-	if configelement == "0":
+def useSyncUsingChanged(configElement):
+	if config.misc.SyncTimeUsing.getValue() == "0":
 		print "[Time By]: Transponder"
 		value = True
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
@@ -81,14 +78,15 @@ def useSyncUsingChanged(configelement):
 		Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.getValue())
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 
-def NTPserverChanged(configelement):
-	if configelement == "pool.ntp.org":
+def NTPserverChanged(configElement):
+	if config.misc.NTPserver.getValue() == "pool.ntp.org":
 		return
 	print "[NTPDATE] save /etc/default/ntpdate"
-	f = open("/etc/default/ntpdate", "w")
+	file = "/etc/default/ntpdate"
+	f = open(file, "w")
 	f.write('NTPSERVERS="' + config.misc.NTPserver.getValue() + '"')
 	f.close()
-	os.chmod("/etc/default/ntpdate", 0755)
+	os.chmod(file, 0755)
 	from Components.Console import Console
 	Console = Console()
 	Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.getValue())
@@ -114,6 +112,7 @@ profile("LOAD:Plugin")
 from Components.PluginComponent import plugins
 
 profile("LOAD:Wizard")
+from Screens.Wizard import wizardManager
 from Screens.StartWizard import *
 import Screens.Rc
 from Tools.BoundFunction import boundFunction
@@ -372,7 +371,6 @@ profile("Standby,PowerKey")
 import Screens.Standby
 from Screens.Menu import MainMenu, mdom
 from GlobalActions import globalActionMap
-from time import time
 
 class PowerKey:
 	""" PowerKey stuff - handles the powerkey press and powerkey release actions"""
@@ -391,6 +389,7 @@ class PowerKey:
 
 	def shutdown(self):
 		wasRecTimerWakeup = False
+		from time import time
 		recordings = self.session.nav.getRecordings()
 		if not recordings:
 			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
@@ -470,7 +469,7 @@ class AutoScartControl:
 		config.av.vcrswitch.addNotifier(self.recheckVCRSb)
 		enigma.eAVSwitch.getInstance().vcr_sb_notifier.get().append(self.VCRSbChanged)
 
-	def recheckVCRSb(self, configelement):
+	def recheckVCRSb(self, configElement):
 		self.VCRSbChanged(self.current_vcr_sb)
 
 	def VCRSbChanged(self, value):
@@ -487,9 +486,6 @@ from Screens.Ci import CiHandler
 
 profile("Load:VolumeControl")
 from Components.VolumeControl import VolumeControl
-
-from time import time, localtime, strftime
-from Tools.StbHardware import setFPWakeuptime, setRTCtime
 
 def runScreenTest():
 	config.misc.startCounter.value += 1
@@ -531,7 +527,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 	
-	if boxtype == 'odinm9' or boxtype == 'maram9' or boxtype == 'ventonhdx' or boxtype == 'ebox5000' or boxtype == 'ebox7358' or boxtype == 'eboxlumi' or boxtype == 'ixussone' or boxtype == 'ixusszero' or boxtype == 'ini-1000ru' or boxtype == 'ini-1000sv':
+	if getBoxType() == 'odinm9' or boxtype == 'maram9' or getBoxType() == 'ventonhdx' or getBoxType() == 'ebox5000' or getBoxType() == 'ebox7358' or getBoxType() == 'eboxlumi' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or getBoxType() == 'ini-1000ru' or getBoxType() == 'ini-1000sv':
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -550,7 +546,7 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 
-	if boxtype == 'gb800se' or boxtype == 'gb800solo' or boxtype == 'gb800seplus':
+	if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'gb800seplus':
 		from enigma import evfd, eConsoleAppContainer
 		try:
 			cmd = 'vfdctl "    openatv starting e2"'
@@ -560,7 +556,7 @@ def runScreenTest():
 			evfd.getInstance().vfd_write_string("-E2-")
 		evfd.getInstance().vfd_led(str(1))
 		
-	if boxtype == 'odinm7' or boxtype == 'odinm6' or boxtype == 'xp1000s':
+	if getBoxType() == 'odinm7' or getBoxType() == 'odinm6' or getBoxType() == 'xp1000s':
 		f = open("/dev/dbox/oled0", "w")
 		f.write('-E2-')
 		f.close()
@@ -586,9 +582,11 @@ def runScreenTest():
 
 	profile("wakeup")
 
+	from time import time, strftime, localtime
+	from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime
 	#get currentTime
 	nowTime = time()
-	if not config.misc.SyncTimeUsing.getValue() == "0" or boxtype.startswith('gb') or boxtype.startswith('ini'):
+	if not config.misc.SyncTimeUsing.getValue() == "0" or getBoxType().startswith('gb') or getBoxType().startswith('ini'):
 		print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 		setRTCtime(nowTime)
 
@@ -602,15 +600,16 @@ def runScreenTest():
 	wakeupList.sort()
 	recordTimerWakeupAuto = False
 	if wakeupList and wakeupList[0][1] != 3:
+		from time import strftime
 		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 270: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
-			if boxtype.startswith("gb"):
+			if getBoxType().startswith("gb"):
 				wptime = startTime[0] - 120 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0] - 240
-#		if not config.misc.SyncTimeUsing.getValue() == "0" or boxtype.startswith('gb'):
+#		if not config.misc.SyncTimeUsing.getValue() == "0" or getBoxType().startswith('gb'):
 #			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 #			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
@@ -623,6 +622,7 @@ def runScreenTest():
 
 	PowerTimerWakeupAuto = False
 	if wakeupList and wakeupList[0][1] == 3:
+		from time import strftime
 		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 60: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
@@ -631,7 +631,7 @@ def runScreenTest():
 				wptime = startTime[0] - 240 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0]
-#		if not config.misc.SyncTimeUsing.getValue() == "0" or boxtype.startswith('gb'):
+#		if not config.misc.SyncTimeUsing.getValue() == "0" or getBoxType().startswith('gb'):
 #			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 #			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime+60))
@@ -705,7 +705,7 @@ import Components.Lcd
 Components.Lcd.InitLcd()
 Components.Lcd.IconCheck()
 # Disable internal clock vfd for Venton-HD1 until we can adjust it for standby
-if boxtype == 'ventonhdx':
+if getBoxType() == 'ventonhdx':
 	try:
 		f = open("/proc/stb/fp/enable_clock", "r").readline()[:-1]
 		if f != '0':
