@@ -243,6 +243,7 @@ class EventViewBase:
 
 	def doContext(self):
 		if self.event:
+			text = _("Select action")
 			menu = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO) \
 				if 'servicelist' not in p.__call__.func_code.co_varnames \
 					if 'selectedevent' not in p.__call__.func_code.co_varnames ]
@@ -252,7 +253,7 @@ class EventViewBase:
 				def boxAction(choice):
 					if choice:
 						choice[1]()
-				text = _("Select action")
+				text += _(": %s") % self.event.getEventName()
 				self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu)
 
 	def runPlugin(self, plugin):
