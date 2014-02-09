@@ -82,7 +82,7 @@ def useSyncUsingChanged(configelement):
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 
 def NTPserverChanged(configelement):
-	if configelement == "pool.ntp.org":
+	if config.misc.NTPserver.getValue() == "pool.ntp.org":
 		return
 	print "[NTPDATE] save /etc/default/ntpdate"
 	f = open("/etc/default/ntpdate", "w")
