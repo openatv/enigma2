@@ -325,7 +325,7 @@ class ConfigSelection(ConfigElement):
 	index = property(getIndex)
 
 	# GUI
-	def handleKey(self, key):
+	def handleKey(self, key, session, description):
 		nchoices = len(self.choices)
 		if nchoices > 1:
 			i = self.choices.index(self.value)
@@ -337,6 +337,13 @@ class ConfigSelection(ConfigElement):
 				self.value = self.choices[0]
 			elif key == KEY_END:
 				self.value = self.choices[nchoices - 1]
+			elif key == KEY_OK and session:
+				from Screens.ChoiceBox import ChoiceBox
+				session.openWithCallback(self.KeyOKCallback, ChoiceBox, description, list=zip(self.description, self.choices), selection=i, keys=[])
+
+	def KeyOKCallback(self, answer):
+		if answer:
+			self.setValue(answer[1])
 
 	def selectNext(self):
 		nchoices = len(self.choices)
@@ -390,8 +397,8 @@ class ConfigBoolean(ConfigElement):
 		self.descriptions = descriptions
 		self.value = self.last_value = self.default = default
 
-	def handleKey(self, key):
-		if key in (KEY_LEFT, KEY_RIGHT):
+	def handleKey(self, key, session, description):
+		if key in (KEY_LEFT, KEY_RIGHT, KEY_OK):
 			self.value = not self.value
 		elif key == KEY_HOME:
 			self.value = False
@@ -463,7 +470,7 @@ class ConfigDateTime(ConfigElement):
 		self.formatstring = formatstring
 		self.value = self.last_value = self.default = int(default)
 
-	def handleKey(self, key):
+	def handleKey(self, key, session, description):
 		if key == KEY_LEFT:
 			self.value = self.value - self.increment
 		elif key == KEY_RIGHT:
@@ -541,7 +548,7 @@ class ConfigSequence(ConfigElement):
 			self.endNotifier = []
 		self.endNotifier.append(notifier)
 
-	def handleKey(self, key):
+	def handleKey(self, key, session, description):
 		if key == KEY_LEFT:
 			self.marked_pos -= 1
 			self.validatePos()
@@ -654,7 +661,7 @@ class ConfigIP(ConfigSequence):
 		self.overwrite = True
 		self.auto_jump = auto_jump
 
-	def handleKey(self, key):
+	def handleKey(self, key, session, description):
 		if key == KEY_LEFT:
 			if self.marked_block > 0:
 				self.marked_block -= 1
@@ -871,7 +878,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			self.text = ""
 		self.marked_pos = 0
 
-	def handleKey(self, key):
+	def handleKey(self, key, session, description):
 		# this will no change anything on the value itself
 		# so we can handle it here in gui element
 		if key == KEY_DELETE:
@@ -1051,7 +1058,7 @@ class ConfigSelectionNumber(ConfigSelection):
 	def setValue(self, val):
 		ConfigSelection.setValue(self, str(val))
 
-	def handleKey(self, key):
+	def handleKey(self, key, session, description):
 		if not self.wraparound:
 			if key == KEY_RIGHT:
 				if len(self.choices) == (self.choices.index(self.value) + 1):
@@ -1091,7 +1098,7 @@ class ConfigNumber(ConfigText):
 		else:
 			self.marked_pos = len(self.text) - pos
 
-	def handleKey(self, key):
+	def handleKey(self, key, session, description):
 		if key in KEY_NUMBERS or key == KEY_ASCII:
 			if key == KEY_ASCII:
 				ascii = getPrevAsciiCode()
@@ -1128,7 +1135,7 @@ class ConfigDirectory(ConfigText):
 	def __init__(self, default="", visible_width=60):
 		ConfigText.__init__(self, default, fixed_size = True, visible_width = visible_width)
 
-	def handleKey(self, key):
+	def handleKey(self, key, session, description):
 		pass
 
 	def getValue(self):
@@ -1167,7 +1174,7 @@ class ConfigSlider(ConfigElement):
 		if self.value > self.max:
 			self.value = self.max
 
-	def handleKey(self, key):
+	def handleKey(self, key, session, description):
 		if key == KEY_LEFT:
 			self.value -= self.increment
 		elif key == KEY_RIGHT:
@@ -1228,7 +1235,7 @@ class ConfigSet(ConfigElement):
 			value.sort()
 		self.changed()
 
-	def handleKey(self, key):
+	def handleKey(self, key, session, description):
 		if key in KEY_NUMBERS + [KEY_DELETE, KEY_BACKSPACE]:
 			if self.pos != -1:
 				self.toggleChoice(self.choices[self.pos])
@@ -1388,7 +1395,7 @@ class ConfigLocations(ConfigElement):
 				return m
 		return None
 
-	def handleKey(self, key):
+	def handleKey(self, key, session, description):
 		if key == KEY_LEFT:
 			self.pos -= 1
 			if self.pos < -1:
@@ -1769,7 +1776,7 @@ class ConfigCECAddress(ConfigSequence):
 		self.overwrite = True
 		self.auto_jump = auto_jump
 
-	def handleKey(self, key):
+	def handleKey(self, key, session, description):
 		if key == KEY_LEFT:
 			if self.marked_block > 0:
 				self.marked_block -= 1
