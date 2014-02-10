@@ -448,7 +448,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 		self["actions"] = ActionMap(["SetupActions", "SatlistShortcutAction"],
 		{
-			"ok": self.keySave,
+			"save": self.keySave,
 			"cancel": self.keyCancel,
 			"nothingconnected": self.nothingConnectedShortcut
 		}, -2)
