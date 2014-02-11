@@ -61,10 +61,7 @@
 				<item level="0" entryID="timezone_setup"><setup id="timezone"/></item>
 				<item level="0" entryID="logs_setup"><setup id="logs" /></item>
 			</menu>
-			<menu weight="10" text="SoftCam / CI" entryID="cam_setup">
-				<id val="cam" />
-				<item weight="10" level="1" text="Common Interface" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
-			</menu>
+			<item weight="10" level="1" text="Common Interface" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
 			<item weight="15" level="0" text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 			<item weight="15" level="0" text="Factory reset" entryID="factory_reset">
 				<code>
