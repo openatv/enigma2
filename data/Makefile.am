@@ -16,7 +16,6 @@ dist_pkgdata_DATA = \
 	unicable.xml \
 	hd-testcard.mvi \
 	distro-logo.png \
-	distro-lcd-logo.png \
 	picon_default.png
 
 if HAVE_TEXTLCD
