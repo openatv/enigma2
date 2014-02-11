@@ -50,8 +50,6 @@ class About(Screen):
 		AboutText += _("Last Upgrade:\t%s") % about.getLastUpdateString() + "\n\n" 
 		AboutText += _("WWW:\t%s") % about.getImageUrlString()
 
-		self["FPVersion"] = StaticText(fp_version)
-
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value'):
 			f = open('/proc/stb/sensors/temp0/value', 'r')
@@ -64,42 +62,14 @@ class About(Screen):
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
 			AboutText += _("System temperature: %s") % tempinfo.replace('\n', '') + mark + "C\n\n"
-
-		self["TranslationHeader"] = StaticText(_("Translation:"))
-		
-		# don't remove the string out of the _(), or it can't be "translated" anymore.
-		# TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
-		info = _("TRANSLATOR_INFO")
-
-		if info == _("TRANSLATOR_INFO"):
-			info = ""
-
-		infolines = _("").split("\n")
-		infomap = {}
-		for x in infolines:
-			l = x.split(': ')
-			if len(l) != 2:
-				continue
-			(type, value) = l
-			infomap[type] = value
-
-		translator_name = infomap.get("Language-Team", "none")
-		if translator_name == "none":
-			translator_name = infomap.get("Last-Translator", "")
-
-		self["FPVersion"] = StaticText(fp_version)
-
-		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
-
+			
 		nims = nimmanager.nimList()
 		for count in range(len(nims)):
 			if count < 4:
 				self["Tuner" + str(count)] = StaticText(nims[count])
 			else:
 				self["Tuner" + str(count)] = StaticText("")
-
-		self["HDDHeader"] = StaticText(_("Detected HDD:"))
-
+				
 		hddlist = harddiskmanager.HDDList()
 		hddinfo = ""
 		if hddlist:
@@ -113,24 +83,17 @@ class About(Screen):
 					hddinfo += "%s\n(%s, %d MB %s)" % (hdd.model(), hdd.capacity(), hdd.free(), _("free"))
 		else:
 			hddinfo = _("none")
-		self["hddA"] = StaticText(hddinfo)
-		
+			
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"], 
 			{
 				"cancel": self.close,
 				"ok": self.close,
-				"green": self.showTranslationInfo,
 				"up": self["AboutScrollLabel"].pageUp,
 				"down": self["AboutScrollLabel"].pageDown
 			})
-
-	def showTranslationInfo(self):
-		self.session.open(TranslationInfo)
-
-
-
+			
 class Devices(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -249,9 +212,7 @@ class Devices(Screen):
 			self.AboutText += self.mountinfo + "\n"
 		except:	
 			pass
-
-
-
+		      
 class SystemMemoryInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -262,10 +223,10 @@ class SystemMemoryInfo(Screen):
 		self["AboutScrollLabel"] = ScrollLabel()
 		
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
-									{
-										"cancel": self.close,
-										"ok": self.close,
-									})
+		{
+			"cancel": self.close,
+			"ok": self.close,
+		})
 									
 		out_lines = file("/proc/meminfo").readlines()
 		self.AboutText = _("RAM") + '\n\n'
@@ -312,10 +273,7 @@ class SystemMemoryInfo(Screen):
 				"cancel": self.close,
 				"ok": self.close,
 			})
-
-
-
-
+			
 class SystemNetworkInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -535,37 +493,3 @@ class AboutSummary(Screen):
 		Screen.__init__(self, session, parent = parent)
 		self["selected"] = StaticText("About")
 		
-class TranslationInfo(Screen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		# don't remove the string out of the _(), or it can't be "translated" anymore.
-
-		# TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
-		info = _("TRANSLATOR_INFO")
-
-		if info == "TRANSLATOR_INFO":
-			info = "(N/A)"
-
-		infolines = _("").split("\n")
-		infomap = {}
-		for x in infolines:
-			l = x.split(': ')
-			if len(l) != 2:
-				continue
-			(type, value) = l
-			infomap[type] = value
-		print infomap
-
-		self["TranslationInfo"] = StaticText(info)
-
-		translator_name = infomap.get("Language-Team", "none")
-		if translator_name == "none":
-			translator_name = infomap.get("Last-Translator", "")
-
-		self["TranslatorName"] = StaticText(translator_name)
-
-		self["actions"] = ActionMap(["SetupActions"],
-									{
-										"cancel": self.close,
-										"ok": self.close,
-									})
