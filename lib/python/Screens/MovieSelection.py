@@ -332,7 +332,6 @@ class MovieContextMenu(Screen):
 		self["key_green"] = StaticText(_("OK"))
 		menu = []
 		menu.append(MovieMenuEntryComponent((_("Settings") + "..."), csel.configure))
-		menu.append(MovieMenuEntryComponent((_("Movie mounts") + "..."), csel.showMovieMounts))
 		menu.append(MovieMenuEntryComponent((_("Add bookmark")), csel.do_addbookmark))
 		menu.append(MovieMenuEntryComponent((_("Create directory")), csel.do_createdir))
 		if service:
@@ -1824,11 +1823,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		item = self.getCurrentSelection()
 		current = item[0]
 		Tools.Trashcan.cleanAll(os.path.split(current.getPath())[0])
-
-	def showMovieMounts(self):
-		import MovieSetup
-		self.session.open(MovieSetup.MovieMountsMenu)
-
+		
 	def showActionFeedback(self, text):
 		if self.feedbackTimer is None:
 			self.feedbackTimer = eTimer()
