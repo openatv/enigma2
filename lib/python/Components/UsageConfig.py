@@ -113,7 +113,7 @@ def InitUsageConfig():
 		elif i > 0:
 			choicelist.append(("%d" % i, _("Standby in ") + h))
 		else:
-			choicelist.append(("0", "Do nothing"))
+			choicelist.append(("0", _("Do nothing")))
 	config.usage.inactivity_timer = ConfigSelection(default = "0", choices = choicelist)
 	config.usage.inactivity_timer_blocktime = ConfigYesNo(default = True)
 	config.usage.inactivity_timer_blocktime_begin = ConfigClock(default = time.mktime((0, 0, 0, 6, 0, 0, 0, 0, 0)))
@@ -129,18 +129,18 @@ def InitUsageConfig():
 			choicelist.append(("%d" % i, _("Standby in ") + m))
 		else:
 			choicelist.append(("event_shutdown", _("Shutdown after current event")))
-			choicelist.append(("0", "Disabled"))
+			choicelist.append(("0", _("Disabled")))
 			choicelist.append(("event_standby", _("Standby after current event")))
 	config.usage.sleep_timer = ConfigSelection(default = "0", choices = choicelist)
 
-	choicelist = [("0", "Disabled")]
+	choicelist = [("0", _("Disabled"))]
 	for i in range(900, 7201, 900):
 		m = abs(i / 60)
 		m = ngettext("%d minute", "%d minutes", m) % m
 		choicelist.append(("%d" % i, _("after ") + m))
 	config.usage.standby_to_shutdown_timer = ConfigSelection(default = "0", choices = choicelist)
 
-	choicelist = [("0", "Disabled")]
+	choicelist = [("0", _("Disabled"))]
 	for i in (5, 30, 60, 300, 600, 900, 1200, 1800, 2700, 3600):
 		if i < 60:
 			m = ngettext("%d second", "%d seconds", i) % i
@@ -152,7 +152,7 @@ def InitUsageConfig():
 
 	config.usage.check_timeshift = ConfigYesNo(default = True)
 
-	choicelist = [("0", "Disabled")]
+	choicelist = [("0", _("Disabled"))]
 	for i in (2, 3, 4, 5, 10, 20, 30):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
 	for i in (60, 120, 300):
@@ -449,10 +449,10 @@ def InitUsageConfig():
 	config.autolanguage.subtitle_defaultdvb = ConfigYesNo(default = False)
 	config.autolanguage.subtitle_usecache = ConfigYesNo(default = True)
 	config.autolanguage.equal_languages = ConfigSelection(default = "15", choices = [
-		("0", "None"),("1", "1"),("2", "2"),("3", "1,2"),
+		("0", _("None")),("1", "1"),("2", "2"),("3", "1,2"),
 		("4", "3"),("5", "1,3"),("6", "2,3"),("7", "1,2,3"),
 		("8", "4"),("9", "1,4"),("10", "2,4"),("11", "1,2,4"),
-		("12", "3,4"),("13", "1,3,4"),("14", "2,3,4"),("15", "All")])
+		("12", "3,4"),("13", "1,3,4"),("14", "2,3,4"),("15", _("All"))])
 
 	config.streaming = ConfigSubsection()
 	config.streaming.stream_ecm = ConfigYesNo(default = False)
