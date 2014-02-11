@@ -31,10 +31,13 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		selection[1].toggle()
 		self.invalidateCurrent()
 
-	def handleKey(self, key):
+	def handleKey(self, key, session=None):
 		selection = self.getCurrent()
 		if selection and selection[1].enabled:
-			selection[1].handleKey(key, self.session, selection[0])
+			if session:
+				selection[1].handleKey(key, session, selection[0])
+			else:
+				selection[1].handleKey(key)
 			self.invalidateCurrent()
 			if key in KEY_NUMBERS:
 				self.timer.start(1000, 1)
@@ -233,7 +236,7 @@ class ConfigListScreen:
 		self["config"].pageUp()
 
 	def keyFile(self):
-		self["config"].handleKey(KEY_FILE)
+		self["config"].handleKey(KEY_FILE, self.session)
 
 	def saveAll(self):
 		for x in self["config"].list:
