@@ -156,6 +156,7 @@ KEY_TIMEOUT = 9
 KEY_NUMBERS = range(12, 12+10)
 KEY_0 = 12
 KEY_9 = 12+9
+KEY_FILE = 22
 
 def getKeyNumber(key):
 	assert key in KEY_NUMBERS
@@ -337,7 +338,7 @@ class ConfigSelection(ConfigElement):
 				self.value = self.choices[0]
 			elif key == KEY_END:
 				self.value = self.choices[nchoices - 1]
-			elif key == KEY_OK and session:
+			elif key == KEY_FILE and session:
 				from Screens.ChoiceBox import ChoiceBox
 				session.openWithCallback(self.KeyOKCallback, ChoiceBox, description, list=zip(self.description, self.choices), selection=i, keys=[])
 
@@ -398,7 +399,7 @@ class ConfigBoolean(ConfigElement):
 		self.value = self.last_value = self.default = default
 
 	def handleKey(self, key, session, description):
-		if key in (KEY_LEFT, KEY_RIGHT, KEY_OK):
+		if key in (KEY_LEFT, KEY_RIGHT):
 			self.value = not self.value
 		elif key == KEY_HOME:
 			self.value = False
@@ -697,14 +698,14 @@ class ConfigIP(ConfigSequence):
 				oldvalue *= 10
 				newvalue = oldvalue + number
 				if self.auto_jump and newvalue > self.limits[self.marked_block][1] and self.marked_block < len(self.limits)-1:
-					self.handleKey(KEY_RIGHT)
-					self.handleKey(key)
+					self.handleKey(KEY_RIGHT, session, description)
+					self.handleKey(key, session, description)
 					return
 				else:
 					self._value[self.marked_block] = newvalue
 
 			if len(str(self._value[self.marked_block])) >= self.block_len[self.marked_block]:
-				self.handleKey(KEY_RIGHT)
+				self.handleKey(KEY_RIGHT, session, description)
 
 			self.validate()
 			self.changed()
@@ -1066,7 +1067,7 @@ class ConfigSelectionNumber(ConfigSelection):
 			if key == KEY_LEFT:
 				if self.choices.index(self.value) == 0:
 					return
-		ConfigSelection.handleKey(self, key)
+		ConfigSelection.handleKey(self, key, session, description)
 
 class ConfigNumber(ConfigText):
 	def __init__(self, default = 0):
@@ -1106,14 +1107,14 @@ class ConfigNumber(ConfigText):
 					return
 			else:
 				ascii = getKeyNumber(key) + 48
-  			newChar = unichr(ascii)
+			newChar = unichr(ascii)
 			if self.allmarked:
 				self.deleteAllChars()
 				self.allmarked = False
 			self.insertChar(newChar, self.marked_pos, False)
 			self.marked_pos += 1
 		else:
-			ConfigText.handleKey(self, key)
+			ConfigText.handleKey(self, key, session, description)
 		self.conform()
 
 	def onSelect(self, session):
@@ -1812,14 +1813,14 @@ class ConfigCECAddress(ConfigSequence):
 				oldvalue *= 10
 				newvalue = oldvalue + number
 				if self.auto_jump and newvalue > self.limits[self.marked_block][1] and self.marked_block < len(self.limits)-1:
-					self.handleKey(KEY_RIGHT)
-					self.handleKey(key)
+					self.handleKey(KEY_RIGHT, session, description)
+					self.handleKey(key, session, description)
 					return
 				else:
 					self._value[self.marked_block] = newvalue
 
 			if len(str(self._value[self.marked_block])) >= self.block_len[self.marked_block]:
-				self.handleKey(KEY_RIGHT)
+				self.handleKey(KEY_RIGHT, session, description)
 
 			self.validate()
 			self.changed()
