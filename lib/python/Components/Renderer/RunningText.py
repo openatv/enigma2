@@ -28,11 +28,13 @@
 # take a look at the discussion: http://board.dreambox-tools.info/showthread.php?6050-Erweiterung-Running-Text-render
 ################################################################################
 
-from Renderer import Renderer
-from skin import parseColor, parseFont
-from enigma import eWidget, eCanvas, eLabel, eTimer, eRect, ePoint, eSize, gRGB, gFont, \
+from enigma import eWidget, eLabel, eTimer, ePoint, eSize, gFont, \
 	RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, RT_HALIGN_BLOCK, \
 	RT_VALIGN_TOP, RT_VALIGN_CENTER, RT_VALIGN_BOTTOM, RT_WRAP
+
+from Renderer import Renderer
+from skin import parseColor, parseFont
+
 
 # scroll type:
 NONE     = 0
@@ -377,7 +379,7 @@ class RunningText(Renderer):
 			else: # if self.direction in (TOP,BOTTOM)
 				self.moveLabel(self.X, self.P)
 			timeout = self.mStepTimeout
-			if (self.mStop != None) and (self.mStop + abs(self.mStep) > self.P >= self.mStop):
+			if (self.mStop is not None) and (self.mStop + abs(self.mStep) > self.P >= self.mStop):
 				if (self.type == RUNNING) and (self.mOneShot > 0):
 					if (self.mRepeat > 0) and (self.mCount-1 <= 0): return
 					timeout = self.mOneShot

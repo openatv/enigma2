@@ -1,20 +1,18 @@
+from boxbranding import getMachineBrand
+
 from enigma import ePicLoad, eTimer, getDesktop, gMainDC, eSize
 
 from Screens.Screen import Screen
 from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA
-
 from Components.About import about
 from Components.Pixmap import Pixmap, MovingPixmap
-from Components.ActionMap import ActionMap, NumberActionMap
+from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 from Components.FileList import FileList
 from Components.AVSwitch import AVSwitch
 from Components.Sources.List import List
-from Components.ConfigList import ConfigList, ConfigListScreen
-
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry
-
-from boxbranding import getMachineBrand
+from Components.ConfigList import ConfigListScreen
+from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, getConfigListEntry
 
 def getScale():
 	return AVSwitch().getFramebufferScale()
@@ -87,7 +85,7 @@ class picshow(Screen):
 
 	def showPic(self, picInfo=""):
 		ptr = self.picload.getData()
-		if ptr != None:
+		if ptr is not None:
 			self["thn"].instance.setPixmap(ptr.__deref__())
 			self["thn"].show()
 
@@ -187,7 +185,7 @@ class Pic_Setup(Screen, ConfigListScreen):
 			getConfigListEntry(_("Slide picture in loop"), config.pic.loop),
 			getConfigListEntry(_("Background color"), config.pic.bgcolor),
 			getConfigListEntry(_("Text color"), config.pic.textcolor),
-			getConfigListEntry(_("Fulview resulution"), config.pic.fullview_resolution),
+			getConfigListEntry(_("Fullview resolution"), config.pic.fullview_resolution),
 		]
 		self["config"].list = setup_list
 		self["config"].l.setList(setup_list)
@@ -329,7 +327,7 @@ class Pic_Thumb(Screen):
 		framePos = 0
 		Page = 0
 		for x in piclist:
-			if x[0][1] == False:
+			if not x[0][1]:
 				self.filelist.append((index, framePos, Page, x[0][0],  path + x[0][0]))
 				index += 1
 				framePos += 1
@@ -396,7 +394,7 @@ class Pic_Thumb(Screen):
 			elif self.Thumbnaillist[x][0] == 1:
 				self.Thumbnaillist[x][0] = 2
 				ptr = self.picload.getData()
-				if ptr != None:
+				if ptr is not None:
 					self["thumb" + str(self.Thumbnaillist[x][1])].instance.setPixmap(ptr.__deref__())
 					self["thumb" + str(self.Thumbnaillist[x][1])].show()
 
@@ -499,12 +497,12 @@ class Pic_Full_View(Screen):
 
 		for x in filelist:
 			if len(filelist[0]) == 3: #orig. filelist
-				if x[0][1] == False:
+				if not x[0][1]:
 					self.filelist.append(path + x[0][0])
 				else:
 					self.dirlistcount += 1
 			elif len(filelist[0]) == 2: #scanlist
-				if x[0][1] == False:
+				if not x[0][1]:
 					self.filelist.append(x[0][0])
 				else:
 					self.dirlistcount += 1
@@ -546,7 +544,7 @@ class Pic_Full_View(Screen):
 		self.picload.setPara([self["pic"].instance.size().width(), self["pic"].instance.size().height(), sc[0], sc[1], 0, int(config.pic.resize.getValue()), self.bgcolor])
 
 		self["play_icon"].hide()
-		if config.pic.infoline.getValue() == False:
+		if not config.pic.infoline.getValue():
 			self["file"].setText("")
 		self.start_decode()
 
@@ -567,7 +565,7 @@ class Pic_Full_View(Screen):
 	def finish_decode(self, picInfo=""):
 		self["point"].hide()
 		ptr = self.picload.getData()
-		if ptr != None:
+		if ptr is not None:
 			text = ""
 			try:
 				text = picInfo.split('\n',1)

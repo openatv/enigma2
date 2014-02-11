@@ -18,6 +18,7 @@ from Components.Network import iNetwork
 from Tools.StbHardware import getFPVersion 
 from os import path, popen
 from re import search
+<<<<<<< HEAD
 import socket
 import fcntl
 import struct
@@ -38,13 +39,14 @@ def get_ip_address(ifname):
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
+		
 		AboutText = _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
 		if path.exists('/proc/stb/info/chipset'):
 			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString() + "\n"
 
 		AboutText += _("CPU:\t%s") % about.getCPUString() + "\n"
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
+
 		string = getDriverDate()
 		year = string[0:4]
 		month = string[4:6]
@@ -76,12 +78,12 @@ class About(Screen):
 			f = open('/proc/stb/fp/temp_sensor', 'r')
 			tempinfo = f.read()
 			f.close()
-		if tempinfo and int(tempinfo.replace('\n','')) > 0:
+		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System Temperature:") + " " + tempinfo.replace('\n','') + mark + "C\n\n"
+			AboutText += _("System temperature: %s") % tempinfo.replace('\n', '') + mark + "C\n\n"
 
 		self["TranslationHeader"] = StaticText(_("Translation:"))
-
+		
 		# don't remove the string out of the _(), or it can't be "translated" anymore.
 		# TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 		info = _("TRANSLATOR_INFO")
@@ -145,6 +147,7 @@ class About(Screen):
 		self.session.open(TranslationInfo)
 
 
+
 class Devices(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -162,7 +165,7 @@ class Devices(Screen):
 				"cancel": self.close,
 				"ok": self.close,
 			})
-
+			
 	def populate(self):
 		scanning = _("Wait please while scanning for devices...")
 		self["AboutScrollLabel"].setText(scanning)
@@ -193,7 +196,7 @@ class Devices(Screen):
 			if not parts:
 				continue
 			device = parts[3]
-			if not search('sd[a-z][1-9]',device):
+			if not search('sd[a-z][1-9]', device):
 				continue
 			if device in list2:
 				continue
@@ -205,7 +208,6 @@ class Devices(Screen):
 					parts = line.strip().split()
 					mount = str(parts[1])
 					break
-					continue
 			f.close()
 
 			if not mount.startswith('/dev/'):
@@ -213,25 +215,25 @@ class Devices(Screen):
 				free = Harddisk(device).free()
 
 				if ((float(size) / 1024) / 1024) >= 1:
-					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024),2)) + _("TB")
+					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024), 2)) + _("TB")
 				elif (size / 1024) >= 1:
-					sizeline = _("Size: ") + str(round((float(size) / 1024),2)) + _("GB")
+					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) + _("GB")
 				elif size >= 1:
 					sizeline = _("Size: ") + str(size) + _("MB")
 				else:
 					sizeline = _("Size: ") + _("unavailable")
 
 				if ((float(free) / 1024) / 1024) >= 1:
-					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024),2)) + _("TB")
+					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) + _("TB")
 				elif (free / 1024) >= 1:
-					freeline = _("Free: ") + str(round((float(free) / 1024),2)) + _("GB")
+					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) + _("GB")
 				elif free >= 1:
 					freeline = _("Free: ") + str(free) + _("MB")
 				else:
 					freeline = _("Free: ") + _("full")
-				self.list.append(mount +'\t'  + sizeline + ' \t' + freeline)
+				self.list.append(mount + '\t' + sizeline + ' \t' + freeline)
 			else:
-				self.list.append(mount +'\t'  + _('Not mounted'))
+				self.list.append(mount + '\t' + _('Not mounted'))
 
 			list2.append(device)
 		self.list = '\n'.join(self.list)
@@ -243,8 +245,8 @@ class Devices(Screen):
 		self.AboutText +=self.mountinfo
 		self["AboutScrollLabel"].setText(self.AboutText)
 
-	def Stage1Complete(self,result, retval, extra_args = None):
-		result = result.replace('\n                        ',' ').split('\n')
+	def Stage1Complete(self, result, retval, extra_args=None):
+		result = result.replace('\n                        ', ' ').split('\n')
 		self.mountinfo = ""
 		for line in result:
 			self.parts = line.split()
@@ -266,6 +268,7 @@ class Devices(Screen):
 			pass
 
 
+
 class SystemMemoryInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -274,18 +277,18 @@ class SystemMemoryInfo(Screen):
 		self.skinName = ["About"]
 		
 		self["AboutScrollLabel"] = ScrollLabel()
-
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
-			{
-				"cancel": self.close,
-				"ok": self.close,
-			})
-
+		
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
+									{
+										"cancel": self.close,
+										"ok": self.close,
+									})
+									
 		out_lines = file("/proc/meminfo").readlines()
 		self.AboutText = _("RAM") + '\n\n'
 		RamTotal = "-"
 		RamFree = "-"
-		for lidx in range(len(out_lines)-1):
+		for lidx in range(len(out_lines) - 1):
 			tstLine = out_lines[lidx].split()
 			if "MemTotal:" in tstLine:
 				MemTotal = out_lines[lidx].split()
@@ -309,11 +312,11 @@ class SystemMemoryInfo(Screen):
 		self.Console = Console()
 		self.Console.ePopen("df -mh / | grep -v '^Filesystem'", self.Stage1Complete)
 
-	def Stage1Complete(self,result, retval, extra_args = None):
-		flash = str(result).replace('\n','')
+	def Stage1Complete(self, result, retval, extra_args=None):
+		flash = str(result).replace('\n', '')
 		flash = flash.split()
-		RamTotal=flash[1]
-		RamFree=flash[3]
+		RamTotal = flash[1]
+		RamFree = flash[3]
 
 		self.AboutText += _("FLASH") + '\n\n'
 		self.AboutText += _("Total:") + "\t" + RamTotal + "\n"
@@ -326,6 +329,7 @@ class SystemMemoryInfo(Screen):
 				"cancel": self.close,
 				"ok": self.close,
 			})
+
 
 
 
@@ -361,6 +365,7 @@ class SystemNetworkInfo(Screen):
 		if iNetwork.isWirelessInterface(self.iface):
 			try:
 				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
+
 				self.iStatus = iStatus
 			except:
 				pass
@@ -371,12 +376,12 @@ class SystemNetworkInfo(Screen):
 		self["key_red"] = StaticText(_("Close"))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
-			{
-				"cancel": self.close,
-				"ok": self.close,
-				"up": self["AboutScrollLabel"].pageUp,
-				"down": self["AboutScrollLabel"].pageDown
-			})
+									{
+										"cancel": self.close,
+										"ok": self.close,
+										"up": self["AboutScrollLabel"].pageUp,
+										"down": self["AboutScrollLabel"].pageDown
+									})
 
 	def createscreen(self):
 		self.AboutText = ""
@@ -389,6 +394,15 @@ class SystemNetworkInfo(Screen):
 			if eth0.has_key('hwaddr'):
 				self.AboutText += _("MAC:") + "\t" + eth0['hwaddr'] + "\n"
 			self.iface = 'eth0'
+
+		eth1 = about.getIfConfig('eth1')
+		if eth1.has_key('addr'):
+			self.AboutText += _("IP:") + "\t" + eth1['addr'] + "\n"
+			if eth1.has_key('netmask'):
+				self.AboutText += _("Netmask:") + "\t" + eth1['netmask'] + "\n"
+			if eth1.has_key('hwaddr'):
+				self.AboutText += _("MAC:") + "\t" + eth1['hwaddr'] + "\n"
+			self.iface = 'eth1'
 
 		ra0 = about.getIfConfig('ra0')
 		if ra0.has_key('addr'):
@@ -423,9 +437,9 @@ class SystemNetworkInfo(Screen):
 
 	def resetList(self):
 		if self.iStatus:
-			self.iStatus.getDataForInterface(self.iface,self.getInfoCB)
+			self.iStatus.getDataForInterface(self.iface, self.getInfoCB)
 
-	def getInfoCB(self,data,status):
+	def getInfoCB(self, data, status):
 		self.LinkState = None
 		if data is not None:
 			if data is True:
@@ -470,7 +484,7 @@ class SystemNetworkInfo(Screen):
 						if self.has_key("enc"):
 							self.AboutText += _('Encryption:') + '\t' + encryption + '\n'
 
-						if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] == False:
+						if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] is False:
 							self.LinkState = False
 							self["statuspic"].setPixmapNum(1)
 							self["statuspic"].show()
@@ -489,14 +503,14 @@ class SystemNetworkInfo(Screen):
 		self["Statustext"].setText(_("Link:"))
 		if iNetwork.isWirelessInterface(self.iface):
 			try:
-				self.iStatus.getDataForInterface(self.iface,self.getInfoCB)
+				self.iStatus.getDataForInterface(self.iface, self.getInfoCB)
 			except:
 				self["statuspic"].setPixmapNum(1)
 				self["statuspic"].show()
 		else:
-			iNetwork.getLinkState(self.iface,self.dataAvail)
+			iNetwork.getLinkState(self.iface, self.dataAvail)
 
-	def dataAvail(self,data):
+	def dataAvail(self, data):
 		self.LinkState = None
 		for line in data.splitlines():
 			line = line.strip()
@@ -505,13 +519,13 @@ class SystemNetworkInfo(Screen):
 					self.LinkState = True
 				else:
 					self.LinkState = False
-		if self.LinkState == True:
+		if self.LinkState:
 			iNetwork.checkNetworkState(self.checkNetworkCB)
 		else:
 			self["statuspic"].setPixmapNum(1)
 			self["statuspic"].show()
 
-	def checkNetworkCB(self,data):
+	def checkNetworkCB(self, data):
 		try:
 			if iNetwork.getAdapterAttribute(self.iface, "up") is True:
 				if self.LinkState is True:
@@ -532,11 +546,11 @@ class SystemNetworkInfo(Screen):
 	def createSummary(self):
 		return AboutSummary
 
+
 class AboutSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
 		self["selected"] = StaticText("About")
-
 		
 class TranslationInfo(Screen):
 	def __init__(self, session):
@@ -568,7 +582,7 @@ class TranslationInfo(Screen):
 		self["TranslatorName"] = StaticText(translator_name)
 
 		self["actions"] = ActionMap(["SetupActions"],
-			{
-				"cancel": self.close,
-				"ok": self.close,
-			})
+									{
+										"cancel": self.close,
+										"ok": self.close,
+									})

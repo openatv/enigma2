@@ -1,3 +1,5 @@
+from enigma import iPlayableService, eTimer
+
 from Screen import Screen
 from Screens.Setup import getConfigMenuItem, Setup
 from Components.ServiceEventTracker import ServiceEventTracker
@@ -8,13 +10,11 @@ from Components.Label import Label
 from Components.Sources.List import List
 from Components.Sources.Boolean import Boolean
 from Components.SystemInfo import SystemInfo
-
-from enigma import iPlayableService, eTimer
-
 from Tools.ISO639 import LanguageCodes
-from Tools.BoundFunction import boundFunction
+
 FOCUS_CONFIG, FOCUS_STREAMS = range(2)
 [PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]
+
 
 class AudioSelection(Screen, ConfigListScreen):
 	def __init__(self, session, infobar=None, page=PAGE_AUDIO):
@@ -257,14 +257,14 @@ class AudioSelection(Screen, ConfigListScreen):
 		config.av.surround_3d.save()
 
 	def changeAC3Downmix(self, downmix):
-		if downmix.getValue() == True:
+		if downmix.getValue():
 			config.av.downmix_ac3.value = True
 		else:
 			config.av.downmix_ac3.value = False
 		config.av.downmix_ac3.save()
 
 	def changeAACDownmix(self, downmix):
-		if downmix.getValue() == True:
+		if downmix.getValue():
 			config.av.downmix_aac.value = True
 		else:
 			config.av.downmix_aac.value = False

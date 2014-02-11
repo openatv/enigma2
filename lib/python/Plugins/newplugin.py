@@ -31,9 +31,7 @@ def add_where_pluginmenu(name, fnc):
 		icon = "plugin.png"
 	return 'PluginDescriptor(name = "%s", description = _("%s"), icon = "%s", where = PluginDescriptor.WHERE_PLUGINMENU, fnc = %s)' % (name, description, icon, fnc)
 
-wherelist = []
-wherelist.append(("WHERE_EXTENSIONSMENU", add_where_extensionsmenu))
-wherelist.append(("WHERE_PLUGINMENU", add_where_pluginmenu))
+wherelist = [("WHERE_EXTENSIONSMENU", add_where_extensionsmenu), ("WHERE_PLUGINMENU", add_where_pluginmenu)]
 
 targetlist = []
 

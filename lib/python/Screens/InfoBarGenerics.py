@@ -11,7 +11,6 @@ from Components.MovieList import AUDIO_EXTENSIONS
 from Components.PluginComponent import plugins
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
-from Components.Sources.List import List
 from Components.config import config, configfile, ConfigBoolean, ConfigClock
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath, preferredTimerPath, ConfigSelection
@@ -25,7 +24,7 @@ from Components.Timeshift import InfoBarTimeshift
 
 from Screens.Screen import Screen
 from Screens import ScreenSaver
-from Screens.ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector, EpgBouquetSelector
+from Screens.ChannelSelection import ChannelSelection, BouquetSelector, EpgBouquetSelector
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Dish import Dish
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
@@ -47,11 +46,11 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT, findSafeRecord
 from Screens.TimerEntry import TimerEntry as TimerEntry
 
 from Tools import Notifications
-from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT
+from Tools.Directories import pathExists, fileExists
 from Tools.KeyBindings import getKeyDescription
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
-from boxbranding import getBoxType, getMachineBrand, getMachineName
+from boxbranding import getBoxType, getBrandOEM, getMachineBrand, getMachineName
 
 from time import time, localtime, strftime
 from bisect import insort
@@ -325,7 +324,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.pvrStateDialog.hide()
 				
 	def hidePipOnExitCallback(self, answer):
-		if answer == True:
+		if answer:
 			self.showPiP()
 
 	def connectShowHideNotifier(self, fnc):
@@ -410,18 +409,20 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def lockShow(self):
 		try:
-			self.__locked = self.__locked + 1
+			self.__locked += 1
 		except:
 			self.__locked = 0
+			
 		if self.execing:
 			self.show()
 			self.hideTimer.stop()
 
 	def unlockShow(self):
 		try:
-			self.__locked = self.__locked - 1
+			self.__locked -= 1
 		except:
 			self.__locked = 0
+			
 		if self.__locked  <0:
 			self.__locked = 0
 		if self.execing:
@@ -454,7 +455,7 @@ class NumberZap(Screen):
 
 	def keyNumberGlobal(self, number):
 		self.Timer.start(5000, True)
-		self.field = self.field + str(number)
+		self.field += str(number)
 		self["number"].setText(self.field)
 		self["number_summary"].setText(self.field)
 
@@ -519,6 +520,7 @@ class InfoBarNumberZap:
 
 	def keyNumberGlobal(self, number):
 		if self.pvrStateDialog.has_key("PTSSeekPointer") and self.timeshiftEnabled() and self.isSeekable():
+			# noinspection PyProtectedMember
 			InfoBarTimeshiftState._mayShow(self)
 			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width()-4)/2, self.pvrStateDialog["PTSSeekPointer"].position[1])
 			if self.seekstate != self.SEEK_STATE_PLAY:
@@ -545,7 +547,7 @@ class InfoBarNumberZap:
 					if config.usage.multibouquet.getValue():
 						bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
 					else:
-						bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types)
+						bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'% self.service_types
 					serviceHandler = eServiceCenter.getInstance()
 					rootbouquet = eServiceReference(bqrootstr)
 					bouquet = eServiceReference(bqrootstr)
@@ -827,9 +829,6 @@ class InfoBarMenu:
 		else:
 			pass
 
-	def mainMenuClosed(self, *val):
-		self.session.infobar = None
-
 
 class InfoBarSimpleEventView:
 	def __init__(self):
@@ -989,7 +988,7 @@ class InfoBarEPG:
 
 	def InfoPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
-			if getBoxType().startswith('et') or getBoxType().startswith('odin') or getBoxType().startswith('ini') or getBoxType().startswith('tm') or getBoxType().startswith('gb') or getBoxType().startswith('xp1000'):
+			if getBrandOEM in ('xtrend', 'odin', 'ini', 'odin' ,'gigablue', 'xp'):
 				self.openEventView()
 			else:
 				self.showDefaultEPG()
@@ -1419,13 +1418,13 @@ class InfoBarSeek:
 		self.__seekableStatusChanged()
 
 	def makeStateForward(self, n):
-		return (0, n, 0, ">> %dx" % n)
+		return 0, n, 0, ">> %dx" % n
 
 	def makeStateBackward(self, n):
-		return (0, -n, 0, "<< %dx" % n)
+		return 0, -n, 0, "<< %dx" % n
 
 	def makeStateSlowMotion(self, n):
-		return (0, 0, n, "/%d" % n)
+		return 0, 0, n, "/%d" % n
 
 	def isStateForward(self, state):
 		return state[1] > 1
@@ -1478,7 +1477,7 @@ class InfoBarSeek:
 		return True
 
 	def __seekableStatusChanged(self):
-		if (isStandardInfoBar(self) and self.timeshiftEnabled()):
+		if isStandardInfoBar(self) and self.timeshiftEnabled():
 			pass
 		elif not self.isSeekable():
 #			print "not seekable, return to play"
@@ -1900,6 +1899,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 
 	def _mayShow(self):
 		if self.shown and self.timeshiftEnabled() and self.isSeekable():
+			# noinspection PyCallByClass
 			InfoBarTimeshift.ptsSeekPointerSetCurrentPos(self)
 			if config.timeshift.showinfobar.getValue():
 				self["TimeshiftSeekPointerActions"].setEnabled(True)
@@ -2212,7 +2212,7 @@ class InfoBarPiP:
 				{
 					"activatePiP": (self.showPiP, _("Activate PiP")),
 				})
-			if (self.allowPiP):
+			if self.allowPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 				self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
@@ -2456,6 +2456,7 @@ class InfoBarInstantRecord:
 			# print 'test1'
 			if self.isSeekable() and self.pts_eventcount != self.pts_currplaying:
 				# print 'test2'
+				# noinspection PyCallByClass
 				InfoBarTimeshift.SaveTimeshift(self, timeshiftfile="pts_livebuffer_%s" % self.pts_currplaying)
 			else:
 				# print 'test3'
@@ -2464,10 +2465,12 @@ class InfoBarInstantRecord:
 				config.timeshift.isRecording.value = True
 		elif answer[1] == "savetimeshiftEvent":
 			# print 'test4'
+			# noinspection PyCallByClass
 			InfoBarTimeshift.saveTimeshiftEventPopup(self)
 
 		elif answer[1].startswith("pts_livebuffer") is True:
 			# print 'test2'
+			# noinspection PyCallByClass
 			InfoBarTimeshift.SaveTimeshift(self, timeshiftfile=answer[1])
 
 	def setEndtime(self, entry):
@@ -2582,7 +2585,7 @@ class InfoBarSubserviceSelection:
 	def __init__(self):
 		self["SubserviceSelectionAction"] = HelpableActionMap(self, "InfobarSubserviceSelectionActions",
 			{
-				"GreenPressed": (self.GreenPressed),
+				"GreenPressed": self.GreenPressed,
 			})
 
 		self["SubserviceQuickzapAction"] = HelpableActionMap(self, "InfobarSubserviceQuickzapActions",

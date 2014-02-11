@@ -1,18 +1,19 @@
-from GUIComponent import GUIComponent
-from Tools.FuzzyDate import FuzzyTime
-from ServiceReference import ServiceReference
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress
-from Components.config import config
 import os
 import struct
 import random
+
+from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceCenter, eTimer
+
+from GUIComponent import GUIComponent
+from Tools.FuzzyDate import FuzzyTime
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress
+from Components.config import config
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
 from Screens.LocationBox import defaultInhibitDirs
 import NavigationInstance
 import skin
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceCenter, eTimer
 
 AUDIO_EXTENSIONS = frozenset((".dts", ".mp3", ".wav", ".wave", ".ogg", ".flac", ".m4a", ".mp2", ".m2a", ".3gp", ".3g2", ".asf", ".wma"))
 DVD_EXTENSIONS = ('.iso', '.img')
@@ -23,10 +24,14 @@ KNOWN_EXTENSIONS = MOVIE_EXTENSIONS.union(IMAGE_EXTENSIONS, DVD_EXTENSIONS, AUDI
 cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
 
 class MovieListData:
-	pass
+	def __init__(self):
+		pass
 
 # iStaticServiceInformation
 class StubInfo:
+	def __init__(self):
+		pass
+
 	def getName(self, serviceref):
 		return os.path.split(serviceref.getPath())[1]
 	def getLength(self, serviceref):
@@ -55,7 +60,7 @@ def lastPlayPosFromCache(ref):
 	return resumePointCache.get(ref.toString(), None)
 
 def moviePlayState(cutsFileName, ref, length):
-	'''Returns None, 0..100 for percentage'''
+	"""Returns None, 0..100 for percentage"""
 	try:
 		# read the cuts file first
 		f = open(cutsFileName, 'rb')
@@ -467,7 +472,7 @@ class MovieList(GUIComponent):
 			return
 		realtags = set()
 		tags = {}
-		rootPath = os.path.normpath(root.getPath());
+		rootPath = os.path.normpath(root.getPath())
 		parent = None
 		# Don't navigate above the "root"
 		if len(rootPath) > 1 and (os.path.realpath(rootPath) != config.movielist.root.getValue()):
@@ -619,8 +624,8 @@ class MovieList(GUIComponent):
 		ref = x[0]
 		name = x[1] and x[1].getName(ref)
 		if ref.flags & eServiceReference.mustDescent:
-			return (0, name and name.lower() or "", -x[2])
-		return (1, name and name.lower() or "", -x[2])
+			return 0, name and name.lower() or "", -x[2]
+		return 1, name and name.lower() or "", -x[2]
 
 	def buildAlphaNumericFlatSortKey(self, x):
 		# x = ref,info,begin,...
@@ -635,13 +640,13 @@ class MovieList(GUIComponent):
 			name = p[1]
 		# print "Sorting for -%s-" % name
 
-		return (1, name and name.lower() or "", -x[2])
+		return 1, name and name.lower() or "", -x[2]
 
 	def buildBeginTimeSortKey(self, x):
 		ref = x[0]
 		if ref.flags & eServiceReference.mustDescent:
-			return (0, x[1] and -os.stat(ref.getPath()).st_mtime)
-		return (1, -x[2])
+			return 0, x[1] and -os.stat(ref.getPath()).st_mtime
+		return 1, -x[2]
 
 	def moveTo(self, serviceref):
 		count = 0

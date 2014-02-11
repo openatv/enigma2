@@ -1,7 +1,13 @@
-import DVDProject, TitleList, TitleCutter, TitleProperties, ProjectSettings, DVDToolbox, Process
+from boxbranding import getMachineBrand, getMachineName
+
+import DVDProject
+import TitleCutter
+import TitleProperties
+import ProjectSettings
+import DVDToolbox
+import Process
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
-from Screens.InputBox import InputBox
 from Screens.MessageBox import MessageBox
 from Screens.HelpMenu import HelpableScreen
 from Screens.TaskView import JobView
@@ -10,11 +16,9 @@ from Components.ActionMap import HelpableActionMap, ActionMap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
-from Components.MultiContent import MultiContentEntryText
 from Components.Label import MultiColorLabel
-from enigma import gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT
-from boxbranding import getMachineBrand, getMachineName
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+
 
 class TitleList(Screen, HelpableScreen):
 	skin = """
@@ -190,7 +194,7 @@ class TitleList(Screen, HelpableScreen):
 				self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 				{
 					"red": (self.close, _("Close title selection")),
-					"green": (self.insertWithoutEdit, ("insert without cutlist editor")),
+					"green": (self.insertWithoutEdit, "insert without cutlist editor"),
 					"yellow": (self.movieSelected, _("Add a new title"))
 				})
 			def updateTags(self):
@@ -367,7 +371,7 @@ class TitleList(Screen, HelpableScreen):
 
 	def DVDformatCB(self, answer):
 		t = self.current_edit_title
-		if answer == True:
+		if answer:
 			self.project.settings.authormode.setValue("data_ts")
 			self.updateTitleList()
 		else:

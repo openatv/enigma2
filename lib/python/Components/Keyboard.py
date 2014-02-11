@@ -10,7 +10,7 @@ class Keyboard:
 
 	def readKeyboardMapFiles(self):
 		for keymapfile in os_listdir(eEnv.resolve('${datadir}/keymaps/')):
-			if (keymapfile.endswith(".info")):
+			if keymapfile.endswith(".info"):
 				f = open(eEnv.resolve('${datadir}/keymaps/') + keymapfile)
 				mapfile = None
 				mapname = None
@@ -19,11 +19,11 @@ class Keyboard:
 					if m:
 						key, val = m.groups()
 						if key == 'kmap':
-						    mapfile = val
+							mapfile = val
 						if key == 'name':
-						    mapname = val
+							mapname = val
 						if (mapfile is not None) and (mapname is not None):
-						    self.keyboardmaps.append(( mapfile,mapname))
+							self.keyboardmaps.append(( mapfile,mapname))
 				f.close()
 
 	def activateKeyboardMap(self, index):

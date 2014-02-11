@@ -9,7 +9,9 @@ setup the "fonts".
 
 This has been done so another converter could convert the list to a different format, for example
 to generate HTML."""
-	def __init__(self, list = [ ], enableWrapAround = False, item_height = 25, fonts = [ ]):
+	def __init__(self, list=None, enableWrapAround=False, item_height=25, fonts=None):
+		if not list: list = []
+		if not fonts: fonts = []
 		Source.__init__(self)
 		self.__list = list
 		self.onSelectionChanged = [ ]

@@ -48,7 +48,7 @@ class TimerEntry:
 
 	# update self.begin and self.end according to the self.repeated-flags
 	def processRepeated(self, findRunningEvent = True):
-		if (self.repeated != 0):
+		if self.repeated != 0:
 			now = int(time()) + 1
 
 			#to avoid problems with daylight saving, we need to calculate with localtime, in struct_time representation
@@ -60,16 +60,16 @@ class TimerEntry:
 			day = []
 			flags = self.repeated
 			for x in (0, 1, 2, 3, 4, 5, 6):
-				if (flags & 1 == 1):
+				if flags & 1 == 1:
 					day.append(0)
 				else:
 					day.append(1)
-				flags = flags >> 1
+				flags >>= 1
 
 			# if day is NOT in the list of repeated days
 			# OR if the day IS in the list of the repeated days, check, if event is currently running... then if findRunningEvent is false, go to the next event
 			while ((day[localbegin.tm_wday] != 0) or (mktime(localrepeatedbegindate) > mktime(localbegin))  or
-				((day[localbegin.tm_wday] == 0) and ((findRunningEvent and localend < localnow) or ((not findRunningEvent) and localbegin < localnow)))):
+				(day[localbegin.tm_wday] == 0 and (findRunningEvent and localend < localnow) or ((not findRunningEvent) and localbegin < localnow))):
 				localbegin = self.addOneDay(localbegin)
 				localend = self.addOneDay(localend)
 
@@ -121,7 +121,7 @@ class TimerEntry:
 		self.cancelled = True
 
 	# must be overridden!
-	def getNextActivation():
+	def getNextActivation(self):
 		pass
 
 	def fail(self):

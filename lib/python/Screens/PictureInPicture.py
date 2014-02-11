@@ -76,10 +76,10 @@ class PictureInPicture(Screen):
 		self.pipActive.hide()
 
 	def getPosition(self):
-		return ((self.instance.position().x(), self.instance.position().y()))
+		return self.instance.position().x(), self.instance.position().y()
 
 	def getSize(self):
-		return (self.instance.size().width(), self.instance.size().height())
+		return self.instance.size().width(), self.instance.size().height()
 
 	def playService(self, service):
 		if service is None:

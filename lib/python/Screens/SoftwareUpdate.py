@@ -135,7 +135,7 @@ class UpdatePlugin(Screen):
 				self.session.openWithCallback(
 					self.modificationCallback,
 					MessageBox,
-					_("A configuration file (%s) has been modified since it was installed.\nDo you want to keep your modifications?") % (param)
+					_("A configuration file (%s) has been modified since it was installed.\nDo you want to keep your modifications?") % param
 				)
 		elif event == IpkgComponent.EVENT_ERROR:
 			self.error += 1

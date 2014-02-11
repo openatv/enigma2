@@ -1,6 +1,5 @@
 import os
-from Components.config import config
-from Tools.Directories import pathExists, fileExists
+from Tools.Directories import fileExists
 from Plugins.Plugin import PluginDescriptor
 from Components.Harddisk import harddiskmanager
 

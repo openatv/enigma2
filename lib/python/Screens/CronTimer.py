@@ -88,7 +88,7 @@ class CronTimers(Screen):
 		self.updateList()
 
 	def UninstallCheck(self):
-		if self.my_crond_run == False:
+		if not self.my_crond_run:
 			self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
 		else:
 			self.close()
@@ -131,9 +131,9 @@ class CronTimers(Screen):
 			cb(name, desc)
 
 	def CrondStart(self):
-		if self.my_crond_run == False:
+		if not self.my_crond_run:
 			self.Console.ePopen('/etc/init.d/busybox-cron start', self.StartStopCallback)
-		elif self.my_crond_run == True:
+		elif self.my_crond_run:
 			self.Console.ePopen('/etc/init.d/busybox-cron stop', self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
@@ -170,7 +170,7 @@ class CronTimers(Screen):
 			self['labdisabled'].show()
 		if crond_process:
 			self.my_crond_run = True
-		if self.my_crond_run == True:
+		if self.my_crond_run:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_yellow'].setText(_("Stop"))
@@ -345,7 +345,7 @@ class CronTimersConfig(Screen, ConfigListScreen):
 		if config.crontimers.runwhen.value == 'Weekly':
 			self.list.append(getConfigListEntry(_("What Day of week ?"), config.crontimers.dayofweek))
 		if config.crontimers.runwhen.value == 'Monthly':
-			self.list.append(getConfigListEntry(_("What Day of month ?"), config.crontimers.dayofmonth))
+			self.list.append(getConfigListEntry(_("What date of month ?"), config.crontimers.dayofmonth))
 		self.list.append(getConfigListEntry(_("Command type"), config.crontimers.commandtype))
 		if config.crontimers.commandtype.value == 'custom':
 			self.list.append(getConfigListEntry(_("Command To Run"), config.crontimers.user_command))

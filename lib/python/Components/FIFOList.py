@@ -1,9 +1,10 @@
 from Components.MenuList import MenuList
 
 class FIFOList(MenuList):
-	def __init__(self, list=[], len=10):
-		self.list = list
-		self.len = len
+	def __init__(self, menulist=None, length=10):
+		if not menulist: menulist = []
+		self.list = menulist
+		self.len = length
 		MenuList.__init__(self, self.list)
 
 	def addItem(self, item):

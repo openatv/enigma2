@@ -26,7 +26,7 @@ class Standby2(Screen):
 		self.close(True)
 
 	def setMute(self):
-		if (eDVBVolumecontrol.getInstance().isMuted()):
+		if eDVBVolumecontrol.getInstance().isMuted():
 			self.wasMuted = 1
 			print "mute already active"
 		else:

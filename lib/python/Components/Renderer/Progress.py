@@ -23,8 +23,6 @@ class Progress(VariableValue, Renderer):
 			value = 0
 		(self.range, self.value) = ((0, range), value)
 
-	GUI_WIDGET = eSlider
-
 	def postWidgetCreate(self, instance):
 		instance.setRange(self.__start, self.__end)
 
@@ -34,6 +32,6 @@ class Progress(VariableValue, Renderer):
 			self.instance.setRange(self.__start, self.__end)
 
 	def getRange(self):
-		return (self.__start, self.__end)
+		return self.__start, self.__end
 
 	range = property(getRange, setRange)

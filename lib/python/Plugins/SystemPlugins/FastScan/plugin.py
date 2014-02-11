@@ -41,7 +41,7 @@ class FastScan:
 		self.done = False
 
 	def execBegin(self):
-		self.text.setText(_('Scanning %s...') % (self.providerName))
+		self.text.setText(_('Scanning %s...') % self.providerName)
 		self.progressbar.setValue(0)
 		self.scan = eFastScan(self.scanPid, self.providerName, self.transponderParameters, self.keepNumbers, self.keepSettings)
 		self.scan.scanCompleted.get().append(self.scanCompleted)
@@ -164,7 +164,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 		self.providers['AustriaSat Astra3'] = (1, 950, False)
 		self.providers['Canal Digitaal Astra 1'] = (0, 900, True)
 		self.providers['TV Vlaanderen  Astra 1'] = (0, 910, True)
-
+		
 		self.transponders = ((12515000, 22000000, eDVBFrontendParametersSatellite.FEC_5_6, 192,
 			eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.Inversion_Unknown,
 			eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_QPSK,
@@ -386,7 +386,7 @@ def FastScanStart(menuid, **kwargs):
 		return []
 
 def Plugins(**kwargs):
-	if (nimmanager.hasNimType("DVB-S")):
+	if nimmanager.hasNimType("DVB-S"):
 		return PluginDescriptor(name=_("Fast Scan"), description="Scan Dutch/Belgian sat provider", where = PluginDescriptor.WHERE_MENU, fnc=FastScanStart)
 	else:
 		return []

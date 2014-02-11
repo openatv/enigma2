@@ -49,13 +49,12 @@ class HardwareInfo:
 
 	def has_hdmi(self):
 		return not (HardwareInfo.device_name == 'dm800' or (HardwareInfo.device_name == 'dm8000' and HardwareInfo.device_version == None))
-	
-	def has_deepstandby(self):
-		return getBoxType() != 'dm800'
-	      
+
 	def linux_kernel(self):
 		try:
 			return open("/proc/version","r").read().split(' ', 4)[2].split('-',2)[0]
 		except:
 			return "unknown"
-		      
+
+	def has_deepstandby(self):
+		return getBoxType() != 'dm800'

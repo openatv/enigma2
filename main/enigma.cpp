@@ -210,7 +210,7 @@ int main(int argc, char **argv)
 				if (!i)
 					eDebug("failed to load %s! (%m)", rfilename.c_str());
 				else
-					eDebug("found %d spinner!\n", i);
+					eDebug("found %d spinner!", i);
 				break;
 			}
 		}

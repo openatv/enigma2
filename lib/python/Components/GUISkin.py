@@ -42,7 +42,7 @@ class GUISkin:
 
 		for f in self.onLayoutFinish:
 			if type(f) is not type(self.close): # is this the best way to do this?
-				exec(f) in globals(), locals()
+				exec f in globals(), locals()
 			else:
 				f()
 

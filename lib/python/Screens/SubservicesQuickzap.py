@@ -10,17 +10,14 @@ from Components.Timeshift import InfoBarTimeshift
 
 from enigma import eTimer
 
-class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu, \
-		InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, \
-		InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport, \
-		InfoBarAudioSelection, Screen):
+class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu,
+						  InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift,
+						  InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport,
+						  InfoBarAudioSelection, Screen):
 
 	def __init__(self, session, subservices):
 		Screen.__init__(self, session)
-		for x in InfoBarBase, InfoBarShowHide, InfoBarMenu, \
-				InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, \
-				InfoBarTimeshiftState, InfoBarSubtitleSupport, \
-				InfoBarExtensions, InfoBarAudioSelection:
+		for x in InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, InfoBarTimeshiftState, InfoBarSubtitleSupport, InfoBarExtensions, InfoBarAudioSelection:
 			x.__init__(self)
 
 		self.restoreService = self.session.nav.getCurrentlyPlayingServiceOrGroup()

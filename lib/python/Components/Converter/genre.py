@@ -136,7 +136,7 @@ def getGenreStringMain(hn, ln):
 #		return _("Undefined content")
 	if hn == 15:
 		return _("User defined")
-	if hn > 0 and hn < len(maintype):
+	if 0 < hn < len(maintype):
 		return maintype[hn]
 #	return _("Reserved") + " " + str(hn)
 	return ""
@@ -146,7 +146,7 @@ def getGenreStringSub(hn, ln):
 #		return _("Undefined content") + " " + str(ln)
 	if hn == 15:
 		return _("User defined") + " " + str(ln)
-	if hn > 0 and hn < len(maintype):
+	if 0 < hn < len(maintype):
 		if ln == 15:
 			return _("User defined")
 		if ln < len(subtype[hn]):
@@ -160,7 +160,7 @@ def getGenreStringLong(hn, ln):
 #		return _("Undefined content") + " " + str(ln)
 	if hn == 15:
 		return _("User defined") + " " + str(ln)
-	if hn > 0 and hn < len(maintype):
+	if 0 < hn < len(maintype):
 		return maintype[hn] + ": " + getGenreStringSub(hn, ln)
 #	return _("Reserved") + " " + str(hn) + "," + str(ln)
 	return ""

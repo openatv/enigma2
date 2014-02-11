@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+from time import localtime, mktime, time, strftime
+from datetime import datetime
+
+from enigma import eEPGCache
+
 from Screens.Screen import Screen
 import ChannelSelection
 from ServiceReference import ServiceReference
@@ -17,9 +22,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Setup import SetupSummary
 from RecordTimer import AFTEREVENT
-from enigma import eEPGCache, eServiceReference
-from time import localtime, mktime, time, strftime
-from datetime import datetime
+
 
 class TimerEntry(Screen, ConfigListScreen):
 	def __init__(self, session, timer):
@@ -90,9 +93,9 @@ class TimerEntry(Screen, ConfigListScreen):
 			day.append(0)
 		if self.timer.repeated: # repeated
 			type = "repeated"
-			if (self.timer.repeated == 31): # Mon-Fri
+			if self.timer.repeated == 31: # Mon-Fri
 				repeated = "weekdays"
-			elif (self.timer.repeated == 127): # daily
+			elif self.timer.repeated == 127: # daily
 				repeated = "daily"
 			else:
 				flags = self.timer.repeated
@@ -107,7 +110,7 @@ class TimerEntry(Screen, ConfigListScreen):
 						count += 1
 					else:
 						day[x] = 0
-					flags = flags >> 1
+					flags >>= 1
 				if count == 1:
 					repeated = "weekly"
 		else: # once
@@ -173,7 +176,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		if self.timerentry_type.getValue() == "once":
 			self.frequencyEntry = None
 		else: # repeated
-			self.frequencyEntry = getConfigListEntry(_("Repeats"), self.timerentry_repeated, _("Choose between Daily, Weekly, Weekdays or self defined."))
+			self.frequencyEntry = getConfigListEntry(_("Repeats"), self.timerentry_repeated, _("Choose between Daily, Weekly, Weekdays or user defined."))
 			self.list.append(self.frequencyEntry)
 			self.repeatedbegindateEntry = getConfigListEntry(_("Starting on"), self.timerentry_repeatedbegindate, _("Set the date the timer must start."))
 			self.list.append(self.repeatedbegindateEntry)
@@ -427,14 +430,14 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_starttime.increment()
 		self["config"].invalidate(self.entryStartTime)
 		if self.timerentry_type.value == "once" and self.timerentry_starttime.value == [0, 0]:
-			self.timerentry_date.value = self.timerentry_date.value + 86400
+			self.timerentry_date.value += 86400
 			self["config"].invalidate(self.entryDate)
 
 	def decrementStart(self):
 		self.timerentry_starttime.decrement()
 		self["config"].invalidate(self.entryStartTime)
 		if self.timerentry_type.value == "once" and self.timerentry_starttime.value == [23, 59]:
-			self.timerentry_date.value = self.timerentry_date.value - 86400
+			self.timerentry_date.value -= 86400
 			self["config"].invalidate(self.entryDate)
 
 	def incrementEnd(self):
