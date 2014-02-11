@@ -90,23 +90,23 @@
 		<item level="0" text="Include AIT in http streams" description="When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV.">config.streaming.stream_ait</item>
 	</setup>
 	<setup key="subtitlesetup" title="Subtitle settings">
-		<item level="2" text="Teletext subtitle color" description="Configure the color of the teletext subtitles.">config.subtitles.ttx_subtitle_colors</item>
-		<item level="2" text="Use original teletext position" description="When enabled, teletext subtitles will be displayed at their original position.">config.subtitles.ttx_subtitle_original_position</item>
-		<item level="2" text="Rewrap teletext subtitles" description="When enabled, the original line breaks will be removed from the teletext subtitles.">config.subtitles.subtitle_rewrap</item>
-		<item level="2" text="Subtitle position" description="Configure the vertical position of the subtitles, measured from the bottom of the screen.">config.subtitles.subtitle_position</item>
-		<item level="2" text="Subtitle alignment" description="Configure the horizontal alignment of the subtitles.">config.subtitles.subtitle_alignment</item>
-		<item level="2" text="Subtitle border width" description="Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background.">config.subtitles.subtitle_borderwidth</item>
-		<item level="2" text="Subtitle font size" description="Configure the font size of the subtitles.">config.subtitles.subtitle_fontsize</item>
-		<item level="2" text="Subtitle delay when timing lacks" description="Configure the subtitle delay when timing information is not available.">config.subtitles.subtitle_noPTSrecordingdelay</item>
-		<item level="2" text="Yellow DVB subtitles" description="When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color.">config.subtitles.dvb_subtitles_yellow</item>
-		<item level="2" text="Use original DVB subtitle position" description="When enabled, graphical DVB subtitles will be displayed at their original position.">config.subtitles.dvb_subtitles_original_position</item>
-		<item level="2" text="Center DVB subtitles" description="When enabled, graphical DVB subtitles will be centered horizontally.">config.subtitles.dvb_subtitles_centered</item>
-		<item level="2" text="Subtitle delay when timing is bad" description="Configure an additional delay to improve subtitle synchronisation.">config.subtitles.subtitle_bad_timing_delay</item>
-		<item level="2" text="DVB subtitle black transparency" description="Configure the transparency of the black background of graphical DVB subtitles.">config.subtitles.dvb_subtitles_backtrans</item>
-		<item level="2" text="External subtitle color" description="Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow.">config.subtitles.pango_subtitle_colors</item>
-		<item level="2" text="Delay for external subtitles" description="Configure an additional delay to improve external subtitle synchronisation.">config.subtitles.pango_subtitles_delay</item>
-		<item level="2" text="Set fps for external subtitles" description="Can be used for different fps between external subtitles and video.">config.subtitles.pango_subtitles_fps</item>
-		<item level="2" text="Automatically turn on external subtitles" description="When enabled, external subtitles will always be turned on for movie playback.">config.subtitles.pango_autoturnon</item>
+		<item level="1" text="Teletext subtitle color" description="Configure the color of the teletext subtitles.">config.subtitles.ttx_subtitle_colors</item>
+		<item level="1" text="Use original teletext position" description="When enabled, teletext subtitles will be displayed at their original position.">config.subtitles.ttx_subtitle_original_position</item>
+		<item level="1" text="Rewrap teletext subtitles" description="When enabled, the original line breaks will be removed from the teletext subtitles.">config.subtitles.subtitle_rewrap</item>
+		<item level="1" text="Subtitle position" description="Configure the vertical position of the subtitles, measured from the bottom of the screen.">config.subtitles.subtitle_position</item>
+		<item level="1" text="Subtitle alignment" description="Configure the horizontal alignment of the subtitles.">config.subtitles.subtitle_alignment</item>
+		<item level="1" text="Subtitle border width" description="Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background.">config.subtitles.subtitle_borderwidth</item>
+		<item level="1" text="Subtitle font size" description="Configure the font size of the subtitles.">config.subtitles.subtitle_fontsize</item>
+		<item level="1" text="Subtitle delay when timing lacks" description="Configure the subtitle delay when timing information is not available.">config.subtitles.subtitle_noPTSrecordingdelay</item>
+		<item level="1" text="Yellow DVB subtitles" description="When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color.">config.subtitles.dvb_subtitles_yellow</item>
+		<item level="1" text="Use original DVB subtitle position" description="When enabled, graphical DVB subtitles will be displayed at their original position.">config.subtitles.dvb_subtitles_original_position</item>
+		<item level="1" text="Center DVB subtitles" description="When enabled, graphical DVB subtitles will be centered horizontally.">config.subtitles.dvb_subtitles_centered</item>
+		<item level="1" text="Subtitle delay when timing is bad" description="Configure an additional delay to improve subtitle synchronisation.">config.subtitles.subtitle_bad_timing_delay</item>
+		<item level="1" text="DVB subtitle black transparency" description="Configure the transparency of the black background of graphical DVB subtitles.">config.subtitles.dvb_subtitles_backtrans</item>
+		<item level="1" text="External subtitle color" description="Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow.">config.subtitles.pango_subtitle_colors</item>
+		<item level="1" text="Delay for external subtitles" description="Configure an additional delay to improve external subtitle synchronisation.">config.subtitles.pango_subtitles_delay</item>
+		<item level="1" text="Set fps for external subtitles" description="Can be used for different fps between external subtitles and video.">config.subtitles.pango_subtitles_fps</item>
+		<item level="1" text="Automatically turn on external subtitles" description="When enabled, external subtitles will always be turned on for movie playback.">config.subtitles.pango_autoturnon</item>
 	</setup>
 	<setup key="autolanguagesetup" title="Auto language selection">
 		<item level="1" text="Audio language selection 1" description="Configure the first audio language (highest priority).">config.autolanguage.audio_autoselect1</item>

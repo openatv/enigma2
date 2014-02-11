@@ -1,6 +1,4 @@
-import sys
-import os
-
+import sys, os
 if os.path.isfile("/usr/lib/enigma2/python/enigma.zip"):
 	sys.path.append("/usr/lib/enigma2/python/enigma.zip")
 
@@ -9,7 +7,7 @@ profile("PYTHON_START")
 
 import Tools.RedirectOutput
 import enigma
-from boxbranding import getBrandOEM
+from boxbranding import getBoxType, getMachineProcModel
 import eConsoleImpl
 import eBaseImpl
 enigma.eTimer = eBaseImpl.eTimer
@@ -112,6 +110,7 @@ profile("LOAD:Plugin")
 from Components.PluginComponent import plugins
 
 profile("LOAD:Wizard")
+from Screens.Wizard import wizardManager
 from Screens.StartWizard import *
 import Screens.Rc
 from Tools.BoundFunction import boundFunction
@@ -398,9 +397,17 @@ class PowerKey:
 				file = f.read()
 				f.close()
 				wasRecTimerWakeup = int(file) and True or False
-			if self.session.nav.RecordTimer.isRecTimerWakeup() or wasRecTimerWakeup:
+			if self.session.nav.RecordTimer.isRecTimerWakeup() or wasRecTimerWakeup or self.session.nav.RecordTimer.isRecording():
 				print "PowerOff (timer wakewup) - Recording in progress or a timer about to activate, entering standby!"
-				self.standby()
+				lastrecordEnd = 0
+				for timer in self.session.nav.RecordTimer.timer_list:
+					if lastrecordEnd == 0 or lastrecordEnd >= timer.begin:
+						print "Set after-event for recording %s to DEEP-STANDBY." % timer.name
+						timer.afterEvent = 2
+						if timer.end > lastrecordEnd:
+							lastrecordEnd = timer.end + 900
+				from Screens.MessageBox import MessageBox
+				self.session.openWithCallback(self.gotoStandby,MessageBox,_("PowerOff while Recording in progress!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, timeout = 10)
 			else:
 				print "PowerOff - Now!"
 				self.session.open(Screens.Standby.TryQuitMainloop, 1)
@@ -438,7 +445,10 @@ class PowerKey:
 	def powerup(self):
 		if self.standbyblocked == 0:
 			self.doAction(action = config.usage.on_short_powerpress.getValue())
-
+	
+	def gotoStandby(self, ret):
+		self.standby()
+	
 	def standby(self):
 		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:
 			self.session.open(Screens.Standby.Standby)
@@ -518,7 +528,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 
-	if getBoxType() == 'odinm9' or getBoxType() == 'ebox5000' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or getBoxType() in ('ini-1000ru', 'ini-5000ru', 'ini-1000sv', 'ini-5000sv', 'ini-5000', 'ini-7000', 'ini-7012', 'ini-7000au', 'ini-7012au'):
+	if getBoxType() == 'odinm9' or getBoxType() == 'ebox5000' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or getMachineProcModel().startswith('ini-10') or getMachineProcModel().startswith('ini-50') or getMachineProcModel().startswith('ini-70'):
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -544,8 +554,8 @@ def runScreenTest():
 
 	#get currentTime
 	nowTime = time()
-	
-	if getBoxType().startswith('gb') or getBoxType().startswith('ini'):
+	if not config.misc.SyncTimeUsing.getValue() == "0" or getBoxType().startswith('gb') or getBoxType().startswith('ini'):
+		print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 		setRTCtime(nowTime)
 		
 	wakeupList = [
@@ -558,17 +568,19 @@ def runScreenTest():
 	wakeupList.sort()
 	recordTimerWakeupAuto = False
 	if wakeupList and wakeupList[0][1] != 3:
+		from time import strftime
 		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 270: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
-			if getBrandOEM() == 'gigablue':
+			if getBoxType().startswith("gb"):
 				wptime = startTime[0] - 120 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0] - 240
-		if not config.misc.SyncTimeUsing.getValue() == "0" or getBrandOEM() == 'gigablue':
-			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
-			setRTCtime(nowTime)
+				
+		#if not config.misc.SyncTimeUsing.getValue() == "0" or getBoxType().startswith('gb'):
+		#	print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
+		#	setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
 		setFPWakeuptime(wptime)
 		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
@@ -583,13 +595,13 @@ def runScreenTest():
 		if (startTime[0] - nowTime) < 60: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
-			if getBrandOEM() == 'gigablue':
+			if getBoxType().startswith("gb"):
 				wptime = startTime[0] + 120 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0]
-		if not config.misc.SyncTimeUsing.getValue() == "0" or getBrandOEM() == 'gigablue':
-			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
-			setRTCtime(nowTime)
+		#if not config.misc.SyncTimeUsing.getValue() == "0" or getBoxType().startswith('gb'):
+		#	print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
+		#	setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime+60))
 		setFPWakeuptime(wptime)
 		PowerTimerWakeupAuto = startTime[1] == 3 and startTime[2]
@@ -634,6 +646,10 @@ Components.RecordingConfig.InitRecordingConfig()
 profile("UsageConfig")
 import Components.UsageConfig
 Components.UsageConfig.InitUsageConfig()
+
+#profile("Init:DebugLogCheck")
+#import Screens.LogManager
+#Screens.LogManager.AutoLogManager()
 
 profile("Init:OnlineCheckState")
 import Components.OnlineUpdateCheck

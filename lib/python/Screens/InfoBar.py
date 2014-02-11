@@ -185,8 +185,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				self.session.nav.playService(ref)
 		else:
 			self.session.open(MoviePlayer, service, slist = self.servicelist, lastservice = ref)
-
-<<<<<<< HEAD
+			
 	def openTimerList(self):
 		from Screens.TimerEdit import TimerEditList
 		self.session.open(TimerEditList)
