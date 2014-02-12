@@ -1,9 +1,10 @@
 from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
-from config import KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS, KEY_FILE, ConfigElement, ConfigText, ConfigPassword
+from config import KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS, ConfigElement, ConfigText, ConfigPassword
 from Components.ActionMap import NumberActionMap, ActionMap
 from enigma import eListbox, eListboxPythonConfigContent, eRCInput, eTimer
 from Screens.MessageBox import MessageBox
+from Screens.ChoiceBox import ChoiceBox
 
 class ConfigList(HTMLComponent, GUIComponent, object):
 	def __init__(self, list, session = None):
@@ -31,13 +32,10 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		selection[1].toggle()
 		self.invalidateCurrent()
 
-	def handleKey(self, key, session=None):
+	def handleKey(self, key):
 		selection = self.getCurrent()
 		if selection and selection[1].enabled:
-			if session:
-				selection[1].handleKey(key, session, selection[0])
-			else:
-				selection[1].handleKey(key)
+			selection[1].handleKey(key)
 			self.invalidateCurrent()
 			if key in KEY_NUMBERS:
 				self.timer.start(1000, 1)
@@ -236,7 +234,18 @@ class ConfigListScreen:
 		self["config"].pageUp()
 
 	def keyFile(self):
-		self["config"].handleKey(KEY_FILE, self.session)
+		selection = self["config"].getCurrent()
+		if selection and selection[1].enabled and hasattr(selection[1], "description"):
+			self.session.openWithCallback(self.handleKeyFileCallback, ChoiceBox, selection[0],
+				list=zip(selection[1].description, selection[1].choices),
+				selection=selection[1].choices.index(selection[1].value),
+				keys=[])
+
+	def handleKeyFileCallback(self, answer):
+		if answer:
+			self["config"].getCurrent()[1].value = answer[1]
+			self["config"].invalidateCurrent()
+			self.__changed()
 
 	def saveAll(self):
 		for x in self["config"].list:
