@@ -237,6 +237,13 @@ class TimerEntry(Screen, ConfigListScreen):
 			ConfigListScreen.keyRight(self)
 			self.newConfig()
 
+	def handleKeyFileCallback(self, answer):
+		if self["config"].getCurrent() in (self.channelEntry, self.tagsSet):
+			self.keySelect()
+		else:
+			ConfigListScreen.handleKeyFileCallback(self, answer)
+			self.newConfig()
+
 	def keySelect(self):
 		cur = self["config"].getCurrent()
 		if cur == self.channelEntry:
