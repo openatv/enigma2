@@ -1,14 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <wizard>
-		<step id="start" nextstep="introduction">
-			<text value="Welcome.\n\nThis start wizard will guide you through the basic setup of your %s %s.\nPress the OK button on your remote control to move to the next step." />
-			<displaytext value="Welcome.\n\nThis start wizard will guide you through the basic setup of your %s %s.\nPress the OK button on your remote control to move to the next step." />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("OK")
-			</code>
-		</step>
-		<step id="introduction" >
+		<step id="start" >
 			<text value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<list>
 				<listentry caption="Use the wizard to set up basic features" step="network" />
