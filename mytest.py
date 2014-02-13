@@ -554,7 +554,7 @@ def runScreenTest():
 
 	#get currentTime
 	nowTime = time()
-	if not config.misc.SyncTimeUsing.getValue() == "0" or getBoxType().startswith('gb') or getBoxType().startswith('ini'):
+	if not config.misc.SyncTimeUsing.getValue() == "0" or getBoxType().startswith('gb') or getMachineProcModel().startswith('ini'):
 		print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 		setRTCtime(nowTime)
 		
