@@ -206,6 +206,16 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/en2" % self.DIRECTORY
 			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
 			self.EXTRA = "%s/fullbackup_odinm7/%s" % (self.DIRECTORY, self.DATE)
+		elif self.OEM == "odin" and self.MODEL == "axodin":
+			self.TYPE = "ODINM7"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
+			self.MTDKERNEL = "mtd3"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/en2" % self.DIRECTORY
+			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
+			self.EXTRA = "%s/fullbackup_odinm7/%s" % (self.DIRECTORY, self.DATE)
 		## TESTING THE E3 HD Model
 		elif self.OEM == "e3hd":
 			self.TYPE = "E3HD"
@@ -233,6 +243,16 @@ class ImageBackup(Screen):
 		elif self.OEM == "xp1000":
 			self.TYPE = "MAXDIGITAL"
 			self.MODEL = self.OEM
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
+			self.MTDKERNEL = "mtd1"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
+		elif self.OEM == "xp" and self.MODEL == "xp1000max":
+			self.TYPE = "MAXDIGITAL"
+			self.MODEL = "xp1000mk"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
