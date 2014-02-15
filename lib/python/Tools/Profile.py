@@ -53,7 +53,7 @@ def profile(id):
 					f.write("%d  \n" % perc)
 				elif boxtype == "gb800seplus":
 					f = open("/dev/mcu", "w")
-					f.write("%d  \n" % perc)					
+					f.write("%d  \n" % perc)
 				elif boxtype == "ebox5000":
 					f = open("/proc/progress", "w")
 					f.write("%d" % perc)

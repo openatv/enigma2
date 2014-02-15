@@ -1,6 +1,6 @@
 from os import listdir, open as os_open, close as os_close, write as os_write, O_RDWR, O_NONBLOCK
 from fcntl import ioctl
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getBrandOEM
 import struct
 
 from config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigSlider
@@ -224,8 +224,6 @@ class RcTypeControl():
 				self.writeRcType(config.plugins.remotecontroltype.rctype.getValue())
 		else:
 			self.isSupported = False
-		if boxtype.startswith('gb'):
-			self.isSupported = False			
 
 	def multipleRcSupported(self):
 		return self.isSupported

@@ -3,7 +3,7 @@ from Components.About import about
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
 from enigma import eAVSwitch, getDesktop
-from boxbranding import getBoxType, getMachineBuild
+from boxbranding import getBoxType, getMachineBuild, getBrandOEM
 from SystemInfo import SystemInfo
 import os
 
@@ -63,7 +63,7 @@ class AVSwitch:
 	
 	if hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime") : config.av.edid_override = True
 	
-	if (about.getChipSetString() in ('7358', '7356', '7424', '8493'))  or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
+	if (about.getChipSetString() in ('7358', '7356', '7424', '7425', '8493'))  or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i"}
 	else:
@@ -77,7 +77,7 @@ class AVSwitch:
 	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
 	# 	print "remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
-	if modes.has_key("YPbPr") and getBoxType() in ('et4x00', 'xp1000', 'tm2t', 'tmsingle', 'vusolo2', 'tmnano','iqonios300hd', 'odinm7', 'e3hd', 'dm500hdv2', 'dm500hd', 'dm800', 'ebox7358', 'eboxlumi', 'ebox5100','ixusszero', 'optimussos1', 'enfinity') or (about.getModelString() == 'ini-3000'):
+	if modes.has_key("YPbPr") and getBoxType() in ('et4x00', 'xp1000', 'tm2t', 'tmsingle', 'vusolo2', 'tmnano','iqonios300hd', 'odinm7', 'e3hd', 'dm500hdv2', 'dm500hd', 'dm800', 'ebox7358', 'eboxlumi', 'ebox5100','ixusszero', 'optimussos1', 'enfinity', 'uniboxhd1') or (about.getModelString() == 'ini-3000'):
 		del modes["YPbPr"]
 	def __init__(self):
 		self.last_modes_preferred =  [ ]
@@ -561,7 +561,7 @@ def InitAVSwitch():
 			except IOError:
 				print "couldn't write pep_scaler_sharpness"
 
-		if getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus': 
+		if getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus':
 			config.av.scaler_sharpness = ConfigSlider(default=5, limits=(0,26))
 		else:
 			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))

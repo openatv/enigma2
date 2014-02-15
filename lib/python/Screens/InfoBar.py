@@ -12,7 +12,7 @@ from Tools.Directories import fileExists
 
 profile("LOAD:enigma")
 import enigma
-from boxbranding import getBoxType, getMachineBrand
+from boxbranding import getBoxType, getMachineBrand,getBrandOEM
 
 boxtype = getBoxType()
 
@@ -390,7 +390,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		self.allowPiP = True
 
 		for x in HelpableScreen, InfoBarShowHide, InfoBarMenu, InfoBarEPG, \
-				InfoBarBase, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord,  \
+				InfoBarBase, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, \
 				InfoBarAudioSelection, InfoBarNotifications, InfoBarSimpleEventView, \
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
 				InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, \
