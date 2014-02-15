@@ -68,7 +68,7 @@ config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandb
 ####################################################
 
 def useSyncUsingChanged(configelement):
-	if configelement == "0":
+	if config.misc.SyncTimeUsing.getValue() == "0":
 		print "[Time By]: Transponder"
 		value = True
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
@@ -82,7 +82,7 @@ def useSyncUsingChanged(configelement):
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 
 def NTPserverChanged(configelement):
-	if configelement == "pool.ntp.org":
+	if config.misc.NTPserver.getValue() == "pool.ntp.org":
 		return
 	print "[NTPDATE] save /etc/default/ntpdate"
 	f = open("/etc/default/ntpdate", "w")

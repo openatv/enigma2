@@ -64,7 +64,7 @@ class SundtekControlCenter(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, [])
 		self.updateSettingList()
 		
-		self["btt_red"] = Label(_("Exit"))
+		self["btt_red"] = Label(_("Back"))
 		self["btt_green"] = Label(_("Setup"))
 		self["btt_yellow"] = Label(_("Stop Tuner"))
 		self["btt_blue"] = Label(_("Start Tuner"))
