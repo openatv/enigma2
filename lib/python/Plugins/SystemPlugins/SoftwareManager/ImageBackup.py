@@ -166,7 +166,7 @@ class ImageBackup(Screen):
 			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
 		elif self.MODEL == "et10000":
 			self.TYPE = "ET"
-			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 8192"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
