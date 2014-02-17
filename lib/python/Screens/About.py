@@ -547,7 +547,7 @@ class ViewGitLog(Screen):
 			self.logtype = 'oe'
 		else:
 			self["key_yellow"].setText(_("Show OE Log"))
-			self.setTitle(_("Enimga2 Changes"))
+			self.setTitle(_("Enigma2 Changes"))
 			self.logtype = 'e2'
 		self.getlog()
 
