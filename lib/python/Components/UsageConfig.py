@@ -232,13 +232,13 @@ def InitUsageConfig():
 			file.close()
 		config.usage.fan.addNotifier(fanChanged)
 
-		if os.path.exists("/proc/stb/fp/fan_pwm"):
-			def fanSpeedChanged(configElement):
-				file = open("/proc/stb/fp/fan_pwm", "w")
-				file.write(hex(configElement.value)[2:])
-				file.close()
-			config.usage.fanspeed = ConfigSlider(default=127, increment=8, limits=(0, 255))
-			config.usage.fanspeed.addNotifier(fanSpeedChanged)
+	if os.path.exists("/proc/stb/fp/fan_pwm"):
+		def fanSpeedChanged(configElement):
+			file = open("/proc/stb/fp/fan_pwm", "w")
+			file.write(hex(configElement.value)[2:])
+			file.close()
+		config.usage.fanspeed = ConfigSlider(default=127, increment=8, limits=(0, 255))
+		config.usage.fanspeed.addNotifier(fanSpeedChanged)
 
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
