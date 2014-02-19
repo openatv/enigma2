@@ -306,7 +306,7 @@ class ImageBackup(Screen):
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 1024 -F"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
-			self.MTDKERNEL = "mtd2"	
+			self.MTDKERNEL = "mtd7"	
 			self.MAINDESTOLD = "%s/ebox/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/ebox/7358/" % self.DIRECTORY
 			self.EXTRA = "%s/fullbackup_%s/%s/ebox" % (self.DIRECTORY, self.TYPE, self.DATE)
