@@ -456,6 +456,17 @@ class ImageBackup(Screen):
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s/update/%s" % (self.DIRECTORY,self.MACHINEBRAND, self.DATE, self.MODEL)
+		## TESTING Iqon Model
+		elif self.MACHINENAME == "force1":
+			self.TYPE = "IQON"
+			self.MODEL = "force1"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
+			self.MTDKERNEL = "mtd6"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s/update/%s" % (self.DIRECTORY,self.MACHINEBRAND, self.DATE, self.MODEL)			
 		## TESTING THE Gigablue 800 Solo Model
 		elif self.MODEL == "gb800solo":
 			self.TYPE = "GIGABLUE"
