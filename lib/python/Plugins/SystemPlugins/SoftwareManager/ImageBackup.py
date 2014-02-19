@@ -293,17 +293,17 @@ class ImageBackup(Screen):
 		## TESTING THE Mixos Model
 		elif self.OEM == "ebox5000" or self.OEM == "ebox5100" or self.OEM == "eboxlumi":
 			self.TYPE = "MIXOS"
-			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 1024 -F"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
-			self.MTDKERNEL = "mtd1"	
+			self.MTDKERNEL = "mtd2"	
 			self.MAINDESTOLD = "%s/ebox/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/ebox/7403/" % self.DIRECTORY
 			self.EXTRA = "%s/fullbackup_%s/%s/ebox" % (self.DIRECTORY, self.TYPE, self.DATE)
 		## TESTING THE Mixos Model
 		elif self.OEM == "ebox7358":
-			self.TYPE = "MIXOS2"
-			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.TYPE = "MIXOS"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 1024 -F"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 			self.MTDKERNEL = "mtd2"	
@@ -680,7 +680,7 @@ class ImageBackup(Screen):
 			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
 			cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.EXTRA))
-		elif self.TYPE == "MIXOS" or self.TYPE == "MIXOS2":
+		elif self.TYPE == "MIXOS":
 			self.ROOTFSBIN = "root_cfe_auto.bin"
 			system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
 			self.KERNELBIN = "kernel_cfe_auto.bin"
