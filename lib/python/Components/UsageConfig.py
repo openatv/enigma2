@@ -221,7 +221,7 @@ def InitUsageConfig():
 	config.usage.show_eit_nownext = ConfigYesNo(default = True)
 	config.usage.show_vcr_scart = ConfigYesNo(default = False)
 
-	if os.path.exists("/proc/stb/fp/fan"):
+	if SystemInfo["Fan"]:
 		choicelist = [('off', _("Off")), ('on', _("On")), ('auto', _("Auto"))]
 		if os.path.exists("/proc/stb/fp/fan_choices"):
 			choicelist = [x for x in choicelist if x[0] in open("/proc/stb/fp/fan_choices", "r").read().strip().split(" ")]
@@ -232,7 +232,7 @@ def InitUsageConfig():
 			file.close()
 		config.usage.fan.addNotifier(fanChanged)
 
-	if os.path.exists("/proc/stb/fp/fan_pwm"):
+	if SystemInfo["FanPWM"]:
 		def fanSpeedChanged(configElement):
 			file = open("/proc/stb/fp/fan_pwm", "w")
 			file.write(hex(configElement.value)[2:])
