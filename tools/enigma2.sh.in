@@ -12,9 +12,9 @@ if [ -x @bindir@/showiframe ]; then
 	fi
 fi
 
-if [ ! -f /etc/enigma2/pm_timers.xml ]; then
-	cp -a /usr/share/enigma2/defaults/pm_timers.xml /etc/enigma2/pm_timers.xml
-fi
+# if [ ! -f /etc/enigma2/pm_timers.xml ]; then
+# 	cp -a /usr/share/enigma2/defaults/pm_timers.xml /etc/enigma2/pm_timers.xml
+# fi
 
 #check if factory mode is present
 if [ ! -f /etc/enigma2/settings ]; then
