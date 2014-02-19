@@ -221,22 +221,24 @@ def InitUsageConfig():
 	config.usage.show_eit_nownext = ConfigYesNo(default = True)
 	config.usage.show_vcr_scart = ConfigYesNo(default = False)
 
-	choicelist = [('off', _("Off")), ('on', _("On")), ('auto', _("Auto"))]
-	if os.path.exists("/proc/stb/fp/fan_choices"):
-		choicelist = [x for x in choicelist if x[0] in open("/proc/stb/fp/fan_choices", "r").read().strip().split(" ")]
-	config.usage.fan = ConfigSelection(choicelist)
-	def fanChanged(configElement):
-		file = open("/proc/stb/fp/fan", "w")
-		file.write(configElement.value)
-		file.close()
-	config.usage.fan.addNotifier(fanChanged)
+	if os.path.exists("/proc/stb/fp/fan"):
+		choicelist = [('off', _("Off")), ('on', _("On")), ('auto', _("Auto"))]
+		if os.path.exists("/proc/stb/fp/fan_choices"):
+			choicelist = [x for x in choicelist if x[0] in open("/proc/stb/fp/fan_choices", "r").read().strip().split(" ")]
+		config.usage.fan = ConfigSelection(choicelist)
+		def fanChanged(configElement):
+			file = open("/proc/stb/fp/fan", "w")
+			file.write(configElement.value)
+			file.close()
+		config.usage.fan.addNotifier(fanChanged)
 
-	def fanSpeedChanged(configElement):
-		file = open("/proc/stb/fp/fan_pwm", "w")
-		file.write(hex(configElement.value)[2:])
-		file.close()
-	config.usage.fanspeed = ConfigSlider(default=127, increment=8, limits=(0, 255))
-	config.usage.fanspeed.addNotifier(fanSpeedChanged)
+		if os.path.exists("/proc/stb/fp/fan_pwm"):
+			def fanSpeedChanged(configElement):
+				file = open("/proc/stb/fp/fan_pwm", "w")
+				file.write(hex(configElement.value)[2:])
+				file.close()
+			config.usage.fanspeed = ConfigSlider(default=127, increment=8, limits=(0, 255))
+			config.usage.fanspeed.addNotifier(fanSpeedChanged)
 
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
