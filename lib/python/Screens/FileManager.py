@@ -1098,12 +1098,12 @@ class FileManager_InfoMenu(Screen):
 	list.append((_("New file"), "new_file"))
 	list.append((_("New symlink"), "new_link"))
 	list.append((_("----------------------------------"), " "))
-	if (self.movie.endswith(".avi")) or (self.movie.endswith(".mp4")) or (self.movie.endswith(".divx")) or (self.movie.endswith(".mov")) or (self.movie.endswith(".mpg")) or (self.movie.endswith(".mpeg")) or (self.movie.endswith(".mkv")) or (self.movie.endswith(".m2ts")) or (self.movie.endswith(".vob")) or (self.movie.endswith(".rmvb")):
-		list.append((_("Get Subtitle"), "get_sub"))
+	#if (self.movie.endswith(".avi")) or (self.movie.endswith(".mp4")) or (self.movie.endswith(".divx")) or (self.movie.endswith(".mov")) or (self.movie.endswith(".mpg")) or (self.movie.endswith(".mpeg")) or (self.movie.endswith(".mkv")) or (self.movie.endswith(".m2ts")) or (self.movie.endswith(".vob")) or (self.movie.endswith(".rmvb")):
+		#list.append((_("Get Subtitle"), "get_sub"))
 	#list.append((_("----------------------------------"), " "))
 	#list.append((_("Settings"), "settings"))
         self["menu"] = MenuList(list)
-        self["actions"] = ActionMap(["WizardActions"],{"ok": self.go,"exit": self.exit,}, -1)
+        self["actions"] = ActionMap(["WizardActions"],{"ok": self.go,"back": self.exit,}, -1)
 
 ### MENU
     def go(self):
