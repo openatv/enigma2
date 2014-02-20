@@ -466,6 +466,10 @@ class GeneralSetup(Screen):
 				if ret:
 					from os import system, _exit
 					system("rm -R /etc/enigma2")
+					system("rm -R /etc/network/interfaces")
+					system("rm -R /etc/wpa_supplicant.ath0.conf")
+					system("rm -R /etc/wpa_supplicant.wlan0.conf")
+					system("rm -R /etc/wpa_supplicant.conf")
 					system("cp -R /usr/share/enigma2/defaults /etc/enigma2")
 					system("/usr/bin/showiframe /usr/share/backdrop.mvi")
 					_exit(0)
