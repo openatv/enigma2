@@ -1334,9 +1334,6 @@ class Seekbar(Screen):
 			self.percent = float(number) * 10.0
 		else:
 			ConfigListScreen.keyNumberGlobal(self, number)
-			
-from enigma import eDVBVolumecontrol
-
 class InfoBarSeek:
 	"""handles actions like seeking, pause"""
 
@@ -1345,7 +1342,6 @@ class InfoBarSeek:
 	SEEK_STATE_EOF = (1, 0, 0, "END")
 
 	def __init__(self, actionmap = "InfobarSeekActions"):
-		
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
@@ -1514,17 +1510,6 @@ class InfoBarSeek:
 		self.setSeekState(self.SEEK_STATE_PLAY)
 		self.__seekableStatusChanged()
 
-	def setMute(self):
-		if (eDVBVolumecontrol.getInstance().isMuted()):
-			print "mute already active"
-		else:
-			print "NO mute so turrning ON"
-			eDVBVolumecontrol.getInstance().volumeToggleMute()
-
-	def leaveMute(self):
-		if (eDVBVolumecontrol.getInstance().isMuted()):
-			eDVBVolumecontrol.getInstance().volumeToggleMute()
-			
 	def setSeekState(self, state):
 		service = self.session.nav.getCurrentService()
 
@@ -1545,35 +1530,29 @@ class InfoBarSeek:
 
 		if pauseable is not None:
 			if self.seekstate[0] and self.seekstate[3] == '||':
-				print "resolved to PAUSE"
-				self.leaveMute()
+#				print "resolved to PAUSE"
 				self.activityTimer.stop()
 				pauseable.pause()
-			elif self.seekstate[0] and self.seekstate[3] == 'END':  
-				print "resolved to STOP"
-				self.leaveMute()
+			elif self.seekstate[0] and self.seekstate[3] == 'END':
+#				print "resolved to STOP"
 				self.activityTimer.stop()
 				service.stop()
 			elif self.seekstate[1]:
 				if not pauseable.setFastForward(self.seekstate[1]):
-					print "resolved to FAST FORWARD"
-					self.setMute()
 					pass
+					# print "resolved to FAST FORWARD"
 				else:
 					self.seekstate = self.SEEK_STATE_PLAY
 					# print "FAST FORWARD not possible: resolved to PLAY"
 			elif self.seekstate[2]:
 				if not pauseable.setSlowMotion(self.seekstate[2]):
-					print "resolved to SLOW MOTION"
-					self.setMute()
 					pass
 					# print "resolved to SLOW MOTION"
 				else:
 					self.seekstate = self.SEEK_STATE_PAUSE
 					# print "SLOW MOTION not possible: resolved to PAUSE"
 			else:
- 				print "resolved to PLAY"
-				self.leaveMute()
+#				print "resolved to PLAY"
 				self.activityTimer.start(200, False)
 				pauseable.unpause()
 
