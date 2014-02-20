@@ -11,7 +11,7 @@ def getTrashFolder(path=None):
 	# Returns trash folder without symlinks
 	try:
 		print 'PATH:',path
-		if path is None or os.path.realpath(path) == '/media/autofs':
+		if path is None or os.path.realpath(path) == '/media/autofs' or os.path.realpath(path) == '/media/autofs/.Trash':
 			print 'path is none'
 		else:
 			if '/movie' in path:
