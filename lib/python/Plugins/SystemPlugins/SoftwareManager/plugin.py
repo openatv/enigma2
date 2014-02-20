@@ -502,7 +502,7 @@ class SoftwareManagerInfo(Screen):
 		self["key_green"] = StaticText()
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
-		self["introduction"] = StaticText()
+		self["introduction"] = StaticText(_("Here is backup file list"))
 
 		self.onLayoutFinish.append(self.layoutFinished)
 
