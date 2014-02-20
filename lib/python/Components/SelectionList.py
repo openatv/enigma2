@@ -1,9 +1,7 @@
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
-
 from MenuList import MenuList
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT
 from Tools.LoadPixmap import LoadPixmap
-
 
 selectiononpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png"))
 selectionoffpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png"))
@@ -11,12 +9,12 @@ selectionoffpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN
 def SelectionEntryComponent(description, value, index, selected):
 	res = [
 		(description, value, index, selected),
-		(eListboxPythonMultiContent.TYPE_TEXT, 25, 3, 505, 30, 0, RT_HALIGN_LEFT, description)
+		(eListboxPythonMultiContent.TYPE_TEXT, 45, 13, 505, 30, 0, RT_HALIGN_LEFT, description)
 	]
 	if selected:
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 2, 25, 24, selectiononpng))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 10, 12, 25, 24, selectiononpng))
 	else:
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 2, 25, 24, selectionoffpng))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 10, 12, 25, 24, selectionoffpng))
 	return res
 
 class SelectionList(MenuList):
