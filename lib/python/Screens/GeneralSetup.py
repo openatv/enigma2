@@ -238,7 +238,7 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Language Settings",_("Setup Your language"),_("Setup menu language")))
 		self.sublist.append(QuickSubMenuEntryComponent("Time Settings",_("Time Settings"),_("Setup date and time")))
 		if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
-			self.sublist.append(QuickSubMenuEntryComponent("Display Settings",_("Display Setup"),_("Setup your display")))
+			self.sublist.append(QuickSubMenuEntryComponent("Front Panel Settings",_("Display Setup"),_("Setup your display")))
 		if SystemInfo["GraphicLCD"]: 
 			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Setup",_("Skin Setup"),_("Setup your LCD")))
 		self.sublist.append(QuickSubMenuEntryComponent("HDMI-CEC",_("Consumer Electronics Control"),_("Control up to ten CEC-enabled devices connected through HDMI")))
@@ -449,7 +449,7 @@ class GeneralSetup(Screen):
 		elif item[0] == _("Language Settings"):
 			from Screens.LanguageSelection import LanguageSelection
 			self.session.open(LanguageSelection)
-		elif item[0] == _("Display Settings"):
+		elif item[0] == _("Front Panel Settings"):
 			self.openSetup("display")
 		elif item[0] == _("LCD Skin Setup"):
 			self.session.open(LcdSkinSelector)
