@@ -207,6 +207,8 @@ class doFlashImage(Screen):
 			box = "xpeedlx"
 		elif box == "xpeedlx1" or box == "xpeedlx2":
 			box = "xpeedlx"
+		elif box == "uniboxhd1" or box == "uniboxhd2":
+			box = "ventonhdx"
 		elif box == "inihde" and machinename.lower() == "hd-1000":
 			box = "sezam-1000hd"
 		elif box == "ventonhdx" and machinename.lower() == "hd-5000":
