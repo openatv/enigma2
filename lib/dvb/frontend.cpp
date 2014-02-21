@@ -755,6 +755,11 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		ret = (int)(snr / 40.5);
 		sat_max = 1618;
 	}
+	if (!strcmp(m_description, "AVL6211")) // ET10000
+	{
+		ret = (int)(snr / 38.55);
+		sat_max = 1700;
+	}
 	else if (strstr("Nova-T StickNovaT 500StickDTB03", m_description)) // dib0700
 	{
 		if ( snr > 300 )
