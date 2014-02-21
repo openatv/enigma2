@@ -850,8 +850,8 @@ class GeneralMenu(Screen):
         subentrys['id_mainmenu_tv'] = self.getSubEntry('id_mainmenu_tv', [
 	#(_('Live Radio'), 'mainmenu_tv_live_radio', boundFunction(self.openLiveRadio), 60),
         (_('Timers'),'mainmenu_tv_timer',boundFunction(self.openDialog, TimerEditList),60),
-         (_('Program Guide'),'mainmenu_tv_timer',boundFunction(self.openProgramGuide),70),
-         (_('Cross EPG'),'mainmenu_tv_timer',boundFunction(self.openCrossEPG),80)
+         (_('Program Guide'),'mainmenu_tv_timer',boundFunction(self.openProgramGuide),70)
+        # ,(_('Cross EPG'),'mainmenu_tv_timer',boundFunction(self.openCrossEPG),80)
         #,(_('Setup'), 'mainmenu_tv_setup', boundFunction(self.notReadyMessage), 100)
         ])
 
@@ -937,9 +937,9 @@ class GeneralMenu(Screen):
 	#InfoBar.instance.openMultiServiceEPG()
 	InfoBar.instance.openGraphEPG()
 	
-    def openCrossEPG(self):
-	from Plugins.SystemPlugins.CrossEPG.crossepg_menu import CrossEPG_Menu
-	self.session.open(CrossEPG_Menu)   
+    #def openCrossEPG(self):
+	#from Plugins.SystemPlugins.CrossEPG.crossepg_menu import CrossEPG_Menu
+	#self.session.open(CrossEPG_Menu)   
 	
     # Photos
     def openPicturePlayer(self):
