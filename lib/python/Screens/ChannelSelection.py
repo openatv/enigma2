@@ -857,7 +857,7 @@ class ChannelSelectionBase(Screen):
 		self["list"] = ServiceList(self)
 		self.servicelist = self["list"]
 
-		self.numericalTextInput = NumericalTextInput()
+		self.numericalTextInput = NumericalTextInput(handleTimeout=False)
 		self.numericalTextInput.setUseableChars(u'1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
 		self.servicePathTV = [ ]
