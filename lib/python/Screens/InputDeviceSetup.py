@@ -9,7 +9,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
-from boxbranding import getMachineBrand, getMachineName
+from boxbranding import getBoxType, getMachineBrand, getMachineName
 
 class InputDeviceSelection(Screen, HelpableScreen):
 	def __init__(self, session):
@@ -257,7 +257,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 
 class RemoteControlType(Screen, ConfigListScreen):
 	odinRemote = "OdinM9"
-	if boxtype == "maram9":
+	if getBoxType() == "maram9":
 		odinRemote = "MaraM9"
 	
 	rcList = [
