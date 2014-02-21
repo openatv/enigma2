@@ -55,13 +55,13 @@ class ZapHistoryConfigurator(ConfigListScreen, Screen):
         Screen.__init__(self, session)
         self.session = session
         self['title'] = Label(_('Zap history'))
-        self['key_red'] = Label(_('Save'))
-        self['key_green'] = Label(_('Cancel'))        
+        self['key_red'] = Label(_('Cancel'))
+        self['key_green'] = Label(_('Save'))        
         self.onShown.append(boundFunction(self.setTitle, _('Zap history')))
         ConfigListScreen.__init__(self, [getConfigListEntry(_('Enable zap history:'), config.plugins.ZapHistoryConfigurator.enable_zap_history), getConfigListEntry(_('Maximum zap history entries:'), config.plugins.ZapHistoryConfigurator.maxEntries_zap_history)])
         self['actions'] = ActionMap(['OkCancelActions'], {'ok': self.save,
-         'cancel': self.exit, 'red': self.save,
-         'green': self.exit,}, -2)
+         'cancel': self.exit, 'green': self.save,
+         'red': self.exit,}, -2)
 
     def save(self):
         for x in self['config'].list:
@@ -89,7 +89,8 @@ def ZapHistoryBrowserListEntry(index, ref, serviceName, eventName):
     res = [(index, ref)]
     if len(eventName.strip()) != 0:
         eventName = '(' + eventName + ')'
-    width = 100
+    width = 170
+    serviceNameWidth = len(serviceName)
     res.append(MultiContentEntryText(pos=(10, 0), size=(465, 50), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=serviceName))
     res.append(MultiContentEntryText(pos=(width + 20, 0), size=(435 - width, 50), font=1, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, color=10066329, color_sel=11184810, text=eventName))
     return res
