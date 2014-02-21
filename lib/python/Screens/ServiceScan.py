@@ -1,3 +1,5 @@
+from enigma import eServiceReference
+
 from Screens.Screen import Screen
 from Components.ServiceScan import ServiceScan as CScan
 from Components.ProgressBar import ProgressBar
@@ -6,7 +8,7 @@ from Components.ActionMap import ActionMap
 from Components.FIFOList import FIFOList
 from Components.Sources.FrontendInfo import FrontendInfo
 from Components.config import config
-from enigma import eServiceCenter, eServiceReference
+
 
 class ServiceScanSummary(Screen):
 	skin = """

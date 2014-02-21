@@ -17,56 +17,57 @@ class PluginDescriptor:
 	# you have to ignore unknown kwargs!
 
 	# argument: session
-	WHERE_EXTENSIONSMENU = 0
-	WHERE_MAINMENU = 1
-	WHERE_PLUGINMENU  = 2
+	WHERE_EXTENSIONSMENU = 1
+	WHERE_MAINMENU = 2
+	WHERE_PLUGINMENU  = 3
 	# argument: session, serviceref (currently selected)
-	WHERE_MOVIELIST = 3
+	WHERE_MOVIELIST = 4
 	# argument: menuid. Fnc must return list with menuitems (4-tuple of name, fnc to call, entryid or None, weight or None)
-	WHERE_MENU = 4
+	WHERE_MENU = 5
 
 	# reason (0: start, 1: end)
-	WHERE_AUTOSTART = 5
+	WHERE_AUTOSTART = 6
 
 	# start as wizard. In that case, fnc must be tuple (priority,class) with class being a screen class!
-	WHERE_WIZARD = 6
+	WHERE_WIZARD = 7
 
 	# like autostart, but for a session. currently, only session starts are
 	# delivered, and only on pre-loaded plugins
-	WHERE_SESSIONSTART = 7
+	WHERE_SESSIONSTART = 8
 
 	# start as teletext plugin. arguments: session, serviceref
-	WHERE_TELETEXT = 8
+	WHERE_TELETEXT = 9
 
 	# file-scanner, fnc must return a list of Scanners
-	WHERE_FILESCAN = 9
+	WHERE_FILESCAN = 10
 
 	# fnc must take an interface name as parameter and return None if the plugin supports an extended setup
 	# or return a function which is called with session and the interface name for extended setup of this interface
-	WHERE_NETWORKSETUP = 10
+	WHERE_NETWORKSETUP = 11
 
 	# show up this plugin (or a choicebox with all of them) for long INFO keypress
 	# or return a function which is called with session and the interface name for extended setup of this interface
-	WHERE_EVENTINFO = 11
+	WHERE_EVENTINFO = 12
 
 	# reason (True: Networkconfig read finished, False: Networkconfig reload initiated )
-	WHERE_NETWORKCONFIG_READ = 12
+	WHERE_NETWORKCONFIG_READ = 13
 
-	WHERE_AUDIOMENU = 13
+	WHERE_AUDIOMENU = 14
 
 	# fnc 'SoftwareSupported' or  'AdvancedSoftwareSupported' must take a parameter and return None
 	# if the plugin should not be displayed inside Softwaremanger or return a function which is called with session
 	# and 'None' as parameter to call the plugin from the Softwaremanager menus. "menuEntryName" and "menuEntryDescription"
 	# should be provided to name and describe the new menu entry.
-	WHERE_SOFTWAREMANAGER = 14
+	WHERE_SOFTWAREMANAGER = 15
 
 	# fnc must take an interface name as parameter and return None if the plugin supports an extended setup
 	# or return a function which is called with session and the interface name for extended setup of this interface
-	WHERE_NETWORKMOUNTS = 15
+	WHERE_NETWORKMOUNTS = 16
 
-	WHERE_VIXMENU = 16
+	WHERE_VIXMENU = 17
 
-	def __init__(self, name = "Plugin", where = [ ], description = "", icon = None, fnc = None, wakeupfnc = None, needsRestart = None, internal = False, weight = 0):
+	def __init__(self, name="Plugin", where=None, description="", icon=None, fnc=None, wakeupfnc=None, needsRestart=None, internal=False, weight=0):
+		if not where: where = []
 		self.name = name
 		self.internal = internal
 		self.needsRestart = needsRestart

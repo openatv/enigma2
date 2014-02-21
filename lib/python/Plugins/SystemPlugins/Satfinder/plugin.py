@@ -1,17 +1,14 @@
 from enigma import eDVBResourceManager,\
-	eDVBFrontendParametersSatellite, eDVBFrontendParameters
+	eDVBFrontendParametersSatellite
 
-from Screens.Screen import Screen
 from Screens.ScanSetup import ScanSetup
 from Screens.ServiceScan import ServiceScan
 from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 
-from Components.Label import Label
 from Components.Sources.FrontendStatus import FrontendStatus
 from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager, getConfigSatlist
-from Components.MenuList import MenuList
 from Components.config import ConfigSelection, getConfigListEntry
 from Components.TuneTest import Tuner
 
@@ -188,11 +185,11 @@ class Satfinder(ScanSetup, ServiceScan):
 		index    = 0
 		none_cnt = 0
 		for n in self.satList:
-			if self.satList[index] == None:
-				none_cnt = none_cnt + 1
+			if self.satList[index] is None:
+				none_cnt += 1
 			if index == int(v):
-				return (index-none_cnt)
-			index = index + 1
+				return index-none_cnt
+			index += 1
 		return -1
 
 	def updatePreDefTransponders(self):
@@ -271,7 +268,7 @@ def SatfinderStart(menuid, **kwargs):
 		return []
 
 def Plugins(**kwargs):
-	if (nimmanager.hasNimType("DVB-S")):
+	if nimmanager.hasNimType("DVB-S"):
 		return PluginDescriptor(name=_("Satfinder"), description=_("Helps setting up your dish"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SatfinderStart)
 	else:
 		return []

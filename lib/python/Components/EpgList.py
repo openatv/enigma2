@@ -1,20 +1,18 @@
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
-from Components.config import config, ConfigSelectionNumber
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
-from Components.Renderer.Picon import getPiconName
+from time import localtime, time, strftime
 
-from skin import parseColor, parseFont
 from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, loadPNG, gFont, eRect, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO
 
+from HTMLComponent import HTMLComponent
+from GUIComponent import GUIComponent
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
+from Components.Renderer.Picon import getPiconName
+from skin import parseColor, parseFont
 from Tools.Alternatives import CompareWithAlternatives
 from Tools.LoadPixmap import LoadPixmap
-
-from time import localtime, time, strftime
 from Components.config import config
 from ServiceReference import ServiceReference
-from Tools.Directories import pathExists, resolveFilename, SCOPE_ACTIVE_SKIN
-from os import listdir, path
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+
 
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1
@@ -327,31 +325,31 @@ class EPGList(HTMLComponent, GUIComponent):
 	def getCurrent(self):
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			if self.cur_service is None:
-				return (None, None)
+				return None, None
 			old_service = self.cur_service  #(service, service_name, events, picon)
 			events = self.cur_service[2]
 			refstr = self.cur_service[0]
 			try:
 				if self.cur_event is None or not events or self.cur_event > len(events):
-					return (None, ServiceReference(refstr))
+					return None, ServiceReference(refstr)
 				event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
 				eventid = event[0]
 				service = ServiceReference(refstr)
 				event = self.getEventFromId(service, eventid) # get full event info
-				return (event, service)
+				return event, service
 			except:
-				return (None, ServiceReference(refstr))
+				return None, ServiceReference(refstr)
 		else:
 			idx = 0
 			if self.type == EPG_TYPE_MULTI:
 				idx += 1
 			tmp = self.l.getCurrentSelection()
 			if tmp is None:
-				return (None, None)
+				return None, None
 			eventid = tmp[idx+1]
 			service = ServiceReference(tmp[idx])
 			event = self.getEventFromId(service, eventid)
-			return ( event, service )
+			return event, service
 
 	def connectSelectionChanged(func):
 		if not self.onSelChanged.count(func):
@@ -409,8 +407,8 @@ class EPGList(HTMLComponent, GUIComponent):
 	GUI_WIDGET = eListbox
 
 	def setItemsPerPage(self):
- 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-	 		if self.type == EPG_TYPE_GRAPH:
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			if self.type == EPG_TYPE_GRAPH:
 				if self.listHeight > 0:
 					itemHeight = self.listHeight / config.epgselection.graph_itemsperpage.getValue()
 				else:
@@ -431,7 +429,7 @@ class EPGList(HTMLComponent, GUIComponent):
 							itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.getValue()) * 2)
 						else:
 							itemHeight = 45
-	 		elif self.type == EPG_TYPE_INFOBARGRAPH:
+			elif self.type == EPG_TYPE_INFOBARGRAPH:
 				if self.listHeight > 0:
 					itemHeight = self.listHeight / config.epgselection.infobar_itemsperpage.getValue()
 				else:
@@ -530,11 +528,11 @@ class EPGList(HTMLComponent, GUIComponent):
 		width = esize.width()
 		height = esize.height()
 		if self.type == EPG_TYPE_MULTI:
-			xpos = 0;
-			w = width / 10 * 3;
+			xpos = 0
+			w = width / 10 * 3
 			self.service_rect = Rect(xpos, 0, w-10, height)
-			xpos += w;
-			w = width / 10 * 2;
+			xpos += w
+			w = width / 10 * 2
 			self.start_end_rect = Rect(xpos, 0, w-10, height)
 			self.progress_rect = Rect(xpos, 4, w-10, height-8)
 			xpos += w
@@ -569,10 +567,10 @@ class EPGList(HTMLComponent, GUIComponent):
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
 		ewidth = (stime + duration - start) * width / (end - start)
-		ewidth -= xpos;
+		ewidth -= xpos
 		if xpos < 0:
-			ewidth += xpos;
-			xpos = 0;
+			ewidth += xpos
+			xpos = 0
 		if (xpos + ewidth) > width:
 			ewidth = width - xpos
 		return xpos, ewidth
@@ -617,7 +615,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
- 		return res
+		return res
 
 	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
 		clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
@@ -651,8 +649,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		r2 = self.progress_rect
 		r3 = self.descr_rect
 		r4 = self.start_end_rect
-		res = [ None ] # no private data needed
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
+		res = [None, (eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, service_name)] # no private data needed
 		if beginTime is not None:
 			clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
 			if nowTime < beginTime:
@@ -872,7 +869,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						if bgpng is not None and self.graphic:
 							backColor = None
 							backColorSel = None
-					elif stime <= now and now < (stime + duration):
+					elif stime <= now < (stime + duration):
 						foreColor = self.foreColorNow
 						backColor = self.backColorNow
 						foreColorSel = self.foreColorNowSelected
@@ -913,7 +910,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						if bgpng is not None and self.graphic:
 							backColor = None
 							backColorSel = None
-					elif stime <= now and now < (stime + duration):
+					elif stime <= now < (stime + duration):
 						foreColor = self.foreColorNow
 						backColor = self.backColorNow
 						foreColorSel = self.foreColorNowSelected
@@ -985,7 +982,7 @@ class EPGList(HTMLComponent, GUIComponent):
 							size = (self.eventBorderWidth, height),
 							png = borderRightPix,
 							flags = BT_SCALE))
-				
+
 				# recording icons
 				if clock_types is not None and ewidth > 23:
 					if clock_types in (1,6,11):
@@ -1058,7 +1055,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		temp = int(self.instance.position().y())+int(self.listHeight)
 		if int(sely) >= temp:
 			sely = int(sely) - int(self.listHeight)
-		return (int(selx), int(sely))
+		return int(selx), int(sely)
 
 	def selEntry(self, dir, visible = True):
 		cur_service = self.cur_service    #(service, service_name, events, picon)
@@ -1295,7 +1292,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.graphic = graphic
 		self.l = eListboxPythonMultiContent()
 		self.l.setSelectionClip(eRect(0,0,0,0))
-		self.l.setItemHeight(30);
+		self.l.setItemHeight(30)
 		self.TlDate = None
 		self.TlTime = None
 		self.foreColor = 0xffc000
@@ -1340,9 +1337,9 @@ class TimelineText(HTMLComponent, GUIComponent):
 		return rc
 
 	def setTimeLineFontsize(self):
- 		if self.type == EPG_TYPE_GRAPH:
+		if self.type == EPG_TYPE_GRAPH:
 			self.l.setFont(0, gFont(self.timelineFontName, self.timelineFontSize + config.epgselection.graph_timelinefs.getValue()))
- 		elif self.type == EPG_TYPE_INFOBARGRAPH:
+		elif self.type == EPG_TYPE_INFOBARGRAPH:
 			self.l.setFont(0, gFont(self.timelineFontName, self.timelineFontSize + config.epgselection.infobar_timelinefs.getValue()))
 
 	def postWidgetCreate(self, instance):
@@ -1456,7 +1453,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 			self.time_epoch = time_epoch
 
 		now = time()
-		if now >= time_base and now < (time_base + time_epoch * 60):
+		if time_base <= now < (time_base + time_epoch * 60):
 			xpos = int((((now - time_base) * event_rect.width()) / (time_epoch * 60)) - (timeline_now.instance.size().width() / 2))
 			old_pos = timeline_now.position
 			new_pos = (xpos + eventLeft, old_pos[1])

@@ -1,4 +1,4 @@
-SUBDIRS = spinner fonts extensions keymaps rc_models defaults
+SUBDIRS = spinner fonts extensions keymaps defaults
 
 dist_pkgdata_DATA = \
 	encoding.conf \
@@ -16,8 +16,8 @@ dist_pkgdata_DATA = \
 	unicable.xml \
 	hd-testcard.mvi \
 	distro-logo.png \
-	distro-lcd-logo.png \
-	picon_default.png
+	lcd_picon_default.png \
+	picon_default.png 
 
 if HAVE_TEXTLCD
 SUBDIRS += displaytext
@@ -40,9 +40,13 @@ SUBDIRS += display400
 endif
 
 if HAVE_BWLCD255
-SUBDIRS += display255
+SUBDIRS += vfd255
 endif
 
 if HAVE_BWLCD140
-SUBDIRS += display140
+SUBDIRS += vfd140
+endif
+
+if HAVE_BWLCD128
+SUBDIRS += vfd128
 endif

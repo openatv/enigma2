@@ -1,17 +1,18 @@
 # -*- coding: iso-8859-1 -*-
+from time import time
+from boxbranding import getImageVersion
+
 from enigma import eConsoleAppContainer
+
 from Components.Console import Console
-from Components.About import about
 from Components.PackageInfo import PackageInfoHandler
 from Components.Language import language
 from Components.Sources.List import List
 from Components.Ipkg import IpkgComponent
 from Components.Network import iNetwork
-from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_METADIR
+from Tools.Directories import resolveFilename, SCOPE_METADIR
 from Tools.HardwareInfo import HardwareInfo
-from time import time
 
-from boxbranding import getImageVersion
 
 class SoftwareTools(PackageInfoHandler):
 	lastDownloadDate = None
@@ -61,7 +62,7 @@ class SoftwareTools(PackageInfoHandler):
 
 	def getUpdates(self, callback = None):
 		if self.lastDownloadDate is None:
-				if self.NetworkConnectionAvailable == True:
+				if self.NetworkConnectionAvailable:
 					self.lastDownloadDate = time()
 					if self.list_updating is False and callback is None:
 						self.list_updating = True
@@ -79,7 +80,7 @@ class SoftwareTools(PackageInfoHandler):
 					elif self.NotifierCallback is not None:
 						self.NotifierCallback(False)
 		else:
-			if self.NetworkConnectionAvailable == True:
+			if self.NetworkConnectionAvailable:
 				self.lastDownloadDate = time()
 				if self.list_updating is False and callback is None:
 					self.list_updating = True
@@ -121,7 +122,7 @@ class SoftwareTools(PackageInfoHandler):
 			self.UpdateConsole.ePopen(cmd, self.IpkgListAvailableCB, callback)
 
 	def IpkgListAvailableCB(self, result, retval, extra_args = None):
-		(callback) = extra_args
+		(callback) = extra_args or None
 		if result:
 			if self.list_updating:
 				self.available_packetlist = []
@@ -150,7 +151,7 @@ class SoftwareTools(PackageInfoHandler):
 		if callback is not None:
 			self.list_updating = True
 		if self.list_updating:
-			if self.NetworkConnectionAvailable == True:
+			if self.NetworkConnectionAvailable:
 				if not self.UpdateConsole:
 					self.UpdateConsole = Console()
 				cmd = self.ipkg.ipkg + " install enigma2-meta enigma2-plugins-meta enigma2-skins-meta"
@@ -159,7 +160,7 @@ class SoftwareTools(PackageInfoHandler):
 				self.InstallMetaPackageCB(True)
 
 	def InstallMetaPackageCB(self, result, retval = None, extra_args = None):
-		(callback) = extra_args
+		(callback) = extra_args or None
 		if result:
 			self.fillPackagesIndexList()
 			if callback is None:
@@ -185,7 +186,7 @@ class SoftwareTools(PackageInfoHandler):
 			self.UpdateConsole.ePopen(cmd, self.IpkgListInstalledCB, callback)
 
 	def IpkgListInstalledCB(self, result, retval, extra_args = None):
-		(callback) = extra_args
+		(callback) = extra_args or None
 		if result:
 			self.installed_packetlist = {}
 			for x in result.splitlines():
@@ -246,7 +247,7 @@ class SoftwareTools(PackageInfoHandler):
 		self.Console.ePopen(cmd, self.IpkgUpdateCB, callback)
 
 	def IpkgUpdateCB(self, result, retval, extra_args = None):
-		(callback) = extra_args
+		(callback) = extra_args or None
 		if result:
 			if self.Console:
 				if len(self.Console.appContainers) == 0:

@@ -1,7 +1,13 @@
+from boxbranding import getMachineBrand, getMachineName
+from os import system
+
+from enigma import eTimer
+
 from Screens.Screen import Screen
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
 from Screens.MessageBox import MessageBox
+
 from Components.About import about
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
@@ -9,10 +15,6 @@ from Components.Sources.StaticText import StaticText
 from Components.Network import iNetwork
 from Components.config import config, ConfigSubsection, ConfigBoolean
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from enigma import eTimer
-from boxbranding import getMachineBrand, getMachineName
-
-from os import system
 
 config.misc.networkwizard = ConfigSubsection()
 config.misc.networkwizard.hasnetwork = ConfigBoolean(default = False)
@@ -93,7 +95,7 @@ class NetworkWizard(WizardLanguage, Rc):
 		self.isWlanPluginInstalled()
 
 	def exitWizardQuestion(self, ret = False):
-		if (ret):
+		if ret:
 			self.markDone()
 			self.close()
 		
@@ -294,7 +296,7 @@ class NetworkWizard(WizardLanguage, Rc):
 	def AdapterSetupEndCB(self,data):
 		if data is True:
 			if iNetwork.isWirelessInterface(self.selectedInterface):
-				if self.WlanPluginInstalled == True:
+				if self.WlanPluginInstalled:
 					from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 					iStatus.getDataForInterface(self.selectedInterface,self.checkWlanStateCB)
 				else:
@@ -367,6 +369,30 @@ class NetworkWizard(WizardLanguage, Rc):
 						self.InterfaceState = False
 					self.afterAsyncCode()
 
+	def checkNetwork(self):
+		iNetwork.checkNetworkState(self.checkNetworkStateCB)
+		self.checkRef = self.session.openWithCallback(self.checkNetworkCB, MessageBox, _("Please wait while we test your network..."), type = MessageBox.TYPE_INFO, enable_input = False)
+
+	def checkNetworkCB(self,data):
+		if data is True:
+			if iNetwork.isWirelessInterface(self.selectedInterface):
+				if self.WlanPluginInstalled:
+					from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
+					iStatus.getDataForInterface(self.selectedInterface,self.checkWlanStateCB)
+				else:
+					self.currStep = self.getStepWithID("checklanstatusend")
+					self.afterAsyncCode()
+			else:
+				self.currStep = self.getStepWithID("checklanstatusend")
+				self.afterAsyncCode()
+
+	def checkNetworkStateCB(self,data):
+		if data <= 2:
+			self.InterfaceState = True
+		else:
+			self.InterfaceState = False
+		self.checkRef.close(True)
+
 	def rescanTimerFired(self):
 		self.rescanTimer.stop()
 		self.updateAPList()
@@ -387,7 +413,7 @@ class NetworkWizard(WizardLanguage, Rc):
 			self.newAPlist.append(newentry)
 
 		if len(self.newAPlist):
-			if (self.wizard[self.currStep].has_key("dynamiclist")):
+			if self.wizard[self.currStep].has_key("dynamiclist"):
 				currentListEntry = self["list"].getCurrent()
 				if currentListEntry is not None:
 					idx = 0
@@ -453,7 +479,7 @@ class NetworkWizard(WizardLanguage, Rc):
 	def listChoices(self):
 		self.stopScan()
 		list = []
-		if self.WlanPluginInstalled == True:
+		if self.WlanPluginInstalled:
 			list.append((_("Configure your wireless LAN again"), "scanwlan"))
 		list.append((_("Configure your internal LAN"), "nwconfig"))
 		list.append((_("Exit network wizard"), "end"))

@@ -96,39 +96,39 @@ class EventTime(Poll, Converter, object):
 			elapsed = now - start_time
 			if start_time <= now <= end_time:
 				if self.type == self.REMAINING and config.usage.swap_time_remaining_on_osd.getValue() == "0":
-					return (duration, remaining)
+					return duration, remaining
 				elif self.type == self.REMAINING and config.usage.swap_time_remaining_on_osd.getValue() == "1":
-					return (duration, elapsed)
+					return duration, elapsed
 				elif self.type == self.REMAINING and config.usage.swap_time_remaining_on_osd.getValue() == "2":
-					return (duration, elapsed, remaining)
+					return duration, elapsed, remaining
 				elif self.type == self.REMAINING and config.usage.swap_time_remaining_on_osd.getValue() == "3":
-					return (duration, remaining, elapsed)
+					return duration, remaining, elapsed
 				elif self.type == self.ELAPSED and config.usage.swap_time_remaining_on_osd.getValue() == "0":
-					return (duration, elapsed)
+					return duration, elapsed
 				elif self.type == self.ELAPSED and config.usage.swap_time_remaining_on_osd.getValue() == "1":
-					return (duration, remaining)
+					return duration, remaining
 				elif self.type == self.ELAPSED and config.usage.swap_time_remaining_on_osd.getValue() == "2":
-					return (duration, elapsed, remaining)
+					return duration, elapsed, remaining
 				elif self.type == self.ELAPSED and config.usage.swap_time_remaining_on_osd.getValue() == "3":
-					return (duration, remaining, elapsed)
+					return duration, remaining, elapsed
 				elif self.type == self.REMAINING_VFD and config.usage.swap_time_remaining_on_vfd.getValue() == "0":
-					return (duration, remaining)
+					return duration, remaining
 				elif self.type == self.REMAINING_VFD and config.usage.swap_time_remaining_on_vfd.getValue() == "1":
-					return (duration, elapsed)
+					return duration, elapsed
 				elif self.type == self.REMAINING_VFD and config.usage.swap_time_remaining_on_vfd.getValue() == "2":
-					return (duration, elapsed, remaining)
+					return duration, elapsed, remaining
 				elif self.type == self.REMAINING_VFD and config.usage.swap_time_remaining_on_vfd.getValue() == "3":
-					return (duration, remaining, elapsed)
+					return duration, remaining, elapsed
 				elif self.type == self.ELAPSED_VFD and config.usage.swap_time_remaining_on_vfd.getValue() == "0":
-					return (duration, elapsed)
+					return duration, elapsed
 				elif self.type == self.ELAPSED_VFD and config.usage.swap_time_remaining_on_vfd.getValue() == "1":
-					return (duration, remaining)
+					return duration, remaining
 				elif self.type == self.ELAPSED_VFD and config.usage.swap_time_remaining_on_vfd.getValue() == "2":
-					return (duration, elapsed, remaining)
+					return duration, elapsed, remaining
 				elif self.type == self.ELAPSED_VFD and config.usage.swap_time_remaining_on_vfd.getValue() == "3":
-					return (duration, remaining, elapsed)
+					return duration, remaining, elapsed
 			else:
-				return (duration, None)
+				return duration, None
 
 		elif self.type == self.NEXT_START_TIME or self.type == self.NEXT_END_TIME or self.type == self.NEXT_DURATION or self.type == self.THIRD_START_TIME or self.type == self.THIRD_END_TIME or self.type == self.THIRD_DURATION:
 			reference = self.source.service

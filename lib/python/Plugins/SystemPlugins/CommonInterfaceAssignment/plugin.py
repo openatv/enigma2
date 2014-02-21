@@ -1,21 +1,18 @@
-from Screens.Screen import Screen
+from xml.etree.cElementTree import parse as ci_parse
+from boxbranding import getMachineBrand, getMachineName
+from os import path as os_path
+
+from enigma import eDVBCI_UI, eDVBCIInterfaces
+
 from Screens.ChannelSelection import *
-from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
-from Components.Sources.List import List
+from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 from Components.config import ConfigNothing
 from Components.ConfigList import ConfigList
-from Components.Label import Label
 from Components.SelectionList import SelectionList
-from Components.MenuList import MenuList
 from ServiceReference import ServiceReference
 from Plugins.Plugin import PluginDescriptor
-from xml.etree.cElementTree import parse as ci_parse
-from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
-from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv
-from boxbranding import getMachineBrand, getMachineName
 
-from os import system, path as os_path
 
 class CIselectMainMenu(Screen):
 	skin = """
@@ -87,12 +84,12 @@ class CIselectMainMenu(Screen):
 				else:
 					self.session.open(easyCIconfigMenu, slot)
 
-	"""def yellowPressed(self): # unused
-		NUM_CI=eDVBCIInterfaces.getInstance().getNumOfSlots()
-		print "[CI_Check] FOUND %d CI Slots " % NUM_CI
-		if NUM_CI > 0:
-			for ci in range(NUM_CI):
-				print eDVBCIInterfaces.getInstance().getDescrambleRules(ci)"""
+	# def yellowPressed(self): # unused
+	# 	NUM_CI=eDVBCIInterfaces.getInstance().getNumOfSlots()
+	# 	print "[CI_Check] FOUND %d CI Slots " % NUM_CI
+	# 	if NUM_CI > 0:
+	# 		for ci in range(NUM_CI):
+	# 			print eDVBCIInterfaces.getInstance().getDescrambleRules(ci)
 
 
 class CIconfigMenu(Screen):
@@ -147,6 +144,7 @@ class CIconfigMenu(Screen):
 			i+=1
 			self.caidlist.append((str(hex(int(caid))),str(caid),i))
 
+		# noinspection PyStringFormat
 		print "[CI_Wizzard_Config_CI%d] read following CAIds from CI: %s" %(self.ci_slot, self.caidlist)
 
 		self.selectedcaid = []
@@ -203,7 +201,7 @@ class CIconfigMenu(Screen):
 			ref=args[0]
 			service_ref = ServiceReference(ref)
 			service_name = service_ref.getServiceName()
-			if find_in_list(self.servicelist, service_name, 0)==False:
+			if not find_in_list(self.servicelist, service_name, 0):
 				split_ref=service_ref.ref.toString().split(":")
 				if split_ref[0] == "1":#== dvb service und nicht muell von None
 					self.servicelist.append( (service_name , ConfigNothing(), 0, service_ref.ref.toString()) )
@@ -214,7 +212,7 @@ class CIconfigMenu(Screen):
 		if len(args)>1: # bei nix selected kommt nur 1 arg zurueck (==None)
 			name=args[0]
 			dvbnamespace=args[1]
-			if find_in_list(self.servicelist, name, 0)==False:
+			if not find_in_list(self.servicelist, name, 0):
 				self.servicelist.append( (name , ConfigNothing(), 1, dvbnamespace) )
 				self["ServiceList"].l.setList(self.servicelist)
 				self.setServiceListInfo()
@@ -444,7 +442,7 @@ class myProviderSelection(ChannelSelectionBase):
 
 	def showSatellites(self):
 		if not self.pathChangeDisabled:
-			refstr = '%s FROM SATELLITES ORDER BY satellitePosition'%(self.service_types)
+			refstr = '%s FROM SATELLITES ORDER BY satellitePosition'% self.service_types
 			if not self.preEnterPath(refstr):
 				ref = eServiceReference(refstr)
 				justSet=False

@@ -178,8 +178,7 @@ class MMIDialog(Screen):
 		self["title"].setText("")
 		self["subtitle"].setText("")
 		self["bottom"].setText("")
-		list = [ ]
-		list.append( (self.wait_text, ConfigNothing()) )
+		list = [(self.wait_text, ConfigNothing())]
 		self.updateList(list)
 
 	def showScreen(self):
@@ -302,7 +301,7 @@ class CiSelection(Screen):
 		menuList.l.setList(self.list)
 		self["entries"] = menuList
 		self["entries"].onSelectionChanged.append(self.selectionChanged)
-		self["text"] = Label(_("Slot %d")%(1))
+		self["text"] = Label(_("Slot %d")% 1)
 
 	def selectionChanged(self):
 		cur_idx = self["entries"].getCurrentIndex()

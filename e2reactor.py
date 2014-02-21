@@ -166,11 +166,11 @@ class PollReactor(posixbase.PosixReactorBase):
 
 	doIteration = doPoll
 
-	def _doReadOrWrite(self, selectable, fd, event, POLLIN, POLLOUT, log, 
-		faildict={
-			error.ConnectionDone: failure.Failure(error.ConnectionDone()),
-			error.ConnectionLost: failure.Failure(error.ConnectionLost())
-		}):
+	def _doReadOrWrite(self, selectable, fd, event, POLLIN, POLLOUT, log, faildict=None):
+		if not faildict: faildict = {
+		error.ConnectionDone: failure.Failure(error.ConnectionDone()),
+		error.ConnectionLost: failure.Failure(error.ConnectionLost())
+		}
 		why = None
 		inRead = False
 		if event & POLL_DISCONNECTED and not (event & POLLIN):

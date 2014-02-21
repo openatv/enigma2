@@ -1,4 +1,4 @@
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigText, ConfigYesNo, ConfigSubList, ConfigInteger
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigYesNo, ConfigSubList, ConfigInteger
 #from Screens.ChannelSelection import service_types_tv
 from Screens.InputBox import PinInput
 from Screens.MessageBox import MessageBox
@@ -90,7 +90,7 @@ class ParentalControl:
 		service = ref.toCompareString()
 		if (config.ParentalControl.type.getValue() == LIST_WHITELIST and not self.whitelist.has_key(service)) or (config.ParentalControl.type.getValue() == LIST_BLACKLIST and self.blacklist.has_key(service)):
 			#Check if the session pin is cached
-			if self.sessionPinCached == True:
+			if self.sessionPinCached:
 				return True
 			self.callback = callback
 			#Someone started to implement different levels of protection. Seems they were never completed
@@ -143,20 +143,20 @@ class ParentalControl:
 		#New method used in ParentalControlList: This method does not only return
 		#if a service is protected or not, it also returns, why (whitelist or blacklist, service or bouquet)
 		sImage = ""
-		if (config.ParentalControl.type.getValue() == LIST_WHITELIST):
+		if config.ParentalControl.type.getValue() == LIST_WHITELIST:
 			if self.whitelist.has_key(service):
 				if TYPE_SERVICE in self.whitelist[service]:
 					sImage = IMG_WHITESERVICE
 				else:
 					sImage = IMG_WHITEBOUQUET
-		elif (config.ParentalControl.type.getValue() == LIST_BLACKLIST):
+		elif config.ParentalControl.type.getValue() == LIST_BLACKLIST:
 			if self.blacklist.has_key(service):
 				if TYPE_SERVICE in self.blacklist[service]:
 					sImage = IMG_BLACKSERVICE
 				else:
 					sImage = IMG_BLACKBOUQUET
 		bLocked = self.getProtectionLevel(service) != -1
-		return (bLocked,sImage)
+		return bLocked,sImage
 
 	def getConfigValues(self):
 		#Read all values from configuration
@@ -203,9 +203,9 @@ class ParentalControl:
 		if result is not None and result:
 			#This is the new function of caching the service pin
 			#save last session and time of last entered pin...
-			if self.checkSessionPin == True:
+			if self.checkSessionPin:
 				self.sessionPinCached = True
-			if self.checkPinInterval == True:
+			if self.checkPinInterval:
 				self.sessionPinCached = True
 				self.sessionPinTimer.start(int(self.pinIntervalSeconds*1000))
 			self.callback(ref = service)
@@ -263,7 +263,7 @@ class ParentalControl:
 	def readServicesFromBouquet(self,sBouquetSelection,formatstring):
 		#This method gives back a list of services for a given bouquet
 		from enigma import eServiceCenter, eServiceReference
-		from Screens.ChannelSelection import service_types_tv
+
 		serviceHandler = eServiceCenter.getInstance()
 		refstr = sBouquetSelection
 		root = eServiceReference(refstr)

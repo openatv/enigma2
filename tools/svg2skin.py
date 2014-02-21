@@ -10,8 +10,6 @@
 # tested only with a single inkscape-generated SVG.
 
 import sys
-import os
-import string
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 

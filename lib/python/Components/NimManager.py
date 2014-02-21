@@ -1,10 +1,7 @@
-from Tools.HardwareInfo import HardwareInfo
-from Tools.BoundFunction import boundFunction
-
-from Components.About import about
-from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, \
-	ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, \
-	ConfigSubDict, ConfigOnOff, ConfigDateTime
+from time import localtime, mktime
+from datetime import datetime
+import xml.etree.cElementTree
+from os import path
 
 from enigma import eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteLNBParameters as lnbParam, \
@@ -13,13 +10,12 @@ from enigma import eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteRotorParameters as rotorParam, \
 	eDVBResourceManager, eDVBDB, eEnv
 
-from time import localtime, mktime
-from datetime import datetime
+from Tools.HardwareInfo import HardwareInfo
+from Components.About import about
+from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, \
+	ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, \
+	ConfigSubDict, ConfigOnOff, ConfigDateTime
 from Tools.BoundFunction import boundFunction
-
-from Tools import Directories
-import xml.etree.cElementTree
-from os import path
 
 def getConfigSatlist(orbpos, satlist):
 	default_orbpos = None
@@ -76,9 +72,10 @@ class SecConfigure:
 					sec.setVoltageMode(switchParam.HV)
 				sec.setToneMode(switchParam.HILO)
 			else:
+				# noinspection PyProtectedMember
 				sec.setVoltageMode(switchParam._14V)
 				sec.setToneMode(switchParam.OFF)
-		elif (diseqcmode == 3): # diseqc 1.2
+		elif diseqcmode == 3: # diseqc 1.2
 			if self.satposdepends.has_key(slotid):
 				for slot in self.satposdepends[slotid]:
 					tunermask |= (1 << slot)
@@ -122,7 +119,7 @@ class SecConfigure:
 
 	def getRoot(self, slotid, connto):
 		visited = []
-		while (self.NimManager.getNimConfig(connto).configMode.getValue() in ("satposdepends", "equal", "loopthrough")):
+		while self.NimManager.getNimConfig(connto).configMode.getValue() in ("satposdepends", "equal", "loopthrough"):
 			connto = int(self.NimManager.getNimConfig(connto).connectedTo.getValue())
 			if connto in visited: # prevent endless loop
 				return slotid
@@ -261,7 +258,7 @@ class SecConfigure:
 	def updateAdvanced(self, sec, slotid):
 		try:
 			if config.Nims[slotid].advanced.unicableconnected is not None:
-				if config.Nims[slotid].advanced.unicableconnected.getValue() == True:
+				if config.Nims[slotid].advanced.unicableconnected.getValue():
 					config.Nims[slotid].advanced.unicableconnectedTo.save_forced = True
 					self.linkNIMs(sec, slotid, int(config.Nims[slotid].advanced.unicableconnectedTo.getValue()))
 					connto = self.getRoot(slotid, int(config.Nims[slotid].advanced.unicableconnectedTo.getValue()))
@@ -476,8 +473,10 @@ class SecConfigure:
 						else:
 							sec.setVoltageMode(switchParam.HV)
 					elif currSat.voltage.getValue() == "13V":
+						# noinspection PyProtectedMember
 						sec.setVoltageMode(switchParam._14V)
 					elif currSat.voltage.getValue() == "18V":
+						# noinspection PyProtectedMember
 						sec.setVoltageMode(switchParam._18V)
 
 					if currSat.tonemode.getValue() == "band":
@@ -498,7 +497,8 @@ class SecConfigure:
 		self.update()
 
 class NIM(object):
-	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None, multi_type = {}, frontend_id = None, i2c = None, is_empty = False):
+	def __init__(self, slot, type, description, has_outputs=True, internally_connectable=None, multi_type=None, frontend_id=None, i2c=None, is_empty=False):
+		if not multi_type: multi_type = {}
 		self.slot = slot
 
 		if type not in ("DVB-S", "DVB-C", "DVB-T", "DVB-S2", "DVB-T2", "DVB-C2", "ATSC", None):
@@ -556,7 +556,7 @@ class NIM(object):
 				"DVB-S2": ("DVB-S", "DVB-S2"),
 				"DVB-C2": ("DVB-C", "DVB-C2"),
 				"DVB-T2": ("DVB-T", "DVB-T2"),
-				"ATSC": ("ATSC"),
+				"ATSC": "ATSC",
 			}
 		return connectable[self.getType()]
 
@@ -595,7 +595,7 @@ class NIM(object):
 			f.close()
 
 	def isMultiType(self):
-		return (len(self.multi_type) > 0)
+		return len(self.multi_type) > 0
 
 	def isEmpty(self):
 		return self.__is_empty
@@ -939,7 +939,7 @@ class NimManager:
 	# returns True if something is configured to be connected to this nim
 	# if slotid == -1, returns if something is connected to ANY nim
 	def somethingConnected(self, slotid = -1):
-		if (slotid == -1):
+		if slotid == -1:
 			connected = False
 			for id in range(self.getSlotCount()):
 				if self.somethingConnected(id):
@@ -1147,12 +1147,8 @@ def InitNimManager(nimmgr):
 				if scr[len(lscr)-i-1] == "0":
 					scr.pop()
 				else:
-					break;
-			lof=[]
-			lof.append(int(product.get("positions",1)))
-			lof.append(int(product.get("lofl",9750)))
-			lof.append(int(product.get("lofh",10600)))
-			lof.append(int(product.get("threshold",11700)))
+					break
+			lof= [int(product.get("positions", 1)), int(product.get("lofl", 9750)), int(product.get("lofh", 10600)), int(product.get("threshold", 11700))]
 			scr.append(tuple(lof))
 			m.update({product.get("name"):tuple(scr)})
 		unicablelnbproducts.update({manufacturer.get("name"):m})
@@ -1169,12 +1165,8 @@ def InitNimManager(nimmgr):
 				if scr[len(lscr)-i-1] == "0":
 					scr.pop()
 				else:
-					break;
-			lof=[]
-			lof.append(int(product.get("positions",1)))
-			lof.append(int(product.get("lofl",9750)))
-			lof.append(int(product.get("lofh",10600)))
-			lof.append(int(product.get("threshold",11700)))
+					break
+			lof= [int(product.get("positions", 1)), int(product.get("lofl", 9750)), int(product.get("lofh", 10600)), int(product.get("threshold", 11700))]
 			scr.append(tuple(lof))
 			m.update({product.get("name"):tuple(scr)})
 		unicablematrixproducts.update({manufacturer.get("name"):m})
@@ -1229,8 +1221,8 @@ def InitNimManager(nimmgr):
 		("cut", "committed, uncommitted, toneburst"), ("tcu", "toneburst, committed, uncommitted"),
 		("uct", "uncommitted, committed, toneburst"), ("tuc", "toneburst, uncommitted, commmitted")]
 	advanced_lnb_diseqc_repeat_choices = [("none", _("None")), ("one", _("One")), ("two", _("Two")), ("three", _("Three"))]
-	advanced_lnb_fast_turning_btime = mktime(datetime(1970, 1, 1, 7, 0).timetuple());
-	advanced_lnb_fast_turning_etime = mktime(datetime(1970, 1, 1, 19, 0).timetuple());
+	advanced_lnb_fast_turning_btime = mktime(datetime(1970, 1, 1, 7, 0).timetuple())
+	advanced_lnb_fast_turning_etime = mktime(datetime(1970, 1, 1, 19, 0).timetuple())
 
 	def configLOFChanged(configElement):
 		if configElement.value == "unicable":
@@ -1377,7 +1369,7 @@ def InitNimManager(nimmgr):
 
 	def configModeChanged(configMode):
 		slot_id = configMode.slot_id
- 		nim = config.Nims[slot_id]
+		nim = config.Nims[slot_id]
 		if configMode.getValue() == "advanced" and isinstance(nim.advanced, ConfigNothing):
 			# advanced config:
 			nim.advanced = ConfigSubsection()
@@ -1403,7 +1395,7 @@ def InitNimManager(nimmgr):
 				tmp.usals = ConfigYesNo(default=True)
 				tmp.rotorposition = ConfigInteger(default=1, limits=(1, 255))
 				lnbnum = 33+x-3601
-				lnb = ConfigSelection([("0", "not available"), (str(lnbnum), "LNB %d"%(lnbnum))], "0")
+				lnb = ConfigSelection([("0", "not available"), (str(lnbnum), "LNB %d"% lnbnum)], "0")
 				lnb.slot_id = slot_id
 				lnb.addNotifier(configLNBChanged, initial_call = False)
 				tmp.lnb = lnb
@@ -1413,7 +1405,7 @@ def InitNimManager(nimmgr):
 		fe_id = configElement.fe_id
 		slot_id = configElement.slot_id
 		if path.exists("/proc/stb/frontend/%d/tone_amplitude" % fe_id):
-			f = open("/proc/stb/frontend/%d/tone_amplitude" %(fe_id), "w")
+			f = open("/proc/stb/frontend/%d/tone_amplitude" % fe_id, "w")
 			f.write(configElement.value)
 			f.close()
 
@@ -1447,9 +1439,9 @@ def InitNimManager(nimmgr):
 			nim.powerMeasurement = ConfigYesNo(False)
 			nim.powerThreshold = ConfigInteger(default=hw.get_device_name() == "dm8000" and 15 or 50, limits=(0, 100))
 			nim.turningSpeed = ConfigSelection(turning_speed_choices, "fast")
-			btime = datetime(1970, 1, 1, 7, 0);
+			btime = datetime(1970, 1, 1, 7, 0)
 			nim.fastTurningBegin = ConfigDateTime(default = mktime(btime.timetuple()), formatstring = _("%H:%M"), increment = 900)
-			etime = datetime(1970, 1, 1, 19, 0);
+			etime = datetime(1970, 1, 1, 19, 0)
 			nim.fastTurningEnd = ConfigDateTime(default = mktime(etime.timetuple()), formatstring = _("%H:%M"), increment = 900)
 
 	def createCableConfig(nim, x):
@@ -1462,7 +1454,7 @@ def InitNimManager(nimmgr):
 				list.append((str(n), x[0]))
 				n += 1
 			nim.cable = ConfigSubsection()
-			nim.cable.scan_networkid = ConfigInteger(default = 0, limits = (0, 9999))
+			nim.cable.scan_networkid = ConfigInteger(default = 0, limits = (0, 99999))
 			possible_scan_types = [("bands", _("Frequency bands")), ("steps", _("Frequency steps"))]
 			if n:
 				possible_scan_types.append(("provider", _("Provider")))
@@ -1540,7 +1532,7 @@ def InitNimManager(nimmgr):
 			createTerrestrialConfig(nim, x)
 		else:
 			empty_slots += 1
-			nim.configMode = ConfigSelection(choices = { "nothing": _("disabled") }, default="nothing");
+			nim.configMode = ConfigSelection(choices = { "nothing": _("disabled") }, default="nothing")
 			if slot.type is not None:
 				print "pls add support for this frontend type!", slot.type
 #			assert False
@@ -1551,7 +1543,7 @@ def InitNimManager(nimmgr):
 		fe_id = configElement.fe_id
 		eDVBResourceManager.getInstance().setFrontendType(nimmgr.nim_slots[fe_id].frontend_id, nimmgr.nim_slots[fe_id].getType())
 		if path.exists("/proc/stb/frontend/%d/mode" % fe_id):
-			cur_type = int(open("/proc/stb/frontend/%d/mode" % (fe_id), "r").read())
+			cur_type = int(open("/proc/stb/frontend/%d/mode" % fe_id, "r").read())
 			if cur_type != int(configElement.value):
 				print "tunerTypeChanged feid %d from %d to mode %d" % (fe_id, cur_type, int(configElement.value))
 
@@ -1565,7 +1557,7 @@ def InitNimManager(nimmgr):
 
 				frontend = eDVBResourceManager.getInstance().allocateRawChannel(fe_id).getFrontend()
 				frontend.closeFrontend()
-				f = open("/proc/stb/frontend/%d/mode" % (fe_id), "w")
+				f = open("/proc/stb/frontend/%d/mode" % fe_id, "w")
 				f.write(configElement.value)
 				f.close()
 				frontend.reopenFrontend()

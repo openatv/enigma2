@@ -72,12 +72,12 @@ def calcAzimuth(SatLon, SiteLat, SiteLon, Height_over_ocean = 0):
 	return Azimuth
 
 def calcDeclination(SiteLat, Azimuth, Elevation):
-	return math.degrees(math.asin(math.sin(math.radians(Elevation)) * \
-						math.sin(math.radians(SiteLat)) + \
-						math.cos(math.radians(Elevation)) * \
-						math.cos(math.radians(SiteLat)) + \
-						math.cos(math.radians(Azimuth)) \
-						))
+	return math.degrees(math.asin(math.sin(math.radians(Elevation)) *
+								  math.sin(math.radians(SiteLat)) +
+								  math.cos(math.radians(Elevation)) *
+								  math.cos(math.radians(SiteLat)) +
+								  math.cos(math.radians(Azimuth))
+	))
 
 def calcSatHourangle(SatLon, SiteLat, SiteLon):
 	Azimuth = calcAzimuth(SatLon, SiteLat, SiteLon )

@@ -33,8 +33,10 @@ defaultInhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin",
 
 class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	"""Simple Class similar to MessageBox / ChoiceBox but used to choose a folder/pathname combination"""
-	def __init__(self, session, text = "", filename = "", currDir = None, bookmarks = None, userMode = False, windowTitle = _("Select location"), minFree = None, autoAdd = False, editDir = False, inhibitDirs = [], inhibitMounts = []):
+	def __init__(self, session, text="", filename="", currDir=None, bookmarks=None, userMode=False, windowTitle=_("Select location"), minFree=None, autoAdd=False, editDir=False, inhibitDirs=None, inhibitMounts=None):
 		# Init parents
+		if not inhibitDirs: inhibitDirs = []
+		if not inhibitMounts: inhibitMounts = []
 		Screen.__init__(self, session)
 		NumericalTextInput.__init__(self, handleTimeout = False)
 		HelpableScreen.__init__(self)
@@ -92,7 +94,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 		# Custom Action Handler
 		class LocationBoxActionMap(HelpableActionMap):
-			def __init__(self, parent, context, actions = { }, prio=0):
+			def __init__(self, parent, context, actions=None, prio=0):
+				if not actions: actions = {}
 				HelpableActionMap.__init__(self, parent, context, actions, prio)
 				self.box = parent
 
@@ -210,7 +213,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				self.session.openWithCallback(
 					boundFunction(self.removeBookmark, name),
 					MessageBox,
-					_("Do you really want to remove your bookmark of %s?") % (name),
+					_("Do you really want to remove your bookmark of %s?") % name,
 				)
 
 	def removeBookmark(self, name, ret):
@@ -221,7 +224,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			self["booklist"].setList(self.bookmarks)
 
 	def createDir(self):
-		if self["filelist"].current_directory != None:
+		if self["filelist"].current_directory is not None:
 			self.session.openWithCallback(
 				self.createDirCallback,
 				InputBox,
@@ -236,7 +239,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				if not createDir(path):
 					self.session.open(
 						MessageBox,
-						_("Creating directory %s failed.") % (path),
+						_("Creating directory %s failed.") % path,
 						type = MessageBox.TYPE_ERROR,
 						timeout = 5
 					)
@@ -244,7 +247,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			else:
 				self.session.open(
 					MessageBox,
-					_("The path %s already exists.") % (path),
+					_("The path %s already exists.") % path,
 					type = MessageBox.TYPE_ERROR,
 					timeout = 5
 				)
@@ -271,7 +274,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			if not removeDir(name):
 				self.session.open(
 					MessageBox,
-					_("Removing directory %s failed. (Maybe not empty.)") % (name),
+					_("Removing directory %s failed. (Maybe not empty.)") % name,
 					type = MessageBox.TYPE_ERROR,
 					timeout = 5
 				)
@@ -350,7 +353,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				self.session.openWithCallback(
 					self.selectConfirmed,
 					MessageBox,
-					_("There might not be enough Space on the selected Partition.\nDo you really want to continue?"),
+					_("There might not be enough space on the selected partition..\nDo you really want to continue?"),
 					type = MessageBox.TYPE_YESNO
 				)
 			# No minimum free Space means we can safely close

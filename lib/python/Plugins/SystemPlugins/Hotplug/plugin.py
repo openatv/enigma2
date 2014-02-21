@@ -31,6 +31,9 @@ def processHotplugData(self, v):
 			hotplugNotifier.remove(callback)
 
 class Hotplug(Protocol):
+	def __init__(self):
+		pass
+
 	def connectionMade(self):
 		print "HOTPLUG connection!"
 		self.received = ""

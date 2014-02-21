@@ -1,7 +1,9 @@
 from enigma import eActionMap
 
 class ActionMap:
-	def __init__(self, contexts = [ ], actions = { }, prio=0):
+	def __init__(self, contexts=None, actions=None, prio=0):
+		if not actions: actions = {}
+		if not contexts: contexts = []
 		self.actions = actions
 		self.contexts = contexts
 		self.prio = prio
@@ -57,7 +59,7 @@ class ActionMap:
 class NumberActionMap(ActionMap):
 	def action(self, contexts, action):
 		numbers = ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
-		if (action in numbers and self.actions.has_key(action)):
+		if action in numbers and self.actions.has_key(action):
 			res = self.actions[action](int(action))
 			if res is not None:
 				return res
@@ -78,7 +80,8 @@ class HelpableActionMap(ActionMap):
 	# the collected helpstrings (with correct context, action) is
 	# added to the screen's "helpList", which will be picked up by
 	# the "HelpableScreen".
-	def __init__(self, parent, context, actions = { }, prio=0):
+	def __init__(self, parent, context, actions=None, prio=0):
+		if not actions: actions = {}
 		alist = [ ]
 		adict = { }
 		for (action, funchelp) in actions.iteritems():
@@ -106,7 +109,8 @@ class HelpableNumberActionMap(ActionMap):
 	# the collected helpstrings (with correct context, action) is
 	# added to the screen's "helpList", which will be picked up by
 	# the "HelpableScreen".
-	def __init__(self, parent, context, actions = { }, prio=0):
+	def __init__(self, parent, context, actions=None, prio=0):
+		if not actions: actions = {}
 		alist = [ ]
 		adict = { }
 		for (action, funchelp) in actions.iteritems():
@@ -123,7 +127,7 @@ class HelpableNumberActionMap(ActionMap):
 
 	def action(self, contexts, action):
 		numbers = ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
-		if (action in numbers and self.actions.has_key(action)):
+		if action in numbers and self.actions.has_key(action):
 			res = self.actions[action](int(action))
 			if res is not None:
 				return res

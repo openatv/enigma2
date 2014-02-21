@@ -1,6 +1,6 @@
-from config import config, ConfigSubsection, ConfigSelection, ConfigNothing
+from config import config, ConfigSelection, ConfigNothing
 from Components.SystemInfo import SystemInfo
-from Tools.Directories import fileExists
+
 
 class WOL:
 	def __init__(self):
@@ -15,7 +15,8 @@ class WOL:
 def Init():
 	if SystemInfo["WOL"]:
 		def setWOLmode(value):
-			iwol.setWolState(config.network.wol.value);
+			iwol.setWolState(config.network.wol.value)
+
 		iwol = WOL()
 		config.network.wol = ConfigSelection([("disable", _("No")), ("enable", _("Yes"))], default = "disable")
 		config.network.wol.addNotifier(setWOLmode, initial_call=True)

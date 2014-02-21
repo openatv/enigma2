@@ -358,8 +358,8 @@ class ConfigSelection(ConfigElement):
 		else:
 			descr = self._descr = self.description[self.value]
 		if descr:
-			return ("text", _(descr))
-		return ("text", descr)
+			return "text", _(descr)
+		return "text", descr
 
 	# HTML
 	def getHTML(self, id):
@@ -371,7 +371,7 @@ class ConfigSelection(ConfigElement):
 			else:
 				checked = ''
 			res += '<input type="radio" name="' + id + '" ' + checked + 'value="' + v + '">' + descr + "</input></br>\n"
-		return res;
+		return res
 
 	def unsafeAssign(self, value):
 		# setValue does check if value is in choices. This is safe enough.
@@ -413,13 +413,13 @@ class ConfigBoolean(ConfigElement):
 		TrueIcon = LoadPixmap(cached=True, path=switchPixmap['menu_on'])
 		if not self.grafic:
 			if descr:
-			    return ('text', _(descr))
-			return ('text', descr)
+			    return "text", _(descr)
+			return "text", _(descr)
 		elif not self.value:
 			return ('bolean', FalseIcon)
 		else:
 			return ('bolean', TrueIcon)
-
+		      
 	def tostring(self, value):
 		if not value:
 			return "false"
@@ -475,9 +475,9 @@ class ConfigDateTime(ConfigElement):
 
 	def handleKey(self, key):
 		if key == KEY_LEFT:
-			self.value = self.value - self.increment
+			self.value -= self.increment
 		elif key == KEY_RIGHT:
-			self.value = self.value + self.increment
+			self.value += self.increment
 		elif key == KEY_HOME or key == KEY_END:
 			self.value = self.default
 
@@ -485,7 +485,7 @@ class ConfigDateTime(ConfigElement):
 		return strftime(self.formatstring, localtime(self.value))
 
 	def getMulti(self, selected):
-		return ("text", strftime(self.formatstring, localtime(self.value)))
+		return "text", strftime(self.formatstring, localtime(self.value))
 
 	def fromstring(self, val):
 		return int(val)
@@ -615,7 +615,7 @@ class ConfigSequence(ConfigElement):
 	def genText(self):
 		value = ""
 		mPos = self.marked_pos
-		num = 0;
+		num = 0
 		for i in self._value:
 			if value:	#fixme no heading separator possible
 				value += self.seperator
@@ -626,7 +626,7 @@ class ConfigSequence(ConfigElement):
 			else:
 				value += (self.censor_char * len(str(self.limits[num][1])))
 			num += 1
-		return (value, mPos)
+		return value, mPos
 
 	def getText(self):
 		(value, mPos) = self.genText()
@@ -637,9 +637,9 @@ class ConfigSequence(ConfigElement):
 			# only mark cursor when we are selected
 			# (this code is heavily ink optimized!)
 		if self.enabled:
-			return ("mtext"[1-selected:], value, [mPos])
+			return "mtext"[1-selected:], value, [mPos]
 		else:
-			return ("text", value)
+			return "text", value
 
 	def tostring(self, val):
 		return self.seperator.join([self.saveSingle(x) for x in val])
@@ -720,17 +720,17 @@ class ConfigIP(ConfigSequence):
 			if value:
 				value += self.seperator
 			value += str(i)
-		leftPos = sum(block_strlen[:(self.marked_block)])+self.marked_block
+		leftPos = sum(block_strlen[:self.marked_block])+self.marked_block
 		rightPos = sum(block_strlen[:(self.marked_block+1)])+self.marked_block
 		mBlock = range(leftPos, rightPos)
-		return (value, mBlock)
+		return value, mBlock
 
 	def getMulti(self, selected):
 		(value, mBlock) = self.genText()
 		if self.enabled:
-			return ("mtext"[1-selected:], value, mBlock)
+			return "mtext"[1-selected:], value, mBlock
 		else:
-			return ("text", value)
+			return "text", value
 
 	def getHTML(self, id):
 		# we definitely don't want leading zeros
@@ -754,7 +754,7 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 		self.overwrite = 17
 		self.help_window = None
 		self.value = self.last_value = self.default = default
-		self.useableChars = ('0123456789ABCDEF')
+		self.useableChars = '0123456789ABCDEF'
 
 	def validateMarker(self):
 		textlen = len(self.text)
@@ -843,13 +843,13 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 				mark = range(0, min(self.visible_width, len(self.text)))
 			else:
 				mark = [self.marked_pos-self.offset]
-			return ("mtext"[1-selected:], self.text[self.offset:self.offset+self.visible_width].encode("utf-8")+" ", mark)
+			return "mtext"[1-selected:], self.text[self.offset:self.offset+self.visible_width].encode("utf-8")+" ", mark
 		else:
 			if self.allmarked:
 				mark = range(0, len(self.text))
 			else:
 				mark = [self.marked_pos]
-			return ("mtext"[1-selected:], self.text.encode("utf-8")+" ", mark)
+			return "mtext"[1-selected:], self.text.encode("utf-8")+" ", mark
 
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
@@ -1119,13 +1119,13 @@ class ConfigText(ConfigElement, NumericalTextInput):
 				mark = range(0, min(self.visible_width, len(self.text)))
 			else:
 				mark = [self.marked_pos-self.offset]
-			return ("mtext"[1-selected:], self.text[self.offset:self.offset+self.visible_width].encode("utf-8")+" ", mark)
+			return "mtext"[1-selected:], self.text[self.offset:self.offset+self.visible_width].encode("utf-8")+" ", mark
 		else:
 			if self.allmarked:
 				mark = range(0, len(self.text))
 			else:
 				mark = [self.marked_pos]
-			return ("mtext"[1-selected:], self.text.encode("utf-8")+" ", mark)
+			return "mtext"[1-selected:], self.text.encode("utf-8")+" ", mark
 
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
@@ -1160,7 +1160,7 @@ class ConfigPassword(ConfigText):
 		mtext, text, mark = ConfigText.getMulti(self, selected)
 		if self.hidden:
 			text = len(text) * self.censor_char
-		return (mtext, text, mark)
+		return mtext, text, mark
 
 	def onSelect(self, session):
 		ConfigText.onSelect(self, session)
@@ -1281,13 +1281,13 @@ class ConfigDirectory(ConfigText):
 			return ConfigText.getValue(self)
 
 	def setValue(self, val):
-		if val == None:
+		if val is None:
 			val = ""
 		ConfigText.setValue(self, val)
 
 	def getMulti(self, selected):
 		if self.text == "":
-			return ("mtext"[1-selected:], _("List of storage devices"), range(0))
+			return "mtext"[1-selected:], _("List of storage devices"), range(0)
 		else:
 			return ConfigText.getMulti(self, selected)
 
@@ -1328,7 +1328,7 @@ class ConfigSlider(ConfigElement):
 
 	def getMulti(self, selected):
 		self.checkValues()
-		return ("slider", self.value, self.max)
+		return "slider", self.value, self.max
 
 	def fromstring(self, value):
 		return int(value)
@@ -1348,7 +1348,8 @@ class ConfigSatlist(ConfigSelection):
 	orbital_position = property(getOrbitalPosition)
 
 class ConfigSet(ConfigElement):
-	def __init__(self, choices, default = []):
+	def __init__(self, choices, default=None):
+		if not default: default = []
 		ConfigElement.__init__(self)
 		if isinstance(choices, list):
 			choices.sort()
@@ -1399,7 +1400,7 @@ class ConfigSet(ConfigElement):
 
 	def getMulti(self, selected):
 		if not selected or self.pos == -1:
-			return ("text", self.genString(self.value))
+			return "text", self.genString(self.value)
 		else:
 			tmp = self.value[:]
 			ch = self.choices[self.pos]
@@ -1415,7 +1416,7 @@ class ConfigSet(ConfigElement):
 			else:
 				chstr = "("+self.description[ch]+")"
 			len_val1 = len(val1)
-			return ("mtext", val1+chstr+val2, range(len_val1, len_val1 + len(chstr)))
+			return "mtext", val1+chstr+val2, range(len_val1, len_val1 + len(chstr))
 
 	def onDeselect(self, session):
 		self.pos = -1
@@ -1432,7 +1433,8 @@ class ConfigSet(ConfigElement):
 	description = property(lambda self: descriptionList(self.choices.choices, choicesList.LIST_TYPE_LIST))
 
 class ConfigLocations(ConfigElement):
-	def __init__(self, default = [], visible_width = False):
+	def __init__(self, default=None, visible_width=False):
+		if not default: default = []
 		ConfigElement.__init__(self)
 		self.visible_width = visible_width
 		self.pos = -1
@@ -1498,7 +1500,7 @@ class ConfigLocations(ConfigElement):
 		for x in self.locations:
 			if x[1] == mp:
 				x[2] = True
-			elif x[1] == None and fileExists(x[0]):
+			elif x[1] is None and fileExists(x[0]):
 				x[1] = self.getMountpoint(x[0])
 				x[2] = True
 
@@ -1550,9 +1552,9 @@ class ConfigLocations(ConfigElement):
 		if not selected:
 			valstr = " ".join(self.value)
 			if self.visible_width and len(valstr) > self.visible_width:
-				return ("text", valstr[0:self.visible_width])
+				return "text", valstr[0:self.visible_width]
 			else:
-				return ("text", valstr)
+				return "text", valstr
 		else:
 			i = 0
 			valstr = ""
@@ -1570,9 +1572,9 @@ class ConfigLocations(ConfigElement):
 					off = 0
 				else:
 					off = min(ind1+1-self.visible_width/2, len(valstr)-self.visible_width)
-				return ("mtext", valstr[off:off+self.visible_width], range(ind1-off,ind2-off))
+				return "mtext", valstr[off:off+self.visible_width], range(ind1-off,ind2-off)
 			else:
-				return ("mtext", valstr, range(ind1,ind2))
+				return "mtext", valstr, range(ind1,ind2)
 
 	def onDeselect(self, session):
 		self.pos = -1
@@ -1833,6 +1835,9 @@ config = Config()
 config.misc = ConfigSubsection()
 
 class ConfigFile:
+	def __init__(self):
+		pass
+
 	CONFIG_FILE = resolveFilename(SCOPE_CONFIG, "settings")
 
 	def load(self):
@@ -1968,17 +1973,17 @@ class ConfigCECAddress(ConfigSequence):
 			if value:
 				value += self.seperator
 			value += str(i)
-		leftPos = sum(block_strlen[:(self.marked_block)])+self.marked_block
+		leftPos = sum(block_strlen[:self.marked_block])+self.marked_block
 		rightPos = sum(block_strlen[:(self.marked_block+1)])+self.marked_block
 		mBlock = range(leftPos, rightPos)
-		return (value, mBlock)
+		return value, mBlock
 
 	def getMulti(self, selected):
 		(value, mBlock) = self.genText()
 		if self.enabled:
-			return ("mtext"[1-selected:], value, mBlock)
+			return "mtext"[1-selected:], value, mBlock
 		else:
-			return ("text", value)
+			return "text", value
 
 	def getHTML(self, id):
 		# we definitely don't want leading zeros

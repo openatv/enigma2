@@ -1,15 +1,14 @@
+from enigma import eListboxPythonMultiContent, eListbox, gFont, \
+	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_TOP, RT_VALIGN_BOTTOM
+
 from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
-
 from Tools.FuzzyDate import FuzzyTime
-
-from enigma import eListboxPythonMultiContent, eListbox, gFont, \
-	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_VALIGN_BOTTOM
 from Tools.LoadPixmap import LoadPixmap
 from timer import TimerEntry
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN, SCOPE_ACTIVE_SKIN
-
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from PowerTimer import AFTEREVENT, TIMERTYPE
+
 
 class PowerTimerList(HTMLComponent, GUIComponent, object):
 #
@@ -68,9 +67,9 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 				repeatedtext = []
 				flags = timer.repeated
 				for x in (0, 1, 2, 3, 4, 5, 6):
-					if (flags & 1 == 1):
+					if flags & 1 == 1:
 						repeatedtext.append(days[x])
-					flags = flags >> 1
+					flags >>= 1
 				repeatedtext = ", ".join(repeatedtext)
 				if self.iconRepeat:
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 25, 20, 20, self.iconRepeat))

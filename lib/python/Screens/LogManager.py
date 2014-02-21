@@ -26,13 +26,15 @@ from email.Utils import formatdate
 
 _session = None
 
-def get_size(self, start_path = '.'):
+def get_size(start_path=None):
 	total_size = 0
-	for dirpath, dirnames, filenames in walk(start_path):
-		for f in filenames:
-			fp = path.join(dirpath, f)
-			total_size += path.getsize(fp)
-	return total_size
+	if start_path:
+		for dirpath, dirnames, filenames in walk(start_path):
+			for f in filenames:
+				fp = path.join(dirpath, f)
+				total_size += path.getsize(fp)
+		return total_size
+	return 0
 
 def AutoLogManager(session=None, **kwargs):
 	global debuglogcheckpoller
@@ -68,7 +70,8 @@ class LogManagerPoller:
 
 	def TrashTimerJob(self):
 		print '[LogManager] Trash Poll Started'
-		Components.Task.job_manager.AddJob(self.createTrashJob())
+		self.JobTrash()
+		# Components.Task.job_manager.AddJob(self.createTrashJob())
 
 	def createTrimJob(self):
 		job = Components.Task.Job(_("LogManager"))

@@ -160,7 +160,7 @@ class ModemSetup(Screen):
 	def __layoutFinished(self):
 		global conn
 		if conn.running():
-			self["state"].setText(_("Connected!"));
+			self["state"].setText(_("Connected!"))
 			self.green_function = NONE
 			self.red_function = DISCONNECT
 		else:
@@ -188,7 +188,7 @@ class ModemSetup(Screen):
 			gateway = getDefaultGateway()
 			self["state"].setText(_("Dialing:"))
 			system("route del default")
-			system("modprobe ppp_async");
+			system("modprobe ppp_async")
 			self.stateTimer.start(1000,False)
 			setOptions(self.phone.getText(), self.username.getText())
 			setSecretString(self.username.getText() + ' * ' + self.password.getText())
@@ -242,7 +242,7 @@ class ModemSetup(Screen):
 			self["state"].setText(tmp)
 		if text.find("PAP authentication succeeded") != -1:
 			tmp = self["state"].getText()
-			tmp += "OK\n";
+			tmp += "OK\n"
 			self["state"].setText(tmp)
 			self.stateTimer.stop()
 		if text.find("ip-up finished") != -1:

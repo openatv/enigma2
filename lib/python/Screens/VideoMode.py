@@ -1,18 +1,20 @@
+from os import path
+
+from enigma import iPlayableService, iServiceInformation, eTimer
+
 from Screens.Screen import Screen
 from Components.About import about
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, configfile, getConfigListEntry, ConfigBoolean, ConfigNothing, ConfigSlider
+from Components.config import config, configfile, getConfigListEntry
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.ServiceEventTracker import ServiceEventTracker
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from enigma import iPlayableService, iServiceInformation, eTimer
-from os import path
-
 from Components.AVSwitch import iAVSwitch
+
 
 resolutionlabel = None
 
@@ -71,9 +73,9 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Automatic resolution"), config.av.autores,_("If enabled the output resolution of the box will try to match the resolution of the video contents resolution")))
 			if config.av.autores.getValue() in ('all', 'hd'):
 				self.list.append(getConfigListEntry(_("Delay time"), config.av.autores_delay,_("Set the time before checking video source for resolution infomation.")))
-				self.list.append(getConfigListEntry(_("Force de-interlace"), config.av.autores_deinterlace,_("If enabled the video wil always be de-interlaced.")))
+				self.list.append(getConfigListEntry(_("Force de-interlace"), config.av.autores_deinterlace,_("If enabled the video will always be de-interlaced.")))
 				self.list.append(getConfigListEntry(_("Automatic resolution label"), config.av.autores_label_timeout,_("Allows you to adjust the amount of time the resolution infomation display on screen.")))
-				if config.av.autores.getValue() in ('hd'):
+				if config.av.autores.getValue() in 'hd':
 					self.list.append(getConfigListEntry(_("Show SD as"), config.av.autores_sd,_("This option allows you to choose how to display standard defintion video on your TV.")))
 				self.list.append(getConfigListEntry(_("Show 720p 24fps as"), config.av.autores_720p24,_("This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)")))
 				self.list.append(getConfigListEntry(_("Show 1080p 24fps as"), config.av.autores_1080p24,_("This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)")))
@@ -129,13 +131,13 @@ class VideoSetup(Screen, ConfigListScreen):
 			))
 
 			if SystemInfo["Can3DSurround"]:
-				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d,_("This option configures you can enable 3D Surround Sound.")))
+				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d,_("This option allows you to enable 3D Surround Sound.")))
 
 			if SystemInfo["CanAutoVolume"]:
 				self.list.append(getConfigListEntry(_("Audio Auto Volume Level"), config.av.autovolume,_("This option configures you can set Auto Volume Level.")))
 
 			if SystemInfo["Canedidchecking"]:
-				self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking,_("This option configures you can Bypass HDMI EDID check")))
+				self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking,_("This option allows you to bypass HDMI EDID check")))
 
 #		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
 #			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option configures the picture sharpness.")))
@@ -219,7 +221,7 @@ class AutoVideoModeLabel(Screen):
 	def hide_me(self):
 		idx = config.av.autores_label_timeout.index
 		if idx:
-			idx = idx+4
+			idx += 4
 			self.hideTimer.start(idx*1000, True)
 
 class AutoVideoMode(Screen):
@@ -322,9 +324,9 @@ class AutoVideoMode(Screen):
 			if video_height != -1:
 				if video_height > 720 or video_width > 1280:
 					new_res = "1080"
-				elif (video_height > 576 and video_height <= 720) or video_width > 1024:
+				elif (576 < video_height <= 720) or video_width > 1024:
 					new_res = "720"
-				elif (video_height > 480 and video_height <= 576) or video_width > 720 or video_rate in (25000, 23976, 24000):
+				elif (480 < video_height <= 576) or video_width > 720 or video_rate in (25000, 23976, 24000):
 					new_res = "576"
 				else:
 					new_res = "480"
@@ -378,7 +380,7 @@ class AutoVideoMode(Screen):
 				if (config.av.autores_deinterlace.getValue() and about.getCPUString() in 'BCM7346B2, BCM7425B2') or config.av.autores_deinterlace.getValue() and about.getCPUString() not in 'BCM7346B2, BCM7425B2' and not config.av.autores_sd.getValue() in '1080i':
 					new_mode = config.av.autores_sd.getValue().replace('i','p')+new_rate
 				else:
-					if new_pol in ('p'):
+					if new_pol in 'p':
 						new_mode = config.av.autores_sd.getValue().replace('i','p')+new_rate
 					else:
 						new_mode = config.av.autores_sd.getValue()+new_rate

@@ -6,7 +6,9 @@ from Components.Sources.StaticText import StaticText
 import enigma
 
 class ChoiceBox(Screen):
-	def __init__(self, session, title = "", list = [], keys = None, selection = 0, skin_name = [], text = ""):
+	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text=""):
+		if not list: list = []
+		if not skin_name: skin_name = []
 		Screen.__init__(self, session)
 
 		if isinstance(skin_name, str):
@@ -25,7 +27,7 @@ class ChoiceBox(Screen):
 					labeltext = ""
 					while len(temptext) >= count:
 						if labeltext:
-							labeltext = labeltext + '\n'
+							labeltext += '\n'
 						labeltext = labeltext + temptext[count-1]
 						count += 1
 						print 'count',count
@@ -198,7 +200,7 @@ class ChoiceBox(Screen):
 		pos = 0
 		summarytext = ""
 		for entry in self.summarylist:
-			if pos > curpos-2 and pos < curpos+5:
+			if curpos-2 < pos < curpos+5:
 				if pos == curpos:
 					summarytext += ">"
 					self["summary_selection"].setText(entry[1])

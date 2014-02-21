@@ -1,3 +1,7 @@
+from time import localtime, mktime, time, strftime
+
+from enigma import eEPGCache, eTimer, eServiceReference, ePoint
+
 from Screens.Screen import Screen
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.ChoiceBox import ChoiceBox
@@ -15,32 +19,19 @@ from Components.Sources.Event import Event
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from Screens.TimerEntry import TimerEntry
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.BoundFunction import boundFunction
-from time import localtime, mktime, time, strftime
-from os import path
-from enigma import eEPGCache, eTimer, eServiceReference, ePoint
+
 
 class EventViewContextMenu(Screen):
-	def __init__(self, session, service, event):
+	def __init__(self, session, menu):
 		Screen.__init__(self, session)
 		self.setTitle(_('Event view'))
-		self.event = event
-		self.service = service
-		self.eventname = event.getEventName()
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 			{
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick
 			})
-
-		menu = []
-
-		for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
-			#only list service or event specific eventinfo plugins here, no servelist plugins
-			if 'servicelist' not in p.__call__.func_code.co_varnames:
-				menu.append((p.name, boundFunction(self.runPlugin, p)))
 
 		self["menu"] = MenuList(menu)
 
@@ -49,9 +40,6 @@ class EventViewContextMenu(Screen):
 
 	def cancelClick(self):
 		self.close(False)
-
-	def runPlugin(self, plugin):
-		plugin(session=self.session, service=self.service, event=self.event, eventName=self.eventname)
 
 class EventViewBase:
 	ADD_TIMER = 1
@@ -316,7 +304,16 @@ class EventViewBase:
 
 	def doContext(self):
 		if self.event is not None:
-			self.session.open(EventViewContextMenu, self.currentService, self.event)
+			menu = []
+			for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
+				#only list service or event specific eventinfo plugins here, no servelist plugins
+				if 'servicelist' not in p.__call__.func_code.co_varnames:
+					menu.append((p.name, boundFunction(self.runPlugin, p)))
+			if menu:
+				self.session.open(EventViewContextMenu, menu)
+
+	def runPlugin(self, plugin):
+		plugin(session=self.session, service=self.currentService, event=self.event, eventName=self.event.getEventName())
 
 class EventViewSimple(Screen, EventViewBase):
 	def __init__(self, session, event, ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None, skin='EventViewSimple'):

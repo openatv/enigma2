@@ -4,7 +4,7 @@ from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import pathExists, SCOPE_ACTIVE_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getMachineProcModel
 
 searchPaths = []
 lastLcdPiconPath = None
@@ -20,7 +20,7 @@ def initLcdPiconPaths():
 def onMountpointAdded(mountpoint):
 	global searchPaths
 	try:
-		if getBoxType() == 'vuultimo' or getBoxType().startswith("ini-90"):
+		if getBoxType() == 'vuultimo' or getMachineProcModel().startswith("ini-90"):
 			path = os.path.join(mountpoint, 'piconlcd') + '/'
 		else:
 			path = os.path.join(mountpoint, 'picon') + '/'
@@ -35,7 +35,7 @@ def onMountpointAdded(mountpoint):
 
 def onMountpointRemoved(mountpoint):
 	global searchPaths
-	if getBoxType() == 'vuultimo' or getBoxType().startswith("ini-90"):
+	if getBoxType() == 'vuultimo' or getMachineProcModel().startswith("ini-90"):
 		path = os.path.join(mountpoint, 'piconlcd') + '/'
 	else:
 		path = os.path.join(mountpoint, 'picon') + '/'
@@ -84,10 +84,11 @@ def getLcdPiconName(serviceName):
 	pngname = findLcdPicon(sname)
 	if not pngname:
 		fields = sname.split('_', 3)
-		if len(fields) > 2 and fields[2] != '2':
-			#fallback to 1 for tv services with nonstandard servicetypes
+		if len(fields) > 2 and fields[2] != '2': #fallback to 1 for tv services with nonstandard servicetypes
 			fields[2] = '1'
-			pngname = findLcdPicon('_'.join(fields))
+		if len(fields) > 0 and fields[0] == '4097': #fallback to 1 for IPTV streams
+			fields[0] = '1'
+		pngname = findLcdPicon('_'.join(fields))
 	return pngname
 
 class LcdPicon(Renderer):
@@ -98,20 +99,20 @@ class LcdPicon(Renderer):
 		self.piconsize = (0,0)
 		self.pngname = ""
 		self.lastPath = None
-		if getBoxType() == 'vuultimo' or getBoxType().startswith("ini-90"):
+		if getBoxType() == 'vuultimo' or getMachineProcModel().startswith("ini-90"):
 			pngname = findLcdPicon("lcd_picon_default")
 		else:
 			pngname = findLcdPicon("picon_default")
 		self.defaultpngname = None
 		if not pngname:
-			if getBoxType() == 'vuultimo' or getBoxType().startswith("ini-90"):
+			if getBoxType() == 'vuultimo' or getMachineProcModel().startswith("ini-90"):
 				tmp = resolveFilename(SCOPE_ACTIVE_SKIN, "lcd_picon_default.png")
 			else:
 				tmp = resolveFilename(SCOPE_ACTIVE_SKIN, "picon_default.png")
 			if pathExists(tmp):
 				pngname = tmp
 			else:
-				if getBoxType() == 'vuultimo' or getBoxType().startswith("ini-90"):
+				if getBoxType() == 'vuultimo' or getMachineProcModel().startswith("ini-90"):
 					pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "lcd_picon_default.png")
 				else:
 					pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "picon_default.png")
@@ -144,7 +145,7 @@ class LcdPicon(Renderer):
 
 	def updatePicon(self, picInfo=None):
 		ptr = self.PicLoad.getData()
-		if ptr != None:
+		if ptr is not None:
 			self.instance.setPixmap(ptr.__deref__())
 			self.instance.show()
 

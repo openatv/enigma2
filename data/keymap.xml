@@ -1,3 +1,4 @@
+<!--suppress XmlUnboundNsPrefix -->
 <keymap>
 	<map context="ListboxActions">
 		<device name="keyboard">
@@ -325,6 +326,41 @@
 		<key id="KEY_RIGHT" mapto="seekFwd" flags="b" />
 		<key id="KEY_LEFT" mapto="seekBackManual" flags="l" />
 		<key id="KEY_RIGHT" mapto="seekFwdManual" flags="l" />
+
+		<key id="KEY_OK" mapto="unPauseService" flags="m" />
+
+		<key id="KEY_1" mapto="seekdef:1" flags="m" />
+		<key id="KEY_3" mapto="seekdef:3" flags="m" />
+		<key id="KEY_4" mapto="seekdef:4" flags="m" />
+		<key id="KEY_6" mapto="seekdef:6" flags="m" />
+		<key id="KEY_7" mapto="seekdef:7" flags="m" />
+		<key id="KEY_9" mapto="seekdef:9" flags="m" />
+	</map>
+
+	<map context="MovielistSeekActions">
+		<device name="dreambox advanced remote control (native)">
+			<key id="KEY_PREVIOUSSONG" mapto="seekBack" flags="b" />
+			<key id="KEY_NEXTSONG" mapto="seekFwd" flags="b" />
+			<key id="KEY_PREVIOUSSONG" mapto="SeekbarBack" flags="l" />
+			<key id="KEY_NEXTSONG" mapto="SeekbarFwd" flags="l" />
+		</device>
+		<device name="dreambox remote control (native)">
+			<key id="KEY_YELLOW" mapto="pauseService" flags="b" />
+			<key id="KEY_GREEN" mapto="playpauseService" flags="b" />
+			<key id="KEY_RED" mapto="seekBack" flags="b" />
+			<key id="KEY_BLUE" mapto="seekFwd" flags="b" />
+			<key id="KEY_RED" mapto="SeekbarBack" flags="l" />
+			<key id="KEY_BLUE" mapto="SeekbarFwd" flags="l" />
+		</device>
+
+		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m" />
+		<key id="KEY_PAUSE" mapto="pauseService" flags="m" />
+		<key id="KEY_PLAY" mapto="playpauseService" flags="m" />
+
+		<key id="KEY_REWIND" mapto="seekBack" flags="b" />
+		<key id="KEY_FASTFORWARD" mapto="seekFwd" flags="b" />
+		<key id="KEY_REWIND" mapto="SeekbarBack" flags="l" />
+		<key id="KEY_FASTFORWARD" mapto="SeekbarFwd" flags="l" />
 
 		<key id="KEY_OK" mapto="unPauseService" flags="m" />
 
