@@ -1,4 +1,5 @@
 from Screens.Screen import Screen
+from Components.Label import Label
 from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import NumberActionMap
 from Components.config import config, getConfigListEntry, ConfigNothing, NoSave, ConfigPIN
@@ -49,8 +50,11 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
 
+		self["key_red"] = Label(_("Exit"))
+		
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
 		{
+		  "red": self.keyCancel,
 		  "cancel": self.keyCancel,
 		  "save": self.keyCancel,
 		  "menu": self.closeRecursive,

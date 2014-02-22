@@ -205,7 +205,6 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.setup_title = _("OSD 3D Setup")
-		self.skinName = "Setup"
 		self["status"] = StaticText()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()

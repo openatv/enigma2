@@ -46,11 +46,12 @@ class MMIDialog(Screen):
 		self["subtitle"] = Label("")
 		self["bottom"] = Label("")
 		self["entries"] = ConfigList([ ])
-
+		self["key_red"] = Label(_("Exit"))
 		self["actions"] = NumberActionMap(["SetupActions"],
 			{
 				"ok": self.okbuttonClick,
 				"cancel": self.keyCancel,
+				"red": self.keyCancel,
 				#for PIN
 				"left": self.keyLeft,
 				"right": self.keyRight,
@@ -278,11 +279,13 @@ class CiSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.setTitle(_("Common Interface"))
-		self["actions"] = ActionMap(["OkCancelActions", "CiSelectionActions"],
+		self["key_red"] = Label(_("Exit"))
+		self["actions"] = ActionMap(["SetupActions", "OkCancelActions", "CiSelectionActions"],
 			{
 				"left": self.keyLeft,
 				"right": self.keyLeft,
 				"ok": self.okbuttonClick,
+				"red": self.cancel,
 				"cancel": self.cancel
 			},-1)
 
