@@ -4,7 +4,7 @@ from shutil import move
 import commands
 import time
 
-from enigma import eTimer
+from enigma import eTimer, eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -1813,10 +1813,10 @@ class NetworkFtp(Screen):
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
 		self['key_green'] = Label(_("Enable"))
-		self['key_red'] = Label()
+		self['key_red'] = Label(_("Exit"))
 		self.my_ftp_active = False
 		self.Console = Console()
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'green': self.FtpStartStop})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {"red": self.close, 'ok': self.close, 'back': self.close, 'green': self.FtpStartStop})
 		self.onLayoutFinish.append(self.updateService)
 
 	def createSummary(self):
@@ -2369,10 +2369,10 @@ class NetworkTelnet(Screen):
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
 		self['key_green'] = Label(_("Enable"))
-		self['key_red'] = Label()
+		self['key_red'] = Label(_("Exit"))
 		self.Console = Console()
 		self.my_telnet_active = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'green': self.TelnetStartStop})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {"red": self.close, 'ok': self.close, 'back': self.close, 'green': self.TelnetStartStop})
 		self.onLayoutFinish.append(self.updateService)
 
 	def createSummary(self):
@@ -2631,8 +2631,9 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.selectionChanged)
 		Screen.setTitle(self, _("Inadyn Setup"))
-		self['key_red'] = Label(_("Save"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.saveIna, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
+		self['key_red'] = Label(_("Exit"))
+		self['key_green'] = Label(_("Save"))
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.close, 'green': self.saveIna, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
@@ -2707,10 +2708,10 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 	def KeyText(self):
 		sel = self['config'].getCurrent()
 		if sel:
-			if not (sel[0] == _("Time Update in Minutes") + ':'):
-				if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-					if self["config"].getCurrent()[1].help_window.instance is not None:
-						self["config"].getCurrent()[1].help_window.hide()
+			#if not (sel[0] == _("Time Update in Minutes") + ':'):
+				#if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+					#if self["config"].getCurrent()[1].help_window.instance is not None:
+						#self["config"].getCurrent()[1].help_window.hide()
 			self.vkvar = sel[0]
 			if self.vkvar == _("Username") + ':' or self.vkvar == _("Password") + ':' or self.vkvar == _("Alias") + ':' or self.vkvar == _("System") + ':':
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -3571,9 +3572,9 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 	def KeyText(self):
 		sel = self['config'].getCurrent()
 		if sel:
-			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-				if self["config"].getCurrent()[1].help_window.instance is not None:
-					self["config"].getCurrent()[1].help_window.hide()
+			#if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+				#if self["config"].getCurrent()[1].help_window.instance is not None:
+					#self["config"].getCurrent()[1].help_window.hide()
 			self.vkvar = sel[0]
 			if self.vkvar == _("Name") + ":" or self.vkvar == _("Share Folder's") + ":":
 				from Screens.VirtualKeyBoard import VirtualKeyBoard

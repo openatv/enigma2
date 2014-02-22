@@ -238,7 +238,7 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Language Settings",_("Setup Your language"),_("Setup menu language")))
 		self.sublist.append(QuickSubMenuEntryComponent("Time Settings",_("Time Settings"),_("Setup date and time")))
 		if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
-			self.sublist.append(QuickSubMenuEntryComponent("Display Settings",_("Display Setup"),_("Setup your display")))
+			self.sublist.append(QuickSubMenuEntryComponent("Front Panel Settings",_("Front Panel Setup"),_("Setup your display")))
 		if SystemInfo["GraphicLCD"]: 
 			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Setup",_("Skin Setup"),_("Setup your LCD")))
 		self.sublist.append(QuickSubMenuEntryComponent("HDMI-CEC",_("Consumer Electronics Control"),_("Control up to ten CEC-enabled devices connected through HDMI")))
@@ -249,8 +249,8 @@ class GeneralSetup(Screen):
 	def Qnetwork(self):
 		self.sublist = []
 		#self.sublist.append(QuickSubMenuEntryComponent("Network Wizard",_("Configure your Network"),_("Use the Networkwizard to configure your Network. The wizard will help you to setup your network")))
-		if len(self.adapters) > 1: # show only adapter selection if more as 1 adapter is installed
-			self.sublist.append(QuickSubMenuEntryComponent("Network Adapter Selection",_("Select Lan/Wlan"),_("Setup your network interface. If no Wlan stick is used, you only can select Lan")))
+		#if len(self.adapters) > 1: # show only adapter selection if more as 1 adapter is installed, no need as ETH0 is always present
+		self.sublist.append(QuickSubMenuEntryComponent("Network Adapter Selection",_("Select Lan/Wlan"),_("Setup your network interface. If no Wlan stick is used, you only can select Lan")))
 		if not self.activeInterface == None: # show only if there is already a adapter up
 			self.sublist.append(QuickSubMenuEntryComponent("Network Interface",_("Setup interface"),_("Setup network. Here you can setup DHCP, IP, DNS")))
 		self.sublist.append(QuickSubMenuEntryComponent("Network Restart",_("Restart network to with current setup"),_("Restart network and remount connections")))
@@ -311,14 +311,17 @@ class GeneralSetup(Screen):
 
 ######## Tuner Menu ##############################
 	def Qtuner(self):
+		nimList = nimmanager.getNimListOfType("DVB-S")
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Tuner Configuration",_("Setup tuner(s)"),_("Setup each tuner for your satellite system")))
-		self.sublist.append(QuickSubMenuEntryComponent("Positioner Setup",_("Setup rotor"),_("Setup your positioner for your satellite system")))
+		if len(nimList) != 0:
+			self.sublist.append(QuickSubMenuEntryComponent("Positioner Setup",_("Setup rotor"),_("Setup your positioner for your satellite system")))
 		self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan",_("Service Searching"),_("Automatic scan for services")))
 		self.sublist.append(QuickSubMenuEntryComponent("Manual Scan",_("Service Searching"),_("Manual scan for services")))
-		if BLINDSCAN == True:
+		if BLINDSCAN == True and len(nimList) != 0:
 			self.sublist.append(QuickSubMenuEntryComponent("Blind Scan",_("Blind Searching"),_("Blind scan for services")))  
-		self.sublist.append(QuickSubMenuEntryComponent("Sat Finder",_("Search Sats"),_("Search Sats, check signal and lock")))
+		if len(nimList) != 0:
+			self.sublist.append(QuickSubMenuEntryComponent("Sat Finder",_("Search Sats"),_("Search Sats, check signal and lock")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Software Manager Menu ##############################
@@ -449,7 +452,7 @@ class GeneralSetup(Screen):
 		elif item[0] == _("Language Settings"):
 			from Screens.LanguageSelection import LanguageSelection
 			self.session.open(LanguageSelection)
-		elif item[0] == _("Display Settings"):
+		elif item[0] == _("Front Panel Settings"):
 			self.openSetup("display")
 		elif item[0] == _("LCD Skin Setup"):
 			self.session.open(LcdSkinSelector)
