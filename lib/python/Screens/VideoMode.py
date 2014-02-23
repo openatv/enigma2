@@ -161,6 +161,8 @@ class VideoSetup(Screen, ConfigListScreen):
 			config.av.videoport.setValue(self.last_good[0])
 			config.av.videomode[self.last_good[0]].setValue(self.last_good[1])
 			config.av.videorate[self.last_good[1]].setValue(self.last_good[2])
+			config.av.autores_sd.setValue(self.last_good_extra[0])
+			config.av.smart1080p.setValue(self.last_good_extra[1])
 			self.hw.setMode(*self.last_good)
 		else:
 			self.keySave()
@@ -170,6 +172,9 @@ class VideoSetup(Screen, ConfigListScreen):
 		mode = config.av.videomode[port].getValue()
 		rate = config.av.videorate[mode].getValue()
 		self.last_good = (port, mode, rate)
+		autores_sd = config.av.autores_sd.getValue()
+		smart1080p = config.av.smart1080p.getValue()
+		self.last_good_extra = (autores_sd, smart1080p)
 
 	def saveAll(self):
 		if config.av.videoport.getValue() == 'Scart':
@@ -182,8 +187,13 @@ class VideoSetup(Screen, ConfigListScreen):
 		port = config.av.videoport.getValue()
 		mode = config.av.videomode[port].getValue()
 		rate = config.av.videorate[mode].getValue()
-		if (port, mode, rate) != self.last_good:
-			self.hw.setMode(port, mode, rate)
+		autores_sd = config.av.autores_sd.getValue()
+		smart1080p = config.av.smart1080p.getValue()
+		if ((port, mode, rate) != self.last_good) or (autores_sd, smart1080p) != self.last_good_extra:
+			if autores_sd.find('1080') >= 0 or smart1080p:
+				self.hw.setMode(port, '1080p', '50Hz')
+			else:
+				self.hw.setMode(port, mode, rate)
 			from Screens.MessageBox import MessageBox
 			self.session.openWithCallback(self.confirm, MessageBox, _("Is this video mode ok?"), MessageBox.TYPE_YESNO, timeout = 20, default = False)
 		else:
