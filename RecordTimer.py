@@ -5,7 +5,7 @@ from bisect import insort
 from sys import maxint
 import os
 
-from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference, eServiceCenter, iRecordableService, quitMainloop, eActionMap
+from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference, eServiceCenter, iRecordableService, quitMainloop, eActionMap, setPreferredTuner
 
 from Components.config import config
 from Components import Harddisk
@@ -132,6 +132,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.descramble = descramble
 			self.record_ecm = record_ecm
 
+		self.needChangePriorityFrontend = config.usage.recording_frontend_priority.getValue() != "-2" and config.usage.recording_frontend_priority.getValue() != config.usage.frontend_priority.getValue()
+		self.change_frontend = False
 		self.isAutoTimer = isAutoTimer
 		self.wasInStandby = False
 
@@ -214,10 +216,12 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.log(1, "'get best playable service for group... record' failed")
 					return False
 
+			self.setRecordingPreferredTuner()
 			self.record_service = rec_ref and NavigationInstance.instance.recordService(rec_ref)
 
 			if not self.record_service:
 				self.log(1, "'record service' failed")
+				self.setRecordingPreferredTuner(setdefault=True)
 				return False
 
 			if self.repeated:
@@ -250,6 +254,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 				NavigationInstance.instance.stopRecordService(self.record_service)
 				self.record_service = None
+				self.setRecordingPreferredTuner(setdefault=True)
 				return False
 			return True
 
@@ -289,6 +294,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					cur_zap_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 					if cur_zap_ref and not cur_zap_ref.getPath():# we do not zap away if it is no live service
 						Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_INFO, timeout=20)
+						self.setRecordingPreferredTuner()
 						self.failureCB(True)
 						self.log(5, "zap to recording service")
 
@@ -316,12 +322,16 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.first_try_prepare = False
 				cur_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 				if cur_ref and not cur_ref.getPath():
-					if not config.recording.asktozap.getValue():
+					if Screens.Standby.inStandby:
+						self.setRecordingPreferredTuner()
+						self.failureCB(True)
+					elif not config.recording.asktozap.getValue():
 						self.log(8, "asking user to zap away")
 						Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nDisable TV and try again?\n"), timeout=20)
 					else: # zap without asking
 						self.log(9, "zap without asking")
 						Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_INFO, timeout=20)
+						self.setRecordingPreferredTuner()
 						self.failureCB(True)
 				elif cur_ref:
 					self.log(8, "currently running service is not a live service.. so stop it makes no sense")
@@ -395,7 +405,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			else:
 				self.log(11, "start recording")
 				record_res = self.record_service.start()
-
+				self.setRecordingPreferredTuner(setdefault=True)
 				if record_res:
 					self.log(13, "start record returned %d" % record_res)
 					self.do_backoff()
@@ -464,6 +474,18 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			return False
 		self.end = new_end
 		return True
+
+	def setRecordingPreferredTuner(self, setdefault=False):
+		if self.needChangePriorityFrontend:
+			elem = None
+			if not self.change_frontend and not setdefault:
+				elem = config.usage.recording_frontend_priority.getValue()
+				self.change_frontend = True
+			elif self.change_frontend and setdefault:
+				elem = config.usage.frontend_priority.getValue()
+				self.change_frontend = False
+			if elem is not None:
+				setPreferredTuner(int(elem))
 
 	def sendStandbyNotification(self, answer):
 		if answer:
