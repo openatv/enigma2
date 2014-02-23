@@ -26,10 +26,10 @@
 
 <!-- template -->
 	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="right" size="60,*" font="Medium" halign="right" valign="top" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="right" size="34,*" font="Medium" halign="right" valign="top" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="4,12" size="24,12" font="Small" zPosition="1" noWrap="1">
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/skin_default/LCDIcons/rec.png" position="right" size="16,9">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
@@ -43,14 +43,12 @@
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<panel position="bottom" size="*,12" name="SummaryClockPanel">
-			<widget source="session.Event_Now" render="Label" position="4,0" size="40,12" font="Small" halign="left" noWrap="1">
-				<convert type="EventTime">Remaining</convert>
-				<convert type="RemainingToText">NoSeconds</convert>
+			<widget source="session.Event_Now" render="Label" position="0,0" size="78,12" font="Small" halign="left" noWrap="1">
+				<convert type="EventName">Name</convert>
 			</widget>
 		</panel>
 	</screen>
-    
-  
+
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="fill">
 		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,16" font="Big" halign="left" noWrap="1" >
@@ -159,9 +157,9 @@
 			<widget source="global.CurrentTime" render="Label" position="fill" font="Huge" halign="center" valign="center" noWrap="1">
 				<convert type="ClockToText"></convert>
 			</widget>
-			<widget source="session.RecordState" render="FixedLabel" text="Recording" position="bottom" size="*,10" font="Small" zPosition="2" valign="bottom" halign="left" noWrap="1">
-				<convert type="ConditionalShowHide"></convert>
-			</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/skin_default/LCDIcons/rec.png" position="bottom" size="16,9">
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
 		</panel>
 	</screen>
 <!-- Plugin browser -->
