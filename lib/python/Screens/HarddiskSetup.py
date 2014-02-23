@@ -9,6 +9,8 @@ from Screens.MessageBox import MessageBox
 from Tools.BoundFunction import boundFunction
 import Screens.InfoBar
 
+from enigma import eListboxPythonMultiContent, gFont
+from Components.MultiContent import MultiContentEntryText
 
 class HarddiskSetup(Screen):
 	def __init__(self, session, hdd, action, text, question):
@@ -72,22 +74,42 @@ class HarddiskSetup(Screen):
 	def JobViewCB(self, in_background):
 		job_manager.in_background = in_background
 
-
+class HarddiskMenuList(MenuList):
+	def __init__(self, list, enableWrapAround = False):
+		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
+		self.l.setFont(0, gFont("Regular", 28))
+		self.l.setFont(1, gFont("Regular", 14))
+		self.l.setItemHeight(50)
+	
+def SubHarddiskMenuEntryComponent(name, item):
+	return [
+		_(item),
+		MultiContentEntryText(pos=(20, 8), size=(540, 50), font=0, text = _(name)),
+	]
+	
 class HarddiskSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Initialization"))
 		self.skinName = "HarddiskSelection" # For derived classes
+		
+		menu = []
 		if harddiskmanager.HDDCount() == 0:
-			tlist = [(_("no storage devices found"), 0)]
-			self["hddlist"] = MenuList(tlist)
+			menu.append(SubHarddiskMenuEntryComponent((_("no storage devices found")), 0))
 		else:
-			self["hddlist"] = MenuList(harddiskmanager.HDDList())
+			for x in harddiskmanager.HDDList():
+				menu.append(SubHarddiskMenuEntryComponent(x[0], x))
 
-		self["actions"] = ActionMap(["OkCancelActions"],
+		self["hddlist"] = HarddiskMenuList(menu)
+		
+		self["key_red"] = Label(_("Exit"))
+		self["key_green"] = Label(_("Select"))
+		self["actions"] = ActionMap(["SetupActions"],
 		{
+			"save" : self.okbuttonClick,
 			"ok": self.okbuttonClick,
-			"cancel": self.close
+			"cancel": self.close,
+			"red": self.close
 		})
 
 	def doIt(self, selection):
@@ -97,11 +119,11 @@ class HarddiskSelection(Screen):
 			 question=_("Do you really want to initialize the device?\nAll data on the disk will be lost!"))
 
 	def okbuttonClick(self):
-		selection = self["hddlist"].getCurrent()
-		if selection[1] != 0:
+		selection = self["hddlist"].getCurrent()[0]
+		if selection != 0:
 			self.doIt(selection[1])
 			self.close(True)
-
+			
 # This is actually just HarddiskSelection but with correct type
 class HarddiskFsckSelection(HarddiskSelection):
 	def __init__(self, session):

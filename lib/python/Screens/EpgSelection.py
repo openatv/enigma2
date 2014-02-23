@@ -340,8 +340,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 			self['epgcursoractions'] = HelpableActionMap(self, 'DirectionActions', 
 				{
-					'left': (self.leftPressed, _('Goto previous event')),
-					'right': (self.rightPressed, _('Goto next event')),
+					'chminus': (self.leftPressed, _('Goto previous event')),
+					'chplus': (self.rightPressed, _('Goto next event')),
 					'up': (self.moveUp, _('Goto previous channel')),
 					'down': (self.moveDown, _('Goto next channel'))
 				}, -1)
@@ -349,8 +349,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 			self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', 
 				{
-					'nextService': (self.nextPage, _('Move down a page')),
-					'prevService': (self.prevPage, _('Move up a page')),
+					#'nextService': (self.nextPage, _('Move down a page')),
+					#'prevService': (self.prevPage, _('Move up a page')),
 					'nextBouquet': (self.nextBouquet, _('Goto next bouquet')),
 					'prevBouquet': (self.prevBouquet, _('Goto previous bouquet')),
 					'input_date_time': (self.enterDateTime, _('Goto specific data/time')),

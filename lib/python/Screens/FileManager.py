@@ -56,7 +56,6 @@ config.plugins.filemanager.symlink_name = ConfigText(default = "/")
 config.plugins.filemanager.symlink_path = ConfigText(default = "/")
 config.plugins.filemanager.sort_by = ConfigSelection(choices={ 'date': _('Date'), 'name': _('Name')}, default='name')
 config.plugins.filemanager.exit_eop = ConfigSelection(choices={ 'Yes': _('Yes'), 'No': _('No'), 'Ask': _('Ask User')}, default='Yes')
-config.plugins.filemanager.sub_lang = ConfigSelection(choices={ 'PL': _('Polish'), 'ENG': _('English')}, default='PL')
 
 FileManagerConfig_Skin ="""
         		<screen name="FileManagerConfig" position="center,center" size="650,400" title="File Manager - Configuration" >
@@ -137,7 +136,6 @@ class FileManagerConfig(ConfigListScreen,Screen):
 	self.list.append(getConfigListEntry(_("Show hidden files ?"), config.plugins.filemanager.hidden_filter))
 	self.list.append(getConfigListEntry(_("Sort files by"), config.plugins.filemanager.sort_by))
 	self.list.append(getConfigListEntry(_("Exit mediaplayer on the end of file ?"), config.plugins.filemanager.exit_eop))
-	self.list.append(getConfigListEntry(_("Subtitles downloader language"), config.plugins.filemanager.sub_lang))
 
         ConfigListScreen.__init__(self, self.list)
         self["key_red"] = Label(_("Save"))
@@ -156,9 +154,6 @@ class FileManagerConfig(ConfigListScreen,Screen):
         self.setTitle(_("File Manager - Settings"))
 
     def save(self):
-	sub_file = open('/etc/egami/.sub_lang', 'w')
-	sub_file.write(config.plugins.filemanager.sub_lang.value)
-	sub_file.close()
         for x in self["config"].list:
             x[1].save()
         self.close(True)
@@ -1088,20 +1083,12 @@ class FileManager_InfoMenu(Screen):
 	self.movie = self.sourcedir+self.filename
 	self.menu = args
         list = []
-        #list.append((_("Remove"), "remove"))
-	#list.append((_("Copy"), "copy"))
-	#list.append((_("Move"), "move"))
 	list.append((_("Rename"), "rename"))
 	list.append((_("Permission"), "rights"))
 	list.append((_("----------------------------------"), " "))
 	list.append((_("New directory"), "new_directory"))
 	list.append((_("New file"), "new_file"))
 	list.append((_("New symlink"), "new_link"))
-	list.append((_("----------------------------------"), " "))
-	#if (self.movie.endswith(".avi")) or (self.movie.endswith(".mp4")) or (self.movie.endswith(".divx")) or (self.movie.endswith(".mov")) or (self.movie.endswith(".mpg")) or (self.movie.endswith(".mpeg")) or (self.movie.endswith(".mkv")) or (self.movie.endswith(".m2ts")) or (self.movie.endswith(".vob")) or (self.movie.endswith(".rmvb")):
-		#list.append((_("Get Subtitle"), "get_sub"))
-	#list.append((_("----------------------------------"), " "))
-	#list.append((_("Settings"), "settings"))
         self["menu"] = MenuList(list)
         self["actions"] = ActionMap(["WizardActions"],{"ok": self.go,"back": self.exit,}, -1)
 
@@ -1127,9 +1114,6 @@ class FileManager_InfoMenu(Screen):
 		self.session.open(FileManager_symlink_create, self.dirfile, self.sourcedir)
 	   elif returnValue is "rights":
 		self.session.open(FileManager_file_permission, self.dirfile, self.sourcedir)
-	   elif returnValue is "get_sub":
-		os.system("chmod 755 /usr/lib/enigma2/python/EGAMI/EGAMI_dmnapi.pyo")
-		self.session.open(Console,_("Download subtitle:"),['%s get "%s"' % (dmnapi_py, self.movie )])
 		
     def exit(self):
         self.close()
