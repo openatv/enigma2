@@ -164,6 +164,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.eventNamePadding = 3
 		self.eventNameAlign = 'left'
 		self.eventNameWrap = 'yes'
+		self.NumberOfRows = None
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
@@ -249,6 +250,8 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.foreColorZapSelected = parseColor(value).argb()
 				elif attrib == "ZapBackgroundColorSelected":
 					self.backColorZapSelected = parseColor(value).argb()
+				elif attrib == "NumberOfRows":
+					self.NumberOfRows = int(value)
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
@@ -428,6 +431,8 @@ class EPGList(HTMLComponent, GUIComponent):
 					itemHeight = self.listHeight / config.epgselection.infobar_itemsperpage.getValue()
 				else:
 					itemHeight = 54 # some default (270/5)
+			if self.NumberOfRows:
+				itemHeight = self.listHeight / self.NumberOfRows
 			self.l.setItemHeight(itemHeight)
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
 			self.listHeight = self.instance.size().height()
