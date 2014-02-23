@@ -172,6 +172,8 @@ def InitUsageConfig():
 	for x in nimmanager.nim_slots:
 		nims.append((str(x.slot), x.getSlotName()))
 	config.usage.frontend_priority = ConfigSelection(default = "-1", choices = nims)
+	nims.append(("-2", _("Disabled")))
+	config.usage.recording_frontend_priority = ConfigSelection(default = "-2", choices = nims)
 	config.misc.disable_background_scan = ConfigYesNo(default = False)
 
 	config.usage.show_event_progress_in_servicelist = ConfigSelection(default = 'barright', choices = [
@@ -376,7 +378,7 @@ def InitUsageConfig():
 
 	config.subtitles.dvb_subtitles_yellow = ConfigYesNo(default = False)
 	config.subtitles.dvb_subtitles_original_position = ConfigSelection(default = "0", choices = [("0", _("Original")), ("1", _("Fixed")), ("2", _("Relative"))])
-	config.subtitles.dvb_subtitles_centered = ConfigYesNo(default = True)
+	config.subtitles.dvb_subtitles_centered = ConfigYesNo(default = False)
 	config.subtitles.subtitle_bad_timing_delay = ConfigSelection(default = "0", choices = subtitle_delay_choicelist)
 	config.subtitles.dvb_subtitles_backtrans = ConfigSelection(default = "0", choices = [
 		("0", _("No transparency")),
