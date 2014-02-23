@@ -30,7 +30,7 @@
 			<convert type="ClockToText"></convert>
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/skin_default/LCDIcons/rec.png" position="right" size="16,9">
-			<convert type="ConditionalShowHide">Blink</convert>
+			<convert type="ConditionalShowHide"/>
 		</widget>
 	</screen>
 
@@ -158,7 +158,7 @@
 				<convert type="ClockToText"></convert>
 			</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/skin_default/LCDIcons/rec.png" position="bottom" size="16,9">
-			<convert type="ConditionalShowHide">Blink</convert>
+			<convert type="ConditionalShowHide"/>
 		</widget>
 		</panel>
 	</screen>
