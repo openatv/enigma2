@@ -116,6 +116,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.borderSelectedLeftPix = None
 		self.borderSelectedBottomPix = None
 		self.borderSelectedRightPix = None
+		self.infomationPix = None
 		self.graphicsloaded = False
 
 		self.borderColor = 0xC0C0C0
@@ -928,11 +929,16 @@ class EPGList(HTMLComponent, GUIComponent):
 							backColor = None
 							backColorSel = None
 
+				evBoxX = left + xpos + self.eventBorderWidth
+				evBoxY = top + self.eventBorderWidth
+				evBoxW = ewidth - 2 * self.eventBorderWidth
+				evBoxH = height - 2 * self.eventBorderWidth
+
 				# event box background
 				if bgpng is not None and self.graphic:
 					res.append(MultiContentEntryPixmapAlphaTest(
-						pos = (left + xpos + self.eventBorderWidth, top + self.eventBorderWidth),
-						size = (ewidth - 2 * self.eventBorderWidth, height - 2 * self.eventBorderWidth),
+						pos = (evBoxX, evBoxY),
+						size = (evBoxW, evBoxH),
 						png = bgpng,
 						flags = BT_SCALE))
 				else:
@@ -942,13 +948,18 @@ class EPGList(HTMLComponent, GUIComponent):
 						text = "", color = None, color_sel = None,
 						backcolor = backColor, backcolor_sel = backColorSel,
 						border_width = self.eventBorderWidth, border_color = self.borderColor))
-
+		
 				# event text
-				evX = left + xpos + self.eventBorderWidth + self.eventNamePadding
-				evY = top + self.eventBorderWidth
-				evW = ewidth - 2 * (self.eventBorderWidth + self.eventNamePadding)
-				evH = height - 2 * self.eventBorderWidth
-				if evW > 0:
+				evX = evBoxX + self.eventNamePadding
+				evY = evBoxY
+				evW = evBoxW + self.eventNamePadding
+				evH = evBoxH
+				if evBoxW < 100 and self.infomationPix is not None and self.graphic:
+					res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (evX, evY),
+						size = (evBoxW, evBoxH),
+						png = self.infomationPix))
+				else:
 					res.append(MultiContentEntryText(
 						pos = (evX, evY), size = (evW, evH),
 						font = 1, flags = alignnment,
@@ -1198,6 +1209,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.borderSelectedBottomPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderBottom.png'))
 			self.borderSelectedLeftPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderLeft.png'))
 			self.borderSelectedRightPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderRight.png'))
+
+			self.infomationPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/infomation.png'))
 
 			self.graphicsloaded = True
 
