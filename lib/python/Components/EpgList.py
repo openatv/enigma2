@@ -1428,11 +1428,19 @@ class TimelineText(HTMLComponent, GUIComponent):
 					border_width = self.borderWidth, border_color = self.borderColor))
 
 			for x in range(0, num_lines):
-				res.append( MultiContentEntryText(
+				ttime = localtime(time_base + (x*timeStepsCalc))
+				if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_timeline24h.getValue()) or (self.type == EPG_TYPE_INFOBARGRAPH and config.epgselection.infobar_timeline24h.getValue()):
+					timetext = strftime("%H:%M", localtime(time_base + x*timeStepsCalc))
+				else:
+					if int(strftime("%H",ttime)) > 12:
+						timetext = strftime("%-I:%M",ttime) + _('pm')
+					else:
+						timetext = strftime("%-I:%M",ttime) + _('am')
+				res.append(MultiContentEntryText(
 					pos = (service_rect.width() + xpos, 0),
 					size = (incWidth, self.listHeight),
 					font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP,
-					text = strftime("%H:%M", localtime( time_base + x*timeStepsCalc )),
+					text = timetext,
 					color = foreColor,
 					backcolor = backColor))
 				line = time_lines[x]
