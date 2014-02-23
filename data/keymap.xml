@@ -59,6 +59,8 @@
 		<key id="KEY_8" mapto="8" flags="m" />
 		<key id="KEY_9" mapto="9" flags="m" />
 		<key id="KEY_0" mapto="0" flags="m" />
+		<key id="KEY_FILE" mapto="file" flags="m" />
+		<key id="KEY_VIDEO" mapto="file" flags="m" />
 	</map>
 
 	<map context="InputActions">
@@ -535,6 +537,26 @@
 
 	<map context="InfobarTeletextActions">
 		<key id="KEY_TEXT" mapto="startTeletext" flags="m" />
+	</map>
+
+	<map context="TeletextActions">
+		<key id="KEY_RIGHT" mapto="nextSubPage" flags="m" />
+		<key id="KEY_LEFT" mapto="prevSubPage" flags="m" />
+		<key id="KEY_UP" mapto="nextPage" flags="m" />
+		<key id="KEY_DOWN" mapto="prevPage" flags="m" />
+		<key id="KEY_OK" mapto="ok" flags="m" />
+		<key id="KEY_FILE" mapto="transparent" flags="m" />
+		<key id="KEY_GREEN" mapto="green" flags="m" />
+		<key id="KEY_YELLOW" mapto="yellow" flags="m" />
+		<key id="KEY_RED" mapto="red" flags="m" />
+		<key id="KEY_BLUE" mapto="blue" flags="m" />
+		<key id="KEY_CHANNELUP" mapto="zoomMode" flags="m" />
+		<key id="KEY_CHANNELDOWN" mapto="screenMode" flags="m" />
+		<key id="KEY_HELP" mapto="hint" flags="m" />
+		<key id="KEY_MENU" mapto="menu" flags="m" />
+		<key id="KEY_TEXT" mapto="exit" flags="m" />
+		<key id="KEY_EXIT" mapto="exit" flags="m" />
+		<key id="KEY_POWER" mapto="exit" flags="m" />
 	</map>
 
 	<map context="InfobarRdsActions">

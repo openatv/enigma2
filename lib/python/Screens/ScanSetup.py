@@ -782,6 +782,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		ConfigListScreen.keyRight(self)
 		self.newConfig()
 
+	def handleKeyFileCallback(self, answer):
+		ConfigListScreen.handleKeyFileCallback(self, answer)
+		self.newConfig()
+
 	def updateStatus(self):
 		print "updatestatus"
 

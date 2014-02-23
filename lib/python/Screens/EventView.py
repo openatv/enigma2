@@ -291,7 +291,7 @@ class EventViewBase:
 				self.similarEPGCB(id, refstr)
 
 	def doContext(self):
-		if self.event is not None:
+		if self.event:
 			menu = []
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
 				#only list service or event specific eventinfo plugins here, no servelist plugins
