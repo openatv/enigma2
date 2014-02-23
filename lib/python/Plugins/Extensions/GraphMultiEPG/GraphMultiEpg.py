@@ -60,7 +60,7 @@ possibleAlignmentChoices = [
 	( str(RT_HALIGN_RIGHT  | RT_VALIGN_CENTER | RT_WRAP) , _("right, wrapped"))]
 config.misc.graph_mepg.event_alignment = ConfigSelection(default = possibleAlignmentChoices[0][0], choices = possibleAlignmentChoices)
 config.misc.graph_mepg.servicename_alignment = ConfigSelection(default = possibleAlignmentChoices[0][0], choices = possibleAlignmentChoices)
-config.misc.graph_mepg.extension_menu = ConfigYesNo(default = True)
+config.misc.graph_mepg.extension_menu = ConfigYesNo(default = False)
 
 listscreen = config.misc.graph_mepg.default_mode.value
 
