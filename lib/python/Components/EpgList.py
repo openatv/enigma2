@@ -701,20 +701,16 @@ class EPGList(HTMLComponent, GUIComponent):
 		borderRightPix = None
 
 		# Picon and Service name
+		serviceForeColor = self.foreColorService
+		serviceBackColor = self.backColorService
+		bgpng = self.othServPix
 		if CompareWithAlternatives(service, self.currentlyPlaying and self.currentlyPlaying.toString()):
 			serviceForeColor = self.foreColorServiceNow
 			serviceBackColor = self.backColorServiceNow
 			bgpng = self.nowServPix
-			if bgpng is not None and self.graphic:    # bacground for service rect
-				serviceBackColor = None
-		else:
-			serviceForeColor = self.foreColorService
-			serviceBackColor = self.backColorService
-			bgpng = self.othServPix
-			if bgpng is not None and self.graphic:    # bacground for service rect
-				serviceBackColor = None
 
-		if bgpng is not None and self.graphic:    # bacground for service rect
+		if bgpng is not None and self.graphic:
+			serviceBackColor = None
 			res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
 					size = (r1.w - 2 * self.serviceBorderWidth, r1.h - 2 * self.serviceBorderWidth),
@@ -857,36 +853,24 @@ class EPGList(HTMLComponent, GUIComponent):
 						foreColorSel = self.foreColorRecordSelected
 						backColorSel = self.backColorRecordSelected
 						bgpng = self.recSelEvPix
-						if bgpng is not None and self.graphic:
-							backColor = None
-							backColorSel = None
 					elif clock_types is not None and clock_types == 7:
 						foreColor = self.foreColorZap
 						backColor = self.backColorZap
 						foreColorSel = self.foreColorZapSelected
 						backColorSel = self.backColorZapSelected
 						bgpng = self.zapSelEvPix
-						if bgpng is not None and self.graphic:
-							backColor = None
-							backColorSel = None
 					elif stime <= now < (stime + duration):
 						foreColor = self.foreColorNow
 						backColor = self.backColorNow
 						foreColorSel = self.foreColorNowSelected
 						backColorSel = self.backColorNowSelected
 						bgpng = self.nowSelEvPix
-						if bgpng is not None and self.graphic:
-							backColor = None
-							backColorSel = None
 					else:
 						foreColor = self.foreColor
 						backColor = self.backColor
 						foreColorSel = self.foreColorSelected
 						backColorSel = self.backColorSelected
 						bgpng = self.selEvPix
-						if bgpng is not None and self.graphic:
-							backColor = None
-							backColorSel = None
 				else:
 					borderTopPix = self.borderTopPix
 					borderLeftPix = self.borderLeftPix
@@ -898,36 +882,24 @@ class EPGList(HTMLComponent, GUIComponent):
 						foreColorSel = self.foreColorRecordSelected
 						backColorSel = self.backColorRecordSelected
 						bgpng = self.recEvPix
-						if bgpng is not None and self.graphic:
-							backColor = None
-							backColorSel = None
 					elif clock_types is not None and clock_types == 7:
 						foreColor = self.foreColorZap
 						backColor = self.backColorZap
 						foreColorSel = self.foreColorZapSelected
 						backColorSel = self.backColorZapSelected
 						bgpng = self.zapEvPix
-						if bgpng is not None and self.graphic:
-							backColor = None
-							backColorSel = None
 					elif stime <= now < (stime + duration):
 						foreColor = self.foreColorNow
 						backColor = self.backColorNow
 						foreColorSel = self.foreColorNowSelected
 						backColorSel = self.backColorNowSelected
 						bgpng = self.nowEvPix
-						if bgpng is not None and self.graphic:
-							backColor = None
-							backColorSel = None
 					else:
 						backColor = self.backColor
 						foreColor = self.foreColor
 						foreColorSel = self.foreColorSelected
 						backColorSel = self.backColorSelected
 						bgpng = self.othEvPix
-						if bgpng is not None and self.graphic:
-							backColor = None
-							backColorSel = None
 
 				evBoxX = left + xpos + self.eventBorderWidth
 				evBoxY = top + self.eventBorderWidth
@@ -936,6 +908,8 @@ class EPGList(HTMLComponent, GUIComponent):
 
 				# event box background
 				if bgpng is not None and self.graphic:
+					backColor = None
+					backColorSel = None
 					res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (evBoxX, evBoxY),
 						size = (evBoxW, evBoxH),
@@ -1413,8 +1387,8 @@ class TimelineText(HTMLComponent, GUIComponent):
 				res.append( MultiContentEntryText(
 					pos = (0, 0),
 					size = (service_rect.width(), self.listHeight),
-					color = self.foreColor,
-					backcolor = self.backColor,
+					color = foreColor,
+					backcolor = backColor,
 					border_width = self.borderWidth, border_color = self.borderColor))
 
 			res.append(MultiContentEntryText(
@@ -1425,8 +1399,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 				color = foreColor,
 				backcolor = backColor))
 
-			foreColor = self.foreColor
-			backColor = self.backColor
 			bgpng = self.TlTime
 			xpos = 0 # eventLeft
 			if bgpng is not None and self.graphic:
@@ -1441,8 +1413,8 @@ class TimelineText(HTMLComponent, GUIComponent):
 				res.append( MultiContentEntryText(
 					pos = (service_rect.width(), 0),
 					size = (event_rect.width(), self.listHeight),
-					color = self.foreColor,
-					backcolor = self.backColor,
+					color = foreColor,
+					backcolor = backColor,
 					border_width = self.borderWidth, border_color = self.borderColor))
 
 			for x in range(0, num_lines):
