@@ -1003,6 +1003,15 @@ class GeneralMenu(Screen):
 			print "Skip =>" , l.name
 		else:
 			list.append(tuple(menuitem))
+	    # This is little HACK to show AutoTimer in TV section, as We do not want to clone AutTimer git and reqwrite it to show in our section
+            for l in plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU):
+		if l.name == _("AutoTimer"): 
+			if menuID == "id_mainmenu_tv":
+				if isinstance(l.iconstr, str):
+					menuitem = [l.name,'/'.join((l.path, l.iconstr)),boundFunction(self.runPlugin, (l, None)),60]
+				else:
+					menuitem = [l.name,'',boundFunction(self.runPlugin, (l, None)),60]
+				list.append(tuple(menuitem))
         try:
             list.sort(key=lambda x: int(x[3]))
         except:
