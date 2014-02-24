@@ -83,7 +83,7 @@ class VirtualKeyBoard(Screen):
 				"right": self.right,
 				"up": self.up,
 				"down": self.down,
-				"red": self.exit,
+				"red": self.backClicked,
 				"green": self.ok,
 				"yellow": self.switchLang,
 				"blue": self.shiftClicked,
