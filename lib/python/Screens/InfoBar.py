@@ -15,7 +15,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarRdsDecoder, \
 	InfoBarEPG, InfoBarSeek, InfoBarInstantRecord, InfoBarRedButton, InfoBarTimerButton, InfoBarVmodeButton, \
 	InfoBarAudioSelection, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarUnhandledKey, \
-	InfoBarSubserviceSelection, InfoBarShowMovies, InfoBarTimeshift, InfoBarSimpleEventView, \
+	InfoBarSubserviceSelection, InfoBarShowMovies, InfoBarTimeshift,  \
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
 	InfoBarSummarySupport, InfoBarMoviePlayerSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
 	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarPowersaver, \
@@ -300,4 +300,168 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		elif answer == "restart":
 			self.doSeek(0)
 			self.setSeekState(self.SEEK_STATE_PLAY)
-		elif answer in ("playlist","playlist
+		elif answer in ("playlist","playlistquit","loop"):
+			( next_service, item , lenght ) = self.getPlaylistServiceInfo(self.cur_service)
+			if next_service is not None:
+				if config.usage.next_movie_msg.value:
+					self.displayPlayedName(next_service, item, lenght)
+				self.session.nav.playService(next_service)
+				self.cur_service = next_service
+			else:
+				if answer == "playlist":
+					self.leavePlayerConfirmed([True,"movielist"])
+				elif answer == "loop" and lenght > 0:
+					self.leavePlayerConfirmed([True,"loop"])
+				else:
+					self.leavePlayerConfirmed([True,"quit"])
+		elif answer in ("repeatcurrent"):
+			if config.usage.next_movie_msg.value:
+				(item, lenght) = self.getPlaylistServiceInfo(self.cur_service)
+				self.displayPlayedName(self.cur_service, item, lenght)
+			self.session.nav.stopService()
+			self.session.nav.playService(self.cur_service)
+
+	def doEofInternal(self, playing):
+		if not self.execing:
+			return
+		if not playing :
+			return
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if ref:
+			delResumePoint(ref)
+		self.handleLeave(config.usage.on_movie_eof.value)
+
+	def up(self):
+		slist = self.servicelist
+		if slist and slist.dopipzap:
+			slist.moveUp()
+			self.session.execDialog(slist)
+		else:
+			self.showMovies()
+
+	def down(self):
+		slist = self.servicelist
+		if slist and slist.dopipzap:
+			slist.moveDown()
+			self.session.execDialog(slist)
+		else:
+			self.showMovies()
+
+	def right(self):
+		# XXX: gross hack, we do not really seek if changing channel in pip :-)
+		slist = self.servicelist
+		if slist and slist.dopipzap:
+			# XXX: We replicate InfoBarChannelSelection.zapDown here - we shouldn't do that
+			if slist.inBouquet():
+				prev = slist.getCurrentSelection()
+				if prev:
+					prev = prev.toString()
+					while True:
+						if config.usage.quickzap_bouquet_change.value and slist.atEnd():
+							slist.nextBouquet()
+						else:
+							slist.moveDown()
+						cur = slist.getCurrentSelection()
+						if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+							break
+			else:
+				slist.moveDown()
+			slist.zap(enable_pipzap = True)
+		else:
+			InfoBarSeek.seekFwd(self)
+
+	def left(self):
+		slist = self.servicelist
+		if slist and slist.dopipzap:
+			# XXX: We replicate InfoBarChannelSelection.zapUp here - we shouldn't do that
+			if slist.inBouquet():
+				prev = slist.getCurrentSelection()
+				if prev:
+					prev = prev.toString()
+					while True:
+						if config.usage.quickzap_bouquet_change.value:
+							if slist.atBegin():
+								slist.prevBouquet()
+						slist.moveUp()
+						cur = slist.getCurrentSelection()
+						if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+							break
+			else:
+				slist.moveUp()
+			slist.zap(enable_pipzap = True)
+		else:
+			InfoBarSeek.seekBack(self)
+
+	def showPiP(self):
+		slist = self.servicelist
+		if self.session.pipshown:
+			if slist and slist.dopipzap:
+				slist.togglePipzap()
+			del self.session.pip
+			self.session.pipshown = False
+		else:
+			from Screens.PictureInPicture import PictureInPicture
+			self.session.pip = self.session.instantiateDialog(PictureInPicture)
+			self.session.pip.show()
+			self.session.pipshown = True
+			self.session.pip.playService(slist.getCurrentSelection())
+
+	def swapPiP(self):
+		pass
+
+	def showDefaultEPG(self):
+		if self.infobar:
+			self.infobar.showMultiEPG()
+
+	def openEventView(self):
+		if self.infobar:
+			self.infobar.showDefaultEPG()
+
+	def showEventInfoPlugins(self):
+		if self.infobar:
+			self.infobar.showEventInfoPlugins()
+
+	def showEventGuidePlugins(self):
+		if self.infobar:
+			self.infobar.showEventGuidePlugins()
+
+	def showMovies(self):
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.playingservice = ref # movie list may change the currently playing
+		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)
+
+	def movieSelected(self, service):
+		if service is not None:
+			self.cur_service = service
+			self.is_closing = False
+			self.session.nav.playService(service)
+			self.returning = False
+		elif self.returning:
+			self.close()
+		else:
+			self.is_closing = False
+			ref = self.playingservice
+			del self.playingservice
+			# no selection? Continue where we left off
+			if ref and not self.session.nav.getCurrentlyPlayingServiceOrGroup():
+				self.session.nav.playService(ref)
+
+	def getPlaylistServiceInfo(self, service):
+		from MovieSelection import playlist
+		for i, item in enumerate(playlist):
+			if item == service:
+				if config.usage.on_movie_eof.value == "repeatcurrent":
+					return (i+1, len(playlist))
+				i += 1
+				if i < len(playlist):
+					return (playlist[i], i+1, len(playlist))
+				elif config.usage.on_movie_eof.value == "loop":
+					return (playlist[0], 1, len(playlist))
+		return ( None, 0, 0 )
+
+	def displayPlayedName(self, ref, index, n):
+		from Tools import Notifications
+		Notifications.AddPopup(text = _("%s/%s: %s") % (index, n, self.ref2HumanName(ref)), type = MessageBox.TYPE_INFO, timeout = 5)
+
+	def ref2HumanName(self, ref):
+		return enigma.eServiceCenter.getInstance().info(ref).getName(ref)
