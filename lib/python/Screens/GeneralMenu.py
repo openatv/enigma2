@@ -185,9 +185,7 @@ class GeneralMenuSummary(Screen):
 
 class GeneralMenu(Screen):
     skin = '''
-	<screen position="0,150" size="1280,570" flags="wfNoBorder" name="GeneralMenu">
-<!--		<widget position="0,100" size="1280,200" name="list_ext" selectionDisabled="1" transparent="1" />-->
-		
+	<screen position="0,150" size="1280,570" flags="wfNoBorder" name="GeneralMenu">	
 		<widget name="frame" position="12,95" size="170,220" zPosition="1" alphatest="on" />
 		
 		<widget position="40,25" size="1200,25" name="title" font="Regular;22"  zPosition="2" transparent="1" foregroundColors="#555555,#999999" />
@@ -220,99 +218,6 @@ class GeneralMenu(Screen):
 		<widget position="622,540" size="35,10" name="down_sub_2" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
 		<widget position="872,540" size="35,10" name="down_sub_3" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
 		<widget position="1122,540" size="35,10" name="down_sub_4" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
-		
-		
-<!--
-		<widget position="22,130" size="150,150" source="id_mainmenu_photos_tumb_ext_0" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_photo_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >Cover,Photo</convert>
-		</widget>
-		<widget position="200,130" size="150,150" source="id_mainmenu_photos_tumb_ext_1" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_photo_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >Cover,Photo</convert>
-		</widget>
-		<widget position="378,130" size="150,150" source="id_mainmenu_photos_tumb_ext_2" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_photo_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >Cover,Photo</convert>
-		</widget>
-		<widget position="556,130" size="150,150" source="id_mainmenu_photos_tumb_ext_3" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_photo_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >Cover,Photo</convert>
-		</widget>
-		<widget position="734,130" size="150,150" source="id_mainmenu_photos_tumb_ext_4" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_photo_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >Cover,Photo</convert>
-		</widget>
-		<widget position="912,130" size="150,150" source="id_mainmenu_photos_tumb_ext_5" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_photo_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >Cover,Photo</convert>
-		</widget>
-		<widget position="1090,130" size="150,150" source="id_mainmenu_photos_tumb_ext_6" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_photo_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >Cover,Photo</convert>
-		</widget>
-		
-		<widget position="22,130" size="150,150" source="id_mainmenu_music_tumb_ext_0" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_music_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >AlbumCover,Music</convert>
-		</widget>
-		<widget position="200,130" size="150,150" source="id_mainmenu_music_tumb_ext_1" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_music_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >AlbumCover,Music</convert>
-		</widget>
-		<widget position="378,130" size="150,150" source="id_mainmenu_music_tumb_ext_2" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_music_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >AlbumCover,Music</convert>
-		</widget>
-		<widget position="556,130" size="150,150" source="id_mainmenu_music_tumb_ext_3" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_music_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >AlbumCover,Music</convert>
-		</widget>
-		<widget position="734,130" size="150,150" source="id_mainmenu_music_tumb_ext_4" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_music_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >AlbumCover,Music</convert>
-		</widget>
-		<widget position="912,130" size="150,150" source="id_mainmenu_music_tumb_ext_5" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_music_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >AlbumCover,Music</convert>
-		</widget>
-		<widget position="1090,130" size="150,150" source="id_mainmenu_music_tumb_ext_6" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_music_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >AlbumCover,Music</convert>
-		</widget>
-		
-		<widget position="22,130" size="150,150" source="id_mainmenu_tv_tumb_ext_0" render="Picon" pixmap="easy-skin-hd/gmenu/gmenu_tv_bg.png" path="/picon" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="200,130" size="150,150" source="id_mainmenu_tv_tumb_ext_1" render="Picon" pixmap="easy-skin-hd/gmenu/gmenu_tv_bg.png" path="/picon" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="378,130" size="150,150" source="id_mainmenu_tv_tumb_ext_2" render="Picon" pixmap="easy-skin-hd/gmenu/gmenu_tv_bg.png" path="/picon" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="556,130" size="150,150" source="id_mainmenu_tv_tumb_ext_3" render="Picon" pixmap="easy-skin-hd/gmenu/gmenu_tv_bg.png" path="/picon" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="734,130" size="150,150" source="id_mainmenu_tv_tumb_ext_4" render="Picon" pixmap="easy-skin-hd/gmenu/gmenu_tv_bg.png" path="/picon" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="912,130" size="150,150" source="id_mainmenu_tv_tumb_ext_5" render="Picon" pixmap="easy-skin-hd/gmenu/gmenu_tv_bg.png" path="/picon" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="1090,130" size="150,150" source="id_mainmenu_tv_tumb_ext_6" render="Picon" pixmap="easy-skin-hd/gmenu/gmenu_tv_bg.png" path="/picon" alphatest="on" zPosition="2" transparent="1" />
--->		
-<!--		<widget position="22,105" size="150,200" source="id_mainmenu_movies_tumb_ext_0" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_movie_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >Cover,Movie</convert>
-		</widget>
-		<widget position="200,105" size="150,200" source="id_mainmenu_movies_tumb_ext_1" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_movie_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >Cover,Movie</convert>
-		</widget>
-		<widget position="378,105" size="150,200" source="id_mainmenu_movies_tumb_ext_2" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_movie_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >Cover,Movie</convert>
-		</widget>
-		<widget position="556,105" size="150,200" source="id_mainmenu_movies_tumb_ext_3" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_movie_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >Cover,Movie</convert>
-		</widget>
-		<widget position="734,105" size="150,200" source="id_mainmenu_movies_tumb_ext_4" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_movie_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >Cover,Movie</convert>
-		</widget>
-		<widget position="912,105" size="150,200" source="id_mainmenu_movies_tumb_ext_5" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_movie_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >Cover,Movie</convert>
-		</widget>
-		<widget position="1090,105" size="150,200" source="id_mainmenu_movies_tumb_ext_6" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_movie_bg.png" alphatest="on" zPosition="2" transparent="1" >
-			<convert type="MediaDate" >Cover,Movie</convert>
-		</widget>
-		
-		<widget position="22,130" size="150,150" source="id_mainmenu_source_tumb_ext_0" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_source_bg.png" alphatest="on" zPosition="2" transparent="1" useCache="0"/>
-		<widget position="200,130" size="150,150" source="id_mainmenu_source_tumb_ext_1" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_source_bg.png" alphatest="on" zPosition="2" transparent="1" useCache="0"/>
-		<widget position="378,130" size="150,150" source="id_mainmenu_source_tumb_ext_2" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_source_bg.png" alphatest="on" zPosition="2" transparent="1" useCache="0"/>
-		<widget position="556,130" size="150,150" source="id_mainmenu_source_tumb_ext_3" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_source_bg.png" alphatest="on" zPosition="2" transparent="1" useCache="0"/>
-		<widget position="734,130" size="150,150" source="id_mainmenu_source_tumb_ext_4" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_source_bg.png" alphatest="on" zPosition="2" transparent="1" useCache="0"/>
-		<widget position="912,130" size="150,150" source="id_mainmenu_source_tumb_ext_5" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_source_bg.png" alphatest="on" zPosition="2" transparent="1" useCache="0"/>
-		<widget position="1090,130" size="150,150" source="id_mainmenu_source_tumb_ext_6" render="Aicon" pixmap="easy-skin-hd/gmenu/gmenu_source_bg.png" alphatest="on" zPosition="2" transparent="1" useCache="0"/>
-		
-		<widget position="22,130" size="150,150" source="id_mainmenu_tasks_tumb_ext_0" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_tasks_bg.png" path="easy-skin-hd/gmenu/" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="200,130" size="150,150" source="id_mainmenu_tasks_tumb_ext_1" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_tasks_bg.png" path="easy-skin-hd/gmenu/" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="378,130" size="150,150" source="id_mainmenu_tasks_tumb_ext_2" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_tasks_bg.png" path="easy-skin-hd/gmenu/" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="556,130" size="150,150" source="id_mainmenu_tasks_tumb_ext_3" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_tasks_bg.png" path="easy-skin-hd/gmenu/" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="734,130" size="150,150" source="id_mainmenu_tasks_tumb_ext_4" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_tasks_bg.png" path="easy-skin-hd/gmenu/" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="912,130" size="150,150" source="id_mainmenu_tasks_tumb_ext_5" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_tasks_bg.png" path="easy-skin-hd/gmenu/" alphatest="on" zPosition="2" transparent="1" />
-		<widget position="1090,130" size="150,150" source="id_mainmenu_tasks_tumb_ext_6" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_tasks_bg.png" path="easy-skin-hd/gmenu/" alphatest="on" zPosition="2" transparent="1" />
--->		
 	</screen>'''    
 
     ALLOW_SUSPEND = True
@@ -740,10 +645,10 @@ class GeneralMenu(Screen):
                     if subcount >= self.startSubEntry[x[1]] and subcount < self.startSubEntry[x[1]] + 5:
                         if count == self.selectedEntry:
                             sublist.append(GeneralSubMenuEntryComponent(y[0], enableEntry=True, selectedEntry=selectedSubEntry == subcount))
-                            self['list_sub_' + str(count - self.startEntry)].show() ## for show only current sublist
+                           # self['list_sub_' + str(count - self.startEntry)].show() ## for show only current sublist
                         else:
                             sublist.append(GeneralSubMenuEntryComponent(y[0], enableEntry=False, selectedEntry=False))
-                            self['list_sub_' + str(count - self.startEntry)].hide() ## for show only current sublist
+                            #self['list_sub_' + str(count - self.startEntry)].hide() ## for show only current sublist
                     subcount += 1
 
                 self['list_sub_' + str(count - self.startEntry)].setList(sublist)
