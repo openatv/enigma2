@@ -25,8 +25,8 @@
 		<widget source="global.CurrentTime" render="Label" position="right" size="34,*" font="Medium" halign="right" valign="top" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png" position="right" size="16,9">
-			<convert type="ConditionalShowHide">Blink</convert>
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/skin_default/LCDIcons/rec.png" position="right" size="16,9">
+			<convert type="ConditionalShowHide"/>
 		</widget>
 	</screen>
 
@@ -160,8 +160,8 @@
 			<widget source="global.CurrentTime" render="Label" position="fill" font="Huge" halign="center" valign="center" noWrap="1">
 				<convert type="ClockToText"></convert>
 			</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png" position="bottom" size="16,9">
-			<convert type="ConditionalShowHide">Blink</convert>
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/skin_default/LCDIcons/rec.png" position="bottom" size="16,9">
+			<convert type="ConditionalShowHide"/>
 		</widget>
 		</panel>
 	</screen>
