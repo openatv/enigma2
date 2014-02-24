@@ -39,8 +39,10 @@ class eDVBTeletextParser: public iObject, public ePESParser, public Object
 public:
 	eDVBTeletextParser(iDVBDemux *demux);
 	virtual ~eDVBTeletextParser();
+	const int max_id = 26;
+	static const char * const my_country_codes[];
 	int start(int pid);
-	void setPageAndMagazine(int page, int magazine);
+	void setPageAndMagazine(int page, int magazine, const char * lang);
 	void setMagazine(int magazine);
 	void connectNewStream(const Slot0<void> &slot, ePtr<eConnection> &connection);
 	void connectNewPage(const Slot1<void,const eDVBTeletextSubtitlePage &> &slot, ePtr<eConnection> &connection);
@@ -54,7 +56,7 @@ private:
 	
 	eDVBTeletextSubtitlePage m_subtitle_page;
 	
-	int m_C, m_Y, m_pid, m_page_M, m_page_X, m_page_open, m_double_height, m_box_open;
+	int m_C, m_Y, m_pid, m_page_M, m_page_X, m_page_open, m_double_height, m_box_open, m_L;
 	int m_X28_0_valid, m_X28_t1, m_X28_t2;
 	int m_M29_0_valid, m_M29_t1, m_M29_t2;
 

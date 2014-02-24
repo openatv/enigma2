@@ -197,7 +197,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.have_advanced = False
 			if self.nimConfig.configMode.getValue() == "enabled":
 				self.list.append(getConfigListEntry(_("Location"), self.nimConfig.terrestrial))
-				self.list.append(getConfigListEntry(_("Enable 5V for active antenna"), self.nimConfig.terrestrial_5V))
+				self.list.append(getConfigListEntry(_("Terrestrial provider"), self.nimConfig.terrestrial))
+				if not self.nim.isCompatible("DVB-T2"):
+					self.list.append(getConfigListEntry(_("Enable 5V for active antenna"), self.nimConfig.terrestrial_5V))
 		else:
 			self.have_advanced = False
 		self["config"].list = self.list
@@ -495,6 +497,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self["actions"] = ActionMap(["SetupActions", "SatlistShortcutAction", "ColorActions"],
 		{
 			"ok": self.keySave,
+			"save": self.keySave,
 			"cancel": self.keyCancel,
 			"nothingconnected": self.nothingConnectedShortcut,
 			"red": self.keyCancel,
@@ -513,6 +516,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
+		self.newConfig()
+
+	def handleKeyFileCallback(self, answer):
+		ConfigListScreen.handleKeyFileCallback(self, answer)
 		self.newConfig()
 
 	def keyCancel(self):
