@@ -1493,7 +1493,7 @@ def InitNimManager(nimmgr):
 				list.append((str(n), x[0]))
 				n += 1
 			nim.terrestrial = ConfigSelection(choices = list)
-			nim.terrestrial_5V = ConfigOnOff()
+			nim.terrestrial_5V = ConfigOnOff(default = False)
 
 	empty_slots = 0
 	for slot in nimmgr.nim_slots:
