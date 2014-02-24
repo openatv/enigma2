@@ -349,6 +349,16 @@ class ImageBackup(Screen):
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
+		elif self.MODEL == "ini-9000de":
+			self.TYPE = "GI"
+			self.MODEL = "xpeedlx3"
+			self.MKUBIFS_ARGS = "-m 4096 -e 1040384 -c 1984"
+			self.UBINIZE_ARGS = "-m 4096 -p 1024KiB"
+			self.SHOWNAME = "GI XpeedLX3"
+			self.MTDKERNEL = "mtd2"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)			
 		elif self.MODEL == "ini-1000ru":
 			self.TYPE = "SEZAM"
 			self.MODEL = "hde"
@@ -359,6 +369,16 @@ class ImageBackup(Screen):
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
+		elif self.MODEL == "ini-9000ru":
+			self.TYPE = "SEZAM"
+			self.MODEL = "hdp"
+			self.MKUBIFS_ARGS = "-m 4096 -e 1040384 -c 1984"
+			self.UBINIZE_ARGS = "-m 4096 -p 1024KiB"
+			self.SHOWNAME = "SEZAM Marvel"
+			self.MTDKERNEL = "mtd2"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)		
 		elif self.MODEL == "ini-1000sv":
 			self.TYPE = "MICRACLE"
 			self.MODEL = "mini"
