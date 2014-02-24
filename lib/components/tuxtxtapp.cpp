@@ -13,6 +13,7 @@ extern "C" int tuxtxt_init();
 extern "C" void tuxtxt_start(int tpid, int demux);
 extern "C" int tuxtxt_stop();
 extern "C" void tuxtxt_close();
+extern "C" void tuxtxt_handlePressedKey(int key);
 
 eAutoInitP0<eTuxtxtApp> init_eTuxtxtApp(eAutoInitNumbers::lowlevel, "Tuxtxt");
 eTuxtxtApp *eTuxtxtApp::instance = NULL;
@@ -36,7 +37,6 @@ eTuxtxtApp::~eTuxtxtApp()
 void eTuxtxtApp::recvEvent(const int &evt)
 {
 	uiRunning = false;
-	eRCInput::getInstance()->unlock();
 	eDBoxLCD::getInstance()->unlock();
 	eDBoxLCD::getInstance()->update();
 	fbClass::getInstance()->unlock();
@@ -48,7 +48,6 @@ int eTuxtxtApp::startUi()
 	if (fbClass::getInstance()->lock() >= 0)
 	{
 		eDBoxLCD::getInstance()->lock();
-		eRCInput::getInstance()->lock();
 		pthread_mutex_lock( &cacheChangeLock );
 		uiRunning = true;
 		pthread_mutex_unlock( &cacheChangeLock );
@@ -123,4 +122,9 @@ void eTuxtxtApp::setEnableTtCachingOnOff( int onoff )
 		freeCache();
 		pid = savePid;
 	}
+}
+
+void eTuxtxtApp::handleKey( int key )
+{
+	tuxtxt_handlePressedKey(key);
 }

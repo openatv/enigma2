@@ -17,7 +17,7 @@ from Screens.EventView import EventViewEPGSelect
 from Screens.TimeDateInput import TimeDateInput
 from Screens.TimerEntry import TimerEntry
 from Screens.EpgSelection import EPGSelection
-from Screens.TimerEdit import TimerSanityConflict
+from Screens.TimerEdit import TimerSanityConflict, TimerEditList
 from Screens.MessageBox import MessageBox
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
@@ -29,6 +29,9 @@ from enigma import eEPGCache, eListbox, gFont, eListboxPythonMultiContent, RT_HA
 	RT_VALIGN_CENTER, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO, eSize, eRect, eTimer, getBestPlayableServiceReference, loadPNG
 from GraphMultiEpgSetup import GraphMultiEpgSetup
 from time import localtime, time, strftime
+from Components.PluginComponent import plugins
+from Plugins.Plugin import PluginDescriptor
+from Tools.BoundFunction import boundFunction
 
 MAX_TIMELINES = 6
 
@@ -56,7 +59,7 @@ possibleAlignmentChoices = [
 	( str(RT_HALIGN_RIGHT  | RT_VALIGN_CENTER | RT_WRAP) , _("right, wrapped"))]
 config.misc.graph_mepg.event_alignment = ConfigSelection(default = possibleAlignmentChoices[0][0], choices = possibleAlignmentChoices)
 config.misc.graph_mepg.servicename_alignment = ConfigSelection(default = possibleAlignmentChoices[0][0], choices = possibleAlignmentChoices)
-config.misc.graph_mepg.extension_menu = ConfigYesNo(default = True)
+config.misc.graph_mepg.extension_menu = ConfigYesNo(default = False)
 
 listscreen = config.misc.graph_mepg.default_mode.value
 
@@ -796,9 +799,9 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				"timerAdd":    (self.timerAdd,       _("Add/remove timer for current event")),
 				"info":        (self.infoKeyPressed, _("Show detailed event info")),
 				"red":         (self.zapTo,          _("Zap to selected channel")),
-				"yellow":      (self.swapMode,       _("Switch between normal mode and list mode")),	
-				"blue":        (self.enterDateTime,  _("Goto specific data/time")),
-				"menu":        (self.showSetup,      _("Setup menu")),
+				"yellow":      (self.swapMode,       _("Switch between normal mode and list mode")),
+				"blue":        (self.enterDateTime,  _("Goto specific date/time")),
+				"menu":	       (self.furtherOptions, _("Further Options")),
 				"nextBouquet": (self.nextBouquet,    _("Show bouquet selection menu")),
 				"prevBouquet": (self.prevBouquet,    _("Show bouquet selection menu")),
 				"nextService": (self.nextPressed,    _("Goto next page of events")),
@@ -935,6 +938,32 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		config.misc.graph_mepg.save()
 		self.close(False)
 
+	def furtherOptions(self):
+		menu = []
+		text = _("Select action")
+		event = self["list"].getCurrent()[0]
+		if event:
+			menu = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO) \
+				if 'selectedevent' in p.__call__.func_code.co_varnames]
+			if menu:
+				text += _(": %s") % event.getEventName()
+		menu.append((_("Timer Overview"), self.openTimerOverview))
+		menu.append((_("Setup menu"), self.showSetup))
+		if len(menu) == 1:
+			menu and menu[0][1]()
+		elif len(menu) > 1:
+			def boxAction(choice):
+				if choice:
+					choice[1]()
+			self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu)
+
+	def runPlugin(self, plugin):
+		event = self["list"].getCurrent()
+		plugin(session=self.session, selectedevent=event)
+
+	def openTimerOverview(self):
+		self.session.open(TimerEditList)
+
 	def infoKeyPressed(self):
 		cur = self["list"].getCurrent()
 		event = cur[0]
@@ -997,8 +1026,10 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		if self.zapFunc and self.key_red_choice == self.ZAP:
 			ref = self["list"].getCurrent()[1]
 			if ref:
-				self.zapFunc(ref.ref)
-				if self.previousref and self.previousref == ref.ref:
+				from Components.ServiceEventTracker import InfoBarCount
+				preview = InfoBarCount > 1
+				self.zapFunc(ref.ref, preview)
+				if self.previousref and self.previousref == ref.ref and not preview:
 					config.misc.graph_mepg.save()
 					self.close(True)
 				self.previousref = ref.ref
@@ -1021,6 +1052,12 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.session.nav.RecordTimer.removeEntry(timer)
 		self["key_green"].setText(_("Add timer"))
 		self.key_green_choice = self.ADD_TIMER
+
+	def disableTimer(self, timer):
+		timer.disable()
+		self.session.nav.RecordTimer.timeChanged(timer)
+		self["key_green"].setText(_("Add timer"))
+		self.key_green_choice = self.ADD_TIMER
 	
 	def timerAdd(self):
 		cur = self["list"].getCurrent()
@@ -1029,11 +1066,26 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			return
 		eventid = event.getEventId()
 		serviceref = cur[1]
-		refstr = serviceref.ref.toString()
+		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret : not ret or self.removeTimer(timer)
-				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % event.getEventName())
+			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
+				menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
+				buttons = ["red", "green"]
+				if not timer.isRunning():
+					menu.append((_("Disable timer"), "disable"))
+					buttons.append("yellow")
+				menu.append((_("Timer Overview"), "timereditlist"))
+				def timerAction(choice):
+					if choice is not None:
+						if choice[1] == "delete":
+							self.removeTimer(timer)
+						elif choice[1] == "edit":
+							self.session.open(TimerEntry, timer)
+						elif choice[1] == "disable":
+							self.disableTimer(timer)
+						elif choice[1] == "timereditlist":
+							self.session.open(TimerEditList)
+				self.session.openWithCallback(timerAction, ChoiceBox, title=_("Select action for timer %s:") % event.getEventName(), list=menu, keys=buttons)
 				break
 		else:
 			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))
@@ -1089,10 +1141,10 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			return
 		
 		eventid = event.getEventId()
-		refstr = servicerefref.toString()
+		refstr = ':'.join(servicerefref.toString().split(':')[:11])
 		isRecordEvent = False
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
 				isRecordEvent = True
 				break
 		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:

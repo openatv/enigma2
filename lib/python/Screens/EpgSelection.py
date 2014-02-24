@@ -9,7 +9,8 @@ from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import preferredTimerPath
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.Event import Event
-from Screens.TimerEdit import TimerSanityConflict
+from Screens.ChoiceBox import ChoiceBox
+from Screens.TimerEdit import TimerSanityConflict, TimerEditList
 from Screens.EventView import EventViewSimple
 from Screens.MessageBox import MessageBox
 from TimeDateInput import TimeDateInput
@@ -18,6 +19,9 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry
 from ServiceReference import ServiceReference
 from time import localtime, time
+from Components.PluginComponent import plugins
+from Plugins.Plugin import PluginDescriptor
+from Tools.BoundFunction import boundFunction
 
 mepg_config_initialized = False
 
@@ -38,6 +42,7 @@ class EPGSelection(Screen):
 		self.saved_title = None
 		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
+		self.session = session
 		if isinstance(service, str) and eventid != None:
 			self.type = EPG_TYPE_SIMILAR
 			self["key_yellow"] = Button()
@@ -86,7 +91,7 @@ class EPGSelection(Screen):
 				"blue": self.blueButtonPressed,
 				"info": self.infoKeyPressed,
 				"red": self.zapTo,
-				"menu": self.enterDateTime,
+				"menu": self.furtherOptions,
 				"nextBouquet": self.nextBouquet, # just used in multi epg yet
 				"prevBouquet": self.prevBouquet, # just used in multi epg yet
 				"nextService": self.nextService, # just used in single epg yet
@@ -119,6 +124,33 @@ class EPGSelection(Screen):
 				config.misc.prev_mepg_time=ConfigClock(default = time())
 				mepg_config_initialized = True
 			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.misc.prev_mepg_time )
+
+	def furtherOptions(self):
+		menu = []
+		text = _("Select action")
+		event = self["list"].getCurrent()[0]
+		if event:
+			menu = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO) \
+				if 'selectedevent' in p.__call__.func_code.co_varnames]
+			if menu:
+				text += _(": %s") % event.getEventName()
+		if self.type == EPG_TYPE_MULTI:
+			menu.append((_("Goto specific date/time"),self.enterDateTime))
+		menu.append((_("Timer Overview"), self.openTimerOverview))
+		if len(menu) == 1:
+			menu and menu[0][1]()
+		elif len(menu) > 1:
+			def boxAction(choice):
+				if choice:
+					choice[1]()
+			self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu)
+
+	def runPlugin(self, plugin):
+		event = self["list"].getCurrent()
+		plugin(session=self.session, selectedevent=event)
+
+	def openTimerOverview(self):
+		self.session.open(TimerEditList)
 
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:
@@ -187,8 +219,12 @@ class EPGSelection(Screen):
 	def zapTo(self):
 		if self.key_red_choice == self.ZAP and self.zapFunc:
 			self.closeRecursive = True
-			self.zapSelectedService()
-			self.close(self.closeRecursive)
+			from Components.ServiceEventTracker import InfoBarCount
+			if InfoBarCount > 1:
+				self.eventPreview()
+			else:
+				self.zapSelectedService()
+				self.close(self.closeRecursive)
 
 	def zapSelectedService(self, prev=False):
 		lst = self["list"]
@@ -205,7 +241,14 @@ class EPGSelection(Screen):
 			self.zapSelectedService(True)
 
 	def eventSelected(self):
-		self.infoKeyPressed()
+		if self.skinName == "EPGSelectionMulti":
+			cur = self["list"].getCurrent()
+			event = cur[0]
+			ref = cur[1] and cur[1].ref.toString()
+			if ref and event:
+				self.session.open(EPGSelection, ref)
+		else:
+			self.infoKeyPressed()
 
 	def yellowButtonPressed(self):
 		if self.type == EPG_TYPE_MULTI:
@@ -236,6 +279,12 @@ class EPGSelection(Screen):
 		self["key_green"].setText(_("Add timer"))
 		self.key_green_choice = self.ADD_TIMER
 
+	def disableTimer(self, timer):
+		timer.disable()
+		self.session.nav.RecordTimer.timeChanged(timer)
+		self["key_green"].setText(_("Add timer"))
+		self.key_green_choice = self.ADD_TIMER
+
 	def timerAdd(self):
 		cur = self["list"].getCurrent()
 		event = cur[0]
@@ -243,11 +292,26 @@ class EPGSelection(Screen):
 		if event is None:
 			return
 		eventid = event.getEventId()
-		refstr = serviceref.ref.toString()
+		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret : not ret or self.removeTimer(timer)
-				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % event.getEventName())
+			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
+				menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
+				buttons = ["red", "green"]
+				if not timer.isRunning():
+					menu.append((_("Disable timer"), "disable"))
+					buttons.append("yellow")
+				menu.append((_("Timer Overview"), "timereditlist"))
+				def timerAction(choice):
+					if choice is not None:
+						if choice[1] == "delete":
+							self.removeTimer(timer)
+						elif choice[1] == "edit":
+							self.session.open(TimerEntry, timer)
+						elif choice[1] == "disable":
+							self.disableTimer(timer)
+						elif choice[1] == "timereditlist":
+							self.session.open(TimerEditList)
+				self.session.openWithCallback(timerAction, ChoiceBox, title=_("Select action for timer %s:") % event.getEventName(), list=menu, keys=buttons)
 				break
 		else:
 			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(event))
@@ -374,10 +438,10 @@ class EPGSelection(Screen):
 
 		serviceref = cur[1]
 		eventid = event.getEventId()
-		refstr = serviceref.ref.toString()
+		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		isRecordEvent = False
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
 				isRecordEvent = True
 				break
 		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:

@@ -863,7 +863,7 @@ class ChannelSelectionBase(Screen):
 		self["list"] = ServiceList(self)
 		self.servicelist = self["list"]
 
-		self.numericalTextInput = NumericalTextInput()
+		self.numericalTextInput = NumericalTextInput(handleTimeout=False)
 		self.numericalTextInput.setUseableChars(u'1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
 		self.servicePathTV = [ ]
@@ -1423,12 +1423,15 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.recallBouquetMode()
 
 	def __evServiceStart(self):
-		service = self.session.nav.getCurrentService()
-		if service:
-			info = service.info()
-			if info:
-				refstr = info.getInfoString(iServiceInformation.sServiceref)
-				self.servicelist.setPlayableIgnoreService(eServiceReference(refstr))
+		if self.dopipzap and hasattr(self.session, 'pip'):
+			self.servicelist.setPlayableIgnoreService(self.session.pip.getCurrentServiceReference() or eServiceReference())
+		else:
+			service = self.session.nav.getCurrentService()
+			if service:
+				info = service.info()
+				if info:
+					refstr = info.getInfoString(iServiceInformation.sServiceref)
+					self.servicelist.setPlayableIgnoreService(eServiceReference(refstr))
 
 	def __evServiceEnd(self):
 		self.servicelist.setPlayableIgnoreService(eServiceReference())
@@ -1552,10 +1555,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
 			if ref is None or ref != nref:
-				if not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False)):
-					if not self.session.pip.playService(nref):
-						# XXX: Make sure we set an invalid ref
-						self.session.pip.playService(None)
+				nref = self.session.pip.resolveAlternatePipService(nref)
+				if nref and (not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False))):
+					self.session.pip.playService(nref)
+					self.__evServiceStart()
 				else:
 					self.setStartRoot(self.curRoot)
 					self.setCurrentSelection(ref)

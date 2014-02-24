@@ -1083,6 +1083,24 @@ int eServiceMP3::getInfo(int w)
 
 std::string eServiceMP3::getInfoString(int w)
 {
+	if ( m_sourceinfo.is_streaming )
+	{
+		switch (w)
+		{
+		case sProvider:
+			return "IPTV";
+		case sServiceref:
+		{
+			eServiceReference ref(m_ref);
+			ref.type = eServiceFactoryMP3::id;
+			ref.path.clear();
+			return ref.toString();
+		}
+		default:
+			break;
+		}
+	}
+
 	if ( !m_stream_tags && w < sUser && w > 26 )
 		return "";
 	const gchar *tag = 0;
@@ -1942,7 +1960,11 @@ void eServiceMP3::playbinNotifySource(GObject *object, GParamSpec *unused, gpoin
 		}
 		if (g_object_class_find_property(G_OBJECT_GET_CLASS(source), "extra-headers") != 0 && !_this->m_extra_headers.empty())
 		{
+#if GST_VERSION_MAJOR < 1
 			GstStructure *extras = gst_structure_empty_new("extras");
+#else
+			GstStructure *extras = gst_structure_new_empty("extras");
+#endif
 			size_t pos = 0;
 			while (pos != std::string::npos)
 			{
@@ -2059,7 +2081,11 @@ audiotype_t eServiceMP3::gstCheckAudioPad(GstStructure* structure)
 		return atAC3;
 	else if ( gst_structure_has_name (structure, "audio/x-dts") || gst_structure_has_name (structure, "audio/dts") )
 		return atDTS;
+#if GST_VERSION_MAJOR < 1
 	else if ( gst_structure_has_name (structure, "audio/x-raw-int") )
+#else
+	else if ( gst_structure_has_name (structure, "audio/x-raw") )
+#endif
 		return atPCM;
 
 	return atUnknown;

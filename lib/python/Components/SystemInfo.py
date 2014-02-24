@@ -32,3 +32,5 @@ SystemInfo["LcdDisplay"] = fileExists("/dev/dbox/lcd0")
 SystemInfo["DeepstandbySupport"] = HardwareInfo().get_device_name() != "dm800"
 SystemInfo["OledDisplay"] = fileExists(resolveFilename(SCOPE_SKIN, 'lcd_skin/skin_lcd_default.xml'))
 SystemInfo["GBWOL"] = fileExists("/usr/bin/gigablue_wol")
+SystemInfo["Fan"] = fileExists("/proc/stb/fp/fan")
+SystemInfo["FanPWM"] = SystemInfo["Fan"] and fileExists("/proc/stb/fp/fan_pwm")

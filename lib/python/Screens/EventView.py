@@ -19,41 +19,6 @@ from Tools.BoundFunction import boundFunction
 from time import localtime
 from Components.config import config
 
-class EventViewContextMenu(Screen):
-	def __init__(self, session, service, event):
-		Screen.__init__(self, session)
-		self.event = event
-		self.service = service
-		self.eventname = event.getEventName()
-
-		self["actions"] = ActionMap(["OkCancelActions"],
-			{
-				"ok": self.okbuttonClick,
-				"cancel": self.cancelClick
-			})
-
-		menu = []
-
-		for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
-			#only list service or event specific eventinfo plugins here, no servelist plugins
-			if 'servicelist' not in p.__call__.func_code.co_varnames:
-				menu.append((p.name, boundFunction(self.runPlugin, p)))
-
-		self["menu"] = MenuList(menu)
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(_(self.title))
-
-	def okbuttonClick(self):
-		self["menu"].getCurrent() and self["menu"].getCurrent()[1]()
-
-	def cancelClick(self):
-		self.close(False)
-
-	def runPlugin(self, plugin):
-		plugin(session=self.session, service=self.service, event=self.event, eventName=self.eventname)
-
 class EventViewBase:
 	ADD_TIMER = 0
 	REMOVE_TIMER = 1
@@ -124,11 +89,18 @@ class EventViewBase:
 		if event is None:
 			return
 		eventid = event.getEventId()
-		refstr = serviceref.ref.toString()
+		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret : not ret or self.removeTimer(timer)
-				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % event.getEventName())
+			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
+				menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
+				buttons = ["red", "green"]
+				def timerAction(choice):
+					if choice is not None:
+						if choice[1] == "delete":
+							self.removeTimer(timer)
+						elif choice[1] == "edit":
+							self.session.open(TimerEntry, timer)
+				self.session.openWithCallback(timerAction, ChoiceBox, title=_("Select action for timer %s:") % event.getEventName(), list=menu, keys=buttons)
 				break
 		else:
 			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.event))
@@ -206,10 +178,10 @@ class EventViewBase:
 
 		serviceref = self.currentService
 		eventid = self.event.getEventId()
-		refstr = serviceref.ref.toString()
+		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		isRecordEvent = False
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
 				isRecordEvent = True
 				break
 		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
@@ -256,8 +228,22 @@ class EventViewBase:
 				self.similarEPGCB(id, refstr)
 
 	def doContext(self):
-		if self.event is not None:
-			self.session.open(EventViewContextMenu, self.currentService, self.event)
+		if self.event:
+			text = _("Select action")
+			menu = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO) \
+				if 'servicelist' not in p.__call__.func_code.co_varnames \
+					if 'selectedevent' not in p.__call__.func_code.co_varnames ]
+			if len(menu) == 1:
+				menu and menu[0][1]()
+			elif len(menu) > 1:
+				def boxAction(choice):
+					if choice:
+						choice[1]()
+				text += _(": %s") % self.event.getEventName()
+				self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu)
+
+	def runPlugin(self, plugin):
+		plugin(session=self.session, service=self.currentService, event=self.event, eventName=self.event.getEventName())
 
 class EventViewSimple(Screen, EventViewBase):
 	def __init__(self, session, Event, Ref, callback=None, similarEPGCB=None):
@@ -275,5 +261,16 @@ class EventViewEPGSelect(Screen, EventViewBase):
 		self["epgactions"] = ActionMap(["EventViewEPGActions"],
 			{
 				"openSingleServiceEPG": singleEPGCB,
+				"openMultiServiceEPG": multiEPGCB,
+			})
+
+class EventViewRecording(Screen, EventViewBase):
+	def __init__(self, session, Event, Ref, callback=None, multiEPGCB=None, similarEPGCB=None):
+		Screen.__init__(self, session)
+		self.skinName = "EventView"
+		EventViewBase.__init__(self, Event, Ref, callback, similarEPGCB)
+		self["key_blue"].setText(_("Multi EPG"))
+		self["epgactions"] = ActionMap(["EventViewEPGActions"],
+			{
 				"openMultiServiceEPG": multiEPGCB,
 			})
