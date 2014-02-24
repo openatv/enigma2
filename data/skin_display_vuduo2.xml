@@ -29,7 +29,7 @@
 		<widget source="global.CurrentTime" render="Label" position="right" size="34,*" font="Medium" halign="right" valign="top" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/skin_default/LCDIcons/rec.png" position="right" size="16,9">
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/skin_default/LCDIcons/rec.png" position="right" size="16,12" valign="bottom">
 			<convert type="ConditionalShowHide"/>
 		</widget>
 	</screen>
@@ -43,7 +43,7 @@
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<panel position="bottom" size="*,12" name="SummaryClockPanel">
-			<widget source="session.Event_Now" render="Label" position="0,0" size="78,12" font="Small" halign="left" noWrap="1">
+			<widget source="session.Event_Now" render="Label" position="0,0" size="78,12" font="Medium" halign="left" noWrap="1">
 				<convert type="EventName">Name</convert>
 			</widget>
 		</panel>
@@ -58,7 +58,7 @@
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<panel position="bottom" size="*,12" name="SummaryClockPanel">
-			<widget source="parent.ServiceEvent" render="Label" position="0,0" size="78,12" font="Small" halign="left" noWrap="1">
+			<widget source="parent.ServiceEvent" render="Label" position="0,0" size="78,12" font="Medium" halign="left" noWrap="1">
 				<convert type="EventName">Name</convert>
 			</widget>
 		</panel>
@@ -86,7 +86,7 @@
 			<convert type="ServicePosition">Position</convert>
 		</widget>
 		<panel position="bottom" size="*,12" name="SummaryClockPanel">
-			<widget source="session.CurrentService" render="Label" position="left" size="78,12" font="Small" halign="left" noWrap="1">
+			<widget source="session.CurrentService" render="Label" position="left" size="78,12" font="Medium" halign="left" noWrap="1">
 				<convert type="ServiceName">Name</convert>
 			</widget>
 		</panel>
@@ -129,7 +129,7 @@
 
 <!-- misc-->
 	<screen name="SimpleSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="*,40" font="FdLcD;16" halign="center" valign="center" />
+		<widget source="parent.Title" render="Label" position="top" size="*,40" font="FdLcD;16" halign="left" valign="center" />
 		<panel position="bottom" size="*,24" name="SummaryClockPanel" />
 	</screen>
 
@@ -160,7 +160,7 @@
 	</screen>
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="*,16" font="FdLcD;12"  noWrap="1" />
+		<widget source="parent.Title" render="Label" position="top" size="*,16" font="FdLcD;12" noWrap="1" />
 		<widget source="entry" render="Label" position="top" size="*,20" font="FdLcD;18" noWrap="1" />
 		<widget source="desc" render="Label" position="fill" font="FdLcD;12" valign="top" />
 	</screen>
@@ -176,16 +176,16 @@
 	</screen>
 
 	<screen name="ChoiceBox_summary" position="fill">
-		<widget source="parent.summary_list" render="Label" position="fill" font="FdLcD;16" />
+		<widget source="parent.text" render="Label" position="top" size="*,16" font="FdLcD;16" noWrap="1"/>
+		<widget source="parent.summary_selection" render="Label" position="bottom" size="*,16" font="FdLcD;16" noWrap="1"/>
 	</screen>	
 
 	<screen name="MessageBox_summary" position="fill">
-		<widget source="parent.Text" render="Label" position="top" size="*,16" font="FdLcD;16" halign="left" valign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="bottom" size="*,16" font="FdLcD;16" halign="center" valign="center" />
+		<widget source="parent.Text" render="Label" position="top" size="*,20" font="Small" halign="left"/>
+		<widget source="parent.selectedChoice" render="Label" position="bottom" size="*,12" font="Medium" noWrap="1"/>
 	</screen>
 
 	<screen name="MessageBoxSimple_summary" position="fill">
-		<widget source="parent.Text" render="Label" position="top" size="*,16" font="FdLcD;16" halign="center" valign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="bottom" size="*,16" font="FdLcD;16" halign="center" valign="center" />
+		<panel name="MessageBox_summary"/>
 	</screen>
 </skin>
