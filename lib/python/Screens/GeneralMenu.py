@@ -645,10 +645,10 @@ class GeneralMenu(Screen):
                     if subcount >= self.startSubEntry[x[1]] and subcount < self.startSubEntry[x[1]] + 5:
                         if count == self.selectedEntry:
                             sublist.append(GeneralSubMenuEntryComponent(y[0], enableEntry=True, selectedEntry=selectedSubEntry == subcount))
-                           # self['list_sub_' + str(count - self.startEntry)].show() ## for show only current sublist
+                            self['list_sub_' + str(count - self.startEntry)].show() ## for show only current sublist
                         else:
                             sublist.append(GeneralSubMenuEntryComponent(y[0], enableEntry=False, selectedEntry=False))
-                            #self['list_sub_' + str(count - self.startEntry)].hide() ## for show only current sublist
+                            self['list_sub_' + str(count - self.startEntry)].hide() ## for show only current sublist
                     subcount += 1
 
                 self['list_sub_' + str(count - self.startEntry)].setList(sublist)
@@ -756,7 +756,7 @@ class GeneralMenu(Screen):
 	#(_('Live Radio'), 'mainmenu_tv_live_radio', boundFunction(self.openLiveRadio), 60),
         (_('Timers'),'mainmenu_tv_timer',boundFunction(self.openDialog, TimerEditList),60),
          (_('Program Guide'),'mainmenu_tv_timer',boundFunction(self.openProgramGuide),70)
-        # ,(_('Cross EPG'),'mainmenu_tv_timer',boundFunction(self.openCrossEPG),80)
+         ,(_('Cross EPG'),'mainmenu_tv_timer',boundFunction(self.openCrossEPG),80)
         #,(_('Setup'), 'mainmenu_tv_setup', boundFunction(self.notReadyMessage), 100)
         ])
 
@@ -842,9 +842,9 @@ class GeneralMenu(Screen):
 	#InfoBar.instance.openMultiServiceEPG()
 	InfoBar.instance.openGraphEPG()
 	
-    #def openCrossEPG(self):
-	#from Plugins.SystemPlugins.CrossEPG.crossepg_menu import CrossEPG_Menu
-	#self.session.open(CrossEPG_Menu)   
+    def openCrossEPG(self):
+	from Plugins.SystemPlugins.CrossEPG.crossepg_menu import CrossEPG_Menu
+	self.session.open(CrossEPG_Menu)   
 	
     # Photos
     def openPicturePlayer(self):
