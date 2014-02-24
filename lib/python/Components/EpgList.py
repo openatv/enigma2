@@ -1184,7 +1184,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.borderSelectedLeftPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderLeft.png'))
 			self.borderSelectedRightPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderRight.png'))
 
-			self.infomationPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/infomation.png'))
+			self.infomationPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/information.png'))
 
 			self.graphicsloaded = True
 
