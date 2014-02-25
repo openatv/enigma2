@@ -117,8 +117,10 @@
 	<map context="InfobarChannelSelection">
 		<key id="KEY_LEFT" mapto="LeftPressed" flags="mr" />
 		<key id="KEY_RIGHT" mapto="RightPressed" flags="mr" />
-		<key id="KEY_UP" mapto="switchChannelUp" flags="m" />
-		<key id="KEY_DOWN" mapto="switchChannelDown" flags="m" />
+		<key id="KEY_UP" mapto="switchChannelUp" flags="b" />
+		<key id="KEY_DOWN" mapto="switchChannelDown" flags="b" />
+		<key id="KEY_UP" mapto="switchChannelUpLong" flags="l" />
+		<key id="KEY_DOWN" mapto="switchChannelDownLong" flags="l" />
 		<key id="KEY_PREVIOUS" mapto="historyBack" flags="mr" />
 		<key id="KEY_NEXT" mapto="historyNext" flags="mr" />
 		<key id="KEY_BACK" mapto="historyBack" flags="mr" />
