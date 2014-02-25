@@ -61,6 +61,7 @@ class FrontendInfo(Source, PerServiceBase):
 	def destroy(self):
 		if not self.frontend_source and not self.service_source:
 			PerServiceBase.destroy(self)
+		res_mgr = eDVBResourceManager.getInstance()
 		if res_mgr:
 			res_mgr.frontendUseMaskChanged.get().remove(self.updateTunerMask)
 		Source.destroy(self)
