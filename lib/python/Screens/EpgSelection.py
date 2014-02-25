@@ -1272,6 +1272,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.close()
 
 	def zapSelectedService(self, prev=False):
+		currservice = self.session.nav.getCurrentlyPlayingServiceReference() and str(self.session.nav.getCurrentlyPlayingServiceReference().toString()) or None
 		if self.session.pipshown:
 			self.prevch = self.session.pip.getCurrentService() and str(self.session.pip.getCurrentService().toString()) or None
 		else:
@@ -1296,8 +1297,12 @@ class EPGSelection(Screen, HelpableScreen):
 						del self.session.pip
 						self.zapFunc(ref.ref, bouquet = self.getCurrentBouquet(), preview = False)
 						return
-					self.session.pip.playService(service)
-					self.currch = self.session.pip.getCurrentService() and str(self.session.pip.getCurrentService().toString())
+					if self.prevch != service.toString() and currservice != service.toString():
+						self.session.pip.playService(service)
+						self.currch = self.session.pip.getCurrentService() and str(self.session.pip.getCurrentService().toString())
+					elif currservice == service.toString():
+						self.session.pipshown = False
+						del self.session.pip
 				else:
 					self.zapFunc(ref.ref, bouquet = self.getCurrentBouquet(), preview = prev)
 					self.currch = self.session.nav.getCurrentlyPlayingServiceReference() and str(self.session.nav.getCurrentlyPlayingServiceReference().toString())
