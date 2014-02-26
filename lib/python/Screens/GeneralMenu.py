@@ -763,8 +763,8 @@ class GeneralMenu(Screen):
         subentrys['id_mainmenu_movies'] = self.getSubEntry('id_mainmenu_movies', [
 	  #(_('TV Shows'), 'mainmenu_movies_tvshows', boundFunction(self.openMovieBrowserMovies), 30),
         # (_('TV Serials'), 'mainmenu_movies_tvserials', boundFunction(self.openMovieBrowserSeries), 40),
-         (_('Recordings'),'mainmenu_tv_recorded', boundFunction(self.openRecordings),50)
-         #(_('Media Portal'),'mainmenu_tv_recorded', boundFunction(self.openMediaPortal),60)
+         (_('Recordings'),'mainmenu_tv_recorded', boundFunction(self.openRecordings),50),
+         (_('Media Portal'),'mainmenu_tv_recorded', boundFunction(self.openMediaPortal),60)
          #,(_('Setup'), 'mainmenu_movies_setup', boundFunction(self.openMovieBrowserSetup),100)
          ])
  
