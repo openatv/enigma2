@@ -1914,6 +1914,9 @@ int eDVBServicePlay::getInfo(int w)
 			apid = m_dvb_service->getCacheEntry(eDVBService::cAC3PID);
 			if (apid != -1)
 				return apid;
+			apid = m_dvb_service->getCacheEntry(eDVBService::cDDPPID);
+			if (apid != -1)
+				return apid;
 			apid = m_dvb_service->getCacheEntry(eDVBService::cAACHEAPID);
 			if (apid != -1)
 				return apid;
@@ -2141,30 +2144,44 @@ int eDVBServicePlay::selectAudioStream(int i)
 				    the cache contains the correct audio pid and type)
 			*/
 	if (m_dvb_service && ((i != -1) || (program.audioStreams.size() == 1)
-		|| ((m_dvb_service->getCacheEntry(eDVBService::cMPEGAPID) == -1) && (m_dvb_service->getCacheEntry(eDVBService::cAC3PID)==-1) && (m_dvb_service->getCacheEntry(eDVBService::cAACHEAPID) == -1))))
+		|| ((m_dvb_service->getCacheEntry(eDVBService::cMPEGAPID) == -1)
+		&& (m_dvb_service->getCacheEntry(eDVBService::cAC3PID)== -1)
+		&& (m_dvb_service->getCacheEntry(eDVBService::cDDPPID)== -1)
+		&& (m_dvb_service->getCacheEntry(eDVBService::cAACHEAPID) == -1))))
 	{
 		if (apidtype == eDVBAudio::aMPEG)
 		{
 			m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, apid);
 			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
+			m_dvb_service->setCacheEntry(eDVBService::cDDPPID, -1);
 			m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, -1);
 		}
 		else if (apidtype == eDVBAudio::aAC3)
 		{
 			m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, -1);
 			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, apid);
+			m_dvb_service->setCacheEntry(eDVBService::cDDPPID, -1);
+			m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, -1);
+		}
+		else if (apidtype == eDVBAudio::aDDP)
+		{
+			m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, -1);
+			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
+			m_dvb_service->setCacheEntry(eDVBService::cDDPPID, apid);
 			m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, -1);
 		}
 		else if (apidtype == eDVBAudio::aAACHE)
 		{
 			m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, -1);
 			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
+			m_dvb_service->setCacheEntry(eDVBService::cDDPPID, -1);
 			m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, apid);
 		}
 		else
 		{
 			m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, -1);
 			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
+			m_dvb_service->setCacheEntry(eDVBService::cDDPPID, -1);
 			m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, -1);
 		}
 	}
