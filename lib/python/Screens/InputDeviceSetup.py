@@ -272,8 +272,8 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("9", _("et8000/et10000")),
 			("11", _("et9x00/6500")),
 			("13", _("et4000")),
-			("14", _("XP1000")),
-		]
+			("14", _("XP1000"))
+			]
 
 	defaultRcList = [
 			("et4000", 13),
@@ -285,8 +285,8 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("et9200", 11),
 			("et9500", 11),
 			("et10000", 9),
-			("xp1000", 14),
-		]
+			("xp1000", 14)
+			]
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
