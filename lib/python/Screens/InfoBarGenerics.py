@@ -271,7 +271,7 @@ class SecondInfoBar(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		if config.usage.show_second_infobar.getValue() == "3" and config.skin.primary_skin.getValue() == "DMConcinnity-HD/skin.xml":
+		if config.usage.show_second_infobar.getValue() == "3" and (config.skin.primary_skin.getValue() == "DMConcinnity-HD/skin.xml" or config.skin.primary_skin.getValue().startswith('MetrixHD/')):
 			self.skinName = "SecondInfoBarECM"
 		else:
 			self.skinName = "SecondInfoBar"
@@ -658,7 +658,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
 			if not self.secondInfoBarWasShown or (config.usage.show_second_infobar.getValue() == "1" and not self.EventViewIsShown):
-
 				self.show()
 			if self.secondInfoBarScreen:
 				self.secondInfoBarScreen.hide()
@@ -666,11 +665,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.EventViewIsShown = False
 		elif self.secondInfoBarScreen and (config.usage.show_second_infobar.getValue() == "2" or config.usage.show_second_infobar.getValue() == "3") and not self.secondInfoBarScreen.shown:
 			self.SwitchSecondInfoBarScreen()
-
-
-
-
-
 			self.hide()
 			self.secondInfoBarScreen.show()
 			self.secondInfoBarWasShown = True

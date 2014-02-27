@@ -50,21 +50,21 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		if config.usage.show_infobar_lite.getValue() and config.skin.primary_skin.getValue() == "DMConcinnity-HD/skin.xml":
+		if config.usage.show_infobar_lite.getValue() and (config.skin.primary_skin.getValue() == "DMConcinnity-HD/skin.xml" or config.skin.primary_skin.getValue().startswith('MetrixHD/')):
 			self.skinName = "InfoBarLite"
-		
+
 		self["actions"] = HelpableActionMap(self, "InfobarActions",
 			{
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
 				"showRadio": (self.showRadioButton, _("Show the radio player...")),
 				"showTv": (self.showTvButton, _("Show the tv player...")),
-				"toogleTvRadio": (self.toogleTvRadio, _("toggels betwenn tv and radio...")),
-				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
+				"toogleTvRadio": (self.toogleTvRadio, _("Toggels between tv and radio...")),
+				"openBouquetList": (self.openBouquetList, _("Open bouquetlist...")),
 				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
-				"openTimerList": (self.openTimerList, _("Show the tv player...")),
-				"openAutoTimerList": (self.openAutoTimerList, _("Show the tv player...")),
-				"openEPGSearch": (self.openEPGSearch, _("Show the tv player...")),
-				"openIMDB": (self.openIMDB, _("Show the tv player...")),
+				"openTimerList": (self.openTimerList, _("Open Timerlist...")),
+				"openAutoTimerList": (self.openAutoTimerList, _("Open AutoTimerlist...")),
+				"openEPGSearch": (self.openEPGSearch, _("Open EPGSearch...")),
+				"openIMDB": (self.openIMDB, _("Open IMDB...")),
 				"showMC": (self.showMediaCenter, _("Show the media center...")),
 				"openSleepTimer": (self.openPowerTimerList, _("Show the Sleep Timer...")),
 				'ZoomInOut': (self.ZoomInOut, _('Zoom In/Out TV...')),
