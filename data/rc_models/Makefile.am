@@ -1,1 +1,6 @@
-SUBDIRS = et4x00 et6x00 et9x00 et9500 vu xp1000
+installdir = $(pkgdatadir)/rc_models
+
+dist_install_DATA = \
+	rc_models.cfg \
+	*.png \
+	*.xml

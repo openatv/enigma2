@@ -1,66 +1,46 @@
 import os
+from Tools.HardwareInfo import HardwareInfo
+from Tools.Directories import SCOPE_SKIN, resolveFilename
 
 class RcModel:
-	RCTYPE_DMM = 0
-	RCTYPE_ET9X00 = 1
-	RCTYPE_ET6X00 = 2
-	RCTYPE_ET9500 = 3
-	RCTYPE_VU = 4
-	RCTYPE_ET4X00 = 5
-	RCTYPE_XP1000 = 6
+        RcModels = {}
 
 	def __init__(self):
-		self.currentRcType = self.RCTYPE_DMM
-		self.readRcTypeFromProc()
+		self.model = HardwareInfo().get_device_model()
+		# cfg files has modelname  rcname entries.
+		# modelname is boxname optionally followed by .rctype
+		for line in open((resolveFilename(SCOPE_SKIN, 'rc_models/rc_models.cfg')), 'r'):
+			if line.startswith(self.model):
+				m, r = line.strip().split()
+				self.RcModels[m] = r
 
 	def rcIsDefault(self):
-		if self.currentRcType != self.RCTYPE_DMM:
-			return False
-		return True
+		# Default RC can only happen with DMM type remote controls...
+		return self.model.startswith('dm')
 
-	def readFile(self, target):
-		fp = open(target, 'r')
-		out = fp.read()
-		fp.close()
-		return out.split()[0]
+	def getRcFile(self, ext):
+		# check for rc/type every time so rctype changes will be noticed
+		if os.path.exists('/proc/stb/ir/rc/type'):
+			rc = open('/proc/stb/ir/rc/type').read().strip()
+			modeltype = '%s.%s' % (self.model, rc)
+		else:
+			modeltype = None
 
-	def readRcTypeFromProc(self):
-		if os.path.exists('/proc/stb/info/boxtype'):
-			model = self.readFile('/proc/stb/info/boxtype')
-			if model.startswith('et') or model.startswith('xp'):
-				rc = self.readFile('/proc/stb/ir/rc/type')
-				if rc == '4':
-					self.currentRcType = self.RCTYPE_DMM
-				elif rc == '5' or rc == '11':
-					self.currentRcType = self.RCTYPE_ET9X00
-				elif rc == '6':
-					self.currentRcType = self.RCTYPE_DMM
-				elif rc == '7':
-					self.currentRcType = self.RCTYPE_ET6X00
-				elif rc == '8':
-					self.currentRcType = self.RCTYPE_VU
-				elif rc == '9':
-					self.currentRcType = self.RCTYPE_ET9500
-				elif rc == '13':
-					self.currentRcType = self.RCTYPE_ET4X00
-				elif rc == '14':
-					self.currentRcType = self.RCTYPE_XP1000
+		if modeltype is not None and modeltype in self.RcModels.keys():
+			remote = self.RcModels[modeltype]
+		elif self.model in self.RcModels.keys():
+			remote = self.RcModels[self.model]
+		else:
+			remote = 'dmm'	# default. Assume files for dmm exists
+		f = resolveFilename(SCOPE_SKIN, 'rc_models/' + remote + '.' + ext)
+		if not os.path.exists(f):
+			f = resolveFilename(SCOPE_SKIN, 'rc_models/dmm.' + ext)
+		return f
 
-		elif os.path.exists('/proc/stb/info/vumodel'):
-			self.currentRcType = self.RCTYPE_VU
+	def getRcImg(self):
+		return self.getRcFile('png')
 
-	def getRcLocation(self):
-		if self.currentRcType == self.RCTYPE_ET9X00:
-			return '/usr/share/enigma2/rc_models/et9x00/'
-		elif self.currentRcType == self.RCTYPE_ET9500:
-			return '/usr/share/enigma2/rc_models/et9500/'
-		elif self.currentRcType == self.RCTYPE_ET6X00:
-			return '/usr/share/enigma2/rc_models/et6x00/'
-		elif self.currentRcType == self.RCTYPE_ET4X00:
-			return '/usr/share/enigma2/rc_models/et4x00/'
-		elif self.currentRcType == self.RCTYPE_XP1000:
-			return '/usr/share/enigma2/rc_models/xp1000/'
-		elif self.currentRcType == self.RCTYPE_VU:
-			return '/usr/share/enigma2/rc_models/vu/'
+	def getRcPositions(self):
+		return self.getRcFile('xml')
 
 rc_model = RcModel()
