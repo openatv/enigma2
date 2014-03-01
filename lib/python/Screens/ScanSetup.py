@@ -283,6 +283,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
+		self.onChangedEntry = []
 		self.finished_cb = None
 		self.updateSatList()
 		self.service = session.nav.getCurrentService()
@@ -322,6 +323,17 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self["introduction"] = Label(_("Press OK to start the scan"))
 		else:
 			self["introduction"] = Label(_("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."))
+
+	def createSummary(self):
+		self.setup_title = self["header"].text
+		from Screens.Setup import SetupSummary
+		return SetupSummary
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
 
 	def runAsync(self, finished_cb):
 		self.finished_cb = finished_cb
