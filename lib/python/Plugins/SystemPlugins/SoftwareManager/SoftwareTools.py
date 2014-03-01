@@ -31,7 +31,6 @@ class SoftwareTools(PackageInfoHandler):
 		self.language = language.getLanguage()[:2] # getLanguage returns e.g. "fi_FI" for "language_country"
 		PackageInfoHandler.__init__(self, self.statusCallback, blocking = False, neededTag = 'ALL_TAGS', neededFlag = self.ImageVersion)
 		self.directory = resolveFilename(SCOPE_METADIR)
-		self.hardware_info = HardwareInfo()
 		self.list = List([])
 		self.NotifierCallback = None
 		self.Console = Console()
@@ -271,7 +270,7 @@ class SoftwareTools(PackageInfoHandler):
 		if prerequisites.has_key("hardware"):
 			hardware_found = False
 			for hardware in prerequisites["hardware"]:
-				if hardware == self.hardware_info.device_name:
+				if hardware == HardwareInfo().device_name:
 					hardware_found = True
 			if not hardware_found:
 				return False
