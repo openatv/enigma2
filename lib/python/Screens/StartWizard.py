@@ -20,7 +20,6 @@ class StartWizard(WizardLanguage, Rc):
 
 	def markDone(self):
 		# setup remote control, all stb have same settings except dm8000 which uses a different settings
-		import os
 		if HardwareInfo().get_device_name() == 'dm8000':
 			config.misc.rcused.value = 0
 		else:
