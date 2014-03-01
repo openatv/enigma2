@@ -1,6 +1,7 @@
 from enigma import iPlayableService
 from Source import Source
 from Components.PerServiceDisplay import PerServiceBase
+from enigma import eDVBResourceManager
 
 class FrontendInfo(Source, PerServiceBase):
 	def __init__(self, service_source = None, frontend_source = None, navcore = None):
@@ -12,8 +13,12 @@ class FrontendInfo(Source, PerServiceBase):
 				iPlayableService.evTunedIn: self.updateFrontendData,
 				iPlayableService.evEnd: self.serviceEnd
 			})
+		res_mgr = eDVBResourceManager.getInstance()
+		if res_mgr:
+			res_mgr.frontendUseMaskChanged.get().append(self.updateTunerMask)
 		self.service_source = service_source
 		self.frontend_source = frontend_source
+		self.tuner_mask = 0
 		self.updateFrontendData()
 
 	def serviceEnd(self):
@@ -29,6 +34,10 @@ class FrontendInfo(Source, PerServiceBase):
 		else:
 			self.slot_number = data.get("tuner_number")
 			self.frontend_type = data.get("tuner_type")
+		self.changed((self.CHANGED_ALL, ))
+
+	def updateTunerMask(self, mask):
+		self.tuner_mask = mask
 		self.changed((self.CHANGED_ALL, ))
 
 	def getFrontendData(self):
@@ -52,4 +61,7 @@ class FrontendInfo(Source, PerServiceBase):
 	def destroy(self):
 		if not self.frontend_source and not self.service_source:
 			PerServiceBase.destroy(self)
+		res_mgr = eDVBResourceManager.getInstance()
+		if res_mgr:
+			res_mgr.frontendUseMaskChanged.get().remove(self.updateTunerMask)
 		Source.destroy(self)
