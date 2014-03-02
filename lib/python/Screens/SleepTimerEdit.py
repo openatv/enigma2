@@ -101,19 +101,6 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 		ConfigListScreen.keyRight(self)
 		self.createSetup()
 
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
-
-	def getCurrentDescription(self):
-		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
-
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
-
 	def currentEventTime(self):
 		remaining = 0
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
