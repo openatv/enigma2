@@ -501,7 +501,7 @@ def InitUsageConfig():
 	config.usage.historymode = ConfigSelection(default = "1", choices = [("0", _("Just zap")), ("1", _("Show menu"))])
 
 	config.subtitles = ConfigSubsection()
-	config.subtitles.ttx_subtitle_colors = ConfigSelection(default = "1", choices = [
+	config.subtitles.ttx_subtitle_colors = ConfigSelection(default = "0", choices = [
 		("0", _("original")),
 		("1", _("white")),
 		("2", _("yellow")) ])

@@ -24,7 +24,7 @@ from Components.Timeshift import InfoBarTimeshift
 
 from Screens.Screen import Screen
 from Screens import ScreenSaver
-from Screens.ChannelSelection import ChannelSelection, BouquetSelector, EpgBouquetSelector
+from Screens.ChannelSelection import ChannelSelection, PiPZapSelection, BouquetSelector, EpgBouquetSelector
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Dish import Dish
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
@@ -641,21 +641,41 @@ class InfoBarChannelSelection:
 	def __init__(self):
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
+		self.servicelist2 = self.session.instantiateDialog(PiPZapSelection)
 		self.tscallback = None
 
+		self.longbuttonpressed = False
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
-				"switchChannelUp": (self.switchChannelUp, _("open servicelist(up)")),
-				"switchChannelDown": (self.switchChannelDown, _("open servicelist(down)")),
+				"switchChannelUp": (self.switchChannelUp, _("Open service list and select previous channel")),
+				"switchChannelDown": (self.switchChannelDown, _("Open service list and select next channel")),
+				"switchChannelUpLong": (self.switchChannelUpLong, _("Open service list and select previous channel")),
+				"switchChannelDownLong": (self.switchChannelDownLong, _("Open service list and select next channel")),
+				"zapUp": (self.zapUp, _("Switch to previous channel")),
+				"zapDown": (self.zapDown, _("Switch next channel")),
+				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
+				"historyNext": (self.historyNext, _("Switch to next channel in history")),
+				"openServiceList": (self.openServiceList, _("Open service list")),
+				"openSatellites": (self.openSatellites, _("Open satellites list")),
+				"LeftPressed": self.LeftPressed,
+				"RightPressed": self.RightPressed,
 				"ChannelPlusPressed": self.ChannelPlusPressed,
 				"ChannelMinusPressed": self.ChannelMinusPressed,
-				"zapUp": (self.zapUp, _("previous channel")),
-				"zapDown": (self.zapDown, _("next channel")),
-				"historyBack": (self.historyBack, _("previous channel in history")),
-				"historyNext": (self.historyNext, _("next channel in history")),
-				"openServiceList": (self.openServiceList, _("open servicelist")),
-				"openSatellites": (self.openSatellites, _("open Satellites")),
 			})
+
+	def LeftPressed(self):
+		pass
+#		if config.vixsettings.InfoBarEpg_mode.getValue() == "3" and config.usage.show_second_infobar.getValue() != "INFOBAREPG":
+#			self.openInfoBarEPG()
+#		else:
+#			self.zapUp()
+
+	def RightPressed(self):
+		pass
+#		if config.vixsettings.InfoBarEpg_mode.getValue() == "3" and config.usage.show_second_infobar.getValue() != "INFOBAREPG":
+#			self.openInfoBarEPG()
+#		else:
+#			self.zapDown()
 
 	def ChannelPlusPressed(self):
 		if config.usage.channelbutton_mode.getValue() == "0":
@@ -711,6 +731,8 @@ class InfoBarChannelSelection:
 		else:
 			self.servicelist.showFavourites()
 			self.session.execDialog(self.servicelist)
+		if self.longbuttonpressed:
+			self.longbuttonpressed = False
 
 	def switchChannelDown(self):
 		if not config.usage.show_bouquetalways.getValue():
@@ -720,6 +742,28 @@ class InfoBarChannelSelection:
 		else:
 			self.servicelist.showFavourites()
 			self.session.execDialog(self.servicelist)
+		if self.longbuttonpressed:
+			self.longbuttonpressed = False
+
+	def switchChannelUpLong(self):
+		self.longbuttonpressed = True
+		if not config.usage.show_bouquetalways.getValue():
+			if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+				self.servicelist2.moveUp()
+			self.session.execDialog(self.servicelist2)
+		else:
+			self.servicelist2.showFavourites()
+			self.session.execDialog(self.servicelist2)
+
+	def switchChannelDownLong(self):
+		self.longbuttonpressed = True
+		if not config.usage.show_bouquetalways.getValue():
+			if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+				self.servicelist2.moveDown()
+			self.session.execDialog(self.servicelist2)
+		else:
+			self.servicelist2.showFavourites()
+			self.session.execDialog(self.servicelist2)
 
 	def openServiceList(self):
 		self.session.execDialog(self.servicelist)

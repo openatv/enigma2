@@ -429,7 +429,7 @@ def InitAVSwitch():
 	def setColorFormat(configElement):
 		if config.av.videoport and config.av.videoport.getValue() == "Scart-YPbPr":
 			iAVSwitch.setColorFormat(3)
-		elif config.av.videoport and config.av.videoport.getValue() == "YPbPr" and getMachineBuild() == 'inihdx' or getMachineBuild() == 'ventonhdx':
+		elif config.av.videoport and config.av.videoport.getValue() == "YPbPr" or getMachineBuild() == 'inihdx':
 			iAVSwitch.setColorFormat(3)
 		else:
 			if getBoxType() == 'et6x00':

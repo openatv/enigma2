@@ -8,7 +8,7 @@ from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
 from Components.config import config, configfile
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
-from enigma import eEnv
+from enigma import eEnv, ePicLoad
 import os
 
 class SkinSelectorBase:
@@ -46,9 +46,19 @@ class SkinSelectorBase:
 			"log": self.info,
 		}, -1)
 
+		self.picload = ePicLoad()
+		self.picload.PictureData.get().append(self.showPic)
+
 		self.onLayoutFinish.append(self.layoutFinished)
 
+	def showPic(self, picInfo=""):
+		ptr = self.picload.getData()
+		if ptr is not None:
+			self["Preview"].instance.setPixmap(ptr.__deref__())
+			self["Preview"].show()
+
 	def layoutFinished(self):
+		self.picload.setPara((self["Preview"].instance.size().width(), self["Preview"].instance.size().height(), 0, 0, 1, 1, "#00000000"))
 		tmp = self.config.value.find("/"+self.SKINXML)
 		if tmp != -1:
 			tmp = self.config.value[:tmp]
@@ -116,7 +126,7 @@ class SkinSelectorBase:
 		if self.previewPath != pngpath:
 			self.previewPath = pngpath
 
-		self["Preview"].instance.setPixmapFromFile(self.previewPath)
+		self.picload.startDecode(self.previewPath)
 
 	def restartGUI(self, answer):
 		if answer is True:

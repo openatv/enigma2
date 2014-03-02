@@ -260,9 +260,9 @@ class mp3Browser(Screen):
 
     def openInfo(self):
         if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db/reset'):
-            self.session.openWithCallback(self.reset_return, MessageBox, _('\nThe MP3 Browser Database is built now.Depending on the number of your mp3s this can take several minutes.\n\nBuild MP3 Browser Database now?'), MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.reset_return, MessageBox, _('\nThe MP3 Browser Database is built now. Depending on the number of your mp3s this can take several minutes.\n\nBuild MP3 Browser Database now?'), MessageBox.TYPE_YESNO)
         else:
-            self.session.openWithCallback(self.first_return, MessageBox, _('\nBefore the MP3 Browser Database will be built for the first time, you should check your MP3 Folder setting and change the Cache Folder to a hard drive disk or an usb stick.'), MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.first_return, MessageBox, _('\nBefore the MP3 Browser Database is built for the first time, you should check your MP3 Folder settings and change the Cache Folder to a hard drive disk for faster access or to a USB stick.'), MessageBox.TYPE_YESNO)
 
     def first_return(self, answer):
         if answer is True:

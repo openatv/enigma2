@@ -46,6 +46,12 @@ from Tools.BoundFunction import boundFunction
 from Tools import Notifications
 from time import localtime, time
 from os import remove
+try:
+	from Plugins.SystemPlugins.PiPServiceRelation.plugin import getRelationDict
+	plugin_PiPServiceRelation_installed = True
+except:
+	plugin_PiPServiceRelation_installed = False
+
 profile("ChannelSelection.py after imports")
 
 FLAG_SERVICE_NEW_FOUND = 64 #define in lib/dvb/idvb.h as dxNewFound = 64
@@ -128,7 +134,7 @@ class ChannelContextMenu(Screen):
 		self.csel = csel
 		self.bsel = None
 
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions"],
+		self["channelselectactions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions"],
 			{
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick,
@@ -535,8 +541,7 @@ class ChannelSelectionEPG:
 			choice(self)
 
 	def showChoiceBoxDialog(self):
-		print 'showChoiceBoxDialog'
-		self['actions'].setEnabled(False)
+		self['channelselectactions'].setEnabled(False)
 		self['recordingactions'].setEnabled(False)
 		self['ChannelSelectEPGActions'].setEnabled(False)
 		self['dialogactions'].execBegin()
@@ -544,12 +549,11 @@ class ChannelSelectionEPG:
 		self.ChoiceBoxDialog.show()
 
 	def closeChoiceBoxDialog(self):
-		print 'closeChoiceBoxDialog'
 		self['dialogactions'].execEnd()
 		if self.ChoiceBoxDialog:
 			self.ChoiceBoxDialog['actions'].execEnd()
 			self.session.deleteDialog(self.ChoiceBoxDialog)
-		self['actions'].setEnabled(True)
+		self['channelselectactions'].setEnabled(True)
 		self['recordingactions'].setEnabled(True)
 		self['ChannelSelectEPGActions'].setEnabled(True)
 
@@ -897,7 +901,6 @@ class ChannelSelectionEdit:
 
 	def removeBouquet(self):
 		refstr = self.getCurrentSelection().toString()
-		print "removeBouquet", refstr
 		pos = refstr.find('FROM BOUQUET "')
 		filename = None
 		if pos != -1:
@@ -1618,7 +1621,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		else:
 			self.skinName = "ChannelSelection"
 
-		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
+		self["channelselectactions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
 				"cancel": self.cancel,
 				"ok": self.channelSelected,
@@ -2102,6 +2105,54 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if tmp_ref and pip_ref and tmp_ref.getChannelNum() != pip_ref.getChannelNum():
 				self.session.pip.currentService = tmp_ref
 			self.setCurrentSelection(tmp_ref)
+
+
+class PiPZapSelection(ChannelSelection):
+	instance = None
+
+	def __init__(self, session):
+		ChannelSelection.__init__(self, session)
+		self.skinName = ["SlimChannelSelection","SimpleChannelSelection","ChannelSelection"]
+
+		if plugin_PiPServiceRelation_installed:
+			self.pipServiceRelation = getRelationDict()
+		else:
+			self.pipServiceRelation = {}
+
+		self["pipzapselectactions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
+			{
+				"cancel": self.cancel,
+				"ok": self.ZapPiP,
+				"keyRadio": self.setModeRadio,
+				"keyTV": self.setModeTv,
+			})
+
+	def ZapPiP(self):
+		ref = self.servicelist.getCurrent()
+		if (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
+			self.enterPath(ref)
+			self.gotoCurrentServiceOrProvider(ref)
+		elif not (ref.flags & eServiceReference.isMarker or ref.toString().startswith("-1")):
+			root = self.getRoot()
+			if not root or not (root.flags & eServiceReference.isGroup):
+
+				n_service = self.pipServiceRelation.get(str(ref), None)
+				if n_service is not None:
+					newservice = eServiceReference(n_service)
+				else:
+					newservice = ref
+				if self.session.pipshown:
+					del self.session.pip
+				self.session.pip = self.session.instantiateDialog(PictureInPicture)
+				self.session.pip.show()
+				if self.session.pip.playService(newservice):
+					self.session.pipshown = True
+					self.session.pip.servicePath = self.getCurrentServicePath()
+					self.close(True)
+				else:
+					self.session.pipshown = False
+					del self.session.pip
+					self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 
 class RadioInfoBar(Screen):
 	def __init__(self, session):
