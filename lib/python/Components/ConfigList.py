@@ -167,10 +167,13 @@ class ConfigListScreen:
 		return SetupSummary
 
 	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
+		return self["config"].getCurrent() and self["config"].getCurrent()[0] or ""
 
 	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
+		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
+
+	def getCurrentDescription(self):
+		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
 
 	def handleInputHelpers(self):
 		if self["config"].getCurrent() is not None:
