@@ -85,6 +85,8 @@ class Setup(ConfigListScreen, Screen):
 		# for the skin: first try a setup_<setupID>, then Setup
 		self.skinName = ["setup_" + setup, "Setup" ]
 
+		self.onChangedEntry = [ ]
+
 		self.setup = setup
 		list = []
 		self.refill(list)
