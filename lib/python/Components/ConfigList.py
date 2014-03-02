@@ -175,6 +175,10 @@ class ConfigListScreen:
 	def getCurrentDescription(self):
 		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
 
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+
 	def handleInputHelpers(self):
 		if self["config"].getCurrent() is not None:
 			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):

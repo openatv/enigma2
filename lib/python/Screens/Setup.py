@@ -85,8 +85,6 @@ class Setup(ConfigListScreen, Screen):
 		# for the skin: first try a setup_<setupID>, then Setup
 		self.skinName = ["setup_" + setup, "Setup" ]
 
-		self.onChangedEntry = [ ]
-
 		self.setup = setup
 		list = []
 		self.refill(list)
@@ -110,11 +108,6 @@ class Setup(ConfigListScreen, Screen):
 
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))
-
-	# for summary:
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
 
 	def addItems(self, list, parentNode):
 		for x in parentNode:
