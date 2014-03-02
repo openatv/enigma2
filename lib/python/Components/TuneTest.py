@@ -53,8 +53,12 @@ class TuneTest:
 			self.session.nav.stopService() # try to disable foreground service
 			if not self.openFrontend():
 				if self.session.pipshown: # try to disable pip
+					if hasattr(self.session, 'infobar'):
+						if self.session.infobar.servicelist.dopipzap:
+							self.session.infobar.servicelist.togglePipzap()
+					if hasattr(self.session, 'pip'):
+						del self.session.pip
 					self.session.pipshown = False
-					del self.session.pip
 					if not self.openFrontend():
 						self.frontend = None # in normal case this should not happen
 		self.tuner = Tuner(self.frontend)
