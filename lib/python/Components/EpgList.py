@@ -949,7 +949,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				evY = top + self.eventBorderWidth
 				evW = ewidth - 2 * (self.eventBorderWidth + self.eventNamePadding)
 				evH = height - 2 * self.eventBorderWidth
-				if evW < 10 and self.infomationPix is not None and self.graphic:
+				if evW < 1 and self.infomationPix is not None and self.graphic:
 					res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (evX, evY), size = (evW, evH),
 						png = self.infomationPix))
