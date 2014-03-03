@@ -59,9 +59,13 @@ class ZapHistoryConfigurator(ConfigListScreen, Screen):
         self['key_green'] = Label(_('Save'))        
         self.onShown.append(boundFunction(self.setTitle, _('Zap history')))
         ConfigListScreen.__init__(self, [getConfigListEntry(_('Enable zap history:'), config.plugins.ZapHistoryConfigurator.enable_zap_history), getConfigListEntry(_('Maximum zap history entries:'), config.plugins.ZapHistoryConfigurator.maxEntries_zap_history)])
-        self['actions'] = ActionMap(['OkCancelActions'], {'ok': self.save,
-         'cancel': self.exit, 'green': self.save,
-         'red': self.exit,}, -2)
+        self['actions'] = ActionMap(['OkCancelActions', 'ColorActions'], 
+        {
+	 'ok': self.save,
+         'cancel': self.exit, 
+         'green': self.save,
+         'red': self.exit,
+        }, -2)
 
     def save(self):
         for x in self['config'].list:
