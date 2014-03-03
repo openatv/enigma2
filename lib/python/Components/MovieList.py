@@ -700,7 +700,7 @@ class MovieList(GUIComponent):
 		return (1, -x[2])
 
 	def moveTo(self, serviceref):
-		index = self.findService(service)
+		index = self.findService(serviceref)
 		if index is not None:
 			self.instance.moveSelectionTo(index)
 			return True
