@@ -874,8 +874,8 @@ class InfoBarChannelSelection:
 			{
 				"switchChannelUp": (self.switchChannelUp, _("Open service list and select previous channel")),
 				"switchChannelDown": (self.switchChannelDown, _("Open service list and select next channel")),
-				"switchChannelUpLong": (self.switchChannelUpLong, _("Open service list and select previous channel")),
-				"switchChannelDownLong": (self.switchChannelDownLong, _("Open service list and select next channel")),
+				"switchChannelUpLong": (self.switchChannelUpLong, _("Open service list and select previous channel for PiP")),
+				"switchChannelDownLong": (self.switchChannelDownLong, _("Open service list and select next channel for PiP")),
 				"zapUp": (self.zapUp, _("Switch to previous channel")),
 				"zapDown": (self.zapDown, _("Switch next channel")),
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
@@ -886,6 +886,8 @@ class InfoBarChannelSelection:
 				"RightPressed": self.RightPressed,
 				"ChannelPlusPressed": self.ChannelPlusPressed,
 				"ChannelMinusPressed": self.ChannelMinusPressed,
+				"ChannelPlusPressedLong": self.ChannelPlusPressedLong,
+				"ChannelMinusPressedLong": self.ChannelMinusPressedLong,
 			})
 
 	def LeftPressed(self):
@@ -901,6 +903,9 @@ class InfoBarChannelSelection:
 			self.zapDown()
 
 	def ChannelPlusPressed(self):
+		if self.longbuttonpressed:
+			self.longbuttonpressed = False
+			return
 		if config.usage.channelbutton_mode.getValue() == "0" or config.usage.show_second_infobar.getValue() == "INFOBAREPG":
 			self.zapDown()
 		elif config.usage.channelbutton_mode.getValue() == "1":
@@ -911,6 +916,9 @@ class InfoBarChannelSelection:
 			self.session.execDialog(self.servicelist)
 
 	def ChannelMinusPressed(self):
+		if self.longbuttonpressed:
+			self.longbuttonpressed = False
+			return
 		if config.usage.channelbutton_mode.getValue() == "0" or config.usage.show_second_infobar.getValue() == "INFOBAREPG":
 			self.zapUp()
 		elif config.usage.channelbutton_mode.getValue() == "1":
@@ -919,6 +927,28 @@ class InfoBarChannelSelection:
 			self.serviceListType = "Norm"
 			self.servicelist.showFavourites()
 			self.session.execDialog(self.servicelist)
+
+	def ChannelPlusPressedLong(self):
+		self.longbuttonpressed = True
+		if config.usage.channelbutton_mode.getValue() == "0" or config.usage.show_second_infobar.getValue() == "INFOBAREPG":
+			self.zapDownLong()
+		elif config.usage.channelbutton_mode.getValue() == "1":
+			self.openServiceListPiP()
+		elif config.usage.channelbutton_mode.getValue() == "2":
+			self.serviceListType = "Norm"
+			self.servicelist2.showFavourites()
+			self.session.execDialog(self.servicelist2)
+
+	def ChannelMinusPressedLong(self):
+		self.longbuttonpressed = True
+		if config.usage.channelbutton_mode.getValue() == "0" or config.usage.show_second_infobar.getValue() == "INFOBAREPG":
+			self.zapUpLong()
+		elif config.usage.channelbutton_mode.getValue() == "1":
+			self.openServiceListPiP()
+		elif config.usage.channelbutton_mode.getValue() == "2":
+			self.serviceListType = "Norm"
+			self.servicelist2.showFavourites()
+			self.session.execDialog(self.servicelist2)
 
 	def showTvChannelList(self, zap=False):
 		self.servicelist.setModeTv()
@@ -991,6 +1021,9 @@ class InfoBarChannelSelection:
 	def openServiceList(self):
 		self.session.execDialog(self.servicelist)
 
+	def openServiceListPiP(self):
+		self.session.execDialog(self.servicelist2)
+
 	def openSatellites(self):
 		self.servicelist.showSatellites()
 		self.session.execDialog(self.servicelist)
@@ -1021,6 +1054,9 @@ class InfoBarChannelSelection:
 		self.servicelist.zap(enable_pipzap = True)
 
 	def zapDown(self):
+		if self.pts_blockZap_timer.isActive():
+			return
+
 		if self.servicelist.inBouquet():
 			prev = self.servicelist.getCurrentSelection()
 			if prev:
@@ -1042,6 +1078,49 @@ class InfoBarChannelSelection:
 			self.servicelist.moveDown()
 		self.servicelist.zap(enable_pipzap = True)
 
+	def zapUpLong(self):
+		if self.servicelist2.inBouquet():
+			prev = self.servicelist2.getCurrentSelection()
+			if prev:
+				prev = prev.toString()
+				while True:
+					if config.usage.quickzap_bouquet_change.getValue():
+						if self.servicelist2.atBegin():
+							self.servicelist2.prevBouquet()
+					self.servicelist2.moveUp()
+					cur = self.servicelist2.getCurrentSelection()
+					if cur:
+						if self.servicelist2.dopipzap:
+							isPlayable = self.session.pip.isPlayableForPipService(cur)
+						else:
+							isPlayable = isPlayableForCur(cur)
+					if cur and (cur.toString() == prev or isPlayable):
+						break
+		else:
+			self.servicelist2.moveUp()
+		self.servicelist2.ZapPiP()
+
+	def zapDownLong(self):
+		if self.servicelist2.inBouquet():
+			prev = self.servicelist2.getCurrentSelection()
+			if prev:
+				prev = prev.toString()
+				while True:
+					if config.usage.quickzap_bouquet_change.value and self.servicelist2.atEnd():
+						self.servicelist2.nextBouquet()
+					else:
+						self.servicelist2.moveDown()
+					cur = self.servicelist2.getCurrentSelection()
+					if cur:
+						if self.servicelist2.dopipzap:
+							isPlayable = self.session.pip.isPlayableForPipService(cur)
+						else:
+							isPlayable = isPlayableForCur(cur)
+					if cur and (cur.toString() == prev or isPlayable):
+						break
+		else:
+			self.servicelist2.moveDown()
+		self.servicelist2.ZapPiP()
 
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
