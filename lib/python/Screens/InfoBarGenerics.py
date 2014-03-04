@@ -1079,6 +1079,8 @@ class InfoBarChannelSelection:
 		self.servicelist.zap(enable_pipzap = True)
 
 	def zapUpLong(self):
+		from Screens.ChannelSelection import ChannelSelection
+		ChannelSelectionInstance = ChannelSelection.instance
 		if self.servicelist2.inBouquet():
 			prev = self.servicelist2.getCurrentSelection()
 			if prev:
@@ -1098,9 +1100,15 @@ class InfoBarChannelSelection:
 						break
 		else:
 			self.servicelist2.moveUp()
-		self.servicelist2.ZapPiP()
+		if self.session.pipshown:
+			ChannelSelectionInstance.dopipzap = True
+			self.servicelist2.zap(enable_pipzap = True)
+		else:
+			self.session.open(MessageBox, _("Please open Picture in Picture first"), MessageBox.TYPE_ERROR)
 
 	def zapDownLong(self):
+		from Screens.ChannelSelection import ChannelSelection
+		ChannelSelectionInstance = ChannelSelection.instance
 		if self.servicelist2.inBouquet():
 			prev = self.servicelist2.getCurrentSelection()
 			if prev:
@@ -1120,7 +1128,12 @@ class InfoBarChannelSelection:
 						break
 		else:
 			self.servicelist2.moveDown()
-		self.servicelist2.ZapPiP()
+		if self.session.pipshown:
+			ChannelSelectionInstance.dopipzap = True
+			self.servicelist2.zap(enable_pipzap = True)
+		else:
+			self.session.open(MessageBox, _("Please open Picture in Picture first"), MessageBox.TYPE_ERROR)
+
 
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
