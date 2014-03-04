@@ -11,7 +11,7 @@ from Components.Sources.List import List
 from Components.Ipkg import IpkgComponent
 from Components.Network import iNetwork
 from Tools.Directories import resolveFilename, SCOPE_METADIR
-from Tools.HardwareInfo import HardwareInfo
+from boxbranding import getBoxType
 
 
 class SoftwareTools(PackageInfoHandler):
@@ -33,7 +33,6 @@ class SoftwareTools(PackageInfoHandler):
 		self.language = language.getLanguage()[:2] # getLanguage returns e.g. "fi_FI" for "language_country"
 		PackageInfoHandler.__init__(self, self.statusCallback, blocking = False, neededTag = 'ALL_TAGS', neededFlag = self.ImageVersion)
 		self.directory = resolveFilename(SCOPE_METADIR)
-		self.hardware_info = HardwareInfo()
 		self.list = List([])
 		self.NotifierCallback = None
 		self.Console = Console()
@@ -273,7 +272,7 @@ class SoftwareTools(PackageInfoHandler):
 		if prerequisites.has_key("hardware"):
 			hardware_found = False
 			for hardware in prerequisites["hardware"]:
-				if hardware == self.hardware_info.device_name:
+				if hardware == getBoxType():
 					hardware_found = True
 			if not hardware_found:
 				return False

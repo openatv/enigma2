@@ -134,7 +134,7 @@ class ChannelContextMenu(Screen):
 		self.csel = csel
 		self.bsel = None
 
-		self["channelselectactions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions"],
 			{
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick,
@@ -541,7 +541,7 @@ class ChannelSelectionEPG:
 			choice(self)
 
 	def showChoiceBoxDialog(self):
-		self['channelselectactions'].setEnabled(False)
+		self['actions'].setEnabled(False)
 		self['recordingactions'].setEnabled(False)
 		self['ChannelSelectEPGActions'].setEnabled(False)
 		self['dialogactions'].execBegin()
@@ -553,7 +553,7 @@ class ChannelSelectionEPG:
 		if self.ChoiceBoxDialog:
 			self.ChoiceBoxDialog['actions'].execEnd()
 			self.session.deleteDialog(self.ChoiceBoxDialog)
-		self['channelselectactions'].setEnabled(True)
+		self['actions'].setEnabled(True)
 		self['recordingactions'].setEnabled(True)
 		self['ChannelSelectEPGActions'].setEnabled(True)
 
@@ -1621,7 +1621,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		else:
 			self.skinName = "ChannelSelection"
 
-		self["channelselectactions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
 				"cancel": self.cancel,
 				"ok": self.channelSelected,
@@ -2119,15 +2119,7 @@ class PiPZapSelection(ChannelSelection):
 		else:
 			self.pipServiceRelation = {}
 
-		self["pipzapselectactions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
-			{
-				"cancel": self.cancel,
-				"ok": self.ZapPiP,
-				"keyRadio": self.setModeRadio,
-				"keyTV": self.setModeTv,
-			})
-
-	def ZapPiP(self):
+	def channelSelected(self):
 		ref = self.servicelist.getCurrent()
 		if (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
 			self.enterPath(ref)
@@ -2135,16 +2127,14 @@ class PiPZapSelection(ChannelSelection):
 		elif not (ref.flags & eServiceReference.isMarker or ref.toString().startswith("-1")):
 			root = self.getRoot()
 			if not root or not (root.flags & eServiceReference.isGroup):
-
 				n_service = self.pipServiceRelation.get(str(ref), None)
 				if n_service is not None:
 					newservice = eServiceReference(n_service)
 				else:
 					newservice = ref
-				if self.session.pipshown:
-					del self.session.pip
-				self.session.pip = self.session.instantiateDialog(PictureInPicture)
-				self.session.pip.show()
+				if not self.session.pipshown:
+					self.session.pip = self.session.instantiateDialog(PictureInPicture)
+					self.session.pip.show()
 				if self.session.pip.playService(newservice):
 					self.session.pipshown = True
 					self.session.pip.servicePath = self.getCurrentServicePath()

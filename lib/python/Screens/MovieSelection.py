@@ -434,6 +434,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		else:
 			self.selected_tags = None
 		self.selected_tags_ele = None
+		self.nextInBackground = None
 
 		self.movemode = False
 		self.bouquet_mark_edit = False
@@ -943,17 +944,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.list.playInBackground = None
 		self.list.playInForeground = None
 		if config.movielist.play_audio_internal.getValue():
-			if playInBackground == current:
-				self["list"].moveDown()
-				next = self.getCurrent()
-				if not next or (next == current):
-					print "End of list"
-					return # don't loop the last item
-				path = next.getPath()
-				ext = os.path.splitext(path)[1].lower()
-				print "Next up:", path
-				if ext in AUDIO_EXTENSIONS:
-					self.callLater(self.preview)
+			index = self.list.findService(playInBackground)
+			if index is None:
+				return # Not found?
+			next = self.list.getItem(index + 1)
+			if not next:
+				return
+			path = next.getPath()
+			ext = os.path.splitext(path)[1].lower()
+			print "Next up:", path
+			if ext in AUDIO_EXTENSIONS:
+				self.nextInBackground = next
+				self.callLater(self.preview)
+
 		if config.movielist.show_live_tv_in_movielist.getValue():
 			self.LivePlayTimer.start(100)
 
@@ -966,36 +969,43 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			else:
 				Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(self.previewCheckTimeshiftCallback)
 
+	def startPreview(self):
+		if self.nextInBackground is not None:
+			current = self.nextInBackground
+			self.nextInBackground = None
+		else:
+			current = self.getCurrent()
+		playInBackground = self.list.playInBackground
+		playInForeground = self.list.playInForeground
+		if playInBackground:
+			self.list.playInBackground = None
+			from Screens.InfoBar import MoviePlayer
+			MoviePlayerInstance = MoviePlayer.instance
+			if MoviePlayerInstance is not None:
+				from Screens.InfoBarGenerics import setResumePoint
+				setResumePoint(MoviePlayer.instance.session)
+			self.session.nav.stopService()
+			if playInBackground != current:
+				# come back to play the new one
+				self.callLater(self.preview)
+		elif playInForeground:
+			self.playingInForeground = playInForeground
+			self.list.playInForeground = None
+			from Screens.InfoBar import MoviePlayer
+			MoviePlayerInstance = MoviePlayer.instance
+			if MoviePlayerInstance is not None:
+				from Screens.InfoBarGenerics import setResumePoint
+				setResumePoint(MoviePlayer.instance.session)
+			self.session.nav.stopService()
+			if playInForeground != current:
+				self.callLater(self.preview)
+		else:
+			self.list.playInBackground = current
+			self.session.nav.playService(current)
+
 	def previewCheckTimeshiftCallback(self, answer):
 		if answer:
-			current = self.getCurrent()
-			playInBackground = self.list.playInBackground
-			playInForeground = self.list.playInForeground
-			if playInBackground:
-				self.list.playInBackground = None
-				from Screens.InfoBar import MoviePlayer
-				MoviePlayerInstance = MoviePlayer.instance
-				if MoviePlayerInstance is not None:
-					from Screens.InfoBarGenerics import setResumePoint
-					setResumePoint(MoviePlayer.instance.session)
-				self.session.nav.stopService()
-				if playInBackground != current:
-					# come back to play the new one
-					self.callLater(self.preview)
-			elif playInForeground:
-				self.playingInForeground = playInForeground
-				self.list.playInForeground = None
-				from Screens.InfoBar import MoviePlayer
-				MoviePlayerInstance = MoviePlayer.instance
-				if MoviePlayerInstance is not None:
-					from Screens.InfoBarGenerics import setResumePoint
-					setResumePoint(MoviePlayer.instance.session)
-				self.session.nav.stopService()
-				if playInForeground != current:
-					self.callLater(self.preview)
-			else:
-				self.list.playInBackground = current
-				self.session.nav.playService(current)
+			self.startPreview()
 
 	def seekRelative(self, direction, amount):
 		if self.list.playInBackground or self.list.playInBackground:

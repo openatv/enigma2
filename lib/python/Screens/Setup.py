@@ -50,20 +50,20 @@ class SetupSummary(Screen):
 			self.onHide.append(self.removeWatcher)
 
 	def addWatcher(self):
-		self.parent.onChangedEntry.append(self.selectionChanged)
-		self.parent["config"].onSelectionChanged.append(self.selectionChanged)
-		self.selectionChanged()
+		if hasattr(self.parent,"onChangedEntry"):
+			self.parent.onChangedEntry.append(self.selectionChanged)
+			self.parent["config"].onSelectionChanged.append(self.selectionChanged)
+			self.selectionChanged()
 
 	def removeWatcher(self):
-		self.parent.onChangedEntry.remove(self.selectionChanged)
-		self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
+		if hasattr(self.parent,"onChangedEntry"):
+			self.parent.onChangedEntry.remove(self.selectionChanged)
+			self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
 
 	def selectionChanged(self):
-		if hasattr(self.parent,"getCurrentEntry"):
-			self["SetupEntry"].text = self.parent.getCurrentEntry()
-		if hasattr(self.parent,"getCurrentValue"):
-			self["SetupValue"].text = self.parent.getCurrentValue()
-		if hasattr(self.parent,"getCurrentDescription"):
+		self["SetupEntry"].text = self.parent.getCurrentEntry()
+		self["SetupValue"].text = self.parent.getCurrentValue()
+		if hasattr(self.parent,"getCurrentDescription") and self.parent.has_key("description"):
 			self.parent["description"].text = self.parent.getCurrentDescription()
 
 class Setup(ConfigListScreen, Screen):
@@ -203,26 +203,11 @@ class Setup(ConfigListScreen, Screen):
 
 	# for summary:
 	def changedEntry(self):
-		self.item = self["config"].getCurrent()
-		for x in self.onChangedEntry:
-			x()
 		try:
 			if isinstance(self["config"].getCurrent()[1], ConfigYesNo) or isinstance(self["config"].getCurrent()[1], ConfigSelection):
 				self.createSetup()
 		except:
 			pass
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent() and self["config"].getCurrent()[0] or ""
-
-	def getCurrentValue(self):
-		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
-
-	def getCurrentDescription(self):
-		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
-
-	def createSummary(self):
-		return SetupSummary
 
 	def addItems(self, list, parentNode):
 		for x in parentNode:
