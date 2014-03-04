@@ -3015,13 +3015,13 @@ class InfoBarHDMI:
 		slist = self.servicelist
 		if slist.dopipzap:
 			curref = self.session.pip.getCurrentService()
-			if curref and curref.toString().split(":")[0] != '8192':
+			if curref and curref.type != 8192:
 				self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
 			else:
 				self.session.pip.playService(slist.servicelist.getCurrent())
 		else:
 			curref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			if curref and curref.toString().split(":")[0] != '8192':
+			if curref and curref.type != 8192:
 				if not isStandardInfoBar(self):
 					setResumePoint(self.session)
 				self.session.nav.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
