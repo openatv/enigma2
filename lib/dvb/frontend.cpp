@@ -914,10 +914,6 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1244) + 2.5079) * 100);
 	}
-	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL6211)")) // VU+ DVB-S2 Dual NIM
-	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1244) + 2.5079) * 100);
-	}
 	else if (!strcmp(m_description, "BCM7335 DVB-S2 NIM (internal)")) // VU+DUO DVB-S2 NIM
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1244) + 2.5079) * 100);
@@ -1872,8 +1868,11 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 			{
 #if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 3
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,7,0))
+				puts("  [TEST] LINUX_VERSION_CODE >= KERNEL_VERSION(3,7,0) ----------> p[cmdseq.num].cmd = DTV_DVBT2_PLP_ID_LEGACY, p[cmdseq.num].u.data = parm.plpid, cmdseq.num++;");  
 				p[cmdseq.num].cmd = DTV_DVBT2_PLP_ID_LEGACY, p[cmdseq.num].u.data = parm.plpid, cmdseq.num++;
 #else
+				puts("  [TEST] LINUX_VERSION_CODE < KERNEL_VERSION(3,7,0) -----------> p[cmdseq.num].cmd = DTV_DVBT2_PLP_ID, p[cmdseq.num].u.data = parm.plpid, cmdseq.num++;");  
+				eDebugNoSimulate(" [ TEST2] PLP ID = %d", parm.plpid);
 				p[cmdseq.num].cmd = DTV_DVBT2_PLP_ID, p[cmdseq.num].u.data = parm.plpid, cmdseq.num++;
 #endif
 #endif

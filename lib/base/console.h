@@ -5,7 +5,6 @@
 #include <lib/base/ebase.h>
 #include <lib/python/connections.h>
 #include <queue>
-#include <vector>
 
 struct queue_data
 {
@@ -28,7 +27,6 @@ class eConsoleAppContainer: public Object, public iObject
 	std::string m_cwd;
 	std::queue<struct queue_data> outbuf;
 	ePtr<eSocketNotifier> in, out, err;
-	std::vector<char> buffer;
 	void readyRead(int what);
 	void readyErrRead(int what);
 	void readyWrite(int what);
