@@ -7,7 +7,7 @@ from Components.Sources.List import List
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Tools.LoadPixmap import LoadPixmap
-from boxbranding import getBoxType
+from boxbranding import getMachineBrand
 
 from Tools.Directories import fileExists
 from urllib import quote
@@ -333,11 +333,11 @@ class MeteoMain(Screen):
 
     def get_Url(self):
         url = 'http://weather.yahooapis.com/forecastrss?w='
-        if getBoxType() == "ini-5000sv":
+        if getMachineBrand() == "Miraclebox":
 		url2 = '906057' # Stockholm
-	elif getBoxType() == "ini-5000ru":
+	elif getMachineBrand() == "Sezam":
 		url2 = '2122265' # Moskwa
-	elif getBoxType() in ('ini-7012au', 'ini-7000au'):
+	elif getMachineBrand() == "Beyonwiz":
 		url2 = '1100968' # 1105779 Sydney # 1100968 Canberra 
 	else:
 		url2 = '638242' # Berlin
@@ -359,12 +359,12 @@ class MeteoMain(Screen):
     def key_red(self):
         msg = _('Enter the city name:')
         city = ''
-        if getBoxType() == "ini-5000sv":
+        if getMachineBrand() == "Miraclebox":
 		city ="Stockholm"
-	elif getBoxType() == "ini-5000r":
+	elif getMachineBrand() == "Sezam":
 		city = "Moscow"
-	elif getBoxType() in ('ini-7012au', 'ini-7000au'):
-		city = "Sydney"
+	elif getMachineBrand() == "Beyonwiz":
+		city = "Canberra"
 	else:
 		city = "Berlin"
         self.session.openWithCallback(self.goSelect, InputBox, title=msg, windowTitle=_('Change city'), text=city)
