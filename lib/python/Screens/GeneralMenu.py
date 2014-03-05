@@ -763,8 +763,8 @@ class GeneralMenu(Screen):
         subentrys['id_mainmenu_movies'] = self.getSubEntry('id_mainmenu_movies', [
 	  #(_('TV Shows'), 'mainmenu_movies_tvshows', boundFunction(self.openMovieBrowserMovies), 30),
         # (_('TV Serials'), 'mainmenu_movies_tvserials', boundFunction(self.openMovieBrowserSeries), 40),
-         (_('Recordings'),'mainmenu_tv_recorded', boundFunction(self.openRecordings),50),
-         (_('Media Portal'),'mainmenu_tv_recorded', boundFunction(self.openMediaPortal),60)
+         (_('Recordings'),'mainmenu_tv_recorded', boundFunction(self.openRecordings),50)
+         #,(_('Media Portal'),'mainmenu_tv_recorded', boundFunction(self.openMediaPortal),60)
          #,(_('Setup'), 'mainmenu_movies_setup', boundFunction(self.openMovieBrowserSetup),100)
          ])
  
@@ -954,12 +954,12 @@ class GeneralMenu(Screen):
 	self.session.open(MediaPlayerSettings, self)
 
     # Movies
-    def openMediaPortal(self):
-	from Plugins.Extensions.MediaPortal.plugin import haupt_Screen, haupt_Screen_Wall, config
-	if config.mediaportal.ansicht.value == "liste":
-		self.session.open(haupt_Screen)
-	else:
-		self.session.open(haupt_Screen_Wall, config.mediaportal.filter.value)
+    #def openMediaPortal(self):
+	#from Plugins.Extensions.MediaPortal.plugin import haupt_Screen, haupt_Screen_Wall, config
+	#if config.mediaportal.ansicht.value == "liste":
+		#self.session.open(haupt_Screen)
+	#else:
+		#self.session.open(haupt_Screen_Wall, config.mediaportal.filter.value)
 		
     def openMovieBrowserAll(self):
  	from Plugins.Extensions.MovieBrowser.plugin import movieBrowserBackdrop
