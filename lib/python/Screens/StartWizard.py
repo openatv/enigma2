@@ -4,6 +4,8 @@ from Screens.VideoWizard import VideoWizard
 from Screens.Rc import Rc
 from Screens.Screen import Screen
 
+from boxbranding import getBoxType
+
 from Components.Pixmap import Pixmap
 from Components.config import config, ConfigBoolean, configfile
 
@@ -23,18 +25,13 @@ class StartWizard(WizardLanguage, Rc):
 
 	def markDone(self):
 		# setup remote control, all stb have same settings except dm8000 which uses a different settings
-		import os
-		boxType = ''
-		if os.path.isfile("/proc/stb/info/model"):
-			boxType = open("/proc/stb/info/model").read().strip().lower()
-
-		if 'dm8000' in boxType:
-			config.misc.rcused.setValue(0)
+		if getBoxType() == 'dm8000':
+			config.misc.rcused.value = 0
 		else:
-			config.misc.rcused.setValue(1)
+			config.misc.rcused.value = 1
 		config.misc.rcused.save()
 
-		config.misc.firstrun.setValue(0)
+		config.misc.firstrun.value = 0
 		config.misc.firstrun.save()
 		configfile.save()
 

@@ -33,7 +33,7 @@ public:
 	void setResolution(int xres, int yres);
 	gSDLDC();
 	virtual ~gSDLDC();
-	int islocked() { return 0; }
+	int islocked() const { return 0; }
 };
 
 #endif
