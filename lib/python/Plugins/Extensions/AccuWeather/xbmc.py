@@ -6,13 +6,14 @@ from Components.ActionMap import ActionMap
 from Components.Sources.List import List
 from Components.Label import Label
 from Components.Pixmap import Pixmap
+from Tools.LoadPixmap import LoadPixmap
 from boxbranding import getBoxType
 
 from Tools.Directories import fileExists
 from urllib import quote
 from urllib2 import Request, urlopen, URLError, HTTPError
 from xml.dom import minidom, Node
-from enigma import loadPic, eTimer
+from enigma import eTimer
 
 class MeteoMain(Screen):
     skin = '''<screen position="center,center" size="1280,720" title="Weather" flags="wfNoBorder">
@@ -190,7 +191,7 @@ class MeteoMain(Screen):
                 self['lab4b'].setText('\xc2\xb0C')
                 icon = '/usr/lib/enigma2/python/Plugins/Extensions/AccuWeather/xbmcweather/%s.png' % str(weather_data['condition']['code'])
                 myicon = self.checkIcon(icon)
-                png = loadPic(myicon, 250, 180, 0, 0, 0, 0)
+                png = LoadPixmap(myicon)
                 self['lab5'].instance.setPixmap(png)
                 txt = str(weather_data['condition']['text'])
                 self['lab6'].setText(txt)
@@ -211,7 +212,7 @@ class MeteoMain(Screen):
                 self['lab11b'].setText(txt)
                 self['lab12'].setText(_('Wind :'))
                 direction = self.wind_direction(str(weather_data['wind']['direction']))
-                txt = _('From') +  direction + _('at') + str(weather_data['wind']['speed']) + _('kmh')
+                txt = _('From ') +  direction + _(' at ') + str(weather_data['wind']['speed']) + _(' kmh')
                 self['lab12b'].setText(txt)
                 txt = self.extend_day(str(weather_data['forecasts'][0]['day']))
                 self['lab13'].setText(txt)
@@ -225,7 +226,7 @@ class MeteoMain(Screen):
                 self['lab16'].setText(txt)
                 icon = '/usr/lib/enigma2/python/Plugins/Extensions/AccuWeather/xbmcweather/small/%s.png' % str(weather_data['forecasts'][0]['code'])
                 myicon = self.checkIcon(icon)
-                png = loadPic(myicon, 100, 100, 0, 0, 0, 0)
+                png = LoadPixmap(myicon)
                 self['lab17'].instance.setPixmap(png)
                 txt = self.extend_day(str(weather_data['forecasts'][1]['day']))
                 self['lab18'].setText(txt)
@@ -239,7 +240,7 @@ class MeteoMain(Screen):
                 self['lab21'].setText(txt)
                 icon = '/usr/lib/enigma2/python/Plugins/Extensions/AccuWeather/xbmcweather/small/%s.png' % str(weather_data['forecasts'][1]['code'])
                 myicon = self.checkIcon(icon)
-                png = loadPic(myicon, 100, 100, 0, 0, 0, 0)
+                png = LoadPixmap(myicon)
                 self['lab22'].instance.setPixmap(png)
                 self['lab23'].setText(city)
                 self['lab24'].setText(_('Latitude :'))
@@ -255,7 +256,7 @@ class MeteoMain(Screen):
                 txt = str(weather_data['location']['country'])
                 self['lab27b'].setText(txt)
                 myicon = '/usr/lib/enigma2/python/Plugins/Extensions/AccuWeather/xbmcweather/red.png'
-                png = loadPic(myicon, 16, 16, 0, 0, 0, 0)
+                png = LoadPixmap(myicon)
                 self['lab28'].instance.setPixmap(png)
                 self['lab28a'].setText(':')
                 self['lab28b'].setText(_('Change city'))
@@ -337,7 +338,7 @@ class MeteoMain(Screen):
 	elif getBoxType() == "ini-5000ru":
 		url2 = '2122265' # Moskwa
 	elif getBoxType() in ('ini-7012au', 'ini-7000au'):
-		url2 = '1105779' # Sydney
+		url2 = '1100968' # 1105779 Sydney # 1100968 Canberra 
 	else:
 		url2 = '638242' # Berlin
 	    
