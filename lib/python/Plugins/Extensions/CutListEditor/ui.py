@@ -79,7 +79,7 @@ class CutListContextMenu(FixedMenu):
 
 		menu.append((_("grab this frame as bitmap"), self.grabFrame))
 		FixedMenu.__init__(self, session, _("Cut"), menu)
-		self.skinName = "Menu"
+		self.skinName = "CutListMenu"
 
 	def startCut(self):
 		self.close(self.RET_STARTCUT)
