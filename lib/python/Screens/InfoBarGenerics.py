@@ -482,8 +482,8 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	def __init__(self):
 		self["ShowHideActions"] = ActionMap( ["InfobarShowHideActions"] ,
 			{
+				"LongOKPressed": self.toggleShow,
 				"toggleShow": self.toggleShow,
-				"LongOKPressed": self.LongOKPressed,
 				"hide": self.keyHide,
 			}, 1) # lower prio to make it possible to override ok and cancel..
 
@@ -519,11 +519,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.standardInfoBar = True
 		self.secondInfoBarWasShown = False
 		self.EventViewIsShown = False
-
-	def LongOKPressed(self):
-		if isinstance(self, InfoBarEPG):
-			if config.vixsettings.InfoBarEpg_mode.getValue() == "1":
-				self.openInfoBarEPG()
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
@@ -614,37 +609,42 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.pvrStateDialog.hide()
 
 	def toggleShow(self):
-		if self.__state == self.STATE_HIDDEN:
-			if not self.secondInfoBarWasShown:
-				self.show()
-			if self.secondInfoBarScreen:
-				self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-			self.EventViewIsShown = False
-		elif isStandardInfoBar(self) and config.usage.show_second_infobar.getValue() == "EPG":
-			self.showDefaultEPG()
-		elif isStandardInfoBar(self) and config.usage.show_second_infobar.getValue() == "INFOBAREPG":
-			self.openInfoBarEPG()
-		elif self.secondInfoBarScreen and config.usage.show_second_infobar.getValue() and not self.secondInfoBarScreen.shown:
-			self.hide()
-			self.secondInfoBarScreen.show()
-			self.secondInfoBarWasShown = True
-			self.startHideTimer()
-		elif isMoviePlayerInfoBar(self) and not self.EventViewIsShown and config.usage.show_second_infobar.getValue():
-			self.hide()
-			self.openEventView(True)
-			self.EventViewIsShown = True
-			self.startHideTimer()
-		else:
-			self.hide()
-			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-				self.secondInfoBarScreen.hide()
-			elif self.EventViewIsShown:
-				try:
-					self.eventView.close()
-				except:
-					pass
+		if not self.LongButtonPressed:
+			if self.__state == self.STATE_HIDDEN:
+				if not self.secondInfoBarWasShown:
+					self.show()
+				if self.secondInfoBarScreen:
+					self.secondInfoBarScreen.hide()
+				self.secondInfoBarWasShown = False
 				self.EventViewIsShown = False
+			elif isStandardInfoBar(self) and config.usage.show_second_infobar.getValue() == "EPG":
+				self.showDefaultEPG()
+			elif isStandardInfoBar(self) and config.usage.show_second_infobar.getValue() == "INFOBAREPG":
+				self.openInfoBarEPG()
+			elif self.secondInfoBarScreen and config.usage.show_second_infobar.getValue() and not self.secondInfoBarScreen.shown:
+				self.hide()
+				self.secondInfoBarScreen.show()
+				self.secondInfoBarWasShown = True
+				self.startHideTimer()
+			elif isMoviePlayerInfoBar(self) and not self.EventViewIsShown and config.usage.show_second_infobar.getValue():
+				self.hide()
+				self.openEventView(True)
+				self.EventViewIsShown = True
+				self.startHideTimer()
+			else:
+				self.hide()
+				if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+					self.secondInfoBarScreen.hide()
+				elif self.EventViewIsShown:
+					try:
+						self.eventView.close()
+					except:
+						pass
+					self.EventViewIsShown = False
+		elif self.LongButtonPressed:
+			if isinstance(self, InfoBarEPG):
+				if config.vixsettings.InfoBarEpg_mode.getValue() == "1":
+					self.openInfoBarEPG()
 
 	def lockShow(self):
 		self.__locked += 1
@@ -875,17 +875,12 @@ class InfoBarChannelSelection:
 		self.servicelist2 = self.session.instantiateDialog(PiPZapSelection)
 		self.tscallback = None
 
-		self.ChannelPlusLong = False
-		self.ChannelMinusLong = True
-		self.ChannelUpLong = False
-		self.ChannelDownLong = False
-
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
 				"switchChannelUp": (self.switchChannelUp, _("Open service list and select previous channel")),
 				"switchChannelDown": (self.switchChannelDown, _("Open service list and select next channel")),
-				"switchChannelUpLong": (self.switchChannelUpLong, _("Open service list and select previous channel for PiP")),
-				"switchChannelDownLong": (self.switchChannelDownLong, _("Open service list and select next channel for PiP")),
+				"switchChannelUpLong": (self.switchChannelUp, _("Open service list and select previous channel for PiP")),
+				"switchChannelDownLong": (self.switchChannelDown, _("Open service list and select next channel for PiP")),
 				"zapUp": (self.zapUp, _("Switch to previous channel")),
 				"zapDown": (self.zapDown, _("Switch next channel")),
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
@@ -896,8 +891,8 @@ class InfoBarChannelSelection:
 				"RightPressed": self.RightPressed,
 				"ChannelPlusPressed": self.ChannelPlusPressed,
 				"ChannelMinusPressed": self.ChannelMinusPressed,
-				"ChannelPlusPressedLong": self.ChannelPlusPressedLong,
-				"ChannelMinusPressedLong": self.ChannelMinusPressedLong,
+				"ChannelPlusPressedLong": self.ChannelPlusPressed,
+				"ChannelMinusPressedLong": self.ChannelMinusPressed,
 			})
 
 	def LeftPressed(self):
@@ -913,9 +908,6 @@ class InfoBarChannelSelection:
 			self.zapDown()
 
 	def ChannelPlusPressed(self):
-		if self.ChannelPlusLong:
-			self.ChannelPlusLong = False
-			return
 		if config.usage.channelbutton_mode.getValue() == "0" or config.usage.show_second_infobar.getValue() == "INFOBAREPG":
 			self.zapDown()
 		elif config.usage.channelbutton_mode.getValue() == "1":
@@ -926,9 +918,6 @@ class InfoBarChannelSelection:
 			self.session.execDialog(self.servicelist)
 
 	def ChannelMinusPressed(self):
-		if self.ChannelMinusLong:
-			self.ChannelMinusLong = False
-			return
 		if config.usage.channelbutton_mode.getValue() == "0" or config.usage.show_second_infobar.getValue() == "INFOBAREPG":
 			self.zapUp()
 		elif config.usage.channelbutton_mode.getValue() == "1":
@@ -937,28 +926,6 @@ class InfoBarChannelSelection:
 			self.serviceListType = "Norm"
 			self.servicelist.showFavourites()
 			self.session.execDialog(self.servicelist)
-
-	def ChannelPlusPressedLong(self):
-		self.ChannelPlusLong = True
-		if config.usage.channelbutton_mode.getValue() == "0" or config.usage.show_second_infobar.getValue() == "INFOBAREPG":
-			self.zapDownLong()
-		elif config.usage.channelbutton_mode.getValue() == "1":
-			self.openServiceListPiP()
-		elif config.usage.channelbutton_mode.getValue() == "2":
-			self.serviceListType = "Norm"
-			self.servicelist2.showFavourites()
-			self.session.execDialog(self.servicelist2)
-
-	def ChannelMinusPressedLong(self):
-		self.ChannelMinusLong = True
-		if config.usage.channelbutton_mode.getValue() == "0" or config.usage.show_second_infobar.getValue() == "INFOBAREPG":
-			self.zapUpLong()
-		elif config.usage.channelbutton_mode.getValue() == "1":
-			self.openServiceListPiP()
-		elif config.usage.channelbutton_mode.getValue() == "2":
-			self.serviceListType = "Norm"
-			self.servicelist2.showFavourites()
-			self.session.execDialog(self.servicelist2)
 
 	def showTvChannelList(self, zap=False):
 		self.servicelist.setModeTv()
@@ -987,46 +954,40 @@ class InfoBarChannelSelection:
 			self.servicelist.historyZap(+1)
 
 	def switchChannelUp(self):
-		if not config.usage.show_bouquetalways.getValue():
-			if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-				self.servicelist.moveUp()
-			self.session.execDialog(self.servicelist)
-		else:
-			self.servicelist.showFavourites()
-			self.session.execDialog(self.servicelist)
-		if self.ChannelUpLong:
-			self.ChannelUpLong = False
+		if not self.LongButtonPressed:
+			if not config.usage.show_bouquetalways.getValue():
+				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+					self.servicelist.moveUp()
+				self.session.execDialog(self.servicelist)
+			else:
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+		elif self.LongButtonPressed:
+			if not config.usage.show_bouquetalways.getValue():
+				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+					self.servicelist2.moveUp()
+				self.session.execDialog(self.servicelist2)
+			else:
+				self.servicelist2.showFavourites()
+				self.session.execDialog(self.servicelist2)
 
 	def switchChannelDown(self):
-		if not config.usage.show_bouquetalways.getValue():
-			if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-				self.servicelist.moveDown()
-			self.session.execDialog(self.servicelist)
-		else:
-			self.servicelist.showFavourites()
-			self.session.execDialog(self.servicelist)
-		if self.ChannelDownLong:
-			self.ChannelDownLong = False
-
-	def switchChannelUpLong(self):
-		self.ChannelUpLong = True
-		if not config.usage.show_bouquetalways.getValue():
-			if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-				self.servicelist2.moveUp()
-			self.session.execDialog(self.servicelist2)
-		else:
-			self.servicelist2.showFavourites()
-			self.session.execDialog(self.servicelist2)
-
-	def switchChannelDownLong(self):
-		self.ChannelDownLong = True
-		if not config.usage.show_bouquetalways.getValue():
-			if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-				self.servicelist2.moveDown()
-			self.session.execDialog(self.servicelist2)
-		else:
-			self.servicelist2.showFavourites()
-			self.session.execDialog(self.servicelist2)
+		if not self.LongButtonPressed:
+			if not config.usage.show_bouquetalways.getValue():
+				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+					self.servicelist.moveDown()
+				self.session.execDialog(self.servicelist)
+			else:
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+		elif self.LongButtonPressed:
+			if not config.usage.show_bouquetalways.getValue():
+				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+					self.servicelist2.moveDown()
+				self.session.execDialog(self.servicelist2)
+			else:
+				self.servicelist2.showFavourites()
+				self.session.execDialog(self.servicelist2)
 
 	def openServiceList(self):
 		self.session.execDialog(self.servicelist)
@@ -1039,114 +1000,115 @@ class InfoBarChannelSelection:
 		self.session.execDialog(self.servicelist)
 
 	def zapUp(self):
-		if self.pts_blockZap_timer.isActive():
-			return
+		if not self.LongButtonPressed:
+			if self.pts_blockZap_timer.isActive():
+				return
 
-		if self.servicelist.inBouquet():
-			prev = self.servicelist.getCurrentSelection()
-			if prev:
-				prev = prev.toString()
-				while True:
-					if config.usage.quickzap_bouquet_change.getValue():
-						if self.servicelist.atBegin():
-							self.servicelist.prevBouquet()
-					self.servicelist.moveUp()
-					cur = self.servicelist.getCurrentSelection()
-					if cur:
-						if self.servicelist.dopipzap:
-							isPlayable = self.session.pip.isPlayableForPipService(cur)
-						else:
-							isPlayable = isPlayableForCur(cur)
-					if cur and (cur.toString() == prev or isPlayable):
-						break
-		else:
-			self.servicelist.moveUp()
-		self.servicelist.zap(enable_pipzap = True)
+			if self.servicelist.inBouquet():
+				prev = self.servicelist.getCurrentSelection()
+				if prev:
+					prev = prev.toString()
+					while True:
+						if config.usage.quickzap_bouquet_change.getValue():
+							if self.servicelist.atBegin():
+								self.servicelist.prevBouquet()
+						self.servicelist.moveUp()
+						cur = self.servicelist.getCurrentSelection()
+						if cur:
+							if self.servicelist.dopipzap:
+								isPlayable = self.session.pip.isPlayableForPipService(cur)
+							else:
+								isPlayable = isPlayableForCur(cur)
+						if cur and (cur.toString() == prev or isPlayable):
+							break
+			else:
+				self.servicelist.moveUp()
+			self.servicelist.zap(enable_pipzap = True)
+
+		elif self.LongButtonPressed:
+			if not hasattr(self.session, 'pip') and not self.session.pipshown:
+				self.session.open(MessageBox, _("Please open Picture in Picture first"), MessageBox.TYPE_ERROR)
+				return
+
+			from Screens.ChannelSelection import ChannelSelection
+			ChannelSelectionInstance = ChannelSelection.instance
+			ChannelSelectionInstance.dopipzap = True
+			if self.servicelist2.inBouquet():
+				prev = self.servicelist2.getCurrentSelection()
+				if prev:
+					prev = prev.toString()
+					while True:
+						if config.usage.quickzap_bouquet_change.getValue():
+							if self.servicelist2.atBegin():
+								self.servicelist2.prevBouquet()
+						self.servicelist2.moveUp()
+						cur = self.servicelist2.getCurrentSelection()
+						if cur:
+							if ChannelSelectionInstance.dopipzap:
+								isPlayable = self.session.pip.isPlayableForPipService(cur)
+							else:
+								isPlayable = isPlayableForCur(cur)
+						if cur and (cur.toString() == prev or isPlayable):
+							break
+			else:
+				self.servicelist2.moveUp()
+			self.servicelist2.zap(enable_pipzap = True)
+			ChannelSelectionInstance.dopipzap = False
 
 	def zapDown(self):
-		if self.pts_blockZap_timer.isActive():
-			return
+		if not self.LongButtonPressed:
+			if self.pts_blockZap_timer.isActive():
+				return
 
-		if self.servicelist.inBouquet():
-			prev = self.servicelist.getCurrentSelection()
-			if prev:
-				prev = prev.toString()
-				while True:
-					if config.usage.quickzap_bouquet_change.value and self.servicelist.atEnd():
-						self.servicelist.nextBouquet()
-					else:
-						self.servicelist.moveDown()
-					cur = self.servicelist.getCurrentSelection()
-					if cur:
-						if self.servicelist.dopipzap:
-							isPlayable = self.session.pip.isPlayableForPipService(cur)
+			if self.servicelist.inBouquet():
+				prev = self.servicelist.getCurrentSelection()
+				if prev:
+					prev = prev.toString()
+					while True:
+						if config.usage.quickzap_bouquet_change.value and self.servicelist.atEnd():
+							self.servicelist.nextBouquet()
 						else:
-							isPlayable = isPlayableForCur(cur)
-					if cur and (cur.toString() == prev or isPlayable):
-						break
-		else:
-			self.servicelist.moveDown()
-		self.servicelist.zap(enable_pipzap = True)
+							self.servicelist.moveDown()
+						cur = self.servicelist.getCurrentSelection()
+						if cur:
+							if self.servicelist.dopipzap:
+								isPlayable = self.session.pip.isPlayableForPipService(cur)
+							else:
+								isPlayable = isPlayableForCur(cur)
+						if cur and (cur.toString() == prev or isPlayable):
+							break
+			else:
+				self.servicelist.moveDown()
+			self.servicelist.zap(enable_pipzap = True)
+		elif self.LongButtonPressed:
+			if not hasattr(self.session, 'pip') and not self.session.pipshown:
+				self.session.open(MessageBox, _("Please open Picture in Picture first"), MessageBox.TYPE_ERROR)
+				return
 
-	def zapUpLong(self):
-		if not hasattr(self.session, 'pip') and not self.session.pipshown:
-			self.session.open(MessageBox, _("Please open Picture in Picture first"), MessageBox.TYPE_ERROR)
-			return
-
-		from Screens.ChannelSelection import ChannelSelection
-		ChannelSelectionInstance = ChannelSelection.instance
-		ChannelSelectionInstance.dopipzap = True
-		if self.servicelist2.inBouquet():
-			prev = self.servicelist2.getCurrentSelection()
-			if prev:
-				prev = prev.toString()
-				while True:
-					if config.usage.quickzap_bouquet_change.getValue():
-						if self.servicelist2.atBegin():
-							self.servicelist2.prevBouquet()
-					self.servicelist2.moveUp()
-					cur = self.servicelist2.getCurrentSelection()
-					if cur:
-						if ChannelSelectionInstance.dopipzap:
-							isPlayable = self.session.pip.isPlayableForPipService(cur)
+			from Screens.ChannelSelection import ChannelSelection
+			ChannelSelectionInstance = ChannelSelection.instance
+			ChannelSelectionInstance.dopipzap = True
+			if self.servicelist2.inBouquet():
+				prev = self.servicelist2.getCurrentSelection()
+				if prev:
+					prev = prev.toString()
+					while True:
+						if config.usage.quickzap_bouquet_change.value and self.servicelist2.atEnd():
+							self.servicelist2.nextBouquet()
 						else:
-							isPlayable = isPlayableForCur(cur)
-					if cur and (cur.toString() == prev or isPlayable):
-						break
-		else:
-			self.servicelist2.moveUp()
-		self.servicelist2.zap(enable_pipzap = True)
-		ChannelSelectionInstance.dopipzap = False
-
-	def zapDownLong(self):
-		if not hasattr(self.session, 'pip') and not self.session.pipshown:
-			self.session.open(MessageBox, _("Please open Picture in Picture first"), MessageBox.TYPE_ERROR)
-			return
-
-		from Screens.ChannelSelection import ChannelSelection
-		ChannelSelectionInstance = ChannelSelection.instance
-		ChannelSelectionInstance.dopipzap = True
-		if self.servicelist2.inBouquet():
-			prev = self.servicelist2.getCurrentSelection()
-			if prev:
-				prev = prev.toString()
-				while True:
-					if config.usage.quickzap_bouquet_change.value and self.servicelist2.atEnd():
-						self.servicelist2.nextBouquet()
-					else:
-						self.servicelist2.moveDown()
-					cur = self.servicelist2.getCurrentSelection()
-					if cur:
-						if ChannelSelectionInstance.dopipzap:
-							isPlayable = self.session.pip.isPlayableForPipService(cur)
-						else:
-							isPlayable = isPlayableForCur(cur)
-					if cur and (cur.toString() == prev or isPlayable):
-						break
-		else:
-			self.servicelist2.moveDown()
-		self.servicelist2.zap(enable_pipzap = True)
-		ChannelSelectionInstance.dopipzap = False
+							self.servicelist2.moveDown()
+						cur = self.servicelist2.getCurrentSelection()
+						if cur:
+							if ChannelSelectionInstance.dopipzap:
+								isPlayable = self.session.pip.isPlayableForPipService(cur)
+							else:
+								isPlayable = isPlayableForCur(cur)
+						if cur and (cur.toString() == prev or isPlayable):
+							break
+			else:
+				self.servicelist2.moveDown()
+			self.servicelist2.zap(enable_pipzap = True)
+			ChannelSelectionInstance.dopipzap = False
 
 
 class InfoBarMenu:
@@ -3698,41 +3660,36 @@ class InfoBarZoom:
 class InfoBarHdmi:
 	def __init__(self):
 		self.hdmi_enabled = False
-		self.longbuttonpressed = False
 		self["HDMIActions"] = HelpableActionMap(self, "InfobarHDMIActions",
 			{
 				"HDMIin":(self.HDMIIn, _("Switch to HDMI in mode")),
-				"HDMIinLong":(self.HDMIInLong, _("Switch to HDMI in mode")),
+				"HDMIinLong":(self.HDMIIn, _("Switch to HDMI in mode")),
 			}, prio=2)
 
 	def HDMIIn(self):
-		if self.longbuttonpressed:
-			self.longbuttonpressed = False
-			return
-		if not self.hdmi_enabled:
-			self.curserviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			self.session.nav.stopService()
-			self.session.nav.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
-			self.hdmi_enabled = True
-		else:
-			self.session.nav.stopService()
-			self.session.nav.playService(self.curserviceref)
-			self.hdmi_enabled = False
-			self.curserviceref = None
-
-	def HDMIInLong(self):
-		self.longbuttonpressed = True
-		if not self.hdmi_enabled:
-			if self.session.pipshown:
+		if not self.LongButtonPressed:
+			if not self.hdmi_enabled:
+				self.curserviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+				self.session.nav.stopService()
+				self.session.nav.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+				self.hdmi_enabled = True
+			else:
+				self.session.nav.stopService()
+				self.session.nav.playService(self.curserviceref)
+				self.hdmi_enabled = False
+				self.curserviceref = None
+		elif self.LongButtonPressed:
+			if not self.hdmi_enabled:
+				if self.session.pipshown:
+					del self.session.pip
+				self.session.pip = self.session.instantiateDialog(PictureInPicture)
+				self.session.pip.show()
+				if self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:')):
+					self.session.pipshown = True
+				self.hdmi_enabled = True
+			else:
+				self.session.pipshown = False
 				del self.session.pip
-			self.session.pip = self.session.instantiateDialog(PictureInPicture)
-			self.session.pip.show()
-			if self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:')):
-				self.session.pipshown = True
-			self.hdmi_enabled = True
-		else:
-			self.session.pipshown = False
-			del self.session.pip
-			self.hdmi_enabled = False
+				self.hdmi_enabled = False
 
 
