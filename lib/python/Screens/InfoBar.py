@@ -11,7 +11,7 @@ from Components.Pixmap import MultiPixmap
 
 profile("LOAD:enigma")
 import enigma
-from boxbranding import getBoxType
+from boxbranding import getBrandOEM
 
 profile("LOAD:InfoBarGenerics")
 from Screens.InfoBarGenerics import InfoBarShowHide, \
@@ -21,7 +21,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarSubserviceSelection, InfoBarShowMovies,  \
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
 	InfoBarSummarySupport, InfoBarMoviePlayerSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
-	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarZoom, \
+	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarZoom, InfoBarHdmi, \
 	setResumePoint, delResumePoint
 
 profile("LOAD:InitBar_Components")
@@ -39,7 +39,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	HelpableScreen, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarUnhandledKey,
 	InfoBarSubserviceSelection, InfoBarTimeshift, InfoBarSeek, InfoBarCueSheetSupport,
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions,
-	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarZoom,
+	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarZoom, InfoBarHdmi,
 	Screen):
 
 	ALLOW_SUSPEND = True
@@ -73,7 +73,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				InfoBarInstantRecord, InfoBarAudioSelection, InfoBarRedButton, InfoBarTimerButton, InfoBarUnhandledKey, InfoBarVmodeButton,\
 				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, \
 				InfoBarTimeshift, InfoBarSeek, InfoBarCueSheetSupport, InfoBarSummarySupport, InfoBarTimeshiftState, \
-				InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitleSupport, InfoBarJobman, InfoBarZoom, \
+				InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitleSupport, InfoBarJobman, InfoBarZoom, InfoBarHdmi, \
 				InfoBarPlugins, InfoBarServiceErrorPopupSupport:
 			x.__init__(self)
 
@@ -144,7 +144,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.servicelist.showFavourites()
 
 	def TvRadioToggle(self):
-		if getBoxType().startswith('gb'):
+		if getBrandOEM() == 'gigablue':
 			self.toogleTvRadio()
 		else:
 			self.showTv()
@@ -242,8 +242,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.session.open(MessageBox, _("The VideoMode plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			
 			
-class MoviePlayer(InfoBarBase, InfoBarShowHide, \
-		InfoBarMenu, InfoBarEPG, \
+class MoviePlayer(InfoBarBase, InfoBarShowHide,
+		InfoBarMenu, InfoBarEPG,
 		InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
 		InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
@@ -347,12 +347,12 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			self.leavePlayerOnExitCallback(True)
 
 	def leavePlayerOnExitCallback(self, answer):
-		if answer == True:
+		if answer:
 			setResumePoint(self.session)
 			self.handleLeave("quit")
 
 	def hidePipOnExitCallback(self, answer):
-		if answer == True:
+		if answer:
 			self.showPiP()
 
 	def deleteConfirmed(self, answer):
@@ -415,7 +415,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 					self.leavePlayerConfirmed([True,"loop"])
 				else:
 					self.leavePlayerConfirmed([True,"quit"])
-		elif answer in ("repeatcurrent"):
+		elif answer in "repeatcurrent":
 			if config.usage.next_movie_msg.value:
 				(item, length) = self.getPlaylistServiceInfo(self.cur_service)
 				self.displayPlayedName(self.cur_service, item, length)
@@ -494,7 +494,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			slist.zap(enable_pipzap = True)
 		else:
 			InfoBarSeek.seekBack(self)
-
+			
 	def showPiP(self):
 		try:
 			service = self.session.nav.getCurrentService()
@@ -559,13 +559,13 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		for i, item in enumerate(playlist):
 			if item == service:
 				if config.usage.on_movie_eof.value == "repeatcurrent":
-					return (i+1, len(playlist))
+					return i+1, len(playlist)
 				i += 1
 				if i < len(playlist):
-					return (playlist[i], i+1, len(playlist))
+					return playlist[i], i+1, len(playlist)
 				elif config.usage.on_movie_eof.getValue() == "loop":
-					return (playlist[0], 1, len(playlist))
-		return ( None, 0, 0 )
+					return playlist[0], 1, len(playlist)
+		return None, 0, 0
 
 	def displayPlayedName(self, ref, index, n):
 		from Tools import Notifications
