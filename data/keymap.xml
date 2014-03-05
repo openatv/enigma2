@@ -133,12 +133,19 @@
 		<key id="KEY_BACK" mapto="historyBack" flags="mr" />
 		<key id="KEY_FORWARD" mapto="historyNext" flags="mr" />
 		<key id="KEY_ARCHIVE" mapto="historyBack" flags="mr" />
-		<key id="KEY_CHANNELUP" mapto="ChannelPlusPressed" flags="m" />
-		<key id="KEY_CHANNELDOWN" mapto="ChannelMinusPressed" flags="m" />
+		<key id="KEY_CHANNELUP" mapto="ChannelPlusPressed" flags="b" />
+		<key id="KEY_CHANNELDOWN" mapto="ChannelMinusPressed" flags="b" />
+		<key id="KEY_CHANNELUP" mapto="ChannelPlusPressedLong" flags="l" />
+		<key id="KEY_CHANNELDOWN" mapto="ChannelMinusPressedLong" flags="l" />
 		<key id="BTN_0" mapto="zapUp" flags="mr" />
 		<key id="BTN_1" mapto="zapDown" flags="mr" />
 		<key id="KEY_SAT" mapto="openSatellites" flags="m" />		
 	</map>
+	
+	<map context="InfobarHDMIActions">
+		<key id="KEY_AUX" mapto="HDMIin" flags="b" />
+		<key id="KEY_AUX" mapto="HDMIinLong" flags="l" />
+	</map>	
 
 	<map context="MinuteInputActions">
 		<key id="KEY_UP" mapto="up" flags="mr" />
