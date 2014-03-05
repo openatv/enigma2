@@ -647,20 +647,20 @@ class InfoBarChannelSelection:
 		self.longbuttonpressed = False
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
-				"switchChannelUp": (self.switchChannelUp, _("Open service list and select previous channel")),
-				"switchChannelDown": (self.switchChannelDown, _("Open service list and select next channel")),
-				"switchChannelUpLong": (self.switchChannelUpLong, _("Open service list and select previous channel for PiP")),
-				"switchChannelDownLong": (self.switchChannelDownLong, _("Open service list and select next channel for PiP")),
-				"zapUp": (self.zapUp, _("Switch to previous channel")),
-				"zapDown": (self.zapDown, _("Switch next channel")),
+				"switchChannelUp": self.switchChannelUp,
+				"switchChannelDown": self.switchChannelDown,
+				"switchChannelUpLong": self.switchChannelUpLong,
+				"switchChannelDownLong": self.switchChannelDownLong,
+				"zapUp": self.zapUp,
+				"zapDown": self.zapDown,
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
 				"historyNext": (self.historyNext, _("Switch to next channel in history")),
 				"openServiceList": (self.openServiceList, _("Open service list")),
 				"openSatellites": (self.openSatellites, _("Open satellites list")),
 				"LeftPressed": self.LeftPressed,
 				"RightPressed": self.RightPressed,
-				"ChannelPlusPressed": self.ChannelPlusPressed,
-				"ChannelMinusPressed": self.ChannelMinusPressed,
+				"ChannelPlusPressed": (self.ChannelPlusPressed, _("Switch next channel")), 
+				"ChannelMinusPressed": (self.ChannelMinusPressed, _("Switch to previous channel")),
 				"ChannelPlusPressedLong": self.ChannelPlusPressedLong,
 				"ChannelMinusPressedLong": self.ChannelMinusPressedLong,
 				"reCallService": self.reCallService,
@@ -943,8 +943,8 @@ class InfoBarMenu:
 		self["MenuActions"] = HelpableActionMap(self, "InfobarMenuActions",
 			{
 				"mainMenu": (self.mainMenu, _("Enter main menu...")),
-				"showRFmod": (self.showRFSetup, _("Show RFmod setup...")),
-				"toggleAspectRatio": (self.toggleAspectRatio, _("Toggle aspect ratio...")),
+				"showRFmod": self.showRFSetup,
+				"toggleAspectRatio": self.toggleAspectRatio,
 			})
 		self.session.infobar = None
 		self.generalmenu = None
@@ -1058,7 +1058,7 @@ class InfoBarEPG:
 				"showEventInfoPlugin": (self.showEventInfoPlugins, _("List EPG functions...")),
 				"EPGPressed":  (self.showDefaultEPG, _("show EPG...")),
 				"showSingleEPG": (self.openSingleServiceEPG, _("show single EPG...")),
-				"showEventGuidePlugin": (self.showEventGuidePlugins, _("List EPG functions...")),
+				"showEventGuidePlugin": self.showEventGuidePlugins,
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 			})
 
@@ -1556,9 +1556,9 @@ class InfoBarSeek:
 				"pauseService": (self.pauseService, _("Pause playback")),
 				"unPauseService": (self.unPauseService, _("Continue playback")),
 		
-				"seekFwd": (self.seekFwd, _("skip forward")),
+				"seekFwd": self.seekFwd,
 				"seekFwdManual": (self.seekFwdManual, _("skip forward (enter time)")),
-				"seekBack": (self.seekBack, _("skip backward")),
+				"seekBack": self.seekBack,
 				"seekBackManual": (self.seekBackManual, _("skip backward (enter time)")),
 			}, prio=-1) # give them a little more priority to win over color buttons
 		self["SeekActionsPTS"].setEnabled(False)
@@ -2865,7 +2865,7 @@ class InfoBarRedButton:
 	def __init__(self):
 		self["RedButtonActions"] = HelpableActionMap(self, "InfobarRedButtonActions",
 			{
-				"activateRedButton": (self.activateRedButton, _("Red button...")),
+				"activateRedButton": (self.activateRedButton, _("HBBTV...")),
 			})
 		self.onHBBTVActivation = [ ]
 		self.onRedButtonActivation = [ ]
