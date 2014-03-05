@@ -465,6 +465,23 @@ class GeneralSetup(Screen):
 			self.session.open(HdmiCECSetupScreen)  
 		elif item[0] == _("Factory Reset"):
 			from Screens.FactoryReset import FactoryReset
+
+			def deactivateInterfaceCB(data):
+				if data is True:
+					applyConfigDataAvail(True)
+
+			def activateInterfaceCB(self, data):
+				if data is True:
+					iNetwork.activateInterface("eth0", applyConfigDataAvail)
+
+			def applyConfigDataAvail(data):
+				if data is True:
+					iNetwork.getInterfaces(getInterfacesDataAvail)
+
+			def getInterfacesDataAvail(data):
+				if data is True:
+					pass
+		
 			def msgClosed(ret):
 				if ret:
 					from os import system, _exit
@@ -475,6 +492,10 @@ class GeneralSetup(Screen):
 					system("rm -R /etc/wpa_supplicant.conf")
 					system("cp -R /usr/share/enigma2/defaults /etc/enigma2")
 					system("/usr/bin/showiframe /usr/share/backdrop.mvi")
+					iNetwork.setAdapterAttribute("eth0", "up", True)
+					iNetwork.setAdapterAttribute("eth0", "dhcp", True)
+					iNetwork.activateInterface("eth0", deactivateInterfaceCB)
+					iNetwork.writeNetworkConfig()
 					_exit(0)
 			self.session.openWithCallback(msgClosed, FactoryReset)  
 ######## Select TV Setup Menu ##############################
