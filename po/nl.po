@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-02 12:51+0100\n"
-"PO-Revision-Date: 2014-03-03 14:56+0100\n"
+"POT-Creation-Date: 2014-03-05 04:43+0100\n"
+"PO-Revision-Date: 2014-03-05 11:27+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -1919,11 +1919,11 @@ msgstr "Stel in of (en hoe lang) de tweede informatiebalk wordt vertoond als 'OK
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Bepaal welk kleurformaat voor de scart-aansluiting wordt benut"
 
-msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-msgstr "Bepaal welke tuner de voorkeur heeft voor opnames, als hetzelfde kanaal beschikbaar is voor verschillende tuners."
-
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr "Bepaal welk tunertype de voorkeur heeft, als hetzelfde kanaal beschikbaar is voor verschillende types tuner."
+
+msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen."
+msgstr "Stel in welke tuner de voorkeur heeft voor opnames als meerdere tuners beschikbaar zijn. \"Uitgeschakeld\" betekent dat de tunerkeuze wordt bepaald door de instelling 'Voorkeurstuner' in het scherm 'Aanpassen'. \"Auto\" betekent dat de keuze wordt gebaseerd op de standaard regels van Enigma, waarbij de instelling \"Voorkeurstuner\" in het scherm \"Aanpassen\" wordt genegeerd. "
 
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr "Stel in welke tuner de voorkeur heeft, als meerdere tuners beschikbaar zijn. In de stand 'auto' zal de voorkeur worden gegeven aan de tuner met het kleinste aantal kanalen/satellieten."
@@ -4686,8 +4686,14 @@ msgstr "Open kanaallist"
 msgid "Open service list and select next channel"
 msgstr "Open zenderlijst en selecteer volgende zender"
 
+msgid "Open service list and select next channel for PiP"
+msgstr "Open zenderlijst en selecteer volgende zender voor PiP"
+
 msgid "Open service list and select previous channel"
 msgstr "Open zenderlijst en selecteer vorige zender"
+
+msgid "Open service list and select previous channel for PiP"
+msgstr "Open zenderlijst en selecteer vorige zendervoor PiP"
 
 msgid "Open the movie list"
 msgstr "Open opnamelijst"
@@ -4987,6 +4993,9 @@ msgstr "Volg nu de instructies op uw TV"
 
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "De zojuist geselecteerde media kon niet worden benaderd en om die reden wordt nu de standaard map gebruikt."
+
+msgid "Please open Picture in Picture first"
+msgstr "Open eerst picture-in-picture"
 
 msgid "Please press OK to continue."
 msgstr "Druk op OK om door te gaan."
@@ -7021,6 +7030,9 @@ msgstr "Wissel configuratie"
 
 msgid "Switch next channel"
 msgstr "Ga naar volgende kanaal"
+
+msgid "Switch to HDMI in mode"
+msgstr "Schakel over naar HDMI-in"
 
 msgid "Switch to filelist"
 msgstr "Schakel over naar bestandslijst"
@@ -10206,6 +10218,9 @@ msgstr "zapte"
 
 #~ msgid "Advanced video setup"
 #~ msgstr "Geavanceerde video-instellingen"
+
+#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+#~ msgstr "Bepaal welke tuner de voorkeur heeft voor opnames, als hetzelfde kanaal beschikbaar is voor verschillende tuners."
 
 #~ msgid "Side by side"
 #~ msgstr "Naast elkaar"
