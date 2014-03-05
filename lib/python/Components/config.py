@@ -106,17 +106,23 @@ class ConfigElement(object):
 	def changed(self):
 		if self.__notifiers:
 			for x in self.notifiers:
-				if self.extra_args and self.extra_args[x]:
-					x(self, self.extra_args[x])
-				else:
+				try:
+					if self.extra_args[x]:
+						x(self, self.extra_args[x])
+					else:
+						x(self)
+				except:
 					x(self)
 
 	def changedFinal(self):
 		if self.__notifiers_final:
 			for x in self.notifiers_final:
-				if self.extra_args and self.extra_args[x]:
-					x(self, self.extra_args[x])
-				else:
+				try:
+					if self.extra_args[x]:
+						x(self, self.extra_args[x])
+					else:
+						x(self)
+				except:
 					x(self)
 
 	def addNotifier(self, notifier, initial_call = True, immediate_feedback = True, extra_args=None):
