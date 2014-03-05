@@ -29,6 +29,7 @@ from time import localtime, strftime
 #
 class ConfigElement(object):
 	def __init__(self):
+		self.extra_args = {}
 		self.saved_value = None
 		self.save_forced = False
 		self.last_value = None
@@ -106,15 +107,31 @@ class ConfigElement(object):
 	def changed(self):
 		if self.__notifiers:
 			for x in self.notifiers:
-				x(self)
+				try:
+					if self.extra_args[x]:
+						x(self, self.extra_args[x])
+					else:
+						x(self)
+				except:
+					x(self)
 
 	def changedFinal(self):
 		if self.__notifiers_final:
 			for x in self.notifiers_final:
-				x(self)
+				try:
+					if self.extra_args[x]:
+						x(self, self.extra_args[x])
+					else:
+						x(self)
+				except:
+					x(self)
 
-	def addNotifier(self, notifier, initial_call = True, immediate_feedback = True):
+	def addNotifier(self, notifier, initial_call = True, immediate_feedback = True, extra_args=None):
+		if not extra_args: extra_args = []
 		assert callable(notifier), "notifiers must be callable"
+		try:
+			self.extra_args[notifier] = extra_args
+		except: pass
 		if immediate_feedback:
 			self.notifiers.append(notifier)
 		else:
@@ -128,7 +145,10 @@ class ConfigElement(object):
 		#    (though that's not so easy to detect.
 		#     the entry could just be new.)
 		if initial_call:
-			notifier(self)
+			if extra_args:
+				notifier(self,extra_args)
+			else:
+				notifier(self)
 
 	def disableSave(self):
 		self.save_disabled = True

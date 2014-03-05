@@ -1,4 +1,5 @@
 from Tools.Profile import profile
+from Tools.BoundFunction import boundFunction
 
 # workaround for required config entry dependencies.
 import Screens.MovieSelection
@@ -53,6 +54,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"showTv": (self.TvRadioToggle, _("Show the tv player...")),
 				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
 				"openTimerList": (self.openTimerList, _("Open Timer List...")),
+				"openSleepTimer": (self.openSleepTimer, _("Show/Add Sleep Timers")),
 				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),
 				"showSetup": (self.showSetup, _("Show setup...")),
@@ -114,6 +116,10 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			if config.usage.show_infobar_on_event_change.getValue():
 				if old_begin_time and old_begin_time != self.current_begin_time:
 					self.doShow()
+
+	def __checkServiceStarted(self):
+		self.__serviceStarted(True)
+		self.onExecBegin.remove(self.__checkServiceStarted)
 
 	def serviceStarted(self):  #override from InfoBarShowHide
 		new = self.servicelist.newServicePlayed()
@@ -190,10 +196,14 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				self.session.nav.playService(ref)
 		else:
 			self.session.open(MoviePlayer, service, slist = self.servicelist, lastservice = ref)
-			
+
 	def openTimerList(self):
 		from Screens.TimerEdit import TimerEditList
 		self.session.open(TimerEditList)
+
+	def openSleepTimer(self):
+		from Screens.PowerTimerEdit import PowerTimerEditList
+		self.session.open(PowerTimerEditList)
 
 	def showMediaPlayer(self):
 		try:
@@ -233,8 +243,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			
 			
 class MoviePlayer(InfoBarBase, InfoBarShowHide,
-				  InfoBarMenu, InfoBarEPG,
-				  InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
+		InfoBarMenu, InfoBarEPG,
+		InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
 		InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
 		InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarZoom):
@@ -484,7 +494,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide,
 			slist.zap(enable_pipzap = True)
 		else:
 			InfoBarSeek.seekBack(self)
-
+			
 	def showPiP(self):
 		try:
 			service = self.session.nav.getCurrentService()

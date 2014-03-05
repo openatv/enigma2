@@ -180,19 +180,17 @@ def InitUsageConfig():
 		("5", "DVB-T/-S/-C") ])
 
 	nims = [("-1", _("auto"))]
+	rec_nims = [("-2", _("Disabled")), ("-1", _("auto"))]
 	for x in nimmanager.nim_slots:
 		nims.append((str(x.slot), x.getSlotName()))
-
+		rec_nims.append((str(x.slot), x.getSlotName()))
 	try:
-		config.usage.frontend_priority = ConfigSelection(default = "0", choices = list(nims))
-	except:
-		config.usage.frontend_priority = ConfigSelection(default = "-1", choices = list(nims))
-
-	nims.insert(0,("-2", _("Disabled")))
-
-	config.usage.recording_frontend_priority = ConfigSelection(default = "-2", choices = nims)
+		config.usage.frontend_priority = ConfigSelection(default = "0", choices = nims)  
+	except:  
+		config.usage.frontend_priority = ConfigSelection(default = "-1", choices = nims)
+	config.usage.recording_frontend_priority = ConfigSelection(default = "-2", choices = rec_nims)
 	config.misc.disable_background_scan = ConfigYesNo(default = False)
-
+	
 	config.usage.jobtaksextensions = ConfigYesNo(default = True)
 
 	config.usage.servicenum_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
