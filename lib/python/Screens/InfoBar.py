@@ -49,18 +49,18 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		Screen.__init__(self, session)
 		self["actions"] = HelpableActionMap(self, "InfobarActions",
 			{
-				"showMovies": (self.showMovies, _("Play recorded movies...")),
+				"showMovies": self.showMovies,
 				"showRadio": (self.showRadio, _("Show the radio player...")),
 				"showTv": (self.TvRadioToggle, _("Show the tv player...")),
 				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
-				"openTimerList": (self.openTimerList, _("Open Timer List...")),
+				"openTimerList": self.openTimerList,
 				"openSleepTimer": (self.openSleepTimer, _("Show/Add Sleep Timers")),
 				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),
 				"showSetup": (self.showSetup, _("Show setup...")),
 				"showWWW": (self.showWWW, _("Open WebBrowser...")),
 				"showLanSetup": (self.showLanSetup, _("Show LAN Setup...")),
-				"showFormat": (self.showFormat, _("Show Format Setup...")),
+				"showFormat": self.showFormat,
 
 			}, prio=2)
 

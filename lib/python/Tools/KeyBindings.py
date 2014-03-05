@@ -44,7 +44,17 @@ keyDescriptions = [{
 		KEYIDS["KEY_9"]: ("9",),
 		KEYIDS["KEY_EXIT"]: ("EXIT",),
 		KEYIDS["KEY_STOP"]: ("STOP",),
-		KEYIDS["KEY_RECORD"]: ("RECORD",)
+		KEYIDS["KEY_RECORD"]: ("RECORD",),
+		KEYIDS["KEY_SEARCH"]: ("WWW",),
+		KEYIDS["KEY_BOOKMARKS"]: ("PLUGIN",),
+		KEYIDS["KEY_MEDIA"]: ("MEDIA",),
+		KEYIDS["KEY_PROGRAM"]: ("TIMER",),
+		KEYIDS["KEY_EPG"]: ("EPG",),
+		KEYIDS["KEY_EDIT"]: ("EPGSETUP",),
+		KEYIDS["KEY_SUBTITLE"]: ("SUBTITLE",),
+		KEYIDS["KEY_SLEEP"]: ("SLEEP",),
+		KEYIDS["KEY_FAVORITES"]: ("FAV",),
+		KEYIDS["KEY_SCREEN"]: ("SCREEN",)
 	},
 	{
 		KEYIDS["BTN_0"]: ("UP", "fp"),
@@ -86,7 +96,17 @@ keyDescriptions = [{
 		KEYIDS["KEY_9"]: ("9",),
 		KEYIDS["KEY_EXIT"]: ("EXIT",),
 		KEYIDS["KEY_STOP"]: ("TV", "SHIFT"),
-		KEYIDS["KEY_RECORD"]: ("RADIO", "SHIFT")
+		KEYIDS["KEY_RECORD"]: ("RADIO", "SHIFT"),
+		KEYIDS["KEY_SEARCH"]: ("WWW",),
+		KEYIDS["KEY_BOOKMARKS"]: ("PLUGIN",),
+		KEYIDS["KEY_MEDIA"]: ("MEDIA",),
+		KEYIDS["KEY_PROGRAM"]: ("TIMER",),
+		KEYIDS["KEY_EPG"]: ("EPG",),
+		KEYIDS["KEY_EDIT"]: ("EPGSETUP",),
+		KEYIDS["KEY_SUBTITLE"]: ("SUBTITLE",),
+		KEYIDS["KEY_SLEEP"]: ("SLEEP",),
+		KEYIDS["KEY_FAVORITES"]: ("FAV",),
+		KEYIDS["KEY_SCREEN"]: ("SCREEN",)
 	},
 	{
 		KEYIDS["BTN_0"]: ("UP", "fp"),
@@ -128,7 +148,17 @@ keyDescriptions = [{
 		KEYIDS["KEY_9"]: ("9",),
 		KEYIDS["KEY_EXIT"]: ("EXIT",),
 		KEYIDS["KEY_STOP"]: ("STOP",),
-		KEYIDS["KEY_RECORD"]: ("RECORD",)
+		KEYIDS["KEY_RECORD"]: ("RECORD",),
+		KEYIDS["KEY_SEARCH"]: ("WWW",),
+		KEYIDS["KEY_BOOKMARKS"]: ("PLUGIN",),
+		KEYIDS["KEY_MEDIA"]: ("MEDIA",),
+		KEYIDS["KEY_PROGRAM"]: ("TIMER",),
+		KEYIDS["KEY_EPG"]: ("EPG",),
+		KEYIDS["KEY_EDIT"]: ("EPGSETUP",),
+		KEYIDS["KEY_SUBTITLE"]: ("SUBTITLE",),
+		KEYIDS["KEY_SLEEP"]: ("SLEEP",),
+		KEYIDS["KEY_FAVORITES"]: ("FAV",),
+		KEYIDS["KEY_SCREEN"]: ("SCREEN",)
 	},
 ]
 
