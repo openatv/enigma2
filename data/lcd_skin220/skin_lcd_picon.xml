@@ -152,13 +152,13 @@
 
 <!-- standby -->
 	<screen name="StandbySummary" position="fill">
-		<widget source="global.CurrentTime" render="Label" position="0,0" size="220,24" font="FdLcD;22" halign="left"  noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="220,35" font="FdLcD;35" halign="center"  noWrap="1">
 			<convert type="ClockToText">Format:%d.%m.%Y</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="center,center" size="220,70" font="FdLcD;85" halign="center" valign="center" noWrap="1">
-			<convert type="ClockToText"></convert>
+		<widget source="global.CurrentTime" render="Label" position="center,center" size="225,100" font="FdLcD;85" halign="center" noWrap="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="center,150" size="190,22" font="FdLcD;22" zPosition="2" valign="bottom" halign="center" noWrap="1" foregroundColor="#ff0000" >
+		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="center,140" size="190,25" font="FdLcD;25" zPosition="2" valign="bottom" halign="center" noWrap="1" foregroundColor="#ff0000" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
