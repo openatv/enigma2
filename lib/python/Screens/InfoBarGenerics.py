@@ -142,6 +142,18 @@ class InfoBarDish:
 	def __init__(self):
 		self.dishDialog = self.session.instantiateDialog(Dish)
 
+class InfoBarLongKeyDetection:
+	def __init__(self):
+		eActionMap.getInstance().bindAction('', -maxint -1, self.detection) #highest prio
+		self.LongButtonPressed = False
+
+	#this function is called on every keypress!
+	def detection(self, key, flag):
+		if flag == 3:
+			self.LongButtonPressed = True
+		elif flag == 0:
+			self.LongButtonPressed = False
+
 class InfoBarUnhandledKey:
 	def __init__(self):
 		self.unhandledKeyDialog = self.session.instantiateDialog(UnhandledKey)
@@ -154,7 +166,6 @@ class InfoBarUnhandledKey:
 		eActionMap.getInstance().bindAction('', maxint, self.actionB) #lowest prio
 		self.flags = (1<<1)
 		self.uflags = 0
-		self.LongButtonPressed = False
 
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
@@ -166,10 +177,6 @@ class InfoBarUnhandledKey:
 		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if flag == 3:
-			self.LongButtonPressed = True
-		elif flag == 0:
-			self.LongButtonPressed = False
 
 		if flag != 4:
 			if self.flags & (1<<1):
