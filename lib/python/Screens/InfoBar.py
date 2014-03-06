@@ -200,12 +200,11 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		else:
 			self.session.open(MoviePlayer, service, slist = self.servicelist, lastservice = ref)
 
-class MoviePlayer(InfoBarBase, InfoBarShowHide,
-				  InfoBarMenu, InfoBarEPG,
+class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarUnhandledKey, InfoBarMenu, InfoBarEPG,
 				  InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
-		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
-		InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
-		InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarZoom):
+				  InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
+				  InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
+				  InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarZoom):
 
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
@@ -232,7 +231,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide,
 
 		self.allowPiP = True
 
-		for x in HelpableScreen, InfoBarShowHide, InfoBarMenu, InfoBarEPG, \
+		for x in HelpableScreen, InfoBarShowHide, InfoBarUnhandledKey, InfoBarMenu, InfoBarEPG, \
 				InfoBarBase, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, \
 				InfoBarAudioSelection, InfoBarNotifications, \
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
