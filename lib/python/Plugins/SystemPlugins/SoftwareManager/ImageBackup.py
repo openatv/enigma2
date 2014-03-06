@@ -202,7 +202,7 @@ class ImageBackup(Screen):
 			ff = open("%s/root.ubi" %self.WORKDIR, "w")
 			ff.close()
 			cmd1 = "%s -r /tmp/bi/root -o %s/root.ubi %s" % (self.MKFS, self.WORKDIR, self.MKUBIFS_ARGS)
-			cmd2 = "%s -o %s/root.ubifs %s %s/ubinize.cfg" % (self.UBINIZE, self.WORKDIR, self.UBINIZE_ARGS, self.WORKDIR)
+			cmd2 = "%s -o %s/root.ubi %s %s/ubinize.cfg" % (self.UBINIZE, self.WORKDIR, self.UBINIZE_ARGS, self.WORKDIR)
 
 
 		cmdlist = []
