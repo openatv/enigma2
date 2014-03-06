@@ -165,6 +165,18 @@ class InfoBarDish:
 	def __init__(self):
 		self.dishDialog = self.session.instantiateDialog(Dish)
 
+class InfoBarLongKeyDetection:
+	def __init__(self):
+		eActionMap.getInstance().bindAction('', -maxint -1, self.detection) #highest prio
+		self.LongButtonPressed = False
+
+	#this function is called on every keypress!
+	def detection(self, key, flag):
+		if flag == 3:
+			self.LongButtonPressed = True
+		elif flag == 0:
+			self.LongButtonPressed = False
+
 class InfoBarUnhandledKey:
 	def __init__(self):
 		self.unhandledKeyDialog = self.session.instantiateDialog(UnhandledKey)
@@ -177,7 +189,6 @@ class InfoBarUnhandledKey:
 		eActionMap.getInstance().bindAction('', maxint, self.actionB) #lowest prio
 		self.flags = (1<<1)
 		self.uflags = 0
-		self.LongButtonPressed = False
 
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
@@ -189,10 +200,6 @@ class InfoBarUnhandledKey:
 		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if flag == 3:
-			self.LongButtonPressed = True
-		elif flag == 0:
-			self.LongButtonPressed = False
 
 		if flag != 4:
 			if self.flags & (1<<1):
@@ -1008,7 +1015,6 @@ class InfoBarChannelSelection:
 		if config.misc.initialchannelselection.value:
 			self.onShown.append(self.firstRun)
 
-		self.longbuttonpressed = False
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
 				"switchChannelUp": (self.UpPressed, _("Open service list and select previous channel")),
@@ -1114,8 +1120,6 @@ class InfoBarChannelSelection:
 			else:
 				self.servicelist.showFavourites()
 				self.session.execDialog(self.servicelist)
-			if self.longbuttonpressed:
-				self.longbuttonpressed = False
 		elif self.LongButtonPressed:
 			if not config.usage.show_bouquetalways.getValue():
 				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
@@ -1134,8 +1138,6 @@ class InfoBarChannelSelection:
 			else:
 				self.servicelist.showFavourites()
 				self.session.execDialog(self.servicelist)
-			if self.longbuttonpressed:
-				self.longbuttonpressed = False
 		elif self.LongButtonPressed:
 			if not config.usage.show_bouquetalways.getValue():
 				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
@@ -2965,7 +2967,7 @@ class InfoBarPiP:
 		if slist and self.session.pipshown:
 			slist.togglePipzap()
 			if slist.dopipzap:
-				currentServicePath = self.servicelist.getCurrentServicePath()
+				currentServicePath = slist.getCurrentServicePath()
 				self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
 				self.session.pip.servicePath = currentServicePath
 
@@ -4336,10 +4338,9 @@ class InfoBarHdmi:
 				self.curserviceref = None
 		elif self.LongButtonPressed:
 			if not self.hdmi_enabled:
-				if self.session.pipshown:
-					del self.session.pip
-				self.session.pip = self.session.instantiateDialog(PictureInPicture)
-				self.session.pip.show()
+				if not hasattr(self.session, 'pip') and not self.session.pipshown:
+					self.session.pip = self.session.instantiateDialog(PictureInPicture)
+					self.session.pip.show()
 				if self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:')):
 					self.session.pipshown = True
 				self.hdmi_enabled = True
