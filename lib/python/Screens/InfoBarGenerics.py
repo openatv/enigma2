@@ -2611,7 +2611,7 @@ class InfoBarPiP:
 		if slist and self.session.pipshown:
 			slist.togglePipzap()
 			if slist.dopipzap:
-				currentServicePath = self.servicelist.getCurrentServicePath()
+				currentServicePath = slist.getCurrentServicePath()
 				self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
 				self.session.pip.servicePath = currentServicePath
 
@@ -3687,10 +3687,9 @@ class InfoBarHdmi:
 				self.curserviceref = None
 		elif self.LongButtonPressed:
 			if not self.hdmi_enabled:
-				if self.session.pipshown:
-					del self.session.pip
-				self.session.pip = self.session.instantiateDialog(PictureInPicture)
-				self.session.pip.show()
+				if not hasattr(self.session, 'pip') and not self.session.pipshown:
+					self.session.pip = self.session.instantiateDialog(PictureInPicture)
+					self.session.pip.show()
 				if self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:')):
 					self.session.pipshown = True
 				self.hdmi_enabled = True
