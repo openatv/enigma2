@@ -26,9 +26,9 @@ if distro.lower() == "openmips":
 	image = 1
 elif distro.lower() == "openatv":
 	image = 0
-feedurl_atv = 'http://images.mynonpublic.com/openatv/nightly'
-feedurl_atv2= 'http://images.mynonpublic.com/openatv/beta'
-feedurl_om = 'http://image.openmips.com/2.0'
+feedurl_atv = 'http://images.mynonpublic.com/openatv/4.0'
+feedurl_atv2= 'http://images.mynonpublic.com/openatv/3.0'
+feedurl_om = 'http://image.openmips.com/4.0'
 imagePath = '/hdd/images'
 flashPath = '/hdd/images/flash'
 flashTmp = '/hdd/images/tmp'
@@ -219,7 +219,7 @@ class doFlashImage(Screen):
 			box = "sf8"
 		elif box.startswith('et') and not box == "et10000":
 			box = box[0:3] + 'x00'
-		elif box == 'odinm9' and self.feed == "atv2":
+		elif box == 'odinm9' and self.feed == "atv":
 			box = 'maram9'
 		return box
 
@@ -385,10 +385,10 @@ class doFlashImage(Screen):
 			else:
 				if self.feed == "atv":
 					self.feedurl = feedurl_atv
-					self["key_blue"].setText("ATV 4.0")
+					self["key_blue"].setText("ATV 3.0")
 				else:
 					self.feedurl = feedurl_atv2
-					self["key_blue"].setText("ATV 3.0")
+					self["key_blue"].setText("ATV 4.0")
 			url = '%s/index.php?open=%s' % (self.feedurl,box)
 			req = urllib2.Request(url)
 			try:
