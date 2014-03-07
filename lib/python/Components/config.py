@@ -28,6 +28,7 @@ from time import localtime, strftime
 #
 class ConfigElement(object):
 	def __init__(self):
+		self.extra_args = {}
 		self.saved_value = None
 		self.save_forced = False
 		self.last_value = None
@@ -101,18 +102,28 @@ class ConfigElement(object):
 	def changed(self):
 		if self.__notifiers:
 			for x in self.notifiers:
-				x(self)
+				if self.extra_args and self.extra_args[x]:
+					x(self, self.extra_args[x])
+				else:
+					x(self)
 
 	def changedFinal(self):
 		if self.__notifiers_final:
 			for x in self.notifiers_final:
-				x(self)
+				if self.extra_args and self.extra_args[x]:
+					x(self, self.extra_args[x])
+				else:
+					x(self)
 
 	# immediate_feedback = True means call notifier on every value CHANGE
 	# immediate_feedback = False means call notifier on leave the config element (up/down) when value have CHANGED
 	# call_on_save_or_cancel = True means call notifier always on save/cancel.. even when value have not changed
-	def addNotifier(self, notifier, initial_call = True, immediate_feedback = True, call_on_save_or_cancel = False):
+	def addNotifier(self, notifier, initial_call = True, immediate_feedback = True, call_on_save_or_cancel = False, extra_args=None):
+		if not extra_args: extra_args = []
 		assert callable(notifier), "notifiers must be callable"
+		try:
+			self.extra_args[notifier] = extra_args
+		except: pass	
 		if immediate_feedback:
 			self.__notifiers[str(notifier)] = (notifier, self.value, call_on_save_or_cancel)
 		else:
@@ -126,8 +137,10 @@ class ConfigElement(object):
 		#    (though that's not so easy to detect.
 		#     the entry could just be new.)
 		if initial_call:
-			notifier(self)
-
+			if extra_args:
+				notifier(self,extra_args)
+			else:
+				notifier(self)
 
 	def removeNotifier(self, notifier):
 		try:
