@@ -198,8 +198,7 @@ class ParentalControl:
 	def getPinList(self):
 		return [ x.getValue() for x in config.ParentalControl.servicepin ]
 
-	def servicePinEntered(self, service, result):
-
+	def servicePinEntered(self, service, result=None):
 		if result is not None and result:
 			#This is the new function of caching the service pin
 			#save last session and time of last entered pin...
