@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-06 12:09+0200\n"
-"PO-Revision-Date: 2013-10-13 12:56+0100\n"
-"Last-Translator: Frogman <OpenPLi>\n"
-"Language-Team: OpenPLi <openpli.org>\n"
+"PO-Revision-Date: 2014-03-08 17:25+0100\n"
+"Last-Translator: satinfo <gigablue-support.com>\n"
+"Language-Team: openMips <gigablue-support.com>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -621,6 +621,13 @@ msgstr "Erweiterte Video-Einstellungen"
 msgid "After event"
 msgstr "Nach der Sendung"
 
+msgid ""
+"After the start wizard is completed, you need to protect single services. "
+"Refer to your %s %s's manual on how to do that."
+msgstr ""
+"Nachdem der Startassistent beendet wurde, müssen Sie ggf. noch einzelne "
+"Sender blockieren. Die Vorgehensweise bitte dem Handbuch der %s %s entnehmen."
+
 msgid "Album"
 msgstr "Album"
 
@@ -1086,8 +1093,14 @@ msgstr ""
 msgid "Children/Youth"
 msgstr "Kinder/Jugend"
 
+msgid "Choose Bouquet"
+msgstr "Wähle Favoritenliste"
+
 msgid "Choose which tuner to configure."
 msgstr "Wählen Sie den Tuner aus."
+
+msgid "Choose Tuner"
+msgstr "Tuner auswählen"
 
 msgid "Circular left"
 msgstr "Links-Zirkular"
@@ -1221,6 +1234,15 @@ msgstr "DiSEqC Modus Einstellung für diesen LNB."
 
 msgid "Configure the IP address."
 msgstr "IP Adresse konfigurieren."
+
+msgid "Network MAC settings"
+msgstr "MAC-Einstellungen"
+
+msgid "Set the MAC-adress of your Receiver.\n"
+msgstr "Einstellen der MAC-Adresse Ihres Receivers.\n"
+
+msgid "Network Configuration..."
+msgstr "Netzwerk-Einstellungen"
 
 msgid "Configure the aspect ratio of the screen."
 msgstr "Bildformat des Bildschirms konfigurieren."
@@ -2023,6 +2045,15 @@ msgstr "5V für aktive Antenne"
 msgid "Enable EIT EPG"
 msgstr "Aktiviere EIT EPG"
 
+msgid "Enable debug log"
+msgstr "Debug Log aktivieren"
+
+msgid "Logs location"
+msgstr "Logs Speicherort"
+
+msgid "Logs settings"
+msgstr "Einstellungen Crashlog"
+
 msgid "Enable MHW EPG"
 msgstr "Aktiviere MHW EPG"
 
@@ -2177,6 +2208,96 @@ msgstr "Sleeptimer 15 min verlängern"
 
 msgid "Extended Software"
 msgstr "Fortgeschrittene Software"
+
+msgid "Flash On the Fly"
+msgstr "Flashen Online / Lokal"
+
+msgid ""
+"\n"
+"Flash on the fly your %s %s."
+msgstr ""
+"\n"
+"Flashen Online / Lokal Ihrer %s %s."
+
+msgid "Online = Download a image and flash it"
+msgstr "Image online laden und flashen."
+
+msgid "Local = Flash a image from local path /hdd/images"
+msgstr "Image von HDD oder USB flashen."
+
+msgid "Flash On the fly (select a image)"
+msgstr "Image zum Flashen auswählen"
+
+msgid "Unzipping files, Please wait ..."
+msgstr "Datei wird entpackt, Bitte warten..."
+
+msgid "The image is downloaded. Do you want to flash now?"
+msgstr ""
+"Das Image ist herruntergeladen,\n"
+"wollen Sie jetzt Flashen?"
+
+msgid "Please select medium"
+msgstr "Bitte wählen Sie das Image"
+
+msgid ""
+"Do you really want to delete\n"
+"%s ?"
+msgstr ""
+"Wollen Sie %s\n"
+"wirklich löschen?"
+
+msgid ""
+"Not enough free space on /hdd !!\n"
+"You need at least 300Mb free space.\n"
+"\n"
+"Exit plugin."
+msgstr ""
+"Nicht genügend freier Speicherplatz auf /hdd!\n"
+"Sie benötigen mindestens 300 MB freien Speicherplatz.\n"
+"\n"
+"Plugin wird beendet."
+
+msgid ""
+"ofgwrite not found !!\n"
+"Please make sure you have ofgwrite installed in /usr/bin/ofgwrite.\n"
+"\n"
+"Exit plugin."
+msgstr ""
+"ofgwrite nicht gefunden !!\n"
+"Bitte installieren Sie ofgwrite nach /usr/bin/ofgwrite.\n"
+"\n"
+"Plugin wird beendet."
+
+msgid "Download Failed !!"
+msgstr "Herunterladen gescheitert !!"
+
+msgid "Simulate (no write)"
+msgstr "Simulation (kein Schreibvorgang)"
+
+msgid "Show only found image and mtd partitions.\n"
+msgstr "Zeige nur verfügbare Images und MTD Partitionen.\n"
+
+msgid "ofgwrite will stop enigma2 now to run the flash.\n"
+msgstr "ofgwrite stoppt jetzt Enigma2 um den Flashvorgang zu starten.\n"
+
+msgid "Your STB will freeze during the flashing process.\n"
+msgstr ""
+"Während des Flashvorganges ist Ihr Receiver unbedienbar und das Bild wird "
+"stoppen.\n"
+
+msgid "Please: DO NOT reboot your STB and turn off the power.\n"
+msgstr "Bitte: Den Receiver keinesfalls neustarten oder ausschalten!\n"
+
+msgid "The image or kernel will be flashing and auto booted in few minutes.\n"
+msgstr ""
+"Image oder Kernel werden geflasht - Ihr Receiver startet in wenigen Minuten "
+"neu.\n"
+
+msgid "Local"
+msgstr "Lokal"
+
+msgid "root and kernel"
+msgstr "root und kernel"
 
 msgid "Extended Software Plugin"
 msgstr "Fortgeschrittenes Software Plugin"
@@ -3387,6 +3508,9 @@ msgstr "Nein, starte nur den Receiver"
 
 msgid "No, never"
 msgstr "Nein, niemals"
+
+msgid "No, scan later manually"
+msgstr "Nein, Suchlauf später manuell durchführen."
 
 msgid "None"
 msgstr "Keine"
@@ -6538,11 +6662,20 @@ msgid "You have to wait %s!"
 msgstr "Sie müssen %s warten!"
 
 msgid ""
-"You need a PC connected to your receiver. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"You need a PC connected to your receiver. If you need further instructions, please visit the website http://www.openmips.de.\n"
 "Your receiver will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Sie müssen einen PC mit Ihrem Receiver verbunden haben. Wenn Sie weiterführende Informationen benötigen, besuchen Sie die Webseite http://www.dm7025.de.\n"
+"Sie müssen einen PC mit Ihrem Receiver verbunden haben. Wenn Sie weiterführende Informationen benötigen, besuchen Sie die Webseite http://www.openmips.de.\n"
 "Der Receiver wird nun ausgeschaltet. Nachdem Sie das Update wie auf der Webseite beschrieben durchgeführt haben, wird Sie die neue Firmware fragen, ob Sie die Einstellungen wiederherstellen wollen."
+
+msgid ""
+"You need to set a PIN code and hide it from your children.\n"
+"\n"
+"Do you want to set the pin now?"
+msgstr ""
+"Sie müssen einen PIN-Code eingeben und diesen Kindern unzugänglich machen.\n"
+"\n"
+"Den PIN-Code jetzt eingeben?"
 
 msgid "You system does not support ext4"
 msgstr "Ihr System unterstützt das ext4 Dateisystem nicht"
