@@ -16,7 +16,7 @@ public:
 	~gLCDDC();
 	void setUpdate(int update);
 	static int getInstance(ePtr<gLCDDC> &ptr) { if (!instance) return -1; ptr = instance; return 0; }
-	int islocked() { return lcd->islocked(); }
+	int islocked() const { return lcd->islocked(); }
 };
 
 #endif

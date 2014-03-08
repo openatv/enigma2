@@ -277,7 +277,6 @@ class VideoHardware:
 		return res
 
 	def createConfig(self, *args):
-		hw_type = HardwareInfo().get_device_name()
 		has_hdmi = HardwareInfo().has_hdmi()
 		lst = []
 

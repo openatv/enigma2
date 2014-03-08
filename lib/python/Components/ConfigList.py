@@ -143,6 +143,8 @@ class ConfigListScreen:
 			"file" : self.keyFile
 		}, -1) # to prevent left/right overriding the listbox
 
+		self.onChangedEntry = []
+
 		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"],
 		{
 			"showVirtualKeyboard": self.KeyText,
@@ -158,6 +160,24 @@ class ConfigListScreen:
 		
 		if not self.handleInputHelpers in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.handleInputHelpers)
+
+	def createSummary(self):
+		self.setup_title = self.getTitle()
+		from Screens.Setup import SetupSummary
+		return SetupSummary
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent() and self["config"].getCurrent()[0] or ""
+
+	def getCurrentValue(self):
+		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
+
+	def getCurrentDescription(self):
+		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
+
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
 
 	def handleInputHelpers(self):
 		if self["config"].getCurrent() is not None:

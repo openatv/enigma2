@@ -14,7 +14,6 @@ from Plugins.Plugin import PluginDescriptor
 from os import system, path as os_path, listdir
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Tools.LoadPixmap import LoadPixmap
-from Tools.HardwareInfo import HardwareInfo
 from Wlan import iWlan, wpaSupplicant, iStatus, getWlanConfigName
 from time import time
 from os import system
