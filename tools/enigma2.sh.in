@@ -12,7 +12,7 @@ fi
 
 # update NTP time if NTP Time Enabled
 if [ "$(grep config.misc.SyncTimeUsing /etc/enigma2/settings)" == "config.misc.SyncTimeUsing=1" ]; then
-	/usr/bin/ntpdate -s -u ptbtime1.ptb.de &
+	/usr/bin/ntpdate -s -u pool.ntp.org &
 fi
 
 if [ -x @bindir@/showiframe ]; then
@@ -67,8 +67,6 @@ fi
 sync
 
 if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
-	# update NTP time if E2 debuglog is enabled to reduce 1970 Logs
-	/usr/bin/ntpdate -s -u ptbtime1.ptb.de &
 	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
 		LD_PRELOAD=$LIBS @bindir@/enigma2 &> $(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')Enigma2-debug-$(date +%Y%m%d_%H-%M-%S).log
 	else
