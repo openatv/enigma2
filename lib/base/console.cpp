@@ -209,7 +209,7 @@ void eConsoleAppContainer::closePipes()
 		::close(fd[2]);
 		fd[2]=-1;
 	}
-	eDebug("pipes closed");
+//	eDebug("pipes closed");
 	while( outbuf.size() ) // cleanup out buffer
 	{
 		queue_data d = outbuf.front();
@@ -242,7 +242,7 @@ void eConsoleAppContainer::readyRead(int what)
 	readyErrRead(eSocketNotifier::Priority|eSocketNotifier::Read); /* be sure to flush all data which might be already written */
 	if (hungup)
 	{
-		eDebug("child has terminated");
+//		eDebug("child has terminated");
 		int childstatus;
 		int retval = killstate;
 		/*

@@ -15,11 +15,6 @@ if [ "$(grep config.misc.SyncTimeUsing /etc/enigma2/settings)" == "config.misc.S
 	/usr/bin/ntpdate -s -u pool.ntp.org &
 fi
 
-# update NTP time if E2 debuglog is enabled to reduce 1970 Logs
-if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
-	/usr/bin/ntpdate -s -u pool.ntp.org &
-fi
-
 if [ -x @bindir@/showiframe ]; then
 	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
 		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
