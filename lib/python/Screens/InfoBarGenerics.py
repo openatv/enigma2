@@ -681,42 +681,37 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				pass
 
 	def toggleShow(self):
-		if not self.LongButtonPressed:
-			if self.__state == self.STATE_HIDDEN:
-				if not self.secondInfoBarWasShown or (config.usage.show_second_infobar.getValue() == "1" and not self.EventViewIsShown):
-					self.show()
-				if self.secondInfoBarScreen:
-					self.secondInfoBarScreen.hide()
-				self.secondInfoBarWasShown = False
-				self.EventViewIsShown = False
-			elif self.secondInfoBarScreen and (config.usage.show_second_infobar.getValue() == "2" or config.usage.show_second_infobar.getValue() == "3") and not self.secondInfoBarScreen.shown:
-				self.SwitchSecondInfoBarScreen()
-				self.hide()
-				self.secondInfoBarScreen.show()
-				self.secondInfoBarWasShown = True
-				self.startHideTimer()
-			elif (config.usage.show_second_infobar.getValue() == "1" or isMoviePlayerInfoBar(self)) and not self.EventViewIsShown:
-				self.hide()
+		if self.__state == self.STATE_HIDDEN:
+			if not self.secondInfoBarWasShown or (config.usage.show_second_infobar.getValue() == "1" and not self.EventViewIsShown):
+				self.show()
+			if self.secondInfoBarScreen:
+				self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
+			self.EventViewIsShown = False
+		elif self.secondInfoBarScreen and (config.usage.show_second_infobar.getValue() == "2" or config.usage.show_second_infobar.getValue() == "3") and not self.secondInfoBarScreen.shown:
+			self.SwitchSecondInfoBarScreen()
+			self.hide()
+			self.secondInfoBarScreen.show()
+			self.secondInfoBarWasShown = True
+			self.startHideTimer()
+		elif (config.usage.show_second_infobar.getValue() == "1" or isMoviePlayerInfoBar(self)) and not self.EventViewIsShown:
+			self.hide()
+			try:
+				self.openEventView()
+			except:
+				pass
+			self.EventViewIsShown = True
+			self.hideTimer.stop()
+		else:
+			self.hide()
+			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+				self.secondInfoBarScreen.hide()
+			elif self.EventViewIsShown:
 				try:
-					self.openEventView()
+					self.eventView.close()
 				except:
 					pass
-				self.EventViewIsShown = True
-				self.hideTimer.stop()
-			else:
-				self.hide()
-				if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-					self.secondInfoBarScreen.hide()
-				elif self.EventViewIsShown:
-					try:
-						self.eventView.close()
-					except:
-						pass
-					self.EventViewIsShown = False
-		elif self.LongButtonPressed:
-			if isinstance(self, InfoBarEPG):
-				if config.plisettings.InfoBarEpg_mode.getValue() == "1":
-					self.openInfoBarEPG()
+				self.EventViewIsShown = False
 
 	def lockShow(self):
 		try:
