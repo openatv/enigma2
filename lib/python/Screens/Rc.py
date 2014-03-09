@@ -29,7 +29,7 @@ class Rc:
 		self.onShown.append(self.initRc)
 
 	def initRc(self):
-		if getBoxType() == 'ventonhdx':
+		if getBoxType() in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin'):
 			self["rc"].setPixmapNum(config.misc.rcused.getValue())
 		else:
 			if self.isDefaultRc:

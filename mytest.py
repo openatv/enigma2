@@ -531,7 +531,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 	
-	if boxtype in ('mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixussone', 'ventonhdx', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00'):
+	if boxtype in ('mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00'):
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -705,7 +705,7 @@ import Components.Lcd
 Components.Lcd.InitLcd()
 Components.Lcd.IconCheck()
 # Disable internal clock vfd for ini5000 until we can adjust it for standby
-if boxtype in ('ventonhdx', 'sezam5000hd', 'mbtwin'):
+if boxtype in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin'):
 	try:
 		f = open("/proc/stb/fp/enable_clock", "r").readline()[:-1]
 		if f != '0':
