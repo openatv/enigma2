@@ -1,3 +1,4 @@
+from . import _
 from enigma import eTimer, ePythonMessagePump
 from MyTubeService import GoogleSuggestions
 from Screens.Screen import Screen
@@ -9,13 +10,13 @@ from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
 from Components.Sources.List import List
-from Components.MultiContent import MultiContentEntryText 
+from Components.MultiContent import MultiContentEntryText
 from Components.Task import job_manager
 from Tools.Directories import resolveFilename, SCOPE_HDD
 
 from threading import Thread
 from ThreadQueue import ThreadQueue
-from xml.etree.cElementTree import parse as cet_parse
+from xml.etree.cElementTree import fromstring as cet_fromstring
 from StringIO import StringIO
 #import urllib
 from urllib import FancyURLopener
@@ -34,10 +35,10 @@ class SuggestionsQueryThread(Thread):
 		self.errorback = errorback
 		self.canceled = False
 		self.messagePump.recv_msg.get().append(self.finished)
-	
+
 	def cancel(self):
 		self.canceled = True
-	
+
 	def run(self):
 		if self.param not in (None, ""):
 			try:
@@ -46,8 +47,8 @@ class SuggestionsQueryThread(Thread):
 				self.messagePump.send(0)
 			except Exception, ex:
 				self.messages.push((ex, self.errorback))
-				self.messagePump.send(0)			
-	
+				self.messagePump.send(0)
+
 	def finished(self, val):
 		if not self.canceled:
 			message = self.messages.pop()
@@ -65,15 +66,15 @@ class ConfigTextWithGoogleSuggestions(ConfigText):
 		self.suggestions.hl = "en"
 		if config.plugins.mytube.search.lr.value is not None:
 			self.suggestions.hl=config.plugins.mytube.search.lr.value
-		
+
 	def suggestionsThreadStarted(self):
 		if self.suggestionsThreadRunning:
 			self.cancelSuggestionsThread()
-		self.suggestionsThreadRunning = True		
-	
+		self.suggestionsThreadRunning = True
+
 	def suggestionsThreadFinished(self):
 		self.suggestionsThreadRunning = False
-	
+
 	def cancelSuggestionsThread(self):
 		if self.suggestionsThread is not None:
 			self.suggestionsThread.cancel()
@@ -180,7 +181,7 @@ class MyTubeSuggestionsListScreen(Screen):
 				</convert>
 			</widget>
 		</screen>"""
-		
+
 	def __init__(self, session, configTextWithGoogleSuggestion):
 		Screen.__init__(self, session)
 		self.activeState = False
@@ -193,25 +194,20 @@ class MyTubeSuggestionsListScreen(Screen):
 		if suggestions and len(suggestions) > 0:
 			if not self.shown:
 				self.show()
-			suggestions_tree = cet_parse(StringIO(suggestions)).getroot()
+			suggestions_tree = cet_fromstring( suggestions )
 			if suggestions_tree:
 				self.list = []
 				self.suggestlist = []
 				for suggestion in suggestions_tree.findall("CompleteSuggestion"):
 					name = None
-					numresults = None
 					for subelement in suggestion:
 						if subelement.attrib.has_key('data'):
 							name = subelement.attrib['data'].encode("UTF-8")
-						if subelement.attrib.has_key('int'):
-							numresults = subelement.attrib['int']
-						if name and numresults:
-							self.suggestlist.append((name, numresults ))
+						if name:
+							self.suggestlist.append(name)
 				if len(self.suggestlist):
-					self.suggestlist.sort(key=lambda x: int(x[1]))
-					self.suggestlist.reverse()
 					for entry in self.suggestlist:
-						self.list.append((entry[0], entry[1] + _(" Results") ))
+						self.list.append((entry, ''))
 					self["suggestionslist"].setList(self.list)
 					self["suggestionslist"].setIndex(0)
 		else:
@@ -231,7 +227,7 @@ class MyTubeSuggestionsListScreen(Screen):
 		if self.list and len(self.list) > 0:
 			self["suggestionslist"].selectNext()
 			return self.getSelection()
-	
+
 	def pageUp(self):
 		print "up"
 		if self.list and len(self.list) > 0:
@@ -294,11 +290,11 @@ class MyTubeSettingsScreen(Screen, ConfigListScreen):
 			"left": self.keyLeft,
 			"right": self.keyRight,
 		}, -1)
-		
+
 		self["key_red"] = Button(_("Close"))
 		self["key_green"] = Button(_("Save"))
 		self["title"] = Label()
-		
+
 		self.searchContextEntries = []
 		self.ProxyEntry = None
 		self.loadFeedEntry = None
@@ -331,12 +327,16 @@ class MyTubeSettingsScreen(Screen, ConfigListScreen):
 		if config.plugins.mytube.general.useHTTPProxy.value:
 			self.searchContextEntries.append(getConfigListEntry(_("HTTP Proxy Server IP:"), config.plugins.mytube.general.ProxyIP))
 			self.searchContextEntries.append(getConfigListEntry(_("HTTP Proxy Server Port:"), config.plugins.mytube.general.ProxyPort))"""
-		# disabled until i have time for some proper tests	
+		# disabled until i have time for some proper tests
 		self.VideoDirname = getConfigListEntry(_("Download location"), config.plugins.mytube.general.videodir)
 		if config.usage.setup_level.index >= 2: # expert+
 			self.searchContextEntries.append(self.VideoDirname)
 		self.searchContextEntries.append(getConfigListEntry(_("Clear history on Exit:"), config.plugins.mytube.general.clearHistoryOnClose))
-		self.searchContextEntries.append(getConfigListEntry(_("Ask to load new entries"), config.plugins.mytube.general.AutoLoadFeeds))
+		self.searchContextEntries.append(getConfigListEntry(_("Auto paginate on last entry:"), config.plugins.mytube.general.AutoLoadFeeds))
+		self.searchContextEntries.append(getConfigListEntry(_("Reset tv-screen after playback:"), config.plugins.mytube.general.resetPlayService))
+		self.searchContextEntries.append(getConfigListEntry(_("Youtube Username (reopen plugin on change):"), config.plugins.mytube.general.username))
+		self.searchContextEntries.append(getConfigListEntry(_("Youtube Password (reopen plugin on change):"), config.plugins.mytube.general.password))
+		self.searchContextEntries.append(getConfigListEntry(_("Display MyTube in extensions menu:"), config.plugins.mytubestart.extmenu))
 
 		self["config"].list = self.searchContextEntries
 		self["config"].l.setList(self.searchContextEntries)
@@ -388,7 +388,7 @@ class MyTubeSettingsScreen(Screen, ConfigListScreen):
 		print "cancel"
 		for x in self["config"].list:
 			x[1].cancel()
-		self.close()	
+		self.close()
 
 	def keySave(self):
 		print "saving"
@@ -403,6 +403,8 @@ class MyTubeSettingsScreen(Screen, ConfigListScreen):
 		config.plugins.mytube.general.videodir.save()
 		config.plugins.mytube.general.clearHistoryOnClose.save()
 		config.plugins.mytube.general.AutoLoadFeeds.save()
+		config.plugins.mytube.general.username.save()
+		config.plugins.mytube.general.password.save()
 		if config.plugins.mytube.general.clearHistoryOnClose.value:
 			config.plugins.mytube.general.history.value = ""
 			config.plugins.mytube.general.history.save()
@@ -414,6 +416,7 @@ class MyTubeSettingsScreen(Screen, ConfigListScreen):
 		config.plugins.mytube.general.save()
 		config.plugins.mytube.search.save()
 		config.plugins.mytube.save()
+		config.plugins.mytubestart.save()
 		"""if config.plugins.mytube.general.useHTTPProxy.value is True:
 			proxy = {'http': 'http://'+str(config.plugins.mytube.general.ProxyIP.getText())+':'+str(config.plugins.mytube.general.ProxyPort.value)}
 			self.myopener = MyOpener(proxies=proxy)
@@ -434,7 +437,7 @@ class MyTubeTasksScreen(Screen):
 					{"template": [
 							MultiContentEntryText(pos = (0, 1), size = (200, 24), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the name
 							MultiContentEntryText(pos = (210, 1), size = (150, 24), font=1, flags = RT_HALIGN_RIGHT, text = 2), # index 2 is the state
-							MultiContentEntryProgress(pos = (370, 1), size = (100, 24), percent = -3), # index 3 should be progress 
+							MultiContentEntryProgress(pos = (370, 1), size = (100, 24), percent = -3), # index 3 should be progress
 							MultiContentEntryText(pos = (480, 1), size = (100, 24), font=1, flags = RT_HALIGN_RIGHT, text = 4), # index 4 is the percentage
 						],
 					"fonts": [gFont("Regular", 22),gFont("Regular", 18)],
@@ -453,23 +456,23 @@ class MyTubeTasksScreen(Screen):
 		self.session = session
 		self.tasklist = tasklist
 		self["tasklist"] = List(self.tasklist)
-		
+
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions", "MediaPlayerActions"],
 		{
 			"ok": self.keyOK,
 			"back": self.keyCancel,
 			"red": self.keyCancel,
 		}, -1)
-		
+
 		self["key_red"] = Button(_("Close"))
 		self["title"] = Label()
-		
+
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onShown.append(self.setWindowTitle)
 		self.onClose.append(self.__onClose)
 		self.Timer = eTimer()
 		self.Timer.callback.append(self.TimerFire)
-		
+
 	def __onClose(self):
 		del self.Timer
 
@@ -480,7 +483,7 @@ class MyTubeTasksScreen(Screen):
 	def TimerFire(self):
 		self.Timer.stop()
 		self.rebuildTaskList()
-	
+
 	def rebuildTaskList(self):
 		self.tasklist = []
 		for job in job_manager.getPendingJobs():
@@ -499,12 +502,12 @@ class MyTubeTasksScreen(Screen):
 			job = current[0]
 			from Screens.TaskView import JobView
 			self.session.openWithCallback(self.JobViewCB, JobView, job)
-	
+
 	def JobViewCB(self, why):
 		print "WHY---",why
 
 	def keyCancel(self):
-		self.close()	
+		self.close()
 
 	def keySave(self):
 		self.close()
@@ -533,7 +536,7 @@ class MyTubeHistoryScreen(Screen):
 		print "self.historylist",self.historylist
 		self["historylist"] = List(self.historylist)
 		self.activeState = False
-		
+
 	def activate(self):
 		print "activate"
 		self.activeState = True
@@ -554,7 +557,7 @@ class MyTubeHistoryScreen(Screen):
 	def status(self):
 		print self.activeState
 		return self.activeState
-	
+
 	def getSelection(self):
 		if self["historylist"].getCurrent() is None:
 			return None
@@ -570,7 +573,7 @@ class MyTubeHistoryScreen(Screen):
 		print "down"
 		self["historylist"].selectNext()
 		return self.getSelection()
-	
+
 	def pageUp(self):
 		print "up"
 		self["historylist"].selectPrevious()
@@ -581,4 +584,3 @@ class MyTubeHistoryScreen(Screen):
 		self["historylist"].selectNext()
 		return self.getSelection()
 
-	
