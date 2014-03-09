@@ -166,9 +166,9 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.showTvChannelList(True)
 			self.servicelist.showFavourites()
 	def showTvButton(self):
-		if boxtype.startswith('gb') or boxtype == 'odinm7':
+		if boxtype.startswith('gb') or boxtype in ('classm', 'genius', 'evo'):
 			self.toogleTvRadio()
-		elif boxtype == 'ventonhdx':
+		elif boxtype in ('ventonhdx', 'sezam5000hd', 'mbtwin'):
 			self.showMovies()
 		else:
 			self.showTv()
@@ -184,7 +184,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.showTvChannelList(True)
 
 	def showRadioButton(self):
-		if boxtype.startswith('gb') or boxtype == 'ventonhdx' or boxtype.startswith('azbox') or boxtype == 'odinm7':
+		if boxtype.startswith('gb') or boxtype.startswith('azbox') or boxtype in ('classm', 'genius', 'evo', 'ventonhdx', 'sezam5000hd', 'mbtwin'):
 			self.toogleTvRadio()
 		else:
 			self.showRadio()

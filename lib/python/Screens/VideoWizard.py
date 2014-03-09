@@ -17,7 +17,7 @@ boxtype = getBoxType()
 
 has_rca = False
 has_dvi = False
-if boxtype == 'gbquad' or boxtype == 'gbquadplus' or boxtype == 'et5x00' or boxtype == 'et6000' or boxtype == 'e3hd' or boxtype == 'odinm6' or getMachineName() == 'AX-Odin' or boxtype == 'ebox7358' or boxtype == 'eboxlumi' or boxtype == 'tmnano' or boxtype == 'ultra' or boxtype == "me" or boxtype == "minime" or boxtype == 'optimussos1' or boxtype == 'optimussos2' or boxtype == 'gb800seplus' or boxtype == 'gb800ueplus' or boxtype == 'ini-1000ru' or boxtype == 'ini-1000sv' or boxtype == 'ixussone' or boxtype == 'ixusszero' or boxtype == 'enfinity' or boxtype == 'force1':	
+if boxtype in ('gbquad', 'gbquadplus', 'et5x00', 'et6000', 'classm', 'axodin', 'axodinc', 'genius', 'evo', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'starsatlx', 'mixosf7', 'mixoslumi', 'tmnano', 'azboxme',  'azboxminime', 'optimussos1',  'optimussos2', 'gb800seplus', 'gb800ueplus', 'sezam1000hd',  'mbmini',  'atemio5x00', 'ixussone', 'ixusszero', 'enfinity', 'force1'):	
 	has_rca = True
 if boxtype == 'dm8000' or boxtype == 'dm800':
 	has_dvi = True

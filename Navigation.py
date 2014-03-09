@@ -12,7 +12,7 @@ import Screens.Standby
 import NavigationInstance
 import ServiceReference
 from Screens.InfoBar import InfoBar, MoviePlayer
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getBrandOEM
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:
@@ -45,7 +45,7 @@ class Navigation:
 
 		wasTimerWakeup = getFPWasTimerWakeup()
 		thisBox = getBoxType()
-		if thisBox == 'gbquad' or thisBox == 'et10000' or thisBox == 'xp1000' or thisBox == 'ixussone' or thisBox == 'ventonhdx' or thisBox.startswith("tm") or thisBox.startswith("iqon") or thisBox.startswith("opti") or thisBox.startswith("azbox") or thisBox.startswith("ebox"):
+		if thisBox in ('gbquad', 'ixussone', 'ventonhdx', 'sezam5000hd', 'mbtwin') or getBrandOEM() in ('dags', 'ebox', 'azbox', 'xp'):
 			config.workaround.deeprecord.setValue(True)
 			config.workaround.deeprecord.save()
 			config.save()

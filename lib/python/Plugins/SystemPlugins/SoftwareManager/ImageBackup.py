@@ -156,7 +156,6 @@ class ImageBackup(Screen):
 			self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
 			return
 
-		self.TYPE = "ET"
 		self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 		self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 		self.MAINDEST = "%s/%s" %(self.DIRECTORY,self.IMAGEFOLDER)
@@ -255,7 +254,7 @@ class ImageBackup(Screen):
 		cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
 		cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.EXTRA))
 
-		if self.MODEL == "gbquad" or self.MODEL == "gbquadplus" or self.MODEL == "gb800ue" or self.MODEL == "gb800ueplus":
+		if self.MODEL in ("gbquad", "gbquadplus", "gb800ue", "gb800ueplus"):
 			lcdwaitkey = '/usr/share/lcdwaitkey.bin'
 			lcdwarning = '/usr/share/lcdwarning.bin'
 			if path.exists(lcdwaitkey):
@@ -263,7 +262,7 @@ class ImageBackup(Screen):
 			if path.exists(lcdwarning):
 				system('cp %s %s/lcdwarning.bin' %(lcdwarning, self.MAINDEST))
 		if self.MODEL == "gb800solo":
-			burnbat = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
+			burnbat = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
 			f = open("%s/burn.bat" % (burnbat), "w")
 			f.write("flash -noheader usbdisk0:gigablue/solo/kernel.bin flash0.kernel\n")
 			f.write("flash -noheader usbdisk0:gigablue/solo/rootfs.bin flash0.rootfs\n")
@@ -324,65 +323,9 @@ class ImageBackup(Screen):
 				cmdlist.append('echo "This only takes about 1 or 2 minutes"')
 				cmdlist.append('echo " "')
 
-				if self.TYPE == 'ET':
-					cmdlist.append('mkdir -p %s/%sx00' % (self.TARGET, self.MODEL[:-3]))
-					cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'VU':
-					cmdlist.append('mkdir -p %s/vuplus_back/%s' % (self.TARGET, self.MODEL[2:]))
-					cmdlist.append('cp -r %s %s/vuplus_back/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'VENTON':
-					cmdlist.append('mkdir -p %s/venton/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/venton/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'SEZAM':
-					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'MICRACLE':
-					cmdlist.append('mkdir -p %s/miraclebox/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/miraclebox/' % (self.MAINDEST, self.TARGET))					
-				elif self.TYPE == 'GI':
-					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'GIGABLUE':
-					cmdlist.append('mkdir -p %s/gigablue/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/gigablue/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'SOGNO':
-					cmdlist.append('mkdir -p %s/sogno/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/sogno/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'ODINM9' or self.TYPE == 'MARAM9':
-					#cmdlist.append('mkdir -p %s/odinm9/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'ODINM7':
-					#cmdlist.append('mkdir -p %s/' % (self.TARGET))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'E3HD':
-					#cmdlist.append('mkdir -p %s/' % (self.TARGET))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'MAXDIGITAL' or self.TYPE == 'OCTAGON':
-					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'IXUSS':
-					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'IXUSS':
-					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'MIXOS':
-					cmdlist.append('mkdir -p %s/ebox/7403' % (self.TARGET))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'MIXOS2':
-					cmdlist.append('mkdir -p %s/ebox/7358' % (self.TARGET))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'TECHNO':
-					cmdlist.append('mkdir -p %s/update/%s/cfe' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/update/%s/cfe' % (self.MAINDEST, self.TARGET, self.MODEL))
-				elif self.TYPE == 'IQON':
-					cmdlist.append('mkdir -p %s/update/%s/cfe' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/update/%s/cfe' % (self.MAINDEST, self.TARGET, self.MODEL))
-				elif self.TYPE == 'EDISION':
-					cmdlist.append('mkdir -p %s/update/%s/cfe' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/update/%s/cfe' % (self.MAINDEST, self.TARGET, self.MODEL))
-				else:
-					cmdlist.append('echo " "')
+				cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.IMAGEFOLDER))
+				cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
+
 
 				cmdlist.append("sync")
 				cmdlist.append('echo "Backup finished and copied to your USB-flash drive"')

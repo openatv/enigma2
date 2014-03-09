@@ -191,7 +191,7 @@ def standbyCounterChanged(configElement):
 	config.lcd.ledbrightnessdeepstandby.apply()
 
 def InitLcd():
-	if getBoxType() in ('gb800se', 'gb800solo','gb800seplus', 'tmsingle', 'vusolo', 'et4x00', 'et5x00', 'et6x00', 'ebox7358', 'eboxlumi'):
+	if getBoxType() in ('gb800se', 'gb800solo','gb800seplus', 'tmsingle', 'vusolo', 'et4x00', 'et5x00', 'et6x00', 'mixosf7', 'mixoslumi'):
 		detected = False
 	else:
 		detected = eDBoxLCD.getInstance().detected()
@@ -316,7 +316,7 @@ def InitLcd():
 			config.lcd.contrast = ConfigNothing()
 			standby_default = 1
 
-		if getBoxType() == 'ebox5000' or getBoxType() == 'ebox5100':
+		if getBoxType() in ('mixosf5', 'mixosf5mini', 'gi9196m', 'gi9196lite'):
 			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 4))
 			config.lcd.bright = ConfigSlider(default=4, limits=(0, 4))
 		else:
@@ -334,14 +334,14 @@ def InitLcd():
 		config.lcd.flip = ConfigYesNo(default=False)
 		config.lcd.flip.addNotifier(setLCDflipped);
 		
-		if getBoxType() == 'ebox5000' or getBoxType() == 'ebox5100':
+		if getBoxType() in ('mixosf5', 'mixosf5mini', 'gi9196m', 'gi9196lite'):
 			config.lcd.scrollspeed = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
 			config.lcd.scrollspeed.addNotifier(setLCDscrollspeed);
 			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))], "3")
 			config.lcd.repeat.addNotifier(setLCDrepeat);
 			config.lcd.hdd = ConfigNothing()
 			config.lcd.mode = ConfigNothing()			
-		elif fileExists("/proc/stb/lcd/scroll_delay") and not getBoxType() in ('Ixuss One', 'Ixuss Zero', 'ixussone', 'ixusszero'):
+		elif fileExists("/proc/stb/lcd/scroll_delay") and not getBoxType() in ('ixussone', 'ixusszero'):
 			config.lcd.hdd = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 			config.lcd.scrollspeed = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
 			config.lcd.scrollspeed.addNotifier(setLCDscrollspeed);

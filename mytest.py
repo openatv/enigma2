@@ -531,7 +531,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 	
-	if boxtype == 'odinm9' or boxtype == 'maram9' or boxtype == 'ventonhdx' or boxtype == 'ebox5000' or boxtype == 'ebox7358' or boxtype == 'eboxlumi' or boxtype == 'ixussone' or boxtype == 'ixusszero' or boxtype == 'ini-1000ru' or boxtype == 'ini-1000sv':
+	if boxtype in ('mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixussone', 'ventonhdx', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00'):
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -550,7 +550,7 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 
-	if boxtype == 'gb800se' or boxtype == 'gb800solo' or boxtype == 'gb800seplus':
+	if boxtype in ( 'gb800se', 'gb800solo', 'gb800seplus'):
 		from enigma import evfd, eConsoleAppContainer
 		try:
 			cmd = 'vfdctl "    openatv starting e2"'
@@ -560,7 +560,7 @@ def runScreenTest():
 			evfd.getInstance().vfd_write_string("-E2-")
 		evfd.getInstance().vfd_led(str(1))
 		
-	if boxtype == 'odinm7' or boxtype == 'odinm6' or boxtype == 'xp1000s':
+	if boxtype in ('xp1000mk', 'xp1000max', 'sf8', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo'):
 		f = open("/dev/dbox/oled0", "w")
 		f.write('-E2-')
 		f.close()
@@ -704,8 +704,8 @@ profile("LCD")
 import Components.Lcd
 Components.Lcd.InitLcd()
 Components.Lcd.IconCheck()
-# Disable internal clock vfd for Venton-HD1 until we can adjust it for standby
-if boxtype == 'ventonhdx':
+# Disable internal clock vfd for ini5000 until we can adjust it for standby
+if boxtype in ('ventonhdx', 'sezam5000hd', 'mbtwin'):
 	try:
 		f = open("/proc/stb/fp/enable_clock", "r").readline()[:-1]
 		if f != '0':
@@ -713,7 +713,7 @@ if boxtype == 'ventonhdx':
 			f.write('0')
 			f.close()
 	except:
-		print "Error disable enable_clock for venton boxes"
+		print "Error disable enable_clock for ini5000 boxes"
 
 profile("UserInterface")
 import Screens.UserInterfacePositioner

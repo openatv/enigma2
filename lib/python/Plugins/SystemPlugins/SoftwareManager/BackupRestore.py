@@ -26,7 +26,7 @@ from boxbranding import getBoxType
 boxtype = getBoxType()
 
 config.plugins.configurationbackup = ConfigSubsection()
-if boxtype == "odinm9" or boxtype == "maram9" or boxtype == "odinm7" or boxtype == "odinm6":
+if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo'):
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
 else:	
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)

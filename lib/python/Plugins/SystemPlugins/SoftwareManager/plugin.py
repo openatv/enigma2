@@ -56,7 +56,7 @@ else:
 	DFLASH = False
 
 config.plugins.configurationbackup = ConfigSubsection()
-if boxtype == "odinm9" or boxtype == "maram9":
+if boxtype == "maram9":
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
 else:
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)

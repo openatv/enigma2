@@ -93,10 +93,12 @@ AM_CONDITIONAL(DM800SEV2, test "$BOXTYPE" == dm800sev2)
 AM_CONDITIONAL(DM500HD, test "$BOXTYPE" == dm500hd)
 AM_CONDITIONAL(DM500HDV2, test "$BOXTYPE" == dm500hdv2)
 AM_CONDITIONAL(E3HD, test "$BOXTYPE" == e3hd)
-AM_CONDITIONAL(EBOX5000, test "$BOXTYPE" == ebox5000)
-AM_CONDITIONAL(EBOX5100, test "$BOXTYPE" == ebox5100)
-AM_CONDITIONAL(EBOXLUMI, test "$BOXTYPE" == eboxlumi)
-AM_CONDITIONAL(EBOX7358, test "$BOXTYPE" == ebox7358)
+AM_CONDITIONAL(MIXOSF5, test "$BOXTYPE" == mixosf5)
+AM_CONDITIONAL(MIXOSF5MINI, test "$BOXTYPE" == mixosf5mini)
+AM_CONDITIONAL(MIXOSLUMI, test "$BOXTYPE" == mixoslumi)
+AM_CONDITIONAL(GI9196M, test "$BOXTYPE" == gi9196m)
+AM_CONDITIONAL(GI9196LITE, test "$BOXTYPE" == gi9196lite)
+AM_CONDITIONAL(MIXOSF7, test "$BOXTYPE" == mixosf7)
 AM_CONDITIONAL(ENFINITY, test "$BOXTYPE" == enfinity)
 AM_CONDITIONAL(ET4X00, test "$BOXTYPE" == et4x00)
 AM_CONDITIONAL(ET5X00, test "$BOXTYPE" == et5x00)
@@ -291,7 +293,7 @@ if test "$BOXTYPE" == "azboxhd"; then
 	AC_DEFINE(KEY_TEXT_TO_KEY_AUDIO, 1,[define when rc sends a KEY_TEXT event for its KEY_AUDIO key])	
 fi
 
-if test "$BOXTYPE" == "ebox5000" -o "$BOXTYPE" == "ebox7358" -o "$BOXTYPE" == "ebox5100" -o "$BOXTYPE" == "eboxlumi"; then
+if test "$BOXTYPE" == "mixosf5" -o "$BOXTYPE" == "mixosf7" -o "$BOXTYPE" == "mixosf5mini" -o "$BOXTYPE" == "mixoslumi" -o "$BOXTYPE" == "gi9196m" -o "$BOXTYPE" == "gi9196lite"; then
 	AC_DEFINE(KEY_SCREEN_TO_KEY_ANGLE, 1,[define when rc sends a KEY_SCREEN event for its KEY_ANGLE key])
 	AC_DEFINE(KEY_TIME_TO_KEY_SLEEP, 1,[define when rc sends a KEY_TIME event for its KEY_SLEEP])
 fi
@@ -305,7 +307,7 @@ if test "$BOXTYPE" == "enfinity" ; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
 
-if test "$BOXTYPE" == "odinm9"; then
+if test "$BOXTYPE" == "maram9"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 fi
