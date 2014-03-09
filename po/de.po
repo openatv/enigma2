@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-23 15:54+0100\n"
-"PO-Revision-Date: 2014-02-23 18:51+0100\n"
+"POT-Creation-Date: 2014-03-06 12:18+0100\n"
+"PO-Revision-Date: 2014-03-06 18:50+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -421,9 +421,6 @@ msgstr "3D Einstellungen"
 msgid "3X"
 msgstr "3X"
 
-msgid "3d mode"
-msgstr "3D Betriebsart"
-
 msgid "4:3"
 msgstr "4:3"
 
@@ -626,7 +623,7 @@ msgid "AA"
 msgstr "AA"
 
 msgid "AAC downmix"
-msgstr "ACC Downmix"
+msgstr "AAC Downmix"
 
 msgid "AB"
 msgstr "AB"
@@ -778,9 +775,6 @@ msgstr "Zusätzliche Informationen"
 
 msgid "Address"
 msgstr "Adresse"
-
-msgid "Adjust 3D settings"
-msgstr "3D Einstellungen"
 
 msgid ""
 "Adjust the color settings so that all the color shades are distinguishable, "
@@ -2075,18 +2069,22 @@ msgstr ""
 "YUV, RGB)."
 
 msgid ""
-"Configure which tuner for recordings will be preferred, when more than one "
-"tuner is available."
-msgstr ""
-"Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll wenn mehrere "
-"Tuner verfügbar sind."
-
-msgid ""
 "Configure which tuner type will be preferred, when the same service is "
 "available on different types of tuners."
 msgstr ""
 "Konfiguriere welche Tunerart bevorzugt werden soll wenn der selbe Sender auf "
 "verschiedenen Tuner verfügbar ist."
+
+msgid ""
+"Configure which tuner will be preferred for recordings, when more than one "
+"tuner is available. 'Disabled' would select a tuner based on preferred tuner "
+"in customise screen. 'Auto' would choose based on E2's default rules, "
+"ignoring preferred tuner in customise screen."
+msgstr ""
+"Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll wenn mehr als "
+"ein Tuner verfügbar ist. 'Deaktiviert' verwendet den bevorzugten Tuner der "
+"unter Anpassen eingestellt ist. 'Auto' wählt den Tuner nach E2-Regeln und "
+"ignoriert die Einstellung in Anpassen."
 
 msgid ""
 "Configure which tuner will be preferred, when more than one tuner is "
@@ -2972,6 +2970,9 @@ msgstr "Endzeit"
 
 msgid "English"
 msgstr "Englisch"
+
+msgid "Enigma2 Changes"
+msgstr "Enigma2 Änderungen"
 
 msgid "Enigma2 skin selector"
 msgstr "Enigma2 Skinauswahl"
@@ -4960,8 +4961,14 @@ msgstr "Öffne Senderliste"
 msgid "Open service list and select next channel"
 msgstr "Öffne Senderliste und wähle den nächsten Sender"
 
+msgid "Open service list and select next channel for PiP"
+msgstr "Öffne Senderliste und wähle den nächsten Sender für PiP"
+
 msgid "Open service list and select previous channel"
 msgstr "Öffne Senderliste und wähle den vorherigen Sender"
+
+msgid "Open service list and select previous channel for PiP"
+msgstr "Öffne Senderliste und wähle den vorherigen Sender für PiP"
 
 msgid "Open the movie list"
 msgstr "Öffne die Filmliste"
@@ -5271,6 +5278,9 @@ msgstr ""
 "Auf das zuletzt ausgewählte Medium konnte nicht zugegriffen werden, daher "
 "wird stattdessen das Standardverzeichnis benutzt."
 
+msgid "Please open Picture in Picture first"
+msgstr "Bitte Bild in Bild zuerst aktivieren."
+
 msgid "Please press OK to continue."
 msgstr "Zum Fortfahren bitte OK drücken."
 
@@ -5489,6 +5499,9 @@ msgstr "Vordefinierte Transponder"
 
 msgid "Prefer AC3 track"
 msgstr "Bevorzuge AC3"
+
+msgid "Prefer AC3+ track"
+msgstr "Bevorzuge AC3+"
 
 msgid "Prefer audio track stored by service"
 msgstr "Bevorzuge gespeicherte Tonspur des Senders"
@@ -6940,9 +6953,6 @@ msgstr "Ausschalten"
 msgid "Side by Side"
 msgstr "Side by Side"
 
-msgid "Side by side"
-msgstr "Side by Side"
-
 msgid "Signal OK, proceeding"
 msgstr "Signal OK, setze fort"
 
@@ -7378,6 +7388,9 @@ msgstr "Wechsele Konfiguration"
 
 msgid "Switch next channel"
 msgstr "Schalte zu nächsten Sender"
+
+msgid "Switch to HDMI in mode"
+msgstr "Wechsel zu HDMI in Modus"
 
 msgid "Switch to filelist"
 msgstr "Wechsel in Dateiliste"
@@ -8276,9 +8289,6 @@ msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
 msgid "Top and Bottom"
-msgstr "Oben und Unten"
-
-msgid "Top and bottom"
 msgstr "Oben und Unten"
 
 msgid "Total"
@@ -9184,6 +9194,9 @@ msgstr ""
 msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "Wenn auf 'Ja' gestellt so wird AC3 Ton benutzt wenn verfügbar."
 
+msgid "When enabled, the receiver will select an AC3+ track (when available)."
+msgstr "Wenn auf 'Ja' gestellt so wird AC3+ Ton benutzt wenn verfügbar."
+
 msgid ""
 "When enabled, timeshift starts automatically in background after the "
 "specified time."
@@ -10058,6 +10071,9 @@ msgstr ""
 msgid "et5000/6000"
 msgstr ""
 
+msgid "et8000/et10000"
+msgstr ""
+
 msgid "et9x00/6500"
 msgstr ""
 
@@ -10905,8 +10921,27 @@ msgstr "umschalten und aufnehmen"
 msgid "zapped"
 msgstr "umgeschaltet"
 
+#~ msgid "3d mode"
+#~ msgstr "3D Betriebsart"
+
+#~ msgid "Adjust 3D settings"
+#~ msgstr "3D Einstellungen"
+
 #~ msgid "Advanced video setup"
 #~ msgstr "Erweiterte Bildeinstellungen"
+
+#~ msgid ""
+#~ "Configure which tuner for recordings will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll wenn "
+#~ "mehrere Tuner verfügbar sind."
+
+#~ msgid "Side by side"
+#~ msgstr "Side by Side"
+
+#~ msgid "Top and bottom"
+#~ msgstr "Oben und Unten"
 
 #~ msgid "Video setup"
 #~ msgstr "Bild Einstellungen"
