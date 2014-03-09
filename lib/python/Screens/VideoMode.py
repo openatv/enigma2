@@ -39,7 +39,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
 
 		from Components.ActionMap import ActionMap
-		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
+		self["actions"] = ActionMap(["SetupActions", "MenuActions", "ColorActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.apply,
