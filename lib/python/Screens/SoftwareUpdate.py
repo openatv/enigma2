@@ -79,11 +79,12 @@ class SoftwareUpdateChanges(Screen):
 		except:
 			releasenotes = '404 Not Found'
 		if '404 Not Found' not in releasenotes:
+			releasenotes = releasenotes.replace('[openvix] Zeus Release.', 'openvix: build 000')
 			releasenotes = releasenotes.replace('\nopenvix: build',"\n\nopenvix: build")
 			releasenotes = releasenotes.split('\n\n')
 			ver = -1
 			releasever = ""
-			viewrelease=""
+			viewrelease = ""
 			while not releasever.isdigit():
 				ver += 1
 				releasever = releasenotes[int(ver)].split('\n')
@@ -93,7 +94,10 @@ class SoftwareUpdateChanges(Screen):
 				else:
 					releasever = releasever[0].replace(':',"")
 			if self.logtype == 'oe':
-				imagever = getImageBuild()
+				if int(getImageBuild()) == 1:
+					imagever = int(getImageBuild())-1
+				else:
+					imagever = int(getImageBuild())
 			else:
 				imagever = int(getImageBuild())+804
 			while int(releasever) > int(imagever):
