@@ -461,3 +461,4 @@ class PluginDownloadBrowser(Screen):
 				list.append(PluginCategoryComponent(x, expandableIcon, self.listWidth))
 		self.list = list
 		self["list"].l.setList(list)
+		self["text"].setText(_("Download of plugin information complete."))
