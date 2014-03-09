@@ -116,7 +116,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.borderSelectedLeftPix = None
 		self.borderSelectedBottomPix = None
 		self.borderSelectedRightPix = None
-		self.infomationPix = None
+		self.InfoPix = None
+		self.selInfoPix = None
 		self.graphicsloaded = False
 
 		self.borderColor = 0xC0C0C0
@@ -867,6 +868,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					borderLeftPix = self.borderSelectedLeftPix
 					borderBottomPix = self.borderSelectedBottomPix
 					borderRightPix = self.borderSelectedRightPix
+					infoPix = self.selInfoPix
 					if clock_types is not None and clock_types == 2:
 						foreColor = self.foreColorRecord
 						backColor = self.backColorRecord
@@ -896,6 +898,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					borderLeftPix = self.borderLeftPix
 					borderBottomPix = self.borderBottomPix
 					borderRightPix = self.borderRightPix
+					infoPix = self.InfoPix
 					if clock_types is not None and clock_types == 2:
 						foreColor = self.foreColorRecord
 						backColor = self.backColorRecord
@@ -943,10 +946,14 @@ class EPGList(HTMLComponent, GUIComponent):
 				evY = top + self.eventBorderWidth
 				evW = ewidth - 2 * (self.eventBorderWidth + self.eventNamePadding)
 				evH = height - 2 * self.eventBorderWidth
-				if evW < 100 and self.infomationPix is not None and self.graphic:
+				if self.type == EPG_TYPE_GRAPH:
+					infowidth = config.epgselection.graph_infowidth.getValue()
+				elif self.type == EPG_TYPE_INFOBARGRAPH:
+					infowidth = config.epgselection.infobar_infowidth.getValue()
+				if evW < infowidth and infoPix is not None and self.graphic:
 					res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (evX, evY), size = (evW, evH),
-						png = self.infomationPix))
+						png = infoPix))
 				else:
 					res.append(MultiContentEntryText(
 						pos = (evX, evY), size = (evW, evH),
@@ -1176,7 +1183,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.borderSelectedLeftPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderLeft.png'))
 			self.borderSelectedRightPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderRight.png'))
 
-			self.infomationPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/information.png'))
+			self.InfoPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/information.png'))
+			self.selInfoPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedInformation.png'))
 
 			self.graphicsloaded = True
 
