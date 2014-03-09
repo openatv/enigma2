@@ -616,6 +616,8 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.pvrStateDialog.hide()
 
 	def toggleShow(self):
+		if not hasattr(self, "LongButtonPressed"):
+			self.LongButtonPressed = False
 		if not self.LongButtonPressed:
 			if self.__state == self.STATE_HIDDEN:
 				if not self.secondInfoBarWasShown:
