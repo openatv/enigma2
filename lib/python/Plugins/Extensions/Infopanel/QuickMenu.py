@@ -307,7 +307,7 @@ class QuickMenu(Screen):
 	def Qsoftware(self):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Software Update",_("Online software update"),_("Check/Install online updates (you must have a working internet connection)")))
-		if not getBoxType().startswith('az') and not getBoxType().startswith('dream') and not brandoem.startswith('cube'):
+		if not getBoxType().startswith('az') and not getBoxType().startswith('dream') and not getBrandOEM().startswith('cube'):
 			self.sublist.append(QuickSubMenuEntryComponent("Flash Online",_("Flash Online a new image"),_("Flash on the fly your your Receiver software.")))
 		self.sublist.append(QuickSubMenuEntryComponent("Complete Backup",_("Backup your current image"),_("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
 		self.sublist.append(QuickSubMenuEntryComponent("Backup Settings",_("Backup your current settings"),_("Backup your current settings. This includes E2-setup, channels, network and all selected files")))
