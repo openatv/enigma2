@@ -1,4 +1,4 @@
-from config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigSlider
+from config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigSlider, ConfigNothing
 from enigma import eRFmod
 from Components.SystemInfo import SystemInfo
 
@@ -26,8 +26,8 @@ class RFmod:
 def InitRFmod():
 	detected = eRFmod.getInstance().detected()
 	SystemInfo["RfModulator"] = detected
+	config.rfmod = ConfigSubsection()
 	if detected:
-		config.rfmod = ConfigSubsection()
 		config.rfmod.enable = ConfigOnOff(default=False)
 		config.rfmod.test = ConfigOnOff(default=False)
 		config.rfmod.sound = ConfigOnOff(default=True)
@@ -62,3 +62,10 @@ def InitRFmod():
 		config.rfmod.soundcarrier.addNotifier(setSoundCarrier)
 		config.rfmod.channel.addNotifier(setChannel)
 		config.rfmod.finetune.addNotifier(setFinetune)
+	else:
+		config.rfmod.enable = ConfigNothing()
+		config.rfmod.test = ConfigNothing()
+		config.rfmod.sound = ConfigNothing()
+		config.rfmod.soundcarrier = ConfigNothing()
+		config.rfmod.channel = ConfigNothing()
+		config.rfmod.finetune = ConfigNothing()
