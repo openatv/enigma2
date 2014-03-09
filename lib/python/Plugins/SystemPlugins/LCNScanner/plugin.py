@@ -16,7 +16,7 @@ import shutil
 import xml.etree.cElementTree
 
 class LCN():
-	service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 195) || (type == 25)'
+	service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)'
 	
 	def __init__(self, dbfile, rulefile, rulename, bouquetfile):
 		self.dbfile = dbfile
