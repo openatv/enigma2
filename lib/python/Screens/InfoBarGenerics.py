@@ -12,6 +12,7 @@ from Components.Sources.Boolean import Boolean
 from Components.config import config, ConfigBoolean, ConfigClock
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath, ConfigSelection
+from Components.Sources.StaticText import StaticText
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 
@@ -350,6 +351,27 @@ class InfoBarShowHide(InfoBarScreenSaver):
 #		self.instance.m_animation.startMoveAnimation(ePoint(0, 380), ePoint(0, 600), 100)
 #		self.__state = self.STATE_HIDDEN
 
+class NumberZapSummary(Screen):
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent = parent)
+		self["channel"] = StaticText("Test1")
+		self["number"] = StaticText("Test2")
+		self["servicename"] = StaticText("Test3")
+		self.onShow.append(self.__onShow)
+		self.onHide.append(self.__onHide)
+
+	def __onShow(self):
+		self.parent.onChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def __onHide(self):
+		self.parent.onChanged.remove(self.selectionChanged)
+
+	def selectionChanged(self):
+		self["number"].text = self.parent["number"].getText()
+		self["channel"].text = self.parent["channel"].getText()
+		self["servicename"].text = self.parent["servicename"].getText()
+
 class NumberZap(Screen):
 	def quit(self):
 		self.Timer.stop()
@@ -374,6 +396,8 @@ class NumberZap(Screen):
 			else:
 				self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
 			self ["servicename"].text = ServiceReference(self.service).getServiceName()
+		for x in self.onChanged:
+			x()
 
 	def keyNumberGlobal(self, number):
 		self.Timer.start(1000, True)
@@ -384,12 +408,15 @@ class NumberZap(Screen):
 
 		if len(self.field) >= 5:
 			self.keyOK()
+		for x in self.onChanged:
+			x()
 
 	def __init__(self, session, number, searchNumberFunction = None):
 		Screen.__init__(self, session)
 		self.field = str(number)
 		self.searchNumber = searchNumberFunction
 		self.startBouquet = None
+		self.onChanged = []
 
 		self["channel"] = Label(_("Channel:"))
 		self["number"] = Label(self.field)
@@ -417,6 +444,9 @@ class NumberZap(Screen):
 		self.Timer = eTimer()
 		self.Timer.callback.append(self.keyOK)
 		self.Timer.start(3000, True)
+
+	def createSummary(self):
+		return NumberZapSummary
 
 class InfoBarNumberZap:
 	""" Handles an initial number for NumberZapping """

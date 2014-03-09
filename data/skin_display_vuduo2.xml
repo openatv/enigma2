@@ -69,6 +69,15 @@
 		</widget>
 	</screen>
 
+<!-- numberzap -->
+	<screen name="NumberZapSummary" position="fill">
+		<panel position="top" size="*,20">
+			<widget source="channel" render="Label" position="left" size="64,*" font="Bigger" noWrap="1"/>
+			<widget source="number" render="Label" position="fill" font="Bigger" halign="right"/>
+		</panel>
+		<widget source="servicename" render="Label" position="fill" font="Medium" noWrap="1"/>
+	</screen>
+
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="fill">
 		<panel position="top" size="*,20">
