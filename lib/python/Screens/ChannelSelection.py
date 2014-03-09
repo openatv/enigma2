@@ -1494,7 +1494,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		elif self.bouquet_mark_edit != OFF:
 			if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
 				self.doMark()
-		elif not (ref.flags & eServiceReference.isMarker) or ref.type == -1:
+		elif not (ref.flags & eServiceReference.isMarker or ref.type == -1):
 			root = self.getRoot()
 			if not root or not (root.flags & eServiceReference.isGroup):
 				self.zap(enable_pipzap = doClose, preview_zap = not doClose)
