@@ -683,8 +683,8 @@ class InfoBarChannelSelection:
 			{
 				"switchChannelUp": (self.switchChannelUp, _("Open service list and select previous channel")),
 				"switchChannelDown": (self.switchChannelDown, _("Open service list and select next channel")),
-				"switchChannelUpLong": (self.switchChannelUp, _("Open service list and select previous channel for PiP")),
-				"switchChannelDownLong": (self.switchChannelDown, _("Open service list and select next channel for PiP")),
+				"switchChannelUpLong": self.switchChannelUp,
+				"switchChannelDownLong": self.switchChannelDown,
 				"zapUp": (self.zapUp, _("Switch to previous channel")),
 				"zapDown": (self.zapDown, _("Switch next channel")),
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
