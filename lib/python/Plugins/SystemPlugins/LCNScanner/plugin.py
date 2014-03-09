@@ -16,7 +16,7 @@ import shutil
 import xml.etree.cElementTree
 
 class LCN():
-	service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)'
+	service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 195) || (type == 25)'
 	
 	def __init__(self, dbfile, rulefile, rulename, bouquetfile):
 		self.dbfile = dbfile
@@ -158,7 +158,9 @@ class LCN():
 
 		self.newlist = []
 		count = 0
-
+		#for x in self.lcnlist:
+		#	print " LISTA LCN:", x
+			
 		for x in self.lcnlist:
 			count += 1
 			while x[0] != count:
@@ -166,11 +168,31 @@ class LCN():
 				count += 1
 			if x[0] == count:
 				self.newlist.append(x)
-		
+
+		#for x in self.e2services:
+		#	print " self.e2services:", x
+
+
+		#for x in self.newlist:
+		#	print " NOWA LISTA LCN :", x
+			
+		#print " NOWA LISTA LCN: ILOSC: " , len(self.newlist)
+			
 		f.write("#NAME Terrestrial LCN\n")
 		for x in self.newlist:
 			if int(x[1]) == 11111111:
+				#print x[0], " Detected 111111111111 service"
 				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")  
+			#else:
+				#print x[0], " Detected other service"
+				
+			if int(x[0]) == 40:
+				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")  
+				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")  
+				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")  
+			if int(x[0]) == 77:
+				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")
+				
 			if len(self.markers) > 0:
 				if x[0] > self.markers[0][0]:
 					f.write("#SERVICE 1:64:0:0:0:0:0:0:0:0:\n")
@@ -183,7 +205,6 @@ class LCN():
 				if tmp[3] == refsplit[3] and tmp[4] == refsplit[4] and tmp[5] == refsplit[5] and tmp[6] == refsplit[6]:
 					f.write("#SERVICE " + tref + "\n")
 					break
-			
 		f.close()
 		self.addInBouquets()
 
