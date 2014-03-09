@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-06 12:18+0100\n"
-"PO-Revision-Date: 2014-03-06 18:50+0100\n"
+"POT-Creation-Date: 2014-03-09 19:20+0100\n"
+"PO-Revision-Date: 2014-03-09 20:15+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -166,6 +166,9 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
+
+msgid "%d %B %Y"
+msgstr "%d %B %Y"
 
 #, python-format
 msgid "%d GB"
@@ -1939,6 +1942,13 @@ msgstr ""
 "Konfiguriere den mindestens freien Speicherplatz der für Aufnahmen benötigt "
 "wird. Wenn der freie Speicherplatz unter diesen Wert fällt wird der Inhalt "
 "des Mülleimers gelöscht."
+
+msgid ""
+"Configure the minimum width before showing the 'i' icon, '0' is equal to not "
+"showing the icon at all."
+msgstr ""
+"Konfiguriere die Minimumbreite bevor das 'I' Icon gezeigt wird. '0' bedeutet "
+"das Icon wird gar nicht gezeigt."
 
 msgid "Configure the nameserver (DNS)."
 msgstr "Konfiguriere den Name-Server (DNS)."
@@ -3754,6 +3764,9 @@ msgstr "Info Tastendruck (lang)"
 
 msgid "Info button (short)"
 msgstr "Info Tastendruck (kurz)"
+
+msgid "Info icon width"
+msgstr "Info Icon Breite"
 
 msgid "InfoBar EPG"
 msgstr "Infobar EPG"
