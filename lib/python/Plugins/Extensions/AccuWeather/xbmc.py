@@ -322,7 +322,10 @@ class MeteoMain(Screen):
             pass
         else:
             url = localfile.replace('/usr/lib/enigma2/python/Plugins/Extensions/AccuWeather', 'http://www.vuplus-community.net/bhaddons')
-            handler = urlopen(url)
+            try:
+		  handler = urlopen(url2)
+	    except:
+		  handler = 0
             if handler:
                 content = handler.read()
                 fileout = open(localfile, 'wb')
