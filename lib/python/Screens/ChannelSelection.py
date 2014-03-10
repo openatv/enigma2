@@ -2148,7 +2148,7 @@ class PiPZapSelection(ChannelSelection):
 				else:
 					self.session.pipshown = False
 					del self.session.pip
-					self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
+					self.session.openWithCallback(self.close, MessageBox, _("No free tuner, could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 
 class RadioInfoBar(Screen):
 	def __init__(self, session):
