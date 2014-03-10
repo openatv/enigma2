@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-05 04:43+0100\n"
-"PO-Revision-Date: 2014-03-05 11:27+0100\n"
+"POT-Creation-Date: 2014-03-09 19:10+0100\n"
+"PO-Revision-Date: 2014-03-10 06:32+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -169,6 +169,9 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
+
+msgid "%d %B %Y"
+msgstr "%d %B %Y"
 
 #, python-format
 msgid "%d GB"
@@ -594,7 +597,7 @@ msgstr ""
 "%s %s uitschakelen. Wilt u dat nu doen?"
 
 msgid "A small overview of the available icon states and actions."
-msgstr "Een klein overzicht van gebruikte icon-statussen en acties."
+msgstr "Een klein overzicht van gebruikte icoon-statussen en acties."
 
 msgid ""
 "A timer failed to record!\n"
@@ -1829,6 +1832,9 @@ msgstr "Configureer de lengtegraad van uw lokatie"
 msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
 msgstr "Bepaal hoeveel ruimte er minimaal beschikbaar moet zijn voor opnames. Als deze waarde bereikt wordt, zulle bestanden uit de prullenbak worden verwijderd."
 
+msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
+msgstr "Bepaal de minimum breedte voordat de \"I\"-icoon wordt getoond. \"0\" betekent dat die nooit wordt getoond."
+
 msgid "Configure the nameserver (DNS)."
 msgstr "Configureer uw nameserver (DNS)."
 
@@ -1899,7 +1905,7 @@ msgid "Configure the tuner mode."
 msgstr "Configureer de tunermodus."
 
 msgid "Configure the type of status indication icons shown in the movie list."
-msgstr "Geef aan welk type iconen moet worden gebruikt in de opnamelijst."
+msgstr "Geef aan welk type icoon moet worden gebruikt in de opnamelijst."
 
 msgid "Configure the vertical position of the subtitles, measured from the bottom of the screen."
 msgstr "Stel de verticale positie in van de ondertitels, gemeten vanaf de onderzijde van het scherm."
@@ -3385,7 +3391,7 @@ msgid "ISO path"
 msgstr "ISO pad"
 
 msgid "Icons"
-msgstr "Icons"
+msgstr "Iconen"
 
 msgid "Idle Time: "
 msgstr "Tijd werkloos"
@@ -3513,6 +3519,9 @@ msgstr "Infotoets (lang)"
 
 msgid "Info button (short)"
 msgstr "Infotoets (kort)"
+
+msgid "Info icon width"
+msgstr "Info-icoon breedte"
 
 msgid "InfoBar EPG"
 msgstr "Informatiebalk EPG"
@@ -5208,6 +5217,9 @@ msgstr "Vooringestelde transponder"
 msgid "Prefer AC3 track"
 msgstr "Voorkeur voor AC3"
 
+msgid "Prefer AC3+ track"
+msgstr "Voorkeur voor AC3+"
+
 msgid "Prefer audio track stored by service"
 msgstr "Voorkeur voor audio die eerder is gekozen"
 
@@ -6473,7 +6485,7 @@ msgid "Show extensions..."
 msgstr "Toon extensies..."
 
 msgid "Show icon for new/unseen items"
-msgstr "Toon icon voor nieuwe/niet bekeken onderdelen"
+msgstr "Toon icoon voor nieuwe/niet bekeken onderdelen"
 
 msgid "Show in extensions list ?"
 msgstr "Toon in extensiemenu?"
@@ -8572,6 +8584,9 @@ msgstr "Indien ingeschakeld zal uw %s %s automatisch eerder gemaakte ondertitelk
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "Indien 'Ja' is gekozen, zal AC3 geluid worden doorgegeven (indien beschikbaar)."
+
+msgid "When enabled, the receiver will select an AC3+ track (when available)."
+msgstr "Indien 'Ja' is gekozen, zal AC3+ geluid worden doorgegeven (indien beschikbaar)."
 
 msgid "When enabled, timeshift starts automatically in background after the specified time."
 msgstr "Indien ingeschakeld, start timeshift automatisch op de achtergrond na de ingestelde tijd."
