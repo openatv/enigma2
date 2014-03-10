@@ -21,9 +21,10 @@
 	</setup>
 	<setup key="userinterface" title="GUI settings">
 		<item level="0" text="1st Infobar timeout" description="Set the time delay before hiding the infobar.">config.usage.infobar_timeout</item>
-		<item level="2" text="Show second infobar" description="Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel.">config.usage.show_second_infobar</item>
+		<item level="0" text="2nd infobar" description="Enable and set the duration of the second infobar (press OK twice) that may include more information on the current service.">config.usage.show_second_infobar</item>
+		<item level="0" text="2nd Infobar timeout" description="Set the time to hide the second infobar. The bar also disappears on pressing 'OK'.">config.usage.second_infobar_timeout</item>
 		<item level="0" text="InfoBar EPG mode" description="Select how to activate the Quick EPG mode:" requires="InfoBarEpg">config.vixsettings.InfoBarEpg_mode</item>
-		<item level="0" text="Show animation while busy" description="Show ViX spinning logo when the system is busy.">config.usage.show_spinner</item>
+		<item level="0" text="Show animation while busy" description="Show UI spinning logo when the system is busy.">config.usage.show_spinner</item>
 		<!--<item level="1" text="Show job tasks in extensions" description="With this option you can hide Job Tasks from the extension screen (short blue button press).">config.usage.jobtaksextensions</item>-->
 		<item level="1" text="Show positioner movement" description="Choose whether or not to show an icon when a motorised dish is moving.">config.usage.showdish</item>
 		<!--<item level="1" text="Alternative radio mode" description="Use the alternative or the conventional radio mode.">config.usage.e1like_radio_mode</item>-->
@@ -114,7 +115,6 @@
 		<item level="1" text="Audio language selection 3" description="Configure the third audio language.">config.autolanguage.audio_autoselect3</item>
 		<item level="1" text="Audio language selection 4" description="Configure the fourth audio language.">config.autolanguage.audio_autoselect4</item>
 		<item level="1" text="Prefer AC3 track" description="When enabled, the receiver will select an AC3 track (when available).">config.autolanguage.audio_defaultac3</item>
-		<item level="1" text="Prefer AC3+ track" description="When enabled, the receiver will select an AC3+ track (when available).">config.autolanguage.audio_defaultddp</item>
 		<item level="1" text="Prefer audio track stored by service" description="When enabled, the receiver will automatically use the audio track which you selected before.">config.autolanguage.audio_usecache</item>
 		<item level="1" text="Subtitle language selection 1" description="Configure the first subtitle language (highest priority).">config.autolanguage.subtitle_autoselect1</item>
 		<item level="1" text="Subtitle language selection 2" description="Configure the second subtitle language.">config.autolanguage.subtitle_autoselect2</item>
@@ -129,7 +129,6 @@
 		<item level="1" text="EPG language selection 2" description="Configure the secondary EPG language.">config.autolanguage.audio_epglanguage_alternative</item>
 	</setup>
 	<setup key="recording" title="Recording settings">
-		<item level="2" text="Preferred tuner for recordings" description="Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen.">config.usage.recording_frontend_priority</item>
 		<item level="1" text="Recordings always have priority" description="When enabled, a recording is allowed to interrupt live TV, when there are no free tuners.">config.recording.asktozap</item>
 		<item level="0" text="Margin before recording (minutes)" description="When nonzero, a recording will start earlier than the starting time indicated by the EPG.">config.recording.margin_before</item>
 		<item level="0" text="Margin after recording (minutes)" description="When nonzero, a recording will stop later than the ending time indicated by the EPG.">config.recording.margin_after</item>
@@ -226,8 +225,8 @@
 		<!--<item level="0" text="Subservice mode" description="Select if you want the Subservice mode to be activated.">config.vixsettings.Subservice</item>-->
 		<item level="0" text="TV button mode" description="Select what you want the TV button to activate.">config.usage.tvradiobutton_mode</item>
 		<item level="1" text="History buttons mode" description="Configure the function of the &lt;  &gt; buttons.">config.usage.historymode</item>
-		<item level="0" text="Channel +/- button mode" description="Select what you want the Channel +/- buttons to activate.">config.usage.channelbutton_mode</item>
-		<!--<item level="0" text="Use ViX colored Buttons*" description="Select if you want to use the ViX colored buttons (set to 'no' if you want to use (Multi Quick Button).">config.vixsettings.ColouredButtons</item>-->
+		<!--<item level="0" text="Channel +/- button mode" description="Select what you want the Channel +/- buttons to activate.">config.usage.channelbutton_mode</item>
+		<item level="0" text="Use ViX colored Buttons*" description="Select if you want to use the ViX colored buttons (set to 'no' if you want to use (Multi Quick Button).">config.vixsettings.ColouredButtons</item>-->
 	</setup>
 	<setup key="softcamsetup" title="Softcam settings">
 		<item level="2" text="Show CCcam Info in extensions?" description="Allows you to show/hide CCcam Info in extensions (blue button).">config.cccaminfo.showInExtensions</item>
@@ -301,10 +300,8 @@
 		<item level="2" text="Service font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_servfs</item>
 		<item level="2" text="Service width" description="Configure the width allocated to the service name.">config.epgselection.infobar_servicewidth</item>
 		<item level="2" text="Picon width" description="Configure the width allocated to the picon.">config.epgselection.infobar_piconwidth</item>
-		<item level="2" text="Info icon width" description="Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all.">config.epgselection.infobar_infowidth</item>
-		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_timelinefs</item>
-		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format.">config.epgselection.infobar_timeline24h</item>
-		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.infobar_prevtimeperiod</item>
+		<item level="1" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_timelinefs</item>
+		<item level="1" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.infobar_prevtimeperiod</item>
 	</setup>
 	<setup key="epggraphical" title="GraphicalEPG settings">
 		<item level="2" text="View mode" description="This option allows you to set the layout view (Text or Graphics).">config.epgselection.graph_type_mode</item>
@@ -326,10 +323,8 @@
 		<item level="2" text="Service font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.graph_servfs</item>
 		<item level="2" text="Service width" description="Configure the width allocated to the service name.">config.epgselection.graph_servicewidth</item>
 		<item level="2" text="Picon width" description="Configure the width allocated to the picon.">config.epgselection.graph_piconwidth</item>
-		<item level="2" text="Info icon width" description="Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all.">config.epgselection.graph_infowidth</item>
-		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.graph_timelinefs</item>
-		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format.">config.epgselection.graph_timeline24h</item>
-		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.graph_prevtimeperiod</item>
+		<item level="1" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.graph_timelinefs</item>
+		<item level="1" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.graph_prevtimeperiod</item>
 	</setup>
 	<setup key="pluginbrowsersetup" title="Settings...">
 		<item level="2" text="Show translation packages" description="If set to 'yes' it will show the 'PO' packages in browser.">config.pluginbrowser.po</item>
