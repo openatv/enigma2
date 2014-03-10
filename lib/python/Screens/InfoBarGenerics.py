@@ -351,27 +351,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 #		self.instance.m_animation.startMoveAnimation(ePoint(0, 380), ePoint(0, 600), 100)
 #		self.__state = self.STATE_HIDDEN
 
-class NumberZapSummary(Screen):
-	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
-		self["channel"] = StaticText("Test1")
-		self["number"] = StaticText("Test2")
-		self["servicename"] = StaticText("Test3")
-		self.onShow.append(self.__onShow)
-		self.onHide.append(self.__onHide)
-
-	def __onShow(self):
-		self.parent.onChanged.append(self.selectionChanged)
-		self.selectionChanged()
-
-	def __onHide(self):
-		self.parent.onChanged.remove(self.selectionChanged)
-
-	def selectionChanged(self):
-		self["number"].text = self.parent["number"].getText()
-		self["channel"].text = self.parent["channel"].getText()
-		self["servicename"].text = self.parent["servicename"].getText()
-
 class NumberZap(Screen):
 	def quit(self):
 		self.Timer.stop()
@@ -418,9 +397,9 @@ class NumberZap(Screen):
 		self.startBouquet = None
 		self.onChanged = []
 
-		self["channel"] = Label(_("Channel:"))
-		self["number"] = Label(self.field)
-		self["servicename"] = Label()
+		self["channel"] = StaticText(_("Channel:"))
+		self["number"] = StaticText(self.field)
+		self["servicename"] = StaticText()
 
 		self.handleServiceName()
 
@@ -444,9 +423,6 @@ class NumberZap(Screen):
 		self.Timer = eTimer()
 		self.Timer.callback.append(self.keyOK)
 		self.Timer.start(3000, True)
-
-	def createSummary(self):
-		return NumberZapSummary
 
 class InfoBarNumberZap:
 	""" Handles an initial number for NumberZapping """

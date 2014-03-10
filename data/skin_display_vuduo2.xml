@@ -40,7 +40,7 @@
 		<widget source="session.CurrentService" render="Label" position="top" size="*,20" font="Bigger" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<panel position="bottom" size="*,12" name="SummaryClockPanel">
+		<panel position="fill" name="SummaryClockPanel">
 			<widget source="session.Event_Now" render="Label" position="fill" font="Medium" noWrap="1">
 				<convert type="EventName">Name</convert>
 			</widget>
@@ -53,7 +53,7 @@
 		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,20" font="Bigger" noWrap="1" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<panel position="bottom" size="*,12" name="SummaryClockPanel">
+		<panel position="fill" name="SummaryClockPanel">
 			<widget source="parent.ServiceEvent" render="Label" position="fill" font="Medium" noWrap="1">
 				<convert type="EventName">Name</convert>
 			</widget>
@@ -70,12 +70,14 @@
 	</screen>
 
 <!-- numberzap -->
-	<screen name="NumberZapSummary" position="fill">
+	<screen name="NumberZap_summary" position="fill">
 		<panel position="top" size="*,20">
-			<widget source="channel" render="Label" position="left" size="64,*" font="Bigger" noWrap="1"/>
-			<widget source="number" render="Label" position="fill" font="Bigger" halign="right"/>
+			<widget source="parent.channel" render="Label" position="left" size="80,*" font="Bigger" noWrap="1"/>
+			<widget source="parent.number" render="Label" position="fill" font="Bigger" halign="right"/>
 		</panel>
-		<widget source="servicename" render="Label" position="fill" font="Medium" noWrap="1"/>
+		<panel position="fill" name="SummaryClockPanel">
+			<widget source="parent.servicename" render="Label" position="fill" font="Medium" noWrap="1"/>
+		</panel>
 	</screen>
 
 <!-- movieplayer-->
@@ -88,7 +90,7 @@
 				<convert type="ServicePosition">Position,ShowHours</convert>
 			</widget>
 		</panel>
-		<panel position="bottom" size="*,12" name="SummaryClockPanel">
+		<panel position="fill" name="SummaryClockPanel">
 			<widget source="session.CurrentService" render="Label" position="fill" font="Medium" noWrap="1">
 				<convert type="ServiceName">Name</convert>
 			</widget>
@@ -102,7 +104,7 @@
 	</screen>
 
 	<screen name="MovieSelectionSummary" position="fill">
-		<widget source="name" render="Label" position="top" size="*,20" font="Bigger"/>
+		<widget source="name" render="Label" position="top" size="*,20" font="Bigger" noWrap="1"/>
 		<panel position="bottom" size="*,12" name="SummaryClockPanel">
 			<widget source="parent.Service" render="Label" position="fill" font="Medium" noWrap="1">
 				<convert type="MovieInfo">FileSize</convert>
