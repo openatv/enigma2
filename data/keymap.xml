@@ -108,6 +108,11 @@
 		<key id="KEY_PROGRAM" mapto="openAutoTimerList" flags="l" />
 		<key id="KEY_SEARCH" mapto="openEPGSearch" flags="b" />
 		<key id="KEY_SEARCH" mapto="openIMDB" flags="l" />
+		<key id="KEY_VIDEO" mapto="openDreamPlex" flags="l" />
+		<key id="KEY_FILE" mapto="openDreamPlex" flags="l" />
+		<key id="KEY_MEDIA" mapto="openDreamPlex" flags="l" />
+		<key id="KEY_LIST" mapto="openDreamPlex" flags="l" />
+		<key id="KEY_PVR" mapto="openDreamPlex" flags="l" />
 	</map>
 
 	<map context="SatlistShortcutAction">
@@ -216,18 +221,17 @@
 
 	<map context="InfobarActions">
 		<key id="KEY_VIDEO" mapto="showMovies" flags="b" />
-		<key id="KEY_VIDEO" mapto="showMediaPlayer" flags="l" />
 		<key id="KEY_RADIO" mapto="showRadio" flags="b" />
 		<key id="KEY_RADIO" mapto="openBouquetList" flags="l" />
 		<key id="KEY_TV" mapto="showTv" flags="b" />
 		<key id="KEY_TV" mapto="openBouquetList" flags="l" />
 		<key id="KEY_PROG1" mapto="openBouquetList" flags="m" />
 		<key id="KEY_PROG2" mapto="openBouquetList" flags="m" />
-		<key id="KEY_FILE" mapto="showMovies" flags="m" />
-		<key id="KEY_MEDIA" mapto="showMovies" flags="m" />
-		<key id="KEY_LIST" mapto="showMovies" flags="m" />
-		<key id="KEY_PVR" mapto="showMovies" flags="m" />
-		<key id="KEY_TEXT" mapto="showText" flags="m" />
+		<key id="KEY_FILE" mapto="showMovies" flags="b" />
+		<key id="KEY_MEDIA" mapto="showMovies" flags="b" />
+		<key id="KEY_LIST" mapto="showMovies" flags="b" />
+		<key id="KEY_PVR" mapto="showMovies" flags="b" />
+		<key id="KEY_TEXT" mapto="showText" flags="b" />
 	</map>
 
 	<map context="2ndInfobarActions">

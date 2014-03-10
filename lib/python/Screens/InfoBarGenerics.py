@@ -2283,14 +2283,14 @@ class InfoBarExtensions:
 					"openAutoTimerList": (self.showAutoTimerList, _("Show the list of AutoTimers.")),
 					"openEPGSearch": (self.showEPGSearch, _("Search the epg for current event.")),
 					"openIMDB": (self.showIMDB, _("Search IMDb for information about current event.")),
-					"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
+					"openDreamPlex": (self.showDreamPlex, _("Show the DreamPlex player...")),
 				}, 1) # lower priority
 		else:
 			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
 				{
 					"extensions": (self.showExtensionSelection, _("view extensions...")),
 					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
-					"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
+					"showDreamPlex": (self.showDreamPlex, _("Show the DreamPlex player...")),
 				}, 1) # lower priority
 
 		self.addExtension(extension = self.getLogManager, type = InfoBarExtensions.EXTENSION_LIST)
@@ -2504,15 +2504,12 @@ class InfoBarExtensions:
 		else:
 			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
-	def showMediaPlayer(self):
-		if isinstance(self, InfoBarExtensions):
-			if isinstance(self, InfoBar):
-				try: # falls es nicht installiert ist
-					from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
-					self.session.open(MediaPlayer)
-					no_plugin = False
-				except Exception, e:
-					self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+	def showDreamPlex(self):
+		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/DreamPlex/plugin.pyo"):
+			from Plugins.Extensions.DreamPlex.plugin import DPS_MainMenu
+			self.session.open(DPS_MainMenu)
+		else:
+			self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 from Tools.BoundFunction import boundFunction
 import inspect
