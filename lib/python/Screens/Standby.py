@@ -9,8 +9,13 @@ import RecordTimer
 from enigma import eDVBVolumecontrol, eTimer
 from os import path
 import Screens.InfoBar
+from boxbranding import getMachineBrand, getMachineName, getBoxType
 
 inStandby = None
+
+MACHINEBRAND = getMachineBrand()
+MACHINENAME = getMachineName()
+BOXTYPE = getBoxType()
 
 def setLCDModeMinitTV(value):
 	try:
@@ -145,7 +150,6 @@ from time import time
 from Components.Task import job_manager
 
 class QuitMainloopScreen(Screen):
-
 	def __init__(self, session, retvalue=1):
 		self.skin = """<screen name="QuitMainloopScreen" position="fill" flags="wfNoBorder">
 			<ePixmap pixmap="skin_default/icons/input_info.png" position="c-27,c-60" size="53,53" alphatest="on" />
@@ -153,13 +157,13 @@ class QuitMainloopScreen(Screen):
 		</screen>"""
 		Screen.__init__(self, session)
 		from Components.Label import Label
-		text = { 1: _("Your Receiver is shutting down"),
-			2: _("Your Receiver is rebooting"),
-			3: _("The User Interface of your receiver is restarting"),
-			4: _("Your frontprocessor will be upgraded\nPlease wait until your receiver reboots\nThis may take a few minutes"),
-			5: _("The User Interface of your receiver is restarting\ndue to an error in mytest.py"),
-			42: _("Unattended upgrade in progress\nPlease wait until your receiver reboots\nThis may take a few minutes"),
-			43: _("Your receiver goes to WOL")}.get(retvalue)
+		text = { 1: _("Your %s %s is shutting down") % (MACHINEBRAND, MACHINENAME),
+			2: _("Your %s %s is rebooting") % (MACHINEBRAND, MACHINENAME),
+			3: _("The user interface of your %s %s is restarting") % (MACHINEBRAND, MACHINENAME),
+			4: _("Your frontprocessor will be upgraded\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (MACHINEBRAND, MACHINENAME),
+			5: _("The user interface of your %s %s is restarting\ndue to an error in mytest.py") % (MACHINEBRAND, MACHINENAME),
+			42: _("Unattended upgrade in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (MACHINEBRAND, MACHINENAME),
+			43: _("Your %s %s goes to WOL") % (MACHINEBRAND, MACHINENAME)}.get(retvalue)
 		self["text"] = Label(text)
 
 inTryQuitMainloop = False
@@ -192,11 +196,11 @@ class TryQuitMainloop(MessageBox):
 			session.nav.record_event.append(self.getRecordEvent)
 			self.skinName = ""
 		elif reason and not inStandby:
-			text = { 1: _("Really shutdown now?"),
-				2: _("Really reboot now?"),
-				3: _("Really restart now?"),
+			text = { 1: _("Really shutdown your %s %s now?") % (MACHINEBRAND, MACHINENAME),
+				2: _("Really reboot your %s %s now?") % (MACHINEBRAND, MACHINENAME),
+				3: _("Really restart your %s %s now?") % (MACHINEBRAND, MACHINENAME),
 				4: _("Really upgrade the frontprocessor and reboot now?"),
-				42: _("Really upgrade your Receiver and reboot now?"),
+				42: _("Really upgrade your %s %s and reboot now?") % (MACHINEBRAND, MACHINENAME),
 				43: _("Really WOL now?")}.get(retvalue)
 			if text:
 				MessageBox.__init__(self, session, reason+text, type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
