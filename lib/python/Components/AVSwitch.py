@@ -463,6 +463,19 @@ def InitAVSwitch():
 		config.av.surround_3d = ConfigNothing()
 
 	try:
+		can_pcm_multichannel = os.access("/proc/stb/audio/multichannel_pcm", os.W_OK)
+	except:
+		can_pcm_multichannel = False
+
+	SystemInfo["supportPcmMultichannel"] = can_pcm_multichannel
+	print 'SystemInfo["supportPcmMultichannel"]:',SystemInfo["supportPcmMultichannel"]
+	if can_pcm_multichannel:
+		def setPCMMultichannel(configElement):
+			open("/proc/stb/audio/multichannel_pcm", "w").write(configElement.value and "enable" or "disable")
+		config.av.pcm_multichannel = ConfigYesNo(default = False)
+		config.av.pcm_multichannel.addNotifier(setPCMMultichannel)
+
+	try:
 		f = open("/proc/stb/audio/ac3_choices", "r")
 		file = f.read()[:-1]
 		f.close()
@@ -476,6 +489,11 @@ def InitAVSwitch():
 			f = open("/proc/stb/audio/ac3", "w")
 			f.write(configElement.value and "downmix" or "passthrough")
 			f.close()
+			if SystemInfo.get("supportPcmMultichannel", False) and not configElement.value:
+				SystemInfo["CanPcmMultichannel"] = True
+			else:
+				SystemInfo["CanPcmMultichannel"] = False
+				config.av.pcm_multichannel.setValue(False)
 		config.av.downmix_ac3 = ConfigYesNo(default = True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
 

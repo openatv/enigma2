@@ -101,6 +101,11 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.downmix_aac.addNotifier(self.changeAACDownmix, initial_call = False)
 				conflist.append(getConfigListEntry(_("AAC downmix"), self.settings.downmix_aac, None))
 
+			if SystemInfo["CanPcmMultichannel"]:
+				self.settings.pcm_multichannel = ConfigOnOff(default=config.av.pcm_multichannel.getValue())
+				self.settings.pcm_multichannel.addNotifier(self.changePCMMultichannel, initial_call = False)
+				conflist.append(getConfigListEntry(_("PCM Multichannel"), self.settings.pcm_multichannel, None))
+
 			if n > 0:
 				self.audioChannel = service.audioChannel()
 				if self.audioChannel:
@@ -127,8 +132,6 @@ class AudioSelection(Screen, ConfigListScreen):
 							language += ' / '
 						if LanguageCodes.has_key(lang):
 							language += LanguageCodes[lang][0]
-# 						elif lang == "und":
-# 							""
 						else:
 							language += lang
 						cnt += 1
@@ -136,7 +139,6 @@ class AudioSelection(Screen, ConfigListScreen):
 					streams.append((x, "", number, description, language, selected))
 
 			else:
-				streams = []
 				conflist.append(('',))
 
 			from Components.PluginComponent import plugins
@@ -152,9 +154,7 @@ class AudioSelection(Screen, ConfigListScreen):
 
 				Plugins = [ (p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_AUDIOMENU) ]
 				if len(Plugins):
-					print 'Plugins:',Plugins
 					for x in Plugins:
-						print 'X:',x
 						if x[0] == 'AudioEffect': # always make AudioEffect Blue button.
 							Plugins.insert(0, Plugins.pop(Plugins.index(x)))
 							break
@@ -258,16 +258,27 @@ class AudioSelection(Screen, ConfigListScreen):
 
 	def changeAC3Downmix(self, downmix):
 		if downmix.getValue():
-			config.av.downmix_ac3.value = True
+			config.av.downmix_ac3.setValue(True)
+			config.av.pcm_multichannel.setValue(False)
 		else:
-			config.av.downmix_ac3.value = False
+			config.av.downmix_ac3.setValue(False)
 		config.av.downmix_ac3.save()
+		config.av.pcm_multichannel.save()
+		self.fillList()
+
+	def changePCMMultichannel(self, multichan):
+		if multichan.getValue():
+			config.av.pcm_multichannel.setValue(True)
+		else:
+			config.av.pcm_multichannel.setValue(False)
+		config.av.pcm_multichannel.save()
+		self.fillList()
 
 	def changeAACDownmix(self, downmix):
 		if downmix.getValue():
-			config.av.downmix_aac.value = True
+			config.av.downmix_aac.setValue(True)
 		else:
-			config.av.downmix_aac.value = False
+			config.av.downmix_aac.setValue(False)
 		config.av.downmix_aac.save()
 
 	def changeMode(self, mode):
