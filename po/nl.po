@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-05 04:43+0100\n"
-"PO-Revision-Date: 2014-03-05 11:27+0100\n"
+"POT-Creation-Date: 2014-03-09 19:10+0100\n"
+"PO-Revision-Date: 2014-03-10 06:40+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -169,6 +169,9 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
+
+msgid "%d %B %Y"
+msgstr "%d %B %Y"
 
 #, python-format
 msgid "%d GB"
@@ -594,7 +597,7 @@ msgstr ""
 "%s %s uitschakelen. Wilt u dat nu doen?"
 
 msgid "A small overview of the available icon states and actions."
-msgstr "Een klein overzicht van gebruikte icon-statussen en acties."
+msgstr "Een klein overzicht van gebruikte icoon-statussen en acties."
 
 msgid ""
 "A timer failed to record!\n"
@@ -764,7 +767,7 @@ msgid "Address"
 msgstr "Adres"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
-msgstr "Wijzig de kleuren zodanig dat alle tinten te onderscheiden, maar wel zo verzadigd mogelijk zijn. Zodra het resultaat u bevalt, drukt u op 'OK' om dit menu af te sluiten of u selecteert met de nummertoetsen een ander testscherm."
+msgstr "Wijzig de kleuren zodanig dat alle tinten te onderscheiden, maar wel zo verzadigd mogelijk zijn. Zodra het resultaat u bevalt, drukt u op \"OK\" om dit menu af te sluiten of u selecteert met de nummertoetsen een ander testscherm."
 
 msgid "Advanced options"
 msgstr "Geavanceerde opties"
@@ -1166,10 +1169,10 @@ msgid "Behavior of 0 key in PiP-mode"
 msgstr "Functie van de 0-toets in PiP modus"
 
 msgid "Behavior when a movie is started"
-msgstr "Actie na 'start afspelen'"
+msgstr "Actie na \"start afspelen\""
 
 msgid "Behavior when a movie is stopped"
-msgstr "Actie na 'stop afspelen'"
+msgstr "Actie na \"top afspelen\""
 
 msgid "Behavior when a movie reaches the end"
 msgstr "Actie bij het einde van de opname"
@@ -1567,7 +1570,7 @@ msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Kies het tijdsinterval waarop de grafische indeling wordt afgerond."
 
 msgid "Choose what you want the '0' button to do when PIP is active."
-msgstr "Stel hier in wat de '0'-toets moet doen wanneer PIP actief is."
+msgstr "Stel hier in wat de \"0\"-toets moet doen wanneer PIP actief is."
 
 msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Stel in of meerkanaals geluid moet worden teruggebracht to stereo."
@@ -1829,6 +1832,9 @@ msgstr "Configureer de lengtegraad van uw lokatie"
 msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
 msgstr "Bepaal hoeveel ruimte er minimaal beschikbaar moet zijn voor opnames. Als deze waarde bereikt wordt, zulle bestanden uit de prullenbak worden verwijderd."
 
+msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
+msgstr "Bepaal de minimum breedte voordat de \"I\"-icoon wordt getoond. \"0\" betekent dat die nooit wordt getoond."
+
 msgid "Configure the nameserver (DNS)."
 msgstr "Configureer uw nameserver (DNS)."
 
@@ -1899,7 +1905,7 @@ msgid "Configure the tuner mode."
 msgstr "Configureer de tunermodus."
 
 msgid "Configure the type of status indication icons shown in the movie list."
-msgstr "Geef aan welk type iconen moet worden gebruikt in de opnamelijst."
+msgstr "Geef aan welk type icoon moet worden gebruikt in de opnamelijst."
 
 msgid "Configure the vertical position of the subtitles, measured from the bottom of the screen."
 msgstr "Stel de verticale positie in van de ondertitels, gemeten vanaf de onderzijde van het scherm."
@@ -1923,7 +1929,7 @@ msgid "Configure which tuner type will be preferred, when the same service is av
 msgstr "Bepaal welk tunertype de voorkeur heeft, als hetzelfde kanaal beschikbaar is voor verschillende types tuner."
 
 msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen."
-msgstr "Stel in welke tuner de voorkeur heeft voor opnames als meerdere tuners beschikbaar zijn. \"Uitgeschakeld\" betekent dat de tunerkeuze wordt bepaald door de instelling 'Voorkeurstuner' in het scherm 'Aanpassen'. \"Auto\" betekent dat de keuze wordt gebaseerd op de standaard regels van Enigma, waarbij de instelling \"Voorkeurstuner\" in het scherm \"Aanpassen\" wordt genegeerd. "
+msgstr "Stel in welke tuner de voorkeur heeft voor opnames als meerdere tuners beschikbaar zijn. \"Uitgeschakeld\" betekent dat de tunerkeuze wordt bepaald door de instelling \"Voorkeurstuner\" in het scherm \"Aanpassen\". \"Auto\" betekent dat de keuze wordt gebaseerd op de standaard regels van Enigma, waarbij de instelling \"Voorkeurstuner\" in het scherm \"Aanpassen\" wordt genegeerd. "
 
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr "Stel in welke tuner de voorkeur heeft, als meerdere tuners beschikbaar zijn. In de stand 'auto' zal de voorkeur worden gegeven aan de tuner met het kleinste aantal kanalen/satellieten."
@@ -3385,7 +3391,7 @@ msgid "ISO path"
 msgstr "ISO pad"
 
 msgid "Icons"
-msgstr "Icons"
+msgstr "Iconen"
 
 msgid "Idle Time: "
 msgstr "Tijd werkloos"
@@ -3513,6 +3519,9 @@ msgstr "Infotoets (lang)"
 
 msgid "Info button (short)"
 msgstr "Infotoets (kort)"
+
+msgid "Info icon width"
+msgstr "Info-icoon breedte"
 
 msgid "InfoBar EPG"
 msgstr "Informatiebalk EPG"
@@ -5208,6 +5217,9 @@ msgstr "Vooringestelde transponder"
 msgid "Prefer AC3 track"
 msgstr "Voorkeur voor AC3"
 
+msgid "Prefer AC3+ track"
+msgstr "Voorkeur voor AC3+"
+
 msgid "Prefer audio track stored by service"
 msgstr "Voorkeur voor audio die eerder is gekozen"
 
@@ -6473,7 +6485,7 @@ msgid "Show extensions..."
 msgstr "Toon extensies..."
 
 msgid "Show icon for new/unseen items"
-msgstr "Toon icon voor nieuwe/niet bekeken onderdelen"
+msgstr "Toon icoon voor nieuwe/niet bekeken onderdelen"
 
 msgid "Show in extensions list ?"
 msgstr "Toon in extensiemenu?"
@@ -8572,6 +8584,9 @@ msgstr "Indien ingeschakeld zal uw %s %s automatisch eerder gemaakte ondertitelk
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "Indien 'Ja' is gekozen, zal AC3 geluid worden doorgegeven (indien beschikbaar)."
+
+msgid "When enabled, the receiver will select an AC3+ track (when available)."
+msgstr "Indien 'Ja' is gekozen, zal AC3+ geluid worden doorgegeven (indien beschikbaar)."
 
 msgid "When enabled, timeshift starts automatically in background after the specified time."
 msgstr "Indien ingeschakeld, start timeshift automatisch op de achtergrond na de ingestelde tijd."
