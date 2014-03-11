@@ -331,6 +331,8 @@ class DevicePanelConf(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.list = []
+		self.device_type = 'auto'
+		self.device_uuid = ""
 		ConfigListScreen.__init__(self, self.list)
 		Screen.setTitle(self, _("Choose where to mount your devices to:"))
 		self['key_green'] = Label(_("Save"))
