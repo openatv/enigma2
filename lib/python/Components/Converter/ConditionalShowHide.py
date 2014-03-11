@@ -15,7 +15,7 @@ class ConditionalShowHide(Converter, object):
 			self.timer = None
 
 	def blinkFunc(self):
-		if self.blinking == True:
+		if self.blinking:
 			for x in self.downstream_elements:
 				x.visible = not x.visible
 
