@@ -115,5 +115,5 @@ class ImageWizard(WizardLanguage, Rc):
 
 	
 if config.misc.firstrun.getValue():
-	wizardManager.registerWizard(ImageWizard, backupAvailable, priority = 10)
+	wizardManager.registerWizard(ImageWizard, backupAvailable, priority = -1)
 
