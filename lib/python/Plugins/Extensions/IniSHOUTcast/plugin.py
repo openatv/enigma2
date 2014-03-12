@@ -126,10 +126,13 @@ def main(session,**kwargs):
 	session.open(SHOUTcastWidget)
 
 def Plugins(**kwargs):
-	list = [PluginDescriptor(name="SHOUTcast", description=_("listen to shoutcast internet-radio"), where = [PluginDescriptor.WHERE_PLUGINMENU], icon="plugin.png", fnc=main)] # always show in plugin menu
-	if config.plugins.shoutcast.showinextensions.value:
-		list.append (PluginDescriptor(name="SHOUTcast", description=_("listen to shoutcast internet-radio"), where = [PluginDescriptor.WHERE_EXTENSIONSMENU], fnc=main))
+	list = [PluginDescriptor(where=PluginDescriptor.WHERE_MENU, fnc=menu)]
 	return list
+
+def menu(menuid, **kwargs):
+	if menuid == 'id_mainmenu_music':
+		return [(_('SHOUTCast'), main, 'id_mainmenu_music_shoutcast', 50)]
+	return []
 
 class SHOUTcastWidget(Screen):
 
