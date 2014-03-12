@@ -390,7 +390,9 @@ class GeneralSetup(Screen):
 			self.Qavsetup()
 ######## Select Tuner Setup Menu ##############################
 		elif item[0] == _("Antenna Setup"):
-			self.Qtuner()
+			from Screens.IniTerrestrialLocation import IniTerrestrialLocation
+			self.session.open(IniTerrestrialLocation)
+			#self.Qtuner()
 ######## Select Software Manager Menu ##############################
 		elif item[0] == _("Software Manager"):
 			self.Qsoftware()
