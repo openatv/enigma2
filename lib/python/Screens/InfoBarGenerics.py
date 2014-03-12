@@ -563,7 +563,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.pvrStateDialog = None
 
 	def InfoBPressed(self):
-		config.plisettings.PLIINFO_mode.getValue() == "infobar":
+		if config.plisettings.PLIINFO_mode.getValue() == "infobar":
 			self.toggleShow()
 
 	def OkPressed(self):
