@@ -82,7 +82,7 @@ class SHOUTcastGenre:
 		self.opened = opened
 
 class SHOUTcastStation:
-	def __init__(self, name = "", mt = "", id = "", br = "", genre = "", ct = "", lc = ""):
+	def __init__(self, name = "", mt = "", id = "", br = "", genre = "", ct = "", lc = "", ml = "", nsc = "", cst = ""):
 		self.name = name.replace("- a SHOUTcast.com member station", "")
 		self.mt = mt
 		self.id = id
@@ -90,6 +90,9 @@ class SHOUTcastStation:
 		self.genre = genre
 		self.ct = ct
 		self.lc = lc
+		self.ml = ml
+		self.nsc = nsc
+		self.cst = cst
 
 class Favorite:
 	def __init__(self, configItem = None):
@@ -123,14 +126,11 @@ def main(session,**kwargs):
 	session.open(SHOUTcastWidget)
 
 def Plugins(**kwargs):
-	list = [PluginDescriptor(where=PluginDescriptor.WHERE_MENU, fnc=menu)]
+	list = [PluginDescriptor(name="SHOUTcast", description=_("listen to shoutcast internet-radio"), where = [PluginDescriptor.WHERE_PLUGINMENU], icon="plugin.png", fnc=main)] # always show in plugin menu
+	if config.plugins.shoutcast.showinextensions.value:
+		list.append (PluginDescriptor(name="SHOUTcast", description=_("listen to shoutcast internet-radio"), where = [PluginDescriptor.WHERE_EXTENSIONSMENU], fnc=main))
 	return list
 
-def menu(menuid, **kwargs):
-    if menuid == 'id_mainmenu_music':
-        return [(_('SHOUTCast'), main, 'id_mainmenu_music_shoutcast', 50)]
-    return []
-  
 class SHOUTcastWidget(Screen):
 
 	GENRELIST = 0
@@ -454,9 +454,8 @@ class SHOUTcastWidget(Screen):
 				elif self.mode == self.STATIONLIST:
 					self.stationListIndex = self["list"].getCurrentIndex()
 					self.stopPlaying()
-					url = "http://207.200.98.1%s?id=%s" % (self.tunein, sel.id)
 					if len(devid) > 8:
-						url = self.SCY + "%s?id=%s" % (self.tunein, sel.id)
+						url = self.SCY + "/sbin/tunein-station.pls?id=%s" % (sel.id)
 					self["list"].hide()
 					self["statustext"].setText(_("Getting streaming data from\n%s") % sel.name)
 					self.currentStreamingStation = sel.name
@@ -517,7 +516,7 @@ class SHOUTcastWidget(Screen):
 		self["statustext"].setText(_("Getting %s") %  self.headerTextString)
 		self["list"].hide()
 		if len(devid) > 8:
-			self.stationListURL = self.SC + "/legacy/stationsearch?k=%s&search=%s" % (devid, genre)
+			self.stationListURL = self.SC + "/station/advancedsearch&f=xml&k=%s&search=%s" % (devid, genre)
 		else:
 			self.stationListURL = "http://207.200.98.1/sbin/newxml.phtml?genre=%s" % genre
 		self.stationListIndex = 0
@@ -544,15 +543,21 @@ class SHOUTcastWidget(Screen):
 			root = xml.etree.cElementTree.fromstring(xmlstring)
 		except: return []
 		config_bitrate = int(config.plugins.shoutcast.streamingrate.value)
-		for childs in root.findall("tunein"):
-			self.tunein = childs.get("base")
-		for childs in root.findall("station"):
-			try: bitrate = int(childs.get("br"))
-			except: bitrate = 0
-			if bitrate >= config_bitrate:
-				stationList.append(SHOUTcastStation(name = childs.get("name"), 
+		data = root.find("data")
+		if data == None:
+			print "[SHOUTcast] could not find data tag\n"
+			return []
+		for slist in data.findall("stationlist"):
+			for childs in slist.findall("tunein"):
+				self.tunein = childs.get("base")
+			for childs in slist.findall("station"):
+				try: bitrate = int(childs.get("br"))
+				except: bitrate = 0
+				if bitrate >= config_bitrate:
+					stationList.append(SHOUTcastStation(name = childs.get("name"), 
 									mt = childs.get("mt"), id = childs.get("id"), br = childs.get("br"), 
-									genre = childs.get("genre"), ct = childs.get("ct"), lc = childs.get("lc")))
+									genre = childs.get("genre"), ct = childs.get("ct"), lc = childs.get("lc"), ml = childs.get("ml"), nsc = childs.get("nsc"),
+									cst = childs.get("cst")))
 		return stationList
 
 	def menu_pressed(self):
@@ -590,7 +595,7 @@ class SHOUTcastWidget(Screen):
 	def addStationToFavorite(self):
 		sel = self.getSelectedItem()
 		if sel is not None:
-			self.addFavorite(name = sel.name, text = self.SCY + "%s?id=%s" % (self.tunein, sel.id), favoritetype = "pls", audio = sel.mt, bitrate = sel.br)			
+			self.addFavorite(name = sel.name, text = self.SCY + "/sbin/tunein-station.pls?id=%s" % (sel.id), favoritetype = "pls", audio = sel.mt, bitrate = sel.br)			
 
 	def addCurrentStreamToFavorite(self):
 		self.addFavorite(name = self.currentStreamingStation, text = self.currentStreamingURL, favoritetype = "url")
@@ -645,7 +650,7 @@ class SHOUTcastWidget(Screen):
 			self["statustext"].setText(_("Searching SHOUTcast for %s...") % searchstring)
 			self["list"].hide()
 			if len(devid) > 8:
-			   self.stationListURL = self.SC + "/legacy/stationsearch?k=%s&search=%s" % (devid, searchstring)
+			   self.stationListURL = self.SC + "/station/advancedsearch&f=xml&k=%s&search=%s" % (devid, searchstring)
 			else:
 			   self.stationListURL = "http://207.200.98.1/sbin/newxml.phtml?search=%s" % searchstring
 			self.mode = self.SEARCHLIST
@@ -711,15 +716,14 @@ class SHOUTcastWidget(Screen):
 			sendUrlCommand(self.currentGoogle, None, 10).addCallback(self.GoogleImageCallback).addErrback(self.Error)
 			return
 		self.currentGoogle = None
-		foundPos = result.find("imgres?imgurl=")
-		foundPos2 = result.find("&amp;imgrefurl=")
+		foundPos = result.find("unescapedUrl\":\"")
+		foundPos2 = result.find("\",\"url\":\"")
 		if foundPos != -1 and foundPos2 != -1:
-			url=result[foundPos+14:foundPos2]
+			url=result[foundPos+15:foundPos2]
 			if len(url)>15:
 				url= url.replace(" ", "%20")
 				print "download url: %s " % url
-				upperl = url.upper()
-				validurl = (".JPG" in upperl) or (".PNG" in upperl) or (".GIF" in upperl) or (".JPEG" in upperl)
+				validurl = True
 			else:
 				validurl = False
 				print "[SHOUTcast] invalid cover url or pictureformat!"
@@ -765,11 +769,11 @@ class SHOUTcastWidget(Screen):
 				self.oldtitle=sTitle
 				sTitle = sTitle.replace("Title:", "")[:55]
 				if config.plugins.shoutcast.showcover.value:
-					searchpara="album cover art "
+					searchpara="album cover "
 					if sTitle:
-						url = "http://images.google.com/search?tbm=isch&q=%s%s&biw=%s&bih=%s&ift=jpg&ift=gif&ift=png" % (quote(searchpara), quote(sTitle), config.plugins.shoutcast.coverwidth.value, config.plugins.shoutcast.coverheight.value)
+						url = "http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=%s%s&biw=%s&bih=%s&ift=jpg&ift=gif&ift=png" % (quote(searchpara), quote(sTitle), config.plugins.shoutcast.coverwidth.value, config.plugins.shoutcast.coverheight.value)
 					else:
-						url = "http://images.google.com/search?tbm=isch&q=notavailable&biw=%s&bih=%s&ift=jpg&ift=gif&ift=png" % (config.plugins.shoutcast.coverwidth.value, config.plugins.shoutcast.coverheight.value)
+						url = "http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=no+cover+pic&biw=%s&bih=%s&ift=jpg&ift=gif&ift=png" % (config.plugins.shoutcast.coverwidth.value, config.plugins.shoutcast.coverheight.value)
 					print "[SHOUTcast] coverurl = %s " % url
 					if self.currentGoogle:
 						self.nextGoogle = url

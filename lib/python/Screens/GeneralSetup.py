@@ -303,7 +303,8 @@ class GeneralSetup(Screen):
 			self.sublist.append(QuickSubMenuEntryComponent("VideoEnhancement",_("VideoEnhancement Setup"),_("VideoEnhancement Setup")))
 		if AUTORES == True:
 			self.sublist.append(QuickSubMenuEntryComponent("AutoResolution",_("AutoResolution Setup"),_("Automatically change resolution")))
-		#self.sublist.append(QuickSubMenuEntryComponent("OSD Position",_("Adjust OSD Size"),_("Adjust OSD Size")))
+		if config.usage.setup_level.getValue() == "expert":
+			self.sublist.append(QuickSubMenuEntryComponent("OSD Position",_("Adjust OSD Size"),_("Adjust OSD Size")))
 		if SystemInfo["CanChange3DOsd"]:
 			self.sublist.append(QuickSubMenuEntryComponent("OSD 3D Setup",_("3D Setup side by side"),_("3D Setup side by side")))
 
@@ -390,9 +391,7 @@ class GeneralSetup(Screen):
 			self.Qavsetup()
 ######## Select Tuner Setup Menu ##############################
 		elif item[0] == _("Antenna Setup"):
-			from Screens.IniTerrestrialLocation import IniTerrestrialLocation
-			self.session.open(IniTerrestrialLocation)
-			#self.Qtuner()
+			self.Qtuner()
 ######## Select Software Manager Menu ##############################
 		elif item[0] == _("Software Manager"):
 			self.Qsoftware()
@@ -565,7 +564,9 @@ class GeneralSetup(Screen):
 			self.session.open(OSD3DSetupScreen)
 ######## Select TUNER Setup Menu ##############################
 		elif item[0] == _("Tuner Configuration"):
-			self.session.open(NimSelection)
+			from Screens.IniTerrestrialLocation import IniTerrestrialLocation
+			self.session.open(IniTerrestrialLocation)
+			#self.session.open(NimSelection)
 		elif item[0] == _("Positioner Setup"):
 			self.PositionerMain()
 		elif item[0] == _("Automatic Scan"):

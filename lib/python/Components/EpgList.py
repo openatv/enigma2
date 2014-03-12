@@ -885,70 +885,55 @@ class EPGList(HTMLComponent, GUIComponent):
 					else:
 						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
 
+				if stime <= now < (stime + duration):
+					foreColor = self.foreColorNow
+					backColor = self.backColorNow
+					foreColorSel = self.foreColorNowSelected
+					backColorSel = self.backColorNowSelected
+				else:
+					foreColor = self.foreColor
+					backColor = self.backColor
+					foreColorSel = self.foreColorSelected
+					backColorSel = self.backColorSelected
+					if clock_types is not None and clock_types == 2:
+						foreColor = self.foreColorRecord
+						backColor = self.backColorRecord
+						foreColorSel = self.foreColorRecordSelected
+						backColorSel = self.backColorRecordSelected
+					elif clock_types is not None and clock_types == 7:
+						foreColor = self.foreColorZap
+						backColor = self.backColorZap
+						foreColorSel = self.foreColorZapSelected
+						backColorSel = self.backColorZapSelected
+
 				if selected and self.select_rect.x == xpos + left:
+					if clock_types is not None:
+						clocks = self.selclocks[clock_types]
 					borderTopPix = self.borderSelectedTopPix
 					borderLeftPix = self.borderSelectedLeftPix
 					borderBottomPix = self.borderSelectedBottomPix
 					borderRightPix = self.borderSelectedRightPix
 					infoPix = self.selInfoPix
-					if clock_types is not None:
-						clocks = self.selclocks[clock_types]
-					if clock_types is not None and clock_types == 2:
-						foreColor = self.foreColorRecord
-						backColor = self.backColorRecord
-						foreColorSel = self.foreColorRecordSelected
-						backColorSel = self.backColorRecordSelected
-						bgpng = self.recSelEvPix
-					elif clock_types is not None and clock_types == 7:
-						foreColor = self.foreColorZap
-						backColor = self.backColorZap
-						foreColorSel = self.foreColorZapSelected
-						backColorSel = self.backColorZapSelected
-						bgpng = self.zapSelEvPix
-					elif stime <= now < (stime + duration):
-						foreColor = self.foreColorNow
-						backColor = self.backColorNow
-						foreColorSel = self.foreColorNowSelected
-						backColorSel = self.backColorNowSelected
+					if stime <= now < (stime + duration):
 						bgpng = self.nowSelEvPix
 					else:
-						foreColor = self.foreColor
-						backColor = self.backColor
-						foreColorSel = self.foreColorSelected
-						backColorSel = self.backColorSelected
 						bgpng = self.selEvPix
 				else:
+					if clock_types is not None:
+						clocks = self.clocks[clock_types]
 					borderTopPix = self.borderTopPix
 					borderLeftPix = self.borderLeftPix
 					borderBottomPix = self.borderBottomPix
 					borderRightPix = self.borderRightPix
 					infoPix = self.InfoPix
-					if clock_types is not None:
-						clocks = self.clocks[clock_types]
-					if clock_types is not None and clock_types == 2:
-						foreColor = self.foreColorRecord
-						backColor = self.backColorRecord
-						foreColorSel = self.foreColorRecordSelected
-						backColorSel = self.backColorRecordSelected
-						bgpng = self.recEvPix
-					elif clock_types is not None and clock_types == 7:
-						foreColor = self.foreColorZap
-						backColor = self.backColorZap
-						foreColorSel = self.foreColorZapSelected
-						backColorSel = self.backColorZapSelected
-						bgpng = self.zapEvPix
-					elif stime <= now < (stime + duration):
-						foreColor = self.foreColorNow
-						backColor = self.backColorNow
-						foreColorSel = self.foreColorNowSelected
-						backColorSel = self.backColorNowSelected
+					if stime <= now < (stime + duration):
 						bgpng = self.nowEvPix
 					else:
-						backColor = self.backColor
-						foreColor = self.foreColor
-						foreColorSel = self.foreColorSelected
-						backColorSel = self.backColorSelected
 						bgpng = self.othEvPix
+						if clock_types is not None and clock_types == 2:
+							bgpng = self.recEvPix
+						elif clock_types is not None and clock_types == 7:
+							bgpng = self.zapEvPix
 
 				# event box background
 				if bgpng is not None and self.graphic:
