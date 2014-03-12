@@ -21,6 +21,8 @@ class FrontendStatus(Source):
 			self.invalidate()
 		else:
 			self.snr = status.get("tuner_signal_quality")
+			if self.snr < 0:
+				self.snr = 65536
 			self.snr_db = status.get("tuner_signal_quality_db")
 			self.agc = status.get("tuner_signal_power")
 			self.ber = status.get("tuner_bit_error_rate")
