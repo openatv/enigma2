@@ -1,52 +1,8 @@
 <!--suppress XmlUnboundNsPrefix -->
 <wizard>
-		<step id="start" >
-			<text value="Please connect your %s %s to the internet" />
-			<list>
-				<listentry caption="Check the internet connection" step="update" />
-				<listentry caption="Skip internet connection check" step="timezone" />
-			</list>
-			<code>
-self.clearSelectedKeys()
-self.selectKey("UP")
-self.selectKey("DOWN")
-			</code>
-		</step>
-		<step id="update">
-			<text value="Checking the internet connection" />
-			<config screen="InstallWizard" module="InstallWizard" args="0" type="ConfigList" />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("OK")
-			</code>
-		</step>
-		<step id="networkfailed" >
-			<condition>
-self.condition = not config.misc.installwizard.ipkgloaded.value
-			</condition>
-			<text value="Your %s %s does not have an internet connection" />
-			<displaytext value="Your %s %s is not connected to the internet" />
-			<list>
-				<listentry caption="Check the internet connection again" step="update" />
-				<listentry caption="Skip internet connection check" step="timezone" />
-			</list>
-			<code>
-self.clearSelectedKeys()
-self.selectKey("UP")
-self.selectKey("DOWN")
-			</code>
-		</step>
-		<step id="timezone">
+		<step id="start" laststep="true">
 			<text value="Please select Your timezone" />
 			<displaytext value="Please select Your timezone" />
 			<list type="config" configelement="config.timezone.val" />
-		</step>
-		<step id="end" laststep="true">
-			<text value="Congratulations, your %s %s is now set up.\nPlease press OK to start using your %s %s." />
-			<displaytext value="Congratulations, your %s %s is now set up.\nPlease press OK to start using your %s %s." />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("OK")
-			</code>
 		</step>
 </wizard>

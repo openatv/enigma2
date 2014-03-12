@@ -1,18 +1,21 @@
+from boxbranding import getMachineBrand, getMachineName
+
 from Screens.Screen import Screen
 from Screens.ServiceScan import ServiceScan
 from Screens.MessageBox import MessageBox
 
 from Components.Label import Label
 from Components.ActionMap import ActionMap
-from Components.MenuList import MenuList
-from Components.config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigText
-from Components.config import config
+from Components.MenuList import MenuList 
+from Components.config import config, ConfigBoolean, configfile
 from Components.ConfigList import ConfigListScreen
 from Components.Sources.StaticText import StaticText
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.NimManager import nimmanager, getConfigSatlist, InitNimManager
 
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER, RT_WRAP, eComponentScan, eDVBFrontendParametersTerrestrial
+
+config.misc.inifirstrun = ConfigBoolean(default = True)
 
 class TerrestrialMenuList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
@@ -61,7 +64,7 @@ class IniTerrestrialLocation(Screen):
 		
 		InitNimManager(nimmanager)
 		
-		if config.misc.firstrun.getValue():
+		if config.misc.inifirstrun.getValue():
 			self.skinName = ["StartWizard"]
 
 		self["text"] = Label(_("Please scroll to location and select your location and then press ok. If your location is not listed or you do not find all the channels please select Australia as your location."))
@@ -160,11 +163,34 @@ class IniTerrestrialLocation(Screen):
 
 	def startScan(self, scanList):
 		if len(scanList):
-			#self.session.open(ServiceScan, scanList = scanList)
 			self.session.openWithCallback(self.exit, ServiceScan, scanList = scanList)
 		else:
 			self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your location before you start a service scan."), MessageBox.TYPE_ERROR)
 
 	def exit(self):
+		self.close()
+
+class IniEndWizard(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Congratulations!"))
+		
+		self.skinName = ["StartWizard"]
+
+		self["text"] = Label(_("Congratulations, your %s %s is now set up.\nPlease press OK to start using your %s %s.") % (getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName()) )
+
+		self["actions"] = ActionMap(["SetupActions"],
+		{
+			"ok": self.go,
+			"save": self.go
+		}, -2)
+
+	def saveIniWizardSetting(self):
+		config.misc.inifirstrun.value = 0
+		config.misc.inifirstrun.save()
+		configfile.save()
+		
+	def go(self):
+		self.saveIniWizardSetting()
 		self.close()
 		

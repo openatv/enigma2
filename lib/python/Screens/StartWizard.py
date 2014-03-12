@@ -37,5 +37,9 @@ class StartWizard(WizardLanguage, Rc):
 #wizardManager.registerWizard(VideoWizard, config.misc.videowizardenabled.getValue(), priority = 0)
 #wizardManager.registerWizard(LanguageWizard, config.misc.languageselected.getValue(), priority = -1)
 #wizardManager.registerWizard(UserInterfacePositionerWizard, config.misc.firstrun.getValue(), priority = 3)
+
+from Plugins.Extensions.IniTerrestrialLocation.plugin import IniTerrestrialLocation, IniEndWizard, config
+
 wizardManager.registerWizard(StartWizard, config.misc.firstrun.getValue(), priority = 1)
-wizardManager.registerWizard(IniTerrestrialLocation, config.misc.firstrun.getValue(), priority = 1)
+wizardManager.registerWizard(IniTerrestrialLocation, config.misc.inifirstrun.getValue(), priority = 1)
+wizardManager.registerWizard(IniEndWizard, config.misc.inifirstrun.getValue(), priority = 1)
