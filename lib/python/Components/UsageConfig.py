@@ -213,6 +213,7 @@ def InitUsageConfig():
 		('no', _("No")) ])
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default = True)
 	config.usage.show_channel_jump_in_servicelist = ConfigSelection(default="alpha", choices = [
+					("quick", _("Quick Actions")),
 					("alpha", _("Alpha")),
 					("number", _("Number"))])
 
