@@ -2310,6 +2310,16 @@ class InfoBarExtensions:
 		else:
 			self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
+	def showMediaPlayer(self):
+		if isinstance(self, InfoBarExtensions):
+			if isinstance(self, InfoBar):
+				try: # falls es nicht installiert ist
+					from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
+					self.session.open(MediaPlayer)
+					no_plugin = False
+				except Exception, e:
+					self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+					
 from Tools.BoundFunction import boundFunction
 import inspect
 
