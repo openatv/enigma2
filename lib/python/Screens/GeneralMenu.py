@@ -8,7 +8,7 @@ from Screens.InfoBar import InfoBar
 from Screens.ChannelSelection import ChannelSelection, HistoryZapSelector
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
-from Screens.FileManager import FileManager
+from Plugins.Extensions.FileCommander.plugin import FileCommanderScreen
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER, RT_WRAP
 from enigma import eServiceReference, iServiceInformation, eServiceCenter, eEnv, fontRenderClass
 from os import system as os_system, path as os_path
@@ -784,7 +784,7 @@ class GeneralMenu(Screen):
         self.session.open(MessageBox, _('This part is not ready yet!'), MessageBox.TYPE_INFO)
 
     def openFileManager(self, path):
-	self.session.open(FileManager, path)
+	self.session.open(FileCommanderScreen, path)
 	
     # sources
     def getScart(self, menuID, list):
