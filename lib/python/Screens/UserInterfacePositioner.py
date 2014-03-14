@@ -6,7 +6,7 @@ from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Console import Console
-from enigma import getDesktop
+from enigma import getDesktop, iServiceInformation
 from os import access, R_OK
 
 def InitOsd():
@@ -77,6 +77,10 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		self.setup_title = _("Position Setup")
 		self.Console = Console()
+		
+		self.oldref = self.session.nav.getCurrentlyPlayingServiceReference()
+		self.session.nav.stopService()
+		
 		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
@@ -174,6 +178,12 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 
 	# keySave and keyCancel are just provided in case you need them.
 	# you have to call them by yourself.
+	def playOldService(self):
+		try:
+			self.session.nav.playService(self.oldref)
+		except:
+			pass
+		      
 	def keySave(self):
 		self.saveAll()
 		self.close()
@@ -184,6 +194,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 
 		for x in self["config"].list:
 			x[1].cancel()
+		self.playOldService()
 		self.close()
 
 	def keyCancel(self):
@@ -191,6 +202,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 			from Screens.MessageBox import MessageBox
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
 		else:
+			self.playOldService()
 			self.close()
 
 	def run(self):
@@ -199,6 +211,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		config.osd.dst_top.save()
 		config.osd.dst_height.save()
 		configfile.save()
+		self.playOldService()
 		self.close()
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):
