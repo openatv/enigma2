@@ -31,7 +31,7 @@
 		<widget source="session.CurrentService" render="Picon" zPosition="1" position="center,10" size="100,60" alphatest="on" >
 			<convert type="ServiceName">Reference</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,80" size="220,55" font="FdLcD;22" halign="center" >
+		<widget source="session.Event_Now" render="Label" position="0,80" size="400,55" font="FdLcD;22" halign="center" >
 			<convert type="EventName">Name</convert>
 		</widget>
 		<eLabel text="TUNER:" position="0,150" size="75,25" halign="Left" font="FdLcD;20" />

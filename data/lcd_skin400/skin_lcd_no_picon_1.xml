@@ -27,14 +27,14 @@
 	</screen>
 
 <!-- main-->
-	<screen name="InfoBarSummary" position="0,0" size="220,176">
-		<widget source="session.CurrentService" render="Label" position="0,10" size="220,25" font="FdLcD;25" halign="center" foregroundColor="#2E64FE">
+	<screen name="InfoBarSummary" position="0,0" size="400,240">
+		<widget source="session.CurrentService" render="Label" position="0,10" size="400,25" font="FdLcD;25" halign="center" foregroundColor="#2E64FE">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,50" size="220,55" font="FdLcD;20" halign="center" >
+		<widget source="session.Event_Now" render="Label" position="0,50" size="400,55" font="FdLcD;20" halign="center" >
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Progress" position="0,110" size="220,20"  borderWidth="1" >
+		<widget source="session.Event_Now" render="Progress" position="0,110" size="400,20"  borderWidth="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="0,150" size="110,25" font="Regular; 25" foregroundColor="#F78181" >

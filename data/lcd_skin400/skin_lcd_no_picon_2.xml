@@ -27,17 +27,17 @@
 	</screen>
 
 <!-- main-->
-	<screen name="InfoBarSummary" position="0,0" size="220,176">
-		<widget source="global.CurrentTime" render="Label" position="0,0" size="220,35" font="FdLcD;35" halign="center"  noWrap="1">
+	<screen name="InfoBarSummary" position="0,0" size="400,240">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="400,35" font="FdLcD;35" halign="center"  noWrap="1">
 			<convert type="ClockToText">Format:%d.%m.%Y</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="center,center" size="220,70" font="FdLcD;70" halign="center" valign="center" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="center,center" size="400,70" font="FdLcD;70" halign="center" valign="center" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
-		<!--widget source="session.CurrentService" render="Label" position="0,10" size="220,30" font="FdLcD;30" halign="left" noWrap="1" >
+		<!--widget source="session.CurrentService" render="Label" position="0,10" size="400,30" font="FdLcD;30" halign="left" noWrap="1" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,60" size="220,30" font="FdLcD;25" halign="left" noWrap="1">
+		<widget source="session.Event_Now" render="Label" position="0,60" size="400,30" font="FdLcD;25" halign="left" noWrap="1">
 			<convert type="EventName">Name</convert>
 		</widget-->
 		<widget source="session.Event_Now" render="Label" position="140,130" size="100,25" font="Regular; 20" foregroundColor="#F78181" >
