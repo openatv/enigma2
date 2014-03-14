@@ -989,7 +989,7 @@ class GeneralMenu(Screen):
 			menuitem = [l.name,'/'.join((l.path, l.iconstr)),boundFunction(self.runPlugin, (l, None)),l.weight]
                 else:
 			menuitem = [l.name,'',boundFunction(self.runPlugin, (l, None)),l.weight]
-		if l.name == _("Front Panel Update") or l.name == _("CrossEPG Downloader") or l.name == _("OpenWebif") or l.name == _("Software management") or l.name == _("MediaPortal"):
+		if l.name == _("Front Panel Update") or l.name == _("CrossEPG Downloader") or l.name == _("OpenWebif") or l.name == _("Software management") or l.name == _("MediaPortal") or l.name == _("AutoTimer"):
 			print "Skip =>", l.name
 		else:
 			list.append(tuple(menuitem))
