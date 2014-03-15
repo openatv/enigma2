@@ -57,6 +57,10 @@ class ConfigElement(object):
 
 	notifiers_final = property(getNotifiersFinal, setNotifiersFinal)
 
+	def clearNotifiers(self):
+		self.__notifiers = { }
+		self.__notifiers_final = { }
+
 	# you need to override this to do input validation
 	def setValue(self, value):
 		self._value = value
