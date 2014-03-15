@@ -48,6 +48,19 @@
 		<panel name="RecordIconPanel"/>
 	</screen>
 
+<!-- GraphMultiEPG -->
+	<screen name="GraphMultiEPG_summary" position="fill">
+		<widget source="parent.Service" render="Label" position="top" size="*,20" font="Bigger" noWrap="1">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<panel position="fill" name="SummaryClockPanel">
+			<widget source="parent.Event" render="Label" position="fill" font="Medium" noWrap="1">
+				<convert type="EventName">Name</convert>
+			</widget>
+		</panel>
+		<panel name="RecordIconPanel"/>
+	</screen>
+
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="fill">
 		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,20" font="Bigger" noWrap="1" >
