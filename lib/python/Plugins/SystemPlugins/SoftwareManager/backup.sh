@@ -36,7 +36,7 @@ if [ $MODEL = "gb800se" ] ; then
 	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue
+	EXTRA=$DIRECTORY/fullbackup_gigablue/$DATE/gigablue
 ## TESTING THE Gigablue HD 800 UE Models
 elif [ $MODEL = "gb800ue" ]; then
 	TYPE=GIGABLUE
@@ -47,7 +47,7 @@ elif [ $MODEL = "gb800ue" ]; then
 	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue
+	EXTRA=$DIRECTORY/fullbackup_gigablue/$DATE/gigablue
 ## TESTING THE Gigablue HD 800 UE Plus Models
 elif [ $MODEL = "gb800ueplus" ]; then
 	TYPE=GIGABLUE
@@ -58,7 +58,7 @@ elif [ $MODEL = "gb800ueplus" ]; then
 	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue
+	EXTRA=$DIRECTORY/fullbackup_gigablue/$DATE/gigablue
 ## TESTING THE Gigablue HD 800 SE Plus Models
 elif [ $MODEL = "gb800seplus" ]; then
 	TYPE=GIGABLUE
@@ -69,7 +69,7 @@ elif [ $MODEL = "gb800seplus" ]; then
 	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue
+	EXTRA=$DIRECTORY/fullbackup_gigablue/$DATE/gigablue
 ## TESTING THE Gigablue HD 800 Solo Model
 elif [ $MODEL = "gb800solo" ] ; then
 	TYPE=GIGABLUE
@@ -79,7 +79,7 @@ elif [ $MODEL = "gb800solo" ] ; then
 	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue
+	EXTRA=$DIRECTORY/fullbackup_gigablue/$DATE/gigablue
 ## TESTING THE Gigablue HD Quad Model
 elif [ $MODEL = "gbquad" ] ; then
 	TYPE=GIGABLUE
@@ -90,7 +90,7 @@ elif [ $MODEL = "gbquad" ] ; then
 	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue
+	EXTRA=$DIRECTORY/fullbackup_gigablue/$DATE/gigablue
 elif [ $MODEL = "gbquadplus" ] ; then
 	TYPE=GIGABLUE
 	MODEL="quadplus"
@@ -100,7 +100,7 @@ elif [ $MODEL = "gbquadplus" ] ; then
 	MTDKERNEL="mtd2"
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_$TYPE/$DATE/gigablue	
+	EXTRA=$DIRECTORY/fullbackup_gigablue/$DATE/gigablue	
 
 else
 	echo "No supported receiver found!"
