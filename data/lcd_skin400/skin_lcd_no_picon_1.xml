@@ -21,27 +21,27 @@
 
 <!-- template -->
 	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="120,142" size="100,45" font="FdLcD;40" halign="right" valign="bottom" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="250,185" size="150,55" font="FdLcD;55" halign="right" valign="bottom" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="400,240">
-		<widget source="session.CurrentService" render="Label" position="0,10" size="400,25" font="FdLcD;25" halign="center" foregroundColor="#2E64FE">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="400,35" font="FdLcD;30" valign="center" halign="center" foregroundColor="#2E64FE">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,50" size="400,55" font="FdLcD;20" halign="center" >
+		<widget source="session.Event_Now" render="Label" position="0,50" size="400,70" font="FdLcD;30" valign="center" halign="center" >
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Progress" position="0,110" size="400,20"  borderWidth="1" >
+		<widget source="session.Event_Now" render="Progress" position="0,140" size="400,30" borderWidth="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,150" size="110,25" font="Regular; 25" foregroundColor="#F78181" >
+		<widget source="session.Event_Now" render="Label" position="0,185" size="100,55" font="Regular; 25" foregroundColor="#F78181" >
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">FOLLOW</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="0,150" size="110,25" halign="Left" foregroundColor="#ff0000" font="FdLcD;20" zPosition="1" noWrap="1" >
+		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="128,185" size="130,55" foregroundColor="#ff0000" font="FdLcD;25" halign="center" valign="center" zPosition="1" noWrap="1" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<panel name="SummaryClockPanel" />

@@ -28,26 +28,20 @@
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="400,240">
-		<widget source="global.CurrentTime" render="Label" position="0,0" size="400,35" font="FdLcD;35" halign="center"  noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="400,50" font="FdLcD;50" halign="center" noWrap="1">
 			<convert type="ClockToText">Format:%d.%m.%Y</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="center,center" size="400,70" font="FdLcD;70" halign="center" valign="center" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="center,60" size="400,90" font="FdLcD;90" halign="center" valign="center" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
-		<!--widget source="session.CurrentService" render="Label" position="0,10" size="400,30" font="FdLcD;30" halign="left" noWrap="1" >
-			<convert type="ServiceName">Name</convert>
-		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,60" size="400,30" font="FdLcD;25" halign="left" noWrap="1">
-			<convert type="EventName">Name</convert>
-		</widget-->
-		<widget source="session.Event_Now" render="Label" position="140,130" size="100,25" font="Regular; 20" foregroundColor="#F78181" >
+		<widget source="session.Event_Now" render="Label" position="200,170" size="200,30" font="FdLcD;30" halign="right" foregroundColor="#F78181" >
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">FOLLOW</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Progress" position="bottom" size="*,18" borderWidth="3" >
+		<widget source="session.Event_Now" render="Progress" position="bottom" size="*,30" borderWidth="3" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="0,130" size="110,25" halign="Left" foregroundColor="#ff0000" font="FdLcD;20" zPosition="1" noWrap="1" >
+		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="0,170" size="200,30" halign="left" foregroundColor="#ff0000" font="FdLcD;30" zPosition="1" noWrap="1" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>

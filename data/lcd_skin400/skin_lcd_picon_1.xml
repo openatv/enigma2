@@ -28,17 +28,10 @@
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="400,240">
-		<widget source="session.CurrentService" render="PiconX" position="center,center" zPosition="1" halign="center" valign="center" size="400,132" alphatest="on">
+		<widget source="session.CurrentService" render="PiconX" position="center,center" zPosition="1" halign="center" valign="center" size="220,132" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
-		<!--widget source="global.CurrentTime" render="Label" position="132,145" size="88,46" font="FdLcD;35" noWrap="1">
-			<convert type="ClockToText"></convert>
-		</widget-->
-		
-		<!--widget source="session.Event_Now" render="Progress" position="0,155" size="130,14" borderWidth="3" >
-			<convert type="EventTime">Progress</convert>
-		</widget-->
-		<widget source="session.RecordState" render="FixedLabel" text="Record" position="center,140" foregroundColor="#ff0000" size="100,25" font="FdLcD;25" zPosition="0" noWrap="1">
+		<widget source="session.RecordState" render="FixedLabel" text="Record" position="center,205" foregroundColor="#ff0000" size="100,25" font="FdLcD;25" zPosition="0" noWrap="1">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>

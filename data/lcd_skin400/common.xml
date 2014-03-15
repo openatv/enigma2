@@ -89,11 +89,11 @@
 
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="400,240">
-		<widget source="global.CurrentTime" render="Label" position="0,0" size="400,24" font="FdLcD;22" halign="left"  noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="400,50" font="FdLcD;50" halign="center" noWrap="1">
 			<convert type="ClockToText">Format:%d.%m.%Y</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="center,center" size="225,100" font="FdLcD;85" halign="center" noWrap="1">
-			<convert type="ClockToText">Format:%H:%M</convert>
+		<widget source="global.CurrentTime" render="Label" position="center,60" size="400,120" font="FdLcD;120" halign="center" valign="center" noWrap="1">
+			<convert type="ClockToText"></convert>
 		</widget>
 		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="lcd/update_stable.png" position="135,146" size="30,30" >
 			<convert type="ConditionalShowHide"></convert>
@@ -101,7 +101,7 @@
 		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="lcd/update_unstable.png" position="135,146" size="30,30" >
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="center,150" size="190,22" font="FdLcD;22" zPosition="2" valign="bottom" halign="center" noWrap="1" foregroundColor="#ff0000" >
+		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="center,200" size="190,30" font="FdLcD;30" zPosition="2" valign="bottom" halign="center" noWrap="1" foregroundColor="#ff0000" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
