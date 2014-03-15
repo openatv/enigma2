@@ -27,125 +27,134 @@ from time import localtime, strftime
 #            or invalid.
 #
 class ConfigElement(object):
-	def __init__(self):
-		self.saved_value = None
-		self.save_forced = False
-		self.last_value = None
-		self.save_disabled = False
-		self.__notifiers = None
-		self.__notifiers_final = None
-		self.enabled = True
-		self.callNotifiersOnSaveAndCancel = False
+    def __init__(self):
+        self.saved_value = None
+        self.save_forced = False
+        self.last_value = None
+        self.save_disabled = False
+        self.__notifiers = { }
+        self.__notifiers_final = { }
+        self.enabled = True
+        self.callNotifiersOnSaveAndCancel = False
 
-	def getNotifiers(self):
-		if self.__notifiers is None:
-			self.__notifiers = [ ]
-		return self.__notifiers
+    def getNotifiers(self):
+        return [func for (func, val, call_on_save_and_cancel) in self.__notifiers.itervalues()]
 
-	def setNotifiers(self, val):
-		self.__notifiers = val
+    def setNotifiers(self, val):
+        print "just readonly access to notifiers is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers"
 
-	notifiers = property(getNotifiers, setNotifiers)
+    notifiers = property(getNotifiers, setNotifiers)
 
-	def getNotifiersFinal(self):
-		if self.__notifiers_final is None:
-			self.__notifiers_final = [ ]
-		return self.__notifiers_final
+    def getNotifiersFinal(self):
+        return [func for (func, val, call_on_save_and_cancel) in self.__notifiers_final.itervalues()]
 
-	def setNotifiersFinal(self, val):
-		self.__notifiers_final = val
+    def setNotifiersFinal(self, val):
+        print "just readonly access to notifiers_final is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers"
 
-	notifiers_final = property(getNotifiersFinal, setNotifiersFinal)
+    notifiers_final = property(getNotifiersFinal, setNotifiersFinal)
 
-	def clearNotifiers(self):
-		self.__notifiers = { }
-		self.__notifiers_final = { }
+    # you need to override this to do input validation
+    def setValue(self, value):
+        self._value = value
+        self.changed()
 
-	# you need to override this to do input validation
-	def setValue(self, value):
-		self._value = value
-		self.changed()
+    def getValue(self):
+        return self._value
 
-	def getValue(self):
-		return self._value
+    value = property(getValue, setValue)
 
-	value = property(getValue, setValue)
+    # you need to override this if self.value is not a string
+    def fromstring(self, value):
+        return value
 
-	# you need to override this if self.value is not a string
-	def fromstring(self, value):
-		return value
+    # you can overide this for fancy default handling
+    def load(self):
+        sv = self.saved_value
+        if sv is None:
+            self.value = self.default
+        else:
+            self.value = self.fromstring(sv)
 
-	# you can overide this for fancy default handling
-	def load(self):
-		sv = self.saved_value
-		if sv is None:
-			self.value = self.default
-		else:
-			self.value = self.fromstring(sv)
+    def tostring(self, value):
+        return str(value)
 
-	def tostring(self, value):
-		return str(value)
+    # you need to override this if str(self.value) doesn't work
+    def save(self):
+        if self.save_disabled or (self.value == self.default and not self.save_forced):
+            self.saved_value = None
+        else:
+            self.saved_value = self.tostring(self.value)
+        if self.callNotifiersOnSaveAndCancel:
+            self.changed()
 
-	# you need to override this if str(self.value) doesn't work
-	def save(self):
-		if self.save_disabled or (self.value == self.default and not self.save_forced):
-			self.saved_value = None
-		else:
-			self.saved_value = self.tostring(self.value)
-		if self.callNotifiersOnSaveAndCancel:
-			self.changed()
+    def cancel(self):
+        self.load()
+        if self.callNotifiersOnSaveAndCancel:
+            self.changed()
 
-	def cancel(self):
-		self.load()
-		if self.callNotifiersOnSaveAndCancel:
-			self.changed()
+    def isChanged(self):
+        sv = self.saved_value
+        if sv is None and self.value == self.default:
+            return False
+        return self.tostring(self.value) != sv
 
-	def isChanged(self):
-		sv = self.saved_value
-		if sv is None and self.value == self.default:
-			return False
-		return self.tostring(self.value) != sv
+    def changed(self):
+        if self.__notifiers:
+            for x in self.notifiers:
+                x(self)
 
-	def changed(self):
-		if self.__notifiers:
-			for x in self.notifiers:
-				x(self)
+    def changedFinal(self):
+        if self.__notifiers_final:
+            for x in self.notifiers_final:
+                x(self)
 
-	def changedFinal(self):
-		if self.__notifiers_final:
-			for x in self.notifiers_final:
-				x(self)
+    # immediate_feedback = True means call notifier on every value CHANGE
+    # immediate_feedback = False means call notifier on leave the config element (up/down) when value have CHANGED
+    # call_on_save_or_cancel = True means call notifier always on save/cancel.. even when value have not changed
+    def addNotifier(self, notifier, initial_call = True, immediate_feedback = True, call_on_save_or_cancel = False):
+        assert callable(notifier), "notifiers must be callable"
+        if immediate_feedback:
+            self.__notifiers[str(notifier)] = (notifier, self.value, call_on_save_or_cancel)
+        else:
+            self.__notifiers_final[str(notifier)] = (notifier, self.value, call_on_save_or_cancel)
+        # CHECKME:
+        # do we want to call the notifier
+        #  - at all when adding it? (yes, though optional)
+        #  - when the default is active? (yes)
+        #  - when no value *yet* has been set,
+        #    because no config has ever been read (currently yes)
+        #    (though that's not so easy to detect.
+        #     the entry could just be new.)
+        if initial_call:
+            notifier(self)
 
-	def addNotifier(self, notifier, initial_call = True, immediate_feedback = True):
-		assert callable(notifier), "notifiers must be callable"
-		if immediate_feedback:
-			self.notifiers.append(notifier)
-		else:
-			self.notifiers_final.append(notifier)
-		# CHECKME:
-		# do we want to call the notifier
-		#  - at all when adding it? (yes, though optional)
-		#  - when the default is active? (yes)
-		#  - when no value *yet* has been set,
-		#    because no config has ever been read (currently yes)
-		#    (though that's not so easy to detect.
-		#     the entry could just be new.)
-		if initial_call:
-			notifier(self)
 
-	def disableSave(self):
-		self.save_disabled = True
+    def removeNotifier(self, notifier):
+        try:
+            del self.__notifiers[str(notifier)]
+        except:
+            try:
+                del self.__notifiers_final[str(notifier)]
+            except:
+                pass
 
-	def __call__(self, selected):
-		return self.getMulti(selected)
+    def clearNotifiers(self):
+        self.__notifiers = { }
+        self.__notifiers_final = { }
 
-	def onSelect(self, session):
-		pass
+    def disableSave(self):
+        self.save_disabled = True
 
-	def onDeselect(self, session):
-		if not self.last_value == self.value:
-			self.changedFinal()
-			self.last_value = self.value
+    def __call__(self, selected):
+        return self.getMulti(selected)
+
+    def onSelect(self, session):
+        pass
+
+    def onDeselect(self, session):
+        if not self.last_value == self.value:
+            self.changedFinal()
+            self.last_value = self.value
 
 KEY_LEFT = 0
 KEY_RIGHT = 1
