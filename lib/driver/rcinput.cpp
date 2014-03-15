@@ -111,7 +111,16 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		ev->code = KEY_F6;
 		
 	}
-#endif		
+#endif
+
+#if KEY_F3_TO_KEY_LIST
+	if (ev->code == KEY_F3)
+	{
+		/* Xtrend New Remote rc has a KEY_F3 key, which sends KEY_LIST events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_LIST;
+		
+	}
+#endif
 
 #if KEY_TV_TO_KEY_MODE
 	if (ev->code == KEY_TV)
