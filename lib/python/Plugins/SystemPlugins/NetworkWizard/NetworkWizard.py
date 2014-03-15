@@ -1,4 +1,4 @@
-from boxbranding import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName, getBoxType
 from os import system
 
 from enigma import eTimer
@@ -149,6 +149,8 @@ class NetworkWizard(WizardLanguage, Rc):
 		if index == 'end':
 			self.NextStep = 'end'
 		elif index == 'eth0':
+			self.NextStep = 'nwconfig'
+		elif index == 'eth1' and getBoxType() == "et10000":
 			self.NextStep = 'nwconfig'
 		else:
 			self.NextStep = 'asknetworktype'

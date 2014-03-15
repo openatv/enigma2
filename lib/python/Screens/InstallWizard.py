@@ -33,7 +33,7 @@ class InstallWizard(Screen, ConfigListScreen):
 			self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
 			is_found = False
 			for x in self.adapters:
-				if x[1] == 'eth0':
+				if x[1] == 'eth0' or x[1] == 'eth1':
 					if iNetwork.getAdapterAttribute(x[1], 'up'):
 						self.ipConfigEntry = ConfigIP(default = iNetwork.getAdapterAttribute(x[1], "ip"))
 						iNetwork.checkNetworkState(self.checkNetworkCB)
