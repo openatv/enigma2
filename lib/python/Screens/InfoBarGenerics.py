@@ -965,6 +965,7 @@ class InfoBarChannelSelection:
 			self.servicelist.historyZap(+1)
 
 	def switchChannelUp(self):
+		self.keyHide()
 		if not self.LongButtonPressed:
 			if not config.usage.show_bouquetalways.getValue():
 				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
@@ -983,6 +984,7 @@ class InfoBarChannelSelection:
 				self.session.execDialog(self.servicelist2)
 
 	def switchChannelDown(self):
+		self.keyHide()
 		if not self.LongButtonPressed:
 			if not config.usage.show_bouquetalways.getValue():
 				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
