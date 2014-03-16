@@ -64,7 +64,7 @@ config.plugins.filecommander = ConfigSubsection()
 config.plugins.filecommander.savedir_left = ConfigYesNo(default = True)
 config.plugins.filecommander.savedir_right = ConfigYesNo(default = True)
 config.plugins.filecommander.add_mainmenu_entry = ConfigYesNo(default = False)
-config.plugins.filecommander.add_extensionmenu_entry = ConfigYesNo(default = True)
+config.plugins.filecommander.add_extensionmenu_entry = ConfigYesNo(default = False)
 config.plugins.filecommander.path_default = ConfigText(default = "/")
 config.plugins.filecommander.path_left = ConfigText(default = "/")
 config.plugins.filecommander.path_right = ConfigText(default = "/")
@@ -851,7 +851,7 @@ def exit(session, result):
 
 def Plugins(path,**kwargs):
 	desc_mainmenu  = PluginDescriptor(name=pname, description=pdesc,  where = PluginDescriptor.WHERE_MENU, fnc = start_from_mainmenu)
-	desc_pluginmenu = PluginDescriptor(name=pname, description=pdesc,  where = PluginDescriptor.WHERE_PLUGINMENU, fnc = start_from_pluginmenu)
+	#desc_pluginmenu = PluginDescriptor(name=pname, description=pdesc,  where = PluginDescriptor.WHERE_PLUGINMENU, fnc = start_from_pluginmenu)
 	desc_extensionmenu = PluginDescriptor(name=pname, description=pdesc, where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = start_from_pluginmenu)
 	desc_filescan = PluginDescriptor(name=pname, where = PluginDescriptor.WHERE_FILESCAN, fnc = start_from_filescan)
 	list = []
