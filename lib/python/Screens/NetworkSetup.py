@@ -36,6 +36,25 @@ if float(getVersionString()) >= 4.0:
 else:
 	basegroup = "task-base"
 
+class NetworkSummary(Screen):
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent = parent)
+		self["entry"] = StaticText("")
+		self["desc"] = StaticText("")
+		self.onShow.append(self.addWatcher)
+		self.onHide.append(self.removeWatcher)
+
+	def addWatcher(self):
+		self.parent.onChangedEntry.append(self.selectionChanged)
+		self.parent.selectionChanged()
+
+	def removeWatcher(self):
+		self.parent.onChangedEntry.remove(self.selectionChanged)
+
+	def selectionChanged(self, name, desc):
+		self["entry"].text = name.split(",")[8][2:-1]
+		self["desc"].text = desc
+		
 class NetworkAdapterSelection(Screen,HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -940,8 +959,9 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self["menulist"].pageDown()
 
 	def createSummary(self):
-		from Screens.PluginBrowser import PluginBrowserSummary
-		return PluginBrowserSummary
+		return NetworkSummary
+		#from Screens.PluginBrowser import PluginBrowserSummary
+		#return PluginBrowserSummary
 
 	def selectionChanged(self):
 		if self["menulist"].getCurrent()[0] == 'edit':
