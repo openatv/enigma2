@@ -682,7 +682,7 @@ class NumberZap(Screen):
 	def handleServiceName(self):
 		if self.searchNumber:
 			self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
-			self ["servicename"].text = ServiceReference(self.service).getServiceName()
+			self["servicename"].setText(ServiceReference(self.service).getServiceName())
 			if not self.startBouquet:
 				self.startBouquet = self.bouquet
 
@@ -693,31 +693,31 @@ class NumberZap(Screen):
 				self.service, self.bouquet = self.searchNumber(int(self["number"].getText()), firstBouquetOnly = True)
 			else:
 				self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
-			self ["servicename"].text = ServiceReference(self.service).getServiceName()
+			self["servicename"].setText(ServiceReference(self.service).getServiceName())
 
 	def keyNumberGlobal(self, number):
 		self.Timer.start(5000, True)
-		self.field += str(number)
-		self["number"].setText(self.field)
-		self["number_summary"].setText(self.field)
+		self.numberString += str(number)
+		self["number"].setText(self.numberString)
+		self["number_summary"].setText(self.numberString)
 
 		self.handleServiceName()
 
-		if len(self.field) >= 4:
+		if len(self.numberString) >= 4:
 			self.keyOK()
 
 	def __init__(self, session, number, searchNumberFunction = None):
 		Screen.__init__(self, session)
 		self.onChangedEntry = [ ]
-		self.field = str(number)
+		self.numberString = str(number)
 		self.searchNumber = searchNumberFunction
 		self.startBouquet = None
 
 		self["channel"] = Label(_("Channel:"))
 		self["channel_summary"] = StaticText(_("Channel:"))
 
-		self["number"] = Label(self.field)
-		self["number_summary"] = StaticText(self.field)
+		self["number"] = Label(self.numberString)
+		self["number_summary"] = StaticText(self.numberString)
 		self["servicename"] = Label()
 
 		self.handleServiceName()
