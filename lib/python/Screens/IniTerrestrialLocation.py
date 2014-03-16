@@ -58,6 +58,13 @@ def getInitialTerrestrialTransponderList(tlist, region):
 			tlist.append(parm)
 			
 class IniTerrestrialLocation(Screen):
+	skin = """
+	<screen name="IniTerrestrialLocation" position="center,center" size="560,550">
+		<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget name="config" position="0,90" size="560,375" transparent="0" enableWrapAround="1" scrollbarMode="showOnDemand" />
+		<widget name="text" position="0,e-75" size="560,75" font="Regular;18" halign="center" valign="top" transparent="0" zPosition="1" />
+	</screen>"""
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Terrestrial Location Settings"))
@@ -105,16 +112,24 @@ class IniTerrestrialLocation(Screen):
 		self.nimConfig0.terrestrial.setValue(str(item[0]))
 		self.nimConfig0.terrestrial.save()
 
-		self.nim1 = nimmanager.nim_slots[1]
-		self.nimConfig1 = self.nim1.config
-		self.nimConfig1.terrestrial.setValue(str(item[0]))
-		self.nimConfig1.terrestrial.save()
+		if len(nimmanager.nim_slots) > 1:
+			self.nim1 = nimmanager.nim_slots[1]
+			self.nimConfig1 = self.nim1.config
+			self.nimConfig1.terrestrial.setValue(str(item[0]))
+			self.nimConfig1.terrestrial.save()
+			
+			if len(nimmanager.nim_slots) > 2:
+				self.nim2 = nimmanager.nim_slots[2]
+				self.nimConfig2 = self.nim2.config
+				self.nimConfig2.terrestrial.setValue(str(item[0]))
+				self.nimConfig2.terrestrial.save()
+
+				if len(nimmanager.nim_slots) > 3:
+					self.nim3 = nimmanager.nim_slots[3]
+					self.nimConfig3 = self.nim3.config
+					self.nimConfig3.terrestrial.setValue(str(item[0]))
+					self.nimConfig3.terrestrial.save()
 		
-		self.nim2 = nimmanager.nim_slots[2]
-		self.nimConfig2 = self.nim2.config
-		self.nimConfig2.terrestrial.setValue(str(item[0]))
-		self.nimConfig2.terrestrial.save()
-	    
 	def getNetworksForNim(self, nim):
 		if nim.isCompatible("DVB-S"):
 			networks = nimmanager.getSatListForNim(nim.slot)
