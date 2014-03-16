@@ -2115,6 +2115,7 @@ class PiPZapSelection(ChannelSelection):
 		ChannelSelection.__init__(self, session)
 		self.skinName = ["SlimChannelSelection","SimpleChannelSelection","ChannelSelection"]
 
+		self.startwith = None
 		if plugin_PiPServiceRelation_installed:
 			self.pipServiceRelation = getRelationDict()
 		else:
@@ -2125,6 +2126,11 @@ class PiPZapSelection(ChannelSelection):
 		self.onShown.append(self.disableKeyMap)
 
 	def disableKeyMap(self):
+		if not self.session.pipshown:
+			self.startwith = self.servicelist.getCurrent()
+			self.session.pip = self.session.instantiateDialog(PictureInPicture)
+			self.session.pip.show()
+			self.session.pip.playService(self.startwith)
 		eActionMap.getInstance().unbindNativeKey("ListboxActions", 0)
 		eActionMap.getInstance().unbindNativeKey("ListboxActions", 1)
 		self.keymaptimer.start(1000, True)
@@ -2157,6 +2163,23 @@ class PiPZapSelection(ChannelSelection):
 					self.session.pipshown = False
 					del self.session.pip
 					self.session.openWithCallback(self.close, MessageBox, _("No free tuner, could not open Picture in Picture"), MessageBox.TYPE_ERROR)
+
+	def cancel(self):
+		if self.revertMode is None:
+			self.restoreRoot()
+			if self.dopipzap:
+				# This unfortunately won't work with subservices
+				self.setCurrentSelection(self.session.pip.getCurrentService())
+			else:
+				lastservice = eServiceReference(self.lastservice.getValue())
+				if lastservice.valid() and self.getCurrentSelection() != lastservice:
+					self.setCurrentSelection(lastservice)
+		self.asciiOff()
+		if self.startwith == self.session.pip.getCurrentService():
+			self.session.pipshown = False
+			del self.session.pip
+		self.correctChannelNumber()
+		self.close(None)
 
 class RadioInfoBar(Screen):
 	def __init__(self, session):
