@@ -855,7 +855,7 @@ def Plugins(path,**kwargs):
 	desc_extensionmenu = PluginDescriptor(name=pname, description=pdesc, where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = start_from_pluginmenu)
 	desc_filescan = PluginDescriptor(name=pname, where = PluginDescriptor.WHERE_FILESCAN, fnc = start_from_filescan)
 	list = []
-	list.append(desc_pluginmenu)
+	#list.append(desc_pluginmenu)
 ####
 	#buggie 
 #	list.append(desc_filescan)
