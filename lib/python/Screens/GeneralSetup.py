@@ -19,7 +19,7 @@ from Screens.Satconfig import NimSelection
 from Screens.ScanSetup import ScanSimple, ScanSetup
 from Screens.Setup import Setup, getSetupTitle
 from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, HarddiskConvertExt4Selection
-from Screens.SkinSelector import LcdSkinSelector
+from Screens.SkinSelector import SkinSelector, LcdSkinSelector
 
 from Plugins.Plugin import PluginDescriptor
 from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerSetup, RotorNimSelection
@@ -307,6 +307,7 @@ class GeneralSetup(Screen):
 			self.sublist.append(QuickSubMenuEntryComponent("OSD Position",_("Adjust OSD Size"),_("Adjust OSD Size")))
 		if SystemInfo["CanChange3DOsd"]:
 			self.sublist.append(QuickSubMenuEntryComponent("OSD 3D Setup",_("3D Setup side by side"),_("3D Setup side by side")))
+		self.sublist.append(QuickSubMenuEntryComponent("Skin Setup",_("Choose menu skin"),_("Choose menu skin")))
 
 		self["sublist"].l.setList(self.sublist)
 
@@ -455,6 +456,8 @@ class GeneralSetup(Screen):
 			self.session.open(LanguageSelection)
 		elif item[0] == _("Front Panel Settings"):
 			self.openSetup("display")
+		elif item[0] == _("Skin Setup"):
+			self.session.open(SkinSelector)
 		elif item[0] == _("LCD Skin Setup"):
 			self.session.open(LcdSkinSelector)
 		elif item[0] == _("OSD Settings"):
