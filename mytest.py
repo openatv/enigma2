@@ -1,5 +1,6 @@
 import sys
 import os
+from time import time
 
 if os.path.isfile("/usr/lib/enigma2/python/enigma.zip"):
 	sys.path.append("/usr/lib/enigma2/python/enigma.zip")
@@ -70,15 +71,12 @@ config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandb
 def useSyncUsingChanged(configelement):
 	if config.misc.SyncTimeUsing.getValue() == "0":
 		print "[Time By]: Transponder"
-		value = True
-		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
+		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(True)
+		enigma.eEPGCache.getInstance().timeUpdated()
 	else:
 		print "[Time By]: NTP"
-		value = False
-		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
-		from Components.Console import Console
-		Console = Console()
-		Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.getValue())
+		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)
+		enigma.eEPGCache.getInstance().timeUpdated()
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 
 def NTPserverChanged(configelement):
@@ -372,7 +370,6 @@ profile("Standby,PowerKey")
 import Screens.Standby
 from Screens.Menu import MainMenu, mdom
 from GlobalActions import globalActionMap
-from time import time
 
 class PowerKey:
 	""" PowerKey stuff - handles the powerkey press and powerkey release actions"""

@@ -122,6 +122,8 @@ class VideoSetup(Screen, ConfigListScreen):
 					self.list.append(getConfigListEntry(_("Auto scart switching"), config.av.vcrswitch, _("When enabled, your receiver will detect activity on the VCR SCART input.")))
 
 		if level >= 1:
+			if SystemInfo["CanPcmMultichannel"]:
+				self.list.append(getConfigListEntry(_("PCM Multichannel"), config.av.pcm_multichannel, _("Choose whether multi channel sound tracks should be output as PCM.")))
 			if SystemInfo["CanDownmixAC3"]:
 				self.list.append(getConfigListEntry(_("Dolby Digital / DTS downmix"), config.av.downmix_ac3, _("Choose whether multi channel sound tracks should be downmixed to stereo.")))
 			if SystemInfo["CanDownmixAAC"]:

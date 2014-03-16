@@ -107,24 +107,24 @@ class EPGSelection(Screen, HelpableScreen):
 			{
 				'cancel': (self.closeScreen, _('Exit EPG')),
 				'OK': (self.OK, _('Zap to channel (setup in menu)')),
-				'OKLong': (self.OK, _('Zap to channel and close (setup in menu)'))
+				'OKLong': (self.OKLong, _('Zap to channel and close (setup in menu)'))
 			}, -1)
 		self['okactions'].csel = self
 		self['colouractions'] = HelpableActionMap(self, 'ColorActions', 
 			{
 				'red': (self.redButtonPressed, _('IMDB search for current event')),
-				'redlong': (self.redButtonPressed, _('Sort EPG List')),
+				'redlong': (self.redButtonPressedLong, _('Sort EPG List')),
 				'green': (self.greenButtonPressed, _('Add/Remove timer for current event')),
-				'greenlong': (self.greenButtonPressed, _('Show Timer List')),
+				'greenlong': (self.greenButtonPressedLong, _('Show Timer List')),
 				'yellow': (self.yellowButtonPressed, _('Search for similar events')),
 				'blue': (self.blueButtonPressed, _('Add a auto timer for current event')),
-				'bluelong': (self.blueButtonPressed, _('Show AutoTimer List'))
+				'bluelong': (self.blueButtonPressedLong, _('Show AutoTimer List'))
 			}, -1)
 		self['colouractions'].csel = self
 		self['recordingactions'] = HelpableActionMap(self, 'InfobarInstantRecord', 
 			{
 				'ShortRecord': (self.recButtonPressed, _('Add a record timer for current event')),
-				'LongRecord': (self.recButtonPressed, _('Add a zap timer for current event'))
+				'LongRecord': (self.recButtonPressedLong, _('Add a zap timer for current event'))
 			}, -1)
 		self['recordingactions'].csel = self
 		if self.type == EPG_TYPE_SIMILAR:
@@ -133,7 +133,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', 
 				{
 					'info': (self.Info, _('Show detailed event info')),
-					'infolong': (self.Info, _('Show single epg for current channel')),
+					'infolong': (self.InfoLong, _('Show single epg for current channel')),
 					'menu': (self.createSetup, _('Setup menu'))
 				}, -1)
 			self['epgactions'].csel = self
@@ -165,7 +165,7 @@ class EPGSelection(Screen, HelpableScreen):
 						'prevService': (self.prevPage, _('Move up a page')),
 						'input_date_time': (self.enterDateTime, _('Goto specific data/time')),
 						'info': (self.Info, _('Show detailed event info')),
-						'infolong': (self.Info, _('Show single epg for current channel')),
+						'infolong': (self.InfoLong, _('Show single epg for current channel')),
 						'menu': (self.createSetup, _('Setup menu'))
 					}, -1)
 				self['epgactions'].csel = self
@@ -186,7 +186,7 @@ class EPGSelection(Screen, HelpableScreen):
 						'prevService': (self.prevService, _('Goto previous channel')),
 						'input_date_time': (self.enterDateTime, _('Goto specific data/time')),
 						'info': (self.Info, _('Show detailed event info')),
-						'infolong': (self.Info, _('Show single epg for current channel')),
+						'infolong': (self.InfoLong, _('Show single epg for current channel')),
 						'menu': (self.createSetup, _('Setup menu'))
 					}, -1)
 				self['epgactions'].csel = self
@@ -283,7 +283,7 @@ class EPGSelection(Screen, HelpableScreen):
 					'prevBouquet': (self.prevBouquet, _('Goto previous bouquet')),
 					'input_date_time': (self.enterDateTime, _('Goto specific data/time')),
 					'info': (self.Info, _('Show detailed event info')),
-					'infolong': (self.Info, _('Show single epg for current channel')),
+					'infolong': (self.InfoLong, _('Show single epg for current channel')),
 					'tv': (self.Bouquetlist, _('Toggle between bouquet/epg lists')),
 					'tvlong': (self.togglePIG, _('Toggle Picture In Graphics')),
 					'menu': (self.createSetup, _('Setup menu'))
@@ -354,7 +354,7 @@ class EPGSelection(Screen, HelpableScreen):
 					'prevBouquet': (self.prevBouquet, _('Goto previous bouquet')),
 					'input_date_time': (self.enterDateTime, _('Goto specific data/time')),
 					'info': (self.Info, _('Show detailed event info')),
-					'infolong': (self.Info, _('Show single epg for current channel')),
+					'infolong': (self.InfoLong, _('Show single epg for current channel')),
 					'tv': (self.Bouquetlist, _('Toggle between bouquet/epg lists')),
 					'menu': (self.createSetup, _('Setup menu'))
 				}, -1)
@@ -779,7 +779,12 @@ class EPGSelection(Screen, HelpableScreen):
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
 			self.openIMDb()
-		elif InfoBarInstance.LongButtonPressed:
+
+	def redButtonPressedLong(self):
+		self.closeEventViewDialog()
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance.LongButtonPressed:
 			self.sortEpg()
 
 	def greenButtonPressed(self):
@@ -788,7 +793,12 @@ class EPGSelection(Screen, HelpableScreen):
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
 			self.RecordTimerQuestion(True)
-		elif InfoBarInstance.LongButtonPressed:
+
+	def greenButtonPressedLong(self):
+		self.closeEventViewDialog()
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance.LongButtonPressed:
 			self.showTimerList()
 
 	def yellowButtonPressed(self):
@@ -804,7 +814,12 @@ class EPGSelection(Screen, HelpableScreen):
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
 			self.addAutoTimer()
-		elif InfoBarInstance.LongButtonPressed:
+
+	def blueButtonPressedLong(self):
+		self.closeEventViewDialog()
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance.LongButtonPressed:
 			self.showAutoTimerList()
 
 	def openSimilarList(self, eventid, refstr):
@@ -1009,7 +1024,11 @@ class EPGSelection(Screen, HelpableScreen):
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
 			self.RecordTimerQuestion()
-		elif InfoBarInstance.LongButtonPressed:
+
+	def recButtonPressedLong(self):
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance.LongButtonPressed:
 			self.doZapTimer()
 
 	def RemoveChoiceBoxCB(self, choice):
@@ -1116,7 +1135,11 @@ class EPGSelection(Screen, HelpableScreen):
 					self.zapTo()
 				if config.epgselection.graph_ok.getValue() == 'Zap + Exit' or config.epgselection.enhanced_ok.getValue() == 'Zap + Exit' or config.epgselection.infobar_ok.getValue() == 'Zap + Exit' or config.epgselection.multi_ok.getValue() == 'Zap + Exit':
 					self.zap()
-		elif InfoBarInstance.LongButtonPressed:
+
+	def OKLong(self):
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance.LongButtonPressed:
 			if self.zapnumberstarted:
 				self.dozumberzap()
 			else:
@@ -1135,7 +1158,11 @@ class EPGSelection(Screen, HelpableScreen):
 				self.OpenSingleEPG()
 			else:
 				self.infoKeyPressed()
-		elif InfoBarInstance.LongButtonPressed:
+
+	def InfoLong(self):
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance.LongButtonPressed:
 			if self.type == EPG_TYPE_GRAPH and config.epgselection.graph_infolong.getValue() == 'Channel Info':
 				self.infoKeyPressed()
 			elif self.type == EPG_TYPE_GRAPH and config.epgselection.graph_infolong.getValue() == 'Single EPG':
@@ -1275,6 +1302,12 @@ class EPGSelection(Screen, HelpableScreen):
 			ref = lst.getCurrent()[1]
 			if ref is not None:
 				if (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH) and config.epgselection.infobar_preview_mode.getValue() == '2':
+					if not prev:
+						if self.session.pipshown:
+							self.session.pipshown = False
+							del self.session.pip
+						self.zapFunc(ref.ref, bouquet = self.getCurrentBouquet(), preview = False)
+						return
 					if not self.session.pipshown:
 						self.session.pip = self.session.instantiateDialog(PictureInPicture)
 						self.session.pip.show()
@@ -1284,17 +1317,15 @@ class EPGSelection(Screen, HelpableScreen):
 						service = eServiceReference(n_service)
 					else:
 						service = ref.ref
-					if self.session.pipshown and self.currch == service.toString():
-						self.session.pipshown = False
-						del self.session.pip
+					if self.currch == service.toString():
+						if self.session.pipshown:
+							self.session.pipshown = False
+							del self.session.pip
 						self.zapFunc(ref.ref, bouquet = self.getCurrentBouquet(), preview = False)
 						return
 					if self.prevch != service.toString() and currservice != service.toString():
 						self.session.pip.playService(service)
 						self.currch = self.session.pip.getCurrentService() and str(self.session.pip.getCurrentService().toString())
-					elif currservice == service.toString():
-						self.session.pipshown = False
-						del self.session.pip
 				else:
 					self.zapFunc(ref.ref, bouquet = self.getCurrentBouquet(), preview = prev)
 					self.currch = self.session.nav.getCurrentlyPlayingServiceReference() and str(self.session.nav.getCurrentlyPlayingServiceReference().toString())

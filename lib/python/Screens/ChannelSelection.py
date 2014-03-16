@@ -212,7 +212,7 @@ class ChannelContextMenu(Screen):
 				if not csel.movemode:
 					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level = 1)
 					if not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
-						if not current.toString().startswith("-1"):
+						if current.type != -1:
 							menu.append(ChoiceEntryComponent(text = (_("add marker"), self.showMarkerInputBox)))
 						if haveBouquets:
 							append_when_current_valid(current, menu, (_("enable bouquet edit"), self.bouquetMarkStart), level = 0)
@@ -1089,11 +1089,6 @@ class ChannelSelectionBase(Screen):
 		self.servicelist = self["list"]
 
 		self.numericalTextInput = NumericalTextInput(handleTimeout=False)
-		if config.usage.show_channel_jump_in_servicelist.getValue() == "alpha":
-			self.numericalTextInput.setUseableChars(u'abcdefghijklmnopqrstuvwxyz1234567890')
-		else:
-			self.numericalTextInput.setUseableChars(u'1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-
 
 		self.servicePathTV = [ ]
 		self.servicePathRadio = [ ]
@@ -1131,6 +1126,13 @@ class ChannelSelectionBase(Screen):
 			})
 		self.maintitle = _("Channel selection")
 		self.recallBouquetMode()
+		self.onShown.append(self.applyKeyMap)
+
+	def applyKeyMap(self):
+		if config.usage.show_channel_jump_in_servicelist.getValue() == "alpha":
+			self.numericalTextInput.setUseableChars(u'abcdefghijklmnopqrstuvwxyz1234567890')
+		else:
+			self.numericalTextInput.setUseableChars(u'1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
 	def getBouquetNumOffset(self, bouquet):
 		if not config.usage.multibouquet.getValue():
@@ -1465,17 +1467,23 @@ class ChannelSelectionBase(Screen):
 						self.enterPath(self.bouquet_root)
 
 	def keyNumberGlobal(self, number):
-		if self.isBasePathEqual(self.bouquet_root):
-			self.BouquetNumberActions(number)
-		else:
-			current_root = self.getRoot()
-			if  current_root and 'FROM BOUQUET "bouquets.' in current_root.getPath():
+		if config.usage.show_channel_jump_in_servicelist.getValue() == "quick":
+			if self.isBasePathEqual(self.bouquet_root):
 				self.BouquetNumberActions(number)
 			else:
-				unichar = self.numericalTextInput.getKey(number)
-				charstr = unichar.encode("utf-8")
-				if len(charstr) == 1:
-					self.servicelist.moveToChar(charstr[0])
+				current_root = self.getRoot()
+				if  current_root and 'FROM BOUQUET "bouquets.' in current_root.getPath():
+					self.BouquetNumberActions(number)
+				else:
+					unichar = self.numericalTextInput.getKey(number)
+					charstr = unichar.encode("utf-8")
+					if len(charstr) == 1:
+						self.servicelist.moveToChar(charstr[0])
+		else:
+			unichar = self.numericalTextInput.getKey(number)
+			charstr = unichar.encode("utf-8")
+			if len(charstr) == 1:
+				self.servicelist.moveToChar(charstr[0])
 
 	def BouquetNumberActions(self, number):
 		if number == 1: #Set focus on current playing service when available in current userbouquet
@@ -1763,7 +1771,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		elif self.bouquet_mark_edit != OFF:
 			if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
 				self.doMark()
-		elif not (ref.flags & eServiceReference.isMarker or ref.toString().startswith("-1")):
+		elif not (ref.flags & eServiceReference.isMarker or ref.type == -1):
 			root = self.getRoot()
 			if not root or not (root.flags & eServiceReference.isGroup):
 				self.zap(enable_pipzap = doClose, preview_zap = not doClose)
@@ -2167,7 +2175,7 @@ class PiPZapSelection(ChannelSelection):
 				else:
 					self.session.pipshown = False
 					del self.session.pip
-					self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
+					self.session.openWithCallback(self.close, MessageBox, _("No free tuner, could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 
 class RadioInfoBar(Screen):
 	def __init__(self, session):

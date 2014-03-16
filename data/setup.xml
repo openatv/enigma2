@@ -68,7 +68,7 @@
 		<item level="1" text="Channel list cursor behavior" description="Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons.">config.usage.servicelist_cursor_behavior</item>
 		<item level="1" text="Enable multiple bouquets" description="Services may be grouped in bouquets. When enabled, you can use more then one bouquet.">config.usage.multibouquet</item>
 		<item level="1" text="Enable panic button" description="When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history.">config.usage.panicbutton</item>
-		<item level="1" text="Jump first press in channel selection*" description="This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first)">config.usage.show_channel_jump_in_servicelist</item>
+		<item level="1" text="Jump first press in channel selection" description="This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are perfomed. ">config.usage.show_channel_jump_in_servicelist</item>
 		<item level="0" text="Show event-progress in channel selection" description="Set the type of the progress indication in the channel selection screen.">config.usage.show_event_progress_in_servicelist</item>
 		<item level="0" text="Show channel numbers in channel selection" description="When enabled, show channel numbers in the channel selection screen.">config.usage.show_channel_numbers_in_servicelist</item>
 		<item level="1" text="Show service type icons" description="Configure if and how service type icons will be shown.">config.usage.servicetype_icon_mode</item>
@@ -327,6 +327,7 @@
 		<item level="2" text="Service font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_servfs</item>
 		<item level="2" text="Service width" description="Configure the width allocated to the service name.">config.epgselection.infobar_servicewidth</item>
 		<item level="2" text="Picon width" description="Configure the width allocated to the picon.">config.epgselection.infobar_piconwidth</item>
+		<item level="2" text="Info icon width" description="Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all.">config.epgselection.infobar_infowidth</item>
 		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_timelinefs</item>
 		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format.">config.epgselection.infobar_timeline24h</item>
 		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.infobar_prevtimeperiod</item>
@@ -351,6 +352,7 @@
 		<item level="2" text="Service font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.graph_servfs</item>
 		<item level="2" text="Service width" description="Configure the width allocated to the service name.">config.epgselection.graph_servicewidth</item>
 		<item level="2" text="Picon width" description="Configure the width allocated to the picon.">config.epgselection.graph_piconwidth</item>
+		<item level="2" text="Info icon width" description="Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all.">config.epgselection.graph_infowidth</item>
 		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.graph_timelinefs</item>
 		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format.">config.epgselection.graph_timeline24h</item>
 		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.graph_prevtimeperiod</item>

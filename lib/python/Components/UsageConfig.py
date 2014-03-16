@@ -258,6 +258,7 @@ def InitUsageConfig():
 		('no', _("No")) ])
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default = True)
 	config.usage.show_channel_jump_in_servicelist = ConfigSelection(default="alpha", choices = [
+					("quick", _("Quick Actions")),
 					("alpha", _("Alpha")),
 					("number", _("Number"))])
 
@@ -746,6 +747,7 @@ def InitUsageConfig():
 	config.epgselection.infobar_timeline24h = ConfigYesNo(default = True)
 	config.epgselection.infobar_servicewidth = ConfigSelectionNumber(default = 250, stepwidth = 1, min = 70, max = 500, wraparound = True)
 	config.epgselection.infobar_piconwidth = ConfigSelectionNumber(default = 100, stepwidth = 1, min = 70, max = 500, wraparound = True)
+	config.epgselection.infobar_infowidth = ConfigSelectionNumber(default = 50, stepwidth = 25, min = 0, max = 150, wraparound = True)
 	config.epgselection.enhanced_preview_mode = ConfigYesNo(default = True)
 	config.epgselection.enhanced_ok = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
 	config.epgselection.enhanced_oklong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
@@ -780,6 +782,7 @@ def InitUsageConfig():
 	config.epgselection.graph_heightswitch = NoSave(ConfigYesNo(default = False))
 	config.epgselection.graph_servicewidth = ConfigSelectionNumber(default = 250, stepwidth = 1, min = 70, max = 500, wraparound = True)
 	config.epgselection.graph_piconwidth = ConfigSelectionNumber(default = 100, stepwidth = 1, min = 70, max = 500, wraparound = True)
+	config.epgselection.graph_infowidth = ConfigSelectionNumber(default = 50, stepwidth = 25, min = 0, max = 150, wraparound = True)
 
 	config.oscaminfo = ConfigSubsection()
 	config.oscaminfo.showInExtensions = ConfigYesNo(default=False)
