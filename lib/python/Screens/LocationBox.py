@@ -167,13 +167,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		self.onClose.append(self.disableTimer)
 
 	def switchToFileListOnStart(self):
-		if self.realBookmarks and self.realBookmarks.getValue():
-			self.currList = "booklist"
-			currDir = self["filelist"].current_directory
-			if currDir in self.bookmarks:
-				self["booklist"].moveToIndex(self.bookmarks.index(currDir))
-		else:
-			self.switchToFileList()
+		self.switchToFileList()
 
 	def disableTimer(self):
 		self.qs_timer.callback.remove(self.timeout)
