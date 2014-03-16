@@ -200,7 +200,7 @@ class TryQuitMainloop(MessageBox):
 				config.misc.DeepStandby.value = True
 			if self.retval == 3:
 				config.misc.RestartUI.value = True
-			config.misc.RestartUI.save()
+				config.misc.RestartUI.save()
 			self.session.nav.stopService()
 			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
 			self.quitScreen.show()
