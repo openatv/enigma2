@@ -21,7 +21,7 @@ def InitUsageConfig():
 	config.usage.showdish = ConfigSelection(default = "flashing", choices = [("flashing", _("Flashing")), ("normal", _("Not Flashing")), ("off", _("Off"))])
 	config.usage.multibouquet = ConfigYesNo(default = True)
 
-	config.usage.alternative_number_mode = ConfigYesNo(default = False)
+	config.usage.alternative_number_mode = ConfigYesNo(default = True)
 	def alternativeNumberModeChange(configElement):
 		enigma.eDVBDB.getInstance().setNumberingMode(configElement.value)
 		refreshServiceList()
