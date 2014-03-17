@@ -198,7 +198,7 @@ class TryQuitMainloop(MessageBox):
 			self.hide()
 			if self.retval == 1:
 				config.misc.DeepStandby.value = True
-			if self.retval == 3:
+			elif self.retval != 5:
 				config.misc.RestartUI.value = True
 				config.misc.RestartUI.save()
 			self.session.nav.stopService()
