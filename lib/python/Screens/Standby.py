@@ -176,7 +176,25 @@ class QuitMainloopScreen(Screen):
 			43: _("Reflash in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
 			44: _("Your front panel will be upgraded\nThis may take a few minutes")}.get(retvalue)
 		self["text"] = Label(text)
+		
+		import os
+		text2 = { 1: _("Sshutting down"),
+			2: _("Rebooting"),
+			3: _("GUI is restarting"),
+			4: _("Frontprocessor upgrading"),
+			5: _("GUI is restarting"),
+			42: _("Upgrading"),
+			43: _("Reflashing"),
+			44: _("Frontprocessor upgrading")}.get(retvalue)
+		cmd = "echo " + text2 + " > /dev/dbox/oled0"
+		os.system(cmd)
 
+class QuitMainloopScreenSummary(Screen):
+	skin = """
+	<screen name="QuitMainloopScreenSummary" position="0,0" size="132,64">
+		<eLabel text="TEST" position="0,0" size="132,64" font="Regular;40" halign="center"/>
+	</screen>"""
+	
 inTryQuitMainloop = False
 
 class TryQuitMainloop(MessageBox):
