@@ -186,6 +186,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		      
 	def keySave(self):
 		self.saveAll()
+		self.playOldService()
 		self.close()
 
 	def cancelConfirm(self, result):
