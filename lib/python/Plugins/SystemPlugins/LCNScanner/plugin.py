@@ -158,8 +158,8 @@ class LCN():
 
 		self.newlist = []
 		count = 0
-		for x in self.lcnlist:
-			print " LISTA LCN:", x
+		#for x in self.lcnlist:
+		#	print " LISTA LCN:", x
 			
 		for x in self.lcnlist:
 			count += 1
@@ -169,19 +169,19 @@ class LCN():
 			if x[0] == count:
 				self.newlist.append(x)
 
-		for x in self.e2services:
-			print " self.e2services:", x
+		#for x in self.e2services:
+		#	print " self.e2services:", x
 
 
-		for x in self.newlist:
-			print " NEW LIST LCN :", x
+		#for x in self.newlist:
+		#	print " NEW LIST LCN :", x
 			
-		print " New LIST LEN: " , len(self.newlist)
+		#print " New LIST LEN: " , len(self.newlist)
 			
 		f.write("#NAME Terrestrial LCN\n")
 		for x in self.newlist:
 			if int(x[1]) == 11111111:
-				print x[0], " Detected 111111111111 service"
+				#print x[0], " Detected 111111111111 service"
 				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")
 				continue
 				
