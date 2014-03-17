@@ -2127,7 +2127,8 @@ class PiPZapSelection(ChannelSelection):
 
 	def disableKeyMap(self):
 		if not self.session.pipshown:
-			self.startwith = self.servicelist.getCurrent()
+			self.startwith = self.servicelist.getCurrent() or None
+			self.setCurrentSelection(self.startwith)
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.show()
 			self.session.pip.playService(self.startwith)
@@ -2175,7 +2176,7 @@ class PiPZapSelection(ChannelSelection):
 				if lastservice.valid() and self.getCurrentSelection() != lastservice:
 					self.setCurrentSelection(lastservice)
 		self.asciiOff()
-		if self.startwith == self.session.pip.getCurrentService():
+		if self.startwith and self.startwith == self.session.pip.getCurrentService():
 			self.session.pipshown = False
 			del self.session.pip
 		self.correctChannelNumber()
