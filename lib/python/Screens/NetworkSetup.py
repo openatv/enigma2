@@ -1,4 +1,4 @@
-from boxbranding import getBoxType, getMachineBrand, getMachineName
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getMachineProcModel
 from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
 from shutil import move
 import commands
@@ -1045,7 +1045,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append(SubNetworkMenuEntryComponent((_("Network wizard")), "openwizard"))
 		kernel_ver = about.getKernelVersionString()
-		if kernel_ver <= "3.5.0":
+		if kernel_ver <= "3.5.0" and not getMachineProcModel().startswith('ini'):
 			menu.append(SubNetworkMenuEntryComponent((_("Network MAC settings")), "mac"))
 
 		
