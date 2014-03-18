@@ -729,28 +729,6 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
 			self.infoKeyPressed(True)
 
-	def closeScreen(self):
-		if self.type == EPG_TYPE_SINGLE:
-			self.close()
-			return # stop and do not continue.
-		if self.CurrBouquet and self.CurrService and (self.CurrBouquet != self.StartBouquet or self.CurrService != self.StartRef):
-			self.zapToNumber(self.StartRef, self.StartBouquet)
-		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
-			if self.zapFunc and self.StartRef and self.StartBouquet and (
-								(self.type == EPG_TYPE_GRAPH and config.epgselection.graph_preview_mode.getValue()) or 
-								(self.type == EPG_TYPE_MULTI and config.epgselection.multi_preview_mode.getValue()) or 
-								(self.type in (EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH) and config.epgselection.infobar_preview_mode.getValue() in ('1', '2')) or 
-								(self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_preview_mode.getValue())):
-				if '0:0:0:0:0:0:0:0:0' not in self.StartRef.toString():
-					self.zapFunc(None, zapback = True)
-			elif '0:0:0:0:0:0:0:0:0' in self.StartRef.toString():
-				self.session.nav.playService(self.StartRef)
-		if self.session.pipshown:
-			self.session.pipshown = False
-			del self.session.pip
-		self.closeEventViewDialog()
-		self.close(True)
-
 	def infoKeyPressed(self, eventviewopen=False):
 		cur = self['list'].getCurrent()
 		event = cur[0]
@@ -1277,6 +1255,28 @@ class EPGSelection(Screen, HelpableScreen):
 			self.eventviewDialog.hide()
 			del self.eventviewDialog
 			self.eventviewDialog = None
+
+	def closeScreen(self):
+		if self.type == EPG_TYPE_SINGLE:
+			self.close()
+			return # stop and do not continue.
+		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
+			if self.zapFunc and self.StartRef and self.StartBouquet:
+				if ((self.type == EPG_TYPE_GRAPH and config.epgselection.graph_preview_mode.getValue()) or 
+					(self.type == EPG_TYPE_MULTI and config.epgselection.multi_preview_mode.getValue()) or 
+					(self.type in (EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH) and config.epgselection.infobar_preview_mode.getValue() in ('1', '2')) or 
+					(self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_preview_mode.getValue())):
+					if '0:0:0:0:0:0:0:0:0' not in self.StartRef.toString():
+						self.zapFunc(None, zapback = True)
+				elif '0:0:0:0:0:0:0:0:0' in self.StartRef.toString():
+					self.session.nav.playService(self.StartRef)
+				else:
+					self.zapFunc(None, False)
+		if self.session.pipshown:
+			self.session.pipshown = False
+			del self.session.pip
+		self.closeEventViewDialog()
+		self.close(True)
 
 	def zap(self):
 		if self.zapFunc:
