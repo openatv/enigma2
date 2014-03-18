@@ -7,6 +7,7 @@ from Tools import Notifications
 from GlobalActions import globalActionMap
 import RecordTimer
 from enigma import eDVBVolumecontrol, eTimer
+from time import time, localtime
 
 inStandby = None
 
@@ -54,15 +55,19 @@ class Standby(Screen):
 
 		self.paused_service = None
 		self.prev_running_service = None
+
 		if self.session.current_dialog:
-			if self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_STOPS:
-				#get currently playing service reference
-				self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-				#stop actual played dvb-service
-				self.session.nav.stopService()
-			elif self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_PAUSES:
-				self.paused_service = self.session.current_dialog
-				self.paused_service.pauseService()
+			if localtime(time()).tm_year > 1970 and self.session.nav.getCurrentlyPlayingServiceOrGroup():
+				if self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_STOPS:
+					self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+					self.session.nav.stopService()
+				elif self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_PAUSES:
+					self.paused_service = self.session.current_dialog
+					self.paused_service.pauseService()
+			else:
+				self.standbyTimeUnknownTimer = eTimer()
+				self.standbyTimeUnknownTimer.callback.append(self.stopServices)
+				self.standbyTimeUnknownTimer.startLongTimer(60)
 
 		#set input to vcr scart
 		if SystemInfo["ScartSwitch"]:
@@ -104,6 +109,10 @@ class Standby(Screen):
 	def standbyTimeout(self):
 		from RecordTimer import RecordTimerEntry
 		RecordTimerEntry.TryQuitMainloop()
+
+	def stopServices(self):
+		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.session.nav.stopService()
 
 class StandbySummary(Screen):
 	skin = """
