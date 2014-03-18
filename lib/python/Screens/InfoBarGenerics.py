@@ -782,10 +782,17 @@ class InfoBarNumberZap:
 				self.pipDoHandle0Action()
 			else:
 				if config.usage.panicbutton.getValue():
+					if self.session.pipshown:
+						del self.session.pip
+						self.session.pipshown = False
 					self.servicelist.history_tv = []
 					self.servicelist.history_radio = []
 					self.servicelist.history = self.servicelist.history_tv
 					self.servicelist.history_pos = 0
+					self.servicelist2.history_tv = []
+					self.servicelist2.history_radio = []
+					self.servicelist2.history = self.servicelist.history_tv
+					self.servicelist2.history_pos = 0
 					if config.usage.multibouquet.getValue():
 						bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
 					else:
@@ -811,6 +818,9 @@ class InfoBarNumberZap:
 						self.servicelist.enterPath(rootbouquet)
 						self.servicelist.enterPath(bouquet)
 						self.servicelist.saveRoot()
+						self.servicelist2.enterPath(rootbouquet)
+						self.servicelist2.enterPath(bouquet)
+						self.servicelist2.saveRoot()
 					self.selectAndStartService(service, bouquet)
 				else:
 					self.servicelist.recallPrevService()
