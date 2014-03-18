@@ -66,7 +66,7 @@ class Standby(Screen):
 					self.paused_service.pauseService()
 			else:
 				self.standbyTimeUnknownTimer = eTimer()
-				self.standbyTimeUnknownTimer.callback.append(self.stopServices)
+				self.standbyTimeUnknownTimer.callback.append(self.stopService)
 				self.standbyTimeUnknownTimer.startLongTimer(60)
 
 		#set input to vcr scart
@@ -110,7 +110,7 @@ class Standby(Screen):
 		from RecordTimer import RecordTimerEntry
 		RecordTimerEntry.TryQuitMainloop()
 
-	def stopServices(self):
+	def stopService(self):
 		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
 
