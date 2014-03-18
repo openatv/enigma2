@@ -5,7 +5,7 @@ def FuzzyTime(t, inPast = False):
 	d = localtime(t)
 	nt = time()
 	n = localtime()
-        dayOfWeek = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
+	dayOfWeek = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
 	
 	if d[:3] == n[:3]:
 		# same day
@@ -33,9 +33,9 @@ def FuzzyTime(t, inPast = False):
 
 
 if __name__ == "__main__":
-        def _(x): return x
+	def _(x): return x
 	print "now: %s %s" % FuzzyTime(time())
 	for i in range(1, 14):
-        	print "+%2s day(s):  %s " % (i, FuzzyTime(time() + 86400 * i))
+		print "+%2s day(s):  %s " % (i, FuzzyTime(time() + 86400 * i))
 	for i in range(1, 14):
-        	print "-%2s day(s):  %s " % (i, FuzzyTime(time() - 86400 * i, True))
+		print "-%2s day(s):  %s " % (i, FuzzyTime(time() - 86400 * i, True))
