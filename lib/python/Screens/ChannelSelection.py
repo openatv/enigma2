@@ -2129,7 +2129,7 @@ class PiPZapSelection(ChannelSelection):
 	def disableKeyMap(self):
 		if not hasattr(self.session, 'pip'):
 			if not self.pipzapfailed:
-				self.startservice = self.servicelist.getCurrent() or None
+				self.startservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.getCurrent()
 			else:
 				self.startservice = self.startservice
 			self.setCurrentSelection(self.startservice)
@@ -2163,7 +2163,7 @@ class PiPZapSelection(ChannelSelection):
 				if self.session.pip.playService(newservice):
 					self.pipzapfailed = False
 					self.session.pipshown = True
-					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+					self.session.pip.servicePath = self.getCurrentServicePath()
 					self.setStartRoot(self.curRoot)
 					self.saveRoot()
 					self.saveChannel(ref)
