@@ -57,17 +57,17 @@ class Standby(Screen):
 		self.prev_running_service = None
 
 		if self.session.current_dialog:
-			if localtime(time()).tm_year > 1970 and self.session.nav.getCurrentlyPlayingServiceOrGroup():
-				if self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_STOPS:
+			if self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_STOPS:
+				if localtime(time()).tm_year > 1970 and self.session.nav.getCurrentlyPlayingServiceOrGroup():
 					self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 					self.session.nav.stopService()
-				elif self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_PAUSES:
-					self.paused_service = self.session.current_dialog
-					self.paused_service.pauseService()
-			else:
-				self.standbyTimeUnknownTimer = eTimer()
-				self.standbyTimeUnknownTimer.callback.append(self.stopService)
-				self.standbyTimeUnknownTimer.startLongTimer(60)
+				else:
+					self.standbyTimeUnknownTimer = eTimer()
+					self.standbyTimeUnknownTimer.callback.append(self.stopService)
+					self.standbyTimeUnknownTimer.startLongTimer(60)
+			elif self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_PAUSES:
+				self.paused_service = self.session.current_dialog
+				self.paused_service.pauseService()
 
 		#set input to vcr scart
 		if SystemInfo["ScartSwitch"]:
