@@ -200,6 +200,8 @@ class doFlashImage(Screen):
 		
 	def box(self):
 		box = getBoxType()
+		if box in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3'):
+			box = "ventonhdx"
 		return box
 
 	def green(self):
