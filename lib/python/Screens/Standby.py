@@ -50,6 +50,9 @@ class Standby(Screen):
 
 		self.StandbyCounterIncrease = StandbyCounterIncrease
 
+		self.standbyTimeUnknownTimer = eTimer()
+		self.standbyTimeoutTimer = eTimer()
+
 		#mute adc
 		self.setMute()
 
@@ -62,7 +65,6 @@ class Standby(Screen):
 					self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 					self.session.nav.stopService()
 				else:
-					self.standbyTimeUnknownTimer = eTimer()
 					self.standbyTimeUnknownTimer.callback.append(self.stopService)
 					self.standbyTimeUnknownTimer.startLongTimer(60)
 			elif self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_PAUSES:
@@ -77,7 +79,6 @@ class Standby(Screen):
 
 		gotoShutdownTime = int(config.usage.standby_to_shutdown_timer.value)
 		if gotoShutdownTime:
-			self.standbyTimeoutTimer = eTimer()
 			self.standbyTimeoutTimer.callback.append(self.standbyTimeout)
 			self.standbyTimeoutTimer.startLongTimer(gotoShutdownTime)
 
@@ -87,6 +88,8 @@ class Standby(Screen):
 	def __onClose(self):
 		global inStandby
 		inStandby = None
+		self.standbyTimeUnknownTimer.stop()
+		self.standbyTimeoutTimer.stop()
 		if self.prev_running_service:
 			self.session.nav.playService(self.prev_running_service)
 		elif self.paused_service:
