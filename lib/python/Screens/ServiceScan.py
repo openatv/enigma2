@@ -36,7 +36,7 @@ class ServiceScan(Screen):
 	def ok(self):
 		if self["scan"].isDone():
 			try:
-				from Plugins.SystemPlugins.LCNScanner.plugin import LCNBuildHelper
+				from Plugins.SystemPlugins.IniLCNScanner.plugin import LCNBuildHelper
 				lcn = LCNBuildHelper()
 				lcn.buildAfterScan()
 			except Exception, e:

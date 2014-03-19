@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/SystemPlugins/LCNScanner
+installdir = $(pkglibdir)/python/Plugins/SystemPlugins/IniLCNScanner
 
 install_PYTHON = \
 	__init__.py \
