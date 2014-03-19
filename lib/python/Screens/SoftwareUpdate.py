@@ -94,12 +94,9 @@ class SoftwareUpdateChanges(Screen):
 				else:
 					releasever = releasever[0].replace(':',"")
 			if self.logtype == 'oe':
-				if int(getImageBuild()) == 1:
-					imagever = int(getImageBuild())-1
-				else:
-					imagever = int(getImageBuild())
+				imagever = getImageBuild()
 			else:
-				imagever = int(getImageBuild())+804
+				imagever = int(getImageBuild())+865
 			while int(releasever) > int(imagever):
 				if ocram:
 					viewrelease += releasenotes[int(ver)]+'\n'+ocram+'\n'

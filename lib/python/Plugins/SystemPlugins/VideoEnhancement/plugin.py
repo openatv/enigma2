@@ -12,7 +12,6 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 import VideoEnhancement
 
-from boxbranding import getBoxType
 
 class VideoEnhancementSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
@@ -63,6 +62,8 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.oldMosquito_noise = config.pep.mosquito_noise_reduction.getValue()
 		self.oldDigital_contour = config.pep.digital_contour_removal.getValue()
 		self.oldScaler_sharpness = config.av.scaler_sharpness.getValue()
+		self.oldScaler_vertical_dejagging = config.pep.scaler_vertical_dejagging.value
+		self.oldSmooth = config.pep.smooth.getValue()
 		self.oldSplit = config.pep.split.getValue()
 		self.oldSharpness = config.pep.sharpness.getValue()
 		self.oldAuto_flesh = config.pep.auto_flesh.getValue()
@@ -75,7 +76,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		if isinstance(configEntry, ConfigNothing):
 			return None
 		entry = getConfigListEntry(description, configEntry, hinttext)
-		self.list.append(entry);
+		self.list.append(entry)
 		if add_to_xtdlist:
 			self.xtdlist.append(entry)
 		return entry
@@ -97,6 +98,8 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.hueEntry = addToConfigList(_("Hue"), config.pep.hue, _("This option sets the picture hue."))
 		self.mosquito_noise_reductionEntry = addToConfigList(_("Mosquito noise reduction"), config.pep.mosquito_noise_reduction, _("This option set the level of surpression of musquito noise (Musquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."), add_to_xtdlist)
 		self.scaler_sharpnessEntry = addToConfigList(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option sets the scaler sharpness, used when stretching picture from 4:3 to 16:9."))
+		self.scaler_vertical_dejaggingEntry = addToConfigList(_("Scaler vertical dejagging"), config.pep.scaler_vertical_dejagging, _("hint text place holder, waiting Vu for correct deffinitions."))
+		self.smoothEntry = addToConfigList(_("Smooth"), config.pep.smooth, _("hint text place holder, waiting Vu for correct deffinitions."))
 		self.sharpnessEntry = addToConfigList(_("Sharpness"), config.pep.sharpness, _("This option sets up the picture sharpness, used when the picture is being upscaled."), add_to_xtdlist)
 		self.saturationEntry = addToConfigList(_("Saturation"), config.pep.saturation, _("This option sets the picture saturation."))
 		self.color_spaceEntry = addToConfigList(_("Color space"), config.pep.color_space, _("This option sets the picture color space."))
@@ -116,6 +119,8 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		current = self["config"].getCurrent()
 		if current == self.splitEntry or current == self.color_spaceEntry:
 			ConfigListScreen.keyLeft(self)
+		elif (current == self.scaler_vertical_dejaggingEntry) or (current == self.smoothEntry):
+			ConfigListScreen.keyLeft(self)
 		elif current != self.splitEntry and current in self.xtdlist:
 			self.previewlist = [
 				current,
@@ -133,6 +138,8 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 	def keyRight(self):
 		current = self["config"].getCurrent()
 		if current == self.splitEntry or current == self.color_spaceEntry:
+			ConfigListScreen.keyRight(self)
+		elif (current == self.scaler_vertical_dejaggingEntry) or (current == self.smoothEntry):
 			ConfigListScreen.keyRight(self)
 		elif current != self.splitEntry and current in self.xtdlist:
 			self.previewlist = [
@@ -191,6 +198,10 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				config.pep.digital_contour_removal.setValue(self.oldDigital_contour)
 			if self.scaler_sharpnessEntry is not None:
 				config.av.scaler_sharpness.setValue(self.oldScaler_sharpness)
+			if self.scaler_vertical_dejaggingEntry is not None:
+				config.pep.scaler_vertical_dejagging.setValue(self.oldScaler_vertical_dejagging)
+			if self.smoothEntry is not None:
+				config.pep.smooth.setValue(self.oldSmooth)
 			if self.splitEntry is not None:
 				config.pep.split.setValue('off')
 			if self.sharpnessEntry is not None:
@@ -229,10 +240,11 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 			if self.digital_contour_removalEntry is not None:
 				config.pep.digital_contour_removal.setValue(0)
 			if self.scaler_sharpnessEntry is not None:
-				if getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus':
-					config.av.scaler_sharpness.setValue(13)
-				else:
-					config.av.scaler_sharpness.setValue(13)
+				config.av.scaler_sharpness.setValue(13)
+			if self.scaler_vertical_dejaggingEntry is not None:
+				config.pep.scaler_vertical_dejagging.setValue(False)
+			if self.smoothEntry is not None:
+				config.pep.smooth.setValue(False)
 			if self.splitEntry is not None:
 				config.pep.split.setValue('off')
 			if self.sharpnessEntry is not None:

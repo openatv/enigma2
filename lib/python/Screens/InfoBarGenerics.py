@@ -817,7 +817,7 @@ class NumberZap(Screen):
 	def handleServiceName(self):
 		if self.searchNumber:
 			self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
-			self ["servicename"].text = ServiceReference(self.service).getServiceName()
+			self["servicename"].setText(ServiceReference(self.service).getServiceName())
 			if not self.startBouquet:
 				self.startBouquet = self.bouquet
 
@@ -828,31 +828,31 @@ class NumberZap(Screen):
 				self.service, self.bouquet = self.searchNumber(int(self["number"].getText()), firstBouquetOnly = True)
 			else:
 				self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
-			self ["servicename"].text = ServiceReference(self.service).getServiceName()
+			self["servicename"].setText(ServiceReference(self.service).getServiceName())
 
 	def keyNumberGlobal(self, number):
 		self.Timer.start(1000, True)
-		self.field += str(number)
-		self["number"].setText(self.field)
-		self["number_summary"].setText(self.field)
+		self.numberString += str(number)
+		self["number"].setText(self.numberString)
+		self["number_summary"].setText(self.numberString)
 
 		self.handleServiceName()
 
-		if len(self.field) >= 4:
+		if len(self.numberString) >= 4:
 			self.keyOK()
 
 	def __init__(self, session, number, searchNumberFunction = None):
 		Screen.__init__(self, session)
 		self.onChangedEntry = [ ]
-		self.field = str(number)
+		self.numberString = str(number)
 		self.searchNumber = searchNumberFunction
 		self.startBouquet = None
 
 		self["channel"] = Label(_("Channel:"))
 		self["channel_summary"] = StaticText(_("Channel:"))
 
-		self["number"] = Label(self.field)
-		self["number_summary"] = StaticText(self.field)
+		self["number"] = Label(self.numberString)
+		self["number_summary"] = StaticText(self.numberString)
 		self["servicename"] = Label()
 
 		self.handleServiceName()
@@ -916,10 +916,17 @@ class InfoBarNumberZap:
 				self.pipDoHandle0Action()
 			else:
 				if config.usage.panicbutton.getValue():
+					if self.session.pipshown:
+						del self.session.pip
+						self.session.pipshown = False
 					self.servicelist.history_tv = []
 					self.servicelist.history_radio = []
 					self.servicelist.history = self.servicelist.history_tv
 					self.servicelist.history_pos = 0
+					self.servicelist2.history_tv = []
+					self.servicelist2.history_radio = []
+					self.servicelist2.history = self.servicelist.history_tv
+					self.servicelist2.history_pos = 0
 					if config.usage.multibouquet.getValue():
 						bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
 					else:
@@ -945,6 +952,9 @@ class InfoBarNumberZap:
 						self.servicelist.enterPath(rootbouquet)
 						self.servicelist.enterPath(bouquet)
 						self.servicelist.saveRoot()
+						self.servicelist2.enterPath(rootbouquet)
+						self.servicelist2.enterPath(bouquet)
+						self.servicelist2.saveRoot()
 					self.selectAndStartService(service, bouquet)
 				else:
 					self.servicelist.recallPrevService()
@@ -3392,21 +3402,23 @@ class InfoBarAudioSelection:
 			{
 				"audioSelection": (self.audioSelection, _("Audio options...")),
 				"audio_key": (self.audio_key, _("Audio options...")),
+				"audioSelectionLong": (self.audioSelectionLong, _("Toggle Digital downmix...")),
 			})
 
 	def audioSelection(self):
-		if config.plugins.infopanel_yellowkey.list.getValue() == '0':
-			from Screens.AudioSelection import AudioSelection
-			self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
-		elif config.plugins.infopanel_yellowkey.list.getValue() == '2':
-			global AUDIO
-			AUDIO = True
-			ToggleVideo()
-		else:
-			try:
-				self.startTimeshift()
-			except:
-				pass
+		if not self.LongButtonPressed:
+			if config.plugins.infopanel_yellowkey.list.getValue() == '0':
+				from Screens.AudioSelection import AudioSelection
+				self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
+			elif config.plugins.infopanel_yellowkey.list.getValue() == '2':
+				global AUDIO
+				AUDIO = True
+				ToggleVideo()
+			else:
+				try:
+					self.startTimeshift()
+				except:
+					pass
 				
 	def audio_key(self):
 		from Screens.AudioSelection import AudioSelection
@@ -3414,6 +3426,18 @@ class InfoBarAudioSelection:
 
 	def audioSelected(self, ret=None):
 		print "[infobar::audioSelected]", ret
+
+	def audioSelectionLong(self):
+		if SystemInfo["CanDownmixAC3"] and self.LongButtonPressed:
+			if config.av.downmix_ac3.getValue():
+				message = _("Dobly Digital downmix is now") + " " + _("disabled")
+				print '[Audio] Dobly Digital downmix is now disabled'
+				config.av.downmix_ac3.setValue(False)
+			else:
+				config.av.downmix_ac3.setValue(True)
+				message = _("Dobly Digital downmix is now") + " " + _("enabled")
+				print '[Audio] Dobly Digital downmix is now enabled'
+			Notifications.AddPopup(text = message, type = MessageBox.TYPE_INFO, timeout = 5, id = "DDdownmixToggle")
 
 class InfoBarSubserviceSelection:
 	def __init__(self):

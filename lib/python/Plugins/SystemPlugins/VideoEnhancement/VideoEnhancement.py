@@ -1,7 +1,7 @@
 from boxbranding import getBoxType
 from os import path as os_path
 
-from Components.config import config, ConfigSubsection, ConfigSlider, ConfigSelection, ConfigNothing, NoSave
+from Components.config import config, ConfigSubsection, ConfigSlider, ConfigSelection, ConfigBoolean, ConfigNothing, NoSave
 
 # The "VideoEnhancement" is the interface to /proc/stb/vmpeg/0.
 
@@ -315,6 +315,40 @@ class VideoEnhancement:
 			config.pep.color_space.addNotifier(setColour_space)
 		else:
 			config.pep.color_space = NoSave(ConfigNothing())
+
+		if os_path.exists("/proc/stb/vmpeg/0/pep_scaler_vertical_dejagging"):
+			def setScaler_vertical_dejagging(configElement):
+				myval = configElement.value and "enable" or "disable"
+				try:
+					print "--> setting scaler_vertical_dejagging to: %s" % myval
+					open("/proc/stb/vmpeg/0/pep_scaler_vertical_dejagging", "w").write(myval)
+				except IOError:
+					print "couldn't write pep_scaler_vertical_dejagging."
+
+				if not VideoEnhancement.firstRun:
+					self.setConfiguredValues()
+
+			config.pep.scaler_vertical_dejagging = ConfigBoolean(default=False, descriptions = {False: "Disable", True: "Enable"} )
+			config.pep.scaler_vertical_dejagging.addNotifier(setScaler_vertical_dejagging)
+		else:
+			config.pep.scaler_vertical_dejagging = NoSave(ConfigNothing())
+
+		if os_path.exists("/proc/stb/vmpeg/0/smooth"):
+			def setSmooth(configElement):
+				myval = configElement.value and "enable" or "disable"
+				try:
+					print "--> setting smooth to: %s" % myval
+					open("/proc/stb/vmpeg/0/smooth", "w").write(myval)
+				except IOError:
+					print "couldn't write smooth."
+
+				if not VideoEnhancement.firstRun:
+					self.setConfiguredValues()
+
+			config.pep.smooth = ConfigBoolean(default=False, descriptions = {False: "Disable", True: "Enable"} )
+			config.pep.smooth.addNotifier(setSmooth)
+		else:
+			config.pep.smooth = NoSave(ConfigNothing())
 
 		if VideoEnhancement.firstRun:
 			self.setConfiguredValues()

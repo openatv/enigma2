@@ -2134,6 +2134,8 @@ class PiPZapSelection(ChannelSelection):
 		ChannelSelection.__init__(self, session)
 		self.skinName = ["SlimChannelSelection","SimpleChannelSelection","ChannelSelection"]
 
+		self.startservice = None
+		self.pipzapfailed = None
 		if plugin_PiPServiceRelation_installed:
 			self.pipServiceRelation = getRelationDict()
 		else:
@@ -2144,6 +2146,15 @@ class PiPZapSelection(ChannelSelection):
 		self.onShown.append(self.disableKeyMap)
 
 	def disableKeyMap(self):
+		if not hasattr(self.session, 'pip'):
+			if not self.pipzapfailed:
+				self.startservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.getCurrent()
+			else:
+				self.startservice = self.startservice
+			self.setCurrentSelection(self.startservice)
+			self.session.pip = self.session.instantiateDialog(PictureInPicture)
+			self.session.pip.show()
+			self.session.pip.playService(self.startservice)
 		eActionMap.getInstance().unbindNativeKey("ListboxActions", 0)
 		eActionMap.getInstance().unbindNativeKey("ListboxActions", 1)
 		self.keymaptimer.start(1000, True)
@@ -2165,17 +2176,33 @@ class PiPZapSelection(ChannelSelection):
 					newservice = eServiceReference(n_service)
 				else:
 					newservice = ref
-				if not self.session.pipshown:
+				if not hasattr(self.session, 'pip'):
 					self.session.pip = self.session.instantiateDialog(PictureInPicture)
 					self.session.pip.show()
 				if self.session.pip.playService(newservice):
+					self.pipzapfailed = False
 					self.session.pipshown = True
 					self.session.pip.servicePath = self.getCurrentServicePath()
+					self.setStartRoot(self.curRoot)
+					self.saveRoot()
+					self.saveChannel(ref)
+					self.setCurrentSelection(ref)
 					self.close(True)
 				else:
+					self.pipzapfailed = True
 					self.session.pipshown = False
 					del self.session.pip
-					self.session.openWithCallback(self.close, MessageBox, _("No free tuner, could not open Picture in Picture"), MessageBox.TYPE_ERROR)
+					self.close(None)
+
+
+	def cancel(self):
+		self.asciiOff()
+		if self.startservice and hasattr(self.session, 'pip') and self.session.pip.getCurrentService() and self.startservice == self.session.pip.getCurrentService():
+			self.session.pipshown = False
+			del self.session.pip
+		self.correctChannelNumber()
+		self.close(None)
+
 
 class RadioInfoBar(Screen):
 	def __init__(self, session):
