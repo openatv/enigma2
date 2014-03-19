@@ -520,7 +520,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self["ShowHideActions"] = ActionMap( ["InfobarShowHideActions"] ,
 			{
 				"LongOKPressed": self.toggleShowLong,
-				"toggleShow": self.toggleShow,
+				"toggleShow": self.OkPressed,
 				"hide": self.keyHide,
 			}, 1) # lower prio to make it possible to override ok and cancel..
 
