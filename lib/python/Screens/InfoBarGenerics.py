@@ -4359,6 +4359,7 @@ class InfoBarZoom:
 class InfoBarHdmi:
 	def __init__(self):
 		self.hdmi_enabled = False
+		self.hdmi_enabled_full = False
 		self.hdmi_enabled_pip = False
 
 		if getMachineProcModel().startswith('ini-90'):
