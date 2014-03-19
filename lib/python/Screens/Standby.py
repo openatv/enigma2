@@ -170,7 +170,7 @@ class QuitMainloopScreen(Screen):
 		text = { 1: _("Your %s %s is shutting down") % (getMachineBrand(), getMachineName()),
 			2: _("Your %s %s is rebooting") % (getMachineBrand(), getMachineName()),
 			3: _("The user interface of your %s %s is restarting") % (getMachineBrand(), getMachineName()),
-			4: _("Your frontprocessor will be upgraded\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
+			4: _("Your front processor will be upgraded\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
 			5: _("The user interface of your %s %s is restarting\ndue to an error in mytest.py") % (getMachineBrand(), getMachineName()),
 			42: _("Upgrade in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
 			43: _("Reflash in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
@@ -178,14 +178,14 @@ class QuitMainloopScreen(Screen):
 		self["text"] = Label(text)
 		
 		import os
-		text2 = { 1: _("Sshutting down"),
+		text2 = { 1: _("Shutting down"),
 			2: _("Rebooting"),
-			3: _("GUI is restarting"),
-			4: _("Frontprocessor upgrading"),
-			5: _("GUI is restarting"),
+			3: _("GUI restarting"),
+			4: _("Front processor upgrade"),
+			5: _("GUI restarting"),
 			42: _("Upgrading"),
 			43: _("Reflashing"),
-			44: _("Frontprocessor upgrading")}.get(retvalue)
+			44: _("Front panel upgrade")}.get(retvalue)
 		cmd = "echo " + text2 + " > /dev/dbox/oled0"
 		os.system(cmd)
 
@@ -233,7 +233,7 @@ class TryQuitMainloop(MessageBox):
 			text = { 1: _("Really shutdown now?"),
 				2: _("Really reboot now?"),
 				3: _("Really restart now?"),
-				4: _("Really upgrade the frontprocessor and reboot now?"),
+				4: _("Really upgrade the front processor and reboot now?"),
 				42: _("Really upgrade your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
 				43: _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
 				44: _("Really upgrade the front panel and reboot now?") }.get(retvalue)
