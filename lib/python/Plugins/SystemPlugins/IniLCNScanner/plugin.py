@@ -174,24 +174,16 @@ class LCN():
 
 
 		#for x in self.newlist:
-		#	print " NOWA LISTA LCN :", x
+		#	print " NEW LIST LCN :", x
 			
-		#print " NOWA LISTA LCN: ILOSC: " , len(self.newlist)
+		#print " New LIST LEN: " , len(self.newlist)
 			
 		f.write("#NAME Terrestrial LCN\n")
 		for x in self.newlist:
 			if int(x[1]) == 11111111:
 				#print x[0], " Detected 111111111111 service"
-				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")  
-			#else:
-				#print x[0], " Detected other service"
-				
-			if int(x[0]) == 40:
-				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")  
-				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")  
-				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")  
-			if int(x[0]) == 77:
 				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")
+				continue
 				
 			if len(self.markers) > 0:
 				if x[0] > self.markers[0][0]:
@@ -200,11 +192,17 @@ class LCN():
 					self.markers.remove(self.markers[0])
 			refstr = "1:0:1:%x:%x:%x:%x:0:0:0:" % (x[4],x[3],x[2],x[1]) # temporary ref
 			refsplit = eServiceReference(refstr).toString().split(":")
+			added = False
 			for tref in self.e2services:
 				tmp = tref.split(":")
 				if tmp[3] == refsplit[3] and tmp[4] == refsplit[4] and tmp[5] == refsplit[5] and tmp[6] == refsplit[6]:
 					f.write("#SERVICE " + tref + "\n")
+					added = True
 					break
+
+			if not added: # no service found? something wrong? a log should be a good idea. Anyway we add an empty line so we keep the numeration
+				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")
+
 		f.close()
 		self.addInBouquets()
 
@@ -379,3 +377,4 @@ def LCNScannerSetup(menuid, **kwargs):
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name="LCN", description=_("LCN plugin for DVB-T/T2 services"), where = PluginDescriptor.WHERE_MENU, fnc=LCNScannerSetup)
+	#return PluginDescriptor(name="LCN", description=_("LCN plugin for DVB-T/T2 services"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc=LCNScannerMain)
