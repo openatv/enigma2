@@ -12,11 +12,12 @@
 #include <lib/base/init_num.h>
 #include <lib/base/wrappers.h>
 #include <lib/base/nconfig.h>
+#include <lib/base/cfile.h>
 
 #include <lib/dvb/streamserver.h>
 
 eStreamClient::eStreamClient(eStreamServer *handler, int socket)
- : parent(handler), streamFd(socket)
+ : parent(handler), encoderFd(-1), streamFd(socket), streamThread(NULL)
 {
 	running = false;
 }
@@ -25,6 +26,15 @@ eStreamClient::~eStreamClient()
 {
 	rsn->stop();
 	stop();
+	if (streamThread)
+	{
+		streamThread->stop();
+		delete streamThread;
+	}
+	if (encoderFd >= 0)
+	{
+		parent->freeEncoder(this, encoderFd);
+	}
 	if (streamFd >= 0) ::close(streamFd);
 }
 
@@ -134,9 +144,75 @@ void eStreamClient::notifier(int what)
 						{
 							const char *reply = "HTTP/1.0 200 OK\r\nConnection: Close\r\nContent-Type: video/mpeg\r\nServer: streamserver\r\n\r\n";
 							writeAll(streamFd, reply, strlen(reply));
-							if (eDVBServiceStream::start(serviceref.c_str(), streamFd) >= 0)
+							if (serviceref.substr(0, 10) == "file?file=")
 							{
-								running = true;
+								/* openwebif file stream request, convert back to serviceref, so we can handle it like any other stream request */
+								serviceref = "1:0:1:0:0:0:0:0:0:0:" + serviceref.substr(10);
+							}
+							pos = serviceref.find('?');
+							if (pos != std::string::npos)
+							{
+								request = serviceref.substr(pos);
+								serviceref = serviceref.substr(0, pos);
+							}
+							else
+							{
+								request.clear();
+							}
+							pos = request.find("?bitrate=");
+							if (pos != std::string::npos)
+							{
+								/* we need to stream transcoded data */
+								int bitrate = 1024 * 1024;
+								int width = 720;
+								int height = 576;
+								int framerate = 25000;
+								int interlaced = 0;
+								int aspectratio = 0;
+								sscanf(request.substr(pos).c_str(), "?bitrate=%d", &bitrate);
+								pos = request.find("?width=");
+								if (pos != std::string::npos)
+								{
+									sscanf(request.substr(pos).c_str(), "?width=%d", &width);
+								}
+								pos = request.find("?height=");
+								if (pos != std::string::npos)
+								{
+									sscanf(request.substr(pos).c_str(), "?height=%d", &height);
+								}
+								pos = request.find("?framerate=");
+								if (pos != std::string::npos)
+								{
+									sscanf(request.substr(pos).c_str(), "?framerate=%d", &framerate);
+								}
+								pos = request.find("?interlaced=");
+								if (pos != std::string::npos)
+								{
+									sscanf(request.substr(pos).c_str(), "?interlaced=%d", &interlaced);
+								}
+								pos = request.find("?aspectratio=");
+								if (pos != std::string::npos)
+								{
+									sscanf(request.substr(pos).c_str(), "?aspectratio=%d", &aspectratio);
+								}
+								encoderFd = parent->allocateEncoder(this, serviceref, bitrate, width, height, framerate, !!interlaced, aspectratio);
+								if (encoderFd >= 0)
+								{
+									running = true;
+									streamThread = new eDVBRecordStreamThread(188);
+									if (streamThread)
+									{
+										streamThread->setTargetFD(streamFd);
+										streamThread->start(encoderFd);
+									}
+								}
+							}
+							else
+							{
+								if (eDVBServiceStream::start(serviceref.c_str(), streamFd) >= 0)
+								{
+									running = true;
+								}
 							}
 						}
 					}
@@ -172,6 +248,23 @@ DEFINE_REF(eStreamServer);
 eStreamServer::eStreamServer()
  : eServerSocket(8001, eApp)
 {
+	ePtr<iServiceHandler> service_center;
+	eServiceCenter::getInstance(service_center);
+	if (service_center)
+	{
+		int index = 0;
+		while (1)
+		{
+			int decoderindex;
+			FILE *file;
+			char filename[256];
+			snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/decoder", index);
+			if (CFile::parseInt(&decoderindex, filename) < 0) break;
+			navigationInstances.push_back(new eNavigation(service_center, decoderindex));
+			encoderUser.push_back(NULL);
+			index++;
+		}
+	}
 }
 
 eStreamServer::~eStreamServer()
@@ -191,11 +284,64 @@ void eStreamServer::newConnection(int socket)
 
 void eStreamServer::connectionLost(eStreamClient *client)
 {
-	eSmartPtrList<eStreamClient>::iterator it = std::find(clients.begin(), clients.end(), client );
+	eSmartPtrList<eStreamClient>::iterator it = std::find(clients.begin(), clients.end(), client);
 	if (it != clients.end())
 	{
 		clients.erase(it);
 	}
 }
 
-eAutoInitPtr<eStreamServer> init_eStreamServer(eAutoInitNumbers::dvb + 1, "Stream server");
+int eStreamServer::allocateEncoder(const eStreamClient *client, const std::string &serviceref, const int bitrate, const int width, const int height, const int framerate, const int interlaced, const int aspectratio)
+{
+	unsigned int i;
+	int encoderfd = -1;
+	for (i = 0; i < encoderUser.size(); i++)
+	{
+		if (!encoderUser[i])
+		{
+			char filename[128];
+			snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/bitrate", i);
+			CFile::writeInt(filename, bitrate);
+			snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/width", i);
+			CFile::writeInt(filename, width);
+			snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/height", i);
+			CFile::writeInt(filename, height);
+			snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/framerate", i);
+			CFile::writeInt(filename, framerate);
+			snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/interlaced", i);
+			CFile::writeInt(filename, interlaced);
+			snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/aspectratio", i);
+			CFile::writeInt(filename, aspectratio);
+			snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/apply", i);
+			CFile::writeInt(filename, 1);
+			if (navigationInstances[i]->playService(serviceref) >= 0)
+			{
+				snprintf(filename, sizeof(filename), "/dev/encoder%d", i);
+				encoderfd = open(filename, O_RDONLY);
+				encoderUser[i] = client;
+			}
+			break;
+		}
+	}
+	return encoderfd;
+}
+
+void eStreamServer::freeEncoder(const eStreamClient *client, int encoderfd)
+{
+	unsigned int i;
+	for (i = 0; i < encoderUser.size(); i++)
+	{
+		if (encoderUser[i] == client)
+		{
+			encoderUser[i] = NULL;
+			if (navigationInstances[i])
+			{
+				navigationInstances[i]->stopService();
+			}
+			break;
+		}
+	}
+	if (encoderfd >= 0) ::close(encoderfd);
+}
+
+eAutoInitPtr<eStreamServer> init_eStreamServer(eAutoInitNumbers::service + 1, "Stream server");
