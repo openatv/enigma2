@@ -95,10 +95,20 @@ class FlashOnline(Screen):
 			return False
 
 		if not os.path.exists(imagePath):
-			os.mkdir(imagePath)
+			try:
+				os.mkdir(imagePath)
+			except:
+				pass
+		
 		if os.path.exists(flashPath):
-			os.system('rm -rf ' + flashPath)
-		os.mkdir(flashPath)
+			try:
+				os.system('rm -rf ' + flashPath)
+			except:
+				pass
+		try:
+			os.mkdir(flashPath)
+		except:
+			pass
 		return True
 
 	def quit(self):
