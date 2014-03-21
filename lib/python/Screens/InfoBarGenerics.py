@@ -3406,6 +3406,8 @@ class InfoBarAudioSelection:
 			})
 
 	def audioSelection(self):
+		if not hasattr(self, "LongButtonPressed"):
+			self.LongButtonPressed = False
 		if not self.LongButtonPressed:
 			if config.plugins.infopanel_yellowkey.list.getValue() == '0':
 				from Screens.AudioSelection import AudioSelection
