@@ -426,6 +426,14 @@
 	</map>
 
 	<map context="InfobarSeekActionsPTS">
+		<device name="dreambox remote control (native)">
+			<key id="KEY_YELLOW" mapto="pauseService" flags="b" />
+			<key id="KEY_GREEN" mapto="playpauseService" flags="b" />
+			<key id="KEY_RED" mapto="seekBack" flags="b" />
+			<key id="KEY_BLUE" mapto="seekFwd" flags="b" />
+			<key id="KEY_RED" mapto="seekBackManual" flags="l" />
+			<key id="KEY_BLUE" mapto="seekFwdManual" flags="l" />
+		</device>
 		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m" />
 		<key id="KEY_PAUSE" mapto="pauseService" flags="m" />
 		<key id="KEY_PLAY" mapto="playpauseService" flags="m" />
@@ -491,11 +499,21 @@
 
 	<map context="InfobarTimeshiftActions">
 		<key id="KEY_YELLOW" mapto="timeshiftStartY" flags="b" />
-
-		<device name="dreambox ir keyboard">
-			<key id="KEY_YELLOW" mapto="timeshiftStartY" flags="m" />
+		<device name="dreambox advanced remote control (native)">
+			<key id="KEY_PLAY" mapto="timeshiftStart" flags="m" />
+			<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
+			<key id="KEY_STOP" mapto="timeshiftStop" flags="m" />
+		</device>
+		<device name="dreambox remote control (native)">
+			<key id="KEY_YELLOW" mapto="timeshiftStart" flags="b" />
 			<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
 		</device>
+		<device name="dreambox ir keyboard">
+			<key id="KEY_YELLOW" mapto="timeshiftStart" flags="m" />
+			<key id="KEY_PAUSE" mapto="timeshiftStart" flags="m" />
+			<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
+			<key id="KEY_STOP" mapto="timeshiftStop" flags="m" />
+		</device>		
 		<key id="KEY_PLAYPAUSE" mapto="timeshiftStart" flags="m" />
 		<key id="KEY_PAUSE" mapto="timeshiftStart" flags="m" />
 		<key id="KEY_STOP" mapto="timeshiftStop" flags="m" />

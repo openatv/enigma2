@@ -42,10 +42,16 @@ config.softcam.actCam = ConfigText(visible_width = 200)
 config.softcam.actCam2 = ConfigText(visible_width = 200)
 config.softcam.waittime = ConfigSelection([('0',_("dont wait")),('1',_("1 second")), ('5',_("5 seconds")),('10',_("10 seconds")),('15',_("15 seconds")),('20',_("20 seconds")),('30',_("30 seconds"))], default='15')
 config.plugins.infopanel_redpanel = ConfigSubsection()
-config.plugins.infopanel_redpanel.enabled = ConfigYesNo(default=True)
+if getBoxType() == "dm800":
+	config.plugins.infopanel_redpanel.enabled = ConfigYesNo(default=False)
+else:
+	config.plugins.infopanel_redpanel.enabled = ConfigYesNo(default=True)
 config.plugins.infopanel_redpanel.enabledlong = ConfigYesNo(default=False)
 config.plugins.infopanel_yellowkey = ConfigSubsection()
-config.plugins.infopanel_yellowkey.list = ConfigSelection([('0',_("Audio Selection")),('1',_("Default (Timeshift)")), ('2',_("Toggle Pillarbox <> Pan&Scan"))])
+if getBoxType() == "dm800":
+	config.plugins.infopanel_yellowkey.list = ConfigSelection([('0',_("Audio Selection")),('1',_("Default (Timeshift)")), ('2',_("Toggle Pillarbox <> Pan&Scan"))], default='1')
+else:
+	config.plugins.infopanel_yellowkey.list = ConfigSelection([('0',_("Audio Selection")),('1',_("Default (Timeshift)")), ('2',_("Toggle Pillarbox <> Pan&Scan"))], default='0')
 config.plugins.showinfopanelextensions = ConfigYesNo(default=False)
 config.plugins.infopanel_frozencheck = ConfigSubsection()
 config.plugins.infopanel_frozencheck.list = ConfigSelection([('0',_("Off")),('1',_("1 min.")), ('5',_("5 min.")),('10',_("10 min.")),('15',_("15 min.")),('30',_("30 min."))])
