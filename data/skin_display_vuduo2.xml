@@ -31,7 +31,7 @@
 		</widget>
 	</screen>
 	<screen name="RecordIconPanel">
-		<widget source="session.RecordState" render="FixedLabel" text="[R]" font="Medium" position="e-16,0" size="16,11" halign="right">
+		<widget source="session.RecordState" render="FixedLabel" text="[R]" font="Medium" position="e-16,2" size="16,11" halign="right">
 			<convert type="ConditionalShowHide"/>
 		</widget>
 	</screen>
@@ -42,27 +42,27 @@
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<panel position="fill" name="SummaryClockPanel" layout="stack">
-			<widget source="session.Event_Now" render="Label" position="top" size="*,12" font="Medium" noWrap="1">
+			<widget source="session.Event_Now" render="Progress" position="top" size="*,2">
+				<convert type="EventTime">Progress</convert>
+			</widget>
+			<widget source="session.Event_Now" render="Label" position="bottom" size="*,12" font="Medium" noWrap="1">
 				<convert type="EventName">Name</convert>
 			</widget>
 			<panel name="RecordIconPanel"/>
-			<widget source="session.Event_Now" render="Progress" position="bottom" size="*,2">
-				<convert type="EventTime">Progress</convert>
-			</widget>
 		</panel>
 	</screen>
 
 <!-- GraphMultiEPG -->
 	<screen name="GraphMultiEPG_summary" position="fill">
-		<widget source="parent.Service" render="Label" position="top" size="*,20" font="Bigger" noWrap="1">
+		<widget source="parent.Service" render="Label" position="top" size="*,18" font="Bigger" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<panel position="fill" name="SummaryClockPanel">
-			<widget source="parent.Event" render="Label" position="fill" font="Medium" noWrap="1">
+		<panel position="fill" name="SummaryClockPanel" layout="stack">
+			<widget source="parent.Event" render="Label" position="bottom" size="*,12" font="Medium" noWrap="1">
 				<convert type="EventName">Name</convert>
 			</widget>
+			<panel name="RecordIconPanel"/>
 		</panel>
-		<panel name="RecordIconPanel"/>
 	</screen>
 
 <!-- channelselection-->
@@ -71,13 +71,13 @@
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<panel position="fill" name="SummaryClockPanel" layout="stack">
-			<widget source="parent.ServiceEvent" render="Label" position="top" size="*,12" font="Medium" noWrap="1">
+			<widget source="parent.ServiceEvent" render="Progress" position="top" size="*,2">
+				<convert type="EventTime">Progress</convert>
+			</widget>
+			<widget source="parent.ServiceEvent" render="Label" position="bottom" size="*,12" font="Medium" noWrap="1">
 				<convert type="EventName">Name</convert>
 			</widget>
 			<panel name="RecordIconPanel"/>
-			<widget source="parent.ServiceEvent" render="Progress" position="bottom" size="*,2">
-				<convert type="EventTime">Progress</convert>
-			</widget>
 		</panel>
 	</screen>
 
@@ -111,13 +111,13 @@
 			</widget>
 		</panel>
 		<panel position="fill" name="SummaryClockPanel" layout="stack">
-			<widget source="session.CurrentService" render="Label" position="top" size="*,12" font="Medium" noWrap="1">
+			<widget source="session.CurrentService" render="Progress" position="top" size="*,2">
+				<convert type="ServicePosition">Position</convert>
+			</widget>
+			<widget source="session.CurrentService" render="Label" position="bottom" size="*,12" font="Medium" noWrap="1">
 				<convert type="ServiceName">Name</convert>
 			</widget>
 			<panel name="RecordIconPanel"/>
-			<widget source="session.CurrentService" render="Progress" position="bottom" size="*,2">
-				<convert type="ServicePosition">Position</convert>
-			</widget>
 		</panel>
 	</screen>
 	
