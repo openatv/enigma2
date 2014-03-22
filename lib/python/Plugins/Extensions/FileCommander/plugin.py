@@ -46,6 +46,7 @@ from FileListmod import FileList, MultiFileSelectList
 # Addons
 from Plugins.Extensions.FileCommander.addons.key_actions import *
 from Plugins.Extensions.FileCommander.addons.type_utils import *
+from Plugins.Extensions.PicturePlayer.ui import config
 
 MOVIEEXTENSIONS = {"cuts": "movieparts","meta": "movieparts","ap": "movieparts","sc": "movieparts","eit": "movieparts"}
 
