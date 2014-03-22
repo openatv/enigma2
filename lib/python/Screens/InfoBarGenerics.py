@@ -975,42 +975,44 @@ class InfoBarChannelSelection:
 			self.servicelist.historyZap(+1)
 
 	def switchChannelUp(self):
-		self.keyHide()
-		if not self.LongButtonPressed:
-			if not config.usage.show_bouquetalways.getValue():
-				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-					self.servicelist.moveUp()
-				self.session.execDialog(self.servicelist)
-			else:
-				self.servicelist.showFavourites()
-				self.session.execDialog(self.servicelist)
-		elif self.LongButtonPressed:
-			if not config.usage.show_bouquetalways.getValue():
-				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-					self.servicelist2.moveUp()
-				self.session.execDialog(self.servicelist2)
-			else:
-				self.servicelist2.showFavourites()
-				self.session.execDialog(self.servicelist2)
+		if not self.secondInfoBarScreen.shown:
+			self.keyHide()
+			if not self.LongButtonPressed:
+				if not config.usage.show_bouquetalways.getValue():
+					if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+						self.servicelist.moveUp()
+					self.session.execDialog(self.servicelist)
+				else:
+					self.servicelist.showFavourites()
+					self.session.execDialog(self.servicelist)
+			elif self.LongButtonPressed:
+				if not config.usage.show_bouquetalways.getValue():
+					if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+						self.servicelist2.moveUp()
+					self.session.execDialog(self.servicelist2)
+				else:
+					self.servicelist2.showFavourites()
+					self.session.execDialog(self.servicelist2)
 
 	def switchChannelDown(self):
-		self.keyHide()
-		if not self.LongButtonPressed:
-			if not config.usage.show_bouquetalways.getValue():
-				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-					self.servicelist.moveDown()
-				self.session.execDialog(self.servicelist)
-			else:
-				self.servicelist.showFavourites()
-				self.session.execDialog(self.servicelist)
-		elif self.LongButtonPressed:
-			if not config.usage.show_bouquetalways.getValue():
-				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-					self.servicelist2.moveDown()
-				self.session.execDialog(self.servicelist2)
-			else:
-				self.servicelist2.showFavourites()
-				self.session.execDialog(self.servicelist2)
+		if not self.secondInfoBarScreen.shown:
+			self.keyHide()
+			if not self.LongButtonPressed:
+				if not config.usage.show_bouquetalways.getValue():
+					if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+						self.servicelist.moveDown()
+					self.session.execDialog(self.servicelist)
+				else:
+					self.servicelist.showFavourites()
+					self.session.execDialog(self.servicelist)
+			elif self.LongButtonPressed:
+				if not config.usage.show_bouquetalways.getValue():
+					if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+						self.servicelist2.moveDown()
+					self.session.execDialog(self.servicelist2)
+				else:
+					self.servicelist2.showFavourites()
+					self.session.execDialog(self.servicelist2)
 
 	def openServiceList(self):
 		self.session.execDialog(self.servicelist)
