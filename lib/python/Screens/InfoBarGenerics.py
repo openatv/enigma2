@@ -835,6 +835,7 @@ class NumberZap(Screen):
 		self.numberString += str(number)
 		self["number"].setText(self.numberString)
 		self["number_summary"].setText(self.numberString)
+		self.field = self.numberString
 
 		self.handleServiceName()
 
@@ -845,6 +846,7 @@ class NumberZap(Screen):
 		Screen.__init__(self, session)
 		self.onChangedEntry = [ ]
 		self.numberString = str(number)
+		self.field = str(number)
 		self.searchNumber = searchNumberFunction
 		self.startBouquet = None
 
