@@ -226,7 +226,7 @@ class Disks():
 
 		if fstype == 0 or fstype == 1:
 #			ret = os.system("/sbin/fsck /dev/%s" % fdevice)
-			ret = os.system("/sbin/e2fsck.e2fsprogs -C 0 -f -p /dev/%s" % fdevice)
+			ret = os.system("/sbin/e2fsck -C 0 -f -p /dev/%s" % fdevice)
 		elif fstype == 2:
 			ret = os.system("/usr/bin/ntfsfix /dev/%s" % fdevice)
 		elif fstype == 3:
