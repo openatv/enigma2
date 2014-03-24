@@ -1,4 +1,4 @@
-from boxbranding import getImageVersion, getImageBuild, getMachineBrand, getMachineName, getBoxType
+from boxbranding import getImageVersion, getImageBuild, getMachineBrand, getMachineName, getMachineBuild
 from os import rename, path, remove
 from gettext import dgettext
 import urllib
@@ -70,7 +70,7 @@ class SoftwareUpdateChanges(Screen):
 	def getlog(self):
 		global ocram
 		try:
-			sourcefile = 'http://enigma2.world-of-satellite.com/feeds/' + getImageVersion() + '/' + getBoxType() + '/'  + self.logtype + '-git.log'
+			sourcefile = 'http://enigma2.world-of-satellite.com/feeds/' + getImageVersion() + '/' + getMachineBuild() + '/'  + self.logtype + '-git.log'
 			sourcefile,headers = urllib.urlretrieve(sourcefile)
 			rename(sourcefile,'/tmp/' + self.logtype + '-git.log')
 			fd = open('/tmp/' + self.logtype + '-git.log', 'r')
