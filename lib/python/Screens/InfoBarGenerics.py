@@ -1108,7 +1108,7 @@ class InfoBarEPG:
 
 	def getDefaultEPGtype(self):
 		pluginlist = self.getEPGPluginList()
-		config.usage.defaultEPGType=ConfigSelection(default = _("Multi EPG"), choices = pluginlist)
+		config.usage.defaultEPGType=ConfigSelection(default = "None", choices = pluginlist)
 		for plugin in pluginlist:
 			if plugin[0] == config.usage.defaultEPGType.getValue():
 				return plugin[1]
@@ -1183,10 +1183,10 @@ class InfoBarEPG:
 
 	def InfoPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
-			if getBrandOEM() in ('xtrend', 'odin', 'ini', 'odin' ,'gigablue', 'xp'):
+			if getBrandOEM() in ('xtrend', 'odin', 'odin' ,'gigablue', 'xp'):
 				self.openEventView()
 			else:
-				self.showDefaultEPG()
+				self.showDefaultInfoEPG()
 
 	def IPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
@@ -1194,8 +1194,7 @@ class InfoBarEPG:
 
 	def EPGPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
-			#self.openGraphEPG()
-			self.openMultiServiceEPG
+			self.openGraphEPG()
 
 	def showEventInfoWhenNotVisible(self):
 		if self.shown:
@@ -1380,12 +1379,18 @@ class InfoBarEPG:
 			if self.eventView and self.epglist:
 				self.eventView.setEvent(self.epglist[0])
 
-	def showDefaultEPG(self):
+	def showDefaultInfoEPG(self):
 		if self.defaultEPGType is not None:
 			self.defaultEPGType()
 			return
+		self.openEventView()
+		
+	def showDefaultEPG(self):
+		if self.defaultGuideType is not None:
+			self.defaultGuideType()
+			return
 		self.EPGPressed()
-
+		
 	def openEventView(self, simple=False):
 		if self.servicelist is None:
 			return
