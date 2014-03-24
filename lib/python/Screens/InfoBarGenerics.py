@@ -1068,35 +1068,7 @@ class SimpleServicelist:
 		if not self.length or self.current >= self.length:
 			return None
 		return self.services[self.current]
-
-
-class InfoBarEPG:
-	""" EPG - Opens an EPG list when the showEPGList action fires """
-	def __init__(self):
-		self.is_now_next = False
-		self.dlg_stack = []
-		self.bouquetSel = None
-		self.eventView = None
-		self.epglist = []
-		self.defaultEPGType = self.getDefaultEPGtype()
-		self.defaultGuideType = self.getDefaultGuidetype()
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
-				iPlayableService.evUpdatedEventInfo: self.__evEventInfoChanged,
-			})
-
-		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
-			{
-				"RedPressed": (self.RedPressed, _("Show epg")),
-				"IPressed": (self.IPressed, _("show program information...")),
-				"InfoPressed": (self.InfoPressed, _("show program information...")),
-				"showEventInfoPlugin": (self.showEventInfoPlugins, _("List EPG functions...")),
-				"EPGPressed":  (self.showDefaultEPG, _("show EPG...")),
-				"showSingleEPG": (self.openSingleServiceEPG, _("show single EPG...")),
-				"showEventGuidePlugin": self.showEventGuidePlugins,
-				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
-			})
-
+	      
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
