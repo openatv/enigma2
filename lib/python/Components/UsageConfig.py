@@ -61,8 +61,10 @@ def InitUsageConfig():
 			SystemInfo["InfoBarEpg"] = True
 		else:
 			SystemInfo["InfoBarEpg"] = False
-	#config.usage.show_second_infobar.addNotifier(showsecondinfobarChanged, immediate_feedback = True)
 
+	#config.usage.show_second_infobar.addNotifier(showsecondinfobarChanged, immediate_feedback = True)
+	config.usage.infobar_fe_data_source = ConfigSelection(default = "lamedb", choices = [("lamedb", _("Lamedb")), ("tuner", _("Tuner"))])
+	
 	config.usage.show_picon_bkgrn = ConfigSelection(default = "transparent", choices = [("none", _("Disabled")), ("transparent", _("Transparent")), ("blue", _("Blue")), ("red", _("Red")), ("black", _("Black")), ("white", _("White")), ("lightgrey", _("Light Grey")), ("grey", _("Grey"))])
 
 	config.usage.show_spinner = ConfigYesNo(default = True)

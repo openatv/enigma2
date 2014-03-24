@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-09 19:10+0100\n"
-"PO-Revision-Date: 2014-03-10 06:40+0100\n"
+"POT-Creation-Date: 2014-03-23 03:27+0100\n"
+"PO-Revision-Date: 2014-03-23 09:56+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -1566,6 +1566,9 @@ msgstr "Kies de lokatie waar uw %s %s de EPG-data moet opslaan als wordt afgeslo
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "Kies de naam van het bestand waarin uw %s %s de EPG-data moet opslaan als wordt afgesloten. Dit kan handig zijn om ondersheid te maken tussen de bestanden van verschillende ontvangers."
 
+msgid "Choose the source of the front end data displayed by the infobar. 'Lamedb' is as stored on file. 'Tuner' is as reported by the tuner."
+msgstr "Kies de bron voor de tunerdata die in de Infobar getoond wordt. \"Lamdb\" is opgeslagen als bestand, \"Tuner\" is actuele data zoals de tuner die rapporteert."
+
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Kies het tijdsinterval waarop de grafische indeling wordt afgerond."
 
@@ -1574,6 +1577,9 @@ msgstr "Stel hier in wat de \"0\"-toets moet doen wanneer PIP actief is."
 
 msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Stel in of meerkanaals geluid moet worden teruggebracht to stereo."
+
+msgid "Choose whether multi channel sound tracks should be output as PCM."
+msgstr "Stel in of meerkanaals geluid moet worden uitgevoerd als PCM."
 
 msgid "Choose whether or not to show an icon when a motorised dish is moving."
 msgstr "Kies hier of u een icoon wilt zien als uw gemotoriseerde schotel draait."
@@ -2574,6 +2580,9 @@ msgstr "Wilt u uw %s %s updaten?"
 msgid "Do you want to upgrade the package:\n"
 msgstr "Wilt u een upgrade van het volgende pakket:\n"
 
+msgid "Dobly Digital downmix is now"
+msgstr "Dolby Digital downmix is nu"
+
 msgid "Dolby Digital / DTS downmix"
 msgstr "Dolby Digital / DTS downmix"
 
@@ -3532,6 +3541,9 @@ msgstr "Informatiebalk EPG modus"
 msgid "Infobar EPG"
 msgstr "informatiebalk EPG..."
 
+msgid "Infobar front end data source"
+msgstr "Bron voor tuner info"
+
 msgid "InfobarEPG settings"
 msgstr "Infobalk EPG instellingen"
 
@@ -3687,7 +3699,7 @@ msgstr "Taken"
 msgid "Jump back 24 hours"
 msgstr "Spring 24 uur terug"
 
-msgid "Jump first press in channel selection*"
+msgid "Jump first press in channel selection"
 msgstr "Springt is kanaallijst als eerste *"
 
 msgid "Jump forward 24 hours"
@@ -3776,6 +3788,9 @@ msgstr "LNB"
 
 msgid "Label"
 msgstr "Label"
+
+msgid "Lamedb"
+msgstr "Lamedb"
 
 msgid "Language"
 msgstr "Taal"
@@ -4746,6 +4761,9 @@ msgstr "PAGINA OP/NEER"
 msgid "PAL"
 msgstr "PAL"
 
+msgid "PCM Multichannel"
+msgstr "PCM multikanaal"
+
 msgid "PCR PID"
 msgstr "PCR PID"
 
@@ -5375,6 +5393,9 @@ msgstr "Python frontend voor /tmp/mmi.socket"
 msgid "Quick"
 msgstr "Snel"
 
+msgid "Quick Actions"
+msgstr ""
+
 msgid "Quick zap"
 msgstr "Snelzap"
 
@@ -5855,6 +5876,9 @@ msgstr "Slaat timeshift als opname op. Dit kan enige tijd duren!"
 
 msgid "Scaler sharpness"
 msgstr "Scaler-scherpte"
+
+msgid "Scaler vertical dejagging"
+msgstr ""
 
 msgid "Scaling mode"
 msgstr "Schaalmodus"
@@ -6562,14 +6586,14 @@ msgstr "Laat status-iconen zien in opnamelijst"
 msgid "Show tag menu"
 msgstr "Markeringsmenu weergeven"
 
+msgid "Show the DreamPlex player..."
+msgstr "Toon de Dreamplex player..."
+
 msgid "Show the list of AutoTimers."
 msgstr "Toon AutoTimers"
 
 msgid "Show the list of timers."
 msgstr "Toon timers"
-
-msgid "Show the media player..."
-msgstr "Toon mediaplayer..."
 
 msgid "Show the plugin browser.."
 msgstr "Toon de pluginbrowser.."
@@ -6712,6 +6736,9 @@ msgstr "Stap snelheid"
 
 msgid "Small progress"
 msgstr "Kleine voortgang"
+
+msgid "Smooth"
+msgstr "Glad"
 
 msgid "Social/Political/Economics"
 msgstr "Sociaal/Politiek/Economie"
@@ -7209,6 +7236,13 @@ msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want 
 msgstr "De DVD-standaard ondersteunt geen H.264 (HDTV) video. Wilt u een %s %s formaat data DVD maken (deze speelt niet af in een DVD speler) ?"
 
 msgid ""
+"The DreamPlex plugin is not installed!\n"
+"Please install it."
+msgstr ""
+"De Dreamplex-plugin is niet geïnstalleeerd!\n"
+"Installeer die aub."
+
+msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -7228,13 +7262,6 @@ msgid ""
 msgstr ""
 "De IMDb-plugin is niet geïnstalleerd!\n"
 "Installeerd ie aub."
-
-msgid ""
-"The MediaPlayer plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"De Mediaplayer-plugin is niet geïnstalleeerd!\n"
-"Installeer die aub."
 
 msgid "The PIN code has been changed successfully."
 msgstr "De pincode is succesvol gewijzigd."
@@ -7462,8 +7489,8 @@ msgstr "Hier kunt u instellen of u de resterende en/of de vertsreken tijd wilt z
 msgid "This option allows you to choose how to display the remaining/elapsed time for media playback."
 msgstr "Hier kunt u instellen of u de resterende en/of de vertsreken tijd wilt zien voor het afspelen van opnames."
 
-msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first)"
-msgstr "Hier stelt u in waarheen als eerste gesprongen wordt in de kanaallijst (dus bij drukken op '2' springt u afhankelijk van deze instelling eerst naar 'A' of naar '2')"
+msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are perfomed. "
+msgstr "Hier stelt u in waarheen als eerste gesprongen wordt in de kanaallijst (dus bij drukken op '2' springt u afhankelijk van deze instelling eerst naar 'A' of naar '2')."
 
 msgid "This option allows you to disable sorting of the menus"
 msgstr "Hier kunt u het sorteren van menu's inschakelen."
@@ -7770,6 +7797,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Vandaag"
+
+msgid "Toggle Digital downmix..."
+msgstr "Wissel Digital downmix..."
 
 msgid "Toggle Picture In Graphics"
 msgstr "Wissel Picture In Graphics"
@@ -9497,6 +9527,9 @@ msgstr ""
 
 msgid "height"
 msgstr "hoogte"
+
+msgid "hint text place holder, waiting Vu for correct deffinitions."
+msgstr ""
 
 msgid "hops:"
 msgstr "hops:"

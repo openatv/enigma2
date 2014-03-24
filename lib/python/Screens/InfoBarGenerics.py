@@ -191,7 +191,7 @@ class InfoBarUnhandledKey:
 		return 0
 
 	def closeSIB(self, key):
-		if key >= 12 and key != 352 and key != 103 and key != 108 and key != 402 and key != 403 and key != 407 and key != 412 :
+		if key >= 12 and key not in (352, 103, 108, 402, 403, 407, 412):
 			return True
 		else:
 			return False
@@ -811,43 +811,44 @@ class InfoBarChannelSelection:
 			self.servicelist.historyZap(+1)
 
 	def switchChannelUp(self):
-		self.keyHide()
-		if not self.LongButtonPressed:
-			if not config.usage.show_bouquetalways.getValue():
-				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-					self.servicelist.moveUp()
-				self.session.execDialog(self.servicelist)
-			else:
-				self.servicelist.showFavourites()
-				self.session.execDialog(self.servicelist)
-		elif self.LongButtonPressed:
-			if not config.usage.show_bouquetalways.getValue():
-				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-					self.servicelist2.moveUp()
-				self.session.execDialog(self.servicelist2)
-			else:
-				self.servicelist2.showFavourites()
-				self.session.execDialog(self.servicelist2)
+		if not self.secondInfoBarScreen.shown:
+			self.keyHide()
+			if not self.LongButtonPressed:
+				if not config.usage.show_bouquetalways.getValue():
+					if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+						self.servicelist.moveUp()
+					self.session.execDialog(self.servicelist)
+				else:
+					self.servicelist.showFavourites()
+					self.session.execDialog(self.servicelist)
+			elif self.LongButtonPressed:
+				if not config.usage.show_bouquetalways.getValue():
+					if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+						self.servicelist2.moveUp()
+					self.session.execDialog(self.servicelist2)
+				else:
+					self.servicelist2.showFavourites()
+					self.session.execDialog(self.servicelist2)
 
 	def switchChannelDown(self):
-		self.keyHide()
-		if not self.LongButtonPressed:
-			if not config.usage.show_bouquetalways.getValue():
-				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-					self.servicelist.moveDown()
-				self.session.execDialog(self.servicelist)
-			else:
-				self.servicelist.showFavourites()
-				self.session.execDialog(self.servicelist)
-		elif self.LongButtonPressed:
-			if not config.usage.show_bouquetalways.getValue():
-				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-					self.servicelist2.moveDown()
-				self.session.execDialog(self.servicelist2)
-			else:
-				self.servicelist2.showFavourites()
-				self.session.execDialog(self.servicelist2)
-				
+		if not self.secondInfoBarScreen.shown:
+			self.keyHide()
+			if not self.LongButtonPressed:
+				if not config.usage.show_bouquetalways.getValue():
+					if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+						self.servicelist.moveDown()
+					self.session.execDialog(self.servicelist)
+				else:
+					self.servicelist.showFavourites()
+					self.session.execDialog(self.servicelist)
+			elif self.LongButtonPressed:
+				if not config.usage.show_bouquetalways.getValue():
+					if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+						self.servicelist2.moveDown()
+					self.session.execDialog(self.servicelist2)
+				else:
+					self.servicelist2.showFavourites()
+					self.session.execDialog(self.servicelist2)
 
 	def openServiceList(self):
 		self.session.execDialog(self.servicelist)
@@ -1078,7 +1079,6 @@ class InfoBarEPG:
 		self.eventView = None
 		self.epglist = []
 		self.defaultEPGType = self.getDefaultEPGtype()
-		self.defaultGuideType = self.getDefaultGuidetype()
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evUpdatedEventInfo: self.__evEventInfoChanged,
@@ -1115,6 +1115,20 @@ class InfoBarEPG:
 		return None
 
 	def showEventInfoPlugins(self):
+		if isStandardInfoBar(self):
+			if getBrandOEM() not in ('xtrend', 'odin', 'ini', 'dags' ,'gigablue', 'xp'):
+				pluginlist = self.getEPGPluginList()
+				if pluginlist:
+					pluginlist.append((_("Select default EPG type..."), self.SelectDefaultInfoPlugin))
+					self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = pluginlist, skin_name = "EPGExtensionsList")
+				else:
+					self.openSingleServiceEPG()
+			else:
+				self.openEventView()
+		elif isMoviePlayerInfoBar(self):
+			self.openEventView()
+
+	def showEventGuidePlugins(self):
 		if isMoviePlayerInfoBar(self):
 			self.openEventView()
 		else:
@@ -1134,38 +1148,6 @@ class InfoBarEPG:
 			config.usage.defaultEPGType.value = answer[0]
 			config.usage.defaultEPGType.save()
 			configfile.save()
-
-	def getDefaultGuidetype(self):
-		pluginlist = self.getEPGPluginList()
-		config.usage.defaultGuideType=ConfigSelection(default = "None", choices = pluginlist)
-		for plugin in pluginlist:
-			if plugin[0] == config.usage.defaultGuideType.value:
-				return plugin[1]
-		return None
-
-	def showEventGuidePlugins(self):
-		if isMoviePlayerInfoBar(self):
-			self.openEventView()
-		else:
-			pluginlist = self.getEPGPluginList()
-			if pluginlist:
-				pluginlist.append((_("Select default EPG type..."), self.SelectDefaultGuidePlugin))
-				self.session.openWithCallback(self.EventGuidePluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = pluginlist, skin_name = "EPGExtensionsList")
-			else:
-				self.openSingleServiceEPG()
-
-	def SelectDefaultGuidePlugin(self):
-		self.session.openWithCallback(self.DefaultGuidePluginChosen, ChoiceBox, title=_("Please select a default EPG type..."), list = self.getEPGPluginList(), skin_name = "EPGExtensionsList")
-
-	def DefaultGuidePluginChosen(self, answer):
-		if answer is not None:
-			self.defaultGuideType = answer[1]
-			config.usage.defaultGuideType.value = answer[0]
-			config.usage.defaultGuideType.save()
-
-	def EventGuidePluginChosen(self, answer):
-		if answer is not None:
-			answer[1]()
 
 	def runPlugin(self, plugin):
 		plugin(session = self.session, servicelist=self.servicelist)
