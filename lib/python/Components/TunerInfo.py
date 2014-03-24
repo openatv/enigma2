@@ -6,11 +6,10 @@ from math import log
 
 class TunerInfo(GUIComponent):
 	SNR = 0
-	AGC = 1
-	BER = 2
-	LOCK = 3
-	SNR_PERCENTAGE = 0
 	SNR_DB = 1
+	AGC = 2
+	BER = 3
+	SNR_PERCENTAGE = 0
 	AGC_PERCENTAGE = 2
 	BER_VALUE = 3
 	SNR_BAR = 4
@@ -18,6 +17,7 @@ class TunerInfo(GUIComponent):
 	BER_BAR = 6
 	LOCK_STATE = 7
 	SYNC_STATE = 8
+	LOCK = 9
 
 	def __init__(self, type, servicefkt = None, frontendfkt = None, statusDict = None):
 		GUIComponent.__init__(self)
@@ -38,7 +38,7 @@ class TunerInfo(GUIComponent):
 	def setValue(self, value):
 		self.value = value
 		if self.instance:
-			self.instance.setValue(self.value)		
+			self.instance.setValue(self.value)
 
 	def calc(self,val):
 		if not val:
@@ -129,6 +129,8 @@ class TunerInfo(GUIComponent):
 			return self.g
 
 	def postWidgetCreate(self, instance):
+		if instance is None:
+			return
 		if self.message is not None:
 			instance.setText(self.message)
 		elif self.value is not None:

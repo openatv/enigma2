@@ -10,6 +10,7 @@ from enigma import eDVBVolumecontrol, eTimer
 from os import path
 import Screens.InfoBar
 from boxbranding import getMachineBrand, getMachineName, getBoxType
+from time import time, localtime
 
 inStandby = None
 
@@ -68,6 +69,9 @@ class Standby2(Screen):
 
 		self.StandbyCounterIncrease = StandbyCounterIncrease
 
+		self.standbyTimeUnknownTimer = eTimer()
+		self.standbyTimeoutTimer = eTimer()
+
 		#mute adc
 		self.setMute()
 
@@ -77,12 +81,15 @@ class Standby2(Screen):
 
 		self.paused_service = None
 		self.prev_running_service = None
+
 		if self.session.current_dialog:
 			if self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_STOPS:
-				#get currently playing service reference
-				self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-				#stop actual played dvb-service
-				self.session.nav.stopService()
+				if localtime(time()).tm_year > 1970 and self.session.nav.getCurrentlyPlayingServiceOrGroup():
+					self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+					self.session.nav.stopService()
+				else:
+					self.standbyTimeUnknownTimer.callback.append(self.stopService)
+					self.standbyTimeUnknownTimer.startLongTimer(60)
 			elif self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_PAUSES:
 				self.paused_service = self.session.current_dialog
 				self.paused_service.pauseService()
@@ -95,7 +102,6 @@ class Standby2(Screen):
 
 		gotoShutdownTime = int(config.usage.standby_to_shutdown_timer.value)
 		if gotoShutdownTime:
-			self.standbyTimeoutTimer = eTimer()
 			self.standbyTimeoutTimer.callback.append(self.standbyTimeout)
 			self.standbyTimeoutTimer.startLongTimer(gotoShutdownTime)
 
@@ -105,6 +111,8 @@ class Standby2(Screen):
 	def __onClose(self):
 		global inStandby
 		inStandby = None
+		self.standbyTimeUnknownTimer.stop()
+		self.standbyTimeoutTimer.stop()
 		if self.prev_running_service:
 			self.session.nav.playService(self.prev_running_service)
 		elif self.paused_service:
@@ -133,8 +141,13 @@ class Standby(Standby2):
 		Standby2.__init__(self, session)
 		self.skinName = "Standby"
 
+	def stopService(self):
+		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.session.nav.stopService()
+
 class StandbySummary(Screen):
-	skin = """<screen position="0,0" size="132,64">
+	skin = """
+	<screen position="0,0" size="132,64">
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="132,64" font="Regular;40" halign="center">
 			<convert type="ClockToText" />
 		</widget>
@@ -150,6 +163,7 @@ from time import time
 from Components.Task import job_manager
 
 class QuitMainloopScreen(Screen):
+
 	def __init__(self, session, retvalue=1):
 		self.skin = """<screen name="QuitMainloopScreen" position="fill" flags="wfNoBorder">
 			<ePixmap pixmap="skin_default/icons/input_info.png" position="c-27,c-60" size="53,53" alphatest="on" />
@@ -177,9 +191,10 @@ class TryQuitMainloop(MessageBox):
 		self.connected = False
 		reason = ""
 		next_rec_time = -1
-
 		if not recordings:
 			next_rec_time = session.nav.RecordTimer.getNextRecordingTime()
+		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
+			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
 		if jobs:
 			reason = _("Job task(s) are in progress!") + '\n'
 			if jobs == 1:
@@ -210,7 +225,7 @@ class TryQuitMainloop(MessageBox):
 				self.onShow.append(self.__onShow)
 				self.onHide.append(self.__onHide)
 				return
-		self.skin = """<screen position="1310,0" size="0,0"/>"""
+		self.skin = """<screen position="0,0" size="0,0"/>"""
 		Screen.__init__(self, session)
 		self.close(True)
 
@@ -238,6 +253,9 @@ class TryQuitMainloop(MessageBox):
 			self.hide()
 			if self.retval == 1:
 				config.misc.DeepStandby.value = True
+			elif not inStandby:
+				config.misc.RestartUI.value = True
+				config.misc.RestartUI.save()
 			self.session.nav.stopService()
 			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
 			self.quitScreen.show()
