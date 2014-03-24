@@ -315,10 +315,10 @@ class GeneralSetup(Screen):
 	def Qtuner(self):
 		nimList = nimmanager.getNimListOfType("DVB-S")
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Tuner Configuration",_("Setup tuner(s)"),_("Setup each tuner for your satellite system")))
+		self.sublist.append(QuickSubMenuEntryComponent("Location Scan",_("Automatic Location Scan"),_("Automatic scan for services")))
 		if len(nimList) != 0:
 			self.sublist.append(QuickSubMenuEntryComponent("Positioner Setup",_("Setup rotor"),_("Setup your positioner for your satellite system")))
-		self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan",_("Service Searching"),_("Automatic scan for services")))
+		#self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan",_("Service Searching"),_("Automatic scan for services")))
 		self.sublist.append(QuickSubMenuEntryComponent("Manual Scan",_("Service Searching"),_("Manual scan for services")))
 		if BLINDSCAN == True and len(nimList) != 0:
 			self.sublist.append(QuickSubMenuEntryComponent("Blind Scan",_("Blind Searching"),_("Blind scan for services")))  
@@ -566,7 +566,7 @@ class GeneralSetup(Screen):
 			from Screens.UserInterfacePositioner import OSD3DSetupScreen
 			self.session.open(OSD3DSetupScreen)
 ######## Select TUNER Setup Menu ##############################
-		elif item[0] == _("Tuner Configuration"):
+		elif item[0] == _("Location Scan"):
 			from Screens.IniTerrestrialLocation import IniTerrestrialLocation
 			self.session.open(IniTerrestrialLocation)
 			#self.session.open(NimSelection)
