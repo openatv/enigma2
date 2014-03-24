@@ -265,7 +265,7 @@ class PliExtraInfo(Poll, Converter, object):
 		if self.updateFEdata:
 			feinfo = service.frontendInfo()
 			if feinfo:
-				self.feraw = feinfo.getAll(False)
+				self.feraw = feinfo.getAll(config.usage.infobar_frontend_source.value == "settings")
 				if self.feraw:
 					self.fedata = ConvertToHumanReadable(self.feraw)
 
