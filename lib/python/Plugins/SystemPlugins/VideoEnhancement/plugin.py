@@ -18,7 +18,6 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.onChangedEntry = [ ]
-		self.skinName = ["Setup" ]
 		self.setup_title = _("Video enhancement setup")
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
