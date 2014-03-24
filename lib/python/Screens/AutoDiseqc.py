@@ -88,10 +88,15 @@ class AutoDiseqc(Screen, ConfigListScreen):
 			self.session.nav.stopService()
 			if not self.openFrontend():
 				if self.session.pipshown:
+					if hasattr(self.session, 'infobar'):
+						if self.session.infobar.servicelist and self.session.infobar.servicelist.dopipzap:
+							self.session.infobar.servicelist.togglePipzap()
+					if hasattr(self.session, 'pip'):
+						del self.session.pip
 					self.session.pipshown = False
-					del self.session.pip
-					if not self.openFrontend():
-						self.frontend = None
+				if not self.openFrontend():
+					self.frontend = None
+					self.raw_channel = None
 
 		if self.raw_channel:
 			self.raw_channel.receivedTsidOnid.get().append(self.gotTsidOnid)
@@ -171,7 +176,8 @@ class AutoDiseqc(Screen, ConfigListScreen):
 			InitNimManager(nimmanager)
 
 			self.tuner = Tuner(self.frontend)
-			self.raw_channel.requestTsidOnid()
+			if self.raw_channel:
+				self.raw_channel.requestTsidOnid()
 			self.tuner.tune(self.sat_frequencies[self.index])
 
 			self["statusbar"].setText(_("Checking tuner %d\nDiSEqC port %s for %s") % (self.feid, self.diseqc_ports[self.port_index], self.sat_frequencies[self.index][self.SAT_TABLE_NAME]))
@@ -219,7 +225,12 @@ class AutoDiseqc(Screen, ConfigListScreen):
 
 	def tunerStatusCallback(self):
 		dict = {}
-		self.frontend.getFrontendStatus(dict)
+		if self.frontend:
+			self.frontend.getFrontendStatus(dict)
+		else:
+			self.tunerStopScan(False)
+			return
+
 		if dict["tuner_state"] == "TUNING":
 			self["tunerstatusbar"].setText(_("Tuner status:") + " " + _("TUNING"))
 		elif dict["tuner_state"] == "LOCKED":

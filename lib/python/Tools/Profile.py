@@ -3,7 +3,7 @@ from boxbranding import getBoxType
 import time
 from Directories import resolveFilename, SCOPE_CONFIG
 
-PERCENTAGE_START = 50
+PERCENTAGE_START = 0
 PERCENTAGE_END = 100
 
 profile_start = time.time()

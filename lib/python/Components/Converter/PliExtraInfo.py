@@ -725,7 +725,7 @@ class PliExtraInfo(Poll, Converter, object):
 		if self.updateFEdata:
 			feinfo = service.frontendInfo()
 			if feinfo:
-				self.feraw = feinfo.getAll(config.usage.infobar_fe_data_source.value == "lamedb")
+				self.feraw = feinfo.getAll(config.usage.infobar_frontend_source.getValue() == "settings")
 				if self.feraw:
 					self.fedata = ConvertToHumanReadable(self.feraw)
 
