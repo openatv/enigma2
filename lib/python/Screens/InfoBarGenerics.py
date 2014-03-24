@@ -380,6 +380,7 @@ class NumberZap(Screen):
 		self.Timer.start(1000, True)
 		self.numberString = self.numberString + str(number)
 		self["number"].text = self["number_summary"].text = self.numberString
+		self.field = self.numberString
 
 		self.handleServiceName()
 
@@ -389,6 +390,7 @@ class NumberZap(Screen):
 	def __init__(self, session, number, searchNumberFunction = None):
 		Screen.__init__(self, session)
 		self.numberString = str(number)
+		self.field = str(number)
 		self.searchNumber = searchNumberFunction
 		self.startBouquet = None
 
