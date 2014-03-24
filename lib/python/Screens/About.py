@@ -43,29 +43,11 @@ class About(Screen):
 		model = None
 		AboutText = ""
 		self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
-		if getBoxType() == 'vuuno':
+		if getMachineBrand() == 'Vu+':
 			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
-		elif getBoxType() == 'vuultimo':
-			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
-		elif getBoxType() == 'vusolo':
-			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
-		elif getBoxType() == 'vusolo2':
-			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
-		elif getBoxType() == 'vuduo':
-			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
-		elif getBoxType() == 'vuduo2':
-			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
-		elif getBoxType() == 'et4x00':
+		elif getMachineBrand() == 'Xtrend':
 			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
-		elif getBoxType() == 'et5x00':
-			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
-		elif getBoxType() == 'et6x00':
-			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
-		elif getBoxType() == 'et9x00':
-			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
-		elif getBoxType() == 'odinm7':
-			self["lab3"] = StaticText(_("Support at") + " www.odin-support.co.uk")
-		elif getBoxType() == 'odinm9':
+		elif getMachineBrand() == 'Odin':
 			self["lab3"] = StaticText(_("Support at") + " www.odin-support.co.uk")
 
 		AboutText += _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
