@@ -49,7 +49,7 @@
 				<item level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
 				<item level="0" entryID="usage_setup"><setup id="usage" /></item>
 				<item level="0" entryID="channelselection_setup"><setup id="channelselection" /></item>
-				<menu level="0" text="Display" entryID="display_selection" requires="Display">
+				<menu level="0" text="Front Display Panel" entryID="display_selection" requires="Display">
 					<id val="display" />
 					<item level="0" entryID="display_setup"><setup id="display" /></item>
 					<item level="0" text="Skin setup" entryID="lcd_skin_setup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
