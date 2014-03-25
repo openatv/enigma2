@@ -22,8 +22,9 @@ from re import search
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		
+
 		AboutText = _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
+
 		if path.exists('/proc/stb/info/chipset'):
 			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString() + "\n"
 
