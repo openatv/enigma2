@@ -4,9 +4,10 @@ from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
-from enigma import eDVBVolumecontrol
+from enigma import eDVBVolumecontrol, eTimer
 from boxbranding import getMachineBrand, getMachineName
 from Tools import Notifications
+from time import localtime, time
 import Screens.InfoBar
 from gettext import dgettext
 
