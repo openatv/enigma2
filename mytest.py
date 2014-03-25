@@ -48,7 +48,7 @@ config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_ACTIVE_SKIN, "
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
 config.misc.isNextPowerTimerAfterEventActionAuto = ConfigYesNo(default=False)
 config.misc.SyncTimeUsing = ConfigSelection(default = "0", choices = [("0", "Transponder Time"), ("1", _("NTP"))])
-config.misc.NTPserver = ConfigText(default = 'pool.ntp.org', fixed_size=False)
+config.misc.NTPserver = ConfigText(default = 'au.pool.ntp.org', fixed_size=False)
 
 config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
@@ -78,7 +78,7 @@ def useSyncUsingChanged(configelement):
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 
 def NTPserverChanged(configelement):
-	if configelement.getValue() == "pool.ntp.org":
+	if configelement.getValue() == "au.pool.ntp.org":
 		return
 	f = open("/etc/default/ntpdate", "w")
 	f.write('NTPSERVERS="' + configelement.getValue() + '"\n')
