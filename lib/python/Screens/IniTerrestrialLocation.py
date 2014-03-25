@@ -74,7 +74,7 @@ class IniTerrestrialLocation(Screen):
 		if config.misc.inifirstrun.getValue():
 			self.skinName = ["StartWizard"]
 
-		self["text"] = Label(_("Please scroll to location and select your location and then press ok. If your location is not listed or you do not find all the channels please select Australia as your location."))
+		self["text"] = Label(_("Please select your location and then press OK to begin the scan.\n\nIf your location is not listed or the scan fails to find all channels, please select Full Scan."))
 		self["key_red"] = Label(_("Exit"))
 		self.mlist = []
 		self["config"] = TerrestrialMenuList(self.mlist)
