@@ -343,7 +343,7 @@ class AttributeParser:
 					"orRightToLeft": (self.guiObject.orHorizontal, True),
 				}[value])
 		except KeyError:
-			print "oprientation must be either orVertical or orHorizontal!, not %s. Please contact the skin's author!" % value
+			print "orientation must be one of orVertical, orHorizontal, orTopToBottom, orBottomToTop, orLeftToRight, or orRightToLeft, not %s. Please contact the skin's author!" % value
 	def valign(self, value):
 		try:
 			self.guiObject.setVAlign(
@@ -352,7 +352,7 @@ class AttributeParser:
 					"bottom": self.guiObject.alignBottom
 				}[value])
 		except KeyError:
-			print "valign must be either top, center or bottom!, not %s. Please contact the skin's author!" % value
+			print "valign must be one of top, center or bottom, not %s. Please contact the skin's author!" % value
 	def halign(self, value):
 		try:
 			self.guiObject.setHAlign(
@@ -362,7 +362,7 @@ class AttributeParser:
 					"block": self.guiObject.alignBlock
 				}[value])
 		except KeyError:
-			print "halign must be either left, center, right or block!, not %s. Please contact the skin's author!" % value
+			print "halign must be one of left, center, right or block, not %s. Please contact the skin's author!" % value
 	def textOffset(self, value):
 		x, y = value.split(',')
 		self.guiObject.setTextOffset(ePoint(int(x) * self.scale[0][0] / self.scale[0][1], int(y) * self.scale[1][0] / self.scale[1][1]))
