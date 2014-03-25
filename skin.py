@@ -413,8 +413,6 @@ class AttributeParser:
 		#	}[value])
 	def enableWrapAround(self, value):
 		self.guiObject.setWrapAround(True)
-	def itemHeight(self, value):
-		self.guiObject.setItemHeight(int(value))
 	def pointer(self, value):
 		(name, pos) = value.split(':')
 		pos = parsePosition(pos, self.scale)
