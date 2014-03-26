@@ -8,11 +8,6 @@
 		<widget source="session.CurrentService" render="Progress" position="top" size="*,4" borderWidth="1">
 			<convert type="ServicePosition">Position</convert>
 		</widget>
-		<panel position="bottom" size="*,24" name="SummaryClockPanel">
-			<widget source="session.CurrentService" render="Label" position="4,0" size="42,12" font="FdLcD;12" halign="left" noWrap="1">
-				<convert type="ServicePosition">Position</convert>
-			</widget>
-		</panel>
 	</screen>
 	<screen name="MovieContextMenuSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
@@ -47,7 +42,6 @@
 		<widget source="parent.ServiceEvent" render="Progress" position="top" size="*,14" borderWidth="3">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<panel position="bottom" size="*,44" name="SummaryClockPanel" />
 	</screen>
 
 <!-- menus-->
@@ -68,7 +62,6 @@
 <!-- misc-->
 	<screen name="SimpleSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,100" font="FdLcD;40" halign="center" valign="center" />
-		<panel position="bottom" size="*,24" name="SummaryClockPanel" />
 	</screen>
 	<screen name="WizardSummary" position="fill">
 		<widget source="text" render="Label" position="top" size="*,71" font="FdLcD;35" halign="center" />
