@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-12 19:18+0100\n"
-"PO-Revision-Date: 2014-03-24 17:44+0100\n"
+"POT-Creation-Date: 2014-03-25 17:20+0100\n"
+"PO-Revision-Date: 2014-03-26 22:07+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: AndyBlac/TimoJ\n"
 "Language: fi\n"
@@ -2104,6 +2104,9 @@ msgstr "Määrittää hypyn pituuden '7' ja '9' näppäimille."
 msgid "Configure the slow motion speeds."
 msgstr "Määrittää hidastusnopeudet."
 
+msgid "Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner."
+msgstr "Määritä tietopalkeissa näytettävän viritintiedon lähde. 'Asetukset' on asetuksiin tallennettu tieto. 'Viritin' on tieto, jonka viritin ilmoittaa."
+
 msgid "Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance."
 msgstr "Määrittää taustallatuhoamis-prosessin nopeuden. Matalampi nopeus kuormittaa vähemmän kovalevyä."
 
@@ -2696,9 +2699,6 @@ msgstr "Katkaise yhteys"
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Tallennuksille varattu levytila (GB)"
 
-msgid "Display"
-msgstr "Näyttö"
-
 #
 msgid "Display 16:9 content as"
 msgstr "Näytä 16:9 sisältö näin:"
@@ -2896,6 +2896,9 @@ msgstr "Haluatko päivittää %s %s:n?"
 #
 msgid "Do you want to upgrade the package:\n"
 msgstr "Haluatko päivittää ohjelmapaketin:\n"
+
+msgid "Dobly Digital downmix is now"
+msgstr "Dolby Dig. muunto stereoksi on nyt"
 
 msgid "Dolby Digital / DTS downmix"
 msgstr "Dolby Digitalin/DTS:n muunto stereoksi"
@@ -3520,6 +3523,9 @@ msgstr "Perjantai"
 msgid "From :"
 msgstr "Mistä :"
 
+msgid "Front Display Panel"
+msgstr "Näyttöpaneeli"
+
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Edustaprosessorin versio: %d"
@@ -3968,6 +3974,9 @@ msgstr "Tietopalkin EPG:n tila"
 
 msgid "Infobar EPG"
 msgstr "Tietopalkin EPG"
+
+msgid "Infobar frontend data source"
+msgstr "Tietopalkin viritintiedon lähde"
 
 #
 msgid "InfobarEPG settings"
@@ -4993,9 +5002,6 @@ msgstr "Ei vapaata indeksiä"
 #
 msgid "No free tuner!"
 msgstr "Kaikki virittimet ovat jo käytössä!"
-
-msgid "No free tuner, could not open Picture in Picture"
-msgstr "Ei vapaata viritintä, PIP-kuvaa ei voitu avata"
 
 msgid "No httpport defined in oscam.conf. This value is required!"
 msgstr "Httpport-määritys puuttuu oscam.conf:ista. Tämä arvo tarvitaan!"
@@ -6665,6 +6671,9 @@ msgstr "Muunnetaan ajansiirto tallennukseksi. Tämä saattaa kestää hetken!"
 msgid "Scaler sharpness"
 msgstr "Skaalaimen terävyys"
 
+msgid "Scaler vertical dejagging"
+msgstr "Skaalaimen pystys. sahalaidat"
+
 #
 msgid "Scaling mode"
 msgstr "Skaalaustila"
@@ -7392,7 +7401,7 @@ msgid "Show message when recording starts"
 msgstr "Näytä viesti kun tallennus alkaa"
 
 msgid "Show movie lengths in movielist"
-msgstr "Näytä tallenteiden pituu tallenneluettelossa"
+msgstr "Näytä tallenteiden pituus tallenneluettelossa"
 
 msgid "Show network mounts ..."
 msgstr "Näytä verkkoliitokset"
@@ -7624,6 +7633,9 @@ msgstr "Hidastusnopeudet"
 #
 msgid "Small progress"
 msgstr "Pieni etenemispalkki"
+
+msgid "Smooth"
+msgstr "Pehmennnys"
 
 msgid "Social/Political/Economics"
 msgstr "Sosiaali/Politiikka/Talous"
@@ -8413,6 +8425,12 @@ msgstr "Tämä asetus määrittää kuinka TV-lähetyksen jäljelläoleva/kulunu
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Tämä asetus määrittää läpinäkyvien kanavalogojen taustavärin."
 
+msgid "This option allows you enable smoothing filter to control the dithering process."
+msgstr "Tämä asetus ottaa käyttöön pehmennyssuodattimen sävyjen sekoituksessa."
+
+msgid "This option allows you enable the vertical scaler dejagging."
+msgstr "Tämä asetus ottaa käyttöön skaalaimen pystysuuntaisen sahalaitojen poiston."
+
 msgid "This option allows you set the layout view (Text or Graphics)."
 msgstr "Tämä asetus määrittää näkymän asettelun (teksti tai graafinen)."
 
@@ -8797,6 +8815,9 @@ msgstr ""
 #
 msgid "Today"
 msgstr "Tänään"
+
+msgid "Toggle Digital downmix..."
+msgstr "Vaihda muunto stereoksi..."
 
 msgid "Toggle Picture In Graphics"
 msgstr "Pikkukuva päälle/pois"
@@ -11586,6 +11607,12 @@ msgstr "vaihdettu"
 
 #~ msgid "Advanced video setup"
 #~ msgstr "Laajennetut video-asetukset"
+
+#~ msgid "Display"
+#~ msgstr "Näyttö"
+
+#~ msgid "No free tuner, could not open Picture in Picture"
+#~ msgstr "Ei vapaata viritintä, PIP-kuvaa ei voitu avata"
 
 #~ msgid "Side by side"
 #~ msgstr "Rinnakkain"
