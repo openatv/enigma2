@@ -20,14 +20,14 @@ config.misc.inifirstrun = ConfigBoolean(default = True)
 class TerrestrialMenuList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 28))
+		self.l.setFont(0, gFont("Regular", 24))
 		self.l.setFont(1, gFont("Regular", 14))
-		self.l.setItemHeight(50)
+		self.l.setItemHeight(32)
 	
 def TerrestrialMenuEntryComponent(name, item):
 	return [
 		(item),
-		MultiContentEntryText(pos=(20, 8), size=(400, 50), font=0, text = _(name)),
+		MultiContentEntryText(pos=(20, 4), size=(400, 32), font=0, text = _(name)),
 	]
 
 def buildTerTransponder(frequency,
@@ -62,7 +62,7 @@ class IniTerrestrialLocation(Screen):
 	<screen name="IniTerrestrialLocation" position="center,center" size="560,550">
 		<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="config" position="0,90" size="560,375" transparent="0" enableWrapAround="1" scrollbarMode="showOnDemand" />
+		<widget name="config" position="0,90" size="560,384" transparent="0" enableWrapAround="1" scrollbarMode="showOnDemand" />
 		<widget name="text" position="0,e-75" size="560,75" font="Regular;18" halign="center" valign="top" transparent="0" zPosition="1" />
 	</screen>"""
 	def __init__(self, session):
@@ -74,7 +74,7 @@ class IniTerrestrialLocation(Screen):
 		if config.misc.inifirstrun.getValue():
 			self.skinName = ["StartWizard"]
 
-		self["text"] = Label(_("Please scroll to location and select your location and then press ok. If your location is not listed or you do not find all the channels please select Australia as your location."))
+		self["text"] = Label(_("Please select your location and then press OK to begin the scan.\n\nIf your location is not listed or the scan fails to find all channels, please select Full Scan."))
 		self["key_red"] = Label(_("Exit"))
 		self.mlist = []
 		self["config"] = TerrestrialMenuList(self.mlist)
