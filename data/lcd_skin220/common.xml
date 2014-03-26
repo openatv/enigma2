@@ -33,13 +33,16 @@
 
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="fill">
-		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,65" font="FdLcD;30" halign="center" >
+		<widget source="parent.ServiceEvent" render="PiconLCD" zPosition="1" position="0,3" size="90,54" alphatest="on" >
+			<convert type="ServiceName">Reference</convert>
+		</widget>
+		<widget source="parent.ServiceEvent" render="Label" position="90,0" size="130,60" font="FdLcD;25" halign="center" valign="center" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,55" font="FdLcD;25" halign="center" >
+		<widget source="parent.ServiceEvent" render="Label" position="0,80" size="220,60" font="FdLcD;25" halign="center" valign="center" >
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Progress" position="top" size="*,14" borderWidth="3">
+		<widget source="parent.ServiceEvent" render="Progress" position="0,155" size="220,20" borderWidth="2">
 			<convert type="EventTime">Progress</convert>
 		</widget>
 	</screen>
