@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from os import path as os_path, walk as os_walk, unlink as os_unlink
-import operator
 
 from Plugins.Plugin import PluginDescriptor
 
