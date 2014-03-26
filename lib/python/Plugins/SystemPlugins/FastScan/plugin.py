@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from os import path as os_path, walk as os_walk, unlink as os_unlink
-import operator
 
 from Plugins.Plugin import PluginDescriptor
 
@@ -134,17 +133,19 @@ class FastScanScreen(ConfigListScreen, Screen):
 	def __init__(self, session, nimList):
 		Screen.__init__(self, session)
 
-		self.providers = {}
-		self.providers['Canal Digitaal'] = (1, 900, True)
-		self.providers['TV Vlaanderen'] = (1, 910, True)
-		self.providers['TéléSAT'] = (0, 920, True)
-		self.providers['AustriaSat'] = (0, 950, False)
-		self.providers['Skylink Czech Republic'] = (1, 30, False)
-		self.providers['Skylink Slovak Republic'] = (1, 31, False)
-		self.providers['TéléSAT Astra3'] = (1, 920, True)
-		self.providers['AustriaSat Astra3'] = (1, 950, False)
-		self.providers['Canal Digitaal Astra 1'] = (0, 900, True)
-		self.providers['TV Vlaanderen  Astra 1'] = (0, 910, True)
+		self.providers = [
+			('Canal Digitaal', (1, 900, True)),
+			('TV Vlaanderen', (1, 910, True)),
+			('TéléSAT', (0, 920, True)),
+			('HD Austria', (0, 950, False)),
+			('Skylink Czech Republic', (1, 30, False)),
+			('Skylink Slovak Republic', (1, 31, False)),
+			('AustriaSat Magyarország Eutelsat 9E', (2, 951, False)),
+			('AustriaSat Magyarország Astra 3', (1, 951, False)),
+			('TéléSAT Astra3', (1, 920, True)),
+			('HD Austria Astra3', (1, 950, False)),
+			('Canal Digitaal Astra 1', (0, 900, True)),
+			('TV Vlaanderen  Astra 1', (0, 910, True))]
 
 		self.transponders = ((12515000, 22000000, eDVBFrontendParametersSatellite.FEC_5_6, 192,
 			eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.Inversion_Unknown,
@@ -153,7 +154,11 @@ class FastScanScreen(ConfigListScreen, Screen):
 			(12070000, 27500000, eDVBFrontendParametersSatellite.FEC_3_4, 235,
 			eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.Inversion_Unknown,
 			eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_QPSK,
-			eDVBFrontendParametersSatellite.RollOff_alpha_0_35, eDVBFrontendParametersSatellite.Pilot_Off))
+			eDVBFrontendParametersSatellite.RollOff_alpha_0_35, eDVBFrontendParametersSatellite.Pilot_Off),
+			(12074000, 27500000, eDVBFrontendParametersSatellite.FEC_3_4, 90,
+			eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.Inversion_Unknown,
+			eDVBFrontendParametersSatellite.System_DVB_S2, eDVBFrontendParametersSatellite.Modulation_8PSK,
+			eDVBFrontendParametersSatellite.RollOff_alpha_0_35, eDVBFrontendParametersSatellite.Pilot_On))
 
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 		{
@@ -163,7 +168,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 			"menu": self.closeRecursive,
 		}, -2)
 
-		providerList = list(x[0] for x in sorted(self.providers.iteritems(), key = operator.itemgetter(1)))
+		providerList = list(x[0] for x in self.providers)
 
 		lastConfiguration = eval(config.misc.fastscan.last_configuration.value)
 		if not lastConfiguration:
@@ -217,12 +222,13 @@ class FastScanScreen(ConfigListScreen, Screen):
 		return transponderParameters
 
 	def startScan(self):
-		pid = self.providers[self.scan_provider.value][1]
-		if self.scan_hd.value and self.providers[self.scan_provider.value][2]:
+		parameters = tuple(x[1] for x in self.providers if x[0] == self.scan_provider.value)[0]
+		pid = parameters[1]
+		if self.scan_hd.value and parameters[2]:
 			pid += 1
 		if self.scan_nims.value:
 			self.session.open(FastScanStatus, scanTuner = int(self.scan_nims.value),
-				transponderParameters = self.getTransponderParameters(self.providers[self.scan_provider.value][0]),
+				transponderParameters = self.getTransponderParameters(parameters[0]),
 				scanPid = pid, keepNumbers = self.scan_keepnumbering.value, keepSettings = self.scan_keepsettings.value,
 				providerName = self.scan_provider.getText())
 
