@@ -36,10 +36,10 @@
 		<widget source="parent.ServiceEvent" render="PiconLCD" zPosition="1" position="0,3" size="90,54" alphatest="on" >
 			<convert type="ServiceName">Reference</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="90,0" size="130,60" font="FdLcD;25" halign="center" valign="center" >
+		<widget source="parent.ServiceEvent" render="Label" position="90,0" size="130,70" font="FdLcD;23" halign="center" valign="center" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="0,80" size="220,60" font="FdLcD;25" halign="center" valign="center" >
+		<widget source="parent.ServiceEvent" render="Label" position="0,80" size="220,66" font="FdLcD;20" halign="center" valign="center" >
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="parent.ServiceEvent" render="Progress" position="0,155" size="220,20" borderWidth="2">
