@@ -21,5 +21,8 @@ class CanvasSource(Source):
 	def writeText(self, x, y, width, height, fg, bg, font, text, flags = 0):
 		self.drawlist[1].append((2, x, y, width, height, fg, bg, font, text, flags))
 
+	def line(self, x0, y0, x1, y1, color):
+		self.drawlist[1].append((3, x0, y0, x1, y1, color))
+
 	def flush(self):
 		self.changed((self.CHANGED_DEFAULT,))

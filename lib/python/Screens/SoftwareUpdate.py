@@ -1,9 +1,15 @@
+from boxbranding import getImageVersion, getImageBuild, getMachineBrand, getMachineName, getMachineBuild
+from os import rename, path, remove
+from gettext import dgettext
+import urllib
+
+from enigma import eTimer, eDVBDB
+
 import Components.Task
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
-from Components.About import about
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.config import config
@@ -12,12 +18,7 @@ from Components.Ipkg import IpkgComponent
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
-from enigma import eTimer, eDVBDB
-from boxbranding import getImageVersion, getImageBuild, getMachineBrand, getMachineName, getBoxType
 
-from os import rename, path, remove
-from gettext import dgettext
-import urllib
 
 class UpdatePlugin(Screen):
 	skin = """

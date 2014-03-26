@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-23 03:27+0100\n"
-"PO-Revision-Date: 2014-03-23 09:56+0100\n"
+"POT-Creation-Date: 2014-03-25 03:13+0100\n"
+"PO-Revision-Date: 2014-03-25 15:05+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -1566,9 +1566,6 @@ msgstr "Kies de lokatie waar uw %s %s de EPG-data moet opslaan als wordt afgeslo
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "Kies de naam van het bestand waarin uw %s %s de EPG-data moet opslaan als wordt afgesloten. Dit kan handig zijn om ondersheid te maken tussen de bestanden van verschillende ontvangers."
 
-msgid "Choose the source of the front end data displayed by the infobar. 'Lamedb' is as stored on file. 'Tuner' is as reported by the tuner."
-msgstr "Kies de bron voor de tunerdata die in de Infobar getoond wordt. \"Lamdb\" is opgeslagen als bestand, \"Tuner\" is actuele data zoals de tuner die rapporteert."
-
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Kies het tijdsinterval waarop de grafische indeling wordt afgerond."
 
@@ -1891,6 +1888,9 @@ msgstr "Bepaal de stapgrootte voor de '7'/93' toetsen."
 
 msgid "Configure the slow motion speeds."
 msgstr "Stel de slow-motion snelheden in"
+
+msgid "Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner."
+msgstr "Kies de bron voor de tunerdata die in de Infobar getoond wordt. \"Settings\" is opgeslagen als bestand, \"Tuner\" is actuele data zoals de tuner die rapporteert."
 
 msgid "Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance."
 msgstr "Bepaal de snelheid waarmee bestanden op de achtergrond worden verwijderd. Een lage snelheid vergt minder prestaies van de schijf."
@@ -3541,7 +3541,7 @@ msgstr "Informatiebalk EPG modus"
 msgid "Infobar EPG"
 msgstr "informatiebalk EPG..."
 
-msgid "Infobar front end data source"
+msgid "Infobar frontend data source"
 msgstr "Bron voor tuner info"
 
 msgid "InfobarEPG settings"
@@ -3788,9 +3788,6 @@ msgstr "LNB"
 
 msgid "Label"
 msgstr "Label"
-
-msgid "Lamedb"
-msgstr "Lamedb"
 
 msgid "Language"
 msgstr "Taal"
@@ -5878,7 +5875,7 @@ msgid "Scaler sharpness"
 msgstr "Scaler-scherpte"
 
 msgid "Scaler vertical dejagging"
-msgstr ""
+msgstr "Scaler vertical dejagging"
 
 msgid "Scaling mode"
 msgstr "Schaalmodus"
@@ -7446,6 +7443,12 @@ msgstr "Hier kunt u instellen of u de resterende en/of de vertsreken tijd wilt z
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Met deze optie kunt u de achtergrondkleur van transparante picons instellen."
+
+msgid "This option allows you enable smoothing filter to control the dithering process."
+msgstr "Hiermee schakelt u het 'smoothing filter' in voor het 'dithering process'."
+
+msgid "This option allows you enable the vertical scaler dejagging."
+msgstr "Met deze optie schakelt u de 'vertical scaler dejagging' in/uit."
 
 msgid "This option allows you set the layout view (Text or Graphics)."
 msgstr "Hier kiest u de lay-out: tekst of grafisch."
@@ -9528,9 +9531,6 @@ msgstr ""
 msgid "height"
 msgstr "hoogte"
 
-msgid "hint text place holder, waiting Vu for correct deffinitions."
-msgstr ""
-
 msgid "hops:"
 msgstr "hops:"
 
@@ -10269,6 +10269,9 @@ msgstr "zapte"
 
 #~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
 #~ msgstr "Bepaal welke tuner de voorkeur heeft voor opnames, als hetzelfde kanaal beschikbaar is voor verschillende tuners."
+
+#~ msgid "Lamedb"
+#~ msgstr "Lamedb"
 
 #~ msgid "Side by side"
 #~ msgstr "Naast elkaar"
