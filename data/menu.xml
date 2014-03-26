@@ -49,11 +49,6 @@
 				<item level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
 				<item level="0" entryID="usage_setup"><setup id="usage" /></item>
 				<item level="0" entryID="channelselection_setup"><setup id="channelselection" /></item>
-				<menu level="0" text="Front Display Panel" entryID="display_selection" requires="Display">
-					<id val="display" />
-					<item level="0" entryID="display_setup"><setup id="display" /></item>
-					<item level="0" text="Skin setup" entryID="lcd_skin_setup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
-				</menu>
 				<menu level="2" text="EPG" entryID="epg_menu">
 					<id val="epg" />
 					<item level="0" entryID="epg_setup"><setup id="epgsettings" /></item>
@@ -87,6 +82,11 @@ self.session.openWithCallback(msgClosed, EpgLoadMsg)
 					<item level="2" entryID="setup_epginfobar"><setup id="epginfobar" /></item>
 					<item level="2" entryID="setup_epginfobargraphical"><setup id="epginfobargraphical" /></item>
 					<item level="2" entryID="setup_epggraphical"><setup id="epggraphical" /></item>
+				</menu>
+				<menu level="0" text="Front Display Panel" entryID="display_selection" requires="Display">
+					<id val="display" />
+					<item level="0" entryID="display_setup"><setup id="display" /></item>
+					<item level="0" text="Skin setup" entryID="lcd_skin_setup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
 				</menu>
 				<item level="0" text="HDMI CEC" entryID="hdmicec" requires="HDMICEC">
 <code>
