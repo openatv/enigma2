@@ -81,14 +81,14 @@ class ParentalControl:
 		self.serviceLevel[service] = level
 
 	def isServicePlayable(self, ref, callback):
-		if not config.ParentalControl.configured.getValue() or not config.ParentalControl.servicepinactive.getValue():
+		if not config.ParentalControl.configured.value or not config.ParentalControl.servicepinactive.value:
 			return True
 		#Check if configuration has already been read or if the significant values have changed.
 		#If true: read the configuration
-		if self.configInitialized == False or self.storeServicePin != config.ParentalControl.storeservicepin.getValue():
+		if self.configInitialized == False or self.storeServicePin != config.ParentalControl.storeservicepin.value:
 			self.getConfigValues()
 		service = ref.toCompareString()
-		if (config.ParentalControl.type.getValue() == LIST_WHITELIST and not self.whitelist.has_key(service)) or (config.ParentalControl.type.getValue() == LIST_BLACKLIST and self.blacklist.has_key(service)):
+		if (config.ParentalControl.type.value == LIST_WHITELIST and not self.whitelist.has_key(service)) or (config.ParentalControl.type.value == LIST_BLACKLIST and self.blacklist.has_key(service)):
 			#Check if the session pin is cached
 			if self.sessionPinCached:
 				return True
@@ -105,7 +105,7 @@ class ParentalControl:
 			return True
 
 	def protectService(self, service):
-		if config.ParentalControl.type.getValue() == LIST_WHITELIST:
+		if config.ParentalControl.type.value == LIST_WHITELIST:
 			if self.whitelist.has_key(service):
 				self.serviceMethodWrapper(service, self.removeServiceFromList, self.whitelist)
 				#self.deleteWhitelistService(service)
@@ -118,8 +118,8 @@ class ParentalControl:
 
 	def unProtectService(self, service):
 		#print "unprotect"
-		#print "config.ParentalControl.type.getValue():", config.ParentalControl.type.getValue()
-		if config.ParentalControl.type.getValue() == LIST_WHITELIST:
+		#print "config.ParentalControl.type.value:", config.ParentalControl.type.value
+		if config.ParentalControl.type.value == LIST_WHITELIST:
 			if not self.whitelist.has_key(service):
 				self.serviceMethodWrapper(service, self.addServiceToList, self.whitelist)
 				#self.addWhitelistService(service)
@@ -131,7 +131,7 @@ class ParentalControl:
 		#print "blacklist:", self.blacklist
 
 	def getProtectionLevel(self, service):
-		if (config.ParentalControl.type.getValue() == LIST_WHITELIST and not self.whitelist.has_key(service)) or (config.ParentalControl.type.getValue() == LIST_BLACKLIST and self.blacklist.has_key(service)):
+		if (config.ParentalControl.type.value == LIST_WHITELIST and not self.whitelist.has_key(service)) or (config.ParentalControl.type.value == LIST_BLACKLIST and self.blacklist.has_key(service)):
 			if self.serviceLevel.has_key(service):
 				return self.serviceLevel[service]
 			else:
@@ -143,13 +143,13 @@ class ParentalControl:
 		#New method used in ParentalControlList: This method does not only return
 		#if a service is protected or not, it also returns, why (whitelist or blacklist, service or bouquet)
 		sImage = ""
-		if config.ParentalControl.type.getValue() == LIST_WHITELIST:
+		if config.ParentalControl.type.value == LIST_WHITELIST:
 			if self.whitelist.has_key(service):
 				if TYPE_SERVICE in self.whitelist[service]:
 					sImage = IMG_WHITESERVICE
 				else:
 					sImage = IMG_WHITEBOUQUET
-		elif config.ParentalControl.type.getValue() == LIST_BLACKLIST:
+		elif config.ParentalControl.type.value == LIST_BLACKLIST:
 			if self.blacklist.has_key(service):
 				if TYPE_SERVICE in self.blacklist[service]:
 					sImage = IMG_BLACKSERVICE
@@ -168,7 +168,7 @@ class ParentalControl:
 		self.pinIntervalSeconds = 0
 		self.pinIntervalSecondsCancel = 0
 
-		self.storeServicePin = config.ParentalControl.storeservicepin.getValue()
+		self.storeServicePin = config.ParentalControl.storeservicepin.value
 
 		if self.storeServicePin == "never":
 			pass
@@ -196,7 +196,7 @@ class ParentalControl:
 		return time.time()
 
 	def getPinList(self):
-		return [ x.getValue() for x in config.ParentalControl.servicepin ]
+		return [ x.value for x in config.ParentalControl.servicepin ]
 
 	def servicePinEntered(self, service, result=None):
 		if result is not None and result:

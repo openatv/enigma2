@@ -65,8 +65,8 @@ class Trashcan:
 		if self.recordings:
 			print "[Trashcan] Recording in progress", self.recordings
 			return
-		ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.getValue() * 3600 * 24)
-		reserveBytes = 1024*1024*1024 * int(config.usage.movielist_trashcan_reserve.getValue())
+		ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.value * 3600 * 24)
+		reserveBytes = 1024*1024*1024 * int(config.usage.movielist_trashcan_reserve.value)
 		clean(ctimeLimit, reserveBytes)
 
 def clean(ctimeLimit, reserveBytes):
@@ -77,7 +77,7 @@ def clean(ctimeLimit, reserveBytes):
 			isCleaning = True
 			break
 
-	if config.usage.movielist_trashcan.getValue() and not isCleaning:
+	if config.usage.movielist_trashcan.value and not isCleaning:
 		name = _("Cleaning Trashes")
 		job = Components.Task.Job(name)
 		task = CleanTrashTask(job, name)
@@ -125,7 +125,7 @@ class CleanTrashTask(Components.Task.PythonTask):
 			parts = line.strip().split()
 			if parts[1] == '/media/autofs':
 				continue
-			if config.usage.movielist_trashcan_network_clean.getValue() and parts[1].startswith('/media/net'):
+			if config.usage.movielist_trashcan_network_clean.value and parts[1].startswith('/media/net'):
 				mounts.append(parts[1])
 			elif not parts[1].startswith('/media/net'):
 				mounts.append(parts[1])

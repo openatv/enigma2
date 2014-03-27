@@ -55,7 +55,7 @@ class LanguageSelection(Screen):
 
 	def save(self):
 		self.commit(self.run())
-		if InfoBar.instance and self.oldActiveLanguage != config.osd.language.getValue():
+		if InfoBar.instance and self.oldActiveLanguage != config.osd.language.value:
 			self.close(True)
 		else:
 			self.close()
@@ -67,7 +67,7 @@ class LanguageSelection(Screen):
 	def run(self):
 		print "updating language..."
 		lang = self["languages"].getCurrent()[0]
-		if lang != config.osd.language.getValue():
+		if lang != config.osd.language.value:
 			config.osd.language.setValue(lang)
 			config.osd.language.save()
 		return lang

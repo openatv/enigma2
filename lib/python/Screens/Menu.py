@@ -230,7 +230,7 @@ class Menu(Screen):
 		self.skinName.append("Menu")
 
 		# Sort by Weight
-		if config.usage.sort_menus.getValue():
+		if config.usage.sort_menus.value:
 			list.sort()
 		else:
 			list.sort(key=lambda x: int(x[3]))

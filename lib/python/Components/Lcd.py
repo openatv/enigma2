@@ -44,11 +44,11 @@ class IconCheckPoller:
 			if LinkState != 'down':
 				LinkState = open('/sys/class/net/eth0/carrier').read()
 		LinkState = LinkState[:1]
-		if fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.getValue() == '1':
+		if fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.value == '1':
 			f = open("/proc/stb/lcd/symbol_network", "w")
 			f.write(str(LinkState))
 			f.close()
-		elif fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.getValue() == '0':
+		elif fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.value == '0':
 			f = open("/proc/stb/lcd/symbol_network", "w")
 			f.write('0')
 			f.close()
@@ -65,11 +65,11 @@ class IconCheckPoller:
 					# print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
 					# print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
 					USBState = 1
-		if fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.getValue() == '1':
+		if fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.value == '1':
 			f = open("/proc/stb/lcd/symbol_usb", "w")
 			f.write(str(USBState))
 			f.close()
-		elif fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.getValue() == '0':
+		elif fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.value == '0':
 			f = open("/proc/stb/lcd/symbol_usb", "w")
 			f.write('0')
 			f.close()

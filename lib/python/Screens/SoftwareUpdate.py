@@ -231,8 +231,8 @@ class UpdatePlugin(Screen):
 			self.status.setText(_("Configuring"))
 
 		elif event == IpkgComponent.EVENT_MODIFIED:
-			if config.plugins.softwaremanager.overwriteConfigFiles.getValue() in ("N", "Y"):
-				self.ipkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.getValue())
+			if config.plugins.softwaremanager.overwriteConfigFiles.value in ("N", "Y"):
+				self.ipkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.value)
 			else:
 				self.session.openWithCallback(
 					self.modificationCallback,
@@ -256,10 +256,10 @@ class UpdatePlugin(Screen):
 					config.softwareupdate.updateisunstable.setValue('1')
 				socket.setdefaulttimeout(currentTimeoutDefault)
 				self.total_packages = None
-				if config.softwareupdate.updateisunstable.getValue() == '1' and config.softwareupdate.updatebeta.getValue():
+				if config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
 					self.total_packages = len(self.ipkg.getFetchedList())
 					message = _("The current update may be unstable") + "\n" + _("Are you sure you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
-				elif config.softwareupdate.updateisunstable.getValue() == '0':
+				elif config.softwareupdate.updateisunstable.value == '0':
 					self.total_packages = len(self.ipkg.getFetchedList())
 					message = _("Do you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
 				if self.total_packages:
@@ -273,9 +273,9 @@ class UpdatePlugin(Screen):
 					choices = [(_("View the changes"), "changes"),
 						(_("Upgrade and reboot system"), "cold")]
 					if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/BackupManager.pyo"):
-						if not config.softwareupdate.autosettingsbackup.getValue() and config.backupmanager.backuplocation.getValue():
+						if not config.softwareupdate.autosettingsbackup.value and config.backupmanager.backuplocation.value:
 							choices.append((_("Perform a settings backup,") + '\n\t' + _("making a backup before updating") + '\n\t' +_("is strongly advised."), "backup"))
-						if not config.softwareupdate.autoimagebackup.getValue() and config.imagemanager.backuplocation.getValue():
+						if not config.softwareupdate.autoimagebackup.value and config.imagemanager.backuplocation.value:
 							choices.append((_("Perform a full image backup"), "imagebackup"))
 					choices.append((_("Update channel list only"), "channels"))
 					choices.append((_("Cancel"), ""))
@@ -330,15 +330,15 @@ class UpdatePlugin(Screen):
 			return
 
 		if answer[1] == "menu":
-			if config.softwareupdate.updateisunstable.getValue() == '1':
+			if config.softwareupdate.updateisunstable.value == '1':
 				message = _("The current update may be unstable") + "\n" + _("Are you sure you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(%s " % self.total_packages + _("Packages") + ")"
-			elif config.softwareupdate.updateisunstable.getValue() == '0':
+			elif config.softwareupdate.updateisunstable.value == '0':
 				message = _("Do you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(%s " % self.total_packages + _("Packages") + ")"
 			choices = [(_("View the changes"), "changes"),
 				(_("Upgrade and reboot system"), "cold")]
-			if not self.SettingsBackupDone and not config.softwareupdate.autosettingsbackup.getValue() and config.backupmanager.backuplocation.getValue():
+			if not self.SettingsBackupDone and not config.softwareupdate.autosettingsbackup.value and config.backupmanager.backuplocation.value:
 				choices.append((_("Perform a settings backup, making a backup before updating is strongly advised."), "backup"))
-			if not self.ImageBackupDone and not config.softwareupdate.autoimagebackup.getValue() and config.imagemanager.backuplocation.getValue():
+			if not self.ImageBackupDone and not config.softwareupdate.autoimagebackup.value and config.imagemanager.backuplocation.value:
 				choices.append((_("Perform a full image backup"), "imagebackup"))
 			choices.append((_("Update channel list only"), "channels"))
 			choices.append((_("Cancel"), ""))
@@ -355,7 +355,7 @@ class UpdatePlugin(Screen):
 			self.slider.setValue(1)
 			self.ipkg.startCmd(IpkgComponent.CMD_LIST, args = {'installed_only': True})
 		elif answer[1] == "cold":
-			if (config.softwareupdate.autosettingsbackup.getValue() and config.backupmanager.backuplocation.getValue()) or (config.softwareupdate.autoimagebackup.getValue() and config.imagemanager.backuplocation.getValue()):
+			if (config.softwareupdate.autosettingsbackup.value and config.backupmanager.backuplocation.value) or (config.softwareupdate.autoimagebackup.value and config.imagemanager.backuplocation.value):
 				self.doAutoBackup()
 			else:
 				self.session.open(TryQuitMainloop,retvalue=42)
@@ -388,9 +388,9 @@ class UpdatePlugin(Screen):
 
 	def doAutoBackup(self, val = False):
 		self.autobackuprunning = True
-		if config.softwareupdate.autosettingsbackup.getValue() and config.backupmanager.backuplocation.getValue() and not self.SettingsBackupDone:
+		if config.softwareupdate.autosettingsbackup.value and config.backupmanager.backuplocation.value and not self.SettingsBackupDone:
 			self.doSettingsBackup()
-		elif config.softwareupdate.autoimagebackup.getValue() and config.imagemanager.backuplocation.getValue() and not self.ImageBackupDone:
+		elif config.softwareupdate.autoimagebackup.value and config.imagemanager.backuplocation.value and not self.ImageBackupDone:
 			self.doImageBackup()
 		else:
 			self.session.open(TryQuitMainloop,retvalue=42)
