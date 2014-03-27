@@ -1,5 +1,5 @@
 import time
-from os import chmod, access, X_OK
+from os import chmod, access, remove, X_OK
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
