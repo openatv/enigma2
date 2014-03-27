@@ -16,7 +16,6 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Tools.HardwareInfo import HardwareInfo
 from Components.AVSwitch import iAVSwitch
 
-
 resolutionlabel = None
 
 class VideoSetup(Screen, ConfigListScreen):
@@ -262,6 +261,7 @@ class AutoVideoMode(Screen):
 			self.detecttimer.start(delay)
 
 	def VideoChangeDetect(self):
+		global resolutionlabel
 		config_port = config.av.videoport.value
 		config_mode = str(config.av.videomode[config_port].value).replace('\n','')
 		config_res = str(config.av.videomode[config_port].value[:-1]).replace('\n','')
@@ -419,9 +419,9 @@ class AutoVideoMode(Screen):
 		self.detecttimer.stop()
 
 def autostart(session):
+	global resolutionlabel
 	if not path.exists(resolveFilename(SCOPE_PLUGINS)+'SystemPlugins/AutoResolution'):
 		if resolutionlabel is None:
-			global resolutionlabel
 			resolutionlabel = session.instantiateDialog(AutoVideoModeLabel)
 		AutoVideoMode(session)
 	else:
