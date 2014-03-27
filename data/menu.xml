@@ -52,7 +52,12 @@
 					<item level="0" text="Filesystem check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
 					<item level="0" text="Convert ext3 filesystem to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
 				</menu>
-				<item level="0" text="Network" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>
+				<menu level="0" text="Network" entryID="network_menu">
+					<id val="network" />
+					<item level="0" text="Network Setup" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
+					<item level="1" text="NFS Setup" entryID="netnfs_setup"><screen module="NetworkTools" screen="NetworkNfs"/></item>
+					<item level="1" text="Samba Setup" entryID="netsmba_setup"><screen module="NetworkTools" screen="NetworkSamba"/></item>
+				</menu>
 				<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 				<item requires="Display"><setup level="1" id="lcd" /></item>
 				<item text="Keyboard"><setup id="keyboard" /></item>
