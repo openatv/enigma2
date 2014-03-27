@@ -54,9 +54,9 @@
 				</menu>
 				<menu level="0" text="Network" entryID="network_menu">
 					<id val="network" />
-					<item level="0" text="Network Setup" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
-					<item level="1" text="NFS Setup" entryID="netnfs_setup"><screen module="NetworkTools" screen="NetworkNfs"/></item>
-					<item level="1" text="Samba Setup" entryID="netsmba_setup"><screen module="NetworkTools" screen="NetworkSamba"/></item>
+					<item level="0" text="Network setup" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
+					<item level="1" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkTools" screen="NetworkNfs"/></item>
+					<item level="1" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkTools" screen="NetworkSamba"/></item>
 				</menu>
 				<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 				<item requires="Display"><setup level="1" id="lcd" /></item>
