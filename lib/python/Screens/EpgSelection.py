@@ -24,6 +24,7 @@ from TimeDateInput import TimeDateInput
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry, InstantRecordTimerEntry
 from ServiceReference import ServiceReference
+from Tools.HardwareInfo import HardwareInfo
 
 mepg_config_initialized = False
 # PiPServiceRelation installed?
@@ -370,7 +371,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.refreshTimer.timeout.get().append(self.refreshlist)
 		self.listTimer = eTimer()
 		self.listTimer.callback.append(self.hidewaitingtext)
-		if about.getCPUString() != 'BCM7346B2' and about.getCPUString() != 'BCM7425B2':
+		if not HardwareInfo().is_nextgen():
 			self.createTimer = eTimer()
 			self.createTimer.callback.append(self.onCreate)
 			self.onLayoutFinish.append(self.LayoutFinish)
@@ -438,7 +439,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.createTimer.start(800)
 
 	def onCreate(self):
-		if about.getCPUString() != 'BCM7346B2' and about.getCPUString() != 'BCM7425B2':
+		if not HardwareInfo().is_nextgen():
 			self.createTimer.stop()
 		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		title = None

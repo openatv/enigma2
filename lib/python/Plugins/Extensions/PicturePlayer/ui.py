@@ -4,6 +4,7 @@ from enigma import ePicLoad, eTimer, getDesktop, gMainDC, eSize
 
 from Screens.Screen import Screen
 from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA
+from Tools.HardwareInfo import HardwareInfo
 from Components.About import about
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.ActionMap import ActionMap
@@ -526,7 +527,7 @@ class Pic_Full_View(Screen):
 				self.onLayoutFinish.append(self.setPicloadConf)
 
 	def LayoutFinish(self):
-		if about.getCPUString() != 'BCM7346B2' and about.getCPUString() != 'BCM7425B2':
+		if not HardwareInfo().is_nextgen():
 			self.createTimer.start(800)
 		else:
 			self.createTimer.start(1600)

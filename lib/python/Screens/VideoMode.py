@@ -13,6 +13,7 @@ from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.ServiceEventTracker import ServiceEventTracker
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+from Tools.HardwareInfo import HardwareInfo
 from Components.AVSwitch import iAVSwitch
 
 
@@ -354,7 +355,7 @@ class AutoVideoMode(Screen):
 			if config_mode in ('PAL', 'NTSC'):
 				write_mode = config_mode
 			elif config.av.autores.getValue() == 'all' or (config.av.autores.getValue() == 'hd' and int(new_res) >= 720):
-				if (config.av.autores_deinterlace.getValue() and about.getCPUString() in 'BCM7346B2, BCM7425B2') or config.av.autores_deinterlace.getValue() and about.getCPUString() not in 'BCM7346B2, BCM7425B2' and int(new_res) <= 720:
+				if (config.av.autores_deinterlace.getValue() and HardwareInfo().is_nextgen()) or (config.av.autores_deinterlace.getValue() and not HardwareInfo().is_nextgen() and int(new_res) <= 720):
 					new_pol = new_pol.replace('i','p')
 				if new_res+new_pol+new_rate in iAVSwitch.modes_available:
 					new_mode = new_res+new_pol+new_rate
@@ -373,7 +374,7 @@ class AutoVideoMode(Screen):
 
 				write_mode = new_mode
 			elif config.av.autores.getValue() == 'hd' and int(new_res) <= 576:
-				if (config.av.autores_deinterlace.getValue() and about.getCPUString() in 'BCM7346B2, BCM7425B2') or config.av.autores_deinterlace.getValue() and about.getCPUString() not in 'BCM7346B2, BCM7425B2' and not config.av.autores_sd.getValue() in '1080i':
+				if (config.av.autores_deinterlace.getValue() and HardwareInfo().is_nextgen()) or (config.av.autores_deinterlace.getValue() and not HardwareInfo().is_nextgen() and not config.av.autores_sd.getValue() == '1080i'):
 					new_mode = config.av.autores_sd.getValue().replace('i','p')+new_rate
 				else:
 					if new_pol in 'p':

@@ -631,7 +631,7 @@ def InitUsageConfig():
 	config.epgselection.infobar_oklong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
 	config.epgselection.infobar_itemsperpage = ConfigSelectionNumber(default = 2, stepwidth = 1, min = 1, max = 4, wraparound = True)
 	if SystemInfo.get("NumVideoDecoders", 1) > 1:
-		if about.getCPUString() in ('BCM7346B2', 'BCM7425B2'):
+		if HardwareInfo().is_nextgen():
 			previewdefault = "2"
 		else:
 			previewdefault = "1"
