@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-09 19:20+0100\n"
-"PO-Revision-Date: 2014-03-09 20:15+0100\n"
+"POT-Creation-Date: 2014-03-28 15:01+0100\n"
+"PO-Revision-Date: 2014-03-28 20:01+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1625,6 +1625,9 @@ msgid ""
 "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Wähle ob Mehrkanalton zu Stereo runter gerechnet werden soll."
 
+msgid "Choose whether multi channel sound tracks should be output as PCM."
+msgstr "Wähle ob Mehrkanalton als PCM ausgegeben werden sollen."
+
 msgid "Choose whether or not to show an icon when a motorised dish is moving."
 msgstr "Soll ein Icon angezeigt werden wenn sich ein Antennenrotor bewegt."
 
@@ -2014,6 +2017,14 @@ msgstr "Konfiguriere die gewünschten Sprungzeiten für die '7'/'9'-Tasten."
 
 msgid "Configure the slow motion speeds."
 msgstr "Konfiguriere die möglichen Geschwindigkeiten für die Zeitlupe."
+
+msgid ""
+"Configure the source of the frontend data as shown on the infobars. "
+"'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner."
+msgstr ""
+"Diese Option erlaubt dir zu wählen aus welcher Datenquelle die Informationen "
+"für den Infobar stammen. 'Einstellungen' was als Einstellung gespeichert "
+"ist. 'Tuner' was der Tuner an Informationen liefert."
 
 msgid ""
 "Configure the speed of the background deletion process. Lower speed will "
@@ -2584,9 +2595,6 @@ msgstr "Trennen"
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Reservierter Speicherplatz für Aufnahmen (GB)"
 
-msgid "Display"
-msgstr "Display (VFD/LCD)"
-
 msgid "Display 16:9 content as"
 msgstr "16:9-Inhalt anzeigen als"
 
@@ -2755,6 +2763,9 @@ msgstr "Die %s %s aktualisieren?"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Das Paket aktualisieren:\n"
+
+msgid "Dobly Digital downmix is now"
+msgstr "DD/DTS Downmix ist jetzt"
 
 msgid "Dolby Digital / DTS downmix"
 msgstr "DD/DTS Downmix"
@@ -3311,6 +3322,9 @@ msgstr "Freitag"
 msgid "From :"
 msgstr "Von:"
 
+msgid "Front Display Panel"
+msgstr "VFD/LCD Einstellungen"
+
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Frontprozessor-Version: %d"
@@ -3777,6 +3791,9 @@ msgstr "Infobar EPG Einstellungen"
 msgid "Infobar EPG"
 msgstr "Infobar EPG"
 
+msgid "Infobar frontend data source"
+msgstr "Datenquelle der Informationen in Infobar"
+
 msgid "InfobarEPG settings"
 msgstr "Infobar EPG Einstellungen"
 
@@ -3931,7 +3948,7 @@ msgstr "Jobansicht"
 msgid "Jump back 24 hours"
 msgstr "24 Stunden zurück springen"
 
-msgid "Jump first press in channel selection*"
+msgid "Jump first press in channel selection"
 msgstr "Tastenreaktion in Senderliste"
 
 msgid "Jump forward 24 hours"
@@ -5025,6 +5042,9 @@ msgstr "Seite hoch/runter"
 msgid "PAL"
 msgstr "PAL"
 
+msgid "PCM Multichannel"
+msgstr "PCM Mehrkanal"
+
 msgid "PCR PID"
 msgstr "PCR PID"
 
@@ -5671,6 +5691,9 @@ msgstr "Python Frontend für /tmp/mmi.socket"
 msgid "Quick"
 msgstr "Schnell"
 
+msgid "Quick Actions"
+msgstr "Tastenfunktionen"
+
 msgid "Quick zap"
 msgstr "Schnellumschalter"
 
@@ -6151,6 +6174,9 @@ msgstr "TimeShift-Datei wird als Aufnahme gespeichert. Das kann dauern!"
 
 msgid "Scaler sharpness"
 msgstr "Scaler Schärfe"
+
+msgid "Scaler vertical dejagging"
+msgstr "Scaler vertikales Antialiasing"
 
 msgid "Scaling mode"
 msgstr "Skalierungsmodus"
@@ -6912,14 +6938,14 @@ msgstr "Zeige Status-Icons in der Filmliste"
 msgid "Show tag menu"
 msgstr "Zeige Tag-Menü"
 
+msgid "Show the DreamPlex player..."
+msgstr "Zeige den Dreamplexplayer..."
+
 msgid "Show the list of AutoTimers."
 msgstr "Zeige Liste von AutoTimern..."
 
 msgid "Show the list of timers."
 msgstr "Zeige Liste von Timern..."
-
-msgid "Show the media player..."
-msgstr "Zeige den Medienplayer..."
 
 msgid "Show the plugin browser.."
 msgstr "Zeige die Erweiterungsliste"
@@ -7063,6 +7089,9 @@ msgstr "Zeitlupengeschwindigkeiten"
 
 msgid "Small progress"
 msgstr "Kleiner Fortschrittsbalken"
+
+msgid "Smooth"
+msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr "Sozial/Politik/Wirtschaft"
@@ -7573,6 +7602,13 @@ msgstr ""
 "abspielbar ist) erstellt werden?"
 
 msgid ""
+"The DreamPlex plugin is not installed!\n"
+"Please install it."
+msgstr ""
+"Das Plugin MediaPlayer ist nicht installiert!\n"
+"Bitte installieren."
+
+msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -7591,13 +7627,6 @@ msgid ""
 "Please install it."
 msgstr ""
 "Das Plugin IMDB ist nicht installiert!\n"
-"Bitte installieren."
-
-msgid ""
-"The MediaPlayer plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Das Plugin MediaPlayer ist nicht installiert!\n"
 "Bitte installieren."
 
 msgid "The PIN code has been changed successfully."
@@ -7829,6 +7858,16 @@ msgstr ""
 "Diese Option erlaubt es die Hintergrundfarbe von transparenten PIcons "
 "festzulegen."
 
+msgid ""
+"This option allows you enable smoothing filter to control the dithering "
+"process."
+msgstr ""
+"Diese Option erlaubt dir einen Glättefilter für das Dithering einzuschalten"
+
+msgid "This option allows you enable the vertical scaler dejagging."
+msgstr ""
+"Diese Option erlaubt es beim Scaler vertikales Antialiasing zu aktivieren."
+
 msgid "This option allows you set the layout view (Text or Graphics)."
 msgstr ""
 "Diese Option erlaubt es das Aussehen vom EPG einzustellen (Text oder Grafik)."
@@ -7909,7 +7948,8 @@ msgstr ""
 
 msgid ""
 "This option allows you to choose what the first button press jumps to in "
-"channel list screen, (so pressing '2' jumps to 'A' or '2' first)"
+"channel list screen, (so pressing '2' jumps to 'A' or '2' first), when "
+"'Quick Actions' preset actions are perfomed. "
 msgstr ""
 "Diese Option erlaubt dir zu wählen was der erste Tastendruck in der "
 "Senderliste bewirkt ('2' springt zu '2' oder 'A' zuerst)"
@@ -8276,6 +8316,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Heute"
+
+msgid "Toggle Digital downmix..."
+msgstr "Digital Downmix umschalten"
 
 msgid "Toggle Picture In Graphics"
 msgstr "Bild in Grafik umschalten"
@@ -10949,6 +10992,9 @@ msgstr "umgeschaltet"
 #~ msgstr ""
 #~ "Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll wenn "
 #~ "mehrere Tuner verfügbar sind."
+
+#~ msgid "Display"
+#~ msgstr "Display (VFD/LCD)"
 
 #~ msgid "Side by side"
 #~ msgstr "Side by Side"
