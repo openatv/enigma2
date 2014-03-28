@@ -346,7 +346,7 @@ class SecConfigure:
 					sec.setLNBLOFL(currLnb.lofl.getValue() * 1000)
 					sec.setLNBLOFH(currLnb.lofh.getValue() * 1000)
 					sec.setLNBThreshold(currLnb.threshold.getValue() * 1000)
-				elif currLnb.lof..value == "circle":
+				elif currLnb.lof.value == "circle":
 					sec.setLNBLOFL(10750000)
 					sec.setLNBLOFH(10750000)
 					sec.setLNBThreshold(12700000)
