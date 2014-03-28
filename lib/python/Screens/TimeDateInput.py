@@ -58,7 +58,7 @@ class TimeDateInput(Screen, ConfigListScreen):
 		return int(time.mktime(dt.timetuple()))
 
 	def keyGo(self):
-		time = self.getTimestamp(self.timeinput_date.getValue(), self.timeinput_time.getValue())
+		time = self.getTimestamp(self.timeinput_date.value, self.timeinput_time.value)
 		if self.save_mask & 1:
 			self.timeinput_time.save()
 		if self.save_mask & 2:

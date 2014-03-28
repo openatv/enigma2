@@ -41,16 +41,16 @@ class VideoClippingCoordinates(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session)
 
-		left = config.plugins.VideoClippingSetup.clip_left.getValue()
-		width = config.plugins.VideoClippingSetup.clip_width.getValue()
-		top = config.plugins.VideoClippingSetup.clip_top.getValue()
-		height = config.plugins.VideoClippingSetup.clip_height.getValue()
+		left = config.plugins.VideoClippingSetup.clip_left.value
+		width = config.plugins.VideoClippingSetup.clip_width.value
+		top = config.plugins.VideoClippingSetup.clip_top.value
+		height = config.plugins.VideoClippingSetup.clip_height.value
 
 		self.clip_step = ConfigSlider(default = 1, increment = 1, limits = (1, 20))
-		self.clip_left = ConfigSlider(default = left, increment = self.clip_step.getValue(), limits = (0, 720))
-		self.clip_width = ConfigSlider(default = width, increment = self.clip_step.getValue(), limits = (0, 720))
-		self.clip_top = ConfigSlider(default = top, increment = self.clip_step.getValue(), limits = (0, 576))
-		self.clip_height = ConfigSlider(default = height, increment = self.clip_step.getValue(), limits = (0, 576))
+		self.clip_left = ConfigSlider(default = left, increment = self.clip_step.value, limits = (0, 720))
+		self.clip_width = ConfigSlider(default = width, increment = self.clip_step.value, limits = (0, 720))
+		self.clip_top = ConfigSlider(default = top, increment = self.clip_step.value, limits = (0, 576))
+		self.clip_height = ConfigSlider(default = height, increment = self.clip_step.value, limits = (0, 576))
 		self.list.append(getConfigListEntry(_("stepsize"), self.clip_step))
 		self.list.append(getConfigListEntry(_("left"), self.clip_left))
 		self.list.append(getConfigListEntry(_("width"), self.clip_width))
@@ -60,10 +60,10 @@ class VideoClippingCoordinates(Screen, ConfigListScreen):
 		self["config"].l.setList(self.list)
 
 	def adjustStep(self):
-		self.clip_left.increment = self.clip_step.getValue()
-		self.clip_width.increment = self.clip_step.getValue()
-		self.clip_top.increment = self.clip_step.getValue()
-		self.clip_height.increment = self.clip_step.getValue()
+		self.clip_left.increment = self.clip_step.value
+		self.clip_width.increment = self.clip_step.value
+		self.clip_top.increment = self.clip_step.value
+		self.clip_height.increment = self.clip_step.value
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
@@ -76,13 +76,13 @@ class VideoClippingCoordinates(Screen, ConfigListScreen):
 		self.setPreviewPosition()
 
 	def setPreviewPosition(self):
-		setPosition(int(self.clip_left.getValue()), int(self.clip_width.getValue()), int(self.clip_top.getValue()), int(self.clip_height.getValue()))
+		setPosition(int(self.clip_left.value), int(self.clip_width.value), int(self.clip_top.value), int(self.clip_height.value))
 
 	def keyGo(self):
-		config.plugins.VideoClippingSetup.clip_left.value = self.clip_left.getValue()
-		config.plugins.VideoClippingSetup.clip_width.value = self.clip_width.getValue()
-		config.plugins.VideoClippingSetup.clip_top.value = self.clip_top.getValue()
-		config.plugins.VideoClippingSetup.clip_height.value = self.clip_height.getValue()
+		config.plugins.VideoClippingSetup.clip_left.value = self.clip_left.value
+		config.plugins.VideoClippingSetup.clip_width.value = self.clip_width.value
+		config.plugins.VideoClippingSetup.clip_top.value = self.clip_top.value
+		config.plugins.VideoClippingSetup.clip_height.value = self.clip_height.value
 		config.plugins.VideoClippingSetup.save()
 		self.close()
 
@@ -112,7 +112,7 @@ def setPosition(clip_left, clip_width, clip_top, clip_height):
 		return
 
 def setConfiguredPosition():
-	setPosition(int(config.plugins.VideoClippingSetup.clip_left.getValue()), int(config.plugins.VideoClippingSetup.clip_width.getValue()), int(config.plugins.VideoClippingSetup.clip_top.getValue()), int(config.plugins.VideoClippingSetup.clip_height.getValue()))
+	setPosition(int(config.plugins.VideoClippingSetup.clip_left.value), int(config.plugins.VideoClippingSetup.clip_width.value), int(config.plugins.VideoClippingSetup.clip_top.value), int(config.plugins.VideoClippingSetup.clip_height.value))
 
 def main(session, **kwargs):
 	session.open(VideoClippingCoordinates)

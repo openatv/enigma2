@@ -167,7 +167,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		self.onClose.append(self.disableTimer)
 
 	def switchToFileListOnStart(self):
-		if self.realBookmarks and self.realBookmarks.getValue():
+		if self.realBookmarks and self.realBookmarks.value:
 			self.currList = "booklist"
 			currDir = self["filelist"].current_directory
 			if currDir in self.bookmarks:
@@ -281,7 +281,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			else:
 				self["filelist"].refresh()
 				self.removeBookmark(name, True)
-				val = self.realBookmarks and self.realBookmarks.getValue()
+				val = self.realBookmarks and self.realBookmarks.value
 				if val and name in val:
 					val.remove(name)
 					self.realBookmarks.setValue(val)
@@ -329,8 +329,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 					self.bookmarks.append(self.getPreferredFolder())
 					self.bookmarks.sort()
 
-				if self.bookmarks != self.realBookmarks.getValue():
-					self.realBookmarks.setValue(self.bookmarks)
+				if self.bookmarks != self.realBookmarks.value:
+					self.realBookmarks.value = self.bookmarks
 					self.realBookmarks.save()
 			self.close(ret)
 
@@ -508,7 +508,7 @@ class TimeshiftLocationBox(LocationBox):
 				self,
 				session,
 				text = _("Where to save temporary timeshift recordings?"),
-				currDir = config.usage.timeshift_path.getValue(),
+				currDir = config.usage.timeshift_path.value,
 				bookmarks = config.usage.allowed_timeshift_paths,
 				autoAdd = True,
 				editDir = True,

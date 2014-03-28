@@ -165,7 +165,7 @@ class CableScanScreen(ConfigListScreen, Screen):
 		self.startScan()
 
 	def startScan(self):
-		self.session.open(CableScanStatus, scanTuner = int(self.scan_nims.getValue()), scanNetwork = config.plugins.CableScan.networkid.getValue(), scanFrequency = config.plugins.CableScan.frequency.getValue() * 1000, scanSymbolRate = config.plugins.CableScan.symbolrate.getValue() * 1000, scanModulation = int(config.plugins.CableScan.modulation.getValue()), keepNumbers = config.plugins.CableScan.keepnumbering.getValue(), hdList = config.plugins.CableScan.hdlist.getValue())
+		self.session.open(CableScanStatus, scanTuner = int(self.scan_nims.value), scanNetwork = config.plugins.CableScan.networkid.value, scanFrequency = config.plugins.CableScan.frequency.value * 1000, scanSymbolRate = config.plugins.CableScan.symbolrate.value * 1000, scanModulation = int(config.plugins.CableScan.modulation.value), keepNumbers = config.plugins.CableScan.keepnumbering.value, hdList = config.plugins.CableScan.hdlist.value)
 
 	def keyCancel(self):
 		self.close()

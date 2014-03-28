@@ -345,13 +345,13 @@ class FastScanScreen(ConfigListScreen, Screen):
 		return transponderParameters
 
 	def startScan(self):
-		pid = self.providers[self.scan_provider.getValue()][1]
-		if self.scan_hd.getValue() and self.providers[self.scan_provider.value][2]:
+		pid = self.providers[self.scan_provider.value][1]
+		if self.scan_hd.value and self.providers[self.scan_provider.value][2]:
 			pid += 1
 		if self.scan_nims.value:
-			self.session.open(FastScanStatus, scanTuner = int(self.scan_nims.getValue()),
-				transponderParameters = self.getTransponderParameters(self.providers[self.scan_provider.getValue()][0]),
-				scanPid = pid, keepNumbers = self.scan_keepnumbering.getValue(), keepSettings = self.scan_keepsettings.getValue(),
+			self.session.open(FastScanStatus, scanTuner = int(self.scan_nims.value),
+				transponderParameters = self.getTransponderParameters(self.providers[self.scan_provider.value][0]),
+				scanPid = pid, keepNumbers = self.scan_keepnumbering.value, keepSettings = self.scan_keepsettings.value,
 				providerName = self.scan_provider.getText())
 
 	def keyCancel(self):
