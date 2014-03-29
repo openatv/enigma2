@@ -240,13 +240,13 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 			<item level="0" text="Network" entryID="mainmenu_tasks_info_network"><screen module="About" screen="SystemNetworkInfo"/></item>
 			<item level="1" text="Service" entryID="mainmenu_tasks_info_service"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
 		</menu>
-		<menu weight="20" level="0" entryID="mainmenu_tasks_power" text="Standby / Restart" endtext="&gt;&lt;">
-			<id val="shutdown" default=">"/>
-			<item level="0" text="Sleep Timer" entryID="mainmenu_tasks_power_sleeptimer" endtext="•••>"><screen module="PowerTimerEdit" screen="PowerTimerEditList" /></item>
-			<item level="0" text="Standby" entryID="mainmenu_tasks_power_standby"><screen module="Standby" screen="Standby"/></item>
-			<item level="0" text="Shutdown" entryID="mainmenu_tasks_power_shutdown"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
-			<item level="0" text="Reboot" entryID="mainmenu_tasks_power_reboot"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
-			<item level="0" text="Restart GUI" entryID="mainmenu_tasks_power_restartshell"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
+		<menu weight="20" level="0" entryID="mainmenu_tasks_power" text="Power / Restart" endtext="&gt;&lt;">
+			<id val="shutdown" default=" "/>
+			<item level="0" text="Sleep Timer" entryID="mainmenu_tasks_power_sleeptimer"><screen module="PowerTimerEdit" screen="PowerTimerEditList" /></item>
+			<item level="0" text="Standby" entryID="mainmenu_tasks_power_standby" endtext=" "><screen module="Standby" screen="Standby"/></item>
+			<item level="0" text="Shutdown" entryID="mainmenu_tasks_power_shutdown" endtext=""><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
+			<item level="0" text="Reboot" entryID="mainmenu_tasks_power_reboot" endtext=""><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
+			<item level="0" text="Restart GUI" entryID="mainmenu_tasks_power_restartshell" endtext=""><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
 		</menu>
 		<menu level="0" text="Sources" entryID="mainmenu_source" weight="70">
 			<id val="id_mainmenu_source" update="1" overrides="0" findmenu="1" default=">"/>
