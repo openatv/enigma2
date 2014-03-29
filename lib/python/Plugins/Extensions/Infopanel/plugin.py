@@ -1074,7 +1074,7 @@ class Info(Screen):
 			info3 = 'Uptime = ' + tmp[0].lstrip() + "\n"
 			info4 = self.Do_cmd("cat", "/etc/image-version", " | head -n 1")
 			info4 = info4[9:]
-			info4 = 'Boxtype = ' + info4 + "\n"
+			info4 = 'Imagetype = ' + info4 + "\n"
 			info5 = 'Load = ' + self.Do_cmd("cat", "/proc/loadavg", None)
 			info6 = self.Do_cut(info1 + info2 + info3 + info4 + info5)
 			self["label1"].setText(info6)
