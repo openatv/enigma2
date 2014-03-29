@@ -38,6 +38,8 @@ class FastScanStatus(Screen):
 		self.providerName = providerName
 		self.isDone = False
 
+		self.onClose.append(self.__onClose)
+
 		self["frontend"] = Pixmap()
 		self["scan_progress"] = ProgressBar()
 		self["scan_state"] = Label(_("scan state"))
@@ -62,6 +64,11 @@ class FastScanStatus(Screen):
 			})
 
 		self.onFirstExecBegin.append(self.doServiceScan)
+
+	def __onClose(self):
+		self.scan.scanCompleted.get().remove(self.scanCompleted)
+		self.scan.scanProgress.get().remove(self.scanProgress)
+		del self.scan
 
 	def doServiceScan(self):
 		self["scan_state"].setText(_('Scanning %s...') % (self.providerName))
@@ -105,9 +112,6 @@ class FastScanStatus(Screen):
 			self.cancel()
 
 	def cancel(self):
-		self.scan.scanCompleted.get().remove(self.scanCompleted)
-		self.scan.scanProgress.get().remove(self.scanProgress)
-		del self.scan
 		self.restoreService()
 		self.close()
 
