@@ -107,6 +107,7 @@ class FastScanStatus(Screen):
 	def cancel(self):
 		self.scan.scanCompleted.get().remove(self.scanCompleted)
 		self.scan.scanProgress.get().remove(self.scanProgress)
+		del self.scan
 		self.restoreService()
 		self.close()
 
@@ -242,6 +243,8 @@ class FastScanAutoScreen(FastScanScreen):
 			"discrete_on": self.Power
 		}, -1)
 
+		self.onClose.append(self.__onClose)
+
 		parameters = tuple(x[1] for x in self.providers if x[0] == lastConfiguration[1])[0]
 		pid = parameters[1]
 		if lastConfiguration[2] and parameters[2]:
@@ -250,9 +253,12 @@ class FastScanAutoScreen(FastScanScreen):
 		self.scan.scanCompleted.get().append(self.scanCompleted)
 		self.scan.start(int(lastConfiguration[0]))
 
+	def __onClose(self):
+		self.scan.scanCompleted.get().remove(self.scanCompleted)
+		del self.scan
+
 	def scanCompleted(self, result):
 		print "[AutoFastScan] completed result = ", result
-		self.scan.scanCompleted.get().remove(self.scanCompleted)
 		refreshServiceList()
 		self.close()
 
