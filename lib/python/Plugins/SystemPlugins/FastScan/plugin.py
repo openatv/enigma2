@@ -107,7 +107,6 @@ class FastScanStatus(Screen):
 	def cancel(self):
 		self.scan.scanCompleted.get().remove(self.scanCompleted)
 		self.scan.scanProgress.get().remove(self.scanProgress)
-		del self.scan
 		self.restoreService()
 		self.close()
 
@@ -231,13 +230,18 @@ class FastScanScreen(ConfigListScreen, Screen):
 		self.close()
 
 class FastScanAutoScreen(FastScanScreen):
-	skin = """
-	<screen position="0,0" size="0,0">
-	</screen>"""
 
 	def __init__(self, session, lastConfiguration):
 		print "[AutoFastScan] start"
 		Screen.__init__(self, session)
+		self.skinName="Standby"
+
+		self["actions"] = ActionMap( [ "StandbyActions" ],
+		{
+			"power": self.Power,
+			"discrete_on": self.Power
+		}, -1)
+
 		parameters = tuple(x[1] for x in self.providers if x[0] == lastConfiguration[1])[0]
 		pid = parameters[1]
 		if lastConfiguration[2] and parameters[2]:
@@ -249,7 +253,17 @@ class FastScanAutoScreen(FastScanScreen):
 	def scanCompleted(self, result):
 		print "[AutoFastScan] completed result = ", result
 		self.scan.scanCompleted.get().remove(self.scanCompleted)
+		refreshServiceList()
 		self.close()
+
+	def Power(self):
+		from Screens.Standby import inStandby
+		inStandby.Power()
+		self.scanCompleted("Aborted")
+
+	def createSummary(self):
+		from Screens.Standby import StandbySummary
+		return StandbySummary
 
 def FastScanMain(session, **kwargs):
 	if session.nav.RecordTimer.isRecording():
