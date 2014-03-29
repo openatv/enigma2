@@ -42,6 +42,16 @@ class FastScanStatus(Screen):
 		self["scan_progress"] = ProgressBar()
 		self["scan_state"] = Label(_("scan state"))
 
+		if hasattr(session, 'infobar'):
+			currentInfobar = session.infobar
+			currentServiceList = currentInfobar.servicelist
+			if self.session.pipshown and currentServiceList:
+				if currentServiceList.dopipzap:
+					currentServiceList.togglePipzap()
+				if hasattr(self.session, 'pip'):
+					del self.session.pip
+				self.session.pipshown = False
+
 		self.prevservice = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.stopService()
 
