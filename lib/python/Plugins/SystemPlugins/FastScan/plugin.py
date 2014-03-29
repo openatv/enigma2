@@ -20,21 +20,42 @@ config.misc.fastscan = ConfigSubsection()
 config.misc.fastscan.last_configuration = ConfigText(default = "()")
 config.misc.fastscan.auto = ConfigYesNo(default = False)
 
-class FastScan:
-	def __init__(self, text, progressbar, scanTuner = 0, transponderParameters = None, scanPid = 900, keepNumbers = False, keepSettings = False, providerName = 'Favorites'):
-		self.text = text;
-		self.progressbar = progressbar;
-		self.transponderParameters = transponderParameters
+class FastScanStatus(Screen):
+	skin = """
+	<screen position="150,115" size="420,180" title="Fast Scan">
+		<widget name="frontend" pixmap="skin_default/icons/scan-s.png" position="5,5" size="64,64" transparent="1" alphatest="on" />
+		<widget name="scan_state" position="10,120" zPosition="2" size="400,30" font="Regular;18" />
+		<widget name="scan_progress" position="10,155" size="400,15" pixmap="skin_default/progress_big.png" borderWidth="2" borderColor="#cccccc" />
+	</screen>"""
+
+	def __init__(self, session, scanTuner=0, transponderParameters=None, scanPid=900, keepNumbers=False, keepSettings=False, providerName='Favorites'):
+		Screen.__init__(self, session)
 		self.scanPid = scanPid
 		self.scanTuner = scanTuner
+		self.transponderParameters = transponderParameters
 		self.keepNumbers = keepNumbers
 		self.keepSettings = keepSettings
 		self.providerName = providerName
-		self.done = False
+		self.isDone = False
 
-	def execBegin(self):
-		self.text.setText(_('Scanning %s...') % (self.providerName))
-		self.progressbar.setValue(0)
+		self["frontend"] = Pixmap()
+		self["scan_progress"] = ProgressBar()
+		self["scan_state"] = Label(_("scan state"))
+
+		self.prevservice = self.session.nav.getCurrentlyPlayingServiceReference()
+		self.session.nav.stopService()
+
+		self["actions"] = ActionMap(["OkCancelActions"],
+			{
+				"ok": self.ok,
+				"cancel": self.cancel
+			})
+
+		self.onFirstExecBegin.append(self.doServiceScan)
+
+	def doServiceScan(self):
+		self["scan_state"].setText(_('Scanning %s...') % (self.providerName))
+		self["scan_progress"].setValue(0)
 		self.scan = eFastScan(self.scanPid, self.providerName, self.transponderParameters, self.keepNumbers, self.keepSettings)
 		self.scan.scanCompleted.get().append(self.scanCompleted)
 		self.scan.scanProgress.get().append(self.scanProgress)
@@ -54,73 +75,29 @@ class FastScan:
 		else:
 			self.scan.start(self.scanTuner)
 
-	def execEnd(self):
-		self.scan.scanCompleted.get().remove(self.scanCompleted)
-		self.scan.scanProgress.get().remove(self.scanProgress)
-		del self.scan
-
 	def scanProgress(self, progress):
-		self.progressbar.setValue(progress)
+		self["scan_progress"].setValue(progress)
 
 	def scanCompleted(self, result):
-		self.done = True
+		self.isDone = True
 		if result < 0:
-			self.text.setText(_('Scanning failed!'))
+			self["scan_state"].setText(_('Scanning failed!'))
 		else:
-			self.text.setText(ngettext('List version %d, found %d channel', 'List version %d, found %d channels', result) % (self.scan.getVersion(), result))
-
-	def destroy(self):
-		pass
-
-	def isDone(self):
-		return self.done
-
-class FastScanStatus(Screen):
-	skin = """
-	<screen position="150,115" size="420,180" title="Fast Scan">
-		<widget name="frontend" pixmap="skin_default/icons/scan-s.png" position="5,5" size="64,64" transparent="1" alphatest="on" />
-		<widget name="scan_state" position="10,120" zPosition="2" size="400,30" font="Regular;18" />
-		<widget name="scan_progress" position="10,155" size="400,15" pixmap="skin_default/progress_big.png" borderWidth="2" borderColor="#cccccc" />
-	</screen>"""
-
-	def __init__(self, session, scanTuner = 0, transponderParameters = None, scanPid = 900, keepNumbers = False, keepSettings = False, providerName = 'Favorites'):
-		Screen.__init__(self, session)
-		self.scanPid = scanPid
-		self.scanTuner = scanTuner
-		self.transponderParameters = transponderParameters
-		self.keepNumbers = keepNumbers
-		self.keepSettings = keepSettings
-		self.providerName = providerName
-
-		self["frontend"] = Pixmap()
-		self["scan_progress"] = ProgressBar()
-		self["scan_state"] = Label(_("scan state"))
-
-		self.prevservice = self.session.nav.getCurrentlyPlayingServiceReference()
-		self.session.nav.stopService()
-
-		self["actions"] = ActionMap(["OkCancelActions"],
-			{
-				"ok": self.ok,
-				"cancel": self.cancel
-			})
-
-		self.onFirstExecBegin.append(self.doServiceScan)
-
-	def doServiceScan(self):
-		self["scan"] = FastScan(self["scan_state"], self["scan_progress"], self.scanTuner, self.transponderParameters, self.scanPid, self.keepNumbers, self.keepSettings, self.providerName)
+			self["scan_state"].setText(ngettext('List version %d, found %d channel', 'List version %d, found %d channels', result) % (self.scan.getVersion(), result))
 
 	def restoreService(self):
 		if self.prevservice:
 			self.session.nav.playService(self.prevservice)
 
 	def ok(self):
-		if self["scan"].isDone():
+		if self.isDone:
 			refreshServiceList()
-			self.restoreService()
-			self.close()
+			self.cancel()
 
 	def cancel(self):
+		self.scan.scanCompleted.get().remove(self.scanCompleted)
+		self.scan.scanProgress.get().remove(self.scanProgress)
+		del self.scan
 		self.restoreService()
 		self.close()
 
