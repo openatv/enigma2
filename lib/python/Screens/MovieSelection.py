@@ -448,6 +448,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.bouquet_mark_edit = False
 
 		self.feedbackTimer = None
+		self.pathselectEnabled = False
 
 		self.numericalTextInput = NumericalTextInput.NumericalTextInput(mapping=NumericalTextInput.MAP_SEARCH_UPCASE)
 		self["chosenletter"] = Label("")
@@ -1155,6 +1156,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.reload_sel = sel
 		self.reload_home = home
 		self["waitingtext"].visible = True
+		self.pathselectEnabled = False
 		self.callLater(self.reloadWithDelay)
 
 	def reloadWithDelay(self):
@@ -1190,14 +1192,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					self.list.moveUp()
 				self.playGoTo = None
 				self.callLater(self.preview)
+		self.callLater(self.enablePathSelect)
+
+	def enablePathSelect(self):
+		self.pathselectEnabled = True
 
 	def doPathSelect(self):
-		self.session.openWithCallback(
-			self.gotFilename,
-			MovieLocationBox,
-			_("Please select the movie path..."),
-			config.movielist.last_videodir.value
-		)
+		if self.pathselectEnabled:
+			self.session.openWithCallback(
+				self.gotFilename,
+				MovieLocationBox,
+				_("Please select the movie path..."),
+				config.movielist.last_videodir.value
+			)
 
 	def gotFilename(self, res, selItem = None):
 		if not res:
