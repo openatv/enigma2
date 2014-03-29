@@ -18,7 +18,7 @@
 
 /************************************************/
 
-#define CRASH_EMAILADDR "forum at www.openmips.com"
+#define CRASH_EMAILADDR "forum at www.gigablue-support.com"
 #define INFOFILE "/maintainer.info"
 
 #define RINGBUFFER_SIZE 16384
@@ -192,7 +192,7 @@ void bsodFatal(const char *component)
 
 		XmlGenerator xml(f);
 
-		xml.open("openpli");
+		xml.open("openMips");
 
 		xml.open("enigma2");
 		xml.string("crashdate", tm_str);
@@ -210,9 +210,6 @@ void bsodFatal(const char *component)
 		xml.open("image");
 		if(access("/proc/stb/info/boxtype", F_OK) != -1) {
 			xml.stringFromFile("stbmodel", "/proc/stb/info/boxtype");
-		}
-		else if (access("/proc/stb/info/vumodel", F_OK) != -1) {
-			xml.stringFromFile("stbmodel", "/proc/stb/info/vumodel");
 		}
 		else if (access("/proc/stb/info/model", F_OK) != -1) {
 			xml.stringFromFile("stbmodel", "/proc/stb/info/model");
@@ -239,15 +236,6 @@ void bsodFatal(const char *component)
 		{
 			xml.open("software");
 			xml.cDataFromCmd("enigma2software", "opkg list-installed 'enigma2*'");
-			if(access("/proc/stb/info/boxtype", F_OK) != -1) {
-				xml.cDataFromCmd("xtrendsoftware", "opkg list-installed 'et-*'");
-			}
-			else if (access("/proc/stb/info/vumodel", F_OK) != -1) {
-				xml.cDataFromCmd("vuplussoftware", "opkg list-installed 'vuplus*'");
-			}
-			else if (access("/proc/stb/info/model", F_OK) != -1) {
-				xml.cDataFromCmd("dreamboxsoftware", "opkg list-installed 'dream*'");
-			}
 			xml.cDataFromCmd("gstreamersoftware", "opkg list-installed 'gst*'");
 			xml.close();
 		}
@@ -280,7 +268,7 @@ void bsodFatal(const char *component)
 	os.clear();
 	os << "We are really sorry. Your STB encountered "
 		"a software problem, and needs to be restarted.\n"
-		"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
+		"Please attach " << crashlog_name << " " << crash_emailaddr << ".\n"
 		"Your STB restarts in 10 seconds!\n"
 		"Component: " << crash_component;
 
