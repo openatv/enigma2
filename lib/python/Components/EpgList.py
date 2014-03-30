@@ -918,6 +918,10 @@ class EPGList(HTMLComponent, GUIComponent):
 						bgpng = self.nowSelEvPix
 					else:
 						bgpng = self.selEvPix
+						if clock_types is not None and clock_types == 2:
+							bgpng = self.recSelEvPix
+						elif clock_types is not None and clock_types == 7:
+							bgpng = self.zapSelEvPix
 				else:
 					if clock_types is not None:
 						clocks = self.clocks[clock_types]
