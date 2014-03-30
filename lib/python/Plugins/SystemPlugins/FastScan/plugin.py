@@ -108,10 +108,11 @@ class FastScanStatus(Screen):
 
 	def ok(self):
 		if self.isDone:
-			refreshServiceList()
 			self.cancel()
 
 	def cancel(self):
+		if self.isDone:
+			refreshServiceList()
 		self.restoreService()
 		self.close()
 
