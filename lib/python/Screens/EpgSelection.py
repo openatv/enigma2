@@ -165,6 +165,7 @@ class EPGSelection(Screen, HelpableScreen):
 						'nextService': (self.nextPage, _('Move down a page')),
 						'prevService': (self.prevPage, _('Move up a page')),
 						'input_date_time': (self.enterDateTime, _('Goto specific data/time')),
+						'epg': (self.epgButtonPressed, _('Show single epg for current channel')),
 						'info': (self.Info, _('Show detailed event info')),
 						'infolong': (self.InfoLong, _('Show single epg for current channel')),
 						'menu': (self.createSetup, _('Setup menu'))
@@ -283,6 +284,7 @@ class EPGSelection(Screen, HelpableScreen):
 					'nextBouquet': (self.nextBouquet, _('Goto next bouquet')),
 					'prevBouquet': (self.prevBouquet, _('Goto previous bouquet')),
 					'input_date_time': (self.enterDateTime, _('Goto specific data/time')),
+					'epg': (self.epgButtonPressed, _('Show single epg for current channel')),
 					'info': (self.Info, _('Show detailed event info')),
 					'infolong': (self.InfoLong, _('Show single epg for current channel')),
 					'tv': (self.Bouquetlist, _('Toggle between bouquet/epg lists')),
@@ -354,6 +356,7 @@ class EPGSelection(Screen, HelpableScreen):
 					'nextBouquet': (self.nextBouquet, _('Goto next bouquet')),
 					'prevBouquet': (self.prevBouquet, _('Goto previous bouquet')),
 					'input_date_time': (self.enterDateTime, _('Goto specific data/time')),
+					'epg': (self.epgButtonPressed, _('Show single epg for current channel')),
 					'info': (self.Info, _('Show detailed event info')),
 					'infolong': (self.InfoLong, _('Show single epg for current channel')),
 					'tv': (self.Bouquetlist, _('Toggle between bouquet/epg lists')),
@@ -1123,6 +1126,9 @@ class EPGSelection(Screen, HelpableScreen):
 					self.zapTo()
 				if config.epgselection.graph_oklong.value == 'Zap + Exit' or config.epgselection.enhanced_oklong.value == 'Zap + Exit' or config.epgselection.infobar_oklong.value == 'Zap + Exit' or config.epgselection.multi_oklong.value == 'Zap + Exit':
 					self.zap()
+
+	def epgButtonPressed(self):
+		self.OpenSingleEPG()
 
 	def Info(self):
 		from InfoBar import InfoBar

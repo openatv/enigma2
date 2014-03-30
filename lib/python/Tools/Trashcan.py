@@ -31,6 +31,7 @@ def createTrashFolder(path=None):
 
 def get_size(start_path = '.'):
 	total_size = 0
+	print 'start_path:',start_path
 	for dirpath, dirnames, filenames in os.walk(start_path):
 		for f in filenames:
 			try:
@@ -127,7 +128,9 @@ class CleanTrashTask(Components.Task.PythonTask):
 				continue
 			if config.usage.movielist_trashcan_network_clean.value and parts[1].startswith('/media/net'):
 				mounts.append(parts[1])
-			elif not parts[1].startswith('/media/net'):
+			elif config.usage.movielist_trashcan_network_clean.value and parts[1].startswith('/media/autofs'):
+				mounts.append(parts[1])
+			elif not parts[1].startswith('/media/net') and not parts[1].startswith('/media/autofs'):
 				mounts.append(parts[1])
 		f.close()
 
@@ -190,7 +193,8 @@ class TrashInfo(VariableText, GUIComponent):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		self.type = type
-		if update:
+		print '[TrashInfo]',path
+		if update and path != '/media/autofs':
 			self.update(path)
 
 	def update(self, path):
