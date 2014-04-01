@@ -2730,24 +2730,24 @@ class InfoBarInstantRecord:
 			common = ()
 			timeshiftcommon = ()
 
-		if self.isInstantRecordRunning():
-			title =_("A recording is currently running.\nWhat do you want to do?")
-			list = ((_("Stop recording"), "stop"),) + common + \
-				((_("Change recording (duration)"), "changeduration"),
-				(_("Change recording (endtime)"), "changeendtime"),)
-			if self.isTimerRecordRunning():
-				list += ((_("Stop timer recording"), "timer"),)
-		else:
-			title=_("Start recording?")
-			list = common
+		list = common
 
-			if self.isTimerRecordRunning():
-				list += ((_("Stop timer recording"), "timer"),)
+		if self.isInstantRecordRunning():
+			title = _("A recording is currently running.\nWhat do you want to do?")
+			list += ((_("Change recording (duration)"), "changeduration"),
+				(_("Change recording (endtime)"), "changeendtime"),
+				(_("Stop recording"), "stop"),)
+		else:
+			title = _("Start recording?")
+
+		if self.isTimerRecordRunning():
+			list += ((_("Stop timer recording"), "timer"),)
+
 		if isStandardInfoBar(self) and self.timeshiftEnabled():
-			list = list + timeshiftcommon
+			list += timeshiftcommon
 
 		if isStandardInfoBar(self):
-			list = list + ((_("Do not record"), "no"),)
+			list += ((_("Do not record"), "no"),)
 
 		if list:
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox,title=title,list=list)
