@@ -55,6 +55,11 @@ case $ret in
 		/sbin/modprobe fp
 		/sbin/reboot
 		;;
+	5)
+		if ! grep -q config.misc.RestartUI /etc/enigma2/settings; then
+			echo "config.misc.RestartUI=true" >>/etc/enigma2/settings
+		fi
+		;;
 	42)
 		# bind the console (when available)
 		[ -f /sys/class/vtconsole/vtcon1/bind ] && echo 1 > /sys/class/vtconsole/vtcon1/bind
