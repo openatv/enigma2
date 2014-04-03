@@ -104,10 +104,15 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 def main(session, **kwargs):
 	session.open(HdmiCECSetupScreen)
 
+def startSetup(menuid):
+	if menuid == "system":
+		return [(_("HDMI-CEC setup"), main, "hdmi_cec_setup", 0)]
+	return []
+
 def Plugins(**kwargs):
 	from os import path
 	if path.exists("/dev/hdmi_cec") or path.exists("/dev/misc/hdmi_cec0"):
 		import Components.HdmiCec
 		from Plugins.Plugin import PluginDescriptor
-		return [PluginDescriptor(name = "HDMI CEC setup", description = _("Adjust HDMI CEC settings"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main)]
+		return [PluginDescriptor(where = PluginDescriptor.WHERE_MENU, fnc = startSetup)]
 	return []
