@@ -369,6 +369,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.list.append(self.typeOfScanEntry)
 			if self.ter_channel_input:
 				self.list.append(self.typeOfInputEntry)
+			else:
+				self.scan_input_as.value = self.scan_input_as.choices[0]
 
 		self.scan_networkScan.value = False
 		if nim.isCompatible("DVB-S"):
