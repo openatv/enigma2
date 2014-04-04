@@ -13,6 +13,7 @@ def getTrashFolder(path=None):
 		print 'PATH:',path
 		if path is None or os.path.realpath(path) == '/media/autofs':
 			print 'path is none'
+			return ""
 		else:
 			if '/movie' in path:
 				mountpoint = Harddisk.findMountPoint(os.path.realpath(path))
