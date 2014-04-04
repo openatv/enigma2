@@ -74,7 +74,8 @@ class ServiceScan(Screen):
 			if self.session.pipshown and self.currentServiceList:
 				if self.currentServiceList.dopipzap:
 					self.currentServiceList.togglePipzap()
-				del self.session.pip
+				if hasattr(self.session, 'pip'):
+					del self.session.pip
 				self.session.pipshown = False
 		else:
 			self.currentInfobar = None
