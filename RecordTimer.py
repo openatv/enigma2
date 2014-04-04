@@ -73,7 +73,29 @@ wasRecTimerWakeup = False
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry, object):
 ######### the following static methods and members are only in use when the box is in (soft) standby
+	wasInStandby = False
+	wasInDeepStandby = False
 	receiveRecordEvents = False
+
+	@staticmethod
+	def keypress(key=None, flag=1):
+		if flag and (RecordTimerEntry.wasInStandby or RecordTimerEntry.wasInDeepStandby):
+			RecordTimerEntry.wasInStandby = False
+			RecordTimerEntry.wasInDeepStandby = False
+			eActionMap.getInstance().unbindAction('', RecordTimerEntry.keypress)
+
+	@staticmethod
+	def setWasInDeepStandby():
+		RecordTimerEntry.wasInDeepStandby = True
+		eActionMap.getInstance().bindAction('', -maxint - 1, RecordTimerEntry.keypress)
+
+	@staticmethod
+	def setWasInStandby():
+		if not RecordTimerEntry.wasInStandby:
+			if not RecordTimerEntry.wasInDeepStandby:
+				eActionMap.getInstance().bindAction('', -maxint - 1, RecordTimerEntry.keypress)
+			RecordTimerEntry.wasInDeepStandby = False
+			RecordTimerEntry.wasInStandby = True
 
 	@staticmethod
 	def shutdown():
