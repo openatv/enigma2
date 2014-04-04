@@ -237,10 +237,14 @@ class FastScanScreen(ConfigListScreen, Screen):
 
 class FastScanAutoScreen(FastScanScreen):
 
-	def __init__(self, session, lastConfiguration):
+	def __init__(self, session):
 		print "[AutoFastScan] start"
 		Screen.__init__(self, session)
 		self.skinName="Standby"
+
+		lastConfiguration = eval(config.misc.fastscan.last_configuration.value)
+		if not lastConfiguration or Session.nav.RecordTimer.isRecording():
+			self.close(False)
 
 		self["actions"] = ActionMap( [ "StandbyActions" ],
 		{
@@ -265,12 +269,13 @@ class FastScanAutoScreen(FastScanScreen):
 	def scanCompleted(self, result):
 		print "[AutoFastScan] completed result = ", result
 		refreshServiceList()
-		self.close()
+		self.close(result>0)
 
 	def Power(self):
 		from Screens.Standby import inStandby
 		inStandby.Power()
-		self.scanCompleted("Aborted")
+		print "[AutoFastScan] aborted due to power button pressed"
+		self.close(True)
 
 	def createSummary(self):
 		from Screens.Standby import StandbySummary
@@ -300,13 +305,13 @@ def FastScanMain(session, **kwargs):
 Session = None
 FastScanAutoStartTimer = eTimer()
 
+def restartScanAutoStartTimer(reply):
+	if not reply:
+		print "[AutoFastScan] Scan was not succesfully retry in one hour"
+		FastScanAutoStartTimer.startLongTimer(3600)
+
 def FastScanAuto():
-	lastConfiguration = eval(config.misc.fastscan.last_configuration.value)
-	if lastConfiguration:
-		if Session.nav.RecordTimer.isRecording():
-			FastScanAutoStartTimer.startLongTimer(3600)
-		else:
-			Session.open(FastScanAutoScreen, lastConfiguration)
+	Session.openWithCallback(restartScanAutoStartTimer, FastScanAutoScreen)
 
 FastScanAutoStartTimer.callback.append(FastScanAuto)
 
