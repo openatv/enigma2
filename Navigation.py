@@ -1,6 +1,6 @@
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService, eActionMap
 from Components.ParentalControl import parentalControl
-from Components.config import config, configfile
+from Components.config import config
 from Tools.BoundFunction import boundFunction
 from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup
 from Tools import Notifications
@@ -76,15 +76,6 @@ class Navigation:
 				self.standbytimer = eTimer()
 				self.standbytimer.callback.append(self.gotostandby)
 				self.standbytimer.start(15000, True)
-		self.__wasTimerWakeup = getFPWasTimerWakeup()
-		if self.__wasTimerWakeup:
-			RecordTimer.RecordTimerEntry.setWasInDeepStandby()
-		if config.misc.RestartUI.value:
-			config.misc.RestartUI.value = False
-			config.misc.RestartUI.save()
-			configfile.save()
-		elif config.usage.startup_to_standby.value:
-			Notifications.AddNotification(Screens.Standby.Standby)
 
 	def wasTimerWakeup(self):
 		return self.__wasTimerWakeup
