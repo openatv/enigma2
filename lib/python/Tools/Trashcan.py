@@ -193,8 +193,7 @@ class TrashInfo(VariableText, GUIComponent):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		self.type = type
-		print '[TrashInfo]',path
-		if update and path != '/media/autofs':
+		if update and path != '/media/autofs/':
 			self.update(path)
 
 	def update(self, path):
