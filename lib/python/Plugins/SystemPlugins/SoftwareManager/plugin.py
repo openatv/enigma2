@@ -42,6 +42,8 @@ from twisted.internet import reactor
 from ImageBackup import ImageBackup
 from Flash_online import FlashOnline
 from ImageWizard import ImageWizard
+from PluginBackup import PluginBackup
+from PluginRestore import PluginRestore
 from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename
 from SoftwareTools import iSoftwareTools
 import os
@@ -148,12 +150,13 @@ class UpdatePluginMenu(Screen):
 		if self.menu == 0:
 			print "building menu entries"
 			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your Receiver" ) + self.oktext, None))
-			self.list.append(("software-update", _("Software update"), _("\nOnline update of your Receiver software." ) + self.oktext, None))
 			self.list.append(("flash-online", _("Flash Online"), _("\nFlash on the fly your your Receiver software.") + self.oktext, None))
 			self.list.append(("software-restore", _("Software restore"), _("\nRestore your Receiver with a new firmware." ) + self.oktext, None))
 			self.list.append(("backup-image", _("Backup Image"), _("\nBackup your running Receiver image to HDD or USB." ) + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your Receiver settings." ) + self.oktext + "\n\n" + self.infotext, None))
 			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your Receiver settings." ) + self.oktext, None))
+			self.list.append(("plugin-backup",_("Backup Plugins"), _("\nBackup your installed plugins." ) + self.oktext, None))
+			self.list.append(("plugin-restore",_("Restore Plugins"), _("\nRestore your previously installed plugins." ) + self.oktext, None))
 			self.list.append(("ipkg-install", _("Install local extension"),  _("\nScan for local extensions and install them." ) + self.oktext, None))
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
 				if p.__call__.has_key("SoftwareSupported"):
@@ -218,6 +221,7 @@ class UpdatePluginMenu(Screen):
 			self.backuppath = getOldBackupPath()
 		self.backupfile = getBackupFilename()
 		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
+		self.pluginbackupfilename = "/etc/enigma2/installed-list.txt"
 		self.onShown.append(self.setWindowTitle)
 		self.onChangedEntry = []
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
@@ -279,10 +283,7 @@ class UpdatePluginMenu(Screen):
 		if current:
 			currentEntry = current[0]
 			if self.menu == 0:
-				if (currentEntry == "software-update"):
-					self.session.open(UpdatePlugin, self.skin_path)
-					#self.checkTraficLight()
-				elif (currentEntry == "software-restore"):
+				if (currentEntry == "software-restore"):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):
 					self.session.open(PluginManager, self.skin_path)
@@ -297,6 +298,13 @@ class UpdatePluginMenu(Screen):
 						self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore the backup?\nYour receiver will restart after the backup has been restored!"))
 					else:
 						self.session.open(MessageBox, _("Sorry, no backups found!"), MessageBox.TYPE_INFO, timeout = 10)
+				elif (currentEntry == "plugin-backup"):
+					self.session.open(PluginBackup)
+				elif (currentEntry == "plugin-restore"):
+					if os_path.exists(self.pluginbackupfilename):
+						self.session.openWithCallback(self.startPluginRestore, MessageBox, _("Are you sure you want to restore your Plugins?\nGUI will restart after the Plugins have been restored!"))
+					else:
+						self.session.open(MessageBox, _("Sorry, %s not found!\nRestore settings first.") % (self.pluginbackupfilename), MessageBox.TYPE_INFO, timeout = 10)
 				elif (currentEntry == "ipkg-install"):
 					try:
 						from Plugins.Extensions.MediaScanner.plugin import main
@@ -364,6 +372,10 @@ class UpdatePluginMenu(Screen):
 		if (ret == True):
 			self.exe = True
 			self.session.open(RestoreScreen, runRestore = True)
+
+	def startPluginRestore(self, ret = False):
+		if (ret == True):
+			self.session.open(PluginRestore)
 
 class SoftwareManagerSetup(Screen, ConfigListScreen):
 
