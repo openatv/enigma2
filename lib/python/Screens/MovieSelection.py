@@ -209,8 +209,8 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		configList.append(getConfigListEntry(_("Root directory"), config.movielist.root, _("Sets the root folder of movie list, to remove the '..' from benign shown in that folder.")))
 		configList.append(getConfigListEntry(_("Hide known extensions"), config.movielist.hide_extensions, _("Allows you to hide the extensions of known file types.")))
 		configList.append(getConfigListEntry(_("Show live tv when movie stopped"), config.movielist.show_live_tv_in_movielist, _("When set the PIG will return to live after a movie has stopped playing.")))
-		for btn in ('red', 'green', 'yellow', 'blue', 'TV', 'Radio', 'Text'):
-			configList.append(getConfigListEntry(_("Button") + " " + _(btn), userDefinedButtons[btn], _("Allows you to setup the button to do what you choose.")))
+		for btn in (('red', _('Red')), ('green', _('Green')), ('yellow', _('Yellow')), ('blue', _('Blue')),('redlong', _('Red long')), ('greenlong', _('Green long')), ('yellowlong', _('Yellow long')), ('bluelong', _('Blue long')), ('TV', _('TV')), ('Radio', _('Radio')), ('Text', _('Text'))):
+			configList.append(getConfigListEntry(_("Button") + " " + _(btn[1]), userDefinedButtons[btn[0]], _("Allows you to setup the button to do what you choose.")))
 		ConfigListScreen.__init__(self, configList, session = self.session, on_change = self.changedEntry)
 		self["config"].setList(configList)
 		if config.usage.sort_settings.value:
@@ -527,7 +527,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"red": (self.btn_red, _("Delete...")),
 				"green": (self.btn_green, _("Move to other directory")),
 				"yellow": (self.btn_yellow, _("Select the movie path")),
-				"blue": (self.btn_blue, _("Show tag menu")),
+				"blue": (self.btn_blue, _("Change sort by...")),
+				"redlong": (self.btn_redlong, _("Rename...")),
+				"greenlong": (self.btn_greenlong, _("Copy to other directory")),
+				"yellowlong": (self.btn_yellowlong, _("Select the movie path")),
+				"bluelong": (self.btn_bluelong, _("Sort by default")),
 			})
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
@@ -594,6 +598,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'rename': _("Rename"),
 				'gohome': _("Home"),
 				'sort': _("Sort"),
+				'sortdefault': _("Sort by default"),
 				'preview': _("Preview"),
 				'movieoff': _("On end of movie")
 			}
@@ -603,6 +608,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			config.movielist.btn_green = ConfigSelection(default='move', choices=userDefinedActions)
 			config.movielist.btn_yellow = ConfigSelection(default='bookmarks', choices=userDefinedActions)
 			config.movielist.btn_blue = ConfigSelection(default='sort', choices=userDefinedActions)
+			config.movielist.btn_redlong = ConfigSelection(default='rename', choices=userDefinedActions)
+			config.movielist.btn_greenlong = ConfigSelection(default='copy', choices=userDefinedActions)
+			config.movielist.btn_yellowlong = ConfigSelection(default='tags', choices=userDefinedActions)
+			config.movielist.btn_bluelong = ConfigSelection(default='sortdefault', choices=userDefinedActions)
 			config.movielist.btn_radio = ConfigSelection(default='tags', choices=userDefinedActions)
 			config.movielist.btn_tv = ConfigSelection(default='gohome', choices=userDefinedActions)
 			config.movielist.btn_text = ConfigSelection(default='movieoff', choices=userDefinedActions)
@@ -611,6 +620,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'green': config.movielist.btn_green,
 				'yellow': config.movielist.btn_yellow,
 				'blue': config.movielist.btn_blue,
+				'redlong': config.movielist.btn_redlong,
+				'greenlong': config.movielist.btn_greenlong,
+				'yellowlong': config.movielist.btn_yellowlong,
+				'bluelong': config.movielist.btn_bluelong,
 				'Radio': config.movielist.btn_radio,
 				'TV': config.movielist.btn_tv,
 				'Text': config.movielist.btn_text,
@@ -633,13 +646,45 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		a()
 
 	def btn_red(self):
-		self._callButton(config.movielist.btn_red.value)
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if not InfoBarInstance.LongButtonPressed:
+			self._callButton(config.movielist.btn_red.value)
 	def btn_green(self):
-		self._callButton(config.movielist.btn_green.value)
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if not InfoBarInstance.LongButtonPressed:
+			self._callButton(config.movielist.btn_green.value)
 	def btn_yellow(self):
-		self._callButton(config.movielist.btn_yellow.value)
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if not InfoBarInstance.LongButtonPressed:
+			self._callButton(config.movielist.btn_yellow.value)
 	def btn_blue(self):
-		self._callButton(config.movielist.btn_blue.value)
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if not InfoBarInstance.LongButtonPressed:
+			self._callButton(config.movielist.btn_blue.value)
+	def btn_redlong(self):
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance.LongButtonPressed:
+			self._callButton(config.movielist.btn_redlong.value)
+	def btn_greenlong(self):
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance.LongButtonPressed:
+			self._callButton(config.movielist.btn_greenlong.value)
+	def btn_yellowlong(self):
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance.LongButtonPressed:
+			self._callButton(config.movielist.btn_yellowlong.value)
+	def btn_bluelong(self):
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance.LongButtonPressed:
+			self._callButton(config.movielist.btn_bluelong.value)
 	def btn_radio(self):
 		self._callButton(config.movielist.btn_radio.value)
 	def btn_tv(self):
@@ -1145,6 +1190,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		return needUpdate
 
 	def sortBy(self, newType):
+		print 'SORTYBY:',newType
 		self.settings["moviesort"] = newType
 		self.saveLocalSettings()
 		self.setSortType(newType)
@@ -1846,6 +1892,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def do_gohome(self):
 		self.gotFilename(defaultMoviePath())
+
+	def do_sortdefault(self):
+		print 'SORT:',config.movielist.moviesort.value
+		config.movielist.moviesort.load()
+		print 'SORT:',config.movielist.moviesort.value
+		self.sortBy(int(config.movielist.moviesort.value))
 
 	def do_sort(self):
 		index = 0
