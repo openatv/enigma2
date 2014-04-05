@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-23 03:08+0100\n"
-"PO-Revision-Date: 2014-03-24 17:58+0100\n"
+"POT-Creation-Date: 2014-04-04 16:50+0100\n"
+"PO-Revision-Date: 2014-04-05 16:00+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Stig-O\n"
 "Language: nb_NO\n"
@@ -844,7 +844,7 @@ msgstr "Legg til tittel"
 
 #
 msgid "Add to bouquet"
-msgstr "Legg til i bouquet"
+msgstr "Legg til i favorittliste"
 
 #
 msgid "Add to favourites"
@@ -1566,7 +1566,7 @@ msgstr "Sentrer DVB undertekst"
 
 #
 msgid "Change bouquets in quickzap"
-msgstr "Bytt bouquet i Quickzap"
+msgstr "Bytt favorittliste i Quickzap"
 
 msgid "Change next timer"
 msgstr "Endre neste timer"
@@ -1603,7 +1603,7 @@ msgstr "Endre timer"
 
 #
 msgid "Change to bouquet"
-msgstr "Bytt til i bukett"
+msgstr "Bytt til favorittliste"
 
 msgid "Changelog"
 msgstr "Endringslogg"
@@ -1726,7 +1726,7 @@ msgid "Chipset: BCM%s"
 msgstr "Chipset: BCM%s"
 
 msgid "Choose Bouquet"
-msgstr "Velg bukett"
+msgstr "Velg favorittliste"
 
 msgid "Choose a tag for easy finding a recording."
 msgstr "Velg et merke for lett å finne et opptak."
@@ -1742,9 +1742,6 @@ msgstr "Velg plasseringen hvor EPG-dataene vil lagres når %s %s er avslått. Pl
 
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "Velg navnet på filen som har EPG data når %s %s er avslått. Dette kan være nyttig for å skille mellom flere bokser."
-
-msgid "Choose the source of the front end data displayed by the infobar. 'Lamedb' is as stored on file. 'Tuner' is as reported by the tuner."
-msgstr "Velg kilden til front end data vises av informasjonslinjen. 'Lamedb' er som lagres på fil. 'Tuner' er som rapportert av tuneren."
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Velg tidsintervall som grafikken vil bli avrundet til."
@@ -1820,7 +1817,7 @@ msgstr "Lukk BiB på exit"
 
 #
 msgid "Close bouquet list."
-msgstr "Avslutt bukett listen."
+msgstr "Avslutt favorittlisten."
 
 msgid "Close dialog"
 msgstr "Lukk dialog"
@@ -2097,6 +2094,9 @@ msgstr "Konfigurer hoppe tidsintervall for 7 og 9 knapper."
 
 msgid "Configure the slow motion speeds."
 msgstr "Konfigurer saktefilm hastigheter."
+
+msgid "Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner."
+msgstr "Velg kilden til front end data som vises i informasjonslinjen. 'Innstillinger' som lagres på fil. 'Tuner' er som rapportert av tuneren."
 
 msgid "Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance."
 msgstr "Konfigurering av hastigheten på bakgrunns sletteprosessen. Lavere hastighet vil forbruke mindre harddisk ytelse."
@@ -2689,9 +2689,6 @@ msgstr "Koble fra"
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Diskplass som skal reserveres for opptak(i GB)"
 
-msgid "Display"
-msgstr "Vis"
-
 #
 msgid "Display 16:9 content as"
 msgstr "Vis 16:9 innhold som"
@@ -3015,7 +3012,7 @@ msgstr "Endre DNS"
 
 #
 msgid "Edit bouquets list"
-msgstr "Endre kanalliste"
+msgstr "Endre favorittlisten"
 
 #
 msgid "Edit chapters of current title"
@@ -3092,7 +3089,7 @@ msgstr "Aktivere debug logg"
 
 #
 msgid "Enable multiple bouquets"
-msgstr "Aktiver flere bouqueter"
+msgstr "Aktiver flere favorittlister"
 
 msgid "Enable panic button"
 msgstr "Aktivere panikk knapp"
@@ -3526,6 +3523,9 @@ msgstr "Fredag"
 msgid "From :"
 msgstr "Fra :"
 
+msgid "Front Display Panel"
+msgstr "Front Displayet"
+
 #
 #, python-format
 msgid "Frontprocessor version: %d"
@@ -3620,7 +3620,7 @@ msgid "Goto index position"
 msgstr "Gå til indeksposisjonen"
 
 msgid "Goto next bouquet"
-msgstr "Gå til neste bukett"
+msgstr "Gå til neste favorittliste"
 
 msgid "Goto next channel"
 msgstr "Gå til neste kanal"
@@ -3633,7 +3633,7 @@ msgid "Goto position"
 msgstr "Gå til posisjon"
 
 msgid "Goto previous bouquet"
-msgstr "Gå til forrige bukett"
+msgstr "Gå til forrige favorittliste"
 
 msgid "Goto previous channel"
 msgstr "Gå til forrige kanal"
@@ -3848,10 +3848,10 @@ msgid "If set to 'yes' shows a small TV-screen in the EPG."
 msgstr "Hvis satt til 'ja' viser en liten TV-skjerm i EPG."
 
 msgid "If set to 'yes' the EPG will always open at the first channel of bouquet. If set to 'no' the EPG will open on the current channel."
-msgstr "Hvis satt til 'ja' så vil EPG alltid åpne på den første kanalen. Hvis satt til 'nei' vil EPG åpne på nåværende kanal."
+msgstr "Hvis satt til 'ja' så vil EPG alltid åpne på den første kanalen i favorittlisten. Hvis satt til 'nei' vil EPG åpne nåværende kanal."
 
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
-msgstr "Hvis satt til 'ja' vil buketter bli vist hver gang du åpner EPG."
+msgstr "Hvis satt til 'ja' vil favorittlister bli vist hver gang du åpner EPG."
 
 msgid "If set to 'yes' the channel list will be shown after switching between radio and TV modes."
 msgstr "Hvis satt til 'ja' vil kanallisten bli vist etter bytte mellom radio-og TV-modusene."
@@ -3973,7 +3973,7 @@ msgstr "InfoBar EPG modus"
 msgid "Infobar EPG"
 msgstr "Informasjonslinje EPG"
 
-msgid "Infobar front end data source"
+msgid "Infobar frontend data source"
 msgstr "Informasjonslinje front end datakilde"
 
 #
@@ -4258,9 +4258,6 @@ msgstr "LNB"
 
 msgid "Label"
 msgstr "Etikett"
-
-msgid "Lamedb"
-msgstr "Lamedb"
 
 #
 msgid "Language"
@@ -5638,7 +5635,7 @@ msgstr "Vennligst ikke endre verdier, hvis du ikke vet hva du gjør!"
 
 #
 msgid "Please enter a name for the new bouquet"
-msgstr "Vennligst skriv navn for den nye bouquet"
+msgstr "Vennligst skriv navnet til den nye favorittlisten"
 
 #
 msgid "Please enter a name for the new marker"
@@ -6301,7 +6298,7 @@ msgid "Reloading EPG Cache..."
 msgstr "Omlasting EPG Cache..."
 
 msgid "Reloading bouquets and services..."
-msgstr "Omlaster buketter og kanaler..."
+msgstr "Omlaster favorittlister og kanaler..."
 
 msgid "Remaining"
 msgstr "Gjenstående"
@@ -6518,7 +6515,7 @@ msgid "Return to previous service"
 msgstr "Gå tilbake til forrige kanal"
 
 msgid "Reverse bouquet buttons"
-msgstr "Omvendt bukett knapper"
+msgstr "Omvendt bouquet knapper"
 
 #
 msgid "Rewind speeds"
@@ -7026,7 +7023,7 @@ msgstr "Kanal har blitt lagt til favorittene."
 
 #
 msgid "Service has been added to the selected bouquet."
-msgstr "Kanal har blitt lagt til den valgte bouquet."
+msgstr "Kanal har blitt lagt til den valgte favorittlisten."
 
 msgid "Service info font size"
 msgstr "Skriftstørrelsen på kanalinfo"
@@ -7336,7 +7333,7 @@ msgid "Show background when tuned to a radio channel."
 msgstr "Vis bakgrunnen når innstilt til en radiokanal."
 
 msgid "Show bouquet on launch"
-msgstr "Vis bukett ved oppstart"
+msgstr "Vis favorittliste ved oppstart"
 
 #
 msgid "Show channel number in infobar"
@@ -8436,6 +8433,12 @@ msgstr "Med dette alternativet kan du velge hvordan du vil vise den gjenværende
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Med dette alternativet kan du velge bakgrunnsfarge for gjennomsiktige picons."
 
+msgid "This option allows you enable smoothing filter to control the dithering process."
+msgstr "Dette alternativet lar deg aktivere sortering av valg i utjamnings prosessen."
+
+msgid "This option allows you enable the vertical scaler dejagging."
+msgstr "Med dette alternativet kan du aktivere vertikal skalering dejagging."
+
 msgid "This option allows you set the layout view (Text or Graphics)."
 msgstr "Med dette alternativet kan du angi oppsettvisning (tekst eller grafikk)."
 
@@ -8833,7 +8836,7 @@ msgid "Toggle aspect ratio..."
 msgstr "Veksle størrelsesforhold..."
 
 msgid "Toggle between bouquet/epg lists"
-msgstr "Veksle mellom bukett/epg lister"
+msgstr "Veksle mellom favoritt/epg lister"
 
 msgid "Tone amplitude"
 msgstr "Tone utslag"
@@ -9241,7 +9244,7 @@ msgid "Used:"
 msgstr "Brukt: "
 
 msgid "User - bouquets"
-msgstr "Bruker - buketter"
+msgstr "Bruker - favoritter"
 
 #
 msgid "User defined"
@@ -9661,13 +9664,13 @@ msgid "When enabled, a warning will be displayed and the user will get an option
 msgstr "Når funksjonen er aktivert, vil en advarsel vises og brukeren vil få en mulighet til å stoppe eller å fortsette timeshift."
 
 msgid "When enabled, channel numbering will start at '1' for every bouquet."
-msgstr "Når funksjonen er aktivert, vil kanalnummereringen starter på '1 'for hver bukett."
+msgstr "Når funksjonen er aktivert, vil kanalnummereringen starter på '1' for hver favorittliste."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Når funksjonen er aktivert, vil innhold med et sideforhold på 4:3 strekkes til å passe skjermen."
 
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached."
-msgstr "Når funksjonen er aktivert, går du videre til neste bukett når den siste kanalen av gjeldende bukett er nådd når du skifter kanaler."
+msgstr "Når funksjonen er aktivert, går du videre til neste favorittliste når den siste kanalen av gjeldende favorittliste er nådd når du skifter kanaler."
 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr "Når funksjonen er aktivert, vil slettede opptak flyttes til papirkurven, i stedet for å bli slettet umiddelbart."
@@ -9697,7 +9700,7 @@ msgid "When enabled, network trash cans are probed for cleaning."
 msgstr "Når funksjonen er aktivert, er nettverkssøppelbøtter analysert for rengjøring."
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "Når funksjonen er aktivert, vil å trykke '0' zappe deg til den første kanalen i ditt første bukett og slette din zap-historie."
+msgstr "Når funksjonen er aktivert, vil å trykke '0' zappe deg til den første kanalen i din første favorittliste og slette din zap-historie."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Når funksjonen er aktivert, vises kanalnummer i kanalvalg bildet."
@@ -9830,7 +9833,7 @@ msgid "With popup"
 msgstr "Med popup"
 
 msgid "With this option set to 'yes' the channel list will always show you the list of bouquets. If set to 'no' the current bouquet will be opened."
-msgstr "Med dette alternativet satt til 'ja' vil kanallistene alltid vise deg bukett bildet først. Hvis satt til 'nei' vil gjeldende bukett bli åpnet."
+msgstr "Med dette alternativet satt til 'ja' vil kanallistene alltid vise deg favoritt bildet først. Hvis satt til 'nei' vil gjeldende favoritter bli åpnet."
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Med dette alternativet kan du skjule arbeidsoppgaver fra forlengelses bildet (kort blå knappetrykk)."
@@ -10240,7 +10243,7 @@ msgstr "[alternativ editering]"
 
 #
 msgid "[bouquet edit]"
-msgstr "[bouquet editering]"
+msgstr "[favoritt editering]"
 
 #
 msgid "[favourite edit]"
@@ -10264,7 +10267,7 @@ msgstr "Avbryt alternativ editering"
 
 #
 msgid "abort bouquet edit"
-msgstr "avbryt bouquet editering"
+msgstr "avbryt favoritt editering"
 
 #
 msgid "abort favourites edit"
@@ -10280,7 +10283,7 @@ msgstr "aktiver nettverks adapter konfigurasjon"
 
 #
 msgid "add alternatives"
-msgstr "legg til alternativer"
+msgstr "Legg til alternativer"
 
 #
 msgid "add bookmark"
@@ -10288,15 +10291,15 @@ msgstr "legg til bokmerke"
 
 #
 msgid "add bouquet"
-msgstr "legg til bouquet"
+msgstr "legg til favoritter"
 
 #
 msgid "add marker"
-msgstr "legg till markør"
+msgstr "Legg til markør"
 
 #
 msgid "add service to bouquet"
-msgstr "Legg kanal til bouquet"
+msgstr "Legg kanal til i favorittlister"
 
 #
 msgid "add service to favourites"
@@ -10333,7 +10336,6 @@ msgid "alternative"
 msgstr "alternativer"
 
 #
-#, fuzzy
 msgid "am"
 msgstr "am"
 
@@ -10474,7 +10476,7 @@ msgstr "kopi"
 
 #
 msgid "copy to bouquets"
-msgstr "kopier til bouquets"
+msgstr "kopier til favorittliste"
 
 #
 msgid "create directory"
@@ -10574,7 +10576,7 @@ msgstr "aktiver"
 
 #
 msgid "enable bouquet edit"
-msgstr "aktiver bouquet editering"
+msgstr "Aktiver favoritt editering"
 
 #
 msgid "enable favourite edit"
@@ -10582,7 +10584,7 @@ msgstr "aktiver favoritt editering"
 
 #
 msgid "enable move mode"
-msgstr "aktiver flytte modus"
+msgstr "Aktiver flytte modus"
 
 #
 msgid "enabled"
@@ -10594,7 +10596,7 @@ msgstr "avslutt alternativ editering"
 
 #
 msgid "end bouquet edit"
-msgstr "avslutt bouquet editering"
+msgstr "avslutt favoritt editering"
 
 #
 msgid "end cut here"
@@ -10762,9 +10764,6 @@ msgstr ""
 
 msgid "height"
 msgstr "høyde"
-
-msgid "hint text place holder, waiting Vu for correct deffinitions."
-msgstr "hint tekstplassholder, venter Vu for korrekte definisjoner."
 
 msgid "hops:"
 msgstr "hops:"
@@ -11018,7 +11017,7 @@ msgid "only HD"
 msgstr "bare HD"
 
 msgid "open bouquetlist"
-msgstr "åpen bukett liste"
+msgstr "åpen favorittliste"
 
 #
 msgid "open nameserver configuration"
@@ -11047,7 +11046,7 @@ msgid "pid:"
 msgstr "pid:"
 
 msgid "play as picture in picture"
-msgstr "spille som bilde i bilde"
+msgstr "Spille som bilde i bilde"
 
 msgid "play in mainwindow"
 msgstr "spille i hovedvinduet"
@@ -11125,7 +11124,7 @@ msgstr "fjern katalog"
 
 #
 msgid "remove entry"
-msgstr "fjern denne"
+msgstr "Fjern denne"
 
 #
 msgid "remove from parental protection"
@@ -11148,7 +11147,7 @@ msgstr "gi nytt navn"
 
 #
 msgid "rename entry"
-msgstr "endre navn på oppføring"
+msgstr "Endre navn på oppføring"
 
 #
 msgid "repeat playlist"
@@ -11228,7 +11227,7 @@ msgid "service PIN"
 msgstr "kanal PIN"
 
 msgid "set as startup service"
-msgstr "sett som oppstart kanal"
+msgstr "Sett som oppstart kanal"
 
 msgid "setup PIN"
 msgstr "oppsetts  PIN"
@@ -11305,7 +11304,7 @@ msgstr "vise programvarebehandler under blå knapp"
 
 #
 msgid "show transponder info"
-msgstr "vis transponder info"
+msgstr "Vis transponder info"
 
 msgid "show/game show (general)"
 msgstr "show/game show (generelt)"
@@ -11618,6 +11617,12 @@ msgstr "zapped"
 #~ msgid "Advanced video setup"
 #~ msgstr "Avansert video oppsett"
 
+#~ msgid "Display"
+#~ msgstr "Vis"
+
+#~ msgid "Lamedb"
+#~ msgstr "Lamedb"
+
 #~ msgid "Side by side"
 #~ msgstr "Side ved side"
 
@@ -11629,3 +11634,6 @@ msgstr "zapped"
 
 #~ msgid "Video wizard"
 #~ msgstr "Video Guide"
+
+#~ msgid "hint text place holder, waiting Vu for correct deffinitions."
+#~ msgstr "hint tekstplassholder, venter Vu for korrekte definisjoner."
