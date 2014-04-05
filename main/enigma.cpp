@@ -150,6 +150,7 @@ int main(int argc, char **argv)
 #if 1
 	ePtr<gMainDC> my_dc;
 	gMainDC::getInstance(my_dc);
+	my_dc->setResolution(1280, 720, 32);
 
 	//int double_buffer = my_dc->haveDoubleBuffering();
 
