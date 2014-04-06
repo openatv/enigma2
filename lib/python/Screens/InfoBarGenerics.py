@@ -1088,7 +1088,7 @@ class InfoBarChannelSelection:
 	def ChannelPlusPressed(self):
 		if config.usage.channelbutton_mode.value == "0":
 			self.zapDown()
-		elif config.usage.channelbutton_mode.value == "1":
+		elif config.usage.channelbutton_mode.value == "1" or config.usage.channelbutton_mode.value == "3":
 			self.openServiceList()
 		elif config.usage.channelbutton_mode.value == "2":
 			self.serviceListType = "Norm"
@@ -1098,7 +1098,7 @@ class InfoBarChannelSelection:
 	def ChannelMinusPressed(self):
 		if config.usage.channelbutton_mode.value == "0":
 			self.zapUp()
-		elif config.usage.channelbutton_mode.value == "1":
+		elif config.usage.channelbutton_mode.value == "1" or config.usage.channelbutton_mode.value == "3":
 			self.openServiceList()
 		elif config.usage.channelbutton_mode.value == "2":
 			self.serviceListType = "Norm"

@@ -242,7 +242,8 @@ def InitUsageConfig():
 	config.usage.channelbutton_mode = ConfigSelection(default="0", choices = [
 					("0", _("Just change channels")),
 					("1", _("Channel List")),
-					("2", _("Bouquet List"))])
+					("2", _("Bouquet List")),
+					("3", _("Just change Bouquet"))])
 	config.usage.updownbutton_mode = ConfigSelection(default="1", choices = [
 					("0", _("Just change channels")),
 					("1", _("Channel List"))])

@@ -1433,24 +1433,24 @@ class ChannelSelectionBase(Screen):
 
 	def nextBouquet(self):
 		if "reverseB" in config.usage.servicelist_cursor_behavior.value:
-			if config.usage.channelbutton_mode.value == '0':
+			if config.usage.channelbutton_mode.value == '0' or config.usage.channelbutton_mode.value == '3':
 				self.changeBouquet(-1)
 			else:
 				self.servicelist.moveDown()
 		else:
-			if config.usage.channelbutton_mode.value == '0':
+			if config.usage.channelbutton_mode.value == '0' or config.usage.channelbutton_mode.value == '3':
 				self.changeBouquet(+1)
 			else:
 				self.servicelist.moveUp()
 
 	def prevBouquet(self):
 		if "reverseB" in config.usage.servicelist_cursor_behavior.value:
-			if config.usage.channelbutton_mode.value == '0':
+			if config.usage.channelbutton_mode.value == '0' or config.usage.channelbutton_mode.value == '3':
 				self.changeBouquet(+1)
 			else:
 				self.servicelist.moveUp()
 		else:
-			if config.usage.channelbutton_mode.value == '0':
+			if config.usage.channelbutton_mode.value == '0' or config.usage.channelbutton_mode.value == '3':
 				self.changeBouquet(-1)
 			else:
 				self.servicelist.moveDown()
