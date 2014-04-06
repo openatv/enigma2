@@ -351,8 +351,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			events = self.cur_service[2]
 			refstr = self.cur_service[0]
 			print '[EPG DEBUG] self.cur_event:',self.cur_event
-			print '[EPG DEBUG] len(events):',len(events)
-			if self.cur_event is None or not events or self.cur_event > len(events):
+			print '[EPG DEBUG] len(events):',events and len(events)
+			if self.cur_event is None or not events or (self.cur_event and events and self.cur_event > len(events)):
 				return None, ServiceReference(refstr)
 			event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
 			eventid = event[0]
